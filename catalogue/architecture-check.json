@@ -1,0 +1,108 @@
+{
+  "checked_at": "2026-10-26T12:31:45.556834+00:00",
+  "upstream_commit": "b29c606e28a01b1bc8c1351026a0fa6e616bf6c4",
+  "upstream_source_url": "https://api.github.com/repos/ggml-org/llama.cpp/contents/src/llama-arch.cpp?ref=b29c606e28a01b1bc8c1351026a0fa6e616bf6c4",
+  "upstream_source_sha256": "1a480fc4899ba76a4e24119d65fbca67905cdd641953ec0eaae878b3c0af560c",
+  "prefix_bytes_per_model": 256,
+  "model_load_tested": false,
+  "models": [
+    {
+      "id": "m08",
+      "architecture": "qwen3",
+      "pinned_url": "https://huggingface.co/mradermacher/Qwen3-1.7B-abliterated-GGUF/resolve/b87b1df5ecc209db872fed3e8a3ca5e1fd76c02a/Qwen3-1.7B-abliterated.Q4_K_M.gguf",
+      "present_in_pinned_upstream_architecture_map": true,
+      "architecture_string_present_in_packaged_library": true
+    },
+    {
+      "id": "m06",
+      "architecture": "lfm2",
+      "pinned_url": "https://huggingface.co/zaakirio/LFM2.5-1.2B-Instruct-Uncensored-GGUF/resolve/9524013e4acd8e382dff76e5605b6c2376198237/LFM2.5-1.2B-Instruct-Uncensored-Q4_K_M.gguf",
+      "present_in_pinned_upstream_architecture_map": true,
+      "architecture_string_present_in_packaged_library": true
+    },
+    {
+      "id": "m01",
+      "architecture": "qwen2",
+      "pinned_url": "https://huggingface.co/bartowski/Dolphin3.0-Qwen2.5-0.5B-GGUF/resolve/2a4428efa5a7377c4404d0b9ff16ce41e52047b8/Dolphin3.0-Qwen2.5-0.5B-Q4_K_M.gguf",
+      "present_in_pinned_upstream_architecture_map": true,
+      "architecture_string_present_in_packaged_library": true
+    },
+    {
+      "id": "m05",
+      "architecture": "gemma3",
+      "pinned_url": "https://huggingface.co/mlabonne/gemma-3-1b-it-abliterated-GGUF/resolve/3a0369ab47e95d84587250ffa9fbefab6ef01432/gemma-3-1b-it-abliterated.q4_k_m.gguf",
+      "present_in_pinned_upstream_architecture_map": true,
+      "architecture_string_present_in_packaged_library": true
+    },
+    {
+      "id": "m04",
+      "architecture": "llama",
+      "pinned_url": "https://huggingface.co/bartowski/Dolphin3.0-Llama3.2-1B-GGUF/resolve/617f94be9dfb802a3fa0ec64b12d7d085482a308/Dolphin3.0-Llama3.2-1B-Q4_K_M.gguf",
+      "present_in_pinned_upstream_architecture_map": true,
+      "architecture_string_present_in_packaged_library": true
+    },
+    {
+      "id": "m03",
+      "architecture": "qwen35",
+      "pinned_url": "https://huggingface.co/mradermacher/Huihui-Qwen3.5-0.8B-abliterated-i1-GGUF/resolve/4fade25176da43736bf43f5f81433f1aff0e741f/Huihui-Qwen3.5-0.8B-abliterated.i1-Q4_K_M.gguf",
+      "present_in_pinned_upstream_architecture_map": true,
+      "architecture_string_present_in_packaged_library": true
+    },
+    {
+      "id": "m09",
+      "architecture": "qwen35",
+      "pinned_url": "https://huggingface.co/mradermacher/Huihui-Qwen3.5-2B-abliterated-GGUF/resolve/7f5aee7d2dc4df18bd67eab85ea81e0bc2e98a2c/Huihui-Qwen3.5-2B-abliterated.Q4_K_M.gguf",
+      "present_in_pinned_upstream_architecture_map": true,
+      "architecture_string_present_in_packaged_library": true
+    },
+    {
+      "id": "m11",
+      "architecture": "qwen2",
+      "pinned_url": "https://huggingface.co/bartowski/Dolphin3.0-Qwen2.5-3b-GGUF/resolve/4f84a9b5b7ecc4c49367838cf226677008f37c1e/Dolphin3.0-Qwen2.5-3b-Q4_K_M.gguf",
+      "present_in_pinned_upstream_architecture_map": true,
+      "architecture_string_present_in_packaged_library": true
+    },
+    {
+      "id": "m12",
+      "architecture": "llama",
+      "pinned_url": "https://huggingface.co/bartowski/Dolphin3.0-Llama3.2-3B-GGUF/resolve/ac6b1ee98e3864ebd5998216f800a07d74b166b5/Dolphin3.0-Llama3.2-3B-Q4_K_M.gguf",
+      "present_in_pinned_upstream_architecture_map": true,
+      "architecture_string_present_in_packaged_library": true
+    },
+    {
+      "id": "m13",
+      "architecture": "llama",
+      "pinned_url": "https://huggingface.co/bartowski/Llama-3.2-3B-Instruct-uncensored-GGUF/resolve/db993eb152fc89f32e061f3575d1b8111648900f/Llama-3.2-3B-Instruct-uncensored-Q4_K_M.gguf",
+      "present_in_pinned_upstream_architecture_map": true,
+      "architecture_string_present_in_packaged_library": true
+    },
+    {
+      "id": "m14",
+      "architecture": "qwen3",
+      "pinned_url": "https://huggingface.co/mradermacher/Huihui-Qwen3-4B-Instruct-2507-abliterated-GGUF/resolve/c9e90669eeb205d5af35c28a3e9983fc9293c2ec/Huihui-Qwen3-4B-Instruct-2507-abliterated.Q4_K_M.gguf",
+      "present_in_pinned_upstream_architecture_map": true,
+      "architecture_string_present_in_packaged_library": true
+    },
+    {
+      "id": "m16",
+      "architecture": "gemma3",
+      "pinned_url": "https://huggingface.co/mlabonne/gemma-3-4b-it-abliterated-v2-GGUF/resolve/63e82692eb4361788cdfdf01491bdbda28858737/gemma-3-4b-it-abliterated-v2.q4_k_m.gguf",
+      "present_in_pinned_upstream_architecture_map": true,
+      "architecture_string_present_in_packaged_library": true
+    },
+    {
+      "id": "m10",
+      "architecture": "lfm2",
+      "pinned_url": "https://huggingface.co/SC117/LFM2.5-2.6B-Uncensored-GGUF/resolve/0244f12071fe554849514aef361c584f45a5d565/LFM2.5-2.6B-Uncensored-Q4_K_M.gguf",
+      "present_in_pinned_upstream_architecture_map": true,
+      "architecture_string_present_in_packaged_library": true
+    },
+    {
+      "id": "m15",
+      "architecture": "qwen35",
+      "pinned_url": "https://huggingface.co/HauhauCS/Qwen3.5-4B-Uncensored-HauhauCS-Aggressive/resolve/c09cdbcdb1fefad6d335809d445621b5f5ba0c6e/Qwen3.5-4B-Uncensored-HauhauCS-Aggressive-Q4_K_M.gguf",
+      "present_in_pinned_upstream_architecture_map": true,
+      "architecture_string_present_in_packaged_library": true
+    }
+  ]
+}

@@ -1,0 +1,156 @@
+{
+  "version": "0.1.2",
+  "captured_at": "2026-10-26T18:47:39.047Z",
+  "kind": "actual shipped HTML/CSS/JS with explicit simulated native bridge",
+  "android_device": false,
+  "model_inference": false,
+  "downloads_simulated": true,
+  "scripted_chat": true,
+  "api_key": "demonstration placeholder only",
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "screenshots": [
+    {
+      "file": "01-library.png",
+      "caption": "Built-in uncensored model recommendations / 内置无审查模型推荐"
+    },
+    {
+      "file": "02-model-evidence.png",
+      "caption": "Pinned publisher evidence and weight SHA256 / 作者依据及权重哈希"
+    },
+    {
+      "file": "03-download.png",
+      "caption": "Simulated native download progress / 模拟原生下载状态"
+    },
+    {
+      "file": "04-chat.png",
+      "caption": "Scripted text rendered through real chat UI; no model run / 对话界面脚本文本展示"
+    },
+    {
+      "file": "05-api.png",
+      "caption": "OpenAI-compatible API controls; example-only IP and key / API 服务界面，示例地址与密钥"
+    },
+    {
+      "file": "06-settings.png",
+      "caption": "CPU, context and output settings / CPU、上下文及输出参数"
+    },
+    {
+      "file": "07-dark.png",
+      "caption": "Dark theme API service / 深色主题服务页"
+    }
+  ],
+  "video": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "codec_name": "h264",
+        "width": 390,
+        "height": 844
+      }
+    ],
+    "format": {
+      "duration": "25.320000"
+    }
+  },
+  "chapter_clock": "Approximate video offsets from recording page creation",
+  "chapters": [
+    {
+      "name": "Uncensored model library",
+      "seconds": 0.621
+    },
+    {
+      "name": "Download, pause and resume — simulated transfer",
+      "seconds": 5.157
+    },
+    {
+      "name": "Chat UI — scripted demonstration text",
+      "seconds": 11.689
+    },
+    {
+      "name": "Local API and LAN setting",
+      "seconds": 17.499
+    },
+    {
+      "name": "Settings and dark theme",
+      "seconds": 20.693
+    }
+  ],
+  "files": [
+    {
+      "file": "01-library.png",
+      "bytes": 127907,
+      "sha256": "ec461a2c0132f335e5860009f6139dc68dc2ca0a36d528563e48701deb4c5d0c"
+    },
+    {
+      "file": "02-model-evidence.png",
+      "bytes": 144016,
+      "sha256": "50783ceb06fa71f1894f351a3dadb6af5497ef2d7377db0d463258831a32eeff"
+    },
+    {
+      "file": "03-download.png",
+      "bytes": 127753,
+      "sha256": "13607eb956a56e086b1604753102f12bcefbb901b8e1af477fc2dd1fcdc55966"
+    },
+    {
+      "file": "04-chat.png",
+      "bytes": 112931,
+      "sha256": "d3fc9b85694944e20631d9fd514fe64b4fb091d7af8741f2cf700c791080ff47"
+    },
+    {
+      "file": "05-api.png",
+      "bytes": 102011,
+      "sha256": "6bdfcaee24cb45ea396649f314a1512a718ce115216486d72d8b02a7a24e9ebf"
+    },
+    {
+      "file": "06-settings.png",
+      "bytes": 109856,
+      "sha256": "5922868c1187ab06b2747466989c249fa35e455ffdf222e5ae1753f9e242d7a6"
+    },
+    {
+      "file": "07-dark.png",
+      "bytes": 102608,
+      "sha256": "3597ebd073cdc9392345c35521c234a047a21c6664ee946883b400a7616c23da"
+    },
+    {
+      "file": "lma-api-theme.gif",
+      "bytes": 944484,
+      "sha256": "7f104f0b852ea050dc4984917c52908b5c543edfa0f0895e94f9ab438ab3f9e9"
+    },
+    {
+      "file": "lma-walkthrough.gif",
+      "bytes": 2692512,
+      "sha256": "4b82231be214ee5430697769092e5fd7c8367f3b14bec5d7f12bfb27bd2ba00a"
+    },
+    {
+      "file": "lma-walkthrough.mp4",
+      "bytes": 758474,
+      "sha256": "685544f1e1c45c002bd1d79bfa25d12eeed4c19b9962597228d348b3e14f854e"
+    }
+  ],
+  "input_fingerprint": {
+    "app/src/main/assets/app.css": "e432282741ebe33b77d5ab313710a3906e81cbd862b662de44b427075d8e247d",
+    "app/src/main/assets/app.js": "888ea06eb4e61802b077cb2e7fd730af9c1cce51fb09d0ce00e55fa5beb16cf2",
+    "app/src/main/assets/index.html": "a9ba12c3cb76c3030f36475c6157ca556ab0c90569880c9b65d5cde3ea1debe9",
+    "app/src/main/assets/license.js": "dccd3be12b0c05a62251b8bccc44f393b4dda3fa398248536b21eea7a07c62e5",
+    "app/src/main/assets/licenses/LLAMA_CPP_LICENSE": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
+    "app/src/main/assets/licenses/LMA_LICENSE": "6ae3f5efa412d91cbf66e44f743e5ce41a8044309d05d893365206ab9bc35fc3",
+    "app/src/main/assets/licenses/cpp-httplib-LICENSE.txt": "bb546eae5924d8ee842e0e567e6d533c5824bdebccf605f99a5b3429034e6697",
+    "app/src/main/assets/licenses/libcxx-LICENSE.txt": "a7de191338d328257ecec5ba1ea971ebd67633d0b4fce7d6272a39749547ec6b",
+    "app/src/main/assets/licenses/libcxxabi-LICENSE.txt": "da1b3a1b8e0a947d934acfbe4e356b864199f65923cc2f89d8330b8b678e3cdd",
+    "app/src/main/assets/licenses/libunwind-LICENSE.txt": "6ac83ceee5f3a784aed98f250bc7acf68dd7112528512c1a6d40dcb5a29154bf",
+    "app/src/main/assets/licenses/miniaudio-LICENSE.txt": "6c36f269eb9346c1bc9d857250bd6a1132a5e65e700bea99ea1836c1658cf13b",
+    "app/src/main/assets/licenses/nlohmann-json-LICENSE.txt": "b9715282b2f1db1359a919bb3a542dd4362fd9e38ae72d421367eb11abe62eec",
+    "app/src/main/assets/licenses/rotate-bits-LICENSE.txt": "6d1a68e8ae5085d15a5c4f8dc1363b7bf256756b3a49cbaf29fe7f7a49eae4e3",
+    "app/src/main/assets/licenses/sha256-LICENSE.txt": "24836bd0f33996623060eabeb765fb0b091bcbca47e6e6e9493385df8ce9e30a",
+    "app/src/main/assets/licenses/stb-image-LICENSE.txt": "79058ef78fa76316a78499d99fb301e5565cfb91f099ca6853e413060b48c790",
+    "app/src/main/assets/licenses/subprocess-LICENSE.txt": "89860eba470df892c1e7d713b357a648626d0717c150f5f72cd12f29ecb1d8a0",
+    "app/src/main/assets/licenses/xxhash-LICENSE.txt": "a2973411d278045bde3c7161b911e0680d53e2d73d6457c77068d2e55d816d67",
+    "app/src/main/assets/models.json": "b5518ff878f02b368eb87012b504afab01c15c94ab90b78daeaf0502111562d2",
+    "tools/capture_media.cjs": "0f39c867e5d2cf9848a4620fb09ebeba1f93ef61938caa82618c15f8043d7cfb"
+  },
+  "browser_errors": [],
+  "browser_closed": true
+}

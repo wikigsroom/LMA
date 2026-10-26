@@ -1,0 +1,16 @@
+{
+  "passed": 5,
+  "checks": [
+    "Production schema and index compile in real SQLite",
+    "History selects newest 32 rows in chronological rowid order even with identical timestamps",
+    "Visible transcript selects newest 80 rows with stable order",
+    "Bound session parameters isolate transcripts with SQL-like identifiers",
+    "Committed messages and interrupted status survive closing and reopening SQLite"
+  ],
+  "sqlite_version": "3.45.3",
+  "android_framework_tested": false,
+  "input_fingerprint": {
+    "app/src/main/java/com/lma/app/Chats.java": "ee21aea9b437716d6233b0fae7f04a9ecc1cc31c0e37e8fbe69484c2e0148434",
+    "tools/test_sqlite.py": "a5f4097327e74f578cb4a1993903f6660760130296101803cc234a243aefe2f8"
+  }
+}

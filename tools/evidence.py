@@ -1,0 +1,29 @@
+"""Fingerprint verification inputs so stale passing reports cannot ship a new build."""
+import hashlib
+from pathlib import Path
+import xml.etree.ElementTree as ET
+
+ROOT = Path(__file__).resolve().parents[1]
+ANDROID = "{http://schemas.android.com/apk/res/android}"
+
+
+def version():
+    return ET.parse(ROOT / "app/src/main/AndroidManifest.xml").getroot().attrib[ANDROID + "versionName"]
+
+
+def fingerprint(*names):
+    files = set()
+    for name in names:
+        path = ROOT / name
+        files.update(p for p in path.rglob("*") if p.is_file()) if path.is_dir() else files.add(path)
+    return {p.relative_to(ROOT).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(files)}
+
+
+def current(record):
+    assert record, "Missing verification input fingerprints"
+    for name, expected in record.items():
+        assert hashlib.sha256((ROOT / name).read_bytes()).hexdigest() == expected, "Stale verification evidence: " + name
+
+
+def build_inputs():
+    return fingerprint("app/src/main", "tools/build.py", "tools/build_catalogue.py", "tools/evidence.py", "catalogue/verified-models.json", "catalogue/uncensored-policy.json", "catalogue/uncensored-evidence.json", "tools/audit_uncensored.py", "third_party/runtime-lock.json")

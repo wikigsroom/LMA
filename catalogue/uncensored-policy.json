@@ -1,0 +1,149 @@
+{
+  "version": 1,
+  "builtin_models_require_publisher_uncensored_evidence": true,
+  "models": [
+    {
+      "id": "m01",
+      "author_repository": "dphn/Dolphin3.0-Qwen2.5-0.5B",
+      "method": "uncensored-instruct",
+      "claim_phrase": "Dolphin does not impose its ethics or guidelines on you.",
+      "summary": "Dolphin 作者声明不强加自身伦理或准则，行为由用户的系统提示词控制。",
+      "author_aliases": [
+        "cognitivecomputations/Dolphin3.0-Qwen2.5-0.5B"
+      ]
+    },
+    {
+      "id": "m03",
+      "author_repository": "huihui-ai/Huihui-Qwen3.5-0.8B-abliterated",
+      "method": "abliterated",
+      "claim_phrase": "This is an uncensored version of",
+      "summary": "作者明确声明通过 abliteration 去除拒答的无审查版本。",
+      "method_markers": [
+        "abliteration"
+      ]
+    },
+    {
+      "id": "m04",
+      "author_repository": "dphn/Dolphin3.0-Llama3.2-1B",
+      "method": "uncensored-instruct",
+      "claim_phrase": "Dolphin does not impose its ethics or guidelines on you.",
+      "summary": "Dolphin 作者声明不强加自身伦理或准则，行为由用户的系统提示词控制。",
+      "author_aliases": [
+        "cognitivecomputations/Dolphin3.0-Llama3.2-1B"
+      ]
+    },
+    {
+      "id": "m05",
+      "author_repository": "mlabonne/gemma-3-1b-it-abliterated",
+      "method": "abliterated",
+      "claim_phrase": "This is an uncensored version of",
+      "summary": "作者明确声明通过 abliteration 去除拒答的无审查版本。",
+      "method_markers": [
+        "abliteration"
+      ],
+      "gguf_binding_phrases": [
+        "Gemma 3 1B IT Abliterated GGUF",
+        "This is an uncensored version of [google/gemma-3-1b-it]"
+      ]
+    },
+    {
+      "id": "m06",
+      "author_repository": "zaakirio/LFM2.5-1.2B-Instruct-Uncensored",
+      "method": "abliterated",
+      "claim_phrase": "An uncensored version of",
+      "summary": "作者使用 Heretic 方向消融去除拒答的无审查版本。",
+      "method_markers": [
+        "Heretic",
+        "abliteration"
+      ]
+    },
+    {
+      "id": "m08",
+      "author_repository": "mlabonne/Qwen3-1.7B-abliterated",
+      "method": "abliterated",
+      "claim_phrase": "This is an uncensored version of",
+      "summary": "作者明确声明通过 abliteration 去除拒答的无审查版本。",
+      "method_markers": [
+        "abliteration"
+      ]
+    },
+    {
+      "id": "m09",
+      "author_repository": "huihui-ai/Huihui-Qwen3.5-2B-abliterated",
+      "method": "abliterated",
+      "claim_phrase": "This is an uncensored version of",
+      "summary": "作者明确声明通过 abliteration 去除拒答的无审查版本。",
+      "method_markers": [
+        "abliteration"
+      ]
+    },
+    {
+      "id": "m10",
+      "author_repository": "SC117/LFM2.5-2.6B-Uncensored",
+      "method": "abliterated",
+      "claim_phrase": "Uncensored behavior edit via",
+      "summary": "作者合并 Abliterix Trial 65 去拒答修改的无审查版本。",
+      "method_markers": [
+        "abliterix",
+        "Trial 65"
+      ]
+    },
+    {
+      "id": "m11",
+      "author_repository": "dphn/Dolphin3.0-Qwen2.5-3b",
+      "method": "uncensored-instruct",
+      "claim_phrase": "Dolphin does not impose its ethics or guidelines on you.",
+      "summary": "Dolphin 作者声明不强加自身伦理或准则，行为由用户的系统提示词控制。",
+      "author_aliases": [
+        "cognitivecomputations/Dolphin3.0-Qwen2.5-3b"
+      ]
+    },
+    {
+      "id": "m12",
+      "author_repository": "dphn/Dolphin3.0-Llama3.2-3B",
+      "method": "uncensored-instruct",
+      "claim_phrase": "Dolphin does not impose its ethics or guidelines on you.",
+      "summary": "Dolphin 作者声明不强加自身伦理或准则，行为由用户的系统提示词控制。",
+      "author_aliases": [
+        "cognitivecomputations/Dolphin3.0-Llama3.2-3B"
+      ]
+    },
+    {
+      "id": "m13",
+      "author_repository": "chuanli11/Llama-3.2-3B-Instruct-uncensored",
+      "method": "abliterated",
+      "claim_phrase": "This is an uncensored version of",
+      "summary": "作者明确声明通过 abliteration 去除拒答的无审查版本。",
+      "method_markers": [
+        "abliteration"
+      ]
+    },
+    {
+      "id": "m14",
+      "author_repository": "huihui-ai/Huihui-Qwen3-4B-Instruct-2507-abliterated",
+      "method": "abliterated",
+      "claim_phrase": "This is an uncensored version of",
+      "summary": "作者明确声明通过 abliteration 去除拒答的无审查版本。",
+      "method_markers": [
+        "abliteration"
+      ]
+    },
+    {
+      "id": "m15",
+      "author_repository": "HauhauCS/Qwen3.5-4B-Uncensored-HauhauCS-Aggressive",
+      "method": "uncensored-weights",
+      "claim_phrase": "Qwen3.5-4B uncensored by HauhauCS.",
+      "summary": "HauhauCS 发布的 Aggressive 无审查权重版本。"
+    },
+    {
+      "id": "m16",
+      "author_repository": "mlabonne/gemma-3-4b-it-abliterated-v2",
+      "method": "abliterated",
+      "claim_phrase": "This is an uncensored version of",
+      "summary": "作者明确声明通过 abliteration 去除拒答的无审查版本。",
+      "method_markers": [
+        "abliteration"
+      ]
+    }
+  ]
+}

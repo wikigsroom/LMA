@@ -1,0 +1,175 @@
+{
+  "tool": "lint 8.9.0 [13114758] ",
+  "default_checks": true,
+  "offline": true,
+  "java_source_files": 12,
+  "resource_files": 3,
+  "min_sdk": 28,
+  "compile_sdk": 35,
+  "errors": 0,
+  "warnings": [
+    {
+      "id": "OldTargetApi",
+      "severity": "Warning",
+      "message": "Not targeting the latest versions of Android; compatibility modes apply. Consider testing and updating this version. Consult the `android.os.Build.VERSION_CODES` javadoc for details.",
+      "location": {
+        "file": "src\\main\\AndroidManifest.xml",
+        "line": "3",
+        "column": "42"
+      }
+    },
+    {
+      "id": "BatteryLife",
+      "severity": "Warning",
+      "message": "Use of `REQUEST_IGNORE_BATTERY_OPTIMIZATIONS` violates the Play Store Content Policy regarding acceptable use cases, as described in https://developer.android.com/training/monitoring-device-state/doze-standby.html",
+      "location": {
+        "file": "src\\main\\java\\com\\lma\\app\\MainActivity.java",
+        "line": "143",
+        "column": "95"
+      }
+    },
+    {
+      "id": "UseRequiresApi",
+      "severity": "Warning",
+      "message": "Use `@RequiresApi(33) instead of `@TargetApi` to propagate the requirement to users of `Api33Back`",
+      "location": {
+        "file": "src\\main\\java\\com\\lma\\app\\MainActivity.java",
+        "line": "101",
+        "column": "5"
+      }
+    },
+    {
+      "id": "SetJavaScriptEnabled",
+      "severity": "Warning",
+      "message": "Using `setJavaScriptEnabled` can introduce XSS vulnerabilities into your application, review carefully",
+      "location": {
+        "file": "src\\main\\java\\com\\lma\\app\\MainActivity.java",
+        "line": "51",
+        "column": "9"
+      }
+    },
+    {
+      "id": "DataExtractionRules",
+      "severity": "Warning",
+      "message": "The attribute `android:allowBackup` is deprecated from Android 12 and higher and may be removed in future versions. Consider adding the attribute `android:dataExtractionRules` specifying an `@xml` resource which configures cloud backups and device transfers on Android 12 and higher.",
+      "location": {
+        "file": "src\\main\\AndroidManifest.xml",
+        "line": "16",
+        "column": "30"
+      }
+    },
+    {
+      "id": "WakelockTimeout",
+      "severity": "Warning",
+      "message": "Provide a timeout when requesting a wakelock with `PowerManager.Wakelock.acquire(long timeout)`. This will ensure the OS will cleanup any wakelocks that last longer than you intend, and will save your user's battery.",
+      "location": {
+        "file": "src\\main\\java\\com\\lma\\app\\LmaService.java",
+        "line": "41",
+        "column": "125"
+      }
+    },
+    {
+      "id": "Recycle",
+      "severity": "Warning",
+      "message": "This `InputStream` should be freed up after use with `#close()`",
+      "location": {
+        "file": "src\\main\\java\\com\\lma\\app\\Downloads.java",
+        "line": "97",
+        "column": "50"
+      }
+    }
+  ],
+  "issues": [
+    {
+      "id": "OldTargetApi",
+      "severity": "Warning",
+      "message": "Not targeting the latest versions of Android; compatibility modes apply. Consider testing and updating this version. Consult the `android.os.Build.VERSION_CODES` javadoc for details.",
+      "location": {
+        "file": "src\\main\\AndroidManifest.xml",
+        "line": "3",
+        "column": "42"
+      }
+    },
+    {
+      "id": "BatteryLife",
+      "severity": "Warning",
+      "message": "Use of `REQUEST_IGNORE_BATTERY_OPTIMIZATIONS` violates the Play Store Content Policy regarding acceptable use cases, as described in https://developer.android.com/training/monitoring-device-state/doze-standby.html",
+      "location": {
+        "file": "src\\main\\java\\com\\lma\\app\\MainActivity.java",
+        "line": "143",
+        "column": "95"
+      }
+    },
+    {
+      "id": "UseRequiresApi",
+      "severity": "Warning",
+      "message": "Use `@RequiresApi(33) instead of `@TargetApi` to propagate the requirement to users of `Api33Back`",
+      "location": {
+        "file": "src\\main\\java\\com\\lma\\app\\MainActivity.java",
+        "line": "101",
+        "column": "5"
+      }
+    },
+    {
+      "id": "SetJavaScriptEnabled",
+      "severity": "Warning",
+      "message": "Using `setJavaScriptEnabled` can introduce XSS vulnerabilities into your application, review carefully",
+      "location": {
+        "file": "src\\main\\java\\com\\lma\\app\\MainActivity.java",
+        "line": "51",
+        "column": "9"
+      }
+    },
+    {
+      "id": "DataExtractionRules",
+      "severity": "Warning",
+      "message": "The attribute `android:allowBackup` is deprecated from Android 12 and higher and may be removed in future versions. Consider adding the attribute `android:dataExtractionRules` specifying an `@xml` resource which configures cloud backups and device transfers on Android 12 and higher.",
+      "location": {
+        "file": "src\\main\\AndroidManifest.xml",
+        "line": "16",
+        "column": "30"
+      }
+    },
+    {
+      "id": "WakelockTimeout",
+      "severity": "Warning",
+      "message": "Provide a timeout when requesting a wakelock with `PowerManager.Wakelock.acquire(long timeout)`. This will ensure the OS will cleanup any wakelocks that last longer than you intend, and will save your user's battery.",
+      "location": {
+        "file": "src\\main\\java\\com\\lma\\app\\LmaService.java",
+        "line": "41",
+        "column": "125"
+      }
+    },
+    {
+      "id": "Recycle",
+      "severity": "Warning",
+      "message": "This `InputStream` should be freed up after use with `#close()`",
+      "location": {
+        "file": "src\\main\\java\\com\\lma\\app\\Downloads.java",
+        "line": "97",
+        "column": "50"
+      }
+    }
+  ],
+  "android_execution_tested": false,
+  "applicationApkSha256": "e9e3b7103f5e63c86953acdb986387f73cae9e3fb42851f6af1b9fffe6c1cc28",
+  "input_fingerprint": {
+    "app/src/main/AndroidManifest.xml": "9133d7591c7af4c700c863df17630c7e0ce7d4862944e8bf69e987440ab58bb2",
+    "app/src/main/java/com/lma/app/BootReceiver.java": "9766a82d9c910b0c33fc7dfa738b10ec4f6c776c5f4fd465130bbe8facb47616",
+    "app/src/main/java/com/lma/app/ChatRunner.java": "6a3d1d1b3d744d56300f52e0f44d64ee10f68a19d947c49444264ecab91738da",
+    "app/src/main/java/com/lma/app/Chats.java": "ee21aea9b437716d6233b0fae7f04a9ecc1cc31c0e37e8fbe69484c2e0148434",
+    "app/src/main/java/com/lma/app/core/ChatHistory.java": "3046a52c3f611b83b46cfed94afe0f4b31667f77986b7ca1737169ec8c4ce951",
+    "app/src/main/java/com/lma/app/core/Protocol.java": "d49f47884aec0cb03347023119c2808330fa9970689dcd9d33c30ca653d03b85",
+    "app/src/main/java/com/lma/app/Downloads.java": "9b3a5e840f66edb74b88830189fa7484d30f9a62f1af167d73dd53e6122597ee",
+    "app/src/main/java/com/lma/app/EngineHost.java": "34e31af1fb48228987338ab6ccabc4e1d3a4ffa981896e871e67d7f63754ed48",
+    "app/src/main/java/com/lma/app/LmaApp.java": "498c94fe21184efbc76917a8d7229ab1a11e303b2cf4c81a63044cf1baac2976",
+    "app/src/main/java/com/lma/app/LmaService.java": "5f3e8cbd646a7499830520569983ee7cb11f9b85ff16eabf9a3f0ad5c60a526d",
+    "app/src/main/java/com/lma/app/MainActivity.java": "333d78cd81cd0a57e742ae3d0014f2d8dfbfb86cf0eb0e70344536e95fb18da6",
+    "app/src/main/java/com/lma/app/Net.java": "9769326317fb25bfedfa92da42c0f1071bf8a7886845aa43dbf680da01c86648",
+    "app/src/main/java/com/lma/app/Store.java": "7fb3e6de90bffb8723363c9205546dd4572c01293ddf95c1b137a04ca69d6359",
+    "app/src/main/res/drawable/ic_notification.xml": "156cead26295ef8f3822029f3ce8afa19bcef9a626925ec802271db88a1de26b",
+    "app/src/main/res/mipmap-anydpi/ic_launcher.xml": "7790159025ce15539c0cd2dc541129e3767abfa293517cdc40587880ae2c37c2",
+    "app/src/main/res/values/styles.xml": "6415204118d5d06db0b46cbf2f4d2c62b1c32e7c89fbe6bcfb8f26900a743b9f",
+    "tools/test_android_lint.py": "fe3185e5b6e299e0aedda5edd34fcaad4390c4715ddd3e26674ffbbc0f23370e"
+  }
+}

@@ -1,0 +1,13 @@
+# Evidence uses SHA256 of exact input bytes. Never rewrite line endings on checkout.
+* -text
+* whitespace=cr-at-eol
+# Preserve upstream license bytes, including their original whitespace.
+app/src/main/assets/licenses/* -whitespace
+third_party/notices/* -whitespace
+*.png binary
+*.gif binary
+*.mp4 binary
+*.webm binary
+*.so binary
+*.apk binary
+*.zip binary

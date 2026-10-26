@@ -1,0 +1,69 @@
+{
+  "checked_at": "2026-10-26T12:59:20.464740+00:00",
+  "upstream_commit": "b29c606e28a01b1bc8c1351026a0fa6e616bf6c4",
+  "sources": [
+    {
+      "path": "common/arg.cpp",
+      "url": "https://api.github.com/repos/ggml-org/llama.cpp/contents/common/arg.cpp?ref=b29c606e28a01b1bc8c1351026a0fa6e616bf6c4",
+      "sha256": "6e71ad4f63c79fee81fe218ab6755ed97813ba84d179e38ae02924be1556d46e"
+    },
+    {
+      "path": "ggml/src/ggml-backend-reg.cpp",
+      "url": "https://api.github.com/repos/ggml-org/llama.cpp/contents/ggml/src/ggml-backend-reg.cpp?ref=b29c606e28a01b1bc8c1351026a0fa6e616bf6c4",
+      "sha256": "0f63c69ad083e0744872f57d59d049b069283303f5bbc646222907d779afe4d1"
+    },
+    {
+      "path": "tools/server/server-http.cpp",
+      "url": "https://api.github.com/repos/ggml-org/llama.cpp/contents/tools/server/server-http.cpp?ref=b29c606e28a01b1bc8c1351026a0fa6e616bf6c4",
+      "sha256": "fc9d307525d7db13fcee3d32e0d4587cbd2f3d93bcc70a86b2cedc16b336ce11"
+    }
+  ],
+  "production_launcher_options": [
+    "--alias",
+    "--device",
+    "--host",
+    "--jinja",
+    "--metrics",
+    "--no-webui",
+    "--port",
+    "--reasoning",
+    "-b",
+    "-c",
+    "-m",
+    "-ngl",
+    "-np",
+    "-t",
+    "-ub"
+  ],
+  "api_key_environment_matches": true,
+  "cpu_discovery_in_executable_directory": true,
+  "cpu_feature_score_exports": [
+    "libggml-cpu-android_armv8.0_1.so",
+    "libggml-cpu-android_armv8.2_1.so",
+    "libggml-cpu-android_armv8.2_2.so",
+    "libggml-cpu-android_armv8.6_1.so",
+    "libggml-cpu-android_armv9.0_1.so",
+    "libggml-cpu-android_armv9.2_1.so",
+    "libggml-cpu-android_armv9.2_2.so"
+  ],
+  "android_execution_tested": false,
+  "input_fingerprint": {
+    "app/src/main/java/com/lma/app/EngineHost.java": "34e31af1fb48228987338ab6ccabc4e1d3a4ffa981896e871e67d7f63754ed48",
+    "app/src/main/jniLibs/arm64-v8a/libggml-base.so": "5e79542e713d0f4fa633cb987ad1a4a95bc1b64531e88305e3a41c6213aaf1a9",
+    "app/src/main/jniLibs/arm64-v8a/libggml-cpu-android_armv8.0_1.so": "5eec51b25c2835bd6bd62a29d0b9ac07ce7fadcbeb679d00ecf184128a2cf8d4",
+    "app/src/main/jniLibs/arm64-v8a/libggml-cpu-android_armv8.2_1.so": "ebc8b67b2cb21af724a511281a89d686c5244929885a46313576458cab80972c",
+    "app/src/main/jniLibs/arm64-v8a/libggml-cpu-android_armv8.2_2.so": "70a664a53e338ffc87e1cf346ebc8fff794f34cf2748b092f27238c74493a24f",
+    "app/src/main/jniLibs/arm64-v8a/libggml-cpu-android_armv8.6_1.so": "886a14d35ce587033118f6e7c70ca2a96965d4b3908b1118016a1706a06fe24f",
+    "app/src/main/jniLibs/arm64-v8a/libggml-cpu-android_armv9.0_1.so": "cba0f6dd993baa7c940bffba1b52943436d1dc425f7d05d9555bf7a8e1335362",
+    "app/src/main/jniLibs/arm64-v8a/libggml-cpu-android_armv9.2_1.so": "fdc3c04dc1db8cfc61b4e137c1b2bfa2716ab68c25f7445802bcdd6a6dcf12df",
+    "app/src/main/jniLibs/arm64-v8a/libggml-cpu-android_armv9.2_2.so": "49ecc663e920fddf2ff99c5e6c8928657646773bba00b05ee840e1059571d14f",
+    "app/src/main/jniLibs/arm64-v8a/libggml.so": "e858a7c58ce22a7cec4c1e18d0b1772680e52ef833ea7822a4500c659a0774b8",
+    "app/src/main/jniLibs/arm64-v8a/libllama-common.so": "9d6870185327144cc8a34d8479e17a6e8ff51f28df8ccb56a0daadb3e5aec345",
+    "app/src/main/jniLibs/arm64-v8a/libllama-server-impl.so": "3e9fd1b951198e1033b65935595d034205e84267e2d68b414c56f6dd31f588b9",
+    "app/src/main/jniLibs/arm64-v8a/libllama-server.so": "c933619564f19202de4a78840fadccafc744ff78545dd6c8d2a44dc0ce3335a3",
+    "app/src/main/jniLibs/arm64-v8a/libllama.so": "b93e6abb9088bfb50ca1986200654fddec722c0910dbf2a2000d3496e73a9449",
+    "app/src/main/jniLibs/arm64-v8a/libmtmd.so": "e26714cb96d440bbc7cf592139dcf565f0490c4a02cd373396ca52414144180a",
+    "third_party/BUILD_INFO.json": "de40253f34d47e5b692e8cd97d87eaa4ecbe549303718f69d286c85f81422acc",
+    "tools/audit_runtime.py": "7ca12a5df4dbd151c5a6de766f2e08b91e818950888aef2f9890ea40469c8a90"
+  }
+}

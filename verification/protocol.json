@@ -1,0 +1,8 @@
+{
+  "summary": "Protocol checks passed: 25",
+  "input_fingerprint": {
+    "app/src/main/java/com/lma/app/core/Protocol.java": "d49f47884aec0cb03347023119c2808330fa9970689dcd9d33c30ca653d03b85",
+    "tests/ProtocolTest.java": "3bd05a44024d274e2a3da07d6f975d4f7ef640cc7b0f99e10cc233a56cc35a86",
+    "tools/test_protocol.py": "4c5520dc26bf55b63446c8b9b2169a755e3008ab58dd9a5190a6901885919b12"
+  }
+}

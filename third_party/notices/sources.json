@@ -1,0 +1,50 @@
+[
+  {
+    "file": "cpp-httplib-LICENSE.txt",
+    "url": "https://raw.githubusercontent.com/ggml-org/llama.cpp/b29c606e28a01b1bc8c1351026a0fa6e616bf6c4/vendor/cpp-httplib/LICENSE"
+  },
+  {
+    "file": "rotate-bits-LICENSE.txt",
+    "url": "https://raw.githubusercontent.com/ggml-org/llama.cpp/b29c606e28a01b1bc8c1351026a0fa6e616bf6c4/vendor/hash/rotate-bits/LICENSE.md"
+  },
+  {
+    "file": "sha256-LICENSE.txt",
+    "url": "https://raw.githubusercontent.com/ggml-org/llama.cpp/b29c606e28a01b1bc8c1351026a0fa6e616bf6c4/vendor/hash/sha256/LICENSE"
+  },
+  {
+    "file": "xxhash-LICENSE.txt",
+    "url": "https://raw.githubusercontent.com/ggml-org/llama.cpp/b29c606e28a01b1bc8c1351026a0fa6e616bf6c4/vendor/hash/xxhash/LICENSE"
+  },
+  {
+    "file": "stb-image-LICENSE.txt",
+    "url": "https://raw.githubusercontent.com/ggml-org/llama.cpp/b29c606e28a01b1bc8c1351026a0fa6e616bf6c4/vendor/stb/stb_image.h"
+  },
+  {
+    "file": "miniaudio-LICENSE.txt",
+    "url": "https://raw.githubusercontent.com/ggml-org/llama.cpp/b29c606e28a01b1bc8c1351026a0fa6e616bf6c4/vendor/miniaudio/miniaudio.h"
+  },
+  {
+    "file": "subprocess-LICENSE.txt",
+    "url": "https://raw.githubusercontent.com/ggml-org/llama.cpp/b29c606e28a01b1bc8c1351026a0fa6e616bf6c4/vendor/sheredom/subprocess.h"
+  },
+  {
+    "file": "nlohmann-json-LICENSE.txt",
+    "url": "https://raw.githubusercontent.com/nlohmann/json/v3.12.0/LICENSE.MIT",
+    "vendor_header_version": "3.12.0"
+  },
+  {
+    "file": "libcxx-LICENSE.txt",
+    "url": "https://raw.githubusercontent.com/llvm/llvm-project/llvmorg-21.1.0/libcxx/LICENSE.TXT",
+    "note": "Standard LLVM runtime license text; provider does not record a separate C++ runtime commit"
+  },
+  {
+    "file": "libcxxabi-LICENSE.txt",
+    "url": "https://raw.githubusercontent.com/llvm/llvm-project/llvmorg-21.1.0/libcxxabi/LICENSE.TXT",
+    "note": "Standard LLVM runtime license text; provider does not record a separate C++ runtime commit"
+  },
+  {
+    "file": "libunwind-LICENSE.txt",
+    "url": "https://raw.githubusercontent.com/llvm/llvm-project/llvmorg-21.1.0/libunwind/LICENSE.TXT",
+    "note": "Standard LLVM runtime license text; provider does not record a separate C++ runtime commit"
+  }
+]

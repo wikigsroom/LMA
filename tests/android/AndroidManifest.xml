@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.lma.app.acceptance">
+    <uses-sdk android:minSdkVersion="28" android:targetSdkVersion="35" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <application android:label="LMA device acceptance" android:allowBackup="false" />
+    <instrumentation android:name="com.lma.app.DeviceAcceptance" android:targetPackage="com.lma.app" android:label="Physical-device checks" />
+</manifest>

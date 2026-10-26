@@ -1,0 +1,97 @@
+"""Check public files, local documentation links, evidence and prepared release bytes."""
+import hashlib
+import json
+from pathlib import Path
+import re
+import subprocess
+from urllib.parse import unquote, urlsplit
+import zipfile
+from evidence import version, current, build_inputs
+
+ROOT = Path(__file__).resolve().parents[1]
+
+
+def digest(data):
+    return hashlib.sha256(data).hexdigest()
+
+
+def main():
+    run = subprocess.run(["git", "ls-files", "--cached", "--others", "--exclude-standard", "-z"], cwd=ROOT, capture_output=True, check=True)
+    names = sorted(set(run.stdout.decode("utf-8").strip("\0").split("\0")))
+    assert names and all(names)
+    protected_parts = {"signing", "build", "dist", ".git", "node_modules", "__pycache__", ".gradle", ".idea", ".vscode"}
+    protected_suffixes = {".p12", ".jks", ".keystore", ".pem", ".key", ".gguf", ".part", ".idsig", ".apk", ".pyc"}
+    secrets = [re.compile(rb"-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----"),
+               re.compile(rb"\b(?:gh[pousr]_[A-Za-z0-9]{30,}|github_pat_[A-Za-z0-9_]{40,})\b"),
+               re.compile(rb"\blma_[a-f0-9]{48}\b")]
+    for name in names:
+        p = Path(name)
+        assert not set(p.parts) & protected_parts, "Private/generated path staged: " + name
+        assert p.suffix not in protected_suffixes and not p.name.startswith(".env"), "Private artifact: " + name
+        assert p.parts[:2] != ("third_party", "cache") and "jniLibs" not in p.parts, "Re-fetchable native bytes staged: " + name
+        data = (ROOT / p).read_bytes()
+        assert len(data) < 25 * 1024 * 1024, "Oversized repository file: " + name
+        assert not any(pattern.search(data) for pattern in secrets), "Possible secret in public file: " + name
+    documents = [ROOT / name for name in names if name.endswith(".md") and (
+        len(Path(name).parts) == 1 or name.startswith(("docs/", "verification/", ".github/")) or name == "third_party/README.md")]
+    links = 0
+    for document in documents:
+        text = document.read_text(encoding="utf-8")
+        targets = re.findall(r"!?\[[^\]]*\]\(([^)\n]+)\)", text)
+        targets += re.findall(r'<img\b[^>]*\bsrc="([^"]+)"', text)
+        for raw in targets:
+            target = raw.strip().strip("<>")
+            parsed = urlsplit(target)
+            if parsed.scheme or target.startswith("#"):
+                continue
+            target = unquote(parsed.path)
+            if not target:
+                continue
+            resolved = (document.parent / target).resolve()
+            assert resolved.is_relative_to(ROOT.resolve()) and resolved.exists(), "Broken local link: " + str(document.relative_to(ROOT)) + " -> " + target
+            links += 1
+    release = version()
+    build = json.loads((ROOT / "dist/build-info.json").read_text(encoding="utf-8"))
+    assert build["input_fingerprint"] == build_inputs() and build["version"] == release
+    records = sorted((ROOT / "verification").glob("*.json"))
+    assert len(records) >= 13
+    for path in records:
+        record = json.loads(path.read_text(encoding="utf-8"))
+        if "input_fingerprint" in record:
+            current(record["input_fingerprint"])
+    validation = json.loads((ROOT / "verification/validation.json").read_text(encoding="utf-8"))
+    assert validation["sha256"] == build["sha256"] and validation["version"] == release
+    assert validation["physical_device_tests"] == 0 and not validation["phone_inference_tested"]
+    media = json.loads((ROOT / "docs/media/manifest.json").read_text(encoding="utf-8"))
+    current(media["input_fingerprint"])
+    assert not media["android_device"] and not media["model_inference"] and not media["browser_errors"] and media["browser_closed"]
+    for item in media["files"]:
+        data = (ROOT / "docs/media" / item["file"]).read_bytes()
+        assert len(data) == item["bytes"] and digest(data) == item["sha256"]
+    source = ROOT / "dist" / ("LMA-" + release + "-source.zip")
+    with zipfile.ZipFile(source) as archive:
+        members = archive.namelist()
+        assert len(members) == len(set(members)) and archive.testzip() is None
+        for name in names:
+            assert archive.read("LMA/" + name) == (ROOT / name).read_bytes(), "Source ZIP is stale: " + name
+        assert len([n for n in members if "/jniLibs/" in n and n.endswith(".so")]) == 14
+        assert not any("/signing/" in n or "/cache/" in n or "/.git/" in n or "/node_modules/" in n for n in members)
+    output = ROOT / "dist/releases" / ("v" + release)
+    manifest = json.loads((output / "release-manifest.json").read_text(encoding="utf-8"))
+    assert manifest["version"] == release and manifest["repository"] == "wikigsroom/LMA" and manifest["prerelease"]
+    for item in manifest["assets"]:
+        data = (output / item["name"]).read_bytes()
+        assert len(data) == item["bytes"] and digest(data) == item["sha256"]
+    for line in (output / "SHA256SUMS").read_text().splitlines():
+        expected, name = line.split("  ", 1)
+        assert digest((output / name).read_bytes()) == expected
+    result = {"public_files": len(names), "documents": len(documents), "local_links": links,
+              "evidence_records": len(records), "screenshots": len(media["screenshots"]),
+              "release_assets": len(manifest["assets"]) + 1, "source_matches_public_files": True,
+              "private_files_excluded": True, "version": release, "passed": True}
+    (ROOT / "build/repository-check.json").write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8")
+    print(json.dumps(result))
+
+
+if __name__ == "__main__":
+    main()

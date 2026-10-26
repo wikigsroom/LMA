@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'none'; base-uri 'none'; form-action 'none'">
+  <meta name="color-scheme" content="light dark">
+  <title>LMA · 本地模型工作台</title>
+  <link rel="stylesheet" href="app.css">
+  <script src="license.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#models" aria-label="LMA 模型库"><span class="brand-mark" aria-hidden="true">L<span>M</span>A</span><span class="brand-caption">LOCAL MODEL APP</span></a>
+      <div class="device-badge"><span class="device-led" aria-hidden="true"></span><span id="deviceName">本地模型工作台</span></div>
+    </header>
+    <aside class="runtime-strip" aria-label="模型运行状态">
+      <div class="runtime-dot" id="runtimeDot"></div><div class="runtime-copy"><strong id="runtimeName">尚未加载模型</strong><span id="runtimeDetail">下载一个模型，开始本地运行</span></div>
+      <button class="text-button" id="runtimeAction" data-action="tab" data-tab="server">管理<span aria-hidden="true"> ↗</span></button>
+    </aside>
+    <main id="main">
+      <section class="page active" id="page-models" aria-label="模型库">
+        <div class="page-heading"><div><span class="eyebrow">UNCENSORED MODEL LIBRARY</span><h1>选择你的无审查模型<span class="heading-dot">.</span></h1><p>内置 Uncensored / Abliterated 模型，按需下载，在手机上运行。</p></div><button class="button secondary" data-action="addMenu" id="addModelButton" aria-label="添加模型"><span class="icon" data-icon="plus"></span><span>添加模型</span></button></div>
+        <div class="resource-ribbon" id="resourceRibbon"><div><span>设备内存</span><strong id="deviceMemory">—</strong></div><div><span>可用存储</span><strong id="deviceStorage">—</strong></div><div><span>已下载模型</span><strong id="installedCount">0</strong></div></div>
+        <label class="search-field"><span class="icon" data-icon="search"></span><input type="search" id="modelSearch" placeholder="搜索模型、系列或用途" autocomplete="off" aria-label="搜索模型"><kbd aria-hidden="true">/</kbd></label>
+        <div class="filter-row" role="group" aria-label="筛选模型"><button class="filter active" data-filter="recommended">推荐</button><button class="filter" data-filter="light">轻量</button><button class="filter" data-filter="quality">进阶</button><button class="filter" data-filter="installed">已下载</button><button class="filter" data-filter="all">全部</button></div>
+        <div class="list-heading"><h2 id="modelListTitle">适合先试的模型</h2><span id="modelResultCount" class="muted"></span></div>
+        <div id="modelList" class="model-grid" aria-live="polite"></div>
+        <p class="library-footnote">内置模型已核对作者的无审查声明；实际拒答表现取决于权重和提示词。文件体积不等于运行内存。</p>
+      </section>
+      <section class="page chat-page" id="page-chat" aria-label="本地对话" hidden>
+        <div class="chat-toolbar"><button class="model-picker" id="chatModelPicker" data-action="pickModel"><span class="icon" data-icon="cube"></span><span id="chatModelName">选择模型</span><span class="icon small" data-icon="chevron"></span></button><div class="toolbar-actions"><button class="icon-button" data-action="history" aria-label="对话历史" title="对话历史"><span class="icon" data-icon="history"></span></button><button class="icon-button" data-action="newChat" aria-label="新建对话" title="新建对话"><span class="icon" data-icon="compose"></span></button></div></div>
+        <div class="messages" id="messages" aria-live="polite" aria-relevant="additions text"></div>
+        <form id="chatForm" class="composer"><label class="sr-only" for="chatInput">消息内容</label><textarea id="chatInput" rows="1" maxlength="12000" placeholder="输入消息，开始本地对话…"></textarea><div class="composer-bottom"><span id="composerHint">回复在当前手机生成</span><button type="submit" id="sendButton" class="send-button" aria-label="发送消息"><span class="icon" data-icon="send"></span></button></div></form>
+      </section>
+      <section class="page" id="page-server" aria-label="本地 API 服务" hidden>
+        <div class="page-heading"><div><span class="eyebrow">LOCAL SERVER</span><h1>把手机变成接口<span class="heading-dot">.</span></h1><p>为你的应用、脚本与工作流提供本地推理。</p></div></div>
+        <div class="server-card"><div class="section-heading"><div><span class="eyebrow">OPENAI COMPATIBLE</span><h2 id="serverStateLabel">接口尚未启动</h2></div><span class="status-pill" id="serverStatePill">未启动</span></div><button class="server-model-row" data-action="pickModel"><span class="icon" data-icon="cube"></span><span id="serverModelName">选择已下载的模型</span><span class="icon" data-icon="chevron"></span></button><div class="endpoint"><span>API BASE URL</span><div><code id="apiUrl">http://127.0.0.1:8080/v1</code><button class="icon-button" data-action="copyUrl" aria-label="复制接口地址"><span class="icon" data-icon="copy"></span></button></div></div><div class="server-controls"><button class="button primary" id="serverToggle" data-action="toggleServer"><span class="icon" data-icon="play"></span><span>启动服务</span></button><button class="button secondary" data-action="tab" data-tab="chat">前往对话<span class="icon" data-icon="arrow"></span></button></div></div>
+        <div class="panel"><div class="toggle-line"><div><strong>允许局域网访问</strong><p>开启后，同一网络上的设备可使用接口和密钥连接。</p></div><label class="switch"><input type="checkbox" id="lanToggle" aria-label="允许局域网访问"><span></span></label></div><div class="key-row"><div><span class="field-label">API 密钥</span><code id="apiKeyDisplay">••••••••••••••••</code></div><button class="icon-button" data-action="revealKey" aria-label="显示或隐藏密钥"><span class="icon" data-icon="eye"></span></button><button class="icon-button" data-action="copyKey" aria-label="复制 API 密钥"><span class="icon" data-icon="copy"></span></button></div></div>
+        <div class="background-callout" id="batteryCallout"><span class="icon" data-icon="battery"></span><div><strong id="batteryTitle">允许锁屏后继续服务</strong><p id="batteryDescription">首次使用时，允许 LMA 不受电池优化限制。</p></div><button class="text-button" data-action="battery">设置 ↗</button></div>
+        <div class="panel api-example"><div class="section-heading"><h2>连接示例</h2><button class="text-button" data-action="copyExample">复制</button></div><pre id="apiExample"></pre><div class="api-routes"><span><b>GET</b> /v1/models</span><span><b>POST</b> /v1/chat/completions</span><span class="stream-label">SSE 流式输出</span></div></div>
+        <div class="panel logs-panel"><div class="section-heading"><h2>运行日志</h2><button class="text-button" data-action="exportLogs">导出 ↗</button></div><pre id="runtimeLogs">启动模型后，这里会显示加载与运行记录。</pre></div>
+      </section>
+      <section class="page" id="page-settings" aria-label="设置" hidden>
+        <div class="page-heading"><div><span class="eyebrow">PREFERENCES</span><h1>让运行适合你的手机<span class="heading-dot">.</span></h1><p>从较小上下文开始，再按实际表现调整。</p></div></div>
+        <form id="settingsForm">
+          <div class="panel"><div class="section-heading"><h2>下载与启动</h2><span class="icon" data-icon="download"></span></div><label class="form-field"><span>模型下载源</span><select name="source"><option value="auto">自动（优先 Hugging Face，失败后镜像）</option><option value="huggingface">Hugging Face</option><option value="mirror">HF Mirror</option></select><small>自动模式在连接失败时切换到 HF Mirror。内置模型固定文件版本并核对 SHA256。</small></label><label class="toggle-line"><div><strong>首次下载完成后加载</strong><p>未选择模型时，自动加载第一个下载完成的模型。</p></div><span class="switch"><input type="checkbox" name="autoLoad"><span></span></span></label><label class="toggle-line"><div><strong>开机后恢复服务</strong><p>设备解锁后恢复此前启用的模型，仍需系统允许后台运行。</p></div><span class="switch"><input type="checkbox" name="boot"><span></span></span></label></div>
+          <div class="panel"><div class="section-heading"><h2>运行参数</h2><span class="icon" data-icon="sliders"></span></div><div class="form-grid"><label class="form-field"><span>CPU 线程</span><select name="threads"><option value="2">2 线程</option><option value="3">3 线程</option><option value="4">4 线程</option><option value="6">6 线程</option><option value="8">8 线程</option></select></label><label class="form-field"><span>上下文长度</span><select name="context"><option value="512">512 tokens</option><option value="1024">1024 tokens</option><option value="2048">2048 tokens</option><option value="4096">4096 tokens</option><option value="8192">8192 tokens</option></select></label><label class="form-field"><span>单次输出上限</span><select name="maxTokens"><option value="128">128 tokens</option><option value="256">256 tokens</option><option value="512">512 tokens</option><option value="1024">1024 tokens</option><option value="2048">2048 tokens</option></select></label><label class="form-field"><span>温度</span><input name="temperature" type="number" min="0" max="2" step="0.1" inputmode="decimal"></label><label class="form-field"><span>服务端口</span><input name="port" type="number" min="1024" max="65535" inputmode="numeric"></label><label class="form-field"><span>思考模式</span><select name="reasoning"><option value="off">关闭 · 优先快速回复</option><option value="auto">由模型决定</option><option value="on">开启</option></select></label></div><p class="form-help">修改线程、上下文、端口或思考模式会重新加载正在运行的模型。部分模型会始终思考。</p></div>
+          <div class="panel"><div class="section-heading"><h2>对话与外观</h2><span class="icon" data-icon="spark"></span></div><label class="form-field"><span>系统提示词</span><textarea name="systemPrompt" rows="4" maxlength="4000"></textarea></label><label class="form-field"><span>界面主题</span><select name="theme"><option value="system">跟随系统</option><option value="light">浅色</option><option value="dark">深色</option></select></label></div>
+          <button type="submit" class="button primary save-settings"><span class="icon" data-icon="check"></span>保存设置</button><p class="save-hint" id="settingsHint" role="status"></p>
+        </form>
+        <div class="about"><span class="brand-mark">L<span>M</span>A</span><div><strong>LMA <span class="mono">0.1.2</span></strong><p>本地模型工作台 · Android 9+ · ARM64</p><button class="text-button" data-action="about">开源组件与说明 ↗</button></div></div>
+      </section>
+    </main>
+    <nav class="bottom-nav" aria-label="主要导航"><button class="nav-item active" data-action="tab" data-tab="models" aria-current="page"><span class="icon" data-icon="grid"></span><span>模型库</span></button><button class="nav-item" data-action="tab" data-tab="chat"><span class="icon" data-icon="chat"></span><span>对话</span></button><button class="nav-item" data-action="tab" data-tab="server"><span class="icon" data-icon="server"></span><span>服务</span></button><button class="nav-item" data-action="tab" data-tab="settings"><span class="icon" data-icon="sliders"></span><span>设置</span></button></nav>
+  </div>
+  <div class="modal-backdrop" id="modalBackdrop" hidden><section class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" tabindex="-1"><div class="modal-heading"><h2 id="modalTitle"></h2><button class="icon-button" data-action="closeModal" aria-label="关闭"><span class="icon" data-icon="close"></span></button></div><div id="modalContent"></div></section></div>
+  <div id="toast" class="toast" role="status" hidden></div>
+  <div class="error-banner" id="errorBanner" role="alert" hidden><span class="icon" data-icon="alert"></span><span id="errorText"></span><button class="icon-button" data-action="dismissError" aria-label="关闭错误提示"><span class="icon" data-icon="close"></span></button></div>
+</body>
+</html>
