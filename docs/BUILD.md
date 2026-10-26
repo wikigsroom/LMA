@@ -23,13 +23,15 @@ python tools/build.py --sdk C:/path/to/Android/Sdk
 
 构建先执行 `build_catalogue.py`，要求 14 个内置模型的作者依据、GGUF 固定提交和权重哈希一致。普通重建使用已有证据，不需要重新访问所有模型卡。模型新增或来源变更时重新运行相应审计，并检查人工归属判断；不要只改模型名称。
 
+该校验保护既有精选及“已核对”标签，不限制 HF 在线发现。保留推荐 `m08 → m06 → m01`；普通 HF 模型通过原生 HubClient / HubCatalog 获取、选文件并交给 Store / Downloads。“本地”汇总所有来源。`test_hub.py --live` 在后端编译后运行 45 项 HF 检查和 5 项公开 API 检查；live 使用 HF Mirror，未下载完整权重或认证私有仓库。网络不可用时可先运行不带 `--live` 的逻辑检查，但新发布仍需要当前实时记录。
+
 `build.py` 使用 AAPT2 编译 / 链接资源，javac 编译 Java，D8 生成 DEX，加入原生库，zipalign，签名并验证 APK。证据保存输入文件的原始字节 SHA256；`.gitattributes` 禁止自动换行转换，避免 checkout 改变指纹。
 
 ## 签名和产物
 
 首次构建在 `signing/` 创建 RSA3072 本地身份及随机口令。请安全保留以覆盖升级；不要提交、分享或上传该目录。个人 clone 生成的密钥不能覆盖官方 Release 安装，除非使用同一签名；卸载旧包会丢失模型和聊天。
 
-- `dist/LMA-0.1.2-arm64-v8a.apk`：签名安装包。
+- `dist/LMA-0.2.0-arm64-v8a.apk`：签名安装包。
 - `dist/*.sha256`：实际附件哈希。
 - `dist/build-info.json`：包信息和输入指纹。
 - `build/`：编译、测试、Lint、媒体临时数据；不提交。
@@ -40,6 +42,7 @@ python tools/build.py --sdk C:/path/to/Android/Sdk
 ```powershell
 python tools/test_protocol.py
 python tools/test_backend.py
+python tools/test_hub.py --live
 python tools/test_sqlite.py
 python tools/test_android_lint.py
 node tests/ui-smoke.cjs

@@ -18,6 +18,7 @@ public final class Store {
     private final JSONArray catalogue;
     private JSONArray custom;
     private JSONObject downloads;
+    private JSONObject profiles, metadata;
     private final AtomicFile stateFile;
     private final java.util.concurrent.ConcurrentHashMap<String, java.util.concurrent.locks.ReentrantLock> transferLocks = new java.util.concurrent.ConcurrentHashMap<>();
 
@@ -32,9 +33,24 @@ public final class Store {
         try (FileInputStream in = stateFile.openRead()) {
             JSONObject state = new JSONObject(read(in, 4 * 1024 * 1024));
             custom = state.optJSONArray("custom"); downloads = state.optJSONObject("downloads");
+            profiles = state.optJSONObject("profiles"); metadata = state.optJSONObject("metadata");
         } catch (Exception ignored) {}
         if (custom == null) custom = new JSONArray();
         if (downloads == null) downloads = new JSONObject();
+        if (profiles == null) profiles = new JSONObject();
+        if (metadata == null) metadata = new JSONObject();
+        try {
+            // Freeze legacy global preferences into every existing model exactly once.
+            JSONObject legacy = ModelSettings.defaults();
+            legacy.put("threads", app.prefs.getInt("threads", legacy.getInt("threads"))).put("context", app.prefs.getInt("context", 2048)).put("maxTokens", app.prefs.getInt("maxTokens", 512))
+                    .put("temperature", (double) app.prefs.getFloat("temperature", 0.7f)).put("reasoning", app.prefs.getString("reasoning", "off")).put("systemPrompt", app.prefs.getString("systemPrompt", ModelSettings.SYSTEM));
+            for (int pass = 0; pass < 2; pass++) {
+                JSONArray source = pass == 0 ? catalogue : custom;
+                for (int i = 0; i < source.length(); i++) { String id = source.getJSONObject(i).getString("id"); if (!profiles.has(id)) profiles.put(id, ModelSettings.normalize(legacy, new JSONObject(), new JSONObject())); }
+            }
+            save();
+            for (String key : ModelSettings.KEYS) app.prefs.edit().remove(key).apply();
+        } catch (Exception error) { app.log("模型配置迁移失败：" + error.getMessage()); }
         // An interrupted transfer is explicitly resumable, never silently considered complete.
         for (java.util.Iterator<String> keys = downloads.keys(); keys.hasNext();) {
             JSONObject d = downloads.optJSONObject(keys.next());
@@ -73,6 +89,7 @@ public final class Store {
                 m.put("installedBytes", file.isFile() ? file.length() : 0);
                 m.put("download", download(id));
                 m.put("partialBytes", partFile(id).isFile() ? partFile(id).length() : 0);
+                m.put("config", config(id));
                 result.put(m);
             }
         }
@@ -93,6 +110,41 @@ public final class Store {
         m.put("tags", new JSONArray().put("自定义")); m.put("imported", imported); m.put("recommended", false);
         custom.put(m); save(); return id;
     }
+    public synchronized String addHub(JSONObject candidate) throws Exception {
+        JSONObject repository = new JSONObject().put("id", candidate.getString("repository")).put("revision", candidate.getString("revision"))
+                .put("uncensored", candidate.getJSONObject("uncensored"));
+        JSONObject entry = new JSONObject().put("path", candidate.getString("filename")).put("size", candidate.getLong("bytes"))
+                .put("lfs", new JSONObject().put("oid", candidate.optString("sha256")));
+        JSONObject checked = HubClient.selected(repository, HubClient.file(repository, entry));
+        if (!checked.getString("id").equals(candidate.getString("id")) || !checked.getString("url").equals(candidate.getString("url"))) throw new IllegalArgumentException("HF 文件信息不一致，请重新选择");
+        String id = checked.getString("id");
+        for (int i = 0; i < custom.length(); i++) if (custom.getJSONObject(i).getString("id").equals(id)) return id;
+        custom.put(checked); save(); return id;
+    }
+    public synchronized JSONObject config(String id) throws Exception {
+        model(id);
+        JSONObject info = metadata.optJSONObject(id); if (info == null) info = new JSONObject();
+        JSONObject saved = profiles.optJSONObject(id); if (saved == null) saved = ModelSettings.defaults();
+        JSONObject values = ModelSettings.normalize(saved, new JSONObject(), info);
+        return new JSONObject().put("values", values).put("limits", ModelSettings.limits(info, values.getInt("context"))).put("metadata", new JSONObject(info.toString()));
+    }
+    public synchronized JSONObject previewConfig(String id, JSONObject changes) throws Exception { return ModelSettings.normalize(config(id).getJSONObject("values"), changes, config(id).getJSONObject("metadata")); }
+    public synchronized JSONObject saveConfig(String id, JSONObject changes) throws Exception {
+        JSONObject values = previewConfig(id, changes); profiles.put(id, values); save(); return config(id);
+    }
+    public synchronized JSONObject inspectModel(String id) throws Exception {
+        model(id); File file = modelFile(id);
+        if (!file.isFile()) throw new IllegalStateException("请先下载或导入模型，再编辑其参数");
+        JSONObject cached = metadata.optJSONObject(id);
+        if (cached == null || cached.optLong("fileBytes") != file.length() || cached.optLong("modified") != file.lastModified()) {
+            JSONObject info;
+            try { info = GgufMetadata.read(file); }
+            catch (Exception error) { info = new JSONObject().put("source", "unknown").put("contextLength", 0).put("error", "无法读取模型约束：" + error.getMessage()); }
+            info.put("fileBytes", file.length()).put("modified", file.lastModified()); metadata.put(id, info);
+            profiles.put(id, ModelSettings.normalize(config(id).getJSONObject("values"), new JSONObject(), info)); save();
+        }
+        return config(id);
+    }
     public synchronized void remove(String id) throws Exception {
         java.util.concurrent.locks.ReentrantLock lock = transferLock(id);
         if (!lock.tryLock()) throw new IllegalStateException("下载或导入正在结束，请稍后再删除");
@@ -107,12 +159,15 @@ public final class Store {
         if (partial.exists() && !partial.delete()) throw new java.io.IOException("无法删除未完成的下载");
         if (rejected.exists() && !rejected.delete()) throw new java.io.IOException("无法删除未通过校验的文件");
         downloads.remove(id);
-        if (id.startsWith("custom_")) for (int i = 0; i < custom.length(); i++) if (custom.getJSONObject(i).getString("id").equals(id)) { custom.remove(i); break; }
+        metadata.remove(id);
+        if (id.startsWith("custom_") || id.startsWith("hf_")) profiles.remove(id);
+        if (id.startsWith("custom_") || id.startsWith("hf_")) for (int i = 0; i < custom.length(); i++) if (custom.getJSONObject(i).getString("id").equals(id)) { custom.remove(i); break; }
         if (app.prefs.getString("selectedModel", "").equals(id)) app.prefs.edit().remove("selectedModel").putBoolean("desiredRunning", false).apply();
+        if (app.engineModel.equals(id)) app.engineModel = "";
         save(); app.emit();
     }
     private void save() throws Exception {
-        JSONObject state = new JSONObject(); state.put("custom", custom); state.put("downloads", downloads);
+        JSONObject state = new JSONObject(); state.put("custom", custom); state.put("downloads", downloads); state.put("profiles", profiles); state.put("metadata", metadata);
         FileOutputStream stream = null;
         try { stream = stateFile.startWrite(); stream.write(state.toString().getBytes(java.nio.charset.StandardCharsets.UTF_8)); stateFile.finishWrite(stream); }
         catch (Exception error) { if (stream != null) stateFile.failWrite(stream); throw error; }

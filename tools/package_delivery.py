@@ -14,6 +14,8 @@ def main():
     package = json.loads((ROOT / "build/package-verification.json").read_text(encoding="utf-8"))
     ui = json.loads((ROOT / "build/ui-qa/results.json").read_text(encoding="utf-8"))
     backend = json.loads((ROOT / "build/backend-tests/results.json").read_text(encoding="utf-8"))
+    hub = json.loads((ROOT / "build/hub-tests/results.json").read_text(encoding="utf-8"))
+    hub_live = json.loads((ROOT / "build/hub-tests/live-results.json").read_text(encoding="utf-8"))
     sqlite = json.loads((ROOT / "build/sqlite-tests/results.json").read_text(encoding="utf-8"))
     protocol = json.loads((ROOT / "build/protocol-tests/results.json").read_text(encoding="utf-8"))
     acceptance = json.loads((ROOT / "build/device-tests/acceptance-build.json").read_text(encoding="utf-8"))
@@ -21,19 +23,22 @@ def main():
     runtime = json.loads((ROOT / "third_party/runtime-audit.json").read_text(encoding="utf-8"))
     lint = json.loads((ROOT / "build/android-lint/results.json").read_text(encoding="utf-8"))
     uncensored = json.loads((ROOT / "catalogue/uncensored-evidence.json").read_text(encoding="utf-8"))
-    for record in (package, ui, backend, sqlite, protocol, acceptance, runtime, lint, uncensored): current(record["input_fingerprint"])
+    for record in (package, ui, backend, hub, hub_live, sqlite, protocol, acceptance, runtime, lint, uncensored): current(record["input_fingerprint"])
     assert package["sha256"] == build["sha256"]
     assert build["input_fingerprint"] == build_inputs()
     assert acceptance["applicationApkSha256"] == build["sha256"]
     assert lint["applicationApkSha256"] == build["sha256"] and lint["errors"] == 0
     assert lint["java_source_files"] == len(list((ROOT / "app/src/main/java").rglob("*.java")))
     assert runtime["upstream_commit"] == json.loads((ROOT / "third_party/BUILD_INFO.json").read_text(encoding="utf-8"))["llamaCppCommit"]
-    assert ui["passed"] >= 31 and ui["passed"] == len(ui["checks"]) and not ui["errors"]
-    assert backend["passed"] >= 54 and sqlite["passed"] == 5
+    assert ui["passed"] >= 66 and ui["passed"] == len(ui["checks"]) and not ui["errors"]
+    assert backend["passed"] >= 85 and hub["passed"] >= 45 and hub_live["passed"] == 5 and sqlite["passed"] == 5
     result = {"app": "LMA", "version": build["version"], "apk": build["apk"], "sha256": build["sha256"],
               "protocol_checks": (ROOT / "build/protocol-test-results.txt").read_text(encoding="utf-8").strip(),
               "ui_checks": ui["passed"], "ui_uses_test_bridge": True, "signatures_verified": build["signatures_verified"],
               "backend_checks": backend["passed"], "backend_uses_android_framework_adapters": True,
+              "hub_checks": hub["passed"], "hub_live_metadata_checks": hub_live["passed"], "hub_live_source": hub_live["source"],
+              "hf_discovery_all_formats": True, "recommended_model_ids_preserved": ["m08", "m06", "m01"], "local_model_management": True,
+              "independent_model_settings": True, "gguf_context_metadata_bounds": True, "editable_presets_with_clamping": True,
               "sqlite_query_checks": sqlite["passed"], "sqlite_android_framework_tested": False,
               "catalogue_pinned_models": package["catalogue_models"], "catalogue_publisher_hashes": package["known_publisher_hashes"],
               "builtin_uncensored_declarations_verified": package["builtin_uncensored_declarations_verified"], "refusal_rates_measured": False,
@@ -50,7 +55,7 @@ def main():
     (DIST / "validation.json").write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     network = json.loads((ROOT / "build/catalogue-audit/mirror-results.json").read_text(encoding="utf-8"))
     assert network["passed"] == 14 and all(m["ok"] for m in network["models"])
-    evidence = {"backend": backend, "ui": ui, "sqlite": sqlite, "protocol": protocol, "package": package, "device": device, "acceptance-build": acceptance, "build": build, "model-network": network, "runtime": runtime, "android-lint": lint, "uncensored-models": uncensored, "validation": result}
+    evidence = {"backend": backend, "hub": hub, "hub-live": hub_live, "ui": ui, "sqlite": sqlite, "protocol": protocol, "package": package, "device": device, "acceptance-build": acceptance, "build": build, "model-network": network, "runtime": runtime, "android-lint": lint, "uncensored-models": uncensored, "validation": result}
     public = ROOT / "verification"
     public.mkdir(exist_ok=True)
     for name, record in evidence.items():

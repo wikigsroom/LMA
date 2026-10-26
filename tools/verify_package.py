@@ -89,7 +89,9 @@ def main():
         launcher = native["libllama-server.so"]
         assert launcher["entry_point"] > 0 and launcher["interpreter"] == "/system/bin/linker64", "Native launcher is not an Android ARM64 executable"
         catalogue = json.loads(archive.read("assets/models.json"))
-        assert catalogue["scope"] == "publisher-declared-uncensored-only"
+        assert catalogue["scope"] == "local-models-with-uncensored-tags"
+        assert catalogue["discovery"] == "huggingface-hub-paginated"
+        assert [m["id"] for m in catalogue["models"] if m["recommended"]] == ["m08", "m06", "m01"]
         uncensored = json.loads((ROOT / "catalogue/uncensored-evidence.json").read_text(encoding="utf-8"))
         declarations = {m["id"]: m for m in uncensored["models"]}
         ids = set()

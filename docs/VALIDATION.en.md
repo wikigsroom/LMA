@@ -1,4 +1,4 @@
-# LMA 0.1.2 validation
+# LMA 0.2.0 validation
 
 [中文（含完整修复与警告复核）](VALIDATION.md) · [Documentation](README.md)
 
@@ -6,11 +6,12 @@
 
 | Evidence | Result | Scope |
 | --- | --- | --- |
-| Backend | 54 assertions | Production Java, real TLS and child JVM processes; explicit Android framework adapters |
+| Backend | 85 assertions | Production Java including GGUF/profile bounds, migration/persistence, engine arguments and chat requests; real TLS/child JVMs, explicit framework adapters |
+| HF discovery / Local | 45 assertions | Production HubClient, HubCatalog and Store; deterministic API fixtures and framework adapters |
 | Protocol | 25 assertions | Actual protocol core on a host JVM |
 | SQLite | 5 assertions | Production SQL on a host SQLite database; not Android SQLiteOpenHelper |
-| UI | 31 assertions | Shipped interface, explicit test bridge, headless Edge; no Android runtime |
-| Standalone Android Lint | 0 errors, 7 warnings | All 12 production Java files, resources, Manifest |
+| UI | 66 assertions | Shipped interface including editable per-model presets/clamping; explicit test bridge, headless Edge, no Android runtime |
+| Standalone Android Lint | 0 errors, 7 warnings | All 16 production Java files, resources, Manifest |
 | APK | Signatures, identity, contents and alignment pass | Package and source-byte inspection |
 | Native libraries | 14 checked | Pinned hashes, ELF dependencies, API 28 notes, interpreter, 16KB alignment |
 | Runtime configuration | 15 options and 7 CPU kernels statically checked | Pinned upstream code and packaged binaries |
@@ -18,9 +19,11 @@
 | Uncensored evidence | 14 publisher declarations checked | Pinned author cards and attribution to exact weights; not refusal-rate tests |
 | Device acceptance APK | Compiled and signed | **Not executed on a phone** |
 
-There are **115 desktop assertions** in the first four rows. Static/package/audit checks are separate, not additional phone tests. Public records are in [`verification/`](../verification/); records include input fingerprints so a stale passing report cannot silently validate changed inputs.
+There are **226 desktop assertions** across backend, HF logic, protocol, SQLite and UI. Five additional live public HF Mirror metadata checks validate searches, pagination, pinned commits and publisher SHA256 without weights/inference. Static/package/audit checks remain separate. Public records are in [`verification/`](../verification/); input fingerprints reject stale passing reports.
 
-The shipped APK SHA256 is `e9e3b7103f5e63c86953acdb986387f73cae9e3fb42851f6af1b9fffe6c1cc28`. Source ZIP bytes change when documentation/media change; use that release's SHA256SUMS for its actual digest.
+The shipped APK SHA256 is `d8c16c7414ce5cc28c55fb3c2375c042e6735d53f73ebb5d4efa8388d7b130c1`. Source ZIP bytes change when documentation/media change; use that release's SHA256SUMS for its actual digest.
+
+Per-model checks include binary GGUF v2/v3 fixtures, uint32/uint64 bounds, metadata order, tokenizer skipping, truncated/untrusted input, unknown-bound fallback, profile independence, persistence and migration. Real child argv/HTTP checks verify the selected profile; UI tests cover manual values, presets, keyboard, clamping, failed saves and model switching. See [model settings](MODEL_SETTINGS.en.md).
 
 ## Android Lint warnings
 
@@ -48,4 +51,4 @@ The acceptance runner supports real-device checks and screen-off streaming workl
 
 ## Documentation media
 
-Seven screenshots, MP4, and GIFs use the actual packaged UI with simulated native state. Download progress is simulated and replies are scripted. The visible demo banner and [media manifest](media/manifest.json) preserve this distinction. Browser pages and processes are closed after capture.
+Twelve screenshots, an MP4 and four GIFs use the actual packaged UI with simulated native state. HF metadata/download progress is simulated and replies are scripted. The visible demo banner and [media manifest](media/manifest.json) preserve this distinction. Browser pages and processes are closed after capture.

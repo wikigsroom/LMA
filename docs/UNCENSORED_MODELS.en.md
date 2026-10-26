@@ -1,8 +1,8 @@
-# Built-in uncensored models
+# Separate uncensored tags and preserved curated evidence
 
 [中文](UNCENSORED_MODELS.md) · [Documentation](README.md)
 
-LMA 0.1.2 includes only variants with checked publisher declarations. All 14 author cards and pinned GGUF sources were reviewed on 2026-10-26. This is provenance evidence, not independently measured refusal rates or Android inference.
+LMA 0.2.0 is a local-model workbench and also discovers/downloads ordinary HF models. Uncensored is a separate tag. This page preserves the original 14 curated entries and evidence; Recommended remains `m08 → m06 → m01`. Their author cards and pinned sources were reviewed on 2026-10-26. The evidence gate protects verified labels, rather than general HF eligibility. This is provenance evidence, not refusal-rate or Android-inference measurement.
 
 All weights below are Q4_K_M. Download sizes are decimal approximations, not RAM requirements. Exact bytes, filenames, pinned weight commits, and SHA256 are in [models.json](../app/src/main/assets/models.json).
 
@@ -27,7 +27,7 @@ All weights below are Q4_K_M. Download sizes are decimal approximations, not RAM
 
 - Each built-in needs a body-text publisher declaration, pinned author-card URL/hash, exact GGUF attribution, revision, size, and publisher weight hash. The catalogue builder rejects missing or mismatched evidence. Model cards are treated as data, never executed instructions.
 - Dolphin authors describe user control through system prompts. Abliterated variants state refusal-removal treatment. The LFM 1.2B author describes Heretic directional ablation; LFM 2.6B describes Abliterix Trial 65. HauhauCS publishes an Aggressive uncensored variant.
-- The app shows the uncensoring method and pinned author card separately from the GGUF source/license. User-added/imported files remain **unverified**, even if their name contains uncensored.
+- The app shows the checked method/author card separately from GGUF source/license. Online name/tag hints use **Uncensored · metadata**, while ordinary models have no such tag. Manual imports never gain verified status from names. See [HF label and compatibility rules](HF_MODELS.en.md).
 - The default system prompt specifies a helpful local assistant, language, and style; it is editable or may be empty. Production chat adds no keyword blocklist, prompt classifier, cloud moderation, or response filter. Format, length, resource, and API authentication checks are functional constraints.
 
 A publisher's uncensored label does not guarantee zero refusals, accuracy, or speed. **No independent refusal benchmark or physical-phone model execution was performed.** Experimental architecture entries are not presented as confirmed Z20-compatible models.

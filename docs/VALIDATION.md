@@ -1,12 +1,25 @@
-# LMA 0.1.2 全面复查记录
+# LMA 0.2.0 全面复查记录
 
-日期：2026-10-26。当前结论：桌面可执行的构建、代码和网络检查已完成；没有可用 Android 真机，尚不能确认“在 Z20 上完全可用”。真实 ARM 推理、Android 服务生命周期、局域网连接和锁屏长时间运行仍未验收。
+日期：2026-10-27。当前结论：0.2.0 已保留推荐，接入 HF 分页发现、文件选择、本地管理，以及每个模型独立的可编辑参数和超限归位。226 项桌面断言、5 项实时公开 HF 元数据检查，以及构建 / APK / Lint 检查通过。没有可用 Android 真机，真实 ARM 推理、Android 服务生命周期、局域网与锁屏耐久仍未验收。
 
 全程使用 Windows 原生工具，没有运行 Docker、WSL、虚拟机或 Android 模拟器。界面检查结束后关闭全部测试页面及浏览器进程。
 
-## 修复清单
+## 0.2.0 本轮变化
 
-| 复查发现 | 0.1.2 的处理 |
+- 推荐继续使用 `m08 → m06 → m01`，保留已有标签与证据；HF 搜索不会改写精选。
+- “全部”和搜索动态查询 HF，提供格式 / 排序、仓库 / 文件分页及固定版本量化文件下载；“本地”统一管理模型和下载任务。
+- 普通模型可添加；无审查已核对标签与元数据提示分开，明确其他格式、分片、投影器和任务限制。
+- 可选 HF 令牌只用于官方 HTTPS 源，不转发到镜像 / CDN。真实 TLS 测试核对自定义域名及重定向不接收令牌。
+- 修复暂停下载时断连和工作线程结尾竞争导致状态停在 pausing 的问题；在同一锁内最终持久化状态并移除任务。
+- 重录 12 张截图、MP4、4 份 GIF；添加双语 HF 指南并同步使用、架构、构建和发布说明。
+
+## 模型参数验证
+
+新增二进制 GGUF v2/v3、32/64 位上下文、键顺序 / tokenizer 跳过、不完整头部、有界数组、未知元数据兜底、超限归位、模型间独立性、AtomicFile 持久化与旧版迁移检查。真实子进程启动参数及 HTTP 请求核对当前模型配置；界面检查覆盖编辑、预设、键盘、归位、保存拒绝和切换模型。仍使用明确的框架 / UI 替身，不代表真机执行。见[模型参数](MODEL_SETTINGS.md)。
+
+## 保留的 0.1.2 历史修复
+
+| 复查发现 | 0.1.2 的处理（历史行为，当前范围见上） |
 | --- | --- |
 | 用户要求仅内置无审查模型，原目录部分名称及说明未明确属性 | 14 个条目逐个核对作者说明；名称补全 Uncensored / Abliterated，显示“无审查”标签、具体处理方式及作者说明入口；构建强制校验对应权重哈希，自定义文件标为“属性未核对” |
 | Gemma 4B 条目指向 tensorblock 仓库中不存在的 Q4_K_M 文件，实际返回 404 | 改用作者 mlabonne 自己的 Q4_K_M 文件，并固定提交、大小和 SHA256 |
@@ -29,18 +42,20 @@
 
 | 范围 | 证据 | 不能由此推断的事项 |
 | --- | --- | --- |
-| 生产后端 Java | 54 项检查，执行 Store、Downloads、Net、EngineHost、ChatRunner、ChatHistory、Protocol；真实 TLS 连接、磁盘文件和子进程 | Android Context、Service、Preferences、SAF、StatFs 和 SQLite 接口使用明确的桌面替身；子进程是 HTTP 协议测试服务，不运行语言模型 |
+| 生产后端 Java | 85 项检查，执行 Store、Downloads、Net、EngineHost、ChatRunner、ChatHistory、Protocol、ModelSettings、GgufMetadata；真实 TLS 连接、磁盘文件和子进程 | Android Context、Service、Preferences、SAF、StatFs 和 SQLite 接口使用明确的桌面替身；子进程是 HTTP 协议测试服务，不运行语言模型 |
+| HF 与本地逻辑 | 45 项生产 HubClient / HubCatalog / Store 检查，覆盖分页、固定提交与哈希、去重、持久化、删除、过期请求、令牌主机及选择命令 | 使用确定性 API 响应与框架替身，未在 Android 执行 |
+| HF 实时发现 | 5 项公开 HF Mirror API 检查，包含 GGUF / 全格式检索、游标分页、固定仓库提交及文件 SHA256 | 未使用真实令牌，未下载完整权重，未验证原站可达或受限仓库 |
 | 下载失败与恢复 | 200 重启、206 断点、416 完整文件、错误起点、ETag 变化、真实 TLS 传输截断后续传、未知长度、哈希错误、HTML、协议降级、排队暂停、删除、服务重建、流式导入 | 不代表某个手机上的下载管理、省电策略或 SAF 提供器已通过 |
 | 引擎控制与聊天 | 进程切换、快速连续切换、健康状态加模型别名、鉴权、SSE 中文和 emoji、思考流、部分回复保存、立即取消、崩溃恢复、端口冲突、三次恢复上限 | 没有执行 APK 中的 ARM 原生库，也没有测量模型首 token 延迟或 tokens/s |
 | 协议核心 | 25 项 JVM 检查：SSE 边界、UTF-8、CRLF、多行、截断、长度限制、续传起点与溢出、路径及哈希格式 | 不代表 Android 网络实现完全相同 |
 | 聊天查询 | 提取生产 Chats.java 中的建表与查询语句，在 SQLite 3.45.3 中执行 5 项检查；覆盖相同时间戳、最新 32 / 80 行、参数隔离、落盘重开 | 未执行 Android SQLiteOpenHelper；对应真机测试另有实现 |
-| 界面 | 31 项浏览器检查，375px、320px、平板、短横屏、150% 字体、主题、命令确认、草稿、防注入、对话删除、全部内置无审查标签及作者依据入口；无 JS 异常 | 使用测试桥接；未在 Android WebView 或真实输入法中执行 |
+| 界面 | 66 项浏览器检查，涵盖模型独立参数、预设 / 编辑 / 超限归位；375px、320px、平板、短横屏、150% 字体、主题、命令确认、草稿、防注入、对话删除、全部内置无审查标签及作者依据入口；无 JS 异常 | 使用测试桥接；未在 Android WebView 或真实输入法中执行 |
 | 无审查模型准入 | 14 个作者模型卡均有无审查或去拒答依据，已固定说明版本、内容哈希，并核对固定 GGUF 的来源归属及权重 SHA256；应用没有新增内容审核或敏感词过滤路径 | 作者声明不是本应用测得的拒答率；手机实际输出仍未验证 |
 | 模型网络 | 14 / 14 固定提交文件经 HF Mirror 返回 HTTP 206，Content-Range 总长与元数据吻合，读取到 GGUF v3；现有的 8 个预期哈希仍一致 | 当前网络直连 HF 超时；新增哈希来自镜像返回的上游元数据。没有下载完整权重，未在本机重新计算这些权重的整文件哈希 |
 | 模型架构 | 读取每个固定 GGUF 的前 256 字节，核对 qwen2、qwen3、qwen35、llama、gemma3、lfm2；固定 llama.cpp 源码架构表和打包库中均有相应项 | 架构存在不保证具体张量布局、聊天模板或内存消耗在目标手机上正常 |
 | Android APK | Java、AAPT2、DEX、ZIP、签名独立验证、身份及权限；14 个原生库 SHA256 与固定发行包一致，ARM64 依赖齐全，ELF LOAD 段和 APK 对齐满足 16KB；14 个二进制的 Android ident note 均为 API 28，启动文件入口非零并使用 /system/bin/linker64 | 静态检查不替代 Android 安装、链接器及 CPU 指令选择实测 |
 | 原生启动配置 | 对照固定 llama.cpp 提交和打包库中的 15 个真实启动参数；核对 LLAMA_API_KEY 环境变量、Bearer 鉴权、可执行文件目录内的内核发现与 7 个 CPU 内核评分入口 | 源码与二进制字符串检查不能证明 Android 已执行这些路径，也不测量性能 |
-| Android Lint | SDK 独立 Lint 8.9.0 离线执行默认规则，显式列入全部 12 个生产 Java 文件、3 个资源及 Manifest；0 错误、7 警告 | 没有执行 Gradle 或 Android 运行时；警告及适用边界见下表 |
+| Android Lint | SDK 独立 Lint 8.9.0 离线执行默认规则，显式列入全部 16 个生产 Java 文件、3 个资源及 Manifest；0 错误、7 警告 | 没有执行 Gradle 或 Android 运行时；警告及适用边界见下表 |
 | 服务声明 | 从 APK 中解析实际二进制 Manifest：specialUse、对应权限及用途、Service 非导出、不随任务划走停止 | 不代表厂商后台策略、锁屏存活、通知交互或开机恢复已通过 |
 | 真机工具 | 独立 instrumentation APK 已完成编译、DEX、对齐和签名；ADB 预检记录 awaiting_physical_device | 工具本身尚未在真机执行；没有将其预期结果计入通过数 |
 
@@ -78,6 +93,7 @@ Android 15 的六小时限制适用于 dataSync 和 mediaProcessing，shortServi
 python tools/build.py
 python tools/test_protocol.py
 python tools/test_backend.py
+python tools/test_hub.py --live
 python tools/test_sqlite.py
 node tests/ui-smoke.cjs
 python tools/audit_runtime.py

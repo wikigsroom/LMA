@@ -2,7 +2,7 @@
 
 [项目首页 / 中文](../README.md) · [Project README / English](../README.en.md)
 
-当前版本 **0.1.2**。文档整理日期：**2026-10-27（Asia/Taipei）**。产品行为以生产源码及对应版本的验证证据为准；历史审计保留其原始检查日期。
+当前版本 **0.2.0**。文档整理日期：**2026-10-27（Asia/Taipei）**。产品行为以生产源码及对应版本的验证证据为准；历史审计保留其原始检查日期。
 
 | 主题 / Topic | 中文 | English |
 | --- | --- | --- |
@@ -10,12 +10,14 @@
 | API 与 SSE / API and streaming | [API.md](API.md) | [API.en.md](API.en.md) |
 | 构建 / Building | [BUILD.md](BUILD.md) | [BUILD.en.md](BUILD.en.md) |
 | 架构 / Architecture | [ARCHITECTURE.md](ARCHITECTURE.md) | [ARCHITECTURE.en.md](ARCHITECTURE.en.md) |
+| HF 发现与本地管理 / HF discovery and Local | [HF_MODELS.md](HF_MODELS.md) | [HF_MODELS.en.md](HF_MODELS.en.md) |
+| 模型独立参数 / Per-model settings | [MODEL_SETTINGS.md](MODEL_SETTINGS.md) | [MODEL_SETTINGS.en.md](MODEL_SETTINGS.en.md) |
 | 无审查模型 / Uncensored models | [UNCENSORED_MODELS.md](UNCENSORED_MODELS.md) | [UNCENSORED_MODELS.en.md](UNCENSORED_MODELS.en.md) |
 | 验证 / Validation | [VALIDATION.md](VALIDATION.md) | [VALIDATION.en.md](VALIDATION.en.md) |
 | 真机验收 / Physical-device acceptance | [DEVICE_ACCEPTANCE.md](DEVICE_ACCEPTANCE.md) | [DEVICE_ACCEPTANCE.en.md](DEVICE_ACCEPTANCE.en.md) |
 | 截图与录屏 / Screenshots and recordings | [MEDIA.md（双语 / bilingual）](MEDIA.md) | [Provenance / 来源](media/manifest.json) |
 | 后续同步与发布 / Updates and publishing | [RELEASING.md（双语 / bilingual）](RELEASING.md) | [Contributing / 贡献约定](../CONTRIBUTING.md) |
-| 版本 / Versions | [CHANGELOG.md（双语 / bilingual）](../CHANGELOG.md) | [v0.1.2（双语 / bilingual）](releases/v0.1.2.md) |
+| 版本 / Versions | [CHANGELOG.md（双语 / bilingual）](../CHANGELOG.md) | [v0.2.0（双语 / bilingual）](releases/v0.2.0.md) |
 
 ## 阅读建议 / Reading paths
 

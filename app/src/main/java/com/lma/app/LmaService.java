@@ -79,11 +79,17 @@ public final class LmaService extends Service {
                     String id = app.store.addCustom(command.getString("name"), command.getString("url"), command.optString("sha256"), false);
                     downloads.enqueue(id, ""); break;
                 }
+                case "addHubModel": {
+                    String id = app.store.addHub(command.getJSONObject("model"));
+                    if (!app.store.modelFile(id).isFile()) downloads.enqueue(id, "");
+                    break;
+                }
                 case "import": {
                     String id = app.store.addCustom(command.getString("name"), "", "", true);
                     downloads.enqueue(id, command.getString("uri")); break;
                 }
                 case "saveSettings": saveSettings(command.getJSONObject("settings")); break;
+                case "saveModelSettings": saveModelSettings(command.getString("id"), command.getJSONObject("settings")); break;
                 case "restore": break;
                 default: throw new IllegalArgumentException("未知操作");
             }
@@ -129,27 +135,26 @@ public final class LmaService extends Service {
                 .setContentText(text).setContentIntent(open).setOngoing(true).setOnlyAlertOnce(true)
                 .addAction(new Notification.Action.Builder(null, "停止服务", stop).build()).build();
     }
+    private void saveModelSettings(String id, JSONObject changes) throws Exception {
+        JSONObject current = app.store.inspectModel(id).getJSONObject("values"), next = app.store.previewConfig(id, changes);
+        boolean reload = id.equals(app.engineModel) && engine.wanted() && ModelSettings.reload(current, next);
+        if (reload && app.generating) throw new IllegalStateException("请先停止当前回复，再修改此模型的加载参数");
+        app.store.saveConfig(id, next);
+        if (reload) { engine.stop(); engine.load(id); }
+        app.emit();
+    }
     private void saveSettings(JSONObject value) throws Exception {
+        for (String key : ModelSettings.KEYS) if (value.has(key)) throw new IllegalArgumentException("模型参数已移至本地模型的独立设置");
         int port = value.optInt("port", app.prefs.getInt("port", 8080));
-        int threads = value.optInt("threads", app.prefs.getInt("threads", 4));
-        int context = value.optInt("context", app.prefs.getInt("context", 2048));
-        int maxTokens = value.optInt("maxTokens", app.prefs.getInt("maxTokens", 512));
-        double temperature = value.optDouble("temperature", app.prefs.getFloat("temperature", 0.7f));
         String source = value.optString("source", app.prefs.getString("source", "auto"));
         String theme = value.optString("theme", app.prefs.getString("theme", "system"));
-        String reasoning = value.optString("reasoning", app.prefs.getString("reasoning", "off"));
-        String system = value.optString("systemPrompt", app.settings().getString("systemPrompt"));
         boolean lan = value.optBoolean("lan", app.prefs.getBoolean("lan", false));
-        if (port < 1024 || port > 65535 || threads < 1 || threads > 12 || context < 512 || context > 8192 || maxTokens < 32 || maxTokens > 4096 || !Double.isFinite(temperature) || temperature < 0 || temperature > 2)
-            throw new IllegalArgumentException("参数超出范围，请检查端口、线程和上下文");
+        if (port < 1024 || port > 65535) throw new IllegalArgumentException("服务端口需要 1024–65535");
         if (!source.equals("auto") && !source.equals("huggingface") && !source.equals("mirror")) throw new IllegalArgumentException("未知下载源");
         if (!theme.equals("system") && !theme.equals("light") && !theme.equals("dark")) throw new IllegalArgumentException("未知主题");
-        if (!reasoning.equals("off") && !reasoning.equals("auto") && !reasoning.equals("on")) throw new IllegalArgumentException("未知思考模式");
-        if (system.length() > 4000) throw new IllegalArgumentException("系统提示词过长");
-        boolean reload = port != app.prefs.getInt("port", 8080) || threads != app.prefs.getInt("threads", 4) || context != app.prefs.getInt("context", 2048) || lan != app.prefs.getBoolean("lan", false) || !reasoning.equals(app.prefs.getString("reasoning", "off"));
-        if (reload && app.generating) throw new IllegalStateException("请先停止生成，再修改模型运行参数");
-        SharedPreferences.Editor edit = app.prefs.edit().putInt("port", port).putInt("threads", threads).putInt("context", context).putInt("maxTokens", maxTokens).putFloat("temperature", (float) temperature)
-                .putString("source", source).putString("theme", theme).putString("reasoning", reasoning).putString("systemPrompt", system).putBoolean("lan", lan);
+        boolean reload = port != app.prefs.getInt("port", 8080) || lan != app.prefs.getBoolean("lan", false);
+        if (reload && app.generating) throw new IllegalStateException("请先停止生成，再修改服务监听参数");
+        SharedPreferences.Editor edit = app.prefs.edit().putInt("port", port).putString("source", source).putString("theme", theme).putBoolean("lan", lan);
         if (value.has("boot")) edit.putBoolean("boot", value.getBoolean("boot"));
         if (value.has("autoLoad")) edit.putBoolean("autoLoad", value.getBoolean("autoLoad"));
         edit.apply();

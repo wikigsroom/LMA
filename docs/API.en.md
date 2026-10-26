@@ -7,7 +7,7 @@
 - Default local Base URL: `http://127.0.0.1:8080/v1`.
 - For another device, enable LAN on Server and use the phone's displayed IP. Both devices need network reachability.
 - Send `Authorization: Bearer YOUR_LMA_API_KEY`. Copy the key from the phone; it is not a cloud OpenAI key.
-- `GET /v1/models` returns the loaded alias, such as `m08`. Imported models use `custom_...`; do not infer the ID from a filename.
+- `GET /v1/models` returns the loaded alias, such as `m08`. HF downloads use stable `hf_...` IDs, while manual imports use `custom_...`; do not infer IDs from filenames. An HF access token is separate from the inference API key.
 - The model must be loaded and ready, not merely downloaded. One model and one inference slot do not promise parallel throughput.
 
 The documented compatibility surface is models, chat completions, and SSE. Responses, audio, images, embeddings, tool calling, and all vendor parameters are not promised.
@@ -81,7 +81,7 @@ Invoke-RestMethod "$lmaBase/chat/completions" -Method Post -Headers $lmaHeaders 
 
 ## Parameters and limits
 
-App thread, context, port, and reasoning settings affect engine startup. Output limit, temperature, and system prompt are defaults for in-app chat. External clients send their own messages and generation parameters; the UI's system prompt is not injected into every external request.
+Each model’s independent threads, context and reasoning settings affect its engine startup; the service port remains global. Per-model output limit, temperature and system prompt are defaults for in-app chat. See [profile limits](MODEL_SETTINGS.en.md). External clients send their own messages and generation parameters; the UI's system prompt is not injected into every external request.
 
 EOS, token limits, cancellation, or engine failure end generation. Stopping or reloading the process interrupts existing connections. Background serving does not mean unlimited generation without requests.
 

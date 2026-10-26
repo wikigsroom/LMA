@@ -1,29 +1,29 @@
-# LMA · Uncensored models on Android
+# LMA · Local models on Android
 
 [中文](README.md) · [English](README.en.md) · [Releases](https://github.com/wikigsroom/LMA/releases) · [Documentation](docs/README.md) · [Changelog](CHANGELOG.md)
 
-**Choose an uncensored small model, download it, chat locally, and serve an OpenAI-compatible API from an Android phone.**
+**Choose a local model, discover more on Hugging Face, download a compatible GGUF, chat locally, and serve an OpenAI-compatible API from an Android phone.**
 
 LMA (Local Model App) brings a desktop model-workbench workflow into one APK: model selection, downloads, local chat, and an API server. It requires no ROOT, Termux, or separate server. This is an independent community project, unaffiliated with LM Studio. The application UI is currently primarily Chinese; the documentation is bilingual.
 
 | Version | Platform | Backend | License | Stage |
 | --- | --- | --- | --- | --- |
-| **0.1.2 / versionCode 3** | Android 9+, ARM64 | llama.cpp, CPU | MIT for LMA code | Prerelease; physical-device acceptance pending |
+| **0.2.0 / versionCode 4** | Android 9+, ARM64 | llama.cpp, CPU | MIT for LMA code | Prerelease; physical-device acceptance pending |
 
-> **Validation status:** A signed APK is available, with 115 desktop assertions and separate APK, native-library, and Android Lint checks. No physical Android device was available. Installation, actual model inference, tokens/s, and screen-off endurance have **not** been tested. Images and recordings use the shipped UI with explicitly simulated native state; they are **not phone inference recordings**. See [validation](docs/VALIDATION.en.md).
+> **Validation status:** A signed APK is available, with 226 desktop assertions and separate APK, native-library, and Android Lint checks. No physical Android device was available. Installation, actual model inference, tokens/s, and screen-off endurance have **not** been tested. Images and recordings use the shipped UI with explicitly simulated native state; they are **not phone inference recordings**. See [validation](docs/VALIDATION.en.md).
 
 <p>
-  <img src="docs/media/01-library.png" width="260" alt="Uncensored model library; UI demonstration data">
+  <img src="docs/media/01-library.png" width="260" alt="Local model library; UI demonstration data">
   <img src="docs/media/05-api.png" width="260" alt="OpenAI-compatible API; UI demonstration data">
   <img src="docs/media/07-dark.png" width="260" alt="Dark theme; UI demonstration data">
 </p>
 
 ## Download and start
 
-Download `LMA-0.1.2-arm64-v8a.apk` from the [v0.1.2 Release](https://github.com/wikigsroom/LMA/releases/tag/v0.1.2). The APK is about 10.9 MB and contains no model weights. Installation and runtime storage require additional space.
+Download `LMA-0.2.0-arm64-v8a.apk` from the [v0.2.0 Release](https://github.com/wikigsroom/LMA/releases/tag/v0.2.0). The APK is about 10.9 MB and contains no model weights. Installation and runtime storage require additional space.
 
 1. Install the APK, allow the installation source if Android asks, and open LMA.
-2. In **模型库 / Model library**, select a model and tap **下载 / Download**. Start with `Dolphin 3 · Qwen 0.5B Uncensored` (`m01`, about 398 MB) to check the full flow.
+2. In **模型库 / Model library**, use the preserved recommendations, or search HF through **全部 / All**, select a repository and a GGUF quantization, and tap **下载 / Download**. The original recommendation order remains `m08 → m06 → m01`.
 3. Wait for GGUF, length, and publisher SHA256 verification, then tap **加载 / Load**. By default, the first completed download loads automatically if no model was previously selected.
 4. Open **对话 / Chat** to send a message, or **服务 / Server** to copy the endpoint, key, and connection example.
 5. For background serving, allow foreground-service notifications and open Android battery settings from the Server page. Vendor settings may also require background network, autostart, and unrestricted background activity.
@@ -34,36 +34,61 @@ The first download needs networking; inference with downloaded weights runs loca
 ### Verify the package
 
 ```text
-File: LMA-0.1.2-arm64-v8a.apk
-SHA256: e9e3b7103f5e63c86953acdb986387f73cae9e3fb42851f6af1b9fffe6c1cc28
-Package: com.lma.app / versionCode 3
+File: LMA-0.2.0-arm64-v8a.apk
+SHA256: d8c16c7414ce5cc28c55fb3c2375c042e6735d53f73ebb5d4efa8388d7b130c1
+Package: com.lma.app / versionCode 4
 Signing certificate SHA256: 90444a717a55549e2094364d8d7d005cf8b7f4df24562da62cc1884a2f341c17
 ```
 
-On Windows, run `Get-FileHash .\LMA-0.1.2-arm64-v8a.apk -Algorithm SHA256`. Release assets include hashes, the dedicated source ZIP, validation JSON, and the walkthrough video. Updates must use the same signing identity; personal builds have their own key.
+On Windows, run `Get-FileHash .\LMA-0.2.0-arm64-v8a.apk -Algorithm SHA256`. Release assets include hashes, the dedicated source ZIP, validation JSON, and the walkthrough video. Updates must use the same signing identity; personal builds have their own key.
 
 ## Features and workflow
 
 | Page | Actions | State and lifecycle |
 | --- | --- | --- |
-| Model library | Recommended / lightweight / advanced / installed / all filters, search, publisher evidence, download, pause, resume, load, delete | Download completion and model readiness are separate; chat and API share one loaded model |
+| Model library | Preserved recommendations, HF discovery / quantization selection, dedicated Local manager, lightweight / advanced groups, evidence, downloads/resume, delete and imports | Download completion and model readiness are separate; chat and API share one loaded model |
 | Chat | Streaming, stop generation, reasoning disclosure, code copy, SQLite history, new / previous sessions | A native thread reads SSE and persists received text roughly every 160ms; reopening restores it |
 | Server | Start/stop, LAN switch, endpoint / key / curl copy, battery settings, log export | Localhost by default; LAN access is user-enabled and requires an API key |
-| Settings | Source, first-download auto-load, optional boot restore, threads / context / output / temperature / port / reasoning, system prompt and theme | Runtime changes reload an active model; saving waits for a matching native acknowledgement |
+| Settings | Application source/token preferences, auto-load, boot restore, service port and theme; link to Local model settings | Model parameters are configured independently on each downloaded model |
 
 One model and one inference slot are used. Switching models reloads the engine; stop a running model before deleting its file. **Stop generation** cancels one reply; the notification's **Stop service** stops background work.
 
-## Uncensored model policy
+## Recommended, All, and Local
 
-The built-in library contains **only publisher-declared Uncensored / Abliterated weight variants**. This includes publisher-described Dolphin instruction tuning, refusal-direction ablation, and explicit uncensored weights. Ordinary base models are not relabeled, and a system prompt is not used as a substitute for modified weights.
+| Entry | Behavior |
+| --- | --- |
+| 推荐 / Recommended | Preserves `m08`, `m06`, `m01`, in that order, with their original labels and evidence; HF downloads never replace recommendations |
+| 全部 / All and search | Queries the live HF model API by keyword, `owner/model`, or repository URL; sort by downloads, likes, or update date and navigate pages |
+| Format | GGUF by default; **HF 全部格式 / All HF formats** discovers repositories beyond GGUF and links to their sources |
+| File picker | Shows GGUF path, quantization, bytes and hash; pins the commit before paginating/selecting a file |
+| 本地 / Local | Manages all downloaded built-in, HF and imported models, plus active/interrupted downloads; local search, individual model settings, load, pause, resume and delete |
+| Lightweight / Advanced | Preserves the original curated groups |
 
-- All 14 candidates have checked author cards, GGUF attribution, pinned commits, exact sizes, and publisher SHA256.
-- The catalogue build checks the evidence against the actual weight repository, revision, and hash. Missing evidence stops the build.
-- Model details expose the method and pinned author-card link.
-- User-added URLs and imported GGUFs display **属性未核对 / Unverified attribute** rather than built-in verification.
-- LMA adds no keyword blocklist, prompt classifier, cloud moderation, or response-content filter to its production chat path. The system prompt is editable or may be empty. Format, size, resource, and API authentication checks still apply.
+All-format **discovery** does not imply every HF format can run on Android. This version serves text chat from compatible **single-file GGUF** weights. It does not directly run Safetensors, PyTorch, ONNX, MLX, split GGUFs, standalone vision projectors, or speech tasks, and does not automatically convert weights. GGUF architecture, quantization, template and RAM compatibility still require loading. This is not yet full feature parity with LM Studio.
 
-Publisher declarations do not guarantee zero refusals. **Refusal rates have not been independently measured; these models have not been run on Android by this project.** See [models and pinned evidence](docs/UNCENSORED_MODELS.en.md) and the [structured audit](catalogue/uncensored-evidence.json).
+Public models need no HF account. Automatic source selection tries HF, then HF Mirror; fixed sources are available. For gated/private repositories, save an optional HF token in Settings and accept the license on HF first. The token stays in private app preferences, is not returned to the UI/log export, and is sent only to the official HF HTTPS host. Authenticated requests use the official source; mirrors and CDN redirects receive no token. See the [HF and local-model guide](docs/HF_MODELS.en.md).
+
+<p>
+  <img src="docs/media/08-hf-discovery.png" width="260" alt="HF discovery; simulated metadata">
+  <img src="docs/media/09-hf-files.png" width="260" alt="GGUF quantization picker; simulated metadata">
+  <img src="docs/media/10-local-models.png" width="260" alt="Dedicated local manager; simulated state">
+</p>
+
+## Per-model settings
+
+Open **Model library → 本地 / Local → a downloaded model’s settings icon**. Context, output limit, CPU threads, temperature, reasoning and system prompt are saved separately by model ID. Numeric controls support presets and custom text. Values above a bound reset automatically: context uses the GGUF architecture’s declared context length, output is at most configured context minus one, threads use available processors, and temperature uses the application range 0–2. Unknown context metadata is explicitly labeled with a temporary application fallback of 8192. Actual prompts/history can reduce available output further.
+
+Switching/restoring models reads their own profiles. Legacy global inference preferences migrate to existing models. Editing the running model’s context, threads or reasoning reloads it; generation preferences apply to the next in-app chat. See the bilingual [per-model guide](docs/MODEL_SETTINGS.en.md) for limits, examples, persistence and external-API behavior.
+
+<p><img src="docs/media/06-settings.png" width="260" alt="Independent editable model parameters; simulated metadata"><img src="docs/media/11-model-output.png" width="260" alt="Automatic output clamping; simulated metadata"></p>
+
+[Model-settings GIF](docs/media/lma-model-settings.gif) · [中文说明](docs/MODEL_SETTINGS.md).
+
+## Separate uncensored labels
+
+The original 14 curated variants retain their checked publisher declarations, pinned commits, exact sizes and SHA256. They carry **无审查 / Uncensored** tags. Online HF names/tags that suggest uncensored or abliterated weights carry **无审查 · 元数据 / Uncensored · metadata**; this is an unverified hint. Ordinary models have no such label. Manual imports never gain verified status from their filenames.
+
+The evidence gate applies to a checked label, not eligibility for general HF discovery. LMA adds no keyword blocklist, cloud moderation, or response-content filter to chat; system prompts remain editable. Publisher claims do not guarantee zero refusals, and independent refusal rates and phone inference have not been measured. See [tag evidence](docs/UNCENSORED_MODELS.en.md).
 
 ### Built-in candidates
 
@@ -142,7 +167,7 @@ Weights, progress, and SQLite history live in private app storage; uninstalling 
 
 The media uses **the HTML / CSS / JavaScript shipped in the APK**, driven by an explicit demonstration bridge. A UI DEMO banner is always visible. Downloads are simulated, chat is scripted, and IP / API key values are placeholders. No Android runtime or model executes.
 
-[Full MP4 recording](docs/media/lma-walkthrough.mp4) · [API / theme GIF](docs/media/lma-api-theme.gif) · [Seven screenshots and reproduction](docs/MEDIA.md) · [Media hashes and provenance](docs/media/manifest.json).
+[Full MP4 recording](docs/media/lma-walkthrough.mp4) · [HF / Local GIF](docs/media/lma-hf-local.gif) · [API / theme GIF](docs/media/lma-api-theme.gif) · [Twelve screenshots and reproduction](docs/MEDIA.md) · [Media hashes and provenance](docs/media/manifest.json).
 
 ## Build from source
 
@@ -162,6 +187,7 @@ The bootstrap downloads the pinned ServLlama 1.2.2 llama.cpp v0.4.1 ARM64 CPU bu
 ```powershell
 python tools/test_protocol.py
 python tools/test_backend.py
+python tools/test_hub.py --live
 python tools/test_sqlite.py
 python tools/test_android_lint.py
 node tests/ui-smoke.cjs
@@ -174,7 +200,7 @@ python tools/check_repository.py
 
 UI work requires Node.js, Playwright, and Edge / Chromium. Set `LMA_PLAYWRIGHT` and `LMA_BROWSER` if necessary. Media additionally needs FFmpeg / FFprobe. Standalone Lint needs SDK Command-line Tools. All test pages and browser processes close in `finally`.
 
-Current evidence is **54 backend + 25 protocol + 5 SQLite + 31 UI = 115 desktop assertions**, plus **Lint: 0 errors, 7 warnings**. Android framework adapters, host SQLite, and a test UI bridge are explicitly identified. Separate APK, signature, native-library, alignment, and author-evidence checks do not replace Android execution. **Physical-device checks: 0.** See [validation](docs/VALIDATION.en.md) and [`verification/`](verification/).
+Current evidence is **85 backend + 45 HF logic + 25 protocol + 5 SQLite + 66 UI = 226 desktop assertions**, plus **5 live public HF metadata checks** and **Lint: 0 errors, 7 warnings**. Android framework adapters, host SQLite, and a test UI bridge are explicitly identified. Separate APK, signature, native-library, alignment, and author-evidence checks do not replace Android execution. **Physical-device checks: 0.** See [validation](docs/VALIDATION.en.md) and [`verification/`](verification/).
 
 ## Documentation and source layout
 
@@ -185,6 +211,7 @@ Current evidence is **54 backend + 25 protocol + 5 SQLite + 31 UI = 115 desktop 
 | [Architecture](docs/ARCHITECTURE.en.md) / [中文](docs/ARCHITECTURE.md) | Services, engine, downloads, chat, storage, boundaries |
 | [API](docs/API.en.md) / [中文](docs/API.md) | Client integration and SSE |
 | [Build](docs/BUILD.en.md) / [中文](docs/BUILD.md) | Toolchain and verification |
+| [HF and local models](docs/HF_MODELS.en.md) / [中文](docs/HF_MODELS.md) | Search, pagination, quantizations, Local management, compatibility and tokens |
 | [Uncensored models](docs/UNCENSORED_MODELS.en.md) / [中文](docs/UNCENSORED_MODELS.md) | Complete model / author evidence |
 | [Device acceptance](docs/DEVICE_ACCEPTANCE.en.md) / [中文](docs/DEVICE_ACCEPTANCE.md) | Compiled tools awaiting a real phone |
 | [`app/src/main/java/com/lma/app/`](app/src/main/java/com/lma/app/) | Production Android code |
@@ -197,7 +224,7 @@ Current evidence is **54 backend + 25 protocol + 5 SQLite + 31 UI = 115 desktop 
 
 Each subsequent authorized LMA update must synchronize code, both READMEs / guides, affected screenshots and GIFs, `CHANGELOG.md`, and version notes before committing and pushing to `git@github.com:wikigsroom/LMA.git`. This standing instruction is recorded in [AGENTS.md](AGENTS.md), [CONTRIBUTING.md](CONTRIBUTING.md), and [the release procedure](docs/RELEASING.md). Do not force-push, rewrite published tags, or replace released assets with different bytes under the same filename.
 
-`v0.1.2` is the first public repository release. Earlier 0.1.0 / 0.1.1 builds were local iterations, not historical GitHub releases. This release is marked as a prerelease while Android acceptance remains outstanding.
+`v0.1.2` was the first public repository release; `v0.2.0` adds broad HF discovery and Local management. Earlier 0.1.0 / 0.1.1 builds were local iterations. This release remains a prerelease while Android acceptance is outstanding.
 
 For post-release documentation/tool updates, `python tools/check_repository.py --published` compares the immutable source archive with its tag while checking current public files and guides. Draft releases are resolved through the authenticated list to handle GitHub's draft-by-tag 404 behavior. Maintenance notes go in the Unreleased changelog; published APKs, tags, and assets are not rewritten.
 

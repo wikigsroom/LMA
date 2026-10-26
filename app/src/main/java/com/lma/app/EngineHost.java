@@ -62,7 +62,8 @@ public final class EngineHost {
             File nativeDir = new File(app.getApplicationInfo().nativeLibraryDir);
             File binary = new File(nativeDir, "libllama-server.so");
             if (!binary.isFile() || !binary.canExecute()) throw new java.io.IOException("推理组件未正确安装，请重新安装 LMA APK");
-            JSONObject settings = app.settings();
+            app.store.inspectModel(id);
+            JSONObject settings = app.settings(id);
             List<String> command = new ArrayList<>();
             command.add(binary.getAbsolutePath());
             add(command, "-m", app.store.modelFile(id).getAbsolutePath()); add(command, "--alias", id);

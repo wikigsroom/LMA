@@ -37,7 +37,7 @@ def main():
         m = index[model_id]
         checked = verified[model_id.lower()]
         declaration = declarations[model_id.lower()]
-        assert declaration["qualified"] is True and declaration["basis"] == "publisher-declared-uncensored", "Built-in models require an explicit publisher claim"
+        assert declaration["qualified"] is True and declaration["basis"] == "publisher-declared-uncensored", "The preserved curated labels require an explicit publisher claim"
         assert (declaration["gguf_repository"], declaration["gguf_revision"], declaration["weight_sha256"]) == (checked["repository"], checked["revision"], checked["sha256"]), "Uncensored evidence must match the exact download"
         name, family, tier, tags, description = DETAILS[model_id]
         models.append({"id": model_id.lower(), "researchId": model_id, "name": name, "family": family,
@@ -50,7 +50,7 @@ def main():
                                       "summary": declaration["summary"], "evidenceUrl": declaration["author_card_url"],
                                       "upstreamUrl": "https://huggingface.co/" + declaration["author_repository"], "refusalRateTested": False},
                        "recommended": model_id in ("M08", "M06", "M01"), "deviceTested": False})
-    output = {"version": 3, "updated": "2026-10-26", "scope": "publisher-declared-uncensored-only", "models": models}
+    output = {"version": 4, "updated": "2026-10-27", "scope": "local-models-with-uncensored-tags", "discovery": "huggingface-hub-paginated", "models": models}
     path = ROOT / "app/src/main/assets/models.json"; path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(output, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(json.dumps({"catalogue_models": len(models), "known_publisher_hashes": sum(bool(m["sha256"]) for m in models)}))

@@ -31,6 +31,7 @@ public final class BackendTest {
     private static String hash;
     private static final AtomicBoolean shorten = new AtomicBoolean(true);
     private static final AtomicReference<String> receivedRange = new AtomicReference<>();
+    private static final AtomicReference<String> receivedAuthorization = new AtomicReference<>();
     private interface Checked { void run() throws Exception; }
     private interface Condition { boolean value() throws Exception; }
     private static void check(boolean condition, String name) { if (!condition) throw new AssertionError(name); passed.add(name); System.out.println("PASS " + name); }
@@ -85,6 +86,7 @@ public final class BackendTest {
         https.createContext("/", exchange -> {
             try {
                 String path = exchange.getRequestURI().getPath();
+                receivedAuthorization.set(exchange.getRequestHeaders().getFirst("Authorization"));
                 if (path.equals("/unavailable")) { exchange.sendResponseHeaders(503, -1); exchange.close(); return; }
                 if (path.equals("/redirect") || path.equals("/downgrade")) {
                     exchange.getResponseHeaders().set("Location", path.equals("/downgrade") ? "http://127.0.0.1/file" : "/file"); exchange.sendResponseHeaders(302, -1); exchange.close(); return;
@@ -116,6 +118,8 @@ public final class BackendTest {
         HttpURLConnection fallback = Net.downloadCandidates(new String[]{base + "/unavailable", base + "/file"}, 0, "", connection -> {});
         byte[] received; try (InputStream in = fallback.getInputStream(); ByteArrayOutputStream out = new ByteArrayOutputStream()) { byte[] b = new byte[8192]; int n; while ((n = in.read(b)) >= 0) out.write(b, 0, n); received = out.toByteArray(); } finally { fallback.disconnect(); }
         check(Arrays.equals(received, payload), "Unavailable first source falls back over real HTTPS with exact bytes");
+        HttpURLConnection privateToken = Net.downloadCandidates(new String[]{base + "/redirect"}, 0, "", connection -> {}, "hf_TEST_ONLY");
+        try (InputStream ignored = privateToken.getInputStream()) { check(privateToken.getResponseCode() == 200 && receivedAuthorization.get() == null, "HF credentials stay absent across real HTTPS redirects on custom hosts"); } finally { privateToken.disconnect(); }
         String pinned = "https://huggingface.co/author/repo/resolve/0123456789/model.gguf";
         check(Arrays.equals(Net.modelSources(pinned, "auto"), new String[]{pinned, pinned.replace("huggingface.co", "hf-mirror.com")}), "Automatic mirror preserves pinned model path");
         check(Net.modelSources("https://other.example/model.gguf", "auto").length == 1, "Custom hosts never rewrite to the mirror");
@@ -164,6 +168,7 @@ public final class BackendTest {
     private static EngineHost engine(LmaService service, LmaApp app, String mode, AtomicInteger launches) {
         EngineHost host = new EngineHost(service, app, builder -> {
             launches.incrementAndGet();
+            Files.write(work.resolve("last-engine-argv.json"), new JSONArray(builder.command()).toString().getBytes(StandardCharsets.UTF_8));
             List<String> command = new ArrayList<>(); command.add(Paths.get(System.getProperty("java.home"), "bin", "java.exe").toString());
             command.add("-Dsun.net.useExclusiveBind=false"); command.add("-Dfile.encoding=UTF-8"); command.add("-Dstdout.encoding=UTF-8"); command.add("-Dstderr.encoding=UTF-8");
             command.add("-cp"); command.add(System.getProperty("java.class.path")); command.add("com.lma.app.HostServer"); command.addAll(builder.command().subList(1, builder.command().size()));
@@ -177,16 +182,28 @@ public final class BackendTest {
     private static void testProcessesAndChat() throws Exception {
         LmaApp app = app("engine"); LmaService owner = new LmaService(); AtomicInteger launches = new AtomicInteger();
         app.prefs.edit().putInt("port", freePort()).apply(); model(app, "m08"); model(app, "m01");
+        app.store.saveConfig("m08", new JSONObject().put("context", 1536).put("threads", 2).put("maxTokens", 321).put("temperature", 1.1).put("systemPrompt", "model eight prompt"));
+        app.store.saveConfig("m01", new JSONObject().put("context", 777).put("threads", 1).put("reasoning", "auto"));
         EngineHost host = engine(owner, app, "normal", launches); host.load("m08");
         waitFor(host::ready, 10000, "Child process ready"); check(app.engineModel.equals("m08"), "Real child process passes health, authenticated models and alias checks");
+        List<Object> argv = new JSONArray(new String(Files.readAllBytes(work.resolve("last-engine-argv.json")), StandardCharsets.UTF_8)).toList();
+        check(argv.get(argv.indexOf("-c") + 1).equals("1536") && argv.get(argv.indexOf("-t") + 1).equals("2"), "EngineHost starts the child with the chosen model's context and thread settings");
         HttpURLConnection unauthorized = (HttpURLConnection) new URL("http://127.0.0.1:" + app.prefs.getInt("port", 0) + "/v1/models").openConnection();
         check(unauthorized.getResponseCode() == 401, "Protocol fixture rejects missing API key"); unauthorized.disconnect();
         host.load("m01"); waitFor(() -> host.ready() && app.engineModel.equals("m01"), 10000, "Model switch"); check(launches.get() == 2, "Model switch retires old child and loads selected alias");
+        argv = new JSONArray(new String(Files.readAllBytes(work.resolve("last-engine-argv.json")), StandardCharsets.UTF_8)).toList();
+        check(argv.get(argv.indexOf("-c") + 1).equals("777") && argv.get(argv.indexOf("--reasoning") + 1).equals("auto"), "Switching model replaces load parameters with that model's saved profile");
         host.load("m08"); host.load("m01"); host.load("m08");
         waitFor(() -> host.ready() && app.engineModel.equals("m08"), 10000, "Rapid model replacement");
         check(app.nativeProcess.isAlive(), "Stale launches and exit watchers cannot stop the newest requested model");
         ChatRunner chat = new ChatRunner(owner, app); chats.add(chat); chat.send("normal"); waitFor(() -> !app.generating, 5000, "Normal chat");
         JSONObject reply = app.chats.last(); check(reply.getString("status").equals("done") && reply.getString("content").equals("你好🙂") && reply.getInt("tokens") == 7, "Production ChatRunner parses real HTTP UTF-8 SSE and usage");
+        JSONObject sent = new JSONObject(new String(Files.readAllBytes(work.resolve("last-request.json")), StandardCharsets.UTF_8));
+        check(sent.getInt("max_tokens") == 321 && sent.getDouble("temperature") == 1.1 && sent.getJSONArray("messages").getJSONObject(0).getString("content").equals("model eight prompt"), "Production ChatRunner sends the active model's output limit, temperature and system prompt");
+        app.store.saveConfig("m01", new JSONObject().put("maxTokens", 11).put("temperature", 0.1));
+        chat.send("normal"); waitFor(() -> !app.generating, 5000, "Inactive profile edit");
+        sent = new JSONObject(new String(Files.readAllBytes(work.resolve("last-request.json")), StandardCharsets.UTF_8));
+        check(sent.getInt("max_tokens") == 321 && sent.getDouble("temperature") == 1.1, "Editing another model cannot change the active model's generation parameters");
         check(reply.getString("reasoning").equals("思考片段"), "Reasoning stream persisted separately");
         chat.send("broken"); waitFor(() -> !app.generating, 5000, "Truncated SSE");
         reply = app.chats.last(); check(reply.getString("status").equals("error") && reply.getString("content").equals("你好🙂"), "Truncated SSE records error and retains completed chunks");
@@ -230,9 +247,9 @@ public final class BackendTest {
         root = Paths.get(args[0]).toAbsolutePath(); work = root.resolve("build/backend-tests/run"); Files.createDirectories(work);
         assets = root.resolve("app/src/main/assets"); libraries = root.resolve("app/src/main/jniLibs/arm64-v8a");
         try {
-            httpsServer(root.resolve("build/backend-tests/loopback.p12")); testHistory(); testDownloads(); testProcessesAndChat();
+            httpsServer(root.resolve("build/backend-tests/loopback.p12")); passed.addAll(ModelSettingsTest.run(work, assets, libraries)); testHistory(); testDownloads(); testProcessesAndChat();
             JSONObject result = new JSONObject().put("passed", passed.size()).put("checks", new JSONArray(passed)).put("real_https_sockets", true).put("real_child_processes", true)
-                .put("production_backend_classes", new JSONArray(Arrays.asList("Store", "Downloads", "Net", "EngineHost", "ChatRunner", "ChatHistory", "Protocol")))
+                .put("production_backend_classes", new JSONArray(Arrays.asList("Store", "Downloads", "Net", "EngineHost", "ChatRunner", "ChatHistory", "Protocol", "ModelSettings", "GgufMetadata")))
                 .put("android_framework_adapters", true).put("physical_device", false).put("model_inference", false);
             Files.write(root.resolve("build/backend-tests/results.json"), result.toString(2).getBytes(StandardCharsets.UTF_8));
             System.out.println("Backend checks passed: " + passed.size());

@@ -1,15 +1,15 @@
-# LMA · Android 无审查模型工作台
+# LMA · Android 本地模型工作台
 
 [中文](README.md) · [English](README.en.md) · [下载 / Releases](https://github.com/wikigsroom/LMA/releases) · [文档导航](docs/README.md) · [更新记录](CHANGELOG.md)
 
-Android 版的本地模型管理、下载、对话和 API 服务应用。当前修订版本为 **0.1.2 / ARM64 / Android 9+**。
+Android 版的本地模型管理、下载、对话和 API 服务应用。当前修订版本为 **0.2.0 / ARM64 / Android 9+**。
 
-安装包：[v0.1.2 Release](https://github.com/wikigsroom/LMA/releases/tag/v0.1.2) 中的 `LMA-0.1.2-arm64-v8a.apk`，约 10.9 MB。模型权重由用户在应用中选择下载，APK 不含模型权重。LMA（Local Model App）是独立社区项目，与 LM Studio 无隶属关系；当前应用界面主要为中文，文档提供中英双语。
+安装包：[v0.2.0 Release](https://github.com/wikigsroom/LMA/releases/tag/v0.2.0) 中的 `LMA-0.2.0-arm64-v8a.apk`，约 10.9 MB。模型权重由用户在应用中选择下载，APK 不含模型权重。LMA（Local Model App）是独立社区项目，与 LM Studio 无隶属关系；当前应用界面主要为中文，文档提供中英双语。
 
-> **预发布状态：** 已签名构建，通过 115 项桌面断言和 APK / 原生库 / Android Lint 检查。当前没有可用 Android 真机；安装、实际推理、速度和后台耐久未实测。以下图片、视频与 GIF 来自随 APK 分发的实际界面，原生状态为明确的演示数据，**不是手机推理实录**。
+> **预发布状态：** 已签名构建，通过 226 项桌面断言和 APK / 原生库 / Android Lint 检查。当前没有可用 Android 真机；安装、实际推理、速度和后台耐久未实测。以下图片、视频与 GIF 来自随 APK 分发的实际界面，原生状态为明确的演示数据，**不是手机推理实录**。
 
 <p>
-  <img src="docs/media/01-library.png" width="260" alt="LMA 无审查模型库，界面演示数据">
+  <img src="docs/media/01-library.png" width="260" alt="LMA 本地模型库，界面演示数据">
   <img src="docs/media/05-api.png" width="260" alt="LMA API 服务，界面演示数据">
   <img src="docs/media/07-dark.png" width="260" alt="LMA 深色主题，界面演示数据">
 </p>
@@ -19,7 +19,9 @@ Android 版的本地模型管理、下载、对话和 API 服务应用。当前�
 | 需求 | 中文 | English |
 | --- | --- | --- |
 | 安装、页面操作、后台与排错 | [使用手册](docs/USER_GUIDE.md) | [User guide](docs/USER_GUIDE.en.md) |
-| 模型清单、具体量化、作者依据 | [无审查模型](docs/UNCENSORED_MODELS.md) | [Uncensored models](docs/UNCENSORED_MODELS.en.md) |
+| HF 搜索、量化选择、本地管理与支持范围 | [HF 与本地模型](docs/HF_MODELS.md) | [HF and local models](docs/HF_MODELS.en.md) |
+| 模型独立参数、可编辑预设和自动归位 | [模型设置](docs/MODEL_SETTINGS.md) | [Per-model settings](docs/MODEL_SETTINGS.en.md) |
+| 既有模型清单与独立无审查标签依据 | [标签与作者依据](docs/UNCENSORED_MODELS.md) | [Tags and publisher evidence](docs/UNCENSORED_MODELS.en.md) |
 | 技术实现、生命周期、存储与网络 | [架构](docs/ARCHITECTURE.md) | [Architecture](docs/ARCHITECTURE.en.md) |
 | curl、Python、PowerShell 和 SSE | [API 接入](docs/API.md) | [API integration](docs/API.en.md) |
 | 工具链、重建和验证 | [构建](docs/BUILD.md) | [Build](docs/BUILD.en.md) |
@@ -33,6 +35,8 @@ Android 版的本地模型管理、下载、对话和 API 服务应用。当前�
 ```mermaid
 flowchart TD
   UI[本地 WebView：模型库 / 对话 / 服务 / 设置] -->|JSON 命令和状态| FGS[Android 原生前台服务]
+  UI --> HUB[原生 HF 搜索 / 仓库 / 文件分页]
+  HUB -->|固定提交及文件哈希| DL
   FGS --> DL[HTTPS 下载 / 续传 / SHA256 / SAF 导入]
   FGS --> ENGINE[独立 ARM64 llama-server 进程]
   FGS --> CHAT[原生 ChatRunner / SSE / SQLite]
@@ -46,37 +50,66 @@ flowchart TD
 
 <p><img src="docs/media/lma-walkthrough.gif" width="320" alt="LMA 操作 GIF，模拟原生状态，非真机推理"></p>
 
-[完整 MP4 视频](docs/media/lma-walkthrough.mp4) · [API / 深色主题 GIF](docs/media/lma-api-theme.gif) · [全部截图](docs/MEDIA.md) · [来源与文件哈希](docs/media/manifest.json)。顶部全程显示 UI DEMO；下载进度为模拟状态，对话为脚本文本，IP 和密钥为示例，没有执行 Android 或模型。录制脚本位于 `tools/capture_media.cjs`，结束时自动关闭所有测试页面和浏览器。
+[完整 MP4 视频](docs/media/lma-walkthrough.mp4) · [HF 与本地管理 GIF](docs/media/lma-hf-local.gif) · [模型设置 GIF](docs/media/lma-model-settings.gif) · [API / 深色主题 GIF](docs/media/lma-api-theme.gif) · [全部截图](docs/MEDIA.md) · [来源与文件哈希](docs/media/manifest.json)。顶部全程显示 UI DEMO；HF 元数据与下载进度为模拟状态，对话为脚本文本，IP 和密钥为示例，没有执行 Android 或模型。录制脚本位于 `tools/capture_media.cjs`，结束时自动关闭所有测试页面和浏览器。
 
 ## 安装包核对
 
 ```text
-APK SHA256: e9e3b7103f5e63c86953acdb986387f73cae9e3fb42851f6af1b9fffe6c1cc28
-包名: com.lma.app / versionCode 3
+APK SHA256: d8c16c7414ce5cc28c55fb3c2375c042e6735d53f73ebb5d4efa8388d7b130c1
+包名: com.lma.app / versionCode 4
 签名证书 SHA256: 90444a717a55549e2094364d8d7d005cf8b7f4df24562da62cc1884a2f341c17
 ```
 
-可运行 `Get-FileHash .\LMA-0.1.2-arm64-v8a.apk -Algorithm SHA256`。后续升级须使用同一签名来源；自行构建会使用自己的密钥。Release 同时提供源码 ZIP、SHA256、验证 JSON 和演示视频。
+可运行 `Get-FileHash .\LMA-0.2.0-arm64-v8a.apk -Algorithm SHA256`。后续升级须使用同一签名来源；自行构建会使用自己的密钥。Release 同时提供源码 ZIP、SHA256、验证 JSON 和演示视频。
 
 ## 使用
 
 1. 将 APK 传到手机并安装；如果系统提示，允许当前文件管理器安装此 APK。
-2. 打开 LMA，在“模型库”中选择模型并点击“下载”。默认自动尝试 Hugging Face，连接失败后切换到 HF Mirror；也可手动固定下载源。也能通过 HTTPS 直链添加或从设备导入 GGUF。
-3. 下载完成后点击“加载模型”。默认情况下，第一个下载完成的模型会自动加载。进入“对话”即可本地聊天。
+2. 打开“模型库”。“推荐”保留已选好的 `m08 → m06 → m01` 和原标签；“全部”及搜索可发现其他 HF 模型，选择仓库，再选择所需 GGUF 量化文件并下载。也能通过 HTTPS 直链添加或从设备导入 GGUF。
+3. 下载完成后可在“本地”的模型设置中选择预设或手动填写参数，再点击“加载模型”。默认情况下，第一个下载完成的模型会自动加载。进入“对话”即可本地聊天。
 4. 到“服务”页面设置电池优化豁免，并允许前台服务通知。努比亚等厂商系统可能还要在应用管理中允许后台运行、自启动和后台网络。
 5. 模型加载成功后即提供 API。返回桌面或锁屏后，推理与下载由原生前台服务继续执行。通知中的“停止服务”会停止模型及当前下载。
 
 首次下载需要网络；下载完成后的文本推理不依赖云端。应用不需要 ROOT、Termux、Docker 或 WSL。
 
+## 推荐、全部与本地
+
+| 入口 | 使用逻辑 |
+| --- | --- |
+| 推荐 | 原有 `m08`、`m06`、`m01` 的模型、顺序、标签及作者依据保留；HF 下载不会自动加入推荐 |
+| 全部 / 搜索 | 动态查询 HF 公共模型 API，支持关键词、`owner/model`、HF 仓库链接、下载量 / 喜欢数 / 更新时间排序及前后分页；不是固定 14 项清单 |
+| 格式筛选 | 默认 GGUF；选择“HF 全部格式”可检索其他格式的模型仓库，查看来源及其 GGUF 转换版本 |
+| 文件选择 | 显示 GGUF 文件名、量化、大小与哈希；仓库提交固定后分页，不随 `main` 漂移；选择后添加下载任务 |
+| 本地 | 集中管理内置、HF 和手动导入的已下载模型，以及进行中 / 中断的下载；可本地搜索、设置各模型参数、加载、暂停、续传和删除 |
+| 轻量 / 进阶 | 保留原有精选目录的分组，便于比较既有候选 |
+
+“全部格式”指 **HF 仓库发现范围**。当前运行器提供兼容的**单文件 GGUF 文本对话**，不直接运行 Safetensors、PyTorch、ONNX、MLX、分片 GGUF、视觉投影器或语音任务，也不会自动转换权重。即便是 GGUF，架构、量化、模板和内存仍需实际加载确认；LMA 目前还不是 LM Studio 的全部功能复刻。
+
+公开模型无需 HF 账号。默认自动尝试 Hugging Face，失败后使用 HF Mirror；可在设置固定下载源。受限 / 私有仓库可在“设置 → Hugging Face 访问”保存可选 HF 令牌，并先在 HF 接受模型许可。令牌仅保存于应用私有设置，不回传到页面、日志或导出；设置后访问官方源，且不会随重定向发送给镜像或 CDN。详见 [HF 支持说明](docs/HF_MODELS.md)。
+
+<p>
+  <img src="docs/media/08-hf-discovery.png" width="260" alt="HF 模型发现，演示元数据">
+  <img src="docs/media/09-hf-files.png" width="260" alt="GGUF 文件与量化选择，演示数据">
+  <img src="docs/media/10-local-models.png" width="260" alt="本地模型管理，演示数据">
+</p>
+
+## 每个模型的参数
+
+在“模型库 → 本地”点击已下载模型的设置图标，选择预设或直接输入数值。上下文上限读取该 GGUF 的架构元数据，超限自动回填；输出上限最多为所选上下文减一，实际可生成量还取决于输入与历史。读取不到模型上限时明确显示临时应用上限 8192。线程按设备处理器数限制，温度支持 0–2。
+
+保存后参数跟随模型 ID，切换模型自动使用各自配置；旧版全局参数会迁移到已有模型。当前模型的上下文、线程、思考变更触发重载，输出、温度和系统提示词用于下次应用内对话。完整规则、例子、迁移与 API 边界见[模型设置说明](docs/MODEL_SETTINGS.md)。
+
+<p><img src="docs/media/06-settings.png" width="260" alt="每个模型的可编辑参数，模拟元数据"><img src="docs/media/11-model-output.png" width="260" alt="输出超限自动归位，模拟元数据"></p>
+
 ## 已实现
 
-- 内置 14 个有作者无审查说明的 Uncensored / Abliterated GGUF，支持筛选、搜索、下载、暂停、断点续传、删除、模型切换。全部展示“无审查”标签及作者说明入口。
-- 内置目录构建时强制核对作者声明与实际下载权重的仓库、固定版本和 SHA256；新增条目必须提供对应依据。自行导入或添加的文件显示“属性未核对”。
+- 保留 14 个原有精选 GGUF 和 3 个推荐。模型支持范围扩展为 HF 发现与兼容 GGUF 下载，普通模型同样可添加。
+- “无审查”是独立标签：精选条目核对作者声明；在线 HF 名称 / 标签命中时显示“无审查 · 元数据”，不冒充已核对。普通模型不显示该标签；手动导入不会仅凭名称获得已核对标记。
 - 14 个内置候选均固定具体仓库提交、准确字节数及 SHA256。通过 HF Mirror 元数据与实际字节探测核对；下载完整文件后再计算哈希比对。自定义链接没有预期哈希时只做格式、长度与本地哈希检查。
 - 原生后台下载和独立原生推理进程；WebView 仅承载随包分发的本地界面。
 - 本地聊天、SSE 流式显示、停止生成、思考过程、代码复制、SQLite 对话历史；中断后保存已收到的内容。
 - OpenAI 兼容的 `/v1/models`、`/v1/chat/completions` 和 SSE；每次安装生成独立 API 密钥。
-- 默认仅监听本机；用户可开启局域网访问。CPU 线程、上下文、输出长度、温度、端口、思考模式和系统提示词可设置。
+- 默认仅监听本机，可开启局域网访问。上下文、输出上限、CPU 线程、温度、思考和系统提示词改为每个模型独立保存；数值支持下拉预设和手动编辑，超限自动归位。端口等应用偏好仍在设置页。
 - 运行日志导出、浅色 / 深色主题、可选开机解锁后恢复服务、进程异常退出后的有限恢复。
 
 ## 内置候选模型
@@ -100,7 +133,7 @@ APK SHA256: e9e3b7103f5e63c86953acdb986387f73cae9e3fb42851f6af1b9fffe6c1cc28
 | `m09` | Qwen 3.5 · 2B Abliterated | 1.27 GB | 新架构、实验候选 |
 | `m15` | Qwen 3.5 · 4B Uncensored · HauhauCS Aggressive | 2.71 GB | 新架构、实验候选 |
 
-自定义文件即使名称中含 uncensored，也不会自动变成已核对的内置条目。作者声明不保证绝不拒答；LMA 未独立实测拒答率，也没有逐个候选的 Android 推理记录。
+原有推荐顺序固定为 `m08 → m06 → m01`。上表列出既有精选，不限制 HF 搜索或新增下载。自定义文件即使名称中含 uncensored，也不会自动变成已核对的条目。作者声明不保证绝不拒答；LMA 未独立实测拒答率，也没有逐个候选的 Android 推理记录。
 
 ## 努比亚 Z20 起步配置
 
@@ -138,6 +171,7 @@ python tools/bootstrap_runtime.py
 python tools/build.py
 python tools/test_protocol.py
 python tools/test_backend.py
+python tools/test_hub.py --live
 python tools/test_sqlite.py
 python tools/test_android_lint.py
 python tools/verify_package.py
@@ -151,9 +185,9 @@ python tools/verify_package.py
 
 **升级需保留本机 `signing/` 目录。** 私钥与随机口令只保存在该目录，已加入 `.gitignore`，不会放进 APK。更换签名会导致无法覆盖安装原版本；不要把签名私钥或口令公开上传。
 
-本轮通过 54 项桌面后端检查、25 项协议检查、5 项 SQLite 查询检查和 31 项界面检查。桌面后端执行真实生产 Java、TLS 连接与子进程，但使用明确的 Android 框架替身；没有运行 ARM 模型。
+本轮通过 85 项桌面后端、45 项 HF 逻辑、25 项协议、5 项 SQLite 查询和 66 项界面检查，共 226 项桌面断言；另有 5 项实时公开 HF 元数据检查。桌面后端执行真实生产 Java、TLS 连接与子进程，但使用明确的 Android 框架替身；没有运行 ARM 模型。
 
-Android SDK 独立 Lint 对全部 12 个生产 Java 文件执行默认检查，结果为 0 错误、7 警告；需要 SDK Command-line Tools。14 个原生库的二进制 API 标记均为 28，15 个启动参数与固定上游版本吻合。这些均为静态证据，详细警告与待实测项目见 docs/VALIDATION.md。
+Android SDK 独立 Lint 对全部 16 个生产 Java 文件执行默认检查，结果为 0 错误、7 警告；需要 SDK Command-line Tools。14 个原生库的二进制 API 标记均为 28，15 个启动参数与固定上游版本吻合。这些均为静态证据，详细警告与待实测项目见 docs/VALIDATION.md。
 
 界面检查可在安装 Playwright 的 Node 环境执行 `node tests/ui-smoke.cjs`。`LMA_PLAYWRIGHT` 可指定 Playwright 模块路径，`LMA_BROWSER` 可指定 Edge / Chromium 路径。测试使用明确的原生桥接测试数据，不运行模型，结束时关闭所有测试页面及浏览器。
 

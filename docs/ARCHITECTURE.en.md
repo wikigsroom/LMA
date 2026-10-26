@@ -1,4 +1,16 @@
-# LMA 0.1.2 architecture
+# LMA 0.2.0 architecture
+
+## HF discovery and Local management
+
+`LmaApp` owns `HubCatalog`; `HubClient` queries HF using native HTTPS. Search and file requests have separate serial workers. Generation counters prevent stale searches replacing newer results; cursors support backward/forward navigation. A repository commit is pinned before tree pagination. Metadata is bounded at 8 MiB per response, 24 repositories per search page, and 100 tree entries per file page. Metadata browsing does not start a foreground service or promise permanent background execution; the inference service remains independent.
+
+The bridge dispatches metadata/token commands directly. A download command can select only repository/commit/path values already present in the native file page. `LmaService.addHubModel` validates and persists the model, then reuses Store/Downloads. A deterministic repository/revision/path ID deduplicates HF entries and never changes the `m08 → m06 → m01` recommendations. Local collects installed models and unfinished tasks from every source.
+
+All HF formats expands repository discovery, while the picker offers GGUF and explains disabled split, projector, oversized and known non-text files. Architecture, quantization and RAM compatibility still require loading. Ordinary models need no uncensored attribute; checked publisher labels and unverified metadata hints remain distinct. See [HF compatibility](HF_MODELS.en.md).
+
+Optional HF tokens stay in private SharedPreferences; the page receives only a configured boolean. Authenticated requests use the official origin. Net rechecks every redirect and authorizes only the default official HF HTTPS endpoint, without sending tokens to CDNs, mirrors or custom hosts. Public requests retain mirror fallback. Active API/HF keys are redacted from logs and backups are disabled; hardware encryption or real gated-repository acceptance is not claimed.
+
+Pause finalization now persists the terminal state and retires the download job under the same lock, preventing a concurrent disconnect from leaving a finished worker marked pausing.
 
 [中文](ARCHITECTURE.md) · [Documentation](README.md)
 
@@ -50,6 +62,12 @@ History selects at most 16 messages as complete user/assistant pairs from the mo
 A visible `specialUse` foreground service exposes Stop and holds CPU / Wi-Fi locks. An API-serving model keeps it active while idle; no-work state releases locks and foreground state. Optional boot restore accepts protected boot/app-update broadcasts and attempts only previously enabled, present models. Android force-stop, memory pressure, thermal management, and vendor policies cannot be bypassed reliably by an ordinary application.
 
 No physical Android device was available. These implementation details and static checks do not establish actual background endurance.
+
+## Per-model profiles
+
+`Store` atomically persists `profiles` and `metadata` by model ID in `models-state.json`. Upgrade migration freezes legacy global inference preferences into existing models before removing the old keys. `GgufMetadata` reads bounded architecture/context metadata and caches file size/mtime. `ModelSettings` enforces native model, device and shared-context bounds, with an explicitly labeled application fallback when metadata is unknown.
+
+The Local model settings dialog combines presets and editable inputs. Saving validates natively and returns actual values. Only changes to the active profile’s load parameters reload its engine; active in-app generation blocks those changes. Other profiles remain independent. `EngineHost` and `ChatRunner` request settings by explicit model ID. External API generation parameters remain request-controlled. See [limits and migration](MODEL_SETTINGS.en.md).
 
 ## UI and network boundaries
 

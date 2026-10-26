@@ -12,7 +12,11 @@ Start with `m01`, Dolphin Qwen 0.5B, about 398 MB. Verify download, integrity ch
 
 ## Model library: select, download, load
 
-The recommended list starts with `m08`, `m06`, and `m01`. Filters cover lightweight, advanced, installed, and all entries. Search names, families, or tags. Tap a model name to inspect the format, filename, hashes, uncensoring method, and pinned author evidence. The author-card link and GGUF source link are separate.
+Recommended preserves `m08 → m06 → m01`, including order, labels and publisher evidence. Lightweight / Advanced keep the original curated groups. All queries HF by keyword, `owner/model`, or repository URL, with download/like/update sorting. GGUF is the default; All HF formats discovers other repositories. Repository and file lists both paginate; select a quantization before downloading.
+
+The dedicated Local tab collects downloaded built-in, HF and imported models, plus active/interrupted transfers. Its search is offline; load, pause/resume and delete there. Stop a running model before deleting. Typing outside Local switches to HF search; choosing a category resets the query. See [HF and local models](HF_MODELS.en.md).
+
+Curated/local model details show format, path and hashes, plus evidence where checked. Online name/tag hints get a separate Uncensored · metadata label; ordinary models do not receive that label.
 
 1. Tap **下载 / Download**. Transfers run serially; cards show progress and speed.
 2. **暂停 / Pause** preserves partial bytes. **继续 / Resume** uses HTTP Range when supported; a full 200 response restarts the file.
@@ -21,7 +25,11 @@ The recommended list starts with `m08`, `m06`, and `m01`. Filters cover lightwei
 5. First-completion auto-load is enabled by default only when no model was previously selected; disable it in Settings if desired.
 6. Switching models stops the old engine before starting another. Stop a running model before deleting its file. Deletion also removes transfer records, partial bytes, and rejected files.
 
-**添加模型 / Add model** accepts an HTTPS GGUF link with optional SHA256 or an Android file-picker import. Custom files display **属性未核对 / Unverified attribute**. Check source, uncensored variant, license, architecture, and memory yourself. A locally calculated hash without an expected publisher hash does not authenticate provenance.
+**添加模型 / Add model** offers HF discovery, an HTTPS GGUF link with optional SHA256, or an Android file-picker import. Manual files never gain a verified uncensored label from their names. Check source, license, architecture and memory. A local hash without an expected publisher hash does not authenticate provenance.
+
+All-format discovery is broader than phone execution. Only compatible single-file text GGUF candidates are downloadable; shards, projectors and unsuitable tasks explain disabled selection. Safetensors / ONNX / MLX sources are discoverable without conversion or a corresponding runtime.
+
+Public models need no token. For gated/private models, accept terms on HF and save an authorized read token in Settings → Hugging Face access. It remains in private app preferences; only its configured state reaches the page. Authenticated requests use the official source, without forwarding tokens to mirrors/CDNs. Clearing is supported. Real-token gated access was not tested in this run.
 
 Automatic source selection tries Hugging Face, then HF Mirror on connection/source failure. Fixed sources are available. Other custom hosts are not rewritten. A single-file limit of 12 GiB and a 64 MiB reserve apply. Interrupted imports restart copying from the beginning.
 
@@ -49,11 +57,15 @@ Leaving the app does not intentionally stop generation. Force-stop, low memory, 
 
 The notification's **停止服务 / Stop service** stops the model and current transfer. Reopen to resume or load again. Boot restore is off by default and only attempts a previously enabled model with an existing file. If Android blocks startup, reopen the app. First downloads and system settings are not silently bypassed.
 
-## Settings and starting values
+## Per-model settings and application preferences
+
+Open Model library → 本地 / Local → the downloaded model’s settings icon. Context, output limit, threads, temperature, reasoning and system prompt are stored separately by model ID. Choose a preset or type custom numbers. Above-limit values reset automatically: GGUF metadata bounds context, output is at most configured context minus one, threads use the available processor count and temperature supports 0–2. Input/history can reduce actual output capacity further. Unknown GGUF bounds are explicitly labeled with an application fallback of 8192. See [per-model settings](MODEL_SETTINGS.en.md).
+
+Context, threads and reasoning changes reload the running model; stop an active reply before changing them. Generation parameters apply to the next in-app reply. Editing another model leaves the active profile alone. Legacy global preferences migrate to existing models; new models receive independent defaults. Global Settings retains source/token, startup, port and theme preferences.
 
 | Setting | Default | Effect |
 | --- | --- | --- |
-| Threads | 4 | More threads may increase heat without improving speed |
+| Threads | Up to 4 | More threads may increase heat without improving speed |
 | Context | 2048 | Larger contexts generally require more RAM |
 | Output limit | 512 | In-app default; external clients set their own |
 | Temperature | 0.7 | Sampling randomness |
@@ -64,7 +76,7 @@ The notification's **停止服务 / Stop service** stops the model and current t
 | Source | auto | HF, then mirror on failure |
 | Theme | system | System / light / dark |
 
-Edit or clear the system prompt freely. No extra keyword moderation is added. Runtime changes reload the model; save completes only after its native acknowledgement. Other state updates do not erase unsaved settings or a rejected-send draft.
+Edit or clear the system prompt freely. No extra keyword moderation is added. Saving completes only after its native acknowledgement. Other state updates do not erase unsaved settings or a rejected-send draft.
 
 ## Troubleshooting
 

@@ -1,7 +1,7 @@
 {
   "apk": "build/device-tests/LMA-acceptance.apk",
-  "sha256": "a1c94113c9f014335ed7016d14f01c08d1977931fc174e5b4bd21c2b05fe020c",
-  "applicationApkSha256": "e9e3b7103f5e63c86953acdb986387f73cae9e3fb42851f6af1b9fffe6c1cc28",
+  "sha256": "2b5ae0ec963914ebf8d64e51730015351af82a1ca0dfe1bbba5692e9be5059d7",
+  "applicationApkSha256": "d8c16c7414ce5cc28c55fb3c2375c042e6735d53f73ebb5d4efa8388d7b130c1",
   "input_fingerprint": {
     "tests/android/AndroidManifest.xml": "301f93e455e37329bdf8e22a4ab4236ce0f8d93e757d18490d094899a8d50336",
     "tests/android/com/lma/app/DeviceAcceptance.java": "d05097d5aad89e5badb78bb63262b9905f78affba9be65964f14115d426c97d7",

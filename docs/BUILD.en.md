@@ -23,13 +23,15 @@ The bootstrap fetches the pinned ServLlama 1.2.2 ARM64 bundle, checks SHA256 `55
 
 `build_catalogue.py` gates all built-in entries on matching publisher evidence, pinned GGUF revision, and weight hash. Ordinary rebuilds reuse checked evidence without visiting every model card again. Catalogue additions or provenance changes require the related audits and review of attribution, not merely a renamed entry.
 
+That gate protects preserved curated/verified labels, rather than general HF eligibility. Recommended stays `m08 → m06 → m01`; native HubClient / HubCatalog feed ordinary HF file selections into Store / Downloads, with every source managed in Local. After backend compilation, `test_hub.py --live` runs 45 HF logic checks plus 5 public API checks through HF Mirror, without full weights or private-account access. Omit `--live` for offline fixture checks; release packaging still requires current live evidence.
+
 `build.py` runs AAPT2, javac, D8, native-library packaging, zipalign, signing, and signature inspection. Verification uses exact-byte SHA256 inputs; `.gitattributes` disables line-ending rewriting to preserve fingerprints across checkout.
 
 ## Signing and outputs
 
 The first build creates an RSA3072 identity and random password in `signing/`. Preserve it privately for in-place upgrades. Never commit, share, or upload it. A fresh clone signs with a different identity and cannot update the distributed APK unless it uses the original key. Uninstalling removes private models and history.
 
-- `dist/LMA-0.1.2-arm64-v8a.apk`: signed application.
+- `dist/LMA-0.2.0-arm64-v8a.apk`: signed application.
 - `dist/*.sha256`: actual artifact hashes.
 - `dist/build-info.json`: package information and input fingerprints.
 - `build/`: ignored compiler, test, Lint, and media intermediates.
@@ -40,6 +42,7 @@ The first build creates an RSA3072 identity and random password in `signing/`. P
 ```powershell
 python tools/test_protocol.py
 python tools/test_backend.py
+python tools/test_hub.py --live
 python tools/test_sqlite.py
 python tools/test_android_lint.py
 node tests/ui-smoke.cjs

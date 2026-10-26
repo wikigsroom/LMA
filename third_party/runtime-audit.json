@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-10-26T12:59:20.464740+00:00",
+  "checked_at": "2026-10-26T22:00:14.762611+00:00",
   "upstream_commit": "b29c606e28a01b1bc8c1351026a0fa6e616bf6c4",
   "sources": [
     {
@@ -48,7 +48,7 @@
   ],
   "android_execution_tested": false,
   "input_fingerprint": {
-    "app/src/main/java/com/lma/app/EngineHost.java": "34e31af1fb48228987338ab6ccabc4e1d3a4ffa981896e871e67d7f63754ed48",
+    "app/src/main/java/com/lma/app/EngineHost.java": "2ac5fae3caaf8b0d224b4cce987dbe6111bfd8bb5f22296d6e92996d5b726731",
     "app/src/main/jniLibs/arm64-v8a/libggml-base.so": "5e79542e713d0f4fa633cb987ad1a4a95bc1b64531e88305e3a41c6213aaf1a9",
     "app/src/main/jniLibs/arm64-v8a/libggml-cpu-android_armv8.0_1.so": "5eec51b25c2835bd6bd62a29d0b9ac07ce7fadcbeb679d00ecf184128a2cf8d4",
     "app/src/main/jniLibs/arm64-v8a/libggml-cpu-android_armv8.2_1.so": "ebc8b67b2cb21af724a511281a89d686c5244929885a46313576458cab80972c",

@@ -4,6 +4,7 @@ const path = require('node:path');
 const http = require('node:http');
 const crypto = require('node:crypto');
 const cp = require('node:child_process');
+const {hubFixture, installHubBridge} = require('../tests/hub-fixture.cjs');
 const {chromium} = require(process.env.LMA_PLAYWRIGHT || 'playwright');
 const root = path.resolve(__dirname, '..');
 const assets = path.join(root, 'app/src/main/assets');
@@ -13,11 +14,11 @@ fs.mkdirSync(output, {recursive:true});
 fs.mkdirSync(temporary, {recursive:true});
 const catalogue = JSON.parse(fs.readFileSync(path.join(assets, 'models.json'), 'utf8'));
 const fixture = {
-  app:'LMA', version:'0.1.2', models:catalogue.models.map(m => ({...m, installed:false, installedBytes:0, partialBytes:0, download:{}})),
+  app:'LMA', version:'0.2.0', models:catalogue.models.map(m => ({...m, installed:false, installedBytes:0, partialBytes:0, download:{}})),
   settings:{lan:false,port:8080,threads:4,context:2048,maxTokens:512,temperature:0.7,source:'auto',boot:false,autoLoad:true,reasoning:'off',theme:'light',systemPrompt:'你是一个有帮助的本地助手。请优先使用用户的语言，准确、清楚地回答。',apiKey:'lma_DEMO_NOT_A_REAL_API_KEY'},
   engine:{state:'stopped',detail:'选择并下载一个模型，开始本地运行',modelId:'',generating:false,startedAt:0,localUrl:'http://127.0.0.1:8080/v1',addresses:['http://192.0.2.20:8080/v1']},
   device:{name:'UI 演示 · 非真机',android:'9',totalMemory:8*1073741824,availableMemory:4.3*1073741824,freeStorage:51.2e9,batteryExempt:false},
-  chat:{sessionId:'',sessions:[],messages:[]},logs:[],error:'',commandResults:[]
+  chat:{sessionId:'',sessions:[],messages:[]},logs:[],error:'',commandResults:[],hub:hubFixture
 };
 let server, context;
 const errors = [], shots = [], chapters = [];
@@ -53,6 +54,7 @@ async function main() {
   });
   await context.route('**/*', route => route.request().url().startsWith(origin+'/') ? route.continue() : route.abort());
   const page = context.pages()[0] || await context.newPage();
+  await page.addInitScript(installHubBridge,{stateKey:'__demo'});
   recordingStarted = Date.now();
   for (const extra of context.pages()) if (extra !== page) await extra.close();
   page.on('pageerror', error => errors.push(error.message));
@@ -72,6 +74,7 @@ async function main() {
       dispatch:raw => {
         const command=JSON.parse(raw), f=window.__demo, m=f.models.find(x=>x.id===command.id);
         setTimeout(() => {
+          window.__handleHub(command);
           if (command.action==='download' || command.action==='resumeDownload') beginDownload(m);
           if (command.action==='pauseDownload') {clearInterval(downloadTimer);m.download.state='paused';}
           if (command.action==='load') {
@@ -85,7 +88,7 @@ async function main() {
             f.chat.messages.push({id:'demo-user',role:'user',content:command.text,reasoning:'',status:'done',elapsed:0,tokens:0});
             const answer={id:'demo-answer',role:'assistant',content:'',reasoning:'',status:'generating',elapsed:0,tokens:0};
             f.chat.messages.push(answer);
-            const text='【界面演示文本，非模型输出】\n\n1. 下载并加载一个无审查模型。\n2. 在“服务”页复制接口地址和 API 密钥。\n3. 通过 OpenAI 兼容客户端连接。\n\n```python\nbase_url = "http://PHONE_IP:8080/v1"\n```';
+            const text='【界面演示文本，非模型输出】\n\n1. 下载并加载一个本地模型。\n2. 在“服务”页复制接口地址和 API 密钥。\n3. 通过 OpenAI 兼容客户端连接。\n\n```python\nbase_url = "http://PHONE_IP:8080/v1"\n```';
             let index=0;
             const timer=setInterval(() => {
               index+=5;answer.content=text.slice(0,index);emit();
@@ -117,10 +120,19 @@ async function main() {
     await page.screenshot({path:path.join(output,name)});shots.push({file:name,caption});
   }
   function chapter(name) {chapters.push({name,seconds:(Date.now()-recordingStarted)/1000});console.log('Recording: '+name);}
-  chapter('Uncensored model library');
-  await pause(1400);await shot('01-library.png','Built-in uncensored model recommendations / 内置无审查模型推荐');
-  await page.locator('[data-filter="all"]').click();await pause(700);
-  await page.locator('#modelSearch').fill('Qwen');await pause(900);
+  chapter('Local model library with preserved recommendations');
+  await pause(1400);await shot('01-library.png','Preserved recommendations and separate uncensored tags / 原有推荐及独立无审查标签');
+  chapter('HF discovery, file selection and local management — simulated metadata');
+  const hfStart=(Date.now()-recordingStarted)/1000;
+  await page.locator('[data-filter="all"]').click();await pause(900);
+  await shot('08-hf-discovery.png','HF repository discovery; explicitly simulated metadata / HF 模型发现，明确模拟元数据');
+  await page.locator('#modelSearch').fill('Qwen');await pause(1100);
+  await page.locator('[data-action="hubFiles"]').click();await page.waitForSelector('.hub-file');await pause(900);
+  await shot('09-hf-files.png','Commit-pinned GGUF quantization picker and compatibility explanations / GGUF 文件与量化选择及兼容说明');
+  await page.locator('.hub-file').first().locator('button').click();await pause(900);
+  await page.evaluate(()=>{const f=window.__demo,m=f.models.find(x=>x.id==='hf_ui_test');m.installed=true;m.installedBytes=m.bytes;m.download={state:'done',verification:'publisher-sha256'};window.LMA.receive(f);});await pause(900);
+  await shot('10-local-models.png','Dedicated local tab manages HF downloads and imports / 本地栏目管理已下载模型');
+  const hfDuration=(Date.now()-recordingStarted)/1000-hfStart;
   await page.locator('#modelSearch').fill('');await page.locator('[data-filter="recommended"]').click();
   await page.locator('[data-action="modelInfo"][data-id="m08"]').click();await pause(1100);
   await shot('02-model-evidence.png','Pinned publisher evidence and weight SHA256 / 作者依据及权重哈希');
@@ -131,6 +143,20 @@ async function main() {
   await page.locator('[data-action="pauseDownload"][data-id="m08"]').click();await pause(1100);
   await page.locator('[data-action="resumeDownload"][data-id="m08"]').click();await pause(1000);
   await page.evaluate(() => window.__finishDemoDownload());
+  chapter('Independent model settings, editable presets and automatic bounds');
+  const configStart=(Date.now()-recordingStarted)/1000;
+  await page.locator('[data-filter="local"]').click();
+  await page.locator('[data-action="modelSettings"][data-id="m08"]').click();await page.waitForSelector('#modelSettingsForm');await pause(1000);
+  await shot('06-settings.png','Independent model loading parameters with editable combos / 模型独立加载参数与可编辑选择框');
+  await page.locator('#cfg-context').fill('999999');await page.locator('#cfg-context').blur();await pause(900);
+  await page.locator('[data-action="configPresets"][data-field="context"]').click();await pause(1000);
+  await page.locator('[data-action="configValue"][data-field="context"][data-value="1024"]').click();
+  await page.locator('#cfg-maxTokens').fill('999999');await page.locator('#cfg-maxTokens').blur();await pause(1100);
+  await shot('11-model-output.png','Output above the context capacity automatically resets / 输出超限自动归位，参数随模型保存');
+  await page.locator('#modelSettingsForm [type="submit"]').click();await page.waitForFunction(()=>document.getElementById('modelSettingsHint').textContent==='此模型的设置已保存');await pause(800);
+  await page.locator('#modal [data-action="closeModal"]').first().click();
+  const configDuration=(Date.now()-recordingStarted)/1000-configStart;
+  await page.locator('[data-filter="recommended"]').click();
   await page.locator('[data-action="load"][data-id="m08"]').click();await pause(1600);
   chapter('Chat UI — scripted demonstration text');
   await page.locator('.nav-item[data-tab="chat"]').click();await pause(700);
@@ -145,13 +171,13 @@ async function main() {
   await page.locator('[data-action="copyExample"]').click();await pause(900);
   chapter('Settings and dark theme');
   await page.locator('.nav-item[data-tab="settings"]').click();await pause(700);
-  await page.locator('select[name="threads"]').scrollIntoViewIfNeeded();await pause(900);
+  await page.locator('input[name="port"]').scrollIntoViewIfNeeded();await pause(900);
   await page.evaluate(() => {
     const section=document.getElementById('page-settings'), panel=document.querySelectorAll('#settingsForm .panel')[1];
     section.scrollTop+=panel.getBoundingClientRect().top-section.getBoundingClientRect().top-12;
   });
   await pause(650);
-  await shot('06-settings.png','CPU, context and output settings / CPU、上下文及输出参数');
+  await shot('12-preferences.png','Application preferences link to independent Local model settings / 应用偏好与本地模型参数入口');
   await page.locator('select[name="theme"]').selectOption('dark');
   await page.locator('#settingsForm button[type="submit"]').click();await pause(1100);
   await page.locator('.nav-item[data-tab="server"]').click();
@@ -166,12 +192,14 @@ async function main() {
   if(probe.status!==0) throw new Error('FFprobe failed');
   const duration=Number(JSON.parse(probe.stdout).format.duration);
   ffmpeg(['-ss',String(Math.max(0,duration-9)),'-i',path.join(output,'lma-walkthrough.mp4'),'-t','9','-vf','fps=8,scale=320:-2:flags=lanczos,split[a][b];[a]palettegen=max_colors=128[p];[b][p]paletteuse=dither=bayer:bayer_scale=3','-loop','0',path.join(output,'lma-api-theme.gif')]);
+  ffmpeg(['-ss',String(hfStart),'-i',path.join(output,'lma-walkthrough.mp4'),'-t',String(hfDuration),'-vf','fps=8,scale=320:-2:flags=lanczos,split[a][b];[a]palettegen=max_colors=128[p];[b][p]paletteuse=dither=bayer:bayer_scale=3','-loop','0',path.join(output,'lma-hf-local.gif')]);
+  ffmpeg(['-ss',String(configStart),'-i',path.join(output,'lma-walkthrough.mp4'),'-t',String(configDuration),'-vf','fps=8,scale=320:-2:flags=lanczos,split[a][b];[a]palettegen=max_colors=128[p];[b][p]paletteuse=dither=bayer:bayer_scale=3','-loop','0',path.join(output,'lma-model-settings.gif')]);
   if(errors.length) throw new Error('Browser errors: '+JSON.stringify(errors));
   const files=fs.readdirSync(output).filter(name=>/\.(png|mp4|gif)$/.test(name)).sort().map(name => {
     const bytes=fs.readFileSync(path.join(output,name));return {file:name,bytes:bytes.length,sha256:crypto.createHash('sha256').update(bytes).digest('hex')};
   });
-  const inputs=Object.fromEntries(fs.readdirSync(assets,{recursive:true}).map(name=>path.join(assets,name)).filter(file=>fs.statSync(file).isFile()).concat(__filename).sort().map(file=>[path.relative(root,file).split(path.sep).join('/'),crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex')]));
-  fs.writeFileSync(path.join(output,'manifest.json'),JSON.stringify({version:'0.1.2',captured_at:new Date().toISOString(),kind:'actual shipped HTML/CSS/JS with explicit simulated native bridge',android_device:false,model_inference:false,downloads_simulated:true,scripted_chat:true,api_key:'demonstration placeholder only',viewport:{width:390,height:844},screenshots:shots,video:JSON.parse(probe.stdout),chapter_clock:'Approximate video offsets from recording page creation',chapters,files,input_fingerprint:inputs,browser_errors:errors,browser_closed:true},null,2)+'\n');
+  const inputs=Object.fromEntries(fs.readdirSync(assets,{recursive:true}).map(name=>path.join(assets,name)).filter(file=>fs.statSync(file).isFile()).concat(__filename,path.join(root,'tests/hub-fixture.cjs')).sort().map(file=>[path.relative(root,file).split(path.sep).join('/'),crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex')]));
+  fs.writeFileSync(path.join(output,'manifest.json'),JSON.stringify({version:'0.2.0',captured_at:new Date().toISOString(),kind:'actual shipped HTML/CSS/JS with explicit simulated native bridge',android_device:false,model_inference:false,downloads_simulated:true,scripted_chat:true,api_key:'demonstration placeholder only',viewport:{width:390,height:844},screenshots:shots,video:JSON.parse(probe.stdout),chapter_clock:'Approximate video offsets from recording page creation',chapters,files,input_fingerprint:inputs,browser_errors:errors,browser_closed:true},null,2)+'\n');
   console.log(JSON.stringify({screenshots:shots.length,files:files.length,duration,android_device:false,model_inference:false}));
 }
 main().catch(error=>{console.error(error);process.exitCode=1;}).finally(async()=>{

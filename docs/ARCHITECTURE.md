@@ -1,4 +1,4 @@
-# LMA 0.1.2 架构
+# LMA 0.2.0 架构
 
 ## 运行链路
 
@@ -17,7 +17,17 @@ LmaService（specialUse 前台服务、通知、停止操作）
 
 前台服务和推理进程的生命周期独立于 WebView 页面。界面退到后台不会主动取消推理；重新打开界面时从 SQLite 和持久下载记录恢复显示。
 
-## 引擎
+## HF 发现与本地模型管理
+
+`LmaApp` 持有 `HubCatalog`，由 `HubClient` 使用原生 HTTPS 查询 HF。搜索和文件树各有独立串行工作线程；查询代次防止旧结果覆盖新搜索。分页状态含前后游标，仓库提交在读取文件树前固定。单次元数据最多读取 8 MiB，搜索每页至多 24 仓库、文件树每页至多 100 条目。元数据浏览不启动前台服务；进入后台时不承诺元数据任务永久存活，模型服务由原有前台服务维持。
+
+`MainActivity` 直接派发 HF 搜索 / 文件 / 令牌命令，下载选择必须与原生端当前文件页的仓库、提交和路径一致。`LmaService.addHubModel` 将经过复核的模型交给 Store / Downloads。HF ID 根据仓库、提交和路径确定，重复选择去重，不改变 `m08 → m06 → m01` 推荐；已下载与未完成任务在“本地”统一显示，存储路径和下载状态复用既有实现。
+
+“HF 全部格式”仅扩大仓库发现；文件选择只展示 GGUF，并解释、阻止分片、视觉投影器、超限大小和已知非文本任务。格式、架构、量化及内存仍在加载时决定。普通模型不要求无审查属性；已核对标签与在线元数据提示分开处理，见 [HF_MODELS.md](HF_MODELS.md)。
+
+可选 HF 令牌保存在私有 SharedPreferences，页面仅收到配置布尔值。认证请求固定官方源；Net 对每次重定向重新判断目的主机，仅将令牌发送到官方 HF HTTPS 默认端口。公共请求可使用镜像回退。日志会隐藏活动 API 密钥和 HF 令牌，备份禁用；不宣称硬件加密或真实私有仓库验收。
+
+## 引擎实现
 
 引擎来自 ServLlama 1.2.2 发行包中的 llama.cpp v0.4.1，记录的上游提交为 `b29c606e28a01b1bc8c1351026a0fa6e616bf6c4`。LMA 只重新分发其中 14 个 CPU 路径所需的原生库，保留 ARMv8.0 至 ARMv9 的动态 CPU 内核，不打包可选的 OpenCL / Hexagon 模块。
 
@@ -39,7 +49,7 @@ LmaService（specialUse 前台服务、通知、停止操作）
 
 已知发布者 SHA256 不匹配的文件不会安装，转为 `.rejected`，不会接着追加损坏内容；删除模型时一并清理。不同 Service 实例对同一模型的写入共用锁，避免快速停启服务后并行写入。
 
-下载状态持久化为 queued / downloading / pausing / verifying / done / paused / error。排队任务立即暂停；正在执行的任务先断开连接，再完成持久化。进程重建时，上次 downloading / verifying 标记为可恢复；用户主动暂停的任务保持暂停。
+下载状态持久化为 queued / downloading / pausing / verifying / done / paused / error。排队任务立即暂停；正在执行的任务断开连接后完成持久化。最终暂停状态和移除任务在同一锁下完成，避免断连时工作线程已结束而界面仍被写回 pausing。进程重建时，上次 downloading / verifying 标记为可恢复；用户主动暂停的任务保持暂停。
 
 ## 聊天
 
@@ -48,6 +58,12 @@ LmaService（specialUse 前台服务、通知、停止操作）
 聊天历史从最近 32 行中保留最多 16 条消息，按完整 user / assistant 对选择。空的失败回复连同对应用户消息一起跳过；有正文的中断回复保留，避免严格模板遇到连续 user 角色。历史按字符数保守限制；这不是模型的精确 tokenizer。当前用户提示与系统提示仍可能超过特定模型的上下文，引擎返回的错误会显示在消息中。输出长度是应用内对话默认值，外部 API 客户端可自行指定请求参数。
 
 命令包含独立 requestId；原生端在实际执行后返回成功或失败，界面只根据对应命令的确认结果清理草稿或结束设置保存状态。快速完成的回复也会清空已发送草稿。
+
+## 每个模型的配置
+
+`Store` 在 AtomicFile `models-state.json` 中按 ID 保存 `profiles` / `metadata`，升级时将旧全局参数迁移到已有模型后移除全局键。`GgufMetadata` 有界读取该文件的 `general.architecture` 和对应 `context_length`，按文件大小 / 修改时间缓存。`ModelSettings` 统一归一化数值、设备及共享上下文约束；元数据未知时明确采用应用兜底。
+
+界面从“本地”的模型卡设置打开参数，使用可编辑预设框。原生保存再次归一化并回传实际值。仅当前运行模型的加载参数变化触发重载，生成时拒绝这类变更；其他模型互不影响。`EngineHost` 使用 `app.settings(id)`，`ChatRunner` 使用 `app.settings(engineModel)`，明确读取对应模型；外部 API 生成参数仍由请求决定。详见[参数和迁移](MODEL_SETTINGS.md)。
 
 ## Android 后台
 

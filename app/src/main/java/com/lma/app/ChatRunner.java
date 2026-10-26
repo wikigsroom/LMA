@@ -21,7 +21,7 @@ public final class ChatRunner {
         if (text.isEmpty() || text.length() > 12000) throw new IllegalArgumentException("请输入 1–12000 个字符");
         if (app.generating) throw new IllegalStateException("上一条回复仍在生成");
         if (!owner.engine.ready()) throw new IllegalStateException("请先加载一个模型");
-        JSONObject settings = app.settings(); String session = app.chats.session();
+        JSONObject settings = app.settings(app.engineModel); String session = app.chats.session();
         if (session.isEmpty()) session = app.chats.create(app.engineModel);
         JSONArray history = app.chats.history(session, settings.getInt("context"));
         app.chats.append(session, "user", text, "done");

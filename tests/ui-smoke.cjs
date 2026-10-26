@@ -4,6 +4,7 @@ const fs = require('node:fs');
 const crypto = require('node:crypto');
 const path = require('node:path');
 const http = require('node:http');
+const {hubFixture, installHubBridge} = require('./hub-fixture.cjs');
 const {chromium} = require(process.env.LMA_PLAYWRIGHT || 'playwright');
 const root = path.resolve(__dirname, '..');
 const assets = path.join(root, 'app/src/main/assets');
@@ -11,7 +12,7 @@ const output = path.join(root, 'build/ui-qa');
 fs.mkdirSync(output, {recursive: true});
 if (fs.existsSync(path.join(output, 'results.json'))) fs.unlinkSync(path.join(output, 'results.json'));
 function inputFingerprint() {
-  const files = fs.readdirSync(assets, {recursive: true}).map(name => path.join(assets, name)).filter(file => fs.statSync(file).isFile()).concat(__filename);
+  const files = fs.readdirSync(assets, {recursive: true}).map(name => path.join(assets, name)).filter(file => fs.statSync(file).isFile()).concat(__filename, path.join(root, 'tests/hub-fixture.cjs'));
   return Object.fromEntries(files.sort().map(file => [path.relative(root, file).split(path.sep).join('/'), crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex')]));
 }
 const verifiedInputs = inputFingerprint();
@@ -20,11 +21,11 @@ const checks = [], errors = [];
 let context, server;
 function checked(name) { checks.push(name); console.log('PASS ' + name); }
 const fixture = {
-  app: 'LMA', version: '0.1.2', models: catalogue.models.map(m => ({...m, installed: false, installedBytes: 0, partialBytes: 0, download: {}})),
+  app: 'LMA', version: '0.2.0', models: catalogue.models.map(m => ({...m, installed: false, installedBytes: 0, partialBytes: 0, download: {}})),
   settings: {lan: false, port: 8080, threads: 4, context: 2048, maxTokens: 512, temperature: 0.7, source: 'auto', boot: false, autoLoad: true, reasoning: 'off', theme: 'light', systemPrompt: '你是一个有帮助的本地助手。', apiKey: 'lma_TEST_ONLY_NOT_A_REAL_KEY'},
   engine: {state: 'stopped', detail: '选择并下载一个模型，开始本地运行', modelId: '', generating: false, startedAt: 0, localUrl: 'http://127.0.0.1:8080/v1', addresses: ['http://192.168.1.20:8080/v1']},
   device: {name: 'nubia Z20 · UI 测试数据', android: '9', totalMemory: 8 * 1073741824, availableMemory: 4.3 * 1073741824, freeStorage: 51.2 * 1e9, batteryExempt: false},
-  chat: {sessionId: '', sessions: [], messages: []}, logs: [], error: '', commandResults: []
+  chat: {sessionId: '', sessions: [], messages: []}, logs: [], error: '', commandResults: [], hub: hubFixture
 };
 async function setState(page, mutation) { await page.evaluate(mutation); await page.evaluate(() => window.LMA.receive(window.__fixture)); }
 async function checkOverflow(page, name) {
@@ -42,7 +43,10 @@ async function main() {
     res.setHeader('Content-Type', file.endsWith('.js') ? 'text/javascript; charset=utf-8' : file.endsWith('.css') ? 'text/css; charset=utf-8' : 'text/html; charset=utf-8');
     res.end(fs.readFileSync(file));
   });
-  await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
+  for (let attempt=0; ; attempt++) {
+    try { await new Promise((resolve,reject) => { server.once('error',reject); server.listen(49152+crypto.randomInt(15000),'127.0.0.1',() => {server.removeListener('error',reject);resolve();}); }); break; }
+    catch(error) { if(error.code!=='EADDRINUSE' || attempt>=9) throw error; }
+  }
   const origin = 'http://127.0.0.1:' + server.address().port;
   const edge = process.env.LMA_BROWSER || path.join(process.env['ProgramFiles(x86)'] || 'C:/Program Files (x86)', 'Microsoft/Edge/Application/msedge.exe');
   context = await chromium.launchPersistentContext(path.join(root, 'build/ui-browser-profile'), {
@@ -51,6 +55,8 @@ async function main() {
   });
   await context.route('**/*', route => route.request().url().startsWith(origin + '/') ? route.continue() : route.abort());
   const page = context.pages()[0] || await context.newPage();
+  for (const extra of context.pages()) if (extra !== page) await extra.close();
+  await page.addInitScript(installHubBridge, {stateKey:'__fixture'});
   page.on('pageerror', error => errors.push(error.message));
   await page.addInitScript(({fixture}) => {
     window.__fixture = fixture; window.__commands = []; window.__copied = ''; window.__pwned = false;
@@ -61,6 +67,7 @@ async function main() {
         const command = JSON.parse(raw); window.__commands.push(command);
         setTimeout(() => {
           const f = window.__fixture, m = f.models.find(x => x.id === command.id);
+          window.__handleHub(command);
           if (window.__rejectNextAction === command.action) {
             window.__rejectNextAction = null; f.error = '原生测试端拒绝了这次操作';
             f.commandResults.push({requestId: command.requestId, action: command.action, ok: false, error: f.error});
@@ -94,9 +101,29 @@ async function main() {
   assert.equal(await page.locator('.model-card').count(), 3); checked('Initial curated recommendations');
   await checkOverflow(page, '375px model library layout');
   await page.screenshot({path: path.join(output, '01-models-phone.png')});
-  await page.locator('[data-filter="all"]').click(); assert.equal(await page.locator('.model-card').count(), 14); checked('Full model catalogue');
-  assert.equal(await page.locator('.model-tags .tag').filter({hasText: /^无审查$/}).count(), 14); checked('Every built-in model visibly declares uncensored selection');
-  await page.locator('#modelSearch').fill('dolphin'); assert((await page.locator('.model-card').count()) >= 1); checked('Model search');
+  assert.deepEqual(await page.locator('.model-card').evaluateAll(cards => cards.map(c=>c.dataset.model)), ['m08','m06','m01']); checked('Recommendation order and IDs remain unchanged');
+  assert.equal(await page.locator('.model-tags .tag').filter({hasText: /^无审查$/}).count(), 3); checked('Verified uncensored labels remain on recommendations');
+  await page.locator('[data-filter="local"]').click(); await page.waitForSelector('.empty-list'); checked('Dedicated local tab has an empty download state');
+  await page.locator('[data-filter="all"]').click(); await page.waitForSelector('.hub-card');
+  assert.equal(await page.locator('.hub-card').count(), 2); checked('All tab queries remote HF repositories');
+  assert.equal(await page.locator('.hub-card').first().locator('.uncensored').count(), 0);
+  assert.equal(await page.locator('.hub-card').nth(1).locator('.uncensored').textContent(), '无审查 · 元数据'); checked('Normal HF models stay unmarked and metadata labels remain distinct');
+  await page.locator('#hubPagination [data-direction="next"]').click(); await page.waitForFunction(()=>document.getElementById('hubPagination').textContent.includes('第 2 页'));
+  await page.locator('#hubPagination [data-direction="previous"]').click(); checked('Remote HF pagination can move forward and backward');
+  await page.locator('#hubFormat').selectOption('all'); await page.waitForFunction(()=>document.querySelectorAll('.hub-card').length===3); checked('HF all-format discovery expands beyond GGUF');
+  await page.locator('#modelSearch').fill('dolphin'); await page.waitForFunction(()=>document.querySelectorAll('.hub-card').length===1); checked('Debounced keywords search the HF catalogue');
+  await page.locator('#modelSearch').fill('https://huggingface.co/Qwen/Qwen3-0.6B-GGUF'); await page.keyboard.press('Enter'); await page.waitForSelector('[data-repository="Qwen/Qwen3-0.6B-GGUF"]'); checked('Full HF repository links reach native search');
+  await page.locator('[data-action="hubFiles"]').click(); await page.waitForSelector('.hub-file');
+  assert.equal(await page.locator('.hub-file').count(), 2); assert(await page.locator('.hub-file').nth(1).locator('button').isDisabled()); checked('GGUF file picker shows quantization and blocks unsupported projectors');
+  await page.locator('#modal [data-action="hubFilePage"][data-direction="next"]').click(); await page.waitForFunction(()=>document.querySelector('#modal .hub-pagination').textContent.includes('第 2 页')); checked('File picker supports repository pagination');
+  await page.locator('.hub-file').first().locator('button').click(); await page.waitForSelector('[data-model="hf_ui_test"]');
+  assert(await page.locator('[data-filter="local"]').evaluate(el=>el.classList.contains('active'))); checked('Selecting a HF file opens its local download task');
+  await setState(page,()=>{ const m=window.__fixture.models.find(x=>x.id==='hf_ui_test');m.installed=true;m.installedBytes=m.bytes;m.download={state:'done'}; });
+  assert((await page.locator('#modelResultCount').textContent()).includes('1 已下载')); checked('Local tab manages downloaded HF models');
+  await page.locator('#modelSearch').fill('Qwen3-0.6B'); assert.equal(await page.locator('.model-card').count(), 1); checked('Local search filters downloaded models without querying the network');
+  await page.locator('[data-filter="recommended"]').click(); assert.equal(await page.locator('.model-card').count(), 3); checked('HF downloads do not change the recommendation list');
+  await page.locator('[data-filter="local"]').click();
+  await page.locator('[data-action="deleteModel"][data-id="hf_ui_test"]').click(); await page.locator('[data-action="confirmed"]').click(); await page.waitForFunction(()=>!document.querySelector('[data-model="hf_ui_test"]')); checked('Local HF deletion updates the model list');
   await page.locator('#modelSearch').fill(''); await page.locator('[data-filter="recommended"]').click();
   await page.locator('[data-action="download"][data-id="m08"]').click();
   await page.waitForSelector('[data-action="pauseDownload"][data-id="m08"]');
@@ -132,21 +159,63 @@ async function main() {
   const curl = await page.evaluate(() => window.__copied); assert(curl.includes('/v1/chat/completions') && curl.includes('Bearer lma_TEST_ONLY')); checked('LAN endpoint and authenticated API example');
   await checkOverflow(page, '375px server layout'); await page.screenshot({path: path.join(output, '03-server-phone.png')});
   await page.locator('.nav-item[data-tab="settings"]').click();
-  await page.locator('select[name="threads"]').selectOption('3');
-  await page.evaluate(() => window.LMA.receive(window.__fixture)); assert.equal(await page.locator('select[name="threads"]').inputValue(), '3'); checked('Unsaved settings survive native updates');
-  await page.locator('select[name="reasoning"]').selectOption('auto'); await page.locator('select[name="theme"]').selectOption('dark');
+  await page.locator('#hfTokenInput').fill('hf_TEST_ONLY'); await page.locator('#hfTokenForm button[type="submit"]').click();
+  await page.waitForFunction(()=>document.getElementById('hfTokenStatus').textContent==='已设置令牌');
+  assert.equal(await page.locator('#hfTokenInput').inputValue(), ''); checked('Saving optional HF credentials clears the password field');
+  await page.locator('[data-action="clearHubToken"]').click(); await page.waitForFunction(()=>document.getElementById('hfTokenStatus').textContent==='未设置令牌'); checked('HF credentials can be cleared independently from runtime settings');
+  assert.equal(await page.locator('#settingsForm [name="context"], #settingsForm [name="threads"], #settingsForm [name="maxTokens"], #settingsForm [name="systemPrompt"]').count(), 0); checked('Global settings no longer contain per-model inference parameters');
+  await page.locator('select[name="source"]').selectOption('mirror');
+  await page.evaluate(() => window.LMA.receive(window.__fixture)); assert.equal(await page.locator('select[name="source"]').inputValue(), 'mirror'); checked('Unsaved global preferences survive native updates');
+  await page.locator('select[name="theme"]').selectOption('dark');
   await page.locator('#settingsForm button[type="submit"]').click();
   await page.waitForFunction(() => document.documentElement.dataset.theme === 'dark');
   assert.equal(await page.locator('#settingsHint').textContent(), '设置已保存'); checked('Persist settings and dark theme');
-  await page.locator('select[name="threads"]').selectOption('2');
+  await page.locator('select[name="source"]').selectOption('huggingface');
   await page.evaluate(() => { window.__rejectNextAction = 'saveSettings'; });
   await page.locator('#settingsForm button[type="submit"]').click();
   await page.waitForFunction(() => document.getElementById('settingsHint').textContent.includes('原生测试端拒绝'));
-  assert.equal(await page.locator('select[name="threads"]').inputValue(), '2'); checked('Rejected settings remain editable with matching command error');
+  assert.equal(await page.locator('select[name="source"]').inputValue(), 'huggingface'); checked('Rejected settings remain editable with matching command error');
   await page.locator('select[name="source"]').selectOption('auto');
   await page.locator('#settingsForm button[type="submit"]').click();
   await page.waitForFunction(() => document.getElementById('settingsHint').textContent === '设置已保存');
   assert.equal(await page.evaluate(() => window.__fixture.settings.source), 'auto'); checked('Unrelated earlier error cannot fail successful settings acknowledgement');
+  await page.locator('[data-action="showLocal"]').click(); await page.waitForSelector('[data-model="m08"]');
+  assert(await page.locator('#page-settings').isHidden()); checked('Application preferences link directly to Local model management');
+  await page.locator('[data-action="modelSettings"][data-id="m08"]').click(); await page.waitForSelector('#modelSettingsForm');
+  assert((await page.locator('#limit-context').textContent()).includes('8192')); checked('Local model settings expose the individual GGUF context bound');
+  await page.locator('#cfg-context').fill('1234'); await page.evaluate(() => window.LMA.receive(window.__fixture));
+  assert.equal(await page.locator('#cfg-context').inputValue(), '1234'); checked('Unsaved per-model custom input survives native snapshots');
+  await page.locator('#cfg-context').blur(); assert.equal(await page.locator('#cfg-context').inputValue(), '1234'); checked('Editable combo accepts context values outside its presets');
+  await page.locator('#cfg-context').fill('999999'); await page.locator('#cfg-context').blur();
+  assert.equal(await page.locator('#cfg-context').inputValue(), '8192'); assert((await page.locator('#modelSettingsHint').textContent()).includes('上限')); checked('Context above the model bound automatically resets to its maximum');
+  await page.locator('[data-action="configPresets"][data-field="context"]').click(); await page.locator('[data-action="configValue"][data-field="context"][data-value="1024"]').click();
+  assert.equal(await page.locator('#cfg-context').inputValue(), '1024'); checked('Preset dropdown selects a context value');
+  await page.locator('#cfg-maxTokens').fill('999999'); await page.locator('#cfg-maxTokens').blur();
+  assert.equal(await page.locator('#cfg-maxTokens').inputValue(), '1023'); checked('Output tokens above the configured context capacity reset to the shared-context limit');
+  await page.locator('#cfg-context').fill('300'); await page.locator('#cfg-context').blur();
+  assert.equal(await page.locator('#cfg-maxTokens').inputValue(), '299'); checked('Lowering context also normalizes the output token limit');
+  await page.locator('#cfg-threads').fill('999'); await page.locator('#cfg-threads').blur(); assert.equal(await page.locator('#cfg-threads').inputValue(), '8');
+  await page.locator('#cfg-temperature').fill('2.9'); await page.locator('#cfg-temperature').blur(); assert.equal(await page.locator('#cfg-temperature').inputValue(), '2'); checked('Thread and temperature inputs enforce their device and application ranges');
+  await page.locator('#cfg-context').fill(''); await page.locator('#cfg-context').blur(); assert.equal(await page.locator('#cfg-context').inputValue(), '300'); checked('Blank numeric edits restore the last valid value');
+  await page.locator('#cfg-context').focus(); await page.keyboard.press('ArrowDown'); await page.keyboard.press('ArrowDown'); await page.keyboard.press('Enter');
+  assert.equal(await page.locator('#cfg-context').inputValue(), '1024'); checked('Editable preset combo supports keyboard navigation');
+  await page.locator('#modelSettingsForm select[name="reasoning"]').selectOption('auto'); await page.locator('#modelSettingsForm textarea[name="systemPrompt"]').fill('这是模型 A 的提示词');
+  await page.locator('#modelSettingsForm [type="submit"]').click(); await page.waitForFunction(()=>document.getElementById('modelSettingsHint').textContent==='此模型的设置已保存');
+  assert.equal(await page.evaluate(()=>window.__fixture.models.find(m=>m.id==='m08').config.values.context),1024); checked('Model configuration saves with its own model ID and command acknowledgement');
+  await page.keyboard.press('Escape');
+  await setState(page,()=>{const m=window.__fixture.models.find(m=>m.id==='m06'); m.installed=true;m.installedBytes=m.bytes;m.download={state:'done'};});
+  await page.locator('[data-action="modelSettings"][data-id="m06"]').click(); await page.waitForSelector('#modelSettingsForm');
+  assert.equal(await page.locator('#cfg-context').inputValue(),'2048'); assert((await page.locator('#limit-context').textContent()).includes('16384')); checked('Another model starts with independent defaults and its own context bound');
+  await page.locator('#cfg-context').fill('777'); await page.evaluate(()=>{window.__rejectNextAction='saveModelSettings';});
+  await page.locator('#modelSettingsForm [type="submit"]').click(); await page.waitForFunction(()=>document.getElementById('modelSettingsHint').textContent.includes('保存失败'));
+  assert.equal(await page.locator('#cfg-context').inputValue(),'777'); assert(!(await page.locator('#modelSettingsForm [type="submit"]').isDisabled())); checked('Rejected per-model save keeps the draft editable');
+  await page.locator('#modelSettingsForm [type="submit"]').click(); await page.waitForFunction(()=>document.getElementById('modelSettingsHint').textContent==='此模型的设置已保存'); await page.keyboard.press('Escape');
+  await page.locator('[data-action="modelSettings"][data-id="m08"]').click(); await page.waitForSelector('#modelSettingsForm');
+  assert.equal(await page.locator('#cfg-context').inputValue(),'1024'); assert.equal(await page.locator('#modelSettingsForm textarea[name="systemPrompt"]').inputValue(),'这是模型 A 的提示词'); checked('Reopening a model restores its own saved parameters after editing another model');
+  await page.screenshot({path:path.join(output,'08-model-settings.png')});
+  await page.setViewportSize({width:320,height:720}); assert(await page.locator('#modal').evaluate(el=>el.scrollWidth<=el.clientWidth+1)); checked('Editable model settings fit a 320px phone');
+  await page.setViewportSize({width:375,height:812}); await page.keyboard.press('Escape');
+  await page.locator('.nav-item[data-tab="settings"]').click();
   await page.locator('[data-action="about"]').click(); await page.locator('[data-action="notices"]').click();
   assert.equal(await page.locator('.license-notice').count(), 12); await page.keyboard.press('Escape'); checked('Bundled third-party license reader');
   await page.locator('.nav-item[data-tab="server"]').click(); await page.evaluate(() => { document.getElementById('page-server').scrollTop = 0; document.getElementById('toast').hidden = true; }); await page.screenshot({path: path.join(output, '04-server-dark.png')});
@@ -156,7 +225,8 @@ async function main() {
   await page.locator('#customModelForm input[name="url"]').fill('https://example.com/model.gguf');
   await page.locator('#customModelForm button[type="submit"]').click();
   await page.waitForSelector('[data-model="custom_test"]'); checked('Custom HTTPS model entry');
-  assert((await page.locator('[data-model="custom_test"] .model-tags').textContent()).includes('属性未核对'));
+  assert.equal(await page.locator('[data-model="custom_test"] .uncensored').count(), 0);
+  await page.locator('[data-filter="recommended"]').click();
   await page.locator('[data-action="modelInfo"][data-id="m08"]').click();
   assert((await page.locator('.model-info').textContent()).includes('Abliterated 去拒答'));
   await page.locator('[data-action="uncensoredSource"]').click();
@@ -177,6 +247,12 @@ async function main() {
   await checkOverflow(page, 'Short landscape server layout'); await page.screenshot({path: path.join(output, '06-landscape.png')});
   await page.setViewportSize({width: 320, height: 720}); await page.locator('.nav-item[data-tab="models"]').click();
   await checkOverflow(page, '320px narrow phone layout');
+  await page.locator('[data-filter="all"]').click(); await page.waitForSelector('.hub-card'); await checkOverflow(page, '320px HF discovery layout');
+  await page.locator('[data-action="hubFiles"]').first().click(); await page.waitForSelector('.hub-file');
+  assert(await page.locator('#modal').evaluate(el=>el.scrollWidth<=el.clientWidth+1)); checked('320px file picker has no horizontal overflow'); await page.keyboard.press('Escape');
+  await setState(page,()=>{window.__fixture.hub.error='网络暂不可用';}); assert((await page.locator('#modelList').textContent()).includes('网络暂不可用'));
+  await page.locator('[data-action="hubRetry"]').click(); await page.waitForSelector('.hub-card'); checked('HF failures expose a retry action');
+  await page.locator('[data-filter="recommended"]').click();
   await page.setViewportSize({width: 375, height: 812});
   await page.evaluate(() => { const fonts = Array.from(document.querySelectorAll('body *')).map(el => [el, parseFloat(getComputedStyle(el).fontSize)]); fonts.forEach(([el, size]) => { if (size) el.style.fontSize = size * 1.5 + 'px'; }); document.getElementById('page-models').scrollTop = 0; document.getElementById('toast').hidden = true; });
   await checkOverflow(page, '150 percent text scale'); await page.screenshot({path: path.join(output, '07-text-scale.png')});

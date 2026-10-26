@@ -19,6 +19,7 @@ python tools/build.py
 # 运行适用于当前改动的检查 / Run checks relevant to the actual changes
 python tools/test_protocol.py
 python tools/test_backend.py
+python tools/test_hub.py --live
 python tools/test_sqlite.py
 python tools/test_android_lint.py
 node tests/ui-smoke.cjs
@@ -52,8 +53,8 @@ git push origin main
 新版本先创建带说明的标签并推送；不要使用已发布的不同版本标签。Create and push an annotated tag pointing to the reviewed release commit:
 
 ```powershell
-git tag -a v0.1.2 -m "LMA v0.1.2: initial Android ARM64 prerelease"
-git push origin v0.1.2
+git tag -a v0.2.0 -m "LMA v0.2.0: HF discovery and local model management"
+git push origin v0.2.0
 python tools/publish_release.py --gh C:/path/to/gh.exe
 # 上一条只预检 / The command above only previews
 python tools/publish_release.py --gh C:/path/to/gh.exe --publish
@@ -63,7 +64,7 @@ GitHub CLI 需已登录且具有目标仓库写入权限。The publisher uses th
 
 GitHub 的按标签 REST 查询可能对草稿返回 404；工具通过已认证、支持分页的发行列表定位同一草稿，避免把它当成不存在而重复创建。GitHub's tag endpoint may return 404 for a draft; the publisher resolves it through the authenticated paginated release list instead of treating it as missing.
 
-版本由 Manifest 读取，以上 `v0.1.2` 仅是本次具体例子。The version is read from the Manifest; update tag commands for future versions. Current release status is deliberately prerelease while physical acceptance is pending. Change stable status only with the corresponding device evidence and documentation.
+版本由 Manifest 读取，以上 `v0.2.0` 仅是本次具体例子。The version is read from the Manifest; update tag commands for future versions. Current release status is deliberately prerelease while physical acceptance is pending. Change stable status only with the corresponding device evidence and documentation.
 
 发布后通过无认证公开 API 检查版本、附件、哈希和下载链接；本地回执位于 `dist/releases/vVERSION/publish-receipt.json`。After publication, verify the public release and downloads; retain the local receipt. Never describe a tag alone as a completed GitHub Release.
 

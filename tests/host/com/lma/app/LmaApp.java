@@ -19,6 +19,7 @@ public final class LmaApp {
     public final Object nativeProcessLock = new Object();
     public volatile Process nativeProcess;
     public final List<String> logs = Collections.synchronizedList(new ArrayList<>());
+    public final List<JSONObject> commands = Collections.synchronizedList(new ArrayList<>());
     public LmaApp(File files, File assets, File libraries) {
         this.files = files; this.assets = assets; this.libraries = libraries; files.mkdirs();
         prefs.edit().putString("apiKey", "lma_HOST_TEST_KEY").putInt("port", 8080).putInt("threads", 4).putInt("context", 2048)
@@ -35,11 +36,15 @@ public final class LmaApp {
     public void emit() {}
     public void log(String message) { logs.add(message); }
     public void error(String message) { lastError = message; log(message); }
-    public JSONObject settings() {
-        return new JSONObject().put("apiKey", prefs.getString("apiKey", "")).put("lan", prefs.getBoolean("lan", false))
-            .put("port", prefs.getInt("port", 8080)).put("threads", prefs.getInt("threads", 4)).put("context", prefs.getInt("context", 2048))
-            .put("reasoning", prefs.getString("reasoning", "off")).put("maxTokens", prefs.getInt("maxTokens", 512))
-            .put("temperature", prefs.getFloat("temperature", 0.7f)).put("systemPrompt", prefs.getString("systemPrompt", ""));
+    public void finishCommand(JSONObject command, Exception error) { finishCommand(command, error, true); }
+    public void finishCommand(JSONObject command, Exception error, boolean globalError) {
+        if (error != null && globalError) error(error.getMessage());
+        commands.add(new JSONObject().put("requestId", command.optString("requestId")).put("ok", error == null));
+    }
+    public JSONObject settings() throws Exception { return settings(engineModel); }
+    public JSONObject settings(String modelId) throws Exception {
+        JSONObject value = modelId.isEmpty() ? ModelSettings.defaults() : store.config(modelId).getJSONObject("values");
+        return value.put("apiKey", prefs.getString("apiKey", "")).put("lan", prefs.getBoolean("lan", false)).put("port", prefs.getInt("port", 8080));
     }
     public static final class Preferences {
         private final Map<String, Object> values = new ConcurrentHashMap<>();

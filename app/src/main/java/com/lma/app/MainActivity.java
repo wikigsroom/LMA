@@ -135,6 +135,9 @@ public final class MainActivity extends Activity {
                 if (raw.length() > 70000) throw new IllegalArgumentException("操作数据过长");
                 command = new JSONObject(raw); String action = command.getString("action");
                 switch (action) {
+                    case "inspectModel": app.store.inspectModel(command.getString("id")); app.emit(); break;
+                    case "hubSearch": case "hubPage": case "hubFiles": case "hubFilePage": case "hubToken": app.hub.dispatch(command); return;
+                    case "hubDownload": command.put("model", app.hub.selected(command)).put("action", "addHubModel"); service(command); return;
                     case "dismissError": app.lastError = ""; app.emit(); break;
                     case "newChat": if (app.generating) throw new IllegalStateException("请先停止当前回复"); app.chats.create(app.engineModel); app.emit(); break;
                     case "selectSession": if (app.generating) throw new IllegalStateException("请先停止当前回复"); app.chats.select(command.getString("id")); break;
@@ -172,7 +175,7 @@ public final class MainActivity extends Activity {
         } else if (request == EXPORT_LOGS) {
             new Thread(() -> {
                 try (java.io.OutputStream out = getContentResolver().openOutputStream(uri)) {
-                    JSONObject log = new JSONObject(); JSONObject state = app.snapshot(); log.put("app", "LMA 0.1.2").put("device", state.optJSONObject("device")).put("engine", state.optJSONObject("engine")).put("logs", state.optJSONArray("logs"));
+                    JSONObject log = new JSONObject(); JSONObject state = app.snapshot(); log.put("app", "LMA 0.2.0").put("device", state.optJSONObject("device")).put("engine", state.optJSONObject("engine")).put("logs", state.optJSONArray("logs"));
                     if (out == null) throw new java.io.IOException("无法写入文件"); out.write(log.toString(2).getBytes(StandardCharsets.UTF_8));
                     main.post(() -> Toast.makeText(this, "日志已导出", Toast.LENGTH_SHORT).show());
                 } catch (Exception error) { app.error("导出失败：" + error.getMessage()); }

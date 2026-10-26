@@ -98,8 +98,9 @@ public final class Downloads {
                 if (input == null) throw new IOException("无法读取所选文件，请重新导入");
             } else {
                 String url = model.getString("url");
-                String[] sources = Net.modelSources(url, app.prefs.getString("source", "auto"));
-                HttpURLConnection connection = Net.downloadCandidates(sources, offset, state.optString("etag"), opened -> { job.connection = opened; check(job); });
+                String hfToken = app.prefs.getString("hfToken", "");
+                String[] sources = Net.modelSources(url, hfToken.isEmpty() ? app.prefs.getString("source", "auto") : "official");
+                HttpURLConnection connection = Net.downloadCandidates(sources, offset, state.optString("etag"), opened -> { job.connection = opened; check(job); }, hfToken);
                 check(job);
                 int status = connection.getResponseCode();
                 if (status == 206) {
@@ -144,7 +145,20 @@ public final class Downloads {
             catch (Exception ignored) {}
             if (!job.cancelled) app.log("下载未完成：" + friendly(error));
         } finally {
-            if (job.connection != null) job.connection.disconnect(); jobs.remove(job.id, job); activeId = ""; app.emit(); owner.activityChanged();
+            if (job.connection != null) job.connection.disconnect();
+            synchronized (this) {
+                // pause() can return from disconnect after the worker's catch has already
+                // written "paused". Finalize under the same lock so "pausing" cannot win.
+                if (job.cancelled) {
+                    try {
+                        File installed = app.store.modelFile(job.id);
+                        state.put("state", installed.isFile() ? "done" : "paused").put("received", installed.isFile() ? installed.length() : partial.length()).put("speed", 0).put("interrupted", false).put("error", "");
+                        update(job, state, true);
+                    } catch (Exception error) { app.log("暂停状态保存失败：" + error.getMessage()); }
+                }
+                jobs.remove(job.id, job); activeId = "";
+            }
+            app.emit(); owner.activityChanged();
         }
     }
     private void verifyAndInstall(Job job, JSONObject model, JSONObject state, File partial) throws Exception {
@@ -167,7 +181,7 @@ public final class Downloads {
         if (!partial.renameTo(complete)) throw new IOException("无法保存模型文件，请检查存储空间");
         state.put("state", "done").put("received", complete.length()).put("total", complete.length()).put("sha256", actual)
                 .put("verification", expected.isEmpty() ? "format-and-transfer" : "publisher-sha256").put("error", "").put("interrupted", false);
-        update(job, state, true); app.log("模型已准备：" + model.optString("name")); owner.modelInstalled(job.id);
+        update(job, state, true); app.store.inspectModel(job.id); app.log("模型已准备：" + model.optString("name")); owner.modelInstalled(job.id);
     }
     private static final class InvalidModelException extends IOException { InvalidModelException(String message) { super(message); } }
     private void reject(Job job, File partial, JSONObject state) throws Exception {

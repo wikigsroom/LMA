@@ -31,7 +31,7 @@ public final class Net {
         return download(address, offset, etag, connection -> {});
     }
     public static HttpURLConnection download(String address, long offset, String etag, ConnectionObserver observer) throws Exception {
-        return download(address, offset, etag, observer, 20000, 30000);
+        return download(address, offset, etag, observer, 20000, 30000, "");
     }
     public static String[] modelSources(String address, String source) {
         if (!address.startsWith("https://huggingface.co/")) return new String[]{address};
@@ -40,10 +40,13 @@ public final class Net {
         return source.equals("auto") ? new String[]{address, mirror} : new String[]{address};
     }
     static HttpURLConnection downloadCandidates(String[] addresses, long offset, String etag, ConnectionObserver observer) throws Exception {
+        return downloadCandidates(addresses, offset, etag, observer, "");
+    }
+    static HttpURLConnection downloadCandidates(String[] addresses, long offset, String etag, ConnectionObserver observer, String token) throws Exception {
         for (int i = 0; i < addresses.length; i++) {
             boolean last = i == addresses.length - 1;
             try {
-                HttpURLConnection connection = download(addresses[i], offset, etag, observer, last ? 20000 : 8000, last ? 30000 : 10000);
+                HttpURLConnection connection = download(addresses[i], offset, etag, observer, last ? 20000 : 8000, last ? 30000 : 10000, token);
                 int status = connection.getResponseCode();
                 if (last || status == 200 || status == 206 || status == 416) { connection.setReadTimeout(30000); return connection; }
                 connection.disconnect();
@@ -51,13 +54,18 @@ public final class Net {
         }
         throw new IOException("没有可用下载源");
     }
-    private static HttpURLConnection download(String address, long offset, String etag, ConnectionObserver observer, int connectTimeout, int readTimeout) throws Exception {
+    static boolean acceptsHubToken(URL url) {
+        return "https".equals(url.getProtocol()) && "huggingface.co".equalsIgnoreCase(url.getHost()) && url.getUserInfo() == null && (url.getPort() == -1 || url.getPort() == 443);
+    }
+    private static HttpURLConnection download(String address, long offset, String etag, ConnectionObserver observer, int connectTimeout, int readTimeout, String token) throws Exception {
         URL url = new URL(address);
         for (int redirect = 0; redirect < 9; redirect++) {
             if (!url.getProtocol().equals("https") || url.getUserInfo() != null) throw new IOException("下载地址必须使用 HTTPS");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setConnectTimeout(connectTimeout); connection.setReadTimeout(readTimeout); connection.setInstanceFollowRedirects(false);
-            connection.setRequestProperty("User-Agent", "LMA-Android/0.1"); connection.setRequestProperty("Accept-Encoding", "identity");
+            connection.setRequestProperty("User-Agent", "LMA-Android/0.2"); connection.setRequestProperty("Accept-Encoding", "identity");
+            // Re-evaluate for every redirect. HF credentials never travel to mirrors, CDNs or custom hosts.
+            if (!token.isEmpty() && acceptsHubToken(url)) connection.setRequestProperty("Authorization", "Bearer " + token);
             if (offset > 0) {
                 connection.setRequestProperty("Range", "bytes=" + offset + "-");
                 if (!etag.isEmpty() && !etag.startsWith("W/")) connection.setRequestProperty("If-Range", etag);

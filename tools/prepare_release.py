@@ -43,6 +43,8 @@ def main():
     renamed = {"docs/media/lma-walkthrough.mp4": "LMA-" + release + "-demo.mp4",
                "docs/media/lma-walkthrough.gif": "LMA-" + release + "-demo.gif",
                "docs/media/lma-api-theme.gif": "LMA-" + release + "-api-theme.gif",
+               "docs/media/lma-hf-local.gif": "LMA-" + release + "-hf-local.gif",
+               "docs/media/lma-model-settings.gif": "LMA-" + release + "-model-settings.gif",
                notes.relative_to(ROOT).as_posix(): "RELEASE_NOTES.md"}
     for original, name in renamed.items():
         shutil.copy2(ROOT / original, output / name)
@@ -59,7 +61,7 @@ def main():
     names.append("SHA256SUMS")
     assets = [{"name": name, "bytes": (output / name).stat().st_size, "sha256": sha(output / name)} for name in names]
     manifest = {"repository": "wikigsroom/LMA", "version": release, "tag": tag,
-                "title": "LMA " + tag + " · Android ARM64 Uncensored / 无审查模型工作台",
+                "title": "LMA " + tag + " · Local Models & HF / 本地模型工作台",
                 "prerelease": True, "notes": "docs/releases/" + tag + ".md", "assets": assets,
                 "apk_sha256": build["sha256"], "physical_device_tested": False,
                 "phone_inference_tested": False, "background_endurance_tested": False,
