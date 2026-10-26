@@ -1,9 +1,12 @@
 """Check public files, local documentation links, evidence and prepared release bytes."""
+import argparse
 import hashlib
+import io
 import json
 from pathlib import Path
 import re
 import subprocess
+import tarfile
 from urllib.parse import unquote, urlsplit
 import zipfile
 from evidence import version, current, build_inputs
@@ -16,6 +19,9 @@ def digest(data):
 
 
 def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--published", action="store_true", help="Verify immutable source ZIP against its published tag after later documentation/tool updates")
+    args = parser.parse_args()
     run = subprocess.run(["git", "ls-files", "--cached", "--others", "--exclude-standard", "-z"], cwd=ROOT, capture_output=True, check=True)
     names = sorted(set(run.stdout.decode("utf-8").strip("\0").split("\0")))
     assert names and all(names)
@@ -69,11 +75,17 @@ def main():
         data = (ROOT / "docs/media" / item["file"]).read_bytes()
         assert len(data) == item["bytes"] and digest(data) == item["sha256"]
     source = ROOT / "dist" / ("LMA-" + release + "-source.zip")
+    if args.published:
+        snapshot = subprocess.run(["git", "archive", "--format=tar", "v" + release], cwd=ROOT, capture_output=True, check=True).stdout
+        with tarfile.open(fileobj=io.BytesIO(snapshot), mode="r:") as repository:
+            expected_source = {member.name: repository.extractfile(member).read() for member in repository.getmembers() if member.isfile()}
+    else:
+        expected_source = {name: (ROOT / name).read_bytes() for name in names}
     with zipfile.ZipFile(source) as archive:
         members = archive.namelist()
         assert len(members) == len(set(members)) and archive.testzip() is None
-        for name in names:
-            assert archive.read("LMA/" + name) == (ROOT / name).read_bytes(), "Source ZIP is stale: " + name
+        for name, data in expected_source.items():
+            assert archive.read("LMA/" + name) == data, "Source ZIP differs from " + ("published tag: " if args.published else "current source: ") + name
         assert len([n for n in members if "/jniLibs/" in n and n.endswith(".so")]) == 14
         assert not any("/signing/" in n or "/cache/" in n or "/.git/" in n or "/node_modules/" in n for n in members)
     output = ROOT / "dist/releases" / ("v" + release)
@@ -87,7 +99,8 @@ def main():
         assert digest((output / name).read_bytes()) == expected
     result = {"public_files": len(names), "documents": len(documents), "local_links": links,
               "evidence_records": len(records), "screenshots": len(media["screenshots"]),
-              "release_assets": len(manifest["assets"]) + 1, "source_matches_public_files": True,
+              "release_assets": len(manifest["assets"]) + 1, "source_matches_current_public_files": not args.published,
+              "source_matches_published_tag": args.published,
               "private_files_excluded": True, "version": release, "passed": True}
     (ROOT / "build/repository-check.json").write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8")
     print(json.dumps(result))

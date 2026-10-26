@@ -62,6 +62,20 @@ def main():
         return run([args.gh, *command], optional=optional, timeout=timeout)
 
     def api(endpoint, optional=False):
+        # GitHub can return 404 for a draft at /releases/tags/{tag}, even
+        # when the authenticated account can see it in the release list.
+        if endpoint == base + "/tags/" + tag:
+            page = 1
+            while True:
+                listing = json.loads(gh("api", base + "?per_page=100&page=" + str(page)).stdout)
+                found = next((item for item in listing if item["tag_name"] == tag), None)
+                if found is not None:
+                    return found
+                if len(listing) < 100:
+                    if optional:
+                        return None
+                    raise RuntimeError("Expected release is missing from authenticated release list")
+                page += 1
         response = gh("api", endpoint, optional=optional)
         if response.returncode:
             if "404" in response.stderr:

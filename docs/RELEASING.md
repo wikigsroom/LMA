@@ -61,6 +61,8 @@ python tools/publish_release.py --gh C:/path/to/gh.exe --publish
 
 GitHub CLI 需已登录且具有目标仓库写入权限。The publisher uses the existing authenticated GitHub CLI, never stores credentials, and never prints a token. It requires a clean tree and a pushed matching tag. It creates a draft prerelease, uploads each whitelisted asset, checks server-reported size/hash, and only then publishes. It does not replace existing different assets. If upload fails, a draft remains for inspection; do not announce success.
 
+GitHub 的按标签 REST 查询可能对草稿返回 404；工具通过已认证、支持分页的发行列表定位同一草稿，避免把它当成不存在而重复创建。GitHub's tag endpoint may return 404 for a draft; the publisher resolves it through the authenticated paginated release list instead of treating it as missing.
+
 版本由 Manifest 读取，以上 `v0.1.2` 仅是本次具体例子。The version is read from the Manifest; update tag commands for future versions. Current release status is deliberately prerelease while physical acceptance is pending. Change stable status only with the corresponding device evidence and documentation.
 
 发布后通过无认证公开 API 检查版本、附件、哈希和下载链接；本地回执位于 `dist/releases/vVERSION/publish-receipt.json`。After publication, verify the public release and downloads; retain the local receipt. Never describe a tag alone as a completed GitHub Release.
@@ -70,3 +72,5 @@ GitHub CLI 需已登录且具有目标仓库写入权限。The publisher uses th
 公开附件一旦发布，不以相同文件名替换不同字节。新的 APK、源码包或媒体修改应发布新版本或作为下一次仓库文档提交，避免破坏已公开的校验值。Never replace released bytes under an existing name. New binaries/source/media for a release require a new version; documentation changes may instead remain a later repository commit.
 
 无设备时可发布明确说明范围的预发布包，但必须保留 `physical_device_tests=0` 等真实状态。If no phone is available, publish a clearly scoped prerelease with truthful false device flags, not fabricated acceptance.
+
+发布后的文档或工具维护可运行 `python tools/check_repository.py --published`，把原始源码 ZIP 与已发布标签核对，再检查当前公开文件、文档和证据。不要为了让当前文件等于旧 ZIP 而改写已公开附件。For post-release documentation/tool maintenance, `--published` compares the immutable source bundle with its tag while checking current public files, links, and evidence. This permits later commits without rewriting published assets.

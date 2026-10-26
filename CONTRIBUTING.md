@@ -8,7 +8,7 @@
 2. 实现并运行与改动相关的检查；只在新改动或未解问题要求时重跑更广检查。Implement and run checks relevant to the change; broaden only for a concrete reason.
 3. **同步中英文 README、受影响指南、截图 / GIF 和更新说明。** Synchronize both READMEs, affected guides, media, `CHANGELOG.md`, and version notes. UI changes require refreshed media; behavior-only changes need accurate explanations rather than unrelated recordings.
 4. 区分桌面替身、静态证据与真机实测。Keep host adapters, static checks, and actual Android evidence distinct.
-5. 运行 `python tools/check_repository.py`，检查链接、证据、公开文件与版本。Review public files and commit a concrete result.
+5. 运行 `python tools/check_repository.py`，检查链接、证据、公开文件与版本。发布后的文档 / 工具维护改用 `--published`，将旧源码附件与标签核对而不改写附件。Review public files; use `--published` for maintenance after release, preserving immutable assets.
 6. 本会话用户已要求后续 LMA 更新完成后同步推送 `git@github.com:wikigsroom/LMA.git`。在该授权工作中使用普通提交 / 推送；认证或网络受阻则保留本地提交并明确说明。The user's standing instruction is to push subsequent authorized LMA updates to this remote, with matching docs and change notes; report actual blockers rather than claiming a push succeeded.
 
 ## 产品要求 / Product requirements
