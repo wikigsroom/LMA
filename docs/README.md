@@ -25,12 +25,13 @@
 
 - **用户 / Users：** README → 使用手册 / User guide → API → 常见问题 / Troubleshooting in the user guide。
 - **开发者 / Developers：** 构建 / Build → 架构 / Architecture → 验证 / Validation → 贡献约定 / Contributing。
-- **业务扩展 / Expansion：** 多模态可行性 / Multimodal feasibility → 工作流提案 / Workflow proposal → [JSON 草案 / JSON draft](proposals/hybrid-video.workflow.json)。这是未实现设计，不属于当前 APK 能力 / Unimplemented design, not current APK capabilities。
+- **业务扩展 / Expansion：** 纯本地可行性 / Fully local feasibility → 本地工作流 / Local workflows → [图片旁白草案 / Narrated-image draft](proposals/local-narrated-image.workflow.json) 与 [Wan 本机实验草案 / On-phone Wan draft](proposals/local-wan-video.workflow.json)。全部同一手机执行；这是未实现设计 / Same-phone execution throughout; unimplemented designs。
 - **验收 / Acceptance：** [完成条件核对](COMPLETION_AUDIT.md) → 真机验收 / Device acceptance → [`verification/`](../verification/)。
 
 ## 证据和历史记录 / Evidence and audit history
 
 - [DESIGN.md](DESIGN.md)：界面交互设计说明 / UI design rationale。
+- [local-video-evidence.json](research/local-video-evidence.json)：Wan / 旧 LTX Android 源码与作者结果记录；不属于 LMA 实测 / Wan/older LTX Android source and author reports, not LMA device results。
 - [COMPLETION_AUDIT.md](COMPLETION_AUDIT.md)：逐项完成条件及真机阻塞项 / Requirement-by-requirement audit and device blocker。
 - [`catalogue/`](../catalogue/)：固定模型、作者声明、GGUF 来源、哈希及架构记录 / Pinned models, publisher declarations, hashes, architecture records。
 - [`third_party/README.md`](../third_party/README.md)：引擎来源、锁定版本、许可和部分上游审计源码 / Runtime provenance, locks, notices, selected audit sources。

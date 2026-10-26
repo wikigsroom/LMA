@@ -1,6 +1,6 @@
 # LMA 0.2.0 architecture
 
-This guide describes the current APK. The separate [workflow proposal](WORKFLOWS.en.md) covers unimplemented multimodal/node extensions; see [feasibility research](MULTIMODAL.en.md) for model selection.
+This guide describes the current APK. The separate [local workflow proposal](WORKFLOWS.en.md) covers unimplemented multimodal/node extensions executing entirely on the same Android phone; see [fully local feasibility research](MULTIMODAL.en.md) for model selection.
 
 ## HF discovery and Local management
 

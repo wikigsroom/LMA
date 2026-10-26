@@ -1,124 +1,108 @@
-# Android 多模态工作流框架方案
+# Android 纯本地工作流框架方案
 
-[English](WORKFLOWS.en.md) · [模型可行性与来源](MULTIMODAL.md) · [现有架构](ARCHITECTURE.md)
+[English](WORKFLOWS.en.md) · [本地模型可行性](MULTIMODAL.md) · [当前架构](ARCHITECTURE.md)
 
-状态：**2026-10-27 的设计提案，尚未在 APK 中实现**。附带的 [JSON 草案](proposals/hybrid-video.workflow.json) 用于讨论数据契约，不是可导入当前 LMA 或 ComfyUI 的运行文件。无需 ROOT，不依赖 Docker、WSL、虚拟机或模拟器。
+状态：**2026-10-27 设计提案，尚未在 APK 中实现**。两个 JSON 草案用于评审契约，不可导入当前 LMA 或直接作为 ComfyUI 执行文件：[本地图片旁白短片](proposals/local-narrated-image.workflow.json)、[本机 Wan 生视频实验](proposals/local-wan-video.workflow.json)。所有步骤在同一 Android 手机执行，无需 ROOT，不使用 Docker、WSL、虚拟机或模拟器。
 
-## 框架选择
+## 执行边界
 
-可以构建类似 ComfyUI 的有类型节点图、连线、模板、队列、预览和结果管理。建议 **LMA 自有轻量 DAG 执行层 + 本地原生 provider + 远程 ComfyUI adapter**。节点和连线表示依赖关系；执行器按依赖顺序运行，不能只画一个没有实际调度的画布。
+采用 **LMA 自有有类型 DAG + Android 原生任务执行器 + 本机 provider**。节点图表达真实依赖和数据类型；先做可运行模板、队列和预览，再补进阶节点画布。
 
-不把完整 Python / PyTorch / CUDA 与任意 ComfyUI 自定义节点打包进 Android。手机端独立实现任务和节点契约，GPU 侧保留原有 ComfyUI 生态；同一框架允许工作流全本地、全远程或混合执行。复用上游代码时分别处理代码许可，不能因为图形交互相似就声称已经兼容全部节点。
+模型下载是生成前独立、用户可见的操作。进入执行阶段后，文本处理、编码器、采样、codec、媒体合成、产物保存均只在手机进行；不提供外部推理 provider、服务地址配置或自动转出路径。资源不足、算子不支持或文件缺失时，显示具体失败 / 缺失组件，让用户下载或选择设备可用的本地配方。
 
 ```mermaid
 flowchart TD
-    UI[模板表单 / 进阶节点画布] --> BR[现有原生 JSON bridge]
-    API[鉴权任务 API] --> JOBS[原生 JobManager / SQLite]
-    BR --> JOBS
-    JOBS --> CHECK[类型 / 模型依赖 / 参数 / 资源计划]
-    CHECK --> DAG[DAG 调度与事件日志]
-    DAG --> TEXT[本地 llama.cpp 文本 provider]
-    DAG --> IMG[本地 sd.cpp 或 MNN provider]
-    DAG --> TTS[本地 sherpa-onnx / ORT provider]
-    DAG --> REMOTE[原生 HTTP / WS：ComfyUI 或音频服务]
-    TEXT --> ART[私有产物库：文本 / 图片 / 音频 / 视频]
-    IMG --> ART
-    TTS --> ART
-    REMOTE --> ART
-    ART --> VIEW[预览 / 分享 / 导出 / API 读取]
+    UI[模板 / 节点画布] --> BRIDGE[原生桥接与契约校验]
+    BRIDGE --> JOBS[本机队列 / SQLite 事件与产物]
+    JOBS --> PLAN[DAG 计划 / 资源准入 / 单大型引擎租约]
+    PLAN --> TEXT[本机 llama.cpp]
+    PLAN --> IMAGE[本机 sd.cpp / MNN]
+    PLAN --> AUDIO[本机 sherpa-onnx / ORT / LiteRT]
+    PLAN --> VIDEO[本机 Wan / 旧 LTX 实验配方]
+    TEXT --> STORE[手机私有产物库]
+    IMAGE --> STORE
+    AUDIO --> STORE
+    VIDEO --> STORE
+    STORE --> MEDIA[Android 本机编码 / 合成 / 导出]
+    MEDIA --> UI
+    DOWNLOAD[HF 下载 / revision / SHA256] --> BUNDLES[本机组件与依赖库]
+    BUNDLES --> PLAN
 ```
 
-手机默认使用“选择模板 → 选择模型与执行位置 → 修改参数 → 运行 → 查看结果”的表单；进阶用户再编辑节点。工作流可复用模板，但每次任务都保存实际使用的版本与参数快照。继续保留原“推荐” `m08 → m06 → m01`、标签和顺序，多模态新增条目由“全部 / 搜索”和“本地”管理。
+这是执行架构提案，不是已经安装了以上引擎。当前 LMA 的单文件 `.gguf` 下载器和单文本进程不能直接承担全部任务。[当前实现](ARCHITECTURE.md)
 
-## 模型包替代单文件假设
+## 模型包与 provider
 
-当前 [Store.java](../app/src/main/java/com/lma/app/Store.java) 按模型 ID 对应一个 `.gguf`；[Downloads.java](../app/src/main/java/com/lma/app/Downloads.java) 的单文件上限为 12GiB。多模态扩展须先新增独立的模型包层，不能给现有下载器塞一个 Safetensors URL 就算完成。
+将模型 ID 与多组件包分开：`模型 → 固定 revision 配方 → 组件 → 兼容 provider / 设备档位`。模型包至少记录：
 
-| 对象 | 必要记录 |
-| --- | --- |
-| ModelBundle | 稳定 ID、任务类型、架构、provider 及最低版本、来源、许可证、支持状态 |
-| Component | 组件角色、HF repo + 固定 revision + 相对路径、字节数、SHA256、格式、量化；含 tokenizer / config / 外部 ONNX data 等 |
-| Dependency | 文本编码器、VAE、codec、词典、LoRA 的精确依赖，必需 / 可选，基础模型兼容性 |
-| RuntimeCapability | ABI、最低 Android、CPU/GPU/NPU 后端、算子要求、可用任务与参数约束 |
-| ModelProfile | 该模型的持久化配置，独立于其他模型；本地 / 远程配置也分别保存 |
-| Artifact | 私有 URI、MIME、大小、哈希、关联任务和生成参数，不把绝对路径作为跨设备协议 |
+- 模型来源、任务、精确版本 / revision、许可、标签及证据等级；各文件路径、大小、SHA256 和依赖角色。
+- 主干、文本编码器、tokenizer / 词典、VAE / codec、音色、可选适配器；缺任一必需项时不显示“可运行”。
+- provider 及 ABI / minSdk / 引擎版本、后端、所需算子；QNN 额外固定 SoC / Hexagon、QAIRT 库与编译图形状。
+- 每模型可编辑参数、上限、枚举、联合约束、默认值；参考下载大小、测量过的峰值内存和耗时分开记录。
+- 状态 `available → downloading → verifying → ready`，另有 `paused / incomplete / incompatible / failed`；显示逐组件及总进度。
 
-按包预估剩余磁盘空间和峰值运行内存。逐文件续传 / 校验，全部必需组件满足后才标为可加载；中断或损坏显示缺失的组件。用内容哈希共享依赖并计引用，删除一个包不能破坏另一个包。保留旧 GGUF 记录与参数迁移，新的分片 / 包能力单独验收，不改写原推荐来源。
+下载到私有 `.part`，校验后原子发布。组件共享采用内容哈希与引用计数，删除模型前列出仍被引用的组件；保留空间给临时文件和产物，取消 / 重启可续传。当前单文件下载大小限制不等于新多组件模型包的总上限，需要分别设计文件、包和设备可用空间检查。
 
-“全部 HF”继续是发现入口。明确显示“本机候选 / 本机实验 / 仅远程 / 尚不支持”，下载前列出整包依赖及大小；远程模型通常下载到服务器，而不是先在手机存一套数十 GB 权重。HF 中带 `custom_code` 的仓库也不自动变成可在手机执行的代码。
-
-## Provider 与节点契约
-
-以下接口名称是提案：`capabilities`、`validate`、`prepare`、`estimateResources`、`run`、`cancel`、`unload`。Provider 声明它能做的任务、输入 / 输出类型和限制，调度器根据真实能力放行；失败应给具体组件、算子或内存原因。
-
-| Provider | 负责的工作 | 边界 |
+| 拟建 provider | 本机职责 | 限制 |
 | --- | --- | --- |
-| llama.cpp | 现有文本生成 | 保留当前文本 API；TTS GGUF 需要专用实现，不能仅凭扩展名交给它 |
-| sd.cpp | 首批 SD 1.5 / LoRA；后续逐架构增加 | 原生 NDK 编译与 ARM64 CPU 基线；GPU 通过驱动 / 算子测试后开启 |
-| MNN | 转换好的 SD / Sana 等移动配方 | 转换资源和版本单独锁定，与 sd.cpp 能力不可混写 |
-| sherpa-onnx / ORT | 明确的 TTS 包、Nano 图及音频解码 | 包含文本前端 / 音素 / tokenizer，CPU 先行；不能将任意 ONNX 标为端到端支持 |
-| ComfyUI adapter | 远程 GPU 上的整个工作流或子图 | 服务端安装的模型、节点和算力决定实际能力 |
-| 音频服务 adapter | 不在 ComfyUI 中的 MOSS / SoulX / YuE2 等服务 | 对接各自真实协议，不强称为统一 ComfyUI 原生节点 |
-| Android 媒体 | 图像尺寸处理、PCM 播放、兼容编码 / 封装、分享 | MediaCodec / MediaMuxer 等按设备能力使用；视频编码不等于模型生视频 |
+| `llama_text` | 保留兼容文本 GGUF 引擎，产出结构化文本 / token | 不将任意音视频 GGUF 交给通用文本接口 |
+| `sd_cpp` | SD 1.5 / 匹配 LoRA；后续原生图像、Wan 等精确配方 | 分开校验架构、算子与组件；默认 CPU，Vulkan 经实际探测启用 |
+| `mnn_diffusion` | 特定 SD / Sana 移动包 | 仅支持匹配转换图、文本处理和模型版本；Wan bring-up 不算已经交付 |
+| `sherpa_tts` / `ort_tts` | 小型 TTS，语言包、Nano tokenizer / codec | 声明支持的声音 / 语言、chunk、取消与采样率 |
+| `litert_audio` / 专用 Qwen TTS | 完整 Talker / MTP / codec 或短音效链 | 验证 host loop、API 28、量化与实际速度，不自动声称实时 |
+| `ltx_native` | 旧 LTX 2B Vulkan 或可合法集成的芯片特定 QNN | QNN 包、SDK、形状与授权严格匹配；Z20 不用不匹配的 NPU 包 |
+| `android_media` | 图片 / 音频 / 视频读取，MediaCodec / MediaMuxer 合成导出 | 探测容器、编解码器和尺寸；失败时说明，不调用网络转码 |
 
-节点端口采用 `Text`、`ImageArtifact`、`AudioArtifact`、`VideoArtifact`、`ModelBundleRef` 等明确类型；`Latent` 属于特定 provider 内部，不允许误连不同 VAE、采样率或架构。大张量留在原生引擎或 GPU 服务内；WebView bridge 传 ID / 私有 URI / 小型状态，不传整段视频 base64 或张量。
+provider 契约包括 `probe / validateBundle / estimateResources / load / run / cancel / unload`，统一输出有序进度、预览、产物和错误。重型引擎可由独立原生工作进程承载，前台服务持有生命周期；不能依赖 Activity 或 WebView 存活。
 
-首版只支持无环图。提交前验证节点类型、必需输入、边、环、输出类型、provider、模型依赖和参数。迭代 / 批量作为有界节点参数，后续再设计循环，避免没有取消边界的无限执行。节点缓存键至少包含内容哈希、模型 / 引擎版本和实际参数；含随机性的任务记录有效 seed，不能只按节点名称复用旧输出。
+运行器和依赖必须随 APK / 已审核的发行组件分发，模型目录只放数据。使用 `ProcessBuilder` 参数数组或 JNI，不拼接 shell 命令，不执行 HF 仓库的任意 Python / `trust_remote_code`。原生网络入口区分下载客户端与执行器；执行器不接收外部 URL，只接收已校验的本机文件句柄 / ID；若引擎使用 HTTP，仅允许本机回环地址。静态调用审计和断网实测共同验证边界，不能只靠 JSON 写着 local。
 
-## 参数跟随模型
+## 有类型节点和数据
 
-沿用用户要求的“本地模型内设置 + 可编辑选择输入框 + 超限自动归位”。不同任务使用不同的参数表，不能复用文本模型的上下文长度来限制所有媒体任务。
+基础类型为 `Text`、`ImageArtifact`、`AudioArtifact`、`VideoArtifact`、`ModelBundleRef` 和对应家族的 `LoRARef`。产物是本机受控引用，带 mime、尺寸 / 时长、采样率 / fps、hash 和来源任务，不向 JavaScript 传大 tensor、PCM 或文件系统任意路径。
 
-| 任务 | 典型模型配置 |
-| --- | --- |
-| 文本 | 上下文、输出 token、线程、温度、思考、系统提示词，保留现有独立存储 |
-| 图像 | 宽 / 高、batch、steps、sampler、scheduler、CFG、seed、VAE 模式、LoRA 与强度 |
-| TTS | 语言、音色、语速、分块、采样率 / 声道、引用音频、该架构的长度限制 |
-| 音乐 / 视频 | 音频秒数或帧数 / 时长、fps、分辨率、步数、参考素材、编码策略 |
+首批节点：文本输入、LLM 结构化写稿、图像生成、TTS、媒体合成、预览与保存。实际生视频节点单独标为实验，不能把一张图编码成 MP4 就声称模型生成了运动视频。
 
-有效值取模型元数据、provider 支持和设备预算的交集；不仅检查单字段上限，还检查宽 × 高 × batch、帧数、对齐步长等联合约束。可编辑数值超出范围自动回填并说明；未知限制标成应用 / 配方临时上限，不能伪称来自模型。枚举及不支持的组合应提示选择，不静默替换模型。
+执行前校验 schema 版本、唯一节点 ID、端口 / 类型、必需输入、单输入连线唯一性、无环图、模型绑定、完整依赖、设备配方与参数。模型引用必须解析为确定的本地包；JSON 不携带令牌、密码或外部服务地址。禁止 HTTP 推理 / 外部执行节点；无法映射的节点明确拒绝。
 
-任务启动时保存配置快照及回填后的实际值。修改模型默认设置只影响后续任务，正在执行的任务保持其快照；模板覆盖参数也经过同一套校验。远端默认值与最终实际使用值都应记录。
+LLM 输出用于节点参数时采用结构化结果并校验，解析失败返回错误，不执行生成的代码。预览只显示受控本机产物；不执行模型生成的 HTML。图编辑不隐式启动下载或生成。
 
-## 远程 ComfyUI 接入
+## 每模型设置与联合约束
 
-官方协议允许提交图、读取节点信息、跟踪队列和领取结果；因此 Android 客户端不必内置 ComfyUI 服务端。[官方路由](https://docs.comfy.org/development/comfyui-server/comms_routes) · [官方 WS 示例](https://github.com/Comfy-Org/ComfyUI/blob/master/script_examples/websockets_api_example.py)
+沿用用户要求：参数跟随模型 ID，在“本地”的模型设置中编辑，使用可编辑预设；工作流只保存引用和允许的覆盖。任务启动时保存 **有效参数快照、模型 revision、provider、seed、依赖哈希和设备信息**，避免改设置后无法复查。
 
-| 协议 | Adapter 的用途 |
-| --- | --- |
-| `GET /object_info` | 检查所需节点 / 输入存在，配合模型清单核对依赖 |
-| `POST /prompt` | 提交 **API prompt graph**，持久化返回的 `prompt_id` |
-| `/ws` | 事件、进度与预览；按任务归属关联，断线不表示远端停止 |
-| `GET /history/{prompt_id}`、`GET /queue` | 重连对账，恢复任务状态 |
-| `POST /upload/image`、`GET /view` | 按模板上传已选参考图、获取产物 |
-| `POST /interrupt` | 不是无条件安全的单任务取消；共享服务应经隔离网关处理 |
+超出模型已知硬上限的数值回填为最大合法值，并显示调整结果；设备内存策略可能要求更低的有效值，但应说明依据。未知模型上限显示未知，不编造为模型额定最大值。原始输入、调整后的值和原因应可查看。
 
-**画布 workflow JSON 与 API prompt JSON 不同**。导入先识别格式，保留布局；本地只转换有显式映射的节点。Python 自定义节点必须在远端安装并锁版本，未知节点显示原因，不宣称任意 ComfyUI 工作流可离线执行。[服务端执行说明](https://docs.comfy.org/development/comfyui-server/comms_routes)
+图像 / 视频不是每个数字独立设上限：宽高倍数、像素预算、帧数形式、batch、采样器 / 蒸馏步数要联合校验。Wan 参考配方的帧数为 `4n+1`；选最接近且不超过请求值的合法档位并回填，若没有合法值就拒绝。固定 QNN 图只允许其已编译的形状选择，不用自由输入伪装成可变图。
 
-远端子图尽量整体执行，避免每一步把 latent 来回传到手机。用户填写自己的 HTTPS/WSS 服务地址；局域网 HTTP 属于明确配置。原生层负责网络和凭据引用，保留 WebView 的离线 CSP；导出的工作流不得含真实密钥。跨设备传输的是经用户选择的素材和可定位的产物，不将手机 `content://` URI 原样传给服务器。
+LoRA 校验基础家族及组件版本。TTS 校验文本长度、语言、声音、参考音频与 codec；输出长度有限制时分段并施加背压。允许任意编辑不等于允许越过原生引擎的真实约束。
 
-保存客户端任务 ID、远端实例 / `prompt_id`、事件序号和结果引用。提交后响应丢失应进入“提交结果待确认”，先对账；原生 ComfyUI 不保证所有请求幂等，不能自动重复提交计费任务。取消按所属实例和任务处理；对共享 ComfyUI 的全局中断不能误杀别人的任务。需要明确单用户实例或具备任务隔离和幂等支持的网关。
+## 本机调度、后台与恢复
 
-## 后台、资源与持久化
+低内存设备默认只有 **一个大型引擎租约**。LLM 写完稿卸载，再跑生图 / 生视频；TTS 完成后再合成。图上的独立分支可以等待就绪，但不能因此同时常驻所有模型。编码器、主干和 VAE 也按配方分阶段加载；只有测量证明足够时才开放并行。
 
-原生服务持有执行任务，Activity/WebView 关闭只移除界面订阅。建议新增 SQLite 的 jobs、nodes、events、artifacts 表，保存状态与配置。典型状态为 `queued → preparing → running → succeeded / failed / cancelled`，另有 `cancelling`、`submission_unknown`、`interrupted`；正在下载的模型显示组件进度。
+使用 SQLite 的 `jobs / nodes / events / artifacts` 保存输入引用、配置快照、状态、事件序号和产物。状态包括 `queued / validating / waiting_assets / running / cancelling / succeeded / failed / cancelled / interrupted`。恢复时先验证已完成产物，未完成节点只有引擎支持 checkpoint 才能续步，否则明确从该节点重跑并记录重试。
 
-低内存设备以一个大型引擎为默认资源租约，先卸载 LLM 再生图；不要同时常驻文本、图像、TTS 和视频全套。只有测得剩余内存充足才开放并行。文本到 TTS 可采用有界短句队列，逐段播放并施加背压，不无限缓存 token 或 PCM。热限制或低电量时可降并发 / 暂停 / 停止，并保留可解释的任务状态。
+前台服务、可见通知、按需唤醒锁和取消操作无需 ROOT。Activity 关闭只取消界面订阅，不取消用户明确启动的任务。热限制 / 低电量可暂停在支持的边界或停止；不支持暂停的引擎不能伪造暂停后续步。系统杀进程、发热和厂商省电仍可能中断，不能保证永不退出或全天满载。
 
-无需 ROOT 可以使用前台服务、用户可见通知和按需唤醒锁，但不能保证永不被杀。服务类型按真实任务和 Android 版本选取；当前 LMA 的 `specialUse` 声明不能作为任意无限后台工作的证明。特别是 Android 15+、target 35+ 的 `dataSync` / `mediaProcessing` 在后台有每类累计 6 小时 / 24 小时限制；不能把它错误套成 Z20 或所有服务的统一上限，也不能靠更名规避。[Android 官方超时说明](https://developer.android.com/develop/background-work/services/fgs/timeout)
+Android 15+、target 35+ 的 `dataSync` / `mediaProcessing` 有每类后台累计 6 小时 / 24 小时限制；这不是所有服务或 Android 9 Z20 的统一上限。按真实用途选择服务类型，当前 `specialUse` 也不证明任意无限后台工作。[Android 官方说明](https://developer.android.com/develop/background-work/services/fgs/timeout) WorkManager 可恢复调度 / 下载，不承担无限推理承诺。
 
-进程死亡后恢复的是任务记录；本地推理只有引擎明确支持 checkpoint 时才能继续中间步，否则重启该节点并记录重试。已完成节点的产物可以复用。远端任务在服务器仍存活时可继续，手机恢复后查询领取；不能承诺手机断电后本机模型仍运行。WorkManager 可用于恢复调度和结果同步，不承担“无限运行”的保证。
+下载结束后使用断网验收任意新提示，覆盖 tokenizer、编码器、所有生成阶段和导出，而不是只播放事先生成的样例。失败只给出本地错误或可用的本地替代模型选项，不更换执行位置。
 
-## 对外接口与示例
+## 类 ComfyUI 的范围
 
-建议先提供异步 `POST /v1/jobs`、`GET /v1/jobs/{id}`、`POST /v1/jobs/{id}/cancel`、带序号的 SSE 事件和鉴权产物读取，再按真实语义适配 `/v1/images/generations`、`/v1/audio/speech` 等子集。**这些多模态端点尚未实现**，不能列入当前 API 使用手册的已支持项。
+可实现相似的节点交互、模板、队列、预览、重跑节点和产物追踪。**不要求手机安装完整 Python / PyTorch / CUDA 服务，不运行任意 ComfyUI custom nodes。** 现有节点的名字相同也不代表参数和采样行为等价。
 
-任务事件区别文本 token、diffusion step、音频 chunk 和 artifact-ready。手机上的 API 可先返回任务 ID，让调用者订阅；长视频不保持一个必然跨小时成功的同步 HTTP 请求。外部接口继续默认本机监听、携带认证，LAN 由用户开启。
+导入分两步：识别 ComfyUI 编辑器图与 API prompt 两种结构，再仅把白名单内可等价实现的节点转换为 LMA 本机节点；列出未支持类型、缺失模型和语义差异。整张图不能完成本地映射就停止导入执行。先发布自有 schema 和可验证模板，再逐项增加兼容层。
 
-[混合视频工作流 JSON](proposals/hybrid-video.workflow.json) 描述：文本输入 → 本地 LLM 编写视频提示与旁白 → 远程已配置的 Wan 模板 + 本地 TTS → 手机合并音视频 → 保存产物。节点间有显式的类型与依赖；示例使用未绑定的模型 / 服务引用，真正执行前必须解析为固定版本及能力。它不下载权重、不启动服务器，也不声称已经有这些实现。
+这不是完整 ComfyUI 兼容声明，也没有外部服务 adapter。[ComfyUI](https://github.com/Comfy-Org/ComfyUI) 的 GPL-3.0、其他节点和引擎许可分别处理；图形概念不意味着可以复制全部实现。
 
-## 首版验收边界
+## 示例、接口与最小验收
 
-先交付模板、真实执行和可恢复队列，再补画布。最小验收链为“离线 TTS”“SD 1.5 单图 + 合法兼容的 LoRA”“远程 ComfyUI 一个固定视频模板”，每条都有实际产物、错误 / 取消、后台和重启证据。另测错端口类型、有环图、缺失依赖、模型间设置独立、联合参数回填、共享依赖删除、远程去重和共享服务取消隔离。
+[本地图片旁白草案](proposals/local-narrated-image.workflow.json)：文本 → 本机 LLM 生成提示 / 旁白 → 本机 SD 1.5 + 本机 TTS → Android 把**静态图**和旁白编码成短片 → 保存。它演示多模态依赖和调度，**不是生成式运动视频**。
 
-结构正确的草案不能证明引擎可用。当前只有文档 / JSON 结构核对，不新增手机推理通过项；发布新 APK 时应单独提升版本、更新双语手册和真实功能演示，保留既有发布附件。
+[本机 Wan 草案](proposals/local-wan-video.workflow.json)：文本 → 本机 LLM 写稿 → 本机 Wan 1.3B + 本机 TTS → 本机合成 → 保存。采用上游参考的 CPU 文本编码 / VAE、Vulkan diffusion、磁盘参数与 tiling；参数和设备准入仍未获 Z20 验证。两份草案都明确 `design_only_not_executable`、模型未绑定、单引擎和禁止外部推理，不能当作已经跑通。
+
+拟提供本机异步 `POST /v1/jobs`、任务查询 / 取消、带序号的 SSE 与鉴权产物读取；文本 token、diffusion step、音频 chunk 和 artifact-ready 分别报告。**这些多模态端点尚未实现**。模型引擎内部回环通信、当前 LMA 向调用者提供接口，都不等于把推理交给其他设备；所有生成仍发生在手机。
+
+首批验收链为离线 TTS、SD 1.5 + 匹配 LoRA、静态图旁白工作流；本机 Wan / 旧 LTX 分开作实验验收。另测环图 / 类型错误、缺失组件、独立参数 / 联合约束、资源排队、取消卸载、共享组件删除和进程中断恢复。保存实际产物、资源数据及锁屏证据。草案结构检查不替代引擎测试；新功能进 APK 时再提升版本、重录真实功能演示。

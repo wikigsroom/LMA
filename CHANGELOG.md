@@ -4,9 +4,10 @@
 
 ## Unreleased / 后续维护
 
-- 2026-10-27：新增生图 / LoRA、TTS、音乐、音效、视频的双语可行性报告，按 Z20、较新旗舰和远程 GPU 区分，核对精确模型版本、原生运行器、Android 示例及许可。Add bilingual feasibility research with device tiers, native runtimes, Android samples and version-specific licensing.
-- 新增类 ComfyUI 的有类型 DAG、模型包、provider、每模型参数、持久化任务与远程协议提案，以及明确不可执行的混合视频 JSON 草案。Document the proposed workflow/bundle/provider/job contracts and a clearly non-executable hybrid-video example.
-- 同步双语 README、文档导航与 v0.2.0 发布后维护说明；当前 APK、运行代码、推荐、截图 / GIF 和已发布附件不变，未新增真机推理结论。Synchronize both READMEs, index and post-release notes without changing APK/runtime/recommendations/media/published assets or claiming device inference.
+- 2026-10-27：按用户要求将多模态扩展重新评估为全部同一 Android 手机执行，撤回外部推理 / 回退方案并记录长期约束。Reassess every multimodal stage for execution on the same Android phone; remove off-device inference/fallback designs and persist the requirement.
+- 修正视频判断：新增 Wan 1.3B Vulkan 与旧 LTX-Video 2B Vulkan / 芯片特定 QNN 的 Android 证据，区分作者手机结果、桌面 CUDA、下载大小和 LMA 实测；补充 Qwen3-TTS Android 示例与许可边界。Correct the video assessment with Android implementation evidence, separate author/desktop/download/device claims, and add Qwen3-TTS Android samples and licensing limits.
+- 更新纯本地 DAG、组件包、独立模型参数、后台任务 / 恢复提案；用图片旁白与本机 Wan 两份明确不可执行的 JSON 替换混合方案，加入来源记录。Revise local DAG/bundle/per-model-settings/background contracts; replace the hybrid example with two non-executable local drafts and a source ledger.
+- 同步双语 README / 指南、导航和 v0.2.0 发布后维护说明。当前 APK、推荐、截图 / GIF 和公开附件不变，未新增手机推理结论。Synchronize bilingual documentation and post-release notes; no APK/recommendation/media/published-asset changes or new phone inference claims.
 
 ## 0.2.0 — 2026-10-27
 

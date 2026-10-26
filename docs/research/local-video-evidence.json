@@ -1,0 +1,214 @@
+{
+  "schema": "lma.research.local-video-evidence/1",
+  "reviewed_on": "2026-10-27",
+  "review_timezone": "Asia/Taipei",
+  "scope": "same_android_phone_no_external_inference",
+  "status": "source_review_only_not_runtime_catalogue",
+  "lma_implementation_present": false,
+  "lma_physical_device_tests": 0,
+  "weights_downloaded": false,
+  "upstream_hashes_independently_verified": false,
+  "entries": [
+    {
+      "id": "saient-wan2.1-1.3b",
+      "evidence": "author_source_and_author_reported_android_execution",
+      "sources": {
+        "pipeline": "https://github.com/SaientAI/saient/blob/main/docs/VIDEO_PIPELINE.md",
+        "android_invocation": "https://github.com/SaientAI/saient/blob/main/modules/saient-diffusion/android/src/main/java/expo/modules/saientdiffusion/SaientDiffusionModule.kt",
+        "model_lock": "https://github.com/SaientAI/saient/blob/main/engine/wan/MODEL_PACK_LOCK.json",
+        "backend_lock": "https://github.com/SaientAI/saient/blob/main/engine/wan/BACKEND_LOCK.json"
+      },
+      "source_urls_are_mutable": true,
+      "backend_declared_by_upstream": {
+        "repository": "https://github.com/leejet/stable-diffusion.cpp",
+        "commit": "e31a86ce9110b11a98bd5990c329093244c2d1e3",
+        "ggml_commit": "eced84c86f8b012c752c016f7fe789adea168e1e",
+        "local_patch": "saient-progress.patch",
+        "license": "MIT",
+        "abi": "arm64-v8a",
+        "android_api": 28
+      },
+      "download_bytes_declared_by_upstream": 4725021654,
+      "files_declared_by_upstream": [
+        {
+          "path": "wan2.1_t2v_1.3B_Q4_K.gguf",
+          "bytes": 816061024,
+          "sha256": "65181afff758fba25cf311399ccb0638a746f8e0e6533e07a84a5a23e0c12318"
+        },
+        {
+          "path": "umt5-xxl-encoder-Q4_K_M.gguf",
+          "bytes": 3655145312,
+          "sha256": "17cf97a5bbbc60a646d6105b832b6f657ce904a8a1ad970e4b59df0c67584a40"
+        },
+        {
+          "path": "wan_2.1_vae.safetensors",
+          "bytes": 253815318,
+          "sha256": "2fc39d31359a4b0a64f55876d8ff7fa8d780956ae2cb13463b0223e15148976b"
+        }
+      ],
+      "execution_profile": {
+        "text_encoder": "cpu",
+        "diffusion": "vulkan",
+        "vae": "cpu",
+        "parameters": "disk",
+        "vae_tiling": true,
+        "unload_chat_first": true
+      },
+      "author_reported_android_device": "Samsung Galaxy S24 SM-S921B",
+      "known_benchmark_trap": {
+        "elapsed_seconds": 14.9,
+        "environment": "cuda (desktop A/B host)",
+        "phone_benchmark": false
+      },
+      "unknowns": [
+        "Z20 driver/operator execution",
+        "peak Android shared RAM",
+        "Z20 time and quality",
+        "screen-off endurance",
+        "independent reproduction and weight hashes"
+      ]
+    },
+    {
+      "id": "ltx-video-2b-0.9.8-distilled-android",
+      "evidence": "conversion_author_model_card_source_and_author_phone_results",
+      "sources": {
+        "model_card": "https://huggingface.co/timmyboy26/LTX-Video-2B-0.9.8-distilled-QNN",
+        "qnn_runner": "https://github.com/timmyy123/LLM-Hub/blob/main/android/stable-diffusion.cpp/src/model/diffusion/ltxv_qnn.hpp",
+        "vulkan_bundle_listing": "https://github.com/timmyy123/LLM-Hub/blob/main/android/app/src/main/java/com/llmhub/llmhub/data/ModelData.kt",
+        "implementation_repository_license": "https://github.com/timmyy123/LLM-Hub/blob/main/LICENSE"
+      },
+      "source_checkpoint": {
+        "repository": "Lightricks/LTX-Video",
+        "revision": "8984fa25007f376c1a299016d0957a37a2f797bb",
+        "file": "ltxv-2b-0.9.8-distilled.safetensors"
+      },
+      "qnn_runtime_version_declared": "2.50.0.260828",
+      "qnn_targets": [
+        {
+          "arch": "v69",
+          "chips": [
+            "Snapdragon 8 Gen 1",
+            "Snapdragon 8+ Gen 1"
+          ],
+          "shape": [
+            512,
+            320,
+            25
+          ]
+        },
+        {
+          "arch": "v73",
+          "chips": [
+            "Snapdragon 8 Gen 2"
+          ],
+          "shape": [
+            512,
+            320,
+            25
+          ]
+        },
+        {
+          "arch": "v73-int",
+          "chips": [
+            "Snapdragon 8s Gen 4",
+            "Snapdragon 8s Gen 3",
+            "Snapdragon 7+ Gen 3",
+            "Snapdragon 7 Gen 4"
+          ],
+          "shape": [
+            512,
+            320,
+            25
+          ],
+          "all_listed_chips_phone_tested_by_author": false
+        },
+        {
+          "arch": "v75",
+          "chips": [
+            "Snapdragon 8 Gen 3"
+          ],
+          "shape": [
+            768,
+            512,
+            25
+          ]
+        },
+        {
+          "arch": "v79",
+          "chips": [
+            "Snapdragon 8 Elite"
+          ],
+          "shape": [
+            768,
+            512,
+            25
+          ]
+        },
+        {
+          "arch": "v81",
+          "chips": [
+            "Snapdragon 8 Elite Gen 5"
+          ],
+          "shape": [
+            768,
+            512,
+            25
+          ]
+        }
+      ],
+      "z20_qnn_bundle_available_in_this_recipe": false,
+      "text_encoder": "T5-XXL CPU required in addition to QNN graphs",
+      "vulkan_route": {
+        "separate_from_qnn": true,
+        "source": "calcuis/ltxv-gguf",
+        "revision_in_listing": "0990265881485e3419312141f6a1974ab2f7a4c6",
+        "total_download_bytes_in_listing": 6653719052,
+        "files_in_listing": [
+          {
+            "path": "ltxv-2b-0.9.8-distilled-q4_0.gguf",
+            "bytes": 1263727104
+          },
+          {
+            "path": "t5xxl_fp16-q4_0.gguf",
+            "bytes": 2896123072
+          },
+          {
+            "path": "ltxv_0.9.5_vae_fp16.safetensors",
+            "bytes": 2493868876
+          }
+        ],
+        "download_bytes_are_not_peak_ram": true
+      },
+      "author_reported_example": {
+        "chip": "Snapdragon 8 Elite",
+        "shape": [
+          768,
+          512,
+          25
+        ],
+        "steps": 8,
+        "elapsed_seconds": 25.9,
+        "lma_measured": false
+      },
+      "licensing": {
+        "model": "LTX-Video Open Weights License 0.x",
+        "implementation_repository": "PolyForm Noncommercial 1.0.0",
+        "qnn_sdk_terms_separate": true,
+        "copy_into_mit_lma_without_license_review": false
+      },
+      "unknowns": [
+        "Z20 Vulkan execution",
+        "peak shared RAM",
+        "LMA integration and licensing path",
+        "independent device reproduction",
+        "screen-off endurance"
+      ]
+    }
+  ],
+  "interpretation": {
+    "source_evidence_is_not_lma_validation": true,
+    "download_size_is_not_memory_requirement": true,
+    "desktop_gpu_recipe_is_not_universal_phone_minimum": true,
+    "old_ltx_video_2b_is_not_ltx_2_3_or_2_5": true
+  }
+}

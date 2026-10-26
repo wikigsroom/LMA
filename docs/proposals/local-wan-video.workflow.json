@@ -1,0 +1,254 @@
+{
+  "schema": "lma.workflow.proposal/0.2",
+  "id": "local-wan-narrated-video",
+  "title": {
+    "zh": "本机 Wan 1.3B 生视频与本地旁白实验",
+    "en": "On-phone Wan 1.3B video and local narration experiment"
+  },
+  "status": "design_only_not_executable",
+  "reviewed_on": "2026-10-27",
+  "implemented_in_lma": false,
+  "tested_on_z20": false,
+  "output_semantics": "experimental_generative_motion_video_with_local_narration",
+  "bindings": {
+    "text_model": {
+      "kind": "local_model_bundle",
+      "resolved": false,
+      "required_task": "text.generate"
+    },
+    "tts_model": {
+      "kind": "local_model_bundle",
+      "resolved": false,
+      "required_task": "speech.synthesize",
+      "family_example": "MOSS-TTS-Nano-100M-or-matching-small-TTS"
+    },
+    "video_model": {
+      "kind": "local_model_bundle",
+      "resolved": false,
+      "required_task": "video.generate",
+      "family_example": "Wan2.1-T2V-1.3B-Q4",
+      "required_components": [
+        "diffusion_backbone",
+        "umt5_text_encoder",
+        "tokenizer",
+        "wan_vae",
+        "native_backend"
+      ],
+      "reference_backend": {
+        "text_encoder": "cpu",
+        "diffusion": "vulkan",
+        "vae": "cpu",
+        "parameters": "disk",
+        "vae_tiling": true
+      },
+      "reference_profile": {
+        "width": 416,
+        "height": 240,
+        "frames": {
+          "min": 5,
+          "max": 41,
+          "form": "4n+1"
+        },
+        "fps": 8,
+        "steps": {
+          "min": 8,
+          "max": 20
+        },
+        "sampler": "euler",
+        "cfg": 6,
+        "flow_shift": 8
+      },
+      "negative_prompt_profile": "resolve_pinned_upstream_recipe_before_execution"
+    }
+  },
+  "policy": {
+    "execution_device": "same_android_phone_for_all_stages",
+    "inference_network": "loopback_only",
+    "asset_network": "explicit_downloads_before_execution_only",
+    "external_inference_providers": "forbidden",
+    "off_device_fallback": "forbidden",
+    "local_large_engine_concurrency": 1,
+    "engine_transition": "unload_before_next_large_engine",
+    "missing_assets": "wait_for_user_download_then_revalidate",
+    "unsupported_device_or_node": "fail_locally_with_reason",
+    "uncheckpointed_resume": "restart_node_and_record_retry",
+    "settings": "snapshot_and_validate_against_pinned_model_provider_and_device",
+    "artifacts": "validated_local_artifact_ids_only"
+  },
+  "nodes": [
+    {
+      "id": "input",
+      "type": "core.text_input",
+      "execution": "local",
+      "inputs": {},
+      "outputs": {
+        "text": "Text"
+      },
+      "parameters": {
+        "text": "为桌面台灯写一段有轻微镜头运动的视频提示词与中文旁白。"
+      }
+    },
+    {
+      "id": "script",
+      "type": "text.compose_media_script",
+      "execution": "local",
+      "binding": "text_model",
+      "inputs": {
+        "text": "Text"
+      },
+      "outputs": {
+        "visual_prompt": "Text",
+        "narration": "Text"
+      },
+      "parameters": {
+        "structured_output": "validate_visual_prompt_and_narration_fields",
+        "invalid_output": "fail_with_parse_error"
+      }
+    },
+    {
+      "id": "video",
+      "type": "video.generate",
+      "execution": "local",
+      "binding": "video_model",
+      "inputs": {
+        "prompt": "Text"
+      },
+      "outputs": {
+        "video": "VideoArtifact"
+      },
+      "parameters": {
+        "width": 416,
+        "height": 240,
+        "frames": 9,
+        "fps": 8,
+        "steps": 8,
+        "seed": 12345,
+        "audio": "none"
+      }
+    },
+    {
+      "id": "narration",
+      "type": "speech.synthesize",
+      "execution": "local",
+      "binding": "tts_model",
+      "inputs": {
+        "text": "Text"
+      },
+      "outputs": {
+        "audio": "AudioArtifact"
+      },
+      "parameters": {
+        "language": "zh",
+        "voice": "bound_model_default",
+        "chunk_queue": "bounded"
+      }
+    },
+    {
+      "id": "compose",
+      "type": "media.compose_narrated_video",
+      "execution": "local",
+      "inputs": {
+        "video": "VideoArtifact",
+        "audio": "AudioArtifact"
+      },
+      "outputs": {
+        "video": "VideoArtifact"
+      },
+      "parameters": {
+        "duration_policy": "pad_last_frame_or_audio_silence_to_longest",
+        "codec_policy": "probe_device_and_encode_or_fail_explicitly"
+      }
+    },
+    {
+      "id": "save",
+      "type": "core.save_artifact",
+      "execution": "local",
+      "inputs": {
+        "artifact": "VideoArtifact"
+      },
+      "outputs": {
+        "artifact": "VideoArtifact"
+      },
+      "parameters": {
+        "destination": "app_private_artifact_store"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": [
+        "input",
+        "text"
+      ],
+      "to": [
+        "script",
+        "text"
+      ]
+    },
+    {
+      "from": [
+        "script",
+        "visual_prompt"
+      ],
+      "to": [
+        "video",
+        "prompt"
+      ]
+    },
+    {
+      "from": [
+        "script",
+        "narration"
+      ],
+      "to": [
+        "narration",
+        "text"
+      ]
+    },
+    {
+      "from": [
+        "video",
+        "video"
+      ],
+      "to": [
+        "compose",
+        "video"
+      ]
+    },
+    {
+      "from": [
+        "narration",
+        "audio"
+      ],
+      "to": [
+        "compose",
+        "audio"
+      ]
+    },
+    {
+      "from": [
+        "compose",
+        "video"
+      ],
+      "to": [
+        "save",
+        "artifact"
+      ]
+    }
+  ],
+  "outputs": {
+    "result": {
+      "node": "save",
+      "port": "artifact",
+      "type": "VideoArtifact"
+    }
+  },
+  "admission": {
+    "classification": "experimental",
+    "require_complete_local_bundle": true,
+    "require_backend_operator_probe": true,
+    "require_device_memory_probe": true,
+    "z20_profile_approved": false,
+    "reference_settings_are_not_device_benchmarks": true
+  }
+}

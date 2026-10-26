@@ -24,7 +24,7 @@ Android 版的本地模型管理、下载、对话和 API 服务应用。当前�
 | 既有模型清单与独立无审查标签依据 | [标签与作者依据](docs/UNCENSORED_MODELS.md) | [Tags and publisher evidence](docs/UNCENSORED_MODELS.en.md) |
 | 技术实现、生命周期、存储与网络 | [架构](docs/ARCHITECTURE.md) | [Architecture](docs/ARCHITECTURE.en.md) |
 | 生图 / 语音 / 音乐 / 视频的 Android 可行性 | [多模态扩展核查](docs/MULTIMODAL.md) | [Multimodal feasibility](docs/MULTIMODAL.en.md) |
-| 类 ComfyUI 节点、引擎与远程执行设计 | [工作流提案](docs/WORKFLOWS.md) | [Workflow proposal](docs/WORKFLOWS.en.md) |
+| 类 ComfyUI 纯本地节点、引擎与后台设计 | [工作流提案](docs/WORKFLOWS.md) | [Workflow proposal](docs/WORKFLOWS.en.md) |
 | curl、Python、PowerShell 和 SSE | [API 接入](docs/API.md) | [API integration](docs/API.en.md) |
 | 工具链、重建和验证 | [构建](docs/BUILD.md) | [Build](docs/BUILD.en.md) |
 | 已通过检查与实测边界 | [验证](docs/VALIDATION.md) | [Validation](docs/VALIDATION.en.md) |
@@ -34,7 +34,7 @@ Android 版的本地模型管理、下载、对话和 API 服务应用。当前�
 
 ## 多模态扩展研究
 
-2026-10-27 已核查图像、TTS、音乐与视频的本机 / 远程运行方案：优先评估小型 TTS、SD 1.5 和远程 ComfyUI，区分 Z20 与较新旗舰，按具体版本检查模型依赖和商业许可。完整矩阵见[多模态报告](docs/MULTIMODAL.md)，节点、模型包、后台任务和接口设计见[工作流提案](docs/WORKFLOWS.md)。**这些是扩展设计，尚未加入当前 APK，也未进行真机生成测试。** 本次文档维护保留 v0.2.0 安装包和原演示素材。
+2026-10-27 按最新要求重新评估：**所有推理、编码器、codec 与工作流合成都在同一 Android 手机执行，不提供其他设备推理或回退；HF 用于下载模型。** Z20 优先小型 TTS、SD 1.5 与匹配 LoRA；新增核查 Wan 1.3B、旧 LTX-Video 2B 的 Android 本机实现，列为设备限定实验，不能推定 Z20 已通过。完整分级、源码与许可见[多模态报告](docs/MULTIMODAL.md)，本地节点、模型包、独立参数与后台恢复见[工作流提案](docs/WORKFLOWS.md)。**这些扩展尚未加入当前 APK，也未进行 LMA 真机生成测试。** 本次仅维护文档，保留 v0.2.0 安装包和原演示素材。
 
 ## 运行方案
 
