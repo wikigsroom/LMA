@@ -1,5 +1,7 @@
 # LMA 0.2.0 architecture
 
+This guide describes the current APK. The separate [workflow proposal](WORKFLOWS.en.md) covers unimplemented multimodal/node extensions; see [feasibility research](MULTIMODAL.en.md) for model selection.
+
 ## HF discovery and Local management
 
 `LmaApp` owns `HubCatalog`; `HubClient` queries HF using native HTTPS. Search and file requests have separate serial workers. Generation counters prevent stale searches replacing newer results; cursors support backward/forward navigation. A repository commit is pinned before tree pagination. Metadata is bounded at 8 MiB per response, 24 repositories per search page, and 100 tree entries per file page. Metadata browsing does not start a foreground service or promise permanent background execution; the inference service remains independent.

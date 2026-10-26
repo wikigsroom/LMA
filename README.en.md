@@ -42,6 +42,10 @@ Signing certificate SHA256: 90444a717a55549e2094364d8d7d005cf8b7f4df24562da62cc1
 
 On Windows, run `Get-FileHash .\LMA-0.2.0-arm64-v8a.apk -Algorithm SHA256`. Release assets include hashes, the dedicated source ZIP, validation JSON, and the walkthrough video. Updates must use the same signing identity; personal builds have their own key.
 
+## Multimodal expansion research
+
+The 2026-10-27 review covers local/remote image, TTS, music and video execution, Z20 versus newer phones, component dependencies and version-specific commercial licenses. Priority candidates are small TTS, SD 1.5 and a remote ComfyUI adapter. See [the feasibility matrix](docs/MULTIMODAL.en.md) and [the workflow/provider/bundle/background proposal](docs/WORKFLOWS.en.md). **These are proposed extensions, not current APK features or phone-tested generation.** This documentation update preserves the v0.2.0 APK and existing demonstrations.
+
 ## Features and workflow
 
 | Page | Actions | State and lifecycle |
@@ -209,6 +213,8 @@ Current evidence is **85 backend + 45 HF logic + 25 protocol + 5 SQLite + 66 UI 
 | [Documentation index](docs/README.md) | All Chinese / English guides |
 | [User guide](docs/USER_GUIDE.en.md) / [中文](docs/USER_GUIDE.md) | Installation, pages, background use, troubleshooting |
 | [Architecture](docs/ARCHITECTURE.en.md) / [中文](docs/ARCHITECTURE.md) | Services, engine, downloads, chat, storage, boundaries |
+| [Multimodal feasibility](docs/MULTIMODAL.en.md) / [中文](docs/MULTIMODAL.md) | Image, speech, music and video models; Android/remote ratings and licenses |
+| [Workflow proposal](docs/WORKFLOWS.en.md) / [中文](docs/WORKFLOWS.md) | Proposed typed DAG, bundles, providers, background jobs and ComfyUI adapter |
 | [API](docs/API.en.md) / [中文](docs/API.md) | Client integration and SSE |
 | [Build](docs/BUILD.en.md) / [中文](docs/BUILD.md) | Toolchain and verification |
 | [HF and local models](docs/HF_MODELS.en.md) / [中文](docs/HF_MODELS.md) | Search, pagination, quantizations, Local management, compatibility and tokens |

@@ -1,0 +1,111 @@
+{
+  "schema": "lma.workflow.proposal/0.1",
+  "id": "hybrid-narrated-video",
+  "title": {
+    "zh": "本地写稿与旁白 + 远程生视频",
+    "en": "Local script and narration with remote video"
+  },
+  "status": "design_only_not_executable",
+  "reviewed_on": "2026-10-27",
+  "requires_remote_opt_in": true,
+  "bindings": {
+    "text_model": {
+      "kind": "local_model_bundle",
+      "resolved": false,
+      "required_task": "text.generate"
+    },
+    "tts_model": {
+      "kind": "local_model_bundle",
+      "resolved": false,
+      "required_task": "speech.synthesize"
+    },
+    "video_recipe": {
+      "kind": "remote_comfyui_recipe",
+      "resolved": false,
+      "family_example": "Wan2.1-T2V-1.3B",
+      "server_ref": "user-selected-server",
+      "credential_ref": "native-private-store-only",
+      "api_prompt_graph_ref": "user-installed-versioned-template",
+      "required_task": "video.generate"
+    }
+  },
+  "policy": {
+    "local_large_engine_concurrency": 1,
+    "remote_submission_retry": "reconcile_before_resubmitting",
+    "uncheckpointed_local_resume": "restart_node_and_record_retry",
+    "settings": "snapshot_and_validate_against_bound_model_provider_and_device",
+    "artifact_transfer": "upload_selected_files_never_phone_uris"
+  },
+  "nodes": [
+    {
+      "id": "input",
+      "type": "core.text_input",
+      "execution": "local",
+      "inputs": {},
+      "outputs": {"text": "Text"},
+      "parameters": {"text": "为一款桌面台灯写一个简短视频提示词与中文旁白。"}
+    },
+    {
+      "id": "script",
+      "type": "text.compose_video_script",
+      "execution": "local",
+      "binding": "text_model",
+      "inputs": {"text": "Text"},
+      "outputs": {"video_prompt": "Text", "narration": "Text"},
+      "parameters": {
+        "structured_output": "validate_video_prompt_and_narration_fields",
+        "invalid_output": "fail_with_parse_error"
+      }
+    },
+    {
+      "id": "video",
+      "type": "remote.comfyui_recipe",
+      "execution": "remote",
+      "binding": "video_recipe",
+      "inputs": {"prompt": "Text"},
+      "outputs": {"video": "VideoArtifact"},
+      "parameters": {
+        "duration_seconds": 5,
+        "audio": "none",
+        "resolution": "bound_recipe_default"
+      }
+    },
+    {
+      "id": "narration",
+      "type": "speech.synthesize",
+      "execution": "local",
+      "binding": "tts_model",
+      "inputs": {"text": "Text"},
+      "outputs": {"audio": "AudioArtifact"},
+      "parameters": {"language": "zh", "voice": "bound_model_default"}
+    },
+    {
+      "id": "mux",
+      "type": "media.compose_narrated_video",
+      "execution": "local",
+      "inputs": {"video": "VideoArtifact", "audio": "AudioArtifact"},
+      "outputs": {"video": "VideoArtifact"},
+      "parameters": {
+        "duration_policy": "pad_last_frame_or_audio_silence_to_longest",
+        "codec_policy": "probe_device_and_encode_or_fail_explicitly"
+      }
+    },
+    {
+      "id": "save",
+      "type": "core.save_artifact",
+      "execution": "local",
+      "inputs": {"artifact": "VideoArtifact"},
+      "outputs": {"artifact": "VideoArtifact"},
+      "parameters": {"destination": "app_private_artifact_store"}
+    }
+  ],
+  "edges": [
+    {"from": ["input", "text"], "to": ["script", "text"]},
+    {"from": ["script", "video_prompt"], "to": ["video", "prompt"]},
+    {"from": ["script", "narration"], "to": ["narration", "text"]},
+    {"from": ["video", "video"], "to": ["mux", "video"]},
+    {"from": ["narration", "audio"], "to": ["mux", "audio"]},
+    {"from": ["mux", "video"], "to": ["save", "artifact"]}
+  ],
+  "outputs": {"result": {"node": "save", "port": "artifact", "type": "VideoArtifact"}}
+}

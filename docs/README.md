@@ -10,6 +10,8 @@
 | API 与 SSE / API and streaming | [API.md](API.md) | [API.en.md](API.en.md) |
 | 构建 / Building | [BUILD.md](BUILD.md) | [BUILD.en.md](BUILD.en.md) |
 | 架构 / Architecture | [ARCHITECTURE.md](ARCHITECTURE.md) | [ARCHITECTURE.en.md](ARCHITECTURE.en.md) |
+| 多模态可行性研究 / Multimodal feasibility research | [MULTIMODAL.md](MULTIMODAL.md) | [MULTIMODAL.en.md](MULTIMODAL.en.md) |
+| 工作流框架提案 / Workflow framework proposal | [WORKFLOWS.md](WORKFLOWS.md) | [WORKFLOWS.en.md](WORKFLOWS.en.md) |
 | HF 发现与本地管理 / HF discovery and Local | [HF_MODELS.md](HF_MODELS.md) | [HF_MODELS.en.md](HF_MODELS.en.md) |
 | 模型独立参数 / Per-model settings | [MODEL_SETTINGS.md](MODEL_SETTINGS.md) | [MODEL_SETTINGS.en.md](MODEL_SETTINGS.en.md) |
 | 无审查模型 / Uncensored models | [UNCENSORED_MODELS.md](UNCENSORED_MODELS.md) | [UNCENSORED_MODELS.en.md](UNCENSORED_MODELS.en.md) |
@@ -23,6 +25,7 @@
 
 - **用户 / Users：** README → 使用手册 / User guide → API → 常见问题 / Troubleshooting in the user guide。
 - **开发者 / Developers：** 构建 / Build → 架构 / Architecture → 验证 / Validation → 贡献约定 / Contributing。
+- **业务扩展 / Expansion：** 多模态可行性 / Multimodal feasibility → 工作流提案 / Workflow proposal → [JSON 草案 / JSON draft](proposals/hybrid-video.workflow.json)。这是未实现设计，不属于当前 APK 能力 / Unimplemented design, not current APK capabilities。
 - **验收 / Acceptance：** [完成条件核对](COMPLETION_AUDIT.md) → 真机验收 / Device acceptance → [`verification/`](../verification/)。
 
 ## 证据和历史记录 / Evidence and audit history

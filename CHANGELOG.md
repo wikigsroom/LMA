@@ -4,7 +4,9 @@
 
 ## Unreleased / 后续维护
 
-No additional changes queued. 暂无未发布改动。
+- 2026-10-27：新增生图 / LoRA、TTS、音乐、音效、视频的双语可行性报告，按 Z20、较新旗舰和远程 GPU 区分，核对精确模型版本、原生运行器、Android 示例及许可。Add bilingual feasibility research with device tiers, native runtimes, Android samples and version-specific licensing.
+- 新增类 ComfyUI 的有类型 DAG、模型包、provider、每模型参数、持久化任务与远程协议提案，以及明确不可执行的混合视频 JSON 草案。Document the proposed workflow/bundle/provider/job contracts and a clearly non-executable hybrid-video example.
+- 同步双语 README、文档导航与 v0.2.0 发布后维护说明；当前 APK、运行代码、推荐、截图 / GIF 和已发布附件不变，未新增真机推理结论。Synchronize both READMEs, index and post-release notes without changing APK/runtime/recommendations/media/published assets or claiming device inference.
 
 ## 0.2.0 — 2026-10-27
 
