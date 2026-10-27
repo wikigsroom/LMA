@@ -48,3 +48,5 @@
 **界面演示不等于真机验收。UI demonstrations do not establish physical-device inference or background endurance.**
 
 - 本地语音基座 / Local speech implementation: [中文](TTS_ENGINE.md) · [English](TTS_ENGINE.en.md)，编译与主机证据，尚无真机推理 / compiled and host evidence only, without device inference.
+
+- Nano 本地语音执行 / Nano speech execution: [中文](MOSS_NANO_ENGINE.md) · [English](MOSS_NANO_ENGINE.en.md)，任意文本与用户资产工作区；没有实际模型 / 真机证据 / arbitrary text and user-asset workspaces, without actual model/device evidence.

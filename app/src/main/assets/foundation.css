@@ -10,3 +10,8 @@
 .adapter-choice input { width: 16px; height: 16px; margin-top: 2px; flex-shrink: 0; }
 .task-adapter .form-field { margin: 0; }
 .task-adapter .form-field input { width: 100%; min-width: 0; }
+
+/* Expanded component hashes must wrap inside narrow recipe forms. */
+.hub-file details { width: 100%; min-width: 0; }
+.hub-file details summary, .hub-file details code { overflow-wrap: anywhere; word-break: break-word; font-size: 11px; }
+.hub-file details code { display: block; max-width: 100%; }

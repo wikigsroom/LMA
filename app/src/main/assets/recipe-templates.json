@@ -837,6 +837,222 @@
         }
       ],
       "help": "请选择此架构对应的 sherpa-onnx 导出模型、配套 tokens 与其他组件。此模板使用下方明确列出的英语 lexicon，不提供语音克隆或自动转换。音色实际范围由模型加载后核对。"
+    },
+    {
+      "id": "moss_nano_cpu_v1",
+      "name": "MOSS-TTS-Nano · ONNX + codec",
+      "primaryRole": "tts_prefill",
+      "definition": {
+        "engine": "moss_nano_ort",
+        "backend": "cpu",
+        "architecture": "moss_tts_nano",
+        "pipeline": "moss_nano",
+        "tasks": [
+          "audio"
+        ],
+        "capabilities": [
+          "text_to_speech"
+        ],
+        "parameters": {
+          "version": 1,
+          "fields": {
+            "threads": {
+              "type": "integer",
+              "label": "CPU 线程",
+              "default": 2,
+              "minimum": 1,
+              "maximum": 16,
+              "presets": [
+                1,
+                2,
+                4
+              ],
+              "limitSource": "application_guard"
+            },
+            "speaker": {
+              "type": "integer",
+              "label": "音色编号",
+              "default": 0,
+              "minimum": 0,
+              "maximum": 127,
+              "presets": [
+                0
+              ],
+              "limitSource": "application_guard"
+            },
+            "maxFrames": {
+              "type": "integer",
+              "label": "音频 token 帧上限",
+              "default": 375,
+              "minimum": 1,
+              "maximum": 1500,
+              "presets": [
+                125,
+                250,
+                375,
+                750
+              ],
+              "limitSource": "application_guard"
+            },
+            "maxInputTokens": {
+              "type": "integer",
+              "label": "文本 token 预算",
+              "default": 1024,
+              "minimum": 1,
+              "maximum": 2048,
+              "presets": [
+                256,
+                512,
+                1024
+              ],
+              "limitSource": "application_guard"
+            },
+            "seed": {
+              "type": "integer",
+              "label": "随机种子",
+              "default": 1234,
+              "minimum": 0,
+              "maximum": 2147483647,
+              "presets": [
+                1234
+              ],
+              "limitSource": "application_guard"
+            }
+          }
+        }
+      },
+      "requirements": [
+        {
+          "role": "manifest",
+          "label": "含音色提示的 browser manifest",
+          "formats": [
+            "json"
+          ],
+          "required": true
+        },
+        {
+          "role": "tts_meta",
+          "label": "TTS ONNX metadata",
+          "formats": [
+            "json"
+          ],
+          "required": true
+        },
+        {
+          "role": "codec_meta",
+          "label": "codec ONNX metadata",
+          "formats": [
+            "json"
+          ],
+          "required": true
+        },
+        {
+          "role": "text_tokenizer",
+          "label": "配套 SentencePiece tokenizer.model",
+          "formats": [
+            "sentencepiece"
+          ],
+          "required": true
+        },
+        {
+          "role": "tts_prefill",
+          "label": "prefill ONNX",
+          "formats": [
+            "onnx"
+          ],
+          "required": true
+        },
+        {
+          "role": "tts_decode",
+          "label": "decode_step ONNX",
+          "formats": [
+            "onnx"
+          ],
+          "required": true
+        },
+        {
+          "role": "tts_local",
+          "label": "local_fixed_sampled_frame ONNX",
+          "formats": [
+            "onnx"
+          ],
+          "required": true
+        },
+        {
+          "role": "codec_decode",
+          "label": "codec decode_full ONNX",
+          "formats": [
+            "onnx"
+          ],
+          "required": true
+        },
+        {
+          "role": "tts_data_1",
+          "label": "tts 外置权重 .data 1（按图依赖选择）",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": false
+        },
+        {
+          "role": "tts_data_2",
+          "label": "tts 外置权重 .data 2（按图依赖选择）",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": false
+        },
+        {
+          "role": "tts_data_3",
+          "label": "tts 外置权重 .data 3（按图依赖选择）",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": false
+        },
+        {
+          "role": "tts_data_4",
+          "label": "tts 外置权重 .data 4（按图依赖选择）",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": false
+        },
+        {
+          "role": "codec_data_1",
+          "label": "codec 外置权重 .data 1（按图依赖选择）",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": false
+        },
+        {
+          "role": "codec_data_2",
+          "label": "codec 外置权重 .data 2（按图依赖选择）",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": false
+        },
+        {
+          "role": "codec_data_3",
+          "label": "codec 外置权重 .data 3（按图依赖选择）",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": false
+        },
+        {
+          "role": "codec_data_4",
+          "label": "codec 外置权重 .data 4（按图依赖选择）",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": false
+        }
+      ],
+      "fixedComponents": [],
+      "help": "仅接受匹配的 Nano browser ONNX 导出与 decode_full codec；不是其他 MOSS 架构。须自行选择图引用的全部 .data，缺少数据会在本机报错。所有词表和音色均需用户下载；不提供参考音频克隆。音色编号按已下载 manifest 回填，数值上限为应用保护值，手机效果与内存待实测。"
     }
   ]
 }

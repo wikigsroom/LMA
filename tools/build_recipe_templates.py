@@ -36,10 +36,27 @@ def build():
                           "requirements": [{"role": role, "label": role, "formats": formats[role], "required": True} for role in roles],
                           "fixedComponents": [copy.deepcopy(c) for c in source["components"] if c["role"] == "lexicon"],
                           "help": "请选择此架构对应的 sherpa-onnx 导出模型、配套 tokens 与其他组件。此模板使用下方明确列出的英语 lexicon，不提供语音克隆或自动转换。音色实际范围由模型加载后核对。"})
+    fields = {}
+    for key, label, default, low, high, presets in (
+        ("threads", "CPU 线程", 2, 1, 16, [1, 2, 4]), ("speaker", "音色编号", 0, 0, 127, [0]),
+        ("maxFrames", "音频 token 帧上限", 375, 1, 1500, [125, 250, 375, 750]),
+        ("maxInputTokens", "文本 token 预算", 1024, 1, 2048, [256, 512, 1024]),
+        ("seed", "随机种子", 1234, 0, 2147483647, [1234])):
+        fields[key] = dict(type="integer", label=label, default=default, minimum=low, maximum=high, presets=presets, limitSource="application_guard")
+    roles = [("manifest", "含音色提示的 browser manifest", "json"), ("tts_meta", "TTS ONNX metadata", "json"), ("codec_meta", "codec ONNX metadata", "json"),
+        ("text_tokenizer", "配套 SentencePiece tokenizer.model", "sentencepiece"), ("tts_prefill", "prefill ONNX", "onnx"), ("tts_decode", "decode_step ONNX", "onnx"),
+        ("tts_local", "local_fixed_sampled_frame ONNX", "onnx"), ("codec_decode", "codec decode_full ONNX", "onnx")]
+    requirements = [dict(role=role, label=label, formats=[fmt], required=True) for role, label, fmt in roles]
+    for group in ("tts", "codec"):
+        for index in range(1, 5): requirements.append(dict(role=f"{group}_data_{index}", label=f"{group} 外置权重 .data {index}（按图依赖选择）", formats=["onnx_data"], required=False))
+    templates.append(dict(id="moss_nano_cpu_v1", name="MOSS-TTS-Nano · ONNX + codec", primaryRole="tts_prefill",
+        definition=dict(engine="moss_nano_ort", backend="cpu", architecture="moss_tts_nano", pipeline="moss_nano", tasks=["audio"], capabilities=["text_to_speech"], parameters=dict(version=1, fields=fields)),
+        requirements=requirements, fixedComponents=[],
+        help="仅接受匹配的 Nano browser ONNX 导出与 decode_full codec；不是其他 MOSS 架构。须自行选择图引用的全部 .data，缺少数据会在本机报错。所有词表和音色均需用户下载；不提供参考音频克隆。音色编号按已下载 manifest 回填，数值上限为应用保护值，手机效果与内存待实测。"))
     return {"schema": "lma.recipe-catalogue/1", "templates": templates}
 
 
 if __name__ == "__main__":
     target = ROOT / "app/src/main/assets/recipe-templates.json"
     target.write_text(json.dumps(build(), ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print("Generated 7 data-only component recipes; no weights or tokenizer data.")
+    print("Generated 8 data-only component recipes; no weights or tokenizer data.")

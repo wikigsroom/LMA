@@ -1,7 +1,7 @@
 {
-  "apk": "LMA-0.3.0-dev.5-arm64-v8a.apk",
-  "sha256": "3a95eeea86f2c370bbd65a6312b4b6bf20901265f72c5b95e7281cb168f40266",
-  "native_libraries_verified": 18,
+  "apk": "LMA-0.3.0-dev.6-arm64-v8a.apk",
+  "sha256": "02000e1a750223deb1f56f183fc3510ffe868f52561380029db311c42bc5df85",
+  "native_libraries_verified": 19,
   "all_native_dependencies_resolved": true,
   "all_elf_load_segments_16k_aligned": true,
   "final_apk_zip_alignment_verified": true,
@@ -350,6 +350,24 @@
         27
       ],
       "16k_elf_aligned": true
+    },
+    "liblma-moss-nano.so": {
+      "machine": "aarch64",
+      "needed": [
+        "libonnxruntime.so",
+        "libm.so",
+        "libdl.so",
+        "libc.so"
+      ],
+      "load_segment_alignment": [
+        16384
+      ],
+      "interpreter": "/system/bin/linker64",
+      "entry_point": 203904,
+      "android_api_notes": [
+        28
+      ],
+      "16k_elf_aligned": true
     }
   },
   "physical_device_tested": false,
@@ -372,6 +390,6 @@
   "input_fingerprint": {
     "catalogue/uncensored-evidence.json": "63f05e854772ade227750b19cb2288ebe53abb0d346ccc08cf5317b768ef5082",
     "third_party/BUILD_INFO.json": "de40253f34d47e5b692e8cd97d87eaa4ecbe549303718f69d286c85f81422acc",
-    "tools/verify_package.py": "202b4b98efde4ffb2b197557d8220ceae786026dcf02b343da846bcd96894dea"
+    "tools/verify_package.py": "922bca4be70ae2191c4615976aa5b8c2b1408e13988c64939cf7f1b691016c53"
   }
 }

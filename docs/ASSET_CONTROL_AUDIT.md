@@ -18,3 +18,5 @@
 需求依据已同时出现在 [中文需求](MULTIMODAL_RELEASE_PLAN.md)、[English requirements](MULTIMODAL_RELEASE_PLAN.en.md)、[发版摘要](releases/v0.3.0-plan.md)、[结构化策略](proposals/multimodal-release-scope.json)、[仓库约定](../AGENTS.md)与[发布流程](RELEASING.md)，彼此没有要求终端用户全量下载模型的冲突。
 
 后续按 A11 验收零模型安装 / 升级、浏览无下载、显式选择范围、模型独立更新、升级保留和共享资产删除保护。**结论：需求基线一致；实现和设备验收继续逐项补齐。** 不应把模型目录登记数、下载成功或桌面演示当成手机已支持模型数。
+
+dev.6 新增 Nano 签名 worker 和第八种显式 HF 配方。词表、音色提示 codes 与外置 `.data` 仍为用户资产；临时执行工作区仅建立持有租约的硬链接，不安装或更新模型数据。见 [Nano 说明](MOSS_NANO_ENGINE.md)。

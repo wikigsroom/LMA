@@ -136,7 +136,7 @@ With networking disabled, tokenization, text/reference encoding, sampling, VAE/c
 
 Foreground services need no ROOT, but vendor battery policy, low memory, OS termination and heat can interrupt work. Background API/queue acceptance is separate from generation quality; neither 24/7 full load nor immunity from Android timeouts is promised. Select service types according to actual work and Android version. [Background limits](WORKFLOWS.en.md)
 
-The current build repackages prebuilt text libraries. New engines need native Windows NDK/CMake/dependencies, ABI/page-size checks and license packaging. Old build success does not validate a new engine. Tie engine/model support to the signed APK; do not put executable scripts in model data.
+Development builds compile diffusion and speech workers with native Windows NDK/CMake and retain reviewed prebuilt text/ORT dependencies. Remaining engines need their own builds, ABI/page-size checks and license packaging; existing build success does not establish full target/device acceptance. Tie engine/model support to the signed APK; do not put executable scripts in model data.
 
 ## 08 · One complete release and release gates
 

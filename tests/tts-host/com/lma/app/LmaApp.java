@@ -4,6 +4,7 @@ import java.io.File;
 public final class LmaApp {
     public final Object nativeProcessLock = new Object();
     public volatile Process nativeProcess;
+    public com.lma.app.core.BundleStore bundles;
     private final File files;
     public LmaApp(File files) { this.files = files; files.mkdirs(); }
     public File getFilesDir() { return files; }

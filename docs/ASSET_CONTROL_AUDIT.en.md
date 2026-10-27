@@ -18,3 +18,5 @@ Reviewed 2026-10-28. **Current requirements match foundation-only App updates wi
 The [Chinese requirements](MULTIMODAL_RELEASE_PLAN.md), [English requirements](MULTIMODAL_RELEASE_PLAN.en.md), [summary](releases/v0.3.0-plan.md), [structured policy](proposals/multimodal-release-scope.json), [repository instructions](../AGENTS.md) and [release workflow](RELEASING.md) agree. None require end users to download every supported model.
 
 A11 still requires zero-model install/upgrade, no downloads during browsing, explicit selection boundaries, independent asset updates, preservation and shared-object deletion checks. The document baseline is consistent; implementation and device evidence remain open. Catalogue counts, successful downloads and desktop UI demonstrations are not counts of models accepted on a phone.
+
+Dev.6 adds the Nano signed worker and eighth explicit HF recipe. Tokenizers, voice-prompt codes and external `.data` remain user-owned components; temporary execution workspaces use leased hardlinks and do not install/update model data. [Nano details](MOSS_NANO_ENGINE.en.md).

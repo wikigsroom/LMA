@@ -1,0 +1,45 @@
+{
+  "sources": {
+    "moss-nano": "8b7bcc9341b3b4ef3a3a58ba1338a7d85ff133eb",
+    "sentencepiece": "31646a467d2051eb904e0b45de3a73e91fe1c1e3",
+    "onnxruntime-headers": "33ca9628233dc8f002435e868d4c2e9f82766ca1"
+  },
+  "files": [
+    {
+      "file": "moss-moss-nano-LICENSE.txt",
+      "sha256": "1bb88ea80ef0b45389e3868a1395d68d99bd2700be26166aa67aae0d2bba2767",
+      "source": "https://github.com/OpenMOSS/MOSS-TTS-Nano/blob/8b7bcc9341b3b4ef3a3a58ba1338a7d85ff133eb/LICENSE"
+    },
+    {
+      "file": "moss-sentencepiece-LICENSE.txt",
+      "sha256": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5",
+      "source": "https://github.com/google/sentencepiece/blob/31646a467d2051eb904e0b45de3a73e91fe1c1e3/LICENSE"
+    },
+    {
+      "file": "moss-sentencepiece-third_party-protobuf-lite-LICENSE.txt",
+      "sha256": "f4df8b2457697851385d9ebb93267832c1dfa24e0e61881952f6b0c452663dc9",
+      "source": "https://github.com/google/sentencepiece/blob/31646a467d2051eb904e0b45de3a73e91fe1c1e3/third_party/protobuf-lite/LICENSE"
+    },
+    {
+      "file": "moss-sentencepiece-third_party-darts_clone-LICENSE.txt",
+      "sha256": "ed8437dc7358a40ef10afd3635ac1cd43c88fbaaaf6cd27c414f8ada5d68f447",
+      "source": "https://github.com/google/sentencepiece/blob/31646a467d2051eb904e0b45de3a73e91fe1c1e3/third_party/darts_clone/LICENSE"
+    },
+    {
+      "file": "moss-sentencepiece-third_party-absl-LICENSE.txt",
+      "sha256": "7871ddb0d7635157a82afc21720d795660a024c59652b7a5b1ed812355320fdc",
+      "source": "https://github.com/google/sentencepiece/blob/31646a467d2051eb904e0b45de3a73e91fe1c1e3/third_party/absl/LICENSE"
+    },
+    {
+      "file": "moss-onnxruntime-LICENSE.txt",
+      "sha256": "c250d6278f0b47a6439fb7592b08b58a55eb9f535aa49a1db63211c3f982b674",
+      "source": "https://github.com/microsoft/onnxruntime/blob/33ca9628233dc8f002435e868d4c2e9f82766ca1/LICENSE"
+    },
+    {
+      "file": "moss-onnxruntime-ThirdPartyNotices.txt.txt",
+      "sha256": "fb0af774b4d7cffc5b9d046f2aaeade2f37df2f80abf8033c95dfffcc77a8866",
+      "source": "https://github.com/microsoft/onnxruntime/blob/33ca9628233dc8f002435e868d4c2e9f82766ca1/ThirdPartyNotices.txt"
+    }
+  ],
+  "model_assets": false
+}

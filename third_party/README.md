@@ -18,3 +18,7 @@ Model weights are not redistributed in the APK. Each catalogue entry links to it
 ## Added development worker
 
 0.3.0-dev adds a locally compiled ARM64 CPU sd.cpp worker, pinned with ggml in [engine-lock.json](engine-lock.json). Native Windows NDK 30.0.16248370 builds it; the temporary SUBST path alias is not virtualization. [Native sources](../native/CMakeLists.txt) replace embedded model vocabularies with externally installed user data. The 13 `sd-*` notice files come from the exact checkout and NDK, recorded in [sd-sources.json](notices/sd-sources.json). This proves compilation/packaging provenance, not phone inference or all selected-model support. Existing ServLlama binaries retain their original provenance. See [development status](../docs/DEVELOPMENT.en.md).
+
+## MOSS Nano adapter
+
+Pinned MOSS/SentencePiece/ORT headers and exact shared ORT bytes are recorded in [moss-nano-source-lock.json](moss-nano-source-lock.json). Seven upstream notice originals are collected from clean pinned sources. The signed worker uses external user-selected model data and shares one verified ORT file with sherpa. [中文](../docs/MOSS_NANO_ENGINE.md) · [English](../docs/MOSS_NANO_ENGINE.en.md).

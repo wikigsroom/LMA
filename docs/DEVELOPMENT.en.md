@@ -2,7 +2,7 @@
 
 [中文](DEVELOPMENT.md) · [Full scope](MULTIMODAL_RELEASE_PLAN.en.md) · [Build](BUILD.en.md) · [English home](../README.en.md)
 
-The current public release remains **v0.2.0**. This branch is **0.3.0-dev.5 / versionCode 9**, not the complete v0.3.0, and has no new Release. All F-01–F-12 requirements, selections 01–14/16/17 and frozen subtargets still belong to one delivery. This is implementation progress within that release, not a split roadmap.
+The current public release remains **v0.2.0**. This branch is **0.3.0-dev.6 / versionCode 10**, not the complete v0.3.0, and has no new Release. All F-01–F-12 requirements, selections 01–14/16/17 and frozen subtargets still belong to one delivery. This is implementation progress within that release, not a split roadmap.
 
 ## Implemented development code
 
@@ -11,7 +11,7 @@ The current public release remains **v0.2.0**. This branch is **0.3.0-dev.5 / ve
 | Bundles/components | `lma.model-bundle/1` and `/2`, pinned revisions/sizes/SHA256 or Git blob identity with measured SHA256, shared content objects, atomic installation, pause/resume, explicit folder import, deletion/reference protection | Byte fixtures and real host HTTP transfers, not model inference |
 | User control | Declaration, browsing and planning create no transfers; downloads require a separate action; missing assets fail locally; interrupted transfers pause for manual resumption | Does not install the entire catalogue or implicitly download models |
 | Settings | Per-bundle settings, editable presets, numerical clamping, joint shape checks and immutable submitted snapshots | Recipe limits and device budgets are separate; unknown maxima are not verified |
-| UI | Legacy text and bundles share a flat list; text/image/video/audio filters, bundle details, task forms, queue and artifacts; Recommended stays m08 → m06 → m01 | All contains pinned SD1.5 and three TTS candidates; custom manifests enter through Add model; dev.5 adds seven explicit HF component templates without universal architecture support |
+| UI | Legacy text and bundles share a flat list; text/image/video/audio filters, bundle details, task forms, queue and artifacts; Recommended stays m08 → m06 → m01 | All contains pinned SD1.5 and three TTS candidates; custom manifests enter through Add model; dev.6 offers eight explicit HF component templates without universal architecture support |
 | Jobs/artifacts | One heavy job, submit/cancel/retry, persistent events, private results, hashes/provenance, system export and image/WAV/MP4 inspection/ranged preview | Bounded AtomicFile JSON currently stores these records; existing chat SQLite remains; legacy text is not fully unified yet |
 | Unified gateway | Start with zero models; authenticated model/engine/job/event/artifact Range routes; public text proxy applies profile bounds and tracks leases; native text stays on a separate loopback port/secret | Production HTTP/stores use real host sockets and explicit execution fixtures; no model downloads or inference redirects |
 | Android execution | Signed-in sd.cpp ARM64 CPU worker, data-only model bundles, external user-supplied vocabularies, child lifetime bound to its host | Compiled/packaged, **no phone inference**; upstream architectures do not prove accepted recipes |
@@ -28,12 +28,12 @@ Custom manifests gain neither device-validated status nor checked uncensored dec
 
 | Check | Result | What it establishes |
 | --- | --- | --- |
-| Foundation core | 217 assertions | Component integrity, real HTTP resumption, shared references, independent settings, queue ownership/cancellation/restart, artifacts and ranged reads |
+| Foundation core | 240 assertions | Component integrity, real HTTP resumption, shared references, independent settings, queue ownership/cancellation/restart, artifacts and ranged reads |
 | API/transport | 67 assertions | Auth, zero-model state, JSON/framing limits, idempotency/cancel/events, exact artifacts/Range/leases and text policy; actual host sockets, not Android inference |
 | Legacy backend/proxy | 98 assertions | Host Android adapters exercising downloads, actual child processes, HTTP SSE and per-model settings |
-| HF logic | 74 assertions | Search, pinned revisions, pagination/selection and token boundaries, not universal HF execution |
-| UI | 112 assertions | Actual HTML/CSS/JS with explicit simulated native state; recommendation/tag/download/form/queue/narrow-screen regressions |
-| Native package | 18 ARM64 files | Pinned hashes, resolved dependencies, Android API 28, 16 KiB ELF/APK alignment, original signing identity, asset allowlist |
+| HF logic | 76 assertions | Search, pinned revisions, pagination/selection and token boundaries, not universal HF execution |
+| UI | 118 assertions | Actual HTML/CSS/JS with explicit simulated native state; recommendation/tag/download/form/queue/narrow-screen regressions |
+| Native package | 19 ARM64 files | Pinned hashes, resolved dependencies, Android API 28, 16 KiB ELF/APK alignment, original signing identity, asset allowlist |
 | Phone inference/endurance | 0 | No actual image/audio/motion-video or sustained screen-off inference evidence |
 
 sd.cpp is pinned to `be486498eadc29dc3cd234d944c2180ed42b1415`, ggml to `a5915eb0e47adef21c3f25b889a008925ea838c2`, built using project-local NDK 30.0.16248370 on native Windows. The added worker SHA256 is `2a84b898dfd61596c73096ec37c83c9a28127070c395ec4dad4779a242733e9c`. See [engine-lock.json](../third_party/engine-lock.json) for hashes/notices. Only actual compiled modules are registered, without empty providers counted as support.
@@ -90,3 +90,7 @@ Schema 2 adds Git blob identity, measured SHA256 receipts, task component proven
 
 ![HF recipe UI fixture](media/development/12-hf-components.png)
 ![HF component-file UI fixture](media/development/13-hf-component-files.png)
+
+## dev.6: MOSS Nano execution and private asset workspaces
+
+Add a compiled ARM64 SentencePiece/ONNX/codec speech worker, an eighth HF component template, explicit external-data selection, private leased hardlinks and shared ORT conflict checks. 190 new host checks cover Java contracts/real child processes and hardlinks, executed C++ reference validation and dependency identity. All tokenizer, voice and weight data stays user-selected. See [complete route, bounds, sources and limitations](MOSS_NANO_ENGINE.en.md) and [checkpoint notes](releases/v0.3.0-dev.6.md). No actual MOSS speech or device evidence exists; 09 and every complete-v0.3.0 target remain mandatory.

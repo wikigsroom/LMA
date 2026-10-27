@@ -2,7 +2,7 @@
 
 [English](HF_RECIPES.en.md) · [HF 发现](HF_MODELS.md) · [开发状态](DEVELOPMENT.md) · [资产边界核对](ASSET_CONTROL_AUDIT.md)
 
-适用：**0.3.0-dev.5 / code 9，内部开发检查点，未发 Release**。App 提供代码与配方元数据，用户选择和管理模型资产。以下流程不表示任意 HF 权重均能在 Android 上运行；实际架构、语言、组件配套、许可和设备资源仍需核对。
+适用：**0.3.0-dev.6 / code 10，内部开发检查点，未发 Release**。App 提供代码与配方元数据，用户选择和管理模型资产。以下流程不表示任意 HF 权重均能在 Android 上运行；实际架构、语言、组件配套、许可和设备资源仍需核对。
 
 ## 用户操作
 
@@ -30,7 +30,7 @@ Git blob SHA-1 **不是**原始文件 SHA-1，也不是发布者 SHA256。普通
 
 ## 验证与演示边界
 
-存储 / 校验 217 项检查含 87 项新增配方与 Git 完整性断言；HF 元数据 / 原生控制器及 UI 回归另见 [development 回执](../verification/development/status.json)。桌面检查使用任意字节或显式模拟原生状态，未下载测试权重，不是模型输出、手机安装或锁屏耐久证据。
+存储 / 校验 240 项检查含 110 项新增配方与 Git 完整性断言；HF 元数据 / 原生控制器及 UI 回归另见 [development 回执](../verification/development/status.json)。桌面检查使用任意字节或显式模拟原生状态，未下载测试权重，不是模型输出、手机安装或锁屏耐久证据。
 
 ![HF 组件选择流程，显式 UI 测试数据](media/development/12-hf-components.png)
 
@@ -41,3 +41,7 @@ Git blob SHA-1 **不是**原始文件 SHA-1，也不是发布者 SHA256。普通
 元数据字段依据核对日期为 2026-10-28 的 [HF 官方 SDK `RepoFile` 解析](https://github.com/huggingface/huggingface_hub/blob/main/src/huggingface_hub/hf_api.py)及[官方文件树 API 说明](https://huggingface.co/docs/huggingface_hub/package_reference/hf_api#huggingface_hub.HfApi.list_repo_tree)：普通文件的 `oid` 与 LFS 的 `oid` 含义不同。当前新增控制器检查使用确定性元数据夹具；本轮直连 HF 超时、镜像 403，未取得新的实时文件树验收，也未下载权重。
 
 ![登记后的独立下载计划，界面测试数据](media/development/14-hf-download-plan.png)
+
+## Nano 外置数据配方
+
+第八种模板仅面向 MOSS-TTS-Nano browser ONNX 及完整 codec。`.model` SentencePiece 与 `.data` 外置权重都是用户单独选择的组件。八个核心角色必选，被图引用的数据在执行时同样必须齐全；登记不创建传输。详见 [Nano 角色、保护值、构建与证据](MOSS_NANO_ENGINE.md)。

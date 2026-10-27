@@ -87,3 +87,7 @@ python tools/check_repository.py
 ## 开发语音引擎
 
 在扩散源码与 Windows NDK 准备完成后，依次运行 `python tools/fetch_tts.py --transport ssh`、`python tools/build_tts.py`、`python tools/collect_tts_notices.py`；然后运行 `python tools/test_tts.py` 和通用 APK 构建 / 检查。下载的是固定代码库和通用许可，不含模型。sherpa / ORT 使用上游预编译库，LMA worker 使用本项目 NDK 编译；源码 / 哈希 / 参数 / 验证边界见 [TTS_ENGINE.md](TTS_ENGINE.md)。
+
+## Nano 原生执行器
+
+完成共享 ORT / sd.cpp 前提后，依次运行 `fetch_moss_nano.py`、`build_moss_nano.py`、`collect_moss_nano_notices.py`、`test_moss_nano.py`，再执行通用 APK 检查。源码固定，使用原生 Windows 工具；主机 C++ 解析检查需 MSVC，可由 `LMA_VCVARS` 指定初始化脚本；不使用虚拟化。见[完整步骤](MOSS_NANO_ENGINE.md)。

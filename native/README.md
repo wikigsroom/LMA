@@ -1,6 +1,6 @@
 # Internal Android worker / Android 内部执行器
 
-This directory contains App code, not model weights or an executable model plugin system. 当前仅有实际编译的 `sd_cpp` CPU worker，不代表所有模型目标已经适配或经手机验证。
+This directory contains App code, not model weights or an executable model plugin system. 当前有实际编译的 `sd_cpp`、`sherpa_tts` 与 `moss_nano_ort` CPU worker，不代表所有模型目标已经适配或经手机验证。
 
 - `CMakeLists.txt` builds the exact pinned upstream sd.cpp / ggml from `third_party/engine-lock.json` using the Android ARM64 NDK. Builds stay under ignored `build/`, without Docker/WSL/emulation.
 - `vocab_external.cpp` replaces every upstream embedded model vocabulary loader. The Android host supplies private, hash-verified user component paths through `LMA_VOCAB_*`; missing tokenizer data fails locally. No vocabulary byte arrays enter the APK.
@@ -11,3 +11,5 @@ This directory contains App code, not model weights or an executable model plugi
 Rebuild with `bootstrap_native.py`, `fetch_native.py`, `build_native.py`, then collect/review notices and `engine-lock.json`. The APK builder rejects extra native binaries, changed hashes, stale source inputs and changed notices. `engine-builds.json` describes compiled modules; its device status remains unvalidated.
 
 开发界限、模型资产规则与全部未完成项见 [中文实施记录](../docs/DEVELOPMENT.md) / [English development record](../docs/DEVELOPMENT.en.md)。完整 v0.3.0 仍须全部冻结目标的新输入离线真机输出及发布验收。
+
+- `moss_nano/` implements SentencePiece, autoregressive ONNX and codec decoding. Model-specific data stays external. Sources, user component roles, shared ORT rules and 190 host checks: [中文](../docs/MOSS_NANO_ENGINE.md) / [English](../docs/MOSS_NANO_ENGINE.en.md).

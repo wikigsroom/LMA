@@ -86,6 +86,41 @@
         "sd-nlohmann-json-LICENSE.txt": "0e592e358cf7722906f417be85bc514f15bf6efd28cea98cb84e56ef7fddfc3e",
         "sd-NDK-LLVM-NOTICE.txt": "f96f763beb66a7ba7a667647fc64c0226ace875e590c831fdd9579ec1c1d91e1"
       }
+    },
+    {
+      "engine": "moss_nano_ort",
+      "file": "liblma-moss-nano.so",
+      "source_revision": "8b7bcc9341b3b4ef3a3a58ba1338a7d85ff133eb",
+      "abi": "arm64-v8a",
+      "backend": "cpu",
+      "ndk": "30.0.16248370",
+      "sha256": "3cde4a274f286227a762b0dc6065c72e59fed7c1365a553e635fcaeedac785be",
+      "bytes": 902776,
+      "android_api_notes": [
+        28
+      ],
+      "dependencies": [
+        {
+          "file": "libonnxruntime.so",
+          "bytes": 22249560,
+          "sha256": "33847ad43bffe204699fd4a27f7f3603452a8cdaf2f9a44983a0bc31ffcf2da1",
+          "android_api_notes": [
+            27
+          ],
+          "provenance": "upstream_release_prebuilt"
+        }
+      ],
+      "notices": {
+        "moss-moss-nano-LICENSE.txt": "1bb88ea80ef0b45389e3868a1395d68d99bd2700be26166aa67aae0d2bba2767",
+        "moss-sentencepiece-LICENSE.txt": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5",
+        "moss-sentencepiece-third_party-protobuf-lite-LICENSE.txt": "f4df8b2457697851385d9ebb93267832c1dfa24e0e61881952f6b0c452663dc9",
+        "moss-sentencepiece-third_party-darts_clone-LICENSE.txt": "ed8437dc7358a40ef10afd3635ac1cd43c88fbaaaf6cd27c414f8ada5d68f447",
+        "moss-sentencepiece-third_party-absl-LICENSE.txt": "7871ddb0d7635157a82afc21720d795660a024c59652b7a5b1ed812355320fdc",
+        "moss-onnxruntime-LICENSE.txt": "c250d6278f0b47a6439fb7592b08b58a55eb9f535aa49a1db63211c3f982b674",
+        "moss-onnxruntime-ThirdPartyNotices.txt.txt": "fb0af774b4d7cffc5b9d046f2aaeade2f37df2f80abf8033c95dfffcc77a8866",
+        "sd-nlohmann-json-LICENSE.txt": "0e592e358cf7722906f417be85bc514f15bf6efd28cea98cb84e56ef7fddfc3e",
+        "sd-NDK-LLVM-NOTICE.txt": "f96f763beb66a7ba7a667647fc64c0226ace875e590c831fdd9579ec1c1d91e1"
+      }
     }
   ]
 }

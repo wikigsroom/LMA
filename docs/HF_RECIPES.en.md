@@ -2,7 +2,7 @@
 
 [中文](HF_RECIPES.md) · [HF discovery](HF_MODELS.en.md) · [Development status](DEVELOPMENT.en.md) · [Asset-control audit](ASSET_CONTROL_AUDIT.en.md)
 
-Applies to **0.3.0-dev.5 / code 9, an internal checkpoint, not a Release**. The App supplies code and recipe metadata; users select and manage model assets. This workflow does not establish Android support for arbitrary HF weights. Architecture, language, matching components, licensing and device resources still need verification.
+Applies to **0.3.0-dev.6 / code 10, an internal checkpoint, not a Release**. The App supplies code and recipe metadata; users select and manage model assets. This workflow does not establish Android support for arbitrary HF weights. Architecture, language, matching components, licensing and device resources still need verification.
 
 ## User workflow
 
@@ -30,7 +30,7 @@ Native selection accepts files from the current frozen repository page only. Cha
 
 ## Verification and media
 
-217 foundation/storage checks include 87 new recipe/Git-integrity assertions. Separate HF/controller and browser checks are recorded in [development evidence](../verification/development/status.json). Host checks use arbitrary bytes or explicitly simulated native state, without test weights; they are not model outputs, Android installation or screen-off endurance evidence.
+240 foundation/storage checks include 110 new recipe/Git-integrity assertions. Separate HF/controller and browser checks are recorded in [development evidence](../verification/development/status.json). Host checks use arbitrary bytes or explicitly simulated native state, without test weights; they are not model outputs, Android installation or screen-off endurance evidence.
 
 ![Explicit UI fixture: HF component choices](media/development/12-hf-components.png)
 
@@ -41,3 +41,7 @@ Complete v0.3.0 still requires F-01–F-12, every frozen subtarget in 01–14/16
 Metadata fields were checked on 2026-10-28 against the [official HF SDK `RepoFile` parser](https://github.com/huggingface/huggingface_hub/blob/main/src/huggingface_hub/hf_api.py) and [file-tree API documentation](https://huggingface.co/docs/huggingface_hub/package_reference/hf_api#huggingface_hub.HfApi.list_repo_tree): ordinary-file `oid` and LFS `oid` have different meanings. New controller tests use deterministic metadata fixtures. Direct HF requests timed out and the mirror returned 403 in this run; no new live tree acceptance or weight download is claimed.
 
 ![Explicit download plan after registration, UI fixture](media/development/14-hf-download-plan.png)
+
+## Nano external-data recipe
+
+The eighth template covers only MOSS-TTS-Nano browser ONNX with its full codec. `.model` SentencePiece data and `.data` external ONNX weights are separate user choices. Eight core roles are required; every data file referenced by a graph is also required at execution. Registration does not transfer anything. See [Nano roles, guards, build and evidence](MOSS_NANO_ENGINE.en.md).

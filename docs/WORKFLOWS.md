@@ -87,3 +87,5 @@ Android 15+、target 35+ 的 `dataSync` / `mediaProcessing` 类型分别受每 2
 早期[图片旁白 JSON](proposals/local-narrated-image.workflow.json)和[Wan JSON](proposals/local-wan-video.workflow.json)仅保留为**历史、不可执行的依赖讨论示例**，不是当前导入格式、必做组合任务或发版契约，也不是成功运行证据。最新结构化范围见 [multimodal-release-scope.json](proposals/multimodal-release-scope.json)。
 
 按[现行发版计划](MULTIMODAL_RELEASE_PLAN.md)验收完整组件、参数隔离、资源准入、取消 / 卸载、崩溃、迁移、共享删除和真实离线生成。生图 / 生音频 / 生视频必须有各自实际结果，记录锁屏与持续服务证据；当前没有真机，不以桌面替身或 JSON 检查替代。新功能进入 APK 时才提升实际版本并录制功能媒体。
+
+Nano 实现仅将持有租约的已校验资产硬链接到私有执行目录。正常成功 / 失败 / 取消在 worker 退出后清理，启动时清理上次遗留目录；缺少 ONNX 外置数据直接本机失败，不创建下载或回退。见[实现及证据边界](MOSS_NANO_ENGINE.md)。

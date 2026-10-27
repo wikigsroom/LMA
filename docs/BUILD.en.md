@@ -87,3 +87,7 @@ Git tracks sources, guides, media, and public evidence. `dist/` stays ignored an
 ## Development speech engine
 
 After preparing diffusion sources and the Windows NDK, run `python tools/fetch_tts.py --transport ssh`, `python tools/build_tts.py`, then `python tools/collect_tts_notices.py`; follow with `python tools/test_tts.py` and the common APK build/checks. Bootstrap fetches pinned code and generic notices, without models. sherpa / ORT are upstream prebuilts; the LMA worker is compiled locally. See [TTS_ENGINE.en.md](TTS_ENGINE.en.md) for provenance, parameters and evidence boundaries.
+
+## Nano native worker
+
+After the shared ORT/sd.cpp prerequisites, run `fetch_moss_nano.py`, `build_moss_nano.py`, `collect_moss_nano_notices.py`, and `test_moss_nano.py` before the ordinary APK checks. Sources are pinned and built with native Windows tools; the native host parser check needs MSVC (`LMA_VCVARS` may select its setup script). No virtualization is used. See [full instructions](MOSS_NANO_ENGINE.en.md).

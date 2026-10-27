@@ -62,7 +62,8 @@ def main():
     (ROOT / "build/package-verification.json").unlink(missing_ok=True)
     lock = json.loads((ROOT / "third_party/runtime-lock.json").read_text(encoding="utf-8"))
     engines = json.loads((ROOT / "third_party/engine-lock.json").read_text(encoding="utf-8"))["engines"]
-    lock["files"].extend({"name": item["file"], "sha256": item["sha256"], "android_api_notes": item.get("android_api_notes", [28])} for engine in engines for item in [engine] + engine.get("dependencies", []))
+    from native_payload import engine_files
+    lock["files"].extend({"name": item["file"], "sha256": item["sha256"], "android_api_notes": item.get("android_api_notes", [28])} for item in engine_files(engines))
     assert len({item["name"] for item in lock["files"]}) == len(lock["files"]), "Duplicate native module file"
     names = {item["name"] for item in lock["files"]}
     assert {p.name for p in LIBS.glob("*.so")} == names, "Unexpected or missing native payload"

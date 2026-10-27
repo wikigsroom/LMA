@@ -134,6 +134,13 @@ async function main() {
   await page.waitForTimeout(800); await page.locator('[data-action="recipeDeclare"]').click();
   await page.waitForSelector('[data-action="downloadBundle"][data-id="ui_hf_recipe"]');
   await shot('14-hf-download-plan.png', 'Registration opens the chosen bundle plan without downloading; UI fixture only / 登记后独立确认下载与全部依赖');
+  await page.locator('#modal [data-action="closeModal"]').first().click();
+  await recipeUI.openRecipe(page); await recipeUI.selectTemplate(page, 'moss_nano_cpu_v1');
+  for (const [role, file] of [['manifest', 'browser_poc_manifest.json'], ['tts_meta', 'tts_browser_onnx_meta.json'], ['codec_meta', 'codec_browser_onnx_meta.json'], ['text_tokenizer', 'tokenizer.model'], ['tts_prefill', 'moss_tts_prefill.onnx'], ['tts_decode', 'moss_tts_decode_step.onnx'], ['tts_local', 'moss_tts_local_fixed_sampled_frame.onnx'], ['codec_decode', 'moss_audio_tokenizer_decode_full.onnx'], ['tts_data_1', 'moss_tts_global_shared.data'], ['tts_data_2', 'moss_tts_local_shared.data'], ['codec_data_1', 'codec_weights.data']]) await recipeUI.bind(page, role, file, 'fixture/model');
+  await page.locator('#recipeTemplate').scrollIntoViewIfNeeded();
+  await shot('15-moss-nano-recipe.png', 'MOSS Nano audio recipe and user-selected tokenizer/metadata/codec; UI fixture only / Nano 组件由用户选择，未下载或推理');
+  await page.locator('[data-action="recipePick"][data-role="codec_data_1"]').scrollIntoViewIfNeeded();
+  await shot('16-moss-external-data.png', 'Explicit external ONNX weight data, separate from App foundation; UI fixture only / 外置权重独立选择，不随 App 更新');
   if (errors.length) throw new Error(JSON.stringify(errors));
   const video = page.video(); await context.close(); context = null;
   const raw = await video.path();

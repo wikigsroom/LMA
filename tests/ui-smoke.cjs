@@ -234,7 +234,7 @@ async function main() {
   await page.setViewportSize({width:375,height:812}); await page.keyboard.press('Escape');
   await page.locator('.nav-item[data-tab="settings"]').click();
   await page.locator('[data-action="about"]').click(); await page.locator('[data-action="notices"]').click();
-  assert.equal(await page.locator('.license-notice').count(), 48); assert((await page.locator('#modalContent').textContent()).includes('tts-onnxruntime-ThirdPartyNotices.txt.txt'));  await page.keyboard.press('Escape'); checked('Bundled third-party license reader');
+  assert.equal(await page.locator('.license-notice').count(), 55); assert((await page.locator('#modalContent').textContent()).includes('tts-onnxruntime-ThirdPartyNotices.txt.txt'));  await page.keyboard.press('Escape'); checked('Bundled third-party license reader');
   await page.locator('.nav-item[data-tab="server"]').click(); await page.evaluate(() => { document.getElementById('page-server').scrollTop = 0; document.getElementById('toast').hidden = true; }); await page.screenshot({path: path.join(output, '04-server-dark.png')});
   await page.locator('.nav-item[data-tab="models"]').click(); await page.locator('#addModelButton').click();
   await page.locator('[data-action="addUrl"]').click();

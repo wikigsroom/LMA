@@ -1,0 +1,104 @@
+{
+  "schema": "lma.moss-nano-source-lock/1",
+  "sources": [
+    {
+      "name": "moss-nano",
+      "url": "https://github.com/OpenMOSS/MOSS-TTS-Nano",
+      "revision": "8b7bcc9341b3b4ef3a3a58ba1338a7d85ff133eb",
+      "version": "8b7bcc9341b3",
+      "sparse": [
+        "examples/android_onnx_runtime",
+        "onnx",
+        "/onnx_tts_runtime.py",
+        "/ort_cpu_runtime.py",
+        "/moss_tts_nano_runtime.py",
+        "/LICENSE",
+        "/README.md",
+        "/infer_onnx.py",
+        "/pyproject.toml"
+      ],
+      "notices": [
+        {
+          "path": "LICENSE",
+          "output": "moss-moss-nano-LICENSE.txt",
+          "sha256": "1bb88ea80ef0b45389e3868a1395d68d99bd2700be26166aa67aae0d2bba2767"
+        }
+      ],
+      "reviewed_files": {
+        "onnx_tts_runtime.py": "f4169a3ef0fdfb5e716c21c57f3286dff1af451efb4d031493e231d4532d9b39",
+        "examples/android_onnx_runtime/app/src/main/java/com/openmoss/ttsnano/onnxruntime/MossOnnxDemoEngine.kt": "9ecd706d48e98b6b03e54ca3dd66a97a3b46c67667c6a6f52146bc6a1e20664a"
+      }
+    },
+    {
+      "name": "sentencepiece",
+      "url": "https://github.com/google/sentencepiece",
+      "revision": "31646a467d2051eb904e0b45de3a73e91fe1c1e3",
+      "version": "0.2.1",
+      "sparse": [],
+      "notices": [
+        {
+          "path": "LICENSE",
+          "output": "moss-sentencepiece-LICENSE.txt",
+          "sha256": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5"
+        },
+        {
+          "path": "third_party/protobuf-lite/LICENSE",
+          "output": "moss-sentencepiece-third_party-protobuf-lite-LICENSE.txt",
+          "sha256": "f4df8b2457697851385d9ebb93267832c1dfa24e0e61881952f6b0c452663dc9"
+        },
+        {
+          "path": "third_party/darts_clone/LICENSE",
+          "output": "moss-sentencepiece-third_party-darts_clone-LICENSE.txt",
+          "sha256": "ed8437dc7358a40ef10afd3635ac1cd43c88fbaaaf6cd27c414f8ada5d68f447"
+        },
+        {
+          "path": "third_party/absl/LICENSE",
+          "output": "moss-sentencepiece-third_party-absl-LICENSE.txt",
+          "sha256": "7871ddb0d7635157a82afc21720d795660a024c59652b7a5b1ed812355320fdc"
+        }
+      ],
+      "reviewed_files": {
+        "src/sentencepiece_processor.h": "4048ff2243938910cf107c27f1e7fb81aac5a52bb6dd3a8a27feb584b53dd38b"
+      }
+    },
+    {
+      "name": "onnxruntime-headers",
+      "url": "https://github.com/microsoft/onnxruntime",
+      "revision": "33ca9628233dc8f002435e868d4c2e9f82766ca1",
+      "version": "1.28.2",
+      "sparse": [
+        "/include/onnxruntime/core/session/",
+        "/LICENSE",
+        "/ThirdPartyNotices.txt"
+      ],
+      "notices": [
+        {
+          "path": "LICENSE",
+          "output": "moss-onnxruntime-LICENSE.txt",
+          "sha256": "c250d6278f0b47a6439fb7592b08b58a55eb9f535aa49a1db63211c3f982b674"
+        },
+        {
+          "path": "ThirdPartyNotices.txt",
+          "output": "moss-onnxruntime-ThirdPartyNotices.txt.txt",
+          "sha256": "fb0af774b4d7cffc5b9d046f2aaeade2f37df2f80abf8033c95dfffcc77a8866"
+        }
+      ],
+      "reviewed_files": {
+        "include/onnxruntime/core/session/onnxruntime_c_api.h": "e3a01cdb382b2ba52267bf8a1a40d60b1197a1bac4da55667fe4d84e244f589a",
+        "include/onnxruntime/core/session/onnxruntime_cxx_api.h": "0765fc56924999b06b4c01f665d8fbd368582fed7a856a22ce1ed686a73e8be2"
+      }
+    }
+  ],
+  "json_header_sha256": "2dd8db723cff3e44198e14d6038ea6443dc6171a564bb82cd6ee81f0edc316e5",
+  "onnxruntime_version": "1.28.2",
+  "shared_dependency": {
+    "file": "libonnxruntime.so",
+    "bytes": 22249560,
+    "sha256": "33847ad43bffe204699fd4a27f7f3603452a8cdaf2f9a44983a0bc31ffcf2da1",
+    "android_api_notes": [
+      27
+    ],
+    "provenance": "upstream_release_prebuilt"
+  },
+  "model_assets": false
+}
