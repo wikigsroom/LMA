@@ -109,9 +109,10 @@ public final class FoundationTest {
         transferTest(root, a, b);
         int adapterChecks = AdapterTest.run(root); passed += adapterChecks;
         int recipeChecks = RecipeTest.run(root, new File(args[2])); passed += recipeChecks;
+        int updateChecks = BundleUpdateTest.run(root); passed += updateChecks;
         jobsAndArtifacts(root);
         ranges();
-        System.out.println(new JSONObject().put("passed", passed).put("adapter_contract_assertions", adapterChecks).put("recipe_integrity_assertions", recipeChecks).put("android_device", false).put("model_inference", false).put("scope", "production bundle storage, parameter validation and transfer state on host filesystems/HTTP"));
+        System.out.println(new JSONObject().put("passed", passed).put("adapter_contract_assertions", adapterChecks).put("recipe_integrity_assertions", recipeChecks).put("model_update_assertions", updateChecks).put("android_device", false).put("model_inference", false).put("scope", "production bundle storage, parameter validation and transfer state on host filesystems/HTTP"));
     }
     private static JSONObject find(JSONArray entries, String id) throws Exception { for (int i = 0; i < entries.length(); i++) if (entries.getJSONObject(i).getString("id").equals(id)) return entries.getJSONObject(i); throw new AssertionError("Missing bundle"); }
     private static void ranges() throws Exception {

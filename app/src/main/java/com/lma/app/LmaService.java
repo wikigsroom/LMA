@@ -90,6 +90,19 @@ public final class LmaService extends Service {
                 case "deleteTask": requireJobs(); app.jobs.remove(command.getString("id")); break;
                 case "deleteArtifact": requireJobs(); app.artifacts.remove(command.getString("id")); break;
                 case "retryTask": { requireJobs(); api.start(); JSONObject old = app.jobs.get(command.getString("id")); if (!old.getString("state").equals("failed") && !old.getString("state").equals("interrupted") && !old.getString("state").equals("cancelled")) throw new IllegalStateException("仅已失败、中断或取消的任务可以重试"); command.put("result", localJobs.retry(old.getString("id"), "")); break; }
+                case "planBundleUpdate": requireBundles(); command.put("result", app.bundles.planUpdate(command.getString("from"), command.getString("to"), command.getString("settingsMode"))); break;
+                case "prepareBundleUpdate": case "downloadBundleUpdate": {
+                    requireBundles(); command.put("result", app.bundles.prepareUpdate(command.getString("from"), command.getString("to"), command.getString("settingsMode"), command.getString("review")));
+                    if (action.equals("downloadBundleUpdate")) bundleTransfers.download(command.getString("to")); break;
+                }
+                case "activateBundleUpdate": requireBundles(); command.put("result", app.bundles.activateUpdate(command.getString("from"), command.getString("to"), command.getString("settingsMode"), command.getString("review"))); break;
+                case "inspectBundleVersions": requireBundles(); command.put("result", app.bundles.versionHistory(command.getString("id"))); break;
+                case "cancelBundleUpdate": {
+                    requireBundles(); String id = command.getString("id"), review = command.getString("review"); JSONObject pending = app.bundles.pendingUpdate(id);
+                    if (pending == null || !pending.getString("review").equals(review)) throw new IllegalStateException("更新计划已改变，请重新打开版本管理");
+                    if (bundleTransfers.busy(pending.getString("toBundleId"))) bundleTransfers.pause(pending.getString("toBundleId"));
+                    app.bundles.cancelUpdate(id, review); break;
+                }
                 case "downloadBundle": case "resumeBundle": requireBundles(); bundleTransfers.download(command.getString("id")); break;
                 case "importBundle": {
                     requireBundles(); String id = command.getString("id"); JSONObject uris = command.getJSONObject("uris");
@@ -106,7 +119,7 @@ public final class LmaService extends Service {
                 case "deleteBundle": {
                     requireBundles(); String id = command.getString("id");
                     if (bundleTransfers.busy(id)) throw new IllegalStateException("请先暂停下载，等待传输结束后删除模型包");
-                    app.bundles.remove(id, command.optBoolean("removeSettings", false)); break;
+                    app.bundles.remove(id, command.optBoolean("removeSettings", false), app.jobs); break;
                 }
                 case "saveBundleSettings": requireBundles(); app.bundles.saveSettings(command.getString("id"), command.getJSONObject("settings")); break;
                 case "download": downloads.enqueue(command.getString("id"), ""); break;

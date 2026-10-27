@@ -1,5 +1,5 @@
 {
-  "version": "0.3.0-dev.6",
+  "version": "0.3.0-dev.7",
   "kind": "development UI with explicit simulated native bridge",
   "android_device": false,
   "model_inference": false,
@@ -70,6 +70,26 @@
     {
       "file": "16-moss-external-data.png",
       "caption": "Explicit external ONNX weight data, separate from App foundation; UI fixture only / 外置权重独立选择，不随 App 更新"
+    },
+    {
+      "file": "17-model-version-choice.png",
+      "caption": "Independent user-selected version and parameter policy; UI fixture only / 模型独立更新，由用户选择版本与参数策略"
+    },
+    {
+      "file": "18-model-version-components.png",
+      "caption": "Review pinned component sources/hashes and reuse before explicit download; UI fixture only / 确认下载前核对组件来源与校验"
+    },
+    {
+      "file": "19-model-version-settings.png",
+      "caption": "Preview per-version limits and settings migration; UI fixture only / 参数随模型版本迁移，超限调整预先展示"
+    },
+    {
+      "file": "20-model-version-ready.png",
+      "caption": "Verified download still needs separate activation; old version retained; UI fixture only / 校验后等待单独确认切换，旧版本保留"
+    },
+    {
+      "file": "21-model-version-history.png",
+      "caption": "Explicit version switch history with retained old assets/profiles; UI fixture only / 显式切换记录，可自行选择旧版本回退"
     }
   ],
   "files": [
@@ -100,13 +120,13 @@
     },
     {
       "file": "06-queue-results.png",
-      "bytes": 44668,
-      "sha256": "2d289bee88e79c8e2a48ff4b2ef2124eacdf911785d868e7a65795a0a3b8f835"
+      "bytes": 44546,
+      "sha256": "81473ab975800ffd172c650aa10e5eeaa8cd8276c349623e3426ea8042160a80"
     },
     {
       "file": "07-cancelled.png",
-      "bytes": 44861,
-      "sha256": "022aaffe665b2b4fb01e373b0d58a3367ff2b9aac8de41309f825eb3a9d55cbe"
+      "bytes": 44737,
+      "sha256": "2f9154011cb41b7a459bf1815dc04f3cdfd4782e3eb25fa98d207efdcf882aff"
     },
     {
       "file": "08-zero-model-api.png",
@@ -154,23 +174,48 @@
       "sha256": "2caaf46f8b6d0a138e616a050e75e882290fa45d187c5aec8de5a134fbdba6da"
     },
     {
+      "file": "17-model-version-choice.png",
+      "bytes": 50558,
+      "sha256": "76f99e15e9892dd4d62283e3a56447fc3622cbd24ca20c6c448e3c5f44832650"
+    },
+    {
+      "file": "18-model-version-components.png",
+      "bytes": 39314,
+      "sha256": "a92a121edc84991088ae425db26a6b60a110ffe58d7275b706a2f73db24e08d5"
+    },
+    {
+      "file": "19-model-version-settings.png",
+      "bytes": 52738,
+      "sha256": "b443379367a5c4713536287fb3baa80d9438e35a041797a99addc21043bb3dd4"
+    },
+    {
+      "file": "20-model-version-ready.png",
+      "bytes": 49927,
+      "sha256": "cbe4ea5a9e48a5b65618aee80a79270c8b6fb4aba654277d7009f62008717930"
+    },
+    {
+      "file": "21-model-version-history.png",
+      "bytes": 49733,
+      "sha256": "14cee14afd8d3dac001d500ca08db646555c76e2728eee9feb5df6553639c1db"
+    },
+    {
       "file": "foundation-ui.gif",
-      "bytes": 2630950,
-      "sha256": "b982f13a202feaa7664eade0db805d196759a2bf96394bea465bab394402a882"
+      "bytes": 3646735,
+      "sha256": "e56d33ae2629cc1eb43a79da28c4bfe3e65f3033e9001e220d6e51d787b12a25"
     },
     {
       "file": "foundation-ui.mp4",
-      "bytes": 1191413,
-      "sha256": "1dd46c941503f93329256e56bc4643c49866e1a623bbb2e1dae9c207fd8c8188"
+      "bytes": 1558782,
+      "sha256": "14d7e0870c38fd4d1d2f7b77dca242f9cb92998a91fa6711c932763d04c6b736"
     }
   ],
   "input_fingerprint": {
     "app/src/main/assets/app.css": "f2cb7b5ee9de8f3afac793e694dcf9fde0a855c0d4c7053ff986cc2a6d2bd3b1",
-    "app/src/main/assets/app.js": "10571099d9b0cfcd5eb43db4f7a538a626a99aa124ed3f52e84cc74f9e3756a8",
+    "app/src/main/assets/app.js": "73342ff2357de3a969d3124b5b980acb5e7810ab37f5958c5b045991b96494bc",
     "app/src/main/assets/engine-builds.json": "008f2c0e12405aed37d2b6974d837b02b3fe56874d6191cf09794526559f4775",
-    "app/src/main/assets/foundation.css": "77da41d277fb6a6f6432ab44b27e29d51a5c8edf57af05dad908fac2e2e1f785",
-    "app/src/main/assets/foundation.js": "bafe4033e41d03aaa16278dacb535fa33d8285bf3ad9441275eca182516b4569",
-    "app/src/main/assets/index.html": "28eff79375a728c7e96b3304265a6dfc9bf746b4811eb6c17c56c21cd1efc611",
+    "app/src/main/assets/foundation.css": "723912bf775d8d97ef100548a854f79ddf87a20ad5b0a9daea5f089e166cb8a3",
+    "app/src/main/assets/foundation.js": "8f9c91410b2f13c08dd8a1cb09e2b492832b6f9872b368e07d21cf5785974f61",
+    "app/src/main/assets/index.html": "6b48f3375684bbcf1ec28e4c3f009bc254f073939b938ef614282dd21a251679",
     "app/src/main/assets/license.js": "1c814e25648a624a68de26d0614ef0ac9799db94edd8cd3835a07e77156d51e0",
     "app/src/main/assets/licenses/LLAMA_CPP_LICENSE": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
     "app/src/main/assets/licenses/LMA_LICENSE": "6ae3f5efa412d91cbf66e44f743e5ce41a8044309d05d893365206ab9bc35fc3",
@@ -232,9 +277,11 @@
     "app/src/main/assets/models.json": "c3e884b4e5fb06f20c036deebc78e6f953ac420e76fca72bab5a25fd59927156",
     "app/src/main/assets/recipe-templates.json": "2d861bed1fcac8ef2e493a6d62ab79289915cac566bf434e185dcebaa22dd920",
     "app/src/main/assets/recipes.js": "648e1ff046ab20e2ae7f658a7cb82c895c042ea81dca5cd943141626eea6deba",
+    "app/src/main/assets/versions.js": "2d629929a6db642c12a242ddcc62cd4f4090ab307e0cb669ceb98add031977e1",
     "tests/foundation-ui.cjs": "1c6721770e2d3336719c6cb096869aca3f966beff3fd958f814cda1cafee1e79",
     "tests/hub-fixture.cjs": "5b3cb88b7fd4c45d26ce92e8598a1c3837a12b02eb898f67c9be10da2910ab83",
     "tests/recipes-ui.cjs": "205672d2e057c54e3944f1c252c6a5bc0e55a25f5930b24da370e11db71c42e5",
-    "tools/capture_foundation.cjs": "550f1a29f8390b8315548c3e11dfd3a153e06983b16da8470f8fd3f499d6a352"
+    "tests/versions-ui.cjs": "13f6e194c00fa3a819c44da35788aa28b94ba05325e3f2b1257350c04b67babd",
+    "tools/capture_foundation.cjs": "16f9d295d5590bca9e0e3afe790c6aca4ef95e868f029dc7779ec8a06a8c3e5b"
   }
 }

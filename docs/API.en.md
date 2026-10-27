@@ -145,3 +145,5 @@ dev.3 installed TTS candidates use the same async job API with `type: "speech.sy
 ## dev.4 explicit LoRA selection
 
 `image.generate` on `POST /v1/jobs` accepts optional `adapters: [{"bundleId": "installed_adapter_id", "scale": 0.75}]`, at most eight. Omitted scales freeze saved adapter settings. Require installed compatible bases/adapters; reject duplicate/self selections, paths, unknown fields and non-image adapter requests. Missing assets never download. See [pairing/provenance/evidence](ADAPTERS.en.md); no phone output is claimed.
+
+dev.7 adds `version` metadata to bundle `/v1/models` records (`{}` before a version group exists): `groupId`, `activeBundleId`, `isActive`, `members`, and `pending` when a plan exists. Installed old versions retain their IDs; current preference never redirects requests. Update/review/activation currently use native App commands, without new HTTP update endpoints. See [model updates](MODEL_UPDATES.en.md).

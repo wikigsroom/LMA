@@ -77,7 +77,7 @@ def main():
             assert name in members, "Missing APK entry: " + name
         assert archive.read("classes.dex").startswith(b"dex\n"), "DEX header missing"
         source = ROOT / "app/src/main"
-        ui_assets = ("index.html", "app.css", "app.js", "foundation.css", "foundation.js", "recipes.js", "recipe-templates.json", "license.js", "models.json", "model-bundles.json", "engine-builds.json")
+        ui_assets = ("index.html", "app.css", "app.js", "foundation.css", "foundation.js", "recipes.js", "versions.js", "recipe-templates.json", "license.js", "models.json", "model-bundles.json", "engine-builds.json")
         for name in ui_assets:
             assert archive.read("assets/" + name) == (source / "assets" / name).read_bytes(), "Stale packaged UI: " + name
         for name in ("license.js", "app.js"):

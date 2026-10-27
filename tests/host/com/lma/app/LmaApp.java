@@ -9,7 +9,7 @@ import android.net.Uri;
 
 /** Test-only framework ports; Store/Downloads/Net/EngineHost/ChatRunner are production files. */
 public final class LmaApp {
-    public static final String VERSION = "0.3.0-dev.6";
+    public static final String VERSION = "0.3.0-dev.7";
     public String apiState = "stopped", apiDetail = "";
     public com.lma.app.core.BundleStore bundles;
     public com.lma.app.core.JobStore jobs;

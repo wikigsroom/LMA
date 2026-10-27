@@ -35,6 +35,14 @@ public final class JobStore {
         throw new IllegalArgumentException("Unknown task");
     }
     public synchronized JSONObject get(String id) throws Exception { return publicJob(find(state, id)); }
+    public synchronized boolean referencesBundle(String id) throws Exception {
+        ModelBundle.key(id); JSONArray jobs = state.getJSONArray("jobs");
+        for (int i = 0; i < jobs.length(); i++) {
+            JSONObject job = jobs.getJSONObject(i);
+            if (!TERMINAL.contains(job.getString("state")) && ModelSelection.ids(job.getJSONObject("request")).contains(id)) return true;
+        }
+        return false;
+    }
     public synchronized JSONArray snapshot() throws Exception { JSONArray jobs = state.getJSONArray("jobs"), result = new JSONArray(); for (int i = 0; i < jobs.length(); i++) result.put(publicJob(jobs.getJSONObject(i))); return result; }
     public synchronized JSONArray summaries() throws Exception {
         JSONArray jobs = snapshot();

@@ -73,7 +73,7 @@ public final class ApiHost implements LocalApi.Runtime, AutoCloseable {
                 result.put(new JSONObject().put("id", bundle.id).put("model_id", bundle.modelId).put("object", "model").put("owned_by", "local").put("name", bundle.name)
                         .put("task_tags", new JSONArray(bundle.tasks)).put("tags", bundle.tags()).put("uncensored", new JSONObject().put("status", "unknown"))
                         .put("engine", bundle.engine).put("recipe", bundle.recipeId).put("backend", bundle.backend)
-                        .put("installed", true).put("loaded", record.optBoolean("inUse")).put("parameters", app.bundles.settings(bundle.id)).put("deviceValidated", false));
+                        .put("installed", true).put("loaded", record.optBoolean("inUse")).put("parameters", app.bundles.settings(bundle.id)).put("version", record.getJSONObject("version")).put("deviceValidated", false));
             }
         }
         return result;

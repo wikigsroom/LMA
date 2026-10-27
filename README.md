@@ -36,7 +36,7 @@ Android 版的本地模型管理、下载、对话和 API 服务应用。当前�
 
 ## 多模态扩展研究
 
-下一版本 **v0.3.0** 一次性交付**完整本地多模态基座及 01–14 / 16 / 17 的运行支持与适配配方**：共用模型包 / 组件 / 配方、内部引擎模块、独立参数、任务 / 产物和 API。所有模型平级，按生文 / 生图 / 生视频 / 生音频及基座依赖标签筛选，保留既有推荐；交互为模型选择 → 任务表单 → 本机队列 → 结果。完整范围、工作包、风险及同一发布门槛见[版本更新需求](docs/MULTIMODAL_RELEASE_PLAN.md)和[交付摘要](docs/releases/v0.3.0-plan.md)。不拆分版本，不将必需模型默认顺延，不建设 ComfyUI 画布 / 用户节点 / 插件生态 / 图导入。v0.3.0 尚未发布。开发代码、240 项基座检查、118 项界面检查及完整剩余项见[开发实施记录](docs/DEVELOPMENT.md)；这不替代完整交付。
+下一版本 **v0.3.0** 一次性交付**完整本地多模态基座及 01–14 / 16 / 17 的运行支持与适配配方**：共用模型包 / 组件 / 配方、内部引擎模块、独立参数、任务 / 产物和 API。所有模型平级，按生文 / 生图 / 生视频 / 生音频及基座依赖标签筛选，保留既有推荐；交互为模型选择 → 任务表单 → 本机队列 → 结果。完整范围、工作包、风险及同一发布门槛见[版本更新需求](docs/MULTIMODAL_RELEASE_PLAN.md)和[交付摘要](docs/releases/v0.3.0-plan.md)。不拆分版本，不将必需模型默认顺延，不建设 ComfyUI 画布 / 用户节点 / 插件生态 / 图导入。v0.3.0 尚未发布。开发代码、302 项基座检查、132 项界面检查及完整剩余项见[开发实施记录](docs/DEVELOPMENT.md)；这不替代完整交付。
 
 全部分词、编码器、采样、codec 与导出在同一 Android 手机执行，无需 ROOT，无外部推理 / 回退。HF 用于搜索和显式资产下载。同架构变体可复用已有配方，新架构需要原生引擎 / APK 更新；Z20 与较新设备分别验收。源码 / 许可见[研究](docs/MULTIMODAL.md)，迁移见[基座评估](docs/FOUNDATION.md)，后台与恢复见[任务方案](docs/WORKFLOWS.md)。完整 MOSS / SoulX 仍有研究关卡，登记 / 下载不计可运行。**当前公开版本仍为 v0.2.0。0.3.0-dev 已加入部分基座代码和编译的扩散 worker，完整模型适配、统一 API 与真机验收尚未完成。**
 
@@ -242,4 +242,8 @@ LMA 自有代码使用 MIT 许可。llama.cpp 及其依赖保留各自许可；�
 
 早前内部检查点（**0.3.0-dev.5 / code 9**，未发布）：HF 组件配方支持明确选择 SD 1.5 / SDXL checkpoint、LoRA、Kokoro / Piper / Matcha 的配套文件，跨仓库固定版本，单独登记与下载确认；普通 Git 文件核对 blob 身份并保存实际 SHA256。217 项基座、74 项 HF、112 项 UI 检查通过。App 只更新基座，用户自主选择 / 下载 / 管理模型；完整模型适配、独立版本更新和真机验收仍未完成。见[双语配方指南](docs/HF_RECIPES.md)、[需求核对](docs/ASSET_CONTROL_AUDIT.md)和[开发更新说明](docs/releases/v0.3.0-dev.5.md)。
 
-当前内部检查点（**0.3.0-dev.6 / code 10**，未发布）新增编译的 MOSS Nano 语音 worker、任意新文本分词、音频 codec 输出，以及用户明确选择的外置权重与临时私有硬链接。HF 组件模板增至八种，新增 190 项主机检查；尚无实际 MOSS 语音或 Android 验收记录。模型独立下载，APK 不携带权重 / 词表 / 音色。详见 [Nano 实现](docs/MOSS_NANO_ENGINE.md)、[检查点说明](docs/releases/v0.3.0-dev.6.md)及[带标识的截图 / 录屏 / GIF](docs/DEVELOPMENT.md)。完整 v0.3.0 尚未完成。
+早前内部检查点（**0.3.0-dev.6 / code 10**，未发布）新增编译的 MOSS Nano 语音 worker、任意新文本分词、音频 codec 输出，以及用户明确选择的外置权重与临时私有硬链接。HF 组件模板增至八种，新增 190 项主机检查；尚无实际 MOSS 语音或 Android 验收记录。模型独立下载，APK 不携带权重 / 词表 / 音色。详见 [Nano 实现](docs/MOSS_NANO_ENGINE.md)、[检查点说明](docs/releases/v0.3.0-dev.6.md)及[带标识的截图 / 录屏 / GIF](docs/DEVELOPMENT.md)。完整 v0.3.0 尚未完成。
+
+当前内部检查点（**0.3.0-dev.7 / code 11**，未发布）新增通用模型包的[独立版本更新与回退](docs/MODEL_UPDATES.md)：用户选择新版本，核对组件和参数后明确下载；校验完成仍需单独确认切换。旧资产 / 参数保留，API 与既有任务固定 ID 不变；排队任务保护主模型和 LoRA 不被删除。302 项基座（含 62 项版本检查）、132 项 UI、Lint 0 错误；[更新说明](docs/releases/v0.3.0-dev.7.md)及[截图 / 录屏 / GIF](docs/DEVELOPMENT.md)已同步。完整迁移、全部模型适配和真机验收仍未完成，未创建新 Release。
+
+<img src="docs/media/development/17-model-version-choice.png" width="260" alt="模型版本独立选择，界面测试数据" /> <img src="docs/media/development/20-model-version-ready.png" width="260" alt="校验后单独确认切换，非真机验收" />

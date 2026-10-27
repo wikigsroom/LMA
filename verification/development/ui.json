@@ -1,5 +1,5 @@
 {
-  "passed": 118,
+  "passed": 132,
   "checks": [
     "Initial curated recommendations",
     "375px model library layout",
@@ -111,6 +111,20 @@
     "LoRA selection remains a peer entry with an explicit base-model dependency",
     "Recipe selection fits a narrow Android viewport",
     "Closed recipe dialogs stay closed on later native updates",
+    "Version candidates preserve architecture/engine/task boundaries",
+    "Update review shows immutable selections, component changes and model-limit adjustments",
+    "Opening and reviewing model versions never downloads assets",
+    "320px model version review",
+    "Rejected native update commands retain the review and allow an explicit retry",
+    "Only explicit confirmation starts the selected version download; the old profile remains active",
+    "An open version manager reflects failed verification without changing the current version",
+    "Completed downloads wait for a separate activation confirmation",
+    "Explicit activation keeps old assets/settings and applies reviewed target parameters",
+    "Persistent version history has a dedicated readable view",
+    "Rollback explicitly selects an installed old version and preserves its original parameter profile",
+    "Stale model configuration consent is visible and cannot be activated directly",
+    "Cancelling an update plan retains the old installed model",
+    "Late update previews cannot reopen a closed model dialog",
     "Tablet library layout",
     "Short landscape server layout",
     "320px narrow phone layout",
@@ -126,11 +140,11 @@
   "emulatorUsed": false,
   "input_fingerprint": {
     "app/src/main/assets/app.css": "f2cb7b5ee9de8f3afac793e694dcf9fde0a855c0d4c7053ff986cc2a6d2bd3b1",
-    "app/src/main/assets/app.js": "10571099d9b0cfcd5eb43db4f7a538a626a99aa124ed3f52e84cc74f9e3756a8",
+    "app/src/main/assets/app.js": "73342ff2357de3a969d3124b5b980acb5e7810ab37f5958c5b045991b96494bc",
     "app/src/main/assets/engine-builds.json": "008f2c0e12405aed37d2b6974d837b02b3fe56874d6191cf09794526559f4775",
-    "app/src/main/assets/foundation.css": "77da41d277fb6a6f6432ab44b27e29d51a5c8edf57af05dad908fac2e2e1f785",
-    "app/src/main/assets/foundation.js": "bafe4033e41d03aaa16278dacb535fa33d8285bf3ad9441275eca182516b4569",
-    "app/src/main/assets/index.html": "28eff79375a728c7e96b3304265a6dfc9bf746b4811eb6c17c56c21cd1efc611",
+    "app/src/main/assets/foundation.css": "723912bf775d8d97ef100548a854f79ddf87a20ad5b0a9daea5f089e166cb8a3",
+    "app/src/main/assets/foundation.js": "8f9c91410b2f13c08dd8a1cb09e2b492832b6f9872b368e07d21cf5785974f61",
+    "app/src/main/assets/index.html": "6b48f3375684bbcf1ec28e4c3f009bc254f073939b938ef614282dd21a251679",
     "app/src/main/assets/license.js": "1c814e25648a624a68de26d0614ef0ac9799db94edd8cd3835a07e77156d51e0",
     "app/src/main/assets/licenses/LLAMA_CPP_LICENSE": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
     "app/src/main/assets/licenses/LMA_LICENSE": "6ae3f5efa412d91cbf66e44f743e5ce41a8044309d05d893365206ab9bc35fc3",
@@ -192,9 +206,11 @@
     "app/src/main/assets/models.json": "c3e884b4e5fb06f20c036deebc78e6f953ac420e76fca72bab5a25fd59927156",
     "app/src/main/assets/recipe-templates.json": "2d861bed1fcac8ef2e493a6d62ab79289915cac566bf434e185dcebaa22dd920",
     "app/src/main/assets/recipes.js": "648e1ff046ab20e2ae7f658a7cb82c895c042ea81dca5cd943141626eea6deba",
+    "app/src/main/assets/versions.js": "2d629929a6db642c12a242ddcc62cd4f4090ab307e0cb669ceb98add031977e1",
     "tests/foundation-ui.cjs": "1c6721770e2d3336719c6cb096869aca3f966beff3fd958f814cda1cafee1e79",
     "tests/hub-fixture.cjs": "5b3cb88b7fd4c45d26ce92e8598a1c3837a12b02eb898f67c9be10da2910ab83",
     "tests/recipes-ui.cjs": "205672d2e057c54e3944f1c252c6a5bc0e55a25f5930b24da370e11db71c42e5",
-    "tests/ui-smoke.cjs": "16de65c8bf286be19a42e8d11519f8a1cf57c19dbdbd05ccfbcae58de11674da"
+    "tests/ui-smoke.cjs": "446a8a34514d6741726eff3d3bd6264f08ded7daf8995b41003f3bbcca50fd23",
+    "tests/versions-ui.cjs": "13f6e194c00fa3a819c44da35788aa28b94ba05325e3f2b1257350c04b67babd"
   }
 }

@@ -68,7 +68,7 @@ def main():
         for record in records.values(): current(record["input_fingerprint"])
         assert records["build-info.json"]["input_fingerprint"] == build_inputs()
         assert records["build-info.json"]["sha256"] == records["package.json"]["sha256"]
-        assert records["foundation.json"]["passed"] >= 217 and records["foundation.json"]["recipe_integrity_assertions"] >= 87 and records["foundation.json"]["adapter_contract_assertions"] >= 45 and records["backend.json"]["passed"] >= 85 and records["hub.json"]["passed"] >= 74
+        assert records["foundation.json"]["passed"] >= 302 and records["foundation.json"]["model_update_assertions"] >= 62 and records["foundation.json"]["recipe_integrity_assertions"] >= 87 and records["foundation.json"]["adapter_contract_assertions"] >= 45 and records["backend.json"]["passed"] >= 85 and records["hub.json"]["passed"] >= 74
         assert records["tts.json"]["passed"] >= 62 and records["tts.json"]["actual_host_child_processes"] and not records["tts.json"]["model_inference"]
         assert records["moss-nano.json"]["passed"] >= 190 and records["moss-nano.json"]["native_parser"]["native_host_execution"] and records["moss-nano.json"]["java_contracts"]["actual_host_hardlinks"] and not records["moss-nano.json"]["model_inference"]
         assert records["api.json"]["passed"] >= 67 and records["api.json"]["actual_socket_io"] and not records["api.json"]["physical_device"]

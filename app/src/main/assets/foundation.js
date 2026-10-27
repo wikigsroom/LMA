@@ -28,7 +28,7 @@
     var b = m.bundle, manifest = b.manifest, t = b.transfer || {}, plan = b.plan || {};
     var active = ['queued', 'downloading', 'verifying', 'installing'].indexOf(t.state) >= 0;
     var message = b.installed ? '已安装 · 设备待验证' : active ? ({queued: '等待下载', downloading: '下载组件', verifying: '校验组件', installing: '安装中'}[t.state]) : t.state === 'paused' ? '已暂停' : t.state === 'failed' ? '下载失败' : '尚未下载';
-    return '<article class="model-card bundle-card" data-bundle="' + e(b.id) + '"><div class="model-top"><span class="model-symbol">' + ui.icon('cube') + '</span><div class="model-top-copy"><button class="model-name" data-action="bundleInfo" data-id="' + e(b.id) + '"><strong>' + e(manifest.name) + '</strong><span class="model-caption">' + e(manifest.architecture) + ' / ' + e(manifest.backend) + '</span></button></div></div><p class="model-description">' + e(manifest.description || '由用户选择的本地模型包') + '</p><div class="model-tags">' + taskTags(b) + '<span class="tag">' + e(manifest.engine) + '</span><span class="tag">' + e(message) + '</span></div><div class="model-footer"><div class="model-size">' + ui.bytes(plan.totalBytes) + '<small>' + manifest.components.length + ' 个必需组件</small></div><div class="model-footer-actions">' + (b.installed ? button('bundleUse', b.id, isAdapter(b) ? '配对使用' : '使用', 'primary', b.inUse || !engineAvailable(b)) : active ? button('pauseBundle', b.id, '暂停') : button('bundleInfo', b.id, t.state === 'paused' || t.state === 'failed' ? '继续下载' : '查看并下载', 'primary')) + '</div></div>' + (active ? '<p class="form-help">' + e(t.role || '') + (t.received ? ' · ' + ui.bytes(t.received) : '') + '</p>' : '') + (t.error ? '<p class="download-error">' + e(t.error) + '</p>' : '') + '</article>';
+    return '<article class="model-card bundle-card" data-bundle="' + e(b.id) + '"><div class="model-top"><span class="model-symbol">' + ui.icon('cube') + '</span><div class="model-top-copy"><button class="model-name" data-action="bundleInfo" data-id="' + e(b.id) + '"><strong>' + e(manifest.name) + '</strong><span class="model-caption">' + e(manifest.architecture) + ' / ' + e(manifest.backend) + '</span></button></div></div><p class="model-description">' + e(manifest.description || '由用户选择的本地模型包') + '</p><div class="model-tags">' + taskTags(b) + window.LMAVersions.badge(b) + '<span class="tag">' + e(manifest.engine) + '</span><span class="tag">' + e(message) + '</span></div><div class="model-footer"><div class="model-size">' + ui.bytes(plan.totalBytes) + '<small>' + manifest.components.length + ' 个必需组件</small></div><div class="model-footer-actions">' + (b.installed ? button('bundleUse', b.id, isAdapter(b) ? '配对使用' : '使用', 'primary', b.inUse || !engineAvailable(b)) : active ? button('pauseBundle', b.id, '暂停') : button('bundleInfo', b.id, t.state === 'paused' || t.state === 'failed' ? '继续下载' : '查看并下载', 'primary')) + '</div></div>' + (active ? '<p class="form-help">' + e(t.role || '') + (t.received ? ' · ' + ui.bytes(t.received) : '') + '</p>' : '') + (t.error ? '<p class="download-error">' + e(t.error) + '</p>' : '') + '</article>';
   }
   function info(id) {
     var b = find(id); if (!b) return; var m = b.manifest, p = b.plan || {};
@@ -37,7 +37,7 @@
     var html = '<div class="model-info"><div class="model-tags">' + taskTags(b) + '<span class="tag">' + e(m.engine) + '</span><span class="tag">' + e(m.pipeline) + '</span></div><p>' + e(m.description || '') + '</p><p>' + (engineAvailable(b) ? '运行引擎已随 App 安装，当前配方仍需手机实测。' : '当前基座缺少匹配引擎。下载文件不会安装引擎，请等待对应的 App 更新。') + '</p>' + adapterHelp + '<dl><dt>完整模型包</dt><dd>' + ui.bytes(p.totalBytes) + '</dd><dt>可复用资产</dt><dd>' + ui.bytes(p.reusableBytes) + '</dd><dt>剩余传输</dt><dd>' + ui.bytes(p.remainingBytes) + '</dd><dt>配方</dt><dd>' + e(m.recipeId) + '</dd><dt>许可</dt><dd>' + e(typeof m.license === 'string' ? m.license : m.license && m.license.name || '尚未声明，请核对来源') + '</dd></dl><div class="bundle-components">' + files.map(function (c) { return '<details><summary>' + e(c.role) + ' · ' + ui.bytes(c.bytes) + (c.reusable ? ' · 可复用' : '') + '</summary><p>' + e(c.path) + '</p>' + (c.importPath && c.importPath !== c.path ? '<p class="modal-help">文件夹导入路径：' + e(c.importPath) + '</p>' : '') + '<code>' + e(c.sha256 ? 'SHA256 ' + c.sha256 : 'Git blob SHA-1 ' + c.gitBlobSha1) + '</code>' + (c.verifiedSha256 ? '<code>已校验 SHA256 ' + e(c.verifiedSha256) + '</code>' : '') + '</details>'; }).join('') + '</div><p class="modal-help">只下载这套包及上面列出的必需组件。浏览、App 升级与缺失模型的生成请求均不会触发下载。所有生成步骤在这部手机上执行。</p><div class="modal-actions">';
     if (b.installed) html += button('bundleSettings', id, '模型设置') + button('bundleUse', id, isAdapter(b) ? '选择基础模型' : '使用模型', 'primary', !engineAvailable(b) || b.inUse);
     else html += button('bundleFolderPicker', id, '从文件夹导入') + button('downloadBundle', id, '下载所选模型包', 'primary', files.some(function (c) { return !c.reusable && !c.downloadable; }));
-    html += '</div>' + button('bundleRemove', id, '删除本地资产', 'danger', b.inUse) + '</div>';
+    html += '</div>' + (b.installed || (b.version || {}).groupId ? button('bundleVersions', id, '版本管理 / 独立更新') : '') + button('bundleRemove', id, '删除本地资产', 'danger', b.inUse) + '</div>';
     editor = null; ui.openModal(m.name, html, 'bundleInfo');
   }
   function fields(b) {
@@ -155,6 +155,7 @@
   }
   function handle(action, el) {
     var id = el.dataset.id;
+    if (window.LMAVersions.handle(action, el)) { editor = null; return true; }
     switch (action) {
       case 'bundleInfo': info(id); return true;
       case 'bundleSettings': settings(id); return true;
@@ -173,7 +174,7 @@
   }
   window.LMAFoundation = {
     init: function (bridge) {
-      ui = bridge;
+      ui = bridge; window.LMAVersions.init(bridge);
       document.addEventListener('submit', function (event) {
         if (event.target.id === 'adapterPairForm') { event.preventDefault(); var adapter = editor && find(editor.id), base = find(event.target.elements.baseBundleId.value); if (adapter && base && base.installed && compatible(base, adapter)) use(base.id, adapter.id); return; }
         if (event.target.id !== 'bundleSettingsForm' && event.target.id !== 'localTaskForm') return;
@@ -206,13 +207,13 @@
     },
     views: views, card: card, handle: handle,
     receive: function () {
-      renderJobs(); renderArtifacts();
+      renderJobs(); renderArtifacts(); window.LMAVersions.receive();
       Object.keys(pending).forEach(function (id) {
         var result = ui.result(id); if (!result) return; var callback = pending[id]; delete pending[id];
         if (result.ok) callback(result.data);
         else { if (editor) { editor.pending = false; var submit = $('modalContent').querySelector('[type="submit"]'); if (submit) submit.disabled = false; } if ($('bundleFormHint')) $('bundleFormHint').textContent = result.error; ui.toast(result.error || '操作失败'); }
       });
     },
-    close: function () { editor = null; $('modalContent').querySelectorAll('audio,video').forEach(function (media) { media.pause(); media.removeAttribute('src'); media.load(); }); }
+    close: function () { editor = null; window.LMAVersions.close(); $('modalContent').querySelectorAll('audio,video').forEach(function (media) { media.pause(); media.removeAttribute('src'); media.load(); }); }
   };
 })();

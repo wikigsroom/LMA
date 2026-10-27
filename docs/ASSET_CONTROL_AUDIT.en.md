@@ -7,9 +7,9 @@ Reviewed 2026-10-28. **Current requirements match foundation-only App updates wi
 | Requirement | Document rule | Implementation / evidence |
 | --- | --- | --- |
 | APK updates deliver the foundation | Asset-separation section, F-02 / A11 | Package checks exclude weights, model-specific vocabularies and voices; engine code belongs in the App |
-| Users select models and dependencies | Explicit selected bundle plus previously disclosed required components; no mandatory installation of all supported targets | Bundle details, explicit transfers and folder import exist; dev.5 adds seven explicit HF component templates without downloading on registration; other architectures still need adaptations |
+| Users select models and dependencies | Explicit selected bundle plus previously disclosed required components; no mandatory installation of all supported targets | Bundle details, explicit transfers and folder import exist; eight explicit HF component templates do not download on registration; other architectures still need adaptations |
 | Install/upgrade/browse never downloads models | Structured `model_asset_policy` forbids implicit selection/download/replacement | Host storage/transfer/UI checks cover declaration, browsing and missing-asset failure; physical install/upgrade still needs evidence |
-| Independent management | Local pause/resume/settings/import/update/delete, with upgrade preservation | Several paths implemented; independent model-update flow and full migration remain incomplete |
+| Independent management | Local pause/resume/settings/import/update/delete, with upgrade preservation | dev.7 implements bundle update/review/explicit activation/rollback; complete legacy migration and Android upgrade acceptance remain unfinished |
 | Text/image/video/audio tags | One flat pool; independent capability and engine/architecture/format/component/backend/evidence labels | Four output filters are implemented; labels do not establish execution support |
 | User-controlled adapters | Peer adapters with explicit compatible base dependencies; A1 / A11 | dev.4 adds LoRA bundles, pairing, strengths and task leases; no phone effect acceptance |
 | Future models | Existing architectures may gain separate asset recipes; new architectures need signed foundation updates | Actual text, diffusion and speech code exists, without arbitrary-HF execution claims |
@@ -20,3 +20,5 @@ The [Chinese requirements](MULTIMODAL_RELEASE_PLAN.md), [English requirements](M
 A11 still requires zero-model install/upgrade, no downloads during browsing, explicit selection boundaries, independent asset updates, preservation and shared-object deletion checks. The document baseline is consistent; implementation and device evidence remain open. Catalogue counts, successful downloads and desktop UI demonstrations are not counts of models accepted on a phone.
 
 Dev.6 adds the Nano signed worker and eighth explicit HF recipe. Tokenizers, voice-prompt codes and external `.data` remain user-owned components; temporary execution workspaces use leased hardlinks and do not install/update model data. [Nano details](MOSS_NANO_ENGINE.en.md).
+
+dev.7 [independent updates](MODEL_UPDATES.en.md) add 62 host assertions covering explicit selection, failure preservation, stale consent, atomic activation and rollback. App updates do not trigger these operations, and old API IDs never redirect to new weights. Physical install/upgrade evidence for A11 remains missing.

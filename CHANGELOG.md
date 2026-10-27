@@ -2,6 +2,13 @@
 
 用户可见行为、验证范围和交付文档在此同步。User-facing behavior, evidence, and delivery documentation are maintained together.
 
+## 0.3.0-dev.7 · 2026-10-28 · 内部检查点 / Internal checkpoint
+
+- User-selected immutable model-version updates, component/license/profile review, separate transfer and activation, retained assets, rollback and bounded history. 通用包独立更新，不随 App 升级下载或替换模型。
+- Stale consent, atomic profile/pointer commit, running leases and queued base/LoRA deletion protection; fixed task/API identities. 过期确认与引用保护，旧参数和任务来源保留。
+- 302 foundation checks including 62 version assertions; 132 UI checks; zero Lint errors. New [bilingual guide](docs/MODEL_UPDATES.md), [notes](docs/releases/v0.3.0-dev.7.md), screenshots 17–21 and refreshed visible-fixture recording/GIF.
+- Complete legacy migration, every selected model and physical Android acceptance remain blockers for the same complete v0.3.0. No new Release; published v0.2.0 remains unchanged.
+
 ## 0.3.0-dev.6 · 2026-10-28 · 内部检查点 / Internal checkpoint
 
 - MOSS Nano ARM64 CPU worker with actual SentencePiece/ONNX/codec calls; user-owned tokenizer, voice and external-weight data. 新增 Nano 语音原生路径，模型数据保持用户自选。

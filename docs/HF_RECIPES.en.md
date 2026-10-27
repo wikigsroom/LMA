@@ -2,12 +2,12 @@
 
 [中文](HF_RECIPES.md) · [HF discovery](HF_MODELS.en.md) · [Development status](DEVELOPMENT.en.md) · [Asset-control audit](ASSET_CONTROL_AUDIT.en.md)
 
-Applies to **0.3.0-dev.6 / code 10, an internal checkpoint, not a Release**. The App supplies code and recipe metadata; users select and manage model assets. This workflow does not establish Android support for arbitrary HF weights. Architecture, language, matching components, licensing and device resources still need verification.
+Applies to **0.3.0-dev.7 / code 11, an internal checkpoint, not a Release**. The App supplies code and recipe metadata; users select and manage model assets. This workflow does not establish Android support for arbitrary HF weights. Architecture, language, matching components, licensing and device resources still need verification.
 
 ## User workflow
 
 1. Search HF or use All, open a repository's file picker, then choose **构建模型包 / LoRA 配方**. The existing single-file GGUF text route is preserved.
-2. Explicitly select a recipe. Seven signed-App data templates cover complete SD 1.5 / SDXL checkpoints, their respective LoRAs, and Kokoro / Piper VITS / Matcha + vocoder using the disclosed English lexicon. A template cannot install an engine, convert weights or verify runtime compatibility.
+2. Explicitly select a recipe. Eight signed-App templates include [MOSS Nano](MOSS_NANO_ENGINE.en.md) and cover complete SD 1.5 / SDXL checkpoints, their respective LoRAs, and Kokoro / Piper VITS / Matcha + vocoder using the disclosed English lexicon. A template cannot install an engine, convert weights or verify runtime compatibility.
 3. Select each required role, such as `model`, `voices`, `tokens` or `vocoder`. Enter another `owner/repository` and paginate when necessary. Existing choices retain their own repository and frozen commit. Extensions validate role formats only; they do not identify architecture or language. Changing templates clears choices; closing/restarting may lose an undeclared draft.
 4. Inspect every chosen file and fixed dependency, source, revision, size and integrity type. Checkpoint templates disclose CLIP merges; speech templates disclose the English lexicon. Other languages, separate diffusion weights and LCM / LCM-LoRA need their own correct complete recipes.
 5. **加入本地并查看下载计划** registers an immutable manifest and **does not download**. Review the full size, verified reuse, remaining transfer and engine status, then explicitly download. Missing engines/assets or incompatibility fail locally with an explanation; no off-device inference or implicit dependency download is added.
@@ -26,11 +26,11 @@ A Git blob ID is neither raw-file SHA-1 nor publisher SHA256. The UI does not in
 
 Existing `lma.model-bundle/1` SHA256 objects/receipts remain compatible. Schema 2 requires exactly one expected digest per component. Recipe imports separate roles, e.g. `model/model.onnx` and `vocoder/model.onnx`, avoiding cross-repository filename collisions; consult the exact paths in the download plan. Runtime leases protect complete base/adapter groups, and deleting another model preserves shared objects.
 
-Native selection accepts files from the current frozen repository page only. Changed templates, repositories or pagination invalidate stale commands. WebView cannot invent unlisted downloads or supply executable engines. Repeating the same template/component selection reuses its ID; changed pinned sources or recipes create distinct immutable records. Independent model version updates and complete legacy migration remain unfinished work in the same release.
+Native selection accepts files from the current frozen repository page only. Changed templates, repositories or pagination invalidate stale commands. WebView cannot invent unlisted downloads or supply executable engines. Repeating the same template/component selection reuses its ID; changed pinned sources or recipes create distinct immutable records. After registering a new version, use Local version management for [independent updates/rollback](MODEL_UPDATES.en.md). Complete legacy migration remains unfinished within this release.
 
 ## Verification and media
 
-240 foundation/storage checks include 110 new recipe/Git-integrity assertions. Separate HF/controller and browser checks are recorded in [development evidence](../verification/development/status.json). Host checks use arbitrary bytes or explicitly simulated native state, without test weights; they are not model outputs, Android installation or screen-off endurance evidence.
+302 foundation/storage/version checks include 110 new recipe/Git-integrity assertions. Separate HF/controller and browser checks are recorded in [development evidence](../verification/development/status.json). Host checks use arbitrary bytes or explicitly simulated native state, without test weights; they are not model outputs, Android installation or screen-off endurance evidence.
 
 ![Explicit UI fixture: HF component choices](media/development/12-hf-components.png)
 

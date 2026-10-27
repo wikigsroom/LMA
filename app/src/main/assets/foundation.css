@@ -15,3 +15,15 @@
 .hub-file details { width: 100%; min-width: 0; }
 .hub-file details summary, .hub-file details code { overflow-wrap: anywhere; word-break: break-word; font-size: 11px; }
 .hub-file details code { display: block; max-width: 100%; }
+
+.version-manager { min-width: 0; overflow-wrap: anywhere; }
+.version-manager code { display: block; white-space: pre-wrap; overflow-wrap: anywhere; font-size: 11px; margin: 6px 0; }
+.version-manager h3 { font-size: 17px; line-height: 1.5; }
+.version-manager select { width: 100%; min-width: 0; text-overflow: ellipsis; }
+.version-manager dl { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); gap: 8px 12px; font-size: 13px; }
+.version-manager dt, .version-manager dd { margin: 0; min-width: 0; }
+.version-manager dd small { display: block; margin-top: 3px; color: var(--muted); }
+.version-pending { margin: 16px 0; padding: 14px; border: 1px solid var(--line); border-radius: 12px; }
+.version-manager details { margin: 12px 0; }
+.version-manager summary { cursor: pointer; line-height: 1.5; }
+.version-manager .modal-actions { flex-wrap: wrap; }

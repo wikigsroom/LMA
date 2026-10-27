@@ -78,7 +78,7 @@ No infinite canvas, wiring editor, user nodes, plugin marketplace, third-party P
 
 ## 04 · Foundation coverage, model tags and adaptation requirements
 
-These are target routes and engineering assessments. **Every new entry is currently unimplemented/unverified in LMA.** Engine names are proposed alternatives or architecture-specific choices, not installed capabilities. Full component tags and acceptance details are in the [scope JSON](proposals/multimodal-release-scope.json).
+These are target routes and engineering assessments. Some development code exists, but **no new target has passed physical LMA acceptance**; consult the [implementation record](DEVELOPMENT.en.md). Engine names denote alternatives or architecture-specific choices, not universally installed capabilities. Full component tags and acceptance details are in the [scope JSON](proposals/multimodal-release-scope.json).
 
 | Original ID | Model/route | Output tags | Engine route | Required resolution | Single target version |
 | --- | --- | --- | --- | --- | --- |

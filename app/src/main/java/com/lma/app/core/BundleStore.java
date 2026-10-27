@@ -23,6 +23,8 @@ public final class BundleStore {
         catch (FileNotFoundException missing) { state = new JSONObject().put("schema", "lma.bundle-store/1").put("bundles", new JSONObject()).put("objects", new JSONObject()); }
         if (!state.getString("schema").equals("lma.bundle-store/1")) throw new IOException("Unsupported model store schema");
         JSONObject next = DataFiles.copy(state), entries = next.getJSONObject("bundles");
+        if (!next.has("versions")) next.put("versions", new JSONObject());
+        validateVersions(next);
         for (Iterator<String> it = entries.keys(); it.hasNext();) {
             JSONObject entry = entries.getJSONObject(it.next()), transfer = entry.optJSONObject("transfer");
             if (transfer != null && Arrays.asList("queued", "downloading", "verifying", "installing").contains(transfer.optString("state")))
@@ -131,15 +133,121 @@ public final class BundleStore {
     public synchronized JSONObject saveSettings(String id, JSONObject changes) throws Exception {
         if (leases.containsKey(id)) throw new IllegalStateException("Model is in use; stop its task before changing settings");
         JSONObject effective = bundle(id).parameters().normalize(entry(id).getJSONObject("settings"), changes);
-        JSONObject next = DataFiles.copy(state); next.getJSONObject("bundles").getJSONObject(id).put("settings", effective.getJSONObject("values")); persist(next); return effective;
+        JSONObject next = DataFiles.copy(state); next.getJSONObject("bundles").getJSONObject(id).put("settings", DataFiles.copy(effective.getJSONObject("values"))); persist(next); return effective;
     }
     public synchronized JSONArray snapshot() throws Exception {
         JSONArray result = new JSONArray(); JSONObject entries = state.getJSONObject("bundles");
         for (Iterator<String> it = entries.keys(); it.hasNext();) {
             String id = it.next(); JSONObject e = DataFiles.copy(entries.getJSONObject(id)); ModelBundle b = new ModelBundle(e.getJSONObject("manifest"));
-            e.put("id", id).put("tags", b.tags()).put("plan", plan(id)).put("config", settings(id)).put("installed", e.optBoolean("installed") && complete(b, state)).put("inUse", leases.containsKey(id)); result.put(e);
+            e.put("id", id).put("tags", b.tags()).put("plan", plan(id)).put("config", settings(id)).put("installed", e.optBoolean("installed") && complete(b, state)).put("inUse", leases.containsKey(id)).put("version", versionInfo(id)); result.put(e);
         }
         return result;
+    }
+    private static void validateVersions(JSONObject data) throws Exception {
+        JSONObject groups = data.getJSONObject("versions"), entries = data.getJSONObject("bundles"); Set<String> seen = new HashSet<>();
+        for (Iterator<String> it = groups.keys(); it.hasNext();) {
+            String id = ModelBundle.key(it.next()); JSONObject group = groups.getJSONObject(id); JSONArray members = group.getJSONArray("members");
+            boolean active = false;
+            if (members.length() == 0 || group.getLong("generation") < 0 || group.getJSONArray("history").length() > 64) throw new IOException("Invalid model version history");
+            for (int i = 0; i < members.length(); i++) {
+                String member = ModelBundle.key(members.getString(i));
+                if (!entries.has(member) || !seen.add(member)) throw new IOException("Invalid model version membership");
+                active |= member.equals(group.getString("activeBundleId"));
+            }
+            if (!active || !group.getString("id").equals(id)) throw new IOException("Invalid active model version");
+        }
+        Set<String> pending = new HashSet<>();
+        for (Iterator<String> it = groups.keys(); it.hasNext();) {
+            JSONObject group = groups.getJSONObject(it.next()), update = group.optJSONObject("pending"); if (update == null) continue;
+            String target = ModelBundle.key(update.getString("toBundleId")); boolean member = false;
+            JSONArray members = group.getJSONArray("members"); for (int i = 0; i < members.length(); i++) member |= members.getString(i).equals(target);
+            if (!update.getString("fromBundleId").equals(group.getString("activeBundleId")) || !entries.has(target) || !Protocol.isSha256(update.getString("review"))
+                    || !Arrays.asList("copy", "keep").contains(update.getString("settingsMode")) || !pending.add(target) || seen.contains(target) && !member)
+                throw new IOException("Invalid pending model update");
+        }
+    }
+    private JSONObject versionGroup(String id) throws Exception {
+        entry(id); JSONObject groups = state.getJSONObject("versions");
+        for (Iterator<String> it = groups.keys(); it.hasNext();) {
+            JSONObject group = groups.getJSONObject(it.next()); JSONArray members = group.getJSONArray("members");
+            for (int i = 0; i < members.length(); i++) if (members.getString(i).equals(id)) return group;
+            JSONObject pending = group.optJSONObject("pending"); if (pending != null && pending.getString("toBundleId").equals(id)) return group;
+        }
+        return null;
+    }
+    private JSONObject initialVersion(String id) throws Exception {
+        return new JSONObject().put("id", id).put("activeBundleId", id).put("members", new JSONArray().put(id)).put("generation", 0).put("history", new JSONArray());
+    }
+    private JSONObject versionIdentity(JSONObject group) throws Exception {
+        return new JSONObject().put("id", group.getString("id")).put("activeBundleId", group.getString("activeBundleId"))
+                .put("members", group.getJSONArray("members")).put("generation", group.getLong("generation"));
+    }
+    /** Read-only preview; no network, transfer, manifest mutation or implicit activation. */
+    public synchronized JSONObject planUpdate(String from, String to, String mode) throws Exception {
+        ModelBundle source = bundle(from), target = bundle(to); JSONObject group = versionGroup(from), other = versionGroup(to);
+        if (group == null) {
+            if (!entry(from).optBoolean("installed") || !complete(source, state)) throw new IllegalStateException("Install the source model before its first version update");
+            group = initialVersion(from);
+        }
+        if (!group.getString("activeBundleId").equals(from)) throw new IllegalStateException("Start updates from the current model version");
+        if (other != null && !other.getString("id").equals(group.getString("id"))) throw new IllegalStateException("The target belongs to another model version history");
+        return BundleUpdates.plan(source, target, settings(from).getJSONObject("values"), settings(to).getJSONObject("values"), versionIdentity(group), plan(to), mode);
+    }
+    private JSONObject reviewedUpdate(String from, String to, String mode, String review) throws Exception {
+        JSONObject plan = planUpdate(from, to, mode);
+        if (!Protocol.isSha256(review) || !review.equals(plan.getString("review"))) throw new IllegalStateException("Model settings or version selection changed; review the update again");
+        JSONObject group = versionGroup(from), pending = group == null ? null : group.optJSONObject("pending");
+        if (pending != null && (!pending.getString("toBundleId").equals(to) || !pending.getString("settingsMode").equals(mode) || !pending.getString("review").equals(review)))
+            throw new IllegalStateException("Cancel the existing update plan before replacing it");
+        return plan;
+    }
+    /** Persist the explicit choice; App startup will neither download nor activate it. */
+    public synchronized JSONObject prepareUpdate(String from, String to, String mode, String review) throws Exception {
+        JSONObject plan = reviewedUpdate(from, to, mode, review), old = versionGroup(from);
+        JSONObject group = old == null ? initialVersion(from) : DataFiles.copy(old), next = DataFiles.copy(state);
+        group.put("pending", new JSONObject().put("fromBundleId", from).put("toBundleId", to).put("settingsMode", mode).put("review", review).put("createdAt", System.currentTimeMillis()));
+        next.getJSONObject("versions").put(group.getString("id"), group); persist(next); return plan;
+    }
+    public synchronized JSONObject pendingUpdate(String id) throws Exception {
+        JSONObject group = versionGroup(id), pending = group == null ? null : group.optJSONObject("pending"); return pending == null ? null : DataFiles.copy(pending);
+    }
+    public synchronized void cancelUpdate(String id, String review) throws Exception {
+        JSONObject old = versionGroup(id), pending = old == null ? null : old.optJSONObject("pending");
+        if (pending == null || !pending.getString("review").equals(review)) throw new IllegalStateException("The update plan changed; reopen version management");
+        JSONObject next = DataFiles.copy(state), group = next.getJSONObject("versions").getJSONObject(old.getString("id"));
+        group.remove("pending"); group.put("generation", Math.addExact(group.getLong("generation"), 1)); persist(next);
+    }
+    /** One durable metadata commit switches preference/settings. Old files/settings and exact job IDs remain intact. */
+    public synchronized JSONObject activateUpdate(String from, String to, String mode, String review) throws Exception {
+        JSONObject plan = reviewedUpdate(from, to, mode, review);
+        if (!entry(to).optBoolean("installed") || !complete(bundle(to), state)) throw new IllegalStateException("Download/import and verify every target component before activation");
+        if (leases.containsKey(from) || leases.containsKey(to)) throw new IllegalStateException("Stop tasks using either version before activation");
+        JSONObject existing = versionGroup(from), group = existing == null ? initialVersion(from) : DataFiles.copy(existing), next = DataFiles.copy(state);
+        JSONArray members = group.getJSONArray("members"); boolean member = false;
+        for (int i = 0; i < members.length(); i++) member |= members.getString(i).equals(to); if (!member) members.put(to);
+        JSONArray history = group.getJSONArray("history"), retained = new JSONArray();
+        for (int i = Math.max(0, history.length() - 63); i < history.length(); i++) retained.put(history.get(i));
+        retained.put(new JSONObject().put("fromBundleId", from).put("toBundleId", to).put("settingsMode", mode).put("review", review).put("at", System.currentTimeMillis()));
+        group.put("activeBundleId", to).put("generation", Math.addExact(group.getLong("generation"), 1)).put("history", retained); group.remove("pending");
+        next.getJSONObject("versions").put(group.getString("id"), group);
+        next.getJSONObject("bundles").getJSONObject(to).put("settings", plan.getJSONObject("settings").getJSONObject("values"));
+        persist(next); return new JSONObject().put("bundleId", to).put("version", versionInfo(to)).put("settings", settings(to));
+    }
+    public synchronized JSONObject versionHistory(String id) throws Exception {
+        JSONObject group = versionGroup(id); return group == null ? initialVersion(id) : DataFiles.copy(group);
+    }
+    private JSONObject versionInfo(String id) throws Exception {
+        JSONObject group = versionGroup(id); if (group == null) return new JSONObject();
+        JSONObject info = new JSONObject().put("groupId", group.getString("id")).put("activeBundleId", group.getString("activeBundleId"))
+                .put("isActive", id.equals(group.getString("activeBundleId"))).put("members", new JSONArray(group.getJSONArray("members").toString())).put("historyCount", group.getJSONArray("history").length());
+        JSONObject pending = group.optJSONObject("pending");
+        if (pending != null) {
+            JSONObject value = DataFiles.copy(pending); String target = pending.getString("toBundleId"); value.put("targetName", bundle(target).name).put("ready", plan(target).getBoolean("installed"));
+            try { value.put("stale", !planUpdate(pending.getString("fromBundleId"), target, pending.getString("settingsMode")).getString("review").equals(pending.getString("review"))); }
+            catch (Exception error) { value.put("stale", true).put("error", error.getMessage()); }
+            info.put("pending", value);
+        }
+        return info;
     }
     public synchronized Lease acquire(String id) throws Exception {
         ModelBundle b = bundle(id);
@@ -174,6 +282,11 @@ public final class BundleStore {
         }
         public File file(String role) throws IOException { synchronized (BundleStore.this) { if (closed) throw new IOException("Model lease is closed"); return object(bundle.component(role).objectId); } }
         @Override public void close() { synchronized (BundleStore.this) { if (!closed) { closed = true; int n = leases.get(bundle.id) - 1; if (n == 0) leases.remove(bundle.id); else leases.put(bundle.id, n); } } }
+    }
+    /** Submit and delete share this monitor, so queued jobs keep their exact input versions. */
+    public synchronized void remove(String id, boolean removeSettings, JobStore jobs) throws Exception {
+        if (jobs != null && jobs.referencesBundle(id)) throw new IllegalStateException("Model is referenced by a queued/running task; cancel or finish it before deleting assets");
+        remove(id, removeSettings);
     }
     public synchronized void remove(String id, boolean removeSettings) throws Exception {
         JSONObject e = entry(id);

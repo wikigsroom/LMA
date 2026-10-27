@@ -22,6 +22,9 @@ public final class LocalJobs implements AutoCloseable {
     private volatile Process activeProcess;
     public LocalJobs(LmaApp app, Runnable changed) { this.app = app; this.changed = changed; }
     public JSONObject submit(JSONObject input, String idempotencyKey) throws Exception {
+        synchronized (app.bundles) { return submitLocked(input, idempotencyKey); }
+    }
+    private JSONObject submitLocked(JSONObject input, String idempotencyKey) throws Exception {
         if (closed) throw new IllegalStateException("任务服务正在停止");
         input = TaskInput.validate(input);
         String submissionHash = TaskInput.fingerprint(input);

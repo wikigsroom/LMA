@@ -19,7 +19,7 @@ import com.lma.app.core.JobStore;
 import com.lma.app.core.ArtifactStore;
 
 public final class LmaApp extends Application {
-    public static final String VERSION = "0.3.0-dev.6";
+    public static final String VERSION = "0.3.0-dev.7";
     public static final String UPDATE = "com.lma.app.STATE_CHANGED";
     public Store store;
     public BundleStore bundles;

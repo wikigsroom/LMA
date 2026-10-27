@@ -145,3 +145,5 @@ dev.3 的已安装 TTS 候选使用相同异步任务接口，`type: "speech.syn
 ## dev.4：显式 LoRA 选择
 
 `POST /v1/jobs` 的 `image.generate` 可选 `adapters: [{"bundleId": "本机适配器包ID", "scale": 0.75}]`，最多八个，省略强度时固定各自保存值。基础模型与适配器必须完整安装且声明兼容；重复、自身、路径、未知字段或非生图任务的选择拒绝。缺资产不下载。配对 / 强度 / 来源与验证边界见[LoRA 指南](ADAPTERS.md)；没有真机生成证据。
+
+dev.7：通用包的 `/v1/models` 条目增加 `version` 元数据（尚无版本组时为 `{}`），包含 `groupId` / `activeBundleId` / `isActive` / `members`，有更新计划时附 `pending`。已安装的旧版仍以原 ID 列出；“当前版本”不重定向旧请求。更新 / 差异 / 确认切换目前使用 App 原生命令，不新增 HTTP 更新端点。见[模型更新](MODEL_UPDATES.md)。
