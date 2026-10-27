@@ -1,6 +1,6 @@
 # Fully local Android workflow framework
 
-[中文](WORKFLOWS.md) · [Local-model feasibility](MULTIMODAL.en.md) · [Current architecture](ARCHITECTURE.en.md)
+[中文](WORKFLOWS.md) · [Shared foundation](FOUNDATION.en.md) · [Local-model feasibility](MULTIMODAL.en.md) · [Current architecture](ARCHITECTURE.en.md)
 
 Status: **design proposal dated 2026-10-27, not implemented in the APK**. Two JSON drafts review contracts; they are not executable imports for current LMA or ComfyUI: [local narrated image clip](proposals/local-narrated-image.workflow.json), [on-phone Wan video experiment](proposals/local-wan-video.workflow.json). Every stage runs on the same Android phone, without ROOT, Docker, WSL, VMs or emulators.
 

@@ -1,6 +1,6 @@
 # Android 纯本地多模态可行性
 
-[English](MULTIMODAL.en.md) · [本地工作流方案](WORKFLOWS.md) · [文档目录](README.md)
+[English](MULTIMODAL.en.md) · [共用基座评估](FOUNDATION.md) · [本地工作流方案](WORKFLOWS.md) · [文档目录](README.md)
 
 核查日期：**2026-10-27（Asia/Taipei）**。按用户最新要求重新评估：**所有模型推理均在同一台 Android 手机上完成，无需 ROOT，不采用其他设备、局域网服务器或云端推理，也不设置此类回退。** 下载权重可以访问 HF；下载完成后，分词、文本编码、采样、VAE / codec、合成和导出均应能离线执行。
 

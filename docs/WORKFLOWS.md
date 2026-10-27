@@ -1,6 +1,6 @@
 # Android 纯本地工作流框架方案
 
-[English](WORKFLOWS.en.md) · [本地模型可行性](MULTIMODAL.md) · [当前架构](ARCHITECTURE.md)
+[English](WORKFLOWS.en.md) · [共用基座评估](FOUNDATION.md) · [本地模型可行性](MULTIMODAL.md) · [当前架构](ARCHITECTURE.md)
 
 状态：**2026-10-27 设计提案，尚未在 APK 中实现**。两个 JSON 草案用于评审契约，不可导入当前 LMA 或直接作为 ComfyUI 执行文件：[本地图片旁白短片](proposals/local-narrated-image.workflow.json)、[本机 Wan 生视频实验](proposals/local-wan-video.workflow.json)。所有步骤在同一 Android 手机执行，无需 ROOT，不使用 Docker、WSL、虚拟机或模拟器。
 

@@ -44,6 +44,8 @@ On Windows, run `Get-FileHash .\LMA-0.2.0-arm64-v8a.apk -Algorithm SHA256`. Rele
 
 ## Multimodal expansion research
 
+The main direction is an **extensible local multimodal foundation** sharing bundles/components/recipes, engine adapters, device capabilities, per-model settings, jobs/artifacts and workflows. Supported weight variants should need data additions; new architectures require engine updates. Z20 and newer phones have separate eligibility. See [the foundation assessment](docs/FOUNDATION.en.md) for layers, source migration and image/audio/video completion criteria. The foundation remains a proposal.
+
 The revised 2026-10-27 assessment requires **all inference, encoders, codecs and workflow composition on the same Android phone, without off-device inference or fallbacks; HF is for model downloads.** Start with small TTS, SD 1.5 and matching LoRA on Z20. Newly reviewed Android implementations of Wan 1.3B and older LTX-Video 2B are device-specific experiments, not Z20 passes. See [the feasibility matrix, sources and licenses](docs/MULTIMODAL.en.md) and [the local workflow/bundle/per-model-settings/background proposal](docs/WORKFLOWS.en.md). **These extensions are not current APK features or LMA phone-tested generation.** This documentation-only update preserves the v0.2.0 APK and existing demonstrations.
 
 ## Features and workflow
@@ -214,6 +216,7 @@ Current evidence is **85 backend + 45 HF logic + 25 protocol + 5 SQLite + 66 UI 
 | [User guide](docs/USER_GUIDE.en.md) / [中文](docs/USER_GUIDE.md) | Installation, pages, background use, troubleshooting |
 | [Architecture](docs/ARCHITECTURE.en.md) / [中文](docs/ARCHITECTURE.md) | Services, engine, downloads, chat, storage, boundaries |
 | [Multimodal feasibility](docs/MULTIMODAL.en.md) / [中文](docs/MULTIMODAL.md) | Fully local image, speech, music and video; device ratings, Android evidence and licenses |
+| [Foundation assessment](docs/FOUNDATION.en.md) / [中文](docs/FOUNDATION.md) | Shared multi-engine architecture, extension costs, migration and completion criteria |
 | [Workflow proposal](docs/WORKFLOWS.en.md) / [中文](docs/WORKFLOWS.md) | Proposed local DAG, bundles, providers, background jobs and controlled local graph import |
 | [API](docs/API.en.md) / [中文](docs/API.md) | Client integration and SSE |
 | [Build](docs/BUILD.en.md) / [中文](docs/BUILD.md) | Toolchain and verification |

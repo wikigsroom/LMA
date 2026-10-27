@@ -1,6 +1,6 @@
 # Fully local Android multimodal feasibility
 
-[中文](MULTIMODAL.md) · [Local workflow proposal](WORKFLOWS.en.md) · [Documentation](README.md)
+[中文](MULTIMODAL.md) · [Shared foundation](FOUNDATION.en.md) · [Local workflow proposal](WORKFLOWS.en.md) · [Documentation](README.md)
 
 Reviewed **2026-10-27 (Asia/Taipei)** under the user's revised requirement: **every inference stage runs on the same Android phone, without ROOT, another computer, a LAN inference server, cloud inference, or an off-device fallback.** HF access may download assets. Once installed, tokenization, text encoding, sampling, VAE / codec, composition and export must work offline.
 
