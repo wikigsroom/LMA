@@ -20,7 +20,9 @@
 - 不调用 Docker、WSL、虚拟机或模拟器；浏览器任务用 finally 关闭无用页面和进程。Never invoke virtualization; always clean up browser resources.
 - 不提交模型、API 密钥、签名、密码、浏览器 profile 或构建缓存。Never publish weights, secrets, signing files, profiles, or caches.
 
-- 下一版本 v0.3.0 按[完整更新需求](docs/MULTIMODAL_RELEASE_PLAN.md)统一交付全部基座及 01–14 / 16 / 17 与冻结子目标，不拆版、不默认顺延；内部工作包共用一套验收门槛。The next v0.3.0 delivers the complete foundation and all selected targets together; internal work packages do not create separate releases.
+- 下一版本 v0.3.0 按[完整更新需求](docs/MULTIMODAL_RELEASE_PLAN.md)统一交付全部基座及 01–14 / 16 / 17 与冻结子目标的运行支持能力，不拆版、不默认顺延；内部工作包共用一套验收门槛。The next v0.3.0 delivers the complete foundation and all selected targets together; internal work packages do not create separate releases.
+
+App 仅更新基座，模型资产由用户按需选择 / 下载 / 导入 / 更新 / 删除；安装 / 升级不发起模型下载，不打包权重，不静默替换用户文件。推荐 / 模型清单只是元数据；开发验证模型不成为用户必装项。App updates deliver the foundation, with independent explicit user control of model assets; validate separation under A11.
 
 ## 版本与验收 / Versions and acceptance
 

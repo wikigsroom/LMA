@@ -6,7 +6,7 @@ Date: **2026-10-27 (Asia/Taipei)**. Status: **complete requirements baseline for
 
 ## 01 · Decision and scope
 
-**The next version, v0.3.0, must deliver the complete shared local foundation and all 16 selected groups together. No release splitting or automatic deferral.** Native pipelines, operators, shared memory, devices and licenses are work to resolve within this release. Open risks remain blockers for this version, rather than later-release assignments. Inclusion in requirements is not an implementation claim.
+**The next version, v0.3.0, must deliver the complete shared local foundation and runtime/recipe support for all 16 selected groups together. No release splitting or automatic deferral.** Native pipelines, operators, shared memory, devices and licenses are work to resolve within this release. Open risks remain blockers for this version, rather than later-release assignments. Inclusion in requirements is not an implementation claim.
 
 - Include original selections **01–14, 16, 17** and every frozen subtarget in v0.3.0, without renumbering. Preserve existing text models and text generation. Both SD 1.5 and SDXL LoRA pass acceptance in this release.
 - Exclude original 15 YuE2, 18 large Wan, 19 newer LTX, 20 H3 and 21 ComfyUI infrastructure. Model/LoRA training is outside scope.
@@ -17,6 +17,23 @@ Date: **2026-10-27 (Asia/Taipei)**. Status: **complete requirements baseline for
 **Supported means a complete pinned bundle, a compatible packaged engine, valid parameters, fresh-input offline phone output, openable artifacts, cancellation/unloading, background ownership and reviewable device evidence.** Listing/tagging a repository, downloading weights or declaring a nonfunctional provider does not meet this definition. Experimental support also requires actual output.
 
 These are 16 requirement groups, not 16 weight files. In particular, 03, 10 and 12 contain multiple subtargets. Overall completion requires every frozen subtarget; Nano in 09 does not substitute for 12, and a still-image MP4 does not substitute for 16/17.
+
+### App updates and user-owned model assets
+
+**App updates deliver the foundation. Users independently choose, download, import, manage and delete model assets.** Supporting every target means its architecture, engine, recipe and management path are functional; it does not bundle/preinstall all models or require users to download them all.
+
+| Object | Delivery/management rule |
+| --- | --- |
+| APK foundation | UI, engine/backend code, jobs/background/API, generic resources, tag rules, catalogue metadata, recipes and notices; no model weights |
+| Model-specific data | Backbone, LoRA, encoder/VAE/audio-codec weights and model-specific tokenizers/voices/language packs are separate user-selected downloads/imports |
+| Install/app upgrade | No automatic model selection or asset download triggered by installation/upgrade. Preserve existing files, settings and user-authorized preferences without silently replacing weights |
+| User downloads | Show the selected model/quantization/recipe's required components, total size, reusable assets and device requirements; only an explicit download action creates that bundle's job, without adding recommendations/sibling models |
+| Independent management | Install one model or any needed combination; pause/resume/update/import/delete independently. Deleting models retains the foundation and protects shared references |
+| No-model state | App/catalogue/tags/settings remain usable; generation and model APIs need a compatible user-installed model. Missing assets prompt selection/download, without implicit download or off-device execution |
+
+Capability tags and actual installation state are independent. Recommended is a candidate view, not an auto-download list. The 14 built-ins mean catalogue metadata, not bundled weights. App upgrades do not force model updates; compatible weights on supported architectures can download separately, while new architectures/operators may require a foundation update.
+
+Developer acceptance may download test models to validate the 16 groups. Those assets never enter the release APK or become user installation prerequisites. Coverage, single-release scope and real execution evidence remain required.
 
 ## 02 · Flat models and tag semantics
 
@@ -59,7 +76,7 @@ For example, Wan gets video/text-to-video tags plus a Wan pipeline, UMT5/VAE and
 
 No infinite canvas, wiring editor, user nodes, plugin marketplace, third-party Python nodes or ComfyUI JSON import. Internal encoding/sampling/decoding stages may have dependencies without exposing a general DAG. Earlier graph drafts are not current execution-interface commitments.
 
-## 04 · Selected models and foundation requirements
+## 04 · Foundation coverage, model tags and adaptation requirements
 
 These are target routes and engineering assessments. **Every new entry is currently unimplemented/unverified in LMA.** Engine names are proposed alternatives or architecture-specific choices, not installed capabilities. Full component tags and acceptance details are in the [scope JSON](proposals/multimodal-release-scope.json).
 
@@ -102,8 +119,8 @@ See [broader source research](MULTIMODAL.en.md). License gates apply to every se
 
 ## 06 · User flow
 
-1. Install/upgrade LMA and open one model library. Keep Recommended and filter by text/image/video/audio, name, installation or compatibility.
-2. Open details for capabilities, foundation dependencies, total component download and device state. Select a compatible quantization/device recipe and download. Missing engine support identifies a required app version; downloading model data does not install execution code.
+1. Install/upgrade only the foundation, preserving user models/settings and creating no model downloads. Open the flat library, keep Recommended and filter by output/name/installation/compatibility. The App remains browsable without installed models.
+2. Choose a model/quantization/recipe; inspect capabilities, complete components, total download, reusable assets and device state. Only clicking Download creates the selected bundle job. Browsing/recommendations never trigger downloads. Missing engine support identifies a required foundation version; weights do not supply execution code.
 3. Manage all models/transfers under Local and edit independent settings. LoRA remains a peer record using a compatible-base selector.
 4. Select Use to open the task form: prompt/text, required files, supported voices/speakers, dimensions/frames/duration. Only show fields supported by that recipe and explain missing inputs.
 5. Validate natively, return corrected effective values with reasons, and submit to the common queue. Report stages, real progress/previews and cancellation; do not invent percentages.
@@ -128,10 +145,10 @@ The only target is **v0.3.0**; the public APK remains v0.2.0. This requirements 
 | Delivery scope | Required completion |
 | --- | --- |
 | Complete shared foundation | Implement F-01–F-12 for all four output tasks and reusable supported-architecture variants |
-| Existing text | Migrate all 14 built-ins, HF/imported records, chat, text API, recommendations and independent settings compatibly |
-| Images/adapters | All 01–08; both SD 1.5/SDXL LoRA for 02; all three 03 subtargets |
-| Audio | All 09–14; Kokoro/Piper/Matcha individually and all nine frozen 12 subtargets |
-| Video | Both 16 Wan 1.3B and 17 older LTX 2B produce actual motion video using declared lawful device recipes |
+| Existing text support | Migrate 14 catalogue records, user-selected HF/imported records, chat, text API, recommendations and settings compatibly; no bundled weights |
+| Image/adapter support | All 01–08; both SD 1.5/SDXL LoRA for 02; all three 03 subtargets |
+| Audio support | All 09–14; Kokoro/Piper/Matcha individually and all nine frozen 12 subtargets |
+| Video support | Both 16 Wan 1.3B and 17 older LTX 2B produce actual motion video using declared lawful device recipes |
 | Product flow | One flat library, tags, complete downloads, Local settings, forms, queue, background, artifacts, API, recovery/export |
 | Release package | Upgrade-compatible signed APK, matching source/dependency locks/hashes, phone evidence, bilingual guides and screenshots/recording/GIFs |
 
@@ -140,7 +157,7 @@ The only target is **v0.3.0**; the public APK remains v0.2.0. This requirements 
 | R-01 Complete scope | F-01–F-12, all 16 groups and frozen subtargets have implementation and acceptance; both base families for 02 pass |
 | R-02 Actual execution | Each generation target has at least one pinned complete recipe producing fresh-input offline output on a declared physical Android device; adapters run with matching bases; device restrictions do not remove models |
 | R-03 Resolved risks | Native host loops/operators/codecs, selected code/model licenses, memory and parameter constraints are deliverable; failed targets remain blockers, not empty adapters/catalogue entries/experimental labels |
-| R-04 Lifecycle/regression | A1–A10 pass, including upgrade, background, cancellation, unloading, interruptions and resource release; no unresolved severe runtime/data issues |
+| R-04 Lifecycle/regression | A1–A11 pass, including upgrade, background, cancellation, unloading, interruptions and resource release; no unresolved severe runtime/data issues |
 | R-05 Reviewable release | Version, signature, APK/source, engine/component locks, device matrix, feature media and bilingual guides agree, with exact device limits |
 
 Internal development builds validate this same scope. A reduced preview cannot substitute for completion. A particular phone may disable incompatible recipes; a selected target that runs on no declared device leaves the whole version incomplete. Missing devices and unfinished ports remain explicit blockers without changing the target version. Only a new user instruction revises scope.
@@ -156,7 +173,7 @@ These are work packages within the same v0.3.0, not a version roadmap or partial
 | W3 Downloads/settings/admission | Atomic bundles, shared references, resume/space plans, compiled capabilities, independent editable settings/joint constraints | F-02/F-03/F-05; A2–A4 |
 | W4 Jobs/resources/background/API | One heavy-engine lease, durable jobs/events, cancel/timeouts, background ownership, real recovery, authenticated APIs/artifacts | F-06–F-10; A5–A8 |
 | W5 Every model pipeline | All 01–14/16/17, frozen 03/10/12 subtargets and both SD 1.5/SDXL LoRA; preserve existing text | R-01–R-03; one cross-modality example is insufficient |
-| W6 Acceptance/media/release | Physical offline output, resources/quality/screen-off/endurance, upgrades, bilingual guides/media and signed package | F-11/F-12; A1–A10; R-04/R-05 |
+| W6 Acceptance/media/release | Physical offline output, resources/quality/screen-off/endurance, upgrades, bilingual guides/media and signed package | F-11/F-12; A1–A11; R-04/R-05 |
 
 Validate risky work early within this version: native Wan output, MOSS Delay/Local/Realtime/DiT, complete SoulX, and 08 full-bundle memory/licenses. Prototypes are implementation tools, not final product integration. Resolve problems here, select lawful compatible recipes or track explicit blockers; do not defer automatically.
 
@@ -177,10 +194,12 @@ No physical device is available; complete Android ports for 12/13 remain unprove
 - **A9 Regression/release:** preserve old text API/chat/recommendations/settings/downloads; consistent native package/signing/version/SHA/bilingual docs/screens/recordings. Desktop fixtures cannot stand in for feature demonstrations.
 - **A10 Complete single release:** v0.3.0 includes F-01–F-12, existing text, all 16 groups/frozen subtargets and both SD 1.5/SDXL adapter pairings. Entries/downloads do not count. Any missing requirement leaves overall completion open, without automatic release splitting, removal or deferral.
 
+- **A11 Foundation/asset separation:** zero-model installation/app upgrade creates no model downloads; browsing/filtering never starts transfers; only selected bundles and disclosed dependencies download; one-model use works; upgrades do not silently replace/force-update weights; deletion retains the foundation with explicit settings/shared-reference handling.
+
 A1–A4 rules and some migrations permit desktop checks. A5–A8 require physical Android evidence, currently zero. `multimodal-release-scope.json` is a reviewable requirements snapshot, not the production catalogue, a download lock or a test report.
 
 ## 11 · Documentation baseline and current state
 
-This update consolidates the previous multi-release plan into one complete next-version baseline, v0.3.0. It synchronizes the model matrix, structured scope, foundation/task/research guides, bilingual READMEs, index, changelog and version plan. All 12 core requirements, 16 groups and frozen subtargets belong to this same version.
+This update consolidates the previous multi-release plan into one complete next-version baseline, v0.3.0. It synchronizes the model matrix, structured scope, foundation/task/research guides, bilingual READMEs, index, changelog and version plan. All 12 core requirements and support for the 16 groups/frozen subtargets belong to this version. Model data remains an independent user choice and is not shipped with the App.
 
 The current APK remains v0.2.0 for compatible single-file text GGUF. This documentation update adds no engine, APK changes or phone results and creates no v0.3.0 tag/Release. Unfinished work remains tracked as blockers for this version. The product target is **flat library → task form → on-phone queue → artifact library**; old canvas/node JSON remains historical and non-executable.

@@ -21,7 +21,7 @@
 | 真机验收 / Physical-device acceptance | [DEVICE_ACCEPTANCE.md](DEVICE_ACCEPTANCE.md) | [DEVICE_ACCEPTANCE.en.md](DEVICE_ACCEPTANCE.en.md) |
 | 截图与录屏 / Screenshots and recordings | [MEDIA.md（双语 / bilingual）](MEDIA.md) | [Provenance / 来源](media/manifest.json) |
 | 后续同步与发布 / Updates and publishing | [RELEASING.md（双语 / bilingual）](RELEASING.md) | [Contributing / 贡献约定](../CONTRIBUTING.md) |
-| v0.3.0 交付计划 / Delivery plan | [v0.3.0-plan.md（双语 / bilingual）](releases/v0.3.0-plan.md) | 同一版本完整交付 / One complete next release |
+| v0.3.0 交付计划 / Delivery plan | [v0.3.0-plan.md（双语 / bilingual）](releases/v0.3.0-plan.md) | 同版基座支持、用户自选模型 / Foundation support, user-selected assets |
 | 版本 / Versions | [CHANGELOG.md（双语 / bilingual）](../CHANGELOG.md) | [v0.2.0（双语 / bilingual）](releases/v0.2.0.md) |
 
 ## 阅读建议 / Reading paths

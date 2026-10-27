@@ -4,6 +4,8 @@
 
 ## Unreleased / 后续维护
 
+- 2026-10-27：明确 App 仅更新基座，01–14 / 16 / 17 是运行支持 / 配方覆盖目标，权重与模型专用资产由用户独立选择、下载、导入、管理和删除。安装 / 升级 / 浏览不触发模型下载，不强制模型更新或静默替换；推荐为元数据，功能标签与安装状态分开。新增 A11 资产分离验收并同步双语文档 / 结构化策略。Clarify foundation-only App updates and explicit user model-asset control; add A11, preserve flat task/dependency tags and single-release coverage. Documentation only; no APK/runtime changes.
+
 - 2026-10-27：按用户最新要求取消分版本工作线路，下一版本 **v0.3.0** 统一交付 F-01–F-12、既有生文、01–14 / 16 / 17 及全部冻结子目标，含 SD 1.5 / SDXL LoRA；新增同版发布门槛与[交付摘要](docs/releases/v0.3.0-plan.md)。撤销默认顺延或缩减预览代替完成；风险保留为本版阻塞。Consolidate the full foundation and selected models into one complete next v0.3.0, without release splitting or automatic deferral; add common release gates and delivery summary.
 - 同步双语需求、模型目标版本、结构化范围 schema v2、基座 / 任务 / 研究文档、README / 导航 / 贡献与发布约定。仅文档维护，当前 APK / 公开版本 / 媒体与附件不变。Synchronize bilingual specs, schema v2, model targets and related guides; documentation only, current APK/version/media/assets unchanged.
 

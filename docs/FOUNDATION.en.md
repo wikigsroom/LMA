@@ -61,7 +61,9 @@ Bundles record pinned repository/revision, component role/path/bytes/SHA256, tas
 
 Content hashes index shared components; a dependency graph supports deletion and storage planning. Verify components and atomically commit ready status only when mandatory files are complete. Running jobs retain references so deletion/cleanup cannot remove their inputs. Unknown hashes or unpinned provenance cannot be represented as reviewed bundles.
 
-HF search remains broad, with separate discovered, recipe-available, installed, eligible-to-try and verified-on-target states. Show required components, total downloads, reused assets and reasons. Initially distribute prepared compatible assets: users need no attached computer for conversion, and no external conversion/inference service is invoked. Missing recipes produce an unsupported explanation.
+HF search remains broad, with separate discovered, recipe-available, installed, eligible-to-try and verified-on-target states. Show required components, total downloads, reused assets and reasons. Offer prepared compatible assets as user-selected downloads: users need no attached computer for conversion, and no external conversion/inference service is invoked. Missing recipes produce an unsupported explanation.
+
+App updates provide foundation code, engines, catalogue/tag metadata and recipes, without model weights or model-specific asset data. Users choose complete downloads/imports separately. Installation/upgrades/browsing trigger no model transfers; preserve files/settings and let users choose model updates independently. Developer coverage tests do not require users to install every target; the App remains browsable without models.
 
 ## 05 · Internal application engine modules
 
@@ -131,7 +133,7 @@ All items below are mandatory for the next v0.3.0, not different releases. A sub
 | K2 Shared cross-modality execution | Text/image/audio/real video share queue, settings, background and artifacts | At least two real engine modules; still-image MP4 is not generative video |
 | K3 Every target/extensibility | All 01–14/16/17, frozen subtargets and both LoRA base families; second same-architecture weight via descriptors | Individual acceptance in this version; providers do not rewrite library/downloads/jobs |
 | K4 Devices/failures | Z20-class/newer recipes, resource/background tests, crashes/cancel/missing assets/disk/recovery | Declared device/offline evidence per target, without claiming all run on Z20 |
-| K5 Interaction/distribution | Flat tags, forms, queue/artifacts, full native dependencies/signed package, bilingual guides/media | F-01–F-12, A1–A10 and R-01–R-05 pass together |
+| K5 Interaction/distribution | Flat tags, forms, queue/artifacts, full native dependencies/signed package, bilingual guides/media | F-01–F-12, A1–A11 and R-01–R-05 pass together |
 
 Some K1 contracts/migrations allow host checks. K2–K4 device execution requires real artifacts and physical Android evidence. No device is available; completion cannot be claimed. Foreground services do not guarantee survival; see task execution limits.
 

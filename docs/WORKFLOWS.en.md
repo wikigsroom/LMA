@@ -28,6 +28,8 @@ flowchart TD
 
 This does not imply these engines are packaged. Current single-file `.gguf` downloading and the single text process need migration. Tokenization, encoding, sampling, codecs and media processing remain on-phone, without external execution providers or resource-related offloading. Discovery/downloads and execution are separate; missing assets, unknown operators and resource failures produce specific local errors.
 
+Installation/upgrades update the foundation only; recommendations/catalogue entries contain no weights. Browsing, selection or a task missing assets does not implicitly download models. An explicit download action creates only the chosen bundle job and disclosed dependencies. Preserve existing models/settings; users manage asset updates/deletion. Developer test assets stay out of the APK and are not user prerequisites.
+
 ## Bundles and internal engines
 
 Separate model, components and recipe: `ModelRecord → pinned recipe → complete components → compatible engine/device`. These are technical dependencies, not model ranks.

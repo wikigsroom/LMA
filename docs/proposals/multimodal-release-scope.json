@@ -243,7 +243,9 @@
       },
       "target_release": "0.3.0",
       "required_in_target_release": true,
-      "missing_target_blocks_complete_release": true
+      "missing_target_blocks_complete_release": true,
+      "coverage_role": "foundation_runtime_and_recipe_support_target",
+      "end_user_download_policy": "optional_explicit_user_choice"
     },
     {
       "selection_id": "02",
@@ -305,7 +307,9 @@
       "target_release": "0.3.0",
       "required_in_target_release": true,
       "missing_target_blocks_complete_release": true,
-      "all_declared_base_family_scopes_required_in_same_release": true
+      "all_declared_base_family_scopes_required_in_same_release": true,
+      "coverage_role": "foundation_runtime_and_recipe_support_target",
+      "end_user_download_policy": "optional_explicit_user_choice"
     },
     {
       "selection_id": "03",
@@ -368,7 +372,8 @@
           "android_validated": false,
           "planned_only": true,
           "target_release": "0.3.0",
-          "required_in_target_release": true
+          "required_in_target_release": true,
+          "end_user_download_policy": "optional_explicit_user_choice"
         },
         {
           "model": "LCM checkpoint",
@@ -388,7 +393,8 @@
           "android_validated": false,
           "planned_only": true,
           "target_release": "0.3.0",
-          "required_in_target_release": true
+          "required_in_target_release": true,
+          "end_user_download_policy": "optional_explicit_user_choice"
         },
         {
           "model": "LCM-LoRA with matching base",
@@ -410,7 +416,8 @@
           "android_validated": false,
           "planned_only": true,
           "target_release": "0.3.0",
-          "required_in_target_release": true
+          "required_in_target_release": true,
+          "end_user_download_policy": "optional_explicit_user_choice"
         }
       ],
       "base_support_tags": {
@@ -432,7 +439,9 @@
       },
       "target_release": "0.3.0",
       "required_in_target_release": true,
-      "missing_target_blocks_complete_release": true
+      "missing_target_blocks_complete_release": true,
+      "coverage_role": "foundation_runtime_and_recipe_support_target",
+      "end_user_download_policy": "optional_explicit_user_choice"
     },
     {
       "selection_id": "04",
@@ -498,7 +507,9 @@
       },
       "target_release": "0.3.0",
       "required_in_target_release": true,
-      "missing_target_blocks_complete_release": true
+      "missing_target_blocks_complete_release": true,
+      "coverage_role": "foundation_runtime_and_recipe_support_target",
+      "end_user_download_policy": "optional_explicit_user_choice"
     },
     {
       "selection_id": "05",
@@ -561,7 +572,9 @@
       },
       "target_release": "0.3.0",
       "required_in_target_release": true,
-      "missing_target_blocks_complete_release": true
+      "missing_target_blocks_complete_release": true,
+      "coverage_role": "foundation_runtime_and_recipe_support_target",
+      "end_user_download_policy": "optional_explicit_user_choice"
     },
     {
       "selection_id": "06",
@@ -622,7 +635,9 @@
       },
       "target_release": "0.3.0",
       "required_in_target_release": true,
-      "missing_target_blocks_complete_release": true
+      "missing_target_blocks_complete_release": true,
+      "coverage_role": "foundation_runtime_and_recipe_support_target",
+      "end_user_download_policy": "optional_explicit_user_choice"
     },
     {
       "selection_id": "07",
@@ -681,7 +696,9 @@
       },
       "target_release": "0.3.0",
       "required_in_target_release": true,
-      "missing_target_blocks_complete_release": true
+      "missing_target_blocks_complete_release": true,
+      "coverage_role": "foundation_runtime_and_recipe_support_target",
+      "end_user_download_policy": "optional_explicit_user_choice"
     },
     {
       "selection_id": "08",
@@ -744,7 +761,9 @@
       },
       "target_release": "0.3.0",
       "required_in_target_release": true,
-      "missing_target_blocks_complete_release": true
+      "missing_target_blocks_complete_release": true,
+      "coverage_role": "foundation_runtime_and_recipe_support_target",
+      "end_user_download_policy": "optional_explicit_user_choice"
     },
     {
       "selection_id": "09",
@@ -802,7 +821,9 @@
       },
       "target_release": "0.3.0",
       "required_in_target_release": true,
-      "missing_target_blocks_complete_release": true
+      "missing_target_blocks_complete_release": true,
+      "coverage_role": "foundation_runtime_and_recipe_support_target",
+      "end_user_download_policy": "optional_explicit_user_choice"
     },
     {
       "selection_id": "10",
@@ -865,7 +886,8 @@
           "android_validated": false,
           "planned_only": true,
           "target_release": "0.3.0",
-          "required_in_target_release": true
+          "required_in_target_release": true,
+          "end_user_download_policy": "optional_explicit_user_choice"
         },
         {
           "model": "one pinned Piper voice/language package",
@@ -885,7 +907,8 @@
           "android_validated": false,
           "planned_only": true,
           "target_release": "0.3.0",
-          "required_in_target_release": true
+          "required_in_target_release": true,
+          "end_user_download_policy": "optional_explicit_user_choice"
         },
         {
           "model": "one pinned Matcha voice/language package",
@@ -906,7 +929,8 @@
           "android_validated": false,
           "planned_only": true,
           "target_release": "0.3.0",
-          "required_in_target_release": true
+          "required_in_target_release": true,
+          "end_user_download_policy": "optional_explicit_user_choice"
         }
       ],
       "base_support_tags": {
@@ -928,7 +952,9 @@
       },
       "target_release": "0.3.0",
       "required_in_target_release": true,
-      "missing_target_blocks_complete_release": true
+      "missing_target_blocks_complete_release": true,
+      "coverage_role": "foundation_runtime_and_recipe_support_target",
+      "end_user_download_policy": "optional_explicit_user_choice"
     },
     {
       "selection_id": "11",
@@ -992,7 +1018,9 @@
       },
       "target_release": "0.3.0",
       "required_in_target_release": true,
-      "missing_target_blocks_complete_release": true
+      "missing_target_blocks_complete_release": true,
+      "coverage_role": "foundation_runtime_and_recipe_support_target",
+      "end_user_download_policy": "optional_explicit_user_choice"
     },
     {
       "selection_id": "12",
@@ -1063,7 +1091,8 @@
           "entity_kind": "model",
           "planned_only": true,
           "target_release": "0.3.0",
-          "required_in_target_release": true
+          "required_in_target_release": true,
+          "end_user_download_policy": "optional_explicit_user_choice"
         },
         {
           "model": "MOSS-TTS-v1.5",
@@ -1085,7 +1114,8 @@
           "entity_kind": "model",
           "planned_only": true,
           "target_release": "0.3.0",
-          "required_in_target_release": true
+          "required_in_target_release": true,
+          "end_user_download_policy": "optional_explicit_user_choice"
         },
         {
           "model": "MOSS-TTS-Local-Transformer",
@@ -1107,7 +1137,8 @@
           "entity_kind": "model",
           "planned_only": true,
           "target_release": "0.3.0",
-          "required_in_target_release": true
+          "required_in_target_release": true,
+          "end_user_download_policy": "optional_explicit_user_choice"
         },
         {
           "model": "MOSS-TTS-Local-Transformer-v1.5",
@@ -1129,7 +1160,8 @@
           "entity_kind": "model",
           "planned_only": true,
           "target_release": "0.3.0",
-          "required_in_target_release": true
+          "required_in_target_release": true,
+          "end_user_download_policy": "optional_explicit_user_choice"
         },
         {
           "model": "MOSS-TTSD-v1.0",
@@ -1151,7 +1183,8 @@
           "entity_kind": "model",
           "planned_only": true,
           "target_release": "0.3.0",
-          "required_in_target_release": true
+          "required_in_target_release": true,
+          "end_user_download_policy": "optional_explicit_user_choice"
         },
         {
           "model": "MOSS-VoiceGenerator",
@@ -1173,7 +1206,8 @@
           "entity_kind": "model",
           "planned_only": true,
           "target_release": "0.3.0",
-          "required_in_target_release": true
+          "required_in_target_release": true,
+          "end_user_download_policy": "optional_explicit_user_choice"
         },
         {
           "model": "MOSS-SoundEffect",
@@ -1195,7 +1229,8 @@
           "entity_kind": "model",
           "planned_only": true,
           "target_release": "0.3.0",
-          "required_in_target_release": true
+          "required_in_target_release": true,
+          "end_user_download_policy": "optional_explicit_user_choice"
         },
         {
           "model": "MOSS-SoundEffect-v2.0",
@@ -1217,7 +1252,8 @@
           "entity_kind": "model",
           "planned_only": true,
           "target_release": "0.3.0",
-          "required_in_target_release": true
+          "required_in_target_release": true,
+          "end_user_download_policy": "optional_explicit_user_choice"
         },
         {
           "model": "MOSS-TTS-Realtime",
@@ -1239,7 +1275,8 @@
           "entity_kind": "model",
           "planned_only": true,
           "target_release": "0.3.0",
-          "required_in_target_release": true
+          "required_in_target_release": true,
+          "end_user_download_policy": "optional_explicit_user_choice"
         }
       ],
       "base_support_tags": {
@@ -1263,7 +1300,9 @@
       },
       "target_release": "0.3.0",
       "required_in_target_release": true,
-      "missing_target_blocks_complete_release": true
+      "missing_target_blocks_complete_release": true,
+      "coverage_role": "foundation_runtime_and_recipe_support_target",
+      "end_user_download_policy": "optional_explicit_user_choice"
     },
     {
       "selection_id": "13",
@@ -1330,7 +1369,9 @@
       },
       "target_release": "0.3.0",
       "required_in_target_release": true,
-      "missing_target_blocks_complete_release": true
+      "missing_target_blocks_complete_release": true,
+      "coverage_role": "foundation_runtime_and_recipe_support_target",
+      "end_user_download_policy": "optional_explicit_user_choice"
     },
     {
       "selection_id": "14",
@@ -1397,7 +1438,9 @@
       },
       "target_release": "0.3.0",
       "required_in_target_release": true,
-      "missing_target_blocks_complete_release": true
+      "missing_target_blocks_complete_release": true,
+      "coverage_role": "foundation_runtime_and_recipe_support_target",
+      "end_user_download_policy": "optional_explicit_user_choice"
     },
     {
       "selection_id": "16",
@@ -1459,7 +1502,9 @@
       },
       "target_release": "0.3.0",
       "required_in_target_release": true,
-      "missing_target_blocks_complete_release": true
+      "missing_target_blocks_complete_release": true,
+      "coverage_role": "foundation_runtime_and_recipe_support_target",
+      "end_user_download_policy": "optional_explicit_user_choice"
     },
     {
       "selection_id": "17",
@@ -1528,7 +1573,9 @@
       },
       "target_release": "0.3.0",
       "required_in_target_release": true,
-      "missing_target_blocks_complete_release": true
+      "missing_target_blocks_complete_release": true,
+      "coverage_role": "foundation_runtime_and_recipe_support_target",
+      "end_user_download_policy": "optional_explicit_user_choice"
     }
   ],
   "subtarget_records_are_planning_requirements_not_ui_children": true,
@@ -1547,7 +1594,7 @@
   },
   "next_release": {
     "version": "0.3.0",
-    "name": "complete_local_multimodal_foundation_and_all_selected_models",
+    "name": "complete_local_multimodal_foundation_and_all_selected_model_support",
     "selected_ids": [
       "01",
       "02",
@@ -1599,7 +1646,8 @@
       "A7",
       "A8",
       "A9",
-      "A10"
+      "A10",
+      "A11"
     ],
     "release_gate_ids": [
       "R-01",
@@ -1619,6 +1667,39 @@
     ],
     "minimum_execution_evidence": "at_least_one_pinned_complete_recipe_and_physical_android_device_per_required_target",
     "implementation_status": "not_implemented_in_lma",
-    "physical_device_tests": 0
+    "physical_device_tests": 0,
+    "scope_interpretation": "runtime_and_recipe_coverage_with_developer_acceptance_not_bundled_or_mandatory_end_user_models"
+  },
+  "model_asset_policy": {
+    "app_update_scope": "foundation_code_ui_engines_recipes_and_metadata",
+    "model_weights_in_apk": false,
+    "model_specific_asset_data_in_apk": false,
+    "model_assets_required_to_install_or_update_app": false,
+    "automatic_model_selection_on_install_or_upgrade": false,
+    "automatic_asset_download_on_install_or_upgrade": false,
+    "implicit_download_on_browsing_or_task_submission": false,
+    "download_trigger": "explicit_user_action_for_selected_bundle_and_disclosed_dependencies",
+    "required_to_download_all_supported_models": false,
+    "user_controls": [
+      "choose",
+      "download",
+      "pause",
+      "resume",
+      "import",
+      "update",
+      "delete",
+      "settings"
+    ],
+    "model_updates_independent_of_app_updates": true,
+    "silent_model_replacement": false,
+    "preserve_existing_models_and_settings_on_upgrade": true,
+    "zero_model_state_usable_for_library_and_settings": true,
+    "generation_requires_compatible_user_installed_assets": true,
+    "model_deletion_keeps_foundation": true,
+    "shared_component_reference_protection": true,
+    "bundled_catalogue_records_are_metadata_only": true,
+    "developer_acceptance_assets_are_not_user_install_requirements": true,
+    "known_architecture_variants_can_be_separate_asset_additions": true,
+    "new_architecture_may_require_foundation_update": true
   }
 }
