@@ -4,7 +4,7 @@
   var $ = function (id) { return document.getElementById(id); };
   var labels = {text: '生文', image: '生图', video: '生视频', audio: '生音频'};
   var states = {queued: '排队中', loading: '加载中', running: '生成中', cancelling: '取消中', cancelled: '已取消', failed: '失败', succeeded: '已完成', interrupted: '已中断'};
-  var stages = {queued: '等待执行', loading: '加载模型', sampling: '采样中', encoding: '编码视频', text_encoding: '编码文本', decoding: '解码输出'};
+  var stages = {queued: '等待执行', loading: '加载模型', sampling: '采样中', encoding: '编码媒体', synthesizing: '合成语音', text_encoding: '编码文本', decoding: '解码输出'};
   var paramNames = {width: '宽度', height: '高度', frames: '帧数', fps: '帧率', steps: '采样步数', cfg: '提示词引导', seed: '随机种子', threads: 'CPU 线程', sampler: '采样器', scheduler: '调度器', duration: '时长（秒）', speed: '语速'};
   function entries() { return ui.state() && ui.state().bundles || []; }
   function find(id) { return entries().filter(function (b) { return b.id === id; })[0]; }
@@ -46,7 +46,7 @@
       else if (f.type === 'string') out += '<input data-bundle-field="' + e(key) + '" value="' + e(value) + '" maxlength="' + (f.maxLength === undefined ? 16000 : f.maxLength) + '">';
       else {
         var presets = (f.presets || []).filter(function (v) { return typeof v === 'number' && isFinite(v); });
-        out += '<input type="text" role="combobox" aria-autocomplete="list" aria-expanded="false" list="' + name + '" data-bundle-field="' + e(key) + '" data-numeric="true" value="' + e(value) + '" inputmode="' + (f.type === 'integer' ? 'numeric' : 'decimal') + '" autocomplete="off"><datalist id="' + name + '">' + presets.map(function (v) { return '<option value="' + v + '"></option>'; }).join('') + '</datalist><small>' + (f.minimum !== undefined ? '最低 ' + e(f.minimum) + ' · ' : '') + (f.maximum !== undefined ? (f.limitSource === 'application_guard' ? '应用保护上限 ' : '上限 ') + e(f.maximum) : '模型上限未声明') + (f.multipleOf ? ' · 步长 ' + e(f.multipleOf) : '') + '</small>';
+        out += '<input type="text" role="combobox" aria-autocomplete="list" aria-expanded="false" list="' + name + '" data-bundle-field="' + e(key) + '" data-numeric="true" value="' + e(value) + '" inputmode="' + (f.type === 'integer' ? 'numeric' : 'decimal') + '" autocomplete="off"><datalist id="' + name + '">' + presets.map(function (v) { return '<option value="' + v + '"></option>'; }).join('') + '</datalist><small>' + (f.minimum !== undefined ? '最低 ' + e(f.minimum) + ' · ' : '') + (f.maximum !== undefined ? (f.limitSource === 'application_guard' ? '应用保护上限 ' : f.limitSource === 'publisher_metadata_unverified' ? '发布者声明上限（待核对）' : '上限 ') + e(f.maximum) : '模型上限未声明') + (f.multipleOf ? ' · 步长 ' + e(f.multipleOf) : '') + '</small>';
       }
       out += '</label>';
     });
@@ -86,8 +86,9 @@
     if (!engineAvailable(b)) { ui.toast('当前基座缺少匹配引擎'); return; }
     var types = [];
     tasks(b).forEach(function (t) { if (t === 'image') types.push(['image.generate', '生图']); if (t === 'video') types.push(['video.generate', '生视频']); if (t === 'text') types.push(['text.generate', '生文']); if (t === 'audio') types.push([(b.manifest.capabilities || []).indexOf('text_to_speech') >= 0 ? 'speech.synthesize' : 'audio.generate', '生音频']); });
+    var speechOnly = types.length === 1 && types[0][0] === 'speech.synthesize';
     editor = {id: id, mode: 'task'};
-    ui.openModal(b.manifest.name, '<form id="localTaskForm"><label class="form-field"><span>生成能力</span><select name="taskType">' + types.map(function (t) { return '<option value="' + t[0] + '">' + t[1] + '</option>'; }).join('') + '</select></label><label class="form-field"><span>提示词 / 文本</span><textarea name="prompt" rows="4" required maxlength="16000" placeholder="描述你希望生成的内容"></textarea></label><label class="form-field"><span>负面提示词（可选）</span><textarea name="negativePrompt" rows="2" maxlength="16000"></textarea></label><details class="task-parameters"><summary>本次参数</summary>' + fields(b) + '</details><label class="unmeasured-choice"><input type="checkbox" name="allowUnmeasured" required><span>此配方尚无本机实测记录，我选择在当前手机上尝试。</span></label><p class="form-help">一次执行一个大型引擎。请先停止文本服务；任务在后台通知中持续执行，结果保存在本机。不会因缺少组件自动下载。</p><p id="bundleFormHint" role="status"></p><div class="modal-actions">' + button('closeModal', '', '取消') + '<button type="submit" class="button primary">加入本机队列</button></div></form>', 'localTask');
+    ui.openModal(b.manifest.name, '<form id="localTaskForm"><label class="form-field"><span>生成能力</span><select name="taskType">' + types.map(function (t) { return '<option value="' + t[0] + '">' + t[1] + '</option>'; }).join('') + '</select></label><label class="form-field"><span>' + (speechOnly ? '朗读文本' : '提示词 / 文本') + '</span><textarea name="prompt" rows="4" required maxlength="' + (speechOnly ? '4000' : '16000') + '" placeholder="' + (speechOnly ? '填写所选语言词表覆盖的朗读文本' : '描述你希望生成的内容') + '"></textarea></label>' + (speechOnly ? '<p class="form-help">请使用此配方声明的语言。未知词或缺失语言组件会在本机报错；不进行语音克隆。</p>' : '<label class="form-field"><span>负面提示词（可选）</span><textarea name="negativePrompt" rows="2" maxlength="16000"></textarea></label>') + '<details class="task-parameters"><summary>本次参数</summary>' + fields(b) + '</details><label class="unmeasured-choice"><input type="checkbox" name="allowUnmeasured" required><span>此配方尚无本机实测记录，我选择在当前手机上尝试。</span></label><p class="form-help">一次执行一个大型引擎。请先停止文本服务；任务在后台通知中持续执行，结果保存在本机。不会因缺少组件自动下载。</p><p id="bundleFormHint" role="status"></p><div class="modal-actions">' + button('closeModal', '', '取消') + '<button type="submit" class="button primary">加入本机队列</button></div></form>', 'localTask');
   }
   function renderJobs() {
     var s = ui.state(), jobs = s.jobs || [], signature = JSON.stringify(jobs);
@@ -142,7 +143,7 @@
         try {
           if (!form.reportValidity()) return;
           var parameters = readFields(form, b), submit = form.querySelector('[type="submit"]');
-          var args = editor.mode === 'settings' ? {id: b.id, settings: parameters} : {request: {bundleId: b.id, type: form.elements.taskType.value, input: {prompt: form.elements.prompt.value, negativePrompt: form.elements.negativePrompt.value}, parameters: parameters, allowUnmeasured: form.elements.allowUnmeasured.checked}, idempotencyKey: 'ui-' + Date.now() + '-' + Math.random().toString(36).slice(2)};
+          var args = editor.mode === 'settings' ? {id: b.id, settings: parameters} : {request: {bundleId: b.id, type: form.elements.taskType.value, input: {prompt: form.elements.prompt.value, negativePrompt: form.elements.negativePrompt ? form.elements.negativePrompt.value : ''}, parameters: parameters, allowUnmeasured: form.elements.allowUnmeasured.checked}, idempotencyKey: 'ui-' + Date.now() + '-' + Math.random().toString(36).slice(2)};
           var editing = editor;
           editor.pending = track(editor.mode === 'settings' ? 'saveBundleSettings' : 'submitTask', args, function () { if (editor === editing) { ui.closeModal(); if (editing.mode === 'task') ui.route('tasks'); } ui.toast(editing.mode === 'task' ? '任务已加入本机队列' : '已保存此模型的独立设置'); });
           if (editor.pending) { submit.disabled = true; $('bundleFormHint').textContent = '正在提交…'; }

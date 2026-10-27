@@ -43,3 +43,5 @@
 - [`verification/README.md`](../verification/README.md)：可以公开复查的桌面及包验证记录 / Reviewable desktop and package evidence。
 
 **界面演示不等于真机验收。UI demonstrations do not establish physical-device inference or background endurance.**
+
+- 本地语音基座 / Local speech implementation: [中文](TTS_ENGINE.md) · [English](TTS_ENGINE.en.md)，编译与主机证据，尚无真机推理 / compiled and host evidence only, without device inference.

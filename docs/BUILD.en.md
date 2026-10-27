@@ -83,3 +83,7 @@ Recording uses local UI assets and an explicit demo bridge; FFmpeg creates MP4/G
 Git tracks sources, guides, media, and public evidence. `dist/` stays ignored and is uploaded as Release assets. Follow [the release procedure](RELEASING.md) for synchronization and publishing.
 
 开发接口另运行 / Development API checks: `python tools/test_api.py`。该检查使用生产 HTTP / 路由和真实本机 socket，执行器是显式测试替身，不是手机推理。
+
+## Development speech engine
+
+After preparing diffusion sources and the Windows NDK, run `python tools/fetch_tts.py --transport ssh`, `python tools/build_tts.py`, then `python tools/collect_tts_notices.py`; follow with `python tools/test_tts.py` and the common APK build/checks. Bootstrap fetches pinned code and generic notices, without models. sherpa / ORT are upstream prebuilts; the LMA worker is compiled locally. See [TTS_ENGINE.en.md](TTS_ENGINE.en.md) for provenance, parameters and evidence boundaries.

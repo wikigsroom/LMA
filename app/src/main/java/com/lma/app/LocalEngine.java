@@ -9,6 +9,7 @@ public interface LocalEngine {
     String id();
     JSONObject describe() throws Exception;
     void validate(ModelBundle bundle, String type) throws Exception;
+    default JSONObject prepare(ModelBundle bundle, JSONObject request) throws Exception { return request; }
     File generate(Context context) throws Exception;
     interface Context {
         BundleStore.Lease model();

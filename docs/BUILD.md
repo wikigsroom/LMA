@@ -83,3 +83,7 @@ python tools/check_repository.py
 `dist/` 不提交 Git，附件上传 Release；源码、文档、媒体和公开验证记录提交仓库。发布和后续同步约定见 [RELEASING.md](RELEASING.md)。
 
 开发接口另运行 / Development API checks: `python tools/test_api.py`。该检查使用生产 HTTP / 路由和真实本机 socket，执行器是显式测试替身，不是手机推理。
+
+## 开发语音引擎
+
+在扩散源码与 Windows NDK 准备完成后，依次运行 `python tools/fetch_tts.py --transport ssh`、`python tools/build_tts.py`、`python tools/collect_tts_notices.py`；然后运行 `python tools/test_tts.py` 和通用 APK 构建 / 检查。下载的是固定代码库和通用许可，不含模型。sherpa / ORT 使用上游预编译库，LMA worker 使用本项目 NDK 编译；源码 / 哈希 / 参数 / 验证边界见 [TTS_ENGINE.md](TTS_ENGINE.md)。

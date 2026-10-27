@@ -2,7 +2,7 @@
   "tool": "lint 8.9.0 [13114758] ",
   "default_checks": true,
   "offline": true,
-  "java_source_files": 36,
+  "java_source_files": 39,
   "resource_files": 3,
   "min_sdk": 28,
   "compile_sdk": 35,
@@ -104,7 +104,7 @@
       "message": "Consider also using `StorageManager#getAllocatableBytes` and `allocateBytes` which will consider clearable cached data",
       "location": {
         "file": "src\\main\\java\\com\\lma\\app\\LocalJobs.java",
-        "line": "60",
+        "line": "61",
         "column": "31"
       }
     }
@@ -206,15 +206,15 @@
       "message": "Consider also using `StorageManager#getAllocatableBytes` and `allocateBytes` which will consider clearable cached data",
       "location": {
         "file": "src\\main\\java\\com\\lma\\app\\LocalJobs.java",
-        "line": "60",
+        "line": "61",
         "column": "31"
       }
     }
   ],
   "android_execution_tested": false,
-  "applicationApkSha256": "72c16da9c4c7f12a61de8ef5ad6ccd6fbfa9c146fac68d99edec560c6634daea",
+  "applicationApkSha256": "1f9e78dbe5e16f9a8a9bce86c8283f11d20ca9af06dc1ab8fab7cd7ac7ef9be9",
   "input_fingerprint": {
-    "app/src/main/AndroidManifest.xml": "6ddf4a38bac8d76438717b801762b9d1f26c84499e9f1215c7337d12fd2ee13e",
+    "app/src/main/AndroidManifest.xml": "c964db898c866cdf6550d6e25a8db23f5bfcce739e65c01de4d4cd5bc1aa611f",
     "app/src/main/java/com/lma/app/ApiHost.java": "40afc4ad298ab087c19c8a23a15ef3b1ed5401d63d7306cae4a757d3874dedb8",
     "app/src/main/java/com/lma/app/BootReceiver.java": "2c1f72871ca122f8e9562edfc163105bd56ed1df81d3bcf60108a267b837dcee",
     "app/src/main/java/com/lma/app/BundleDocuments.java": "04b530945ecb59aa89a2bab39eeee2cebdf8a54bc0301caa6994e7304f2dab85",
@@ -234,21 +234,24 @@
     "app/src/main/java/com/lma/app/core/Protocol.java": "d49f47884aec0cb03347023119c2808330fa9970689dcd9d33c30ca653d03b85",
     "app/src/main/java/com/lma/app/core/TaskInput.java": "d43cd0d5cca564b54ad7aa2f3be51ac81dea4e4a2cfa2ce6d60d42e9f2458a7e",
     "app/src/main/java/com/lma/app/core/TextRequest.java": "bfdb23db96512f00f362b49951c1fee4162ca2d441482eb6ebf180a8d3574d5f",
+    "app/src/main/java/com/lma/app/core/TtsSpec.java": "54f841e2ca5e93d3c3e1845014029b96912291fcf50a50c26a0124325a7a962a",
     "app/src/main/java/com/lma/app/Downloads.java": "dc90c240432570d7c08a5a47b0263cec71baaf858a99f756d815a3962a968dc7",
     "app/src/main/java/com/lma/app/EngineHost.java": "296edafdca69ac5cb51ef027d243259cb3613d37e08f817b2cee71b32bb5e49d",
     "app/src/main/java/com/lma/app/GgufMetadata.java": "704b05cb1de90340a3c8b37f1af9d2577418aeb95b5b06e88ea7903df6770e78",
     "app/src/main/java/com/lma/app/HubCatalog.java": "418b4569f35b6c4522b4e81f9e63338fd70aa57d2cb9288f4b85f8dea6417f5e",
     "app/src/main/java/com/lma/app/HubClient.java": "00ad32a6f9cf616da2e79af385f0c56ca1e1565c40bdd38bee7fbf0641e2ad58",
-    "app/src/main/java/com/lma/app/LmaApp.java": "6da712fa10573e233a62d9bc7ebd2a41f56c7eeae41a37e6cf35b0c7d52e40fe",
+    "app/src/main/java/com/lma/app/LmaApp.java": "329b37377b391a0f0d8c3d6998b3fe46ff1e67f2a7bef35181c8af56c435be40",
     "app/src/main/java/com/lma/app/LmaService.java": "fbd903d7c2c4efce85f041f9879debca4ae9948b6436c4d4b47e95f03f86f822",
-    "app/src/main/java/com/lma/app/LocalEngine.java": "4b393705dd4959c8457acf0d8ed806ba4a54c821ced1709e89af99ebc232bfa7",
-    "app/src/main/java/com/lma/app/LocalEngines.java": "8665af3cdfaec37ed92f20bdab32e4bbac12d12ab0608b74333a9f4eb5134eea",
-    "app/src/main/java/com/lma/app/LocalJobs.java": "65dc35e65bfd49ee6b21525a8bc79a3f7c7436a0546aa87e8e7a7c049c5f1679",
+    "app/src/main/java/com/lma/app/LocalEngine.java": "7c71f2df8da4e6737bb6dfe198c7b385c4b08b6bf0c2f82cece0a3c901fd85a6",
+    "app/src/main/java/com/lma/app/LocalEngines.java": "ea299d6b0f90a5f976c05f7406446dd4f43c8231b12eeb007feb3a2ece181894",
+    "app/src/main/java/com/lma/app/LocalJobs.java": "942cb85ec3900e3c009bc269fc5ad61dbf3882699b2dab8b18c031ce3d3cc3cc",
     "app/src/main/java/com/lma/app/MainActivity.java": "edfb486f7fafdfb8d87bc3c0714a656b10c0122308b51cde11c48bf138082d44",
     "app/src/main/java/com/lma/app/MediaInspector.java": "82ed639f5afc572194ce2102d93ca4f290b2b2ac41054f59e8c4803812522848",
     "app/src/main/java/com/lma/app/ModelSettings.java": "f097a1e0a7c7917fd58c6ab190d8edbeb3c0f97b2129c782070241a1b780692a",
-    "app/src/main/java/com/lma/app/Net.java": "cf6ef28f5ae8d4b51b1dbfbd71d8a0724221e3525702f218a95af6245e1afcde",
-    "app/src/main/java/com/lma/app/SdEngine.java": "70322810b794f223c857889b2b89496b1bb04d469997b2351fda3893bcf50331",
+    "app/src/main/java/com/lma/app/NativeWorker.java": "c3324271639c6e77495e9aac78a663c6110dfef1026d0cc320ca82344ddd030d",
+    "app/src/main/java/com/lma/app/Net.java": "b78b0cda24dab46433a45d3915a79558d0c61e72fa6cbf216cea0c2970ffc608",
+    "app/src/main/java/com/lma/app/SdEngine.java": "295ab861e04e9a3654ffa85ec9a65f460642e6d27f3ed6111688701a893657d8",
+    "app/src/main/java/com/lma/app/SherpaEngine.java": "12c6fb1c346cb110897a364fd4d062e4e674ee45cf072597862beefdb3dee65a",
     "app/src/main/java/com/lma/app/Store.java": "a88b2cf54e3732bf6229e8a8d784e064a1cd5ec3fa957e0de0b0f787b076dd14",
     "app/src/main/java/com/lma/app/VideoEncoder.java": "21688100a1d92797a94a8f452f6b5906f26a11963b835478849f53a9c47f9b3d",
     "app/src/main/res/drawable/ic_notification.xml": "156cead26295ef8f3822029f3ce8afa19bcef9a626925ec802271db88a1de26b",

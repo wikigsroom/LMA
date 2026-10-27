@@ -3,6 +3,7 @@ import hashlib
 import json
 from pathlib import Path
 import re
+from urllib.parse import urlparse
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -13,22 +14,31 @@ def main():
     evidence = json.loads((ROOT / "catalogue/bundle-evidence.json").read_text(encoding="utf-8"))
     assert catalogue["schema"] == "lma.bundle-catalogue/1" and not evidence["model_inference_tested"]
     assert evidence["physical_device_tests"] == 0 and not evidence["model_weights_downloaded"]
+    assert evidence["schema"] == "lma.bundle-metadata-evidence/2"
+    proofs = {b["bundleId"]: b for b in evidence["bundles"]}
+    assert len(proofs) == len(evidence["bundles"])
     ids = set()
     for bundle in catalogue["bundles"]:
         assert bundle["id"] not in ids and bundle["schema"] == "lma.model-bundle/1"
         ids.add(bundle["id"])
         assert bundle["catalogue"] and bundle["evidence"]["physicalDeviceTests"] == 0
         assert bundle["tasks"] and all(task in ("text", "image", "video", "audio") for task in bundle["tasks"])
+        proof = proofs[bundle["id"]]
+        components = {c["role"]: c for c in proof["components"]}
+        assert len(components) == len(proof["components"]) == len(bundle["components"])
         for c in bundle["components"]:
-            assert re.fullmatch("[0-9a-f]{40,64}", c["revision"]) and re.fullmatch("[0-9a-f]{64}", c["sha256"])
-            assert c["bytes"] > 0 and c["url"] == "https://huggingface.co/" + c["repository"] + "/resolve/" + c["revision"] + "/" + c["path"]
-        assert bundle["id"] == evidence["bundleId"], "Add individual source evidence before extending this catalogue"
-        model = next(c for c in bundle["components"] if c["role"] == "model")
-        tokenizer = next(c for c in bundle["components"] if c["role"] == "clip_merges")
-        assert model["repository"] == evidence["weight"]["repository"] and model["revision"] == evidence["weight"]["revision"] and model["path"] == evidence["weight"]["file"]["rfilename"]
-        assert all(tokenizer[key] == evidence["tokenizer"][key] for key in ("repository", "revision", "path"))
-        assert model["sha256"] == evidence["weight"]["file"]["lfs"]["sha256"] and model["bytes"] == evidence["weight"]["file"]["size"]
-        assert tokenizer["sha256"] == evidence["tokenizer"]["sha256"] and tokenizer["bytes"] == evidence["tokenizer"]["bytes"]
+            assert re.fullmatch("[0-9a-f]{64}", c["sha256"]) and c["bytes"] > 0
+            checked = components[c["role"]]
+            assert all(c[key] == checked[key] for key in ("path", "bytes", "sha256", "repository", "revision"))
+            if checked["kind"] in ("hf_lfs", "downloaded_small_data"):
+                assert re.fullmatch("[0-9a-f]{40,64}", c["revision"])
+                assert c["url"] == "https://huggingface.co/" + c["repository"] + "/resolve/" + c["revision"] + "/" + c["path"]
+            elif checked["kind"] == "github_release_asset":
+                assert c["repository"] == "k2-fsa/sherpa-onnx" and c["revision"] == "github_asset_" + str(checked["assetId"])
+                assert c["url"].startswith("https://github.com/k2-fsa/sherpa-onnx/releases/download/") and c["url"].endswith("/" + c["path"])
+                assert checked.get("publisherDigest") == "sha256:" + c["sha256"] or urlparse(checked["crossCheckedShaSource"]).netloc == "huggingface.co"
+            else: raise AssertionError("Unreviewed catalogue component evidence")
+    assert ids == set(proofs), "Each shipped candidate requires individual component evidence"
     (ROOT / "app/src/main/assets/model-bundles.json").write_bytes(data)
     print(json.dumps({"bundles": len(ids), "model_assets_downloaded": False, "catalogue_sha256": hashlib.sha256(data).hexdigest()}))
 

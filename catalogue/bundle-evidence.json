@@ -1,5 +1,5 @@
 {
-  "schema": "lma.bundle-metadata-evidence/1",
+  "schema": "lma.bundle-metadata-evidence/2",
   "checked_on": "2026-10-27",
   "model_weights_downloaded": false,
   "model_inference_tested": false,
@@ -30,5 +30,172 @@
     "sha256": "9fd691f7c8039210e0fced15865466c65820d09b63988b0174bfe25de299051a",
     "matches_sd_cpp_embedded_bytes": true,
     "sd_cpp_revision": "be486498eadc29dc3cd234d944c2180ed42b1415"
-  }
+  },
+  "bundles": [
+    {
+      "bundleId": "sd15_ss_q4_0_r031b5f5",
+      "components": [
+        {
+          "role": "model",
+          "kind": "hf_lfs",
+          "repository": "second-state/stable-diffusion-v1-5-GGUF",
+          "revision": "031b5f5df991f511b3f5fa8fed6d99048ababb69",
+          "path": "stable-diffusion-v1-5-pruned-emaonly-Q4_0.gguf",
+          "bytes": 1566768416,
+          "sha256": "b8944e9fe0b69b36ae1b5bb0185b3a7b8ef14347fe0fa9af6c64c4829022261f",
+          "source": "https://huggingface.co/api/models/second-state/stable-diffusion-v1-5-GGUF/031b5f5df991f511b3f5fa8fed6d99048ababb69?blobs=true"
+        },
+        {
+          "role": "clip_merges",
+          "kind": "downloaded_small_data",
+          "repository": "stable-diffusion-v1-5/stable-diffusion-v1-5",
+          "revision": "451f4fe16113bff5a5d2269ed5ad43b0592e9a14",
+          "path": "tokenizer/merges.txt",
+          "bytes": 524619,
+          "sha256": "9fd691f7c8039210e0fced15865466c65820d09b63988b0174bfe25de299051a",
+          "source": "https://huggingface.co/api/models/stable-diffusion-v1-5/stable-diffusion-v1-5/451f4fe16113bff5a5d2269ed5ad43b0592e9a14?blobs=true"
+        }
+      ]
+    },
+    {
+      "bundleId": "kokoro82_en_v1_rf7b96bb",
+      "components": [
+        {
+          "role": "model",
+          "path": "model.onnx",
+          "bytes": 325560556,
+          "sha256": "b40f62b166ac8164b0627ef48a0b358eda0985e272fb03ef5252e7206305da11",
+          "repository": "csukuangfj/kokoro-multi-lang-v1_0",
+          "revision": "f7b96bb6bef5c5da4d3aa4f4e0498fbbf62dc78b",
+          "kind": "hf_lfs",
+          "source": "https://huggingface.co/api/models/csukuangfj/kokoro-multi-lang-v1_0/f7b96bb6bef5c5da4d3aa4f4e0498fbbf62dc78b?blobs=true"
+        },
+        {
+          "role": "tokens",
+          "path": "tokens.txt",
+          "bytes": 687,
+          "sha256": "6ebb6bb288f20f3ae8d004d3c2ca27697da27c037d75e81a60e2a6a663f95425",
+          "repository": "csukuangfj/kokoro-multi-lang-v1_0",
+          "revision": "f7b96bb6bef5c5da4d3aa4f4e0498fbbf62dc78b",
+          "kind": "downloaded_small_data",
+          "source": "https://huggingface.co/api/models/csukuangfj/kokoro-multi-lang-v1_0/f7b96bb6bef5c5da4d3aa4f4e0498fbbf62dc78b?blobs=true"
+        },
+        {
+          "role": "lexicon",
+          "path": "lexicon-en-us.txt",
+          "bytes": 6305773,
+          "sha256": "8b67ae549a465eee78f92ecb74644ad90c3c58ce65f19c68baf85878a10ef73a",
+          "repository": "k2-fsa/sherpa-onnx",
+          "revision": "github_asset_636425290",
+          "kind": "github_release_asset",
+          "assetId": 636425290,
+          "source": "https://api.github.com/repos/k2-fsa/sherpa-onnx/releases/tags/tts-models",
+          "publisherDigest": "sha256:8b67ae549a465eee78f92ecb74644ad90c3c58ce65f19c68baf85878a10ef73a"
+        },
+        {
+          "role": "voices",
+          "path": "voices.bin",
+          "bytes": 28200960,
+          "sha256": "1c5a5b983d3d50d8586d437a51f3faa2da7919ce76a013c081e65671a3447c29",
+          "repository": "csukuangfj/kokoro-multi-lang-v1_0",
+          "revision": "f7b96bb6bef5c5da4d3aa4f4e0498fbbf62dc78b",
+          "kind": "hf_lfs",
+          "source": "https://huggingface.co/api/models/csukuangfj/kokoro-multi-lang-v1_0/f7b96bb6bef5c5da4d3aa4f4e0498fbbf62dc78b?blobs=true"
+        }
+      ],
+      "licenseReview": "pending before complete v0.3.0 acceptance",
+      "phoneInference": false
+    },
+    {
+      "bundleId": "piper_lessac_en_r83f7470",
+      "components": [
+        {
+          "role": "model",
+          "path": "en_US-lessac-medium.onnx",
+          "bytes": 63201425,
+          "sha256": "ea793a648ce0370665f99fbf891eae3b3a973565c72b08534bb5b2c04e8f2332",
+          "repository": "csukuangfj/vits-piper-en_US-lessac-medium",
+          "revision": "83f7470750b36549037551ef7007fa3b4b8697e0",
+          "kind": "hf_lfs",
+          "source": "https://huggingface.co/api/models/csukuangfj/vits-piper-en_US-lessac-medium/83f7470750b36549037551ef7007fa3b4b8697e0?blobs=true"
+        },
+        {
+          "role": "tokens",
+          "path": "tokens.txt",
+          "bytes": 921,
+          "sha256": "87c8ef66eae5473ed0cc0366b3964c736ca6c5f676c979522ea31234e47430b9",
+          "repository": "csukuangfj/vits-piper-en_US-lessac-medium",
+          "revision": "83f7470750b36549037551ef7007fa3b4b8697e0",
+          "kind": "downloaded_small_data",
+          "source": "https://huggingface.co/api/models/csukuangfj/vits-piper-en_US-lessac-medium/83f7470750b36549037551ef7007fa3b4b8697e0?blobs=true"
+        },
+        {
+          "role": "lexicon",
+          "path": "lexicon-en-us.txt",
+          "bytes": 6305773,
+          "sha256": "8b67ae549a465eee78f92ecb74644ad90c3c58ce65f19c68baf85878a10ef73a",
+          "repository": "k2-fsa/sherpa-onnx",
+          "revision": "github_asset_636425290",
+          "kind": "github_release_asset",
+          "assetId": 636425290,
+          "source": "https://api.github.com/repos/k2-fsa/sherpa-onnx/releases/tags/tts-models",
+          "publisherDigest": "sha256:8b67ae549a465eee78f92ecb74644ad90c3c58ce65f19c68baf85878a10ef73a"
+        }
+      ],
+      "licenseReview": "pending before complete v0.3.0 acceptance",
+      "phoneInference": false
+    },
+    {
+      "bundleId": "matcha_ljs_en_rbe5535c",
+      "components": [
+        {
+          "role": "model",
+          "path": "model-steps-3.onnx",
+          "bytes": 74157257,
+          "sha256": "f8e8bae6f731310a1cda0012871ed5e91b0d19f1e2ceff077f62922bba95e3c1",
+          "repository": "csukuangfj/matcha-icefall-en_US-ljspeech",
+          "revision": "be5535c9e754d0dfd3ab66dac34f78c5b5d66d50",
+          "kind": "hf_lfs",
+          "source": "https://huggingface.co/api/models/csukuangfj/matcha-icefall-en_US-ljspeech/be5535c9e754d0dfd3ab66dac34f78c5b5d66d50?blobs=true"
+        },
+        {
+          "role": "tokens",
+          "path": "tokens.txt",
+          "bytes": 954,
+          "sha256": "bcb4a50830e9402112fe8cb57d53ae8523908868a5015f2040dde5f5fd231697",
+          "repository": "csukuangfj/matcha-icefall-en_US-ljspeech",
+          "revision": "be5535c9e754d0dfd3ab66dac34f78c5b5d66d50",
+          "kind": "downloaded_small_data",
+          "source": "https://huggingface.co/api/models/csukuangfj/matcha-icefall-en_US-ljspeech/be5535c9e754d0dfd3ab66dac34f78c5b5d66d50?blobs=true"
+        },
+        {
+          "role": "lexicon",
+          "path": "lexicon-en-us.txt",
+          "bytes": 6305773,
+          "sha256": "8b67ae549a465eee78f92ecb74644ad90c3c58ce65f19c68baf85878a10ef73a",
+          "repository": "k2-fsa/sherpa-onnx",
+          "revision": "github_asset_636425290",
+          "kind": "github_release_asset",
+          "assetId": 636425290,
+          "source": "https://api.github.com/repos/k2-fsa/sherpa-onnx/releases/tags/tts-models",
+          "publisherDigest": "sha256:8b67ae549a465eee78f92ecb74644ad90c3c58ce65f19c68baf85878a10ef73a"
+        },
+        {
+          "role": "vocoder",
+          "path": "vocos-22khz-univ.onnx",
+          "bytes": 53884024,
+          "sha256": "0574a135aa1db2de6e181050db2ec528496cacd4a4701fc5d7faf9f9804c0081",
+          "repository": "k2-fsa/sherpa-onnx",
+          "revision": "github_asset_238058578",
+          "kind": "github_release_asset",
+          "assetId": 238058578,
+          "source": "https://api.github.com/repos/k2-fsa/sherpa-onnx/releases/tags/vocoder-models",
+          "publisherDigest": null,
+          "crossCheckedShaSource": "https://huggingface.co/k2-fsa/sherpa-onnx-models/blob/main/vocoder-models/vocos-22khz-univ.onnx"
+        }
+      ],
+      "licenseReview": "pending before complete v0.3.0 acceptance",
+      "phoneInference": false
+    }
+  ]
 }

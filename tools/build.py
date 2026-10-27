@@ -80,7 +80,7 @@ def main():
         path = native / record["name"]
         if not path.is_file() or hashlib.sha256(path.read_bytes()).hexdigest() != record["sha256"]:
             raise RuntimeError("Pinned runtime file mismatch: " + record["name"])
-    native_names = {record["name"] for record in lock["files"]} | {engine["file"] for engine in engines}
+    native_names = {record["name"] for record in lock["files"]} | {engine["file"] for engine in engines} | {dep["file"] for engine in engines for dep in engine.get("dependencies", [])}
     if {path.name for path in native.glob("*.so")} != native_names:
         raise RuntimeError("Unreviewed native libraries exist in the APK input directory")
     run("Compile Android resources", [tools / "aapt2.exe", "compile", "--dir", source / "res", "-o", BUILD / "resources.zip"])

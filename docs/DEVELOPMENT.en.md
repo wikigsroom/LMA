@@ -2,7 +2,7 @@
 
 [中文](DEVELOPMENT.md) · [Full scope](MULTIMODAL_RELEASE_PLAN.en.md) · [Build](BUILD.en.md) · [English home](../README.en.md)
 
-The current public release remains **v0.2.0**. This branch is **0.3.0-dev.2 / versionCode 6**, not the complete v0.3.0, and has no new Release. All F-01–F-12 requirements, selections 01–14/16/17 and frozen subtargets still belong to one delivery. This is implementation progress within that release, not a split roadmap.
+The current public release remains **v0.2.0**. This branch is **0.3.0-dev.3 / versionCode 7**, not the complete v0.3.0, and has no new Release. All F-01–F-12 requirements, selections 01–14/16/17 and frozen subtargets still belong to one delivery. This is implementation progress within that release, not a split roadmap.
 
 ## Implemented development code
 
@@ -11,7 +11,7 @@ The current public release remains **v0.2.0**. This branch is **0.3.0-dev.2 / ve
 | Bundles/components | `lma.model-bundle/1`, fixed revisions/sizes/SHA256, shared content objects, atomic installation, pause/resume, explicit folder import, deletion/reference protection | Byte fixtures and real host HTTP transfers, not model inference |
 | User control | Declaration, browsing and planning create no transfers; downloads require a separate action; missing assets fail locally; interrupted transfers pause for manual resumption | Does not install the entire catalogue or implicitly download models |
 | Settings | Per-bundle settings, editable presets, numerical clamping, joint shape checks and immutable submitted snapshots | Recipe limits and device budgets are separate; unknown maxima are not verified |
-| UI | Legacy text and bundles share a flat list; text/image/video/audio filters, bundle details, task forms, queue and artifacts; Recommended stays m08 → m06 → m01 | All contains one pinned SD1.5 Q4_0 candidate; custom manifests enter through Add model; the HF multi-component recipe picker is unfinished |
+| UI | Legacy text and bundles share a flat list; text/image/video/audio filters, bundle details, task forms, queue and artifacts; Recommended stays m08 → m06 → m01 | All contains pinned SD1.5 and three TTS candidates; custom manifests enter through Add model; the HF multi-component recipe picker is unfinished |
 | Jobs/artifacts | One heavy job, submit/cancel/retry, persistent events, private results, hashes/provenance, system export and image/WAV/MP4 inspection/ranged preview | Bounded AtomicFile JSON currently stores these records; existing chat SQLite remains; legacy text is not fully unified yet |
 | Unified gateway | Start with zero models; authenticated model/engine/job/event/artifact Range routes; public text proxy applies profile bounds and tracks leases; native text stays on a separate loopback port/secret | Production HTTP/stores use real host sockets and explicit execution fixtures; no model downloads or inference redirects |
 | Android execution | Signed-in sd.cpp ARM64 CPU worker, data-only model bundles, external user-supplied vocabularies, child lifetime bound to its host | Compiled/packaged, **no phone inference**; upstream architectures do not prove accepted recipes |
@@ -32,8 +32,8 @@ Custom manifests gain neither device-validated status nor checked uncensored dec
 | API/transport | 67 assertions | Auth, zero-model state, JSON/framing limits, idempotency/cancel/events, exact artifacts/Range/leases and text policy; actual host sockets, not Android inference |
 | Legacy backend/proxy | 98 assertions | Host Android adapters exercising downloads, actual child processes, HTTP SSE and per-model settings |
 | HF logic | 45 assertions | Search, pinned revisions, pagination/selection and token boundaries, not universal HF execution |
-| UI | 84 assertions | Actual HTML/CSS/JS with explicit simulated native state; recommendation/tag/download/form/queue/narrow-screen regressions |
-| Native package | 15 ARM64 files | Pinned hashes, resolved dependencies, Android API 28, 16 KiB ELF/APK alignment, original signing identity, asset allowlist |
+| UI | 89 assertions | Actual HTML/CSS/JS with explicit simulated native state; recommendation/tag/download/form/queue/narrow-screen regressions |
+| Native package | 18 ARM64 files | Pinned hashes, resolved dependencies, Android API 28, 16 KiB ELF/APK alignment, original signing identity, asset allowlist |
 | Phone inference/endurance | 0 | No actual image/audio/motion-video or sustained screen-off inference evidence |
 
 sd.cpp is pinned to `be486498eadc29dc3cd234d944c2180ed42b1415`, ggml to `a5915eb0e47adef21c3f25b889a008925ea838c2`, built using project-local NDK 30.0.16248370 on native Windows. The added worker SHA256 is `2a84b898dfd61596c73096ec37c83c9a28127070c395ec4dad4779a242733e9c`. See [engine-lock.json](../third_party/engine-lock.json) for hashes/notices. Only actual compiled modules are registered, without empty providers counted as support.
@@ -43,7 +43,7 @@ The SD1.5 candidate combines [Second State’s pinned GGUF](https://huggingface.
 ## Remaining work in the same release
 
 1. Fully unify legacy text/HF/import records with bundles, capability routing and scheduling; implement HF multi-component recipes and independent model updates.
-2. Complete pinned assets, actual engines/pipelines and every subtarget for 01–14/16/17, including both SD1.5/SDXL LoRA pairings, MNN, TTS/audio, full MOSS/SoulX and older LTX Android ports. Compiling sd.cpp does not complete these targets.
+2. Complete pinned assets, actual engines/pipelines and every subtarget for 01–14/16/17, including both SD1.5/SDXL LoRA pairings, MNN, remaining audio, full MOSS/SoulX and older LTX Android ports. Some TTS paths are integrated but not device-accepted. Compiling sd.cpp does not complete these targets.
 3. Extend the implemented async/text API to every engine, input-artifact reference and physical-device validation. Full text scheduling unification, per-modality compatibility surfaces and lifecycle coverage remain in this release. See [API behavior/limits](API.en.md#030-dev2-independent-gateway-jobs-and-artifacts).
 4. Finish measured admission profiles, thermals, input-artifact references, stage/checkpoint capability handling, cross-modality load/unload and upgrade migration verification.
 5. Obtain physical-Android offline outputs for new inputs on every frozen subtarget, quality/cancellation/cleanup checks, A7 fifteen-minute screen-off tasks and one-hour alternating service evidence. No device is available.
@@ -60,3 +60,11 @@ Every frame carries “UI FIXTURE · not a physical device · not model output�
 [Video](media/development/foundation-ui.mp4) · [GIF](media/development/foundation-ui.gif) · [Media hashes/provenance](media/development/manifest.json)
 
 Browser pages, contexts and processes close in `finally`. No Docker, WSL, virtual machine or Android emulator is used.
+
+## dev.3 speech integration
+
+Add a compiled sherpa_tts ARM64 worker and Kokoro / Piper / Matcha adapters. Three complete candidate recipes remain explicit user-selected audio / TTS / CPU assets. NativeWorker shares process ownership, speech parameters, duration protection, PCM WAV and effective-parameter / waveform provenance. Code dependencies come from the pinned official release, never model downloads. Package checks include 23 new notice originals and exact dependency closure; some model-data licenses still require review.
+
+**62 new TTS contract / actual host child-process assertions** cover components, bounds, cancellation, exits, completion protocol and private request cleanup; output is arbitrary fixture bytes, not speech. 89 UI checks pass. Waveforms, pronunciation, actual RAM / speed / heat, Android log binding and endurance have no device evidence. Selection 10 remains unaccepted. All other selected models/recipes, unified scheduling and physical-device gates remain mandatory for the same v0.3.0. See [speech foundation](TTS_ENGINE.en.md).
+
+<img src="media/development/09-tts-form.png" width="280" alt="Speech-specific form, explicit UI fixture without generated audio" />

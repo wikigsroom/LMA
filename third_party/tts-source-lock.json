@@ -1,0 +1,29 @@
+{
+  "schema": "lma.tts-source-lock/1",
+  "source_revision": "af2d8d81dbfa61c4cea4c568da78f3982edca005",
+  "source_url": "https://github.com/k2-fsa/sherpa-onnx",
+  "version": "2.0.1",
+  "header_sha256": "36da0fda13a7c02eb79b3b3969818a759a2604aa5b60cd83ae1f6559f1a9ce8e",
+  "json_header_sha256": "2dd8db723cff3e44198e14d6038ea6443dc6171a564bb82cd6ee81f0edc316e5",
+  "archive": {
+    "url": "https://github.com/k2-fsa/sherpa-onnx/releases/download/v2.0.1/sherpa-onnx-v2.0.1-android.tar.bz2",
+    "bytes": 45300379,
+    "sha256": "39003753ec293425ed56723ea9b972b98841a490af3311670c3060548d654330"
+  },
+  "dependencies": [
+    {
+      "file": "libsherpa-onnx-c-api.so",
+      "bytes": 4303136,
+      "sha256": "0eadae93c4d595a26584d7eebde7b397b9a36d01eee3ebc7262e0d34df2fce10",
+      "android_api_notes": [21],
+      "provenance": "upstream_release_prebuilt"
+    },
+    {
+      "file": "libonnxruntime.so",
+      "bytes": 22249560,
+      "sha256": "33847ad43bffe204699fd4a27f7f3603452a8cdaf2f9a44983a0bc31ffcf2da1",
+      "android_api_notes": [27],
+      "provenance": "upstream_release_prebuilt"
+    }
+  ]
+}

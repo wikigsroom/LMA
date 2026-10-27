@@ -1,6 +1,7 @@
 /* Product interaction regression with explicit data fixtures, never inference evidence. */
 const assert = require('node:assert/strict');
 const path = require('node:path');
+const fs = require('node:fs');
 
 function installFixture() {
     const field = (value, min, max, presets) => ({type: 'integer', default: value, minimum: min, maximum: max, multipleOf: 64, presets});
@@ -22,6 +23,14 @@ function installFixture() {
       if (command.action === 'deleteBundle') { b.installed = false; delete b.transfer; }
     };
     window.LMA.receive(window.__fixture);
+}
+function installSpeechFixture(manifest) {
+  const values = Object.fromEntries(Object.entries(manifest.parameters.fields).map(([key, field]) => [key, field.default]));
+  const components = manifest.components.map(c => ({...c, reusable: true, downloadable: true}));
+  const total = components.reduce((sum, c) => sum + c.bytes, 0);
+  window.__fixture.bundles.push({id: manifest.id, manifest, installed: true, config: {values}, plan: {totalBytes: total, reusableBytes: total, remainingBytes: 0, components}});
+  window.__fixture.localEngines.push({engine: 'sherpa_tts', available: true, deviceValidated: false});
+  window.LMA.receive(window.__fixture);
 }
 module.exports = async function (page, checked, checkOverflow, output) {
   await page.evaluate(installFixture);
@@ -84,5 +93,26 @@ module.exports = async function (page, checked, checkOverflow, output) {
   assert.equal(await page.locator('[data-action="retryTask"]').count(), 1); checked('Cancelled jobs remain explicit retriable records');
   await page.locator('[data-action="deleteTask"]').click(); await page.waitForSelector('#jobList .empty-list'); checked('Removing a terminal job restores the empty queue');
   await page.locator('.nav-item[data-tab="models"]').click(); await page.locator('[data-task="any"]').click();
+  const speech = JSON.parse(fs.readFileSync(path.join(__dirname, '../app/src/main/assets/model-bundles.json'), 'utf8')).bundles.find(b => b.pipeline === 'kokoro');
+  await page.evaluate(installSpeechFixture, speech);
+  await page.locator('[data-filter="local"]').click(); await page.locator('[data-task="audio"]').click();
+  assert.equal(await page.locator('.bundle-card').count(), 1); assert((await page.locator('.bundle-card').textContent()).includes('生音频')); checked('User-installed speech model is a peer with audio and engine tags');
+  await page.locator('[data-action="bundleUse"]').click();
+  assert.equal(await page.locator('#localTaskForm [name="taskType"]').inputValue(), 'speech.synthesize');
+  assert.equal(await page.locator('#localTaskForm [name="prompt"]').getAttribute('maxlength'), '4000');
+  assert.equal(await page.locator('#localTaskForm [name="negativePrompt"]').count(), 0); checked('Speech form has bounded narration text and no ignored negative prompt');
+  await page.locator('.task-parameters summary').click();
+  await page.locator('[data-bundle-field="speaker"]').fill('999'); await page.locator('[data-bundle-field="speaker"]').blur();
+  await page.locator('[data-bundle-field="speed"]').fill('99'); await page.locator('[data-bundle-field="speed"]').blur();
+  assert.equal(await page.locator('[data-bundle-field="speaker"]').inputValue(), '53'); assert.equal(await page.locator('[data-bundle-field="speed"]').inputValue(), '3');
+  assert((await page.locator('#localTaskForm').textContent()).includes('发布者声明上限（待核对）')); checked('Editable voice/speed presets clamp and label unverified publisher limits');
+  await page.locator('#localTaskForm [name="prompt"]').fill('Hello world. This is an explicit UI fixture.');
+  await page.locator('#localTaskForm [name="allowUnmeasured"]').check();
+  await checkOverflow(page, '375px speech task layout'); await page.screenshot({path: path.join(output, '09-tts-form.png')});
+  await page.locator('#localTaskForm [type="submit"]').click(); await page.waitForSelector('#page-tasks.active .job-card');
+  const speechRequest = await page.evaluate(() => window.__commands.findLast(c => c.action === 'submitTask').request);
+  assert.equal(speechRequest.type, 'speech.synthesize'); assert.equal(speechRequest.input.negativePrompt, ''); assert.equal(speechRequest.parameters.speaker, 53); checked('Speech submits an independent parameter snapshot through the shared task queue');
+  await page.locator('.nav-item[data-tab="models"]').click(); await page.locator('[data-task="any"]').click();
 };
 module.exports.installFixture = installFixture;
+module.exports.installSpeechFixture = installSpeechFixture;

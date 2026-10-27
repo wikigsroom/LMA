@@ -3,22 +3,30 @@ import hashlib
 import json
 from pathlib import Path
 from evidence import current
+from verify_package import elf_info
 
 ROOT = Path(__file__).resolve().parents[1]
+RECEIPTS = {"sd_cpp": "native-build-info.json", "sherpa_tts": "tts-build-info.json"}
 
 
 def prepare():
     lock = json.loads((ROOT / "third_party/engine-lock.json").read_text(encoding="utf-8"))
-    receipt = json.loads((ROOT / "build/native-build-info.json").read_text(encoding="utf-8"))
-    current(receipt["source_inputs"])
-    engines = []
+    engines, filenames = [], set()
     for expected in lock["engines"]:
-        for key in ("engine", "file", "source_revision", "ggml_revision", "abi", "backend", "ndk", "sha256", "bytes"):
+        receipt = json.loads((ROOT / "build" / RECEIPTS[expected["engine"]]).read_text(encoding="utf-8"))
+        current(receipt["source_inputs"])
+        for key in ("engine", "file", "source_revision", "ggml_revision", "abi", "backend", "ndk", "sha256", "bytes", "dependencies"):
             if receipt.get(key) != expected.get(key):
                 raise RuntimeError("Native build receipt differs from the reviewed lock: " + key)
-        binary = ROOT / "app/src/main/jniLibs/arm64-v8a" / expected["file"]
-        if binary.stat().st_size != expected["bytes"] or hashlib.sha256(binary.read_bytes()).hexdigest() != expected["sha256"]:
-            raise RuntimeError("Native worker hash mismatch; rebuild and review the engine lock")
+        for item in [expected] + expected.get("dependencies", []):
+            name = item["file"]
+            if Path(name).name != name or name in filenames: raise RuntimeError("Duplicate or invalid native dependency name")
+            filenames.add(name)
+            binary = ROOT / "app/src/main/jniLibs/arm64-v8a" / name
+            data = binary.read_bytes()
+            if len(data) != item["bytes"] or hashlib.sha256(data).hexdigest() != item["sha256"]: raise RuntimeError("Native binary differs from reviewed lock: " + name)
+            info = elf_info(data)
+            if not info["16k_elf_aligned"] or info["android_api_notes"] != item.get("android_api_notes", [28]): raise RuntimeError("Native ELF/API contract changed: " + name)
         if receipt.get("vocabularies") != "external_user_selected_components" or min(receipt["elf_load_alignment"]) < 16384:
             raise RuntimeError("Native worker violates the asset separation or page alignment contract")
         notices = expected["notices"]

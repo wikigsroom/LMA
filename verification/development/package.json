@@ -1,7 +1,7 @@
 {
-  "apk": "LMA-0.3.0-dev.2-arm64-v8a.apk",
-  "sha256": "72c16da9c4c7f12a61de8ef5ad6ccd6fbfa9c146fac68d99edec560c6634daea",
-  "native_libraries_verified": 15,
+  "apk": "LMA-0.3.0-dev.3-arm64-v8a.apk",
+  "sha256": "1f9e78dbe5e16f9a8a9bce86c8283f11d20ca9af06dc1ab8fab7cd7ac7ef9be9",
+  "native_libraries_verified": 18,
   "all_native_dependencies_resolved": true,
   "all_elf_load_segments_16k_aligned": true,
   "final_apk_zip_alignment_verified": true,
@@ -293,6 +293,63 @@
         28
       ],
       "16k_elf_aligned": true
+    },
+    "liblma-tts.so": {
+      "machine": "aarch64",
+      "needed": [
+        "libsherpa-onnx-c-api.so",
+        "libonnxruntime.so",
+        "libm.so",
+        "libdl.so",
+        "libc.so"
+      ],
+      "load_segment_alignment": [
+        16384
+      ],
+      "interpreter": "/system/bin/linker64",
+      "entry_point": 96096,
+      "android_api_notes": [
+        28
+      ],
+      "16k_elf_aligned": true
+    },
+    "libsherpa-onnx-c-api.so": {
+      "machine": "aarch64",
+      "needed": [
+        "libandroid.so",
+        "liblog.so",
+        "libonnxruntime.so",
+        "libm.so",
+        "libdl.so",
+        "libc.so"
+      ],
+      "load_segment_alignment": [
+        16384
+      ],
+      "interpreter": null,
+      "entry_point": 0,
+      "android_api_notes": [
+        21
+      ],
+      "16k_elf_aligned": true
+    },
+    "libonnxruntime.so": {
+      "machine": "aarch64",
+      "needed": [
+        "libdl.so",
+        "liblog.so",
+        "libm.so",
+        "libc.so"
+      ],
+      "load_segment_alignment": [
+        16384
+      ],
+      "interpreter": null,
+      "entry_point": 0,
+      "android_api_notes": [
+        27
+      ],
+      "16k_elf_aligned": true
     }
   },
   "physical_device_tested": false,
@@ -315,6 +372,6 @@
   "input_fingerprint": {
     "catalogue/uncensored-evidence.json": "63f05e854772ade227750b19cb2288ebe53abb0d346ccc08cf5317b768ef5082",
     "third_party/BUILD_INFO.json": "de40253f34d47e5b692e8cd97d87eaa4ecbe549303718f69d286c85f81422acc",
-    "tools/verify_package.py": "c8422b8f6c467fc80ca7870b2e7aea0757743ea734b5c880f22e9fd566a80506"
+    "tools/verify_package.py": "c0b17a84dc01acb2b06afd0d510280969a93c0f9953e2c685f7dabb30437e11d"
   }
 }

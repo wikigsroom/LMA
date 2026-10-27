@@ -16,11 +16,17 @@ public final class LocalEngines {
         JSONArray engines = manifest.getJSONArray("engines");
         for (int i = 0; i < engines.length(); i++) {
             JSONObject build = engines.getJSONObject(i); String id = build.getString("engine");
-            if (id.equals("sd_cpp")) {
-                File binary = new File(app.getApplicationInfo().nativeLibraryDir, "liblma-sd.so");
-                if (!binary.isFile() || !DataFiles.sha256(binary).equals(build.getString("sha256"))) throw new IOException("扩散引擎文件与签名包清单不一致");
-                register(new SdEngine(app, binary, build));
+            File binary = new File(app.getApplicationInfo().nativeLibraryDir, build.getString("file"));
+            if (!binary.isFile() || !DataFiles.sha256(binary).equals(build.getString("sha256"))) throw new IOException("原生引擎文件与签名包清单不一致");
+            JSONArray dependencies = build.optJSONArray("dependencies");
+            if (dependencies != null) for (int d = 0; d < dependencies.length(); d++) {
+                JSONObject dependency = dependencies.getJSONObject(d);
+                File library = new File(app.getApplicationInfo().nativeLibraryDir, dependency.getString("file"));
+                if (!library.isFile() || !DataFiles.sha256(library).equals(dependency.getString("sha256"))) throw new IOException("引擎依赖与签名包清单不一致");
             }
+            if (id.equals("sd_cpp")) register(new SdEngine(app, binary, build));
+            else if (id.equals("sherpa_tts")) register(new SherpaEngine(app, binary, build));
+            else throw new IOException("未知的签名原生模块：" + id);
         }
     }
     private void register(LocalEngine engine) { if (modules.put(engine.id(), engine) != null) throw new IllegalStateException("Duplicate internal engine module"); }

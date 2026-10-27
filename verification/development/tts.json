@@ -1,0 +1,32 @@
+{
+  "physical_device": false,
+  "fixture_output_is_audio": false,
+  "actual_host_child_processes": true,
+  "model_inference": false,
+  "passed": 62,
+  "input_fingerprint": {
+    "app/src/main/java/com/lma/app/core/ArtifactStore.java": "dddf9ed5eb7351f59247557e2d0121ddc68a79cb14df3d84ae53806f0c98f9f7",
+    "app/src/main/java/com/lma/app/core/BundleStore.java": "aa20b1c098b12be3019529841557b23604584e46fff1ffe5762ddbb6258c71ab",
+    "app/src/main/java/com/lma/app/core/BundleTransfers.java": "cdd820bf19e6ea1c8d201a5aec11701cf2358094f40833b553ead0f29cf202b7",
+    "app/src/main/java/com/lma/app/core/ByteRange.java": "31723bf112e630de6c2a1cd8d525be7bbd4706e151fa5a297a5e641f59b5c752",
+    "app/src/main/java/com/lma/app/core/ChatHistory.java": "3046a52c3f611b83b46cfed94afe0f4b31667f77986b7ca1737169ec8c4ce951",
+    "app/src/main/java/com/lma/app/core/DataFiles.java": "02d3212885376e7073a785801dbb81073b13cc87c5fc0e85ac4373fd346696bc",
+    "app/src/main/java/com/lma/app/core/JobStore.java": "8c7a85a27e9eb362ef15024bd424961ac269d0f778d18213abe50d0fa2648163",
+    "app/src/main/java/com/lma/app/core/LocalApi.java": "7bc4dc6a0fd2efd7141c154ad6d59a4591515252df29d1d1c4c5cc5e4e7cd2e1",
+    "app/src/main/java/com/lma/app/core/LocalHttp.java": "698f11eca1ca0e9d243a56046cd0f1e9e738ba71d085804cef34ae3c58f8c46f",
+    "app/src/main/java/com/lma/app/core/ModelBundle.java": "b72b7a8aa7190c1e6ad19a7f2194121df144868816b5bc5020e5e762339fa2ef",
+    "app/src/main/java/com/lma/app/core/ParameterSchema.java": "d229e0eaf79604e1d13aeb9a588c30b99cd5679a32dde449b1cdb6a45c30d738",
+    "app/src/main/java/com/lma/app/core/Protocol.java": "d49f47884aec0cb03347023119c2808330fa9970689dcd9d33c30ca653d03b85",
+    "app/src/main/java/com/lma/app/core/TaskInput.java": "d43cd0d5cca564b54ad7aa2f3be51ac81dea4e4a2cfa2ce6d60d42e9f2458a7e",
+    "app/src/main/java/com/lma/app/core/TextRequest.java": "bfdb23db96512f00f362b49951c1fee4162ca2d441482eb6ebf180a8d3574d5f",
+    "app/src/main/java/com/lma/app/core/TtsSpec.java": "54f841e2ca5e93d3c3e1845014029b96912291fcf50a50c26a0124325a7a962a",
+    "app/src/main/java/com/lma/app/LocalEngine.java": "7c71f2df8da4e6737bb6dfe198c7b385c4b08b6bf0c2f82cece0a3c901fd85a6",
+    "app/src/main/java/com/lma/app/NativeWorker.java": "c3324271639c6e77495e9aac78a663c6110dfef1026d0cc320ca82344ddd030d",
+    "app/src/main/java/com/lma/app/SherpaEngine.java": "12c6fb1c346cb110897a364fd4d062e4e674ee45cf072597862beefdb3dee65a",
+    "catalogue/model-bundles.json": "1791f5e6f164e951ee49f9e4b7c80e34f37ded38ae205b8b03973f2de5d4ee16",
+    "tests/tts-host/com/lma/app/LmaApp.java": "3d1c91fb946da2b83c4914a8f0414e7de1b73451a11aa8e8d0d8c4b18c9703c6",
+    "tests/tts-host/com/lma/app/TtsTest.java": "5d9ac164d9d5974eb288f5cb9c5503ec19775efeec4ce0e77ad8553bd3c0ff72",
+    "tests/tts-host/com/lma/app/WorkerFixture.java": "437181d7cbb50e78be76fd5506d3928df88fe1f0ff5bbeb83710861cb0083692",
+    "tools/test_tts.py": "67111290dc9cf541482937db57a171257e3b0fe0af9198d234f953c5f9e8f6e5"
+  }
+}

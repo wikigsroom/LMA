@@ -39,6 +39,85 @@
         "sd-nlohmann-json-LICENSE.txt",
         "sd-NDK-LLVM-NOTICE.txt"
       ]
+    },
+    {
+      "schema": "lma.native-build/1",
+      "engine": "sherpa_tts",
+      "file": "liblma-tts.so",
+      "source_revision": "af2d8d81dbfa61c4cea4c568da78f3982edca005",
+      "version": "2.0.1",
+      "abi": "arm64-v8a",
+      "backend": "cpu",
+      "ndk": "30.0.16248370",
+      "min_sdk": 28,
+      "bytes": 395896,
+      "sha256": "810f742e634c88e6aed39dce9a9e095a6f7d701e8f3e88686c955b0fb018b1a7",
+      "elf_load_alignment": [
+        16384
+      ],
+      "android_api_notes": [
+        28
+      ],
+      "dependencies": [
+        {
+          "file": "libsherpa-onnx-c-api.so",
+          "bytes": 4303136,
+          "sha256": "0eadae93c4d595a26584d7eebde7b397b9a36d01eee3ebc7262e0d34df2fce10",
+          "android_api_notes": [
+            21
+          ],
+          "provenance": "upstream_release_prebuilt"
+        },
+        {
+          "file": "libonnxruntime.so",
+          "bytes": 22249560,
+          "sha256": "33847ad43bffe204699fd4a27f7f3603452a8cdaf2f9a44983a0bc31ffcf2da1",
+          "android_api_notes": [
+            27
+          ],
+          "provenance": "upstream_release_prebuilt"
+        }
+      ],
+      "vocabularies": "external_user_selected_components",
+      "physical_device_tests": 0,
+      "model_inference_tested": false,
+      "virtualization_used": false,
+      "third_party_diagnostics": "private_stdout_stderr_and_process_local_liblog_interposition",
+      "reviewed_log_imports": [
+        "__android_log_print",
+        "__android_log_vprint",
+        "__android_log_write"
+      ],
+      "android_log_binding_tested": false,
+      "deviceValidated": false,
+      "status": "compiled_not_device_tested",
+      "notices": [
+        "tts-kaldi-native-fbank-LICENSE.txt",
+        "tts-kaldi-decoder-LICENSE.txt",
+        "tts-utf8proc-LICENSE.md.txt",
+        "tts-simple-sentencepiece-LICENSE.txt",
+        "tts-json-LICENSE.MIT.txt",
+        "tts-json-license.md.txt",
+        "tts-hclust-cpp-LICENSE.txt",
+        "tts-kaldifst-LICENSE.txt",
+        "tts-openfst-COPYING.txt",
+        "tts-eigen-COPYING.APACHE.txt",
+        "tts-eigen-COPYING.BSD.txt",
+        "tts-eigen-COPYING.GPL.txt",
+        "tts-eigen-COPYING.LGPL.txt",
+        "tts-eigen-COPYING.MINPACK.txt",
+        "tts-eigen-COPYING.MPL2.txt",
+        "tts-eigen-COPYING.README.txt",
+        "tts-eigen-COPYING.txt",
+        "tts-kissfft-COPYING.txt",
+        "tts-kissfft-BSD-3-Clause.txt",
+        "tts-kissfft-Unlicense.txt",
+        "tts-onnxruntime-LICENSE.txt",
+        "tts-onnxruntime-ThirdPartyNotices.txt.txt",
+        "tts-sherpa-LICENSE.txt",
+        "sd-nlohmann-json-LICENSE.txt",
+        "sd-NDK-LLVM-NOTICE.txt"
+      ]
     }
   ]
 }

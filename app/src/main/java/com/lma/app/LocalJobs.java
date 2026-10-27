@@ -30,13 +30,14 @@ public final class LocalJobs implements AutoCloseable {
         String id = input.getString("bundleId"), type = input.getString("type"); ModelBundle bundle = app.bundles.bundle(id);
         String tag = type.equals("image.generate") ? "image" : type.equals("video.generate") ? "video" : type.equals("text.generate") ? "text" : type.equals("speech.synthesize") || type.equals("audio.generate") ? "audio" : "";
         if (tag.isEmpty() || !bundle.tasks.contains(tag)) throw new IllegalArgumentException("所选模型没有对应的输出能力");
-        app.localEngines.require(bundle, type);
+        LocalEngine selectedEngine = app.localEngines.require(bundle, type);
         try (BundleStore.Lease ignored = app.bundles.acquire(id)) { /* Verify complete user-installed assets without downloading anything. */ }
         JSONObject in = input.getJSONObject("input"); String prompt = in.optString("prompt");
         if (prompt.trim().isEmpty() || prompt.length() > 16000 || in.optString("negativePrompt").length() > 16000) throw new IllegalArgumentException("请填写不超过 16000 字符的提示词");
         JSONObject effective = bundle.parameters().normalize(app.bundles.settings(id).getJSONObject("values"), input.optJSONObject("parameters") == null ? new JSONObject() : input.getJSONObject("parameters"));
         JSONObject request = new JSONObject().put("bundleId", id).put("type", type).put("input", DataFiles.copy(in)).put("parameters", effective.getJSONObject("values"))
                 .put("adjustments", effective.getJSONArray("adjustments")).put("parameterSchemaVersion", effective.getInt("schemaVersion")).put("allowUnmeasured", input.optBoolean("allowUnmeasured", false)).put("submissionHash", submissionHash);
+        request = selectedEngine.prepare(bundle, request);
         admission(bundle, request);
         JSONObject job = app.jobs.submit(request, idempotencyKey); app.prefs.edit().putBoolean("desiredJobs", true).apply(); wake(); changed.run(); return job;
     }

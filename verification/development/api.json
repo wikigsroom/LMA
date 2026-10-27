@@ -87,6 +87,7 @@
     "app/src/main/java/com/lma/app/core/Protocol.java": "d49f47884aec0cb03347023119c2808330fa9970689dcd9d33c30ca653d03b85",
     "app/src/main/java/com/lma/app/core/TaskInput.java": "d43cd0d5cca564b54ad7aa2f3be51ac81dea4e4a2cfa2ce6d60d42e9f2458a7e",
     "app/src/main/java/com/lma/app/core/TextRequest.java": "bfdb23db96512f00f362b49951c1fee4162ca2d441482eb6ebf180a8d3574d5f",
+    "app/src/main/java/com/lma/app/core/TtsSpec.java": "54f841e2ca5e93d3c3e1845014029b96912291fcf50a50c26a0124325a7a962a",
     "tests/ApiTest.java": "e8df47ad08ed90c36454750e606822d4ccd9040ef2ce835c00f31acf4f51acb5",
     "tests/host/android/util/AtomicFile.java": "a05b9c6ef4fa0f0f40aaa49b235faccc98d2d7d5aa1ea4bb8d2f535b8bad2796",
     "tools/test_api.py": "6771d25352cad09f6c4632083c0ff7e41e7024b09e4dda10f6536ed47a79d3c9"

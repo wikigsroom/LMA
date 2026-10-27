@@ -45,7 +45,10 @@ def main():
     # A changed native binary requires explicit review of this lock diff before commit.
     engine = {k: receipt[k] for k in ("engine", "file", "source_revision", "ggml_revision", "abi", "backend", "ndk", "sha256", "bytes")}
     engine["notices"] = {r["file"]: r["sha256"] for r in records}
-    (ROOT / "third_party/engine-lock.json").write_text(json.dumps({"schema": "lma.engine-lock/1", "engines": [engine]}, indent=2) + "\n", encoding="utf-8")
+    lock_path = ROOT / "third_party/engine-lock.json"
+    lock = json.loads(lock_path.read_text(encoding="utf-8"))
+    lock["engines"] = [engine if e["engine"] == "sd_cpp" else e for e in lock["engines"]]
+    lock_path.write_text(json.dumps(lock, indent=2) + "\n", encoding="utf-8")
     print(json.dumps({"collected_native_notices": len(records), "source_revision": revision}))
 
 

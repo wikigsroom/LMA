@@ -139,3 +139,5 @@ curl http://PHONE_IP:8080/v1/jobs \
 传输限制：请求头 16 KiB、请求体 256 KiB、JSON 嵌套 32 层；POST 要求 `Content-Length`，不接受 chunked / multipart / `Expect` 上传。不提供文件系统路径或远程转发端点。所有响应关闭缓存、启用 `nosniff`；不开放浏览器 CORS，原生客户端和 App 自己的桥接不受此限制。原始产物同时最多三路读取；超出数量返回 `503`，活动读取结束即可重试。明文 HTTP / 无 TLS 的既有限制仍适用。
 
 当前开发证据：67 项接口检查使用实际本机 socket、生产路由 / 存储和显式执行替身；文本后端还检查生产 `ApiHost` 对真实子进程替身的代理与占用释放。它们不是 Android 模型输出或后台耐久证据。完整余项见[实施记录](DEVELOPMENT.md)。
+
+dev.3 的已安装 TTS 候选使用相同异步任务接口，`type: "speech.synthesize"`、`input: {"prompt": "Hello world."}`；参数独立属于模型。输入 1–4000 字符，不接受负面提示词，缺语言组件不会下载 / 转出执行。当前完整配方和限制见[语音基座](TTS_ENGINE.md)；没有手机推理证据。
