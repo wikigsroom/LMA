@@ -155,3 +155,5 @@ A user-created installed `text_gguf_cpu_v1` bundle may submit `{"bundleId":"USER
 Authenticated `/v1/artifacts/ID/content` returns `application/vnd.lma.text+json` with `schema: lma.text-result/1`, `content`, `reasoning`, `finishReason: stop|length` and any supplied `usage` token counts. Private engine SSE feeds the result; public job events remain stage/state events, not chat-token SSE.
 
 `GET /v1/models` adds `parameter_error` for bundles. Incompatible imports report their own error without breaking other models. Existing chat/completions still serve the loaded legacy path; complete migration/scheduling is unfinished and queued jobs still require stopping the legacy persistent service. See [implementation/limits](TEXT_ENGINE.en.md).
+
+Dev.9 migrated legacy text rows retain their original `id` and expose `bundle_id`. Async `text.generate` requests explicitly use that immutable value as `bundleId`; they never download assets or change the chat model implicitly. Synchronous APIs still require the loaded text model and full scheduling is unfinished. See [migration/IDs](MODEL_MIGRATION.en.md).

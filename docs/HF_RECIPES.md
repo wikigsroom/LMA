@@ -2,7 +2,7 @@
 
 [English](HF_RECIPES.en.md) · [HF 发现](HF_MODELS.md) · [开发状态](DEVELOPMENT.md) · [资产边界核对](ASSET_CONTROL_AUDIT.md)
 
-适用：**0.3.0-dev.8 / code 12，内部开发检查点，未发 Release**。App 提供代码与配方元数据，用户选择和管理模型资产。以下流程不表示任意 HF 权重均能在 Android 上运行；实际架构、语言、组件配套、许可和设备资源仍需核对。
+适用：**0.3.0-dev.9 / code 13，内部开发检查点，未发 Release**。App 提供代码与配方元数据，用户选择和管理模型资产。以下流程不表示任意 HF 权重均能在 Android 上运行；实际架构、语言、组件配套、许可和设备资源仍需核对。
 
 ## 用户操作
 
@@ -48,4 +48,6 @@ Git blob SHA-1 **不是**原始文件 SHA-1，也不是发布者 SHA256。普通
 
 ## 文本 GGUF 配方
 
-dev.8 增加 `text_gguf_cpu_v1`，必需角色仅 `text_gguf`，固定模型及内含 tokenizer 由用户下载或导入；不支持拆分 GGUF / 视觉组件 / 任意架构自动转换。新包可在同一队列提交 `text.generate` 并预览正文 / 思考。既有单文件入口和推荐保持，旧文件迁移仍待完成。详见[文本基座指南](TEXT_ENGINE.md)。
+dev.8 增加 `text_gguf_cpu_v1`，必需角色仅 `text_gguf`，固定模型及内含 tokenizer 由用户下载或导入；不支持拆分 GGUF / 视觉组件 / 任意架构自动转换。新包可在同一队列提交 `text.generate` 并预览正文 / 思考。既有单文件入口和推荐保持，已有文件本地迁移见[迁移指南](MODEL_MIGRATION.md)，物理升级仍待验收。详见[文本基座指南](TEXT_ENGINE.md)。
+
+dev.9 将原有完整文本 / HF / 导入 GGUF 纳入同一资产、参数、任务与版本协议，不重复下载；69 项主机检查不代替手机升级验收。见[迁移指南](MODEL_MIGRATION.md)。

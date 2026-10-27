@@ -77,7 +77,7 @@ public final class LmaService extends Service {
                     String selected = app.prefs.getString("selectedModel", "");
                     if (!selected.isEmpty() && app.store.modelFile(selected).isFile()) engine.load(selected);
                 }
-                if (action.equals("restore")) downloads.resumeInterrupted();
+                // Interrupted model transfers remain paused until an explicit user resume.
                 if (localJobs != null && app.prefs.getBoolean("desiredJobs", false) && !action.equals("stopAll")) localJobs.wake();
             }
             if (!action.equals("stopApi") && !action.equals("stopAll") && api.wanted()) api.start();
@@ -119,13 +119,21 @@ public final class LmaService extends Service {
                 case "deleteBundle": {
                     requireBundles(); String id = command.getString("id");
                     if (bundleTransfers.busy(id)) throw new IllegalStateException("请先暂停下载，等待传输结束后删除模型包");
-                    app.bundles.remove(id, command.optBoolean("removeSettings", false), app.jobs); break;
+                    String legacy = app.store.legacyId(id);
+                    if (!legacy.isEmpty()) app.store.remove(legacy); else app.bundles.remove(id, command.optBoolean("removeSettings", false), app.jobs); break;
                 }
-                case "saveBundleSettings": requireBundles(); app.bundles.saveSettings(command.getString("id"), command.getJSONObject("settings")); break;
-                case "download": downloads.enqueue(command.getString("id"), ""); break;
-                case "pauseDownload": downloads.pause(command.getString("id")); break;
-                case "resumeDownload": {
-                    String id = command.getString("id"); downloads.enqueue(id, app.store.download(id).optString("uri")); break;
+                case "saveBundleSettings": {
+                    requireBundles(); String id = command.getString("id"), legacy = app.store.legacyId(id);
+                    if (legacy.isEmpty()) app.bundles.saveSettings(id, command.getJSONObject("settings")); else saveModelSettings(legacy, command.getJSONObject("settings")); break;
+                }
+                case "download": case "resumeDownload": {
+                    String id = command.getString("id"), bound = app.store.bundleId(id);
+                    if (!bound.isEmpty()) { requireBundles(); bundleTransfers.download(bound); }
+                    else downloads.enqueue(id, action.equals("resumeDownload") ? app.store.download(id).optString("uri") : ""); break;
+                }
+                case "pauseDownload": {
+                    String id = command.getString("id"), bound = app.store.bundleId(id);
+                    if (bound.isEmpty()) downloads.pause(id); else { requireBundles(); bundleTransfers.pause(bound); } break;
                 }
                 case "load": if (jobsBusy()) throw new IllegalStateException("请先完成或取消本地生成任务，再加载文本模型"); api.start(); engine.load(command.getString("id")); break;
                 case "stopEngine": chat.cancel(); api.cancelText(); engine.stop(); break;
@@ -134,7 +142,7 @@ public final class LmaService extends Service {
                 case "cancelChat": chat.cancel(); api.cancelText(); break;
                 case "deleteModel": {
                     String id = command.getString("id");
-                    if (downloads.busy(id)) throw new IllegalStateException("请先暂停下载，再删除模型");
+                    if (downloads.busy(id) || bundleTransfers != null && !app.store.bundleId(id).isEmpty() && bundleTransfers.busy(app.store.bundleId(id))) throw new IllegalStateException("请先暂停下载，再删除模型");
                     app.store.remove(id); break;
                 }
                 case "addModel": {
@@ -143,7 +151,7 @@ public final class LmaService extends Service {
                 }
                 case "addHubModel": {
                     String id = app.store.addHub(command.getJSONObject("model"));
-                    if (!app.store.modelFile(id).isFile()) downloads.enqueue(id, "");
+                    if (!app.store.installed(id)) { String bound = app.store.bundleId(id); if (bound.isEmpty()) downloads.enqueue(id, ""); else { requireBundles(); bundleTransfers.download(bound); } }
                     break;
                 }
                 case "import": {
@@ -160,6 +168,7 @@ public final class LmaService extends Service {
         activityChanged(); return START_STICKY;
     }
     public void modelInstalled(String id) {
+        app.migrateTextModels();
         main.post(() -> {
             if (stopping) return;
             if (app.prefs.getBoolean("autoLoad", true) && !engine.wanted() && app.prefs.getString("selectedModel", "").isEmpty()) {
@@ -201,12 +210,7 @@ public final class LmaService extends Service {
                 .addAction(new Notification.Action.Builder(null, "停止服务", stop).build()).build();
     }
     private void saveModelSettings(String id, JSONObject changes) throws Exception {
-        JSONObject current = app.store.inspectModel(id).getJSONObject("values"), next = app.store.previewConfig(id, changes);
-        boolean reload = id.equals(app.engineModel) && engine.wanted() && ModelSettings.reload(current, next);
-        if (reload && (app.generating || app.textRequestBusy)) throw new IllegalStateException("请先停止当前回复，再修改此模型的加载参数");
-        app.store.saveConfig(id, next);
-        if (reload) { engine.stop(); engine.load(id); }
-        app.emit();
+        engine.configure(id, changes); app.emit();
     }
     private void saveSettings(JSONObject value) throws Exception {
         for (String key : ModelSettings.KEYS) if (value.has(key)) throw new IllegalArgumentException("模型参数已移至本地模型的独立设置");

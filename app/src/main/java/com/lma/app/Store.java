@@ -18,7 +18,7 @@ public final class Store {
     private final JSONArray catalogue;
     private JSONArray custom;
     private JSONObject downloads;
-    private JSONObject profiles, metadata;
+    private JSONObject profiles, metadata, bindings;
     private final AtomicFile stateFile;
     private final java.util.concurrent.ConcurrentHashMap<String, java.util.concurrent.locks.ReentrantLock> transferLocks = new java.util.concurrent.ConcurrentHashMap<>();
 
@@ -33,12 +33,13 @@ public final class Store {
         try (FileInputStream in = stateFile.openRead()) {
             JSONObject state = new JSONObject(read(in, 4 * 1024 * 1024));
             custom = state.optJSONArray("custom"); downloads = state.optJSONObject("downloads");
-            profiles = state.optJSONObject("profiles"); metadata = state.optJSONObject("metadata");
+            profiles = state.optJSONObject("profiles"); metadata = state.optJSONObject("metadata"); bindings = state.optJSONObject("bindings");
         } catch (Exception ignored) {}
         if (custom == null) custom = new JSONArray();
         if (downloads == null) downloads = new JSONObject();
         if (profiles == null) profiles = new JSONObject();
         if (metadata == null) metadata = new JSONObject();
+        if (bindings == null) bindings = new JSONObject();
         try {
             // Freeze legacy global preferences into every existing model exactly once.
             JSONObject legacy = ModelSettings.defaults();
@@ -54,13 +55,32 @@ public final class Store {
         // An interrupted transfer is explicitly resumable, never silently considered complete.
         for (java.util.Iterator<String> keys = downloads.keys(); keys.hasNext();) {
             JSONObject d = downloads.optJSONObject(keys.next());
-            if (d != null && (d.optString("state").equals("downloading") || d.optString("state").equals("verifying"))) {
+            if (d != null && (d.optString("state").equals("queued") || d.optString("state").equals("downloading") || d.optString("state").equals("verifying"))) {
                 try { d.put("state", "paused").put("interrupted", true).put("error", "上次下载已中断，可以继续"); } catch (Exception ignored) {}
             }
             if (d != null && d.optString("state").equals("pausing")) { try { d.put("state", "paused").put("interrupted", false); } catch (Exception ignored) {} }
         }
     }
-    public File modelFile(String id) { return new File(directory, Protocol.safeId(id) + ".gguf"); }
+    private File legacyFile(String id) { return new File(directory, Protocol.safeId(id) + ".gguf"); }
+    public synchronized String bundleId(String id) { return bindings.optString(Protocol.safeId(id)); }
+    public synchronized String legacyId(String bundleId) {
+        for (java.util.Iterator<String> it = bindings.keys(); it.hasNext();) { String id = it.next(); if (bindings.optString(id).equals(bundleId)) return id; }
+        return "";
+    }
+    public synchronized File modelFile(String id) {
+        String bundleId = bundleId(id);
+        if (!bundleId.isEmpty() && app.bundles != null) try { return app.bundles.object(app.bundles.bundle(bundleId).component("text_gguf").objectId); }
+        catch (Exception error) { throw new IllegalStateException("统一模型资产暂不可用；文件已保留", error); }
+        return legacyFile(id);
+    }
+    public synchronized boolean installed(String id) throws Exception {
+        String bundleId = bundleId(id);
+        if (!bundleId.isEmpty()) return app.bundles != null && app.bundles.plan(bundleId).getBoolean("installed");
+        File file = legacyFile(id); return file.isFile() && file.length() >= 24;
+    }
+    public synchronized com.lma.app.core.BundleStore.Lease acquireBundle(String id) throws Exception {
+        String bundleId = bundleId(id); return bundleId.isEmpty() ? null : app.bundles.acquire(bundleId);
+    }
     public File partFile(String id) { return new File(directory, Protocol.safeId(id) + ".part"); }
     public java.util.concurrent.locks.ReentrantLock transferLock(String id) { return transferLocks.computeIfAbsent(Protocol.safeId(id), key -> new java.util.concurrent.locks.ReentrantLock()); }
     public synchronized JSONObject model(String id) throws Exception {
@@ -87,9 +107,19 @@ public final class Store {
                 m.put("baseSupportTags", new JSONArray().put("engine:llama_text").put("pipeline:llama_text").put("format:gguf").put("backend:cpu"));
                 String id = m.getString("id");
                 File file = modelFile(id);
-                m.put("installed", file.isFile() && file.length() >= 24);
-                m.put("installedBytes", file.isFile() ? file.length() : 0);
-                m.put("download", download(id));
+                boolean installed = installed(id); String bound = bundleId(id);
+                m.put("installed", installed).put("bundleId", bound);
+                m.put("installedBytes", installed ? file.length() : 0);
+                JSONObject transfer = download(id);
+                if (!bound.isEmpty() && app.bundles != null) {
+                    JSONObject record = app.bundles.record(bound), current = record.optJSONObject("transfer");
+                    if (current != null) { transfer = new JSONObject(current.toString()); String status = transfer.optString("state"); transfer.put("state", status.equals("installed") ? "done" : status.equals("failed") ? "error" : status.equals("installing") ? "verifying" : status).put("total", app.bundles.plan(bound).getLong("totalBytes")); }
+                }
+                if (!bound.isEmpty() && installed) {
+                    String digest = app.bundles.bundle(bound).component("text_gguf").sha256;
+                    transfer.put("sha256", digest).put("verification", digest.equals(m.optString("sha256")) ? "publisher-sha256" : "format-and-transfer");
+                }
+                m.put("download", transfer);
                 m.put("partialBytes", partFile(id).isFile() ? partFile(id).length() : 0);
                 m.put("config", config(id));
                 result.put(m);
@@ -127,16 +157,36 @@ public final class Store {
         model(id);
         JSONObject info = metadata.optJSONObject(id); if (info == null) info = new JSONObject();
         JSONObject saved = profiles.optJSONObject(id); if (saved == null) saved = ModelSettings.defaults();
+        String bound = bundleId(id);
+        if (!bound.isEmpty() && app.bundles != null) saved = app.bundles.settings(bound).getJSONObject("values");
         JSONObject values = ModelSettings.normalize(saved, new JSONObject(), info);
-        return new JSONObject().put("values", values).put("limits", ModelSettings.limits(info, values.getInt("context"))).put("metadata", new JSONObject(info.toString()));
+        JSONObject limits = ModelSettings.limits(info, values.getInt("context"));
+        if (!bound.isEmpty() && app.bundles != null) {
+            JSONObject fields = app.bundles.parameters(bound).json().getJSONObject("fields"); int declared = limits.getInt("contextMax");
+            limits.put("contextMetadataMax", info.optInt("contextLength")).put("contextMax", Math.min(declared, fields.getJSONObject("context").getInt("maximum")))
+                .put("contextLimitSource", limits.getInt("contextMax") < declared ? "application_or_recipe" : limits.getBoolean("contextKnown") ? "gguf_metadata" : "application_guard")
+                .put("outputGuardMax", fields.getJSONObject("maxTokens").getInt("maximum")).put("threadsMax", Math.min(limits.getInt("threadsMax"), fields.getJSONObject("threads").getInt("maximum")))
+                .put("temperatureMax", Math.min(limits.getDouble("temperatureMax"), fields.getJSONObject("temperature").getDouble("maximum")));
+        }
+        return new JSONObject().put("values", values).put("limits", limits).put("metadata", new JSONObject(info.toString()));
     }
-    public synchronized JSONObject previewConfig(String id, JSONObject changes) throws Exception { return ModelSettings.normalize(config(id).getJSONObject("values"), changes, config(id).getJSONObject("metadata")); }
-    public synchronized JSONObject saveConfig(String id, JSONObject changes) throws Exception {
-        JSONObject values = previewConfig(id, changes); profiles.put(id, values); save(); return config(id);
+    public synchronized JSONObject previewConfig(String id, JSONObject changes) throws Exception {
+        JSONObject config = config(id); String bound = bundleId(id);
+        if (!bound.isEmpty() && app.bundles != null) return app.bundles.parameters(bound).normalize(config.getJSONObject("values"), changes).getJSONObject("values");
+        return ModelSettings.normalize(config.getJSONObject("values"), changes, config.getJSONObject("metadata"));
+    }
+    public synchronized JSONObject saveConfig(String id, JSONObject changes) throws Exception { return saveConfig(id, changes, null); }
+    public synchronized JSONObject saveConfig(String id, JSONObject changes, com.lma.app.core.BundleStore.Lease owner) throws Exception {
+        JSONObject values = previewConfig(id, changes); String bound = bundleId(id);
+        if (!bound.isEmpty() && app.bundles != null) {
+            if (owner != null && !owner.bundle.id.equals(bound)) throw new IllegalArgumentException("模型配置租约与所选模型不一致");
+            values = (owner == null ? app.bundles.saveSettings(bound, values) : owner.saveDefaults(values)).getJSONObject("values");
+        }
+        profiles.put(id, values); save(); return config(id);
     }
     public synchronized JSONObject inspectModel(String id) throws Exception {
         model(id); File file = modelFile(id);
-        if (!file.isFile()) throw new IllegalStateException("请先下载或导入模型，再编辑其参数");
+        if (!installed(id)) throw new IllegalStateException("请先下载或导入模型，再编辑其参数");
         JSONObject cached = metadata.optJSONObject(id);
         if (cached == null || cached.optLong("fileBytes") != file.length() || cached.optLong("modified") != file.lastModified()) {
             JSONObject info;
@@ -156,20 +206,80 @@ public final class Store {
         JSONObject model = model(id);
         if (app.engineModel.equals(id) && !app.engineState.equals("stopped") && !app.engineState.equals("error"))
             throw new IllegalStateException("请先停止当前模型，再删除文件");
-        File file = modelFile(id), partial = partFile(id), rejected = new File(directory, Protocol.safeId(id) + ".rejected");
+        String bound = bundleId(id);
+        if (!bound.isEmpty() && app.bundles != null) app.bundles.remove(bound, false, app.jobs);
+        File file = legacyFile(id), partial = partFile(id), rejected = new File(directory, Protocol.safeId(id) + ".rejected");
         if (file.exists() && !file.delete()) throw new java.io.IOException("无法删除模型文件");
         if (partial.exists() && !partial.delete()) throw new java.io.IOException("无法删除未完成的下载");
         if (rejected.exists() && !rejected.delete()) throw new java.io.IOException("无法删除未通过校验的文件");
         downloads.remove(id);
         metadata.remove(id);
-        if (id.startsWith("custom_") || id.startsWith("hf_")) profiles.remove(id);
+        if (id.startsWith("custom_") || id.startsWith("hf_")) { profiles.remove(id); bindings.remove(id); }
         if (id.startsWith("custom_") || id.startsWith("hf_")) for (int i = 0; i < custom.length(); i++) if (custom.getJSONObject(i).getString("id").equals(id)) { custom.remove(i); break; }
         if (app.prefs.getString("selectedModel", "").equals(id)) app.prefs.edit().remove("selectedModel").putBoolean("desiredRunning", false).apply();
         if (app.engineModel.equals(id)) app.engineModel = "";
         save(); app.emit();
     }
+    private boolean legacyBusy(String id) {
+        return app.engineModel.equals(id) && (!app.engineState.equals("stopped") && !app.engineState.equals("error") || app.nativeProcess != null && app.nativeProcess.isAlive());
+    }
+    public JSONArray migrateExisting(com.lma.app.core.RecipeCatalogue recipes, com.lma.app.core.DataFiles.Check check) throws Exception {
+        JSONArray candidates = new JSONArray(), outcomes = new JSONArray();
+        synchronized (this) {
+            for (int pass = 0; pass < 2; pass++) { JSONArray source = pass == 0 ? catalogue : custom;
+                for (int i = 0; i < source.length(); i++) { String id = source.getJSONObject(i).getString("id"); if (bundleId(id).isEmpty() && legacyFile(id).isFile() && !legacyBusy(id)) candidates.put(id); }
+            }
+        }
+        JSONObject template = recipes.template("text_gguf_cpu_v1");
+        for (int i = 0; i < candidates.length(); i++) {
+            check.run(); String id = candidates.getString(i); java.util.concurrent.locks.ReentrantLock lock = transferLock(id); lock.lockInterruptibly();
+            try {
+                synchronized (this) { if (!bundleId(id).isEmpty() || legacyBusy(id)) continue; }
+                File source = legacyFile(id); if (!source.isFile()) continue;
+                JSONObject original = model(id); long bytes = source.length(), modified = source.lastModified();
+                JSONObject info = GgufMetadata.read(source); check.run();
+                String digest = original.optString("sha256");
+                if (digest.isEmpty()) digest = com.lma.app.core.DataFiles.sha256(source, check);
+                String identity = Protocol.hex(java.security.MessageDigest.getInstance("SHA-256").digest((id + ":" + digest).getBytes(java.nio.charset.StandardCharsets.UTF_8)));
+                String targetId = "legacy_" + identity;
+                JSONObject component = new JSONObject().put("role", "text_gguf").put("path", id + ".gguf").put("format", "gguf").put("bytes", bytes).put("sha256", digest);
+                String url = original.optString("url");
+                if (!url.isEmpty()) {
+                    java.net.URL parsed = new java.net.URL(url);
+                    if (parsed.getHost().equalsIgnoreCase("huggingface.co") || parsed.getHost().equalsIgnoreCase("hf-mirror.com")) {
+                        String[] parts = parsed.getPath().split("/", 6);
+                        if (parts.length == 6 && parts[3].equals("resolve") && parts[4].matches("[a-fA-F0-9]{40,64}")) component.put("path", java.net.URLDecoder.decode(parts[5].replace("+", "%2B"), "UTF-8")).put("repository", parts[1] + "/" + parts[2]).put("revision", parts[4]).put("url", url);
+                    } else component.put("url", url);
+                }
+                JSONObject manifest = new JSONObject(template.getJSONObject("definition").toString()).put("schema", com.lma.app.core.ModelBundle.SCHEMA)
+                    .put("id", targetId).put("modelId", id).put("recipeId", template.getString("id")).put("name", original.getString("name"))
+                    .put("components", new JSONArray().put(component)).put("migration", new JSONObject().put("source", "legacy_text_store").put("legacyId", id))
+                    .put("description", original.optString("description")).put("license", original.opt("license") == null ? "unknown" : original.get("license"));
+                if (original.has("uncensored")) manifest.put("uncensored", new JSONObject(original.getJSONObject("uncensored").toString()));
+                JSONObject values = config(id).getJSONObject("values");
+                app.bundles.adoptLocal(new com.lma.app.core.ModelBundle(manifest), java.util.Collections.singletonMap("text_gguf", source), values, check);
+                synchronized (app.requestGate) { synchronized (this) {
+                    check.run(); if (legacyBusy(id)) throw new java.io.IOException("模型正在运行，停止后再迁移；原文件已保留");
+                    if (!source.isFile() || source.length() != bytes || source.lastModified() != modified) throw new java.io.IOException("旧模型在迁移期间发生变化，原记录已保留");
+                    // User edits made while hashing remain authoritative until this binding is committed.
+                    JSONObject latest = ModelSettings.normalize(config(id).getJSONObject("values"), new JSONObject(), info); latest = app.bundles.saveSettings(targetId, latest).getJSONObject("values");
+                    JSONObject before = bindings, oldMetadata = metadata, oldProfiles = profiles;
+                    bindings = new JSONObject(bindings.toString()); bindings.put(id, targetId);
+                    metadata = new JSONObject(metadata.toString()); metadata.put(id, info.put("fileBytes", bytes).put("modified", modelFile(id).lastModified()));
+                    profiles = new JSONObject(profiles.toString()); profiles.put(id, latest);
+                    try { save(); } catch (Exception error) { bindings = before; metadata = oldMetadata; profiles = oldProfiles; throw error; }
+                    // Content is retained in verified CAS storage. A reader of the old name may still be active.
+                    source.delete();
+                } }
+                outcomes.put(new JSONObject().put("id", id).put("bundleId", targetId).put("state", "migrated")); app.emit();
+            } catch (java.io.InterruptedIOException cancelled) { throw cancelled; }
+              catch (Exception error) { check.run(); outcomes.put(new JSONObject().put("id", id).put("state", "failed").put("error", error.getMessage() == null ? "本地迁移失败，原文件保留" : error.getMessage())); }
+            finally { lock.unlock(); }
+        }
+        return outcomes;
+    }
     private void save() throws Exception {
-        JSONObject state = new JSONObject(); state.put("custom", custom); state.put("downloads", downloads); state.put("profiles", profiles); state.put("metadata", metadata);
+        JSONObject state = new JSONObject(); state.put("custom", custom); state.put("downloads", downloads); state.put("profiles", profiles); state.put("metadata", metadata); state.put("bindings", bindings);
         FileOutputStream stream = null;
         try { stream = stateFile.startWrite(); stream.write(state.toString().getBytes(java.nio.charset.StandardCharsets.UTF_8)); stateFile.finishWrite(stream); }
         catch (Exception error) { if (stream != null) stateFile.failWrite(stream); throw error; }

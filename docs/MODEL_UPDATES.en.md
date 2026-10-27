@@ -2,7 +2,7 @@
 
 [中文](MODEL_UPDATES.md) · [HF component recipes](HF_RECIPES.en.md) · [Development status](DEVELOPMENT.en.md) · [Asset-control audit](ASSET_CONTROL_AUDIT.en.md)
 
-Applies to **0.3.0-dev.8 / code 12, an internal checkpoint, not the complete v0.3.0 Release**. App updates supply the foundation; users separately manage model versions. This workflow covers generic `ModelBundle` records. Unifying legacy standalone GGUF records with bundles remains required within this same version; this does not establish complete update support for every model.
+Applies to **0.3.0-dev.9 / code 13, an internal checkpoint, not the complete v0.3.0 Release**. App updates supply the foundation; users separately manage model versions. This workflow covers generic `ModelBundle` records. Unifying legacy standalone GGUF records with bundles remains required within this same version; this does not establish complete update support for every model.
 
 ## Workflow
 
@@ -41,3 +41,5 @@ The native confirmation fingerprint binds both immutable manifests, effective pr
 Complete legacy migration, actual integration of all selected targets, and physical Android A5–A8/A11 acceptance remain unfinished under the same [complete v0.3.0 gates](MULTIMODAL_RELEASE_PLAN.en.md). No new Release has been created.
 
 dev.8 text-bundle reviews also bind effective parameter schemas. First discovering GGUF limits after download invalidates earlier consent; cancel/review again while retaining assets rather than silently activating. 66 text-host checks cover this path; complete legacy migration remains open. See [text bundles](TEXT_ENGINE.en.md).
+
+Dev.9 adopts existing complete text/HF/import GGUFs into the same assets/settings/jobs/version protocol without downloading again. Its 69 host checks do not establish Android upgrade acceptance. See [migration](MODEL_MIGRATION.en.md).

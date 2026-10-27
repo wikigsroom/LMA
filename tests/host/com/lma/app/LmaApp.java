@@ -9,7 +9,7 @@ import android.net.Uri;
 
 /** Test-only framework ports; Store/Downloads/Net/EngineHost/ChatRunner are production files. */
 public final class LmaApp {
-    public static final String VERSION = "0.3.0-dev.8";
+    public static final String VERSION = "0.3.0-dev.9";
     public String apiState = "stopped", apiDetail = "";
     public com.lma.app.core.BundleStore bundles;
     public com.lma.app.core.JobStore jobs;
@@ -38,6 +38,7 @@ public final class LmaApp {
         try { bundles = new com.lma.app.core.BundleStore(new File(files, "bundles")); jobs = new com.lma.app.core.JobStore(new File(files, "jobs")); artifacts = new com.lma.app.core.ArtifactStore(new File(files, "artifacts"), file -> { throw new IOException("No host model outputs"); }); }
         catch (Exception error) { throw new RuntimeException(error); }
     }
+    public void migrateTextModels() { /* Host tests invoke migration explicitly. */ }
     public File getFilesDir() { return files; }
     public Assets getAssets() { return new Assets(); }
     public final class Assets { public InputStream open(String name) throws IOException { return new FileInputStream(new File(assets, name)); } }

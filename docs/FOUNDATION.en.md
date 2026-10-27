@@ -149,3 +149,5 @@ Dev.6 adds [Nano execution and EngineWorkspace](MOSS_NANO_ENGINE.en.md): explici
 dev.7 adds bundle [independent updates/rollback](MODEL_UPDATES.en.md): user-reviewed assets/profiles, separate download and activation consent, retained old files/settings and protected queued/running version references. Current preference never redirects API/existing jobs; legacy unification and device acceptance remain required in this same complete version.
 
 dev.8 adds an actual [text module](TEXT_ENGINE.en.md) reusing the signed llama server for new bundles, shared parameters/jobs/artifacts. Complete legacy chat/API/file unification remains unfinished; full-release gates are unchanged.
+
+Dev.9 [existing-model migration](MODEL_MIGRATION.en.md) reuses verified local hardlinks, preserves IDs/sources/profiles and exposes shared tasks/versions from original details. Incomplete transfers stay paused until explicit resume. 69 host migration and 156 UI checks pass; physical-Android A11 upgrade acceptance remains open.

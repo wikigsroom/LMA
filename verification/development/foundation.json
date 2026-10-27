@@ -10,7 +10,7 @@
     "app/src/main/assets/recipe-templates.json": "c1e6176bddec80a5ffb3ad4a33e6fa8e6675cabf30d27ad94ce242b503aa3099",
     "app/src/main/java/com/lma/app/core/AdapterSpec.java": "64ef18ad134ced58d0b2d7431c6278ca3d20e0b46f8bffb1976d5893610b7b8d",
     "app/src/main/java/com/lma/app/core/ArtifactStore.java": "3307278fc37b7467b94eb1fa4bd3ae3d9a8b9138d499ab371e709f3708e77f4e",
-    "app/src/main/java/com/lma/app/core/BundleStore.java": "6f06bd534314df2873bc9b1f7d1924d620010e0c40330bb451bc03991d8959a2",
+    "app/src/main/java/com/lma/app/core/BundleStore.java": "0698b8cd578361e392c20ca2da7f933aaed6a326eb91c9fd405f8f6195707b5b",
     "app/src/main/java/com/lma/app/core/BundleTransfers.java": "926596119a2c3f6bc089516e7bbd7db3016487d60c24f908ea646dfc76707f3e",
     "app/src/main/java/com/lma/app/core/BundleUpdates.java": "f31a65d0e172aa75f6131deace828875534ccc756ed93fac83bb09d5a4162fe1",
     "app/src/main/java/com/lma/app/core/ByteRange.java": "31723bf112e630de6c2a1cd8d525be7bbd4706e151fa5a297a5e641f59b5c752",

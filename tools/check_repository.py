@@ -66,6 +66,7 @@ def main():
         assert status["physical_device_tests"] == 0 and not status["model_inference_tested"]
         records = {name: json.loads((directory / name).read_text(encoding="utf-8")) for name in status["sources"]}
         for record in records.values(): current(record["input_fingerprint"])
+        assert records["migration.json"]["passed"] >= 69 and records["migration.json"]["actual_host_hardlinks"] and records["migration.json"]["actual_host_child"] and not records["migration.json"]["model_inference_tested"] and not records["migration.json"]["physical_device_tested"]
         assert records["build-info.json"]["input_fingerprint"] == build_inputs()
         assert records["build-info.json"]["sha256"] == records["package.json"]["sha256"]
         assert records["foundation.json"]["passed"] >= 302 and records["foundation.json"]["model_update_assertions"] >= 62 and records["foundation.json"]["recipe_integrity_assertions"] >= 87 and records["foundation.json"]["adapter_contract_assertions"] >= 45 and records["backend.json"]["passed"] >= 85 and records["hub.json"]["passed"] >= 74

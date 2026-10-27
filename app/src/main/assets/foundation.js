@@ -19,7 +19,9 @@
   function tasks(b) { return (b.manifest.tasks || []).filter(function (tag) { return labels[tag]; }); }
   function taskTags(b) { return tasks(b).map(function (t) { return '<span class="tag task-tag task-' + t + '">' + labels[t] + '</span>'; }).join('') + (isAdapter(b) ? '<span class="tag">LoRA</span><span class="tag">需要基础模型</span>' : '') + (b.manifest.uncensored && b.manifest.uncensored.detected ? '<span class="tag">无审查线索 · 待核对</span>' : ''); }
   function views() {
-    return entries().map(function (b) {
+    var aliases = (ui.state().models || []).map(function (m) { return m.bundleId; }).filter(Boolean);
+    return entries().filter(function (b) { var legacy = b.manifest.migration && b.manifest.migration.source === 'legacy_text_store' && b.manifest.migration.legacyId;
+      return aliases.indexOf(b.id) < 0 && !(legacy && (ui.state().models || []).some(function (m) { return m.id === legacy; })); }).map(function (b) {
       var m = b.manifest, p = b.plan || {};
       return {id: 'bundle::' + b.id, bundleId: b.id, isBundle: true, name: m.name, family: m.architecture, repository: (m.components[0] || {}).repository || '', description: m.description || '', taskTags: tasks(b), tier: m.catalogue ? 'catalogue' : 'custom', installed: b.installed, bytes: p.totalBytes, installedBytes: p.totalBytes, download: b.transfer, imported: !m.catalogue, bundle: b};
     });

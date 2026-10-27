@@ -22,6 +22,9 @@ public final class BundleStore {
     public BundleStore(File directory) throws Exception {
         root = directory.getCanonicalFile(); objects = new File(root, "objects"); partials = new File(root, "partial");
         if ((!objects.isDirectory() && !objects.mkdirs()) || (!partials.isDirectory() && !partials.mkdirs())) throw new IOException("Cannot create model storage");
+        // Only our private interrupted-adoption links are discarded; ordinary resumable .part files remain.
+        File[] orphanLinks = partials.listFiles((dir, name) -> name.matches("[a-f0-9]{64}\\.adopt-[a-f0-9-]{36}"));
+        if (orphanLinks != null) for (File link : orphanLinks) if (!link.delete()) throw new IOException("Cannot clean interrupted local adoption link");
         file = new AtomicFile(new File(root, "bundles.json"));
         try { state = DataFiles.read(file, 8 * 1024 * 1024); }
         catch (FileNotFoundException missing) { state = new JSONObject().put("schema", "lma.bundle-store/1").put("bundles", new JSONObject()).put("objects", new JSONObject()); }
@@ -42,6 +45,7 @@ public final class BundleStore {
         JSONObject value = state.getJSONObject("bundles").optJSONObject(ModelBundle.key(id));
         if (value == null) throw new IllegalArgumentException("Unknown model bundle"); return value;
     }
+    public synchronized JSONObject record(String id) throws Exception { return DataFiles.copy(entry(id)); }
     public synchronized ModelBundle bundle(String id) throws Exception { return new ModelBundle(entry(id).getJSONObject("manifest")); }
     public synchronized void declare(ModelBundle bundle) throws Exception {
         JSONObject existing = state.getJSONObject("bundles").optJSONObject(bundle.id);
@@ -126,6 +130,67 @@ public final class BundleStore {
         }
         } finally { lock.unlock(); }
     }
+    /** Adopt existing private app files without a transfer, copying weights or changing their bytes.
+     * Hardlinks and measured receipts are staged before the atomic metadata commit. On failure the
+     * source files remain owned by their original store; unreferenced links are harmless orphans.
+     */
+    public void adoptLocal(ModelBundle bundle, Map<String, File> sources, JSONObject settings, DataFiles.Check check) throws Exception {
+        if (sources.size() != bundle.components.size()) throw new IOException("Provide every existing component exactly once");
+        List<ReentrantLock> locked = new ArrayList<>(); Map<String, JSONObject> receipts = new HashMap<>(); Map<String, File> staged = new HashMap<>();
+        List<ModelBundle.Component> ordered = new ArrayList<>(bundle.components); ordered.sort(Comparator.comparing(c -> c.objectId));
+        Set<String> seen = new HashSet<>();
+        try {
+            for (ModelBundle.Component c : ordered) if (seen.add(c.objectId)) { ReentrantLock lock = componentLock(c.objectId); lock.lockInterruptibly(); locked.add(lock); }
+            synchronized (this) {
+                JSONObject existing = state.getJSONObject("bundles").optJSONObject(bundle.id);
+                if (existing != null && !DataFiles.canonical(existing.getJSONObject("manifest")).equals(DataFiles.canonical(bundle.json()))) throw new IOException("Existing bundle ID has a different immutable manifest");
+                JSONObject transfer = existing == null ? null : existing.optJSONObject("transfer");
+                if (existing != null && (leases.containsKey(bundle.id) || transfer != null && Arrays.asList("queued", "downloading", "verifying", "installing").contains(transfer.optString("state")))) throw new IOException("Existing bundle is in use or transferring");
+            }
+            for (ModelBundle.Component c : bundle.components) {
+                check.run(); File source = sources.get(c.role);
+                if (source == null || !source.isFile() || source.length() != c.bytes || java.nio.file.Files.isSymbolicLink(source.toPath())) throw new IOException("Existing model file is missing or changed");
+                File link = staged.get(c.objectId);
+                if (link == null) {
+                    link = DataFiles.child(partials, c.objectId + ".adopt-" + UUID.randomUUID());
+                    try { java.nio.file.Files.createLink(link.toPath(), source.toPath()); }
+                    catch (UnsupportedOperationException unavailable) { throw new IOException("This filesystem cannot adopt model data without copying; original file retained", unavailable); }
+                    staged.put(c.objectId, link);
+                }
+                // Unverified data never appears at the public object path, even with a stale receipt.
+                long stamp = link.lastModified(); JSONObject receipt = ComponentIntegrity.verify(link, c, check);
+                if (link.lastModified() != stamp) throw new IOException("Existing source changed during verification");
+                receipt.put("modified", stamp);
+                File target = object(c.objectId);
+                if (target.exists()) {
+                    stamp = target.lastModified(); receipt = ComponentIntegrity.verify(target, c, check);
+                    if (target.lastModified() != stamp) throw new IOException("Existing object changed during verification");
+                    receipt.put("modified", stamp);
+                }
+                receipts.put(c.objectId, receipt);
+            }
+            check.run();
+            synchronized (this) {
+                JSONObject next = DataFiles.copy(state), entries = next.getJSONObject("bundles"), existing = entries.optJSONObject(bundle.id);
+                if (existing != null && (!DataFiles.canonical(existing.getJSONObject("manifest")).equals(DataFiles.canonical(bundle.json())) || leases.containsKey(bundle.id))) throw new IOException("Bundle changed or is in use during adoption");
+                JSONObject transfer = existing == null ? null : existing.optJSONObject("transfer");
+                if (transfer != null && Arrays.asList("queued", "downloading", "verifying", "installing").contains(transfer.optString("state"))) throw new IOException("Bundle transfer started during adoption");
+                for (ModelBundle.Component c : bundle.components) {
+                    File target = object(c.objectId);
+                    if (!target.exists()) DataFiles.move(staged.get(c.objectId), target);
+                    if (!target.isFile() || target.length() != c.bytes || target.lastModified() != receipts.get(c.objectId).getLong("modified")) throw new IOException("Adopted component changed before commit");
+                    next.getJSONObject("objects").put(c.objectId, receipts.get(c.objectId).put("modified", target.lastModified()).put("verifiedAt", System.currentTimeMillis()));
+                }
+                if (existing == null) existing = new JSONObject().put("manifest", bundle.json()).put("settings", bundle.parameters().normalize(new JSONObject(), settings).getJSONObject("values"));
+                existing.put("installed", true).put("installedAt", System.currentTimeMillis()).put("error", "");
+                existing.put("transfer", new JSONObject().put("state", "installed").put("token", "").put("error", "").put("origin", "existing_app_files"));
+                entries.put(bundle.id, existing); check.run(); persist(next);
+            }
+        } finally {
+            for (File link : staged.values()) link.delete();
+            for (int i = locked.size() - 1; i >= 0; i--) locked.get(i).unlock();
+        }
+    }
     public synchronized void install(String id, String token) throws Exception {
         check(id, token); ModelBundle b = bundle(id);
         if (!complete(b, state)) throw new IOException("Required components are incomplete; bundle remains uninstalled");
@@ -136,6 +201,9 @@ public final class BundleStore {
     public synchronized JSONObject settings(String id) throws Exception { return parameters(id).normalize(entry(id).getJSONObject("settings"), new JSONObject()); }
     public synchronized JSONObject saveSettings(String id, JSONObject changes) throws Exception {
         if (leases.containsKey(id)) throw new IllegalStateException("Model is in use; stop its task before changing settings");
+        return writeSettings(id, changes);
+    }
+    private JSONObject writeSettings(String id, JSONObject changes) throws Exception {
         JSONObject effective = parameters(id).normalize(entry(id).getJSONObject("settings"), changes);
         JSONObject next = DataFiles.copy(state); next.getJSONObject("bundles").getJSONObject(id).put("settings", DataFiles.copy(effective.getJSONObject("values"))); persist(next); return effective;
     }
@@ -276,6 +344,10 @@ public final class BundleStore {
         public final ModelBundle bundle;
         private boolean closed;
         Lease(ModelBundle bundle) { this.bundle = bundle; }
+        /** Trusted engine owner may edit future defaults; immutable manifests and frozen job requests stay fixed. */
+        public JSONObject saveDefaults(JSONObject changes) throws Exception {
+            synchronized (BundleStore.this) { if (closed) throw new IOException("Model lease is closed"); return writeSettings(bundle.id, changes); }
+        }
         public JSONObject integrity() throws Exception {
             synchronized (BundleStore.this) {
                 if (closed) throw new IOException("Model lease is closed"); JSONObject result = new JSONObject();

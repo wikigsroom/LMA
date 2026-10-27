@@ -37,22 +37,16 @@ public final class Downloads {
     public synchronized void enqueue(String id, String uri) throws Exception {
         if (closed) throw new IllegalStateException("下载服务正在停止，请稍后重试");
         app.store.model(id);
-        if (app.store.modelFile(id).isFile()) return;
+        if (app.store.installed(id)) return;
+        if (!app.store.bundleId(id).isEmpty()) throw new IllegalStateException("此模型已纳入共用资产库，请通过模型包传输管理");
         if (jobs.containsKey(id)) return;
         Job job = new Job(id, uri == null ? "" : uri); jobs.put(id, job);
         JSONObject record = app.store.download(id); record.put("state", "queued").put("error", "").put("uri", job.uri).put("interrupted", false);
         app.store.updateDownload(id, record, true); app.emit();
         executor.execute(() -> perform(job)); owner.activityChanged();
     }
-    public void resumeInterrupted() {
-        try {
-            JSONArray models = app.store.snapshot();
-            for (int i = 0; i < models.length(); i++) {
-                JSONObject m = models.getJSONObject(i), d = m.getJSONObject("download");
-                if (d.optString("state").equals("queued") || d.optBoolean("interrupted")) enqueue(m.getString("id"), d.optString("uri"));
-            }
-        } catch (Exception error) { app.error("无法恢复下载：" + error.getMessage()); }
-    }
+    /** Retained for callers upgrading from older code; restoration never starts model downloads. */
+    public void resumeInterrupted() { /* User must explicitly choose resumeDownload. */ }
     public synchronized void pause(String id) {
         Job job = jobs.get(id);
         if (job != null) {

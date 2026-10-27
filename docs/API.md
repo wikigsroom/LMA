@@ -155,3 +155,5 @@ dev.7：通用包的 `/v1/models` 条目增加 `version` 元数据（尚无版�
 结果的鉴权 `/v1/artifacts/ID/content` 返回 `application/vnd.lma.text+json`，包含 `schema: lma.text-result/1`、`content`、`reasoning`、`finishReason: stop|length` 和已提供的 `usage` token 计数。输出增量由私有引擎 SSE 消费，公共任务事件仍是阶段 / 状态事件；此异步接口不冒充聊天 token SSE。
 
 `GET /v1/models` 新增通用包的 `parameter_error` 字段；不兼容导入单独报告，不阻断其他模型列表。现有 chat / completions 仍针对已加载旧文本路径。旧记录完整迁移和统一调度未完成；所有队列任务仍须先停止旧常驻文本服务。详见[文本实现与边界](TEXT_ENGINE.md)。
+
+dev.9 迁移后的旧文本行继续使用原 `id`，并返回 `bundle_id`。异步 `text.generate` 请求明确使用该不可变值作为 `bundleId`；不会自动下载或切换聊天模型。原有同步接口仍要求已加载文本模型，完整调度尚未统一。见[迁移与 ID 规则](MODEL_MIGRATION.md)。

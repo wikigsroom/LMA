@@ -1,5 +1,12 @@
 # Changelog / 更新记录
 
+## 0.3.0-dev.9 · 2026-10-28 · internal / 内部检查点
+
+- 旧文本 / HF / 导入 GGUF 通过本地校验、硬链接和原子 ID 绑定纳入共用资产、参数、任务与版本管理，原推荐 / 标签保留，无重复下载或自动模型选择。Adopt existing assets and retain stable IDs, labels and profiles.
+- 旧 / 新管理入口共享传输、设置、删除与进程租约；加载参数变更保持正确重载，API 返回不可变 bundle_id 并合并重复行。Share asset lifecycle and preserve loaded-model configuration behavior.
+- 恢复 / 升级不自动续传旧下载，用户明确继续；同步双语指南、26 张带标识截图及录屏 / GIF。Require explicit resume and update bilingual guides/media.
+- 69 项新增主机迁移、310 项基座、156 项 UI 检查；仍无物理 Android 或模型推理证据。完整 v0.3.0 全范围与发布门槛不变，未创建新 Release。
+
 ## 0.3.0-dev.8 · 2026-10-28 · 内部检查点 / Internal checkpoint
 
 - 新文本 GGUF 包复用签名 llama runtime、共用参数 / 租约 / 队列 / 结果，新增第九种用户自选 HF 配方。Add actual shared text-bundle execution and a ninth explicit HF recipe, without model assets or automatic downloads.

@@ -2,7 +2,7 @@
 
 [中文](TEXT_ENGINE.md) · [HF recipes](HF_RECIPES.en.md) · [Model updates](MODEL_UPDATES.en.md) · [Development status](DEVELOPMENT.en.md)
 
-Applies to **0.3.0-dev.8 / code 12, an internal checkpoint, not the completed or published v0.3.0**. User-created text GGUF bundles now use shared parameters, jobs and artifacts. Existing recommendations, chat and the persistent text API remain; complete legacy migration and automatic scheduling remain work in the same release.
+Applies to **0.3.0-dev.9 / code 13, an internal checkpoint, not the completed or published v0.3.0**. User-selected and [migrated existing text GGUFs](MODEL_MIGRATION.en.md) share parameters, jobs, artifacts and model-version management. Existing recommendations, chat IDs and persistent APIs remain; full automatic scheduling and physical upgrade acceptance remain unfinished.
 
 ## Selection and use
 
@@ -12,7 +12,7 @@ Applies to **0.3.0-dev.8 / code 12, an internal checkpoint, not the completed or
 4. Edit independent threads, context, output ceiling, temperature, reasoning and system prompt. Choose Use, enter a prompt, explicitly opt into trying an unmeasured recipe, and submit the shared queue. The legacy persistent text service must currently be stopped first to avoid competing heavy engines. Jobs do not automatically change the chat model.
 5. Open the artifact to read/copy its response, expand reasoning separately, export original JSON or export provenance. Output-limit completion is labeled. Cancellation, truncation and missing completion events cannot become successful results.
 
-Recommended `m08 → m06 → m01`, existing files and profiles are preserved. App installation/upgrades/browsing do not select/download/replace models. This entry point does not implicitly migrate old files, redownload weights or redirect legacy API IDs.
+Recommended `m08 → m06 → m01`, original weight contents, IDs and per-model profiles are retained. App installation/upgrades/browsing do not select/download/replace models. Local metadata/storage migration reuses existing files; a loading/running legacy model waits for exit before binding.
 
 ## Parameters and model versions
 
@@ -44,4 +44,4 @@ New bundles use the existing async job API with `type: "text.generate"` and `{"p
 
 [Settings](media/development/22-text-model-settings.png) · [Task form](media/development/23-text-queue-form.png) · [Text artifact](media/development/24-text-result.png) · [Recording](media/development/foundation-ui.mp4) · [GIF](media/development/foundation-ui.gif). All media visibly retains UI FIXTURE labels and literal test output.
 
-Legacy migration without duplicate downloads, full chat/API scheduling, every selected model and physical-device offline/upgrade/cancel/background/resource/quality acceptance remain in the same [complete v0.3.0 scope](MULTIMODAL_RELEASE_PLAN.en.md). No new Release is created by this checkpoint.
+Local migration code and 69 host checks are in place. Physical-Android upgrades, full chat/API scheduling, every selected model and offline/cancel/background/resource/quality acceptance remain in the same [complete v0.3.0 scope](MULTIMODAL_RELEASE_PLAN.en.md). No new Release is created.

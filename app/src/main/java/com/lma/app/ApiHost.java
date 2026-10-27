@@ -55,21 +55,21 @@ public final class ApiHost implements LocalApi.Runtime, AutoCloseable {
                 .put("foundationReady", app.jobs != null && app.artifacts != null && app.localEngines != null).put("modelInferenceTested", false);
     }
     @Override public JSONArray models() throws Exception {
-        JSONArray result = new JSONArray(), text = app.store.snapshot();
+        JSONArray result = new JSONArray(), text = app.store.snapshot(); java.util.Set<String> aliases = new java.util.HashSet<>();
         for (int i = 0; i < text.length(); i++) {
             JSONObject model = text.getJSONObject(i); if (!model.optBoolean("installed")) continue;
-            String id = model.getString("id");
+            String id = model.getString("id"); if (!model.optString("bundleId").isEmpty()) aliases.add(model.getString("bundleId"));
             result.put(new JSONObject().put("id", id).put("object", "model").put("owned_by", "local").put("name", model.getString("name"))
                     .put("task_tags", new JSONArray().put("text")).put("foundation_tags", model.getJSONArray("baseSupportTags"))
                     .put("uncensored", model.optJSONObject("uncensored") == null ? new JSONObject().put("status", "unknown") : model.getJSONObject("uncensored"))
-                    .put("engine", "llama_text").put("installed", true)
+                    .put("engine", "llama_text").put("bundle_id", model.optString("bundleId")).put("installed", true)
                     .put("loaded", id.equals(app.engineModel) && owner.engine.ready()).put("parameters", model.getJSONObject("config")));
         }
         if (app.bundles != null) {
             JSONArray bundles = app.bundles.snapshot();
             for (int i = 0; i < bundles.length(); i++) {
                 JSONObject record = bundles.getJSONObject(i); if (!record.optBoolean("installed")) continue;
-                ModelBundle bundle = app.bundles.bundle(record.getString("id"));
+                ModelBundle bundle = app.bundles.bundle(record.getString("id")); if (aliases.contains(bundle.id)) continue;
                 result.put(new JSONObject().put("id", bundle.id).put("model_id", bundle.modelId).put("object", "model").put("owned_by", "local").put("name", bundle.name)
                         .put("task_tags", new JSONArray(bundle.tasks)).put("tags", bundle.tags()).put("uncensored", new JSONObject().put("status", "unknown"))
                         .put("engine", bundle.engine).put("recipe", bundle.recipeId).put("backend", bundle.backend)

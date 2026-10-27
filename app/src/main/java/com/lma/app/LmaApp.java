@@ -19,9 +19,11 @@ import com.lma.app.core.JobStore;
 import com.lma.app.core.ArtifactStore;
 
 public final class LmaApp extends Application {
-    public static final String VERSION = "0.3.0-dev.8";
+    public static final String VERSION = "0.3.0-dev.9";
     public static final String UPDATE = "com.lma.app.STATE_CHANGED";
     public Store store;
+    private final java.util.concurrent.atomic.AtomicBoolean migrationRunning = new java.util.concurrent.atomic.AtomicBoolean(), migrationPending = new java.util.concurrent.atomic.AtomicBoolean();
+    private volatile JSONArray migrationResults = new JSONArray();
     public BundleStore bundles;
     public JobStore jobs;
     public ArtifactStore artifacts;
@@ -76,8 +78,26 @@ public final class LmaApp extends Application {
         catch (Exception error) { bundleStoreError = error.getMessage(); log("模型包存储不可用，原始数据已保留：" + bundleStoreError); }
         chats = new Chats(this);
         hub = new HubCatalog(this);
+        migrateTextModels();
     }
 
+    /** Reconcile private existing files only. No downloader, provider or model selection is invoked. */
+    public void migrateTextModels() {
+        if (bundles == null || localEngines == null) return;
+        migrationPending.set(true); if (!migrationRunning.compareAndSet(false, true)) return;
+        new Thread(() -> {
+            try {
+                do {
+                    migrationPending.set(false);
+                    try (java.io.InputStream in = getAssets().open("recipe-templates.json")) {
+                        com.lma.app.core.RecipeCatalogue recipes = new com.lma.app.core.RecipeCatalogue(new JSONObject(Store.read(in, 2 * 1024 * 1024)));
+                        migrationResults = store.migrateExisting(recipes, () -> { if (Thread.currentThread().isInterrupted()) throw new java.io.InterruptedIOException("本地迁移已中断，原文件保留"); });
+                    }
+                } while (migrationPending.get());
+            } catch (Exception error) { log("本地模型迁移未完成，原数据已保留：" + error.getMessage()); }
+            finally { migrationRunning.set(false); emit(); if (migrationPending.get()) migrateTextModels(); }
+        }, "LMA-existing-model-migration").start();
+    }
     public void emit() {
         sendBroadcast(new Intent(UPDATE).setPackage(getPackageName()));
     }
@@ -137,7 +157,7 @@ public final class LmaApp extends Application {
             value.put("jobs", jobs == null ? new JSONArray() : jobs.summaries());
             value.put("artifacts", artifacts == null ? new JSONArray() : artifacts.snapshot());
             value.put("localEngines", localEngines == null ? new JSONArray() : localEngines.snapshot());
-            value.put("foundation", new JSONObject().put("status", "development").put("bundleSchema", "lma.model-bundle/1").put("bundleSchemas", new JSONArray().put("lma.model-bundle/1").put("lma.model-bundle/2")).put("error", bundleStoreError).put("bundledWeights", false));
+            value.put("foundation", new JSONObject().put("status", "development").put("bundleSchema", "lma.model-bundle/1").put("bundleSchemas", new JSONArray().put("lma.model-bundle/1").put("lma.model-bundle/2")).put("error", bundleStoreError).put("bundledWeights", false).put("legacyMigration", new JSONObject().put("running", migrationRunning.get()).put("results", new JSONArray(migrationResults.toString()))));
             value.put("api", new JSONObject().put("state", apiState).put("detail", apiDetail).put("textRequestActive", textRequestBusy));
             JSONObject engine = new JSONObject(); engine.put("state", engineState); engine.put("detail", engineDetail);
             engine.put("modelId", engineModel); engine.put("startedAt", engineStarted); engine.put("generating", generating || textRequestBusy); engine.put("externalGenerating", textRequestBusy);

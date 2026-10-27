@@ -1,5 +1,5 @@
 {
-  "passed": 147,
+  "passed": 156,
   "checks": [
     "Initial curated recommendations",
     "375px model library layout",
@@ -140,6 +140,15 @@
     "Text results show reasoning separately and explain token-limit completion",
     "375px text artifact preview",
     "Malformed local text artifacts show an error instead of a fabricated result",
+    "Migrated legacy text model has no duplicate shared-library card",
+    "Existing model details expose shared tasks without requiring another download",
+    "Existing model exposes its immutable bundle version-management entry",
+    "Migration preserves the checked publisher content label",
+    "Migrated model details",
+    "Browsing migrated model details does not download, load or generate",
+    "Existing text model opens the same typed task form as other modalities",
+    "Shared job submission fixes the migrated immutable bundle ID",
+    "Migration retains the existing Recommended order and original record IDs",
     "Tablet library layout",
     "Short landscape server layout",
     "320px narrow phone layout",
@@ -155,11 +164,11 @@
   "emulatorUsed": false,
   "input_fingerprint": {
     "app/src/main/assets/app.css": "f2cb7b5ee9de8f3afac793e694dcf9fde0a855c0d4c7053ff986cc2a6d2bd3b1",
-    "app/src/main/assets/app.js": "a86453f71cbaead343465bcee6377ab1ee0181ddd99d8a71d410c5cafa450070",
+    "app/src/main/assets/app.js": "aad7362048c62c353b7bd2d1538be7c80af0beaf3fec00977e508eefc3490760",
     "app/src/main/assets/engine-builds.json": "bdb4aa0d090bae260499f766fe5d8f84cb225cfdf6e00439de95427690835abf",
     "app/src/main/assets/foundation.css": "c3983ed065510f07fd78987b5644b2730df681ee64078c660893c18ed38d7f21",
-    "app/src/main/assets/foundation.js": "75d59ea4ae040c8afa278c1202714639319b01a2a147e8f950f6eaa2cd26f679",
-    "app/src/main/assets/index.html": "db6c305e87919de3d992ac8933c00b40a230fab51dc5284e0d7e45f216b9d83b",
+    "app/src/main/assets/foundation.js": "3214f5a63b9ac5ccf03d51b3367f824e9695eda63ff80d31d7655b46ca304f07",
+    "app/src/main/assets/index.html": "9eed14fbffcfd3620f1ff6852203e6b2b445d43ae393eec0c6e8ef77c57458bf",
     "app/src/main/assets/license.js": "1c814e25648a624a68de26d0614ef0ac9799db94edd8cd3835a07e77156d51e0",
     "app/src/main/assets/licenses/LLAMA_CPP_LICENSE": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
     "app/src/main/assets/licenses/LMA_LICENSE": "6ae3f5efa412d91cbf66e44f743e5ce41a8044309d05d893365206ab9bc35fc3",
@@ -224,9 +233,10 @@
     "app/src/main/assets/versions.js": "2d629929a6db642c12a242ddcc62cd4f4090ab307e0cb669ceb98add031977e1",
     "tests/foundation-ui.cjs": "1c6721770e2d3336719c6cb096869aca3f966beff3fd958f814cda1cafee1e79",
     "tests/hub-fixture.cjs": "5b3cb88b7fd4c45d26ce92e8598a1c3837a12b02eb898f67c9be10da2910ab83",
+    "tests/migration-ui.cjs": "6843bdcf1783795ed10cccc8b200aee40188e8a1fe950f8d23027d828ff6b3b4",
     "tests/recipes-ui.cjs": "d45ab6a198b33df8cc8e3e5e0928b9cf3e6ddedb50a7e646bea38e0897243154",
     "tests/text-ui.cjs": "bc5969aa9329380b590a6055daa6fe1177f956f73bb212a18cf19d2b6576b8db",
-    "tests/ui-smoke.cjs": "4907c7bb56d4c69799566f6a090e7bdc6f02288a3eb45f20d2508eab447432ef",
+    "tests/ui-smoke.cjs": "e58a12a88ba8953164c112ba8b2f2bc3b2e5bbb685a2fd154f271ae0c75ab4e9",
     "tests/versions-ui.cjs": "13f6e194c00fa3a819c44da35788aa28b94ba05325e3f2b1257350c04b67babd"
   }
 }

@@ -20,6 +20,7 @@ public final class EngineHost {
     private final AtomicLong generation = new AtomicLong();
     private final ExecutorService workers = Executors.newCachedThreadPool();
     private volatile Process process;
+    private volatile com.lma.app.core.BundleStore.Lease currentLease;
     private volatile boolean desired;
     private volatile boolean closed;
     private volatile int failures;
@@ -30,11 +31,11 @@ public final class EngineHost {
     public boolean wanted() { return desired; }
     public boolean ready() { return desired && app.engineState.equals("ready") && process != null && process.isAlive(); }
 
-    public synchronized void load(String id) throws Exception {
-        synchronized (app.requestGate) {
+    public void load(String id) throws Exception {
+        synchronized (app.requestGate) { synchronized (this) {
         if (closed) throw new IllegalStateException("推理服务正在停止，请稍后重试");
         app.store.model(id);
-        if (!app.store.modelFile(id).isFile()) throw new IllegalStateException("请先下载或导入这个模型");
+        if (!app.store.installed(id)) throw new IllegalStateException("请先下载或导入这个模型");
         if (app.generating || app.textRequestBusy) throw new IllegalStateException("请先停止当前回复，再切换模型");
         if (ready() && id.equals(app.engineModel)) return;
         desired = true; failures = 0;
@@ -42,7 +43,17 @@ public final class EngineHost {
         app.prefs.edit().putString("selectedModel", id).putBoolean("desiredRunning", true).apply();
         app.engineModel = id; app.engineState = "loading"; app.engineDetail = "正在加载模型，首次加载可能需要一段时间"; app.engineStarted = 0; app.emit(); owner.activityChanged();
         workers.execute(() -> launch(id, request));
-        }
+        } }
+    }
+    public void configure(String id, JSONObject changes) throws Exception {
+        synchronized (app.requestGate) { synchronized (this) {
+            JSONObject current = app.store.inspectModel(id).getJSONObject("values"), next = app.store.previewConfig(id, changes);
+            boolean reload = id.equals(app.engineModel) && wanted() && ModelSettings.reload(current, next);
+            if (reload && (app.generating || app.textRequestBusy)) throw new IllegalStateException("请先停止当前回复，再修改此模型的加载参数");
+            com.lma.app.core.BundleStore.Lease owner = id.equals(app.engineModel) && process != null && process.isAlive() ? currentLease : null;
+            app.store.saveConfig(id, next, owner);
+            if (reload) { stop(); load(id); }
+        } }
     }
     public synchronized void stop() {
         desired = false; generation.incrementAndGet(); app.prefs.edit().putBoolean("desiredRunning", false).apply(); destroyProcess();
@@ -51,19 +62,20 @@ public final class EngineHost {
     public synchronized void close() { closed = true; desired = false; generation.incrementAndGet(); destroyProcess(); workers.shutdown(); }
     private boolean current(long request) { return !closed && desired && request == generation.get(); }
     private synchronized void destroyProcess() {
-        Process old = process; process = null;
+        Process old = process; process = null; currentLease = null;
         if (old != null) {
             old.destroy();
             workers.execute(() -> { try { if (!old.waitFor(3, TimeUnit.SECONDS)) old.destroyForcibly(); } catch (InterruptedException ignored) { Thread.currentThread().interrupt(); old.destroyForcibly(); } });
         }
     }
     private void launch(String id, long request) {
-        Process started = null;
+        Process started = null; com.lma.app.core.BundleStore.Lease lease = null;
         try {
             if (!current(request)) return;
             File nativeDir = new File(app.getApplicationInfo().nativeLibraryDir);
             File binary = new File(nativeDir, "libllama-server.so");
             if (!binary.isFile() || !binary.canExecute()) throw new java.io.IOException("推理组件未正确安装，请重新安装 LMA APK");
+            lease = app.store.acquireBundle(id);
             app.store.inspectModel(id);
             JSONObject settings = app.settings(id);
             int privatePort;
@@ -98,13 +110,14 @@ public final class EngineHost {
                 } catch (java.net.BindException error) { throw new java.io.IOException("本机私有引擎端口暂时不可用，请重试", error); }
                 synchronized (this) {
                     if (!current(request)) return;
-                    started = launcher.start(builder); process = started; app.nativeProcess = started; app.nativePort = privatePort; app.nativeApiKey = privateKey;
+                    started = launcher.start(builder); process = started; currentLease = lease; app.nativeProcess = started; app.nativePort = privatePort; app.nativeApiKey = privateKey;
+                    final Process ownedProcess = started; final com.lma.app.core.BundleStore.Lease ownedLease = lease;
+                    workers.execute(() -> watchExit(ownedProcess, id, request, ownedLease)); lease = null;
                 }
             }
             final Process active = started;
             app.log("启动模型：" + app.store.model(id).optString("name") + " · CPU / " + settings.getInt("threads") + " 线程");
             workers.execute(() -> drain(active));
-            workers.execute(() -> watchExit(active, id, request));
             long deadline = System.currentTimeMillis() + 300000;
             while (current(request) && process == active && active.isAlive() && System.currentTimeMillis() < deadline) {
                 HttpURLConnection health = null;
@@ -131,13 +144,13 @@ public final class EngineHost {
                 app.engineState = "error"; app.engineDetail = "加载失败：" + error.getMessage(); app.error(app.engineDetail);
             }
             owner.activityChanged();
-        }
+        } finally { if (lease != null) lease.close(); }
     }
-    private void watchExit(Process active, String id, long request) {
+    private void watchExit(Process active, String id, long request, com.lma.app.core.BundleStore.Lease held) {
         try {
-            int code = active.waitFor();
+            int code = active.waitFor(); if (held != null) held.close();
             synchronized (this) {
-                if (!current(request) || process != active) return; process = null; failures++;
+                if (!current(request) || process != active) return; process = null; currentLease = null; failures++;
                 app.log("模型进程退出，代码 " + code + "；恢复次数 " + failures + "/3");
                 if (failures > 3) {
                     desired = false; app.prefs.edit().putBoolean("desiredRunning", false).apply(); app.engineState = "error";
@@ -149,6 +162,7 @@ public final class EngineHost {
             Thread.sleep(Math.min(30000, 1500L << (failures - 1)));
             if (current(request)) launch(id, request);
         } catch (InterruptedException error) { Thread.currentThread().interrupt(); }
+        finally { if (!active.isAlive()) { if (held != null) held.close(); app.migrateTextModels(); } }
     }
     private void drain(Process active) {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(active.getInputStream(), StandardCharsets.UTF_8))) {

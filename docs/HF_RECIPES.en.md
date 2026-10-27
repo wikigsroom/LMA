@@ -2,7 +2,7 @@
 
 [中文](HF_RECIPES.md) · [HF discovery](HF_MODELS.en.md) · [Development status](DEVELOPMENT.en.md) · [Asset-control audit](ASSET_CONTROL_AUDIT.en.md)
 
-Applies to **0.3.0-dev.8 / code 12, an internal checkpoint, not a Release**. The App supplies code and recipe metadata; users select and manage model assets. This workflow does not establish Android support for arbitrary HF weights. Architecture, language, matching components, licensing and device resources still need verification.
+Applies to **0.3.0-dev.9 / code 13, an internal checkpoint, not a Release**. The App supplies code and recipe metadata; users select and manage model assets. This workflow does not establish Android support for arbitrary HF weights. Architecture, language, matching components, licensing and device resources still need verification.
 
 ## User workflow
 
@@ -26,7 +26,7 @@ A Git blob ID is neither raw-file SHA-1 nor publisher SHA256. The UI does not in
 
 Existing `lma.model-bundle/1` SHA256 objects/receipts remain compatible. Schema 2 requires exactly one expected digest per component. Recipe imports separate roles, e.g. `model/model.onnx` and `vocoder/model.onnx`, avoiding cross-repository filename collisions; consult the exact paths in the download plan. Runtime leases protect complete base/adapter groups, and deleting another model preserves shared objects.
 
-Native selection accepts files from the current frozen repository page only. Changed templates, repositories or pagination invalidate stale commands. WebView cannot invent unlisted downloads or supply executable engines. Repeating the same template/component selection reuses its ID; changed pinned sources or recipes create distinct immutable records. After registering a new version, use Local version management for [independent updates/rollback](MODEL_UPDATES.en.md). Complete legacy migration remains unfinished within this release.
+Native selection accepts files from the current frozen repository page only. Changed templates, repositories or pagination invalidate stale commands. WebView cannot invent unlisted downloads or supply executable engines. Repeating the same template/component selection reuses its ID; changed pinned sources or recipes create distinct immutable records. After registering a new version, use Local version management for [independent updates/rollback](MODEL_UPDATES.en.md). Existing-file migration is implemented; physical Android upgrade acceptance remains unfinished within this release.
 
 ## Verification and media
 
@@ -48,4 +48,6 @@ The eighth template covers only MOSS-TTS-Nano browser ONNX with its full codec. 
 
 ## Text GGUF recipe
 
-dev.8 adds `text_gguf_cpu_v1`, with the single required `text_gguf` role. Users download/import the complete pinned model and contained tokenizer. Split GGUF, vision components and automatic architecture conversion are unsupported by this recipe. New bundles submit shared `text.generate` jobs and preview response/reasoning. Existing single-file entry points and recommendations remain; legacy migration is unfinished. See the [text foundation guide](TEXT_ENGINE.en.md).
+dev.8 adds `text_gguf_cpu_v1`, with the single required `text_gguf` role. Users download/import the complete pinned model and contained tokenizer. Split GGUF, vision components and automatic architecture conversion are unsupported by this recipe. New bundles submit shared `text.generate` jobs and preview response/reasoning. Existing single-file entry points and recommendations remain; existing local files now use the [migration path](MODEL_MIGRATION.en.md). See the [text foundation guide](TEXT_ENGINE.en.md).
+
+Dev.9 adopts existing complete text/HF/import GGUFs into the same assets/settings/jobs/version protocol without downloading again. Its 69 host checks do not establish Android upgrade acceptance. See [migration](MODEL_MIGRATION.en.md).

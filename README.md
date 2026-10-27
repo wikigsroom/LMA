@@ -248,6 +248,10 @@ LMA 自有代码使用 MIT 许可。llama.cpp 及其依赖保留各自许可；�
 
 <img src="docs/media/development/17-model-version-choice.png" width="260" alt="模型版本独立选择，界面测试数据" /> <img src="docs/media/development/20-model-version-ready.png" width="260" alt="校验后单独确认切换，非真机验收" />
 
-当前内部检查点（**0.3.0-dev.8 / code 12**，未发布）新增[文本模型包共用执行](docs/TEXT_ENGINE.md)：第九种 HF 配方、GGUF 实际上下文 / 输出联动、统一任务与纯文本结果、独立思考预览、复制与导出。App 仍只更新基座，模型须用户选择下载；推荐和旧聊天 / API 保留。310 项基座、66 项新增文本主机检查、147 项 UI 检查及 0 个 Lint 错误；不是手机推理验收。旧记录迁移、全部模型适配和物理设备门槛仍属同一完整 v0.3.0，未创建新 Release。见[更新说明](docs/releases/v0.3.0-dev.8.md)。
+早前内部检查点（**0.3.0-dev.8 / code 12**，未发布）新增[文本模型包共用执行](docs/TEXT_ENGINE.md)：第九种 HF 配方、GGUF 实际上下文 / 输出联动、统一任务与纯文本结果、独立思考预览、复制与导出。App 仍只更新基座，模型须用户选择下载；推荐和旧聊天 / API 保留。310 项基座、66 项新增文本主机检查、147 项 UI 检查及 0 个 Lint 错误；不是手机推理验收。旧记录迁移、全部模型适配和物理设备门槛仍属同一完整 v0.3.0，未创建新 Release。见[更新说明](docs/releases/v0.3.0-dev.8.md)。
 
 <img src="docs/media/development/22-text-model-settings.png" width="260" alt="文本参数联动，明确的 UI 测试数据" /> <img src="docs/media/development/24-text-result.png" width="260" alt="固定测试正文和思考内容，非模型输出" />
+
+当前内部检查点（**0.3.0-dev.9 / code 13**，未发布）接入[已有模型迁移](docs/MODEL_MIGRATION.md)：校验并复用原 GGUF，保留原 ID、来源、推荐、内容标签及独立参数；原详情可进入共用任务和模型版本管理。旧下载在重启 / 升级后暂停，须用户明确继续。69 项新增主机迁移、310 项基座、156 项 UI 检查通过；完整模型与物理 Android 验收、自动调度仍在同一 v0.3.0 内继续，不创建新 Release。见[更新说明](docs/releases/v0.3.0-dev.9.md)、[截图 / 录屏 / GIF](docs/DEVELOPMENT.md)。
+
+<img src="docs/media/development/25-migrated-text-model.png" width="260" alt="界面夹具：已有模型复用下载文件并进入共用任务 / 版本管理，非真机迁移证据" /> <img src="docs/media/development/26-migrated-text-task.png" width="260" alt="界面夹具：已有模型进入共用任务表单，无实际推理" />
