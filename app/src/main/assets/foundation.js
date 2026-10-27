@@ -11,8 +11,13 @@
   function e(value) { return ui.esc(value); }
   function button(action, id, text, style, disabled) { return '<button class="button ' + (style || 'secondary') + '" data-action="' + action + '" data-id="' + e(id) + '"' + (disabled ? ' disabled' : '') + '>' + text + '</button>'; }
   function engineAvailable(b) { return (ui.state().localEngines || []).some(function (engine) { return engine.engine === b.manifest.engine && engine.available; }); }
+  function isAdapter(b) { return !!(b.manifest.adapter && b.manifest.adapter.kind === 'lora'); }
+  function compatible(base, adapter) {
+    var m = base.manifest, a = adapter.manifest.adapter;
+    return !!a && !isAdapter(base) && m.engine === adapter.manifest.engine && m.backend === adapter.manifest.backend && tasks(base).indexOf('image') >= 0 && (a.baseArchitectures || []).indexOf(m.architecture) >= 0 && (a.basePipelines || []).indexOf(m.pipeline) >= 0 && (!a.baseModelIds || a.baseModelIds.indexOf(m.modelId) >= 0);
+  }
   function tasks(b) { return (b.manifest.tasks || []).filter(function (tag) { return labels[tag]; }); }
-  function taskTags(b) { return tasks(b).map(function (t) { return '<span class="tag task-tag task-' + t + '">' + labels[t] + '</span>'; }).join(''); }
+  function taskTags(b) { return tasks(b).map(function (t) { return '<span class="tag task-tag task-' + t + '">' + labels[t] + '</span>'; }).join('') + (isAdapter(b) ? '<span class="tag">LoRA</span><span class="tag">需要基础模型</span>' : ''); }
   function views() {
     return entries().map(function (b) {
       var m = b.manifest, p = b.plan || {};
@@ -23,13 +28,14 @@
     var b = m.bundle, manifest = b.manifest, t = b.transfer || {}, plan = b.plan || {};
     var active = ['queued', 'downloading', 'verifying', 'installing'].indexOf(t.state) >= 0;
     var message = b.installed ? '已安装 · 设备待验证' : active ? ({queued: '等待下载', downloading: '下载组件', verifying: '校验组件', installing: '安装中'}[t.state]) : t.state === 'paused' ? '已暂停' : t.state === 'failed' ? '下载失败' : '尚未下载';
-    return '<article class="model-card bundle-card" data-bundle="' + e(b.id) + '"><div class="model-top"><span class="model-symbol">' + ui.icon('cube') + '</span><div class="model-top-copy"><button class="model-name" data-action="bundleInfo" data-id="' + e(b.id) + '"><strong>' + e(manifest.name) + '</strong><span class="model-caption">' + e(manifest.architecture) + ' / ' + e(manifest.backend) + '</span></button></div></div><p class="model-description">' + e(manifest.description || '由用户选择的本地模型包') + '</p><div class="model-tags">' + taskTags(b) + '<span class="tag">' + e(manifest.engine) + '</span><span class="tag">' + e(message) + '</span></div><div class="model-footer"><div class="model-size">' + ui.bytes(plan.totalBytes) + '<small>' + manifest.components.length + ' 个必需组件</small></div><div class="model-footer-actions">' + (b.installed ? button('bundleUse', b.id, '使用', 'primary', b.inUse || !engineAvailable(b)) : active ? button('pauseBundle', b.id, '暂停') : button('bundleInfo', b.id, t.state === 'paused' || t.state === 'failed' ? '继续下载' : '查看并下载', 'primary')) + '</div></div>' + (active ? '<p class="form-help">' + e(t.role || '') + (t.received ? ' · ' + ui.bytes(t.received) : '') + '</p>' : '') + (t.error ? '<p class="download-error">' + e(t.error) + '</p>' : '') + '</article>';
+    return '<article class="model-card bundle-card" data-bundle="' + e(b.id) + '"><div class="model-top"><span class="model-symbol">' + ui.icon('cube') + '</span><div class="model-top-copy"><button class="model-name" data-action="bundleInfo" data-id="' + e(b.id) + '"><strong>' + e(manifest.name) + '</strong><span class="model-caption">' + e(manifest.architecture) + ' / ' + e(manifest.backend) + '</span></button></div></div><p class="model-description">' + e(manifest.description || '由用户选择的本地模型包') + '</p><div class="model-tags">' + taskTags(b) + '<span class="tag">' + e(manifest.engine) + '</span><span class="tag">' + e(message) + '</span></div><div class="model-footer"><div class="model-size">' + ui.bytes(plan.totalBytes) + '<small>' + manifest.components.length + ' 个必需组件</small></div><div class="model-footer-actions">' + (b.installed ? button('bundleUse', b.id, isAdapter(b) ? '配对使用' : '使用', 'primary', b.inUse || !engineAvailable(b)) : active ? button('pauseBundle', b.id, '暂停') : button('bundleInfo', b.id, t.state === 'paused' || t.state === 'failed' ? '继续下载' : '查看并下载', 'primary')) + '</div></div>' + (active ? '<p class="form-help">' + e(t.role || '') + (t.received ? ' · ' + ui.bytes(t.received) : '') + '</p>' : '') + (t.error ? '<p class="download-error">' + e(t.error) + '</p>' : '') + '</article>';
   }
   function info(id) {
     var b = find(id); if (!b) return; var m = b.manifest, p = b.plan || {};
     var files = p.components || [];
-    var html = '<div class="model-info"><div class="model-tags">' + taskTags(b) + '<span class="tag">' + e(m.engine) + '</span><span class="tag">' + e(m.pipeline) + '</span></div><p>' + e(m.description || '') + '</p><p>' + (engineAvailable(b) ? '运行引擎已随 App 安装，当前配方仍需手机实测。' : '当前基座缺少匹配引擎。下载文件不会安装引擎，请等待对应的 App 更新。') + '</p><dl><dt>完整模型包</dt><dd>' + ui.bytes(p.totalBytes) + '</dd><dt>可复用资产</dt><dd>' + ui.bytes(p.reusableBytes) + '</dd><dt>剩余传输</dt><dd>' + ui.bytes(p.remainingBytes) + '</dd><dt>配方</dt><dd>' + e(m.recipeId) + '</dd><dt>许可</dt><dd>' + e(typeof m.license === 'string' ? m.license : m.license && m.license.name || '尚未声明，请核对来源') + '</dd></dl><div class="bundle-components">' + files.map(function (c) { return '<details><summary>' + e(c.role) + ' · ' + ui.bytes(c.bytes) + (c.reusable ? ' · 可复用' : '') + '</summary><p>' + e(c.path) + '</p><code>' + e(c.sha256) + '</code></details>'; }).join('') + '</div><p class="modal-help">只下载这套包及上面列出的必需组件。浏览、App 升级与缺失模型的生成请求均不会触发下载。所有生成步骤在这部手机上执行。</p><div class="modal-actions">';
-    if (b.installed) html += button('bundleSettings', id, '模型设置') + button('bundleUse', id, '使用模型', 'primary', !engineAvailable(b) || b.inUse);
+    var adapterHelp = isAdapter(b) ? '<p class="form-help">此包仅包含 LoRA。基础模型由你另外选择、安装；只与声明兼容的 ' + e(m.adapter.baseArchitectures.join(' / ')) + ' / ' + e(m.adapter.basePipelines.join(' / ')) + ' 配方配对。兼容声明仍需实际权重验证。</p>' : '';
+    var html = '<div class="model-info"><div class="model-tags">' + taskTags(b) + '<span class="tag">' + e(m.engine) + '</span><span class="tag">' + e(m.pipeline) + '</span></div><p>' + e(m.description || '') + '</p><p>' + (engineAvailable(b) ? '运行引擎已随 App 安装，当前配方仍需手机实测。' : '当前基座缺少匹配引擎。下载文件不会安装引擎，请等待对应的 App 更新。') + '</p>' + adapterHelp + '<dl><dt>完整模型包</dt><dd>' + ui.bytes(p.totalBytes) + '</dd><dt>可复用资产</dt><dd>' + ui.bytes(p.reusableBytes) + '</dd><dt>剩余传输</dt><dd>' + ui.bytes(p.remainingBytes) + '</dd><dt>配方</dt><dd>' + e(m.recipeId) + '</dd><dt>许可</dt><dd>' + e(typeof m.license === 'string' ? m.license : m.license && m.license.name || '尚未声明，请核对来源') + '</dd></dl><div class="bundle-components">' + files.map(function (c) { return '<details><summary>' + e(c.role) + ' · ' + ui.bytes(c.bytes) + (c.reusable ? ' · 可复用' : '') + '</summary><p>' + e(c.path) + '</p><code>' + e(c.sha256) + '</code></details>'; }).join('') + '</div><p class="modal-help">只下载这套包及上面列出的必需组件。浏览、App 升级与缺失模型的生成请求均不会触发下载。所有生成步骤在这部手机上执行。</p><div class="modal-actions">';
+    if (b.installed) html += button('bundleSettings', id, '模型设置') + button('bundleUse', id, isAdapter(b) ? '选择基础模型' : '使用模型', 'primary', !engineAvailable(b) || b.inUse);
     else html += button('bundleFolderPicker', id, '从文件夹导入') + button('downloadBundle', id, '下载所选模型包', 'primary', files.some(function (c) { return !c.reusable && !c.downloadable; }));
     html += '</div>' + button('bundleRemove', id, '删除本地资产', 'danger', b.inUse) + '</div>';
     editor = null; ui.openModal(m.name, html, 'bundleInfo');
@@ -81,14 +87,46 @@
     editor = {id: id, mode: 'settings'};
     ui.openModal('模型设置 · ' + b.manifest.name, '<form id="bundleSettingsForm">' + fields(b) + '<p class="form-help">参数随此模型和配方独立保存。超过已声明上限会自动归位；尺寸、帧数仍须满足联合约束。修改只影响之后提交的任务。</p><p id="bundleFormHint" role="status"></p><div class="modal-actions">' + button('closeModal', '', '关闭') + '<button class="button primary" type="submit"' + (b.inUse ? ' disabled' : '') + '>保存模型设置</button></div></form>', 'bundleSettings');
   }
-  function use(id) {
+  function pair(id) {
+    var adapter = find(id), bases = entries().filter(function (base) { return base.installed && !base.inUse && engineAvailable(base) && compatible(base, adapter); });
+    editor = {id: id, mode: 'pair'};
+    ui.openModal('选择基础模型 · ' + adapter.manifest.name, '<form id="adapterPairForm"><p class="form-help">LoRA 需要与已安装的兼容基础模型配对。此操作不会下载或替换任何权重。</p>' + (bases.length ? '<label class="form-field"><span>已安装的兼容基础模型</span><select name="baseBundleId" required>' + bases.map(function (base) { return '<option value="' + e(base.id) + '">' + e(base.manifest.name) + '</option>'; }).join('') + '</select></label>' : '<p class="empty-list">尚未安装兼容的基础模型。请在模型库自行选择下载或导入，再回来配对。</p>') + '<div class="modal-actions">' + button('closeModal', '', '关闭') + (bases.length ? '<button class="button primary" type="submit">填写生成任务</button>' : '') + '</div></form>', 'adapterPair');
+  }
+  function adapterFields(base, selected) {
+    var adapters = entries().filter(function (adapter) { return adapter.installed && !adapter.inUse && engineAvailable(adapter) && compatible(base, adapter); });
+    if (!adapters.length) return '<p class="form-help">当前没有已安装的兼容 LoRA；可在模型库自行选择下载或导入。</p>';
+    return '<fieldset id="taskAdapters" class="task-adapters"><legend>LoRA（可选，最多 8 个）</legend><p class="form-help">仅列出已安装且声明兼容的适配器。各自强度独立保存，本次修改只用于当前任务。</p>' + adapters.map(function (adapter, index) {
+      var f = adapter.manifest.parameters.fields.scale, value = adapter.config && adapter.config.values && adapter.config.values.scale;
+      if (value === undefined) value = f.default;
+      return '<div class="task-adapter"><label class="adapter-choice"><input type="checkbox" data-adapter-select="' + e(adapter.id) + '"' + (adapter.id === selected ? ' checked' : '') + '><span>' + e(adapter.manifest.name) + '</span></label><label class="form-field"><span>强度</span><input type="text" role="combobox" aria-autocomplete="list" aria-expanded="false" data-adapter-scale="' + e(adapter.id) + '" list="adapter-scale-' + index + '" inputmode="decimal" autocomplete="off" value="' + e(value) + '"' + (adapter.id === selected ? '' : ' disabled') + '><datalist id="adapter-scale-' + index + '">' + (f.presets || []).map(function (preset) { return '<option value="' + e(preset) + '"></option>'; }).join('') + '</datalist><small>' + e(f.minimum) + ' 至 ' + e(f.maximum) + '</small></label></div>';
+    }).join('') + '</fieldset>';
+  }
+  function readAdapters(form, base) {
+    var selected = [];
+    form.querySelectorAll('[data-adapter-select]:checked').forEach(function (choice) {
+      var adapter = find(choice.dataset.adapterSelect);
+      if (!adapter || !adapter.installed || !compatible(base, adapter)) throw new Error('所选 LoRA 已不可用，请重新选择');
+      var input = Array.from(form.querySelectorAll('[data-adapter-scale]')).filter(function (field) { return field.dataset.adapterScale === adapter.id; })[0];
+      if (!input.value.trim() || !isFinite(Number(input.value))) throw new Error('LoRA 强度需要有效数字');
+      var f = adapter.manifest.parameters.fields.scale, value = Number(input.value);
+      if (f.type === 'integer') value = Math.floor(value);
+      value = Math.max(-4, Math.min(4, Math.max(f.minimum, Math.min(f.maximum, value))));
+      if (f.multipleOf) value = (f.alignmentOrigin || 0) + Math.floor((value - (f.alignmentOrigin || 0)) / f.multipleOf) * f.multipleOf;
+      if (value < f.minimum || value > f.maximum) throw new Error('LoRA 强度没有满足约束的值');
+      input.value = value; selected.push({bundleId: adapter.id, scale: value});
+    });
+    if (selected.length > 8) throw new Error('一次最多选择 8 个 LoRA');
+    return selected;
+  }
+  function use(id, selectedAdapter) {
     var b = find(id); if (!b || !b.installed) { ui.toast('请先选择并完整安装模型'); return; }
     if (!engineAvailable(b)) { ui.toast('当前基座缺少匹配引擎'); return; }
+    if (isAdapter(b)) { pair(id); return; }
     var types = [];
     tasks(b).forEach(function (t) { if (t === 'image') types.push(['image.generate', '生图']); if (t === 'video') types.push(['video.generate', '生视频']); if (t === 'text') types.push(['text.generate', '生文']); if (t === 'audio') types.push([(b.manifest.capabilities || []).indexOf('text_to_speech') >= 0 ? 'speech.synthesize' : 'audio.generate', '生音频']); });
     var speechOnly = types.length === 1 && types[0][0] === 'speech.synthesize';
     editor = {id: id, mode: 'task'};
-    ui.openModal(b.manifest.name, '<form id="localTaskForm"><label class="form-field"><span>生成能力</span><select name="taskType">' + types.map(function (t) { return '<option value="' + t[0] + '">' + t[1] + '</option>'; }).join('') + '</select></label><label class="form-field"><span>' + (speechOnly ? '朗读文本' : '提示词 / 文本') + '</span><textarea name="prompt" rows="4" required maxlength="' + (speechOnly ? '4000' : '16000') + '" placeholder="' + (speechOnly ? '填写所选语言词表覆盖的朗读文本' : '描述你希望生成的内容') + '"></textarea></label>' + (speechOnly ? '<p class="form-help">请使用此配方声明的语言。未知词或缺失语言组件会在本机报错；不进行语音克隆。</p>' : '<label class="form-field"><span>负面提示词（可选）</span><textarea name="negativePrompt" rows="2" maxlength="16000"></textarea></label>') + '<details class="task-parameters"><summary>本次参数</summary>' + fields(b) + '</details><label class="unmeasured-choice"><input type="checkbox" name="allowUnmeasured" required><span>此配方尚无本机实测记录，我选择在当前手机上尝试。</span></label><p class="form-help">一次执行一个大型引擎。请先停止文本服务；任务在后台通知中持续执行，结果保存在本机。不会因缺少组件自动下载。</p><p id="bundleFormHint" role="status"></p><div class="modal-actions">' + button('closeModal', '', '取消') + '<button type="submit" class="button primary">加入本机队列</button></div></form>', 'localTask');
+    ui.openModal(b.manifest.name, '<form id="localTaskForm"><label class="form-field"><span>生成能力</span><select name="taskType">' + types.map(function (t) { return '<option value="' + t[0] + '">' + t[1] + '</option>'; }).join('') + '</select></label><label class="form-field"><span>' + (speechOnly ? '朗读文本' : '提示词 / 文本') + '</span><textarea name="prompt" rows="4" required maxlength="' + (speechOnly ? '4000' : '16000') + '" placeholder="' + (speechOnly ? '填写所选语言词表覆盖的朗读文本' : '描述你希望生成的内容') + '"></textarea></label>' + (speechOnly ? '<p class="form-help">请使用此配方声明的语言。未知词或缺失语言组件会在本机报错；不进行语音克隆。</p>' : '<label class="form-field"><span>负面提示词（可选）</span><textarea name="negativePrompt" rows="2" maxlength="16000"></textarea></label>') + (tasks(b).indexOf('image') >= 0 ? adapterFields(b, selectedAdapter) : '') + '<details class="task-parameters"><summary>本次参数</summary>' + fields(b) + '</details><label class="unmeasured-choice"><input type="checkbox" name="allowUnmeasured" required><span>此配方尚无本机实测记录，我选择在当前手机上尝试。</span></label><p class="form-help">一次执行一个大型引擎。请先停止文本服务；任务在后台通知中持续执行，结果保存在本机。不会因缺少组件自动下载。</p><p id="bundleFormHint" role="status"></p><div class="modal-actions">' + button('closeModal', '', '取消') + '<button type="submit" class="button primary">加入本机队列</button></div></form>', 'localTask');
   }
   function renderJobs() {
     var s = ui.state(), jobs = s.jobs || [], signature = JSON.stringify(jobs);
@@ -137,6 +175,7 @@
     init: function (bridge) {
       ui = bridge;
       document.addEventListener('submit', function (event) {
+        if (event.target.id === 'adapterPairForm') { event.preventDefault(); var adapter = editor && find(editor.id), base = find(event.target.elements.baseBundleId.value); if (adapter && base && base.installed && compatible(base, adapter)) use(base.id, adapter.id); return; }
         if (event.target.id !== 'bundleSettingsForm' && event.target.id !== 'localTaskForm') return;
         event.preventDefault(); if (!editor || editor.pending) return;
         var form = event.target, b = find(editor.id); if (!b) return;
@@ -144,17 +183,23 @@
           if (!form.reportValidity()) return;
           var parameters = readFields(form, b), submit = form.querySelector('[type="submit"]');
           var args = editor.mode === 'settings' ? {id: b.id, settings: parameters} : {request: {bundleId: b.id, type: form.elements.taskType.value, input: {prompt: form.elements.prompt.value, negativePrompt: form.elements.negativePrompt ? form.elements.negativePrompt.value : ''}, parameters: parameters, allowUnmeasured: form.elements.allowUnmeasured.checked}, idempotencyKey: 'ui-' + Date.now() + '-' + Math.random().toString(36).slice(2)};
+          if (editor.mode === 'task' && form.elements.taskType.value === 'image.generate') args.request.adapters = readAdapters(form, b);
           var editing = editor;
           editor.pending = track(editor.mode === 'settings' ? 'saveBundleSettings' : 'submitTask', args, function () { if (editor === editing) { ui.closeModal(); if (editing.mode === 'task') ui.route('tasks'); } ui.toast(editing.mode === 'task' ? '任务已加入本机队列' : '已保存此模型的独立设置'); });
           if (editor.pending) { submit.disabled = true; $('bundleFormHint').textContent = '正在提交…'; }
         } catch (error) { $('bundleFormHint').textContent = error.message; }
       });
       document.addEventListener('change', function (event) {
+        if (event.target.dataset.adapterSelect) {
+          var row = event.target.closest('.task-adapter'), scale = row.querySelector('[data-adapter-scale]'); scale.disabled = !event.target.checked; return;
+        }
+        if (event.target.name === 'taskType' && $('taskAdapters')) { $('taskAdapters').disabled = event.target.value !== 'image.generate'; $('taskAdapters').hidden = event.target.value !== 'image.generate'; return; }
         if (event.target.id !== 'bundleShape' || !editor || event.target.value === '') return;
         var b = find(editor.id), shape = b.manifest.parameters.allowedShapes[Number(event.target.value)];
         $('modalContent').querySelectorAll('[data-bundle-field]').forEach(function (input) { if (Object.prototype.hasOwnProperty.call(shape, input.dataset.bundleField)) input.value = shape[input.dataset.bundleField]; });
       });
       document.addEventListener('focusout', function (event) {
+        if (editor && event.target.dataset.adapterScale) { try { readAdapters(event.target.form, find(editor.id)); $('bundleFormHint').textContent = 'LoRA 强度已按各自约束检查'; } catch (error) { $('bundleFormHint').textContent = error.message; } return; }
         if (!editor || !event.target.dataset.numeric || !event.target.dataset.bundleField) return;
         try { readFields(event.target.form, find(editor.id)); $('bundleFormHint').textContent = '参数已按此配方的约束检查'; } catch (error) { $('bundleFormHint').textContent = error.message; }
       });

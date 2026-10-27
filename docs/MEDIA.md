@@ -68,3 +68,5 @@ The server binds to a temporary loopback port and external requests are blocked.
 When a phone becomes available, add separately labeled installation, real download/inference, and screen-off client recordings with device, parameters, model hash, and acceptance results. Screen recording alone is not evidence of unplugged, ADB-free endurance.
 
 开发媒体新增 `09-tts-form.png`，与 development MP4 / GIF 一起展示语音表单和独立音色 / 语速；全程标记 UI FIXTURE，不提供伪造音频。The development speech-form capture is an explicit UI fixture without synthesized audio. See [development media](DEVELOPMENT.md).
+
+开发媒体 dev.4 增加 [基础模型配对](media/development/10-lora-pairing.png)与[独立强度表单](media/development/11-lora-form.png)，同步 MP4 / GIF，全程 UI FIXTURE；未生成任何 LoRA 示例图片。 / dev.4 adds explicit compatible-base and strength-form scenes to development captures; these are UI fixtures without generated model images.

@@ -43,3 +43,5 @@ Upgrade migration copies legacy global inference preferences to existing models 
 85 backend assertions include binary fixtures, bounds, persistence, migration and actual child-process arguments/HTTP requests. 66 UI checks include editable presets, clamping and model independence. There was no Android-device test. Media uses explicitly simulated metadata; it does not establish actual bounds for the illustrated weights.
 
 [Settings GIF](media/lma-model-settings.gif) · [Load-parameter screenshot](media/06-settings.png) · [Output-limit screenshot](media/11-model-output.png)
+
+In dev.4, LoRA strengths are saved per adapter bundle, separately from base generation settings. Task edits leave saved settings intact; limits must be within the native `-4…4` range and over-limit input clamps. See [adapter pairing](ADAPTERS.en.md).

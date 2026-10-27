@@ -140,6 +140,18 @@ public final class BundleStore {
         if (!entry(id).optBoolean("installed") || !complete(b, state)) throw new IOException("Select and download all required components first");
         leases.put(id, leases.getOrDefault(id, 0) + 1); return new Lease(b);
     }
+    /** Acquires the complete explicit selection atomically; failed acquisition releases all references. */
+    public synchronized Selection acquireAll(List<String> ids) throws Exception {
+        if (ids.isEmpty() || ids.size() > 9 || new HashSet<>(ids).size() != ids.size()) throw new IllegalArgumentException("Invalid model selection");
+        List<Lease> held = new ArrayList<>();
+        try { for (String id : ids) held.add(acquire(id)); return new Selection(held); }
+        catch (Exception error) { for (Lease lease : held) lease.close(); throw error; }
+    }
+    public final class Selection implements AutoCloseable {
+        public final List<Lease> models;
+        Selection(List<Lease> models) { this.models = Collections.unmodifiableList(new ArrayList<>(models)); }
+        @Override public void close() { for (Lease lease : models) lease.close(); }
+    }
     public final class Lease implements AutoCloseable {
         public final ModelBundle bundle;
         private boolean closed;

@@ -22,7 +22,7 @@ const checks = [], errors = [];
 let context, server;
 function checked(name) { checks.push(name); console.log('PASS ' + name); }
 const fixture = {
-  app: 'LMA', version: '0.3.0-dev.3', models: catalogue.models.map(m => ({...m, installed: false, installedBytes: 0, partialBytes: 0, download: {}})),
+  app: 'LMA', version: '0.3.0-dev.4', models: catalogue.models.map(m => ({...m, installed: false, installedBytes: 0, partialBytes: 0, download: {}})),
   settings: {lan: false, port: 8080, threads: 4, context: 2048, maxTokens: 512, temperature: 0.7, source: 'auto', boot: false, autoLoad: true, reasoning: 'off', theme: 'light', systemPrompt: '你是一个有帮助的本地助手。', apiKey: 'lma_TEST_ONLY_NOT_A_REAL_KEY'},
   api: {state: 'stopped', detail: '接口尚未启动', textRequestActive: false},
   engine: {state: 'stopped', detail: '选择并下载一个模型，开始本地运行', modelId: '', generating: false, startedAt: 0, localUrl: 'http://127.0.0.1:8080/v1', addresses: ['http://192.168.1.20:8080/v1']},

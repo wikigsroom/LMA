@@ -68,6 +68,7 @@ public final class ModelBundle {
         source = DataFiles.copy(value);
         // Validate the schema before a recipe can be installed, even if settings are never opened.
         new ParameterSchema(source.optJSONObject("parameters") == null ? new JSONObject() : source.getJSONObject("parameters"));
+        AdapterSpec.validate(this);
     }
     public JSONObject json() { return DataFiles.copy(source); }
     public ParameterSchema parameters() { return new ParameterSchema(source.optJSONObject("parameters") == null ? new JSONObject() : source.optJSONObject("parameters")); }
@@ -80,8 +81,14 @@ public final class ModelBundle {
         for (String t : tasks) task.put("task:" + t);
         for (Component c : components) { dependency.put("dependency:" + c.role); unique.add(c.format); }
         for (String format : unique) formats.put("format:" + format);
+        JSONArray capability = source.optJSONArray("capabilities") == null ? new JSONArray() : new JSONArray(source.getJSONArray("capabilities").toString());
+        if (AdapterSpec.isAdapter(this)) {
+            dependency.put("dependency:base_model"); boolean found = false;
+            for (int i = 0; i < capability.length(); i++) if (capability.getString(i).equals("image_adapter")) found = true;
+            if (!found) capability.put("image_adapter");
+        }
         return new JSONObject().put("task", task).put("engine", "engine:" + engine).put("pipeline", "pipeline:" + pipeline).put("backend", "backend:" + backend)
-                .put("dependency", dependency).put("format", formats).put("capability", source.optJSONArray("capabilities") == null ? new JSONArray() : source.getJSONArray("capabilities"));
+                .put("dependency", dependency).put("format", formats).put("capability", capability).put("architecture", "architecture:" + architecture).put("kind", AdapterSpec.isAdapter(this) ? "kind:adapter" : "kind:model");
     }
     public static String key(String value) { return Protocol.safeId(value); }
 }

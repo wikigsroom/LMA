@@ -141,3 +141,7 @@ curl http://PHONE_IP:8080/v1/jobs \
 当前开发证据：67 项接口检查使用实际本机 socket、生产路由 / 存储和显式执行替身；文本后端还检查生产 `ApiHost` 对真实子进程替身的代理与占用释放。它们不是 Android 模型输出或后台耐久证据。完整余项见[实施记录](DEVELOPMENT.md)。
 
 dev.3 的已安装 TTS 候选使用相同异步任务接口，`type: "speech.synthesize"`、`input: {"prompt": "Hello world."}`；参数独立属于模型。输入 1–4000 字符，不接受负面提示词，缺语言组件不会下载 / 转出执行。当前完整配方和限制见[语音基座](TTS_ENGINE.md)；没有手机推理证据。
+
+## dev.4：显式 LoRA 选择
+
+`POST /v1/jobs` 的 `image.generate` 可选 `adapters: [{"bundleId": "本机适配器包ID", "scale": 0.75}]`，最多八个，省略强度时固定各自保存值。基础模型与适配器必须完整安装且声明兼容；重复、自身、路径、未知字段或非生图任务的选择拒绝。缺资产不下载。配对 / 强度 / 来源与验证边界见[LoRA 指南](ADAPTERS.md)；没有真机生成证据。

@@ -1,5 +1,5 @@
 {
-  "passed": 89,
+  "passed": 97,
   "checks": [
     "Initial curated recommendations",
     "375px model library layout",
@@ -82,6 +82,14 @@
     "Editable voice/speed presets clamp and label unverified publisher limits",
     "375px speech task layout",
     "Speech submits an independent parameter snapshot through the shared task queue",
+    "LoRAs are flat peer image entries with explicit base-model dependency tags",
+    "Missing compatible bases explain the requirement without choosing or downloading a model",
+    "SD 1.5 adapter picker excludes incompatible SDXL and audio peers",
+    "Explicit adapter selection carries to the base task and clamps to its own limit",
+    "375px LoRA composition form",
+    "Shared queue receives immutable base/adapter IDs and scales without changing saved settings",
+    "Adapter browsing and task composition create no model download commands",
+    "SDXL uses the same pairing form with its separate compatible base",
     "Tablet library layout",
     "Short landscape server layout",
     "320px narrow phone layout",
@@ -97,11 +105,11 @@
   "emulatorUsed": false,
   "input_fingerprint": {
     "app/src/main/assets/app.css": "f2cb7b5ee9de8f3afac793e694dcf9fde0a855c0d4c7053ff986cc2a6d2bd3b1",
-    "app/src/main/assets/app.js": "1fa4318bbf3e5ca4836fdd585d3908fd22538c29753d41390bddef6cfe37b555",
+    "app/src/main/assets/app.js": "a08ed4be071648e21919707320616627df86dd4a5516cb8b0289cda8c0de0710",
     "app/src/main/assets/engine-builds.json": "2488406b9b5d8da3258885cdd297cfa1da085f696f12ebd0bc31e2237d796150",
-    "app/src/main/assets/foundation.css": "a2e09ccedc4f337d5d7e98775b0c7e90369d3fb0242e099148870b38c87605b1",
-    "app/src/main/assets/foundation.js": "69e3051f49d96e4af1f2542a7185616e511e20c3c4ee191aee6a97855ea6e8fc",
-    "app/src/main/assets/index.html": "4a6227e274c3ae7a346b9103d34fb3f3e21cc8a9fc18d449f090f18fe7a0cce9",
+    "app/src/main/assets/foundation.css": "9c87b4ca4826717037e6a99f2411323607fc37f040916998801633ca1bdef3a2",
+    "app/src/main/assets/foundation.js": "8e7f3946db4557efa0be034d742a1e553115b267d14d4071e87b0dfa90412efc",
+    "app/src/main/assets/index.html": "249346e918530a688c2c93b84742e314d2e652cbde599d97a513194acdc254b9",
     "app/src/main/assets/license.js": "569581b69d204df664750645202b7ab703a1f501de63fb257b29fb9c8f12ab2f",
     "app/src/main/assets/licenses/LLAMA_CPP_LICENSE": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
     "app/src/main/assets/licenses/LMA_LICENSE": "6ae3f5efa412d91cbf66e44f743e5ce41a8044309d05d893365206ab9bc35fc3",
@@ -154,8 +162,8 @@
     "app/src/main/assets/licenses/xxhash-LICENSE.txt": "a2973411d278045bde3c7161b911e0680d53e2d73d6457c77068d2e55d816d67",
     "app/src/main/assets/model-bundles.json": "1791f5e6f164e951ee49f9e4b7c80e34f37ded38ae205b8b03973f2de5d4ee16",
     "app/src/main/assets/models.json": "c3e884b4e5fb06f20c036deebc78e6f953ac420e76fca72bab5a25fd59927156",
-    "tests/foundation-ui.cjs": "fb7a8f04015eec38b7b0b44cfd777a586fce8f7c39db96757827d5bb3cc8aca9",
+    "tests/foundation-ui.cjs": "1c6721770e2d3336719c6cb096869aca3f966beff3fd958f814cda1cafee1e79",
     "tests/hub-fixture.cjs": "5b3cb88b7fd4c45d26ce92e8598a1c3837a12b02eb898f67c9be10da2910ab83",
-    "tests/ui-smoke.cjs": "5bdf3377a64e0b7b9d629b902154773ecd9783c0105562a945edf7a811bf1de9"
+    "tests/ui-smoke.cjs": "cee9c88bb0f7815b7277a64be49e05f8149ebdabf9a25e92ca35def8d00bb4c5"
   }
 }

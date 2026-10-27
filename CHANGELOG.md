@@ -1,5 +1,6 @@
 # Changelog / 更新记录
 
+- 2026-10-28：内部 0.3.0-dev.4 / code 8 新增平级 LoRA 包、显式 SD 1.5 / SDXL 基础配对、最多八个独立强度、任务 / API 冻结快照和完整组件引用保护，缺资产不下载。新增 45 项主机适配器检查，总计 130 基座 / 97 UI；同步[双语配对指南](docs/ADAPTERS.md)、[基座与资产核对](docs/ASSET_CONTROL_AUDIT.md)、媒体和[开发记录](docs/releases/v0.3.0-dev.4.md)。尚无手机 LoRA 输出或新增已核对 LoRA 候选，完整 v0.3.0 仍未完成、不创建 Release。Add explicit peer-adapter pairing, frozen strengths/leases, scoped tests and bilingual docs/media; retain all full-release/device gates.
 用户可见行为、验证范围和交付文档在此同步。User-facing behavior, evidence, and delivery documentation are maintained together.
 
 ## Unreleased / 后续维护

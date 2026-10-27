@@ -141,3 +141,7 @@ Transport limits: 16 KiB headers, 256 KiB request body, JSON depth 32. POST requ
 Current evidence: 67 API checks use real host sockets, production routing/storage and explicit execution fixtures; backend checks also exercise the production `ApiHost` proxy against real child-process fixtures and verify lease release. These are not Android inference/endurance evidence. See [remaining development work](DEVELOPMENT.en.md).
 
 dev.3 installed TTS candidates use the same async job API with `type: "speech.synthesize"` and `input: {"prompt": "Hello world."}` plus independent model parameters. Text is 1–4000 characters; negative prompts are rejected. Missing language components never download or execute off-device. See [speech recipes and limits](TTS_ENGINE.en.md); no phone inference has been established.
+
+## dev.4 explicit LoRA selection
+
+`image.generate` on `POST /v1/jobs` accepts optional `adapters: [{"bundleId": "installed_adapter_id", "scale": 0.75}]`, at most eight. Omitted scales freeze saved adapter settings. Require installed compatible bases/adapters; reject duplicate/self selections, paths, unknown fields and non-image adapter requests. Missing assets never download. See [pairing/provenance/evidence](ADAPTERS.en.md); no phone output is claimed.

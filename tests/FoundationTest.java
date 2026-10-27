@@ -107,9 +107,10 @@ public final class FoundationTest {
         rejects(() -> shapes.normalize(new JSONObject(), new JSONObject().put("width", "NaN")), "Non-finite input is rejected");
         rejects(() -> shapes.normalize(new JSONObject(), new JSONObject().put("otherModelField", 1)), "Unknown parameters cannot leak into another model schema");
         transferTest(root, a, b);
+        int adapterChecks = AdapterTest.run(root); passed += adapterChecks;
         jobsAndArtifacts(root);
         ranges();
-        System.out.println(new JSONObject().put("passed", passed).put("android_device", false).put("model_inference", false).put("scope", "production bundle storage, parameter validation and transfer state on host filesystems/HTTP"));
+        System.out.println(new JSONObject().put("passed", passed).put("adapter_contract_assertions", adapterChecks).put("android_device", false).put("model_inference", false).put("scope", "production bundle storage, parameter validation and transfer state on host filesystems/HTTP"));
     }
     private static JSONObject find(JSONArray entries, String id) throws Exception { for (int i = 0; i < entries.length(); i++) if (entries.getJSONObject(i).getString("id").equals(id)) return entries.getJSONObject(i); throw new AssertionError("Missing bundle"); }
     private static void ranges() throws Exception {

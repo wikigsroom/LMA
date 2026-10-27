@@ -2,7 +2,7 @@
 
 [中文](DEVELOPMENT.md) · [Full scope](MULTIMODAL_RELEASE_PLAN.en.md) · [Build](BUILD.en.md) · [English home](../README.en.md)
 
-The current public release remains **v0.2.0**. This branch is **0.3.0-dev.3 / versionCode 7**, not the complete v0.3.0, and has no new Release. All F-01–F-12 requirements, selections 01–14/16/17 and frozen subtargets still belong to one delivery. This is implementation progress within that release, not a split roadmap.
+The current public release remains **v0.2.0**. This branch is **0.3.0-dev.4 / versionCode 8**, not the complete v0.3.0, and has no new Release. All F-01–F-12 requirements, selections 01–14/16/17 and frozen subtargets still belong to one delivery. This is implementation progress within that release, not a split roadmap.
 
 ## Implemented development code
 
@@ -28,11 +28,11 @@ Custom manifests gain neither device-validated status nor checked uncensored dec
 
 | Check | Result | What it establishes |
 | --- | --- | --- |
-| Foundation core | 85 assertions | Component integrity, real HTTP resumption, shared references, independent settings, queue ownership/cancellation/restart, artifacts and ranged reads |
+| Foundation core | 130 assertions | Component integrity, real HTTP resumption, shared references, independent settings, queue ownership/cancellation/restart, artifacts and ranged reads |
 | API/transport | 67 assertions | Auth, zero-model state, JSON/framing limits, idempotency/cancel/events, exact artifacts/Range/leases and text policy; actual host sockets, not Android inference |
 | Legacy backend/proxy | 98 assertions | Host Android adapters exercising downloads, actual child processes, HTTP SSE and per-model settings |
 | HF logic | 45 assertions | Search, pinned revisions, pagination/selection and token boundaries, not universal HF execution |
-| UI | 89 assertions | Actual HTML/CSS/JS with explicit simulated native state; recommendation/tag/download/form/queue/narrow-screen regressions |
+| UI | 97 assertions | Actual HTML/CSS/JS with explicit simulated native state; recommendation/tag/download/form/queue/narrow-screen regressions |
 | Native package | 18 ARM64 files | Pinned hashes, resolved dependencies, Android API 28, 16 KiB ELF/APK alignment, original signing identity, asset allowlist |
 | Phone inference/endurance | 0 | No actual image/audio/motion-video or sustained screen-off inference evidence |
 
@@ -68,3 +68,15 @@ Add a compiled sherpa_tts ARM64 worker and Kokoro / Piper / Matcha adapters. Thr
 **62 new TTS contract / actual host child-process assertions** cover components, bounds, cancellation, exits, completion protocol and private request cleanup; output is arbitrary fixture bytes, not speech. 89 UI checks pass. Waveforms, pronunciation, actual RAM / speed / heat, Android log binding and endurance have no device evidence. Selection 10 remains unaccepted. All other selected models/recipes, unified scheduling and physical-device gates remain mandatory for the same v0.3.0. See [speech foundation](TTS_ENGINE.en.md).
 
 <img src="media/development/09-tts-form.png" width="280" alt="Speech-specific form, explicit UI fixture without generated audio" />
+
+
+## dev.4 explicit peer-adapter pairing
+
+Add data-only `lma.adapter/1` declarations with SD 1.5/SDXL architecture, pipeline and optional model-ID restrictions. LoRAs remain image-library peers. Explicitly select an installed base or up to eight compatible adapters in a base task form, with independent saved strengths and bounded task edits. Missing bases never trigger model selection/download.
+
+Tasks/API freeze IDs, scales and adjustments; execution atomically leases the complete base/adapter group, protects in-use assets and resolves private component paths into the existing native `loras` array. Provenance retains adapter manifests. 45 new host checks bring the foundation total to 130, with 97 UI checks. These are arbitrary-byte/UI fixtures, not LoRA output.
+
+No checked LoRA download candidate is added. Real SD 1.5/SDXL/LCM recipes, quantized compatibility and effect acceptance remain open. See [pairing](ADAPTERS.en.md) and the [foundation/user-asset audit](ASSET_CONTROL_AUDIT.en.md). This is `0.3.0-dev.4 / code 8`; complete v0.3.0 remains unfinished and unpublished.
+
+![Explicit adapter pairing, UI fixture](media/development/10-lora-pairing.png)
+![Independent adapter strength, UI fixture](media/development/11-lora-form.png)

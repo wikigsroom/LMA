@@ -32,6 +32,17 @@ function installSpeechFixture(manifest) {
   window.__fixture.localEngines.push({engine: 'sherpa_tts', available: true, deviceValidated: false});
   window.LMA.receive(window.__fixture);
 }
+function installAdapterFixture() {
+  const base = window.__fixture.bundles.find(b => b.id === 'ui_sd'); base.installed = true;
+  const xl = JSON.parse(JSON.stringify(base)); xl.id = xl.manifest.id = xl.manifest.modelId = 'ui_sdxl'; xl.manifest.name = 'SDXL 基础模型 · 界面占位'; xl.manifest.architecture = xl.manifest.pipeline = 'sdxl'; xl.installed = false;
+  window.__fixture.bundles.push(xl);
+  for (const arch of ['sd15', 'sdxl']) {
+    const id = 'ui_lora_' + arch;
+    const manifest = {schema: 'lma.model-bundle/1', id, modelId: id, recipeId: id + '_v1', engine: 'sd_cpp', architecture: arch, pipeline: 'lora', backend: 'cpu', name: arch.toUpperCase() + ' LoRA · 界面占位', description: 'LoRA 配对界面测试，未下载权重、未生成图像。', tasks: ['image'], capabilities: ['image_adapter'], adapter: {schema: 'lma.adapter/1', kind: 'lora', baseArchitectures: [arch], basePipelines: [arch]}, parameters: {version: 1, fields: {scale: {type: 'number', label: 'LoRA 强度', default: 0.75, minimum: -2, maximum: 2, presets: [0.5, 0.75, 1]}}}, components: [{role: 'lora', path: 'fixture.safetensors', format: 'safetensors', bytes: 300, sha256: (arch === 'sd15' ? '2' : '3').repeat(64)}]};
+    window.__fixture.bundles.push({id, manifest, installed: true, config: {values: {scale: 0.75}}, plan: {totalBytes: 300, reusableBytes: 300, remainingBytes: 0, components: manifest.components.map(c => ({...c, reusable: true, downloadable: false}))}});
+  }
+  window.LMA.receive(window.__fixture);
+}
 module.exports = async function (page, checked, checkOverflow, output) {
   await page.evaluate(installFixture);
   await page.locator('.nav-item[data-tab="models"]').click();
@@ -113,6 +124,39 @@ module.exports = async function (page, checked, checkOverflow, output) {
   const speechRequest = await page.evaluate(() => window.__commands.findLast(c => c.action === 'submitTask').request);
   assert.equal(speechRequest.type, 'speech.synthesize'); assert.equal(speechRequest.input.negativePrompt, ''); assert.equal(speechRequest.parameters.speaker, 53); checked('Speech submits an independent parameter snapshot through the shared task queue');
   await page.locator('.nav-item[data-tab="models"]').click(); await page.locator('[data-task="any"]').click();
+  await page.evaluate(installAdapterFixture); await page.locator('[data-task="image"]').click();
+  assert.equal(await page.locator('.bundle-card').count(), 4);
+  assert((await page.locator('[data-bundle="ui_lora_sd15"]').textContent()).includes('需要基础模型')); checked('LoRAs are flat peer image entries with explicit base-model dependency tags');
+  const downloadsBeforePairing = await page.evaluate(() => window.__commands.filter(c => c.action === 'downloadBundle').length);
+  await page.locator('[data-bundle="ui_lora_sdxl"] [data-action="bundleUse"]').click();
+  assert((await page.locator('#adapterPairForm').textContent()).includes('尚未安装兼容'));
+  assert.equal(await page.locator('#adapterPairForm [type="submit"]').count(), 0); checked('Missing compatible bases explain the requirement without choosing or downloading a model');
+  await page.locator('#adapterPairForm [data-action="closeModal"]').click();
+  await page.locator('[data-bundle="ui_lora_sd15"] [data-action="bundleUse"]').click();
+  assert.deepEqual(await page.locator('#adapterPairForm option').evaluateAll(options => options.map(o => o.value)), ['ui_sd']); checked('SD 1.5 adapter picker excludes incompatible SDXL and audio peers');
+  await page.locator('#adapterPairForm [type="submit"]').click();
+  assert.equal(await page.locator('[data-adapter-select="ui_lora_sd15"]').isChecked(), true);
+  assert.equal(await page.locator('[data-adapter-select="ui_lora_sdxl"]').count(), 0);
+  await page.locator('[data-adapter-scale="ui_lora_sd15"]').fill('999'); await page.locator('[data-adapter-scale="ui_lora_sd15"]').blur();
+  assert.equal(await page.locator('[data-adapter-scale="ui_lora_sd15"]').inputValue(), '2'); checked('Explicit adapter selection carries to the base task and clamps to its own limit');
+  await page.locator('#localTaskForm [name="prompt"]').fill('只演示 LoRA 与基础模型配对，不生成占位图片。');
+  await page.locator('#localTaskForm [name="allowUnmeasured"]').check();
+  await checkOverflow(page, '375px LoRA composition form'); await page.screenshot({path: path.join(output, '10-lora-form.png')});
+  await page.locator('#localTaskForm [type="submit"]').click(); await page.waitForSelector('#page-tasks.active .job-card');
+  const loraRequest = await page.evaluate(() => window.__commands.findLast(c => c.action === 'submitTask').request);
+  assert.equal(loraRequest.bundleId, 'ui_sd'); assert.deepEqual(loraRequest.adapters, [{bundleId: 'ui_lora_sd15', scale: 2}]);
+  assert.equal(await page.evaluate(() => window.__fixture.bundles.find(b => b.id === 'ui_lora_sd15').config.values.scale), 0.75); checked('Shared queue receives immutable base/adapter IDs and scales without changing saved settings');
+  assert.equal(await page.evaluate(() => window.__commands.filter(c => c.action === 'downloadBundle').length), downloadsBeforePairing); checked('Adapter browsing and task composition create no model download commands');
+  await page.evaluate(() => {window.__fixture.bundles.find(b => b.id === 'ui_sdxl').installed = true; window.LMA.receive(window.__fixture);});
+  await page.locator('.nav-item[data-tab="models"]').click();
+  await page.locator('[data-bundle="ui_lora_sdxl"] [data-action="bundleUse"]').click();
+  assert.deepEqual(await page.locator('#adapterPairForm option').evaluateAll(options => options.map(o => o.value)), ['ui_sdxl']);
+  await page.locator('#adapterPairForm [type="submit"]').click();
+  assert.equal(await page.locator('[data-adapter-select="ui_lora_sdxl"]').isChecked(), true);
+  assert.equal(await page.locator('[data-adapter-select="ui_lora_sd15"]').count(), 0); checked('SDXL uses the same pairing form with its separate compatible base');
+  await page.locator('#localTaskForm [data-action="closeModal"]').click(); await page.locator('[data-task="any"]').click();
 };
 module.exports.installFixture = installFixture;
 module.exports.installSpeechFixture = installSpeechFixture;
+
+module.exports.installAdapterFixture = installAdapterFixture;

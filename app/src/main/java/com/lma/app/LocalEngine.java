@@ -13,6 +13,7 @@ public interface LocalEngine {
     File generate(Context context) throws Exception;
     interface Context {
         BundleStore.Lease model();
+        default java.util.List<BundleStore.Lease> adapters() { return java.util.Collections.emptyList(); }
         JSONObject request();
         File output(String suffix) throws Exception;
         void check() throws Exception;

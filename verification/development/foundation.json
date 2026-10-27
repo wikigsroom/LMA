@@ -1,11 +1,13 @@
 {
+  "adapter_contract_assertions": 45,
   "model_inference": false,
   "scope": "production bundle storage, parameter validation and transfer state on host filesystems/HTTP",
   "android_device": false,
-  "passed": 85,
+  "passed": 130,
   "input_fingerprint": {
+    "app/src/main/java/com/lma/app/core/AdapterSpec.java": "64ef18ad134ced58d0b2d7431c6278ca3d20e0b46f8bffb1976d5893610b7b8d",
     "app/src/main/java/com/lma/app/core/ArtifactStore.java": "dddf9ed5eb7351f59247557e2d0121ddc68a79cb14df3d84ae53806f0c98f9f7",
-    "app/src/main/java/com/lma/app/core/BundleStore.java": "aa20b1c098b12be3019529841557b23604584e46fff1ffe5762ddbb6258c71ab",
+    "app/src/main/java/com/lma/app/core/BundleStore.java": "ace5617cd1633b99d620401412a47087be54543f6318702176df4152f1117340",
     "app/src/main/java/com/lma/app/core/BundleTransfers.java": "cdd820bf19e6ea1c8d201a5aec11701cf2358094f40833b553ead0f29cf202b7",
     "app/src/main/java/com/lma/app/core/ByteRange.java": "31723bf112e630de6c2a1cd8d525be7bbd4706e151fa5a297a5e641f59b5c752",
     "app/src/main/java/com/lma/app/core/ChatHistory.java": "3046a52c3f611b83b46cfed94afe0f4b31667f77986b7ca1737169ec8c4ce951",
@@ -13,15 +15,17 @@
     "app/src/main/java/com/lma/app/core/JobStore.java": "8c7a85a27e9eb362ef15024bd424961ac269d0f778d18213abe50d0fa2648163",
     "app/src/main/java/com/lma/app/core/LocalApi.java": "7bc4dc6a0fd2efd7141c154ad6d59a4591515252df29d1d1c4c5cc5e4e7cd2e1",
     "app/src/main/java/com/lma/app/core/LocalHttp.java": "698f11eca1ca0e9d243a56046cd0f1e9e738ba71d085804cef34ae3c58f8c46f",
-    "app/src/main/java/com/lma/app/core/ModelBundle.java": "b72b7a8aa7190c1e6ad19a7f2194121df144868816b5bc5020e5e762339fa2ef",
+    "app/src/main/java/com/lma/app/core/ModelBundle.java": "c3274e9bb5d98ff62a080147be633ee434150a31080f2c816772a62a5e632101",
+    "app/src/main/java/com/lma/app/core/ModelSelection.java": "965c9f22f16fc822f792ebef6e0de0a0c67f5a6882d5e7ef77be05b83ea1aeb2",
     "app/src/main/java/com/lma/app/core/ParameterSchema.java": "d229e0eaf79604e1d13aeb9a588c30b99cd5679a32dde449b1cdb6a45c30d738",
     "app/src/main/java/com/lma/app/core/Protocol.java": "d49f47884aec0cb03347023119c2808330fa9970689dcd9d33c30ca653d03b85",
-    "app/src/main/java/com/lma/app/core/TaskInput.java": "d43cd0d5cca564b54ad7aa2f3be51ac81dea4e4a2cfa2ce6d60d42e9f2458a7e",
+    "app/src/main/java/com/lma/app/core/TaskInput.java": "07fb4bf2193040646b8c933b39ccaac8c10f4fcc98e23dec2ccf2b1cbe6c638e",
     "app/src/main/java/com/lma/app/core/TextRequest.java": "bfdb23db96512f00f362b49951c1fee4162ca2d441482eb6ebf180a8d3574d5f",
     "app/src/main/java/com/lma/app/core/TtsSpec.java": "54f841e2ca5e93d3c3e1845014029b96912291fcf50a50c26a0124325a7a962a",
     "catalogue/model-bundles.json": "1791f5e6f164e951ee49f9e4b7c80e34f37ded38ae205b8b03973f2de5d4ee16",
-    "tests/FoundationTest.java": "f666f41fb3b3a8788fd745e872f1abe48c0a6f9a95a291fcffbc58fee5b2910c",
+    "tests/AdapterTest.java": "22fe975dac3e86f3bfe5fb11e575644f27a4b42968e45e0ea6406070a464d55f",
+    "tests/FoundationTest.java": "ed47388f735381d75722d577f5461507dd4345b341633a64f6d08fe60b72cf05",
     "tests/host/android/util/AtomicFile.java": "a05b9c6ef4fa0f0f40aaa49b235faccc98d2d7d5aa1ea4bb8d2f535b8bad2796",
-    "tools/test_foundation.py": "d15360353f676b6f1e221c47babe27fb98e1e52a92aca11c4eab2da3fba8d3f9"
+    "tools/test_foundation.py": "4cf2394d2cc4f22ef1198d5eada1466edb6d3302cc2b9c56c45d807b9f0e5b3c"
   }
 }

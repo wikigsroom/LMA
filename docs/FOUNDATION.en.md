@@ -138,3 +138,5 @@ All items below are mandatory for the next v0.3.0, not different releases. A sub
 Some K1 contracts/migrations allow host checks. K2–K4 device execution requires real artifacts and physical Android evidence. No device is available; completion cannot be claimed. Foreground services do not guarantee survival; see task execution limits.
 
 Native architecture pipelines, mobile operators/quantization, resource/quality measurements and upstream maintenance are work for this version. Internal implementation follows dependencies; unresolved targets remain blockers here rather than moving to other versions.
+
+The [asset-control audit](ASSET_CONTROL_AUDIT.en.md) confirms a consistent document baseline. dev.4 [peer-LoRA pairing](ADAPTERS.en.md) reuses model/reference/task contracts, without phone-output evidence.

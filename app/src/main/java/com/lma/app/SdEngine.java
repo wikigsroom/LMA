@@ -15,6 +15,7 @@ public final class SdEngine implements LocalEngine {
     @Override public String id() { return "sd_cpp"; }
     @Override public JSONObject describe() throws Exception { return DataFiles.copy(build).put("available", binary.isFile() && binary.canExecute()).put("deviceValidated", false); }
     @Override public void validate(ModelBundle bundle, String type) throws Exception {
+        if (AdapterSpec.isAdapter(bundle)) throw new IOException("LoRA 需要与兼容的基础模型配对使用");
         if (!binary.isFile() || !binary.canExecute()) throw new IOException("当前 App 没有安装扩散运行引擎");
         if (!bundle.engine.equals(id()) || !bundle.backend.equals("cpu") || !PIPELINES.contains(bundle.pipeline)) throw new IOException("当前扩散引擎没有匹配的管线或后端，请选择已适配配方");
         if (!type.equals("image.generate") && !type.equals("video.generate") || type.equals("video.generate") != bundle.pipeline.equals("wan21_13b")) throw new IOException("此配方不支持所选生成任务");
@@ -29,7 +30,7 @@ public final class SdEngine implements LocalEngine {
         context.execution(new JSONObject().put("effectiveParameters", parameters).put("pipeline", lease.bundle.pipeline));
         for (ModelBundle.Component c : lease.bundle.components) components.put(c.role, lease.file(c.role).getPath());
         JSONObject command = new JSONObject().put("schema", "lma.engine-request/1").put("type", request.getString("type")).put("input", request.getJSONObject("input"))
-                .put("parameters", parameters).put("components", components).put("output", generated.getPath());
+                .put("parameters", parameters).put("components", components).put("output", generated.getPath()).put("loras", ModelSelection.nativeLoras(lease, context.adapters(), request));
         Map<String, String> environment = new HashMap<>();
         String[][] vocab = {{"clip_merges", "CLIP_MERGES"}, {"qwen_merges", "QWEN_MERGES"}, {"mistral_merges", "MISTRAL_MERGES"}, {"mistral_vocab", "MISTRAL_JSON"}, {"t5_tokenizer", "T5_JSON"}, {"umt5_tokenizer", "UMT5_JSON"}, {"gemma_merges", "GEMMA_MERGES"}, {"gemma_vocab", "GEMMA_JSON"}};
         for (String[] item : vocab) if (components.has(item[0])) environment.put("LMA_VOCAB_" + item[1], components.getString(item[0]));
