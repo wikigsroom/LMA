@@ -19,6 +19,7 @@ import com.lma.app.core.JobStore;
 import com.lma.app.core.ArtifactStore;
 
 public final class LmaApp extends Application {
+    public static final String VERSION = "0.3.0-dev.2";
     public static final String UPDATE = "com.lma.app.STATE_CHANGED";
     public Store store;
     public BundleStore bundles;
@@ -26,6 +27,12 @@ public final class LmaApp extends Application {
     public ArtifactStore artifacts;
     public LocalEngines localEngines;
     public volatile LocalJobs jobHost;
+    public volatile ApiHost apiHost;
+    public volatile String apiState = "stopped", apiDetail = "启动接口后可管理本机任务与结果";
+    public volatile boolean textRequestBusy;
+    public volatile int nativePort;
+    public volatile String nativeApiKey = "";
+    public final Object requestGate = new Object();
     public String bundleStoreError = "";
     public Chats chats;
     public HubCatalog hub;
@@ -47,6 +54,7 @@ public final class LmaApp extends Application {
     @Override public void onCreate() {
         super.onCreate();
         prefs = getSharedPreferences("lma", MODE_PRIVATE);
+        if (!prefs.contains("desiredApi")) prefs.edit().putBoolean("desiredApi", prefs.getBoolean("desiredRunning", false)).apply();
         engineModel = prefs.getString("selectedModel", "");
         if (prefs.getString("apiKey", "").isEmpty()) {
             byte[] random = new byte[24]; new SecureRandom().nextBytes(random);
@@ -89,6 +97,7 @@ public final class LmaApp extends Application {
     }
     public synchronized void log(String message) {
         if (message == null) return;
+        String privateKey = nativeApiKey; if (!privateKey.isEmpty()) message = message.replace(privateKey, "[hidden]");
         String key = prefs.getString("apiKey", "");
         if (!key.isEmpty()) message = message.replace(key, "[hidden]");
         String hfToken = prefs.getString("hfToken", "");
@@ -120,15 +129,16 @@ public final class LmaApp extends Application {
     public JSONObject snapshot() {
         JSONObject value = new JSONObject();
         try {
-            value.put("app", "LMA"); value.put("version", "0.3.0-dev"); value.put("runtime", "llama.cpp v0.4.1 · CPU");
+            value.put("app", "LMA"); value.put("version", VERSION); value.put("runtime", "llama.cpp v0.4.1 · CPU");
             value.put("models", store.snapshot()); value.put("settings", settings()); value.put("hub", hub.snapshot());
             value.put("bundles", bundles == null ? new JSONArray() : bundles.snapshot());
             value.put("jobs", jobs == null ? new JSONArray() : jobs.summaries());
             value.put("artifacts", artifacts == null ? new JSONArray() : artifacts.snapshot());
             value.put("localEngines", localEngines == null ? new JSONArray() : localEngines.snapshot());
             value.put("foundation", new JSONObject().put("status", "development").put("bundleSchema", "lma.model-bundle/1").put("error", bundleStoreError).put("bundledWeights", false));
+            value.put("api", new JSONObject().put("state", apiState).put("detail", apiDetail).put("textRequestActive", textRequestBusy));
             JSONObject engine = new JSONObject(); engine.put("state", engineState); engine.put("detail", engineDetail);
-            engine.put("modelId", engineModel); engine.put("startedAt", engineStarted); engine.put("generating", generating);
+            engine.put("modelId", engineModel); engine.put("startedAt", engineStarted); engine.put("generating", generating || textRequestBusy); engine.put("externalGenerating", textRequestBusy);
             engine.put("localUrl", "http://127.0.0.1:" + prefs.getInt("port", 8080) + "/v1");
             engine.put("addresses", addresses()); value.put("engine", engine);
             value.put("device", device()); value.put("chat", chats.snapshot()); value.put("error", lastError);

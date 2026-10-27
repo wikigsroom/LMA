@@ -1,10 +1,12 @@
 {
-  "passed": 81,
+  "passed": 84,
   "checks": [
     "Initial curated recommendations",
     "375px model library layout",
     "Recommendation order and IDs remain unchanged",
     "Verified uncensored labels remain on recommendations",
+    "A zero-model library starts the API without loading or downloading any model",
+    "API start and stop leave user model assets untouched",
     "Dedicated local tab has an empty download state",
     "All tab queries remote HF repositories",
     "Normal HF models stay unmarked and metadata labels remain distinct",
@@ -28,6 +30,7 @@
     "375px chat layout",
     "Rejected native send preserves draft",
     "Fast completed reply clears draft without duplicate send",
+    "Closing the API keeps the independently loaded text model intact",
     "LAN endpoint and authenticated API example",
     "375px server layout",
     "Saving optional HF credentials clears the password field",
@@ -89,11 +92,11 @@
   "emulatorUsed": false,
   "input_fingerprint": {
     "app/src/main/assets/app.css": "f2cb7b5ee9de8f3afac793e694dcf9fde0a855c0d4c7053ff986cc2a6d2bd3b1",
-    "app/src/main/assets/app.js": "f8b7275edc6769fed37a0743354e63353c7c6aba19f3e0705c1dfcefe5715790",
+    "app/src/main/assets/app.js": "d477539d4ff11795db519cfd8aafb59ab0c5cadbe6221e2eb8ec9f5e1058af49",
     "app/src/main/assets/engine-builds.json": "2a096144a28e26ef9f9efa23ca8355f1844dc18741197649f74e3cef97809dae",
     "app/src/main/assets/foundation.css": "a2e09ccedc4f337d5d7e98775b0c7e90369d3fb0242e099148870b38c87605b1",
     "app/src/main/assets/foundation.js": "09d7eb78b5bfdbbd12858e23210fdff5b1993ad3ee279dfed78e26a9ccb15f31",
-    "app/src/main/assets/index.html": "07ba7c653c26544ecb28ecb8755da8881568f44d859f130172d63b207c459f1b",
+    "app/src/main/assets/index.html": "328f1a8bf98920c07da51f0c0da49d66487ee4870e51d6a96e0528ecb5e9c268",
     "app/src/main/assets/license.js": "bc351193fef4b8667e5a65aa0fbb225f814fcbe59268e69b9a69f22ad137f839",
     "app/src/main/assets/licenses/LLAMA_CPP_LICENSE": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
     "app/src/main/assets/licenses/LMA_LICENSE": "6ae3f5efa412d91cbf66e44f743e5ce41a8044309d05d893365206ab9bc35fc3",
@@ -125,6 +128,6 @@
     "app/src/main/assets/models.json": "c3e884b4e5fb06f20c036deebc78e6f953ac420e76fca72bab5a25fd59927156",
     "tests/foundation-ui.cjs": "fe513e289efc4f9aa874f7cb561ba27445ef74f9f9d5b80387b96280298ed971",
     "tests/hub-fixture.cjs": "5b3cb88b7fd4c45d26ce92e8598a1c3837a12b02eb898f67c9be10da2910ab83",
-    "tests/ui-smoke.cjs": "08ff1d3d0fb144784b42d3eb2154b4973118c6de6d0460737fb794301d1d8aa1"
+    "tests/ui-smoke.cjs": "44dd3517fe218480bfa00ff0314b70ed4613bdcc9e6dd1ba362eff09783e1579"
   }
 }

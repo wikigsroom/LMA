@@ -45,6 +45,7 @@ async function main() {
     window.__fixture = {
       app: 'LMA', version, models: catalogue.models.map(m => ({...m, installed: false, download: {}})),
       settings: {lan: false, port: 8080, source: 'auto', boot: false, autoLoad: true, theme: 'light', hfTokenSet: false, apiKey: 'lma_UI_FIXTURE_ONLY'},
+      api: {state: 'stopped', detail: '接口尚未启动', textRequestActive: false},
       engine: {state: 'stopped', modelId: '', detail: '开发界面演示 · 未运行模型', generating: false, localUrl: 'http://127.0.0.1:8080/v1'},
       device: {name: '界面测试数据 · 非真机', totalMemory: 8 * 1073741824, freeStorage: 30e9, batteryExempt: false},
       chat: {sessionId: '', sessions: [], messages: []}, commandResults: [], logs: [], error: ''
@@ -54,6 +55,8 @@ async function main() {
       dispatch: raw => {
         const command = JSON.parse(raw);
         setTimeout(() => {
+          if (command.action === 'startApi') window.__fixture.api.state = 'ready';
+          if (command.action === 'stopApi') window.__fixture.api.state = 'stopped';
           const data = window.__handleFoundation && window.__handleFoundation(command);
           window.__fixture.commandResults.push({requestId: command.requestId, action: command.action, ok: true, error: '', data});
           window.LMA.receive(window.__fixture);
@@ -69,6 +72,10 @@ async function main() {
   await page.goto(origin + '/index.html'); await page.waitForSelector('.model-card');
   async function shot(file, caption) {await page.waitForTimeout(1000); await page.evaluate(() => {document.getElementById('toast').hidden = true;}); await page.screenshot({path: path.join(out, file)}); screenshots.push({file, caption});}
   await shot('01-recommended.png', 'Preserved recommendations and independent output filters / 原推荐与功能筛选');
+  await page.locator('.nav-item[data-tab="server"]').click(); await page.locator('#serverToggle').click();
+  await page.waitForFunction(() => document.getElementById('serverStatePill').textContent === '运行中');
+  await shot('08-zero-model-api.png', 'API controls independent of model installation / 零模型状态独立启动接口，界面夹具');
+  await page.locator('.nav-item[data-tab="models"]').click();
   await page.evaluate(installFixture);
   await page.locator('[data-filter="local"]').click(); await page.locator('[data-task="image"]').click();
   await shot('02-local-tags.png', 'Flat Local model list with output, engine and installation tags / 平级本地模型与独立标签');

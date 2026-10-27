@@ -14,6 +14,7 @@ def main():
         "build-info.json": "dist/build-info.json",
         "package.json": "build/package-verification.json",
         "foundation.json": "build/foundation-tests/results.json",
+        "api.json": "build/api-tests/results.json",
         "backend.json": "build/backend-tests/results.json",
         "hub.json": "build/hub-tests/results.json",
         "ui.json": "build/ui-qa/results.json",
@@ -29,7 +30,7 @@ def main():
         shutil.copyfile(ROOT / source, out / name)
     status = {"version": version(), "kind": "development_checkpoint", "release_ready": False, "published": False,
               "physical_device_tests": 0, "model_inference_tested": False, "all_selected_models_supported": False,
-              "scope": "host storage/transfers/contracts, UI fixtures, native compilation and APK/lint checks only",
+              "scope": "host storage/transfers/contracts, authenticated HTTP/streams/text proxy, UI fixtures, native compilation and APK/lint checks only",
               "required_scope": "docs/MULTIMODAL_RELEASE_PLAN.md", "sources": sources}
     (out / "status.json").write_text(json.dumps(status, indent=2) + "\n", encoding="utf-8")
     print(json.dumps(status))

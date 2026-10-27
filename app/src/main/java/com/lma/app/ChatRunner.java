@@ -17,9 +17,10 @@ public final class ChatRunner {
     private volatile HttpURLConnection connection;
     public ChatRunner(LmaService owner, LmaApp app) { this.owner = owner; this.app = app; }
     public synchronized void send(String text) throws Exception {
+        synchronized (app.requestGate) {
         text = text.trim();
         if (text.isEmpty() || text.length() > 12000) throw new IllegalArgumentException("请输入 1–12000 个字符");
-        if (app.generating) throw new IllegalStateException("上一条回复仍在生成");
+        if (app.generating || app.textRequestBusy) throw new IllegalStateException("上一条回复仍在生成");
         if (!owner.engine.ready()) throw new IllegalStateException("请先加载一个模型");
         JSONObject settings = app.settings(app.engineModel); String session = app.chats.session();
         if (session.isEmpty()) session = app.chats.create(app.engineModel);
@@ -36,6 +37,7 @@ public final class ChatRunner {
                 .put("stream_options", new JSONObject().put("include_usage", true));
         cancelled = false; app.generating = true; app.emit(); owner.activityChanged();
         worker.execute(() -> generate(request, responseId));
+        }
     }
     public void cancel() { cancelled = true; HttpURLConnection active = connection; if (active != null) active.disconnect(); }
     public void close() { cancel(); worker.shutdown(); }
@@ -46,7 +48,7 @@ public final class ChatRunner {
         HttpURLConnection active = null;
         try {
             if (cancelled) throw new java.io.InterruptedIOException("生成已取消");
-            active = Net.local(app, "/v1/chat/completions"); connection = active;
+            active = Net.engine(app, "/v1/chat/completions"); connection = active;
             if (cancelled) throw new java.io.InterruptedIOException("生成已取消");
             active.setRequestMethod("POST"); active.setDoOutput(true); active.setRequestProperty("Content-Type", "application/json; charset=utf-8"); active.setRequestProperty("Accept", "text/event-stream");
             byte[] body = request.toString().getBytes(StandardCharsets.UTF_8); active.setFixedLengthStreamingMode(body.length);

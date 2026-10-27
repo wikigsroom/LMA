@@ -31,20 +31,22 @@ public final class EngineHost {
     public boolean ready() { return desired && app.engineState.equals("ready") && process != null && process.isAlive(); }
 
     public synchronized void load(String id) throws Exception {
+        synchronized (app.requestGate) {
         if (closed) throw new IllegalStateException("推理服务正在停止，请稍后重试");
         app.store.model(id);
         if (!app.store.modelFile(id).isFile()) throw new IllegalStateException("请先下载或导入这个模型");
-        if (app.generating) throw new IllegalStateException("请先停止当前回复，再切换模型");
+        if (app.generating || app.textRequestBusy) throw new IllegalStateException("请先停止当前回复，再切换模型");
         if (ready() && id.equals(app.engineModel)) return;
         desired = true; failures = 0;
         long request = generation.incrementAndGet(); destroyProcess();
         app.prefs.edit().putString("selectedModel", id).putBoolean("desiredRunning", true).apply();
         app.engineModel = id; app.engineState = "loading"; app.engineDetail = "正在加载模型，首次加载可能需要一段时间"; app.engineStarted = 0; app.emit(); owner.activityChanged();
         workers.execute(() -> launch(id, request));
+        }
     }
     public synchronized void stop() {
         desired = false; generation.incrementAndGet(); app.prefs.edit().putBoolean("desiredRunning", false).apply(); destroyProcess();
-        app.engineState = "stopped"; app.engineDetail = "模型已停止，接口已关闭"; app.engineStarted = 0; app.emit(); owner.activityChanged();
+        app.engineState = "stopped"; app.engineDetail = "文本模型已停止；其他已启动接口与任务独立管理"; app.engineStarted = 0; app.emit(); owner.activityChanged();
     }
     public synchronized void close() { closed = true; desired = false; generation.incrementAndGet(); destroyProcess(); workers.shutdown(); }
     private boolean current(long request) { return !closed && desired && request == generation.get(); }
@@ -64,11 +66,15 @@ public final class EngineHost {
             if (!binary.isFile() || !binary.canExecute()) throw new java.io.IOException("推理组件未正确安装，请重新安装 LMA APK");
             app.store.inspectModel(id);
             JSONObject settings = app.settings(id);
+            int privatePort;
+            try (java.net.ServerSocket reserved = new java.net.ServerSocket(0, 1, java.net.InetAddress.getByName("127.0.0.1"))) { privatePort = reserved.getLocalPort(); }
+            byte[] randomKey = new byte[24]; new java.security.SecureRandom().nextBytes(randomKey);
+            String privateKey = com.lma.app.core.Protocol.hex(randomKey);
             List<String> command = new ArrayList<>();
             command.add(binary.getAbsolutePath());
             add(command, "-m", app.store.modelFile(id).getAbsolutePath()); add(command, "--alias", id);
-            add(command, "--host", settings.getBoolean("lan") ? "0.0.0.0" : "127.0.0.1");
-            add(command, "--port", String.valueOf(settings.getInt("port")));
+            add(command, "--host", "127.0.0.1");
+            add(command, "--port", String.valueOf(privatePort));
             add(command, "-t", String.valueOf(settings.getInt("threads"))); add(command, "-c", String.valueOf(settings.getInt("context")));
             add(command, "-b", "64"); add(command, "-ub", "64"); add(command, "-np", "1"); add(command, "-ngl", "0"); add(command, "--device", "none");
             command.add("--jinja"); command.add("--no-webui"); command.add("--metrics");
@@ -78,7 +84,7 @@ public final class EngineHost {
             builder.environment().put("LD_LIBRARY_PATH", nativeDir.getAbsolutePath());
             builder.environment().put("ADSP_LIBRARY_PATH", nativeDir.getAbsolutePath() + ";/vendor/lib/rfsa/adsp;/vendor/dsp;/system/lib/rfsa/adsp;/dsp");
             // Keep the API key out of process argv and application logs.
-            builder.environment().put("LLAMA_API_KEY", settings.getString("apiKey"));
+            builder.environment().put("LLAMA_API_KEY", privateKey);
             synchronized (app.nativeProcessLock) {
                 if (!current(request)) return;
                 Process previous = app.nativeProcess;
@@ -88,11 +94,11 @@ public final class EngineHost {
                 }
                 if (!current(request)) return;
                 try (java.net.ServerSocket probe = new java.net.ServerSocket()) {
-                    probe.setReuseAddress(true); probe.bind(new java.net.InetSocketAddress(settings.getBoolean("lan") ? "0.0.0.0" : "127.0.0.1", settings.getInt("port")));
-                } catch (java.net.BindException error) { throw new java.io.IOException("服务端口 " + settings.getInt("port") + " 已被占用，请在设置中更换端口", error); }
+                    probe.setReuseAddress(true); probe.bind(new java.net.InetSocketAddress("127.0.0.1", privatePort));
+                } catch (java.net.BindException error) { throw new java.io.IOException("本机私有引擎端口暂时不可用，请重试", error); }
                 synchronized (this) {
                     if (!current(request)) return;
-                    started = launcher.start(builder); process = started; app.nativeProcess = started;
+                    started = launcher.start(builder); process = started; app.nativeProcess = started; app.nativePort = privatePort; app.nativeApiKey = privateKey;
                 }
             }
             final Process active = started;
@@ -103,7 +109,7 @@ public final class EngineHost {
             while (current(request) && process == active && active.isAlive() && System.currentTimeMillis() < deadline) {
                 HttpURLConnection health = null;
                 try {
-                    health = Net.local(app, "/health"); health.setReadTimeout(2500);
+                    health = Net.engine(app, "/health"); health.setReadTimeout(2500);
                     if (health.getResponseCode() == 200) {
                         String body = Store.read(health.getInputStream(), 65536);
                         if (new JSONObject(body).optString("status").equals("ok") && ownsEndpoint(id)) {
@@ -152,7 +158,7 @@ public final class EngineHost {
     private boolean ownsEndpoint(String id) {
         HttpURLConnection connection = null;
         try {
-            connection = Net.local(app, "/v1/models"); connection.setReadTimeout(2500);
+            connection = Net.engine(app, "/v1/models"); connection.setReadTimeout(2500);
             if (connection.getResponseCode() != 200) return false;
             org.json.JSONArray data = new JSONObject(Store.read(connection.getInputStream(), 65536)).optJSONArray("data");
             if (data == null) return false;

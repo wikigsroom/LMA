@@ -23,6 +23,10 @@ public final class LocalJobs implements AutoCloseable {
     public LocalJobs(LmaApp app, Runnable changed) { this.app = app; this.changed = changed; }
     public JSONObject submit(JSONObject input, String idempotencyKey) throws Exception {
         if (closed) throw new IllegalStateException("任务服务正在停止");
+        input = TaskInput.validate(input);
+        String submissionHash = TaskInput.fingerprint(input);
+        JSONObject previous = app.jobs.lookup(idempotencyKey);
+        if (previous != null) { if (!submissionHash.equals(previous.getJSONObject("request").optString("submissionHash"))) throw new IllegalStateException("此幂等键已经用于另一个任务请求"); return previous; }
         String id = input.getString("bundleId"), type = input.getString("type"); ModelBundle bundle = app.bundles.bundle(id);
         String tag = type.equals("image.generate") ? "image" : type.equals("video.generate") ? "video" : type.equals("text.generate") ? "text" : type.equals("speech.synthesize") || type.equals("audio.generate") ? "audio" : "";
         if (tag.isEmpty() || !bundle.tasks.contains(tag)) throw new IllegalArgumentException("所选模型没有对应的输出能力");
@@ -32,9 +36,15 @@ public final class LocalJobs implements AutoCloseable {
         if (prompt.trim().isEmpty() || prompt.length() > 16000 || in.optString("negativePrompt").length() > 16000) throw new IllegalArgumentException("请填写不超过 16000 字符的提示词");
         JSONObject effective = bundle.parameters().normalize(app.bundles.settings(id).getJSONObject("values"), input.optJSONObject("parameters") == null ? new JSONObject() : input.getJSONObject("parameters"));
         JSONObject request = new JSONObject().put("bundleId", id).put("type", type).put("input", DataFiles.copy(in)).put("parameters", effective.getJSONObject("values"))
-                .put("adjustments", effective.getJSONArray("adjustments")).put("parameterSchemaVersion", effective.getInt("schemaVersion")).put("allowUnmeasured", input.optBoolean("allowUnmeasured", false));
+                .put("adjustments", effective.getJSONArray("adjustments")).put("parameterSchemaVersion", effective.getInt("schemaVersion")).put("allowUnmeasured", input.optBoolean("allowUnmeasured", false)).put("submissionHash", submissionHash);
         admission(bundle, request);
         JSONObject job = app.jobs.submit(request, idempotencyKey); app.prefs.edit().putBoolean("desiredJobs", true).apply(); wake(); changed.run(); return job;
+    }
+    public JSONObject retry(String id, String key) throws Exception {
+        JSONObject old = app.jobs.get(id);
+        if (!java.util.Arrays.asList("failed", "interrupted", "cancelled").contains(old.getString("state"))) throw new IllegalStateException("仅已失败、中断或取消的任务可以重试");
+        JSONObject request = DataFiles.copy(old.getJSONObject("request")); request.remove("submissionHash"); request.remove("adjustments"); request.remove("parameterSchemaVersion");
+        return submit(request, key);
     }
     private JSONObject admission(ModelBundle bundle, JSONObject request) throws Exception {
         if (!app.engineState.equals("stopped") && !app.engineState.equals("error")) throw new IllegalStateException("请先停止文本模型，再提交媒体任务；本机一次运行一个大型引擎");

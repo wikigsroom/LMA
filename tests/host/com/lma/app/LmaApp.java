@@ -9,12 +9,22 @@ import android.net.Uri;
 
 /** Test-only framework ports; Store/Downloads/Net/EngineHost/ChatRunner are production files. */
 public final class LmaApp {
+    public static final String VERSION = "0.3.0-dev.2";
+    public String apiState = "stopped", apiDetail = "";
+    public com.lma.app.core.BundleStore bundles;
+    public com.lma.app.core.JobStore jobs;
+    public com.lma.app.core.ArtifactStore artifacts;
+    public LocalJobs jobHost;
+    public LocalEngines localEngines = new LocalEngines();
     public final Preferences prefs = new Preferences();
     public final Store store;
     public final Chats chats;
     private final File files, assets, libraries;
     public volatile String engineState = "stopped", engineDetail = "", engineModel = "", lastError = "";
-    public volatile boolean generating;
+    public volatile boolean generating, textRequestBusy;
+    public volatile int nativePort;
+    public volatile String nativeApiKey = "";
+    public final Object requestGate = new Object();
     public volatile long engineStarted;
     public final Object nativeProcessLock = new Object();
     public volatile Process nativeProcess;
@@ -25,6 +35,8 @@ public final class LmaApp {
         prefs.edit().putString("apiKey", "lma_HOST_TEST_KEY").putInt("port", 8080).putInt("threads", 4).putInt("context", 2048)
             .putInt("maxTokens", 512).putFloat("temperature", 0.7f).putString("reasoning", "off").putString("systemPrompt", "Test system prompt").apply();
         store = new Store(this); chats = new Chats(this);
+        try { bundles = new com.lma.app.core.BundleStore(new File(files, "bundles")); jobs = new com.lma.app.core.JobStore(new File(files, "jobs")); artifacts = new com.lma.app.core.ArtifactStore(new File(files, "artifacts"), file -> { throw new IOException("No host model outputs"); }); }
+        catch (Exception error) { throw new RuntimeException(error); }
     }
     public File getFilesDir() { return files; }
     public Assets getAssets() { return new Assets(); }

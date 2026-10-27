@@ -22,8 +22,9 @@ const checks = [], errors = [];
 let context, server;
 function checked(name) { checks.push(name); console.log('PASS ' + name); }
 const fixture = {
-  app: 'LMA', version: '0.3.0-dev', models: catalogue.models.map(m => ({...m, installed: false, installedBytes: 0, partialBytes: 0, download: {}})),
+  app: 'LMA', version: '0.3.0-dev.2', models: catalogue.models.map(m => ({...m, installed: false, installedBytes: 0, partialBytes: 0, download: {}})),
   settings: {lan: false, port: 8080, threads: 4, context: 2048, maxTokens: 512, temperature: 0.7, source: 'auto', boot: false, autoLoad: true, reasoning: 'off', theme: 'light', systemPrompt: '你是一个有帮助的本地助手。', apiKey: 'lma_TEST_ONLY_NOT_A_REAL_KEY'},
+  api: {state: 'stopped', detail: '接口尚未启动', textRequestActive: false},
   engine: {state: 'stopped', detail: '选择并下载一个模型，开始本地运行', modelId: '', generating: false, startedAt: 0, localUrl: 'http://127.0.0.1:8080/v1', addresses: ['http://192.168.1.20:8080/v1']},
   device: {name: 'nubia Z20 · UI 测试数据', android: '9', totalMemory: 8 * 1073741824, availableMemory: 4.3 * 1073741824, freeStorage: 51.2 * 1e9, batteryExempt: false},
   chat: {sessionId: '', sessions: [], messages: []}, logs: [], error: '', commandResults: [], hub: hubFixture
@@ -77,7 +78,9 @@ async function main() {
           }
           if (command.action === 'download' || command.action === 'resumeDownload') m.download = {state: 'downloading', received: 100000000, total: m.bytes, speed: 8000000};
           if (command.action === 'pauseDownload') m.download.state = 'paused';
-          if (command.action === 'load') { f.engine.modelId = m.id; f.engine.state = 'ready'; f.engine.detail = '模型已就绪，可以对话或连接 API'; }
+          if (command.action === 'startApi') f.api.state = 'ready';
+          if (command.action === 'stopApi') f.api.state = 'stopped';
+          if (command.action === 'load') { f.api.state = 'ready'; f.engine.modelId = m.id; f.engine.state = 'ready'; f.engine.detail = '模型已就绪，可以对话或连接 API'; }
           if (command.action === 'stopEngine') { f.engine.state = 'stopped'; f.engine.generating = false; }
           if (command.action === 'saveSettings') { Object.assign(f.settings, command.settings); f.engine.localUrl = 'http://127.0.0.1:' + f.settings.port + '/v1'; }
           if (command.action === 'send') {
@@ -105,6 +108,13 @@ async function main() {
   await page.screenshot({path: path.join(output, '01-models-phone.png')});
   assert.deepEqual(await page.locator('.model-card').evaluateAll(cards => cards.map(c=>c.dataset.model)), ['m08','m06','m01']); checked('Recommendation order and IDs remain unchanged');
   assert.equal(await page.locator('.model-tags .tag').filter({hasText: /^无审查$/}).count(), 3); checked('Verified uncensored labels remain on recommendations');
+  await page.locator('.nav-item[data-tab="server"]').click(); await page.locator('#serverToggle').click();
+  await page.waitForFunction(() => document.getElementById('serverStatePill').textContent === '运行中');
+  assert.equal(await page.evaluate(() => window.__fixture.models.filter(x => x.installed).length), 0);
+  assert.equal(await page.locator('#modalBackdrop').isHidden(), true); checked('A zero-model library starts the API without loading or downloading any model');
+  await page.locator('#serverToggle').click(); await page.waitForFunction(() => document.getElementById('serverStatePill').textContent === '未启动');
+  assert.equal(await page.evaluate(() => window.__commands.some(x => ['download','downloadBundle','load'].includes(x.action))), false); checked('API start and stop leave user model assets untouched');
+  await page.locator('.nav-item[data-tab="models"]').click();
   await page.locator('[data-filter="local"]').click(); await page.waitForSelector('.empty-list'); checked('Dedicated local tab has an empty download state');
   await page.locator('[data-filter="all"]').click(); await page.waitForSelector('.hub-card');
   assert.equal(await page.locator('.hub-card').count(), 2); checked('All tab queries remote HF repositories');
@@ -156,6 +166,9 @@ async function main() {
   await page.waitForFunction(() => document.getElementById('chatInput').value === '');
   assert.equal(await page.evaluate(() => window.__commands.filter(x => x.action === 'send').length - window.__sendCount), 1); checked('Fast completed reply clears draft without duplicate send');
   await page.locator('.nav-item[data-tab="server"]').click();
+  await page.locator('#serverToggle').click(); await page.waitForFunction(() => document.getElementById('serverStatePill').textContent === '未启动');
+  assert.equal(await page.evaluate(() => window.__fixture.engine.state), 'ready'); checked('Closing the API keeps the independently loaded text model intact');
+  await page.locator('#serverToggle').click(); await page.waitForFunction(() => document.getElementById('serverStatePill').textContent === '运行中');
   await page.locator('#lanToggle').check(); await page.waitForFunction(() => document.getElementById('apiUrl').textContent.includes('192.168.1.20'));
   await page.locator('[data-action="copyExample"]').click();
   const curl = await page.evaluate(() => window.__copied); assert(curl.includes('/v1/chat/completions') && curl.includes('Bearer lma_TEST_ONLY')); checked('LAN endpoint and authenticated API example');

@@ -81,3 +81,5 @@ python tools/check_repository.py
 Recording uses local UI assets and an explicit demo bridge; FFmpeg creates MP4/GIF files. The packager checks current evidence, exports public records, and rebuilds the dedicated source ZIP including native libraries. Release preparation writes versioned assets and SHA256SUMS. Unchanged code with matching fingerprints does not require redundant test runs.
 
 Git tracks sources, guides, media, and public evidence. `dist/` stays ignored and is uploaded as Release assets. Follow [the release procedure](RELEASING.md) for synchronization and publishing.
+
+开发接口另运行 / Development API checks: `python tools/test_api.py`。该检查使用生产 HTTP / 路由和真实本机 socket，执行器是显式测试替身，不是手机推理。

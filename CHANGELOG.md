@@ -4,6 +4,8 @@
 
 ## Unreleased / 后续维护
 
+- 2026-10-27：内部 0.3.0-dev.2 / code 6 新增可在零模型状态独立启停的鉴权接口、持久任务提交 / 幂等 / 事件 / 取消 / 重试、产物元数据与 Range 下载；文本引擎改为独立回环端口和进程密钥，统一接口校验模型独立输出上限并跟踪客户端占用。更新服务页、双语 API / 实施说明和明确标记的界面媒体。模型仍由用户选择，不自动下载；完整引擎 / 模型与真机验收仍待完成，不创建 Release。Add the independent authenticated zero-model gateway, shared durable job/event/artifact routes, private text endpoint and profile/lease enforcement in internal dev.2. Refresh UI, bilingual guides/media and scoped host evidence; full model/device gates remain open.
+
 - 2026-10-27：开始实现同一完整 v0.3.0，内部版本 0.3.0-dev / code 5。新增多组件包、显式下载 / 导入、独立参数与联合约束、持久任务 / 产物、标签 / 表单 / 队列 / 导出界面，以及原生 Windows 构建的 Android ARM64 sd.cpp worker；外置模型专用词表，锁定新原生文件和许可，在“全部”新增一套未实测的固定 SD1.5 候选包元数据，资产仍由用户选择下载，保留推荐及旧文本路径。新增开发截图 / 录屏 / GIF 与[双语实施记录](docs/DEVELOPMENT.md)。完整模型范围、统一 API、真机生成及耐久仍未完成，不创建 Release、不拆版、不默认顺延。Begin the complete v0.3.0 implementation with internal 0.3.0-dev: bundles, explicit transfers/import, per-recipe schemas, durable jobs/artifacts, flat task UI/export and an ARM64 sd.cpp worker built on native Windows. Externalize vocabularies, pin native hashes/notices, preserve recommendations/text. Add labeled development media/evidence; all required model/API/device gates remain open and no Release is created.
 
 - 2026-10-27：明确 App 仅更新基座，01–14 / 16 / 17 是运行支持 / 配方覆盖目标，权重与模型专用资产由用户独立选择、下载、导入、管理和删除。安装 / 升级 / 浏览不触发模型下载，不强制模型更新或静默替换；推荐为元数据，功能标签与安装状态分开。新增 A11 资产分离验收并同步双语文档 / 结构化策略。Clarify foundation-only App updates and explicit user model-asset control; add A11, preserve flat task/dependency tags and single-release coverage. Documentation only; no APK/runtime changes.

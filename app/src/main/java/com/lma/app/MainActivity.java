@@ -84,7 +84,7 @@ public final class MainActivity extends Activity {
             });
         }
         web.loadUrl(ORIGIN + "/assets/index.html");
-        if (app.prefs.getBoolean("desiredRunning", false) || app.prefs.getBoolean("desiredJobs", false)) service(new JSONObject());
+        if (app.prefs.getBoolean("desiredRunning", false) || app.prefs.getBoolean("desiredJobs", false) || app.prefs.getBoolean("desiredApi", false)) service(new JSONObject());
     }
     @Override public void onSaveInstanceState(Bundle saved) {
         saved.putString("exportArtifactId", exportArtifactId); saved.putString("folderBundleId", folderBundleId); saved.putBoolean("exportMetadata", exportMetadata); super.onSaveInstanceState(saved);
@@ -242,7 +242,7 @@ public final class MainActivity extends Activity {
         } else if (request == EXPORT_LOGS) {
             new Thread(() -> {
                 try (java.io.OutputStream out = getContentResolver().openOutputStream(uri)) {
-                    JSONObject log = new JSONObject(); JSONObject state = app.snapshot(); log.put("app", "LMA 0.3.0-dev").put("device", state.optJSONObject("device")).put("engine", state.optJSONObject("engine")).put("logs", state.optJSONArray("logs"));
+                    JSONObject log = new JSONObject(); JSONObject state = app.snapshot(); log.put("app", "LMA " + LmaApp.VERSION).put("device", state.optJSONObject("device")).put("engine", state.optJSONObject("engine")).put("logs", state.optJSONArray("logs"));
                     if (out == null) throw new java.io.IOException("无法写入文件"); out.write(log.toString(2).getBytes(StandardCharsets.UTF_8));
                     main.post(() -> Toast.makeText(this, "日志已导出", Toast.LENGTH_SHORT).show());
                 } catch (Exception error) { app.error("导出失败：" + error.getMessage()); }

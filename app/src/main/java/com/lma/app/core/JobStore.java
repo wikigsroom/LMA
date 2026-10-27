@@ -45,8 +45,15 @@ public final class JobStore {
         return jobs;
     }
     private static JSONObject publicJob(JSONObject job) { JSONObject value = DataFiles.copy(job); value.remove("token"); return value; }
+    public synchronized JSONObject lookup(String idempotencyKey) throws Exception {
+        validateKey(idempotencyKey); if (idempotencyKey.isEmpty()) return null;
+        JSONArray jobs = state.getJSONArray("jobs");
+        for (int i = 0; i < jobs.length(); i++) if (jobs.getJSONObject(i).optString("idempotencyKey").equals(idempotencyKey)) return publicJob(jobs.getJSONObject(i));
+        return null;
+    }
+    private static void validateKey(String key) { if (key == null || key.length() > 160 || key.chars().anyMatch(c -> c < 32 || c == 127)) throw new IllegalArgumentException("Invalid idempotency key"); }
     public synchronized JSONObject submit(JSONObject request, String idempotencyKey) throws Exception {
-        if (idempotencyKey == null || idempotencyKey.length() > 160 || idempotencyKey.chars().anyMatch(c -> c < 32 || c == 127)) throw new IllegalArgumentException("Invalid idempotency key");
+        validateKey(idempotencyKey);
         if (request.toString().length() > 32000) throw new IllegalArgumentException("Task request is too large");
         String type = request.getString("type");
         if (!Arrays.asList("text.generate", "image.generate", "video.generate", "speech.synthesize", "audio.generate").contains(type)) throw new IllegalArgumentException("Unknown local task type");
@@ -55,7 +62,7 @@ public final class JobStore {
         for (int i = 0; i < jobs.length(); i++) {
             JSONObject previous = jobs.getJSONObject(i);
             if (!idempotencyKey.isEmpty() && previous.optString("idempotencyKey").equals(idempotencyKey)) {
-                if (!DataFiles.canonical(previous.getJSONObject("request")).equals(DataFiles.canonical(request))) throw new IllegalArgumentException("Idempotency key already belongs to a different request");
+                if (!DataFiles.canonical(previous.getJSONObject("request")).equals(DataFiles.canonical(request))) throw new IllegalStateException("Idempotency key already belongs to a different request");
                 return publicJob(previous);
             }
             if (!TERMINAL.contains(previous.getString("state"))) pending++;

@@ -12,8 +12,16 @@ public final class Net {
     public static HttpURLConnection local(LmaApp app, String path) throws IOException {
         int port = app.prefs.getInt("port", 8080);
         HttpURLConnection connection = (HttpURLConnection) new URL("http://127.0.0.1:" + port + path).openConnection();
-        connection.setConnectTimeout(3000); connection.setReadTimeout(300000);
+        connection.setConnectTimeout(3000); connection.setReadTimeout(300000); connection.setInstanceFollowRedirects(false);
         connection.setRequestProperty("Authorization", "Bearer " + app.prefs.getString("apiKey", ""));
+        connection.setRequestProperty("Accept", "application/json"); return connection;
+    }
+    public static HttpURLConnection engine(LmaApp app, String path) throws IOException {
+        int port = app.nativePort; String key = app.nativeApiKey;
+        if (port < 1 || key.isEmpty() || !path.startsWith("/") || path.startsWith("//")) throw new IOException("本机文本引擎未启动");
+        HttpURLConnection connection = (HttpURLConnection) new URL("http://127.0.0.1:" + port + path).openConnection();
+        connection.setConnectTimeout(3000); connection.setReadTimeout(300000); connection.setInstanceFollowRedirects(false);
+        connection.setRequestProperty("Authorization", "Bearer " + key);
         connection.setRequestProperty("Accept", "application/json"); return connection;
     }
     public static String errorBody(HttpURLConnection connection) {
@@ -63,7 +71,7 @@ public final class Net {
             if (!url.getProtocol().equals("https") || url.getUserInfo() != null) throw new IOException("下载地址必须使用 HTTPS");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setConnectTimeout(connectTimeout); connection.setReadTimeout(readTimeout); connection.setInstanceFollowRedirects(false);
-            connection.setRequestProperty("User-Agent", "LMA-Android/0.3"); connection.setRequestProperty("Accept-Encoding", "identity");
+            connection.setRequestProperty("User-Agent", "LMA-Android/0.3.0-dev.2"); connection.setRequestProperty("Accept-Encoding", "identity");
             // Re-evaluate for every redirect. HF credentials never travel to mirrors, CDNs or custom hosts.
             if (!token.isEmpty() && acceptsHubToken(url)) connection.setRequestProperty("Authorization", "Bearer " + token);
             if (offset > 0) {

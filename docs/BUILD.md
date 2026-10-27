@@ -81,3 +81,5 @@ python tools/check_repository.py
 录制只使用本地界面和明确演示桥接；MP4 / GIF 由 FFmpeg 生成。`package_delivery.py` 检查当前证据指纹后更新验证 JSON、公开证据和带原生库的源码 ZIP；`prepare_release.py` 生成版本专用附件清单和 SHA256SUMS。没有改代码且指纹仍一致时无需重复所有测试。
 
 `dist/` 不提交 Git，附件上传 Release；源码、文档、媒体和公开验证记录提交仓库。发布和后续同步约定见 [RELEASING.md](RELEASING.md)。
+
+开发接口另运行 / Development API checks: `python tools/test_api.py`。该检查使用生产 HTTP / 路由和真实本机 socket，执行器是显式测试替身，不是手机推理。

@@ -265,13 +265,13 @@
     return 'curl ' + endpoint() + '/chat/completions \\\n  -H "Authorization: Bearer ' + key + '" \\\n  -H "Content-Type: application/json" \\\n  -d \'{"model":"' + (engine().modelId || 'MODEL_ID') + '","messages":[{"role":"user","content":"你好"}],"stream":true}\'';
   }
   function renderServer() {
-    var e = engine(), ready = e.state === 'ready', active = ready || e.state === 'loading' || e.state === 'recovering', m = modelById(e.modelId);
-    $('serverStateLabel').textContent = ready ? '接口正在运行' : active ? '正在启动接口' : e.state === 'error' ? '模型加载失败' : '接口尚未启动';
-    $('serverStatePill').textContent = ready ? '运行中' : active ? '加载中' : e.state === 'error' ? '启动失败' : '未启动';
+    var e = engine(), api = state.api || {state: 'stopped'}, ready = api.state === 'ready', active = ready, m = modelById(e.modelId);
+    $('serverStateLabel').textContent = ready ? '本地模型接口运行中' : api.state === 'error' ? '接口启动失败' : '接口尚未启动';
+    $('serverStatePill').textContent = ready ? '运行中' : api.state === 'error' ? '启动失败' : '未启动';
     $('serverStatePill').className = 'status-pill' + (ready ? ' ready' : active ? ' loading' : '');
-    $('serverModelName').textContent = m ? m.name : '选择已下载的模型';
+    $('serverModelName').textContent = m && e.state === 'ready' ? '文本：' + m.name : '加载或管理文本模型';
     $('apiUrl').textContent = endpoint();
-    $('serverToggle').innerHTML = icon(active ? 'stop' : 'play') + '<span>' + (active ? '停止服务' : '启动服务') + '</span>';
+    $('serverToggle').innerHTML = icon(active ? 'stop' : 'play') + '<span>' + (active ? '关闭接口' : '启动接口') + '</span>';
     $('serverToggle').className = 'button ' + (active ? 'danger' : 'primary');
     $('lanToggle').checked = !!state.settings.lan;
     $('lanToggle').disabled = !!e.generating;
@@ -380,7 +380,7 @@
   }
   function pickModel() {
     var installed = models().filter(function (m) { return m.installed && !m.isBundle; });
-    openModal('选择本地模型', installed.length ? '<p>加载后会同时开启本机 API 服务。</p><div class="modal-list">' + installed.map(function (m) { return '<div class="modal-list-item"><button data-action="load" data-id="' + esc(m.id) + '"><strong>' + esc(m.name) + '</strong><small>' + esc(m.quant) + ' · ' + bytes(m.installedBytes) + '</small></button>' + icon('arrow') + '</div>'; }).join('') + '</div>' : '<p>先下载一个模型，或从设备导入 GGUF 文件。</p><button class="button primary" data-action="tab" data-tab="models">前往模型库</button>', 'pickModel');
+    openModal('选择本地模型', installed.length ? '<p>加载后开启本机接口。生成图片等媒体前，请先停止文本模型。</p>' + (['ready', 'loading', 'recovering'].indexOf(engine().state) >= 0 ? '<button class="button danger" data-action="stopTextModel">停止文本模型</button>' : '') + '<div class="modal-list">' + installed.map(function (m) { return '<div class="modal-list-item"><button data-action="load" data-id="' + esc(m.id) + '"><strong>' + esc(m.name) + '</strong><small>' + esc(m.quant) + ' · ' + bytes(m.installedBytes) + '</small></button>' + icon('arrow') + '</div>'; }).join('') + '</div>' : '<p>先下载一个模型，或从设备导入 GGUF 文件。</p><button class="button primary" data-action="tab" data-tab="models">前往模型库</button>', 'pickModel');
   }
   function modelInfo(id) {
     var m = modelById(id); if (!m) return; var d = m.download || {}, u = m.uncensored || {};
@@ -427,10 +427,8 @@
       case 'sourceLink': m = modelById(id); if (m && window.Android) window.Android.openLink(m.sourceUrl || m.url); break;
       case 'uncensoredSource': m = modelById(id); if (m && m.uncensored && window.Android) window.Android.openLink(m.uncensored.evidenceUrl); break;
       case 'pickModel': pickModel(); break;
-      case 'toggleServer':
-        if (['ready', 'loading', 'recovering'].indexOf(engine().state) >= 0) nativeAction('stopEngine');
-        else { m = modelById(engine().modelId); if (m && m.installed) nativeAction('load', {id: m.id}); else pickModel(); }
-        break;
+      case 'toggleServer': nativeAction(state.api && state.api.state === 'ready' ? 'stopApi' : 'startApi'); break;
+      case 'stopTextModel': nativeAction('stopEngine'); closeModal(); break;
       case 'copyUrl': copy(endpoint()); break;
       case 'copyKey': if (state) copy(state.settings.apiKey); break;
       case 'copyExample': copy(example(true)); break;
@@ -448,7 +446,7 @@
       case 'browseHub': closeModal(); selectFilter('all'); break;
       case 'addUrl': openModal('添加 GGUF 下载链接', '<form id="customModelForm"><label class="form-field"><span>模型名称</span><input name="name" required maxlength="160" placeholder="例如：我的 Qwen 1.7B"></label><label class="form-field"><span>HTTPS 下载链接</span><input name="url" type="url" required placeholder="https://huggingface.co/…/resolve/main/….gguf" autocapitalize="off" spellcheck="false"></label><label class="form-field"><span>SHA256（可选）</span><input name="sha256" pattern="[a-fA-F0-9]{64}" maxlength="64" placeholder="发布者提供的 64 位哈希" autocapitalize="off" spellcheck="false"></label><p class="modal-help">请确认模型使用当前推理组件支持的架构，且适合手机的内存容量。</p><button type="submit" class="button primary">添加并下载</button></form>', 'addUrl'); break;
       case 'importPicker': nativeAction(action); closeModal(); break;
-      case 'about': openModal('关于 LMA', '<p>LMA 0.3.0-dev 是本地模型工作台，使用 Android 前台服务运行 llama.cpp。无需 ROOT；首次使用需要下载或导入模型。</p><p>界面、对话记录和推理在设备本地运行。模型下载会连接你选择的仓库；开启局域网后，持有 API 密钥的同网设备可以请求推理。</p><p>前台通知、唤醒锁与电池设置可帮助后台运行。系统强行停止、内存不足、厂商省电策略、发热或重启仍会影响服务。模型输出和速度尚需目标手机实测。</p><p>推理引擎：llama.cpp（MIT），由 ServLlama v1.2.2 分发的 Android ARM64 预编译组件。各模型按其来源仓库许可使用。</p><div class="modal-list"><div class="modal-list-item"><button data-action="engineLicense"><strong>llama.cpp MIT 许可证</strong><small>查看随应用附带的许可全文</small></button>' + icon('arrow') + '</div><div class="modal-list-item"><button data-action="notices"><strong>LMA 与其他依赖许可</strong><small>查看第三方许可全文</small></button>' + icon('arrow') + '</div></div>', 'about'); break;
+      case 'about': openModal('关于 LMA', '<p>LMA 0.3.0-dev.2 是本地模型工作台，由 Android 前台服务持有本机接口、任务和原生引擎。无需 ROOT；模型由你选择下载或导入。</p><p>界面、对话记录和推理在设备本地运行。模型下载会连接你选择的仓库；开启局域网后，持有 API 密钥的同网设备可以请求推理。</p><p>前台通知、唤醒锁与电池设置可帮助后台运行。系统强行停止、内存不足、厂商省电策略、发热或重启仍会影响服务。模型输出和速度尚需目标手机实测。</p><p>推理引擎：llama.cpp（MIT），由 ServLlama v1.2.2 分发的 Android ARM64 预编译组件。扩散 worker 使用 sd.cpp（MIT），当前开发构建尚未完成真机验收。各模型按其来源仓库许可使用。</p><div class="modal-list"><div class="modal-list-item"><button data-action="engineLicense"><strong>llama.cpp MIT 许可证</strong><small>查看随应用附带的许可全文</small></button>' + icon('arrow') + '</div><div class="modal-list-item"><button data-action="notices"><strong>LMA 与其他依赖许可</strong><small>查看第三方许可全文</small></button>' + icon('arrow') + '</div></div>', 'about'); break;
       case 'engineLicense': openModal('llama.cpp · MIT License', '<div class="license-text">' + esc(window.LMA_LICENSE || 'MIT License\n\nCopyright (c) 2023-2026 The ggml authors\n\n完整许可证随 APK 的 licenses/LLAMA_CPP_LICENSE 一同分发，也位于项目 third_party/LLAMA_CPP_LICENSE。') + '</div>', 'license'); break;
       case 'notices': openModal('LMA 与第三方许可', Object.keys(window.LMA_NOTICES || {}).map(function (name) { return '<details class="license-notice"><summary>' + esc(name) + '</summary><div class="license-text">' + esc(window.LMA_NOTICES[name]) + '</div></details>'; }).join(''), 'license'); break;
     }

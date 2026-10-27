@@ -18,11 +18,14 @@ import org.json.*;
 public final class BackendTest {
     private static final List<String> passed = new ArrayList<>();
     private static final List<Downloads> transfers = new ArrayList<>();
+    private static final List<ApiHost> gateways = new ArrayList<>();
     private static final List<EngineHost> engines = new ArrayList<>();
     private static final List<ChatRunner> chats = new ArrayList<>();
     private static final List<LmaApp> applications = new ArrayList<>();
     private static Path root, work, assets, libraries;
     private static HttpsServer https;
+    private static LocalHttp redirectTrap;
+    private static final AtomicInteger inferenceRedirects = new AtomicInteger();
     private static SSLServerSocket truncatedServer;
     private static ExecutorService httpWorkers;
     private static String base;
@@ -173,6 +176,7 @@ public final class BackendTest {
             command.add("-Dsun.net.useExclusiveBind=false"); command.add("-Dfile.encoding=UTF-8"); command.add("-Dstdout.encoding=UTF-8"); command.add("-Dstderr.encoding=UTF-8");
             command.add("-cp"); command.add(System.getProperty("java.class.path")); command.add("com.lma.app.HostServer"); command.addAll(builder.command().subList(1, builder.command().size()));
             ProcessBuilder fixture = new ProcessBuilder(command).redirectErrorStream(true); fixture.directory(root.toFile()); fixture.environment().putAll(builder.environment());
+            fixture.environment().put("LMA_HOST_REDIRECT_URL", "http://127.0.0.1:" + redirectTrap.port() + "/unowned");
             fixture.environment().put("LMA_HOST_BEHAVIOR", mode); fixture.environment().put("LMA_HOST_LAST_REQUEST", work.resolve("last-request.json").toString());
             return fixture.start();
         });
@@ -180,16 +184,44 @@ public final class BackendTest {
     }
     private static void model(LmaApp app, String id) throws Exception { Files.write(app.store.modelFile(id).toPath(), payload); }
     private static void testProcessesAndChat() throws Exception {
+        redirectTrap = new LocalHttp("127.0.0.1", 0, request -> { inferenceRedirects.incrementAndGet(); return LocalApi.json(200, new JSONObject().put("fixture", true)); });
         LmaApp app = app("engine"); LmaService owner = new LmaService(); AtomicInteger launches = new AtomicInteger();
-        app.prefs.edit().putInt("port", freePort()).apply(); model(app, "m08"); model(app, "m01");
+        app.prefs.edit().putInt("port", freePort()).apply();
+        ApiHost gateway = new ApiHost(owner, app); gateways.add(gateway); gateway.start();
+        HttpURLConnection emptyModels = Net.local(app, "/v1/models");
+        try { check(emptyModels.getResponseCode() == 200 && new JSONObject(Store.read(emptyModels.getInputStream(), 65536)).getJSONArray("data").length() == 0 && app.nativeProcess == null, "Production gateway starts with zero installed weights and no engine process"); } finally { emptyModels.disconnect(); }
+        model(app, "m08"); model(app, "m01");
         app.store.saveConfig("m08", new JSONObject().put("context", 1536).put("threads", 2).put("maxTokens", 321).put("temperature", 1.1).put("systemPrompt", "model eight prompt"));
         app.store.saveConfig("m01", new JSONObject().put("context", 777).put("threads", 1).put("reasoning", "auto"));
         EngineHost host = engine(owner, app, "normal", launches); host.load("m08");
         waitFor(host::ready, 10000, "Child process ready"); check(app.engineModel.equals("m08"), "Real child process passes health, authenticated models and alias checks");
         List<Object> argv = new JSONArray(new String(Files.readAllBytes(work.resolve("last-engine-argv.json")), StandardCharsets.UTF_8)).toList();
         check(argv.get(argv.indexOf("-c") + 1).equals("1536") && argv.get(argv.indexOf("-t") + 1).equals("2"), "EngineHost starts the child with the chosen model's context and thread settings");
-        HttpURLConnection unauthorized = (HttpURLConnection) new URL("http://127.0.0.1:" + app.prefs.getInt("port", 0) + "/v1/models").openConnection();
-        check(unauthorized.getResponseCode() == 401, "Protocol fixture rejects missing API key"); unauthorized.disconnect();
+        HttpURLConnection unauthorized = (HttpURLConnection) new URL("http://127.0.0.1:" + app.nativePort + "/v1/models").openConnection();
+        check(unauthorized.getResponseCode() == 401, "Private native endpoint rejects missing API key"); unauthorized.disconnect();
+        check(app.nativePort != app.prefs.getInt("port", 0) && !app.nativeApiKey.equals(app.prefs.getString("apiKey", "")) && argv.get(argv.indexOf("--host") + 1).equals("127.0.0.1"), "Native text uses a separate loopback port and per-process secret");
+        HttpURLConnection publicModels = Net.local(app, "/v1/models");
+        try { check(publicModels.getResponseCode() == 200 && new JSONObject(Store.read(publicModels.getInputStream(), 65536)).getJSONArray("data").length() == 2, "Production Android adapter serves installed model metadata through the public gateway"); } finally { publicModels.disconnect(); }
+        HttpURLConnection redirected = Net.local(app, "/v1/chat/completions"); redirected.setRequestMethod("POST"); redirected.setDoOutput(true); redirected.setRequestProperty("Content-Type", "application/json");
+        byte[] redirectBody = new JSONObject().put("messages", new JSONArray().put(new JSONObject().put("role", "user").put("content", "redirect"))).put("stream", true).toString().getBytes(StandardCharsets.UTF_8);
+        redirected.setFixedLengthStreamingMode(redirectBody.length); try (OutputStream out = redirected.getOutputStream()) { out.write(redirectBody); }
+        try { check(redirected.getResponseCode() == 502 && inferenceRedirects.get() == 0, "Native inference redirects are rejected without contacting another endpoint"); } finally { redirected.disconnect(); }
+        HttpURLConnection publicChat = Net.local(app, "/v1/chat/completions"); publicChat.setRequestMethod("POST"); publicChat.setDoOutput(true); publicChat.setRequestProperty("Content-Type", "application/json");
+        byte[] publicBody = new JSONObject().put("messages", new JSONArray().put(new JSONObject().put("role", "user").put("content", "stop"))).put("stream", true).put("max_tokens", 99999).toString().getBytes(StandardCharsets.UTF_8);
+        publicChat.setFixedLengthStreamingMode(publicBody.length); try (OutputStream out = publicChat.getOutputStream()) { out.write(publicBody); }
+        check(publicChat.getResponseCode() == 200 && publicChat.getHeaderField("X-LMA-Max-Tokens").equals("321"), "Production gateway applies the loaded profile's output ceiling before proxying");
+        try (BufferedReader stream = new BufferedReader(new InputStreamReader(publicChat.getInputStream(), StandardCharsets.UTF_8))) {
+            check(stream.readLine().startsWith("data:") && app.textRequestBusy, "Public streaming requests retain the shared execution lease");
+            ChatRunner blocked = new ChatRunner(owner, app); chats.add(blocked);
+            rejects(() -> blocked.send("duplicate"), "App chat cannot bypass an active external text request");
+            rejects(() -> host.load("m01"), "Model loading cannot bypass an active external text request");
+            JSONObject forwarded = new JSONObject(new String(Files.readAllBytes(work.resolve("last-request.json")), StandardCharsets.UTF_8));
+            check(forwarded.getInt("max_tokens") == 321 && forwarded.getJSONArray("messages").length() == 1 && forwarded.getDouble("temperature") == 1.1, "Gateway proxy uses model defaults without injecting the App system prompt");
+            gateway.cancelText();
+        } finally { publicChat.disconnect(); }
+        waitFor(() -> !app.textRequestBusy, 4000, "External text lease release"); check(!app.textRequestBusy, "Cancelling the proxy releases native connection ownership");
+        gateway.stop(); check(!gateway.ready() && !app.prefs.getBoolean("desiredApi", true) && host.ready(), "Stopping the public API preserves the independent loaded engine and clears only API restoration");
+        gateway.start(); check(gateway.ready() && host.ready(), "Restarting the API does not reload or replace model assets");
         host.load("m01"); waitFor(() -> host.ready() && app.engineModel.equals("m01"), 10000, "Model switch"); check(launches.get() == 2, "Model switch retires old child and loads selected alias");
         argv = new JSONArray(new String(Files.readAllBytes(work.resolve("last-engine-argv.json")), StandardCharsets.UTF_8)).toList();
         check(argv.get(argv.indexOf("-c") + 1).equals("777") && argv.get(argv.indexOf("--reasoning") + 1).equals("auto"), "Switching model replaces load parameters with that model's saved profile");
@@ -223,13 +255,14 @@ public final class BackendTest {
         try {
             String signal = new BufferedReader(new InputStreamReader(occupied.getInputStream(), StandardCharsets.UTF_8)).readLine();
             if (!"exclusive port occupied".equals(signal)) throw new IOException("Exclusive port fixture did not start: " + signal);
-            replacement.load("m08"); waitFor(() -> app.engineState.equals("error") && app.lastError.contains("占用"), 4000, "Port collision"); check(!replacement.ready(), "Port collision produces a specific error instead of false readiness");
+            replacement.load("m08"); waitFor(replacement::ready, 10000, "Private native port"); check(replacement.ready(), "An occupied public port cannot redirect the private native engine");
+            rejects(() -> gateway.configure(app.prefs.getInt("port", 0), false), "Public gateway reports port conflicts independently of engine readiness");
         } finally { occupied.destroyForcibly(); occupied.waitFor(); }
         replacement.close();
         app.prefs.edit().putInt("port", freePort()).apply(); EngineHost wrong = engine(owner, app, "wrong-alias", launches); wrong.load("m08");
         waitFor(() -> {
             HttpURLConnection connection = null;
-            try { connection = Net.local(app, "/v1/models"); connection.setReadTimeout(1000); return connection.getResponseCode() == 200 && Store.read(connection.getInputStream(), 65536).contains("foreign-model"); }
+            try { connection = Net.engine(app, "/v1/models"); connection.setReadTimeout(1000); return connection.getResponseCode() == 200 && Store.read(connection.getInputStream(), 65536).contains("foreign-model"); }
             catch (IOException ignored) { return false; } finally { if (connection != null) connection.disconnect(); }
         }, 10000, "Wrong alias fixture responds");
         check(!wrong.ready(), "Healthy endpoint with wrong model alias cannot mark engine ready"); wrong.close();
@@ -257,7 +290,7 @@ public final class BackendTest {
             for (LmaApp app : applications) { System.err.println("STATE " + app.engineState + " / " + app.engineDetail); for (String line : app.logs) System.err.println(line); }
             throw failure;
         } finally {
-            for (ChatRunner c : chats) c.close(); for (Downloads d : transfers) d.close(); for (EngineHost e : engines) e.close();
+            if (redirectTrap != null) redirectTrap.close(); for (ApiHost api : gateways) api.close(); for (ChatRunner c : chats) c.close(); for (Downloads d : transfers) d.close(); for (EngineHost e : engines) e.close();
             if (truncatedServer != null) truncatedServer.close();
             if (https != null) https.stop(0); if (httpWorkers != null) httpWorkers.shutdownNow();
         }

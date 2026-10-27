@@ -106,6 +106,7 @@ public final class HostServer {
                 String path = System.getenv("LMA_HOST_LAST_REQUEST");
                 if (path != null) Files.write(Paths.get(path), payload.toString().getBytes(StandardCharsets.UTF_8));
                 if (prompt.equals("json-error")) { respond(exchange, 400, "{\"error\":{\"message\":\"Prompt is too long\"}}"); return; }
+                if (prompt.equals("redirect")) { exchange.getResponseHeaders().set("Location", System.getenv("LMA_HOST_REDIRECT_URL")); respond(exchange, 302, "{}"); return; }
                 if (prompt.equals("long-prefill")) Thread.sleep(8000);
                 exchange.getResponseHeaders().set("Content-Type", "text/event-stream; charset=utf-8"); exchange.sendResponseHeaders(200, 0);
                 try (OutputStream out = exchange.getResponseBody()) {

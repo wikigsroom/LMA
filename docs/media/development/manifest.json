@@ -1,5 +1,5 @@
 {
-  "version": "0.3.0-dev",
+  "version": "0.3.0-dev.2",
   "kind": "development UI with explicit simulated native bridge",
   "android_device": false,
   "model_inference": false,
@@ -10,6 +10,10 @@
     {
       "file": "01-recommended.png",
       "caption": "Preserved recommendations and independent output filters / 原推荐与功能筛选"
+    },
+    {
+      "file": "08-zero-model-api.png",
+      "caption": "API controls independent of model installation / 零模型状态独立启动接口，界面夹具"
     },
     {
       "file": "02-local-tags.png",
@@ -64,32 +68,37 @@
     },
     {
       "file": "06-queue-results.png",
-      "bytes": 44593,
-      "sha256": "5d017dd266f64431af7a12817ef1c4dddba6ee6277aadc4dc1e36ff77f066819"
+      "bytes": 44586,
+      "sha256": "f5c3655734d8b0227a3f5aa27a5b9e9ceeb09b79356c2c859d50036c8a8aef25"
     },
     {
       "file": "07-cancelled.png",
-      "bytes": 44785,
-      "sha256": "dae3a73dc8f697f8bf2dd8cabdf5f685bb111c7c77c0016191ef2776d6536681"
+      "bytes": 44777,
+      "sha256": "4a039e1914c2be5c363a081caee8786f236178a2b6114b341ed1457764278ae1"
+    },
+    {
+      "file": "08-zero-model-api.png",
+      "bytes": 42105,
+      "sha256": "5c3be7290d658bf255508e052a5041350b6451c1c52a00bb28c0b5d66bc73f45"
     },
     {
       "file": "foundation-ui.gif",
-      "bytes": 983738,
-      "sha256": "337f485c39c833aa50b02d90bd564fcff9e3af778a3c03c3b002b04e1ee184ac"
+      "bytes": 1069970,
+      "sha256": "86469c0a5c9b240de182ed6f4d8507ccd1b663c56feb7932d84ac1cf5bf806e8"
     },
     {
       "file": "foundation-ui.mp4",
-      "bytes": 345193,
-      "sha256": "2401231e4d11a4dcb964db80981497e5bb38512e14866d9f6bd1988dd46ea33c"
+      "bytes": 405313,
+      "sha256": "9baba612403bef9a2e37447752d620af31ac605428bb69162a0d09e1e229613f"
     }
   ],
   "input_fingerprint": {
     "app/src/main/assets/app.css": "f2cb7b5ee9de8f3afac793e694dcf9fde0a855c0d4c7053ff986cc2a6d2bd3b1",
-    "app/src/main/assets/app.js": "f8b7275edc6769fed37a0743354e63353c7c6aba19f3e0705c1dfcefe5715790",
+    "app/src/main/assets/app.js": "d477539d4ff11795db519cfd8aafb59ab0c5cadbe6221e2eb8ec9f5e1058af49",
     "app/src/main/assets/engine-builds.json": "2a096144a28e26ef9f9efa23ca8355f1844dc18741197649f74e3cef97809dae",
     "app/src/main/assets/foundation.css": "a2e09ccedc4f337d5d7e98775b0c7e90369d3fb0242e099148870b38c87605b1",
     "app/src/main/assets/foundation.js": "09d7eb78b5bfdbbd12858e23210fdff5b1993ad3ee279dfed78e26a9ccb15f31",
-    "app/src/main/assets/index.html": "07ba7c653c26544ecb28ecb8755da8881568f44d859f130172d63b207c459f1b",
+    "app/src/main/assets/index.html": "328f1a8bf98920c07da51f0c0da49d66487ee4870e51d6a96e0528ecb5e9c268",
     "app/src/main/assets/license.js": "bc351193fef4b8667e5a65aa0fbb225f814fcbe59268e69b9a69f22ad137f839",
     "app/src/main/assets/licenses/LLAMA_CPP_LICENSE": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
     "app/src/main/assets/licenses/LMA_LICENSE": "6ae3f5efa412d91cbf66e44f743e5ce41a8044309d05d893365206ab9bc35fc3",
@@ -120,6 +129,6 @@
     "app/src/main/assets/model-bundles.json": "d44878e1f902a126e9e690b0a6e7054e5ae7b966174130aa49ef1c88ed7ccd68",
     "app/src/main/assets/models.json": "c3e884b4e5fb06f20c036deebc78e6f953ac420e76fca72bab5a25fd59927156",
     "tests/foundation-ui.cjs": "fe513e289efc4f9aa874f7cb561ba27445ef74f9f9d5b80387b96280298ed971",
-    "tools/capture_foundation.cjs": "04942b718dd72d8d6d34ae550b24519805558f3be4307260a028826e6159b770"
+    "tools/capture_foundation.cjs": "654c7eabfdf85028d604196cf7ba2d6185023748b5c6655e5ac456e1e7705bd6"
   }
 }
