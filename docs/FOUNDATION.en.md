@@ -1,10 +1,12 @@
 # LMA extensible local multimodal foundation
 
-[中文](FOUNDATION.md) · [Local-model assessment](MULTIMODAL.en.md) · [Workflow proposal](WORKFLOWS.en.md) · [Documentation](README.md)
+[中文](FOUNDATION.md) · [Local-model assessment](MULTIMODAL.en.md) · [Task execution](WORKFLOWS.en.md) · [Current release requirements](MULTIMODAL_RELEASE_PLAN.en.md) · [Documentation](README.md)
 
-Date: **2026-10-27 (Asia/Taipei)**. Decision: **this is buildable, and an extensible local multi-engine foundation should be the main product direction.** New models should reuse downloading, settings, jobs, workflows and artifact management instead of becoming separate application features. Every inference stage remains on the same Android phone without ROOT or off-device inference/fallbacks.
+Date: **2026-10-27 (Asia/Taipei)**. Decision: **this is buildable, and an extensible local multi-engine foundation should be the main product direction.** New models should reuse downloading, settings, jobs and artifact management instead of becoming separate application features. Every inference stage remains on the same Android phone without ROOT or off-device inference/fallbacks.
 
 This evaluates current source and upstream native/Android engines. **The foundation is not implemented.** Current APK 0.2.0 executes single-file text GGUF only. No new weights were downloaded, engines built, phone generation run or endurance measured. Z20 is a constrained device to accommodate, not the upper limit of the product.
+
+The [current release plan](MULTIMODAL_RELEASE_PLAN.en.md) governs scope: 01–14/16/17, equal peer models with output/dependency tags, task forms/queue/artifacts, without a ComfyUI canvas, user nodes, plugin ecosystem or graph import. Internal engine modules are application code.
 
 ## 01 · Evidence and limits
 
@@ -35,9 +37,9 @@ Tasks combine these layers. `video.generate` is not synonymous with Wan, `audio.
 
 ```mermaid
 flowchart TD
-    UI[Library / task pages / local API / node canvas] --> C[Versioned task and parameter contracts]
+    UI[Flat library / task forms / local API / artifacts] --> C[Versioned task and parameter contracts]
     C --> R[Recipe resolution / capabilities / device admission]
-    R --> J[Persistent jobs / DAG / memory and thermal scheduling]
+    R --> J[Persistent jobs / internal stages / memory and thermal scheduling]
     B[Bundles / components / verification / model settings] --> R
     J --> P[Provider pipeline adapters]
     P --> T[llama.cpp text]
@@ -49,7 +51,7 @@ flowchart TD
     O --> UI
 ```
 
-Pages and workflows use one task contract, without independent model-launch code. A single image request also goes through jobs; a workflow connects tasks that remain independently callable. Changing models updates controls from capability and parameter descriptors.
+Pages and API use one task contract. A single image request uses the common queue; encoding/sampling/decoding dependencies stay inside pipelines without user node wiring. Capability and parameter descriptors determine forms when models change.
 
 ## 04 · Models, components and recipes
 
@@ -61,7 +63,7 @@ Content hashes index shared components; a dependency graph supports deletion and
 
 HF search remains broad, with separate discovered, recipe-available, installed, eligible-to-try and verified-on-target states. Show required components, total downloads, reused assets and reasons. Initially distribute prepared compatible assets: users need no attached computer for conversion, and no external conversion/inference service is invoked. Missing recipes produce an unsupported explanation.
 
-## 05 · What engine plugins mean
+## 05 · Internal application engine modules
 
 | Runtime route | Foundation role | Initial integration |
 | --- | --- | --- |
@@ -83,7 +85,7 @@ Start workers only when needed. Z20 defaults to one large-engine lease, not five
 
 ## 06 · Common tasks, task-specific semantics
 
-A shared request envelope contains job ID/idempotency key, task type, model/recipe references, input artifacts, parameter overrides, priority and version. Distinguish at least `text.generate`, `image.generate`, `video.generate`, `speech.synthesize`, `audio.generate` and `media.compose`. Image-to-image, image-to-video and editing need appropriate input schemas.
+A shared request envelope contains job ID/idempotency key, task type, model/recipe references, input artifacts, parameter overrides, priority and version. Distinguish `text.generate`, `image.generate`, `video.generate`, `speech.synthesize` and `audio.generate`. Composition, image-to-image, image-to-video and editing are future extension points, not automatically included initial capabilities.
 
 A common lifecycle is `probe → validate → plan → load → run → cancel / finish → unload`. Declare streaming, progress, preview, cancellation, pause and checkpoint support individually. Do not fabricate previews/pauses; if an engine provides no progress denominator, show stage state.
 
@@ -91,19 +93,19 @@ Parameters use versioned model/recipe schemas. Context, CFG, steps, voice and au
 
 Editable presets clamp known hard limits; dimensions/frame counts/compiled shapes require joint validation. Separate model constraints, backend limits and resource estimates. Estimates are not rated model maxima. Snapshot requested values, effective values and adjustment reasons.
 
-Events share job/node ID, sequence, time and type, with distinct token, diffusion-step, audio-chunk, preview and artifact payloads. Image/video tasks are not presented as continuous text tokens. Bound audio/preview queues to avoid unlimited RAM consumption when a consumer is slow.
+Events share job/internal-stage ID, sequence, time and type, with distinct token, diffusion-step, audio-chunk, preview and artifact payloads. Image/video tasks are not presented as continuous text tokens. Bound audio/preview queues to avoid unlimited RAM consumption when a consumer is slow.
 
-## 07 · Resources, artifacts and workflows
+## 07 · Resources, artifacts and internal task execution
 
 Plan the complete pipeline, including staged encoder/backbone/VAE memory, OS/UI/driver headroom, temporary disk and outputs. Download bytes are not RAM requirements. Use measured recipes and current device state to queue, reject or offer legal lower profiles; unknown estimates cannot become guaranteed eligibility.
 
 The scheduler owns engine leases, foreground execution, cancellation ownership, timeouts and bounded crash recovery. A failure releases its worker and records a clear state. Bind process identity to job and launch generation so cancellation cannot kill a later job. Resource failures never offload or silently substitute another model.
 
-Artifacts are local references with provenance, hash, MIME, dimensions/duration and sample rate/fps. Large tensors stay inside providers. Latent shapes/scales/encoders/VAEs are not interchangeable across engines: initially exchange decoded image/audio/video artifacts. Expose tensor nodes only under an explicitly compatible, versioned latent contract.
+Artifacts are local references with provenance, hash, MIME, dimensions/duration and sample rate/fps. Large tensors stay inside providers. Latent shapes/scales/encoders/VAEs are not interchangeable across engines: initially exchange decoded image/audio/video artifacts. Keep intermediate tensors inside matching pipelines; user tensor-node wiring is not required.
 
-SQLite persists jobs, nodes, settings snapshots, events and artifacts. Reuse verified completed nodes after restart. Intermediate resume requires real engine checkpoints matching model hashes, engine and configuration. Cache keys also include recipes, input hashes and effective seeds to prevent invalid reuse across versions.
+SQLite persists jobs, internal stages, settings snapshots, events and artifacts. Reuse verified completed stages after restart. Intermediate resume requires real engine checkpoints matching model hashes, engine and configuration. Cache keys also include recipes, input hashes and effective seeds to prevent invalid reuse across versions.
 
-ComfyUI-like DAGs, templates, canvas, reruns, previews and queues reuse this layer. Import only whitelisted nodes that map to equivalent on-phone implementations. Do not execute arbitrary Python custom nodes, scripts or external-service nodes. [Workflow details](WORKFLOWS.en.md)
+Use a flat model library, task forms, a common queue, previews and regeneration. Internal dependencies do not require a public DAG/canvas/node/plugin system or ComfyUI import. [Task/background details](WORKFLOWS.en.md)
 
 ## 08 · Migration from current code
 
@@ -125,10 +127,10 @@ Preserve Recommended `m08 → m06 → m01`, broad All/search discovery, Local ma
 | --- | --- | --- |
 | F1: contracts/migration | Bundle/recipe/capability/settings protocols, old text provider, durable task layer | Existing models/settings/downloads/text API work; no model-ID-specific UI routing |
 | F2: cross-modality execution | One image, one audio and one actual video-generation pipeline on the shared queue/artifact store | At least two engine modules; video may be experimental, but a still-image MP4 does not qualify |
-| F3: data extension | Second supported weight/adapter and a different architecture provider | First addition changes no page/queue code; second does not rewrite library/downloads/workflows |
+| F3: data extension | Second supported weight/adapter and a different architecture provider | First addition changes no page/queue code; second does not rewrite library/downloads/jobs |
 | F4: devices/failures | Z20-class and newer-device capability/resource/background checks, crashes, missing files, cancellation, disk exhaustion and migrations | Results trace to model/engine/backend/device combinations, with offline generation throughout |
-| F5: workflows/release | Runnable templates, node editing, partial reruns, bilingual guides and actual output demonstrations | Single jobs and graphs use the same protocol, not duplicate schedulers/component stores |
+| F5: interaction/release | Working task forms, queue/artifacts, bilingual guides and actual output demonstrations | All four outputs share task/component contracts; no node editor or graph compatibility required |
 
-Host contract/migration checks can advance F1. **F2/F4 phone execution cannot be replaced by fixtures, JSON drafts or source review.** No device is available now, so the foundation cannot yet be declared complete or all modalities supported. ROOT-free foreground services also cannot guarantee survival; see workflow background/recovery limits.
+Host contract/migration checks can advance F1. **F2/F4 phone execution cannot be replaced by fixtures, JSON drafts or source review.** No device is available now, so the foundation cannot yet be declared complete or all modalities supported. ROOT-free foreground services also cannot guarantee survival; see task/background recovery limits.
 
-The continuing costs are new native architecture pipelines, mobile operators/quantization quality, resource measurements and upstream maintenance. Descriptors and a canvas cannot solve those alone. Validate a shared image/audio/video execution chain first, then expand model coverage. New models and engines will have explicit extension points, with Z20 and newer-device capabilities coexisting in one product.
+The continuing costs are new native architecture pipelines, mobile operators/quantization quality, resource measurements and upstream maintenance. Descriptors and task forms cannot solve those alone. Validate a shared image/audio/video execution chain first, then expand model coverage. New models and engines will have explicit extension points, with Z20 and newer-device capabilities coexisting in one product.

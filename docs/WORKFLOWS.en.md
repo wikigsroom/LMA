@@ -1,108 +1,87 @@
-# Fully local Android workflow framework
+# Android local jobs and internal execution stages
 
-[中文](WORKFLOWS.md) · [Shared foundation](FOUNDATION.en.md) · [Local-model feasibility](MULTIMODAL.en.md) · [Current architecture](ARCHITECTURE.en.md)
+[中文](WORKFLOWS.md) · [Current requirements/releases](MULTIMODAL_RELEASE_PLAN.en.md) · [Foundation](FOUNDATION.en.md) · [Current architecture](ARCHITECTURE.en.md)
 
-Status: **design proposal dated 2026-10-27, not implemented in the APK**. Two JSON drafts review contracts; they are not executable imports for current LMA or ComfyUI: [local narrated image clip](proposals/local-narrated-image.workflow.json), [on-phone Wan video experiment](proposals/local-wan-video.workflow.json). Every stage runs on the same Android phone, without ROOT, Docker, WSL, VMs or emulators.
+Status: **unimplemented design, 2026-10-27**. The latest scope uses model selection, task forms, a queue and artifacts. No ComfyUI wiring, infinite canvas, user node/plugin ecosystem or graph import. The [release plan](MULTIMODAL_RELEASE_PLAN.en.md) defines selections 01–14/16/17. Every stage executes on the same Android phone, without ROOT, Docker, WSL, VMs or emulators.
 
-## Execution boundary
+## Interaction and execution boundary
 
-Use an **LMA typed DAG, native Android job executor and on-phone providers**. Nodes describe real dependencies and data types. Deliver runnable templates, queue and previews before the advanced canvas.
-
-Model download is a separate, user-visible operation before generation. Execution performs text processing, encoding, sampling, codecs, composition and saving on the phone. There are no external inference providers, service-address settings or off-device fallbacks. Missing assets, unsupported operators or resource exhaustion produce a specific local error; users may download components or choose another supported local recipe.
+Choose a model/recipe from one flat library, fill its capability-specific form, submit a local job and inspect the result. Task tags filter the common pool rather than creating four downloaders or model hierarchies. Preserve Recommended, Local and settings keyed by model ID.
 
 ```mermaid
 flowchart TD
-    UI[Templates / node canvas] --> BRIDGE[Native bridge / contract validation]
-    BRIDGE --> JOBS[Local queue / SQLite events and artifacts]
-    JOBS --> PLAN[DAG planning / admission / one large-engine lease]
-    PLAN --> TEXT[On-phone llama.cpp]
-    PLAN --> IMAGE[On-phone sd.cpp / MNN]
-    PLAN --> AUDIO[On-phone sherpa-onnx / ORT / LiteRT]
-    PLAN --> VIDEO[On-phone Wan / old LTX experiments]
-    TEXT --> STORE[Private phone artifact store]
+    UI[Flat library / task form / local API] --> VALIDATE[Capabilities and model settings]
+    VALIDATE --> JOBS[Durable queue / events / cancel]
+    JOBS --> PLAN[Admission / internal stages / one heavy engine]
+    PLAN --> TEXT[On-phone text engine]
+    PLAN --> IMAGE[On-phone image engine]
+    PLAN --> AUDIO[On-phone audio engine]
+    PLAN --> VIDEO[On-phone video engine]
+    TEXT --> STORE[Controlled artifacts / provenance and settings]
     IMAGE --> STORE
     AUDIO --> STORE
     VIDEO --> STORE
-    STORE --> MEDIA[Android encoding / composition / export]
-    MEDIA --> UI
-    DOWNLOAD[HF downloads / revisions / SHA256] --> BUNDLES[Local components and dependencies]
-    BUNDLES --> PLAN
+    STORE --> UI
+    DOWNLOAD[Explicit HF download / verification] --> BUNDLE[Local components and pinned recipes]
+    BUNDLE --> PLAN
 ```
 
-This is a proposed architecture, not a claim that these engines are installed. Current LMA's single-file `.gguf` downloader and single text process cannot directly execute every task. [Current implementation](ARCHITECTURE.en.md)
+This does not imply these engines are packaged. Current single-file `.gguf` downloading and the single text process need migration. Tokenization, encoding, sampling, codecs and media processing remain on-phone, without external execution providers or resource-related offloading. Discovery/downloads and execution are separate; missing assets, unknown operators and resource failures produce specific local errors.
 
-## Bundles and providers
+## Bundles and internal engines
 
-Separate model identity from multi-component bundles: `model → pinned recipe → components → compatible provider/device profile`. Each bundle records:
+Separate model, components and recipe: `ModelRecord → pinned recipe → complete components → compatible engine/device`. These are technical dependencies, not model ranks.
 
-- Source, task, exact version/revision, license, tags and evidence level; file paths, sizes, SHA256 and dependency roles.
-- Backbone, text encoders, tokenizers/dictionaries, VAEs/codecs, voices and optional adapters. Any missing mandatory component prevents ready status.
-- Provider, ABI/minSdk/engine version, backend and required operators. QNN also pins SoC/Hexagon, QAIRT libraries and compiled graph shapes.
-- Editable per-model settings, caps, enumerations, joint constraints and defaults. Reference download bytes, measured peak RAM and elapsed time are separate fields.
-- States `available → downloading → verifying → ready`, with `paused / incomplete / incompatible / failed`; component and total progress.
+- Pin source/revision, license, roles, paths, sizes and SHA256, including mandatory backbone, tokenizer/dictionary, text encoder, VAE/codec, voice and adapter assets.
+- Recipes declare ABI/minSdk/engine build/operators/backend. QNN also pins SoC/Hexagon, QAIRT and compiled shapes.
+- Keep installation, compatibility, capability and evidence separate. Atomically publish a bundle only after component verification; downloaded main weights do not mean executable.
+- Share components by content hash/reference count with resume/pause, space budgets and deletion protection. Do not clean active task inputs.
+- Budget file, bundle, staging and output space separately. Current single-file limits are not new bundle limits.
 
-Download to private `.part` files and publish atomically after verification. Share components by content hash/reference count; show remaining references before deletion. Reserve space for staging and outputs, and support resume after cancellation/restart. Current single-file caps are not a multi-component bundle limit: file, bundle and free-space checks require separate design.
-
-| Proposed provider | On-phone responsibility | Boundary |
+| Internal route | On-phone responsibility | Boundary |
 | --- | --- | --- |
-| `llama_text` | Preserve compatible text GGUF, structured text/token output | Do not send arbitrary audio/video GGUF to the generic text interface |
-| `sd_cpp` | SD 1.5/matching LoRA, later exact image and Wan recipes | Check architecture, operators and all components; baseline CPU, Vulkan after probing |
-| `mnn_diffusion` | Specific SD/Sana mobile bundles | Matching converted graphs, text processing and versions only; experimental Wan bring-up is not delivered support |
-| `sherpa_tts` / `ort_tts` | Small TTS, language packs and Nano tokenizer/codec | Declare voices/languages, chunks, cancellation and sample rates |
-| `litert_audio` / dedicated Qwen TTS | Complete Talker/MTP/codec or short-sound pipeline | Validate host loop, API 28, quantization and measured speed; no automatic realtime claim |
-| `ltx_native` | Older LTX 2B Vulkan or legally integrable chip-specific QNN | Match QNN bundle, SDK, shapes and license; no incompatible NPU package on Z20 |
-| `android_media` | Image/audio/video reading, MediaCodec/MediaMuxer composition/export | Probe containers, codecs and dimensions; fail explicitly without network transcoding |
+| `llama_text` | Existing text GGUF/tokens | Do not send non-text GGUF to the generic text interface |
+| `sd_cpp` / `wan_sd_cpp` | Matching image architectures, LoRA and Wan pipelines | Validate compiled architecture, operators, sampler, text encoding and VAE |
+| `mnn_diffusion` | Sana/specific mobile image packages | Match converted graphs, text processing and versions |
+| `sherpa_tts` / `moss_nano_ort` | Small TTS and complete Nano pipeline | Declare language/voice/tokenizer/codec; pretokenized samples are insufficient |
+| Qwen TTS / Stable Audio | Talker/MTP/codec or short-sound pipeline | Validate API/backend/host loop and measured speed separately |
+| Dedicated MOSS/SoulX adapters | Complete architecture-specific audio pipelines | Port individually; generic graph runtimes are insufficient |
+| Native LTX routes | Older 2B Vulkan or legally integrable QNN | Match license, compiled bundle, SDK/device; incompatible QNN packages stay disabled on Z20 |
 
-Provider contracts include `probe / validateBundle / estimateResources / load / run / cancel / unload`, emitting ordered progress, previews, artifacts and errors. Heavy engines may run in separate native worker processes owned by a foreground service, independently of Activity/WebView lifetime.
+The engine contract is `probe / validateBundle / estimateResources / load / run / cancel / unload`, with ordered progress, previews, artifacts and errors. Heavy workers may run in separate processes owned by a foreground service, independently of Activity/WebView lifetime.
 
-Distribute audited engines/dependencies with the APK or reviewed release components; model folders contain data. Use JNI or argument-array `ProcessBuilder`, never shell interpolation or arbitrary HF Python/`trust_remote_code`. Separate the download client from executor networking. Executors accept validated local file handles/IDs, not external URLs; any internal engine HTTP is loopback-only. Static call review plus offline tests enforce this boundary; a JSON local flag alone does not.
+Versioned native modules ship/load through ordinary signed APK releases, without a user-installable plugin system. Model descriptors cannot execute scripts or arbitrary expressions. Use JNI/argument-array `ProcessBuilder`; do not run HF Python/`trust_remote_code`. Workers receive controlled local handles/IDs; internal HTTP is loopback-only and never an external inference connection.
 
-## Typed nodes and data
+## Jobs, internal stages and data
 
-Initial types are `Text`, `ImageArtifact`, `AudioArtifact`, `VideoArtifact`, `ModelBundleRef` and family-specific `LoRARef`. Artifacts are controlled local references with MIME type, dimensions/duration, sample rate/fps, hash and source job. Do not pass large tensors, PCM or arbitrary filesystem paths through JavaScript.
+A job holds `task_type / model_id / recipe / inputs / settings / idempotency_key`. Encoding, sampling and decoding can be internal stages. No public node-type system, wiring ports or editable-graph schema is required. All jobs use the same scheduler.
 
-Initial nodes cover text input, structured LLM composition, images, TTS, media composition, preview and save. Actual video-generation nodes carry a separate experimental status. Encoding one still image into MP4 is not model-generated motion.
+Artifacts are controlled local references with MIME, dimensions/duration, sample rate/fps, hash and source. Keep large tensors/PCM in native workers and bound audio/preview queues. Exchange decoded media across engines; arbitrary latent interoperability is not promised.
 
-Before execution, check schema, unique IDs, ports/types, required inputs, one connection per required input, acyclicity, model bindings, all dependencies, device recipes and settings. Resolve every model reference to a pinned local bundle. JSON contains no credentials or external service addresses. Reject HTTP inference/external-execution nodes and explicitly identify unmapped nodes.
+Validate task, declared capabilities, inputs, complete bundle, device recipe and settings. Preview controlled artifacts without executing model-produced code/HTML. Validate structured model outputs too. Still-image MP4 encoding does not qualify as generative motion video, and automatic narrated composition is not mandatory scope.
 
-Validate structured LLM outputs before using them as parameters; return parsing errors instead of executing generated code. Preview only controlled local artifacts, never model-generated HTML. Graph editing does not implicitly download assets or start generation.
+## Per-model settings and joint constraints
 
-## Per-model settings and joint limits
+Local edits use editable preset selectors by model ID, with explicit recipe subprofiles. Jobs snapshot effective settings, revision, engine build, seed, component hashes and device. Global settings manage application preferences.
 
-Preserve the user's requirement: edit settings with editable presets under each model ID in Local. Workflows hold references and permitted overrides. On job start, snapshot **effective settings, model revision, provider, seed, dependency hashes and device information**.
+Above a known model hard maximum, return the highest legal value and explain the correction. Jointly validate backend shapes, dimension multiples, pixel budget, frame form, batch, sampler and distilled steps; reject when no legal combination exists. Unknown maxima remain unknown; resource estimates are not model maxima. Wan frame rules such as `4n+1` belong to specific recipes. QNN exposes compiled shapes rather than implying arbitrary editable dimensions.
 
-Clamp values beyond known model hard limits to the maximum legal value and show the change. Device-memory policy may choose a lower effective setting with an explanation. Mark unknown model limits as unknown; do not invent rated maxima. Expose requested/effective values and reasons.
+Validate LoRA base families/component versions and TTS language, voice, text and required reference audio. Segment/stream only with real engine support. Editable fields do not bypass native constraints.
 
-Image/video limits are not independent numeric maxima. Validate width/height multiples, pixel budget, frame form, batch, sampler and distillation steps jointly. Wan's reference frames follow `4n+1`; choose the nearest legal profile not exceeding the requested count and show the adjustment, or reject when none exists. Fixed QNN graphs offer compiled shape choices, not falsely unrestricted input fields.
+## Scheduling, background and recovery
 
-Check LoRA base families and component versions. TTS checks text length, language, voices, reference audio and codec; segment bounded outputs with backpressure. Editable input does not bypass native-engine constraints.
+Default to one heavy-engine lease; stage encoders, backbone and VAE/codec by recipe. Measure shared RAM, drivers and heat before concurrency. Downloaded models need not remain resident.
 
-## Local scheduling, background work and recovery
+SQLite `jobs / stages / events / artifacts` persists inputs, snapshots, states, event sequences and outputs. States include `queued / validating / waiting_assets / running / cancelling / succeeded / failed / cancelled / interrupted`. Bind cancellation to process launch generation. Reconcile outputs after restart; resume only actual engine checkpoints, otherwise explicitly rerun the stage/job and retain attempts.
 
-Default to **one large-engine lease** on constrained devices. Unload the LLM after writing, then run image/video generation, TTS and composition. Independent graph branches can wait ready without keeping all models resident. Load encoders, backbone and VAE in stages according to each recipe. Enable concurrency only after resource measurements justify it.
+Foreground services, visible notifications, stop actions and scoped locks need no ROOT. Closing UI unsubscribes without cancelling an explicitly started job. Power policy, heat and OS termination may interrupt work; pause only at supported boundaries. Neither permanent survival nor 24/7 full load is guaranteed.
 
-SQLite `jobs / nodes / events / artifacts` stores inputs, settings snapshots, states, sequence numbers and outputs. States include `queued / validating / waiting_assets / running / cancelling / succeeded / failed / cancelled / interrupted`. On restart, verify completed outputs; resume an unfinished step only if the engine truly exports a checkpoint. Otherwise restart that node and record the retry.
+For Android 15+, target 35+, `dataSync` and `mediaProcessing` each have an aggregate background six-hour allowance per 24 hours. This is not a universal limit for all services or Android 9 Z20. Choose service types according to real work; current `specialUse` does not establish unlimited execution. [Android documentation](https://developer.android.com/develop/background-work/services/fgs/timeout) WorkManager may restore scheduling/downloads, not guarantee unlimited inference.
 
-Foreground services, visible notifications, scoped wake locks and cancellation need no ROOT. Closing the Activity unsubscribes UI updates without stopping an explicitly started job. Thermal/low-battery policies pause only at supported boundaries or stop; do not fabricate resumable pauses. OS kills, heat and vendor battery management can still interrupt work. No survival or 24/7 full-load guarantee is possible.
+## API, historical drafts and acceptance
 
-Android 15+, target 35+ `dataSync`/`mediaProcessing` services have separate aggregate background limits of six hours per 24 hours. This is not a universal limit for every service or Android 9 Z20. Select the real service type; current `specialUse` is not proof of arbitrary unlimited work. [Android documentation](https://developer.android.com/develop/background-work/services/fgs/timeout) WorkManager may restore scheduling/downloads but cannot guarantee unlimited inference.
+Propose local async `POST /v1/jobs`, query/cancel, ordered SSE and authenticated artifact reads, preserving existing text APIs. Distinguish tokens, diffusion steps, audio chunks and artifact-ready events. **Multimodal endpoints are not implemented.** Serving API callers or using internal loopback does not move computation off-phone.
 
-After download, test fresh arbitrary prompts without networking, covering tokenization, encoders, every generation stage and export. Playing a prerecorded example is insufficient. Failures offer a local error or another usable local model, never a different execution location.
+The earlier [narrated-image JSON](proposals/local-narrated-image.workflow.json) and [Wan JSON](proposals/local-wan-video.workflow.json) are **historical, non-executable dependency examples**, not current import formats, mandatory combined tasks or release contracts. They are not successful execution evidence. The current structured scope is [multimodal-release-scope.json](proposals/multimodal-release-scope.json).
 
-## ComfyUI-like scope
-
-Similar node editing, templates, queues, previews, node reruns and artifact provenance are possible. **Do not require a full Python/PyTorch/CUDA service on the phone or execute arbitrary ComfyUI custom nodes.** Matching names alone do not establish equivalent settings or sampling behavior.
-
-Import first distinguishes editor graphs from API prompt graphs, then translates only whitelisted nodes with locally equivalent implementations. Report unsupported types, missing models and semantic differences. If the whole graph cannot map locally, stop execution. Publish LMA's own schema and validated templates before gradually extending compatibility.
-
-This is not a full ComfyUI compatibility claim and includes no external service adapter. Handle [ComfyUI's](https://github.com/Comfy-Org/ComfyUI) GPL-3.0, other node licenses and engine terms separately; similar visual concepts do not authorize copying every implementation.
-
-## Examples, API and initial acceptance
-
-The [narrated-image draft](proposals/local-narrated-image.workflow.json) describes text → on-phone LLM prompt/narration → on-phone SD 1.5 and TTS → Android encoding of a **still image** with narration → save. It demonstrates multimodal dependencies and scheduling, **not generative motion video**.
-
-The [local Wan draft](proposals/local-wan-video.workflow.json) describes text → on-phone LLM → on-phone Wan 1.3B and TTS → local composition → save. It references CPU text encoding/VAE, Vulkan diffusion, disk parameters and tiling; settings and device admission remain unverified on Z20. Both drafts declare `design_only_not_executable`, unresolved models, one large-engine lease and no external inference. They are not successful execution evidence.
-
-Propose local asynchronous `POST /v1/jobs`, query/cancel, sequenced SSE and authenticated artifact reads. Report text tokens, diffusion steps, audio chunks and artifact-ready separately. **Multimodal endpoints are not implemented.** Internal loopback communication and current LMA serving API callers do not move inference off-device; all generation remains on the phone.
-
-Initial acceptance chains are offline TTS, SD 1.5/matching LoRA and narrated-still-image workflows. Wan/old LTX get separate experimental acceptance. Also check cycles/type errors, missing components, settings isolation/joint limits, resource queuing, cancellation/unloading, shared-component deletion and interrupted-node recovery. Retain real outputs, resource data and screen-off evidence. Draft structure checks do not replace engine tests; future APK changes require a new version and actual feature demonstrations.
+Use the [current release plan](MULTIMODAL_RELEASE_PLAN.en.md) to accept complete components, settings isolation, admission, cancellation/unload, crashes, migration, shared deletion and fresh offline generation. Images, audio and video each require real output and background evidence. No phone is available; fixtures/JSON checks cannot substitute. Increase the actual APK version and record feature media only when new functionality ships.

@@ -210,5 +210,11 @@
       "port": "artifact",
       "type": "VideoArtifact"
     }
-  }
+  },
+  "current_release_requirement": false,
+  "scope_note": {
+    "zh": "历史不可执行设计；现行需求为平级模型、任务表单、队列与结果，不建设节点编辑或 ComfyUI 导入。",
+    "en": "Historical non-executable design; current scope uses flat models, task forms, queue and artifacts, without node editing or ComfyUI import."
+  },
+  "superseded_by": "multimodal-release-scope.json"
 }

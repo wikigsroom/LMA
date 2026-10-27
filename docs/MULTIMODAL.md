@@ -1,14 +1,16 @@
 # Android 纯本地多模态可行性
 
-[English](MULTIMODAL.en.md) · [共用基座评估](FOUNDATION.md) · [本地工作流方案](WORKFLOWS.md) · [文档目录](README.md)
+[English](MULTIMODAL.en.md) · [共用基座评估](FOUNDATION.md) · [本机任务方案](WORKFLOWS.md) · [现行需求](MULTIMODAL_RELEASE_PLAN.md) · [文档目录](README.md)
 
 核查日期：**2026-10-27（Asia/Taipei）**。按用户最新要求重新评估：**所有模型推理均在同一台 Android 手机上完成，无需 ROOT，不采用其他设备、局域网服务器或云端推理，也不设置此类回退。** 下载权重可以访问 HF；下载完成后，分词、文本编码、采样、VAE / codec、合成和导出均应能离线执行。
 
 这是源码与资料核查及工程分级，**不是已实现功能或 LMA 真机性能报告**。当前 v0.2.0 APK 仍只运行兼容的单文件文本 GGUF。本轮没有下载新权重、编译新引擎或执行手机生成；没有可用真机。
 
+本页保留较宽的模型研究；当前交付范围以[需求与发版计划](MULTIMODAL_RELEASE_PLAN.md)为准：01–14 / 16 / 17、平级模型与功能 / 基座标签、表单 / 队列 / 结果。本文中的 YuE2、H3、新 LTX 和 ComfyUI 仅属背景，未纳入本次需求；早期画布 / 节点计划已撤回。
+
 ## 重新评估的结论
 
-纯本地扩展可行，优先交付 **SD 1.5 + 匹配 LoRA、小型离线 TTS、原生任务队列与工作流执行器**。音效可继续实验 Stable Audio Open Small。完整歌曲、大规格图像和大型视频模型暂不列为本地产品已支持项。
+纯本地扩展可行，优先交付 **SD 1.5 + 匹配 LoRA、小型离线 TTS、原生任务队列与本机执行器**。音效可继续实验 Stable Audio Open Small。完整歌曲、大规格图像和大型视频模型暂不列为本地产品已支持项。
 
 **生视频不能整体判为手机不可行。** 社区已有 Wan 2.1 1.3B 的 ARM64 / Vulkan Android 管线，以及旧版 LTX-Video 2B 的 Android Vulkan / 特定芯片 QNN 管线。它们是值得移植的本机实验候选；这些证据不等于 Z20 已通过，也不代表当前 LMA 已集成。
 
@@ -56,12 +58,14 @@ HF 可发现、文件可下载、架构有 C++ 实现、Android 后端能运行�
 | **Kokoro-82M** | sherpa-onnx Android；完整语言 / 音色 / 词典包 | **A** | **A** |
 | **Piper / VITS / Matcha** | sherpa-onnx 离线 TTS 与 Android 示例 | **A** | **A**；具体声音和语言逐包核查 |
 | **Qwen3-TTS 0.6B Base** | Google LiteRT Kotlin CPU 示例；社区 qwen3-tts.cpp JNI App | **B**，性能及 API 28 适配待验 | **A/B**；已有 Android 端到端代码，不承诺实时 |
-| MOSS 完整系列 | 不同架构、部分专用 llama.cpp fork + ONNX codec | **B/C** | **B**；逐架构核验整条链，不能只看 LLM 权重大小 |
+| MOSS 完整系列 | 多架构；Delay 有含 codec 的原生 fork，其他路线分别移植 | **B/C** | **B**；逐架构核验整条链，不能只看 LLM 权重大小 |
 | SoulX-Podcast 1.7B | 官方参考为 Linux Python；部件可转换不等于完整 Android 管线 | **B/C** | **B**，原生移植研究，暂不当首批功能 |
 | **Stable Audio Open Small 341M** | Arm LiteRT / C++ / Android 路线；短音效 / 音乐片段 | **B** | **A/B**；不代表完整歌曲生成能力 |
 | **YuE2-3B** | 歌词到歌曲，含多阶段生成及音频 VAE；缺少已核查的完整 Android 方案 | **C** | **C**；仅保留后续本地移植研究 |
 
 主要依据：[MOSS Nano 官方 Android 示例](https://github.com/OpenMOSS/MOSS-TTS-Nano/tree/main/examples/android_onnx_runtime)、[Kokoro](https://huggingface.co/hexgrad/Kokoro-82M)、[sherpa-onnx](https://github.com/k2-fsa/sherpa-onnx)、[Android TTS 示例](https://k2-fsa.github.io/sherpa/onnx/tts/apk-engine.html)、[MOSS 系列](https://github.com/OpenMOSS/MOSS-TTS)、[SoulX-Podcast](https://github.com/Soul-AILab/SoulX-Podcast)、[YuE2](https://huggingface.co/m-a-p/YuE2-3B)、[Arm 本地音频部署](https://developer.arm.com/code-along/stable-audio-open-small)、[Stable Audio 模型](https://huggingface.co/stabilityai/stable-audio-open-small)。
+
+全 MOSS 的 [Delay 原生分支](https://github.com/OpenMOSS/llama.cpp/blob/moss-tts-firstclass/docs/moss-tts-firstclass-e2e.md)已提供原生 backbone / 音频编码 / 解码路线；不再一律假设需要 Python 或 ONNX codec。但这不证明 Local / Realtime / DiT 或 Android 全家族支持；冻结子目标见现行发版需求。
 
 MOSS Nano 官方 Android smoke 示例使用预先分词的两个提示，不能直接宣传为任意输入的完整语音克隆产品。还需 SentencePiece、匹配的音频 tokenizer / codec、分块、取消和播放缓冲。TTS 优先短句有界队列；是否能持续播放取决于实际实时率。
 
@@ -119,11 +123,11 @@ Stable Audio Open Small 面向至多约 11 秒短音频，不能替代 YuE2 的�
 | 阶段 | 交付内容与验收目标 |
 | --- | --- |
 | 1：共用基础 | 多组件模型包、原生 provider、模型独立参数、任务 / 产物持久化、离线资源校验、单大型引擎调度 |
-| 2：首批可用链 | 一套明确语言的小型 TTS、SD 1.5 + 匹配 LoRA；先模板和实际生成，再增加画布 |
+| 2：首批可用链 | 一套明确语言的小型 TTS、SD 1.5 + 匹配 LoRA；任务表单 / 队列与真实生成，不增加画布 |
 | 3：移动扩展 | Qwen3-TTS Base、MNN Sana、短音效；按完整本地链逐个测 API 28 和较新手机 |
 | 4：本机生视频实验 | Wan 1.3B 优先原型；旧 LTX 2B 分 Vulkan / 芯片特定 QNN 配方；未测通过保留实验标签 |
 | 5：进阶模型 | 高内存手机量化 / 分阶段加载；C 类不出现在“已验证可运行”或默认下载推荐中 |
 
 具体验收必须包含：完整下载 / 续传 / 缺失文件、revision 与哈希、**关闭网络后的任意新输入生成**、实际可打开的产物、模型间设置独立、超限回填与联合形状约束、生成 / 取消 / 卸载、峰值内存、耗时和质量、锁屏 / 发热、进程死亡后的真实恢复行为。后台服务无需 ROOT，但没有永不被杀或 24/7 连续满载保证。
 
-工作流与两份**仅设计、不可执行**的纯本地 JSON 见 [WORKFLOWS.md](WORKFLOWS.md)；视频来源的结构化记录见 [local-video-evidence.json](research/local-video-evidence.json)。本轮仅更新设计文档，没有新增手机测试结论，也不重建 APK 或替换公开 Release 附件。已有截图 / GIF 仍只演示 v0.2.0 的文本功能。
+本机任务与两份**历史、不可执行，非当前交付要求**的 JSON 见 [WORKFLOWS.md](WORKFLOWS.md)；视频来源的结构化记录见 [local-video-evidence.json](research/local-video-evidence.json)。本轮仅更新设计文档，没有新增手机测试结论，也不重建 APK 或替换公开 Release 附件。已有截图 / GIF 仍只演示 v0.2.0 的文本功能。

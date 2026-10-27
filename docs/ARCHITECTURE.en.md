@@ -1,6 +1,6 @@
 # LMA 0.2.0 architecture
 
-This guide describes the current APK. The separate [local workflow proposal](WORKFLOWS.en.md) covers unimplemented multimodal/node extensions executing entirely on the same Android phone; see [fully local feasibility research](MULTIMODAL.en.md) for model selection and [the foundation assessment](FOUNDATION.en.md) for shared model/engine/job contracts and source migration.
+This guide describes the current APK. Unimplemented multimodal expansion follows the [current requirements/release plan](MULTIMODAL_RELEASE_PLAN.en.md): equal peer models with task/dependency tags, forms and an on-phone queue, without a ComfyUI canvas/node ecosystem. See [local tasks/background](WORKFLOWS.en.md), [source research](MULTIMODAL.en.md) and [foundation/migration](FOUNDATION.en.md).
 
 ## HF discovery and Local management
 

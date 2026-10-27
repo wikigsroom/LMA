@@ -1,0 +1,1519 @@
+{
+  "schema": "lma.proposal.multimodal-release-scope/1",
+  "reviewed_on": "2026-10-27",
+  "timezone": "Asia/Taipei",
+  "status": "requirements_and_feasibility_only",
+  "implemented_in_current_apk": false,
+  "current_apk_version": "0.2.0",
+  "proposed_versions_are_not_published": true,
+  "execution_policy": {
+    "device": "same_android_phone",
+    "root_required": false,
+    "off_device_inference": false,
+    "off_device_fallback": false,
+    "asset_downloads_before_execution": true,
+    "virtualization_allowed": false
+  },
+  "ui_scope": {
+    "model_records": "flat_equal_peers",
+    "classification": "orthogonal_tags_and_filters",
+    "graph_editor": false,
+    "infinite_canvas": false,
+    "user_node_system": false,
+    "custom_plugin_ecosystem": false,
+    "comfyui_import": false,
+    "engine_adapters": "internal_versioned_modules_in_signed_apk",
+    "interaction": "select_model_then_task_form_then_job_queue"
+  },
+  "selected_ids": [
+    "01",
+    "02",
+    "03",
+    "04",
+    "05",
+    "06",
+    "07",
+    "08",
+    "09",
+    "10",
+    "11",
+    "12",
+    "13",
+    "14",
+    "16",
+    "17"
+  ],
+  "excluded_selection_ids": [
+    "15",
+    "18",
+    "19",
+    "20",
+    "21"
+  ],
+  "preserved_recommendation_ids": [
+    "m08",
+    "m06",
+    "m01"
+  ],
+  "preserved_text_models": {
+    "model_ids": [
+      "m08",
+      "m06",
+      "m01",
+      "m05",
+      "m04",
+      "m03",
+      "m09",
+      "m11",
+      "m12",
+      "m13",
+      "m14",
+      "m16",
+      "m10",
+      "m15"
+    ],
+    "task_tags": [
+      "text"
+    ],
+    "capability_tags": [
+      "text_generation"
+    ],
+    "base_support": {
+      "engine_routes_any_of": [
+        "llama_text"
+      ],
+      "required_component_roles": [
+        "text_gguf"
+      ]
+    },
+    "device_inference_validated": false,
+    "base_support_tags": {
+      "engine_any_of": [
+        "engine:llama_text"
+      ],
+      "pipeline": [
+        "pipeline:text_gguf"
+      ],
+      "dependencies_all_of": [
+        "dependency:text_gguf"
+      ],
+      "format": [
+        "format:gguf"
+      ],
+      "backend": [
+        "backend:cpu"
+      ],
+      "device_evidence_separate": true
+    }
+  },
+  "tag_taxonomy": {
+    "task": {
+      "text": {
+        "zh": "生文",
+        "en": "Text generation"
+      },
+      "image": {
+        "zh": "生图",
+        "en": "Image generation"
+      },
+      "video": {
+        "zh": "生视频",
+        "en": "Video generation"
+      },
+      "audio": {
+        "zh": "生音频",
+        "en": "Audio generation"
+      }
+    },
+    "capability": [
+      "text_generation",
+      "text_to_image",
+      "image_adapter",
+      "distilled_sampling",
+      "text_to_speech",
+      "dialogue_speech",
+      "voice_design",
+      "text_to_sound",
+      "short_music",
+      "text_to_video"
+    ],
+    "support_namespaces": [
+      "engine",
+      "pipeline",
+      "format",
+      "dependency",
+      "backend",
+      "device"
+    ],
+    "separate_namespaces": [
+      "compatibility",
+      "installation",
+      "license",
+      "evidence",
+      "content"
+    ],
+    "alternative_engine_routes_are_or_not_and": true,
+    "tags_do_not_prove_runtime_support": true,
+    "dependent_adapters_keep_flat_identity": true,
+    "unknown_hf_capabilities_remain_unknown": true,
+    "family_capabilities_not_automatically_inherited": true,
+    "support_tag_binding": "family descriptors express planned requirements; runtime badges derive from pinned recipes and actual installed engines",
+    "asset_roles_and_runtime_code_requirements_are_separate": true
+  },
+  "support_acceptance": {
+    "registered_or_downloaded_is_not_supported": true,
+    "required": [
+      "pinned_complete_bundle",
+      "packaged_compatible_engine",
+      "valid_task_parameters",
+      "fresh_input_offline_output",
+      "native_background_ownership",
+      "cancel_and_unload",
+      "artifact_openable",
+      "published_device_evidence"
+    ],
+    "evidence_key": [
+      "bundle_hashes",
+      "recipe",
+      "engine_build",
+      "device_soc",
+      "android_version",
+      "driver",
+      "effective_settings"
+    ],
+    "experimental_label_does_not_replace_output_evidence": true,
+    "all_16_groups_claim_requires_all_subtargets": true
+  },
+  "phases": [
+    {
+      "proposed_version": "0.3.0",
+      "name": "foundation_and_first_cross_modal_execution",
+      "selected_ids": [
+        "01",
+        "02",
+        "09",
+        "10",
+        "16"
+      ],
+      "release_gate": "complete shared core plus actual text/image/audio/video execution; video remains experimental on validated devices"
+    },
+    {
+      "proposed_version": "0.4.0",
+      "name": "mobile_image_and_audio_expansion",
+      "selected_ids": [
+        "03",
+        "04",
+        "05",
+        "11",
+        "14"
+      ],
+      "release_gate": "all listed subtargets and full dependencies validated on declared devices"
+    },
+    {
+      "proposed_version": "0.5.0",
+      "name": "advanced_images_and_second_video_family",
+      "selected_ids": [
+        "06",
+        "07",
+        "08",
+        "17"
+      ],
+      "release_gate": "full native pipelines plus device/memory and licensing gates"
+    },
+    {
+      "proposed_version": "0.6.0",
+      "name": "research_gated_moss_and_soulx",
+      "selected_ids": [
+        "12",
+        "13"
+      ],
+      "release_gate": "every frozen MOSS subtarget and SoulX has actual Android evidence; otherwise scope remains incomplete"
+    }
+  ],
+  "entries": [
+    {
+      "selection_id": "01",
+      "display_name": "Stable Diffusion 1.5",
+      "entity_kind": "model",
+      "task_tags": [
+        "image"
+      ],
+      "capability_tags": [
+        "text_to_image"
+      ],
+      "base_support": {
+        "engine_routes_any_of": [
+          "sd_cpp",
+          "mnn_diffusion"
+        ],
+        "required_component_roles": [
+          "backbone",
+          "text_encoder",
+          "tokenizer",
+          "vae"
+        ],
+        "hardware_match": "evaluate_for_bound_recipe_and_actual_device"
+      },
+      "proposed_first_release": "0.3.0",
+      "feasibility": "established_mobile_route",
+      "z20_assessment": "priority_candidate_unverified",
+      "implementation_status": "not_implemented_in_lma",
+      "target_device_validated": false,
+      "artifact_binding": {
+        "revision": null,
+        "file_manifest": null,
+        "ready_to_download_recipe": false
+      },
+      "minimum_acceptance": [
+        "new offline prompt produces a decodable image",
+        "model settings and queue use shared foundation"
+      ],
+      "sources": [
+        "https://github.com/xororz/local-dream",
+        "https://github.com/leejet/stable-diffusion.cpp"
+      ],
+      "base_support_tags": {
+        "planned_only": true,
+        "engine_any_of": [
+          "engine:sd_cpp",
+          "engine:mnn_diffusion"
+        ],
+        "pipeline": [
+          "pipeline:sd15"
+        ],
+        "dependencies_all_of": [
+          "dependency:backbone",
+          "dependency:text_encoder",
+          "dependency:tokenizer",
+          "dependency:vae"
+        ],
+        "backend_and_format": "derived_from_each_pinned_recipe_not_family_name"
+      }
+    },
+    {
+      "selection_id": "02",
+      "display_name": "LoRA loading and management",
+      "entity_kind": "adapter",
+      "task_tags": [
+        "image"
+      ],
+      "capability_tags": [
+        "image_adapter"
+      ],
+      "base_support": {
+        "engine_routes_any_of": [
+          "sd_cpp"
+        ],
+        "required_component_roles": [
+          "lora_weights",
+          "compatible_base_bundle"
+        ],
+        "hardware_match": "evaluate_for_bound_recipe_and_actual_device"
+      },
+      "proposed_first_release": "0.3.0",
+      "feasibility": "established_with_base_constraints",
+      "z20_assessment": "follows_compatible_base",
+      "implementation_status": "not_implemented_in_lma",
+      "target_device_validated": false,
+      "artifact_binding": {
+        "revision": null,
+        "file_manifest": null,
+        "ready_to_download_recipe": false
+      },
+      "minimum_acceptance": [
+        "matching SD 1.5 adapter executes with bound base",
+        "incompatible base is rejected",
+        "SDXL adapter covered by the SDXL release gate"
+      ],
+      "sources": [
+        "https://github.com/leejet/stable-diffusion.cpp#features"
+      ],
+      "standalone_generation": false,
+      "base_family_scope": [
+        "sd15",
+        "sdxl"
+      ],
+      "base_family_scope_note": "additional families require their own declared and tested adapter route",
+      "base_support_tags": {
+        "planned_only": true,
+        "engine_any_of": [
+          "engine:sd_cpp"
+        ],
+        "pipeline": [
+          "pipeline:base_matched_lora"
+        ],
+        "dependencies_all_of": [
+          "dependency:lora_weights",
+          "dependency:compatible_base_bundle"
+        ],
+        "backend_and_format": "derived_from_each_pinned_recipe_not_family_name"
+      }
+    },
+    {
+      "selection_id": "03",
+      "display_name": "SD-Turbo / LCM / LCM-LoRA",
+      "entity_kind": "model",
+      "task_tags": [
+        "image"
+      ],
+      "capability_tags": [
+        "text_to_image",
+        "distilled_sampling"
+      ],
+      "base_support": {
+        "engine_routes_any_of": [
+          "sd_cpp"
+        ],
+        "required_component_roles": [
+          "backbone",
+          "matching_text_encoder",
+          "tokenizer",
+          "vae",
+          "matching_sampler_profile"
+        ],
+        "hardware_match": "evaluate_for_bound_recipe_and_actual_device"
+      },
+      "proposed_first_release": "0.4.0",
+      "feasibility": "recipe_specific",
+      "z20_assessment": "experimental_unverified",
+      "implementation_status": "not_implemented_in_lma",
+      "target_device_validated": false,
+      "artifact_binding": {
+        "revision": null,
+        "file_manifest": null,
+        "ready_to_download_recipe": false
+      },
+      "minimum_acceptance": [
+        "validate SD-Turbo as SD 2.1 family",
+        "validate an LCM checkpoint",
+        "validate LCM-LoRA with its matched base and sampler"
+      ],
+      "sources": [
+        "https://huggingface.co/stabilityai/sd-turbo",
+        "https://github.com/leejet/stable-diffusion.cpp/blob/master/docs/distilled_sd.md"
+      ],
+      "subtargets": [
+        {
+          "model": "SD-Turbo",
+          "entity_kind": "model",
+          "task_tags": [
+            "image"
+          ],
+          "capability_tags": [
+            "text_to_image",
+            "distilled_sampling"
+          ],
+          "base_support_tags": [
+            "engine:sd_cpp",
+            "pipeline:sd21_turbo",
+            "dependency:matching_sampler_profile"
+          ],
+          "android_validated": false,
+          "planned_only": true
+        },
+        {
+          "model": "LCM checkpoint",
+          "entity_kind": "model",
+          "task_tags": [
+            "image"
+          ],
+          "capability_tags": [
+            "text_to_image",
+            "distilled_sampling"
+          ],
+          "base_support_tags": [
+            "engine:sd_cpp",
+            "pipeline:lcm",
+            "dependency:matching_sampler_profile"
+          ],
+          "android_validated": false,
+          "planned_only": true
+        },
+        {
+          "model": "LCM-LoRA with matching base",
+          "entity_kind": "adapter",
+          "task_tags": [
+            "image"
+          ],
+          "capability_tags": [
+            "image_adapter",
+            "distilled_sampling"
+          ],
+          "base_support_tags": [
+            "engine:sd_cpp",
+            "pipeline:lcm_lora",
+            "dependency:compatible_base_bundle",
+            "dependency:matching_sampler_profile"
+          ],
+          "standalone_generation": false,
+          "android_validated": false,
+          "planned_only": true
+        }
+      ],
+      "base_support_tags": {
+        "planned_only": true,
+        "engine_any_of": [
+          "engine:sd_cpp"
+        ],
+        "pipeline": [
+          "pipeline:sd_turbo_or_lcm"
+        ],
+        "dependencies_all_of": [
+          "dependency:backbone",
+          "dependency:matching_text_encoder",
+          "dependency:tokenizer",
+          "dependency:vae",
+          "dependency:matching_sampler_profile"
+        ],
+        "backend_and_format": "derived_from_each_pinned_recipe_not_family_name"
+      }
+    },
+    {
+      "selection_id": "04",
+      "display_name": "Sana",
+      "entity_kind": "model",
+      "task_tags": [
+        "image"
+      ],
+      "capability_tags": [
+        "text_to_image"
+      ],
+      "base_support": {
+        "engine_routes_any_of": [
+          "mnn_diffusion"
+        ],
+        "required_component_roles": [
+          "backbone",
+          "matching_text_encoder",
+          "tokenizer",
+          "projector_if_required",
+          "vae"
+        ],
+        "hardware_match": "evaluate_for_bound_recipe_and_actual_device"
+      },
+      "proposed_first_release": "0.4.0",
+      "feasibility": "converted_mobile_recipe",
+      "z20_assessment": "experimental_unverified",
+      "implementation_status": "not_implemented_in_lma",
+      "target_device_validated": false,
+      "artifact_binding": {
+        "revision": null,
+        "file_manifest": null,
+        "ready_to_download_recipe": false
+      },
+      "minimum_acceptance": [
+        "pin exact original or MNN mobile recipe",
+        "complete local encoding and decoding with matched components"
+      ],
+      "sources": [
+        "https://huggingface.co/Efficient-Large-Model/Sana_600M_1024px_diffusers",
+        "https://github.com/alibaba/MNN/blob/master/transformers/diffusion/README.md"
+      ],
+      "reference_candidates": [
+        "Sana 600M",
+        "explicitly matched MNN Sana mobile variant"
+      ],
+      "recipe_candidates_are_not_interchangeable": true,
+      "base_support_tags": {
+        "planned_only": true,
+        "engine_any_of": [
+          "engine:mnn_diffusion"
+        ],
+        "pipeline": [
+          "pipeline:sana_matched_mobile"
+        ],
+        "dependencies_all_of": [
+          "dependency:backbone",
+          "dependency:matching_text_encoder",
+          "dependency:tokenizer",
+          "dependency:projector_if_required",
+          "dependency:vae"
+        ],
+        "backend_and_format": "derived_from_each_pinned_recipe_not_family_name"
+      }
+    },
+    {
+      "selection_id": "05",
+      "display_name": "SDXL",
+      "entity_kind": "model",
+      "task_tags": [
+        "image"
+      ],
+      "capability_tags": [
+        "text_to_image"
+      ],
+      "base_support": {
+        "engine_routes_any_of": [
+          "sd_cpp",
+          "mnn_diffusion"
+        ],
+        "required_component_roles": [
+          "backbone",
+          "text_encoder_1",
+          "text_encoder_2",
+          "tokenizers",
+          "vae"
+        ],
+        "hardware_match": "evaluate_for_bound_recipe_and_actual_device"
+      },
+      "proposed_first_release": "0.4.0",
+      "feasibility": "high_memory_and_driver_validation",
+      "z20_assessment": "experimental_high_risk",
+      "implementation_status": "not_implemented_in_lma",
+      "target_device_validated": false,
+      "artifact_binding": {
+        "revision": null,
+        "file_manifest": null,
+        "ready_to_download_recipe": false
+      },
+      "minimum_acceptance": [
+        "complete dual-encoder pipeline on a declared target device",
+        "matching SDXL LoRA acceptance for selection 02"
+      ],
+      "sources": [
+        "https://github.com/xororz/local-dream",
+        "https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0"
+      ],
+      "base_support_tags": {
+        "planned_only": true,
+        "engine_any_of": [
+          "engine:sd_cpp",
+          "engine:mnn_diffusion"
+        ],
+        "pipeline": [
+          "pipeline:sdxl"
+        ],
+        "dependencies_all_of": [
+          "dependency:backbone",
+          "dependency:text_encoder_1",
+          "dependency:text_encoder_2",
+          "dependency:tokenizers",
+          "dependency:vae"
+        ],
+        "backend_and_format": "derived_from_each_pinned_recipe_not_family_name"
+      }
+    },
+    {
+      "selection_id": "06",
+      "display_name": "Z-Image-Turbo",
+      "entity_kind": "model",
+      "task_tags": [
+        "image"
+      ],
+      "capability_tags": [
+        "text_to_image"
+      ],
+      "base_support": {
+        "engine_routes_any_of": [
+          "sd_cpp"
+        ],
+        "required_component_roles": [
+          "backbone",
+          "qwen3_text_encoder",
+          "tokenizer",
+          "vae",
+          "distilled_sampling_profile"
+        ],
+        "hardware_match": "evaluate_for_bound_recipe_and_actual_device"
+      },
+      "proposed_first_release": "0.5.0",
+      "feasibility": "high_memory_native_port",
+      "z20_assessment": "not_default_pending_probe",
+      "implementation_status": "not_implemented_in_lma",
+      "target_device_validated": false,
+      "artifact_binding": {
+        "revision": null,
+        "file_manifest": null,
+        "ready_to_download_recipe": false
+      },
+      "minimum_acceptance": [
+        "quantized and staged full pipeline on declared high-memory Android target",
+        "memory/time/quality measured"
+      ],
+      "sources": [
+        "https://huggingface.co/Tongyi-MAI/Z-Image-Turbo",
+        "https://github.com/leejet/stable-diffusion.cpp/blob/master/docs/z_image.md"
+      ],
+      "base_support_tags": {
+        "planned_only": true,
+        "engine_any_of": [
+          "engine:sd_cpp"
+        ],
+        "pipeline": [
+          "pipeline:z_image"
+        ],
+        "dependencies_all_of": [
+          "dependency:backbone",
+          "dependency:qwen3_text_encoder",
+          "dependency:tokenizer",
+          "dependency:vae",
+          "dependency:distilled_sampling_profile"
+        ],
+        "backend_and_format": "derived_from_each_pinned_recipe_not_family_name"
+      }
+    },
+    {
+      "selection_id": "07",
+      "display_name": "FLUX.2-klein-4B",
+      "entity_kind": "model",
+      "task_tags": [
+        "image"
+      ],
+      "capability_tags": [
+        "text_to_image"
+      ],
+      "base_support": {
+        "engine_routes_any_of": [
+          "sd_cpp"
+        ],
+        "required_component_roles": [
+          "backbone",
+          "matching_text_encoder",
+          "tokenizer",
+          "vae"
+        ],
+        "hardware_match": "evaluate_for_bound_recipe_and_actual_device"
+      },
+      "proposed_first_release": "0.5.0",
+      "feasibility": "high_memory_native_port",
+      "z20_assessment": "not_default_pending_probe",
+      "implementation_status": "not_implemented_in_lma",
+      "target_device_validated": false,
+      "artifact_binding": {
+        "revision": null,
+        "file_manifest": null,
+        "ready_to_download_recipe": false
+      },
+      "minimum_acceptance": [
+        "pin 4B checkpoint and full components",
+        "offline output on declared target Android device"
+      ],
+      "sources": [
+        "https://huggingface.co/black-forest-labs/FLUX.2-klein-4B",
+        "https://github.com/leejet/stable-diffusion.cpp/blob/master/docs/flux2.md"
+      ],
+      "base_support_tags": {
+        "planned_only": true,
+        "engine_any_of": [
+          "engine:sd_cpp"
+        ],
+        "pipeline": [
+          "pipeline:flux2_klein"
+        ],
+        "dependencies_all_of": [
+          "dependency:backbone",
+          "dependency:matching_text_encoder",
+          "dependency:tokenizer",
+          "dependency:vae"
+        ],
+        "backend_and_format": "derived_from_each_pinned_recipe_not_family_name"
+      }
+    },
+    {
+      "selection_id": "08",
+      "display_name": "Qwen-Image-2.1",
+      "entity_kind": "model",
+      "task_tags": [
+        "image"
+      ],
+      "capability_tags": [
+        "text_to_image"
+      ],
+      "base_support": {
+        "engine_routes_any_of": [
+          "sd_cpp"
+        ],
+        "required_component_roles": [
+          "image_backbone_7b",
+          "qwen3_vl_8b_text_encoder",
+          "tokenizer",
+          "dedicated_vae"
+        ],
+        "hardware_match": "evaluate_for_bound_recipe_and_actual_device"
+      },
+      "proposed_first_release": "0.5.0",
+      "feasibility": "high_memory_and_license_gate",
+      "z20_assessment": "not_default_no_validated_profile",
+      "implementation_status": "not_implemented_in_lma",
+      "target_device_validated": false,
+      "artifact_binding": {
+        "revision": null,
+        "file_manifest": null,
+        "ready_to_download_recipe": false
+      },
+      "minimum_acceptance": [
+        "full encoder/backbone/VAE pipeline on declared Android target",
+        "research-license conditions resolved for intended distribution"
+      ],
+      "sources": [
+        "https://huggingface.co/Qwen/Qwen-Image-2.1",
+        "https://github.com/leejet/stable-diffusion.cpp/blob/master/docs/qwen_image_2.1.md"
+      ],
+      "optional_capabilities_not_committed": [
+        "image_editing",
+        "rgba_generation"
+      ],
+      "base_support_tags": {
+        "planned_only": true,
+        "engine_any_of": [
+          "engine:sd_cpp"
+        ],
+        "pipeline": [
+          "pipeline:qwen_image_21"
+        ],
+        "dependencies_all_of": [
+          "dependency:image_backbone_7b",
+          "dependency:qwen3_vl_8b_text_encoder",
+          "dependency:tokenizer",
+          "dependency:dedicated_vae"
+        ],
+        "backend_and_format": "derived_from_each_pinned_recipe_not_family_name"
+      }
+    },
+    {
+      "selection_id": "09",
+      "display_name": "MOSS-TTS-Nano 100M",
+      "entity_kind": "model",
+      "task_tags": [
+        "audio"
+      ],
+      "capability_tags": [
+        "text_to_speech"
+      ],
+      "base_support": {
+        "engine_routes_any_of": [
+          "moss_nano_ort"
+        ],
+        "required_component_roles": [
+          "text_tokenizer",
+          "tts_backbone",
+          "audio_codec",
+          "language_assets"
+        ],
+        "hardware_match": "evaluate_for_bound_recipe_and_actual_device"
+      },
+      "proposed_first_release": "0.3.0",
+      "feasibility": "official_android_sample_requires_completion",
+      "z20_assessment": "priority_candidate_unverified",
+      "implementation_status": "not_implemented_in_lma",
+      "target_device_validated": false,
+      "artifact_binding": {
+        "revision": null,
+        "file_manifest": null,
+        "ready_to_download_recipe": false
+      },
+      "minimum_acceptance": [
+        "arbitrary new text rather than pre-tokenized demos",
+        "complete local codec and playable WAV"
+      ],
+      "sources": [
+        "https://github.com/OpenMOSS/MOSS-TTS-Nano/tree/main/examples/android_onnx_runtime"
+      ],
+      "base_support_tags": {
+        "planned_only": true,
+        "engine_any_of": [
+          "engine:moss_nano_ort"
+        ],
+        "pipeline": [
+          "pipeline:moss_nano"
+        ],
+        "dependencies_all_of": [
+          "dependency:text_tokenizer",
+          "dependency:tts_backbone",
+          "dependency:audio_codec",
+          "dependency:language_assets"
+        ],
+        "backend_and_format": "derived_from_each_pinned_recipe_not_family_name"
+      }
+    },
+    {
+      "selection_id": "10",
+      "display_name": "Kokoro / Piper / Matcha",
+      "entity_kind": "model",
+      "task_tags": [
+        "audio"
+      ],
+      "capability_tags": [
+        "text_to_speech"
+      ],
+      "base_support": {
+        "engine_routes_any_of": [
+          "sherpa_tts"
+        ],
+        "required_component_roles": [
+          "tts_weights",
+          "language_frontend",
+          "lexicon_or_phonemizer",
+          "voice_assets",
+          "vocoder_if_required"
+        ],
+        "hardware_match": "evaluate_for_bound_recipe_and_actual_device"
+      },
+      "proposed_first_release": "0.3.0",
+      "feasibility": "established_android_routes",
+      "z20_assessment": "priority_candidate_unverified",
+      "implementation_status": "not_implemented_in_lma",
+      "target_device_validated": false,
+      "artifact_binding": {
+        "revision": null,
+        "file_manifest": null,
+        "ready_to_download_recipe": false
+      },
+      "minimum_acceptance": [
+        "one pinned Kokoro package passes",
+        "one pinned Piper package passes",
+        "one pinned Matcha package passes",
+        "languages/voices/licenses tested per package"
+      ],
+      "sources": [
+        "https://github.com/k2-fsa/sherpa-onnx",
+        "https://huggingface.co/hexgrad/Kokoro-82M"
+      ],
+      "subtargets": [
+        {
+          "model": "Kokoro-82M",
+          "entity_kind": "model",
+          "task_tags": [
+            "audio"
+          ],
+          "capability_tags": [
+            "text_to_speech"
+          ],
+          "base_support_tags": [
+            "engine:sherpa_tts",
+            "pipeline:kokoro",
+            "dependency:language_frontend",
+            "dependency:matching_voice_assets"
+          ],
+          "android_validated": false,
+          "planned_only": true
+        },
+        {
+          "model": "one pinned Piper voice/language package",
+          "entity_kind": "model",
+          "task_tags": [
+            "audio"
+          ],
+          "capability_tags": [
+            "text_to_speech"
+          ],
+          "base_support_tags": [
+            "engine:sherpa_tts",
+            "pipeline:piper",
+            "dependency:language_frontend",
+            "dependency:matching_voice_assets"
+          ],
+          "android_validated": false,
+          "planned_only": true
+        },
+        {
+          "model": "one pinned Matcha voice/language package",
+          "entity_kind": "model",
+          "task_tags": [
+            "audio"
+          ],
+          "capability_tags": [
+            "text_to_speech"
+          ],
+          "base_support_tags": [
+            "engine:sherpa_tts",
+            "pipeline:matcha",
+            "dependency:language_frontend",
+            "dependency:matching_voice_assets",
+            "dependency:vocoder"
+          ],
+          "android_validated": false,
+          "planned_only": true
+        }
+      ],
+      "base_support_tags": {
+        "planned_only": true,
+        "engine_any_of": [
+          "engine:sherpa_tts"
+        ],
+        "pipeline": [
+          "pipeline:kokoro_piper_matcha"
+        ],
+        "dependencies_all_of": [
+          "dependency:tts_weights",
+          "dependency:language_frontend",
+          "dependency:lexicon_or_phonemizer",
+          "dependency:voice_assets",
+          "dependency:vocoder_if_required"
+        ],
+        "backend_and_format": "derived_from_each_pinned_recipe_not_family_name"
+      }
+    },
+    {
+      "selection_id": "11",
+      "display_name": "Qwen3-TTS 0.6B Base",
+      "entity_kind": "model",
+      "task_tags": [
+        "audio"
+      ],
+      "capability_tags": [
+        "text_to_speech"
+      ],
+      "base_support": {
+        "engine_routes_any_of": [
+          "qwen_tts_litert",
+          "qwen_tts_native"
+        ],
+        "required_component_roles": [
+          "text_tokenizer",
+          "talker",
+          "code_predictor",
+          "audio_codec",
+          "speaker_assets"
+        ],
+        "hardware_match": "evaluate_for_bound_recipe_and_actual_device"
+      },
+      "proposed_first_release": "0.4.0",
+      "feasibility": "android_reference_host_loop_and_api_gate",
+      "z20_assessment": "api28_and_speed_unverified",
+      "implementation_status": "not_implemented_in_lma",
+      "target_device_validated": false,
+      "artifact_binding": {
+        "revision": null,
+        "file_manifest": null,
+        "ready_to_download_recipe": false
+      },
+      "minimum_acceptance": [
+        "complete host loop and audio output",
+        "declared API compatibility and measured RTF",
+        "no realtime claim without measured RTF"
+      ],
+      "sources": [
+        "https://github.com/google-ai-edge/litert-samples/tree/main/samples/litert/text_to_speech_lm",
+        "https://github.com/Danmoreng/qwen3-tts-android"
+      ],
+      "base_support_tags": {
+        "planned_only": true,
+        "engine_any_of": [
+          "engine:qwen_tts_litert",
+          "engine:qwen_tts_native"
+        ],
+        "pipeline": [
+          "pipeline:qwen3_tts"
+        ],
+        "dependencies_all_of": [
+          "dependency:text_tokenizer",
+          "dependency:talker",
+          "dependency:code_predictor",
+          "dependency:audio_codec",
+          "dependency:speaker_assets"
+        ],
+        "backend_and_format": "derived_from_each_pinned_recipe_not_family_name"
+      }
+    },
+    {
+      "selection_id": "12",
+      "display_name": "Full MOSS family",
+      "entity_kind": "model",
+      "task_tags": [
+        "audio"
+      ],
+      "capability_tags": [
+        "text_to_speech",
+        "dialogue_speech",
+        "voice_design",
+        "text_to_sound"
+      ],
+      "base_support": {
+        "engine_routes_any_of": [
+          "moss_architecture_specific"
+        ],
+        "required_component_roles": [
+          "architecture_specific_backbone",
+          "text_tokenizer",
+          "matching_audio_codec",
+          "reference_encoder_if_required"
+        ],
+        "hardware_match": "evaluate_for_bound_recipe_and_actual_device",
+        "required_runtime_features": [
+          "architecture_specific_host_loop"
+        ]
+      },
+      "proposed_first_release": "0.6.0",
+      "feasibility": "research_gate_not_guaranteed",
+      "z20_assessment": "no_family_wide_validated_profile",
+      "implementation_status": "not_implemented_in_lma",
+      "target_device_validated": false,
+      "artifact_binding": {
+        "revision": null,
+        "file_manifest": null,
+        "ready_to_download_recipe": false
+      },
+      "minimum_acceptance": [
+        "each frozen subtarget has an actual Android pipeline and output",
+        "Delay success does not imply Local/Realtime/DiT support",
+        "Nano 09 cannot substitute for this item"
+      ],
+      "sources": [
+        "https://github.com/OpenMOSS/MOSS-TTS#released-models",
+        "https://github.com/OpenMOSS/llama.cpp/blob/moss-tts-firstclass/docs/moss-tts-firstclass-e2e.md"
+      ],
+      "family_record_is_planning_only": true,
+      "capability_tags_are_union_not_inherited_by_subtargets": true,
+      "subtargets": [
+        {
+          "model": "MOSS-TTS 1.0",
+          "architecture": "MossTTSDelay",
+          "task_tags": [
+            "audio"
+          ],
+          "capability_tags": [
+            "text_to_speech"
+          ],
+          "base_support_tags": [
+            "pipeline:moss_delay",
+            "dependency:audio_codec",
+            "dependency:text_tokenizer",
+            "dependency:architecture_specific_host_loop",
+            "engine:moss_delay_native_candidate"
+          ],
+          "android_validated": false,
+          "entity_kind": "model",
+          "planned_only": true
+        },
+        {
+          "model": "MOSS-TTS-v1.5",
+          "architecture": "MossTTSDelay",
+          "task_tags": [
+            "audio"
+          ],
+          "capability_tags": [
+            "text_to_speech"
+          ],
+          "base_support_tags": [
+            "pipeline:moss_delay",
+            "dependency:audio_codec",
+            "dependency:text_tokenizer",
+            "dependency:architecture_specific_host_loop",
+            "engine:moss_delay_native_candidate"
+          ],
+          "android_validated": false,
+          "entity_kind": "model",
+          "planned_only": true
+        },
+        {
+          "model": "MOSS-TTS-Local-Transformer",
+          "architecture": "MossTTSLocal",
+          "task_tags": [
+            "audio"
+          ],
+          "capability_tags": [
+            "text_to_speech"
+          ],
+          "base_support_tags": [
+            "pipeline:moss_local",
+            "dependency:audio_codec",
+            "dependency:text_tokenizer",
+            "dependency:architecture_specific_host_loop",
+            "engine:architecture_specific_port_required"
+          ],
+          "android_validated": false,
+          "entity_kind": "model",
+          "planned_only": true
+        },
+        {
+          "model": "MOSS-TTS-Local-Transformer-v1.5",
+          "architecture": "MossTTSLocal",
+          "task_tags": [
+            "audio"
+          ],
+          "capability_tags": [
+            "text_to_speech"
+          ],
+          "base_support_tags": [
+            "pipeline:moss_local",
+            "dependency:audio_codec_v2",
+            "dependency:text_tokenizer",
+            "dependency:architecture_specific_host_loop",
+            "engine:architecture_specific_port_required"
+          ],
+          "android_validated": false,
+          "entity_kind": "model",
+          "planned_only": true
+        },
+        {
+          "model": "MOSS-TTSD-v1.0",
+          "architecture": "MossTTSDelay",
+          "task_tags": [
+            "audio"
+          ],
+          "capability_tags": [
+            "dialogue_speech"
+          ],
+          "base_support_tags": [
+            "pipeline:moss_delay",
+            "dependency:audio_codec",
+            "dependency:text_tokenizer",
+            "dependency:architecture_specific_host_loop",
+            "engine:moss_delay_native_candidate"
+          ],
+          "android_validated": false,
+          "entity_kind": "model",
+          "planned_only": true
+        },
+        {
+          "model": "MOSS-VoiceGenerator",
+          "architecture": "MossTTSDelay",
+          "task_tags": [
+            "audio"
+          ],
+          "capability_tags": [
+            "voice_design"
+          ],
+          "base_support_tags": [
+            "pipeline:moss_delay",
+            "dependency:audio_codec",
+            "dependency:text_tokenizer",
+            "dependency:architecture_specific_host_loop",
+            "engine:moss_delay_native_candidate"
+          ],
+          "android_validated": false,
+          "entity_kind": "model",
+          "planned_only": true
+        },
+        {
+          "model": "MOSS-SoundEffect",
+          "architecture": "MossTTSDelay",
+          "task_tags": [
+            "audio"
+          ],
+          "capability_tags": [
+            "text_to_sound"
+          ],
+          "base_support_tags": [
+            "pipeline:moss_delay",
+            "dependency:audio_codec",
+            "dependency:text_tokenizer",
+            "dependency:architecture_specific_host_loop",
+            "engine:moss_delay_native_candidate"
+          ],
+          "android_validated": false,
+          "entity_kind": "model",
+          "planned_only": true
+        },
+        {
+          "model": "MOSS-SoundEffect-v2.0",
+          "architecture": "MossSoundEffectPipeline",
+          "task_tags": [
+            "audio"
+          ],
+          "capability_tags": [
+            "text_to_sound"
+          ],
+          "base_support_tags": [
+            "pipeline:moss_sound_dit",
+            "dependency:audio_codec",
+            "dependency:text_tokenizer",
+            "dependency:architecture_specific_host_loop",
+            "engine:architecture_specific_port_required"
+          ],
+          "android_validated": false,
+          "entity_kind": "model",
+          "planned_only": true
+        },
+        {
+          "model": "MOSS-TTS-Realtime",
+          "architecture": "MossTTSRealtime",
+          "task_tags": [
+            "audio"
+          ],
+          "capability_tags": [
+            "text_to_speech"
+          ],
+          "base_support_tags": [
+            "pipeline:moss_realtime",
+            "dependency:audio_codec",
+            "dependency:text_tokenizer",
+            "dependency:architecture_specific_host_loop",
+            "engine:architecture_specific_port_required"
+          ],
+          "android_validated": false,
+          "entity_kind": "model",
+          "planned_only": true
+        }
+      ],
+      "base_support_tags": {
+        "planned_only": true,
+        "engine_any_of": [
+          "engine:moss_architecture_specific"
+        ],
+        "pipeline": [
+          "pipeline:moss_architecture_specific"
+        ],
+        "dependencies_all_of": [
+          "dependency:architecture_specific_backbone",
+          "dependency:text_tokenizer",
+          "dependency:matching_audio_codec",
+          "dependency:reference_encoder_if_required"
+        ],
+        "backend_and_format": "derived_from_each_pinned_recipe_not_family_name",
+        "runtime_features": [
+          "pipeline:architecture_specific_host_loop"
+        ]
+      }
+    },
+    {
+      "selection_id": "13",
+      "display_name": "SoulX-Podcast 1.7B",
+      "entity_kind": "model",
+      "task_tags": [
+        "audio"
+      ],
+      "capability_tags": [
+        "text_to_speech",
+        "dialogue_speech"
+      ],
+      "base_support": {
+        "engine_routes_any_of": [
+          "soulx_native_port"
+        ],
+        "required_component_roles": [
+          "language_frontend",
+          "speech_backbone",
+          "reference_encoder",
+          "audio_codec"
+        ],
+        "hardware_match": "evaluate_for_bound_recipe_and_actual_device",
+        "required_runtime_features": [
+          "dialogue_host_loop"
+        ]
+      },
+      "proposed_first_release": "0.6.0",
+      "feasibility": "research_gate_not_guaranteed",
+      "z20_assessment": "no_complete_android_recipe_verified",
+      "implementation_status": "not_implemented_in_lma",
+      "target_device_validated": false,
+      "artifact_binding": {
+        "revision": null,
+        "file_manifest": null,
+        "ready_to_download_recipe": false
+      },
+      "minimum_acceptance": [
+        "complete native Android port",
+        "multi-speaker input produces correctly attributed playable audio",
+        "no Python/desktop service needed"
+      ],
+      "sources": [
+        "https://github.com/Soul-AILab/SoulX-Podcast",
+        "https://huggingface.co/Soul-AILab/SoulX-Podcast-1.7B"
+      ],
+      "base_support_tags": {
+        "planned_only": true,
+        "engine_any_of": [
+          "engine:soulx_native_port"
+        ],
+        "pipeline": [
+          "pipeline:soulx_native_port_required"
+        ],
+        "dependencies_all_of": [
+          "dependency:language_frontend",
+          "dependency:speech_backbone",
+          "dependency:reference_encoder",
+          "dependency:audio_codec"
+        ],
+        "backend_and_format": "derived_from_each_pinned_recipe_not_family_name",
+        "runtime_features": [
+          "pipeline:dialogue_host_loop"
+        ]
+      }
+    },
+    {
+      "selection_id": "14",
+      "display_name": "Stable Audio Open Small",
+      "entity_kind": "model",
+      "task_tags": [
+        "audio"
+      ],
+      "capability_tags": [
+        "text_to_sound",
+        "short_music"
+      ],
+      "base_support": {
+        "engine_routes_any_of": [
+          "stable_audio_litert"
+        ],
+        "required_component_roles": [
+          "text_conditioner",
+          "tokenizer",
+          "diffusion_backbone",
+          "audio_autoencoder"
+        ],
+        "hardware_match": "evaluate_for_bound_recipe_and_actual_device",
+        "required_runtime_features": [
+          "sampling_host_loop"
+        ]
+      },
+      "proposed_first_release": "0.4.0",
+      "feasibility": "published_android_route_needs_integration",
+      "z20_assessment": "experimental_unverified",
+      "implementation_status": "not_implemented_in_lma",
+      "target_device_validated": false,
+      "artifact_binding": {
+        "revision": null,
+        "file_manifest": null,
+        "ready_to_download_recipe": false
+      },
+      "minimum_acceptance": [
+        "fresh prompt generates actual short audio",
+        "declared duration/codec/license/device profile validated",
+        "not presented as full-song synthesis"
+      ],
+      "sources": [
+        "https://developer.arm.com/code-along/stable-audio-open-small",
+        "https://huggingface.co/stabilityai/stable-audio-open-small"
+      ],
+      "base_support_tags": {
+        "planned_only": true,
+        "engine_any_of": [
+          "engine:stable_audio_litert"
+        ],
+        "pipeline": [
+          "pipeline:stable_audio_small"
+        ],
+        "dependencies_all_of": [
+          "dependency:text_conditioner",
+          "dependency:tokenizer",
+          "dependency:diffusion_backbone",
+          "dependency:audio_autoencoder"
+        ],
+        "backend_and_format": "derived_from_each_pinned_recipe_not_family_name",
+        "runtime_features": [
+          "pipeline:sampling_host_loop"
+        ]
+      }
+    },
+    {
+      "selection_id": "16",
+      "display_name": "Wan 2.1 T2V 1.3B Q4",
+      "entity_kind": "model",
+      "task_tags": [
+        "video"
+      ],
+      "capability_tags": [
+        "text_to_video"
+      ],
+      "base_support": {
+        "engine_routes_any_of": [
+          "wan_sd_cpp"
+        ],
+        "required_component_roles": [
+          "diffusion_backbone",
+          "umt5_text_encoder",
+          "tokenizer",
+          "wan_vae",
+          "sampling_profile"
+        ],
+        "hardware_match": "evaluate_for_bound_recipe_and_actual_device"
+      },
+      "proposed_first_release": "0.3.0",
+      "feasibility": "author_android_evidence_experimental_port",
+      "z20_assessment": "high_risk_unverified",
+      "implementation_status": "not_implemented_in_lma",
+      "target_device_validated": false,
+      "artifact_binding": {
+        "revision": null,
+        "file_manifest": null,
+        "ready_to_download_recipe": false
+      },
+      "minimum_acceptance": [
+        "new prompt generates actual changing video frames",
+        "CPU encoding/VAE and Vulkan diffusion run locally",
+        "peak shared RAM/time/cancellation measured on declared device"
+      ],
+      "sources": [
+        "https://github.com/SaientAI/saient/blob/main/docs/VIDEO_PIPELINE.md",
+        "https://github.com/SaientAI/saient/blob/main/engine/wan/BACKEND_LOCK.json"
+      ],
+      "base_support_tags": {
+        "planned_only": true,
+        "engine_any_of": [
+          "engine:wan_sd_cpp"
+        ],
+        "pipeline": [
+          "pipeline:wan21_13b"
+        ],
+        "dependencies_all_of": [
+          "dependency:diffusion_backbone",
+          "dependency:umt5_text_encoder",
+          "dependency:tokenizer",
+          "dependency:wan_vae",
+          "dependency:sampling_profile"
+        ],
+        "backend_and_format": "derived_from_each_pinned_recipe_not_family_name"
+      }
+    },
+    {
+      "selection_id": "17",
+      "display_name": "LTX-Video 2B 0.9.8 distilled",
+      "entity_kind": "model",
+      "task_tags": [
+        "video"
+      ],
+      "capability_tags": [
+        "text_to_video"
+      ],
+      "base_support": {
+        "engine_routes_any_of": [
+          "ltx_vulkan_port",
+          "ltx_qnn_port"
+        ],
+        "required_component_roles": [
+          "ltx_backbone_or_qnn_chunks",
+          "t5_text_encoder",
+          "tokenizer",
+          "matching_vae",
+          "runtime_libraries_for_bound_backend"
+        ],
+        "hardware_match": "evaluate_for_bound_recipe_and_actual_device"
+      },
+      "proposed_first_release": "0.5.0",
+      "feasibility": "android_evidence_backend_and_license_gate",
+      "z20_assessment": "qnn_recipe_incompatible_vulkan_unverified",
+      "implementation_status": "not_implemented_in_lma",
+      "target_device_validated": false,
+      "artifact_binding": {
+        "revision": null,
+        "file_manifest": null,
+        "ready_to_download_recipe": false
+      },
+      "minimum_acceptance": [
+        "actual video on declared Android backend",
+        "Vulkan route and QNN route have independent compatibility",
+        "QNN library/version/shape/SoC matches",
+        "code and model redistribution terms resolved"
+      ],
+      "sources": [
+        "https://huggingface.co/timmyboy26/LTX-Video-2B-0.9.8-distilled-QNN",
+        "https://github.com/timmyy123/LLM-Hub/blob/main/LICENSE"
+      ],
+      "qnn_is_optional_alternative_not_mandatory": true,
+      "optional_capabilities_not_committed": [
+        "image_to_video"
+      ],
+      "base_support_tags": {
+        "planned_only": true,
+        "engine_any_of": [
+          "engine:ltx_vulkan_port",
+          "engine:ltx_qnn_port"
+        ],
+        "pipeline": [
+          "pipeline:ltx_video_098"
+        ],
+        "dependencies_all_of": [
+          "dependency:ltx_backbone_or_qnn_chunks",
+          "dependency:t5_text_encoder",
+          "dependency:tokenizer",
+          "dependency:matching_vae",
+          "dependency:runtime_libraries_for_bound_backend"
+        ],
+        "backend_and_format": "derived_from_each_pinned_recipe_not_family_name"
+      }
+    }
+  ],
+  "subtarget_records_are_planning_requirements_not_ui_children": true
+}

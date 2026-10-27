@@ -1,14 +1,16 @@
 # Fully local Android multimodal feasibility
 
-[中文](MULTIMODAL.md) · [Shared foundation](FOUNDATION.en.md) · [Local workflow proposal](WORKFLOWS.en.md) · [Documentation](README.md)
+[中文](MULTIMODAL.md) · [Shared foundation](FOUNDATION.en.md) · [Local tasks](WORKFLOWS.en.md) · [Current requirements](MULTIMODAL_RELEASE_PLAN.en.md) · [Documentation](README.md)
 
 Reviewed **2026-10-27 (Asia/Taipei)** under the user's revised requirement: **every inference stage runs on the same Android phone, without ROOT, another computer, a LAN inference server, cloud inference, or an off-device fallback.** HF access may download assets. Once installed, tokenization, text encoding, sampling, VAE / codec, composition and export must work offline.
 
 This is source review and engineering assessment, **not shipped functionality or an LMA phone benchmark**. The v0.2.0 APK still executes compatible single-file text GGUF only. No new weights were downloaded, new engines compiled, or phone generation run. No physical device is available.
 
+This broader research is background. The [current release plan](MULTIMODAL_RELEASE_PLAN.en.md) governs 01–14/16/17, flat models with output/dependency tags, and forms/queue/artifacts. YuE2, H3, newer LTX and ComfyUI here are outside selected scope; earlier canvas/node plans are withdrawn.
+
 ## Revised decision
 
-Start with **SD 1.5 and matching LoRA, small offline TTS, a native job queue and a local workflow executor**. Investigate Stable Audio Open Small for short sounds. Full songs, large image pipelines and large video models are outside the currently supportable local product scope.
+Start with **SD 1.5 and matching LoRA, small offline TTS, a native job queue and on-phone executor**. Investigate Stable Audio Open Small for short sounds. Full songs, large image pipelines and large video models are outside the currently supportable local product scope.
 
 **Video generation cannot be dismissed as a whole.** Community implementations include an ARM64 / Vulkan Android pipeline for Wan 2.1 1.3B, plus Android Vulkan and device-specific QNN paths for the older LTX-Video 2B. They are worthwhile local experiments, not evidence that Z20 passed or LMA already supports them.
 
@@ -56,12 +58,14 @@ Exact checkpoints/components: [SD 1.5](https://huggingface.co/stable-diffusion-v
 | **Kokoro-82M** | sherpa-onnx Android; complete language, voice and dictionary packages | **A** | **A** |
 | **Piper / VITS / Matcha** | sherpa-onnx offline TTS and Android samples | **A** | **A**; check each voice/language package |
 | **Qwen3-TTS 0.6B Base** | Google LiteRT Kotlin CPU sample; community qwen3-tts.cpp JNI app | **B**, API 28 port and performance unverified | **A/B**, end-to-end Android code exists, realtime is not promised |
-| Full MOSS family | Different architectures; selected dedicated llama.cpp forks plus ONNX codec | **B/C** | **B**; validate the complete architecture, not only LLM weight size |
+| Full MOSS family | Multiple architectures; a native Delay fork includes codec, others need separate ports | **B/C** | **B**; validate the complete architecture, not only LLM weight size |
 | SoulX-Podcast 1.7B | Official reference uses Linux/Python; convertible parts are not an Android pipeline | **B/C** | **B**, native-port research, outside initial features |
 | **Stable Audio Open Small 341M** | Arm LiteRT/C++/Android route for short sounds/music | **B** | **A/B**; not full-song generation |
 | **YuE2-3B** | Lyrics-to-song with multiple stages and audio VAE; no reviewed complete Android recipe | **C** | **C**, retained only for future local-port research |
 
 Sources: [MOSS Nano official Android sample](https://github.com/OpenMOSS/MOSS-TTS-Nano/tree/main/examples/android_onnx_runtime), [Kokoro](https://huggingface.co/hexgrad/Kokoro-82M), [sherpa-onnx](https://github.com/k2-fsa/sherpa-onnx), [Android TTS examples](https://k2-fsa.github.io/sherpa/onnx/tts/apk-engine.html), [MOSS family](https://github.com/OpenMOSS/MOSS-TTS), [SoulX-Podcast](https://github.com/Soul-AILab/SoulX-Podcast), [YuE2](https://huggingface.co/m-a-p/YuE2-3B), [Arm deployment](https://developer.arm.com/code-along/stable-audio-open-small), [Stable Audio checkpoint](https://huggingface.co/stabilityai/stable-audio-open-small).
+
+The [native MOSS Delay fork](https://github.com/OpenMOSS/llama.cpp/blob/moss-tts-firstclass/docs/moss-tts-firstclass-e2e.md) includes native backbone/audio encoding/decoding; Python or ONNX codecs are not universally required. It does not prove Local/Realtime/DiT or family-wide Android support. Frozen subtargets are in the current release plan.
 
 MOSS Nano's official Android smoke test uses two pre-tokenized prompts. It is not a complete arbitrary-input voice-cloning product. SentencePiece, matching audio tokenizer/codec, chunking, cancellation and playback buffering remain necessary. Use bounded short-sentence queues; sustained playback depends on measured realtime factor.
 
@@ -119,11 +123,11 @@ Preserve local-model positioning, the existing Recommended entries and separate 
 | Stage | Deliverables and acceptance |
 | --- | --- |
 | 1: shared foundation | Multi-component bundles, native providers, per-model settings, persistent jobs/artifacts, offline validation, one large-engine lease |
-| 2: initial working chains | One explicit-language small TTS, SD 1.5 plus matching LoRA; templates and actual execution before a canvas |
+| 2: initial working chains | One explicit-language small TTS, SD 1.5 plus matching LoRA; task forms/queue and actual execution, without a canvas |
 | 3: mobile expansion | Qwen3-TTS Base, MNN Sana, short sounds; validate complete local chains on API 28 and newer devices |
 | 4: on-phone video experiments | Wan 1.3B prototype first; separate Vulkan and exact-chip QNN recipes for old LTX 2B; retain experimental labels until measured |
 | 5: advanced models | Quantization/staged loading on high-memory phones; C-rated candidates never appear as verified/default recommendations |
 
 Acceptance includes full download/resume/missing-file handling, revision/hashes, **new arbitrary inputs generated with networking disabled**, playable outputs, model-settings isolation, clamping and joint shape limits, generation/cancellation/unloading, peak RAM, time/quality, screen-off/thermal behavior and honest recovery after process death. Foreground work needs no ROOT but cannot guarantee survival or 24/7 full-load execution.
 
-See [WORKFLOWS.en.md](WORKFLOWS.en.md) for the framework and two **design-only, non-executable** local JSON examples; [local-video-evidence.json](research/local-video-evidence.json) records source evidence. This update changes documentation only, adds no phone passes, and does not rebuild APKs or replace published assets. Existing screenshots/GIFs still demonstrate v0.2.0 text features.
+See [WORKFLOWS.en.md](WORKFLOWS.en.md) for local jobs and two **historical, non-executable JSON examples that are not current delivery requirements**; [local-video-evidence.json](research/local-video-evidence.json) records source evidence. This update changes documentation only, adds no phone passes, and does not rebuild APKs or replace published assets. Existing screenshots/GIFs still demonstrate v0.2.0 text features.

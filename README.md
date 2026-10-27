@@ -25,7 +25,8 @@ Android 版的本地模型管理、下载、对话和 API 服务应用。当前�
 | 技术实现、生命周期、存储与网络 | [架构](docs/ARCHITECTURE.md) | [Architecture](docs/ARCHITECTURE.en.md) |
 | 生图 / 语音 / 音乐 / 视频的 Android 可行性 | [多模态扩展核查](docs/MULTIMODAL.md) | [Multimodal feasibility](docs/MULTIMODAL.en.md) |
 | 多模型、多引擎共用基座与迁移路线 | [基座评估](docs/FOUNDATION.md) | [Foundation assessment](docs/FOUNDATION.en.md) |
-| 类 ComfyUI 纯本地节点、引擎与后台设计 | [工作流提案](docs/WORKFLOWS.md) | [Workflow proposal](docs/WORKFLOWS.en.md) |
+| 16 项范围、平级标签、四版规划与完整验收 | [需求与发版计划](docs/MULTIMODAL_RELEASE_PLAN.md) | [Requirements and releases](docs/MULTIMODAL_RELEASE_PLAN.en.md) |
+| 任务表单、共用队列、内部执行与后台 | [任务执行方案](docs/WORKFLOWS.md) | [Task execution](docs/WORKFLOWS.en.md) |
 | curl、Python、PowerShell 和 SSE | [API 接入](docs/API.md) | [API integration](docs/API.en.md) |
 | 工具链、重建和验证 | [构建](docs/BUILD.md) | [Build](docs/BUILD.en.md) |
 | 已通过检查与实测边界 | [验证](docs/VALIDATION.md) | [Validation](docs/VALIDATION.en.md) |
@@ -35,9 +36,9 @@ Android 版的本地模型管理、下载、对话和 API 服务应用。当前�
 
 ## 多模态扩展研究
 
-核心方向是**可持续接入多种模型的本地基座**：共用模型包 / 组件 / 配方、引擎适配器、设备能力、独立参数、任务 / 产物和工作流。同架构的新权重尽量只增加数据，全新架构通过引擎更新接入；Z20 与较新手机分别显示可运行范围。具体分层、现有代码迁移及跨图像 / 音频 / 视频完成标准见[基座评估](docs/FOUNDATION.md)。该基座仍为提案。
+核心方向是**可持续接入多种模型的本地基座**：共用模型包 / 组件 / 配方、内部引擎模块、独立参数、任务 / 产物和 API。所有模型平级，按生文 / 生图 / 生视频 / 生音频及基座依赖标签筛选，保留既有推荐；交互为模型选择 → 任务表单 → 本机队列 → 结果。01–14 / 16 / 17 的逐项需求、风险、拟定 0.3.0–0.6.0 范围及验收见[双语发版计划](docs/MULTIMODAL_RELEASE_PLAN.md)，不建设 ComfyUI 画布、用户节点、插件生态或图导入。规划版本均未发布。
 
-2026-10-27 按最新要求重新评估：**所有推理、编码器、codec 与工作流合成都在同一 Android 手机执行，不提供其他设备推理或回退；HF 用于下载模型。** Z20 优先小型 TTS、SD 1.5 与匹配 LoRA；新增核查 Wan 1.3B、旧 LTX-Video 2B 的 Android 本机实现，列为设备限定实验，不能推定 Z20 已通过。完整分级、源码与许可见[多模态报告](docs/MULTIMODAL.md)，本地节点、模型包、独立参数与后台恢复见[工作流提案](docs/WORKFLOWS.md)。**这些扩展尚未加入当前 APK，也未进行 LMA 真机生成测试。** 本次仅维护文档，保留 v0.2.0 安装包和原演示素材。
+全部分词、编码器、采样、codec 与导出在同一 Android 手机执行，无需 ROOT，无外部推理 / 回退。HF 用于搜索和显式资产下载。同架构变体可复用已有配方，新架构需要原生引擎 / APK 更新；Z20 与较新设备分别验收。源码 / 许可见[研究](docs/MULTIMODAL.md)，迁移见[基座评估](docs/FOUNDATION.md)，后台与恢复见[任务方案](docs/WORKFLOWS.md)。完整 MOSS / SoulX 仍有研究关卡，登记 / 下载不计可运行。**扩展尚未加入 APK、未有 LMA 真机生成证据；当前仍为 v0.2.0 文本 GGUF 和原演示素材。**
 
 ## 运行方案
 

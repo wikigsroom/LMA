@@ -1,6 +1,6 @@
 # LMA 0.2.0 架构
 
-本文描述当前 APK。全部在同一 Android 手机执行的多模态与节点扩展是另行评审的[本地工作流提案](WORKFLOWS.md)，尚未实现；选型依据见[纯本地可行性核查](MULTIMODAL.md)，共用模型 / 引擎 / 任务基座与源码迁移见[基座评估](FOUNDATION.md)。
+本文描述当前 APK。尚未实现的多模态扩展以[现行需求与发版计划](MULTIMODAL_RELEASE_PLAN.md)为准：所有模型平级，以功能 / 基座标签分类，采用任务表单与本机队列，不建设 ComfyUI 画布 / 节点生态。执行与后台见[本机任务](WORKFLOWS.md)，来源见[可行性研究](MULTIMODAL.md)，共用契约与源码迁移见[基座评估](FOUNDATION.md)。
 
 ## 运行链路
 

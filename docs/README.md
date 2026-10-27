@@ -12,7 +12,8 @@
 | 架构 / Architecture | [ARCHITECTURE.md](ARCHITECTURE.md) | [ARCHITECTURE.en.md](ARCHITECTURE.en.md) |
 | 多模态可行性研究 / Multimodal feasibility research | [MULTIMODAL.md](MULTIMODAL.md) | [MULTIMODAL.en.md](MULTIMODAL.en.md) |
 | 可扩展多模态基座 / Extensible multimodal foundation | [FOUNDATION.md](FOUNDATION.md) | [FOUNDATION.en.md](FOUNDATION.en.md) |
-| 工作流框架提案 / Workflow framework proposal | [WORKFLOWS.md](WORKFLOWS.md) | [WORKFLOWS.en.md](WORKFLOWS.en.md) |
+| 现行需求与发版 / Current requirements and release plan | [MULTIMODAL_RELEASE_PLAN.md](MULTIMODAL_RELEASE_PLAN.md) | [MULTIMODAL_RELEASE_PLAN.en.md](MULTIMODAL_RELEASE_PLAN.en.md) |
+| 本机任务与内部执行 / Local jobs and internal stages | [WORKFLOWS.md](WORKFLOWS.md) | [WORKFLOWS.en.md](WORKFLOWS.en.md) |
 | HF 发现与本地管理 / HF discovery and Local | [HF_MODELS.md](HF_MODELS.md) | [HF_MODELS.en.md](HF_MODELS.en.md) |
 | 模型独立参数 / Per-model settings | [MODEL_SETTINGS.md](MODEL_SETTINGS.md) | [MODEL_SETTINGS.en.md](MODEL_SETTINGS.en.md) |
 | 无审查模型 / Uncensored models | [UNCENSORED_MODELS.md](UNCENSORED_MODELS.md) | [UNCENSORED_MODELS.en.md](UNCENSORED_MODELS.en.md) |
@@ -26,12 +27,13 @@
 
 - **用户 / Users：** README → 使用手册 / User guide → API → 常见问题 / Troubleshooting in the user guide。
 - **开发者 / Developers：** 构建 / Build → 架构 / Architecture → 验证 / Validation → 贡献约定 / Contributing。
-- **业务扩展 / Expansion：** 纯本地可行性 / Fully local feasibility → [基座评估 / Foundation](FOUNDATION.md) → 本地工作流 / Local workflows → [图片旁白草案 / Narrated-image draft](proposals/local-narrated-image.workflow.json) 与 [Wan 本机实验草案 / On-phone Wan draft](proposals/local-wan-video.workflow.json)。全部同一手机执行；这是未实现设计 / Same-phone execution throughout; unimplemented designs。
+- **业务扩展 / Expansion：** [现行需求 / Release plan](MULTIMODAL_RELEASE_PLAN.md) → [范围与标签 / Scope and tags](proposals/multimodal-release-scope.json) → [基座 / Foundation](FOUNDATION.md) → [本机任务 / Local tasks](WORKFLOWS.md) → [源码研究 / Source research](MULTIMODAL.md)。01–14 / 16 / 17、模型平级、无画布节点生态；全部同一手机执行，尚未实现 / Flat peers, no canvas/node ecosystem, same-phone execution; unimplemented.
 - **验收 / Acceptance：** [完成条件核对](COMPLETION_AUDIT.md) → 真机验收 / Device acceptance → [`verification/`](../verification/)。
 
 ## 证据和历史记录 / Evidence and audit history
 
 - [DESIGN.md](DESIGN.md)：界面交互设计说明 / UI design rationale。
+- [图片旁白草案 / Narrated-image draft](proposals/local-narrated-image.workflow.json)、[Wan 草案 / Wan draft](proposals/local-wan-video.workflow.json)：历史、不可执行示例；不属于当前导入格式或组合任务交付要求 / Historical non-executable examples, not current import formats or mandatory composed tasks.
 - [local-video-evidence.json](research/local-video-evidence.json)：Wan / 旧 LTX Android 源码与作者结果记录；不属于 LMA 实测 / Wan/older LTX Android source and author reports, not LMA device results。
 - [COMPLETION_AUDIT.md](COMPLETION_AUDIT.md)：逐项完成条件及真机阻塞项 / Requirement-by-requirement audit and device blocker。
 - [`catalogue/`](../catalogue/)：固定模型、作者声明、GGUF 来源、哈希及架构记录 / Pinned models, publisher declarations, hashes, architecture records。
