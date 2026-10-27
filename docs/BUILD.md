@@ -91,3 +91,5 @@ python tools/check_repository.py
 ## Nano 原生执行器
 
 完成共享 ORT / sd.cpp 前提后，依次运行 `fetch_moss_nano.py`、`build_moss_nano.py`、`collect_moss_nano_notices.py`、`test_moss_nano.py`，再执行通用 APK 检查。源码固定，使用原生 Windows 工具；主机 C++ 解析检查需 MSVC，可由 `LMA_VCVARS` 指定初始化脚本；不使用虚拟化。见[完整步骤](MOSS_NANO_ENGINE.md)。
+
+文本基座新增 `python tools/test_text.py`，使用真实主机子进程 / 回环 HTTP 与 metadata-only GGUF，未执行模型或 Android。现有文本 runtime 由 `runtime-lock.json` 与 `BUILD_INFO.json` 生成单独签名包元数据并核对全部依赖；不新增权重。见[文本基座](TEXT_ENGINE.md)。

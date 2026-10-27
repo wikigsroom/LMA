@@ -24,6 +24,7 @@ App 发行不含模型权重或模型专用数据；模型是用户单独选择�
 python tools/build.py
 # 运行适用于当前改动的检查 / Run checks relevant to the actual changes
 python tools/test_protocol.py
+python tools/test_text.py
 python tools/test_backend.py
 python tools/test_hub.py --live
 python tools/test_sqlite.py

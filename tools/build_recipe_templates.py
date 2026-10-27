@@ -53,10 +53,24 @@ def build():
         definition=dict(engine="moss_nano_ort", backend="cpu", architecture="moss_tts_nano", pipeline="moss_nano", tasks=["audio"], capabilities=["text_to_speech"], parameters=dict(version=1, fields=fields)),
         requirements=requirements, fixedComponents=[],
         help="仅接受匹配的 Nano browser ONNX 导出与 decode_full codec；不是其他 MOSS 架构。须自行选择图引用的全部 .data，缺少数据会在本机报错。所有词表和音色均需用户下载；不提供参考音频克隆。音色编号按已下载 manifest 回填，数值上限为应用保护值，手机效果与内存待实测。"))
+    text_fields = {}
+    for key, label, default, low, high, presets, kind in (
+        ("threads", "CPU 线程", 4, 1, 256, [1, 2, 4, 8], "integer"),
+        ("context", "上下文长度", 2048, 2, 131072, [512, 1024, 2048, 4096, 8192], "integer"),
+        ("maxTokens", "单次输出上限", 512, 1, 131071, [128, 256, 512, 1024], "integer"),
+        ("temperature", "采样温度", 0.7, 0, 2, [0, 0.3, 0.7, 1], "number")):
+        text_fields[key] = dict(type=kind, label=label, default=default, minimum=low, maximum=high, presets=presets, limitSource="application_guard")
+    text_fields["maxTokens"]["maximumFrom"] = dict(field="context", offset=-1)
+    text_fields["reasoning"] = dict(type="enum", label="思考模式", default="off", values=["off", "auto", "on"])
+    text_fields["systemPrompt"] = dict(type="string", label="系统提示词", default="你是一个有帮助的本地助手。请优先使用用户的语言，准确、清楚地回答。", maxLength=4000)
+    templates.append(dict(id="text_gguf_cpu_v1", name="文本 GGUF · CPU", primaryRole="text_gguf",
+        definition=dict(engine="llama_text", backend="cpu", architecture="gguf", pipeline="text_gguf", tasks=["text"], capabilities=["text_generation"], parameters=dict(version=1, fields=text_fields)),
+        requirements=[dict(role="text_gguf", label="完整文本 GGUF（含 tokenizer）", formats=["gguf"], required=True)], fixedComponents=[],
+        help="仅适用于现有 llama.cpp 引擎支持的完整文本 GGUF，不接受拆分权重、视觉 / 音频组件或自定义代码。下载后读取实际上下文上限，未知时采用应用保护值；CPU 内存和真实手机输出仍需验证。登记不下载，原有精选与已下载文本模型保留。"))
     return {"schema": "lma.recipe-catalogue/1", "templates": templates}
 
 
 if __name__ == "__main__":
     target = ROOT / "app/src/main/assets/recipe-templates.json"
     target.write_text(json.dumps(build(), ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print("Generated 8 data-only component recipes; no weights or tokenizer data.")
+    print("Generated 9 data-only component recipes; no weights or tokenizer data.")

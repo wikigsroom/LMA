@@ -147,3 +147,11 @@ dev.3 的已安装 TTS 候选使用相同异步任务接口，`type: "speech.syn
 `POST /v1/jobs` 的 `image.generate` 可选 `adapters: [{"bundleId": "本机适配器包ID", "scale": 0.75}]`，最多八个，省略强度时固定各自保存值。基础模型与适配器必须完整安装且声明兼容；重复、自身、路径、未知字段或非生图任务的选择拒绝。缺资产不下载。配对 / 强度 / 来源与验证边界见[LoRA 指南](ADAPTERS.md)；没有真机生成证据。
 
 dev.7：通用包的 `/v1/models` 条目增加 `version` 元数据（尚无版本组时为 `{}`），包含 `groupId` / `activeBundleId` / `isActive` / `members`，有更新计划时附 `pending`。已安装的旧版仍以原 ID 列出；“当前版本”不重定向旧请求。更新 / 差异 / 确认切换目前使用 App 原生命令，不新增 HTTP 更新端点。见[模型更新](MODEL_UPDATES.md)。
+
+## 0.3.0-dev.8：文本包任务
+
+用户新建并安装的 `text_gguf_cpu_v1` 包可以向 `POST /v1/jobs` 提交 `{"bundleId":"USER_SELECTED_BUNDLE_ID","type":"text.generate","input":{"prompt":"介绍本地模型"},"parameters":{"maxTokens":128},"allowUnmeasured":true}`。沿用密钥与可选幂等键，用户须明确同意尝试未测配方；不会下载模型。选择实际安装的包 ID，任务固定该版本。
+
+结果的鉴权 `/v1/artifacts/ID/content` 返回 `application/vnd.lma.text+json`，包含 `schema: lma.text-result/1`、`content`、`reasoning`、`finishReason: stop|length` 和已提供的 `usage` token 计数。输出增量由私有引擎 SSE 消费，公共任务事件仍是阶段 / 状态事件；此异步接口不冒充聊天 token SSE。
+
+`GET /v1/models` 新增通用包的 `parameter_error` 字段；不兼容导入单独报告，不阻断其他模型列表。现有 chat / completions 仍针对已加载旧文本路径。旧记录完整迁移和统一调度未完成；所有队列任务仍须先停止旧常驻文本服务。详见[文本实现与边界](TEXT_ENGINE.md)。

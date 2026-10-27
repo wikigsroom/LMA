@@ -91,3 +91,5 @@ Use the [current release plan](MULTIMODAL_RELEASE_PLAN.en.md) to accept complete
 The Nano implementation stages only leased verified assets as private hardlinks. Worker success/failure/cancellation exits before ordinary workspace cleanup; startup removes abandoned workspaces. Missing ONNX external data fails locally without a transfer or fallback. See [implementation and evidence boundaries](MOSS_NANO_ENGINE.en.md).
 
 dev.7 adds bundle [independent updates/rollback](MODEL_UPDATES.en.md): user-reviewed assets/profiles, separate download and activation consent, retained old files/settings and protected queued/running version references. Current preference never redirects API/existing jobs; legacy unification and device acceptance remain required in this same complete version.
+
+dev.8 text bundles execute `text.generate` through shared forms/jobs and commit validated response/reasoning JSON for inert preview/export. Public task events remain stage events; the persistent legacy path is not fully scheduled yet. See [text jobs](TEXT_ENGINE.en.md).

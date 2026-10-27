@@ -10,6 +10,22 @@ ROOT = Path(__file__).resolve().parents[1]
 RECEIPTS = {"sd_cpp": "native-build-info.json", "sherpa_tts": "tts-build-info.json", "moss_nano_ort": "moss-nano-build-info.json"}
 
 
+def text_runtime():
+    runtime = json.loads((ROOT / "third_party/runtime-lock.json").read_text(encoding="utf-8"))
+    info = json.loads((ROOT / "third_party/BUILD_INFO.json").read_text(encoding="utf-8"))
+    records = []
+    for item in runtime["files"]:
+        data = (ROOT / "app/src/main/jniLibs/arm64-v8a" / item["name"]).read_bytes()
+        if len(data) != item["size"] or hashlib.sha256(data).hexdigest() != item["sha256"]: raise RuntimeError("Text runtime differs from reviewed lock: " + item["name"])
+        elf = elf_info(data)
+        if not elf["16k_elf_aligned"] or any(api > 28 for api in elf["android_api_notes"]): raise RuntimeError("Text runtime ELF contract changed")
+        records.append(dict(file=item["name"], bytes=item["size"], sha256=item["sha256"], android_api_notes=elf["android_api_notes"]))
+    worker = next(x for x in records if x["file"] == "libllama-server.so")
+    return dict(worker, engine="llama_text", abi="arm64-v8a", backend="cpu", source_revision=info["llamaCppCommit"], version=runtime["version"],
+        provenance="existing_pinned_prebuilt_runtime", dependencies=[x for x in records if x is not worker],
+        deviceValidated=False, model_inference_tested=False, status="packaged_not_device_tested", vocabularies="external_user_selected_gguf")
+
+
 def prepare():
     lock = json.loads((ROOT / "third_party/engine-lock.json").read_text(encoding="utf-8"))
     engines = []
@@ -39,7 +55,7 @@ def prepare():
         build.update({"deviceValidated": False, "status": "compiled_not_device_tested", "notices": list(notices)})
         engines.append(build)
     path = ROOT / "app/src/main/assets/engine-builds.json"
-    path.write_text(json.dumps({"schema": "lma.engine-builds/1", "engines": engines}, indent=2) + "\n", encoding="utf-8")
+    path.write_text(json.dumps({"schema": "lma.engine-builds/1", "engines": engines, "textRuntime": text_runtime()}, indent=2) + "\n", encoding="utf-8")
     return engines
 
 

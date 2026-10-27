@@ -28,12 +28,13 @@ public final class BundleUpdates {
                 .put("sha256", c.sha256).put("gitBlobSha1", c.gitBlobSha1);
     }
     private static boolean numeric(String type) { return type.equals("integer") || type.equals("number"); }
-    private static JSONObject fields(ModelBundle b) { JSONObject f = b.parameters().json().optJSONObject("fields"); return f == null ? new JSONObject() : f; }
+    private static JSONObject fields(ParameterSchema b) { JSONObject f = b.json().optJSONObject("fields"); return f == null ? new JSONObject() : f; }
     /** Migration is previewed with reasons; old settings are never mutated. */
-    public static JSONObject settings(ModelBundle from, ModelBundle to, JSONObject oldValues, JSONObject targetValues, String mode) throws Exception {
+    public static JSONObject settings(ModelBundle from, ModelBundle to, JSONObject oldValues, JSONObject targetValues, String mode) throws Exception { return settings(from.parameters(), to.parameters(), oldValues, targetValues, mode); }
+    private static JSONObject settings(ParameterSchema from, ParameterSchema to, JSONObject oldValues, JSONObject targetValues, String mode) throws Exception {
         if (!mode.equals("copy") && !mode.equals("keep")) throw new IllegalArgumentException("Choose copy or keep for model settings");
         JSONObject oldFields = fields(from), newFields = fields(to);
-        JSONObject defaults = to.parameters().normalize(new JSONObject(), new JSONObject()).getJSONObject("values");
+        JSONObject defaults = to.normalize(new JSONObject(), new JSONObject()).getJSONObject("values");
         JSONObject candidate = DataFiles.copy(mode.equals("keep") ? targetValues : defaults);
         Map<String, String> reasons = new HashMap<>();
         if (mode.equals("copy")) for (Iterator<String> it = newFields.keys(); it.hasNext();) {
@@ -50,15 +51,15 @@ public final class BundleUpdates {
             candidate.put(key, value); reasons.put(key, "retained");
         }
         JSONObject effective;
-        try { effective = to.parameters().normalize(candidate, new JSONObject()); }
+        try { effective = to.normalize(candidate, new JSONObject()); }
         catch (IllegalArgumentException invalidShape) {
             // Each schema's defaults are valid. Reset only the jointly compiled dimensions.
-            JSONArray shapes = to.parameters().json().optJSONArray("allowedShapes");
+            JSONArray shapes = to.json().optJSONArray("allowedShapes");
             if (!mode.equals("copy") || shapes == null || shapes.length() == 0) throw invalidShape;
             Set<String> dimensions = new HashSet<>();
             for (int i = 0; i < shapes.length(); i++) for (Iterator<String> it = shapes.getJSONObject(i).keys(); it.hasNext();) dimensions.add(it.next());
             for (String key : dimensions) { candidate.put(key, defaults.get(key)); reasons.put(key, "joint_shape_reset"); }
-            effective = to.parameters().normalize(candidate, new JSONObject());
+            effective = to.normalize(candidate, new JSONObject());
         }
         JSONArray adjustments = effective.getJSONArray("adjustments");
         for (int i = 0; i < adjustments.length(); i++) reasons.put(adjustments.getJSONObject(i).getString("field"), "clamped");
@@ -72,11 +73,12 @@ public final class BundleUpdates {
                 .put("reason", !values.has(key) ? "removed" : mode.equals("keep") ? "target_settings" : reasons.getOrDefault(key, "retained")));
         return new JSONObject().put("values", values).put("changes", changes).put("adjustments", adjustments);
     }
-    public static JSONObject plan(ModelBundle from, ModelBundle to, JSONObject oldValues, JSONObject targetValues, JSONObject version, JSONObject download, String mode) throws Exception {
+    public static JSONObject plan(ModelBundle from, ModelBundle to, JSONObject oldValues, JSONObject targetValues, JSONObject version, JSONObject download, String mode) throws Exception { return plan(from, to, oldValues, targetValues, version, download, mode, from.parameters(), to.parameters()); }
+    public static JSONObject plan(ModelBundle from, ModelBundle to, JSONObject oldValues, JSONObject targetValues, JSONObject version, JSONObject download, String mode, ParameterSchema sourceSchema, ParameterSchema targetSchema) throws Exception {
         compatible(from, to);
-        JSONObject migration = settings(from, to, oldValues, targetValues, mode);
+        JSONObject migration = settings(sourceSchema, targetSchema, oldValues, targetValues, mode);
         JSONObject identity = new JSONObject().put("from", from.json()).put("to", to.json()).put("sourceSettings", oldValues)
-                .put("targetSettings", targetValues).put("version", version).put("settingsMode", mode);
+                .put("targetSettings", targetValues).put("version", version).put("settingsMode", mode).put("sourceParameterSchema", sourceSchema.json()).put("targetParameterSchema", targetSchema.json());
         String review = Protocol.hex(MessageDigest.getInstance("SHA-256").digest(DataFiles.canonical(identity).getBytes(StandardCharsets.UTF_8)));
         Map<String, ModelBundle.Component> old = roles(from), next = roles(to); Set<String> all = new TreeSet<>(old.keySet()); all.addAll(next.keySet());
         JSONArray components = new JSONArray();

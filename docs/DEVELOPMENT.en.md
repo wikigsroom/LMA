@@ -2,17 +2,17 @@
 
 [中文](DEVELOPMENT.md) · [Full scope](MULTIMODAL_RELEASE_PLAN.en.md) · [Build](BUILD.en.md) · [English home](../README.en.md)
 
-The current public release remains **v0.2.0**. This branch is **0.3.0-dev.7 / versionCode 11**, not the complete v0.3.0, and has no new Release. All F-01–F-12 requirements, selections 01–14/16/17 and frozen subtargets still belong to one delivery. This is implementation progress within that release, not a split roadmap.
+The current public release remains **v0.2.0**. This branch is **0.3.0-dev.8 / versionCode 12**, not the complete v0.3.0, and has no new Release. All F-01–F-12 requirements, selections 01–14/16/17 and frozen subtargets still belong to one delivery. This is implementation progress within that release, not a split roadmap.
 
 ## Implemented development code
 
 | Area | Current behavior | Evidence boundary |
 | --- | --- | --- |
 | Bundles/components | `lma.model-bundle/1` and `/2`, pinned revisions/sizes/SHA256 or Git blob identity with measured SHA256, shared content objects, atomic installation, pause/resume, explicit folder import, deletion/reference protection | Byte fixtures and real host HTTP transfers, not model inference |
-| Independent model versions | User-selected pinned target, component/profile review, separate transfer/activation, retained old files, rollback, last 64 switches and queued-reference protection | 60 real host storage/failure/transfer checks; Android upgrades remain unverified; see [version guide](MODEL_UPDATES.en.md) |
+| Independent model versions | User-selected pinned target, component/profile review, separate transfer/activation, retained old files, rollback, last 64 switches and queued-reference protection | 62 real host storage/failure/transfer checks; Android upgrades remain unverified; see [version guide](MODEL_UPDATES.en.md) |
 | User control | Declaration, browsing and planning create no transfers; downloads require a separate action; missing assets fail locally; interrupted transfers pause for manual resumption | Does not install the entire catalogue or implicitly download models |
 | Settings | Per-bundle settings, editable presets, numerical clamping, joint shape checks and immutable submitted snapshots | Recipe limits and device budgets are separate; unknown maxima are not verified |
-| UI | Legacy text and bundles share a flat list; text/image/video/audio filters, bundle details, task forms, queue and artifacts; Recommended stays m08 → m06 → m01 | All contains pinned SD1.5 and three TTS candidates; custom manifests enter through Add model; dev.6 offers eight explicit HF component templates without universal architecture support |
+| UI | Legacy text and bundles share a flat list; text/image/video/audio filters, bundle details, task forms, queue and artifacts; Recommended stays m08 → m06 → m01 | All contains pinned SD1.5 and three TTS candidates; custom manifests enter through Add model; dev.8 offers nine explicit HF component templates without universal architecture support |
 | Jobs/artifacts | One heavy job, submit/cancel/retry, persistent events, private results, hashes/provenance, system export and image/WAV/MP4 inspection/ranged preview | Bounded AtomicFile JSON currently stores these records; existing chat SQLite remains; legacy text is not fully unified yet |
 | Unified gateway | Start with zero models; authenticated model/engine/job/event/artifact Range routes; public text proxy applies profile bounds and tracks leases; native text stays on a separate loopback port/secret | Production HTTP/stores use real host sockets and explicit execution fixtures; no model downloads or inference redirects |
 | Android execution | Signed-in sd.cpp ARM64 CPU worker, data-only model bundles, external user-supplied vocabularies, child lifetime bound to its host | Compiled/packaged, **no phone inference**; upstream architectures do not prove accepted recipes |
@@ -21,7 +21,7 @@ The current public release remains **v0.2.0**. This branch is **0.3.0-dev.7 / ve
 
 The APK contains foundation code, engines, catalogue/tag/recipe metadata and notices, **without weights or model-specific vocabulary/tokenizer/voice/language assets**. [vocab_external.cpp](../native/vocab_external.cpp) replaces upstream embedded vocabularies. Zero-model startup is valid. The user sees the complete selected components, total size and reusable assets before downloading. App updates preserve existing models/settings and do not silently replace weights.
 
-Custom manifests gain neither device-validated status nor checked uncensored declarations. Trying an unmeasured recipe requires an explicit user choice and may still fail locally on resources/operators/components. Media jobs currently require stopping the legacy text service first; automatic coordination and the unified text adapter remain work for this release.
+Custom manifests gain neither device-validated status nor checked uncensored declarations. Trying an unmeasured recipe requires an explicit user choice and may still fail locally on resources/operators/components. Media jobs currently require stopping the legacy text service first; new text bundles use shared jobs, while legacy migration and complete automatic coordination remain work for this release.
 
 ## Current development evidence
 
@@ -29,11 +29,11 @@ Custom manifests gain neither device-validated status nor checked uncensored dec
 
 | Check | Result | What it establishes |
 | --- | --- | --- |
-| Foundation core | 302 assertions | Component integrity, real HTTP resumption, shared references, independent settings, queue ownership/cancellation/restart, artifacts and ranged reads |
+| Foundation core | 310 assertions | Component integrity, real HTTP resumption, shared references, independent settings, queue ownership/cancellation/restart, artifacts and ranged reads |
 | API/transport | 67 assertions | Auth, zero-model state, JSON/framing limits, idempotency/cancel/events, exact artifacts/Range/leases and text policy; actual host sockets, not Android inference |
 | Legacy backend/proxy | 98 assertions | Host Android adapters exercising downloads, actual child processes, HTTP SSE and per-model settings |
 | HF logic | 76 assertions | Search, pinned revisions, pagination/selection and token boundaries, not universal HF execution |
-| UI | 132 assertions | Actual HTML/CSS/JS with explicit simulated native state; recommendation/tag/download/form/queue/narrow-screen regressions |
+| UI | 147 assertions | Actual HTML/CSS/JS with explicit simulated native state; recommendation/tag/download/form/queue/narrow-screen regressions |
 | Native package | 19 ARM64 files | Pinned hashes, resolved dependencies, Android API 28, 16 KiB ELF/APK alignment, original signing identity, asset allowlist |
 | Phone inference/endurance | 0 | No actual image/audio/motion-video or sustained screen-off inference evidence |
 
@@ -43,7 +43,7 @@ The SD1.5 candidate combines [Second State’s pinned GGUF](https://huggingface.
 
 ## Remaining work in the same release
 
-1. Fully unify legacy text/HF/import records with bundles, capability routing and scheduling; finish remaining architecture recipes and legacy-record version management. Eight explicit HF templates exist; dev.7 adds bundle updates/rollback without establishing complete legacy migration.
+1. Fully unify legacy text/HF/import records with bundles, capability routing and scheduling; finish remaining architecture recipes and legacy-record version management. Nine explicit HF templates exist and dev.8 integrates newly declared text bundles with shared execution; dev.7 adds bundle updates/rollback without establishing complete legacy migration.
 2. Complete pinned assets, actual engines/pipelines and every subtarget for 01–14/16/17, including both SD1.5/SDXL LoRA pairings, MNN, remaining audio, full MOSS/SoulX and older LTX Android ports. Some TTS paths are integrated but not device-accepted. Compiling sd.cpp does not complete these targets.
 3. Extend the implemented async/text API to every engine, input-artifact reference and physical-device validation. Full text scheduling unification, per-modality compatibility surfaces and lifecycle coverage remain in this release. See [API behavior/limits](API.en.md#030-dev2-independent-gateway-jobs-and-artifacts).
 4. Finish measured admission profiles, thermals, input-artifact references, stage/checkpoint capability handling, cross-modality load/unload and upgrade migration verification.
@@ -101,3 +101,11 @@ Add a compiled ARM64 SentencePiece/ONNX/codec speech worker, an eighth HF compon
 Bundles gain a native version index, component/license/profile review, explicit download/folder import, separate activation and rollback. Old settings and immutable task provenance remain intact; stale consent is rejected. App installation/upgrades still start no model transfers; only foundation code is added. Queued/running base and LoRA references prevent deletion.
 
 302 foundation checks include 62 version assertions; 132 UI checks pass. Screenshots 17–21 and refreshed [recording](media/development/foundation-ui.mp4)/[GIF](media/development/foundation-ui.gif) retain UI FIXTURE labels. See [workflow/failure rules](MODEL_UPDATES.en.md) and [checkpoint notes](releases/v0.3.0-dev.7.md). Legacy unification, every selected target and device gates still block complete v0.3.0; no new Release is created.
+
+## dev.8: text bundles join shared execution
+
+The ninth HF recipe accepts an explicitly selected complete text GGUF. The existing signed llama runtime implements `LocalEngine`, sharing profiles, leases, jobs, cancellation, artifacts and provenance through a private authenticated loopback endpoint per task. Saving/execution inspect GGUF context and UI/native code jointly clamp output limits. Effective schemas stay separate from immutable manifests; an incompatible record does not disable the library.
+
+66 added checks execute actual host files/children/HTTP with literal test output, without model inference. Foundation checks total 310 and UI 147; Lint has zero errors and ten warnings. The APK has 50 production Java sources and the same 19 native files, without new model assets. Typed local JSON preserves response/reasoning and supports safe text preview, copy and export. See the [guide](TEXT_ENGINE.en.md), [receipt](../verification/development/text.json) and [notes](releases/v0.3.0-dev.8.md).
+
+Screenshots 22–24 and the updated recording/GIF retain UI FIXTURE labels. Complete legacy migration, chat/API scheduling, every selected model and physical Android acceptance remain open. All queued jobs still require stopping the legacy persistent text service first. No new Release.

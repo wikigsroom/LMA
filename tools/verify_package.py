@@ -119,6 +119,14 @@ def main():
                 assert name[7:] in ui_assets or name.startswith("assets/licenses/"), "Unreviewed model-specific or other asset in APK: " + name
         engine_manifest = json.loads(archive.read("assets/engine-builds.json"))
         assert len(engine_manifest["engines"]) == len(engines)
+        text = engine_manifest["textRuntime"]
+        assert text["engine"] == "llama_text" and text["backend"] == "cpu" and not text["deviceValidated"] and not text["model_inference_tested"]
+        text_items = [text] + text["dependencies"]
+        pinned_text = json.loads((ROOT / "third_party/runtime-lock.json").read_text(encoding="utf-8"))["files"]
+        assert {x["file"] for x in text_items} == {x["name"] for x in pinned_text}
+        for item in text_items:
+            record = next(x for x in pinned_text if x["name"] == item["file"])
+            assert item["sha256"] == record["sha256"] and item["bytes"] == record["size"]
         for engine in engines:
             included = next(e for e in engine_manifest["engines"] if e["engine"] == engine["engine"])
             assert included["sha256"] == engine["sha256"] and not included["model_inference_tested"]

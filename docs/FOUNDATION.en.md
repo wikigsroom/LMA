@@ -147,3 +147,5 @@ Development implementation: dev.5 [HF component recipes](HF_RECIPES.en.md) use s
 Dev.6 adds [Nano execution and EngineWorkspace](MOSS_NANO_ENGINE.en.md): explicit user-owned graph/tokenizer/voice/external-data roles, leased filename-preserving hardlinks, cleanup/recovery and a shared runtime binary with exact dependency identity. These mechanisms extend the common foundation; they do not establish complete v0.3.0 acceptance.
 
 dev.7 adds bundle [independent updates/rollback](MODEL_UPDATES.en.md): user-reviewed assets/profiles, separate download and activation consent, retained old files/settings and protected queued/running version references. Current preference never redirects API/existing jobs; legacy unification and device acceptance remain required in this same complete version.
+
+dev.8 adds an actual [text module](TEXT_ENGINE.en.md) reusing the signed llama server for new bundles, shared parameters/jobs/artifacts. Complete legacy chat/API/file unification remains unfinished; full-release gates are unchanged.

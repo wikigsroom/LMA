@@ -23,3 +23,5 @@ These records belong to **LMA 0.2.0** and are exported by `tools/package_deliver
 **226 desktop assertions; 0 physical-device checks.** No Android model inference, refusal-rate measurement, or screen-off endurance was executed. 桌面与静态证据不替代手机实测。
 
 See [validation / 验证](../docs/VALIDATION.en.md), [Chinese audit / 完成条件](../docs/COMPLETION_AUDIT.md), and [device acceptance / 真机验收](../docs/DEVICE_ACCEPTANCE.en.md). Media provenance is separate in [manifest.json](../docs/media/manifest.json).
+
+内部 dev.8 验证另见 [development/status.json](development/status.json) 与 [text.json](development/text.json)：310 基座、66 新增文本主机、147 界面检查，0 真机结果，不替代上面的公开 v0.2.0 历史记录。Internal dev.8 evidence stays separate from published history and does not establish full-release acceptance.

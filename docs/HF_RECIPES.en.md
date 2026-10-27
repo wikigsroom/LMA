@@ -2,12 +2,12 @@
 
 [中文](HF_RECIPES.md) · [HF discovery](HF_MODELS.en.md) · [Development status](DEVELOPMENT.en.md) · [Asset-control audit](ASSET_CONTROL_AUDIT.en.md)
 
-Applies to **0.3.0-dev.7 / code 11, an internal checkpoint, not a Release**. The App supplies code and recipe metadata; users select and manage model assets. This workflow does not establish Android support for arbitrary HF weights. Architecture, language, matching components, licensing and device resources still need verification.
+Applies to **0.3.0-dev.8 / code 12, an internal checkpoint, not a Release**. The App supplies code and recipe metadata; users select and manage model assets. This workflow does not establish Android support for arbitrary HF weights. Architecture, language, matching components, licensing and device resources still need verification.
 
 ## User workflow
 
 1. Search HF or use All, open a repository's file picker, then choose **构建模型包 / LoRA 配方**. The existing single-file GGUF text route is preserved.
-2. Explicitly select a recipe. Eight signed-App templates include [MOSS Nano](MOSS_NANO_ENGINE.en.md) and cover complete SD 1.5 / SDXL checkpoints, their respective LoRAs, and Kokoro / Piper VITS / Matcha + vocoder using the disclosed English lexicon. A template cannot install an engine, convert weights or verify runtime compatibility.
+2. Explicitly select a recipe. Nine signed-App templates include [text GGUF](TEXT_ENGINE.en.md) and [MOSS Nano](MOSS_NANO_ENGINE.en.md) and cover complete SD 1.5 / SDXL checkpoints, their respective LoRAs, and Kokoro / Piper VITS / Matcha + vocoder using the disclosed English lexicon. A template cannot install an engine, convert weights or verify runtime compatibility.
 3. Select each required role, such as `model`, `voices`, `tokens` or `vocoder`. Enter another `owner/repository` and paginate when necessary. Existing choices retain their own repository and frozen commit. Extensions validate role formats only; they do not identify architecture or language. Changing templates clears choices; closing/restarting may lose an undeclared draft.
 4. Inspect every chosen file and fixed dependency, source, revision, size and integrity type. Checkpoint templates disclose CLIP merges; speech templates disclose the English lexicon. Other languages, separate diffusion weights and LCM / LCM-LoRA need their own correct complete recipes.
 5. **加入本地并查看下载计划** registers an immutable manifest and **does not download**. Review the full size, verified reuse, remaining transfer and engine status, then explicitly download. Missing engines/assets or incompatibility fail locally with an explanation; no off-device inference or implicit dependency download is added.
@@ -45,3 +45,7 @@ Metadata fields were checked on 2026-10-28 against the [official HF SDK `RepoFil
 ## Nano external-data recipe
 
 The eighth template covers only MOSS-TTS-Nano browser ONNX with its full codec. `.model` SentencePiece data and `.data` external ONNX weights are separate user choices. Eight core roles are required; every data file referenced by a graph is also required at execution. Registration does not transfer anything. See [Nano roles, guards, build and evidence](MOSS_NANO_ENGINE.en.md).
+
+## Text GGUF recipe
+
+dev.8 adds `text_gguf_cpu_v1`, with the single required `text_gguf` role. Users download/import the complete pinned model and contained tokenizer. Split GGUF, vision components and automatic architecture conversion are unsupported by this recipe. New bundles submit shared `text.generate` jobs and preview response/reasoning. Existing single-file entry points and recommendations remain; legacy migration is unfinished. See the [text foundation guide](TEXT_ENGINE.en.md).

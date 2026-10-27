@@ -41,6 +41,21 @@ public final class ModelSettings {
                 .put("threadsMax", Math.max(1, Runtime.getRuntime().availableProcessors())).put("temperatureMax", 2)
                 .put("outputBasis", "context-minus-one; prompt tokens also consume the context");
     }
+    public static JSONObject runtimeSchema(JSONObject original, JSONObject metadata) throws Exception {
+        JSONObject schema = new JSONObject(original.toString()), fields = schema.getJSONObject("fields");
+        JSONObject limits = limits(metadata, 2048);
+        String[] keys = {"threads", "context", "maxTokens", "temperature"};
+        double[] minimum = {1, 2, 1, 0}, maximum = {limits.getInt("threadsMax"), Math.min(131072, limits.getInt("contextMax")), 131071, 2};
+        for (int i = 0; i < keys.length; i++) {
+            JSONObject field = fields.getJSONObject(keys[i]);
+            field.put("minimum", Math.max(minimum[i], field.optDouble("minimum", minimum[i]))).put("maximum", Math.min(maximum[i], field.optDouble("maximum", maximum[i])));
+            if (field.getDouble("minimum") > field.getDouble("maximum")) throw new IllegalArgumentException("此文本配方与实际模型或设备参数不兼容");
+        }
+        fields.getJSONObject("context").put("limitSource", limits.getBoolean("contextKnown") && limits.getInt("contextMax") <= 131072 ? "gguf_metadata" : "application_guard");
+        fields.getJSONObject("maxTokens").put("maximumFrom", new JSONObject().put("field", "context").put("offset", -1));
+        JSONObject system = fields.getJSONObject("systemPrompt"); system.put("maxLength", Math.min(4000, system.optInt("maxLength", 4000)));
+        return schema.put("contextMetadata", new JSONObject(metadata.toString())).put("contextKnown", limits.getBoolean("contextKnown"));
+    }
     public static boolean reload(JSONObject old, JSONObject next) { return old.optInt("threads") != next.optInt("threads") || old.optInt("context") != next.optInt("context") || !old.optString("reasoning").equals(next.optString("reasoning")); }
     public static JSONArray adjusted(JSONObject requested, JSONObject saved) throws Exception {
         JSONArray keys = new JSONArray();

@@ -1053,6 +1053,117 @@
       ],
       "fixedComponents": [],
       "help": "仅接受匹配的 Nano browser ONNX 导出与 decode_full codec；不是其他 MOSS 架构。须自行选择图引用的全部 .data，缺少数据会在本机报错。所有词表和音色均需用户下载；不提供参考音频克隆。音色编号按已下载 manifest 回填，数值上限为应用保护值，手机效果与内存待实测。"
+    },
+    {
+      "id": "text_gguf_cpu_v1",
+      "name": "文本 GGUF · CPU",
+      "primaryRole": "text_gguf",
+      "definition": {
+        "engine": "llama_text",
+        "backend": "cpu",
+        "architecture": "gguf",
+        "pipeline": "text_gguf",
+        "tasks": [
+          "text"
+        ],
+        "capabilities": [
+          "text_generation"
+        ],
+        "parameters": {
+          "version": 1,
+          "fields": {
+            "threads": {
+              "type": "integer",
+              "label": "CPU 线程",
+              "default": 4,
+              "minimum": 1,
+              "maximum": 256,
+              "presets": [
+                1,
+                2,
+                4,
+                8
+              ],
+              "limitSource": "application_guard"
+            },
+            "context": {
+              "type": "integer",
+              "label": "上下文长度",
+              "default": 2048,
+              "minimum": 2,
+              "maximum": 131072,
+              "presets": [
+                512,
+                1024,
+                2048,
+                4096,
+                8192
+              ],
+              "limitSource": "application_guard"
+            },
+            "maxTokens": {
+              "type": "integer",
+              "label": "单次输出上限",
+              "default": 512,
+              "minimum": 1,
+              "maximum": 131071,
+              "presets": [
+                128,
+                256,
+                512,
+                1024
+              ],
+              "limitSource": "application_guard",
+              "maximumFrom": {
+                "field": "context",
+                "offset": -1
+              }
+            },
+            "temperature": {
+              "type": "number",
+              "label": "采样温度",
+              "default": 0.7,
+              "minimum": 0,
+              "maximum": 2,
+              "presets": [
+                0,
+                0.3,
+                0.7,
+                1
+              ],
+              "limitSource": "application_guard"
+            },
+            "reasoning": {
+              "type": "enum",
+              "label": "思考模式",
+              "default": "off",
+              "values": [
+                "off",
+                "auto",
+                "on"
+              ]
+            },
+            "systemPrompt": {
+              "type": "string",
+              "label": "系统提示词",
+              "default": "你是一个有帮助的本地助手。请优先使用用户的语言，准确、清楚地回答。",
+              "maxLength": 4000
+            }
+          }
+        }
+      },
+      "requirements": [
+        {
+          "role": "text_gguf",
+          "label": "完整文本 GGUF（含 tokenizer）",
+          "formats": [
+            "gguf"
+          ],
+          "required": true
+        }
+      ],
+      "fixedComponents": [],
+      "help": "仅适用于现有 llama.cpp 引擎支持的完整文本 GGUF，不接受拆分权重、视觉 / 音频组件或自定义代码。下载后读取实际上下文上限，未知时采用应用保护值；CPU 内存和真实手机输出仍需验证。登记不下载，原有精选与已下载文本模型保留。"
     }
   ]
 }

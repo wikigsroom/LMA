@@ -15,6 +15,7 @@ def main():
         "package.json": "build/package-verification.json",
         "foundation.json": "build/foundation-tests/results.json",
         "tts.json": "build/tts-tests/results.json",
+        "text.json": "build/text-tests/results.json",
         "moss-nano.json": "build/moss-nano-tests/results.json",
         "api.json": "build/api-tests/results.json",
         "backend.json": "build/backend-tests/results.json",
@@ -32,7 +33,7 @@ def main():
         shutil.copyfile(ROOT / source, out / name)
     status = {"version": version(), "kind": "development_checkpoint", "release_ready": False, "published": False,
               "physical_device_tests": 0, "model_inference_tested": False, "all_selected_models_supported": False,
-              "scope": "host storage/transfers, user-reviewed atomic model version changes/rollback and HF component recipes/Git integrity, explicit adapter pairing/leases, speech worker contracts/child fixtures, Nano native external-data validation and private hardlink workspaces, authenticated HTTP/streams/text proxy, UI fixtures, native compilation and APK/lint checks only",
+              "scope": "host GGUF text bundle constraints, typed text artifacts and actual loopback HTTP/child fixtures, host storage/transfers, user-reviewed atomic model version changes/rollback and HF component recipes/Git integrity, explicit adapter pairing/leases, speech worker contracts/child fixtures, Nano native external-data validation and private hardlink workspaces, authenticated HTTP/streams/text proxy, UI fixtures, native compilation and APK/lint checks only",
               "required_scope": "docs/MULTIMODAL_RELEASE_PLAN.md", "sources": sources}
     (out / "status.json").write_text(json.dumps(status, indent=2) + "\n", encoding="utf-8")
     print(json.dumps(status))

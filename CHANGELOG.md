@@ -1,5 +1,13 @@
 # Changelog / 更新记录
 
+## 0.3.0-dev.8 · 2026-10-28 · 内部检查点 / Internal checkpoint
+
+- 新文本 GGUF 包复用签名 llama runtime、共用参数 / 租约 / 队列 / 结果，新增第九种用户自选 HF 配方。Add actual shared text-bundle execution and a ninth explicit HF recipe, without model assets or automatic downloads.
+- 读取实际 GGUF 上下文，输出联动回填；有效 schema 与来源分开，模型版本确认绑定实际约束。Inspect limits, enforce dependent bounds and invalidate stale version consent.
+- Typed response/reasoning JSON, inert local preview, literal copy/export, bounded SSE and child cleanup. 正文与思考独立保存；受控同源读取，模型 HTML 不执行。
+- 310 foundation / 66 new text-host / 147 UI checks, zero Lint errors; original certificate and 19 native files. No model or Android inference evidence.
+- 同步[双语指南](docs/TEXT_ENGINE.md)、[更新说明](docs/releases/v0.3.0-dev.8.md)、截图 22–24、录屏 / GIF；旧记录迁移、全部所选模型及真机门槛继续属于同一完整 v0.3.0，没有新 Release。
+
 用户可见行为、验证范围和交付文档在此同步。User-facing behavior, evidence, and delivery documentation are maintained together.
 
 ## 0.3.0-dev.7 · 2026-10-28 · 内部检查点 / Internal checkpoint

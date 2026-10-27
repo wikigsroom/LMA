@@ -27,3 +27,6 @@
 .version-manager details { margin: 12px 0; }
 .version-manager summary { cursor: pointer; line-height: 1.5; }
 .version-manager .modal-actions { flex-wrap: wrap; }
+.artifact-text { white-space: pre-wrap; overflow-wrap: anywhere; user-select: text; max-height: 55vh; overflow: auto; padding: 14px; border: 1px solid var(--line); border-radius: 12px; font-family: inherit; font-size: 14px; line-height: 1.7; }
+.artifact-reasoning { margin: 12px 0; }
+.artifact-sha { overflow-wrap: anywhere; word-break: break-all; }

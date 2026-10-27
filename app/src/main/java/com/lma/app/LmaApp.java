@@ -19,7 +19,7 @@ import com.lma.app.core.JobStore;
 import com.lma.app.core.ArtifactStore;
 
 public final class LmaApp extends Application {
-    public static final String VERSION = "0.3.0-dev.7";
+    public static final String VERSION = "0.3.0-dev.8";
     public static final String UPDATE = "com.lma.app.STATE_CHANGED";
     public Store store;
     public BundleStore bundles;
@@ -71,6 +71,7 @@ public final class LmaApp extends Application {
             artifacts = new ArtifactStore(new java.io.File(getFilesDir(), "results"), new MediaInspector());
             com.lma.app.core.EngineWorkspace.recover(new java.io.File(getFilesDir(), "engine-work"));
             localEngines = new LocalEngines(this);
+            bundles.setParameterResolver(localEngines::parameters);
         }
         catch (Exception error) { bundleStoreError = error.getMessage(); log("模型包存储不可用，原始数据已保留：" + bundleStoreError); }
         chats = new Chats(this);

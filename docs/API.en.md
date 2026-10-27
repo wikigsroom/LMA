@@ -147,3 +147,11 @@ dev.3 installed TTS candidates use the same async job API with `type: "speech.sy
 `image.generate` on `POST /v1/jobs` accepts optional `adapters: [{"bundleId": "installed_adapter_id", "scale": 0.75}]`, at most eight. Omitted scales freeze saved adapter settings. Require installed compatible bases/adapters; reject duplicate/self selections, paths, unknown fields and non-image adapter requests. Missing assets never download. See [pairing/provenance/evidence](ADAPTERS.en.md); no phone output is claimed.
 
 dev.7 adds `version` metadata to bundle `/v1/models` records (`{}` before a version group exists): `groupId`, `activeBundleId`, `isActive`, `members`, and `pending` when a plan exists. Installed old versions retain their IDs; current preference never redirects requests. Update/review/activation currently use native App commands, without new HTTP update endpoints. See [model updates](MODEL_UPDATES.en.md).
+
+## 0.3.0-dev.8: text bundle jobs
+
+A user-created installed `text_gguf_cpu_v1` bundle may submit `{"bundleId":"USER_SELECTED_BUNDLE_ID","type":"text.generate","input":{"prompt":"Explain local models"},"parameters":{"maxTokens":128},"allowUnmeasured":true}` to `POST /v1/jobs`. Existing auth/idempotency rules apply; trying unmeasured recipes requires explicit user choice and never downloads models. Use the actual installed bundle ID, fixed for the job.
+
+Authenticated `/v1/artifacts/ID/content` returns `application/vnd.lma.text+json` with `schema: lma.text-result/1`, `content`, `reasoning`, `finishReason: stop|length` and any supplied `usage` token counts. Private engine SSE feeds the result; public job events remain stage/state events, not chat-token SSE.
+
+`GET /v1/models` adds `parameter_error` for bundles. Incompatible imports report their own error without breaking other models. Existing chat/completions still serve the loaded legacy path; complete migration/scheduling is unfinished and queued jobs still require stopping the legacy persistent service. See [implementation/limits](TEXT_ENGINE.en.md).

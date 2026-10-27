@@ -22,3 +22,5 @@ A11 still requires zero-model install/upgrade, no downloads during browsing, exp
 Dev.6 adds the Nano signed worker and eighth explicit HF recipe. Tokenizers, voice-prompt codes and external `.data` remain user-owned components; temporary execution workspaces use leased hardlinks and do not install/update model data. [Nano details](MOSS_NANO_ENGINE.en.md).
 
 dev.7 [independent updates](MODEL_UPDATES.en.md) add 62 host assertions covering explicit selection, failure preservation, stale consent, atomic activation and rollback. App updates do not trigger these operations, and old API IDs never redirect to new weights. Physical install/upgrade evidence for A11 remains missing.
+
+dev.8 adds [user-selected text bundles](TEXT_ENGINE.en.md) using shared jobs/artifacts, without selecting/migrating old weights or downloading text models on App upgrade. 66 added text-host checks and 147 UI checks do not replace A11 physical install/upgrade evidence.

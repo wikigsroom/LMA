@@ -24,6 +24,12 @@ public final class ParameterSchema {
                 if (type.equals("integer")) for (String limit : Arrays.asList("minimum", "maximum", "multipleOf", "alignmentOrigin")) if (field.has(limit) && field.getDouble(limit) != Math.floor(field.getDouble(limit))) throw new IllegalArgumentException("Integer parameters require integer limits");
                 if (field.has("maxLength") && (field.getInt("maxLength") < 0 || field.getInt("maxLength") > 16000)) throw new IllegalArgumentException("Invalid text length limit");
                 if (type.equals("enum") && (field.optJSONArray("values") == null || field.getJSONArray("values").length() == 0)) throw new IllegalArgumentException("Empty enum");
+                if (field.has("maximumFrom")) {
+                    JSONObject bound = field.getJSONObject("maximumFrom"); String source = ModelBundle.key(bound.getString("field"));
+                    if (!Arrays.asList("integer", "number").contains(type) || source.equals(key) || !fields.has(source) || !Arrays.asList("integer", "number").contains(fields.getJSONObject(source).getString("type"))) throw new IllegalArgumentException("Invalid dependent parameter bound");
+                    for (Iterator<String> keys = bound.keys(); keys.hasNext();) if (!Arrays.asList("field", "offset").contains(keys.next())) throw new IllegalArgumentException("Unknown dependent bound field");
+                    if (bound.length() > 2 || !Double.isFinite(bound.optDouble("offset", 0)) || type.equals("integer") && bound.optDouble("offset", 0) != Math.floor(bound.optDouble("offset", 0))) throw new IllegalArgumentException("Invalid dependent bound offset");
+                }
             }
             JSONArray shapes = schema.optJSONArray("allowedShapes");
             if (shapes != null) for (int i = 0; i < shapes.length(); i++) {
@@ -36,6 +42,23 @@ public final class ParameterSchema {
             }
             normalize(new JSONObject(), new JSONObject());
         } catch (Exception error) { throw new IllegalArgumentException("Invalid parameter schema: " + error.getMessage(), error); }
+    }
+    private void dependent(String key, JSONObject values, JSONArray changes, Set<String> done, Set<String> visiting) throws Exception {
+        if (done.contains(key)) return;
+        if (!visiting.add(key)) throw new IllegalArgumentException("Cyclic parameter bounds");
+        JSONObject field = fields.getJSONObject(key), bound = field.optJSONObject("maximumFrom");
+        if (bound != null) {
+            String source = bound.getString("field"); dependent(source, values, changes, done, visiting);
+            double original = values.getDouble(key), value = Math.min(original, values.getDouble(source) + bound.optDouble("offset", 0));
+            if (field.getString("type").equals("integer")) value = Math.floor(value);
+            if (field.has("multipleOf")) { double step = field.getDouble("multipleOf"), origin = field.optDouble("alignmentOrigin", 0); value = origin + Math.floor((value - origin) / step) * step; }
+            if (!Double.isFinite(value) || field.has("minimum") && value < field.getDouble("minimum")) throw new IllegalArgumentException("Dependent parameter bounds have no legal value");
+            if (value != original) {
+                Object result = field.getString("type").equals("integer") ? (Object) Long.valueOf((long) value) : Double.valueOf(value);
+                changes.put(new JSONObject().put("field", key).put("requested", values.get(key)).put("effective", result).put("reason", "dependent_parameter_limit")); values.put(key, result);
+            }
+        }
+        visiting.remove(key); done.add(key);
     }
     public JSONObject json() { return DataFiles.copy(schema); }
     public JSONObject normalize(JSONObject defaults, JSONObject changes) throws Exception {
@@ -66,6 +89,8 @@ public final class ParameterSchema {
             }
             effective.put(key, result);
         }
+        Set<String> bounded = new HashSet<>();
+        for (Iterator<String> it = fields.keys(); it.hasNext();) dependent(it.next(), effective, adjustments, bounded, new HashSet<>());
         JSONArray shapes = schema.optJSONArray("allowedShapes");
         if (shapes != null && shapes.length() > 0) {
             boolean match = false;

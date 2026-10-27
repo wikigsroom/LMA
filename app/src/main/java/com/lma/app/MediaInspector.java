@@ -12,6 +12,7 @@ public final class MediaInspector implements ArtifactStore.Inspector {
     @Override public JSONObject inspect(File file) throws Exception {
         byte[] header = new byte[16]; int read;
         try (InputStream in = new FileInputStream(file)) { read = in.read(header); }
+        if (file.getName().endsWith(".json")) return com.lma.app.core.TextResult.inspect(file);
         if (read < 12) throw new IOException("生成文件不完整");
         if ((header[0] & 255) == 137 && header[1] == 'P' && header[2] == 'N' && header[3] == 'G' || (header[0] & 255) == 255 && (header[1] & 255) == 216) {
             BitmapFactory.Options options = new BitmapFactory.Options(); options.inJustDecodeBounds = true; BitmapFactory.decodeFile(file.getPath(), options);
@@ -24,7 +25,7 @@ public final class MediaInspector implements ArtifactStore.Inspector {
         }
         if (header[0] == 'R' && header[1] == 'I' && header[2] == 'F' && header[3] == 'F' && header[8] == 'W' && header[9] == 'A' && header[10] == 'V' && header[11] == 'E') return wave(file);
         if (header[4] == 'f' && header[5] == 't' && header[6] == 'y' && header[7] == 'p') return video(file);
-        throw new IOException("生成文件不是可识别的图片、WAV 或 MP4");
+        throw new IOException("生成文件不是可识别的图片、WAV、MP4 或文本结果");
     }
     private JSONObject wave(File file) throws Exception {
         try (RandomAccessFile in = new RandomAccessFile(file, "r")) {

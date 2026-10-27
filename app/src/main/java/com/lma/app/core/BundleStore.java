@@ -13,6 +13,10 @@ public final class BundleStore {
     private final File root, objects, partials;
     private final AtomicFile file;
     private JSONObject state;
+    public interface ParameterResolver { ParameterSchema resolve(ModelBundle bundle) throws Exception; }
+    private ParameterResolver parameterResolver = ModelBundle::parameters;
+    public synchronized void setParameterResolver(ParameterResolver resolver) { parameterResolver = Objects.requireNonNull(resolver); }
+    public synchronized ParameterSchema parameters(String id) throws Exception { return parameterResolver.resolve(bundle(id)); }
     private final Map<String, Integer> leases = new HashMap<>();
     private final ConcurrentHashMap<String, ReentrantLock> componentLocks = new ConcurrentHashMap<>();
     public BundleStore(File directory) throws Exception {
@@ -129,17 +133,19 @@ public final class BundleStore {
         e.put("installed", true).put("installedAt", System.currentTimeMillis()).put("error", "");
         e.getJSONObject("transfer").put("state", "installed").put("token", "").put("error", ""); persist(next);
     }
-    public synchronized JSONObject settings(String id) throws Exception { return bundle(id).parameters().normalize(entry(id).getJSONObject("settings"), new JSONObject()); }
+    public synchronized JSONObject settings(String id) throws Exception { return parameters(id).normalize(entry(id).getJSONObject("settings"), new JSONObject()); }
     public synchronized JSONObject saveSettings(String id, JSONObject changes) throws Exception {
         if (leases.containsKey(id)) throw new IllegalStateException("Model is in use; stop its task before changing settings");
-        JSONObject effective = bundle(id).parameters().normalize(entry(id).getJSONObject("settings"), changes);
+        JSONObject effective = parameters(id).normalize(entry(id).getJSONObject("settings"), changes);
         JSONObject next = DataFiles.copy(state); next.getJSONObject("bundles").getJSONObject(id).put("settings", DataFiles.copy(effective.getJSONObject("values"))); persist(next); return effective;
     }
     public synchronized JSONArray snapshot() throws Exception {
         JSONArray result = new JSONArray(); JSONObject entries = state.getJSONObject("bundles");
         for (Iterator<String> it = entries.keys(); it.hasNext();) {
             String id = it.next(); JSONObject e = DataFiles.copy(entries.getJSONObject(id)); ModelBundle b = new ModelBundle(e.getJSONObject("manifest"));
-            e.put("id", id).put("tags", b.tags()).put("plan", plan(id)).put("config", settings(id)).put("installed", e.optBoolean("installed") && complete(b, state)).put("inUse", leases.containsKey(id)).put("version", versionInfo(id)); result.put(e);
+            try { e.put("config", settings(id)).put("parameterSchema", parameters(id).json()); }
+            catch (Exception unavailable) { e.put("config", b.parameters().normalize(e.getJSONObject("settings"), new JSONObject())).put("parameterSchema", b.parameters().json()).put("parameterError", unavailable.getMessage() == null ? "当前引擎无法解析此配方参数" : unavailable.getMessage()); }
+            e.put("id", id).put("tags", b.tags()).put("plan", plan(id)).put("installed", e.optBoolean("installed") && complete(b, state)).put("inUse", leases.containsKey(id)).put("version", versionInfo(id)); result.put(e);
         }
         return result;
     }
@@ -191,7 +197,7 @@ public final class BundleStore {
         }
         if (!group.getString("activeBundleId").equals(from)) throw new IllegalStateException("Start updates from the current model version");
         if (other != null && !other.getString("id").equals(group.getString("id"))) throw new IllegalStateException("The target belongs to another model version history");
-        return BundleUpdates.plan(source, target, settings(from).getJSONObject("values"), settings(to).getJSONObject("values"), versionIdentity(group), plan(to), mode);
+        return BundleUpdates.plan(source, target, settings(from).getJSONObject("values"), settings(to).getJSONObject("values"), versionIdentity(group), plan(to), mode, parameters(from), parameters(to));
     }
     private JSONObject reviewedUpdate(String from, String to, String mode, String review) throws Exception {
         JSONObject plan = planUpdate(from, to, mode);

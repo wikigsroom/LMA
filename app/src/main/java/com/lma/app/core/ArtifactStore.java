@@ -35,7 +35,7 @@ public final class ArtifactStore {
         switch (mime) {
             case "image/png": extension = "png"; break; case "image/jpeg": extension = "jpg"; break;
             case "audio/wav": extension = "wav"; break; case "video/mp4": extension = "mp4"; break;
-            case "text/plain": extension = "txt"; break; default: throw new IOException("Unsupported output MIME type");
+            case "text/plain": extension = "txt"; break; case TextResult.MIME: extension = "json"; break; default: throw new IOException("Unsupported output MIME type");
         }
         String digest = DataFiles.sha256(candidate, check); check.run();
         synchronized (this) {

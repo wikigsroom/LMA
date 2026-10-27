@@ -1,5 +1,5 @@
 {
-  "version": "0.3.0-dev.7",
+  "version": "0.3.0-dev.8",
   "kind": "development UI with explicit simulated native bridge",
   "android_device": false,
   "model_inference": false,
@@ -90,6 +90,18 @@
     {
       "file": "21-model-version-history.png",
       "caption": "Explicit version switch history with retained old assets/profiles; UI fixture only / 显式切换记录，可自行选择旧版本回退"
+    },
+    {
+      "file": "22-text-model-settings.png",
+      "caption": "Text bundle settings use inspected GGUF context and dependent output bounds; UI fixture only / 文本参数联动，元数据为测试数据"
+    },
+    {
+      "file": "23-text-queue-form.png",
+      "caption": "Text joins the shared task form and queue, fixed model/settings; UI fixture only / 生文接入共用任务表单"
+    },
+    {
+      "file": "24-text-result.png",
+      "caption": "Literal fixture text and separate reasoning safely previewed with copy/export; no model output / 正文与思考分别显示，均为界面测试数据"
     }
   ],
   "files": [
@@ -120,13 +132,13 @@
     },
     {
       "file": "06-queue-results.png",
-      "bytes": 44546,
-      "sha256": "81473ab975800ffd172c650aa10e5eeaa8cd8276c349623e3426ea8042160a80"
+      "bytes": 44621,
+      "sha256": "6260002650b47a13ec8d80eae7bfec66270bcb9a649491e5416987211c43a26f"
     },
     {
       "file": "07-cancelled.png",
-      "bytes": 44737,
-      "sha256": "2f9154011cb41b7a459bf1815dc04f3cdfd4782e3eb25fa98d207efdcf882aff"
+      "bytes": 44812,
+      "sha256": "7833d80b35aa87b9be9386fe8f24f0c1133052e1f706daa03a9defbf03f65186"
     },
     {
       "file": "08-zero-model-api.png",
@@ -195,27 +207,42 @@
     },
     {
       "file": "21-model-version-history.png",
-      "bytes": 49733,
-      "sha256": "14cee14afd8d3dac001d500ca08db646555c76e2728eee9feb5df6553639c1db"
+      "bytes": 49582,
+      "sha256": "b652a60afbd660d247f1adc610071182ac4fd2bfe598f83f2dce8e80ff59bdcb"
+    },
+    {
+      "file": "22-text-model-settings.png",
+      "bytes": 51044,
+      "sha256": "3c5a92e2b3e2e1edb7755cac4f71aacd83f3a37a7a0b847f2e4fed8d0cc348c3"
+    },
+    {
+      "file": "23-text-queue-form.png",
+      "bytes": 40524,
+      "sha256": "05ceeb5a77a74ae053a3ec4084b5bb4e542bb0917c42d9a39d7750b3e8e42fe2"
+    },
+    {
+      "file": "24-text-result.png",
+      "bytes": 50146,
+      "sha256": "7bb47c7a60ebba548fa67520719c724df3815e969baaa862fd0e4845fbd69b07"
     },
     {
       "file": "foundation-ui.gif",
-      "bytes": 3646735,
-      "sha256": "e56d33ae2629cc1eb43a79da28c4bfe3e65f3033e9001e220d6e51d787b12a25"
+      "bytes": 4543035,
+      "sha256": "471103063b820daa081437a57045f4f1c334096e4c911082e793a9b2348271d9"
     },
     {
       "file": "foundation-ui.mp4",
-      "bytes": 1558782,
-      "sha256": "14d7e0870c38fd4d1d2f7b77dca242f9cb92998a91fa6711c932763d04c6b736"
+      "bytes": 1903982,
+      "sha256": "68d259394051016a2134becd187ba99842b39488c6c4dbe617ebb801380c1a2c"
     }
   ],
   "input_fingerprint": {
     "app/src/main/assets/app.css": "f2cb7b5ee9de8f3afac793e694dcf9fde0a855c0d4c7053ff986cc2a6d2bd3b1",
-    "app/src/main/assets/app.js": "73342ff2357de3a969d3124b5b980acb5e7810ab37f5958c5b045991b96494bc",
-    "app/src/main/assets/engine-builds.json": "008f2c0e12405aed37d2b6974d837b02b3fe56874d6191cf09794526559f4775",
-    "app/src/main/assets/foundation.css": "723912bf775d8d97ef100548a854f79ddf87a20ad5b0a9daea5f089e166cb8a3",
-    "app/src/main/assets/foundation.js": "8f9c91410b2f13c08dd8a1cb09e2b492832b6f9872b368e07d21cf5785974f61",
-    "app/src/main/assets/index.html": "6b48f3375684bbcf1ec28e4c3f009bc254f073939b938ef614282dd21a251679",
+    "app/src/main/assets/app.js": "a86453f71cbaead343465bcee6377ab1ee0181ddd99d8a71d410c5cafa450070",
+    "app/src/main/assets/engine-builds.json": "bdb4aa0d090bae260499f766fe5d8f84cb225cfdf6e00439de95427690835abf",
+    "app/src/main/assets/foundation.css": "c3983ed065510f07fd78987b5644b2730df681ee64078c660893c18ed38d7f21",
+    "app/src/main/assets/foundation.js": "75d59ea4ae040c8afa278c1202714639319b01a2a147e8f950f6eaa2cd26f679",
+    "app/src/main/assets/index.html": "db6c305e87919de3d992ac8933c00b40a230fab51dc5284e0d7e45f216b9d83b",
     "app/src/main/assets/license.js": "1c814e25648a624a68de26d0614ef0ac9799db94edd8cd3835a07e77156d51e0",
     "app/src/main/assets/licenses/LLAMA_CPP_LICENSE": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
     "app/src/main/assets/licenses/LMA_LICENSE": "6ae3f5efa412d91cbf66e44f743e5ce41a8044309d05d893365206ab9bc35fc3",
@@ -275,13 +302,14 @@
     "app/src/main/assets/licenses/xxhash-LICENSE.txt": "a2973411d278045bde3c7161b911e0680d53e2d73d6457c77068d2e55d816d67",
     "app/src/main/assets/model-bundles.json": "1791f5e6f164e951ee49f9e4b7c80e34f37ded38ae205b8b03973f2de5d4ee16",
     "app/src/main/assets/models.json": "c3e884b4e5fb06f20c036deebc78e6f953ac420e76fca72bab5a25fd59927156",
-    "app/src/main/assets/recipe-templates.json": "2d861bed1fcac8ef2e493a6d62ab79289915cac566bf434e185dcebaa22dd920",
+    "app/src/main/assets/recipe-templates.json": "c1e6176bddec80a5ffb3ad4a33e6fa8e6675cabf30d27ad94ce242b503aa3099",
     "app/src/main/assets/recipes.js": "648e1ff046ab20e2ae7f658a7cb82c895c042ea81dca5cd943141626eea6deba",
     "app/src/main/assets/versions.js": "2d629929a6db642c12a242ddcc62cd4f4090ab307e0cb669ceb98add031977e1",
     "tests/foundation-ui.cjs": "1c6721770e2d3336719c6cb096869aca3f966beff3fd958f814cda1cafee1e79",
     "tests/hub-fixture.cjs": "5b3cb88b7fd4c45d26ce92e8598a1c3837a12b02eb898f67c9be10da2910ab83",
-    "tests/recipes-ui.cjs": "205672d2e057c54e3944f1c252c6a5bc0e55a25f5930b24da370e11db71c42e5",
+    "tests/recipes-ui.cjs": "d45ab6a198b33df8cc8e3e5e0928b9cf3e6ddedb50a7e646bea38e0897243154",
+    "tests/text-ui.cjs": "bc5969aa9329380b590a6055daa6fe1177f956f73bb212a18cf19d2b6576b8db",
     "tests/versions-ui.cjs": "13f6e194c00fa3a819c44da35788aa28b94ba05325e3f2b1257350c04b67babd",
-    "tools/capture_foundation.cjs": "16f9d295d5590bca9e0e3afe790c6aca4ef95e868f029dc7779ec8a06a8c3e5b"
+    "tools/capture_foundation.cjs": "1341b96677b4693aef4ac3769bc25d3aa71259bcff4dae5f00426c12ae17bcda"
   }
 }

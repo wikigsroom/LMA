@@ -244,6 +244,10 @@ LMA 自有代码使用 MIT 许可。llama.cpp 及其依赖保留各自许可；�
 
 早前内部检查点（**0.3.0-dev.6 / code 10**，未发布）新增编译的 MOSS Nano 语音 worker、任意新文本分词、音频 codec 输出，以及用户明确选择的外置权重与临时私有硬链接。HF 组件模板增至八种，新增 190 项主机检查；尚无实际 MOSS 语音或 Android 验收记录。模型独立下载，APK 不携带权重 / 词表 / 音色。详见 [Nano 实现](docs/MOSS_NANO_ENGINE.md)、[检查点说明](docs/releases/v0.3.0-dev.6.md)及[带标识的截图 / 录屏 / GIF](docs/DEVELOPMENT.md)。完整 v0.3.0 尚未完成。
 
-当前内部检查点（**0.3.0-dev.7 / code 11**，未发布）新增通用模型包的[独立版本更新与回退](docs/MODEL_UPDATES.md)：用户选择新版本，核对组件和参数后明确下载；校验完成仍需单独确认切换。旧资产 / 参数保留，API 与既有任务固定 ID 不变；排队任务保护主模型和 LoRA 不被删除。302 项基座（含 62 项版本检查）、132 项 UI、Lint 0 错误；[更新说明](docs/releases/v0.3.0-dev.7.md)及[截图 / 录屏 / GIF](docs/DEVELOPMENT.md)已同步。完整迁移、全部模型适配和真机验收仍未完成，未创建新 Release。
+早前内部检查点（**0.3.0-dev.7 / code 11**，未发布）新增通用模型包的[独立版本更新与回退](docs/MODEL_UPDATES.md)：用户选择新版本，核对组件和参数后明确下载；校验完成仍需单独确认切换。旧资产 / 参数保留，API 与既有任务固定 ID 不变；排队任务保护主模型和 LoRA 不被删除。302 项基座（含 62 项版本检查）、132 项 UI、Lint 0 错误；[更新说明](docs/releases/v0.3.0-dev.7.md)及[截图 / 录屏 / GIF](docs/DEVELOPMENT.md)已同步。完整迁移、全部模型适配和真机验收仍未完成，未创建新 Release。
 
 <img src="docs/media/development/17-model-version-choice.png" width="260" alt="模型版本独立选择，界面测试数据" /> <img src="docs/media/development/20-model-version-ready.png" width="260" alt="校验后单独确认切换，非真机验收" />
+
+当前内部检查点（**0.3.0-dev.8 / code 12**，未发布）新增[文本模型包共用执行](docs/TEXT_ENGINE.md)：第九种 HF 配方、GGUF 实际上下文 / 输出联动、统一任务与纯文本结果、独立思考预览、复制与导出。App 仍只更新基座，模型须用户选择下载；推荐和旧聊天 / API 保留。310 项基座、66 项新增文本主机检查、147 项 UI 检查及 0 个 Lint 错误；不是手机推理验收。旧记录迁移、全部模型适配和物理设备门槛仍属同一完整 v0.3.0，未创建新 Release。见[更新说明](docs/releases/v0.3.0-dev.8.md)。
+
+<img src="docs/media/development/22-text-model-settings.png" width="260" alt="文本参数联动，明确的 UI 测试数据" /> <img src="docs/media/development/24-text-result.png" width="260" alt="固定测试正文和思考内容，非模型输出" />

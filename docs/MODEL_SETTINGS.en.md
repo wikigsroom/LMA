@@ -47,3 +47,5 @@ Upgrade migration copies legacy global inference preferences to existing models 
 In dev.4, LoRA strengths are saved per adapter bundle, separately from base generation settings. Task edits leave saved settings intact; limits must be within the native `-4…4` range and over-limit input clamps. See [adapter pairing](ADAPTERS.en.md).
 
 dev.7 adds bundle [independent updates/rollback](MODEL_UPDATES.en.md): user-reviewed assets/profiles, separate download and activation consent, retained old files/settings and protected queued/running version references. Current preference never redirects API/existing jobs; legacy unification and device acceptance remain required in this same complete version.
+
+dev.8 [text bundles](TEXT_ENGINE.en.md) use the shared editable form. Installed GGUF metadata constrains context/output at save, submission and execution. Effective schemas remain separate from provenance, with explicit unknown/application bounds. Legacy profiles remain; complete migration is still in scope.

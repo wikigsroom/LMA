@@ -75,3 +75,5 @@ When a phone becomes available, add separately labeled installation, real downlo
 dev.5 增加[自选 HF 配方](media/development/12-hf-components.png)和[组件文件](media/development/13-hf-component-files.png)，更新完整 MP4 / GIF，显式 UI FIXTURE；未下载权重或提供伪造模型输出。 / dev.5 adds user-controlled recipe/component scenes to the labeled development recording and GIF; no weights or inference output are involved.
 
 内部 dev.6 新增 [Nano 组件配方](media/development/15-moss-nano-recipe.png)与[外置数据选择](media/development/16-moss-external-data.png)，并更新同一开发录屏 / GIF；共 16 张 PNG 与 2 个视频 / 动图文件。均显示 UI FIXTURE 标识，没有模型下载或语音推理。Dev.6 adds Nano component/external-data screenshots and updates the labeled development recording/GIF: 16 PNGs and two video/animation files, without model downloads or speech inference.
+
+dev.8 新增[文本参数](media/development/22-text-model-settings.png)、[任务表单](media/development/23-text-queue-form.png)和[正文 / 思考](media/development/24-text-result.png)，更新开发 MP4 / GIF，共 24 张 PNG 与 2 个视频 / 动图文件。全程 UI FIXTURE；正文为固定测试字符串，非模型输出。Dev.8 adds text settings/task/result scenes, 24 PNGs plus recording/GIF, all visibly labeled fixtures without actual inference.

@@ -91,3 +91,5 @@ After preparing diffusion sources and the Windows NDK, run `python tools/fetch_t
 ## Nano native worker
 
 After the shared ORT/sd.cpp prerequisites, run `fetch_moss_nano.py`, `build_moss_nano.py`, `collect_moss_nano_notices.py`, and `test_moss_nano.py` before the ordinary APK checks. Sources are pinned and built with native Windows tools; the native host parser check needs MSVC (`LMA_VCVARS` may select its setup script). No virtualization is used. See [full instructions](MOSS_NANO_ENGINE.en.md).
+
+Run the added `python tools/test_text.py` for actual host children/loopback HTTP and metadata-only GGUF, without model or Android execution. Existing text runtime metadata derives from `runtime-lock.json` and `BUILD_INFO.json`, with all dependencies checked and no weights. See [text foundation](TEXT_ENGINE.en.md).

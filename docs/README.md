@@ -51,3 +51,5 @@
 - 本地语音基座 / Local speech implementation: [中文](TTS_ENGINE.md) · [English](TTS_ENGINE.en.md)，编译与主机证据，尚无真机推理 / compiled and host evidence only, without device inference.
 
 - Nano 本地语音执行 / Nano speech execution: [中文](MOSS_NANO_ENGINE.md) · [English](MOSS_NANO_ENGINE.en.md)，任意文本与用户资产工作区；没有实际模型 / 真机证据 / arbitrary text and user-asset workspaces, without actual model/device evidence.
+
+文本模型与共用队列 / Text models and shared jobs: [中文](TEXT_ENGINE.md) · [English](TEXT_ENGINE.en.md)，新 HF 文本包、实际 GGUF 约束、正文 / 思考结果和当前迁移边界 / new text bundles, inspected limits, typed artifacts and migration boundaries.

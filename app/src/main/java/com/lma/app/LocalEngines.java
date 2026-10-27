@@ -13,7 +13,8 @@ public final class LocalEngines {
         JSONObject manifest;
         try (InputStream in = app.getAssets().open("engine-builds.json")) { manifest = new JSONObject(Store.read(in, 512 * 1024)); }
         catch (FileNotFoundException absent) { return; }
-        JSONArray engines = manifest.getJSONArray("engines");
+        JSONArray engines = new JSONArray(manifest.getJSONArray("engines").toString());
+        if (manifest.has("textRuntime")) engines.put(manifest.getJSONObject("textRuntime"));
         for (int i = 0; i < engines.length(); i++) {
             JSONObject build = engines.getJSONObject(i); String id = build.getString("engine");
             File binary = new File(app.getApplicationInfo().nativeLibraryDir, build.getString("file"));
@@ -24,7 +25,8 @@ public final class LocalEngines {
                 File library = new File(app.getApplicationInfo().nativeLibraryDir, dependency.getString("file"));
                 if (!library.isFile() || !DataFiles.sha256(library).equals(dependency.getString("sha256"))) throw new IOException("引擎依赖与签名包清单不一致");
             }
-            if (id.equals("sd_cpp")) register(new SdEngine(app, binary, build));
+            if (id.equals("llama_text")) register(new TextEngine(app, binary, build));
+            else if (id.equals("sd_cpp")) register(new SdEngine(app, binary, build));
             else if (id.equals("sherpa_tts")) register(new SherpaEngine(app, binary, build));
             else if (id.equals("moss_nano_ort")) register(new MossNanoEngine(app, binary, build));
             else throw new IOException("未知的签名原生模块：" + id);
@@ -35,6 +37,10 @@ public final class LocalEngines {
         LocalEngine engine = modules.get(bundle.engine);
         if (engine == null) throw new IOException("当前基座尚未接入 " + bundle.engine + "；下载权重不会安装运行引擎");
         engine.validate(bundle, type); return engine;
+    }
+    public ParameterSchema parameters(ModelBundle bundle) throws Exception {
+        LocalEngine module = modules.get(bundle.engine);
+        return module instanceof TextEngine ? ((TextEngine) module).schema(bundle) : bundle.parameters();
     }
     public JSONArray snapshot() throws Exception { JSONArray result = new JSONArray(); for (LocalEngine engine : modules.values()) result.put(engine.describe()); return result; }
 }

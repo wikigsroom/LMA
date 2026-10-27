@@ -37,7 +37,7 @@ public final class LocalJobs implements AutoCloseable {
         LocalEngine selectedEngine = app.localEngines.require(bundle, type);
         JSONObject in = input.getJSONObject("input"); String prompt = in.optString("prompt");
         if (prompt.trim().isEmpty() || prompt.length() > 16000 || in.optString("negativePrompt").length() > 16000) throw new IllegalArgumentException("请填写不超过 16000 字符的提示词");
-        JSONObject effective = bundle.parameters().normalize(app.bundles.settings(id).getJSONObject("values"), input.optJSONObject("parameters") == null ? new JSONObject() : input.getJSONObject("parameters"));
+        JSONObject effective = app.bundles.parameters(id).normalize(app.bundles.settings(id).getJSONObject("values"), input.optJSONObject("parameters") == null ? new JSONObject() : input.getJSONObject("parameters"));
         JSONObject request = new JSONObject().put("bundleId", id).put("type", type).put("input", DataFiles.copy(in)).put("parameters", effective.getJSONObject("values"))
                 .put("adjustments", effective.getJSONArray("adjustments")).put("parameterSchemaVersion", effective.getInt("schemaVersion")).put("allowUnmeasured", input.optBoolean("allowUnmeasured", false)).put("submissionHash", submissionHash);
         if (input.has("adapters")) request.put("adapters", DataFiles.copy(input).getJSONArray("adapters"));
@@ -49,11 +49,11 @@ public final class LocalJobs implements AutoCloseable {
     public JSONObject retry(String id, String key) throws Exception {
         JSONObject old = app.jobs.get(id);
         if (!java.util.Arrays.asList("failed", "interrupted", "cancelled").contains(old.getString("state"))) throw new IllegalStateException("仅已失败、中断或取消的任务可以重试");
-        JSONObject request = DataFiles.copy(old.getJSONObject("request")); request.remove("submissionHash"); request.remove("adjustments"); request.remove("parameterSchemaVersion"); request.remove("adapterAdjustments");
+        JSONObject request = DataFiles.copy(old.getJSONObject("request")); request.remove("submissionHash"); request.remove("adjustments"); request.remove("parameterSchemaVersion"); request.remove("adapterAdjustments"); request.remove("textMetadata");
         return submit(request, key);
     }
     private JSONObject admission(ModelBundle bundle, JSONObject request) throws Exception {
-        if (!app.engineState.equals("stopped") && !app.engineState.equals("error")) throw new IllegalStateException("请先停止文本模型，再提交媒体任务；本机一次运行一个大型引擎");
+        if (!app.engineState.equals("stopped") && !app.engineState.equals("error")) throw new IllegalStateException("请先停止常驻文本服务，再提交生成任务；本机一次运行一个大型引擎");
         if (!request.optBoolean("allowUnmeasured")) throw new IllegalStateException("此配方尚无本机实测记录；请明确选择允许尝试未测配方后运行");
         ActivityManager.MemoryInfo memory = new ActivityManager.MemoryInfo(); ((ActivityManager) app.getSystemService(LmaApp.ACTIVITY_SERVICE)).getMemoryInfo(memory);
         long reserve = Math.max(384L * 1024 * 1024, memory.totalMem / 8), budget = Math.max(0, memory.availMem - reserve);

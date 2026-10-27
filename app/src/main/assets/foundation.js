@@ -4,13 +4,13 @@
   var $ = function (id) { return document.getElementById(id); };
   var labels = {text: '生文', image: '生图', video: '生视频', audio: '生音频'};
   var states = {queued: '排队中', loading: '加载中', running: '生成中', cancelling: '取消中', cancelled: '已取消', failed: '失败', succeeded: '已完成', interrupted: '已中断'};
-  var stages = {queued: '等待执行', loading: '加载模型', sampling: '采样中', encoding: '编码媒体', synthesizing: '合成语音', text_encoding: '编码文本', decoding: '解码输出'};
-  var paramNames = {width: '宽度', height: '高度', frames: '帧数', fps: '帧率', steps: '采样步数', cfg: '提示词引导', seed: '随机种子', threads: 'CPU 线程', sampler: '采样器', scheduler: '调度器', duration: '时长（秒）', speed: '语速'};
+  var stages = {queued: '等待执行', loading: '加载模型', sampling: '采样中', encoding: '编码媒体', synthesizing: '合成语音', text_encoding: '编码文本', decoding: '解码输出', generating: '生成文本', saving: '保存结果'};
+  var paramNames = {width: '宽度', height: '高度', frames: '帧数', fps: '帧率', steps: '采样步数', cfg: '提示词引导', seed: '随机种子', threads: 'CPU 线程', sampler: '采样器', scheduler: '调度器', duration: '时长（秒）', speed: '语速', context: '上下文长度', maxTokens: '单次输出上限', temperature: '采样温度', reasoning: '思考模式', systemPrompt: '系统提示词'};
   function entries() { return ui.state() && ui.state().bundles || []; }
   function find(id) { return entries().filter(function (b) { return b.id === id; })[0]; }
   function e(value) { return ui.esc(value); }
   function button(action, id, text, style, disabled) { return '<button class="button ' + (style || 'secondary') + '" data-action="' + action + '" data-id="' + e(id) + '"' + (disabled ? ' disabled' : '') + '>' + text + '</button>'; }
-  function engineAvailable(b) { return (ui.state().localEngines || []).some(function (engine) { return engine.engine === b.manifest.engine && engine.available; }); }
+  function engineAvailable(b) { return !b.parameterError && (ui.state().localEngines || []).some(function (engine) { return engine.engine === b.manifest.engine && engine.available; }); }
   function isAdapter(b) { return !!(b.manifest.adapter && b.manifest.adapter.kind === 'lora'); }
   function compatible(base, adapter) {
     var m = base.manifest, a = adapter.manifest.adapter;
@@ -34,14 +34,25 @@
     var b = find(id); if (!b) return; var m = b.manifest, p = b.plan || {};
     var files = p.components || [];
     var adapterHelp = isAdapter(b) ? '<p class="form-help">此包仅包含 LoRA。基础模型由你另外选择、安装；只与声明兼容的 ' + e(m.adapter.baseArchitectures.join(' / ')) + ' / ' + e(m.adapter.basePipelines.join(' / ')) + ' 配方配对。兼容声明仍需实际权重验证。</p>' : '';
-    var html = '<div class="model-info"><div class="model-tags">' + taskTags(b) + '<span class="tag">' + e(m.engine) + '</span><span class="tag">' + e(m.pipeline) + '</span></div><p>' + e(m.description || '') + '</p><p>' + (engineAvailable(b) ? '运行引擎已随 App 安装，当前配方仍需手机实测。' : '当前基座缺少匹配引擎。下载文件不会安装引擎，请等待对应的 App 更新。') + '</p>' + adapterHelp + '<dl><dt>完整模型包</dt><dd>' + ui.bytes(p.totalBytes) + '</dd><dt>可复用资产</dt><dd>' + ui.bytes(p.reusableBytes) + '</dd><dt>剩余传输</dt><dd>' + ui.bytes(p.remainingBytes) + '</dd><dt>配方</dt><dd>' + e(m.recipeId) + '</dd><dt>许可</dt><dd>' + e(typeof m.license === 'string' ? m.license : m.license && m.license.name || '尚未声明，请核对来源') + '</dd></dl><div class="bundle-components">' + files.map(function (c) { return '<details><summary>' + e(c.role) + ' · ' + ui.bytes(c.bytes) + (c.reusable ? ' · 可复用' : '') + '</summary><p>' + e(c.path) + '</p>' + (c.importPath && c.importPath !== c.path ? '<p class="modal-help">文件夹导入路径：' + e(c.importPath) + '</p>' : '') + '<code>' + e(c.sha256 ? 'SHA256 ' + c.sha256 : 'Git blob SHA-1 ' + c.gitBlobSha1) + '</code>' + (c.verifiedSha256 ? '<code>已校验 SHA256 ' + e(c.verifiedSha256) + '</code>' : '') + '</details>'; }).join('') + '</div><p class="modal-help">只下载这套包及上面列出的必需组件。浏览、App 升级与缺失模型的生成请求均不会触发下载。所有生成步骤在这部手机上执行。</p><div class="modal-actions">';
+    var html = '<div class="model-info"><div class="model-tags">' + taskTags(b) + '<span class="tag">' + e(m.engine) + '</span><span class="tag">' + e(m.pipeline) + '</span></div><p>' + e(m.description || '') + '</p><p>' + (b.parameterError ? e(b.parameterError) : engineAvailable(b) ? '运行引擎已随 App 安装，当前配方仍需手机实测。' : '当前基座缺少匹配引擎。下载文件不会安装引擎，请等待对应的 App 更新。') + '</p>' + adapterHelp + '<dl><dt>完整模型包</dt><dd>' + ui.bytes(p.totalBytes) + '</dd><dt>可复用资产</dt><dd>' + ui.bytes(p.reusableBytes) + '</dd><dt>剩余传输</dt><dd>' + ui.bytes(p.remainingBytes) + '</dd><dt>配方</dt><dd>' + e(m.recipeId) + '</dd><dt>许可</dt><dd>' + e(typeof m.license === 'string' ? m.license : m.license && m.license.name || '尚未声明，请核对来源') + '</dd></dl><div class="bundle-components">' + files.map(function (c) { return '<details><summary>' + e(c.role) + ' · ' + ui.bytes(c.bytes) + (c.reusable ? ' · 可复用' : '') + '</summary><p>' + e(c.path) + '</p>' + (c.importPath && c.importPath !== c.path ? '<p class="modal-help">文件夹导入路径：' + e(c.importPath) + '</p>' : '') + '<code>' + e(c.sha256 ? 'SHA256 ' + c.sha256 : 'Git blob SHA-1 ' + c.gitBlobSha1) + '</code>' + (c.verifiedSha256 ? '<code>已校验 SHA256 ' + e(c.verifiedSha256) + '</code>' : '') + '</details>'; }).join('') + '</div><p class="modal-help">只下载这套包及上面列出的必需组件。浏览、App 升级与缺失模型的生成请求均不会触发下载。所有生成步骤在这部手机上执行。</p><div class="modal-actions">';
     if (b.installed) html += button('bundleSettings', id, '模型设置') + button('bundleUse', id, isAdapter(b) ? '选择基础模型' : '使用模型', 'primary', !engineAvailable(b) || b.inUse);
     else html += button('bundleFolderPicker', id, '从文件夹导入') + button('downloadBundle', id, '下载所选模型包', 'primary', files.some(function (c) { return !c.reusable && !c.downloadable; }));
     html += '</div>' + (b.installed || (b.version || {}).groupId ? button('bundleVersions', id, '版本管理 / 独立更新') : '') + button('bundleRemove', id, '删除本地资产', 'danger', b.inUse) + '</div>';
     editor = null; ui.openModal(m.name, html, 'bundleInfo');
   }
+  function schemaFor(b) { return b.parameterSchema || b.manifest.parameters || {}; }
+  function numericHint(f, values, all) {
+    var maximum = f.maximum, bound = f.maximumFrom;
+    if (bound && all[bound.field]) {
+      var source = Object.prototype.hasOwnProperty.call(values, bound.field) ? values[bound.field] : all[bound.field].default;
+      maximum = Math.min(maximum === undefined ? Infinity : maximum, Number(source) + (bound.offset || 0));
+      if (f.type === 'integer') maximum = Math.floor(maximum);
+      if (f.multipleOf) maximum = (f.alignmentOrigin || 0) + Math.floor((maximum - (f.alignmentOrigin || 0)) / f.multipleOf) * f.multipleOf;
+    }
+    return (f.minimum !== undefined ? '最低 ' + e(f.minimum) + ' · ' : '') + (maximum !== undefined && isFinite(maximum) ? (bound ? '当前上限 ' : f.limitSource === 'application_guard' ? '应用保护上限 ' : f.limitSource === 'publisher_metadata_unverified' ? '发布者声明上限（待核对）' : '上限 ') + e(maximum) : '模型上限未声明') + (bound ? ' · 受' + e(all[bound.field] && all[bound.field].label || paramNames[bound.field] || bound.field) + '约束' : '') + (f.multipleOf ? ' · 步长 ' + e(f.multipleOf) : '');
+  }
   function fields(b) {
-    var schema = b.manifest.parameters || {}, values = b.config && b.config.values || {}, all = schema.fields || {};
+    var schema = schemaFor(b), values = b.config && b.config.values || {}, all = schema.fields || {};
     var out = '<div class="form-grid bundle-fields">';
     Object.keys(all).forEach(function (key, i) {
       var f = all[key], value = Object.prototype.hasOwnProperty.call(values, key) ? values[key] : f.default;
@@ -52,7 +63,7 @@
       else if (f.type === 'string') out += '<input data-bundle-field="' + e(key) + '" value="' + e(value) + '" maxlength="' + (f.maxLength === undefined ? 16000 : f.maxLength) + '">';
       else {
         var presets = (f.presets || []).filter(function (v) { return typeof v === 'number' && isFinite(v); });
-        out += '<input type="text" role="combobox" aria-autocomplete="list" aria-expanded="false" list="' + name + '" data-bundle-field="' + e(key) + '" data-numeric="true" value="' + e(value) + '" inputmode="' + (f.type === 'integer' ? 'numeric' : 'decimal') + '" autocomplete="off"><datalist id="' + name + '">' + presets.map(function (v) { return '<option value="' + v + '"></option>'; }).join('') + '</datalist><small>' + (f.minimum !== undefined ? '最低 ' + e(f.minimum) + ' · ' : '') + (f.maximum !== undefined ? (f.limitSource === 'application_guard' ? '应用保护上限 ' : f.limitSource === 'publisher_metadata_unverified' ? '发布者声明上限（待核对）' : '上限 ') + e(f.maximum) : '模型上限未声明') + (f.multipleOf ? ' · 步长 ' + e(f.multipleOf) : '') + '</small>';
+        out += '<input type="text" role="combobox" aria-autocomplete="list" aria-expanded="false" list="' + name + '" data-bundle-field="' + e(key) + '" data-numeric="true" value="' + e(value) + '" inputmode="' + (f.type === 'integer' ? 'numeric' : 'decimal') + '" autocomplete="off"><datalist id="' + name + '">' + presets.map(function (v) { return '<option value="' + v + '"></option>'; }).join('') + '</datalist><small data-bundle-bound-caption="' + e(key) + '">' + numericHint(f, values, all) + '</small>';
       }
       out += '</label>';
     });
@@ -61,7 +72,7 @@
     return out;
   }
   function readFields(form, b) {
-    var out = {}, all = (b.manifest.parameters || {}).fields || {};
+    var out = {}, all = schemaFor(b).fields || {};
     form.querySelectorAll('[data-bundle-field]').forEach(function (input) {
       var key = input.dataset.bundleField, f = all[key], value;
       if (f.type === 'boolean') value = input.checked;
@@ -78,7 +89,27 @@
       }
       out[key] = value;
     });
-    var shapes = (b.manifest.parameters || {}).allowedShapes;
+    var complete = {}, visiting = {};
+    function dependent(key) {
+      if (complete[key]) return;
+      if (visiting[key]) throw new Error('参数联合约束存在循环');
+      visiting[key] = true;
+      var f = all[key], bound = f.maximumFrom;
+      if (bound) {
+        if (!all[bound.field] || typeof out[bound.field] !== 'number') throw new Error('参数联合约束无效');
+        dependent(bound.field);
+        var value = Math.min(out[key], out[bound.field] + (bound.offset || 0));
+        if (f.type === 'integer') value = Math.floor(value);
+        if (f.multipleOf) value = (f.alignmentOrigin || 0) + Math.floor((value - (f.alignmentOrigin || 0)) / f.multipleOf) * f.multipleOf;
+        if (!isFinite(value) || f.minimum !== undefined && value < f.minimum) throw new Error('参数联合约束没有合法值');
+        out[key] = value;
+        form.querySelectorAll('[data-bundle-field]').forEach(function (input) { if (input.dataset.bundleField === key) input.value = value; });
+      }
+      delete visiting[key]; complete[key] = true;
+    }
+    Object.keys(all).forEach(dependent);
+    form.querySelectorAll('[data-bundle-bound-caption]').forEach(function (caption) { var key = caption.dataset.bundleBoundCaption; caption.innerHTML = numericHint(all[key], out, all); });
+    var shapes = schemaFor(b).allowedShapes;
     if (shapes && shapes.length && !shapes.some(function (s) { return Object.keys(s).every(function (key) { return out[key] === s[key]; }); })) throw new Error('请使用一个完整的已编译尺寸组合');
     return out;
   }
@@ -124,9 +155,9 @@
     if (isAdapter(b)) { pair(id); return; }
     var types = [];
     tasks(b).forEach(function (t) { if (t === 'image') types.push(['image.generate', '生图']); if (t === 'video') types.push(['video.generate', '生视频']); if (t === 'text') types.push(['text.generate', '生文']); if (t === 'audio') types.push([(b.manifest.capabilities || []).indexOf('text_to_speech') >= 0 ? 'speech.synthesize' : 'audio.generate', '生音频']); });
-    var speechOnly = types.length === 1 && types[0][0] === 'speech.synthesize';
+    var speechOnly = types.length === 1 && types[0][0] === 'speech.synthesize', textOnly = types.length === 1 && types[0][0] === 'text.generate';
     editor = {id: id, mode: 'task'};
-    ui.openModal(b.manifest.name, '<form id="localTaskForm"><label class="form-field"><span>生成能力</span><select name="taskType">' + types.map(function (t) { return '<option value="' + t[0] + '">' + t[1] + '</option>'; }).join('') + '</select></label><label class="form-field"><span>' + (speechOnly ? '朗读文本' : '提示词 / 文本') + '</span><textarea name="prompt" rows="4" required maxlength="' + (speechOnly ? '4000' : '16000') + '" placeholder="' + (speechOnly ? '填写所选语言词表覆盖的朗读文本' : '描述你希望生成的内容') + '"></textarea></label>' + (speechOnly ? '<p class="form-help">请使用此配方声明的语言。未知词或缺失语言组件会在本机报错；不进行语音克隆。</p>' : '<label class="form-field"><span>负面提示词（可选）</span><textarea name="negativePrompt" rows="2" maxlength="16000"></textarea></label>') + (tasks(b).indexOf('image') >= 0 ? adapterFields(b, selectedAdapter) : '') + '<details class="task-parameters"><summary>本次参数</summary>' + fields(b) + '</details><label class="unmeasured-choice"><input type="checkbox" name="allowUnmeasured" required><span>此配方尚无本机实测记录，我选择在当前手机上尝试。</span></label><p class="form-help">一次执行一个大型引擎。请先停止文本服务；任务在后台通知中持续执行，结果保存在本机。不会因缺少组件自动下载。</p><p id="bundleFormHint" role="status"></p><div class="modal-actions">' + button('closeModal', '', '取消') + '<button type="submit" class="button primary">加入本机队列</button></div></form>', 'localTask');
+    ui.openModal(b.manifest.name, '<form id="localTaskForm"><label class="form-field"><span>生成能力</span><select name="taskType">' + types.map(function (t) { return '<option value="' + t[0] + '">' + t[1] + '</option>'; }).join('') + '</select></label><label class="form-field"><span>' + (speechOnly ? '朗读文本' : '提示词 / 文本') + '</span><textarea name="prompt" rows="4" required maxlength="' + (speechOnly ? '4000' : '16000') + '" placeholder="' + (speechOnly ? '填写所选语言词表覆盖的朗读文本' : '描述你希望生成的内容') + '"></textarea></label>' + (speechOnly ? '<p class="form-help">请使用此配方声明的语言。未知词或缺失语言组件会在本机报错；不进行语音克隆。</p>' : textOnly ? '' : '<label class="form-field"><span>负面提示词（可选）</span><textarea name="negativePrompt" rows="2" maxlength="16000"></textarea></label>') + (tasks(b).indexOf('image') >= 0 ? adapterFields(b, selectedAdapter) : '') + '<details class="task-parameters"><summary>本次参数</summary>' + fields(b) + '</details><label class="unmeasured-choice"><input type="checkbox" name="allowUnmeasured" required><span>此配方尚无本机实测记录，我选择在当前手机上尝试。</span></label><p class="form-help">一次执行一个大型引擎。请先停止文本服务；任务在后台通知中持续执行，结果保存在本机。不会因缺少组件自动下载。</p><p id="bundleFormHint" role="status"></p><div class="modal-actions">' + button('closeModal', '', '取消') + '<button type="submit" class="button primary">加入本机队列</button></div></form>', 'localTask');
   }
   function renderJobs() {
     var s = ui.state(), jobs = s.jobs || [], signature = JSON.stringify(jobs);
@@ -143,15 +174,27 @@
     if (signature === artifactSignature) return; artifactSignature = signature;
     $('artifactCount').textContent = artifacts.length + ' 个结果';
     $('artifactList').innerHTML = artifacts.length ? artifacts.slice().reverse().map(function (a) {
-      var m = a.metadata || {}, type = (m.mime || '').split('/')[0];
-      var cover = a.available && type === 'image' ? '<img class="artifact-thumb" src="/artifacts/' + e(a.id) + '" loading="lazy" alt="本地生成图片">' : '<div class="artifact-placeholder">' + ui.icon(type === 'audio' ? 'play' : 'spark') + '<span>' + e(type === 'video' ? '视频' : type === 'audio' ? '音频' : '生成结果') + '</span></div>';
+      var m = a.metadata || {}, type = m.mime === 'application/vnd.lma.text+json' ? 'text' : (m.mime || '').split('/')[0];
+      var cover = a.available && type === 'image' ? '<img class="artifact-thumb" src="/artifacts/' + e(a.id) + '" loading="lazy" alt="本地生成图片">' : '<div class="artifact-placeholder">' + ui.icon(type === 'audio' ? 'play' : 'spark') + '<span>' + e(type === 'video' ? '视频' : type === 'audio' ? '音频' : type === 'text' ? '文本' : '生成结果') + '</span></div>';
       return '<article class="artifact-card">' + cover + '<div class="artifact-info"><strong>' + new Date(a.createdAt).toLocaleString('zh-CN') + '</strong><p>' + e(m.mime || '') + ' · ' + ui.bytes(a.bytes) + (m.width ? ' · ' + m.width + ' × ' + m.height : '') + '</p><div class="job-actions">' + button('artifactInfo', a.id, '打开', 'primary', !a.available) + button('exportArtifact', a.id, '导出', 'secondary', !a.available) + button('artifactRemove', a.id, '删除') + '</div></div></article>';
     }).join('') : '<div class="empty-list"><h3>生成结果保存在这里</h3><p>可以预览图片、播放音频与视频、导出原文件，并查看对应任务参数。</p></div>';
   }
   function track(action, args, callback) { var id = ui.dispatch(action, args); if (id) pending[id] = callback || function () {}; return id; }
   function showArtifact(id, data) {
-    var a = data, mime = a.metadata.mime, path = '/artifacts/' + encodeURIComponent(id), media = mime.indexOf('image/') === 0 ? '<img src="' + path + '" alt="本地生成图片" class="artifact-preview">' : mime.indexOf('audio/') === 0 ? '<audio controls preload="metadata" src="' + path + '"></audio>' : mime.indexOf('video/') === 0 ? '<video controls playsinline preload="metadata" src="' + path + '"></video>' : '';
-    ui.openModal('本地生成结果', media + '<p>' + e(mime) + ' · ' + ui.bytes(a.bytes) + '</p><details><summary>生成参数与来源</summary><pre class="provenance">' + e(JSON.stringify(a.provenance, null, 2)) + '</pre></details><p class="form-help">SHA256：' + e(a.sha256) + '</p><div class="modal-actions">' + button('exportArtifactMetadata', id, '导出生成记录') + button('exportArtifact', id, '导出原文件', 'primary') + '</div>', 'artifact');
+    var a = data, mime = a.metadata.mime, path = '/artifacts/' + encodeURIComponent(id), text = mime === 'application/vnd.lma.text+json', media = mime.indexOf('image/') === 0 ? '<img src="' + path + '" alt="本地生成图片" class="artifact-preview">' : mime.indexOf('audio/') === 0 ? '<audio controls preload="metadata" src="' + path + '"></audio>' : mime.indexOf('video/') === 0 ? '<video controls playsinline preload="metadata" src="' + path + '"></video>' : '';
+    if (text) media = '<div id="textArtifact" data-id="' + e(id) + '"><p role="status">正在读取本地文本结果…</p></div>';
+    ui.openModal('本地生成结果', media + '<p>' + e(mime) + ' · ' + ui.bytes(a.bytes) + '</p><details><summary>生成参数与来源</summary><pre class="provenance">' + e(JSON.stringify(a.provenance, null, 2)) + '</pre></details><p class="form-help artifact-sha">SHA256：' + e(a.sha256) + '</p><div class="modal-actions">' + (text ? button('copyArtifactText', id, '复制正文') : '') + button('exportArtifactMetadata', id, '导出生成记录') + button('exportArtifact', id, '导出原文件', 'primary') + '</div>', 'artifact');
+    if (text) fetch(path, {cache: 'no-store'}).then(function (response) { if (!response.ok) throw new Error('无法读取本地文本结果'); return response.text(); }).then(function (raw) {
+      if (raw.length > 8 * 1024 * 1024) throw new Error('文本结果过大');
+      var value = JSON.parse(raw), panel = $('textArtifact');
+      if (!panel || panel.dataset.id !== id) return;
+      if (value.schema !== 'lma.text-result/1' || typeof value.content !== 'string' || typeof value.reasoning !== 'string') throw new Error('文本结果格式无效');
+      panel.innerHTML = '<pre class="artifact-text"></pre><details class="artifact-reasoning"><summary>思考内容</summary><pre class="artifact-text"></pre></details><p class="form-help"></p>';
+      var copy = $('modalContent').querySelector('[data-action="copyArtifactText"]'); if (copy) copy.disabled = !value.content;
+      panel.querySelector('pre').textContent = value.content || '（本次仅输出思考内容）';
+      panel.querySelector('details').hidden = !value.reasoning; panel.querySelector('details pre').textContent = value.reasoning;
+      panel.querySelector('p').textContent = value.finishReason === 'length' ? '已达到本次输出上限' : '文本生成结束';
+    }).catch(function (error) { var panel = $('textArtifact'); if (panel && panel.dataset.id === id) panel.textContent = error.message; });
   }
   function handle(action, el) {
     var id = el.dataset.id;
@@ -167,6 +210,7 @@
       case 'bundleRemove': ui.confirm('删除本地模型资产？', '删除本机文件并保留此模型的独立设置。其他模型正在使用的共享组件会保留。', 'deleteBundle', id, '删除资产'); return true;
       case 'artifactRemove': ui.confirm('删除生成结果？', '此操作删除手机上的结果原文件，任务记录会保留。', 'deleteArtifact', id, '删除结果'); return true;
       case 'exportArtifact': case 'exportArtifactMetadata': ui.dispatch(action, {id: id}); return true;
+      case 'copyArtifactText': { var panel = $('textArtifact'); if (panel && panel.dataset.id === id && panel.querySelector('pre')) ui.copy(panel.querySelector('pre').textContent); return true; }
       case 'artifactInfo': track('inspectArtifact', {id: id}, function (data) { showArtifact(id, data); }); return true;
       case 'jobInfo': track('inspectTask', {id: id}, function (data) { ui.openModal('任务详情', '<pre class="provenance">' + e(JSON.stringify(data, null, 2)) + '</pre>', 'job'); }); return true;
       default: return false;
@@ -196,7 +240,7 @@
         }
         if (event.target.name === 'taskType' && $('taskAdapters')) { $('taskAdapters').disabled = event.target.value !== 'image.generate'; $('taskAdapters').hidden = event.target.value !== 'image.generate'; return; }
         if (event.target.id !== 'bundleShape' || !editor || event.target.value === '') return;
-        var b = find(editor.id), shape = b.manifest.parameters.allowedShapes[Number(event.target.value)];
+        var b = find(editor.id), shape = schemaFor(b).allowedShapes[Number(event.target.value)];
         $('modalContent').querySelectorAll('[data-bundle-field]').forEach(function (input) { if (Object.prototype.hasOwnProperty.call(shape, input.dataset.bundleField)) input.value = shape[input.dataset.bundleField]; });
       });
       document.addEventListener('focusout', function (event) {
