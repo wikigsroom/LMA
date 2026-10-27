@@ -17,7 +17,7 @@ public final class BundleDocuments {
         String root = DocumentsContract.getTreeDocumentId(tree); Map<String, String> directories = new HashMap<>(); directories.put("", root);
         JSONObject uris = new JSONObject();
         for (ModelBundle.Component component : bundle.components) {
-            String current = root, prefix = ""; String[] parts = component.path.split("/");
+            String current = root, prefix = ""; String[] parts = component.importPath.split("/");
             if (parts.length > 64) throw new IOException("组件路径过深");
             for (int i = 0; i < parts.length; i++) {
                 String next = prefix.isEmpty() ? parts[i] : prefix + "/" + parts[i];
@@ -30,8 +30,8 @@ public final class BundleDocuments {
                         found = cursor.getString(0); mime = cursor.getString(2);
                     }
                 }
-                if (found == null) throw new IOException("所选文件夹缺少组件：" + component.path + "；不会改为网络下载");
-                if (i < parts.length - 1 && !DocumentsContract.Document.MIME_TYPE_DIR.equals(mime) || i == parts.length - 1 && DocumentsContract.Document.MIME_TYPE_DIR.equals(mime)) throw new IOException("组件路径类型不匹配：" + component.path);
+                if (found == null) throw new IOException("所选文件夹缺少组件：" + component.importPath + "；不会改为网络下载");
+                if (i < parts.length - 1 && !DocumentsContract.Document.MIME_TYPE_DIR.equals(mime) || i == parts.length - 1 && DocumentsContract.Document.MIME_TYPE_DIR.equals(mime)) throw new IOException("组件路径类型不匹配：" + component.importPath);
                 current = found; prefix = next;
                 if (i < parts.length - 1) directories.put(prefix, current);
             }

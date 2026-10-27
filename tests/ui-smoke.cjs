@@ -6,6 +6,7 @@ const path = require('node:path');
 const http = require('node:http');
 const {hubFixture, installHubBridge} = require('./hub-fixture.cjs');
 const checkFoundation = require('./foundation-ui.cjs');
+const checkRecipes = require('./recipes-ui.cjs');
 const {chromium} = require(process.env.LMA_PLAYWRIGHT || 'playwright');
 const root = path.resolve(__dirname, '..');
 const assets = path.join(root, 'app/src/main/assets');
@@ -13,7 +14,7 @@ const output = path.join(root, 'build/ui-qa');
 fs.mkdirSync(output, {recursive: true});
 if (fs.existsSync(path.join(output, 'results.json'))) fs.unlinkSync(path.join(output, 'results.json'));
 function inputFingerprint() {
-  const files = fs.readdirSync(assets, {recursive: true}).map(name => path.join(assets, name)).filter(file => fs.statSync(file).isFile()).concat(__filename, path.join(root, 'tests/hub-fixture.cjs'), path.join(root, 'tests/foundation-ui.cjs'));
+  const files = fs.readdirSync(assets, {recursive: true}).map(name => path.join(assets, name)).filter(file => fs.statSync(file).isFile()).concat(__filename, path.join(root, 'tests/hub-fixture.cjs'), path.join(root, 'tests/foundation-ui.cjs'), path.join(root, 'tests/recipes-ui.cjs'));
   return Object.fromEntries(files.sort().map(file => [path.relative(root, file).split(path.sep).join('/'), crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex')]));
 }
 const verifiedInputs = inputFingerprint();
@@ -22,7 +23,7 @@ const checks = [], errors = [];
 let context, server;
 function checked(name) { checks.push(name); console.log('PASS ' + name); }
 const fixture = {
-  app: 'LMA', version: '0.3.0-dev.4', models: catalogue.models.map(m => ({...m, installed: false, installedBytes: 0, partialBytes: 0, download: {}})),
+  app: 'LMA', version: '0.3.0-dev.5', models: catalogue.models.map(m => ({...m, installed: false, installedBytes: 0, partialBytes: 0, download: {}})),
   settings: {lan: false, port: 8080, threads: 4, context: 2048, maxTokens: 512, temperature: 0.7, source: 'auto', boot: false, autoLoad: true, reasoning: 'off', theme: 'light', systemPrompt: '你是一个有帮助的本地助手。', apiKey: 'lma_TEST_ONLY_NOT_A_REAL_KEY'},
   api: {state: 'stopped', detail: '接口尚未启动', textRequestActive: false},
   engine: {state: 'stopped', detail: '选择并下载一个模型，开始本地运行', modelId: '', generating: false, startedAt: 0, localUrl: 'http://127.0.0.1:8080/v1', addresses: ['http://192.168.1.20:8080/v1']},
@@ -70,7 +71,8 @@ async function main() {
         setTimeout(() => {
           const f = window.__fixture, m = f.models.find(x => x.id === command.id);
           window.__handleHub(command);
-          const data = window.__handleFoundation ? window.__handleFoundation(command) : undefined;
+          const recipeData = window.__handleRecipe ? window.__handleRecipe(command) : undefined;
+          const data = recipeData === undefined && window.__handleFoundation ? window.__handleFoundation(command) : recipeData;
           if (window.__rejectNextAction === command.action) {
             window.__rejectNextAction = null; f.error = '原生测试端拒绝了这次操作';
             f.commandResults.push({requestId: command.requestId, action: command.action, ok: false, error: f.error});
@@ -256,6 +258,7 @@ async function main() {
   await page.locator('[data-action="confirmed"]').click(); await page.waitForSelector('.chat-empty'); checked('Delete persistent chat via native action');
   await setState(page, () => { window.__fixture.models[0].name = 'Qwen 3 · 1.7B Abliterated'; window.__fixture.settings.theme = 'light'; });
   await checkFoundation(page, checked, checkOverflow, output);
+  await checkRecipes(page, checked);
   await page.locator('.nav-item[data-tab="models"]').click();
   await page.setViewportSize({width: 1024, height: 768}); await checkOverflow(page, 'Tablet library layout');
   await page.screenshot({path: path.join(output, '05-tablet.png')});

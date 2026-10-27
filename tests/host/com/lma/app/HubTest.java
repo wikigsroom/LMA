@@ -113,6 +113,7 @@ public final class HubTest {
             catalog.dispatch(command("hubSearch")); waitFor(() -> !catalog.snapshot().getBoolean("searching"));
             check(catalog.snapshot().getString("error").contains("unavailable") && app.lastError.isEmpty(), "HF network failures stay in the discovery panel without interrupting inference");
         }
+        for (String name : HubRecipeTest.run(root)) { passed.add(name); System.out.println("PASS " + name); }
         JSONObject report = new JSONObject().put("passed", passed.size()).put("checks", passed).put("network", "deterministic API fixtures").put("android_framework", "host adapters").put("phone_inference_tested", false);
         Files.write(output.resolve("results.json"), (report.toString(2) + "\n").getBytes(StandardCharsets.UTF_8));
     }

@@ -68,10 +68,10 @@ def main():
         for record in records.values(): current(record["input_fingerprint"])
         assert records["build-info.json"]["input_fingerprint"] == build_inputs()
         assert records["build-info.json"]["sha256"] == records["package.json"]["sha256"]
-        assert records["foundation.json"]["passed"] >= 130 and records["foundation.json"]["adapter_contract_assertions"] >= 45 and records["backend.json"]["passed"] >= 85 and records["hub.json"]["passed"] >= 45
+        assert records["foundation.json"]["passed"] >= 217 and records["foundation.json"]["recipe_integrity_assertions"] >= 87 and records["foundation.json"]["adapter_contract_assertions"] >= 45 and records["backend.json"]["passed"] >= 85 and records["hub.json"]["passed"] >= 74
         assert records["tts.json"]["passed"] >= 62 and records["tts.json"]["actual_host_child_processes"] and not records["tts.json"]["model_inference"]
         assert records["api.json"]["passed"] >= 67 and records["api.json"]["actual_socket_io"] and not records["api.json"]["physical_device"]
-        assert records["ui.json"]["passed"] >= 97 and not records["ui.json"]["errors"] and records["lint.json"]["errors"] == 0
+        assert records["ui.json"]["passed"] >= 112 and not records["ui.json"]["errors"] and records["lint.json"]["errors"] == 0
         media = json.loads((ROOT / "docs/media/development/manifest.json").read_text(encoding="utf-8"))
         current(media["input_fingerprint"])
         assert not media["android_device"] and not media["model_inference"] and media["browser_closed"] and not media["browser_errors"]

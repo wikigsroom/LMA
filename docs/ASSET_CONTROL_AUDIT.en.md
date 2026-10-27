@@ -7,7 +7,7 @@ Reviewed 2026-10-28. **Current requirements match foundation-only App updates wi
 | Requirement | Document rule | Implementation / evidence |
 | --- | --- | --- |
 | APK updates deliver the foundation | Asset-separation section, F-02 / A11 | Package checks exclude weights, model-specific vocabularies and voices; engine code belongs in the App |
-| Users select models and dependencies | Explicit selected bundle plus previously disclosed required components; no mandatory installation of all supported targets | Bundle details, explicit transfer and folder import exist; full HF multi-component selection remains unfinished |
+| Users select models and dependencies | Explicit selected bundle plus previously disclosed required components; no mandatory installation of all supported targets | Bundle details, explicit transfers and folder import exist; dev.5 adds seven explicit HF component templates without downloading on registration; other architectures still need adaptations |
 | Install/upgrade/browse never downloads models | Structured `model_asset_policy` forbids implicit selection/download/replacement | Host storage/transfer/UI checks cover declaration, browsing and missing-asset failure; physical install/upgrade still needs evidence |
 | Independent management | Local pause/resume/settings/import/update/delete, with upgrade preservation | Several paths implemented; independent model-update flow and full migration remain incomplete |
 | Text/image/video/audio tags | One flat pool; independent capability and engine/architecture/format/component/backend/evidence labels | Four output filters are implemented; labels do not establish execution support |

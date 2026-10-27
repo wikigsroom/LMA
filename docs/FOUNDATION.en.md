@@ -140,3 +140,6 @@ Some K1 contracts/migrations allow host checks. K2–K4 device execution require
 Native architecture pipelines, mobile operators/quantization, resource/quality measurements and upstream maintenance are work for this version. Internal implementation follows dependencies; unresolved targets remain blockers here rather than moving to other versions.
 
 The [asset-control audit](ASSET_CONTROL_AUDIT.en.md) confirms a consistent document baseline. dev.4 [peer-LoRA pairing](ADAPTERS.en.md) reuses model/reference/task contracts, without phone-output evidence.
+
+
+Development implementation: dev.5 [HF component recipes](HF_RECIPES.en.md) use signed-App data templates and `lma.model-bundle/2`, with Git-file identity and measured SHA256 receipts while preserving schema 1. Downloads require explicit user confirmation. This remains part of the same unfinished foundation delivery.

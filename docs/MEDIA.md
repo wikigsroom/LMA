@@ -70,3 +70,6 @@ When a phone becomes available, add separately labeled installation, real downlo
 开发媒体新增 `09-tts-form.png`，与 development MP4 / GIF 一起展示语音表单和独立音色 / 语速；全程标记 UI FIXTURE，不提供伪造音频。The development speech-form capture is an explicit UI fixture without synthesized audio. See [development media](DEVELOPMENT.md).
 
 开发媒体 dev.4 增加 [基础模型配对](media/development/10-lora-pairing.png)与[独立强度表单](media/development/11-lora-form.png)，同步 MP4 / GIF，全程 UI FIXTURE；未生成任何 LoRA 示例图片。 / dev.4 adds explicit compatible-base and strength-form scenes to development captures; these are UI fixtures without generated model images.
+
+
+dev.5 增加[自选 HF 配方](media/development/12-hf-components.png)和[组件文件](media/development/13-hf-component-files.png)，更新完整 MP4 / GIF，显式 UI FIXTURE；未下载权重或提供伪造模型输出。 / dev.5 adds user-controlled recipe/component scenes to the labeled development recording and GIF; no weights or inference output are involved.

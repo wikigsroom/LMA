@@ -4,6 +4,10 @@
 
 LMA 0.2.0 is a local-model workbench. It preserves the existing recommendations and adds HF discovery and a dedicated Local manager. General models are eligible; uncensored variants carry separate evidence-based labels.
 
+## Development component selection
+
+0.3.0-dev.5 adds explicit component recipes: frozen revisions, roles selected across repositories, and separate registration/download confirmation. See [recipes and integrity](HF_RECIPES.en.md). These signed-App templates do not make every HF architecture runnable. The v0.2.0 GGUF workflow below remains available.
+
 ## Workflow
 
 Recommended still displays `m08 → m06 → m01`, preserving names, order, labels, pinned weights and author evidence. Lightweight / Advanced retain the original 14 curated entries. Online discovery does not overwrite them.

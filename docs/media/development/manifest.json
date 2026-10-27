@@ -1,5 +1,5 @@
 {
-  "version": "0.3.0-dev.4",
+  "version": "0.3.0-dev.5",
   "kind": "development UI with explicit simulated native bridge",
   "android_device": false,
   "model_inference": false,
@@ -50,6 +50,18 @@
     {
       "file": "11-lora-form.png",
       "caption": "Explicit adapter and editable strength in a bounded local task form; UI fixture only / 自选适配器与独立强度，不代表模型输出"
+    },
+    {
+      "file": "13-hf-component-files.png",
+      "caption": "Explicit role-specific HF file selection with frozen revisions and Git blob integrity; UI fixture only / 自选组件，不下载或执行模型"
+    },
+    {
+      "file": "12-hf-components.png",
+      "caption": "User-selected multi-component recipe with separately disclosed fixed dependencies; UI fixture only / 配方登记与下载分开"
+    },
+    {
+      "file": "14-hf-download-plan.png",
+      "caption": "Registration opens the chosen bundle plan without downloading; UI fixture only / 登记后独立确认下载与全部依赖"
     }
   ],
   "files": [
@@ -80,13 +92,13 @@
     },
     {
       "file": "06-queue-results.png",
-      "bytes": 44413,
-      "sha256": "590be1c5baf38841d8d3a6f58952914efe8fa97cac734f3e48f93cb5915e245e"
+      "bytes": 44398,
+      "sha256": "21a1dab61f9cf18e6be0b49e931c4ce80e08687a1e56cb55d2d4a89c1c5c15f0"
     },
     {
       "file": "07-cancelled.png",
-      "bytes": 44605,
-      "sha256": "2f809b1c7101c9b4e46333013f4d48dfc4287afc3779feca4f8450723109a031"
+      "bytes": 44590,
+      "sha256": "fe317a9cc665cd1b2990c47fc842ef85ce285102175b3ffb97e71d0cdadea80f"
     },
     {
       "file": "08-zero-model-api.png",
@@ -109,23 +121,38 @@
       "sha256": "06619d3f275a698256d0ae84fbaa0d0fbd4ed279c0814f8a6a75da366e81c573"
     },
     {
+      "file": "12-hf-components.png",
+      "bytes": 43504,
+      "sha256": "c4803e152ece771f217f4094cc83635b1afbac2fb57c6f31d9499e5edec8873e"
+    },
+    {
+      "file": "13-hf-component-files.png",
+      "bytes": 43388,
+      "sha256": "7d4e72a9dc427a7a2d2e7fcf9e49a2c107f60e57162f0a6416b7a5545a839b34"
+    },
+    {
+      "file": "14-hf-download-plan.png",
+      "bytes": 47103,
+      "sha256": "a7af560ae28ac609125abe25e32bcb10b88373d665730765972058b68ec8113d"
+    },
+    {
       "file": "foundation-ui.gif",
-      "bytes": 1405326,
-      "sha256": "5bee1dd9960c7052b79cd36a10b3fb4de0babecddc02ca9545d3125082d591fa"
+      "bytes": 1966226,
+      "sha256": "0c696625ccb10703b098a69c042cebaa3b37d34568c953b3de50f75c2ebe00eb"
     },
     {
       "file": "foundation-ui.mp4",
-      "bytes": 566023,
-      "sha256": "e4982423ad0ae61bc7bee02051928bea964daf653b80fe0476fd0102b0945350"
+      "bytes": 787163,
+      "sha256": "b70491fcc54e66e5b495e6c0d78c0008e1a8a4ae7cff99da8bfccc061933707f"
     }
   ],
   "input_fingerprint": {
     "app/src/main/assets/app.css": "f2cb7b5ee9de8f3afac793e694dcf9fde0a855c0d4c7053ff986cc2a6d2bd3b1",
-    "app/src/main/assets/app.js": "a08ed4be071648e21919707320616627df86dd4a5516cb8b0289cda8c0de0710",
+    "app/src/main/assets/app.js": "4cac26b9ac2dd5c09623e5ee14739826969f0586d125d30b00f7f00111618804",
     "app/src/main/assets/engine-builds.json": "2488406b9b5d8da3258885cdd297cfa1da085f696f12ebd0bc31e2237d796150",
     "app/src/main/assets/foundation.css": "9c87b4ca4826717037e6a99f2411323607fc37f040916998801633ca1bdef3a2",
-    "app/src/main/assets/foundation.js": "8e7f3946db4557efa0be034d742a1e553115b267d14d4071e87b0dfa90412efc",
-    "app/src/main/assets/index.html": "249346e918530a688c2c93b84742e314d2e652cbde599d97a513194acdc254b9",
+    "app/src/main/assets/foundation.js": "bafe4033e41d03aaa16278dacb535fa33d8285bf3ad9441275eca182516b4569",
+    "app/src/main/assets/index.html": "863bc7963292573cec51c45a8c53b75b5b5df1873faef45a6b959eb77cee93bc",
     "app/src/main/assets/license.js": "569581b69d204df664750645202b7ab703a1f501de63fb257b29fb9c8f12ab2f",
     "app/src/main/assets/licenses/LLAMA_CPP_LICENSE": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
     "app/src/main/assets/licenses/LMA_LICENSE": "6ae3f5efa412d91cbf66e44f743e5ce41a8044309d05d893365206ab9bc35fc3",
@@ -178,7 +205,11 @@
     "app/src/main/assets/licenses/xxhash-LICENSE.txt": "a2973411d278045bde3c7161b911e0680d53e2d73d6457c77068d2e55d816d67",
     "app/src/main/assets/model-bundles.json": "1791f5e6f164e951ee49f9e4b7c80e34f37ded38ae205b8b03973f2de5d4ee16",
     "app/src/main/assets/models.json": "c3e884b4e5fb06f20c036deebc78e6f953ac420e76fca72bab5a25fd59927156",
+    "app/src/main/assets/recipe-templates.json": "93ac8c1c9607adb0e5954e84b44604398c483bb71fb202e844efe87907235a31",
+    "app/src/main/assets/recipes.js": "648e1ff046ab20e2ae7f658a7cb82c895c042ea81dca5cd943141626eea6deba",
     "tests/foundation-ui.cjs": "1c6721770e2d3336719c6cb096869aca3f966beff3fd958f814cda1cafee1e79",
-    "tools/capture_foundation.cjs": "e2305362326c6146361bc5f507bd4b1a3f3b009d1c49817c83c84232b906191e"
+    "tests/hub-fixture.cjs": "5b3cb88b7fd4c45d26ce92e8598a1c3837a12b02eb898f67c9be10da2910ab83",
+    "tests/recipes-ui.cjs": "035fc38b77b172614717244261e2bdac178771e7930469c54e31e2d5e0ea1141",
+    "tools/capture_foundation.cjs": "dca7c58cf4999a67498d68a807a78ab8327982694bc8360d570fda49556ad2f3"
   }
 }

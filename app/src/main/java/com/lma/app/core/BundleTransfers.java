@@ -57,17 +57,17 @@ public final class BundleTransfers implements AutoCloseable {
             ModelBundle bundle = store.bundle(job.id); JSONObject plan = store.plan(job.id);
             if (plan.getLong("availableBytes") < plan.getLong("remainingBytes") + RESERVE) throw new IOException("Insufficient storage for complete bundle and reserve");
             for (ModelBundle.Component component : bundle.components) {
-                check(job); ReentrantLock lock = store.componentLock(component.sha256);
+                check(job); ReentrantLock lock = store.componentLock(component.objectId);
                 while (!lock.tryLock(200, TimeUnit.MILLISECONDS)) check(job);
                 try {
                     check(job);
                     if (store.hasObject(component)) continue;
-                    File object = store.object(component.sha256);
+                    File object = store.object(component.objectId);
                     if (object.isFile() && object.length() == component.bytes) {
                         try { store.accept(job.id, job.token, component, object); continue; }
                         catch (IOException error) { check(job); if (!object.delete()) throw new IOException("Cannot replace corrupted component", error); }
                     }
-                    File partial = store.partial(component.sha256);
+                    File partial = store.partial(component.objectId);
                     Input imported = job.imports.get(component.role);
                     if (imported != null) {
                         try (InputStream in = imported.open()) {

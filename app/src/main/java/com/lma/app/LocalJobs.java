@@ -102,8 +102,8 @@ public final class LocalJobs implements AutoCloseable {
                 @Override public void execution(JSONObject details) throws Exception { check(); if (details.toString().length() > 16000) throw new IOException("引擎执行元数据过长"); executionDetails.put("details", DataFiles.copy(details)); }
             });
             if (timedOut.get()) throw new IOException("本地执行超过应用的两小时单任务保护时限");
-            JSONArray adapterManifests = new JSONArray(); for (BundleStore.Lease adapter : adapters) adapterManifests.put(adapter.bundle.json());
-            JSONObject provenance = new JSONObject().put("adapters", adapterManifests).put("request", request).put("bundle", model.bundle.json()).put("engine", engine.describe()).put("resourcePlan", resourcePlan).put("device", app.device()).put("execution", "same_android_phone").put("engineExecution", executionDetails);
+            JSONArray adapterManifests = new JSONArray(), adapterReceipts = new JSONArray(); for (BundleStore.Lease adapter : adapters) { adapterManifests.put(adapter.bundle.json()); adapterReceipts.put(new JSONObject().put("bundleId", adapter.bundle.id).put("components", adapter.integrity())); }
+            JSONObject provenance = new JSONObject().put("adapters", adapterManifests).put("componentReceipts", model.integrity()).put("adapterComponentReceipts", adapterReceipts).put("request", request).put("bundle", model.bundle.json()).put("engine", engine.describe()).put("resourcePlan", resourcePlan).put("device", app.device()).put("execution", "same_android_phone").put("engineExecution", executionDetails);
             JSONObject artifact = app.artifacts.commit(id, output, provenance, () -> { if (closed || timedOut.get()) throw new IOException("任务已停止，结果不会记作成功"); app.jobs.check(id, token); }); artifactId = artifact.getString("id");
             app.jobs.finish(id, token, new JSONArray().put(artifactId), "");
             if (!app.jobs.get(id).getString("state").equals("succeeded")) { app.artifacts.remove(artifactId); artifactId = ""; }

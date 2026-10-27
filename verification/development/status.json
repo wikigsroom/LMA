@@ -1,12 +1,12 @@
 {
-  "version": "0.3.0-dev.4",
+  "version": "0.3.0-dev.5",
   "kind": "development_checkpoint",
   "release_ready": false,
   "published": false,
   "physical_device_tests": 0,
   "model_inference_tested": false,
   "all_selected_models_supported": false,
-  "scope": "host storage/transfers/contracts and explicit adapter pairing/leases, speech worker contracts/child fixtures, authenticated HTTP/streams/text proxy, UI fixtures, native compilation and APK/lint checks only",
+  "scope": "host storage/transfers and HF component recipes/Git integrity, explicit adapter pairing/leases, speech worker contracts/child fixtures, authenticated HTTP/streams/text proxy, UI fixtures, native compilation and APK/lint checks only",
   "required_scope": "docs/MULTIMODAL_RELEASE_PLAN.md",
   "sources": {
     "build-info.json": "dist/build-info.json",

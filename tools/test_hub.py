@@ -18,7 +18,7 @@ def main():
     out.mkdir(parents=True, exist_ok=True)
     backend = json.loads((ROOT / 'build/backend-tests/results.json').read_text(encoding='utf-8'))
     current(backend['input_fingerprint'])
-    inputs = fingerprint('app/src/main/java', 'tests/host', 'tools/test_hub.py')
+    inputs = fingerprint('app/src/main/java', 'tests/host', 'app/src/main/assets/recipe-templates.json', 'tools/test_hub.py')
     classes = ROOT / 'build/backend-tests/classes'
     dep = ROOT / 'build/test-deps/json-20250517.jar'
     def run(name):

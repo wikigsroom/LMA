@@ -8,27 +8,35 @@ import java.util.*;
 
 /** Pinned data-only recipe. An engine ID must resolve to code shipped in the APK. */
 public final class ModelBundle {
-    public static final String SCHEMA = "lma.model-bundle/1";
+    public static final String SCHEMA = "lma.model-bundle/1", SCHEMA_V2 = "lma.model-bundle/2";
     public final String id, modelId, recipeId, engine, architecture, pipeline, backend, name;
     public final List<Component> components;
     public final Set<String> tasks;
     private final JSONObject source;
     public static final class Component {
-        public final String role, path, sha256, url, format, repository, revision;
+        public final String role, path, importPath, sha256, gitBlobSha1, objectId, integrityAlgorithm, url, format, repository, revision;
         public final long bytes;
-        Component(JSONObject value) throws Exception {
+        Component(JSONObject value, boolean version2) throws Exception {
             role = key(value.getString("role")); path = value.getString("path");
             // HF paths are metadata, never filesystem destinations (objects use their SHA256).
             if (path.isEmpty() || path.length() > 2048 || path.indexOf('\\') >= 0 || path.chars().anyMatch(c -> c < 32 || c == 127)) throw new IllegalArgumentException("Invalid component path");
             for (String part : path.split("/", -1)) if (part.isEmpty() || part.equals(".") || part.equals("..")) throw new IllegalArgumentException("Invalid component path");
-            sha256 = value.getString("sha256").toLowerCase(Locale.ROOT);
-            if (!Protocol.isSha256(sha256)) throw new IllegalArgumentException("Every component requires a SHA256");
+            importPath = value.optString("importPath", path);
+            if (value.has("importPath") && !version2 || importPath.isEmpty() || importPath.length() > 2048 || importPath.indexOf('\\') >= 0 || importPath.chars().anyMatch(c -> c < 32 || c == 127)) throw new IllegalArgumentException("Invalid component import path");
+            for (String part : importPath.split("/", -1)) if (part.isEmpty() || part.equals(".") || part.equals("..")) throw new IllegalArgumentException("Invalid component import path");
+            sha256 = value.optString("sha256").toLowerCase(Locale.ROOT);
+            gitBlobSha1 = value.optString("gitBlobSha1").toLowerCase(Locale.ROOT);
+            if (!sha256.isEmpty() && !Protocol.isSha256(sha256) || !gitBlobSha1.isEmpty() && !gitBlobSha1.matches("[a-f0-9]{40}")) throw new IllegalArgumentException("Invalid component digest");
+            if (version2 ? sha256.isEmpty() == gitBlobSha1.isEmpty() : sha256.isEmpty() || value.has("gitBlobSha1")) throw new IllegalArgumentException("Declare exactly one supported component digest; Git blobs require bundle v2");
+            integrityAlgorithm = gitBlobSha1.isEmpty() ? "sha256" : "git_blob_sha1";
+            objectId = gitBlobSha1.isEmpty() ? sha256 : ComponentIntegrity.gitObjectKey(gitBlobSha1);
             bytes = value.getLong("bytes");
             if (bytes < 1 || bytes > 128L * 1024 * 1024 * 1024) throw new IllegalArgumentException("Invalid component size");
             format = key(value.getString("format"));
             String lower = path.toLowerCase(Locale.ROOT);
             if (lower.matches(".*\\.(so|dll|exe|dex|jar|apk|py|sh|bat|cmd|ps1|js|html)$")) throw new IllegalArgumentException("Model bundles cannot supply executable code");
             url = value.optString("url"); repository = value.optString("repository"); revision = value.optString("revision");
+            if (!gitBlobSha1.isEmpty() && (!url.startsWith("https://huggingface.co/") && !url.startsWith("https://hf-mirror.com/"))) throw new IllegalArgumentException("Git blob integrity requires a pinned HF source URL");
             if (!url.isEmpty()) {
                 if (url.length() > 8192 || url.chars().anyMatch(c -> c < 32 || c == 127)) throw new IllegalArgumentException("Invalid component URL");
                 URL parsed = new URL(url);
@@ -41,7 +49,8 @@ public final class ModelBundle {
         }
     }
     public ModelBundle(JSONObject value) throws Exception {
-        if (!value.getString("schema").equals(SCHEMA)) throw new IllegalArgumentException("Unsupported model bundle schema");
+        String schema = value.getString("schema");
+        if (!schema.equals(SCHEMA) && !schema.equals(SCHEMA_V2)) throw new IllegalArgumentException("Unsupported model bundle schema");
         id = key(value.getString("id")); modelId = key(value.getString("modelId")); recipeId = key(value.getString("recipeId"));
         engine = key(value.getString("engine")); architecture = key(value.getString("architecture"));
         pipeline = key(value.getString("pipeline")); backend = key(value.getString("backend"));
@@ -59,10 +68,10 @@ public final class ModelBundle {
         if (files.length() < 1 || files.length() > 512) throw new IllegalArgumentException("Invalid component count");
         List<Component> checked = new ArrayList<>(); Set<String> paths = new HashSet<>(), roles = new HashSet<>(); Map<String, Long> sizes = new HashMap<>();
         for (int i = 0; i < files.length(); i++) {
-            Component c = new Component(files.getJSONObject(i));
-            if (!paths.add(c.path.toLowerCase(Locale.ROOT)) || !roles.add(c.role)) throw new IllegalArgumentException("Component roles and paths must be unique");
-            if (sizes.containsKey(c.sha256) && sizes.get(c.sha256) != c.bytes) throw new IllegalArgumentException("Conflicting size for shared component");
-            sizes.put(c.sha256, c.bytes); checked.add(c);
+            Component c = new Component(files.getJSONObject(i), schema.equals(SCHEMA_V2));
+            if (!paths.add(c.importPath.toLowerCase(Locale.ROOT)) || !roles.add(c.role)) throw new IllegalArgumentException("Component roles and paths must be unique");
+            if (sizes.containsKey(c.objectId) && sizes.get(c.objectId) != c.bytes) throw new IllegalArgumentException("Conflicting size for shared component");
+            sizes.put(c.objectId, c.bytes); checked.add(c);
         }
         components = Collections.unmodifiableList(checked);
         source = DataFiles.copy(value);

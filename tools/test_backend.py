@@ -22,7 +22,7 @@ JSON_SHA = "3ea61b2a06e31edf1c91134fe9106b0ebb16628be169f3db75bc7a2b06b45796"
 def main():
     OUT.mkdir(parents=True, exist_ok=True)
     (OUT / "results.json").unlink(missing_ok=True)
-    inputs = fingerprint("app/src/main/java", "tests/host", "tools/test_backend.py")
+    inputs = fingerprint("app/src/main/java", "tests/host", "app/src/main/assets/recipe-templates.json", "tools/test_backend.py")
     dep = ROOT / "build/test-deps/json-20250517.jar"
     dep.parent.mkdir(parents=True, exist_ok=True)
     if not dep.exists():

@@ -51,8 +51,8 @@ public final class BundleStore {
         ModelBundle b = bundle(id); long total = 0, reusable = 0, remaining = 0; Set<String> seen = new HashSet<>(); JSONArray files = new JSONArray();
         for (ModelBundle.Component c : b.components) {
             boolean present = hasObject(c);
-            if (seen.add(c.sha256)) { total = Math.addExact(total, c.bytes); if (present) reusable += c.bytes; else remaining += Math.max(0, c.bytes - Math.min(c.bytes, partial(c.sha256).length())); }
-            files.put(new JSONObject().put("role", c.role).put("path", c.path).put("bytes", c.bytes).put("sha256", c.sha256).put("reusable", present).put("downloadable", !c.url.isEmpty()));
+            if (seen.add(c.objectId)) { total = Math.addExact(total, c.bytes); if (present) reusable += c.bytes; else remaining += Math.max(0, c.bytes - Math.min(c.bytes, partial(c.objectId).length())); }
+            files.put(new JSONObject().put("role", c.role).put("path", c.path).put("importPath", c.importPath).put("bytes", c.bytes).put("objectId", c.objectId).put("sha256", c.sha256).put("gitBlobSha1", c.gitBlobSha1).put("integrityAlgorithm", c.integrityAlgorithm).put("verifiedSha256", present ? verifiedSha256(c, state) : "").put("reusable", present).put("downloadable", !c.url.isEmpty()));
         }
         return new JSONObject().put("bundleId", id).put("components", files).put("totalBytes", total).put("reusableBytes", reusable).put("remainingBytes", remaining)
                 .put("availableBytes", root.getUsableSpace()).put("installed", entry(id).optBoolean("installed") && complete(b, state));
@@ -84,9 +84,13 @@ public final class BundleStore {
         persist(next);
     }
     public synchronized boolean hasObject(ModelBundle.Component c) throws IOException { return hasObject(c, state); }
+    private String verifiedSha256(ModelBundle.Component c, JSONObject data) {
+        JSONObject receipt = data.optJSONObject("objects").optJSONObject(c.objectId);
+        return receipt == null ? "" : receipt.optString("sha256", c.sha256);
+    }
     private boolean hasObject(ModelBundle.Component c, JSONObject data) throws IOException {
-        JSONObject receipt = data.optJSONObject("objects").optJSONObject(c.sha256); File f = object(c.sha256);
-        return receipt != null && receipt.optLong("bytes") == c.bytes && f.isFile() && f.length() == c.bytes && receipt.optLong("modified") == f.lastModified();
+        JSONObject receipt = data.optJSONObject("objects").optJSONObject(c.objectId); File f = object(c.objectId);
+        return receipt != null && (c.gitBlobSha1.isEmpty() || c.gitBlobSha1.equals(receipt.optString("gitBlobSha1")) && Protocol.isSha256(receipt.optString("sha256"))) && receipt.optLong("bytes") == c.bytes && f.isFile() && f.length() == c.bytes && receipt.optLong("modified") == f.lastModified();
     }
     private boolean complete(ModelBundle bundle, JSONObject data) throws IOException { for (ModelBundle.Component c : bundle.components) if (!hasObject(c, data)) return false; return true; }
     public File object(String hash) throws IOException { if (!Protocol.isSha256(hash)) throw new IOException("Invalid component hash"); return DataFiles.child(objects, hash.toLowerCase(Locale.ROOT)); }
@@ -96,20 +100,22 @@ public final class BundleStore {
     public void accept(String id, String token, ModelBundle.Component c, File candidate) throws Exception {
         synchronized (this) {
             ModelBundle.Component expected = bundle(id).component(c.role);
-            if (!expected.sha256.equals(c.sha256) || expected.bytes != c.bytes || !expected.path.equals(c.path)) throw new IOException("Component does not belong to the selected bundle");
+            if (!expected.objectId.equals(c.objectId) || expected.bytes != c.bytes || !expected.path.equals(c.path)) throw new IOException("Component does not belong to the selected bundle");
             check(id, token);
         }
-        ReentrantLock lock = componentLock(c.sha256); lock.lockInterruptibly();
+        ReentrantLock lock = componentLock(c.objectId); lock.lockInterruptibly();
         try {
         File actual = candidate.getCanonicalFile();
-        if (!actual.equals(partial(c.sha256)) && !actual.equals(object(c.sha256))) throw new IOException("Component is outside managed storage");
+        if (!actual.equals(partial(c.objectId)) && !actual.equals(object(c.objectId))) throw new IOException("Component is outside managed storage");
         if (actual.length() != c.bytes) throw new IOException("Component size mismatch: " + c.role);
-        if (!DataFiles.sha256(actual, () -> check(id, token)).equals(c.sha256)) { if (actual.equals(partial(c.sha256))) actual.delete(); throw new IOException("Component SHA256 mismatch: " + c.role); }
+        JSONObject verified;
+        try { verified = ComponentIntegrity.verify(actual, c, () -> check(id, token)); }
+        catch (ComponentIntegrity.Mismatch error) { if (actual.equals(partial(c.objectId))) actual.delete(); throw error; }
         synchronized (this) {
-            check(id, token); File target = object(c.sha256);
+            check(id, token); File target = object(c.objectId);
             if (!actual.equals(target)) DataFiles.move(actual, target);
             JSONObject next = DataFiles.copy(state);
-            next.getJSONObject("objects").put(c.sha256, new JSONObject().put("bytes", c.bytes).put("modified", target.lastModified()).put("verifiedAt", System.currentTimeMillis()));
+            next.getJSONObject("objects").put(c.objectId, verified.put("modified", target.lastModified()).put("verifiedAt", System.currentTimeMillis()));
             persist(next);
         }
         } finally { lock.unlock(); }
@@ -156,7 +162,17 @@ public final class BundleStore {
         public final ModelBundle bundle;
         private boolean closed;
         Lease(ModelBundle bundle) { this.bundle = bundle; }
-        public File file(String role) throws IOException { synchronized (BundleStore.this) { if (closed) throw new IOException("Model lease is closed"); return object(bundle.component(role).sha256); } }
+        public JSONObject integrity() throws Exception {
+            synchronized (BundleStore.this) {
+                if (closed) throw new IOException("Model lease is closed"); JSONObject result = new JSONObject();
+                for (ModelBundle.Component c : bundle.components) {
+                    if (!hasObject(c)) throw new IOException("A leased component changed");
+                    result.put(c.role, new JSONObject().put("algorithm", c.integrityAlgorithm).put("expectedSha256", c.sha256).put("expectedGitBlobSha1", c.gitBlobSha1).put("sha256", verifiedSha256(c, state)).put("bytes", c.bytes));
+                }
+                return result;
+            }
+        }
+        public File file(String role) throws IOException { synchronized (BundleStore.this) { if (closed) throw new IOException("Model lease is closed"); return object(bundle.component(role).objectId); } }
         @Override public void close() { synchronized (BundleStore.this) { if (!closed) { closed = true; int n = leases.get(bundle.id) - 1; if (n == 0) leases.remove(bundle.id); else leases.put(bundle.id, n); } } }
     }
     public synchronized void remove(String id, boolean removeSettings) throws Exception {
@@ -172,12 +188,12 @@ public final class BundleStore {
         for (Iterator<String> it = entries.keys(); it.hasNext();) {
             JSONObject other = entries.getJSONObject(it.next()); JSONObject t = other.optJSONObject("transfer");
             boolean active = t != null;
-            if (other.optBoolean("installed") || active) for (ModelBundle.Component c : new ModelBundle(other.getJSONObject("manifest")).components) keep.add(c.sha256);
+            if (other.optBoolean("installed") || active) for (ModelBundle.Component c : new ModelBundle(other.getJSONObject("manifest")).components) keep.add(c.objectId);
         }
         ModelBundle b = new ModelBundle(e.getJSONObject("manifest"));
-        for (ModelBundle.Component c : b.components) if (!keep.contains(c.sha256)) {
-            ReentrantLock lock = componentLock(c.sha256);
-            if (lock.tryLock()) { try { object(c.sha256).delete(); partial(c.sha256).delete(); } finally { lock.unlock(); } }
+        for (ModelBundle.Component c : b.components) if (!keep.contains(c.objectId)) {
+            ReentrantLock lock = componentLock(c.objectId);
+            if (lock.tryLock()) { try { object(c.objectId).delete(); partial(c.objectId).delete(); } finally { lock.unlock(); } }
         }
     }
 }

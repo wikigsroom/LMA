@@ -10,6 +10,7 @@
 | API 与 SSE / API and streaming | [API.md](API.md) | [API.en.md](API.en.md) |
 | 开发实施 / Development status | [DEVELOPMENT.md](DEVELOPMENT.md) | [DEVELOPMENT.en.md](DEVELOPMENT.en.md) |
 | 基座与资产需求核对 / Asset-control audit | [ASSET_CONTROL_AUDIT.md](ASSET_CONTROL_AUDIT.md) | [ASSET_CONTROL_AUDIT.en.md](ASSET_CONTROL_AUDIT.en.md) |
+| HF 组件配方 / HF component recipes | [HF_RECIPES.md](HF_RECIPES.md) | [HF_RECIPES.en.md](HF_RECIPES.en.md) |
 | LoRA 平级配对 / Peer adapter pairing | [ADAPTERS.md](ADAPTERS.md) | [ADAPTERS.en.md](ADAPTERS.en.md) |
 | 构建 / Building | [BUILD.md](BUILD.md) | [BUILD.en.md](BUILD.en.md) |
 | 架构 / Architecture | [ARCHITECTURE.md](ARCHITECTURE.md) | [ARCHITECTURE.en.md](ARCHITECTURE.en.md) |

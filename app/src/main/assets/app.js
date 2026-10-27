@@ -88,7 +88,7 @@
     try {
       state = typeof raw === 'string' ? JSON.parse(raw) : raw;
       if (!state || !Array.isArray(state.models) || !state.settings || !state.engine) throw new Error('状态数据不完整');
-      applyTheme(); renderRuntime(); renderModels(); renderChat(); renderServer(); renderHubFiles(); window.LMAFoundation.receive();
+      applyTheme(); renderRuntime(); renderModels(); renderChat(); renderServer(); renderHubFiles(); window.LMAFoundation.receive(); window.LMARecipes.receive();
       $('hfTokenStatus').textContent = state.settings.hfTokenSet ? '已设置令牌' : '未设置令牌';
       if (pendingHubToken) {
         var tokenResult = commandResult(pendingHubToken);
@@ -204,7 +204,9 @@
     if (signature === hubFileSignature) return; hubFileSignature = signature;
     var html = '<p class="hub-repository">' + esc(repo.id || 'Hugging Face') + '</p>' + uncensoredTag(repo.uncensored);
     if (repo.revision) html += '<p class="modal-help">固定版本 ' + esc(repo.revision.slice(0, 12)) + ' · ' + esc(repo.task || '任务待核对') + '</p>';
-    html += '<p class="modal-help">选择适合手机内存的单文件 GGUF。当前引擎仅提供文本对话；架构兼容性在加载时检查。</p>';
+    html += '<p class="modal-help">单文件 GGUF 可按下方流程加入文本模型；图像、LoRA、语音请明确选择配套组件配方。格式与目录登记不代表手机运行兼容。</p>';
+    if (repo.revision && !f.loading && !f.error && (hub().recipeTemplates || []).length) html += '<button class="button secondary" data-action="recipeStart" data-repository="' + esc(repo.id) + '">构建模型包 / LoRA 配方</button>';
+    if (hub().recipeError) html += '<p class="download-error">' + esc(hub().recipeError) + '</p>';
     if (f.loading) html += '<p role="status">正在获取文件…</p>';
     else if (f.error) html += '<p class="download-error">' + esc(f.error) + '</p><button class="button secondary" data-action="hubFilePage" data-direction="retry">重试</button>';
     else if (!items.length) html += '<p>本页没有 GGUF 文件。可继续翻页，或查看原仓库与对应 GGUF 转换版本。</p>';
@@ -371,7 +373,7 @@
   }
   function closeModal() {
     if ($('modalBackdrop').hidden) return;
-    window.LMAFoundation.close(); $('modalBackdrop').hidden = true; modalKind = ''; modelEditor = null;
+    window.LMAFoundation.close(); window.LMARecipes.close(); $('modalBackdrop').hidden = true; modalKind = ''; modelEditor = null;
     document.querySelector('.app-shell').removeAttribute('aria-hidden');
     if (returnFocus && document.contains(returnFocus)) returnFocus.focus({preventScroll: true}); returnFocus = null;
   }
@@ -395,7 +397,7 @@
   }
   function handleAction(action, el) {
     var id = el.dataset.id, m;
-    if (window.LMAFoundation.handle(action, el)) return;
+    if (window.LMAFoundation.handle(action, el) || window.LMARecipes.handle(action, el)) return;
     switch (action) {
       case 'tab': route(el.dataset.tab); break;
       case 'showAll': selectFilter('all'); break;
@@ -446,7 +448,7 @@
       case 'browseHub': closeModal(); selectFilter('all'); break;
       case 'addUrl': openModal('添加 GGUF 下载链接', '<form id="customModelForm"><label class="form-field"><span>模型名称</span><input name="name" required maxlength="160" placeholder="例如：我的 Qwen 1.7B"></label><label class="form-field"><span>HTTPS 下载链接</span><input name="url" type="url" required placeholder="https://huggingface.co/…/resolve/main/….gguf" autocapitalize="off" spellcheck="false"></label><label class="form-field"><span>SHA256（可选）</span><input name="sha256" pattern="[a-fA-F0-9]{64}" maxlength="64" placeholder="发布者提供的 64 位哈希" autocapitalize="off" spellcheck="false"></label><p class="modal-help">请确认模型使用当前推理组件支持的架构，且适合手机的内存容量。</p><button type="submit" class="button primary">添加并下载</button></form>', 'addUrl'); break;
       case 'importPicker': nativeAction(action); closeModal(); break;
-      case 'about': openModal('关于 LMA', '<p>LMA 0.3.0-dev.4 是本地模型工作台，由 Android 前台服务持有本机接口、任务和原生引擎。无需 ROOT；模型由你选择下载或导入。</p><p>界面、对话记录和推理在设备本地运行。模型下载会连接你选择的仓库；开启局域网后，持有 API 密钥的同网设备可以请求推理。</p><p>前台通知、唤醒锁与电池设置可帮助后台运行。系统强行停止、内存不足、厂商省电策略、发热或重启仍会影响服务。模型输出和速度尚需目标手机实测。</p><p>推理引擎：llama.cpp（MIT），由 ServLlama v1.2.2 分发的 Android ARM64 预编译组件。扩散 worker 使用 sd.cpp（MIT），当前开发构建尚未完成真机验收。各模型按其来源仓库许可使用。</p><div class="modal-list"><div class="modal-list-item"><button data-action="engineLicense"><strong>llama.cpp MIT 许可证</strong><small>查看随应用附带的许可全文</small></button>' + icon('arrow') + '</div><div class="modal-list-item"><button data-action="notices"><strong>LMA 与其他依赖许可</strong><small>查看第三方许可全文</small></button>' + icon('arrow') + '</div></div>', 'about'); break;
+      case 'about': openModal('关于 LMA', '<p>LMA 0.3.0-dev.5 是本地模型工作台，由 Android 前台服务持有本机接口、任务和原生引擎。无需 ROOT；模型由你选择下载或导入。</p><p>界面、对话记录和推理在设备本地运行。模型下载会连接你选择的仓库；开启局域网后，持有 API 密钥的同网设备可以请求推理。</p><p>前台通知、唤醒锁与电池设置可帮助后台运行。系统强行停止、内存不足、厂商省电策略、发热或重启仍会影响服务。模型输出和速度尚需目标手机实测。</p><p>推理引擎：llama.cpp（MIT），由 ServLlama v1.2.2 分发的 Android ARM64 预编译组件。扩散 worker 使用 sd.cpp（MIT），当前开发构建尚未完成真机验收。各模型按其来源仓库许可使用。</p><div class="modal-list"><div class="modal-list-item"><button data-action="engineLicense"><strong>llama.cpp MIT 许可证</strong><small>查看随应用附带的许可全文</small></button>' + icon('arrow') + '</div><div class="modal-list-item"><button data-action="notices"><strong>LMA 与其他依赖许可</strong><small>查看第三方许可全文</small></button>' + icon('arrow') + '</div></div>', 'about'); break;
       case 'engineLicense': openModal('llama.cpp · MIT License', '<div class="license-text">' + esc(window.LMA_LICENSE || 'MIT License\n\nCopyright (c) 2023-2026 The ggml authors\n\n完整许可证随 APK 的 licenses/LLAMA_CPP_LICENSE 一同分发，也位于项目 third_party/LLAMA_CPP_LICENSE。') + '</div>', 'license'); break;
       case 'notices': openModal('LMA 与第三方许可', Object.keys(window.LMA_NOTICES || {}).map(function (name) { return '<details class="license-notice"><summary>' + esc(name) + '</summary><div class="license-text">' + esc(window.LMA_NOTICES[name]) + '</div></details>'; }).join(''), 'license'); break;
     }
@@ -549,7 +551,8 @@
   });
   var themeMedia = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)');
   if (themeMedia) { if (themeMedia.addEventListener) themeMedia.addEventListener('change', applyTheme); else if (themeMedia.addListener) themeMedia.addListener(applyTheme); }
-  window.LMAFoundation.init({state: function () { return state || {}; }, esc: esc, bytes: bytes, icon: icon, dispatch: nativeAction, result: commandResult, openModal: openModal, closeModal: closeModal, toast: toast, route: route, selectLocal: function () { route('models'); selectFilter('local'); }, confirm: confirmAction});
+  var bridge = {state: function () { return state || {}; }, esc: esc, bytes: bytes, icon: icon, dispatch: nativeAction, result: commandResult, openModal: openModal, closeModal: closeModal, toast: toast, route: route, selectLocal: function () { route('models'); selectFilter('local'); }, confirm: confirmAction};
+  window.LMAFoundation.init(bridge); window.LMARecipes.init(bridge);
   window.LMA = {receive: receive, back: function () { if (!$('modalBackdrop').hidden) { closeModal(); return true; } if (tab !== 'models') { route('models'); return true; } return false; }};
   hydrateIcons(document); updateFilters();
   if (window.Android) { try { receive(window.Android.getSnapshot()); } catch (e) { $('runtimeDetail').textContent = '等待原生服务连接…'; } }

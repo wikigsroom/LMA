@@ -1,5 +1,5 @@
 {
-  "passed": 97,
+  "passed": 112,
   "checks": [
     "Initial curated recommendations",
     "375px model library layout",
@@ -90,6 +90,21 @@
     "Shared queue receives immutable base/adapter IDs and scales without changing saved settings",
     "Adapter browsing and task composition create no model download commands",
     "SDXL uses the same pairing form with its separate compatible base",
+    "HF recipe UI offers seven explicit architecture/component templates",
+    "No recipe or files are selected automatically",
+    "Fixed language dependency is disclosed before registration",
+    "Unverifiable components cannot be selected in the UI",
+    "Component file pagination does not retain stale selectable rows",
+    "Component form preserves separate fixed-revision source repositories",
+    "Ordinary Git file identity is shown with its actual algorithm",
+    "Browsing and component binding do not dispatch model downloads",
+    "Native registration errors preserve choices and allow retry",
+    "Adding a model opens its separate download plan without starting a transfer",
+    "Bundle plan retains Git digest labels after registration",
+    "Only explicit confirmation starts downloading the chosen model bundle",
+    "LoRA selection remains a peer entry with an explicit base-model dependency",
+    "Recipe selection fits a narrow Android viewport",
+    "Closed recipe dialogs stay closed on later native updates",
     "Tablet library layout",
     "Short landscape server layout",
     "320px narrow phone layout",
@@ -105,11 +120,11 @@
   "emulatorUsed": false,
   "input_fingerprint": {
     "app/src/main/assets/app.css": "f2cb7b5ee9de8f3afac793e694dcf9fde0a855c0d4c7053ff986cc2a6d2bd3b1",
-    "app/src/main/assets/app.js": "a08ed4be071648e21919707320616627df86dd4a5516cb8b0289cda8c0de0710",
+    "app/src/main/assets/app.js": "4cac26b9ac2dd5c09623e5ee14739826969f0586d125d30b00f7f00111618804",
     "app/src/main/assets/engine-builds.json": "2488406b9b5d8da3258885cdd297cfa1da085f696f12ebd0bc31e2237d796150",
     "app/src/main/assets/foundation.css": "9c87b4ca4826717037e6a99f2411323607fc37f040916998801633ca1bdef3a2",
-    "app/src/main/assets/foundation.js": "8e7f3946db4557efa0be034d742a1e553115b267d14d4071e87b0dfa90412efc",
-    "app/src/main/assets/index.html": "249346e918530a688c2c93b84742e314d2e652cbde599d97a513194acdc254b9",
+    "app/src/main/assets/foundation.js": "bafe4033e41d03aaa16278dacb535fa33d8285bf3ad9441275eca182516b4569",
+    "app/src/main/assets/index.html": "863bc7963292573cec51c45a8c53b75b5b5df1873faef45a6b959eb77cee93bc",
     "app/src/main/assets/license.js": "569581b69d204df664750645202b7ab703a1f501de63fb257b29fb9c8f12ab2f",
     "app/src/main/assets/licenses/LLAMA_CPP_LICENSE": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
     "app/src/main/assets/licenses/LMA_LICENSE": "6ae3f5efa412d91cbf66e44f743e5ce41a8044309d05d893365206ab9bc35fc3",
@@ -162,8 +177,11 @@
     "app/src/main/assets/licenses/xxhash-LICENSE.txt": "a2973411d278045bde3c7161b911e0680d53e2d73d6457c77068d2e55d816d67",
     "app/src/main/assets/model-bundles.json": "1791f5e6f164e951ee49f9e4b7c80e34f37ded38ae205b8b03973f2de5d4ee16",
     "app/src/main/assets/models.json": "c3e884b4e5fb06f20c036deebc78e6f953ac420e76fca72bab5a25fd59927156",
+    "app/src/main/assets/recipe-templates.json": "93ac8c1c9607adb0e5954e84b44604398c483bb71fb202e844efe87907235a31",
+    "app/src/main/assets/recipes.js": "648e1ff046ab20e2ae7f658a7cb82c895c042ea81dca5cd943141626eea6deba",
     "tests/foundation-ui.cjs": "1c6721770e2d3336719c6cb096869aca3f966beff3fd958f814cda1cafee1e79",
     "tests/hub-fixture.cjs": "5b3cb88b7fd4c45d26ce92e8598a1c3837a12b02eb898f67c9be10da2910ab83",
-    "tests/ui-smoke.cjs": "cee9c88bb0f7815b7277a64be49e05f8149ebdabf9a25e92ca35def8d00bb4c5"
+    "tests/recipes-ui.cjs": "035fc38b77b172614717244261e2bdac178771e7930469c54e31e2d5e0ea1141",
+    "tests/ui-smoke.cjs": "c419e0439ee0984440cecabca92247edaf8313e239f7c0c6639f509d914fc8ce"
   }
 }

@@ -132,14 +132,15 @@ public final class HubClient {
         String prefix = "/api/models/" + id + "/tree/" + revision;
         String address = cursor.isEmpty() ? ORIGIN + prefix + "?recursive=true&limit=100" : validPage(cursor, prefix);
         Response response = transport.get(address, source, token);
-        JSONArray raw = new JSONArray(response.body), files = new JSONArray();
+        JSONArray raw = new JSONArray(response.body), files = new JSONArray(), assets = new JSONArray();
         for (int i = 0; i < raw.length(); i++) {
             JSONObject entry = raw.getJSONObject(i);
             String path = entry.optString("path");
+            if (entry.optString("type").equals("file")) try { assets.put(asset(repository, entry)); } catch (IllegalArgumentException ignored) {}
             if (!entry.optString("type").equals("file") || !path.toLowerCase(Locale.ROOT).endsWith(".gguf")) continue;
             try { files.put(file(repository, entry)); } catch (IllegalArgumentException ignored) {}
         }
-        return new JSONObject().put("items", files).put("next", next(response.link, prefix)).put("origin", response.origin);
+        return new JSONObject().put("items", files).put("assets", assets).put("next", next(response.link, prefix)).put("origin", response.origin);
     }
     public static JSONObject file(JSONObject repository, JSONObject entry) throws Exception {
         String id = repositoryId(repository.getString("id")), revision = repository.getString("revision"), path = entry.getString("path");
@@ -161,6 +162,35 @@ public final class HubClient {
         Matcher quant = QUANT.matcher(path); String quantization = quant.find() ? quant.group().toUpperCase(Locale.ROOT) : "GGUF";
         return new JSONObject().put("path", path).put("bytes", bytes).put("sha256", hash).put("quant", quantization)
                 .put("url", ORIGIN + "/" + id + "/resolve/" + revision + "/" + encoded).put("blocked", blocked);
+    }
+    /** Data-file metadata only. Browsing never reads weights, tokenizers or vocabulary content. */
+    public static JSONObject asset(JSONObject repository, JSONObject entry) throws Exception {
+        String id = repositoryId(repository.getString("id")), revision = repository.getString("revision"), path = entry.getString("path");
+        if (!revision.matches("[a-f0-9]{40}") || path.isEmpty() || path.length() > 1000 || path.indexOf('\\') >= 0 || path.chars().anyMatch(c -> c < 32 || c == 127)) throw new IllegalArgumentException("Invalid HF component identity");
+        StringBuilder encoded = new StringBuilder();
+        for (String part : path.split("/", -1)) { if (part.isEmpty() || part.equals(".") || part.equals("..")) throw new IllegalArgumentException("Invalid HF component path"); if (encoded.length() > 0) encoded.append('/'); encoded.append(encode(part)); }
+        String lower = path.toLowerCase(Locale.ROOT), format = "unknown", blocked = "";
+        for (String extension : new String[]{"gguf", "safetensors", "onnx", "bin", "json", "fst", "far"}) if (lower.endsWith("." + extension)) format = extension;
+        if (lower.endsWith(".txt") || lower.endsWith(".vocab")) format = "text";
+        if (format.equals("unknown")) blocked = "此文件不是当前配方接入的组件格式";
+        Object declaredSize = entry.opt("size"); long bytes = declaredSize instanceof Number ? ((Number) declaredSize).longValue() : 0;
+        if (!(declaredSize instanceof Number) || ((Number) declaredSize).doubleValue() != bytes || bytes < 1 || bytes > 128L * 1024 * 1024 * 1024) blocked = "组件大小未声明或超出存储范围";
+        JSONObject lfs = entry.optJSONObject("lfs"); String sha = "", git = "";
+        if (lfs != null) {
+            sha = lfs.optString("oid", lfs.optString("sha256")); if (sha.startsWith("sha256:")) sha = sha.substring(7);
+            if (!Protocol.isSha256(sha)) { sha = ""; blocked = "大文件缺少可固定的 SHA256"; }
+            if (lfs.has("size") && lfs.getLong("size") != bytes) blocked = "组件大小与 LFS 元数据不一致";
+        } else if (entry.has("lfs") && !entry.isNull("lfs")) {
+            blocked = "LFS 元数据格式无效，不能校验指针文件代替实际内容";
+        } else {
+            git = entry.optString("oid", entry.optString("blobId"));
+            if (!git.matches("[a-f0-9]{40}")) { git = ""; blocked = "普通 Git 文件缺少可固定的 blob 校验值"; }
+        }
+        JSONObject result = new JSONObject().put("path", path).put("repository", id).put("revision", revision).put("format", format).put("bytes", bytes)
+                .put("url", ORIGIN + "/" + id + "/resolve/" + revision + "/" + encoded).put("blocked", blocked);
+        result.put("uncensored", repository.getJSONObject("uncensored"));
+        if (!sha.isEmpty()) result.put("sha256", sha); if (!git.isEmpty()) result.put("gitBlobSha1", git);
+        return result;
     }
     public static JSONObject selected(JSONObject repository, JSONObject file) throws Exception {
         if (!file.optString("blocked").isEmpty()) throw new IllegalArgumentException(file.getString("blocked"));
