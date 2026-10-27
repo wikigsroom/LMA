@@ -6,6 +6,10 @@
 
 用户已要求后续 LMA 更新同步推送到 `git@github.com:wikigsroom/LMA.git`，且同步代码、文档、媒体和更新说明。This repository's authorized future changes must be committed and pushed together with both languages, affected media, and release notes. This is recorded in [AGENTS.md](../AGENTS.md); it is not a background scheduler.
 
+## 下一版本完整范围 / Complete next-version scope
+
+下一版本为 v0.3.0，按[完整需求](MULTIMODAL_RELEASE_PLAN.md)与[交付摘要](releases/v0.3.0-plan.md)一次完成 F-01–F-12、既有生文、01–14 / 16 / 17 和全部冻结子目标。内部工作包不拆为其他版本；必需项未过时保留为本版阻塞，不以缩减预览、空引擎或目录记录替代完成。当前 APK 仍为 v0.2.0，需求维护不创建 v0.3.0 标签或 Release。The next v0.3.0 has one complete acceptance scope; missing required targets block completion, without automatic deferral. This documentation update leaves the current APK/tag/assets intact.
+
 ## 发布准备 / Prepare
 
 1. 保留他人工作并检查远端；不强制推送、不改写公开标签。Inspect remote/local changes and preserve history.

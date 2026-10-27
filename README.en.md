@@ -44,7 +44,7 @@ On Windows, run `Get-FileHash .\LMA-0.2.0-arm64-v8a.apk -Algorithm SHA256`. Rele
 
 ## Multimodal expansion research
 
-The main direction is an **extensible local multimodal foundation** sharing bundles/components/recipes, internal engines, per-model settings, jobs/artifacts and APIs. All models are equal peers with text/image/video/audio and foundation-dependency tags. Preserve Recommended; use model selection → task form → on-phone queue → artifacts. The [bilingual release plan](docs/MULTIMODAL_RELEASE_PLAN.en.md) specifies 01–14/16/17, risks, proposed 0.3.0–0.6.0 scope and acceptance, without a ComfyUI canvas, user nodes, plugin ecosystem or graph import. No proposed version has been published.
+The next version, **v0.3.0**, must deliver the **complete local multimodal foundation and all selections 01–14/16/17 together**: bundles/components/recipes, internal engines, model settings, jobs/artifacts and APIs. Models remain equal peers with task/dependency tags; preserve Recommended and use model selection → form → on-phone queue → artifacts. See [complete update requirements](docs/MULTIMODAL_RELEASE_PLAN.en.md) and the [delivery summary](docs/releases/v0.3.0-plan.md) for shared release gates, work packages and risks. No split releases or automatic deferral; no ComfyUI canvas/user-node/plugin/import ecosystem. v0.3.0 is unpublished.
 
 Tokenization, encoders, sampling, codecs and export execute on the same Android phone without ROOT or off-device inference/fallbacks. HF provides discovery and explicit asset downloads. Supported architecture variants may reuse recipes; new architectures need native-engine/APK updates. Validate Z20 and newer devices separately. See [research/licenses](docs/MULTIMODAL.en.md), [foundation/migration](docs/FOUNDATION.en.md) and [tasks/background recovery](docs/WORKFLOWS.en.md). Full MOSS/SoulX retain research gates; listing/downloading is not execution support. **Extensions remain unimplemented and have no LMA phone-generation evidence; v0.2.0 text GGUF and existing demonstrations remain current.**
 
@@ -217,7 +217,7 @@ Current evidence is **85 backend + 45 HF logic + 25 protocol + 5 SQLite + 66 UI 
 | [Architecture](docs/ARCHITECTURE.en.md) / [中文](docs/ARCHITECTURE.md) | Services, engine, downloads, chat, storage, boundaries |
 | [Multimodal feasibility](docs/MULTIMODAL.en.md) / [中文](docs/MULTIMODAL.md) | Fully local image, speech, music and video; device ratings, Android evidence and licenses |
 | [Foundation assessment](docs/FOUNDATION.en.md) / [中文](docs/FOUNDATION.md) | Shared multi-engine architecture, extension costs, migration and completion criteria |
-| [Requirements and releases](docs/MULTIMODAL_RELEASE_PLAN.en.md) / [中文](docs/MULTIMODAL_RELEASE_PLAN.md) | 16 selected groups, flat tags, four proposed releases, feasibility and acceptance |
+| [Requirements and releases](docs/MULTIMODAL_RELEASE_PLAN.en.md) / [中文](docs/MULTIMODAL_RELEASE_PLAN.md) | Complete v0.3.0 scope, 16 selected groups, flat tags and single-release acceptance |
 | [Task execution](docs/WORKFLOWS.en.md) / [中文](docs/WORKFLOWS.md) | Forms, shared queue, internal stages, background ownership and recovery |
 | [API](docs/API.en.md) / [中文](docs/API.md) | Client integration and SSE |
 | [Build](docs/BUILD.en.md) / [中文](docs/BUILD.md) | Toolchain and verification |

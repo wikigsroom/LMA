@@ -1,11 +1,10 @@
 {
-  "schema": "lma.proposal.multimodal-release-scope/1",
+  "schema": "lma.proposal.multimodal-release-scope/2",
   "reviewed_on": "2026-10-27",
   "timezone": "Asia/Taipei",
   "status": "requirements_and_feasibility_only",
   "implemented_in_current_apk": false,
   "current_apk_version": "0.2.0",
-  "proposed_versions_are_not_published": true,
   "execution_policy": {
     "device": "same_android_phone",
     "root_required": false,
@@ -184,52 +183,6 @@
     "experimental_label_does_not_replace_output_evidence": true,
     "all_16_groups_claim_requires_all_subtargets": true
   },
-  "phases": [
-    {
-      "proposed_version": "0.3.0",
-      "name": "foundation_and_first_cross_modal_execution",
-      "selected_ids": [
-        "01",
-        "02",
-        "09",
-        "10",
-        "16"
-      ],
-      "release_gate": "complete shared core plus actual text/image/audio/video execution; video remains experimental on validated devices"
-    },
-    {
-      "proposed_version": "0.4.0",
-      "name": "mobile_image_and_audio_expansion",
-      "selected_ids": [
-        "03",
-        "04",
-        "05",
-        "11",
-        "14"
-      ],
-      "release_gate": "all listed subtargets and full dependencies validated on declared devices"
-    },
-    {
-      "proposed_version": "0.5.0",
-      "name": "advanced_images_and_second_video_family",
-      "selected_ids": [
-        "06",
-        "07",
-        "08",
-        "17"
-      ],
-      "release_gate": "full native pipelines plus device/memory and licensing gates"
-    },
-    {
-      "proposed_version": "0.6.0",
-      "name": "research_gated_moss_and_soulx",
-      "selected_ids": [
-        "12",
-        "13"
-      ],
-      "release_gate": "every frozen MOSS subtarget and SoulX has actual Android evidence; otherwise scope remains incomplete"
-    }
-  ],
   "entries": [
     {
       "selection_id": "01",
@@ -254,7 +207,6 @@
         ],
         "hardware_match": "evaluate_for_bound_recipe_and_actual_device"
       },
-      "proposed_first_release": "0.3.0",
       "feasibility": "established_mobile_route",
       "z20_assessment": "priority_candidate_unverified",
       "implementation_status": "not_implemented_in_lma",
@@ -288,7 +240,10 @@
           "dependency:vae"
         ],
         "backend_and_format": "derived_from_each_pinned_recipe_not_family_name"
-      }
+      },
+      "target_release": "0.3.0",
+      "required_in_target_release": true,
+      "missing_target_blocks_complete_release": true
     },
     {
       "selection_id": "02",
@@ -310,7 +265,6 @@
         ],
         "hardware_match": "evaluate_for_bound_recipe_and_actual_device"
       },
-      "proposed_first_release": "0.3.0",
       "feasibility": "established_with_base_constraints",
       "z20_assessment": "follows_compatible_base",
       "implementation_status": "not_implemented_in_lma",
@@ -323,7 +277,7 @@
       "minimum_acceptance": [
         "matching SD 1.5 adapter executes with bound base",
         "incompatible base is rejected",
-        "SDXL adapter covered by the SDXL release gate"
+        "matching SDXL adapter executes in this same release; both sd15 and sdxl pairings pass"
       ],
       "sources": [
         "https://github.com/leejet/stable-diffusion.cpp#features"
@@ -347,7 +301,11 @@
           "dependency:compatible_base_bundle"
         ],
         "backend_and_format": "derived_from_each_pinned_recipe_not_family_name"
-      }
+      },
+      "target_release": "0.3.0",
+      "required_in_target_release": true,
+      "missing_target_blocks_complete_release": true,
+      "all_declared_base_family_scopes_required_in_same_release": true
     },
     {
       "selection_id": "03",
@@ -373,7 +331,6 @@
         ],
         "hardware_match": "evaluate_for_bound_recipe_and_actual_device"
       },
-      "proposed_first_release": "0.4.0",
       "feasibility": "recipe_specific",
       "z20_assessment": "experimental_unverified",
       "implementation_status": "not_implemented_in_lma",
@@ -409,7 +366,9 @@
             "dependency:matching_sampler_profile"
           ],
           "android_validated": false,
-          "planned_only": true
+          "planned_only": true,
+          "target_release": "0.3.0",
+          "required_in_target_release": true
         },
         {
           "model": "LCM checkpoint",
@@ -427,7 +386,9 @@
             "dependency:matching_sampler_profile"
           ],
           "android_validated": false,
-          "planned_only": true
+          "planned_only": true,
+          "target_release": "0.3.0",
+          "required_in_target_release": true
         },
         {
           "model": "LCM-LoRA with matching base",
@@ -447,7 +408,9 @@
           ],
           "standalone_generation": false,
           "android_validated": false,
-          "planned_only": true
+          "planned_only": true,
+          "target_release": "0.3.0",
+          "required_in_target_release": true
         }
       ],
       "base_support_tags": {
@@ -466,7 +429,10 @@
           "dependency:matching_sampler_profile"
         ],
         "backend_and_format": "derived_from_each_pinned_recipe_not_family_name"
-      }
+      },
+      "target_release": "0.3.0",
+      "required_in_target_release": true,
+      "missing_target_blocks_complete_release": true
     },
     {
       "selection_id": "04",
@@ -491,7 +457,6 @@
         ],
         "hardware_match": "evaluate_for_bound_recipe_and_actual_device"
       },
-      "proposed_first_release": "0.4.0",
       "feasibility": "converted_mobile_recipe",
       "z20_assessment": "experimental_unverified",
       "implementation_status": "not_implemented_in_lma",
@@ -530,7 +495,10 @@
           "dependency:vae"
         ],
         "backend_and_format": "derived_from_each_pinned_recipe_not_family_name"
-      }
+      },
+      "target_release": "0.3.0",
+      "required_in_target_release": true,
+      "missing_target_blocks_complete_release": true
     },
     {
       "selection_id": "05",
@@ -556,7 +524,6 @@
         ],
         "hardware_match": "evaluate_for_bound_recipe_and_actual_device"
       },
-      "proposed_first_release": "0.4.0",
       "feasibility": "high_memory_and_driver_validation",
       "z20_assessment": "experimental_high_risk",
       "implementation_status": "not_implemented_in_lma",
@@ -591,7 +558,10 @@
           "dependency:vae"
         ],
         "backend_and_format": "derived_from_each_pinned_recipe_not_family_name"
-      }
+      },
+      "target_release": "0.3.0",
+      "required_in_target_release": true,
+      "missing_target_blocks_complete_release": true
     },
     {
       "selection_id": "06",
@@ -616,7 +586,6 @@
         ],
         "hardware_match": "evaluate_for_bound_recipe_and_actual_device"
       },
-      "proposed_first_release": "0.5.0",
       "feasibility": "high_memory_native_port",
       "z20_assessment": "not_default_pending_probe",
       "implementation_status": "not_implemented_in_lma",
@@ -650,7 +619,10 @@
           "dependency:distilled_sampling_profile"
         ],
         "backend_and_format": "derived_from_each_pinned_recipe_not_family_name"
-      }
+      },
+      "target_release": "0.3.0",
+      "required_in_target_release": true,
+      "missing_target_blocks_complete_release": true
     },
     {
       "selection_id": "07",
@@ -674,7 +646,6 @@
         ],
         "hardware_match": "evaluate_for_bound_recipe_and_actual_device"
       },
-      "proposed_first_release": "0.5.0",
       "feasibility": "high_memory_native_port",
       "z20_assessment": "not_default_pending_probe",
       "implementation_status": "not_implemented_in_lma",
@@ -707,7 +678,10 @@
           "dependency:vae"
         ],
         "backend_and_format": "derived_from_each_pinned_recipe_not_family_name"
-      }
+      },
+      "target_release": "0.3.0",
+      "required_in_target_release": true,
+      "missing_target_blocks_complete_release": true
     },
     {
       "selection_id": "08",
@@ -731,7 +705,6 @@
         ],
         "hardware_match": "evaluate_for_bound_recipe_and_actual_device"
       },
-      "proposed_first_release": "0.5.0",
       "feasibility": "high_memory_and_license_gate",
       "z20_assessment": "not_default_no_validated_profile",
       "implementation_status": "not_implemented_in_lma",
@@ -768,7 +741,10 @@
           "dependency:dedicated_vae"
         ],
         "backend_and_format": "derived_from_each_pinned_recipe_not_family_name"
-      }
+      },
+      "target_release": "0.3.0",
+      "required_in_target_release": true,
+      "missing_target_blocks_complete_release": true
     },
     {
       "selection_id": "09",
@@ -792,7 +768,6 @@
         ],
         "hardware_match": "evaluate_for_bound_recipe_and_actual_device"
       },
-      "proposed_first_release": "0.3.0",
       "feasibility": "official_android_sample_requires_completion",
       "z20_assessment": "priority_candidate_unverified",
       "implementation_status": "not_implemented_in_lma",
@@ -824,7 +799,10 @@
           "dependency:language_assets"
         ],
         "backend_and_format": "derived_from_each_pinned_recipe_not_family_name"
-      }
+      },
+      "target_release": "0.3.0",
+      "required_in_target_release": true,
+      "missing_target_blocks_complete_release": true
     },
     {
       "selection_id": "10",
@@ -849,7 +827,6 @@
         ],
         "hardware_match": "evaluate_for_bound_recipe_and_actual_device"
       },
-      "proposed_first_release": "0.3.0",
       "feasibility": "established_android_routes",
       "z20_assessment": "priority_candidate_unverified",
       "implementation_status": "not_implemented_in_lma",
@@ -886,7 +863,9 @@
             "dependency:matching_voice_assets"
           ],
           "android_validated": false,
-          "planned_only": true
+          "planned_only": true,
+          "target_release": "0.3.0",
+          "required_in_target_release": true
         },
         {
           "model": "one pinned Piper voice/language package",
@@ -904,7 +883,9 @@
             "dependency:matching_voice_assets"
           ],
           "android_validated": false,
-          "planned_only": true
+          "planned_only": true,
+          "target_release": "0.3.0",
+          "required_in_target_release": true
         },
         {
           "model": "one pinned Matcha voice/language package",
@@ -923,7 +904,9 @@
             "dependency:vocoder"
           ],
           "android_validated": false,
-          "planned_only": true
+          "planned_only": true,
+          "target_release": "0.3.0",
+          "required_in_target_release": true
         }
       ],
       "base_support_tags": {
@@ -942,7 +925,10 @@
           "dependency:vocoder_if_required"
         ],
         "backend_and_format": "derived_from_each_pinned_recipe_not_family_name"
-      }
+      },
+      "target_release": "0.3.0",
+      "required_in_target_release": true,
+      "missing_target_blocks_complete_release": true
     },
     {
       "selection_id": "11",
@@ -968,7 +954,6 @@
         ],
         "hardware_match": "evaluate_for_bound_recipe_and_actual_device"
       },
-      "proposed_first_release": "0.4.0",
       "feasibility": "android_reference_host_loop_and_api_gate",
       "z20_assessment": "api28_and_speed_unverified",
       "implementation_status": "not_implemented_in_lma",
@@ -1004,7 +989,10 @@
           "dependency:speaker_assets"
         ],
         "backend_and_format": "derived_from_each_pinned_recipe_not_family_name"
-      }
+      },
+      "target_release": "0.3.0",
+      "required_in_target_release": true,
+      "missing_target_blocks_complete_release": true
     },
     {
       "selection_id": "12",
@@ -1034,7 +1022,6 @@
           "architecture_specific_host_loop"
         ]
       },
-      "proposed_first_release": "0.6.0",
       "feasibility": "research_gate_not_guaranteed",
       "z20_assessment": "no_family_wide_validated_profile",
       "implementation_status": "not_implemented_in_lma",
@@ -1074,7 +1061,9 @@
           ],
           "android_validated": false,
           "entity_kind": "model",
-          "planned_only": true
+          "planned_only": true,
+          "target_release": "0.3.0",
+          "required_in_target_release": true
         },
         {
           "model": "MOSS-TTS-v1.5",
@@ -1094,7 +1083,9 @@
           ],
           "android_validated": false,
           "entity_kind": "model",
-          "planned_only": true
+          "planned_only": true,
+          "target_release": "0.3.0",
+          "required_in_target_release": true
         },
         {
           "model": "MOSS-TTS-Local-Transformer",
@@ -1114,7 +1105,9 @@
           ],
           "android_validated": false,
           "entity_kind": "model",
-          "planned_only": true
+          "planned_only": true,
+          "target_release": "0.3.0",
+          "required_in_target_release": true
         },
         {
           "model": "MOSS-TTS-Local-Transformer-v1.5",
@@ -1134,7 +1127,9 @@
           ],
           "android_validated": false,
           "entity_kind": "model",
-          "planned_only": true
+          "planned_only": true,
+          "target_release": "0.3.0",
+          "required_in_target_release": true
         },
         {
           "model": "MOSS-TTSD-v1.0",
@@ -1154,7 +1149,9 @@
           ],
           "android_validated": false,
           "entity_kind": "model",
-          "planned_only": true
+          "planned_only": true,
+          "target_release": "0.3.0",
+          "required_in_target_release": true
         },
         {
           "model": "MOSS-VoiceGenerator",
@@ -1174,7 +1171,9 @@
           ],
           "android_validated": false,
           "entity_kind": "model",
-          "planned_only": true
+          "planned_only": true,
+          "target_release": "0.3.0",
+          "required_in_target_release": true
         },
         {
           "model": "MOSS-SoundEffect",
@@ -1194,7 +1193,9 @@
           ],
           "android_validated": false,
           "entity_kind": "model",
-          "planned_only": true
+          "planned_only": true,
+          "target_release": "0.3.0",
+          "required_in_target_release": true
         },
         {
           "model": "MOSS-SoundEffect-v2.0",
@@ -1214,7 +1215,9 @@
           ],
           "android_validated": false,
           "entity_kind": "model",
-          "planned_only": true
+          "planned_only": true,
+          "target_release": "0.3.0",
+          "required_in_target_release": true
         },
         {
           "model": "MOSS-TTS-Realtime",
@@ -1234,7 +1237,9 @@
           ],
           "android_validated": false,
           "entity_kind": "model",
-          "planned_only": true
+          "planned_only": true,
+          "target_release": "0.3.0",
+          "required_in_target_release": true
         }
       ],
       "base_support_tags": {
@@ -1255,7 +1260,10 @@
         "runtime_features": [
           "pipeline:architecture_specific_host_loop"
         ]
-      }
+      },
+      "target_release": "0.3.0",
+      "required_in_target_release": true,
+      "missing_target_blocks_complete_release": true
     },
     {
       "selection_id": "13",
@@ -1283,7 +1291,6 @@
           "dialogue_host_loop"
         ]
       },
-      "proposed_first_release": "0.6.0",
       "feasibility": "research_gate_not_guaranteed",
       "z20_assessment": "no_complete_android_recipe_verified",
       "implementation_status": "not_implemented_in_lma",
@@ -1320,7 +1327,10 @@
         "runtime_features": [
           "pipeline:dialogue_host_loop"
         ]
-      }
+      },
+      "target_release": "0.3.0",
+      "required_in_target_release": true,
+      "missing_target_blocks_complete_release": true
     },
     {
       "selection_id": "14",
@@ -1348,7 +1358,6 @@
           "sampling_host_loop"
         ]
       },
-      "proposed_first_release": "0.4.0",
       "feasibility": "published_android_route_needs_integration",
       "z20_assessment": "experimental_unverified",
       "implementation_status": "not_implemented_in_lma",
@@ -1385,7 +1394,10 @@
         "runtime_features": [
           "pipeline:sampling_host_loop"
         ]
-      }
+      },
+      "target_release": "0.3.0",
+      "required_in_target_release": true,
+      "missing_target_blocks_complete_release": true
     },
     {
       "selection_id": "16",
@@ -1410,7 +1422,6 @@
         ],
         "hardware_match": "evaluate_for_bound_recipe_and_actual_device"
       },
-      "proposed_first_release": "0.3.0",
       "feasibility": "author_android_evidence_experimental_port",
       "z20_assessment": "high_risk_unverified",
       "implementation_status": "not_implemented_in_lma",
@@ -1445,7 +1456,10 @@
           "dependency:sampling_profile"
         ],
         "backend_and_format": "derived_from_each_pinned_recipe_not_family_name"
-      }
+      },
+      "target_release": "0.3.0",
+      "required_in_target_release": true,
+      "missing_target_blocks_complete_release": true
     },
     {
       "selection_id": "17",
@@ -1471,7 +1485,6 @@
         ],
         "hardware_match": "evaluate_for_bound_recipe_and_actual_device"
       },
-      "proposed_first_release": "0.5.0",
       "feasibility": "android_evidence_backend_and_license_gate",
       "z20_assessment": "qnn_recipe_incompatible_vulkan_unverified",
       "implementation_status": "not_implemented_in_lma",
@@ -1512,8 +1525,100 @@
           "dependency:runtime_libraries_for_bound_backend"
         ],
         "backend_and_format": "derived_from_each_pinned_recipe_not_family_name"
-      }
+      },
+      "target_release": "0.3.0",
+      "required_in_target_release": true,
+      "missing_target_blocks_complete_release": true
     }
   ],
-  "subtarget_records_are_planning_requirements_not_ui_children": true
+  "subtarget_records_are_planning_requirements_not_ui_children": true,
+  "target_release_version": "0.3.0",
+  "target_release_is_published": false,
+  "release_policy": {
+    "delivery": "single_complete_next_release",
+    "release_count": 1,
+    "split_across_versions": false,
+    "automatic_deferral_of_selected_scope": false,
+    "partial_preview_counts_as_completion": false,
+    "internal_implementation_order_is_not_a_release_split": true,
+    "every_required_target_must_pass": true,
+    "unresolved_required_target_blocks_complete_release": true,
+    "device_specific_recipes_do_not_require_every_model_on_z20": true
+  },
+  "next_release": {
+    "version": "0.3.0",
+    "name": "complete_local_multimodal_foundation_and_all_selected_models",
+    "selected_ids": [
+      "01",
+      "02",
+      "03",
+      "04",
+      "05",
+      "06",
+      "07",
+      "08",
+      "09",
+      "10",
+      "11",
+      "12",
+      "13",
+      "14",
+      "16",
+      "17"
+    ],
+    "preserve_all_existing_text_models": true,
+    "foundation_requirement_ids": [
+      "F-01",
+      "F-02",
+      "F-03",
+      "F-04",
+      "F-05",
+      "F-06",
+      "F-07",
+      "F-08",
+      "F-09",
+      "F-10",
+      "F-11",
+      "F-12"
+    ],
+    "work_package_ids": [
+      "W1",
+      "W2",
+      "W3",
+      "W4",
+      "W5",
+      "W6"
+    ],
+    "acceptance_ids": [
+      "A1",
+      "A2",
+      "A3",
+      "A4",
+      "A5",
+      "A6",
+      "A7",
+      "A8",
+      "A9",
+      "A10"
+    ],
+    "release_gate_ids": [
+      "R-01",
+      "R-02",
+      "R-03",
+      "R-04",
+      "R-05"
+    ],
+    "frozen_subtarget_counts": {
+      "03": 3,
+      "10": 3,
+      "12": 9
+    },
+    "lora_required_base_families": [
+      "sd15",
+      "sdxl"
+    ],
+    "minimum_execution_evidence": "at_least_one_pinned_complete_recipe_and_physical_android_device_per_required_target",
+    "implementation_status": "not_implemented_in_lma",
+    "physical_device_tests": 0
+  }
 }

@@ -2,7 +2,7 @@
 
 [中文](WORKFLOWS.md) · [Current requirements/releases](MULTIMODAL_RELEASE_PLAN.en.md) · [Foundation](FOUNDATION.en.md) · [Current architecture](ARCHITECTURE.en.md)
 
-Status: **unimplemented design, 2026-10-27**. The latest scope uses model selection, task forms, a queue and artifacts. No ComfyUI wiring, infinite canvas, user node/plugin ecosystem or graph import. The [release plan](MULTIMODAL_RELEASE_PLAN.en.md) defines selections 01–14/16/17. Every stage executes on the same Android phone, without ROOT, Docker, WSL, VMs or emulators.
+Status: **unimplemented design, 2026-10-27**. The latest scope uses model selection, task forms, a queue and artifacts. No ComfyUI wiring, infinite canvas, user node/plugin ecosystem or graph import. The [update requirements](MULTIMODAL_RELEASE_PLAN.en.md) require the complete foundation and all 01–14/16/17/frozen subtargets together in v0.3.0, without split releases or automatic deferral. Every stage executes on the same Android phone, without ROOT, Docker, WSL, VMs or emulators.
 
 ## Interaction and execution boundary
 

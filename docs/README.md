@@ -12,7 +12,7 @@
 | 架构 / Architecture | [ARCHITECTURE.md](ARCHITECTURE.md) | [ARCHITECTURE.en.md](ARCHITECTURE.en.md) |
 | 多模态可行性研究 / Multimodal feasibility research | [MULTIMODAL.md](MULTIMODAL.md) | [MULTIMODAL.en.md](MULTIMODAL.en.md) |
 | 可扩展多模态基座 / Extensible multimodal foundation | [FOUNDATION.md](FOUNDATION.md) | [FOUNDATION.en.md](FOUNDATION.en.md) |
-| 现行需求与发版 / Current requirements and release plan | [MULTIMODAL_RELEASE_PLAN.md](MULTIMODAL_RELEASE_PLAN.md) | [MULTIMODAL_RELEASE_PLAN.en.md](MULTIMODAL_RELEASE_PLAN.en.md) |
+| v0.3.0 完整需求 / Complete single-release requirements | [MULTIMODAL_RELEASE_PLAN.md](MULTIMODAL_RELEASE_PLAN.md) | [MULTIMODAL_RELEASE_PLAN.en.md](MULTIMODAL_RELEASE_PLAN.en.md) |
 | 本机任务与内部执行 / Local jobs and internal stages | [WORKFLOWS.md](WORKFLOWS.md) | [WORKFLOWS.en.md](WORKFLOWS.en.md) |
 | HF 发现与本地管理 / HF discovery and Local | [HF_MODELS.md](HF_MODELS.md) | [HF_MODELS.en.md](HF_MODELS.en.md) |
 | 模型独立参数 / Per-model settings | [MODEL_SETTINGS.md](MODEL_SETTINGS.md) | [MODEL_SETTINGS.en.md](MODEL_SETTINGS.en.md) |
@@ -21,13 +21,14 @@
 | 真机验收 / Physical-device acceptance | [DEVICE_ACCEPTANCE.md](DEVICE_ACCEPTANCE.md) | [DEVICE_ACCEPTANCE.en.md](DEVICE_ACCEPTANCE.en.md) |
 | 截图与录屏 / Screenshots and recordings | [MEDIA.md（双语 / bilingual）](MEDIA.md) | [Provenance / 来源](media/manifest.json) |
 | 后续同步与发布 / Updates and publishing | [RELEASING.md（双语 / bilingual）](RELEASING.md) | [Contributing / 贡献约定](../CONTRIBUTING.md) |
+| v0.3.0 交付计划 / Delivery plan | [v0.3.0-plan.md（双语 / bilingual）](releases/v0.3.0-plan.md) | 同一版本完整交付 / One complete next release |
 | 版本 / Versions | [CHANGELOG.md（双语 / bilingual）](../CHANGELOG.md) | [v0.2.0（双语 / bilingual）](releases/v0.2.0.md) |
 
 ## 阅读建议 / Reading paths
 
 - **用户 / Users：** README → 使用手册 / User guide → API → 常见问题 / Troubleshooting in the user guide。
 - **开发者 / Developers：** 构建 / Build → 架构 / Architecture → 验证 / Validation → 贡献约定 / Contributing。
-- **业务扩展 / Expansion：** [现行需求 / Release plan](MULTIMODAL_RELEASE_PLAN.md) → [范围与标签 / Scope and tags](proposals/multimodal-release-scope.json) → [基座 / Foundation](FOUNDATION.md) → [本机任务 / Local tasks](WORKFLOWS.md) → [源码研究 / Source research](MULTIMODAL.md)。01–14 / 16 / 17、模型平级、无画布节点生态；全部同一手机执行，尚未实现 / Flat peers, no canvas/node ecosystem, same-phone execution; unimplemented.
+- **业务扩展 / Expansion：** [现行需求 / Release plan](MULTIMODAL_RELEASE_PLAN.md) → [范围与标签 / Scope and tags](proposals/multimodal-release-scope.json) → [基座 / Foundation](FOUNDATION.md) → [本机任务 / Local tasks](WORKFLOWS.md) → [源码研究 / Source research](MULTIMODAL.md)。v0.3.0 一次性交付 01–14 / 16 / 17 与完整基座，模型平级、无画布节点生态；全部同一手机执行，尚未实现 / One complete v0.3.0 scope, flat peers, no canvas/node ecosystem, same-phone execution; unimplemented.
 - **验收 / Acceptance：** [完成条件核对](COMPLETION_AUDIT.md) → 真机验收 / Device acceptance → [`verification/`](../verification/)。
 
 ## 证据和历史记录 / Evidence and audit history

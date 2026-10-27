@@ -2,7 +2,7 @@
 
 [English](WORKFLOWS.en.md) · [现行需求与发版](MULTIMODAL_RELEASE_PLAN.md) · [共用基座](FOUNDATION.md) · [当前架构](ARCHITECTURE.md)
 
-状态：**2026-10-27 未实现设计**。本文件按最新要求收敛为模型选择、任务表单、队列与结果；不建设 ComfyUI 连线、无限画布、用户节点、插件生态或图导入。所选 01–14 / 16 / 17 的完整范围以[发版需求](MULTIMODAL_RELEASE_PLAN.md)为准。全部阶段在同一 Android 手机执行，无需 ROOT，不使用 Docker、WSL、虚拟机或模拟器。
+状态：**2026-10-27 未实现设计**。本文件按最新要求收敛为模型选择、任务表单、队列与结果；不建设 ComfyUI 连线、无限画布、用户节点、插件生态或图导入。下一版本 v0.3.0 一次完成全部基座及 01–14 / 16 / 17 与冻结子目标；完整范围以[版本更新需求](MULTIMODAL_RELEASE_PLAN.md)为准，不拆版或默认顺延。全部阶段在同一 Android 手机执行，无需 ROOT，不使用 Docker、WSL、虚拟机或模拟器。
 
 ## 使用与执行边界
 

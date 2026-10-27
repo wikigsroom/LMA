@@ -6,7 +6,7 @@ Date: **2026-10-27 (Asia/Taipei)**. Decision: **this is buildable, and an extens
 
 This evaluates current source and upstream native/Android engines. **The foundation is not implemented.** Current APK 0.2.0 executes single-file text GGUF only. No new weights were downloaded, engines built, phone generation run or endurance measured. Z20 is a constrained device to accommodate, not the upper limit of the product.
 
-The [current release plan](MULTIMODAL_RELEASE_PLAN.en.md) governs scope: 01–14/16/17, equal peer models with output/dependency tags, task forms/queue/artifacts, without a ComfyUI canvas, user nodes, plugin ecosystem or graph import. Internal engine modules are application code.
+The [complete update requirements](MULTIMODAL_RELEASE_PLAN.en.md) govern one v0.3.0 delivery of all core capabilities and 01–14/16/17/frozen subtargets, equal peer models with output/dependency tags, task forms/queue/artifacts, without a ComfyUI canvas, user nodes, plugin ecosystem or graph import. Internal engine modules are application code.
 
 ## 01 · Evidence and limits
 
@@ -65,7 +65,7 @@ HF search remains broad, with separate discovered, recipe-available, installed, 
 
 ## 05 · Internal application engine modules
 
-| Runtime route | Foundation role | Initial integration |
+| Runtime route | Foundation role | Required integration |
 | --- | --- | --- |
 | llama.cpp | Existing text capability | Wrap the current implementation to validate migration |
 | sd.cpp | General native image/video candidate | Expose only architectures in the actual build; validate one image and one small video pipeline |
@@ -101,7 +101,7 @@ Plan the complete pipeline, including staged encoder/backbone/VAE memory, OS/UI/
 
 The scheduler owns engine leases, foreground execution, cancellation ownership, timeouts and bounded crash recovery. A failure releases its worker and records a clear state. Bind process identity to job and launch generation so cancellation cannot kill a later job. Resource failures never offload or silently substitute another model.
 
-Artifacts are local references with provenance, hash, MIME, dimensions/duration and sample rate/fps. Large tensors stay inside providers. Latent shapes/scales/encoders/VAEs are not interchangeable across engines: initially exchange decoded image/audio/video artifacts. Keep intermediate tensors inside matching pipelines; user tensor-node wiring is not required.
+Artifacts are local references with provenance, hash, MIME, dimensions/duration and sample rate/fps. Large tensors stay inside providers. Latent shapes/scales/encoders/VAEs are not interchangeable across engines: exchange decoded image/audio/video artifacts in this version. Keep intermediate tensors inside matching pipelines; user tensor-node wiring is not required.
 
 SQLite persists jobs, internal stages, settings snapshots, events and artifacts. Reuse verified completed stages after restart. Intermediate resume requires real engine checkpoints matching model hashes, engine and configuration. Cache keys also include recipes, input hashes and effective seeds to prevent invalid reuse across versions.
 
@@ -121,16 +121,18 @@ Use a flat model library, task forms, a common queue, previews and regeneration.
 
 Preserve Recommended `m08 → m06 → m01`, broad All/search discovery, Local management and separate uncensored labels. Capability-driven expansion does not replace the existing recommendations.
 
-## 09 · Stages and completion criteria
+## 09 · Complete foundation acceptance in one version
 
-| Stage | Concrete delivery | Extensibility evidence |
+All items below are mandatory for the next v0.3.0, not different releases. A subset cannot stand in for the complete foundation and selected-model scope.
+
+| Item | Required delivery | Completion |
 | --- | --- | --- |
-| F1: contracts/migration | Bundle/recipe/capability/settings protocols, old text provider, durable task layer | Existing models/settings/downloads/text API work; no model-ID-specific UI routing |
-| F2: cross-modality execution | One image, one audio and one actual video-generation pipeline on the shared queue/artifact store | At least two engine modules; video may be experimental, but a still-image MP4 does not qualify |
-| F3: data extension | Second supported weight/adapter and a different architecture provider | First addition changes no page/queue code; second does not rewrite library/downloads/jobs |
-| F4: devices/failures | Z20-class and newer-device capability/resource/background checks, crashes, missing files, cancellation, disk exhaustion and migrations | Results trace to model/engine/backend/device combinations, with offline generation throughout |
-| F5: interaction/release | Working task forms, queue/artifacts, bilingual guides and actual output demonstrations | All four outputs share task/component contracts; no node editor or graph compatibility required |
+| K1 Contracts/migration | Bundle/recipe/capability/settings protocols, legacy text provider and durable jobs | Preserve models/settings/downloads/chat/text API and Recommended |
+| K2 Shared cross-modality execution | Text/image/audio/real video share queue, settings, background and artifacts | At least two real engine modules; still-image MP4 is not generative video |
+| K3 Every target/extensibility | All 01–14/16/17, frozen subtargets and both LoRA base families; second same-architecture weight via descriptors | Individual acceptance in this version; providers do not rewrite library/downloads/jobs |
+| K4 Devices/failures | Z20-class/newer recipes, resource/background tests, crashes/cancel/missing assets/disk/recovery | Declared device/offline evidence per target, without claiming all run on Z20 |
+| K5 Interaction/distribution | Flat tags, forms, queue/artifacts, full native dependencies/signed package, bilingual guides/media | F-01–F-12, A1–A10 and R-01–R-05 pass together |
 
-Host contract/migration checks can advance F1. **F2/F4 phone execution cannot be replaced by fixtures, JSON drafts or source review.** No device is available now, so the foundation cannot yet be declared complete or all modalities supported. ROOT-free foreground services also cannot guarantee survival; see task/background recovery limits.
+Some K1 contracts/migrations allow host checks. K2–K4 device execution requires real artifacts and physical Android evidence. No device is available; completion cannot be claimed. Foreground services do not guarantee survival; see task execution limits.
 
-The continuing costs are new native architecture pipelines, mobile operators/quantization quality, resource measurements and upstream maintenance. Descriptors and task forms cannot solve those alone. Validate a shared image/audio/video execution chain first, then expand model coverage. New models and engines will have explicit extension points, with Z20 and newer-device capabilities coexisting in one product.
+Native architecture pipelines, mobile operators/quantization, resource/quality measurements and upstream maintenance are work for this version. Internal implementation follows dependencies; unresolved targets remain blockers here rather than moving to other versions.

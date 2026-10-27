@@ -6,11 +6,11 @@ Reviewed **2026-10-27 (Asia/Taipei)** under the user's revised requirement: **ev
 
 This is source review and engineering assessment, **not shipped functionality or an LMA phone benchmark**. The v0.2.0 APK still executes compatible single-file text GGUF only. No new weights were downloaded, new engines compiled, or phone generation run. No physical device is available.
 
-This broader research is background. The [current release plan](MULTIMODAL_RELEASE_PLAN.en.md) governs 01–14/16/17, flat models with output/dependency tags, and forms/queue/artifacts. YuE2, H3, newer LTX and ComfyUI here are outside selected scope; earlier canvas/node plans are withdrawn.
+This broader research is background. The [complete update requirements](MULTIMODAL_RELEASE_PLAN.en.md) place the whole foundation and all 01–14/16/17/frozen subtargets together in the next v0.3.0, without splitting or automatic deferral. Models remain flat with task/dependency tags and forms/queue/artifacts. YuE2, H3, newer LTX and ComfyUI are outside the selected scope.
 
 ## Revised decision
 
-Start with **SD 1.5 and matching LoRA, small offline TTS, a native job queue and on-phone executor**. Investigate Stable Audio Open Small for short sounds. Full songs, large image pipelines and large video models are outside the currently supportable local product scope.
+The shared chain in this version covers existing text, images/LoRA, audio and actual video, together with every selected model. Full songs and unselected large families are outside scope. Larger images, MOSS/SoulX and video retain device/recipe validation risks; failed targets remain blockers for this version. The current APK has not implemented these capabilities.
 
 **Video generation cannot be dismissed as a whole.** Community implementations include an ARM64 / Vulkan Android pipeline for Wan 2.1 1.3B, plus Android Vulkan and device-specific QNN paths for the older LTX-Video 2B. They are worthwhile local experiments, not evidence that Z20 passed or LMA already supports them.
 
@@ -22,9 +22,9 @@ The international Z20 specification lists **Snapdragon 855+, Adreno 640, 8GB RAM
 
 | Grade | Meaning here |
 | --- | --- |
-| A: initial candidate | A relevant mobile implementation makes it a priority to port and validate; no LMA or Z20 pass is implied |
+| A: established candidate | A relevant mobile implementation makes it a priority to port and validate; no LMA or Z20 pass is implied |
 | B: experimental | Native, conversion or Android evidence exists, but full components, drivers, memory, speed and quality need validation |
-| C: excluded for now | Insufficient evidence for current local product support; not a claim that future quantization or hardware can never enable it |
+| C: high risk/unproven | Insufficient evidence for that device/recipe; selected targets remain work for this version, not removed or deferred |
 
 “Newer phones” is an ARM64 test group with roughly 12–24GB RAM and newer drivers, **not a universal minimum specification**. QNN additionally needs the exact SoC, Hexagon target, SDK and compiled shapes. All grades describe candidates; current APK multimodal support remains zero.
 
@@ -59,7 +59,7 @@ Exact checkpoints/components: [SD 1.5](https://huggingface.co/stable-diffusion-v
 | **Piper / VITS / Matcha** | sherpa-onnx offline TTS and Android samples | **A** | **A**; check each voice/language package |
 | **Qwen3-TTS 0.6B Base** | Google LiteRT Kotlin CPU sample; community qwen3-tts.cpp JNI app | **B**, API 28 port and performance unverified | **A/B**, end-to-end Android code exists, realtime is not promised |
 | Full MOSS family | Multiple architectures; a native Delay fork includes codec, others need separate ports | **B/C** | **B**; validate the complete architecture, not only LLM weight size |
-| SoulX-Podcast 1.7B | Official reference uses Linux/Python; convertible parts are not an Android pipeline | **B/C** | **B**, native-port research, outside initial features |
+| SoulX-Podcast 1.7B | Official reference uses Linux/Python; convertible parts are not an Android pipeline | **B/C** | **B**, required native port in this version; risk remains open |
 | **Stable Audio Open Small 341M** | Arm LiteRT/C++/Android route for short sounds/music | **B** | **A/B**; not full-song generation |
 | **YuE2-3B** | Lyrics-to-song with multiple stages and audio VAE; no reviewed complete Android recipe | **C** | **C**, retained only for future local-port research |
 
@@ -118,15 +118,17 @@ Check all components at their actual pinned revision. Model, code, runtime SDK, 
 
 Preserve local-model positioning, the existing Recommended entries and separate Uncensored/Abliterated tags. New models do not inherit those tags. Compatibility, evidence and commercial terms remain separate attributes.
 
-## Local product roadmap and acceptance
+## Complete scope and acceptance in this version
 
-| Stage | Deliverables and acceptance |
+The only target is v0.3.0. These are work items within it, not releases or partial model shipments:
+
+| Work item | Same-release requirement |
 | --- | --- |
-| 1: shared foundation | Multi-component bundles, native providers, per-model settings, persistent jobs/artifacts, offline validation, one large-engine lease |
-| 2: initial working chains | One explicit-language small TTS, SD 1.5 plus matching LoRA; task forms/queue and actual execution, without a canvas |
-| 3: mobile expansion | Qwen3-TTS Base, MNN Sana, short sounds; validate complete local chains on API 28 and newer devices |
-| 4: on-phone video experiments | Wan 1.3B prototype first; separate Vulkan and exact-chip QNN recipes for old LTX 2B; retain experimental labels until measured |
-| 5: advanced models | Quantization/staged loading on high-memory phones; C-rated candidates never appear as verified/default recommendations |
+| Complete core | F-01–F-12: bundles, engines, settings, capabilities, queue/resources/background, artifacts/API, migration/evidence |
+| All image targets | 01–08, both SD 1.5/SDXL LoRA, Turbo/LCM subtargets and high-memory recipes |
+| All audio targets | 09–14, all three small-TTS subtargets, nine MOSS subtargets and complete SoulX |
+| All video targets | 16/17, lawful pinned Android recipes and actual motion output |
+| Common completion | Upgrade/offline/resources/quality/background/cancel/recovery, bilingual guides and actual feature media |
 
 Acceptance includes full download/resume/missing-file handling, revision/hashes, **new arbitrary inputs generated with networking disabled**, playable outputs, model-settings isolation, clamping and joint shape limits, generation/cancellation/unloading, peak RAM, time/quality, screen-off/thermal behavior and honest recovery after process death. Foreground work needs no ROOT but cannot guarantee survival or 24/7 full-load execution.
 

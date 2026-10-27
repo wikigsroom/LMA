@@ -20,6 +20,8 @@
 - 不调用 Docker、WSL、虚拟机或模拟器；浏览器任务用 finally 关闭无用页面和进程。Never invoke virtualization; always clean up browser resources.
 - 不提交模型、API 密钥、签名、密码、浏览器 profile 或构建缓存。Never publish weights, secrets, signing files, profiles, or caches.
 
+- 下一版本 v0.3.0 按[完整更新需求](docs/MULTIMODAL_RELEASE_PLAN.md)统一交付全部基座及 01–14 / 16 / 17 与冻结子目标，不拆版、不默认顺延；内部工作包共用一套验收门槛。The next v0.3.0 delivers the complete foundation and all selected targets together; internal work packages do not create separate releases.
+
 ## 版本与验收 / Versions and acceptance
 
 APK 代码或资源变化应提升 versionName / versionCode，并同步 Manifest、Gradle、应用状态/关于页及相应测试夹具。Documentation-only changes can remain on the existing app version when APK bytes are unchanged; published release assets remain immutable.
