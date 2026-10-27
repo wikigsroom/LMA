@@ -26,4 +26,4 @@ def current(record):
 
 
 def build_inputs():
-    return fingerprint("app/src/main", "tools/build.py", "tools/build_catalogue.py", "tools/evidence.py", "catalogue/verified-models.json", "catalogue/uncensored-policy.json", "catalogue/uncensored-evidence.json", "tools/audit_uncensored.py", "third_party/runtime-lock.json")
+    return fingerprint("app/src/main", "native", "tools/build.py", "tools/build_native.py", "tools/bootstrap_native.py", "tools/fetch_native.py", "tools/collect_native_notices.py", "tools/package_native.py", "tools/build_catalogue.py", "tools/build_bundle_catalogue.py", "tools/evidence.py", "catalogue/verified-models.json", "catalogue/model-bundles.json", "catalogue/bundle-evidence.json", "catalogue/uncensored-policy.json", "catalogue/uncensored-evidence.json", "tools/audit_uncensored.py", "third_party/runtime-lock.json", "third_party/engine-lock.json", "third_party/notices")

@@ -21,6 +21,7 @@ def digest(data):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--published", action="store_true", help="Verify immutable source ZIP against its published tag after later documentation/tool updates")
+    parser.add_argument("--development", action="store_true", help="Check a development checkpoint; never claims Release or phone readiness")
     args = parser.parse_args()
     run = subprocess.run(["git", "ls-files", "--cached", "--others", "--exclude-standard", "-z"], cwd=ROOT, capture_output=True, check=True)
     names = sorted(set(run.stdout.decode("utf-8").strip("\0").split("\0")))
@@ -57,6 +58,27 @@ def main():
             assert resolved.is_relative_to(ROOT.resolve()) and resolved.exists(), "Broken local link: " + str(document.relative_to(ROOT)) + " -> " + target
             links += 1
     release = version()
+    if args.development:
+        assert not args.published and "-dev" in release
+        directory = ROOT / "verification/development"
+        status = json.loads((directory / "status.json").read_text(encoding="utf-8"))
+        assert status["version"] == release and not status["release_ready"] and not status["all_selected_models_supported"]
+        assert status["physical_device_tests"] == 0 and not status["model_inference_tested"]
+        records = {name: json.loads((directory / name).read_text(encoding="utf-8")) for name in status["sources"]}
+        for record in records.values(): current(record["input_fingerprint"])
+        assert records["build-info.json"]["input_fingerprint"] == build_inputs()
+        assert records["build-info.json"]["sha256"] == records["package.json"]["sha256"]
+        assert records["foundation.json"]["passed"] >= 82 and records["backend.json"]["passed"] >= 85 and records["hub.json"]["passed"] >= 45
+        assert records["ui.json"]["passed"] >= 79 and not records["ui.json"]["errors"] and records["lint.json"]["errors"] == 0
+        media = json.loads((ROOT / "docs/media/development/manifest.json").read_text(encoding="utf-8"))
+        current(media["input_fingerprint"])
+        assert not media["android_device"] and not media["model_inference"] and media["browser_closed"] and not media["browser_errors"]
+        for item in media["files"]:
+            data = (ROOT / "docs/media/development" / item["file"]).read_bytes()
+            assert len(data) == item["bytes"] and digest(data) == item["sha256"]
+        result = {"development_only": True, "release_ready": False, "public_files": len(names), "documents": len(documents), "local_links": links, "version": release, "passed": True}
+        (ROOT / "build/repository-check-development.json").write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8")
+        print(json.dumps(result)); return
     build = json.loads((ROOT / "dist/build-info.json").read_text(encoding="utf-8"))
     assert build["input_fingerprint"] == build_inputs() and build["version"] == release
     records = sorted((ROOT / "verification").glob("*.json"))

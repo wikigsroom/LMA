@@ -12,6 +12,11 @@ UI checks need Node.js, Playwright, and Edge / Chromium. Recording additionally 
 git clone git@github.com:wikigsroom/LMA.git
 cd LMA
 python tools/bootstrap_runtime.py
+python tools/bootstrap_native.py
+python tools/fetch_native.py --transport ssh
+python tools/build_native.py --jobs 4
+python tools/collect_native_notices.py
+# Review the rebuilt engine-lock.json diff before APK packaging
 python tools/build.py --sdk C:/path/to/Android/Sdk
 ```
 
@@ -19,7 +24,7 @@ Without `--sdk`, the builder checks `ANDROID_SDK_ROOT`, then the current user's 
 
 ## Runtime and catalogue
 
-The bootstrap fetches the pinned ServLlama 1.2.2 ARM64 bundle, checks SHA256 `551e5be8494bd2ae9955992faaaca1a4f5cf29e3a97f90d2e04205eb460fcde6`, and extracts 14 CPU libraries to `app/src/main/jniLibs/arm64-v8a/`. Optional OpenCL / Hexagon components are excluded. Native binaries/cache are ignored by Git. The dedicated Release source ZIP includes the checked libraries. ARM native compilation happens upstream, not locally.
+The bootstrap fetches the pinned ServLlama 1.2.2 ARM64 bundle, checks SHA256 `551e5be8494bd2ae9955992faaaca1a4f5cf29e3a97f90d2e04205eb460fcde6`, and extracts 14 CPU libraries to `app/src/main/jniLibs/arm64-v8a/`. Optional OpenCL / Hexagon components are excluded. Native binaries/cache are ignored by Git. The dedicated Release source ZIP includes the checked libraries. These 14 text-runtime files are prebuilt; the added diffusion worker is compiled locally with the Windows NDK.
 
 `build_catalogue.py` gates all built-in entries on matching publisher evidence, pinned GGUF revision, and weight hash. Ordinary rebuilds reuse checked evidence without visiting every model card again. Catalogue additions or provenance changes require the related audits and review of attribution, not merely a renamed entry.
 
@@ -27,11 +32,19 @@ That gate protects preserved curated/verified labels, rather than general HF eli
 
 `build.py` runs AAPT2, javac, D8, native-library packaging, zipalign, signing, and signature inspection. Verification uses exact-byte SHA256 inputs; `.gitattributes` disables line-ending rewriting to preserve fingerprints across checkout.
 
+## Added native worker and development builds
+
+`bootstrap_native.py` verifies/extracts NDK 30.0.16248370 and CMake 3.31.6 into ignored `build/toolchain/`, without changing the system SDK. `fetch_native.py` gets the exact sd.cpp/ggml sources from engine-lock, without model weights. `build_native.py` uses native Windows tools; its temporary SUBST path alias works around a CMake crash on non-ASCII paths and is always removed, without virtualization. `collect_native_notices.py` captures exact notices and updates the binary lock for review before commit.
+
+Packaging checks build receipts, native input fingerprints, the exact file set, hashes and notice bytes, then generates engine-builds.json. User-provided components replace embedded model vocabularies. Git excludes native binaries; the internal signed output is `dist/LMA-0.3.0-dev-arm64-v8a.apk`, not a complete Release.
+
+Development checks use `test_foundation.py`, existing backend/HF/UI checks, `verify_package.py`, `test_android_lint.py`, `capture_foundation.cjs`, `export_development.py` and `check_repository.py --development`. See [DEVELOPMENT.en.md](DEVELOPMENT.en.md) for boundaries. Full delivery still requires all selected models and physical-device gates; publishing tools reject `-dev`.
+
 ## Signing and outputs
 
 The first build creates an RSA3072 identity and random password in `signing/`. Preserve it privately for in-place upgrades. Never commit, share, or upload it. A fresh clone signs with a different identity and cannot update the distributed APK unless it uses the original key. Uninstalling removes private models and history.
 
-- `dist/LMA-0.2.0-arm64-v8a.apk`: signed application.
+- `dist/LMA-<version>-arm64-v8a.apk`: signed application for the current Manifest; internally 0.3.0-dev, with public v0.2.0 preserved.
 - `dist/*.sha256`: actual artifact hashes.
 - `dist/build-info.json`: package information and input fingerprints.
 - `build/`: ignored compiler, test, Lint, and media intermediates.

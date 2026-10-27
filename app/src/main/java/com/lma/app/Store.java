@@ -83,6 +83,8 @@ public final class Store {
             JSONArray source = pass == 0 ? catalogue : custom;
             for (int i = 0; i < source.length(); i++) {
                 JSONObject m = new JSONObject(source.getJSONObject(i).toString());
+                m.put("taskTags", new JSONArray().put("text"));
+                m.put("baseSupportTags", new JSONArray().put("engine:llama_text").put("pipeline:llama_text").put("format:gguf").put("backend:cpu"));
                 String id = m.getString("id");
                 File file = modelFile(id);
                 m.put("installed", file.isFile() && file.length() >= 24);

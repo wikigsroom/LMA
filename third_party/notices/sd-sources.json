@@ -1,0 +1,70 @@
+{
+  "revision": "be486498eadc29dc3cd234d944c2180ed42b1415",
+  "files": [
+    {
+      "file": "sd-LICENSE.txt",
+      "sha256": "b53fa08f515cb5a6fff7b9fd8fcd0961a4b80df29d74372d25e1f9171aa042ee",
+      "source": "LICENSE"
+    },
+    {
+      "file": "sd-ggml-LICENSE.txt",
+      "sha256": "94f29bbed6a22c35b992c5c6ebf0e7c92f13b836b90f36f461c9cf2f0f1d010d",
+      "source": "ggml/LICENSE"
+    },
+    {
+      "file": "sd-oniguruma-COPYING.txt",
+      "sha256": "70ba5469ea0bab6e18a32d7009068f996503168d27be57747e08da34337ff26f",
+      "source": "thirdparty/oniguruma/COPYING"
+    },
+    {
+      "file": "sd-utf8proc-LICENSE.txt",
+      "sha256": "3b510150d34f248a221bb88e1d811238d6c6c18b51231822c42974c39bb07256",
+      "source": "thirdparty/utf8proc/LICENSE.md"
+    },
+    {
+      "file": "sd-darts-clone-LICENSE.txt",
+      "sha256": "155f59997298ee336602c49f9c1110f268ac394ca2197eb02647a3555935ad52",
+      "source": "thirdparty/LICENSE.darts_clone.txt"
+    },
+    {
+      "file": "sd-stb_image.h-NOTICE.txt",
+      "sha256": "7587efcca32db8f95bf5860dea6dfa4be410ee723e1964db3689c8ddf2a2e4a9",
+      "source": "thirdparty/stb_image.h"
+    },
+    {
+      "file": "sd-stb_image_write.h-NOTICE.txt",
+      "sha256": "7587efcca32db8f95bf5860dea6dfa4be410ee723e1964db3689c8ddf2a2e4a9",
+      "source": "thirdparty/stb_image_write.h"
+    },
+    {
+      "file": "sd-stb_image_resize.h-NOTICE.txt",
+      "sha256": "4b1c06f001fd35b1b01ff6ed182f705785a4f5edf20e5f84ae44216bf7a91d7b",
+      "source": "thirdparty/stb_image_resize.h"
+    },
+    {
+      "file": "sd-miniz.h-NOTICE.txt",
+      "sha256": "8e0f8a8a5a7ddfa9f3f657abf244896da328790b9a90b3f69ef81fcc33a2647b",
+      "source": "thirdparty/miniz.h"
+    },
+    {
+      "file": "sd-zip.c-NOTICE.txt",
+      "sha256": "c5e5ac65e71c4cd155a5eeb43898697868297c9fe34ccf5249ac326c0b735120",
+      "source": "thirdparty/zip.c"
+    },
+    {
+      "file": "sd-zip.h-NOTICE.txt",
+      "sha256": "c5e5ac65e71c4cd155a5eeb43898697868297c9fe34ccf5249ac326c0b735120",
+      "source": "thirdparty/zip.h"
+    },
+    {
+      "file": "sd-nlohmann-json-LICENSE.txt",
+      "sha256": "0e592e358cf7722906f417be85bc514f15bf6efd28cea98cb84e56ef7fddfc3e",
+      "source": "thirdparty/json.hpp SPDX declaration; MIT license terms"
+    },
+    {
+      "file": "sd-NDK-LLVM-NOTICE.txt",
+      "sha256": "f96f763beb66a7ba7a667647fc64c0226ace875e590c831fdd9579ec1c1d91e1",
+      "source": "build/toolchain/android-ndk-r30/toolchains/llvm/prebuilt/windows-x86_64/NOTICE"
+    }
+  ]
+}

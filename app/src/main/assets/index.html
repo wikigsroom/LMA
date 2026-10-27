@@ -3,11 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'none'; base-uri 'none'; form-action 'none'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; media-src 'self'; connect-src 'none'; base-uri 'none'; form-action 'none'">
   <meta name="color-scheme" content="light dark">
   <title>LMA · 本地模型工作台</title>
   <link rel="stylesheet" href="app.css">
+  <link rel="stylesheet" href="foundation.css">
   <script src="license.js" defer></script>
+  <script src="foundation.js" defer></script>
   <script src="app.js" defer></script>
 </head>
 <body>
@@ -26,16 +28,24 @@
         <div class="resource-ribbon" id="resourceRibbon"><div><span>设备内存</span><strong id="deviceMemory">—</strong></div><div><span>可用存储</span><strong id="deviceStorage">—</strong></div><div><span>已下载模型</span><strong id="installedCount">0</strong></div></div>
         <label class="search-field"><span class="icon" data-icon="search"></span><input type="search" id="modelSearch" placeholder="搜索 HF 模型、owner/model 或仓库链接" autocomplete="off" aria-label="搜索模型"><kbd aria-hidden="true">/</kbd></label>
         <div class="filter-row" role="group" aria-label="筛选模型"><button class="filter active" data-filter="recommended">推荐</button><button class="filter" data-filter="local">本地</button><button class="filter" data-filter="light">轻量</button><button class="filter" data-filter="quality">进阶</button><button class="filter" data-filter="all">全部</button></div>
+        <div class="task-filter-row" role="group" aria-label="按生成类型筛选"><button class="task-filter active" data-task="any" aria-pressed="true">所有功能</button><button class="task-filter" data-task="text" aria-pressed="false">生文</button><button class="task-filter" data-task="image" aria-pressed="false">生图</button><button class="task-filter" data-task="video" aria-pressed="false">生视频</button><button class="task-filter" data-task="audio" aria-pressed="false">生音频</button></div>
         <div id="hubControls" class="hub-controls" hidden><label>格式<select id="hubFormat"><option value="gguf">GGUF · 可下载候选</option><option value="all">HF 全部格式</option></select></label><label>排序<select id="hubSort"><option value="downloads">下载最多</option><option value="likes">喜欢最多</option><option value="lastModified">最近更新</option></select></label><button class="icon-button" data-action="hubRefresh" aria-label="刷新 HF 列表"><span class="icon" data-icon="history"></span></button></div>
         <div class="list-heading"><h2 id="modelListTitle">适合先试的模型</h2><span id="modelResultCount" class="muted"></span></div>
         <div id="modelList" class="model-grid" aria-live="polite"></div>
         <div id="hubPagination" class="hub-pagination" hidden></div>
-        <p class="library-footnote">“全部”可检索 HF 模型库。当前支持单文件 GGUF 文本模型；其他格式可查看来源。“无审查”单独标记，并注明依据。文件体积不等于运行内存。</p>
+        <p class="library-footnote">“全部”可检索 HF 模型库。文本 GGUF 沿用原有流程；多组件模型按配方显示完整包，运行能力与设备验证状态单独标记。“无审查”单独标记，并注明依据。文件体积不等于运行内存。</p>
       </section>
       <section class="page chat-page" id="page-chat" aria-label="本地对话" hidden>
         <div class="chat-toolbar"><button class="model-picker" id="chatModelPicker" data-action="pickModel"><span class="icon" data-icon="cube"></span><span id="chatModelName">选择模型</span><span class="icon small" data-icon="chevron"></span></button><div class="toolbar-actions"><button class="icon-button" data-action="history" aria-label="对话历史" title="对话历史"><span class="icon" data-icon="history"></span></button><button class="icon-button" data-action="newChat" aria-label="新建对话" title="新建对话"><span class="icon" data-icon="compose"></span></button></div></div>
         <div class="messages" id="messages" aria-live="polite" aria-relevant="additions text"></div>
         <form id="chatForm" class="composer"><label class="sr-only" for="chatInput">消息内容</label><textarea id="chatInput" rows="1" maxlength="12000" placeholder="输入消息，开始本地对话…"></textarea><div class="composer-bottom"><span id="composerHint">回复在当前手机生成</span><button type="submit" id="sendButton" class="send-button" aria-label="发送消息"><span class="icon" data-icon="send"></span></button></div></form>
+      </section>
+      <section class="page" id="page-tasks" aria-label="本机任务与结果" hidden>
+        <div class="page-heading"><div><span class="eyebrow">ON-DEVICE GENERATION</span><h1>让想法在本机生成<span class="heading-dot">.</span></h1><p>选择已下载的模型，提交任务，在这里查看进度与结果。</p></div><button class="button secondary" data-action="showLocal">选择模型</button></div>
+        <div class="list-heading"><h2>本机队列</h2><span id="jobCount" class="muted">0 个待完成</span></div>
+        <div id="jobList" class="job-list" aria-live="polite"></div>
+        <div class="list-heading artifacts-heading"><h2>生成结果</h2><span id="artifactCount" class="muted">0 个结果</span></div>
+        <div id="artifactList" class="artifact-grid"></div>
       </section>
       <section class="page" id="page-server" aria-label="本地 API 服务" hidden>
         <div class="page-heading"><div><span class="eyebrow">LOCAL SERVER</span><h1>把手机变成接口<span class="heading-dot">.</span></h1><p>为你的应用、脚本与工作流提供本地推理。</p></div></div>
@@ -54,10 +64,10 @@
           <div class="panel"><div class="section-heading"><h2>模型参数</h2><span class="icon" data-icon="cube"></span></div><p class="form-help">上下文、输出上限、线程、温度、思考模式与系统提示词，随每个已下载模型独立保存。选择预设或手动输入，超出上限自动调整。</p><button class="button secondary" type="button" data-action="showLocal">前往本地模型设置<span class="icon" data-icon="arrow"></span></button></div>
           <button type="submit" class="button primary save-settings"><span class="icon" data-icon="check"></span>保存设置</button><p class="save-hint" id="settingsHint" role="status"></p>
         </form>
-        <div class="about"><span class="brand-mark">L<span>M</span>A</span><div><strong>LMA <span class="mono">0.2.0</span></strong><p>本地模型工作台 · Android 9+ · ARM64</p><button class="text-button" data-action="about">开源组件与说明 ↗</button></div></div>
+        <div class="about"><span class="brand-mark">L<span>M</span>A</span><div><strong>LMA <span class="mono">0.3.0-dev</span></strong><p>本地模型工作台 · Android 9+ · ARM64</p><button class="text-button" data-action="about">开源组件与说明 ↗</button></div></div>
       </section>
     </main>
-    <nav class="bottom-nav" aria-label="主要导航"><button class="nav-item active" data-action="tab" data-tab="models" aria-current="page"><span class="icon" data-icon="grid"></span><span>模型库</span></button><button class="nav-item" data-action="tab" data-tab="chat"><span class="icon" data-icon="chat"></span><span>对话</span></button><button class="nav-item" data-action="tab" data-tab="server"><span class="icon" data-icon="server"></span><span>服务</span></button><button class="nav-item" data-action="tab" data-tab="settings"><span class="icon" data-icon="sliders"></span><span>设置</span></button></nav>
+    <nav class="bottom-nav" aria-label="主要导航"><button class="nav-item active" data-action="tab" data-tab="models" aria-current="page"><span class="icon" data-icon="grid"></span><span>模型库</span></button><button class="nav-item" data-action="tab" data-tab="chat"><span class="icon" data-icon="chat"></span><span>对话</span></button><button class="nav-item" data-action="tab" data-tab="tasks"><span class="icon" data-icon="spark"></span><span>任务</span></button><button class="nav-item" data-action="tab" data-tab="server"><span class="icon" data-icon="server"></span><span>服务</span></button><button class="nav-item" data-action="tab" data-tab="settings"><span class="icon" data-icon="sliders"></span><span>设置</span></button></nav>
   </div>
   <div class="modal-backdrop" id="modalBackdrop" hidden><section class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" tabindex="-1"><div class="modal-heading"><h2 id="modalTitle"></h2><button class="icon-button" data-action="closeModal" aria-label="关闭"><span class="icon" data-icon="close"></span></button></div><div id="modalContent"></div></section></div>
   <div id="toast" class="toast" role="status" hidden></div>

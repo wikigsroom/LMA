@@ -1701,5 +1701,9 @@
     "developer_acceptance_assets_are_not_user_install_requirements": true,
     "known_architecture_variants_can_be_separate_asset_additions": true,
     "new_architecture_may_require_foundation_update": true
-  }
+  },
+  "current_apk_kind": "published_baseline",
+  "development_apk_version": "0.3.0-dev",
+  "development_status_document": "../DEVELOPMENT.md",
+  "development_does_not_satisfy_complete_scope": true
 }

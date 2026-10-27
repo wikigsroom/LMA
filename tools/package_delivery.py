@@ -3,13 +3,15 @@ import hashlib
 import json
 from pathlib import Path
 import zipfile
-from evidence import current, build_inputs
+from evidence import current, build_inputs, version
 
 ROOT = Path(__file__).resolve().parents[1]
 DIST = ROOT / "dist"
 
 
 def main():
+    if "-dev" in version():
+        raise RuntimeError("Internal development builds cannot substitute for the complete v0.3.0 delivery; use export_development.py for scoped evidence")
     build = json.loads((DIST / "build-info.json").read_text(encoding="utf-8"))
     package = json.loads((ROOT / "build/package-verification.json").read_text(encoding="utf-8"))
     ui = json.loads((ROOT / "build/ui-qa/results.json").read_text(encoding="utf-8"))

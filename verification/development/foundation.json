@@ -1,0 +1,22 @@
+{
+  "model_inference": false,
+  "scope": "production bundle storage, parameter validation and transfer state on host filesystems/HTTP",
+  "android_device": false,
+  "passed": 85,
+  "input_fingerprint": {
+    "app/src/main/java/com/lma/app/core/ArtifactStore.java": "dddf9ed5eb7351f59247557e2d0121ddc68a79cb14df3d84ae53806f0c98f9f7",
+    "app/src/main/java/com/lma/app/core/BundleStore.java": "aa20b1c098b12be3019529841557b23604584e46fff1ffe5762ddbb6258c71ab",
+    "app/src/main/java/com/lma/app/core/BundleTransfers.java": "cdd820bf19e6ea1c8d201a5aec11701cf2358094f40833b553ead0f29cf202b7",
+    "app/src/main/java/com/lma/app/core/ByteRange.java": "31723bf112e630de6c2a1cd8d525be7bbd4706e151fa5a297a5e641f59b5c752",
+    "app/src/main/java/com/lma/app/core/ChatHistory.java": "3046a52c3f611b83b46cfed94afe0f4b31667f77986b7ca1737169ec8c4ce951",
+    "app/src/main/java/com/lma/app/core/DataFiles.java": "02d3212885376e7073a785801dbb81073b13cc87c5fc0e85ac4373fd346696bc",
+    "app/src/main/java/com/lma/app/core/JobStore.java": "e97ed3f5e4166a951d8122a8a2f13519b6ab3bf086d61e8d504abcf447af7c74",
+    "app/src/main/java/com/lma/app/core/ModelBundle.java": "b72b7a8aa7190c1e6ad19a7f2194121df144868816b5bc5020e5e762339fa2ef",
+    "app/src/main/java/com/lma/app/core/ParameterSchema.java": "d229e0eaf79604e1d13aeb9a588c30b99cd5679a32dde449b1cdb6a45c30d738",
+    "app/src/main/java/com/lma/app/core/Protocol.java": "d49f47884aec0cb03347023119c2808330fa9970689dcd9d33c30ca653d03b85",
+    "catalogue/model-bundles.json": "d44878e1f902a126e9e690b0a6e7054e5ae7b966174130aa49ef1c88ed7ccd68",
+    "tests/FoundationTest.java": "f666f41fb3b3a8788fd745e872f1abe48c0a6f9a95a291fcffbc58fee5b2910c",
+    "tests/host/android/util/AtomicFile.java": "a05b9c6ef4fa0f0f40aaa49b235faccc98d2d7d5aa1ea4bb8d2f535b8bad2796",
+    "tools/test_foundation.py": "d15360353f676b6f1e221c47babe27fb98e1e52a92aca11c4eab2da3fba8d3f9"
+  }
+}

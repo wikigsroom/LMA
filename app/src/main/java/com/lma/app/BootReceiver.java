@@ -9,9 +9,11 @@ public final class BootReceiver extends BroadcastReceiver {
         String action = intent.getAction();
         if (!Intent.ACTION_BOOT_COMPLETED.equals(action) && !Intent.ACTION_MY_PACKAGE_REPLACED.equals(action)) return;
         LmaApp app = (LmaApp) context.getApplicationContext();
-        if (!app.prefs.getBoolean("boot", false) || !app.prefs.getBoolean("desiredRunning", false)) return;
+        if (!app.prefs.getBoolean("boot", false)) return;
+        boolean jobs = app.prefs.getBoolean("desiredJobs", false);
+        if (!jobs && !app.prefs.getBoolean("desiredRunning", false)) return;
         String id = app.prefs.getString("selectedModel", "");
-        if (id.isEmpty() || !app.store.modelFile(id).isFile()) return;
+        if (!jobs && (id.isEmpty() || !app.store.modelFile(id).isFile())) return;
         try { context.startForegroundService(new Intent(context, LmaService.class)); }
         catch (Exception error) { app.log("系统未允许开机恢复，请打开 LMA：" + error.getMessage()); }
     }

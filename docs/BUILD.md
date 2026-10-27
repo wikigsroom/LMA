@@ -12,6 +12,11 @@
 git clone git@github.com:wikigsroom/LMA.git
 cd LMA
 python tools/bootstrap_runtime.py
+python tools/bootstrap_native.py
+python tools/fetch_native.py --transport ssh
+python tools/build_native.py --jobs 4
+python tools/collect_native_notices.py
+# 检查 engine-lock.json 的本机重建差异，再构建 APK
 python tools/build.py --sdk C:/path/to/Android/Sdk
 ```
 
@@ -19,7 +24,7 @@ python tools/build.py --sdk C:/path/to/Android/Sdk
 
 ## 引擎与目录重建
 
-`bootstrap_runtime.py` 下载 ServLlama 1.2.2 的固定 ARM64 发行包，校验 `551e5be8494bd2ae9955992faaaca1a4f5cf29e3a97f90d2e04205eb460fcde6`，提取 14 个 CPU 库到 `app/src/main/jniLibs/arm64-v8a/`，不打包 OpenCL / Hexagon。Git 忽略原生库和缓存；Release 专用源码 ZIP 带有这些已核对的库。下载的是预编译组件，不在本机编译 ARM 引擎。
+`bootstrap_runtime.py` 下载 ServLlama 1.2.2 的固定 ARM64 发行包，校验 `551e5be8494bd2ae9955992faaaca1a4f5cf29e3a97f90d2e04205eb460fcde6`，提取 14 个 CPU 库到 `app/src/main/jniLibs/arm64-v8a/`，不打包 OpenCL / Hexagon。Git 忽略原生库和缓存；Release 专用源码 ZIP 带有这些已核对的库。这 14 个文件为预编译文本组件；新增扩散 worker 则在本项目使用 Windows NDK 编译，详见下一节。
 
 构建先执行 `build_catalogue.py`，要求 14 个内置模型的作者依据、GGUF 固定提交和权重哈希一致。普通重建使用已有证据，不需要重新访问所有模型卡。模型新增或来源变更时重新运行相应审计，并检查人工归属判断；不要只改模型名称。
 
@@ -27,11 +32,19 @@ python tools/build.py --sdk C:/path/to/Android/Sdk
 
 `build.py` 使用 AAPT2 编译 / 链接资源，javac 编译 Java，D8 生成 DEX，加入原生库，zipalign，签名并验证 APK。证据保存输入文件的原始字节 SHA256；`.gitattributes` 禁止自动换行转换，避免 checkout 改变指纹。
 
+## 新增原生引擎与开发构建
+
+`bootstrap_native.py` 在忽略的 `build/toolchain/` 内校验并提取 NDK 30.0.16248370 与 CMake 3.31.6，不改系统 SDK。`fetch_native.py` 获取 engine-lock 中固定的 sd.cpp / ggml；不获取权重。`build_native.py` 使用 Windows NDK，临时 SUBST 盘符仅为绕开非 ASCII 路径的 CMake 崩溃，结束必移除，不是虚拟机。`collect_native_notices.py` 收集对应许可并更新原生文件锁；检查锁文件差异后提交，不把任意二进制直接打包。
+
+APK 构建核对原生回执、源码指纹、固定文件集合、SHA256 与许可原始字节，生成 engine-builds.json。上游内嵌词表已替换为用户选择的外部组件，不进入 APK。Git 不携带原生二进制，内部签名包输出为 `dist/LMA-0.3.0-dev-arm64-v8a.apk`；它不是完整 Release。
+
+开发复查使用 `test_foundation.py`、旧后端 / HF / UI 检查、`verify_package.py`、`test_android_lint.py`、`capture_foundation.cjs`、`export_development.py` 和 `check_repository.py --development`；详细边界见 [DEVELOPMENT.md](DEVELOPMENT.md)。完整发布流程仍必须完成全部模型与物理手机验收，`-dev` 被发布工具拒绝。
+
 ## 签名和产物
 
 首次构建在 `signing/` 创建 RSA3072 本地身份及随机口令。请安全保留以覆盖升级；不要提交、分享或上传该目录。个人 clone 生成的密钥不能覆盖官方 Release 安装，除非使用同一签名；卸载旧包会丢失模型和聊天。
 
-- `dist/LMA-0.2.0-arm64-v8a.apk`：签名安装包。
+- `dist/LMA-<version>-arm64-v8a.apk`：对应当前 Manifest 的签名安装包；当前内部为 0.3.0-dev，公开版仍为 0.2.0。
 - `dist/*.sha256`：实际附件哈希。
 - `dist/build-info.json`：包信息和输入指纹。
 - `build/`：编译、测试、Lint、媒体临时数据；不提交。

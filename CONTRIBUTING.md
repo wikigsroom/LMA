@@ -33,3 +33,5 @@ APK 代码或资源变化应提升 versionName / versionCode，并同步 Manifes
 修改参数配置时验证模型之间的独立性、GGUF 上限与未知值兜底、可编辑预设 / 超限回填、升级迁移，以及引擎和应用内请求对所选配置的实际使用。Changes to model settings must verify independence, metadata/fallback bounds, editable presets/clamping, migration, and selected-profile engine/chat requests.
 
 问题报告请提供手机 / Android、LMA 版本、模型 ID/哈希、参数、步骤和已去除敏感信息的日志。Reports should contain device/OS, app/model versions, parameters, reproduction, and sanitized logs.
+
+内部 0.3.0-dev 代码更新使用 `python tools/export_development.py` 后运行 `python tools/check_repository.py --development`；该检查仅核对限定范围的开发证据，不能通过它宣告完整 v0.3.0 或发布 APK。保留公开 v0.2.0 历史证据 / 附件；新的界面夹具媒体放在 `docs/media/development/`。For internal development, export current scoped checks and use the development repository audit; it cannot establish complete Release acceptance. Preserve historical release artifacts and label fixture media.

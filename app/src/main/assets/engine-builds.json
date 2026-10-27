@@ -1,0 +1,44 @@
+{
+  "schema": "lma.engine-builds/1",
+  "engines": [
+    {
+      "schema": "lma.native-build/1",
+      "engine": "sd_cpp",
+      "source_revision": "be486498eadc29dc3cd234d944c2180ed42b1415",
+      "ggml_revision": "a5915eb0e47adef21c3f25b889a008925ea838c2",
+      "abi": "arm64-v8a",
+      "min_sdk": 28,
+      "ndk": "30.0.16248370",
+      "backend": "cpu",
+      "file": "liblma-sd.so",
+      "bytes": 8824200,
+      "sha256": "2a84b898dfd61596c73096ec37c83c9a28127070c395ec4dad4779a242733e9c",
+      "elf_load_alignment": [
+        16384,
+        16384,
+        16384
+      ],
+      "vocabularies": "external_user_selected_components",
+      "physical_device_tests": 0,
+      "model_inference_tested": false,
+      "virtualization_used": false,
+      "deviceValidated": false,
+      "status": "compiled_not_device_tested",
+      "notices": [
+        "sd-LICENSE.txt",
+        "sd-ggml-LICENSE.txt",
+        "sd-oniguruma-COPYING.txt",
+        "sd-utf8proc-LICENSE.txt",
+        "sd-darts-clone-LICENSE.txt",
+        "sd-stb_image.h-NOTICE.txt",
+        "sd-stb_image_write.h-NOTICE.txt",
+        "sd-stb_image_resize.h-NOTICE.txt",
+        "sd-miniz.h-NOTICE.txt",
+        "sd-zip.c-NOTICE.txt",
+        "sd-zip.h-NOTICE.txt",
+        "sd-nlohmann-json-LICENSE.txt",
+        "sd-NDK-LLVM-NOTICE.txt"
+      ]
+    }
+  ]
+}

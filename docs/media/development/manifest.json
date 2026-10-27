@@ -1,0 +1,125 @@
+{
+  "version": "0.3.0-dev",
+  "kind": "development UI with explicit simulated native bridge",
+  "android_device": false,
+  "model_inference": false,
+  "weights_downloaded": false,
+  "browser_closed": true,
+  "browser_errors": [],
+  "screenshots": [
+    {
+      "file": "01-recommended.png",
+      "caption": "Preserved recommendations and independent output filters / 原推荐与功能筛选"
+    },
+    {
+      "file": "02-local-tags.png",
+      "caption": "Flat Local model list with output, engine and installation tags / 平级本地模型与独立标签"
+    },
+    {
+      "file": "03-bundle-plan.png",
+      "caption": "Explicit component plan before any transfer / 开始传输前展示完整组件"
+    },
+    {
+      "file": "04-model-settings.png",
+      "caption": "Per-recipe editable parameters and compiled shape selection / 模型独立参数与联合尺寸"
+    },
+    {
+      "file": "05-task-form.png",
+      "caption": "User-selected local task and explicit unmeasured-device choice / 用户选择任务与未测配方确认"
+    },
+    {
+      "file": "06-queue-results.png",
+      "caption": "Simulated queue progress and local result-library entry / 明确模拟的队列进度与结果库"
+    },
+    {
+      "file": "07-cancelled.png",
+      "caption": "Cancellation preserves a retriable record; no generated artifact claimed / 取消后保留任务，不伪造生成结果"
+    }
+  ],
+  "files": [
+    {
+      "file": "01-recommended.png",
+      "bytes": 49100,
+      "sha256": "4dd93103ca960d895e1e7f142b12bcc92a3080dd4492e3a9f8b56b95dba4e11a"
+    },
+    {
+      "file": "02-local-tags.png",
+      "bytes": 46085,
+      "sha256": "2dc1bcd961a3f665a15b67a1be8f086ea90503b0f67e34c3e315f331f69352db"
+    },
+    {
+      "file": "03-bundle-plan.png",
+      "bytes": 48146,
+      "sha256": "8c0b487d5672ceb40339020de0ce639c53ff2eda060b5799dd811af39da041f0"
+    },
+    {
+      "file": "04-model-settings.png",
+      "bytes": 49671,
+      "sha256": "702ca7635eca8b9d4bd8c3d7947f7f59973ee1b03e844ce6f4efb1eb5783a100"
+    },
+    {
+      "file": "05-task-form.png",
+      "bytes": 36864,
+      "sha256": "f5d2dfab8dab0e81a104eef3e1ccd78757080167fbc976ac2f2a46f0f484dad0"
+    },
+    {
+      "file": "06-queue-results.png",
+      "bytes": 44593,
+      "sha256": "5d017dd266f64431af7a12817ef1c4dddba6ee6277aadc4dc1e36ff77f066819"
+    },
+    {
+      "file": "07-cancelled.png",
+      "bytes": 44785,
+      "sha256": "dae3a73dc8f697f8bf2dd8cabdf5f685bb111c7c77c0016191ef2776d6536681"
+    },
+    {
+      "file": "foundation-ui.gif",
+      "bytes": 983738,
+      "sha256": "337f485c39c833aa50b02d90bd564fcff9e3af778a3c03c3b002b04e1ee184ac"
+    },
+    {
+      "file": "foundation-ui.mp4",
+      "bytes": 345193,
+      "sha256": "2401231e4d11a4dcb964db80981497e5bb38512e14866d9f6bd1988dd46ea33c"
+    }
+  ],
+  "input_fingerprint": {
+    "app/src/main/assets/app.css": "f2cb7b5ee9de8f3afac793e694dcf9fde0a855c0d4c7053ff986cc2a6d2bd3b1",
+    "app/src/main/assets/app.js": "f8b7275edc6769fed37a0743354e63353c7c6aba19f3e0705c1dfcefe5715790",
+    "app/src/main/assets/engine-builds.json": "2a096144a28e26ef9f9efa23ca8355f1844dc18741197649f74e3cef97809dae",
+    "app/src/main/assets/foundation.css": "a2e09ccedc4f337d5d7e98775b0c7e90369d3fb0242e099148870b38c87605b1",
+    "app/src/main/assets/foundation.js": "09d7eb78b5bfdbbd12858e23210fdff5b1993ad3ee279dfed78e26a9ccb15f31",
+    "app/src/main/assets/index.html": "07ba7c653c26544ecb28ecb8755da8881568f44d859f130172d63b207c459f1b",
+    "app/src/main/assets/license.js": "bc351193fef4b8667e5a65aa0fbb225f814fcbe59268e69b9a69f22ad137f839",
+    "app/src/main/assets/licenses/LLAMA_CPP_LICENSE": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
+    "app/src/main/assets/licenses/LMA_LICENSE": "6ae3f5efa412d91cbf66e44f743e5ce41a8044309d05d893365206ab9bc35fc3",
+    "app/src/main/assets/licenses/cpp-httplib-LICENSE.txt": "bb546eae5924d8ee842e0e567e6d533c5824bdebccf605f99a5b3429034e6697",
+    "app/src/main/assets/licenses/libcxx-LICENSE.txt": "a7de191338d328257ecec5ba1ea971ebd67633d0b4fce7d6272a39749547ec6b",
+    "app/src/main/assets/licenses/libcxxabi-LICENSE.txt": "da1b3a1b8e0a947d934acfbe4e356b864199f65923cc2f89d8330b8b678e3cdd",
+    "app/src/main/assets/licenses/libunwind-LICENSE.txt": "6ac83ceee5f3a784aed98f250bc7acf68dd7112528512c1a6d40dcb5a29154bf",
+    "app/src/main/assets/licenses/miniaudio-LICENSE.txt": "6c36f269eb9346c1bc9d857250bd6a1132a5e65e700bea99ea1836c1658cf13b",
+    "app/src/main/assets/licenses/nlohmann-json-LICENSE.txt": "b9715282b2f1db1359a919bb3a542dd4362fd9e38ae72d421367eb11abe62eec",
+    "app/src/main/assets/licenses/rotate-bits-LICENSE.txt": "6d1a68e8ae5085d15a5c4f8dc1363b7bf256756b3a49cbaf29fe7f7a49eae4e3",
+    "app/src/main/assets/licenses/sd-LICENSE.txt": "b53fa08f515cb5a6fff7b9fd8fcd0961a4b80df29d74372d25e1f9171aa042ee",
+    "app/src/main/assets/licenses/sd-NDK-LLVM-NOTICE.txt": "f96f763beb66a7ba7a667647fc64c0226ace875e590c831fdd9579ec1c1d91e1",
+    "app/src/main/assets/licenses/sd-darts-clone-LICENSE.txt": "155f59997298ee336602c49f9c1110f268ac394ca2197eb02647a3555935ad52",
+    "app/src/main/assets/licenses/sd-ggml-LICENSE.txt": "94f29bbed6a22c35b992c5c6ebf0e7c92f13b836b90f36f461c9cf2f0f1d010d",
+    "app/src/main/assets/licenses/sd-miniz.h-NOTICE.txt": "8e0f8a8a5a7ddfa9f3f657abf244896da328790b9a90b3f69ef81fcc33a2647b",
+    "app/src/main/assets/licenses/sd-nlohmann-json-LICENSE.txt": "0e592e358cf7722906f417be85bc514f15bf6efd28cea98cb84e56ef7fddfc3e",
+    "app/src/main/assets/licenses/sd-oniguruma-COPYING.txt": "70ba5469ea0bab6e18a32d7009068f996503168d27be57747e08da34337ff26f",
+    "app/src/main/assets/licenses/sd-stb_image.h-NOTICE.txt": "7587efcca32db8f95bf5860dea6dfa4be410ee723e1964db3689c8ddf2a2e4a9",
+    "app/src/main/assets/licenses/sd-stb_image_resize.h-NOTICE.txt": "4b1c06f001fd35b1b01ff6ed182f705785a4f5edf20e5f84ae44216bf7a91d7b",
+    "app/src/main/assets/licenses/sd-stb_image_write.h-NOTICE.txt": "7587efcca32db8f95bf5860dea6dfa4be410ee723e1964db3689c8ddf2a2e4a9",
+    "app/src/main/assets/licenses/sd-utf8proc-LICENSE.txt": "3b510150d34f248a221bb88e1d811238d6c6c18b51231822c42974c39bb07256",
+    "app/src/main/assets/licenses/sd-zip.c-NOTICE.txt": "c5e5ac65e71c4cd155a5eeb43898697868297c9fe34ccf5249ac326c0b735120",
+    "app/src/main/assets/licenses/sd-zip.h-NOTICE.txt": "c5e5ac65e71c4cd155a5eeb43898697868297c9fe34ccf5249ac326c0b735120",
+    "app/src/main/assets/licenses/sha256-LICENSE.txt": "24836bd0f33996623060eabeb765fb0b091bcbca47e6e6e9493385df8ce9e30a",
+    "app/src/main/assets/licenses/stb-image-LICENSE.txt": "79058ef78fa76316a78499d99fb301e5565cfb91f099ca6853e413060b48c790",
+    "app/src/main/assets/licenses/subprocess-LICENSE.txt": "89860eba470df892c1e7d713b357a648626d0717c150f5f72cd12f29ecb1d8a0",
+    "app/src/main/assets/licenses/xxhash-LICENSE.txt": "a2973411d278045bde3c7161b911e0680d53e2d73d6457c77068d2e55d816d67",
+    "app/src/main/assets/model-bundles.json": "d44878e1f902a126e9e690b0a6e7054e5ae7b966174130aa49ef1c88ed7ccd68",
+    "app/src/main/assets/models.json": "c3e884b4e5fb06f20c036deebc78e6f953ac420e76fca72bab5a25fd59927156",
+    "tests/foundation-ui.cjs": "fe513e289efc4f9aa874f7cb561ba27445ef74f9f9d5b80387b96280298ed971",
+    "tools/capture_foundation.cjs": "04942b718dd72d8d6d34ae550b24519805558f3be4307260a028826e6159b770"
+  }
+}

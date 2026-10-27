@@ -1,0 +1,58 @@
+# v0.3.0 开发状态与复查
+
+[English](DEVELOPMENT.en.md) · [完整范围](MULTIMODAL_RELEASE_PLAN.md) · [构建](BUILD.md) · [中文首页](../README.md)
+
+当前公开发行仍为 **v0.2.0**。本分支为 **0.3.0-dev / versionCode 5**，不是完整 v0.3.0，也没有创建对应 Release。下一版本仍一次交付 F-01–F-12、01–14 / 16 / 17 及冻结子目标；以下是同一版本内的实施记录，不是拆版安排。
+
+## 已写入开发代码的部分
+
+| 部分 | 当前行为 | 证据边界 |
+| --- | --- | --- |
+| 模型包 / 组件 | `lma.model-bundle/1`，固定 revision / 大小 / SHA256；共享内容对象、原子安装、暂停 / 续传、显式文件夹导入、删除引用保护 | 字节夹具与真实本机 HTTP 传输测试；不是模型推理 |
+| 用户控制 | 声明 / 浏览 / 计算下载计划不创建传输；下载须单独确认；缺组件生成失败；重启中的组件传输暂停，用户自行恢复 | 不把所有目录条目安装到手机；没有隐式模型下载 |
+| 参数 | 模型包独立保存；可编辑预设、数值回填、联合尺寸校验；提交时固定参数快照 | 约束来自配方，未知上限不冒充已验证；设备预算独立 |
+| 界面 | 同一列表显示旧文本和新包；生文 / 生图 / 生视频 / 生音频筛选、模型包详情、任务表单、任务页与结果库；推荐仍为 m08 → m06 → m01 | “全部”提供一套固定 SD1.5 Q4_0 候选包；自定义清单从“添加模型”导入；HF 多组件配方选择器仍待完成 |
+| 任务 / 结果 | 一次一个重任务；提交 / 取消 / 重试、持久事件、私有产物、SHA256、来源参数、系统文件导出；图片 / WAV / MP4 检查与分段预览 | 持久层当前为有界 AtomicFile JSON，既有聊天 SQLite 保留；任务层尚未完整统一旧文本路径 |
+| Android 执行 | 签名 APK 内的 sd.cpp ARM64 CPU worker；数据专用包不能提供可执行代码；词表由用户组件提供；子进程跟随宿主结束 | 已编译 / 已打包，**未执行手机推理**；列出架构并不证明目标配方可用 |
+| 视频路径 | 原生生成帧交给 Android MediaCodec / MediaMuxer 编码；不以重复静态图冒充运动输出 | 编码器及生成帧仍须真机验证；没有任何 LMA 视频输出证据 |
+| 后台 | 前台服务持有组件传输和任务，取消终止相应进程；进程死亡后标记中断，不虚构 checkpoint；两小时单任务保护时限 | 未测锁屏 / 内存回收 / 厂商省电 / 发热 / 重启表现 |
+
+APK 仅含通用应用代码、引擎、目录 / 标签 / 配方元数据及许可。**不含权重、模型专用词表 / tokenizer / 音色 / 语言包。** 原生 worker 移除了上游内嵌词表，实现见 [vocab_external.cpp](../native/vocab_external.cpp)。用户可零模型启动；下载所选包前展示完整必需组件、总量和复用量。App 升级保留原模型与独立设置，不静默替换权重。
+
+自定义清单不会获得“设备已验证”或已核对的无审查标签。未实测配方必须由用户明确选择尝试，仍可能因资源、算子或组件不匹配而在本机失败。当前媒体任务要求先停止旧文本服务，避免两个大型引擎争用；自动调度与统一文本适配仍是本版剩余工作。
+
+## 已获得的开发证据
+
+公开记录在 [verification/development](../verification/development/status.json)，与根目录的 v0.2.0 历史验证分开。它们**不满足完整版本验收**。
+
+| 检查 | 当前结果 | 能证明什么 |
+| --- | --- | --- |
+| 基座核心 | 85 项 | 组件完整性、真实 HTTP 续传、共享引用、独立设置、队列代次 / 取消 / 重启、产物与 Range 读取 |
+| 旧文本后端 | 85 项 | 显式桌面 Android 适配器下的既有下载 / 引擎进程 / HTTP SSE / 参数回归 |
+| HF 逻辑 | 45 项 | HF 搜索、固定提交、分页、选择与令牌边界；不是所有 HF 模型运行覆盖 |
+| 界面 | 81 项 | 实际 HTML / CSS / JS 配合明确的模拟原生状态；推荐、标签、下载确认、参数、队列与窄屏回归 |
+| 原生包 | 15 个 ARM64 文件 | 固定哈希、依赖闭合、Android API 28、16 KiB ELF / APK 对齐、原签名、资产白名单 |
+| 手机推理 / 耐久 | 0 | 尚无证明；没有真实图片、音频、运动视频或锁屏持续运行结论 |
+
+sd.cpp 来源固定为 `be486498eadc29dc3cd234d944c2180ed42b1415`，ggml 为 `a5915eb0e47adef21c3f25b889a008925ea838c2`，使用本项目内的 NDK 30.0.16248370 原生 Windows 编译。独立新增 worker 的 SHA256 为 `2a84b898dfd61596c73096ec37c83c9a28127070c395ec4dad4779a242733e9c`。许可与文件哈希见 [engine-lock.json](../third_party/engine-lock.json)。新引擎仅注册真实已编译模块，不登记空 provider 充数。
+
+SD1.5 候选包使用 [Second State 的固定 GGUF 权重](https://huggingface.co/second-state/stable-diffusion-v1-5-GGUF/tree/031b5f5df991f511b3f5fa8fed6d99048ababb69) 和[原模型的 CLIP merges](https://huggingface.co/stable-diffusion-v1-5/stable-diffusion-v1-5/blob/451f4fe16113bff5a5d2269ed5ad43b0592e9a14/tokenizer/merges.txt)，共 1,567,293,035 字节，按 CreativeML Open RAIL-M 来源许可使用。仅核对公开元数据、权重发布者哈希及小型词表，不下载权重；词表与固定引擎原数据一致。配方元数据可以随 APK 更新，模型资产仍需用户下载，未选择时不会出现在已下载“本地”。该候选没有获得运行支持验收；见 [bundle-evidence.json](../catalogue/bundle-evidence.json)。
+
+## 尚未完成的同版工作
+
+1. 旧文本 / HF / 导入记录与通用模型包、能力路由、调度层的完整统一；HF 多组件配方解析和模型更新流程。
+2. 01–14 / 16 / 17 的全部固定组件包、实际引擎 / 管线、各子目标、SD1.5 / SDXL LoRA 配对；尤其 MNN、TTS / 音频、完整 MOSS / SoulX 和旧 LTX 的 Android 移植。当前 sd.cpp 编译不等于这些项目已经支持。
+3. 统一异步模型 API、鉴权任务事件 / 产物接口与既有文本 API 的兼容接入。页面任务当前通过应用原生桥调用；尚不能用 `/v1/jobs`。
+4. 实测资源档案、温控、输入产物引用、阶段恢复 / checkpoint 能力、跨模态连续加载 / 卸载与升级迁移的完整验证。
+5. 所有冻结子目标的物理 Android 新输入离线输出、质量、取消、清理及 A7 锁屏 15 分钟 / 一小时交替服务等证据；现无可用真机。
+6. 全部 A1–A11 / R-01–R-05 验收后的完整源码 / APK / 说明 / 实际功能媒体和 Release。开发包不能替代完整交付；发布脚本拒绝 `-dev`。
+
+## 开发界面媒体
+
+画面顶部固定标记“开发界面演示 / UI FIXTURE · 非真机 · 非模型输出”。下载、安装和采样状态是测试数据，不下载权重，也没有生成结果。
+
+<img src="media/development/02-local-tags.png" width="280" alt="平级本地模型与标签，界面演示" /> <img src="media/development/06-queue-results.png" width="280" alt="队列与结果库，模拟状态" />
+
+[视频](media/development/foundation-ui.mp4) · [GIF](media/development/foundation-ui.gif) · [媒体哈希与来源](media/development/manifest.json)
+
+浏览器、页面和录制进程在 `finally` 中关闭。未调用 Docker、WSL、虚拟机或 Android 模拟器。

@@ -61,6 +61,8 @@ def elf_info(data):
 def main():
     (ROOT / "build/package-verification.json").unlink(missing_ok=True)
     lock = json.loads((ROOT / "third_party/runtime-lock.json").read_text(encoding="utf-8"))
+    engines = json.loads((ROOT / "third_party/engine-lock.json").read_text(encoding="utf-8"))["engines"]
+    lock["files"].extend({"name": engine["file"], "sha256": engine["sha256"]} for engine in engines)
     names = {item["name"] for item in lock["files"]}
     assert {p.name for p in LIBS.glob("*.so")} == names, "Unexpected or missing native payload"
     assert "libggml-cpu-android_armv8.0_1.so" in names, "Baseline ARMv8 CPU kernel missing"
@@ -73,7 +75,8 @@ def main():
             assert name in members, "Missing APK entry: " + name
         assert archive.read("classes.dex").startswith(b"dex\n"), "DEX header missing"
         source = ROOT / "app/src/main"
-        for name in ("index.html", "app.css", "app.js", "license.js", "models.json"):
+        ui_assets = ("index.html", "app.css", "app.js", "foundation.css", "foundation.js", "license.js", "models.json", "model-bundles.json", "engine-builds.json")
+        for name in ui_assets:
             assert archive.read("assets/" + name) == (source / "assets" / name).read_bytes(), "Stale packaged UI: " + name
         for name in ("license.js", "app.js"):
             assert name in archive.read("assets/index.html").decode("utf-8"), "Missing UI script reference"
@@ -110,6 +113,15 @@ def main():
             assert model["uncensored"]["evidenceUrl"] == declaration["author_card_url"]
         for name in members:
             assert not name.startswith("signing/") and not name.endswith((".p12", ".part", ".gguf")), "Private key or model weight accidentally packaged"
+            if name.startswith("assets/"):
+                assert name[7:] in ui_assets or name.startswith("assets/licenses/"), "Unreviewed model-specific or other asset in APK: " + name
+        engine_manifest = json.loads(archive.read("assets/engine-builds.json"))
+        assert len(engine_manifest["engines"]) == len(engines)
+        for engine in engines:
+            included = next(e for e in engine_manifest["engines"] if e["engine"] == engine["engine"])
+            assert included["sha256"] == engine["sha256"] and not included["model_inference_tested"]
+            for name, digest in engine["notices"].items():
+                assert hashlib.sha256(archive.read("assets/licenses/" + name)).hexdigest() == digest
     metadata = json.loads((ROOT / "dist/build-info.json").read_text(encoding="utf-8"))
     assert metadata["sha256"] == hashlib.sha256(APK.read_bytes()).hexdigest()
     assert metadata["input_fingerprint"] == build_inputs(), "APK build inputs have changed since compilation"

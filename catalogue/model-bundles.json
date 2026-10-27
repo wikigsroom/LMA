@@ -1,0 +1,173 @@
+{
+  "schema": "lma.bundle-catalogue/1",
+  "bundles": [
+    {
+      "schema": "lma.model-bundle/1",
+      "id": "sd15_ss_q4_0_r031b5f5",
+      "modelId": "sd15_ss_q4_0",
+      "recipeId": "sd15_cpu_v1",
+      "name": "Stable Diffusion 1.5 · Q4_0",
+      "description": "SD 1.5 文生图候选配方。CPU 引擎已编译，尚无 LMA 真机输出与内存实测。",
+      "catalogue": true,
+      "engine": "sd_cpp",
+      "architecture": "sd15",
+      "pipeline": "sd15",
+      "backend": "cpu",
+      "tasks": [
+        "image"
+      ],
+      "capabilities": [
+        "text_to_image"
+      ],
+      "license": {
+        "name": "CreativeML Open RAIL-M",
+        "url": "https://huggingface.co/stable-diffusion-v1-5/stable-diffusion-v1-5/blob/451f4fe16113bff5a5d2269ed5ad43b0592e9a14/LICENSE"
+      },
+      "evidence": {
+        "status": "pinned_assets_not_device_tested",
+        "physicalDeviceTests": 0,
+        "sourceUrl": "https://huggingface.co/second-state/stable-diffusion-v1-5-GGUF/blob/031b5f5df991f511b3f5fa8fed6d99048ababb69/README.md",
+        "componentCoverage": "all-in-one GGUF checkpoint contains model/text encoder/VAE; CLIP merges are separate user data",
+        "modelSpecificTokenizerMatchesPinnedEngine": true
+      },
+      "parameters": {
+        "version": 1,
+        "fields": {
+          "width": {
+            "type": "integer",
+            "label": "宽度",
+            "default": 512,
+            "minimum": 64,
+            "maximum": 2048,
+            "presets": [
+              256,
+              384,
+              512,
+              768,
+              1024
+            ],
+            "multipleOf": 64,
+            "limitSource": "application_guard"
+          },
+          "height": {
+            "type": "integer",
+            "label": "高度",
+            "default": 512,
+            "minimum": 64,
+            "maximum": 2048,
+            "presets": [
+              256,
+              384,
+              512,
+              768,
+              1024
+            ],
+            "multipleOf": 64,
+            "limitSource": "application_guard"
+          },
+          "steps": {
+            "type": "integer",
+            "label": "采样步数",
+            "default": 20,
+            "minimum": 1,
+            "maximum": 200,
+            "presets": [
+              4,
+              8,
+              12,
+              20,
+              30
+            ],
+            "multipleOf": 1,
+            "limitSource": "application_guard"
+          },
+          "threads": {
+            "type": "integer",
+            "label": "CPU 线程",
+            "default": 4,
+            "minimum": 1,
+            "maximum": 64,
+            "presets": [
+              1,
+              2,
+              4,
+              6,
+              8
+            ],
+            "multipleOf": 1,
+            "limitSource": "application_guard"
+          },
+          "seed": {
+            "type": "integer",
+            "label": "随机种子（-1 为随机）",
+            "default": -1,
+            "minimum": -1,
+            "maximum": 2147483647,
+            "presets": [
+              -1,
+              0,
+              42
+            ],
+            "multipleOf": 1,
+            "limitSource": "application_guard"
+          },
+          "cfg": {
+            "type": "number",
+            "label": "提示词引导",
+            "default": 7,
+            "minimum": 0,
+            "maximum": 30,
+            "presets": [
+              1,
+              3,
+              5,
+              7,
+              9
+            ],
+            "limitSource": "application_guard"
+          },
+          "sampler": {
+            "type": "enum",
+            "label": "采样器",
+            "default": "euler",
+            "values": [
+              "euler",
+              "euler_a"
+            ]
+          },
+          "vaeTiling": {
+            "type": "boolean",
+            "label": "分块解码 VAE",
+            "default": true
+          }
+        }
+      },
+      "resources": {
+        "estimatedPeakRamBytes": 0,
+        "estimateKnown": false
+      },
+      "components": [
+        {
+          "role": "model",
+          "repository": "second-state/stable-diffusion-v1-5-GGUF",
+          "revision": "031b5f5df991f511b3f5fa8fed6d99048ababb69",
+          "path": "stable-diffusion-v1-5-pruned-emaonly-Q4_0.gguf",
+          "bytes": 1566768416,
+          "sha256": "b8944e9fe0b69b36ae1b5bb0185b3a7b8ef14347fe0fa9af6c64c4829022261f",
+          "format": "gguf",
+          "url": "https://huggingface.co/second-state/stable-diffusion-v1-5-GGUF/resolve/031b5f5df991f511b3f5fa8fed6d99048ababb69/stable-diffusion-v1-5-pruned-emaonly-Q4_0.gguf"
+        },
+        {
+          "role": "clip_merges",
+          "repository": "stable-diffusion-v1-5/stable-diffusion-v1-5",
+          "revision": "451f4fe16113bff5a5d2269ed5ad43b0592e9a14",
+          "path": "tokenizer/merges.txt",
+          "bytes": 524619,
+          "sha256": "9fd691f7c8039210e0fced15865466c65820d09b63988b0174bfe25de299051a",
+          "format": "text",
+          "url": "https://huggingface.co/stable-diffusion-v1-5/stable-diffusion-v1-5/resolve/451f4fe16113bff5a5d2269ed5ad43b0592e9a14/tokenizer/merges.txt"
+        }
+      ]
+    }
+  ]
+}

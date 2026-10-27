@@ -4,7 +4,7 @@
 
 Date: **2026-10-27 (Asia/Taipei)**. Decision: **this is buildable, and an extensible local multi-engine foundation should be the main product direction.** New models should reuse downloading, settings, jobs and artifact management instead of becoming separate application features. Every inference stage remains on the same Android phone without ROOT or off-device inference/fallbacks.
 
-This evaluates current source and upstream native/Android engines. **The foundation is not implemented.** Current APK 0.2.0 executes single-file text GGUF only. No new weights were downloaded, engines built, phone generation run or endurance measured. Z20 is a constrained device to accommodate, not the upper limit of the product.
+This evaluates source and upstream Android/native engines. **The complete foundation is in development and has not passed acceptance.** The public APK remains 0.2.0; internal 0.3.0-dev adds bundles, settings, persistent jobs/artifacts, UI and an ARM64 CPU diffusion worker. See [implemented progress and remaining work](DEVELOPMENT.en.md). No LMA phone-generation or endurance evidence exists. Z20 is a constrained target, not the product ceiling.
 
 The [complete update requirements](MULTIMODAL_RELEASE_PLAN.en.md) govern one v0.3.0 delivery of all core capabilities and 01–14/16/17/frozen subtargets, equal peer models with output/dependency tags, task forms/queue/artifacts, without a ComfyUI canvas, user nodes, plugin ecosystem or graph import. Internal engine modules are application code.
 

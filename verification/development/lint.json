@@ -1,0 +1,254 @@
+{
+  "tool": "lint 8.9.0 [13114758] ",
+  "default_checks": true,
+  "offline": true,
+  "java_source_files": 31,
+  "resource_files": 3,
+  "min_sdk": 28,
+  "compile_sdk": 35,
+  "errors": 0,
+  "warnings": [
+    {
+      "id": "OldTargetApi",
+      "severity": "Warning",
+      "message": "Not targeting the latest versions of Android; compatibility modes apply. Consider testing and updating this version. Consult the `android.os.Build.VERSION_CODES` javadoc for details.",
+      "location": {
+        "file": "src\\main\\AndroidManifest.xml",
+        "line": "3",
+        "column": "42"
+      }
+    },
+    {
+      "id": "BatteryLife",
+      "severity": "Warning",
+      "message": "Use of `REQUEST_IGNORE_BATTERY_OPTIMIZATIONS` violates the Play Store Content Policy regarding acceptable use cases, as described in https://developer.android.com/training/monitoring-device-state/doze-standby.html",
+      "location": {
+        "file": "src\\main\\java\\com\\lma\\app\\MainActivity.java",
+        "line": "183",
+        "column": "95"
+      }
+    },
+    {
+      "id": "UseRequiresApi",
+      "severity": "Warning",
+      "message": "Use `@RequiresApi(33) instead of `@TargetApi` to propagate the requirement to users of `Api33Back`",
+      "location": {
+        "file": "src\\main\\java\\com\\lma\\app\\MainActivity.java",
+        "line": "124",
+        "column": "5"
+      }
+    },
+    {
+      "id": "SetJavaScriptEnabled",
+      "severity": "Warning",
+      "message": "Using `setJavaScriptEnabled` can introduce XSS vulnerabilities into your application, review carefully",
+      "location": {
+        "file": "src\\main\\java\\com\\lma\\app\\MainActivity.java",
+        "line": "56",
+        "column": "9"
+      }
+    },
+    {
+      "id": "DataExtractionRules",
+      "severity": "Warning",
+      "message": "The attribute `android:allowBackup` is deprecated from Android 12 and higher and may be removed in future versions. Consider adding the attribute `android:dataExtractionRules` specifying an `@xml` resource which configures cloud backups and device transfers on Android 12 and higher.",
+      "location": {
+        "file": "src\\main\\AndroidManifest.xml",
+        "line": "16",
+        "column": "30"
+      }
+    },
+    {
+      "id": "WakelockTimeout",
+      "severity": "Warning",
+      "message": "Provide a timeout when requesting a wakelock with `PowerManager.Wakelock.acquire(long timeout)`. This will ensure the OS will cleanup any wakelocks that last longer than you intend, and will save your user's battery.",
+      "location": {
+        "file": "src\\main\\java\\com\\lma\\app\\LmaService.java",
+        "line": "47",
+        "column": "125"
+      }
+    },
+    {
+      "id": "Recycle",
+      "severity": "Warning",
+      "message": "This `InputStream` should be freed up after use with `#close()`",
+      "location": {
+        "file": "src\\main\\java\\com\\lma\\app\\Downloads.java",
+        "line": "97",
+        "column": "50"
+      }
+    },
+    {
+      "id": "UsableSpace",
+      "severity": "Warning",
+      "message": "Consider also using `StorageManager#getAllocatableBytes` and `allocateBytes` which will consider clearable cached data",
+      "location": {
+        "file": "src\\main\\java\\com\\lma\\app\\core\\BundleStore.java",
+        "line": "58",
+        "column": "45"
+      }
+    },
+    {
+      "id": "UsableSpace",
+      "severity": "Warning",
+      "message": "Consider also using `StorageManager#getAllocatableBytes` and `allocateBytes` which will consider clearable cached data",
+      "location": {
+        "file": "src\\main\\java\\com\\lma\\app\\core\\BundleTransfers.java",
+        "line": "117",
+        "column": "45"
+      }
+    },
+    {
+      "id": "UsableSpace",
+      "severity": "Warning",
+      "message": "Consider also using `StorageManager#getAllocatableBytes` and `allocateBytes` which will consider clearable cached data",
+      "location": {
+        "file": "src\\main\\java\\com\\lma\\app\\LocalJobs.java",
+        "line": "50",
+        "column": "31"
+      }
+    }
+  ],
+  "issues": [
+    {
+      "id": "OldTargetApi",
+      "severity": "Warning",
+      "message": "Not targeting the latest versions of Android; compatibility modes apply. Consider testing and updating this version. Consult the `android.os.Build.VERSION_CODES` javadoc for details.",
+      "location": {
+        "file": "src\\main\\AndroidManifest.xml",
+        "line": "3",
+        "column": "42"
+      }
+    },
+    {
+      "id": "BatteryLife",
+      "severity": "Warning",
+      "message": "Use of `REQUEST_IGNORE_BATTERY_OPTIMIZATIONS` violates the Play Store Content Policy regarding acceptable use cases, as described in https://developer.android.com/training/monitoring-device-state/doze-standby.html",
+      "location": {
+        "file": "src\\main\\java\\com\\lma\\app\\MainActivity.java",
+        "line": "183",
+        "column": "95"
+      }
+    },
+    {
+      "id": "UseRequiresApi",
+      "severity": "Warning",
+      "message": "Use `@RequiresApi(33) instead of `@TargetApi` to propagate the requirement to users of `Api33Back`",
+      "location": {
+        "file": "src\\main\\java\\com\\lma\\app\\MainActivity.java",
+        "line": "124",
+        "column": "5"
+      }
+    },
+    {
+      "id": "SetJavaScriptEnabled",
+      "severity": "Warning",
+      "message": "Using `setJavaScriptEnabled` can introduce XSS vulnerabilities into your application, review carefully",
+      "location": {
+        "file": "src\\main\\java\\com\\lma\\app\\MainActivity.java",
+        "line": "56",
+        "column": "9"
+      }
+    },
+    {
+      "id": "DataExtractionRules",
+      "severity": "Warning",
+      "message": "The attribute `android:allowBackup` is deprecated from Android 12 and higher and may be removed in future versions. Consider adding the attribute `android:dataExtractionRules` specifying an `@xml` resource which configures cloud backups and device transfers on Android 12 and higher.",
+      "location": {
+        "file": "src\\main\\AndroidManifest.xml",
+        "line": "16",
+        "column": "30"
+      }
+    },
+    {
+      "id": "WakelockTimeout",
+      "severity": "Warning",
+      "message": "Provide a timeout when requesting a wakelock with `PowerManager.Wakelock.acquire(long timeout)`. This will ensure the OS will cleanup any wakelocks that last longer than you intend, and will save your user's battery.",
+      "location": {
+        "file": "src\\main\\java\\com\\lma\\app\\LmaService.java",
+        "line": "47",
+        "column": "125"
+      }
+    },
+    {
+      "id": "Recycle",
+      "severity": "Warning",
+      "message": "This `InputStream` should be freed up after use with `#close()`",
+      "location": {
+        "file": "src\\main\\java\\com\\lma\\app\\Downloads.java",
+        "line": "97",
+        "column": "50"
+      }
+    },
+    {
+      "id": "UsableSpace",
+      "severity": "Warning",
+      "message": "Consider also using `StorageManager#getAllocatableBytes` and `allocateBytes` which will consider clearable cached data",
+      "location": {
+        "file": "src\\main\\java\\com\\lma\\app\\core\\BundleStore.java",
+        "line": "58",
+        "column": "45"
+      }
+    },
+    {
+      "id": "UsableSpace",
+      "severity": "Warning",
+      "message": "Consider also using `StorageManager#getAllocatableBytes` and `allocateBytes` which will consider clearable cached data",
+      "location": {
+        "file": "src\\main\\java\\com\\lma\\app\\core\\BundleTransfers.java",
+        "line": "117",
+        "column": "45"
+      }
+    },
+    {
+      "id": "UsableSpace",
+      "severity": "Warning",
+      "message": "Consider also using `StorageManager#getAllocatableBytes` and `allocateBytes` which will consider clearable cached data",
+      "location": {
+        "file": "src\\main\\java\\com\\lma\\app\\LocalJobs.java",
+        "line": "50",
+        "column": "31"
+      }
+    }
+  ],
+  "android_execution_tested": false,
+  "applicationApkSha256": "4d69cff699f5f9fcf85a636cf0505779a10dfe01fb54dff15011ee3d4820fdaf",
+  "input_fingerprint": {
+    "app/src/main/AndroidManifest.xml": "874cb8e3fb4f71054608d6d8bc7fcbea2e2425bf2dd34d538db9fdf824eb62ff",
+    "app/src/main/java/com/lma/app/BootReceiver.java": "3ca2c838996cce77d25282a7e18fa7367424a4b83676e7485c23be63e3a2a42c",
+    "app/src/main/java/com/lma/app/BundleDocuments.java": "04b530945ecb59aa89a2bab39eeee2cebdf8a54bc0301caa6994e7304f2dab85",
+    "app/src/main/java/com/lma/app/ChatRunner.java": "262be29584e619e0e8fd3a88afd03fa3848771a45e52244f5f54ee6f58dbf6cc",
+    "app/src/main/java/com/lma/app/Chats.java": "ee21aea9b437716d6233b0fae7f04a9ecc1cc31c0e37e8fbe69484c2e0148434",
+    "app/src/main/java/com/lma/app/core/ArtifactStore.java": "dddf9ed5eb7351f59247557e2d0121ddc68a79cb14df3d84ae53806f0c98f9f7",
+    "app/src/main/java/com/lma/app/core/BundleStore.java": "aa20b1c098b12be3019529841557b23604584e46fff1ffe5762ddbb6258c71ab",
+    "app/src/main/java/com/lma/app/core/BundleTransfers.java": "cdd820bf19e6ea1c8d201a5aec11701cf2358094f40833b553ead0f29cf202b7",
+    "app/src/main/java/com/lma/app/core/ByteRange.java": "31723bf112e630de6c2a1cd8d525be7bbd4706e151fa5a297a5e641f59b5c752",
+    "app/src/main/java/com/lma/app/core/ChatHistory.java": "3046a52c3f611b83b46cfed94afe0f4b31667f77986b7ca1737169ec8c4ce951",
+    "app/src/main/java/com/lma/app/core/DataFiles.java": "02d3212885376e7073a785801dbb81073b13cc87c5fc0e85ac4373fd346696bc",
+    "app/src/main/java/com/lma/app/core/JobStore.java": "e97ed3f5e4166a951d8122a8a2f13519b6ab3bf086d61e8d504abcf447af7c74",
+    "app/src/main/java/com/lma/app/core/ModelBundle.java": "b72b7a8aa7190c1e6ad19a7f2194121df144868816b5bc5020e5e762339fa2ef",
+    "app/src/main/java/com/lma/app/core/ParameterSchema.java": "d229e0eaf79604e1d13aeb9a588c30b99cd5679a32dde449b1cdb6a45c30d738",
+    "app/src/main/java/com/lma/app/core/Protocol.java": "d49f47884aec0cb03347023119c2808330fa9970689dcd9d33c30ca653d03b85",
+    "app/src/main/java/com/lma/app/Downloads.java": "dc90c240432570d7c08a5a47b0263cec71baaf858a99f756d815a3962a968dc7",
+    "app/src/main/java/com/lma/app/EngineHost.java": "2ac5fae3caaf8b0d224b4cce987dbe6111bfd8bb5f22296d6e92996d5b726731",
+    "app/src/main/java/com/lma/app/GgufMetadata.java": "704b05cb1de90340a3c8b37f1af9d2577418aeb95b5b06e88ea7903df6770e78",
+    "app/src/main/java/com/lma/app/HubCatalog.java": "418b4569f35b6c4522b4e81f9e63338fd70aa57d2cb9288f4b85f8dea6417f5e",
+    "app/src/main/java/com/lma/app/HubClient.java": "00ad32a6f9cf616da2e79af385f0c56ca1e1565c40bdd38bee7fbf0641e2ad58",
+    "app/src/main/java/com/lma/app/LmaApp.java": "089e766a6007c9cf1e248680b87c837058f5e92b79ecd840080d4f38b3eac161",
+    "app/src/main/java/com/lma/app/LmaService.java": "c0394bb51592c5f6118e476cbddad953c74924395dac29b1e9c6479ff7ff0a18",
+    "app/src/main/java/com/lma/app/LocalEngine.java": "4b393705dd4959c8457acf0d8ed806ba4a54c821ced1709e89af99ebc232bfa7",
+    "app/src/main/java/com/lma/app/LocalEngines.java": "8665af3cdfaec37ed92f20bdab32e4bbac12d12ab0608b74333a9f4eb5134eea",
+    "app/src/main/java/com/lma/app/LocalJobs.java": "df8db32e9085d6618a36669aa04d901aa3d357367c4d12bc37b677c914e38ce1",
+    "app/src/main/java/com/lma/app/MainActivity.java": "b6270f916ad9f14c27c2468e344e1c69854f15be6c375b6cc49cd186b0ea1606",
+    "app/src/main/java/com/lma/app/MediaInspector.java": "82ed639f5afc572194ce2102d93ca4f290b2b2ac41054f59e8c4803812522848",
+    "app/src/main/java/com/lma/app/ModelSettings.java": "f097a1e0a7c7917fd58c6ab190d8edbeb3c0f97b2129c782070241a1b780692a",
+    "app/src/main/java/com/lma/app/Net.java": "b31e785f03e1bdc201250cc0c000475bf70ee4217e2758ba8d7cd8bdc4cc584a",
+    "app/src/main/java/com/lma/app/SdEngine.java": "70322810b794f223c857889b2b89496b1bb04d469997b2351fda3893bcf50331",
+    "app/src/main/java/com/lma/app/Store.java": "a88b2cf54e3732bf6229e8a8d784e064a1cd5ec3fa957e0de0b0f787b076dd14",
+    "app/src/main/java/com/lma/app/VideoEncoder.java": "21688100a1d92797a94a8f452f6b5906f26a11963b835478849f53a9c47f9b3d",
+    "app/src/main/res/drawable/ic_notification.xml": "156cead26295ef8f3822029f3ce8afa19bcef9a626925ec802271db88a1de26b",
+    "app/src/main/res/mipmap-anydpi/ic_launcher.xml": "7790159025ce15539c0cd2dc541129e3767abfa293517cdc40587880ae2c37c2",
+    "app/src/main/res/values/styles.xml": "6415204118d5d06db0b46cbf2f4d2c62b1c32e7c89fbe6bcfb8f26900a743b9f",
+    "tools/test_android_lint.py": "fe3185e5b6e299e0aedda5edd34fcaad4390c4715ddd3e26674ffbbc0f23370e"
+  }
+}

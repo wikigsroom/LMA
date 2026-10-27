@@ -89,10 +89,22 @@ public final class HubClient {
         JSONArray tags = data.optJSONArray("tags"); if (tags == null) tags = new JSONArray();
         JSONObject card = data.optJSONObject("cardData");
         return new JSONObject().put("id", id).put("downloads", data.optLong("downloads")).put("likes", data.optLong("likes"))
-                .put("task", data.optString("pipeline_tag")).put("library", data.optString("library_name"))
+                .put("task", data.optString("pipeline_tag")).put("taskTags", outputTasks(data.optString("pipeline_tag"))).put("taskEvidence", "hf_metadata")
+                .put("library", data.optString("library_name"))
                 .put("gated", data.has("gated") && !"false".equals(String.valueOf(data.opt("gated"))) && !data.isNull("gated"))
                 .put("revision", data.optString("sha")).put("license", card == null ? "" : card.optString("license"))
                 .put("uncensored", uncensored(id, tags)).put("sourceUrl", ORIGIN + "/" + id);
+    }
+    public static JSONArray outputTasks(String task) {
+        JSONArray tags = new JSONArray();
+        switch (task) {
+            case "text-generation": case "text2text-generation": case "image-text-to-text": case "conversational": tags.put("text"); break;
+            case "text-to-image": case "image-to-image": tags.put("image"); break;
+            case "text-to-video": case "image-to-video": case "video-to-video": tags.put("video"); break;
+            case "text-to-audio": case "text-to-speech": case "audio-to-audio": tags.put("audio"); break;
+            default: break;
+        }
+        return tags;
     }
     public JSONObject search(String search, String format, String sort, String cursor) throws Exception {
         String text = query(search);

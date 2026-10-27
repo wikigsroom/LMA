@@ -14,6 +14,7 @@ import subprocess
 import sys
 import zipfile
 from evidence import version, build_inputs
+from package_native import prepare as prepare_native
 
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
@@ -55,10 +56,12 @@ def main():
         shutil.rmtree(folder); folder.mkdir()
     (BUILD / "build.log").write_text("", encoding="utf-8")
     run("Generate checked model catalogue", [sys.executable, ROOT / "tools/build_catalogue.py"])
+    run("Generate data-only bundle catalogue", [sys.executable, ROOT / "tools/build_bundle_catalogue.py"])
+    engines = prepare_native()
     native = ROOT / "app/src/main/jniLibs/arm64-v8a"
     if not (native / "libllama-server.so").exists(): raise RuntimeError("Run python tools/bootstrap_runtime.py first")
     source = ROOT / "app/src/main"
-    for name in ("index.html", "app.css", "app.js", "models.json"):
+    for name in ("index.html", "app.css", "app.js", "foundation.css", "foundation.js", "models.json", "model-bundles.json", "engine-builds.json"):
         if not (source / "assets" / name).is_file(): raise RuntimeError("Missing application UI asset: " + name)
     license_text = (ROOT / "third_party/LLAMA_CPP_LICENSE").read_text(encoding="utf-8")
     (source / "assets/licenses").mkdir(exist_ok=True)
@@ -68,7 +71,7 @@ def main():
         raise RuntimeError("Missing dependency notices; run python tools/collect_notices.py")
     for notice in sorted((ROOT / "third_party/notices").glob("*.txt")):
         text = notice.read_text(encoding="utf-8")
-        (source / "assets/licenses" / notice.name).write_text(text, encoding="utf-8")
+        (source / "assets/licenses" / notice.name).write_bytes(notice.read_bytes())
         notices[notice.name] = text
     (source / "assets/licenses/LMA_LICENSE").write_text(notices["LMA MIT License"], encoding="utf-8")
     (source / "assets/license.js").write_text("window.LMA_LICENSE = " + json.dumps(license_text, ensure_ascii=True) + ";\nwindow.LMA_NOTICES = " + json.dumps(notices, ensure_ascii=True) + ";\n", encoding="utf-8")
@@ -77,6 +80,9 @@ def main():
         path = native / record["name"]
         if not path.is_file() or hashlib.sha256(path.read_bytes()).hexdigest() != record["sha256"]:
             raise RuntimeError("Pinned runtime file mismatch: " + record["name"])
+    native_names = {record["name"] for record in lock["files"]} | {engine["file"] for engine in engines}
+    if {path.name for path in native.glob("*.so")} != native_names:
+        raise RuntimeError("Unreviewed native libraries exist in the APK input directory")
     run("Compile Android resources", [tools / "aapt2.exe", "compile", "--dir", source / "res", "-o", BUILD / "resources.zip"])
     run("Link application resources", [tools / "aapt2.exe", "link", "-o", BUILD / "resources.apk", "-I", android,
                                           "--manifest", source / "AndroidManifest.xml", "--java", BUILD / "generated",
@@ -115,7 +121,7 @@ def main():
     digest = hashlib.sha256(apk.read_bytes()).hexdigest()
     (DIST / (apk.name + ".sha256")).write_text(digest + "  " + apk.name + "\n", encoding="utf-8")
     record = {"apk": apk.name, "bytes": apk.stat().st_size, "sha256": digest, "package": "com.lma.app", "version": release, "min_sdk": 28,
-              "target_sdk": 35, "abi": "arm64-v8a", "backend": "CPU", "native_libraries": len(lock["files"]), "java_source_files": len(sources), "build_tools": "35.0.1", "sdk_platform": "35",
+              "target_sdk": 35, "abi": "arm64-v8a", "backend": "CPU", "native_libraries": len(native_names), "native_engines": engines, "java_source_files": len(sources), "build_tools": "35.0.1", "sdk_platform": "35",
               "signatures_verified": True, "physical_device_tests": 0, "emulator_used": False, "docker_or_wsl_used": False,
               "signing": "project-local persistent key; signing/ must be preserved for updates", "input_fingerprint": build_inputs()}
     (DIST / "build-info.json").write_text(json.dumps(record, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")

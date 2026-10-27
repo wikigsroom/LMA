@@ -14,10 +14,19 @@ import java.net.Inet4Address;
 import java.security.SecureRandom;
 import java.util.Collections;
 import com.lma.app.core.Protocol;
+import com.lma.app.core.BundleStore;
+import com.lma.app.core.JobStore;
+import com.lma.app.core.ArtifactStore;
 
 public final class LmaApp extends Application {
     public static final String UPDATE = "com.lma.app.STATE_CHANGED";
     public Store store;
+    public BundleStore bundles;
+    public JobStore jobs;
+    public ArtifactStore artifacts;
+    public LocalEngines localEngines;
+    public volatile LocalJobs jobHost;
+    public String bundleStoreError = "";
     public Chats chats;
     public HubCatalog hub;
     public SharedPreferences prefs;
@@ -44,6 +53,17 @@ public final class LmaApp extends Application {
             prefs.edit().putString("apiKey", "lma_" + Protocol.hex(random)).apply();
         }
         store = new Store(this);
+        try {
+            bundles = new BundleStore(new java.io.File(getFilesDir(), "model-assets"));
+            try (java.io.InputStream in = getAssets().open("model-bundles.json")) {
+                JSONArray metadata = new JSONObject(Store.read(in, 512 * 1024)).getJSONArray("bundles");
+                for (int i = 0; i < metadata.length(); i++) bundles.declare(new com.lma.app.core.ModelBundle(metadata.getJSONObject(i)));
+            }
+            jobs = new JobStore(new java.io.File(getFilesDir(), "jobs"));
+            artifacts = new ArtifactStore(new java.io.File(getFilesDir(), "results"), new MediaInspector());
+            localEngines = new LocalEngines(this);
+        }
+        catch (Exception error) { bundleStoreError = error.getMessage(); log("模型包存储不可用，原始数据已保留：" + bundleStoreError); }
         chats = new Chats(this);
         hub = new HubCatalog(this);
     }
@@ -61,6 +81,7 @@ public final class LmaApp extends Application {
             if (!command.optString("requestId").isEmpty()) {
                 commandResult = new JSONObject().put("requestId", command.optString("requestId")).put("action", command.optString("action")).put("ok", error == null).put("error", error == null ? "" : globalError ? lastError : error.getMessage());
                 commandResults.put(commandResult); while (commandResults.length() > 24) commandResults.remove(0);
+                if (error == null && command.optJSONObject("result") != null) commandResult.put("data", command.getJSONObject("result"));
             }
         }
         catch (Exception ignored) {}
@@ -99,23 +120,28 @@ public final class LmaApp extends Application {
     public JSONObject snapshot() {
         JSONObject value = new JSONObject();
         try {
-            value.put("app", "LMA"); value.put("version", "0.2.0"); value.put("runtime", "llama.cpp v0.4.1 · CPU");
+            value.put("app", "LMA"); value.put("version", "0.3.0-dev"); value.put("runtime", "llama.cpp v0.4.1 · CPU");
             value.put("models", store.snapshot()); value.put("settings", settings()); value.put("hub", hub.snapshot());
+            value.put("bundles", bundles == null ? new JSONArray() : bundles.snapshot());
+            value.put("jobs", jobs == null ? new JSONArray() : jobs.summaries());
+            value.put("artifacts", artifacts == null ? new JSONArray() : artifacts.snapshot());
+            value.put("localEngines", localEngines == null ? new JSONArray() : localEngines.snapshot());
+            value.put("foundation", new JSONObject().put("status", "development").put("bundleSchema", "lma.model-bundle/1").put("error", bundleStoreError).put("bundledWeights", false));
             JSONObject engine = new JSONObject(); engine.put("state", engineState); engine.put("detail", engineDetail);
             engine.put("modelId", engineModel); engine.put("startedAt", engineStarted); engine.put("generating", generating);
             engine.put("localUrl", "http://127.0.0.1:" + prefs.getInt("port", 8080) + "/v1");
             engine.put("addresses", addresses()); value.put("engine", engine);
-            ActivityManager.MemoryInfo memory = new ActivityManager.MemoryInfo();
-            ((ActivityManager) getSystemService(ACTIVITY_SERVICE)).getMemoryInfo(memory);
-            JSONObject device = new JSONObject(); device.put("name", android.os.Build.MODEL);
-            device.put("android", android.os.Build.VERSION.RELEASE); device.put("totalMemory", memory.totalMem);
-            device.put("availableMemory", memory.availMem); device.put("freeStorage", new StatFs(getFilesDir().getPath()).getAvailableBytes());
-            device.put("batteryExempt", ((PowerManager) getSystemService(POWER_SERVICE)).isIgnoringBatteryOptimizations(getPackageName()));
-            value.put("device", device); value.put("chat", chats.snapshot()); value.put("error", lastError);
+            value.put("device", device()); value.put("chat", chats.snapshot()); value.put("error", lastError);
             value.put("commandResult", commandResult); value.put("errorSequence", errorSequence);
             synchronized (this) { value.put("logs", new JSONArray(logs.toString())); value.put("commandResults", new JSONArray(commandResults.toString())); }
         } catch (Exception error) { log("状态读取失败：" + error.getMessage()); }
         return value;
+    }
+    public JSONObject device() throws Exception {
+        ActivityManager.MemoryInfo memory = new ActivityManager.MemoryInfo(); ((ActivityManager) getSystemService(ACTIVITY_SERVICE)).getMemoryInfo(memory);
+        return new JSONObject().put("name", android.os.Build.MODEL).put("android", android.os.Build.VERSION.RELEASE).put("sdk", android.os.Build.VERSION.SDK_INT)
+                .put("totalMemory", memory.totalMem).put("availableMemory", memory.availMem).put("freeStorage", new StatFs(getFilesDir().getPath()).getAvailableBytes())
+                .put("batteryExempt", ((PowerManager) getSystemService(POWER_SERVICE)).isIgnoringBatteryOptimizations(getPackageName()));
     }
     private JSONArray addresses() {
         JSONArray result = new JSONArray();

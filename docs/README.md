@@ -2,12 +2,13 @@
 
 [项目首页 / 中文](../README.md) · [Project README / English](../README.en.md)
 
-当前版本 **0.2.0**。文档整理日期：**2026-10-27（Asia/Taipei）**。产品行为以生产源码及对应版本的验证证据为准；历史审计保留其原始检查日期。
+当前公开版本 **0.2.0**；内部开发 **0.3.0-dev**，完整版本尚未验收。文档整理日期：**2026-10-27（Asia/Taipei）**。产品行为以生产源码及对应版本的验证证据为准；历史审计保留其原始检查日期。
 
 | 主题 / Topic | 中文 | English |
 | --- | --- | --- |
 | 安装与操作 / Installation and workflow | [USER_GUIDE.md](USER_GUIDE.md) | [USER_GUIDE.en.md](USER_GUIDE.en.md) |
 | API 与 SSE / API and streaming | [API.md](API.md) | [API.en.md](API.en.md) |
+| 开发实施 / Development status | [DEVELOPMENT.md](DEVELOPMENT.md) | [DEVELOPMENT.en.md](DEVELOPMENT.en.md) |
 | 构建 / Building | [BUILD.md](BUILD.md) | [BUILD.en.md](BUILD.en.md) |
 | 架构 / Architecture | [ARCHITECTURE.md](ARCHITECTURE.md) | [ARCHITECTURE.en.md](ARCHITECTURE.en.md) |
 | 多模态可行性研究 / Multimodal feasibility research | [MULTIMODAL.md](MULTIMODAL.md) | [MULTIMODAL.en.md](MULTIMODAL.en.md) |

@@ -5,6 +5,7 @@ const crypto = require('node:crypto');
 const path = require('node:path');
 const http = require('node:http');
 const {hubFixture, installHubBridge} = require('./hub-fixture.cjs');
+const checkFoundation = require('./foundation-ui.cjs');
 const {chromium} = require(process.env.LMA_PLAYWRIGHT || 'playwright');
 const root = path.resolve(__dirname, '..');
 const assets = path.join(root, 'app/src/main/assets');
@@ -12,7 +13,7 @@ const output = path.join(root, 'build/ui-qa');
 fs.mkdirSync(output, {recursive: true});
 if (fs.existsSync(path.join(output, 'results.json'))) fs.unlinkSync(path.join(output, 'results.json'));
 function inputFingerprint() {
-  const files = fs.readdirSync(assets, {recursive: true}).map(name => path.join(assets, name)).filter(file => fs.statSync(file).isFile()).concat(__filename, path.join(root, 'tests/hub-fixture.cjs'));
+  const files = fs.readdirSync(assets, {recursive: true}).map(name => path.join(assets, name)).filter(file => fs.statSync(file).isFile()).concat(__filename, path.join(root, 'tests/hub-fixture.cjs'), path.join(root, 'tests/foundation-ui.cjs'));
   return Object.fromEntries(files.sort().map(file => [path.relative(root, file).split(path.sep).join('/'), crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex')]));
 }
 const verifiedInputs = inputFingerprint();
@@ -21,7 +22,7 @@ const checks = [], errors = [];
 let context, server;
 function checked(name) { checks.push(name); console.log('PASS ' + name); }
 const fixture = {
-  app: 'LMA', version: '0.2.0', models: catalogue.models.map(m => ({...m, installed: false, installedBytes: 0, partialBytes: 0, download: {}})),
+  app: 'LMA', version: '0.3.0-dev', models: catalogue.models.map(m => ({...m, installed: false, installedBytes: 0, partialBytes: 0, download: {}})),
   settings: {lan: false, port: 8080, threads: 4, context: 2048, maxTokens: 512, temperature: 0.7, source: 'auto', boot: false, autoLoad: true, reasoning: 'off', theme: 'light', systemPrompt: '你是一个有帮助的本地助手。', apiKey: 'lma_TEST_ONLY_NOT_A_REAL_KEY'},
   engine: {state: 'stopped', detail: '选择并下载一个模型，开始本地运行', modelId: '', generating: false, startedAt: 0, localUrl: 'http://127.0.0.1:8080/v1', addresses: ['http://192.168.1.20:8080/v1']},
   device: {name: 'nubia Z20 · UI 测试数据', android: '9', totalMemory: 8 * 1073741824, availableMemory: 4.3 * 1073741824, freeStorage: 51.2 * 1e9, batteryExempt: false},
@@ -68,6 +69,7 @@ async function main() {
         setTimeout(() => {
           const f = window.__fixture, m = f.models.find(x => x.id === command.id);
           window.__handleHub(command);
+          const data = window.__handleFoundation ? window.__handleFoundation(command) : undefined;
           if (window.__rejectNextAction === command.action) {
             window.__rejectNextAction = null; f.error = '原生测试端拒绝了这次操作';
             f.commandResults.push({requestId: command.requestId, action: command.action, ok: false, error: f.error});
@@ -89,7 +91,7 @@ async function main() {
           if (command.action === 'deleteSession') { f.chat.sessions = []; f.chat.messages = []; f.chat.sessionId = ''; }
           if (command.action === 'dismissError') f.error = '';
           if (command.action === 'addModel') f.models.push({id: 'custom_test', name: command.name, family: '自定义', description: '测试模型', installed: false, tier: 'custom', quant: 'GGUF', bytes: 0, tags: [], url: command.url, download: {state: 'queued'}});
-          f.commandResults.push({requestId: command.requestId, action: command.action, ok: true, error: ''});
+          f.commandResults.push({requestId: command.requestId, action: command.action, ok: true, error: '', data});
           f.commandResults = f.commandResults.slice(-24);
           window.LMA.receive(f);
         }, 30);
@@ -179,7 +181,7 @@ async function main() {
   await page.locator('#settingsForm button[type="submit"]').click();
   await page.waitForFunction(() => document.getElementById('settingsHint').textContent === '设置已保存');
   assert.equal(await page.evaluate(() => window.__fixture.settings.source), 'auto'); checked('Unrelated earlier error cannot fail successful settings acknowledgement');
-  await page.locator('[data-action="showLocal"]').click(); await page.waitForSelector('[data-model="m08"]');
+  await page.locator('#page-settings [data-action="showLocal"]').click(); await page.waitForSelector('[data-model="m08"]');
   assert(await page.locator('#page-settings').isHidden()); checked('Application preferences link directly to Local model management');
   await page.locator('[data-action="modelSettings"][data-id="m08"]').click(); await page.waitForSelector('#modelSettingsForm');
   assert((await page.locator('#limit-context').textContent()).includes('8192')); checked('Local model settings expose the individual GGUF context bound');
@@ -217,7 +219,7 @@ async function main() {
   await page.setViewportSize({width:375,height:812}); await page.keyboard.press('Escape');
   await page.locator('.nav-item[data-tab="settings"]').click();
   await page.locator('[data-action="about"]').click(); await page.locator('[data-action="notices"]').click();
-  assert.equal(await page.locator('.license-notice').count(), 12); await page.keyboard.press('Escape'); checked('Bundled third-party license reader');
+  assert.equal(await page.locator('.license-notice').count(), 25); await page.keyboard.press('Escape'); checked('Bundled third-party license reader');
   await page.locator('.nav-item[data-tab="server"]').click(); await page.evaluate(() => { document.getElementById('page-server').scrollTop = 0; document.getElementById('toast').hidden = true; }); await page.screenshot({path: path.join(output, '04-server-dark.png')});
   await page.locator('.nav-item[data-tab="models"]').click(); await page.locator('#addModelButton').click();
   await page.locator('[data-action="addUrl"]').click();
@@ -240,6 +242,7 @@ async function main() {
   await page.locator('[data-action="history"]').click(); await page.locator('[data-action="deleteSession"]').click();
   await page.locator('[data-action="confirmed"]').click(); await page.waitForSelector('.chat-empty'); checked('Delete persistent chat via native action');
   await setState(page, () => { window.__fixture.models[0].name = 'Qwen 3 · 1.7B Abliterated'; window.__fixture.settings.theme = 'light'; });
+  await checkFoundation(page, checked, checkOverflow, output);
   await page.locator('.nav-item[data-tab="models"]').click();
   await page.setViewportSize({width: 1024, height: 768}); await checkOverflow(page, 'Tablet library layout');
   await page.screenshot({path: path.join(output, '05-tablet.png')});

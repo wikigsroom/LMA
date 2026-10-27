@@ -27,11 +27,15 @@ import android.widget.FrameLayout;
 import android.widget.Toast;
 import org.json.JSONObject;
 import java.io.ByteArrayInputStream;
+import com.lma.app.core.ArtifactStore;
+import com.lma.app.core.ByteRange;
 import java.nio.charset.StandardCharsets;
 
 public final class MainActivity extends Activity {
     private static final String ORIGIN = "https://appassets.androidplatform.net";
-    private static final int IMPORT = 7, EXPORT_LOGS = 8;
+    private static final int IMPORT = 7, EXPORT_LOGS = 8, IMPORT_BUNDLE = 9, EXPORT_ARTIFACT = 10, IMPORT_BUNDLE_FOLDER = 11;
+    private String exportArtifactId = "", folderBundleId = "";
+    private boolean exportMetadata;
     private WebView web;
     private LmaApp app;
     private final Handler main = new Handler(Looper.getMainLooper());
@@ -42,6 +46,7 @@ public final class MainActivity extends Activity {
 
     @Override public void onCreate(Bundle saved) {
         super.onCreate(saved); app = (LmaApp) getApplication();
+        if (saved != null) { exportArtifactId = saved.getString("exportArtifactId", ""); folderBundleId = saved.getString("folderBundleId", ""); exportMetadata = saved.getBoolean("exportMetadata", false); }
         if (Build.VERSION.SDK_INT >= 33) {
             backCallback = Api33Back.register(this, this::handleBack);
         }
@@ -59,6 +64,7 @@ public final class MainActivity extends Activity {
                 Uri uri = request.getUrl();
                 if (!trusted(uri)) return response(403, "Forbidden");
                 String path = uri.getPath();
+                if (path != null && path.startsWith("/artifacts/")) return artifactResponse(request, path.substring(11));
                 if (path == null || !path.startsWith("/assets/") || path.contains("..")) return response(404, "Not found");
                 String asset = path.substring(8);
                 try {
@@ -78,7 +84,24 @@ public final class MainActivity extends Activity {
             });
         }
         web.loadUrl(ORIGIN + "/assets/index.html");
-        if (app.prefs.getBoolean("desiredRunning", false)) service(new JSONObject());
+        if (app.prefs.getBoolean("desiredRunning", false) || app.prefs.getBoolean("desiredJobs", false)) service(new JSONObject());
+    }
+    @Override public void onSaveInstanceState(Bundle saved) {
+        saved.putString("exportArtifactId", exportArtifactId); saved.putString("folderBundleId", folderBundleId); saved.putBoolean("exportMetadata", exportMetadata); super.onSaveInstanceState(saved);
+    }
+    private WebResourceResponse artifactResponse(WebResourceRequest request, String id) {
+        try {
+            if (app.artifacts == null || !request.getMethod().equals("GET") && !request.getMethod().equals("HEAD")) return response(405, "Method not allowed");
+            JSONObject artifact = app.artifacts.get(id); long size = artifact.getLong("bytes"); String header = null;
+            for (java.util.Map.Entry<String, String> entry : request.getRequestHeaders().entrySet()) if (entry.getKey().equalsIgnoreCase("Range")) header = entry.getValue();
+            ByteRange range;
+            try { range = ByteRange.parse(header, size); }
+            catch (java.io.IOException invalid) { return new WebResourceResponse("text/plain", "UTF-8", 416, "Range Not Satisfiable", java.util.Collections.singletonMap("Content-Range", "bytes */" + size), new ByteArrayInputStream(new byte[0])); }
+            java.util.Map<String, String> headers = new java.util.HashMap<>(); headers.put("Cache-Control", "no-store"); headers.put("Accept-Ranges", "bytes"); headers.put("Content-Length", String.valueOf(range.length)); headers.put("X-Content-Type-Options", "nosniff");
+            if (range.partial) headers.put("Content-Range", range.contentRange(size));
+            java.io.InputStream stream = request.getMethod().equals("HEAD") ? new ByteArrayInputStream(new byte[0]) : app.artifacts.open(id, range);
+            return new WebResourceResponse(artifact.getJSONObject("metadata").getString("mime"), null, range.partial ? 206 : 200, range.partial ? "Partial Content" : "OK", headers, stream);
+        } catch (Exception error) { return response(404, "Result unavailable"); }
     }
     private boolean trusted(Uri uri) { return "https".equals(uri.getScheme()) && "appassets.androidplatform.net".equals(uri.getHost()); }
     private WebResourceResponse response(int status, String message) { return new WebResourceResponse("text/plain", "UTF-8", status, message, null, new ByteArrayInputStream(message.getBytes(StandardCharsets.UTF_8))); }
@@ -136,6 +159,20 @@ public final class MainActivity extends Activity {
                 command = new JSONObject(raw); String action = command.getString("action");
                 switch (action) {
                     case "inspectModel": app.store.inspectModel(command.getString("id")); app.emit(); break;
+                    case "inspectTask": if (app.jobs == null) throw new IllegalStateException(app.bundleStoreError); command.put("result", app.jobs.get(command.getString("id"))); break;
+                    case "inspectArtifact": if (app.artifacts == null) throw new IllegalStateException(app.bundleStoreError); command.put("result", app.artifacts.get(command.getString("id"))); break;
+                    case "bundleManifestPicker": main.post(() -> startActivityForResult(new Intent(Intent.ACTION_OPEN_DOCUMENT).setType("application/json").addCategory(Intent.CATEGORY_OPENABLE).addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION), IMPORT_BUNDLE)); break;
+                    case "bundleFolderPicker": {
+                        if (app.bundles == null) throw new IllegalStateException(app.bundleStoreError);
+                        String id = command.getString("id"); app.bundles.bundle(id);
+                        main.post(() -> { folderBundleId = id; startActivityForResult(new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE).addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION), IMPORT_BUNDLE_FOLDER); }); break;
+                    }
+                    case "exportArtifact": case "exportArtifactMetadata": {
+                        if (app.artifacts == null) throw new IllegalStateException(app.bundleStoreError);
+                        String id = command.getString("id"); JSONObject artifact = app.artifacts.get(id); boolean metadata = action.equals("exportArtifactMetadata");
+                        String name = metadata ? id + ".json" : artifact.getString("filename"), mime = metadata ? "application/json" : artifact.getJSONObject("metadata").getString("mime");
+                        main.post(() -> { exportArtifactId = id; exportMetadata = metadata; startActivityForResult(new Intent(Intent.ACTION_CREATE_DOCUMENT).setType(mime).putExtra(Intent.EXTRA_TITLE, name), EXPORT_ARTIFACT); }); break;
+                    }
                     case "hubSearch": case "hubPage": case "hubFiles": case "hubFilePage": case "hubToken": app.hub.dispatch(command); return;
                     case "hubDownload": command.put("model", app.hub.selected(command)).put("action", "addHubModel"); service(command); return;
                     case "dismissError": app.lastError = ""; app.emit(); break;
@@ -161,7 +198,37 @@ public final class MainActivity extends Activity {
         super.onActivityResult(request, result, data);
         if (result != RESULT_OK || data == null || data.getData() == null) return;
         Uri uri = data.getData();
-        if (request == IMPORT) {
+        if (request == IMPORT_BUNDLE) {
+            new Thread(() -> {
+                try (java.io.InputStream in = getContentResolver().openInputStream(uri)) {
+                    if (in == null) throw new java.io.IOException("无法读取模型包清单");
+                    JSONObject manifest = new JSONObject(Store.read(in, 512 * 1024));
+                    new com.lma.app.core.ModelBundle(manifest);
+                    service(new JSONObject().put("action", "declareBundle").put("manifest", manifest));
+                } catch (Exception error) { app.error("模型包清单无效：" + error.getMessage()); }
+            }, "LMA-bundle-manifest").start();
+        } else if (request == IMPORT_BUNDLE_FOLDER) {
+            String id = folderBundleId; folderBundleId = "";
+            try { getContentResolver().takePersistableUriPermission(uri, Intent.FLAG_GRANT_READ_URI_PERMISSION); } catch (Exception ignored) {}
+            new Thread(() -> {
+                try {
+                    JSONObject uris = BundleDocuments.components(getContentResolver(), uri, app.bundles.bundle(id));
+                    service(new JSONObject().put("action", "importBundle").put("id", id).put("uris", uris));
+                } catch (Exception error) { app.error("导入未开始：" + error.getMessage()); }
+            }, "LMA-bundle-folder").start();
+        } else if (request == EXPORT_ARTIFACT) {
+            String id = exportArtifactId; boolean metadata = exportMetadata; exportArtifactId = "";
+            new Thread(() -> {
+                try (java.io.OutputStream out = getContentResolver().openOutputStream(uri)) {
+                    if (out == null) throw new java.io.IOException("无法写入导出位置");
+                    if (metadata) out.write(app.artifacts.get(id).toString(2).getBytes(StandardCharsets.UTF_8));
+                    else try (ArtifactStore.Lease lease = app.artifacts.acquire(id); java.io.InputStream in = new java.io.FileInputStream(lease.file)) {
+                        byte[] buffer = new byte[256 * 1024]; int n; while ((n = in.read(buffer)) != -1) out.write(buffer, 0, n);
+                    }
+                    main.post(() -> Toast.makeText(this, "生成结果已导出", Toast.LENGTH_SHORT).show());
+                } catch (Exception error) { app.error("导出失败：" + error.getMessage()); }
+            }, "LMA-artifact-export").start();
+        } else if (request == IMPORT) {
             try {
                 if ((data.getFlags() & Intent.FLAG_GRANT_READ_URI_PERMISSION) != 0)
                     getContentResolver().takePersistableUriPermission(uri, Intent.FLAG_GRANT_READ_URI_PERMISSION);
@@ -175,7 +242,7 @@ public final class MainActivity extends Activity {
         } else if (request == EXPORT_LOGS) {
             new Thread(() -> {
                 try (java.io.OutputStream out = getContentResolver().openOutputStream(uri)) {
-                    JSONObject log = new JSONObject(); JSONObject state = app.snapshot(); log.put("app", "LMA 0.2.0").put("device", state.optJSONObject("device")).put("engine", state.optJSONObject("engine")).put("logs", state.optJSONArray("logs"));
+                    JSONObject log = new JSONObject(); JSONObject state = app.snapshot(); log.put("app", "LMA 0.3.0-dev").put("device", state.optJSONObject("device")).put("engine", state.optJSONObject("engine")).put("logs", state.optJSONArray("logs"));
                     if (out == null) throw new java.io.IOException("无法写入文件"); out.write(log.toString(2).getBytes(StandardCharsets.UTF_8));
                     main.post(() -> Toast.makeText(this, "日志已导出", Toast.LENGTH_SHORT).show());
                 } catch (Exception error) { app.error("导出失败：" + error.getMessage()); }

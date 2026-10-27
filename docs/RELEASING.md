@@ -8,7 +8,7 @@
 
 ## 下一版本完整范围 / Complete next-version scope
 
-下一版本为 v0.3.0，按[完整需求](MULTIMODAL_RELEASE_PLAN.md)与[交付摘要](releases/v0.3.0-plan.md)一次完成 F-01–F-12、既有生文、01–14 / 16 / 17 和全部冻结子目标的运行支持能力与配方。内部工作包不拆为其他版本；必需项未过时保留为本版阻塞，不以缩减预览、空引擎或目录记录替代完成。当前 APK 仍为 v0.2.0，需求维护不创建 v0.3.0 标签或 Release。The next v0.3.0 has one complete acceptance scope; missing required targets block completion, without automatic deferral. This documentation update leaves the current APK/tag/assets intact.
+下一版本为 v0.3.0，按[完整需求](MULTIMODAL_RELEASE_PLAN.md)与[交付摘要](releases/v0.3.0-plan.md)一次完成 F-01–F-12、既有生文、01–14 / 16 / 17 和全部冻结子目标的运行支持能力与配方。内部工作包不拆为其他版本；必需项未过时保留为本版阻塞，不以缩减预览、空引擎或目录记录替代完成。当前公开 APK 仍为 v0.2.0；内部 0.3.0-dev 仅用于开发复查，不创建 v0.3.0 标签或 Release。The next v0.3.0 has one complete acceptance scope; missing required targets block completion, without automatic deferral. Internal 0.3.0-dev builds are development checkpoints; published v0.2.0 APK/tag/assets remain intact.
 
 App 发行不含模型权重或模型专用数据；模型是用户单独选择的资产。安装 / 升级不得触发权重下载、强制模型更新或静默替换；推荐目录不表示安装。发布前 A11 验证零模型启动、显式下载、独立管理和升级保留；开发验收样本不能进入 APK。App releases carry the foundation, with user-selected model assets kept separate; A11 validates this boundary.
 

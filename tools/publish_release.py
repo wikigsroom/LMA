@@ -29,6 +29,8 @@ def main():
     parser.add_argument("--publish", action="store_true", help="Create/upload/publish the GitHub prerelease")
     args = parser.parse_args()
     release = version()
+    if "-dev" in release:
+        raise RuntimeError("Do not publish an internal development build as completion of v0.3.0")
     directory = ROOT / "dist/releases" / ("v" + release)
     manifest_path = directory / "release-manifest.json"
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))

@@ -14,3 +14,7 @@ The primary engine license is in `LLAMA_CPP_LICENSE`. `notices/` contains accomp
 `tools/collect_notices.py` can refresh these notices from the recorded revisions. The build bundles them into `assets/licenses/` and the application's About page. `upstream/` contains selected source and documentation files used to check CLI flags and supported architectures; it is not a complete source checkout. Full source for the recorded engine revision is available from the [llama.cpp repository](https://github.com/ggml-org/llama.cpp/tree/b29c606e28a01b1bc8c1351026a0fa6e616bf6c4).
 
 Model weights are not redistributed in the APK. Each catalogue entry links to its own model repository, whose model and base-model licenses govern the downloaded weights.
+
+## Added development worker
+
+0.3.0-dev adds a locally compiled ARM64 CPU sd.cpp worker, pinned with ggml in [engine-lock.json](engine-lock.json). Native Windows NDK 30.0.16248370 builds it; the temporary SUBST path alias is not virtualization. [Native sources](../native/CMakeLists.txt) replace embedded model vocabularies with externally installed user data. The 13 `sd-*` notice files come from the exact checkout and NDK, recorded in [sd-sources.json](notices/sd-sources.json). This proves compilation/packaging provenance, not phone inference or all selected-model support. Existing ServLlama binaries retain their original provenance. See [development status](../docs/DEVELOPMENT.en.md).

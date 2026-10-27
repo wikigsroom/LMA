@@ -1,6 +1,6 @@
 (function () {
   'use strict';
-  var state = null, tab = 'models', filter = 'recommended', query = '', keyVisible = false;
+  var state = null, tab = 'models', filter = 'recommended', taskFilter = 'any', query = '', keyVisible = false;
   var modelSignature = '', chatSignature = '', settingsDirty = false, settingsFilled = false;
   var pendingSettings = null, pendingDraft = null, modalKind = '', returnFocus = null, toastTimer, requestSequence = 0;
   var searchTimer, hubStarted = false, hubFileSignature = '', pendingHubToken = null;
@@ -41,12 +41,23 @@
     value = Number(value) || 0;
     if (!value) return '—';
     if (value >= 1000000000) return (value / 1000000000).toFixed(2).replace(/0$/, '') + ' GB';
-    return Math.max(1, Math.round(value / 1000000)) + ' MB';
+    if (value >= 1000000) return Math.round(value / 1000000) + ' MB';
+    if (value >= 1000) return (value / 1000).toFixed(1).replace(/\.0$/, '') + ' kB';
+    return Math.round(value) + ' B';
   }
   function memory(value) { return value ? (value / 1073741824).toFixed(1) + ' GiB' : '—'; }
-  function models() { return state ? state.models || [] : []; }
+  function models() { return state ? (state.models || []).concat(window.LMAFoundation.views()) : []; }
   function modelById(id) { return models().filter(function (m) { return m.id === id; })[0]; }
   function engine() { return state ? state.engine || {} : {}; }
+  var taskNames = {text: '生文', image: '生图', video: '生视频', audio: '生音频'};
+  function outputTags(m) {
+    if (Array.isArray(m.taskTags)) return m.taskTags;
+    return m.task ? { 'text-generation': ['text'], 'text2text-generation': ['text'], 'image-text-to-text': ['text'], conversational: ['text'], 'text-to-image': ['image'], 'image-to-image': ['image'], 'text-to-video': ['video'], 'image-to-video': ['video'], 'video-to-video': ['video'], 'text-to-speech': ['audio'], 'text-to-audio': ['audio'], 'audio-to-audio': ['audio'] }[m.task] || [] : m.hub === undefined && m.family ? ['text'] : [];
+  }
+  function taskBadges(m, metadata) {
+    return outputTags(m).filter(function (task) { return taskNames[task]; }).map(function (task) { return '<span class="tag task-tag task-' + task + '"' + (metadata ? ' title="来自 HF 任务元数据，尚未验证本机运行能力"' : '') + '>' + taskNames[task] + (metadata ? ' · 元数据' : '') + '</span>'; }).join('');
+  }
+  function matchesTask(m) { return taskFilter === 'any' || outputTags(m).indexOf(taskFilter) >= 0; }
   function nativeAction(action, values) {
     if (!window.Android) { toast('请在 Android 应用中使用此功能'); return false; }
     var requestId = Date.now().toString(36) + '-' + (++requestSequence);
@@ -60,7 +71,7 @@
   }
   function toast(message) { clearTimeout(toastTimer); $('toast').textContent = message; $('toast').hidden = false; toastTimer = setTimeout(function () { $('toast').hidden = true; }, 3200); }
   function route(next) {
-    if (['models', 'chat', 'server', 'settings'].indexOf(next) < 0) return;
+    if (['models', 'chat', 'tasks', 'server', 'settings'].indexOf(next) < 0) return;
     closeModal(); tab = next;
     document.querySelectorAll('.page').forEach(function (el) { el.hidden = el.id !== 'page-' + next; el.classList.toggle('active', !el.hidden); });
     document.querySelectorAll('.nav-item').forEach(function (el) { var active = el.dataset.tab === next; el.classList.toggle('active', active); if (active) el.setAttribute('aria-current', 'page'); else el.removeAttribute('aria-current'); });
@@ -77,7 +88,7 @@
     try {
       state = typeof raw === 'string' ? JSON.parse(raw) : raw;
       if (!state || !Array.isArray(state.models) || !state.settings || !state.engine) throw new Error('状态数据不完整');
-      applyTheme(); renderRuntime(); renderModels(); renderChat(); renderServer(); renderHubFiles();
+      applyTheme(); renderRuntime(); renderModels(); renderChat(); renderServer(); renderHubFiles(); window.LMAFoundation.receive();
       $('hfTokenStatus').textContent = state.settings.hfTokenSet ? '已设置令牌' : '未设置令牌';
       if (pendingHubToken) {
         var tokenResult = commandResult(pendingHubToken);
@@ -119,6 +130,7 @@
     $('installedCount').textContent = models().filter(function (x) { return x.installed; }).length;
   }
   function modelCard(m) {
+    if (m.isBundle) return window.LMAFoundation.card(m);
     var d = m.download || {}, s = d.state || '', running = engine().modelId === m.id && ['ready', 'loading', 'recovering'].indexOf(engine().state) >= 0;
     var active = ['queued', 'downloading', 'verifying', 'pausing'].indexOf(s) >= 0, partial = m.partialBytes || d.received || 0;
     var total = d.total || m.bytes || 0, progress = total ? Math.min(100, Math.floor(partial * 100 / total)) : 0;
@@ -126,7 +138,7 @@
     var label = m.installed ? (running ? engine().state === 'ready' ? '运行中' : '加载中' : '加载模型') : active ? s === 'pausing' ? '暂停中' : s === 'verifying' ? '校验中' : '暂停' : partial || s === 'paused' || s === 'error' ? '继续下载' : '下载';
     var glyph = m.family === 'LFM' ? 'L' : m.family === 'Gemma' ? 'G' : m.family === 'Llama' ? 'L' : m.family === '自定义' ? '+' : 'Q';
     var tags = (m.tags || []).slice(0, 4).map(function (tag) { return '<span class="tag' + (tag === '推荐' ? ' recommended' : m.tier === 'experimental' ? ' experimental' : '') + '">' + esc(tag) + '</span>'; }).join('');
-    tags = uncensoredTag(m.uncensored) + tags;
+    tags = taskBadges(m, false) + uncensoredTag(m.uncensored) + tags;
     if (m.recommended && (m.tags || []).indexOf('推荐') < 0) tags = '<span class="tag recommended">推荐</span>' + tags;
     var size = m.installed ? m.installedBytes : total;
     var out = '<article class="model-card' + (running ? ' is-running' : '') + '" data-model="' + esc(m.id) + '"><div class="model-top"><span class="model-symbol" data-family="' + esc(m.family) + '">' + glyph + '</span><div class="model-top-copy"><button class="model-name" data-action="modelInfo" data-id="' + esc(m.id) + '"><strong>' + esc(m.name) + '</strong><span class="model-caption">' + esc(m.family) + ' <span aria-hidden="true"> / </span> ' + esc(m.quant || 'GGUF') + '</span></button></div></div>';
@@ -148,9 +160,9 @@
     if (filter === 'all') { renderHub(); return; }
     var all = models().filter(function (m) {
       var included = filter === 'recommended' && m.recommended || filter === 'light' && m.tier === 'light' || filter === 'quality' && (m.tier === 'quality' || m.tier === 'experimental') || filter === 'local' && (m.installed || m.partialBytes || m.download && m.download.state || m.hub || m.imported || m.tier === 'custom');
-      return included && (!query || [m.name, m.family, m.repository, m.description, (m.tags || []).join(' ')].join(' ').toLowerCase().indexOf(query.toLowerCase()) >= 0);
+      return included && matchesTask(m) && (!query || [m.name, m.family, m.repository, m.description, (m.tags || []).join(' ')].join(' ').toLowerCase().indexOf(query.toLowerCase()) >= 0);
     });
-    var signature = JSON.stringify([all, engine().state, engine().modelId, filter, query]);
+    var signature = JSON.stringify([all, engine().state, engine().modelId, filter, query, taskFilter]);
     if (signature === modelSignature) return; modelSignature = signature;
     var focused = document.activeElement && document.activeElement.closest('#modelList button'), focusAction = focused && focused.dataset.action, focusId = focused && focused.dataset.id;
     $('modelListTitle').textContent = query ? '本地搜索结果' : {recommended: '适合先试的模型', light: '先从轻量开始', quality: '更高容量的选择', local: '你的本地模型'}[filter];
@@ -176,13 +188,14 @@
     return '<button class="button secondary" data-action="' + action + '" data-direction="previous"' + (!previous || loading ? ' disabled' : '') + '>上一页</button><span>第 ' + esc(page || 1) + ' 页</span><button class="button secondary" data-action="' + action + '" data-direction="next"' + (!next || loading ? ' disabled' : '') + '>下一页</button>';
   }
   function renderHub() {
-    var h = hub(), items = h.items || [], signature = JSON.stringify(['hub', h, models()]);
+    var h = hub(), items = (h.items || []).filter(matchesTask), bundles = models().filter(function (m) { return m.isBundle && matchesTask(m) && (!query || [m.name, m.family, m.repository, m.description].join(' ').toLowerCase().indexOf(query.toLowerCase()) >= 0); }), signature = JSON.stringify(['hub', h, models(), taskFilter, query]);
     if (signature === modelSignature) return; modelSignature = signature;
     $('modelListTitle').textContent = query ? 'Hugging Face 搜索结果' : '探索 Hugging Face';
-    $('modelResultCount').textContent = h.searching ? '正在连接…' : '本页 ' + items.length + ' 个仓库';
+    $('modelResultCount').textContent = (h.searching ? '正在连接…' : '本页 ' + items.length + ' 个仓库') + (bundles.length ? ' · ' + bundles.length + ' 套已登记配方' : '');
     $('modelList').innerHTML = h.searching ? '<div class="empty-list" role="status"><h3>正在获取 HF 模型…</h3><p>推荐和本地模型可随时离线浏览。</p></div>' : h.error ? '<div class="empty-list"><h3>暂时无法获取列表</h3><p>' + esc(h.error) + '</p><button class="button primary" data-action="hubRetry">重试</button></div>' : items.length ? items.map(function (m) {
-      return '<article class="model-card hub-card" data-repository="' + esc(m.id) + '"><span class="eyebrow">HUGGING FACE</span><h3 class="hub-repository">' + esc(m.id) + '</h3><div class="model-tags">' + uncensoredTag(m.uncensored) + (m.gated ? '<span class="tag">需 HF 授权</span>' : '') + '<span class="tag">' + esc(m.task || '任务待核对') + '</span></div><p class="model-description">' + Number(m.downloads || 0).toLocaleString() + ' 次下载 · ' + Number(m.likes || 0).toLocaleString() + ' 喜欢' + (m.license ? ' · ' + esc(m.license) : '') + '</p><div class="hub-actions"><button class="button primary" data-action="hubFiles" data-repository="' + esc(m.id) + '">' + icon('download') + '选择文件</button><button class="text-button" data-action="hubSource" data-repository="' + esc(m.id) + '">仓库 ↗</button></div></article>';
+      return '<article class="model-card hub-card" data-repository="' + esc(m.id) + '"><span class="eyebrow">HUGGING FACE</span><h3 class="hub-repository">' + esc(m.id) + '</h3><div class="model-tags">' + taskBadges(m, true) + uncensoredTag(m.uncensored) + (m.gated ? '<span class="tag">需 HF 授权</span>' : '') + '<span class="tag">' + esc(m.task || '任务待核对') + '</span></div><p class="model-description">' + Number(m.downloads || 0).toLocaleString() + ' 次下载 · ' + Number(m.likes || 0).toLocaleString() + ' 喜欢' + (m.license ? ' · ' + esc(m.license) : '') + '</p><div class="hub-actions"><button class="button primary" data-action="hubFiles" data-repository="' + esc(m.id) + '">' + icon('download') + '选择文件</button><button class="text-button" data-action="hubSource" data-repository="' + esc(m.id) + '">仓库 ↗</button></div></article>';
     }).join('') : '<div class="empty-list"><h3>' + (h.initialized ? '没有匹配的仓库' : '浏览完整 HF 模型库') + '</h3><p>尝试关键词、owner/model 或 HF 仓库链接。其他格式可切换“HF 全部格式”查看。</p><button class="button subtle" data-action="hubRefresh">获取列表</button></div>';
+    if (bundles.length) $('modelList').innerHTML = bundles.map(modelCard).join('') + $('modelList').innerHTML;
     $('hubPagination').innerHTML = pagination(h.previous, h.next, h.page, 'hubPage', h.searching);
   }
   function renderHubFiles() {
@@ -358,7 +371,7 @@
   }
   function closeModal() {
     if ($('modalBackdrop').hidden) return;
-    $('modalBackdrop').hidden = true; modalKind = ''; modelEditor = null;
+    window.LMAFoundation.close(); $('modalBackdrop').hidden = true; modalKind = ''; modelEditor = null;
     document.querySelector('.app-shell').removeAttribute('aria-hidden');
     if (returnFocus && document.contains(returnFocus)) returnFocus.focus({preventScroll: true}); returnFocus = null;
   }
@@ -366,7 +379,7 @@
     openModal(title, '<p>' + esc(message) + '</p><div class="modal-actions"><button class="button secondary" data-action="closeModal">取消</button><button class="button danger" data-action="confirmed" data-command="' + esc(action) + '" data-id="' + esc(id) + '">' + esc(button || '确认删除') + '</button></div>', 'confirm');
   }
   function pickModel() {
-    var installed = models().filter(function (m) { return m.installed; });
+    var installed = models().filter(function (m) { return m.installed && !m.isBundle; });
     openModal('选择本地模型', installed.length ? '<p>加载后会同时开启本机 API 服务。</p><div class="modal-list">' + installed.map(function (m) { return '<div class="modal-list-item"><button data-action="load" data-id="' + esc(m.id) + '"><strong>' + esc(m.name) + '</strong><small>' + esc(m.quant) + ' · ' + bytes(m.installedBytes) + '</small></button>' + icon('arrow') + '</div>'; }).join('') + '</div>' : '<p>先下载一个模型，或从设备导入 GGUF 文件。</p><button class="button primary" data-action="tab" data-tab="models">前往模型库</button>', 'pickModel');
   }
   function modelInfo(id) {
@@ -382,6 +395,7 @@
   }
   function handleAction(action, el) {
     var id = el.dataset.id, m;
+    if (window.LMAFoundation.handle(action, el)) return;
     switch (action) {
       case 'tab': route(el.dataset.tab); break;
       case 'showAll': selectFilter('all'); break;
@@ -430,11 +444,11 @@
       case 'suggest': $('chatInput').value = el.dataset.text; resizeInput(); $('chatInput').focus(); renderChat(); break;
       case 'battery': case 'exportLogs': case 'dismissError': nativeAction(action); break;
       case 'closeModal': closeModal(); break;
-      case 'addMenu': openModal('添加你的模型', '<div class="modal-list"><div class="modal-list-item"><button data-action="browseHub"><strong>从 Hugging Face 下载</strong><small>搜索模型并选择 GGUF 量化文件</small></button>' + icon('search') + '</div><div class="modal-list-item"><button data-action="addUrl"><strong>从下载链接添加</strong><small>输入 GGUF 的 HTTPS 直链，支持断点续传</small></button>' + icon('link') + '</div><div class="modal-list-item"><button data-action="importPicker"><strong>从设备导入</strong><small>选择已下载的 .gguf 文件</small></button>' + icon('upload') + '</div></div>', 'add'); break;
+      case 'addMenu': openModal('添加你的模型', '<div class="modal-list"><div class="modal-list-item"><button data-action="browseHub"><strong>从 Hugging Face 下载</strong><small>搜索模型并选择 GGUF 量化文件</small></button>' + icon('search') + '</div><div class="modal-list-item"><button data-action="addUrl"><strong>从下载链接添加</strong><small>输入 GGUF 的 HTTPS 直链，支持断点续传</small></button>' + icon('link') + '</div><div class="modal-list-item"><button data-action="importPicker"><strong>从设备导入</strong><small>选择已下载的 .gguf 文件</small></button>' + icon('upload') + '</div><div class="modal-list-item"><button data-action="bundleManifestPicker"><strong>导入模型包清单</strong><small>查看完整组件、标签与下载计划，确认后再下载或导入</small></button>' + icon('cube') + '</div></div>', 'add'); break;
       case 'browseHub': closeModal(); selectFilter('all'); break;
       case 'addUrl': openModal('添加 GGUF 下载链接', '<form id="customModelForm"><label class="form-field"><span>模型名称</span><input name="name" required maxlength="160" placeholder="例如：我的 Qwen 1.7B"></label><label class="form-field"><span>HTTPS 下载链接</span><input name="url" type="url" required placeholder="https://huggingface.co/…/resolve/main/….gguf" autocapitalize="off" spellcheck="false"></label><label class="form-field"><span>SHA256（可选）</span><input name="sha256" pattern="[a-fA-F0-9]{64}" maxlength="64" placeholder="发布者提供的 64 位哈希" autocapitalize="off" spellcheck="false"></label><p class="modal-help">请确认模型使用当前推理组件支持的架构，且适合手机的内存容量。</p><button type="submit" class="button primary">添加并下载</button></form>', 'addUrl'); break;
       case 'importPicker': nativeAction(action); closeModal(); break;
-      case 'about': openModal('关于 LMA', '<p>LMA 0.2.0 是本地模型工作台，使用 Android 前台服务运行 llama.cpp。无需 ROOT；首次使用需要下载或导入模型。</p><p>界面、对话记录和推理在设备本地运行。模型下载会连接你选择的仓库；开启局域网后，持有 API 密钥的同网设备可以请求推理。</p><p>前台通知、唤醒锁与电池设置可帮助后台运行。系统强行停止、内存不足、厂商省电策略、发热或重启仍会影响服务。模型输出和速度尚需目标手机实测。</p><p>推理引擎：llama.cpp（MIT），由 ServLlama v1.2.2 分发的 Android ARM64 预编译组件。各模型按其来源仓库许可使用。</p><div class="modal-list"><div class="modal-list-item"><button data-action="engineLicense"><strong>llama.cpp MIT 许可证</strong><small>查看随应用附带的许可全文</small></button>' + icon('arrow') + '</div><div class="modal-list-item"><button data-action="notices"><strong>LMA 与其他依赖许可</strong><small>查看第三方许可全文</small></button>' + icon('arrow') + '</div></div>', 'about'); break;
+      case 'about': openModal('关于 LMA', '<p>LMA 0.3.0-dev 是本地模型工作台，使用 Android 前台服务运行 llama.cpp。无需 ROOT；首次使用需要下载或导入模型。</p><p>界面、对话记录和推理在设备本地运行。模型下载会连接你选择的仓库；开启局域网后，持有 API 密钥的同网设备可以请求推理。</p><p>前台通知、唤醒锁与电池设置可帮助后台运行。系统强行停止、内存不足、厂商省电策略、发热或重启仍会影响服务。模型输出和速度尚需目标手机实测。</p><p>推理引擎：llama.cpp（MIT），由 ServLlama v1.2.2 分发的 Android ARM64 预编译组件。各模型按其来源仓库许可使用。</p><div class="modal-list"><div class="modal-list-item"><button data-action="engineLicense"><strong>llama.cpp MIT 许可证</strong><small>查看随应用附带的许可全文</small></button>' + icon('arrow') + '</div><div class="modal-list-item"><button data-action="notices"><strong>LMA 与其他依赖许可</strong><small>查看第三方许可全文</small></button>' + icon('arrow') + '</div></div>', 'about'); break;
       case 'engineLicense': openModal('llama.cpp · MIT License', '<div class="license-text">' + esc(window.LMA_LICENSE || 'MIT License\n\nCopyright (c) 2023-2026 The ggml authors\n\n完整许可证随 APK 的 licenses/LLAMA_CPP_LICENSE 一同分发，也位于项目 third_party/LLAMA_CPP_LICENSE。') + '</div>', 'license'); break;
       case 'notices': openModal('LMA 与第三方许可', Object.keys(window.LMA_NOTICES || {}).map(function (name) { return '<details class="license-notice"><summary>' + esc(name) + '</summary><div class="license-text">' + esc(window.LMA_NOTICES[name]) + '</div></details>'; }).join(''), 'license'); break;
     }
@@ -446,6 +460,8 @@
     var el = event.target.closest('[data-action]');
     if (el) { event.preventDefault(); handleAction(el.dataset.action, el); return; }
     var f = event.target.closest('[data-filter]'); if (f) selectFilter(f.dataset.filter);
+    var t = event.target.closest('[data-task]');
+    if (t) { taskFilter = t.dataset.task; document.querySelectorAll('[data-task]').forEach(function (b) { var active = b.dataset.task === taskFilter; b.classList.toggle('active', active); b.setAttribute('aria-pressed', String(active)); }); modelSignature = ''; renderModels(); }
     if (event.target === $('modalBackdrop')) closeModal();
     if (event.target.closest('.brand')) { event.preventDefault(); route('models'); }
   });
@@ -535,6 +551,7 @@
   });
   var themeMedia = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)');
   if (themeMedia) { if (themeMedia.addEventListener) themeMedia.addEventListener('change', applyTheme); else if (themeMedia.addListener) themeMedia.addListener(applyTheme); }
+  window.LMAFoundation.init({state: function () { return state || {}; }, esc: esc, bytes: bytes, icon: icon, dispatch: nativeAction, result: commandResult, openModal: openModal, closeModal: closeModal, toast: toast, route: route, selectLocal: function () { route('models'); selectFilter('local'); }, confirm: confirmAction});
   window.LMA = {receive: receive, back: function () { if (!$('modalBackdrop').hidden) { closeModal(); return true; } if (tab !== 'models') { route('models'); return true; } return false; }};
   hydrateIcons(document); updateFilters();
   if (window.Android) { try { receive(window.Android.getSnapshot()); } catch (e) { $('runtimeDetail').textContent = '等待原生服务连接…'; } }

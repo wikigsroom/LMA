@@ -1,0 +1,34 @@
+{
+  "schema": "lma.bundle-metadata-evidence/1",
+  "checked_on": "2026-10-27",
+  "model_weights_downloaded": false,
+  "model_inference_tested": false,
+  "physical_device_tests": 0,
+  "bundleId": "sd15_ss_q4_0_r031b5f5",
+  "model_api": "https://huggingface.co/api/models/second-state/stable-diffusion-v1-5-GGUF/031b5f5df991f511b3f5fa8fed6d99048ababb69?blobs=true",
+  "tokenizer_api": "https://huggingface.co/api/models/stable-diffusion-v1-5/stable-diffusion-v1-5/451f4fe16113bff5a5d2269ed5ad43b0592e9a14?blobs=true",
+  "metadata_transport": "HF Mirror public API; canonical pinned download URLs use official HF",
+  "weight": {
+    "repository": "second-state/stable-diffusion-v1-5-GGUF",
+    "revision": "031b5f5df991f511b3f5fa8fed6d99048ababb69",
+    "file": {
+      "rfilename": "stable-diffusion-v1-5-pruned-emaonly-Q4_0.gguf",
+      "blobId": "e3ffe82309f1b23645a92f90acfb08999007a837",
+      "size": 1566768416,
+      "lfs": {
+        "sha256": "b8944e9fe0b69b36ae1b5bb0185b3a7b8ef14347fe0fa9af6c64c4829022261f",
+        "size": 1566768416,
+        "pointerSize": 135
+      }
+    }
+  },
+  "tokenizer": {
+    "repository": "stable-diffusion-v1-5/stable-diffusion-v1-5",
+    "revision": "451f4fe16113bff5a5d2269ed5ad43b0592e9a14",
+    "path": "tokenizer/merges.txt",
+    "bytes": 524619,
+    "sha256": "9fd691f7c8039210e0fced15865466c65820d09b63988b0174bfe25de299051a",
+    "matches_sd_cpp_embedded_bytes": true,
+    "sd_cpp_revision": "be486498eadc29dc3cd234d944c2180ed42b1415"
+  }
+}
