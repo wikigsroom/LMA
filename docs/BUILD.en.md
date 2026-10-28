@@ -104,3 +104,5 @@ Dev.12 diffusion / 扩散检查：`python tools/test_diffusion.py` 编译生产 
 
 
 dev.13 rebuilds the diffusion worker: 8,836,200 bytes, SHA256 `01e6c0a37fc56bb9268d0890c71d8dae57bd0ac41922cb2ec64ad6e5e7fd1d3c`, with the same pinned sd.cpp/ggml sources, CPU, API28/16KiB alignment and original APK signing identity. [Notes](releases/v0.3.0-dev.13.md) identify the exact APK/checks, without claiming phone execution.
+
+Build Sana MNN with the same native Windows tools: `python tools/fetch_mnn.py`, `python tools/build_mnn.py`, `python tools/collect_mnn_notices.py`, `python tools/test_mnn.py`, then the shared APK/Lint/package checks. Source/header/overlays/notices are pinned; no model is downloaded. Its 74 host/C++ checks perform no MNN inference. See [MNN Sana build and components](MNN_SANA_ENGINE.en.md).

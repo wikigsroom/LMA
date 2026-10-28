@@ -25,6 +25,16 @@ public final class EngineWorkspace implements AutoCloseable {
         return expected.toPath();
     }
     public File directory() { return directory.toFile(); }
+    /** Retain execution filenames until even an unusually slow child has actually exited. */
+    public void closeAfter(Process process) throws IOException {
+        if (process == null || !process.isAlive()) { close(); return; }
+        Thread reaper = new Thread(() -> {
+            boolean interrupted = false;
+            while (process.isAlive()) try { process.waitFor(); } catch (InterruptedException error) { interrupted = true; }
+            try { close(); } catch (IOException error) { /* Startup recovery removes only owned orphan workspaces. */ }
+            if (interrupted) Thread.currentThread().interrupt();
+        }, "LMA-workspace-reaper"); reaper.setDaemon(true); reaper.start();
+    }
     public static String filename(String value) throws IOException {
         if (value == null || !value.matches("[A-Za-z0-9_][A-Za-z0-9_.-]{0,199}") || value.endsWith(".") || value.matches("(?i)(CON|PRN|AUX|NUL|COM[1-9]|LPT[1-9])(?:\\..*)?")) throw new IOException("Unsupported component filename");
         return value;

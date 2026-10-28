@@ -104,3 +104,5 @@ Dev.12 diffusion / 扩散检查：`python tools/test_diffusion.py` 编译生产 
 
 
 dev.13 重新编译扩散 worker：8,836,200 bytes，SHA256 `01e6c0a37fc56bb9268d0890c71d8dae57bd0ac41922cb2ec64ad6e5e7fd1d3c`，同一 sd.cpp / ggml 固定提交、CPU、API 28 / 16 KiB 对齐。安装包原签名保留；[更新说明](releases/v0.3.0-dev.13.md)记录精确 APK 和检查，不表示手机执行。
+
+Sana MNN 构建在同一原生 Windows 工具链下依次运行 `python tools/fetch_mnn.py`、`python tools/build_mnn.py`、`python tools/collect_mnn_notices.py`、`python tools/test_mnn.py`，然后通用 APK / Lint / 包检查。源码、header、覆盖补丁和许可固定，不下载模型。74 项主机 / C++ 检查不执行 MNN 模型；详见 [MNN Sana 构建与组件](MNN_SANA_ENGINE.md)。

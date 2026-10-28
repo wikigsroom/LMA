@@ -21,6 +21,7 @@ def main():
         "inputs.json": "build/input-tests/results.json",
         "diffusion.json": "build/diffusion-tests/results.json",
         "moss-nano.json": "build/moss-nano-tests/results.json",
+        "mnn.json": "build/mnn-tests/results.json",
         "api.json": "build/api-tests/results.json",
         "backend.json": "build/backend-tests/results.json",
         "hub.json": "build/hub-tests/results.json",
@@ -37,7 +38,7 @@ def main():
         shutil.copyfile(ROOT / source, out / name)
     status = {"version": version(), "kind": "development_checkpoint", "release_ready": False, "published": False,
               "physical_device_tests": 0, "model_inference_tested": False, "all_selected_models_supported": False,
-              "scope": "production diffusion binding, strict classic/Z-Image/FLUX/Qwen/Wan components, actual flow-shift/sampler/scheduler bindings and Qwen/Wan geometry policies with actual host protocol children and shared native C++ checks; local input imports, bounded resumable upload HTTP and production WAV validation, immutable input receipts/leases in the production job runner with host child fixtures; shared FIFO scheduling across production jobs, resident text, chat and HTTP with actual host child ownership and cancellation; actual host legacy model migration, hardlinks, fixed aliases and shared leases without auto-resume; host GGUF text bundle constraints, typed text artifacts and actual loopback HTTP/child fixtures, host storage/transfers, user-reviewed atomic model version changes/rollback and HF component recipes/Git integrity, explicit adapter pairing/leases, speech worker contracts/child fixtures, Nano native external-data validation and private hardlink workspaces, authenticated HTTP/streams/text proxy, UI fixtures, native compilation and APK/lint checks only",
+              "scope": "real MNN Sana ARM64 CPU compilation and production 13-component binding with sanitized metadata, parameter snapshots, actual host children and deferred workspace cleanup (no image inference); production diffusion binding, strict classic/Z-Image/FLUX/Qwen/Wan components, actual flow-shift/sampler/scheduler bindings and Qwen/Wan geometry policies with actual host protocol children and shared native C++ checks; local input imports, bounded resumable upload HTTP and production WAV validation, immutable input receipts/leases in the production job runner with host child fixtures; shared FIFO scheduling across production jobs, resident text, chat and HTTP with actual host child ownership and cancellation; actual host legacy model migration, hardlinks, fixed aliases and shared leases without auto-resume; host GGUF text bundle constraints, typed text artifacts and actual loopback HTTP/child fixtures, host storage/transfers, user-reviewed atomic model version changes/rollback and HF component recipes/Git integrity, explicit adapter pairing/leases, speech worker contracts/child fixtures, Nano native external-data validation and private hardlink workspaces, authenticated HTTP/streams/text proxy, UI fixtures, native compilation and APK/lint checks only",
               "required_scope": "docs/MULTIMODAL_RELEASE_PLAN.md", "sources": sources}
     (out / "status.json").write_text(json.dumps(status, indent=2) + "\n", encoding="utf-8")
     print(json.dumps(status))

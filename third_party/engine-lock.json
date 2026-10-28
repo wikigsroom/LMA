@@ -121,6 +121,29 @@
         "sd-nlohmann-json-LICENSE.txt": "0e592e358cf7722906f417be85bc514f15bf6efd28cea98cb84e56ef7fddfc3e",
         "sd-NDK-LLVM-NOTICE.txt": "f96f763beb66a7ba7a667647fc64c0226ace875e590c831fdd9579ec1c1d91e1"
       }
+    },
+    {
+      "engine": "mnn_diffusion",
+      "file": "liblma-mnn.so",
+      "source_revision": "35a20ca0995bb7e4a549b7def42c4acb30559a94",
+      "abi": "arm64-v8a",
+      "backend": "cpu",
+      "ndk": "30.0.16248370",
+      "sha256": "dd9b64d6931c58b4679fe33db3021148d90f5aa392314781705362362edee32b",
+      "bytes": 4048048,
+      "android_api_notes": [
+        28
+      ],
+      "notices": {
+        "mnn-LICENSE.txt": "b51146f2ab748a8681aa7b603e81d94dd431ea0fb3af59e10f91cf82e43b9cf9",
+        "mnn-half-LICENSE.txt": "1269110471a5506d5cc9c115c57b855206f69a90cc57bbbf27860907067ed946",
+        "mnn-flatbuffers-LICENSE.txt": "d9188c683ca4a5d24b771dc946e431aaa425fc3ea167abf0cc5bf18ab99c1afd",
+        "mnn-stb-image-NOTICE.txt": "867491bfd17e7d1ed7c799458d20c374360dbe3a19c779223a5cea9c6aafc053",
+        "mnn-stb-write-NOTICE.txt": "1b04cf233a8d031d1b6012816bd68b2cad14cd563308d9db4a33f6e911ba2ac7",
+        "mnn-stb-resize-NOTICE.txt": "1b04cf233a8d031d1b6012816bd68b2cad14cd563308d9db4a33f6e911ba2ac7",
+        "sd-nlohmann-json-LICENSE.txt": "0e592e358cf7722906f417be85bc514f15bf6efd28cea98cb84e56ef7fddfc3e",
+        "sd-NDK-LLVM-NOTICE.txt": "f96f763beb66a7ba7a667647fc64c0226ace875e590c831fdd9579ec1c1d91e1"
+      }
     }
   ]
 }

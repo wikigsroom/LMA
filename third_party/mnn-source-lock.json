@@ -1,0 +1,51 @@
+{
+  "schema": "lma.mnn-source-lock/1",
+  "repository": "https://github.com/alibaba/MNN.git",
+  "revision": "35a20ca0995bb7e4a549b7def42c4acb30559a94",
+  "license": "Apache-2.0",
+  "pipeline": "sana_mnn_v1",
+  "matched_model_family": "MNN Sana mobile with Qwen3-0.6B/connector/projector/DiT/VAE",
+  "bundled_model_assets": false,
+  "http_resources_compiled": false,
+  "logcat_compiled": false,
+  "upstream_overlays": [
+    "load/null guards and formatted input token budget in SanaLlm",
+    "bounded CPU thread binding and mandatory component load guards in SanaDiffusion"
+  ],
+  "notices": [
+    {
+      "path": "LICENSE.txt",
+      "output": "mnn-LICENSE.txt",
+      "sha256": "b51146f2ab748a8681aa7b603e81d94dd431ea0fb3af59e10f91cf82e43b9cf9"
+    },
+    {
+      "path": "3rd_party/half/LICENSE.txt",
+      "output": "mnn-half-LICENSE.txt",
+      "sha256": "1269110471a5506d5cc9c115c57b855206f69a90cc57bbbf27860907067ed946"
+    },
+    {
+      "path": "3rd_party/flatbuffers/LICENSE.txt",
+      "output": "mnn-flatbuffers-LICENSE.txt",
+      "sha256": "d9188c683ca4a5d24b771dc946e431aaa425fc3ea167abf0cc5bf18ab99c1afd"
+    },
+    {
+      "path": "3rd_party/imageHelper/stb_image.h",
+      "output": "mnn-stb-image-NOTICE.txt",
+      "sha256": "230676b55d9e93bebda1e88e079e7b0f4a9c7fede166b16754bafe9f6eb61c03",
+      "embedded_stb_notice": true
+    },
+    {
+      "path": "3rd_party/imageHelper/stb_image_write.h",
+      "output": "mnn-stb-write-NOTICE.txt",
+      "sha256": "518ec0dfa974ea001296e350a718a217916cad483c6cd6642ac05e67719e6cfd",
+      "embedded_stb_notice": true
+    },
+    {
+      "path": "3rd_party/imageHelper/stb_image_resize.h",
+      "output": "mnn-stb-resize-NOTICE.txt",
+      "sha256": "84f12d78f141849e7fc6de6d982851471e9c8e651c75e9bb9bc77c00aed38320",
+      "embedded_stb_notice": true
+    }
+  ],
+  "json_header_sha256": "2dd8db723cff3e44198e14d6038ea6443dc6171a564bb82cd6ee81f0edc316e5"
+}

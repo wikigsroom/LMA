@@ -2814,6 +2814,234 @@
       "help": "仅接受匹配的 Nano browser ONNX 导出与 decode_full codec；不是其他 MOSS 架构。须自行选择图引用的全部 .data，缺少数据会在本机报错。所有词表和音色均需用户下载；不提供参考音频克隆。音色编号按已下载 manifest 回填，数值上限为应用保护值，手机效果与内存待实测。"
     },
     {
+      "id": "sana_mnn_cpu_v1",
+      "name": "Sana mobile · Qwen3 + MNN",
+      "primaryRole": "diffusion",
+      "definition": {
+        "engine": "mnn_diffusion",
+        "backend": "cpu",
+        "architecture": "sana_mobile",
+        "pipeline": "sana_mnn_v1",
+        "tasks": [
+          "image"
+        ],
+        "capabilities": [
+          "text_to_image"
+        ],
+        "parameters": {
+          "version": 1,
+          "fields": {
+            "width": {
+              "type": "integer",
+              "label": "宽度（32 对齐）",
+              "default": 512,
+              "minimum": 256,
+              "maximum": 2048,
+              "presets": [
+                256,
+                512,
+                1024
+              ],
+              "limitSource": "application_guard",
+              "multipleOf": 32
+            },
+            "height": {
+              "type": "integer",
+              "label": "高度（32 对齐）",
+              "default": 512,
+              "minimum": 256,
+              "maximum": 2048,
+              "presets": [
+                256,
+                512,
+                1024
+              ],
+              "limitSource": "application_guard",
+              "multipleOf": 32
+            },
+            "steps": {
+              "type": "integer",
+              "label": "采样步数",
+              "default": 10,
+              "minimum": 1,
+              "maximum": 50,
+              "presets": [
+                4,
+                10,
+                20
+              ],
+              "limitSource": "application_guard"
+            },
+            "threads": {
+              "type": "integer",
+              "label": "CPU 线程",
+              "default": 4,
+              "minimum": 1,
+              "maximum": 32,
+              "presets": [
+                1,
+                2,
+                4
+              ],
+              "limitSource": "application_guard"
+            },
+            "maxInputTokens": {
+              "type": "integer",
+              "label": "编码文本 token 预算",
+              "default": 512,
+              "minimum": 1,
+              "maximum": 1792,
+              "presets": [
+                256,
+                512,
+                1024,
+                1792
+              ],
+              "limitSource": "application_guard"
+            },
+            "seed": {
+              "type": "integer",
+              "label": "随机种子（-1 随机）",
+              "default": -1,
+              "minimum": -1,
+              "maximum": 2147483647,
+              "presets": [
+                -1,
+                42
+              ],
+              "limitSource": "application_guard"
+            },
+            "useCfg": {
+              "type": "boolean",
+              "label": "启用 CFG（双批次编码 / 采样）",
+              "default": false
+            },
+            "cfg": {
+              "type": "number",
+              "label": "启用 CFG 时的引导强度",
+              "default": 4,
+              "minimum": 0,
+              "maximum": 30,
+              "presets": [
+                1,
+                4,
+                6
+              ],
+              "limitSource": "application_guard"
+            }
+          }
+        }
+      },
+      "requirements": [
+        {
+          "role": "diffusion",
+          "label": "transformer.mnn",
+          "formats": [
+            "mnn"
+          ],
+          "required": true
+        },
+        {
+          "role": "diffusion_data",
+          "label": "transformer.mnn.weight",
+          "formats": [
+            "mnn_data"
+          ],
+          "required": true
+        },
+        {
+          "role": "connector",
+          "label": "connector.mnn",
+          "formats": [
+            "mnn"
+          ],
+          "required": true
+        },
+        {
+          "role": "connector_data",
+          "label": "connector.mnn.weight",
+          "formats": [
+            "mnn_data"
+          ],
+          "required": true
+        },
+        {
+          "role": "projector",
+          "label": "projector.mnn",
+          "formats": [
+            "mnn"
+          ],
+          "required": true
+        },
+        {
+          "role": "projector_data",
+          "label": "projector.mnn.weight",
+          "formats": [
+            "mnn_data"
+          ],
+          "required": true
+        },
+        {
+          "role": "vae",
+          "label": "vae_decoder.mnn",
+          "formats": [
+            "mnn"
+          ],
+          "required": true
+        },
+        {
+          "role": "vae_data",
+          "label": "vae_decoder.mnn.weight",
+          "formats": [
+            "mnn_data"
+          ],
+          "required": true
+        },
+        {
+          "role": "llm",
+          "label": "llm/llm.mnn",
+          "formats": [
+            "mnn"
+          ],
+          "required": true
+        },
+        {
+          "role": "llm_data",
+          "label": "llm/llm.mnn.weight",
+          "formats": [
+            "mnn_data"
+          ],
+          "required": true
+        },
+        {
+          "role": "llm_config",
+          "label": "llm/llm_config.json",
+          "formats": [
+            "json"
+          ],
+          "required": true
+        },
+        {
+          "role": "tokenizer",
+          "label": "llm/tokenizer.txt",
+          "formats": [
+            "text"
+          ],
+          "required": true
+        },
+        {
+          "role": "meta_queries",
+          "label": "llm/meta_queries.mnn",
+          "formats": [
+            "mnn"
+          ],
+          "required": true
+        }
+      ],
+      "fixedComponents": [],
+      "help": "仅匹配 MNN-Sana-Edit-V2 的 Qwen3-0.6B 移动管线；本配方仅文生图，不接受原版 Sana 或 LoRA。13 个组件全部由用户选择，MNN 图与 .weight 必须成套。编码器配置只提取已验证的架构 / embedding 字段，不执行任意路径 / 缓存 / 联网配置。负面提示词需启用 CFG；启用后增加编码和采样开销。当前只有 CPU 编译与主机协议验证，无手机生图 / 性能证据。"
+    },
+    {
       "id": "text_gguf_cpu_v1",
       "name": "文本 GGUF · CPU",
       "primaryRole": "text_gguf",

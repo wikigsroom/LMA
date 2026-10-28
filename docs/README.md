@@ -10,6 +10,7 @@
 | API 与 SSE / API and streaming | [API.md](API.md) | [API.en.md](API.en.md) |
 | 开发实施 / Development status | [DEVELOPMENT.md](DEVELOPMENT.md) | [DEVELOPMENT.en.md](DEVELOPMENT.en.md) |
 | 基座与资产需求核对 / Asset-control audit | [ASSET_CONTROL_AUDIT.md](ASSET_CONTROL_AUDIT.md) | [ASSET_CONTROL_AUDIT.en.md](ASSET_CONTROL_AUDIT.en.md) |
+| Sana 移动端 / MNN 引擎 | [MNN_SANA_ENGINE.md](MNN_SANA_ENGINE.md) | [MNN_SANA_ENGINE.en.md](MNN_SANA_ENGINE.en.md) |
 | 高级扩散 / 视频基座 | [ADVANCED_DIFFUSION.md](ADVANCED_DIFFUSION.md) | [ADVANCED_DIFFUSION.en.md](ADVANCED_DIFFUSION.en.md) |
 | HF 组件配方 / HF component recipes | [HF_RECIPES.md](HF_RECIPES.md) | [HF_RECIPES.en.md](HF_RECIPES.en.md) |
 | 模型独立更新 / Independent model versions | [MODEL_UPDATES.md](MODEL_UPDATES.md) | [MODEL_UPDATES.en.md](MODEL_UPDATES.en.md) |

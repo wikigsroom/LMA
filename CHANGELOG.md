@@ -1,5 +1,12 @@
 # Changelog / 更新记录
 
+## 0.3.0-dev.14 · 2026-10-28 · 内部检查点 / Internal checkpoint
+
+- 实际 MNN Sana 移动端 CPU worker、Qwen3 特征编码与分阶段释放；新增 13 组件配方和 `.mnn` / `.mnn.weight` 用户选择。No bundled model assets, auto-downloads or remote execution.
+- 配置白名单 / embedding 范围、独立参数快照、硬链接引用与延迟清理；74 项 Java / C++ 检查。Host protocol bytes are not generated images.
+- 445 foundation / 253 recipe-integrity、208 UI、37 张显式 UI FIXTURE 与录屏 / GIF；原签名 APK 和双语文档同步。
+- 所有冻结目标与 Android 真实输出、质量 / 资源 / 后台 / 升级门槛仍在同一个完整 v0.3.0，未创建 Release。See [双语 notes](docs/releases/v0.3.0-dev.14.md).
+
 ## 0.3.0-dev.13 · 2026-10-28 · 内部检查点 / Internal checkpoint
 
 - 补齐 Z-Image-Turbo、FLUX.2-klein 4B、Qwen-Image 2.1、Wan 2.1 T2V 1.3B 的显式四组件模板与角色校验；总计二十个数据模板，用户自行选择下载，不因 App 更新安装模型。Four complete recipes, without implicit asset downloads.

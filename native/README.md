@@ -13,3 +13,5 @@ Rebuild with `bootstrap_native.py`, `fetch_native.py`, `build_native.py`, then c
 开发界限、模型资产规则与全部未完成项见 [中文实施记录](../docs/DEVELOPMENT.md) / [English development record](../docs/DEVELOPMENT.en.md)。完整 v0.3.0 仍须全部冻结目标的新输入离线真机输出及发布验收。
 
 - `moss_nano/` implements SentencePiece, autoregressive ONNX and codec decoding. Model-specific data stays external. Sources, user component roles, shared ORT rules and 190 host checks: [中文](../docs/MOSS_NANO_ENGINE.md) / [English](../docs/MOSS_NANO_ENGINE.en.md).
+
+- `mnn/` builds the actual matched Sana/Qwen3 CPU pipeline with generated upstream load/token/thread guards, isolated diagnostics and external user-selected components. No image/phone inference is claimed. [中文](../docs/MNN_SANA_ENGINE.md) / [English](../docs/MNN_SANA_ENGINE.en.md).

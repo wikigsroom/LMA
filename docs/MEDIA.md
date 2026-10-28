@@ -88,3 +88,5 @@ dev.12 历史媒体为 **32 PNG + MP4 + GIF**，新增 [LCM 配对采样](media/
 
 
 dev.13 当前媒体 / current media：**35 PNG + MP4 + GIF**。新增 [Z-Image 采样](media/development/33-zimage-sampling-policy.png)、[Qwen 组件](media/development/34-qwen-image-components.png)、[Wan 视频参数](media/development/35-wan-video-parameters.png)；全部明确为 UI FIXTURE，未下载权重、未执行 Android 或模型。录制结束在 finally 关闭上下文与浏览器。All are explicit fixtures, not model outputs or device evidence; browser resources close after capture.
+
+dev.14 Sana 页面：[组件](media/development/36-sana-mobile-components.png)、[独立参数](media/development/37-sana-mobile-parameters.png)；[37 张页面清单](media/development/manifest.json)、[录屏](media/development/foundation-ui.mp4)与 [GIF](media/development/foundation-ui.gif)均是实际页面与明确的 UI FIXTURE。No models were downloaded or executed; these are not Android image or performance evidence. See [中文](MNN_SANA_ENGINE.md) / [English](MNN_SANA_ENGINE.en.md).

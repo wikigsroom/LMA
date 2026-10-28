@@ -22,3 +22,5 @@ Model weights are not redistributed in the APK. Each catalogue entry links to it
 ## MOSS Nano adapter
 
 Pinned MOSS/SentencePiece/ORT headers and exact shared ORT bytes are recorded in [moss-nano-source-lock.json](moss-nano-source-lock.json). Seven upstream notice originals are collected from clean pinned sources. The signed worker uses external user-selected model data and shares one verified ORT file with sherpa. [中文](../docs/MOSS_NANO_ENGINE.md) · [English](../docs/MOSS_NANO_ENGINE.en.md).
+
+The Sana mobile MNN CPU worker is pinned in [mnn-source-lock.json](mnn-source-lock.json), with six source notices in [mnn-sources.json](notices/mnn-sources.json), the shared JSON/NDK notices and the actual binary identity in [engine-lock.json](engine-lock.json). Native Windows NDK builds disable HTTP resources/Logcat. No weights/tokenizer data are distributed. Compilation and host contracts establish no phone image output. [中文](../docs/MNN_SANA_ENGINE.md) / [English](../docs/MNN_SANA_ENGINE.en.md).

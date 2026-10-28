@@ -110,6 +110,25 @@ def build():
         definition=dict(engine="moss_nano_ort", backend="cpu", architecture="moss_tts_nano", pipeline="moss_nano", tasks=["audio"], capabilities=["text_to_speech"], parameters=dict(version=1, fields=fields)),
         requirements=requirements, fixedComponents=[],
         help="仅接受匹配的 Nano browser ONNX 导出与 decode_full codec；不是其他 MOSS 架构。须自行选择图引用的全部 .data，缺少数据会在本机报错。所有词表和音色均需用户下载；不提供参考音频克隆。音色编号按已下载 manifest 回填，数值上限为应用保护值，手机效果与内存待实测。"))
+    sana_fields = {}
+    for key, label, default, low, high, presets in (
+        ("width", "宽度（32 对齐）", 512, 256, 2048, [256, 512, 1024]), ("height", "高度（32 对齐）", 512, 256, 2048, [256, 512, 1024]),
+        ("steps", "采样步数", 10, 1, 50, [4, 10, 20]), ("threads", "CPU 线程", 4, 1, 32, [1, 2, 4]),
+        ("maxInputTokens", "编码文本 token 预算", 512, 1, 1792, [256, 512, 1024, 1792]), ("seed", "随机种子（-1 随机）", -1, -1, 2147483647, [-1, 42])):
+        sana_fields[key] = dict(type="integer", label=label, default=default, minimum=low, maximum=high, presets=presets, limitSource="application_guard")
+        if key in ("width", "height"): sana_fields[key]["multipleOf"] = 32
+    sana_fields["useCfg"] = dict(type="boolean", label="启用 CFG（双批次编码 / 采样）", default=False)
+    sana_fields["cfg"] = dict(type="number", label="启用 CFG 时的引导强度", default=4, minimum=0, maximum=30, presets=[1, 4, 6], limitSource="application_guard")
+    sana_roles = [("diffusion", "transformer.mnn", "mnn"), ("diffusion_data", "transformer.mnn.weight", "mnn_data"),
+        ("connector", "connector.mnn", "mnn"), ("connector_data", "connector.mnn.weight", "mnn_data"),
+        ("projector", "projector.mnn", "mnn"), ("projector_data", "projector.mnn.weight", "mnn_data"),
+        ("vae", "vae_decoder.mnn", "mnn"), ("vae_data", "vae_decoder.mnn.weight", "mnn_data"),
+        ("llm", "llm/llm.mnn", "mnn"), ("llm_data", "llm/llm.mnn.weight", "mnn_data"),
+        ("llm_config", "llm/llm_config.json", "json"), ("tokenizer", "llm/tokenizer.txt", "text"), ("meta_queries", "llm/meta_queries.mnn", "mnn")]
+    templates.append(dict(id="sana_mnn_cpu_v1", name="Sana mobile · Qwen3 + MNN", primaryRole="diffusion",
+        definition=dict(engine="mnn_diffusion", backend="cpu", architecture="sana_mobile", pipeline="sana_mnn_v1", tasks=["image"], capabilities=["text_to_image"], parameters=dict(version=1, fields=sana_fields)),
+        requirements=[dict(role=r, label=n, formats=[f], required=True) for r,n,f in sana_roles], fixedComponents=[],
+        help="仅匹配 MNN-Sana-Edit-V2 的 Qwen3-0.6B 移动管线；本配方仅文生图，不接受原版 Sana 或 LoRA。13 个组件全部由用户选择，MNN 图与 .weight 必须成套。编码器配置只提取已验证的架构 / embedding 字段，不执行任意路径 / 缓存 / 联网配置。负面提示词需启用 CFG；启用后增加编码和采样开销。当前只有 CPU 编译与主机协议验证，无手机生图 / 性能证据。"))
     text_fields = {}
     for key, label, default, low, high, presets, kind in (
         ("threads", "CPU 线程", 4, 1, 256, [1, 2, 4, 8], "integer"),

@@ -29,6 +29,7 @@ public final class LocalEngines {
             else if (id.equals("sd_cpp")) register(new SdEngine(app, binary, build));
             else if (id.equals("sherpa_tts")) register(new SherpaEngine(app, binary, build));
             else if (id.equals("moss_nano_ort")) register(new MossNanoEngine(app, binary, build));
+            else if (id.equals("mnn_diffusion")) register(new MnnEngine(app, binary, build));
             else throw new IOException("未知的签名原生模块：" + id);
         }
     }

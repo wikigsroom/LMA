@@ -29,6 +29,8 @@ public final class HubRecipeTest {
         check(regular.getString("gitBlobSha1").equals(OID) && !regular.has("sha256"), "Regular HF Git identity is not labeled publisher SHA256");
         check(HubClient.asset(repo, entry("tokenizer.model")).getString("format").equals("sentencepiece"), "SentencePiece remains user-selected model data");
         check(HubClient.asset(repo, entry("weights.data")).getString("format").equals("onnx_data"), "External ONNX weights are selectable data components");
+        check(HubClient.asset(repo, entry("transformer.mnn")).getString("format").equals("mnn"), "MNN graphs are selectable user data");
+        check(HubClient.asset(repo, entry("llm/llm.mnn.weight")).getString("format").equals("mnn_data"), "MNN external weights are selectable separately");
         JSONObject lfs = HubClient.asset(repo, entry("model.onnx").put("lfs", new JSONObject().put("oid", SHA).put("size", 128)));
         check(lfs.getString("sha256").equals(SHA) && !lfs.has("gitBlobSha1"), "LFS files retain publisher SHA256");
         check(!HubClient.asset(repo, entry("model.onnx").put("lfs", new JSONObject().put("oid", "bad"))).getString("blocked").isEmpty(), "Bad LFS digests cannot fall back to pointer blob identity");
@@ -56,7 +58,7 @@ public final class HubRecipeTest {
         Path disk = root.resolve("build/hub-tests/recipes-" + UUID.randomUUID());
         LmaApp app = new LmaApp(disk.toFile(), root.resolve("app/src/main/assets").toFile(), root.resolve("build/test-libraries").toFile());
         try (HubCatalog catalog = new HubCatalog(app, () -> client)) {
-            check(catalog.snapshot().getJSONArray("recipeTemplates").length() == 20, "HF controller loads signed data-only recipe templates");
+            check(catalog.snapshot().getJSONArray("recipeTemplates").length() == 21, "HF controller loads signed data-only recipe templates");
             files(catalog, "fixture/model"); check(catalog.snapshot().getJSONObject("files").getJSONArray("assets").length() == 3, "HF file pages expose ONNX, binary and text component metadata");
             catalog.dispatch(command("hubRecipeStart").put("repository", "fixture/model")); String initial = draft(catalog);
             catalog.dispatch(command("hubRecipeTemplate").put("draftId", initial).put("templateId", "kokoro_en_cpu_v1"));

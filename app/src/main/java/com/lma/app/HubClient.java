@@ -174,6 +174,8 @@ public final class HubClient {
         if (lower.endsWith(".txt") || lower.endsWith(".vocab")) format = "text";
         if (lower.endsWith(".model")) format = "sentencepiece";
         if (lower.endsWith(".data")) format = "onnx_data";
+        if (lower.endsWith(".mnn")) format = "mnn";
+        if (lower.endsWith(".mnn.weight")) format = "mnn_data";
         if (format.equals("unknown")) blocked = "此文件不是当前配方接入的组件格式";
         Object declaredSize = entry.opt("size"); long bytes = declaredSize instanceof Number ? ((Number) declaredSize).longValue() : 0;
         if (!(declaredSize instanceof Number) || ((Number) declaredSize).doubleValue() != bytes || bytes < 1 || bytes > 128L * 1024 * 1024 * 1024) blocked = "组件大小未声明或超出存储范围";

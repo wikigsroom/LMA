@@ -92,3 +92,5 @@ Edit or clear the system prompt freely. No extra keyword moderation is added. Sa
 | Refusals / ineffective reasoning toggle | Confirm the exact variant, publisher evidence, and prompt. Publisher claims do not imply zero refusals; some models ignore reasoning settings |
 
 Uninstalling deletes models and chats. Model migration and chat backup/import are not implemented; exported logs are not a full backup. Reports should include version, phone/Android, model ID/hash, parameters, reproduction steps, and sanitized logs.
+
+For Sana, select `Sana mobile · Qwen3 + MNN` in All/search, choose the 13 matching graph/weight/tokenizer components, review the plan and separately confirm downloading. Local manages that model and its dimensions/CFG/input tokens/threads. This matched mobile text-to-image recipe does not automatically support original Sana, editing or LoRA. No assets are bundled or implicitly fetched. Compilation/host checks exist; phone output remains unverified. See the [Sana guide](MNN_SANA_ENGINE.en.md).

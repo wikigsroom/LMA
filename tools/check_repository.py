@@ -75,6 +75,7 @@ def main():
         assert records["foundation.json"]["passed"] >= 302 and records["foundation.json"]["model_update_assertions"] >= 62 and records["foundation.json"]["recipe_integrity_assertions"] >= 87 and records["foundation.json"]["adapter_contract_assertions"] >= 45 and records["backend.json"]["passed"] >= 85 and records["hub.json"]["passed"] >= 74
         assert records["text.json"]["passed"] >= 66 and records["text.json"]["actual_host_child_processes"] and records["text.json"]["actual_loopback_http"] and not records["text.json"]["model_inference"]
         assert records["tts.json"]["passed"] >= 62 and records["tts.json"]["actual_host_child_processes"] and not records["tts.json"]["model_inference"]
+        assert records["mnn.json"]["passed"] >= 74 and records["mnn.json"]["production_mnn_binding"] and records["mnn.json"]["actual_host_children"] and not records["mnn.json"]["model_inference"] and not records["mnn.json"]["physical_android"] and not records["mnn.json"]["image_outputs"]
         assert records["moss-nano.json"]["passed"] >= 190 and records["moss-nano.json"]["native_parser"]["native_host_execution"] and records["moss-nano.json"]["java_contracts"]["actual_host_hardlinks"] and not records["moss-nano.json"]["model_inference"]
         assert records["api.json"]["passed"] >= 67 and records["api.json"]["actual_socket_io"] and not records["api.json"]["physical_device"]
         assert records["ui.json"]["passed"] >= 112 and not records["ui.json"]["errors"] and records["lint.json"]["errors"] == 0

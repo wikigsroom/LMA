@@ -62,7 +62,7 @@ module.exports = async function checkRecipes(page, checked) {
   await page.evaluate(installFixture, templates);
   const count = () => page.evaluate(() => window.__commands.filter(c => ['download', 'downloadBundle'].includes(c.action)).length);
   const before = await count(); await openRecipe(page);
-  assert.equal(await page.locator('#recipeTemplate option').count(), 21); checked('HF recipe UI offers twenty explicit architecture/component templates');
+  assert.equal(await page.locator('#recipeTemplate option').count(), 22); checked('HF recipe UI offers twenty-one explicit architecture/component templates');
   assert(await page.locator('[data-action="recipeDeclare"]').isDisabled()); checked('No recipe or files are selected automatically');
   await selectTemplate(page, 'kokoro_en_cpu_v1');
   assert((await page.locator('#recipePanel').innerText()).includes('lexicon')); checked('Fixed language dependency is disclosed before registration');

@@ -4,7 +4,7 @@
   var $ = function (id) { return document.getElementById(id); };
   var labels = {text: '生文', image: '生图', video: '生视频', audio: '生音频'};
   var states = {queued: '排队中', loading: '加载中', running: '生成中', cancelling: '取消中', cancelled: '已取消', failed: '失败', succeeded: '已完成', interrupted: '已中断'};
-  var stages = {queued: '等待执行', waiting_engine: '等待本机执行槽', validating_inputs: '校验本地素材', loading: '加载模型', sampling: '采样中', encoding: '编码媒体', synthesizing: '合成语音', text_encoding: '编码文本', decoding: '解码输出', generating: '生成文本', saving: '保存结果'};
+  var stages = {queued: '等待执行', waiting_engine: '等待本机执行槽', validating_inputs: '校验本地素材', loading: '加载模型', loading_diffusion: '加载生图组件', sampling: '采样中', encoding: '编码媒体', synthesizing: '合成语音', text_encoding: '编码文本', encoding_text: '编码文本', decoding: '解码输出', generating: '生成文本', saving: '保存结果'};
   var paramNames = {width: '宽度', height: '高度', frames: '帧数', fps: '帧率', steps: '采样步数', cfg: '提示词引导', seed: '随机种子', threads: 'CPU 线程', sampler: '采样器', scheduler: '调度器', duration: '时长（秒）', speed: '语速', context: '上下文长度', maxTokens: '单次输出上限', temperature: '采样温度', reasoning: '思考模式', systemPrompt: '系统提示词'};
   function entries() { return ui.state() && ui.state().bundles || []; }
   function find(id) { return entries().filter(function (b) { return b.id === id; })[0]; }
@@ -150,6 +150,7 @@
       if (key === 'cfg') field.disabled = active;
     });
     ['sampler', 'scheduler'].forEach(function (key) { var f = form.querySelector('[data-bundle-field="' + key + '"]'); if (f) f.closest('label').hidden = active; });
+    if (pipeline === 'sana_mnn_v1') { hint.hidden = false; hint.textContent = 'Sana 移动管线：13 个配套组件，256–2048 像素并按 32 对齐，1–50 步。负面提示词需要启用 CFG（双批次编码 / 采样），token 预算包含格式提示词。仅本机 CPU，手机输出与资源尚待实测。'; }
   }
   function readAdapters(form, base) {
     var selected = [];

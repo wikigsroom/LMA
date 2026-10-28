@@ -223,6 +223,14 @@ async function main() {
   await page.locator('#localTaskForm .task-parameters').evaluate(e => {e.open=true;});
   await page.locator('[data-bundle-field="frames"]').scrollIntoViewIfNeeded();
   await shot('35-wan-video-parameters.png', 'Wan frames/fps/flow-shift editable model parameters; UI fixture, no Android video / Wan 视频参数，未生成视频');
+  await page.keyboard.press('Escape'); await page.locator('[data-task="image"]').click();
+  await page.locator('[data-action="bundleInfo"][data-id="ui_sampling_sana"]').click();
+  await shot('36-sana-mobile-components.png', 'Matched Sana mobile MNN/Qwen3 user components; UI FIXTURE, no installed model proof / Sana 移动端配套组件，非真机模型证据');
+  await page.locator('#modal [data-action="bundleUse"][data-id="ui_sampling_sana"]').click();
+  await page.locator('[name="prompt"]').fill('Sana 移动管线表单演示，没有执行模型或生成图片。');
+  await page.locator('#localTaskForm .task-parameters').evaluate(e => {e.open=true;});
+  await page.locator('[data-bundle-field="useCfg"]').scrollIntoViewIfNeeded();
+  await shot('37-sana-mobile-parameters.png', 'Per-model Sana CFG/token/thread settings; UI FIXTURE, no image generation / Sana 独立 CFG、token 与线程参数，未生成图片');
   if (errors.length) throw new Error(JSON.stringify(errors));
   const video = page.video(); await context.close(); context = null;
   const raw = await video.path();

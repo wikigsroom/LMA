@@ -1,5 +1,5 @@
 {
-  "version": "0.3.0-dev.13",
+  "version": "0.3.0-dev.14",
   "kind": "development UI with explicit simulated native bridge",
   "android_device": false,
   "model_inference": false,
@@ -146,6 +146,14 @@
     {
       "file": "35-wan-video-parameters.png",
       "caption": "Wan frames/fps/flow-shift editable model parameters; UI fixture, no Android video / Wan 视频参数，未生成视频"
+    },
+    {
+      "file": "36-sana-mobile-components.png",
+      "caption": "Matched Sana mobile MNN/Qwen3 user components; UI FIXTURE, no installed model proof / Sana 移动端配套组件，非真机模型证据"
+    },
+    {
+      "file": "37-sana-mobile-parameters.png",
+      "caption": "Per-model Sana CFG/token/thread settings; UI FIXTURE, no image generation / Sana 独立 CFG、token 与线程参数，未生成图片"
     }
   ],
   "files": [
@@ -176,13 +184,13 @@
     },
     {
       "file": "06-queue-results.png",
-      "bytes": 48581,
-      "sha256": "b99a9a593c0ebf732376c79a171d83302a6b2a4b4bc8f58f0c5f2630e0f09c9b"
+      "bytes": 48632,
+      "sha256": "a11567ccc45ae1709cd74bc77172dd9682c521a0b263f2ca3bf8e23e66f73773"
     },
     {
       "file": "07-cancelled.png",
-      "bytes": 48768,
-      "sha256": "ff8a1c2a245128e751be22d4ea169dfbcac69e877374987a2875b2316f5be6a4"
+      "bytes": 48818,
+      "sha256": "fa30552dd7ec997bf0c75f48edac88c7edd0aec5d4288387e03d7e9ad283f281"
     },
     {
       "file": "08-zero-model-api.png",
@@ -251,8 +259,8 @@
     },
     {
       "file": "21-model-version-history.png",
-      "bytes": 49671,
-      "sha256": "5e07f50407298a8a86c3d3c8a2b626a6a947d648f79a99e1b326721fcbe63112"
+      "bytes": 49790,
+      "sha256": "4e5a42ed05ad8b6fa781053e42d886b0dd01bb5519e2aa85582596ee75504fcf"
     },
     {
       "file": "22-text-model-settings.png",
@@ -266,8 +274,8 @@
     },
     {
       "file": "24-text-result.png",
-      "bytes": 46870,
-      "sha256": "44a9599f3d42eeab94e00facb6f4ebbc78e852f82ab863a62325c08fea1fd5e7"
+      "bytes": 46918,
+      "sha256": "da81bda4871d42ae93a2c595714cb5a4e4d53caa57effbfd948cba69d0ec999d"
     },
     {
       "file": "25-migrated-text-model.png",
@@ -325,24 +333,34 @@
       "sha256": "0091bf41af5ad7d5ddb7f1d769aeeafb7538ca52af69223bdfd4ab2c81e22152"
     },
     {
+      "file": "36-sana-mobile-components.png",
+      "bytes": 41370,
+      "sha256": "eca79c4eab486e2943a3216c9a1298f4cdccb23374699aaa19db4a4f554591ae"
+    },
+    {
+      "file": "37-sana-mobile-parameters.png",
+      "bytes": 45428,
+      "sha256": "fffd103d7abf3a44183c49b45d2d6a81261050fb8f10609de73d40177e630ae4"
+    },
+    {
       "file": "foundation-ui.gif",
-      "bytes": 5465042,
-      "sha256": "daeeabeecf28fcf3f6579dc2589dbec0bf1c764d93005daac4c89cd4aeb43f8a"
+      "bytes": 5164370,
+      "sha256": "3d3ca1eb42fef4fa9eb9157e31396d6af69f4189b498af6956d6d02783859d50"
     },
     {
       "file": "foundation-ui.mp4",
-      "bytes": 2458772,
-      "sha256": "ff1a1da9965059616f3edad0a808e6d15fd3c30416d945c62a1bbb97ffd2643b"
+      "bytes": 2355919,
+      "sha256": "fa0a558e8c08f2d043c787fb513f77c3813dc751f50a31e09834cd55fcf08e0a"
     }
   ],
   "input_fingerprint": {
     "app/src/main/assets/app.css": "f2cb7b5ee9de8f3afac793e694dcf9fde0a855c0d4c7053ff986cc2a6d2bd3b1",
-    "app/src/main/assets/app.js": "2efaf28ce43fda660a47020a13f7c2064bd49d3e5f0cf7b4580b21666c4c6808",
-    "app/src/main/assets/engine-builds.json": "4d922bd29af764d18ae7b59a7eb12329af4dc261e7950579d9f87555dfd6103a",
+    "app/src/main/assets/app.js": "bce8e6e858d171240b1156d95db2b552dad756142d495ac28e2f92100cc253f4",
+    "app/src/main/assets/engine-builds.json": "a3e1663c0fa218faecb3d85c305b65ca9e40cf3c3c3295b602aee305503308e0",
     "app/src/main/assets/foundation.css": "26c332b6918710c4b79b25d659ff4f297841e6f38eb162cd71c2bcc19872af5c",
-    "app/src/main/assets/foundation.js": "d6a399c5cbbe6412f77b758e1c2cc028cd8421802b1195c7a55d92f6d1cb690e",
+    "app/src/main/assets/foundation.js": "cf858ca52051ce424d01e8b58296e70ddc67829427060672e6c815fe26a928ad",
     "app/src/main/assets/index.html": "406a11f10a3380d2db0325ffd148dcb55b2eabe35aa2bcd001864aafa57afd62",
-    "app/src/main/assets/license.js": "1c814e25648a624a68de26d0614ef0ac9799db94edd8cd3835a07e77156d51e0",
+    "app/src/main/assets/license.js": "ea826a61084b7fca7a3c4f5c56c5e3fa9d17f23f242cf69b537a83a3f0215756",
     "app/src/main/assets/licenses/LLAMA_CPP_LICENSE": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
     "app/src/main/assets/licenses/LMA_LICENSE": "6ae3f5efa412d91cbf66e44f743e5ce41a8044309d05d893365206ab9bc35fc3",
     "app/src/main/assets/licenses/cpp-httplib-LICENSE.txt": "bb546eae5924d8ee842e0e567e6d533c5824bdebccf605f99a5b3429034e6697",
@@ -350,6 +368,12 @@
     "app/src/main/assets/licenses/libcxxabi-LICENSE.txt": "da1b3a1b8e0a947d934acfbe4e356b864199f65923cc2f89d8330b8b678e3cdd",
     "app/src/main/assets/licenses/libunwind-LICENSE.txt": "6ac83ceee5f3a784aed98f250bc7acf68dd7112528512c1a6d40dcb5a29154bf",
     "app/src/main/assets/licenses/miniaudio-LICENSE.txt": "6c36f269eb9346c1bc9d857250bd6a1132a5e65e700bea99ea1836c1658cf13b",
+    "app/src/main/assets/licenses/mnn-LICENSE.txt": "b51146f2ab748a8681aa7b603e81d94dd431ea0fb3af59e10f91cf82e43b9cf9",
+    "app/src/main/assets/licenses/mnn-flatbuffers-LICENSE.txt": "d9188c683ca4a5d24b771dc946e431aaa425fc3ea167abf0cc5bf18ab99c1afd",
+    "app/src/main/assets/licenses/mnn-half-LICENSE.txt": "1269110471a5506d5cc9c115c57b855206f69a90cc57bbbf27860907067ed946",
+    "app/src/main/assets/licenses/mnn-stb-image-NOTICE.txt": "867491bfd17e7d1ed7c799458d20c374360dbe3a19c779223a5cea9c6aafc053",
+    "app/src/main/assets/licenses/mnn-stb-resize-NOTICE.txt": "1b04cf233a8d031d1b6012816bd68b2cad14cd563308d9db4a33f6e911ba2ac7",
+    "app/src/main/assets/licenses/mnn-stb-write-NOTICE.txt": "1b04cf233a8d031d1b6012816bd68b2cad14cd563308d9db4a33f6e911ba2ac7",
     "app/src/main/assets/licenses/moss-moss-nano-LICENSE.txt": "1bb88ea80ef0b45389e3868a1395d68d99bd2700be26166aa67aae0d2bba2767",
     "app/src/main/assets/licenses/moss-onnxruntime-LICENSE.txt": "c250d6278f0b47a6439fb7592b08b58a55eb9f535aa49a1db63211c3f982b674",
     "app/src/main/assets/licenses/moss-onnxruntime-ThirdPartyNotices.txt.txt": "fb0af774b4d7cffc5b9d046f2aaeade2f37df2f80abf8033c95dfffcc77a8866",
@@ -401,18 +425,18 @@
     "app/src/main/assets/licenses/xxhash-LICENSE.txt": "a2973411d278045bde3c7161b911e0680d53e2d73d6457c77068d2e55d816d67",
     "app/src/main/assets/model-bundles.json": "1791f5e6f164e951ee49f9e4b7c80e34f37ded38ae205b8b03973f2de5d4ee16",
     "app/src/main/assets/models.json": "c3e884b4e5fb06f20c036deebc78e6f953ac420e76fca72bab5a25fd59927156",
-    "app/src/main/assets/recipe-templates.json": "5f6f1e659124862771bc8da6e52a6bb57cabdecb54c2face5c1d6f335b0f8ae4",
+    "app/src/main/assets/recipe-templates.json": "84df7bd0d22a9b08d3d11038d176c66b8b1d4cd53af218cd8076b565fca07828",
     "app/src/main/assets/recipes.js": "648e1ff046ab20e2ae7f658a7cb82c895c042ea81dca5cd943141626eea6deba",
     "app/src/main/assets/versions.js": "2d629929a6db642c12a242ddcc62cd4f4090ab307e0cb669ceb98add031977e1",
-    "tests/diffusion-ui.cjs": "e7b2b09b585e743ec72a980b7818e0fc1581cadacbfedd5ad333d4bd250ea14a",
+    "tests/diffusion-ui.cjs": "f6f997afcee0d6ae5113097640f151a418b6d4c501838c5565c3c2fe29d724d1",
     "tests/foundation-ui.cjs": "1c6721770e2d3336719c6cb096869aca3f966beff3fd958f814cda1cafee1e79",
     "tests/hub-fixture.cjs": "5b3cb88b7fd4c45d26ce92e8598a1c3837a12b02eb898f67c9be10da2910ab83",
     "tests/inputs-ui.cjs": "da1958c5875da505af0502fd144c97604a21e3297aa684f3fd1eb422c9ad4206",
     "tests/migration-ui.cjs": "6843bdcf1783795ed10cccc8b200aee40188e8a1fe950f8d23027d828ff6b3b4",
-    "tests/recipes-ui.cjs": "b1ed22d4a059d12d8cd9efaac7e1a3b646f48bd3b1b07a83b5e8b7296b373cb4",
+    "tests/recipes-ui.cjs": "55f1b4f4e6d9286d9e5707360318b92548d8219ed9b94c799861cc016e8d3e08",
     "tests/scheduler-ui.cjs": "3b89c2121953c6e17e2e978a3639915ba1d1b799750e85f38d6e104d8b7e0599",
     "tests/text-ui.cjs": "bc5969aa9329380b590a6055daa6fe1177f956f73bb212a18cf19d2b6576b8db",
     "tests/versions-ui.cjs": "13f6e194c00fa3a819c44da35788aa28b94ba05325e3f2b1257350c04b67babd",
-    "tools/capture_foundation.cjs": "fd966152f5af396412003dfa3f295e39f26104d894934cae941bbd9eadfcc260"
+    "tools/capture_foundation.cjs": "ba544aa951e2f0d893ae41d2c81549223102889d096bb9c9b2a5d59af29fe40e"
   }
 }

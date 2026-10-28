@@ -1,0 +1,36 @@
+{
+  "revision": "35a20ca0995bb7e4a549b7def42c4acb30559a94",
+  "files": [
+    {
+      "file": "mnn-LICENSE.txt",
+      "sha256": "b51146f2ab748a8681aa7b603e81d94dd431ea0fb3af59e10f91cf82e43b9cf9",
+      "source": "https://github.com/alibaba/MNN/blob/35a20ca0995bb7e4a549b7def42c4acb30559a94/LICENSE.txt"
+    },
+    {
+      "file": "mnn-half-LICENSE.txt",
+      "sha256": "1269110471a5506d5cc9c115c57b855206f69a90cc57bbbf27860907067ed946",
+      "source": "https://github.com/alibaba/MNN/blob/35a20ca0995bb7e4a549b7def42c4acb30559a94/3rd_party/half/LICENSE.txt"
+    },
+    {
+      "file": "mnn-flatbuffers-LICENSE.txt",
+      "sha256": "d9188c683ca4a5d24b771dc946e431aaa425fc3ea167abf0cc5bf18ab99c1afd",
+      "source": "https://github.com/alibaba/MNN/blob/35a20ca0995bb7e4a549b7def42c4acb30559a94/3rd_party/flatbuffers/LICENSE.txt"
+    },
+    {
+      "file": "mnn-stb-image-NOTICE.txt",
+      "sha256": "867491bfd17e7d1ed7c799458d20c374360dbe3a19c779223a5cea9c6aafc053",
+      "source": "https://github.com/alibaba/MNN/blob/35a20ca0995bb7e4a549b7def42c4acb30559a94/3rd_party/imageHelper/stb_image.h"
+    },
+    {
+      "file": "mnn-stb-write-NOTICE.txt",
+      "sha256": "1b04cf233a8d031d1b6012816bd68b2cad14cd563308d9db4a33f6e911ba2ac7",
+      "source": "https://github.com/alibaba/MNN/blob/35a20ca0995bb7e4a549b7def42c4acb30559a94/3rd_party/imageHelper/stb_image_write.h"
+    },
+    {
+      "file": "mnn-stb-resize-NOTICE.txt",
+      "sha256": "1b04cf233a8d031d1b6012816bd68b2cad14cd563308d9db4a33f6e911ba2ac7",
+      "source": "https://github.com/alibaba/MNN/blob/35a20ca0995bb7e4a549b7def42c4acb30559a94/3rd_party/imageHelper/stb_image_resize.h"
+    }
+  ],
+  "model_assets": false
+}

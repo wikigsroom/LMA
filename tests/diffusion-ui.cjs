@@ -19,10 +19,12 @@ function installFixture(templates) {
     make('ui_sampling_zimage','z_image_turbo_split_cpu_v1','Z-Image-Turbo · UI FIXTURE'),
     make('ui_sampling_flux','flux2_klein_4b_split_cpu_v1','FLUX.2-klein 4B · UI FIXTURE'),
     make('ui_sampling_qwen','qwen_image_21_split_cpu_v1','Qwen-Image 2.1 · UI FIXTURE'),
-    make('ui_sampling_wan','wan21_13b_split_cpu_v1','Wan 2.1 T2V 1.3B · UI FIXTURE')
+    make('ui_sampling_wan','wan21_13b_split_cpu_v1','Wan 2.1 T2V 1.3B · UI FIXTURE'),
+    make('ui_sampling_sana','sana_mnn_cpu_v1','Sana mobile · MNN · UI FIXTURE')
   ]);
   if (!f.localEngines.some(e => e.engine === 'sd_cpp')) f.localEngines.push({engine:'sd_cpp',available:true,deviceValidated:false});
   f.localEngines.find(e => e.engine === 'sd_cpp').available = true;
+  if (!f.localEngines.some(e => e.engine === 'mnn_diffusion')) f.localEngines.push({engine:'mnn_diffusion',available:true,deviceValidated:false});
   window.LMA.receive(f);
 }
 
@@ -64,6 +66,15 @@ module.exports = async function(page, checked, overflow) {
   await page.locator('[data-action="bundleUse"][data-id="ui_sampling_qwen"]').click();
   await page.locator('#localTaskForm .task-parameters').evaluate(e => {e.open=true;});
   assert(await negative.isEnabled()); assert.equal(await page.locator('[data-bundle-field="scheduler"] option:checked').innerText(),'flux'); assert.equal(await steps.inputValue(),'20'); checked('Qwen 2.1 retains normal CFG and its resolution-aware scheduler');
+  await page.keyboard.press('Escape');
+  await page.locator('[data-action="bundleInfo"][data-id="ui_sampling_sana"]').click();
+  assert((await page.locator('#modal').innerText()).includes('mnn_diffusion')); checked('Sana remains a peer image entry with its own engine requirement');
+  await page.locator('#modal [data-action="bundleUse"][data-id="ui_sampling_sana"]').click();
+  await page.locator('#localTaskForm .task-parameters').evaluate(e => {e.open=true;});
+  assert((await page.locator('#samplingHint').innerText()).includes('13 个')); checked('Sana form explains complete matched components and local CPU evidence limits');
+  const useCfg=page.locator('[data-bundle-field="useCfg"]'); assert.equal(await useCfg.isChecked(),false); assert.equal(await page.locator('[data-bundle-field="maxInputTokens"]').inputValue(),'512'); checked('Sana owns editable CFG and input token settings');
+  await useCfg.check(); await negative.fill('explicit negative conditioning'); assert(await negative.isEnabled()); checked('Sana allows explicit CFG and negative conditioning without discarding text');
+  await overflow(page,'Sana mobile task');
   await page.keyboard.press('Escape'); await page.locator('[data-task="video"]').click();
   await page.locator('[data-action="bundleUse"][data-id="ui_sampling_wan"]').click();
   await page.locator('#localTaskForm .task-parameters').evaluate(e => {e.open=true;});

@@ -36,3 +36,5 @@ See [validation / 验证](../docs/VALIDATION.en.md), [Chinese audit / 完成条�
 
 
 dev.13：[高级扩散 / 视频接入](../docs/ADVANCED_DIFFUSION.md)，174 diffusion（117 Java + 57 C++）、425 foundation（233 recipe/integrity）及 203 UI checks；35 screenshot fixtures。证据仍为主机 / 协议 / 原生编译与 APK 检查，不是 Android 模型输出；完整 v0.3.0 未发布。
+
+dev.14：[Sana MNN](../docs/MNN_SANA_ENGINE.md) / [English](../docs/MNN_SANA_ENGINE.en.md)；新增 [mnn.json](development/mnn.json) 的 74 项生产绑定 / 真实主机进程 / C++ 策略检查；445 foundation（253 recipe/integrity）、208 UI，37 张截图与录屏 / GIF。20 个原生文件仅为编译 / APK 证据，无模型 / Android 输出，完整 v0.3.0 未发布。
