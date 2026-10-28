@@ -4,10 +4,18 @@
 
 Reviewed 2026-10-28. **Current requirements match foundation-only App updates with user-selected/downloaded/managed model assets.** Document compliance does not establish completed implementation or Android acceptance.
 
+The requirements restated:
+
+1. **The App is the shared foundation.** Updates deliver UI, engines, jobs, background services, APIs and recipe/catalogue metadata, without weights, model-specific vocabularies or voice data in the APK.
+2. **Users install models on demand.** They choose a model/quantization/recipe, review its complete dependencies and explicitly download or import it. Installation, upgrades, browsing and tasks with missing assets do not fetch models implicitly; installing every supported model is never required.
+3. **Users manage assets independently.** Local offers pause/resume, per-model settings, updates and deletion. App upgrades preserve existing assets/profiles without silently replacing weights; deleting a model retains the foundation and protects shared components.
+4. **Models are peers with independent tags.** Text/image/video/audio output tags can be combined. Engine/pipeline/format/component/backend requirements, installation and device evidence remain separate. Uncensored is an independent content label, not compatibility evidence.
+5. **Preserve discovery and same-phone execution.** Keep existing Recommended entries, order and labels; choose other HF models through All/search. Coverage describes foundation adaptations, not arbitrary-HF execution. All generation executes on the same Android phone.
+
 | Requirement | Document rule | Implementation / evidence |
 | --- | --- | --- |
 | APK updates deliver the foundation | Asset-separation section, F-02 / A11 | Package checks exclude weights, model-specific vocabularies and voices; engine code belongs in the App |
-| Users select models and dependencies | Explicit selected bundle plus previously disclosed required components; no mandatory installation of all supported targets | Bundle details, explicit transfers and folder import exist; eight explicit HF component templates do not download on registration; other architectures still need adaptations |
+| Users select models and dependencies | Explicit selected bundle plus previously disclosed required components; no mandatory installation of all supported targets | Bundle details, explicit transfers and folder import exist; nine explicit HF component templates do not download on registration; other architectures still need adaptations |
 | Install/upgrade/browse never downloads models | Structured `model_asset_policy` forbids implicit selection/download/replacement | Host storage/transfer/UI checks cover declaration, browsing and missing-asset failure; physical install/upgrade still needs evidence |
 | Independent management | Local pause/resume/settings/import/update/delete, with upgrade preservation | dev.7 implements bundle update/review/explicit activation/rollback; dev.9 adds existing-GGUF migration/shared management; physical Android upgrades remain unverified |
 | Text/image/video/audio tags | One flat pool; independent capability and engine/architecture/format/component/backend/evidence labels | Four output filters are implemented; labels do not establish execution support |

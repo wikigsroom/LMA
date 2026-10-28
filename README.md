@@ -25,6 +25,7 @@ Android 版的本地模型管理、下载、对话和 API 服务应用。当前�
 | 技术实现、生命周期、存储与网络 | [架构](docs/ARCHITECTURE.md) | [Architecture](docs/ARCHITECTURE.en.md) |
 | 生图 / 语音 / 音乐 / 视频的 Android 可行性 | [多模态扩展核查](docs/MULTIMODAL.md) | [Multimodal feasibility](docs/MULTIMODAL.en.md) |
 | 多模型、多引擎共用基座与迁移路线 | [基座评估](docs/FOUNDATION.md) | [Foundation assessment](docs/FOUNDATION.en.md) |
+| App 基座更新、用户自主选择与管理模型、功能标签 | [需求核对](docs/ASSET_CONTROL_AUDIT.md) | [Foundation and asset audit](docs/ASSET_CONTROL_AUDIT.en.md) |
 | v0.3.0 完整范围、平级标签与单版验收 | [需求与发版计划](docs/MULTIMODAL_RELEASE_PLAN.md) | [Requirements and releases](docs/MULTIMODAL_RELEASE_PLAN.en.md) |
 | 任务表单、共用队列、内部执行与后台 | [任务执行方案](docs/WORKFLOWS.md) | [Task execution](docs/WORKFLOWS.en.md) |
 | curl、Python、PowerShell 和 SSE | [API 接入](docs/API.md) | [API integration](docs/API.en.md) |
@@ -36,7 +37,7 @@ Android 版的本地模型管理、下载、对话和 API 服务应用。当前�
 
 ## 多模态扩展研究
 
-下一版本 **v0.3.0** 一次性交付**完整本地多模态基座及 01–14 / 16 / 17 的运行支持与适配配方**：共用模型包 / 组件 / 配方、内部引擎模块、独立参数、任务 / 产物和 API。所有模型平级，按生文 / 生图 / 生视频 / 生音频及基座依赖标签筛选，保留既有推荐；交互为模型选择 → 任务表单 → 本机队列 → 结果。完整范围、工作包、风险及同一发布门槛见[版本更新需求](docs/MULTIMODAL_RELEASE_PLAN.md)和[交付摘要](docs/releases/v0.3.0-plan.md)。不拆分版本，不将必需模型默认顺延，不建设 ComfyUI 画布 / 用户节点 / 插件生态 / 图导入。v0.3.0 尚未发布。开发代码、302 项基座检查、132 项界面检查及完整剩余项见[开发实施记录](docs/DEVELOPMENT.md)；这不替代完整交付。
+下一版本 **v0.3.0** 一次性交付**完整本地多模态基座及 01–14 / 16 / 17 的运行支持与适配配方**：共用模型包 / 组件 / 配方、内部引擎模块、独立参数、任务 / 产物和 API。所有模型平级，按生文 / 生图 / 生视频 / 生音频及基座依赖标签筛选，保留既有推荐；交互为模型选择 → 任务表单 → 本机队列 → 结果。完整范围、工作包、风险及同一发布门槛见[版本更新需求](docs/MULTIMODAL_RELEASE_PLAN.md)和[交付摘要](docs/releases/v0.3.0-plan.md)。不拆分版本，不将必需模型默认顺延，不建设 ComfyUI 画布 / 用户节点 / 插件生态 / 图导入。v0.3.0 尚未发布。开发代码、310 项基座检查、156 项界面检查及完整剩余项见[开发实施记录](docs/DEVELOPMENT.md)；这不替代完整交付。
 
 全部分词、编码器、采样、codec 与导出在同一 Android 手机执行，无需 ROOT，无外部推理 / 回退。HF 用于搜索和显式资产下载。同架构变体可复用已有配方，新架构需要原生引擎 / APK 更新；Z20 与较新设备分别验收。源码 / 许可见[研究](docs/MULTIMODAL.md)，迁移见[基座评估](docs/FOUNDATION.md)，后台与恢复见[任务方案](docs/WORKFLOWS.md)。完整 MOSS / SoulX 仍有研究关卡，登记 / 下载不计可运行。**当前公开版本仍为 v0.2.0。0.3.0-dev 已加入部分基座代码和编译的扩散 worker，完整模型适配、统一 API 与真机验收尚未完成。**
 

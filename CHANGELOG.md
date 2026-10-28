@@ -2,6 +2,8 @@
 
 ## 0.3.0-dev.9 · 2026-10-28 · internal / 内部检查点
 
+- 文档复核：明确复述基座更新 / 用户模型资产 / 四类功能与依赖标签边界，校正双语指南的旧迁移状态与当前检查数量，README 增加直接入口。Documentation-only audit clarifies asset ownership and tags, corrects stale progress and adds README links.
+
 - 旧文本 / HF / 导入 GGUF 通过本地校验、硬链接和原子 ID 绑定纳入共用资产、参数、任务与版本管理，原推荐 / 标签保留，无重复下载或自动模型选择。Adopt existing assets and retain stable IDs, labels and profiles.
 - 旧 / 新管理入口共享传输、设置、删除与进程租约；加载参数变更保持正确重载，API 返回不可变 bundle_id 并合并重复行。Share asset lifecycle and preserve loaded-model configuration behavior.
 - 恢复 / 升级不自动续传旧下载，用户明确继续；同步双语指南、26 张带标识截图及录屏 / GIF。Require explicit resume and update bilingual guides/media.
