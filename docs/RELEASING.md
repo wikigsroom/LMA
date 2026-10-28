@@ -102,3 +102,5 @@ SoulX语言与完整主机链路后续：显式准备官方权重 /较早社区�
 
 
 dev.21 SoulX App接入使用 [中文](SOULX_ENGINE.md) / [English](SOULX_ENGINE.en.md) 中的生产worker构建与两种检查，并在共享输入schema变化后重跑基座 /其他引擎 /API /UI回归。`export_development.py` 分别导出222项契约和95项完整训练生产worker主机证据；`check_repository.py --development` 保留目标13下载候选 /质量 /物理Android /完整Release未通过。This checkpoint registers actual App code, without treating host output or compilation as complete user/device acceptance. See the [numbered handoff](releases/v0.3.0-dev.21.md).
+
+旧LTX源码后续使用 [中文](LTX098_DIT.md) / [English](LTX098_DIT.en.md) 的CPU /Vulkan官方前向检查与ARM64编译命令。开发导出 /仓库检查新增独立DiT与Android编译记录，检查固定精度门槛，并强制训练视频 /App注册 /物理Android /完整管线标记为false。这批研究证据不关闭17号或完整v0.3.0门槛；APK /页面媒体沿用dev.21，不创建Release。See the [numbered implemented/pending handoff](releases/v0.3.0-dev.21-ltx-dit.md).

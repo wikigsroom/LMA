@@ -2,7 +2,7 @@
 
 [项目首页 / 中文](../README.md) · [Project README / English](../README.en.md)
 
-当前公开版本 **0.2.0**；内部开发 **0.3.0-dev**，完整版本尚未验收。文档整理日期：**2026-10-28（Asia/Taipei）**。产品行为以生产源码及对应版本的验证证据为准；历史审计保留其原始检查日期。
+当前公开版本 **0.2.0**；内部开发 **0.3.0-dev**，完整版本尚未验收。文档整理日期：**2026-10-29（Asia/Taipei）**。产品行为以生产源码及对应版本的验证证据为准；历史审计保留其原始检查日期。
 
 | 主题 / Topic | 中文 | English |
 | --- | --- | --- |
@@ -84,3 +84,5 @@
 - SoulX语言 /完整主机链路：[中文](SOULX_LANGUAGE.md) / [English](SOULX_LANGUAGE.en.md)；[双语编号实现与待办](releases/v0.3.0-dev.20-soulx-language.md)，完整训练host输出与App /质量 /真机验收分别记录。
 
 - dev.21 SoulX App基座：[中文](SOULX_ENGINE.md) / [English](SOULX_ENGINE.en.md)；[双语编号交付与完整待办](releases/v0.3.0-dev.21.md)。14份用户资产、配套参考原文、生产worker真实训练主机证据，与公开下载候选 /质量 /Android /Release门槛分别记录。
+
+- 旧LTX 0.9.8原生DiT：[中文](LTX098_DIT.md) / [English](LTX098_DIT.en.md)；[编号实现与完整待办](releases/v0.3.0-dev.21-ltx-dit.md)。675检查 /80主机子进程 /48原始PyTorch比对；CPU /Vulkan、全28层小宽度未训练网络与独立ARM64编译，不是完整训练视频或Android执行。

@@ -1,6 +1,12 @@
 # Changelog / 更新记录
 
 
+## dev.21 source follow-up — old LTX native DiT / unpublished
+
+精确LTX-Video2B0.9.8独立原生CPU /Vulkan DiT，全715张量布局核对；675检查 /80原生子进程 /48原始PyTorch数值对照通过，含28层小宽度未训练图、F32 /F16密集权重和31个拒绝用例。固定F32 shader计算、原生Windows /NDK与新版shaderc来源，ARM64/API28/16KiB编译单独记录。双语方案 /复现 /证据与编号待办同步；APK /UI媒体仍dev.21，训练视频 /App /手机 /完整v0.3.0仍未验收，公开Release仍v0.2.0。
+
+Independent exact-old-version CPU/Vulkan transformer component with publisher-forward parity and separate Android compilation; UNTRAINED reduced-width graphs do not establish complete video support. No model data or research executable enters APK. See [中文](docs/LTX098_DIT.md) / [English](docs/LTX098_DIT.en.md) / [numbered implementation and complete pending work](docs/releases/v0.3.0-dev.21-ltx-dit.md).
+
 ## 0.3.0-dev.21 — SoulX App foundation / unpublished
 
 - 完整SoulX CPU worker、14份用户资产（含40字节声源权重）、四说话人参考原文、独立联合参数及共用任务 /API接入；无模型数据进入APK。Complete native worker, paired inputs and shared foundation; explicit user assets only.

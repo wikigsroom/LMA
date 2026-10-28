@@ -119,3 +119,5 @@ Stable Audio 原生构建：`fetch_stable_audio.py` → `build_stable_audio.py` 
 
 
 SoulX生产worker原生构建：`build_soulx.py`（主机）→ `build_soulx.py --android` → `collect_soulx_notices.py` → `test_soulx.py` /显式准备权重后的 `test_soulx_worker_trained.py` →共享APK构建。复用固定llama /ggml /ORT，模型资产不进APK；全部命令使用原生Windows /NDK，缓存留在build。API28 /16KiB与许可回执见 [完整指南](SOULX_ENGINE.md)。
+
+旧LTX 0.9.8研究组件构建：显式 `fetch_native.py` → `fetch_ltx098.py --python-dependencies` → `test_ltx098.py`（顺序CPU /Vulkan）→ `build_ltx098.py --android --vulkan`，命令均在 `tools/`。项目内锁定新版Windows shaderc及Vulkan /SPIRV headers，原生MSVC /NDK，无虚拟化；临时SUBST在finally移除，构建不可并发。只准备代码 /开发工具，不获取模型权重，不打包到APK。精确依赖、F32 shader策略与范围见[中文](LTX098_DIT.md) / [English](LTX098_DIT.en.md)。

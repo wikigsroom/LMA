@@ -186,3 +186,7 @@ Source follow-up (APK remains dev.20): [SoulX language and complete host pipelin
 
 
 Current dev.21 adds the [SoulX App foundation](SOULX_ENGINE.en.md): a registered packaged production worker, fourteen explicitly selected assets, paired audio/transcripts, independent profiles and shared jobs/API/artifacts.222 contract and95 complete trained production-worker assertions pass, covering two/four speakers and two actual forced host terminations. Target13 still needs a verified complete public user download candidate, actual speech quality and Android/background/complete Release acceptance. See the [numbered implemented/pending handoff](releases/v0.3.0-dev.21.md).
+
+## dev.21 source follow-up: old LTX DiT
+
+[Implementation/reproduction](LTX098_DIT.en.md) / [中文](LTX098_DIT.md) / [numbered handoff](releases/v0.3.0-dev.21-ltx-dit.md). Exact 0.9.8 independent GGML graph, 715-tensor full layout and original 2/3/28-layer reduced-width UNTRAINED forwards pass 675 checks / 80 native children / 48 CPU-Vulkan parity runs. Vulkan requires F32 arithmetic with separately tested F16 weight storage. ARM64/API28/16KiB compilation is separate from phone execution. Target 17 still needs complete trained assets, text encoding/sampling/VAE/MP4/App integration. APK/UI media remains dev.21; every frozen model/subtarget,foundation,background and Release gate stays open.

@@ -303,3 +303,7 @@ LMA 自有代码使用 MIT 许可。llama.cpp 及其依赖保留各自许可；�
 内部检查点（**0.3.0-dev.21 / code25**，未发布）：[SoulX App 本地音频基座](docs/SOULX_ENGINE.md)接入同机 CPU 的参考编码 → 完整 Qwen3 → Flow / HiFT → WAV、14份用户自选组件（包括40字节已训练声源参数）、S1–S4配套参考原文、模型独立联合参数及共享任务 / API。222项契约和95项完整训练生产worker检查通过；两说话人新文字生成4.84秒WAV，四说话人明确截断用例通过，参考PCM为合成输入，不能据此认定音质或Android可用。582项基座、295项UI检查通过；34个配方均为元数据，原签名APK含27个原生文件、无权重 / 词表 / 声源数据。59–61截图与刷新录屏 / GIF明确为UI FIXTURE。目标13仍缺完整的已核对公开用户下载候选、真实语音质量及手机验收；其余全部冻结目标与后台门槛仍属同一完整v0.3.0。见[本轮编号实现与待办](docs/releases/v0.3.0-dev.21.md)。
 
 <img src="docs/media/development/59-soulx-components.png" width="260" alt="UI FIXTURE：十四份用户自选SoulX组件，没有下载权重"> <img src="docs/media/development/60-soulx-paired-references.png" width="260" alt="UI FIXTURE：说话人参考音频与实际原文配套，没有生成音频">
+
+## dev.21 源码后续：旧版 LTX DiT（未发布）
+
+冻结目标17的 [LTX-Video 2B 0.9.8 原生DiT](docs/LTX098_DIT.md)已实现独立C++ / GGML CPU与Vulkan前向。675项检查、80次原生子进程、48次官方PyTorch数值对照通过，覆盖2 / 3 / 28层未训练小宽度网络和F32 / F16密集权重；完整715张量 / 1,923,385,472参数布局与固定检查点头一致。Android ARM64 / API28 / 16KiB仅编译，尚未执行；研究组件不进入APK。训练权重、T5 / tokenizer、采样、VAE / MP4、App接入、手机和完整视频均待验收。APK与UI媒体仍dev.21，公开Release仍v0.2.0。见[本轮编号实现与完整待办](docs/releases/v0.3.0-dev.21-ltx-dit.md)。

@@ -1,0 +1,67 @@
+{
+  "source_revision": "4b2d053057623ddd4d0a1d3e9cd28890e9ef487f",
+  "ggml_revision": "a5915eb0e47adef21c3f25b889a008925ea838c2",
+  "backend": "vulkan",
+  "android_arm64_compiled": true,
+  "min_sdk": 28,
+  "binary_bytes": 35572464,
+  "binary_sha256": "bfab5b6c8ecb5a9f8dcbe1bee88e103aa32e70e92345cfcd9473a96e22f938e7",
+  "shaderc": {
+    "directory": "build/toolchain/shaderc-20261026",
+    "archive_url": "https://storage.googleapis.com/shaderc/artifacts/prod/graphics_shader_compiler/shaderc/windows-vs2022-amd64-release/continuous/52/20261026-084531/install.zip",
+    "archive_sha256": "a3d1ed1a83782d450553e1b7ebd4320396faee79a39c203c5fff83b894f78207",
+    "archive_bytes": 231595946,
+    "glslc_sha256": "4c29987bf7d3043fad1d46564023b29576403f86dfbd57ce9c471f3b8f6c7418",
+    "files": {
+      "bin/glslc.exe": "4c29987bf7d3043fad1d46564023b29576403f86dfbd57ce9c471f3b8f6c7418",
+      "bin/shaderc_shared.dll": "322162167d5024831271434cb0aac0120585ef5d3f82840785b7b4c2ab81c24e",
+      "bin/SPIRV-Tools-shared.dll": "a960789cff7666283f696097a51e36306069eba8fd18301699ece3cf1f62408c"
+    },
+    "version": "shaderc v2026.5-dev v2026.4-20-g170316e\nspirv-tools v2026.4 v2022.4-1418-g71f287f1\nglslang 11.1.0-1619-g73b25650\n\nTarget: SPIR-V 1.0",
+    "developer_tool_only": true,
+    "packaged_in_apk": false,
+    "source_repository": "google/shaderc",
+    "source_revision": "170316e2df47f621804bb6372e7fe00c10184105",
+    "provenance_url": "https://storage.googleapis.com/shaderc/artifacts/prod/graphics_shader_compiler/shaderc/windows-vs2022-amd64-release/continuous/52/20261026-084531/4c252f6e-ffeb-43a9-b41e-1b088759b77f.intoto.jsonl",
+    "provenance_validation": "Published unsigned SLSA statement matches archive SHA256 and source revision; no signature verification claimed"
+  },
+  "elf": {
+    "machine": "aarch64",
+    "needed": [
+      "libm.so",
+      "libdl.so",
+      "libvulkan.so",
+      "libc.so"
+    ],
+    "load_segment_alignment": [
+      16384
+    ],
+    "interpreter": "/system/bin/linker64",
+    "entry_point": 33421760,
+    "android_api_notes": [
+      28
+    ],
+    "16k_elf_aligned": true
+  },
+  "packaged_in_apk": false,
+  "engine_registered": false,
+  "model_inference": false,
+  "physical_android": false,
+  "complete_video_pipeline": false,
+  "input_fingerprint": {
+    "research/ltx098/CMakeLists.txt": "ba3d94e3019215583d0eb80adb1335236471bebd74830716517857f4fce0e005",
+    "research/ltx098/driver.cpp": "2c8b92b4826824d03ca7ec17e82b5f6ff6dba10b600013df6141d61c5df212f6",
+    "research/ltx098/licenses/ggml-MIT.txt": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
+    "research/ltx098/licenses/json-MIT.txt": "0e592e358cf7722906f417be85bc514f15bf6efd28cea98cb84e56ef7fddfc3e",
+    "research/ltx098/licenses/Lightricks-Apache-2.0.txt": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+    "research/ltx098/licenses/SPIRV-Headers-MIT.txt": "ea43b1de38a6f90c488800d66dec1ed671e68cda530266bc96951fb5b6307613",
+    "research/ltx098/licenses/Vulkan-Apache-2.0.txt": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+    "research/ltx098/licenses/Vulkan-Headers.txt": "95ad366d23fadf701d355bc45fb8b82ae2d700239471d35d41286ac3b08ff903",
+    "research/ltx098/licenses/Vulkan-MIT.txt": "1ca3502222d967f3be5751c55f6b7ee735b5383909c3b501495f54b216dbf227",
+    "research/ltx098/NOTICE": "81f7aaf8c5227a9303819185585464fea1530a9e4a6f60d21adb9c823c882c7d",
+    "research/ltx098/transformer.cpp": "22c6d7ec964c5d9e25c90ba9f32c3a93b3d6d4db3c8aafb064cb45f3e03581fa",
+    "research/ltx098/transformer.hpp": "6f5fd68cba7278abb210322af20d70d3a0acd05631118bdeabdae54f4cd5e1d5",
+    "third_party/ltx098-source-lock.json": "28acd99486f6ca76a06d038076175ac01ca55c7b1d8c3ba6dab9190291ac8779",
+    "tools/build_ltx098.py": "4fd681c471d824d42fcc1995471cce672414c5a53dabfca9a8be18db6b9e3e46"
+  }
+}

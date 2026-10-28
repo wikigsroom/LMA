@@ -44,3 +44,7 @@ SoulX language research pins the same llama.cpp revision as the existing Android
 
 
 dev.21 compiles shared SoulX DSP/reference/language/acoustic source into the actual App worker, while retaining separate research targets/evidence. [Native worker NOTICE](../native/soulx/NOTICE), exact source locks and nine complete source/runtime notices are preserved by `tools/collect_soulx_notices.py` in the engine lock. Fourteen model assets, including ten learned source coefficients, remain external user data. See [中文](../docs/SOULX_ENGINE.md) / [English](../docs/SOULX_ENGINE.en.md); host trained output is not phone/quality acceptance.
+
+## Old LTX-Video 0.9.8 DiT research component
+
+The [source lock](ltx098-source-lock.json) pins Apache-2.0 Lightricks architecture sources,MIT GGML/JSON,dual-licensed Vulkan headers,MIT SPIRV headers,oracle dependency hashes and the ignored Windows shaderc tool archive. Published unsigned build provenance matches that archive digest; signature verification is not claimed. Complete code notices stay in [research/ltx098](../research/ltx098/NOTICE),outside App packaging. No LLM-Hub implementation,newer LTX2 substitution,model weights,tokenizer or QNN payload is incorporated. Model open-weight terms remain separate. See [中文](../docs/LTX098_DIT.md) / [English](../docs/LTX098_DIT.en.md).

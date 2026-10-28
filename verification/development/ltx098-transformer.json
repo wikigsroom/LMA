@@ -1,0 +1,1018 @@
+{
+  "passed": 675,
+  "guard_assertions": 31,
+  "actual_host_children": 80,
+  "actual_publisher_forward": true,
+  "oracle": {
+    "source_revision": "4b2d053057623ddd4d0a1d3e9cd28890e9ef487f",
+    "checkpoint_layout_sha256": "1882ab804e40afc6243b3f0ba13878ca6e533e1428da564bbd7729fdce512194",
+    "full_tensors": 715,
+    "full_parameters": 1923385472,
+    "full_weights_loaded": false,
+    "synthetic_parameters": true,
+    "torch_version": "2.14.0+cpu",
+    "python_versions": {
+      "torch": "2.14.0",
+      "numpy": "2.4.2",
+      "diffusers": "0.29.2",
+      "einops": "0.8.2"
+    },
+    "reference": "Unmodified publisher Transformer3DModel.forward; F16 dense weights rounded then dequantized to float32"
+  },
+  "backends": [
+    "cpu",
+    "vulkan"
+  ],
+  "vulkan_device_identity": [
+    "ggml_vulkan: 0 = NVIDIA GeForce RTX 3060 (NVIDIA) | uma: 0 | fp16: 0 | bf16: 1 | fp4: 0 | warp size: 32 | shared memory: 49152 | int dot: 1 | matrix cores: none"
+  ],
+  "cases": 12,
+  "precision_metrics": [
+    {
+      "case": "layers2-global",
+      "backend": "cpu",
+      "precision": "f32",
+      "max_abs": 1.6093254089355469e-06,
+      "rmse": 7.16716712697074e-07,
+      "max_abs_gate": 0.0001,
+      "rmse_gate": 3e-05
+    },
+    {
+      "case": "layers2-per-token",
+      "backend": "cpu",
+      "precision": "f32",
+      "max_abs": 1.0132789611816406e-06,
+      "rmse": 4.180359559042597e-07,
+      "max_abs_gate": 0.0001,
+      "rmse_gate": 3e-05
+    },
+    {
+      "case": "layers2-masked",
+      "backend": "cpu",
+      "precision": "f32",
+      "max_abs": 1.430511474609375e-06,
+      "rmse": 6.926560991941856e-07,
+      "max_abs_gate": 0.0001,
+      "rmse_gate": 3e-05
+    },
+    {
+      "case": "layers2-masked-padding",
+      "backend": "cpu",
+      "precision": "f32",
+      "max_abs": 1.430511474609375e-06,
+      "rmse": 6.926560991941856e-07,
+      "max_abs_gate": 0.0001,
+      "rmse_gate": 3e-05
+    },
+    {
+      "case": "layers3-global",
+      "backend": "cpu",
+      "precision": "f32",
+      "max_abs": 1.5497207641601562e-06,
+      "rmse": 7.343488835740694e-07,
+      "max_abs_gate": 0.0001,
+      "rmse_gate": 3e-05
+    },
+    {
+      "case": "layers3-per-token",
+      "backend": "cpu",
+      "precision": "f32",
+      "max_abs": 1.2814998626708984e-06,
+      "rmse": 4.6747781460810487e-07,
+      "max_abs_gate": 0.0001,
+      "rmse_gate": 3e-05
+    },
+    {
+      "case": "layers3-masked",
+      "backend": "cpu",
+      "precision": "f32",
+      "max_abs": 1.430511474609375e-06,
+      "rmse": 6.991286912305383e-07,
+      "max_abs_gate": 0.0001,
+      "rmse_gate": 3e-05
+    },
+    {
+      "case": "layers3-masked-padding",
+      "backend": "cpu",
+      "precision": "f32",
+      "max_abs": 1.430511474609375e-06,
+      "rmse": 6.991286912305383e-07,
+      "max_abs_gate": 0.0001,
+      "rmse_gate": 3e-05
+    },
+    {
+      "case": "layers28-global",
+      "backend": "cpu",
+      "precision": "f32",
+      "max_abs": 1.3113021850585938e-06,
+      "rmse": 5.719262218070408e-07,
+      "max_abs_gate": 0.0001,
+      "rmse_gate": 3e-05
+    },
+    {
+      "case": "layers28-per-token",
+      "backend": "cpu",
+      "precision": "f32",
+      "max_abs": 1.1771917343139648e-06,
+      "rmse": 3.979925831302904e-07,
+      "max_abs_gate": 0.0001,
+      "rmse_gate": 3e-05
+    },
+    {
+      "case": "layers28-masked",
+      "backend": "cpu",
+      "precision": "f32",
+      "max_abs": 1.3113021850585938e-06,
+      "rmse": 5.782420500319058e-07,
+      "max_abs_gate": 0.0001,
+      "rmse_gate": 3e-05
+    },
+    {
+      "case": "layers28-masked-padding",
+      "backend": "cpu",
+      "precision": "f32",
+      "max_abs": 1.3113021850585938e-06,
+      "rmse": 5.782420500319058e-07,
+      "max_abs_gate": 0.0001,
+      "rmse_gate": 3e-05
+    },
+    {
+      "case": "layers2-global",
+      "backend": "cpu",
+      "precision": "f16",
+      "max_abs": 0.0007332563400268555,
+      "rmse": 0.00018457682405240863,
+      "max_abs_gate": 0.005,
+      "rmse_gate": 0.001
+    },
+    {
+      "case": "layers2-per-token",
+      "backend": "cpu",
+      "precision": "f16",
+      "max_abs": 0.0005483627319335938,
+      "rmse": 0.00020241491759098466,
+      "max_abs_gate": 0.005,
+      "rmse_gate": 0.001
+    },
+    {
+      "case": "layers2-masked",
+      "backend": "cpu",
+      "precision": "f16",
+      "max_abs": 0.0004794597625732422,
+      "rmse": 0.00019043179374916082,
+      "max_abs_gate": 0.005,
+      "rmse_gate": 0.001
+    },
+    {
+      "case": "layers2-masked-padding",
+      "backend": "cpu",
+      "precision": "f16",
+      "max_abs": 0.0004794597625732422,
+      "rmse": 0.00019043179374916082,
+      "max_abs_gate": 0.005,
+      "rmse_gate": 0.001
+    },
+    {
+      "case": "layers3-global",
+      "backend": "cpu",
+      "precision": "f16",
+      "max_abs": 0.00040453672409057617,
+      "rmse": 0.00015449534201196575,
+      "max_abs_gate": 0.005,
+      "rmse_gate": 0.001
+    },
+    {
+      "case": "layers3-per-token",
+      "backend": "cpu",
+      "precision": "f16",
+      "max_abs": 0.00044089555740356445,
+      "rmse": 0.00016656004443901652,
+      "max_abs_gate": 0.005,
+      "rmse_gate": 0.001
+    },
+    {
+      "case": "layers3-masked",
+      "backend": "cpu",
+      "precision": "f16",
+      "max_abs": 0.0005596280097961426,
+      "rmse": 0.00018820829927105866,
+      "max_abs_gate": 0.005,
+      "rmse_gate": 0.001
+    },
+    {
+      "case": "layers3-masked-padding",
+      "backend": "cpu",
+      "precision": "f16",
+      "max_abs": 0.0005596280097961426,
+      "rmse": 0.00018820829927105866,
+      "max_abs_gate": 0.005,
+      "rmse_gate": 0.001
+    },
+    {
+      "case": "layers28-global",
+      "backend": "cpu",
+      "precision": "f16",
+      "max_abs": 0.00043785572052001953,
+      "rmse": 0.00015339592436690427,
+      "max_abs_gate": 0.005,
+      "rmse_gate": 0.001
+    },
+    {
+      "case": "layers28-per-token",
+      "backend": "cpu",
+      "precision": "f16",
+      "max_abs": 0.00041216611862182617,
+      "rmse": 0.00016621337067911584,
+      "max_abs_gate": 0.005,
+      "rmse_gate": 0.001
+    },
+    {
+      "case": "layers28-masked",
+      "backend": "cpu",
+      "precision": "f16",
+      "max_abs": 0.0004519522190093994,
+      "rmse": 0.00015520512374733768,
+      "max_abs_gate": 0.005,
+      "rmse_gate": 0.001
+    },
+    {
+      "case": "layers28-masked-padding",
+      "backend": "cpu",
+      "precision": "f16",
+      "max_abs": 0.0004519522190093994,
+      "rmse": 0.00015520512374733768,
+      "max_abs_gate": 0.005,
+      "rmse_gate": 0.001
+    },
+    {
+      "case": "layers2-global",
+      "backend": "vulkan",
+      "precision": "f32",
+      "max_abs": 1.6093254089355469e-06,
+      "rmse": 7.211922328161231e-07,
+      "max_abs_gate": 0.0001,
+      "rmse_gate": 3e-05
+    },
+    {
+      "case": "layers2-per-token",
+      "backend": "vulkan",
+      "precision": "f32",
+      "max_abs": 1.0281801223754883e-06,
+      "rmse": 4.247857838480878e-07,
+      "max_abs_gate": 0.0001,
+      "rmse_gate": 3e-05
+    },
+    {
+      "case": "layers2-masked",
+      "backend": "vulkan",
+      "precision": "f32",
+      "max_abs": 1.5497207641601562e-06,
+      "rmse": 7.263436446311629e-07,
+      "max_abs_gate": 0.0001,
+      "rmse_gate": 3e-05
+    },
+    {
+      "case": "layers2-masked-padding",
+      "backend": "vulkan",
+      "precision": "f32",
+      "max_abs": 1.5497207641601562e-06,
+      "rmse": 7.263436446311629e-07,
+      "max_abs_gate": 0.0001,
+      "rmse_gate": 3e-05
+    },
+    {
+      "case": "layers3-global",
+      "backend": "vulkan",
+      "precision": "f32",
+      "max_abs": 1.6093254089355469e-06,
+      "rmse": 7.262276039908784e-07,
+      "max_abs_gate": 0.0001,
+      "rmse_gate": 3e-05
+    },
+    {
+      "case": "layers3-per-token",
+      "backend": "vulkan",
+      "precision": "f32",
+      "max_abs": 1.1920928955078125e-06,
+      "rmse": 4.4268524278008563e-07,
+      "max_abs_gate": 0.0001,
+      "rmse_gate": 3e-05
+    },
+    {
+      "case": "layers3-masked",
+      "backend": "vulkan",
+      "precision": "f32",
+      "max_abs": 1.430511474609375e-06,
+      "rmse": 6.844423920434509e-07,
+      "max_abs_gate": 0.0001,
+      "rmse_gate": 3e-05
+    },
+    {
+      "case": "layers3-masked-padding",
+      "backend": "vulkan",
+      "precision": "f32",
+      "max_abs": 1.430511474609375e-06,
+      "rmse": 6.844423920434509e-07,
+      "max_abs_gate": 0.0001,
+      "rmse_gate": 3e-05
+    },
+    {
+      "case": "layers28-global",
+      "backend": "vulkan",
+      "precision": "f32",
+      "max_abs": 1.1920928955078125e-06,
+      "rmse": 5.734041295301536e-07,
+      "max_abs_gate": 0.0001,
+      "rmse_gate": 3e-05
+    },
+    {
+      "case": "layers28-per-token",
+      "backend": "vulkan",
+      "precision": "f32",
+      "max_abs": 1.1771917343139648e-06,
+      "rmse": 4.0900469040893754e-07,
+      "max_abs_gate": 0.0001,
+      "rmse_gate": 3e-05
+    },
+    {
+      "case": "layers28-masked",
+      "backend": "vulkan",
+      "precision": "f32",
+      "max_abs": 1.3113021850585938e-06,
+      "rmse": 6.1412969639992e-07,
+      "max_abs_gate": 0.0001,
+      "rmse_gate": 3e-05
+    },
+    {
+      "case": "layers28-masked-padding",
+      "backend": "vulkan",
+      "precision": "f32",
+      "max_abs": 1.3113021850585938e-06,
+      "rmse": 6.1412969639992e-07,
+      "max_abs_gate": 0.0001,
+      "rmse_gate": 3e-05
+    },
+    {
+      "case": "layers2-global",
+      "backend": "vulkan",
+      "precision": "f16",
+      "max_abs": 1.7285346984863281e-06,
+      "rmse": 7.156586310402852e-07,
+      "max_abs_gate": 0.005,
+      "rmse_gate": 0.001
+    },
+    {
+      "case": "layers2-per-token",
+      "backend": "vulkan",
+      "precision": "f16",
+      "max_abs": 9.834766387939453e-07,
+      "rmse": 4.1126573403332486e-07,
+      "max_abs_gate": 0.005,
+      "rmse_gate": 0.001
+    },
+    {
+      "case": "layers2-masked",
+      "backend": "vulkan",
+      "precision": "f16",
+      "max_abs": 1.3709068298339844e-06,
+      "rmse": 7.298978878632526e-07,
+      "max_abs_gate": 0.005,
+      "rmse_gate": 0.001
+    },
+    {
+      "case": "layers2-masked-padding",
+      "backend": "vulkan",
+      "precision": "f16",
+      "max_abs": 1.3709068298339844e-06,
+      "rmse": 7.298978878632526e-07,
+      "max_abs_gate": 0.005,
+      "rmse_gate": 0.001
+    },
+    {
+      "case": "layers3-global",
+      "backend": "vulkan",
+      "precision": "f16",
+      "max_abs": 1.6689300537109375e-06,
+      "rmse": 7.52092907383577e-07,
+      "max_abs_gate": 0.005,
+      "rmse_gate": 0.001
+    },
+    {
+      "case": "layers3-per-token",
+      "backend": "vulkan",
+      "precision": "f16",
+      "max_abs": 1.1026859283447266e-06,
+      "rmse": 4.5036658873876725e-07,
+      "max_abs_gate": 0.005,
+      "rmse_gate": 0.001
+    },
+    {
+      "case": "layers3-masked",
+      "backend": "vulkan",
+      "precision": "f16",
+      "max_abs": 1.4007091522216797e-06,
+      "rmse": 6.869799035483206e-07,
+      "max_abs_gate": 0.005,
+      "rmse_gate": 0.001
+    },
+    {
+      "case": "layers3-masked-padding",
+      "backend": "vulkan",
+      "precision": "f16",
+      "max_abs": 1.4007091522216797e-06,
+      "rmse": 6.869799035483206e-07,
+      "max_abs_gate": 0.005,
+      "rmse_gate": 0.001
+    },
+    {
+      "case": "layers28-global",
+      "backend": "vulkan",
+      "precision": "f16",
+      "max_abs": 1.4007091522216797e-06,
+      "rmse": 5.598483069189982e-07,
+      "max_abs_gate": 0.005,
+      "rmse_gate": 0.001
+    },
+    {
+      "case": "layers28-per-token",
+      "backend": "vulkan",
+      "precision": "f16",
+      "max_abs": 1.4007091522216797e-06,
+      "rmse": 4.137672404759747e-07,
+      "max_abs_gate": 0.005,
+      "rmse_gate": 0.001
+    },
+    {
+      "case": "layers28-masked",
+      "backend": "vulkan",
+      "precision": "f16",
+      "max_abs": 1.3187527656555176e-06,
+      "rmse": 5.937998033322467e-07,
+      "max_abs_gate": 0.005,
+      "rmse_gate": 0.001
+    },
+    {
+      "case": "layers28-masked-padding",
+      "backend": "vulkan",
+      "precision": "f16",
+      "max_abs": 1.3187527656555176e-06,
+      "rmse": 5.937998033322467e-07,
+      "max_abs_gate": 0.005,
+      "rmse_gate": 0.001
+    }
+  ],
+  "native_runs": [
+    {
+      "name": "cpu-f32-layers2-global",
+      "backend": "cpu",
+      "layers": 2,
+      "parameters": 31760,
+      "weight_bytes": 127040,
+      "compute_bytes": 21024,
+      "elapsed_seconds": 0.033181
+    },
+    {
+      "name": "cpu-f32-layers2-per-token",
+      "backend": "cpu",
+      "layers": 2,
+      "parameters": 31760,
+      "weight_bytes": 127040,
+      "compute_bytes": 22880,
+      "elapsed_seconds": 0.026519
+    },
+    {
+      "name": "cpu-f32-layers2-masked",
+      "backend": "cpu",
+      "layers": 2,
+      "parameters": 31760,
+      "weight_bytes": 127040,
+      "compute_bytes": 21024,
+      "elapsed_seconds": 0.027291
+    },
+    {
+      "name": "cpu-f32-layers2-masked-padding",
+      "backend": "cpu",
+      "layers": 2,
+      "parameters": 31760,
+      "weight_bytes": 127040,
+      "compute_bytes": 21024,
+      "elapsed_seconds": 0.030747
+    },
+    {
+      "name": "cpu-f32-layers3-global",
+      "backend": "cpu",
+      "layers": 3,
+      "parameters": 69704,
+      "weight_bytes": 278816,
+      "compute_bytes": 28992,
+      "elapsed_seconds": 0.02698
+    },
+    {
+      "name": "cpu-f32-layers3-per-token",
+      "backend": "cpu",
+      "layers": 3,
+      "parameters": 69704,
+      "weight_bytes": 278816,
+      "compute_bytes": 27808,
+      "elapsed_seconds": 0.031576
+    },
+    {
+      "name": "cpu-f32-layers3-masked",
+      "backend": "cpu",
+      "layers": 3,
+      "parameters": 69704,
+      "weight_bytes": 278816,
+      "compute_bytes": 28992,
+      "elapsed_seconds": 0.02814
+    },
+    {
+      "name": "cpu-f32-layers3-masked-padding",
+      "backend": "cpu",
+      "layers": 3,
+      "parameters": 69704,
+      "weight_bytes": 278816,
+      "compute_bytes": 28992,
+      "elapsed_seconds": 0.024956
+    },
+    {
+      "name": "cpu-f32-layers28-global",
+      "backend": "cpu",
+      "layers": 28,
+      "parameters": 285728,
+      "weight_bytes": 1142912,
+      "compute_bytes": 21024,
+      "elapsed_seconds": 0.040857
+    },
+    {
+      "name": "cpu-f32-layers28-per-token",
+      "backend": "cpu",
+      "layers": 28,
+      "parameters": 285728,
+      "weight_bytes": 1142912,
+      "compute_bytes": 22880,
+      "elapsed_seconds": 0.04392
+    },
+    {
+      "name": "cpu-f32-layers28-masked",
+      "backend": "cpu",
+      "layers": 28,
+      "parameters": 285728,
+      "weight_bytes": 1142912,
+      "compute_bytes": 21024,
+      "elapsed_seconds": 0.034375
+    },
+    {
+      "name": "cpu-f32-layers28-masked-padding",
+      "backend": "cpu",
+      "layers": 28,
+      "parameters": 285728,
+      "weight_bytes": 1142912,
+      "compute_bytes": 21024,
+      "elapsed_seconds": 0.03457
+    },
+    {
+      "name": "cpu-f16-layers2-global",
+      "backend": "cpu",
+      "layers": 2,
+      "parameters": 31760,
+      "weight_bytes": 66368,
+      "compute_bytes": 21024,
+      "elapsed_seconds": 0.032409
+    },
+    {
+      "name": "cpu-f16-layers2-per-token",
+      "backend": "cpu",
+      "layers": 2,
+      "parameters": 31760,
+      "weight_bytes": 66368,
+      "compute_bytes": 22880,
+      "elapsed_seconds": 0.028912
+    },
+    {
+      "name": "cpu-f16-layers2-masked",
+      "backend": "cpu",
+      "layers": 2,
+      "parameters": 31760,
+      "weight_bytes": 66368,
+      "compute_bytes": 21024,
+      "elapsed_seconds": 0.03068
+    },
+    {
+      "name": "cpu-f16-layers2-masked-padding",
+      "backend": "cpu",
+      "layers": 2,
+      "parameters": 31760,
+      "weight_bytes": 66368,
+      "compute_bytes": 21024,
+      "elapsed_seconds": 0.025674
+    },
+    {
+      "name": "cpu-f16-layers3-global",
+      "backend": "cpu",
+      "layers": 3,
+      "parameters": 69704,
+      "weight_bytes": 144672,
+      "compute_bytes": 28992,
+      "elapsed_seconds": 0.028078
+    },
+    {
+      "name": "cpu-f16-layers3-per-token",
+      "backend": "cpu",
+      "layers": 3,
+      "parameters": 69704,
+      "weight_bytes": 144672,
+      "compute_bytes": 27808,
+      "elapsed_seconds": 0.025681
+    },
+    {
+      "name": "cpu-f16-layers3-masked",
+      "backend": "cpu",
+      "layers": 3,
+      "parameters": 69704,
+      "weight_bytes": 144672,
+      "compute_bytes": 28992,
+      "elapsed_seconds": 0.02825
+    },
+    {
+      "name": "cpu-f16-layers3-masked-padding",
+      "backend": "cpu",
+      "layers": 3,
+      "parameters": 69704,
+      "weight_bytes": 144672,
+      "compute_bytes": 28992,
+      "elapsed_seconds": 0.077637
+    },
+    {
+      "name": "cpu-f16-layers28-global",
+      "backend": "cpu",
+      "layers": 28,
+      "parameters": 285728,
+      "weight_bytes": 603008,
+      "compute_bytes": 21024,
+      "elapsed_seconds": 0.055042
+    },
+    {
+      "name": "cpu-f16-layers28-per-token",
+      "backend": "cpu",
+      "layers": 28,
+      "parameters": 285728,
+      "weight_bytes": 603008,
+      "compute_bytes": 22880,
+      "elapsed_seconds": 0.066895
+    },
+    {
+      "name": "cpu-f16-layers28-masked",
+      "backend": "cpu",
+      "layers": 28,
+      "parameters": 285728,
+      "weight_bytes": 603008,
+      "compute_bytes": 21024,
+      "elapsed_seconds": 0.070632
+    },
+    {
+      "name": "cpu-f16-layers28-masked-padding",
+      "backend": "cpu",
+      "layers": 28,
+      "parameters": 285728,
+      "weight_bytes": 603008,
+      "compute_bytes": 21024,
+      "elapsed_seconds": 0.050876
+    },
+    {
+      "name": "vulkan-f32-layers2-global",
+      "backend": "vulkan",
+      "layers": 2,
+      "parameters": 31760,
+      "weight_bytes": 127040,
+      "compute_bytes": 21008,
+      "elapsed_seconds": 1.590368
+    },
+    {
+      "name": "vulkan-f32-layers2-per-token",
+      "backend": "vulkan",
+      "layers": 2,
+      "parameters": 31760,
+      "weight_bytes": 127040,
+      "compute_bytes": 22864,
+      "elapsed_seconds": 0.925283
+    },
+    {
+      "name": "vulkan-f32-layers2-masked",
+      "backend": "vulkan",
+      "layers": 2,
+      "parameters": 31760,
+      "weight_bytes": 127040,
+      "compute_bytes": 21008,
+      "elapsed_seconds": 1.076526
+    },
+    {
+      "name": "vulkan-f32-layers2-masked-padding",
+      "backend": "vulkan",
+      "layers": 2,
+      "parameters": 31760,
+      "weight_bytes": 127040,
+      "compute_bytes": 21008,
+      "elapsed_seconds": 1.048422
+    },
+    {
+      "name": "vulkan-f32-layers3-global",
+      "backend": "vulkan",
+      "layers": 3,
+      "parameters": 69704,
+      "weight_bytes": 278816,
+      "compute_bytes": 28976,
+      "elapsed_seconds": 0.817474
+    },
+    {
+      "name": "vulkan-f32-layers3-per-token",
+      "backend": "vulkan",
+      "layers": 3,
+      "parameters": 69704,
+      "weight_bytes": 278816,
+      "compute_bytes": 27792,
+      "elapsed_seconds": 0.872213
+    },
+    {
+      "name": "vulkan-f32-layers3-masked",
+      "backend": "vulkan",
+      "layers": 3,
+      "parameters": 69704,
+      "weight_bytes": 278816,
+      "compute_bytes": 28976,
+      "elapsed_seconds": 1.042957
+    },
+    {
+      "name": "vulkan-f32-layers3-masked-padding",
+      "backend": "vulkan",
+      "layers": 3,
+      "parameters": 69704,
+      "weight_bytes": 278816,
+      "compute_bytes": 28976,
+      "elapsed_seconds": 1.147721
+    },
+    {
+      "name": "vulkan-f32-layers28-global",
+      "backend": "vulkan",
+      "layers": 28,
+      "parameters": 285728,
+      "weight_bytes": 1142912,
+      "compute_bytes": 21008,
+      "elapsed_seconds": 1.020083
+    },
+    {
+      "name": "vulkan-f32-layers28-per-token",
+      "backend": "vulkan",
+      "layers": 28,
+      "parameters": 285728,
+      "weight_bytes": 1142912,
+      "compute_bytes": 22864,
+      "elapsed_seconds": 1.138388
+    },
+    {
+      "name": "vulkan-f32-layers28-masked",
+      "backend": "vulkan",
+      "layers": 28,
+      "parameters": 285728,
+      "weight_bytes": 1142912,
+      "compute_bytes": 21008,
+      "elapsed_seconds": 1.416331
+    },
+    {
+      "name": "vulkan-f32-layers28-masked-padding",
+      "backend": "vulkan",
+      "layers": 28,
+      "parameters": 285728,
+      "weight_bytes": 1142912,
+      "compute_bytes": 21008,
+      "elapsed_seconds": 1.081831
+    },
+    {
+      "name": "vulkan-f16-layers2-global",
+      "backend": "vulkan",
+      "layers": 2,
+      "parameters": 31760,
+      "weight_bytes": 66368,
+      "compute_bytes": 21008,
+      "elapsed_seconds": 1.056662
+    },
+    {
+      "name": "vulkan-f16-layers2-per-token",
+      "backend": "vulkan",
+      "layers": 2,
+      "parameters": 31760,
+      "weight_bytes": 66368,
+      "compute_bytes": 22864,
+      "elapsed_seconds": 1.259297
+    },
+    {
+      "name": "vulkan-f16-layers2-masked",
+      "backend": "vulkan",
+      "layers": 2,
+      "parameters": 31760,
+      "weight_bytes": 66368,
+      "compute_bytes": 21008,
+      "elapsed_seconds": 1.008693
+    },
+    {
+      "name": "vulkan-f16-layers2-masked-padding",
+      "backend": "vulkan",
+      "layers": 2,
+      "parameters": 31760,
+      "weight_bytes": 66368,
+      "compute_bytes": 21008,
+      "elapsed_seconds": 0.985014
+    },
+    {
+      "name": "vulkan-f16-layers3-global",
+      "backend": "vulkan",
+      "layers": 3,
+      "parameters": 69704,
+      "weight_bytes": 144672,
+      "compute_bytes": 28976,
+      "elapsed_seconds": 1.176578
+    },
+    {
+      "name": "vulkan-f16-layers3-per-token",
+      "backend": "vulkan",
+      "layers": 3,
+      "parameters": 69704,
+      "weight_bytes": 144672,
+      "compute_bytes": 27792,
+      "elapsed_seconds": 0.839183
+    },
+    {
+      "name": "vulkan-f16-layers3-masked",
+      "backend": "vulkan",
+      "layers": 3,
+      "parameters": 69704,
+      "weight_bytes": 144672,
+      "compute_bytes": 28976,
+      "elapsed_seconds": 0.815208
+    },
+    {
+      "name": "vulkan-f16-layers3-masked-padding",
+      "backend": "vulkan",
+      "layers": 3,
+      "parameters": 69704,
+      "weight_bytes": 144672,
+      "compute_bytes": 28976,
+      "elapsed_seconds": 0.939801
+    },
+    {
+      "name": "vulkan-f16-layers28-global",
+      "backend": "vulkan",
+      "layers": 28,
+      "parameters": 285728,
+      "weight_bytes": 603008,
+      "compute_bytes": 21008,
+      "elapsed_seconds": 1.038008
+    },
+    {
+      "name": "vulkan-f16-layers28-per-token",
+      "backend": "vulkan",
+      "layers": 28,
+      "parameters": 285728,
+      "weight_bytes": 603008,
+      "compute_bytes": 22864,
+      "elapsed_seconds": 0.822176
+    },
+    {
+      "name": "vulkan-f16-layers28-masked",
+      "backend": "vulkan",
+      "layers": 28,
+      "parameters": 285728,
+      "weight_bytes": 603008,
+      "compute_bytes": 21008,
+      "elapsed_seconds": 0.99222
+    },
+    {
+      "name": "vulkan-f16-layers28-masked-padding",
+      "backend": "vulkan",
+      "layers": 28,
+      "parameters": 285728,
+      "weight_bytes": 603008,
+      "compute_bytes": 21008,
+      "elapsed_seconds": 1.073301
+    },
+    {
+      "name": "repeat-load",
+      "backend": "cpu",
+      "layers": 2,
+      "parameters": 31760,
+      "weight_bytes": 127040,
+      "compute_bytes": 21024,
+      "elapsed_seconds": 0.034248
+    }
+  ],
+  "builds": {
+    "cpu": {
+      "source_revision": "4b2d053057623ddd4d0a1d3e9cd28890e9ef487f",
+      "ggml_revision": "a5915eb0e47adef21c3f25b889a008925ea838c2",
+      "backend": "cpu",
+      "android_arm64_compiled": false,
+      "min_sdk": null,
+      "binary_bytes": 1531392,
+      "binary_sha256": "eccd9923a772d31d72d41c17cc9bcec21f05feda205ac6188f52bc56825721b6",
+      "shaderc": null,
+      "elf": null,
+      "packaged_in_apk": false,
+      "engine_registered": false,
+      "model_inference": false,
+      "physical_android": false,
+      "complete_video_pipeline": false,
+      "input_fingerprint": {
+        "research/ltx098/CMakeLists.txt": "ba3d94e3019215583d0eb80adb1335236471bebd74830716517857f4fce0e005",
+        "research/ltx098/driver.cpp": "2c8b92b4826824d03ca7ec17e82b5f6ff6dba10b600013df6141d61c5df212f6",
+        "research/ltx098/licenses/ggml-MIT.txt": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
+        "research/ltx098/licenses/json-MIT.txt": "0e592e358cf7722906f417be85bc514f15bf6efd28cea98cb84e56ef7fddfc3e",
+        "research/ltx098/licenses/Lightricks-Apache-2.0.txt": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+        "research/ltx098/licenses/SPIRV-Headers-MIT.txt": "ea43b1de38a6f90c488800d66dec1ed671e68cda530266bc96951fb5b6307613",
+        "research/ltx098/licenses/Vulkan-Apache-2.0.txt": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+        "research/ltx098/licenses/Vulkan-Headers.txt": "95ad366d23fadf701d355bc45fb8b82ae2d700239471d35d41286ac3b08ff903",
+        "research/ltx098/licenses/Vulkan-MIT.txt": "1ca3502222d967f3be5751c55f6b7ee735b5383909c3b501495f54b216dbf227",
+        "research/ltx098/NOTICE": "81f7aaf8c5227a9303819185585464fea1530a9e4a6f60d21adb9c823c882c7d",
+        "research/ltx098/transformer.cpp": "22c6d7ec964c5d9e25c90ba9f32c3a93b3d6d4db3c8aafb064cb45f3e03581fa",
+        "research/ltx098/transformer.hpp": "6f5fd68cba7278abb210322af20d70d3a0acd05631118bdeabdae54f4cd5e1d5",
+        "third_party/ltx098-source-lock.json": "28acd99486f6ca76a06d038076175ac01ca55c7b1d8c3ba6dab9190291ac8779",
+        "tools/build_ltx098.py": "4fd681c471d824d42fcc1995471cce672414c5a53dabfca9a8be18db6b9e3e46"
+      }
+    },
+    "vulkan": {
+      "source_revision": "4b2d053057623ddd4d0a1d3e9cd28890e9ef487f",
+      "ggml_revision": "a5915eb0e47adef21c3f25b889a008925ea838c2",
+      "backend": "vulkan",
+      "android_arm64_compiled": false,
+      "min_sdk": null,
+      "binary_bytes": 43127296,
+      "binary_sha256": "7bcf8e2f1b7f0caef766f946d569ad06cca28a08e13a6ab38f9e1aab64bc9b94",
+      "shaderc": {
+        "directory": "build/toolchain/shaderc-20261026",
+        "archive_url": "https://storage.googleapis.com/shaderc/artifacts/prod/graphics_shader_compiler/shaderc/windows-vs2022-amd64-release/continuous/52/20261026-084531/install.zip",
+        "archive_sha256": "a3d1ed1a83782d450553e1b7ebd4320396faee79a39c203c5fff83b894f78207",
+        "archive_bytes": 231595946,
+        "glslc_sha256": "4c29987bf7d3043fad1d46564023b29576403f86dfbd57ce9c471f3b8f6c7418",
+        "files": {
+          "bin/glslc.exe": "4c29987bf7d3043fad1d46564023b29576403f86dfbd57ce9c471f3b8f6c7418",
+          "bin/shaderc_shared.dll": "322162167d5024831271434cb0aac0120585ef5d3f82840785b7b4c2ab81c24e",
+          "bin/SPIRV-Tools-shared.dll": "a960789cff7666283f696097a51e36306069eba8fd18301699ece3cf1f62408c"
+        },
+        "version": "shaderc v2026.5-dev v2026.4-20-g170316e\nspirv-tools v2026.4 v2022.4-1418-g71f287f1\nglslang 11.1.0-1619-g73b25650\n\nTarget: SPIR-V 1.0",
+        "developer_tool_only": true,
+        "packaged_in_apk": false,
+        "source_repository": "google/shaderc",
+        "source_revision": "170316e2df47f621804bb6372e7fe00c10184105",
+        "provenance_url": "https://storage.googleapis.com/shaderc/artifacts/prod/graphics_shader_compiler/shaderc/windows-vs2022-amd64-release/continuous/52/20261026-084531/4c252f6e-ffeb-43a9-b41e-1b088759b77f.intoto.jsonl",
+        "provenance_validation": "Published unsigned SLSA statement matches archive SHA256 and source revision; no signature verification claimed"
+      },
+      "elf": null,
+      "packaged_in_apk": false,
+      "engine_registered": false,
+      "model_inference": false,
+      "physical_android": false,
+      "complete_video_pipeline": false,
+      "input_fingerprint": {
+        "research/ltx098/CMakeLists.txt": "ba3d94e3019215583d0eb80adb1335236471bebd74830716517857f4fce0e005",
+        "research/ltx098/driver.cpp": "2c8b92b4826824d03ca7ec17e82b5f6ff6dba10b600013df6141d61c5df212f6",
+        "research/ltx098/licenses/ggml-MIT.txt": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
+        "research/ltx098/licenses/json-MIT.txt": "0e592e358cf7722906f417be85bc514f15bf6efd28cea98cb84e56ef7fddfc3e",
+        "research/ltx098/licenses/Lightricks-Apache-2.0.txt": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+        "research/ltx098/licenses/SPIRV-Headers-MIT.txt": "ea43b1de38a6f90c488800d66dec1ed671e68cda530266bc96951fb5b6307613",
+        "research/ltx098/licenses/Vulkan-Apache-2.0.txt": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+        "research/ltx098/licenses/Vulkan-Headers.txt": "95ad366d23fadf701d355bc45fb8b82ae2d700239471d35d41286ac3b08ff903",
+        "research/ltx098/licenses/Vulkan-MIT.txt": "1ca3502222d967f3be5751c55f6b7ee735b5383909c3b501495f54b216dbf227",
+        "research/ltx098/NOTICE": "81f7aaf8c5227a9303819185585464fea1530a9e4a6f60d21adb9c823c882c7d",
+        "research/ltx098/transformer.cpp": "22c6d7ec964c5d9e25c90ba9f32c3a93b3d6d4db3c8aafb064cb45f3e03581fa",
+        "research/ltx098/transformer.hpp": "6f5fd68cba7278abb210322af20d70d3a0acd05631118bdeabdae54f4cd5e1d5",
+        "third_party/ltx098-source-lock.json": "28acd99486f6ca76a06d038076175ac01ca55c7b1d8c3ba6dab9190291ac8779",
+        "tools/build_ltx098.py": "4fd681c471d824d42fcc1995471cce672414c5a53dabfca9a8be18db6b9e3e46"
+      }
+    }
+  },
+  "full_layer_depth": 28,
+  "trained_weights_loaded": false,
+  "model_inference": false,
+  "complete_video_pipeline": false,
+  "video_outputs": false,
+  "engine_registered": false,
+  "packaged_in_apk": false,
+  "physical_android": false,
+  "input_fingerprint": {
+    "research/ltx098/CMakeLists.txt": "ba3d94e3019215583d0eb80adb1335236471bebd74830716517857f4fce0e005",
+    "research/ltx098/driver.cpp": "2c8b92b4826824d03ca7ec17e82b5f6ff6dba10b600013df6141d61c5df212f6",
+    "research/ltx098/licenses/ggml-MIT.txt": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
+    "research/ltx098/licenses/json-MIT.txt": "0e592e358cf7722906f417be85bc514f15bf6efd28cea98cb84e56ef7fddfc3e",
+    "research/ltx098/licenses/Lightricks-Apache-2.0.txt": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+    "research/ltx098/licenses/SPIRV-Headers-MIT.txt": "ea43b1de38a6f90c488800d66dec1ed671e68cda530266bc96951fb5b6307613",
+    "research/ltx098/licenses/Vulkan-Apache-2.0.txt": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+    "research/ltx098/licenses/Vulkan-Headers.txt": "95ad366d23fadf701d355bc45fb8b82ae2d700239471d35d41286ac3b08ff903",
+    "research/ltx098/licenses/Vulkan-MIT.txt": "1ca3502222d967f3be5751c55f6b7ee735b5383909c3b501495f54b216dbf227",
+    "research/ltx098/NOTICE": "81f7aaf8c5227a9303819185585464fea1530a9e4a6f60d21adb9c823c882c7d",
+    "research/ltx098/transformer.cpp": "22c6d7ec964c5d9e25c90ba9f32c3a93b3d6d4db3c8aafb064cb45f3e03581fa",
+    "research/ltx098/transformer.hpp": "6f5fd68cba7278abb210322af20d70d3a0acd05631118bdeabdae54f4cd5e1d5",
+    "third_party/ltx098-source-lock.json": "28acd99486f6ca76a06d038076175ac01ca55c7b1d8c3ba6dab9190291ac8779",
+    "tools/build_ltx098.py": "4fd681c471d824d42fcc1995471cce672414c5a53dabfca9a8be18db6b9e3e46",
+    "tools/fetch_ltx098.py": "177e6984d683c69ad8436c3ae533659581d512181077aba91eaa6949d902edda",
+    "tools/ltx098_fixture.py": "60c5730c77dda5055a7cef23b91af0042493a53d49e8f3b898e7634b78170ef8",
+    "tools/test_ltx098.py": "ee06c13db3dd96178eab349ca81bba8eafc7c70ed09bc6addfffbd7e58e7bd45"
+  }
+}

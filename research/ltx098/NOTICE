@@ -1,0 +1,31 @@
+LMA independent LTX-Video 0.9.8 DiT port (2026)
+
+Architecture and forward equations: Lightricks/LTX-Video
+Revision 4b2d053057623ddd4d0a1d3e9cd28890e9ef487f, Apache License 2.0.
+Transformer3DModel and attention sources acknowledge Hugging Face Diffusers.
+This port replaces Python tensor execution with native GGML graphs, checks the
+old 2B shape contract, and uses explicit per-process CPU or Vulkan selection.
+
+GGML: ggml-org/ggml, revision a5915eb0e47adef21c3f25b889a008925ea838c2,
+MIT license. JSON: nlohmann/json, MIT license, exact header pinned through
+leejet/stable-diffusion.cpp be486498eadc29dc3cd234d944c2180ed42b1415.
+Vulkan Headers: KhronosGroup/Vulkan-Headers, revision
+cde2207d8bc426cfd201ffd67031e7b135a01df7, Apache-2.0 OR MIT.
+SPIRV Headers: KhronosGroup/SPIRV-Headers, revision
+fef168c54ed2e37c314eb251806aaf9877f38465, MIT license.
+
+Native Windows shader compilation uses the project's ignored developer cache:
+Google shaderc 170316e2df47f621804bb6372e7fe00c10184105 (Apache-2.0),
+2026-10-26 VS2022 build. Archive/executable hashes, origin and published unsigned
+SLSA statement are pinned in third_party/ltx098-source-lock.json. This compiler
+and its DLLs are not shipped in Git, APKs or model packs. The published statement
+matches the archive digest; no signature verification is claimed.
+
+Full code license texts accompany this directory in licenses/. Model weights
+have independent LTXV Open Weights License 0.X terms and are not distributed.
+No code from timmyy123/LLM-Hub is incorporated. No weights, learned parameters,
+tokenizer, prompts, QNN runtime or QNN context binaries are embedded here.
+
+This is a research component outside the App and engine registry. It does not
+provide T5/tokenization, latent sampling, VAE decoding or MP4 composition.
+Synthetic neural graphs are not trained model or Android execution evidence.

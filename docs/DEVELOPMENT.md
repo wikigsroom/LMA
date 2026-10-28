@@ -52,7 +52,7 @@ SD1.5 候选包使用 [Second State 的固定 GGUF 权重](https://huggingface.c
 ## 尚未完成的同版工作
 
 1. 对已接入的[共用调度](SCHEDULING.md)、资产迁移和独立更新完成物理 Android 的跨模态、取消、恢复与升级验收。49 项主机调度检查和 dev.9 本地迁移不代替这些设备门槛。
-2. 全部 01–14 / 16 / 17 的固定资产、完整管线、各子目标和 SD1.5 / SDXL LoRA 配对。原生 MNN、Qwen、九条 MOSS 路由、Stable Audio 与 SoulX worker 已源码接入；所有完整资产候选 / 新输入模型输出 / 质量仍须逐项补齐，旧 LTX 的确切版本仍待实现。每条管线均须物理 Android 验收。
+2. 全部 01–14 / 16 / 17 的固定资产、完整管线、各子目标和 SD1.5 / SDXL LoRA 配对。原生 MNN、Qwen、九条 MOSS 路由、Stable Audio 与 SoulX worker 已源码接入；所有完整资产候选 / 新输入模型输出 / 质量仍须逐项补齐，旧 LTX 的确切版本已新增未训练 DiT 数值组件，完整管线仍待实现。每条管线均须物理 Android 验收。
 3. 已实现的异步 / 文本接口继续覆盖其余所有引擎的真实输入管线、各模态兼容表面与设备生命周期验收。旧文本共用执行槽已接入；新增模块必须复用这一调度边界。见 [API](API.md#030-dev2独立接口任务与结果)。
 4. 实测资源档案、温控、本地输入在各配方和设备上的验证、阶段恢复 / checkpoint 能力、跨模态连续加载 / 卸载与升级迁移的完整验证。
 5. 所有冻结子目标的物理 Android 新输入离线输出、质量、取消、清理及 A7 锁屏 15 分钟 / 一小时交替服务等证据；现无可用真机。
@@ -187,3 +187,7 @@ Internal dev.19 / 内部 dev.19：[旧 Local / Realtime 原生 RQ](MOSS_RQ_ENGIN
 
 
 当前dev.21新增 [SoulX App基座](SOULX_ENGINE.md) / [English](SOULX_ENGINE.en.md)：生产worker已注册并打包，共14份用户自选资产，参考音频与原文配套，模型独立参数，共享任务 /API /产物。222项契约及95项完整训练生产worker检查通过；两 /四说话人主机输出与两次实际强制终止分别记录。目标13的已核对公开用户下载候选、真实语音质量及Android /后台 /完整Release仍未完成；见 [本轮编号实现与完整待办](releases/v0.3.0-dev.21.md)。
+
+## dev.21 源码后续：旧版 LTX DiT
+
+[实现 /复现](LTX098_DIT.md) / [English](LTX098_DIT.en.md) / [本轮编号交付](releases/v0.3.0-dev.21-ltx-dit.md)。精确0.9.8独立GGML图、715张量完整布局、2 /3 /28层未训练小宽度官方前向，675检查 /80原生子进程 /48CPU与Vulkan数值对照通过。Vulkan固定F32计算策略，F16存储另行核对；Android ARM64/API28/16KiB编译与实际手机运行分别记录。目标17完整训练资产、文本编码 /采样 /VAE /MP4 /App仍未完成；APK与UI媒体维持dev.21，所有模型 /子目标 /F基座 /后台 /Release门槛保留。

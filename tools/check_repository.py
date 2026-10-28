@@ -69,6 +69,24 @@ def main():
         assert not status["soulx_complete_android_text_to_speech_tested"] and not status["soulx_speech_quality_tested"]
         records = {name: json.loads((directory / name).read_text(encoding="utf-8")) for name in status["sources"]}
         for record in records.values(): current(record["input_fingerprint"])
+        ltx = records["ltx098-transformer.json"]
+        ltx_arm = records["ltx098-transformer-arm64.json"]
+        assert ltx["passed"] >= 675 and ltx["actual_host_children"] >= 80 and ltx["guard_assertions"] >= 31
+        assert ltx["actual_publisher_forward"] and ltx["backends"] == ["cpu", "vulkan"] and len(ltx["precision_metrics"]) == 48 and ltx["full_layer_depth"] == 28
+        assert ltx["oracle"]["full_tensors"] == 715 and ltx["oracle"]["full_parameters"] == 1923385472 and not ltx["oracle"]["full_weights_loaded"]
+        assert ltx["vulkan_device_identity"] and all("fp16: 0" in item and "matrix cores: none" in item for item in ltx["vulkan_device_identity"])
+        for metric in ltx["precision_metrics"]:
+            assert metric["precision"] in ["f32", "f16"] and metric["backend"] in ["cpu", "vulkan"]
+            maximum, rmse = (1e-4, 3e-5) if metric["precision"] == "f32" else (.005, .001)
+            assert metric["max_abs_gate"] == maximum and metric["rmse_gate"] == rmse and metric["max_abs"] <= maximum and metric["rmse"] <= rmse
+        assert ltx_arm["android_arm64_compiled"] and ltx_arm["backend"] == "vulkan" and ltx_arm["min_sdk"] == 28
+        assert ltx_arm["elf"]["machine"] == "aarch64" and ltx_arm["elf"]["16k_elf_aligned"] and ltx_arm["elf"]["android_api_notes"] == [28]
+        assert ltx_arm["elf"]["interpreter"] == "/system/bin/linker64" and set(ltx_arm["elf"]["needed"]) == {"libc.so", "libm.so", "libdl.so", "libvulkan.so"}
+        for item in [ltx, ltx_arm]:
+            assert not any(item[key] for key in ["model_inference", "engine_registered", "packaged_in_apk", "physical_android", "complete_video_pipeline"])
+        assert not ltx["trained_weights_loaded"] and not ltx["video_outputs"]
+        assert status["ltx098_native_dit_host_parity_tested"] and status["ltx098_android_vulkan_compiled"]
+        assert not status["ltx098_trained_video_tested"] and not status["ltx098_app_engine_registered"]
         soulx = records["soulx-dsp.json"]
         assert soulx["passed"] >= 155 and soulx["actual_host_children"] >= 49 and soulx["guard_assertions"] >= 31
         assert soulx["actual_upstream_function_bodies"] and soulx["native_library_under_test"] and not soulx["apk_runtime_used"]
