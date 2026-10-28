@@ -1,0 +1,143 @@
+{
+  "schema": "lma.publisher-audit/1",
+  "reviewed_on": "2026-10-28",
+  "downloaded_assets": [
+    "config.json",
+    "processing_moss_tts.py",
+    "README.md",
+    "modeling_moss_tts.py"
+  ],
+  "source_execution": false,
+  "weights_downloaded": false,
+  "phone_tests": 0,
+  "entries": [
+    {
+      "repository": "OpenMOSS-Team/MOSS-TTS",
+      "revision": "b6b0229853ff63c68fa6aeceb380d8c016f55daf",
+      "source_urls": {
+        "config.json": "https://huggingface.co/OpenMOSS-Team/MOSS-TTS/blob/b6b0229853ff63c68fa6aeceb380d8c016f55daf/config.json",
+        "processing_moss_tts.py": "https://huggingface.co/OpenMOSS-Team/MOSS-TTS/blob/b6b0229853ff63c68fa6aeceb380d8c016f55daf/processing_moss_tts.py",
+        "README.md": "https://huggingface.co/OpenMOSS-Team/MOSS-TTS/blob/b6b0229853ff63c68fa6aeceb380d8c016f55daf/README.md",
+        "modeling_moss_tts.py": "https://huggingface.co/OpenMOSS-Team/MOSS-TTS/blob/b6b0229853ff63c68fa6aeceb380d8c016f55daf/modeling_moss_tts.py"
+      },
+      "sha256": {
+        "config.json": "214fc997d98f51ab57925a5939afc6280e76044198b664221622e70d098ed06e",
+        "processing_moss_tts.py": "db33fdd0a1d8176515a93602296dcfeda93ea8f05548659d471db944a8c2f2c1",
+        "README.md": "4dc69c220b76f1de2a014879f82ee17e0f994d606ce0cbd50a3590feee4ef182",
+        "modeling_moss_tts.py": "360ceee27c67831d820ff5324f8687f4408db1a91aef53683934544879aa90ca"
+      },
+      "geometry": {
+        "n_vq": 32,
+        "sampling_rate": 24000,
+        "audio_vocab_size": 1024,
+        "audio_pad_code": 1024
+      },
+      "backbone": {
+        "hidden_size": 4096,
+        "num_hidden_layers": 36,
+        "num_attention_heads": 32,
+        "num_key_value_heads": 8,
+        "max_position_embeddings": 40960,
+        "vocab_size": 155648
+      },
+      "template": "voicegen",
+      "audio_head_rows": 1025
+    },
+    {
+      "repository": "OpenMOSS-Team/MOSS-TTS-v1.5",
+      "revision": "cdd3b911b1585e3f2dbc7775ef10f9926f58850a",
+      "source_urls": {
+        "config.json": "https://huggingface.co/OpenMOSS-Team/MOSS-TTS-v1.5/blob/cdd3b911b1585e3f2dbc7775ef10f9926f58850a/config.json",
+        "processing_moss_tts.py": "https://huggingface.co/OpenMOSS-Team/MOSS-TTS-v1.5/blob/cdd3b911b1585e3f2dbc7775ef10f9926f58850a/processing_moss_tts.py",
+        "README.md": "https://huggingface.co/OpenMOSS-Team/MOSS-TTS-v1.5/blob/cdd3b911b1585e3f2dbc7775ef10f9926f58850a/README.md",
+        "modeling_moss_tts.py": "https://huggingface.co/OpenMOSS-Team/MOSS-TTS-v1.5/blob/cdd3b911b1585e3f2dbc7775ef10f9926f58850a/modeling_moss_tts.py"
+      },
+      "sha256": {
+        "config.json": "214fc997d98f51ab57925a5939afc6280e76044198b664221622e70d098ed06e",
+        "processing_moss_tts.py": "e591ff156e8fadcae34db5613a2221fab7ec5d814bfc0ec001e8ec4ef2782425",
+        "README.md": "20581413205fbc34a6cdee97cbbfa8c1564fe1569a0a76e0ed466d3b21fff30b",
+        "modeling_moss_tts.py": "360ceee27c67831d820ff5324f8687f4408db1a91aef53683934544879aa90ca"
+      },
+      "geometry": {
+        "n_vq": 32,
+        "sampling_rate": 24000,
+        "audio_vocab_size": 1024,
+        "audio_pad_code": 1024
+      },
+      "backbone": {
+        "hidden_size": 4096,
+        "num_hidden_layers": 36,
+        "num_attention_heads": 32,
+        "num_key_value_heads": 8,
+        "max_position_embeddings": 40960,
+        "vocab_size": 155648
+      },
+      "template": "voicegen",
+      "audio_head_rows": 1025
+    },
+    {
+      "repository": "OpenMOSS-Team/MOSS-TTSD-v1.0",
+      "revision": "c7cd852d87aff71cab5bd2b9b05509cedc0ef1ba",
+      "source_urls": {
+        "config.json": "https://huggingface.co/OpenMOSS-Team/MOSS-TTSD-v1.0/blob/c7cd852d87aff71cab5bd2b9b05509cedc0ef1ba/config.json",
+        "processing_moss_tts.py": "https://huggingface.co/OpenMOSS-Team/MOSS-TTSD-v1.0/blob/c7cd852d87aff71cab5bd2b9b05509cedc0ef1ba/processing_moss_tts.py",
+        "README.md": "https://huggingface.co/OpenMOSS-Team/MOSS-TTSD-v1.0/blob/c7cd852d87aff71cab5bd2b9b05509cedc0ef1ba/README.md",
+        "modeling_moss_tts.py": "https://huggingface.co/OpenMOSS-Team/MOSS-TTSD-v1.0/blob/c7cd852d87aff71cab5bd2b9b05509cedc0ef1ba/modeling_moss_tts.py"
+      },
+      "sha256": {
+        "config.json": "6e5eebd8d1e3fbc171c2f25ad6568223f1bc5fe0ed9f8c4e3d110c0da5be8e96",
+        "processing_moss_tts.py": "24fb7a5495cb92cfd979d15f81fd2554f26a36b4b9f1d089f0436f95c2da14f3",
+        "README.md": "a8abd4fe44e83e27a4e24d52e6609719c4e83c2465d6a242d339be98a957209f",
+        "modeling_moss_tts.py": "02b00b7b715f83b5ff658dc8d78fadab9b507edeaa952efdb23c2b998b6c4a4e"
+      },
+      "geometry": {
+        "n_vq": 16,
+        "sampling_rate": 24000,
+        "audio_vocab_size": 1024,
+        "audio_pad_code": 1024
+      },
+      "backbone": {
+        "hidden_size": 4096,
+        "num_hidden_layers": 36,
+        "num_attention_heads": 32,
+        "num_key_value_heads": 8,
+        "max_position_embeddings": 40960,
+        "vocab_size": 155648
+      },
+      "template": "ttsd",
+      "audio_head_rows": 1025
+    },
+    {
+      "repository": "OpenMOSS-Team/MOSS-VoiceGenerator",
+      "revision": "97521ec2b6f3ec5026ac1f5751f8fc302d82c2d4",
+      "source_urls": {
+        "config.json": "https://huggingface.co/OpenMOSS-Team/MOSS-VoiceGenerator/blob/97521ec2b6f3ec5026ac1f5751f8fc302d82c2d4/config.json",
+        "processing_moss_tts.py": "https://huggingface.co/OpenMOSS-Team/MOSS-VoiceGenerator/blob/97521ec2b6f3ec5026ac1f5751f8fc302d82c2d4/processing_moss_tts.py",
+        "README.md": "https://huggingface.co/OpenMOSS-Team/MOSS-VoiceGenerator/blob/97521ec2b6f3ec5026ac1f5751f8fc302d82c2d4/README.md",
+        "modeling_moss_tts.py": "https://huggingface.co/OpenMOSS-Team/MOSS-VoiceGenerator/blob/97521ec2b6f3ec5026ac1f5751f8fc302d82c2d4/modeling_moss_tts.py"
+      },
+      "sha256": {
+        "config.json": "5b6ccfbf309a5844c130d09c9b5fa8b9eef55db27f1b7072695483b6f5524685",
+        "processing_moss_tts.py": "16dda5233f9f752518d07a6b780d6555945b48547fba0b4e7faf6eb2c4ed0038",
+        "README.md": "0c85edecd01000e82796ba31a1c3da336fccdf0f26a91ab960f9d4ac9a2f9156",
+        "modeling_moss_tts.py": "666d7320f93ce6b1c1f6ed4dba6fd4b9520a082a90fa7a17211efd83247d28a0"
+      },
+      "geometry": {
+        "n_vq": 16,
+        "sampling_rate": 24000,
+        "audio_vocab_size": 1024,
+        "audio_pad_code": 1024
+      },
+      "backbone": {
+        "hidden_size": 2048,
+        "num_hidden_layers": 28,
+        "num_attention_heads": 16,
+        "num_key_value_heads": 8,
+        "max_position_embeddings": 40960,
+        "vocab_size": 155648
+      },
+      "template": "voicegen",
+      "audio_head_rows": 1025
+    }
+  ]
+}

@@ -202,6 +202,22 @@ def build():
             definition=dict(engine="openmoss_native",backend="cpu",architecture="moss_soundeffect_v2" if sound else "moss_local_v15",pipeline="moss_soundeffect_v2_cpu_v1" if sound else "moss_local_v15_cpu_v1",tasks=["audio"],capabilities=["text_to_audio" if sound else "text_to_speech"],parameters=dict(version=1,fields=fields)),
             requirements=[dict(role="backbone",label="同次 openmoss 转换的 Qwen3 主干（含 BPE）",formats=["gguf"],required=True,provides=["text_tokenizer"]),dict(role="extras",label="配套 DiT / VAE extras" if sound else "配套 Local Transformer / v2 codec extras",formats=["gguf"],required=True,provides=["audio_decoder"] if sound else ["audio_encoder","audio_decoder"])],fixedComponents=[],
             help=("仅匹配固定 pwilkin/openmoss 转换布局，必须选择同次转换的主干和 extras；不能混用 first-class、Nano 或其他 MOSS 版本。模型及 codec 均为用户资产。CPU 路线同时驻留主干与 extras，需要高内存设备；不表示 Z20 已可运行。" + ("SoundEffect-v2 使用 30 秒 latent 去噪后裁剪，缩短输出不同比降低生成内存；支持负面提示词，不是语音克隆或整曲音乐。" if sound else "仅针对 Local-Transformer-v1.5，12 路 codec / 48 kHz 双声道；可选导入同格式 1–10 秒参考 WAV。暂不提供参考转写续说、多说话人或其他 Local 版本。") + "尚无 LMA Android 输出、质量、速度或后台验收。")))
+    for ident,arch,name,layout in [
+        ("moss_tts_openmoss_cpu_v1","moss_tts","MOSS-TTS","32 路 / 8B"),
+        ("moss_tts_v15_openmoss_cpu_v1","moss_tts_v15","MOSS-TTS-v1.5","32 路 / 8B"),
+        ("moss_ttsd_openmoss_cpu_v1","moss_ttsd","MOSS-TTSD-v1.0","16 路 / 8B"),
+        ("moss_voicegen_openmoss_cpu_v1","moss_voicegenerator","MOSS-VoiceGenerator","16 路 / 1.7B"),
+    ]:
+        fields=copy.deepcopy(local_fields);fields['maxInputTokens']['default']=1024
+        fields['maxNewTokens'].update(default=375,maximum=1500,presets=[125,375,750,1500],label="生成步数上限（含 delay flush；每音频帧 80 ms）")
+        fields['voiceInstruction']=dict(type="string",label="声音描述（必填）" if arch=='moss_voicegenerator' else "声音描述（可选）",default="",maxLength=1000)
+        fields['language']=dict(type="string",label="语言提示（留空为 None）",default="",maxLength=64)
+        dialogue=arch=='moss_ttsd';voice=arch=='moss_voicegenerator'
+        detail="文本须含 [S1]、[S2]；可选成对导入对应的 24 kHz 单声道参考 WAV，保持说话人映射。" if dialogue else "必填声音描述，不接受参考音频；按描述设计声音。" if voice else "可选一个 24 kHz 单声道参考 WAV；v1.0 与 v1.5 结构相同不能仅凭几何确认权重来源。"
+        templates.append(dict(id=ident,name=name+" · 原生语音",primaryRole="backbone",
+            definition=dict(engine="openmoss_native",backend="cpu",architecture=arch,pipeline=ident,tasks=["audio"],capabilities=["text_to_speech"]+(["multi_speaker_tts"] if dialogue else ["voice_design"] if voice else []),parameters=dict(version=1,fields=fields)),
+            requirements=[dict(role="backbone",label="匹配的 Qwen3 主干（含 BPE）",formats=["gguf"],required=True,provides=["text_tokenizer"]),dict(role="extras",label="同次转换的 delay 头 / v1 codec extras",formats=["gguf"],required=True,provides=["audio_encoder","audio_decoder"])],fixedComponents=[],
+            help=f"仅匹配固定 pwilkin/openmoss 转换布局（{layout}），输出 24 kHz 单声道。主干和 extras 需用户显式选择、同次转换；不能混用 first-class / Nano / Local / SoundEffect 文件。{detail}参考仅支持 1–10 秒、≤1 MiB 的 PCM16 / float32 WAV，不自动重采样。CPU 同时驻留全部组件，8B 主干与大 codec 需要高内存设备；未证明 Z20 可运行。模型、BPE、codec 均不附带；参数随模型保存。没有 LMA Android 输出、质量、速度或后台验收。"))
     return {"schema": "lma.recipe-catalogue/1", "templates": templates}
 
 

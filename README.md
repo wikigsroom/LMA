@@ -278,4 +278,8 @@ LMA 自有代码使用 MIT 许可。llama.cpp 及其依赖保留各自许可；�
 
 内部检查点（**0.3.0-dev.16 / code 20**，未发布）：[MOSS Delay 原生 CPU 管线](docs/MOSS_DELAY_ENGINE.md)接入用户自选 first-class 主模型 / 解码器和可选参考编码器、独立文本 / 音频采样与共用任务。176 项 Java / C++ 主机检查包含固定上游 Delay 自检；结构 WAV 不是生成语音。23 个配方均为元数据；APK 不带模型或自动下载。截图 40–41 与录屏 / GIF 为 UI FIXTURE。完整 v0.3.0 的所有目标和物理设备门槛保留，未创建新 Release。见[双语更新说明](docs/releases/v0.3.0-dev.16.md)。
 
-内部检查点（**0.3.0-dev.17 / code 21**，未发布）：[MOSS Local-v1.5 / SoundEffect-v2 原生基座](docs/OPENMOSS_ENGINE.md)接入两个独立 CPU 管线、用户自选主干 / extras、内含依赖标签、可选双声道参考、每模型独立参数与共用任务 / 回执。180 项 Java / C++ 检查包含 6 次实际主机子进程与固定上游音效采样公式；没有完整模型或 Android 推理。全部 25 个模板仅为元数据，不自动下载；SoundEffect 固定 30 秒 latent 成本已披露。截图 42–47、录屏 / GIF 为 UI FIXTURE。所有冻结目标和物理设备门槛继续属于同一完整 v0.3.0，未创建新 Release。见[双语更新说明](docs/releases/v0.3.0-dev.17.md)。
+早前内部检查点（**0.3.0-dev.17 / code 21**，未发布）：[MOSS Local-v1.5 / SoundEffect-v2 原生基座](docs/OPENMOSS_ENGINE.md)接入两个独立 CPU 管线、用户自选主干 / extras、内含依赖标签、可选双声道参考、每模型独立参数与共用任务 / 回执。180 项 Java / C++ 检查包含 6 次实际主机子进程与固定上游音效采样公式；没有完整模型或 Android 推理。全部 25 个模板仅为元数据，不自动下载；SoundEffect 固定 30 秒 latent 成本已披露。截图 42–47、录屏 / GIF 为 UI FIXTURE。所有冻结目标和物理设备门槛继续属于同一完整 v0.3.0，未创建新 Release。见[双语更新说明](docs/releases/v0.3.0-dev.17.md)。
+
+内部检查点（**0.3.0-dev.18 / code 22**，未发布）：[MOSS 原生基座](docs/OPENMOSS_ENGINE.md)扩展 TTS、v1.5、TTSD、VoiceGenerator 四个平级配方，按 32 / 16 路和 8B / 1.7B 布局校验，支持成对说话人参考与每模型声音描述 / 语言参数。真实生成网格的上下文检查在 prefill 前执行，超限直接失败。459 项限定 Java / C++ 检查（18 次实际主机子进程）、521 项基座、265 项 UI 检查通过；29 个模板仍只含元数据，APK 无模型数据。截图 48–52 与录屏 / GIF 是 UI FIXTURE，未执行完整模型或 Android。全部冻结目标与真机门槛仍属于同一完整 v0.3.0，尚无新 Release。见[双语说明](docs/releases/v0.3.0-dev.18.md)。
+
+<img src="docs/media/development/51-moss-ttsd-speakers.png" width="260" alt="UI FIXTURE：TTSD 双说话人文字与参考映射，未生成对话" /> <img src="docs/media/development/52-moss-voicegen-instruction.png" width="260" alt="UI FIXTURE：VoiceGenerator 每模型声音描述，未生成语音" />

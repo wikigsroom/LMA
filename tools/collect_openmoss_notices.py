@@ -23,7 +23,7 @@ def main():
     engine={k:receipt[k] for k in ('engine','file','source_revision','llama_revision','abi','backend','ndk','sha256','bytes','android_api_notes')};engine['notices']=notices
     path=ROOT/'third_party/engine-lock.json';engines=json.loads(path.read_text(encoding='utf-8'));engines['engines']=[e for e in engines['engines'] if e['engine']!=engine['engine']]+[engine];engine_files(engines['engines'])
     newline='\r\n' if b'\r\n' in path.read_bytes() else '\n';path.write_bytes((json.dumps(engines,indent=2)+'\n').replace('\n',newline).encode('utf-8'))
-    (output/'openmoss-sources.json').write_text(json.dumps(dict(revision=lock['revision'],files=records,model_assets=False),indent=2)+'\n',encoding='utf-8')
+    (output/'openmoss-sources.json').write_text(json.dumps(dict(revision=lock['revision'],files=records,model_assets=False,local_modification='LMA inserts a selected input/context budget guard into a generated pipeline.cpp copy before prefill; the pinned source checkout remains pristine.',pipeline_guard_sha256=receipt['pipeline_guard_sha256']),indent=2)+'\n',encoding='utf-8')
     print(json.dumps(dict(notices=len(records),engine=engine['engine'],bundled_model_data=False)))
 
 

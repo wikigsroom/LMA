@@ -71,3 +71,5 @@
 - MOSS Delay first-class 原生语音：[中文](MOSS_DELAY_ENGINE.md) / [English](MOSS_DELAY_ENGINE.en.md)；[dev.16 双语说明](releases/v0.3.0-dev.16.md)。
 
 - MOSS Local-v1.5 / SoundEffect-v2 原生基座：[中文](OPENMOSS_ENGINE.md) / [English](OPENMOSS_ENGINE.en.md)；[dev.17 双语说明](releases/v0.3.0-dev.17.md)。
+
+- [dev.18：MOSS delay / 双说话人与声音设计（双语）](releases/v0.3.0-dev.18.md) · [中文指南](OPENMOSS_ENGINE.md) / [English guide](OPENMOSS_ENGINE.en.md) · [固定发布者元数据核对](../catalogue/evidence/openmoss-delay-publishers.json)。

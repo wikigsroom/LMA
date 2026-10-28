@@ -3845,6 +3845,728 @@
       ],
       "fixedComponents": [],
       "help": "仅匹配固定 pwilkin/openmoss 转换布局，必须选择同次转换的主干和 extras；不能混用 first-class、Nano 或其他 MOSS 版本。模型及 codec 均为用户资产。CPU 路线同时驻留主干与 extras，需要高内存设备；不表示 Z20 已可运行。SoundEffect-v2 使用 30 秒 latent 去噪后裁剪，缩短输出不同比降低生成内存；支持负面提示词，不是语音克隆或整曲音乐。尚无 LMA Android 输出、质量、速度或后台验收。"
+    },
+    {
+      "id": "moss_tts_openmoss_cpu_v1",
+      "name": "MOSS-TTS · 原生语音",
+      "primaryRole": "backbone",
+      "definition": {
+        "engine": "openmoss_native",
+        "backend": "cpu",
+        "architecture": "moss_tts",
+        "pipeline": "moss_tts_openmoss_cpu_v1",
+        "tasks": [
+          "audio"
+        ],
+        "capabilities": [
+          "text_to_speech"
+        ],
+        "parameters": {
+          "version": 1,
+          "fields": {
+            "threads": {
+              "type": "integer",
+              "label": "CPU 线程",
+              "default": 4,
+              "minimum": 1,
+              "maximum": 32,
+              "presets": [
+                2,
+                4,
+                8
+              ],
+              "limitSource": "application_guard"
+            },
+            "seed": {
+              "type": "integer",
+              "label": "随机种子（-1 自动）",
+              "default": -1,
+              "minimum": -1,
+              "maximum": 2147483647,
+              "presets": [
+                -1,
+                0,
+                42
+              ],
+              "limitSource": "native_seed_range"
+            },
+            "maxInputTokens": {
+              "type": "integer",
+              "label": "格式化输入上限（含参考）",
+              "default": 1024,
+              "minimum": 1,
+              "maximum": 2048,
+              "presets": [
+                256,
+                512,
+                1024,
+                2048
+              ],
+              "limitSource": "application_guard"
+            },
+            "maxNewTokens": {
+              "type": "integer",
+              "label": "生成步数上限（含 delay flush；每音频帧 80 ms）",
+              "default": 375,
+              "minimum": 1,
+              "maximum": 1500,
+              "presets": [
+                125,
+                375,
+                750,
+                1500
+              ],
+              "limitSource": "application_guard"
+            },
+            "textTemperature": {
+              "type": "number",
+              "label": "继续 / 停止头温度",
+              "default": 1,
+              "minimum": 0,
+              "maximum": 3,
+              "presets": [
+                0,
+                1,
+                1.5
+              ],
+              "limitSource": "application_guard"
+            },
+            "audioTemperature": {
+              "type": "number",
+              "label": "音频温度",
+              "default": 1.7,
+              "minimum": 0,
+              "maximum": 3,
+              "presets": [
+                0,
+                1,
+                1.7
+              ],
+              "limitSource": "application_guard"
+            },
+            "audioTopP": {
+              "type": "number",
+              "label": "音频 Top P",
+              "default": 0.8,
+              "minimum": 0.01,
+              "maximum": 1,
+              "presets": [
+                0.8,
+                0.9,
+                1
+              ],
+              "limitSource": "application_guard"
+            },
+            "audioTopK": {
+              "type": "integer",
+              "label": "音频 Top K",
+              "default": 25,
+              "minimum": 1,
+              "maximum": 1024,
+              "presets": [
+                1,
+                25,
+                50
+              ],
+              "limitSource": "application_guard"
+            },
+            "audioRepetitionPenalty": {
+              "type": "number",
+              "label": "音频重复惩罚",
+              "default": 1,
+              "minimum": 1,
+              "maximum": 2,
+              "presets": [
+                1,
+                1.05,
+                1.1
+              ],
+              "limitSource": "application_guard"
+            },
+            "voiceInstruction": {
+              "type": "string",
+              "label": "声音描述（可选）",
+              "default": "",
+              "maxLength": 1000
+            },
+            "language": {
+              "type": "string",
+              "label": "语言提示（留空为 None）",
+              "default": "",
+              "maxLength": 64
+            }
+          }
+        }
+      },
+      "requirements": [
+        {
+          "role": "backbone",
+          "label": "匹配的 Qwen3 主干（含 BPE）",
+          "formats": [
+            "gguf"
+          ],
+          "required": true,
+          "provides": [
+            "text_tokenizer"
+          ]
+        },
+        {
+          "role": "extras",
+          "label": "同次转换的 delay 头 / v1 codec extras",
+          "formats": [
+            "gguf"
+          ],
+          "required": true,
+          "provides": [
+            "audio_encoder",
+            "audio_decoder"
+          ]
+        }
+      ],
+      "fixedComponents": [],
+      "help": "仅匹配固定 pwilkin/openmoss 转换布局（32 路 / 8B），输出 24 kHz 单声道。主干和 extras 需用户显式选择、同次转换；不能混用 first-class / Nano / Local / SoundEffect 文件。可选一个 24 kHz 单声道参考 WAV；v1.0 与 v1.5 结构相同不能仅凭几何确认权重来源。参考仅支持 1–10 秒、≤1 MiB 的 PCM16 / float32 WAV，不自动重采样。CPU 同时驻留全部组件，8B 主干与大 codec 需要高内存设备；未证明 Z20 可运行。模型、BPE、codec 均不附带；参数随模型保存。没有 LMA Android 输出、质量、速度或后台验收。"
+    },
+    {
+      "id": "moss_tts_v15_openmoss_cpu_v1",
+      "name": "MOSS-TTS-v1.5 · 原生语音",
+      "primaryRole": "backbone",
+      "definition": {
+        "engine": "openmoss_native",
+        "backend": "cpu",
+        "architecture": "moss_tts_v15",
+        "pipeline": "moss_tts_v15_openmoss_cpu_v1",
+        "tasks": [
+          "audio"
+        ],
+        "capabilities": [
+          "text_to_speech"
+        ],
+        "parameters": {
+          "version": 1,
+          "fields": {
+            "threads": {
+              "type": "integer",
+              "label": "CPU 线程",
+              "default": 4,
+              "minimum": 1,
+              "maximum": 32,
+              "presets": [
+                2,
+                4,
+                8
+              ],
+              "limitSource": "application_guard"
+            },
+            "seed": {
+              "type": "integer",
+              "label": "随机种子（-1 自动）",
+              "default": -1,
+              "minimum": -1,
+              "maximum": 2147483647,
+              "presets": [
+                -1,
+                0,
+                42
+              ],
+              "limitSource": "native_seed_range"
+            },
+            "maxInputTokens": {
+              "type": "integer",
+              "label": "格式化输入上限（含参考）",
+              "default": 1024,
+              "minimum": 1,
+              "maximum": 2048,
+              "presets": [
+                256,
+                512,
+                1024,
+                2048
+              ],
+              "limitSource": "application_guard"
+            },
+            "maxNewTokens": {
+              "type": "integer",
+              "label": "生成步数上限（含 delay flush；每音频帧 80 ms）",
+              "default": 375,
+              "minimum": 1,
+              "maximum": 1500,
+              "presets": [
+                125,
+                375,
+                750,
+                1500
+              ],
+              "limitSource": "application_guard"
+            },
+            "textTemperature": {
+              "type": "number",
+              "label": "继续 / 停止头温度",
+              "default": 1,
+              "minimum": 0,
+              "maximum": 3,
+              "presets": [
+                0,
+                1,
+                1.5
+              ],
+              "limitSource": "application_guard"
+            },
+            "audioTemperature": {
+              "type": "number",
+              "label": "音频温度",
+              "default": 1.7,
+              "minimum": 0,
+              "maximum": 3,
+              "presets": [
+                0,
+                1,
+                1.7
+              ],
+              "limitSource": "application_guard"
+            },
+            "audioTopP": {
+              "type": "number",
+              "label": "音频 Top P",
+              "default": 0.8,
+              "minimum": 0.01,
+              "maximum": 1,
+              "presets": [
+                0.8,
+                0.9,
+                1
+              ],
+              "limitSource": "application_guard"
+            },
+            "audioTopK": {
+              "type": "integer",
+              "label": "音频 Top K",
+              "default": 25,
+              "minimum": 1,
+              "maximum": 1024,
+              "presets": [
+                1,
+                25,
+                50
+              ],
+              "limitSource": "application_guard"
+            },
+            "audioRepetitionPenalty": {
+              "type": "number",
+              "label": "音频重复惩罚",
+              "default": 1,
+              "minimum": 1,
+              "maximum": 2,
+              "presets": [
+                1,
+                1.05,
+                1.1
+              ],
+              "limitSource": "application_guard"
+            },
+            "voiceInstruction": {
+              "type": "string",
+              "label": "声音描述（可选）",
+              "default": "",
+              "maxLength": 1000
+            },
+            "language": {
+              "type": "string",
+              "label": "语言提示（留空为 None）",
+              "default": "",
+              "maxLength": 64
+            }
+          }
+        }
+      },
+      "requirements": [
+        {
+          "role": "backbone",
+          "label": "匹配的 Qwen3 主干（含 BPE）",
+          "formats": [
+            "gguf"
+          ],
+          "required": true,
+          "provides": [
+            "text_tokenizer"
+          ]
+        },
+        {
+          "role": "extras",
+          "label": "同次转换的 delay 头 / v1 codec extras",
+          "formats": [
+            "gguf"
+          ],
+          "required": true,
+          "provides": [
+            "audio_encoder",
+            "audio_decoder"
+          ]
+        }
+      ],
+      "fixedComponents": [],
+      "help": "仅匹配固定 pwilkin/openmoss 转换布局（32 路 / 8B），输出 24 kHz 单声道。主干和 extras 需用户显式选择、同次转换；不能混用 first-class / Nano / Local / SoundEffect 文件。可选一个 24 kHz 单声道参考 WAV；v1.0 与 v1.5 结构相同不能仅凭几何确认权重来源。参考仅支持 1–10 秒、≤1 MiB 的 PCM16 / float32 WAV，不自动重采样。CPU 同时驻留全部组件，8B 主干与大 codec 需要高内存设备；未证明 Z20 可运行。模型、BPE、codec 均不附带；参数随模型保存。没有 LMA Android 输出、质量、速度或后台验收。"
+    },
+    {
+      "id": "moss_ttsd_openmoss_cpu_v1",
+      "name": "MOSS-TTSD-v1.0 · 原生语音",
+      "primaryRole": "backbone",
+      "definition": {
+        "engine": "openmoss_native",
+        "backend": "cpu",
+        "architecture": "moss_ttsd",
+        "pipeline": "moss_ttsd_openmoss_cpu_v1",
+        "tasks": [
+          "audio"
+        ],
+        "capabilities": [
+          "text_to_speech",
+          "multi_speaker_tts"
+        ],
+        "parameters": {
+          "version": 1,
+          "fields": {
+            "threads": {
+              "type": "integer",
+              "label": "CPU 线程",
+              "default": 4,
+              "minimum": 1,
+              "maximum": 32,
+              "presets": [
+                2,
+                4,
+                8
+              ],
+              "limitSource": "application_guard"
+            },
+            "seed": {
+              "type": "integer",
+              "label": "随机种子（-1 自动）",
+              "default": -1,
+              "minimum": -1,
+              "maximum": 2147483647,
+              "presets": [
+                -1,
+                0,
+                42
+              ],
+              "limitSource": "native_seed_range"
+            },
+            "maxInputTokens": {
+              "type": "integer",
+              "label": "格式化输入上限（含参考）",
+              "default": 1024,
+              "minimum": 1,
+              "maximum": 2048,
+              "presets": [
+                256,
+                512,
+                1024,
+                2048
+              ],
+              "limitSource": "application_guard"
+            },
+            "maxNewTokens": {
+              "type": "integer",
+              "label": "生成步数上限（含 delay flush；每音频帧 80 ms）",
+              "default": 375,
+              "minimum": 1,
+              "maximum": 1500,
+              "presets": [
+                125,
+                375,
+                750,
+                1500
+              ],
+              "limitSource": "application_guard"
+            },
+            "textTemperature": {
+              "type": "number",
+              "label": "继续 / 停止头温度",
+              "default": 1,
+              "minimum": 0,
+              "maximum": 3,
+              "presets": [
+                0,
+                1,
+                1.5
+              ],
+              "limitSource": "application_guard"
+            },
+            "audioTemperature": {
+              "type": "number",
+              "label": "音频温度",
+              "default": 1.7,
+              "minimum": 0,
+              "maximum": 3,
+              "presets": [
+                0,
+                1,
+                1.7
+              ],
+              "limitSource": "application_guard"
+            },
+            "audioTopP": {
+              "type": "number",
+              "label": "音频 Top P",
+              "default": 0.8,
+              "minimum": 0.01,
+              "maximum": 1,
+              "presets": [
+                0.8,
+                0.9,
+                1
+              ],
+              "limitSource": "application_guard"
+            },
+            "audioTopK": {
+              "type": "integer",
+              "label": "音频 Top K",
+              "default": 25,
+              "minimum": 1,
+              "maximum": 1024,
+              "presets": [
+                1,
+                25,
+                50
+              ],
+              "limitSource": "application_guard"
+            },
+            "audioRepetitionPenalty": {
+              "type": "number",
+              "label": "音频重复惩罚",
+              "default": 1,
+              "minimum": 1,
+              "maximum": 2,
+              "presets": [
+                1,
+                1.05,
+                1.1
+              ],
+              "limitSource": "application_guard"
+            },
+            "voiceInstruction": {
+              "type": "string",
+              "label": "声音描述（可选）",
+              "default": "",
+              "maxLength": 1000
+            },
+            "language": {
+              "type": "string",
+              "label": "语言提示（留空为 None）",
+              "default": "",
+              "maxLength": 64
+            }
+          }
+        }
+      },
+      "requirements": [
+        {
+          "role": "backbone",
+          "label": "匹配的 Qwen3 主干（含 BPE）",
+          "formats": [
+            "gguf"
+          ],
+          "required": true,
+          "provides": [
+            "text_tokenizer"
+          ]
+        },
+        {
+          "role": "extras",
+          "label": "同次转换的 delay 头 / v1 codec extras",
+          "formats": [
+            "gguf"
+          ],
+          "required": true,
+          "provides": [
+            "audio_encoder",
+            "audio_decoder"
+          ]
+        }
+      ],
+      "fixedComponents": [],
+      "help": "仅匹配固定 pwilkin/openmoss 转换布局（16 路 / 8B），输出 24 kHz 单声道。主干和 extras 需用户显式选择、同次转换；不能混用 first-class / Nano / Local / SoundEffect 文件。文本须含 [S1]、[S2]；可选成对导入对应的 24 kHz 单声道参考 WAV，保持说话人映射。参考仅支持 1–10 秒、≤1 MiB 的 PCM16 / float32 WAV，不自动重采样。CPU 同时驻留全部组件，8B 主干与大 codec 需要高内存设备；未证明 Z20 可运行。模型、BPE、codec 均不附带；参数随模型保存。没有 LMA Android 输出、质量、速度或后台验收。"
+    },
+    {
+      "id": "moss_voicegen_openmoss_cpu_v1",
+      "name": "MOSS-VoiceGenerator · 原生语音",
+      "primaryRole": "backbone",
+      "definition": {
+        "engine": "openmoss_native",
+        "backend": "cpu",
+        "architecture": "moss_voicegenerator",
+        "pipeline": "moss_voicegen_openmoss_cpu_v1",
+        "tasks": [
+          "audio"
+        ],
+        "capabilities": [
+          "text_to_speech",
+          "voice_design"
+        ],
+        "parameters": {
+          "version": 1,
+          "fields": {
+            "threads": {
+              "type": "integer",
+              "label": "CPU 线程",
+              "default": 4,
+              "minimum": 1,
+              "maximum": 32,
+              "presets": [
+                2,
+                4,
+                8
+              ],
+              "limitSource": "application_guard"
+            },
+            "seed": {
+              "type": "integer",
+              "label": "随机种子（-1 自动）",
+              "default": -1,
+              "minimum": -1,
+              "maximum": 2147483647,
+              "presets": [
+                -1,
+                0,
+                42
+              ],
+              "limitSource": "native_seed_range"
+            },
+            "maxInputTokens": {
+              "type": "integer",
+              "label": "格式化输入上限（含参考）",
+              "default": 1024,
+              "minimum": 1,
+              "maximum": 2048,
+              "presets": [
+                256,
+                512,
+                1024,
+                2048
+              ],
+              "limitSource": "application_guard"
+            },
+            "maxNewTokens": {
+              "type": "integer",
+              "label": "生成步数上限（含 delay flush；每音频帧 80 ms）",
+              "default": 375,
+              "minimum": 1,
+              "maximum": 1500,
+              "presets": [
+                125,
+                375,
+                750,
+                1500
+              ],
+              "limitSource": "application_guard"
+            },
+            "textTemperature": {
+              "type": "number",
+              "label": "继续 / 停止头温度",
+              "default": 1,
+              "minimum": 0,
+              "maximum": 3,
+              "presets": [
+                0,
+                1,
+                1.5
+              ],
+              "limitSource": "application_guard"
+            },
+            "audioTemperature": {
+              "type": "number",
+              "label": "音频温度",
+              "default": 1.7,
+              "minimum": 0,
+              "maximum": 3,
+              "presets": [
+                0,
+                1,
+                1.7
+              ],
+              "limitSource": "application_guard"
+            },
+            "audioTopP": {
+              "type": "number",
+              "label": "音频 Top P",
+              "default": 0.8,
+              "minimum": 0.01,
+              "maximum": 1,
+              "presets": [
+                0.8,
+                0.9,
+                1
+              ],
+              "limitSource": "application_guard"
+            },
+            "audioTopK": {
+              "type": "integer",
+              "label": "音频 Top K",
+              "default": 25,
+              "minimum": 1,
+              "maximum": 1024,
+              "presets": [
+                1,
+                25,
+                50
+              ],
+              "limitSource": "application_guard"
+            },
+            "audioRepetitionPenalty": {
+              "type": "number",
+              "label": "音频重复惩罚",
+              "default": 1,
+              "minimum": 1,
+              "maximum": 2,
+              "presets": [
+                1,
+                1.05,
+                1.1
+              ],
+              "limitSource": "application_guard"
+            },
+            "voiceInstruction": {
+              "type": "string",
+              "label": "声音描述（必填）",
+              "default": "",
+              "maxLength": 1000
+            },
+            "language": {
+              "type": "string",
+              "label": "语言提示（留空为 None）",
+              "default": "",
+              "maxLength": 64
+            }
+          }
+        }
+      },
+      "requirements": [
+        {
+          "role": "backbone",
+          "label": "匹配的 Qwen3 主干（含 BPE）",
+          "formats": [
+            "gguf"
+          ],
+          "required": true,
+          "provides": [
+            "text_tokenizer"
+          ]
+        },
+        {
+          "role": "extras",
+          "label": "同次转换的 delay 头 / v1 codec extras",
+          "formats": [
+            "gguf"
+          ],
+          "required": true,
+          "provides": [
+            "audio_encoder",
+            "audio_decoder"
+          ]
+        }
+      ],
+      "fixedComponents": [],
+      "help": "仅匹配固定 pwilkin/openmoss 转换布局（16 路 / 1.7B），输出 24 kHz 单声道。主干和 extras 需用户显式选择、同次转换；不能混用 first-class / Nano / Local / SoundEffect 文件。必填声音描述，不接受参考音频；按描述设计声音。参考仅支持 1–10 秒、≤1 MiB 的 PCM16 / float32 WAV，不自动重采样。CPU 同时驻留全部组件，8B 主干与大 codec 需要高内存设备；未证明 Z20 可运行。模型、BPE、codec 均不附带；参数随模型保存。没有 LMA Android 输出、质量、速度或后台验收。"
     }
   ]
 }

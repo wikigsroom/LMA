@@ -289,8 +289,8 @@
       "backend": "cpu",
       "ndk": "30.0.16248370",
       "min_sdk": 28,
-      "bytes": 3685424,
-      "sha256": "d85c422cc2b5b9f97888982e24cbeca15a65ccdeeee4ebec356ef1c443b9de03",
+      "bytes": 3699256,
+      "sha256": "734dfdc707cc4589cef68b446aba67bd77cc4956f2c6f1496895916ec9aacafe",
       "elf_load_alignment": [
         16384
       ],
@@ -301,6 +301,7 @@
       "model_inference_tested": false,
       "physical_device_tests": 0,
       "virtualization_used": false,
+      "pipeline_guard_sha256": "7d7c51a14d90b4d41b7a158ab23126105a85a5dd75c23eba55f7fc099df83a68",
       "deviceValidated": false,
       "status": "compiled_not_device_tested",
       "notices": [

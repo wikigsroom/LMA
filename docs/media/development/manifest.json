@@ -1,5 +1,5 @@
 {
-  "version": "0.3.0-dev.17",
+  "version": "0.3.0-dev.18",
   "kind": "development UI with explicit simulated native bridge",
   "android_device": false,
   "model_inference": false,
@@ -194,6 +194,26 @@
     {
       "file": "47-moss-sound-prompt.png",
       "caption": "SoundEffect task and optional negative prompt; UI FIXTURE, no generated audio / 独立音效任务与负面提示词，未执行模型"
+    },
+    {
+      "file": "48-moss_tts-components.png",
+      "caption": "Explicit user-selected delay backbone/extras; UI FIXTURE, no phone inference / 用户自选主干与 extras，未下载或执行模型"
+    },
+    {
+      "file": "49-moss-tts-parameters.png",
+      "caption": "Model-specific bounded voice/language instructions; UI FIXTURE, no audio synthesis / 每模型声音描述与语言参数，未生成音频"
+    },
+    {
+      "file": "50-moss_tts_v15-components.png",
+      "caption": "Explicit user-selected delay backbone/extras; UI FIXTURE, no phone inference / 用户自选主干与 extras，未下载或执行模型"
+    },
+    {
+      "file": "51-moss-ttsd-speakers.png",
+      "caption": "TTSD explicit S1/S2 text and paired references; UI FIXTURE, no generated dialogue / TTSD 双说话人映射，未执行对话生成"
+    },
+    {
+      "file": "52-moss-voicegen-instruction.png",
+      "caption": "Model-specific bounded voice/language instructions; UI FIXTURE, no audio synthesis / 每模型声音描述与语言参数，未生成音频"
     }
   ],
   "files": [
@@ -224,13 +244,13 @@
     },
     {
       "file": "06-queue-results.png",
-      "bytes": 48787,
-      "sha256": "44e20255b79cbf4d60f75124e5a3d768591fb0eb195c7707c1184e3763cb0424"
+      "bytes": 48657,
+      "sha256": "90278dd9f00a84a3950ab99c2a58aa4f2f03d23a93fc3fb3f409f6ff6ceeb671"
     },
     {
       "file": "07-cancelled.png",
-      "bytes": 48973,
-      "sha256": "cb1316ddf035177898e6796dc3c457693b62f04c5ad41d68f65cef3cf60235c7"
+      "bytes": 48845,
+      "sha256": "5d951164d54e66ad180a7733a190e0743ee4456680482cf8aaf6c723a091aee1"
     },
     {
       "file": "08-zero-model-api.png",
@@ -299,8 +319,8 @@
     },
     {
       "file": "21-model-version-history.png",
-      "bytes": 49740,
-      "sha256": "c201cb31e21a72f7e8473339c8ff2bfa5e18b1c3bedd14f553d26c97a277d55f"
+      "bytes": 49859,
+      "sha256": "8556a058b11fcbbfdd97d5e69681afc0085d627d726fd981004b0a34607bb90a"
     },
     {
       "file": "22-text-model-settings.png",
@@ -314,8 +334,8 @@
     },
     {
       "file": "24-text-result.png",
-      "bytes": 47042,
-      "sha256": "01824681c50e0021b550492ae1d7f3d9a8553125362f0602db6f2caf5e8d7ca7"
+      "bytes": 46873,
+      "sha256": "56ac27b7099f396a14b5d78fbd64d7e65b6d0937a9c2219d472097bcb85d8a4c"
     },
     {
       "file": "25-migrated-text-model.png",
@@ -404,8 +424,8 @@
     },
     {
       "file": "42-moss-local-components.png",
-      "bytes": 58331,
-      "sha256": "296abed11127cd99062cd759f43a237fbe81d8c2273b9522646ee3fa302b276d"
+      "bytes": 60712,
+      "sha256": "a1d5a919dd8a1cfc683a62e1ab854658f6d904d2ccc35392543d9532ff4af72c"
     },
     {
       "file": "43-moss-local-parameters.png",
@@ -414,8 +434,8 @@
     },
     {
       "file": "44-moss-sound-components.png",
-      "bytes": 58117,
-      "sha256": "986f245f242f64f0a7c1336b68cdf9d02dfd7c5076f64bd41531742869d4860a"
+      "bytes": 60066,
+      "sha256": "ba69c35659f01ec14a2d310d4a24be857ff4bf5b933e3cc89449a978aa9eb408"
     },
     {
       "file": "45-moss-sound-parameters.png",
@@ -424,29 +444,54 @@
     },
     {
       "file": "46-moss-local-reference.png",
-      "bytes": 43543,
-      "sha256": "fb5057472e82f06d2caeb04ed8e3386e3d55f99990f1889fd8092b34c34a0478"
+      "bytes": 44223,
+      "sha256": "05ef961d0a95fde5db404f6150a87fac46ee2c5846397f5488c48e20bc17dbe0"
     },
     {
       "file": "47-moss-sound-prompt.png",
-      "bytes": 41083,
-      "sha256": "bd661eda760bac91f8433ccc45632f0c2767b83caa852e18340216db598a2305"
+      "bytes": 42723,
+      "sha256": "ddc71b316f4d32163a2b2702310a6d1360e12ac499d34e6aba1fd19b3be1673d"
+    },
+    {
+      "file": "48-moss_tts-components.png",
+      "bytes": 63208,
+      "sha256": "be56b50878a558421c3ef5f4ebb4da9644dd8e1247d1acb4dab34a38b4ebba2a"
+    },
+    {
+      "file": "49-moss-tts-parameters.png",
+      "bytes": 44775,
+      "sha256": "103c708fbc89e2ad250032e51d43401bed1fa1b312a8418ae7e79fa64817891a"
+    },
+    {
+      "file": "50-moss_tts_v15-components.png",
+      "bytes": 64378,
+      "sha256": "b817fe623845ed234f346bdd4d730ae1aea6cbe9d786200507376deb89b3a709"
+    },
+    {
+      "file": "51-moss-ttsd-speakers.png",
+      "bytes": 47446,
+      "sha256": "ad19bc1ecd38f0f2d8721c3bcebbfe39701393b11904b1b822cb3ce8c34a91c2"
+    },
+    {
+      "file": "52-moss-voicegen-instruction.png",
+      "bytes": 44863,
+      "sha256": "638881b25ca2390a2304759642ed1281c7e0c6bad8d184d31292a589e11b9718"
     },
     {
       "file": "foundation-ui.gif",
-      "bytes": 6664046,
-      "sha256": "4a86437dde7da0cffb6e4b27ddbf926bd5b3cbd0f416fb54eccdd7f3875e55fd"
+      "bytes": 7403508,
+      "sha256": "cbae4f1ad803ec9114bb930d5d7ff87a63b805a9c6e0509055f8bcc4981cd3ea"
     },
     {
       "file": "foundation-ui.mp4",
-      "bytes": 3140543,
-      "sha256": "8dfae5d22cf19f6ccd5ea1d5f6d91e55f70481ee1b9a7870b257cb168c79b065"
+      "bytes": 3332193,
+      "sha256": "7d864a24ae7a6e17611e8465756b1b4232a059a5c31d20701efbc3a1a04a9463"
     }
   ],
   "input_fingerprint": {
     "app/src/main/assets/app.css": "f2cb7b5ee9de8f3afac793e694dcf9fde0a855c0d4c7053ff986cc2a6d2bd3b1",
     "app/src/main/assets/app.js": "bce8e6e858d171240b1156d95db2b552dad756142d495ac28e2f92100cc253f4",
-    "app/src/main/assets/engine-builds.json": "340b636e68a8b44f593faf3ed76309d0f42a7af8e2fb18e7c74a1b49cf026f8c",
+    "app/src/main/assets/engine-builds.json": "0634bad94a6d97785374dd35e7c5bfcf176eeb9bc7eeca0484fa5dd3af61f108",
     "app/src/main/assets/foundation.css": "26c332b6918710c4b79b25d659ff4f297841e6f38eb162cd71c2bcc19872af5c",
     "app/src/main/assets/foundation.js": "40b58c1267da3cb9cc5eb759a931b90b4235f0a419a9cacb12a483e8b5a9fc9b",
     "app/src/main/assets/index.html": "406a11f10a3380d2db0325ffd148dcb55b2eabe35aa2bcd001864aafa57afd62",
@@ -520,7 +565,7 @@
     "app/src/main/assets/licenses/xxhash-LICENSE.txt": "a2973411d278045bde3c7161b911e0680d53e2d73d6457c77068d2e55d816d67",
     "app/src/main/assets/model-bundles.json": "0e211bd78b3b43e6cf7631c294629f6494bcf814dbe7f1a73157901447707627",
     "app/src/main/assets/models.json": "c3e884b4e5fb06f20c036deebc78e6f953ac420e76fca72bab5a25fd59927156",
-    "app/src/main/assets/recipe-templates.json": "3da431a56acde40e6c9126b3fff1d52ed791deca3995c28f1aa9c38e7d2d9064",
+    "app/src/main/assets/recipe-templates.json": "20beaebccca3d1c9d142d1371ace177d1500db84ce1eb4629bfa29a4381abae3",
     "app/src/main/assets/recipes.js": "648e1ff046ab20e2ae7f658a7cb82c895c042ea81dca5cd943141626eea6deba",
     "app/src/main/assets/versions.js": "2d629929a6db642c12a242ddcc62cd4f4090ab307e0cb669ceb98add031977e1",
     "tests/diffusion-ui.cjs": "f6f997afcee0d6ae5113097640f151a418b6d4c501838c5565c3c2fe29d724d1",
@@ -529,11 +574,12 @@
     "tests/inputs-ui.cjs": "da1958c5875da505af0502fd144c97604a21e3297aa684f3fd1eb422c9ad4206",
     "tests/migration-ui.cjs": "6843bdcf1783795ed10cccc8b200aee40188e8a1fe950f8d23027d828ff6b3b4",
     "tests/moss-delay-ui.cjs": "c81985d2792835efb9e2ac31719abc161a478118b477b91d424963b38807d31b",
+    "tests/openmoss-ui.cjs": "2ef2bf19c4677a8bae6858b602361ae7b87ab91e27ae6b55c38999b11acf30e5",
     "tests/qwen-ui.cjs": "8eabdacb7db1b43e0ac203d31709ce0d505bf3cee05a6d5d07b25a3795d1d239",
     "tests/recipes-ui.cjs": "d1aaee793efac075b55ab0b8e6ccf26f5c3ac32ed6da6a6f41c19bd47b3dad77",
     "tests/scheduler-ui.cjs": "3b89c2121953c6e17e2e978a3639915ba1d1b799750e85f38d6e104d8b7e0599",
     "tests/text-ui.cjs": "bc5969aa9329380b590a6055daa6fe1177f956f73bb212a18cf19d2b6576b8db",
     "tests/versions-ui.cjs": "13f6e194c00fa3a819c44da35788aa28b94ba05325e3f2b1257350c04b67babd",
-    "tools/capture_foundation.cjs": "a6c1d40286b4627f6b9af407ea03bcd5654488e8e75772ac1442348c5aa7c9cc"
+    "tools/capture_foundation.cjs": "94499500950513d7df3e1b272222668d43d1e82624cc04c3290080af4e219eef"
   }
 }

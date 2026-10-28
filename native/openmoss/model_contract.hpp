@@ -32,4 +32,16 @@ inline int model_contract(const std::string& backbone,const std::string& extras,
     }
     return int(std::min(training,4096u));
 }
+inline int delay_contract(const std::string& backbone,const std::string& extras,const std::string& pipeline) {
+    require(delay(pipeline),"Select a reviewed delay profile");Header b(backbone),e(extras);
+    require(b.string("general.architecture")=="qwen3" && e.string("moss.architecture")=="moss_tts_delay","Delay profile needs matching openmoss Qwen3/extras, not first-class or Nano files");
+    bool voice=pipeline=="moss_voicegen_openmoss_cpu_v1";int hidden=voice?2048:4096,nvq=codebooks(pipeline);
+    e.eq("moss.n_vq",nvq);e.eq("moss.sampling_rate",24000);e.eq("moss.downsample_rate",1920);e.eq("moss.codec.version",1);e.eq("moss.codec.number_channels",1);e.eq("moss.audio_vocab_size",1024);e.eq("moss.audio_pad_code",1024);
+    b.eq("qwen3.embedding_length",hidden);b.eq("qwen3.block_count",voice?28:36);b.eq("qwen3.attention.head_count",voice?16:32);b.eq("qwen3.attention.head_count_kv",8);b.tensor("token_embd.weight");b.tensor("output_norm.weight");
+    for(const char* key:{"tokenizer.ggml.tokens","tokenizer.ggml.merges"}) {auto i=gguf_find_key(b.values,key);require(i>=0 && gguf_get_kv_type(b.values,i)==GGUF_TYPE_ARRAY && gguf_get_arr_type(b.values,i)==GGUF_TYPE_STRING && gguf_get_arr_n(b.values,i)>0 && gguf_get_arr_n(b.values,i)<=2000000,"Matching BPE arrays are required");}
+    for(int i=0;i<nvq;i++) {
+        for(const char* kind:{"moss.audio_embed.","moss.audio_head."}) {std::string name=std::string(kind)+std::to_string(i)+".weight";e.tensor(name);auto* t=ggml_get_tensor(e.tensors,name.c_str());require(t->ne[0]==hidden && t->ne[1]==1025,"Delay audio embedding/head geometry differs from backbone");}
+    }
+    e.tensor("moss.codec.quantizer.q.0.codebook.weight");uint32_t training=b.number("qwen3.context_length");require(training>=4096 && training<=1048576,"Unexpected Qwen3 context metadata");return 4096;
+}
 }

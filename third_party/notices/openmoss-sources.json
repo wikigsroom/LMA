@@ -12,5 +12,7 @@
       "source": "https://github.com/ggml-org/llama.cpp/blob/050ee92d04c2e1f639025786dea701c70e7d4204/LICENSE"
     }
   ],
-  "model_assets": false
+  "model_assets": false,
+  "local_modification": "LMA inserts a selected input/context budget guard into a generated pipeline.cpp copy before prefill; the pinned source checkout remains pristine.",
+  "pipeline_guard_sha256": "7d7c51a14d90b4d41b7a158ab23126105a85a5dd75c23eba55f7fc099df83a68"
 }

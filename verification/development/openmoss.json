@@ -1,15 +1,17 @@
 {
-  "passed": 180,
+  "generation_budget_in_actual_pipeline": true,
+  "passed": 459,
   "java": {
     "model_inference": false,
-    "passed": 100,
+    "passed": 349,
     "structural_wav_fixture": true,
-    "actual_host_children": 6,
+    "actual_host_children": 18,
     "production_openmoss_binding": true
   },
   "native": {
-    "passed": 80,
+    "passed": 110,
     "upstream_sound_primitives": true,
+    "upstream_prompt_primitives": true,
     "model_inference": false
   },
   "production_openmoss_binding": true,
@@ -19,7 +21,7 @@
   "generated_audio_outputs": false,
   "structural_wav_fixture": true,
   "input_fingerprint": {
-    "app/src/main/assets/recipe-templates.json": "3da431a56acde40e6c9126b3fff1d52ed791deca3995c28f1aa9c38e7d2d9064",
+    "app/src/main/assets/recipe-templates.json": "20beaebccca3d1c9d142d1371ace177d1500db84ce1eb4629bfa29a4381abae3",
     "app/src/main/java/com/lma/app/core/AdapterSpec.java": "aff8572d14ac8d616be0a1b0da395e52ed5bddcd5ae407a969c2657bf9257581",
     "app/src/main/java/com/lma/app/core/ArtifactStore.java": "0336ab2425868bf2cb5a2fc37d97afbcdf838bb5f977b874e0f98c9db777be55",
     "app/src/main/java/com/lma/app/core/BundleStore.java": "119368cd2d090192ed07306ebab25c40b2f880a490e93c8ad83a952186a3ec48",
@@ -42,7 +44,7 @@
     "app/src/main/java/com/lma/app/core/ModelSelection.java": "965c9f22f16fc822f792ebef6e0de0a0c67f5a6882d5e7ef77be05b83ea1aeb2",
     "app/src/main/java/com/lma/app/core/MossDelaySpec.java": "2f680d68cf78517f234c336c77e0b584bf40300fd6294514b7cd457149d41bd0",
     "app/src/main/java/com/lma/app/core/MossNanoSpec.java": "4b784a773fb85550eba8f169a62cab9a274a332519ec700b595694378e9e39ed",
-    "app/src/main/java/com/lma/app/core/OpenMossSpec.java": "147c817b3ac797eced38a365ae35c10901ea72162eba3b5c345a07d4435c41db",
+    "app/src/main/java/com/lma/app/core/OpenMossSpec.java": "0532ac99a8ffc5dbdff2f5189d783161319b30fa79ac83eb3a6078e5b8c3fff9",
     "app/src/main/java/com/lma/app/core/ParameterSchema.java": "d536dd7e01107785076f5d1cd3c1c7ff89f6a3711ec130d3ec13e4b20d73bef1",
     "app/src/main/java/com/lma/app/core/ProcessControl.java": "a1950624951d41c040b0b9f44cd8ef5faff16ed22dae880d626e4619d77c155d",
     "app/src/main/java/com/lma/app/core/Protocol.java": "d49f47884aec0cb03347023119c2808330fa9970689dcd9d33c30ca653d03b85",
@@ -57,18 +59,20 @@
     "app/src/main/java/com/lma/app/core/WaveFile.java": "cf70b9bbafb6aa23cc25217d4883e769173b00f74571d1b115c50a8ad6b15361",
     "app/src/main/java/com/lma/app/LocalEngine.java": "db9b46d2e05802bec96f2fb428469553d95c3424228dd06fd617c361b99b9f7d",
     "app/src/main/java/com/lma/app/NativeWorker.java": "c3324271639c6e77495e9aac78a663c6110dfef1026d0cc320ca82344ddd030d",
-    "app/src/main/java/com/lma/app/OpenMossEngine.java": "f4ccfb8ac619c8e72f8c371b6a64f480fd5e71d269e6e5d12346e11ed32eb33a",
-    "native/openmoss/CMakeLists.txt": "3f4a2b88489c65a9eb47af9b1e33b9e9d78c0703d4f2b0adc188d9e05424402c",
-    "native/openmoss/model_contract.hpp": "376e34246d4a3c960edf9b4af25f9db721940155ed21369d1d6c3f9c8fe71d67",
-    "native/openmoss/policy.hpp": "3bc21e4b6323b01a07c6db1060c9962c76d81a927c0a34b190d5f7f7fe397750",
-    "native/openmoss/wave.hpp": "553611b18b628315a92172dc49c18d241cef29105d7a130acc1bb174a87be0e8",
-    "native/openmoss/worker.cpp": "ff8bc6b889348123a6df9d12f7a8dd00be41c4a577f3f2687cfea43552f020a2",
+    "app/src/main/java/com/lma/app/OpenMossEngine.java": "ef55fc1e5efd1fdc20b365108e326e25efc9273aa627f960d2bcaad06ccf1b8b",
+    "native/openmoss/CMakeLists.txt": "304ba16394eb23c8cd140b23842025491eb55a657503e28919236513c1d62ba0",
+    "native/openmoss/generation_guard.hpp": "a4dff1fba5d69ced5217116f2c0f2eccf4b4d05cbdd8b16ac40a17b4d91a9414",
+    "native/openmoss/model_contract.hpp": "0476e93090a14822f5544a485fd5f83fdd66f9c40cd18eb7c28389e45f1ee7cb",
+    "native/openmoss/policy.hpp": "aa1d31c2223b44a98ef280da9848f8bca218248027973ecbee9467e066ae873d",
+    "native/openmoss/wave.hpp": "aaf85f286b9e9d95de808aae2088dadac7b9b06e35f51f31c05e272f7a112e7f",
+    "native/openmoss/worker.cpp": "ae27873eb90f439eff87f54f7401ca2a2dd9bbb1bfa45e449103e83dcba94815",
     "tests/host/android/util/AtomicFile.java": "a05b9c6ef4fa0f0f40aaa49b235faccc98d2d7d5aa1ea4bb8d2f535b8bad2796",
-    "tests/native/openmoss_policy_test.cpp": "2cfd4a8142cdfe18f5420ca747529ec206c259ab7b0e7037139e23c2dbd62bfa",
-    "tests/openmoss-host/com/lma/app/OpenMossTest.java": "18772d6fe82f4a440a3b95dcb189d5831737fd9ebffd486e9a08e1d4d775a060",
+    "tests/native/openmoss_policy_test.cpp": "4d5148c46c1fe48e0b077caa4f3c983a7e31cd64c8e232841d474a9c1f8953ae",
+    "tests/openmoss-host/com/lma/app/OpenMossTest.java": "8ae154d701cfd4e51fe9f49a3df55adb3a4c5075095ef5796adfaff0950ad5c6",
     "tests/tts-host/com/lma/app/LmaApp.java": "9f27bd7188d03aa4eb95b007111daff697d39515dc41884d4569e2f382d0577b",
     "third_party/openmoss-source-lock.json": "df2d062fe174080e95d1f2f05ef8e133616a1827637e62d7195181f1c9256295",
     "tools/fetch_openmoss.py": "1c18d8c17de019a6b66321042cb14d61441d54fc370ef3f5547cacd627f1330b",
-    "tools/test_openmoss.py": "74b38f98358a0c06b14a96f7073f4be1b7a9267c9429094ff3dcecf3ba5b6e70"
+    "tools/openmoss_pipeline.py": "2e1c28775c29603ce6a5664a63272777011b6da7b13656463a21003f7534832c",
+    "tools/test_openmoss.py": "957edaf29237f635273b8b155b23da8f8dde69873d3a104eb6d0cbefd248abef"
   }
 }

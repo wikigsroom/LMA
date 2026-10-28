@@ -1,8 +1,31 @@
-# MOSS Local-v1.5 与 SoundEffect-v2 原生基座
+# MOSS 原生语音、对话、声音设计与音效基座
 
 [English](OPENMOSS_ENGINE.en.md) · [完整版本范围](MULTIMODAL_RELEASE_PLAN.md) · [开发证据](DEVELOPMENT.md)
 
-内部检查点 **0.3.0-dev.17 / code 21** 新增 `openmoss_native` ARM64 CPU worker 和生产 Java 适配器。它实际链接原生图、分词、采样和 codec 代码，不调用 Python、Termux、外部服务或上游 HTTP server。**尚未运行完整模型或物理 Android 推理，不能宣称两项模型已通过手机验收。** 完整 v0.3.0 的冻结目标与门槛没有缩减，也没有创建新 Release。
+内部检查点 **0.3.0-dev.18 / code 22** 扩展 `openmoss_native` ARM64 CPU worker 和生产 Java 适配器，现有六个平级配方。它实际链接原生图、分词、采样和 codec 代码，不调用 Python、Termux、外部服务或上游 HTTP server。**尚未运行完整模型或物理 Android 推理，不能宣称这些模型已通过手机验收。** 完整 v0.3.0 的冻结目标与门槛没有缩减，也没有创建新 Release。
+
+## 新增四种 delay 布局
+
+| 编号 / 配方 | 检查的布局 | 功能与输入 |
+| --- | --- | --- |
+| D18-01 `moss_tts_openmoss_cpu_v1` | MOSS-TTS：32 路、Qwen3-8B / 4096 hidden | 生音频 / TTS；文字、声音描述、语言；可选一个参考 |
+| D18-02 `moss_tts_v15_openmoss_cpu_v1` | MOSS-TTS-v1.5：32 路、Qwen3-8B / 4096 hidden | 生音频 / TTS；同类输入；独立登记与配置 |
+| D18-03 `moss_ttsd_openmoss_cpu_v1` | MOSS-TTSD-v1.0：16 路、Qwen3-8B / 4096 hidden | 生音频 / 多说话人；文本包含 `[S1]`、`[S2]`，参考成对选择或全部留空 |
+| D18-04 `moss_voicegen_openmoss_cpu_v1` | MOSS-VoiceGenerator：16 路、Qwen3-1.7B / 2048 hidden | 生音频 / 声音设计；必填声音描述，不提供参考入口 |
+
+四者均为 v1 codec、24 kHz 单声道 PCM16 WAV 输出。原生代码检查 GGUF 架构、codebook 数、主干层数 / 注意力头 / hidden、1025 行音频头与嵌入、codec 及 BPE 依赖。TTS v1.0 / v1.5 几何相同，**几何校验不能认证权重来源**；仍需核对用户选择的仓库、固定 revision、组件 hash 和同次转换关系。first-class Delay、Nano 与这里的 openmoss 转换格式不兼容。
+
+官方 config、processor、modeling、README 的固定 revision、哈希与来源见[发布者核对记录](../catalogue/evidence/openmoss-delay-publishers.json)。只读取元数据 / 源码，没有下载权重或执行远程 Python。社区原生代码仍固定在下文列出的提交；v1.5 模板和几何兼容是源码评估，音质与完整权重执行继续待验收。
+
+使用步骤：在“全部 / 搜索”选择匹配转换文件，明确选择配方和主干 / extras 两个物理文件，确认清单后才下载；也可导入自备完整包。安装、升级、登记和浏览不自动下载。下载完成后从“本地”进入该模型的设置或任务，修改参数，选择导入的参考素材，再提交任务。它们与其他模型同列，不按引擎分成不同产品。
+
+各 delay 模型保留原有 9 个采样参数，另有 `voiceInstruction`（≤1000 字符）和 `language`（≤64 字符）；留空按官方模板使用 `None`，VoiceGenerator 的声音描述必须填写。输入上限默认 1024、最高 2048 个**实际格式化位置**；生成步数默认 375、最高 1500，包含 delay flush，不能当作精确时长。数值超限归位，描述超长或包含模板标记则报错。默认值按模型保存，本次任务覆盖不修改其他模型或已保存默认。未提供会被忽略的 TTSD 时长提示。
+
+参考 WAV 不自动重采样：24 kHz 单声道、PCM16 或有限且归一化的 float32、1–10 秒、每个 ≤1 MiB。TTSD 按角色 ID 固定 `[S1]` / `[S2]`，数组顺序改变也不交换声音；只选一个、重复或不支持的角色会在启动子进程前报错。每个参考单独编码；TTSD 的续接前缀使用按声道拼接的 codes，解码后在采样级裁掉前缀，不把参考声音计入输出文件。该社区实现与“拼接 WAV 后重新编码”可能有边界差异，实际声音一致性仍待验收。
+
+上下文保护在**实际生成路径**构造完整参考 / 前缀网格之后、prefill 之前执行。构建工具给固定源码的生成副本插入唯一预算检查，源码 checkout 保持干净；回执记录生成副本 SHA256，第三方来源记录声明修改。超过用户输入预算或 `prompt + steps + 8 > 4096` 直接失败，避免上游仅告警后截短。回执保存实际格式化位置、参考 / 前缀帧数、采样、codec、RTF 等真实运行数据；没有运行时不会生成测量结论。
+
+全部组件同时驻留 CPU 内存，大主干和 codec 可能超出 Z20 的能力；此处无 Z20 成功或速度保证。新配方沿用共用任务队列、取消、进程生命期、租约与私有硬链接工作区。所有推理都在同一手机；没有远程回退。
 
 ## 1. 两条独立管线
 
@@ -80,7 +103,7 @@ python tools/build.py
 
 ## 6. 本轮证据与未完成项
 
-180 项限定检查：生产 Java 100 项（包含 6 次实际主机子进程）、C++ 80 项（实际执行固定上游格式化、确定性噪声及 sigma 调度函数；严格 WAV / 参数边界）。WAV 是结构夹具，不是生成语音；不执行 tensor、神经网络或 Android。详细记录见 [verification](../verification/development/openmoss.json)。其余回归及当前 APK 哈希见[双语版本说明](releases/v0.3.0-dev.17.md)。
+459 项限定检查：生产 Java 349 项（18 次实际主机子进程）、C++ 110 项（实际执行固定上游语音提示模板、音效格式化 / 噪声 / sigma 函数及预算、WAV 边界）。检查包含双参考映射、描述透传、错误回传和资产清理；WAV 为结构夹具，不执行 tensor、神经网络或 Android。详细记录见 [verification](../verification/development/openmoss.json)。其余回归及当前 APK 哈希见[双语版本说明](releases/v0.3.0-dev.18.md)。
 
 截图、录屏和 GIF 都有 **UI FIXTURE** 标识，展示生产页面配合模拟安装状态，不展示实际模型输出：
 
@@ -94,13 +117,15 @@ python tools/build.py
 
 | 编号 | 本轮实现 | 验证边界 |
 | --- | --- | --- |
-| D17-01 | 两条原生 CPU 图及生产适配器 | 编译 / 打包与主机协议；未执行完整模型 |
-| D17-02 | 用户自选主干 / extras、内含依赖标签及本机参考 | 无自动下载；参考 WAV 结构检查 |
-| D17-03 | 每模型独立参数、真实事件 / 回执、子进程清理 | 限定主机与界面检查 |
+| D18-05 | 现有 worker 增加四个 delay 配方 | 编译 / 打包与主机协议；未执行完整模型 |
+| D18-06 | 双参考映射、声音描述与独立模型参数 | 生产 Java、实际主机子进程及界面夹具 |
+| D18-07 | 真实生成网格的输入 / 上下文保护 | 固定源码生成副本、原生边界检查 |
 
 | 编号 | 仍待完成，继续属于同一完整 v0.3.0 |
 | --- | --- |
-| P17-01 | 两路线固定验收权重、实际新输入的断网模型输出、质量与资源档案 |
-| P17-02 | 其余冻结 MOSS 子目标、SoulX、Stable Audio、旧 LTX 及其他所有目标的完整适配与验收 |
-| P17-03 | 全部管线的物理 Android 加载 / 卸载、跨模态、后台、锁屏、长期 API、升级与 A11 |
-| P17-04 | 完整 F-01–F-12、01–14 / 16 / 17、所有冻结子目标通过统一门槛后，交付完整 v0.3.0 Release |
+| P18-01 | 六条配方固定验收权重、实际新输入的断网输出、质量与资源档案 |
+| P18-02 | 旧 Local、旧 SoundEffect、Realtime、SoulX、Stable Audio、旧 LTX 及全部其他必需适配 / 验收 |
+| P18-03 | 全部管线的物理 Android 加载 / 卸载、跨模态、后台、锁屏、长期 API、升级与 A11 |
+| P18-04 | 完整 F-01–F-12、01–14 / 16 / 17、所有冻结子目标通过统一门槛后，交付完整 v0.3.0 Release |
+
+[TTSD 双参考界面](media/development/51-moss-ttsd-speakers.png) · [VoiceGenerator 声音描述](media/development/52-moss-voicegen-instruction.png) · [TTS 组件](media/development/48-moss_tts-components.png) · [v1.5 组件](media/development/50-moss_tts_v15-components.png) · [TTS 参数](media/development/49-moss-tts-parameters.png)

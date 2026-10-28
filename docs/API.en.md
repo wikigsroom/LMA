@@ -180,3 +180,19 @@ Qwen3-TTS 0.6B Base reuses `POST /v1/jobs`, `speech.synthesize` and an optional 
 `moss_delay_native` reuses `speech.synthesize`, per-model settings, shared jobs and WAV artifacts. Optional `reference_audio` appears only with a selected native encoder; plain TTS needs no encoder or bundled voice. See [pipeline and execution receipts](MOSS_DELAY_ENGINE.en.md). This establishes no `/v1/audio/speech` compatibility claim.
 
 [MOSS Local-v1.5 / SoundEffect-v2](OPENMOSS_ENGINE.en.md) reuse POST /v1/jobs with speech.synthesize / audio.generate. No remote provider or /v1/audio/speech compatibility is added; each recipe validates its own settings, references, cancellation and receipts.
+
+### MOSS dialogue and voice design
+
+The four added openmoss delay recipes reuse `POST /v1/jobs` / `speech.synthesize`. Supply your installed `bundleId`; task overrides for model parameters `voiceInstruction`/`language` do not save defaults. VoiceGenerator requires a voice instruction and accepts no reference. TTSD text needs `[S1]` and `[S2]`; optional artifact roles `reference_audio_s1`/`reference_audio_s2` must be supplied together. Users import artifacts; requests cannot provide arbitrary filesystem paths or off-device inference addresses. See the [MOSS guide](OPENMOSS_ENGINE.en.md).
+
+```json
+{
+  "bundleId": "your_installed_voicegen_bundle",
+  "type": "speech.synthesize",
+  "input": {"prompt": "Hello from a user-selected local model."},
+  "parameters": {"voiceInstruction": "A warm lower-pitched adult voice", "language": "en", "maxNewTokens": 375},
+  "allowUnmeasured": true
+}
+```
+
+`allowUnmeasured` is an explicit attempt without current-device evidence, not a compatibility guarantee. Missing resources/components still fail locally. Model loading, inference and codec stages execute on the same phone running LMA.

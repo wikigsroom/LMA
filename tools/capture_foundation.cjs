@@ -290,13 +290,32 @@ async function main() {
   await page.locator('[name="negativePrompt"]').fill('人声、音乐（仅表单示例）');
   await page.locator('#modalTitle').evaluate(e=>e.scrollIntoView({block:'start'}));
   await shot('47-moss-sound-prompt.png','SoundEffect task and optional negative prompt; UI FIXTURE, no generated audio / 独立音效任务与负面提示词，未执行模型');
+  await page.keyboard.press('Escape');
+  for(const [arch,index] of [['moss_tts',48],['moss_tts_v15',50],['moss_ttsd',51],['moss_voicegenerator',52]]) {
+    const template=templates.find(t=>t.definition.engine==='openmoss_native' && t.definition.architecture===arch),id=await page.evaluate(openMossUI.installFixture,template);
+    await page.locator('[data-action="bundleInfo"][data-id="'+id+'"]').click();
+    if(arch==='moss_tts' || arch==='moss_tts_v15') {
+      await page.locator('.bundle-components details').first().evaluate(e=>{e.open=true;});await shot(index+'-'+arch+'-components.png','Explicit user-selected delay backbone/extras; UI FIXTURE, no phone inference / 用户自选主干与 extras，未下载或执行模型');
+    }
+    await page.locator('#modal [data-action="bundleUse"][data-id="'+id+'"]').click();
+    await page.locator('[name="prompt"]').fill(arch==='moss_ttsd'?'[S1] 你好，这是第一个说话人。 [S2] 这是第二个说话人。仅界面夹具。':'这是一段界面演示文本，未执行语音模型。');
+    if(arch==='moss_ttsd') {
+      await page.locator('[data-input-role="reference_audio_s1"]').selectOption('openmoss_s1_fixture');await page.locator('[data-input-role="reference_audio_s2"]').selectOption('openmoss_s2_fixture');
+      await page.locator('#modalTitle').evaluate(e=>e.scrollIntoView({block:'start'}));await shot('51-moss-ttsd-speakers.png','TTSD explicit S1/S2 text and paired references; UI FIXTURE, no generated dialogue / TTSD 双说话人映射，未执行对话生成');
+    }
+    if(arch==='moss_tts' || arch==='moss_voicegenerator') {
+      await page.locator('#localTaskForm .task-parameters').evaluate(e=>{e.open=true;});await page.locator('[data-bundle-field="voiceInstruction"]').fill('成年、低沉、温暖、从容的声音。');await page.locator('[data-bundle-field="language"]').fill('zh');await page.locator('[data-bundle-field="voiceInstruction"]').evaluate(e=>e.scrollIntoView({block:'center'}));
+      await shot(arch==='moss_tts'?'49-moss-tts-parameters.png':'52-moss-voicegen-instruction.png','Model-specific bounded voice/language instructions; UI FIXTURE, no audio synthesis / 每模型声音描述与语言参数，未生成音频');
+    }
+    await page.keyboard.press('Escape');
+  }
   if (errors.length) throw new Error(JSON.stringify(errors));
   const video = page.video(); await context.close(); context = null;
   const raw = await video.path();
   ffmpeg(['-i', raw, '-an', '-c:v', 'libx264', '-crf', '22', '-pix_fmt', 'yuv420p', '-movflags', '+faststart', path.join(out, 'foundation-ui.mp4')]);
   ffmpeg(['-i', path.join(out, 'foundation-ui.mp4'), '-vf', 'fps=6,scale=320:-2:flags=lanczos,split[a][b];[a]palettegen=max_colors=96[p];[b][p]paletteuse=dither=bayer:bayer_scale=3', '-loop', '0', path.join(out, 'foundation-ui.gif')]);
   const files = fs.readdirSync(out).filter(n => /\.(png|gif|mp4)$/.test(n)).sort().map(file => ({file, bytes: fs.statSync(path.join(out, file)).size, sha256: digest(path.join(out, file))}));
-  const sourceFiles = fs.readdirSync(assets, {recursive: true}).map(n => path.join(assets, n)).filter(p => fs.statSync(p).isFile()).concat(__filename, path.join(root, 'tests/foundation-ui.cjs'), path.join(root, 'tests/recipes-ui.cjs'), path.join(root, 'tests/hub-fixture.cjs'), path.join(root, 'tests/versions-ui.cjs'), path.join(root, 'tests/text-ui.cjs'), path.join(root, 'tests/migration-ui.cjs'), path.join(root, 'tests/scheduler-ui.cjs'), path.join(root, 'tests/inputs-ui.cjs'), path.join(root, 'tests/diffusion-ui.cjs'), path.join(root, 'tests/qwen-ui.cjs'), path.join(root, 'tests/moss-delay-ui.cjs'));
+  const sourceFiles = fs.readdirSync(assets, {recursive: true}).map(n => path.join(assets, n)).filter(p => fs.statSync(p).isFile()).concat(__filename, path.join(root, 'tests/foundation-ui.cjs'), path.join(root, 'tests/recipes-ui.cjs'), path.join(root, 'tests/hub-fixture.cjs'), path.join(root, 'tests/versions-ui.cjs'), path.join(root, 'tests/text-ui.cjs'), path.join(root, 'tests/migration-ui.cjs'), path.join(root, 'tests/scheduler-ui.cjs'), path.join(root, 'tests/inputs-ui.cjs'), path.join(root, 'tests/diffusion-ui.cjs'), path.join(root, 'tests/qwen-ui.cjs'), path.join(root, 'tests/moss-delay-ui.cjs'), path.join(root, 'tests/openmoss-ui.cjs'));
   const input_fingerprint = Object.fromEntries(sourceFiles.sort().map(file => [path.relative(root, file).split(path.sep).join('/'), digest(file)]));
   fs.writeFileSync(path.join(out, 'manifest.json'), JSON.stringify({version, kind: 'development UI with explicit simulated native bridge', android_device: false, model_inference: false, weights_downloaded: false, browser_closed: true, browser_errors: errors, screenshots, files, input_fingerprint}, null, 2) + '\n');
   console.log(JSON.stringify({version, screenshots: screenshots.length, files: files.length, android_device: false, model_inference: false, browser_closed: true}));

@@ -180,3 +180,19 @@ Qwen3-TTS 0.6B Base 复用 `POST /v1/jobs` 的 `speech.synthesize` 与本地 `re
 `moss_delay_native` 复用 `speech.synthesize`、模型独立参数、共用队列和 WAV 产物。只有所选包含原生编码器时才提供可选 `reference_audio`；普通 TTS 不需要编码器或默认音色。详见 [MOSS Delay 管线与执行回执](MOSS_DELAY_ENGINE.md)。没有新增 `/v1/audio/speech` 兼容性声明。
 
 [MOSS Local-v1.5 / SoundEffect-v2](OPENMOSS_ENGINE.md) 共用 POST /v1/jobs，分别使用 speech.synthesize / audio.generate；没有新增远程 provider 或 /v1/audio/speech 兼容声明。参数、参考素材、取消和回执按各配方独立校验。
+
+### MOSS 对话与声音设计
+
+四种新增 openmoss delay 配方共用 `POST /v1/jobs` / `speech.synthesize`。使用自己已安装的 `bundleId`；`voiceInstruction` / `language` 是每模型参数，本次任务覆盖不会保存为默认。VoiceGenerator 必须填写声音描述，且不接受参考输入；TTSD 文本须含 `[S1]`、`[S2]`，可选的 `reference_audio_s1` / `reference_audio_s2` 素材角色须成对提供。素材由用户导入，不能在请求中提供任意文件路径或远程推理地址。完整格式与边界见 [MOSS 指南](OPENMOSS_ENGINE.md)。
+
+```json
+{
+  "bundleId": "your_installed_voicegen_bundle",
+  "type": "speech.synthesize",
+  "input": {"prompt": "你好，这是由用户选择的本地模型任务。"},
+  "parameters": {"voiceInstruction": "成年、低沉、温暖的声音", "language": "zh", "maxNewTokens": 375},
+  "allowUnmeasured": true
+}
+```
+
+`allowUnmeasured` 表示用户明确尝试尚无当前设备记录的配方，不是兼容性证明；资源或组件不满足仍在本机失败。模型加载、推理、编码 / 解码都发生在运行 LMA 的同一手机。

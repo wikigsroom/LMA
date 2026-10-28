@@ -1,5 +1,11 @@
 # Changelog / 更新记录
 
+## 0.3.0-dev.18 — 2026-10-28 (internal / unpublished)
+
+在现有原生 MOSS worker 中接入 TTS、v1.5、TTSD、VoiceGenerator 四种平级配方；按 32/16-codebook、8B/1.7B 实际 GGUF 几何校验。增加成对 S1/S2 参考、每模型声音描述/语言参数和真实生成网格的 prefill 前预算保护。Added native delay dispatch, explicit paired reference mapping, per-model bounded voice/language hints and a context guard in a generated copy of the pristine pinned source. All model/codec/BPE assets stay user-selected.
+
+459 scoped Java/C++ assertions (18 actual host children), 521 foundation and 265 UI assertions pass. Refreshed original-signature APK, 29 metadata-only templates, bilingual guides, five new screenshots and recording/GIF. No complete model/Android inference, quality or endurance claims; all frozen targets stay in one complete v0.3.0 with no new Release. See [双语说明 / bilingual notes](docs/releases/v0.3.0-dev.18.md).
+
 ## 0.3.0-dev.17 — internal / unpublished
 
 Two native CPU MOSS routes now share the foundation: Local-Transformer-v1.5 speech and SoundEffect-v2 flow matching. Users explicitly select matching backbone/extras GGUFs; embedded BPE/codecs remain user assets, with no implicit downloads. Independent editable parameters, optional stereo reference, actual solver/receipt events and isolated child cleanup are integrated. CFG=1 cannot silently ignore a supplied negative prompt; full 30-second latent cost is disclosed.

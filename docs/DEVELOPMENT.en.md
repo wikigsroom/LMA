@@ -2,7 +2,7 @@
 
 [中文](DEVELOPMENT.md) · [Full scope](MULTIMODAL_RELEASE_PLAN.en.md) · [Build](BUILD.en.md) · [English home](../README.en.md)
 
-The current public release remains **v0.2.0**. This branch is **0.3.0-dev.17 / versionCode 21**, not the complete v0.3.0, and has no new Release. F-01–F-12, selections 01–14/16/17 and frozen subtargets still belong to one delivery; these are internal implementation checkpoints.
+The current public release remains **v0.2.0**. This branch is **0.3.0-dev.18 / versionCode 22**, not the complete v0.3.0, and has no new Release. F-01–F-12, selections 01–14/16/17 and frozen subtargets still belong to one delivery; these are internal implementation checkpoints.
 
 ## Implemented development code
 
@@ -12,11 +12,11 @@ The current public release remains **v0.2.0**. This branch is **0.3.0-dev.17 / v
 | Independent model versions | User-selected pinned target, component/profile review, separate transfer/activation, retained old files, rollback, last 64 switches and queued-reference protection | 62 real host storage/failure/transfer checks; Android upgrades remain unverified; see [version guide](MODEL_UPDATES.en.md) |
 | User control | Declaration, browsing and planning create no transfers; downloads require a separate action; missing assets fail locally; interrupted transfers pause for manual resumption | Does not install the entire catalogue or implicitly download models |
 | Settings | Per-bundle settings, editable presets, numerical clamping, joint shape checks and immutable submitted snapshots | Recipe limits and device budgets are separate; unknown maxima are not verified |
-| UI | Legacy text and bundles share a flat list; text/image/video/audio filters, bundle details, task forms, queue and artifacts; Recommended stays m08 → m06 → m01 | All contains pinned candidates and user manifests; dev.17 offers twenty-five explicit HF component templates without universal architecture support |
+| UI | Legacy text and bundles share a flat list; text/image/video/audio filters, bundle details, task forms, queue and artifacts; Recommended stays m08 → m06 → m01 | All contains pinned candidates and user manifests; dev.18 offers twenty-nine explicit HF component templates without universal architecture support |
 | Jobs/artifacts | One heavy job, submit/cancel/retry, persistent events, private results, hashes/provenance, system export and image/WAV/MP4 inspection/ranged preview | Bounded AtomicFile JSON currently stores these records; existing chat SQLite remains; legacy text shares migration/scheduling; target input pipelines and device acceptance remain open |
 | Unified gateway | Start with zero models; authenticated model/engine/job/event/artifact Range routes; public text proxy applies profile bounds and tracks leases; native text stays on a separate loopback port/secret | Production HTTP/stores use real host sockets and explicit execution fixtures; no model downloads or inference redirects |
 | Sana mobile MNN | Pinned CPU worker, 13 matched components, sanitized configuration, per-model settings and real process binding | 74 host/C++ checks, no phone/image outputs; see [Sana guide](MNN_SANA_ENGINE.en.md) |
-| Native speech | Qwen3-TTS Base and MOSS Delay first-class with an optional reference encoder; independent settings and actual process binding | 81 / 176 host assertions; no model speech/device acceptance; [Qwen](QWEN_TTS_ENGINE.en.md) / [MOSS](MOSS_DELAY_ENGINE.en.md) |
+| Native speech | Qwen3-TTS Base, MOSS Delay first-class and openmoss TTS/v1.5/TTSD/VoiceGenerator/Local-v1.5/SoundEffect-v2; independent settings and actual process binding | 81 / 176 / 459 scoped checks; no model speech/device acceptance; [Qwen](QWEN_TTS_ENGINE.en.md) / [Delay](MOSS_DELAY_ENGINE.en.md) / [six recipes](OPENMOSS_ENGINE.en.md) |
 | Android execution | Signed-in sd.cpp ARM64 CPU worker, data-only model bundles, external user-supplied vocabularies, child lifetime bound to its host | Compiled/packaged, **no phone inference**; upstream architectures do not prove accepted recipes |
 | Video path | Generated raw frames feed Android MediaCodec/MediaMuxer; repeated still images cannot masquerade as motion output | Native generation and Android encoding still need physical-device validation; no LMA video output evidence |
 | Background | Foreground ownership of transfers/jobs, process cancellation, interrupted-state reconciliation without invented checkpoints, two-hour job protection limit | Screen-off, memory pressure, OEM power policies, thermals and reboot behavior remain unmeasured |
@@ -31,16 +31,16 @@ Custom manifests gain neither device-validated nor checked-uncensored status. Un
 
 | Check | Result | What it establishes |
 | --- | --- | --- |
-| Foundation core | 485 assertions | Component integrity, real HTTP resumption, shared references, independent settings, queue ownership/cancellation/restart, artifacts and ranged reads |
+| Foundation core | 521 assertions | Component integrity, real HTTP resumption, shared references, independent settings, queue ownership/cancellation/restart, artifacts and ranged reads |
 | API/transport | 67 assertions | Auth, zero-model state, JSON/framing limits, idempotency/cancel/events, exact artifacts/Range/leases and text policy; actual host sockets, not Android inference |
 | Legacy backend/proxy | 98 assertions | Host Android adapters exercising downloads, actual child processes, HTTP SSE and per-model settings |
 | HF logic | 78 assertions | Search, pinned revisions, pagination/selection and token boundaries, not universal HF execution |
 | MOSS Delay | 176 assertions | Production Java/actual host children and pinned upstream Delay/sampler/de-delay self-test; structural WAV fixtures |
-| MOSS Local / SoundEffect | 180 checks | Production Java, six actual host children and pinned upstream formatting/noise/sigma checks; structural WAVs, no neural outputs |
+| MOSS native six recipes | 459 checks | 349 Java / 110 C++, 18 actual host children; actual upstream prompt/sound functions, budget/reference checks; structural WAVs, no neural inference |
 | Diffusion | 174 assertions | Production planning/binding, actual host protocol children and shared C++ policy; no model images |
 | Local input media | 64 assertions | Actual private files, production WAV inspection, authenticated resumable chunks and immutable input receipts/leases; not Android media decoding |
 | Shared scheduler | 49 assertions | Production queue/resident/chat/API, real host children and loopback HTTP, cancellation and reaping; no Android inference |
-| UI | 244 assertions | Actual HTML/CSS/JS with explicit simulated native state; recommendation/tag/download/form/queue/narrow-screen regressions |
+| UI | 265 assertions | Actual HTML/CSS/JS with explicit simulated native state; recommendation/tag/download/form/queue/narrow-screen regressions |
 | Native package | 23 ARM64 files | Pinned hashes, resolved dependencies, Android API 28, 16 KiB ELF/APK alignment, original signing identity, asset allowlist |
 | Phone inference/endurance | 0 | No actual image/audio/motion-video or sustained screen-off inference evidence |
 
@@ -157,3 +157,7 @@ Internal checkpoint (**0.3.0-dev.15 / code 19**, unpublished): [Qwen3-TTS 0.6B B
 Internal checkpoint (**0.3.0-dev.16 / code 20**, unpublished): the [MOSS Delay native CPU pipeline](MOSS_DELAY_ENGINE.en.md) adds a user-selected first-class backbone/decoder, optional reference encoder, independent text/audio sampling and shared jobs. Its 176 Java/C++ host checks include the pinned upstream Delay self-test; structural WAVs are not generated speech. All 23 recipes are metadata; APKs carry no model assets or implicit downloads. Screenshots 40–41 and recording/GIF remain UI FIXTUREs. Every complete v0.3.0 target and physical-device gate remains, without a new Release. See [bilingual notes](releases/v0.3.0-dev.16.md).
 
 Internal checkpoint (**0.3.0-dev.17 / code 21**, unpublished): the [native MOSS Local-v1.5 / SoundEffect-v2 foundation](OPENMOSS_ENGINE.en.md) adds two distinct CPU pipelines, explicit backbone/extras assets, embedded dependency tags, optional stereo reference, per-model settings and shared jobs/receipts. Its 180 Java/C++ checks include six actual host children and pinned upstream sound sampling primitives, without full model or Android inference. All 25 templates remain data-only and never auto-download. SoundEffect discloses its fixed 30-second latent cost. Screenshots 42–47 and recording/GIF are UI FIXTUREs. Every frozen target and physical-device gate remains in the same complete v0.3.0; no new Release. See the [bilingual notes](releases/v0.3.0-dev.17.md).
+
+Internal checkpoint (**0.3.0-dev.18 / code 22**, unpublished): the [native MOSS foundation](OPENMOSS_ENGINE.en.md) adds four equal-peer TTS/v1.5/TTSD/VoiceGenerator recipes with explicit 32/16-codebook and 8B/1.7B layout validation, paired speaker references and per-model voice/language instructions. An actual generation-grid context guard runs before prefill and rejects overflow. 459 scoped Java/C++ checks (18 actual host children), 521 foundation and 265 UI assertions pass. All 29 templates stay metadata-only; no model assets are bundled. Screens 48–52 and refreshed recording/GIF are UI FIXTURE, without full-model or Android inference. All frozen targets and physical gates remain in one complete v0.3.0; no new Release. See [bilingual notes](releases/v0.3.0-dev.18.md).
+
+<img src="media/development/51-moss-ttsd-speakers.png" width="260" alt="UI FIXTURE: TTSD speaker text/reference mapping, no generated dialogue" /> <img src="media/development/52-moss-voicegen-instruction.png" width="260" alt="UI FIXTURE: model-specific VoiceGenerator instructions, no generated speech" />
