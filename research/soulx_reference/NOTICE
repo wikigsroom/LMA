@@ -1,0 +1,27 @@
+LMA SoulX reference-model research module (not registered in the APK)
+
+Reference orchestration/conversion and developer CLI are original LMA code:
+Copyright 2026 LMA contributors, MIT, under the repository LICENSE.
+Audio preprocessing remains in research/soulx, Apache-2.0 and KISS FFT
+BSD-3-Clause; see that directory's NOTICE and full licenses. Shared CPU ORT
+handling and Microsoft MIT license remain in research/soulx_ort/.
+
+Pinned Soul-AILab/SoulX-Podcast source specifies reference preprocessing,
+speaker model use and semantic/Flow prefix alignment. S3Tokenizer sources
+credit OpenAI's Whisper team (2023), Tsinghua University / Xingchen Song
+(2024) and Mddct / Dinghao Zhou. They are Apache-2.0. The complete Apache
+license is LICENSE-APACHE-2.0. Exact reviewed hashes are in
+third_party/soulx-reference-source-lock.json.
+
+Optional developer assets are the complete publisher speech_tokenizer_v2.onnx
+from FunAudioLLM/CosyVoice2-0.5B and campplus.onnx from
+Soul-AILab/SoulX-Podcast-1.7B. Their model cards declare Apache-2.0; publisher
+revisions, lengths and SHA256s are pinned separately. These are trained
+REFERENCE components, not a complete SoulX checkpoint or speech-quality
+certificate. Original/converted assets are kept only in ignored developer
+directories or explicit user directories, never in Git, source archives or APK.
+
+Host references AST-extract unchanged pinned torchaudio/librosa Python math
+under the same test-only boundary documented in research/soulx/NOTICE.
+No real-person voice reference, upstream example audio or model-specific
+filter bank is bundled by this research module.

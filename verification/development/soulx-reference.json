@@ -1,0 +1,685 @@
+{
+  "passed": 145,
+  "actual_host_children": 15,
+  "actual_ort_graph_runs": 10,
+  "actual_ort_terminations": 2,
+  "successful_references": 4,
+  "max_live_sessions": 1,
+  "trained_reference_components_loaded": 2,
+  "publisher_models": [
+    {
+      "file": "campplus.onnx",
+      "repo": "Soul-AILab/SoulX-Podcast-1.7B",
+      "revision": "c2af285fc7ec68a4d3402deae7d2e215ab67fb32",
+      "sha256": "a6ac6a63997761ae2997373e2ee1c47040854b4b759ea41ec48e4e42df0f4d73",
+      "bytes": 28303423,
+      "license": "Apache-2.0",
+      "primary_origin": "https://huggingface.co"
+    },
+    {
+      "file": "speech_tokenizer_v2.onnx",
+      "repo": "FunAudioLLM/CosyVoice2-0.5B",
+      "revision": "23778f84b1b6dd789e1b5092c3ec1145639ee1c3",
+      "sha256": "d43342aa12163a80bf07bffb94c9de2e120a8df2f9917cd2f642e7f4219c6f71",
+      "bytes": 496082973,
+      "license": "Apache-2.0",
+      "primary_origin": "https://huggingface.co"
+    }
+  ],
+  "complete_graph_tensor_identity_verified": true,
+  "original_publisher_graphs_used_for_references": true,
+  "upstream_audio_function_bodies": true,
+  "synthetic_pcm": true,
+  "reference_samples": [
+    24000,
+    29537,
+    360000
+  ],
+  "layouts": [
+    {
+      "role": "s3",
+      "nodes": 1358,
+      "initializers": 102,
+      "initializer_values": 123714568,
+      "opset": 17,
+      "graph_tensor_identity_sha256": "d43342aa12163a80bf07bffb94c9de2e120a8df2f9917cd2f642e7f4219c6f71"
+    },
+    {
+      "role": "speaker",
+      "nodes": 3206,
+      "initializers": 617,
+      "initializer_values": 6907680,
+      "opset": 14,
+      "graph_tensor_identity_sha256": "a6ac6a63997761ae2997373e2ee1c47040854b4b759ea41ec48e4e42df0f4d73"
+    }
+  ],
+  "assets": [
+    {
+      "role": "s3",
+      "file": "reference-s3.onnx",
+      "bytes": 1231862,
+      "sha256": "b1567391964c95610b9af02835b3a2f1238213d841ffc657ea8dbcd2fe53f10b"
+    },
+    {
+      "role": "s3_data",
+      "file": "reference-s3.onnx.data",
+      "bytes": 494858272,
+      "sha256": "bbd178ddf76964e58b4e0ff9526d34600648ef12aafb276105ab4ee5ebeb4321"
+    },
+    {
+      "role": "speaker",
+      "file": "reference-speaker.onnx",
+      "bytes": 718459,
+      "sha256": "df91a402a0f0918d029343159af03280d44079b2ea94b92c27d414c2a1d704e1"
+    },
+    {
+      "role": "speaker_data",
+      "file": "reference-speaker.onnx.data",
+      "bytes": 27630720,
+      "sha256": "54f285116c6c6ba2aa95d110890f226219feb9ea36fd8176c3869b1c7756c821"
+    }
+  ],
+  "metrics": [
+    {
+      "case": 0,
+      "stage": "s3_features",
+      "shape": [
+        1,
+        128,
+        100
+      ],
+      "maximum_absolute_error": 2.7418136596679688e-06,
+      "rmse": 7.962889707505953e-08,
+      "maximum_allowed": 5e-05,
+      "rmse_allowed": 2e-06
+    },
+    {
+      "case": 0,
+      "stage": "speaker_features",
+      "shape": [
+        1,
+        98,
+        80
+      ],
+      "maximum_absolute_error": 0.00013446807861328125,
+      "rmse": 3.1679823877200514e-06,
+      "maximum_allowed": 0.001,
+      "rmse_allowed": 2e-05
+    },
+    {
+      "case": 0,
+      "stage": "flow_features",
+      "shape": [
+        1,
+        80,
+        50
+      ],
+      "maximum_absolute_error": 2.86102294921875e-06,
+      "rmse": 1.5402739717317117e-07,
+      "maximum_allowed": 5e-05,
+      "rmse_allowed": 2e-06
+    },
+    {
+      "case": 0,
+      "stage": "speaker",
+      "shape": [
+        1,
+        192
+      ],
+      "maximum_absolute_error": 4.088878631591797e-05,
+      "rmse": 1.2686820373164095e-05,
+      "maximum_allowed": 0.002,
+      "rmse_allowed": 0.0002
+    },
+    {
+      "case": 0,
+      "stage": "prompt_mel",
+      "shape": [
+        1,
+        80,
+        50
+      ],
+      "maximum_absolute_error": 2.86102294921875e-06,
+      "rmse": 1.5402739717317117e-07,
+      "maximum_allowed": 5e-05,
+      "rmse_allowed": 2e-06
+    },
+    {
+      "case": 1,
+      "stage": "s3_features",
+      "shape": [
+        1,
+        128,
+        123
+      ],
+      "maximum_absolute_error": 5.602836608886719e-06,
+      "rmse": 9.118381056979442e-08,
+      "maximum_allowed": 5e-05,
+      "rmse_allowed": 2e-06
+    },
+    {
+      "case": 1,
+      "stage": "speaker_features",
+      "shape": [
+        1,
+        121,
+        80
+      ],
+      "maximum_absolute_error": 0.00021076202392578125,
+      "rmse": 3.404012248547116e-06,
+      "maximum_allowed": 0.001,
+      "rmse_allowed": 2e-05
+    },
+    {
+      "case": 1,
+      "stage": "flow_features",
+      "shape": [
+        1,
+        80,
+        60
+      ],
+      "maximum_absolute_error": 4.76837158203125e-07,
+      "rmse": 1.500143767368225e-07,
+      "maximum_allowed": 5e-05,
+      "rmse_allowed": 2e-06
+    },
+    {
+      "case": 1,
+      "stage": "speaker",
+      "shape": [
+        1,
+        192
+      ],
+      "maximum_absolute_error": 1.2874603271484375e-05,
+      "rmse": 4.4310694389752645e-06,
+      "maximum_allowed": 0.002,
+      "rmse_allowed": 0.0002
+    },
+    {
+      "case": 1,
+      "stage": "prompt_mel",
+      "shape": [
+        1,
+        80,
+        60
+      ],
+      "maximum_absolute_error": 4.76837158203125e-07,
+      "rmse": 1.500143767368225e-07,
+      "maximum_allowed": 5e-05,
+      "rmse_allowed": 2e-06
+    },
+    {
+      "case": 2,
+      "stage": "s3_features",
+      "shape": [
+        1,
+        128,
+        1500
+      ],
+      "maximum_absolute_error": 6.318092346191406e-06,
+      "rmse": 8.913045416769435e-08,
+      "maximum_allowed": 5e-05,
+      "rmse_allowed": 2e-06
+    },
+    {
+      "case": 2,
+      "stage": "speaker_features",
+      "shape": [
+        1,
+        1498,
+        80
+      ],
+      "maximum_absolute_error": 0.00041866302490234375,
+      "rmse": 3.526942555798665e-06,
+      "maximum_allowed": 0.001,
+      "rmse_allowed": 2e-05
+    },
+    {
+      "case": 2,
+      "stage": "flow_features",
+      "shape": [
+        1,
+        80,
+        750
+      ],
+      "maximum_absolute_error": 9.5367431640625e-07,
+      "rmse": 1.4735400805118378e-07,
+      "maximum_allowed": 5e-05,
+      "rmse_allowed": 2e-06
+    },
+    {
+      "case": 2,
+      "stage": "speaker",
+      "shape": [
+        1,
+        192
+      ],
+      "maximum_absolute_error": 8.58306884765625e-06,
+      "rmse": 2.9794880579244376e-06,
+      "maximum_allowed": 0.002,
+      "rmse_allowed": 0.0002
+    },
+    {
+      "case": 2,
+      "stage": "prompt_mel",
+      "shape": [
+        1,
+        80,
+        750
+      ],
+      "maximum_absolute_error": 9.5367431640625e-07,
+      "rmse": 1.4735400805118378e-07,
+      "maximum_allowed": 5e-05,
+      "rmse_allowed": 2e-06
+    },
+    {
+      "case": 3,
+      "stage": "s3_features",
+      "shape": [
+        1,
+        128,
+        100
+      ],
+      "maximum_absolute_error": 2.7418136596679688e-06,
+      "rmse": 7.962889707505953e-08,
+      "maximum_allowed": 5e-05,
+      "rmse_allowed": 2e-06
+    },
+    {
+      "case": 3,
+      "stage": "speaker_features",
+      "shape": [
+        1,
+        98,
+        80
+      ],
+      "maximum_absolute_error": 0.00013446807861328125,
+      "rmse": 3.1679823877200514e-06,
+      "maximum_allowed": 0.001,
+      "rmse_allowed": 2e-05
+    },
+    {
+      "case": 3,
+      "stage": "flow_features",
+      "shape": [
+        1,
+        80,
+        50
+      ],
+      "maximum_absolute_error": 2.86102294921875e-06,
+      "rmse": 1.5402739717317117e-07,
+      "maximum_allowed": 5e-05,
+      "rmse_allowed": 2e-06
+    },
+    {
+      "case": 3,
+      "stage": "speaker",
+      "shape": [
+        1,
+        192
+      ],
+      "maximum_absolute_error": 4.088878631591797e-05,
+      "rmse": 1.2686820373164095e-05,
+      "maximum_allowed": 0.002,
+      "rmse_allowed": 0.0002
+    },
+    {
+      "case": 3,
+      "stage": "prompt_mel",
+      "shape": [
+        1,
+        80,
+        50
+      ],
+      "maximum_absolute_error": 2.86102294921875e-06,
+      "rmse": 1.5402739717317117e-07,
+      "maximum_allowed": 5e-05,
+      "rmse_allowed": 2e-06
+    }
+  ],
+  "runs": [
+    {
+      "name": "reference-0",
+      "apk_runtime": false,
+      "full_soulx_pipeline": false,
+      "graph_runs": 2,
+      "max_live_sessions": 1,
+      "ok": true,
+      "prompt_mel_shape": [
+        80,
+        50
+      ],
+      "publisher_hashes_declared": true,
+      "raw_flow_frames": 50,
+      "raw_tokens": 25,
+      "runtime_version": "1.24.3",
+      "semantic_frames": 100,
+      "session_loads": 2,
+      "session_unloads": 2,
+      "speaker_dimensions": 192,
+      "speaker_frames": 98,
+      "terminated_runs": 0,
+      "tokens": 25,
+      "trace_shapes": {
+        "flow_features": [
+          1,
+          80,
+          50
+        ],
+        "prompt_mel": [
+          1,
+          80,
+          50
+        ],
+        "s3_features": [
+          1,
+          128,
+          100
+        ],
+        "speaker": [
+          1,
+          192
+        ],
+        "speaker_features": [
+          1,
+          98,
+          80
+        ]
+      }
+    },
+    {
+      "name": "reference-1",
+      "apk_runtime": false,
+      "full_soulx_pipeline": false,
+      "graph_runs": 2,
+      "max_live_sessions": 1,
+      "ok": true,
+      "prompt_mel_shape": [
+        80,
+        60
+      ],
+      "publisher_hashes_declared": true,
+      "raw_flow_frames": 60,
+      "raw_tokens": 31,
+      "runtime_version": "1.24.3",
+      "semantic_frames": 123,
+      "session_loads": 2,
+      "session_unloads": 2,
+      "speaker_dimensions": 192,
+      "speaker_frames": 121,
+      "terminated_runs": 0,
+      "tokens": 30,
+      "trace_shapes": {
+        "flow_features": [
+          1,
+          80,
+          60
+        ],
+        "prompt_mel": [
+          1,
+          80,
+          60
+        ],
+        "s3_features": [
+          1,
+          128,
+          123
+        ],
+        "speaker": [
+          1,
+          192
+        ],
+        "speaker_features": [
+          1,
+          121,
+          80
+        ]
+      }
+    },
+    {
+      "name": "reference-2",
+      "apk_runtime": false,
+      "full_soulx_pipeline": false,
+      "graph_runs": 2,
+      "max_live_sessions": 1,
+      "ok": true,
+      "prompt_mel_shape": [
+        80,
+        750
+      ],
+      "publisher_hashes_declared": true,
+      "raw_flow_frames": 750,
+      "raw_tokens": 375,
+      "runtime_version": "1.24.3",
+      "semantic_frames": 1500,
+      "session_loads": 2,
+      "session_unloads": 2,
+      "speaker_dimensions": 192,
+      "speaker_frames": 1498,
+      "terminated_runs": 0,
+      "tokens": 375,
+      "trace_shapes": {
+        "flow_features": [
+          1,
+          80,
+          750
+        ],
+        "prompt_mel": [
+          1,
+          80,
+          750
+        ],
+        "s3_features": [
+          1,
+          128,
+          1500
+        ],
+        "speaker": [
+          1,
+          192
+        ],
+        "speaker_features": [
+          1,
+          1498,
+          80
+        ]
+      }
+    },
+    {
+      "name": "reference-3",
+      "apk_runtime": false,
+      "full_soulx_pipeline": false,
+      "graph_runs": 2,
+      "max_live_sessions": 1,
+      "ok": true,
+      "prompt_mel_shape": [
+        80,
+        50
+      ],
+      "publisher_hashes_declared": true,
+      "raw_flow_frames": 50,
+      "raw_tokens": 25,
+      "runtime_version": "1.24.3",
+      "semantic_frames": 100,
+      "session_loads": 2,
+      "session_unloads": 2,
+      "speaker_dimensions": 192,
+      "speaker_frames": 98,
+      "terminated_runs": 0,
+      "tokens": 25,
+      "trace_shapes": {
+        "flow_features": [
+          1,
+          80,
+          50
+        ],
+        "prompt_mel": [
+          1,
+          80,
+          50
+        ],
+        "s3_features": [
+          1,
+          128,
+          100
+        ],
+        "speaker": [
+          1,
+          192
+        ],
+        "speaker_features": [
+          1,
+          98,
+          80
+        ]
+      }
+    },
+    {
+      "name": "invalid-threads-zero",
+      "error": "Invalid SoulX reference thread count",
+      "graph_runs": 0,
+      "max_live_sessions": 0,
+      "ok": false,
+      "session_loads": 0,
+      "session_unloads": 0,
+      "terminated_runs": 0
+    },
+    {
+      "name": "invalid-threads-large",
+      "error": "Invalid SoulX reference thread count",
+      "graph_runs": 0,
+      "max_live_sessions": 0,
+      "ok": false,
+      "session_loads": 0,
+      "session_unloads": 0,
+      "terminated_runs": 0
+    },
+    {
+      "name": "invalid-short",
+      "error": "SoulX reference must be 1 to 15 seconds at 24kHz",
+      "graph_runs": 0,
+      "max_live_sessions": 0,
+      "ok": false,
+      "session_loads": 0,
+      "session_unloads": 0,
+      "terminated_runs": 0
+    },
+    {
+      "name": "invalid-long",
+      "error": "SoulX reference must be 1 to 15 seconds at 24kHz",
+      "graph_runs": 0,
+      "max_live_sessions": 0,
+      "ok": false,
+      "session_loads": 0,
+      "session_unloads": 0,
+      "terminated_runs": 0
+    },
+    {
+      "name": "invalid-nonfinite",
+      "error": "Non-finite SoulX acoustic tensor",
+      "graph_runs": 0,
+      "max_live_sessions": 0,
+      "ok": false,
+      "session_loads": 0,
+      "session_unloads": 0,
+      "terminated_runs": 0
+    },
+    {
+      "name": "invalid-amplitude",
+      "error": "SoulX reference PCM must be normalized",
+      "graph_runs": 0,
+      "max_live_sessions": 0,
+      "ok": false,
+      "session_loads": 0,
+      "session_unloads": 0,
+      "terminated_runs": 0
+    },
+    {
+      "name": "cancel_before",
+      "error": "SoulX graph execution cancelled",
+      "graph_runs": 0,
+      "max_live_sessions": 0,
+      "ok": false,
+      "session_loads": 0,
+      "session_unloads": 0,
+      "terminated_runs": 0
+    },
+    {
+      "name": "cancel_after_s3",
+      "error": "SoulX graph execution cancelled",
+      "graph_runs": 1,
+      "max_live_sessions": 1,
+      "ok": false,
+      "session_loads": 1,
+      "session_unloads": 1,
+      "terminated_runs": 0
+    },
+    {
+      "name": "cancel_during_s3",
+      "error": "SoulX graph execution cancelled",
+      "graph_runs": 0,
+      "max_live_sessions": 1,
+      "ok": false,
+      "session_loads": 1,
+      "session_unloads": 1,
+      "terminated_runs": 1
+    },
+    {
+      "name": "cancel_during_speaker",
+      "error": "SoulX graph execution cancelled",
+      "graph_runs": 1,
+      "max_live_sessions": 1,
+      "ok": false,
+      "session_loads": 2,
+      "session_unloads": 2,
+      "terminated_runs": 1
+    },
+    {
+      "name": "external-escape",
+      "error": "External tensor must use a selected local data file",
+      "graph_runs": 0,
+      "max_live_sessions": 0,
+      "ok": false,
+      "session_loads": 0,
+      "session_unloads": 0,
+      "terminated_runs": 0
+    }
+  ],
+  "runtime_version": "1.24.3",
+  "runtime_sha256": "8cada464a0c1d22f5d8fc5767424b545fbfa208285940d0da3441de9647ee207",
+  "full_soulx_inference": false,
+  "language_backbone_executed": false,
+  "speech_generated": false,
+  "model_audio_quality_tested": false,
+  "physical_android": false,
+  "apk_runtime_used": false,
+  "engine_registered": false,
+  "input_fingerprint": {
+    "native/moss_nano/onnx_external.hpp": "c1bb8f95ad2078472dbbf2ea0863493ac44f4aae7c4336cf5debb0db0d54fae5",
+    "research/soulx/CMakeLists.txt": "847feb9d1714b97bd17aae237dfb692368398fb3dbbcc9a6ccdb6b10af919c6f",
+    "research/soulx/dsp.cpp": "08162eafac28df62af8d415525c9d28ab490e77bdcfd81cc23b8d2e89f524bd3",
+    "research/soulx/dsp.hpp": "ef6a28cae0d2e72d1b84890437286b0ed8a20690c0ac07b2ddf8162ee2d2fd58",
+    "research/soulx/LICENSE-APACHE-2.0": "2d88353fe7c7e7dde2a5ea2bc00db9f4808127c938395fcfd1a4d88a268ea3a5",
+    "research/soulx/LICENSE-KISSFFT-BSD-3-CLAUSE": "91333dec2b41bc2d3dc15d6bc819e0da1e6854b6142d4910e8e0c7c82d2da727",
+    "research/soulx/NOTICE": "2229d2f5db9876bda0e0922389f044dba126e7f782e687662cd6fc196e0ba8c2",
+    "research/soulx_ort/android_log.cpp": "216f630761ff67a00cfe47db941338f45560fc45486ebcbdff196cf36dac3d04",
+    "research/soulx_ort/LICENSE-ONNX-RUNTIME-MIT": "c250d6278f0b47a6439fb7592b08b58a55eb9f535aa49a1db63211c3f982b674",
+    "research/soulx_ort/NOTICE": "69487267d86f7998917bc9f7e9b6d2e30e168f41c92369f41a33e225c0bfceb6",
+    "research/soulx_ort/runtime.hpp": "0586ad63c3210ec42d1c3cc956beb05614e56e9cb803632d596e57935689b2c8",
+    "research/soulx_ort/types.hpp": "f0822ae37dd26996501f2b69e4e1bb9404ad53903dd267ff793ee60d96f42de4",
+    "research/soulx_reference/CMakeLists.txt": "acb4aa21e2c41b69e3807342048b947954b535e622982f1e3b7f74ed21938719",
+    "research/soulx_reference/driver.cpp": "5125d3da14d842efae6b10b820a829f99cb72d261e414c8d1c783a8f64fc1379",
+    "research/soulx_reference/LICENSE-APACHE-2.0": "2d88353fe7c7e7dde2a5ea2bc00db9f4808127c938395fcfd1a4d88a268ea3a5",
+    "research/soulx_reference/NOTICE": "e69294d836231434216c0c147b4f50afd25e6b995b38e1e731ffcaaea21d56fa",
+    "research/soulx_reference/reference.cpp": "59219307bf63901c012ae1e16594c4236fbae147f758e3aca31142bfba231ae8",
+    "research/soulx_reference/reference.hpp": "b56f4c888d7b51e46c2871e94c257441cc68a01c17c3b89c7b6aacc19498f07b",
+    "third_party/soulx-dsp-source-lock.json": "e8c352ea1f396e2e90d71586815151c446c05458895fcf14595b2870ff882220",
+    "third_party/soulx-reference-source-lock.json": "77d9bd5c2553d9591a1b2028c42334b83ed1dd0c0fa17f81b7c1929905a1cf3d",
+    "tools/export_soulx_reference.py": "4c0b762fc4c589f5131e854691740af70c702e58c9dd93596957ec7662989988",
+    "tools/fetch_soulx_dsp.py": "a8e4b8e88c5898236cbbc9ea9fd626b04d6f040005cd9c743c2515032b72c3f4",
+    "tools/fetch_soulx_reference.py": "f6f371b7aeb7928d80b9785b2b803de91c8b63deec96c8a97ed2d3f9317a6d33",
+    "tools/soulx_native_checks.py": "eb194b02b4e42a0fd1981064eee4ecd38ab80c6f568ac586405912357d32ce48",
+    "tools/test_soulx_dsp.py": "7a487dc01de4d3a83edfd5980efa6647bbbceef643358d0cf3c333e47bcbe7a0",
+    "tools/test_soulx_reference.py": "27565c1f3632cb6873bef6b532b7e95fc801b3679ca6f3c0bba768063c86fdb5"
+  }
+}

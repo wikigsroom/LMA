@@ -174,7 +174,7 @@
     },
     {
       "name": "cancel_before_run",
-      "error": "SoulX acoustic cancelled",
+      "error": "SoulX graph execution cancelled",
       "graph_runs": 0,
       "max_live_sessions": 0,
       "ok": false,
@@ -184,7 +184,7 @@
     },
     {
       "name": "cancel_flow",
-      "error": "SoulX acoustic cancelled",
+      "error": "SoulX graph execution cancelled",
       "graph_runs": 2,
       "max_live_sessions": 1,
       "ok": false,
@@ -194,7 +194,7 @@
     },
     {
       "name": "cancel_during_run",
-      "error": "SoulX acoustic cancelled",
+      "error": "SoulX graph execution cancelled",
       "graph_runs": 1,
       "max_live_sessions": 1,
       "ok": false,
@@ -976,20 +976,25 @@
     "research/soulx/LICENSE-APACHE-2.0": "2d88353fe7c7e7dde2a5ea2bc00db9f4808127c938395fcfd1a4d88a268ea3a5",
     "research/soulx/LICENSE-KISSFFT-BSD-3-CLAUSE": "91333dec2b41bc2d3dc15d6bc819e0da1e6854b6142d4910e8e0c7c82d2da727",
     "research/soulx/NOTICE": "2229d2f5db9876bda0e0922389f044dba126e7f782e687662cd6fc196e0ba8c2",
-    "research/soulx_acoustic/acoustic.cpp": "6a3c2a2db566e29d7faf24616e86256765cdfeef9fa1ac3a43bfc84496dbd985",
-    "research/soulx_acoustic/acoustic.hpp": "93a2e5b35a284c0067c309de072a88d2fac41aa9d5d7a884d170202c93c4db40",
-    "research/soulx_acoustic/android_log.cpp": "216f630761ff67a00cfe47db941338f45560fc45486ebcbdff196cf36dac3d04",
-    "research/soulx_acoustic/CMakeLists.txt": "7775bded2c1f724d42591223dc95c8d0a804972bb8e59092d1c4e19e635d0f0b",
+    "research/soulx_acoustic/acoustic.cpp": "8af9b15afe67d71ccec9353a12d4e3499430907681aae16aae2199b2f5409e10",
+    "research/soulx_acoustic/acoustic.hpp": "ccbb6588c6acb8835071626ce07d92f57302a18bb9e90dd7bf0fb8b6de1d60e7",
+    "research/soulx_acoustic/CMakeLists.txt": "e325fe7badd4903ee819989d21c8037bb0ab92fe14ae94ee7d30c835a2421d05",
     "research/soulx_acoustic/driver.cpp": "83ed86c87a9c0dc85e02611b33409d0a4e40611bdf4dc78e8e240691c945f812",
     "research/soulx_acoustic/LICENSE-APACHE-2.0": "2d88353fe7c7e7dde2a5ea2bc00db9f4808127c938395fcfd1a4d88a268ea3a5",
     "research/soulx_acoustic/LICENSE-ONNX-RUNTIME-MIT": "c250d6278f0b47a6439fb7592b08b58a55eb9f535aa49a1db63211c3f982b674",
     "research/soulx_acoustic/LICENSE-SNAKE-MIT": "9ac34402a4c4d24bf19c495d3d6f778040177ed794668714fd125cf49a4d0cf0",
     "research/soulx_acoustic/NOTICE": "fc62bb7660414206358289f372d573e4f64a08c5c764511b20deb0e9ad94668a",
+    "research/soulx_ort/android_log.cpp": "216f630761ff67a00cfe47db941338f45560fc45486ebcbdff196cf36dac3d04",
+    "research/soulx_ort/LICENSE-ONNX-RUNTIME-MIT": "c250d6278f0b47a6439fb7592b08b58a55eb9f535aa49a1db63211c3f982b674",
+    "research/soulx_ort/NOTICE": "69487267d86f7998917bc9f7e9b6d2e30e168f41c92369f41a33e225c0bfceb6",
+    "research/soulx_ort/runtime.hpp": "0586ad63c3210ec42d1c3cc956beb05614e56e9cb803632d596e57935689b2c8",
+    "research/soulx_ort/types.hpp": "f0822ae37dd26996501f2b69e4e1bb9404ad53903dd267ff793ee60d96f42de4",
     "third_party/soulx-acoustic-source-lock.json": "b39e10c415c5f30d4e4adb52327e1e04df371407131f47617622da913b268ac5",
     "tools/export_soulx.py": "ce4ba8146756b9c0289c817a518d0f301bacc66b9cd3d50207a700f6fb60a6e5",
     "tools/fetch_soulx_dsp.py": "a8e4b8e88c5898236cbbc9ea9fd626b04d6f040005cd9c743c2515032b72c3f4",
     "tools/soulx_acoustic.py": "c13bb200f8b126870011b0b90af787baf614ea2304fd60c9a8cb2bc74670ceb2",
     "tools/soulx_acoustic_fixture.py": "c212603aa1011d7d888a912acc19938941ca3faa31d2ace74a3e81a6e2153f99",
-    "tools/test_soulx_acoustic.py": "e5880bda787c8b73d06a79635ddf1119958f2d93ee19cc44785a37a4ba35b8ca"
+    "tools/soulx_native_checks.py": "eb194b02b4e42a0fd1981064eee4ecd38ab80c6f568ac586405912357d32ce48",
+    "tools/test_soulx_acoustic.py": "51c3ef9b2bf770eb794bafd7ba847e0c20f130cdfc9490868051d6e2181b0201"
   }
 }

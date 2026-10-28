@@ -175,3 +175,7 @@ Internal checkpoint (**0.3.0-dev.20 / code 24**, unpublished): the [Stable Audio
 ## dev.20 source follow-up: full acoustic networks
 
 [SoulX acoustic export/native execution](SOULX_ACOUSTIC.en.md) · [Numbered delivery](releases/v0.3.0-dev.20-soulx-acoustic.md). Four complete Flow/HiFT graphs, learned source, native ORT/CPU and cancellation;244 scoped checks /12 host children /57 completed graph runs /one actual ORT termination, all UNTRAINED. ARM64/API28/16KiB compilation passes; DSP155 checks /49 children /31 guards pass. Not registered in the APK/model tasks. Language/reference networks, complete trained speech and physical Android remain pending under the same full frozen release scope.
+
+## dev.20 source follow-up: trained reference models and acoustic reconstruction
+
+[SoulX implementation/reproduction](SOULX_REFERENCE.en.md) · [Numbered delivery](releases/v0.3.0-dev.20-soulx-reference.md). Real S3 v2/CAMPPlus references pass145 checks; trained Flow/HiFT reconstruction passes253, including full graph/tensor identity,63 stage and12 identical-input comparisons. Reference/acoustic ARM64/API28/16KiB compilation and244 acoustic/155 DSP regressions pass. Codes still originate from synthetic PCM; Qwen3, complete TTS, App bundles/jobs/API, quality and physical Android remain outstanding. Research executors are outside APK. Every handoff retains numbered implemented/pending tables and the complete frozen v0.3.0 gates.

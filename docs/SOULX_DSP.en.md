@@ -9,10 +9,10 @@ The implementation in [research/soulx](../research/soulx/dsp.hpp) is a compilabl
 | ID | SoulX stage | Current state |
 | --- | --- | --- |
 | S-01 | Reference WAV → 16k S3 / CAMPPlus features and 24k Flow features | Native computation and upstream numerical comparisons implemented; the future worker must connect WAV decoding to the existing input library |
-| S-02 | S3Tokenizer → semantic codes; CAMPPlus → 192-dimensional speaker embedding | Graphs, user assets and execution binding pending; feature extraction alone produces neither model output |
+| S-02 | S3Tokenizer → semantic codes; CAMPPlus → 192-dimensional speaker embedding | [Separate reference execution](SOULX_REFERENCE.en.md) now runs complete trained graphs; DSP alone only computes features, with user bundles/App binding still pending |
 | S-03 | Qwen3 → target codes, multiple speakers, turn history and EOS | Complete GGUF/tokenizer protocol, generation, history windows and task binding pending |
-| S-04 | Flow encoder → conditions; estimator → velocities | [Full acoustic four-graph follow-up](SOULX_ACOUSTIC.en.md) implements native ORT comparisons with complete UNTRAINED architectures; user components and App binding remain pending |
-| S-05 | HiFT F0 / neural spectra → 24k waveform | Native NSF/STFT/ISTFT now feed the research F0/learned-source/neural-spectrum executor; trained weights, complete speech quality and App binding remain pending |
+| S-04 | Flow encoder → conditions; estimator → velocities | [Full acoustic four-graph follow-up](SOULX_ACOUSTIC.en.md) implements native ORT comparisons with complete UNTRAINED architectures; [trained reconstruction](SOULX_REFERENCE.en.md) is also checked; user components and App binding remain pending |
+| S-05 | HiFT F0 / neural spectra → 24k waveform | Native NSF/STFT/ISTFT now feed the research F0/learned-source/neural-spectrum executor; [trained reconstruction](SOULX_REFERENCE.en.md) is now checked; complete speech quality and App binding remain pending |
 | S-06 | Turn concatenation, artifacts, background API and resource admission | Complete executor must join the shared foundation; no model WAV produced in this update |
 
 A community language-backbone GGUF alone cannot synthesize speech. Users must explicitly select, download/import and manage the eventual weights, tokenizers, acoustic graphs, speaker components, codecs and their licenses. They are not APK contents; installation, upgrades, browsing and missing components initiate no model transfer. Every inference stage must run on the same Android phone without ROOT or off-device inference/fallbacks.
@@ -48,7 +48,7 @@ Prepare the existing project-local NDK r30/CMake/Ninja toolchain; host checks ne
 
 [Numerical evidence](../verification/development/soulx-dsp.json) and the [ARM64 compilation receipt](../verification/development/soulx-dsp-arm64.json) record scope, errors and input hashes separately. Comparisons cover one-second, nonintegral-duration and 15-second references; 1/7/50/1500/6000 mel-frame NSF inputs include 30/120seconds. Additional checks execute the actual upstream 15-step Euler body, spectral synthesis and invalid-input guards. Inputs are synthetic PCM, noise, F0 and a non-model estimator.
 
-This is numerical/compilation evidence: **zero trained checkpoints loaded, zero model audio outputs, zero physical Android tests.** It establishes no voice quality, intelligibility, long-form model quality, phone throughput or background endurance. The ARM64 artifact is an unregistered static library retained in `build/`; it installs no engine or downloaded runtime code.
+This DSP suite alone is numerical/compilation evidence; [trained component checks](SOULX_REFERENCE.en.md) are recorded separately: **zero trained checkpoints loaded, zero model audio outputs, zero physical Android tests.** It establishes no voice quality, intelligibility, long-form model quality, phone throughput or background endurance. The ARM64 artifact is an unregistered static library retained in `build/`; it installs no engine or downloaded runtime code.
 
 ## Sources and licenses
 
@@ -56,4 +56,4 @@ This is numerical/compilation evidence: **zero trained checkpoints loaded, zero 
 
 ## Remaining gates
 
-Complete S-02–S-06, up-to-four-speaker/long-form protocols, complete user model packages, fresh offline speech, resource/quality/cancellation/three-load-cycle evidence and phone background acceptance within the same complete v0.3.0. F-01–F-12, every frozen 01–14/16/17 subtarget, SD1.5/SDXL LoRA, nine MOSS variants, old LTX 2B 0.9.8 distilled, A1–A11/R-01–R-05 and final Release gates remain intact without automatic deferral.
+Complete S-02 user bundles/App binding and the full S-03–S-06 user pipeline, up-to-four-speaker/long-form protocols, complete user model packages, fresh offline speech, resource/quality/cancellation/three-load-cycle evidence and phone background acceptance within the same complete v0.3.0. F-01–F-12, every frozen 01–14/16/17 subtarget, SD1.5/SDXL LoRA, nine MOSS variants, old LTX 2B 0.9.8 distilled, A1–A11/R-01–R-05 and final Release gates remain intact without automatic deferral.

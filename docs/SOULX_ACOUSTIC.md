@@ -2,7 +2,7 @@
 
 [English](SOULX_ACOUSTIC.en.md) · [音频前端与 DSP](SOULX_DSP.md) · [完整版本要求](MULTIMODAL_RELEASE_PLAN.md) · [编号交付](releases/v0.3.0-dev.20-soulx-acoustic.md)
 
-本次源码更新在 [research/soulx_acoustic](../research/soulx_acoustic/acoustic.hpp) 实现了 SoulX **声学部分**的本地执行：语义码和参考特征 → Flow → HiFT → 单声道 24kHz PCM。四份 ONNX 使用完整上游网络结构；验证参数是未训练的合成夹具。它还不是从文字 / 参考 WAV 开始的完整 SoulX，也没有注册到 APK、模型目录、共用任务或 HTTP API。开发 APK 仍为 dev.20，公开 Release 仍为 v0.2.0；13 号完整模型目标仍未关闭。
+本次源码更新在 [research/soulx_acoustic](../research/soulx_acoustic/acoustic.hpp) 实现了 SoulX **声学部分**的本地执行：语义码和参考特征 → Flow → HiFT → 单声道 24kHz PCM。四份 ONNX 使用完整上游网络结构；本文244项回归使用未训练的合成夹具。[后续训练参考 /声学重建](SOULX_REFERENCE.md)另加载真实 S3 /CAMP /Flow /HiFT并记录145 /253项独立证据。它还不是从文字 / 参考 WAV 开始的完整 SoulX，也没有注册到 APK、模型目录、共用任务或 HTTP API。开发 APK 仍为 dev.20，公开 Release 仍为 v0.2.0；13 号完整模型目标仍未关闭。
 
 ## 已实现的链路
 
@@ -25,7 +25,7 @@
 
 四份图、四个 sidecar、40字节学习参数和 manifest 都是模型资产。它们留在用户 / 开发者明确指定的目录，**不进 APK、不自动下载、不在安装 / 升级 / 浏览 / 缺组件时补齐**。未来接入 App 仍需使用现有经过校验的 bundle / lease 层管理这些资产；本研究 CLI 不是完整资产验签器。原生图加载器另验证固定 IO 契约和外部权重位置 / 范围，只接受对应的 `<graph>.data`，拒绝越界或路径逃逸。
 
-本模块尚不执行 S3Tokenizer、CAMPPlus、Qwen3 语言主干 / tokenizer，也不处理多说话人文本协议或多轮合并。不能仅凭这组声学图完成可用 TTS。App 的平级模型、功能 / 基座标签、推荐顺序和每模型参数逻辑均沿用现有实现；没有为未完成执行器添加“可运行”标签。
+[独立参考执行器](SOULX_REFERENCE.md)已实现 S3Tokenizer /CAMPPlus，且已用于训练声学重建。本声学模块仍不执行 Qwen3 语言主干 /tokenizer，不处理多说话人文本协议或多轮合并。不能仅凭这组声学图完成可用 TTS。App 的平级模型、功能 / 基座标签、推荐顺序和每模型参数逻辑均沿用现有实现；没有为未完成执行器添加“可运行”标签。
 
 ## 开发复现
 
@@ -53,12 +53,12 @@ python tools/check_repository.py --development
 
 完整 Flow **112,549,360** 参数、HiFT **20,821,295** 参数，均为合成未训练参数；实际运行本转换器，再调用原始上游 Flow / HiFT `forward` 生成独立基准，未用缩层网络或微型常数图替代。参考 / 总语义码分别为3/9和4/17，与导出示例长度12不同；原生执行顺序0→1→0，比较 mu / spks、15步速度、mel、F0、学习源和最终 PCM。还检查非法请求、外部权重路径逃逸、阶段前取消、迭代中取消及 ORT 真正终止的运行。证据中的 PCM 是合成测试产物，不作为音色演示。
 
-本轮 **244项限定检查、12次实际主机子进程、57次完成的 ORT 图执行、1次实际运行终止、3次声学输出**通过，63项阶段比较的最大速度误差为 `1.109e-4`，最终 PCM 最大绝对误差为 `1.733e-7`。四图和数据等9个资产合计582,584,557字节，均只在忽略的开发目录。Android 未注册 CLI 为518,416字节；该尺寸不含22,249,560字节既有 ORT，更不代表整模型内存占用。
+本轮 **244项限定检查、12次实际主机子进程、57次完成的 ORT 图执行、1次实际运行终止、3次声学输出**通过，63项阶段比较的最大速度误差为 `1.109e-4`，最终 PCM 最大绝对误差为 `1.733e-7`。四图和数据等9个资产合计582,584,557字节，均只在忽略的开发目录。共用ORT策略后重新编译的 Android未注册CLI为520,448字节；该尺寸不含22,249,560字节既有 ORT，更不代表整模型内存占用。
 
-主机 ORT1.24.3 DLL 的版本和 SHA256 独立固定；Android 链接既有 ORT1.28.2 CPU 库，使用兼容 C API17，检查 ARM64 / API28 / 16KiB ELF 及导入。**Windows 执行与 Android 编译不能替代 Android 执行。训练 checkpoint 加载0、完整 SoulX 推理0、语音质量验证0、真机0。** 所有相关证据仍为 `release_ready=false`。
+主机 ORT1.24.3 DLL 的版本和 SHA256 独立固定；Android 链接既有 ORT1.28.2 CPU 库，使用兼容 C API17，检查 ARM64 / API28 / 16KiB ELF 及导入。**Windows 执行与 Android 编译不能替代 Android 执行。本文未训练244项套件的训练checkpoint加载0；另有[训练参考 /声学重建](SOULX_REFERENCE.md)组件证据。完整SoulX推理0、语音质量验证0、真机0。** 所有相关证据仍为 `release_ready=false`。
 
 ## 来源、许可与剩余门槛
 
 [锁定来源](../third_party/soulx-acoustic-source-lock.json)含 SoulX、KISS FFT、ORT 和 Snake 的修订 / 文件 hash，以及导出依赖来源 hash。[归属与许可](../research/soulx_acoustic/NOTICE)保留 Apache-2.0、ORT MIT 和 Snake MIT。上游 SoulX 提到了未随其 checkout 提供的 `incl_licenses`；本仓库从独立固定的 EdwardDixon/snake 原仓库保留实际 MIT 原文，没有伪造缺失文件。模型权重与后续转换包的来源 / 许可仍需单独检查。
 
-同一完整 v0.3.0 内继续完成：S3 / CAMP 模型导出和原生运行、Qwen3 / tokenizer / 语义码协议、最多四说话人 / 历史窗口 / 长文本、完整显式用户模型包与任务 / API 绑定、新输入断网真实权重输出 / 质量 / 资源测试及物理 Android 验收。F-01–F-12、原有文本、01–14 / 16 / 17 全部冻结子目标、九种 MOSS、SD1.5 / SDXL LoRA、旧 LTX-Video 2B 0.9.8 distilled、A1–A11 / R-01–R-05 和完整 Release 均不缩减或自动顺延。
+同一完整 v0.3.0 内继续完成：S3 /CAMP用户资产与App绑定（导出 /原生研究运行已见[参考指南](SOULX_REFERENCE.md)）、Qwen3 / tokenizer / 语义码协议、最多四说话人 / 历史窗口 / 长文本、完整显式用户模型包与任务 / API 绑定、新输入断网真实权重输出 / 质量 / 资源测试及物理 Android 验收。F-01–F-12、原有文本、01–14 / 16 / 17 全部冻结子目标、九种 MOSS、SD1.5 / SDXL LoRA、旧 LTX-Video 2B 0.9.8 distilled、A1–A11 / R-01–R-05 和完整 Release 均不缩减或自动顺延。

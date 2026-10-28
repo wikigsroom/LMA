@@ -1,5 +1,11 @@
 # Changelog / 更新记录
 
+## dev.20 source follow-up — trained SoulX reference/acoustic reconstruction / unpublished
+
+- 新增完整训练S3Tokenizer v2 / CAMPPlus原生参考提取，完整ONNX / tensor身份保持，显式开发权重下载与严格来源锁；145项 /15主机子进程 /10图 /2实际终止。Native trained references with exact publisher identity and explicit asset preparation.
+- 使用真实Flow / HiFT和原生训练参考完成253项声学重建、54图 /63阶段 /12隔离比较；定位F0浮点相位差，独立RMSE /SNR门槛，保留未训练244项原阈值。Shared CPU ORT contracts and Android ARM64/API28/16KiB compilation pass.
+- [双语方案与复现](docs/SOULX_REFERENCE.md) / [English](docs/SOULX_REFERENCE.en.md) / [编号完成与待办](docs/releases/v0.3.0-dev.20-soulx-reference.md)。目标码来自合成PCM，未运行Qwen3 /完整TTS、未接App、无手机 /质量验收；APK /媒体仍为dev.20，公开Release仍v0.2.0，所有冻结范围保留在同一完整v0.3.0。
+
 ## dev.20 source follow-up — full SoulX acoustic networks / unpublished
 
 新增完整 Flow / HiFT四图离线导出与原生 ORT/CPU声学链路、学习源、顺序会话 / 运行中取消，修复参考前缀帧预算。244项限定检查、12次主机子进程、57次完成图执行、1次实际 ORT终止；均为完整结构的未训练参数，不是完整 SoulX语音。ARM64/API28/16KiB编译及 DSP155项检查通过。双语方案、来源许可、独立证据和编号交付同步；APK / UI媒体沿用dev.20，不创建 Release。

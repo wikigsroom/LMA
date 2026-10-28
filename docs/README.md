@@ -77,3 +77,6 @@
 
 
 - [dev.19：旧 Local / Realtime / SoundEffect（双语编号交付）](releases/v0.3.0-dev.19.md) · [RQ 中文指南](MOSS_RQ_ENGINE.md) / [English](MOSS_RQ_ENGINE.en.md) · [固定发布者 / codec / tokenizer 核对](../catalogue/evidence/moss-rq-publishers.json)。
+
+- SoulX完整声学网络：[中文](SOULX_ACOUSTIC.md) / [English](SOULX_ACOUSTIC.en.md)；完整结构未训练回归与原生执行。
+- SoulX训练参考 /声学重建：[中文](SOULX_REFERENCE.md) / [English](SOULX_REFERENCE.en.md)；[双语编号实现与待办](releases/v0.3.0-dev.20-soulx-reference.md)，明确主机组件 /完整TTS /App /手机边界。

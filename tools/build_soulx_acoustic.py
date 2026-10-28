@@ -18,7 +18,7 @@ def main():
     if hashlib.sha256((ROOT/'build/native-src/sd-cpp/thirdparty/json.hpp').read_bytes()).hexdigest()!=lock['json_header_sha256']:raise RuntimeError('Pinned JSON header changed')
     runtime=ROOT/'app/src/main/jniLibs/arm64-v8a'/lock['android_runtime']['file'];runtime_data=runtime.read_bytes()
     if len(runtime_data)!=lock['android_runtime']['bytes'] or hashlib.sha256(runtime_data).hexdigest()!=lock['android_runtime']['sha256']:raise RuntimeError('Pinned Android ORT runtime changed')
-    inputs=fingerprint('research/soulx_acoustic','research/soulx','native/moss_nano/onnx_external.hpp','tools/build_soulx_acoustic.py','tools/fetch_soulx_dsp.py','third_party/soulx-acoustic-source-lock.json')
+    inputs=fingerprint('research/soulx_acoustic','research/soulx_ort','research/soulx','native/moss_nano/onnx_external.hpp','tools/build_soulx_acoustic.py','tools/fetch_soulx_dsp.py','third_party/soulx-acoustic-source-lock.json')
     out=ROOT/'build/soulx-acoustic-arm64';out.mkdir(exist_ok=True);(out/'receipt.json').unlink(missing_ok=True)
     drive=next((c+':' for c in 'RSTUVWXYZ' if not Path(c+':/').exists()),None)
     if not drive:raise RuntimeError('No free ASCII build alias')

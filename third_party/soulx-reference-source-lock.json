@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "scope": "Unregistered SoulX reference preprocessing and complete publisher S3 v2/CAMPPlus ONNX execution; not complete TTS or APK integration",
+  "sources": [
+    {
+      "name": "soulx-podcast",
+      "url": "https://github.com/Soul-AILab/SoulX-Podcast.git",
+      "revision": "5ac9c0e1cfe596396200c7d38e3fd53b7b3fbf4b",
+      "license": "Apache-2.0",
+      "reviewed_files": {
+        "LICENSE": "2d88353fe7c7e7dde2a5ea2bc00db9f4808127c938395fcfd1a4d88a268ea3a5",
+        "soulxpodcast/utils/audio.py": "2eac2edc4903986a0ede1dd51eda9cc4e6a4f03f029c4d82d62e8cd91f913bb8",
+        "soulxpodcast/utils/dataloader.py": "6d8aac0f5cd2f876b3c7b7f15ed011bee8d76c84394f2d5c32089f3b4b820ad3",
+        "soulxpodcast/models/modules/flow.py": "69f90fa8d4198fc73ba0f10034238f7636641260dcfcde3f4c5d3dc9018352d6",
+        "soulxpodcast/models/modules/hifigan.py": "0013cd03e4b1774fa2f9c30f50071f9eeb294d0a3251f8aa7227f8871823fa52",
+        "soulxpodcast/models/modules/hifigan_components/layers.py": "ff4498fb0350bf32c9c617cb5a8ac7b150a6a82d88359fd17b968800f51fb75a",
+        "requirements.txt": "27463f6fa6cdc32c439d7c7059cd05e1db5c4e1e49ae0f944530b0c9616e384a",
+        "soulxpodcast/models/modules/sampler.py": "ce4620ab14256131837d55406d3e784a9f83705028564ac1df55febbaf647dbf",
+        "soulxpodcast/models/modules/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "soulxpodcast/models/modules/flow_components/estimator.py": "9fc0ddf02b33949551b03d833466bb50bf04d5c1c8929bd14242e7b65a4c32ca",
+        "soulxpodcast/models/modules/flow_components/upsample_encoder.py": "1685497669a1e75d6149b6d41da070f111e9457c54bc0b5e74a175de5a204532",
+        "soulxpodcast/models/modules/flow_components/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "soulxpodcast/models/modules/hifigan_components/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "kissfft",
+      "url": "https://github.com/mborgerding/kissfft.git",
+      "revision": "febd4caeed32e33ad8b2e0bb5ea77542c40f18ec",
+      "license": "BSD-3-Clause",
+      "reviewed_files": {
+        "COPYING": "655a089086af62664ac16ff6a0eef27cccb02d13e0378fbf3e80fdbc64bfdd34",
+        "LICENSES/BSD-3-Clause": "91333dec2b41bc2d3dc15d6bc819e0da1e6854b6142d4910e8e0c7c82d2da727",
+        "kiss_fft.h": "39b4ab649284a0e25e74cc8ef8d1c4e7d504e4b184ac28c70379f3e8fd494c1d",
+        "kiss_fft.c": "364f68c78133e1b87e2bc4cf538f4fd8ac175c152bf1ef17812bf76fac7ef520",
+        "_kiss_fft_guts.h": "cba74981d3755cdf899a6211d4c0c4bf010d361296aa84a0c4205bc22a89e3fd",
+        "kiss_fft_log.h": "07e0a1c0d3abebe68a43ddee0ed777d4ce8667ecdd36be5e592886ccd6eab27c",
+        "kiss_fftr.h": "c59d02899e23df4da6c44ed0e85fb6bd5702a79bbbe576cda8fd2eb01a9cbbed",
+        "kiss_fftr.c": "a758e1387e1ee96331cac5cdf7965894ab4c0ffb39b910167b84e5b96e2a3109"
+      }
+    },
+    {
+      "name": "onnxruntime-headers",
+      "url": "https://github.com/microsoft/onnxruntime.git",
+      "revision": "33ca9628233dc8f002435e868d4c2e9f82766ca1",
+      "version": "1.28.2",
+      "reviewed_files": {
+        "include/onnxruntime/core/session/onnxruntime_c_api.h": "e3a01cdb382b2ba52267bf8a1a40d60b1197a1bac4da55667fe4d84e244f589a",
+        "include/onnxruntime/core/session/onnxruntime_cxx_api.h": "0765fc56924999b06b4c01f665d8fbd368582fed7a856a22ce1ed686a73e8be2",
+        "include/onnxruntime/core/session/onnxruntime_error_code.h": "6690bf0df3f7a7a9c4f38597dc3232042e432b48ea166cb5672f72a49d32b742",
+        "include/onnxruntime/core/session/onnxruntime_ep_c_api.h": "612dd6c3b5c7fa8f936fe07e1d8da4dc4727890011305b4f67279b132aa1c8e0",
+        "LICENSE": "c250d6278f0b47a6439fb7592b08b58a55eb9f535aa49a1db63211c3f982b674",
+        "include/onnxruntime/core/session/onnxruntime_cxx_inline.h": "e6c0478ab86467cfb4ac8694df3081ad1d42585c16f024d107638fb197e92f4a",
+        "include/onnxruntime/core/session/onnxruntime_float16.h": "9b45e1bc0fe19d9d53f272b168f5cab616e26eb00136c3a1b78f394c9b1b6757"
+      }
+    },
+    {
+      "name": "s3tokenizer",
+      "url": "https://github.com/xingchensong/S3Tokenizer.git",
+      "revision": "9bf5d845b5e043ffaf4657f4942939091c7697a2",
+      "license": "Apache-2.0",
+      "reviewed_files": {
+        "LICENSE": "1eb85fc97224598dad1852b5d6483bbcf0aa8608790dcc657a5a2a761ae9c8c6",
+        "s3tokenizer/utils.py": "a6a5c628ce56c6a6a754a40c14adef14238d47eff0eaf8cbbc395bd5bcb2d7fe",
+        "s3tokenizer/assets/mel_filters.npz": "7450ae70723a5ef9d341e3cee628c7cb0177f36ce42c44b7ed2bf3325f0f6d4c",
+        "s3tokenizer/__init__.py": "ff86255ff0d0640353525abb427a165d8685abd47c751c22f06952455b590456",
+        "s3tokenizer/model.py": "bbee956e0b4db8dcde9713d2731f87dc161894668d3a40b2fb7f5988a238ea82",
+        "s3tokenizer/model_v2.py": "a02934c6a10c8baa749979b5600055865d78d1e72e0cfad06690e32fcaead24e"
+      }
+    }
+  ],
+  "json_header_sha256": "2dd8db723cff3e44198e14d6038ea6443dc6171a564bb82cd6ee81f0edc316e5",
+  "onnx_version": "1.20.1",
+  "c_api_minimum": 17,
+  "host_runtime": {
+    "version": "1.24.3",
+    "file": "onnxruntime.dll",
+    "sha256": "8cada464a0c1d22f5d8fc5767424b545fbfa208285940d0da3441de9647ee207",
+    "provenance": "existing host-installed PyPI distribution; test only, not APK payload"
+  },
+  "android_runtime": {
+    "file": "libonnxruntime.so",
+    "bytes": 22249560,
+    "sha256": "33847ad43bffe204699fd4a27f7f3603452a8cdaf2f9a44983a0bc31ffcf2da1",
+    "android_api_notes": [
+      27
+    ],
+    "provenance": "upstream_release_prebuilt"
+  },
+  "publisher_models": [
+    {
+      "file": "campplus.onnx",
+      "repo": "Soul-AILab/SoulX-Podcast-1.7B",
+      "revision": "c2af285fc7ec68a4d3402deae7d2e215ab67fb32",
+      "sha256": "a6ac6a63997761ae2997373e2ee1c47040854b4b759ea41ec48e4e42df0f4d73",
+      "bytes": 28303423,
+      "license": "Apache-2.0",
+      "primary_origin": "https://huggingface.co"
+    },
+    {
+      "file": "speech_tokenizer_v2.onnx",
+      "repo": "FunAudioLLM/CosyVoice2-0.5B",
+      "revision": "23778f84b1b6dd789e1b5092c3ec1145639ee1c3",
+      "sha256": "d43342aa12163a80bf07bffb94c9de2e120a8df2f9917cd2f642e7f4219c6f71",
+      "bytes": 496082973,
+      "license": "Apache-2.0",
+      "primary_origin": "https://huggingface.co"
+    }
+  ],
+  "model_assets_packaged": false
+}

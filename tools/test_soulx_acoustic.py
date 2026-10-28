@@ -7,6 +7,7 @@ from pathlib import Path
 import numpy as np
 from evidence import fingerprint,current
 from export_soulx import environment
+from soulx_native_checks import compile_host
 ROOT=Path(__file__).resolve().parents[1]
 OUT=ROOT/'build/soulx-acoustic-tests'
 
@@ -54,39 +55,12 @@ def fixtures(force=False):
     return json.loads((OUT/'references/cases.json').read_text(encoding='utf-8'))
 
 
-def compile_host(lock):
-    host=OUT/'host';host.mkdir(exist_ok=True)
-    if hashlib.sha256((ROOT/'build/native-src/sd-cpp/thirdparty/json.hpp').read_bytes()).hexdigest()!=lock['json_header_sha256']:raise RuntimeError('Pinned JSON header changed')
-    distribution=importlib.metadata.distribution('onnxruntime')
-    dll=Path(distribution.locate_file('onnxruntime/capi/onnxruntime.dll'))
-    if distribution.version!=lock['host_runtime']['version'] or hashlib.sha256(dll.read_bytes()).hexdigest()!=lock['host_runtime']['sha256']:raise RuntimeError('Host test runtime changed')
-    shutil.copyfile(dll,host/'onnxruntime.dll')
-    (host/'ort.def').write_text('LIBRARY onnxruntime.dll\nEXPORTS\nOrtGetApiBase\n',encoding='ascii')
-    setup=Path(os.environ.get('LMA_VCVARS',r'C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Auxiliary\Build\vcvars64.bat'))
-    if not setup.is_file():raise RuntimeError('Native MSVC compiler required')
-    drive=next((c+':' for c in 'RSTUVWXYZ' if not Path(c+':/').exists()),None)
-    if not drive:raise RuntimeError('No free ASCII build alias')
-    subprocess.run(['subst',drive,str(ROOT)],check=True,capture_output=True)
-    try:
-        script=host/'compile.cmd';script.write_text('@echo off\ncall "'+str(setup)+'" >nul\nif errorlevel 1 exit /b %errorlevel%\n'
-            'lib /nologo /def:ort.def /machine:x64 /out:onnxruntime.lib\nif errorlevel 1 exit /b %errorlevel%\n'
-            'cl /nologo /O2 /W4 /fp:precise /EHsc /std:c++17 /DNDEBUG /I../../../build/native-src/kissfft '
-            '/I../../../build/native-src/onnxruntime-headers/include/onnxruntime/core/session /I../../../build/native-src/sd-cpp/thirdparty '
-            '../../../research/soulx_acoustic/acoustic.cpp ../../../research/soulx_acoustic/driver.cpp ../../../research/soulx/dsp.cpp '
-            '../../../build/native-src/kissfft/kiss_fft.c ../../../build/native-src/kissfft/kiss_fftr.c onnxruntime.lib /Fe:soulx-acoustic-test.exe\n',encoding='utf-8')
-        result=subprocess.run(['cmd','/d','/c','compile.cmd'],cwd=drive+'/build/soulx-acoustic-tests/host',capture_output=True,timeout=180)
-        (host/'compile.log').write_bytes(result.stdout+result.stderr)
-        if result.returncode:raise RuntimeError('Inspect build/soulx-acoustic-tests/host/compile.log')
-    finally:subprocess.run(['subst',drive,'/D'],check=True,capture_output=True)
-    return host/'soulx-acoustic-test.exe'
-
-
 def main():
     parser=argparse.ArgumentParser();parser.add_argument('--rebuild-fixtures',action='store_true');args=parser.parse_args()
     environment();OUT.mkdir(exist_ok=True);(OUT/'results.json').unlink(missing_ok=True)
-    inputs=fingerprint('research/soulx_acoustic','research/soulx','native/moss_nano/onnx_external.hpp','tools/soulx_acoustic.py','tools/export_soulx.py','tools/fetch_soulx_dsp.py','tools/soulx_acoustic_fixture.py','tools/test_soulx_acoustic.py','third_party/soulx-acoustic-source-lock.json')
+    inputs=fingerprint('research/soulx_acoustic','research/soulx_ort','research/soulx','native/moss_nano/onnx_external.hpp','tools/soulx_acoustic.py','tools/export_soulx.py','tools/fetch_soulx_dsp.py','tools/soulx_acoustic_fixture.py','tools/test_soulx_acoustic.py','tools/soulx_native_checks.py','third_party/soulx-acoustic-source-lock.json')
     lock=json.loads((ROOT/'third_party/soulx-acoustic-source-lock.json').read_text(encoding='utf-8'))
-    cases=fixtures(args.rebuild_fixtures);exe=compile_host(lock);checks=0;children=0;graphs=0;metrics=[];runs=[]
+    cases=fixtures(args.rebuild_fixtures);exe=compile_host(lock,OUT,'soulx_acoustic');checks=0;children=0;graphs=0;metrics=[];runs=[]
     result_dir=OUT/'native-results';result_dir.mkdir(exist_ok=True)
     def native(case,name,expected_ok=True,model_dir=None):
         nonlocal children,graphs,checks

@@ -9,10 +9,10 @@
 | 编号 | 完整 SoulX 阶段 | 本轮状态 |
 | --- | --- | --- |
 | S-01 | 参考 WAV → 16k S3 特征 / CAMPPlus 特征 / 24k Flow 特征 | 已实现原生计算及与上游数值比较；WAV 仍由未来工作进程接入现有输入库 |
-| S-02 | S3Tokenizer → 参考语义码；CAMPPlus → 192 维说话人向量 | 图、用户资产和执行绑定待接入；仅计算前端不产生这些模型输出 |
+| S-02 | S3Tokenizer → 参考语义码；CAMPPlus → 192 维说话人向量 | 已在[独立参考执行器](SOULX_REFERENCE.md)运行完整训练图；本DSP库只计算前端，用户包 /App绑定仍待完成 |
 | S-03 | Qwen3 主干 → 目标语义码；多说话人、跨轮历史与 EOS | 完整 GGUF / tokenizer 协议、生成、历史窗口与任务接口待实现 |
-| S-04 | Flow encoder → 条件张量；Flow estimator → 速度 | 已有[完整声学四图后续实现](SOULX_ACOUSTIC.md)及未训练完整结构 / 原生 ORT 比较；用户组件和 App 执行绑定仍待接入 |
-| S-05 | HiFT F0 / 神经谱模型 → 24k 波形 | 原生 NSF / STFT / ISTFT 已接后续 F0 / 学习 source merge / 神经谱研究执行器；实际训练权重、完整语音质量与 App 绑定仍待完成 |
+| S-04 | Flow encoder → 条件张量；Flow estimator → 速度 | 已有[完整声学四图后续实现](SOULX_ACOUSTIC.md)及未训练完整结构 / 原生 ORT 比较；另有[训练权重重建](SOULX_REFERENCE.md)；用户组件和App绑定仍待接入 |
+| S-05 | HiFT F0 / 神经谱模型 → 24k 波形 | 原生 NSF / STFT / ISTFT 已接后续 F0 / 学习 source merge / 神经谱研究执行器；[实际训练权重重建](SOULX_REFERENCE.md)已验证；完整语音质量与App绑定仍待完成 |
 | S-06 | 合并多轮结果、任务产物、后台 API 与资源准入 | 待完整执行器接入共用基座；本轮未生成模型 WAV |
 
 只下载社区的语言主干 GGUF 并不能完成语音合成。后续实际权重、tokenizer、声学图、说话人组件、codec 及其许可证仍由用户显式选择、下载 / 导入、管理；不打包进 APK，不在安装、升级、浏览或缺组件时自动获取。全部推理仍必须在同一部 Android 手机执行，无 ROOT、无其他设备推理或回退。
@@ -48,7 +48,7 @@ python tools/check_repository.py --development
 
 当前[数值证据](../verification/development/soulx-dsp.json)和[ARM64 编译回执](../verification/development/soulx-dsp-arm64.json)分别记录范围、误差与输入 hash。比较涵盖1秒、非整秒、15秒参考音频，以及1 / 7 / 50 / 1500 / 6000 mel帧的 NSF（含30秒 / 120秒）；另比较实际上游15步 Euler 函数、谱合成和异常输入。输入为合成 PCM、噪声、F0 与非模型 estimator。
 
-这是数值和编译证据：**训练权重加载0、模型音频产物0、物理 Android0；不能证明音色、可懂度、长文本质量、真机实时率或后台耐久。** ARM64 产物是未注册的静态库，留在 `build/`，不安装新引擎或下载运行时代码。
+仅此DSP套件是数值和编译证据；另有[独立训练组件检查](SOULX_REFERENCE.md)：**训练权重加载0、模型音频产物0、物理 Android0；不能证明音色、可懂度、长文本质量、真机实时率或后台耐久。** ARM64 产物是未注册的静态库，留在 `build/`，不安装新引擎或下载运行时代码。
 
 ## 来源与许可
 
@@ -56,4 +56,4 @@ python tools/check_repository.py --development
 
 ## 仍须完成
 
-同一个完整 v0.3.0 中继续完成 S-02–S-06、最多四说话人 / 长文本协议、完整用户模型包和新输入断网语音、资源 / 质量 / 取消 / 三次装卸与真机后台测试。其他 F-01–F-12、01–14 / 16 / 17 冻结子目标、SD1.5 / SDXL 两类 LoRA、九种 MOSS、旧 LTX 2B 0.9.8 distilled、A1–A11 / R-01–R-05 及最终 Release 门槛均不缩减、不默认顺延。
+同一个完整 v0.3.0 中继续完成S-02的用户包 /App绑定及S-03–S-06的完整用户链路、最多四说话人 / 长文本协议、完整用户模型包和新输入断网语音、资源 / 质量 / 取消 / 三次装卸与真机后台测试。其他 F-01–F-12、01–14 / 16 / 17 冻结子目标、SD1.5 / SDXL 两类 LoRA、九种 MOSS、旧 LTX 2B 0.9.8 distilled、A1–A11 / R-01–R-05 及最终 Release 门槛均不缩减、不默认顺延。

@@ -295,4 +295,4 @@ LMA 自有代码使用 MIT 许可。llama.cpp 及其依赖保留各自许可；�
 
 源码后续更新（APK 仍为 dev.20）：[SoulX 原生音频计算底层](docs/SOULX_DSP.md)加入三种参考前端、sinc 重采样、Flow 数值更新和 HiFT 频谱 / NSF；153 项限定检查及 Android ARM64/API28 静态库编译，覆盖30 / 120秒 F0。该库尚未接入 APK，完整 SoulX 执行器、模型输出与真机证据仍待完成。推荐、标签、用户自选下载与现有截图 / GIF 不变；见[本轮编号交付和完整待办](docs/releases/v0.3.0-dev.20-soulx-dsp.md)。
 
-源码后续更新（APK仍为dev.20）：[SoulX完整声学网络](docs/SOULX_ACOUSTIC.md)已实现四图离线导出、原生 ORT/CPU 串联、学习源参数、顺序会话与实际运行取消。244项限定检查 / 12次主机子进程 / 57次完成图执行，与原始上游完整网络比较；使用未训练合成参数。ARM64/API28 / 16KiB编译通过，DSP新增参考前缀预算后155项通过。S3 / CAMP / Qwen3与完整任务绑定、真实权重语音质量和物理 Android 仍待完成；未接入 APK、未创建 Release。详见[编号实现 / 完整待办](docs/releases/v0.3.0-dev.20-soulx-acoustic.md)。
+源码后续更新（APK仍为dev.20）：[SoulX训练参考模型与声学重建](docs/SOULX_REFERENCE.md)已运行真实 S3Tokenizer v2 / CAMPPlus / Flow / HiFT 权重。参考145项、训练重建253项通过，原始图 /张量身份、63组阶段和12组相同输入比较均核对；未训练声学244项、DSP155项回归仍通过。参考 /声学执行器通过 ARM64/API28/16KiB编译。目标码仍来自合成PCM编码；Qwen3文字到语义码、完整TTS、App绑定与真机仍待完成。研究执行器不进APK、模型资产不进Git，不创建提前Release；见[本轮编号实现与完整待办](docs/releases/v0.3.0-dev.20-soulx-reference.md)。

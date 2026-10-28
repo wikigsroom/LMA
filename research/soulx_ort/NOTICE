@@ -1,0 +1,12 @@
+LMA shared SoulX ORT/CPU research policy (not an APK engine)
+
+Original controller/types/log-isolation code: Copyright 2026 LMA contributors,
+MIT, under the repository LICENSE. This code shares sequential session loading,
+C API17 initialization, CPU settings, external-data guards, strict IO layouts,
+finite/shape checks and RunOptions termination across reference/acoustic paths.
+
+Separately pinned ONNX Runtime headers/runtime: MIT, Copyright (c) Microsoft
+Corporation. All rights reserved. See LICENSE-ONNX-RUNTIME-MIT. Their exact pins
+remain in third_party/soulx-acoustic-source-lock.json and
+third_party/soulx-reference-source-lock.json. No host DLL, model graph/tensor
+or reference audio is redistributed by this source module.

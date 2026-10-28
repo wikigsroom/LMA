@@ -95,3 +95,5 @@ dev.17 新增检查 `python tools/test_openmoss.py`；其主机子进程、结�
 SoulX DSP 源码后续更新不新增 APK / Release：执行 `python tools/test_soulx_dsp.py` 和 `python tools/build_soulx_dsp.py`，由开发导出与仓库检查记录未注册静态库及数值证据。它不关闭13号完整模型门槛。The unregistered source library adds scoped evidence only; it does not close target13 or any phone/Release gate. See [中文](SOULX_DSP.md) / [English](SOULX_DSP.en.md).
 
 SoulX声学后续同样不发布 APK / Release：运行 `python tools/test_soulx_acoustic.py`、`python tools/build_soulx_acoustic.py`，并重跑 DSP检查和 ARM64静态编译后导出开发证据。完整结构未训练夹具、原生 ORT主机运行 / 真正终止和 ARM64编译分别核对；不能关闭13号整模型或手机门槛。The acoustic follow-up remains unregistered and does not alter complete Release gates. See [中文](SOULX_ACOUSTIC.md) / [English](SOULX_ACOUSTIC.en.md).
+
+SoulX训练参考 /声学重建后续：先显式准备发布者权重，再顺序执行 `python tools/test_soulx_reference.py`、`python tools/test_soulx_trained.py`、`python tools/build_soulx_reference.py`；共享ORT修改需重跑声学244项和ARM64编译。开发导出 /仓库检查同时核对145参考 /253训练重建证据及完整模型未通过标记，绝不凭这些主机 /编译检查发布Release。Trained component execution does not close complete TTS, quality, App or phone gates. See [中文](SOULX_REFERENCE.md) / [English](SOULX_REFERENCE.en.md) / [编号交付](releases/v0.3.0-dev.20-soulx-reference.md).

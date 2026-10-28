@@ -1,0 +1,24 @@
+{
+  "schema": "lma.developer-trained-assets/1",
+  "scope": "Explicit developer-only original SoulX acoustic checkpoints; no implicit download, APK payload or full TTS acceptance",
+  "models": [
+    {
+      "file": "flow.pt",
+      "repo": "Soul-AILab/SoulX-Podcast-1.7B",
+      "revision": "c2af285fc7ec68a4d3402deae7d2e215ab67fb32",
+      "sha256": "ff4c2f867674411e0a08cee702996df13fa67c1cd864c06108da88d16d088541",
+      "bytes": 450575567,
+      "license": "Apache-2.0"
+    },
+    {
+      "file": "hift.pt",
+      "repo": "Soul-AILab/SoulX-Podcast-1.7B",
+      "revision": "c2af285fc7ec68a4d3402deae7d2e215ab67fb32",
+      "sha256": "3386cc880324d4e98e05987b99107f49e40ed925b8ecc87c1f4939432d429879",
+      "bytes": 83390254,
+      "license": "Apache-2.0"
+    }
+  ],
+  "primary_origin": "https://huggingface.co",
+  "model_assets_packaged": false
+}
