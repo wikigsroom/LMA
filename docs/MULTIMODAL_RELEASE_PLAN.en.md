@@ -205,3 +205,5 @@ This update consolidates the previous multi-release plan into one complete next-
 The public APK remains v0.2.0. See [implementation status](DEVELOPMENT.en.md) for partial foundation code, native compilation and development UI media in 0.3.0-dev. Complete model/API/device acceptance is unfinished; no v0.3.0 tag/Release exists. Outstanding work remains blocking in this release. The product target stays **flat library → task form → on-phone queue → artifact library**; old canvas/node JSON remains historical and non-executable.
 
 Current dev.11 adds [local media/import/upload references](LOCAL_INPUTS.en.md), covering part of the shared input contract. Each selected model still needs its actual input/generation pipeline and physical acceptance. F-01–F-12, A1–A11, R-01–R-05 and single-release scope remain unchanged.
+
+内部 dev.12 / internal dev.12：[扩散组件与采样 / Diffusion](DIFFUSION_ENGINE.en.md) 接入 SDXL 分离组件、SD-Turbo、LCM checkpoint 与匹配 LCM-LoRA；83 项主机策略 / 协议检查不是实际模型输出。App 仅交付基座，用户控制模型。全部 F-01–F-12、01–14 / 16 / 17 与 A1–A11 / R-01–R-05 保持在同一完整 v0.3.0；无新 Release。

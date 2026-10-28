@@ -8,11 +8,13 @@ import java.util.*;
 public final class AdapterSpec {
     private AdapterSpec() {}
     public static boolean isAdapter(ModelBundle bundle) { return bundle.json().has("adapter"); }
+    public static boolean lcm(ModelBundle bundle) { return isAdapter(bundle) && bundle.json().optJSONObject("adapter").optString("sampling").equals("lcm"); }
     public static void validate(ModelBundle bundle) throws Exception {
         JSONObject value = bundle.json();
         if (!value.has("adapter")) return;
         JSONObject spec = value.getJSONObject("adapter");
-        for (Iterator<String> it = spec.keys(); it.hasNext();) if (!Arrays.asList("schema", "kind", "baseArchitectures", "basePipelines", "baseModelIds").contains(it.next())) throw new IllegalArgumentException("Unknown adapter declaration field");
+        for (Iterator<String> it = spec.keys(); it.hasNext();) if (!Arrays.asList("schema", "kind", "baseArchitectures", "basePipelines", "baseModelIds", "sampling").contains(it.next())) throw new IllegalArgumentException("Unknown adapter declaration field");
+        if (spec.has("sampling") && !spec.getString("sampling").equals("lcm")) throw new IllegalArgumentException("Unknown adapter sampling policy");
         if (!spec.getString("schema").equals("lma.adapter/1") || !spec.getString("kind").equals("lora")) throw new IllegalArgumentException("Unsupported adapter schema or kind");
         if (!bundle.engine.equals("sd_cpp") || !bundle.backend.equals("cpu") || !bundle.pipeline.equals("lora") || !bundle.tasks.equals(Collections.singleton("image"))) throw new IllegalArgumentException("This LoRA adapter requires the local image CPU engine");
         Set<String> architectures = keys(spec.getJSONArray("baseArchitectures"));

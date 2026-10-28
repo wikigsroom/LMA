@@ -2,7 +2,7 @@
 
 [English](ADAPTERS.en.md) · [资产控制核对](ASSET_CONTROL_AUDIT.md) · [开发状态](DEVELOPMENT.md) · [完整需求](MULTIMODAL_RELEASE_PLAN.md)
 
-适用于内部 **0.3.0-dev.4 / code 8**。这里说明已接入的配对、存储和任务代码；**尚无 LMA Android LoRA 生成证据**。编号 02 的 SD 1.5 / SDXL 实际权重、质量与生命周期验收仍属于同一完整 v0.3.0，不能按此文计为完成。
+适用于内部 **0.3.0-dev.12 / code 16**。这里说明已接入的配对、存储和任务代码；**尚无 LMA Android LoRA 生成证据**。编号 02 的 SD 1.5 / SDXL 实际权重、质量与生命周期验收仍属于同一完整 v0.3.0，不能按此文计为完成。
 
 ## 用户使用逻辑
 
@@ -48,7 +48,7 @@
 
 组件必须恰好一个，角色 `lora`，格式 `safetensors` 或 `gguf`；它的哈希和字节数按实际文件填写。SDXL 使用 `architecture: "sdxl"`、对应 `baseArchitectures / basePipelines`。架构列表只能有一个与适配器相同的 SD 1.5 / SDXL 架构；可选 `baseModelIds` 进一步限制特定基础模型 ID。LoRA 自身不能再作为基础模型，未知版本 / 命令字段拒绝导入。
 
-`basePipelines` 可声明同架构的 `_lcm` 配方。LCM-only 适配器不能直接配普通 SD 配方；**这不会自动配置 LCM 采样器、调度器或其他完整依赖**，基础配方本身仍需正确适配和验收。官方 LCM-LoRA 的 [SD 1.5](https://huggingface.co/latent-consistency/lcm-lora-sdv1-5) 与 [SDXL](https://huggingface.co/latent-consistency/lcm-lora-sdxl) 是独立来源，不因同为 LoRA 就可互换。
+`basePipelines` 约束配对管线。dev.12 的专用 LCM-LoRA 模板另加 `"sampling":"lcm"`，与同架构普通基础模型配对时固定本次 LCM 采样 / 调度、CFG=1 与 1–8 步保护，基础设置保留；不接受负面提示词。普通兼容声明本身不启用 LCM，名称不推断训练方式。详见[扩散基座](DIFFUSION_ENGINE.md)。官方 [SD1.5](https://huggingface.co/latent-consistency/lcm-lora-sdv1-5) 与 [SDXL](https://huggingface.co/latent-consistency/lcm-lora-sdxl) 权重不能互换。
 
 在原有 `POST /v1/jobs` 图像任务中增加可选 `adapters`：
 

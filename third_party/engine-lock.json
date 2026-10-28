@@ -9,8 +9,8 @@
       "abi": "arm64-v8a",
       "backend": "cpu",
       "ndk": "30.0.16248370",
-      "sha256": "2a84b898dfd61596c73096ec37c83c9a28127070c395ec4dad4779a242733e9c",
-      "bytes": 8824200,
+      "sha256": "c3555afee4cfa765e19bc0cfdfef0e8ee53d0680694b56446fe7d077caff2d06",
+      "bytes": 8831736,
       "notices": {
         "sd-LICENSE.txt": "b53fa08f515cb5a6fff7b9fd8fcd0961a4b80df29d74372d25e1f9171aa042ee",
         "sd-ggml-LICENSE.txt": "94f29bbed6a22c35b992c5c6ebf0e7c92f13b836b90f36f461c9cf2f0f1d010d",

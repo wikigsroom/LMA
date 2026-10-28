@@ -167,3 +167,5 @@ Synchronous text requests can wait while the selected resident is suspended for 
 ## 0.3.0-dev.11: local input uploads
 
 Explicitly declare {name, bytes, sha256} with POST /v1/uploads; query received with GET /v1/uploads/ID, continue binary PUT chunks with Upload-Offset, complete validation with POST /v1/uploads/ID/complete and delete sessions independently. Maximum file size is 512 MiB with four active sessions. Imports/results share authenticated /v1/artifacts reads/exports/deletion protection. See [input guide](LOCAL_INPUTS.en.md) for exact requests, limits, Python example and evidence boundaries. This does not add media operators to current models.
+
+Dev.12 diffusion jobs derive server-owned `diffusionPlan` metadata, retaining requested parameters separately from effective policy/values/adjustments. Clients cannot supply this field. Retry removes it and execution rechecks against immutable base/adapter leases. LCM/SD-Turbo disable CFG and reject negative prompts without changing saved base settings. See [components, pairing and requests](DIFFUSION_ENGINE.en.md).

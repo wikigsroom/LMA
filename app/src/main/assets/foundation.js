@@ -134,6 +134,23 @@
       return '<div class="task-adapter"><label class="adapter-choice"><input type="checkbox" data-adapter-select="' + e(adapter.id) + '"' + (adapter.id === selected ? ' checked' : '') + '><span>' + e(adapter.manifest.name) + '</span></label><label class="form-field"><span>强度</span><input type="text" role="combobox" aria-autocomplete="list" aria-expanded="false" data-adapter-scale="' + e(adapter.id) + '" list="adapter-scale-' + index + '" inputmode="decimal" autocomplete="off" value="' + e(value) + '"' + (adapter.id === selected ? '' : ' disabled') + '><datalist id="adapter-scale-' + index + '">' + (f.presets || []).map(function (preset) { return '<option value="' + e(preset) + '"></option>'; }).join('') + '</datalist><small>' + e(f.minimum) + ' 至 ' + e(f.maximum) + '</small></label></div>';
     }).join('') + '</fieldset>';
   }
+  function renderSamplingHint() {
+    var form = $('localTaskForm'), b = editor && find(editor.id), hint = $('samplingHint'); if (!form || !b || !hint) return;
+    var count = 0;
+    form.querySelectorAll('[data-adapter-select]:checked').forEach(function (choice) { var a = find(choice.dataset.adapterSelect); if (a && a.manifest.adapter.sampling === 'lcm') count++; });
+    var pipeline = b.manifest.pipeline, active = count > 0 || /_lcm$/.test(pipeline) || pipeline === 'sd21_turbo', lcm = count > 0 || /_lcm$/.test(pipeline), limit = lcm ? 8 : 4;
+    form.dataset.samplingProfile = active ? (lcm ? 'lcm' : 'sd_turbo') : '';
+    hint.hidden = !active;
+    hint.textContent = count > 1 || count && /_lcm$/.test(pipeline) ? '一次只使用一个 LCM 加速来源，请取消多余选择。' : (lcm ? 'LCM：采样器 lcm，调度器 lcm，1–8 步。' : 'SD-Turbo：采样器 euler_a，调度器 discrete，1–4 步。') + 'CFG 固定为 1，不使用负面提示词；仅影响本次任务，保存的模型设置保留。';
+    if (form.elements.negativePrompt) form.elements.negativePrompt.disabled = active;
+    ['cfg', 'steps'].forEach(function (key) {
+      var field = form.querySelector('[data-bundle-field="' + key + '"]'); if (!field) return;
+      if (active) { if (field.dataset.beforeSampling === undefined) field.dataset.beforeSampling = field.value; field.value = key === 'cfg' ? 1 : Math.max(1, Math.min(limit, Math.floor(Number(field.value) || 4))); }
+      else if (field.dataset.beforeSampling !== undefined) { field.value = field.dataset.beforeSampling; delete field.dataset.beforeSampling; }
+      if (key === 'cfg') field.disabled = active;
+    });
+    ['sampler', 'scheduler'].forEach(function (key) { var f = form.querySelector('[data-bundle-field="' + key + '"]'); if (f) f.closest('label').hidden = active; });
+  }
   function readAdapters(form, base) {
     var selected = [];
     form.querySelectorAll('[data-adapter-select]:checked').forEach(function (choice) {
@@ -177,8 +194,8 @@
     tasks(b).forEach(function (t) { if (t === 'image') types.push(['image.generate', '生图']); if (t === 'video') types.push(['video.generate', '生视频']); if (t === 'text') types.push(['text.generate', '生文']); if (t === 'audio') types.push([(b.manifest.capabilities || []).indexOf('text_to_speech') >= 0 ? 'speech.synthesize' : 'audio.generate', '生音频']); });
     var speechOnly = types.length === 1 && types[0][0] === 'speech.synthesize', textOnly = types.length === 1 && types[0][0] === 'text.generate';
     editor = {id: id, mode: 'task'};
-    ui.openModal(b.manifest.name, '<form id="localTaskForm"><label class="form-field"><span>生成能力</span><select name="taskType">' + types.map(function (t) { return '<option value="' + t[0] + '">' + t[1] + '</option>'; }).join('') + '</select></label><label class="form-field"><span>' + (speechOnly ? '朗读文本' : '提示词 / 文本') + '</span><textarea name="prompt" rows="4" required maxlength="' + (speechOnly ? '4000' : '16000') + '" placeholder="' + (speechOnly ? '填写所选语言词表覆盖的朗读文本' : '描述你希望生成的内容') + '"></textarea></label>' + (speechOnly ? '<p class="form-help">请使用此配方声明的语言与输入。缺失组件或不支持的能力会在本机报错，不会下载或转出执行。</p>' : textOnly ? '' : '<label class="form-field"><span>负面提示词（可选）</span><textarea name="negativePrompt" rows="2" maxlength="16000"></textarea></label>') + (tasks(b).indexOf('image') >= 0 ? adapterFields(b, selectedAdapter) : '') + '<div id="taskInputs"></div><details class="task-parameters"><summary>本次参数</summary>' + fields(b) + '</details><label class="unmeasured-choice"><input type="checkbox" name="allowUnmeasured" required><span>此配方尚无本机实测记录，我选择在当前手机上尝试。</span></label><p class="form-help">一次执行一个大型引擎。任务等待当前回复结束后自动切换，队列空闲时恢复此前加载的文本模型。任务在后台通知中执行，结果保存在本机；缺少组件不会自动下载。</p><p id="bundleFormHint" role="status"></p><div class="modal-actions">' + button('closeModal', '', '取消') + '<button type="submit" class="button primary">加入本机队列</button></div></form>', 'localTask');
-    renderInputFields();
+    ui.openModal(b.manifest.name, '<form id="localTaskForm"><label class="form-field"><span>生成能力</span><select name="taskType">' + types.map(function (t) { return '<option value="' + t[0] + '">' + t[1] + '</option>'; }).join('') + '</select></label><label class="form-field"><span>' + (speechOnly ? '朗读文本' : '提示词 / 文本') + '</span><textarea name="prompt" rows="4" required maxlength="' + (speechOnly ? '4000' : '16000') + '" placeholder="' + (speechOnly ? '填写所选语言词表覆盖的朗读文本' : '描述你希望生成的内容') + '"></textarea></label>' + (speechOnly ? '<p class="form-help">请使用此配方声明的语言与输入。缺失组件或不支持的能力会在本机报错，不会下载或转出执行。</p>' : textOnly ? '' : '<label class="form-field"><span>负面提示词（可选）</span><textarea name="negativePrompt" rows="2" maxlength="16000"></textarea></label>') + (tasks(b).indexOf('image') >= 0 ? adapterFields(b, selectedAdapter) : '') + '<div id="taskInputs"></div><p id="samplingHint" class="form-help" hidden></p><details class="task-parameters"><summary>本次参数</summary>' + fields(b) + '</details><label class="unmeasured-choice"><input type="checkbox" name="allowUnmeasured" required><span>此配方尚无本机实测记录，我选择在当前手机上尝试。</span></label><p class="form-help">一次执行一个大型引擎。任务等待当前回复结束后自动切换，队列空闲时恢复此前加载的文本模型。任务在后台通知中执行，结果保存在本机；缺少组件不会自动下载。</p><p id="bundleFormHint" role="status"></p><div class="modal-actions">' + button('closeModal', '', '取消') + '<button type="submit" class="button primary">加入本机队列</button></div></form>', 'localTask');
+    renderInputFields(); renderSamplingHint();
   }
   function renderJobs() {
     var s = ui.state(), jobs = s.jobs || [], signature = JSON.stringify(jobs);
@@ -254,7 +271,7 @@
         try {
           if (!form.reportValidity()) return;
           var parameters = readFields(form, b), submit = form.querySelector('[type="submit"]');
-          var args = editor.mode === 'settings' ? {id: b.id, settings: parameters} : {request: {bundleId: b.id, type: form.elements.taskType.value, input: {prompt: form.elements.prompt.value, negativePrompt: form.elements.negativePrompt ? form.elements.negativePrompt.value : ''}, parameters: parameters, allowUnmeasured: form.elements.allowUnmeasured.checked}, idempotencyKey: 'ui-' + Date.now() + '-' + Math.random().toString(36).slice(2)};
+          var args = editor.mode === 'settings' ? {id: b.id, settings: parameters} : {request: {bundleId: b.id, type: form.elements.taskType.value, input: {prompt: form.elements.prompt.value, negativePrompt: form.elements.negativePrompt && !form.elements.negativePrompt.disabled ? form.elements.negativePrompt.value : ''}, parameters: parameters, allowUnmeasured: form.elements.allowUnmeasured.checked}, idempotencyKey: 'ui-' + Date.now() + '-' + Math.random().toString(36).slice(2)};
           if (editor.mode === 'task') { var inputs = readInputs(form); if (inputs.length) args.request.input.artifacts = inputs; }
           if (editor.mode === 'task' && form.elements.taskType.value === 'image.generate') args.request.adapters = readAdapters(form, b);
           var editing = editor;
@@ -264,8 +281,9 @@
       });
       document.addEventListener('change', function (event) {
         if (event.target.dataset.adapterSelect) {
-          var row = event.target.closest('.task-adapter'), scale = row.querySelector('[data-adapter-scale]'); scale.disabled = !event.target.checked; return;
+          var row = event.target.closest('.task-adapter'), scale = row.querySelector('[data-adapter-scale]'); scale.disabled = !event.target.checked; renderSamplingHint(); return;
         }
+        if (event.target.dataset.bundleField === 'steps' && $('localTaskForm') && $('localTaskForm').dataset.samplingProfile) { renderSamplingHint(); return; }
         if (event.target.name === 'taskType') { renderInputFields(); if ($('taskAdapters')) { $('taskAdapters').disabled = event.target.value !== 'image.generate'; $('taskAdapters').hidden = event.target.value !== 'image.generate'; } return; }
         if (event.target.id !== 'bundleShape' || !editor || event.target.value === '') return;
         var b = find(editor.id), shape = schemaFor(b).allowedShapes[Number(event.target.value)];

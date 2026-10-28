@@ -2,7 +2,7 @@
 
 [中文](ADAPTERS.md) · [Asset-control audit](ASSET_CONTROL_AUDIT.en.md) · [Development](DEVELOPMENT.en.md) · [Full scope](MULTIMODAL_RELEASE_PLAN.en.md)
 
-Applies to internal **0.3.0-dev.4 / code 8**. Pairing, storage and task code is integrated; **there is no LMA Android LoRA-generation evidence**. Real SD 1.5/SDXL weights, quality and lifecycle acceptance for selection 02 remain mandatory in the same complete v0.3.0.
+Applies to internal **0.3.0-dev.12 / code 16**. Pairing, storage and task code is integrated; **there is no LMA Android LoRA-generation evidence**. Real SD 1.5/SDXL weights, quality and lifecycle acceptance for selection 02 remain mandatory in the same complete v0.3.0.
 
 ## User flow
 
@@ -21,7 +21,7 @@ Reuse `lma.model-bundle/1` and add a data-only `adapter` declaration. The [Chine
 
 Exactly one component has role `lora` and format `safetensors` or `gguf`, with the actual file size and SHA256. Adapter settings contain only numeric `scale`, explicit minimum/maximum within `-4…4`, and editable presets. Adapters cannot be bases. Reject unknown adapter versions or command fields.
 
-Matching `_lcm` base pipelines may be declared. An LCM-only adapter rejects a plain SD recipe; **pairing does not configure LCM sampling, scheduling or full dependencies automatically**. The base recipe still requires adaptation and acceptance. Official [SD 1.5 LCM-LoRA](https://huggingface.co/latent-consistency/lcm-lora-sdv1-5) and [SDXL LCM-LoRA](https://huggingface.co/latent-consistency/lcm-lora-sdxl) target separate bases.
+`basePipelines` constrains pairing. Dev.12 dedicated LCM-LoRA templates add `"sampling":"lcm"`; pairing with an ordinary matching base freezes LCM sampler/scheduler, CFG=1 and the 1–8 step guard for this task while retaining saved base settings. Negative prompts are rejected. Pairing declarations/names alone do not enable LCM. See [diffusion](DIFFUSION_ENGINE.en.md); official [SD1.5](https://huggingface.co/latent-consistency/lcm-lora-sdv1-5) and [SDXL](https://huggingface.co/latent-consistency/lcm-lora-sdxl) weights target different bases.
 
 Add optional `adapters` to an existing authenticated `POST /v1/jobs` image request:
 

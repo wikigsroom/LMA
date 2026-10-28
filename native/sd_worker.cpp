@@ -1,5 +1,6 @@
 #include "stable-diffusion.h"
 #include "json.hpp"
+#include "sd_policy.hpp"
 #define STB_IMAGE_WRITE_IMPLEMENTATION
 #include "stb_image_write.h"
 #include <cstdio>
@@ -37,6 +38,7 @@ int main(int argc, char** argv) {
         input.seekg(0); json request; input >> request;
         if (request.at("schema") != "lma.engine-request/1") throw std::runtime_error("Unsupported engine request version");
         const json& params = request.at("parameters"); const json& components = request.at("components");
+        std::string pipeline = request.at("pipeline"), architecture = request.at("architecture"), profile = request.at("samplingProfile");
         std::string type = request.at("type"), output = request.at("output"), prompt = request.at("input").value("prompt", ""), negative = request.at("input").value("negativePrompt", "");
         if (prompt.empty() || prompt.size() > 64000 || negative.size() > 64000 || output.empty()) throw std::runtime_error("Invalid prompt or output");
         if (type != "image.generate" && type != "video.generate") throw std::runtime_error("Unsupported diffusion task");
@@ -55,6 +57,7 @@ int main(int argc, char** argv) {
         event({{"event", "stage"}, {"stage", "loading"}});
         std::unique_ptr<sd_ctx_t, decltype(&free_sd_ctx)> context(new_sd_ctx(&ctx_params), free_sd_ctx);
         if (!context) throw std::runtime_error("Diffusion model loading failed; verify the complete recipe and device resources");
+        lma_sd::route(pipeline, architecture, sd_get_model_version_name(context.get()));
         sd_sample_params_t sample; sd_sample_params_init(&sample);
         sample.sample_method = sd_get_default_sample_method(context.get());
         if (params.contains("sampler")) { sample.sample_method = str_to_sample_method(params.at("sampler").get_ref<const std::string&>().c_str()); if (sample.sample_method == SAMPLE_METHOD_COUNT) throw std::runtime_error("Unknown sampler"); }
@@ -63,6 +66,7 @@ int main(int argc, char** argv) {
         sample.sample_steps = bounded(params, "steps", 4, 1, 200);
         sample.guidance.txt_cfg = params.value("cfg", 1.0f);
         if (!std::isfinite(sample.guidance.txt_cfg) || sample.guidance.txt_cfg < 0 || sample.guidance.txt_cfg > 30) throw std::runtime_error("CFG out of bounds");
+        lma_sd::sampling(profile, pipeline, sd_sample_method_name(sample.sample_method), sd_scheduler_name(sample.scheduler), sample.sample_steps, sample.guidance.txt_cfg, negative);
         int width = bounded(params, "width", 512, 64, 2048), height = bounded(params, "height", 512, 64, 2048);
         if (width % 16 || height % 16) throw std::runtime_error("Image dimensions must align to the selected recipe");
         int64_t seed = params.value("seed", int64_t(0));

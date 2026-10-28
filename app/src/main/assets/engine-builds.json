@@ -11,8 +11,8 @@
       "ndk": "30.0.16248370",
       "backend": "cpu",
       "file": "liblma-sd.so",
-      "bytes": 8824200,
-      "sha256": "2a84b898dfd61596c73096ec37c83c9a28127070c395ec4dad4779a242733e9c",
+      "bytes": 8831736,
+      "sha256": "c3555afee4cfa765e19bc0cfdfef0e8ee53d0680694b56446fe7d077caff2d06",
       "elf_load_alignment": [
         16384,
         16384,

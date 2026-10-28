@@ -2,7 +2,7 @@
 
 [中文](DEVELOPMENT.md) · [Full scope](MULTIMODAL_RELEASE_PLAN.en.md) · [Build](BUILD.en.md) · [English home](../README.en.md)
 
-The current public release remains **v0.2.0**. This branch is **0.3.0-dev.11 / versionCode 15**, not the complete v0.3.0, and has no new Release. F-01–F-12, selections 01–14/16/17 and frozen subtargets still belong to one delivery; these are internal implementation checkpoints.
+The current public release remains **v0.2.0**. This branch is **0.3.0-dev.12 / versionCode 16**, not the complete v0.3.0, and has no new Release. F-01–F-12, selections 01–14/16/17 and frozen subtargets still belong to one delivery; these are internal implementation checkpoints.
 
 ## Implemented development code
 
@@ -12,7 +12,7 @@ The current public release remains **v0.2.0**. This branch is **0.3.0-dev.11 / v
 | Independent model versions | User-selected pinned target, component/profile review, separate transfer/activation, retained old files, rollback, last 64 switches and queued-reference protection | 62 real host storage/failure/transfer checks; Android upgrades remain unverified; see [version guide](MODEL_UPDATES.en.md) |
 | User control | Declaration, browsing and planning create no transfers; downloads require a separate action; missing assets fail locally; interrupted transfers pause for manual resumption | Does not install the entire catalogue or implicitly download models |
 | Settings | Per-bundle settings, editable presets, numerical clamping, joint shape checks and immutable submitted snapshots | Recipe limits and device budgets are separate; unknown maxima are not verified |
-| UI | Legacy text and bundles share a flat list; text/image/video/audio filters, bundle details, task forms, queue and artifacts; Recommended stays m08 → m06 → m01 | All contains pinned SD1.5 and three TTS candidates; custom manifests enter through Add model; dev.8 offers nine explicit HF component templates without universal architecture support |
+| UI | Legacy text and bundles share a flat list; text/image/video/audio filters, bundle details, task forms, queue and artifacts; Recommended stays m08 → m06 → m01 | All contains pinned SD1.5 and three TTS candidates; custom manifests enter through Add model; dev.8 offers sixteen explicit HF component templates without universal architecture support |
 | Jobs/artifacts | One heavy job, submit/cancel/retry, persistent events, private results, hashes/provenance, system export and image/WAV/MP4 inspection/ranged preview | Bounded AtomicFile JSON currently stores these records; existing chat SQLite remains; legacy text shares migration/scheduling; target input pipelines and device acceptance remain open |
 | Unified gateway | Start with zero models; authenticated model/engine/job/event/artifact Range routes; public text proxy applies profile bounds and tracks leases; native text stays on a separate loopback port/secret | Production HTTP/stores use real host sockets and explicit execution fixtures; no model downloads or inference redirects |
 | Android execution | Signed-in sd.cpp ARM64 CPU worker, data-only model bundles, external user-supplied vocabularies, child lifetime bound to its host | Compiled/packaged, **no phone inference**; upstream architectures do not prove accepted recipes |
@@ -29,17 +29,18 @@ Custom manifests gain neither device-validated nor checked-uncensored status. Un
 
 | Check | Result | What it establishes |
 | --- | --- | --- |
-| Foundation core | 310 assertions | Component integrity, real HTTP resumption, shared references, independent settings, queue ownership/cancellation/restart, artifacts and ranged reads |
+| Foundation core | 381 assertions | Component integrity, real HTTP resumption, shared references, independent settings, queue ownership/cancellation/restart, artifacts and ranged reads |
 | API/transport | 67 assertions | Auth, zero-model state, JSON/framing limits, idempotency/cancel/events, exact artifacts/Range/leases and text policy; actual host sockets, not Android inference |
 | Legacy backend/proxy | 98 assertions | Host Android adapters exercising downloads, actual child processes, HTTP SSE and per-model settings |
 | HF logic | 76 assertions | Search, pinned revisions, pagination/selection and token boundaries, not universal HF execution |
+| Diffusion | 83 assertions | Production planning/binding, actual host protocol children and shared C++ policy; no model images |
 | Local input media | 64 assertions | Actual private files, production WAV inspection, authenticated resumable chunks and immutable input receipts/leases; not Android media decoding |
 | Shared scheduler | 49 assertions | Production queue/resident/chat/API, real host children and loopback HTTP, cancellation and reaping; no Android inference |
-| UI | 182 assertions | Actual HTML/CSS/JS with explicit simulated native state; recommendation/tag/download/form/queue/narrow-screen regressions |
+| UI | 194 assertions | Actual HTML/CSS/JS with explicit simulated native state; recommendation/tag/download/form/queue/narrow-screen regressions |
 | Native package | 19 ARM64 files | Pinned hashes, resolved dependencies, Android API 28, 16 KiB ELF/APK alignment, original signing identity, asset allowlist |
 | Phone inference/endurance | 0 | No actual image/audio/motion-video or sustained screen-off inference evidence |
 
-sd.cpp is pinned to `be486498eadc29dc3cd234d944c2180ed42b1415`, ggml to `a5915eb0e47adef21c3f25b889a008925ea838c2`, built using project-local NDK 30.0.16248370 on native Windows. The added worker SHA256 is `2a84b898dfd61596c73096ec37c83c9a28127070c395ec4dad4779a242733e9c`. See [engine-lock.json](../third_party/engine-lock.json) for hashes/notices. Only actual compiled modules are registered, without empty providers counted as support.
+sd.cpp is pinned to `be486498eadc29dc3cd234d944c2180ed42b1415`, ggml to `a5915eb0e47adef21c3f25b889a008925ea838c2`, built using project-local NDK 30.0.16248370 on native Windows. The added worker SHA256 is `c3555afee4cfa765e19bc0cfdfef0e8ee53d0680694b56446fe7d077caff2d06`. See [engine-lock.json](../third_party/engine-lock.json) for hashes/notices. Only actual compiled modules are registered, without empty providers counted as support.
 
 The SD1.5 candidate combines [Second State’s pinned GGUF](https://huggingface.co/second-state/stable-diffusion-v1-5-GGUF/tree/031b5f5df991f511b3f5fa8fed6d99048ababb69) and the [original CLIP merges](https://huggingface.co/stable-diffusion-v1-5/stable-diffusion-v1-5/blob/451f4fe16113bff5a5d2269ed5ad43b0592e9a14/tokenizer/merges.txt), totaling 1,567,293,035 bytes under the source CreativeML Open RAIL-M terms. Only metadata, publisher hashes and the small vocabulary were checked, without downloading weights. The vocabulary exactly matches the pinned engine’s original data. Recipe metadata ships with the App; user-selected assets do not. An unselected catalogue candidate is not a downloaded Local model. This is not accepted execution support; see [bundle-evidence.json](../catalogue/bundle-evidence.json).
 
@@ -129,3 +130,9 @@ Production `LocalJobs`, resident `EngineHost`, `ChatRunner` and `ApiHost` share 
 [Local inputs](LOCAL_INPUTS.en.md) adds explicit document import, foreground copying/cancellation, PNG/JPEG/WAV/MP4 inspection and source hashes; bounded authenticated uploads use 256 KiB chunks and explicit continuation. Tasks select imports/previous results through signed engine roles, freeze receipts, protect queued/execution references and rehash before startup. Existing production engines remain prompt-only; actual remaining input pipelines need individual integration.
 
 64 new file/WAV/actual-HTTP assertions pass. Production scheduling now has 49, including actual child input consumption, corruption rejection and cancellation cleanup. UI totals 182; 30 screenshots plus MP4/GIF remain explicit fixtures. The same 19 native files carry no new weights. The Android picker/image/video codecs and full device gates remain unverified. See [notes](releases/v0.3.0-dev.11.md) and [input receipt](../verification/development/inputs.json).
+
+## dev.12: diffusion components and low-step sampling
+
+Seven added data templates bring the total to sixteen. SD1.5/SDXL complete/split components, SD-Turbo, LCM checkpoints and matching SD1.5/SDXL LCM-LoRA use frozen task-specific `diffusionPlan` metadata. Requested settings stay separate; retry derives a new plan, leased execution rechecks it and native code validates sampling and loaded tensor architecture. No weights or implicit model downloads.
+
+83 added checks comprise 56 production Java/actual-host-child protocol and 27 executed shared-C++ policy assertions; child output is JSON, not images. Foundation totals 381 (189 recipe/integrity), UI 194. 32 screenshots plus MP4/GIF retain UI FIXTURE. 58 production Java sources, 19 native files and Lint 0 errors/13 warnings. Other architectures, complete pinned licenses/quality/resources and physical-Android gates remain in the same complete v0.3.0. See [guide](DIFFUSION_ENGINE.en.md), [receipt](../verification/development/diffusion.json) and [notes](releases/v0.3.0-dev.12.md).

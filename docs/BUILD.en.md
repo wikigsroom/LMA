@@ -99,3 +99,5 @@ For dev.9, `python tools/test_migration.py` compiles actual Store / BundleStore 
 Shared scheduling regression: after building, run `python tools/test_scheduler.py`, then `python tools/test_android_lint.py` and `python tools/verify_package.py`. The scheduler check compiles production `LocalJobs`/`EngineHost`/`ChatRunner`/`ApiHost` with explicit host Android ports, real children and literal HTTP protocols. It uses no emulator, weights or inference. `build/scheduler-tests/results.json` exports to `verification/development/scheduler.json`.
 
 Run `python tools/test_inputs.py` for production-core/actual-file/WAV/HTTP checks. It requires the pinned host org.json and exports `build/input-tests/results.json` to `verification/development/inputs.json`. No Android/model or inference sample is involved; see [inputs](LOCAL_INPUTS.en.md).
+
+Dev.12 diffusion / 扩散检查：`python tools/test_diffusion.py` 编译生产 Java 绑定并运行实际主机协议子进程、编译执行共用 C++ 采样 / 架构约束；不是 Android 或图像推理。Native Windows host checks are exported as `verification/development/diffusion.json`.

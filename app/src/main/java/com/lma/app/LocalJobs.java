@@ -51,7 +51,7 @@ public final class LocalJobs implements AutoCloseable {
     public JSONObject retry(String id, String key) throws Exception {
         JSONObject old = app.jobs.get(id);
         if (!java.util.Arrays.asList("failed", "interrupted", "cancelled").contains(old.getString("state"))) throw new IllegalStateException("仅已失败、中断或取消的任务可以重试");
-        JSONObject request = DataFiles.copy(old.getJSONObject("request")); request.remove("submissionHash"); request.remove("adjustments"); request.remove("parameterSchemaVersion"); request.remove("adapterAdjustments"); request.remove("textMetadata"); request.remove("inputReceipts");
+        JSONObject request = DataFiles.copy(old.getJSONObject("request")); request.remove("submissionHash"); request.remove("adjustments"); request.remove("parameterSchemaVersion"); request.remove("adapterAdjustments"); request.remove("textMetadata"); request.remove("inputReceipts"); request.remove("diffusionPlan");
         return submit(request, key);
     }
     private JSONObject admission(ModelBundle bundle, JSONObject request, boolean executing) throws Exception {

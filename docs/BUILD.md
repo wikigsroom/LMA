@@ -99,3 +99,5 @@ dev.9 的 `python tools/test_migration.py` 编译实际 Store / BundleStore / En
 共用调度回归：构建完成后运行 `python tools/test_scheduler.py`，再执行 `python tools/test_android_lint.py` 与 `python tools/verify_package.py`。前者编译生产 `LocalJobs` / `EngineHost` / `ChatRunner` / `ApiHost`，使用受控主机 Android 端口、真实子进程和固定 HTTP 协议；不启动模拟器、不下载模型，也不执行推理。回执为 `build/scheduler-tests/results.json`，通过开发导出进入 `verification/development/scheduler.json`。
 
 本地素材检查：`python tools/test_inputs.py` 编译生产 core 和真实文件 / WAV / HTTP 测试，回执为 `build/input-tests/results.json`，开发导出至 `verification/development/inputs.json`。依赖已固定的主机 org.json；不需要 Android 或模型，不生成推理样本。见[输入指南](LOCAL_INPUTS.md)。
+
+Dev.12 diffusion / 扩散检查：`python tools/test_diffusion.py` 编译生产 Java 绑定并运行实际主机协议子进程、编译执行共用 C++ 采样 / 架构约束；不是 Android 或图像推理。Native Windows host checks are exported as `verification/development/diffusion.json`.

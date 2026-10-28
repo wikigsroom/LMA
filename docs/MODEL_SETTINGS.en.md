@@ -51,3 +51,5 @@ dev.7 adds bundle [independent updates/rollback](MODEL_UPDATES.en.md): user-revi
 dev.8 [text bundles](TEXT_ENGINE.en.md) use the shared editable form. Installed GGUF metadata constrains context/output at save, submission and execution. Effective schemas remain separate from provenance, with explicit unknown/application bounds. Legacy profiles remain; complete migration is still in scope.
 
 Dev.9 [existing-model migration](MODEL_MIGRATION.en.md) reuses verified local hardlinks, preserves IDs/sources/profiles and exposes shared tasks/versions from original details. Incomplete transfers stay paused until explicit resume. 69 host migration and 156 UI checks pass; physical-Android A11 upgrade acceptance remains open.
+
+Dev.12 LCM-LoRA applies a task sampling policy: LCM sampler/scheduler, CFG=1 and a 1–8-step guard appear after selection; deselection restores form values. Saved ordinary base-model settings stay independent. LCM checkpoints and SD-Turbo have their own recipe bounds. Requested/effective values remain reviewable in the task. See [diffusion](DIFFUSION_ENGINE.en.md).

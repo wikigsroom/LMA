@@ -97,3 +97,5 @@ dev.8 text bundles execute `text.generate` through shared forms/jobs and commit 
 Dev.10 integrates residency, chat, synchronous API and asynchronous jobs through the [same execution slot](SCHEDULING.en.md), with reply waiting, reaping before switching, idle restoration, cancellation and resource rechecks. Its 43 host scheduler assertions do not replace physical cross-modality/lifecycle acceptance. All frozen targets remain in the complete v0.3.0.
 
 Dev.11 implements [local media](LOCAL_INPUTS.en.md) imports/uploads, fixed receipts and queued/execution leases shared by UI/API. Current production recipes remain prompt-only; each actual reference-audio/image pipeline needs explicit engine implementation and acceptance.
+
+Dev.12 diffusion / 扩散任务：[component and sampling guide / 组件与采样](DIFFUSION_ENGINE.en.md)。选择普通模型、LCM checkpoint 或显式 LCM-LoRA 时仍使用同一任务契约 / 队列；有效采样计划由签名代码固定并复核，不执行用户脚本，不下载模型，不代表真机验收。

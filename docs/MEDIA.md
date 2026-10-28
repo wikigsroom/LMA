@@ -83,3 +83,5 @@ dev.9 当前开发媒体为 **26 PNG + MP4 + GIF**。新增 [25 · 已有模型�
 开发 dev.10 新增 `27-scheduler-model-waiting.png` 与 `28-scheduler-chat-waiting.png`，共 28 张 PNG；录屏 / GIF 同步展示已选文本驻留和可取消回复等待。所有画面均有 UI FIXTURE 标识，未执行 Android 或模型。Dev.10 adds two explicit scheduling UI fixtures and refreshes the recording/GIF without phone or model execution.
 
 dev.11 当前媒体为 **30 PNG + MP4 + GIF**，新增[导入素材](media/development/29-imported-media-library.png)与[本地输入契约表单](media/development/30-local-input-role-form.png)。表单是独立 UI FIXTURE，非已支持语音克隆模型；不执行 Android 或推理。录屏 / GIF 和 manifest 同步，浏览器已在 finally 关闭。Dev.11 adds two explicit local-input UI contracts, with refreshed recording/GIF and browser cleanup.
+
+dev.12 当前媒体为 **32 PNG + MP4 + GIF**，新增 [LCM 配对采样](media/development/31-lcm-sampling-policy.png) 与 [SD-Turbo 表单](media/development/32-sd-turbo-task.png)。均为显式 UI FIXTURE，没有下载或运行模型；浏览器在 finally 关闭。Dev.12 adds explicit low-step task UI fixtures, with refreshed recordings and cleanup.

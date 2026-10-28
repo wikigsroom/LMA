@@ -39,7 +39,7 @@ Android 版的本地模型管理、下载、对话和 API 服务应用。当前�
 
 ## 多模态扩展研究
 
-下一版本 **v0.3.0** 一次性交付**完整本地多模态基座及 01–14 / 16 / 17 的运行支持与适配配方**：共用模型包 / 组件 / 配方、内部引擎模块、独立参数、任务 / 产物和 API。所有模型平级，按生文 / 生图 / 生视频 / 生音频及基座依赖标签筛选，保留既有推荐；交互为模型选择 → 任务表单 → 本机队列 → 结果。完整范围、工作包、风险及同一发布门槛见[版本更新需求](docs/MULTIMODAL_RELEASE_PLAN.md)和[交付摘要](docs/releases/v0.3.0-plan.md)。不拆分版本，不将必需模型默认顺延，不建设 ComfyUI 画布 / 用户节点 / 插件生态 / 图导入。v0.3.0 尚未发布。开发代码、310 项基座检查、64 项素材检查、182 项界面检查及完整剩余项见[开发实施记录](docs/DEVELOPMENT.md)；这不替代完整交付。
+下一版本 **v0.3.0** 一次性交付**完整本地多模态基座及 01–14 / 16 / 17 的运行支持与适配配方**：共用模型包 / 组件 / 配方、内部引擎模块、独立参数、任务 / 产物和 API。所有模型平级，按生文 / 生图 / 生视频 / 生音频及基座依赖标签筛选，保留既有推荐；交互为模型选择 → 任务表单 → 本机队列 → 结果。完整范围、工作包、风险及同一发布门槛见[版本更新需求](docs/MULTIMODAL_RELEASE_PLAN.md)和[交付摘要](docs/releases/v0.3.0-plan.md)。不拆分版本，不将必需模型默认顺延，不建设 ComfyUI 画布 / 用户节点 / 插件生态 / 图导入。v0.3.0 尚未发布。开发代码、381 项基座检查、83 项扩散检查、64 项素材检查、194 项界面检查及完整剩余项见[开发实施记录](docs/DEVELOPMENT.md)；这不替代完整交付。
 
 全部分词、编码器、采样、codec 与导出在同一 Android 手机执行，无需 ROOT，无外部推理 / 回退。HF 用于搜索和显式资产下载。同架构变体可复用已有配方，新架构需要原生引擎 / APK 更新；Z20 与较新设备分别验收。源码 / 许可见[研究](docs/MULTIMODAL.md)，迁移见[基座评估](docs/FOUNDATION.md)，后台与恢复见[任务方案](docs/WORKFLOWS.md)。完整 MOSS / SoulX 仍有研究关卡，登记 / 下载不计可运行。**当前公开版本仍为 v0.2.0。0.3.0-dev 已加入部分基座代码和编译的扩散 worker，完整模型适配、统一 API 与真机验收尚未完成。**
 
@@ -263,6 +263,8 @@ LMA 自有代码使用 MIT 许可。llama.cpp 及其依赖保留各自许可；�
 
 <img src="docs/media/development/27-scheduler-model-waiting.png" width="260" alt="已选文本模型等待执行槽，明确界面夹具" /> <img src="docs/media/development/28-scheduler-chat-waiting.png" width="260" alt="可取消的排队回复，非真机或模型输出" />
 
-当前内部检查点（**0.3.0-dev.11 / code 15**，未发布）新增[本地输入素材](docs/LOCAL_INPUTS.md)：Android 文件选择、前台服务私有导入、独立取消、素材 / 结果筛选，以及鉴权分块上传。任务固定输入 ID / SHA256 / 元数据，排队与执行租约保护删除，启动引擎前复核完整 hash。现有生产配方仍只接受文字；输入表单演示为明确契约夹具，不代表已支持语音克隆 / 图像编辑。64 项素材 / HTTP、49 项生产调度和 182 项 UI 检查通过；30 张截图与录屏 / GIF 已同步。其余全部模型管线和物理 Android 验收继续属于同一完整 v0.3.0，无新 Release。见[进展](docs/DEVELOPMENT.md)与[更新说明](docs/releases/v0.3.0-dev.11.md)。
+早前内部检查点（**0.3.0-dev.11 / code 15**，未发布）新增[本地输入素材](docs/LOCAL_INPUTS.md)：Android 文件选择、前台服务私有导入、独立取消、素材 / 结果筛选，以及鉴权分块上传。任务固定输入 ID / SHA256 / 元数据，排队与执行租约保护删除，启动引擎前复核完整 hash。现有生产配方仍只接受文字；输入表单演示为明确契约夹具，不代表已支持语音克隆 / 图像编辑。64 项素材 / HTTP、49 项生产调度和 182 项 UI 检查通过；30 张截图与录屏 / GIF 已同步。其余全部模型管线和物理 Android 验收继续属于同一完整 v0.3.0，无新 Release。见[进展](docs/DEVELOPMENT.md)与[更新说明](docs/releases/v0.3.0-dev.11.md)。
 
 <img src="docs/media/development/29-imported-media-library.png" width="260" alt="导入素材与引用保护，明确界面夹具" /> <img src="docs/media/development/30-local-input-role-form.png" width="260" alt="本地输入契约表单，非实际模型能力证据" />
+
+当前内部检查点（**0.3.0-dev.12 / code 16**，未发布）接入[扩散采样与组件管线](docs/DIFFUSION_ENGINE.md)：SD1.5 / SDXL 分离组件、SD-Turbo、两种架构的 LCM checkpoint / LCM-LoRA，LCM 配对后固定本次采样、CFG 与步数上限，保留模型独立设置。Java 与原生 C++ 核对策略，实际加载后核对张量架构。83 项新增扩散主机检查、381 项基座、194 项 UI 和签名 APK 检查通过；32 张带 UI FIXTURE 标识的截图及录屏 / GIF 同步。App 只更新基座，十六种数据模板不会安装或下载模型。全部所选目标与物理 Android 离线输出、质量、后台及升级验收仍属同一完整 v0.3.0，无新 Release。见[更新说明](docs/releases/v0.3.0-dev.12.md)。

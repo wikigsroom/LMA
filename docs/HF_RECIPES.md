@@ -2,14 +2,14 @@
 
 [English](HF_RECIPES.en.md) · [HF 发现](HF_MODELS.md) · [开发状态](DEVELOPMENT.md) · [资产边界核对](ASSET_CONTROL_AUDIT.md)
 
-适用：**0.3.0-dev.9 / code 13，内部开发检查点，未发 Release**。App 提供代码与配方元数据，用户选择和管理模型资产。以下流程不表示任意 HF 权重均能在 Android 上运行；实际架构、语言、组件配套、许可和设备资源仍需核对。
+适用：**0.3.0-dev.12 / code 16，内部开发检查点，未发 Release**。App 提供代码与配方元数据，用户选择和管理模型资产。以下流程不表示任意 HF 权重均能在 Android 上运行；实际架构、语言、组件配套、许可和设备资源仍需核对。
 
 ## 用户操作
 
 1. 在模型页进入“全部”或搜索 HF，打开仓库的“选择文件”。保留原有 GGUF 文本入口；点击“构建模型包 / LoRA 配方”进入组件选择。
-2. 明确选择配方。当前提供九个签名 App 内的数据模板（含 [文本 GGUF](TEXT_ENGINE.md)和 [MOSS Nano](MOSS_NANO_ENGINE.md)），其余覆盖：SD 1.5 完整 checkpoint、SDXL 完整 checkpoint、两种架构各自的 LoRA，以及使用明确列出英语 lexicon 的 Kokoro / Piper VITS / Matcha + vocoder。模板不能安装引擎、转换模型或自动证明运行兼容。
+2. 明确选择配方。当前提供十六个签名 App 数据模板：文本 GGUF、MOSS Nano、SD1.5 / SDXL 完整及分离组件、两者普通 LoRA、SD-Turbo、两者 LCM checkpoint / LCM-LoRA，以及 Kokoro / Piper / Matcha 英语模板。具体组件和采样规则见[扩散指南](DIFFUSION_ENGINE.md)。模板不安装引擎，不转换权重，不证明手机已支持。
 3. 按角色选择每个必需文件，例如 `model`、`voices`、`tokens`、`vocoder`。可在选择页输入其他 `作者/仓库`，使用分页寻找组件；已经选择的组件保留各自仓库和固定提交。文件扩展名只用于角色格式检查，不推断模型架构或语言。切换配方会清空草稿选择，关闭窗口或重启可能丢失未登记草稿。
-4. 检查主文件、全部固定依赖、来源、版本、大小与校验类型。checkpoint 模板明确披露 CLIP merges；语音模板披露英语词表。其他语言、独立 diffusion 权重、LCM / LCM-LoRA 等需要各自正确的完整配方，不由这些模板自动覆盖。
+4. 检查主文件、全部固定依赖、来源、版本、大小与校验类型。扩散模板披露 CLIP merges；分离 SDXL 必须包含 CLIP-L、CLIP-G 和 VAE。语音模板披露英语词表；其他语言仍需正确完整配方。LCM-LoRA 使用专用模板，不能把普通 LoRA 名称当成加速声明。
 5. 点击“加入本地并查看下载计划”：只登记不可变清单，**不下载**。在详情中核对完整总量、已验证可复用文件、剩余传输及引擎状态，再单独点击下载。缺引擎、缺文件或不兼容时在本机说明原因，没有外部推理或隐式补下载。
 6. 在“本地”暂停 / 续传、导入文件夹、管理独立参数与删除资产。LoRA 是平级记录，使用时明确选择兼容基础模型。任务通过同一手机队列执行；推荐 `m08 → m06 → m01` 不变。
 
@@ -30,7 +30,7 @@ Git blob SHA-1 **不是**原始文件 SHA-1，也不是发布者 SHA256。普通
 
 ## 验证与演示边界
 
-存储 / 校验 / 版本管理 302 项检查含 110 项新增配方与 Git 完整性断言；HF 元数据 / 原生控制器及 UI 回归另见 [development 回执](../verification/development/status.json)。桌面检查使用任意字节或显式模拟原生状态，未下载测试权重，不是模型输出、手机安装或锁屏耐久证据。
+存储 / 校验 / 版本管理 381 项检查含 189 项配方与 Git 完整性断言；HF 元数据 / 原生控制器及 UI 回归另见 [development 回执](../verification/development/status.json)。桌面检查使用任意字节或显式模拟原生状态，未下载测试权重，不是模型输出、手机安装或锁屏耐久证据。
 
 ![HF 组件选择流程，显式 UI 测试数据](media/development/12-hf-components.png)
 

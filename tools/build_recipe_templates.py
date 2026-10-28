@@ -22,10 +22,38 @@ def build():
                           "help": "只适用于完整 checkpoint。独立 diffusion 权重需要另一套完整组件配方；张量架构、量化兼容与资源尚需验证。"})
         scale = {"type": "number", "label": "LoRA 强度", "default": 1, "minimum": -4, "maximum": 4, "presets": [0.5, 0.75, 1], "limitSource": "application_guard"}
         definition = dict(engine="sd_cpp", backend="cpu", architecture=arch, pipeline="lora", tasks=["image"], capabilities=["image_adapter"],
-                          adapter={"schema": "lma.adapter/1", "kind": "lora", "baseArchitectures": [arch], "basePipelines": [arch]}, parameters={"version": 1, "fields": {"scale": scale}})
+                          adapter={"schema": "lma.adapter/1", "kind": "lora", "baseArchitectures": [arch], "basePipelines": [arch, arch + "_lcm"]}, parameters={"version": 1, "fields": {"scale": scale}})
         templates.append({"id": arch + "_lora_cpu_v1", "name": caption + " · LoRA", "primaryRole": "lora", "definition": definition,
                           "requirements": [{"role": "lora", "label": "与基础架构匹配的 LoRA", "formats": ["safetensors", "gguf"], "required": True}], "fixedComponents": [],
                           "help": "LoRA 不能单独生成；完成安装后需明确选择已安装的兼容基础模型。此配方不自动适配 LCM-LoRA。"})
+    # These are data recipes, never a model installation list. Each file remains a user choice.
+    checkpoint = {t["definition"]["architecture"]: t for t in templates if t["primaryRole"] == "model"}
+    for arch in ("sd15", "sdxl"):
+        base = checkpoint[arch]
+        base["requirements"].append(dict(role="vae", label="可选：匹配架构的替代 VAE", formats=["safetensors", "gguf"], required=False))
+        split = copy.deepcopy(base)
+        split.update(id=arch + "_split_cpu_v1", name=("SD 1.5" if arch == "sd15" else "SDXL") + " · 独立 diffusion + 编码器 + VAE", primaryRole="diffusion")
+        split["requirements"] = [dict(role=role, label=role, formats=["gguf", "safetensors"], required=True) for role in (["diffusion", "clip_l", "vae"] if arch == "sd15" else ["diffusion", "clip_l", "clip_g", "vae"])]
+        split["help"] = "选择同一架构配套的 diffusion、完整 CLIP 编码器和 VAE；SDXL 必须同时提供 CLIP-L 与 CLIP-G。全部组件核验后才能运行，词表作为已披露依赖由用户下载。"
+        templates.append(split)
+    for pipeline, arch, caption in (("sd21_turbo", "sd21", "SD-Turbo · SD 2.1"), ("sd15_lcm", "sd15", "LCM · SD 1.5 checkpoint"), ("sdxl_lcm", "sdxl", "LCM · SDXL checkpoint")):
+        t = copy.deepcopy(checkpoint["sd15" if arch == "sd21" else arch]); t.update(id=pipeline + "_checkpoint_cpu_v1", name=caption)
+        d = t["definition"]; d.update(pipeline=pipeline, architecture=arch, capabilities=["text_to_image", "distilled_sampling"])
+        f = d["parameters"]["fields"]; lcm = pipeline.endswith("_lcm")
+        f["steps"].update(default=4 if lcm else 1, maximum=8 if lcm else 4, presets=[1, 2, 4, 8] if lcm else [1, 2, 4], limitSource="application_sampling_policy")
+        f["cfg"].update(default=1, minimum=1, maximum=1, presets=[1], limitSource="application_sampling_policy")
+        f["sampler"].update(default="lcm" if lcm else "euler_a", values=["lcm"] if lcm else ["euler_a"])
+        f["scheduler"] = dict(type="enum", label="调度器", default="lcm" if lcm else "discrete", values=["lcm"] if lcm else ["discrete"])
+        t["help"] = "只选择该蒸馏架构的完整 checkpoint。低步数配方关闭 CFG，不接受负面提示词；LCM checkpoint 不再叠加 LCM-LoRA。采样上限是应用配方约束，实际图像与手机资源仍待验证。"
+        templates.append(t)
+    for arch in ("sd15", "sdxl"):
+        t = copy.deepcopy(next(t for t in templates if t["id"] == arch + "_lora_cpu_v1"))
+        t.update(id=arch + "_lcm_lora_cpu_v1", name=("SD 1.5" if arch == "sd15" else "SDXL") + " · LCM-LoRA")
+        t["definition"]["adapter"].update(sampling="lcm", basePipelines=[arch])
+        t["definition"]["capabilities"].append("distilled_sampling")
+        t["definition"]["parameters"]["fields"]["scale"].update(minimum=0.1, maximum=2, presets=[0.5, 0.75, 1])
+        t["help"] = "与对应架构的普通基础模型显式配对；一次只选一个 LCM 加速来源。任务自动固定 LCM 采样 / 调度、CFG=1 与 1–8 步保护范围，保存的基础模型设置保留；不支持负面提示词。"
+        templates.append(t)
     for pipeline, caption, roles in (("kokoro", "Kokoro · 英语词表", ("model", "voices", "tokens")), ("piper_vits", "Piper VITS · 英语词表", ("model", "tokens")), ("matcha", "Matcha + vocoder · 英语词表", ("model", "vocoder", "tokens"))):
         source = next(b for b in bundles if b["pipeline"] == pipeline)
         definition = {k: copy.deepcopy(source[k]) for k in ("engine", "backend", "architecture", "pipeline", "tasks", "capabilities", "parameters")}
@@ -72,5 +100,6 @@ def build():
 
 if __name__ == "__main__":
     target = ROOT / "app/src/main/assets/recipe-templates.json"
-    target.write_text(json.dumps(build(), ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print("Generated 9 data-only component recipes; no weights or tokenizer data.")
+    result = build()
+    target.write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    print(f"Generated {len(result['templates'])} data-only component recipes; no weights or tokenizer data.")

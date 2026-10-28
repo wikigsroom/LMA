@@ -1,5 +1,12 @@
 # Changelog / 更新记录
 
+## 0.3.0-dev.12 · 2026-10-28 · 内部检查点 / Internal checkpoint
+
+- 十六种用户自选数据配方，新增 SD1.5 / SDXL 分离组件、SD-Turbo、LCM checkpoint 与双架构 LCM-LoRA。No weights or automatic model downloads.
+- 明确 LCM 配对后固定本次采样 / CFG / 步数，保留模型独立设置；队列计划落盘稳定、运行前重算核对，原生再次验证策略和实际张量架构。Freeze effective sampling without overwriting base settings.
+- 83 项新增扩散主机 / C++ 检查、381 项基座和 194 项 UI；原签名 APK、双语指南、32 张标识截图与录屏 / GIF 同步。Host protocol bytes are not generated images.
+- 全部冻结模型、真实图像 / 音频 / 视频、物理 Android 质量 / 资源 / 后台 / 升级验收继续要求在同一完整 v0.3.0 完成；没有新 Release。
+
 ## 0.3.0-dev.11 · 2026-10-28 · 内部检查点 / Internal checkpoint
 
 - 用户显式导入本地素材，前台服务复制 / 取消，实际结构与 hash 校验；素材和生成结果分别标记、预览、导出、独立管理。Explicit local media import and ownership.

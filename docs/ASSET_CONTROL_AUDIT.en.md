@@ -15,7 +15,7 @@ The requirements restated:
 | Requirement | Document rule | Implementation / evidence |
 | --- | --- | --- |
 | APK updates deliver the foundation | Asset-separation section, F-02 / A11 | Package checks exclude weights, model-specific vocabularies and voices; engine code belongs in the App |
-| Users select models and dependencies | Explicit selected bundle plus previously disclosed required components; no mandatory installation of all supported targets | Bundle details, explicit transfers and folder import exist; nine explicit HF component templates do not download on registration; other architectures still need adaptations |
+| Users select models and dependencies | Explicit selected bundle plus previously disclosed required components; no mandatory installation of all supported targets | Bundle details, explicit transfers and folder import exist; sixteen explicit HF component templates do not download on registration; other architectures still need adaptations |
 | Install/upgrade/browse never downloads models | Structured `model_asset_policy` forbids implicit selection/download/replacement | Host storage/transfer/UI checks cover declaration, browsing and missing-asset failure; physical install/upgrade still needs evidence |
 | Independent management | Local pause/resume/settings/import/update/delete, with upgrade preservation | dev.7 implements bundle update/review/explicit activation/rollback; dev.9 adds existing-GGUF migration/shared management; physical Android upgrades remain unverified |
 | Text/image/video/audio tags | One flat pool; independent capability and engine/architecture/format/component/backend/evidence labels | Four output filters are implemented; labels do not establish execution support |
@@ -38,3 +38,5 @@ Dev.9 [existing-model migration](MODEL_MIGRATION.en.md) reuses verified local ha
 Dev.10 [shared execution](SCHEDULING.en.md) unifies resident text, chat/API and jobs under the same process/cancellation boundary. 43 host assertions cover user-asset reuse, switching and retained stop intent, without model downloads or complete model/device acceptance.
 
 Dev.11 [input media](LOCAL_INPUTS.en.md) is explicitly imported/uploaded independently of model assets. These actions never download, load or replace a model. Production recipes remain prompt-only. 64 input, 49 scheduler and 182 UI assertions do not replace physical A11 acceptance.
+
+Dev.12 [diffusion](DIFFUSION_ENGINE.en.md) updates signed runtime code, recipes and policy only. SDXL encoders/VAE, Turbo/LCM weights and LoRA remain explicit user choices. Sixteen templates initiate no download; LCM task parameters preserve saved base settings. 83 diffusion-host and 194 UI checks do not replace A11 device acceptance.
