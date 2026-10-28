@@ -1,5 +1,11 @@
 # Changelog / 更新记录
 
+## 0.3.0-dev.19 — 2026-10-28 (internal / unpublished)
+
+新增旧 Local / Realtime 的独立原生 RQ 基座，三个用户自选 GGUF、24 kHz 可选参考、独立词表与实际输入预算校验；旧 SoundEffect 按官方模板绑定 Ambient Sound。Added separate native depth architectures and shared model-owned parameters/jobs/leases/cleanup. Realtime currently provides one text request to complete WAV, without incremental streaming or real-time claims.
+
+178 scoped RQ checks include 10 actual host children, 14 GGUF metadata checks and two actual synthetic tiny graphs; openmoss 514 / foundation 550 / UI 280 checks pass. Original-signature APK, 32 metadata-only recipes, 24 native files, bilingual docs, 55 UI FIXTURE screens and refreshed recording/GIF. No complete-model or Android inference/quality/endurance evidence. Every frozen target stays in one complete v0.3.0; no new Release. See [双语说明与编号表 / bilingual numbered notes](docs/releases/v0.3.0-dev.19.md).
+
 ## 0.3.0-dev.18 — 2026-10-28 (internal / unpublished)
 
 在现有原生 MOSS worker 中接入 TTS、v1.5、TTSD、VoiceGenerator 四种平级配方；按 32/16-codebook、8B/1.7B 实际 GGUF 几何校验。增加成对 S1/S2 参考、每模型声音描述/语言参数和真实生成网格的 prefill 前预算保护。Added native delay dispatch, explicit paired reference mapping, per-model bounded voice/language hints and a context guard in a generated copy of the pristine pinned source. All model/codec/BPE assets stay user-selected.

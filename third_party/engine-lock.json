@@ -191,14 +191,34 @@
       "abi": "arm64-v8a",
       "backend": "cpu",
       "ndk": "30.0.16248370",
-      "sha256": "734dfdc707cc4589cef68b446aba67bd77cc4956f2c6f1496895916ec9aacafe",
-      "bytes": 3699256,
+      "sha256": "385ec36532fefe6e57a1c1e17603e3476f89f63be24b75ccc1acc3fb632a7ed0",
+      "bytes": 3701960,
       "android_api_notes": [
         28
       ],
       "notices": {
         "openmoss-LICENSE.txt": "1eb85fc97224598dad1852b5d6483bbcf0aa8608790dcc657a5a2a761ae9c8c6",
         "openmoss-llama-LICENSE.txt": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
+        "sd-nlohmann-json-LICENSE.txt": "0e592e358cf7722906f417be85bc514f15bf6efd28cea98cb84e56ef7fddfc3e",
+        "sd-NDK-LLVM-NOTICE.txt": "f96f763beb66a7ba7a667647fc64c0226ace875e590c831fdd9579ec1c1d91e1"
+      }
+    },
+    {
+      "engine": "moss_rq_native",
+      "file": "liblma-moss-rq.so",
+      "source_revision": "ee722b8e9205ee9b1b1c398a4e87e4e393e9be41",
+      "ggml_revision": "e705c5fed490514458bdd2eaddc43bd098fcce9b",
+      "abi": "arm64-v8a",
+      "backend": "cpu",
+      "ndk": "30.0.16248370",
+      "sha256": "f508d8c2ba6ba8ab459fea5a8daba9d1f3f95dc1d73034611ee396dc5537632b",
+      "bytes": 1614696,
+      "android_api_notes": [
+        28
+      ],
+      "notices": {
+        "moss-rq-upstream-README.txt": "dbc55d95287924bcd153368de4a3710c04c0a707e7deeaf438af9b30a808cc43",
+        "moss-rq-ggml-LICENSE.txt": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
         "sd-nlohmann-json-LICENSE.txt": "0e592e358cf7722906f417be85bc514f15bf6efd28cea98cb84e56ef7fddfc3e",
         "sd-NDK-LLVM-NOTICE.txt": "f96f763beb66a7ba7a667647fc64c0226ace875e590c831fdd9579ec1c1d91e1"
       }

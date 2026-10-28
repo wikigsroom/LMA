@@ -19,7 +19,7 @@
   "physical_android": false,
   "image_outputs": false,
   "input_fingerprint": {
-    "app/src/main/assets/recipe-templates.json": "20beaebccca3d1c9d142d1371ace177d1500db84ce1eb4629bfa29a4381abae3",
+    "app/src/main/assets/recipe-templates.json": "0069327134f90095262d6d8072a4d3ca30b63e76a65c9aa36dab7e74860d4e31",
     "app/src/main/java/com/lma/app/core/AdapterSpec.java": "aff8572d14ac8d616be0a1b0da395e52ed5bddcd5ae407a969c2657bf9257581",
     "app/src/main/java/com/lma/app/core/ArtifactStore.java": "0336ab2425868bf2cb5a2fc37d97afbcdf838bb5f977b874e0f98c9db777be55",
     "app/src/main/java/com/lma/app/core/BundleStore.java": "119368cd2d090192ed07306ebab25c40b2f880a490e93c8ad83a952186a3ec48",
@@ -42,7 +42,8 @@
     "app/src/main/java/com/lma/app/core/ModelSelection.java": "965c9f22f16fc822f792ebef6e0de0a0c67f5a6882d5e7ef77be05b83ea1aeb2",
     "app/src/main/java/com/lma/app/core/MossDelaySpec.java": "2f680d68cf78517f234c336c77e0b584bf40300fd6294514b7cd457149d41bd0",
     "app/src/main/java/com/lma/app/core/MossNanoSpec.java": "4b784a773fb85550eba8f169a62cab9a274a332519ec700b595694378e9e39ed",
-    "app/src/main/java/com/lma/app/core/OpenMossSpec.java": "0532ac99a8ffc5dbdff2f5189d783161319b30fa79ac83eb3a6078e5b8c3fff9",
+    "app/src/main/java/com/lma/app/core/MossRqSpec.java": "74f68a8374b5436cf73688e427e9cad244a198f6f8faa2c5fea686bb04bc99a2",
+    "app/src/main/java/com/lma/app/core/OpenMossSpec.java": "4a9af3c92d87be65c4f617677eaed31576f9160a3355518fff7cb874192a5258",
     "app/src/main/java/com/lma/app/core/ParameterSchema.java": "d536dd7e01107785076f5d1cd3c1c7ff89f6a3711ec130d3ec13e4b20d73bef1",
     "app/src/main/java/com/lma/app/core/ProcessControl.java": "a1950624951d41c040b0b9f44cd8ef5faff16ed22dae880d626e4619d77c155d",
     "app/src/main/java/com/lma/app/core/Protocol.java": "d49f47884aec0cb03347023119c2808330fa9970689dcd9d33c30ca653d03b85",

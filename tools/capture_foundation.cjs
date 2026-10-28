@@ -309,6 +309,14 @@ async function main() {
     }
     await page.keyboard.press('Escape');
   }
+  for(const [pipeline,index] of [['moss_soundeffect_openmoss_cpu_v1',53],['moss_local_v10_rq_cpu_v1',54],['moss_realtime_rq_cpu_v1',55]]) {
+    const template=templates.find(t=>t.id===pipeline),id=await page.evaluate(openMossUI.installFixture,template);
+    await page.locator('[data-action="bundleInfo"][data-id="'+id+'"]').click();await page.locator('#modal [data-action="bundleUse"][data-id="'+id+'"]').click();
+    await page.locator('[name="prompt"]').fill(pipeline.includes('soundeffect')?'风吹树叶和远处雨声。仅界面夹具，未执行模型。':'这是一段界面演示文本，单次任务返回完整 WAV，未执行模型。');
+    await page.locator('#localTaskForm .task-parameters').evaluate(e=>{e.open=true;});
+    if(pipeline.includes('local_v10'))await page.locator('[data-bundle-field="voiceInstruction"]').fill('成年、平静的声音（表单示例）');
+    await page.locator('#modalTitle').evaluate(e=>e.scrollIntoView({block:'start'}));await shot(index+'-'+pipeline+'.png','UI FIXTURE, user-selected components, no model inference / 用户自选组件，未执行模型；Realtime 当前为单次文本到 WAV');await page.keyboard.press('Escape');
+  }
   if (errors.length) throw new Error(JSON.stringify(errors));
   const video = page.video(); await context.close(); context = null;
   const raw = await video.path();

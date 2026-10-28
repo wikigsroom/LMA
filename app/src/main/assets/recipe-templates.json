@@ -3730,7 +3730,8 @@
           "audio"
         ],
         "capabilities": [
-          "text_to_audio"
+          "text_to_audio",
+          "negative_prompt"
         ],
         "parameters": {
           "version": 1,
@@ -4567,6 +4568,536 @@
       ],
       "fixedComponents": [],
       "help": "仅匹配固定 pwilkin/openmoss 转换布局（16 路 / 1.7B），输出 24 kHz 单声道。主干和 extras 需用户显式选择、同次转换；不能混用 first-class / Nano / Local / SoundEffect 文件。必填声音描述，不接受参考音频；按描述设计声音。参考仅支持 1–10 秒、≤1 MiB 的 PCM16 / float32 WAV，不自动重采样。CPU 同时驻留全部组件，8B 主干与大 codec 需要高内存设备；未证明 Z20 可运行。模型、BPE、codec 均不附带；参数随模型保存。没有 LMA Android 输出、质量、速度或后台验收。"
+    },
+    {
+      "id": "moss_soundeffect_openmoss_cpu_v1",
+      "name": "MOSS-SoundEffect · 原生环境音效",
+      "primaryRole": "backbone",
+      "definition": {
+        "engine": "openmoss_native",
+        "backend": "cpu",
+        "architecture": "moss_soundeffect",
+        "pipeline": "moss_soundeffect_openmoss_cpu_v1",
+        "tasks": [
+          "audio"
+        ],
+        "capabilities": [
+          "text_to_audio",
+          "environment_sound_conditioning"
+        ],
+        "parameters": {
+          "version": 1,
+          "fields": {
+            "threads": {
+              "type": "integer",
+              "label": "CPU 线程",
+              "default": 4,
+              "minimum": 1,
+              "maximum": 32,
+              "presets": [
+                2,
+                4,
+                8
+              ],
+              "limitSource": "application_guard"
+            },
+            "seed": {
+              "type": "integer",
+              "label": "随机种子（-1 自动）",
+              "default": -1,
+              "minimum": -1,
+              "maximum": 2147483647,
+              "presets": [
+                -1,
+                0,
+                42
+              ],
+              "limitSource": "native_seed_range"
+            },
+            "maxInputTokens": {
+              "type": "integer",
+              "label": "格式化输入上限（含参考）",
+              "default": 1024,
+              "minimum": 1,
+              "maximum": 2048,
+              "presets": [
+                256,
+                512,
+                1024,
+                2048
+              ],
+              "limitSource": "application_guard"
+            },
+            "maxNewTokens": {
+              "type": "integer",
+              "label": "生成步数上限（含 delay 收尾，不承诺精确时长）",
+              "default": 375,
+              "minimum": 1,
+              "maximum": 1500,
+              "presets": [
+                125,
+                375,
+                750,
+                1500
+              ],
+              "limitSource": "application_guard"
+            },
+            "textTemperature": {
+              "type": "number",
+              "label": "继续 / 停止头温度",
+              "default": 1,
+              "minimum": 0,
+              "maximum": 3,
+              "presets": [
+                0,
+                1,
+                1.5
+              ],
+              "limitSource": "application_guard"
+            },
+            "audioTemperature": {
+              "type": "number",
+              "label": "音频温度",
+              "default": 1.5,
+              "minimum": 0,
+              "maximum": 3,
+              "presets": [
+                0,
+                1,
+                1.7
+              ],
+              "limitSource": "application_guard"
+            },
+            "audioTopP": {
+              "type": "number",
+              "label": "音频 Top P",
+              "default": 0.6,
+              "minimum": 0.01,
+              "maximum": 1,
+              "presets": [
+                0.8,
+                0.9,
+                1
+              ],
+              "limitSource": "application_guard"
+            },
+            "audioTopK": {
+              "type": "integer",
+              "label": "音频 Top K",
+              "default": 50,
+              "minimum": 1,
+              "maximum": 1024,
+              "presets": [
+                1,
+                25,
+                50
+              ],
+              "limitSource": "application_guard"
+            },
+            "audioRepetitionPenalty": {
+              "type": "number",
+              "label": "音频重复惩罚",
+              "default": 1.2,
+              "minimum": 1,
+              "maximum": 2,
+              "presets": [
+                1,
+                1.05,
+                1.1
+              ],
+              "limitSource": "application_guard"
+            }
+          }
+        }
+      },
+      "requirements": [
+        {
+          "role": "backbone",
+          "label": "旧 SoundEffect Qwen3-8B 主干（含 BPE）",
+          "formats": [
+            "gguf"
+          ],
+          "required": true,
+          "provides": [
+            "text_tokenizer"
+          ]
+        },
+        {
+          "role": "extras",
+          "label": "同次转换的 16 路 delay 头 / v1 codec extras",
+          "formats": [
+            "gguf"
+          ],
+          "required": true,
+          "provides": [
+            "audio_decoder"
+          ]
+        }
+      ],
+      "fixedComponents": [],
+      "help": "旧 MOSS-SoundEffect，16 路 delay / 24 kHz 单声道。按官方处理器将提示词绑定到 Ambient Sound，Text 为 None；不支持负面提示词、声音指令或参考音频。仅匹配固定 pwilkin/openmoss 转换布局，同次转换的主干与 extras，不能混用 SoundEffect-v2 / TTSD / VoiceGenerator。8B 与 codec 同时驻留 CPU 内存，未证明 Z20 可运行。用户自行选择组件；无附带权重、词表或自动下载；尚无 LMA Android 推理或后台验收。"
+    },
+    {
+      "id": "moss_local_v10_rq_cpu_v1",
+      "name": "MOSS-TTS-Local-Transformer（旧版） · 原生语音",
+      "primaryRole": "model",
+      "definition": {
+        "engine": "moss_rq_native",
+        "backend": "cpu",
+        "architecture": "moss_tts_local_v10",
+        "pipeline": "moss_local_v10_rq_cpu_v1",
+        "tasks": [
+          "audio"
+        ],
+        "capabilities": [
+          "text_to_speech",
+          "single_text_to_wav"
+        ],
+        "parameters": {
+          "version": 1,
+          "fields": {
+            "threads": {
+              "type": "integer",
+              "label": "CPU 线程",
+              "default": 4,
+              "minimum": 1,
+              "maximum": 32,
+              "presets": [
+                2,
+                4,
+                8
+              ],
+              "limitSource": "application_guard"
+            },
+            "seed": {
+              "type": "integer",
+              "label": "随机种子（-1 自动）",
+              "default": -1,
+              "minimum": -1,
+              "maximum": 2147483647,
+              "presets": [
+                -1,
+                0,
+                42
+              ],
+              "limitSource": "native_seed_range"
+            },
+            "maxInputTokens": {
+              "type": "integer",
+              "label": "格式化输入上限（含参考与余下文本）",
+              "default": 1024,
+              "minimum": 1,
+              "maximum": 2048,
+              "presets": [
+                512,
+                1024,
+                2048
+              ],
+              "limitSource": "application_guard"
+            },
+            "maxNewTokens": {
+              "type": "integer",
+              "label": "生成步数上限（每帧 80 ms，含停止步）",
+              "default": 375,
+              "minimum": 1,
+              "maximum": 750,
+              "presets": [
+                125,
+                375,
+                750
+              ],
+              "limitSource": "application_guard"
+            },
+            "audioTemperature": {
+              "type": "number",
+              "label": "音频温度",
+              "default": 1.7,
+              "minimum": 0,
+              "maximum": 3,
+              "presets": [
+                0,
+                0.8,
+                1.7
+              ],
+              "limitSource": "application_guard"
+            },
+            "audioTopP": {
+              "type": "number",
+              "label": "音频 Top P",
+              "default": 0.8,
+              "minimum": 0.01,
+              "maximum": 1,
+              "presets": [
+                0.6,
+                0.8,
+                1
+              ],
+              "limitSource": "application_guard"
+            },
+            "audioTopK": {
+              "type": "integer",
+              "label": "音频 Top K",
+              "default": 25,
+              "minimum": 1,
+              "maximum": 1024,
+              "presets": [
+                1,
+                25,
+                30,
+                50
+              ],
+              "limitSource": "application_guard"
+            },
+            "audioRepetitionPenalty": {
+              "type": "number",
+              "label": "音频重复惩罚",
+              "default": 1.1,
+              "minimum": 1,
+              "maximum": 2,
+              "presets": [
+                1,
+                1.1,
+                1.2
+              ],
+              "limitSource": "application_guard"
+            },
+            "textTemperature": {
+              "type": "number",
+              "label": "继续 / 停止头温度",
+              "default": 1.5,
+              "minimum": 0,
+              "maximum": 3,
+              "limitSource": "application_guard"
+            },
+            "textTopP": {
+              "type": "number",
+              "label": "继续 / 停止头 Top P",
+              "default": 1,
+              "minimum": 0.01,
+              "maximum": 1,
+              "limitSource": "application_guard"
+            },
+            "textTopK": {
+              "type": "integer",
+              "label": "继续 / 停止头 Top K",
+              "default": 50,
+              "minimum": 1,
+              "maximum": 1024,
+              "limitSource": "application_guard"
+            },
+            "voiceInstruction": {
+              "type": "string",
+              "label": "声音描述（可选）",
+              "default": "",
+              "maxLength": 1000
+            },
+            "language": {
+              "type": "string",
+              "label": "语言提示（可选）",
+              "default": "",
+              "maxLength": 64
+            }
+          }
+        }
+      },
+      "requirements": [
+        {
+          "role": "model",
+          "label": "匹配的 moss-tts-local / 32 路旧 Local GGUF",
+          "formats": [
+            "gguf"
+          ],
+          "required": true
+        },
+        {
+          "role": "codec",
+          "label": "v1 MOSS-Audio-Tokenizer GGUF（24 kHz / 32 路）",
+          "formats": [
+            "gguf"
+          ],
+          "required": true,
+          "provides": [
+            "audio_encoder",
+            "audio_decoder"
+          ]
+        },
+        {
+          "role": "tokenizer",
+          "label": "与此版本匹配的 moss-tokenizer BPE GGUF",
+          "formats": [
+            "gguf"
+          ],
+          "required": true,
+          "provides": [
+            "text_tokenizer"
+          ]
+        }
+      ],
+      "fixedComponents": [],
+      "help": "仅匹配固定 mudler/moss-tts.cpp 转换格式；模型 / codec / BPE 由用户显式选择，不能混用 openmoss、Nano、first-class 或 Local-v1.5。旧 Local 使用 4 层 Qwen3 深度 Transformer、输入及逐通道输出 MLP / 32 路编码，区别于 v1.5 的单层 GPT-J；支持可选声音描述及语言提示。输出 24 kHz 单声道；可选 1–10 秒、≤1 MiB 同格式 PCM16 / float32 参考 WAV，不自动重采样。1.7B 主干与大 codec 同时驻留内存，需要高内存设备；未证明 Z20 可运行。无附带权重或词表；尚无 LMA Android 推理、质量、速度或后台验收。"
+    },
+    {
+      "id": "moss_realtime_rq_cpu_v1",
+      "name": "MOSS-TTS-Realtime · 原生语音",
+      "primaryRole": "model",
+      "definition": {
+        "engine": "moss_rq_native",
+        "backend": "cpu",
+        "architecture": "moss_tts_realtime",
+        "pipeline": "moss_realtime_rq_cpu_v1",
+        "tasks": [
+          "audio"
+        ],
+        "capabilities": [
+          "text_to_speech",
+          "single_text_to_wav"
+        ],
+        "parameters": {
+          "version": 1,
+          "fields": {
+            "threads": {
+              "type": "integer",
+              "label": "CPU 线程",
+              "default": 4,
+              "minimum": 1,
+              "maximum": 32,
+              "presets": [
+                2,
+                4,
+                8
+              ],
+              "limitSource": "application_guard"
+            },
+            "seed": {
+              "type": "integer",
+              "label": "随机种子（-1 自动）",
+              "default": -1,
+              "minimum": -1,
+              "maximum": 2147483647,
+              "presets": [
+                -1,
+                0,
+                42
+              ],
+              "limitSource": "native_seed_range"
+            },
+            "maxInputTokens": {
+              "type": "integer",
+              "label": "格式化输入上限（含参考与余下文本）",
+              "default": 1024,
+              "minimum": 1,
+              "maximum": 2048,
+              "presets": [
+                512,
+                1024,
+                2048
+              ],
+              "limitSource": "application_guard"
+            },
+            "maxNewTokens": {
+              "type": "integer",
+              "label": "生成步数上限（每帧 80 ms，含停止步）",
+              "default": 375,
+              "minimum": 1,
+              "maximum": 750,
+              "presets": [
+                125,
+                375,
+                750
+              ],
+              "limitSource": "application_guard"
+            },
+            "audioTemperature": {
+              "type": "number",
+              "label": "音频温度",
+              "default": 0.8,
+              "minimum": 0,
+              "maximum": 3,
+              "presets": [
+                0,
+                0.8,
+                1.7
+              ],
+              "limitSource": "application_guard"
+            },
+            "audioTopP": {
+              "type": "number",
+              "label": "音频 Top P",
+              "default": 0.6,
+              "minimum": 0.01,
+              "maximum": 1,
+              "presets": [
+                0.6,
+                0.8,
+                1
+              ],
+              "limitSource": "application_guard"
+            },
+            "audioTopK": {
+              "type": "integer",
+              "label": "音频 Top K",
+              "default": 30,
+              "minimum": 1,
+              "maximum": 1024,
+              "presets": [
+                1,
+                25,
+                30,
+                50
+              ],
+              "limitSource": "application_guard"
+            },
+            "audioRepetitionPenalty": {
+              "type": "number",
+              "label": "音频重复惩罚",
+              "default": 1.1,
+              "minimum": 1,
+              "maximum": 2,
+              "presets": [
+                1,
+                1.1,
+                1.2
+              ],
+              "limitSource": "application_guard"
+            }
+          }
+        }
+      },
+      "requirements": [
+        {
+          "role": "model",
+          "label": "匹配的 moss-tts-rt / 16 路 GGUF",
+          "formats": [
+            "gguf"
+          ],
+          "required": true
+        },
+        {
+          "role": "codec",
+          "label": "v1 MOSS-Audio-Tokenizer GGUF（24 kHz / 32 路）",
+          "formats": [
+            "gguf"
+          ],
+          "required": true,
+          "provides": [
+            "audio_encoder",
+            "audio_decoder"
+          ]
+        },
+        {
+          "role": "tokenizer",
+          "label": "与此版本匹配的 moss-tokenizer BPE GGUF",
+          "formats": [
+            "gguf"
+          ],
+          "required": true,
+          "provides": [
+            "text_tokenizer"
+          ]
+        }
+      ],
+      "fixedComponents": [],
+      "help": "仅匹配固定 mudler/moss-tts.cpp 转换格式；模型 / codec / BPE 由用户显式选择，不能混用 openmoss、Nano、first-class 或 Local-v1.5。Realtime 使用独立的 4 层 RoPE 深度 Transformer / 16 路编码，逐步注入文本，但当前接口是单次文本完成后返回 WAV，不提供增量文本输入或音频流。输出 24 kHz 单声道；可选 1–10 秒、≤1 MiB 同格式 PCM16 / float32 参考 WAV，不自动重采样。1.7B 主干与大 codec 同时驻留内存，需要高内存设备；未证明 Z20 可运行。无附带权重或词表；尚无 LMA Android 推理、质量、速度或后台验收。"
     }
   ]
 }

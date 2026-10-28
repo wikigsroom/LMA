@@ -2,7 +2,7 @@
 
 [English](OPENMOSS_ENGINE.en.md) · [完整版本范围](MULTIMODAL_RELEASE_PLAN.md) · [开发证据](DEVELOPMENT.md)
 
-内部检查点 **0.3.0-dev.18 / code 22** 扩展 `openmoss_native` ARM64 CPU worker 和生产 Java 适配器，现有六个平级配方。它实际链接原生图、分词、采样和 codec 代码，不调用 Python、Termux、外部服务或上游 HTTP server。**尚未运行完整模型或物理 Android 推理，不能宣称这些模型已通过手机验收。** 完整 v0.3.0 的冻结目标与门槛没有缩减，也没有创建新 Release。
+内部检查点 **0.3.0-dev.19 / code 23** 扩展 `openmoss_native` ARM64 CPU worker 和生产 Java 适配器，现有七个平级配方。它实际链接原生图、分词、采样和 codec 代码，不调用 Python、Termux、外部服务或上游 HTTP server。**尚未运行完整模型或物理 Android 推理，不能宣称这些模型已通过手机验收。** 完整 v0.3.0 的冻结目标与门槛没有缩减，也没有创建新 Release。
 
 ## 新增四种 delay 布局
 
@@ -103,7 +103,7 @@ python tools/build.py
 
 ## 6. 本轮证据与未完成项
 
-459 项限定检查：生产 Java 349 项（18 次实际主机子进程）、C++ 110 项（实际执行固定上游语音提示模板、音效格式化 / 噪声 / sigma 函数及预算、WAV 边界）。检查包含双参考映射、描述透传、错误回传和资产清理；WAV 为结构夹具，不执行 tensor、神经网络或 Android。详细记录见 [verification](../verification/development/openmoss.json)。其余回归及当前 APK 哈希见[双语版本说明](releases/v0.3.0-dev.18.md)。
+514 项限定检查：生产 Java 402 项（21 次实际主机子进程）、C++ 112 项（实际执行固定上游语音提示模板、音效格式化 / 噪声 / sigma 函数及预算、WAV 边界）。检查包含双参考映射、描述透传、错误回传和资产清理；WAV 为结构夹具，不执行 tensor、神经网络或 Android。详细记录见 [verification](../verification/development/openmoss.json)。其余回归及当前 APK 哈希见[双语版本说明](releases/v0.3.0-dev.19.md)。
 
 截图、录屏和 GIF 都有 **UI FIXTURE** 标识，展示生产页面配合模拟安装状态，不展示实际模型输出：
 
@@ -129,3 +129,14 @@ python tools/build.py
 | P18-04 | 完整 F-01–F-12、01–14 / 16 / 17、所有冻结子目标通过统一门槛后，交付完整 v0.3.0 Release |
 
 [TTSD 双参考界面](media/development/51-moss-ttsd-speakers.png) · [VoiceGenerator 声音描述](media/development/52-moss-voicegen-instruction.png) · [TTS 组件](media/development/48-moss_tts-components.png) · [v1.5 组件](media/development/50-moss_tts_v15-components.png) · [TTS 参数](media/development/49-moss-tts-parameters.png)
+
+
+## 7. dev.19：旧 SoundEffect 的环境声音字段
+
+新增平级配方 `moss_soundeffect_openmoss_cpu_v1`，架构 `moss_soundeffect`，16 路 delay / Qwen3-8B，输出 24 kHz 单声道。官方示例使用 `build_user_message(ambient_sound=text)`；LMA 将提示词放入 `Ambient Sound`，`Text` 为 `None`，与 v2 的 DiT / 48 kHz 路线分别处理。只需用户自选同次转换的主干 / extras；不接受参考音频、负面提示词、声音描述或语言字段，不混用同为 16 路的 TTSD / VoiceGenerator。实际模板函数的检查覆盖环境字段与 Text None。
+
+默认格式化输入预算 1024（1–2048）、生成步数 375（1–1500，含 delay 收尾，不承诺精确时长）、文本继续 / 停止头温度 1（0–3）；音频温度 1.5（0–3）、Top P .6（.01–1）、Top K 50（1–1024）、重复惩罚 1.2（1–2）。线程和种子范围沿用上述语音配方。每模型参数 / 本次快照、预算保护、私有子进程和产物流程相同。任务表单按能力元数据隐藏没有实现的负面条件入口，仍保留 v2 的负面提示词。
+
+旧 SoundEffect、旧 Local 和 Realtime 的固定发布者核对见[记录](../catalogue/evidence/moss-rq-publishers.json)。后两种架构由独立 [RQ 引擎](MOSS_RQ_ENGINE.md) 处理；不能用 delay 几何推断其支持。所有九个 MOSS 子目标已有各自代码路线，仍各自缺少完整权重 / 手机 / 质量与耐久验收，不标记“全家族已可用”。
+
+<img src="media/development/53-moss_soundeffect_openmoss_cpu_v1.png" width="260" alt="旧 SoundEffect 环境音效表单，UI FIXTURE，非模型输出" />

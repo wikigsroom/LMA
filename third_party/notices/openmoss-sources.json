@@ -14,5 +14,5 @@
   ],
   "model_assets": false,
   "local_modification": "LMA inserts a selected input/context budget guard into a generated pipeline.cpp copy before prefill; the pinned source checkout remains pristine.",
-  "pipeline_guard_sha256": "7d7c51a14d90b4d41b7a158ab23126105a85a5dd75c23eba55f7fc099df83a68"
+  "pipeline_guard_sha256": "b49728a9cd8e4caebab14ee4813541c9068e4a9166a4f55c136a5a316832e730"
 }

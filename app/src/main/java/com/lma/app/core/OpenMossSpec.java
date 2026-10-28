@@ -11,8 +11,11 @@ public final class OpenMossSpec {
     static {
         DELAY.put("moss_tts_openmoss_cpu_v1","moss_tts");DELAY.put("moss_tts_v15_openmoss_cpu_v1","moss_tts_v15");
         DELAY.put("moss_ttsd_openmoss_cpu_v1","moss_ttsd");DELAY.put("moss_voicegen_openmoss_cpu_v1","moss_voicegenerator");
+        DELAY.put("moss_soundeffect_openmoss_cpu_v1","moss_soundeffect");
     }
-    public static boolean sound(ModelBundle b) { return b.pipeline.equals("moss_soundeffect_v2_cpu_v1"); }
+    public static boolean flow(ModelBundle b) { return b.pipeline.equals("moss_soundeffect_v2_cpu_v1"); }
+    public static boolean sound(ModelBundle b) { return flow(b) || effect(b); }
+    public static boolean effect(ModelBundle b) { return b.pipeline.equals("moss_soundeffect_openmoss_cpu_v1"); }
     public static boolean delay(ModelBundle b) { return DELAY.containsKey(b.pipeline); }
     public static boolean dialogue(ModelBundle b) { return b.pipeline.equals("moss_ttsd_openmoss_cpu_v1"); }
     public static boolean voice(ModelBundle b) { return b.pipeline.equals("moss_voicegen_openmoss_cpu_v1"); }
@@ -20,7 +23,7 @@ public final class OpenMossSpec {
     public static int channels(ModelBundle b) { return sound(b) || delay(b)?1:2; }
     public static void validate(ModelBundle b,String type) throws Exception {
         boolean s=sound(b);
-        if(!b.engine.equals("openmoss_native") || !b.backend.equals("cpu") || !(s && b.architecture.equals("moss_soundeffect_v2") || b.pipeline.equals("moss_local_v15_cpu_v1") && b.architecture.equals("moss_local_v15") || delay(b) && b.architecture.equals(DELAY.get(b.pipeline)))) throw new IOException("需要匹配的 openmoss CPU 配方及其模型布局");
+        if(!b.engine.equals("openmoss_native") || !b.backend.equals("cpu") || !(flow(b) && b.architecture.equals("moss_soundeffect_v2") || b.pipeline.equals("moss_local_v15_cpu_v1") && b.architecture.equals("moss_local_v15") || delay(b) && b.architecture.equals(DELAY.get(b.pipeline)))) throw new IOException("需要匹配的 openmoss CPU 配方及其模型布局");
         if(!type.equals(s?"audio.generate":"speech.synthesize") || !b.tasks.equals(Collections.singleton("audio"))) throw new IOException("所选 MOSS 配方不提供此任务");
         Set<String> roles=new HashSet<>(Arrays.asList("backbone","extras"));
         for(ModelBundle.Component c:b.components) if(!roles.remove(c.role) || !c.format.equals("gguf")) throw new IOException("需要同次转换且匹配的主干与 extras GGUF；不能混用 first-class / Nano / 旧版文件");
@@ -36,14 +39,15 @@ public final class OpenMossSpec {
         return new JSONObject().put("version",1).put("fields",f);
     }
     public static JSONObject schema(ModelBundle b) throws Exception {
-        JSONObject s=schema(sound(b));if(delay(b)) {
+        JSONObject s=schema(flow(b));if(delay(b)) {
             JSONObject f=s.getJSONObject("fields");f.getJSONObject("maxInputTokens").put("default",1024);f.getJSONObject("maxNewTokens").put("default",375).put("maximum",1500);
-            f.put("voiceInstruction",new JSONObject().put("type","string").put("default","").put("maxLength",1000)).put("language",new JSONObject().put("type","string").put("default","").put("maxLength",64));
+            if(effect(b)) {f.getJSONObject("audioTemperature").put("default",1.5);f.getJSONObject("audioTopP").put("default",.6);f.getJSONObject("audioTopK").put("default",50);f.getJSONObject("audioRepetitionPenalty").put("default",1.2);}
+            else f.put("voiceInstruction",new JSONObject().put("type","string").put("default","").put("maxLength",1000)).put("language",new JSONObject().put("type","string").put("default","").put("maxLength",64));
         }return s;
     }
     public static JSONObject parameters(ModelBundle b,JSONObject values) throws Exception {
         JSONObject result=new ParameterSchema(schema(b)).normalize(new JSONObject(),values);
-        if(delay(b))for(String key:Arrays.asList("voiceInstruction","language")) {String s=result.getJSONObject("values").getString(key);if(s.indexOf('\0')>=0 || s.indexOf('<')>=0 || s.indexOf('>')>=0)throw new IOException("声音描述和语言须为普通文本，不允许模板标记");}
+        if(delay(b) && !sound(b))for(String key:Arrays.asList("voiceInstruction","language")) {String s=result.getJSONObject("values").getString(key);if(s.indexOf('\0')>=0 || s.indexOf('<')>=0 || s.indexOf('>')>=0)throw new IOException("声音描述和语言须为普通文本，不允许模板标记");}
         return result;
     }
     public static String text(ModelBundle b,JSONObject input) throws Exception {
@@ -58,6 +62,7 @@ public final class OpenMossSpec {
         }
         String text=input.getString("prompt"),negative=input.optString("negativePrompt","");
         if(text.trim().isEmpty() || text.length()>8000 || text.indexOf('\0')>=0 || negative.length()>8000 || negative.indexOf('\0')>=0) throw new IOException("音效提示词不能为空，且每段最多 8000 字符");
+        if(effect(b) && (!negative.isEmpty() || text.indexOf('<')>=0 || text.indexOf('>')>=0))throw new IOException("旧 SoundEffect 使用环境声音描述，不接受负面提示词或模板标记");
         return text;
     }
     public static InputSpec inputs(ModelBundle b) throws Exception {
@@ -67,7 +72,7 @@ public final class OpenMossSpec {
     }
     public static List<String> referenceRoles(ModelBundle b) { return sound(b) || voice(b)?Collections.emptyList():dialogue(b)?Arrays.asList("reference_audio_s1","reference_audio_s2"):Collections.singletonList("reference_audio"); }
     public static void conditioning(ModelBundle b,JSONObject input,JSONObject parameters) throws Exception {
-        if(sound(b) && parameters.getDouble("cfgScale")==1 && !input.optString("negativePrompt","").trim().isEmpty())throw new IOException("CFG=1 不使用负向条件；请提高 CFG 或清空负面提示词");
+        if(flow(b) && parameters.getDouble("cfgScale")==1 && !input.optString("negativePrompt","").trim().isEmpty())throw new IOException("CFG=1 不使用负向条件；请提高 CFG 或清空负面提示词");
         if(voice(b) && parameters.getString("voiceInstruction").trim().isEmpty())throw new IOException("VoiceGenerator 需要填写声音描述（voiceInstruction）");
         Set<String> seen=new HashSet<>();JSONArray refs=input.optJSONArray("artifacts");if(refs!=null)for(int i=0;i<refs.length();i++){String r=refs.getJSONObject(i).getString("role");if(!referenceRoles(b).contains(r) || !seen.add(r))throw new IOException("此配方不接受该参考角色或重复参考");}
         if(dialogue(b) && seen.size()==1)throw new IOException("TTSD 参考须成对选择 [S1] 与 [S2]，或全部留空");

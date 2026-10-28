@@ -1,0 +1,620 @@
+{
+  "schema": "lma.publisher-source-audit/1",
+  "checked_on": "2026-10-28",
+  "models": [
+    {
+      "repository": "OpenMOSS-Team/MOSS-TTS-Local-Transformer",
+      "revision": "12aa734e4f11a7b3fdf4eb0ad2aa2029675ffc2e",
+      "config": {
+        "architectures": [
+          "MossTTSDelayModel"
+        ],
+        "language_config": {
+          "architectures": [
+            "Qwen3ForCausalLM"
+          ],
+          "rms_norm_eps": 1e-06,
+          "attention_bias": false,
+          "hidden_size": 2048,
+          "max_window_layers": 28,
+          "use_cache": true,
+          "attention_dropout": 0,
+          "eos_token_id": 151645,
+          "_name_or_path": "Qwen/Qwen3-8B",
+          "sliding_window": null,
+          "vocab_size": 155648,
+          "num_attention_heads": 16,
+          "hidden_act": "silu",
+          "num_key_value_heads": 8,
+          "rope_scaling": null,
+          "pad_token_id": 151643,
+          "model_type": "qwen3",
+          "head_dim": 128,
+          "initializer_range": 0.02,
+          "intermediate_size": 6144,
+          "max_position_embeddings": 40960,
+          "use_sliding_window": false,
+          "num_hidden_layers": 28,
+          "layer_types": [
+            "full_attention",
+            "full_attention",
+            "full_attention",
+            "full_attention",
+            "full_attention",
+            "full_attention",
+            "full_attention",
+            "full_attention",
+            "full_attention",
+            "full_attention",
+            "full_attention",
+            "full_attention",
+            "full_attention",
+            "full_attention",
+            "full_attention",
+            "full_attention",
+            "full_attention",
+            "full_attention",
+            "full_attention",
+            "full_attention",
+            "full_attention",
+            "full_attention",
+            "full_attention",
+            "full_attention",
+            "full_attention",
+            "full_attention",
+            "full_attention",
+            "full_attention"
+          ],
+          "rope_theta": 1000000,
+          "bos_token_id": 151643
+        },
+        "audio_assistant_delay_slot_token_id": 151662,
+        "model_type": "moss_tts_delay",
+        "local_num_layers": 4,
+        "dtype": "bfloat16",
+        "audio_start_token_id": 151652,
+        "auto_map": {
+          "AutoConfig": "configuration_moss_tts.MossTTSDelayConfig",
+          "AutoModel": "modeling_moss_tts.MossTTSDelayModel"
+        },
+        "initializer_range": 0.02,
+        "audio_vocab_size": 1024,
+        "audio_pad_code": 1024,
+        "additional_mlp_ffn_hidden_size": 2048,
+        "audio_assistant_gen_slot_token_id": 151656,
+        "sampling_rate": 24000,
+        "local_ffn_hidden_size": 8960,
+        "local_hidden_size": 1536,
+        "audio_user_slot_token_id": 151654,
+        "transformers_version": "4.57.1",
+        "n_vq": 32,
+        "audio_end_token_id": 151653
+      },
+      "metadata_files": {
+        "config.json": "f1d95405f5a37f95a66197daf4a9f425e45eda4cf0a07784ade54ee40a4700ea",
+        "configuration_moss_tts.py": "81e6d5125a9ae1c877e348c4339a25480327f4210502cb204e2eb6140cfdef5b",
+        "modeling_moss_tts.py": "33e9b2ba8f69eab05f3fc096f4d4a61f7a48787dfba2997ba5f55b38cfed1df3",
+        "processing_moss_tts.py": "ccb9d7def3d274a27d6c44a975e9c1150298cb69710733512d70d568b630049a",
+        "README.md": "60b4fc81cea4310b312450dae6b1fc4700ce51dd477c187512678e17ef28184c",
+        "tokenizer_config.json": "87b1f37a4a73e4c4b61637a1446763e8bdea274347f0418cd5c68ead488c8ea4"
+      },
+      "remote_code_executed": false,
+      "tensor_weights_read": false
+    },
+    {
+      "repository": "OpenMOSS-Team/MOSS-SoundEffect",
+      "revision": "1cc77ff2357c8aa8f95fd0c6512cf3cf65860d6e",
+      "config": {
+        "architectures": [
+          "MossTTSDelayModel"
+        ],
+        "language_config": {
+          "architectures": [
+            "Qwen3ForCausalLM"
+          ],
+          "rms_norm_eps": 1e-06,
+          "attention_bias": false,
+          "hidden_size": 4096,
+          "max_window_layers": 36,
+          "use_cache": true,
+          "attention_dropout": 0,
+          "eos_token_id": 151645,
+          "_name_or_path": "Qwen/Qwen3-8B",
+          "sliding_window": null,
+          "vocab_size": 155648,
+          "num_attention_heads": 32,
+          "hidden_act": "silu",
+          "num_key_value_heads": 8,
+          "rope_scaling": null,
+          "pad_token_id": 151643,
+          "model_type": "qwen3",
+          "head_dim": 128,
+          "initializer_range": 0.02,
+          "intermediate_size": 12288,
+          "max_position_embeddings": 40960,
+          "use_sliding_window": false,
+          "num_hidden_layers": 36,
+          "layer_types": [
+            "full_attention",
+            "full_attention",
+            "full_attention",
+            "full_attention",
+            "full_attention",
+            "full_attention",
+            "full_attention",
+            "full_attention",
+            "full_attention",
+            "full_attention",
+            "full_attention",
+            "full_attention",
+            "full_attention",
+            "full_attention",
+            "full_attention",
+            "full_attention",
+            "full_attention",
+            "full_attention",
+            "full_attention",
+            "full_attention",
+            "full_attention",
+            "full_attention",
+            "full_attention",
+            "full_attention",
+            "full_attention",
+            "full_attention",
+            "full_attention",
+            "full_attention",
+            "full_attention",
+            "full_attention",
+            "full_attention",
+            "full_attention",
+            "full_attention",
+            "full_attention",
+            "full_attention",
+            "full_attention"
+          ],
+          "rope_theta": 1000000,
+          "bos_token_id": 151643
+        },
+        "audio_assistant_delay_slot_token_id": 151662,
+        "model_type": "moss_tts_delay",
+        "dtype": "bfloat16",
+        "audio_start_token_id": 151652,
+        "auto_map": {
+          "AutoConfig": "configuration_moss_tts.MossTTSDelayConfig",
+          "AutoModel": "modeling_moss_tts.MossTTSDelayModel"
+        },
+        "initializer_range": 0.02,
+        "audio_vocab_size": 1024,
+        "audio_pad_code": 1024,
+        "audio_assistant_gen_slot_token_id": 151656,
+        "sampling_rate": 24000,
+        "audio_user_slot_token_id": 151654,
+        "transformers_version": "4.57.1",
+        "n_vq": 16,
+        "audio_end_token_id": 151653
+      },
+      "metadata_files": {
+        "config.json": "6e5eebd8d1e3fbc171c2f25ad6568223f1bc5fe0ed9f8c4e3d110c0da5be8e96",
+        "configuration_moss_tts.py": "257842f2fa90124307408f36d55b74e135ee32b7afacbe30280964f7feb329d1",
+        "modeling_moss_tts.py": "4294299d601b3f52e17f8d93d0a258ae60023ebdf1f190e5e553a997d8be3e7b",
+        "processing_moss_tts.py": "6ac2f8eaab36e47f6ef968941c836722d43dd5f9901d701ce30f81a44f92a3e1",
+        "README.md": "1c9ab4dc065717257724927f5c4b65a143a4bb82980d3003432bbdf3579fa94b"
+      },
+      "remote_code_executed": false,
+      "tensor_weights_read": false
+    },
+    {
+      "repository": "OpenMOSS-Team/MOSS-TTS-Realtime",
+      "revision": "75682787d8e2fcc73faca37ba2931453ca9c4022",
+      "config": {
+        "architectures": [
+          "MossTTSRealtime"
+        ],
+        "reference_audio_pad": 151654,
+        "language_config": {
+          "architectures": [
+            "Qwen3ForCausalLM"
+          ],
+          "rms_norm_eps": 1e-06,
+          "attention_bias": false,
+          "hidden_size": 2048,
+          "max_window_layers": 28,
+          "use_cache": true,
+          "attention_dropout": 0,
+          "eos_token_id": 151645,
+          "_name_or_path": ".",
+          "sliding_window": null,
+          "vocab_size": 151936,
+          "num_attention_heads": 16,
+          "hidden_act": "silu",
+          "num_key_value_heads": 8,
+          "rope_scaling": null,
+          "model_type": "qwen3",
+          "dtype": "bfloat16",
+          "head_dim": 128,
+          "initializer_range": 0.02,
+          "intermediate_size": 6144,
+          "max_position_embeddings": 40960,
+          "use_sliding_window": false,
+          "num_hidden_layers": 28,
+          "layer_types": [
+            "full_attention",
+            "full_attention",
+            "full_attention",
+            "full_attention",
+            "full_attention",
+            "full_attention",
+            "full_attention",
+            "full_attention",
+            "full_attention",
+            "full_attention",
+            "full_attention",
+            "full_attention",
+            "full_attention",
+            "full_attention",
+            "full_attention",
+            "full_attention",
+            "full_attention",
+            "full_attention",
+            "full_attention",
+            "full_attention",
+            "full_attention",
+            "full_attention",
+            "full_attention",
+            "full_attention",
+            "full_attention",
+            "full_attention",
+            "full_attention",
+            "full_attention"
+          ],
+          "rope_theta": 1000000,
+          "bos_token_id": 151643
+        },
+        "model_type": "moss_tts_realtime",
+        "local_config": {
+          "num_key_value_heads": 8,
+          "rms_norm_eps": 1e-06,
+          "attention_bias": false,
+          "hidden_size": 2048,
+          "model_type": "MossTTSRealtimeLocalTransformer",
+          "audio_vocab_size": 1027,
+          "head_dim": 128,
+          "initializer_range": 0.02,
+          "intermediate_size": 6144,
+          "max_position_embeddings": 33,
+          "use_cache": true,
+          "rvq": 16,
+          "attention_dropout": 0,
+          "tie_word_embeddings": false,
+          "num_hidden_layers": 4,
+          "num_attention_heads": 16,
+          "rope_theta": 1000000,
+          "hidden_act": "silu",
+          "audio_pad_token": 1024
+        },
+        "dtype": "bfloat16",
+        "auto_map": {
+          "AutoProcessor": "processing_mossttsrealtime.MossTTSRealtimeProcessor",
+          "AutoConfig": "configuration_mossttsrealtime.MossTTSRealtimeConfig",
+          "AutoModel": "modeling_mossttsrealtime.MossTTSRealtime"
+        },
+        "audio_vocab_size": 1027,
+        "initializer_range": 0.02,
+        "rvq": 16,
+        "processor_class": "MossTTSRealtimeProcessor",
+        "text_pad": 151655,
+        "tie_word_embeddings": false,
+        "transformers_version": "4.57.1",
+        "vocab_size": 151936,
+        "audio_pad_token": 1024
+      },
+      "metadata_files": {
+        "config.json": "31585d9a34edb827bdbb37e91f266e6d0963e0731cde4a51e870dc8869eedf36",
+        "configuration_mossttsrealtime.py": "80295056d1580d24c92ff938650c8c373e05bb836d17896c535a5b6e38380e46",
+        "modeling_mossttsrealtime.py": "0f217cfbceb18d75fb4aeb9561f7a941a72b126c0c18b2e0fccb923ed4dd5b6e",
+        "processing_mossttsrealtime.py": "3724d05d9d651395d8fd02be518dd7886ca21f510b6c44fa6f7ff45183554505",
+        "README.md": "597dd930b42f22bbc5329015eb6f6ba404a392050e59acf23b27cb4643ac89e6",
+        "tokenizer_config.json": "ca4f983f22128b12d47ef3e17d7f8e067920d85ebca8bc4755125f5403a40bcf"
+      },
+      "remote_code_executed": false,
+      "tensor_weights_read": false
+    }
+  ],
+  "codec_tokenizer_metadata": [
+    {
+      "file": "config.json",
+      "repository": "OpenMOSS-Team/MOSS-Audio-Tokenizer",
+      "revision": "3cd226ba2947efa357ef453bcad111b6eafba782",
+      "sha256": "0f669e288d39c9c0ffae4e39babe5167b57e89d3132f0785655d1096a8da8e45"
+    },
+    {
+      "file": "tokenizer_config.json",
+      "repository": "OpenMOSS-Team/MOSS-TTS-Local-Transformer",
+      "revision": "12aa734e4f11a7b3fdf4eb0ad2aa2029675ffc2e",
+      "sha256": "87b1f37a4a73e4c4b61637a1446763e8bdea274347f0418cd5c68ead488c8ea4"
+    },
+    {
+      "file": "tokenizer_config.json",
+      "repository": "OpenMOSS-Team/MOSS-TTS-Realtime",
+      "revision": "75682787d8e2fcc73faca37ba2931453ca9c4022",
+      "sha256": "ca4f983f22128b12d47ef3e17d7f8e067920d85ebca8bc4755125f5403a40bcf"
+    }
+  ],
+  "codec_config": {
+    "architectures": [
+      "MossAudioTokenizerModel"
+    ],
+    "auto_map": {
+      "AutoConfig": "configuration_moss_audio_tokenizer.MossAudioTokenizerConfig",
+      "AutoModel": "modeling_moss_audio_tokenizer.MossAudioTokenizerModel"
+    },
+    "causal_transformer_context_duration": 10,
+    "code_dim": 768,
+    "decoder_kwargs": [
+      {
+        "causal": true,
+        "conv_layout": true,
+        "d_model": 1280,
+        "dim_feedforward": 5120,
+        "gating": "none",
+        "input_dimension": 768,
+        "layer_scale": 0.01,
+        "max_period": 10000,
+        "module_type": "Transformer",
+        "norm": "layer_norm",
+        "num_heads": 20,
+        "num_layers": 32,
+        "output_dimension": 1280,
+        "positional_embedding": "rope"
+      },
+      {
+        "module_type": "PatchedPretransform",
+        "patch_size": 2
+      },
+      {
+        "causal": true,
+        "conv_layout": true,
+        "d_model": 768,
+        "dim_feedforward": 3072,
+        "gating": "none",
+        "input_dimension": 640,
+        "layer_scale": 0.01,
+        "max_period": 10000,
+        "module_type": "Transformer",
+        "norm": "layer_norm",
+        "num_heads": 12,
+        "num_layers": 12,
+        "output_dimension": 768,
+        "positional_embedding": "rope"
+      },
+      {
+        "module_type": "PatchedPretransform",
+        "patch_size": 2
+      },
+      {
+        "causal": true,
+        "conv_layout": true,
+        "d_model": 768,
+        "dim_feedforward": 3072,
+        "gating": "none",
+        "input_dimension": 384,
+        "layer_scale": 0.01,
+        "max_period": 10000,
+        "module_type": "Transformer",
+        "norm": "layer_norm",
+        "num_heads": 12,
+        "num_layers": 12,
+        "output_dimension": 768,
+        "positional_embedding": "rope"
+      },
+      {
+        "module_type": "PatchedPretransform",
+        "patch_size": 2
+      },
+      {
+        "causal": true,
+        "conv_layout": true,
+        "d_model": 768,
+        "dim_feedforward": 3072,
+        "gating": "none",
+        "input_dimension": 384,
+        "layer_scale": 0.01,
+        "max_period": 10000,
+        "module_type": "Transformer",
+        "norm": "layer_norm",
+        "num_heads": 12,
+        "num_layers": 12,
+        "output_dimension": 240,
+        "positional_embedding": "rope"
+      },
+      {
+        "module_type": "PatchedPretransform",
+        "patch_size": 240
+      }
+    ],
+    "downsample_rate": 1920,
+    "dtype": "float32",
+    "encoder_kwargs": [
+      {
+        "module_type": "PatchedPretransform",
+        "patch_size": 240
+      },
+      {
+        "causal": true,
+        "conv_layout": true,
+        "d_model": 768,
+        "dim_feedforward": 3072,
+        "gating": "none",
+        "input_dimension": 240,
+        "layer_scale": 0.01,
+        "max_period": 10000,
+        "module_type": "Transformer",
+        "norm": "layer_norm",
+        "num_heads": 12,
+        "num_layers": 12,
+        "output_dimension": 384,
+        "positional_embedding": "rope"
+      },
+      {
+        "module_type": "PatchedPretransform",
+        "patch_size": 2
+      },
+      {
+        "causal": true,
+        "conv_layout": true,
+        "d_model": 768,
+        "dim_feedforward": 3072,
+        "gating": "none",
+        "input_dimension": 768,
+        "layer_scale": 0.01,
+        "max_period": 10000,
+        "module_type": "Transformer",
+        "norm": "layer_norm",
+        "num_heads": 12,
+        "num_layers": 12,
+        "output_dimension": 384,
+        "positional_embedding": "rope"
+      },
+      {
+        "module_type": "PatchedPretransform",
+        "patch_size": 2
+      },
+      {
+        "causal": true,
+        "conv_layout": true,
+        "d_model": 768,
+        "dim_feedforward": 3072,
+        "gating": "none",
+        "input_dimension": 768,
+        "layer_scale": 0.01,
+        "max_period": 10000,
+        "module_type": "Transformer",
+        "norm": "layer_norm",
+        "num_heads": 12,
+        "num_layers": 12,
+        "output_dimension": 640,
+        "positional_embedding": "rope"
+      },
+      {
+        "module_type": "PatchedPretransform",
+        "patch_size": 2
+      },
+      {
+        "causal": true,
+        "conv_layout": true,
+        "d_model": 1280,
+        "dim_feedforward": 5120,
+        "gating": "none",
+        "input_dimension": 1280,
+        "layer_scale": 0.01,
+        "max_period": 10000,
+        "module_type": "Transformer",
+        "norm": "layer_norm",
+        "num_heads": 20,
+        "num_layers": 32,
+        "output_dimension": 768,
+        "positional_embedding": "rope"
+      }
+    ],
+    "model_type": "moss-audio-tokenizer",
+    "quantizer_kwargs": {
+      "codebook_dim": 8,
+      "codebook_size": 1024,
+      "input_dim": 768,
+      "num_quantizers": 32,
+      "output_dim": 768,
+      "quantizer_type": "rlfq",
+      "rvq_dim": 512
+    },
+    "quantizer_type": "rlfq",
+    "reversed_decoder_kwargs": [
+      {
+        "module_type": "PatchedPretransform",
+        "patch_size": 240
+      },
+      {
+        "causal": true,
+        "conv_layout": true,
+        "d_model": 768,
+        "dim_feedforward": 3072,
+        "gating": "none",
+        "input_dimension": 240,
+        "layer_scale": 0.01,
+        "max_period": 10000,
+        "module_type": "Transformer",
+        "norm": "layer_norm",
+        "num_heads": 12,
+        "num_layers": 12,
+        "output_dimension": 384,
+        "positional_embedding": "rope"
+      },
+      {
+        "module_type": "PatchedPretransform",
+        "patch_size": 2
+      },
+      {
+        "causal": true,
+        "conv_layout": true,
+        "d_model": 768,
+        "dim_feedforward": 3072,
+        "gating": "none",
+        "input_dimension": 768,
+        "layer_scale": 0.01,
+        "max_period": 10000,
+        "module_type": "Transformer",
+        "norm": "layer_norm",
+        "num_heads": 12,
+        "num_layers": 12,
+        "output_dimension": 384,
+        "positional_embedding": "rope"
+      },
+      {
+        "module_type": "PatchedPretransform",
+        "patch_size": 2
+      },
+      {
+        "causal": true,
+        "conv_layout": true,
+        "d_model": 768,
+        "dim_feedforward": 3072,
+        "gating": "none",
+        "input_dimension": 768,
+        "layer_scale": 0.01,
+        "max_period": 10000,
+        "module_type": "Transformer",
+        "norm": "layer_norm",
+        "num_heads": 12,
+        "num_layers": 12,
+        "output_dimension": 640,
+        "positional_embedding": "rope"
+      },
+      {
+        "module_type": "PatchedPretransform",
+        "patch_size": 2
+      },
+      {
+        "causal": true,
+        "conv_layout": true,
+        "d_model": 1280,
+        "dim_feedforward": 5120,
+        "gating": "none",
+        "input_dimension": 1280,
+        "layer_scale": 0.01,
+        "max_period": 10000,
+        "module_type": "Transformer",
+        "norm": "layer_norm",
+        "num_heads": 20,
+        "num_layers": 32,
+        "output_dimension": 768,
+        "positional_embedding": "rope"
+      }
+    ],
+    "sample_rate": 24000,
+    "sampling_rate": 24000,
+    "transformers_version": "4.56.0.dev0",
+    "version": "4.26.1.a"
+  },
+  "model_inference": false,
+  "physical_android": false,
+  "model_assets_bundled": false
+}

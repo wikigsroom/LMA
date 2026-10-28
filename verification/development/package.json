@@ -1,7 +1,7 @@
 {
-  "apk": "LMA-0.3.0-dev.18-arm64-v8a.apk",
-  "sha256": "2f7c4095bde4ad994d30eaf2510aded3621d09c00f5e695ea9ec29d5d0eddafc",
-  "native_libraries_verified": 23,
+  "apk": "LMA-0.3.0-dev.19-arm64-v8a.apk",
+  "sha256": "1fe2aa60fec1a5c9c6ff4281cbdd94e07a2f4df9622c1780287cb92691e950d7",
+  "native_libraries_verified": 24,
   "all_native_dependencies_resolved": true,
   "all_elf_load_segments_16k_aligned": true,
   "final_apk_zip_alignment_verified": true,
@@ -433,7 +433,24 @@
         16384
       ],
       "interpreter": "/system/bin/linker64",
-      "entry_point": 760928,
+      "entry_point": 761744,
+      "android_api_notes": [
+        28
+      ],
+      "16k_elf_aligned": true
+    },
+    "liblma-moss-rq.so": {
+      "machine": "aarch64",
+      "needed": [
+        "libm.so",
+        "libdl.so",
+        "libc.so"
+      ],
+      "load_segment_alignment": [
+        16384
+      ],
+      "interpreter": "/system/bin/linker64",
+      "entry_point": 321024,
       "android_api_notes": [
         28
       ],

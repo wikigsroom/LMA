@@ -8,12 +8,15 @@ def guarded_pipeline(source: Path) -> str:
     if text.count(marker)!=1:
         raise RuntimeError('Pinned MOSS generation seam changed; review before building')
     guard='    lma_openmoss::validate_generation_budget(prompt_len, req.max_new_tokens, int(llama_n_ctx(model.backbone_ctx())));\n'
-    return '// Modified by LMA: enforce the selected input/context budget before prefill.\n#include "generation_guard.hpp"\n'+text.replace(marker,guard+marker)
+    ambient='    s += "- Ambient Sound:\\nNone\\n";'
+    if text.count(ambient)!=1:raise RuntimeError('Pinned ambient-conditioning seam changed')
+    text=text.replace(ambient,'    s += "- Ambient Sound:\\n" + lma_openmoss::generation_budget.ambient_sound + "\\n";')
+    return '// Modified by LMA: enforce prefill budgets and bind explicit ambient conditioning for old SoundEffect.\n#include "generation_guard.hpp"\n'+text.replace(marker,guard+marker)
 
 
 def prompt_primitives(source: Path) -> str:
     """Actual pinned formatting functions, using the real public request types."""
-    text=(source/'src/pipeline.cpp').read_text(encoding='utf-8')
+    text=guarded_pipeline(source)
     defaults=text[text.index('std::string default_or_none('):text.index('// Convert a token id')]
     body=text[text.index('std::string build_user_inst('):text.index('// Build the full assistant-prompt string:')]
     if any(x in defaults+body for x in ('llama_', 'ggml_', 'Model &', 'Tokenizer &')):

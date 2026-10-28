@@ -162,3 +162,6 @@ dev.14 接入 [Sana 移动管线 / MNN](MNN_SANA_ENGINE.md)：真实 ARM64 CPU w
 内部检查点（**0.3.0-dev.18 / code 22**，未发布）：[MOSS 原生基座](OPENMOSS_ENGINE.md)扩展 TTS、v1.5、TTSD、VoiceGenerator 四个平级配方，按 32 / 16 路和 8B / 1.7B 布局校验，支持成对说话人参考与每模型声音描述 / 语言参数。真实生成网格的上下文检查在 prefill 前执行，超限直接失败。459 项限定 Java / C++ 检查（18 次实际主机子进程）、521 项基座、265 项 UI 检查通过；29 个模板仍只含元数据，APK 无模型数据。截图 48–52 与录屏 / GIF 是 UI FIXTURE，未执行完整模型或 Android。全部冻结目标与真机门槛仍属于同一完整 v0.3.0，尚无新 Release。见[双语说明](releases/v0.3.0-dev.18.md)。
 
 <img src="media/development/51-moss-ttsd-speakers.png" width="260" alt="UI FIXTURE：TTSD 双说话人文字与参考映射，未生成对话" /> <img src="media/development/52-moss-voicegen-instruction.png" width="260" alt="UI FIXTURE：VoiceGenerator 每模型声音描述，未生成语音" />
+
+
+Internal dev.19 / 内部 dev.19：[旧 Local / Realtime 原生 RQ](MOSS_RQ_ENGINE.md) / [English](MOSS_RQ_ENGINE.en.md) 与旧 SoundEffect 环境声音绑定完成源码接入；32 个用户自选配方仅为元数据，所有模型仍由用户下载 / 管理，APK 仅更新基座。178 RQ / 514 openmoss / 550 foundation / 280 UI checks are scoped, not full-model or phone acceptance. Realtime currently supports one text request returning a complete WAV, without incremental audio/text streaming. Nine MOSS subtargets have distinct code routes but remain individually unaccepted on Android. F-01–F-12、01–14 / 16 / 17、全部冻结子目标及 A1–A11 / R-01–R-05 继续属于同一完整 v0.3.0；15 分钟锁屏 / 1 小时交替 API / 升级资产保留未实测，不创建新 Release。See [bilingual notes / 编号交付](releases/v0.3.0-dev.19.md)。

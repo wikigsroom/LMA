@@ -2,7 +2,7 @@
 
 [中文](OPENMOSS_ENGINE.md) · [Complete scope](MULTIMODAL_RELEASE_PLAN.en.md) · [Development evidence](DEVELOPMENT.en.md)
 
-Internal checkpoint **0.3.0-dev.18 / code 22** extends the ARM64 CPU `openmoss_native` worker and production Java adapter to six equal-peer recipes. It links native graphs, tokenization, sampling and codecs; it invokes no Python, Termux, external inference or upstream HTTP server. **No full model or physical Android inference has been run.** This does not establish phone support. All frozen targets remain in the same complete v0.3.0; no new Release exists.
+Internal checkpoint **0.3.0-dev.19 / code 23** extends the ARM64 CPU `openmoss_native` worker and production Java adapter to seven equal-peer recipes. It links native graphs, tokenization, sampling and codecs; it invokes no Python, Termux, external inference or upstream HTTP server. **No full model or physical Android inference has been run.** This does not establish phone support. All frozen targets remain in the same complete v0.3.0; no new Release exists.
 
 ## Four added delay layouts
 
@@ -103,7 +103,7 @@ The native Windows build uses NDK r30, API 28, `armv8-a` and static C++, without
 
 ## 6. Evidence and remaining work
 
-459 scoped checks comprise 349 production-Java checks with 18 actual host child processes and 110 C++ assertions executing pinned upstream speech prompt and sound formatting/noise/sigma functions plus budget/WAV boundaries. They cover paired role mapping, instruction forwarding, failures and asset cleanup. WAVs are structural fixtures; no tensors, neural inference or Android execution run. See [verification](../verification/development/openmoss.json) and the [bilingual checkpoint notes](releases/v0.3.0-dev.18.md).
+514 scoped checks comprise 402 production-Java checks with 21 actual host child processes and 112 C++ assertions executing pinned upstream speech prompt and sound formatting/noise/sigma functions plus budget/WAV boundaries. They cover paired role mapping, instruction forwarding, failures and asset cleanup. WAVs are structural fixtures; no tensors, neural inference or Android execution run. See [verification](../verification/development/openmoss.json) and the [bilingual checkpoint notes](releases/v0.3.0-dev.19.md).
 
 Production UI screenshots, recording and GIF use **UI FIXTURE** installed state and show no actual model output:
 
@@ -129,3 +129,14 @@ Production UI screenshots, recording and GIF use **UI FIXTURE** installed state 
 | P18-04 | Complete F-01–F-12, 01–14/16/17 and all frozen subtargets passing the shared gates before full v0.3.0 Release |
 
 [TTSD paired-reference form](media/development/51-moss-ttsd-speakers.png) · [VoiceGenerator instruction](media/development/52-moss-voicegen-instruction.png) · [TTS components](media/development/48-moss_tts-components.png) · [v1.5 components](media/development/50-moss_tts_v15-components.png) · [TTS settings](media/development/49-moss-tts-parameters.png)
+
+
+## 7. dev.19: old SoundEffect ambient conditioning
+
+The equal-peer `moss_soundeffect_openmoss_cpu_v1` recipe uses architecture `moss_soundeffect`, a Qwen3-8B / 16-codebook delay layout and 24 kHz mono output. The official example uses `build_user_message(ambient_sound=text)`: LMA binds the prompt to `Ambient Sound` and sets `Text` to `None`. This differs from the v2 DiT / 48 kHz route. Users select matching backbone/extras GGUFs from the same conversion. References, negative prompts and voice/language hints are rejected; TTSD/VoiceGenerator are incompatible despite also using 16 codebooks. Actual template-function checks cover the ambient field and Text None.
+
+Defaults are formatted input 1024 (1–2048), generated steps 375 (1–1500, including delay flush; no exact-duration promise), text continue/stop temperature 1 (0–3), audio temperature 1.5 (0–3), Top P .6 (.01–1), Top K 50 (1–1024), repetition penalty 1.2 (1–2). Thread/seed bounds, per-model settings, task snapshots, native budget guard and shared child/artifact lifecycle are retained. Capability metadata hides unsupported negative conditioning while preserving v2 negative prompts.
+
+Pinned publisher audits for old SoundEffect, old Local and Realtime appear in [the evidence record](../catalogue/evidence/moss-rq-publishers.json). The latter two use a separate [RQ engine](MOSS_RQ_ENGINE.en.md), so Delay geometry cannot establish their support. All nine MOSS subtargets now have distinct code routes; full-weight/phone/quality/endurance acceptance is still missing for each, and the family is not labelled phone-ready.
+
+<img src="media/development/53-moss_soundeffect_openmoss_cpu_v1.png" width="260" alt="Old SoundEffect ambient form; UI FIXTURE, no model output" />

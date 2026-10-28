@@ -289,8 +289,8 @@
       "backend": "cpu",
       "ndk": "30.0.16248370",
       "min_sdk": 28,
-      "bytes": 3699256,
-      "sha256": "734dfdc707cc4589cef68b446aba67bd77cc4956f2c6f1496895916ec9aacafe",
+      "bytes": 3701960,
+      "sha256": "385ec36532fefe6e57a1c1e17603e3476f89f63be24b75ccc1acc3fb632a7ed0",
       "elf_load_alignment": [
         16384
       ],
@@ -301,12 +301,47 @@
       "model_inference_tested": false,
       "physical_device_tests": 0,
       "virtualization_used": false,
-      "pipeline_guard_sha256": "7d7c51a14d90b4d41b7a158ab23126105a85a5dd75c23eba55f7fc099df83a68",
+      "pipeline_guard_sha256": "b49728a9cd8e4caebab14ee4813541c9068e4a9166a4f55c136a5a316832e730",
       "deviceValidated": false,
       "status": "compiled_not_device_tested",
       "notices": [
         "openmoss-LICENSE.txt",
         "openmoss-llama-LICENSE.txt",
+        "sd-nlohmann-json-LICENSE.txt",
+        "sd-NDK-LLVM-NOTICE.txt"
+      ]
+    },
+    {
+      "schema": "lma.native-build/1",
+      "engine": "moss_rq_native",
+      "file": "liblma-moss-rq.so",
+      "source_revision": "ee722b8e9205ee9b1b1c398a4e87e4e393e9be41",
+      "ggml_revision": "e705c5fed490514458bdd2eaddc43bd098fcce9b",
+      "abi": "arm64-v8a",
+      "backend": "cpu",
+      "ndk": "30.0.16248370",
+      "min_sdk": 28,
+      "bytes": 1614696,
+      "sha256": "f508d8c2ba6ba8ab459fea5a8daba9d1f3f95dc1d73034611ee396dc5537632b",
+      "elf_load_alignment": [
+        16384
+      ],
+      "android_api_notes": [
+        28
+      ],
+      "vocabularies": "external_user_selected_components",
+      "model_inference_tested": false,
+      "physical_device_tests": 0,
+      "virtualization_used": false,
+      "pipeline_guard_sha256": {
+        "moss_tts_local.cpp": "57832c73e536b24abeb33246f01f6dbfb416d6c7fcf0383476181a53b70f89fb",
+        "moss_tts_rt.cpp": "05d7ba5f2d3f6288b7938abac35aeb5464f86394dabc6a690e391eee7f05b8df"
+      },
+      "deviceValidated": false,
+      "status": "compiled_not_device_tested",
+      "notices": [
+        "moss-rq-upstream-README.txt",
+        "moss-rq-ggml-LICENSE.txt",
         "sd-nlohmann-json-LICENSE.txt",
         "sd-NDK-LLVM-NOTICE.txt"
       ]

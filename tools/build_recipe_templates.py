@@ -199,7 +199,7 @@ def build():
     for sound,fields in [(False,local_fields),(True,sound_fields)]:
         templates.append(dict(id="moss_soundeffect_v2_cpu_v1" if sound else "moss_local_v15_cpu_v1",
             name="MOSS SoundEffect-v2 · 原生音效" if sound else "MOSS Local-Transformer-v1.5 · 原生语音", primaryRole="backbone",
-            definition=dict(engine="openmoss_native",backend="cpu",architecture="moss_soundeffect_v2" if sound else "moss_local_v15",pipeline="moss_soundeffect_v2_cpu_v1" if sound else "moss_local_v15_cpu_v1",tasks=["audio"],capabilities=["text_to_audio" if sound else "text_to_speech"],parameters=dict(version=1,fields=fields)),
+            definition=dict(engine="openmoss_native",backend="cpu",architecture="moss_soundeffect_v2" if sound else "moss_local_v15",pipeline="moss_soundeffect_v2_cpu_v1" if sound else "moss_local_v15_cpu_v1",tasks=["audio"],capabilities=["text_to_audio","negative_prompt"] if sound else ["text_to_speech"],parameters=dict(version=1,fields=fields)),
             requirements=[dict(role="backbone",label="同次 openmoss 转换的 Qwen3 主干（含 BPE）",formats=["gguf"],required=True,provides=["text_tokenizer"]),dict(role="extras",label="配套 DiT / VAE extras" if sound else "配套 Local Transformer / v2 codec extras",formats=["gguf"],required=True,provides=["audio_decoder"] if sound else ["audio_encoder","audio_decoder"])],fixedComponents=[],
             help=("仅匹配固定 pwilkin/openmoss 转换布局，必须选择同次转换的主干和 extras；不能混用 first-class、Nano 或其他 MOSS 版本。模型及 codec 均为用户资产。CPU 路线同时驻留主干与 extras，需要高内存设备；不表示 Z20 已可运行。" + ("SoundEffect-v2 使用 30 秒 latent 去噪后裁剪，缩短输出不同比降低生成内存；支持负面提示词，不是语音克隆或整曲音乐。" if sound else "仅针对 Local-Transformer-v1.5，12 路 codec / 48 kHz 双声道；可选导入同格式 1–10 秒参考 WAV。暂不提供参考转写续说、多说话人或其他 Local 版本。") + "尚无 LMA Android 输出、质量、速度或后台验收。")))
     for ident,arch,name,layout in [
@@ -218,6 +218,32 @@ def build():
             definition=dict(engine="openmoss_native",backend="cpu",architecture=arch,pipeline=ident,tasks=["audio"],capabilities=["text_to_speech"]+(["multi_speaker_tts"] if dialogue else ["voice_design"] if voice else []),parameters=dict(version=1,fields=fields)),
             requirements=[dict(role="backbone",label="匹配的 Qwen3 主干（含 BPE）",formats=["gguf"],required=True,provides=["text_tokenizer"]),dict(role="extras",label="同次转换的 delay 头 / v1 codec extras",formats=["gguf"],required=True,provides=["audio_encoder","audio_decoder"])],fixedComponents=[],
             help=f"仅匹配固定 pwilkin/openmoss 转换布局（{layout}），输出 24 kHz 单声道。主干和 extras 需用户显式选择、同次转换；不能混用 first-class / Nano / Local / SoundEffect 文件。{detail}参考仅支持 1–10 秒、≤1 MiB 的 PCM16 / float32 WAV，不自动重采样。CPU 同时驻留全部组件，8B 主干与大 codec 需要高内存设备；未证明 Z20 可运行。模型、BPE、codec 均不附带；参数随模型保存。没有 LMA Android 输出、质量、速度或后台验收。"))
+    effect=copy.deepcopy(local_fields)
+    for key,value in {"maxInputTokens":1024,"maxNewTokens":375,"audioTemperature":1.5,"audioTopP":.6,"audioTopK":50,"audioRepetitionPenalty":1.2}.items():effect[key]['default']=value
+    effect['maxNewTokens'].update(label="生成步数上限（含 delay 收尾，不承诺精确时长）",maximum=1500,presets=[125,375,750,1500])
+    templates.append(dict(id="moss_soundeffect_openmoss_cpu_v1",name="MOSS-SoundEffect · 原生环境音效",primaryRole="backbone",
+        definition=dict(engine="openmoss_native",backend="cpu",architecture="moss_soundeffect",pipeline="moss_soundeffect_openmoss_cpu_v1",tasks=["audio"],capabilities=["text_to_audio","environment_sound_conditioning"],parameters=dict(version=1,fields=effect)),
+        requirements=[dict(role="backbone",label="旧 SoundEffect Qwen3-8B 主干（含 BPE）",formats=["gguf"],required=True,provides=["text_tokenizer"]),dict(role="extras",label="同次转换的 16 路 delay 头 / v1 codec extras",formats=["gguf"],required=True,provides=["audio_decoder"])],fixedComponents=[],
+        help="旧 MOSS-SoundEffect，16 路 delay / 24 kHz 单声道。按官方处理器将提示词绑定到 Ambient Sound，Text 为 None；不支持负面提示词、声音指令或参考音频。仅匹配固定 pwilkin/openmoss 转换布局，同次转换的主干与 extras，不能混用 SoundEffect-v2 / TTSD / VoiceGenerator。8B 与 codec 同时驻留 CPU 内存，未证明 Z20 可运行。用户自行选择组件；无附带权重、词表或自动下载；尚无 LMA Android 推理或后台验收。"))
+    for rt in (False,True):
+        ident="moss_realtime_rq_cpu_v1" if rt else "moss_local_v10_rq_cpu_v1"
+        fields=copy.deepcopy(open_common)
+        for key,label,kind,value,low,high,presets in [
+            ("maxInputTokens","格式化输入上限（含参考与余下文本）","integer",1024,1,2048,[512,1024,2048]),
+            ("maxNewTokens","生成步数上限（每帧 80 ms，含停止步）","integer",375,1,750,[125,375,750]),
+            ("audioTemperature","音频温度","number",.8 if rt else 1.7,0,3,[0,.8,1.7]),
+            ("audioTopP","音频 Top P","number",.6 if rt else .8,.01,1,[.6,.8,1]),
+            ("audioTopK","音频 Top K","integer",30 if rt else 25,1,1024,[1,25,30,50]),
+            ("audioRepetitionPenalty","音频重复惩罚","number",1.1,1,2,[1,1.1,1.2])]:
+            fields[key]=dict(type=kind,label=label,default=value,minimum=low,maximum=high,presets=presets,limitSource="application_guard")
+        if not rt:
+            for key,label,kind,value,low,high in [("textTemperature","继续 / 停止头温度","number",1.5,0,3),("textTopP","继续 / 停止头 Top P","number",1,.01,1),("textTopK","继续 / 停止头 Top K","integer",50,1,1024)]:fields[key]=dict(type=kind,label=label,default=value,minimum=low,maximum=high,limitSource="application_guard")
+            fields['voiceInstruction']=dict(type="string",label="声音描述（可选）",default="",maxLength=1000)
+            fields['language']=dict(type="string",label="语言提示（可选）",default="",maxLength=64)
+        templates.append(dict(id=ident,name=("MOSS-TTS-Realtime" if rt else "MOSS-TTS-Local-Transformer（旧版）")+" · 原生语音",primaryRole="model",
+            definition=dict(engine="moss_rq_native",backend="cpu",architecture="moss_tts_realtime" if rt else "moss_tts_local_v10",pipeline=ident,tasks=["audio"],capabilities=["text_to_speech","single_text_to_wav"],parameters=dict(version=1,fields=fields)),
+            requirements=[dict(role="model",label="匹配的 "+("moss-tts-rt / 16 路" if rt else "moss-tts-local / 32 路旧 Local")+" GGUF",formats=["gguf"],required=True),dict(role="codec",label="v1 MOSS-Audio-Tokenizer GGUF（24 kHz / 32 路）",formats=["gguf"],required=True,provides=["audio_encoder","audio_decoder"]),dict(role="tokenizer",label="与此版本匹配的 moss-tokenizer BPE GGUF",formats=["gguf"],required=True,provides=["text_tokenizer"])],fixedComponents=[],
+            help="仅匹配固定 mudler/moss-tts.cpp 转换格式；模型 / codec / BPE 由用户显式选择，不能混用 openmoss、Nano、first-class 或 Local-v1.5。"+("Realtime 使用独立的 4 层 RoPE 深度 Transformer / 16 路编码，逐步注入文本，但当前接口是单次文本完成后返回 WAV，不提供增量文本输入或音频流。" if rt else "旧 Local 使用 4 层 Qwen3 深度 Transformer、输入及逐通道输出 MLP / 32 路编码，区别于 v1.5 的单层 GPT-J；支持可选声音描述及语言提示。")+"输出 24 kHz 单声道；可选 1–10 秒、≤1 MiB 同格式 PCM16 / float32 参考 WAV，不自动重采样。1.7B 主干与大 codec 同时驻留内存，需要高内存设备；未证明 Z20 可运行。无附带权重或词表；尚无 LMA Android 推理、质量、速度或后台验收。"))
     return {"schema": "lma.recipe-catalogue/1", "templates": templates}
 
 

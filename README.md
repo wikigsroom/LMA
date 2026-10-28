@@ -283,3 +283,8 @@ LMA 自有代码使用 MIT 许可。llama.cpp 及其依赖保留各自许可；�
 内部检查点（**0.3.0-dev.18 / code 22**，未发布）：[MOSS 原生基座](docs/OPENMOSS_ENGINE.md)扩展 TTS、v1.5、TTSD、VoiceGenerator 四个平级配方，按 32 / 16 路和 8B / 1.7B 布局校验，支持成对说话人参考与每模型声音描述 / 语言参数。真实生成网格的上下文检查在 prefill 前执行，超限直接失败。459 项限定 Java / C++ 检查（18 次实际主机子进程）、521 项基座、265 项 UI 检查通过；29 个模板仍只含元数据，APK 无模型数据。截图 48–52 与录屏 / GIF 是 UI FIXTURE，未执行完整模型或 Android。全部冻结目标与真机门槛仍属于同一完整 v0.3.0，尚无新 Release。见[双语说明](docs/releases/v0.3.0-dev.18.md)。
 
 <img src="docs/media/development/51-moss-ttsd-speakers.png" width="260" alt="UI FIXTURE：TTSD 双说话人文字与参考映射，未生成对话" /> <img src="docs/media/development/52-moss-voicegen-instruction.png" width="260" alt="UI FIXTURE：VoiceGenerator 每模型声音描述，未生成语音" />
+
+
+内部检查点（**0.3.0-dev.19 / code 23**，未发布）：新增[旧 Local / Realtime 原生 RQ 基座](docs/MOSS_RQ_ENGINE.md)，分别接入 4 层深度架构、三个用户自选 GGUF、独立词表校验、预算保护与共用任务；[旧 SoundEffect](docs/OPENMOSS_ENGINE.md#7-dev19旧-soundeffect-的环境声音字段)按官方处理器绑定环境声音。Realtime 当前为单次完整文本到 WAV，不宣称实时音频流。178 项 RQ 检查包含 10 次真实主机子进程、14 项 GGUF 元数据校验与两个合成微型计算图；openmoss 514、基座 550、UI 280 项检查通过。32 个配方均为元数据，模型仍由用户选择 / 下载 / 管理；24 个原生文件、原签名 APK 不带模型资产。55 张截图与刷新录屏 / GIF 均为 UI FIXTURE。九个 MOSS 子目标的代码路线已分别接入，完整模型、手机和耐久验收仍待完成，所有冻结目标继续属于同一完整 v0.3.0；无新 Release。见[双语更新说明和编号交付表](docs/releases/v0.3.0-dev.19.md)。
+
+<p><img src="docs/media/development/53-moss_soundeffect_openmoss_cpu_v1.png" width="240" alt="旧音效表单，UI FIXTURE"><img src="docs/media/development/54-moss_local_v10_rq_cpu_v1.png" width="240" alt="旧 Local 表单，UI FIXTURE"><img src="docs/media/development/55-moss_realtime_rq_cpu_v1.png" width="240" alt="Realtime 单次文本到 WAV 表单，UI FIXTURE"></p>

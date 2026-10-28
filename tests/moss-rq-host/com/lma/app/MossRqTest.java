@@ -1,0 +1,60 @@
+package com.lma.app;
+
+import com.lma.app.core.*;
+import org.json.*;
+import java.io.*;
+import java.nio.file.*;
+import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
+
+/** Protocol/structural audio fixtures; no neural inference, weights, or Android execution. */
+public final class MossRqTest {
+    private static int passed;
+    interface Action {void run() throws Exception;}
+    static void check(boolean value,String label) {if(!value)throw new AssertionError(label);passed++;}
+    static void rejects(Action a,String label) throws Exception {try{a.run();}catch(Exception expected){passed++;return;}throw new AssertionError(label);}
+    static byte[] wave(int rate,int channels,int seconds) throws Exception {ByteArrayOutputStream b=new ByteArrayOutputStream();DataOutputStream o=new DataOutputStream(b);int length=rate*channels*2*seconds;o.writeBytes("RIFF");o.writeInt(Integer.reverseBytes(36+length));o.writeBytes("WAVEfmt ");o.writeInt(Integer.reverseBytes(16));o.writeShort(Short.reverseBytes((short)1));o.writeShort(Short.reverseBytes((short)channels));o.writeInt(Integer.reverseBytes(rate));o.writeInt(Integer.reverseBytes(rate*channels*2));o.writeShort(Short.reverseBytes((short)(channels*2)));o.writeShort(Short.reverseBytes((short)16));o.writeBytes("data");o.writeInt(Integer.reverseBytes(length));o.write(new byte[length]);return b.toByteArray();}
+    static void child(String file) throws Exception {
+        JSONObject c=new JSONObject(new String(Files.readAllBytes(Paths.get(file)),"UTF-8"));Path workspace=Paths.get(c.getString("workspace"));
+        for(String role:Arrays.asList("model","codec","tokenizer"))if(!Files.isRegularFile(workspace.resolve("models/"+role+".gguf")))throw new IOException("Missing explicit component");
+        if(c.has("referenceAudio"))MossRqSpec.reference(new File(c.getString("referenceAudio")));
+        String text=c.getJSONObject("input").getString("prompt");
+        if(text.equals("fixture-wait")){System.out.println("{\"event\":\"stage\",\"stage\":\"fixture_wait\"}");System.out.flush();Thread.sleep(60000);}
+        if(text.equals("fixture-error")){System.out.println("{\"event\":\"error\",\"message\":\"explicit fixture failure\"}");System.exit(4);}
+        Files.write(Paths.get(c.getString("output")+".receipt"),c.toString().getBytes("UTF-8"));Files.write(Paths.get(c.getString("output")),text.equals("fixture-json")?"NOT_AUDIO".getBytes("UTF-8"):wave(24000,1,1));
+        System.out.println("{\"event\":\"progress\",\"stage\":\"fixture_protocol\",\"step\":1,\"steps\":2}");System.out.println("{\"event\":\"execution\",\"details\":{\"hostFixture\":true}}");System.out.println(new JSONObject().put("event","complete").put("output",c.getString("output")));
+    }
+    public static void main(String[] args) throws Exception {
+        if(args[0].equals("child")){child(args[1]);return;}
+        File root=new File(args[0]);root.mkdirs();RecipeCatalogue recipes=new RecipeCatalogue(new JSONObject(new String(Files.readAllBytes(Paths.get(args[1])),"UTF-8")));AtomicInteger launches=new AtomicInteger();File binary=new File(System.getProperty("java.home"),"bin/java.exe");
+        NativeWorker.Launcher launcher=b->{launches.incrementAndGet();return new ProcessBuilder(binary.getPath(),"-Dfile.encoding=UTF-8","-Dstdout.encoding=UTF-8","-cp",System.getProperty("java.class.path"),MossRqTest.class.getName(),"child",b.command().get(1)).redirectErrorStream(true).start();};
+        for(String id:Arrays.asList("moss_local_v10_rq_cpu_v1","moss_realtime_rq_cpu_v1")) {
+            JSONObject template=recipes.template(id),definition=DataFiles.copy(template.getJSONObject("definition"));JSONArray components=new JSONArray();Map<String,File> files=new HashMap<>();
+            for(String role:Arrays.asList("model","codec","tokenizer")){File f=new File(root,id+role+".gguf");Files.write(f.toPath(),("NOT_A_MODEL_"+id+role).getBytes("UTF-8"));files.put(role,f);components.put(new JSONObject().put("role",role).put("path",role+".gguf").put("format","gguf").put("bytes",f.length()).put("sha256",DataFiles.sha256(f)));}
+            ModelBundle b=new ModelBundle(definition.put("schema",ModelBundle.SCHEMA).put("id",id).put("modelId",id).put("recipeId",id).put("name","NOT A MODEL").put("components",components));MossRqSpec.validate(b,"speech.synthesize");check(true,"matching recipe accepted");
+            for(String key:Arrays.asList("engine","backend","pipeline","architecture"))rejects(()->MossRqSpec.validate(new ModelBundle(b.json().put(key,"other")),"speech.synthesize"),"wrong layout rejected");
+            rejects(()->MossRqSpec.validate(b,"audio.generate"),"wrong task rejected");rejects(()->MossRqSpec.validate(new ModelBundle(b.json().put("components",new JSONArray().put(components.getJSONObject(0)))),"speech.synthesize"),"missing codec/tokenizer rejected");
+            JSONObject nativeFields=MossRqSpec.schema(b).getJSONObject("fields"),declared=definition.getJSONObject("parameters").getJSONObject("fields");check(nativeFields.keySet().equals(declared.keySet()),"schema fields agree");
+            for(String key:nativeFields.keySet()) {JSONObject a=nativeFields.getJSONObject(key),d=declared.getJSONObject(key);check(a.getString("type").equals(d.getString("type")) && (a.getString("type").equals("string")?a.getString("default").equals(d.getString("default")):a.getDouble("default")==d.getDouble("default")),"schema defaults agree");if(a.getString("type").equals("string")){check(a.getInt("maxLength")==d.getInt("maxLength"),"string bound agrees");rejects(()->MossRqSpec.parameters(b,new JSONObject().put(key,"<template>")),"template instruction rejected");}else {check(a.getDouble("minimum")==d.getDouble("minimum") && a.getDouble("maximum")==d.getDouble("maximum"),"numeric bounds agree");check(MossRqSpec.parameters(b,new JSONObject().put(key,9999999999L)).getJSONObject("values").getDouble(key)==a.getDouble("maximum"),"above bound clamped");}}
+            check(MossRqSpec.realtime(b)==!nativeFields.has("voiceInstruction"),"Realtime exposes no ignored hints");
+            for(JSONObject bad:Arrays.asList(new JSONObject().put("prompt","<user_inst>"),new JSONObject().put("prompt","hello").put("negativePrompt","noise"),new JSONObject().put("prompt","")))rejects(()->MossRqSpec.text(bad),"invalid text rejected");
+            File reference=new File(root,id+"-reference.wav");Files.write(reference.toPath(),wave(24000,1,1));MossRqSpec.reference(reference);check(MossRqSpec.inputs().json().getJSONObject("roles").length()==1,"one optional reference role");
+            LmaApp app=new LmaApp(new File(root,id));app.bundles=new BundleStore(new File(app.getFilesDir(),"bundles"));app.bundles.declare(b);check(!app.bundles.record(id).getBoolean("installed"),"declaring never downloads");String token=app.bundles.request(id);
+            for(ModelBundle.Component component:b.components){Files.copy(files.get(component.role).toPath(),app.bundles.partial(component.objectId).toPath(),StandardCopyOption.REPLACE_EXISTING);app.bundles.accept(id,token,component,app.bundles.partial(component.objectId));}app.bundles.install(id,token);
+            MossRqEngine engine=new MossRqEngine(app,binary,new JSONObject().put("engine","moss_rq_native"),launcher);JSONObject request=new JSONObject().put("bundleId",id).put("type","speech.synthesize").put("input",new JSONObject().put("prompt","fixture-wave")).put("parameters",new JSONObject()).put("allowUnmeasured",true);
+            if(!MossRqSpec.realtime(b))request.getJSONObject("parameters").put("voiceInstruction","warm adult voice").put("language","English");JSONObject frozen=engine.prepare(b,request);check(request.getJSONObject("parameters").length()==(MossRqSpec.realtime(b)?0:2),"snapshot preserves selected settings");
+            JSONObject invalid=DataFiles.copy(request);invalid.getJSONObject("input").put("artifacts",new JSONArray().put(new JSONObject().put("role","image")));rejects(()->engine.prepare(b,invalid),"unknown reference role rejected");
+            AtomicInteger events=new AtomicInteger();JSONObject execution=new JSONObject();final boolean[] cancel={false};final Process[] child={null};
+            try(BundleStore.Lease lease=app.bundles.acquire(id)) {
+                LocalEngine.Context c=new LocalEngine.Context(){public JSONObject request(){return DataFiles.copy(frozen);}public BundleStore.Lease model(){return lease;}public File input(String role){return reference;}public File output(String ext){return new File(root,id+"-out."+ext);}public void check() throws Exception{if(cancel[0])throw new IOException("fixture cancelled");}public void process(Process p){child[0]=p;}public void progress(String stage,Double fraction){events.incrementAndGet();if(stage.equals("fixture_wait")){cancel[0]=true;child[0].destroyForcibly();}}public void execution(JSONObject v){execution.put("details",v);}};
+                for(boolean ref:new boolean[]{false,true}){if(ref)frozen.getJSONObject("input").put("artifacts",new JSONArray().put(new JSONObject().put("role","reference_audio")));File out=engine.generate(c);JSONObject receipt=new JSONObject(new String(Files.readAllBytes(Paths.get(out.getPath()+".receipt")),"UTF-8"));check(WaveFile.inspect(out).getInt("sampleRate")==24000 && WaveFile.inspect(out).getInt("channels")==1,"correct PCM layout");check(receipt.has("referenceAudio")==ref,"explicit reference forwarded");check(receipt.getString("pipeline").equals(id) && receipt.getJSONObject("parameters").getLong("seed")>=0,"pipeline and concrete seed forwarded");if(!MossRqSpec.realtime(b))check(receipt.getJSONObject("parameters").getString("voiceInstruction").equals("warm adult voice"),"instruction reaches child");}
+                check(events.get()>0 && execution.getJSONObject("details").getBoolean("hostFixture"),"protocol receipt delivered");
+                for(String prompt:Arrays.asList("fixture-json","fixture-error","fixture-wait")){frozen.getJSONObject("input").put("prompt",prompt);rejects(()->engine.generate(c),"bad output / error / cancellation propagated");cancel[0]=false;check(app.nativeProcess==null && new File(app.getFilesDir(),"engine-work").list().length==0,"child and private workspace released");}
+                frozen.getJSONObject("input").put("prompt","fixture-wave");frozen.getJSONObject("parameters").put("threads",999);int before=launches.get();rejects(()->engine.generate(c),"tampered snapshot rejected");check(before==launches.get(),"invalid snapshot spawns no child");
+            }
+            check(reference.isFile() && files.get("model").isFile() && files.get("codec").isFile() && files.get("tokenizer").isFile(),"user assets preserved");
+        }
+        File wrong=new File(root,"wrong.wav");for(int[] spec:new int[][]{{48000,1,1},{24000,2,1},{24000,1,11}}){Files.write(wrong.toPath(),wave(spec[0],spec[1],spec[2]));rejects(()->MossRqSpec.reference(wrong),"wrong reference rate/channels/duration rejected");}
+        System.out.println(new JSONObject().put("passed",passed).put("actual_host_children",launches.get()).put("production_rq_binding",true).put("model_inference",false).put("structural_wav_fixture",true));
+    }
+}

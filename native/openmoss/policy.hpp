@@ -8,7 +8,7 @@
 namespace lma_openmoss {
 inline void require(bool ok,const char* message) { if(!ok)throw std::runtime_error(message); }
 inline bool local(const std::string& pipeline) {
-    require(pipeline=="moss_local_v15_cpu_v1" || pipeline=="moss_soundeffect_v2_cpu_v1" || pipeline=="moss_tts_openmoss_cpu_v1" || pipeline=="moss_tts_v15_openmoss_cpu_v1" || pipeline=="moss_ttsd_openmoss_cpu_v1" || pipeline=="moss_voicegen_openmoss_cpu_v1","Unknown openmoss pipeline");return pipeline=="moss_local_v15_cpu_v1";
+    require(pipeline=="moss_local_v15_cpu_v1" || pipeline=="moss_soundeffect_v2_cpu_v1" || pipeline=="moss_tts_openmoss_cpu_v1" || pipeline=="moss_tts_v15_openmoss_cpu_v1" || pipeline=="moss_ttsd_openmoss_cpu_v1" || pipeline=="moss_voicegen_openmoss_cpu_v1" || pipeline=="moss_soundeffect_openmoss_cpu_v1","Unknown openmoss pipeline");return pipeline=="moss_local_v15_cpu_v1";
 }
 inline bool delay(const std::string& pipeline) { local(pipeline);return pipeline!="moss_local_v15_cpu_v1" && pipeline!="moss_soundeffect_v2_cpu_v1"; }
 inline bool dialogue(const std::string& pipeline) { local(pipeline);return pipeline=="moss_ttsd_openmoss_cpu_v1"; }

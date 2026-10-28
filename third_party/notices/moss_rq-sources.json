@@ -1,0 +1,22 @@
+{
+  "revision": "ee722b8e9205ee9b1b1c398a4e87e4e393e9be41",
+  "files": [
+    {
+      "file": "moss-rq-upstream-README.txt",
+      "sha256": "dbc55d95287924bcd153368de4a3710c04c0a707e7deeaf438af9b30a808cc43",
+      "source": "https://github.com/mudler/moss-tts.cpp/blob/ee722b8e9205ee9b1b1c398a4e87e4e393e9be41/README.md"
+    },
+    {
+      "file": "moss-rq-ggml-LICENSE.txt",
+      "sha256": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
+      "source": "https://github.com/ggml-org/ggml/blob/e705c5fed490514458bdd2eaddc43bd098fcce9b/LICENSE"
+    }
+  ],
+  "model_assets": false,
+  "license_note": "The pinned repository declares MIT and names Ettore Di Giacinto in README.md. No standalone LICENSE file exists at this revision. Its actual README is retained verbatim; LMA does not invent an upstream license file or copyright notice.",
+  "local_modification": "LMA inserts input/context guards and measured stage callbacks into generated Local and Realtime pipeline copies; the pinned source checkout remains pristine.",
+  "pipeline_guard_sha256": {
+    "moss_tts_local.cpp": "57832c73e536b24abeb33246f01f6dbfb416d6c7fcf0383476181a53b70f89fb",
+    "moss_tts_rt.cpp": "05d7ba5f2d3f6288b7938abac35aeb5464f86394dabc6a690e391eee7f05b8df"
+  }
+}
