@@ -1,6 +1,6 @@
 {
   "schema": "lma.bundle-metadata-evidence/2",
-  "checked_on": "2026-10-27",
+  "checked_on": "2026-10-28",
   "model_weights_downloaded": false,
   "model_inference_tested": false,
   "physical_device_tests": 0,
@@ -196,6 +196,35 @@
       ],
       "licenseReview": "pending before complete v0.3.0 acceptance",
       "phoneInference": false
+    },
+    {
+      "bundleId": "qwen3_tts_06b_base_q4_rb7ee2e8",
+      "components": [
+        {
+          "role": "talker",
+          "path": "qwen-talker-0.6b-base-Q4_K_M.gguf",
+          "bytes": 628905056,
+          "sha256": "4b468ec7b1f62b90ef4ca316c0aa57deadfd54b2cf9651703ea753cedaf04226",
+          "repository": "Serveurperso/Qwen3-TTS-GGUF",
+          "revision": "b7ee2e8c7459c3bea99da23e3d178125a7d1713c",
+          "kind": "hf_lfs",
+          "source": "https://huggingface.co/api/models/Serveurperso/Qwen3-TTS-GGUF/revision/b7ee2e8c7459c3bea99da23e3d178125a7d1713c?blobs=true"
+        },
+        {
+          "role": "audio_codec",
+          "path": "qwen-tokenizer-12hz-Q8_0.gguf",
+          "bytes": 291150624,
+          "sha256": "1883beeed99348fc35e23dd225e9082f93f6f8c109330a33d935baa8acdbfd94",
+          "repository": "Serveurperso/Qwen3-TTS-GGUF",
+          "revision": "b7ee2e8c7459c3bea99da23e3d178125a7d1713c",
+          "kind": "hf_lfs",
+          "source": "https://huggingface.co/api/models/Serveurperso/Qwen3-TTS-GGUF/revision/b7ee2e8c7459c3bea99da23e3d178125a7d1713c?blobs=true"
+        }
+      ],
+      "ggufHeaderReview": "qwen-gguf-headers.json",
+      "tensor_weights_read": false
     }
-  ]
+  ],
+  "gguf_header_metadata_read": true,
+  "tensor_weights_read": false
 }

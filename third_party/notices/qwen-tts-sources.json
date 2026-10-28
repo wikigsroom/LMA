@@ -1,0 +1,17 @@
+{
+  "revision": "16bb5afcd06311031c72a8488f8d59660dc2fb46",
+  "ggml_revision": "af97976c7810cdabb1863172f31c432dab767de7",
+  "files": [
+    {
+      "file": "qwen-tts-LICENSE.txt",
+      "sha256": "ea567a2154304fdcc6250d03460a24eebbe120e02032f47aeee3c9e722455512",
+      "source": "https://github.com/Danmoreng/qwen3-tts.cpp/blob/16bb5afcd06311031c72a8488f8d59660dc2fb46/LICENSE"
+    },
+    {
+      "file": "qwen-ggml-LICENSE.txt",
+      "sha256": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
+      "source": "https://github.com/ggml-org/ggml/blob/af97976c7810cdabb1863172f31c432dab767de7/LICENSE"
+    }
+  ],
+  "model_assets": false
+}

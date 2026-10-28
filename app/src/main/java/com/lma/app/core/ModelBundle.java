@@ -16,8 +16,16 @@ public final class ModelBundle {
     public static final class Component {
         public final String role, path, importPath, sha256, gitBlobSha1, objectId, integrityAlgorithm, url, format, repository, revision;
         public final long bytes;
+        public final Set<String> provides;
         Component(JSONObject value, boolean version2) throws Exception {
             role = key(value.getString("role")); path = value.getString("path");
+            Set<String> embedded = new LinkedHashSet<>();
+            if (value.has("provides")) {
+                JSONArray roles = value.getJSONArray("provides");
+                if (roles.length() > 32) throw new IllegalArgumentException("Too many embedded component roles");
+                for (int i = 0; i < roles.length(); i++) if (!embedded.add(key(roles.getString(i))) || roles.getString(i).equals(role)) throw new IllegalArgumentException("Duplicate embedded component role");
+            }
+            provides = Collections.unmodifiableSet(embedded);
             // HF paths are metadata, never filesystem destinations (objects use their SHA256).
             if (path.isEmpty() || path.length() > 2048 || path.indexOf('\\') >= 0 || path.chars().anyMatch(c -> c < 32 || c == 127)) throw new IllegalArgumentException("Invalid component path");
             for (String part : path.split("/", -1)) if (part.isEmpty() || part.equals(".") || part.equals("..")) throw new IllegalArgumentException("Invalid component path");
@@ -88,7 +96,9 @@ public final class ModelBundle {
     public JSONObject tags() throws Exception {
         JSONArray task = new JSONArray(), dependency = new JSONArray(), formats = new JSONArray(); Set<String> unique = new LinkedHashSet<>();
         for (String t : tasks) task.put("task:" + t);
-        for (Component c : components) { dependency.put("dependency:" + c.role); unique.add(c.format); }
+        Set<String> dependencies = new LinkedHashSet<>();
+        for (Component c : components) { dependencies.add(c.role); dependencies.addAll(c.provides); unique.add(c.format); }
+        for (String role : dependencies) dependency.put("dependency:" + role);
         for (String format : unique) formats.put("format:" + format);
         JSONArray capability = source.optJSONArray("capabilities") == null ? new JSONArray() : new JSONArray(source.getJSONArray("capabilities").toString());
         if (AdapterSpec.isAdapter(this)) {

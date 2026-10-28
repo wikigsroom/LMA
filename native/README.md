@@ -15,3 +15,5 @@ Rebuild with `bootstrap_native.py`, `fetch_native.py`, `build_native.py`, then c
 - `moss_nano/` implements SentencePiece, autoregressive ONNX and codec decoding. Model-specific data stays external. Sources, user component roles, shared ORT rules and 190 host checks: [中文](../docs/MOSS_NANO_ENGINE.md) / [English](../docs/MOSS_NANO_ENGINE.en.md).
 
 - `mnn/` builds the actual matched Sana/Qwen3 CPU pipeline with generated upstream load/token/thread guards, isolated diagnostics and external user-selected components. No image/phone inference is claimed. [中文](../docs/MNN_SANA_ENGINE.md) / [English](../docs/MNN_SANA_ENGINE.en.md).
+
+Qwen3-TTS 0.6B Base: `qwen_tts/` builds the pinned native Talker/MTP/BPE/speaker/codec pipeline with ggml CPU, Android API 28 and 16 KiB alignment. Two user-selected GGUFs and optional strict local reference WAV remain outside the APK. See [中文](../docs/QWEN_TTS_ENGINE.md) / [English](../docs/QWEN_TTS_ENGINE.en.md); native compilation and header checks do not prove model/device output.

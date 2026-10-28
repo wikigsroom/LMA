@@ -657,6 +657,215 @@
           "revision": "github_asset_238058578"
         }
       ]
+    },
+    {
+      "engine": "qwen_tts_native",
+      "backend": "cpu",
+      "architecture": "qwen3_tts_06b",
+      "pipeline": "qwen3_tts_06b_base",
+      "tasks": [
+        "audio"
+      ],
+      "capabilities": [
+        "text_to_speech"
+      ],
+      "parameters": {
+        "version": 1,
+        "fields": {
+          "threads": {
+            "type": "integer",
+            "label": "CPU 线程",
+            "default": 4,
+            "minimum": 1,
+            "maximum": 32,
+            "presets": [
+              2,
+              4,
+              8
+            ],
+            "limitSource": "application_guard"
+          },
+          "maxInputTokens": {
+            "type": "integer",
+            "label": "输入 token 预算（含格式）",
+            "default": 512,
+            "minimum": 1,
+            "maximum": 2048,
+            "presets": [
+              256,
+              512,
+              1024,
+              2048
+            ],
+            "limitSource": "application_guard"
+          },
+          "maxAudioTokens": {
+            "type": "integer",
+            "label": "音频帧上限（约 12.5 帧 / 秒）",
+            "default": 375,
+            "minimum": 1,
+            "maximum": 1500,
+            "presets": [
+              125,
+              375,
+              750,
+              1500
+            ],
+            "limitSource": "application_guard"
+          },
+          "temperature": {
+            "type": "number",
+            "label": "采样温度",
+            "default": 0.9,
+            "minimum": 0,
+            "maximum": 2,
+            "presets": [
+              0,
+              0.5,
+              0.9,
+              1
+            ],
+            "limitSource": "application_guard"
+          },
+          "topP": {
+            "type": "number",
+            "label": "Top P",
+            "default": 1,
+            "minimum": 0.01,
+            "maximum": 1,
+            "presets": [
+              0.8,
+              0.9,
+              1
+            ],
+            "limitSource": "application_guard"
+          },
+          "topK": {
+            "type": "integer",
+            "label": "Top K",
+            "default": 50,
+            "minimum": 1,
+            "maximum": 1024,
+            "presets": [
+              20,
+              50,
+              100
+            ],
+            "limitSource": "application_guard"
+          },
+          "repetitionPenalty": {
+            "type": "number",
+            "label": "重复惩罚",
+            "default": 1.05,
+            "minimum": 1,
+            "maximum": 2,
+            "presets": [
+              1,
+              1.05,
+              1.1
+            ],
+            "limitSource": "application_guard"
+          },
+          "seed": {
+            "type": "integer",
+            "label": "随机种子（-1 自动）",
+            "default": -1,
+            "minimum": -1,
+            "maximum": 2147483647,
+            "presets": [
+              -1,
+              42,
+              1234
+            ],
+            "limitSource": "application_guard"
+          },
+          "language": {
+            "type": "enum",
+            "label": "语言",
+            "default": "auto",
+            "values": [
+              "auto",
+              "en",
+              "zh",
+              "ja",
+              "ko",
+              "de",
+              "fr",
+              "ru",
+              "pt",
+              "es",
+              "it"
+            ]
+          }
+        }
+      },
+      "schema": "lma.model-bundle/1",
+      "id": "qwen3_tts_06b_base_q4_rb7ee2e8",
+      "modelId": "qwen3_tts_06b_base",
+      "recipeId": "qwen3_tts_06b_base_cpu_v1",
+      "name": "Qwen3-TTS · 0.6B Base Q4 / 12Hz codec Q8",
+      "description": "生音频 / TTS；本机 CPU 基座。Talker 内含文本 BPE、Code Predictor 与 speaker encoder，另需 12Hz 音频 codec。可选本地参考 WAV；无命名音色、指令音色或 ICL。已核对文件头，不代表手机推理、质量或实时性已验证。",
+      "catalogue": true,
+      "languages": [
+        "zh",
+        "en",
+        "ja",
+        "ko",
+        "de",
+        "fr",
+        "ru",
+        "pt",
+        "es",
+        "it"
+      ],
+      "license": {
+        "name": "Apache-2.0 (publisher model card)",
+        "url": "https://huggingface.co/Serveurperso/Qwen3-TTS-GGUF/blob/b7ee2e8c7459c3bea99da23e3d178125a7d1713c/README.md",
+        "status": "publisher_declared"
+      },
+      "evidence": {
+        "status": "pinned_headers_not_device_tested",
+        "physicalDeviceTests": 0,
+        "sourceUrl": "https://huggingface.co/Serveurperso/Qwen3-TTS-GGUF/blob/b7ee2e8c7459c3bea99da23e3d178125a7d1713c/README.md",
+        "modelInferenceTested": false,
+        "headerReview": "qwen-gguf-headers.json",
+        "embeddedRoles": [
+          "text_tokenizer",
+          "code_predictor",
+          "speaker_assets"
+        ]
+      },
+      "resources": {
+        "source": "unmeasured_conservative_application_estimate",
+        "estimatedPeakRamBytes": 3221225472
+      },
+      "components": [
+        {
+          "role": "talker",
+          "path": "qwen-talker-0.6b-base-Q4_K_M.gguf",
+          "bytes": 628905056,
+          "sha256": "4b468ec7b1f62b90ef4ca316c0aa57deadfd54b2cf9651703ea753cedaf04226",
+          "format": "gguf",
+          "repository": "Serveurperso/Qwen3-TTS-GGUF",
+          "revision": "b7ee2e8c7459c3bea99da23e3d178125a7d1713c",
+          "url": "https://huggingface.co/Serveurperso/Qwen3-TTS-GGUF/resolve/b7ee2e8c7459c3bea99da23e3d178125a7d1713c/qwen-talker-0.6b-base-Q4_K_M.gguf",
+          "provides": [
+            "text_tokenizer",
+            "code_predictor",
+            "speaker_assets"
+          ]
+        },
+        {
+          "role": "audio_codec",
+          "path": "qwen-tokenizer-12hz-Q8_0.gguf",
+          "bytes": 291150624,
+          "sha256": "1883beeed99348fc35e23dd225e9082f93f6f8c109330a33d935baa8acdbfd94",
+          "format": "gguf",
+          "repository": "Serveurperso/Qwen3-TTS-GGUF",
+          "revision": "b7ee2e8c7459c3bea99da23e3d178125a7d1713c",
+          "url": "https://huggingface.co/Serveurperso/Qwen3-TTS-GGUF/resolve/b7ee2e8c7459c3bea99da23e3d178125a7d1713c/qwen-tokenizer-12hz-Q8_0.gguf"
+        }
+      ]
     }
   ]
 }

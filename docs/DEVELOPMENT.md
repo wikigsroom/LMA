@@ -2,7 +2,7 @@
 
 [English](DEVELOPMENT.en.md) · [完整范围](MULTIMODAL_RELEASE_PLAN.md) · [构建](BUILD.md) · [中文首页](../README.md)
 
-当前公开发行仍为 **v0.2.0**。本分支为 **0.3.0-dev.14 / versionCode 18**，不是完整 v0.3.0，也没有创建对应 Release。下一版本仍一次交付 F-01–F-12、01–14 / 16 / 17 及冻结子目标；以下是同一版本内的实施记录，不是拆版安排。
+当前公开发行仍为 **v0.2.0**。本分支为 **0.3.0-dev.15 / versionCode 19**，不是完整 v0.3.0，也没有创建对应 Release。下一版本仍一次交付 F-01–F-12、01–14 / 16 / 17 及冻结子目标；以下是同一版本内的实施记录，不是拆版安排。
 
 ## 已写入开发代码的部分
 
@@ -147,3 +147,7 @@ dev.13 的[Z-Image / FLUX / Qwen / Wan 基座接入](ADVANCED_DIFFUSION.md)增�
 ## dev.14 · Sana MNN 实际引擎与资产边界
 
 dev.14 接入 [Sana 移动管线 / MNN](MNN_SANA_ENGINE.md)：真实 ARM64 CPU worker、13 个用户自选组件、Qwen3 metadata 白名单、分阶段释放编码器、独立 CFG / token / 线程参数与不可变任务快照。74 项主机 / C++ 检查不包含模型推理；全部 21 个模板仍只登记元数据、由用户确认下载。445 项基座与 208 项界面检查通过；37 张截图及录屏 / GIF 均标识 UI FIXTURE。没有 Android 生图 / 耐久证据，完整 v0.3.0 的冻结目标和发布门槛保持不变，未创建新 Release。
+
+## dev.15：Qwen3-TTS 本地语音与内含组件
+
+内部检查点（**0.3.0-dev.15 / code 19**，未发布）：[Qwen3-TTS 0.6B Base](QWEN_TTS_ENGINE.md) 新增真实 ARM64 CPU worker、两个用户自选 GGUF 的完整本机语音管线、可选参考 WAV、独立采样参数及真实耗时 / RTF 记录。共享 `provides` 描述文件内含依赖，详情无需重复下载词表 / 预测器 / speaker encoder。81 项主机 Java / C++ 检查仅验证协议与结构 WAV；固定版本可选包只核对文件头，未运行模型。现有 22 个模板仍为元数据，不隐式下载。截图 38–39 与开发录屏 / GIF 保留 UI FIXTURE。App 仅交付基座，完整 v0.3.0 的全部目标、真实输出 / 质量 / 后台门槛继续保留；未创建新 Release。见[双语更新说明](releases/v0.3.0-dev.15.md)。

@@ -50,6 +50,7 @@ public final class RecipeCatalogue {
             if (!bindings.has(role)) { if (rule.optBoolean("required", true)) throw new IllegalArgumentException("请先选择全部必需组件：" + role); else continue; }
             JSONObject asset = bindings.getJSONObject(role), component = new JSONObject().put("role", role);
             for (String field : Arrays.asList("path", "repository", "revision", "url", "format", "bytes", "sha256", "gitBlobSha1")) if (asset.has(field)) component.put(field, asset.get(field));
+            if (requirement(id, role).has("provides")) component.put("provides", DataFiles.copy(requirement(id, role)).getJSONArray("provides"));
             component.put("importPath", role + "/" + component.getString("path")); components.put(component);
         }
         for (int i = 0; i < fixed.length(); i++) { JSONObject component = DataFiles.copy(fixed.getJSONObject(i)); component.put("importPath", component.getString("role") + "/" + component.getString("path")); components.put(component); }

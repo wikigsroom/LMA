@@ -23,7 +23,7 @@ public final class WaveFile {
                 in.seek(next);
             }
             if ((format != 1 && format != 3) || format == 3 && bits != 32 || channels < 1 || channels > 8 || rate < 8000 || rate > 192000 || (bits != 16 && bits != 24 && bits != 32) || align != channels * bits / 8 || byteRate != rate * (long) align || dataBytes < align || dataBytes % align != 0) throw new IOException("WAV sampling format is unsupported, inconsistent or empty");
-            return new JSONObject().put("mime", "audio/wav").put("sampleRate", rate).put("channels", channels).put("bitsPerSample", bits).put("samples", dataBytes / align).put("durationMs", dataBytes * 1000 / byteRate);
+            return new JSONObject().put("mime", "audio/wav").put("formatCode", format).put("sampleRate", rate).put("channels", channels).put("bitsPerSample", bits).put("samples", dataBytes / align).put("durationMs", dataBytes * 1000 / byteRate);
         }
     }
 }

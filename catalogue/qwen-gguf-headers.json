@@ -1,0 +1,3405 @@
+{
+  "schema": "lma.qwen-header-review/1",
+  "passed": true,
+  "revision": "b7ee2e8c7459c3bea99da23e3d178125a7d1713c",
+  "records": [
+    {
+      "file": "qwen-talker-0.6b-base-Q4_K_M.gguf",
+      "repository": "Serveurperso/Qwen3-TTS-GGUF",
+      "revision": "b7ee2e8c7459c3bea99da23e3d178125a7d1713c",
+      "bytes": 628905056,
+      "sha256": "4b468ec7b1f62b90ef4ca316c0aa57deadfd54b2cf9651703ea753cedaf04226",
+      "headerBytes": 5954369,
+      "headerSHA256": "486176ff2a559ab0ce538dd0f5ed891d999025e900eae24300d9731a3eca843a",
+      "metadata": {
+        "general.architecture": "qwen3-tts",
+        "general.name": "Qwen3-TTS-12Hz-0.6B-base",
+        "qwen3-tts.tokenizer_type": "qwen3_tts_tokenizer_12hz",
+        "qwen3-tts.model_size": "0b6",
+        "qwen3-tts.model_type": "base",
+        "qwen3-tts.num_code_groups": 16,
+        "qwen3-tts.talker.embedding_length": 1024,
+        "qwen3-tts.talker.feed_forward_length": 3072,
+        "qwen3-tts.talker.block_count": 28,
+        "qwen3-tts.talker.attention.head_count": 16,
+        "qwen3-tts.talker.attention.head_count_kv": 8,
+        "qwen3-tts.talker.attention.key_length": 128,
+        "qwen3-tts.talker.vocab_size": 3072,
+        "qwen3-tts.talker.text_vocab_size": 151936,
+        "qwen3-tts.talker.text_hidden_size": 2048,
+        "qwen3-tts.talker.context_length": 32768,
+        "qwen3-tts.talker.rope.freq_base": 1000000.0,
+        "qwen3-tts.talker.attention.layer_norm_rms_epsilon": 9.999999974752427e-07,
+        "qwen3-tts.talker.position_id_per_seconds": 13,
+        "qwen3-tts.talker.mrope_interleaved": true,
+        "qwen3-tts.code_pred.embedding_length": 1024,
+        "qwen3-tts.code_pred.feed_forward_length": 3072,
+        "qwen3-tts.code_pred.block_count": 5,
+        "qwen3-tts.code_pred.attention.head_count": 16,
+        "qwen3-tts.code_pred.attention.head_count_kv": 8,
+        "qwen3-tts.code_pred.attention.key_length": 128,
+        "qwen3-tts.code_pred.vocab_size": 2048,
+        "qwen3-tts.code_pred.context_length": 65536,
+        "qwen3-tts.code_pred.rope.freq_base": 1000000.0,
+        "qwen3-tts.code_pred.attention.layer_norm_rms_epsilon": 9.999999974752427e-07,
+        "qwen3-tts.spk_enc.embedding_length": 1024,
+        "qwen3-tts.spk_enc.sample_rate": 24000,
+        "qwen3-tts.codec.pad_id": 2148,
+        "qwen3-tts.codec.bos_id": 2149,
+        "qwen3-tts.codec.eos_id": 2150,
+        "qwen3-tts.codec.think_id": 2154,
+        "qwen3-tts.codec.nothink_id": 2155,
+        "qwen3-tts.codec.think_bos_id": 2156,
+        "qwen3-tts.codec.think_eos_id": 2157,
+        "qwen3-tts.text.im_start_id": 151644,
+        "qwen3-tts.text.im_end_id": 151645,
+        "qwen3-tts.text.tts_pad_id": 151671,
+        "qwen3-tts.text.tts_bos_id": 151672,
+        "qwen3-tts.text.tts_eos_id": 151673,
+        "general.quantization_version": 2,
+        "general.file_type": "Q4_K_M"
+      },
+      "tensors": {
+        "spk_enc.asp.conv.bias": [
+          1536
+        ],
+        "spk_enc.asp.conv.weight": [
+          1,
+          128,
+          1536
+        ],
+        "spk_enc.asp.tdnn.bias": [
+          128
+        ],
+        "spk_enc.asp.tdnn.weight": [
+          1,
+          4608,
+          128
+        ],
+        "spk_enc.conv0.bias": [
+          512
+        ],
+        "spk_enc.conv0.weight": [
+          5,
+          128,
+          512
+        ],
+        "spk_enc.blk.1.res2net.0.bias": [
+          64
+        ],
+        "spk_enc.blk.1.res2net.0.weight": [
+          3,
+          64,
+          64
+        ],
+        "spk_enc.blk.1.res2net.1.bias": [
+          64
+        ],
+        "spk_enc.blk.1.res2net.1.weight": [
+          3,
+          64,
+          64
+        ],
+        "spk_enc.blk.1.res2net.2.bias": [
+          64
+        ],
+        "spk_enc.blk.1.res2net.2.weight": [
+          3,
+          64,
+          64
+        ],
+        "spk_enc.blk.1.res2net.3.bias": [
+          64
+        ],
+        "spk_enc.blk.1.res2net.3.weight": [
+          3,
+          64,
+          64
+        ],
+        "spk_enc.blk.1.res2net.4.bias": [
+          64
+        ],
+        "spk_enc.blk.1.res2net.4.weight": [
+          3,
+          64,
+          64
+        ],
+        "spk_enc.blk.1.res2net.5.bias": [
+          64
+        ],
+        "spk_enc.blk.1.res2net.5.weight": [
+          3,
+          64,
+          64
+        ],
+        "spk_enc.blk.1.res2net.6.bias": [
+          64
+        ],
+        "spk_enc.blk.1.res2net.6.weight": [
+          3,
+          64,
+          64
+        ],
+        "spk_enc.blk.1.se.conv1.bias": [
+          128
+        ],
+        "spk_enc.blk.1.se.conv1.weight": [
+          1,
+          512,
+          128
+        ],
+        "spk_enc.blk.1.se.conv2.bias": [
+          512
+        ],
+        "spk_enc.blk.1.se.conv2.weight": [
+          1,
+          128,
+          512
+        ],
+        "spk_enc.blk.1.tdnn1.bias": [
+          512
+        ],
+        "spk_enc.blk.1.tdnn1.weight": [
+          1,
+          512,
+          512
+        ],
+        "spk_enc.blk.1.tdnn2.bias": [
+          512
+        ],
+        "spk_enc.blk.1.tdnn2.weight": [
+          1,
+          512,
+          512
+        ],
+        "spk_enc.blk.2.res2net.0.bias": [
+          64
+        ],
+        "spk_enc.blk.2.res2net.0.weight": [
+          3,
+          64,
+          64
+        ],
+        "spk_enc.blk.2.res2net.1.bias": [
+          64
+        ],
+        "spk_enc.blk.2.res2net.1.weight": [
+          3,
+          64,
+          64
+        ],
+        "spk_enc.blk.2.res2net.2.bias": [
+          64
+        ],
+        "spk_enc.blk.2.res2net.2.weight": [
+          3,
+          64,
+          64
+        ],
+        "spk_enc.blk.2.res2net.3.bias": [
+          64
+        ],
+        "spk_enc.blk.2.res2net.3.weight": [
+          3,
+          64,
+          64
+        ],
+        "spk_enc.blk.2.res2net.4.bias": [
+          64
+        ],
+        "spk_enc.blk.2.res2net.4.weight": [
+          3,
+          64,
+          64
+        ],
+        "spk_enc.blk.2.res2net.5.bias": [
+          64
+        ],
+        "spk_enc.blk.2.res2net.5.weight": [
+          3,
+          64,
+          64
+        ],
+        "spk_enc.blk.2.res2net.6.bias": [
+          64
+        ],
+        "spk_enc.blk.2.res2net.6.weight": [
+          3,
+          64,
+          64
+        ],
+        "spk_enc.blk.2.se.conv1.bias": [
+          128
+        ],
+        "spk_enc.blk.2.se.conv1.weight": [
+          1,
+          512,
+          128
+        ],
+        "spk_enc.blk.2.se.conv2.bias": [
+          512
+        ],
+        "spk_enc.blk.2.se.conv2.weight": [
+          1,
+          128,
+          512
+        ],
+        "spk_enc.blk.2.tdnn1.bias": [
+          512
+        ],
+        "spk_enc.blk.2.tdnn1.weight": [
+          1,
+          512,
+          512
+        ],
+        "spk_enc.blk.2.tdnn2.bias": [
+          512
+        ],
+        "spk_enc.blk.2.tdnn2.weight": [
+          1,
+          512,
+          512
+        ],
+        "spk_enc.blk.3.res2net.0.bias": [
+          64
+        ],
+        "spk_enc.blk.3.res2net.0.weight": [
+          3,
+          64,
+          64
+        ],
+        "spk_enc.blk.3.res2net.1.bias": [
+          64
+        ],
+        "spk_enc.blk.3.res2net.1.weight": [
+          3,
+          64,
+          64
+        ],
+        "spk_enc.blk.3.res2net.2.bias": [
+          64
+        ],
+        "spk_enc.blk.3.res2net.2.weight": [
+          3,
+          64,
+          64
+        ],
+        "spk_enc.blk.3.res2net.3.bias": [
+          64
+        ],
+        "spk_enc.blk.3.res2net.3.weight": [
+          3,
+          64,
+          64
+        ],
+        "spk_enc.blk.3.res2net.4.bias": [
+          64
+        ],
+        "spk_enc.blk.3.res2net.4.weight": [
+          3,
+          64,
+          64
+        ],
+        "spk_enc.blk.3.res2net.5.bias": [
+          64
+        ],
+        "spk_enc.blk.3.res2net.5.weight": [
+          3,
+          64,
+          64
+        ],
+        "spk_enc.blk.3.res2net.6.bias": [
+          64
+        ],
+        "spk_enc.blk.3.res2net.6.weight": [
+          3,
+          64,
+          64
+        ],
+        "spk_enc.blk.3.se.conv1.bias": [
+          128
+        ],
+        "spk_enc.blk.3.se.conv1.weight": [
+          1,
+          512,
+          128
+        ],
+        "spk_enc.blk.3.se.conv2.bias": [
+          512
+        ],
+        "spk_enc.blk.3.se.conv2.weight": [
+          1,
+          128,
+          512
+        ],
+        "spk_enc.blk.3.tdnn1.bias": [
+          512
+        ],
+        "spk_enc.blk.3.tdnn1.weight": [
+          1,
+          512,
+          512
+        ],
+        "spk_enc.blk.3.tdnn2.bias": [
+          512
+        ],
+        "spk_enc.blk.3.tdnn2.weight": [
+          1,
+          512,
+          512
+        ],
+        "spk_enc.fc.bias": [
+          1024
+        ],
+        "spk_enc.fc.weight": [
+          1,
+          3072,
+          1024
+        ],
+        "spk_enc.mfa.bias": [
+          1536
+        ],
+        "spk_enc.mfa.weight": [
+          1,
+          1536,
+          1536
+        ],
+        "code_pred.lm_head.0.weight": [
+          1024,
+          2048
+        ],
+        "code_pred.lm_head.1.weight": [
+          1024,
+          2048
+        ],
+        "code_pred.lm_head.10.weight": [
+          1024,
+          2048
+        ],
+        "code_pred.lm_head.11.weight": [
+          1024,
+          2048
+        ],
+        "code_pred.lm_head.12.weight": [
+          1024,
+          2048
+        ],
+        "code_pred.lm_head.13.weight": [
+          1024,
+          2048
+        ],
+        "code_pred.lm_head.14.weight": [
+          1024,
+          2048
+        ],
+        "code_pred.lm_head.2.weight": [
+          1024,
+          2048
+        ],
+        "code_pred.lm_head.3.weight": [
+          1024,
+          2048
+        ],
+        "code_pred.lm_head.4.weight": [
+          1024,
+          2048
+        ],
+        "code_pred.lm_head.5.weight": [
+          1024,
+          2048
+        ],
+        "code_pred.lm_head.6.weight": [
+          1024,
+          2048
+        ],
+        "code_pred.lm_head.7.weight": [
+          1024,
+          2048
+        ],
+        "code_pred.lm_head.8.weight": [
+          1024,
+          2048
+        ],
+        "code_pred.lm_head.9.weight": [
+          1024,
+          2048
+        ],
+        "code_pred.codec_embd.0.weight": [
+          1024,
+          2048
+        ],
+        "code_pred.codec_embd.1.weight": [
+          1024,
+          2048
+        ],
+        "code_pred.codec_embd.10.weight": [
+          1024,
+          2048
+        ],
+        "code_pred.codec_embd.11.weight": [
+          1024,
+          2048
+        ],
+        "code_pred.codec_embd.12.weight": [
+          1024,
+          2048
+        ],
+        "code_pred.codec_embd.13.weight": [
+          1024,
+          2048
+        ],
+        "code_pred.codec_embd.14.weight": [
+          1024,
+          2048
+        ],
+        "code_pred.codec_embd.2.weight": [
+          1024,
+          2048
+        ],
+        "code_pred.codec_embd.3.weight": [
+          1024,
+          2048
+        ],
+        "code_pred.codec_embd.4.weight": [
+          1024,
+          2048
+        ],
+        "code_pred.codec_embd.5.weight": [
+          1024,
+          2048
+        ],
+        "code_pred.codec_embd.6.weight": [
+          1024,
+          2048
+        ],
+        "code_pred.codec_embd.7.weight": [
+          1024,
+          2048
+        ],
+        "code_pred.codec_embd.8.weight": [
+          1024,
+          2048
+        ],
+        "code_pred.codec_embd.9.weight": [
+          1024,
+          2048
+        ],
+        "code_pred.blk.0.attn_norm.weight": [
+          1024
+        ],
+        "code_pred.blk.0.ffn_down.weight": [
+          3072,
+          1024
+        ],
+        "code_pred.blk.0.ffn_gate.weight": [
+          1024,
+          3072
+        ],
+        "code_pred.blk.0.ffn_up.weight": [
+          1024,
+          3072
+        ],
+        "code_pred.blk.0.ffn_norm.weight": [
+          1024
+        ],
+        "code_pred.blk.0.attn_k_norm.weight": [
+          128
+        ],
+        "code_pred.blk.0.attn_k.weight": [
+          1024,
+          1024
+        ],
+        "code_pred.blk.0.attn_output.weight": [
+          2048,
+          1024
+        ],
+        "code_pred.blk.0.attn_q_norm.weight": [
+          128
+        ],
+        "code_pred.blk.0.attn_q.weight": [
+          1024,
+          2048
+        ],
+        "code_pred.blk.0.attn_v.weight": [
+          1024,
+          1024
+        ],
+        "code_pred.blk.1.attn_norm.weight": [
+          1024
+        ],
+        "code_pred.blk.1.ffn_down.weight": [
+          3072,
+          1024
+        ],
+        "code_pred.blk.1.ffn_gate.weight": [
+          1024,
+          3072
+        ],
+        "code_pred.blk.1.ffn_up.weight": [
+          1024,
+          3072
+        ],
+        "code_pred.blk.1.ffn_norm.weight": [
+          1024
+        ],
+        "code_pred.blk.1.attn_k_norm.weight": [
+          128
+        ],
+        "code_pred.blk.1.attn_k.weight": [
+          1024,
+          1024
+        ],
+        "code_pred.blk.1.attn_output.weight": [
+          2048,
+          1024
+        ],
+        "code_pred.blk.1.attn_q_norm.weight": [
+          128
+        ],
+        "code_pred.blk.1.attn_q.weight": [
+          1024,
+          2048
+        ],
+        "code_pred.blk.1.attn_v.weight": [
+          1024,
+          1024
+        ],
+        "code_pred.blk.2.attn_norm.weight": [
+          1024
+        ],
+        "code_pred.blk.2.ffn_down.weight": [
+          3072,
+          1024
+        ],
+        "code_pred.blk.2.ffn_gate.weight": [
+          1024,
+          3072
+        ],
+        "code_pred.blk.2.ffn_up.weight": [
+          1024,
+          3072
+        ],
+        "code_pred.blk.2.ffn_norm.weight": [
+          1024
+        ],
+        "code_pred.blk.2.attn_k_norm.weight": [
+          128
+        ],
+        "code_pred.blk.2.attn_k.weight": [
+          1024,
+          1024
+        ],
+        "code_pred.blk.2.attn_output.weight": [
+          2048,
+          1024
+        ],
+        "code_pred.blk.2.attn_q_norm.weight": [
+          128
+        ],
+        "code_pred.blk.2.attn_q.weight": [
+          1024,
+          2048
+        ],
+        "code_pred.blk.2.attn_v.weight": [
+          1024,
+          1024
+        ],
+        "code_pred.blk.3.attn_norm.weight": [
+          1024
+        ],
+        "code_pred.blk.3.ffn_down.weight": [
+          3072,
+          1024
+        ],
+        "code_pred.blk.3.ffn_gate.weight": [
+          1024,
+          3072
+        ],
+        "code_pred.blk.3.ffn_up.weight": [
+          1024,
+          3072
+        ],
+        "code_pred.blk.3.ffn_norm.weight": [
+          1024
+        ],
+        "code_pred.blk.3.attn_k_norm.weight": [
+          128
+        ],
+        "code_pred.blk.3.attn_k.weight": [
+          1024,
+          1024
+        ],
+        "code_pred.blk.3.attn_output.weight": [
+          2048,
+          1024
+        ],
+        "code_pred.blk.3.attn_q_norm.weight": [
+          128
+        ],
+        "code_pred.blk.3.attn_q.weight": [
+          1024,
+          2048
+        ],
+        "code_pred.blk.3.attn_v.weight": [
+          1024,
+          1024
+        ],
+        "code_pred.blk.4.attn_norm.weight": [
+          1024
+        ],
+        "code_pred.blk.4.ffn_down.weight": [
+          3072,
+          1024
+        ],
+        "code_pred.blk.4.ffn_gate.weight": [
+          1024,
+          3072
+        ],
+        "code_pred.blk.4.ffn_up.weight": [
+          1024,
+          3072
+        ],
+        "code_pred.blk.4.ffn_norm.weight": [
+          1024
+        ],
+        "code_pred.blk.4.attn_k_norm.weight": [
+          128
+        ],
+        "code_pred.blk.4.attn_k.weight": [
+          1024,
+          1024
+        ],
+        "code_pred.blk.4.attn_output.weight": [
+          2048,
+          1024
+        ],
+        "code_pred.blk.4.attn_q_norm.weight": [
+          128
+        ],
+        "code_pred.blk.4.attn_q.weight": [
+          1024,
+          2048
+        ],
+        "code_pred.blk.4.attn_v.weight": [
+          1024,
+          1024
+        ],
+        "code_pred.output_norm.weight": [
+          1024
+        ],
+        "talker.codec_head.weight": [
+          1024,
+          3072
+        ],
+        "talker.codec_embd.weight": [
+          1024,
+          3072
+        ],
+        "talker.blk.0.attn_norm.weight": [
+          1024
+        ],
+        "talker.blk.0.ffn_down.weight": [
+          3072,
+          1024
+        ],
+        "talker.blk.0.ffn_gate.weight": [
+          1024,
+          3072
+        ],
+        "talker.blk.0.ffn_up.weight": [
+          1024,
+          3072
+        ],
+        "talker.blk.0.ffn_norm.weight": [
+          1024
+        ],
+        "talker.blk.0.attn_k_norm.weight": [
+          128
+        ],
+        "talker.blk.0.attn_k.weight": [
+          1024,
+          1024
+        ],
+        "talker.blk.0.attn_output.weight": [
+          2048,
+          1024
+        ],
+        "talker.blk.0.attn_q_norm.weight": [
+          128
+        ],
+        "talker.blk.0.attn_q.weight": [
+          1024,
+          2048
+        ],
+        "talker.blk.0.attn_v.weight": [
+          1024,
+          1024
+        ],
+        "talker.blk.1.attn_norm.weight": [
+          1024
+        ],
+        "talker.blk.1.ffn_down.weight": [
+          3072,
+          1024
+        ],
+        "talker.blk.1.ffn_gate.weight": [
+          1024,
+          3072
+        ],
+        "talker.blk.1.ffn_up.weight": [
+          1024,
+          3072
+        ],
+        "talker.blk.1.ffn_norm.weight": [
+          1024
+        ],
+        "talker.blk.1.attn_k_norm.weight": [
+          128
+        ],
+        "talker.blk.1.attn_k.weight": [
+          1024,
+          1024
+        ],
+        "talker.blk.1.attn_output.weight": [
+          2048,
+          1024
+        ],
+        "talker.blk.1.attn_q_norm.weight": [
+          128
+        ],
+        "talker.blk.1.attn_q.weight": [
+          1024,
+          2048
+        ],
+        "talker.blk.1.attn_v.weight": [
+          1024,
+          1024
+        ],
+        "talker.blk.10.attn_norm.weight": [
+          1024
+        ],
+        "talker.blk.10.ffn_down.weight": [
+          3072,
+          1024
+        ],
+        "talker.blk.10.ffn_gate.weight": [
+          1024,
+          3072
+        ],
+        "talker.blk.10.ffn_up.weight": [
+          1024,
+          3072
+        ],
+        "talker.blk.10.ffn_norm.weight": [
+          1024
+        ],
+        "talker.blk.10.attn_k_norm.weight": [
+          128
+        ],
+        "talker.blk.10.attn_k.weight": [
+          1024,
+          1024
+        ],
+        "talker.blk.10.attn_output.weight": [
+          2048,
+          1024
+        ],
+        "talker.blk.10.attn_q_norm.weight": [
+          128
+        ],
+        "talker.blk.10.attn_q.weight": [
+          1024,
+          2048
+        ],
+        "talker.blk.10.attn_v.weight": [
+          1024,
+          1024
+        ],
+        "talker.blk.11.attn_norm.weight": [
+          1024
+        ],
+        "talker.blk.11.ffn_down.weight": [
+          3072,
+          1024
+        ],
+        "talker.blk.11.ffn_gate.weight": [
+          1024,
+          3072
+        ],
+        "talker.blk.11.ffn_up.weight": [
+          1024,
+          3072
+        ],
+        "talker.blk.11.ffn_norm.weight": [
+          1024
+        ],
+        "talker.blk.11.attn_k_norm.weight": [
+          128
+        ],
+        "talker.blk.11.attn_k.weight": [
+          1024,
+          1024
+        ],
+        "talker.blk.11.attn_output.weight": [
+          2048,
+          1024
+        ],
+        "talker.blk.11.attn_q_norm.weight": [
+          128
+        ],
+        "talker.blk.11.attn_q.weight": [
+          1024,
+          2048
+        ],
+        "talker.blk.11.attn_v.weight": [
+          1024,
+          1024
+        ],
+        "talker.blk.12.attn_norm.weight": [
+          1024
+        ],
+        "talker.blk.12.ffn_down.weight": [
+          3072,
+          1024
+        ],
+        "talker.blk.12.ffn_gate.weight": [
+          1024,
+          3072
+        ],
+        "talker.blk.12.ffn_up.weight": [
+          1024,
+          3072
+        ],
+        "talker.blk.12.ffn_norm.weight": [
+          1024
+        ],
+        "talker.blk.12.attn_k_norm.weight": [
+          128
+        ],
+        "talker.blk.12.attn_k.weight": [
+          1024,
+          1024
+        ],
+        "talker.blk.12.attn_output.weight": [
+          2048,
+          1024
+        ],
+        "talker.blk.12.attn_q_norm.weight": [
+          128
+        ],
+        "talker.blk.12.attn_q.weight": [
+          1024,
+          2048
+        ],
+        "talker.blk.12.attn_v.weight": [
+          1024,
+          1024
+        ],
+        "talker.blk.13.attn_norm.weight": [
+          1024
+        ],
+        "talker.blk.13.ffn_down.weight": [
+          3072,
+          1024
+        ],
+        "talker.blk.13.ffn_gate.weight": [
+          1024,
+          3072
+        ],
+        "talker.blk.13.ffn_up.weight": [
+          1024,
+          3072
+        ],
+        "talker.blk.13.ffn_norm.weight": [
+          1024
+        ],
+        "talker.blk.13.attn_k_norm.weight": [
+          128
+        ],
+        "talker.blk.13.attn_k.weight": [
+          1024,
+          1024
+        ],
+        "talker.blk.13.attn_output.weight": [
+          2048,
+          1024
+        ],
+        "talker.blk.13.attn_q_norm.weight": [
+          128
+        ],
+        "talker.blk.13.attn_q.weight": [
+          1024,
+          2048
+        ],
+        "talker.blk.13.attn_v.weight": [
+          1024,
+          1024
+        ],
+        "talker.blk.14.attn_norm.weight": [
+          1024
+        ],
+        "talker.blk.14.ffn_down.weight": [
+          3072,
+          1024
+        ],
+        "talker.blk.14.ffn_gate.weight": [
+          1024,
+          3072
+        ],
+        "talker.blk.14.ffn_up.weight": [
+          1024,
+          3072
+        ],
+        "talker.blk.14.ffn_norm.weight": [
+          1024
+        ],
+        "talker.blk.14.attn_k_norm.weight": [
+          128
+        ],
+        "talker.blk.14.attn_k.weight": [
+          1024,
+          1024
+        ],
+        "talker.blk.14.attn_output.weight": [
+          2048,
+          1024
+        ],
+        "talker.blk.14.attn_q_norm.weight": [
+          128
+        ],
+        "talker.blk.14.attn_q.weight": [
+          1024,
+          2048
+        ],
+        "talker.blk.14.attn_v.weight": [
+          1024,
+          1024
+        ],
+        "talker.blk.15.attn_norm.weight": [
+          1024
+        ],
+        "talker.blk.15.ffn_down.weight": [
+          3072,
+          1024
+        ],
+        "talker.blk.15.ffn_gate.weight": [
+          1024,
+          3072
+        ],
+        "talker.blk.15.ffn_up.weight": [
+          1024,
+          3072
+        ],
+        "talker.blk.15.ffn_norm.weight": [
+          1024
+        ],
+        "talker.blk.15.attn_k_norm.weight": [
+          128
+        ],
+        "talker.blk.15.attn_k.weight": [
+          1024,
+          1024
+        ],
+        "talker.blk.15.attn_output.weight": [
+          2048,
+          1024
+        ],
+        "talker.blk.15.attn_q_norm.weight": [
+          128
+        ],
+        "talker.blk.15.attn_q.weight": [
+          1024,
+          2048
+        ],
+        "talker.blk.15.attn_v.weight": [
+          1024,
+          1024
+        ],
+        "talker.blk.16.attn_norm.weight": [
+          1024
+        ],
+        "talker.blk.16.ffn_down.weight": [
+          3072,
+          1024
+        ],
+        "talker.blk.16.ffn_gate.weight": [
+          1024,
+          3072
+        ],
+        "talker.blk.16.ffn_up.weight": [
+          1024,
+          3072
+        ],
+        "talker.blk.16.ffn_norm.weight": [
+          1024
+        ],
+        "talker.blk.16.attn_k_norm.weight": [
+          128
+        ],
+        "talker.blk.16.attn_k.weight": [
+          1024,
+          1024
+        ],
+        "talker.blk.16.attn_output.weight": [
+          2048,
+          1024
+        ],
+        "talker.blk.16.attn_q_norm.weight": [
+          128
+        ],
+        "talker.blk.16.attn_q.weight": [
+          1024,
+          2048
+        ],
+        "talker.blk.16.attn_v.weight": [
+          1024,
+          1024
+        ],
+        "talker.blk.17.attn_norm.weight": [
+          1024
+        ],
+        "talker.blk.17.ffn_down.weight": [
+          3072,
+          1024
+        ],
+        "talker.blk.17.ffn_gate.weight": [
+          1024,
+          3072
+        ],
+        "talker.blk.17.ffn_up.weight": [
+          1024,
+          3072
+        ],
+        "talker.blk.17.ffn_norm.weight": [
+          1024
+        ],
+        "talker.blk.17.attn_k_norm.weight": [
+          128
+        ],
+        "talker.blk.17.attn_k.weight": [
+          1024,
+          1024
+        ],
+        "talker.blk.17.attn_output.weight": [
+          2048,
+          1024
+        ],
+        "talker.blk.17.attn_q_norm.weight": [
+          128
+        ],
+        "talker.blk.17.attn_q.weight": [
+          1024,
+          2048
+        ],
+        "talker.blk.17.attn_v.weight": [
+          1024,
+          1024
+        ],
+        "talker.blk.18.attn_norm.weight": [
+          1024
+        ],
+        "talker.blk.18.ffn_down.weight": [
+          3072,
+          1024
+        ],
+        "talker.blk.18.ffn_gate.weight": [
+          1024,
+          3072
+        ],
+        "talker.blk.18.ffn_up.weight": [
+          1024,
+          3072
+        ],
+        "talker.blk.18.ffn_norm.weight": [
+          1024
+        ],
+        "talker.blk.18.attn_k_norm.weight": [
+          128
+        ],
+        "talker.blk.18.attn_k.weight": [
+          1024,
+          1024
+        ],
+        "talker.blk.18.attn_output.weight": [
+          2048,
+          1024
+        ],
+        "talker.blk.18.attn_q_norm.weight": [
+          128
+        ],
+        "talker.blk.18.attn_q.weight": [
+          1024,
+          2048
+        ],
+        "talker.blk.18.attn_v.weight": [
+          1024,
+          1024
+        ],
+        "talker.blk.19.attn_norm.weight": [
+          1024
+        ],
+        "talker.blk.19.ffn_down.weight": [
+          3072,
+          1024
+        ],
+        "talker.blk.19.ffn_gate.weight": [
+          1024,
+          3072
+        ],
+        "talker.blk.19.ffn_up.weight": [
+          1024,
+          3072
+        ],
+        "talker.blk.19.ffn_norm.weight": [
+          1024
+        ],
+        "talker.blk.19.attn_k_norm.weight": [
+          128
+        ],
+        "talker.blk.19.attn_k.weight": [
+          1024,
+          1024
+        ],
+        "talker.blk.19.attn_output.weight": [
+          2048,
+          1024
+        ],
+        "talker.blk.19.attn_q_norm.weight": [
+          128
+        ],
+        "talker.blk.19.attn_q.weight": [
+          1024,
+          2048
+        ],
+        "talker.blk.19.attn_v.weight": [
+          1024,
+          1024
+        ],
+        "talker.blk.2.attn_norm.weight": [
+          1024
+        ],
+        "talker.blk.2.ffn_down.weight": [
+          3072,
+          1024
+        ],
+        "talker.blk.2.ffn_gate.weight": [
+          1024,
+          3072
+        ],
+        "talker.blk.2.ffn_up.weight": [
+          1024,
+          3072
+        ],
+        "talker.blk.2.ffn_norm.weight": [
+          1024
+        ],
+        "talker.blk.2.attn_k_norm.weight": [
+          128
+        ],
+        "talker.blk.2.attn_k.weight": [
+          1024,
+          1024
+        ],
+        "talker.blk.2.attn_output.weight": [
+          2048,
+          1024
+        ],
+        "talker.blk.2.attn_q_norm.weight": [
+          128
+        ],
+        "talker.blk.2.attn_q.weight": [
+          1024,
+          2048
+        ],
+        "talker.blk.2.attn_v.weight": [
+          1024,
+          1024
+        ],
+        "talker.blk.20.attn_norm.weight": [
+          1024
+        ],
+        "talker.blk.20.ffn_down.weight": [
+          3072,
+          1024
+        ],
+        "talker.blk.20.ffn_gate.weight": [
+          1024,
+          3072
+        ],
+        "talker.blk.20.ffn_up.weight": [
+          1024,
+          3072
+        ],
+        "talker.blk.20.ffn_norm.weight": [
+          1024
+        ],
+        "talker.blk.20.attn_k_norm.weight": [
+          128
+        ],
+        "talker.blk.20.attn_k.weight": [
+          1024,
+          1024
+        ],
+        "talker.blk.20.attn_output.weight": [
+          2048,
+          1024
+        ],
+        "talker.blk.20.attn_q_norm.weight": [
+          128
+        ],
+        "talker.blk.20.attn_q.weight": [
+          1024,
+          2048
+        ],
+        "talker.blk.20.attn_v.weight": [
+          1024,
+          1024
+        ],
+        "talker.blk.21.attn_norm.weight": [
+          1024
+        ],
+        "talker.blk.21.ffn_down.weight": [
+          3072,
+          1024
+        ],
+        "talker.blk.21.ffn_gate.weight": [
+          1024,
+          3072
+        ],
+        "talker.blk.21.ffn_up.weight": [
+          1024,
+          3072
+        ],
+        "talker.blk.21.ffn_norm.weight": [
+          1024
+        ],
+        "talker.blk.21.attn_k_norm.weight": [
+          128
+        ],
+        "talker.blk.21.attn_k.weight": [
+          1024,
+          1024
+        ],
+        "talker.blk.21.attn_output.weight": [
+          2048,
+          1024
+        ],
+        "talker.blk.21.attn_q_norm.weight": [
+          128
+        ],
+        "talker.blk.21.attn_q.weight": [
+          1024,
+          2048
+        ],
+        "talker.blk.21.attn_v.weight": [
+          1024,
+          1024
+        ],
+        "talker.blk.22.attn_norm.weight": [
+          1024
+        ],
+        "talker.blk.22.ffn_down.weight": [
+          3072,
+          1024
+        ],
+        "talker.blk.22.ffn_gate.weight": [
+          1024,
+          3072
+        ],
+        "talker.blk.22.ffn_up.weight": [
+          1024,
+          3072
+        ],
+        "talker.blk.22.ffn_norm.weight": [
+          1024
+        ],
+        "talker.blk.22.attn_k_norm.weight": [
+          128
+        ],
+        "talker.blk.22.attn_k.weight": [
+          1024,
+          1024
+        ],
+        "talker.blk.22.attn_output.weight": [
+          2048,
+          1024
+        ],
+        "talker.blk.22.attn_q_norm.weight": [
+          128
+        ],
+        "talker.blk.22.attn_q.weight": [
+          1024,
+          2048
+        ],
+        "talker.blk.22.attn_v.weight": [
+          1024,
+          1024
+        ],
+        "talker.blk.23.attn_norm.weight": [
+          1024
+        ],
+        "talker.blk.23.ffn_down.weight": [
+          3072,
+          1024
+        ],
+        "talker.blk.23.ffn_gate.weight": [
+          1024,
+          3072
+        ],
+        "talker.blk.23.ffn_up.weight": [
+          1024,
+          3072
+        ],
+        "talker.blk.23.ffn_norm.weight": [
+          1024
+        ],
+        "talker.blk.23.attn_k_norm.weight": [
+          128
+        ],
+        "talker.blk.23.attn_k.weight": [
+          1024,
+          1024
+        ],
+        "talker.blk.23.attn_output.weight": [
+          2048,
+          1024
+        ],
+        "talker.blk.23.attn_q_norm.weight": [
+          128
+        ],
+        "talker.blk.23.attn_q.weight": [
+          1024,
+          2048
+        ],
+        "talker.blk.23.attn_v.weight": [
+          1024,
+          1024
+        ],
+        "talker.blk.24.attn_norm.weight": [
+          1024
+        ],
+        "talker.blk.24.ffn_down.weight": [
+          3072,
+          1024
+        ],
+        "talker.blk.24.ffn_gate.weight": [
+          1024,
+          3072
+        ],
+        "talker.blk.24.ffn_up.weight": [
+          1024,
+          3072
+        ],
+        "talker.blk.24.ffn_norm.weight": [
+          1024
+        ],
+        "talker.blk.24.attn_k_norm.weight": [
+          128
+        ],
+        "talker.blk.24.attn_k.weight": [
+          1024,
+          1024
+        ],
+        "talker.blk.24.attn_output.weight": [
+          2048,
+          1024
+        ],
+        "talker.blk.24.attn_q_norm.weight": [
+          128
+        ],
+        "talker.blk.24.attn_q.weight": [
+          1024,
+          2048
+        ],
+        "talker.blk.24.attn_v.weight": [
+          1024,
+          1024
+        ],
+        "talker.blk.25.attn_norm.weight": [
+          1024
+        ],
+        "talker.blk.25.ffn_down.weight": [
+          3072,
+          1024
+        ],
+        "talker.blk.25.ffn_gate.weight": [
+          1024,
+          3072
+        ],
+        "talker.blk.25.ffn_up.weight": [
+          1024,
+          3072
+        ],
+        "talker.blk.25.ffn_norm.weight": [
+          1024
+        ],
+        "talker.blk.25.attn_k_norm.weight": [
+          128
+        ],
+        "talker.blk.25.attn_k.weight": [
+          1024,
+          1024
+        ],
+        "talker.blk.25.attn_output.weight": [
+          2048,
+          1024
+        ],
+        "talker.blk.25.attn_q_norm.weight": [
+          128
+        ],
+        "talker.blk.25.attn_q.weight": [
+          1024,
+          2048
+        ],
+        "talker.blk.25.attn_v.weight": [
+          1024,
+          1024
+        ],
+        "talker.blk.26.attn_norm.weight": [
+          1024
+        ],
+        "talker.blk.26.ffn_down.weight": [
+          3072,
+          1024
+        ],
+        "talker.blk.26.ffn_gate.weight": [
+          1024,
+          3072
+        ],
+        "talker.blk.26.ffn_up.weight": [
+          1024,
+          3072
+        ],
+        "talker.blk.26.ffn_norm.weight": [
+          1024
+        ],
+        "talker.blk.26.attn_k_norm.weight": [
+          128
+        ],
+        "talker.blk.26.attn_k.weight": [
+          1024,
+          1024
+        ],
+        "talker.blk.26.attn_output.weight": [
+          2048,
+          1024
+        ],
+        "talker.blk.26.attn_q_norm.weight": [
+          128
+        ],
+        "talker.blk.26.attn_q.weight": [
+          1024,
+          2048
+        ],
+        "talker.blk.26.attn_v.weight": [
+          1024,
+          1024
+        ],
+        "talker.blk.27.attn_norm.weight": [
+          1024
+        ],
+        "talker.blk.27.ffn_down.weight": [
+          3072,
+          1024
+        ],
+        "talker.blk.27.ffn_gate.weight": [
+          1024,
+          3072
+        ],
+        "talker.blk.27.ffn_up.weight": [
+          1024,
+          3072
+        ],
+        "talker.blk.27.ffn_norm.weight": [
+          1024
+        ],
+        "talker.blk.27.attn_k_norm.weight": [
+          128
+        ],
+        "talker.blk.27.attn_k.weight": [
+          1024,
+          1024
+        ],
+        "talker.blk.27.attn_output.weight": [
+          2048,
+          1024
+        ],
+        "talker.blk.27.attn_q_norm.weight": [
+          128
+        ],
+        "talker.blk.27.attn_q.weight": [
+          1024,
+          2048
+        ],
+        "talker.blk.27.attn_v.weight": [
+          1024,
+          1024
+        ],
+        "talker.blk.3.attn_norm.weight": [
+          1024
+        ],
+        "talker.blk.3.ffn_down.weight": [
+          3072,
+          1024
+        ],
+        "talker.blk.3.ffn_gate.weight": [
+          1024,
+          3072
+        ],
+        "talker.blk.3.ffn_up.weight": [
+          1024,
+          3072
+        ],
+        "talker.blk.3.ffn_norm.weight": [
+          1024
+        ],
+        "talker.blk.3.attn_k_norm.weight": [
+          128
+        ],
+        "talker.blk.3.attn_k.weight": [
+          1024,
+          1024
+        ],
+        "talker.blk.3.attn_output.weight": [
+          2048,
+          1024
+        ],
+        "talker.blk.3.attn_q_norm.weight": [
+          128
+        ],
+        "talker.blk.3.attn_q.weight": [
+          1024,
+          2048
+        ],
+        "talker.blk.3.attn_v.weight": [
+          1024,
+          1024
+        ],
+        "talker.blk.4.attn_norm.weight": [
+          1024
+        ],
+        "talker.blk.4.ffn_down.weight": [
+          3072,
+          1024
+        ],
+        "talker.blk.4.ffn_gate.weight": [
+          1024,
+          3072
+        ],
+        "talker.blk.4.ffn_up.weight": [
+          1024,
+          3072
+        ],
+        "talker.blk.4.ffn_norm.weight": [
+          1024
+        ],
+        "talker.blk.4.attn_k_norm.weight": [
+          128
+        ],
+        "talker.blk.4.attn_k.weight": [
+          1024,
+          1024
+        ],
+        "talker.blk.4.attn_output.weight": [
+          2048,
+          1024
+        ],
+        "talker.blk.4.attn_q_norm.weight": [
+          128
+        ],
+        "talker.blk.4.attn_q.weight": [
+          1024,
+          2048
+        ],
+        "talker.blk.4.attn_v.weight": [
+          1024,
+          1024
+        ],
+        "talker.blk.5.attn_norm.weight": [
+          1024
+        ],
+        "talker.blk.5.ffn_down.weight": [
+          3072,
+          1024
+        ],
+        "talker.blk.5.ffn_gate.weight": [
+          1024,
+          3072
+        ],
+        "talker.blk.5.ffn_up.weight": [
+          1024,
+          3072
+        ],
+        "talker.blk.5.ffn_norm.weight": [
+          1024
+        ],
+        "talker.blk.5.attn_k_norm.weight": [
+          128
+        ],
+        "talker.blk.5.attn_k.weight": [
+          1024,
+          1024
+        ],
+        "talker.blk.5.attn_output.weight": [
+          2048,
+          1024
+        ],
+        "talker.blk.5.attn_q_norm.weight": [
+          128
+        ],
+        "talker.blk.5.attn_q.weight": [
+          1024,
+          2048
+        ],
+        "talker.blk.5.attn_v.weight": [
+          1024,
+          1024
+        ],
+        "talker.blk.6.attn_norm.weight": [
+          1024
+        ],
+        "talker.blk.6.ffn_down.weight": [
+          3072,
+          1024
+        ],
+        "talker.blk.6.ffn_gate.weight": [
+          1024,
+          3072
+        ],
+        "talker.blk.6.ffn_up.weight": [
+          1024,
+          3072
+        ],
+        "talker.blk.6.ffn_norm.weight": [
+          1024
+        ],
+        "talker.blk.6.attn_k_norm.weight": [
+          128
+        ],
+        "talker.blk.6.attn_k.weight": [
+          1024,
+          1024
+        ],
+        "talker.blk.6.attn_output.weight": [
+          2048,
+          1024
+        ],
+        "talker.blk.6.attn_q_norm.weight": [
+          128
+        ],
+        "talker.blk.6.attn_q.weight": [
+          1024,
+          2048
+        ],
+        "talker.blk.6.attn_v.weight": [
+          1024,
+          1024
+        ],
+        "talker.blk.7.attn_norm.weight": [
+          1024
+        ],
+        "talker.blk.7.ffn_down.weight": [
+          3072,
+          1024
+        ],
+        "talker.blk.7.ffn_gate.weight": [
+          1024,
+          3072
+        ],
+        "talker.blk.7.ffn_up.weight": [
+          1024,
+          3072
+        ],
+        "talker.blk.7.ffn_norm.weight": [
+          1024
+        ],
+        "talker.blk.7.attn_k_norm.weight": [
+          128
+        ],
+        "talker.blk.7.attn_k.weight": [
+          1024,
+          1024
+        ],
+        "talker.blk.7.attn_output.weight": [
+          2048,
+          1024
+        ],
+        "talker.blk.7.attn_q_norm.weight": [
+          128
+        ],
+        "talker.blk.7.attn_q.weight": [
+          1024,
+          2048
+        ],
+        "talker.blk.7.attn_v.weight": [
+          1024,
+          1024
+        ],
+        "talker.blk.8.attn_norm.weight": [
+          1024
+        ],
+        "talker.blk.8.ffn_down.weight": [
+          3072,
+          1024
+        ],
+        "talker.blk.8.ffn_gate.weight": [
+          1024,
+          3072
+        ],
+        "talker.blk.8.ffn_up.weight": [
+          1024,
+          3072
+        ],
+        "talker.blk.8.ffn_norm.weight": [
+          1024
+        ],
+        "talker.blk.8.attn_k_norm.weight": [
+          128
+        ],
+        "talker.blk.8.attn_k.weight": [
+          1024,
+          1024
+        ],
+        "talker.blk.8.attn_output.weight": [
+          2048,
+          1024
+        ],
+        "talker.blk.8.attn_q_norm.weight": [
+          128
+        ],
+        "talker.blk.8.attn_q.weight": [
+          1024,
+          2048
+        ],
+        "talker.blk.8.attn_v.weight": [
+          1024,
+          1024
+        ],
+        "talker.blk.9.attn_norm.weight": [
+          1024
+        ],
+        "talker.blk.9.ffn_down.weight": [
+          3072,
+          1024
+        ],
+        "talker.blk.9.ffn_gate.weight": [
+          1024,
+          3072
+        ],
+        "talker.blk.9.ffn_up.weight": [
+          1024,
+          3072
+        ],
+        "talker.blk.9.ffn_norm.weight": [
+          1024
+        ],
+        "talker.blk.9.attn_k_norm.weight": [
+          128
+        ],
+        "talker.blk.9.attn_k.weight": [
+          1024,
+          1024
+        ],
+        "talker.blk.9.attn_output.weight": [
+          2048,
+          1024
+        ],
+        "talker.blk.9.attn_q_norm.weight": [
+          128
+        ],
+        "talker.blk.9.attn_q.weight": [
+          1024,
+          2048
+        ],
+        "talker.blk.9.attn_v.weight": [
+          1024,
+          1024
+        ],
+        "talker.output_norm.weight": [
+          1024
+        ],
+        "talker.text_embd.weight": [
+          2048,
+          151936
+        ],
+        "talker.text_proj.fc1.bias": [
+          2048
+        ],
+        "talker.text_proj.fc1.weight": [
+          2048,
+          2048
+        ],
+        "talker.text_proj.fc2.bias": [
+          1024
+        ],
+        "talker.text_proj.fc2.weight": [
+          2048,
+          1024
+        ]
+      },
+      "metadataArraySizes": {
+        "qwen3-tts.talker.rope.mrope_section": {
+          "element_type": 5,
+          "count": 3
+        },
+        "qwen3-tts.codec.language_names": {
+          "element_type": 8,
+          "count": 10
+        },
+        "qwen3-tts.codec.language_ids": {
+          "element_type": 5,
+          "count": 10
+        },
+        "tokenizer.ggml.tokens": {
+          "element_type": 8,
+          "count": 151676
+        },
+        "tokenizer.ggml.token_type": {
+          "element_type": 5,
+          "count": 151676
+        },
+        "tokenizer.ggml.merges": {
+          "element_type": 8,
+          "count": 151291
+        }
+      },
+      "complete_model_downloaded": false,
+      "model_inference": false
+    },
+    {
+      "file": "qwen-tokenizer-12hz-Q8_0.gguf",
+      "repository": "Serveurperso/Qwen3-TTS-GGUF",
+      "revision": "b7ee2e8c7459c3bea99da23e3d178125a7d1713c",
+      "bytes": 291150624,
+      "sha256": "1883beeed99348fc35e23dd225e9082f93f6f8c109330a33d935baa8acdbfd94",
+      "headerBytes": 29735,
+      "headerSHA256": "a51a5d16020c2879bb60128978c95e8182c2006ec0d2db79aef96b2c19b0f270",
+      "metadata": {
+        "general.architecture": "qwen3-tts-tokenizer",
+        "general.name": "Qwen3-TTS-Tokenizer-12Hz",
+        "qwen3-tts-tokenizer.input_sample_rate": 24000,
+        "qwen3-tts-tokenizer.output_sample_rate": 24000,
+        "qwen3-tts-tokenizer.decode_upsample_rate": 1920,
+        "qwen3-tts-tokenizer.encode_downsample_rate": 1920,
+        "qwen3-tts-tokenizer.encoder_valid_num_quantizers": 16,
+        "qwen3-tts-tokenizer.decoder.latent_dim": 1024,
+        "qwen3-tts-tokenizer.decoder.codebook_dim": 512,
+        "qwen3-tts-tokenizer.decoder.codebook_size": 2048,
+        "qwen3-tts-tokenizer.decoder.decoder_dim": 1536,
+        "qwen3-tts-tokenizer.decoder.hidden_size": 512,
+        "qwen3-tts-tokenizer.decoder.intermediate_size": 1024,
+        "qwen3-tts-tokenizer.decoder.head_dim": 64,
+        "qwen3-tts-tokenizer.decoder.num_attention_heads": 16,
+        "qwen3-tts-tokenizer.decoder.num_key_value_heads": 16,
+        "qwen3-tts-tokenizer.decoder.num_hidden_layers": 8,
+        "qwen3-tts-tokenizer.decoder.num_quantizers": 16,
+        "qwen3-tts-tokenizer.decoder.num_semantic_quantizers": 1,
+        "qwen3-tts-tokenizer.decoder.rms_norm_eps": 9.999999747378752e-06,
+        "qwen3-tts-tokenizer.decoder.rope_theta": 10000.0,
+        "qwen3-tts-tokenizer.decoder.sliding_window": 72,
+        "qwen3-tts-tokenizer.decoder.layer_scale_initial_scale": 0.009999999776482582,
+        "qwen3-tts-tokenizer.decoder.vector_quantization_hidden_dim": 512,
+        "qwen3-tts-tokenizer.decoder.codebook_dim_internal": 256,
+        "qwen3-tts-tokenizer.encoder.num_filters": 64,
+        "qwen3-tts-tokenizer.encoder.kernel_size": 7,
+        "qwen3-tts-tokenizer.encoder.last_kernel_size": 3,
+        "qwen3-tts-tokenizer.encoder.residual_kernel_size": 3,
+        "qwen3-tts-tokenizer.encoder.num_residual_layers": 1,
+        "qwen3-tts-tokenizer.encoder.dilation_growth_rate": 2,
+        "qwen3-tts-tokenizer.encoder.compress": 2,
+        "qwen3-tts-tokenizer.encoder.hidden_size": 512,
+        "qwen3-tts-tokenizer.encoder.intermediate_size": 2048,
+        "qwen3-tts-tokenizer.encoder.head_dim": 64,
+        "qwen3-tts-tokenizer.encoder.num_attention_heads": 8,
+        "qwen3-tts-tokenizer.encoder.num_key_value_heads": 8,
+        "qwen3-tts-tokenizer.encoder.num_hidden_layers": 8,
+        "qwen3-tts-tokenizer.encoder.norm_eps": 9.999999747378752e-06,
+        "qwen3-tts-tokenizer.encoder.rope_theta": 10000.0,
+        "qwen3-tts-tokenizer.encoder.layer_scale_initial_scale": 0.009999999776482582,
+        "qwen3-tts-tokenizer.encoder.codebook_dim": 256,
+        "qwen3-tts-tokenizer.encoder.codebook_size": 2048,
+        "qwen3-tts-tokenizer.encoder.num_quantizers": 32,
+        "qwen3-tts-tokenizer.encoder.num_semantic_quantizers": 1,
+        "qwen3-tts-tokenizer.encoder.vector_quantization_hidden_dim": 256,
+        "general.quantization_version": 2,
+        "general.file_type": "Q8_0"
+      },
+      "tensors": {
+        "tok_dec.dec.0.conv.bias": [
+          1536
+        ],
+        "tok_dec.dec.0.conv.weight": [
+          7,
+          1024,
+          1536
+        ],
+        "tok_dec.dec.1.snake.alpha": [
+          1536
+        ],
+        "tok_dec.dec.1.snake.beta": [
+          1536
+        ],
+        "tok_dec.dec.1.conv_t.bias": [
+          768
+        ],
+        "tok_dec.dec.1.conv_t.weight": [
+          16,
+          768,
+          1536
+        ],
+        "tok_dec.dec.1.res.0.act1.alpha": [
+          768
+        ],
+        "tok_dec.dec.1.res.0.act1.beta": [
+          768
+        ],
+        "tok_dec.dec.1.res.0.act2.alpha": [
+          768
+        ],
+        "tok_dec.dec.1.res.0.act2.beta": [
+          768
+        ],
+        "tok_dec.dec.1.res.0.conv1.bias": [
+          768
+        ],
+        "tok_dec.dec.1.res.0.conv1.weight": [
+          7,
+          768,
+          768
+        ],
+        "tok_dec.dec.1.res.0.conv2.bias": [
+          768
+        ],
+        "tok_dec.dec.1.res.0.conv2.weight": [
+          1,
+          768,
+          768
+        ],
+        "tok_dec.dec.1.res.1.act1.alpha": [
+          768
+        ],
+        "tok_dec.dec.1.res.1.act1.beta": [
+          768
+        ],
+        "tok_dec.dec.1.res.1.act2.alpha": [
+          768
+        ],
+        "tok_dec.dec.1.res.1.act2.beta": [
+          768
+        ],
+        "tok_dec.dec.1.res.1.conv1.bias": [
+          768
+        ],
+        "tok_dec.dec.1.res.1.conv1.weight": [
+          7,
+          768,
+          768
+        ],
+        "tok_dec.dec.1.res.1.conv2.bias": [
+          768
+        ],
+        "tok_dec.dec.1.res.1.conv2.weight": [
+          1,
+          768,
+          768
+        ],
+        "tok_dec.dec.1.res.2.act1.alpha": [
+          768
+        ],
+        "tok_dec.dec.1.res.2.act1.beta": [
+          768
+        ],
+        "tok_dec.dec.1.res.2.act2.alpha": [
+          768
+        ],
+        "tok_dec.dec.1.res.2.act2.beta": [
+          768
+        ],
+        "tok_dec.dec.1.res.2.conv1.bias": [
+          768
+        ],
+        "tok_dec.dec.1.res.2.conv1.weight": [
+          7,
+          768,
+          768
+        ],
+        "tok_dec.dec.1.res.2.conv2.bias": [
+          768
+        ],
+        "tok_dec.dec.1.res.2.conv2.weight": [
+          1,
+          768,
+          768
+        ],
+        "tok_dec.dec.2.snake.alpha": [
+          768
+        ],
+        "tok_dec.dec.2.snake.beta": [
+          768
+        ],
+        "tok_dec.dec.2.conv_t.bias": [
+          384
+        ],
+        "tok_dec.dec.2.conv_t.weight": [
+          10,
+          384,
+          768
+        ],
+        "tok_dec.dec.2.res.0.act1.alpha": [
+          384
+        ],
+        "tok_dec.dec.2.res.0.act1.beta": [
+          384
+        ],
+        "tok_dec.dec.2.res.0.act2.alpha": [
+          384
+        ],
+        "tok_dec.dec.2.res.0.act2.beta": [
+          384
+        ],
+        "tok_dec.dec.2.res.0.conv1.bias": [
+          384
+        ],
+        "tok_dec.dec.2.res.0.conv1.weight": [
+          7,
+          384,
+          384
+        ],
+        "tok_dec.dec.2.res.0.conv2.bias": [
+          384
+        ],
+        "tok_dec.dec.2.res.0.conv2.weight": [
+          1,
+          384,
+          384
+        ],
+        "tok_dec.dec.2.res.1.act1.alpha": [
+          384
+        ],
+        "tok_dec.dec.2.res.1.act1.beta": [
+          384
+        ],
+        "tok_dec.dec.2.res.1.act2.alpha": [
+          384
+        ],
+        "tok_dec.dec.2.res.1.act2.beta": [
+          384
+        ],
+        "tok_dec.dec.2.res.1.conv1.bias": [
+          384
+        ],
+        "tok_dec.dec.2.res.1.conv1.weight": [
+          7,
+          384,
+          384
+        ],
+        "tok_dec.dec.2.res.1.conv2.bias": [
+          384
+        ],
+        "tok_dec.dec.2.res.1.conv2.weight": [
+          1,
+          384,
+          384
+        ],
+        "tok_dec.dec.2.res.2.act1.alpha": [
+          384
+        ],
+        "tok_dec.dec.2.res.2.act1.beta": [
+          384
+        ],
+        "tok_dec.dec.2.res.2.act2.alpha": [
+          384
+        ],
+        "tok_dec.dec.2.res.2.act2.beta": [
+          384
+        ],
+        "tok_dec.dec.2.res.2.conv1.bias": [
+          384
+        ],
+        "tok_dec.dec.2.res.2.conv1.weight": [
+          7,
+          384,
+          384
+        ],
+        "tok_dec.dec.2.res.2.conv2.bias": [
+          384
+        ],
+        "tok_dec.dec.2.res.2.conv2.weight": [
+          1,
+          384,
+          384
+        ],
+        "tok_dec.dec.3.snake.alpha": [
+          384
+        ],
+        "tok_dec.dec.3.snake.beta": [
+          384
+        ],
+        "tok_dec.dec.3.conv_t.bias": [
+          192
+        ],
+        "tok_dec.dec.3.conv_t.weight": [
+          8,
+          192,
+          384
+        ],
+        "tok_dec.dec.3.res.0.act1.alpha": [
+          192
+        ],
+        "tok_dec.dec.3.res.0.act1.beta": [
+          192
+        ],
+        "tok_dec.dec.3.res.0.act2.alpha": [
+          192
+        ],
+        "tok_dec.dec.3.res.0.act2.beta": [
+          192
+        ],
+        "tok_dec.dec.3.res.0.conv1.bias": [
+          192
+        ],
+        "tok_dec.dec.3.res.0.conv1.weight": [
+          7,
+          192,
+          192
+        ],
+        "tok_dec.dec.3.res.0.conv2.bias": [
+          192
+        ],
+        "tok_dec.dec.3.res.0.conv2.weight": [
+          1,
+          192,
+          192
+        ],
+        "tok_dec.dec.3.res.1.act1.alpha": [
+          192
+        ],
+        "tok_dec.dec.3.res.1.act1.beta": [
+          192
+        ],
+        "tok_dec.dec.3.res.1.act2.alpha": [
+          192
+        ],
+        "tok_dec.dec.3.res.1.act2.beta": [
+          192
+        ],
+        "tok_dec.dec.3.res.1.conv1.bias": [
+          192
+        ],
+        "tok_dec.dec.3.res.1.conv1.weight": [
+          7,
+          192,
+          192
+        ],
+        "tok_dec.dec.3.res.1.conv2.bias": [
+          192
+        ],
+        "tok_dec.dec.3.res.1.conv2.weight": [
+          1,
+          192,
+          192
+        ],
+        "tok_dec.dec.3.res.2.act1.alpha": [
+          192
+        ],
+        "tok_dec.dec.3.res.2.act1.beta": [
+          192
+        ],
+        "tok_dec.dec.3.res.2.act2.alpha": [
+          192
+        ],
+        "tok_dec.dec.3.res.2.act2.beta": [
+          192
+        ],
+        "tok_dec.dec.3.res.2.conv1.bias": [
+          192
+        ],
+        "tok_dec.dec.3.res.2.conv1.weight": [
+          7,
+          192,
+          192
+        ],
+        "tok_dec.dec.3.res.2.conv2.bias": [
+          192
+        ],
+        "tok_dec.dec.3.res.2.conv2.weight": [
+          1,
+          192,
+          192
+        ],
+        "tok_dec.dec.4.snake.alpha": [
+          192
+        ],
+        "tok_dec.dec.4.snake.beta": [
+          192
+        ],
+        "tok_dec.dec.4.conv_t.bias": [
+          96
+        ],
+        "tok_dec.dec.4.conv_t.weight": [
+          6,
+          96,
+          192
+        ],
+        "tok_dec.dec.4.res.0.act1.alpha": [
+          96
+        ],
+        "tok_dec.dec.4.res.0.act1.beta": [
+          96
+        ],
+        "tok_dec.dec.4.res.0.act2.alpha": [
+          96
+        ],
+        "tok_dec.dec.4.res.0.act2.beta": [
+          96
+        ],
+        "tok_dec.dec.4.res.0.conv1.bias": [
+          96
+        ],
+        "tok_dec.dec.4.res.0.conv1.weight": [
+          7,
+          96,
+          96
+        ],
+        "tok_dec.dec.4.res.0.conv2.bias": [
+          96
+        ],
+        "tok_dec.dec.4.res.0.conv2.weight": [
+          1,
+          96,
+          96
+        ],
+        "tok_dec.dec.4.res.1.act1.alpha": [
+          96
+        ],
+        "tok_dec.dec.4.res.1.act1.beta": [
+          96
+        ],
+        "tok_dec.dec.4.res.1.act2.alpha": [
+          96
+        ],
+        "tok_dec.dec.4.res.1.act2.beta": [
+          96
+        ],
+        "tok_dec.dec.4.res.1.conv1.bias": [
+          96
+        ],
+        "tok_dec.dec.4.res.1.conv1.weight": [
+          7,
+          96,
+          96
+        ],
+        "tok_dec.dec.4.res.1.conv2.bias": [
+          96
+        ],
+        "tok_dec.dec.4.res.1.conv2.weight": [
+          1,
+          96,
+          96
+        ],
+        "tok_dec.dec.4.res.2.act1.alpha": [
+          96
+        ],
+        "tok_dec.dec.4.res.2.act1.beta": [
+          96
+        ],
+        "tok_dec.dec.4.res.2.act2.alpha": [
+          96
+        ],
+        "tok_dec.dec.4.res.2.act2.beta": [
+          96
+        ],
+        "tok_dec.dec.4.res.2.conv1.bias": [
+          96
+        ],
+        "tok_dec.dec.4.res.2.conv1.weight": [
+          7,
+          96,
+          96
+        ],
+        "tok_dec.dec.4.res.2.conv2.bias": [
+          96
+        ],
+        "tok_dec.dec.4.res.2.conv2.weight": [
+          1,
+          96,
+          96
+        ],
+        "tok_dec.dec.5.snake.alpha": [
+          96
+        ],
+        "tok_dec.dec.5.snake.beta": [
+          96
+        ],
+        "tok_dec.dec.6.conv.bias": [
+          1
+        ],
+        "tok_dec.dec.6.conv.weight": [
+          7,
+          96
+        ],
+        "tok_dec.pre_conv.bias": [
+          1024
+        ],
+        "tok_dec.pre_conv.weight": [
+          3,
+          512,
+          1024
+        ],
+        "tok_dec.pre_tfm.input_proj.bias": [
+          512
+        ],
+        "tok_dec.pre_tfm.input_proj.weight": [
+          1024,
+          512
+        ],
+        "tok_dec.pre_tfm.blk.0.attn_norm.weight": [
+          512
+        ],
+        "tok_dec.pre_tfm.blk.0.ffn_down.weight": [
+          1024,
+          512
+        ],
+        "tok_dec.pre_tfm.blk.0.ffn_gate.weight": [
+          512,
+          1024
+        ],
+        "tok_dec.pre_tfm.blk.0.ffn_up.weight": [
+          512,
+          1024
+        ],
+        "tok_dec.pre_tfm.blk.0.ffn_scale": [
+          512
+        ],
+        "tok_dec.pre_tfm.blk.0.ffn_norm.weight": [
+          512
+        ],
+        "tok_dec.pre_tfm.blk.0.attn_k.weight": [
+          512,
+          1024
+        ],
+        "tok_dec.pre_tfm.blk.0.attn_output.weight": [
+          1024,
+          512
+        ],
+        "tok_dec.pre_tfm.blk.0.attn_q.weight": [
+          512,
+          1024
+        ],
+        "tok_dec.pre_tfm.blk.0.attn_v.weight": [
+          512,
+          1024
+        ],
+        "tok_dec.pre_tfm.blk.0.attn_scale": [
+          512
+        ],
+        "tok_dec.pre_tfm.blk.1.attn_norm.weight": [
+          512
+        ],
+        "tok_dec.pre_tfm.blk.1.ffn_down.weight": [
+          1024,
+          512
+        ],
+        "tok_dec.pre_tfm.blk.1.ffn_gate.weight": [
+          512,
+          1024
+        ],
+        "tok_dec.pre_tfm.blk.1.ffn_up.weight": [
+          512,
+          1024
+        ],
+        "tok_dec.pre_tfm.blk.1.ffn_scale": [
+          512
+        ],
+        "tok_dec.pre_tfm.blk.1.ffn_norm.weight": [
+          512
+        ],
+        "tok_dec.pre_tfm.blk.1.attn_k.weight": [
+          512,
+          1024
+        ],
+        "tok_dec.pre_tfm.blk.1.attn_output.weight": [
+          1024,
+          512
+        ],
+        "tok_dec.pre_tfm.blk.1.attn_q.weight": [
+          512,
+          1024
+        ],
+        "tok_dec.pre_tfm.blk.1.attn_v.weight": [
+          512,
+          1024
+        ],
+        "tok_dec.pre_tfm.blk.1.attn_scale": [
+          512
+        ],
+        "tok_dec.pre_tfm.blk.2.attn_norm.weight": [
+          512
+        ],
+        "tok_dec.pre_tfm.blk.2.ffn_down.weight": [
+          1024,
+          512
+        ],
+        "tok_dec.pre_tfm.blk.2.ffn_gate.weight": [
+          512,
+          1024
+        ],
+        "tok_dec.pre_tfm.blk.2.ffn_up.weight": [
+          512,
+          1024
+        ],
+        "tok_dec.pre_tfm.blk.2.ffn_scale": [
+          512
+        ],
+        "tok_dec.pre_tfm.blk.2.ffn_norm.weight": [
+          512
+        ],
+        "tok_dec.pre_tfm.blk.2.attn_k.weight": [
+          512,
+          1024
+        ],
+        "tok_dec.pre_tfm.blk.2.attn_output.weight": [
+          1024,
+          512
+        ],
+        "tok_dec.pre_tfm.blk.2.attn_q.weight": [
+          512,
+          1024
+        ],
+        "tok_dec.pre_tfm.blk.2.attn_v.weight": [
+          512,
+          1024
+        ],
+        "tok_dec.pre_tfm.blk.2.attn_scale": [
+          512
+        ],
+        "tok_dec.pre_tfm.blk.3.attn_norm.weight": [
+          512
+        ],
+        "tok_dec.pre_tfm.blk.3.ffn_down.weight": [
+          1024,
+          512
+        ],
+        "tok_dec.pre_tfm.blk.3.ffn_gate.weight": [
+          512,
+          1024
+        ],
+        "tok_dec.pre_tfm.blk.3.ffn_up.weight": [
+          512,
+          1024
+        ],
+        "tok_dec.pre_tfm.blk.3.ffn_scale": [
+          512
+        ],
+        "tok_dec.pre_tfm.blk.3.ffn_norm.weight": [
+          512
+        ],
+        "tok_dec.pre_tfm.blk.3.attn_k.weight": [
+          512,
+          1024
+        ],
+        "tok_dec.pre_tfm.blk.3.attn_output.weight": [
+          1024,
+          512
+        ],
+        "tok_dec.pre_tfm.blk.3.attn_q.weight": [
+          512,
+          1024
+        ],
+        "tok_dec.pre_tfm.blk.3.attn_v.weight": [
+          512,
+          1024
+        ],
+        "tok_dec.pre_tfm.blk.3.attn_scale": [
+          512
+        ],
+        "tok_dec.pre_tfm.blk.4.attn_norm.weight": [
+          512
+        ],
+        "tok_dec.pre_tfm.blk.4.ffn_down.weight": [
+          1024,
+          512
+        ],
+        "tok_dec.pre_tfm.blk.4.ffn_gate.weight": [
+          512,
+          1024
+        ],
+        "tok_dec.pre_tfm.blk.4.ffn_up.weight": [
+          512,
+          1024
+        ],
+        "tok_dec.pre_tfm.blk.4.ffn_scale": [
+          512
+        ],
+        "tok_dec.pre_tfm.blk.4.ffn_norm.weight": [
+          512
+        ],
+        "tok_dec.pre_tfm.blk.4.attn_k.weight": [
+          512,
+          1024
+        ],
+        "tok_dec.pre_tfm.blk.4.attn_output.weight": [
+          1024,
+          512
+        ],
+        "tok_dec.pre_tfm.blk.4.attn_q.weight": [
+          512,
+          1024
+        ],
+        "tok_dec.pre_tfm.blk.4.attn_v.weight": [
+          512,
+          1024
+        ],
+        "tok_dec.pre_tfm.blk.4.attn_scale": [
+          512
+        ],
+        "tok_dec.pre_tfm.blk.5.attn_norm.weight": [
+          512
+        ],
+        "tok_dec.pre_tfm.blk.5.ffn_down.weight": [
+          1024,
+          512
+        ],
+        "tok_dec.pre_tfm.blk.5.ffn_gate.weight": [
+          512,
+          1024
+        ],
+        "tok_dec.pre_tfm.blk.5.ffn_up.weight": [
+          512,
+          1024
+        ],
+        "tok_dec.pre_tfm.blk.5.ffn_scale": [
+          512
+        ],
+        "tok_dec.pre_tfm.blk.5.ffn_norm.weight": [
+          512
+        ],
+        "tok_dec.pre_tfm.blk.5.attn_k.weight": [
+          512,
+          1024
+        ],
+        "tok_dec.pre_tfm.blk.5.attn_output.weight": [
+          1024,
+          512
+        ],
+        "tok_dec.pre_tfm.blk.5.attn_q.weight": [
+          512,
+          1024
+        ],
+        "tok_dec.pre_tfm.blk.5.attn_v.weight": [
+          512,
+          1024
+        ],
+        "tok_dec.pre_tfm.blk.5.attn_scale": [
+          512
+        ],
+        "tok_dec.pre_tfm.blk.6.attn_norm.weight": [
+          512
+        ],
+        "tok_dec.pre_tfm.blk.6.ffn_down.weight": [
+          1024,
+          512
+        ],
+        "tok_dec.pre_tfm.blk.6.ffn_gate.weight": [
+          512,
+          1024
+        ],
+        "tok_dec.pre_tfm.blk.6.ffn_up.weight": [
+          512,
+          1024
+        ],
+        "tok_dec.pre_tfm.blk.6.ffn_scale": [
+          512
+        ],
+        "tok_dec.pre_tfm.blk.6.ffn_norm.weight": [
+          512
+        ],
+        "tok_dec.pre_tfm.blk.6.attn_k.weight": [
+          512,
+          1024
+        ],
+        "tok_dec.pre_tfm.blk.6.attn_output.weight": [
+          1024,
+          512
+        ],
+        "tok_dec.pre_tfm.blk.6.attn_q.weight": [
+          512,
+          1024
+        ],
+        "tok_dec.pre_tfm.blk.6.attn_v.weight": [
+          512,
+          1024
+        ],
+        "tok_dec.pre_tfm.blk.6.attn_scale": [
+          512
+        ],
+        "tok_dec.pre_tfm.blk.7.attn_norm.weight": [
+          512
+        ],
+        "tok_dec.pre_tfm.blk.7.ffn_down.weight": [
+          1024,
+          512
+        ],
+        "tok_dec.pre_tfm.blk.7.ffn_gate.weight": [
+          512,
+          1024
+        ],
+        "tok_dec.pre_tfm.blk.7.ffn_up.weight": [
+          512,
+          1024
+        ],
+        "tok_dec.pre_tfm.blk.7.ffn_scale": [
+          512
+        ],
+        "tok_dec.pre_tfm.blk.7.ffn_norm.weight": [
+          512
+        ],
+        "tok_dec.pre_tfm.blk.7.attn_k.weight": [
+          512,
+          1024
+        ],
+        "tok_dec.pre_tfm.blk.7.attn_output.weight": [
+          1024,
+          512
+        ],
+        "tok_dec.pre_tfm.blk.7.attn_q.weight": [
+          512,
+          1024
+        ],
+        "tok_dec.pre_tfm.blk.7.attn_v.weight": [
+          512,
+          1024
+        ],
+        "tok_dec.pre_tfm.blk.7.attn_scale": [
+          512
+        ],
+        "tok_dec.pre_tfm.norm.weight": [
+          512
+        ],
+        "tok_dec.pre_tfm.output_proj.bias": [
+          1024
+        ],
+        "tok_dec.pre_tfm.output_proj.weight": [
+          512,
+          1024
+        ],
+        "tok_dec.vq_first.output_proj.weight": [
+          1,
+          256,
+          512
+        ],
+        "tok_dec.vq_rest.output_proj.weight": [
+          1,
+          256,
+          512
+        ],
+        "tok_dec.upsample.0.conv.bias": [
+          1024
+        ],
+        "tok_dec.upsample.0.conv.weight": [
+          2,
+          1024,
+          1024
+        ],
+        "tok_dec.upsample.0.dwconv.bias": [
+          1024
+        ],
+        "tok_dec.upsample.0.dwconv.weight": [
+          7,
+          1,
+          1024
+        ],
+        "tok_dec.upsample.0.gamma": [
+          1024
+        ],
+        "tok_dec.upsample.0.norm.bias": [
+          1024
+        ],
+        "tok_dec.upsample.0.norm.weight": [
+          1024
+        ],
+        "tok_dec.upsample.0.pwconv1.bias": [
+          4096
+        ],
+        "tok_dec.upsample.0.pwconv1.weight": [
+          1024,
+          4096
+        ],
+        "tok_dec.upsample.0.pwconv2.bias": [
+          1024
+        ],
+        "tok_dec.upsample.0.pwconv2.weight": [
+          4096,
+          1024
+        ],
+        "tok_dec.upsample.1.conv.bias": [
+          1024
+        ],
+        "tok_dec.upsample.1.conv.weight": [
+          2,
+          1024,
+          1024
+        ],
+        "tok_dec.upsample.1.dwconv.bias": [
+          1024
+        ],
+        "tok_dec.upsample.1.dwconv.weight": [
+          7,
+          1,
+          1024
+        ],
+        "tok_dec.upsample.1.gamma": [
+          1024
+        ],
+        "tok_dec.upsample.1.norm.bias": [
+          1024
+        ],
+        "tok_dec.upsample.1.norm.weight": [
+          1024
+        ],
+        "tok_dec.upsample.1.pwconv1.bias": [
+          4096
+        ],
+        "tok_dec.upsample.1.pwconv1.weight": [
+          1024,
+          4096
+        ],
+        "tok_dec.upsample.1.pwconv2.bias": [
+          1024
+        ],
+        "tok_dec.upsample.1.pwconv2.weight": [
+          4096,
+          1024
+        ],
+        "tok_enc.downsample.weight": [
+          4,
+          512,
+          512
+        ],
+        "tok_enc.conv.0.bias": [
+          64
+        ],
+        "tok_enc.conv.0.weight": [
+          7,
+          1,
+          64
+        ],
+        "tok_enc.res.1.blk.1.bias": [
+          32
+        ],
+        "tok_enc.res.1.blk.1.weight": [
+          3,
+          64,
+          32
+        ],
+        "tok_enc.res.1.blk.3.bias": [
+          64
+        ],
+        "tok_enc.res.1.blk.3.weight": [
+          1,
+          32,
+          64
+        ],
+        "tok_enc.res.10.blk.1.bias": [
+          256
+        ],
+        "tok_enc.res.10.blk.1.weight": [
+          3,
+          512,
+          256
+        ],
+        "tok_enc.res.10.blk.3.bias": [
+          512
+        ],
+        "tok_enc.res.10.blk.3.weight": [
+          1,
+          256,
+          512
+        ],
+        "tok_enc.conv.12.bias": [
+          1024
+        ],
+        "tok_enc.conv.12.weight": [
+          16,
+          512,
+          1024
+        ],
+        "tok_enc.conv.14.bias": [
+          512
+        ],
+        "tok_enc.conv.14.weight": [
+          3,
+          1024,
+          512
+        ],
+        "tok_enc.conv.3.bias": [
+          128
+        ],
+        "tok_enc.conv.3.weight": [
+          8,
+          64,
+          128
+        ],
+        "tok_enc.res.4.blk.1.bias": [
+          64
+        ],
+        "tok_enc.res.4.blk.1.weight": [
+          3,
+          128,
+          64
+        ],
+        "tok_enc.res.4.blk.3.bias": [
+          128
+        ],
+        "tok_enc.res.4.blk.3.weight": [
+          1,
+          64,
+          128
+        ],
+        "tok_enc.conv.6.bias": [
+          256
+        ],
+        "tok_enc.conv.6.weight": [
+          10,
+          128,
+          256
+        ],
+        "tok_enc.res.7.blk.1.bias": [
+          128
+        ],
+        "tok_enc.res.7.blk.1.weight": [
+          3,
+          256,
+          128
+        ],
+        "tok_enc.res.7.blk.3.bias": [
+          256
+        ],
+        "tok_enc.res.7.blk.3.weight": [
+          1,
+          128,
+          256
+        ],
+        "tok_enc.conv.9.bias": [
+          512
+        ],
+        "tok_enc.conv.9.weight": [
+          12,
+          256,
+          512
+        ],
+        "tok_enc.blk.0.attn_norm.bias": [
+          512
+        ],
+        "tok_enc.blk.0.attn_norm.weight": [
+          512
+        ],
+        "tok_enc.blk.0.ffn_up.weight": [
+          512,
+          2048
+        ],
+        "tok_enc.blk.0.ffn_down.weight": [
+          2048,
+          512
+        ],
+        "tok_enc.blk.0.ffn_scale": [
+          512
+        ],
+        "tok_enc.blk.0.ffn_norm.bias": [
+          512
+        ],
+        "tok_enc.blk.0.ffn_norm.weight": [
+          512
+        ],
+        "tok_enc.blk.0.attn_k.weight": [
+          512,
+          512
+        ],
+        "tok_enc.blk.0.attn_output.weight": [
+          512,
+          512
+        ],
+        "tok_enc.blk.0.attn_q.weight": [
+          512,
+          512
+        ],
+        "tok_enc.blk.0.attn_v.weight": [
+          512,
+          512
+        ],
+        "tok_enc.blk.0.attn_scale": [
+          512
+        ],
+        "tok_enc.blk.1.attn_norm.bias": [
+          512
+        ],
+        "tok_enc.blk.1.attn_norm.weight": [
+          512
+        ],
+        "tok_enc.blk.1.ffn_up.weight": [
+          512,
+          2048
+        ],
+        "tok_enc.blk.1.ffn_down.weight": [
+          2048,
+          512
+        ],
+        "tok_enc.blk.1.ffn_scale": [
+          512
+        ],
+        "tok_enc.blk.1.ffn_norm.bias": [
+          512
+        ],
+        "tok_enc.blk.1.ffn_norm.weight": [
+          512
+        ],
+        "tok_enc.blk.1.attn_k.weight": [
+          512,
+          512
+        ],
+        "tok_enc.blk.1.attn_output.weight": [
+          512,
+          512
+        ],
+        "tok_enc.blk.1.attn_q.weight": [
+          512,
+          512
+        ],
+        "tok_enc.blk.1.attn_v.weight": [
+          512,
+          512
+        ],
+        "tok_enc.blk.1.attn_scale": [
+          512
+        ],
+        "tok_enc.blk.2.attn_norm.bias": [
+          512
+        ],
+        "tok_enc.blk.2.attn_norm.weight": [
+          512
+        ],
+        "tok_enc.blk.2.ffn_up.weight": [
+          512,
+          2048
+        ],
+        "tok_enc.blk.2.ffn_down.weight": [
+          2048,
+          512
+        ],
+        "tok_enc.blk.2.ffn_scale": [
+          512
+        ],
+        "tok_enc.blk.2.ffn_norm.bias": [
+          512
+        ],
+        "tok_enc.blk.2.ffn_norm.weight": [
+          512
+        ],
+        "tok_enc.blk.2.attn_k.weight": [
+          512,
+          512
+        ],
+        "tok_enc.blk.2.attn_output.weight": [
+          512,
+          512
+        ],
+        "tok_enc.blk.2.attn_q.weight": [
+          512,
+          512
+        ],
+        "tok_enc.blk.2.attn_v.weight": [
+          512,
+          512
+        ],
+        "tok_enc.blk.2.attn_scale": [
+          512
+        ],
+        "tok_enc.blk.3.attn_norm.bias": [
+          512
+        ],
+        "tok_enc.blk.3.attn_norm.weight": [
+          512
+        ],
+        "tok_enc.blk.3.ffn_up.weight": [
+          512,
+          2048
+        ],
+        "tok_enc.blk.3.ffn_down.weight": [
+          2048,
+          512
+        ],
+        "tok_enc.blk.3.ffn_scale": [
+          512
+        ],
+        "tok_enc.blk.3.ffn_norm.bias": [
+          512
+        ],
+        "tok_enc.blk.3.ffn_norm.weight": [
+          512
+        ],
+        "tok_enc.blk.3.attn_k.weight": [
+          512,
+          512
+        ],
+        "tok_enc.blk.3.attn_output.weight": [
+          512,
+          512
+        ],
+        "tok_enc.blk.3.attn_q.weight": [
+          512,
+          512
+        ],
+        "tok_enc.blk.3.attn_v.weight": [
+          512,
+          512
+        ],
+        "tok_enc.blk.3.attn_scale": [
+          512
+        ],
+        "tok_enc.blk.4.attn_norm.bias": [
+          512
+        ],
+        "tok_enc.blk.4.attn_norm.weight": [
+          512
+        ],
+        "tok_enc.blk.4.ffn_up.weight": [
+          512,
+          2048
+        ],
+        "tok_enc.blk.4.ffn_down.weight": [
+          2048,
+          512
+        ],
+        "tok_enc.blk.4.ffn_scale": [
+          512
+        ],
+        "tok_enc.blk.4.ffn_norm.bias": [
+          512
+        ],
+        "tok_enc.blk.4.ffn_norm.weight": [
+          512
+        ],
+        "tok_enc.blk.4.attn_k.weight": [
+          512,
+          512
+        ],
+        "tok_enc.blk.4.attn_output.weight": [
+          512,
+          512
+        ],
+        "tok_enc.blk.4.attn_q.weight": [
+          512,
+          512
+        ],
+        "tok_enc.blk.4.attn_v.weight": [
+          512,
+          512
+        ],
+        "tok_enc.blk.4.attn_scale": [
+          512
+        ],
+        "tok_enc.blk.5.attn_norm.bias": [
+          512
+        ],
+        "tok_enc.blk.5.attn_norm.weight": [
+          512
+        ],
+        "tok_enc.blk.5.ffn_up.weight": [
+          512,
+          2048
+        ],
+        "tok_enc.blk.5.ffn_down.weight": [
+          2048,
+          512
+        ],
+        "tok_enc.blk.5.ffn_scale": [
+          512
+        ],
+        "tok_enc.blk.5.ffn_norm.bias": [
+          512
+        ],
+        "tok_enc.blk.5.ffn_norm.weight": [
+          512
+        ],
+        "tok_enc.blk.5.attn_k.weight": [
+          512,
+          512
+        ],
+        "tok_enc.blk.5.attn_output.weight": [
+          512,
+          512
+        ],
+        "tok_enc.blk.5.attn_q.weight": [
+          512,
+          512
+        ],
+        "tok_enc.blk.5.attn_v.weight": [
+          512,
+          512
+        ],
+        "tok_enc.blk.5.attn_scale": [
+          512
+        ],
+        "tok_enc.blk.6.attn_norm.bias": [
+          512
+        ],
+        "tok_enc.blk.6.attn_norm.weight": [
+          512
+        ],
+        "tok_enc.blk.6.ffn_up.weight": [
+          512,
+          2048
+        ],
+        "tok_enc.blk.6.ffn_down.weight": [
+          2048,
+          512
+        ],
+        "tok_enc.blk.6.ffn_scale": [
+          512
+        ],
+        "tok_enc.blk.6.ffn_norm.bias": [
+          512
+        ],
+        "tok_enc.blk.6.ffn_norm.weight": [
+          512
+        ],
+        "tok_enc.blk.6.attn_k.weight": [
+          512,
+          512
+        ],
+        "tok_enc.blk.6.attn_output.weight": [
+          512,
+          512
+        ],
+        "tok_enc.blk.6.attn_q.weight": [
+          512,
+          512
+        ],
+        "tok_enc.blk.6.attn_v.weight": [
+          512,
+          512
+        ],
+        "tok_enc.blk.6.attn_scale": [
+          512
+        ],
+        "tok_enc.blk.7.attn_norm.bias": [
+          512
+        ],
+        "tok_enc.blk.7.attn_norm.weight": [
+          512
+        ],
+        "tok_enc.blk.7.ffn_up.weight": [
+          512,
+          2048
+        ],
+        "tok_enc.blk.7.ffn_down.weight": [
+          2048,
+          512
+        ],
+        "tok_enc.blk.7.ffn_scale": [
+          512
+        ],
+        "tok_enc.blk.7.ffn_norm.bias": [
+          512
+        ],
+        "tok_enc.blk.7.ffn_norm.weight": [
+          512
+        ],
+        "tok_enc.blk.7.attn_k.weight": [
+          512,
+          512
+        ],
+        "tok_enc.blk.7.attn_output.weight": [
+          512,
+          512
+        ],
+        "tok_enc.blk.7.attn_q.weight": [
+          512,
+          512
+        ],
+        "tok_enc.blk.7.attn_v.weight": [
+          512,
+          512
+        ],
+        "tok_enc.blk.7.attn_scale": [
+          512
+        ],
+        "tok_enc.vq_acoustic.input_proj.weight": [
+          1,
+          512,
+          256
+        ],
+        "tok_enc.vq_acoustic.output_proj.weight": [
+          1,
+          256,
+          512
+        ],
+        "tok_enc.vq_semantic.input_proj.weight": [
+          1,
+          512,
+          256
+        ],
+        "tok_enc.vq_semantic.output_proj.weight": [
+          1,
+          256,
+          512
+        ],
+        "tok_dec.vq_first.0.codebook": [
+          256,
+          2048
+        ],
+        "tok_dec.vq_rest.0.codebook": [
+          256,
+          2048
+        ],
+        "tok_dec.vq_rest.1.codebook": [
+          256,
+          2048
+        ],
+        "tok_dec.vq_rest.2.codebook": [
+          256,
+          2048
+        ],
+        "tok_dec.vq_rest.3.codebook": [
+          256,
+          2048
+        ],
+        "tok_dec.vq_rest.4.codebook": [
+          256,
+          2048
+        ],
+        "tok_dec.vq_rest.5.codebook": [
+          256,
+          2048
+        ],
+        "tok_dec.vq_rest.6.codebook": [
+          256,
+          2048
+        ],
+        "tok_dec.vq_rest.7.codebook": [
+          256,
+          2048
+        ],
+        "tok_dec.vq_rest.8.codebook": [
+          256,
+          2048
+        ],
+        "tok_dec.vq_rest.9.codebook": [
+          256,
+          2048
+        ],
+        "tok_dec.vq_rest.10.codebook": [
+          256,
+          2048
+        ],
+        "tok_dec.vq_rest.11.codebook": [
+          256,
+          2048
+        ],
+        "tok_dec.vq_rest.12.codebook": [
+          256,
+          2048
+        ],
+        "tok_dec.vq_rest.13.codebook": [
+          256,
+          2048
+        ],
+        "tok_dec.vq_rest.14.codebook": [
+          256,
+          2048
+        ],
+        "tok_enc.vq_acoustic.0.codebook": [
+          256,
+          2048
+        ],
+        "tok_enc.vq_acoustic.1.codebook": [
+          256,
+          2048
+        ],
+        "tok_enc.vq_acoustic.2.codebook": [
+          256,
+          2048
+        ],
+        "tok_enc.vq_acoustic.3.codebook": [
+          256,
+          2048
+        ],
+        "tok_enc.vq_acoustic.4.codebook": [
+          256,
+          2048
+        ],
+        "tok_enc.vq_acoustic.5.codebook": [
+          256,
+          2048
+        ],
+        "tok_enc.vq_acoustic.6.codebook": [
+          256,
+          2048
+        ],
+        "tok_enc.vq_acoustic.7.codebook": [
+          256,
+          2048
+        ],
+        "tok_enc.vq_acoustic.8.codebook": [
+          256,
+          2048
+        ],
+        "tok_enc.vq_acoustic.9.codebook": [
+          256,
+          2048
+        ],
+        "tok_enc.vq_acoustic.10.codebook": [
+          256,
+          2048
+        ],
+        "tok_enc.vq_acoustic.11.codebook": [
+          256,
+          2048
+        ],
+        "tok_enc.vq_acoustic.12.codebook": [
+          256,
+          2048
+        ],
+        "tok_enc.vq_acoustic.13.codebook": [
+          256,
+          2048
+        ],
+        "tok_enc.vq_acoustic.14.codebook": [
+          256,
+          2048
+        ],
+        "tok_enc.vq_semantic.0.codebook": [
+          256,
+          2048
+        ]
+      },
+      "metadataArraySizes": {
+        "qwen3-tts-tokenizer.decoder.upsample_rates": {
+          "element_type": 5,
+          "count": 4
+        },
+        "qwen3-tts-tokenizer.decoder.upsampling_ratios": {
+          "element_type": 5,
+          "count": 2
+        },
+        "qwen3-tts-tokenizer.encoder.upsampling_ratios": {
+          "element_type": 5,
+          "count": 4
+        }
+      },
+      "complete_model_downloaded": false,
+      "model_inference": false
+    }
+  ],
+  "gguf_header_metadata_read": true,
+  "tensor_weights_read": false,
+  "complete_model_weights_downloaded": false,
+  "model_inference": false,
+  "physical_android": false,
+  "input_fingerprint": {
+    "catalogue/model-bundles.json": "0e211bd78b3b43e6cf7631c294629f6494bcf814dbe7f1a73157901447707627",
+    "native/qwen_tts/model_contract.hpp": "e52ec225335a04120410ff5104e4cccf0c22a3dc5132b5272af6b0b88b889610",
+    "third_party/qwen-tts-source-lock.json": "af76ff53e4b0592c0d141d307bf5fcf85b6e7f8cab17238b22d28f3b0796fb8b",
+    "tools/audit_qwen_headers.py": "4f31d7af991be956e47c461d26aa8c403c0c2f07f7fb1b563f7e908bc127b9fc"
+  }
+}

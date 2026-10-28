@@ -76,6 +76,8 @@ def main():
         assert records["text.json"]["passed"] >= 66 and records["text.json"]["actual_host_child_processes"] and records["text.json"]["actual_loopback_http"] and not records["text.json"]["model_inference"]
         assert records["tts.json"]["passed"] >= 62 and records["tts.json"]["actual_host_child_processes"] and not records["tts.json"]["model_inference"]
         assert records["mnn.json"]["passed"] >= 74 and records["mnn.json"]["production_mnn_binding"] and records["mnn.json"]["actual_host_children"] and not records["mnn.json"]["model_inference"] and not records["mnn.json"]["physical_android"] and not records["mnn.json"]["image_outputs"]
+        assert records["qwen-tts.json"]["passed"] >= 81 and records["qwen-tts.json"]["production_qwen_binding"] and records["qwen-tts.json"]["actual_host_children"] and not records["qwen-tts.json"]["model_inference"] and not records["qwen-tts.json"]["physical_android"] and not records["qwen-tts.json"]["generated_audio_outputs"]
+        assert records["qwen-headers.json"]["passed"] and not records["qwen-headers.json"]["tensor_weights_read"] and not records["qwen-headers.json"]["model_inference"]
         assert records["moss-nano.json"]["passed"] >= 190 and records["moss-nano.json"]["native_parser"]["native_host_execution"] and records["moss-nano.json"]["java_contracts"]["actual_host_hardlinks"] and not records["moss-nano.json"]["model_inference"]
         assert records["api.json"]["passed"] >= 67 and records["api.json"]["actual_socket_io"] and not records["api.json"]["physical_device"]
         assert records["ui.json"]["passed"] >= 112 and not records["ui.json"]["errors"] and records["lint.json"]["errors"] == 0

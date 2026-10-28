@@ -3151,6 +3151,178 @@
       ],
       "fixedComponents": [],
       "help": "仅适用于现有 llama.cpp 引擎支持的完整文本 GGUF，不接受拆分权重、视觉 / 音频组件或自定义代码。下载后读取实际上下文上限，未知时采用应用保护值；CPU 内存和真实手机输出仍需验证。登记不下载，原有精选与已下载文本模型保留。"
+    },
+    {
+      "id": "qwen3_tts_06b_base_cpu_v1",
+      "name": "Qwen3-TTS · 12Hz 0.6B Base",
+      "primaryRole": "talker",
+      "definition": {
+        "engine": "qwen_tts_native",
+        "backend": "cpu",
+        "architecture": "qwen3_tts_06b",
+        "pipeline": "qwen3_tts_06b_base",
+        "tasks": [
+          "audio"
+        ],
+        "capabilities": [
+          "text_to_speech"
+        ],
+        "parameters": {
+          "version": 1,
+          "fields": {
+            "threads": {
+              "type": "integer",
+              "label": "CPU 线程",
+              "default": 4,
+              "minimum": 1,
+              "maximum": 32,
+              "presets": [
+                2,
+                4,
+                8
+              ],
+              "limitSource": "application_guard"
+            },
+            "maxInputTokens": {
+              "type": "integer",
+              "label": "输入 token 预算（含格式）",
+              "default": 512,
+              "minimum": 1,
+              "maximum": 2048,
+              "presets": [
+                256,
+                512,
+                1024,
+                2048
+              ],
+              "limitSource": "application_guard"
+            },
+            "maxAudioTokens": {
+              "type": "integer",
+              "label": "音频帧上限（约 12.5 帧 / 秒）",
+              "default": 375,
+              "minimum": 1,
+              "maximum": 1500,
+              "presets": [
+                125,
+                375,
+                750,
+                1500
+              ],
+              "limitSource": "application_guard"
+            },
+            "temperature": {
+              "type": "number",
+              "label": "采样温度",
+              "default": 0.9,
+              "minimum": 0,
+              "maximum": 2,
+              "presets": [
+                0,
+                0.5,
+                0.9,
+                1
+              ],
+              "limitSource": "application_guard"
+            },
+            "topP": {
+              "type": "number",
+              "label": "Top P",
+              "default": 1,
+              "minimum": 0.01,
+              "maximum": 1,
+              "presets": [
+                0.8,
+                0.9,
+                1
+              ],
+              "limitSource": "application_guard"
+            },
+            "topK": {
+              "type": "integer",
+              "label": "Top K",
+              "default": 50,
+              "minimum": 1,
+              "maximum": 1024,
+              "presets": [
+                20,
+                50,
+                100
+              ],
+              "limitSource": "application_guard"
+            },
+            "repetitionPenalty": {
+              "type": "number",
+              "label": "重复惩罚",
+              "default": 1.05,
+              "minimum": 1,
+              "maximum": 2,
+              "presets": [
+                1,
+                1.05,
+                1.1
+              ],
+              "limitSource": "application_guard"
+            },
+            "seed": {
+              "type": "integer",
+              "label": "随机种子（-1 自动）",
+              "default": -1,
+              "minimum": -1,
+              "maximum": 2147483647,
+              "presets": [
+                -1,
+                42,
+                1234
+              ],
+              "limitSource": "application_guard"
+            },
+            "language": {
+              "type": "enum",
+              "label": "语言",
+              "default": "auto",
+              "values": [
+                "auto",
+                "en",
+                "zh",
+                "ja",
+                "ko",
+                "de",
+                "fr",
+                "ru",
+                "pt",
+                "es",
+                "it"
+              ]
+            }
+          }
+        }
+      },
+      "requirements": [
+        {
+          "role": "talker",
+          "label": "0.6B Base Talker（含分词 / Code Predictor / speaker encoder）",
+          "formats": [
+            "gguf"
+          ],
+          "required": true,
+          "provides": [
+            "text_tokenizer",
+            "code_predictor",
+            "speaker_assets"
+          ]
+        },
+        {
+          "role": "audio_codec",
+          "label": "配套 Qwen3 12Hz 音频 codec",
+          "formats": [
+            "gguf"
+          ],
+          "required": true
+        }
+      ],
+      "fixedComponents": [],
+      "help": "仅匹配 Danmoreng/qwen3-tts.cpp 转换布局的 0.6B Base 和 12Hz codec；不能用 CustomVoice、VoiceDesign、1.7B 或通用文本 GGUF 替代。模型、内嵌词表和说话人编码器均由用户选择下载。可选导入 24 kHz 单声道 1–30 秒 WAV，当前提供 speaker-embedding 参考；未提供 ICL 文本、命名音色或指令音色设计。CPU 编译不代表手机输出、质量或实时性已验证。"
     }
   ]
 }

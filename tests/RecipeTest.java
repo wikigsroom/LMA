@@ -71,11 +71,17 @@ public final class RecipeTest {
         String secondToken = recovered.request(shared.id); recovered.install(shared.id, secondToken); recovered.remove(bundle.id, true);
         check(recovered.plan(shared.id).getBoolean("installed"), "Removing one model preserves shared assets");
         RecipeCatalogue catalogue = new RecipeCatalogue(new JSONObject(new String(Files.readAllBytes(templates.toPath()), StandardCharsets.UTF_8)));
-        check(catalogue.list().length() == 21, "Twenty-one signed data-only templates are offered");
+        check(catalogue.list().length() == 22, "Twenty-two signed data-only templates are offered");
         for (int i = 0; i < catalogue.list().length(); i++) {
             JSONObject template = catalogue.list().getJSONObject(i), bindings = new JSONObject(); JSONArray requirements = template.getJSONArray("requirements"); String id = template.getString("id");
             for (int n = 0; n < requirements.length(); n++) { JSONObject r = requirements.getJSONObject(n); bindings.put(r.getString("role"), asset(r.getJSONArray("formats").getString(0), data)); }
             ModelBundle selected = catalogue.compose(id, bindings);
+            if (id.equals("qwen3_tts_06b_base_cpu_v1")) {
+                check(selected.component("talker").provides.contains("text_tokenizer") && selected.component("talker").provides.contains("code_predictor") && selected.component("talker").provides.contains("speaker_assets"), "Physical Talker explicitly provides three embedded dependencies");
+                check(selected.tags().getJSONArray("dependency").toString().contains("dependency:audio_codec") && selected.tags().getJSONArray("dependency").toString().contains("dependency:text_tokenizer"), "Embedded and separate dependencies share independent tags");
+                JSONObject invalidEmbedded = selected.json(); invalidEmbedded.getJSONArray("components").getJSONObject(0).put("provides", new JSONArray().put("../outside"));
+                rejects(() -> new ModelBundle(invalidEmbedded), "Embedded roles use bounded identifiers, never paths");
+            }
             check(selected.components.size() == requirements.length() + template.getJSONArray("fixedComponents").length(), "Every selected and fixed dependency is present");
             check(catalogue.compose(id, bindings).id.equals(selected.id), "The same explicit file selection has stable identity");
             check(selected.json().getJSONObject("evidence").getInt("physicalDeviceTests") == 0 && !selected.json().getJSONObject("uncensored").getBoolean("declared"), "File selection cannot create device or publisher verification");

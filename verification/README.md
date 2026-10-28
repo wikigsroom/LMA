@@ -38,3 +38,5 @@ See [validation / 验证](../docs/VALIDATION.en.md), [Chinese audit / 完成条�
 dev.13：[高级扩散 / 视频接入](../docs/ADVANCED_DIFFUSION.md)，174 diffusion（117 Java + 57 C++）、425 foundation（233 recipe/integrity）及 203 UI checks；35 screenshot fixtures。证据仍为主机 / 协议 / 原生编译与 APK 检查，不是 Android 模型输出；完整 v0.3.0 未发布。
 
 dev.14：[Sana MNN](../docs/MNN_SANA_ENGINE.md) / [English](../docs/MNN_SANA_ENGINE.en.md)；新增 [mnn.json](development/mnn.json) 的 74 项生产绑定 / 真实主机进程 / C++ 策略检查；445 foundation（253 recipe/integrity）、208 UI，37 张截图与录屏 / GIF。20 个原生文件仅为编译 / APK 证据，无模型 / Android 输出，完整 v0.3.0 未发布。
+
+dev.15：[Qwen3-TTS 0.6B Base](../docs/QWEN_TTS_ENGINE.md) / [English](../docs/QWEN_TTS_ENGINE.en.md)；[qwen-tts.json](development/qwen-tts.json) 的 81 项主机检查使用明确的静态结构 WAV，不生成语音；[qwen-headers.json](development/qwen-headers.json) 只核对两个固定 GGUF 的文件头，不读取张量。457 foundation、216 UI、39 张截图 / 录屏 / GIF、21 个原生文件及 APK / Lint 均为限定范围开发证据。No model/Android inference, quality, RTF or endurance is proven; every full v0.3.0 gate remains open where evidence is missing.

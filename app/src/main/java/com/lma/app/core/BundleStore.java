@@ -62,7 +62,7 @@ public final class BundleStore {
         for (ModelBundle.Component c : b.components) {
             boolean present = hasObject(c);
             if (seen.add(c.objectId)) { total = Math.addExact(total, c.bytes); if (present) reusable += c.bytes; else remaining += Math.max(0, c.bytes - Math.min(c.bytes, partial(c.objectId).length())); }
-            files.put(new JSONObject().put("role", c.role).put("path", c.path).put("importPath", c.importPath).put("bytes", c.bytes).put("objectId", c.objectId).put("sha256", c.sha256).put("gitBlobSha1", c.gitBlobSha1).put("integrityAlgorithm", c.integrityAlgorithm).put("verifiedSha256", present ? verifiedSha256(c, state) : "").put("reusable", present).put("downloadable", !c.url.isEmpty()));
+            files.put(new JSONObject().put("role", c.role).put("provides", new JSONArray(c.provides)).put("path", c.path).put("importPath", c.importPath).put("bytes", c.bytes).put("objectId", c.objectId).put("sha256", c.sha256).put("gitBlobSha1", c.gitBlobSha1).put("integrityAlgorithm", c.integrityAlgorithm).put("verifiedSha256", present ? verifiedSha256(c, state) : "").put("reusable", present).put("downloadable", !c.url.isEmpty()));
         }
         return new JSONObject().put("bundleId", id).put("components", files).put("totalBytes", total).put("reusableBytes", reusable).put("remainingBytes", remaining)
                 .put("availableBytes", root.getUsableSpace()).put("installed", entry(id).optBoolean("installed") && complete(b, state));

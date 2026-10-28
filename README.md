@@ -39,7 +39,7 @@ Android 版的本地模型管理、下载、对话和 API 服务应用。当前�
 
 ## 多模态扩展研究
 
-下一版本 **v0.3.0** 一次性交付**完整本地多模态基座及 01–14 / 16 / 17 的运行支持与适配配方**：共用模型包 / 组件 / 配方、内部引擎模块、独立参数、任务 / 产物和 API。所有模型平级，按生文 / 生图 / 生视频 / 生音频及基座依赖标签筛选，保留既有推荐；交互为模型选择 → 任务表单 → 本机队列 → 结果。完整范围、工作包、风险及同一发布门槛见[版本更新需求](docs/MULTIMODAL_RELEASE_PLAN.md)和[交付摘要](docs/releases/v0.3.0-plan.md)。不拆分版本，不将必需模型默认顺延，不建设 ComfyUI 画布 / 用户节点 / 插件生态 / 图导入。v0.3.0 尚未发布。开发代码、425 项基座检查、174 项扩散检查、64 项素材检查、203 项界面检查及完整剩余项见[开发实施记录](docs/DEVELOPMENT.md)；这不替代完整交付。
+下一版本 **v0.3.0** 一次性交付**完整本地多模态基座及 01–14 / 16 / 17 的运行支持与适配配方**：共用模型包 / 组件 / 配方、内部引擎模块、独立参数、任务 / 产物和 API。所有模型平级，按生文 / 生图 / 生视频 / 生音频及基座依赖标签筛选，保留既有推荐；交互为模型选择 → 任务表单 → 本机队列 → 结果。完整范围、工作包、风险及同一发布门槛见[版本更新需求](docs/MULTIMODAL_RELEASE_PLAN.md)和[交付摘要](docs/releases/v0.3.0-plan.md)。不拆分版本，不将必需模型默认顺延，不建设 ComfyUI 画布 / 用户节点 / 插件生态 / 图导入。v0.3.0 尚未发布。开发代码、457 项基座检查、174 项扩散检查、64 项素材检查、216 项界面检查及完整剩余项见[开发实施记录](docs/DEVELOPMENT.md)；这不替代完整交付。
 
 全部分词、编码器、采样、codec 与导出在同一 Android 手机执行，无需 ROOT，无外部推理 / 回退。HF 用于搜索和显式资产下载。同架构变体可复用已有配方，新架构需要原生引擎 / APK 更新；Z20 与较新设备分别验收。源码 / 许可见[研究](docs/MULTIMODAL.md)，迁移见[基座评估](docs/FOUNDATION.md)，后台与恢复见[任务方案](docs/WORKFLOWS.md)。完整 MOSS / SoulX 仍有研究关卡，登记 / 下载不计可运行。**当前公开版本仍为 v0.2.0。0.3.0-dev 已加入部分基座代码和编译的扩散 worker，完整模型适配、统一 API 与真机验收尚未完成。**
 
@@ -270,6 +270,8 @@ LMA 自有代码使用 MIT 许可。llama.cpp 及其依赖保留各自许可；�
 此前内部检查点（**0.3.0-dev.12 / code 16**，未发布）接入[扩散采样与组件管线](docs/DIFFUSION_ENGINE.md)：SD1.5 / SDXL 分离组件、SD-Turbo、两种架构的 LCM checkpoint / LCM-LoRA，LCM 配对后固定本次采样、CFG 与步数上限，保留模型独立设置。Java 与原生 C++ 核对策略，实际加载后核对张量架构。83 项新增扩散主机检查、381 项基座、194 项 UI 和签名 APK 检查通过；32 张带 UI FIXTURE 标识的截图及录屏 / GIF 同步。App 只更新基座，十六种数据模板不会安装或下载模型。全部所选目标与物理 Android 离线输出、质量、后台及升级验收仍属同一完整 v0.3.0，无新 Release。见[更新说明](docs/releases/v0.3.0-dev.12.md)。
 
 
-当前内部检查点（**0.3.0-dev.14 / code 18**，未发布）。dev.14 接入 [Sana 移动管线 / MNN](docs/MNN_SANA_ENGINE.md)：真实 ARM64 CPU worker、13 个用户自选组件、Qwen3 metadata 白名单、分阶段释放编码器、独立 CFG / token / 线程参数与不可变任务快照。74 项主机 / C++ 检查不包含模型推理；全部 21 个模板仍只登记元数据、由用户确认下载。445 项基座与 208 项界面检查通过；37 张截图及录屏 / GIF 均标识 UI FIXTURE。没有 Android 生图 / 耐久证据，完整 v0.3.0 的冻结目标和发布门槛保持不变，未创建新 Release。 见[双语更新说明](docs/releases/v0.3.0-dev.14.md)。
+早前内部检查点（**0.3.0-dev.14 / code 18**，未发布）。dev.14 接入 [Sana 移动管线 / MNN](docs/MNN_SANA_ENGINE.md)：真实 ARM64 CPU worker、13 个用户自选组件、Qwen3 metadata 白名单、分阶段释放编码器、独立 CFG / token / 线程参数与不可变任务快照。74 项主机 / C++ 检查不包含模型推理；全部 21 个模板仍只登记元数据、由用户确认下载。445 项基座与 208 项界面检查通过；37 张截图及录屏 / GIF 均标识 UI FIXTURE。没有 Android 生图 / 耐久证据，完整 v0.3.0 的冻结目标和发布门槛保持不变，未创建新 Release。 见[双语更新说明](docs/releases/v0.3.0-dev.14.md)。
 
 <img src="docs/media/development/33-zimage-sampling-policy.png" width="260" alt="Z-Image sampling, UI FIXTURE, no model output" /> <img src="docs/media/development/35-wan-video-parameters.png" width="260" alt="Wan video parameters, UI FIXTURE, no Android generation" />
+
+当前内部检查点（**0.3.0-dev.15 / code 19**，未发布）：[Qwen3-TTS 0.6B Base](docs/QWEN_TTS_ENGINE.md) 新增真实 ARM64 CPU worker、两个用户自选 GGUF 的完整本机语音管线、可选参考 WAV、独立采样参数及真实耗时 / RTF 记录。共享 `provides` 描述文件内含依赖，详情无需重复下载词表 / 预测器 / speaker encoder。81 项主机 Java / C++ 检查仅验证协议与结构 WAV；固定版本可选包只核对文件头，未运行模型。现有 22 个模板仍为元数据，不隐式下载。截图 38–39 与开发录屏 / GIF 保留 UI FIXTURE。App 仅交付基座，完整 v0.3.0 的全部目标、真实输出 / 质量 / 后台门槛继续保留；未创建新 Release。见[双语更新说明](docs/releases/v0.3.0-dev.15.md)。

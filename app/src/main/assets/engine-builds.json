@@ -218,6 +218,37 @@
         "sd-nlohmann-json-LICENSE.txt",
         "sd-NDK-LLVM-NOTICE.txt"
       ]
+    },
+    {
+      "schema": "lma.native-build/1",
+      "engine": "qwen_tts_native",
+      "file": "liblma-qwen-tts.so",
+      "source_revision": "16bb5afcd06311031c72a8488f8d59660dc2fb46",
+      "ggml_revision": "af97976c7810cdabb1863172f31c432dab767de7",
+      "abi": "arm64-v8a",
+      "backend": "cpu",
+      "ndk": "30.0.16248370",
+      "min_sdk": 28,
+      "bytes": 1963904,
+      "sha256": "2c95ded919e557d575dece85c5a7efa3a8369aa13b75a13eddb7092a23d4fa95",
+      "elf_load_alignment": [
+        16384
+      ],
+      "android_api_notes": [
+        28
+      ],
+      "vocabularies": "external_user_selected_components",
+      "model_inference_tested": false,
+      "physical_device_tests": 0,
+      "virtualization_used": false,
+      "deviceValidated": false,
+      "status": "compiled_not_device_tested",
+      "notices": [
+        "qwen-tts-LICENSE.txt",
+        "qwen-ggml-LICENSE.txt",
+        "sd-nlohmann-json-LICENSE.txt",
+        "sd-NDK-LLVM-NOTICE.txt"
+      ]
     }
   ],
   "textRuntime": {

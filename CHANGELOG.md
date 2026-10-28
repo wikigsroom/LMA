@@ -1,5 +1,14 @@
 # Changelog / 更新记录
 
+## 0.3.0-dev.15 — 2026-10-28 (internal / unpublished)
+
+- 新增 Qwen3-TTS 12Hz 0.6B Base 的签名 ARM64 CPU worker、生产 Java 适配器、可选本地参考 WAV、独立采样参数、严格 GGUF / 音频检查与实际耗时 / RTF 记录。Added a real same-phone Qwen speech route; model/device output remains untested.
+- 两个固定 GGUF 的可选包、22 个 HF 模板和通用内含依赖 `provides`；用户选择下载，App 更新不带权重或默认音色。Pinned optional assets and embedded-role disclosure reuse shared downloads/settings/jobs; no implicit downloads.
+- 81 项主机 / 原生检查、固定文件头核对、双语指南及截图 38–39 / 录屏 / GIF；结构 WAV / 界面夹具不代表模型推理。Every frozen target and gate remains part of one complete v0.3.0, without a new Release.
+- 同步中英文首页与资产需求核对的当前统计；App 基座更新、用户自主选择模型及独立功能标签的约束一致。Synchronized current documentation counts and the foundation/model ownership assessment.
+- [双语说明 / Notes](docs/releases/v0.3.0-dev.15.md) · [中文指南](docs/QWEN_TTS_ENGINE.md) · [English guide](docs/QWEN_TTS_ENGINE.en.md)
+
+
 ## 0.3.0-dev.14 · 2026-10-28 · 内部检查点 / Internal checkpoint
 
 - 实际 MNN Sana 移动端 CPU worker、Qwen3 特征编码与分阶段释放；新增 13 组件配方和 `.mnn` / `.mnn.weight` 用户选择。No bundled model assets, auto-downloads or remote execution.

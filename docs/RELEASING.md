@@ -24,6 +24,7 @@ App 发行不含模型权重或模型专用数据；模型是用户单独选择�
 python tools/build.py
 # 运行适用于当前改动的检查 / Run checks relevant to the actual changes
 python tools/test_protocol.py
+python tools/test_qwen_tts.py
 python tools/test_text.py
 python tools/test_migration.py
 python tools/test_scheduler.py
@@ -41,6 +42,8 @@ python tools/check_repository.py
 ```
 
 工具链和环境变量见 [BUILD.md](BUILD.md) / [BUILD.en.md](BUILD.en.md)。未改 APK 时保留既有 APK 字节及版本，不为文档改动重复构建。If APK inputs are unchanged, reuse matching evidence and APK bytes instead of unnecessary rebuilds.
+
+Qwen 原生语音的源码 / 构建 / 许可步骤及固定 GGUF 文件头复查见 [中文](QWEN_TTS_ENGINE.md) / [English](QWEN_TTS_ENGINE.en.md)。新增 `qwen-tts.json` / `qwen-headers.json` 开发回执不能代替物理 Android 的实际模型输出或释放 / 后台验收。Header review is explicitly developer-invoked and never becomes an App/model download trigger.
 
 `package_delivery.py` 输出公开 `verification/` 与专用源码 ZIP；`prepare_release.py` 将白名单附件放到被忽略的 `dist/releases/vVERSION/`，生成 SHA256SUMS / manifest。原生库不提交 Git，但包含在专用源码 ZIP。私钥、口令、真实 API 密钥、权重、缓存和 profile 都不得发布。
 

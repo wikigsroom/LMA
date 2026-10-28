@@ -210,3 +210,5 @@ Current dev.11 adds [local media/import/upload references](LOCAL_INPUTS.en.md), 
 
 
 dev.13 [Z-Image/FLUX/Qwen/Wan bindings](ADVANCED_DIFFUSION.en.md) add four user-selected component recipes, strict roles, actual sampler/scheduler/flowShift bindings and Qwen/Wan geometry constraints. Diffusion 174 (Java 117/C++ 57), foundation 425 (recipe/integrity 233) and UI 203 assertions pass; 35 screenshots plus recording/GIF are explicit UI FIXTUREs. Family checks do not prove scale or distillation; no model/Android outputs exist. The App updates only the foundation; twenty templates never download implicitly. Every target/device gate remains in the same complete v0.3.0, without a new Release.
+
+dev.15：[Qwen3-TTS 0.6B Base / Local speech](QWEN_TTS_ENGINE.md) / [English](QWEN_TTS_ENGINE.en.md) 接入原生 CPU、两个自选 GGUF 与内含依赖、可选参考 WAV、独立参数和真实 RTF 记录。81 host checks / pinned-header review are not model inference or Android acceptance. App 仅更新基座，用户独立控制全部模型资产。编号 11 和全部其他冻结目标继续在同一完整 v0.3.0 满足真实输出、质量与生命周期门槛；无新 Release。

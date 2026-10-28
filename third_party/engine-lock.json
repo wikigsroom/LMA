@@ -144,6 +144,26 @@
         "sd-nlohmann-json-LICENSE.txt": "0e592e358cf7722906f417be85bc514f15bf6efd28cea98cb84e56ef7fddfc3e",
         "sd-NDK-LLVM-NOTICE.txt": "f96f763beb66a7ba7a667647fc64c0226ace875e590c831fdd9579ec1c1d91e1"
       }
+    },
+    {
+      "engine": "qwen_tts_native",
+      "file": "liblma-qwen-tts.so",
+      "source_revision": "16bb5afcd06311031c72a8488f8d59660dc2fb46",
+      "ggml_revision": "af97976c7810cdabb1863172f31c432dab767de7",
+      "abi": "arm64-v8a",
+      "backend": "cpu",
+      "ndk": "30.0.16248370",
+      "sha256": "2c95ded919e557d575dece85c5a7efa3a8369aa13b75a13eddb7092a23d4fa95",
+      "bytes": 1963904,
+      "android_api_notes": [
+        28
+      ],
+      "notices": {
+        "qwen-tts-LICENSE.txt": "ea567a2154304fdcc6250d03460a24eebbe120e02032f47aeee3c9e722455512",
+        "qwen-ggml-LICENSE.txt": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
+        "sd-nlohmann-json-LICENSE.txt": "0e592e358cf7722906f417be85bc514f15bf6efd28cea98cb84e56ef7fddfc3e",
+        "sd-NDK-LLVM-NOTICE.txt": "f96f763beb66a7ba7a667647fc64c0226ace875e590c831fdd9579ec1c1d91e1"
+      }
     }
   ]
 }

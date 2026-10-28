@@ -143,6 +143,22 @@ def build():
         definition=dict(engine="llama_text", backend="cpu", architecture="gguf", pipeline="text_gguf", tasks=["text"], capabilities=["text_generation"], parameters=dict(version=1, fields=text_fields)),
         requirements=[dict(role="text_gguf", label="完整文本 GGUF（含 tokenizer）", formats=["gguf"], required=True)], fixedComponents=[],
         help="仅适用于现有 llama.cpp 引擎支持的完整文本 GGUF，不接受拆分权重、视觉 / 音频组件或自定义代码。下载后读取实际上下文上限，未知时采用应用保护值；CPU 内存和真实手机输出仍需验证。登记不下载，原有精选与已下载文本模型保留。"))
+    qwen_fields = {}
+    for key, label, default, low, high, presets, kind in (
+        ("threads", "CPU 线程", 4, 1, 32, [2, 4, 8], "integer"),
+        ("maxInputTokens", "输入 token 预算（含格式）", 512, 1, 2048, [256, 512, 1024, 2048], "integer"),
+        ("maxAudioTokens", "音频帧上限（约 12.5 帧 / 秒）", 375, 1, 1500, [125, 375, 750, 1500], "integer"),
+        ("temperature", "采样温度", .9, 0, 2, [0, .5, .9, 1], "number"),
+        ("topP", "Top P", 1, .01, 1, [.8, .9, 1], "number"),
+        ("topK", "Top K", 50, 1, 1024, [20, 50, 100], "integer"),
+        ("repetitionPenalty", "重复惩罚", 1.05, 1, 2, [1, 1.05, 1.1], "number"),
+        ("seed", "随机种子（-1 自动）", -1, -1, 2147483647, [-1, 42, 1234], "integer")):
+        qwen_fields[key] = dict(type=kind, label=label, default=default, minimum=low, maximum=high, presets=presets, limitSource="application_guard")
+    qwen_fields["language"] = dict(type="enum", label="语言", default="auto", values=["auto", "en", "zh", "ja", "ko", "de", "fr", "ru", "pt", "es", "it"])
+    templates.append(dict(id="qwen3_tts_06b_base_cpu_v1", name="Qwen3-TTS · 12Hz 0.6B Base", primaryRole="talker",
+        definition=dict(engine="qwen_tts_native", backend="cpu", architecture="qwen3_tts_06b", pipeline="qwen3_tts_06b_base", tasks=["audio"], capabilities=["text_to_speech"], parameters=dict(version=1, fields=qwen_fields)),
+        requirements=[dict(role="talker", label="0.6B Base Talker（含分词 / Code Predictor / speaker encoder）", formats=["gguf"], required=True, provides=["text_tokenizer", "code_predictor", "speaker_assets"]), dict(role="audio_codec", label="配套 Qwen3 12Hz 音频 codec", formats=["gguf"], required=True)], fixedComponents=[],
+        help="仅匹配 Danmoreng/qwen3-tts.cpp 转换布局的 0.6B Base 和 12Hz codec；不能用 CustomVoice、VoiceDesign、1.7B 或通用文本 GGUF 替代。模型、内嵌词表和说话人编码器均由用户选择下载。可选导入 24 kHz 单声道 1–30 秒 WAV，当前提供 speaker-embedding 参考；未提供 ICL 文本、命名音色或指令音色设计。CPU 编译不代表手机输出、质量或实时性已验证。"))
     return {"schema": "lma.recipe-catalogue/1", "templates": templates}
 
 
