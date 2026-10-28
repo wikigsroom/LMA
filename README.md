@@ -306,4 +306,10 @@ LMA 自有代码使用 MIT 许可。llama.cpp 及其依赖保留各自许可；�
 
 ## dev.21 源码后续：旧版 LTX DiT（未发布）
 
-冻结目标17的 [LTX-Video 2B 0.9.8 原生DiT](docs/LTX098_DIT.md)已实现独立C++ / GGML CPU与Vulkan前向。675项检查、80次原生子进程、48次官方PyTorch数值对照通过，覆盖2 / 3 / 28层未训练小宽度网络和F32 / F16密集权重；完整715张量 / 1,923,385,472参数布局与固定检查点头一致。Android ARM64 / API28 / 16KiB仅编译，尚未执行；研究组件不进入APK。训练权重、T5 / tokenizer、采样、VAE / MP4、App接入、手机和完整视频均待验收。APK与UI媒体仍dev.21，公开Release仍v0.2.0。见[本轮编号实现与完整待办](docs/releases/v0.3.0-dev.21-ltx-dit.md)。
+冻结目标17的 [LTX-Video 2B 0.9.8 原生DiT](docs/LTX098_DIT.md)已实现独立C++ / GGML CPU与Vulkan前向。675项检查、80次原生子进程、48次官方PyTorch数值对照通过，覆盖2 / 3 / 28层未训练小宽度网络和F32 / F16密集权重；完整715张量 / 1,923,385,472参数布局与固定检查点头一致。Android ARM64 / API28 / 16KiB仅编译，尚未执行；研究组件不进入APK。该首次DiT检查点未验证训练权重与采样；新增进展见下节，T5 / VAE / 完整视频 / App / 手机仍待验收。APK与UI媒体仍dev.21，公开Release仍v0.2.0。见[本轮编号实现与完整待办](docs/releases/v0.3.0-dev.21-ltx-dit.md)。
+
+## dev.21 源码后续：旧 LTX 训练 DiT 与采样（未发布）
+
+新增[显式检查点获取、本地流式转换与原生八步采样](docs/LTX098_SAMPLING.md)：715张量 /1,923,385,472参数的完整旧版训练DiT，独立F16 /F32 GGUF，官方PyTorch与RTX3060 Vulkan前向 /8步latent对照。**692项检查 /58个真实原生子进程 /111个误差记录通过**；训练velocity最大误差6.91414e-6，最终latent最大3.57628e-6。22数学案例完全一致，未训练CPU /Vulkan轨迹、取消 /错误资产 /既有文件保护分别验证；probe与sampler均通过ARM64 /API28 /16KiB编译。
+
+输入是12个latent token与5个人工caption embedding token，**没有T5 /tokenizer、VAE、视频输出、App接入或Android执行**；主机资源与时间不代表手机性能。外部检查点 /GGUF不进入APK，默认不下载；模型仍由用户自主选择和管理。本轮未改App /UI媒体 /APK版本；F-01–F-12、01–14 /16 /17及全部冻结子目标 /真机 /后台 /质量仍属同一完整v0.3.0，尚未发布。见[本轮编号交付与完整待办](docs/releases/v0.3.0-dev.21-ltx-sampling.md)。

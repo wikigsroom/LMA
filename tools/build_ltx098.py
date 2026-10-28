@@ -69,7 +69,7 @@ def main():
             commands=[[cmake,'-S',source,'-B',header_build,'-G','Ninja','-DCMAKE_MAKE_PROGRAM='+tc+'cmake-3.31.6/bin/ninja.exe','-DSPIRV_HEADERS_ENABLE_TESTS=OFF','-DCMAKE_INSTALL_PREFIX='+prefix],
                       [cmake,'--install',header_build]]
             command+=['-DSPIRV-Headers_DIR='+prefix+'/share/cmake/SPIRV-Headers']
-        commands += [command,[cmake,'--build',build,'--target','lma_ltx098_probe','-j','4']]
+        commands += [command,[cmake,'--build',build,'--target','lma_ltx098_probe','lma_ltx098_sample','-j','4']]
         setup=Path(os.environ.get('LMA_VCVARS',r'C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Auxiliary\Build\vcvars64.bat'))
         for i,cmd in enumerate(commands):
             # Android's Vulkan build also creates a native Windows shader generator.
@@ -79,6 +79,7 @@ def main():
             (output/('build-'+str(i)+'.log')).write_bytes(result.stdout+result.stderr)
             if result.returncode:raise RuntimeError('Inspect build/'+name+'/build-'+str(i)+'.log')
         binary=output/('lma_ltx098_probe' if args.android else 'lma_ltx098_probe.exe')
+        sampler=output/('lma_ltx098_sample' if args.android else 'lma_ltx098_sample.exe')
         if args.android:
             llvm=ndk+'/toolchains/llvm/prebuilt/windows-x86_64/bin/'
             subprocess.run([llvm+'llvm-strip.exe','--strip-unneeded',build+'/lma_ltx098_probe'],check=True,capture_output=True)
@@ -87,6 +88,9 @@ def main():
             assert elf['interpreter']=='/system/bin/linker64'
             assert set(elf['needed']) <= {'libc.so','libm.so','libdl.so','libvulkan.so'}
             assert ('libvulkan.so' in elf['needed']) == args.vulkan
+            subprocess.run([llvm+'llvm-strip.exe','--strip-unneeded',build+'/lma_ltx098_sample'],check=True,capture_output=True)
+            sampler_elf=elf_info(sampler.read_bytes());assert sampler_elf['machine']=='aarch64' and sampler_elf['16k_elf_aligned'] and sampler_elf['android_api_notes']==[28]
+            assert sampler_elf['needed']==elf['needed'] and sampler_elf['interpreter']==elf['interpreter']
             (output/'elf.json').write_text(json.dumps(elf,indent=2)+'\n',encoding='utf-8')
     finally:subprocess.run(['subst',drive,'/D'],check=True,capture_output=True)
     current(inputs)
@@ -95,6 +99,7 @@ def main():
         binary_bytes=binary.stat().st_size,binary_sha256=hashlib.sha256(binary.read_bytes()).hexdigest(),
         shaderc=lock['shaderc_windows'] if args.vulkan else None,
         elf=elf if args.android else None,
+        sampler_binary_bytes=sampler.stat().st_size,sampler_binary_sha256=hashlib.sha256(sampler.read_bytes()).hexdigest(),sampler_elf=sampler_elf if args.android else None,
         packaged_in_apk=False,engine_registered=False,model_inference=False,physical_android=False,complete_video_pipeline=False,input_fingerprint=inputs)
     (output/'receipt.json').write_text(json.dumps(record,indent=2)+'\n',encoding='utf-8')
     print(json.dumps({k:v for k,v in record.items() if k!='input_fingerprint'}))

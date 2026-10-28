@@ -119,3 +119,7 @@ Stable Audio native build: `fetch_stable_audio.py` → `build_stable_audio.py` �
 
 
 SoulX production worker: `build_soulx.py` (host) → `build_soulx.py --android` → `collect_soulx_notices.py` → `test_soulx.py` / explicitly prepared trained assets with `test_soulx_worker_trained.py` → shared APK build. Pinned llama/ggml/ORT runtimes are reused. Native Windows/NDK tools and build-local caches only; no model assets enter the App. See the [complete build/license guide](SOULX_ENGINE.en.md).
+
+Old LTX0.9.8 research uses `tools/fetch_native.py`, `tools/fetch_ltx098.py --python-dependencies`, `tools/test_ltx098.py`, then `tools/build_ltx098.py --android --vulkan`. Native MSVC/NDK, pinned project-local shaderc/Vulkan/SPIRV headers; sequential builds release their temporary SUBST in finally. Source/tool preparation downloads no weights. See [DiT build details](LTX098_DIT.en.md).
+
+The [trained sampling reproduction](LTX098_SAMPLING.en.md) separately requires explicit `tools/fetch_ltx098_trained.py --download`, local `tools/export_ltx098.py`, untrained/trained `tools/ltx098_sampling_oracle.py`, and `tools/test_ltx098_sampling.py --trained --skip-build`. Missing assets never trigger downloads. External checkpoints/GGUF stay outside APK; probe and sampler ARM64 ELF checks remain separate from phone acceptance and complete public asset candidates.

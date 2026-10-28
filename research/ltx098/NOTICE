@@ -26,6 +26,12 @@ have independent LTXV Open Weights License 0.X terms and are not distributed.
 No code from timmyy123/LLM-Hub is incorporated. No weights, learned parameters,
 tokenizer, prompts, QNN runtime or QNN context binaries are embedded here.
 
+The geometry, unpatchify and deterministic eight-step LinearQuadratic Euler
+sampler independently port the pinned publisher's symmetric_patchifier.py,
+vae_encode.py and schedulers/rf.py equations. The old distilled checkpoint's
+unrounded inference times are preserved; no alternative scheduler is implied.
+
 This is a research component outside the App and engine registry. It does not
-provide T5/tokenization, latent sampling, VAE decoding or MP4 composition.
-Synthetic neural graphs are not trained model or Android execution evidence.
+provide T5/tokenization, VAE decoding or MP4 composition. Tests distinguish
+untrained fixture graphs from trained DiT latent sampling; neither proves a
+complete video pipeline, text conditioning, video quality or Android execution.

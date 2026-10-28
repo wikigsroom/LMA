@@ -87,6 +87,39 @@ def main():
         assert not ltx["trained_weights_loaded"] and not ltx["video_outputs"]
         assert status["ltx098_native_dit_host_parity_tested"] and status["ltx098_android_vulkan_compiled"]
         assert not status["ltx098_trained_video_tested"] and not status["ltx098_app_engine_registered"]
+        sampling = records["ltx098-sampling.json"]
+        assert sampling["passed"] >= 692 and sampling["guard_assertions"] >= 33 and sampling["actual_host_children"] >= 58
+        assert sampling["actual_publisher_forward"] and sampling["math_cases"] == 22 and sampling["neural_trajectories"] == 10 and sampling["neural_steps"] == 80
+        assert sampling["trained_weights_loaded"] and len(sampling["precision_metrics"]) == 111 and sampling["vulkan_device_identity"]
+        assert all("fp16: 0" in item and "matrix cores: none" in item for item in sampling["vulkan_device_identity"])
+        for metric in sampling["precision_metrics"]:
+            name = metric["name"]
+            gates = (2e-3, 5e-4) if name == "trained-forward" else (1e-2, 2e-3) if name.startswith("trained-step-") else (2e-3, 5e-4) if name.startswith("cpu-") and ("f16" in name or "converted" in name) else (2e-5, 4e-6) if name.startswith(("cpu-", "vulkan-")) else (2e-6, 5e-7)
+            assert (metric["max_gate"], metric["rmse_gate"]) == gates and metric["max_abs"] <= gates[0] and metric["rmse"] <= gates[1]
+        trained_ltx = sampling["trained"]
+        assert trained_ltx["trained_weights_loaded"] and trained_ltx["synthetic_text_embeddings"] and trained_ltx["backend"] == "vulkan"
+        assert trained_ltx["oracle"]["tensors"] == 715 and trained_ltx["oracle"]["parameters"] == 1923385472 and trained_ltx["oracle"]["layers"] == 28
+        assert len(trained_ltx["oracle"]["steps"]) == 8 and trained_ltx["oracle"]["parameter_paging"]["max_scheduled_parameter_bytes"] == 268623872
+        assert trained_ltx["sampling"]["steps"] == 8 and trained_ltx["sampling"]["layers"] == 28 and trained_ltx["sampling"]["parameters"] == 1923385472
+        trained_asset = json.loads((ROOT / "third_party/ltx098-trained-assets.json").read_text(encoding="utf-8"))["models"][0]
+        assert trained_ltx["conversion"]["source_sha256"] == trained_ltx["oracle"]["source_sha256"] == trained_asset["sha256"]
+        assert trained_ltx["conversion"]["source_bytes"] == trained_asset["bytes"] == 6340744492 and not trained_ltx["conversion"]["synthetic_parameters"]
+        current(trained_ltx["conversion"]["input_fingerprint"]); current(trained_ltx["oracle"]["input_fingerprint"])
+        for oracle in [sampling["oracle"], trained_ltx["oracle"]]:
+            current(oracle["input_fingerprint"])
+            assert oracle["artifacts"]
+            for name, artifact in oracle["artifacts"].items():
+                assert Path(name).name == name and artifact["bytes"] > 0 and re.fullmatch(r"[a-f0-9]{64}", artifact["sha256"])
+        for native_run in sampling["native_runs"]:
+            if native_run["name"].startswith("trained-"):
+                memory = native_run["host_process_memory"]
+                assert memory["observed"] and memory["samples"] > 0 and memory["observed_peak_working_set_bytes"] > 0 and not memory["gpu_memory_measured"]
+        for key in ["model_inference", "complete_video_pipeline", "video_outputs", "t5_executed", "vae_executed", "engine_registered", "packaged_in_apk", "physical_android"]: assert not sampling[key]
+        assert ltx_arm["sampler_binary_bytes"] > 0 and len(ltx_arm["sampler_binary_sha256"]) == 64
+        assert ltx_arm["sampler_elf"]["machine"] == "aarch64" and ltx_arm["sampler_elf"]["16k_elf_aligned"] and ltx_arm["sampler_elf"]["android_api_notes"] == [28]
+        assert ltx_arm["sampler_elf"]["needed"] == ltx_arm["elf"]["needed"] and ltx_arm["sampler_elf"]["interpreter"] == "/system/bin/linker64"
+        assert status["ltx098_native_sampling_host_tested"] and status["ltx098_trained_dit_latent_host_tested"]
+        assert not status["ltx098_t5_executed"] and not status["ltx098_vae_executed"]
         soulx = records["soulx-dsp.json"]
         assert soulx["passed"] >= 155 and soulx["actual_host_children"] >= 49 and soulx["guard_assertions"] >= 31
         assert soulx["actual_upstream_function_bodies"] and soulx["native_library_under_test"] and not soulx["apk_runtime_used"]

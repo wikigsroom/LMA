@@ -2,6 +2,8 @@
 
 [中文](LTX098_DIT.md) · [Documentation](README.md) · [Numbered delivery and pending work](releases/v0.3.0-dev.21-ltx-dit.md)
 
+This page preserves the first untrained DiT parity scope. The later [full trained DiT, explicit local conversion and eight-step sampling](LTX098_SAMPLING.en.md) has separate evidence; it does not establish video, App or phone support.
+
 This implements part of frozen target **17: LTX-Video 2B 0.9.8 distilled**. It is an unregistered native DiT research component outside the App. It does not provide complete video generation. The development APK remains **0.3.0-dev.21 / code 25**, and the public Release remains **v0.2.0**. All F-01–F-12, targets 01–14 / 16 / 17 and frozen subtargets remain in one complete v0.3.0.
 
 ## 1. Architecture and provenance
@@ -9,10 +11,10 @@ This implements part of frozen target **17: LTX-Video 2B 0.9.8 distilled**. It i
 | Item | Pinned identity |
 | --- | --- |
 | Publisher code | [Lightricks/LTX-Video](https://github.com/Lightricks/LTX-Video/tree/4b2d053057623ddd4d0a1d3e9cd28890e9ef487f), Apache-2.0 |
-| Checkpoint | [ltxv-2b-0.9.8-distilled.safetensors](https://huggingface.co/Lightricks/LTX-Video/blob/8984fa25007f376c1a299016d0957a37a2f797bb/ltxv-2b-0.9.8-distilled.safetensors); only its pinned header was read, without trained tensor data |
+| Checkpoint | [ltxv-2b-0.9.8-distilled.safetensors](https://huggingface.co/Lightricks/LTX-Video/blob/8984fa25007f376c1a299016d0957a37a2f797bb/ltxv-2b-0.9.8-distilled.safetensors); the first DiT checks read its header only; later trained-tensor execution is linked above |
 | DiT | 28 layers, hidden size 2048, 32 heads of size 64, 128 input/output channels, caption width 4096; 715 tensors / 1,923,385,472 parameters |
 | Native execution | GGML `a5915eb0e47adef21c3f25b889a008925ea838c2`; independent C++ graph; explicit CPU or Vulkan with no automatic CPU fallback |
-| Asset format | Dedicated GGUF architecture `lma-ltx-video-098`; F32 or F16 dense weights with F32 remaining parameters; no production model converter yet |
+| Asset format | Dedicated GGUF architecture `lma-ltx-video-098`; F32 or F16 dense weights with F32 remaining parameters; a separate developer converter was added later; complete public asset candidates remain pending |
 | Build | Native Windows MSVC / NDK r30, project-local CMake / Ninja, Vulkan / SPIRV headers and recent shaderc; no virtualization |
 
 The [source lock](../third_party/ltx098-source-lock.json) records source/dependency hashes, checkpoint header and layout hashes, oracle versions and the Windows compiler origin. Google's published unsigned SLSA statement matches the downloaded ZIP digest and source revision; signature verification is not claimed. Compiler binaries remain in the ignored developer cache.
@@ -21,7 +23,7 @@ No LLM-Hub implementation is incorporated; its license was reviewed separately. 
 
 ## 2. Implemented component
 
-`research/ltx098/` loads local weights, builds the graph and writes raw velocity:
+The `research/ltx098/` probe loads local weights, builds the graph and writes raw velocity; the new sampler has its own guide linked above:
 
 1. Validate architecture, old-version constants, every tensor name/shape/encoding and file byte range. Non-publisher sizes require explicit `--fixture` mode.
 2. Execute input/caption projections, 256-dimensional time embeddings and six-way AdaLN modulation with global or per-token sigma.
@@ -60,6 +62,7 @@ python tools/fetch_native.py
 python tools/fetch_ltx098.py --python-dependencies
 python tools/test_ltx098.py
 python tools/build_ltx098.py --android --vulkan
+# Complete development export also requires the LTX098_SAMPLING.en.md sampling steps.
 python tools/export_development.py
 python tools/check_repository.py --development
 ```
@@ -70,7 +73,7 @@ The test builds/reuses fingerprinted host executables sequentially, then runs ac
 
 The APK updates the foundation. Users choose, download, import, update, roll back and remove model assets in the flat model catalogue. Installation/upgrades/browsing/missing components do not initiate downloads. Settings follow each model and jobs retain immutable snapshots. Recommended m08 → m06 → m01 stays unchanged.
 
-Target17 retains **video** and **ltx_video_098** tags, with independent **ltx_vulkan_port / ltx_qnn_port** routes and format/device/license/evidence/content tags. Neither QNN packages nor host Vulkan evidence automatically enables another route. This research component has not registered App execution support.
+Target17 retains **video** and **ltx_video_098** tags, with independent **ltx_vulkan_port / ltx_qnn_port** routes and format/device/license/evidence/content tags. QNN is an optional alternative, not a second mandatory backend. Each exposed route needs its own compatibility evidence; neither QNN packages nor host Vulkan evidence automatically enables another route. This research component has not registered App execution support.
 
 | ID | Pending work | Acceptance |
 | --- | --- | --- |

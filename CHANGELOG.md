@@ -1,5 +1,11 @@
 # Changelog / 更新记录
 
+## dev.21 source follow-up — old LTX trained DiT sampling / unpublished
+
+固定完整旧0.9.8训练检查点，显式下载 /断点 /完整SHA核对，本地逐张量DiT GGUF转换；新增旧坐标 /unpatchify /精确8步RF与逐步事件 /取消。692检查 /58真实原生子进程 /111误差记录通过，含完整715张量 /28层训练Vulkan前向及8步latent官方对照；原有675项回归通过，ARM64 probe /sampler分别编译核验。训练最终latent最大误差3.57628e-6，人工caption embeddings未运行T5 /VAE，不是视频输出或手机验收。
+
+Pinned external checkpoint, explicit acquisition and streaming local conversion; publisher geometry/RF/layout and native CPU/Vulkan trajectories, full trained DiT Vulkan velocity/eight-step latent parity, separate ARM64 compilation and host process-memory counters. No model data or research executable enters APK. APK/UI media stay dev.21; complete video/App/phone/quality and the full frozen v0.3.0 remain unaccepted. See [中文](docs/LTX098_SAMPLING.md) / [English](docs/LTX098_SAMPLING.en.md) / [numbered implemented/pending handoff](docs/releases/v0.3.0-dev.21-ltx-sampling.md).
+
 
 ## dev.21 source follow-up — old LTX native DiT / unpublished
 

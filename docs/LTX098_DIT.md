@@ -2,6 +2,8 @@
 
 [English](LTX098_DIT.en.md) · [文档导航](README.md) · [编号交付与待办](releases/v0.3.0-dev.21-ltx-dit.md)
 
+本页保留首轮未训练 DiT 数值检查的范围。后续已新增[完整训练 DiT、显式资产转换与八步采样](LTX098_SAMPLING.md)，其独立证据不能改标为完整视频 / App / 手机支持。
+
 本次实现服务于冻结目标 **17：LTX-Video 2B 0.9.8 distilled**。它是尚未接入 App 的原生 DiT 研究组件，不能作为完整生视频支持。开发 APK 仍为 **0.3.0-dev.21 / code 25**，公开 Release 仍为 **v0.2.0**。全部 F-01–F-12、01–14 / 16 / 17 及子目标继续属于同一个完整 v0.3.0。
 
 ## 1. 固定架构与来源
@@ -9,10 +11,10 @@
 | 项目 | 固定内容 |
 | --- | --- |
 | 发布者源码 | [Lightricks/LTX-Video](https://github.com/Lightricks/LTX-Video/tree/4b2d053057623ddd4d0a1d3e9cd28890e9ef487f)，Apache-2.0 |
-| 原始检查点 | [ltxv-2b-0.9.8-distilled.safetensors](https://huggingface.co/Lightricks/LTX-Video/blob/8984fa25007f376c1a299016d0957a37a2f797bb/ltxv-2b-0.9.8-distilled.safetensors)；本轮只读取固定文件头，不读取训练张量 |
+| 原始检查点 | [ltxv-2b-0.9.8-distilled.safetensors](https://huggingface.co/Lightricks/LTX-Video/blob/8984fa25007f376c1a299016d0957a37a2f797bb/ltxv-2b-0.9.8-distilled.safetensors)；首轮 DiT 检查只读文件头，后续训练张量检查见上方链接 |
 | DiT 结构 | 28 层、隐藏宽度 2048、32 个注意力头、头宽 64、输入 / 输出 128、文本宽度 4096；715 张量、1,923,385,472 参数 |
 | 原生计算 | 固定 GGML `a5915eb0e47adef21c3f25b889a008925ea838c2`；独立 C++ 图；显式 CPU 或 Vulkan，无自动 CPU 回退 |
-| 资产格式 | 独立 GGUF 标识 `lma-ltx-video-098`；F32 或仅密集权重 F16，其余参数 F32；尚无生产模型转换器 |
+| 资产格式 | 独立 GGUF 标识 `lma-ltx-video-098`；F32 或仅密集权重 F16，其余参数 F32；后续新增独立开发转换器，完整用户资产候选仍待完成 |
 | 构建 | 原生 Windows MSVC / NDK r30；项目内 CMake、Ninja、Vulkan / SPIRV headers、新版 shaderc；无虚拟化环境 |
 
 [源码锁](../third_party/ltx098-source-lock.json)记录源码 / 依赖文件 SHA256、检查点头与完整布局摘要、Python oracle 版本，以及 Windows shaderc 的来源和散列。Google 发布的未签名 SLSA 声明与下载 ZIP 摘要、源码提交一致；没有声称验证发布者签名。编译器只留在忽略的开发缓存中。
@@ -21,7 +23,7 @@
 
 ## 2. 实际实现
 
-`research/ltx098/` 提供加载、图构建、后端执行和原始 velocity 输出：
+`research/ltx098/` 的 probe 提供加载、图构建、后端执行和原始 velocity 输出；新增 sampler 的独立说明见上方链接：
 
 1. 核对架构标识、旧版常量、全部张量名称 / 形状 / 编码及完整文件字节范围；生产形状固定，小尺寸夹具必须显式 `--fixture`。
 2. 实现输入投影、双层 caption 投影、256 维时间嵌入与 AdaLN 六组调制；支持全局或逐 token sigma。
@@ -60,6 +62,7 @@ python tools/fetch_native.py
 python tools/fetch_ltx098.py --python-dependencies
 python tools/test_ltx098.py
 python tools/build_ltx098.py --android --vulkan
+# 完整开发证据导出还需先完成 LTX098_SAMPLING.md 的新增采样步骤。
 python tools/export_development.py
 python tools/check_repository.py --development
 ```
@@ -70,7 +73,7 @@ python tools/check_repository.py --development
 
 APK 仅更新基座。后续用户仍从平级模型列表按需选取、下载、导入、更新、回滚和删除资产。安装 / 升级 / 浏览 / 缺件不自动下载；参数跟随模型，任务持有不可变快照；推荐 m08 → m06 → m01 保留。
 
-目标 17 的功能标签继续为 **生视频**，基座标签为 **ltx_video_098**，后端路线为 **ltx_vulkan_port / ltx_qnn_port**，另附格式、设备、许可、证据与内容标签。两条路线需要各自的设备 / 包格式兼容性证据，不能因为有 QNN 包或主机 Vulkan 就启用另一条路线；本研究组件尚未注册上述 App 运行支持。
+目标 17 的功能标签继续为 **生视频**，基座标签为 **ltx_video_098**，后端路线为 **ltx_vulkan_port / ltx_qnn_port**，另附格式、设备、许可、证据与内容标签。QNN 是可选替代，不要求同时交付两种后端；启用的路线需要自己的设备 / 包格式兼容证据，不能因为有 QNN 包或主机 Vulkan 就启用另一条路线；本研究组件尚未注册上述 App 运行支持。
 
 | 编号 | 待完成事项 | 完成标准 |
 | --- | --- | --- |

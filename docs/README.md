@@ -86,3 +86,5 @@
 - dev.21 SoulX App基座：[中文](SOULX_ENGINE.md) / [English](SOULX_ENGINE.en.md)；[双语编号交付与完整待办](releases/v0.3.0-dev.21.md)。14份用户资产、配套参考原文、生产worker真实训练主机证据，与公开下载候选 /质量 /Android /Release门槛分别记录。
 
 - 旧LTX 0.9.8原生DiT：[中文](LTX098_DIT.md) / [English](LTX098_DIT.en.md)；[编号实现与完整待办](releases/v0.3.0-dev.21-ltx-dit.md)。675检查 /80主机子进程 /48原始PyTorch比对；CPU /Vulkan、全28层小宽度未训练网络与独立ARM64编译，不是完整训练视频或Android执行。
+
+- 旧LTX用户资产转换与原生采样：[中文](LTX098_SAMPLING.md) / [English](LTX098_SAMPLING.en.md) / [编号交付与完整待办](releases/v0.3.0-dev.21-ltx-sampling.md)。692检查 /58原生子进程 /111误差记录；完整训练28层Vulkan latent对照与ARM64采样编译分别记录，无T5 /VAE /视频 /App /手机结论。

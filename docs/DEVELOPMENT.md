@@ -52,7 +52,7 @@ SD1.5 候选包使用 [Second State 的固定 GGUF 权重](https://huggingface.c
 ## 尚未完成的同版工作
 
 1. 对已接入的[共用调度](SCHEDULING.md)、资产迁移和独立更新完成物理 Android 的跨模态、取消、恢复与升级验收。49 项主机调度检查和 dev.9 本地迁移不代替这些设备门槛。
-2. 全部 01–14 / 16 / 17 的固定资产、完整管线、各子目标和 SD1.5 / SDXL LoRA 配对。原生 MNN、Qwen、九条 MOSS 路由、Stable Audio 与 SoulX worker 已源码接入；所有完整资产候选 / 新输入模型输出 / 质量仍须逐项补齐，旧 LTX 的确切版本已新增未训练 DiT 数值组件，完整管线仍待实现。每条管线均须物理 Android 验收。
+2. 全部 01–14 / 16 / 17 的固定资产、完整管线、各子目标和 SD1.5 / SDXL LoRA 配对。原生 MNN、Qwen、九条 MOSS 路由、Stable Audio 与 SoulX worker 已源码接入；所有完整资产候选 / 新输入模型输出 / 质量仍须逐项补齐，旧LTX已新增完整训练DiT的主机Vulkan latent采样，完整管线仍待实现。每条管线均须物理 Android 验收。
 3. 已实现的异步 / 文本接口继续覆盖其余所有引擎的真实输入管线、各模态兼容表面与设备生命周期验收。旧文本共用执行槽已接入；新增模块必须复用这一调度边界。见 [API](API.md#030-dev2独立接口任务与结果)。
 4. 实测资源档案、温控、本地输入在各配方和设备上的验证、阶段恢复 / checkpoint 能力、跨模态连续加载 / 卸载与升级迁移的完整验证。
 5. 所有冻结子目标的物理 Android 新输入离线输出、质量、取消、清理及 A7 锁屏 15 分钟 / 一小时交替服务等证据；现无可用真机。
@@ -190,4 +190,8 @@ Internal dev.19 / 内部 dev.19：[旧 Local / Realtime 原生 RQ](MOSS_RQ_ENGIN
 
 ## dev.21 源码后续：旧版 LTX DiT
 
-[实现 /复现](LTX098_DIT.md) / [English](LTX098_DIT.en.md) / [本轮编号交付](releases/v0.3.0-dev.21-ltx-dit.md)。精确0.9.8独立GGML图、715张量完整布局、2 /3 /28层未训练小宽度官方前向，675检查 /80原生子进程 /48CPU与Vulkan数值对照通过。Vulkan固定F32计算策略，F16存储另行核对；Android ARM64/API28/16KiB编译与实际手机运行分别记录。目标17完整训练资产、文本编码 /采样 /VAE /MP4 /App仍未完成；APK与UI媒体维持dev.21，所有模型 /子目标 /F基座 /后台 /Release门槛保留。
+[实现 /复现](LTX098_DIT.md) / [English](LTX098_DIT.en.md) / [本轮编号交付](releases/v0.3.0-dev.21-ltx-dit.md)。精确0.9.8独立GGML图、715张量完整布局、2 /3 /28层未训练小宽度官方前向，675检查 /80原生子进程 /48CPU与Vulkan数值对照通过。Vulkan固定F32计算策略，F16存储另行核对；Android ARM64/API28/16KiB编译与实际手机运行分别记录。该首次组件之后新增的训练DiT /采样见下节；目标17完整资产、文本编码 /VAE /MP4 /App仍未完成；APK与UI媒体维持dev.21，所有模型 /子目标 /F基座 /后台 /Release门槛保留。
+
+## dev.21 源码后续：旧 LTX 显式资产与训练采样
+
+[中文方案 /复现](LTX098_SAMPLING.md) / [English](LTX098_SAMPLING.en.md) / [编号交付与全部待办](releases/v0.3.0-dev.21-ltx-sampling.md)。固定完整旧0.9.8检查点 /流式DiT GGUF转换 /旧坐标与布局 /八步RF；692项检查、58个真实原生子进程、111个误差记录通过，含完整训练28层Vulkan velocity与八步latent官方对照，原有675项DiT回归通过。训练结果使用人工caption embeddings，未执行T5 /VAE /视频 /App /真机；主机内存采样不含GPU /系统总占用。ARM64 probe /sampler仅编译；APK /UI媒体仍dev.21。全部冻结模型 /子目标、F-01–F-12、质量 /资源 /后台与完整Release门槛均保留，不拆版。
