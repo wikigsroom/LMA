@@ -1,0 +1,482 @@
+{
+  "passed": 153,
+  "actual_host_children": 49,
+  "metrics": [
+    {
+      "name": "S3 Slaney bank vs publisher npz",
+      "shape": [
+        128,
+        201
+      ],
+      "max_absolute_error": 3.725290298461914e-09,
+      "rmse": 7.106824109157659e-11,
+      "max_allowed": 1e-08,
+      "rmse_allowed": null
+    },
+    {
+      "name": "Flow Slaney bank vs librosa",
+      "shape": [
+        80,
+        961
+      ],
+      "max_absolute_error": 1.862645149230957e-09,
+      "rmse": 2.5432343839387015e-11,
+      "max_allowed": 1e-08,
+      "rmse_allowed": null
+    },
+    {
+      "name": "volume-0",
+      "shape": [
+        1,
+        24000
+      ],
+      "max_absolute_error": 0.0,
+      "rmse": 0.0,
+      "max_allowed": 2e-07,
+      "rmse_allowed": null
+    },
+    {
+      "name": "sinc-0",
+      "shape": [
+        1,
+        16000
+      ],
+      "max_absolute_error": 4.470348358154297e-08,
+      "rmse": 6.9169437237394444e-09,
+      "max_allowed": 3e-07,
+      "rmse_allowed": null
+    },
+    {
+      "name": "S3-0",
+      "shape": [
+        128,
+        100
+      ],
+      "max_absolute_error": 1.3113021850585938e-06,
+      "rmse": 6.646694645265159e-08,
+      "max_allowed": 5e-05,
+      "rmse_allowed": 2e-06
+    },
+    {
+      "name": "Flow-0",
+      "shape": [
+        80,
+        50
+      ],
+      "max_absolute_error": 4.76837158203125e-07,
+      "rmse": 1.4227917114534107e-07,
+      "max_allowed": 2e-05,
+      "rmse_allowed": 2e-06
+    },
+    {
+      "name": "CAMP CMN-0",
+      "shape": [
+        98,
+        80
+      ],
+      "max_absolute_error": 0.00010013580322265625,
+      "rmse": 2.997376684395361e-06,
+      "max_allowed": 0.001,
+      "rmse_allowed": 2e-05
+    },
+    {
+      "name": "volume-1",
+      "shape": [
+        1,
+        24001
+      ],
+      "max_absolute_error": 0.0,
+      "rmse": 0.0,
+      "max_allowed": 2e-07,
+      "rmse_allowed": null
+    },
+    {
+      "name": "sinc-1",
+      "shape": [
+        1,
+        16001
+      ],
+      "max_absolute_error": 1.4901161193847656e-08,
+      "rmse": 1.2855812923311391e-10,
+      "max_allowed": 3e-07,
+      "rmse_allowed": null
+    },
+    {
+      "name": "S3-1",
+      "shape": [
+        128,
+        100
+      ],
+      "max_absolute_error": 1.430511474609375e-06,
+      "rmse": 8.366408198567325e-08,
+      "max_allowed": 5e-05,
+      "rmse_allowed": 2e-06
+    },
+    {
+      "name": "Flow-1",
+      "shape": [
+        80,
+        50
+      ],
+      "max_absolute_error": 9.5367431640625e-07,
+      "rmse": 2.3554018087822856e-07,
+      "max_allowed": 2e-05,
+      "rmse_allowed": 2e-06
+    },
+    {
+      "name": "CAMP CMN-1",
+      "shape": [
+        98,
+        80
+      ],
+      "max_absolute_error": 1.239776611328125e-05,
+      "rmse": 1.2564210858244973e-06,
+      "max_allowed": 0.001,
+      "rmse_allowed": 2e-05
+    },
+    {
+      "name": "volume-2",
+      "shape": [
+        1,
+        73123
+      ],
+      "max_absolute_error": 0.0,
+      "rmse": 0.0,
+      "max_allowed": 2e-07,
+      "rmse_allowed": null
+    },
+    {
+      "name": "sinc-2",
+      "shape": [
+        1,
+        48749
+      ],
+      "max_absolute_error": 5.960464477539063e-08,
+      "rmse": 6.840716514376976e-09,
+      "max_allowed": 3e-07,
+      "rmse_allowed": null
+    },
+    {
+      "name": "S3-2",
+      "shape": [
+        128,
+        304
+      ],
+      "max_absolute_error": 4.76837158203125e-06,
+      "rmse": 7.2917264443127e-08,
+      "max_allowed": 5e-05,
+      "rmse_allowed": 2e-06
+    },
+    {
+      "name": "Flow-2",
+      "shape": [
+        80,
+        152
+      ],
+      "max_absolute_error": 7.152557373046875e-07,
+      "rmse": 1.41723983500296e-07,
+      "max_allowed": 2e-05,
+      "rmse_allowed": 2e-06
+    },
+    {
+      "name": "CAMP CMN-2",
+      "shape": [
+        303,
+        80
+      ],
+      "max_absolute_error": 0.00017833709716796875,
+      "rmse": 3.732042112421679e-06,
+      "max_allowed": 0.001,
+      "rmse_allowed": 2e-05
+    },
+    {
+      "name": "volume-3",
+      "shape": [
+        1,
+        360000
+      ],
+      "max_absolute_error": 0.0,
+      "rmse": 0.0,
+      "max_allowed": 2e-07,
+      "rmse_allowed": null
+    },
+    {
+      "name": "sinc-3",
+      "shape": [
+        1,
+        240000
+      ],
+      "max_absolute_error": 5.960464477539063e-08,
+      "rmse": 6.8828844730159125e-09,
+      "max_allowed": 3e-07,
+      "rmse_allowed": null
+    },
+    {
+      "name": "S3-3",
+      "shape": [
+        128,
+        1500
+      ],
+      "max_absolute_error": 2.5391578674316406e-05,
+      "rmse": 9.54689499759424e-08,
+      "max_allowed": 5e-05,
+      "rmse_allowed": 2e-06
+    },
+    {
+      "name": "Flow-3",
+      "shape": [
+        80,
+        750
+      ],
+      "max_absolute_error": 7.152557373046875e-07,
+      "rmse": 1.417296016628729e-07,
+      "max_allowed": 2e-05,
+      "rmse_allowed": 2e-06
+    },
+    {
+      "name": "CAMP CMN-3",
+      "shape": [
+        1498,
+        80
+      ],
+      "max_absolute_error": 0.0005626678466796875,
+      "rmse": 3.994312900319261e-06,
+      "max_allowed": 0.001,
+      "rmse_allowed": 2e-05
+    },
+    {
+      "name": "volume-edge-0",
+      "shape": [
+        1,
+        24000
+      ],
+      "max_absolute_error": 0.0,
+      "rmse": 0.0,
+      "max_allowed": 2e-07,
+      "rmse_allowed": null
+    },
+    {
+      "name": "volume-edge-1",
+      "shape": [
+        1,
+        24000
+      ],
+      "max_absolute_error": 0.0,
+      "rmse": 0.0,
+      "max_allowed": 2e-07,
+      "rmse_allowed": null
+    },
+    {
+      "name": "volume-edge-2",
+      "shape": [
+        1,
+        15
+      ],
+      "max_absolute_error": 0.0,
+      "rmse": 0.0,
+      "max_allowed": 2e-07,
+      "rmse_allowed": null
+    },
+    {
+      "name": "HiFT STFT-1",
+      "shape": [
+        18,
+        121
+      ],
+      "max_absolute_error": 2.9802322387695312e-08,
+      "rmse": 7.101363985333468e-09,
+      "max_allowed": 2e-07,
+      "rmse_allowed": null
+    },
+    {
+      "name": "HiFT ISTFT-1",
+      "shape": [
+        1,
+        480
+      ],
+      "max_absolute_error": 7.450580596923828e-09,
+      "rmse": 2.0136318681451158e-09,
+      "max_allowed": 2e-07,
+      "rmse_allowed": null
+    },
+    {
+      "name": "HiFT STFT-7",
+      "shape": [
+        18,
+        841
+      ],
+      "max_absolute_error": 4.470348358154297e-08,
+      "rmse": 6.754559674594069e-09,
+      "max_allowed": 2e-07,
+      "rmse_allowed": null
+    },
+    {
+      "name": "HiFT ISTFT-7",
+      "shape": [
+        1,
+        3360
+      ],
+      "max_absolute_error": 1.4901161193847656e-08,
+      "rmse": 2.0555845563292476e-09,
+      "max_allowed": 2e-07,
+      "rmse_allowed": null
+    },
+    {
+      "name": "HiFT STFT-103",
+      "shape": [
+        18,
+        12361
+      ],
+      "max_absolute_error": 4.470348358154297e-08,
+      "rmse": 6.590997071746271e-09,
+      "max_allowed": 2e-07,
+      "rmse_allowed": null
+    },
+    {
+      "name": "HiFT ISTFT-103",
+      "shape": [
+        1,
+        49440
+      ],
+      "max_absolute_error": 2.2351741790771484e-08,
+      "rmse": 2.029446503985608e-09,
+      "max_allowed": 2e-07,
+      "rmse_allowed": null
+    },
+    {
+      "name": "HiFT spectral clipping",
+      "shape": [
+        1,
+        960
+      ],
+      "max_absolute_error": 4.470348358154297e-06,
+      "rmse": 3.497628550583953e-07,
+      "max_allowed": 2e-05,
+      "rmse_allowed": null
+    },
+    {
+      "name": "HiFT NSF-1",
+      "shape": [
+        480,
+        9
+      ],
+      "max_absolute_error": 0.0,
+      "rmse": 0.0,
+      "max_allowed": 2e-06,
+      "rmse_allowed": 2e-07
+    },
+    {
+      "name": "HiFT NSF-7",
+      "shape": [
+        3360,
+        9
+      ],
+      "max_absolute_error": 1.4901161193847656e-08,
+      "rmse": 1.134862612008424e-09,
+      "max_allowed": 2e-06,
+      "rmse_allowed": 2e-07
+    },
+    {
+      "name": "HiFT NSF-50",
+      "shape": [
+        24000,
+        9
+      ],
+      "max_absolute_error": 1.4901161193847656e-08,
+      "rmse": 1.0477671196341775e-09,
+      "max_allowed": 2e-06,
+      "rmse_allowed": 2e-07
+    },
+    {
+      "name": "HiFT NSF-1500",
+      "shape": [
+        720000,
+        9
+      ],
+      "max_absolute_error": 1.4901161193847656e-08,
+      "rmse": 1.0135210279755469e-09,
+      "max_allowed": 2e-06,
+      "rmse_allowed": 2e-07
+    },
+    {
+      "name": "HiFT NSF-6000",
+      "shape": [
+        2880000,
+        9
+      ],
+      "max_absolute_error": 1.4901161193847656e-08,
+      "rmse": 9.250712941744788e-10,
+      "max_allowed": 2e-06,
+      "rmse_allowed": 2e-07
+    },
+    {
+      "name": "Flow cosine-1",
+      "shape": [
+        1,
+        2
+      ],
+      "max_absolute_error": 0.0,
+      "rmse": 0.0,
+      "max_allowed": 2e-07,
+      "rmse_allowed": null
+    },
+    {
+      "name": "Flow cosine-15",
+      "shape": [
+        1,
+        16
+      ],
+      "max_absolute_error": 1.1920928955078125e-07,
+      "rmse": 5.3726900748371916e-08,
+      "max_allowed": 2e-07,
+      "rmse_allowed": null
+    },
+    {
+      "name": "Flow cosine-100",
+      "shape": [
+        1,
+        101
+      ],
+      "max_absolute_error": 1.1920928955078125e-07,
+      "rmse": 3.0817776361661165e-08,
+      "max_allowed": 2e-07,
+      "rmse_allowed": null
+    },
+    {
+      "name": "Actual upstream 15-step Flow Euler loop",
+      "shape": [
+        1,
+        80,
+        6
+      ],
+      "max_absolute_error": 0.0,
+      "rmse": 0.0,
+      "max_allowed": 5e-06,
+      "rmse_allowed": null
+    }
+  ],
+  "guard_assertions": 29,
+  "actual_upstream_function_bodies": true,
+  "upstream_s3_filter_asset_test_only": true,
+  "torch_version": "2.14.0+cpu",
+  "native_library_under_test": true,
+  "apk_runtime_used": false,
+  "synthetic_pcm_and_estimator": true,
+  "trained_checkpoints_loaded": 0,
+  "generated_model_audio": false,
+  "model_inference": false,
+  "physical_android": false,
+  "engine_registered": false,
+  "input_fingerprint": {
+    "research/soulx/CMakeLists.txt": "847feb9d1714b97bd17aae237dfb692368398fb3dbbcc9a6ccdb6b10af919c6f",
+    "research/soulx/dsp.cpp": "2dfb99c5d9a852667af5947db6874fc736f7488862b47c9151ac8473a54f362a",
+    "research/soulx/dsp.hpp": "7c8a1c56fc40b63c8f8dc0b128d4f802f5073212d32f912f06b6bae29ea94a0f",
+    "research/soulx/LICENSE-APACHE-2.0": "2d88353fe7c7e7dde2a5ea2bc00db9f4808127c938395fcfd1a4d88a268ea3a5",
+    "research/soulx/LICENSE-KISSFFT-BSD-3-CLAUSE": "91333dec2b41bc2d3dc15d6bc819e0da1e6854b6142d4910e8e0c7c82d2da727",
+    "research/soulx/NOTICE": "2229d2f5db9876bda0e0922389f044dba126e7f782e687662cd6fc196e0ba8c2",
+    "tests/native/soulx_dsp_test.cpp": "7f9cd38aafa052d8368e6376944df5e195d2e34d4f1b074e667016c6e33619d9",
+    "third_party/soulx-dsp-source-lock.json": "e8c352ea1f396e2e90d71586815151c446c05458895fcf14595b2870ff882220",
+    "tools/fetch_soulx_dsp.py": "a8e4b8e88c5898236cbbc9ea9fd626b04d6f040005cd9c743c2515032b72c3f4",
+    "tools/test_soulx_dsp.py": "e5023eeac718a7768f5fe72a76667696afee9750a42864747c4d82fbf5b9f7cf"
+  }
+}

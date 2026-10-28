@@ -168,3 +168,7 @@ dev.14 接入 [Sana 移动管线 / MNN](MNN_SANA_ENGINE.md)：真实 ARM64 CPU w
 Internal dev.19 / 内部 dev.19：[旧 Local / Realtime 原生 RQ](MOSS_RQ_ENGINE.md) / [English](MOSS_RQ_ENGINE.en.md) 与旧 SoundEffect 环境声音绑定完成源码接入；32 个用户自选配方仅为元数据，所有模型仍由用户下载 / 管理，APK 仅更新基座。178 RQ / 514 openmoss / 550 foundation / 280 UI checks are scoped, not full-model or phone acceptance. Realtime currently supports one text request returning a complete WAV, without incremental audio/text streaming. Nine MOSS subtargets have distinct code routes but remain individually unaccepted on Android. F-01–F-12、01–14 / 16 / 17、全部冻结子目标及 A1–A11 / R-01–R-05 继续属于同一完整 v0.3.0；15 分钟锁屏 / 1 小时交替 API / 升级资产保留未实测，不创建新 Release。See [bilingual notes / 编号交付](releases/v0.3.0-dev.19.md)。
 
 内部检查点（**0.3.0-dev.20 / code 24**，未发布）：[Stable Audio Open Small 本地基座](STABLE_AUDIO_ENGINE.md)加入同机 LiteRT CPU 的 T5 → DiT → 解码器顺序执行、四份用户自选组件、独立可编辑参数和固定长度成本说明。144 项限定检查含 6 次实际 LiteRT 微型图运行及 6 次真实主机子进程；它们没有运行训练 checkpoint。33 个配方只含元数据；561 项基座、287 项 UI 检查通过，原签名 APK 不含权重 / 词表。截图 56–58 与录屏 / GIF 为 UI FIXTURE。14 的整模型音频、SoulX / 旧 LTX 以及全部冻结范围和真机验收继续属于同一完整 v0.3.0；未创建新 Release。见[编号交付与更新说明](releases/v0.3.0-dev.20.md)。
+
+## dev.20 源码后续：SoulX 音频底层
+
+[实现与复现](SOULX_DSP.md) · [编号交付](releases/v0.3.0-dev.20-soulx-dsp.md)。153项限定检查 / 49个主机子进程 / 29项边界检查；三种前端、Flow 和 HiFT 数值计算，含30 / 120秒 NSF。ARM64/API28 静态库尚未接入 APK，不登记成模型执行支持。训练权重 / 模型音频 / 物理 Android 均0；完整范围和发布门槛不变，开发 APK 与 UI 媒体沿用 dev.20。

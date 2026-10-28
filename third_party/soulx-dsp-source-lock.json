@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "scope": "Unpackaged native SoulX DSP library and scoped host reference checks only; no worker/engine registration/full checkpoint support",
+  "model_assets_packaged": false,
+  "sources": [
+    {
+      "name": "soulx-podcast",
+      "url": "https://github.com/Soul-AILab/SoulX-Podcast.git",
+      "revision": "5ac9c0e1cfe596396200c7d38e3fd53b7b3fbf4b",
+      "license": "Apache-2.0",
+      "reviewed_files": {
+        "LICENSE": "2d88353fe7c7e7dde2a5ea2bc00db9f4808127c938395fcfd1a4d88a268ea3a5",
+        "soulxpodcast/utils/audio.py": "2eac2edc4903986a0ede1dd51eda9cc4e6a4f03f029c4d82d62e8cd91f913bb8",
+        "soulxpodcast/utils/dataloader.py": "6d8aac0f5cd2f876b3c7b7f15ed011bee8d76c84394f2d5c32089f3b4b820ad3",
+        "soulxpodcast/models/modules/flow.py": "69f90fa8d4198fc73ba0f10034238f7636641260dcfcde3f4c5d3dc9018352d6",
+        "soulxpodcast/models/modules/hifigan.py": "0013cd03e4b1774fa2f9c30f50071f9eeb294d0a3251f8aa7227f8871823fa52",
+        "soulxpodcast/models/modules/hifigan_components/layers.py": "ff4498fb0350bf32c9c617cb5a8ac7b150a6a82d88359fd17b968800f51fb75a",
+        "requirements.txt": "27463f6fa6cdc32c439d7c7059cd05e1db5c4e1e49ae0f944530b0c9616e384a"
+      }
+    },
+    {
+      "name": "s3tokenizer",
+      "url": "https://github.com/xingchensong/S3Tokenizer.git",
+      "revision": "9bf5d845b5e043ffaf4657f4942939091c7697a2",
+      "license": "Apache-2.0",
+      "reviewed_files": {
+        "LICENSE": "1eb85fc97224598dad1852b5d6483bbcf0aa8608790dcc657a5a2a761ae9c8c6",
+        "s3tokenizer/utils.py": "a6a5c628ce56c6a6a754a40c14adef14238d47eff0eaf8cbbc395bd5bcb2d7fe",
+        "s3tokenizer/assets/mel_filters.npz": "7450ae70723a5ef9d341e3cee628c7cb0177f36ce42c44b7ed2bf3325f0f6d4c"
+      }
+    },
+    {
+      "name": "kissfft",
+      "url": "https://github.com/mborgerding/kissfft.git",
+      "revision": "febd4caeed32e33ad8b2e0bb5ea77542c40f18ec",
+      "license": "BSD-3-Clause",
+      "reviewed_files": {
+        "COPYING": "655a089086af62664ac16ff6a0eef27cccb02d13e0378fbf3e80fdbc64bfdd34",
+        "LICENSES/BSD-3-Clause": "91333dec2b41bc2d3dc15d6bc819e0da1e6854b6142d4910e8e0c7c82d2da727",
+        "kiss_fft.h": "39b4ab649284a0e25e74cc8ef8d1c4e7d504e4b184ac28c70379f3e8fd494c1d",
+        "kiss_fft.c": "364f68c78133e1b87e2bc4cf538f4fd8ac175c152bf1ef17812bf76fac7ef520",
+        "_kiss_fft_guts.h": "cba74981d3755cdf899a6211d4c0c4bf010d361296aa84a0c4205bc22a89e3fd",
+        "kiss_fft_log.h": "07e0a1c0d3abebe68a43ddee0ed777d4ce8667ecdd36be5e592886ccd6eab27c",
+        "kiss_fftr.h": "c59d02899e23df4da6c44ed0e85fb6bd5702a79bbbe576cda8fd2eb01a9cbbed",
+        "kiss_fftr.c": "a758e1387e1ee96331cac5cdf7965894ab4c0ffb39b910167b84e5b96e2a3109"
+      }
+    }
+  ],
+  "test_wheels": [
+    {
+      "package": "torchaudio",
+      "version": "2.7.1",
+      "filename": "torchaudio-2.7.1-cp313-cp313-win_amd64.whl",
+      "sha256": "edb4deaa6f95acd5522912ed643303d0b86d79a6f15914362f5a5d49baaf5d13",
+      "reviewed_files": {
+        "torchaudio/compliance/kaldi.py": "6d2eea2604b793c14ad5190c88d1283f7ab4c618de57f57844743d8e8feba8e3",
+        "torchaudio/functional/functional.py": "aa3754de420bcbaf7e8d02f7950d843b5cbf7692c389ffe3029f7d8414499cfa"
+      }
+    },
+    {
+      "package": "librosa",
+      "version": "0.11.0",
+      "filename": "librosa-0.11.0-py3-none-any.whl",
+      "sha256": "0b6415c4fd68bff4c29288abe67c6d80b587e0e1e2cfb0aad23e4559504a7fa1",
+      "reviewed_files": {
+        "librosa/filters.py": "df2914ab2262a5b72e59dba320e35fb934a0825c314c48a2542ade8c23116c4e",
+        "librosa/core/convert.py": "3f0679eeb5706771797ddacc4174bfacd1146abae78e8a583d97d6aa4391985f"
+      }
+    }
+  ]
+}

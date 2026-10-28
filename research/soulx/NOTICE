@@ -1,0 +1,22 @@
+LMA SoulX-Podcast DSP research library (not registered in the APK)
+
+dsp.cpp translates audio feature, conditional flow and source-excitation
+operations reviewed in Soul-AILab/SoulX-Podcast and xingchensong/S3Tokenizer.
+Those projects are Apache-2.0; relevant upstream attributions include
+Soul-AILab contributors, Alibaba Inc., OpenAI and Tsinghua University.
+LMA adaptations: Copyright 2026 LMA contributors, Apache-2.0.
+The API header and build/test tooling are original LMA MIT-licensed code.
+The Apache license is provided in LICENSE-APACHE-2.0.
+
+The separately downloaded, pinned KISS FFT source is BSD-3-Clause,
+Copyright (c) 2003-2010 Mark Borgerding. The original license is provided in
+LICENSE-KISSFFT-BSD-3-CLAUSE. It is linked into the ignored build archive only;
+neither that archive nor the library is distributed in the current APK.
+
+Host checks AST-extract pinned torchaudio (BSD-2-Clause) and librosa (ISC)
+Python function bodies into memory and read the publisher's S3 mel bank from
+the ignored checkout. They are test references only, not App model assets.
+Their wheels, binaries, copied function files, example audio, model-specific
+filter banks and checkpoints are not included in the public source or APK.
+See third_party/soulx-dsp-source-lock.json and docs/SOULX_DSP.en.md for pins,
+test boundaries and the still-missing complete model pipeline.

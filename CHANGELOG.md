@@ -1,5 +1,11 @@
 # Changelog / 更新记录
 
+## dev.20 source follow-up — SoulX DSP / unpublished
+
+新增尚未接入 APK 的 SoulX C++ 音频计算库：独立 S3 / Flow / CAMP 前端、sinc 重采样、CFG Euler、HiFT STFT / ISTFT / NSF，修复长序列半像素相位插值并检查30 / 120秒 F0。153项限定检查、49次主机子进程及 Android ARM64/API28 静态编译；双语文档、固定来源 / 许可和独立证据同步。模型推理 / 音频产物 / 真机仍0，完整执行器待完成，APK / 页面 / 媒体沿用 dev.20，不创建 Release。
+
+Added unregistered SoulX native audio primitives with three distinct frontends, sinc resampling, CFG Euler and HiFT spectral/NSF operations, including long-offset interpolation alignment. 153 scoped checks/49 host children and Android ARM64/API28 static compilation; bilingual docs, pins/licenses and separate receipts. No complete-model/phone evidence; APK/UI/media remain dev.20. Full scope stays in the same v0.3.0. See [numbered delivery](docs/releases/v0.3.0-dev.20-soulx-dsp.md).
+
 ## 0.3.0-dev.20 — internal / unpublished
 
 新增 Stable Audio Open Small 同机 LiteRT CPU 基座：顺序 T5 / DiT / 音频解码、四份用户自选组件、HF TFLite 文件识别、每模型可编辑参数与有效 token / 固定长度成本说明。144 项限定检查含实际 LiteRT 微型图和 6 次主机子进程，不是整模型或 Android 推理。

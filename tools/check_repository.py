@@ -66,6 +66,13 @@ def main():
         assert status["physical_device_tests"] == 0 and not status["model_inference_tested"]
         records = {name: json.loads((directory / name).read_text(encoding="utf-8")) for name in status["sources"]}
         for record in records.values(): current(record["input_fingerprint"])
+        soulx = records["soulx-dsp.json"]
+        assert soulx["passed"] >= 153 and soulx["actual_host_children"] >= 49 and soulx["guard_assertions"] >= 29
+        assert soulx["actual_upstream_function_bodies"] and soulx["native_library_under_test"] and not soulx["apk_runtime_used"]
+        assert soulx["trained_checkpoints_loaded"] == 0 and not soulx["generated_model_audio"] and not soulx["model_inference"] and not soulx["physical_android"] and not soulx["engine_registered"]
+        arm64 = records["soulx-dsp-arm64.json"]
+        assert arm64["android_arm64_compiled"] and arm64["android_platform"] == 28 and arm64["objects"] == 3
+        assert not arm64["engine_registered"] and not arm64["packaged_in_apk"] and not arm64["model_inference"] and not arm64["physical_android"]
         assert records["migration.json"]["passed"] >= 69 and records["migration.json"]["actual_host_hardlinks"] and records["migration.json"]["actual_host_child"] and not records["migration.json"]["model_inference_tested"] and not records["migration.json"]["physical_device_tested"]
         assert records["inputs.json"]["passed"] >= 64 and records["inputs.json"]["actual_socket_io"] and records["inputs.json"]["actual_private_file_io"] and records["inputs.json"]["production_wav_validation"] and not records["inputs.json"]["android_execution_tested"] and not records["inputs.json"]["model_inference_tested"]
         assert records["scheduler.json"]["passed"] >= 49 and records["scheduler.json"]["production_job_runner"] and records["scheduler.json"]["actual_host_children"] and records["scheduler.json"]["actual_loopback_http"] and not records["scheduler.json"]["physical_android"] and not records["scheduler.json"]["model_inference"]

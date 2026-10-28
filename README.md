@@ -292,3 +292,5 @@ LMA 自有代码使用 MIT 许可。llama.cpp 及其依赖保留各自许可；�
 内部检查点（**0.3.0-dev.20 / code 24**，未发布）：[Stable Audio Open Small 本地基座](docs/STABLE_AUDIO_ENGINE.md)加入同机 LiteRT CPU 的 T5 → DiT → 解码器顺序执行、四份用户自选组件、独立可编辑参数和固定长度成本说明。144 项限定检查含 6 次实际 LiteRT 微型图运行及 6 次真实主机子进程；它们没有运行训练 checkpoint。33 个配方只含元数据；561 项基座、287 项 UI 检查通过，原签名 APK 不含权重 / 词表。截图 56–58 与录屏 / GIF 为 UI FIXTURE。14 的整模型音频、SoulX / 旧 LTX 以及全部冻结范围和真机验收继续属于同一完整 v0.3.0；未创建新 Release。见[编号交付与更新说明](docs/releases/v0.3.0-dev.20.md)。
 
 <img src="docs/media/development/56-stable-audio-components.png" width="260" alt="UI FIXTURE: four explicitly selected assets, no inference" /> <img src="docs/media/development/57-stable-audio-task.png" width="260" alt="UI FIXTURE: Stable Audio local task parameters, no audio generation" />
+
+源码后续更新（APK 仍为 dev.20）：[SoulX 原生音频计算底层](docs/SOULX_DSP.md)加入三种参考前端、sinc 重采样、Flow 数值更新和 HiFT 频谱 / NSF；153 项限定检查及 Android ARM64/API28 静态库编译，覆盖30 / 120秒 F0。该库尚未接入 APK，完整 SoulX 执行器、模型输出与真机证据仍待完成。推荐、标签、用户自选下载与现有截图 / GIF 不变；见[本轮编号交付和完整待办](docs/releases/v0.3.0-dev.20-soulx-dsp.md)。
