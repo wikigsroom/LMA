@@ -58,3 +58,6 @@ Old LTX0.9.8 adds independent [DiT parity](development/ltx098-transformer.json) 
 
 
 旧LTX T5新增 [491项文本组件检查](development/ltx098-text.json)、[主机构建](development/ltx098-text-host.json)、[ARM64编译](development/ltx098-text-arm64.json)：76真实原生子进程 /39防护、完整训练24层 /219张量与三个不同短提示词、原始外部分词配置和全学习词表身份、真实计算中取消。49个独立参考文件先核对尺寸 /SHA；映射 /张量 /临时F32图缓冲与Windows进程采样分开记录。`ltx098_t5_host_tested=true` does not establish Android execution, video, App or quality acceptance. Historical sampler receipts retain their synthetic-caption scope. [中文](../docs/LTX098_TEXT.md) / [English](../docs/LTX098_TEXT.en.md) / [本轮编号实现与完整待办](../docs/releases/v0.3.0-dev.21-ltx-text.md).
+
+
+旧LTX VAE新增 [355项组件检查](development/ltx098-vae.json)、[主机构建](development/ltx098-vae-host.json)、[ARM64编译](development/ltx098-vae-arm64.json)：36真实原生子进程 /31防护 /40误差记录，完整训练132张量 /552,814,641参数、九段CPU装卸及未修改官方Decoder.forward。四种几何 /时间 /噪声条件、44个SHA固定参考、18个外部资产、实际ORT计算中终止均单独验证。`ltx098_vae_executed` is a host-only compatibility alias; explicit host/Android-compiled/Android-tested fields prevent treating it as phone or full-video support. Earlier component receipts remain unchanged. No App/APK/quality/phone/Release acceptance is added. [中文](../docs/LTX098_VAE.md) / [English](../docs/LTX098_VAE.en.md) / [编号交付与全部待办](../docs/releases/v0.3.0-dev.21-ltx-vae.md).

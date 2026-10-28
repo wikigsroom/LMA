@@ -194,3 +194,8 @@ Current dev.21 adds the [SoulX App foundation](SOULX_ENGINE.en.md): a registered
 ## dev.21 source follow-up: explicit old-LTX assets and trained sampling
 
 [Guide/reproduction](LTX098_SAMPLING.en.md) / [中文](LTX098_SAMPLING.md) / [numbered handoff and full pending work](releases/v0.3.0-dev.21-ltx-sampling.md). Pinned full old0.9.8 checkpoint, streaming DiT GGUF conversion, old geometry/layout and eight-step RF;692 checks/58 actual native children/111 error records pass, including full trained28-layer Vulkan velocity/eight-step latent comparisons against publisher PyTorch. The original675 DiT regressions also pass. Synthetic caption embeddings bypass T5; no VAE/video/App/phone execution. Host memory sampling excludes GPU/total-system use. ARM64 probe/sampler is compilation only; APK/UI media remain dev.21. Every frozen target/subtarget,F-01–F-12,quality/resources/background and complete Release gate remains required in one version.
+
+
+## Trained old-LTX VAE follow-up
+
+[English design](LTX098_VAE.en.md) / [中文](LTX098_VAE.md) / [numbered handoff and full pending scope](releases/v0.3.0-dev.21-ltx-vae.md). Only the132-tensor /552,814,641-parameter decoder is loaded, without instantiating the encoder. Nine sequential ONNX CPU sessions use original BF16 parameters cast to F32; independent original Decoder.forward references cover different geometry/time/noise conditions. Graphs/statistics/data remain external user assets. The offline exporter does not establish public one-click model acquisition or on-phone conversion. Complete video/quality/App/phone acceptance remains separate. APK and accurately labeled UI media remain unchanged.

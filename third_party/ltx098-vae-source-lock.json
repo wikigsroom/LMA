@@ -1,0 +1,842 @@
+{
+  "schema": "lma.ltx098-vae-source-lock/1",
+  "source_revision": "4b2d053057623ddd4d0a1d3e9cd28890e9ef487f",
+  "source_lock": "third_party/ltx098-source-lock.json",
+  "code_license": "Apache-2.0",
+  "model_license": "ltx-video-open-weights-license-0.x",
+  "checkpoint": {
+    "repository": "Lightricks/LTX-Video",
+    "revision": "8984fa25007f376c1a299016d0957a37a2f797bb",
+    "file": "ltxv-2b-0.9.8-distilled.safetensors",
+    "bytes": 6340744492,
+    "sha256": "76aa8c4786af752fa6f951947129d5290c3c6c0b2fadcadea6b5e114ae2cad8f"
+  },
+  "vae_config": {
+    "_class_name": "CausalVideoAutoencoder",
+    "dims": 3,
+    "in_channels": 3,
+    "out_channels": 3,
+    "latent_channels": 128,
+    "encoder_blocks": [
+      [
+        "res_x",
+        {
+          "num_layers": 4
+        }
+      ],
+      [
+        "compress_space_res",
+        {
+          "multiplier": 2
+        }
+      ],
+      [
+        "res_x",
+        {
+          "num_layers": 6
+        }
+      ],
+      [
+        "compress_time_res",
+        {
+          "multiplier": 2
+        }
+      ],
+      [
+        "res_x",
+        {
+          "num_layers": 6
+        }
+      ],
+      [
+        "compress_all_res",
+        {
+          "multiplier": 2
+        }
+      ],
+      [
+        "res_x",
+        {
+          "num_layers": 2
+        }
+      ],
+      [
+        "compress_all_res",
+        {
+          "multiplier": 2
+        }
+      ],
+      [
+        "res_x",
+        {
+          "num_layers": 2
+        }
+      ]
+    ],
+    "decoder_blocks": [
+      [
+        "res_x",
+        {
+          "num_layers": 5,
+          "inject_noise": false
+        }
+      ],
+      [
+        "compress_all",
+        {
+          "residual": true,
+          "multiplier": 2
+        }
+      ],
+      [
+        "res_x",
+        {
+          "num_layers": 5,
+          "inject_noise": false
+        }
+      ],
+      [
+        "compress_all",
+        {
+          "residual": true,
+          "multiplier": 2
+        }
+      ],
+      [
+        "res_x",
+        {
+          "num_layers": 5,
+          "inject_noise": false
+        }
+      ],
+      [
+        "compress_all",
+        {
+          "residual": true,
+          "multiplier": 2
+        }
+      ],
+      [
+        "res_x",
+        {
+          "num_layers": 5,
+          "inject_noise": false
+        }
+      ]
+    ],
+    "scaling_factor": 1.0,
+    "norm_layer": "pixel_norm",
+    "patch_size": 4,
+    "latent_log_var": "uniform",
+    "use_quant_conv": false,
+    "causal_decoder": false,
+    "timestep_conditioning": true,
+    "normalize_latent_channels": false
+  },
+  "decoder_options": {
+    "dims": 3,
+    "in_channels": 128,
+    "out_channels": 3,
+    "blocks": [
+      [
+        "res_x",
+        {
+          "num_layers": 5,
+          "inject_noise": false
+        }
+      ],
+      [
+        "compress_all",
+        {
+          "residual": true,
+          "multiplier": 2
+        }
+      ],
+      [
+        "res_x",
+        {
+          "num_layers": 5,
+          "inject_noise": false
+        }
+      ],
+      [
+        "compress_all",
+        {
+          "residual": true,
+          "multiplier": 2
+        }
+      ],
+      [
+        "res_x",
+        {
+          "num_layers": 5,
+          "inject_noise": false
+        }
+      ],
+      [
+        "compress_all",
+        {
+          "residual": true,
+          "multiplier": 2
+        }
+      ],
+      [
+        "res_x",
+        {
+          "num_layers": 5,
+          "inject_noise": false
+        }
+      ]
+    ],
+    "patch_size": 4,
+    "norm_layer": "pixel_norm",
+    "causal": false,
+    "timestep_conditioning": true,
+    "base_channels": 128,
+    "spatial_padding_mode": "zeros"
+  },
+  "layout": {
+    "timestep_scale_multiplier": [],
+    "last_scale_shift_table": [
+      2,
+      128
+    ],
+    "conv_in.conv.weight": [
+      1024,
+      128,
+      3,
+      3,
+      3
+    ],
+    "conv_in.conv.bias": [
+      1024
+    ],
+    "up_blocks.0.time_embedder.timestep_embedder.linear_1.weight": [
+      4096,
+      256
+    ],
+    "up_blocks.0.time_embedder.timestep_embedder.linear_1.bias": [
+      4096
+    ],
+    "up_blocks.0.time_embedder.timestep_embedder.linear_2.weight": [
+      4096,
+      4096
+    ],
+    "up_blocks.0.time_embedder.timestep_embedder.linear_2.bias": [
+      4096
+    ],
+    "up_blocks.0.res_blocks.0.scale_shift_table": [
+      4,
+      1024
+    ],
+    "up_blocks.0.res_blocks.0.conv1.conv.weight": [
+      1024,
+      1024,
+      3,
+      3,
+      3
+    ],
+    "up_blocks.0.res_blocks.0.conv1.conv.bias": [
+      1024
+    ],
+    "up_blocks.0.res_blocks.0.conv2.conv.weight": [
+      1024,
+      1024,
+      3,
+      3,
+      3
+    ],
+    "up_blocks.0.res_blocks.0.conv2.conv.bias": [
+      1024
+    ],
+    "up_blocks.0.res_blocks.1.scale_shift_table": [
+      4,
+      1024
+    ],
+    "up_blocks.0.res_blocks.1.conv1.conv.weight": [
+      1024,
+      1024,
+      3,
+      3,
+      3
+    ],
+    "up_blocks.0.res_blocks.1.conv1.conv.bias": [
+      1024
+    ],
+    "up_blocks.0.res_blocks.1.conv2.conv.weight": [
+      1024,
+      1024,
+      3,
+      3,
+      3
+    ],
+    "up_blocks.0.res_blocks.1.conv2.conv.bias": [
+      1024
+    ],
+    "up_blocks.0.res_blocks.2.scale_shift_table": [
+      4,
+      1024
+    ],
+    "up_blocks.0.res_blocks.2.conv1.conv.weight": [
+      1024,
+      1024,
+      3,
+      3,
+      3
+    ],
+    "up_blocks.0.res_blocks.2.conv1.conv.bias": [
+      1024
+    ],
+    "up_blocks.0.res_blocks.2.conv2.conv.weight": [
+      1024,
+      1024,
+      3,
+      3,
+      3
+    ],
+    "up_blocks.0.res_blocks.2.conv2.conv.bias": [
+      1024
+    ],
+    "up_blocks.0.res_blocks.3.scale_shift_table": [
+      4,
+      1024
+    ],
+    "up_blocks.0.res_blocks.3.conv1.conv.weight": [
+      1024,
+      1024,
+      3,
+      3,
+      3
+    ],
+    "up_blocks.0.res_blocks.3.conv1.conv.bias": [
+      1024
+    ],
+    "up_blocks.0.res_blocks.3.conv2.conv.weight": [
+      1024,
+      1024,
+      3,
+      3,
+      3
+    ],
+    "up_blocks.0.res_blocks.3.conv2.conv.bias": [
+      1024
+    ],
+    "up_blocks.0.res_blocks.4.scale_shift_table": [
+      4,
+      1024
+    ],
+    "up_blocks.0.res_blocks.4.conv1.conv.weight": [
+      1024,
+      1024,
+      3,
+      3,
+      3
+    ],
+    "up_blocks.0.res_blocks.4.conv1.conv.bias": [
+      1024
+    ],
+    "up_blocks.0.res_blocks.4.conv2.conv.weight": [
+      1024,
+      1024,
+      3,
+      3,
+      3
+    ],
+    "up_blocks.0.res_blocks.4.conv2.conv.bias": [
+      1024
+    ],
+    "up_blocks.1.conv.conv.weight": [
+      4096,
+      1024,
+      3,
+      3,
+      3
+    ],
+    "up_blocks.1.conv.conv.bias": [
+      4096
+    ],
+    "up_blocks.2.time_embedder.timestep_embedder.linear_1.weight": [
+      2048,
+      256
+    ],
+    "up_blocks.2.time_embedder.timestep_embedder.linear_1.bias": [
+      2048
+    ],
+    "up_blocks.2.time_embedder.timestep_embedder.linear_2.weight": [
+      2048,
+      2048
+    ],
+    "up_blocks.2.time_embedder.timestep_embedder.linear_2.bias": [
+      2048
+    ],
+    "up_blocks.2.res_blocks.0.scale_shift_table": [
+      4,
+      512
+    ],
+    "up_blocks.2.res_blocks.0.conv1.conv.weight": [
+      512,
+      512,
+      3,
+      3,
+      3
+    ],
+    "up_blocks.2.res_blocks.0.conv1.conv.bias": [
+      512
+    ],
+    "up_blocks.2.res_blocks.0.conv2.conv.weight": [
+      512,
+      512,
+      3,
+      3,
+      3
+    ],
+    "up_blocks.2.res_blocks.0.conv2.conv.bias": [
+      512
+    ],
+    "up_blocks.2.res_blocks.1.scale_shift_table": [
+      4,
+      512
+    ],
+    "up_blocks.2.res_blocks.1.conv1.conv.weight": [
+      512,
+      512,
+      3,
+      3,
+      3
+    ],
+    "up_blocks.2.res_blocks.1.conv1.conv.bias": [
+      512
+    ],
+    "up_blocks.2.res_blocks.1.conv2.conv.weight": [
+      512,
+      512,
+      3,
+      3,
+      3
+    ],
+    "up_blocks.2.res_blocks.1.conv2.conv.bias": [
+      512
+    ],
+    "up_blocks.2.res_blocks.2.scale_shift_table": [
+      4,
+      512
+    ],
+    "up_blocks.2.res_blocks.2.conv1.conv.weight": [
+      512,
+      512,
+      3,
+      3,
+      3
+    ],
+    "up_blocks.2.res_blocks.2.conv1.conv.bias": [
+      512
+    ],
+    "up_blocks.2.res_blocks.2.conv2.conv.weight": [
+      512,
+      512,
+      3,
+      3,
+      3
+    ],
+    "up_blocks.2.res_blocks.2.conv2.conv.bias": [
+      512
+    ],
+    "up_blocks.2.res_blocks.3.scale_shift_table": [
+      4,
+      512
+    ],
+    "up_blocks.2.res_blocks.3.conv1.conv.weight": [
+      512,
+      512,
+      3,
+      3,
+      3
+    ],
+    "up_blocks.2.res_blocks.3.conv1.conv.bias": [
+      512
+    ],
+    "up_blocks.2.res_blocks.3.conv2.conv.weight": [
+      512,
+      512,
+      3,
+      3,
+      3
+    ],
+    "up_blocks.2.res_blocks.3.conv2.conv.bias": [
+      512
+    ],
+    "up_blocks.2.res_blocks.4.scale_shift_table": [
+      4,
+      512
+    ],
+    "up_blocks.2.res_blocks.4.conv1.conv.weight": [
+      512,
+      512,
+      3,
+      3,
+      3
+    ],
+    "up_blocks.2.res_blocks.4.conv1.conv.bias": [
+      512
+    ],
+    "up_blocks.2.res_blocks.4.conv2.conv.weight": [
+      512,
+      512,
+      3,
+      3,
+      3
+    ],
+    "up_blocks.2.res_blocks.4.conv2.conv.bias": [
+      512
+    ],
+    "up_blocks.3.conv.conv.weight": [
+      2048,
+      512,
+      3,
+      3,
+      3
+    ],
+    "up_blocks.3.conv.conv.bias": [
+      2048
+    ],
+    "up_blocks.4.time_embedder.timestep_embedder.linear_1.weight": [
+      1024,
+      256
+    ],
+    "up_blocks.4.time_embedder.timestep_embedder.linear_1.bias": [
+      1024
+    ],
+    "up_blocks.4.time_embedder.timestep_embedder.linear_2.weight": [
+      1024,
+      1024
+    ],
+    "up_blocks.4.time_embedder.timestep_embedder.linear_2.bias": [
+      1024
+    ],
+    "up_blocks.4.res_blocks.0.scale_shift_table": [
+      4,
+      256
+    ],
+    "up_blocks.4.res_blocks.0.conv1.conv.weight": [
+      256,
+      256,
+      3,
+      3,
+      3
+    ],
+    "up_blocks.4.res_blocks.0.conv1.conv.bias": [
+      256
+    ],
+    "up_blocks.4.res_blocks.0.conv2.conv.weight": [
+      256,
+      256,
+      3,
+      3,
+      3
+    ],
+    "up_blocks.4.res_blocks.0.conv2.conv.bias": [
+      256
+    ],
+    "up_blocks.4.res_blocks.1.scale_shift_table": [
+      4,
+      256
+    ],
+    "up_blocks.4.res_blocks.1.conv1.conv.weight": [
+      256,
+      256,
+      3,
+      3,
+      3
+    ],
+    "up_blocks.4.res_blocks.1.conv1.conv.bias": [
+      256
+    ],
+    "up_blocks.4.res_blocks.1.conv2.conv.weight": [
+      256,
+      256,
+      3,
+      3,
+      3
+    ],
+    "up_blocks.4.res_blocks.1.conv2.conv.bias": [
+      256
+    ],
+    "up_blocks.4.res_blocks.2.scale_shift_table": [
+      4,
+      256
+    ],
+    "up_blocks.4.res_blocks.2.conv1.conv.weight": [
+      256,
+      256,
+      3,
+      3,
+      3
+    ],
+    "up_blocks.4.res_blocks.2.conv1.conv.bias": [
+      256
+    ],
+    "up_blocks.4.res_blocks.2.conv2.conv.weight": [
+      256,
+      256,
+      3,
+      3,
+      3
+    ],
+    "up_blocks.4.res_blocks.2.conv2.conv.bias": [
+      256
+    ],
+    "up_blocks.4.res_blocks.3.scale_shift_table": [
+      4,
+      256
+    ],
+    "up_blocks.4.res_blocks.3.conv1.conv.weight": [
+      256,
+      256,
+      3,
+      3,
+      3
+    ],
+    "up_blocks.4.res_blocks.3.conv1.conv.bias": [
+      256
+    ],
+    "up_blocks.4.res_blocks.3.conv2.conv.weight": [
+      256,
+      256,
+      3,
+      3,
+      3
+    ],
+    "up_blocks.4.res_blocks.3.conv2.conv.bias": [
+      256
+    ],
+    "up_blocks.4.res_blocks.4.scale_shift_table": [
+      4,
+      256
+    ],
+    "up_blocks.4.res_blocks.4.conv1.conv.weight": [
+      256,
+      256,
+      3,
+      3,
+      3
+    ],
+    "up_blocks.4.res_blocks.4.conv1.conv.bias": [
+      256
+    ],
+    "up_blocks.4.res_blocks.4.conv2.conv.weight": [
+      256,
+      256,
+      3,
+      3,
+      3
+    ],
+    "up_blocks.4.res_blocks.4.conv2.conv.bias": [
+      256
+    ],
+    "up_blocks.5.conv.conv.weight": [
+      1024,
+      256,
+      3,
+      3,
+      3
+    ],
+    "up_blocks.5.conv.conv.bias": [
+      1024
+    ],
+    "up_blocks.6.time_embedder.timestep_embedder.linear_1.weight": [
+      512,
+      256
+    ],
+    "up_blocks.6.time_embedder.timestep_embedder.linear_1.bias": [
+      512
+    ],
+    "up_blocks.6.time_embedder.timestep_embedder.linear_2.weight": [
+      512,
+      512
+    ],
+    "up_blocks.6.time_embedder.timestep_embedder.linear_2.bias": [
+      512
+    ],
+    "up_blocks.6.res_blocks.0.scale_shift_table": [
+      4,
+      128
+    ],
+    "up_blocks.6.res_blocks.0.conv1.conv.weight": [
+      128,
+      128,
+      3,
+      3,
+      3
+    ],
+    "up_blocks.6.res_blocks.0.conv1.conv.bias": [
+      128
+    ],
+    "up_blocks.6.res_blocks.0.conv2.conv.weight": [
+      128,
+      128,
+      3,
+      3,
+      3
+    ],
+    "up_blocks.6.res_blocks.0.conv2.conv.bias": [
+      128
+    ],
+    "up_blocks.6.res_blocks.1.scale_shift_table": [
+      4,
+      128
+    ],
+    "up_blocks.6.res_blocks.1.conv1.conv.weight": [
+      128,
+      128,
+      3,
+      3,
+      3
+    ],
+    "up_blocks.6.res_blocks.1.conv1.conv.bias": [
+      128
+    ],
+    "up_blocks.6.res_blocks.1.conv2.conv.weight": [
+      128,
+      128,
+      3,
+      3,
+      3
+    ],
+    "up_blocks.6.res_blocks.1.conv2.conv.bias": [
+      128
+    ],
+    "up_blocks.6.res_blocks.2.scale_shift_table": [
+      4,
+      128
+    ],
+    "up_blocks.6.res_blocks.2.conv1.conv.weight": [
+      128,
+      128,
+      3,
+      3,
+      3
+    ],
+    "up_blocks.6.res_blocks.2.conv1.conv.bias": [
+      128
+    ],
+    "up_blocks.6.res_blocks.2.conv2.conv.weight": [
+      128,
+      128,
+      3,
+      3,
+      3
+    ],
+    "up_blocks.6.res_blocks.2.conv2.conv.bias": [
+      128
+    ],
+    "up_blocks.6.res_blocks.3.scale_shift_table": [
+      4,
+      128
+    ],
+    "up_blocks.6.res_blocks.3.conv1.conv.weight": [
+      128,
+      128,
+      3,
+      3,
+      3
+    ],
+    "up_blocks.6.res_blocks.3.conv1.conv.bias": [
+      128
+    ],
+    "up_blocks.6.res_blocks.3.conv2.conv.weight": [
+      128,
+      128,
+      3,
+      3,
+      3
+    ],
+    "up_blocks.6.res_blocks.3.conv2.conv.bias": [
+      128
+    ],
+    "up_blocks.6.res_blocks.4.scale_shift_table": [
+      4,
+      128
+    ],
+    "up_blocks.6.res_blocks.4.conv1.conv.weight": [
+      128,
+      128,
+      3,
+      3,
+      3
+    ],
+    "up_blocks.6.res_blocks.4.conv1.conv.bias": [
+      128
+    ],
+    "up_blocks.6.res_blocks.4.conv2.conv.weight": [
+      128,
+      128,
+      3,
+      3,
+      3
+    ],
+    "up_blocks.6.res_blocks.4.conv2.conv.bias": [
+      128
+    ],
+    "conv_out.conv.weight": [
+      48,
+      128,
+      3,
+      3,
+      3
+    ],
+    "conv_out.conv.bias": [
+      48
+    ],
+    "last_time_embedder.timestep_embedder.linear_1.weight": [
+      256,
+      256
+    ],
+    "last_time_embedder.timestep_embedder.linear_1.bias": [
+      256
+    ],
+    "last_time_embedder.timestep_embedder.linear_2.weight": [
+      256,
+      256
+    ],
+    "last_time_embedder.timestep_embedder.linear_2.bias": [
+      256
+    ]
+  },
+  "python_versions": {
+    "torch": "2.14.0",
+    "numpy": "2.4.2",
+    "diffusers": "0.29.2",
+    "einops": "0.8.2",
+    "onnx": "1.20.1"
+  },
+  "torch_runtime_version": "2.14.0+cpu",
+  "android_runtime": {
+    "file": "libonnxruntime.so",
+    "bytes": 22249560,
+    "sha256": "33847ad43bffe204699fd4a27f7f3603452a8cdaf2f9a44983a0bc31ffcf2da1",
+    "android_api_notes": [
+      27
+    ],
+    "provenance": "upstream_release_prebuilt"
+  },
+  "host_runtime": {
+    "version": "1.24.3",
+    "file": "onnxruntime.dll",
+    "sha256": "8cada464a0c1d22f5d8fc5767424b545fbfa208285940d0da3441de9647ee207",
+    "provenance": "existing host-installed PyPI distribution; test only, not APK payload"
+  },
+  "json_header_sha256": "2dd8db723cff3e44198e14d6038ea6443dc6171a564bb82cd6ee81f0edc316e5",
+  "gates": {
+    "max_absolute_error": 0.002,
+    "max_relative_rmse": 0.0002,
+    "min_cosine": 0.999999,
+    "finite": true
+  },
+  "scope": {
+    "cpu_only": true,
+    "engine_registered": false,
+    "packaged_in_apk": false,
+    "physical_android": false,
+    "complete_video_pipeline": false
+  }
+}

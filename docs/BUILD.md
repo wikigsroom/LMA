@@ -125,3 +125,6 @@ SoulX生产worker原生构建：`build_soulx.py`（主机）→ `build_soulx.py 
 旧LTX训练采样的[独立复现步骤](LTX098_SAMPLING.md)补充显式 `fetch_ltx098_trained.py --download`、本地 `export_ltx098.py`、未训练 /训练 `ltx098_sampling_oracle.py` 与 `test_ltx098_sampling.py --trained --skip-build`。均在 `tools/`，缺件不补下载；模型缓存不入APK。原生构建顺序执行，两份ARM64 ELF分别核验；开发者真实检查点与完整用户下载候选 /Android验收保持区分。
 
 旧LTX T5组件按[中文复现](LTX098_TEXT.md)显式准备量化encoder与原始外部分词配置，再顺序执行 `tools/build_ltx098_text.py`、`tools/ltx098_text_oracle.py --trained`、`tools/test_ltx098_text.py --trained`、`tools/build_ltx098_text.py --android`。默认不获取任何模型；开发依赖 /模型缓存均在项目内，无虚拟化，不进入APK。CLI必须单独传入原始tokenizer_config；临时F32矩阵缓冲复用与主机 /Android证据分别说明。
+
+
+旧LTX训练VAE按[完整离线复现](LTX098_VAE.md)显式准备已固定的原始检查点，再运行 `tools/ltx098_vae.py export`、`references`、`tools/build_ltx098_vae.py`、其 `--android` 编译及 `tools/test_ltx098_vae.py`。原始官方forward作为独立参考；导出目录拒绝覆盖，不自动获取模型。两种原生编译顺序运行，SUBST别名在finally释放，所有缓存 /临时文件在项目内，不调度虚拟化；研究可执行文件和模型图不进入APK。

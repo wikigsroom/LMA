@@ -1,5 +1,12 @@
 # Changelog / 更新记录
 
+## 0.3.0-dev.21 source follow-up / 2026-10-29 — trained old-LTX VAE
+
+旧版0.9.8 distilled完整训练VAE：132张量 /552,814,641参数从原始BF16转F32，九段CPU ONNX会话依次装卸；外部图 /数据2,211,661,835字节不进入APK。噪声先在归一化空间混合，原始通道统计 /时间条件 /PixelNorm /时空上采样保留。355检查 /36真实原生子进程 /31防护 /40逐段与最终误差记录通过；独立未修改原始Decoder.forward四组几何参考，44参考文件先核对SHA；最终帧最大误差2.14577e-6，真实ORT计算中取消和无会话泄漏通过。
+
+Full trained decoder host parity, distinct Android ARM64/API28/16KiB compilation and measured host memory are reported separately. No model graphs/statistics enter APK, no implicit model acquisition, no complete prompt-to-video/quality/App/phone claim. APK/UI media stay dev.21; all frozen v0.3.0 targets remain required in one complete release. [中文](docs/LTX098_VAE.md) / [English](docs/LTX098_VAE.en.md) / [numbered implemented/pending handoff](docs/releases/v0.3.0-dev.21-ltx-vae.md).
+
+
 
 ## dev.21 source follow-up — old LTX T5 / unreleased
 

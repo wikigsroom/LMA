@@ -120,7 +120,30 @@ def main():
         assert ltx_arm["sampler_elf"]["needed"] == ltx_arm["elf"]["needed"] and ltx_arm["sampler_elf"]["interpreter"] == "/system/bin/linker64"
         assert status["ltx098_native_sampling_host_tested"] and status["ltx098_trained_dit_latent_host_tested"]
         assert status["ltx098_t5_executed"] and status["ltx098_t5_host_tested"] and status["ltx098_t5_android_compiled"]
-        assert not status["ltx098_t5_android_tested"] and not status["ltx098_vae_executed"]
+        assert not status["ltx098_t5_android_tested"] and status["ltx098_vae_executed"]
+        assert status["ltx098_vae_host_tested"] and status["ltx098_vae_android_compiled"] and not status["ltx098_vae_android_tested"]
+        vae = records["ltx098-vae.json"]
+        vae_lock = json.loads((ROOT / "third_party/ltx098-vae-source-lock.json").read_text(encoding="utf-8"))
+        assert vae["checks"] >= 355 and vae["native_children"] >= 36 and len(vae["metrics"]) == 40 and len(vae["guards"]) >= 31
+        assert vae["trained_decoder_tensors"] == 132 and vae["trained_decoder_parameters"] == 552814641
+        assert vae["trained_checkpoint_loaded"] and vae["full_trained_decoder"] and vae["original_publisher_decoder_forward"]
+        assert vae["gates"] == vae_lock["gates"] and len(vae["assets"]) == 18 and len(vae["oracle_files"]) == 44
+        assert vae["host_model_inference_tested"] and not any(vae[k] for k in ["complete_video_pipeline", "t5_executed", "dit_executed", "video_quality_tested", "engine_registered", "packaged_in_apk", "physical_android"])
+        for metric in vae["metrics"]:
+            assert metric["max_absolute_error"] <= vae_lock["gates"]["max_absolute_error"]
+            assert metric["relative_rmse"] <= vae_lock["gates"]["max_relative_rmse"] and metric["cosine"] >= vae_lock["gates"]["min_cosine"]
+        assert all(run["session_loads"] == run["session_unloads"] and run["max_live_sessions"] <= 1 for run in vae["runs"])
+        assert vae["executable_sha256"] == records["ltx098-vae-host.json"]["executable_sha256"]
+        assert all(run["runtime_version"] == vae_lock["host_runtime"]["version"] and run["graph_runs"] == 9 for run in vae["runs"] if run["ok"])
+        assert {run["name"]: run["output_shape"] for run in vae["runs"] if run["name"].startswith("case-")} == {
+            "case-0": [1, 3, 17, 64, 64], "case-1": [1, 3, 1, 32, 32], "case-2": [1, 3, 17, 32, 64], "case-3": [1, 3, 9, 64, 32]}
+        assert any(run.get("terminated_runs", 0) > 0 for run in vae["runs"])
+        assert all(run["resources"]["observed"] and run["resources"]["samples"] > 0 for run in vae["runs"] if run["name"] in ["case-0", "case-1", "case-2", "case-3"])
+        vae_arm = records["ltx098-vae-arm64.json"]
+        assert vae_arm["android_arm64_compiled"] and vae_arm["android_platform"] == 28 and vae_arm["runtime"] == vae_lock["android_runtime"]
+        assert vae_arm["elf"]["machine"] == "aarch64" and vae_arm["elf"]["16k_elf_aligned"] and vae_arm["elf"]["android_api_notes"] == [28]
+        assert set(vae_arm["elf"]["needed"]) == {"libonnxruntime.so", "libm.so", "libdl.so", "libc.so"}
+        assert not vae_arm["physical_android"] and not vae_arm["packaged_in_apk"] and not vae_arm["engine_registered"]
         text = records["ltx098-text.json"]
         text_lock = json.loads((ROOT / "third_party/ltx098-text-source-lock.json").read_text(encoding="utf-8"))
         assert text["checks"] >= 491 and text["actual_native_children"] >= 76 and text["negative_guards"] >= 39

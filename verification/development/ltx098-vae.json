@@ -1,0 +1,1716 @@
+{
+  "schema": "lma.ltx098-vae-tests/1",
+  "checks": 355,
+  "native_children": 36,
+  "metrics": [
+    {
+      "name": "case-0-output",
+      "elements": 208896,
+      "max_absolute_error": 2.0265579223632812e-06,
+      "rmse": 2.6648706064349006e-07,
+      "relative_rmse": 9.89524251781094e-07,
+      "cosine": 0.999999999999512
+    },
+    {
+      "name": "case-0-stage-00",
+      "elements": 12288,
+      "max_absolute_error": 2.384185791015625e-07,
+      "rmse": 3.687460762432799e-08,
+      "relative_rmse": 3.7691955353450223e-07,
+      "cosine": 0.9999999999999294
+    },
+    {
+      "name": "case-0-stage-01",
+      "elements": 12288,
+      "max_absolute_error": 1.7285346984863281e-06,
+      "rmse": 1.7725739469978697e-07,
+      "relative_rmse": 1.7727927858303908e-06,
+      "cosine": 0.9999999999984298
+    },
+    {
+      "name": "case-0-stage-02",
+      "elements": 40960,
+      "max_absolute_error": 7.152557373046875e-06,
+      "rmse": 3.0045910634705986e-07,
+      "relative_rmse": 8.274408476530872e-07,
+      "cosine": 0.9999999999996914
+    },
+    {
+      "name": "case-0-stage-03",
+      "elements": 40960,
+      "max_absolute_error": 1.1444091796875e-05,
+      "rmse": 4.588497707054231e-07,
+      "relative_rmse": 1.274033484483646e-06,
+      "cosine": 0.9999999999991942
+    },
+    {
+      "name": "case-0-stage-04",
+      "elements": 147456,
+      "max_absolute_error": 5.9604644775390625e-06,
+      "rmse": 5.078352337805712e-07,
+      "relative_rmse": 4.6827532123131816e-07,
+      "cosine": 0.999999999999892
+    },
+    {
+      "name": "case-0-stage-05",
+      "elements": 147456,
+      "max_absolute_error": 2.956390380859375e-05,
+      "rmse": 2.136185517981373e-06,
+      "relative_rmse": 2.4708418913210748e-06,
+      "cosine": 0.9999999999969488
+    },
+    {
+      "name": "case-0-stage-06",
+      "elements": 557056,
+      "max_absolute_error": 5.7220458984375e-05,
+      "rmse": 3.4187338160884076e-06,
+      "relative_rmse": 1.138033084216317e-06,
+      "cosine": 0.9999999999993545
+    },
+    {
+      "name": "case-0-stage-07",
+      "elements": 557056,
+      "max_absolute_error": 0.00011444091796875,
+      "rmse": 8.715778071509212e-06,
+      "relative_rmse": 5.764666631251566e-07,
+      "cosine": 0.9999999999998375
+    },
+    {
+      "name": "case-0-stage-08",
+      "elements": 208896,
+      "max_absolute_error": 2.0265579223632812e-06,
+      "rmse": 2.6648706064349006e-07,
+      "relative_rmse": 9.89524251781094e-07,
+      "cosine": 0.999999999999512
+    },
+    {
+      "name": "case-1-output",
+      "elements": 3072,
+      "max_absolute_error": 4.470348358154297e-07,
+      "rmse": 1.0304446852215154e-07,
+      "relative_rmse": 5.124110623207251e-07,
+      "cosine": 0.9999999999998713
+    },
+    {
+      "name": "case-1-stage-00",
+      "elements": 1024,
+      "max_absolute_error": 2.9802322387695312e-08,
+      "rmse": 9.147866803628913e-09,
+      "relative_rmse": 9.589660064705958e-08,
+      "cosine": 0.9999999999999957
+    },
+    {
+      "name": "case-1-stage-01",
+      "elements": 1024,
+      "max_absolute_error": 4.023313522338867e-07,
+      "rmse": 9.239503115327188e-08,
+      "relative_rmse": 7.803487062903815e-07,
+      "cosine": 0.9999999999997231
+    },
+    {
+      "name": "case-1-stage-02",
+      "elements": 2048,
+      "max_absolute_error": 4.291534423828125e-06,
+      "rmse": 2.2416201178559977e-07,
+      "relative_rmse": 6.231269729991381e-07,
+      "cosine": 0.9999999999998949
+    },
+    {
+      "name": "case-1-stage-03",
+      "elements": 2048,
+      "max_absolute_error": 4.291534423828125e-06,
+      "rmse": 3.144275752549191e-07,
+      "relative_rmse": 1.0173607527503104e-06,
+      "cosine": 0.999999999999491
+    },
+    {
+      "name": "case-1-stage-04",
+      "elements": 4096,
+      "max_absolute_error": 2.6226043701171875e-06,
+      "rmse": 3.5037690969114236e-07,
+      "relative_rmse": 3.627946356316615e-07,
+      "cosine": 0.9999999999999376
+    },
+    {
+      "name": "case-1-stage-05",
+      "elements": 4096,
+      "max_absolute_error": 4.76837158203125e-06,
+      "rmse": 7.243388985989069e-07,
+      "relative_rmse": 8.957748681723307e-07,
+      "cosine": 0.9999999999996013
+    },
+    {
+      "name": "case-1-stage-06",
+      "elements": 8192,
+      "max_absolute_error": 1.049041748046875e-05,
+      "rmse": 1.0523132433292435e-06,
+      "relative_rmse": 4.104584899151925e-07,
+      "cosine": 0.9999999999999184
+    },
+    {
+      "name": "case-1-stage-07",
+      "elements": 8192,
+      "max_absolute_error": 3.0517578125e-05,
+      "rmse": 3.4292198689386317e-06,
+      "relative_rmse": 2.3605826507379792e-07,
+      "cosine": 0.999999999999977
+    },
+    {
+      "name": "case-1-stage-08",
+      "elements": 3072,
+      "max_absolute_error": 4.470348358154297e-07,
+      "rmse": 1.0304446852215154e-07,
+      "relative_rmse": 5.124110623207251e-07,
+      "cosine": 0.9999999999998713
+    },
+    {
+      "name": "case-2-output",
+      "elements": 104448,
+      "max_absolute_error": 5.513429641723633e-07,
+      "rmse": 9.418486475081643e-08,
+      "relative_rmse": 2.952582273786566e-07,
+      "cosine": 0.9999999999999677
+    },
+    {
+      "name": "case-2-stage-00",
+      "elements": 6144,
+      "max_absolute_error": 2.384185791015625e-07,
+      "rmse": 2.5009128158793032e-08,
+      "relative_rmse": 2.678899507527887e-07,
+      "cosine": 0.9999999999999653
+    },
+    {
+      "name": "case-2-stage-01",
+      "elements": 6144,
+      "max_absolute_error": 4.6193599700927734e-07,
+      "rmse": 7.19357707800815e-08,
+      "relative_rmse": 7.07600000328716e-07,
+      "cosine": 0.9999999999997512
+    },
+    {
+      "name": "case-2-stage-02",
+      "elements": 20480,
+      "max_absolute_error": 2.86102294921875e-06,
+      "rmse": 1.2453677722794333e-07,
+      "relative_rmse": 3.548901050884342e-07,
+      "cosine": 0.9999999999999374
+    },
+    {
+      "name": "case-2-stage-03",
+      "elements": 20480,
+      "max_absolute_error": 6.67572021484375e-06,
+      "rmse": 3.0486092027461935e-07,
+      "relative_rmse": 9.531743926621398e-07,
+      "cosine": 0.9999999999995466
+    },
+    {
+      "name": "case-2-stage-04",
+      "elements": 73728,
+      "max_absolute_error": 3.814697265625e-06,
+      "rmse": 3.1595650661463846e-07,
+      "relative_rmse": 3.1684843732379203e-07,
+      "cosine": 0.9999999999999502
+    },
+    {
+      "name": "case-2-stage-05",
+      "elements": 73728,
+      "max_absolute_error": 4.76837158203125e-06,
+      "rmse": 5.911077526951676e-07,
+      "relative_rmse": 7.851210573091019e-07,
+      "cosine": 0.9999999999996927
+    },
+    {
+      "name": "case-2-stage-06",
+      "elements": 278528,
+      "max_absolute_error": 7.62939453125e-06,
+      "rmse": 7.024370709336954e-07,
+      "relative_rmse": 2.7203349594002515e-07,
+      "cosine": 0.9999999999999637
+    },
+    {
+      "name": "case-2-stage-07",
+      "elements": 278528,
+      "max_absolute_error": 2.288818359375e-05,
+      "rmse": 2.312965169493354e-06,
+      "relative_rmse": 1.5910141114722025e-07,
+      "cosine": 0.9999999999999882
+    },
+    {
+      "name": "case-2-stage-08",
+      "elements": 104448,
+      "max_absolute_error": 5.513429641723633e-07,
+      "rmse": 9.418486475081643e-08,
+      "relative_rmse": 2.952582273786566e-07,
+      "cosine": 0.9999999999999677
+    },
+    {
+      "name": "case-3-output",
+      "elements": 55296,
+      "max_absolute_error": 2.1457672119140625e-06,
+      "rmse": 2.1364042131537823e-07,
+      "relative_rmse": 1.0391661386302773e-06,
+      "cosine": 0.999999999999462
+    },
+    {
+      "name": "case-3-stage-00",
+      "elements": 4096,
+      "max_absolute_error": 1.7881393432617188e-07,
+      "rmse": 2.5162121446086473e-08,
+      "relative_rmse": 2.674594265736371e-07,
+      "cosine": 0.9999999999999649
+    },
+    {
+      "name": "case-3-stage-01",
+      "elements": 4096,
+      "max_absolute_error": 8.046627044677734e-07,
+      "rmse": 1.4622242430426477e-07,
+      "relative_rmse": 1.3794958735714102e-06,
+      "cosine": 0.9999999999990781
+    },
+    {
+      "name": "case-3-stage-02",
+      "elements": 12288,
+      "max_absolute_error": 7.152557373046875e-06,
+      "rmse": 2.70282756119813e-07,
+      "relative_rmse": 7.51911424839614e-07,
+      "cosine": 0.9999999999998261
+    },
+    {
+      "name": "case-3-stage-03",
+      "elements": 12288,
+      "max_absolute_error": 5.7220458984375e-06,
+      "rmse": 3.9716478723388643e-07,
+      "relative_rmse": 1.0834375100528997e-06,
+      "cosine": 0.9999999999994267
+    },
+    {
+      "name": "case-3-stage-04",
+      "elements": 40960,
+      "max_absolute_error": 4.291534423828125e-06,
+      "rmse": 4.3058759413398616e-07,
+      "relative_rmse": 4.1507425673161635e-07,
+      "cosine": 0.9999999999999145
+    },
+    {
+      "name": "case-3-stage-05",
+      "elements": 40960,
+      "max_absolute_error": 4.76837158203125e-06,
+      "rmse": 7.083895608422931e-07,
+      "relative_rmse": 7.621543482556539e-07,
+      "cosine": 0.9999999999997152
+    },
+    {
+      "name": "case-3-stage-06",
+      "elements": 147456,
+      "max_absolute_error": 8.58306884765625e-06,
+      "rmse": 8.409087734707238e-07,
+      "relative_rmse": 2.973128189953353e-07,
+      "cosine": 0.999999999999956
+    },
+    {
+      "name": "case-3-stage-07",
+      "elements": 147456,
+      "max_absolute_error": 7.2479248046875e-05,
+      "rmse": 6.092767406344776e-06,
+      "relative_rmse": 4.755672600491415e-07,
+      "cosine": 0.9999999999998909
+    },
+    {
+      "name": "case-3-stage-08",
+      "elements": 55296,
+      "max_absolute_error": 2.1457672119140625e-06,
+      "rmse": 2.1364042131537823e-07,
+      "relative_rmse": 1.0391661386302773e-06,
+      "cosine": 0.999999999999462
+    }
+  ],
+  "guards": [
+    "guard-00",
+    "guard-01",
+    "guard-02",
+    "guard-03",
+    "guard-04",
+    "guard-05",
+    "guard-06",
+    "guard-07",
+    "guard-08",
+    "guard-09",
+    "guard-10",
+    "guard-11",
+    "guard-12",
+    "guard-13",
+    "guard-14",
+    "guard-15",
+    "guard-16",
+    "duplicate-key",
+    "nan-json",
+    "preserve-output",
+    "pre-cancel",
+    "truncated-tensor",
+    "nonfinite-tensor",
+    "wrong-checkpoint",
+    "missing-bundle-assets",
+    "extra-asset",
+    "stage-path",
+    "asset-size",
+    "external-traversal",
+    "external-out-of-range",
+    "cancel-during-stage-1"
+  ],
+  "runs": [
+    {
+      "name": "case-0",
+      "seconds": 10.260424600011902,
+      "resources": {
+        "observed": true,
+        "samples": 328,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 1238388736,
+        "sampled_peak_private_bytes": 92758016,
+        "gpu_memory_measured": false
+      },
+      "backend": "cpu",
+      "complete_video_pipeline": false,
+      "engine_registered": false,
+      "graph_runs": 9,
+      "max_live_sessions": 1,
+      "ok": true,
+      "output_bytes": 835584,
+      "output_shape": [
+        1,
+        3,
+        17,
+        64,
+        64
+      ],
+      "physical_android": false,
+      "runtime_version": "1.24.3",
+      "session_loads": 9,
+      "session_unloads": 9
+    },
+    {
+      "name": "case-1",
+      "seconds": 7.4025607999938074,
+      "resources": {
+        "observed": true,
+        "samples": 238,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 1236905984,
+        "sampled_peak_private_bytes": 91234304,
+        "gpu_memory_measured": false
+      },
+      "backend": "cpu",
+      "complete_video_pipeline": false,
+      "engine_registered": false,
+      "graph_runs": 9,
+      "max_live_sessions": 1,
+      "ok": true,
+      "output_bytes": 12288,
+      "output_shape": [
+        1,
+        3,
+        1,
+        32,
+        32
+      ],
+      "physical_android": false,
+      "runtime_version": "1.24.3",
+      "session_loads": 9,
+      "session_unloads": 9
+    },
+    {
+      "name": "case-2",
+      "seconds": 10.452624999976251,
+      "resources": {
+        "observed": true,
+        "samples": 336,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 1237569536,
+        "sampled_peak_private_bytes": 92491776,
+        "gpu_memory_measured": false
+      },
+      "backend": "cpu",
+      "complete_video_pipeline": false,
+      "engine_registered": false,
+      "graph_runs": 9,
+      "max_live_sessions": 1,
+      "ok": true,
+      "output_bytes": 417792,
+      "output_shape": [
+        1,
+        3,
+        17,
+        32,
+        64
+      ],
+      "physical_android": false,
+      "runtime_version": "1.24.3",
+      "session_loads": 9,
+      "session_unloads": 9
+    },
+    {
+      "name": "case-3",
+      "seconds": 15.456462299975101,
+      "resources": {
+        "observed": true,
+        "samples": 500,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 1237204992,
+        "sampled_peak_private_bytes": 91537408,
+        "gpu_memory_measured": false
+      },
+      "backend": "cpu",
+      "complete_video_pipeline": false,
+      "engine_registered": false,
+      "graph_runs": 9,
+      "max_live_sessions": 1,
+      "ok": true,
+      "output_bytes": 221184,
+      "output_shape": [
+        1,
+        3,
+        9,
+        64,
+        32
+      ],
+      "physical_android": false,
+      "runtime_version": "1.24.3",
+      "session_loads": 9,
+      "session_unloads": 9
+    },
+    {
+      "name": "repeat-case-0",
+      "seconds": 3.0995359999942593,
+      "resources": {
+        "observed": false,
+        "samples": 0,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 0,
+        "sampled_peak_private_bytes": 0,
+        "gpu_memory_measured": false
+      },
+      "backend": "cpu",
+      "complete_video_pipeline": false,
+      "engine_registered": false,
+      "graph_runs": 9,
+      "max_live_sessions": 1,
+      "ok": true,
+      "output_bytes": 835584,
+      "output_shape": [
+        1,
+        3,
+        17,
+        64,
+        64
+      ],
+      "physical_android": false,
+      "runtime_version": "1.24.3",
+      "session_loads": 9,
+      "session_unloads": 9
+    },
+    {
+      "name": "guard-00",
+      "seconds": 0.0172444999916479,
+      "resources": {
+        "observed": false,
+        "samples": 0,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 0,
+        "sampled_peak_private_bytes": 0,
+        "gpu_memory_measured": false
+      },
+      "error": "Unsupported VAE operation",
+      "graph_runs": 0,
+      "max_live_sessions": 0,
+      "ok": false,
+      "session_loads": 0,
+      "session_unloads": 0,
+      "terminated_runs": 0
+    },
+    {
+      "name": "guard-01",
+      "seconds": 0.11733799998182803,
+      "resources": {
+        "observed": false,
+        "samples": 0,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 0,
+        "sampled_peak_private_bytes": 0,
+        "gpu_memory_measured": false
+      },
+      "error": "Unknown request key",
+      "graph_runs": 0,
+      "max_live_sessions": 0,
+      "ok": false,
+      "session_loads": 0,
+      "session_unloads": 0,
+      "terminated_runs": 0
+    },
+    {
+      "name": "guard-02",
+      "seconds": 0.0225588999746833,
+      "resources": {
+        "observed": false,
+        "samples": 0,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 0,
+        "sampled_peak_private_bytes": 0,
+        "gpu_memory_measured": false
+      },
+      "error": "Integer outside research limits",
+      "graph_runs": 0,
+      "max_live_sessions": 0,
+      "ok": false,
+      "session_loads": 0,
+      "session_unloads": 0,
+      "terminated_runs": 0
+    },
+    {
+      "name": "guard-03",
+      "seconds": 0.01893779999227263,
+      "resources": {
+        "observed": false,
+        "samples": 0,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 0,
+        "sampled_peak_private_bytes": 0,
+        "gpu_memory_measured": false
+      },
+      "error": "Integer outside research limits",
+      "graph_runs": 0,
+      "max_live_sessions": 0,
+      "ok": false,
+      "session_loads": 0,
+      "session_unloads": 0,
+      "terminated_runs": 0
+    },
+    {
+      "name": "guard-04",
+      "seconds": 0.02014959999360144,
+      "resources": {
+        "observed": false,
+        "samples": 0,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 0,
+        "sampled_peak_private_bytes": 0,
+        "gpu_memory_measured": false
+      },
+      "error": "Integer outside research limits",
+      "graph_runs": 0,
+      "max_live_sessions": 0,
+      "ok": false,
+      "session_loads": 0,
+      "session_unloads": 0,
+      "terminated_runs": 0
+    },
+    {
+      "name": "guard-05",
+      "seconds": 0.02557259998866357,
+      "resources": {
+        "observed": false,
+        "samples": 0,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 0,
+        "sampled_peak_private_bytes": 0,
+        "gpu_memory_measured": false
+      },
+      "error": "Integer outside research limits",
+      "graph_runs": 0,
+      "max_live_sessions": 0,
+      "ok": false,
+      "session_loads": 0,
+      "session_unloads": 0,
+      "terminated_runs": 0
+    },
+    {
+      "name": "guard-06",
+      "seconds": 0.014368800009833649,
+      "resources": {
+        "observed": false,
+        "samples": 0,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 0,
+        "sampled_peak_private_bytes": 0,
+        "gpu_memory_measured": false
+      },
+      "error": "Integer outside research limits",
+      "graph_runs": 0,
+      "max_live_sessions": 0,
+      "ok": false,
+      "session_loads": 0,
+      "session_unloads": 0,
+      "terminated_runs": 0
+    },
+    {
+      "name": "guard-07",
+      "seconds": 0.02470109998830594,
+      "resources": {
+        "observed": false,
+        "samples": 0,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 0,
+        "sampled_peak_private_bytes": 0,
+        "gpu_memory_measured": false
+      },
+      "error": "Expected integer",
+      "graph_runs": 0,
+      "max_live_sessions": 0,
+      "ok": false,
+      "session_loads": 0,
+      "session_unloads": 0,
+      "terminated_runs": 0
+    },
+    {
+      "name": "guard-08",
+      "seconds": 0.021821500005898997,
+      "resources": {
+        "observed": false,
+        "samples": 0,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 0,
+        "sampled_peak_private_bytes": 0,
+        "gpu_memory_measured": false
+      },
+      "error": "Integer outside research limits",
+      "graph_runs": 0,
+      "max_live_sessions": 0,
+      "ok": false,
+      "session_loads": 0,
+      "session_unloads": 0,
+      "terminated_runs": 0
+    },
+    {
+      "name": "guard-09",
+      "seconds": 0.01809630001662299,
+      "resources": {
+        "observed": false,
+        "samples": 0,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 0,
+        "sampled_peak_private_bytes": 0,
+        "gpu_memory_measured": false
+      },
+      "error": "Integer outside research limits",
+      "graph_runs": 0,
+      "max_live_sessions": 0,
+      "ok": false,
+      "session_loads": 0,
+      "session_unloads": 0,
+      "terminated_runs": 0
+    },
+    {
+      "name": "guard-10",
+      "seconds": 0.026530700008152053,
+      "resources": {
+        "observed": false,
+        "samples": 0,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 0,
+        "sampled_peak_private_bytes": 0,
+        "gpu_memory_measured": false
+      },
+      "error": "Number outside research limits",
+      "graph_runs": 0,
+      "max_live_sessions": 0,
+      "ok": false,
+      "session_loads": 0,
+      "session_unloads": 0,
+      "terminated_runs": 0
+    },
+    {
+      "name": "guard-11",
+      "seconds": 0.12944119999883696,
+      "resources": {
+        "observed": false,
+        "samples": 0,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 0,
+        "sampled_peak_private_bytes": 0,
+        "gpu_memory_measured": false
+      },
+      "error": "Number outside research limits",
+      "graph_runs": 0,
+      "max_live_sessions": 0,
+      "ok": false,
+      "session_loads": 0,
+      "session_unloads": 0,
+      "terminated_runs": 0
+    },
+    {
+      "name": "guard-12",
+      "seconds": 0.027237100002821535,
+      "resources": {
+        "observed": false,
+        "samples": 0,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 0,
+        "sampled_peak_private_bytes": 0,
+        "gpu_memory_measured": false
+      },
+      "error": "Number outside research limits",
+      "graph_runs": 0,
+      "max_live_sessions": 0,
+      "ok": false,
+      "session_loads": 0,
+      "session_unloads": 0,
+      "terminated_runs": 0
+    },
+    {
+      "name": "guard-13",
+      "seconds": 0.1282288000220433,
+      "resources": {
+        "observed": false,
+        "samples": 0,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 0,
+        "sampled_peak_private_bytes": 0,
+        "gpu_memory_measured": false
+      },
+      "error": "Number outside research limits",
+      "graph_runs": 0,
+      "max_live_sessions": 0,
+      "ok": false,
+      "session_loads": 0,
+      "session_unloads": 0,
+      "terminated_runs": 0
+    },
+    {
+      "name": "guard-14",
+      "seconds": 0.02605110002332367,
+      "resources": {
+        "observed": false,
+        "samples": 0,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 0,
+        "sampled_peak_private_bytes": 0,
+        "gpu_memory_measured": false
+      },
+      "error": "Truncated/oversized latent or noise tensor",
+      "graph_runs": 0,
+      "max_live_sessions": 0,
+      "ok": false,
+      "session_loads": 0,
+      "session_unloads": 0,
+      "terminated_runs": 0
+    },
+    {
+      "name": "guard-15",
+      "seconds": 0.01813770001172088,
+      "resources": {
+        "observed": false,
+        "samples": 0,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 0,
+        "sampled_peak_private_bytes": 0,
+        "gpu_memory_measured": false
+      },
+      "error": "Empty cancel path",
+      "graph_runs": 0,
+      "max_live_sessions": 0,
+      "ok": false,
+      "session_loads": 0,
+      "session_unloads": 0,
+      "terminated_runs": 0
+    },
+    {
+      "name": "guard-16",
+      "seconds": 0.019769400008954108,
+      "resources": {
+        "observed": false,
+        "samples": 0,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 0,
+        "sampled_peak_private_bytes": 0,
+        "gpu_memory_measured": false
+      },
+      "error": "Trace directory already exists",
+      "graph_runs": 0,
+      "max_live_sessions": 0,
+      "ok": false,
+      "session_loads": 0,
+      "session_unloads": 0,
+      "terminated_runs": 0
+    },
+    {
+      "name": "duplicate-key",
+      "seconds": 0.027824799995869398,
+      "resources": {
+        "observed": false,
+        "samples": 0,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 0,
+        "sampled_peak_private_bytes": 0,
+        "gpu_memory_measured": false
+      },
+      "error": "Duplicate JSON key",
+      "graph_runs": 0,
+      "max_live_sessions": 0,
+      "ok": false,
+      "session_loads": 0,
+      "session_unloads": 0,
+      "terminated_runs": 0
+    },
+    {
+      "name": "nan-json",
+      "seconds": 0.08151570000336505,
+      "resources": {
+        "observed": false,
+        "samples": 0,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 0,
+        "sampled_peak_private_bytes": 0,
+        "gpu_memory_measured": false
+      },
+      "error": "[json.exception.parse_error.101] parse error at line 1, column 347: syntax error while parsing value - invalid literal; last read: '\"timestep\": N'",
+      "graph_runs": 0,
+      "max_live_sessions": 0,
+      "ok": false,
+      "session_loads": 0,
+      "session_unloads": 0,
+      "terminated_runs": 0
+    },
+    {
+      "name": "preserve-output",
+      "seconds": 0.017993700021179393,
+      "resources": {
+        "observed": false,
+        "samples": 0,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 0,
+        "sampled_peak_private_bytes": 0,
+        "gpu_memory_measured": false
+      },
+      "error": "Output already exists",
+      "graph_runs": 0,
+      "max_live_sessions": 0,
+      "ok": false,
+      "session_loads": 0,
+      "session_unloads": 0,
+      "terminated_runs": 0
+    },
+    {
+      "name": "pre-cancel",
+      "seconds": 0.017227500007720664,
+      "resources": {
+        "observed": false,
+        "samples": 0,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 0,
+        "sampled_peak_private_bytes": 0,
+        "gpu_memory_measured": false
+      },
+      "error": "SoulX graph execution cancelled",
+      "graph_runs": 0,
+      "max_live_sessions": 0,
+      "ok": false,
+      "session_loads": 0,
+      "session_unloads": 0,
+      "terminated_runs": 0
+    },
+    {
+      "name": "truncated-tensor",
+      "seconds": 0.025002599984873086,
+      "resources": {
+        "observed": false,
+        "samples": 0,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 0,
+        "sampled_peak_private_bytes": 0,
+        "gpu_memory_measured": false
+      },
+      "error": "Truncated/oversized latent or noise tensor",
+      "graph_runs": 0,
+      "max_live_sessions": 0,
+      "ok": false,
+      "session_loads": 0,
+      "session_unloads": 0,
+      "terminated_runs": 0
+    },
+    {
+      "name": "nonfinite-tensor",
+      "seconds": 0.024664600001415238,
+      "resources": {
+        "observed": false,
+        "samples": 0,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 0,
+        "sampled_peak_private_bytes": 0,
+        "gpu_memory_measured": false
+      },
+      "error": "Non-finite SoulX acoustic tensor",
+      "graph_runs": 0,
+      "max_live_sessions": 0,
+      "ok": false,
+      "session_loads": 0,
+      "session_unloads": 0,
+      "terminated_runs": 0
+    },
+    {
+      "name": "wrong-checkpoint",
+      "seconds": 0.019056799996178597,
+      "resources": {
+        "observed": false,
+        "samples": 0,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 0,
+        "sampled_peak_private_bytes": 0,
+        "gpu_memory_measured": false
+      },
+      "error": "Different old-LTX checkpoint",
+      "graph_runs": 0,
+      "max_live_sessions": 0,
+      "ok": false,
+      "session_loads": 0,
+      "session_unloads": 0,
+      "terminated_runs": 0
+    },
+    {
+      "name": "missing-bundle-assets",
+      "seconds": 0.14183040001080371,
+      "resources": {
+        "observed": false,
+        "samples": 0,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 0,
+        "sampled_peak_private_bytes": 0,
+        "gpu_memory_measured": false
+      },
+      "error": "Unsafe/missing decoder asset",
+      "graph_runs": 0,
+      "max_live_sessions": 0,
+      "ok": false,
+      "session_loads": 0,
+      "session_unloads": 0,
+      "terminated_runs": 0
+    },
+    {
+      "name": "extra-asset",
+      "seconds": 0.024120899994159117,
+      "resources": {
+        "observed": false,
+        "samples": 0,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 0,
+        "sampled_peak_private_bytes": 0,
+        "gpu_memory_measured": false
+      },
+      "error": "Incomplete decoder bundle",
+      "graph_runs": 0,
+      "max_live_sessions": 0,
+      "ok": false,
+      "session_loads": 0,
+      "session_unloads": 0,
+      "terminated_runs": 0
+    },
+    {
+      "name": "stage-path",
+      "seconds": 0.32835830000112765,
+      "resources": {
+        "observed": false,
+        "samples": 0,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 0,
+        "sampled_peak_private_bytes": 0,
+        "gpu_memory_measured": false
+      },
+      "error": "Wrong decoder stage order",
+      "graph_runs": 0,
+      "max_live_sessions": 0,
+      "ok": false,
+      "session_loads": 0,
+      "session_unloads": 0,
+      "terminated_runs": 0
+    },
+    {
+      "name": "asset-size",
+      "seconds": 0.025762500008568168,
+      "resources": {
+        "observed": false,
+        "samples": 0,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 0,
+        "sampled_peak_private_bytes": 0,
+        "gpu_memory_measured": false
+      },
+      "error": "Decoder asset size mismatch",
+      "graph_runs": 0,
+      "max_live_sessions": 0,
+      "ok": false,
+      "session_loads": 0,
+      "session_unloads": 0,
+      "terminated_runs": 0
+    },
+    {
+      "name": "external-traversal",
+      "seconds": 0.10725100000854582,
+      "resources": {
+        "observed": false,
+        "samples": 0,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 0,
+        "sampled_peak_private_bytes": 0,
+        "gpu_memory_measured": false
+      },
+      "error": "External tensor must use a selected local data file",
+      "graph_runs": 0,
+      "max_live_sessions": 0,
+      "ok": false,
+      "session_loads": 0,
+      "session_unloads": 0,
+      "terminated_runs": 0
+    },
+    {
+      "name": "external-out-of-range",
+      "seconds": 0.09019390001776628,
+      "resources": {
+        "observed": false,
+        "samples": 0,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 0,
+        "sampled_peak_private_bytes": 0,
+        "gpu_memory_measured": false
+      },
+      "error": "External tensor exceeds its verified data file",
+      "graph_runs": 0,
+      "max_live_sessions": 0,
+      "ok": false,
+      "session_loads": 0,
+      "session_unloads": 0,
+      "terminated_runs": 0
+    },
+    {
+      "name": "cancel-during-stage-1",
+      "error": "SoulX graph execution cancelled",
+      "graph_runs": 1,
+      "max_live_sessions": 1,
+      "ok": false,
+      "session_loads": 2,
+      "session_unloads": 2,
+      "terminated_runs": 1
+    }
+  ],
+  "gates": {
+    "max_absolute_error": 0.002,
+    "max_relative_rmse": 0.0002,
+    "min_cosine": 0.999999,
+    "finite": true
+  },
+  "original_publisher_decoder_forward": true,
+  "trained_decoder_tensors": 132,
+  "trained_decoder_parameters": 552814641,
+  "trained_checkpoint_loaded": true,
+  "host_model_inference_tested": true,
+  "full_trained_decoder": true,
+  "complete_video_pipeline": false,
+  "t5_executed": false,
+  "dit_executed": false,
+  "video_quality_tested": false,
+  "engine_registered": false,
+  "packaged_in_apk": false,
+  "physical_android": false,
+  "assets": [
+    {
+      "file": "stage-00.onnx",
+      "bytes": 3451,
+      "sha256": "33f367287eaf5bc67aead22132d9d73aeaf66b51387bbc3a032a1c7eb936ff8b"
+    },
+    {
+      "file": "stage-00.onnx.data",
+      "bytes": 14160896,
+      "sha256": "8bfd5b8f04a0d924707997f112e9df029442404e749d596e529a9db2a08f6384"
+    },
+    {
+      "file": "stage-01.onnx",
+      "bytes": 80554,
+      "sha256": "29ede53a11d80957e6f0abe38780511c267762feba725b49c29bd36fa35d31b3"
+    },
+    {
+      "file": "stage-01.onnx.data",
+      "bytes": 1203920900,
+      "sha256": "f8b34f9531d3efb14455dde1acb032b6be2bbaeadb4066f6b400b0905cb885ba"
+    },
+    {
+      "file": "stage-02.onnx",
+      "bytes": 20672,
+      "sha256": "1b74a179d5f160239411d234411641195548607eb523e74c82e34a66b41df415"
+    },
+    {
+      "file": "stage-02.onnx.data",
+      "bytes": 453001216,
+      "sha256": "fbcc19df16368b873c1c4bf21a9e15861884d2a46b7674b9d946339760531aa6"
+    },
+    {
+      "file": "stage-03.onnx",
+      "bytes": 80515,
+      "sha256": "77422f7cab2804d8b7b2b1f160623571a0ed66561e77c69fb6ce741e453b8a3f"
+    },
+    {
+      "file": "stage-03.onnx.data",
+      "bytes": 302067716,
+      "sha256": "49880337fe10880ac3a6f92e63f2bda75a8f67738215be86b6fa34c3a2f6fe47"
+    },
+    {
+      "file": "stage-04.onnx",
+      "bytes": 20671,
+      "sha256": "d264368af810ad36e82b5038311cb86f3acb84351dc58f713ce7691732b6043a"
+    },
+    {
+      "file": "stage-04.onnx.data",
+      "bytes": 113254400,
+      "sha256": "7b0a476b6c29b9db4739e1b2fba33778eaec25ce687a4763f55773a2b5d6b38d"
+    },
+    {
+      "file": "stage-05.onnx",
+      "bytes": 80481,
+      "sha256": "489050eeef9cf3c5378145c13b3819cfc2c84cc02a5eae0f20bb543b47cc0fab"
+    },
+    {
+      "file": "stage-05.onnx.data",
+      "bytes": 76060676,
+      "sha256": "81789f36e257d9b7c22e6934955cee0c3fde3c2725591efa66cf96621d5d31b7"
+    },
+    {
+      "file": "stage-06.onnx",
+      "bytes": 20669,
+      "sha256": "c737a55510880d4b92e12e9aca7138a154ad6e58a96e89a4f2a530a3f369b88c"
+    },
+    {
+      "file": "stage-06.onnx.data",
+      "bytes": 28315648,
+      "sha256": "d377a63aee6e1ec50a92fab21aa4e354a23ff8496921528d9af581d272639e9b"
+    },
+    {
+      "file": "stage-07.onnx",
+      "bytes": 80460,
+      "sha256": "239145b9c04cbb5513ee96d2a41ff5b1f8db2c4cf0d9148c3092028b858b3576"
+    },
+    {
+      "file": "stage-07.onnx.data",
+      "bytes": 19287044,
+      "sha256": "22cad42d7baa91055ac2645d1f2c9ee5019ccf4907d40de4058edadbcf209f30"
+    },
+    {
+      "file": "stage-08.onnx",
+      "bytes": 14758,
+      "sha256": "ff463e05293456c25aa5b1a14d82b1f732f1aee0f00da45f8e28419509ba8ac9"
+    },
+    {
+      "file": "stage-08.onnx.data",
+      "bytes": 1191108,
+      "sha256": "6bf9520daca30d56175d92ce125337eb2bec547a229579279f835d70b09c8298"
+    }
+  ],
+  "oracle_files": {
+    "case-0-latent.f32": {
+      "bytes": 6144,
+      "sha256": "0ea56b93acc1a02923064252faf270d92a72d38fd4f27a3902f23059e0cb221f",
+      "shape": [
+        1,
+        128,
+        3,
+        2,
+        2
+      ]
+    },
+    "case-0-noise.f32": {
+      "bytes": 6144,
+      "sha256": "add84509f0f660a99223dc1531841ad0ba0a4ed994207ec89c6531f6a25b7c2d",
+      "shape": [
+        1,
+        128,
+        3,
+        2,
+        2
+      ]
+    },
+    "case-0-output.f32": {
+      "bytes": 835584,
+      "sha256": "794d74870c2b4319336f0cfe3896dc6f9dcd1858330aeb83daa95fb03e9cd098",
+      "shape": [
+        1,
+        3,
+        17,
+        64,
+        64
+      ]
+    },
+    "case-0-stage-00.f32": {
+      "bytes": 49152,
+      "sha256": "6ea47fa0c2b765bdbe46f4d65eabf9ae80984068ae024144f49226952b55738b",
+      "shape": [
+        1,
+        1024,
+        3,
+        2,
+        2
+      ]
+    },
+    "case-0-stage-01.f32": {
+      "bytes": 49152,
+      "sha256": "9480874e4b9bbb355fde32ee8cf63b43444c6dce47fd1148b11d8127f66a55dd",
+      "shape": [
+        1,
+        1024,
+        3,
+        2,
+        2
+      ]
+    },
+    "case-0-stage-02.f32": {
+      "bytes": 163840,
+      "sha256": "97f6f4cce70d8dbb257644ace49ff4a8e0fd5918961a18cc4217c0522f714f9a",
+      "shape": [
+        1,
+        512,
+        5,
+        4,
+        4
+      ]
+    },
+    "case-0-stage-03.f32": {
+      "bytes": 163840,
+      "sha256": "f43b822a8fda52beec8f214a256931c1c48bc75fb34e03ad8ef524323d3f48e3",
+      "shape": [
+        1,
+        512,
+        5,
+        4,
+        4
+      ]
+    },
+    "case-0-stage-04.f32": {
+      "bytes": 589824,
+      "sha256": "8358014b38718cf23863586aa26f6eb8fecca3951ef2320373d6350c78aec900",
+      "shape": [
+        1,
+        256,
+        9,
+        8,
+        8
+      ]
+    },
+    "case-0-stage-05.f32": {
+      "bytes": 589824,
+      "sha256": "801bc38bc0bd7856267e0feb4fbf4bc249b916b4e0ecfb4101368e7ccc3fed12",
+      "shape": [
+        1,
+        256,
+        9,
+        8,
+        8
+      ]
+    },
+    "case-0-stage-06.f32": {
+      "bytes": 2228224,
+      "sha256": "ea55ae0a4fef3dc77a7615417e8d17b8bd5413739565e9ee7c51f6ac1166edd9",
+      "shape": [
+        1,
+        128,
+        17,
+        16,
+        16
+      ]
+    },
+    "case-0-stage-07.f32": {
+      "bytes": 2228224,
+      "sha256": "695c85af22f4b039c9c60f773a5e6c184d298d0f01c2b2b776f1d4df31962a1a",
+      "shape": [
+        1,
+        128,
+        17,
+        16,
+        16
+      ]
+    },
+    "case-1-latent.f32": {
+      "bytes": 512,
+      "sha256": "4078c57766eaa18e3cd540ba22febeb49d03f00628f017d42b1e4a277a846b0d",
+      "shape": [
+        1,
+        128,
+        1,
+        1,
+        1
+      ]
+    },
+    "case-1-noise.f32": {
+      "bytes": 512,
+      "sha256": "2885f10e0029c576739c522323af58eb8df0b908eefeee7bd9caa6549ebb2926",
+      "shape": [
+        1,
+        128,
+        1,
+        1,
+        1
+      ]
+    },
+    "case-1-output.f32": {
+      "bytes": 12288,
+      "sha256": "fb79ef8aac02e78f4cac712810ba1c0b24aeef492b572859a89663af90de8db8",
+      "shape": [
+        1,
+        3,
+        1,
+        32,
+        32
+      ]
+    },
+    "case-1-stage-00.f32": {
+      "bytes": 4096,
+      "sha256": "7d21b57f8e2d7ff6ee80bd57c49e34a48b6bc59bd0990eeeb253cd3d584a4766",
+      "shape": [
+        1,
+        1024,
+        1,
+        1,
+        1
+      ]
+    },
+    "case-1-stage-01.f32": {
+      "bytes": 4096,
+      "sha256": "597c47725b506826f20bfb0580756dd5f43b28fdf2cd745d1ae73e40dfdc0592",
+      "shape": [
+        1,
+        1024,
+        1,
+        1,
+        1
+      ]
+    },
+    "case-1-stage-02.f32": {
+      "bytes": 8192,
+      "sha256": "31146b3abeeb04763fd4dcec88c3f6dd16da2b5cd3322a3baf836f3e1b251a97",
+      "shape": [
+        1,
+        512,
+        1,
+        2,
+        2
+      ]
+    },
+    "case-1-stage-03.f32": {
+      "bytes": 8192,
+      "sha256": "bb146fd48d8853342c560f2888dd8e9542b6d8a40b585246575835e449487e24",
+      "shape": [
+        1,
+        512,
+        1,
+        2,
+        2
+      ]
+    },
+    "case-1-stage-04.f32": {
+      "bytes": 16384,
+      "sha256": "e4ff27ce37e6915ba7bf3ddf6c4e11ac773248dd14f3a8220907e4702c12cc16",
+      "shape": [
+        1,
+        256,
+        1,
+        4,
+        4
+      ]
+    },
+    "case-1-stage-05.f32": {
+      "bytes": 16384,
+      "sha256": "5c1f0dd1c86bcfeaec30a6a27582139e4cb708d97d99f7fadfa01accd5ac2b26",
+      "shape": [
+        1,
+        256,
+        1,
+        4,
+        4
+      ]
+    },
+    "case-1-stage-06.f32": {
+      "bytes": 32768,
+      "sha256": "017faf54a3a791760d12f23000709ca40ccf0253cf3bf26ed5b0b70b92ea42c4",
+      "shape": [
+        1,
+        128,
+        1,
+        8,
+        8
+      ]
+    },
+    "case-1-stage-07.f32": {
+      "bytes": 32768,
+      "sha256": "9453455f893a719cbba4e26c57bcc7e0261d1f300e0d8196beb60bf62fae14c2",
+      "shape": [
+        1,
+        128,
+        1,
+        8,
+        8
+      ]
+    },
+    "case-2-latent.f32": {
+      "bytes": 3072,
+      "sha256": "c0f4efc42c8307683992ce47fad02a583c913a3b25104a32621e6c0b801bd304",
+      "shape": [
+        1,
+        128,
+        3,
+        1,
+        2
+      ]
+    },
+    "case-2-noise.f32": {
+      "bytes": 3072,
+      "sha256": "4e03ecf4cb1c5533509e22c2b031ee8b7f342ba26f052f0510ace8d147eab926",
+      "shape": [
+        1,
+        128,
+        3,
+        1,
+        2
+      ]
+    },
+    "case-2-output.f32": {
+      "bytes": 417792,
+      "sha256": "46946552a1379ae05dc78b19d00189bdbb8bfa349218efb78f1ba628e1c42afb",
+      "shape": [
+        1,
+        3,
+        17,
+        32,
+        64
+      ]
+    },
+    "case-2-stage-00.f32": {
+      "bytes": 24576,
+      "sha256": "aa6305c6a817d0c2fb869ef6bc8da19c2f90ca0f5f552624b4ede76d6c36c9a3",
+      "shape": [
+        1,
+        1024,
+        3,
+        1,
+        2
+      ]
+    },
+    "case-2-stage-01.f32": {
+      "bytes": 24576,
+      "sha256": "2d4854c063814cdfdd5fe2d4d44f87f900241a76d9db9537f30f7192a36d746d",
+      "shape": [
+        1,
+        1024,
+        3,
+        1,
+        2
+      ]
+    },
+    "case-2-stage-02.f32": {
+      "bytes": 81920,
+      "sha256": "c1693aa5156b02aa7c67465bf9bd7ac0a9f98cd7d15cd708542f63a4e233a164",
+      "shape": [
+        1,
+        512,
+        5,
+        2,
+        4
+      ]
+    },
+    "case-2-stage-03.f32": {
+      "bytes": 81920,
+      "sha256": "dbcb4dc34c0601f60f91bb4a715684a926489a1b6ef5a9cce412655fe5d3e9d6",
+      "shape": [
+        1,
+        512,
+        5,
+        2,
+        4
+      ]
+    },
+    "case-2-stage-04.f32": {
+      "bytes": 294912,
+      "sha256": "0e128c09a729f3d2eb62f41538f56278978089d295817458b296ae80f24aaef2",
+      "shape": [
+        1,
+        256,
+        9,
+        4,
+        8
+      ]
+    },
+    "case-2-stage-05.f32": {
+      "bytes": 294912,
+      "sha256": "59c063dbc24d903b5782e560fa309903af44c3299a656ca39d900cc8c4f6823a",
+      "shape": [
+        1,
+        256,
+        9,
+        4,
+        8
+      ]
+    },
+    "case-2-stage-06.f32": {
+      "bytes": 1114112,
+      "sha256": "cfe5436d1f63e2921aca42c532b430e17e59e8b78f2ef7269fb0f877c1e5aefc",
+      "shape": [
+        1,
+        128,
+        17,
+        8,
+        16
+      ]
+    },
+    "case-2-stage-07.f32": {
+      "bytes": 1114112,
+      "sha256": "8af80109deb0e2873f2d14d750e521e3674f09eddb47f1b8d0a6db77199fa669",
+      "shape": [
+        1,
+        128,
+        17,
+        8,
+        16
+      ]
+    },
+    "case-3-latent.f32": {
+      "bytes": 2048,
+      "sha256": "d7706c7c487b77e2afab66a5333eaedb9436607cdb0d7636de139451243b5a73",
+      "shape": [
+        1,
+        128,
+        2,
+        2,
+        1
+      ]
+    },
+    "case-3-noise.f32": {
+      "bytes": 2048,
+      "sha256": "626656015ce4a9c74f78a07f1b28a71db531e3c4715eae72f422403d9d964fc8",
+      "shape": [
+        1,
+        128,
+        2,
+        2,
+        1
+      ]
+    },
+    "case-3-output.f32": {
+      "bytes": 221184,
+      "sha256": "3476ffe0715d69751ea5b2654139c695350f79df5cf5107d8c8532d3799b99e2",
+      "shape": [
+        1,
+        3,
+        9,
+        64,
+        32
+      ]
+    },
+    "case-3-stage-00.f32": {
+      "bytes": 16384,
+      "sha256": "60db2964c11fb58467ec31a364296b728555a770c20676b6852ee45dc6401062",
+      "shape": [
+        1,
+        1024,
+        2,
+        2,
+        1
+      ]
+    },
+    "case-3-stage-01.f32": {
+      "bytes": 16384,
+      "sha256": "647d1cf16e433346affbda558ddc6ea9ef11136dfbf518dfce8243cb1c9580ee",
+      "shape": [
+        1,
+        1024,
+        2,
+        2,
+        1
+      ]
+    },
+    "case-3-stage-02.f32": {
+      "bytes": 49152,
+      "sha256": "be77f80274dfda27e4b0525d2553b70fb39f01f269ed9dc97bce3eb0c42be5ab",
+      "shape": [
+        1,
+        512,
+        3,
+        4,
+        2
+      ]
+    },
+    "case-3-stage-03.f32": {
+      "bytes": 49152,
+      "sha256": "2713981acdd1009fff012c3ba4d8994d6f6f249cdfa01f7159735d9ff9442b52",
+      "shape": [
+        1,
+        512,
+        3,
+        4,
+        2
+      ]
+    },
+    "case-3-stage-04.f32": {
+      "bytes": 163840,
+      "sha256": "9a4a110aa28feb15dd128a82316f8a0c795b86f8c45ff8b47385fa5b393735f9",
+      "shape": [
+        1,
+        256,
+        5,
+        8,
+        4
+      ]
+    },
+    "case-3-stage-05.f32": {
+      "bytes": 163840,
+      "sha256": "d17e99b988d770804415215c40cea8b1cccd53aaa74e616aec749bef1ae9ac56",
+      "shape": [
+        1,
+        256,
+        5,
+        8,
+        4
+      ]
+    },
+    "case-3-stage-06.f32": {
+      "bytes": 589824,
+      "sha256": "7bf379ff199cc52e3cd6c89238309274b322e16565427f1ea50f08b1987580bf",
+      "shape": [
+        1,
+        128,
+        9,
+        16,
+        8
+      ]
+    },
+    "case-3-stage-07.f32": {
+      "bytes": 589824,
+      "sha256": "cbaf653f5b7a7c55a7348761148fca18ec17709cd103c79ad8ef232089c3cdb6",
+      "shape": [
+        1,
+        128,
+        9,
+        16,
+        8
+      ]
+    }
+  },
+  "executable_sha256": "abfa7108963be7a2be1d91b7c81b7643f783be913885ee8741e5573fdc10e550",
+  "backend": "cpu",
+  "runtime_version": "1.24.3",
+  "input_fingerprint": {
+    "third_party/ltx098-source-lock.json": "28acd99486f6ca76a06d038076175ac01ca55c7b1d8c3ba6dab9190291ac8779",
+    "third_party/ltx098-vae-source-lock.json": "201ac18ca78b381f810f0567ecd300a5bfda1b489893be56d28b30d6e6db2dcb",
+    "tools/build_ltx098.py": "bf39449e38190a666093f6954d133a76da36d519817ca636703f030100d4faf8",
+    "tools/ltx098_assets.py": "0380166ca9d3f2f9a028675e6f9d9a827005767a67f66e3c1f00626226ae155c",
+    "tools/ltx098_fixture.py": "60c5730c77dda5055a7cef23b91af0042493a53d49e8f3b898e7634b78170ef8",
+    "tools/ltx098_vae.py": "f64b71b00d95050bad34252db9ac4935e84d550790ae147b40eddc43c3b871dd",
+    "native/moss_nano/onnx_external.hpp": "c1bb8f95ad2078472dbbf2ea0863493ac44f4aae7c4336cf5debb0db0d54fae5",
+    "research/ltx098_vae/CMakeLists.txt": "fcc7e89deb1b1bf4d1dc74c329225e4f6ceccd997a2370b8d06263293ec93b9f",
+    "research/ltx098_vae/driver.cpp": "f275cabc410dd07e38058902676e3ca9c4dc7a0684f4f39b5a386b74fb4d3604",
+    "research/ltx098_vae/NOTICE": "b5bec20058b46269f031462291b56fea8f5620359ec71f64353e76a9c4f6bcd3",
+    "research/soulx/dsp.hpp": "ef6a28cae0d2e72d1b84890437286b0ed8a20690c0ac07b2ddf8162ee2d2fd58",
+    "research/soulx_ort/android_log.cpp": "216f630761ff67a00cfe47db941338f45560fc45486ebcbdff196cf36dac3d04",
+    "research/soulx_ort/LICENSE-ONNX-RUNTIME-MIT": "c250d6278f0b47a6439fb7592b08b58a55eb9f535aa49a1db63211c3f982b674",
+    "research/soulx_ort/NOTICE": "69487267d86f7998917bc9f7e9b6d2e30e168f41c92369f41a33e225c0bfceb6",
+    "research/soulx_ort/runtime.hpp": "0586ad63c3210ec42d1c3cc956beb05614e56e9cb803632d596e57935689b2c8",
+    "research/soulx_ort/types.hpp": "f0822ae37dd26996501f2b69e4e1bb9404ad53903dd267ff793ee60d96f42de4",
+    "third_party/soulx-acoustic-source-lock.json": "b39e10c415c5f30d4e4adb52327e1e04df371407131f47617622da913b268ac5",
+    "tools/build_ltx098_vae.py": "5ed2804db3fb13044e4aa30022368a8323ac73ed6ebcb875b27d5304b10c61c0",
+    "tools/build_ltx098_text.py": "c9c7a6f1c619e9ab15d95baf9a53d8854cbe217a698b22e102cdf1cd7cf18b85",
+    "tools/fetch_ltx098_text.py": "55782095a1b941dc809b33966f62aeffda1b2ca0c719033610432ec00599b577",
+    "tools/test_ltx098_text.py": "79a4a7c35badeddb58c1bafe2fe5511cd309cff09e24afd25474fd748c41e260",
+    "tools/test_ltx098_vae.py": "7f43289dca33ab041442b05609760e68e1642242e6d3b7ddaead44d8c4e0bdf0"
+  }
+}

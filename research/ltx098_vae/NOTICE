@@ -1,0 +1,13 @@
+LMA old LTX-Video 2B 0.9.8 distilled VAE research worker
+Original LMA source: MIT. No model weights are included.
+
+The offline exporter adapts the decoder of Lightricks/LTX-Video,
+revision 4b2d053057623ddd4d0a1d3e9cd28890e9ef487f (Apache-2.0).
+The original unmodified Decoder.forward is the separate numerical oracle.
+Weights remain subject to the LTX-Video Open Weights License 0.x.
+The weight license and Apache source-code license are distinct.
+
+CPU ONNX execution reuses the read-only MIT session helper in ../soulx_ort,
+with its ONNX Runtime MIT notice and native/moss_nano/onnx_external.hpp
+confinement checks. No SoulX audio networks or DSP functions are executed.
+See third_party/ltx098-vae-source-lock.json and docs/LTX098_VAE.md.

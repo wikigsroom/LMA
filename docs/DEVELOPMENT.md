@@ -199,3 +199,8 @@ Internal dev.19 / 内部 dev.19：[旧 Local / Realtime 原生 RQ](MOSS_RQ_ENGIN
 ## dev.21 源码后续：旧 LTX T5
 
 [中文方案](LTX098_TEXT.md) / [English](LTX098_TEXT.en.md) / [编号交付与完整待办](releases/v0.3.0-dev.21-ltx-text.md)。491检查 /76真实原生子进程 /39防护通过；完整训练24层T5的三个短提示词及一次重复、219张量 /4,762,310,656参数与独立解量化参考对照，最大误差3.27826e-6。外部原始配置补齐社区GGUF缺失的sentinel定义，全部32000学习词条 /分数与归一化表一致。临时F32矩阵执行避免额外Q8舍入，原生计算中取消通过；ARM64/API28/16KiB仅编译。No complete video/App/physical Android, unquantized/prompt quality or full trained256-token completion is claimed. APK/UI media remain dev.21; every frozen model/subtarget and full v0.3.0 gate remains.
+
+
+## 旧 LTX 训练 VAE 后续
+
+[中文方案](LTX098_VAE.md) / [English](LTX098_VAE.en.md) / [本轮编号实现与完整待办](releases/v0.3.0-dev.21-ltx-vae.md)。132张量 /552,814,641训练参数只载入decoder，不实例化encoder；九段ONNX CPU会话顺序执行，原始BF16转F32，单独原始Decoder.forward参考验证不同几何 /时间 /噪声条件。模型图 /统计 /数据均为外部资产，当前离线导出不是完整公共下载候选或手机转换器；App /手机 /质量 /完整视频分别验收。No new APK, UI media or Release is produced by this source-only component.
