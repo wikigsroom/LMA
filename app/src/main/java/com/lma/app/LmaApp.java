@@ -20,7 +20,7 @@ import com.lma.app.core.ArtifactStore;
 import com.lma.app.core.InputUploads;
 
 public final class LmaApp extends Application {
-    public static final String VERSION = "0.3.0-dev.15";
+    public static final String VERSION = "0.3.0-dev.16";
     public static final String UPDATE = "com.lma.app.STATE_CHANGED";
     public Store store;
     private final java.util.concurrent.atomic.AtomicBoolean migrationRunning = new java.util.concurrent.atomic.AtomicBoolean(), migrationPending = new java.util.concurrent.atomic.AtomicBoolean();

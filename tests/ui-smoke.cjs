@@ -14,6 +14,7 @@ const checkScheduler = require('./scheduler-ui.cjs');
 const checkInputs = require('./inputs-ui.cjs');
 const checkDiffusion = require('./diffusion-ui.cjs');
 const checkQwen = require('./qwen-ui.cjs');
+const checkMossDelay = require('./moss-delay-ui.cjs');
 const {chromium} = require(process.env.LMA_PLAYWRIGHT || 'playwright');
 const root = path.resolve(__dirname, '..');
 const assets = path.join(root, 'app/src/main/assets');
@@ -21,7 +22,7 @@ const output = path.join(root, 'build/ui-qa');
 fs.mkdirSync(output, {recursive: true});
 if (fs.existsSync(path.join(output, 'results.json'))) fs.unlinkSync(path.join(output, 'results.json'));
 function inputFingerprint() {
-  const files = fs.readdirSync(assets, {recursive: true}).map(name => path.join(assets, name)).filter(file => fs.statSync(file).isFile()).concat(__filename, path.join(root, 'tests/hub-fixture.cjs'), path.join(root, 'tests/foundation-ui.cjs'), path.join(root, 'tests/recipes-ui.cjs'), path.join(root, 'tests/versions-ui.cjs'), path.join(root, 'tests/text-ui.cjs'), path.join(root, 'tests/migration-ui.cjs'), path.join(root, 'tests/scheduler-ui.cjs'), path.join(root, 'tests/inputs-ui.cjs'), path.join(root, 'tests/diffusion-ui.cjs'), path.join(root, 'tests/qwen-ui.cjs'));
+  const files = fs.readdirSync(assets, {recursive: true}).map(name => path.join(assets, name)).filter(file => fs.statSync(file).isFile()).concat(__filename, path.join(root, 'tests/hub-fixture.cjs'), path.join(root, 'tests/foundation-ui.cjs'), path.join(root, 'tests/recipes-ui.cjs'), path.join(root, 'tests/versions-ui.cjs'), path.join(root, 'tests/text-ui.cjs'), path.join(root, 'tests/migration-ui.cjs'), path.join(root, 'tests/scheduler-ui.cjs'), path.join(root, 'tests/inputs-ui.cjs'), path.join(root, 'tests/diffusion-ui.cjs'), path.join(root, 'tests/qwen-ui.cjs'), path.join(root, 'tests/moss-delay-ui.cjs'));
   return Object.fromEntries(files.sort().map(file => [path.relative(root, file).split(path.sep).join('/'), crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex')]));
 }
 const verifiedInputs = inputFingerprint();
@@ -241,7 +242,7 @@ async function main() {
   await page.setViewportSize({width:375,height:812}); await page.keyboard.press('Escape');
   await page.locator('.nav-item[data-tab="settings"]').click();
   await page.locator('[data-action="about"]').click(); await page.locator('[data-action="notices"]').click();
-  assert.equal(await page.locator('.license-notice').count(), 63); assert((await page.locator('#modalContent').textContent()).includes('tts-onnxruntime-ThirdPartyNotices.txt.txt')); assert((await page.locator('#modalContent').textContent()).includes('mnn-LICENSE.txt')); assert((await page.locator('#modalContent').textContent()).includes('qwen-tts-LICENSE.txt')); await page.keyboard.press('Escape'); checked('Bundled third-party license reader includes the compiled MNN dependencies');
+  assert.equal(await page.locator('.license-notice').count(), fs.readdirSync(path.join(assets, 'licenses')).filter(name => name.endsWith('.txt')).length + 1); assert((await page.locator('#modalContent').textContent()).includes('tts-onnxruntime-ThirdPartyNotices.txt.txt')); assert((await page.locator('#modalContent').textContent()).includes('mnn-LICENSE.txt')); assert((await page.locator('#modalContent').textContent()).includes('qwen-tts-LICENSE.txt')); assert((await page.locator('#modalContent').textContent()).includes('moss-delay-LICENSE.txt')); await page.keyboard.press('Escape'); checked('Bundled third-party license reader includes the compiled MNN dependencies');
   await page.locator('.nav-item[data-tab="server"]').click(); await page.evaluate(() => { document.getElementById('page-server').scrollTop = 0; document.getElementById('toast').hidden = true; }); await page.screenshot({path: path.join(output, '04-server-dark.png')});
   await page.locator('.nav-item[data-tab="models"]').click(); await page.locator('#addModelButton').click();
   await page.locator('[data-action="addUrl"]').click();
@@ -273,6 +274,7 @@ async function main() {
   await checkInputs(page, checked, checkOverflow);
   await checkDiffusion(page, checked, checkOverflow);
   await checkQwen(page, checked, checkOverflow);
+  await checkMossDelay(page, checked, checkOverflow);
   await page.locator('.nav-item[data-tab="models"]').click();
   await page.setViewportSize({width: 1024, height: 768}); await checkOverflow(page, 'Tablet library layout');
   await page.screenshot({path: path.join(output, '05-tablet.png')});

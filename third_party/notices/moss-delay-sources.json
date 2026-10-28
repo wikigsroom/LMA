@@ -1,0 +1,11 @@
+{
+  "revision": "b785003ba497794ecfa337c3e47f01af79489888",
+  "files": [
+    {
+      "file": "moss-delay-LICENSE.txt",
+      "sha256": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
+      "source": "https://github.com/OpenMOSS/llama.cpp/blob/b785003ba497794ecfa337c3e47f01af79489888/LICENSE"
+    }
+  ],
+  "model_assets": false
+}

@@ -67,3 +67,5 @@
 内部 dev.13：新增四条用户自选图像 / 视频组件路线，见[双语说明](releases/v0.3.0-dev.13.md)，不是完整 Release。
 
 [Qwen3-TTS 本机语音](QWEN_TTS_ENGINE.md) / [English](QWEN_TTS_ENGINE.en.md)：0.6B Base 原生 CPU、两个自选 GGUF、内含依赖、可选参考 WAV、参数与 RTF 证据边界。
+
+- MOSS Delay first-class 原生语音：[中文](MOSS_DELAY_ENGINE.md) / [English](MOSS_DELAY_ENGINE.en.md)；[dev.16 双语说明](releases/v0.3.0-dev.16.md)。

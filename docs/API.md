@@ -174,3 +174,7 @@ dev.12 扩散任务由服务端生成 `diffusionPlan`：保留普通请求参数
 dev.13 的四条[高级扩散 / 视频路线](ADVANCED_DIFFUSION.md)复用现有任务 API。使用已选择 / 安装的 bundleId，Wan 提交 video.generate，其他三条提交 image.generate。flowShift、尺寸、frames / fps 随该模型 schema 归位；服务端派生 diffusionPlan，客户端不能自行提供。缺组件失败，不触发下载；仍无这些模型的 Android 输出证据。
 
 Qwen3-TTS 0.6B Base 复用 `POST /v1/jobs` 的 `speech.synthesize` 与本地 `reference_audio` 输入；不新增 OpenAI `/v1/audio/speech` 兼容声明。有效采样参数、实际种子、音频帧与 RTF 保存在执行记录，未测不能声称实时；见 [Qwen 语音接口示例](QWEN_TTS_ENGINE.md)。
+
+## MOSS Delay 本机任务
+
+`moss_delay_native` 复用 `speech.synthesize`、模型独立参数、共用队列和 WAV 产物。只有所选包含原生编码器时才提供可选 `reference_audio`；普通 TTS 不需要编码器或默认音色。详见 [MOSS Delay 管线与执行回执](MOSS_DELAY_ENGINE.md)。没有新增 `/v1/audio/speech` 兼容性声明。

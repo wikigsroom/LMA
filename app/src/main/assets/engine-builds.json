@@ -249,6 +249,35 @@
         "sd-nlohmann-json-LICENSE.txt",
         "sd-NDK-LLVM-NOTICE.txt"
       ]
+    },
+    {
+      "schema": "lma.native-build/1",
+      "engine": "moss_delay_native",
+      "file": "liblma-moss-delay.so",
+      "source_revision": "b785003ba497794ecfa337c3e47f01af79489888",
+      "abi": "arm64-v8a",
+      "backend": "cpu",
+      "ndk": "30.0.16248370",
+      "min_sdk": 28,
+      "bytes": 3294464,
+      "sha256": "c070752845c2ef8395cb2613807756a3c2b0d16be43897a63e9f962e48666cda",
+      "elf_load_alignment": [
+        16384
+      ],
+      "android_api_notes": [
+        28
+      ],
+      "vocabularies": "external_user_selected_components",
+      "model_inference_tested": false,
+      "physical_device_tests": 0,
+      "virtualization_used": false,
+      "deviceValidated": false,
+      "status": "compiled_not_device_tested",
+      "notices": [
+        "moss-delay-LICENSE.txt",
+        "sd-nlohmann-json-LICENSE.txt",
+        "sd-NDK-LLVM-NOTICE.txt"
+      ]
     }
   ],
   "textRuntime": {

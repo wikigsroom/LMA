@@ -174,3 +174,7 @@ Dev.12 diffusion jobs derive server-owned `diffusionPlan` metadata, retaining re
 dev.13 [advanced image/video routes](ADVANCED_DIFFUSION.en.md) reuse the existing task API. Use an explicitly selected/installed bundleId with video.generate for Wan and image.generate for the other three. flowShift, dimensions and frames/fps follow the model schema. The server derives diffusionPlan; clients cannot provide it. Missing assets fail without downloading; Android model outputs remain unverified.
 
 Qwen3-TTS 0.6B Base reuses `POST /v1/jobs`, `speech.synthesize` and an optional local `reference_audio` binding. No OpenAI `/v1/audio/speech` compatibility is claimed. Execution metadata records actual settings/seed, frames and RTF; real-time claims require measurements. See the [Qwen request example](QWEN_TTS_ENGINE.en.md).
+
+## MOSS Delay local jobs
+
+`moss_delay_native` reuses `speech.synthesize`, per-model settings, shared jobs and WAV artifacts. Optional `reference_audio` appears only with a selected native encoder; plain TTS needs no encoder or bundled voice. See [pipeline and execution receipts](MOSS_DELAY_ENGINE.en.md). This establishes no `/v1/audio/speech` compatibility claim.

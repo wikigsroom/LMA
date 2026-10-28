@@ -1,3 +1,7 @@
+# MOSS Delay first-class CPU worker
+
+[Pinned source lock](moss-delay-source-lock.json) records the MIT OpenMOSS fork used by the same-phone 32-channel speech pipeline. Native source only; backbone/BPE/codec files remain explicit user assets. See [中文](../docs/MOSS_DELAY_ENGINE.md) / [English](../docs/MOSS_DELAY_ENGINE.en.md). No ordinary MOSS GGUF compatibility or complete-family/device acceptance is implied.
+
 # Native runtime provenance and notices
 
 LMA independently implements its Android application and UI. It redistributes the CPU subset of the MIT-licensed llama.cpp runtime supplied by the [ServLlama 1.2.2 release](https://github.com/ArkaneFans/servllama/releases/tag/1.2.2).

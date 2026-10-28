@@ -1,5 +1,12 @@
 # Changelog / 更新记录
 
+## 0.3.0-dev.16 — 2026-10-28 (internal / unpublished)
+
+- 新增 MOSS Delay first-class 签名 ARM64 CPU worker、生产 Java 管线、严格组件 / WAV 契约、模型独立采样和实际执行计时。Added a real local BPE/32-channel Delay/codec route with sequential model release.
+- 第 23 个显式 HF 配方：主模型和解码器必需；参考编码器仅用户需要时选择，不隐式下载或打包模型数据。Plain TTS does not require reference assets; ordinary MOSS GGUFs and other family architectures remain distinct.
+- 176 项新增 Java / C++ 检查包含实际主机子进程及固定上游 Delay 自检；基座 467、UI 228、Lint 0 errors / 13 warnings；更新双语文档、截图 40–41、录屏与 GIF。Fixtures are not generated speech or physical Android acceptance.
+- 所有冻结目标、完整家族适配与模型质量 / 资源 / 后台 / 升级门槛保留在同一完整 v0.3.0，无新 Release。See [双语说明](docs/releases/v0.3.0-dev.16.md), [中文](docs/MOSS_DELAY_ENGINE.md), [English](docs/MOSS_DELAY_ENGINE.en.md).
+
 ## 0.3.0-dev.15 — 2026-10-28 (internal / unpublished)
 
 - 新增 Qwen3-TTS 12Hz 0.6B Base 的签名 ARM64 CPU worker、生产 Java 适配器、可选本地参考 WAV、独立采样参数、严格 GGUF / 音频检查与实际耗时 / RTF 记录。Added a real same-phone Qwen speech route; model/device output remains untested.

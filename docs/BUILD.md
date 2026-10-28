@@ -108,3 +108,7 @@ dev.13 重新编译扩散 worker：8,836,200 bytes，SHA256 `01e6c0a37fc56bb9268
 Sana MNN 构建在同一原生 Windows 工具链下依次运行 `python tools/fetch_mnn.py`、`python tools/build_mnn.py`、`python tools/collect_mnn_notices.py`、`python tools/test_mnn.py`，然后通用 APK / Lint / 包检查。源码、header、覆盖补丁和许可固定，不下载模型。74 项主机 / C++ 检查不执行 MNN 模型；详见 [MNN Sana 构建与组件](MNN_SANA_ENGINE.md)。
 
 Qwen 原生语音使用同一 Windows 工具链：`fetch_qwen_tts.py` → `build_qwen_tts.py` → `collect_qwen_tts_notices.py` → `test_qwen_tts.py`（均在 `tools/`）。CPU / API 28 / 16 KiB，源码和许可固定，不自动下载模型。开发者可明确运行 `python tools/audit_qwen_headers.py --origin https://hf-mirror.com` 核对固定 GGUF 文件头，未读张量。见 [Qwen 语音构建](QWEN_TTS_ENGINE.md)。
+
+## MOSS Delay 原生引擎
+
+固定 fork / 原生提取 / NDK 编译 / 许可步骤见 [MOSS Delay](MOSS_DELAY_ENGINE.md)。依次运行 `tools/fetch_moss_delay.py`、`tools/build_moss_delay.py`、`tools/collect_moss_delay_notices.py`；`tools/test_moss_delay.py` 执行主机 Java 契约和上游原生 Delay 算法自检。所有文件保留项目内，不下载或转换模型权重。

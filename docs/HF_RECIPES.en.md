@@ -2,12 +2,12 @@
 
 [中文](HF_RECIPES.md) · [HF discovery](HF_MODELS.en.md) · [Development status](DEVELOPMENT.en.md) · [Asset-control audit](ASSET_CONTROL_AUDIT.en.md)
 
-Applies to **0.3.0-dev.15 / code 19, an internal checkpoint, not a Release**. The App supplies code and recipe metadata; users select and manage model assets. This workflow does not establish Android support for arbitrary HF weights. Architecture, language, matching components, licensing and device resources still need verification.
+Applies to **0.3.0-dev.16 / code 20, an internal checkpoint, not a Release**. The App supplies code and recipe metadata; users select and manage model assets. This workflow does not establish Android support for arbitrary HF weights. Architecture, language, matching components, licensing and device resources still need verification.
 
 ## User workflow
 
 1. Search HF or use All, open a repository's file picker, then choose **构建模型包 / LoRA 配方**. The existing single-file GGUF text route is preserved.
-2. Explicitly select one of twenty-two signed data templates: text GGUF, MOSS Nano, matched Sana MNN mobile, split Z-Image/FLUX/Qwen-Image/Wan, complete/split SD1.5/SDXL, their ordinary LoRAs, SD-Turbo, both LCM checkpoint/LCM-LoRA architectures, and English Kokoro/Piper/Matcha. See the [diffusion guide](DIFFUSION_ENGINE.en.md). Templates neither install engines nor convert weights or verify phone support.
+2. Explicitly select one of twenty-three signed data templates: text GGUF, MOSS Nano, Qwen3-TTS Base, MOSS Delay first-class, matched Sana MNN mobile, split Z-Image/FLUX/Qwen-Image/Wan, complete/split SD1.5/SDXL, their ordinary LoRAs, SD-Turbo, both LCM checkpoint/LCM-LoRA architectures, and English Kokoro/Piper/Matcha. See the [diffusion guide](DIFFUSION_ENGINE.en.md). Templates neither install engines nor convert weights or verify phone support.
 3. Select each required role, such as `model`, `voices`, `tokens` or `vocoder`. Enter another `owner/repository` and paginate when necessary. Existing choices retain their own repository and frozen commit. Extensions validate role formats only; they do not identify architecture or language. Changing templates clears choices; closing/restarting may lose an undeclared draft.
 4. Inspect all files, disclosed dependencies, sources, revisions, sizes and integrity types. Diffusion templates disclose CLIP merges; split SDXL requires CLIP-L, CLIP-G and VAE. Speech templates disclose their English lexicon; other languages need complete matching recipes. LCM-LoRA needs its specific template; a name does not declare acceleration.
 5. **加入本地并查看下载计划** registers an immutable manifest and **does not download**. Review the full size, verified reuse, remaining transfer and engine status, then explicitly download. Missing engines/assets or incompatibility fail locally with an explanation; no off-device inference or implicit dependency download is added.
@@ -60,3 +60,7 @@ dev.13 adds four split templates for Z-Image-Turbo, FLUX.2-klein 4B, Qwen-Image 
 dev.14 adds the [Sana mobile / MNN pipeline](MNN_SANA_ENGINE.en.md): a real ARM64 CPU worker, 13 user-selected components, whitelisted Qwen3 metadata, encoder release before diffusion, per-model CFG/token/thread controls and immutable job plans. Its 74 host/C++ checks perform no model inference. All 21 templates remain metadata with separately confirmed downloads. Foundation 445 and UI 208 checks pass; 37 screenshots and recording/GIF are explicit UI FIXTUREs. No Android image/endurance evidence exists. Every frozen target and release gate remains in the same complete v0.3.0, without a new Release.
 
 Qwen3-TTS adds the 22nd template and a pinned optional bundle: two GGUFs provide Talker (embedded BPE/Code Predictor/speaker encoder) and the 12Hz codec. Shared `provides` discloses embedded roles without extra downloads. Only matching 0.6B Base is accepted; headers are reviewed and phone execution remains untested. See the [Qwen speech guide](QWEN_TTS_ENGINE.en.md).
+
+## MOSS Delay: optional reference encoder
+
+The 23rd template, `moss_delay_firstclass_cpu_v1`, requires a matching native first-class backbone and decoder. Users select an encoder only when reference WAV support is needed. Ordinary MOSS GGUFs, v2 codecs and other MOSS architectures differ. No new pinned checked download candidate is added; users choose files/import conversions, without an implicit encoder fetch. See the [complete workflow](MOSS_DELAY_ENGINE.en.md); all frozen family members retain individual acceptance gates.

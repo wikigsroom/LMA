@@ -2,12 +2,12 @@
 
 [English](HF_RECIPES.en.md) · [HF 发现](HF_MODELS.md) · [开发状态](DEVELOPMENT.md) · [资产边界核对](ASSET_CONTROL_AUDIT.md)
 
-适用：**0.3.0-dev.15 / code 19，内部开发检查点，未发 Release**。App 提供代码与配方元数据，用户选择和管理模型资产。以下流程不表示任意 HF 权重均能在 Android 上运行；实际架构、语言、组件配套、许可和设备资源仍需核对。
+适用：**0.3.0-dev.16 / code 20，内部开发检查点，未发 Release**。App 提供代码与配方元数据，用户选择和管理模型资产。以下流程不表示任意 HF 权重均能在 Android 上运行；实际架构、语言、组件配套、许可和设备资源仍需核对。
 
 ## 用户操作
 
 1. 在模型页进入“全部”或搜索 HF，打开仓库的“选择文件”。保留原有 GGUF 文本入口；点击“构建模型包 / LoRA 配方”进入组件选择。
-2. 明确选择配方。当前提供二十二个签名 App 数据模板：文本 GGUF、MOSS Nano、匹配的 Sana MNN 移动管线、Z-Image / FLUX / Qwen-Image / Wan 独立组件、SD1.5 / SDXL 完整及分离组件、两者普通 LoRA、SD-Turbo、两者 LCM checkpoint / LCM-LoRA，以及 Kokoro / Piper / Matcha 英语模板。具体组件和采样规则见[扩散指南](DIFFUSION_ENGINE.md)。模板不安装引擎，不转换权重，不证明手机已支持。
+2. 明确选择配方。当前提供二十三个签名 App 数据模板：文本 GGUF、MOSS Nano、Qwen3-TTS Base、MOSS Delay first-class、匹配的 Sana MNN 移动管线、Z-Image / FLUX / Qwen-Image / Wan 独立组件、SD1.5 / SDXL 完整及分离组件、两者普通 LoRA、SD-Turbo、两者 LCM checkpoint / LCM-LoRA，以及 Kokoro / Piper / Matcha 英语模板。具体组件和采样规则见[扩散指南](DIFFUSION_ENGINE.md)。模板不安装引擎，不转换权重，不证明手机已支持。
 3. 按角色选择每个必需文件，例如 `model`、`voices`、`tokens`、`vocoder`。可在选择页输入其他 `作者/仓库`，使用分页寻找组件；已经选择的组件保留各自仓库和固定提交。文件扩展名只用于角色格式检查，不推断模型架构或语言。切换配方会清空草稿选择，关闭窗口或重启可能丢失未登记草稿。
 4. 检查主文件、全部固定依赖、来源、版本、大小与校验类型。扩散模板披露 CLIP merges；分离 SDXL 必须包含 CLIP-L、CLIP-G 和 VAE。语音模板披露英语词表；其他语言仍需正确完整配方。LCM-LoRA 使用专用模板，不能把普通 LoRA 名称当成加速声明。
 5. 点击“加入本地并查看下载计划”：只登记不可变清单，**不下载**。在详情中核对完整总量、已验证可复用文件、剩余传输及引擎状态，再单独点击下载。缺引擎、缺文件或不兼容时在本机说明原因，没有外部推理或隐式补下载。
@@ -60,3 +60,7 @@ dev.13 增加 Z-Image-Turbo、FLUX.2-klein 4B、Qwen-Image 2.1 与 Wan 2.1 T2V 1
 dev.14 接入 [Sana 移动管线 / MNN](MNN_SANA_ENGINE.md)：真实 ARM64 CPU worker、13 个用户自选组件、Qwen3 metadata 白名单、分阶段释放编码器、独立 CFG / token / 线程参数与不可变任务快照。74 项主机 / C++ 检查不包含模型推理；全部 21 个模板仍只登记元数据、由用户确认下载。445 项基座与 208 项界面检查通过；37 张截图及录屏 / GIF 均标识 UI FIXTURE。没有 Android 生图 / 耐久证据，完整 v0.3.0 的冻结目标和发布门槛保持不变，未创建新 Release。
 
 Qwen3-TTS 新增第 22 个模板和一个固定版本可选包：两个 GGUF 分别提供 Talker（内含词表 / Code Predictor / speaker encoder）和 12Hz codec。通用 `provides` 显示内含依赖，不额外下载。只匹配 0.6B Base，实际文件头已核对，手机执行仍待验收。详见 [Qwen 语音指南](QWEN_TTS_ENGINE.md)。
+
+## MOSS Delay：可选参考编码器
+
+第 23 个模板 `moss_delay_firstclass_cpu_v1` 需要匹配的原生 first-class 主模型和解码器；编码器只在用户需要参考 WAV 时选择。普通 MOSS GGUF、v2 codec 和其他 MOSS 架构不能替代。当前没有新增固定已核对下载候选；用户选择文件或导入转换包，App 不隐式补下编码器。完整流程与参数见 [MOSS Delay](MOSS_DELAY_ENGINE.md)，完整家族仍逐项验收。

@@ -3323,6 +3323,231 @@
       ],
       "fixedComponents": [],
       "help": "仅匹配 Danmoreng/qwen3-tts.cpp 转换布局的 0.6B Base 和 12Hz codec；不能用 CustomVoice、VoiceDesign、1.7B 或通用文本 GGUF 替代。模型、内嵌词表和说话人编码器均由用户选择下载。可选导入 24 kHz 单声道 1–30 秒 WAV，当前提供 speaker-embedding 参考；未提供 ICL 文本、命名音色或指令音色设计。CPU 编译不代表手机输出、质量或实时性已验证。"
+    },
+    {
+      "id": "moss_delay_firstclass_cpu_v1",
+      "name": "MOSS Delay 8B · first-class 原生语音",
+      "primaryRole": "backbone",
+      "definition": {
+        "engine": "moss_delay_native",
+        "backend": "cpu",
+        "architecture": "moss_delay_8b_v1",
+        "pipeline": "moss_delay_firstclass_v1",
+        "tasks": [
+          "audio"
+        ],
+        "capabilities": [
+          "text_to_speech"
+        ],
+        "parameters": {
+          "version": 1,
+          "fields": {
+            "threads": {
+              "type": "integer",
+              "label": "CPU 线程",
+              "default": 4,
+              "minimum": 1,
+              "maximum": 32,
+              "presets": [
+                2,
+                4,
+                8
+              ],
+              "limitSource": "application_guard"
+            },
+            "maxInputTokens": {
+              "type": "integer",
+              "label": "格式化输入上限（含参考音频）",
+              "default": 512,
+              "minimum": 1,
+              "maximum": 2048,
+              "presets": [
+                256,
+                512,
+                1024,
+                2048
+              ],
+              "limitSource": "application_guard"
+            },
+            "maxNewTokens": {
+              "type": "integer",
+              "label": "生成步数上限（含 Delay 排空）",
+              "default": 375,
+              "minimum": 64,
+              "maximum": 1500,
+              "presets": [
+                128,
+                375,
+                750,
+                1500
+              ],
+              "limitSource": "application_guard"
+            },
+            "seed": {
+              "type": "integer",
+              "label": "随机种子（-1 自动）",
+              "default": -1,
+              "minimum": -1,
+              "maximum": 2147483647,
+              "presets": [
+                -1,
+                0,
+                42
+              ],
+              "limitSource": "native_seed_range"
+            },
+            "audioRepetitionPenalty": {
+              "type": "number",
+              "label": "音频重复惩罚",
+              "default": 1,
+              "minimum": 1,
+              "maximum": 2,
+              "presets": [
+                1,
+                1.05,
+                1.1
+              ],
+              "limitSource": "application_guard"
+            },
+            "language": {
+              "type": "enum",
+              "label": "语言提示",
+              "default": "auto",
+              "values": [
+                "auto",
+                "zh",
+                "en",
+                "de",
+                "es",
+                "fr",
+                "ja",
+                "it",
+                "hu",
+                "ko",
+                "ru",
+                "fa",
+                "ar",
+                "pl",
+                "pt",
+                "cs",
+                "da",
+                "sv",
+                "el",
+                "tr"
+              ]
+            },
+            "textTemperature": {
+              "type": "number",
+              "label": "文本温度",
+              "default": 1.5,
+              "minimum": 0,
+              "maximum": 3,
+              "presets": [
+                0,
+                1,
+                1.5
+              ],
+              "limitSource": "application_guard"
+            },
+            "textTopP": {
+              "type": "number",
+              "label": "文本 Top P",
+              "default": 1,
+              "minimum": 0.01,
+              "maximum": 1,
+              "presets": [
+                0.8,
+                0.9,
+                1
+              ],
+              "limitSource": "application_guard"
+            },
+            "textTopK": {
+              "type": "integer",
+              "label": "文本 Top K",
+              "default": 50,
+              "minimum": 1,
+              "maximum": 1024,
+              "presets": [
+                1,
+                25,
+                50
+              ],
+              "limitSource": "application_guard"
+            },
+            "audioTemperature": {
+              "type": "number",
+              "label": "音频温度",
+              "default": 1.7,
+              "minimum": 0,
+              "maximum": 3,
+              "presets": [
+                0,
+                1,
+                1.7
+              ],
+              "limitSource": "application_guard"
+            },
+            "audioTopP": {
+              "type": "number",
+              "label": "音频 Top P",
+              "default": 0.8,
+              "minimum": 0.01,
+              "maximum": 1,
+              "presets": [
+                0.8,
+                0.9,
+                1
+              ],
+              "limitSource": "application_guard"
+            },
+            "audioTopK": {
+              "type": "integer",
+              "label": "音频 Top K",
+              "default": 25,
+              "minimum": 1,
+              "maximum": 1024,
+              "presets": [
+                1,
+                25,
+                50
+              ],
+              "limitSource": "application_guard"
+            }
+          }
+        }
+      },
+      "requirements": [
+        {
+          "role": "backbone",
+          "label": "first-class MOSS Delay 8B（含 BPE / 32 路 embedding 和输出头）",
+          "formats": [
+            "gguf"
+          ],
+          "required": true,
+          "provides": [
+            "text_tokenizer"
+          ]
+        },
+        {
+          "role": "audio_decoder",
+          "label": "配套 24 kHz / 32 路原生解码器",
+          "formats": [
+            "gguf"
+          ],
+          "required": true
+        },
+        {
+          "role": "audio_encoder",
+          "label": "可选：同版原生编码器（参考音频必需）",
+          "formats": [
+            "gguf"
+          ],
+          "required": false
+        }
+      ],
+      "fixedComponents": [],
+      "help": "仅匹配固定 OpenMOSS/llama.cpp first-class 转换布局；普通 MOSS-TTS-GGUF / 仅 Qwen3 backbone / Nano / Local / Realtime / v2 codec 不适用。用户明确选择主模型和解码器；仅需参考音频时再选择编码器。参考 WAV 为 24 kHz 单声道 1–10 秒，生成与 codec 分阶段释放。8B 内存需求高，尚无手机输出、速度或后台验收；此路由不表示完整 MOSS 九子目标已支持。"
     }
   ]
 }

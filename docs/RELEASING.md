@@ -87,3 +87,5 @@ GitHub 的按标签 REST 查询可能对草稿返回 404；工具通过已认证
 已有 v0.2.0 预发布保留其真实 `physical_device_tests=0` 状态。下一完整 v0.3.0 必须满足上面的全部发布门槛；无设备的内部 dev 检查点不创建 Release。The historical v0.2.0 prerelease retains truthful device flags. The complete next v0.3.0 requires every gate above; internal dev checkpoints without device acceptance do not create Releases.
 
 发布后的文档或工具维护可运行 `python tools/check_repository.py --published`，把原始源码 ZIP 与已发布标签核对，再检查当前公开文件、文档和证据。不要为了让当前文件等于旧 ZIP 而改写已公开附件。For post-release documentation/tool maintenance, `--published` compares the immutable source bundle with its tag while checking current public files, links, and evidence. This permits later commits without rewriting published assets.
+
+MOSS Delay 的原生算法提取 / CPU worker / 许可见 [中文](MOSS_DELAY_ENGINE.md) / [English](MOSS_DELAY_ENGINE.en.md)。同步执行 `python tools/test_moss_delay.py`；其上游自检、结构 WAV 与主机进程证据不能替代完整 MOSS 家族或物理 Android 的模型输出 / 质量 / 后台验收。

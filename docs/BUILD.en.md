@@ -108,3 +108,7 @@ dev.13 rebuilds the diffusion worker: 8,836,200 bytes, SHA256 `01e6c0a37fc56bb92
 Build Sana MNN with the same native Windows tools: `python tools/fetch_mnn.py`, `python tools/build_mnn.py`, `python tools/collect_mnn_notices.py`, `python tools/test_mnn.py`, then the shared APK/Lint/package checks. Source/header/overlays/notices are pinned; no model is downloaded. Its 74 host/C++ checks perform no MNN inference. See [MNN Sana build and components](MNN_SANA_ENGINE.en.md).
 
 Native Qwen speech uses the same Windows toolchain: `fetch_qwen_tts.py` → `build_qwen_tts.py` → `collect_qwen_tts_notices.py` → `test_qwen_tts.py`, all under `tools/`. CPU/API 28/16 KiB, pinned sources/notices, without automatic model downloads. Developers may explicitly run `python tools/audit_qwen_headers.py --origin https://hf-mirror.com` to review pinned headers without tensor reads. See [Qwen speech build details](QWEN_TTS_ENGINE.en.md).
+
+## MOSS Delay native engine
+
+See [MOSS Delay](MOSS_DELAY_ENGINE.en.md) for the pinned fork, native extraction, NDK build and notices. Run `tools/fetch_moss_delay.py`, `tools/build_moss_delay.py`, then `tools/collect_moss_delay_notices.py`; `tools/test_moss_delay.py` executes Java host contracts and the upstream native Delay self-test. All files stay in the project; these commands fetch or convert no model weights.

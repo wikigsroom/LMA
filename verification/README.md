@@ -40,3 +40,5 @@ dev.13：[高级扩散 / 视频接入](../docs/ADVANCED_DIFFUSION.md)，174 diff
 dev.14：[Sana MNN](../docs/MNN_SANA_ENGINE.md) / [English](../docs/MNN_SANA_ENGINE.en.md)；新增 [mnn.json](development/mnn.json) 的 74 项生产绑定 / 真实主机进程 / C++ 策略检查；445 foundation（253 recipe/integrity）、208 UI，37 张截图与录屏 / GIF。20 个原生文件仅为编译 / APK 证据，无模型 / Android 输出，完整 v0.3.0 未发布。
 
 dev.15：[Qwen3-TTS 0.6B Base](../docs/QWEN_TTS_ENGINE.md) / [English](../docs/QWEN_TTS_ENGINE.en.md)；[qwen-tts.json](development/qwen-tts.json) 的 81 项主机检查使用明确的静态结构 WAV，不生成语音；[qwen-headers.json](development/qwen-headers.json) 只核对两个固定 GGUF 的文件头，不读取张量。457 foundation、216 UI、39 张截图 / 录屏 / GIF、21 个原生文件及 APK / Lint 均为限定范围开发证据。No model/Android inference, quality, RTF or endurance is proven; every full v0.3.0 gate remains open where evidence is missing.
+
+内部 dev.16 的 [development/moss-delay.json](development/moss-delay.json) 包含 176 项检查：69 项生产 Java / 实际主机子进程、107 项 C++ 算法 / 策略，包含固定上游 Delay 自检与 frame-major codec / WAV 边界。WAV 是结构夹具；没有 tensor / 模型 / Android 推理。App 更新基座，模型用户自行选择；完整 v0.3.0 仍需各冻结目标和设备验收。 / Internal dev.16 evidence is scoped and does not establish full Release acceptance.

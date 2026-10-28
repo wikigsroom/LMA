@@ -212,3 +212,5 @@ A1–A4 的规则和部分迁移可先做桌面检查；A5–A8 必须有物理 
 dev.13 的[Z-Image / FLUX / Qwen / Wan 基座接入](ADVANCED_DIFFUSION.md)增加四种用户自选组件模板、严格组件角色、采样器 / 调度器 / flowShift 原生绑定、Qwen 尺寸与 Wan 帧数约束。174 项扩散主机检查（Java 117 / C++ 57）、425 项基座（配方 / 完整性 233）与 203 项 UI 通过；35 张截图与录屏 / GIF 是显式 UI FIXTURE。组件家族校验不证明具体规模或蒸馏方法；没有模型输出或 Android 实测。App 仅更新基座，二十个模板均不隐式下载；全部目标与设备门槛继续属于同一完整 v0.3.0，无新 Release。
 
 dev.15：[Qwen3-TTS 0.6B Base / Local speech](QWEN_TTS_ENGINE.md) / [English](QWEN_TTS_ENGINE.en.md) 接入原生 CPU、两个自选 GGUF 与内含依赖、可选参考 WAV、独立参数和真实 RTF 记录。81 host checks / pinned-header review are not model inference or Android acceptance. App 仅更新基座，用户独立控制全部模型资产。编号 11 和全部其他冻结目标继续在同一完整 v0.3.0 满足真实输出、质量与生命周期门槛；无新 Release。
+
+Internal dev.16 / 内部 dev.16：[MOSS Delay 原生管线](MOSS_DELAY_ENGINE.md) adds the 8B first-class CPU route, optional reference encoder, model-owned sampling and actual native algorithm/host checks. App updates carry no model assets or implicit downloads. 该路由不替代 MOSS 九子目标各自适配或验收；F-01–F-12、01–14 / 16 / 17、全部冻结子目标及 A1–A11 / R-01–R-05 继续属于同一完整 v0.3.0，无新 Release。

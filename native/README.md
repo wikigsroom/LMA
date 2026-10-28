@@ -1,3 +1,7 @@
+# Native MOSS Delay / 原生 MOSS Delay
+
+`moss_delay/` builds a CPU-only first-class MOSS backbone + optional reference encoder + waveform decoder from the pinned OpenMOSS fork. It extracts reviewed native primitives, excludes the upstream CLI/Python/shell helper, releases each model before the next stage and carries no model data. Source/build/asset boundaries: [中文](../docs/MOSS_DELAY_ENGINE.md) / [English](../docs/MOSS_DELAY_ENGINE.en.md). Compilation and host algorithm tests do not establish Android speech acceptance.
+
 # Internal Android worker / Android 内部执行器
 
 This directory contains App code, not model weights or an executable model plugin system. 当前有实际编译的 `sd_cpp`、`sherpa_tts` 与 `moss_nano_ort` CPU worker，不代表所有模型目标已经适配或经手机验证。

@@ -164,6 +164,24 @@
         "sd-nlohmann-json-LICENSE.txt": "0e592e358cf7722906f417be85bc514f15bf6efd28cea98cb84e56ef7fddfc3e",
         "sd-NDK-LLVM-NOTICE.txt": "f96f763beb66a7ba7a667647fc64c0226ace875e590c831fdd9579ec1c1d91e1"
       }
+    },
+    {
+      "engine": "moss_delay_native",
+      "file": "liblma-moss-delay.so",
+      "source_revision": "b785003ba497794ecfa337c3e47f01af79489888",
+      "abi": "arm64-v8a",
+      "backend": "cpu",
+      "ndk": "30.0.16248370",
+      "sha256": "c070752845c2ef8395cb2613807756a3c2b0d16be43897a63e9f962e48666cda",
+      "bytes": 3294464,
+      "android_api_notes": [
+        28
+      ],
+      "notices": {
+        "moss-delay-LICENSE.txt": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
+        "sd-nlohmann-json-LICENSE.txt": "0e592e358cf7722906f417be85bc514f15bf6efd28cea98cb84e56ef7fddfc3e",
+        "sd-NDK-LLVM-NOTICE.txt": "f96f763beb66a7ba7a667647fc64c0226ace875e590c831fdd9579ec1c1d91e1"
+      }
     }
   ]
 }
