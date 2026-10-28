@@ -114,3 +114,5 @@ Native Qwen speech uses the same Windows toolchain: `fetch_qwen_tts.py` → `bui
 See [MOSS Delay](MOSS_DELAY_ENGINE.en.md) for the pinned fork, native extraction, NDK build and notices. Run `tools/fetch_moss_delay.py`, `tools/build_moss_delay.py`, then `tools/collect_moss_delay_notices.py`; `tools/test_moss_delay.py` executes Java host contracts and the upstream native Delay self-test. All files stay in the project; these commands fetch or convert no model weights.
 
 The [openmoss build](OPENMOSS_ENGINE.en.md#5-pinned-sources-and-build) runs fetch_openmoss.py / build_openmoss.py / collect_openmoss_notices.py before shared APK packaging. It downloads/converts no model data.
+
+Stable Audio native build: `fetch_stable_audio.py` → `build_stable_audio.py` → `collect_stable_audio_notices.py` → `test_stable_audio.py`（`tools/`）。 Native Windows NDK, pinned official LiteRT AAR/SDK, CPU, caches under build/. Host tests also require Python flatbuffers (25.12.19 in this checkpoint), MSVC and Java; the pinned Windows DLL runs synthetic tiny graphs and stays out of the APK. See [components, commands and provenance](STABLE_AUDIO_ENGINE.en.md).

@@ -5098,6 +5098,140 @@
       ],
       "fixedComponents": [],
       "help": "仅匹配固定 mudler/moss-tts.cpp 转换格式；模型 / codec / BPE 由用户显式选择，不能混用 openmoss、Nano、first-class 或 Local-v1.5。Realtime 使用独立的 4 层 RoPE 深度 Transformer / 16 路编码，逐步注入文本，但当前接口是单次文本完成后返回 WAV，不提供增量文本输入或音频流。输出 24 kHz 单声道；可选 1–10 秒、≤1 MiB 同格式 PCM16 / float32 参考 WAV，不自动重采样。1.7B 主干与大 codec 同时驻留内存，需要高内存设备；未证明 Z20 可运行。无附带权重或词表；尚无 LMA Android 推理、质量、速度或后台验收。"
+    },
+    {
+      "id": "stable_audio_small_litert_v1",
+      "name": "Stable Audio Open Small · 本地短音频",
+      "primaryRole": "diffusion_model",
+      "definition": {
+        "engine": "stable_audio_litert",
+        "backend": "cpu",
+        "architecture": "stable_audio_open_small",
+        "pipeline": "stable_audio_small_litert_v1",
+        "tasks": [
+          "audio"
+        ],
+        "capabilities": [
+          "text_to_audio",
+          "short_audio",
+          "english_prompts",
+          "fixed_latent_length"
+        ],
+        "parameters": {
+          "version": 1,
+          "fields": {
+            "threads": {
+              "type": "integer",
+              "label": "CPU 线程",
+              "default": 4,
+              "minimum": 1,
+              "maximum": 32,
+              "presets": [
+                2,
+                4,
+                8
+              ],
+              "limitSource": "application_guard"
+            },
+            "seed": {
+              "type": "integer",
+              "label": "种子（-1 自动）",
+              "default": -1,
+              "minimum": -1,
+              "maximum": 2147483647,
+              "presets": [
+                -1,
+                42
+              ],
+              "limitSource": "application_guard"
+            },
+            "seconds": {
+              "type": "integer",
+              "label": "输出秒数（裁切；固定长度生成与解码）",
+              "default": 5,
+              "minimum": 1,
+              "maximum": 11,
+              "presets": [
+                3,
+                5,
+                8,
+                11
+              ],
+              "limitSource": "model_duration_limit"
+            },
+            "steps": {
+              "type": "integer",
+              "label": "扩散步数",
+              "default": 8,
+              "minimum": 1,
+              "maximum": 32,
+              "presets": [
+                4,
+                8,
+                16,
+                32
+              ],
+              "limitSource": "application_guard"
+            },
+            "maxInputTokens": {
+              "type": "integer",
+              "label": "有效提示词上限（含 EOS）",
+              "default": 64,
+              "minimum": 1,
+              "maximum": 64,
+              "presets": [
+                32,
+                64
+              ],
+              "limitSource": "export_conditioning_limit"
+            }
+          }
+        }
+      },
+      "requirements": [
+        {
+          "role": "conditioner",
+          "label": "匹配 Arm 导出的 T5-base / 时长条件编码器（128 输入 / 64 有效 token）",
+          "formats": [
+            "tflite"
+          ],
+          "required": true,
+          "provides": [
+            "text_encoder"
+          ]
+        },
+        {
+          "role": "diffusion_model",
+          "label": "同版 SAO Small DiT（64×256 latent）",
+          "formats": [
+            "tflite"
+          ],
+          "required": true,
+          "provides": []
+        },
+        {
+          "role": "audio_decoder",
+          "label": "同版音频解码器（44.1 kHz 立体声 / 524288 帧）",
+          "formats": [
+            "tflite"
+          ],
+          "required": true,
+          "provides": []
+        },
+        {
+          "role": "tokenizer",
+          "label": "T5-base 配套 spiece.model（32000 pieces）",
+          "formats": [
+            "sentencepiece"
+          ],
+          "required": true,
+          "provides": [
+            "text_tokenizer"
+          ]
+        }
+      ],
+      "fixedComponents": [],
+      "help": "仅匹配固定 Arm-Examples audiogen TFLite 导出，不是任意 Stable Audio checkpoint。四份组件由用户逐一选择，安装 / 浏览 / 缺件均不自动下载。手机 LiteRT CPU 依次编码、扩散、解码；英文提示词最多 64 token（含 EOS），超过报错，不静默截断。输出 1–11 秒、44.1 kHz 立体声 PCM16；短时长仍执行固定 256 latent / 524288 解码帧，不能据此降低内存估算。无负面提示词、CFG、参考音频、语音克隆或图像 LoRA。官方权重受 Stability AI Community 条款及访问限制约束，模型许可与 App 许可独立。8 步是上游默认；线程 / 32 步属于应用保护。上游建议 8 GB RAM，未证明 Z20 可运行；LMA 尚无完整模型音质、速度或 Android 验收。"
     }
   ]
 }

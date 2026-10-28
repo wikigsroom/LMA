@@ -1,5 +1,11 @@
 # Changelog / 更新记录
 
+## 0.3.0-dev.20 — internal / unpublished
+
+新增 Stable Audio Open Small 同机 LiteRT CPU 基座：顺序 T5 / DiT / 音频解码、四份用户自选组件、HF TFLite 文件识别、每模型可编辑参数与有效 token / 固定长度成本说明。144 项限定检查含实际 LiteRT 微型图和 6 次主机子进程，不是整模型或 Android 推理。
+
+Added a native same-phone Stable Audio pipeline, strict pinned export layouts, isolated worker lifecycle, model-specific bounded settings and receipts. All 33 recipes are metadata; no implicit model transfers. Original-signature development APK, 561 foundation / 287 UI assertions, bilingual docs, screens 56–58 and refreshed recording/GIF. Full frozen scope and phone gates remain in one complete v0.3.0; no new Release. See [numbered notes / 编号交付](docs/releases/v0.3.0-dev.20.md).
+
 ## 0.3.0-dev.19 — 2026-10-28 (internal / unpublished)
 
 新增旧 Local / Realtime 的独立原生 RQ 基座，三个用户自选 GGUF、24 kHz 可选参考、独立词表与实际输入预算校验；旧 SoundEffect 按官方模板绑定 Ambient Sound。Added separate native depth architectures and shared model-owned parameters/jobs/leases/cleanup. Realtime currently provides one text request to complete WAV, without incremental streaming or real-time claims.

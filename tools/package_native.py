@@ -7,7 +7,7 @@ from verify_package import elf_info
 from native_payload import engine_files
 
 ROOT = Path(__file__).resolve().parents[1]
-RECEIPTS = {"sd_cpp": "native-build-info.json", "sherpa_tts": "tts-build-info.json", "moss_nano_ort": "moss-nano-build-info.json", "mnn_diffusion": "mnn-build-info.json", "qwen_tts_native": "qwen-tts-build-info.json", "moss_delay_native": "moss-delay-build-info.json", "openmoss_native": "openmoss-build-info.json", "moss_rq_native": "moss_rq-build-info.json"}
+RECEIPTS = {"sd_cpp": "native-build-info.json", "sherpa_tts": "tts-build-info.json", "moss_nano_ort": "moss-nano-build-info.json", "mnn_diffusion": "mnn-build-info.json", "qwen_tts_native": "qwen-tts-build-info.json", "moss_delay_native": "moss-delay-build-info.json", "openmoss_native": "openmoss-build-info.json", "moss_rq_native": "moss_rq-build-info.json", "stable_audio_litert": "stable-audio-build-info.json"}
 
 
 def text_runtime():

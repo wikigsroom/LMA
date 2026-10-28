@@ -9,6 +9,7 @@
 | 安装与操作 / Installation and workflow | [USER_GUIDE.md](USER_GUIDE.md) | [USER_GUIDE.en.md](USER_GUIDE.en.md) |
 | API 与 SSE / API and streaming | [API.md](API.md) | [API.en.md](API.en.md) |
 | 开发实施 / Development status | [DEVELOPMENT.md](DEVELOPMENT.md) | [DEVELOPMENT.en.md](DEVELOPMENT.en.md) |
+| Stable Audio 短音频 / Local short audio | [STABLE_AUDIO_ENGINE.md](STABLE_AUDIO_ENGINE.md) | [STABLE_AUDIO_ENGINE.en.md](STABLE_AUDIO_ENGINE.en.md) |
 | 基座与资产需求核对 / Asset-control audit | [ASSET_CONTROL_AUDIT.md](ASSET_CONTROL_AUDIT.md) | [ASSET_CONTROL_AUDIT.en.md](ASSET_CONTROL_AUDIT.en.md) |
 | Sana 移动端 / MNN 引擎 | [MNN_SANA_ENGINE.md](MNN_SANA_ENGINE.md) | [MNN_SANA_ENGINE.en.md](MNN_SANA_ENGINE.en.md) |
 | 高级扩散 / 视频基座 | [ADVANCED_DIFFUSION.md](ADVANCED_DIFFUSION.md) | [ADVANCED_DIFFUSION.en.md](ADVANCED_DIFFUSION.en.md) |

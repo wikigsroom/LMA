@@ -16,6 +16,7 @@ const diffusionUI = require('../tests/diffusion-ui.cjs');
 const qwenUI = require('../tests/qwen-ui.cjs');
 const mossDelayUI = require('../tests/moss-delay-ui.cjs');
 const openMossUI = require('../tests/openmoss-ui.cjs');
+const stableAudioUI = require('../tests/stable-audio-ui.cjs');
 const {hubFixture, installHubBridge} = require('../tests/hub-fixture.cjs');
 const root = path.resolve(__dirname, '..');
 const assets = path.join(root, 'app/src/main/assets');
@@ -317,13 +318,26 @@ async function main() {
     if(pipeline.includes('local_v10'))await page.locator('[data-bundle-field="voiceInstruction"]').fill('成年、平静的声音（表单示例）');
     await page.locator('#modalTitle').evaluate(e=>e.scrollIntoView({block:'start'}));await shot(index+'-'+pipeline+'.png','UI FIXTURE, user-selected components, no model inference / 用户自选组件，未执行模型；Realtime 当前为单次文本到 WAV');await page.keyboard.press('Escape');
   }
+  {
+    const template=templates.find(t=>t.id==='stable_audio_small_litert_v1'),id=await page.evaluate(stableAudioUI.installFixture,template);
+    await page.locator('[data-action="bundleInfo"][data-id="'+id+'"]').click();
+    await page.locator('.bundle-components').evaluate(e=>e.scrollIntoView({block:'center'}));
+    await shot('56-stable-audio-components.png','UI FIXTURE / 四份用户自选组件；固定长度生成与解码，未执行模型');
+    await page.locator('#modal [data-action="bundleUse"][data-id="'+id+'"]').click();
+    await page.locator('[name="prompt"]').fill('Rain falling on leaves, distant birds. UI fixture only; no model inference.');
+    await page.locator('#localTaskForm .task-parameters').evaluate(e=>{e.open=true;});
+    await page.locator('#modalTitle').evaluate(e=>e.scrollIntoView({block:'start'}));
+    await shot('57-stable-audio-task.png','UI FIXTURE / 1–11 秒，64 token 含 EOS；无参考音频 / CFG，未生成音频');
+    await page.locator('[data-bundle-field="maxInputTokens"]').evaluate(e=>e.scrollIntoView({block:'center'}));
+    await shot('58-stable-audio-bounds.png','UI FIXTURE / 每模型独立 token 上限与本次尝试；未生成音频');await page.keyboard.press('Escape');
+  }
   if (errors.length) throw new Error(JSON.stringify(errors));
   const video = page.video(); await context.close(); context = null;
   const raw = await video.path();
   ffmpeg(['-i', raw, '-an', '-c:v', 'libx264', '-crf', '22', '-pix_fmt', 'yuv420p', '-movflags', '+faststart', path.join(out, 'foundation-ui.mp4')]);
   ffmpeg(['-i', path.join(out, 'foundation-ui.mp4'), '-vf', 'fps=6,scale=320:-2:flags=lanczos,split[a][b];[a]palettegen=max_colors=96[p];[b][p]paletteuse=dither=bayer:bayer_scale=3', '-loop', '0', path.join(out, 'foundation-ui.gif')]);
   const files = fs.readdirSync(out).filter(n => /\.(png|gif|mp4)$/.test(n)).sort().map(file => ({file, bytes: fs.statSync(path.join(out, file)).size, sha256: digest(path.join(out, file))}));
-  const sourceFiles = fs.readdirSync(assets, {recursive: true}).map(n => path.join(assets, n)).filter(p => fs.statSync(p).isFile()).concat(__filename, path.join(root, 'tests/foundation-ui.cjs'), path.join(root, 'tests/recipes-ui.cjs'), path.join(root, 'tests/hub-fixture.cjs'), path.join(root, 'tests/versions-ui.cjs'), path.join(root, 'tests/text-ui.cjs'), path.join(root, 'tests/migration-ui.cjs'), path.join(root, 'tests/scheduler-ui.cjs'), path.join(root, 'tests/inputs-ui.cjs'), path.join(root, 'tests/diffusion-ui.cjs'), path.join(root, 'tests/qwen-ui.cjs'), path.join(root, 'tests/moss-delay-ui.cjs'), path.join(root, 'tests/openmoss-ui.cjs'));
+  const sourceFiles = fs.readdirSync(assets, {recursive: true}).map(n => path.join(assets, n)).filter(p => fs.statSync(p).isFile()).concat(__filename, path.join(root, 'tests/foundation-ui.cjs'), path.join(root, 'tests/recipes-ui.cjs'), path.join(root, 'tests/hub-fixture.cjs'), path.join(root, 'tests/versions-ui.cjs'), path.join(root, 'tests/text-ui.cjs'), path.join(root, 'tests/migration-ui.cjs'), path.join(root, 'tests/scheduler-ui.cjs'), path.join(root, 'tests/inputs-ui.cjs'), path.join(root, 'tests/diffusion-ui.cjs'), path.join(root, 'tests/qwen-ui.cjs'), path.join(root, 'tests/moss-delay-ui.cjs'), path.join(root, 'tests/openmoss-ui.cjs'), path.join(root, 'tests/stable-audio-ui.cjs'));
   const input_fingerprint = Object.fromEntries(sourceFiles.sort().map(file => [path.relative(root, file).split(path.sep).join('/'), digest(file)]));
   fs.writeFileSync(path.join(out, 'manifest.json'), JSON.stringify({version, kind: 'development UI with explicit simulated native bridge', android_device: false, model_inference: false, weights_downloaded: false, browser_closed: true, browser_errors: errors, screenshots, files, input_fingerprint}, null, 2) + '\n');
   console.log(JSON.stringify({version, screenshots: screenshots.length, files: files.length, android_device: false, model_inference: false, browser_closed: true}));

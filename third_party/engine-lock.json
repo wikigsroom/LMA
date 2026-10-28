@@ -222,6 +222,37 @@
         "sd-nlohmann-json-LICENSE.txt": "0e592e358cf7722906f417be85bc514f15bf6efd28cea98cb84e56ef7fddfc3e",
         "sd-NDK-LLVM-NOTICE.txt": "f96f763beb66a7ba7a667647fc64c0226ace875e590c831fdd9579ec1c1d91e1"
       }
+    },
+    {
+      "engine": "stable_audio_litert",
+      "file": "liblma-stable-audio.so",
+      "source_revision": "0e453847ea28043194c32791a591d0f5a8a5ae2e",
+      "abi": "arm64-v8a",
+      "backend": "cpu",
+      "ndk": "30.0.16248370",
+      "sha256": "8c063d3941ab36742fec53d365abc9359b52cc3d756065acf1b647adc73e0fdf",
+      "bytes": 817888,
+      "android_api_notes": [
+        28
+      ],
+      "dependencies": [
+        {
+          "file": "libLiteRt.so",
+          "bytes": 5508376,
+          "sha256": "97355a36cb8ac7628cf407773291e98da79f3ef184cc43cb0e57dedf5f0c0637",
+          "android_api_notes": [
+            23
+          ]
+        }
+      ],
+      "notices": {
+        "stable-audio-arm-audiogen-LICENSE.txt": "e03ba41d7fab20700769fe4118bab50d800cb74f990353a05d2f5fff1c228363",
+        "stable-audio-sentencepiece-LICENSE.txt": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5",
+        "stable-audio-LiteRT-LICENSE.txt": "71c6915d04265772a0339bed47276942c678b45cc01534210ebe6984fd1aec65",
+        "stable-audio-LiteRT-THIRD_PARTY_NOTICE.txt": "2d4d617ff3047813c1b4bfd66dc3c95b2352b401546c6e58a33b7c885091372a",
+        "sd-nlohmann-json-LICENSE.txt": "0e592e358cf7722906f417be85bc514f15bf6efd28cea98cb84e56ef7fddfc3e",
+        "sd-NDK-LLVM-NOTICE.txt": "f96f763beb66a7ba7a667647fc64c0226ace875e590c831fdd9579ec1c1d91e1"
+      }
     }
   ]
 }

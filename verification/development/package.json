@@ -1,7 +1,7 @@
 {
-  "apk": "LMA-0.3.0-dev.19-arm64-v8a.apk",
-  "sha256": "1fe2aa60fec1a5c9c6ff4281cbdd94e07a2f4df9622c1780287cb92691e950d7",
-  "native_libraries_verified": 24,
+  "apk": "LMA-0.3.0-dev.20-arm64-v8a.apk",
+  "sha256": "147f55848a46c26e5ad68c2d02c8d51b5da54043e4030feadedd73f51ac8ae5b",
+  "native_libraries_verified": 26,
   "all_native_dependencies_resolved": true,
   "all_elf_load_segments_16k_aligned": true,
   "final_apk_zip_alignment_verified": true,
@@ -455,6 +455,44 @@
         28
       ],
       "16k_elf_aligned": true
+    },
+    "liblma-stable-audio.so": {
+      "machine": "aarch64",
+      "needed": [
+        "libLiteRt.so",
+        "libm.so",
+        "libdl.so",
+        "libc.so"
+      ],
+      "load_segment_alignment": [
+        16384
+      ],
+      "interpreter": "/system/bin/linker64",
+      "entry_point": 188640,
+      "android_api_notes": [
+        28
+      ],
+      "16k_elf_aligned": true
+    },
+    "libLiteRt.so": {
+      "machine": "aarch64",
+      "needed": [
+        "libdl.so",
+        "libGLESv3.so",
+        "libEGL.so",
+        "libm.so",
+        "liblog.so",
+        "libc.so"
+      ],
+      "load_segment_alignment": [
+        16384
+      ],
+      "interpreter": null,
+      "entry_point": 0,
+      "android_api_notes": [
+        23
+      ],
+      "16k_elf_aligned": true
     }
   },
   "physical_device_tested": false,
@@ -477,6 +515,6 @@
   "input_fingerprint": {
     "catalogue/uncensored-evidence.json": "63f05e854772ade227750b19cb2288ebe53abb0d346ccc08cf5317b768ef5082",
     "third_party/BUILD_INFO.json": "de40253f34d47e5b692e8cd97d87eaa4ecbe549303718f69d286c85f81422acc",
-    "tools/verify_package.py": "d65ccaee2c857a18d19409a90800a31dfefe63bfe6cc09f4a4ada190cc0b4e59"
+    "tools/verify_package.py": "4d847fdc7c75eb127970ea5891a97405f5c324a9f045e7672aab087267fb44c1"
   }
 }

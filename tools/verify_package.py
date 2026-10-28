@@ -13,7 +13,7 @@ from evidence import version, build_inputs, fingerprint
 ROOT = Path(__file__).resolve().parents[1]
 APK = ROOT / ("dist/LMA-" + version() + "-arm64-v8a.apk")
 LIBS = ROOT / "app/src/main/jniLibs/arm64-v8a"
-SYSTEM_LIBS = {"libc.so", "libm.so", "libdl.so", "liblog.so", "libandroid.so", "libz.so"}
+SYSTEM_LIBS = {"libc.so", "libm.so", "libdl.so", "liblog.so", "libandroid.so", "libz.so", "libEGL.so", "libGLESv3.so"}
 
 
 def elf_info(data):

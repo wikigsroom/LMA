@@ -7,7 +7,7 @@
   "model_inference": false,
   "passed": 66,
   "input_fingerprint": {
-    "app/src/main/assets/recipe-templates.json": "0069327134f90095262d6d8072a4d3ca30b63e76a65c9aa36dab7e74860d4e31",
+    "app/src/main/assets/recipe-templates.json": "7e844d2b4f900180012f03326afcb33e925374587452d7e3dc6dd5b9022e162e",
     "app/src/main/java/com/lma/app/core/AdapterSpec.java": "aff8572d14ac8d616be0a1b0da395e52ed5bddcd5ae407a969c2657bf9257581",
     "app/src/main/java/com/lma/app/core/ArtifactStore.java": "0336ab2425868bf2cb5a2fc37d97afbcdf838bb5f977b874e0f98c9db777be55",
     "app/src/main/java/com/lma/app/core/BundleStore.java": "119368cd2d090192ed07306ebab25c40b2f880a490e93c8ad83a952186a3ec48",
@@ -38,6 +38,7 @@
     "app/src/main/java/com/lma/app/core/QwenTtsSpec.java": "e94d96d7ce7c499b2d4bafbd35740c690b32169a142a9a55aae7a8b03364125b",
     "app/src/main/java/com/lma/app/core/RecipeCatalogue.java": "7b27a07355fe4f7671eef7fa17c9f9ab8512f3f52ccc1de15d4069f15bc6384a",
     "app/src/main/java/com/lma/app/core/SdSpec.java": "07c4a9c69071a72fe70b37dfa85294d70cd387365545f885b671dc20c7332694",
+    "app/src/main/java/com/lma/app/core/StableAudioSpec.java": "0cc04143a8c8c2afa4dc3d9726f4891779b352404d97c70d6fdc260fbe27ee6c",
     "app/src/main/java/com/lma/app/core/TaskInput.java": "77c177d48618a439303579af18709697249dcc79c2f51e96915f2715494f8367",
     "app/src/main/java/com/lma/app/core/TextRequest.java": "bfdb23db96512f00f362b49951c1fee4162ca2d441482eb6ebf180a8d3574d5f",
     "app/src/main/java/com/lma/app/core/TextResult.java": "2dd7968a40cc917fab5b8bc412ef00d21348abec1d844b140b843b1bba57c6ab",

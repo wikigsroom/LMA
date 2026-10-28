@@ -68,3 +68,5 @@ Qwen3-TTS 新增第 22 个模板和一个固定版本可选包：两个 GGUF 分
 [Local-v1.5 / SoundEffect-v2](OPENMOSS_ENGINE.md) 使用同次转换的主干和 extras 两个用户文件，内含 BPE / codec 用 provides 披露；两者不能混用，也不接受 first-class Delay 文件。登记、浏览与更新基座不触发下载。
 
 同一原生引擎另外提供 TTS / v1.5 / TTSD / VoiceGenerator 四个独立配方：分别检查 32 / 16 路、8B / 1.7B 主干布局。它们输出 24 kHz 单声道，TTSD 双参考成对映射，VoiceGenerator 必填声音描述；组件与其他 MOSS 格式不互换。详见[完整流程、参数与发布者证据](OPENMOSS_ENGINE.md)。模型仍是同列表中的平级记录，带生音频 / TTS / 多说话人或声音设计以及独立基座依赖标签。
+
+dev.20 新增第 33 个元数据配方：[Stable Audio Open Small](STABLE_AUDIO_ENGINE.md)。TFLite 文件可在 HF 文件列表中选择；需同版三个图与配套 SentencePiece，由用户明确下载 / 导入，未核验可一键运行的四文件社区包。模型许可与 App 许可分开，仍须整模型验收。

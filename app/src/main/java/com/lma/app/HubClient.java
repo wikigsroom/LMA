@@ -170,7 +170,7 @@ public final class HubClient {
         StringBuilder encoded = new StringBuilder();
         for (String part : path.split("/", -1)) { if (part.isEmpty() || part.equals(".") || part.equals("..")) throw new IllegalArgumentException("Invalid HF component path"); if (encoded.length() > 0) encoded.append('/'); encoded.append(encode(part)); }
         String lower = path.toLowerCase(Locale.ROOT), format = "unknown", blocked = "";
-        for (String extension : new String[]{"gguf", "safetensors", "onnx", "bin", "json", "fst", "far"}) if (lower.endsWith("." + extension)) format = extension;
+        for (String extension : new String[]{"gguf", "safetensors", "onnx", "bin", "json", "fst", "far", "tflite"}) if (lower.endsWith("." + extension)) format = extension;
         if (lower.endsWith(".txt") || lower.endsWith(".vocab")) format = "text";
         if (lower.endsWith(".model")) format = "sentencepiece";
         if (lower.endsWith(".data")) format = "onnx_data";

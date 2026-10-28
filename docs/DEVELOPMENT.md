@@ -2,12 +2,13 @@
 
 [English](DEVELOPMENT.en.md) · [完整范围](MULTIMODAL_RELEASE_PLAN.md) · [构建](BUILD.md) · [中文首页](../README.md)
 
-当前公开发行仍为 **v0.2.0**。本分支为 **0.3.0-dev.18 / versionCode 22**，不是完整 v0.3.0，也没有创建对应 Release。下一版本仍一次交付 F-01–F-12、01–14 / 16 / 17 及冻结子目标；以下是同一版本内的实施记录，不是拆版安排。
+当前公开发行仍为 **v0.2.0**。本分支为 **0.3.0-dev.20 / versionCode 24**，不是完整 v0.3.0，也没有创建对应 Release。下一版本仍一次交付 F-01–F-12、01–14 / 16 / 17 及冻结子目标；以下是同一版本内的实施记录，不是拆版安排。
 
 ## 已写入开发代码的部分
 
 | 部分 | 当前行为 | 证据边界 |
 | --- | --- | --- |
+| Stable Audio Open Small | 手机 LiteRT CPU 顺序 T5 / DiT / 解码、四组件与每模型参数 / same-phone stages and user assets | 144 scoped checks; 6 actual tiny-graph runs, no full-model / Android acceptance |
 | 模型包 / 组件 | `lma.model-bundle/1` 与 `/2`，固定 revision / 大小 / SHA256 或 Git blob 身份与实际 SHA256；共享内容对象、原子安装、暂停 / 续传、显式文件夹导入、删除引用保护 | 字节夹具与真实本机 HTTP 传输测试；不是模型推理 |
 | 独立模型更新 | 用户指定固定目标、组件 / 参数差异、单独下载与确认启用、旧资产保留、回退、最近 64 次切换记录；队列引用保护 | 62 项真实主机存储 / 故障 / 传输检查；Android 升级仍待验证，见[版本指南](MODEL_UPDATES.md) |
 | 用户控制 | 声明 / 浏览 / 计算下载计划不创建传输；下载须单独确认；缺组件生成失败；重启中的组件传输暂停，用户自行恢复 | 不把所有目录条目安装到手机；没有隐式模型下载 |
@@ -165,3 +166,5 @@ dev.14 接入 [Sana 移动管线 / MNN](MNN_SANA_ENGINE.md)：真实 ARM64 CPU w
 
 
 Internal dev.19 / 内部 dev.19：[旧 Local / Realtime 原生 RQ](MOSS_RQ_ENGINE.md) / [English](MOSS_RQ_ENGINE.en.md) 与旧 SoundEffect 环境声音绑定完成源码接入；32 个用户自选配方仅为元数据，所有模型仍由用户下载 / 管理，APK 仅更新基座。178 RQ / 514 openmoss / 550 foundation / 280 UI checks are scoped, not full-model or phone acceptance. Realtime currently supports one text request returning a complete WAV, without incremental audio/text streaming. Nine MOSS subtargets have distinct code routes but remain individually unaccepted on Android. F-01–F-12、01–14 / 16 / 17、全部冻结子目标及 A1–A11 / R-01–R-05 继续属于同一完整 v0.3.0；15 分钟锁屏 / 1 小时交替 API / 升级资产保留未实测，不创建新 Release。See [bilingual notes / 编号交付](releases/v0.3.0-dev.19.md)。
+
+内部检查点（**0.3.0-dev.20 / code 24**，未发布）：[Stable Audio Open Small 本地基座](STABLE_AUDIO_ENGINE.md)加入同机 LiteRT CPU 的 T5 → DiT → 解码器顺序执行、四份用户自选组件、独立可编辑参数和固定长度成本说明。144 项限定检查含 6 次实际 LiteRT 微型图运行及 6 次真实主机子进程；它们没有运行训练 checkpoint。33 个配方只含元数据；561 项基座、287 项 UI 检查通过，原签名 APK 不含权重 / 词表。截图 56–58 与录屏 / GIF 为 UI FIXTURE。14 的整模型音频、SoulX / 旧 LTX 以及全部冻结范围和真机验收继续属于同一完整 v0.3.0；未创建新 Release。见[编号交付与更新说明](releases/v0.3.0-dev.20.md)。

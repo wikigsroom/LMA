@@ -52,3 +52,5 @@ The acceptance runner supports real-device checks and screen-off streaming workl
 ## Documentation media
 
 Twelve screenshots, an MP4 and four GIFs use the actual packaged UI with simulated native state. HF metadata/download progress is simulated and replies are scripted. The visible demo banner and [media manifest](media/manifest.json) preserve this distinction. Browser pages and processes are closed after capture.
+
+dev.20: Stable Audio 144 = Java 51 + C++ 93; six actual host children, six real LiteRT ADD/CAST tiny-graph runs and Arm sampler equivalence. Audio is a silent structural WAV fixture; full-model inference/Android tests remain zero. Foundation 561, UI 287, Lint 0 errors/13 warnings. See [evidence limits](STABLE_AUDIO_ENGINE.en.md) and [checkpoint notes](releases/v0.3.0-dev.20.md).

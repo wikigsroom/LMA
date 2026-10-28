@@ -1,0 +1,77 @@
+{
+  "schema": "lma.stable-audio-source-lock/1",
+  "sources": [
+    {
+      "name": "arm-audiogen",
+      "url": "https://github.com/Arm-Examples/ML-examples",
+      "revision": "0e453847ea28043194c32791a591d0f5a8a5ae2e",
+      "reviewed_files": {
+        "kleidiai-examples/audiogen/app/audiogen.cpp": "63fcecd29bc9ba39021be5216678609ecbdb4dd527b3a617ee21ab73c5d18b2c",
+        "kleidiai-examples/audiogen/scripts/model.py": "17adb5f9caa7c043d36407bacda8c01b33b9904551f8ae7e26e4d536e3f98cba",
+        "kleidiai-examples/audiogen/scripts/export_sao.py": "e6b32815a087b78e838a265ed1de5fbd7d2829326009492fc6a6c3b8f42be40c",
+        "kleidiai-examples/audiogen/app/README.md": "929cc857af1a34dfac8b5729fb5040154b82eb5a2183b23df38f8f2e7faec55c",
+        "kleidiai-examples/audiogen/scripts/README.md": "462fa54421902656fb3766200b50957d1d30a6fb128c59100ae92a4bb121b7e8",
+        "LICENSE": "e03ba41d7fab20700769fe4118bab50d800cb74f990353a05d2f5fff1c228363"
+      },
+      "notices": [
+        {
+          "path": "LICENSE",
+          "output": "stable-audio-arm-audiogen-LICENSE.txt",
+          "sha256": "e03ba41d7fab20700769fe4118bab50d800cb74f990353a05d2f5fff1c228363"
+        }
+      ]
+    },
+    {
+      "name": "sentencepiece",
+      "url": "https://github.com/google/sentencepiece",
+      "revision": "31646a467d2051eb904e0b45de3a73e91fe1c1e3",
+      "reviewed_files": {
+        "CMakeLists.txt": "4f219d2bf849808c1e41d1e133342c2676f1d71f2a82d4f0b2b19db4e89ae821",
+        "src/sentencepiece_processor.h": "4048ff2243938910cf107c27f1e7fb81aac5a52bb6dd3a8a27feb584b53dd38b",
+        "src/sentencepiece_processor.cc": "34a4cbf09fee3327739a45e28e700f6bfaa0f978339b73b629fc448ef2ce3e24",
+        "LICENSE": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5"
+      },
+      "notices": [
+        {
+          "path": "LICENSE",
+          "output": "stable-audio-sentencepiece-LICENSE.txt",
+          "sha256": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5"
+        }
+      ]
+    }
+  ],
+  "runtime": {
+    "version": "2.2.0",
+    "aar_url": "https://dl.google.com/android/maven2/com/google/ai/edge/litert/litert/2.2.0/litert-2.2.0.aar",
+    "aar_sha256": "624518d72f8a249711a19e9901f480e74f823ca7818260a739cb2c023024807c",
+    "sdk_url": "https://github.com/google-ai-edge/LiteRT/releases/download/v2.2.0/litert_cc_sdk.zip",
+    "sdk_sha256": "0aa619d80aef27303ad9c6e3759a20110f77e7b11ade9b68061b8c6e5904b0c6",
+    "file": "libLiteRt.so",
+    "sha256": "97355a36cb8ac7628cf407773291e98da79f3ef184cc43cb0e57dedf5f0c0637",
+    "bytes": 5508376,
+    "android_api_notes": [
+      23
+    ],
+    "notices": [
+      {
+        "path": "LICENSE",
+        "output": "stable-audio-LiteRT-LICENSE.txt",
+        "sha256": "71c6915d04265772a0339bed47276942c678b45cc01534210ebe6984fd1aec65"
+      },
+      {
+        "path": "THIRD_PARTY_NOTICE.txt",
+        "output": "stable-audio-LiteRT-THIRD_PARTY_NOTICE.txt",
+        "sha256": "2d4d617ff3047813c1b4bfd66dc3c95b2352b401546c6e58a33b7c885091372a"
+      }
+    ]
+  },
+  "json_header_sha256": "2dd8db723cff3e44198e14d6038ea6443dc6171a564bb82cd6ee81f0edc316e5",
+  "model_assets": false,
+  "layout": "Arm fixed 128-token conditioner / 64-token effective conditioning / 64x256 latent / 524288 stereo decoder frames",
+  "host_test_runtime": {
+    "file": "ai_edge_litert-2.2.0-cp311-cp311-win_amd64.whl",
+    "url": "https://files.pythonhosted.org/packages/d2/37/7470c37688ca92321945d10b329d7deca50c08fcdf167f7c02208f0783c3/ai_edge_litert-2.2.0-cp311-cp311-win_amd64.whl",
+    "sha256": "c36ccb82a89f10f9e6c947f67f06dd00699caf5fe3bcb2be0eddcb213f70220d",
+    "purpose": "Windows CPU tiny-graph tests only; not APK payload"
+  }
+}

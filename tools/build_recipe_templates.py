@@ -244,6 +244,22 @@ def build():
             definition=dict(engine="moss_rq_native",backend="cpu",architecture="moss_tts_realtime" if rt else "moss_tts_local_v10",pipeline=ident,tasks=["audio"],capabilities=["text_to_speech","single_text_to_wav"],parameters=dict(version=1,fields=fields)),
             requirements=[dict(role="model",label="匹配的 "+("moss-tts-rt / 16 路" if rt else "moss-tts-local / 32 路旧 Local")+" GGUF",formats=["gguf"],required=True),dict(role="codec",label="v1 MOSS-Audio-Tokenizer GGUF（24 kHz / 32 路）",formats=["gguf"],required=True,provides=["audio_encoder","audio_decoder"]),dict(role="tokenizer",label="与此版本匹配的 moss-tokenizer BPE GGUF",formats=["gguf"],required=True,provides=["text_tokenizer"])],fixedComponents=[],
             help="仅匹配固定 mudler/moss-tts.cpp 转换格式；模型 / codec / BPE 由用户显式选择，不能混用 openmoss、Nano、first-class 或 Local-v1.5。"+("Realtime 使用独立的 4 层 RoPE 深度 Transformer / 16 路编码，逐步注入文本，但当前接口是单次文本完成后返回 WAV，不提供增量文本输入或音频流。" if rt else "旧 Local 使用 4 层 Qwen3 深度 Transformer、输入及逐通道输出 MLP / 32 路编码，区别于 v1.5 的单层 GPT-J；支持可选声音描述及语言提示。")+"输出 24 kHz 单声道；可选 1–10 秒、≤1 MiB 同格式 PCM16 / float32 参考 WAV，不自动重采样。1.7B 主干与大 codec 同时驻留内存，需要高内存设备；未证明 Z20 可运行。无附带权重或词表；尚无 LMA Android 推理、质量、速度或后台验收。"))
+    fields={}
+    for key,label,value,low,high,presets,source in [
+        ("threads","CPU 线程",4,1,32,[2,4,8],"application_guard"),
+        ("seed","种子（-1 自动）",-1,-1,2147483647,[-1,42],"application_guard"),
+        ("seconds","输出秒数（裁切；固定长度生成与解码）",5,1,11,[3,5,8,11],"model_duration_limit"),
+        ("steps","扩散步数",8,1,32,[4,8,16,32],"application_guard"),
+        ("maxInputTokens","有效提示词上限（含 EOS）",64,1,64,[32,64],"export_conditioning_limit")]:
+        fields[key]=dict(type="integer",label=label,default=value,minimum=low,maximum=high,presets=presets,limitSource=source)
+    templates.append(dict(id="stable_audio_small_litert_v1",name="Stable Audio Open Small · 本地短音频",primaryRole="diffusion_model",
+        definition=dict(engine="stable_audio_litert",backend="cpu",architecture="stable_audio_open_small",pipeline="stable_audio_small_litert_v1",tasks=["audio"],capabilities=["text_to_audio","short_audio","english_prompts","fixed_latent_length"],parameters=dict(version=1,fields=fields)),
+        requirements=[dict(role=role,label=label,formats=[fmt],required=True,provides=provides) for role,label,fmt,provides in [
+            ("conditioner","匹配 Arm 导出的 T5-base / 时长条件编码器（128 输入 / 64 有效 token）","tflite",["text_encoder"]),
+            ("diffusion_model","同版 SAO Small DiT（64×256 latent）","tflite",[]),
+            ("audio_decoder","同版音频解码器（44.1 kHz 立体声 / 524288 帧）","tflite",[]),
+            ("tokenizer","T5-base 配套 spiece.model（32000 pieces）","sentencepiece",["text_tokenizer"])]],fixedComponents=[],
+        help="仅匹配固定 Arm-Examples audiogen TFLite 导出，不是任意 Stable Audio checkpoint。四份组件由用户逐一选择，安装 / 浏览 / 缺件均不自动下载。手机 LiteRT CPU 依次编码、扩散、解码；英文提示词最多 64 token（含 EOS），超过报错，不静默截断。输出 1–11 秒、44.1 kHz 立体声 PCM16；短时长仍执行固定 256 latent / 524288 解码帧，不能据此降低内存估算。无负面提示词、CFG、参考音频、语音克隆或图像 LoRA。官方权重受 Stability AI Community 条款及访问限制约束，模型许可与 App 许可独立。8 步是上游默认；线程 / 32 步属于应用保护。上游建议 8 GB RAM，未证明 Z20 可运行；LMA 尚无完整模型音质、速度或 Android 验收。"))
     return {"schema": "lma.recipe-catalogue/1", "templates": templates}
 
 

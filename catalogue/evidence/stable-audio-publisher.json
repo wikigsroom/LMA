@@ -1,0 +1,51 @@
+{
+  "schema": "lma.publisher-metadata-audit/1",
+  "tokenizer_data_downloaded": false,
+  "weights_downloaded": false,
+  "records": [
+    {
+      "taskEvidence": "hf_metadata",
+      "gated": true,
+      "sourceUrl": "https://huggingface.co/stabilityai/stable-audio-open-small",
+      "license": "other",
+      "task": "text-to-audio",
+      "taskTags": ["audio"],
+      "library": "stable-audio-tools",
+      "downloads": 5876,
+      "id": "stabilityai/stable-audio-open-small",
+      "uncensored": {
+        "declared": false,
+        "summary": "根据仓库名称或标签识别，未逐项核对作者声明或测量拒答率",
+        "detected": false,
+        "basis": "repository-metadata",
+        "refusalRateTested": false
+      },
+      "likes": 331,
+      "revision": "dc620d91535857b72ebb59b4ca45978db6d417f5"
+    },
+    {
+      "taskEvidence": "hf_metadata",
+      "gated": false,
+      "sourceUrl": "https://huggingface.co/google-t5/t5-base",
+      "license": "apache-2.0",
+      "task": "translation",
+      "taskTags": [],
+      "library": "transformers",
+      "downloads": 2161160,
+      "id": "google-t5/t5-base",
+      "uncensored": {
+        "declared": false,
+        "summary": "根据仓库名称或标签识别，未逐项核对作者声明或测量拒答率",
+        "detected": false,
+        "basis": "repository-metadata",
+        "refusalRateTested": false
+      },
+      "likes": 807,
+      "revision": "a9723ea7f1b39c1eae772870f3b547bf6ef7e6c1"
+    }
+  ],
+  "model_inference": false,
+  "transport": "configured HF mirror, metadata only",
+  "physical_android": false,
+  "checked_on": "2026-10-28"
+}

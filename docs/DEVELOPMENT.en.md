@@ -2,12 +2,13 @@
 
 [中文](DEVELOPMENT.md) · [Full scope](MULTIMODAL_RELEASE_PLAN.en.md) · [Build](BUILD.en.md) · [English home](../README.en.md)
 
-The current public release remains **v0.2.0**. This branch is **0.3.0-dev.18 / versionCode 22**, not the complete v0.3.0, and has no new Release. F-01–F-12, selections 01–14/16/17 and frozen subtargets still belong to one delivery; these are internal implementation checkpoints.
+The current public release remains **v0.2.0**. This branch is **0.3.0-dev.20 / versionCode 24**, not the complete v0.3.0, and has no new Release. F-01–F-12, selections 01–14/16/17 and frozen subtargets still belong to one delivery; these are internal implementation checkpoints.
 
 ## Implemented development code
 
 | Area | Current behavior | Evidence boundary |
 | --- | --- | --- |
+| Stable Audio Open Small | 手机 LiteRT CPU 顺序 T5 / DiT / 解码、四组件与每模型参数 / same-phone stages and user assets | 144 scoped checks; 6 actual tiny-graph runs, no full-model / Android acceptance |
 | Bundles/components | `lma.model-bundle/1` and `/2`, pinned revisions/sizes/SHA256 or Git blob identity with measured SHA256, shared content objects, atomic installation, pause/resume, explicit folder import, deletion/reference protection | Byte fixtures and real host HTTP transfers, not model inference |
 | Independent model versions | User-selected pinned target, component/profile review, separate transfer/activation, retained old files, rollback, last 64 switches and queued-reference protection | 62 real host storage/failure/transfer checks; Android upgrades remain unverified; see [version guide](MODEL_UPDATES.en.md) |
 | User control | Declaration, browsing and planning create no transfers; downloads require a separate action; missing assets fail locally; interrupted transfers pause for manual resumption | Does not install the entire catalogue or implicitly download models |
@@ -164,3 +165,5 @@ Internal checkpoint (**0.3.0-dev.18 / code 22**, unpublished): the [native MOSS 
 
 
 Internal dev.19 / 内部 dev.19：[旧 Local / Realtime 原生 RQ](MOSS_RQ_ENGINE.md) / [English](MOSS_RQ_ENGINE.en.md) 与旧 SoundEffect 环境声音绑定完成源码接入；32 个用户自选配方仅为元数据，所有模型仍由用户下载 / 管理，APK 仅更新基座。178 RQ / 514 openmoss / 550 foundation / 280 UI checks are scoped, not full-model or phone acceptance. Realtime currently supports one text request returning a complete WAV, without incremental audio/text streaming. Nine MOSS subtargets have distinct code routes but remain individually unaccepted on Android. F-01–F-12、01–14 / 16 / 17、全部冻结子目标及 A1–A11 / R-01–R-05 继续属于同一完整 v0.3.0；15 分钟锁屏 / 1 小时交替 API / 升级资产保留未实测，不创建新 Release。See [bilingual notes / 编号交付](releases/v0.3.0-dev.19.md)。
+
+Internal checkpoint (**0.3.0-dev.20 / code 24**, unpublished): the [Stable Audio Open Small foundation](STABLE_AUDIO_ENGINE.en.md) adds sequential same-phone LiteRT CPU T5 → DiT → decoder execution, four user-selected assets, editable model-specific limits and fixed-length cost disclosure. 144 scoped assertions include 6 actual LiteRT tiny-graph runs and 6 host child processes, without a trained checkpoint. All 33 recipes are metadata only; 561 foundation / 287 UI checks pass. The original-signature APK has no weights/vocabulary. Screens 56–58 and recording/GIF are UI FIXTURE. Complete Stable Audio, SoulX/old LTX and every frozen target/device gate remain within the same complete v0.3.0; no new Release. See [numbered delivery notes](releases/v0.3.0-dev.20.md).
