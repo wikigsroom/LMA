@@ -14,11 +14,12 @@ public final class LmaApp {
     public final android.os.PowerManager power = new android.os.PowerManager();
     public Object getSystemService(String name) { return name.equals(ACTIVITY_SERVICE) ? memory : power; }
     public JSONObject device() { return new JSONObject().put("hostFrameworkPort", true).put("physicalAndroid", false); }
-    public static final String VERSION = "0.3.0-dev.10";
+    public static final String VERSION = "0.3.0-dev.11";
     public String apiState = "stopped", apiDetail = "";
     public com.lma.app.core.BundleStore bundles;
     public com.lma.app.core.JobStore jobs;
     public com.lma.app.core.ArtifactStore artifacts;
+    public com.lma.app.core.InputUploads uploads;
     public LocalJobs jobHost;
     public LocalEngines localEngines = new LocalEngines();
     public final Preferences prefs = new Preferences();
@@ -43,6 +44,7 @@ public final class LmaApp {
         store = new Store(this); chats = new Chats(this);
         try { bundles = new com.lma.app.core.BundleStore(new File(files, "bundles")); jobs = new com.lma.app.core.JobStore(new File(files, "jobs")); artifacts = new com.lma.app.core.ArtifactStore(new File(files, "artifacts"), file -> { throw new IOException("No host model outputs"); }); }
         catch (Exception error) { throw new RuntimeException(error); }
+        try { artifacts.references(jobs::referencesArtifact); uploads = new com.lma.app.core.InputUploads(new File(files, "input-uploads"), artifacts); } catch (Exception error) { throw new RuntimeException(error); }
     }
     public void migrateTextModels() { /* Host tests invoke migration explicitly. */ }
     public File getFilesDir() { return files; }

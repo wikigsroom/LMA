@@ -57,3 +57,5 @@
 - [已有模型迁移与零重复下载](MODEL_MIGRATION.md) / [Existing-model migration](MODEL_MIGRATION.en.md)：原 ID、共用资产与参数、明确续传、失败恢复和证据范围。
 
 - [共用执行槽与文本自动切换](SCHEDULING.md) / [Shared execution slot](SCHEDULING.en.md)：回复与任务等待、取消、资源复查、真实进程回收与证据边界。
+
+- [本地输入素材、任务引用与分块上传](LOCAL_INPUTS.md) / [Local media and uploads](LOCAL_INPUTS.en.md)：用户文件、固定 hash、签名引擎角色及引用保护；现有生产配方仍只接受文字。

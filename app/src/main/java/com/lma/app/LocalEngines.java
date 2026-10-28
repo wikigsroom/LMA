@@ -42,5 +42,13 @@ public final class LocalEngines {
         LocalEngine module = modules.get(bundle.engine);
         return module instanceof TextEngine ? ((TextEngine) module).schema(bundle) : bundle.parameters();
     }
+    public JSONObject inputSchemas(ModelBundle bundle) throws Exception {
+        JSONObject result = new JSONObject(); LocalEngine engine = modules.get(bundle.engine); if (engine == null) return result;
+        for (String tag : bundle.tasks) {
+            String type = tag.equals("text") ? "text.generate" : tag.equals("image") ? "image.generate" : tag.equals("video") ? "video.generate" : bundle.json().optJSONArray("capabilities") != null && bundle.json().getJSONArray("capabilities").toString().contains("text_to_speech") ? "speech.synthesize" : "audio.generate";
+            result.put(type, engine.inputs(bundle, type).json());
+        }
+        return result;
+    }
     public JSONArray snapshot() throws Exception { JSONArray result = new JSONArray(); for (LocalEngine engine : modules.values()) result.put(engine.describe()); return result; }
 }

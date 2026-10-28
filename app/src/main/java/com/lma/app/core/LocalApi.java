@@ -18,6 +18,7 @@ public final class LocalApi implements LocalHttp.Handler {
         JSONArray engines() throws Exception;
         JobStore jobs() throws Exception;
         ArtifactStore artifacts() throws Exception;
+        default InputUploads uploads() throws Exception { throw new IllegalStateException("Input uploads are unavailable"); }
         JSONObject submit(JSONObject request, String idempotencyKey) throws Exception;
         void cancel(String id) throws Exception;
         LocalHttp.Response text(String path, JSONObject request) throws Exception;
@@ -35,7 +36,7 @@ public final class LocalApi implements LocalHttp.Handler {
             String key = runtime.apiKey();
             if (key.isEmpty() || !MessageDigest.isEqual(("Bearer " + key).getBytes(StandardCharsets.UTF_8), request.header("authorization").getBytes(StandardCharsets.UTF_8)))
                 return error(401, "invalid_api_key", "A valid LMA Bearer key is required").header("WWW-Authenticate", "Bearer realm=\"LMA\"");
-            // Browser UI uses its native bridge. Do not expose credentialed CORS or multipart upload routes.
+            // Browser UI uses its native bridge. No credentialed CORS or multipart upload routes.
             if (request.headers.containsKey("origin")) throw new LocalHttp.Failure(403, "browser_origin_rejected", "Use a native API client; browser origins are not enabled");
             return route(request);
         } catch (LocalHttp.Failure error) { return error(error.status, error.code, error.getMessage()); }
@@ -71,8 +72,34 @@ public final class LocalApi implements LocalHttp.Handler {
             if (parts.length == 2 && parts[1].equals("retry")) {
                 method(r, "POST"); emptyOrObject(r);
                 if (!Arrays.asList("failed", "cancelled", "interrupted").contains(job.getString("state"))) throw new IllegalStateException("Only failed, cancelled or interrupted jobs may be retried");
-                JSONObject original = DataFiles.copy(job.getJSONObject("request")); original.remove("submissionHash"); original.remove("adjustments"); original.remove("parameterSchemaVersion");
+                JSONObject original = DataFiles.copy(job.getJSONObject("request")); original.remove("submissionHash"); original.remove("adjustments"); original.remove("parameterSchemaVersion"); original.remove("adapterAdjustments"); original.remove("textMetadata"); original.remove("inputReceipts");
                 return json(202, runtime.submit(original, r.header("idempotency-key")));
+            }
+        }
+        if (path.equals("/v1/uploads")) {
+            method(r, "GET", "HEAD", "POST");
+            if (r.method.equals("POST")) return json(202, runtime.uploads().create(body(r)));
+            noBody(r); return list(runtime.uploads().snapshot());
+        }
+        if (path.startsWith("/v1/uploads/")) {
+            String[] parts = path.substring("/v1/uploads/".length()).split("/", -1); String id = id(parts[0]);
+            try { runtime.uploads().get(id); } catch (IllegalArgumentException absent) { throw new LocalHttp.Failure(404, "upload_not_found", "Unknown input upload ID"); }
+            if (parts.length == 1) {
+                method(r, "GET", "HEAD", "DELETE", "PUT");
+                if (r.method.equals("PUT")) {
+                    if (!r.header("content-type").equalsIgnoreCase("application/octet-stream")) throw new LocalHttp.Failure(415, "binary_required", "Use application/octet-stream for an input chunk");
+                    String offset = r.header("upload-offset");
+                    if (!offset.matches("[0-9]{1,10}")) throw new IllegalArgumentException("Use a numeric Upload-Offset equal to received");
+                    return json(200, runtime.uploads().append(id, Long.parseLong(offset), r.body));
+                }
+                noBody(r);
+                if (r.method.equals("DELETE")) { runtime.uploads().remove(id); return json(200, new JSONObject().put("deleted", true).put("id", id)); }
+                return json(200, runtime.uploads().get(id));
+            }
+            if (parts.length == 2 && parts[1].equals("complete")) {
+                method(r, "POST"); emptyOrObject(r);
+                JSONObject artifact = runtime.uploads().complete(id, () -> { if (Thread.currentThread().isInterrupted()) throw new IOException("Input upload finalization was stopped"); });
+                return json(200, artifact);
             }
         }
         if (path.equals("/v1/artifacts")) { method(r, "GET", "HEAD"); noBody(r); return list(runtime.artifacts().snapshot()); }

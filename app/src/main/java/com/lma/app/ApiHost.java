@@ -49,6 +49,7 @@ public final class ApiHost implements LocalApi.Runtime, AutoCloseable {
     private void closeListener() { if (server != null) server.close(); server = null; cancelText(); }
     public void cancelText() { cancellation.incrementAndGet(); HttpURLConnection connection = textConnection; if (connection != null) connection.disconnect(); }
     @Override public synchronized void close() { closed = true; closeListener(); app.apiState = "stopped"; }
+    @Override public InputUploads uploads() throws Exception { if (app.uploads == null) throw new IllegalStateException("Input upload storage is unavailable"); return app.uploads; }
     @Override public String apiKey() { return app.prefs.getString("apiKey", ""); }
     @Override public JSONObject health() throws Exception {
         return new JSONObject().put("status", "ok").put("version", LmaApp.VERSION).put("execution", "same_android_phone")
@@ -73,7 +74,7 @@ public final class ApiHost implements LocalApi.Runtime, AutoCloseable {
                 ModelBundle bundle = app.bundles.bundle(record.getString("id")); if (aliases.contains(bundle.id)) continue;
                 result.put(new JSONObject().put("id", bundle.id).put("model_id", bundle.modelId).put("object", "model").put("owned_by", "local").put("name", bundle.name)
                         .put("task_tags", new JSONArray(bundle.tasks)).put("tags", bundle.tags()).put("uncensored", new JSONObject().put("status", "unknown"))
-                        .put("engine", bundle.engine).put("recipe", bundle.recipeId).put("backend", bundle.backend)
+                        .put("input_schemas", app.localEngines.inputSchemas(bundle)).put("engine", bundle.engine).put("recipe", bundle.recipeId).put("backend", bundle.backend)
                         .put("installed", true).put("loaded", record.optBoolean("inUse")).put("parameters", record.getJSONObject("config")).put("parameter_error", record.optString("parameterError")).put("version", record.getJSONObject("version")).put("deviceValidated", false));
             }
         }

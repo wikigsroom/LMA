@@ -18,6 +18,7 @@ def main():
         "text.json": "build/text-tests/results.json",
         "migration.json": "build/migration-tests/results.json",
         "scheduler.json": "build/scheduler-tests/results.json",
+        "inputs.json": "build/input-tests/results.json",
         "moss-nano.json": "build/moss-nano-tests/results.json",
         "api.json": "build/api-tests/results.json",
         "backend.json": "build/backend-tests/results.json",
@@ -35,7 +36,7 @@ def main():
         shutil.copyfile(ROOT / source, out / name)
     status = {"version": version(), "kind": "development_checkpoint", "release_ready": False, "published": False,
               "physical_device_tests": 0, "model_inference_tested": False, "all_selected_models_supported": False,
-              "scope": "shared FIFO scheduling across production jobs, resident text, chat and HTTP with actual host child ownership and cancellation; actual host legacy model migration, hardlinks, fixed aliases and shared leases without auto-resume; host GGUF text bundle constraints, typed text artifacts and actual loopback HTTP/child fixtures, host storage/transfers, user-reviewed atomic model version changes/rollback and HF component recipes/Git integrity, explicit adapter pairing/leases, speech worker contracts/child fixtures, Nano native external-data validation and private hardlink workspaces, authenticated HTTP/streams/text proxy, UI fixtures, native compilation and APK/lint checks only",
+              "scope": "local input imports, bounded resumable upload HTTP and production WAV validation, immutable input receipts/leases in the production job runner with host child fixtures; shared FIFO scheduling across production jobs, resident text, chat and HTTP with actual host child ownership and cancellation; actual host legacy model migration, hardlinks, fixed aliases and shared leases without auto-resume; host GGUF text bundle constraints, typed text artifacts and actual loopback HTTP/child fixtures, host storage/transfers, user-reviewed atomic model version changes/rollback and HF component recipes/Git integrity, explicit adapter pairing/leases, speech worker contracts/child fixtures, Nano native external-data validation and private hardlink workspaces, authenticated HTTP/streams/text proxy, UI fixtures, native compilation and APK/lint checks only",
               "required_scope": "docs/MULTIMODAL_RELEASE_PLAN.md", "sources": sources}
     (out / "status.json").write_text(json.dumps(status, indent=2) + "\n", encoding="utf-8")
     print(json.dumps(status))

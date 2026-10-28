@@ -14,5 +14,6 @@ public final class LocalEngines {
         if (engine == null) throw new java.io.IOException("No real engine in this host port");
         engine.validate(bundle, type); return engine;
     }
+    public org.json.JSONObject inputSchemas(ModelBundle bundle) { return new org.json.JSONObject(); }
     public JSONArray snapshot() { return new JSONArray(); }
 }

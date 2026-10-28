@@ -17,9 +17,10 @@ import com.lma.app.core.Protocol;
 import com.lma.app.core.BundleStore;
 import com.lma.app.core.JobStore;
 import com.lma.app.core.ArtifactStore;
+import com.lma.app.core.InputUploads;
 
 public final class LmaApp extends Application {
-    public static final String VERSION = "0.3.0-dev.10";
+    public static final String VERSION = "0.3.0-dev.11";
     public static final String UPDATE = "com.lma.app.STATE_CHANGED";
     public Store store;
     private final java.util.concurrent.atomic.AtomicBoolean migrationRunning = new java.util.concurrent.atomic.AtomicBoolean(), migrationPending = new java.util.concurrent.atomic.AtomicBoolean();
@@ -27,6 +28,8 @@ public final class LmaApp extends Application {
     public BundleStore bundles;
     public JobStore jobs;
     public ArtifactStore artifacts;
+    public InputUploads uploads;
+    public volatile InputImports inputHost;
     public LocalEngines localEngines;
     public volatile LocalJobs jobHost;
     public volatile ApiHost apiHost;
@@ -72,6 +75,8 @@ public final class LmaApp extends Application {
             }
             jobs = new JobStore(new java.io.File(getFilesDir(), "jobs"));
             artifacts = new ArtifactStore(new java.io.File(getFilesDir(), "results"), new MediaInspector());
+            artifacts.references(jobs::referencesArtifact);
+            uploads = new InputUploads(new java.io.File(getFilesDir(), "input-uploads"), artifacts);
             com.lma.app.core.EngineWorkspace.recover(new java.io.File(getFilesDir(), "engine-work"));
             localEngines = new LocalEngines(this);
             bundles.setParameterResolver(localEngines::parameters);
@@ -154,9 +159,12 @@ public final class LmaApp extends Application {
         try {
             value.put("app", "LMA"); value.put("version", VERSION); value.put("runtime", "llama.cpp v0.4.1 · CPU");
             value.put("models", store.snapshot()); value.put("settings", settings()); value.put("hub", hub.snapshot());
-            value.put("bundles", bundles == null ? new JSONArray() : bundles.snapshot());
+            JSONArray bundleRecords = bundles == null ? new JSONArray() : bundles.snapshot();
+            if (localEngines != null) for (int i = 0; i < bundleRecords.length(); i++) { JSONObject record = bundleRecords.getJSONObject(i); record.put("inputSchemas", localEngines.inputSchemas(bundles.bundle(record.getString("id")))); }
+            value.put("bundles", bundleRecords);
             value.put("jobs", jobs == null ? new JSONArray() : jobs.summaries());
             value.put("artifacts", artifacts == null ? new JSONArray() : artifacts.snapshot());
+            value.put("inputImport", inputHost == null ? new JSONObject().put("busy", false) : inputHost.snapshot());
             value.put("localEngines", localEngines == null ? new JSONArray() : localEngines.snapshot());
             value.put("foundation", new JSONObject().put("status", "development").put("bundleSchema", "lma.model-bundle/1").put("bundleSchemas", new JSONArray().put("lma.model-bundle/1").put("lma.model-bundle/2")).put("error", bundleStoreError).put("bundledWeights", false).put("execution", execution.snapshot()).put("legacyMigration", new JSONObject().put("running", migrationRunning.get()).put("results", new JSONArray(migrationResults.toString()))));
             value.put("api", new JSONObject().put("state", apiState).put("detail", apiDetail).put("textRequestActive", textRequestBusy));

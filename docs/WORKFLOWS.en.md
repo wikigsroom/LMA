@@ -95,3 +95,5 @@ dev.7 adds bundle [independent updates/rollback](MODEL_UPDATES.en.md): user-revi
 dev.8 text bundles execute `text.generate` through shared forms/jobs and commit validated response/reasoning JSON for inert preview/export. Public task events remain stage events; the persistent legacy path is not fully scheduled yet. See [text jobs](TEXT_ENGINE.en.md).
 
 Dev.10 integrates residency, chat, synchronous API and asynchronous jobs through the [same execution slot](SCHEDULING.en.md), with reply waiting, reaping before switching, idle restoration, cancellation and resource rechecks. Its 43 host scheduler assertions do not replace physical cross-modality/lifecycle acceptance. All frozen targets remain in the complete v0.3.0.
+
+Dev.11 implements [local media](LOCAL_INPUTS.en.md) imports/uploads, fixed receipts and queued/execution leases shared by UI/API. Current production recipes remain prompt-only; each actual reference-audio/image pipeline needs explicit engine implementation and acceptance.

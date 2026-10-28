@@ -38,7 +38,7 @@ public final class SchedulerTest {
         if (input.has("started")) Files.write(Paths.get(input.getString("started")), new byte[]{1});
         while (!Files.exists(release)) Thread.sleep(15);
         if (input.has("output")) {
-            Files.write(Paths.get(input.getString("output")), new byte[]{1, 2, 3, 4});
+            Files.write(Paths.get(input.getString("output")), input.has("inputPath") ? Files.readAllBytes(Paths.get(input.getString("inputPath"))) : new byte[]{1, 2, 3, 4});
             System.out.println(new JSONObject().put("event", "complete").put("output", input.getString("output"))); System.out.flush();
         }
     }
@@ -88,9 +88,13 @@ public final class SchedulerTest {
         @Override public String id() { return "fixture_engine"; }
         @Override public JSONObject describe() { return new JSONObject().put("engine", id()).put("hostProtocolFixture", true); }
         @Override public void validate(ModelBundle bundle, String type) throws Exception { if (!type.equals("image.generate")) throw new IOException("Fixture accepts image tasks only"); }
+        @Override public InputSpec inputs(ModelBundle bundle, String type) throws Exception {
+            return new InputSpec(new JSONObject().put("reference_image", new JSONObject().put("label", "Host protocol input").put("required", false).put("mimes", new JSONArray().put("image/png")).put("maxBytes", 1024 * 1024).put("maxPixels", 1024)));
+        }
         @Override public File generate(Context context) throws Exception {
             String prompt = context.request().getJSONObject("input").getString("prompt"); File output = context.output("png");
             JSONObject input = new JSONObject().put("release", work.resolve(prompt + ".release")).put("output", output).put("started", work.resolve(prompt + ".started"));
+            if (context.request().getJSONObject("input").has("artifacts")) input.put("inputPath", context.input("reference_image").getPath());
             NativeWorker.run(app, new File(app.getApplicationInfo().nativeLibraryDir, "fixture.so"), context, input, output, Collections.emptyMap(), builder -> {
                 for (Process previous : children) if (previous.isAlive()) throw new IOException("Physical child overlap at worker launch");
                 List<String> args = command(SchedulerTest.class.getName()); args.add("worker"); args.add(builder.command().get(1));
@@ -105,6 +109,7 @@ public final class SchedulerTest {
         Path libraries = work.resolve("libraries"); Files.createDirectories(libraries); Files.write(libraries.resolve("libllama-server.so"), new byte[]{1});
         LmaApp app = new LmaApp(work.resolve("app").toFile(), root.resolve("app/src/main/assets").toFile(), libraries.toFile());
         app.artifacts = new ArtifactStore(new File(app.getFilesDir(), "fixture-results"), file -> new JSONObject().put("mime", "image/png").put("width", 1).put("height", 1).put("hostInspectorFixture", true));
+        app.artifacts.references(app.jobs::referencesArtifact);
         String alias = app.store.addCustom("Existing local text fixture", "https://fixture.invalid/metadata.gguf", "", false);
         Files.write(app.store.modelFile(alias).toPath(), gguf());
         RecipeCatalogue recipes = new RecipeCatalogue(new JSONObject(new String(Files.readAllBytes(root.resolve("app/src/main/assets/recipe-templates.json")), StandardCharsets.UTF_8)));
@@ -130,6 +135,31 @@ public final class SchedulerTest {
         ChatRunner chat = new ChatRunner(service, app); ApiHost api = new ApiHost(service, app); ExecutorService pool = Executors.newCachedThreadPool();
         try (java.net.ServerSocket port = new java.net.ServerSocket(0)) { app.prefs.edit().putInt("port", port.getLocalPort()).apply(); }
         try {
+            byte[] inputBytes = Base64.getDecoder().decode("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+/lWQAAAAASUVORK5CYII=");
+            JSONObject imported = app.artifacts.importStream(new ByteArrayInputStream(inputBytes), "host-input.png", () -> {}); String inputId = imported.getString("id");
+            JSONObject inputRequest = request("input-job"); inputRequest.getJSONObject("input").put("artifacts", new JSONArray().put(new JSONObject().put("role", "reference_image").put("artifactId", inputId)));
+            JSONObject inputJob;
+            try (ExecutionGate.Ticket blocker = app.execution.enqueue("api", "fixture-blocker")) {
+                blocker.await(() -> {}); inputJob = jobs.submit(inputRequest, "input-job");
+                until(() -> app.jobs.get(inputJob.getString("id")).optString("stage").equals("waiting_engine"), "Input job waits for the real shared slot");
+                check(app.jobs.referencesArtifact(inputId), "Production submission pins media before the engine slot is available");
+                boolean protectedInput = false; try { app.artifacts.remove(inputId); } catch (IllegalStateException expected) { protectedInput = true; }
+                check(protectedInput, "Queued production jobs block deletion of their input media");
+            }
+            started("input-job"); release("input-job"); until(() -> state(app, inputJob, "succeeded") && !jobs.busy(), "Actual child consumes selected input bytes");
+            JSONObject consumed = app.artifacts.get(app.jobs.get(inputJob.getString("id")).getJSONArray("artifacts").getString(0));
+            check(consumed.getString("sha256").equals(imported.getString("sha256")), "Production engine context passes only the selected private file to the actual host child");
+            check(consumed.getJSONObject("provenance").getJSONObject("request").getJSONArray("inputReceipts").getJSONObject(0).getString("artifactId").equals(inputId), "Committed production output retains immutable input provenance");
+            byte[] tampered = inputBytes.clone(); tampered[tampered.length - 1] ^= 1; Files.write(app.artifacts.file(inputId).toPath(), tampered); int beforeTamper = fixture.started.size();
+            JSONObject corrupted = DataFiles.copy(inputRequest); corrupted.getJSONObject("input").put("prompt", "input-corrupted"); JSONObject corruptJob = jobs.submit(corrupted, "input-corrupted");
+            until(() -> state(app, corruptJob, "failed") && !jobs.busy(), "Corrupt input fails before child startup");
+            check(fixture.started.size() == beforeTamper && app.jobs.get(corruptJob.getString("id")).getString("error").contains("changed"), "Actual production runner rehashes same-size input corruption before launching a worker");
+            Files.write(app.artifacts.file(inputId).toPath(), inputBytes);
+            JSONObject cancelledInput = DataFiles.copy(inputRequest); cancelledInput.getJSONObject("input").put("prompt", "input-cancel"); JSONObject inputCancelJob = jobs.submit(cancelledInput, "input-cancel"); started("input-cancel");
+            jobs.cancel(inputCancelJob.getString("id")); until(() -> state(app, inputCancelJob, "cancelled") && !jobs.busy(), "Input child cancellation cleans its leases");
+            until(() -> app.nativeProcess == null || !app.nativeProcess.isAlive(), "Input cancellation reaps its actual child");
+            app.artifacts.remove(inputId); check(!app.jobs.referencesArtifact(inputId), "Cancelled production input jobs release deletion protection after actual child cleanup");
+            app.artifacts.remove(consumed.getString("id")); fixture.started.clear();
             api.start(); engine.load(alias); until(engine::ready, "Initial resident becomes ready");
             check(residents.size() == 1 && residents.get(0).isAlive(), "Explicit load starts one real host resident");
             check(app.store.config(alias).getJSONObject("values").getInt("maxTokens") == 37, "Per-model profile is preserved before scheduling");

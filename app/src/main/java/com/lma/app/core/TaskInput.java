@@ -4,7 +4,7 @@ import org.json.JSONObject;
 import org.json.JSONArray;
 import java.util.*;
 
-/** Current prompt-task contract; unsupported input fields fail rather than being silently ignored. */
+/** Text and explicitly bound local-media inputs; paths and remote URLs are never task inputs. */
 public final class TaskInput {
     private TaskInput() {}
     public static JSONObject validate(JSONObject source) throws Exception {
@@ -26,9 +26,20 @@ public final class TaskInput {
             }
         }
         JSONObject input = source.getJSONObject("input");
-        for (Iterator<String> it = input.keys(); it.hasNext();) if (!Arrays.asList("prompt", "negativePrompt").contains(it.next())) throw new IllegalArgumentException("Unsupported input field; this task contract accepts prompt text only");
+        for (Iterator<String> it = input.keys(); it.hasNext();) if (!Arrays.asList("prompt", "negativePrompt", "artifacts").contains(it.next())) throw new IllegalArgumentException("Unsupported input field; use prompt text and explicit local artifact references");
         if (!(input.get("prompt") instanceof String) || input.getString("prompt").trim().isEmpty() || input.getString("prompt").length() > 16000) throw new IllegalArgumentException("Use a nonempty prompt of at most 16000 characters");
         if (input.has("negativePrompt") && (!(input.get("negativePrompt") instanceof String) || input.getString("negativePrompt").length() > 16000)) throw new IllegalArgumentException("negativePrompt must be text of at most 16000 characters");
+        if (input.has("artifacts")) {
+            JSONArray refs = input.getJSONArray("artifacts");
+            if (refs.length() < 1 || refs.length() > 8) throw new IllegalArgumentException("Select 1-8 local inputs");
+            Set<String> roles = new HashSet<>();
+            for (int i = 0; i < refs.length(); i++) {
+                JSONObject ref = refs.getJSONObject(i);
+                for (Iterator<String> it = ref.keys(); it.hasNext();) if (!Arrays.asList("role", "artifactId").contains(it.next())) throw new IllegalArgumentException("Use an artifact ID and role; paths, URLs and client receipts are not accepted");
+                if (!roles.add(InputSpec.key(ref.getString("role")))) throw new IllegalArgumentException("Select each input role only once");
+                ModelBundle.key(ref.getString("artifactId"));
+            }
+        }
         if (source.toString().length() > 32000) throw new IllegalArgumentException("Task request is too large");
         return DataFiles.copy(source);
     }

@@ -153,3 +153,5 @@ dev.8 adds an actual [text module](TEXT_ENGINE.en.md) reusing the signed llama s
 Dev.9 [existing-model migration](MODEL_MIGRATION.en.md) reuses verified local hardlinks, preserves IDs/sources/profiles and exposes shared tasks/versions from original details. Incomplete transfers stay paused until explicit resume. 69 host migration and 156 UI checks pass; physical-Android A11 upgrade acceptance remains open.
 
 Dev.10 [shared execution](SCHEDULING.en.md) unifies resident text, chat/API and jobs under the same process/cancellation boundary. 43 host assertions cover user-asset reuse, switching and retained stop intent, without model downloads or complete model/device acceptance.
+
+Dev.11 implements local imports, authenticated chunks and immutable task references; see [input contracts](LOCAL_INPUTS.en.md). Media is separate from model components. Signed engines declare supported roles; default prompt-only recipes reject media without changing user control of model assets.

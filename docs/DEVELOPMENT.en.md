@@ -2,7 +2,7 @@
 
 [中文](DEVELOPMENT.md) · [Full scope](MULTIMODAL_RELEASE_PLAN.en.md) · [Build](BUILD.en.md) · [English home](../README.en.md)
 
-The current public release remains **v0.2.0**. This branch is **0.3.0-dev.10 / versionCode 14**, not the complete v0.3.0, and has no new Release. F-01–F-12, selections 01–14/16/17 and frozen subtargets still belong to one delivery; these are internal implementation checkpoints.
+The current public release remains **v0.2.0**. This branch is **0.3.0-dev.11 / versionCode 15**, not the complete v0.3.0, and has no new Release. F-01–F-12, selections 01–14/16/17 and frozen subtargets still belong to one delivery; these are internal implementation checkpoints.
 
 ## Implemented development code
 
@@ -13,7 +13,7 @@ The current public release remains **v0.2.0**. This branch is **0.3.0-dev.10 / v
 | User control | Declaration, browsing and planning create no transfers; downloads require a separate action; missing assets fail locally; interrupted transfers pause for manual resumption | Does not install the entire catalogue or implicitly download models |
 | Settings | Per-bundle settings, editable presets, numerical clamping, joint shape checks and immutable submitted snapshots | Recipe limits and device budgets are separate; unknown maxima are not verified |
 | UI | Legacy text and bundles share a flat list; text/image/video/audio filters, bundle details, task forms, queue and artifacts; Recommended stays m08 → m06 → m01 | All contains pinned SD1.5 and three TTS candidates; custom manifests enter through Add model; dev.8 offers nine explicit HF component templates without universal architecture support |
-| Jobs/artifacts | One heavy job, submit/cancel/retry, persistent events, private results, hashes/provenance, system export and image/WAV/MP4 inspection/ranged preview | Bounded AtomicFile JSON currently stores these records; existing chat SQLite remains; legacy text is not fully unified yet |
+| Jobs/artifacts | One heavy job, submit/cancel/retry, persistent events, private results, hashes/provenance, system export and image/WAV/MP4 inspection/ranged preview | Bounded AtomicFile JSON currently stores these records; existing chat SQLite remains; legacy text shares migration/scheduling; target input pipelines and device acceptance remain open |
 | Unified gateway | Start with zero models; authenticated model/engine/job/event/artifact Range routes; public text proxy applies profile bounds and tracks leases; native text stays on a separate loopback port/secret | Production HTTP/stores use real host sockets and explicit execution fixtures; no model downloads or inference redirects |
 | Android execution | Signed-in sd.cpp ARM64 CPU worker, data-only model bundles, external user-supplied vocabularies, child lifetime bound to its host | Compiled/packaged, **no phone inference**; upstream architectures do not prove accepted recipes |
 | Video path | Generated raw frames feed Android MediaCodec/MediaMuxer; repeated still images cannot masquerade as motion output | Native generation and Android encoding still need physical-device validation; no LMA video output evidence |
@@ -33,8 +33,9 @@ Custom manifests gain neither device-validated nor checked-uncensored status. Un
 | API/transport | 67 assertions | Auth, zero-model state, JSON/framing limits, idempotency/cancel/events, exact artifacts/Range/leases and text policy; actual host sockets, not Android inference |
 | Legacy backend/proxy | 98 assertions | Host Android adapters exercising downloads, actual child processes, HTTP SSE and per-model settings |
 | HF logic | 76 assertions | Search, pinned revisions, pagination/selection and token boundaries, not universal HF execution |
-| Shared scheduler | 43 assertions | Production queue/resident/chat/API, real host children and loopback HTTP, cancellation and reaping; no Android inference |
-| UI | 167 assertions | Actual HTML/CSS/JS with explicit simulated native state; recommendation/tag/download/form/queue/narrow-screen regressions |
+| Local input media | 64 assertions | Actual private files, production WAV inspection, authenticated resumable chunks and immutable input receipts/leases; not Android media decoding |
+| Shared scheduler | 49 assertions | Production queue/resident/chat/API, real host children and loopback HTTP, cancellation and reaping; no Android inference |
+| UI | 182 assertions | Actual HTML/CSS/JS with explicit simulated native state; recommendation/tag/download/form/queue/narrow-screen regressions |
 | Native package | 19 ARM64 files | Pinned hashes, resolved dependencies, Android API 28, 16 KiB ELF/APK alignment, original signing identity, asset allowlist |
 | Phone inference/endurance | 0 | No actual image/audio/motion-video or sustained screen-off inference evidence |
 
@@ -44,10 +45,10 @@ The SD1.5 candidate combines [Second State’s pinned GGUF](https://huggingface.
 
 ## Remaining work in the same release
 
-1. Physically validate [shared scheduling](SCHEDULING.en.md), model adoption and independent updates on Android across modalities, cancellation, recovery and upgrades. The 43 host scheduler assertions and dev.9 adoption do not replace device gates.
+1. Physically validate [shared scheduling](SCHEDULING.en.md), model adoption and independent updates on Android across modalities, cancellation, recovery and upgrades. The 49 host scheduler assertions and dev.9 adoption do not replace device gates.
 2. Complete pinned assets, actual engines/pipelines and every subtarget for 01–14/16/17, including both SD1.5/SDXL LoRA pairings, MNN, remaining audio, full MOSS/SoulX and older LTX Android ports. Some TTS paths are integrated but not device-accepted. Compiling sd.cpp does not complete these targets.
-3. Extend async/text APIs to remaining engines, input-artifact references, modality compatibility and physical lifecycle acceptance. Existing text now shares the slot; new engines must reuse this scheduling boundary. See [API behavior](API.en.md#030-dev2-independent-gateway-jobs-and-artifacts).
-4. Finish measured admission profiles, thermals, input-artifact references, stage/checkpoint capability handling, cross-modality load/unload and upgrade migration verification.
+3. Extend async/text APIs to remaining engines and their actual input pipelines, modality compatibility and physical lifecycle acceptance. Existing text now shares the slot; new engines must reuse this scheduling boundary. See [API behavior](API.en.md#030-dev2-independent-gateway-jobs-and-artifacts).
+4. Finish measured admission profiles, thermals, per-recipe/device input acceptance, stage/checkpoint capability handling, cross-modality load/unload and upgrade migration verification.
 5. Obtain physical-Android offline outputs for new inputs on every frozen subtarget, quality/cancellation/cleanup checks, A7 fifteen-minute screen-off tasks and one-hour alternating service evidence. No device is available.
 6. Pass all A1–A11/R-01–R-05 gates and produce complete source/APK/docs/actual feature media/Release. Development builds cannot substitute for delivery; publishing tools reject `-dev`.
 
@@ -122,3 +123,9 @@ Existing complete GGUF files are locally adopted with hardlinks, measured receip
 Production `LocalJobs`, resident `EngineHost`, `ChatRunner` and `ApiHost` share a cancellable FIFO slot. Jobs wait for replies, reap actual children and recheck available memory/temperature before starting. Idle restoration uses only a model the user still wants; stop/replacement generations and late cleanup remain isolated. Jobs persist and text history remains, without model assets or implicit downloads.
 
 43 added assertions compile the production job runner and execute actual host children/loopback HTTP, cancellation, API closure, resident/service stops, deferred reaping and retained assets/profiles. UI checks total 167. Development media contains 28 screenshots plus labeled fixture recording/GIF. Every model and physical upgrade/resources/quality/background gate remains open. See [guide](SCHEDULING.en.md), [receipt](../verification/development/scheduler.json) and [notes](releases/v0.3.0-dev.10.md).
+
+## Dev.11: local media and task references
+
+[Local inputs](LOCAL_INPUTS.en.md) adds explicit document import, foreground copying/cancellation, PNG/JPEG/WAV/MP4 inspection and source hashes; bounded authenticated uploads use 256 KiB chunks and explicit continuation. Tasks select imports/previous results through signed engine roles, freeze receipts, protect queued/execution references and rehash before startup. Existing production engines remain prompt-only; actual remaining input pipelines need individual integration.
+
+64 new file/WAV/actual-HTTP assertions pass. Production scheduling now has 49, including actual child input consumption, corruption rejection and cancellation cleanup. UI totals 182; 30 screenshots plus MP4/GIF remain explicit fixtures. The same 19 native files carry no new weights. The Android picker/image/video codecs and full device gates remain unverified. See [notes](releases/v0.3.0-dev.11.md) and [input receipt](../verification/development/inputs.json).

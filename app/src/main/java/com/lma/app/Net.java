@@ -71,7 +71,7 @@ public final class Net {
             if (!url.getProtocol().equals("https") || url.getUserInfo() != null) throw new IOException("下载地址必须使用 HTTPS");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setConnectTimeout(connectTimeout); connection.setReadTimeout(readTimeout); connection.setInstanceFollowRedirects(false);
-            connection.setRequestProperty("User-Agent", "LMA-Android/0.3.0-dev.10"); connection.setRequestProperty("Accept-Encoding", "identity");
+            connection.setRequestProperty("User-Agent", "LMA-Android/0.3.0-dev.11"); connection.setRequestProperty("Accept-Encoding", "identity");
             // Re-evaluate for every redirect. HF credentials never travel to mirrors, CDNs or custom hosts.
             if (!token.isEmpty() && acceptsHubToken(url)) connection.setRequestProperty("Authorization", "Bearer " + token);
             if (offset > 0) {

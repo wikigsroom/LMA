@@ -1,10 +1,10 @@
 (function () {
   'use strict';
-  var ui, pending = {}, editor = null, listSignature = '', artifactSignature = '';
+  var ui, pending = {}, editor = null, listSignature = '', artifactSignature = '', artifactKind = 'all';
   var $ = function (id) { return document.getElementById(id); };
   var labels = {text: '生文', image: '生图', video: '生视频', audio: '生音频'};
   var states = {queued: '排队中', loading: '加载中', running: '生成中', cancelling: '取消中', cancelled: '已取消', failed: '失败', succeeded: '已完成', interrupted: '已中断'};
-  var stages = {queued: '等待执行', waiting_engine: '等待本机执行槽', loading: '加载模型', sampling: '采样中', encoding: '编码媒体', synthesizing: '合成语音', text_encoding: '编码文本', decoding: '解码输出', generating: '生成文本', saving: '保存结果'};
+  var stages = {queued: '等待执行', waiting_engine: '等待本机执行槽', validating_inputs: '校验本地素材', loading: '加载模型', sampling: '采样中', encoding: '编码媒体', synthesizing: '合成语音', text_encoding: '编码文本', decoding: '解码输出', generating: '生成文本', saving: '保存结果'};
   var paramNames = {width: '宽度', height: '高度', frames: '帧数', fps: '帧率', steps: '采样步数', cfg: '提示词引导', seed: '随机种子', threads: 'CPU 线程', sampler: '采样器', scheduler: '调度器', duration: '时长（秒）', speed: '语速', context: '上下文长度', maxTokens: '单次输出上限', temperature: '采样温度', reasoning: '思考模式', systemPrompt: '系统提示词'};
   function entries() { return ui.state() && ui.state().bundles || []; }
   function find(id) { return entries().filter(function (b) { return b.id === id; })[0]; }
@@ -151,6 +151,24 @@
     if (selected.length > 8) throw new Error('一次最多选择 8 个 LoRA');
     return selected;
   }
+  function inputRuleMatch(a, rule) {
+    var m = a.metadata || {};
+    return a.available && (rule.mimes || []).indexOf(m.mime) >= 0 && a.bytes <= rule.maxBytes && (!rule.maxDurationMs || m.durationMs > 0 && m.durationMs <= rule.maxDurationMs) && (!rule.maxPixels || m.width > 0 && m.height > 0 && m.width * m.height <= rule.maxPixels);
+  }
+  function renderInputFields() {
+    var panel = $('taskInputs'), form = $('localTaskForm'), b = editor && find(editor.id); if (!panel || !form || !b) return;
+    var selected = {}; panel.querySelectorAll('[data-input-role]').forEach(function (s) { selected[s.dataset.inputRole] = s.value; });
+    var schema = (b.inputSchemas || {})[form.elements.taskType.value], roles = schema && schema.roles || {}, keys = Object.keys(roles);
+    panel.innerHTML = keys.length ? '<h3>本地输入素材</h3>' + keys.map(function (role) {
+      var rule = roles[role], choices = (ui.state().artifacts || []).filter(function (a) { return inputRuleMatch(a, rule); });
+      return '<label class="form-field"><span>' + e(rule.label) + (rule.required ? '（必选）' : '（可选）') + '</span><select data-input-role="' + e(role) + '"' + (rule.required ? ' required' : '') + '><option value="">选择已导入素材或已有结果</option>' + choices.map(function (a) { var origin = a.origin || {}; return '<option value="' + e(a.id) + '"' + (selected[role] === a.id ? ' selected' : '') + '>' + e(origin.name || a.id) + ' · ' + ui.bytes(a.bytes) + '</option>'; }).join('') + '</select><small>' + e((rule.mimes || []).join(' / ')) + ' · ≤ ' + ui.bytes(rule.maxBytes) + (choices.length ? '' : ' · 暂无匹配素材') + '</small></label>';
+    }).join('') + button('inputPicker', '', '导入新素材') : '<p class="form-help">当前配方仅接受文字。导入素材不会自动开启图像编辑或语音克隆。</p>';
+  }
+  function readInputs(form) {
+    var result = [];
+    form.querySelectorAll('[data-input-role]').forEach(function (select) { if (select.value) result.push({role: select.dataset.inputRole, artifactId: select.value}); });
+    return result;
+  }
   function use(id, selectedAdapter) {
     var b = find(id); if (!b || !b.installed) { ui.toast('请先选择并完整安装模型'); return; }
     if (!engineAvailable(b)) { ui.toast('当前基座缺少匹配引擎'); return; }
@@ -159,7 +177,8 @@
     tasks(b).forEach(function (t) { if (t === 'image') types.push(['image.generate', '生图']); if (t === 'video') types.push(['video.generate', '生视频']); if (t === 'text') types.push(['text.generate', '生文']); if (t === 'audio') types.push([(b.manifest.capabilities || []).indexOf('text_to_speech') >= 0 ? 'speech.synthesize' : 'audio.generate', '生音频']); });
     var speechOnly = types.length === 1 && types[0][0] === 'speech.synthesize', textOnly = types.length === 1 && types[0][0] === 'text.generate';
     editor = {id: id, mode: 'task'};
-    ui.openModal(b.manifest.name, '<form id="localTaskForm"><label class="form-field"><span>生成能力</span><select name="taskType">' + types.map(function (t) { return '<option value="' + t[0] + '">' + t[1] + '</option>'; }).join('') + '</select></label><label class="form-field"><span>' + (speechOnly ? '朗读文本' : '提示词 / 文本') + '</span><textarea name="prompt" rows="4" required maxlength="' + (speechOnly ? '4000' : '16000') + '" placeholder="' + (speechOnly ? '填写所选语言词表覆盖的朗读文本' : '描述你希望生成的内容') + '"></textarea></label>' + (speechOnly ? '<p class="form-help">请使用此配方声明的语言。未知词或缺失语言组件会在本机报错；不进行语音克隆。</p>' : textOnly ? '' : '<label class="form-field"><span>负面提示词（可选）</span><textarea name="negativePrompt" rows="2" maxlength="16000"></textarea></label>') + (tasks(b).indexOf('image') >= 0 ? adapterFields(b, selectedAdapter) : '') + '<details class="task-parameters"><summary>本次参数</summary>' + fields(b) + '</details><label class="unmeasured-choice"><input type="checkbox" name="allowUnmeasured" required><span>此配方尚无本机实测记录，我选择在当前手机上尝试。</span></label><p class="form-help">一次执行一个大型引擎。任务等待当前回复结束后自动切换，队列空闲时恢复此前加载的文本模型。任务在后台通知中执行，结果保存在本机；缺少组件不会自动下载。</p><p id="bundleFormHint" role="status"></p><div class="modal-actions">' + button('closeModal', '', '取消') + '<button type="submit" class="button primary">加入本机队列</button></div></form>', 'localTask');
+    ui.openModal(b.manifest.name, '<form id="localTaskForm"><label class="form-field"><span>生成能力</span><select name="taskType">' + types.map(function (t) { return '<option value="' + t[0] + '">' + t[1] + '</option>'; }).join('') + '</select></label><label class="form-field"><span>' + (speechOnly ? '朗读文本' : '提示词 / 文本') + '</span><textarea name="prompt" rows="4" required maxlength="' + (speechOnly ? '4000' : '16000') + '" placeholder="' + (speechOnly ? '填写所选语言词表覆盖的朗读文本' : '描述你希望生成的内容') + '"></textarea></label>' + (speechOnly ? '<p class="form-help">请使用此配方声明的语言与输入。缺失组件或不支持的能力会在本机报错，不会下载或转出执行。</p>' : textOnly ? '' : '<label class="form-field"><span>负面提示词（可选）</span><textarea name="negativePrompt" rows="2" maxlength="16000"></textarea></label>') + (tasks(b).indexOf('image') >= 0 ? adapterFields(b, selectedAdapter) : '') + '<div id="taskInputs"></div><details class="task-parameters"><summary>本次参数</summary>' + fields(b) + '</details><label class="unmeasured-choice"><input type="checkbox" name="allowUnmeasured" required><span>此配方尚无本机实测记录，我选择在当前手机上尝试。</span></label><p class="form-help">一次执行一个大型引擎。任务等待当前回复结束后自动切换，队列空闲时恢复此前加载的文本模型。任务在后台通知中执行，结果保存在本机；缺少组件不会自动下载。</p><p id="bundleFormHint" role="status"></p><div class="modal-actions">' + button('closeModal', '', '取消') + '<button type="submit" class="button primary">加入本机队列</button></div></form>', 'localTask');
+    renderInputFields();
   }
   function renderJobs() {
     var s = ui.state(), jobs = s.jobs || [], signature = JSON.stringify(jobs);
@@ -172,20 +191,23 @@
     }).join('') : '<div class="empty-list"><h3>队列里还没有任务</h3><p>在本地模型中选择已安装的模型，填写提示词后加入队列。</p>' + button('showLocal', '', '选择本地模型', 'primary') + '</div>';
   }
   function renderArtifacts() {
-    var artifacts = ui.state().artifacts || [], signature = JSON.stringify(artifacts);
+    var all = ui.state().artifacts || [], artifacts = all.filter(function (a) { return artifactKind === 'all' || ((a.origin || {}).kind || 'generated') === artifactKind; }), imports = ui.state().inputImport || {}, signature = JSON.stringify([artifacts, artifactKind, imports]);
     if (signature === artifactSignature) return; artifactSignature = signature;
-    $('artifactCount').textContent = artifacts.length + ' 个结果';
+    $('artifactCount').textContent = artifacts.length + ' 项';
+    $('inputImportStatus').innerHTML = imports.busy ? '<p class="form-help">正在导入 ' + e(imports.name || '所选素材') + ' · ' + Number(imports.pending || 1) + ' 项' + button('cancelInputImport', '', '取消导入') + '</p>' : '';
+    document.querySelectorAll('[data-action="filterArtifacts"]').forEach(function (b) { var active = b.dataset.kind === artifactKind; b.classList.toggle('active', active); b.setAttribute('aria-pressed', String(active)); });
+    renderInputFields();
     $('artifactList').innerHTML = artifacts.length ? artifacts.slice().reverse().map(function (a) {
-      var m = a.metadata || {}, type = m.mime === 'application/vnd.lma.text+json' ? 'text' : (m.mime || '').split('/')[0];
-      var cover = a.available && type === 'image' ? '<img class="artifact-thumb" src="/artifacts/' + e(a.id) + '" loading="lazy" alt="本地生成图片">' : '<div class="artifact-placeholder">' + ui.icon(type === 'audio' ? 'play' : 'spark') + '<span>' + e(type === 'video' ? '视频' : type === 'audio' ? '音频' : type === 'text' ? '文本' : '生成结果') + '</span></div>';
-      return '<article class="artifact-card">' + cover + '<div class="artifact-info"><strong>' + new Date(a.createdAt).toLocaleString('zh-CN') + '</strong><p>' + e(m.mime || '') + ' · ' + ui.bytes(a.bytes) + (m.width ? ' · ' + m.width + ' × ' + m.height : '') + '</p><div class="job-actions">' + button('artifactInfo', a.id, '打开', 'primary', !a.available) + button('exportArtifact', a.id, '导出', 'secondary', !a.available) + button('artifactRemove', a.id, '删除') + '</div></div></article>';
-    }).join('') : '<div class="empty-list"><h3>生成结果保存在这里</h3><p>可以预览图片、播放音频与视频、导出原文件，并查看对应任务参数。</p></div>';
+      var origin = a.origin || {}, imported = origin.kind === 'imported', m = a.metadata || {}, type = m.mime === 'application/vnd.lma.text+json' ? 'text' : (m.mime || '').split('/')[0];
+      var cover = a.available && type === 'image' ? '<img class="artifact-thumb" src="/artifacts/' + e(a.id) + '" loading="lazy" alt="本地图片素材或结果">' : '<div class="artifact-placeholder">' + ui.icon(type === 'audio' ? 'play' : 'spark') + '<span>' + e(type === 'video' ? '视频' : type === 'audio' ? '音频' : type === 'text' ? '文本' : '生成结果') + '</span></div>';
+      return '<article class="artifact-card">' + cover + '<div class="artifact-info"><strong>' + e(imported ? origin.name || '导入素材' : new Date(a.createdAt).toLocaleString('zh-CN')) + '</strong><p class="artifact-source">' + (imported ? '导入素材' : '生成结果') + (a.inUse ? ' · 任务正在引用' : '') + '</p><p>' + e(m.mime || '') + ' · ' + ui.bytes(a.bytes) + (m.width ? ' · ' + m.width + ' × ' + m.height : '') + '</p><div class="job-actions">' + button('artifactInfo', a.id, '打开', 'primary', !a.available) + button('exportArtifact', a.id, '导出', 'secondary', !a.available) + button('artifactRemove', a.id, '删除', 'secondary', a.inUse) + '</div></div></article>';
+    }).join('') : '<div class="empty-list"><h3>这里还没有素材或结果</h3><p>导入本地素材，或选择模型生成结果。可预览、导出并查看文件来源。</p></div>';
   }
   function track(action, args, callback) { var id = ui.dispatch(action, args); if (id) pending[id] = callback || function () {}; return id; }
   function showArtifact(id, data) {
     var a = data, mime = a.metadata.mime, path = '/artifacts/' + encodeURIComponent(id), text = mime === 'application/vnd.lma.text+json', media = mime.indexOf('image/') === 0 ? '<img src="' + path + '" alt="本地生成图片" class="artifact-preview">' : mime.indexOf('audio/') === 0 ? '<audio controls preload="metadata" src="' + path + '"></audio>' : mime.indexOf('video/') === 0 ? '<video controls playsinline preload="metadata" src="' + path + '"></video>' : '';
     if (text) media = '<div id="textArtifact" data-id="' + e(id) + '"><p role="status">正在读取本地文本结果…</p></div>';
-    ui.openModal('本地生成结果', media + '<p>' + e(mime) + ' · ' + ui.bytes(a.bytes) + '</p><details><summary>生成参数与来源</summary><pre class="provenance">' + e(JSON.stringify(a.provenance, null, 2)) + '</pre></details><p class="form-help artifact-sha">SHA256：' + e(a.sha256) + '</p><div class="modal-actions">' + (text ? button('copyArtifactText', id, '复制正文') : '') + button('exportArtifactMetadata', id, '导出生成记录') + button('exportArtifact', id, '导出原文件', 'primary') + '</div>', 'artifact');
+    ui.openModal((a.origin || {}).kind === 'imported' ? '本地导入素材' : '本地生成结果', media + '<p>' + e(mime) + ' · ' + ui.bytes(a.bytes) + '</p><details><summary>文件来源与任务记录</summary><pre class="provenance">' + e(JSON.stringify({origin: a.origin || {kind: 'generated'}, provenance: a.provenance}, null, 2)) + '</pre></details><p class="form-help artifact-sha">SHA256：' + e(a.sha256) + '</p><div class="modal-actions">' + (text ? button('copyArtifactText', id, '复制正文') : '') + button('exportArtifactMetadata', id, '导出来源记录') + button('exportArtifact', id, '导出原文件', 'primary') + '</div>', 'artifact');
     if (text) fetch(path, {cache: 'no-store'}).then(function (response) { if (!response.ok) throw new Error('无法读取本地文本结果'); return response.text(); }).then(function (raw) {
       if (raw.length > 8 * 1024 * 1024) throw new Error('文本结果过大');
       var value = JSON.parse(raw), panel = $('textArtifact');
@@ -202,6 +224,9 @@
     var id = el.dataset.id;
     if (window.LMAVersions.handle(action, el)) { editor = null; return true; }
     switch (action) {
+      case 'inputPicker': ui.dispatch(action); return true;
+      case 'cancelInputImport': track(action); return true;
+      case 'filterArtifacts': artifactKind = ['all', 'generated', 'imported'].indexOf(el.dataset.kind) >= 0 ? el.dataset.kind : 'all'; renderArtifacts(); return true;
       case 'bundleInfo': info(id); return true;
       case 'bundleSettings': settings(id); return true;
       case 'bundleUse': use(id); return true;
@@ -210,7 +235,7 @@
       case 'bundleFolderPicker': ui.dispatch(action, {id: id}); return true;
       case 'bundleManifestPicker': ui.selectLocal(); ui.dispatch(action); return true;
       case 'bundleRemove': ui.confirm('删除本地模型资产？', '删除本机文件并保留此模型的独立设置。其他模型正在使用的共享组件会保留。', 'deleteBundle', id, '删除资产'); return true;
-      case 'artifactRemove': ui.confirm('删除生成结果？', '此操作删除手机上的结果原文件，任务记录会保留。', 'deleteArtifact', id, '删除结果'); return true;
+      case 'artifactRemove': ui.confirm('删除本地素材或结果？', '删除此原文件，历史任务记录保留。排队或运行中的任务引用、预览和导出会阻止删除；重试仍需要原素材。', 'deleteArtifact', id, '删除文件'); return true;
       case 'exportArtifact': case 'exportArtifactMetadata': ui.dispatch(action, {id: id}); return true;
       case 'copyArtifactText': { var panel = $('textArtifact'); if (panel && panel.dataset.id === id && panel.querySelector('pre')) ui.copy(panel.querySelector('pre').textContent); return true; }
       case 'artifactInfo': track('inspectArtifact', {id: id}, function (data) { showArtifact(id, data); }); return true;
@@ -230,6 +255,7 @@
           if (!form.reportValidity()) return;
           var parameters = readFields(form, b), submit = form.querySelector('[type="submit"]');
           var args = editor.mode === 'settings' ? {id: b.id, settings: parameters} : {request: {bundleId: b.id, type: form.elements.taskType.value, input: {prompt: form.elements.prompt.value, negativePrompt: form.elements.negativePrompt ? form.elements.negativePrompt.value : ''}, parameters: parameters, allowUnmeasured: form.elements.allowUnmeasured.checked}, idempotencyKey: 'ui-' + Date.now() + '-' + Math.random().toString(36).slice(2)};
+          if (editor.mode === 'task') { var inputs = readInputs(form); if (inputs.length) args.request.input.artifacts = inputs; }
           if (editor.mode === 'task' && form.elements.taskType.value === 'image.generate') args.request.adapters = readAdapters(form, b);
           var editing = editor;
           editor.pending = track(editor.mode === 'settings' ? 'saveBundleSettings' : 'submitTask', args, function () { if (editor === editing) { ui.closeModal(); if (editing.mode === 'task') ui.route('tasks'); } ui.toast(editing.mode === 'task' ? '任务已加入本机队列' : '已保存此模型的独立设置'); });
@@ -240,7 +266,7 @@
         if (event.target.dataset.adapterSelect) {
           var row = event.target.closest('.task-adapter'), scale = row.querySelector('[data-adapter-scale]'); scale.disabled = !event.target.checked; return;
         }
-        if (event.target.name === 'taskType' && $('taskAdapters')) { $('taskAdapters').disabled = event.target.value !== 'image.generate'; $('taskAdapters').hidden = event.target.value !== 'image.generate'; return; }
+        if (event.target.name === 'taskType') { renderInputFields(); if ($('taskAdapters')) { $('taskAdapters').disabled = event.target.value !== 'image.generate'; $('taskAdapters').hidden = event.target.value !== 'image.generate'; } return; }
         if (event.target.id !== 'bundleShape' || !editor || event.target.value === '') return;
         var b = find(editor.id), shape = schemaFor(b).allowedShapes[Number(event.target.value)];
         $('modalContent').querySelectorAll('[data-bundle-field]').forEach(function (input) { if (Object.prototype.hasOwnProperty.call(shape, input.dataset.bundleField)) input.value = shape[input.dataset.bundleField]; });

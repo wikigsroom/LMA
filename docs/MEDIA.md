@@ -81,3 +81,5 @@ dev.8 新增[文本参数](media/development/22-text-model-settings.png)、[任�
 dev.9 当前开发媒体为 **26 PNG + MP4 + GIF**。新增 [25 · 已有模型详情](media/development/25-migrated-text-model.png) 与 [26 · 共用文本任务](media/development/26-migrated-text-task.png)，并更新录屏 / GIF。全部为 UI FIXTURE；不证明手机迁移或推理。 / The current dev.9 media contains 26 screenshots plus recording/GIF, with explicit fixture labels.
 
 开发 dev.10 新增 `27-scheduler-model-waiting.png` 与 `28-scheduler-chat-waiting.png`，共 28 张 PNG；录屏 / GIF 同步展示已选文本驻留和可取消回复等待。所有画面均有 UI FIXTURE 标识，未执行 Android 或模型。Dev.10 adds two explicit scheduling UI fixtures and refreshes the recording/GIF without phone or model execution.
+
+dev.11 当前媒体为 **30 PNG + MP4 + GIF**，新增[导入素材](media/development/29-imported-media-library.png)与[本地输入契约表单](media/development/30-local-input-role-form.png)。表单是独立 UI FIXTURE，非已支持语音克隆模型；不执行 Android 或推理。录屏 / GIF 和 manifest 同步，浏览器已在 finally 关闭。Dev.11 adds two explicit local-input UI contracts, with refreshed recording/GIF and browser cleanup.

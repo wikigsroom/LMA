@@ -33,7 +33,7 @@ import java.nio.charset.StandardCharsets;
 
 public final class MainActivity extends Activity {
     private static final String ORIGIN = "https://appassets.androidplatform.net";
-    private static final int IMPORT = 7, EXPORT_LOGS = 8, IMPORT_BUNDLE = 9, EXPORT_ARTIFACT = 10, IMPORT_BUNDLE_FOLDER = 11;
+    private static final int IMPORT = 7, EXPORT_LOGS = 8, IMPORT_BUNDLE = 9, EXPORT_ARTIFACT = 10, IMPORT_BUNDLE_FOLDER = 11, IMPORT_INPUT = 12;
     private String exportArtifactId = "", folderBundleId = "";
     private boolean exportMetadata;
     private WebView web;
@@ -161,6 +161,7 @@ public final class MainActivity extends Activity {
                     case "inspectModel": app.store.inspectModel(command.getString("id")); app.emit(); break;
                     case "inspectTask": if (app.jobs == null) throw new IllegalStateException(app.bundleStoreError); command.put("result", app.jobs.get(command.getString("id"))); break;
                     case "inspectArtifact": if (app.artifacts == null) throw new IllegalStateException(app.bundleStoreError); command.put("result", app.artifacts.get(command.getString("id"))); break;
+                    case "inputPicker": main.post(() -> startActivityForResult(new Intent(Intent.ACTION_OPEN_DOCUMENT).setType("*/*").putExtra(Intent.EXTRA_MIME_TYPES, new String[]{"image/png", "image/jpeg", "audio/wav", "audio/x-wav", "video/mp4"}).addCategory(Intent.CATEGORY_OPENABLE).addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION), IMPORT_INPUT)); break;
                     case "bundleManifestPicker": main.post(() -> startActivityForResult(new Intent(Intent.ACTION_OPEN_DOCUMENT).setType("application/json").addCategory(Intent.CATEGORY_OPENABLE).addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION), IMPORT_BUNDLE)); break;
                     case "bundleFolderPicker": {
                         if (app.bundles == null) throw new IllegalStateException(app.bundleStoreError);
@@ -198,7 +199,13 @@ public final class MainActivity extends Activity {
         super.onActivityResult(request, result, data);
         if (result != RESULT_OK || data == null || data.getData() == null) return;
         Uri uri = data.getData();
-        if (request == IMPORT_BUNDLE) {
+        if (request == IMPORT_INPUT) {
+            if (!"content".equals(uri.getScheme())) { app.error("请从系统文件选择器选择素材"); return; }
+            try { getContentResolver().takePersistableUriPermission(uri, Intent.FLAG_GRANT_READ_URI_PERMISSION); } catch (Exception ignored) {}
+            String name = "local-input";
+            try (Cursor cursor = getContentResolver().query(uri, new String[]{OpenableColumns.DISPLAY_NAME}, null, null, null)) { if (cursor != null && cursor.moveToFirst()) name = cursor.getString(0); } catch (Exception ignored) {}
+            try { service(new JSONObject().put("action", "importInput").put("uri", uri.toString()).put("name", name)); } catch (Exception error) { app.error(error.getMessage()); }
+        } else if (request == IMPORT_BUNDLE) {
             new Thread(() -> {
                 try (java.io.InputStream in = getContentResolver().openInputStream(uri)) {
                     if (in == null) throw new java.io.IOException("无法读取模型包清单");

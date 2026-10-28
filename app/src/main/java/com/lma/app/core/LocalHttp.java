@@ -7,7 +7,7 @@ import java.nio.charset.*;
 import java.util.*;
 import java.util.concurrent.*;
 
-/** Bounded HTTP/1.x transport for the local API; one request per connection, no file uploads. */
+/** Bounded HTTP/1.x transport for the local API; one request per connection, bounded JSON or input-media chunks. */
 public final class LocalHttp implements AutoCloseable {
     public static final int MAX_BODY = 256 * 1024;
     private static final int MAX_HEADERS = 16 * 1024;
@@ -168,7 +168,7 @@ public final class LocalHttp implements AutoCloseable {
             String value = headers.get("content-length");
             if (!value.matches("[0-9]{1,10}")) throw new Failure(400, "invalid_length", "Invalid Content-Length");
             long size = Long.parseLong(value); if (size > MAX_BODY) throw new Failure(413, "body_too_large", "Request body exceeds 256 KiB"); length = (int) size;
-        } else if (parts[0].equals("POST")) throw new Failure(411, "missing_length", "Content-Length is required");
+        } else if (parts[0].equals("POST") || parts[0].equals("PUT")) throw new Failure(411, "missing_length", "Content-Length is required");
         byte[] body = new byte[length]; int offset = 0;
         while (offset < body.length) { int size = in.read(body, offset, body.length - offset); if (size < 0) throw new Failure(400, "incomplete_body", "Incomplete request body"); offset += size; }
         int question = target.indexOf('?'); String path = question < 0 ? target : target.substring(0, question);

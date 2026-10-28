@@ -23,7 +23,7 @@ public final class LocalJobs implements AutoCloseable {
     private volatile Process activeProcess;
     public LocalJobs(LmaApp app, EngineHost resident, Runnable changed) { this.app = app; this.resident = resident; this.changed = changed; }
     public JSONObject submit(JSONObject input, String idempotencyKey) throws Exception {
-        synchronized (app.bundles) { return submitLocked(input, idempotencyKey); }
+        synchronized (app.bundles) { synchronized (app.artifacts) { return submitLocked(input, idempotencyKey); } }
     }
     private JSONObject submitLocked(JSONObject input, String idempotencyKey) throws Exception {
         if (closed) throw new IllegalStateException("任务服务正在停止");
@@ -43,6 +43,7 @@ public final class LocalJobs implements AutoCloseable {
                 .put("adjustments", effective.getJSONArray("adjustments")).put("parameterSchemaVersion", effective.getInt("schemaVersion")).put("allowUnmeasured", input.optBoolean("allowUnmeasured", false)).put("submissionHash", submissionHash);
         if (input.has("adapters")) request.put("adapters", DataFiles.copy(input).getJSONArray("adapters"));
         request = ModelSelection.prepare(app.bundles, bundle, request);
+        request = InputSelection.prepare(app.artifacts, selectedEngine.inputs(bundle, type), request);
         request = selectedEngine.prepare(bundle, request);
         admission(bundle, request, false);
         JSONObject job = app.jobs.submit(request, idempotencyKey); app.prefs.edit().putBoolean("desiredJobs", true).apply(); wake(); changed.run(); return job;
@@ -50,7 +51,7 @@ public final class LocalJobs implements AutoCloseable {
     public JSONObject retry(String id, String key) throws Exception {
         JSONObject old = app.jobs.get(id);
         if (!java.util.Arrays.asList("failed", "interrupted", "cancelled").contains(old.getString("state"))) throw new IllegalStateException("仅已失败、中断或取消的任务可以重试");
-        JSONObject request = DataFiles.copy(old.getJSONObject("request")); request.remove("submissionHash"); request.remove("adjustments"); request.remove("parameterSchemaVersion"); request.remove("adapterAdjustments"); request.remove("textMetadata");
+        JSONObject request = DataFiles.copy(old.getJSONObject("request")); request.remove("submissionHash"); request.remove("adjustments"); request.remove("parameterSchemaVersion"); request.remove("adapterAdjustments"); request.remove("textMetadata"); request.remove("inputReceipts");
         return submit(request, key);
     }
     private JSONObject admission(ModelBundle bundle, JSONObject request, boolean executing) throws Exception {
@@ -91,7 +92,7 @@ public final class LocalJobs implements AutoCloseable {
         String id = job.getString("id"), token = job.getString("token"); activeId = id; AtomicBoolean timedOut = new AtomicBoolean(); JSONObject request = job.getJSONObject("request");
         ScheduledFuture<?> timeout = null; String artifactId = "";
         ExecutionGate.Ticket slot = null; boolean acquired = false, parked = false;
-        BundleStore.Selection selection = null;
+        BundleStore.Selection selection = null; InputSelection.Selection inputs = null;
         try {
             final ExecutionGate.Ticket owned = app.execution.enqueue("job", request.getString("bundleId")); slot = owned;
             app.jobs.progress(id, token, "waiting_engine", null); changed.run();
@@ -103,9 +104,12 @@ public final class LocalJobs implements AutoCloseable {
             java.util.List<BundleStore.Lease> adapters = selection.models.subList(1, selection.models.size());
             JSONObject executionDetails = new JSONObject();
             JSONObject resourcePlan = admission(model.bundle, request, true); app.jobs.progress(id, token, "loading", null); changed.run(); LocalEngine engine = app.localEngines.require(model.bundle, request.getString("type"));
+            inputs = InputSelection.acquire(app.artifacts, engine.inputs(model.bundle, request.getString("type")), request, () -> { if (closed || timedOut.get()) throw new IOException("Input validation was stopped"); app.jobs.check(id, token); });
+            final InputSelection.Selection selectedInputs = inputs;
             File output = engine.generate(new LocalEngine.Context() {
                 @Override public BundleStore.Lease model() { return model; }
                 @Override public java.util.List<BundleStore.Lease> adapters() { return adapters; }
+                @Override public File input(String role) throws Exception { return selectedInputs.file(role); }
                 @Override public JSONObject request() { return DataFiles.copy(request); }
                 @Override public File output(String suffix) throws Exception { return app.artifacts.staging(id, suffix); }
                 @Override public void check() throws Exception { owned.checkOwner(); if (closed) throw new IOException("任务服务已结束"); if (timedOut.get()) throw new IOException("本地执行超过应用的两小时单任务保护时限"); app.jobs.check(id, token); }
@@ -127,9 +131,10 @@ public final class LocalJobs implements AutoCloseable {
             if (timeout != null) timeout.cancel(false);
             Process child = activeProcess;
             try { ProcessControl.stop(child); } catch (IOException error) { app.log(error.getMessage()); }
-            final BundleStore.Selection held = selection;
+            final BundleStore.Selection held = selection; final InputSelection.Selection heldInputs = inputs;
             Process remaining = child != null && child.isAlive() ? child : parked ? app.nativeProcess : null;
             Runnable cleanup = () -> {
+                if (heldInputs != null) heldInputs.close();
                 if (held != null) held.close();
                 try { app.artifacts.discardStaging(id); } catch (Exception error) { app.log("临时产物清理失败：" + error.getMessage()); }
                 changed.run();

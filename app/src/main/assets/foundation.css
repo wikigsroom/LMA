@@ -30,3 +30,12 @@
 .artifact-text { white-space: pre-wrap; overflow-wrap: anywhere; user-select: text; max-height: 55vh; overflow: auto; padding: 14px; border: 1px solid var(--line); border-radius: 12px; font-family: inherit; font-size: 14px; line-height: 1.7; }
 .artifact-reasoning { margin: 12px 0; }
 .artifact-sha { overflow-wrap: anywhere; word-break: break-all; }
+.artifact-tools { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin: 12px 0; }
+.artifact-filters { display: flex; flex-wrap: wrap; gap: 6px; }
+.artifact-filters .button { padding: 7px 10px; font-size: 12px; }
+.artifact-filters .active { color: var(--primary); border-color: currentColor; }
+.artifact-info strong, .artifact-source { overflow-wrap: anywhere; }
+.artifact-source { color: var(--muted); font-size: 12px; }
+#taskInputs { margin: 18px 0; padding: 14px; border: 1px solid var(--line); border-radius: 12px; }
+#taskInputs h3 { margin: 0 0 12px; font-size: 14px; }
+#inputImportStatus .button { margin-left: 8px; padding: 5px 8px; font-size: 12px; }

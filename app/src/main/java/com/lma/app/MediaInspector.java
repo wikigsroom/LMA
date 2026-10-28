@@ -7,7 +7,7 @@ import org.json.JSONObject;
 import java.io.*;
 import com.lma.app.core.ArtifactStore;
 
-/** Read output metadata from local media, never from model-supplied descriptions. */
+/** Inspect imported/generated local media, never trusting a supplied extension or description. */
 public final class MediaInspector implements ArtifactStore.Inspector {
     @Override public JSONObject inspect(File file) throws Exception {
         byte[] header = new byte[16]; int read;
@@ -27,23 +27,7 @@ public final class MediaInspector implements ArtifactStore.Inspector {
         if (header[4] == 'f' && header[5] == 't' && header[6] == 'y' && header[7] == 'p') return video(file);
         throw new IOException("生成文件不是可识别的图片、WAV、MP4 或文本结果");
     }
-    private JSONObject wave(File file) throws Exception {
-        try (RandomAccessFile in = new RandomAccessFile(file, "r")) {
-            in.seek(12); int channels = 0, rate = 0, bits = 0, format = 0; long dataBytes = 0;
-            while (in.getFilePointer() <= in.length() - 8) {
-                int tag = in.readInt(); long size = Integer.toUnsignedLong(Integer.reverseBytes(in.readInt())), next = in.getFilePointer() + size + (size & 1);
-                if (next > in.length() + 1 || size > in.length()) throw new IOException("WAV 数据块不完整");
-                if (tag == 0x666d7420) {
-                    if (size < 16) throw new IOException("WAV 格式数据缺失");
-                    format = Short.toUnsignedInt(Short.reverseBytes(in.readShort())); channels = Short.toUnsignedInt(Short.reverseBytes(in.readShort())); rate = Integer.reverseBytes(in.readInt());
-                    in.skipBytes(6); bits = Short.toUnsignedInt(Short.reverseBytes(in.readShort()));
-                } else if (tag == 0x64617461) dataBytes += size;
-                in.seek(next);
-            }
-            if ((format != 1 && format != 3) || format == 3 && bits != 32 || channels < 1 || channels > 8 || rate < 8000 || rate > 192000 || (bits != 16 && bits != 24 && bits != 32) || dataBytes < channels * bits / 8 || dataBytes % (channels * bits / 8) != 0) throw new IOException("WAV 采样格式不受支持或音频为空");
-            return new JSONObject().put("mime", "audio/wav").put("sampleRate", rate).put("channels", channels).put("bitsPerSample", bits).put("samples", dataBytes / (channels * bits / 8)).put("durationMs", dataBytes * 8000 / (channels * (long) bits * rate));
-        }
-    }
+    private JSONObject wave(File file) throws Exception { return com.lma.app.core.WaveFile.inspect(file); }
     private JSONObject video(File file) throws Exception {
         MediaExtractor extractor = new MediaExtractor();
         try {
@@ -52,7 +36,8 @@ public final class MediaInspector implements ArtifactStore.Inspector {
                 MediaFormat f = extractor.getTrackFormat(i);
                 if (f.getString(MediaFormat.KEY_MIME).startsWith("video/")) {
                     extractor.selectTrack(i); int frames = 0; long previous = -1, last = 0;
-                    do { long time = extractor.getSampleTime(); if (time < 0) break; if (time < previous) throw new IOException("视频时间戳顺序无效"); previous = time; last = time; frames++; } while (extractor.advance());
+                    do { long time = extractor.getSampleTime(); if (time < 0) break; if (Thread.currentThread().isInterrupted()) throw new IOException("Media inspection was stopped"); if (frames >= 1000000) throw new IOException("Video frame table exceeds the import/output limit"); if (time < previous) throw new IOException("视频时间戳顺序无效"); previous = time; last = time; frames++; } while (extractor.advance());
+                    if (f.getInteger(MediaFormat.KEY_WIDTH) < 1 || f.getInteger(MediaFormat.KEY_HEIGHT) < 1 || f.getInteger(MediaFormat.KEY_WIDTH) > 16384 || f.getInteger(MediaFormat.KEY_HEIGHT) > 16384) throw new IOException("Video dimensions exceed the local media limit");
                     if (frames < 2 || last <= 0) throw new IOException("视频缺少连续帧");
                     return new JSONObject().put("mime", "video/mp4").put("codec", f.getString(MediaFormat.KEY_MIME)).put("width", f.getInteger(MediaFormat.KEY_WIDTH)).put("height", f.getInteger(MediaFormat.KEY_HEIGHT))
                             .put("frames", frames).put("fps", f.containsKey(MediaFormat.KEY_FRAME_RATE) ? f.getInteger(MediaFormat.KEY_FRAME_RATE) : JSONObject.NULL).put("durationMs", f.containsKey(MediaFormat.KEY_DURATION) ? f.getLong(MediaFormat.KEY_DURATION) / 1000 : last / 1000);

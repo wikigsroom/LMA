@@ -1,5 +1,13 @@
 # Changelog / 更新记录
 
+## 0.3.0-dev.11 · 2026-10-28 · 内部检查点 / Internal checkpoint
+
+- 用户显式导入本地素材，前台服务复制 / 取消，实际结构与 hash 校验；素材和生成结果分别标记、预览、导出、独立管理。Explicit local media import and ownership.
+- 新增鉴权有界上传会话、256 KiB 二进制分块、持久偏移、显式续传、全文件 SHA256 / 媒体校验与原子完成对账。Resumable authenticated input uploads without URLs or model downloads.
+- 签名引擎声明输入角色；任务固定 ID / hash / 元数据，保护排队和活动输入，执行前复核完整 hash；取消等待实际子进程退出再释放。现有生产配方保持文字输入。Immutable local task references, not new model-input claims.
+- 64 项素材 / HTTP、49 项生产调度、182 项 UI 检查；双语输入指南、30 张带标识截图及录屏 / GIF 已同步。原签名和 19 个原生文件保留。
+- 全部所选模型的实际管线、Android 媒体 / 后台 / 升级和离线新输入验收仍属于同一完整 v0.3.0；无新 Release。
+
 ## 0.3.0-dev.10 · 2026-10-28 · 内部检查点 / Internal checkpoint
 
 - 常驻文本加载、聊天、同步 API 和异步任务共用 FIFO 执行槽，回复结束再自动切换；空闲恢复用户仍希望运行的模型。Share engine scheduling without model downloads.

@@ -50,6 +50,8 @@ Asynchronous jobs persist requests, effective profiles, state, events and artifa
 
 `ExecutionGate`/`ProcessControl` own slot and exit boundaries; `EngineHost` owns residency/recovery; `LocalJobs`, `ChatRunner` and `ApiHost` share the slot. Native starts also check `nativeProcessLock` and actual child liveness. `/health.scheduler` and App `foundation.execution` expose ownership and waiting state.
 
-`python tools/test_scheduler.py` verifies **43 host assertions** using production queue/chat/API code, real children and loopback HTTP, cancellation, deferred reaping, independent service stopping, admission and retained profiles. Framework/resource/media inspectors are explicit host ports. GGUF fixtures contain zero tensors; output is arbitrary test bytes or literal protocol text. No model inference or Android execution is established.
+`python tools/test_scheduler.py` verifies **49 host assertions** using production queue/chat/API code, real children and loopback HTTP, cancellation, deferred reaping, independent service stopping, admission and retained profiles. Framework/resource/media inspectors are explicit host ports. GGUF fixtures contain zero tensors; output is arbitrary test bytes or literal protocol text. No model inference or Android execution is established.
 
 [Model waiting](media/development/27-scheduler-model-waiting.png) · [Chat waiting](media/development/28-scheduler-chat-waiting.png) · [Recording](media/development/foundation-ui.mp4) · [GIF](media/development/foundation-ui.gif) remain visibly labeled UI FIXTURE. Input artifacts, every selected pipeline and physical-device resources/quality/background/upgrades remain required in the same complete v0.3.0. No new Release is created.
+
+Dev.11 adds [input-media leases](LOCAL_INPUTS.en.md) to the same production cleanup boundary, with six added actual-child/file-reference assertions. Durable jobs protect queued media; active inputs remain leased until actual child exit.

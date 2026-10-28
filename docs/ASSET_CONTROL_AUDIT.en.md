@@ -36,3 +36,5 @@ dev.8 adds [user-selected text bundles](TEXT_ENGINE.en.md) using shared jobs/art
 Dev.9 [existing-model migration](MODEL_MIGRATION.en.md) reuses verified local hardlinks, preserves IDs/sources/profiles and exposes shared tasks/versions from original details. Incomplete transfers stay paused until explicit resume. 69 host migration and 156 UI checks pass; physical-Android A11 upgrade acceptance remains open.
 
 Dev.10 [shared execution](SCHEDULING.en.md) unifies resident text, chat/API and jobs under the same process/cancellation boundary. 43 host assertions cover user-asset reuse, switching and retained stop intent, without model downloads or complete model/device acceptance.
+
+Dev.11 [input media](LOCAL_INPUTS.en.md) is explicitly imported/uploaded independently of model assets. These actions never download, load or replace a model. Production recipes remain prompt-only. 64 input, 49 scheduler and 182 UI assertions do not replace physical A11 acceptance.

@@ -29,3 +29,5 @@ See [validation / 验证](../docs/VALIDATION.en.md), [Chinese audit / 完成条�
 内部 dev.9 的 [migration.json](development/migration.json) 是 69 项真实主机文件 / 硬链接 / 子进程检查；使用零 tensor 元数据与固定协议内容，不是 Android、真实模型输出或完整版本证明。 / Internal dev.9 migration evidence remains explicitly host-only.
 
 开发 dev.10 增加 [scheduler.json](development/scheduler.json)：43 项生产任务运行器、真实主机子进程与回环 HTTP 调度检查；明确 `physical_android=false` / `model_inference=false`。Production scheduler host evidence is separate from pending physical-Android/model acceptance.
+
+内部 dev.11 新增 [inputs.json](development/inputs.json)：64 项实际主机文件、生产 WAV 和 HTTP 上传 / 续传检查；[scheduler.json](development/scheduler.json) 扩展为 49 项，含生产输入引用与真实子进程读取。UI 为 182 项，全部非手机推理证据。Input and scheduler host evidence does not establish Android media/model behavior.

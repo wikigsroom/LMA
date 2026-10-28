@@ -50,6 +50,8 @@
 
 `ExecutionGate` / `ProcessControl` 管理执行槽与退出边界；`EngineHost` 管理文本驻留和有限恢复；`LocalJobs`、`ChatRunner`、`ApiHost` 使用同一个槽。所有原生启动还受 `nativeProcessLock` 和实际子进程存活检查保护。`/health` 的 `scheduler` 与 App 状态的 `foundation.execution` 提供真实占用和等待信息。
 
-运行 `python tools/test_scheduler.py` 可复查 **43 项主机检查**，包含生产队列 / 聊天 / API、真实子进程与回环 HTTP、取消、延迟进程回收、独立服务停止、资源准入和原配置保留。框架、资源和媒体探测是明确的主机适配端口，GGUF 为零张量元数据，输出为任意测试字节或固定文本；没有执行模型推理或 Android。
+运行 `python tools/test_scheduler.py` 可复查 **49 项主机检查**，包含生产队列 / 聊天 / API、真实子进程与回环 HTTP、取消、延迟进程回收、独立服务停止、资源准入和原配置保留。框架、资源和媒体探测是明确的主机适配端口，GGUF 为零张量元数据，输出为任意测试字节或固定文本；没有执行模型推理或 Android。
 
-[模型等待截图](media/development/27-scheduler-model-waiting.png) · [聊天等待截图](media/development/28-scheduler-chat-waiting.png) · [录屏](media/development/foundation-ui.mp4) · [GIF](media/development/foundation-ui.gif) 均保留 UI FIXTURE 标识。输入产物、完整所选模型管线、设备资源 / 质量 / 后台与升级验收继续属于同一完整 v0.3.0；此检查点没有新 Release。
+[模型等待截图](media/development/27-scheduler-model-waiting.png) · [聊天等待截图](media/development/28-scheduler-chat-waiting.png) · [录屏](media/development/foundation-ui.mp4) · [GIF](media/development/foundation-ui.gif) 均保留 UI FIXTURE 标识。完整所选模型的真实输入管线、设备资源 / 质量 / 后台与升级验收继续属于同一完整 v0.3.0；此检查点没有新 Release。
+
+dev.11 将[输入素材租约](LOCAL_INPUTS.md)接入同一生产任务清理边界；新增六项实际子进程 / 文件引用检查。排队输入由持久任务保护，活动输入到子进程真正退出才释放。

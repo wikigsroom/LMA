@@ -1703,7 +1703,7 @@
     "new_architecture_may_require_foundation_update": true
   },
   "current_apk_kind": "published_baseline",
-  "development_apk_version": "0.3.0-dev.10",
+  "development_apk_version": "0.3.0-dev.11",
   "development_status_document": "../DEVELOPMENT.md",
   "development_does_not_satisfy_complete_scope": true
 }

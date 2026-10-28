@@ -1,5 +1,5 @@
 {
-  "version": "0.3.0-dev.10",
+  "version": "0.3.0-dev.11",
   "kind": "development UI with explicit simulated native bridge",
   "android_device": false,
   "model_inference": false,
@@ -118,6 +118,14 @@
     {
       "file": "28-scheduler-chat-waiting.png",
       "caption": "Chat waits for the shared slot with a cancellation control; no tokens generated / 回复等待执行槽并可取消，非真机或模型输出"
+    },
+    {
+      "file": "29-imported-media-library.png",
+      "caption": "Imported media stays distinct from generated results and exposes reference protection; UI fixture / 导入素材与生成结果分别标记，任务引用保护，界面夹具"
+    },
+    {
+      "file": "30-local-input-role-form.png",
+      "caption": "Engine-declared local input role with compatible immutable media IDs; UI contract only, not a supported voice model / 引擎声明的本地素材表单，非语音模型已支持证据"
     }
   ],
   "files": [
@@ -143,18 +151,18 @@
     },
     {
       "file": "05-task-form.png",
-      "bytes": 41111,
-      "sha256": "b97840aaaa003429e60dc603e76cf8b63a6eff20e755ba732e101f2e61f21174"
+      "bytes": 38370,
+      "sha256": "36449d4ae1f1c90f1dd313741ebd39569e30d995eda4725a190b639f25891836"
     },
     {
       "file": "06-queue-results.png",
-      "bytes": 44696,
-      "sha256": "4b7226de78ed9a60734ea8c653936ab57d4fc53694e9fa4198094cc632ac8cf0"
+      "bytes": 48652,
+      "sha256": "1e4058c568bc446165ea38ac0dff68cae52ffd8574a9e5713b8b15db24de55c7"
     },
     {
       "file": "07-cancelled.png",
-      "bytes": 44889,
-      "sha256": "4c35737ba326a8c894a4014a45f7119268aba701b3301c5abd255ea77b972750"
+      "bytes": 48839,
+      "sha256": "fe46045ecd42dc421804721493bd23922fc9b4e098a96a617650f2fc439dd7e5"
     },
     {
       "file": "08-zero-model-api.png",
@@ -163,8 +171,8 @@
     },
     {
       "file": "09-tts-form.png",
-      "bytes": 37751,
-      "sha256": "1bc1e2fb86b8cf542aae0496b2298c99b0718e1098912f5050668a2ccd10f574"
+      "bytes": 38313,
+      "sha256": "e15cdf6eb3fe6ef7bfe3d80ba5d81e9c4114101679ed02d6af93f002c924913e"
     },
     {
       "file": "10-lora-pairing.png",
@@ -173,8 +181,8 @@
     },
     {
       "file": "11-lora-form.png",
-      "bytes": 36331,
-      "sha256": "06619d3f275a698256d0ae84fbaa0d0fbd4ed279c0814f8a6a75da366e81c573"
+      "bytes": 39207,
+      "sha256": "1a4c8b94ed4ab72af98b0ad5d31d79ea65dc22687f439e5acb1a0fd228a5b3fc"
     },
     {
       "file": "12-hf-components.png",
@@ -223,8 +231,8 @@
     },
     {
       "file": "21-model-version-history.png",
-      "bytes": 49769,
-      "sha256": "8b0e1c77350216082bcb458a7078b2758e8b4d8a5edf8bd6dfab22445c6e0cb5"
+      "bytes": 49592,
+      "sha256": "c4d5d0286e2058e55b0f888f52ba7d72908de35513c321543b6b2314cf9c5b18"
     },
     {
       "file": "22-text-model-settings.png",
@@ -233,13 +241,13 @@
     },
     {
       "file": "23-text-queue-form.png",
-      "bytes": 42515,
-      "sha256": "8fef26838f31caa5a9b46fc6886a3b58bb2ef904991ff8289a923d14f6005e18"
+      "bytes": 44171,
+      "sha256": "4e30ee6a9750107568ffc624fbc85968b9ff7c90419befe2c602611e95437e78"
     },
     {
       "file": "24-text-result.png",
-      "bytes": 50146,
-      "sha256": "7bb47c7a60ebba548fa67520719c724df3815e969baaa862fd0e4845fbd69b07"
+      "bytes": 46892,
+      "sha256": "f6238c1ebb8a15fe67dc192bdcc5ab6a4c9f465f3d972eb0d212d0dc555652dd"
     },
     {
       "file": "25-migrated-text-model.png",
@@ -248,8 +256,8 @@
     },
     {
       "file": "26-migrated-text-task.png",
-      "bytes": 47650,
-      "sha256": "9e535468ce9f0a5d77728b5a562d28a0af76da3fde809faed8b407f27dd11ef1"
+      "bytes": 43370,
+      "sha256": "4d968f416da399ca973120fac5bdf8fc88d7902579b5a739a7115123c328074b"
     },
     {
       "file": "27-scheduler-model-waiting.png",
@@ -262,23 +270,33 @@
       "sha256": "b3dfac91c77e080b467d36f1e63c94ce1a388989b788216c632693670691c214"
     },
     {
+      "file": "29-imported-media-library.png",
+      "bytes": 35604,
+      "sha256": "972957593f1d425124a5ffb7ff09117347932d6677f8a4d159293bf465ea9052"
+    },
+    {
+      "file": "30-local-input-role-form.png",
+      "bytes": 40610,
+      "sha256": "f9becb110bf3ec77587fc78cf0834ad366912e577a252da1025dcbac3fe1c6fa"
+    },
+    {
       "file": "foundation-ui.gif",
-      "bytes": 4301663,
-      "sha256": "42bb5ca3fb37a062b9a3a0a5924e76a43f413f0ec8c7e13f2da946a75bbe5167"
+      "bytes": 5236667,
+      "sha256": "834f93cde0c80be443888283770363f692b8796665b51639956b42c74131e6c6"
     },
     {
       "file": "foundation-ui.mp4",
-      "bytes": 2002724,
-      "sha256": "5af00f766e55830ddf1c525ad5d8c6ee810ee248ec8f380edfb6b9e69cef921b"
+      "bytes": 2171032,
+      "sha256": "865da5967e6ac9716a4db18e0d38a7041987be18e0854b8f0e8bb711845aeb2b"
     }
   ],
   "input_fingerprint": {
     "app/src/main/assets/app.css": "f2cb7b5ee9de8f3afac793e694dcf9fde0a855c0d4c7053ff986cc2a6d2bd3b1",
-    "app/src/main/assets/app.js": "88281b37d21cb8faaa01d39d22aa3cb3d3c0d9fcfc2fbeb949bd546da703d446",
+    "app/src/main/assets/app.js": "6f3afd72a01203a005b0b28bd345537e88f8c856e07ebe5d81f4f2282464cf68",
     "app/src/main/assets/engine-builds.json": "bdb4aa0d090bae260499f766fe5d8f84cb225cfdf6e00439de95427690835abf",
-    "app/src/main/assets/foundation.css": "c3983ed065510f07fd78987b5644b2730df681ee64078c660893c18ed38d7f21",
-    "app/src/main/assets/foundation.js": "7d6ca653fefd315bd16e4e51b63bc303b7f2e744b5a9563ad3e3473ba96e9011",
-    "app/src/main/assets/index.html": "e0a50f837dd6224448f9f78e8a996903198d47d614f49ca6bb4a76d6b62a5520",
+    "app/src/main/assets/foundation.css": "26c332b6918710c4b79b25d659ff4f297841e6f38eb162cd71c2bcc19872af5c",
+    "app/src/main/assets/foundation.js": "d5630d26045b1220b1aabbeab1d7158e9984ddb228d68e6e18ef1cd16e6887c1",
+    "app/src/main/assets/index.html": "406a11f10a3380d2db0325ffd148dcb55b2eabe35aa2bcd001864aafa57afd62",
     "app/src/main/assets/license.js": "1c814e25648a624a68de26d0614ef0ac9799db94edd8cd3835a07e77156d51e0",
     "app/src/main/assets/licenses/LLAMA_CPP_LICENSE": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
     "app/src/main/assets/licenses/LMA_LICENSE": "6ae3f5efa412d91cbf66e44f743e5ce41a8044309d05d893365206ab9bc35fc3",
@@ -343,11 +361,12 @@
     "app/src/main/assets/versions.js": "2d629929a6db642c12a242ddcc62cd4f4090ab307e0cb669ceb98add031977e1",
     "tests/foundation-ui.cjs": "1c6721770e2d3336719c6cb096869aca3f966beff3fd958f814cda1cafee1e79",
     "tests/hub-fixture.cjs": "5b3cb88b7fd4c45d26ce92e8598a1c3837a12b02eb898f67c9be10da2910ab83",
+    "tests/inputs-ui.cjs": "da1958c5875da505af0502fd144c97604a21e3297aa684f3fd1eb422c9ad4206",
     "tests/migration-ui.cjs": "6843bdcf1783795ed10cccc8b200aee40188e8a1fe950f8d23027d828ff6b3b4",
     "tests/recipes-ui.cjs": "d45ab6a198b33df8cc8e3e5e0928b9cf3e6ddedb50a7e646bea38e0897243154",
     "tests/scheduler-ui.cjs": "3b89c2121953c6e17e2e978a3639915ba1d1b799750e85f38d6e104d8b7e0599",
     "tests/text-ui.cjs": "bc5969aa9329380b590a6055daa6fe1177f956f73bb212a18cf19d2b6576b8db",
     "tests/versions-ui.cjs": "13f6e194c00fa3a819c44da35788aa28b94ba05325e3f2b1257350c04b67babd",
-    "tools/capture_foundation.cjs": "4afcff7c6e67ec6bd8cc847dd864ea3f98150ee31ab89fa94c68bbb078697703"
+    "tools/capture_foundation.cjs": "f34044affd0e90eab97266dbf6eb5f9ad1e6f67e626e3f16fe970bbb36ebaae2"
   }
 }

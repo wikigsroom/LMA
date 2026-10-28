@@ -46,7 +46,10 @@
         <div class="page-heading"><div><span class="eyebrow">ON-DEVICE GENERATION</span><h1>让想法在本机生成<span class="heading-dot">.</span></h1><p>选择已下载的模型，提交任务，在这里查看进度与结果。</p></div><button class="button secondary" data-action="showLocal">选择模型</button></div>
         <div class="list-heading"><h2>本机队列</h2><span id="jobCount" class="muted">0 个待完成</span></div>
         <div id="jobList" class="job-list" aria-live="polite"></div>
-        <div class="list-heading artifacts-heading"><h2>生成结果</h2><span id="artifactCount" class="muted">0 个结果</span></div>
+        <div class="list-heading artifacts-heading"><h2>素材与结果</h2><button class="button secondary" data-action="inputPicker">导入素材</button></div>
+        <div class="artifact-tools"><div class="artifact-filters" role="group" aria-label="素材来源"><button class="button secondary active" data-action="filterArtifacts" data-kind="all" aria-pressed="true">全部</button><button class="button secondary" data-action="filterArtifacts" data-kind="generated" aria-pressed="false">生成结果</button><button class="button secondary" data-action="filterArtifacts" data-kind="imported" aria-pressed="false">导入素材</button></div><span id="artifactCount" class="muted">0 项</span></div>
+        <p class="form-help">导入 PNG / JPEG、PCM WAV 或 MP4，最多 512 MiB。素材仅供明确支持该输入类型的模型配方使用。</p>
+        <div id="inputImportStatus" role="status"></div>
         <div id="artifactList" class="artifact-grid"></div>
       </section>
       <section class="page" id="page-server" aria-label="本地 API 服务" hidden>
@@ -66,7 +69,7 @@
           <div class="panel"><div class="section-heading"><h2>模型参数</h2><span class="icon" data-icon="cube"></span></div><p class="form-help">上下文、输出上限、线程、温度、思考模式与系统提示词，随每个已下载模型独立保存。选择预设或手动输入，超出上限自动调整。</p><button class="button secondary" type="button" data-action="showLocal">前往本地模型设置<span class="icon" data-icon="arrow"></span></button></div>
           <button type="submit" class="button primary save-settings"><span class="icon" data-icon="check"></span>保存设置</button><p class="save-hint" id="settingsHint" role="status"></p>
         </form>
-        <div class="about"><span class="brand-mark">L<span>M</span>A</span><div><strong>LMA <span class="mono">0.3.0-dev.10</span></strong><p>本地模型工作台 · Android 9+ · ARM64</p><button class="text-button" data-action="about">开源组件与说明 ↗</button></div></div>
+        <div class="about"><span class="brand-mark">L<span>M</span>A</span><div><strong>LMA <span class="mono">0.3.0-dev.11</span></strong><p>本地模型工作台 · Android 9+ · ARM64</p><button class="text-button" data-action="about">开源组件与说明 ↗</button></div></div>
       </section>
     </main>
     <nav class="bottom-nav" aria-label="主要导航"><button class="nav-item active" data-action="tab" data-tab="models" aria-current="page"><span class="icon" data-icon="grid"></span><span>模型库</span></button><button class="nav-item" data-action="tab" data-tab="chat"><span class="icon" data-icon="chat"></span><span>对话</span></button><button class="nav-item" data-action="tab" data-tab="tasks"><span class="icon" data-icon="spark"></span><span>任务</span></button><button class="nav-item" data-action="tab" data-tab="server"><span class="icon" data-icon="server"></span><span>服务</span></button><button class="nav-item" data-action="tab" data-tab="settings"><span class="icon" data-icon="sliders"></span><span>设置</span></button></nav>

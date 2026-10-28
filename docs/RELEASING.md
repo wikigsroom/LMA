@@ -81,6 +81,6 @@ GitHub 的按标签 REST 查询可能对草稿返回 404；工具通过已认证
 
 公开附件一旦发布，不以相同文件名替换不同字节。新的 APK、源码包或媒体修改应发布新版本或作为下一次仓库文档提交，避免破坏已公开的校验值。Never replace released bytes under an existing name. New binaries/source/media for a release require a new version; documentation changes may instead remain a later repository commit.
 
-无设备时可发布明确说明范围的预发布包，但必须保留 `physical_device_tests=0` 等真实状态。If no phone is available, publish a clearly scoped prerelease with truthful false device flags, not fabricated acceptance.
+已有 v0.2.0 预发布保留其真实 `physical_device_tests=0` 状态。下一完整 v0.3.0 必须满足上面的全部发布门槛；无设备的内部 dev 检查点不创建 Release。The historical v0.2.0 prerelease retains truthful device flags. The complete next v0.3.0 requires every gate above; internal dev checkpoints without device acceptance do not create Releases.
 
 发布后的文档或工具维护可运行 `python tools/check_repository.py --published`，把原始源码 ZIP 与已发布标签核对，再检查当前公开文件、文档和证据。不要为了让当前文件等于旧 ZIP 而改写已公开附件。For post-release documentation/tool maintenance, `--published` compares the immutable source bundle with its tag while checking current public files, links, and evidence. This permits later commits without rewriting published assets.

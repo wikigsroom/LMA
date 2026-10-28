@@ -26,6 +26,7 @@ public final class LmaService extends Service {
     private Downloads downloads;
     private BundleTransfers bundleTransfers;
     private LocalJobs localJobs;
+    private InputImports inputImports;
     private ApiHost api;
     private LmaApp app;
     private final Handler main = new Handler(Looper.getMainLooper());
@@ -33,7 +34,7 @@ public final class LmaService extends Service {
     private WifiManager.WifiLock wifi;
     private boolean restored, stopping;
     private long lastNotification;
-    private boolean transfersBusy() { return downloads != null && downloads.busy() || bundleTransfers != null && bundleTransfers.busy(); }
+    private boolean transfersBusy() { return inputImports != null && inputImports.busy() || downloads != null && downloads.busy() || bundleTransfers != null && bundleTransfers.busy(); }
     private boolean apiBusy() { return api != null && api.ready() && api.wanted(); }
     private boolean jobsBusy() { return localJobs != null && localJobs.busy(); }
     private final Runnable idleStop = () -> { if (!stopping && engine != null && !engine.wanted() && !transfersBusy() && !jobsBusy() && !apiBusy() && !app.generating) stopSelf(); };
@@ -63,6 +64,7 @@ public final class LmaService extends Service {
                     @Override public void failed(String id, String message) { app.error("模型包下载失败：" + message); activityChanged(); }
                 });
         if (app.jobs != null && app.artifacts != null && app.localEngines != null) { localJobs = new LocalJobs(app, engine, this::activityChanged); app.jobHost = localJobs; }
+        if (app.artifacts != null) { inputImports = new InputImports(app, this::activityChanged); app.inputHost = inputImports; }
         api = new ApiHost(this, app); app.apiHost = api;
     }
     @Override public int onStartCommand(Intent intent, int flags, int startId) {
@@ -88,6 +90,8 @@ public final class LmaService extends Service {
                 case "submitTask": requireJobs(); api.start(); command.put("result", localJobs.submit(command.getJSONObject("request"), command.optString("idempotencyKey"))); break;
                 case "cancelTask": requireJobs(); localJobs.cancel(command.getString("id")); break;
                 case "deleteTask": requireJobs(); app.jobs.remove(command.getString("id")); break;
+                case "importInput": if (inputImports == null) throw new IllegalStateException("Local input storage is unavailable"); inputImports.add(android.net.Uri.parse(command.getString("uri")), command.getString("name")); break;
+                case "cancelInputImport": if (inputImports != null) inputImports.cancel(); break;
                 case "deleteArtifact": requireJobs(); app.artifacts.remove(command.getString("id")); break;
                 case "retryTask": { requireJobs(); api.start(); JSONObject old = app.jobs.get(command.getString("id")); if (!old.getString("state").equals("failed") && !old.getString("state").equals("interrupted") && !old.getString("state").equals("cancelled")) throw new IllegalStateException("仅已失败、中断或取消的任务可以重试"); command.put("result", localJobs.retry(old.getString("id"), "")); break; }
                 case "planBundleUpdate": requireBundles(); command.put("result", app.bundles.planUpdate(command.getString("from"), command.getString("to"), command.getString("settingsMode"))); break;
@@ -195,7 +199,8 @@ public final class LmaService extends Service {
                     text = state.optString("state").equals("verifying") ? "正在校验模型文件" : "正在下载模型" + (total > 0 ? " · " + Math.min(100, bytes * 100 / total) + "%" : "");
                 } else text = "模型下载排队中";
                 if (engine != null && engine.ready()) text += " · API 运行中";
-            } else if (bundleTransfers != null && bundleTransfers.busy()) text = "正在下载或校验模型组件 · 后台继续运行";
+            } else if (inputImports != null && inputImports.busy()) text = "正在导入本地素材 · 退出页面后继续";
+            else if (bundleTransfers != null && bundleTransfers.busy()) text = "正在下载或校验模型组件 · 后台继续运行";
             else if (jobsBusy()) text = "正在执行本地生成任务 · 退出页面后继续";
             else if (app.generating || app.textRequestBusy) text = "正在本地生成回复 · 后台继续运行";
             if (!jobsBusy() && !transfersBusy() && !app.generating && !app.textRequestBusy && apiBusy() && !engine.wanted()) text = "模型接口运行中 · 可提交本机任务";
@@ -235,12 +240,14 @@ public final class LmaService extends Service {
         stopping = true; main.removeCallbacks(idleStop); app.prefs.edit().putBoolean("desiredRunning", false).apply();
         app.prefs.edit().putBoolean("desiredJobs", false).apply();
         if (localJobs != null) try { localJobs.cancelAll(); } catch (Exception error) { app.log("任务停止记录失败：" + error.getMessage()); }
+        if (inputImports != null) inputImports.cancel();
         api.stop(); chat.cancel(); downloads.pauseAll(); if (bundleTransfers != null) bundleTransfers.close(); engine.stop(); stopSelf();
     }
     @Override public void onDestroy() {
         stopping = true; main.removeCallbacksAndMessages(null);
         if (api != null) { api.close(); if (app.apiHost == api) app.apiHost = null; }
         if (localJobs != null) { localJobs.close(); if (app.jobHost == localJobs) app.jobHost = null; }
+        if (inputImports != null) { inputImports.close(); if (app.inputHost == inputImports) app.inputHost = null; }
         if (chat != null) chat.close(); if (downloads != null) downloads.close(); if (bundleTransfers != null) bundleTransfers.close(); if (engine != null) engine.close();
         if (cpu != null && cpu.isHeld()) cpu.release(); if (wifi != null && wifi.isHeld()) wifi.release();
         if (!app.engineState.equals("error")) app.engineState = "stopped";
