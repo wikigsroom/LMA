@@ -26,9 +26,17 @@ public final class TaskInput {
             }
         }
         JSONObject input = source.getJSONObject("input");
-        for (Iterator<String> it = input.keys(); it.hasNext();) if (!Arrays.asList("prompt", "negativePrompt", "artifacts").contains(it.next())) throw new IllegalArgumentException("Unsupported input field; use prompt text and explicit local artifact references");
+        for (Iterator<String> it = input.keys(); it.hasNext();) if (!Arrays.asList("prompt", "negativePrompt", "artifacts", "transcripts").contains(it.next())) throw new IllegalArgumentException("Unsupported input field; use prompt text and explicit local artifact references");
         if (!(input.get("prompt") instanceof String) || input.getString("prompt").trim().isEmpty() || input.getString("prompt").length() > 16000) throw new IllegalArgumentException("Use a nonempty prompt of at most 16000 characters");
         if (input.has("negativePrompt") && (!(input.get("negativePrompt") instanceof String) || input.getString("negativePrompt").length() > 16000)) throw new IllegalArgumentException("negativePrompt must be text of at most 16000 characters");
+        if (input.has("transcripts")) {
+            JSONObject transcripts = input.getJSONObject("transcripts");
+            if (transcripts.length() > 8) throw new IllegalArgumentException("At most eight reference transcripts are allowed");
+            for (Iterator<String> it = transcripts.keys(); it.hasNext();) {
+                String role = InputSpec.key(it.next()); Object value = transcripts.get(role);
+                if (!(value instanceof String) || ((String) value).trim().isEmpty() || ((String) value).length() > 4000 || ((String) value).indexOf('\0') >= 0) throw new IllegalArgumentException("Reference transcripts must contain 1-4000 text characters without NUL");
+            }
+        }
         if (input.has("artifacts")) {
             JSONArray refs = input.getJSONArray("artifacts");
             if (refs.length() < 1 || refs.length() > 8) throw new IllegalArgumentException("Select 1-8 local inputs");

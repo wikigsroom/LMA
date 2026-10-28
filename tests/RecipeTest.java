@@ -71,7 +71,7 @@ public final class RecipeTest {
         String secondToken = recovered.request(shared.id); recovered.install(shared.id, secondToken); recovered.remove(bundle.id, true);
         check(recovered.plan(shared.id).getBoolean("installed"), "Removing one model preserves shared assets");
         RecipeCatalogue catalogue = new RecipeCatalogue(new JSONObject(new String(Files.readAllBytes(templates.toPath()), StandardCharsets.UTF_8)));
-        check(catalogue.list().length() == 33, "Thirty-three signed data-only templates are offered");
+        check(catalogue.list().length() == 34, "Thirty-four signed data-only templates are offered");
         for (int i = 0; i < catalogue.list().length(); i++) {
             JSONObject template = catalogue.list().getJSONObject(i), bindings = new JSONObject(); JSONArray requirements = template.getJSONArray("requirements"); String id = template.getString("id");
             for (int n = 0; n < requirements.length(); n++) { JSONObject r = requirements.getJSONObject(n); bindings.put(r.getString("role"), asset(r.getJSONArray("formats").getString(0), data)); }

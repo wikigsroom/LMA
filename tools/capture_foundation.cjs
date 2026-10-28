@@ -17,6 +17,7 @@ const qwenUI = require('../tests/qwen-ui.cjs');
 const mossDelayUI = require('../tests/moss-delay-ui.cjs');
 const openMossUI = require('../tests/openmoss-ui.cjs');
 const stableAudioUI = require('../tests/stable-audio-ui.cjs');
+const soulxUI = require('../tests/soulx-ui.cjs');
 const {hubFixture, installHubBridge} = require('../tests/hub-fixture.cjs');
 const root = path.resolve(__dirname, '..');
 const assets = path.join(root, 'app/src/main/assets');
@@ -331,13 +332,24 @@ async function main() {
     await page.locator('[data-bundle-field="maxInputTokens"]').evaluate(e=>e.scrollIntoView({block:'center'}));
     await shot('58-stable-audio-bounds.png','UI FIXTURE / 每模型独立 token 上限与本次尝试；未生成音频');await page.keyboard.press('Escape');
   }
+  {
+    const template=templates.find(t=>t.id==='soulx_podcast_cpu_v1'),id=await page.evaluate(soulxUI.installFixture,template);
+    await page.locator('[data-action="bundleInfo"][data-id="'+id+'"]').click();await page.locator('.bundle-components').evaluate(e=>e.scrollIntoView({block:'center'}));
+    await shot('59-soulx-components.png','UI FIXTURE / 14 份用户自选资产，含 40 字节声源权重；未下载模型');
+    await page.locator('#modal [data-action="bundleUse"][data-id="'+id+'"]').click();await page.locator('[name="prompt"]').fill('[S1] 第一段本地语音。\n[S2] The second local speaker.');
+    await page.locator('[data-input-role="reference_s1"]').selectOption('soulx_ref_1');await page.locator('[data-input-transcript="reference_s1"]').fill('第一段参考音频实际说出的原文。');
+    await page.locator('[data-input-role="reference_s2"]').selectOption('soulx_ref_2');await page.locator('[data-input-transcript="reference_s2"]').fill('The actual transcript of the second reference.');
+    await page.locator('[data-input-role="reference_s1"]').evaluate(e=>e.scrollIntoView({block:'center'}));await shot('60-soulx-paired-references.png','UI FIXTURE / 参考音频与原文配套，随任务固定；未生成音频');
+    await page.locator('#localTaskForm .task-parameters').evaluate(e=>{e.open=true;});await page.locator('[data-bundle-field="context"]').fill('256');await page.locator('[data-bundle-field="context"]').blur();
+    await page.locator('[data-bundle-field="maxNewTokens"]').evaluate(e=>e.scrollIntoView({block:'center'}));await shot('61-soulx-context-bounds.png','UI FIXTURE / 每模型独立上下文、输出与历史联合归位；未执行模型');await page.keyboard.press('Escape');
+  }
   if (errors.length) throw new Error(JSON.stringify(errors));
   const video = page.video(); await context.close(); context = null;
   const raw = await video.path();
   ffmpeg(['-i', raw, '-an', '-c:v', 'libx264', '-crf', '22', '-pix_fmt', 'yuv420p', '-movflags', '+faststart', path.join(out, 'foundation-ui.mp4')]);
   ffmpeg(['-i', path.join(out, 'foundation-ui.mp4'), '-vf', 'fps=6,scale=320:-2:flags=lanczos,split[a][b];[a]palettegen=max_colors=96[p];[b][p]paletteuse=dither=bayer:bayer_scale=3', '-loop', '0', path.join(out, 'foundation-ui.gif')]);
   const files = fs.readdirSync(out).filter(n => /\.(png|gif|mp4)$/.test(n)).sort().map(file => ({file, bytes: fs.statSync(path.join(out, file)).size, sha256: digest(path.join(out, file))}));
-  const sourceFiles = fs.readdirSync(assets, {recursive: true}).map(n => path.join(assets, n)).filter(p => fs.statSync(p).isFile()).concat(__filename, path.join(root, 'tests/foundation-ui.cjs'), path.join(root, 'tests/recipes-ui.cjs'), path.join(root, 'tests/hub-fixture.cjs'), path.join(root, 'tests/versions-ui.cjs'), path.join(root, 'tests/text-ui.cjs'), path.join(root, 'tests/migration-ui.cjs'), path.join(root, 'tests/scheduler-ui.cjs'), path.join(root, 'tests/inputs-ui.cjs'), path.join(root, 'tests/diffusion-ui.cjs'), path.join(root, 'tests/qwen-ui.cjs'), path.join(root, 'tests/moss-delay-ui.cjs'), path.join(root, 'tests/openmoss-ui.cjs'), path.join(root, 'tests/stable-audio-ui.cjs'));
+  const sourceFiles = fs.readdirSync(assets, {recursive: true}).map(n => path.join(assets, n)).filter(p => fs.statSync(p).isFile()).concat(__filename, path.join(root, 'tests/foundation-ui.cjs'), path.join(root, 'tests/recipes-ui.cjs'), path.join(root, 'tests/hub-fixture.cjs'), path.join(root, 'tests/versions-ui.cjs'), path.join(root, 'tests/text-ui.cjs'), path.join(root, 'tests/migration-ui.cjs'), path.join(root, 'tests/scheduler-ui.cjs'), path.join(root, 'tests/inputs-ui.cjs'), path.join(root, 'tests/diffusion-ui.cjs'), path.join(root, 'tests/qwen-ui.cjs'), path.join(root, 'tests/moss-delay-ui.cjs'), path.join(root, 'tests/openmoss-ui.cjs'), path.join(root, 'tests/stable-audio-ui.cjs'), path.join(root, 'tests/soulx-ui.cjs'));
   const input_fingerprint = Object.fromEntries(sourceFiles.sort().map(file => [path.relative(root, file).split(path.sep).join('/'), digest(file)]));
   fs.writeFileSync(path.join(out, 'manifest.json'), JSON.stringify({version, kind: 'development UI with explicit simulated native bridge', android_device: false, model_inference: false, weights_downloaded: false, browser_closed: true, browser_errors: errors, screenshots, files, input_fingerprint}, null, 2) + '\n');
   console.log(JSON.stringify({version, screenshots: screenshots.length, files: files.length, android_device: false, model_inference: false, browser_closed: true}));

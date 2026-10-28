@@ -116,3 +116,6 @@ See [MOSS Delay](MOSS_DELAY_ENGINE.en.md) for the pinned fork, native extraction
 The [openmoss build](OPENMOSS_ENGINE.en.md#5-pinned-sources-and-build) runs fetch_openmoss.py / build_openmoss.py / collect_openmoss_notices.py before shared APK packaging. It downloads/converts no model data.
 
 Stable Audio native build: `fetch_stable_audio.py` → `build_stable_audio.py` → `collect_stable_audio_notices.py` → `test_stable_audio.py`（`tools/`）。 Native Windows NDK, pinned official LiteRT AAR/SDK, CPU, caches under build/. Host tests also require Python flatbuffers (25.12.19 in this checkpoint), MSVC and Java; the pinned Windows DLL runs synthetic tiny graphs and stays out of the APK. See [components, commands and provenance](STABLE_AUDIO_ENGINE.en.md).
+
+
+SoulX production worker: `build_soulx.py` (host) → `build_soulx.py --android` → `collect_soulx_notices.py` → `test_soulx.py` / explicitly prepared trained assets with `test_soulx_worker_trained.py` → shared APK build. Pinned llama/ggml/ORT runtimes are reused. Native Windows/NDK tools and build-local caches only; no model assets enter the App. See the [complete build/license guide](SOULX_ENGINE.en.md).

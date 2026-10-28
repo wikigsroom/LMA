@@ -21,7 +21,7 @@ public final class InputSelection {
             receipts.put(new JSONObject().put("role", ref.getString("role")).put("artifactId", artifact.getString("id")).put("sha256", artifact.getString("sha256"))
                     .put("bytes", artifact.getLong("bytes")).put("metadata", DataFiles.copy(artifact.getJSONObject("metadata"))));
         }
-        spec.validate(receipts); JSONObject result = DataFiles.copy(request);
+        spec.validate(receipts, request.getJSONObject("input")); JSONObject result = DataFiles.copy(request);
         if (receipts.length() > 0) result.put("inputReceipts", receipts);
         return result;
     }
@@ -31,7 +31,7 @@ public final class InputSelection {
             JSONArray receipts = request.optJSONArray("inputReceipts"); if (receipts == null) receipts = new JSONArray();
             List<String> ids = ids(request);
             if (receipts.length() != ids.size()) throw new IOException("Task input receipts are missing or inconsistent");
-            spec.validate(receipts);
+            spec.validate(receipts, request.getJSONObject("input"));
             for (int i = 0; i < receipts.length(); i++) {
                 check.run(); JSONObject receipt = receipts.getJSONObject(i); String role = receipt.getString("role"), id = receipt.getString("artifactId");
                 JSONObject reference = request.getJSONObject("input").getJSONArray("artifacts").getJSONObject(i);

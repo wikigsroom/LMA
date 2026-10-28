@@ -58,13 +58,27 @@ def elf_info(data):
             "16k_elf_aligned": all(p[7] >= 16384 and (p[3] - p[2]) % 16384 == 0 for p in loads)}
 
 
+def merged_native_files(runtime_files, engines):
+    """A shared runtime may have several consumers, with one exact byte/API identity."""
+    from native_payload import engine_files
+    reviewed = {item["name"]: dict(item) for item in runtime_files}
+    if len(reviewed) != len(runtime_files): raise RuntimeError("Duplicate base runtime file")
+    workers = {engine["file"] for engine in engines}
+    if workers & set(reviewed): raise RuntimeError("A worker cannot alias the base text runtime")
+    for item in engine_files(engines):
+        name = item["file"]
+        if name in reviewed:
+            previous = reviewed[name]
+            if previous["sha256"] != item["sha256"] or previous["size"] != item["bytes"] or previous.get("android_api_notes", [28]) != item.get("android_api_notes", [28]): raise RuntimeError("Conflicting base/engine shared runtime: " + name)
+        else: reviewed[name] = {"name": name, "size": item["bytes"], "sha256": item["sha256"], "android_api_notes": item.get("android_api_notes", [28])}
+    return list(reviewed.values())
+
+
 def main():
     (ROOT / "build/package-verification.json").unlink(missing_ok=True)
     lock = json.loads((ROOT / "third_party/runtime-lock.json").read_text(encoding="utf-8"))
     engines = json.loads((ROOT / "third_party/engine-lock.json").read_text(encoding="utf-8"))["engines"]
-    from native_payload import engine_files
-    lock["files"].extend({"name": item["file"], "sha256": item["sha256"], "android_api_notes": item.get("android_api_notes", [28])} for item in engine_files(engines))
-    assert len({item["name"] for item in lock["files"]}) == len(lock["files"]), "Duplicate native module file"
+    lock["files"] = merged_native_files(lock["files"], engines)
     names = {item["name"] for item in lock["files"]}
     assert {p.name for p in LIBS.glob("*.so")} == names, "Unexpected or missing native payload"
     assert "libggml-cpu-android_armv8.0_1.so" in names, "Baseline ARMv8 CPU kernel missing"
@@ -84,6 +98,7 @@ def main():
             assert name in archive.read("assets/index.html").decode("utf-8"), "Missing UI script reference"
         for item in lock["files"]:
             data = archive.read("lib/arm64-v8a/" + item["name"])
+            assert len(data) == item["size"], "Packaged runtime size mismatch"
             assert hashlib.sha256(data).hexdigest() == item["sha256"], "Packaged runtime hash mismatch"
             assert (LIBS / item["name"]).read_bytes() == data
             native[item["name"]] = elf_info(data)

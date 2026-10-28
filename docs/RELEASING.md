@@ -99,3 +99,6 @@ SoulX声学后续同样不发布 APK / Release：运行 `python tools/test_soulx
 SoulX训练参考 /声学重建后续：先显式准备发布者权重，再顺序执行 `python tools/test_soulx_reference.py`、`python tools/test_soulx_trained.py`、`python tools/build_soulx_reference.py`；共享ORT修改需重跑声学244项和ARM64编译。开发导出 /仓库检查同时核对145参考 /253训练重建证据及完整模型未通过标记，绝不凭这些主机 /编译检查发布Release。Trained component execution does not close complete TTS, quality, App or phone gates. See [中文](SOULX_REFERENCE.md) / [English](SOULX_REFERENCE.en.md) / [编号交付](releases/v0.3.0-dev.20-soulx-reference.md).
 
 SoulX语言与完整主机链路后续：显式准备官方权重 /较早社区对照GGUF，按[中文](SOULX_LANGUAGE.md) / [English](SOULX_LANGUAGE.en.md)依次原生构建、完整导出、语言测试、ARM64编译和新文字整链路测试，再导出开发证据 /核对仓库。原始HF BF16 logits、上游RAS /历史、真实取消及完整host链路不能关闭App /语音质量 /物理Android /Release门槛。Complete trained host execution is recorded separately from all complete Android acceptance gates. No weights/tokenizers/WAVs enter APK or Git; see [numbered handoff](releases/v0.3.0-dev.20-soulx-language.md).
+
+
+dev.21 SoulX App接入使用 [中文](SOULX_ENGINE.md) / [English](SOULX_ENGINE.en.md) 中的生产worker构建与两种检查，并在共享输入schema变化后重跑基座 /其他引擎 /API /UI回归。`export_development.py` 分别导出222项契约和95项完整训练生产worker主机证据；`check_repository.py --development` 保留目标13下载候选 /质量 /物理Android /完整Release未通过。This checkpoint registers actual App code, without treating host output or compilation as complete user/device acceptance. See the [numbered handoff](releases/v0.3.0-dev.21.md).

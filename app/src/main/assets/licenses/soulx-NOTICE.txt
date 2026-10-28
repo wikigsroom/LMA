@@ -1,0 +1,23 @@
+LMA SoulX same-device CPU worker
+
+Original worker/contract/Java/build code: Copyright 2026 LMA contributors,
+MIT under the repository LICENSE. This signed-App module compiles the
+previously research-only reference, language and acoustic implementations;
+their independent research CLI/static targets remain unregistered.
+
+DSP and language policy ports preserve Apache-2.0 notices from Soul-AILab,
+Alibaba Inc., OpenAI's Whisper team, Tsinghua University / Xingchen Song,
+Mddct / Dinghao Zhou and LMA contributors. Source revisions and reviewed
+file hashes remain in third_party/soulx-*-source-lock.json. KISS FFT is
+BSD-3-Clause, Copyright (c) 2003-2010 Mark Borgerding. SoulX's HiFT export
+uses Edward Dixon's MIT Snake activation; that full notice is retained.
+llama.cpp / ggml is MIT, Copyright (c) 2023-2026 The ggml authors. ONNX
+Runtime and its dependencies preserve the Microsoft MIT license and full
+third-party notices. nlohmann/json is MIT, (c) 2013-2025 Niels Lohmann.
+Complete license texts are copied and hash checked under third_party/notices.
+
+No publisher weights, graph parameters, learned source coefficients,
+tokenizer data, example audio, speaker data, Python packages, Windows DLLs
+or reference transcripts are App data. All fourteen model assets and all
+reference recordings/transcripts must be selected explicitly by the user.
+Model licenses remain independent from the App's source licenses.

@@ -56,3 +56,6 @@ Dev.12 LCM-LoRA applies a task sampling policy: LCM sampler/scheduler, CFG=1 and
 
 
 dev.13 [image/video parameters](ADVANCED_DIFFUSION.en.md) remain per model: Qwen 2.1 dimensions align to 32, Wan frames to 4n+1, and flowShift=0 selects the engine default. Distilled jobs freeze CFG/sampling and record task adjustments without overwriting ordinary base settings.
+
+
+The SoulX development recipe adds independent context/output/history bounds, RAS/Flow/pause/duration controls; see [profile details](SOULX_ENGINE.en.md#4-parameters-and-execution). Numerical overflow clamps; temperature0 forces effective RAS off with an adjustment record. Reference transcripts are frozen task inputs, not global/model defaults.

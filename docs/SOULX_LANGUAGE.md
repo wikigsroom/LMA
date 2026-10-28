@@ -1,5 +1,7 @@
 # SoulX：语言模型与完整主机链路
 
+当前实现见 [dev.21 SoulX App 基座](SOULX_ENGINE.md)：共享源码已编译进生产 worker，接入用户模型包、任务与 API。以下正文保留 dev.20 研究检查点的历史范围；“未注册 / 未打包”指当时的独立研究执行器。其测试不追溯改标为 App 或手机证据。公开完整组件下载候选、语音质量与物理 Android 验收仍待完成。
+
 [English](SOULX_LANGUAGE.en.md) · [参考与声学](SOULX_REFERENCE.md) · [编号交付](releases/v0.3.0-dev.20-soulx-language.md) · [完整版本要求](MULTIMODAL_RELEASE_PLAN.md)
 
 本轮新增 Qwen3 文字到语义码的原生 CPU 执行、实际发布者分词器、最多四个参考说话人和跨轮窗口。完整主机检查把新文本依次送入已训练的 S3 / CAMPPlus、Qwen3、Flow / HiFT，写出24kHz WAV。这里的主机是开发用 Windows；这不是手机推理方案。Android ARM64 编译另计，App 的用户模型包、任务 / API、质量、资源和物理设备验收仍待完成。研究执行器未注册、未打包进 APK；公开版本仍 v0.2.0，开发 APK 仍 dev.20。

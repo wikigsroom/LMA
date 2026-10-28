@@ -1,5 +1,7 @@
 # SoulX language model and complete host pipeline
 
+Current implementation: the [dev.21 SoulX App foundation](SOULX_ENGINE.en.md) compiles the shared source into a production worker and connects user bundles, jobs and API. The body below preserves the historical dev.20 research scope; “unregistered” or “outside APK” refers to those independent research executors. Earlier tests are not relabeled as App or phone evidence. A verified complete public asset candidate, speech quality and physical-Android acceptance remain pending.
+
 [中文](SOULX_LANGUAGE.md) · [Reference/acoustic stages](SOULX_REFERENCE.en.md) · [Numbered delivery](releases/v0.3.0-dev.20-soulx-language.md) · [Complete release scope](MULTIMODAL_RELEASE_PLAN.md)
 
 This work adds native CPU Qwen3 text-to-semantic-code execution, the actual publisher tokenizer, up to four reference speakers and bounded history. Fresh text passes through trained S3/CAMPPlus, Qwen3 and Flow/HiFT and produces 24 kHz WAV in the complete **Windows development host** check. This is not the Android inference solution. ARM64 compilation is separate; user bundles, App jobs/API, quality/resource acceptance and physical Android remain pending. Research executors are unregistered and excluded from APK. Public release remains v0.2.0; development APK remains dev.20.

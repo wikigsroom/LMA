@@ -1,5 +1,5 @@
 {
-  "version": "0.3.0-dev.20",
+  "version": "0.3.0-dev.21",
   "kind": "development UI with explicit simulated native bridge",
   "android_device": false,
   "model_inference": false,
@@ -238,6 +238,18 @@
     {
       "file": "58-stable-audio-bounds.png",
       "caption": "UI FIXTURE / 每模型独立 token 上限与本次尝试；未生成音频"
+    },
+    {
+      "file": "59-soulx-components.png",
+      "caption": "UI FIXTURE / 14 份用户自选资产，含 40 字节声源权重；未下载模型"
+    },
+    {
+      "file": "60-soulx-paired-references.png",
+      "caption": "UI FIXTURE / 参考音频与原文配套，随任务固定；未生成音频"
+    },
+    {
+      "file": "61-soulx-context-bounds.png",
+      "caption": "UI FIXTURE / 每模型独立上下文、输出与历史联合归位；未执行模型"
     }
   ],
   "files": [
@@ -268,13 +280,13 @@
     },
     {
       "file": "06-queue-results.png",
-      "bytes": 48624,
-      "sha256": "0a20a6cb945384c2d8f04421f2ceaf1bd25a988059e4aaa7c2ea9cc635b236f3"
+      "bytes": 48662,
+      "sha256": "9ec7034cfb8d4e52cca3b2c449f867525a063033f0cecd5908ed1a462997d82f"
     },
     {
       "file": "07-cancelled.png",
-      "bytes": 48810,
-      "sha256": "f847bdd1ab5a98e0b14b503ace4e3d9c939b99ef1073d5920a8ac5061bcae30d"
+      "bytes": 48849,
+      "sha256": "7440607ac14ca0d02fed35fd6a2d1ffc5e84888f6012d14b21c473168ab954b9"
     },
     {
       "file": "08-zero-model-api.png",
@@ -343,8 +355,8 @@
     },
     {
       "file": "21-model-version-history.png",
-      "bytes": 49682,
-      "sha256": "b164698f9e0277117bcea9e706073906f8a50f56b92f30a89019c3489039027f"
+      "bytes": 49591,
+      "sha256": "bc741783a933d412a24b0b192f24e5df0f276669ab899a9213eb1cd22d1582f5"
     },
     {
       "file": "22-text-model-settings.png",
@@ -358,8 +370,8 @@
     },
     {
       "file": "24-text-result.png",
-      "bytes": 46883,
-      "sha256": "567bd733108c3f51aae339827d52447e2b76b6ee4b7f1589c33c6211bc45ffe1"
+      "bytes": 46963,
+      "sha256": "d757c997c4574bf6f6c9a54fa45bb9e103723d4cfe2fba0862a1b89a9e6d07f8"
     },
     {
       "file": "25-migrated-text-model.png",
@@ -532,24 +544,39 @@
       "sha256": "384294ca2f580725518767df5ed59b4ff262ec8a3a0a57ccdbdc0c263845adef"
     },
     {
+      "file": "59-soulx-components.png",
+      "bytes": 39402,
+      "sha256": "97c8166d99f781a500a9199171d8a607d603c2f3b3635a0608e6a1e71f600384"
+    },
+    {
+      "file": "60-soulx-paired-references.png",
+      "bytes": 51953,
+      "sha256": "4a5331349b03c26b8b4e0090e6d4b528b0c5626d5982e3bea102dc4f40f2d72f"
+    },
+    {
+      "file": "61-soulx-context-bounds.png",
+      "bytes": 51288,
+      "sha256": "a63c4cc081a9d9543dc2d5e89ce0439c1b82b6e2f25a81aa80e23af8ba7dfd8e"
+    },
+    {
       "file": "foundation-ui.gif",
-      "bytes": 8798595,
-      "sha256": "11b43b42ecf0bdf944c53cd6c6934a7a1f490e11014a8bdb1e7cb4c88cbaedec"
+      "bytes": 8816576,
+      "sha256": "62be615e7a3bac3f1a3931749f3d28642afe6aaa49c989d693d6b59b07dc8a47"
     },
     {
       "file": "foundation-ui.mp4",
-      "bytes": 4263151,
-      "sha256": "d84fdea1b47a55fd4a30cf3c25f2c7b4170882437a06c8102b68d708d7d952f5"
+      "bytes": 3861222,
+      "sha256": "bd89d217862422a4866f4dc7a50a63c6a297293d7118b707df64a26c515294e1"
     }
   ],
   "input_fingerprint": {
     "app/src/main/assets/app.css": "f2cb7b5ee9de8f3afac793e694dcf9fde0a855c0d4c7053ff986cc2a6d2bd3b1",
     "app/src/main/assets/app.js": "bce8e6e858d171240b1156d95db2b552dad756142d495ac28e2f92100cc253f4",
-    "app/src/main/assets/engine-builds.json": "d84b80bc9e4e48cfe93788c642774b5bc7864a95b1c083a5815b6d38e6c8e4d0",
+    "app/src/main/assets/engine-builds.json": "3aa88a40b3c409ce50f3a7975ed7c1fbe5bd1558a0bcd0c8937a6439a429e22e",
     "app/src/main/assets/foundation.css": "26c332b6918710c4b79b25d659ff4f297841e6f38eb162cd71c2bcc19872af5c",
-    "app/src/main/assets/foundation.js": "2fa077a409b2cd536a65e404a7d323023fe40f19317fea3e89f58e66efc5b7b1",
+    "app/src/main/assets/foundation.js": "12d054629528858755056980057aba3e470d809e1f2213e8cf11a21607ac4af1",
     "app/src/main/assets/index.html": "406a11f10a3380d2db0325ffd148dcb55b2eabe35aa2bcd001864aafa57afd62",
-    "app/src/main/assets/license.js": "5c1e3f2f4ceb4942421c545971a02e89b3ab025a9dc2b2fbadf511f1ccc95476",
+    "app/src/main/assets/license.js": "e483d5f5a7dfe6a58419081cdd2cfc78b0a9796aa833cdaf2e1075303d680278",
     "app/src/main/assets/licenses/LLAMA_CPP_LICENSE": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
     "app/src/main/assets/licenses/LMA_LICENSE": "6ae3f5efa412d91cbf66e44f743e5ce41a8044309d05d893365206ab9bc35fc3",
     "app/src/main/assets/licenses/cpp-httplib-LICENSE.txt": "bb546eae5924d8ee842e0e567e6d533c5824bdebccf605f99a5b3429034e6697",
@@ -593,6 +620,11 @@
     "app/src/main/assets/licenses/sd-zip.c-NOTICE.txt": "c5e5ac65e71c4cd155a5eeb43898697868297c9fe34ccf5249ac326c0b735120",
     "app/src/main/assets/licenses/sd-zip.h-NOTICE.txt": "c5e5ac65e71c4cd155a5eeb43898697868297c9fe34ccf5249ac326c0b735120",
     "app/src/main/assets/licenses/sha256-LICENSE.txt": "24836bd0f33996623060eabeb765fb0b091bcbca47e6e6e9493385df8ce9e30a",
+    "app/src/main/assets/licenses/soulx-Apache-LICENSE.txt": "2d88353fe7c7e7dde2a5ea2bc00db9f4808127c938395fcfd1a4d88a268ea3a5",
+    "app/src/main/assets/licenses/soulx-NOTICE.txt": "139ffa21e3082c14c13c87a7393e71450a3b91ca2f1419df4a23bc568e8eb7f4",
+    "app/src/main/assets/licenses/soulx-kissfft-BSD-3-Clause.txt": "91333dec2b41bc2d3dc15d6bc819e0da1e6854b6142d4910e8e0c7c82d2da727",
+    "app/src/main/assets/licenses/soulx-llama-MIT.txt": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
+    "app/src/main/assets/licenses/soulx-snake-MIT.txt": "9ac34402a4c4d24bf19c495d3d6f778040177ed794668714fd125cf49a4d0cf0",
     "app/src/main/assets/licenses/stable-audio-LiteRT-LICENSE.txt": "71c6915d04265772a0339bed47276942c678b45cc01534210ebe6984fd1aec65",
     "app/src/main/assets/licenses/stable-audio-LiteRT-THIRD_PARTY_NOTICE.txt": "2d4d617ff3047813c1b4bfd66dc3c95b2352b401546c6e58a33b7c885091372a",
     "app/src/main/assets/licenses/stable-audio-arm-audiogen-LICENSE.txt": "e03ba41d7fab20700769fe4118bab50d800cb74f990353a05d2f5fff1c228363",
@@ -625,7 +657,7 @@
     "app/src/main/assets/licenses/xxhash-LICENSE.txt": "a2973411d278045bde3c7161b911e0680d53e2d73d6457c77068d2e55d816d67",
     "app/src/main/assets/model-bundles.json": "0e211bd78b3b43e6cf7631c294629f6494bcf814dbe7f1a73157901447707627",
     "app/src/main/assets/models.json": "c3e884b4e5fb06f20c036deebc78e6f953ac420e76fca72bab5a25fd59927156",
-    "app/src/main/assets/recipe-templates.json": "7e844d2b4f900180012f03326afcb33e925374587452d7e3dc6dd5b9022e162e",
+    "app/src/main/assets/recipe-templates.json": "4abedebe4d01f45e4d0b22506071c83bfddeb3e6750950630a9ff5a5f5b5b958",
     "app/src/main/assets/recipes.js": "648e1ff046ab20e2ae7f658a7cb82c895c042ea81dca5cd943141626eea6deba",
     "app/src/main/assets/versions.js": "2d629929a6db642c12a242ddcc62cd4f4090ab307e0cb669ceb98add031977e1",
     "tests/diffusion-ui.cjs": "f6f997afcee0d6ae5113097640f151a418b6d4c501838c5565c3c2fe29d724d1",
@@ -638,9 +670,10 @@
     "tests/qwen-ui.cjs": "8eabdacb7db1b43e0ac203d31709ce0d505bf3cee05a6d5d07b25a3795d1d239",
     "tests/recipes-ui.cjs": "d1aaee793efac075b55ab0b8e6ccf26f5c3ac32ed6da6a6f41c19bd47b3dad77",
     "tests/scheduler-ui.cjs": "3b89c2121953c6e17e2e978a3639915ba1d1b799750e85f38d6e104d8b7e0599",
+    "tests/soulx-ui.cjs": "7b1e9336af93341b82fc9b49c944ed21573b25324202c0e44233c2a0f9a86051",
     "tests/stable-audio-ui.cjs": "b4acad2dfb0e5cba079e66410543b9c4990005df06faeb7da23990c51950676a",
     "tests/text-ui.cjs": "bc5969aa9329380b590a6055daa6fe1177f956f73bb212a18cf19d2b6576b8db",
     "tests/versions-ui.cjs": "13f6e194c00fa3a819c44da35788aa28b94ba05325e3f2b1257350c04b67babd",
-    "tools/capture_foundation.cjs": "bbc4a3f7f80e099c2c056aed26b130b689f709f1b09de81945bf14b74e055016"
+    "tools/capture_foundation.cjs": "15933579fea873bd6935c29f62617f113d413d4f83b7bdb7303f63204cc908c0"
   }
 }

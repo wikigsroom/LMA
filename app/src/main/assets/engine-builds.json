@@ -392,6 +392,86 @@
         "sd-nlohmann-json-LICENSE.txt",
         "sd-NDK-LLVM-NOTICE.txt"
       ]
+    },
+    {
+      "schema": "lma.native-build/1",
+      "engine": "soulx_native",
+      "file": "liblma-soulx.so",
+      "source_revision": "5ac9c0e1cfe596396200c7d38e3fd53b7b3fbf4b",
+      "llama_revision": "b29c606e28a01b1bc8c1351026a0fa6e616bf6c4",
+      "backend": "cpu",
+      "bytes": 472400,
+      "sha256": "424d609440603a4c93238d5130b316e384d0ead58613a53e5fdbe3608b4963bf",
+      "model_inference_tested": false,
+      "physical_device_tests": 0,
+      "virtualization_used": false,
+      "abi": "arm64-v8a",
+      "ndk": "30.0.16248370",
+      "min_sdk": 28,
+      "android_api_notes": [
+        28
+      ],
+      "elf_load_alignment": [
+        16384
+      ],
+      "dependencies": [
+        {
+          "file": "libonnxruntime.so",
+          "bytes": 22249560,
+          "sha256": "33847ad43bffe204699fd4a27f7f3603452a8cdaf2f9a44983a0bc31ffcf2da1",
+          "android_api_notes": [
+            27
+          ]
+        },
+        {
+          "file": "libllama.so",
+          "bytes": 3264464,
+          "sha256": "b93e6abb9088bfb50ca1986200654fddec722c0910dbf2a2000d3496e73a9449",
+          "android_api_notes": [
+            28
+          ]
+        },
+        {
+          "file": "libggml-cpu-android_armv8.0_1.so",
+          "bytes": 871048,
+          "sha256": "5eec51b25c2835bd6bd62a29d0b9ac07ce7fadcbeb679d00ecf184128a2cf8d4",
+          "android_api_notes": [
+            28
+          ]
+        },
+        {
+          "file": "libggml.so",
+          "bytes": 668680,
+          "sha256": "e858a7c58ce22a7cec4c1e18d0b1772680e52ef833ea7822a4500c659a0774b8",
+          "android_api_notes": [
+            28
+          ]
+        },
+        {
+          "file": "libggml-base.so",
+          "bytes": 1080864,
+          "sha256": "5e79542e713d0f4fa633cb987ad1a4a95bc1b64531e88305e3a41c6213aaf1a9",
+          "android_api_notes": [
+            28
+          ]
+        }
+      ],
+      "vocabularies": "external_user_selected_components",
+      "runtime_version": "ORT 1.28.2 + llama.cpp 0.4.1",
+      "required_model_components": 14,
+      "deviceValidated": false,
+      "status": "compiled_not_device_tested",
+      "notices": [
+        "soulx-NOTICE.txt",
+        "soulx-Apache-LICENSE.txt",
+        "soulx-kissfft-BSD-3-Clause.txt",
+        "soulx-snake-MIT.txt",
+        "soulx-llama-MIT.txt",
+        "moss-onnxruntime-LICENSE.txt",
+        "moss-onnxruntime-ThirdPartyNotices.txt.txt",
+        "sd-nlohmann-json-LICENSE.txt",
+        "sd-NDK-LLVM-NOTICE.txt"
+      ]
     }
   ],
   "textRuntime": {

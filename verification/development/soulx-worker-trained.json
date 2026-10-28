@@ -1,0 +1,502 @@
+{
+  "passed": 95,
+  "actual_host_children": 4,
+  "full_trained_production_worker_executed": true,
+  "production_soulx_binding": true,
+  "reference_speakers_tested": [
+    2,
+    4
+  ],
+  "trained_model_components": 14,
+  "assets": [
+    {
+      "role": "s3",
+      "file": "reference-s3.onnx",
+      "bytes": 1231862,
+      "sha256": "b1567391964c95610b9af02835b3a2f1238213d841ffc657ea8dbcd2fe53f10b"
+    },
+    {
+      "role": "s3_data",
+      "file": "reference-s3.onnx.data",
+      "bytes": 494858272,
+      "sha256": "bbd178ddf76964e58b4e0ff9526d34600648ef12aafb276105ab4ee5ebeb4321"
+    },
+    {
+      "role": "speaker",
+      "file": "reference-speaker.onnx",
+      "bytes": 718459,
+      "sha256": "df91a402a0f0918d029343159af03280d44079b2ea94b92c27d414c2a1d704e1"
+    },
+    {
+      "role": "speaker_data",
+      "file": "reference-speaker.onnx.data",
+      "bytes": 27630720,
+      "sha256": "54f285116c6c6ba2aa95d110890f226219feb9ea36fd8176c3869b1c7756c821"
+    },
+    {
+      "role": "flow_encoder",
+      "file": "flow-encoder.onnx",
+      "bytes": 48451702,
+      "sha256": "2c35d331698e9bba441067232f8600fc405755691e9257e666f86a9ce51413e4"
+    },
+    {
+      "role": "flow_encoder_data",
+      "file": "flow-encoder.onnx.data",
+      "bytes": 164987520,
+      "sha256": "078ddb8a237bda3dbee6ad6dd78e2130627284c30d372f5b1d7893a31d6b2ee2"
+    },
+    {
+      "role": "flow_estimator",
+      "file": "flow-estimator.onnx",
+      "bytes": 1385097,
+      "sha256": "3b8fb4225fb3464b0fea2f81634f39a7b8b15c8ace59cca5e7b21436ab23aa92"
+    },
+    {
+      "role": "flow_estimator_data",
+      "file": "flow-estimator.onnx.data",
+      "bytes": 285209920,
+      "sha256": "28434ac6e5bfa078ab84975872840dea4d73b9d32c33dce3350c732710652411"
+    },
+    {
+      "role": "hift_f0",
+      "file": "hift-f0.onnx",
+      "bytes": 3344,
+      "sha256": "52efc85bdacde09f1949a3500a7696eb3c1315a0e60afeec6246fecd35f39f6e"
+    },
+    {
+      "role": "hift_f0_data",
+      "file": "hift-f0.onnx.data",
+      "bytes": 13086724,
+      "sha256": "ff4f21b38788397d430e5a907c8b027fa0a2e6f3e402f78230d7dc133a4eb803"
+    },
+    {
+      "role": "hift_spectrum",
+      "file": "hift-spectrum.onnx",
+      "bytes": 162085,
+      "sha256": "67379ce1513eb1fb3284fc80846f68d816fb57371fd6249a715accffba49dae5"
+    },
+    {
+      "role": "hift_spectrum_data",
+      "file": "hift-spectrum.onnx.data",
+      "bytes": 70175048,
+      "sha256": "257cbc51dffda3a6da9c1172b389ed3c8caf06f252ee00f662b9293c525661be"
+    },
+    {
+      "role": "hift_source",
+      "file": "hift-source.f32",
+      "bytes": 40,
+      "sha256": "b4e1fce232c623ed785fba9812e7ee025f6b51d4fa7a27ce843c00b2a7ae51ef"
+    },
+    {
+      "role": "language",
+      "file": "language.gguf",
+      "bytes": 1305886240,
+      "sha256": "92d24e9b5071e37736fbdd2b4020c76668090b756209a065aa7d2df3af5ade23"
+    }
+  ],
+  "fresh_synthetic_reference_pcm": true,
+  "real_person_audio_used": false,
+  "speech_quality_tested": false,
+  "physical_android": false,
+  "complete_target13_accepted": false,
+  "remote_inference": false,
+  "model_assets_packaged_in_apk": false,
+  "native_binary_sha256": "4ecdb98c7cde9a77d5c6da2ef686e7c4af27aa5f637e4616c8fca34ee9ac1a0d",
+  "actual_forced_host_terminations": 2,
+  "android_cooperative_cancellation_tested": false,
+  "runs": [
+    {
+      "name": "paired-fresh-text",
+      "execution": {
+        "acousticGraphRuns": 36,
+        "acousticMs": 33004.8651,
+        "audioDurationSeconds": 4.84,
+        "backend": "cpu",
+        "channels": 1,
+        "clippedSamples": 0,
+        "effectiveParameters": {
+          "cfg": 0.7,
+          "context": 2048,
+          "historyThreshold": 2048,
+          "historyTurns": 2,
+          "maxHistoryTurns": 10,
+          "maxNewTokens": 160,
+          "maxOutputSeconds": 120,
+          "minNewTokens": 8,
+          "pauseMs": 120,
+          "rasTau": 0.2,
+          "rasWindow": 25,
+          "repetitionPenalty": 1.25,
+          "seed": 9183,
+          "steps": 15,
+          "temperature": 0.6,
+          "textHistoryTurns": 2,
+          "threads": 2,
+          "topK": 100,
+          "topP": 0.9,
+          "useRas": true
+        },
+        "generatedSemanticCodes": 118,
+        "historyResets": 0,
+        "languageDecodeCalls": 121,
+        "languageModelLoads": 1,
+        "languageModelUnloads": 1,
+        "languageMs": 27182.809,
+        "maxConcurrentOrtModels": 1,
+        "ortModelLoads": 12,
+        "ortModelUnloads": 12,
+        "outputSamples": 116160,
+        "peakBeforePcm": 0.38831958174705505,
+        "pipeline": "soulx_podcast_cpu_v1",
+        "pipelineMs": 64885.9761,
+        "pipelineRTF": 13.406193409090909,
+        "rasResets": 0,
+        "referenceGraphRuns": 4,
+        "referenceMs": 4696.5182,
+        "references": [
+          {
+            "graphRuns": 2,
+            "modelLoads": 2,
+            "modelUnloads": 2,
+            "samples": 25237,
+            "semanticCodes": 26,
+            "speaker": 1
+          },
+          {
+            "graphRuns": 2,
+            "modelLoads": 2,
+            "modelUnloads": 2,
+            "samples": 30248,
+            "semanticCodes": 31,
+            "speaker": 2
+          }
+        ],
+        "sampleRate": 24000,
+        "stageLoading": "sequential",
+        "stopReason": "per_utterance_eos_or_explicit_limit",
+        "turns": [
+          {
+            "acousticSeed": 9183,
+            "eos": true,
+            "graphRuns": 18,
+            "historyDelimiterInserted": false,
+            "inputTokens": 96,
+            "modelLoads": 4,
+            "modelUnloads": 4,
+            "samples": 53760,
+            "semanticCodes": 56,
+            "speaker": 1
+          },
+          {
+            "acousticSeed": 9184,
+            "eos": true,
+            "graphRuns": 18,
+            "historyDelimiterInserted": false,
+            "inputTokens": 165,
+            "modelLoads": 4,
+            "modelUnloads": 4,
+            "samples": 59520,
+            "semanticCodes": 62,
+            "speaker": 2
+          }
+        ]
+      },
+      "wall_seconds": 65.45588419999694
+    },
+    {
+      "name": "four-speakers-explicit-cap",
+      "execution": {
+        "acousticGraphRuns": 24,
+        "acousticMs": 22318.8672,
+        "audioDurationSeconds": 1.28,
+        "backend": "cpu",
+        "channels": 1,
+        "clippedSamples": 0,
+        "effectiveParameters": {
+          "cfg": 0.7,
+          "context": 2048,
+          "historyThreshold": 2048,
+          "historyTurns": 2,
+          "maxHistoryTurns": 10,
+          "maxNewTokens": 8,
+          "maxOutputSeconds": 120,
+          "minNewTokens": 0,
+          "pauseMs": 0,
+          "rasTau": 0.2,
+          "rasWindow": 25,
+          "repetitionPenalty": 1.25,
+          "seed": 9183,
+          "steps": 3,
+          "temperature": 0,
+          "textHistoryTurns": 2,
+          "threads": 2,
+          "topK": 100,
+          "topP": 0.9,
+          "useRas": false
+        },
+        "generatedSemanticCodes": 32,
+        "historyResets": 0,
+        "languageDecodeCalls": 36,
+        "languageModelLoads": 1,
+        "languageModelUnloads": 1,
+        "languageMs": 24648.2863,
+        "maxConcurrentOrtModels": 1,
+        "ortModelLoads": 24,
+        "ortModelUnloads": 24,
+        "outputSamples": 30720,
+        "peakBeforePcm": 0.9900000095367432,
+        "pipeline": "soulx_podcast_cpu_v1",
+        "pipelineMs": 56023.2369,
+        "pipelineRTF": 43.768153828125,
+        "rasResets": 0,
+        "referenceGraphRuns": 8,
+        "referenceMs": 9054.2416,
+        "references": [
+          {
+            "graphRuns": 2,
+            "modelLoads": 2,
+            "modelUnloads": 2,
+            "samples": 25237,
+            "semanticCodes": 26,
+            "speaker": 1
+          },
+          {
+            "graphRuns": 2,
+            "modelLoads": 2,
+            "modelUnloads": 2,
+            "samples": 30248,
+            "semanticCodes": 31,
+            "speaker": 2
+          },
+          {
+            "graphRuns": 2,
+            "modelLoads": 2,
+            "modelUnloads": 2,
+            "samples": 35259,
+            "semanticCodes": 36,
+            "speaker": 3
+          },
+          {
+            "graphRuns": 2,
+            "modelLoads": 2,
+            "modelUnloads": 2,
+            "samples": 40270,
+            "semanticCodes": 41,
+            "speaker": 4
+          }
+        ],
+        "sampleRate": 24000,
+        "stageLoading": "sequential",
+        "stopReason": "per_utterance_eos_or_explicit_limit",
+        "turns": [
+          {
+            "acousticSeed": 9183,
+            "eos": false,
+            "graphRuns": 6,
+            "historyDelimiterInserted": true,
+            "inputTokens": 197,
+            "modelLoads": 4,
+            "modelUnloads": 4,
+            "samples": 7680,
+            "semanticCodes": 8,
+            "speaker": 1
+          },
+          {
+            "acousticSeed": 9184,
+            "eos": false,
+            "graphRuns": 6,
+            "historyDelimiterInserted": true,
+            "inputTokens": 212,
+            "modelLoads": 4,
+            "modelUnloads": 4,
+            "samples": 7680,
+            "semanticCodes": 8,
+            "speaker": 2
+          },
+          {
+            "acousticSeed": 9185,
+            "eos": false,
+            "graphRuns": 6,
+            "historyDelimiterInserted": true,
+            "inputTokens": 227,
+            "modelLoads": 4,
+            "modelUnloads": 4,
+            "samples": 7680,
+            "semanticCodes": 8,
+            "speaker": 3
+          },
+          {
+            "acousticSeed": 9186,
+            "eos": false,
+            "graphRuns": 6,
+            "historyDelimiterInserted": true,
+            "inputTokens": 242,
+            "modelLoads": 4,
+            "modelUnloads": 4,
+            "samples": 7680,
+            "semanticCodes": 8,
+            "speaker": 4
+          }
+        ]
+      },
+      "wall_seconds": 56.08480650000274
+    },
+    {
+      "name": "terminate-language",
+      "forced_host_termination": true,
+      "observed_stage": "language_decode",
+      "android_cooperative_cancellation_tested": false,
+      "seconds": 3.664548599976115
+    },
+    {
+      "name": "terminate-acoustic",
+      "forced_host_termination": true,
+      "observed_stage": "flow_estimator",
+      "android_cooperative_cancellation_tested": false,
+      "seconds": 7.288476600020658
+    }
+  ],
+  "outputs": [
+    {
+      "name": "paired-fresh-text",
+      "bytes": 232364,
+      "sha256": "b1f0a2e26a3012263f2361e16a3c9ec9d0d0dc4935d33120a0ef1bccbb972d8c",
+      "samples": 116160,
+      "seconds": 4.84,
+      "turns": [
+        {
+          "acousticSeed": 9183,
+          "eos": true,
+          "graphRuns": 18,
+          "historyDelimiterInserted": false,
+          "inputTokens": 96,
+          "modelLoads": 4,
+          "modelUnloads": 4,
+          "samples": 53760,
+          "semanticCodes": 56,
+          "speaker": 1
+        },
+        {
+          "acousticSeed": 9184,
+          "eos": true,
+          "graphRuns": 18,
+          "historyDelimiterInserted": false,
+          "inputTokens": 165,
+          "modelLoads": 4,
+          "modelUnloads": 4,
+          "samples": 59520,
+          "semanticCodes": 62,
+          "speaker": 2
+        }
+      ],
+      "peak_before_pcm": 0.38831958174705505
+    },
+    {
+      "name": "four-speakers-explicit-cap",
+      "bytes": 61484,
+      "sha256": "feba2521344b899ddcc0b1ecbac55a825a13a101ebe2062ccaddcb099f60582c",
+      "samples": 30720,
+      "seconds": 1.28,
+      "turns": [
+        {
+          "acousticSeed": 9183,
+          "eos": false,
+          "graphRuns": 6,
+          "historyDelimiterInserted": true,
+          "inputTokens": 197,
+          "modelLoads": 4,
+          "modelUnloads": 4,
+          "samples": 7680,
+          "semanticCodes": 8,
+          "speaker": 1
+        },
+        {
+          "acousticSeed": 9184,
+          "eos": false,
+          "graphRuns": 6,
+          "historyDelimiterInserted": true,
+          "inputTokens": 212,
+          "modelLoads": 4,
+          "modelUnloads": 4,
+          "samples": 7680,
+          "semanticCodes": 8,
+          "speaker": 2
+        },
+        {
+          "acousticSeed": 9185,
+          "eos": false,
+          "graphRuns": 6,
+          "historyDelimiterInserted": true,
+          "inputTokens": 227,
+          "modelLoads": 4,
+          "modelUnloads": 4,
+          "samples": 7680,
+          "semanticCodes": 8,
+          "speaker": 3
+        },
+        {
+          "acousticSeed": 9186,
+          "eos": false,
+          "graphRuns": 6,
+          "historyDelimiterInserted": true,
+          "inputTokens": 242,
+          "modelLoads": 4,
+          "modelUnloads": 4,
+          "samples": 7680,
+          "semanticCodes": 8,
+          "speaker": 4
+        }
+      ],
+      "peak_before_pcm": 0.9900000095367432
+    }
+  ],
+  "input_fingerprint": {
+    "native/moss_nano/onnx_external.hpp": "c1bb8f95ad2078472dbbf2ea0863493ac44f4aae7c4336cf5debb0db0d54fae5",
+    "native/soulx/CMakeLists.txt": "fed2af5c80d9d6c1527248e4853b3758a25acc0e972f3cd8b868c290690310c4",
+    "native/soulx/contract.hpp": "1d3b959d2510955ce13ae9b043d62c165eadb68f33f2738548c37a8c4deb691a",
+    "native/soulx/NOTICE": "139ffa21e3082c14c13c87a7393e71450a3b91ca2f1419df4a23bc568e8eb7f4",
+    "native/soulx/worker.cpp": "ae363f1dfe0307ea4b872f9865da4c37b6b478b0cf7b4d265d6521d051ff6fec",
+    "research/soulx/CMakeLists.txt": "847feb9d1714b97bd17aae237dfb692368398fb3dbbcc9a6ccdb6b10af919c6f",
+    "research/soulx/dsp.cpp": "08162eafac28df62af8d415525c9d28ab490e77bdcfd81cc23b8d2e89f524bd3",
+    "research/soulx/dsp.hpp": "ef6a28cae0d2e72d1b84890437286b0ed8a20690c0ac07b2ddf8162ee2d2fd58",
+    "research/soulx/LICENSE-APACHE-2.0": "2d88353fe7c7e7dde2a5ea2bc00db9f4808127c938395fcfd1a4d88a268ea3a5",
+    "research/soulx/LICENSE-KISSFFT-BSD-3-CLAUSE": "91333dec2b41bc2d3dc15d6bc819e0da1e6854b6142d4910e8e0c7c82d2da727",
+    "research/soulx/NOTICE": "2229d2f5db9876bda0e0922389f044dba126e7f782e687662cd6fc196e0ba8c2",
+    "research/soulx_acoustic/acoustic.cpp": "8af9b15afe67d71ccec9353a12d4e3499430907681aae16aae2199b2f5409e10",
+    "research/soulx_acoustic/acoustic.hpp": "ccbb6588c6acb8835071626ce07d92f57302a18bb9e90dd7bf0fb8b6de1d60e7",
+    "research/soulx_acoustic/CMakeLists.txt": "e325fe7badd4903ee819989d21c8037bb0ab92fe14ae94ee7d30c835a2421d05",
+    "research/soulx_acoustic/driver.cpp": "83ed86c87a9c0dc85e02611b33409d0a4e40611bdf4dc78e8e240691c945f812",
+    "research/soulx_acoustic/LICENSE-APACHE-2.0": "2d88353fe7c7e7dde2a5ea2bc00db9f4808127c938395fcfd1a4d88a268ea3a5",
+    "research/soulx_acoustic/LICENSE-ONNX-RUNTIME-MIT": "c250d6278f0b47a6439fb7592b08b58a55eb9f535aa49a1db63211c3f982b674",
+    "research/soulx_acoustic/LICENSE-SNAKE-MIT": "9ac34402a4c4d24bf19c495d3d6f778040177ed794668714fd125cf49a4d0cf0",
+    "research/soulx_acoustic/NOTICE": "fc62bb7660414206358289f372d573e4f64a08c5c764511b20deb0e9ad94668a",
+    "research/soulx_language/CMakeLists.txt": "b6ebffd19866915637905388458a588a091a8204a62cdfae31b26f4bf608ab45",
+    "research/soulx_language/driver.cpp": "236fe85a5f867d8c32a54b425d58ba1435e032d90dbc7ec70fdad105a21c7ab4",
+    "research/soulx_language/language.cpp": "dee5a2c5a93adb5fd7e4864b8711e7bbdb8a8a96e4d4809e15b80469cbd73977",
+    "research/soulx_language/language.hpp": "229a3e6d13791196789c74e08503fc4b23ac8a33ebcb11a0b2894dc26946e6ff",
+    "research/soulx_language/LICENSE-APACHE-2.0": "2d88353fe7c7e7dde2a5ea2bc00db9f4808127c938395fcfd1a4d88a268ea3a5",
+    "research/soulx_language/LICENSE-LLAMA-MIT": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
+    "research/soulx_language/NOTICE": "df180c60d77739970291a3de27948f1666ec30d21581eb5bce06f0e3a9a24934",
+    "research/soulx_language/policy.hpp": "706fee760a88663d6f0586b109eea9b606463e9b8f545e116b2915b10fb66840",
+    "research/soulx_language/policy_driver.cpp": "dd40dda95ec9b8dada03a10ecdf09981695594b4cdab0ab47d2ff5ba932002ca",
+    "research/soulx_language/quantize.cpp": "1ce5f604d7f7648270b01e8fa434244a821ae1a5de1246808d136bac184b1cd0",
+    "research/soulx_ort/android_log.cpp": "216f630761ff67a00cfe47db941338f45560fc45486ebcbdff196cf36dac3d04",
+    "research/soulx_ort/LICENSE-ONNX-RUNTIME-MIT": "c250d6278f0b47a6439fb7592b08b58a55eb9f535aa49a1db63211c3f982b674",
+    "research/soulx_ort/NOTICE": "69487267d86f7998917bc9f7e9b6d2e30e168f41c92369f41a33e225c0bfceb6",
+    "research/soulx_ort/runtime.hpp": "0586ad63c3210ec42d1c3cc956beb05614e56e9cb803632d596e57935689b2c8",
+    "research/soulx_ort/types.hpp": "f0822ae37dd26996501f2b69e4e1bb9404ad53903dd267ff793ee60d96f42de4",
+    "research/soulx_reference/CMakeLists.txt": "acb4aa21e2c41b69e3807342048b947954b535e622982f1e3b7f74ed21938719",
+    "research/soulx_reference/driver.cpp": "5125d3da14d842efae6b10b820a829f99cb72d261e414c8d1c783a8f64fc1379",
+    "research/soulx_reference/LICENSE-APACHE-2.0": "2d88353fe7c7e7dde2a5ea2bc00db9f4808127c938395fcfd1a4d88a268ea3a5",
+    "research/soulx_reference/NOTICE": "e69294d836231434216c0c147b4f50afd25e6b995b38e1e731ffcaaea21d56fa",
+    "research/soulx_reference/reference.cpp": "59219307bf63901c012ae1e16594c4236fbae147f758e3aca31142bfba231ae8",
+    "research/soulx_reference/reference.hpp": "b56f4c888d7b51e46c2871e94c257441cc68a01c17c3b89c7b6aacc19498f07b",
+    "third_party/soulx-acoustic-source-lock.json": "b39e10c415c5f30d4e4adb52327e1e04df371407131f47617622da913b268ac5",
+    "third_party/soulx-language-source-lock.json": "b2216e3270277fdf69399a1f2e965ee8b1b93685ba9f0bd63f7ca09c4a26a9d6",
+    "third_party/soulx-reference-source-lock.json": "77d9bd5c2553d9591a1b2028c42334b83ed1dd0c0fa17f81b7c1929905a1cf3d",
+    "third_party/soulx-trained-assets.json": "515cac3f043ef547b211711312f10b7ba0af5ad919af16452d5871b819942c1d",
+    "tools/build_soulx.py": "0ab6413581940e3ff31f7d08d329a1ec40c66b1b21a8788abfa971688cc55aec",
+    "tools/soulx_recipe.py": "9c270d678e8846ee871fccc4f7ab3df7a9e575705a62035c73c8949b3044f55c",
+    "tools/test_soulx_worker_trained.py": "ed5f20c90bc24cee2bf4b022bc2ecac9efac10c2e77ef2cfdad6ad3f110a19e5"
+  }
+}

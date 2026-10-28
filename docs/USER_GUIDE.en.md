@@ -94,3 +94,6 @@ Edit or clear the system prompt freely. No extra keyword moderation is added. Sa
 Uninstalling deletes models and chats. Model migration and chat backup/import are not implemented; exported logs are not a full backup. Reports should include version, phone/Android, model ID/hash, parameters, reproduction steps, and sanitized logs.
 
 For Sana, select `Sana mobile · Qwen3 + MNN` in All/search, choose the 13 matching graph/weight/tokenizer components, review the plan and separately confirm downloading. Local manages that model and its dimensions/CFG/input tokens/threads. This matched mobile text-to-image recipe does not automatically support original Sana, editing or LoRA. No assets are bundled or implicitly fetched. Compilation/host checks exist; phone output remains unverified. See the [Sana guide](MNN_SANA_ENGINE.en.md).
+
+
+On development dev.21, open an installed SoulX model's local task, choose contiguous S1–S4 reference audio and actual transcripts, then enter target text. Plain text uses S1; multiple utterances use one `[S1] text` marker per line. Edit defaults independently under Local; task overrides affect only that request. See the [SoulX guide](SOULX_ENGINE.en.md) for all fourteen assets, formats/profiles/API and the still-missing complete verified public download candidate. Public v0.2.0 does not include this development feature.

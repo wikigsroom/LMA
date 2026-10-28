@@ -82,3 +82,5 @@
 - SoulX训练参考 /声学重建：[中文](SOULX_REFERENCE.md) / [English](SOULX_REFERENCE.en.md)；[双语编号实现与待办](releases/v0.3.0-dev.20-soulx-reference.md)，明确主机组件 /完整TTS /App /手机边界。
 
 - SoulX语言 /完整主机链路：[中文](SOULX_LANGUAGE.md) / [English](SOULX_LANGUAGE.en.md)；[双语编号实现与待办](releases/v0.3.0-dev.20-soulx-language.md)，完整训练host输出与App /质量 /真机验收分别记录。
+
+- dev.21 SoulX App基座：[中文](SOULX_ENGINE.md) / [English](SOULX_ENGINE.en.md)；[双语编号交付与完整待办](releases/v0.3.0-dev.21.md)。14份用户资产、配套参考原文、生产worker真实训练主机证据，与公开下载候选 /质量 /Android /Release门槛分别记录。

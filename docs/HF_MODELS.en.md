@@ -77,3 +77,6 @@ Manual imports never gain verified status from names alone. Labels do not promis
 <p><img src="media/lma-hf-local.gif" width="320" alt="HF and Local management; explicitly simulated UI demonstration"></p>
 
 [Media provenance](MEDIA.md) · [Validation boundaries](VALIDATION.en.md) · [Architecture](ARCHITECTURE.en.md)
+
+
+dev.21 adds the34th explicit component template for SoulX and `.f32` binary-data discovery. All fourteen assets, including learned source coefficients, remain user-selected. A complete verified public HF candidate for the converted layout is still missing; original PyTorch files do not run directly. A selectable template does not establish user download/device acceptance. See [SoulX assets and boundaries](SOULX_ENGINE.en.md#2-fourteen-user-assets).

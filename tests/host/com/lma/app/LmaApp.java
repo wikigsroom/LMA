@@ -14,7 +14,7 @@ public final class LmaApp {
     public final android.os.PowerManager power = new android.os.PowerManager();
     public Object getSystemService(String name) { return name.equals(ACTIVITY_SERVICE) ? memory : power; }
     public JSONObject device() { return new JSONObject().put("hostFrameworkPort", true).put("physicalAndroid", false); }
-    public static final String VERSION = "0.3.0-dev.19";
+    public static final String VERSION = "0.3.0-dev.21";
     public String apiState = "stopped", apiDetail = "";
     public com.lma.app.core.BundleStore bundles;
     public com.lma.app.core.JobStore jobs;

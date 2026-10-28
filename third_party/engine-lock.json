@@ -253,6 +253,72 @@
         "sd-nlohmann-json-LICENSE.txt": "0e592e358cf7722906f417be85bc514f15bf6efd28cea98cb84e56ef7fddfc3e",
         "sd-NDK-LLVM-NOTICE.txt": "f96f763beb66a7ba7a667647fc64c0226ace875e590c831fdd9579ec1c1d91e1"
       }
+    },
+    {
+      "engine": "soulx_native",
+      "file": "liblma-soulx.so",
+      "source_revision": "5ac9c0e1cfe596396200c7d38e3fd53b7b3fbf4b",
+      "abi": "arm64-v8a",
+      "backend": "cpu",
+      "ndk": "30.0.16248370",
+      "sha256": "424d609440603a4c93238d5130b316e384d0ead58613a53e5fdbe3608b4963bf",
+      "bytes": 472400,
+      "android_api_notes": [
+        28
+      ],
+      "dependencies": [
+        {
+          "file": "libonnxruntime.so",
+          "bytes": 22249560,
+          "sha256": "33847ad43bffe204699fd4a27f7f3603452a8cdaf2f9a44983a0bc31ffcf2da1",
+          "android_api_notes": [
+            27
+          ]
+        },
+        {
+          "file": "libllama.so",
+          "bytes": 3264464,
+          "sha256": "b93e6abb9088bfb50ca1986200654fddec722c0910dbf2a2000d3496e73a9449",
+          "android_api_notes": [
+            28
+          ]
+        },
+        {
+          "file": "libggml-cpu-android_armv8.0_1.so",
+          "bytes": 871048,
+          "sha256": "5eec51b25c2835bd6bd62a29d0b9ac07ce7fadcbeb679d00ecf184128a2cf8d4",
+          "android_api_notes": [
+            28
+          ]
+        },
+        {
+          "file": "libggml.so",
+          "bytes": 668680,
+          "sha256": "e858a7c58ce22a7cec4c1e18d0b1772680e52ef833ea7822a4500c659a0774b8",
+          "android_api_notes": [
+            28
+          ]
+        },
+        {
+          "file": "libggml-base.so",
+          "bytes": 1080864,
+          "sha256": "5e79542e713d0f4fa633cb987ad1a4a95bc1b64531e88305e3a41c6213aaf1a9",
+          "android_api_notes": [
+            28
+          ]
+        }
+      ],
+      "notices": {
+        "soulx-NOTICE.txt": "139ffa21e3082c14c13c87a7393e71450a3b91ca2f1419df4a23bc568e8eb7f4",
+        "soulx-Apache-LICENSE.txt": "2d88353fe7c7e7dde2a5ea2bc00db9f4808127c938395fcfd1a4d88a268ea3a5",
+        "soulx-kissfft-BSD-3-Clause.txt": "91333dec2b41bc2d3dc15d6bc819e0da1e6854b6142d4910e8e0c7c82d2da727",
+        "soulx-snake-MIT.txt": "9ac34402a4c4d24bf19c495d3d6f778040177ed794668714fd125cf49a4d0cf0",
+        "soulx-llama-MIT.txt": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
+        "moss-onnxruntime-LICENSE.txt": "c250d6278f0b47a6439fb7592b08b58a55eb9f535aa49a1db63211c3f982b674",
+        "moss-onnxruntime-ThirdPartyNotices.txt.txt": "fb0af774b4d7cffc5b9d046f2aaeade2f37df2f80abf8033c95dfffcc77a8866",
+        "sd-nlohmann-json-LICENSE.txt": "0e592e358cf7722906f417be85bc514f15bf6efd28cea98cb84e56ef7fddfc3e",
+        "sd-NDK-LLVM-NOTICE.txt": "f96f763beb66a7ba7a667647fc64c0226ace875e590c831fdd9579ec1c1d91e1"
+      }
     }
   ]
 }

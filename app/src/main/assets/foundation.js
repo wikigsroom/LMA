@@ -175,20 +175,27 @@
   }
   function inputRuleMatch(a, rule) {
     var m = a.metadata || {};
-    return a.available && (rule.mimes || []).indexOf(m.mime) >= 0 && a.bytes <= rule.maxBytes && (!rule.maxDurationMs || m.durationMs > 0 && m.durationMs <= rule.maxDurationMs) && (!rule.maxPixels || m.width > 0 && m.height > 0 && m.width * m.height <= rule.maxPixels);
+    return a.available && (rule.mimes || []).indexOf(m.mime) >= 0 && a.bytes <= rule.maxBytes && (!rule.minDurationMs || m.durationMs >= rule.minDurationMs) && (!rule.maxDurationMs || m.durationMs > 0 && m.durationMs <= rule.maxDurationMs) && (!rule.maxPixels || m.width > 0 && m.height > 0 && m.width * m.height <= rule.maxPixels);
   }
   function renderInputFields() {
     var panel = $('taskInputs'), form = $('localTaskForm'), b = editor && find(editor.id); if (!panel || !form || !b) return;
-    var selected = {}; panel.querySelectorAll('[data-input-role]').forEach(function (s) { selected[s.dataset.inputRole] = s.value; });
+    var selected = {}, transcripts = {}; panel.querySelectorAll('[data-input-role]').forEach(function (s) { selected[s.dataset.inputRole] = s.value; });
+    panel.querySelectorAll('[data-input-transcript]').forEach(function (t) { transcripts[t.dataset.inputTranscript] = t.value; });
     var schema = (b.inputSchemas || {})[form.elements.taskType.value], roles = schema && schema.roles || {}, keys = Object.keys(roles);
-    panel.innerHTML = keys.length ? '<h3>本地输入素材</h3>' + keys.map(function (role) {
+    panel.innerHTML = (schema && schema.promptHelp ? '<p class="form-help">' + e(schema.promptHelp) + '</p>' : '') + (keys.length ? '<h3>本地输入素材</h3>' + keys.map(function (role) {
       var rule = roles[role], choices = (ui.state().artifacts || []).filter(function (a) { return inputRuleMatch(a, rule); });
-      return '<label class="form-field"><span>' + e(rule.label) + (rule.required ? '（必选）' : '（可选）') + '</span><select data-input-role="' + e(role) + '"' + (rule.required ? ' required' : '') + '><option value="">选择已导入素材或已有结果</option>' + choices.map(function (a) { var origin = a.origin || {}; return '<option value="' + e(a.id) + '"' + (selected[role] === a.id ? ' selected' : '') + '>' + e(origin.name || a.id) + ' · ' + ui.bytes(a.bytes) + '</option>'; }).join('') + '</select><small>' + e((rule.mimes || []).join(' / ')) + ' · ≤ ' + ui.bytes(rule.maxBytes) + (choices.length ? '' : ' · 暂无匹配素材') + '</small></label>';
-    }).join('') + button('inputPicker', '', '导入新素材') : '<p class="form-help">当前配方仅接受文字。导入素材不会自动开启图像编辑或语音克隆。</p>';
+      var active = choices.some(function (a) { return a.id === selected[role]; });
+      return '<label class="form-field"><span>' + e(rule.label) + (rule.required ? '（必选）' : '（可选）') + '</span><select data-input-role="' + e(role) + '"' + (rule.required ? ' required' : '') + '><option value="">选择已导入素材或已有结果</option>' + choices.map(function (a) { var origin = a.origin || {}; return '<option value="' + e(a.id) + '"' + (selected[role] === a.id ? ' selected' : '') + '>' + e(origin.name || a.id) + ' · ' + ui.bytes(a.bytes) + '</option>'; }).join('') + '</select><small>' + e((rule.mimes || []).join(' / ')) + ' · ≤ ' + ui.bytes(rule.maxBytes) + (choices.length ? '' : ' · 暂无匹配素材') + '</small></label>' + (rule.transcript ? '<label class="form-field"><span>' + e(rule.transcript.label) + '</span><textarea rows="2" data-input-transcript="' + e(role) + '" maxlength="' + Number(rule.transcript.maxLength) + '"' + (active ? ' required' : ' disabled') + ' placeholder="填写这段参考音频实际说出的原文">' + e(transcripts[role] || '') + '</textarea><small>选择对应素材后必填；原文与素材一起固定到本次任务。</small></label>' : '');
+    }).join('') + button('inputPicker', '', '导入新素材') : '<p class="form-help">当前配方仅接受文字。导入素材不会自动开启图像编辑或语音克隆。</p>');
   }
   function readInputs(form) {
     var result = [];
     form.querySelectorAll('[data-input-role]').forEach(function (select) { if (select.value) result.push({role: select.dataset.inputRole, artifactId: select.value}); });
+    return result;
+  }
+  function readTranscripts(form) {
+    var result = {};
+    form.querySelectorAll('[data-input-transcript]').forEach(function (text) { if (!text.disabled) { if (!text.value.trim()) throw new Error('请填写参考音频实际说出的原文'); result[text.dataset.inputTranscript] = text.value; } });
     return result;
   }
   function use(id, selectedAdapter) {
@@ -278,7 +285,7 @@
           if (!form.reportValidity()) return;
           var parameters = readFields(form, b), submit = form.querySelector('[type="submit"]');
           var args = editor.mode === 'settings' ? {id: b.id, settings: parameters} : {request: {bundleId: b.id, type: form.elements.taskType.value, input: {prompt: form.elements.prompt.value, negativePrompt: form.elements.negativePrompt && !form.elements.negativePrompt.disabled ? form.elements.negativePrompt.value : ''}, parameters: parameters, allowUnmeasured: form.elements.allowUnmeasured.checked}, idempotencyKey: 'ui-' + Date.now() + '-' + Math.random().toString(36).slice(2)};
-          if (editor.mode === 'task') { var inputs = readInputs(form); if (inputs.length) args.request.input.artifacts = inputs; }
+          if (editor.mode === 'task') { var inputs = readInputs(form), transcripts = readTranscripts(form); if (inputs.length) args.request.input.artifacts = inputs; if (Object.keys(transcripts).length) args.request.input.transcripts = transcripts; }
           if (editor.mode === 'task' && form.elements.taskType.value === 'image.generate') args.request.adapters = readAdapters(form, b);
           var editing = editor;
           editor.pending = track(editor.mode === 'settings' ? 'saveBundleSettings' : 'submitTask', args, function () { if (editor === editing) { ui.closeModal(); if (editing.mode === 'task') ui.route('tasks'); } ui.toast(editing.mode === 'task' ? '任务已加入本机队列' : '已保存此模型的独立设置'); });
@@ -286,6 +293,7 @@
         } catch (error) { $('bundleFormHint').textContent = error.message; }
       });
       document.addEventListener('change', function (event) {
+        if (event.target.dataset.inputRole) { var panel = $('taskInputs'), text = panel && Array.from(panel.querySelectorAll('[data-input-transcript]')).find(function (t) { return t.dataset.inputTranscript === event.target.dataset.inputRole; }); if (text) { text.disabled = !event.target.value; text.required = !!event.target.value; } return; }
         if (event.target.dataset.adapterSelect) {
           var row = event.target.closest('.task-adapter'), scale = row.querySelector('[data-adapter-scale]'); scale.disabled = !event.target.checked; renderSamplingHint(); return;
         }

@@ -1,5 +1,15 @@
 # Changelog / 更新记录
 
+
+## 0.3.0-dev.21 — SoulX App foundation / unpublished
+
+- 完整SoulX CPU worker、14份用户资产（含40字节声源权重）、四说话人参考原文、独立联合参数及共用任务 /API接入；无模型数据进入APK。Complete native worker, paired inputs and shared foundation; explicit user assets only.
+- 222项Java /C++契约与95项完整训练生产worker检查；两说话人新文字4.84秒WAV、四说话人截断、两次主机阶段强制终止，分别标识无质量 /手机结论。Trained host execution remains separate from complete Android acceptance.
+- 582基座 /295UI /80HF回归；34个元数据配方，27原生文件，72份生产Java + 1份生成源码；原签名dev.21 /code25，修正Gradle /应用状态 /UA的旧版本字面量。Consistent version identity; refreshed bilingual docs, screenshots59–61, recording/GIF.
+- 共享原生库校验允许严格字节 / SHA256 / API 一致的复用，拒绝冲突；10 项回归与最终 27 文件 APK 校验通过。Exact runtime identity is required for shared dependencies.
+- 目标13仍缺完整公开用户下载候选、语音质量和Android；01–14 /16 /17、全部冻结子目标 /后台与完整Release保持同版阻塞。Public release remainsv0.2.0. [方案](docs/SOULX_ENGINE.md) / [English](docs/SOULX_ENGINE.en.md) / [编号交付](docs/releases/v0.3.0-dev.21.md)。
+
+
 ## dev.20 source follow-up — SoulX language and complete trained host pipeline / unpublished
 
 源码后续更新（APK仍dev.20）：[SoulX语言与完整主机链路](docs/SOULX_LANGUAGE.md)已运行全部训练Qwen3 /S3 /CAMPPlus /Flow /HiFT，以两段新文字输出24kHz WAV。语言546项 /20次原生子进程、整链路60项 /5次原生子进程通过；官方与较早社区词表分开验证，实际原始HF logits、RAS /历史和运行中取消均核对。ARM64 /API28 /16KiB编译通过，执行器未进APK。参考PCM为合成输入，没有语音质量、App或手机验收结论；模型与WAV留在忽略目录，完整范围 /Release门槛保留。见[编号实现与完整待办](docs/releases/v0.3.0-dev.20-soulx-language.md)。

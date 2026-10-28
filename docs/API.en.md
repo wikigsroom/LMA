@@ -196,3 +196,8 @@ The four added openmoss delay recipes reuse `POST /v1/jobs` / `speech.synthesize
 ```
 
 `allowUnmeasured` is an explicit attempt without current-device evidence, not a compatibility guarantee. Missing resources/components still fail locally. Model loading, inference and codec stages execute on the same phone running LMA.
+
+
+## dev.21 SoulX paired inputs
+
+An installed SoulX bundle uses existing `POST /v1/jobs` / `speech.synthesize`, binding contiguous `reference_s1`–`reference_s4` via `input.artifacts` and their actual words under matching `input.transcripts` keys. Both freeze with the task. Missing/dangling text, reference gaps, unbound speakers and external paths fail. Authentication, idempotency, events, cancellation/retry and artifacts stay shared; no off-device execution or new speech-endpoint claim is added. See the [complete request and gates](SOULX_ENGINE.en.md#5-shared-authenticated-api).

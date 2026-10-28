@@ -55,3 +55,10 @@ UI regression totals **182 assertions**. Development media includes **30 screens
 ![Imported media library, UI fixture](media/development/29-imported-media-library.png)
 
 [Input form](media/development/30-local-input-role-form.png) · [Recording](media/development/foundation-ui.mp4) · [GIF](media/development/foundation-ui.gif) · [Receipt](../verification/development/inputs.json) · [Notes](releases/v0.3.0-dev.11.md)
+
+
+## dev.21 Paired transcripts and duration bounds
+
+Signed engine roles may declare `transcript: {label, maxLength}` and `minDurationMs`. Selecting that media role requires matching nonblank `input.transcripts[role]`: at most4000 characters per item, eight items, within the existing32000-character request bound. Dangling/undeclared/empty/wrong-type transcripts fail. Existing media-only roles remain compatible. Engine-supplied prompt help is escaped before display.
+
+The UI filters minimum/maximum duration, enables required transcripts after audio selection and preserves unsaved pairs on refresh. Job snapshots retain transcripts alongside media IDs/digests; execution rechecks rules and file bytes. [SoulX](SOULX_ENGINE.en.md) uses contiguous `reference_s1`–`reference_s4`, each with its transcript, and independently validates sample rate/channels/PCM values. No arbitrary path, remote-audio URL or implicit model download is added.

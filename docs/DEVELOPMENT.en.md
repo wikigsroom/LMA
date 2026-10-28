@@ -2,7 +2,7 @@
 
 [中文](DEVELOPMENT.md) · [Full scope](MULTIMODAL_RELEASE_PLAN.en.md) · [Build](BUILD.en.md) · [English home](../README.en.md)
 
-The current public release remains **v0.2.0**. This branch is **0.3.0-dev.20 / versionCode 24**, not the complete v0.3.0, and has no new Release. F-01–F-12, selections 01–14/16/17 and frozen subtargets still belong to one delivery; these are internal implementation checkpoints.
+The current public release remains **v0.2.0**. This branch is **0.3.0-dev.21 / versionCode 25**, not the complete v0.3.0, and has no new Release. F-01–F-12, selections 01–14/16/17 and frozen subtargets still belong to one delivery; these are internal implementation checkpoints.
 
 ## Implemented development code
 
@@ -13,7 +13,7 @@ The current public release remains **v0.2.0**. This branch is **0.3.0-dev.20 / v
 | Independent model versions | User-selected pinned target, component/profile review, separate transfer/activation, retained old files, rollback, last 64 switches and queued-reference protection | 62 real host storage/failure/transfer checks; Android upgrades remain unverified; see [version guide](MODEL_UPDATES.en.md) |
 | User control | Declaration, browsing and planning create no transfers; downloads require a separate action; missing assets fail locally; interrupted transfers pause for manual resumption | Does not install the entire catalogue or implicitly download models |
 | Settings | Per-bundle settings, editable presets, numerical clamping, joint shape checks and immutable submitted snapshots | Recipe limits and device budgets are separate; unknown maxima are not verified |
-| UI | Legacy text and bundles share a flat list; text/image/video/audio filters, bundle details, task forms, queue and artifacts; Recommended stays m08 → m06 → m01 | All contains pinned candidates and user manifests; dev.18 offers thirty-three explicit HF component templates without universal architecture support |
+| UI | Legacy text and bundles share a flat list; text/image/video/audio filters, bundle details, task forms, queue and artifacts; Recommended stays m08 → m06 → m01 | All contains pinned candidates and user manifests; dev.21 offers thirty-four explicit HF component templates without universal architecture support |
 | Jobs/artifacts | One heavy job, submit/cancel/retry, persistent events, private results, hashes/provenance, system export and image/WAV/MP4 inspection/ranged preview | Bounded AtomicFile JSON currently stores these records; existing chat SQLite remains; legacy text shares migration/scheduling; target input pipelines and device acceptance remain open |
 | Unified gateway | Start with zero models; authenticated model/engine/job/event/artifact Range routes; public text proxy applies profile bounds and tracks leases; native text stays on a separate loopback port/secret | Production HTTP/stores use real host sockets and explicit execution fixtures; no model downloads or inference redirects |
 | Sana mobile MNN | Pinned CPU worker, 13 matched components, sanitized configuration, per-model settings and real process binding | 74 host/C++ checks, no phone/image outputs; see [Sana guide](MNN_SANA_ENGINE.en.md) |
@@ -32,17 +32,17 @@ Custom manifests gain neither device-validated nor checked-uncensored status. Un
 
 | Check | Result | What it establishes |
 | --- | --- | --- |
-| Foundation core | 561 assertions | Component integrity, real HTTP resumption, shared references, independent settings, queue ownership/cancellation/restart, artifacts and ranged reads |
+| Foundation core | 582 assertions | Component integrity, real HTTP resumption, shared references, independent settings, queue ownership/cancellation/restart, artifacts and ranged reads |
 | API/transport | 67 assertions | Auth, zero-model state, JSON/framing limits, idempotency/cancel/events, exact artifacts/Range/leases and text policy; actual host sockets, not Android inference |
 | Legacy backend/proxy | 98 assertions | Host Android adapters exercising downloads, actual child processes, HTTP SSE and per-model settings |
-| HF logic | 79 assertions | Search, pinned revisions, pagination/selection and token boundaries, not universal HF execution |
+| HF logic | 80 assertions | Search, pinned revisions, pagination/selection and token boundaries, not universal HF execution |
 | MOSS Delay | 176 assertions | Production Java/actual host children and pinned upstream Delay/sampler/de-delay self-test; structural WAV fixtures |
 | MOSS native six recipes | 514 checks | 402 Java / 112 C++, 21 actual host children; actual upstream prompt/sound functions, budget/reference checks; structural WAVs, no neural inference |
 | Diffusion | 174 assertions | Production planning/binding, actual host protocol children and shared C++ policy; no model images |
 | Local input media | 64 assertions | Actual private files, production WAV inspection, authenticated resumable chunks and immutable input receipts/leases; not Android media decoding |
 | Shared scheduler | 49 assertions | Production queue/resident/chat/API, real host children and loopback HTTP, cancellation and reaping; no Android inference |
-| UI | 287 assertions | Actual HTML/CSS/JS with explicit simulated native state; recommendation/tag/download/form/queue/narrow-screen regressions |
-| Native package | 26 ARM64 files | Pinned hashes, resolved dependencies, Android API 28, 16 KiB ELF/APK alignment, original signing identity, asset allowlist |
+| UI | 295 assertions | Actual HTML/CSS/JS with explicit simulated native state; recommendation/tag/download/form/queue/narrow-screen regressions |
+| Native package | 27 ARM64 files | Pinned hashes, resolved dependencies, Android API 28, 16 KiB ELF/APK alignment, original signing identity, asset allowlist |
 | Phone inference/endurance | 0 | No actual image/audio/motion-video or sustained screen-off inference evidence |
 
 sd.cpp is pinned to `be486498eadc29dc3cd234d944c2180ed42b1415`, ggml to `a5915eb0e47adef21c3f25b889a008925ea838c2`, built using project-local NDK 30.0.16248370 on native Windows. The added worker SHA256 is `01e6c0a37fc56bb9268d0890c71d8dae57bd0ac41922cb2ec64ad6e5e7fd1d3c`. See [engine-lock.json](../third_party/engine-lock.json) for hashes/notices. Only actual compiled modules are registered, without empty providers counted as support.
@@ -52,7 +52,7 @@ The SD1.5 candidate combines [Second State’s pinned GGUF](https://huggingface.
 ## Remaining work in the same release
 
 1. Physically validate [shared scheduling](SCHEDULING.en.md), model adoption and independent updates on Android across modalities, cancellation, recovery and upgrades. The 49 host scheduler assertions and dev.9 adoption do not replace device gates.
-2. All selected 01–14/16/17 assets, complete pipelines, subtargets and SD1.5/SDXL LoRA pairings. Native MNN, Qwen and MOSS Delay code is integrated; remaining audio, complete MOSS/SoulX and older LTX implementations remain. Every existing route still requires real-model and physical-Android acceptance.
+2. All selected 01–14/16/17 assets, complete pipelines, subtargets and SD1.5/SDXL LoRA pairings. Native MNN, Qwen, nine MOSS routes, Stable Audio and SoulX workers are integrated in source. Complete asset candidates, fresh model outputs and quality still need individual acceptance; the exact older LTX route remains to be implemented. Every route requires physical-Android acceptance.
 3. Extend async/text APIs to remaining engines and their actual input pipelines, modality compatibility and physical lifecycle acceptance. Existing text now shares the slot; new engines must reuse this scheduling boundary. See [API behavior](API.en.md#030-dev2-independent-gateway-jobs-and-artifacts).
 4. Finish measured admission profiles, thermals, per-recipe/device input acceptance, stage/checkpoint capability handling, cross-modality load/unload and upgrade migration verification.
 5. Obtain physical-Android offline outputs for new inputs on every frozen subtarget, quality/cancellation/cleanup checks, A7 fifteen-minute screen-off tasks and one-hour alternating service evidence. No device is available.
@@ -183,3 +183,6 @@ Internal checkpoint (**0.3.0-dev.20 / code 24**, unpublished): the [Stable Audio
 ## dev.20 source follow-up: language and complete trained host pipeline
 
 Source follow-up (APK remains dev.20): [SoulX language and complete host pipeline](SOULX_LANGUAGE.en.md) execute trained Qwen3/S3/CAMPPlus/Flow/HiFT on fresh texts and write 24 kHz WAV. Language 546 assertions / 20 native children and pipeline 60 assertions/5 native children pass; distinct official/earlier community tokenizers, full original HF logits, RAS/history and actual decode cancellation are checked. ARM64/API28/16KiB compilation passes; executors are outside APK. Synthetic references provide no speech quality, App or phone acceptance. Models/WAVs remain ignored; all complete-scope/Release gates stay open. See [numbered implementation and remaining work](releases/v0.3.0-dev.20-soulx-language.md).
+
+
+Current dev.21 adds the [SoulX App foundation](SOULX_ENGINE.en.md): a registered packaged production worker, fourteen explicitly selected assets, paired audio/transcripts, independent profiles and shared jobs/API/artifacts.222 contract and95 complete trained production-worker assertions pass, covering two/four speakers and two actual forced host terminations. Target13 still needs a verified complete public user download candidate, actual speech quality and Android/background/complete Release acceptance. See the [numbered implemented/pending handoff](releases/v0.3.0-dev.21.md).

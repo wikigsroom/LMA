@@ -174,6 +174,7 @@ public final class HubClient {
         if (lower.endsWith(".txt") || lower.endsWith(".vocab")) format = "text";
         if (lower.endsWith(".model")) format = "sentencepiece";
         if (lower.endsWith(".data")) format = "onnx_data";
+        if (lower.endsWith(".f32")) format = "bin";
         if (lower.endsWith(".mnn")) format = "mnn";
         if (lower.endsWith(".mnn.weight")) format = "mnn_data";
         if (format.equals("unknown")) blocked = "此文件不是当前配方接入的组件格式";

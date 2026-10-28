@@ -30,6 +30,7 @@ public final class HubRecipeTest {
         check(HubClient.asset(repo, entry("tokenizer.model")).getString("format").equals("sentencepiece"), "SentencePiece remains user-selected model data");
         check(HubClient.asset(repo, entry("dit_model.tflite")).getString("format").equals("tflite") && HubClient.asset(repo, entry("dit_model.tflite")).getString("blocked").isEmpty(), "LiteRT graphs are selectable user assets, not executable engine modules");
         check(HubClient.asset(repo, entry("weights.data")).getString("format").equals("onnx_data"), "External ONNX weights are selectable data components");
+        check(HubClient.asset(repo, entry("hift-source.f32")).getString("format").equals("bin") && HubClient.asset(repo, entry("hift-source.f32")).getString("blocked").isEmpty(), "Learned float32 source coefficients remain explicit user data");
         check(HubClient.asset(repo, entry("transformer.mnn")).getString("format").equals("mnn"), "MNN graphs are selectable user data");
         check(HubClient.asset(repo, entry("llm/llm.mnn.weight")).getString("format").equals("mnn_data"), "MNN external weights are selectable separately");
         JSONObject lfs = HubClient.asset(repo, entry("model.onnx").put("lfs", new JSONObject().put("oid", SHA).put("size", 128)));
@@ -59,7 +60,7 @@ public final class HubRecipeTest {
         Path disk = root.resolve("build/hub-tests/recipes-" + UUID.randomUUID());
         LmaApp app = new LmaApp(disk.toFile(), root.resolve("app/src/main/assets").toFile(), root.resolve("build/test-libraries").toFile());
         try (HubCatalog catalog = new HubCatalog(app, () -> client)) {
-            check(catalog.snapshot().getJSONArray("recipeTemplates").length() == 33, "HF controller loads signed data-only recipe templates including native RQ, Qwen, MOSS speech and sound effects");
+            check(catalog.snapshot().getJSONArray("recipeTemplates").length() == 34, "HF controller loads signed data-only recipe templates including the complete SoulX CPU contract");
             files(catalog, "fixture/model"); check(catalog.snapshot().getJSONObject("files").getJSONArray("assets").length() == 3, "HF file pages expose ONNX, binary and text component metadata");
             catalog.dispatch(command("hubRecipeStart").put("repository", "fixture/model")); String initial = draft(catalog);
             catalog.dispatch(command("hubRecipeTemplate").put("draftId", initial).put("templateId", "kokoro_en_cpu_v1"));

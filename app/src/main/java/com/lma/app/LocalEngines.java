@@ -35,6 +35,7 @@ public final class LocalEngines {
             else if (id.equals("openmoss_native")) register(new OpenMossEngine(app, binary, build));
             else if (id.equals("moss_rq_native")) register(new MossRqEngine(app, binary, build));
             else if (id.equals("stable_audio_litert")) register(new StableAudioEngine(app, binary, build));
+            else if (id.equals("soulx_native")) register(new SoulxEngine(app, binary, build));
             else throw new IOException("未知的签名原生模块：" + id);
         }
     }

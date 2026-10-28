@@ -93,4 +93,6 @@ dev.14 Sana 页面：[组件](media/development/36-sana-mobile-components.png)�
 
 dev.20：新增 [56 四组件](media/development/56-stable-audio-components.png)、[57 本地音频表单](media/development/57-stable-audio-task.png)、[58 token 与时长参数](media/development/58-stable-audio-bounds.png)，共 58 screenshots + MP4/GIF（60 媒体文件）。[录屏](media/development/foundation-ui.mp4) / [GIF](media/development/foundation-ui.gif) 均标记 UI FIXTURE；没有下载权重或生成模型音频。浏览器页面、context 和任务进程在 finally 中关闭；不调用模拟器 / Docker / WSL。Screens are production UI with simulated state, not physical Android inference.
 
-dev.20：新增 [56 四组件](media/development/56-stable-audio-components.png)、[57 本地音频表单](media/development/57-stable-audio-task.png)、[58 token 与时长参数](media/development/58-stable-audio-bounds.png)，共 58 screenshots + MP4/GIF（60 媒体文件）。[录屏](media/development/foundation-ui.mp4) / [GIF](media/development/foundation-ui.gif) 均标记 UI FIXTURE；没有下载权重或生成模型音频。浏览器页面、context 和任务进程在 finally 中关闭；不调用模拟器 / Docker / WSL。Screens are production UI with simulated state, not physical Android inference.
+
+
+dev.21：新增 [59 十四份组件](media/development/59-soulx-components.png)、[60 配套参考原文](media/development/60-soulx-paired-references.png)、[61 上下文联合归位](media/development/61-soulx-context-bounds.png)；当前61张PNG + MP4 /GIF，共63个媒体文件。全部是实际生产页面配明确模拟原生桥的UI FIXTURE，没有下载或运行模型。完整训练主机WAV留在忽略目录，不拿合成参考冒充音质演示。浏览器页面、context与本轮进程均在finally关闭；没有模拟器 /Docker /WSL。Production UI with explicit fixture state; no phone inference media or quality claim.

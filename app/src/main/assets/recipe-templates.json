@@ -5232,6 +5232,406 @@
       ],
       "fixedComponents": [],
       "help": "仅匹配固定 Arm-Examples audiogen TFLite 导出，不是任意 Stable Audio checkpoint。四份组件由用户逐一选择，安装 / 浏览 / 缺件均不自动下载。手机 LiteRT CPU 依次编码、扩散、解码；英文提示词最多 64 token（含 EOS），超过报错，不静默截断。输出 1–11 秒、44.1 kHz 立体声 PCM16；短时长仍执行固定 256 latent / 524288 解码帧，不能据此降低内存估算。无负面提示词、CFG、参考音频、语音克隆或图像 LoRA。官方权重受 Stability AI Community 条款及访问限制约束，模型许可与 App 许可独立。8 步是上游默认；线程 / 32 步属于应用保护。上游建议 8 GB RAM，未证明 Z20 可运行；LMA 尚无完整模型音质、速度或 Android 验收。"
+    },
+    {
+      "id": "soulx_podcast_cpu_v1",
+      "name": "SoulX-Podcast 1.7B · 多说话人语音 / CPU",
+      "primaryRole": "language",
+      "definition": {
+        "engine": "soulx_native",
+        "backend": "cpu",
+        "architecture": "soulx_podcast_17b",
+        "pipeline": "soulx_podcast_cpu_v1",
+        "tasks": [
+          "audio"
+        ],
+        "capabilities": [
+          "text_to_speech",
+          "multi_speaker",
+          "reference_transcript"
+        ],
+        "parameters": {
+          "version": 1,
+          "fields": {
+            "context": {
+              "type": "integer",
+              "default": 4096,
+              "minimum": 256,
+              "maximum": 8192,
+              "label": "语言上下文（token；应用上限）",
+              "limitSource": "application_guard",
+              "presets": [
+                2048,
+                4096,
+                8192
+              ]
+            },
+            "threads": {
+              "type": "integer",
+              "default": 4,
+              "minimum": 1,
+              "maximum": 32,
+              "label": "CPU 线程",
+              "limitSource": "application_guard",
+              "presets": [
+                2,
+                4,
+                8
+              ]
+            },
+            "maxNewTokens": {
+              "type": "integer",
+              "default": 512,
+              "minimum": 1,
+              "maximum": 3000,
+              "label": "每段语义输出上限（每 token 40 ms；预留上下文）",
+              "limitSource": "model_and_application_guard",
+              "presets": [
+                160,
+                512,
+                1500,
+                3000
+              ],
+              "maximumFrom": {
+                "field": "context",
+                "offset": -64
+              }
+            },
+            "minNewTokens": {
+              "type": "integer",
+              "default": 8,
+              "minimum": 0,
+              "maximum": 2999,
+              "label": "每段最少采样次数（RAS 可恢复原始 EOS 分数）",
+              "limitSource": "application_guard",
+              "maximumFrom": {
+                "field": "maxNewTokens",
+                "offset": -1
+              }
+            },
+            "temperature": {
+              "type": "number",
+              "default": 0.6,
+              "minimum": 0,
+              "maximum": 3,
+              "label": "语言温度（0 自动关闭 RAS）",
+              "limitSource": "application_guard",
+              "presets": [
+                0,
+                0.6,
+                1
+              ]
+            },
+            "repetitionPenalty": {
+              "type": "number",
+              "default": 1.25,
+              "minimum": 0.01,
+              "maximum": 10,
+              "label": "语言重复惩罚",
+              "limitSource": "application_guard",
+              "presets": [
+                1,
+                1.25,
+                1.5
+              ]
+            },
+            "topK": {
+              "type": "integer",
+              "default": 100,
+              "minimum": 0,
+              "maximum": 262144,
+              "label": "Top K（0 不裁剪）",
+              "limitSource": "application_guard",
+              "presets": [
+                0,
+                50,
+                100
+              ]
+            },
+            "topP": {
+              "type": "number",
+              "default": 0.9,
+              "minimum": 0.0001,
+              "maximum": 1,
+              "label": "Top P",
+              "limitSource": "application_guard",
+              "presets": [
+                0.8,
+                0.9,
+                1
+              ]
+            },
+            "useRas": {
+              "type": "boolean",
+              "default": true,
+              "label": "重复感知采样 RAS（温度 0 时关闭）",
+              "limitSource": "upstream_sampling_contract"
+            },
+            "rasWindow": {
+              "type": "integer",
+              "default": 25,
+              "minimum": 1,
+              "maximum": 256,
+              "label": "RAS 窗口",
+              "limitSource": "application_guard",
+              "presets": [
+                15,
+                25,
+                50
+              ]
+            },
+            "rasTau": {
+              "type": "number",
+              "default": 0.2,
+              "minimum": 0.0001,
+              "maximum": 1,
+              "label": "RAS 重复比例阈值",
+              "limitSource": "application_guard",
+              "presets": [
+                0.1,
+                0.2,
+                0.4
+              ]
+            },
+            "maxHistoryTurns": {
+              "type": "integer",
+              "default": 10,
+              "minimum": 5,
+              "maximum": 64,
+              "label": "历史重建段数阈值（预留四个参考段）",
+              "limitSource": "application_guard",
+              "presets": [
+                5,
+                10,
+                20
+              ]
+            },
+            "historyTurns": {
+              "type": "integer",
+              "default": 2,
+              "minimum": 1,
+              "maximum": 8,
+              "label": "保留的完整音频历史段数",
+              "limitSource": "application_guard",
+              "maximumFrom": {
+                "field": "maxHistoryTurns",
+                "offset": -4
+              }
+            },
+            "textHistoryTurns": {
+              "type": "integer",
+              "default": 2,
+              "minimum": 0,
+              "maximum": 16,
+              "label": "额外文字历史段数",
+              "limitSource": "application_guard",
+              "presets": [
+                0,
+                2,
+                4
+              ]
+            },
+            "historyThreshold": {
+              "type": "integer",
+              "default": 4096,
+              "minimum": 128,
+              "maximum": 8192,
+              "label": "历史重建 token 阈值",
+              "limitSource": "application_guard",
+              "presets": [
+                2048,
+                4096,
+                6192
+              ],
+              "maximumFrom": {
+                "field": "context",
+                "offset": 0
+              }
+            },
+            "steps": {
+              "type": "integer",
+              "default": 15,
+              "minimum": 1,
+              "maximum": 100,
+              "label": "Flow Euler 步数",
+              "limitSource": "model_and_application_guard",
+              "presets": [
+                8,
+                15,
+                30
+              ]
+            },
+            "cfg": {
+              "type": "number",
+              "default": 0.7,
+              "minimum": 0,
+              "maximum": 10,
+              "label": "Flow CFG",
+              "limitSource": "model_and_application_guard",
+              "presets": [
+                0,
+                0.7,
+                1
+              ]
+            },
+            "seed": {
+              "type": "integer",
+              "default": -1,
+              "minimum": -1,
+              "maximum": 2147483647,
+              "label": "随机种子（-1 本次随机）",
+              "limitSource": "application_guard",
+              "presets": [
+                -1,
+                42,
+                9183
+              ]
+            },
+            "pauseMs": {
+              "type": "integer",
+              "default": 200,
+              "minimum": 0,
+              "maximum": 2000,
+              "label": "段间静音（毫秒）",
+              "limitSource": "application_guard",
+              "presets": [
+                0,
+                200,
+                500
+              ]
+            },
+            "maxOutputSeconds": {
+              "type": "integer",
+              "default": 120,
+              "minimum": 1,
+              "maximum": 960,
+              "label": "整个任务最长音频（秒；含静音）",
+              "limitSource": "application_guard",
+              "presets": [
+                30,
+                120,
+                300
+              ]
+            }
+          }
+        }
+      },
+      "requirements": [
+        {
+          "role": "language",
+          "label": "完整 SoulX-Podcast Qwen3 GGUF（内含匹配词表）",
+          "formats": [
+            "gguf"
+          ],
+          "required": true
+        },
+        {
+          "role": "s3",
+          "label": "S3v2 语义编码图",
+          "formats": [
+            "onnx"
+          ],
+          "required": true
+        },
+        {
+          "role": "s3_data",
+          "label": "配套外部权重：reference-s3.onnx.data",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": true
+        },
+        {
+          "role": "speaker",
+          "label": "CAMPPlus 说话人编码图",
+          "formats": [
+            "onnx"
+          ],
+          "required": true
+        },
+        {
+          "role": "speaker_data",
+          "label": "配套外部权重：reference-speaker.onnx.data",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": true
+        },
+        {
+          "role": "flow_encoder",
+          "label": "Flow 编码图",
+          "formats": [
+            "onnx"
+          ],
+          "required": true
+        },
+        {
+          "role": "flow_encoder_data",
+          "label": "配套外部权重：flow-encoder.onnx.data",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": true
+        },
+        {
+          "role": "flow_estimator",
+          "label": "Flow 估计图",
+          "formats": [
+            "onnx"
+          ],
+          "required": true
+        },
+        {
+          "role": "flow_estimator_data",
+          "label": "配套外部权重：flow-estimator.onnx.data",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": true
+        },
+        {
+          "role": "hift_f0",
+          "label": "HiFT 基频图",
+          "formats": [
+            "onnx"
+          ],
+          "required": true
+        },
+        {
+          "role": "hift_f0_data",
+          "label": "配套外部权重：hift-f0.onnx.data",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": true
+        },
+        {
+          "role": "hift_spectrum",
+          "label": "HiFT 频谱图",
+          "formats": [
+            "onnx"
+          ],
+          "required": true
+        },
+        {
+          "role": "hift_spectrum_data",
+          "label": "配套外部权重：hift-spectrum.onnx.data",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": true
+        },
+        {
+          "role": "hift_source",
+          "label": "HiFT 已训练声源合并参数（40 字节 .f32）",
+          "formats": [
+            "bin"
+          ],
+          "required": true
+        }
+      ],
+      "fixedComponents": [],
+      "help": "完整配方共 14 份资产，由用户逐一选择 / 下载或导入；App 不含权重、词表或那份 40 字节声源参数。仅匹配 LMA SoulX ONNX 导出及完整 SoulX GGUF，不支持直接运行 flow.pt / hift.pt 或任意 Qwen GGUF。现有转换工具用于开发验证，尚无已核对的全组件公开下载条目；此配方不代表原始发布者权重可直接下载即用。S1 必选，S2–S4 从 S1 开始连续选择，每段参考 WAV 为 24 kHz 单声道 PCM16 / float32、1–15 秒，并填写实际原文。单段文字默认 S1；多段每行 [S1] 原文 至 [S4] 原文。手机 CPU 依次执行参考编码、完整语言生成、Flow / HiFT、24 kHz PCM16 保存；最多 64 段，总计最多 24000 语义 token，时长含段间静音。上下文不足明确报错，不丢弃参考原文。每段 EOS / 输出上限会分别记录；RAS 可恢复原始分数，不保证最少时长。参数按模型保存，任务固定快照；无图像 LoRA、负面提示词、外部推理或自动下载。已有真实训练模型主机链路证据，语音质量、Android 资源与后台门槛仍待验收，不能据此认定 Z20 可运行。"
     }
   ]
 }

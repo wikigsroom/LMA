@@ -1317,7 +1317,7 @@
       ],
       "base_support": {
         "engine_routes_any_of": [
-          "soulx_native_port"
+          "soulx_native"
         ],
         "required_component_roles": [
           "language_frontend",
@@ -1332,7 +1332,7 @@
       },
       "feasibility": "research_gate_not_guaranteed",
       "z20_assessment": "no_complete_android_recipe_verified",
-      "implementation_status": "not_implemented_in_lma",
+      "implementation_status": "compiled_app_worker_trained_host_pending_android",
       "target_device_validated": false,
       "artifact_binding": {
         "revision": null,
@@ -1351,10 +1351,10 @@
       "base_support_tags": {
         "planned_only": true,
         "engine_any_of": [
-          "engine:soulx_native_port"
+          "engine:soulx_native"
         ],
         "pipeline": [
-          "pipeline:soulx_native_port_required"
+          "pipeline:soulx_podcast_cpu_v1"
         ],
         "dependencies_all_of": [
           "dependency:language_frontend",

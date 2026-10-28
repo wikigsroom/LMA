@@ -1,6 +1,6 @@
 # SoulX：训练参考模型与声学重建
 
-当前后续进展见[语言与完整训练主机链路](SOULX_LANGUAGE.md)：已在开发主机运行Qwen3文字到语义码并接Flow /HiFT。本页保留原检查点的限定套件范围；App绑定、语音质量与物理Android仍待完成，旧套件不追溯改标为完整TTS证据。
+当前实现见 [dev.21 SoulX App 基座](SOULX_ENGINE.md)：共享源码已编译进生产 worker，接入用户模型包、任务与 API。以下正文保留 dev.20 研究检查点的历史范围；“未注册 / 未打包”指当时的独立研究执行器。其测试不追溯改标为 App 或手机证据。公开完整组件下载候选、语音质量与物理 Android 验收仍待完成。
 
 [English](SOULX_REFERENCE.en.md) · [声学网络](SOULX_ACOUSTIC.md) · [音频计算](SOULX_DSP.md) · [本轮编号交付](releases/v0.3.0-dev.20-soulx-reference.md)
 

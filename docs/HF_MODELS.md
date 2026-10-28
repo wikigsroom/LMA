@@ -77,3 +77,6 @@ HF 广泛发现、选择量化、下载、本地管理、聊天和 API 服务采
 <p><img src="media/lma-hf-local.gif" width="320" alt="HF 发现与本地管理，明确的模拟 UI 演示"></p>
 
 [截图与录屏说明](MEDIA.md) · [验证边界](VALIDATION.md) · [架构实现](ARCHITECTURE.md)
+
+
+dev.21增加SoulX的第34个显式组件模板及 `.f32` 二进制数据识别：全14份资产都由用户选择，包含已训练声源参数。匹配转换组件的完整公开HF候选尚未核对，原始PyTorch权重不能直接即用；模板可选不等于已验证用户下载 /Android运行。详见 [SoulX资产与来源边界](SOULX_ENGINE.md#2-一份配方14份用户资产)。

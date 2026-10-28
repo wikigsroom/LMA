@@ -1,6 +1,6 @@
 # SoulX-Podcast native audio primitives
 
-Current follow-up: [language and complete trained host pipeline](SOULX_LANGUAGE.en.md) now executes Qwen3 text-to-codes through Flow/HiFT. This page retains its original scoped suite; App integration, speech quality and physical Android remain pending. The complete host evidence does not retroactively change these earlier tests.
+Current implementation: the [dev.21 SoulX App foundation](SOULX_ENGINE.en.md) compiles the shared source into a production worker and connects user bundles, jobs and API. The body below preserves the historical dev.20 research scope; “unregistered” or “outside APK” refers to those independent research executors. Earlier tests are not relabeled as App or phone evidence. A verified complete public asset candidate, speech quality and physical-Android acceptance remain pending.
 
 [中文](SOULX_DSP.md) · [Complete requirements](MULTIMODAL_RELEASE_PLAN.md) · [Numbered delivery](releases/v0.3.0-dev.20-soulx-dsp.md)
 

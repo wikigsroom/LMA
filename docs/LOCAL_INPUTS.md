@@ -88,3 +88,10 @@ UI 回归合计 **182 项**。开发媒体共 **30 张截图及录屏 / GIF**，
 ![导入素材库：界面夹具](media/development/29-imported-media-library.png)
 
 [输入表单截图](media/development/30-local-input-role-form.png) · [录屏](media/development/foundation-ui.mp4) · [GIF](media/development/foundation-ui.gif) · [检查回执](../verification/development/inputs.json) · [开发更新说明](releases/v0.3.0-dev.11.md)
+
+
+## dev.21 配套原文与时长约束
+
+签名引擎的输入角色可声明 `transcript: {label, maxLength}` 和 `minDurationMs`。选择该角色素材后，`input.transcripts` 必须包含同名非空原文；每项最多4000字符、总计最多8项，整个请求仍不超过32000字符。没有素材、角色未声明文本能力、额外 /空 /错误类型原文均拒绝。该结构向后兼容原有仅素材角色；提示说明由引擎schema提供并转义显示。
+
+UI按最短 /最长时长筛选素材，选择音频后启用必填原文，刷新保留未提交配对；任务冻结原文和素材ID /摘要，执行前再次检查规则及实际文件。[SoulX](SOULX_ENGINE.md)使用连续的 `reference_s1`–`reference_s4`，每个所选参考都有原文；实际采样率 /声道 /PCM数值在引擎与原生层再核对。没有新增路径 /远程音频URL输入，也不启动模型下载。

@@ -196,3 +196,8 @@ Qwen3-TTS 0.6B Base 复用 `POST /v1/jobs` 的 `speech.synthesize` 与本地 `re
 ```
 
 `allowUnmeasured` 表示用户明确尝试尚无当前设备记录的配方，不是兼容性证明；资源或组件不满足仍在本机失败。模型加载、推理、编码 / 解码都发生在运行 LMA 的同一手机。
+
+
+## dev.21 SoulX配套输入
+
+`POST /v1/jobs` 的 `speech.synthesize` 可选择实际已安装的SoulX包，通过 `input.artifacts` 绑定 `reference_s1`–`reference_s4`，并在 `input.transcripts` 用同名角色填写实际原文。任务冻结两者；缺原文、编号断档、未提供参考的说话人或外部路径均拒绝。仍沿用相同鉴权、幂等键、事件、取消、重试及产物读取，不增加远程推理或语音端点兼容声明。完整JSON、参数和未完成门槛见 [SoulX接口与使用逻辑](SOULX_ENGINE.md#5-同一鉴权任务接口)。
