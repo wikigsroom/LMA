@@ -207,3 +207,6 @@ The public APK remains v0.2.0. See [implementation status](DEVELOPMENT.en.md) fo
 Current dev.11 adds [local media/import/upload references](LOCAL_INPUTS.en.md), covering part of the shared input contract. Each selected model still needs its actual input/generation pipeline and physical acceptance. F-01–F-12, A1–A11, R-01–R-05 and single-release scope remain unchanged.
 
 内部 dev.12 / internal dev.12：[扩散组件与采样 / Diffusion](DIFFUSION_ENGINE.en.md) 接入 SDXL 分离组件、SD-Turbo、LCM checkpoint 与匹配 LCM-LoRA；83 项主机策略 / 协议检查不是实际模型输出。App 仅交付基座，用户控制模型。全部 F-01–F-12、01–14 / 16 / 17 与 A1–A11 / R-01–R-05 保持在同一完整 v0.3.0；无新 Release。
+
+
+dev.13 [Z-Image/FLUX/Qwen/Wan bindings](ADVANCED_DIFFUSION.en.md) add four user-selected component recipes, strict roles, actual sampler/scheduler/flowShift bindings and Qwen/Wan geometry constraints. Diffusion 174 (Java 117/C++ 57), foundation 425 (recipe/integrity 233) and UI 203 assertions pass; 35 screenshots plus recording/GIF are explicit UI FIXTUREs. Family checks do not prove scale or distillation; no model/Android outputs exist. The App updates only the foundation; twenty templates never download implicitly. Every target/device gate remains in the same complete v0.3.0, without a new Release.

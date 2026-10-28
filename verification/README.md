@@ -33,3 +33,6 @@ See [validation / 验证](../docs/VALIDATION.en.md), [Chinese audit / 完成条�
 内部 dev.11 新增 [inputs.json](development/inputs.json)：64 项实际主机文件、生产 WAV 和 HTTP 上传 / 续传检查；[scheduler.json](development/scheduler.json) 扩展为 49 项，含生产输入引用与真实子进程读取。UI 为 182 项，全部非手机推理证据。Input and scheduler host evidence does not establish Android media/model behavior.
 
 内部 dev.12 的 [diffusion.json](development/diffusion.json) 包含 83 项扩散检查：56 项生产 Java / 实际主机协议子进程、27 项执行共用 C++ 策略。基座 381 项、UI 194 项；无模型图片或物理 Android 结果。Diffusion host protocol/policy evidence does not prove phone inference or complete-release acceptance.
+
+
+dev.13：[高级扩散 / 视频接入](../docs/ADVANCED_DIFFUSION.md)，174 diffusion（117 Java + 57 C++）、425 foundation（233 recipe/integrity）及 203 UI checks；35 screenshot fixtures。证据仍为主机 / 协议 / 原生编译与 APK 检查，不是 Android 模型输出；完整 v0.3.0 未发布。

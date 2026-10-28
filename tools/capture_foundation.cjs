@@ -212,6 +212,17 @@ async function main() {
   await page.keyboard.press('Escape'); await page.locator('[data-action="bundleUse"][data-id="ui_sampling_turbo"]').click();
   await page.locator('[name="prompt"]').fill('SD-Turbo 本机生成任务表单演示，不执行模型。');
   await shot('32-sd-turbo-task.png', 'SD-Turbo distinct low-step recipe with user-selected model assets; UI fixture only / SD-Turbo 独立低步数配方与用户模型，非手机生成');
+  await page.keyboard.press('Escape'); await page.locator('[data-action="bundleUse"][data-id="ui_sampling_zimage"]').click();
+  await page.locator('[name="prompt"]').fill('Z-Image-Turbo 界面演示，不执行模型。');
+  await page.locator('#samplingHint').scrollIntoViewIfNeeded();
+  await shot('33-zimage-sampling-policy.png', 'Z-Image-Turbo signed sampling policy and user-selected assets; UI fixture / Z-Image 采样策略，非模型输出');
+  await page.keyboard.press('Escape'); await page.locator('[data-action="bundleInfo"][data-id="ui_sampling_qwen"]').click();
+  await shot('34-qwen-image-components.png', 'Qwen-Image 2.1 separate diffusion/LLM/VAE/tokenizer user assets; UI fixture / Qwen 独立组件，非真机已安装证明');
+  await page.keyboard.press('Escape'); await page.locator('[data-task="video"]').click(); await page.locator('[data-action="bundleUse"][data-id="ui_sampling_wan"]').click();
+  await page.locator('[name="prompt"]').fill('Wan 视频参数表单演示，没有生成帧或视频。');
+  await page.locator('#localTaskForm .task-parameters').evaluate(e => {e.open=true;});
+  await page.locator('[data-bundle-field="frames"]').scrollIntoViewIfNeeded();
+  await shot('35-wan-video-parameters.png', 'Wan frames/fps/flow-shift editable model parameters; UI fixture, no Android video / Wan 视频参数，未生成视频');
   if (errors.length) throw new Error(JSON.stringify(errors));
   const video = page.video(); await context.close(); context = null;
   const raw = await video.path();

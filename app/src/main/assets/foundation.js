@@ -138,10 +138,10 @@
     var form = $('localTaskForm'), b = editor && find(editor.id), hint = $('samplingHint'); if (!form || !b || !hint) return;
     var count = 0;
     form.querySelectorAll('[data-adapter-select]:checked').forEach(function (choice) { var a = find(choice.dataset.adapterSelect); if (a && a.manifest.adapter.sampling === 'lcm') count++; });
-    var pipeline = b.manifest.pipeline, active = count > 0 || /_lcm$/.test(pipeline) || pipeline === 'sd21_turbo', lcm = count > 0 || /_lcm$/.test(pipeline), limit = lcm ? 8 : 4;
-    form.dataset.samplingProfile = active ? (lcm ? 'lcm' : 'sd_turbo') : '';
+    var pipeline = b.manifest.pipeline, lcm = count > 0 || /_lcm$/.test(pipeline), z = pipeline === 'z_image_turbo', flux = pipeline === 'flux2_klein_4b', active = lcm || pipeline === 'sd21_turbo' || z || flux, limit = lcm || z ? 8 : 4;
+    form.dataset.samplingProfile = active ? (lcm ? 'lcm' : z ? 'z_image_turbo' : flux ? 'flux2_klein' : 'sd_turbo') : '';
     hint.hidden = !active;
-    hint.textContent = count > 1 || count && /_lcm$/.test(pipeline) ? '一次只使用一个 LCM 加速来源，请取消多余选择。' : (lcm ? 'LCM：采样器 lcm，调度器 lcm，1–8 步。' : 'SD-Turbo：采样器 euler_a，调度器 discrete，1–4 步。') + 'CFG 固定为 1，不使用负面提示词；仅影响本次任务，保存的模型设置保留。';
+    hint.textContent = count > 1 || count && /_lcm$/.test(pipeline) ? '一次只使用一个 LCM 加速来源，请取消多余选择。' : (lcm ? 'LCM：采样器 lcm，调度器 lcm，1–8 步。' : z ? 'Z-Image-Turbo：采样器 euler，调度器 discrete，1–8 步。' : flux ? 'FLUX.2-klein：采样器 euler，调度器 flux2，1–4 步。' : 'SD-Turbo：采样器 euler_a，调度器 discrete，1–4 步。') + 'CFG 固定为 1，不使用负面提示词；仅影响本次任务，保存的模型设置保留。';
     if (form.elements.negativePrompt) form.elements.negativePrompt.disabled = active;
     ['cfg', 'steps'].forEach(function (key) {
       var field = form.querySelector('[data-bundle-field="' + key + '"]'); if (!field) return;

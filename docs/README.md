@@ -10,6 +10,7 @@
 | API 与 SSE / API and streaming | [API.md](API.md) | [API.en.md](API.en.md) |
 | 开发实施 / Development status | [DEVELOPMENT.md](DEVELOPMENT.md) | [DEVELOPMENT.en.md](DEVELOPMENT.en.md) |
 | 基座与资产需求核对 / Asset-control audit | [ASSET_CONTROL_AUDIT.md](ASSET_CONTROL_AUDIT.md) | [ASSET_CONTROL_AUDIT.en.md](ASSET_CONTROL_AUDIT.en.md) |
+| 高级扩散 / 视频基座 | [ADVANCED_DIFFUSION.md](ADVANCED_DIFFUSION.md) | [ADVANCED_DIFFUSION.en.md](ADVANCED_DIFFUSION.en.md) |
 | HF 组件配方 / HF component recipes | [HF_RECIPES.md](HF_RECIPES.md) | [HF_RECIPES.en.md](HF_RECIPES.en.md) |
 | 模型独立更新 / Independent model versions | [MODEL_UPDATES.md](MODEL_UPDATES.md) | [MODEL_UPDATES.en.md](MODEL_UPDATES.en.md) |
 | LoRA 平级配对 / Peer adapter pairing | [ADAPTERS.md](ADAPTERS.md) | [ADAPTERS.en.md](ADAPTERS.en.md) |
@@ -61,3 +62,5 @@
 - [本地输入素材、任务引用与分块上传](LOCAL_INPUTS.md) / [Local media and uploads](LOCAL_INPUTS.en.md)：用户文件、固定 hash、签名引擎角色及引用保护；现有生产配方仍只接受文字。
 
 新增 / Added dev.12：[扩散组件与采样](DIFFUSION_ENGINE.md) / [Diffusion components and sampling](DIFFUSION_ENGINE.en.md)；[双语检查点说明](releases/v0.3.0-dev.12.md)。
+
+内部 dev.13：新增四条用户自选图像 / 视频组件路线，见[双语说明](releases/v0.3.0-dev.13.md)，不是完整 Release。

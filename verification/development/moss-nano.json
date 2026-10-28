@@ -17,7 +17,7 @@
   "physical_device": false,
   "model_inference": false,
   "input_fingerprint": {
-    "app/src/main/assets/recipe-templates.json": "f2b5377e58c7c9265b84feec843b590c513b77bcb6697d9c58d4a2723d50f8c9",
+    "app/src/main/assets/recipe-templates.json": "5f6f1e659124862771bc8da6e52a6bb57cabdecb54c2face5c1d6f335b0f8ae4",
     "app/src/main/java/com/lma/app/core/AdapterSpec.java": "aff8572d14ac8d616be0a1b0da395e52ed5bddcd5ae407a969c2657bf9257581",
     "app/src/main/java/com/lma/app/core/ArtifactStore.java": "0336ab2425868bf2cb5a2fc37d97afbcdf838bb5f977b874e0f98c9db777be55",
     "app/src/main/java/com/lma/app/core/BundleStore.java": "0698b8cd578361e392c20ca2da7f933aaed6a326eb91c9fd405f8f6195707b5b",
@@ -42,7 +42,7 @@
     "app/src/main/java/com/lma/app/core/ProcessControl.java": "a1950624951d41c040b0b9f44cd8ef5faff16ed22dae880d626e4619d77c155d",
     "app/src/main/java/com/lma/app/core/Protocol.java": "d49f47884aec0cb03347023119c2808330fa9970689dcd9d33c30ca653d03b85",
     "app/src/main/java/com/lma/app/core/RecipeCatalogue.java": "7b6423eb8e2dbdb1c4985c8981fd88cb86ee4c84cda9a9a24015292a512e0ba5",
-    "app/src/main/java/com/lma/app/core/SdSpec.java": "e8ceb8acfcab7171a3eb8326d4568a3eda57d430a458df95df6c1100ab53428b",
+    "app/src/main/java/com/lma/app/core/SdSpec.java": "07c4a9c69071a72fe70b37dfa85294d70cd387365545f885b671dc20c7332694",
     "app/src/main/java/com/lma/app/core/TaskInput.java": "77c177d48618a439303579af18709697249dcc79c2f51e96915f2715494f8367",
     "app/src/main/java/com/lma/app/core/TextRequest.java": "bfdb23db96512f00f362b49951c1fee4162ca2d441482eb6ebf180a8d3574d5f",
     "app/src/main/java/com/lma/app/core/TextResult.java": "2dd7968a40cc917fab5b8bc412ef00d21348abec1d844b140b843b1bba57c6ab",
@@ -59,7 +59,7 @@
     "tests/moss-host/com/lma/app/MossNanoTest.java": "b972d2aa27b47ed09854be4d75fa28a7fb9ff9fcbba24560b787c21e1e9c2a7a",
     "tests/native/onnx_external_test.cpp": "91fbb9b607ac22676d5e57dfa8897b39b1cd98fad785ba459b4791d28152cbd8",
     "tests/tts-host/com/lma/app/LmaApp.java": "9f27bd7188d03aa4eb95b007111daff697d39515dc41884d4569e2f382d0577b",
-    "third_party/engine-lock.json": "7a85227a665d0d7ed657cdee856ec6ce8edc1a82f4c82d664a3681976f2fa177",
+    "third_party/engine-lock.json": "200d0f161e1b06a8d291f5f2af861bda7ba0bc6b360287e216d593742f583196",
     "tools/native_payload.py": "bb831ad2c08ac0ef7817272ac94c098bb47576fc658de30f482d2dd6d5edac06",
     "tools/test_moss_nano.py": "1e85fa998d92d20ff57f75b8ab1bdd32cd7b87479f659c72fc3b07c3f1a793e0"
   }

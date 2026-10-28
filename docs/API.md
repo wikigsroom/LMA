@@ -169,3 +169,6 @@ dev.9 迁移后的旧文本行继续使用原 `id`，并返回 `bundle_id`。异
 `POST /v1/uploads` 明确声明 `{name, bytes, sha256}`；`GET /v1/uploads/ID` 查询偏移，`PUT /v1/uploads/ID` 使用 `application/octet-stream` 与 `Upload-Offset` 续传，`POST /v1/uploads/ID/complete` 校验后返回素材 ID，`DELETE` 清理会话。最大单文件 512 MiB，最多四个活动会话；已有结果和导入素材共用 `/v1/artifacts` 的读取 / 导出 / 删除保护。完整请求、限制、Python 示例和证据边界见[输入指南](LOCAL_INPUTS.md)。这不会增加当前模型的媒体输入算子。
 
 dev.12 扩散任务由服务端生成 `diffusionPlan`：保留普通请求参数，另外固定实际采样策略 / 参数 / 调整记录。客户端不能提交该派生字段；重试剥离旧计划，执行前用不可变模型与适配器租约复核。LCM / SD-Turbo 配方关闭 CFG、拒绝负面提示，不修改基础模型设置。完整组件、配对与请求例子见[扩散指南](DIFFUSION_ENGINE.md)。
+
+
+dev.13 的四条[高级扩散 / 视频路线](ADVANCED_DIFFUSION.md)复用现有任务 API。使用已选择 / 安装的 bundleId，Wan 提交 video.generate，其他三条提交 image.generate。flowShift、尺寸、frames / fps 随该模型 schema 归位；服务端派生 diffusionPlan，客户端不能自行提供。缺组件失败，不触发下载；仍无这些模型的 Android 输出证据。

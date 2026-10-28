@@ -1,13 +1,13 @@
 {
   "adapter_contract_assertions": 45,
   "model_inference": false,
-  "recipe_integrity_assertions": 189,
+  "recipe_integrity_assertions": 233,
   "scope": "production bundle storage, parameter validation and transfer state on host filesystems/HTTP",
   "model_update_assertions": 62,
   "android_device": false,
-  "passed": 381,
+  "passed": 425,
   "input_fingerprint": {
-    "app/src/main/assets/recipe-templates.json": "f2b5377e58c7c9265b84feec843b590c513b77bcb6697d9c58d4a2723d50f8c9",
+    "app/src/main/assets/recipe-templates.json": "5f6f1e659124862771bc8da6e52a6bb57cabdecb54c2face5c1d6f335b0f8ae4",
     "app/src/main/java/com/lma/app/core/AdapterSpec.java": "aff8572d14ac8d616be0a1b0da395e52ed5bddcd5ae407a969c2657bf9257581",
     "app/src/main/java/com/lma/app/core/ArtifactStore.java": "0336ab2425868bf2cb5a2fc37d97afbcdf838bb5f977b874e0f98c9db777be55",
     "app/src/main/java/com/lma/app/core/BundleStore.java": "0698b8cd578361e392c20ca2da7f933aaed6a326eb91c9fd405f8f6195707b5b",
@@ -32,7 +32,7 @@
     "app/src/main/java/com/lma/app/core/ProcessControl.java": "a1950624951d41c040b0b9f44cd8ef5faff16ed22dae880d626e4619d77c155d",
     "app/src/main/java/com/lma/app/core/Protocol.java": "d49f47884aec0cb03347023119c2808330fa9970689dcd9d33c30ca653d03b85",
     "app/src/main/java/com/lma/app/core/RecipeCatalogue.java": "7b6423eb8e2dbdb1c4985c8981fd88cb86ee4c84cda9a9a24015292a512e0ba5",
-    "app/src/main/java/com/lma/app/core/SdSpec.java": "e8ceb8acfcab7171a3eb8326d4568a3eda57d430a458df95df6c1100ab53428b",
+    "app/src/main/java/com/lma/app/core/SdSpec.java": "07c4a9c69071a72fe70b37dfa85294d70cd387365545f885b671dc20c7332694",
     "app/src/main/java/com/lma/app/core/TaskInput.java": "77c177d48618a439303579af18709697249dcc79c2f51e96915f2715494f8367",
     "app/src/main/java/com/lma/app/core/TextRequest.java": "bfdb23db96512f00f362b49951c1fee4162ca2d441482eb6ebf180a8d3574d5f",
     "app/src/main/java/com/lma/app/core/TextResult.java": "2dd7968a40cc917fab5b8bc412ef00d21348abec1d844b140b843b1bba57c6ab",
@@ -44,7 +44,7 @@
     "tests/BundleUpdateTest.java": "4e63b6667723ae290dc45caf67b5f448c2d342fee5f0a5b709d545e02ef3c235",
     "tests/FoundationTest.java": "ec82ee6e642dc7005b001587adaa0fa796dc0f6fb9e4d0fb0b781d6020ea647c",
     "tests/host/android/util/AtomicFile.java": "a05b9c6ef4fa0f0f40aaa49b235faccc98d2d7d5aa1ea4bb8d2f535b8bad2796",
-    "tests/RecipeTest.java": "f5823a0bc920963374273686ae9788f7901e3eed0e9b3e67013b1e5a4cef1486",
+    "tests/RecipeTest.java": "70560f327bfbd6366ce80cd1d087ac8a0fee283a77ff6e0b4080bc568ad1867e",
     "tools/test_foundation.py": "38b5f0d893670beadc0d6d5cc3459e9e282d858ffa0235d6a77b73041a700fc1"
   }
 }

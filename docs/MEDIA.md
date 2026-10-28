@@ -84,4 +84,7 @@ dev.9 当前开发媒体为 **26 PNG + MP4 + GIF**。新增 [25 · 已有模型�
 
 dev.11 当前媒体为 **30 PNG + MP4 + GIF**，新增[导入素材](media/development/29-imported-media-library.png)与[本地输入契约表单](media/development/30-local-input-role-form.png)。表单是独立 UI FIXTURE，非已支持语音克隆模型；不执行 Android 或推理。录屏 / GIF 和 manifest 同步，浏览器已在 finally 关闭。Dev.11 adds two explicit local-input UI contracts, with refreshed recording/GIF and browser cleanup.
 
-dev.12 当前媒体为 **32 PNG + MP4 + GIF**，新增 [LCM 配对采样](media/development/31-lcm-sampling-policy.png) 与 [SD-Turbo 表单](media/development/32-sd-turbo-task.png)。均为显式 UI FIXTURE，没有下载或运行模型；浏览器在 finally 关闭。Dev.12 adds explicit low-step task UI fixtures, with refreshed recordings and cleanup.
+dev.12 历史媒体为 **32 PNG + MP4 + GIF**，新增 [LCM 配对采样](media/development/31-lcm-sampling-policy.png) 与 [SD-Turbo 表单](media/development/32-sd-turbo-task.png)。均为显式 UI FIXTURE，没有下载或运行模型；浏览器在 finally 关闭。Dev.12 adds explicit low-step task UI fixtures, with refreshed recordings and cleanup.
+
+
+dev.13 当前媒体 / current media：**35 PNG + MP4 + GIF**。新增 [Z-Image 采样](media/development/33-zimage-sampling-policy.png)、[Qwen 组件](media/development/34-qwen-image-components.png)、[Wan 视频参数](media/development/35-wan-video-parameters.png)；全部明确为 UI FIXTURE，未下载权重、未执行 Android 或模型。录制结束在 finally 关闭上下文与浏览器。All are explicit fixtures, not model outputs or device evidence; browser resources close after capture.

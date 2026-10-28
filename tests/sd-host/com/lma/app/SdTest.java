@@ -28,7 +28,7 @@ public final class SdTest {
     private static ModelBundle altered(ModelBundle b, String key, Object value) throws Exception { return new ModelBundle(b.json().put(key, value)); }
     private static JSONObject request(ModelBundle b, ModelBundle... adapters) throws Exception {
         JSONArray list = new JSONArray(); for (ModelBundle a : adapters) list.put(new JSONObject().put("bundleId", a.id).put("scale", 1));
-        return new JSONObject().put("bundleId", b.id).put("type", "image.generate").put("input", new JSONObject().put("prompt", "literal protocol fixture"))
+        return new JSONObject().put("bundleId", b.id).put("type", b.pipeline.equals("wan21_13b") ? "video.generate" : "image.generate").put("input", new JSONObject().put("prompt", "literal protocol fixture"))
             .put("parameters", b.parameters().normalize(new JSONObject(), new JSONObject()).getJSONObject("values")).put("adapters", list).put("allowUnmeasured", true);
     }
     private static void install(BundleStore store, ModelBundle b) throws Exception {
@@ -43,7 +43,8 @@ public final class SdTest {
         if (command.getJSONObject("input").getString("prompt").equals("fixture-error")) { System.out.println(new JSONObject().put("event", "error").put("message", "literal child failure")); System.exit(2); }
         JSONObject components = command.getJSONObject("components");
         for (Iterator<String> it = components.keys(); it.hasNext();) if (!new File(components.getString(it.next())).isFile()) throw new IOException("Missing leased fixture bytes");
-        if (!components.getString("clip_merges").equals(System.getenv("LMA_VOCAB_CLIP_MERGES"))) throw new IOException("Vocabulary environment must refer to user assets");
+        for (String[] mapping : new String[][]{{"clip_merges", "CLIP_MERGES"}, {"qwen_merges", "QWEN_MERGES"}, {"umt5_tokenizer", "UMT5_JSON"}})
+            if (components.has(mapping[0]) && !components.getString(mapping[0]).equals(System.getenv("LMA_VOCAB_" + mapping[1]))) throw new IOException("Vocabulary environment must refer to user assets");
         Files.write(Paths.get(command.getString("output")), command.toString().getBytes("UTF-8"));
         System.out.println(new JSONObject().put("event", "complete").put("output", command.getString("output")));
     }
@@ -84,8 +85,43 @@ public final class SdTest {
         JSONObject unknown = a.json(); unknown.getJSONObject("adapter").put("sampling", "shell"); rejects(() -> new ModelBundle(unknown), "Sampling policy cannot introduce arbitrary execution");
         JSONObject manual = request(sd15); manual.getJSONObject("parameters").put("sampler", "lcm"); rejects(() -> plan(sd15, manual), "A normal checkpoint cannot silently claim consistency training");
         rejects(() -> plan(sd15, request(sd15, a)), "Adapter plan requires its complete ordered selection");
+        List<ModelBundle> advanced = new ArrayList<>();
+        for (String pipe : Arrays.asList("z_image_turbo", "flux2_klein_4b", "qwen_image_21", "wan21_13b")) {
+            ModelBundle b = bundle(pipe + "_split_cpu_v1"); advanced.add(b);
+            SdSpec.validate(b, pipe.equals("wan21_13b") ? "video.generate" : "image.generate"); check(true, "Complete advanced component contract validates");
+            for (ModelBundle.Component omitted : b.components) {
+                JSONObject j = b.json(); JSONArray parts = new JSONArray();
+                for (int i = 0; i < j.getJSONArray("components").length(); i++) if (!j.getJSONArray("components").getJSONObject(i).getString("role").equals(omitted.role)) parts.put(j.getJSONArray("components").getJSONObject(i));
+                rejects(() -> SdSpec.validate(new ModelBundle(j.put("components", parts)), pipe.equals("wan21_13b") ? "video.generate" : "image.generate"), "Every advanced dependency is required");
+            }
+            rejects(() -> SdSpec.validate(altered(b, "architecture", "sd15"), request(b).getString("type")), "Advanced architecture declaration must match the pipeline");
+            JSONObject main = b.json(); main.getJSONArray("components").getJSONObject(0).put("role", "model");
+            rejects(() -> SdSpec.validate(new ModelBundle(main), request(b).getString("type")), "Advanced route cannot pretend to be an all-in-one checkpoint");
+            JSONObject extra = b.json(); extra.getJSONArray("components").put(DataFiles.copy(extra.getJSONArray("components").getJSONObject(0)).put("role", "ignored_model"));
+            rejects(() -> SdSpec.validate(new ModelBundle(extra), request(b).getString("type")), "Unused advanced components cannot be silently accepted");
+            JSONObject input = request(b); input.getJSONObject("parameters").put("width", 2079).put("height", 289).put("flowShift", 999);
+            JSONObject resolved = plan(b, input).getJSONObject("parameters");
+            check(resolved.getInt("width") == 2048 && resolved.getInt("height") == 288 && resolved.getDouble("flowShift") == 32, "Native geometry and flow-shift guards are frozen in the task plan");
+            if (pipe.equals("z_image_turbo") || pipe.equals("flux2_klein_4b")) {
+                input.getJSONObject("parameters").put("steps", 99).put("cfg", 9);
+                resolved = plan(b, input).getJSONObject("parameters");
+                check(resolved.getInt("steps") == (pipe.equals("z_image_turbo") ? 8 : 4) && resolved.getDouble("cfg") == 1 && resolved.getString("sampler").equals("euler"), "Distilled advanced sampling has actual effective parameters");
+                input.getJSONObject("input").put("negativePrompt", "blur"); rejects(() -> plan(b, input), "Advanced distilled routes reject unsupported negative conditioning");
+            } else {
+                input.getJSONObject("parameters").put("sampler", "euler_a").put("scheduler", "karras");
+                resolved = plan(b, input).getJSONObject("parameters");
+                check(resolved.getString("sampler").equals("euler") && resolved.getString("scheduler").equals(pipe.equals("qwen_image_21") ? "flux" : "discrete"), "Non-distilled advanced routes bind their actual scheduler");
+            }
+            if (pipe.equals("wan21_13b")) {
+                input.getJSONObject("parameters").put("frames", 18).put("fps", 99);
+                resolved = plan(b, input).getJSONObject("parameters");
+                check(resolved.getInt("frames") == 17 && resolved.getInt("fps") == 60, "Wan frame count follows 4n+1 and a bounded frame rate");
+                rejects(() -> SdSpec.validate(b, "image.generate"), "Wan text-to-video is not image generation");
+            }
+        }
         LmaApp app = new LmaApp(new File(root, "app")); app.bundles = new BundleStore(new File(root, "assets"));
         for (ModelBundle b : Arrays.asList(sd15, xl, turbo, lc, lcx, a, ax, style)) install(app.bundles, b);
+        for (ModelBundle b : advanced) install(app.bundles, b);
         File java = new File(System.getProperty("java.home"), "bin/java.exe"); AtomicInteger launched = new AtomicInteger();
         SdEngine engine = new SdEngine(app, java, new JSONObject(), builder -> {
             launched.incrementAndGet(); return launch(java, builder);
@@ -108,6 +144,16 @@ public final class SdTest {
             JSONObject r = engine.prepare(b, request(b)); TestContext context = new TestContext(root, leases, r);
             JSONObject packet = new JSONObject(new String(Files.readAllBytes(engine.generate(context).toPath()), "UTF-8"));
             check(packet.getString("pipeline").equals(b.pipeline) && packet.getString("architecture").equals(b.architecture), "Other selected classic routes reach the common binding");
+        }
+        for (ModelBundle b : advanced) try (BundleStore.Selection leases = app.bundles.acquireAll(Collections.singletonList(b.id))) {
+            JSONObject r = engine.prepare(b, request(b)); TestContext context = new TestContext(root, leases, r);
+            boolean video = b.pipeline.equals("wan21_13b");
+            if (video) rejects(() -> engine.generate(context), "Host codec port deliberately cannot encode video"); else engine.generate(context);
+            JSONObject packet = new JSONObject(new String(Files.readAllBytes(context.output(video ? "rgb" : "png").toPath()), "UTF-8"));
+            check(packet.getString("pipeline").equals(b.pipeline) && packet.getString("architecture").equals(b.architecture), "Every advanced route reaches the actual common Java binding");
+            check(packet.getJSONObject("components").getString(video ? "t5" : "llm").equals(leases.models.get(0).file(video ? "t5" : "llm").getAbsolutePath()), "Encoder paths are leased user asset objects");
+            check(packet.getJSONObject("parameters").getDouble("flowShift") == (video ? 3 : 0), "Automatic versus explicit flow shift reaches the actual child protocol");
+            check(context.details.getJSONObject("effectiveParameters").getString("scheduler").equals(packet.getJSONObject("parameters").getString("scheduler")), "Artifact execution records preserve the actual schedule");
         }
         System.out.println(new JSONObject().put("passed", passed).put("production_sd_binding", true).put("actual_host_children", true).put("model_inference", false).put("physical_android", false).put("image_outputs", false));
     }

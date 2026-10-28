@@ -67,8 +67,12 @@ int main(int argc, char** argv) {
         sample.guidance.txt_cfg = params.value("cfg", 1.0f);
         if (!std::isfinite(sample.guidance.txt_cfg) || sample.guidance.txt_cfg < 0 || sample.guidance.txt_cfg > 30) throw std::runtime_error("CFG out of bounds");
         lma_sd::sampling(profile, pipeline, sd_sample_method_name(sample.sample_method), sd_scheduler_name(sample.scheduler), sample.sample_steps, sample.guidance.txt_cfg, negative);
+        sample.flow_shift = lma_sd::flow_shift(params.value("flowShift", 0.0f));
         int width = bounded(params, "width", 512, 64, 2048), height = bounded(params, "height", 512, 64, 2048);
-        if (width % 16 || height % 16) throw std::runtime_error("Image dimensions must align to the selected recipe");
+        int frames_count = type == "video.generate" ? bounded(params, "frames", 17, 5, 129) : 0;
+        int fps = type == "video.generate" ? bounded(params, "fps", 8, 1, 60) : 0;
+        if ((type == "video.generate") != (pipeline == "wan21_13b")) throw std::runtime_error("Task does not match the selected pipeline");
+        lma_sd::geometry(pipeline, width, height, frames_count, fps);
         int64_t seed = params.value("seed", int64_t(0));
         std::vector<sd_lora_t> loras; const json& adapters = request.value("loras", json::array());
         if (adapters.size() > 8) throw std::runtime_error("Too many simultaneous LoRAs");
@@ -95,13 +99,13 @@ int main(int argc, char** argv) {
             if (!sd_ctx_supports_video_generation(context.get())) throw std::runtime_error("This checkpoint does not support video generation");
             sd_vid_gen_params_t generate; sd_vid_gen_params_init(&generate);
             generate.prompt = prompt.c_str(); generate.negative_prompt = negative.c_str(); generate.width = width; generate.height = height; generate.sample_params = sample; generate.seed = seed;
-            generate.video_frames = bounded(params, "frames", 17, 5, 129); generate.fps = bounded(params, "fps", 8, 1, 60);
+            generate.video_frames = frames_count; generate.fps = fps;
             generate.loras = loras.data(); generate.lora_count = loras.size(); generate.vae_tiling_params.enabled = params.value("vaeTiling", true);
             generate.vae_tiling_params.tile_size_w = 128; generate.vae_tiling_params.tile_size_h = 128;
             sd_video_generation_result_t* raw = nullptr;
             if (!generate_video(context.get(), &generate, &raw) || !raw) throw std::runtime_error("Video generation failed");
             std::unique_ptr<sd_video_generation_result_t, decltype(&free_sd_video_generation_result)> result(raw, free_sd_video_generation_result);
-            if (result->frame_count < 2 || !result->frames) throw std::runtime_error("No generated motion frames were returned");
+            if (result->frame_count != frames_count || result->fps != fps || !result->frames) throw std::runtime_error("No generated motion frames were returned");
             std::ofstream frames(output, std::ios::binary); frames.write("LMAFRM1\0", 8); u32(frames, width); u32(frames, height); u32(frames, result->frame_count); u32(frames, result->fps); u32(frames, 3);
             for (int i = 0; i < result->frame_count; i++) {
                 const sd_image_t& frame = result->frames[i];

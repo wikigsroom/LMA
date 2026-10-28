@@ -1,5 +1,12 @@
 # Changelog / 更新记录
 
+## 0.3.0-dev.13 · 2026-10-28 · 内部检查点 / Internal checkpoint
+
+- 补齐 Z-Image-Turbo、FLUX.2-klein 4B、Qwen-Image 2.1、Wan 2.1 T2V 1.3B 的显式四组件模板与角色校验；总计二十个数据模板，用户自行选择下载，不因 App 更新安装模型。Four complete recipes, without implicit asset downloads.
+- 实际绑定采样器 / 调度器 / flowShift、蒸馏任务策略及 Qwen / Wan 几何；本次参数不改写普通基础配置。Actual native bindings and task-scoped policies.
+- 174 项扩散、425 项基座与 203 项 UI 主机检查；原签名 APK、双语指南、35 张 UI FIXTURE 截图及录屏 / GIF 已同步。Host/package evidence does not establish Android model generation.
+- 全部所选目标和手机离线 / 质量 / 资源 / 后台 / 升级验收保留在同一完整 v0.3.0；无新 Release。See [notes](docs/releases/v0.3.0-dev.13.md).
+
 ## 0.3.0-dev.12 · 2026-10-28 · 内部检查点 / Internal checkpoint
 
 - 十六种用户自选数据配方，新增 SD1.5 / SDXL 分离组件、SD-Turbo、LCM checkpoint 与双架构 LCM-LoRA。No weights or automatic model downloads.

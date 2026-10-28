@@ -1,12 +1,12 @@
 {
-  "version": "0.3.0-dev.12",
+  "version": "0.3.0-dev.13",
   "kind": "development_checkpoint",
   "release_ready": false,
   "published": false,
   "physical_device_tests": 0,
   "model_inference_tested": false,
   "all_selected_models_supported": false,
-  "scope": "production diffusion binding, explicit SDXL split components, SD-Turbo/LCM checkpoints and LCM-LoRA frozen sampling plans with actual host protocol children and shared native C++ policy checks; local input imports, bounded resumable upload HTTP and production WAV validation, immutable input receipts/leases in the production job runner with host child fixtures; shared FIFO scheduling across production jobs, resident text, chat and HTTP with actual host child ownership and cancellation; actual host legacy model migration, hardlinks, fixed aliases and shared leases without auto-resume; host GGUF text bundle constraints, typed text artifacts and actual loopback HTTP/child fixtures, host storage/transfers, user-reviewed atomic model version changes/rollback and HF component recipes/Git integrity, explicit adapter pairing/leases, speech worker contracts/child fixtures, Nano native external-data validation and private hardlink workspaces, authenticated HTTP/streams/text proxy, UI fixtures, native compilation and APK/lint checks only",
+  "scope": "production diffusion binding, strict classic/Z-Image/FLUX/Qwen/Wan components, actual flow-shift/sampler/scheduler bindings and Qwen/Wan geometry policies with actual host protocol children and shared native C++ checks; local input imports, bounded resumable upload HTTP and production WAV validation, immutable input receipts/leases in the production job runner with host child fixtures; shared FIFO scheduling across production jobs, resident text, chat and HTTP with actual host child ownership and cancellation; actual host legacy model migration, hardlinks, fixed aliases and shared leases without auto-resume; host GGUF text bundle constraints, typed text artifacts and actual loopback HTTP/child fixtures, host storage/transfers, user-reviewed atomic model version changes/rollback and HF component recipes/Git integrity, explicit adapter pairing/leases, speech worker contracts/child fixtures, Nano native external-data validation and private hardlink workspaces, authenticated HTTP/streams/text proxy, UI fixtures, native compilation and APK/lint checks only",
   "required_scope": "docs/MULTIMODAL_RELEASE_PLAN.md",
   "sources": {
     "build-info.json": "dist/build-info.json",

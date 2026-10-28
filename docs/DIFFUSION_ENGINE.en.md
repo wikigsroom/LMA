@@ -2,7 +2,7 @@
 
 [中文](DIFFUSION_ENGINE.md) · [HF components](HF_RECIPES.en.md) · [LoRA](ADAPTERS.en.md) · [Development status](DEVELOPMENT.en.md)
 
-Applies to internal **0.3.0-dev.12 / code 16**. This describes implemented bindings, recipes, native Windows compilation and scoped checks. Android model output, image quality, memory and screen-off behavior remain unverified. Selections 01/02/03/05 and every other selected target remain in the same complete v0.3.0.
+Applies to internal **0.3.0-dev.13 / code 17**. This describes implemented bindings, recipes, native Windows compilation and scoped checks. Android model output, image quality, memory and screen-off behavior remain unverified. Selections 01/02/03/05 and every other selected target remain in the same complete v0.3.0.
 
 ## User selection and components
 
@@ -51,9 +51,12 @@ The worker receives verified private component paths and explicit adapter order.
 
 ## Development evidence and remaining acceptance
 
-- [Diffusion receipt](../verification/development/diffusion.json): 83 checks, comprising 56 production Java planning/binding/actual-host-child protocol assertions and 27 executions of the shared C++ policy. Child output is protocol JSON bytes, never an image or model result.
-- Foundation: 381 checks, including 189 recipe/integrity assertions. UI: 194. Sixteen signed data recipes register without downloading.
+- [Diffusion receipt](../verification/development/diffusion.json): 174 checks, comprising 117 production Java planning/binding/actual-host-child protocol assertions and 57 executions of the shared C++ policy. Child output is protocol JSON bytes, never an image or model result.
+- Foundation: 425 checks, including 233 recipe/integrity assertions. UI: 203. Twenty signed data recipes register without downloading.
 - Native Windows Android ARM64 compilation, APK signing, 19 native files, API28/16KiB alignment and Lint checks pass; no Android execution evidence exists.
 - Complete pinned model sources/licenses, SD1.5/SDXL LoRA effects, LCM/Turbo quality/speed/RAM, loading/release, screen-off/upgrades and every other target remain mandatory for the same v0.3.0. No new Release.
 
 Implementation: [SdSpec](../app/src/main/java/com/lma/app/core/SdSpec.java), [SdEngine](../app/src/main/java/com/lma/app/SdEngine.java), [C++ policy](../native/sd_policy.hpp), [worker](../native/sd_worker.cpp). Reviewed upstream sources: [pinned sd.cpp LCM guide](https://github.com/leejet/stable-diffusion.cpp/blob/be486498eadc29dc3cd234d944c2180ed42b1415/docs/lcm.md), [SD/component guide](https://github.com/leejet/stable-diffusion.cpp/blob/be486498eadc29dc3cd234d944c2180ed42b1415/docs/sd.md), [official SD-Turbo](https://huggingface.co/stabilityai/sd-turbo), [LCM-LoRA SD1.5](https://huggingface.co/latent-consistency/lcm-lora-sdv1-5), [LCM-LoRA SDXL](https://huggingface.co/latent-consistency/lcm-lora-sdxl). Upstream support is separate from LMA device evidence.
+
+
+See [advanced bindings](ADVANCED_DIFFUSION.en.md) for four additional image/video routes, complete components, flowShift and geometry. The same diffusion receipt also covers these routes.

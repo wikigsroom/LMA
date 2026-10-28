@@ -53,3 +53,6 @@ dev.8 [text bundles](TEXT_ENGINE.en.md) use the shared editable form. Installed 
 Dev.9 [existing-model migration](MODEL_MIGRATION.en.md) reuses verified local hardlinks, preserves IDs/sources/profiles and exposes shared tasks/versions from original details. Incomplete transfers stay paused until explicit resume. 69 host migration and 156 UI checks pass; physical-Android A11 upgrade acceptance remains open.
 
 Dev.12 LCM-LoRA applies a task sampling policy: LCM sampler/scheduler, CFG=1 and a 1–8-step guard appear after selection; deselection restores form values. Saved ordinary base-model settings stay independent. LCM checkpoints and SD-Turbo have their own recipe bounds. Requested/effective values remain reviewable in the task. See [diffusion](DIFFUSION_ENGINE.en.md).
+
+
+dev.13 [image/video parameters](ADVANCED_DIFFUSION.en.md) remain per model: Qwen 2.1 dimensions align to 32, Wan frames to 4n+1, and flowShift=0 selects the engine default. Distilled jobs freeze CFG/sampling and record task adjustments without overwriting ordinary base settings.

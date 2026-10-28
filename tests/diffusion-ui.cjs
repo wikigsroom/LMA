@@ -15,7 +15,11 @@ function installFixture(templates) {
   f.bundles = f.bundles.filter(b => !b.id.startsWith('ui_sampling_')).concat([
     make('ui_sampling_base','sd15_checkpoint_cpu_v1','SD 1.5 基础模型 · UI FIXTURE'),
     make('ui_sampling_lora','sd15_lcm_lora_cpu_v1','LCM-LoRA · UI FIXTURE'),
-    make('ui_sampling_turbo','sd21_turbo_checkpoint_cpu_v1','SD-Turbo · UI FIXTURE')
+    make('ui_sampling_turbo','sd21_turbo_checkpoint_cpu_v1','SD-Turbo · UI FIXTURE'),
+    make('ui_sampling_zimage','z_image_turbo_split_cpu_v1','Z-Image-Turbo · UI FIXTURE'),
+    make('ui_sampling_flux','flux2_klein_4b_split_cpu_v1','FLUX.2-klein 4B · UI FIXTURE'),
+    make('ui_sampling_qwen','qwen_image_21_split_cpu_v1','Qwen-Image 2.1 · UI FIXTURE'),
+    make('ui_sampling_wan','wan21_13b_split_cpu_v1','Wan 2.1 T2V 1.3B · UI FIXTURE')
   ]);
   if (!f.localEngines.some(e => e.engine === 'sd_cpp')) f.localEngines.push({engine:'sd_cpp',available:true,deviceValidated:false});
   f.localEngines.find(e => e.engine === 'sd_cpp').available = true;
@@ -49,6 +53,22 @@ module.exports = async function(page, checked, overflow) {
   await page.locator('#localTaskForm .task-parameters').evaluate(e => {e.open=true;});
   assert((await page.locator('#samplingHint').innerText()).includes('1–4')); assert(await negative.isDisabled()); checked('SD-Turbo exposes its distinct low-step policy');
   await steps.fill('99'); await steps.blur(); assert.equal(await steps.inputValue(),'4'); checked('SD-Turbo edits clamp independently of LCM');
+  await page.keyboard.press('Escape');
+  for (const [id, label, maximum] of [['zimage','Z-Image-Turbo',8],['flux','FLUX.2-klein',4]]) {
+    await page.locator('[data-action="bundleUse"][data-id="ui_sampling_' + id + '"]').click();
+    await page.locator('#localTaskForm .task-parameters').evaluate(e => {e.open=true;});
+    assert((await page.locator('#samplingHint').innerText()).includes(label)); assert(await negative.isDisabled()); assert(await cfg.isDisabled()); checked(label + ' uses its own declared distilled policy');
+    await steps.fill('999'); await steps.blur(); assert.equal(await steps.inputValue(),String(maximum)); checked(label + ' task steps clamp to its own application policy');
+    await overflow(page,label + ' task'); await page.keyboard.press('Escape');
+  }
+  await page.locator('[data-action="bundleUse"][data-id="ui_sampling_qwen"]').click();
+  await page.locator('#localTaskForm .task-parameters').evaluate(e => {e.open=true;});
+  assert(await negative.isEnabled()); assert.equal(await page.locator('[data-bundle-field="scheduler"] option:checked').innerText(),'flux'); assert.equal(await steps.inputValue(),'20'); checked('Qwen 2.1 retains normal CFG and its resolution-aware scheduler');
+  await page.keyboard.press('Escape'); await page.locator('[data-task="video"]').click();
+  await page.locator('[data-action="bundleUse"][data-id="ui_sampling_wan"]').click();
+  await page.locator('#localTaskForm .task-parameters').evaluate(e => {e.open=true;});
+  assert.equal(await page.locator('[name="taskType"]').inputValue(),'video.generate'); assert.equal(await page.locator('[data-bundle-field="frames"]').inputValue(),'17'); assert.equal(await page.locator('[data-bundle-field="flowShift"]').inputValue(),'3'); checked('Wan uses the same task form with explicit video frames and flow shift');
+  await overflow(page,'Wan video task');
   assert.equal(await downloads(),before); checked('Sampling forms never initiate model downloads');
   await page.keyboard.press('Escape'); await page.locator('[data-task="any"]').click();
 };

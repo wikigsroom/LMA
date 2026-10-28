@@ -1,15 +1,15 @@
 {
-  "passed": 83,
+  "passed": 174,
   "java": {
     "model_inference": false,
     "image_outputs": false,
-    "passed": 56,
+    "passed": 117,
     "physical_android": false,
     "production_sd_binding": true,
     "actual_host_children": true
   },
   "native": {
-    "passed": 27,
+    "passed": 57,
     "production_cpp_policy": true,
     "model_inference": false
   },
@@ -19,7 +19,7 @@
   "physical_android": false,
   "image_outputs": false,
   "input_fingerprint": {
-    "app/src/main/assets/recipe-templates.json": "f2b5377e58c7c9265b84feec843b590c513b77bcb6697d9c58d4a2723d50f8c9",
+    "app/src/main/assets/recipe-templates.json": "5f6f1e659124862771bc8da6e52a6bb57cabdecb54c2face5c1d6f335b0f8ae4",
     "app/src/main/java/com/lma/app/core/AdapterSpec.java": "aff8572d14ac8d616be0a1b0da395e52ed5bddcd5ae407a969c2657bf9257581",
     "app/src/main/java/com/lma/app/core/ArtifactStore.java": "0336ab2425868bf2cb5a2fc37d97afbcdf838bb5f977b874e0f98c9db777be55",
     "app/src/main/java/com/lma/app/core/BundleStore.java": "0698b8cd578361e392c20ca2da7f933aaed6a326eb91c9fd405f8f6195707b5b",
@@ -44,7 +44,7 @@
     "app/src/main/java/com/lma/app/core/ProcessControl.java": "a1950624951d41c040b0b9f44cd8ef5faff16ed22dae880d626e4619d77c155d",
     "app/src/main/java/com/lma/app/core/Protocol.java": "d49f47884aec0cb03347023119c2808330fa9970689dcd9d33c30ca653d03b85",
     "app/src/main/java/com/lma/app/core/RecipeCatalogue.java": "7b6423eb8e2dbdb1c4985c8981fd88cb86ee4c84cda9a9a24015292a512e0ba5",
-    "app/src/main/java/com/lma/app/core/SdSpec.java": "e8ceb8acfcab7171a3eb8326d4568a3eda57d430a458df95df6c1100ab53428b",
+    "app/src/main/java/com/lma/app/core/SdSpec.java": "07c4a9c69071a72fe70b37dfa85294d70cd387365545f885b671dc20c7332694",
     "app/src/main/java/com/lma/app/core/TaskInput.java": "77c177d48618a439303579af18709697249dcc79c2f51e96915f2715494f8367",
     "app/src/main/java/com/lma/app/core/TextRequest.java": "bfdb23db96512f00f362b49951c1fee4162ca2d441482eb6ebf180a8d3574d5f",
     "app/src/main/java/com/lma/app/core/TextResult.java": "2dd7968a40cc917fab5b8bc412ef00d21348abec1d844b140b843b1bba57c6ab",
@@ -54,11 +54,11 @@
     "app/src/main/java/com/lma/app/LocalEngine.java": "db9b46d2e05802bec96f2fb428469553d95c3424228dd06fd617c361b99b9f7d",
     "app/src/main/java/com/lma/app/NativeWorker.java": "c3324271639c6e77495e9aac78a663c6110dfef1026d0cc320ca82344ddd030d",
     "app/src/main/java/com/lma/app/SdEngine.java": "052d59633d322cb94c4e64b525604fb6424c824c8fdf2e97e4d181c7059a8372",
-    "native/sd_policy.hpp": "231ec566f072c0914e6d224cdb5c735daaf8bb8b70cea5679ff628f960f5df65",
-    "native/sd_worker.cpp": "3506c70fe8cee14b1574c5ff93c68f9380a4205d6d96394572e50b74ca4934d7",
+    "native/sd_policy.hpp": "c7d987ffc6b905fbad9d6a47be98d10f57b2060728f00801742a4ec346a5c7ba",
+    "native/sd_worker.cpp": "b7a7f477f4572fa9bf03f323ac0868d55d2580626372596e80e67e357d3ffadb",
     "tests/host/android/util/AtomicFile.java": "a05b9c6ef4fa0f0f40aaa49b235faccc98d2d7d5aa1ea4bb8d2f535b8bad2796",
-    "tests/native/sd_policy_test.cpp": "a85bb694fd813467ad1034ef974b585778e3d910c97ca587c5c11244d8bfc894",
-    "tests/sd-host/com/lma/app/SdTest.java": "632fddf810af8e434ceda666b0400470afd7339b8d50196fcf58e399b4dd7843",
+    "tests/native/sd_policy_test.cpp": "ae668cb738514aae292fa52ae36bde8c2d330943a46d7af383fe512909a6e0ef",
+    "tests/sd-host/com/lma/app/SdTest.java": "1bacbc0e3d3f20e824fdeb22fccc77fa47c5d698056d14669ffe55c5b95b5cf9",
     "tests/sd-host/com/lma/app/VideoEncoder.java": "96e480bec46860cd05e40d55b7e21710069f71f1f54c4cc543f26d6505efa146",
     "tests/tts-host/com/lma/app/LmaApp.java": "9f27bd7188d03aa4eb95b007111daff697d39515dc41884d4569e2f382d0577b",
     "tools/test_diffusion.py": "6173b769b025a13131686d4ed8a353639ef9618e690793715509b01a601f00d9"

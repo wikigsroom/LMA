@@ -2,7 +2,7 @@
 
 [English](DIFFUSION_ENGINE.en.md) · [HF 组件选择](HF_RECIPES.md) · [LoRA](ADAPTERS.md) · [开发状态](DEVELOPMENT.md)
 
-适用内部 **0.3.0-dev.12 / code 16**。这里记录实际接入的代码、配方、Windows 原生编译与限定开发检查。尚未取得 Android 模型输出、图像质量、内存或锁屏证据；编号 01 / 02 / 03 / 05 及其他全部所选目标继续属于同一完整 v0.3.0。
+适用内部 **0.3.0-dev.13 / code 17**。这里记录实际接入的代码、配方、Windows 原生编译与限定开发检查。尚未取得 Android 模型输出、图像质量、内存或锁屏证据；编号 01 / 02 / 03 / 05 及其他全部所选目标继续属于同一完整 v0.3.0。
 
 ## 用户选择与组件
 
@@ -62,9 +62,12 @@ App 只更新签名运行代码、数据配方和标签。模型、LoRA、CLIP �
 
 ## 开发证据与剩余验收
 
-- [扩散回执](../verification/development/diffusion.json)：83 项，含 56 项生产 Java 计划 / 绑定 / 实际主机子进程协议检查，以及 27 项执行共用 C++ 策略的检查。子进程写的是协议 JSON 字节，不是图片或模型输出。
-- 基座 381 项，其中组件配方 / 完整性 189 项；UI 194 项。当前共十六个数据模板，登记不下载。
+- [扩散回执](../verification/development/diffusion.json)：174 项，含 117 项生产 Java 计划 / 绑定 / 实际主机子进程协议检查，以及 57 项执行共用 C++ 策略的检查。子进程写的是协议 JSON 字节，不是图片或模型输出。
+- 基座 425 项，其中组件配方 / 完整性 233 项；UI 203 项。当前共二十个数据模板，登记不下载。
 - Android ARM64 worker 原生 Windows NDK 构建、APK 签名 / 19 个原生文件 / API 28 / 16 KiB 对齐与 Lint 检查通过；没有 Android 运行结果。
 - 完整固定模型来源 / 许可、SD1.5 / SDXL LoRA 效果、LCM 与 Turbo 质量 / 速度 / RAM、加载释放、锁屏 / 升级与全部其他目标仍须在同一 v0.3.0 验收。此检查点不创建 Release。
 
 实现：[SdSpec](../app/src/main/java/com/lma/app/core/SdSpec.java)、[SdEngine](../app/src/main/java/com/lma/app/SdEngine.java)、[C++ 策略](../native/sd_policy.hpp)、[worker](../native/sd_worker.cpp)。来源核对：[固定版本 sd.cpp LCM 说明](https://github.com/leejet/stable-diffusion.cpp/blob/be486498eadc29dc3cd234d944c2180ed42b1415/docs/lcm.md)、[SD 模型 / 组件说明](https://github.com/leejet/stable-diffusion.cpp/blob/be486498eadc29dc3cd234d944c2180ed42b1415/docs/sd.md)、[官方 SD-Turbo](https://huggingface.co/stabilityai/sd-turbo)、[LCM-LoRA SD 1.5](https://huggingface.co/latent-consistency/lcm-lora-sdv1-5)、[LCM-LoRA SDXL](https://huggingface.co/latent-consistency/lcm-lora-sdxl)。上游能力不替代 LMA 手机证据。
+
+
+其他四条扩散 / 视频路线、完整组件和 flowShift / 几何约束见[高级接入指南](ADVANCED_DIFFUSION.md)。同一扩散回执同时覆盖这些新增路线。

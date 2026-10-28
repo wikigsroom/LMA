@@ -39,7 +39,7 @@ Android 版的本地模型管理、下载、对话和 API 服务应用。当前�
 
 ## 多模态扩展研究
 
-下一版本 **v0.3.0** 一次性交付**完整本地多模态基座及 01–14 / 16 / 17 的运行支持与适配配方**：共用模型包 / 组件 / 配方、内部引擎模块、独立参数、任务 / 产物和 API。所有模型平级，按生文 / 生图 / 生视频 / 生音频及基座依赖标签筛选，保留既有推荐；交互为模型选择 → 任务表单 → 本机队列 → 结果。完整范围、工作包、风险及同一发布门槛见[版本更新需求](docs/MULTIMODAL_RELEASE_PLAN.md)和[交付摘要](docs/releases/v0.3.0-plan.md)。不拆分版本，不将必需模型默认顺延，不建设 ComfyUI 画布 / 用户节点 / 插件生态 / 图导入。v0.3.0 尚未发布。开发代码、381 项基座检查、83 项扩散检查、64 项素材检查、194 项界面检查及完整剩余项见[开发实施记录](docs/DEVELOPMENT.md)；这不替代完整交付。
+下一版本 **v0.3.0** 一次性交付**完整本地多模态基座及 01–14 / 16 / 17 的运行支持与适配配方**：共用模型包 / 组件 / 配方、内部引擎模块、独立参数、任务 / 产物和 API。所有模型平级，按生文 / 生图 / 生视频 / 生音频及基座依赖标签筛选，保留既有推荐；交互为模型选择 → 任务表单 → 本机队列 → 结果。完整范围、工作包、风险及同一发布门槛见[版本更新需求](docs/MULTIMODAL_RELEASE_PLAN.md)和[交付摘要](docs/releases/v0.3.0-plan.md)。不拆分版本，不将必需模型默认顺延，不建设 ComfyUI 画布 / 用户节点 / 插件生态 / 图导入。v0.3.0 尚未发布。开发代码、425 项基座检查、174 项扩散检查、64 项素材检查、203 项界面检查及完整剩余项见[开发实施记录](docs/DEVELOPMENT.md)；这不替代完整交付。
 
 全部分词、编码器、采样、codec 与导出在同一 Android 手机执行，无需 ROOT，无外部推理 / 回退。HF 用于搜索和显式资产下载。同架构变体可复用已有配方，新架构需要原生引擎 / APK 更新；Z20 与较新设备分别验收。源码 / 许可见[研究](docs/MULTIMODAL.md)，迁移见[基座评估](docs/FOUNDATION.md)，后台与恢复见[任务方案](docs/WORKFLOWS.md)。完整 MOSS / SoulX 仍有研究关卡，登记 / 下载不计可运行。**当前公开版本仍为 v0.2.0。0.3.0-dev 已加入部分基座代码和编译的扩散 worker，完整模型适配、统一 API 与真机验收尚未完成。**
 
@@ -267,4 +267,9 @@ LMA 自有代码使用 MIT 许可。llama.cpp 及其依赖保留各自许可；�
 
 <img src="docs/media/development/29-imported-media-library.png" width="260" alt="导入素材与引用保护，明确界面夹具" /> <img src="docs/media/development/30-local-input-role-form.png" width="260" alt="本地输入契约表单，非实际模型能力证据" />
 
-当前内部检查点（**0.3.0-dev.12 / code 16**，未发布）接入[扩散采样与组件管线](docs/DIFFUSION_ENGINE.md)：SD1.5 / SDXL 分离组件、SD-Turbo、两种架构的 LCM checkpoint / LCM-LoRA，LCM 配对后固定本次采样、CFG 与步数上限，保留模型独立设置。Java 与原生 C++ 核对策略，实际加载后核对张量架构。83 项新增扩散主机检查、381 项基座、194 项 UI 和签名 APK 检查通过；32 张带 UI FIXTURE 标识的截图及录屏 / GIF 同步。App 只更新基座，十六种数据模板不会安装或下载模型。全部所选目标与物理 Android 离线输出、质量、后台及升级验收仍属同一完整 v0.3.0，无新 Release。见[更新说明](docs/releases/v0.3.0-dev.12.md)。
+此前内部检查点（**0.3.0-dev.12 / code 16**，未发布）接入[扩散采样与组件管线](docs/DIFFUSION_ENGINE.md)：SD1.5 / SDXL 分离组件、SD-Turbo、两种架构的 LCM checkpoint / LCM-LoRA，LCM 配对后固定本次采样、CFG 与步数上限，保留模型独立设置。Java 与原生 C++ 核对策略，实际加载后核对张量架构。83 项新增扩散主机检查、381 项基座、194 项 UI 和签名 APK 检查通过；32 张带 UI FIXTURE 标识的截图及录屏 / GIF 同步。App 只更新基座，十六种数据模板不会安装或下载模型。全部所选目标与物理 Android 离线输出、质量、后台及升级验收仍属同一完整 v0.3.0，无新 Release。见[更新说明](docs/releases/v0.3.0-dev.12.md)。
+
+
+当前内部检查点（**0.3.0-dev.13 / code 17**，未发布）补齐 [Z-Image、FLUX、Qwen-Image 与 Wan 的组件和原生参数](docs/ADVANCED_DIFFUSION.md)。dev.13 的[Z-Image / FLUX / Qwen / Wan 基座接入](docs/ADVANCED_DIFFUSION.md)增加四种用户自选组件模板、严格组件角色、采样器 / 调度器 / flowShift 原生绑定、Qwen 尺寸与 Wan 帧数约束。174 项扩散主机检查（Java 117 / C++ 57）、425 项基座（配方 / 完整性 233）与 203 项 UI 通过；35 张截图与录屏 / GIF 是显式 UI FIXTURE。组件家族校验不证明具体规模或蒸馏方法；没有模型输出或 Android 实测。App 仅更新基座，二十个模板均不隐式下载；全部目标与设备门槛继续属于同一完整 v0.3.0，无新 Release。 见[双语更新说明](docs/releases/v0.3.0-dev.13.md)。
+
+<img src="docs/media/development/33-zimage-sampling-policy.png" width="260" alt="Z-Image sampling, UI FIXTURE, no model output" /> <img src="docs/media/development/35-wan-video-parameters.png" width="260" alt="Wan video parameters, UI FIXTURE, no Android generation" />

@@ -101,3 +101,6 @@ Shared scheduling regression: after building, run `python tools/test_scheduler.p
 Run `python tools/test_inputs.py` for production-core/actual-file/WAV/HTTP checks. It requires the pinned host org.json and exports `build/input-tests/results.json` to `verification/development/inputs.json`. No Android/model or inference sample is involved; see [inputs](LOCAL_INPUTS.en.md).
 
 Dev.12 diffusion / 扩散检查：`python tools/test_diffusion.py` 编译生产 Java 绑定并运行实际主机协议子进程、编译执行共用 C++ 采样 / 架构约束；不是 Android 或图像推理。Native Windows host checks are exported as `verification/development/diffusion.json`.
+
+
+dev.13 rebuilds the diffusion worker: 8,836,200 bytes, SHA256 `01e6c0a37fc56bb9268d0890c71d8dae57bd0ac41922cb2ec64ad6e5e7fd1d3c`, with the same pinned sd.cpp/ggml sources, CPU, API28/16KiB alignment and original APK signing identity. [Notes](releases/v0.3.0-dev.13.md) identify the exact APK/checks, without claiming phone execution.

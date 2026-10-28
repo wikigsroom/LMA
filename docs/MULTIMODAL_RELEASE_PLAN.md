@@ -207,3 +207,6 @@ A1–A4 的规则和部分迁移可先做桌面检查；A5–A8 必须有物理 
 当前 dev.11 接入[本地素材导入 / 上传与任务引用](LOCAL_INPUTS.md)。它只完成共用输入管理契约的一部分；各所选模型的真实输入编码 / 生成管线和物理设备门槛继续保留，不改变 F-01–F-12、A1–A11、R-01–R-05 或单一版本范围。
 
 内部 dev.12 / internal dev.12：[扩散组件与采样 / Diffusion](DIFFUSION_ENGINE.md) 接入 SDXL 分离组件、SD-Turbo、LCM checkpoint 与匹配 LCM-LoRA；83 项主机策略 / 协议检查不是实际模型输出。App 仅交付基座，用户控制模型。全部 F-01–F-12、01–14 / 16 / 17 与 A1–A11 / R-01–R-05 保持在同一完整 v0.3.0；无新 Release。
+
+
+dev.13 的[Z-Image / FLUX / Qwen / Wan 基座接入](ADVANCED_DIFFUSION.md)增加四种用户自选组件模板、严格组件角色、采样器 / 调度器 / flowShift 原生绑定、Qwen 尺寸与 Wan 帧数约束。174 项扩散主机检查（Java 117 / C++ 57）、425 项基座（配方 / 完整性 233）与 203 项 UI 通过；35 张截图与录屏 / GIF 是显式 UI FIXTURE。组件家族校验不证明具体规模或蒸馏方法；没有模型输出或 Android 实测。App 仅更新基座，二十个模板均不隐式下载；全部目标与设备门槛继续属于同一完整 v0.3.0，无新 Release。
