@@ -79,3 +79,5 @@ dev.5 增加[自选 HF 配方](media/development/12-hf-components.png)和[组件
 dev.8 新增[文本参数](media/development/22-text-model-settings.png)、[任务表单](media/development/23-text-queue-form.png)和[正文 / 思考](media/development/24-text-result.png)，更新开发 MP4 / GIF，共 24 张 PNG 与 2 个视频 / 动图文件。全程 UI FIXTURE；正文为固定测试字符串，非模型输出。Dev.8 adds text settings/task/result scenes, 24 PNGs plus recording/GIF, all visibly labeled fixtures without actual inference.
 
 dev.9 当前开发媒体为 **26 PNG + MP4 + GIF**。新增 [25 · 已有模型详情](media/development/25-migrated-text-model.png) 与 [26 · 共用文本任务](media/development/26-migrated-text-task.png)，并更新录屏 / GIF。全部为 UI FIXTURE；不证明手机迁移或推理。 / The current dev.9 media contains 26 screenshots plus recording/GIF, with explicit fixture labels.
+
+开发 dev.10 新增 `27-scheduler-model-waiting.png` 与 `28-scheduler-chat-waiting.png`，共 28 张 PNG；录屏 / GIF 同步展示已选文本驻留和可取消回复等待。所有画面均有 UI FIXTURE 标识，未执行 Android 或模型。Dev.10 adds two explicit scheduling UI fixtures and refreshes the recording/GIF without phone or model execution.

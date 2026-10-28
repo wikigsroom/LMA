@@ -1,5 +1,5 @@
 {
-  "version": "0.3.0-dev.9",
+  "version": "0.3.0-dev.10",
   "kind": "development UI with explicit simulated native bridge",
   "android_device": false,
   "model_inference": false,
@@ -110,6 +110,14 @@
     {
       "file": "26-migrated-text-task.png",
       "caption": "Existing text model uses the same task form with a fixed migrated bundle ID; UI fixture only / 旧模型共用任务入口，非模型输出"
+    },
+    {
+      "file": "27-scheduler-model-waiting.png",
+      "caption": "Selected text model yields to another local job and retains its identity / 已选模型等待共用执行槽，明确界面夹具"
+    },
+    {
+      "file": "28-scheduler-chat-waiting.png",
+      "caption": "Chat waits for the shared slot with a cancellation control; no tokens generated / 回复等待执行槽并可取消，非真机或模型输出"
     }
   ],
   "files": [
@@ -135,18 +143,18 @@
     },
     {
       "file": "05-task-form.png",
-      "bytes": 39131,
-      "sha256": "fe7a4800f73155c42e7b14b55a553f3270d1d562ba29577385724f9f296caa1e"
+      "bytes": 41111,
+      "sha256": "b97840aaaa003429e60dc603e76cf8b63a6eff20e755ba732e101f2e61f21174"
     },
     {
       "file": "06-queue-results.png",
-      "bytes": 44618,
-      "sha256": "baf5af4c6f4b1f98e917fab18d1f79f632e8fe8a1eab7f9ca7343a1a843df667"
+      "bytes": 44696,
+      "sha256": "4b7226de78ed9a60734ea8c653936ab57d4fc53694e9fa4198094cc632ac8cf0"
     },
     {
       "file": "07-cancelled.png",
-      "bytes": 44812,
-      "sha256": "35a350fa6054dc719e4e6528c0bc416c31368ebd5787a97868f54f5fa8d837be"
+      "bytes": 44889,
+      "sha256": "4c35737ba326a8c894a4014a45f7119268aba701b3301c5abd255ea77b972750"
     },
     {
       "file": "08-zero-model-api.png",
@@ -215,8 +223,8 @@
     },
     {
       "file": "21-model-version-history.png",
-      "bytes": 49662,
-      "sha256": "987496b282c5732987d8e2ae5153db9cb3acb97c34fa028375c3dd7100f8eae9"
+      "bytes": 49769,
+      "sha256": "8b0e1c77350216082bcb458a7078b2758e8b4d8a5edf8bd6dfab22445c6e0cb5"
     },
     {
       "file": "22-text-model-settings.png",
@@ -225,8 +233,8 @@
     },
     {
       "file": "23-text-queue-form.png",
-      "bytes": 40524,
-      "sha256": "05ceeb5a77a74ae053a3ec4084b5bb4e542bb0917c42d9a39d7750b3e8e42fe2"
+      "bytes": 42515,
+      "sha256": "8fef26838f31caa5a9b46fc6886a3b58bb2ef904991ff8289a923d14f6005e18"
     },
     {
       "file": "24-text-result.png",
@@ -240,27 +248,37 @@
     },
     {
       "file": "26-migrated-text-task.png",
-      "bytes": 45729,
-      "sha256": "b1f8a9aa62122fb991c022e89217242f399d3f03330fef86a56d0acfe7b52ebc"
+      "bytes": 47650,
+      "sha256": "9e535468ce9f0a5d77728b5a562d28a0af76da3fde809faed8b407f27dd11ef1"
+    },
+    {
+      "file": "27-scheduler-model-waiting.png",
+      "bytes": 52408,
+      "sha256": "8812598e90c70e3cdbbb3023a66d9f674692f3c467c665207684a02539f823a0"
+    },
+    {
+      "file": "28-scheduler-chat-waiting.png",
+      "bytes": 26769,
+      "sha256": "b3dfac91c77e080b467d36f1e63c94ce1a388989b788216c632693670691c214"
     },
     {
       "file": "foundation-ui.gif",
-      "bytes": 4718536,
-      "sha256": "1b2cbaa903b02efff6122fab2ac3c686bf7d2d2a9c762a11fbcf7fbe4c781e78"
+      "bytes": 4301663,
+      "sha256": "42bb5ca3fb37a062b9a3a0a5924e76a43f413f0ec8c7e13f2da946a75bbe5167"
     },
     {
       "file": "foundation-ui.mp4",
-      "bytes": 1946281,
-      "sha256": "ad9bc7fbae64a89b18c22281b8163a586170d43dc193e8e39e148e92fcf8a54c"
+      "bytes": 2002724,
+      "sha256": "5af00f766e55830ddf1c525ad5d8c6ee810ee248ec8f380edfb6b9e69cef921b"
     }
   ],
   "input_fingerprint": {
     "app/src/main/assets/app.css": "f2cb7b5ee9de8f3afac793e694dcf9fde0a855c0d4c7053ff986cc2a6d2bd3b1",
-    "app/src/main/assets/app.js": "aad7362048c62c353b7bd2d1538be7c80af0beaf3fec00977e508eefc3490760",
+    "app/src/main/assets/app.js": "88281b37d21cb8faaa01d39d22aa3cb3d3c0d9fcfc2fbeb949bd546da703d446",
     "app/src/main/assets/engine-builds.json": "bdb4aa0d090bae260499f766fe5d8f84cb225cfdf6e00439de95427690835abf",
     "app/src/main/assets/foundation.css": "c3983ed065510f07fd78987b5644b2730df681ee64078c660893c18ed38d7f21",
-    "app/src/main/assets/foundation.js": "3214f5a63b9ac5ccf03d51b3367f824e9695eda63ff80d31d7655b46ca304f07",
-    "app/src/main/assets/index.html": "9eed14fbffcfd3620f1ff6852203e6b2b445d43ae393eec0c6e8ef77c57458bf",
+    "app/src/main/assets/foundation.js": "7d6ca653fefd315bd16e4e51b63bc303b7f2e744b5a9563ad3e3473ba96e9011",
+    "app/src/main/assets/index.html": "e0a50f837dd6224448f9f78e8a996903198d47d614f49ca6bb4a76d6b62a5520",
     "app/src/main/assets/license.js": "1c814e25648a624a68de26d0614ef0ac9799db94edd8cd3835a07e77156d51e0",
     "app/src/main/assets/licenses/LLAMA_CPP_LICENSE": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
     "app/src/main/assets/licenses/LMA_LICENSE": "6ae3f5efa412d91cbf66e44f743e5ce41a8044309d05d893365206ab9bc35fc3",
@@ -327,8 +345,9 @@
     "tests/hub-fixture.cjs": "5b3cb88b7fd4c45d26ce92e8598a1c3837a12b02eb898f67c9be10da2910ab83",
     "tests/migration-ui.cjs": "6843bdcf1783795ed10cccc8b200aee40188e8a1fe950f8d23027d828ff6b3b4",
     "tests/recipes-ui.cjs": "d45ab6a198b33df8cc8e3e5e0928b9cf3e6ddedb50a7e646bea38e0897243154",
+    "tests/scheduler-ui.cjs": "3b89c2121953c6e17e2e978a3639915ba1d1b799750e85f38d6e104d8b7e0599",
     "tests/text-ui.cjs": "bc5969aa9329380b590a6055daa6fe1177f956f73bb212a18cf19d2b6576b8db",
     "tests/versions-ui.cjs": "13f6e194c00fa3a819c44da35788aa28b94ba05325e3f2b1257350c04b67babd",
-    "tools/capture_foundation.cjs": "236856ca3334b8cff228b957ee245b90d4d75ca6764c08da2d608c2f0c9e90e0"
+    "tools/capture_foundation.cjs": "4afcff7c6e67ec6bd8cc847dd864ea3f98150ee31ab89fa94c68bbb078697703"
   }
 }

@@ -55,3 +55,5 @@
 文本模型与共用队列 / Text models and shared jobs: [中文](TEXT_ENGINE.md) · [English](TEXT_ENGINE.en.md)，新 HF 文本包、实际 GGUF 约束、正文 / 思考结果和当前迁移边界 / new text bundles, inspected limits, typed artifacts and migration boundaries.
 
 - [已有模型迁移与零重复下载](MODEL_MIGRATION.md) / [Existing-model migration](MODEL_MIGRATION.en.md)：原 ID、共用资产与参数、明确续传、失败恢复和证据范围。
+
+- [共用执行槽与文本自动切换](SCHEDULING.md) / [Shared execution slot](SCHEDULING.en.md)：回复与任务等待、取消、资源复查、真实进程回收与证据边界。

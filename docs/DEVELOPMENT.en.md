@@ -2,7 +2,7 @@
 
 [中文](DEVELOPMENT.md) · [Full scope](MULTIMODAL_RELEASE_PLAN.en.md) · [Build](BUILD.en.md) · [English home](../README.en.md)
 
-The current public release remains **v0.2.0**. This branch is **0.3.0-dev.9 / versionCode 13**, not the complete v0.3.0, and has no new Release. All F-01–F-12 requirements, selections 01–14/16/17 and frozen subtargets still belong to one delivery. This is implementation progress within that release, not a split roadmap.
+The current public release remains **v0.2.0**. This branch is **0.3.0-dev.10 / versionCode 14**, not the complete v0.3.0, and has no new Release. F-01–F-12, selections 01–14/16/17 and frozen subtargets still belong to one delivery; these are internal implementation checkpoints.
 
 ## Implemented development code
 
@@ -21,7 +21,7 @@ The current public release remains **v0.2.0**. This branch is **0.3.0-dev.9 / ve
 
 The APK contains foundation code, engines, catalogue/tag/recipe metadata and notices, **without weights or model-specific vocabulary/tokenizer/voice/language assets**. [vocab_external.cpp](../native/vocab_external.cpp) replaces upstream embedded vocabularies. Zero-model startup is valid. The user sees the complete selected components, total size and reusable assets before downloading. App updates preserve existing models/settings and do not silently replace weights.
 
-Custom manifests gain neither device-validated status nor checked uncensored declarations. Trying an unmeasured recipe requires an explicit user choice and may still fail locally on resources/operators/components. Media jobs currently require stopping the legacy text service first; new text bundles use shared jobs, with local legacy adoption now implemented; physical upgrade acceptance and complete automatic coordination remain work for this release.
+Custom manifests gain neither device-validated nor checked-uncensored status. Unmeasured recipes require explicit consent and may fail locally on resources/operators/components. Dev.10 shares automatic scheduling among existing chat/synchronous APIs and jobs, waiting for replies and reaping old children before switching. Asset adoption is implemented; physical upgrades and complete model acceptance remain required.
 
 ## Current development evidence
 
@@ -33,7 +33,8 @@ Custom manifests gain neither device-validated status nor checked uncensored dec
 | API/transport | 67 assertions | Auth, zero-model state, JSON/framing limits, idempotency/cancel/events, exact artifacts/Range/leases and text policy; actual host sockets, not Android inference |
 | Legacy backend/proxy | 98 assertions | Host Android adapters exercising downloads, actual child processes, HTTP SSE and per-model settings |
 | HF logic | 76 assertions | Search, pinned revisions, pagination/selection and token boundaries, not universal HF execution |
-| UI | 156 assertions | Actual HTML/CSS/JS with explicit simulated native state; recommendation/tag/download/form/queue/narrow-screen regressions |
+| Shared scheduler | 43 assertions | Production queue/resident/chat/API, real host children and loopback HTTP, cancellation and reaping; no Android inference |
+| UI | 167 assertions | Actual HTML/CSS/JS with explicit simulated native state; recommendation/tag/download/form/queue/narrow-screen regressions |
 | Native package | 19 ARM64 files | Pinned hashes, resolved dependencies, Android API 28, 16 KiB ELF/APK alignment, original signing identity, asset allowlist |
 | Phone inference/endurance | 0 | No actual image/audio/motion-video or sustained screen-off inference evidence |
 
@@ -43,9 +44,9 @@ The SD1.5 candidate combines [Second State’s pinned GGUF](https://huggingface.
 
 ## Remaining work in the same release
 
-1. Finish automatic scheduling between legacy chat/synchronous APIs and shared jobs, plus physical-Android migration/upgrade acceptance. Dev.9 implements existing complete text/HF/import GGUF adoption, shared defaults, version management and task entry points; existing version protocols and nine HF templates remain shared.
+1. Physically validate [shared scheduling](SCHEDULING.en.md), model adoption and independent updates on Android across modalities, cancellation, recovery and upgrades. The 43 host scheduler assertions and dev.9 adoption do not replace device gates.
 2. Complete pinned assets, actual engines/pipelines and every subtarget for 01–14/16/17, including both SD1.5/SDXL LoRA pairings, MNN, remaining audio, full MOSS/SoulX and older LTX Android ports. Some TTS paths are integrated but not device-accepted. Compiling sd.cpp does not complete these targets.
-3. Extend the implemented async/text API to every engine, input-artifact reference and physical-device validation. Full text scheduling unification, per-modality compatibility surfaces and lifecycle coverage remain in this release. See [API behavior/limits](API.en.md#030-dev2-independent-gateway-jobs-and-artifacts).
+3. Extend async/text APIs to remaining engines, input-artifact references, modality compatibility and physical lifecycle acceptance. Existing text now shares the slot; new engines must reuse this scheduling boundary. See [API behavior](API.en.md#030-dev2-independent-gateway-jobs-and-artifacts).
 4. Finish measured admission profiles, thermals, input-artifact references, stage/checkpoint capability handling, cross-modality load/unload and upgrade migration verification.
 5. Obtain physical-Android offline outputs for new inputs on every frozen subtarget, quality/cancellation/cleanup checks, A7 fifteen-minute screen-off tasks and one-hour alternating service evidence. No device is available.
 6. Pass all A1–A11/R-01–R-05 gates and produce complete source/APK/docs/actual feature media/Release. Development builds cannot substitute for delivery; publishing tools reject `-dev`.
@@ -115,3 +116,9 @@ Screenshots 22–24 and the updated recording/GIF retain UI FIXTURE labels. Comp
 Existing complete GGUF files are locally adopted with hardlinks, measured receipts and an atomic original-ID binding; no network transfer or implicit model load is involved. Original model details open shared tasks/version management, and duplicate library/API rows are suppressed. Legacy and bundle editors share defaults; loaded-context changes reload through the engine-owned lease. Restored unfinished downloads require explicit resume.
 
 69 added host migration checks and 156 UI checks pass. Text 66, TTS 62, Nano 190, API 67, backend 98, HF 76 and foundation 310 remain scoped host/UI evidence. See the [migration guide](MODEL_MIGRATION.en.md), [receipt](../verification/development/migration.json) and [notes](releases/v0.3.0-dev.9.md). Screenshots 25–26 and refreshed recording/GIF retain UI FIXTURE labels. Full automatic scheduling, every selected pipeline and physical-Android installation/upgrade/output/endurance still block the same complete v0.3.0; no new Release.
+
+## dev.10: shared execution and automatic text switching
+
+Production `LocalJobs`, resident `EngineHost`, `ChatRunner` and `ApiHost` share a cancellable FIFO slot. Jobs wait for replies, reap actual children and recheck available memory/temperature before starting. Idle restoration uses only a model the user still wants; stop/replacement generations and late cleanup remain isolated. Jobs persist and text history remains, without model assets or implicit downloads.
+
+43 added assertions compile the production job runner and execute actual host children/loopback HTTP, cancellation, API closure, resident/service stops, deferred reaping and retained assets/profiles. UI checks total 167. Development media contains 28 screenshots plus labeled fixture recording/GIF. Every model and physical upgrade/resources/quality/background gate remains open. See [guide](SCHEDULING.en.md), [receipt](../verification/development/scheduler.json) and [notes](releases/v0.3.0-dev.10.md).

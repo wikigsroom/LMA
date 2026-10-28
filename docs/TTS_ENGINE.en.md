@@ -6,7 +6,7 @@ Internal **0.3.0-dev.3 / code 7** adds a compiled ARM64 CPU `sherpa_tts` worker 
 
 ## User flow and asset ownership
 
-Filter All by audio, inspect the engine, license, complete components, total size and reusable data, then explicitly choose Download. Manage installed models and their settings in Local, enter narration text and submit through the shared queue. Media jobs currently still require stopping the legacy text model first. Use the shared audio preview, original-file export and API artifact access. The task API accepts `speech.synthesize`, `input.prompt` and an installed bundle ID.
+Filter All by audio, inspect the engine, license, complete components, total size and reusable data, then explicitly choose Download. Manage installed models and their settings in Local, enter narration text and submit through the shared queue. Dev.10 uses the [shared execution slot](SCHEDULING.en.md), waiting for replies and switching engines automatically, then restoring a still-wanted resident when idle. Use the shared audio preview, original-file export and API artifact access. The task API accepts `speech.synthesize`, `input.prompt` and an installed bundle ID.
 
 The App delivers engine code, without voice or language assets. Installation, upgrades, browsing, API startup and missing-asset requests never download models. These are data-only candidates, **not preinstalled models**:
 

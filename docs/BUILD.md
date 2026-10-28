@@ -95,3 +95,5 @@ python tools/check_repository.py
 文本基座新增 `python tools/test_text.py`，使用真实主机子进程 / 回环 HTTP 与 metadata-only GGUF，未执行模型或 Android。现有文本 runtime 由 `runtime-lock.json` 与 `BUILD_INFO.json` 生成单独签名包元数据并核对全部依赖；不新增权重。见[文本基座](TEXT_ENGINE.md)。
 
 dev.9 的 `python tools/test_migration.py` 编译实际 Store / BundleStore / EngineHost，并在独立 `build/migration-tests/` 中检查本机文件、硬链接、并发设置和真实协议子进程。依赖与先决条件沿用后端检查；零 tensor GGUF 只用于 metadata，不运行模型。App 启动迁移与物理 Android 升级仍须独立验收。见[迁移指南](MODEL_MIGRATION.md)。
+
+共用调度回归：构建完成后运行 `python tools/test_scheduler.py`，再执行 `python tools/test_android_lint.py` 与 `python tools/verify_package.py`。前者编译生产 `LocalJobs` / `EngineHost` / `ChatRunner` / `ApiHost`，使用受控主机 Android 端口、真实子进程和固定 HTTP 协议；不启动模拟器、不下载模型，也不执行推理。回执为 `build/scheduler-tests/results.json`，通过开发导出进入 `verification/development/scheduler.json`。

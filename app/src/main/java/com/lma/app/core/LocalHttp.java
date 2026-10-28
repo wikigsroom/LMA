@@ -83,8 +83,9 @@ public final class LocalHttp implements AutoCloseable {
         final long started = System.nanoTime();
         volatile long writing;
         volatile boolean parsed;
+        volatile Thread handlerThread;
         Client(Socket socket) { this.socket = socket; }
-        void close() { try { socket.close(); } catch (IOException ignored) {} }
+        void close() { try { socket.close(); } catch (IOException ignored) {} Thread thread = handlerThread; if (thread != null && thread != Thread.currentThread()) thread.interrupt(); }
     }
     public LocalHttp(String host, int port, Handler handler) throws IOException {
         this.handler = handler;
@@ -115,6 +116,7 @@ public final class LocalHttp implements AutoCloseable {
         }
     }
     private void serve(Client client) {
+        client.handlerThread = Thread.currentThread();
         try (Socket socket = client.socket) {
             Request request;
             try { request = read(socket.getInputStream()); client.parsed = true; }

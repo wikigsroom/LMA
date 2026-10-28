@@ -49,6 +49,9 @@
   function models() { return state ? (state.models || []).concat(window.LMAFoundation.views()) : []; }
   function modelById(id) { return models().filter(function (m) { return m.id === id; })[0]; }
   function engine() { return state ? state.engine || {} : {}; }
+  function textQueued() { return ['waiting', 'suspended'].indexOf(engine().state) >= 0; }
+  function textAvailable() { return engine().state === 'ready' || textQueued(); }
+  function replyWaiting() { var s = state && state.foundation && state.foundation.execution || {}, a = s.active || {}; return !!engine().generating && ['chat', 'api'].indexOf(a.kind) < 0 && textQueued(); }
   var taskNames = {text: '生文', image: '生图', video: '生视频', audio: '生音频'};
   function outputTags(m) {
     if (Array.isArray(m.taskTags)) return m.taskTags;
@@ -119,10 +122,10 @@
     return results.filter(function (result) { return result.requestId === requestId; })[0];
   }
   function renderRuntime() {
-    var e = engine(), m = modelById(e.modelId), loading = e.state === 'loading' || e.state === 'recovering';
+    var e = engine(), m = modelById(e.modelId), loading = e.state === 'loading' || e.state === 'recovering' || textQueued();
     $('runtimeDot').className = 'runtime-dot' + (e.state === 'ready' ? ' ready' : loading ? ' loading' : e.state === 'error' ? ' error' : '');
     $('runtimeName').textContent = m && e.state !== 'stopped' ? m.name : e.state === 'error' ? '模型加载失败' : '尚未加载模型';
-    $('runtimeDetail').textContent = e.generating ? '正在本地生成 · 切到后台后继续' : e.detail || '下载一个模型，开始本地运行';
+    $('runtimeDetail').textContent = replyWaiting() ? '回复已排队 · 等待本机执行槽' : e.generating ? '正在本地生成 · 切到后台后继续' : e.detail || '下载一个模型，开始本地运行';
     var d = state.device || {};
     $('deviceName').textContent = d.name || 'Android · 本地运行';
     $('deviceMemory').textContent = memory(d.totalMemory);
@@ -131,18 +134,18 @@
   }
   function modelCard(m) {
     if (m.isBundle) return window.LMAFoundation.card(m);
-    var d = m.download || {}, s = d.state || '', running = engine().modelId === m.id && ['ready', 'loading', 'recovering'].indexOf(engine().state) >= 0;
+    var d = m.download || {}, s = d.state || '', running = engine().modelId === m.id && ['ready', 'loading', 'recovering', 'waiting', 'suspended'].indexOf(engine().state) >= 0;
     var active = ['queued', 'downloading', 'verifying', 'pausing'].indexOf(s) >= 0, partial = m.partialBytes || d.received || 0;
     var total = d.total || m.bytes || 0, progress = total ? Math.min(100, Math.floor(partial * 100 / total)) : 0;
     var action = m.installed ? (running ? '' : 'load') : s === 'pausing' ? '' : active ? 'pauseDownload' : (partial || s === 'paused' || s === 'error') ? 'resumeDownload' : 'download';
-    var label = m.installed ? (running ? engine().state === 'ready' ? '运行中' : '加载中' : '加载模型') : active ? s === 'pausing' ? '暂停中' : s === 'verifying' ? '校验中' : '暂停' : partial || s === 'paused' || s === 'error' ? '继续下载' : '下载';
+    var label = m.installed ? (running ? engine().state === 'ready' ? '运行中' : textQueued() ? '等待执行' : '加载中' : '加载模型') : active ? s === 'pausing' ? '暂停中' : s === 'verifying' ? '校验中' : '暂停' : partial || s === 'paused' || s === 'error' ? '继续下载' : '下载';
     var glyph = m.family === 'LFM' ? 'L' : m.family === 'Gemma' ? 'G' : m.family === 'Llama' ? 'L' : m.family === '自定义' ? '+' : 'Q';
     var tags = (m.tags || []).slice(0, 4).map(function (tag) { return '<span class="tag' + (tag === '推荐' ? ' recommended' : m.tier === 'experimental' ? ' experimental' : '') + '">' + esc(tag) + '</span>'; }).join('');
     tags = taskBadges(m, false) + uncensoredTag(m.uncensored) + tags;
     if (m.recommended && (m.tags || []).indexOf('推荐') < 0) tags = '<span class="tag recommended">推荐</span>' + tags;
     var size = m.installed ? m.installedBytes : total;
     var out = '<article class="model-card' + (running ? ' is-running' : '') + '" data-model="' + esc(m.id) + '"><div class="model-top"><span class="model-symbol" data-family="' + esc(m.family) + '">' + glyph + '</span><div class="model-top-copy"><button class="model-name" data-action="modelInfo" data-id="' + esc(m.id) + '"><strong>' + esc(m.name) + '</strong><span class="model-caption">' + esc(m.family) + ' <span aria-hidden="true"> / </span> ' + esc(m.quant || 'GGUF') + '</span></button></div></div>';
-    if (running) out += '<span class="running-mark">' + (engine().state === 'ready' ? '已加载' : '加载中') + '</span>';
+    if (running) out += '<span class="running-mark">' + (engine().state === 'ready' ? '已加载' : textQueued() ? '等待执行' : '加载中') + '</span>';
     out += '<p class="model-description">' + esc(m.description) + '</p><div class="model-tags">' + tags + '</div><div class="model-footer"><div class="model-size">' + bytes(size) + '<small>' + (m.installed ? '已下载到设备' : m.sizeIsApproximate && !d.total ? '预估下载体积' : 'GGUF 模型文件') + '</small></div><div class="model-footer-actions"><button class="button ' + (m.installed || active ? 'subtle' : 'primary') + '" data-action="' + action + '" data-id="' + esc(m.id) + '"' + (!action ? ' disabled' : '') + '>' + icon(m.installed ? running ? 'check' : 'play' : active ? 'pause' : 'download') + '<span>' + label + '</span></button>';
     if (m.installed) out += '<button class="icon-button" data-action="modelSettings" data-id="' + esc(m.id) + '" aria-label="设置 ' + esc(m.name) + '" title="模型设置">' + icon('sliders') + '</button>';
     if ((m.installed || partial || m.id.indexOf('custom_') === 0 || m.hub || s === 'error') && !active) out += '<button class="icon-button" data-action="deleteModel" data-id="' + esc(m.id) + '" aria-label="删除 ' + esc(m.name) + '">' + icon('trash') + '</button>';
@@ -234,12 +237,12 @@
   function renderChat() {
     var e = engine(), m = modelById(e.modelId), chat = state && state.chat || {messages: []};
     $('chatModelName').textContent = m ? m.name : '选择模型';
-    $('composerHint').textContent = e.generating ? '后台继续生成 · 点击方块停止' : e.state === 'ready' ? '回复在当前手机生成' : e.state === 'loading' || e.state === 'recovering' ? '模型正在加载，请稍候…' : '先加载一个模型，再开始对话';
+    $('composerHint').textContent = replyWaiting() ? '回复已排队 · 点击方块取消' : e.generating ? '后台继续生成 · 点击方块停止' : textQueued() ? '发送后排队，轮到此回复时自动加载原模型' : e.state === 'ready' ? '回复在当前手机生成' : e.state === 'loading' || e.state === 'recovering' ? '模型正在加载，请稍候…' : '先加载一个模型，再开始对话';
     $('sendButton').classList.toggle('stop', !!e.generating);
     $('sendButton').setAttribute('aria-label', e.generating ? '停止生成' : '发送消息');
     $('sendButton').innerHTML = icon(e.generating ? 'stop' : 'send');
-    $('sendButton').disabled = !e.generating && (!!pendingDraft || e.state !== 'ready' || !$('chatInput').value.trim());
-    var signature = JSON.stringify(chat);
+    $('sendButton').disabled = !e.generating && (!!pendingDraft || !textAvailable() || !$('chatInput').value.trim());
+    var signature = JSON.stringify([chat, replyWaiting()]);
     if (signature === chatSignature) return; chatSignature = signature;
     var box = $('messages'), nearBottom = box.scrollHeight - box.scrollTop - box.clientHeight < 120, oldScroll = box.scrollTop;
     var opened = {};
@@ -252,7 +255,7 @@
       if (!user && message.tokens) footer.push(message.tokens + ' tokens');
       if (status === 'stopped') footer.push('已停止');
       if (status === 'interrupted') footer.push('已中断');
-      if (status === 'generating') footer.push('生成中');
+      if (status === 'generating') footer.push(replyWaiting() ? '等待执行' : '生成中');
       var out = '<article class="message' + (user ? ' user' : '') + '"><div class="message-heading"><strong>' + (user ? '你' : 'LMA') + '</strong>' + (!user ? '<button class="text-button" data-action="copyMessage" data-id="' + esc(message.id) + '">复制</button>' : '') + '</div>';
       if (message.reasoning) out += '<details class="reasoning" data-message="' + esc(message.id) + '"' + (opened[message.id] ? ' open' : '') + '><summary>思考过程</summary><div>' + esc(message.reasoning) + '</div></details>';
       out += '<div class="message-content">' + (user ? esc(message.content) : richText(message.content)) + (status === 'generating' ? '<span class="generating-mark" aria-label="正在生成"></span>' : '') + '</div>';
@@ -271,7 +274,7 @@
     $('serverStateLabel').textContent = ready ? '本地模型接口运行中' : api.state === 'error' ? '接口启动失败' : '接口尚未启动';
     $('serverStatePill').textContent = ready ? '运行中' : api.state === 'error' ? '启动失败' : '未启动';
     $('serverStatePill').className = 'status-pill' + (ready ? ' ready' : active ? ' loading' : '');
-    $('serverModelName').textContent = m && e.state === 'ready' ? '文本：' + m.name : '加载或管理文本模型';
+    $('serverModelName').textContent = m && textAvailable() ? '文本：' + m.name + (textQueued() ? ' · 队列等待' : '') : '加载或管理文本模型';
     $('apiUrl').textContent = endpoint();
     $('serverToggle').innerHTML = icon(active ? 'stop' : 'play') + '<span>' + (active ? '关闭接口' : '启动接口') + '</span>';
     $('serverToggle').className = 'button ' + (active ? 'danger' : 'primary');
@@ -382,7 +385,7 @@
   }
   function pickModel() {
     var installed = models().filter(function (m) { return m.installed && !m.isBundle; });
-    openModal('选择本地模型', installed.length ? '<p>加载后开启本机接口。生成图片等媒体前，请先停止文本模型。</p>' + (['ready', 'loading', 'recovering'].indexOf(engine().state) >= 0 ? '<button class="button danger" data-action="stopTextModel">停止文本模型</button>' : '') + '<div class="modal-list">' + installed.map(function (m) { return '<div class="modal-list-item"><button data-action="load" data-id="' + esc(m.id) + '"><strong>' + esc(m.name) + '</strong><small>' + esc(m.quant) + ' · ' + bytes(m.installedBytes) + '</small></button>' + icon('arrow') + '</div>'; }).join('') + '</div>' : '<p>先下载一个模型，或从设备导入 GGUF 文件。</p><button class="button primary" data-action="tab" data-tab="models">前往模型库</button>', 'pickModel');
+    openModal('选择本地模型', installed.length ? '<p>加载后开启本机接口。文本回复与生成任务共用队列，自动切换引擎；队列空闲后恢复已选文本模型。</p>' + (['ready', 'loading', 'recovering', 'waiting', 'suspended'].indexOf(engine().state) >= 0 ? '<button class="button danger" data-action="stopTextModel">停止文本模型</button>' : '') + '<div class="modal-list">' + installed.map(function (m) { return '<div class="modal-list-item"><button data-action="load" data-id="' + esc(m.id) + '"><strong>' + esc(m.name) + '</strong><small>' + esc(m.quant) + ' · ' + bytes(m.installedBytes) + '</small></button>' + icon('arrow') + '</div>'; }).join('') + '</div>' : '<p>先下载一个模型，或从设备导入 GGUF 文件。</p><button class="button primary" data-action="tab" data-tab="models">前往模型库</button>', 'pickModel');
   }
   function modelInfo(id) {
     var m = modelById(id); if (!m) return; var d = m.download || {}, u = m.uncensored || {};
@@ -449,7 +452,7 @@
       case 'browseHub': closeModal(); selectFilter('all'); break;
       case 'addUrl': openModal('添加 GGUF 下载链接', '<form id="customModelForm"><label class="form-field"><span>模型名称</span><input name="name" required maxlength="160" placeholder="例如：我的 Qwen 1.7B"></label><label class="form-field"><span>HTTPS 下载链接</span><input name="url" type="url" required placeholder="https://huggingface.co/…/resolve/main/….gguf" autocapitalize="off" spellcheck="false"></label><label class="form-field"><span>SHA256（可选）</span><input name="sha256" pattern="[a-fA-F0-9]{64}" maxlength="64" placeholder="发布者提供的 64 位哈希" autocapitalize="off" spellcheck="false"></label><p class="modal-help">请确认模型使用当前推理组件支持的架构，且适合手机的内存容量。</p><button type="submit" class="button primary">添加并下载</button></form>', 'addUrl'); break;
       case 'importPicker': nativeAction(action); closeModal(); break;
-      case 'about': openModal('关于 LMA', '<p>LMA 0.3.0-dev.9 是本地模型工作台，由 Android 前台服务持有本机接口、任务和原生引擎。无需 ROOT；模型由你选择下载或导入。</p><p>界面、对话记录和推理在设备本地运行。模型下载会连接你选择的仓库；开启局域网后，持有 API 密钥的同网设备可以请求推理。</p><p>前台通知、唤醒锁与电池设置可帮助后台运行。系统强行停止、内存不足、厂商省电策略、发热或重启仍会影响服务。模型输出和速度尚需目标手机实测。</p><p>推理引擎：llama.cpp（MIT），由 ServLlama v1.2.2 分发的 Android ARM64 预编译组件。扩散 worker 使用 sd.cpp（MIT）；语音基座包含 sherpa-onnx（Apache-2.0）、MOSS Nano / SentencePiece（Apache-2.0）和 ONNX Runtime（MIT）。当前开发构建尚未完成真机验收。各模型按其来源仓库许可使用。</p><div class="modal-list"><div class="modal-list-item"><button data-action="engineLicense"><strong>llama.cpp MIT 许可证</strong><small>查看随应用附带的许可全文</small></button>' + icon('arrow') + '</div><div class="modal-list-item"><button data-action="notices"><strong>LMA 与其他依赖许可</strong><small>查看第三方许可全文</small></button>' + icon('arrow') + '</div></div>', 'about'); break;
+      case 'about': openModal('关于 LMA', '<p>LMA 0.3.0-dev.10 是本地模型工作台，由 Android 前台服务持有本机接口、任务和原生引擎。无需 ROOT；模型由你选择下载或导入。</p><p>界面、对话记录和推理在设备本地运行。模型下载会连接你选择的仓库；开启局域网后，持有 API 密钥的同网设备可以请求推理。</p><p>前台通知、唤醒锁与电池设置可帮助后台运行。系统强行停止、内存不足、厂商省电策略、发热或重启仍会影响服务。模型输出和速度尚需目标手机实测。</p><p>推理引擎：llama.cpp（MIT），由 ServLlama v1.2.2 分发的 Android ARM64 预编译组件。扩散 worker 使用 sd.cpp（MIT）；语音基座包含 sherpa-onnx（Apache-2.0）、MOSS Nano / SentencePiece（Apache-2.0）和 ONNX Runtime（MIT）。当前开发构建尚未完成真机验收。各模型按其来源仓库许可使用。</p><div class="modal-list"><div class="modal-list-item"><button data-action="engineLicense"><strong>llama.cpp MIT 许可证</strong><small>查看随应用附带的许可全文</small></button>' + icon('arrow') + '</div><div class="modal-list-item"><button data-action="notices"><strong>LMA 与其他依赖许可</strong><small>查看第三方许可全文</small></button>' + icon('arrow') + '</div></div>', 'about'); break;
       case 'engineLicense': openModal('llama.cpp · MIT License', '<div class="license-text">' + esc(window.LMA_LICENSE || 'MIT License\n\nCopyright (c) 2023-2026 The ggml authors\n\n完整许可证随 APK 的 licenses/LLAMA_CPP_LICENSE 一同分发，也位于项目 third_party/LLAMA_CPP_LICENSE。') + '</div>', 'license'); break;
       case 'notices': openModal('LMA 与第三方许可', Object.keys(window.LMA_NOTICES || {}).map(function (name) { return '<details class="license-notice"><summary>' + esc(name) + '</summary><div class="license-text">' + esc(window.LMA_NOTICES[name]) + '</div></details>'; }).join(''), 'license'); break;
     }
@@ -485,7 +488,7 @@
     if (engine().generating) { nativeAction('cancelChat'); return; }
     if (pendingDraft) return;
     var text = $('chatInput').value.trim();
-    if (!text || engine().state !== 'ready') return;
+    if (!text || !textAvailable()) return;
     var requestId = nativeAction('send', {text: text});
     if (requestId) { pendingDraft = {requestId: requestId, text: text}; renderChat(); }
   }

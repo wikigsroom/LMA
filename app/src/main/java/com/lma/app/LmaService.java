@@ -62,7 +62,7 @@ public final class LmaService extends Service {
                     @Override public void installed(String id) { app.log("模型包已完整安装：" + id); activityChanged(); }
                     @Override public void failed(String id, String message) { app.error("模型包下载失败：" + message); activityChanged(); }
                 });
-        if (app.jobs != null && app.artifacts != null && app.localEngines != null) { localJobs = new LocalJobs(app, this::activityChanged); app.jobHost = localJobs; }
+        if (app.jobs != null && app.artifacts != null && app.localEngines != null) { localJobs = new LocalJobs(app, engine, this::activityChanged); app.jobHost = localJobs; }
         api = new ApiHost(this, app); app.apiHost = api;
     }
     @Override public int onStartCommand(Intent intent, int flags, int startId) {
@@ -135,7 +135,7 @@ public final class LmaService extends Service {
                     String id = command.getString("id"), bound = app.store.bundleId(id);
                     if (bound.isEmpty()) downloads.pause(id); else { requireBundles(); bundleTransfers.pause(bound); } break;
                 }
-                case "load": if (jobsBusy()) throw new IllegalStateException("请先完成或取消本地生成任务，再加载文本模型"); api.start(); engine.load(command.getString("id")); break;
+                case "load": api.start(); engine.load(command.getString("id")); break;
                 case "stopEngine": chat.cancel(); api.cancelText(); engine.stop(); break;
                 case "stopAll": app.finishCommand(command, null); stopAll(); return START_NOT_STICKY;
                 case "send": chat.send(command.getString("text")); break;

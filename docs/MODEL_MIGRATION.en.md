@@ -2,13 +2,13 @@
 
 [中文](MODEL_MIGRATION.md) · [Text jobs](TEXT_ENGINE.en.md) · [Model versions](MODEL_UPDATES.en.md) · [Full requirements](MULTIMODAL_RELEASE_PLAN.en.md)
 
-Applies to **0.3.0-dev.9 / code 13, an internal checkpoint, not the complete published v0.3.0**. Existing complete text GGUF files can join shared bundles, settings, jobs and version management without downloading again. Migration itself never selects, loads, updates or replaces a model and does not contact a model download service.
+Applies to **0.3.0-dev.10 / code 14, an internal checkpoint, not the complete published v0.3.0**. Existing complete text GGUF files can join shared bundles, settings, jobs and version management without downloading again. Migration itself never selects, loads, updates or replaces a model and does not contact a model download service.
 
 ## User flow
 
 1. Upgrade while retaining app data. The app checks complete existing files in a background thread. A loading/running legacy model waits until its process exits before another check.
 2. Keep using Recommended / All / Local. Recommended stays `m08 → m06 → m01`; original IDs, sources and checked content labels remain. Migration does not add a duplicate model card.
-3. Migrated details offer shared task creation and model version management using existing assets. Shared jobs currently require stopping the legacy persistent text service, opting into an unmeasured recipe and explicitly submitting. Full automatic scheduling is still in progress.
+3. Migrated details offer shared task creation and model version management using existing assets. After explicit unmeasured-recipe consent and submission, shared jobs wait for active replies and switch engines, restoring a text model the user still wants when idle. See [scheduling](SCHEDULING.en.md).
 4. Legacy and bundle settings access the same per-model defaults. Output defaults apply to subsequent requests; load-parameter changes reload the process and are rejected during an active reply. GGUF, recipe, device and application limits apply together.
 5. Incomplete `.part` files remain paused after restart/upgrade. Network transfer resumes only after explicit user action. Device imports retain their origin and gain no fabricated download URL.
 6. Users update/delete models independently. Queued jobs, live processes and other installed references protect required assets. App upgrades do not require weight updates.
@@ -29,7 +29,7 @@ Persistent text processes hold the shared asset lease until actual exit. A trust
 
 ## API and evidence boundaries
 
-`GET /v1/models` preserves the original text ID and exposes `bundle_id` for asynchronous `text.generate` jobs, without an additional duplicate bundle row. Existing synchronous chat/completion APIs still address the loaded text model; complete automatic scheduling with all other tasks remains unfinished. Job clients explicitly use the returned immutable bundle ID.
+`GET /v1/models` preserves the original text ID and exposes `bundle_id` for asynchronous `text.generate` jobs, without an additional duplicate bundle row. Synchronous chat/completion APIs use the selected text model and can wait for the shared slot; physical-device scheduling acceptance remains open. Job clients explicitly use the returned immutable bundle ID.
 
 This checkpoint adds **69 host checks** covering real files/hardlinks, GGUF metadata, HF/import origins, concurrent profile changes, cancellation/interruption recovery, shared deletion, API IDs and an actual protocol child process with asset leases. UI checks total **156**. Fixtures contain zero tensors and literal protocol content; no model inference occurred. See the [migration receipt](../verification/development/migration.json), [status](DEVELOPMENT.en.md) and [notes](releases/v0.3.0-dev.9.md).
 

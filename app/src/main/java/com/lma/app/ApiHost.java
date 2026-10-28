@@ -17,6 +17,7 @@ public final class ApiHost implements LocalApi.Runtime, AutoCloseable {
     private volatile boolean closed;
     private final java.util.concurrent.atomic.AtomicLong cancellation = new java.util.concurrent.atomic.AtomicLong();
     private volatile HttpURLConnection textConnection;
+    private volatile ExecutionGate.Ticket textSlot;
     public ApiHost(LmaService owner, LmaApp app) { this.owner = owner; this.app = app; api = new LocalApi(this); }
     public synchronized boolean ready() { return !closed && server != null; }
     public boolean wanted() { return app.prefs.getBoolean("desiredApi", false); }
@@ -51,7 +52,7 @@ public final class ApiHost implements LocalApi.Runtime, AutoCloseable {
     @Override public String apiKey() { return app.prefs.getString("apiKey", ""); }
     @Override public JSONObject health() throws Exception {
         return new JSONObject().put("status", "ok").put("version", LmaApp.VERSION).put("execution", "same_android_phone")
-                .put("textState", app.engineState).put("textRequestActive", app.textRequestBusy).put("jobActive", app.jobHost == null ? "" : app.jobHost.activeId())
+                .put("scheduler", app.execution.snapshot()).put("textState", app.engineState).put("textRequestActive", app.textRequestBusy).put("jobActive", app.jobHost == null ? "" : app.jobHost.activeId())
                 .put("foundationReady", app.jobs != null && app.artifacts != null && app.localEngines != null).put("modelInferenceTested", false);
     }
     @Override public JSONArray models() throws Exception {
@@ -86,16 +87,18 @@ public final class ApiHost implements LocalApi.Runtime, AutoCloseable {
     }
     @Override public void cancel(String id) throws Exception { LocalJobs jobs = app.jobHost; if (jobs == null) throw new IOException("任务运行器不可用"); jobs.cancel(id); }
     @Override public LocalHttp.Response text(String path, JSONObject input) throws Exception {
-        JSONObject request; long ticket = cancellation.get();
+        JSONObject request; ExecutionGate.Ticket slot; long ticket = cancellation.get();
         synchronized (app.requestGate) {
             if (closed || server == null) throw new IOException("模型接口正在停止");
-            if (!owner.engine.ready()) throw new IllegalStateException("请先在 App 中加载已安装的文本模型");
-            if (app.generating || app.textRequestBusy || app.jobHost != null && app.jobHost.busy()) throw new IllegalStateException("本机推理槽正忙，请等待当前任务完成");
+            if (!owner.engine.wanted()) throw new IllegalStateException("请先在 App 中选择并加载已安装的文本模型");
+            if (app.generating || app.textRequestBusy) throw new IllegalStateException("本机推理槽正忙，请等待当前任务完成");
             request = TextRequest.normalize(path, input, app.engineModel, app.settings(app.engineModel));
-            app.textRequestBusy = true;
+            slot = app.execution.enqueue("api", app.engineModel); textSlot = slot; app.textRequestBusy = true;
         }
         owner.activityChanged(); HttpURLConnection connection = null;
         try {
+            ExecutionGate.Check check = () -> { if (closed || server == null || cancellation.get() != ticket || Thread.currentThread().isInterrupted()) throw new InterruptedIOException("文本请求已取消"); };
+            slot.await(check); owner.engine.ensureReady(slot, request.getString("model"), check); check.run();
             connection = Net.engine(app, path); textConnection = connection;
             if (closed || server == null || ticket != cancellation.get()) throw new IOException("文本请求已取消");
             connection.setRequestMethod("POST"); connection.setDoOutput(true); connection.setRequestProperty("Content-Type", "application/json; charset=utf-8");
@@ -113,14 +116,14 @@ public final class ApiHost implements LocalApi.Runtime, AutoCloseable {
                 @Override public int read(byte[] bytes, int offset, int length) throws IOException {
                     int count = super.read(bytes, offset, length); if (count > 0 && (received += count) > 16L * 1024 * 1024) throw new IOException("文本响应超出应用的 16 MiB 保护上限"); return count;
                 }
-                @Override public void close() throws IOException { if (!released) { released = true; try { super.close(); } finally { releaseText(active); } } }
+                @Override public void close() throws IOException { if (!released) { released = true; try { super.close(); } finally { releaseText(active, slot); } } }
             };
             return LocalHttp.Response.stream(200, mime, connection.getContentLengthLong(), in).header("X-LMA-Max-Tokens", String.valueOf(request.getInt("max_tokens")));
-        } catch (Exception error) { releaseText(connection); throw error; }
+        } catch (Exception error) { releaseText(connection, slot); throw error; }
     }
-    private void releaseText(HttpURLConnection connection) {
+    private void releaseText(HttpURLConnection connection, ExecutionGate.Ticket slot) {
         if (connection != null) connection.disconnect();
-        synchronized (app.requestGate) { if (textConnection == connection) textConnection = null; app.textRequestBusy = false; }
-        owner.activityChanged();
+        synchronized (app.requestGate) { if (textSlot == slot) { textSlot = null; if (textConnection == connection) textConnection = null; app.textRequestBusy = false; } }
+        slot.close(); owner.engine.resumeIfIdle(); owner.activityChanged();
     }
 }

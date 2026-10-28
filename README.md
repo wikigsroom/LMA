@@ -27,6 +27,7 @@ Android 版的本地模型管理、下载、对话和 API 服务应用。当前�
 | 多模型、多引擎共用基座与迁移路线 | [基座评估](docs/FOUNDATION.md) | [Foundation assessment](docs/FOUNDATION.en.md) |
 | App 基座更新、用户自主选择与管理模型、功能标签 | [需求核对](docs/ASSET_CONTROL_AUDIT.md) | [Foundation and asset audit](docs/ASSET_CONTROL_AUDIT.en.md) |
 | v0.3.0 完整范围、平级标签与单版验收 | [需求与发版计划](docs/MULTIMODAL_RELEASE_PLAN.md) | [Requirements and releases](docs/MULTIMODAL_RELEASE_PLAN.en.md) |
+| 文本驻留、聊天 / API 与任务的自动切换 | [共用执行槽](docs/SCHEDULING.md) | [Shared execution](docs/SCHEDULING.en.md) |
 | 任务表单、共用队列、内部执行与后台 | [任务执行方案](docs/WORKFLOWS.md) | [Task execution](docs/WORKFLOWS.en.md) |
 | curl、Python、PowerShell 和 SSE | [API 接入](docs/API.md) | [API integration](docs/API.en.md) |
 | 工具链、重建和验证 | [构建](docs/BUILD.md) | [Build](docs/BUILD.en.md) |
@@ -37,7 +38,7 @@ Android 版的本地模型管理、下载、对话和 API 服务应用。当前�
 
 ## 多模态扩展研究
 
-下一版本 **v0.3.0** 一次性交付**完整本地多模态基座及 01–14 / 16 / 17 的运行支持与适配配方**：共用模型包 / 组件 / 配方、内部引擎模块、独立参数、任务 / 产物和 API。所有模型平级，按生文 / 生图 / 生视频 / 生音频及基座依赖标签筛选，保留既有推荐；交互为模型选择 → 任务表单 → 本机队列 → 结果。完整范围、工作包、风险及同一发布门槛见[版本更新需求](docs/MULTIMODAL_RELEASE_PLAN.md)和[交付摘要](docs/releases/v0.3.0-plan.md)。不拆分版本，不将必需模型默认顺延，不建设 ComfyUI 画布 / 用户节点 / 插件生态 / 图导入。v0.3.0 尚未发布。开发代码、310 项基座检查、156 项界面检查及完整剩余项见[开发实施记录](docs/DEVELOPMENT.md)；这不替代完整交付。
+下一版本 **v0.3.0** 一次性交付**完整本地多模态基座及 01–14 / 16 / 17 的运行支持与适配配方**：共用模型包 / 组件 / 配方、内部引擎模块、独立参数、任务 / 产物和 API。所有模型平级，按生文 / 生图 / 生视频 / 生音频及基座依赖标签筛选，保留既有推荐；交互为模型选择 → 任务表单 → 本机队列 → 结果。完整范围、工作包、风险及同一发布门槛见[版本更新需求](docs/MULTIMODAL_RELEASE_PLAN.md)和[交付摘要](docs/releases/v0.3.0-plan.md)。不拆分版本，不将必需模型默认顺延，不建设 ComfyUI 画布 / 用户节点 / 插件生态 / 图导入。v0.3.0 尚未发布。开发代码、310 项基座检查、167 项界面检查及完整剩余项见[开发实施记录](docs/DEVELOPMENT.md)；这不替代完整交付。
 
 全部分词、编码器、采样、codec 与导出在同一 Android 手机执行，无需 ROOT，无外部推理 / 回退。HF 用于搜索和显式资产下载。同架构变体可复用已有配方，新架构需要原生引擎 / APK 更新；Z20 与较新设备分别验收。源码 / 许可见[研究](docs/MULTIMODAL.md)，迁移见[基座评估](docs/FOUNDATION.md)，后台与恢复见[任务方案](docs/WORKFLOWS.md)。完整 MOSS / SoulX 仍有研究关卡，登记 / 下载不计可运行。**当前公开版本仍为 v0.2.0。0.3.0-dev 已加入部分基座代码和编译的扩散 worker，完整模型适配、统一 API 与真机验收尚未完成。**
 
@@ -253,6 +254,10 @@ LMA 自有代码使用 MIT 许可。llama.cpp 及其依赖保留各自许可；�
 
 <img src="docs/media/development/22-text-model-settings.png" width="260" alt="文本参数联动，明确的 UI 测试数据" /> <img src="docs/media/development/24-text-result.png" width="260" alt="固定测试正文和思考内容，非模型输出" />
 
-当前内部检查点（**0.3.0-dev.9 / code 13**，未发布）接入[已有模型迁移](docs/MODEL_MIGRATION.md)：校验并复用原 GGUF，保留原 ID、来源、推荐、内容标签及独立参数；原详情可进入共用任务和模型版本管理。旧下载在重启 / 升级后暂停，须用户明确继续。69 项新增主机迁移、310 项基座、156 项 UI 检查通过；完整模型与物理 Android 验收、自动调度仍在同一 v0.3.0 内继续，不创建新 Release。见[更新说明](docs/releases/v0.3.0-dev.9.md)、[截图 / 录屏 / GIF](docs/DEVELOPMENT.md)。
+早前内部检查点（**0.3.0-dev.9 / code 13**，未发布）接入[已有模型迁移](docs/MODEL_MIGRATION.md)：校验并复用原 GGUF，保留原 ID、来源、推荐、内容标签及独立参数；原详情可进入共用任务和模型版本管理。旧下载在重启 / 升级后暂停，须用户明确继续。69 项新增主机迁移、310 项基座、156 项 UI 检查通过；完整模型与物理 Android 验收、自动调度仍在同一 v0.3.0 内继续，不创建新 Release。见[更新说明](docs/releases/v0.3.0-dev.9.md)、[截图 / 录屏 / GIF](docs/DEVELOPMENT.md)。
 
 <img src="docs/media/development/25-migrated-text-model.png" width="260" alt="界面夹具：已有模型复用下载文件并进入共用任务 / 版本管理，非真机迁移证据" /> <img src="docs/media/development/26-migrated-text-task.png" width="260" alt="界面夹具：已有模型进入共用任务表单，无实际推理" />
+
+当前内部检查点（**0.3.0-dev.10 / code 14**，未发布）将常驻文本加载、聊天、同步 API 与生成任务接入[共用执行槽](docs/SCHEDULING.md)：等待当前回复结束，回收旧进程后切换，空闲后恢复用户仍希望运行的文本模型；等待可取消，停止意愿按代次保留。App 仅更新基座，模型仍由用户自主选择 / 下载 / 管理。43 项新增生产队列 / 主机子进程 / HTTP 调度检查、167 项 UI、既有回归与 APK 检查见[实施记录](docs/DEVELOPMENT.md)；[截图 / 录屏 / GIF](docs/MEDIA.md)均标记界面夹具。完整模型与物理 Android 门槛仍须在同一 v0.3.0 完成，无新 Release。
+
+<img src="docs/media/development/27-scheduler-model-waiting.png" width="260" alt="已选文本模型等待执行槽，明确界面夹具" /> <img src="docs/media/development/28-scheduler-chat-waiting.png" width="260" alt="可取消的排队回复，非真机或模型输出" />

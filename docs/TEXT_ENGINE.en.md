@@ -2,14 +2,14 @@
 
 [中文](TEXT_ENGINE.md) · [HF recipes](HF_RECIPES.en.md) · [Model updates](MODEL_UPDATES.en.md) · [Development status](DEVELOPMENT.en.md)
 
-Applies to **0.3.0-dev.9 / code 13, an internal checkpoint, not the completed or published v0.3.0**. User-selected and [migrated existing text GGUFs](MODEL_MIGRATION.en.md) share parameters, jobs, artifacts and model-version management. Existing recommendations, chat IDs and persistent APIs remain; full automatic scheduling and physical upgrade acceptance remain unfinished.
+Applies to **0.3.0-dev.10 / code 14, an internal checkpoint, not the completed or published v0.3.0**. User-selected and [migrated existing text GGUFs](MODEL_MIGRATION.en.md) share parameters, jobs, artifacts and model-version management. Existing recommendations, chat IDs and persistent APIs remain; [shared scheduling](SCHEDULING.en.md) is integrated; physical upgrade acceptance remains open.
 
 ## Selection and use
 
 1. Open an HF repository's file picker through All/search, choose **构建模型包 / LoRA 配方**, then **文本 GGUF · CPU**. The template contains recipe metadata only, without weights.
 2. Bind one complete text GGUF with its tokenizer to `text_gguf`. Review its fixed revision, bytes, integrity, license and transfer plan. Adding to Local only declares a manifest; download or folder import requires a separate user action. This recipe does not accept split GGUF, vision/audio components or custom code.
 3. After installation, open details and model settings in Local. Text remains a peer of image/video/audio, tagged text generation and `llama_text / text_gguf / GGUF / CPU`. A filename or template cannot establish architecture compatibility with the packaged engine.
-4. Edit independent threads, context, output ceiling, temperature, reasoning and system prompt. Choose Use, enter a prompt, explicitly opt into trying an unmeasured recipe, and submit the shared queue. The legacy persistent text service must currently be stopped first to avoid competing heavy engines. Jobs do not automatically change the chat model.
+4. Edit independent threads, context, output ceiling, temperature, reasoning and system prompt. Choose Use, enter a prompt, explicitly opt into trying an unmeasured recipe, and submit the shared queue. Jobs wait for active replies, switch engines automatically and restore the text model the user still wants. A job does not change the selected chat model.
 5. Open the artifact to read/copy its response, expand reasoning separately, export original JSON or export provenance. Output-limit completion is labeled. Cancellation, truncation and missing completion events cannot become successful results.
 
 Recommended `m08 → m06 → m01`, original weight contents, IDs and per-model profiles are retained. App installation/upgrades/browsing do not select/download/replace models. Local metadata/storage migration reuses existing files; a loading/running legacy model waits for exit before binding.

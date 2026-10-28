@@ -2,7 +2,7 @@
 
 [中文](MODEL_UPDATES.md) · [HF component recipes](HF_RECIPES.en.md) · [Development status](DEVELOPMENT.en.md) · [Asset-control audit](ASSET_CONTROL_AUDIT.en.md)
 
-Applies to **0.3.0-dev.9 / code 13, an internal checkpoint, not the complete v0.3.0 Release**. App updates supply the foundation; users separately manage model versions. This workflow covers generic `ModelBundle` records; dev.9 adopts existing complete GGUF records into the same assets, settings and version management. See [migration](MODEL_MIGRATION.en.md). Unified execution scheduling, every selected adaptation and Android upgrade acceptance remain unfinished.
+Applies to **0.3.0-dev.10 / code 14, an internal checkpoint, not the complete v0.3.0 Release**. App updates supply the foundation; users separately manage model versions. This workflow covers generic `ModelBundle` records; dev.9 adopts existing complete GGUF records into the same assets, settings and version management. See [migration](MODEL_MIGRATION.en.md). [Shared execution](SCHEDULING.en.md) is integrated; selected adaptations and Android upgrade acceptance remain unfinished.
 
 ## Workflow
 
@@ -34,11 +34,11 @@ The native confirmation fingerprint binds both immutable manifests, effective pr
 
 ## Evidence and delivery limits
 
-62 new Java host assertions use real files, arbitrary bytes, the production transfer manager and write failures to cover explicit asset control, integrity failure, restart, stale consent, leases, queued references, atomic activation, sharing and rollback. They are part of 310 foundation checks. The 156 UI checks include the version flow through an explicitly simulated bridge, not model output or Android upgrade acceptance.
+62 new Java host assertions use real files, arbitrary bytes, the production transfer manager and write failures to cover explicit asset control, integrity failure, restart, stale consent, leases, queued references, atomic activation, sharing and rollback. They are part of 310 foundation checks. The 167 UI checks include the version flow through an explicitly simulated bridge, not model output or Android upgrade acceptance.
 
 [Version choice](media/development/17-model-version-choice.png) · [Component differences](media/development/18-model-version-components.png) · [Settings migration](media/development/19-model-version-settings.png) · [Waiting for activation](media/development/20-model-version-ready.png) · [History](media/development/21-model-version-history.png) · [Recording](media/development/foundation-ui.mp4) · [GIF](media/development/foundation-ui.gif). Every frame is labeled UI FIXTURE, not phone execution or model output.
 
-Unified execution scheduling, actual integration of all selected targets, and physical Android A5–A8/A11 acceptance remain unfinished under the same [complete v0.3.0 gates](MULTIMODAL_RELEASE_PLAN.en.md). No new Release has been created.
+Physical scheduling acceptance, actual integration of all selected targets, and Android A5–A8/A11 acceptance remain unfinished under the same [complete v0.3.0 gates](MULTIMODAL_RELEASE_PLAN.en.md). No new Release has been created.
 
 At the historical dev.8 checkpoint, text-bundle reviews also bind effective parameter schemas. First discovering GGUF limits after download invalidates earlier consent; cancel/review again while retaining assets rather than silently activating. 66 text-host checks cover this path; dev.9 subsequently adds the then-missing legacy migration, with phone acceptance still open. See [text bundles](TEXT_ENGINE.en.md).
 

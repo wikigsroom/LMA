@@ -19,7 +19,7 @@ import com.lma.app.core.JobStore;
 import com.lma.app.core.ArtifactStore;
 
 public final class LmaApp extends Application {
-    public static final String VERSION = "0.3.0-dev.9";
+    public static final String VERSION = "0.3.0-dev.10";
     public static final String UPDATE = "com.lma.app.STATE_CHANGED";
     public Store store;
     private final java.util.concurrent.atomic.AtomicBoolean migrationRunning = new java.util.concurrent.atomic.AtomicBoolean(), migrationPending = new java.util.concurrent.atomic.AtomicBoolean();
@@ -35,6 +35,7 @@ public final class LmaApp extends Application {
     public volatile int nativePort;
     public volatile String nativeApiKey = "";
     public final Object requestGate = new Object();
+    public final com.lma.app.core.ExecutionGate execution = new com.lma.app.core.ExecutionGate();
     public String bundleStoreError = "";
     public Chats chats;
     public HubCatalog hub;
@@ -157,7 +158,7 @@ public final class LmaApp extends Application {
             value.put("jobs", jobs == null ? new JSONArray() : jobs.summaries());
             value.put("artifacts", artifacts == null ? new JSONArray() : artifacts.snapshot());
             value.put("localEngines", localEngines == null ? new JSONArray() : localEngines.snapshot());
-            value.put("foundation", new JSONObject().put("status", "development").put("bundleSchema", "lma.model-bundle/1").put("bundleSchemas", new JSONArray().put("lma.model-bundle/1").put("lma.model-bundle/2")).put("error", bundleStoreError).put("bundledWeights", false).put("legacyMigration", new JSONObject().put("running", migrationRunning.get()).put("results", new JSONArray(migrationResults.toString()))));
+            value.put("foundation", new JSONObject().put("status", "development").put("bundleSchema", "lma.model-bundle/1").put("bundleSchemas", new JSONArray().put("lma.model-bundle/1").put("lma.model-bundle/2")).put("error", bundleStoreError).put("bundledWeights", false).put("execution", execution.snapshot()).put("legacyMigration", new JSONObject().put("running", migrationRunning.get()).put("results", new JSONArray(migrationResults.toString()))));
             value.put("api", new JSONObject().put("state", apiState).put("detail", apiDetail).put("textRequestActive", textRequestBusy));
             JSONObject engine = new JSONObject(); engine.put("state", engineState); engine.put("detail", engineDetail);
             engine.put("modelId", engineModel); engine.put("startedAt", engineStarted); engine.put("generating", generating || textRequestBusy); engine.put("externalGenerating", textRequestBusy);

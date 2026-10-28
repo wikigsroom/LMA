@@ -130,7 +130,7 @@ curl http://PHONE_IP:8080/v1/jobs \
   -d '{"bundleId":"USER_SELECTED_BUNDLE_ID","type":"image.generate","input":{"prompt":"A small garden"},"parameters":{"seed":123},"allowUnmeasured":true}'
 ```
 
-当前任务输入只支持 `prompt` / `negativePrompt` 文本，`parameters` 必须为 JSON 对象、`allowUnmeasured` 必须为布尔值；其他输入不被静默忽略，也不会转为网络获取。输入产物引用尚待接入。参数先应用模型 / 配方独立配置，再执行同样的约束与归位；任务保存不可变有效参数。相同幂等键和相同请求返回原任务；改变请求返回冲突。任务重试产生新 ID，历史不被重写。缺资产、缺引擎、资源不足、未授权尝试未测配方均在本机失败，接口不会触发下载。当前媒体任务还要求先停止已加载的文本模型；完整自动调度统一仍在本版待办。
+当前任务输入只支持 `prompt` / `negativePrompt` 文本，`parameters` 必须为 JSON 对象、`allowUnmeasured` 必须为布尔值；其他输入不被静默忽略，也不会转为网络获取。输入产物引用尚待接入。参数先应用模型 / 配方独立配置，再执行同样的约束与归位；任务保存不可变有效参数。相同幂等键和相同请求返回原任务；改变请求返回冲突。任务重试产生新 ID，历史不被重写。缺资产、缺引擎、资源不足、未授权尝试未测配方均在本机失败，接口不会触发下载。媒体任务与文本回复共用执行槽，等待当前回复并自动回收 / 切换引擎；完整设备调度验收仍在本版待办。
 
 文本请求采用所选模型的输出 / 温度默认值，输出上限归位到该模型已保存的限制及上下文边界；不注入 App 系统提示词。只接受受支持的纯文本字段，拒绝媒体 URL、工具等未接入字段和多推理槽。外部文本请求占用期间，App 聊天、模型切换和需要重载的参数变更不能越过占用检查。停止或断开文本连接释放其原生连接；断开任务事件订阅不会取消持久任务，取消必须调用对应端点。
 
@@ -154,6 +154,12 @@ dev.7：通用包的 `/v1/models` 条目增加 `version` 元数据（尚无版�
 
 结果的鉴权 `/v1/artifacts/ID/content` 返回 `application/vnd.lma.text+json`，包含 `schema: lma.text-result/1`、`content`、`reasoning`、`finishReason: stop|length` 和已提供的 `usage` token 计数。输出增量由私有引擎 SSE 消费，公共任务事件仍是阶段 / 状态事件；此异步接口不冒充聊天 token SSE。
 
-`GET /v1/models` 新增通用包的 `parameter_error` 字段；不兼容导入单独报告，不阻断其他模型列表。现有 chat / completions 仍针对已加载旧文本路径。旧记录完整迁移和统一调度未完成；所有队列任务仍须先停止旧常驻文本服务。详见[文本实现与边界](TEXT_ENGINE.md)。
+`GET /v1/models` 新增通用包的 `parameter_error` 字段；不兼容导入单独报告，不阻断其他模型列表。现有 chat / completions 仍针对已加载旧文本路径。dev.9 已接入旧记录本地迁移，dev.10 已接入共用执行槽；完整设备验收仍待完成。详见[文本实现与边界](TEXT_ENGINE.md)。
 
-dev.9 迁移后的旧文本行继续使用原 `id`，并返回 `bundle_id`。异步 `text.generate` 请求明确使用该不可变值作为 `bundleId`；不会自动下载或切换聊天模型。原有同步接口仍要求已加载文本模型，完整调度尚未统一。见[迁移与 ID 规则](MODEL_MIGRATION.md)。
+dev.9 迁移后的旧文本行继续使用原 `id`，并返回 `bundle_id`。异步 `text.generate` 请求明确使用该不可变值作为 `bundleId`；不会自动下载或切换聊天模型。同步接口使用用户已选文本模型，暂时卸载时可等待同一执行槽；其他引擎、输入产物和真机门槛仍待完成。见[迁移与 ID 规则](MODEL_MIGRATION.md)。
+
+## 0.3.0-dev.10：共用执行槽
+
+`GET /health` 增加 `scheduler`：`policy: single_engine_fifo`、`active` 和 `waiting` / `waitingCount`；票据包括 `kind`（load / chat / api / job）、`modelId` 与状态（active / waiting / reaping）。无模型时槽为空，不自动选择或下载。
+
+已选文本模型在媒体任务期间暂时卸载时，同步文本请求可等待槽并恢复原模型。参数在等待前按模型规范化；响应仍为原 JSON / SSE。另一条交互式文本请求活跃或等待时返回忙碌；关闭 API 监听取消等待者，独立异步任务继续。客户端等待可能较长，持续任务使用异步接口。详见[顺序、取消与进程边界](SCHEDULING.md)。

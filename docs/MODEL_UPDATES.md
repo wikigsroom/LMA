@@ -2,7 +2,7 @@
 
 [English](MODEL_UPDATES.en.md) · [HF 组件配方](HF_RECIPES.md) · [开发状态](DEVELOPMENT.md) · [资产边界核对](ASSET_CONTROL_AUDIT.md)
 
-适用：**0.3.0-dev.9 / code 13，内部检查点，尚未发布完整 v0.3.0**。App 更新提供基座；模型版本是用户单独管理的数据。当前流程适用于通用 `ModelBundle`；dev.9 已将原有完整 GGUF 记录接入同一资产、参数与版本管理，详见[迁移指南](MODEL_MIGRATION.md)。统一执行调度、全部模型适配和 Android 升级验收仍待完成。
+适用：**0.3.0-dev.10 / code 14，内部检查点，尚未发布完整 v0.3.0**。App 更新提供基座；模型版本是用户单独管理的数据。当前流程适用于通用 `ModelBundle`；dev.9 已将原有完整 GGUF 记录接入同一资产、参数与版本管理，详见[迁移指南](MODEL_MIGRATION.md)。[共用调度](SCHEDULING.md)已接入；全部模型适配和 Android 升级验收仍待完成。
 
 ## 使用步骤
 
@@ -34,11 +34,11 @@
 
 ## 验证与交付边界
 
-62 项新增 Java 主机检查使用真实文件、任意字节、实际组件传输器和故障写入，覆盖不隐式下载、完整性失败、重启、过期确认、租约、队列保护、原子提交、共享引用与回退；包含在 310 项基座检查中。界面回归现为 156 项，版本流程使用明确的模拟桥接，不是模型输出或 Android 升级验收。
+62 项新增 Java 主机检查使用真实文件、任意字节、实际组件传输器和故障写入，覆盖不隐式下载、完整性失败、重启、过期确认、租约、队列保护、原子提交、共享引用与回退；包含在 310 项基座检查中。界面回归现为 167 项，版本流程使用明确的模拟桥接，不是模型输出或 Android 升级验收。
 
 [选择版本](media/development/17-model-version-choice.png) · [组件差异](media/development/18-model-version-components.png) · [参数迁移](media/development/19-model-version-settings.png) · [待确认切换](media/development/20-model-version-ready.png) · [切换记录](media/development/21-model-version-history.png) · [录屏](media/development/foundation-ui.mp4) · [GIF](media/development/foundation-ui.gif)。所有画面固定标记 UI FIXTURE，非真机、非模型输出。
 
-统一执行调度、全部所选模型的实际适配和物理 Android 的 A5–A8 / A11 仍未完成，继续受同一 [v0.3.0 完整门槛](MULTIMODAL_RELEASE_PLAN.md)约束；没有新 Release。
+调度的真机验收、全部所选模型的实际适配和物理 Android 的 A5–A8 / A11 仍未完成，继续受同一 [v0.3.0 完整门槛](MULTIMODAL_RELEASE_PLAN.md)约束；没有新 Release。
 
 历史 dev.8 检查点中，新文本包的核对指纹还绑定实际有效参数 schema。下载后首次读出的 GGUF 上限会令旧确认失效；取消旧计划并重新核对，已下载资产保留，不静默启用。66 项文本主机检查覆盖此流程；当时尚未接入的旧记录迁移已在 dev.9 加入，手机验收仍待完成。见[文本模型包](TEXT_ENGINE.md)。
 

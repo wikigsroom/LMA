@@ -1,5 +1,12 @@
 # Changelog / 更新记录
 
+## 0.3.0-dev.10 · 2026-10-28 · 内部检查点 / Internal checkpoint
+
+- 常驻文本加载、聊天、同步 API 和异步任务共用 FIFO 执行槽，回复结束再自动切换；空闲恢复用户仍希望运行的模型。Share engine scheduling without model downloads.
+- 取消等待 / 关闭监听 / 停止文本 / 停止服务保持各自归属；旧进程未退出时保留执行槽、资产与临时文件，有限崩溃恢复继续受调度。Preserve cancellation and actual process-exit ownership.
+- 43 项生产调度 / 真实主机子进程 / HTTP 检查及 167 项 UI；双语指南、28 张明确夹具截图与录屏 / GIF 同步。Host evidence does not establish Android or model inference.
+- 完整输入产物、全部所选模型与物理设备门槛仍须在同一 v0.3.0 完成，未创建新 Release。Every complete-release requirement remains.
+
 ## 0.3.0-dev.9 · 2026-10-28 · internal / 内部检查点
 
 - 文档复核：明确复述基座更新 / 用户模型资产 / 四类功能与依赖标签边界，校正双语指南的旧迁移状态与当前检查数量，README 增加直接入口。Documentation-only audit clarifies asset ownership and tags, corrects stale progress and adds README links.

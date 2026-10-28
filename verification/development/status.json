@@ -1,12 +1,12 @@
 {
-  "version": "0.3.0-dev.9",
+  "version": "0.3.0-dev.10",
   "kind": "development_checkpoint",
   "release_ready": false,
   "published": false,
   "physical_device_tests": 0,
   "model_inference_tested": false,
   "all_selected_models_supported": false,
-  "scope": "actual host legacy model migration, hardlinks, fixed aliases and shared leases without auto-resume; host GGUF text bundle constraints, typed text artifacts and actual loopback HTTP/child fixtures, host storage/transfers, user-reviewed atomic model version changes/rollback and HF component recipes/Git integrity, explicit adapter pairing/leases, speech worker contracts/child fixtures, Nano native external-data validation and private hardlink workspaces, authenticated HTTP/streams/text proxy, UI fixtures, native compilation and APK/lint checks only",
+  "scope": "shared FIFO scheduling across production jobs, resident text, chat and HTTP with actual host child ownership and cancellation; actual host legacy model migration, hardlinks, fixed aliases and shared leases without auto-resume; host GGUF text bundle constraints, typed text artifacts and actual loopback HTTP/child fixtures, host storage/transfers, user-reviewed atomic model version changes/rollback and HF component recipes/Git integrity, explicit adapter pairing/leases, speech worker contracts/child fixtures, Nano native external-data validation and private hardlink workspaces, authenticated HTTP/streams/text proxy, UI fixtures, native compilation and APK/lint checks only",
   "required_scope": "docs/MULTIMODAL_RELEASE_PLAN.md",
   "sources": {
     "build-info.json": "dist/build-info.json",
@@ -15,6 +15,7 @@
     "tts.json": "build/tts-tests/results.json",
     "text.json": "build/text-tests/results.json",
     "migration.json": "build/migration-tests/results.json",
+    "scheduler.json": "build/scheduler-tests/results.json",
     "moss-nano.json": "build/moss-nano-tests/results.json",
     "api.json": "build/api-tests/results.json",
     "backend.json": "build/backend-tests/results.json",

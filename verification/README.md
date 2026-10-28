@@ -27,3 +27,5 @@ See [validation / 验证](../docs/VALIDATION.en.md), [Chinese audit / 完成条�
 内部 dev.8 验证另见 [development/status.json](development/status.json) 与 [text.json](development/text.json)：310 基座、66 新增文本主机、147 界面检查，0 真机结果，不替代上面的公开 v0.2.0 历史记录。Internal dev.8 evidence stays separate from published history and does not establish full-release acceptance.
 
 内部 dev.9 的 [migration.json](development/migration.json) 是 69 项真实主机文件 / 硬链接 / 子进程检查；使用零 tensor 元数据与固定协议内容，不是 Android、真实模型输出或完整版本证明。 / Internal dev.9 migration evidence remains explicitly host-only.
+
+开发 dev.10 增加 [scheduler.json](development/scheduler.json)：43 项生产任务运行器、真实主机子进程与回环 HTTP 调度检查；明确 `physical_android=false` / `model_inference=false`。Production scheduler host evidence is separate from pending physical-Android/model acceptance.

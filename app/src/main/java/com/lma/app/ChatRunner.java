@@ -1,6 +1,7 @@
 package com.lma.app;
 
 import com.lma.app.core.Protocol;
+import com.lma.app.core.ExecutionGate;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import java.io.InputStreamReader;
@@ -21,7 +22,7 @@ public final class ChatRunner {
         text = text.trim();
         if (text.isEmpty() || text.length() > 12000) throw new IllegalArgumentException("请输入 1–12000 个字符");
         if (app.generating || app.textRequestBusy) throw new IllegalStateException("上一条回复仍在生成");
-        if (!owner.engine.ready()) throw new IllegalStateException("请先加载一个模型");
+        if (!owner.engine.wanted()) throw new IllegalStateException("请先选择并加载一个本地模型");
         JSONObject settings = app.settings(app.engineModel); String session = app.chats.session();
         if (session.isEmpty()) session = app.chats.create(app.engineModel);
         JSONArray history = app.chats.history(session, settings.getInt("context"));
@@ -35,19 +36,21 @@ public final class ChatRunner {
         JSONObject request = new JSONObject(); request.put("model", app.engineModel).put("messages", messages).put("stream", true)
                 .put("max_tokens", settings.getInt("maxTokens")).put("temperature", settings.getDouble("temperature"))
                 .put("stream_options", new JSONObject().put("include_usage", true));
+        final ExecutionGate.Ticket slot = app.execution.enqueue("chat", app.engineModel);
         cancelled = false; app.generating = true; app.emit(); owner.activityChanged();
-        worker.execute(() -> generate(request, responseId));
+        worker.execute(() -> generate(request, responseId, slot));
         }
     }
     public void cancel() { cancelled = true; HttpURLConnection active = connection; if (active != null) active.disconnect(); }
     public void close() { cancel(); worker.shutdown(); }
-    private void generate(JSONObject request, String responseId) {
+    private void generate(JSONObject request, String responseId, ExecutionGate.Ticket slot) {
         long started = System.currentTimeMillis(); StringBuilder text = new StringBuilder(), reasoning = new StringBuilder();
         final int[] tokens = {0}; final boolean[] done = {false}; final long[] lastFlush = {0};
         String status = "done", errorMessage = "";
         HttpURLConnection active = null;
         try {
-            if (cancelled) throw new java.io.InterruptedIOException("生成已取消");
+            ExecutionGate.Check check = () -> { if (cancelled || Thread.currentThread().isInterrupted()) throw new java.io.InterruptedIOException("生成已取消"); };
+            slot.await(check); owner.engine.ensureReady(slot, request.getString("model"), check); check.run();
             active = Net.engine(app, "/v1/chat/completions"); connection = active;
             if (cancelled) throw new java.io.InterruptedIOException("生成已取消");
             active.setRequestMethod("POST"); active.setDoOutput(true); active.setRequestProperty("Content-Type", "application/json; charset=utf-8"); active.setRequestProperty("Accept", "text/event-stream");
@@ -88,7 +91,8 @@ public final class ChatRunner {
             if (cancelled) status = "stopped";
             if (active != null) active.disconnect(); connection = null;
             app.chats.update(responseId, text.toString(), reasoning.toString(), status, errorMessage, tokens[0], System.currentTimeMillis() - started);
-            app.generating = false; app.emit(); owner.activityChanged();
+            synchronized (app.requestGate) { app.generating = false; }
+            slot.close(); owner.engine.resumeIfIdle(); app.emit(); owner.activityChanged();
         }
     }
 }

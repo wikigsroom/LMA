@@ -34,3 +34,5 @@ dev.7 [independent updates](MODEL_UPDATES.en.md) add 62 host assertions covering
 dev.8 adds [user-selected text bundles](TEXT_ENGINE.en.md) using shared jobs/artifacts, without selecting/migrating old weights or downloading text models on App upgrade. 66 added text-host checks and 147 UI checks do not replace A11 physical install/upgrade evidence.
 
 Dev.9 [existing-model migration](MODEL_MIGRATION.en.md) reuses verified local hardlinks, preserves IDs/sources/profiles and exposes shared tasks/versions from original details. Incomplete transfers stay paused until explicit resume. 69 host migration and 156 UI checks pass; physical-Android A11 upgrade acceptance remains open.
+
+Dev.10 [shared execution](SCHEDULING.en.md) unifies resident text, chat/API and jobs under the same process/cancellation boundary. 43 host assertions cover user-asset reuse, switching and retained stop intent, without model downloads or complete model/device acceptance.

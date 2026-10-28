@@ -1,5 +1,5 @@
 {
-  "passed": 156,
+  "passed": 167,
   "checks": [
     "Initial curated recommendations",
     "375px model library layout",
@@ -149,6 +149,17 @@
     "Existing text model opens the same typed task form as other modalities",
     "Shared job submission fixes the migrated immutable bundle ID",
     "Migration retains the existing Recommended order and original record IDs",
+    "Suspended resident remains selected with a waiting label",
+    "A suspended selected resident is not offered as a new load action",
+    "Chat can queue for an explicitly selected suspended model",
+    "Composer explains automatic slot waiting",
+    "Model picker explains shared scheduling",
+    "User can stop a resident while it is temporarily suspended",
+    "Waiting chat is distinguished from active token generation",
+    "Waiting reply retains its cancellation control",
+    "Runtime status explains the queued reply",
+    "Shared execution waiting state",
+    "A user-stopped model cannot enqueue a new chat",
     "Tablet library layout",
     "Short landscape server layout",
     "320px narrow phone layout",
@@ -164,11 +175,11 @@
   "emulatorUsed": false,
   "input_fingerprint": {
     "app/src/main/assets/app.css": "f2cb7b5ee9de8f3afac793e694dcf9fde0a855c0d4c7053ff986cc2a6d2bd3b1",
-    "app/src/main/assets/app.js": "aad7362048c62c353b7bd2d1538be7c80af0beaf3fec00977e508eefc3490760",
+    "app/src/main/assets/app.js": "88281b37d21cb8faaa01d39d22aa3cb3d3c0d9fcfc2fbeb949bd546da703d446",
     "app/src/main/assets/engine-builds.json": "bdb4aa0d090bae260499f766fe5d8f84cb225cfdf6e00439de95427690835abf",
     "app/src/main/assets/foundation.css": "c3983ed065510f07fd78987b5644b2730df681ee64078c660893c18ed38d7f21",
-    "app/src/main/assets/foundation.js": "3214f5a63b9ac5ccf03d51b3367f824e9695eda63ff80d31d7655b46ca304f07",
-    "app/src/main/assets/index.html": "9eed14fbffcfd3620f1ff6852203e6b2b445d43ae393eec0c6e8ef77c57458bf",
+    "app/src/main/assets/foundation.js": "7d6ca653fefd315bd16e4e51b63bc303b7f2e744b5a9563ad3e3473ba96e9011",
+    "app/src/main/assets/index.html": "e0a50f837dd6224448f9f78e8a996903198d47d614f49ca6bb4a76d6b62a5520",
     "app/src/main/assets/license.js": "1c814e25648a624a68de26d0614ef0ac9799db94edd8cd3835a07e77156d51e0",
     "app/src/main/assets/licenses/LLAMA_CPP_LICENSE": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
     "app/src/main/assets/licenses/LMA_LICENSE": "6ae3f5efa412d91cbf66e44f743e5ce41a8044309d05d893365206ab9bc35fc3",
@@ -235,8 +246,9 @@
     "tests/hub-fixture.cjs": "5b3cb88b7fd4c45d26ce92e8598a1c3837a12b02eb898f67c9be10da2910ab83",
     "tests/migration-ui.cjs": "6843bdcf1783795ed10cccc8b200aee40188e8a1fe950f8d23027d828ff6b3b4",
     "tests/recipes-ui.cjs": "d45ab6a198b33df8cc8e3e5e0928b9cf3e6ddedb50a7e646bea38e0897243154",
+    "tests/scheduler-ui.cjs": "3b89c2121953c6e17e2e978a3639915ba1d1b799750e85f38d6e104d8b7e0599",
     "tests/text-ui.cjs": "bc5969aa9329380b590a6055daa6fe1177f956f73bb212a18cf19d2b6576b8db",
-    "tests/ui-smoke.cjs": "e58a12a88ba8953164c112ba8b2f2bc3b2e5bbb685a2fd154f271ae0c75ab4e9",
+    "tests/ui-smoke.cjs": "6698cb198e516a956f1c5b42bba7628411bbceb54ed06747cc217f8ce91795f7",
     "tests/versions-ui.cjs": "13f6e194c00fa3a819c44da35788aa28b94ba05325e3f2b1257350c04b67babd"
   }
 }

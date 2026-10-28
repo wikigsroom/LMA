@@ -26,6 +26,7 @@ python tools/build.py
 python tools/test_protocol.py
 python tools/test_text.py
 python tools/test_migration.py
+python tools/test_scheduler.py
 python tools/test_backend.py
 python tools/test_hub.py --live
 python tools/test_sqlite.py
