@@ -1,0 +1,25 @@
+{
+  "kind": "host_compile",
+  "executable_bytes": 3443200,
+  "executable_sha256": "665e5e3d288659b69459ece4dd440a4a9aea209f18b54e23ceafde808e96758c",
+  "llama_revision": "b29c606e28a01b1bc8c1351026a0fa6e616bf6c4",
+  "backend": "cpu",
+  "engine_registered": false,
+  "packaged_in_apk": false,
+  "model_inference": false,
+  "physical_android": false,
+  "virtualization_used": false,
+  "input_fingerprint": {
+    "research/ltx098_text/CMakeLists.txt": "695f191d631418b8c40fd7bf3887c10b316f92b15ad83d25568a7b06b50defda",
+    "research/ltx098_text/driver.cpp": "a81c396c91bf3c8da41ac2eb79ded04754737f553f46451228902504fef971eb",
+    "research/ltx098_text/encoder.cpp": "be727fc2645184560c25a2f6f90f30d780ae86b099716d67b2e8dd225b1009e6",
+    "research/ltx098_text/encoder.hpp": "592fe2f896174e69e807ce9a4343a2a1da54b523b3ccad0fa337f6d34b6cfbc1",
+    "research/ltx098_text/graph.cpp": "a17f97e9b932c302d3a7e8c1ca7020696ed765a4ddda51fefca9288d7b886190",
+    "research/ltx098_text/graph.hpp": "ae16035400caedb79f33db97497e6588f071901bd0935f7646e0e3b02bc7e36a",
+    "research/ltx098_text/licenses/llama-MIT.txt": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
+    "research/ltx098_text/NOTICE": "176bd96eed8972ba6a9c4bdebf9f19b166397c0eb50717be77547056ad974db4",
+    "third_party/ltx098-text-source-lock.json": "04b2f7892a4f047363fbaf3ba555682bf201c8320fa1cc7f4d5a68b2884512f4",
+    "tools/build_ltx098_text.py": "c9c7a6f1c619e9ab15d95baf9a53d8854cbe217a698b22e102cdf1cd7cf18b85",
+    "tools/fetch_ltx098_text.py": "55782095a1b941dc809b33966f62aeffda1b2ca0c719033610432ec00599b577"
+  }
+}

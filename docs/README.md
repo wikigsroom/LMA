@@ -88,3 +88,5 @@
 - 旧LTX 0.9.8原生DiT：[中文](LTX098_DIT.md) / [English](LTX098_DIT.en.md)；[编号实现与完整待办](releases/v0.3.0-dev.21-ltx-dit.md)。675检查 /80主机子进程 /48原始PyTorch比对；CPU /Vulkan、全28层小宽度未训练网络与独立ARM64编译，不是完整训练视频或Android执行。
 
 - 旧LTX用户资产转换与原生采样：[中文](LTX098_SAMPLING.md) / [English](LTX098_SAMPLING.en.md) / [编号交付与完整待办](releases/v0.3.0-dev.21-ltx-sampling.md)。692检查 /58原生子进程 /111误差记录；完整训练28层Vulkan latent对照与ARM64采样编译分别记录，无T5 /VAE /视频 /App /手机结论。
+
+- 旧LTX T5文本组件：[中文](LTX098_TEXT.md) / [English](LTX098_TEXT.en.md) / [本轮编号已实现与完整待办](releases/v0.3.0-dev.21-ltx-text.md)。491检查 /76原生子进程；完整训练T5主机embedding、原始外部分词配置与独立ARM64编译，完整视频 /App /手机仍待验收。

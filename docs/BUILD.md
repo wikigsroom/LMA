@@ -123,3 +123,5 @@ SoulX生产worker原生构建：`build_soulx.py`（主机）→ `build_soulx.py 
 旧LTX 0.9.8研究组件构建：显式 `fetch_native.py` → `fetch_ltx098.py --python-dependencies` → `test_ltx098.py`（顺序CPU /Vulkan）→ `build_ltx098.py --android --vulkan`，命令均在 `tools/`。项目内锁定新版Windows shaderc及Vulkan /SPIRV headers，原生MSVC /NDK，无虚拟化；临时SUBST在finally移除，构建不可并发。只准备代码 /开发工具，不获取模型权重，不打包到APK。精确依赖、F32 shader策略与范围见[中文](LTX098_DIT.md) / [English](LTX098_DIT.en.md)。
 
 旧LTX训练采样的[独立复现步骤](LTX098_SAMPLING.md)补充显式 `fetch_ltx098_trained.py --download`、本地 `export_ltx098.py`、未训练 /训练 `ltx098_sampling_oracle.py` 与 `test_ltx098_sampling.py --trained --skip-build`。均在 `tools/`，缺件不补下载；模型缓存不入APK。原生构建顺序执行，两份ARM64 ELF分别核验；开发者真实检查点与完整用户下载候选 /Android验收保持区分。
+
+旧LTX T5组件按[中文复现](LTX098_TEXT.md)显式准备量化encoder与原始外部分词配置，再顺序执行 `tools/build_ltx098_text.py`、`tools/ltx098_text_oracle.py --trained`、`tools/test_ltx098_text.py --trained`、`tools/build_ltx098_text.py --android`。默认不获取任何模型；开发依赖 /模型缓存均在项目内，无虚拟化，不进入APK。CLI必须单独传入原始tokenizer_config；临时F32矩阵缓冲复用与主机 /Android证据分别说明。

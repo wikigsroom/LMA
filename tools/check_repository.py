@@ -119,7 +119,39 @@ def main():
         assert ltx_arm["sampler_elf"]["machine"] == "aarch64" and ltx_arm["sampler_elf"]["16k_elf_aligned"] and ltx_arm["sampler_elf"]["android_api_notes"] == [28]
         assert ltx_arm["sampler_elf"]["needed"] == ltx_arm["elf"]["needed"] and ltx_arm["sampler_elf"]["interpreter"] == "/system/bin/linker64"
         assert status["ltx098_native_sampling_host_tested"] and status["ltx098_trained_dit_latent_host_tested"]
-        assert not status["ltx098_t5_executed"] and not status["ltx098_vae_executed"]
+        assert status["ltx098_t5_executed"] and status["ltx098_t5_host_tested"] and status["ltx098_t5_android_compiled"]
+        assert not status["ltx098_t5_android_tested"] and not status["ltx098_vae_executed"]
+        text = records["ltx098-text.json"]
+        text_lock = json.loads((ROOT / "third_party/ltx098-text-source-lock.json").read_text(encoding="utf-8"))
+        assert text["checks"] >= 491 and text["actual_native_children"] >= 76 and text["negative_guards"] >= 39
+        assert text["tokenization_cases"] == 27 and text["untrained_cases"] == 8 and text["padding_comparisons"] == 6
+        assert text["host_model_inference_tested"] and len(text["metrics"]) == 12 and text["numerical_gates"] == text_lock["numerical_gates"]
+        for metric in text["metrics"]:
+            prefix = "trained" if metric["trained"] else "untrained"
+            assert metric["max_abs"] <= text_lock["numerical_gates"][prefix + "_max_abs"] and metric["rmse"] <= text_lock["numerical_gates"][prefix + "_rmse"]
+            if metric["trained"]:
+                assert metric["relative_rmse"] <= text_lock["numerical_gates"]["trained_relative_rmse"] and metric["min_token_cosine"] >= text_lock["numerical_gates"]["trained_min_token_cosine"]
+        assert text["trained"]["model"] == text_lock["model"] and text["trained"]["evaluated_tensors"] == 219
+        assert text["trained"]["tensor_parameters"] == 4762310656
+        buffers = text["trained"]["native_buffers"]
+        assert buffers["mapped_file_bytes"] == text_lock["model"]["bytes"] and buffers["tensor_bytes"] == 3385823232 and 0 < buffers["peak_compute_bytes"] < 1024**3
+        assert text["trained"]["native_inputs"] == 4 and text["trained"]["distinct_prompts"] == 3 and text["trained"]["actual_neural_cancellation"]
+        assert not text["trained"]["original_unquantized_weights_compared"] and not text["trained"]["prompt_quality_tested"] and not text["trained"]["video_quality_tested"]
+        identity = text["vocabulary_identity"]
+        assert identity["learned_tokens_compared"] == identity["learned_scores_compared"] == 32000 and identity["sentinel_definitions_from_external_config"] == 100
+        assert identity["normalized_charsmap_bytes"] == 237539 and identity["gguf_sentinel_names_missing"]
+        memory = text["trained"]["host_process_memory"]
+        assert memory["observed"] and memory["samples"] > 0 and memory["observed_peak_working_set_bytes"] > 0 and not memory["gpu_memory_measured"]
+        for key in ["android_model_inference_tested", "engine_registered", "packaged_in_apk", "complete_video_tested", "physical_android", "remote_inference", "virtualization_used"]: assert not text[key]
+        oracle = text["oracle"]; current(oracle["input_fingerprint"])
+        assert len(oracle["artifacts"]) == text["oracle_artifact_files"] == 49
+        assert text["observed_stage_counts"]["t5_compute"] >= 15 and text["observed_stage_counts"]["t5_encode_done"] >= 15
+        for name, artifact in oracle["artifacts"].items():
+            assert Path(name).name == name and artifact["bytes"] > 0 and re.fullmatch(r"[a-f0-9]{64}", artifact["sha256"])
+        text_arm = records["ltx098-text-arm64.json"]
+        assert text_arm["android_arm64_compiled"] and text_arm["android_platform"] == 28 and text_arm["runtime_files"] == text_lock["android_runtime_files"]
+        assert text_arm["elf"]["machine"] == "aarch64" and text_arm["elf"]["16k_elf_aligned"] and text_arm["elf"]["android_api_notes"] == [28]
+        assert not text_arm["network_process_imports"] and not text_arm["physical_android"] and not text_arm["packaged_in_apk"] and not text_arm["engine_registered"]
         soulx = records["soulx-dsp.json"]
         assert soulx["passed"] >= 155 and soulx["actual_host_children"] >= 49 and soulx["guard_assertions"] >= 31
         assert soulx["actual_upstream_function_bodies"] and soulx["native_library_under_test"] and not soulx["apk_runtime_used"]

@@ -195,3 +195,7 @@ Internal dev.19 / 内部 dev.19：[旧 Local / Realtime 原生 RQ](MOSS_RQ_ENGIN
 ## dev.21 源码后续：旧 LTX 显式资产与训练采样
 
 [中文方案 /复现](LTX098_SAMPLING.md) / [English](LTX098_SAMPLING.en.md) / [编号交付与全部待办](releases/v0.3.0-dev.21-ltx-sampling.md)。固定完整旧0.9.8检查点 /流式DiT GGUF转换 /旧坐标与布局 /八步RF；692项检查、58个真实原生子进程、111个误差记录通过，含完整训练28层Vulkan velocity与八步latent官方对照，原有675项DiT回归通过。训练结果使用人工caption embeddings，未执行T5 /VAE /视频 /App /真机；主机内存采样不含GPU /系统总占用。ARM64 probe /sampler仅编译；APK /UI媒体仍dev.21。全部冻结模型 /子目标、F-01–F-12、质量 /资源 /后台与完整Release门槛均保留，不拆版。
+
+## dev.21 源码后续：旧 LTX T5
+
+[中文方案](LTX098_TEXT.md) / [English](LTX098_TEXT.en.md) / [编号交付与完整待办](releases/v0.3.0-dev.21-ltx-text.md)。491检查 /76真实原生子进程 /39防护通过；完整训练24层T5的三个短提示词及一次重复、219张量 /4,762,310,656参数与独立解量化参考对照，最大误差3.27826e-6。外部原始配置补齐社区GGUF缺失的sentinel定义，全部32000学习词条 /分数与归一化表一致。临时F32矩阵执行避免额外Q8舍入，原生计算中取消通过；ARM64/API28/16KiB仅编译。No complete video/App/physical Android, unquantized/prompt quality or full trained256-token completion is claimed. APK/UI media remain dev.21; every frozen model/subtarget and full v0.3.0 gate remains.

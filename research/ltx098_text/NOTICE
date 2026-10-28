@@ -1,0 +1,12 @@
+LMA old LTX 0.9.8 T5 encoder research component
+
+This standalone, unregistered component uses llama.cpp under the MIT license.
+Pinned upstream source and the original license are recorded in
+third_party/ltx098-text-source-lock.json and licenses/llama-MIT.txt.
+
+No learned weights, tokenizer vocabulary, SentencePiece model, or normalization
+character map is included here or added to the APK. Model assets remain external
+and require an explicit developer download or a future explicit user selection.
+The city96 quantized T5 encoder and Google reference tokenizer are Apache-2.0
+model assets with separate pinned provenance. This component does not establish
+an operational video pipeline, App route, or physical Android compatibility.

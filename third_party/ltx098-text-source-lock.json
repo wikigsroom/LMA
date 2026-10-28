@@ -1,0 +1,145 @@
+{
+  "schema": "lma.ltx098-text-source/1",
+  "scope": "Unregistered native T5 v1.1 XXL per-token encoder research; not an App video route or physical phone evidence",
+  "source": {
+    "name": "llama-soulx",
+    "url": "https://github.com/ggml-org/llama.cpp.git",
+    "revision": "b29c606e28a01b1bc8c1351026a0fa6e616bf6c4",
+    "license": "MIT",
+    "reviewed_files": {
+      "LICENSE": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
+      "include/llama.h": "bace72539125f3a2bcf7f71392cf7cc4ae1bd3988535fca16c04a97e531a27ed",
+      "ggml/include/ggml-backend.h": "0305a9742164ae118ef0490a720971934938c9e62cb174ccd68babf1992fa9c0",
+      "src/llama-context.cpp": "081e33f904c2d554cbca12156f5af688886e38b39e87a72785cf07166945ef96",
+      "src/llama-vocab.cpp": "489428e40cf7be874ad813859fe06082d8ae9a875a73600fdf50fe1d20add649",
+      "src/models/t5.cpp": "c306ada361bcb9ebb2dc7876663f478ea5394e64600cb163a7c9c215178561d0",
+      "src/models/t5encoder.cpp": "8665120c869581dae16c08f364f35aa190b6fbdb89c3085223ee5ad205e77b41",
+      "src/llama-graph.cpp": "000c88afa5ebd4f1d20821054ef9dc4d10a0c9cea4f440d179eaea8723ad8dee",
+      "gguf-py/gguf/quants.py": "123b9d5741ede6ca8a321d7e08d43c8a0bd9fb53ec4f786323f5d9b9a214b4e8",
+      "gguf-py/gguf/gguf_reader.py": "495f86fe509eddef80b22e0d861de14d51ce5df01c5a584c63ddc302166eda8b",
+      "gguf-py/gguf/gguf_writer.py": "f8c0af3fb9191c709cfd5ad7cf54010c98dbda8a00e7b835673e046a878c973d",
+      "gguf-py/gguf/tensor_mapping.py": "e772d63592e74f0c4584b308512e1a1032b7c2cf0150fe5e95023fc9d5845147",
+      "ggml/include/ggml.h": "d22dd1518f96a3388043a5beec2aaaf73004d34b083ff3878bad6229139aac91",
+      "ggml/include/ggml-alloc.h": "cebaa6e6322e0ce47155c3969b485cac06892fbfcee84e9c5d54b043b5e90d3a",
+      "ggml/include/gguf.h": "4ae33e92cfe908a6068f2c5c9efe714d3290391aab0472d5d43edd6a8b00db2d",
+      "ggml/src/ggml-cpu/vec.h": "8817801355b20079de39fd4c67c7453ca2033cdb69fc5bd1f71bb66f12f57318",
+      "ggml/src/ggml-cpu/ops.cpp": "e9d5fc74be2a250894c603e1b982dfb016fc9972ac296ac063db06f974d82321",
+      "ggml/src/ggml-backend.cpp": "803298af097545b4b611df53a2e9ac39f43c18c095c0d3b4c879d2ae911a2d79"
+    }
+  },
+  "json_header_sha256": "2dd8db723cff3e44198e14d6038ea6443dc6171a564bb82cd6ee81f0edc316e5",
+  "android_runtime_version": "0.4.1",
+  "android_runtime_files": [
+    {
+      "name": "libllama.so",
+      "size": 3264464,
+      "sha256": "b93e6abb9088bfb50ca1986200654fddec722c0910dbf2a2000d3496e73a9449"
+    },
+    {
+      "name": "libggml-cpu-android_armv8.0_1.so",
+      "size": 871048,
+      "sha256": "5eec51b25c2835bd6bd62a29d0b9ac07ce7fadcbeb679d00ecf184128a2cf8d4"
+    },
+    {
+      "name": "libggml.so",
+      "size": 668680,
+      "sha256": "e858a7c58ce22a7cec4c1e18d0b1772680e52ef833ea7822a4500c659a0774b8"
+    },
+    {
+      "name": "libggml-base.so",
+      "size": 1080864,
+      "sha256": "5e79542e713d0f4fa633cb987ad1a4a95bc1b64531e88305e3a41c6213aaf1a9"
+    }
+  ],
+  "model": {
+    "repo": "city96/t5-v1_1-xxl-encoder-gguf",
+    "revision": "005a6ea51a7d0b84d677b3e633bb52a8c85a83d9",
+    "file": "t5-v1_1-xxl-encoder-Q5_K_M.gguf",
+    "bytes": 3386856640,
+    "sha256": "b51cbb10b1a7aac6dd1c3b62f0ed908bfd06e0b42d2f3577d43e061361f51dae",
+    "license": "Apache-2.0",
+    "official_ltx_quantization": false
+  },
+  "oracle_assets": [
+    {
+      "repo": "google/t5-v1_1-xxl",
+      "revision": "3db67ab1af984cf10548a73467f0e5bca2aaaeb2",
+      "file": "config.json",
+      "bytes": 593,
+      "sha256": "a58c2192a7166501ad2382c3d7ca3d694a1259b71a23a1925887e5afe7adcbd8",
+      "blob_id": "5a439fe1a8c4a05c6b1e4bf6a11821b497bf0136",
+      "license": "Apache-2.0"
+    },
+    {
+      "repo": "google/t5-v1_1-xxl",
+      "revision": "3db67ab1af984cf10548a73467f0e5bca2aaaeb2",
+      "file": "special_tokens_map.json",
+      "bytes": 1786,
+      "sha256": "4720c0fddbe4c5991334f85ad7073d9bd0a294a8ba4641a2f8dab614ca825949",
+      "blob_id": "881bdbffc06e471924ecea57f962bc5f8e2a9f21",
+      "license": "Apache-2.0"
+    },
+    {
+      "repo": "google/t5-v1_1-xxl",
+      "revision": "3db67ab1af984cf10548a73467f0e5bca2aaaeb2",
+      "file": "spiece.model",
+      "bytes": 791656,
+      "sha256": "d60acb128cf7b7f2536e8f38a5b18a05535c9e14c7a355904270e15b0945ea86",
+      "blob_id": "4e28ff6ebdf584f5372d9de68867399142435d9a",
+      "license": "Apache-2.0"
+    },
+    {
+      "repo": "google/t5-v1_1-xxl",
+      "revision": "3db67ab1af984cf10548a73467f0e5bca2aaaeb2",
+      "file": "tokenizer_config.json",
+      "bytes": 1857,
+      "sha256": "b971dce1d2805c2a66da8657156e7114a30501c6ba602fc947c8bf607a3ead2d",
+      "blob_id": "b114c318caf72f6e89ea92e0755c41327a453198",
+      "license": "Apache-2.0"
+    }
+  ],
+  "oracle_dependencies": {
+    "transformers": {
+      "version": "5.17.0",
+      "files": {
+        "__init__.py": "2725cadd5afaa29b2a12faec1960cb7ac1df77dc76d655310efb33d4607b35f5",
+        "models/t5/modeling_t5.py": "29bcef07c5350c2d044a697db5b87dbca90a9b9fa30eedb79f7122e6ce38f9f8",
+        "models/t5/configuration_t5.py": "5cdcc0a40ffb58656090d021e45feffe5ca79c4e51e51e8bac11a7aaba3259d9",
+        "models/t5/tokenization_t5.py": "6fa6696aa2bf6bf40bcd7c7aea81b5b581e365ada45c6d7768d53609174496d5",
+        "activations.py": "5b20c0a3625edc0001a98f09ce3c6b5baa1100e1d7ad8dee649e4d45c8468665",
+        "masking_utils.py": "50a737f63d8c778a5597fa34ac139049af921f44958205e3e1c29fe2bae77254",
+        "modeling_attn_mask_utils.py": "79b15556230bc6ef3ebfa50c53e8ddf91c1587202dd965f49c79519a7306d05f",
+        "modeling_utils.py": "38c2bd02ed7af229f54e2f02dae65663be7af29ed2c9498bd1c460cf60fbb62d",
+        "configuration_utils.py": "02826ac9e987487b645135d8f1d747f60a7e567d1b8f72327de8514d02b6f15d"
+      }
+    },
+    "torch": "2.14.0+cpu",
+    "numpy": "2.4.2",
+    "sentencepiece": "0.2.1"
+  },
+  "numerical_gates": {
+    "untrained_max_abs": 0.005,
+    "untrained_rmse": 0.001,
+    "trained_max_abs": 0.5,
+    "trained_rmse": 0.03,
+    "trained_relative_rmse": 0.025,
+    "trained_min_token_cosine": 0.999
+  },
+  "scope_flags": {
+    "weights_in_apk": false,
+    "tokenizer_in_apk": false,
+    "automatic_download": false,
+    "engine_registered": false,
+    "complete_video": false,
+    "physical_android": false
+  },
+  "runtime_tokenizer_config": {
+    "repo": "google/t5-v1_1-xxl",
+    "revision": "3db67ab1af984cf10548a73467f0e5bca2aaaeb2",
+    "file": "tokenizer_config.json",
+    "bytes": 1857,
+    "sha256": "b971dce1d2805c2a66da8657156e7114a30501c6ba602fc947c8bf607a3ead2d",
+    "blob_id": "b114c318caf72f6e89ea92e0755c41327a453198",
+    "license": "Apache-2.0"
+  }
+}

@@ -1,5 +1,12 @@
 # Changelog / 更新记录
 
+
+## dev.21 source follow-up — old LTX T5 / unreleased
+
+新增完整24层T5原生CPU文本编码组件：外部量化存储 /原始tokenizer配置、全部32000学习词条与归一化身份、F32 GELU /临时矩阵解量化、raw embedding /mask、实际计算中取消与输出保护。491检查 /76真实原生子进程 /39防护通过；219张量 /4,762,310,656参数与独立解量化参考对照，训练最大误差3.27826e-6；ARM64/API28/16KiB编译单独核验。
+
+Full trained T5 host execution with three short prompts and a repeated call, original external sentinel definitions,49 independently hashed oracle artifacts, bounded temporary matrix buffers and separate host process-memory counters. No weights/vocabulary or research executable enters APK; no unquantized-weight/prompt quality, full trained256-token completion, VAE/video/App/phone acceptance is claimed. APK/UI media staydev.21; the complete frozenv0.3.0 remains one release. [中文](docs/LTX098_TEXT.md) / [English](docs/LTX098_TEXT.en.md) / [numbered implemented/pending handoff](docs/releases/v0.3.0-dev.21-ltx-text.md).
+
 ## dev.21 source follow-up — old LTX trained DiT sampling / unpublished
 
 固定完整旧0.9.8训练检查点，显式下载 /断点 /完整SHA核对，本地逐张量DiT GGUF转换；新增旧坐标 /unpatchify /精确8步RF与逐步事件 /取消。692检查 /58真实原生子进程 /111误差记录通过，含完整715张量 /28层训练Vulkan前向及8步latent官方对照；原有675项回归通过，ARM64 probe /sampler分别编译核验。训练最终latent最大误差3.57628e-6，人工caption embeddings未运行T5 /VAE，不是视频输出或手机验收。
