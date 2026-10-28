@@ -93,3 +93,5 @@ MOSS Delay 的原生算法提取 / CPU worker / 许可见 [中文](MOSS_DELAY_EN
 dev.17 新增检查 `python tools/test_openmoss.py`；其主机子进程、结构 WAV 与上游数学检查不替代新输入断网模型输出或任何物理 Android 门槛。每轮开发交付需编号表格列出本轮实现与仍待完成项。The new openmoss checks remain scoped host evidence; each development handoff includes numbered implemented/pending tables without reducing the complete release scope.
 
 SoulX DSP 源码后续更新不新增 APK / Release：执行 `python tools/test_soulx_dsp.py` 和 `python tools/build_soulx_dsp.py`，由开发导出与仓库检查记录未注册静态库及数值证据。它不关闭13号完整模型门槛。The unregistered source library adds scoped evidence only; it does not close target13 or any phone/Release gate. See [中文](SOULX_DSP.md) / [English](SOULX_DSP.en.md).
+
+SoulX声学后续同样不发布 APK / Release：运行 `python tools/test_soulx_acoustic.py`、`python tools/build_soulx_acoustic.py`，并重跑 DSP检查和 ARM64静态编译后导出开发证据。完整结构未训练夹具、原生 ORT主机运行 / 真正终止和 ARM64编译分别核对；不能关闭13号整模型或手机门槛。The acoustic follow-up remains unregistered and does not alter complete Release gates. See [中文](SOULX_ACOUSTIC.md) / [English](SOULX_ACOUSTIC.en.md).

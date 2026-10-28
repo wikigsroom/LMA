@@ -1,5 +1,11 @@
 # Changelog / 更新记录
 
+## dev.20 source follow-up — full SoulX acoustic networks / unpublished
+
+新增完整 Flow / HiFT四图离线导出与原生 ORT/CPU声学链路、学习源、顺序会话 / 运行中取消，修复参考前缀帧预算。244项限定检查、12次主机子进程、57次完成图执行、1次实际 ORT终止；均为完整结构的未训练参数，不是完整 SoulX语音。ARM64/API28/16KiB编译及 DSP155项检查通过。双语方案、来源许可、独立证据和编号交付同步；APK / UI媒体沿用dev.20，不创建 Release。
+
+Added full-network acoustic export and native execution with sequential ORT/CPU sessions, learned source and actual in-run termination. Scoped host / ARM64 evidence uses UNTRAINED parameters; language/reference models, App integration, trained speech quality and phone gates remain open in the same complete v0.3.0. See [numbered delivery](docs/releases/v0.3.0-dev.20-soulx-acoustic.md), [中文](docs/SOULX_ACOUSTIC.md) / [English](docs/SOULX_ACOUSTIC.en.md).
+
 ## dev.20 source follow-up — SoulX DSP / unpublished
 
 新增尚未接入 APK 的 SoulX C++ 音频计算库：独立 S3 / Flow / CAMP 前端、sinc 重采样、CFG Euler、HiFT STFT / ISTFT / NSF，修复长序列半像素相位插值并检查30 / 120秒 F0。153项限定检查、49次主机子进程及 Android ARM64/API28 静态编译；双语文档、固定来源 / 许可和独立证据同步。模型推理 / 音频产物 / 真机仍0，完整执行器待完成，APK / 页面 / 媒体沿用 dev.20，不创建 Release。

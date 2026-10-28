@@ -11,8 +11,8 @@ The implementation in [research/soulx](../research/soulx/dsp.hpp) is a compilabl
 | S-01 | Reference WAV → 16k S3 / CAMPPlus features and 24k Flow features | Native computation and upstream numerical comparisons implemented; the future worker must connect WAV decoding to the existing input library |
 | S-02 | S3Tokenizer → semantic codes; CAMPPlus → 192-dimensional speaker embedding | Graphs, user assets and execution binding pending; feature extraction alone produces neither model output |
 | S-03 | Qwen3 → target codes, multiple speakers, turn history and EOS | Complete GGUF/tokenizer protocol, generation, history windows and task binding pending |
-| S-04 | Flow encoder → conditions; estimator → velocities | Export/native graph execution and component management pending; this library implements the cosine schedule and CFG Euler update only |
-| S-05 | HiFT F0 / neural spectra → 24k waveform | NSF harmonics and STFT/ISTFT implemented; F0, learned source merge, neural spectral weights and execution pending |
+| S-04 | Flow encoder → conditions; estimator → velocities | [Full acoustic four-graph follow-up](SOULX_ACOUSTIC.en.md) implements native ORT comparisons with complete UNTRAINED architectures; user components and App binding remain pending |
+| S-05 | HiFT F0 / neural spectra → 24k waveform | Native NSF/STFT/ISTFT now feed the research F0/learned-source/neural-spectrum executor; trained weights, complete speech quality and App binding remain pending |
 | S-06 | Turn concatenation, artifacts, background API and resource admission | Complete executor must join the shared foundation; no model WAV produced in this update |
 
 A community language-backbone GGUF alone cannot synthesize speech. Users must explicitly select, download/import and manage the eventual weights, tokenizers, acoustic graphs, speaker components, codecs and their licenses. They are not APK contents; installation, upgrades, browsing and missing components initiate no model transfer. Every inference stage must run on the same Android phone without ROOT or off-device inference/fallbacks.
@@ -28,7 +28,7 @@ A community language-backbone GGUF alone cannot synthesize speech. Users must ex
 | D-05 | CAMPPlus | Kaldi25ms/10ms, FFT512, DC removal, .97 preemphasis, nonperiodic Povey, 80 mel, no dither, log power and per-feature mean subtraction; `[T,80]` |
 | D-06 | Flow update | `1-cos(t×π/2)` schedule; `x += dt×(1.7×conditional−.7×unconditional)`; invalid shapes, nonfinite values or overflow fail without mutating the input state |
 | D-07 | HiFT | 50Hz F0 → 480× samples / nine NSF harmonics, per-sample callback and explicitly injected noise; FFT16/hop4 real/imaginary spectra; overlap-normalized ISTFT, centered trimming, magnitude cap100 and final±.99 clamp |
-| D-08 | Bounds / cancellation | Reference entry: 24k mono, 1–15seconds. F0/spectral defensive limit:6000 mel frames (120seconds), not a phone capacity claim. Cancellation checked across stages/frames/sample blocks; shape and numeric overflow guards |
+| D-08 | Bounds / cancellation | Reference entry:24k mono,1–15seconds. F0/spectra:6000 generated mel frames (120seconds); Flow additionally includes up to750 reference frames,6750 total. These are not phone capacity claims. Stage/frame/sample cancellation and shape/numeric overflow guards |
 
 NSF matches upstream float32 reciprocal scaling, half-pixel coordinates and boundary clamping BEFORE interpolation weights. These details affect phase as global sample offsets grow, requiring more than a one-second check. Per-sample callbacks avoid a separate full `samples×9` harmonic allocation. Eventual neural stages still require their own memory admission; Android memory, speed and quality remain unmeasured.
 

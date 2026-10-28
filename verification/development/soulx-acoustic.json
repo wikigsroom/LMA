@@ -1,0 +1,995 @@
+{
+  "passed": 244,
+  "actual_host_children": 12,
+  "actual_ort_graph_runs": 57,
+  "successful_syntheses": 3,
+  "full_flow_parameters": 112549360,
+  "full_hift_parameters": 20821295,
+  "reduced_network": false,
+  "synthetic_parameters": true,
+  "production_converter_executed": true,
+  "actual_upstream_forward_references": true,
+  "actual_ort_terminations": 1,
+  "max_live_sessions": 1,
+  "runtime_version": "1.24.3",
+  "python_versions": {
+    "torch": "2.14.0",
+    "numpy": "2.4.2",
+    "onnx": "1.20.1",
+    "diffusers": "0.29.2",
+    "einops": "0.8.2"
+  },
+  "runtime_sha256": "8cada464a0c1d22f5d8fc5767424b545fbfa208285940d0da3441de9647ee207",
+  "assets": [
+    {
+      "role": "flow_encoder",
+      "file": "flow-encoder.onnx",
+      "bytes": 48450474,
+      "sha256": "6ce9718fefc2b91497d9c03f5b8dd40fe1237631321f9830d2b6dca6d50a5142"
+    },
+    {
+      "role": "flow_encoder_data",
+      "file": "flow-encoder.onnx.data",
+      "bytes": 164897408,
+      "sha256": "dc800faadee065471fafe04f996e768cfd41e977879525145aea4af1bfb11914"
+    },
+    {
+      "role": "flow_estimator",
+      "file": "flow-estimator.onnx",
+      "bytes": 1377157,
+      "sha256": "1ea1203f6265c1b2de1278b123d02836d6360dae5af552c2c4bf18fb57fdafaf"
+    },
+    {
+      "role": "flow_estimator_data",
+      "file": "flow-estimator.onnx.data",
+      "bytes": 284514624,
+      "sha256": "fb4a40e59ddb71da645fe1140710a0671fdac854cec2d47c9506f0bd8dea1342"
+    },
+    {
+      "role": "hift_f0",
+      "file": "hift-f0.onnx",
+      "bytes": 3344,
+      "sha256": "52efc85bdacde09f1949a3500a7696eb3c1315a0e60afeec6246fecd35f39f6e"
+    },
+    {
+      "role": "hift_f0_data",
+      "file": "hift-f0.onnx.data",
+      "bytes": 13086724,
+      "sha256": "bb8d9cc6b4624c35f9c6141797f076b95a15a34974398ecac2797ab7181d1eee"
+    },
+    {
+      "role": "hift_spectrum",
+      "file": "hift-spectrum.onnx",
+      "bytes": 156538,
+      "sha256": "37cfccf0125d4c4056398be10b4e8c1a21af8c2a79c411529147ba39997806bc"
+    },
+    {
+      "role": "hift_spectrum_data",
+      "file": "hift-spectrum.onnx.data",
+      "bytes": 70098248,
+      "sha256": "194e506b0f6bc6059152a6e3d22ac36e9617ecca8a27ad067d62a58fca597c07"
+    },
+    {
+      "role": "hift_source",
+      "file": "hift-source.f32",
+      "bytes": 40,
+      "sha256": "7ae33832a1bc3289806c30ff86f62aef3a28a0995f341ff0b26db938982264b7"
+    }
+  ],
+  "runs": [
+    {
+      "name": "synthesis-0",
+      "apk_runtime": false,
+      "complete_soulx_pipeline": false,
+      "graph_runs": 18,
+      "max_live_sessions": 1,
+      "noise_consumed": 53280,
+      "ok": true,
+      "runtime_version": "1.24.3",
+      "samples": 5760,
+      "session_loads": 4,
+      "session_unloads": 4,
+      "synthetic_parameters_declared": true,
+      "terminated_runs": 0
+    },
+    {
+      "name": "synthesis-1",
+      "apk_runtime": false,
+      "complete_soulx_pipeline": false,
+      "graph_runs": 18,
+      "max_live_sessions": 1,
+      "noise_consumed": 115040,
+      "ok": true,
+      "runtime_version": "1.24.3",
+      "samples": 12480,
+      "session_loads": 4,
+      "session_unloads": 4,
+      "synthetic_parameters_declared": true,
+      "terminated_runs": 0
+    },
+    {
+      "name": "synthesis-2",
+      "apk_runtime": false,
+      "complete_soulx_pipeline": false,
+      "graph_runs": 18,
+      "max_live_sessions": 1,
+      "noise_consumed": 53280,
+      "ok": true,
+      "runtime_version": "1.24.3",
+      "samples": 5760,
+      "session_loads": 4,
+      "session_unloads": 4,
+      "synthetic_parameters_declared": true,
+      "terminated_runs": 0
+    },
+    {
+      "name": "invalid-steps",
+      "error": "Invalid SoulX acoustic parameters",
+      "graph_runs": 0,
+      "max_live_sessions": 0,
+      "ok": false,
+      "session_loads": 0,
+      "session_unloads": 0,
+      "terminated_runs": 0
+    },
+    {
+      "name": "invalid-threads",
+      "error": "Invalid SoulX acoustic parameters",
+      "graph_runs": 0,
+      "max_live_sessions": 0,
+      "ok": false,
+      "session_loads": 0,
+      "session_unloads": 0,
+      "terminated_runs": 0
+    },
+    {
+      "name": "invalid-cfg",
+      "error": "Invalid SoulX acoustic parameters",
+      "graph_runs": 0,
+      "max_live_sessions": 0,
+      "ok": false,
+      "session_loads": 0,
+      "session_unloads": 0,
+      "terminated_runs": 0
+    },
+    {
+      "name": "invalid-seed",
+      "error": "Invalid SoulX acoustic parameters",
+      "graph_runs": 0,
+      "max_live_sessions": 0,
+      "ok": false,
+      "session_loads": 0,
+      "session_unloads": 0,
+      "terminated_runs": 0
+    },
+    {
+      "name": "invalid-prompt_tokens",
+      "error": "Invalid SoulX reference/generated token count",
+      "graph_runs": 0,
+      "max_live_sessions": 0,
+      "ok": false,
+      "session_loads": 0,
+      "session_unloads": 0,
+      "terminated_runs": 0
+    },
+    {
+      "name": "cancel_before_run",
+      "error": "SoulX acoustic cancelled",
+      "graph_runs": 0,
+      "max_live_sessions": 0,
+      "ok": false,
+      "session_loads": 0,
+      "session_unloads": 0,
+      "terminated_runs": 0
+    },
+    {
+      "name": "cancel_flow",
+      "error": "SoulX acoustic cancelled",
+      "graph_runs": 2,
+      "max_live_sessions": 1,
+      "ok": false,
+      "session_loads": 2,
+      "session_unloads": 2,
+      "terminated_runs": 0
+    },
+    {
+      "name": "cancel_during_run",
+      "error": "SoulX acoustic cancelled",
+      "graph_runs": 1,
+      "max_live_sessions": 1,
+      "ok": false,
+      "session_loads": 2,
+      "session_unloads": 2,
+      "terminated_runs": 1
+    },
+    {
+      "name": "external-escape",
+      "error": "External tensor must use a selected local data file",
+      "graph_runs": 0,
+      "max_live_sessions": 0,
+      "ok": false,
+      "session_loads": 0,
+      "session_unloads": 0,
+      "terminated_runs": 0
+    }
+  ],
+  "metrics": [
+    {
+      "case": "synthesis-0",
+      "stage": "flow_mu",
+      "shape": [
+        1,
+        80,
+        18
+      ],
+      "maximum_absolute_error": 1.430511474609375e-06,
+      "rmse": 4.142372727277758e-07,
+      "maximum_allowed": 0.0005
+    },
+    {
+      "case": "synthesis-0",
+      "stage": "flow_spks",
+      "shape": [
+        1,
+        80
+      ],
+      "maximum_absolute_error": 3.725290298461914e-08,
+      "rmse": 9.61226867806007e-09,
+      "maximum_allowed": 0.0005
+    },
+    {
+      "case": "synthesis-0",
+      "stage": "mel",
+      "shape": [
+        1,
+        80,
+        12
+      ],
+      "maximum_absolute_error": 2.6106834411621094e-05,
+      "rmse": 7.300039535072744e-06,
+      "maximum_allowed": 0.002
+    },
+    {
+      "case": "synthesis-0",
+      "stage": "f0",
+      "shape": [
+        1,
+        12
+      ],
+      "maximum_absolute_error": 0.0,
+      "rmse": 0.0,
+      "maximum_allowed": 0.002
+    },
+    {
+      "case": "synthesis-0",
+      "stage": "source",
+      "shape": [
+        1,
+        1,
+        5760
+      ],
+      "maximum_absolute_error": 4.470348358154297e-08,
+      "rmse": 1.291710053886072e-08,
+      "maximum_allowed": 0.0005
+    },
+    {
+      "case": "synthesis-0",
+      "stage": "wave",
+      "shape": [
+        1,
+        5760
+      ],
+      "maximum_absolute_error": 1.73225998878479e-07,
+      "rmse": 3.447949832478541e-08,
+      "maximum_allowed": 0.0005
+    },
+    {
+      "case": "synthesis-0",
+      "stage": "flow_velocity_0",
+      "shape": [
+        2,
+        80,
+        18
+      ],
+      "maximum_absolute_error": 8.821487426757812e-06,
+      "rmse": 2.000406428925865e-06,
+      "maximum_allowed": 0.002
+    },
+    {
+      "case": "synthesis-0",
+      "stage": "flow_velocity_1",
+      "shape": [
+        2,
+        80,
+        18
+      ],
+      "maximum_absolute_error": 7.867813110351562e-06,
+      "rmse": 2.044301974594634e-06,
+      "maximum_allowed": 0.002
+    },
+    {
+      "case": "synthesis-0",
+      "stage": "flow_velocity_2",
+      "shape": [
+        2,
+        80,
+        18
+      ],
+      "maximum_absolute_error": 8.225440979003906e-06,
+      "rmse": 2.0666080990912806e-06,
+      "maximum_allowed": 0.002
+    },
+    {
+      "case": "synthesis-0",
+      "stage": "flow_velocity_3",
+      "shape": [
+        2,
+        80,
+        18
+      ],
+      "maximum_absolute_error": 7.557868957519531e-05,
+      "rmse": 1.6198817212766522e-05,
+      "maximum_allowed": 0.002
+    },
+    {
+      "case": "synthesis-0",
+      "stage": "flow_velocity_4",
+      "shape": [
+        2,
+        80,
+        18
+      ],
+      "maximum_absolute_error": 9.5367431640625e-06,
+      "rmse": 2.329995989180898e-06,
+      "maximum_allowed": 0.002
+    },
+    {
+      "case": "synthesis-0",
+      "stage": "flow_velocity_5",
+      "shape": [
+        2,
+        80,
+        18
+      ],
+      "maximum_absolute_error": 8.225440979003906e-06,
+      "rmse": 2.263665206253245e-06,
+      "maximum_allowed": 0.002
+    },
+    {
+      "case": "synthesis-0",
+      "stage": "flow_velocity_6",
+      "shape": [
+        2,
+        80,
+        18
+      ],
+      "maximum_absolute_error": 3.415346145629883e-05,
+      "rmse": 1.03608795230223e-05,
+      "maximum_allowed": 0.002
+    },
+    {
+      "case": "synthesis-0",
+      "stage": "flow_velocity_7",
+      "shape": [
+        2,
+        80,
+        18
+      ],
+      "maximum_absolute_error": 4.823505878448486e-05,
+      "rmse": 1.3583927184847484e-05,
+      "maximum_allowed": 0.002
+    },
+    {
+      "case": "synthesis-0",
+      "stage": "flow_velocity_8",
+      "shape": [
+        2,
+        80,
+        18
+      ],
+      "maximum_absolute_error": 4.532933235168457e-05,
+      "rmse": 1.1762435709793119e-05,
+      "maximum_allowed": 0.002
+    },
+    {
+      "case": "synthesis-0",
+      "stage": "flow_velocity_9",
+      "shape": [
+        2,
+        80,
+        18
+      ],
+      "maximum_absolute_error": 0.00010013580322265625,
+      "rmse": 3.0167130453764095e-05,
+      "maximum_allowed": 0.002
+    },
+    {
+      "case": "synthesis-0",
+      "stage": "flow_velocity_10",
+      "shape": [
+        2,
+        80,
+        18
+      ],
+      "maximum_absolute_error": 4.175305366516113e-05,
+      "rmse": 1.2138124763174792e-05,
+      "maximum_allowed": 0.002
+    },
+    {
+      "case": "synthesis-0",
+      "stage": "flow_velocity_11",
+      "shape": [
+        2,
+        80,
+        18
+      ],
+      "maximum_absolute_error": 1.8656253814697266e-05,
+      "rmse": 5.48628141469892e-06,
+      "maximum_allowed": 0.002
+    },
+    {
+      "case": "synthesis-0",
+      "stage": "flow_velocity_12",
+      "shape": [
+        2,
+        80,
+        18
+      ],
+      "maximum_absolute_error": 9.745359420776367e-05,
+      "rmse": 2.8628313133249122e-05,
+      "maximum_allowed": 0.002
+    },
+    {
+      "case": "synthesis-0",
+      "stage": "flow_velocity_13",
+      "shape": [
+        2,
+        80,
+        18
+      ],
+      "maximum_absolute_error": 2.562999725341797e-05,
+      "rmse": 6.403549863862853e-06,
+      "maximum_allowed": 0.002
+    },
+    {
+      "case": "synthesis-0",
+      "stage": "flow_velocity_14",
+      "shape": [
+        2,
+        80,
+        18
+      ],
+      "maximum_absolute_error": 1.8805265426635742e-05,
+      "rmse": 4.722807079305842e-06,
+      "maximum_allowed": 0.002
+    },
+    {
+      "case": "synthesis-1",
+      "stage": "flow_mu",
+      "shape": [
+        1,
+        80,
+        34
+      ],
+      "maximum_absolute_error": 1.5497207641601562e-06,
+      "rmse": 3.608568987969243e-07,
+      "maximum_allowed": 0.0005
+    },
+    {
+      "case": "synthesis-1",
+      "stage": "flow_spks",
+      "shape": [
+        1,
+        80
+      ],
+      "maximum_absolute_error": 4.470348358154297e-08,
+      "rmse": 1.3903640331765348e-08,
+      "maximum_allowed": 0.0005
+    },
+    {
+      "case": "synthesis-1",
+      "stage": "mel",
+      "shape": [
+        1,
+        80,
+        26
+      ],
+      "maximum_absolute_error": 2.5272369384765625e-05,
+      "rmse": 7.001427267549585e-06,
+      "maximum_allowed": 0.002
+    },
+    {
+      "case": "synthesis-1",
+      "stage": "f0",
+      "shape": [
+        1,
+        26
+      ],
+      "maximum_absolute_error": 0.0,
+      "rmse": 0.0,
+      "maximum_allowed": 0.002
+    },
+    {
+      "case": "synthesis-1",
+      "stage": "source",
+      "shape": [
+        1,
+        1,
+        12480
+      ],
+      "maximum_absolute_error": 4.470348358154297e-08,
+      "rmse": 1.291305378760524e-08,
+      "maximum_allowed": 0.0005
+    },
+    {
+      "case": "synthesis-1",
+      "stage": "wave",
+      "shape": [
+        1,
+        12480
+      ],
+      "maximum_absolute_error": 1.6577541828155518e-07,
+      "rmse": 3.419288747511933e-08,
+      "maximum_allowed": 0.0005
+    },
+    {
+      "case": "synthesis-1",
+      "stage": "flow_velocity_0",
+      "shape": [
+        2,
+        80,
+        34
+      ],
+      "maximum_absolute_error": 8.493661880493164e-06,
+      "rmse": 2.0693812012401287e-06,
+      "maximum_allowed": 0.002
+    },
+    {
+      "case": "synthesis-1",
+      "stage": "flow_velocity_1",
+      "shape": [
+        2,
+        80,
+        34
+      ],
+      "maximum_absolute_error": 7.748603820800781e-06,
+      "rmse": 1.8052490026451543e-06,
+      "maximum_allowed": 0.002
+    },
+    {
+      "case": "synthesis-1",
+      "stage": "flow_velocity_2",
+      "shape": [
+        2,
+        80,
+        34
+      ],
+      "maximum_absolute_error": 9.179115295410156e-06,
+      "rmse": 2.0909786882664183e-06,
+      "maximum_allowed": 0.002
+    },
+    {
+      "case": "synthesis-1",
+      "stage": "flow_velocity_3",
+      "shape": [
+        2,
+        80,
+        34
+      ],
+      "maximum_absolute_error": 6.443262100219727e-05,
+      "rmse": 1.5092146278911673e-05,
+      "maximum_allowed": 0.002
+    },
+    {
+      "case": "synthesis-1",
+      "stage": "flow_velocity_4",
+      "shape": [
+        2,
+        80,
+        34
+      ],
+      "maximum_absolute_error": 8.821487426757812e-06,
+      "rmse": 2.0919766698302185e-06,
+      "maximum_allowed": 0.002
+    },
+    {
+      "case": "synthesis-1",
+      "stage": "flow_velocity_5",
+      "shape": [
+        2,
+        80,
+        34
+      ],
+      "maximum_absolute_error": 8.344650268554688e-06,
+      "rmse": 1.9978527017299914e-06,
+      "maximum_allowed": 0.002
+    },
+    {
+      "case": "synthesis-1",
+      "stage": "flow_velocity_6",
+      "shape": [
+        2,
+        80,
+        34
+      ],
+      "maximum_absolute_error": 5.0008296966552734e-05,
+      "rmse": 1.0433401795044787e-05,
+      "maximum_allowed": 0.002
+    },
+    {
+      "case": "synthesis-1",
+      "stage": "flow_velocity_7",
+      "shape": [
+        2,
+        80,
+        34
+      ],
+      "maximum_absolute_error": 3.4809112548828125e-05,
+      "rmse": 1.0649408573372972e-05,
+      "maximum_allowed": 0.002
+    },
+    {
+      "case": "synthesis-1",
+      "stage": "flow_velocity_8",
+      "shape": [
+        2,
+        80,
+        34
+      ],
+      "maximum_absolute_error": 3.7647783756256104e-05,
+      "rmse": 9.450660294654144e-06,
+      "maximum_allowed": 0.002
+    },
+    {
+      "case": "synthesis-1",
+      "stage": "flow_velocity_9",
+      "shape": [
+        2,
+        80,
+        34
+      ],
+      "maximum_absolute_error": 0.00011086463928222656,
+      "rmse": 3.1902932842220794e-05,
+      "maximum_allowed": 0.002
+    },
+    {
+      "case": "synthesis-1",
+      "stage": "flow_velocity_10",
+      "shape": [
+        2,
+        80,
+        34
+      ],
+      "maximum_absolute_error": 8.19861888885498e-05,
+      "rmse": 1.881402400765799e-05,
+      "maximum_allowed": 0.002
+    },
+    {
+      "case": "synthesis-1",
+      "stage": "flow_velocity_11",
+      "shape": [
+        2,
+        80,
+        34
+      ],
+      "maximum_absolute_error": 2.276897430419922e-05,
+      "rmse": 6.58685711460939e-06,
+      "maximum_allowed": 0.002
+    },
+    {
+      "case": "synthesis-1",
+      "stage": "flow_velocity_12",
+      "shape": [
+        2,
+        80,
+        34
+      ],
+      "maximum_absolute_error": 8.958578109741211e-05,
+      "rmse": 2.6612348791828792e-05,
+      "maximum_allowed": 0.002
+    },
+    {
+      "case": "synthesis-1",
+      "stage": "flow_velocity_13",
+      "shape": [
+        2,
+        80,
+        34
+      ],
+      "maximum_absolute_error": 3.0279159545898438e-05,
+      "rmse": 6.853059586307131e-06,
+      "maximum_allowed": 0.002
+    },
+    {
+      "case": "synthesis-1",
+      "stage": "flow_velocity_14",
+      "shape": [
+        2,
+        80,
+        34
+      ],
+      "maximum_absolute_error": 2.2411346435546875e-05,
+      "rmse": 5.980672311127735e-06,
+      "maximum_allowed": 0.002
+    },
+    {
+      "case": "synthesis-2",
+      "stage": "flow_mu",
+      "shape": [
+        1,
+        80,
+        18
+      ],
+      "maximum_absolute_error": 1.430511474609375e-06,
+      "rmse": 4.142372727277758e-07,
+      "maximum_allowed": 0.0005
+    },
+    {
+      "case": "synthesis-2",
+      "stage": "flow_spks",
+      "shape": [
+        1,
+        80
+      ],
+      "maximum_absolute_error": 3.725290298461914e-08,
+      "rmse": 9.61226867806007e-09,
+      "maximum_allowed": 0.0005
+    },
+    {
+      "case": "synthesis-2",
+      "stage": "mel",
+      "shape": [
+        1,
+        80,
+        12
+      ],
+      "maximum_absolute_error": 2.6106834411621094e-05,
+      "rmse": 7.300039535072744e-06,
+      "maximum_allowed": 0.002
+    },
+    {
+      "case": "synthesis-2",
+      "stage": "f0",
+      "shape": [
+        1,
+        12
+      ],
+      "maximum_absolute_error": 0.0,
+      "rmse": 0.0,
+      "maximum_allowed": 0.002
+    },
+    {
+      "case": "synthesis-2",
+      "stage": "source",
+      "shape": [
+        1,
+        1,
+        5760
+      ],
+      "maximum_absolute_error": 4.470348358154297e-08,
+      "rmse": 1.291710053886072e-08,
+      "maximum_allowed": 0.0005
+    },
+    {
+      "case": "synthesis-2",
+      "stage": "wave",
+      "shape": [
+        1,
+        5760
+      ],
+      "maximum_absolute_error": 1.73225998878479e-07,
+      "rmse": 3.447949832478541e-08,
+      "maximum_allowed": 0.0005
+    },
+    {
+      "case": "synthesis-2",
+      "stage": "flow_velocity_0",
+      "shape": [
+        2,
+        80,
+        18
+      ],
+      "maximum_absolute_error": 8.821487426757812e-06,
+      "rmse": 2.000406428925865e-06,
+      "maximum_allowed": 0.002
+    },
+    {
+      "case": "synthesis-2",
+      "stage": "flow_velocity_1",
+      "shape": [
+        2,
+        80,
+        18
+      ],
+      "maximum_absolute_error": 7.867813110351562e-06,
+      "rmse": 2.044301974594634e-06,
+      "maximum_allowed": 0.002
+    },
+    {
+      "case": "synthesis-2",
+      "stage": "flow_velocity_2",
+      "shape": [
+        2,
+        80,
+        18
+      ],
+      "maximum_absolute_error": 8.225440979003906e-06,
+      "rmse": 2.0666080990912806e-06,
+      "maximum_allowed": 0.002
+    },
+    {
+      "case": "synthesis-2",
+      "stage": "flow_velocity_3",
+      "shape": [
+        2,
+        80,
+        18
+      ],
+      "maximum_absolute_error": 7.557868957519531e-05,
+      "rmse": 1.6198817212766522e-05,
+      "maximum_allowed": 0.002
+    },
+    {
+      "case": "synthesis-2",
+      "stage": "flow_velocity_4",
+      "shape": [
+        2,
+        80,
+        18
+      ],
+      "maximum_absolute_error": 9.5367431640625e-06,
+      "rmse": 2.329995989180898e-06,
+      "maximum_allowed": 0.002
+    },
+    {
+      "case": "synthesis-2",
+      "stage": "flow_velocity_5",
+      "shape": [
+        2,
+        80,
+        18
+      ],
+      "maximum_absolute_error": 8.225440979003906e-06,
+      "rmse": 2.263665206253245e-06,
+      "maximum_allowed": 0.002
+    },
+    {
+      "case": "synthesis-2",
+      "stage": "flow_velocity_6",
+      "shape": [
+        2,
+        80,
+        18
+      ],
+      "maximum_absolute_error": 3.415346145629883e-05,
+      "rmse": 1.03608795230223e-05,
+      "maximum_allowed": 0.002
+    },
+    {
+      "case": "synthesis-2",
+      "stage": "flow_velocity_7",
+      "shape": [
+        2,
+        80,
+        18
+      ],
+      "maximum_absolute_error": 4.823505878448486e-05,
+      "rmse": 1.3583927184847484e-05,
+      "maximum_allowed": 0.002
+    },
+    {
+      "case": "synthesis-2",
+      "stage": "flow_velocity_8",
+      "shape": [
+        2,
+        80,
+        18
+      ],
+      "maximum_absolute_error": 4.532933235168457e-05,
+      "rmse": 1.1762435709793119e-05,
+      "maximum_allowed": 0.002
+    },
+    {
+      "case": "synthesis-2",
+      "stage": "flow_velocity_9",
+      "shape": [
+        2,
+        80,
+        18
+      ],
+      "maximum_absolute_error": 0.00010013580322265625,
+      "rmse": 3.0167130453764095e-05,
+      "maximum_allowed": 0.002
+    },
+    {
+      "case": "synthesis-2",
+      "stage": "flow_velocity_10",
+      "shape": [
+        2,
+        80,
+        18
+      ],
+      "maximum_absolute_error": 4.175305366516113e-05,
+      "rmse": 1.2138124763174792e-05,
+      "maximum_allowed": 0.002
+    },
+    {
+      "case": "synthesis-2",
+      "stage": "flow_velocity_11",
+      "shape": [
+        2,
+        80,
+        18
+      ],
+      "maximum_absolute_error": 1.8656253814697266e-05,
+      "rmse": 5.48628141469892e-06,
+      "maximum_allowed": 0.002
+    },
+    {
+      "case": "synthesis-2",
+      "stage": "flow_velocity_12",
+      "shape": [
+        2,
+        80,
+        18
+      ],
+      "maximum_absolute_error": 9.745359420776367e-05,
+      "rmse": 2.8628313133249122e-05,
+      "maximum_allowed": 0.002
+    },
+    {
+      "case": "synthesis-2",
+      "stage": "flow_velocity_13",
+      "shape": [
+        2,
+        80,
+        18
+      ],
+      "maximum_absolute_error": 2.562999725341797e-05,
+      "rmse": 6.403549863862853e-06,
+      "maximum_allowed": 0.002
+    },
+    {
+      "case": "synthesis-2",
+      "stage": "flow_velocity_14",
+      "shape": [
+        2,
+        80,
+        18
+      ],
+      "maximum_absolute_error": 1.8805265426635742e-05,
+      "rmse": 4.722807079305842e-06,
+      "maximum_allowed": 0.002
+    }
+  ],
+  "trained_checkpoints_loaded": 0,
+  "full_soulx_inference": false,
+  "model_audio_quality_tested": false,
+  "physical_android": false,
+  "apk_runtime_used": false,
+  "engine_registered": false,
+  "input_fingerprint": {
+    "native/moss_nano/onnx_external.hpp": "c1bb8f95ad2078472dbbf2ea0863493ac44f4aae7c4336cf5debb0db0d54fae5",
+    "research/soulx/CMakeLists.txt": "847feb9d1714b97bd17aae237dfb692368398fb3dbbcc9a6ccdb6b10af919c6f",
+    "research/soulx/dsp.cpp": "08162eafac28df62af8d415525c9d28ab490e77bdcfd81cc23b8d2e89f524bd3",
+    "research/soulx/dsp.hpp": "ef6a28cae0d2e72d1b84890437286b0ed8a20690c0ac07b2ddf8162ee2d2fd58",
+    "research/soulx/LICENSE-APACHE-2.0": "2d88353fe7c7e7dde2a5ea2bc00db9f4808127c938395fcfd1a4d88a268ea3a5",
+    "research/soulx/LICENSE-KISSFFT-BSD-3-CLAUSE": "91333dec2b41bc2d3dc15d6bc819e0da1e6854b6142d4910e8e0c7c82d2da727",
+    "research/soulx/NOTICE": "2229d2f5db9876bda0e0922389f044dba126e7f782e687662cd6fc196e0ba8c2",
+    "research/soulx_acoustic/acoustic.cpp": "6a3c2a2db566e29d7faf24616e86256765cdfeef9fa1ac3a43bfc84496dbd985",
+    "research/soulx_acoustic/acoustic.hpp": "93a2e5b35a284c0067c309de072a88d2fac41aa9d5d7a884d170202c93c4db40",
+    "research/soulx_acoustic/android_log.cpp": "216f630761ff67a00cfe47db941338f45560fc45486ebcbdff196cf36dac3d04",
+    "research/soulx_acoustic/CMakeLists.txt": "7775bded2c1f724d42591223dc95c8d0a804972bb8e59092d1c4e19e635d0f0b",
+    "research/soulx_acoustic/driver.cpp": "83ed86c87a9c0dc85e02611b33409d0a4e40611bdf4dc78e8e240691c945f812",
+    "research/soulx_acoustic/LICENSE-APACHE-2.0": "2d88353fe7c7e7dde2a5ea2bc00db9f4808127c938395fcfd1a4d88a268ea3a5",
+    "research/soulx_acoustic/LICENSE-ONNX-RUNTIME-MIT": "c250d6278f0b47a6439fb7592b08b58a55eb9f535aa49a1db63211c3f982b674",
+    "research/soulx_acoustic/LICENSE-SNAKE-MIT": "9ac34402a4c4d24bf19c495d3d6f778040177ed794668714fd125cf49a4d0cf0",
+    "research/soulx_acoustic/NOTICE": "fc62bb7660414206358289f372d573e4f64a08c5c764511b20deb0e9ad94668a",
+    "third_party/soulx-acoustic-source-lock.json": "b39e10c415c5f30d4e4adb52327e1e04df371407131f47617622da913b268ac5",
+    "tools/export_soulx.py": "ce4ba8146756b9c0289c817a518d0f301bacc66b9cd3d50207a700f6fb60a6e5",
+    "tools/fetch_soulx_dsp.py": "a8e4b8e88c5898236cbbc9ea9fd626b04d6f040005cd9c743c2515032b72c3f4",
+    "tools/soulx_acoustic.py": "c13bb200f8b126870011b0b90af787baf614ea2304fd60c9a8cb2bc74670ceb2",
+    "tools/soulx_acoustic_fixture.py": "c212603aa1011d7d888a912acc19938941ca3faa31d2ace74a3e81a6e2153f99",
+    "tools/test_soulx_acoustic.py": "e5880bda787c8b73d06a79635ddf1119958f2d93ee19cc44785a37a4ba35b8ca"
+  }
+}

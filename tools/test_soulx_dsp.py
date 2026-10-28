@@ -156,7 +156,7 @@ def main():
         if step<14:dt=times[step+2]-t
     compare('Actual upstream 15-step Flow Euler loop',state.reshape(1,80,6),expected.numpy(),5e-6)
     guarded=int(run('guards',[0])[0,0]); checks+=guarded
-    if guarded<29:raise AssertionError('Guard assertions unexpectedly missing')
+    if guarded<31:raise AssertionError('Guard assertions unexpectedly missing')
     cancelled=run('cancel',np.zeros(24000,'f4'));assert cancelled[0,0]>=5;checks+=1
     current(inputs)
     report=dict(passed=checks,actual_host_children=processes,metrics=metrics,guard_assertions=guarded,

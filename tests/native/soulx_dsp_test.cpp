@@ -78,6 +78,8 @@ int main(int argc,char** argv) {
             rejects([&]{euler_step(state,{1},{1},.1f);}); rejects([&]{euler_step(state,{1,1},{1,1},0);});
             rejects([&]{euler_step(state,{1,1},{1,1},.1f,-1);}); rejects([&]{euler_step(state,{1,NAN},{1,1},.1f);});
             if (state!=Samples({1,2})) throw std::runtime_error("Failed Euler mutated state"); ++passed;
+            {Samples maximum(80*kMaxFlowFrames,1);euler_step(maximum,maximum,maximum,.1f);if(std::abs(maximum.back()-1.1f)>1e-6)throw std::runtime_error("Reference prefix budget");++passed;}
+            rejects([&]{Samples oversized(80*kMaxFlowFrames+1);euler_step(oversized,oversized,oversized,.1f);});
             rejects([&]{source_stft(Samples(481));}); rejects([&]{hift_istft({8,121,Samples(8*121)},{9,121,Samples(9*121)});});
             rejects([&]{hift_istft({9,120,Samples(9*120)},{9,120,Samples(9*120)});});
             rejects([&]{hift_istft({9,121,Samples(9*121,-1)},{9,121,Samples(9*121)});});

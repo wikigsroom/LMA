@@ -294,3 +294,5 @@ LMA 自有代码使用 MIT 许可。llama.cpp 及其依赖保留各自许可；�
 <img src="docs/media/development/56-stable-audio-components.png" width="260" alt="UI FIXTURE: four explicitly selected assets, no inference" /> <img src="docs/media/development/57-stable-audio-task.png" width="260" alt="UI FIXTURE: Stable Audio local task parameters, no audio generation" />
 
 源码后续更新（APK 仍为 dev.20）：[SoulX 原生音频计算底层](docs/SOULX_DSP.md)加入三种参考前端、sinc 重采样、Flow 数值更新和 HiFT 频谱 / NSF；153 项限定检查及 Android ARM64/API28 静态库编译，覆盖30 / 120秒 F0。该库尚未接入 APK，完整 SoulX 执行器、模型输出与真机证据仍待完成。推荐、标签、用户自选下载与现有截图 / GIF 不变；见[本轮编号交付和完整待办](docs/releases/v0.3.0-dev.20-soulx-dsp.md)。
+
+源码后续更新（APK仍为dev.20）：[SoulX完整声学网络](docs/SOULX_ACOUSTIC.md)已实现四图离线导出、原生 ORT/CPU 串联、学习源参数、顺序会话与实际运行取消。244项限定检查 / 12次主机子进程 / 57次完成图执行，与原始上游完整网络比较；使用未训练合成参数。ARM64/API28 / 16KiB编译通过，DSP新增参考前缀预算后155项通过。S3 / CAMP / Qwen3与完整任务绑定、真实权重语音质量和物理 Android 仍待完成；未接入 APK、未创建 Release。详见[编号实现 / 完整待办](docs/releases/v0.3.0-dev.20-soulx-acoustic.md)。

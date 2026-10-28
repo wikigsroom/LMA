@@ -1,0 +1,64 @@
+{
+  "android_arm64_compiled": true,
+  "android_platform": 28,
+  "abi": "arm64-v8a",
+  "backend": "cpu",
+  "ndk": "30.0.16248370",
+  "executable_bytes": 518416,
+  "executable_sha256": "dfac27b55d7671b74480fea2dc10fa5ee284dcacf98a23abab5d6f951c40e7df",
+  "elf": {
+    "machine": "aarch64",
+    "needed": [
+      "libonnxruntime.so",
+      "libm.so",
+      "libdl.so",
+      "libc.so"
+    ],
+    "load_segment_alignment": [
+      16384
+    ],
+    "interpreter": "/system/bin/linker64",
+    "entry_point": 128128,
+    "android_api_notes": [
+      28
+    ],
+    "16k_elf_aligned": true
+  },
+  "runtime_version": "1.28.2",
+  "runtime": {
+    "file": "libonnxruntime.so",
+    "bytes": 22249560,
+    "sha256": "33847ad43bffe204699fd4a27f7f3603452a8cdaf2f9a44983a0bc31ffcf2da1",
+    "android_api_notes": [
+      27
+    ],
+    "provenance": "upstream_release_prebuilt"
+  },
+  "c_api_minimum": 17,
+  "engine_registered": false,
+  "packaged_in_apk": false,
+  "model_inference": false,
+  "physical_android": false,
+  "virtualization_used": false,
+  "input_fingerprint": {
+    "native/moss_nano/onnx_external.hpp": "c1bb8f95ad2078472dbbf2ea0863493ac44f4aae7c4336cf5debb0db0d54fae5",
+    "research/soulx/CMakeLists.txt": "847feb9d1714b97bd17aae237dfb692368398fb3dbbcc9a6ccdb6b10af919c6f",
+    "research/soulx/dsp.cpp": "08162eafac28df62af8d415525c9d28ab490e77bdcfd81cc23b8d2e89f524bd3",
+    "research/soulx/dsp.hpp": "ef6a28cae0d2e72d1b84890437286b0ed8a20690c0ac07b2ddf8162ee2d2fd58",
+    "research/soulx/LICENSE-APACHE-2.0": "2d88353fe7c7e7dde2a5ea2bc00db9f4808127c938395fcfd1a4d88a268ea3a5",
+    "research/soulx/LICENSE-KISSFFT-BSD-3-CLAUSE": "91333dec2b41bc2d3dc15d6bc819e0da1e6854b6142d4910e8e0c7c82d2da727",
+    "research/soulx/NOTICE": "2229d2f5db9876bda0e0922389f044dba126e7f782e687662cd6fc196e0ba8c2",
+    "research/soulx_acoustic/acoustic.cpp": "6a3c2a2db566e29d7faf24616e86256765cdfeef9fa1ac3a43bfc84496dbd985",
+    "research/soulx_acoustic/acoustic.hpp": "93a2e5b35a284c0067c309de072a88d2fac41aa9d5d7a884d170202c93c4db40",
+    "research/soulx_acoustic/android_log.cpp": "216f630761ff67a00cfe47db941338f45560fc45486ebcbdff196cf36dac3d04",
+    "research/soulx_acoustic/CMakeLists.txt": "7775bded2c1f724d42591223dc95c8d0a804972bb8e59092d1c4e19e635d0f0b",
+    "research/soulx_acoustic/driver.cpp": "83ed86c87a9c0dc85e02611b33409d0a4e40611bdf4dc78e8e240691c945f812",
+    "research/soulx_acoustic/LICENSE-APACHE-2.0": "2d88353fe7c7e7dde2a5ea2bc00db9f4808127c938395fcfd1a4d88a268ea3a5",
+    "research/soulx_acoustic/LICENSE-ONNX-RUNTIME-MIT": "c250d6278f0b47a6439fb7592b08b58a55eb9f535aa49a1db63211c3f982b674",
+    "research/soulx_acoustic/LICENSE-SNAKE-MIT": "9ac34402a4c4d24bf19c495d3d6f778040177ed794668714fd125cf49a4d0cf0",
+    "research/soulx_acoustic/NOTICE": "fc62bb7660414206358289f372d573e4f64a08c5c764511b20deb0e9ad94668a",
+    "third_party/soulx-acoustic-source-lock.json": "b39e10c415c5f30d4e4adb52327e1e04df371407131f47617622da913b268ac5",
+    "tools/build_soulx_acoustic.py": "53b2d0dfb963df8a1986040299f71f7fe798cd7ab7eeefc91e7b95c3b4b24ac0",
+    "tools/fetch_soulx_dsp.py": "a8e4b8e88c5898236cbbc9ea9fd626b04d6f040005cd9c743c2515032b72c3f4"
+  }
+}

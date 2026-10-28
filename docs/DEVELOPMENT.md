@@ -172,3 +172,7 @@ Internal dev.19 / 内部 dev.19：[旧 Local / Realtime 原生 RQ](MOSS_RQ_ENGIN
 ## dev.20 源码后续：SoulX 音频底层
 
 [实现与复现](SOULX_DSP.md) · [编号交付](releases/v0.3.0-dev.20-soulx-dsp.md)。153项限定检查 / 49个主机子进程 / 29项边界检查；三种前端、Flow 和 HiFT 数值计算，含30 / 120秒 NSF。ARM64/API28 静态库尚未接入 APK，不登记成模型执行支持。训练权重 / 模型音频 / 物理 Android 均0；完整范围和发布门槛不变，开发 APK 与 UI 媒体沿用 dev.20。
+
+## dev.20 源码后续：完整声学网络
+
+[SoulX声学导出 / 原生执行](SOULX_ACOUSTIC.md) · [编号交付](releases/v0.3.0-dev.20-soulx-acoustic.md)。完整 Flow / HiFT 四图、学习源、原生 ORT/CPU和取消；244项限定检查 /12主机子进程 /57完成图执行 /1次实际 ORT终止，参数为 UNTRAINED。ARM64/API28/16KiB编译通过；DSP155项 /49子进程 /31边界检查通过。仍未注册 APK / 模型任务；语言 / 参考模型、完整真实语音及物理 Android均待完成，所有冻结门槛保留在同一版本。

@@ -171,3 +171,7 @@ Internal checkpoint (**0.3.0-dev.20 / code 24**, unpublished): the [Stable Audio
 ## dev.20 source follow-up: SoulX audio primitives
 
 [Implementation/reproduction](SOULX_DSP.en.md) · [Numbered delivery](releases/v0.3.0-dev.20-soulx-dsp.md). 153 scoped assertions / 49 host children / 29 guards cover three frontends, Flow and HiFT numerical operations, including 30/120-second NSF. The ARM64/API28 static library is not connected to the APK or registered as model execution support. Trained checkpoints/model audio/physical Android remain zero. Complete scope and Release gates are unchanged; development APK/UI media remain dev.20.
+
+## dev.20 source follow-up: full acoustic networks
+
+[SoulX acoustic export/native execution](SOULX_ACOUSTIC.en.md) · [Numbered delivery](releases/v0.3.0-dev.20-soulx-acoustic.md). Four complete Flow/HiFT graphs, learned source, native ORT/CPU and cancellation;244 scoped checks /12 host children /57 completed graph runs /one actual ORT termination, all UNTRAINED. ARM64/API28/16KiB compilation passes; DSP155 checks /49 children /31 guards pass. Not registered in the APK/model tasks. Language/reference networks, complete trained speech and physical Android remain pending under the same full frozen release scope.

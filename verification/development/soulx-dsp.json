@@ -1,5 +1,5 @@
 {
-  "passed": 153,
+  "passed": 155,
   "actual_host_children": 49,
   "metrics": [
     {
@@ -455,7 +455,7 @@
       "rmse_allowed": null
     }
   ],
-  "guard_assertions": 29,
+  "guard_assertions": 31,
   "actual_upstream_function_bodies": true,
   "upstream_s3_filter_asset_test_only": true,
   "torch_version": "2.14.0+cpu",
@@ -469,14 +469,14 @@
   "engine_registered": false,
   "input_fingerprint": {
     "research/soulx/CMakeLists.txt": "847feb9d1714b97bd17aae237dfb692368398fb3dbbcc9a6ccdb6b10af919c6f",
-    "research/soulx/dsp.cpp": "2dfb99c5d9a852667af5947db6874fc736f7488862b47c9151ac8473a54f362a",
-    "research/soulx/dsp.hpp": "7c8a1c56fc40b63c8f8dc0b128d4f802f5073212d32f912f06b6bae29ea94a0f",
+    "research/soulx/dsp.cpp": "08162eafac28df62af8d415525c9d28ab490e77bdcfd81cc23b8d2e89f524bd3",
+    "research/soulx/dsp.hpp": "ef6a28cae0d2e72d1b84890437286b0ed8a20690c0ac07b2ddf8162ee2d2fd58",
     "research/soulx/LICENSE-APACHE-2.0": "2d88353fe7c7e7dde2a5ea2bc00db9f4808127c938395fcfd1a4d88a268ea3a5",
     "research/soulx/LICENSE-KISSFFT-BSD-3-CLAUSE": "91333dec2b41bc2d3dc15d6bc819e0da1e6854b6142d4910e8e0c7c82d2da727",
     "research/soulx/NOTICE": "2229d2f5db9876bda0e0922389f044dba126e7f782e687662cd6fc196e0ba8c2",
-    "tests/native/soulx_dsp_test.cpp": "7f9cd38aafa052d8368e6376944df5e195d2e34d4f1b074e667016c6e33619d9",
+    "tests/native/soulx_dsp_test.cpp": "3c045d4c7edf363f03ffcf300cc0acc4c632bbe4d2bd9d7f0334b6494b4d0d80",
     "third_party/soulx-dsp-source-lock.json": "e8c352ea1f396e2e90d71586815151c446c05458895fcf14595b2870ff882220",
     "tools/fetch_soulx_dsp.py": "a8e4b8e88c5898236cbbc9ea9fd626b04d6f040005cd9c743c2515032b72c3f4",
-    "tools/test_soulx_dsp.py": "e5023eeac718a7768f5fe72a76667696afee9750a42864747c4d82fbf5b9f7cf"
+    "tools/test_soulx_dsp.py": "7a487dc01de4d3a83edfd5980efa6647bbbceef643358d0cf3c333e47bcbe7a0"
   }
 }

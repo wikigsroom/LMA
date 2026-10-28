@@ -19,6 +19,7 @@ struct Matrix {
 // Limits are defensive library bounds, not a claim of phone capacity/quality.
 constexpr size_t kMaxReference24k = 15 * 24000;
 constexpr size_t kMaxMelFrames = 6000;
+constexpr size_t kMaxFlowFrames = kMaxMelFrames + 750; // include 15s reference
 Samples normalize_volume(const Samples& pcm);
 Samples resample_24k_to_16k(const Samples& pcm, Cancel cancelled = {});
 Matrix slaney_filters(int sample_rate, int fft_size, int mel_bins, float max_hz);

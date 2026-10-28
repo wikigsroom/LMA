@@ -1,0 +1,27 @@
+LMA SoulX-Podcast acoustic research module (not registered in the APK)
+
+The offline Python graph wrappers adapt the complete acoustic modules in
+Soul-AILab/SoulX-Podcast, Apache-2.0, at the revision and file hashes in
+third_party/soulx-acoustic-source-lock.json. The relevant upstream credits
+include Soul-AILab contributors and Alibaba Inc. LMA adaptations:
+Copyright 2026 LMA contributors, Apache-2.0. The license is supplied here
+as LICENSE-APACHE-2.0. The original LMA C++ controller/CLI are MIT licensed.
+
+Upstream HiFT's Snake activation cites Edward Dixon's MIT implementation.
+The pinned SoulX checkout references an incl_licenses directory that it does
+not include. LICENSE-SNAKE-MIT preserves the actual EdwardDixon/snake MIT
+notice from the independently pinned upstream repository; it is not a
+reconstruction of that missing SoulX directory.
+
+The controller uses separately pinned ONNX Runtime headers and links its
+CPU runtime, MIT, Copyright (c) Microsoft Corporation. All rights reserved.
+The complete notice is LICENSE-ONNX-RUNTIME-MIT. The shared DSP library's
+Apache-2.0 and KISS FFT BSD-3-Clause notices remain in research/soulx/.
+The JSON CLI dependency is nlohmann/json, MIT, (c) 2013-2025 Niels Lohmann;
+its existing repository notice is third_party/notices/sd-nlohmann-json-LICENSE.txt.
+
+The original modules and optional export/test dependencies are downloaded
+to ignored build directories. Full-network synthetic test parameters are
+UNTRAINED fixtures, not publisher checkpoints or model-quality evidence.
+No models, reference audio, tokenizers, acoustic exports, host DLLs, Python
+packages or research binaries are added to the APK by this module.

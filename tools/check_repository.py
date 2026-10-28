@@ -67,12 +67,25 @@ def main():
         records = {name: json.loads((directory / name).read_text(encoding="utf-8")) for name in status["sources"]}
         for record in records.values(): current(record["input_fingerprint"])
         soulx = records["soulx-dsp.json"]
-        assert soulx["passed"] >= 153 and soulx["actual_host_children"] >= 49 and soulx["guard_assertions"] >= 29
+        assert soulx["passed"] >= 155 and soulx["actual_host_children"] >= 49 and soulx["guard_assertions"] >= 31
         assert soulx["actual_upstream_function_bodies"] and soulx["native_library_under_test"] and not soulx["apk_runtime_used"]
         assert soulx["trained_checkpoints_loaded"] == 0 and not soulx["generated_model_audio"] and not soulx["model_inference"] and not soulx["physical_android"] and not soulx["engine_registered"]
         arm64 = records["soulx-dsp-arm64.json"]
         assert arm64["android_arm64_compiled"] and arm64["android_platform"] == 28 and arm64["objects"] == 3
         assert not arm64["engine_registered"] and not arm64["packaged_in_apk"] and not arm64["model_inference"] and not arm64["physical_android"]
+        acoustic = records["soulx-acoustic.json"]
+        assert acoustic["passed"] >= 244 and acoustic["actual_host_children"] == 12 and acoustic["successful_syntheses"] == 3
+        assert acoustic["actual_ort_graph_runs"] >= 57 and acoustic["actual_ort_terminations"] == 1 and acoustic["max_live_sessions"] == 1
+        assert acoustic["full_flow_parameters"] == 112549360 and acoustic["full_hift_parameters"] == 20821295 and not acoustic["reduced_network"]
+        assert acoustic["synthetic_parameters"] and acoustic["production_converter_executed"] and acoustic["actual_upstream_forward_references"]
+        assert len(acoustic["metrics"]) == 63 and all(m["maximum_absolute_error"] <= m["maximum_allowed"] for m in acoustic["metrics"])
+        assert acoustic["trained_checkpoints_loaded"] == 0 and not acoustic["full_soulx_inference"] and not acoustic["model_audio_quality_tested"]
+        assert not acoustic["physical_android"] and not acoustic["apk_runtime_used"] and not acoustic["engine_registered"]
+        acoustic_arm = records["soulx-acoustic-arm64.json"]
+        assert acoustic_arm["android_arm64_compiled"] and acoustic_arm["android_platform"] == 28 and acoustic_arm["c_api_minimum"] == 17
+        assert acoustic_arm["elf"]["16k_elf_aligned"] and "libonnxruntime.so" in acoustic_arm["elf"]["needed"]
+        assert acoustic_arm["runtime_version"] == "1.28.2" and not acoustic_arm["engine_registered"] and not acoustic_arm["packaged_in_apk"]
+        assert not acoustic_arm["model_inference"] and not acoustic_arm["physical_android"] and not acoustic_arm["virtualization_used"]
         assert records["migration.json"]["passed"] >= 69 and records["migration.json"]["actual_host_hardlinks"] and records["migration.json"]["actual_host_child"] and not records["migration.json"]["model_inference_tested"] and not records["migration.json"]["physical_device_tested"]
         assert records["inputs.json"]["passed"] >= 64 and records["inputs.json"]["actual_socket_io"] and records["inputs.json"]["actual_private_file_io"] and records["inputs.json"]["production_wav_validation"] and not records["inputs.json"]["android_execution_tested"] and not records["inputs.json"]["model_inference_tested"]
         assert records["scheduler.json"]["passed"] >= 49 and records["scheduler.json"]["production_job_runner"] and records["scheduler.json"]["actual_host_children"] and records["scheduler.json"]["actual_loopback_http"] and not records["scheduler.json"]["physical_android"] and not records["scheduler.json"]["model_inference"]

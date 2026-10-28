@@ -242,7 +242,7 @@ Samples cosine_schedule(int steps) {
     return schedule;
 }
 void euler_step(Samples& state, const Samples& conditional, const Samples& unconditional, float dt, float cfg) {
-    require(!state.empty() && state.size()<=80*kMaxMelFrames && conditional.size()==state.size() && unconditional.size()==state.size(), "Invalid SoulX Flow velocity layout");
+    require(!state.empty() && state.size()<=80*kMaxFlowFrames && conditional.size()==state.size() && unconditional.size()==state.size(), "Invalid SoulX Flow velocity layout");
     require(std::isfinite(dt) && dt>0 && dt<=1 && std::isfinite(cfg) && cfg>=0 && cfg<=10,"Invalid SoulX Flow time/CFG");
     finite(state); finite(conditional); finite(unconditional);
     Samples next(state.size());
