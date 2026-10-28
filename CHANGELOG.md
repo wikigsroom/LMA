@@ -1,5 +1,11 @@
 # Changelog / 更新记录
 
+## dev.20 source follow-up — SoulX language and complete trained host pipeline / unpublished
+
+源码后续更新（APK仍dev.20）：[SoulX语言与完整主机链路](docs/SOULX_LANGUAGE.md)已运行全部训练Qwen3 /S3 /CAMPPlus /Flow /HiFT，以两段新文字输出24kHz WAV。语言546项 /20次原生子进程、整链路60项 /5次原生子进程通过；官方与较早社区词表分开验证，实际原始HF logits、RAS /历史和运行中取消均核对。ARM64 /API28 /16KiB编译通过，执行器未进APK。参考PCM为合成输入，没有语音质量、App或手机验收结论；模型与WAV留在忽略目录，完整范围 /Release门槛保留。见[编号实现与完整待办](docs/releases/v0.3.0-dev.20-soulx-language.md)。
+
+Source follow-up (APK remains dev.20): [SoulX language and complete host pipeline](docs/SOULX_LANGUAGE.en.md) execute trained Qwen3/S3/CAMPPlus/Flow/HiFT on fresh texts and write 24 kHz WAV. Language 546 assertions / 20 native children and pipeline 60 assertions/5 native children pass; distinct official/earlier community tokenizers, full original HF logits, RAS/history and actual decode cancellation are checked. ARM64/API28/16KiB compilation passes; executors are outside APK. Synthetic references provide no speech quality, App or phone acceptance. Models/WAVs remain ignored; all complete-scope/Release gates stay open. See [numbered implementation and remaining work](docs/releases/v0.3.0-dev.20-soulx-language.md).
+
 ## dev.20 source follow-up — trained SoulX reference/acoustic reconstruction / unpublished
 
 - 新增完整训练S3Tokenizer v2 / CAMPPlus原生参考提取，完整ONNX / tensor身份保持，显式开发权重下载与严格来源锁；145项 /15主机子进程 /10图 /2实际终止。Native trained references with exact publisher identity and explicit asset preparation.

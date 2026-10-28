@@ -1,5 +1,7 @@
 # SoulX-Podcast native audio primitives
 
+Current follow-up: [language and complete trained host pipeline](SOULX_LANGUAGE.en.md) now executes Qwen3 text-to-codes through Flow/HiFT. This page retains its original scoped suite; App integration, speech quality and physical Android remain pending. The complete host evidence does not retroactively change these earlier tests.
+
 [中文](SOULX_DSP.md) · [Complete requirements](MULTIMODAL_RELEASE_PLAN.md) · [Numbered delivery](releases/v0.3.0-dev.20-soulx-dsp.md)
 
 The implementation in [research/soulx](../research/soulx/dsp.hpp) is a compilable C++ audio library with executable checks. **It is not registered in the APK, engine registry, job queue or inference API.** Target 13, SoulX-Podcast 1.7B, still needs its complete native pipeline. No model is newly advertised as supported; recommendations, tags and user downloads are unchanged. The development APK remains 0.3.0-dev.20; the public Release remains v0.2.0.
@@ -10,7 +12,7 @@ The implementation in [research/soulx](../research/soulx/dsp.hpp) is a compilabl
 | --- | --- | --- |
 | S-01 | Reference WAV → 16k S3 / CAMPPlus features and 24k Flow features | Native computation and upstream numerical comparisons implemented; the future worker must connect WAV decoding to the existing input library |
 | S-02 | S3Tokenizer → semantic codes; CAMPPlus → 192-dimensional speaker embedding | [Separate reference execution](SOULX_REFERENCE.en.md) now runs complete trained graphs; DSP alone only computes features, with user bundles/App binding still pending |
-| S-03 | Qwen3 → target codes, multiple speakers, turn history and EOS | Complete GGUF/tokenizer protocol, generation, history windows and task binding pending |
+| S-03 | Qwen3 → target codes, multiple speakers, turn history and EOS | [Native language/windows](SOULX_LANGUAGE.en.md) pass trained host checks; App task integration and complete phone acceptance remain pending |
 | S-04 | Flow encoder → conditions; estimator → velocities | [Full acoustic four-graph follow-up](SOULX_ACOUSTIC.en.md) implements native ORT comparisons with complete UNTRAINED architectures; [trained reconstruction](SOULX_REFERENCE.en.md) is also checked; user components and App binding remain pending |
 | S-05 | HiFT F0 / neural spectra → 24k waveform | Native NSF/STFT/ISTFT now feed the research F0/learned-source/neural-spectrum executor; [trained reconstruction](SOULX_REFERENCE.en.md) is now checked; complete speech quality and App binding remain pending |
 | S-06 | Turn concatenation, artifacts, background API and resource admission | Complete executor must join the shared foundation; no model WAV produced in this update |

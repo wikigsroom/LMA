@@ -1,5 +1,7 @@
 # SoulX-Podcast：完整声学网络导出与原生执行
 
+当前后续进展见[语言与完整训练主机链路](SOULX_LANGUAGE.md)：已在开发主机运行Qwen3文字到语义码并接Flow /HiFT。本页保留原检查点的限定套件范围；App绑定、语音质量与物理Android仍待完成，旧套件不追溯改标为完整TTS证据。
+
 [English](SOULX_ACOUSTIC.en.md) · [音频前端与 DSP](SOULX_DSP.md) · [完整版本要求](MULTIMODAL_RELEASE_PLAN.md) · [编号交付](releases/v0.3.0-dev.20-soulx-acoustic.md)
 
 本次源码更新在 [research/soulx_acoustic](../research/soulx_acoustic/acoustic.hpp) 实现了 SoulX **声学部分**的本地执行：语义码和参考特征 → Flow → HiFT → 单声道 24kHz PCM。四份 ONNX 使用完整上游网络结构；本文244项回归使用未训练的合成夹具。[后续训练参考 /声学重建](SOULX_REFERENCE.md)另加载真实 S3 /CAMP /Flow /HiFT并记录145 /253项独立证据。它还不是从文字 / 参考 WAV 开始的完整 SoulX，也没有注册到 APK、模型目录、共用任务或 HTTP API。开发 APK 仍为 dev.20，公开 Release 仍为 v0.2.0；13 号完整模型目标仍未关闭。
@@ -55,10 +57,10 @@ python tools/check_repository.py --development
 
 本轮 **244项限定检查、12次实际主机子进程、57次完成的 ORT 图执行、1次实际运行终止、3次声学输出**通过，63项阶段比较的最大速度误差为 `1.109e-4`，最终 PCM 最大绝对误差为 `1.733e-7`。四图和数据等9个资产合计582,584,557字节，均只在忽略的开发目录。共用ORT策略后重新编译的 Android未注册CLI为520,448字节；该尺寸不含22,249,560字节既有 ORT，更不代表整模型内存占用。
 
-主机 ORT1.24.3 DLL 的版本和 SHA256 独立固定；Android 链接既有 ORT1.28.2 CPU 库，使用兼容 C API17，检查 ARM64 / API28 / 16KiB ELF 及导入。**Windows 执行与 Android 编译不能替代 Android 执行。本文未训练244项套件的训练checkpoint加载0；另有[训练参考 /声学重建](SOULX_REFERENCE.md)组件证据。完整SoulX推理0、语音质量验证0、真机0。** 所有相关证据仍为 `release_ready=false`。
+主机 ORT1.24.3 DLL 的版本和 SHA256 独立固定；Android 链接既有 ORT1.28.2 CPU 库，使用兼容 C API17，检查 ARM64 / API28 / 16KiB ELF 及导入。**Windows 执行与 Android 编译不能替代 Android 执行。本文未训练244项套件的训练checkpoint加载0；另有[训练参考 /声学重建](SOULX_REFERENCE.md)组件证据。本244项套件的完整SoulX推理0；后续[语言与完整训练主机链路](SOULX_LANGUAGE.md)已有独立输出证据；语音质量验证0、真机0。** 所有相关证据仍为 `release_ready=false`。
 
 ## 来源、许可与剩余门槛
 
 [锁定来源](../third_party/soulx-acoustic-source-lock.json)含 SoulX、KISS FFT、ORT 和 Snake 的修订 / 文件 hash，以及导出依赖来源 hash。[归属与许可](../research/soulx_acoustic/NOTICE)保留 Apache-2.0、ORT MIT 和 Snake MIT。上游 SoulX 提到了未随其 checkout 提供的 `incl_licenses`；本仓库从独立固定的 EdwardDixon/snake 原仓库保留实际 MIT 原文，没有伪造缺失文件。模型权重与后续转换包的来源 / 许可仍需单独检查。
 
-同一完整 v0.3.0 内继续完成：S3 /CAMP用户资产与App绑定（导出 /原生研究运行已见[参考指南](SOULX_REFERENCE.md)）、Qwen3 / tokenizer / 语义码协议、最多四说话人 / 历史窗口 / 长文本、完整显式用户模型包与任务 / API 绑定、新输入断网真实权重输出 / 质量 / 资源测试及物理 Android 验收。F-01–F-12、原有文本、01–14 / 16 / 17 全部冻结子目标、九种 MOSS、SD1.5 / SDXL LoRA、旧 LTX-Video 2B 0.9.8 distilled、A1–A11 / R-01–R-05 和完整 Release 均不缩减或自动顺延。
+同一完整 v0.3.0 内继续完成：S3 /CAMP用户资产与App绑定（导出 /原生研究运行已见[参考指南](SOULX_REFERENCE.md)）、已有[语言 /窗口及完整训练主机链路](SOULX_LANGUAGE.md)的App绑定和长文本 /多说话人质量、完整显式用户模型包与任务 / API 绑定、新输入断网真实权重输出 / 质量 / 资源测试及物理 Android 验收。F-01–F-12、原有文本、01–14 / 16 / 17 全部冻结子目标、九种 MOSS、SD1.5 / SDXL LoRA、旧 LTX-Video 2B 0.9.8 distilled、A1–A11 / R-01–R-05 和完整 Release 均不缩减或自动顺延。

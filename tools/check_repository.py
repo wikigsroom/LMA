@@ -64,7 +64,9 @@ def main():
         status = json.loads((directory / "status.json").read_text(encoding="utf-8"))
         assert status["version"] == release and not status["release_ready"] and not status["all_selected_models_supported"]
         assert status["physical_device_tests"] == 0 and not status["model_inference_tested"]
-        assert status["trained_soulx_components_tested"] == 4 and not status["soulx_complete_text_to_speech_tested"]
+        assert status["trained_soulx_components_tested"] == 5 and not status["soulx_complete_text_to_speech_tested"]
+        assert status["host_model_inference_tested"] and status["soulx_complete_host_text_to_speech_tested"]
+        assert not status["soulx_complete_android_text_to_speech_tested"] and not status["soulx_speech_quality_tested"]
         records = {name: json.loads((directory / name).read_text(encoding="utf-8")) for name in status["sources"]}
         for record in records.values(): current(record["input_fingerprint"])
         soulx = records["soulx-dsp.json"]
@@ -117,6 +119,42 @@ def main():
         assert len(waves) == 3 and all(m["maximum_allowed"] == .001 and m["rmse_allowed"] == .0001 and m["snr_minimum_db"] == 50 and m["rmse"] <= .0001 and m["snr_db"] >= 50 for m in waves)
         assert all(m["maximum_allowed"] == .0005 for m in acoustic["metrics"] if m["stage"] == "wave")
         assert not any(trained[k] for k in ["trained_text_to_speech", "full_soulx_inference", "speech_quality_tested", "real_person_audio_used", "physical_android", "apk_runtime_used", "engine_registered"])
+        language = records["soulx-language.json"]
+        language_host = records["soulx-language-host.json"]
+        current(language["reference_evidence_fingerprint"]); current(language["host_compile_fingerprint"])
+        assert language["reference_evidence_fingerprint"] == reference["input_fingerprint"]
+        assert language["host_compile_fingerprint"] == language_host["input_fingerprint"]
+        assert language["native_binary_sha256"] == language_host["executable_sha256"] and language["policy_binary_sha256"] == language_host["policy_sha256"]
+        assert language["passed"] >= 500 and language["actual_host_children"] >= 20 and language["actual_original_hf_oracle_children"] == 1
+        assert language["actual_trained_language_generations"] == 2 and language["actual_neural_decode_calls"] > 0 and language["actual_aborted_decodes"] == 1
+        assert language["full_language_layers"] == 28 and language["full_language_tensors"] == 311 and language["trained_reference_components_used"] == 2
+        assert language["official_layout"] == dict(vocabulary=160156, speech_offset=153595, speech_eos=153478, audio_start=153477)
+        assert language["older_community_layout"] == dict(vocabulary=159488, speech_offset=152927, speech_eos=151675, audio_start=151674)
+        assert all(language[k] for k in ["official_source_hashes_verified", "original_upstream_ras_blocks_executed", "original_upstream_history_blocks_executed", "original_normalization_executed", "exact_publisher_tokenizer_ids", "original_full_hf_forward_executed"])
+        hf = language["original_hf_reference"]
+        assert hf["original_publisher_hf_forward"] and hf["complete_tensor_index_derived"] and hf["publisher_embedding_head_equal"]
+        assert hf["full_layers"] == 28 and hf["output_logits"] == 160156 and hf["reference_dtype"] == "bfloat16" and not hf["model_inference_on_phone"]
+        assert len(language["metrics"]) == 12 and all(m["maximum_absolute_error"] <= m["maximum_allowed"] == 2e-6 for m in language["metrics"])
+        logits = language["logit_metrics"]
+        assert logits["values"] == 160156 and logits["cosine"] >= logits["minimum_cosine"] == .99 and logits["rmse"] <= logits["maximum_rmse"] == .5
+        assert logits["top20_overlap"] >= logits["minimum_top20_overlap"] == .4
+        assert len(language["successful_turns"]) == 2 and all(t["semantic_codes"] > 0 and t["history_delimiter_inserted"] == (not t["eos"]) for t in language["successful_turns"])
+        assert not any(language[k] for k in ["full_soulx_text_to_speech", "speech_quality_tested", "real_person_audio_used", "physical_android", "apk_runtime_used", "engine_registered"])
+        language_arm = records["soulx-language-arm64.json"]
+        assert language_arm["android_arm64_compiled"] and language_arm["android_platform"] == 28 and language_arm["elf"]["16k_elf_aligned"]
+        assert "libllama.so" in language_arm["elf"]["needed"] and language_arm["backend"] == language_host["backend"] == "cpu"
+        assert not any(language_arm[k] for k in ["network_process_imports", "engine_registered", "packaged_in_apk", "model_inference", "physical_android", "virtualization_used"])
+        pipeline = records["soulx-pipeline.json"]
+        assert pipeline["passed"] >= 55 and pipeline["full_trained_host_pipeline_executed"] and pipeline["same_host_sequential_children"] and pipeline["no_network_inference"]
+        assert pipeline["actual_host_children"] == 5 and pipeline["actual_reference_graph_runs"] == 4 and pipeline["actual_acoustic_graph_runs"] == 36 and pipeline["actual_neural_decode_calls"] > 0
+        assert pipeline["trained_reference_models"] == 2 and pipeline["trained_language_backbones"] == 1 and pipeline["trained_acoustic_checkpoints"] == 2
+        assert pipeline["synthetic_reference_pcm"] and len(pipeline["fresh_texts"]) == len(pipeline["artifacts"]) == 2
+        for key, record in [("soulx-reference-tests", reference), ("soulx-trained-tests", trained), ("soulx-language-tests", language)]:
+            assert pipeline["source_evidence_fingerprints"][key] == record["input_fingerprint"]
+        assert pipeline["native_binary_sha256"]["language"] == language["native_binary_sha256"]
+        assert pipeline["converted_language_assets"] == language["converted_language_assets"]
+        assert all(a["samples"] == a["semantic_codes"] * 960 and a["seconds"] == a["samples"] / 24000 and a["bytes"] == 44 + a["samples"] * 2 and a["rms"] > 0 and len(a["sha256"]) == 64 for a in pipeline["artifacts"])
+        assert not any(pipeline[k] for k in ["speech_quality_tested", "complete_target_13_accepted", "real_person_audio_used", "physical_android", "apk_runtime_used", "engine_registered"])
         assert records["migration.json"]["passed"] >= 69 and records["migration.json"]["actual_host_hardlinks"] and records["migration.json"]["actual_host_child"] and not records["migration.json"]["model_inference_tested"] and not records["migration.json"]["physical_device_tested"]
         assert records["inputs.json"]["passed"] >= 64 and records["inputs.json"]["actual_socket_io"] and records["inputs.json"]["actual_private_file_io"] and records["inputs.json"]["production_wav_validation"] and not records["inputs.json"]["android_execution_tested"] and not records["inputs.json"]["model_inference_tested"]
         assert records["scheduler.json"]["passed"] >= 49 and records["scheduler.json"]["production_job_runner"] and records["scheduler.json"]["actual_host_children"] and records["scheduler.json"]["actual_loopback_http"] and not records["scheduler.json"]["physical_android"] and not records["scheduler.json"]["model_inference"]

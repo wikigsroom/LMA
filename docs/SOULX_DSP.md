@@ -1,5 +1,7 @@
 # SoulX-Podcast：原生音频计算底层
 
+当前后续进展见[语言与完整训练主机链路](SOULX_LANGUAGE.md)：已在开发主机运行Qwen3文字到语义码并接Flow /HiFT。本页保留原检查点的限定套件范围；App绑定、语音质量与物理Android仍待完成，旧套件不追溯改标为完整TTS证据。
+
 [English](SOULX_DSP.en.md) · [完整版本要求](MULTIMODAL_RELEASE_PLAN.md) · [本轮交付](releases/v0.3.0-dev.20-soulx-dsp.md)
 
 本轮实现位于 [research/soulx](../research/soulx/dsp.hpp)，是可编译、可执行检查的 C++ 音频处理库，**尚未接入 APK、引擎注册表、任务队列或模型执行接口**。13 号 SoulX-Podcast 1.7B 仍待完成完整原生管线；本轮不新增“已支持模型”，不改变推荐、模型标签或用户下载行为。当前开发 APK 仍为 0.3.0-dev.20，公开 Release 仍为 v0.2.0。
@@ -10,7 +12,7 @@
 | --- | --- | --- |
 | S-01 | 参考 WAV → 16k S3 特征 / CAMPPlus 特征 / 24k Flow 特征 | 已实现原生计算及与上游数值比较；WAV 仍由未来工作进程接入现有输入库 |
 | S-02 | S3Tokenizer → 参考语义码；CAMPPlus → 192 维说话人向量 | 已在[独立参考执行器](SOULX_REFERENCE.md)运行完整训练图；本DSP库只计算前端，用户包 /App绑定仍待完成 |
-| S-03 | Qwen3 主干 → 目标语义码；多说话人、跨轮历史与 EOS | 完整 GGUF / tokenizer 协议、生成、历史窗口与任务接口待实现 |
+| S-03 | Qwen3 主干 → 目标语义码；多说话人、跨轮历史与 EOS | [原生语言与窗口](SOULX_LANGUAGE.md)已完成训练主机检查；App任务绑定 /完整手机验收仍待完成 |
 | S-04 | Flow encoder → 条件张量；Flow estimator → 速度 | 已有[完整声学四图后续实现](SOULX_ACOUSTIC.md)及未训练完整结构 / 原生 ORT 比较；另有[训练权重重建](SOULX_REFERENCE.md)；用户组件和App绑定仍待接入 |
 | S-05 | HiFT F0 / 神经谱模型 → 24k 波形 | 原生 NSF / STFT / ISTFT 已接后续 F0 / 学习 source merge / 神经谱研究执行器；[实际训练权重重建](SOULX_REFERENCE.md)已验证；完整语音质量与App绑定仍待完成 |
 | S-06 | 合并多轮结果、任务产物、后台 API 与资源准入 | 待完整执行器接入共用基座；本轮未生成模型 WAV |

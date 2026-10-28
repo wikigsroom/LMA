@@ -1,0 +1,72 @@
+{
+  "kind": "android_compile",
+  "executable_bytes": 327576,
+  "executable_sha256": "7d44538f4b868b620c51c868fa4e0f4cbce6a4c44f62dc16ed183f7725c75767",
+  "llama_revision": "b29c606e28a01b1bc8c1351026a0fa6e616bf6c4",
+  "backend": "cpu",
+  "engine_registered": false,
+  "packaged_in_apk": false,
+  "model_inference": false,
+  "physical_android": false,
+  "virtualization_used": false,
+  "input_fingerprint": {
+    "research/soulx_language/CMakeLists.txt": "b6ebffd19866915637905388458a588a091a8204a62cdfae31b26f4bf608ab45",
+    "research/soulx_language/driver.cpp": "236fe85a5f867d8c32a54b425d58ba1435e032d90dbc7ec70fdad105a21c7ab4",
+    "research/soulx_language/language.cpp": "dee5a2c5a93adb5fd7e4864b8711e7bbdb8a8a96e4d4809e15b80469cbd73977",
+    "research/soulx_language/language.hpp": "229a3e6d13791196789c74e08503fc4b23ac8a33ebcb11a0b2894dc26946e6ff",
+    "research/soulx_language/LICENSE-APACHE-2.0": "2d88353fe7c7e7dde2a5ea2bc00db9f4808127c938395fcfd1a4d88a268ea3a5",
+    "research/soulx_language/LICENSE-LLAMA-MIT": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
+    "research/soulx_language/NOTICE": "df180c60d77739970291a3de27948f1666ec30d21581eb5bce06f0e3a9a24934",
+    "research/soulx_language/policy.hpp": "706fee760a88663d6f0586b109eea9b606463e9b8f545e116b2915b10fb66840",
+    "research/soulx_language/policy_driver.cpp": "dd40dda95ec9b8dada03a10ecdf09981695594b4cdab0ab47d2ff5ba932002ca",
+    "research/soulx_language/quantize.cpp": "1ce5f604d7f7648270b01e8fa434244a821ae1a5de1246808d136bac184b1cd0",
+    "third_party/soulx-language-source-lock.json": "b2216e3270277fdf69399a1f2e965ee8b1b93685ba9f0bd63f7ca09c4a26a9d6",
+    "tools/build_soulx_language.py": "b82c7ac24979d4f764c27b42b063f8bd60969a96e94849c3a125e01cc2e7c23f",
+    "tools/fetch_soulx_language.py": "3a9b68d164090a0ee1b0d9059a02bca85ef79ded691645beb42605ec4493b936"
+  },
+  "android_arm64_compiled": true,
+  "android_platform": 28,
+  "elf": {
+    "machine": "aarch64",
+    "needed": [
+      "libllama.so",
+      "libggml.so",
+      "libdl.so",
+      "libm.so",
+      "libc.so"
+    ],
+    "load_segment_alignment": [
+      16384
+    ],
+    "interpreter": "/system/bin/linker64",
+    "entry_point": 101344,
+    "android_api_notes": [
+      28
+    ],
+    "16k_elf_aligned": true
+  },
+  "runtime_files": [
+    {
+      "name": "libllama.so",
+      "size": 3264464,
+      "sha256": "b93e6abb9088bfb50ca1986200654fddec722c0910dbf2a2000d3496e73a9449"
+    },
+    {
+      "name": "libggml-cpu-android_armv8.0_1.so",
+      "size": 871048,
+      "sha256": "5eec51b25c2835bd6bd62a29d0b9ac07ce7fadcbeb679d00ecf184128a2cf8d4"
+    },
+    {
+      "name": "libggml.so",
+      "size": 668680,
+      "sha256": "e858a7c58ce22a7cec4c1e18d0b1772680e52ef833ea7822a4500c659a0774b8"
+    },
+    {
+      "name": "libggml-base.so",
+      "size": 1080864,
+      "sha256": "5e79542e713d0f4fa633cb987ad1a4a95bc1b64531e88305e3a41c6213aaf1a9"
+    }
+  ],
+  "ndk": "30.0.16248370",
+  "network_process_imports": false
+}

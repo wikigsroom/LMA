@@ -1,8 +1,10 @@
 # SoulX：训练参考模型与声学重建
 
+当前后续进展见[语言与完整训练主机链路](SOULX_LANGUAGE.md)：已在开发主机运行Qwen3文字到语义码并接Flow /HiFT。本页保留原检查点的限定套件范围；App绑定、语音质量与物理Android仍待完成，旧套件不追溯改标为完整TTS证据。
+
 [English](SOULX_REFERENCE.en.md) · [声学网络](SOULX_ACOUSTIC.md) · [音频计算](SOULX_DSP.md) · [本轮编号交付](releases/v0.3.0-dev.20-soulx-reference.md)
 
-本次实现把已训练的 S3Tokenizer v2、CAMPPlus 和 Flow / HiFT 接入可执行的原生研究链路：**参考 PCM → 语义码 / 说话人向量 / mel → 声学重建 PCM**。四个发布者组件均实际加载训练权重；目标语义码来自另一段合成 PCM 的 S3 编码，尚未来自文字或 Qwen3。因此这是参考提取与声学重建证据，完整 SoulX TTS、App 下载包 / 任务 / API 绑定和 Android 执行仍待完成。
+本页记录的前一检查点把已训练的 S3Tokenizer v2、CAMPPlus 和 Flow / HiFT 接入可执行的原生研究链路：**参考 PCM → 语义码 / 说话人向量 / mel → 声学重建 PCM**。四个发布者组件均实际加载训练权重；目标语义码来自另一段合成 PCM 的 S3 编码，尚未来自文字或 Qwen3。因此这是参考提取与声学重建证据，完整 SoulX Android TTS、App 下载包 / 任务 / API 绑定和 Android 执行仍待完成。
 
 代码位于 [research/soulx_reference](../research/soulx_reference/reference.hpp)、[共享 ORT 策略](../research/soulx_ort/runtime.hpp)及现有声学模块。它们尚未注册或打包进 APK；开发 APK 仍为 0.3.0-dev.20 / code24，公开 Release 仍为 v0.2.0。所有冻结目标继续属于同一个完整 v0.3.0。
 
@@ -77,4 +79,4 @@ python tools/check_repository.py --development
 
 许可见[参考模块 NOTICE](../research/soulx_reference/NOTICE)、[共享 ORT NOTICE](../research/soulx_ort/NOTICE)、现有 DSP /声学 NOTICE 和来源锁。保留 Apache-2.0、ORT MIT、KISS FFT BSD-3-Clause及 Snake MIT；发布者模型卡声明 Apache-2.0，不将代码许可推断成任意 HF 模型的许可。
 
-仍须完成 Qwen3 / tokenizer /文本到语义码、最多四说话人 /跨轮历史 /长文本、完整显式用户模型包、App队列 / API /输入输出 /资源准入、全模型新输入断网语音和质量测试，以及物理 Android 三次装卸、15分钟锁屏、1小时交替 API 和升级保留资产。原有文本、F-01–F-12、01–14 /16 /17全部冻结子目标、九种 MOSS、SD1.5 /SDXL LoRA、旧 LTX-Video 2B 0.9.8 distilled、A1–A11 /R-01–R-05及最终 Release 均保留，不拆版本或默认顺延。
+[语言及完整训练主机链路](SOULX_LANGUAGE.md)已另获证据；仍须完成其App绑定、长文本 /多说话人质量、完整显式用户模型包、App队列 / API /输入输出 /资源准入、全模型新输入断网语音和质量测试，以及物理 Android 三次装卸、15分钟锁屏、1小时交替 API 和升级保留资产。原有文本、F-01–F-12、01–14 /16 /17全部冻结子目标、九种 MOSS、SD1.5 /SDXL LoRA、旧 LTX-Video 2B 0.9.8 distilled、A1–A11 /R-01–R-05及最终 Release 均保留，不拆版本或默认顺延。

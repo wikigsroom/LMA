@@ -1,8 +1,10 @@
 # SoulX trained reference models and acoustic reconstruction
 
+Current follow-up: [language and complete trained host pipeline](SOULX_LANGUAGE.en.md) now executes Qwen3 text-to-codes through Flow/HiFT. This page retains its original scoped suite; App integration, speech quality and physical Android remain pending. The complete host evidence does not retroactively change these earlier tests.
+
 [中文](SOULX_REFERENCE.md) · [Acoustic networks](SOULX_ACOUSTIC.en.md) · [Audio primitives](SOULX_DSP.en.md) · [Numbered delivery](releases/v0.3.0-dev.20-soulx-reference.md)
 
-This implementation runs trained S3Tokenizer v2, CAMPPlus and Flow/HiFT in native research executors: **reference PCM → semantic codes / speaker embedding / mel → reconstructed PCM**. All four publisher components load trained weights. Target codes come from S3 encoding another synthetic PCM input, without text or Qwen3. Complete SoulX TTS, user bundles, App jobs/API and Android execution remain outstanding.
+The earlier checkpoint documented here runs trained S3Tokenizer v2, CAMPPlus and Flow/HiFT in native research executors: **reference PCM → semantic codes / speaker embedding / mel → reconstructed PCM**. All four publisher components load trained weights. This suite's target codes come from S3 encoding another synthetic PCM input, without text or Qwen3. Complete SoulX Android TTS, user bundles, App jobs/API and Android execution remain outstanding.
 
 Sources are [research/soulx_reference](../research/soulx_reference/reference.hpp), the [shared ORT policy](../research/soulx_ort/runtime.hpp) and the existing acoustic module. They are unregistered and excluded from the APK. The development APK remains 0.3.0-dev.20/code24; the public Release remains v0.2.0. Every frozen requirement remains in the same complete v0.3.0.
 
@@ -77,4 +79,4 @@ For independently selected original reference graphs: `python tools/export_soulx
 
 Licensing is recorded in the [reference NOTICE](../research/soulx_reference/NOTICE), [shared ORT NOTICE](../research/soulx_ort/NOTICE), existing DSP/acoustic notices and locks. Apache-2.0, ORT MIT, KISS FFT BSD-3-Clause and Snake MIT texts are retained. Publisher cards declare Apache-2.0 for these assets; this does not imply a license for arbitrary HF models.
 
-Still required: Qwen3/tokenizer/text-to-codes, up to four speakers/history/long text, complete explicit user bundles, App jobs/API/inputs/artifacts/admission, fresh-input offline full-model speech and quality tests, and physical Android acceptance including three load/unload cycles,15minute screen-off, one-hour alternating API and upgrade asset preservation. Existing text, F-01–F-12, every frozen01–14/16/17 subtarget, nine MOSS variants, SD1.5/SDXL LoRA, old LTX-Video2B0.9.8 distilled, A1–A11/R-01–R-05 and the final Release remain required without split scope or automatic deferral.
+The [language/complete trained host follow-up](SOULX_LANGUAGE.en.md) now has separate evidence. Still required: App integration, long-form/multi-speaker quality, complete explicit user bundles, App jobs/API/inputs/artifacts/admission, fresh-input offline full-model speech and quality tests, and physical Android acceptance including three load/unload cycles,15minute screen-off, one-hour alternating API and upgrade asset preservation. Existing text, F-01–F-12, every frozen01–14/16/17 subtarget, nine MOSS variants, SD1.5/SDXL LoRA, old LTX-Video2B0.9.8 distilled, A1–A11/R-01–R-05 and the final Release remain required without split scope or automatic deferral.

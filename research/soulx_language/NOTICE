@@ -1,0 +1,25 @@
+LMA SoulX language research module (not registered in the APK)
+
+Original C++ model lifecycle/controller/CLI and Python developer tools are
+Copyright 2026 LMA contributors, MIT under the repository LICENSE.
+policy.hpp adapts normalization, prompt construction, bounded turn history
+and repetition-aware sampling from Soul-AILab/SoulX-Podcast at the fixed
+revision/file hashes in third_party/soulx-language-source-lock.json.
+These ports retain Apache-2.0; see LICENSE-APACHE-2.0. Upstream credits
+Soul-AILab contributors and the linked VALL-E 2 RAS method.
+
+The original llama.cpp source/runtime is MIT, Copyright (c) 2023-2026 The
+ggml authors. Preserve the actual LICENSE-LLAMA-MIT text. Android links
+the existing pinned llama.cpp 0.4.1 CPU runtime; host checks compile the
+same revision. Host binaries and developer quantization are not APK data.
+The nlohmann/json CLI dependency is MIT, Copyright (c) 2013-2025 Niels
+Lohmann; see third_party/notices/sd-nlohmann-json-LICENSE.txt.
+
+Publisher model/tokenizer assets are explicitly downloaded to ignored
+developer directories and independently hash-verified; their model cards
+declare Apache-2.0. User-selected GGUF carries its own tokenizer/vocabulary,
+never embedded in the APK. Official and older community token layouts
+are distinct and must not share fixed speech offsets or generic EOS IDs.
+Full graph/tensor presence and host semantic generation do not establish
+complete Android TTS, reference fidelity, intelligibility or voice quality.
+No real-person reference audio or model examples are bundled.

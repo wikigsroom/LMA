@@ -1,0 +1,145 @@
+{
+  "schema": "lma.soulx-language-source/1",
+  "scope": "Unregistered full Qwen3 SoulX text-to-semantic-code research, not complete phone/App support",
+  "sources": [
+    {
+      "name": "llama-soulx",
+      "url": "https://github.com/ggml-org/llama.cpp.git",
+      "revision": "b29c606e28a01b1bc8c1351026a0fa6e616bf6c4",
+      "license": "MIT",
+      "reviewed_files": {
+        "LICENSE": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
+        "include/llama.h": "bace72539125f3a2bcf7f71392cf7cc4ae1bd3988535fca16c04a97e531a27ed",
+        "ggml/include/ggml-backend.h": "0305a9742164ae118ef0490a720971934938c9e62cb174ccd68babf1992fa9c0",
+        "src/llama-model.cpp": "d8e5b32b39cbddfab33921f38cc453aa48ae69b28c22c666bab55dfef88e73e3",
+        "src/llama-vocab.cpp": "489428e40cf7be874ad813859fe06082d8ae9a875a73600fdf50fe1d20add649",
+        "src/models/qwen3.cpp": "737aee124c5f47705b28f1fa7989dfa23bea72ddd2860797e0ae14e49085eafe",
+        "convert_hf_to_gguf.py": "c2b8d1f31a9007be75d6850aa1db47dedcaedee0eeebe00aa978eac6f2cc89ad",
+        "conversion/base.py": "6de36734c6e2baca73ff55089b55f171c83a3c692d346be654736ead9b7fe288",
+        "conversion/qwen.py": "cd56c7d2a574ec42298c4dd8799d265f8ab7c92f3bd0848184026a64617f8ad5"
+      }
+    },
+    {
+      "name": "soulx-podcast",
+      "url": "https://github.com/Soul-AILab/SoulX-Podcast.git",
+      "revision": "5ac9c0e1cfe596396200c7d38e3fd53b7b3fbf4b",
+      "license": "Apache-2.0",
+      "reviewed_files": {
+        "LICENSE": "2d88353fe7c7e7dde2a5ea2bc00db9f4808127c938395fcfd1a4d88a268ea3a5",
+        "soulxpodcast/config.py": "a69416ab3541b3255c0a27c263a3c624ea9d03c755ef5b175360fc4a451e20e4",
+        "soulxpodcast/utils/text.py": "552c157a698042656f64aebcaa20f68d9e8e9707a09f54f97c3b660096769cd0",
+        "soulxpodcast/utils/dataloader.py": "6d8aac0f5cd2f876b3c7b7f15ed011bee8d76c84394f2d5c32089f3b4b820ad3",
+        "soulxpodcast/models/soulxpodcast.py": "5980b17df29f74986babd28b919ac27bcd1bf65bd545a9cde075558842ba51cc",
+        "soulxpodcast/models/modules/sampler.py": "ce4620ab14256131837d55406d3e784a9f83705028564ac1df55febbaf647dbf",
+        "soulxpodcast/engine/llm_engine.py": "61ba65dcc805bb56db183d1412d0d58848dd6454b7f285baea82b795fb926f26"
+      }
+    }
+  ],
+  "json_header_sha256": "2dd8db723cff3e44198e14d6038ea6443dc6171a564bb82cd6ee81f0edc316e5",
+  "android_runtime_version": "0.4.1",
+  "android_runtime_files": [
+    {
+      "name": "libllama.so",
+      "size": 3264464,
+      "sha256": "b93e6abb9088bfb50ca1986200654fddec722c0910dbf2a2000d3496e73a9449"
+    },
+    {
+      "name": "libggml-cpu-android_armv8.0_1.so",
+      "size": 871048,
+      "sha256": "5eec51b25c2835bd6bd62a29d0b9ac07ce7fadcbeb679d00ecf184128a2cf8d4"
+    },
+    {
+      "name": "libggml.so",
+      "size": 668680,
+      "sha256": "e858a7c58ce22a7cec4c1e18d0b1772680e52ef833ea7822a4500c659a0774b8"
+    },
+    {
+      "name": "libggml-base.so",
+      "size": 1080864,
+      "sha256": "5e79542e713d0f4fa633cb987ad1a4a95bc1b64531e88305e3a41c6213aaf1a9"
+    }
+  ],
+  "publisher_assets": [
+    {
+      "file": "config.json",
+      "repo": "Soul-AILab/SoulX-Podcast-1.7B",
+      "revision": "c2af285fc7ec68a4d3402deae7d2e215ab67fb32",
+      "bytes": 726,
+      "sha256": "35257cc3c9fbf72a4dff79f2c19de5bf96cf47cee1b363f62ff4b54a8093f7be",
+      "license": "Apache-2.0"
+    },
+    {
+      "file": "soulxpodcast_config.json",
+      "repo": "Soul-AILab/SoulX-Podcast-1.7B",
+      "revision": "c2af285fc7ec68a4d3402deae7d2e215ab67fb32",
+      "bytes": 736,
+      "sha256": "88b54ecdad5b915dc24f2f842d95511af5a32e39c9a026016ca96b1b714cdb09",
+      "license": "Apache-2.0"
+    },
+    {
+      "file": "generation_config.json",
+      "repo": "Soul-AILab/SoulX-Podcast-1.7B",
+      "revision": "c2af285fc7ec68a4d3402deae7d2e215ab67fb32",
+      "bytes": 202,
+      "sha256": "ae73728665698ea605899d4b91959fdc8ddb8a35869c2766d8bcd3d71265f3f8",
+      "license": "Apache-2.0"
+    },
+    {
+      "file": "tokenizer_config.json",
+      "repo": "Soul-AILab/SoulX-Podcast-1.7B",
+      "revision": "c2af285fc7ec68a4d3402deae7d2e215ab67fb32",
+      "bytes": 1499492,
+      "sha256": "cd5cb5b316967e07b44061ef7c037ae22dc6e0ab9421c23abab272ab60da8748",
+      "license": "Apache-2.0"
+    },
+    {
+      "file": "special_tokens_map.json",
+      "repo": "Soul-AILab/SoulX-Podcast-1.7B",
+      "revision": "c2af285fc7ec68a4d3402deae7d2e215ab67fb32",
+      "bytes": 613,
+      "sha256": "76862e765266b85aa9459767e33cbaf13970f327a0e88d1c65846c2ddd3a1ecd",
+      "license": "Apache-2.0"
+    },
+    {
+      "file": "tokenizer.json",
+      "repo": "Soul-AILab/SoulX-Podcast-1.7B",
+      "revision": "c2af285fc7ec68a4d3402deae7d2e215ab67fb32",
+      "bytes": 13001613,
+      "sha256": "eeea5386700b5de11a062dab28b2a20640a23f5da0c25e7b745540abe360d70e",
+      "license": "Apache-2.0"
+    },
+    {
+      "file": "model-00001-of-00003.safetensors",
+      "repo": "Soul-AILab/SoulX-Podcast-1.7B",
+      "revision": "c2af285fc7ec68a4d3402deae7d2e215ab67fb32",
+      "bytes": 1989918504,
+      "sha256": "4a89b39d9502f20ddc71b77bcee905b4ffeb45e2f3fa569ef7c1b2ed62ce47b0",
+      "license": "Apache-2.0"
+    },
+    {
+      "file": "model-00002-of-00003.safetensors",
+      "repo": "Soul-AILab/SoulX-Podcast-1.7B",
+      "revision": "c2af285fc7ec68a4d3402deae7d2e215ab67fb32",
+      "bytes": 1484936040,
+      "sha256": "209b6498a4b58afbe1377c7871cc1004583623e4b6853cde7731b828cf9034ef",
+      "license": "Apache-2.0"
+    },
+    {
+      "file": "model-00003-of-00003.safetensors",
+      "repo": "Soul-AILab/SoulX-Podcast-1.7B",
+      "revision": "c2af285fc7ec68a4d3402deae7d2e215ab67fb32",
+      "bytes": 655999104,
+      "sha256": "e9e2b5ea54d61cfc726f98ea726104f9786313ec6890c8c07e9d121ef4e98e90",
+      "license": "Apache-2.0"
+    }
+  ],
+  "community_gguf": {
+    "repo": "mradermacher/SoulX-Podcast-1.7B-GGUF",
+    "revision": "400348052b80b513722ead19c4f09839ef0455a2",
+    "file": "SoulX-Podcast-1.7B.Q4_K_M.gguf",
+    "bytes": 1303978016,
+    "sha256": "907c8de0bdd968e940297e6c4ee0dc793db9a478dff699c461a1427b3f86fdaa",
+    "license": "Apache-2.0"
+  },
+  "model_assets_packaged": false
+}
