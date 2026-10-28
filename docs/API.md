@@ -178,3 +178,5 @@ Qwen3-TTS 0.6B Base 复用 `POST /v1/jobs` 的 `speech.synthesize` 与本地 `re
 ## MOSS Delay 本机任务
 
 `moss_delay_native` 复用 `speech.synthesize`、模型独立参数、共用队列和 WAV 产物。只有所选包含原生编码器时才提供可选 `reference_audio`；普通 TTS 不需要编码器或默认音色。详见 [MOSS Delay 管线与执行回执](MOSS_DELAY_ENGINE.md)。没有新增 `/v1/audio/speech` 兼容性声明。
+
+[MOSS Local-v1.5 / SoundEffect-v2](OPENMOSS_ENGINE.md) 共用 POST /v1/jobs，分别使用 speech.synthesize / audio.generate；没有新增远程 provider 或 /v1/audio/speech 兼容声明。参数、参考素材、取消和回执按各配方独立校验。

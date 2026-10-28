@@ -32,6 +32,7 @@ public final class LocalEngines {
             else if (id.equals("mnn_diffusion")) register(new MnnEngine(app, binary, build));
             else if (id.equals("qwen_tts_native")) register(new QwenTtsEngine(app, binary, build));
             else if (id.equals("moss_delay_native")) register(new MossDelayEngine(app, binary, build));
+            else if (id.equals("openmoss_native")) register(new OpenMossEngine(app, binary, build));
             else throw new IOException("未知的签名原生模块：" + id);
         }
     }

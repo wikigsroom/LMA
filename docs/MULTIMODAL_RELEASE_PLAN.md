@@ -214,3 +214,5 @@ dev.13 的[Z-Image / FLUX / Qwen / Wan 基座接入](ADVANCED_DIFFUSION.md)增�
 dev.15：[Qwen3-TTS 0.6B Base / Local speech](QWEN_TTS_ENGINE.md) / [English](QWEN_TTS_ENGINE.en.md) 接入原生 CPU、两个自选 GGUF 与内含依赖、可选参考 WAV、独立参数和真实 RTF 记录。81 host checks / pinned-header review are not model inference or Android acceptance. App 仅更新基座，用户独立控制全部模型资产。编号 11 和全部其他冻结目标继续在同一完整 v0.3.0 满足真实输出、质量与生命周期门槛；无新 Release。
 
 Internal dev.16 / 内部 dev.16：[MOSS Delay 原生管线](MOSS_DELAY_ENGINE.md) adds the 8B first-class CPU route, optional reference encoder, model-owned sampling and actual native algorithm/host checks. App updates carry no model assets or implicit downloads. 该路由不替代 MOSS 九子目标各自适配或验收；F-01–F-12、01–14 / 16 / 17、全部冻结子目标及 A1–A11 / R-01–R-05 继续属于同一完整 v0.3.0，无新 Release。
+
+内部检查点（**0.3.0-dev.17 / code 21**，未发布）：[MOSS Local-v1.5 / SoundEffect-v2 原生基座](OPENMOSS_ENGINE.md)接入两个独立 CPU 管线、用户自选主干 / extras、内含依赖标签、可选双声道参考、每模型独立参数与共用任务 / 回执。180 项 Java / C++ 检查包含 6 次实际主机子进程与固定上游音效采样公式；没有完整模型或 Android 推理。全部 25 个模板仅为元数据，不自动下载；SoundEffect 固定 30 秒 latent 成本已披露。截图 42–47、录屏 / GIF 为 UI FIXTURE。所有冻结目标和物理设备门槛继续属于同一完整 v0.3.0，未创建新 Release。见[双语更新说明](releases/v0.3.0-dev.17.md)。

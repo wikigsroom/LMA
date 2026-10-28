@@ -1,0 +1,50 @@
+{
+  "schema": "lma.native-source/1",
+  "repository": "https://github.com/pwilkin/openmoss.git",
+  "revision": "bfb1f465e0a86fb5a52bbf93e67ceba4b7d0b4e1",
+  "llama_revision": "050ee92d04c2e1f639025786dea701c70e7d4204",
+  "reviewed_files": {
+    ".gitmodules": "0051f9d680fb802817058604995c4f574f032812426937afcda85e3dd560d20b",
+    "CMakeLists.txt": "67108712d943a63243f4c49fb0198db94e49b22cba32d7e370acc8c539206a64",
+    "include/openmoss/codec.h": "8b8e604c13d5878bde8fa07afad5c4741f5054d1e5c0952202682959d89fd8f3",
+    "include/openmoss/delay.h": "1d70e8e7f7b9c9cbabf05e602c3c6dd2804b35d47a2b344412224e59cfa8b333",
+    "include/openmoss/frame_decoder.h": "54e5318e611cfafeea3165bb276891232302a564cfef3b4e10895c240875cfe8",
+    "include/openmoss/model.h": "99306f081acb57f6cb1de563e0b55d4af01e585a06c71b0dd742d0c175c8421d",
+    "include/openmoss/pipeline.h": "d4015566d82491acdf21010c8cb3e9e0ed2a3525f2ac58cf6363b2e49762e2fb",
+    "include/openmoss/soundeffect.h": "dd24002e936d3d344d6a6449ec64957381b0d512f8340e12a3abb3e237566793",
+    "include/openmoss/tokenizer.h": "f5c37223aa088410ce9ff659d7c143d922c34e887777ce2cbb898dc474f79730",
+    "include/openmoss/wav.h": "5dd5c3df527901dc8c250bb1a9936a5dd57d3f05182b5bc93978c94423f83fe5",
+    "LICENSE": "1eb85fc97224598dad1852b5d6483bbcf0aa8608790dcc657a5a2a761ae9c8c6",
+    "scripts/convert_hf_to_gguf.py": "e3b05793797179ab6d02b6b64e24cd331316fba620940a20cc167ad8fd13bac7",
+    "src/aux_internal.h": "90d57d36b2593e6f5c074d5798e4ce08d2d151d5bad37c6148bbc75529230d42",
+    "src/codec.cpp": "b659f2f96a0c00f69cc5cf17212da2bc60f8a4803a8ee3bdfb702ee4f09fafa7",
+    "src/dac_vae.cpp": "24f6e594336f068ed682d8b68bf6a8b9cfc9c385fb9f83daeafe0d6593eea1cd",
+    "src/delay.cpp": "e603396d1163e8cbff193ffe72f0e97cb2e59239f4856b8ca031fb2dab502e30",
+    "src/dit.cpp": "0d743bc3de6ec596bf4a97e2cab05f3b79d79b4723390a21cab00ebfc0f0e0af",
+    "src/frame_decoder.cpp": "26ca82f94637c2c775411ef728a1d4ea1cc9401209154b1e15d6a1f355939106",
+    "src/local_transformer.cpp": "ca59a2d369d800487b1e6e977beb8bc061e2bb6b088f8aaaf2b2e291a2c1d5f4",
+    "src/model.cpp": "92e7835999c224c64c44bbdf99c05a9c40b5a083f3bee4f6ad6169abe0f71687",
+    "src/pipeline.cpp": "96e77e9c74ab299e6fc6106ef89391bb1ba717484e13b38e21dda3e07b53347d",
+    "src/sampling_internal.h": "952510679d688a5cba045b2b74c970fa4a6ebf51f6e38e7edd646483e8118c86",
+    "src/soundeffect.cpp": "cf860e8db6786f8d7d9e91449611ef9b91ab8d8cd5990e3a426e0809556765f0",
+    "src/tokenizer.cpp": "8699de54c47b5092bb885750d5a8720bc125096836806dff26765388242918be",
+    "src/wav.cpp": "628b64671889963c189b6b86fa5bd3897c63c13250406255e5de076a497c05c4",
+    "third_party/llama.cpp/LICENSE": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285"
+  },
+  "json_header_sha256": "2dd8db723cff3e44198e14d6038ea6443dc6171a564bb82cd6ee81f0edc316e5",
+  "notices": [
+    {
+      "path": "LICENSE",
+      "output": "openmoss-LICENSE.txt",
+      "sha256": "1eb85fc97224598dad1852b5d6483bbcf0aa8608790dcc657a5a2a761ae9c8c6",
+      "source": "https://github.com/pwilkin/openmoss/blob/bfb1f465e0a86fb5a52bbf93e67ceba4b7d0b4e1/LICENSE"
+    },
+    {
+      "path": "third_party/llama.cpp/LICENSE",
+      "output": "openmoss-llama-LICENSE.txt",
+      "sha256": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
+      "source": "https://github.com/ggml-org/llama.cpp/blob/050ee92d04c2e1f639025786dea701c70e7d4204/LICENSE"
+    }
+  ],
+  "model_assets": false
+}

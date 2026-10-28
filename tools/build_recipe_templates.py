@@ -175,6 +175,33 @@ def build():
         definition=dict(engine="moss_delay_native", backend="cpu", architecture="moss_delay_8b_v1", pipeline="moss_delay_firstclass_v1", tasks=["audio"], capabilities=["text_to_speech"], parameters=dict(version=1,fields=moss_fields)),
         requirements=[dict(role="backbone", label="first-class MOSS Delay 8B（含 BPE / 32 路 embedding 和输出头）", formats=["gguf"], required=True, provides=["text_tokenizer"]),dict(role="audio_decoder", label="配套 24 kHz / 32 路原生解码器", formats=["gguf"], required=True),dict(role="audio_encoder", label="可选：同版原生编码器（参考音频必需）", formats=["gguf"], required=False)], fixedComponents=[],
         help="仅匹配固定 OpenMOSS/llama.cpp first-class 转换布局；普通 MOSS-TTS-GGUF / 仅 Qwen3 backbone / Nano / Local / Realtime / v2 codec 不适用。用户明确选择主模型和解码器；仅需参考音频时再选择编码器。参考 WAV 为 24 kHz 单声道 1–10 秒，生成与 codec 分阶段释放。8B 内存需求高，尚无手机输出、速度或后台验收；此路由不表示完整 MOSS 九子目标已支持。"))
+    open_common = {
+        "threads": dict(type="integer", label="CPU 线程", default=4, minimum=1, maximum=32, presets=[2,4,8], limitSource="application_guard"),
+        "seed": dict(type="integer", label="随机种子（-1 自动）", default=-1, minimum=-1, maximum=2147483647, presets=[-1,0,42], limitSource="native_seed_range"),
+    }
+    local_fields=copy.deepcopy(open_common)
+    for key,label,kind,value,low,high,presets in [
+        ("maxInputTokens","格式化输入上限（含参考）","integer",512,1,2048,[256,512,1024,2048]),
+        ("maxNewTokens","生成帧数上限（每帧 80 ms）","integer",250,1,750,[125,250,375,750]),
+        ("textTemperature","继续 / 停止头温度","number",1,0,3,[0,1,1.5]),
+        ("audioTemperature","音频温度","number",1.7,0,3,[0,1,1.7]),
+        ("audioTopP","音频 Top P","number",.8,.01,1,[.8,.9,1]),
+        ("audioTopK","音频 Top K","integer",25,1,1024,[1,25,50]),
+        ("audioRepetitionPenalty","音频重复惩罚","number",1,1,2,[1,1.05,1.1]),
+    ]: local_fields[key]=dict(type=kind,label=label,default=value,minimum=low,maximum=high,presets=presets,limitSource="application_guard")
+    sound_fields=copy.deepcopy(open_common)
+    for key,label,kind,value,low,high,presets in [
+        ("seconds","音效时长（latent 始终生成完整 30 秒）","number",5,1,30,[1,5,10,30]),
+        ("steps","去噪步数","integer",50,1,100,[10,25,50,100]),
+        ("cfgScale","CFG 强度","number",4,1,10,[1,4,7]),
+        ("sigmaShift","Sigma shift","number",5,1,10,[1,3,5,10]),
+    ]: sound_fields[key]=dict(type=kind,label=label,default=value,minimum=low,maximum=high,presets=presets,limitSource="application_guard")
+    for sound,fields in [(False,local_fields),(True,sound_fields)]:
+        templates.append(dict(id="moss_soundeffect_v2_cpu_v1" if sound else "moss_local_v15_cpu_v1",
+            name="MOSS SoundEffect-v2 · 原生音效" if sound else "MOSS Local-Transformer-v1.5 · 原生语音", primaryRole="backbone",
+            definition=dict(engine="openmoss_native",backend="cpu",architecture="moss_soundeffect_v2" if sound else "moss_local_v15",pipeline="moss_soundeffect_v2_cpu_v1" if sound else "moss_local_v15_cpu_v1",tasks=["audio"],capabilities=["text_to_audio" if sound else "text_to_speech"],parameters=dict(version=1,fields=fields)),
+            requirements=[dict(role="backbone",label="同次 openmoss 转换的 Qwen3 主干（含 BPE）",formats=["gguf"],required=True,provides=["text_tokenizer"]),dict(role="extras",label="配套 DiT / VAE extras" if sound else "配套 Local Transformer / v2 codec extras",formats=["gguf"],required=True,provides=["audio_decoder"] if sound else ["audio_encoder","audio_decoder"])],fixedComponents=[],
+            help=("仅匹配固定 pwilkin/openmoss 转换布局，必须选择同次转换的主干和 extras；不能混用 first-class、Nano 或其他 MOSS 版本。模型及 codec 均为用户资产。CPU 路线同时驻留主干与 extras，需要高内存设备；不表示 Z20 已可运行。" + ("SoundEffect-v2 使用 30 秒 latent 去噪后裁剪，缩短输出不同比降低生成内存；支持负面提示词，不是语音克隆或整曲音乐。" if sound else "仅针对 Local-Transformer-v1.5，12 路 codec / 48 kHz 双声道；可选导入同格式 1–10 秒参考 WAV。暂不提供参考转写续说、多说话人或其他 Local 版本。") + "尚无 LMA Android 输出、质量、速度或后台验收。")))
     return {"schema": "lma.recipe-catalogue/1", "templates": templates}
 
 

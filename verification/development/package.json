@@ -1,7 +1,7 @@
 {
-  "apk": "LMA-0.3.0-dev.16-arm64-v8a.apk",
-  "sha256": "4f8a0efd6c4fb3024ef890e87b68a192139894f15b00ccd60d877c84afa0eb64",
-  "native_libraries_verified": 22,
+  "apk": "LMA-0.3.0-dev.17-arm64-v8a.apk",
+  "sha256": "1af5c32bc1df71428d46b02ac78099427c126249f1d93b84d431830e380f1cdf",
+  "native_libraries_verified": 23,
   "all_native_dependencies_resolved": true,
   "all_elf_load_segments_16k_aligned": true,
   "final_apk_zip_alignment_verified": true,
@@ -417,6 +417,23 @@
       ],
       "interpreter": "/system/bin/linker64",
       "entry_point": 678352,
+      "android_api_notes": [
+        28
+      ],
+      "16k_elf_aligned": true
+    },
+    "liblma-openmoss.so": {
+      "machine": "aarch64",
+      "needed": [
+        "libm.so",
+        "libdl.so",
+        "libc.so"
+      ],
+      "load_segment_alignment": [
+        16384
+      ],
+      "interpreter": "/system/bin/linker64",
+      "entry_point": 758032,
       "android_api_notes": [
         28
       ],

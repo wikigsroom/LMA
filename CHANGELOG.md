@@ -1,5 +1,12 @@
 # Changelog / 更新记录
 
+## 0.3.0-dev.17 — internal / unpublished
+
+Two native CPU MOSS routes now share the foundation: Local-Transformer-v1.5 speech and SoundEffect-v2 flow matching. Users explicitly select matching backbone/extras GGUFs; embedded BPE/codecs remain user assets, with no implicit downloads. Independent editable parameters, optional stereo reference, actual solver/receipt events and isolated child cleanup are integrated. CFG=1 cannot silently ignore a supplied negative prompt; full 30-second latent cost is disclosed.
+
+180 new host/native checks (100 Java / 80 C++, six actual host children), 485 foundation checks, 244 UI checks; original-signature APK with 23 native files and no model weights. Bilingual guides, six new screens, refreshed recording/GIF and numbered implemented/pending tables are included. These are scoped checks/fixtures, not full model or phone inference; all frozen targets remain in the same complete v0.3.0 with no new Release. See [bilingual notes](docs/releases/v0.3.0-dev.17.md).
+
+
 ## 0.3.0-dev.16 — 2026-10-28 (internal / unpublished)
 
 - 新增 MOSS Delay first-class 签名 ARM64 CPU worker、生产 Java 管线、严格组件 / WAV 契约、模型独立采样和实际执行计时。Added a real local BPE/32-channel Delay/codec route with sequential model release.

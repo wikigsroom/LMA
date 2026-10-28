@@ -89,3 +89,5 @@ GitHub 的按标签 REST 查询可能对草稿返回 404；工具通过已认证
 发布后的文档或工具维护可运行 `python tools/check_repository.py --published`，把原始源码 ZIP 与已发布标签核对，再检查当前公开文件、文档和证据。不要为了让当前文件等于旧 ZIP 而改写已公开附件。For post-release documentation/tool maintenance, `--published` compares the immutable source bundle with its tag while checking current public files, links, and evidence. This permits later commits without rewriting published assets.
 
 MOSS Delay 的原生算法提取 / CPU worker / 许可见 [中文](MOSS_DELAY_ENGINE.md) / [English](MOSS_DELAY_ENGINE.en.md)。同步执行 `python tools/test_moss_delay.py`；其上游自检、结构 WAV 与主机进程证据不能替代完整 MOSS 家族或物理 Android 的模型输出 / 质量 / 后台验收。
+
+dev.17 新增检查 `python tools/test_openmoss.py`；其主机子进程、结构 WAV 与上游数学检查不替代新输入断网模型输出或任何物理 Android 门槛。每轮开发交付需编号表格列出本轮实现与仍待完成项。The new openmoss checks remain scoped host evidence; each development handoff includes numbered implemented/pending tables without reducing the complete release scope.

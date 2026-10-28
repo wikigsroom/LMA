@@ -7,7 +7,7 @@
 ## 用户操作
 
 1. 在模型页进入“全部”或搜索 HF，打开仓库的“选择文件”。保留原有 GGUF 文本入口；点击“构建模型包 / LoRA 配方”进入组件选择。
-2. 明确选择配方。当前提供二十三个签名 App 数据模板：文本 GGUF、MOSS Nano、Qwen3-TTS Base、MOSS Delay first-class、匹配的 Sana MNN 移动管线、Z-Image / FLUX / Qwen-Image / Wan 独立组件、SD1.5 / SDXL 完整及分离组件、两者普通 LoRA、SD-Turbo、两者 LCM checkpoint / LCM-LoRA，以及 Kokoro / Piper / Matcha 英语模板。具体组件和采样规则见[扩散指南](DIFFUSION_ENGINE.md)。模板不安装引擎，不转换权重，不证明手机已支持。
+2. 明确选择配方。当前提供二十五个签名 App 数据模板：文本 GGUF、MOSS Nano、Qwen3-TTS Base、MOSS Delay first-class、Local-v1.5 / SoundEffect-v2、匹配的 Sana MNN 移动管线、Z-Image / FLUX / Qwen-Image / Wan 独立组件、SD1.5 / SDXL 完整及分离组件、两者普通 LoRA、SD-Turbo、两者 LCM checkpoint / LCM-LoRA，以及 Kokoro / Piper / Matcha 英语模板。具体组件和采样规则见[扩散指南](DIFFUSION_ENGINE.md)。模板不安装引擎，不转换权重，不证明手机已支持。
 3. 按角色选择每个必需文件，例如 `model`、`voices`、`tokens`、`vocoder`。可在选择页输入其他 `作者/仓库`，使用分页寻找组件；已经选择的组件保留各自仓库和固定提交。文件扩展名只用于角色格式检查，不推断模型架构或语言。切换配方会清空草稿选择，关闭窗口或重启可能丢失未登记草稿。
 4. 检查主文件、全部固定依赖、来源、版本、大小与校验类型。扩散模板披露 CLIP merges；分离 SDXL 必须包含 CLIP-L、CLIP-G 和 VAE。语音模板披露英语词表；其他语言仍需正确完整配方。LCM-LoRA 使用专用模板，不能把普通 LoRA 名称当成加速声明。
 5. 点击“加入本地并查看下载计划”：只登记不可变清单，**不下载**。在详情中核对完整总量、已验证可复用文件、剩余传输及引擎状态，再单独点击下载。缺引擎、缺文件或不兼容时在本机说明原因，没有外部推理或隐式补下载。
@@ -64,3 +64,5 @@ Qwen3-TTS 新增第 22 个模板和一个固定版本可选包：两个 GGUF 分
 ## MOSS Delay：可选参考编码器
 
 第 23 个模板 `moss_delay_firstclass_cpu_v1` 需要匹配的原生 first-class 主模型和解码器；编码器只在用户需要参考 WAV 时选择。普通 MOSS GGUF、v2 codec 和其他 MOSS 架构不能替代。当前没有新增固定已核对下载候选；用户选择文件或导入转换包，App 不隐式补下编码器。完整流程与参数见 [MOSS Delay](MOSS_DELAY_ENGINE.md)，完整家族仍逐项验收。
+
+[Local-v1.5 / SoundEffect-v2](OPENMOSS_ENGINE.md) 使用同次转换的主干和 extras 两个用户文件，内含 BPE / codec 用 provides 披露；两者不能混用，也不接受 first-class Delay 文件。登记、浏览与更新基座不触发下载。

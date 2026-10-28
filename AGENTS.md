@@ -16,3 +16,4 @@
 - Publish a new APK release only with consistent version fields, current verification fingerprints, APK/source hashes, validation records, and the original signing identity. Never replace an existing release asset with different bytes under the same filename; use a new version.
 - Existing Git history and remote branches must be preserved. Do not force-push or rewrite published tags.
 - Follow [CONTRIBUTING.md](CONTRIBUTING.md) and [docs/RELEASING.md](docs/RELEASING.md) for the concrete update workflow. Do not infer a request for background scheduling from the synchronization instruction.
+- End every development turn with numbered tables of the concrete work implemented this turn and the remaining work. Distinguish source implementation, scoped checks, physical-device acceptance and complete Release readiness; preserve the full frozen scope in the pending table. 用户要求每轮开发结束用编号表格列出本轮实现事项及待处理 / 待完成事项。

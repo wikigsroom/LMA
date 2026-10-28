@@ -69,3 +69,5 @@
 [Qwen3-TTS 本机语音](QWEN_TTS_ENGINE.md) / [English](QWEN_TTS_ENGINE.en.md)：0.6B Base 原生 CPU、两个自选 GGUF、内含依赖、可选参考 WAV、参数与 RTF 证据边界。
 
 - MOSS Delay first-class 原生语音：[中文](MOSS_DELAY_ENGINE.md) / [English](MOSS_DELAY_ENGINE.en.md)；[dev.16 双语说明](releases/v0.3.0-dev.16.md)。
+
+- MOSS Local-v1.5 / SoundEffect-v2 原生基座：[中文](OPENMOSS_ENGINE.md) / [English](OPENMOSS_ENGINE.en.md)；[dev.17 双语说明](releases/v0.3.0-dev.17.md)。

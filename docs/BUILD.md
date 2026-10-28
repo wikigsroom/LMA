@@ -112,3 +112,5 @@ Qwen 原生语音使用同一 Windows 工具链：`fetch_qwen_tts.py` → `build
 ## MOSS Delay 原生引擎
 
 固定 fork / 原生提取 / NDK 编译 / 许可步骤见 [MOSS Delay](MOSS_DELAY_ENGINE.md)。依次运行 `tools/fetch_moss_delay.py`、`tools/build_moss_delay.py`、`tools/collect_moss_delay_notices.py`；`tools/test_moss_delay.py` 执行主机 Java 契约和上游原生 Delay 算法自检。所有文件保留项目内，不下载或转换模型权重。
+
+新增原生路线见 [openmoss 构建](OPENMOSS_ENGINE.md#5-固定来源与构建)：先 fetch_openmoss.py / build_openmoss.py / collect_openmoss_notices.py，再使用共用 APK 构建；不下载或转换模型。

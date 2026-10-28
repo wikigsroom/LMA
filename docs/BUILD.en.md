@@ -112,3 +112,5 @@ Native Qwen speech uses the same Windows toolchain: `fetch_qwen_tts.py` → `bui
 ## MOSS Delay native engine
 
 See [MOSS Delay](MOSS_DELAY_ENGINE.en.md) for the pinned fork, native extraction, NDK build and notices. Run `tools/fetch_moss_delay.py`, `tools/build_moss_delay.py`, then `tools/collect_moss_delay_notices.py`; `tools/test_moss_delay.py` executes Java host contracts and the upstream native Delay self-test. All files stay in the project; these commands fetch or convert no model weights.
+
+The [openmoss build](OPENMOSS_ENGINE.en.md#5-pinned-sources-and-build) runs fetch_openmoss.py / build_openmoss.py / collect_openmoss_notices.py before shared APK packaging. It downloads/converts no model data.

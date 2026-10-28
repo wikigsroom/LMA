@@ -278,6 +278,37 @@
         "sd-nlohmann-json-LICENSE.txt",
         "sd-NDK-LLVM-NOTICE.txt"
       ]
+    },
+    {
+      "schema": "lma.native-build/1",
+      "engine": "openmoss_native",
+      "file": "liblma-openmoss.so",
+      "source_revision": "bfb1f465e0a86fb5a52bbf93e67ceba4b7d0b4e1",
+      "llama_revision": "050ee92d04c2e1f639025786dea701c70e7d4204",
+      "abi": "arm64-v8a",
+      "backend": "cpu",
+      "ndk": "30.0.16248370",
+      "min_sdk": 28,
+      "bytes": 3685424,
+      "sha256": "d85c422cc2b5b9f97888982e24cbeca15a65ccdeeee4ebec356ef1c443b9de03",
+      "elf_load_alignment": [
+        16384
+      ],
+      "android_api_notes": [
+        28
+      ],
+      "vocabularies": "external_user_selected_components",
+      "model_inference_tested": false,
+      "physical_device_tests": 0,
+      "virtualization_used": false,
+      "deviceValidated": false,
+      "status": "compiled_not_device_tested",
+      "notices": [
+        "openmoss-LICENSE.txt",
+        "openmoss-llama-LICENSE.txt",
+        "sd-nlohmann-json-LICENSE.txt",
+        "sd-NDK-LLVM-NOTICE.txt"
+      ]
     }
   ],
   "textRuntime": {

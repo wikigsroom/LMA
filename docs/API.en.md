@@ -178,3 +178,5 @@ Qwen3-TTS 0.6B Base reuses `POST /v1/jobs`, `speech.synthesize` and an optional 
 ## MOSS Delay local jobs
 
 `moss_delay_native` reuses `speech.synthesize`, per-model settings, shared jobs and WAV artifacts. Optional `reference_audio` appears only with a selected native encoder; plain TTS needs no encoder or bundled voice. See [pipeline and execution receipts](MOSS_DELAY_ENGINE.en.md). This establishes no `/v1/audio/speech` compatibility claim.
+
+[MOSS Local-v1.5 / SoundEffect-v2](OPENMOSS_ENGINE.en.md) reuse POST /v1/jobs with speech.synthesize / audio.generate. No remote provider or /v1/audio/speech compatibility is added; each recipe validates its own settings, references, cancellation and receipts.

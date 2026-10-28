@@ -1,0 +1,16 @@
+{
+  "revision": "bfb1f465e0a86fb5a52bbf93e67ceba4b7d0b4e1",
+  "files": [
+    {
+      "file": "openmoss-LICENSE.txt",
+      "sha256": "1eb85fc97224598dad1852b5d6483bbcf0aa8608790dcc657a5a2a761ae9c8c6",
+      "source": "https://github.com/pwilkin/openmoss/blob/bfb1f465e0a86fb5a52bbf93e67ceba4b7d0b4e1/LICENSE"
+    },
+    {
+      "file": "openmoss-llama-LICENSE.txt",
+      "sha256": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
+      "source": "https://github.com/ggml-org/llama.cpp/blob/050ee92d04c2e1f639025786dea701c70e7d4204/LICENSE"
+    }
+  ],
+  "model_assets": false
+}

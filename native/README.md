@@ -21,3 +21,5 @@ Rebuild with `bootstrap_native.py`, `fetch_native.py`, `build_native.py`, then c
 - `mnn/` builds the actual matched Sana/Qwen3 CPU pipeline with generated upstream load/token/thread guards, isolated diagnostics and external user-selected components. No image/phone inference is claimed. [中文](../docs/MNN_SANA_ENGINE.md) / [English](../docs/MNN_SANA_ENGINE.en.md).
 
 Qwen3-TTS 0.6B Base: `qwen_tts/` builds the pinned native Talker/MTP/BPE/speaker/codec pipeline with ggml CPU, Android API 28 and 16 KiB alignment. Two user-selected GGUFs and optional strict local reference WAV remain outside the APK. See [中文](../docs/QWEN_TTS_ENGINE.md) / [English](../docs/QWEN_TTS_ENGINE.en.md); native compilation and header checks do not prove model/device output.
+
+`openmoss/` builds the pinned Apache-2.0 community openmoss core and MIT llama.cpp as an isolated ARM64 CPU worker, excluding upstream CLI/server/WAV code. Local-v1.5 and SoundEffect-v2 use distinct user-selected backbone/extras layouts, real graphs and task receipts. No models/tokenizers/codecs are bundled; host math/child checks are not Android inference. See the [guide](../docs/OPENMOSS_ENGINE.en.md).

@@ -1,5 +1,5 @@
 {
-  "version": "0.3.0-dev.16",
+  "version": "0.3.0-dev.17",
   "kind": "development UI with explicit simulated native bridge",
   "android_device": false,
   "model_inference": false,
@@ -170,6 +170,30 @@
     {
       "file": "41-moss-delay-parameters.png",
       "caption": "Independent text/audio sampling and bounded Delay-step settings; UI FIXTURE, no voice output / MOSS 独立文本和音频采样、生成步数，未生成语音"
+    },
+    {
+      "file": "42-moss-local-components.png",
+      "caption": "User-selected backbone/extras, embedded dependencies and architecture limits; UI FIXTURE / Local-v1.5 两组件与独立兼容范围，界面夹具"
+    },
+    {
+      "file": "43-moss-local-parameters.png",
+      "caption": "Per-model sampling and optional stereo WAV; UI FIXTURE, no voice cloning inference / Local-v1.5 独立参数与双声道参考，未执行模型"
+    },
+    {
+      "file": "44-moss-sound-components.png",
+      "caption": "SoundEffect-v2 backbone/extras with full 30-second latent cost disclosure; UI FIXTURE / 音效两组件与完整 latent 开销说明，界面夹具"
+    },
+    {
+      "file": "45-moss-sound-parameters.png",
+      "caption": "Independent sound duration/steps/CFG/sigma with a real negative-prompt form; UI FIXTURE / 音效时长、去噪与独立参数，未生成音频"
+    },
+    {
+      "file": "46-moss-local-reference.png",
+      "caption": "Optional user-selected 48 kHz stereo reference, with no automatic model selection; UI FIXTURE / 用户明确选择双声道参考素材，界面夹具"
+    },
+    {
+      "file": "47-moss-sound-prompt.png",
+      "caption": "SoundEffect task and optional negative prompt; UI FIXTURE, no generated audio / 独立音效任务与负面提示词，未执行模型"
     }
   ],
   "files": [
@@ -200,13 +224,13 @@
     },
     {
       "file": "06-queue-results.png",
-      "bytes": 48753,
-      "sha256": "40684df74143145a443f2c2ece35684967aec574170d5127da63be25b36d271a"
+      "bytes": 48787,
+      "sha256": "44e20255b79cbf4d60f75124e5a3d768591fb0eb195c7707c1184e3763cb0424"
     },
     {
       "file": "07-cancelled.png",
-      "bytes": 48939,
-      "sha256": "cd13ccb8e5bb84f4da06c806b779c1db7af4cbffd25eb33efe335c9fa5124b40"
+      "bytes": 48973,
+      "sha256": "cb1316ddf035177898e6796dc3c457693b62f04c5ad41d68f65cef3cf60235c7"
     },
     {
       "file": "08-zero-model-api.png",
@@ -275,8 +299,8 @@
     },
     {
       "file": "21-model-version-history.png",
-      "bytes": 49738,
-      "sha256": "6ce7fe3905d0b1d1acb283fe434456a14b50abbf25e68cdfb7ace1c419ace4df"
+      "bytes": 49740,
+      "sha256": "c201cb31e21a72f7e8473339c8ff2bfa5e18b1c3bedd14f553d26c97a277d55f"
     },
     {
       "file": "22-text-model-settings.png",
@@ -290,8 +314,8 @@
     },
     {
       "file": "24-text-result.png",
-      "bytes": 46898,
-      "sha256": "26220c6b87e6c6bad652bbc88fe9fc8ad5b06b859737eb90238ccfa5c6018909"
+      "bytes": 47042,
+      "sha256": "01824681c50e0021b550492ae1d7f3d9a8553125362f0602db6f2caf5e8d7ca7"
     },
     {
       "file": "25-migrated-text-model.png",
@@ -379,24 +403,54 @@
       "sha256": "b33eb8efc54fa24f8a4282d442194a6717fec5a9d936cb3e1de43c445d801436"
     },
     {
+      "file": "42-moss-local-components.png",
+      "bytes": 58331,
+      "sha256": "296abed11127cd99062cd759f43a237fbe81d8c2273b9522646ee3fa302b276d"
+    },
+    {
+      "file": "43-moss-local-parameters.png",
+      "bytes": 42315,
+      "sha256": "6f20f9ac3978b4380d40534d4d77211312a7ddf5de8f0a8fff915caf284508cd"
+    },
+    {
+      "file": "44-moss-sound-components.png",
+      "bytes": 58117,
+      "sha256": "986f245f242f64f0a7c1336b68cdf9d02dfd7c5076f64bd41531742869d4860a"
+    },
+    {
+      "file": "45-moss-sound-parameters.png",
+      "bytes": 45958,
+      "sha256": "9f4c7f7dc4d3c29c1dd657b28b4999d33fee7e64c52c23d8360f1b9dd1afbe1f"
+    },
+    {
+      "file": "46-moss-local-reference.png",
+      "bytes": 43543,
+      "sha256": "fb5057472e82f06d2caeb04ed8e3386e3d55f99990f1889fd8092b34c34a0478"
+    },
+    {
+      "file": "47-moss-sound-prompt.png",
+      "bytes": 41083,
+      "sha256": "bd661eda760bac91f8433ccc45632f0c2767b83caa852e18340216db598a2305"
+    },
+    {
       "file": "foundation-ui.gif",
-      "bytes": 5407987,
-      "sha256": "d9203cd7cc3d515b199b2175b4ecfc493cd32b7d6a307bf4adf10a1a33bacb7c"
+      "bytes": 6664046,
+      "sha256": "4a86437dde7da0cffb6e4b27ddbf926bd5b3cbd0f416fb54eccdd7f3875e55fd"
     },
     {
       "file": "foundation-ui.mp4",
-      "bytes": 2436837,
-      "sha256": "3a068449777684d7927569c136e189481406418b0556bf7edee2886dc1589c47"
+      "bytes": 3140543,
+      "sha256": "8dfae5d22cf19f6ccd5ea1d5f6d91e55f70481ee1b9a7870b257cb168c79b065"
     }
   ],
   "input_fingerprint": {
     "app/src/main/assets/app.css": "f2cb7b5ee9de8f3afac793e694dcf9fde0a855c0d4c7053ff986cc2a6d2bd3b1",
     "app/src/main/assets/app.js": "bce8e6e858d171240b1156d95db2b552dad756142d495ac28e2f92100cc253f4",
-    "app/src/main/assets/engine-builds.json": "74aa333f145ba255880cef92d44ad24399d370e65d744798346a88046a6804aa",
+    "app/src/main/assets/engine-builds.json": "340b636e68a8b44f593faf3ed76309d0f42a7af8e2fb18e7c74a1b49cf026f8c",
     "app/src/main/assets/foundation.css": "26c332b6918710c4b79b25d659ff4f297841e6f38eb162cd71c2bcc19872af5c",
     "app/src/main/assets/foundation.js": "40b58c1267da3cb9cc5eb759a931b90b4235f0a419a9cacb12a483e8b5a9fc9b",
     "app/src/main/assets/index.html": "406a11f10a3380d2db0325ffd148dcb55b2eabe35aa2bcd001864aafa57afd62",
-    "app/src/main/assets/license.js": "b64675c032a41910f22c5facd5701ad4c9613bbbcb3d33d77232a9382764c945",
+    "app/src/main/assets/license.js": "e9246cc654190626801c3b8313887b161953daabf15cb0e881abfa8db34fcb0a",
     "app/src/main/assets/licenses/LLAMA_CPP_LICENSE": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
     "app/src/main/assets/licenses/LMA_LICENSE": "6ae3f5efa412d91cbf66e44f743e5ce41a8044309d05d893365206ab9bc35fc3",
     "app/src/main/assets/licenses/cpp-httplib-LICENSE.txt": "bb546eae5924d8ee842e0e567e6d533c5824bdebccf605f99a5b3429034e6697",
@@ -419,6 +473,8 @@
     "app/src/main/assets/licenses/moss-sentencepiece-third_party-darts_clone-LICENSE.txt": "ed8437dc7358a40ef10afd3635ac1cd43c88fbaaaf6cd27c414f8ada5d68f447",
     "app/src/main/assets/licenses/moss-sentencepiece-third_party-protobuf-lite-LICENSE.txt": "f4df8b2457697851385d9ebb93267832c1dfa24e0e61881952f6b0c452663dc9",
     "app/src/main/assets/licenses/nlohmann-json-LICENSE.txt": "b9715282b2f1db1359a919bb3a542dd4362fd9e38ae72d421367eb11abe62eec",
+    "app/src/main/assets/licenses/openmoss-LICENSE.txt": "1eb85fc97224598dad1852b5d6483bbcf0aa8608790dcc657a5a2a761ae9c8c6",
+    "app/src/main/assets/licenses/openmoss-llama-LICENSE.txt": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
     "app/src/main/assets/licenses/qwen-ggml-LICENSE.txt": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
     "app/src/main/assets/licenses/qwen-tts-LICENSE.txt": "ea567a2154304fdcc6250d03460a24eebbe120e02032f47aeee3c9e722455512",
     "app/src/main/assets/licenses/rotate-bits-LICENSE.txt": "6d1a68e8ae5085d15a5c4f8dc1363b7bf256756b3a49cbaf29fe7f7a49eae4e3",
@@ -464,7 +520,7 @@
     "app/src/main/assets/licenses/xxhash-LICENSE.txt": "a2973411d278045bde3c7161b911e0680d53e2d73d6457c77068d2e55d816d67",
     "app/src/main/assets/model-bundles.json": "0e211bd78b3b43e6cf7631c294629f6494bcf814dbe7f1a73157901447707627",
     "app/src/main/assets/models.json": "c3e884b4e5fb06f20c036deebc78e6f953ac420e76fca72bab5a25fd59927156",
-    "app/src/main/assets/recipe-templates.json": "b63a250664ea85cb8bd23906f49cc691221ae1dee04e86765f5753af7632ab59",
+    "app/src/main/assets/recipe-templates.json": "3da431a56acde40e6c9126b3fff1d52ed791deca3995c28f1aa9c38e7d2d9064",
     "app/src/main/assets/recipes.js": "648e1ff046ab20e2ae7f658a7cb82c895c042ea81dca5cd943141626eea6deba",
     "app/src/main/assets/versions.js": "2d629929a6db642c12a242ddcc62cd4f4090ab307e0cb669ceb98add031977e1",
     "tests/diffusion-ui.cjs": "f6f997afcee0d6ae5113097640f151a418b6d4c501838c5565c3c2fe29d724d1",
@@ -478,6 +534,6 @@
     "tests/scheduler-ui.cjs": "3b89c2121953c6e17e2e978a3639915ba1d1b799750e85f38d6e104d8b7e0599",
     "tests/text-ui.cjs": "bc5969aa9329380b590a6055daa6fe1177f956f73bb212a18cf19d2b6576b8db",
     "tests/versions-ui.cjs": "13f6e194c00fa3a819c44da35788aa28b94ba05325e3f2b1257350c04b67babd",
-    "tools/capture_foundation.cjs": "66fe193b12ebbf3ad5b37350d747bf3344de64febb353accf9611cb77e99182d"
+    "tools/capture_foundation.cjs": "a6c1d40286b4627f6b9af407ea03bcd5654488e8e75772ac1442348c5aa7c9cc"
   }
 }
