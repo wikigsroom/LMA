@@ -1,5 +1,13 @@
 # Changelog / 更新记录
 
+## 0.3.0-dev.30 — old-LTX local video business flow / unreleased
+
+- 新增生产旧 LTX 适配器：顺序 T5 / Vulkan 八步 DiT / 九段 VAE / RGB / 手机 MediaCodec，与共享模型租约、队列、取消、结果提交和来源记录整合。Sequential owned local stages share existing lifecycle and artifact services.
+- 新生成变体使用独立 ID；旧资产记录与设置不可变，用户明确准备、关联并选择缺失依赖，不自动获取模型。Explicit user-controlled association preserves installed records.
+- 新模型配方与独立可编辑参数、超限归位、完整提示词、固定八步及任务快照；Android ARM64 四个组件使用代码与共享库，无模型权重。Model-scoped video forms and model-free native packaging.
+- 真实生产队列的成功 / 错误收据 / 错误输出 / 编码失败 / 取消 / 中断检查，完整训练主机链路与 Android 编译分别记录；同步原签名开发包、双语文档、截图 / MP4 / GIF。Original numerical failures, official variants, quality and Android gates remain required in one complete v0.3.0. [中文](docs/LTX098_APP_FLOW.md) / [English](docs/LTX098_APP_FLOW.en.md) / [编号与完整待办](docs/releases/v0.3.0-dev.30.md).
+
+
 ## 0.3.0-dev.29 — incremental audio business flow / unreleased
 
 - MOSS Realtime 非 EOS 编码帧直接进入有状态 codec，逐帧输出 PCM16 并保留完整 WAV；不等待文件完成后再切片。Actual stateful frame decode with final sample agreement.

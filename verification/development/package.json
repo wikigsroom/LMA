@@ -1,7 +1,7 @@
 {
-  "apk": "LMA-0.3.0-dev.29-arm64-v8a.apk",
-  "sha256": "dd993860ce067ac6b7e79bdda07b5531a6f7822e31f911e8412074c1b03d916f",
-  "native_libraries_verified": 30,
+  "apk": "LMA-0.3.0-dev.30-arm64-v8a.apk",
+  "sha256": "c0d62d7d3cf6ba1a38a410fa1859e495c892c55250254df531b3fd0ce7a39528",
+  "native_libraries_verified": 34,
   "all_native_dependencies_resolved": true,
   "all_elf_load_segments_16k_aligned": true,
   "final_apk_zip_alignment_verified": true,
@@ -514,6 +514,79 @@
       ],
       "16k_elf_aligned": true
     },
+    "liblma-ltx098-app-tensors.so": {
+      "machine": "aarch64",
+      "needed": [
+        "libm.so",
+        "libdl.so",
+        "libc.so"
+      ],
+      "load_segment_alignment": [
+        16384
+      ],
+      "interpreter": "/system/bin/linker64",
+      "entry_point": 104848,
+      "android_api_notes": [
+        28
+      ],
+      "16k_elf_aligned": true
+    },
+    "liblma-ltx098-app-text.so": {
+      "machine": "aarch64",
+      "needed": [
+        "libllama.so",
+        "libggml.so",
+        "libggml-base.so",
+        "libdl.so",
+        "libm.so",
+        "libc.so"
+      ],
+      "load_segment_alignment": [
+        16384
+      ],
+      "interpreter": "/system/bin/linker64",
+      "entry_point": 75184,
+      "android_api_notes": [
+        28
+      ],
+      "16k_elf_aligned": true
+    },
+    "liblma-ltx098-app-sample.so": {
+      "machine": "aarch64",
+      "needed": [
+        "libm.so",
+        "libdl.so",
+        "libvulkan.so",
+        "libc.so"
+      ],
+      "load_segment_alignment": [
+        16384
+      ],
+      "interpreter": "/system/bin/linker64",
+      "entry_point": 33428272,
+      "android_api_notes": [
+        28
+      ],
+      "16k_elf_aligned": true
+    },
+    "liblma-ltx098-app-vae.so": {
+      "machine": "aarch64",
+      "needed": [
+        "libonnxruntime.so",
+        "libm.so",
+        "libdl.so",
+        "libc.so"
+      ],
+      "load_segment_alignment": [
+        16384
+      ],
+      "interpreter": "/system/bin/linker64",
+      "entry_point": 125072,
+      "android_api_notes": [
+        28
+      ],
+      "16k_elf_aligned": true
+    },
     "liblma-ltx098-prepare.so": {
       "machine": "aarch64",
       "needed": [
@@ -586,6 +659,6 @@
   "input_fingerprint": {
     "catalogue/uncensored-evidence.json": "63f05e854772ade227750b19cb2288ebe53abb0d346ccc08cf5317b768ef5082",
     "third_party/BUILD_INFO.json": "de40253f34d47e5b692e8cd97d87eaa4ecbe549303718f69d286c85f81422acc",
-    "tools/verify_package.py": "e739a5fe6a4439b5041757529a9b20175bd7d822097a326758fe337e7f9cb1b5"
+    "tools/verify_package.py": "762785db6b2d1fa8156bcb3d51ff2ce61df5e7130458a6c2c4d7046a961423ab"
   }
 }

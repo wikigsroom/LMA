@@ -36,6 +36,7 @@ public final class LocalEngines {
             else if (id.equals("moss_rq_native")) register(new MossRqEngine(app, binary, build));
             else if (id.equals("stable_audio_litert")) register(new StableAudioEngine(app, binary, build));
             else if (id.equals("soulx_native")) register(new SoulxEngine(app, binary, build));
+            else if (id.equals("ltx098_native")) register(new Ltx098Engine(app, binary, build));
             else throw new IOException("未知的签名原生模块：" + id);
         }
     }
@@ -47,7 +48,7 @@ public final class LocalEngines {
     }
     public ParameterSchema parameters(ModelBundle bundle) throws Exception {
         LocalEngine module = modules.get(bundle.engine);
-        return module instanceof TextEngine ? ((TextEngine) module).schema(bundle) : bundle.parameters();
+        return module instanceof TextEngine ? ((TextEngine) module).schema(bundle) : module instanceof Ltx098Engine ? new ParameterSchema(Ltx098Spec.schema()) : bundle.parameters();
     }
     public JSONObject inputSchemas(ModelBundle bundle) throws Exception {
         JSONObject result = new JSONObject(); LocalEngine engine = modules.get(bundle.engine); if (engine == null) return result;

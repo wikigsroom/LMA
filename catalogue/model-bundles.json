@@ -1440,6 +1440,388 @@
         "baseSha256": "0642060766117fdeb8cae0ccdc73ee974ac5779be1112d0a82f2b965bbd00e15",
         "distilledGuidance": 8.5
       }
+    },
+    {
+      "schema": "lma.model-bundle/1",
+      "id": "ltx098_runtime_google_q5_v2",
+      "modelId": "ltx_video_2b_098_distilled_google_q5",
+      "recipeId": "ltx098_single_scale_google_q5_v1",
+      "name": "旧 LTX 0.9.8 · 本机视频实验配方",
+      "description": "先在源模型中准备并显式关联 DiT / 九段 VAE，再自行下载或导入 T5 与分词配置；复用已有组件。CPU T5 → Vulkan 八步采样 → CPU VAE → 手机 AVC 编码。Google/community T5 Q5 单尺度变体，非官方 PixArt / 多尺度默认；数值与画质尚未通过验收。",
+      "catalogue": true,
+      "engine": "ltx098_native",
+      "architecture": "ltx098",
+      "pipeline": "ltx098_single_scale_google_q5",
+      "backend": "vulkan",
+      "tasks": [
+        "video"
+      ],
+      "capabilities": [
+        "text_to_video",
+        "runtime_assets",
+        "derived_assets",
+        "community_google_t5_q5",
+        "single_scale",
+        "experimental_numerical_gates_open"
+      ],
+      "components": [
+        {
+          "role": "diffusion_model",
+          "path": "ltx098-dit.gguf",
+          "bytes": 3849516416,
+          "sha256": "ef29c886b36f8a1dbc6693002256049407e512da7a61bf2cc750f1d4d2277ebf",
+          "format": "gguf",
+          "derivedFrom": {
+            "preparationId": "ltx098_dit_vae_v1",
+            "sourceRole": "diffusion_model"
+          }
+        },
+        {
+          "role": "vae_graph_0",
+          "path": "stage-00.onnx",
+          "bytes": 3451,
+          "sha256": "33f367287eaf5bc67aead22132d9d73aeaf66b51387bbc3a032a1c7eb936ff8b",
+          "format": "onnx",
+          "derivedFrom": {
+            "preparationId": "ltx098_dit_vae_v1",
+            "sourceRole": "vae_graph_0"
+          }
+        },
+        {
+          "role": "vae_data_0",
+          "path": "stage-00.onnx.data",
+          "bytes": 14160896,
+          "sha256": "8bfd5b8f04a0d924707997f112e9df029442404e749d596e529a9db2a08f6384",
+          "format": "onnx_data",
+          "derivedFrom": {
+            "preparationId": "ltx098_dit_vae_v1",
+            "sourceRole": "vae_data_0"
+          }
+        },
+        {
+          "role": "vae_graph_1",
+          "path": "stage-01.onnx",
+          "bytes": 80554,
+          "sha256": "29ede53a11d80957e6f0abe38780511c267762feba725b49c29bd36fa35d31b3",
+          "format": "onnx",
+          "derivedFrom": {
+            "preparationId": "ltx098_dit_vae_v1",
+            "sourceRole": "vae_graph_1"
+          }
+        },
+        {
+          "role": "vae_data_1",
+          "path": "stage-01.onnx.data",
+          "bytes": 1203920900,
+          "sha256": "f8b34f9531d3efb14455dde1acb032b6be2bbaeadb4066f6b400b0905cb885ba",
+          "format": "onnx_data",
+          "derivedFrom": {
+            "preparationId": "ltx098_dit_vae_v1",
+            "sourceRole": "vae_data_1"
+          }
+        },
+        {
+          "role": "vae_graph_2",
+          "path": "stage-02.onnx",
+          "bytes": 20672,
+          "sha256": "1b74a179d5f160239411d234411641195548607eb523e74c82e34a66b41df415",
+          "format": "onnx",
+          "derivedFrom": {
+            "preparationId": "ltx098_dit_vae_v1",
+            "sourceRole": "vae_graph_2"
+          }
+        },
+        {
+          "role": "vae_data_2",
+          "path": "stage-02.onnx.data",
+          "bytes": 453001216,
+          "sha256": "fbcc19df16368b873c1c4bf21a9e15861884d2a46b7674b9d946339760531aa6",
+          "format": "onnx_data",
+          "derivedFrom": {
+            "preparationId": "ltx098_dit_vae_v1",
+            "sourceRole": "vae_data_2"
+          }
+        },
+        {
+          "role": "vae_graph_3",
+          "path": "stage-03.onnx",
+          "bytes": 80515,
+          "sha256": "77422f7cab2804d8b7b2b1f160623571a0ed66561e77c69fb6ce741e453b8a3f",
+          "format": "onnx",
+          "derivedFrom": {
+            "preparationId": "ltx098_dit_vae_v1",
+            "sourceRole": "vae_graph_3"
+          }
+        },
+        {
+          "role": "vae_data_3",
+          "path": "stage-03.onnx.data",
+          "bytes": 302067716,
+          "sha256": "49880337fe10880ac3a6f92e63f2bda75a8f67738215be86b6fa34c3a2f6fe47",
+          "format": "onnx_data",
+          "derivedFrom": {
+            "preparationId": "ltx098_dit_vae_v1",
+            "sourceRole": "vae_data_3"
+          }
+        },
+        {
+          "role": "vae_graph_4",
+          "path": "stage-04.onnx",
+          "bytes": 20671,
+          "sha256": "d264368af810ad36e82b5038311cb86f3acb84351dc58f713ce7691732b6043a",
+          "format": "onnx",
+          "derivedFrom": {
+            "preparationId": "ltx098_dit_vae_v1",
+            "sourceRole": "vae_graph_4"
+          }
+        },
+        {
+          "role": "vae_data_4",
+          "path": "stage-04.onnx.data",
+          "bytes": 113254400,
+          "sha256": "7b0a476b6c29b9db4739e1b2fba33778eaec25ce687a4763f55773a2b5d6b38d",
+          "format": "onnx_data",
+          "derivedFrom": {
+            "preparationId": "ltx098_dit_vae_v1",
+            "sourceRole": "vae_data_4"
+          }
+        },
+        {
+          "role": "vae_graph_5",
+          "path": "stage-05.onnx",
+          "bytes": 80481,
+          "sha256": "489050eeef9cf3c5378145c13b3819cfc2c84cc02a5eae0f20bb543b47cc0fab",
+          "format": "onnx",
+          "derivedFrom": {
+            "preparationId": "ltx098_dit_vae_v1",
+            "sourceRole": "vae_graph_5"
+          }
+        },
+        {
+          "role": "vae_data_5",
+          "path": "stage-05.onnx.data",
+          "bytes": 76060676,
+          "sha256": "81789f36e257d9b7c22e6934955cee0c3fde3c2725591efa66cf96621d5d31b7",
+          "format": "onnx_data",
+          "derivedFrom": {
+            "preparationId": "ltx098_dit_vae_v1",
+            "sourceRole": "vae_data_5"
+          }
+        },
+        {
+          "role": "vae_graph_6",
+          "path": "stage-06.onnx",
+          "bytes": 20669,
+          "sha256": "c737a55510880d4b92e12e9aca7138a154ad6e58a96e89a4f2a530a3f369b88c",
+          "format": "onnx",
+          "derivedFrom": {
+            "preparationId": "ltx098_dit_vae_v1",
+            "sourceRole": "vae_graph_6"
+          }
+        },
+        {
+          "role": "vae_data_6",
+          "path": "stage-06.onnx.data",
+          "bytes": 28315648,
+          "sha256": "d377a63aee6e1ec50a92fab21aa4e354a23ff8496921528d9af581d272639e9b",
+          "format": "onnx_data",
+          "derivedFrom": {
+            "preparationId": "ltx098_dit_vae_v1",
+            "sourceRole": "vae_data_6"
+          }
+        },
+        {
+          "role": "vae_graph_7",
+          "path": "stage-07.onnx",
+          "bytes": 80460,
+          "sha256": "239145b9c04cbb5513ee96d2a41ff5b1f8db2c4cf0d9148c3092028b858b3576",
+          "format": "onnx",
+          "derivedFrom": {
+            "preparationId": "ltx098_dit_vae_v1",
+            "sourceRole": "vae_graph_7"
+          }
+        },
+        {
+          "role": "vae_data_7",
+          "path": "stage-07.onnx.data",
+          "bytes": 19287044,
+          "sha256": "22cad42d7baa91055ac2645d1f2c9ee5019ccf4907d40de4058edadbcf209f30",
+          "format": "onnx_data",
+          "derivedFrom": {
+            "preparationId": "ltx098_dit_vae_v1",
+            "sourceRole": "vae_data_7"
+          }
+        },
+        {
+          "role": "vae_graph_8",
+          "path": "stage-08.onnx",
+          "bytes": 14758,
+          "sha256": "ff463e05293456c25aa5b1a14d82b1f732f1aee0f00da45f8e28419509ba8ac9",
+          "format": "onnx",
+          "derivedFrom": {
+            "preparationId": "ltx098_dit_vae_v1",
+            "sourceRole": "vae_graph_8"
+          }
+        },
+        {
+          "role": "vae_data_8",
+          "path": "stage-08.onnx.data",
+          "bytes": 1191108,
+          "sha256": "6bf9520daca30d56175d92ce125337eb2bec547a229579279f835d70b09c8298",
+          "format": "onnx_data",
+          "derivedFrom": {
+            "preparationId": "ltx098_dit_vae_v1",
+            "sourceRole": "vae_data_8"
+          }
+        },
+        {
+          "role": "vae_manifest",
+          "path": "ltx098-vae.json",
+          "bytes": 6740,
+          "sha256": "8b96527c93fc9cc65330de740e76b80e6fbba52ee47b301417202317bf53cb88",
+          "format": "json",
+          "derivedFrom": {
+            "preparationId": "ltx098_dit_vae_v1",
+            "sourceRole": "vae_manifest"
+          }
+        },
+        {
+          "role": "text_encoder",
+          "repository": "city96/t5-v1_1-xxl-encoder-gguf",
+          "revision": "005a6ea51a7d0b84d677b3e633bb52a8c85a83d9",
+          "path": "t5-v1_1-xxl-encoder-Q5_K_M.gguf",
+          "bytes": 3386856640,
+          "sha256": "b51cbb10b1a7aac6dd1c3b62f0ed908bfd06e0b42d2f3577d43e061361f51dae",
+          "format": "gguf",
+          "url": "https://huggingface.co/city96/t5-v1_1-xxl-encoder-gguf/resolve/005a6ea51a7d0b84d677b3e633bb52a8c85a83d9/t5-v1_1-xxl-encoder-Q5_K_M.gguf",
+          "license": "Apache-2.0"
+        },
+        {
+          "role": "tokenizer_config",
+          "repository": "google/t5-v1_1-xxl",
+          "revision": "3db67ab1af984cf10548a73467f0e5bca2aaaeb2",
+          "path": "tokenizer_config.json",
+          "bytes": 1857,
+          "sha256": "b971dce1d2805c2a66da8657156e7114a30501c6ba602fc947c8bf607a3ead2d",
+          "format": "json",
+          "url": "https://huggingface.co/google/t5-v1_1-xxl/resolve/3db67ab1af984cf10548a73467f0e5bca2aaaeb2/tokenizer_config.json",
+          "license": "Apache-2.0"
+        }
+      ],
+      "parameters": {
+        "version": 1,
+        "fields": {
+          "width": {
+            "type": "integer",
+            "label": "宽度",
+            "default": 256,
+            "minimum": 64,
+            "maximum": 256,
+            "presets": [
+              128,
+              192,
+              256
+            ],
+            "limitSource": "explicit_old_ltx_profile",
+            "multipleOf": 32
+          },
+          "height": {
+            "type": "integer",
+            "label": "高度",
+            "default": 256,
+            "minimum": 64,
+            "maximum": 256,
+            "presets": [
+              128,
+              192,
+              256
+            ],
+            "limitSource": "explicit_old_ltx_profile",
+            "multipleOf": 32
+          },
+          "frames": {
+            "type": "integer",
+            "label": "视频帧数",
+            "default": 33,
+            "minimum": 9,
+            "maximum": 33,
+            "presets": [
+              9,
+              17,
+              25,
+              33
+            ],
+            "limitSource": "explicit_old_ltx_profile",
+            "multipleOf": 8,
+            "alignmentOrigin": 1
+          },
+          "fps": {
+            "type": "integer",
+            "label": "帧率",
+            "default": 24,
+            "minimum": 1,
+            "maximum": 60,
+            "presets": [
+              8,
+              16,
+              24
+            ],
+            "limitSource": "explicit_old_ltx_profile"
+          },
+          "seed": {
+            "type": "integer",
+            "label": "种子（-1 自动）",
+            "default": -1,
+            "minimum": -1,
+            "maximum": 2147483647,
+            "presets": [
+              -1,
+              42
+            ],
+            "limitSource": "explicit_old_ltx_profile"
+          },
+          "threads": {
+            "type": "integer",
+            "label": "CPU 线程",
+            "default": 4,
+            "minimum": 1,
+            "maximum": 8,
+            "presets": [
+              2,
+              4,
+              8
+            ],
+            "limitSource": "explicit_old_ltx_profile"
+          },
+          "steps": {
+            "type": "integer",
+            "label": "固定蒸馏步数",
+            "default": 8,
+            "minimum": 8,
+            "maximum": 8,
+            "presets": [
+              8
+            ],
+            "limitSource": "explicit_old_ltx_profile",
+            "help": "此蒸馏配方固定八步；单尺度、CFG=1、STG=0，数值与画质尚未验收。"
+          }
+        }
+      },
+      "license": {
+        "name": "LTX-Video Open Weights 0.x; Google/community T5 Apache-2.0",
+        "url": "https://huggingface.co/Lightricks/LTX-Video/tree/8984fa25007f376c1a299016d0957a37a2f797bb"
+      },
+      "evidence": {
+        "sourceReviewed": true,
+        "physicalDeviceTests": 0,
+        "status": "experimental_adapter_numerical_gates_open",
+        "numericalAccepted": false,
+        "qualityAccepted": false
+      },
+      "resources": {
+        "estimatedPeakRamBytes": 0,
+        "known": false
+      }
     }
   ]
 }

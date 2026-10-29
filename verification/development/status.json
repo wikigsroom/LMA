@@ -1,6 +1,6 @@
 {
   "schema": "lma.development-checkpoint/2",
-  "version": "0.3.0-dev.29",
+  "version": "0.3.0-dev.30",
   "sources": {
     "build-info.json": "dist/build-info.json",
     "package.json": "build/package-verification.json",
@@ -23,7 +23,12 @@
     "lcm-media.json": "docs/media/development/lcm/manifest.json",
     "moss-rq.json": "build/moss-rq-tests/results.json",
     "moss-rq-arm64.json": "build/moss_rq-arm64-evidence.json",
-    "audio-media.json": "docs/media/development/audio/manifest.json"
+    "audio-media.json": "docs/media/development/audio/manifest.json",
+    "ltx-app.json": "build/ltx098-app-tests/results.json",
+    "ltx-app-arm64.json": "build/ltx098-app-arm64/receipt.json",
+    "ltx-app-trained.json": "build/ltx098-app-trained/results.json",
+    "ltx-media.json": "docs/media/development/ltx/manifest.json",
+    "ltx-trained-media.json": "docs/media/development/ltx-app-trained/manifest.json"
   },
   "historical_sources": {
     "build-info.json": {
@@ -496,96 +501,100 @@
     }
   },
   "prior_checkpoint": {
-    "commit": "5abb90d3696b80f4b7c6963071e9ad625f551d6d",
-    "version": "0.3.0-dev.28",
+    "commit": "e4cf93a8f235e227a16e7c28e4970d155e1fe22b",
+    "version": "0.3.0-dev.29",
     "sources": {
       "status.json": {
-        "path": "verification/history/0.3.0-dev.28/status.json",
-        "sha256": "efd4dd79e540481103976001e838576b2a1523b5576c82abac99e8c3aaac545e"
+        "path": "verification/history/0.3.0-dev.29/status.json",
+        "sha256": "af83788caaf9171b661bc7f51316d76d2acd9308ceadaacc4d2a9b7c42f57d59"
       },
       "build-info.json": {
-        "path": "verification/history/0.3.0-dev.28/build-info.json",
-        "sha256": "ed7d566b098c6a131be1b13f1292f22e4f3cbba419fcc3ca2a1e267efed0a84b"
+        "path": "verification/history/0.3.0-dev.29/build-info.json",
+        "sha256": "b7592d613c8004052a30f19cd9f54516e1edc8133c0606e52c67b8603dd821d8"
       },
       "package.json": {
-        "path": "verification/history/0.3.0-dev.28/package.json",
-        "sha256": "14354913e5ac2de5a8a0c10e59888a1a613670baad703ef02de5a53a7167915b"
+        "path": "verification/history/0.3.0-dev.29/package.json",
+        "sha256": "be573393f1550781cf5494812ac5015067a34e556e3a6f19162cdb8ee909b91f"
       },
       "workbench.json": {
-        "path": "verification/history/0.3.0-dev.28/workbench.json",
-        "sha256": "78357c3995e4d615b4548e0c66d32326cf92332bdb95580f99f6052920843e60"
+        "path": "verification/history/0.3.0-dev.29/workbench.json",
+        "sha256": "81f626ca811929aef6650c4bf656ae5174a33771fd100129d3f5ca50e69b252e"
       },
       "recovery.json": {
-        "path": "verification/history/0.3.0-dev.28/recovery.json",
-        "sha256": "56591e35506f5c06c9e5c928949c064e2f4c576a2266f5eea542012c1c4e02f5"
+        "path": "verification/history/0.3.0-dev.29/recovery.json",
+        "sha256": "c4c91e92d725619a181bec66f2667e0085979cd13ba767894974a99af21c0a80"
       },
       "foundation.json": {
-        "path": "verification/history/0.3.0-dev.28/foundation.json",
-        "sha256": "ca2dfe23e42928b63ee8fff909d0cbadabd68ca1e9e165a618c78f1af5a98a81"
+        "path": "verification/history/0.3.0-dev.29/foundation.json",
+        "sha256": "57f6b91a775cf7555dd1c91650cb05bfc083bae53c3d275602b838ec92561ce6"
       },
       "api.json": {
-        "path": "verification/history/0.3.0-dev.28/api.json",
-        "sha256": "65208b4d5f3322408e0d0e606292ff3182c97b7794442da67c35be952cc92bbb"
+        "path": "verification/history/0.3.0-dev.29/api.json",
+        "sha256": "0e46cb099613923aefed8cc5cc4d077c6229e51ef64b78a829fad50786dcdbaa"
       },
       "inputs.json": {
-        "path": "verification/history/0.3.0-dev.28/inputs.json",
-        "sha256": "400ac8f4df7c4506a4a1c2105c599e352814caa4cb1250a98e0d3e197f257c08"
+        "path": "verification/history/0.3.0-dev.29/inputs.json",
+        "sha256": "7d5147792e58cfa2061dee1e5a75ab66e337c15c28f9964671b67a3ea21e7da0"
       },
       "text.json": {
-        "path": "verification/history/0.3.0-dev.28/text.json",
-        "sha256": "5a5b57ffe9f11293c5eb82322e1c5a0f656a7924f7757faa5b70a8ef5a45acc6"
+        "path": "verification/history/0.3.0-dev.29/text.json",
+        "sha256": "888857c4dcee4f5dacaf860db305e73deaffd225417f832c90eb3be038018dac"
       },
       "migration.json": {
-        "path": "verification/history/0.3.0-dev.28/migration.json",
-        "sha256": "345522fe48f5de9a067baee8fe880d19c5e2b7afc5f90aa5c6c50768a3a77d5d"
+        "path": "verification/history/0.3.0-dev.29/migration.json",
+        "sha256": "bc7385d98376dfc22ffd426f8ebd6ed22135703ad2f1463e4a2a5b51d1db246d"
       },
       "scheduler.json": {
-        "path": "verification/history/0.3.0-dev.28/scheduler.json",
-        "sha256": "99658895825fcfd1ce5a48e6131021e0981523b718dc0976bd8133f4af5bb990"
+        "path": "verification/history/0.3.0-dev.29/scheduler.json",
+        "sha256": "5ddb79dfcccc94d403aaea3398e9bc39379842dd184387941560ce0af8d9aeb3"
       },
       "ui.json": {
-        "path": "verification/history/0.3.0-dev.28/ui.json",
-        "sha256": "4a147936e1ffc6a3c2b21fd6020d624b3500fb1cca40e142ce0ae99946b73691"
+        "path": "verification/history/0.3.0-dev.29/ui.json",
+        "sha256": "ed7b5cdd87d80c41c4b7e96ec32ab941ad70f120255e15ad7d59ab2431b9154e"
       },
       "lint.json": {
-        "path": "verification/history/0.3.0-dev.28/lint.json",
-        "sha256": "09a373a7032b90886fcbf97c88bb8dbc39757b0cf78721b6c15922c56406955f"
+        "path": "verification/history/0.3.0-dev.29/lint.json",
+        "sha256": "4208530f6c50074058678d7a6576d9be53d8368187081a1be2ee6efc6daaf346"
       },
       "workbench-media.json": {
-        "path": "verification/history/0.3.0-dev.28/workbench-media.json",
-        "sha256": "69d4f3951ae1dc20c55e5317fd445e4cdb67d4aa4654d60006938ef4f7bc8fa1"
+        "path": "verification/history/0.3.0-dev.29/workbench-media.json",
+        "sha256": "0f80da751502dd0902d1af8fae3060e8eb208b9fffa7db715448f44ce4bde20e"
       },
       "preflight-media.json": {
-        "path": "verification/history/0.3.0-dev.28/preflight-media.json",
-        "sha256": "7bba172b92b86d8349dc15616e69e9f24793dc9dc0bddfc40a2f16d7877c0fe6"
+        "path": "verification/history/0.3.0-dev.29/preflight-media.json",
+        "sha256": "801c79526f28f9cf3aa9f43b48ec043a4006093b55a83887782a5c1e95f6e5a8"
       },
       "recovery-media.json": {
-        "path": "verification/history/0.3.0-dev.28/recovery-media.json",
-        "sha256": "7cff286801ac1c264cd4163c39e149575ec080c06f93071681c7f85019b97314"
+        "path": "verification/history/0.3.0-dev.29/recovery-media.json",
+        "sha256": "d59dc9b3c5b5ddc66add0645f437bae5a2e03c577126d16e49b2c96c153e975c"
       },
       "preparation-core.json": {
-        "path": "verification/history/0.3.0-dev.28/preparation-core.json",
-        "sha256": "38e2de0d66b5bf25c7d43537a2f0d3675d9cd1cf0f51125c5c2627f05d327fae"
+        "path": "verification/history/0.3.0-dev.29/preparation-core.json",
+        "sha256": "83a05f1e102dac3d6272be39818c65dbff2be067086db316650221b2d1e3a6a9"
       },
       "assembly-core.json": {
-        "path": "verification/history/0.3.0-dev.28/assembly-core.json",
-        "sha256": "d5a46c31ddaff4b80b3f8baded51c2a4d52f42e412ded362d5a6d23e43f77220"
+        "path": "verification/history/0.3.0-dev.29/assembly-core.json",
+        "sha256": "7d26c77a59738bbe81d7fe08e8f5d88d8a65f5910c127e845485849fcf9e19cb"
       },
       "diffusion.json": {
-        "path": "verification/history/0.3.0-dev.28/diffusion.json",
-        "sha256": "a7a9f9678f9a5fe8499bfa7b0921e11d3a40a22ccfe06b53b3f04352f3a150bd"
-      },
-      "lcm-app-host.json": {
-        "path": "verification/history/0.3.0-dev.28/lcm-app-host.json",
-        "sha256": "13d24da6ce1abf6498b75d926089c27fae99272215079622e23f6e773e9ca9c9"
+        "path": "verification/history/0.3.0-dev.29/diffusion.json",
+        "sha256": "aa6a31b92ce64ec91d277467a3c3af3f267b976897331c4a3e0b86fcbf6f88d7"
       },
       "lcm-media.json": {
-        "path": "verification/history/0.3.0-dev.28/lcm-media.json",
-        "sha256": "6ea19c8c571bcde30bc1136cfa108d6415f609e5db0e9e558ca5cf52c1bab581"
+        "path": "verification/history/0.3.0-dev.29/lcm-media.json",
+        "sha256": "abc73a427381de507e22ab68f9a99264a2d4dc3756de5af19ceaf6349c1fb78f"
       },
-      "lcm-trained-media.json": {
-        "path": "verification/history/0.3.0-dev.28/lcm-trained-media.json",
-        "sha256": "53d7d883e5277725d4756bbd18d6e7bc263e97dc90e6023f041c60144b7df329"
+      "moss-rq.json": {
+        "path": "verification/history/0.3.0-dev.29/moss-rq.json",
+        "sha256": "9c1d382fb87967b481b66d21574ababa1684202a614047bf0d0c8b299591d283"
+      },
+      "moss-rq-arm64.json": {
+        "path": "verification/history/0.3.0-dev.29/moss-rq-arm64.json",
+        "sha256": "9e64c6a3fdf0936b096839edb6e33cbf4845d1b5f16a9619e290b7b55a17506d"
+      },
+      "audio-media.json": {
+        "path": "verification/history/0.3.0-dev.29/audio-media.json",
+        "sha256": "336e4d4767d994a81fd3055f7ea90a9529deec4f27b5d6530120af84a5acab28"
       }
     }
   },
@@ -600,11 +609,11 @@
   "physical_device_tests": 0,
   "model_inference_tested": false,
   "historical_trained_results_apply_to_current_apk": false,
-  "host_model_inference_tested": false,
+  "host_model_inference_tested": true,
   "apk_model_inference_tested": false,
   "historical_host_model_inference_tested": true,
-  "model_inference_test_scope": "Current PCM protocol, actual owned host children, authenticated sockets, real tiny codec graphs and UI; no trained Realtime speech or Android execution. Trained LCM host evidence is pinned to dev.28.",
-  "scope": "Opt-in per-model Realtime incremental PCM, transient previews, shared task/API/playback lifecycle, strict final-WAV agreement and model-free Android compilation; full frozen scope remains required",
+  "model_inference_test_scope": "One complete trained old-LTX community Google T5 Q5 single-scale job through the current production Java queue/adapter on native Windows with an explicit FFmpeg host encoder port. Original numerical/quality failures remain open; no Android inference or complete trained Realtime speech acceptance. Trained LCM evidence stays pinned to dev.28.",
+  "scope": "Old-LTX sequential local stages, explicit immutable runtime association, per-model video settings, shared queue and MP4 artifacts; current audio and foundation regression. Full frozen release scope remains required.",
   "required_release_scope": {
     "foundation": "F01–F12",
     "existing_text": true,
@@ -631,8 +640,8 @@
   },
   "input_fingerprint": {
     "docs/proposals/multimodal-release-scope.json": "03326504d2d1b52c315bef574325f2c05d43c6a65eafc9779cc33120b7801690",
-    "tools/check_repository.py": "07af9ae4b3e858b394838031a920c6449a699229b23b8dfe1080f307bb61ff7d",
-    "tools/checkpoint_evidence.py": "1036d509ee08c197e2b5eb6e7717299291f4ffca189e779286f09fa1b2f0b3c1",
-    "tools/export_development.py": "3fbd7d5dd9e0118e8c5e89d8b10d0196008a87796baa0089c15357f29d85ff41"
+    "tools/check_repository.py": "2446655115f59068f7d5b2eae018656a582af8e84569ead9e1e6d6eae30387b8",
+    "tools/checkpoint_evidence.py": "18cdf33b704dab37ba18c8a61905d46fc4fb95520b33e93896092a4bbb1f001c",
+    "tools/export_development.py": "bfb296114d689b38f2e5a575116c641106371ea2016996241d0b9a23b8a80235"
   }
 }

@@ -1,6 +1,8 @@
 # LMA 0.2.0 architecture
 
-Current dev.29: [incremental local audio and playback](AUDIO_STREAMING.en.md) / [中文](AUDIO_STREAMING.md), with [numbered delivery and the full same-release scope](releases/v0.3.0-dev.29.md). Model-scoped opt-in streaming, bounded shared previews and verified full WAV publication. Trained Realtime/Android acceptance remains open; historical failures stay recorded.
+Current dev.30: [old-LTX local video flow](LTX098_APP_FLOW.en.md) / [中文](LTX098_APP_FLOW.md), with [numbered delivery and complete same-release scope](releases/v0.3.0-dev.30.md). Sequential T5/Vulkan DiT/VAE/phone AVC connects independent settings, the shared queue and artifacts. Existing asset records stay immutable; users explicitly associate the new variant. Official-variant, numerical/quality/Android and complete Release gates remain open.
+
+dev.29 historical checkpoint: [incremental local audio and playback](AUDIO_STREAMING.en.md) / [中文](AUDIO_STREAMING.md), with [numbered delivery and the full same-release scope](releases/v0.3.0-dev.29.md). Model-scoped opt-in streaming, bounded shared previews and verified full WAV publication. Trained Realtime/Android acceptance remains open; historical failures stay recorded.
 
 
 This guide describes the current APK. Unimplemented multimodal expansion follows the [current requirements/release plan](MULTIMODAL_RELEASE_PLAN.en.md): equal peer models with task/dependency tags, forms and an on-phone queue, without a ComfyUI canvas/node ecosystem. See [local tasks/background](WORKFLOWS.en.md), [source research](MULTIMODAL.en.md) and [foundation/migration](FOUNDATION.en.md).

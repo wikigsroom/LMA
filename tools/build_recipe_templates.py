@@ -263,6 +263,8 @@ def build():
         help="仅匹配固定 Arm-Examples audiogen TFLite 导出，不是任意 Stable Audio checkpoint。四份组件由用户逐一选择，安装 / 浏览 / 缺件均不自动下载。手机 LiteRT CPU 依次编码、扩散、解码；英文提示词最多 64 token（含 EOS），超过报错，不静默截断。输出 1–11 秒、44.1 kHz 立体声 PCM16；短时长仍执行固定 256 latent / 524288 解码帧，不能据此降低内存估算。无负面提示词、CFG、参考音频、语音克隆或图像 LoRA。官方权重受 Stability AI Community 条款及访问限制约束，模型许可与 App 许可独立。8 步是上游默认；线程 / 32 步属于应用保护。上游建议 8 GB RAM，未证明 Z20 可运行；LMA 尚无完整模型音质、速度或 Android 验收。"))
     from soulx_recipe import recipe as soulx_recipe
     templates.append(soulx_recipe())
+    from ltx098_recipe import recipe as ltx098_recipe
+    templates.append(ltx098_recipe())
     return {"schema": "lma.recipe-catalogue/1", "templates": templates}
 
 

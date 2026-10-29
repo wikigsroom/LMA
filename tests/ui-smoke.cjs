@@ -25,6 +25,7 @@ const checkPreflight = require('./preflight-ui.cjs');
 const checkRecovery = require('./recovery-ui.cjs');
 const checkLcm = require('./lcm-ui.cjs');
 const checkAudio = require('./audio-ui.cjs');
+const checkLtx = require('./ltx-ui.cjs');
 const {chromium} = require(process.env.LMA_PLAYWRIGHT || 'playwright');
 const root = path.resolve(__dirname, '..');
 const assets = path.join(root, 'app/src/main/assets');
@@ -32,7 +33,7 @@ const output = path.join(root, 'build/ui-qa');
 fs.mkdirSync(output, {recursive: true});
 if (fs.existsSync(path.join(output, 'results.json'))) fs.unlinkSync(path.join(output, 'results.json'));
 function inputFingerprint() {
-  const files = fs.readdirSync(assets, {recursive: true}).map(name => path.join(assets, name)).filter(file => fs.statSync(file).isFile()).concat(__filename, path.join(root, 'tests/hub-fixture.cjs'), path.join(root, 'tests/foundation-ui.cjs'), path.join(root, 'tests/recipes-ui.cjs'), path.join(root, 'tests/versions-ui.cjs'), path.join(root, 'tests/text-ui.cjs'), path.join(root, 'tests/migration-ui.cjs'), path.join(root, 'tests/scheduler-ui.cjs'), path.join(root, 'tests/inputs-ui.cjs'), path.join(root, 'tests/diffusion-ui.cjs'), path.join(root, 'tests/qwen-ui.cjs'), path.join(root, 'tests/moss-delay-ui.cjs'), path.join(root, 'tests/openmoss-ui.cjs'), path.join(root, 'tests/stable-audio-ui.cjs'), path.join(root, 'tests/soulx-ui.cjs'), path.join(root, 'tests/preparations-ui.cjs'), path.join(root, 'tests/assemblies-ui.cjs'), path.join(root, 'tests/workbench-ui.cjs'), path.join(root, 'tests/preflight-ui.cjs'), path.join(root, 'tests/recovery-ui.cjs'), path.join(root, 'tests/lcm-ui.cjs'), path.join(root, 'tests/audio-ui.cjs'));
+  const files = fs.readdirSync(assets, {recursive: true}).map(name => path.join(assets, name)).filter(file => fs.statSync(file).isFile()).concat(__filename, path.join(root, 'tests/hub-fixture.cjs'), path.join(root, 'tests/foundation-ui.cjs'), path.join(root, 'tests/recipes-ui.cjs'), path.join(root, 'tests/versions-ui.cjs'), path.join(root, 'tests/text-ui.cjs'), path.join(root, 'tests/migration-ui.cjs'), path.join(root, 'tests/scheduler-ui.cjs'), path.join(root, 'tests/inputs-ui.cjs'), path.join(root, 'tests/diffusion-ui.cjs'), path.join(root, 'tests/qwen-ui.cjs'), path.join(root, 'tests/moss-delay-ui.cjs'), path.join(root, 'tests/openmoss-ui.cjs'), path.join(root, 'tests/stable-audio-ui.cjs'), path.join(root, 'tests/soulx-ui.cjs'), path.join(root, 'tests/preparations-ui.cjs'), path.join(root, 'tests/assemblies-ui.cjs'), path.join(root, 'tests/workbench-ui.cjs'), path.join(root, 'tests/preflight-ui.cjs'), path.join(root, 'tests/recovery-ui.cjs'), path.join(root, 'tests/lcm-ui.cjs'), path.join(root, 'tests/audio-ui.cjs'), path.join(root, 'tests/ltx-ui.cjs'), path.join(root, 'catalogue/model-bundles.json'), path.join(root, 'catalogue/model-assemblies.json'), path.join(root, 'catalogue/asset-preparations.json'));
   return Object.fromEntries(files.sort().map(file => [path.relative(root, file).split(path.sep).join('/'), crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex')]));
 }
 const verifiedInputs = inputFingerprint();
@@ -301,6 +302,7 @@ async function main() {
   await checkRecovery(page, checked, checkOverflow, output);
   await checkLcm(page, checked, checkOverflow, output);
   await checkAudio(page, checked, checkOverflow, output);
+  await checkLtx(page, checked, checkOverflow, output);
   await page.locator('.nav-item[data-tab="models"]').click();
   await page.locator('[data-task="any"]').click();
   await page.setViewportSize({width: 1024, height: 768}); await checkOverflow(page, 'Tablet library layout');

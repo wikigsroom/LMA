@@ -5639,6 +5639,305 @@
       ],
       "fixedComponents": [],
       "help": "完整配方共 14 份资产，由用户逐一选择 / 下载或导入；App 不含权重、词表或那份 40 字节声源参数。仅匹配 LMA SoulX ONNX 导出及完整 SoulX GGUF，不支持直接运行 flow.pt / hift.pt 或任意 Qwen GGUF。现有转换工具用于开发验证，尚无已核对的全组件公开下载条目；此配方不代表原始发布者权重可直接下载即用。S1 必选，S2–S4 从 S1 开始连续选择，每段参考 WAV 为 24 kHz 单声道 PCM16 / float32、1–15 秒，并填写实际原文。单段文字默认 S1；多段每行 [S1] 原文 至 [S4] 原文。手机 CPU 依次执行参考编码、完整语言生成、Flow / HiFT、24 kHz PCM16 保存；最多 64 段，总计最多 24000 语义 token，时长含段间静音。上下文不足明确报错，不丢弃参考原文。每段 EOS / 输出上限会分别记录；RAS 可恢复原始分数，不保证最少时长。参数按模型保存，任务固定快照；无图像 LoRA、负面提示词、外部推理或自动下载。已有真实训练模型主机链路证据，语音质量、Android 资源与后台门槛仍待验收，不能据此认定 Z20 可运行。"
+    },
+    {
+      "id": "ltx098_single_scale_google_q5_v1",
+      "name": "旧 LTX 2B 0.9.8 · 单尺度 Google T5 Q5",
+      "primaryRole": "diffusion_model",
+      "definition": {
+        "engine": "ltx098_native",
+        "backend": "vulkan",
+        "architecture": "ltx098",
+        "pipeline": "ltx098_single_scale_google_q5",
+        "tasks": [
+          "video"
+        ],
+        "capabilities": [
+          "text_to_video",
+          "single_scale",
+          "community_google_t5_q5",
+          "experimental_numerical_gates_open"
+        ],
+        "parameters": {
+          "version": 1,
+          "fields": {
+            "width": {
+              "type": "integer",
+              "label": "宽度",
+              "default": 256,
+              "minimum": 64,
+              "maximum": 256,
+              "presets": [
+                128,
+                192,
+                256
+              ],
+              "limitSource": "explicit_old_ltx_profile",
+              "multipleOf": 32
+            },
+            "height": {
+              "type": "integer",
+              "label": "高度",
+              "default": 256,
+              "minimum": 64,
+              "maximum": 256,
+              "presets": [
+                128,
+                192,
+                256
+              ],
+              "limitSource": "explicit_old_ltx_profile",
+              "multipleOf": 32
+            },
+            "frames": {
+              "type": "integer",
+              "label": "视频帧数",
+              "default": 33,
+              "minimum": 9,
+              "maximum": 33,
+              "presets": [
+                9,
+                17,
+                25,
+                33
+              ],
+              "limitSource": "explicit_old_ltx_profile",
+              "multipleOf": 8,
+              "alignmentOrigin": 1
+            },
+            "fps": {
+              "type": "integer",
+              "label": "帧率",
+              "default": 24,
+              "minimum": 1,
+              "maximum": 60,
+              "presets": [
+                8,
+                16,
+                24
+              ],
+              "limitSource": "explicit_old_ltx_profile"
+            },
+            "seed": {
+              "type": "integer",
+              "label": "种子（-1 自动）",
+              "default": -1,
+              "minimum": -1,
+              "maximum": 2147483647,
+              "presets": [
+                -1,
+                42
+              ],
+              "limitSource": "explicit_old_ltx_profile"
+            },
+            "threads": {
+              "type": "integer",
+              "label": "CPU 线程",
+              "default": 4,
+              "minimum": 1,
+              "maximum": 8,
+              "presets": [
+                2,
+                4,
+                8
+              ],
+              "limitSource": "explicit_old_ltx_profile"
+            },
+            "steps": {
+              "type": "integer",
+              "label": "固定蒸馏步数",
+              "default": 8,
+              "minimum": 8,
+              "maximum": 8,
+              "presets": [
+                8
+              ],
+              "limitSource": "explicit_old_ltx_profile",
+              "help": "此蒸馏配方固定八步；单尺度、CFG=1、STG=0，数值与画质尚未验收。"
+            }
+          }
+        }
+      },
+      "requirements": [
+        {
+          "role": "diffusion_model",
+          "label": "已在本机准备的旧 0.9.8 DiT",
+          "formats": [
+            "gguf"
+          ],
+          "required": true
+        },
+        {
+          "role": "text_encoder",
+          "label": "Google/community T5 XXL Q5_K_M",
+          "formats": [
+            "gguf"
+          ],
+          "required": true
+        },
+        {
+          "role": "tokenizer_config",
+          "label": "与 Google T5 配套的 tokenizer_config.json",
+          "formats": [
+            "json"
+          ],
+          "required": true
+        },
+        {
+          "role": "vae_graph_0",
+          "label": "旧 LTX VAE 第 1 段图",
+          "formats": [
+            "onnx"
+          ],
+          "required": true
+        },
+        {
+          "role": "vae_data_0",
+          "label": "旧 LTX VAE 第 1 段权重",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": true
+        },
+        {
+          "role": "vae_graph_1",
+          "label": "旧 LTX VAE 第 2 段图",
+          "formats": [
+            "onnx"
+          ],
+          "required": true
+        },
+        {
+          "role": "vae_data_1",
+          "label": "旧 LTX VAE 第 2 段权重",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": true
+        },
+        {
+          "role": "vae_graph_2",
+          "label": "旧 LTX VAE 第 3 段图",
+          "formats": [
+            "onnx"
+          ],
+          "required": true
+        },
+        {
+          "role": "vae_data_2",
+          "label": "旧 LTX VAE 第 3 段权重",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": true
+        },
+        {
+          "role": "vae_graph_3",
+          "label": "旧 LTX VAE 第 4 段图",
+          "formats": [
+            "onnx"
+          ],
+          "required": true
+        },
+        {
+          "role": "vae_data_3",
+          "label": "旧 LTX VAE 第 4 段权重",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": true
+        },
+        {
+          "role": "vae_graph_4",
+          "label": "旧 LTX VAE 第 5 段图",
+          "formats": [
+            "onnx"
+          ],
+          "required": true
+        },
+        {
+          "role": "vae_data_4",
+          "label": "旧 LTX VAE 第 5 段权重",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": true
+        },
+        {
+          "role": "vae_graph_5",
+          "label": "旧 LTX VAE 第 6 段图",
+          "formats": [
+            "onnx"
+          ],
+          "required": true
+        },
+        {
+          "role": "vae_data_5",
+          "label": "旧 LTX VAE 第 6 段权重",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": true
+        },
+        {
+          "role": "vae_graph_6",
+          "label": "旧 LTX VAE 第 7 段图",
+          "formats": [
+            "onnx"
+          ],
+          "required": true
+        },
+        {
+          "role": "vae_data_6",
+          "label": "旧 LTX VAE 第 7 段权重",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": true
+        },
+        {
+          "role": "vae_graph_7",
+          "label": "旧 LTX VAE 第 8 段图",
+          "formats": [
+            "onnx"
+          ],
+          "required": true
+        },
+        {
+          "role": "vae_data_7",
+          "label": "旧 LTX VAE 第 8 段权重",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": true
+        },
+        {
+          "role": "vae_graph_8",
+          "label": "旧 LTX VAE 第 9 段图",
+          "formats": [
+            "onnx"
+          ],
+          "required": true
+        },
+        {
+          "role": "vae_data_8",
+          "label": "旧 LTX VAE 第 9 段权重",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": true
+        },
+        {
+          "role": "vae_manifest",
+          "label": "准备得到的 ltx098-vae.json",
+          "formats": [
+            "json"
+          ],
+          "required": true
+        }
+      ],
+      "fixedComponents": [],
+      "help": "推荐选择目录中的旧 LTX 源模型，显式下载 / 导入后准备 DiT 与九段 VAE，再关联运行模型并自行取得 T5 与分词配置。此表单也可逐项选择已有匹配组件。T5 CPU、DiT Vulkan、VAE CPU、手机 AVC 编码顺序执行；支持 64–256（32 倍数）、9–33 帧（8n+1）、固定八步。Google/community T5 量化单尺度变体不等于官方 PixArt / 多尺度默认；原数值门槛仍有失败，画质和 Android 尚未验收。模型与专用数据不随 App 提供；不自动下载，不接受图像 LoRA 或远端执行。"
     }
   ]
 }

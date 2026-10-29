@@ -2,11 +2,17 @@
 
 [中文](README.md) · [English](README.en.md) · [Releases](https://github.com/wikigsroom/LMA/releases) · [Documentation](docs/README.md) · [Changelog](CHANGELOG.md)
 
-> **Current development: 0.3.0-dev.29 / code 33.** MOSS Realtime now connects optional frame-by-frame audio to a shared preview cache, authenticated API and incremental playback. The option is model-scoped; a final WAV must agree with the emitted samples before publication. The App updates its foundation, while users select and manage all model assets. [Design and usage](docs/AUDIO_STREAMING.en.md) · [Numbered delivery / full pending scope](docs/releases/v0.3.0-dev.29.md) · [Recording](docs/media/development/audio/audio-ui.mp4) · [GIF](docs/media/development/audio/audio-ui.gif). Current evidence covers protocols, real tiny decoder graphs and pages; complete trained Realtime quality, phone performance and the full release remain unaccepted.
+> **Current development: 0.3.0-dev.30 / code 34.** Old-LTX video now connects explicit asset preparation/association and independent settings to the production shared queue, sequential text encoding/Vulkan sampling/VAE/phone AVC and committed artifacts. Existing asset records remain unchanged. The App updates its foundation; users select and manage all models. [Design and usage](docs/LTX098_APP_FLOW.en.md) · [Numbered delivery/full pending scope](docs/releases/v0.3.0-dev.30.md) · [Recording](docs/media/development/ltx/ltx-ui.mp4) · [GIF](docs/media/development/ltx/ltx-ui.gif). The community Google T5 Q5 single-scale variant differs from the official default; original numerical failures, video quality, Android execution and the complete release remain unaccepted.
 
-| Per-model streaming setting (UI fixture) | Incremental playback (synthetic PCM, no inference) |
+| Local video settings (UI fixture) | Shared video queue/cancellation (UI fixture) |
 |---|---|
-| ![Streaming setting](docs/media/development/audio/01-model-setting.png) | ![Incremental playback](docs/media/development/audio/02-incremental-playback.png) |
+| ![Model-scoped settings](docs/media/development/ltx/02-model-settings.png) | ![Video queue](docs/media/development/ltx/04-video-queue.png) |
+
+Actual trained host validation uses 22 complete components/9.45 GB and the production Java queue, producing 256×256/33-frame video. Seven bridge files and the MP4 preserve baseline bytes. [Actual MP4](docs/media/development/ltx-app-trained/video.mp4) · [HOST GIF](docs/media/development/ltx-app-trained/preview.gif); original numerical failures and Android gates remain open.
+
+![Actual host model output, not Android; numerical and quality gates open](docs/media/development/ltx-app-trained/frames.png)
+
+[MOSS Realtime incremental audio/playback](docs/AUDIO_STREAMING.en.md) retains its model-scoped option, authenticated cache and final WAV agreement. Complete trained speech and Android acceptance remain open.
 
 The [draft/result workflow](docs/TASK_WORKBENCH.en.md), [preflight](docs/TASK_PREFLIGHT.en.md), [recovery/history/capacity](docs/TASK_RECOVERY.en.md), recommendations m08→m06→m01, HF All/search, Local management and model-scoped settings remain available.
 

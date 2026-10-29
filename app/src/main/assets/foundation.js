@@ -4,13 +4,13 @@
   var $ = function (id) { return document.getElementById(id); };
   var labels = {text: '生文', image: '生图', video: '生视频', audio: '生音频'};
   var states = {queued: '排队中', loading: '加载中', running: '生成中', cancelling: '取消中', cancelled: '已取消', failed: '失败', succeeded: '已完成', interrupted: '已中断'};
-  var stages = {queued: '等待执行', waiting_engine: '等待本机执行槽', validating_inputs: '校验本地素材', loading: '加载模型', loading_diffusion: '加载生图组件', sampling: '采样中', encoding: '编码媒体', synthesizing: '合成语音', text_encoding: '编码文本', encoding_text: '编码文本', decoding: '解码输出', generating: '生成文本', saving: '保存结果', associating_runtime_assets: '关联本地组件'};
+  var stages = {queued: '等待执行', waiting_engine: '等待本机执行槽', validating_inputs: '校验本地素材', loading: '加载模型', loading_diffusion: '加载生图组件', sampling: '采样中', encoding: '编码媒体', synthesizing: '合成语音', text_encoding: '编码文本', encoding_text: '编码文本', decoding: '解码输出', generating: '生成文本', saving: '保存结果', associating_runtime_assets: '关联本地组件', video_noise: '准备视频噪声', video_text_encoding: '编码视频提示词', video_sampling: '生成视频', video_latent_layout: '整理视频潜变量', video_decoding: '解码视频', video_frames: '准备编码帧'};
   var paramNames = {width: '宽度', height: '高度', frames: '帧数', fps: '帧率', steps: '采样步数', cfg: '提示词引导', seed: '随机种子', threads: 'CPU 线程', sampler: '采样器', scheduler: '调度器', duration: '时长（秒）', speed: '语速', context: '上下文长度', maxTokens: '单次输出上限', temperature: '采样温度', reasoning: '思考模式', systemPrompt: '系统提示词', streamAudio: '流式试听'};
   function entries() { return ui.state() && ui.state().bundles || []; }
   function find(id) { return entries().filter(function (b) { return b.id === id; })[0]; }
   function e(value) { return ui.esc(value); }
   function button(action, id, text, style, disabled) { return '<button class="button ' + (style || 'secondary') + '" data-action="' + action + '" data-id="' + e(id) + '"' + (disabled ? ' disabled' : '') + '>' + text + '</button>'; }
-  function engineAvailable(b) { return (b.manifest.capabilities || []).indexOf('source_assets') < 0 && !b.parameterError && (ui.state().localEngines || []).some(function (engine) { return engine.engine === b.manifest.engine && engine.available; }); }
+  function engineAvailable(b) { return (b.manifest.capabilities || []).indexOf('source_assets') < 0 && !b.parameterError && (ui.state().localEngines || []).some(function (engine) { return engine.engine === b.manifest.engine && engine.available && (!engine.requiredModelCapability || (b.manifest.capabilities || []).indexOf(engine.requiredModelCapability) >= 0); }); }
   function isAdapter(b) { return !!(b.manifest.adapter && b.manifest.adapter.kind === 'lora'); }
   function compatible(base, adapter) {
     var m = base.manifest, a = adapter.manifest.adapter;

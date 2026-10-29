@@ -1,0 +1,5 @@
+LMA old LTX-Video 0.9.8 App integration
+
+The App adapter uses the existing model-free LMA research component code: native tensor/RNG/frame primitives, an independent GGML T5 encoder, the old LTX DiT/sampler, and sequential ONNX Runtime VAE decoding. New integration adds owned stage lifetime guards and a bounded binary-file sampler bridge. Lightricks LTX model-architecture portions and derived sampler integration use Apache-2.0; LMA glue is under the repository license. See the accompanying pinned-source licenses.
+
+The exact recipe is a single-scale, eight-step, Google/community T5 Q5 variant. It does not reproduce the publisher default PixArt/multiscale profile. Previous numerical failures, quality gates and physical Android validation remain open. This notice does not grant rights to model assets. Weights, tokenizer configuration, VAE learned tensors and other model data remain user-selected assets and are not distributed in the APK.

@@ -1,6 +1,8 @@
 # LMA 0.2.0 架构
 
-当前 dev.29：[本机增量音频与流式试听](AUDIO_STREAMING.md) / [English](AUDIO_STREAMING.en.md)，[编号交付及完整同版待办](releases/v0.3.0-dev.29.md)。模型独立选择流式设置；接口与页面共用有界缓存；完整 WAV 校验后发布。训练 Realtime / Android 尚未验收，历史失败保留。
+当前 dev.30：[旧 LTX 本地视频闭环](LTX098_APP_FLOW.md) / [English](LTX098_APP_FLOW.en.md)，[编号交付与完整同版待办](releases/v0.3.0-dev.30.md)。新增顺序执行的 T5 / Vulkan DiT / VAE / 手机 AVC 适配器，复用模型独立设置、共享队列和结果库；旧资产记录保持不可变，新生成变体由用户明确关联。官方变体、数值 / 画质 / Android 与完整 Release 尚未验收。
+
+dev.29 历史检查点：[本机增量音频与流式试听](AUDIO_STREAMING.md) / [English](AUDIO_STREAMING.en.md)，[编号交付及完整同版待办](releases/v0.3.0-dev.29.md)。模型独立选择流式设置；接口与页面共用有界缓存；完整 WAV 校验后发布。训练 Realtime / Android 尚未验收，历史失败保留。
 
 
 本文描述当前 APK。尚未实现的多模态扩展以[现行需求与发版计划](MULTIMODAL_RELEASE_PLAN.md)为准：所有模型平级，以功能 / 基座标签分类，采用任务表单与本机队列，不建设 ComfyUI 画布 / 节点生态。执行与后台见[本机任务](WORKFLOWS.md)，来源见[可行性研究](MULTIMODAL.md)，共用契约与源码迁移见[基座评估](FOUNDATION.md)。

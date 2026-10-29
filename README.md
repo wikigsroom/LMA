@@ -2,11 +2,17 @@
 
 [中文](README.md) · [English](README.en.md) · [下载 / Releases](https://github.com/wikigsroom/LMA/releases) · [文档导航](docs/README.md) · [更新记录](CHANGELOG.md)
 
-> **当前开发：0.3.0-dev.29 / code 33。** 已接通 MOSS Realtime 的可选逐帧音频输出、共用试听缓存、鉴权接口与边生成边听；流式设置跟随模型，最终 WAV 必须与已发送采样一致才发布。App 只更新基座，模型仍由用户选择、下载和管理。[方案与使用](docs/AUDIO_STREAMING.md) · [编号实现 / 全部待办](docs/releases/v0.3.0-dev.29.md) · [录屏](docs/media/development/audio/audio-ui.mp4) · [GIF](docs/media/development/audio/audio-ui.gif)。当前为协议、真实小型解码图与页面检查；完整训练 Realtime 音质、手机性能与完整版本尚未验收。
+> **当前开发：0.3.0-dev.30 / code 34。** 旧 LTX 视频已接入生产共享队列：用户明确准备 / 关联资产，独立设置后提交，顺序执行提示词编码、Vulkan 采样、VAE 与手机 AVC 编码，成功产物进入结果库；旧资产记录保持不变。App 只更新基座，模型由用户选择、下载和管理。[方案与使用](docs/LTX098_APP_FLOW.md) · [编号实现 / 完整待办](docs/releases/v0.3.0-dev.30.md) · [录屏](docs/media/development/ltx/ltx-ui.mp4) · [GIF](docs/media/development/ltx/ltx-ui.gif)。Google/community T5 Q5 单尺度变体不等于官方默认；原数值失败、视频质量、手机执行和完整 Release 仍未验收。
 
-| 本地模型的流式设置（界面测试数据） | 边生成边听（合成 PCM，非模型演示） |
+| 本地视频参数（界面测试数据） | 视频任务与取消（界面测试数据） |
 |---|---|
-| ![模型独立流式设置](docs/media/development/audio/01-model-setting.png) | ![增量试听](docs/media/development/audio/02-incremental-playback.png) |
+| ![模型独立设置](docs/media/development/ltx/02-model-settings.png) | ![共享视频队列](docs/media/development/ltx/04-video-queue.png) |
+
+实际主机训练验证：22 个完整组件 / 9.45 GB，生产 Java 队列执行后得到 256×256 / 33 帧视频，七个中间文件与最终 MP4 保留原基线字节。[实际 MP4](docs/media/development/ltx-app-trained/video.mp4) · [HOST GIF](docs/media/development/ltx-app-trained/preview.gif)；原数值失败与手机门槛保留。
+
+![实际主机模型输出，非 Android；数值与质量未验收](docs/media/development/ltx-app-trained/frames.png)
+
+保留 [MOSS Realtime 增量音频与边生成边听](docs/AUDIO_STREAMING.md)，包含模型独立开关、鉴权缓存和最终 WAV 一致性检查；完整训练语音与手机验收仍待完成。
 
 保留[草稿 / 结果再生成](docs/TASK_WORKBENCH.md)、[运行前检查](docs/TASK_PREFLIGHT.md)、[任务恢复 / 历史 / 容量](docs/TASK_RECOVERY.md)，以及推荐 m08→m06→m01、HF 全部 / 搜索、本地管理与模型独立设置。
 

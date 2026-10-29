@@ -8,7 +8,7 @@ const root = path.resolve(__dirname, '..');
 function canonical(value) { return Array.isArray(value) ? '[' + value.map(item => canonical(item) + ',').join('') + ']' : value && typeof value === 'object' ? '{' + Object.keys(value).sort().map(k => JSON.stringify(k) + ':' + canonical(value[k]) + ',').join('') + '}' : JSON.stringify(value); }
 function data() {
   const catalogue = JSON.parse(fs.readFileSync(path.join(root, 'catalogue/model-bundles.json'), 'utf8'));
-  const descriptor = JSON.parse(fs.readFileSync(path.join(root, 'catalogue/model-assemblies.json'), 'utf8')).plans[0];
+  const descriptor = JSON.parse(fs.readFileSync(path.join(root, 'catalogue/model-assemblies.json'), 'utf8')).plans.find(p => p.bundleId === 'ltx098_runtime_google_q5_v1');
   const target = catalogue.bundles.find(b => b.id === descriptor.bundleId), source = preparations.data();
   const bound = {plan: descriptor, preparationFingerprint: source.plan.fingerprint, bundleFingerprint: crypto.createHash('sha256').update(canonical(target)).digest('hex')};
   const mapped = new Set(descriptor.roles.map(r => r.target));

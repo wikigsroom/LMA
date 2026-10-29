@@ -1,0 +1,85 @@
+package com.lma.app;
+
+import com.lma.app.core.*;
+import org.json.*;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.util.*;
+
+/** Sequential old-LTX stages under one task/model lease, followed by same-phone MediaCodec. */
+public final class Ltx098Engine implements LocalEngine {
+    interface Encoder { void encode(File frames, File output, DataFiles.Check check) throws Exception; }
+    private final LmaApp app; private final File binary; private final JSONObject build;
+    private final NativeWorker.Launcher launcher; private final Encoder encoder;
+    static final String TEXT = "liblma-ltx098-app-text.so", SAMPLE = "liblma-ltx098-app-sample.so", VAE = "liblma-ltx098-app-vae.so";
+    public Ltx098Engine(LmaApp app, File binary, JSONObject build) { this(app,binary,build,ProcessBuilder::start,(frames,output,check)->VideoEncoder.encode(frames,output,check::run)); }
+    Ltx098Engine(LmaApp app, File binary, JSONObject build, NativeWorker.Launcher launcher, Encoder encoder) { this.app=app; this.binary=binary; this.build=DataFiles.copy(build); this.launcher=launcher; this.encoder=encoder; }
+    @Override public String id() { return "ltx098_native"; }
+    private File helper(String name) { return new File(binary.getParentFile(),name); }
+    @Override public JSONObject describe() throws Exception { return DataFiles.copy(build).put("available",binary.isFile() && binary.canExecute()).put("requiredModelCapability","text_to_video").put("deviceValidated",false).put("numericalAccepted",false).put("qualityAccepted",false); }
+    @Override public void validate(ModelBundle b,String type) throws Exception {
+        Ltx098Spec.validate(b,type);
+        for (File file : Arrays.asList(binary,helper(TEXT),helper(SAMPLE),helper(VAE))) if (!file.isFile() || !file.canExecute()) throw new IOException("当前 App 缺少完整旧 LTX 运行阶段");
+    }
+    @Override public InputSpec inputs(ModelBundle b,String type) throws Exception { Ltx098Spec.validate(b,type); return new InputSpec(new JSONObject(),"旧 LTX 单尺度 Google T5 Q5 实验配方；输入完整提示词，不使用官方 PixArt / 多尺度默认，数值和画质尚未通过验收。"); }
+    @Override public JSONObject prepare(ModelBundle b,JSONObject request) throws Exception {
+        Ltx098Spec.validate(b,request.getString("type")); Ltx098Spec.prompt(request.getJSONObject("input"));
+        JSONObject result=DataFiles.copy(request), normalized=Ltx098Spec.parameters(request.getJSONObject("parameters"));
+        JSONArray changes=result.optJSONArray("adjustments"); if(changes==null) changes=new JSONArray();
+        JSONArray added=normalized.getJSONArray("adjustments"); for(int i=0;i<added.length();i++) changes.put(added.getJSONObject(i));
+        JSONObject parameters=normalized.getJSONObject("values"); return result.put("parameters",parameters).put("adjustments",changes).put("ltx098Plan",Ltx098Spec.plan(parameters));
+    }
+    private static File payload(Context c,JSONObject value) throws Exception {
+        c.check(); File file=c.output("json");
+        try(FileOutputStream out=new FileOutputStream(file)) { out.write(value.toString().getBytes(StandardCharsets.UTF_8)); out.getFD().sync(); }
+        c.check(); return file;
+    }
+    private static JSONObject shape(JSONObject p) throws Exception { JSONObject value=new JSONObject(); for(String key:Arrays.asList("width","height","frames","fps")) value.put(key,p.getInt(key)); return value; }
+    private static void size(File file,long bytes) throws IOException { if(!file.isFile() || file.length()!=bytes) throw new IOException("旧 LTX 阶段输出尺寸不匹配"); }
+    private JSONObject stage(Context c,File executable,List<String> arguments,File output,String name,NativeStages.Receipt receipt,NativeWorker.Launcher owned,JSONArray records) throws Exception {
+        c.progress(name,null); long started=System.nanoTime(); JSONObject value=NativeStages.run(app,executable,c,arguments,output,name,receipt,owned);
+        records.put(new JSONObject().put("stage",name).put("seconds",(System.nanoTime()-started)/1e9).put("bytes",output.length())); return value;
+    }
+    @Override public File generate(Context c) throws Exception {
+        JSONObject request=c.request(); BundleStore.Lease lease=c.model(); validate(lease.bundle,request.getString("type"));
+        String prompt=Ltx098Spec.prompt(request.getJSONObject("input")); if(!c.adapters().isEmpty()) throw new IOException("此旧 LTX 配方不接受图像 LoRA");
+        JSONObject normalized=Ltx098Spec.parameters(request.getJSONObject("parameters")); if(normalized.getJSONArray("adjustments").length()!=0) throw new IOException("旧 LTX 参数快照超限，请明确重试");
+        JSONObject p=normalized.getJSONObject("values");
+        if(!request.has("ltx098Plan") || !DataFiles.canonical(request.getJSONObject("ltx098Plan")).equals(DataFiles.canonical(Ltx098Spec.plan(p)))) throw new IOException("旧 LTX 配方快照不一致，请明确重试");
+        if(p.getLong("seed")==-1) p.put("seed",new java.security.SecureRandom().nextInt(Integer.MAX_VALUE));
+        JSONObject details=Ltx098Spec.plan(p).put("effectiveParameters",p).put("stageLoading","sequential_processes").put("samplerBackend","vulkan").put("textBackend","cpu").put("vaeBackend","cpu").put("mediaBackend","android_mediacodec_avc");
+        JSONArray records=new JSONArray(); details.put("stages",records); c.execution(details);
+        EngineWorkspace work=new EngineWorkspace(new File(app.getFilesDir(),"engine-work"),c::check); final Process[] last={null};
+        NativeWorker.Launcher owned=builder->{Process child=launcher.start(builder);last[0]=child;return child;};
+        try {
+            Map<String,File> models=new HashMap<>(); for(Map.Entry<String,String> item:Ltx098Spec.files().entrySet()) models.put(item.getKey(),work.link("models",item.getValue(),lease.file(item.getKey())));
+            int tokens=((p.getInt("frames")-1)/8+1)*(p.getInt("height")/32)*(p.getInt("width")/32); long latentBytes=tokens*128L*4;
+            File initial=c.output("f32"),noise=c.output("f32");
+            File command=payload(c,shape(p).put("operation","noise").put("seed",p.getInt("seed")).put("latents",initial.getPath()).put("noise",noise.getPath()));
+            stage(c,binary,Arrays.asList(command.getPath()),initial,"video_noise",v->v.optString("operation").equals("noise") && v.optBoolean("ok"),owned,records); size(initial,latentBytes);size(noise,latentBytes);c.execution(details);
+            File caption=c.output("f32"); command=payload(c,new JSONObject().put("operation","encode").put("inputs",new JSONArray().put(new JSONObject().put("prompt",prompt))).put("max_tokens",256));
+            JSONObject text=stage(c,helper(TEXT),Arrays.asList(models.get("text_encoder").getPath(),models.get("tokenizer_config").getPath(),command.getPath(),caption.getPath(),String.valueOf(p.getInt("threads"))),caption,"video_text_encoding",v->v.optString("schema").equals("lma.ltx098-text/1"),owned,records);
+            if(text.optBoolean("fixture",true) || !text.optBoolean("model_inference") || text.optInt("layers")!=24 || text.getJSONArray("items").length()!=1) throw new IOException("旧 LTX 需要完整训练 T5 编码结果");
+            JSONObject item=text.getJSONArray("items").getJSONObject(0);int textTokens=item.getJSONArray("tokens").length();
+            if(textTokens<1 || textTokens>256 || item.getLong("offset_bytes")!=0 || item.getLong("bytes")!=textTokens*4096L*4 || !item.getJSONArray("shape").toString().equals(new JSONArray().put(1).put(textTokens).put(4096).toString()) || item.getJSONArray("mask").length()!=textTokens) throw new IOException("旧 LTX T5 桥接格式不匹配");
+            for(int i=0;i<textTokens;i++) if(item.getJSONArray("mask").getInt(i)!=1 || item.getJSONArray("tokens").getInt(i)<0 || item.getJSONArray("tokens").getInt(i)>32127) throw new IOException("旧 LTX T5 分词或掩码不匹配");
+            size(caption,textTokens*4096L*4);details.put("textTokens",textTokens).put("promptTruncated",item.getBoolean("truncated"));c.execution(details);
+            File sampled=c.output("f32");command=payload(c,shape(p).put("operation","sample_files").put("latents",initial.getPath()).put("context",caption.getPath()).put("text_tokens",textTokens));
+            JSONObject sample=stage(c,helper(SAMPLE),Arrays.asList(models.get("diffusion_model").getPath(),command.getPath(),sampled.getPath(),"vulkan",String.valueOf(p.getInt("threads"))),sampled,"video_sampling",v->v.optString("operation").equals("sample_files") && v.optBoolean("ok"),owned,records);
+            if(!sample.optBoolean("model_executed") || sample.optBoolean("fixture",true) || !sample.optString("backend").equals("vulkan") || sample.optInt("layers")!=28 || sample.optInt("steps")!=8 || sample.optLong("parameters")!=1923385472L) throw new IOException("旧 LTX 采样未完成完整八步训练管线");
+            size(sampled,latentBytes);c.execution(details);
+            File restored=c.output("f32");command=payload(c,shape(p).put("operation","unpatchify").put("input",sampled.getPath()).put("output",restored.getPath()));
+            stage(c,binary,Arrays.asList(command.getPath()),restored,"video_latent_layout",v->v.optString("operation").equals("unpatchify") && v.optBoolean("ok"),owned,records);size(restored,latentBytes);
+            File decoded=c.output("f32");JSONArray latentShape=new JSONArray().put(1).put(128).put((p.getInt("frames")-1)/8+1).put(p.getInt("height")/32).put(p.getInt("width")/32);
+            command=payload(c,new JSONObject().put("operation","decode").put("latent_shape",latentShape).put("latents",restored.getPath()).put("noise",noise.getPath()).put("timestep",.05).put("noise_scale",.025).put("threads",p.getInt("threads")));
+            JSONObject vae=stage(c,helper(VAE),Arrays.asList(models.get("vae_manifest").getParent(),command.getPath(),decoded.getPath()),decoded,"video_decoding",v->v.has("graph_runs") && v.optBoolean("ok"),owned,records);
+            JSONArray decodedShape=new JSONArray().put(1).put(3).put(p.getInt("frames")).put(p.getInt("height")).put(p.getInt("width"));
+            if(!vae.getJSONArray("output_shape").toString().equals(decodedShape.toString()) || vae.getInt("graph_runs")!=9 || vae.getInt("session_loads")!=9 || vae.getInt("session_unloads")!=9 || vae.getInt("max_live_sessions")!=1) throw new IOException("旧 LTX VAE 阶段或会话释放不完整");
+            long rgbBytes=p.getInt("frames")*(long)p.getInt("width")*p.getInt("height")*3;size(decoded,rgbBytes*4);c.execution(details);
+            File frames=c.output("rgb");command=payload(c,shape(p).put("operation","frames").put("input",decoded.getPath()).put("output",frames.getPath()));
+            stage(c,binary,Arrays.asList(command.getPath()),frames,"video_frames",v->v.optString("operation").equals("frames") && v.optBoolean("ok"),owned,records);size(frames,28+rgbBytes);c.execution(details);
+            c.progress("encoding",null);File video=c.output("mp4");encoder.encode(frames,video,()->{try{c.check();}catch(Exception failure){throw new IOException(failure);}});c.check();
+            details.put("completeGeneratedFrames",true).put("encodedVideoBytes",video.length());c.execution(details);return video;
+        } finally { work.closeAfter(last[0]); }
+    }
+}

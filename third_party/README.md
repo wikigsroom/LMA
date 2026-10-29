@@ -19,6 +19,12 @@ The primary engine license is in `LLAMA_CPP_LICENSE`. `notices/` contains accomp
 
 Model weights are not redistributed in the APK. Each catalogue entry links to its own model repository, whose model and base-model licenses govern the downloaded weights.
 
+## Old-LTX production stages / 旧 LTX 生产阶段
+
+dev.30 adds four separately owned local components in [native/ltx098](../native/ltx098/CMakeLists.txt): tensor transforms, CPU T5, Vulkan DiT sampling and ONNX Runtime CPU VAE. Native Windows/MSVC and Android NDK builds use existing pinned checkouts; no model retrieval or virtualization occurs. Separate processes avoid mixing ggml revisions and release each stage's memory before the next. Shared llama/ggml and ONNX Runtime dependencies retain their recorded identities; the sampler's Vulkan loader is a public Android system dependency. [The build tool](../tools/build_ltx098_app.py), [packager](../tools/package_ltx098_app.py) and [engine lock](engine-lock.json) retain exact provenance. The `ltx098-*` notices include the App stage description, ggml, Vulkan/headers and SPIR-V headers; reused dependencies retain their existing notices. None of this licenses or distributes user model assets. Compilation is distinct from numerical, quality and Android acceptance; see [the flow guide](../docs/LTX098_APP_FLOW.en.md).
+
+四个阶段仅包含代码与架构实现，模型权重 / 分词配置 / VAE 数据均由用户明确选择取得；原独立数值失败保持原样，不用主机生成替代真机验收。
+
 ## Added development worker
 
 0.3.0-dev adds a locally compiled ARM64 CPU sd.cpp worker, pinned with ggml in [engine-lock.json](engine-lock.json). Native Windows NDK 30.0.16248370 builds it; the temporary SUBST path alias is not virtualization. [Native sources](../native/CMakeLists.txt) replace embedded model vocabularies with externally installed user data. The 13 `sd-*` notice files come from the exact checkout and NDK, recorded in [sd-sources.json](notices/sd-sources.json). This proves compilation/packaging provenance, not phone inference or all selected-model support. Existing ServLlama binaries retain their original provenance. See [development status](../docs/DEVELOPMENT.en.md).
