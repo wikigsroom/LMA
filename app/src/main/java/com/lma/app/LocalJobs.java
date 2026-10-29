@@ -28,6 +28,7 @@ public final class LocalJobs implements AutoCloseable {
     private JSONObject submitLocked(JSONObject input, String idempotencyKey) throws Exception {
         if (closed) throw new IllegalStateException("任务服务正在停止");
         input = TaskInput.validate(input);
+        if (input.getString("type").equals("model.prepare")) return submitPreparation(input, idempotencyKey);
         String submissionHash = TaskInput.fingerprint(input);
         JSONObject previous = app.jobs.lookup(idempotencyKey);
         if (previous != null) { if (!submissionHash.equals(previous.getJSONObject("request").optString("submissionHash"))) throw new IllegalStateException("此幂等键已经用于另一个任务请求"); return previous; }
@@ -52,7 +53,25 @@ public final class LocalJobs implements AutoCloseable {
         JSONObject old = app.jobs.get(id);
         if (!java.util.Arrays.asList("failed", "interrupted", "cancelled").contains(old.getString("state"))) throw new IllegalStateException("仅已失败、中断或取消的任务可以重试");
         JSONObject request = DataFiles.copy(old.getJSONObject("request")); request.remove("submissionHash"); request.remove("adjustments"); request.remove("parameterSchemaVersion"); request.remove("adapterAdjustments"); request.remove("textMetadata"); request.remove("inputReceipts"); request.remove("diffusionPlan");
+        request.remove("preparationSource"); request.remove("sourceBundleFingerprint");
         return submit(request, key);
+    }
+    private JSONObject submitPreparation(JSONObject input, String key) throws Exception {
+        if (app.preparations == null || app.prepared == null) throw new IOException("此基座的模型资产准备模块不可用");
+        String hash = TaskInput.fingerprint(input); JSONObject previous = app.jobs.lookup(key);
+        if (previous != null) { if (!hash.equals(previous.getJSONObject("request").optString("submissionHash"))) throw new IOException("幂等键已用于其他请求"); return previous; }
+        ModelBundle bundle = app.bundles.bundle(input.getString("bundleId")); PreparationPlan plan = app.preparations.require(input, bundle);
+        if (!app.bundles.record(bundle.id).optBoolean("installed")) throw new IOException("请先明确下载或导入所选源模型；准备任务不会发起下载");
+        if (app.prepared.contains(bundle.id, plan)) throw new IOException("此方案的运行资产已准备完成；可保留或单独删除后重新准备");
+        JSONArray queued = app.jobs.snapshot();
+        for (int i = 0; i < queued.length(); i++) {
+            JSONObject job = queued.getJSONObject(i), request = job.getJSONObject("request");
+            if (!java.util.Arrays.asList("succeeded", "failed", "cancelled", "interrupted").contains(job.getString("state")) && request.optString("type").equals("model.prepare") && request.getString("bundleId").equals(bundle.id) && request.optString("planFingerprint").equals(plan.fingerprint)) throw new IOException("这个源模型已有同一方案的准备任务，请查看任务页");
+        }
+        app.preparations.admission(plan);
+        JSONObject request = DataFiles.copy(input).put("submissionHash", hash).put("sourceBundleFingerprint", TaskInput.fingerprint(bundle.json()))
+                .put("preparationSource", new JSONObject().put("role", plan.sourceRole).put("bytes", plan.sourceBytes).put("sha256", plan.sourceSha256));
+        JSONObject job = app.jobs.submit(request, key); app.prefs.edit().putBoolean("desiredJobs", true).apply(); wake(); changed.run(); return job;
     }
     private JSONObject admission(ModelBundle bundle, JSONObject request, boolean executing) throws Exception {
         if (!request.optBoolean("allowUnmeasured")) throw new IllegalStateException("此配方尚无本机实测记录；请明确选择允许尝试未测配方后运行");
@@ -90,7 +109,8 @@ public final class LocalJobs implements AutoCloseable {
     }
     private void run(JSONObject job) throws Exception {
         String id = job.getString("id"), token = job.getString("token"); activeId = id; AtomicBoolean timedOut = new AtomicBoolean(); JSONObject request = job.getJSONObject("request");
-        ScheduledFuture<?> timeout = null; String artifactId = "";
+        ScheduledFuture<?> timeout = null; String artifactId = "", preparedId = "";
+        PreparedAssets.Session preparationSession = null;
         ExecutionGate.Ticket slot = null; boolean acquired = false, parked = false;
         BundleStore.Selection selection = null; InputSelection.Selection inputs = null;
         try {
@@ -101,6 +121,27 @@ public final class LocalJobs implements AutoCloseable {
             selection = app.bundles.acquireAll(ModelSelection.ids(request));
             timeout = timer.schedule(() -> { timedOut.set(true); signalStop(activeProcess); }, 2, TimeUnit.HOURS);
             BundleStore.Lease model = selection.models.get(0);
+            if (request.getString("type").equals("model.prepare")) {
+                final PreparationPlan plan = app.preparations.require(request, model.bundle); app.preparations.admission(plan);
+                preparationSession = app.prepared.begin(id);
+                NativePreparation.Context preparationContext = new NativePreparation.Context() {
+                    @Override public void check() throws IOException { owned.checkOwner(); if (closed || timedOut.get()) throw new IOException("模型资产准备已停止或超时，源文件保留"); app.jobs.check(id, token); }
+                    @Override public void progress(String stage, Double fraction) throws Exception { check(); app.jobs.progress(id, token, stage, fraction); changed.run(); }
+                    @Override public File graphs(PreparationPlan.Stage stage) throws Exception { check(); return app.preparations.graphs(plan, stage); }
+                    @Override public Process start(ProcessBuilder builder) throws Exception {
+                        synchronized (app.nativeProcessLock) {
+                            check(); if (app.nativeProcess != null && app.nativeProcess.isAlive()) throw new IOException("另一个本地进程仍在退出，请等待系统回收");
+                            Process process = builder.start(); activeProcess = process; app.nativeProcess = process;
+                            try { check(); } catch (Exception error) { destroy(process); throw error; } return process;
+                        }
+                    }
+                };
+                app.preparations.run(plan, model, preparationSession, preparationContext);
+                JSONObject prepared = preparationSession.commit(plan, model.bundle.id, preparationContext::check); preparedId = prepared.getString("id");
+                app.jobs.finishPreparation(id, token, prepared, "");
+                if (!app.jobs.get(id).getString("state").equals("succeeded")) { app.prepared.remove(preparedId); preparedId = ""; }
+                return;
+            }
             java.util.List<BundleStore.Lease> adapters = selection.models.subList(1, selection.models.size());
             JSONObject executionDetails = new JSONObject();
             JSONObject resourcePlan = admission(model.bundle, request, true); app.jobs.progress(id, token, "loading", null); changed.run(); LocalEngine engine = app.localEngines.require(model.bundle, request.getString("type"));
@@ -124,6 +165,7 @@ public final class LocalJobs implements AutoCloseable {
             app.jobs.finish(id, token, new JSONArray().put(artifactId), "");
             if (!app.jobs.get(id).getString("state").equals("succeeded")) { app.artifacts.remove(artifactId); artifactId = ""; }
         } catch (Exception error) {
+            if (!preparedId.isEmpty()) try { app.prepared.remove(preparedId); } catch (Exception cleanup) { app.log("准备资产清理待重试：" + cleanup.getMessage()); }
             if (!artifactId.isEmpty()) try { app.artifacts.remove(artifactId); } catch (Exception cleanup) { app.log("结果清理待重试：" + cleanup.getMessage()); }
             if (closed) app.jobs.interrupt(id, token, "服务结束；此引擎没有可续步 checkpoint，可明确重试新任务");
             else app.jobs.finish(id, token, new JSONArray(), timedOut.get() ? "本地执行超过应用的两小时单任务保护时限" : error.getMessage() == null ? error.toString() : error.getMessage());
@@ -132,8 +174,10 @@ public final class LocalJobs implements AutoCloseable {
             Process child = activeProcess;
             try { ProcessControl.stop(child); } catch (IOException error) { app.log(error.getMessage()); }
             final BundleStore.Selection held = selection; final InputSelection.Selection heldInputs = inputs;
+            final PreparedAssets.Session heldPreparation = preparationSession;
             Process remaining = child != null && child.isAlive() ? child : parked ? app.nativeProcess : null;
             Runnable cleanup = () -> {
+                if (heldPreparation != null) try { heldPreparation.close(); } catch (IOException error) { app.log("准备临时文件清理待重试：" + error.getMessage()); }
                 if (heldInputs != null) heldInputs.close();
                 if (held != null) held.close();
                 try { app.artifacts.discardStaging(id); } catch (Exception error) { app.log("临时产物清理失败：" + error.getMessage()); }

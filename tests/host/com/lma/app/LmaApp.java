@@ -14,7 +14,7 @@ public final class LmaApp {
     public final android.os.PowerManager power = new android.os.PowerManager();
     public Object getSystemService(String name) { return name.equals(ACTIVITY_SERVICE) ? memory : power; }
     public JSONObject device() { return new JSONObject().put("hostFrameworkPort", true).put("physicalAndroid", false); }
-    public static final String VERSION = "0.3.0-dev.21";
+    public static final String VERSION = "0.3.0-dev.22";
     public String apiState = "stopped", apiDetail = "";
     public com.lma.app.core.BundleStore bundles;
     public com.lma.app.core.JobStore jobs;
@@ -22,6 +22,17 @@ public final class LmaApp {
     public com.lma.app.core.InputUploads uploads;
     public LocalJobs jobHost;
     public LocalEngines localEngines = new LocalEngines();
+    public com.lma.app.core.PreparedAssets prepared;
+    public PreparationOptions preparations;
+    /** Framework fixture only; production ModelPreparations is checked by APK compilation. */
+    public static final class PreparationOptions {
+        public org.json.JSONArray options(com.lma.app.core.ModelBundle bundle) { return new org.json.JSONArray(); }
+        private IOException unavailable() { return new IOException("Asset preparation is not configured by this host framework fixture"); }
+        public com.lma.app.core.PreparationPlan require(JSONObject input, com.lma.app.core.ModelBundle bundle) throws IOException { throw unavailable(); }
+        public JSONObject admission(com.lma.app.core.PreparationPlan plan) throws IOException { throw unavailable(); }
+        public File graphs(com.lma.app.core.PreparationPlan plan, com.lma.app.core.PreparationPlan.Stage stage) throws IOException { throw unavailable(); }
+        public void run(com.lma.app.core.PreparationPlan plan, com.lma.app.core.BundleStore.Lease source, com.lma.app.core.PreparedAssets.Session session, com.lma.app.core.NativePreparation.Context context) throws IOException { throw unavailable(); }
+    }
     public final Preferences prefs = new Preferences();
     public final Store store;
     public final Chats chats;

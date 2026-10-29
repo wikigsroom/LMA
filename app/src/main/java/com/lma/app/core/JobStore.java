@@ -72,7 +72,7 @@ public final class JobStore {
         validateKey(idempotencyKey);
         if (request.toString().length() > 32000) throw new IllegalArgumentException("Task request is too large");
         String type = request.getString("type");
-        if (!Arrays.asList("text.generate", "image.generate", "video.generate", "speech.synthesize", "audio.generate").contains(type)) throw new IllegalArgumentException("Unknown local task type");
+        if (!Arrays.asList("text.generate", "image.generate", "video.generate", "speech.synthesize", "audio.generate", "model.prepare").contains(type)) throw new IllegalArgumentException("Unknown local task type");
         ModelBundle.key(request.getString("bundleId"));
         JSONArray jobs = state.getJSONArray("jobs"); int pending = 0;
         for (int i = 0; i < jobs.length(); i++) {
@@ -122,13 +122,25 @@ public final class JobStore {
         event(next, job, "cancel_requested"); persist(next);
     }
     public synchronized void finish(String id, String token, JSONArray artifacts, String error) throws Exception {
+        finishResult(id, token, artifacts, null, error);
+    }
+    public synchronized void finishPreparation(String id, String token, JSONObject prepared, String error) throws Exception {
+        if (!find(state, id).getJSONObject("request").getString("type").equals("model.prepare")) throw new IOException("A generation task cannot finish as asset preparation");
+        finishResult(id, token, new JSONArray(), prepared, error);
+    }
+    private void finishResult(String id, String token, JSONArray artifacts, JSONObject prepared, String error) throws Exception {
         JSONObject next = DataFiles.copy(state), job = find(next, id);
         if (token.isEmpty() || !token.equals(job.optString("token")) || TERMINAL.contains(job.getString("state"))) throw new IOException("Stale task completion rejected");
         boolean cancelled = job.getString("state").equals("cancelling");
         if (cancelled) { job.put("state", "cancelled").put("artifacts", new JSONArray()).put("error", ""); }
         else if (error != null && !error.isEmpty()) { job.put("state", "failed").put("error", error.length() > 2000 ? error.substring(0, 2000) : error); }
         else {
-            if (artifacts == null || artifacts.length() == 0) throw new IllegalArgumentException("A successful generation requires a committed output artifact");
+            if (job.getJSONObject("request").getString("type").equals("model.prepare")) {
+                if (prepared == null || !prepared.getString("jobId").equals(id) || !prepared.getString("bundleId").equals(job.getJSONObject("request").getString("bundleId"))) throw new IllegalArgumentException("Preparation requires committed derived model assets");
+                JSONObject request = job.getJSONObject("request"); ModelBundle.key(prepared.getString("id"));
+                if (!prepared.getString("planId").equals(request.getString("preparationId")) || !prepared.getString("planFingerprint").equals(request.getString("planFingerprint")) || prepared.getJSONArray("outputs").length() < 1) throw new IllegalArgumentException("Prepared assets do not match the immutable task");
+                job.put("preparation", DataFiles.copy(prepared));
+            } else if (artifacts == null || artifacts.length() == 0) throw new IllegalArgumentException("A successful generation requires a committed output artifact");
             job.put("state", "succeeded").put("artifacts", new JSONArray(artifacts.toString()));
         }
         job.put("token", "").put("finishedAt", System.currentTimeMillis()); event(next, job, "finished"); persist(next);

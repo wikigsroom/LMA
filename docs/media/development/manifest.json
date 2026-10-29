@@ -1,5 +1,5 @@
 {
-  "version": "0.3.0-dev.21",
+  "version": "0.3.0-dev.22",
   "kind": "development UI with explicit simulated native bridge",
   "android_device": false,
   "model_inference": false,
@@ -250,6 +250,22 @@
     {
       "file": "61-soulx-context-bounds.png",
       "caption": "UI FIXTURE / 每模型独立上下文、输出与历史联合归位；未执行模型"
+    },
+    {
+      "file": "62-preparation-source.png",
+      "caption": "UI FIXTURE / 用户已有源模型，单独选择准备；没有下载或运行 Android 模型"
+    },
+    {
+      "file": "63-preparation-confirm.png",
+      "caption": "UI FIXTURE / 保留源模型，明确确认额外空间与准备任务；非 Android 实测"
+    },
+    {
+      "file": "64-preparation-queue.png",
+      "caption": "UI FIXTURE / 准备任务共用队列，可取消和明确重试；没有执行转换或生成"
+    },
+    {
+      "file": "65-preparation-management.png",
+      "caption": "UI FIXTURE / 派生运行资产独立管理；未因此启用生视频引擎"
     }
   ],
   "files": [
@@ -280,13 +296,13 @@
     },
     {
       "file": "06-queue-results.png",
-      "bytes": 48662,
-      "sha256": "9ec7034cfb8d4e52cca3b2c449f867525a063033f0cecd5908ed1a462997d82f"
+      "bytes": 48665,
+      "sha256": "a7645b77e8ef808928a9e1ace84606af212e514a85aa71771fca476e0fca7482"
     },
     {
       "file": "07-cancelled.png",
-      "bytes": 48849,
-      "sha256": "7440607ac14ca0d02fed35fd6a2d1ffc5e84888f6012d14b21c473168ab954b9"
+      "bytes": 48851,
+      "sha256": "697034df2bcb378eda60b37c3e989b6bf24d1998ab4efde6a742a194ab295c08"
     },
     {
       "file": "08-zero-model-api.png",
@@ -355,8 +371,8 @@
     },
     {
       "file": "21-model-version-history.png",
-      "bytes": 49591,
-      "sha256": "bc741783a933d412a24b0b192f24e5df0f276669ab899a9213eb1cd22d1582f5"
+      "bytes": 49913,
+      "sha256": "092f95c83790d88d3b3423c5900855d99532a724781d329f38d5505f6e6865b5"
     },
     {
       "file": "22-text-model-settings.png",
@@ -370,8 +386,8 @@
     },
     {
       "file": "24-text-result.png",
-      "bytes": 46963,
-      "sha256": "d757c997c4574bf6f6c9a54fa45bb9e103723d4cfe2fba0862a1b89a9e6d07f8"
+      "bytes": 46970,
+      "sha256": "c3956b0f75632b173bb3c7478bb155318dcac174938f05dcbb16fc4feb8abc74"
     },
     {
       "file": "25-migrated-text-model.png",
@@ -559,30 +575,82 @@
       "sha256": "a63c4cc081a9d9543dc2d5e89ce0439c1b82b6e2f25a81aa80e23af8ba7dfd8e"
     },
     {
+      "file": "62-preparation-source.png",
+      "bytes": 44154,
+      "sha256": "eb97cda4ee2e3b2a4136a80fa228194750c3dc18690c0601f09b0810d3fc719e"
+    },
+    {
+      "file": "63-preparation-confirm.png",
+      "bytes": 47663,
+      "sha256": "e47deca35fac368087e92278033d0b230748c4e3b9abe24e071899a8e22d62e4"
+    },
+    {
+      "file": "64-preparation-queue.png",
+      "bytes": 44067,
+      "sha256": "bbbad894dfcdac236014d5d31fba6336a420995608de20f6aa38c00c5ff45218"
+    },
+    {
+      "file": "65-preparation-management.png",
+      "bytes": 43112,
+      "sha256": "4561cd65023578977d1ba8c9077233890807c4f86460da3898c35cfe0442ea20"
+    },
+    {
       "file": "foundation-ui.gif",
-      "bytes": 8816576,
-      "sha256": "62be615e7a3bac3f1a3931749f3d28642afe6aaa49c989d693d6b59b07dc8a47"
+      "bytes": 9232868,
+      "sha256": "f123c0296556b1178de40adeec842f7393bdbc5a2998148201a22a021f246773"
     },
     {
       "file": "foundation-ui.mp4",
-      "bytes": 3861222,
-      "sha256": "bd89d217862422a4866f4dc7a50a63c6a297293d7118b707df64a26c515294e1"
+      "bytes": 4433557,
+      "sha256": "d68356409b99da79b9a0be52d012f6bdfa4b59e0b423869725503360c603f8bb"
+    },
+    {
+      "file": "ltx098-host-comparison.gif",
+      "bytes": 2320517,
+      "sha256": "5715fc87dd91500373a3e0901782e78a2c9784463c999178bbb6316a4ef8ba43"
+    },
+    {
+      "file": "ltx098-host-comparison.mp4",
+      "bytes": 49526,
+      "sha256": "113b5e90b32800c161f12b4e661329e34005ea507e0b14c8270513b898febddd"
+    },
+    {
+      "file": "ltx098-host-contact-sheet.png",
+      "bytes": 599549,
+      "sha256": "49d1cead4be091aecc67eda95ba46b4b96284898ac6586180d8ec13572bbc7e3"
+    },
+    {
+      "file": "ltx098-native-prepare.png",
+      "bytes": 110724,
+      "sha256": "338251e5582f7f4a0dbe37894a84f24f3ba77ee742e15dfc53b2b479892f5812"
+    },
+    {
+      "file": "ltx098-text-roundoff.png",
+      "bytes": 201159,
+      "sha256": "7852ac8d6d56df729191ee007777ae9744b0841938d287618aa28673a78eb1ab"
+    },
+    {
+      "file": "ltx098-vae-prepared-decode.png",
+      "bytes": 225221,
+      "sha256": "70f6f5b9bd91302d38eae0705a96d5eee8e0abc1a0b6349d9254c5f481bd5fe2"
     }
   ],
   "input_fingerprint": {
     "app/src/main/assets/app.css": "f2cb7b5ee9de8f3afac793e694dcf9fde0a855c0d4c7053ff986cc2a6d2bd3b1",
-    "app/src/main/assets/app.js": "bce8e6e858d171240b1156d95db2b552dad756142d495ac28e2f92100cc253f4",
-    "app/src/main/assets/engine-builds.json": "3aa88a40b3c409ce50f3a7975ed7c1fbe5bd1558a0bcd0c8937a6439a429e22e",
-    "app/src/main/assets/foundation.css": "26c332b6918710c4b79b25d659ff4f297841e6f38eb162cd71c2bcc19872af5c",
-    "app/src/main/assets/foundation.js": "12d054629528858755056980057aba3e470d809e1f2213e8cf11a21607ac4af1",
+    "app/src/main/assets/app.js": "2240021b034e6259ac110fc48ede81c43be6fabf7200dde5ced7eeacbe9e5468",
+    "app/src/main/assets/asset-preparations.json": "3e11450877047dd4c63f11265d0549c9f50a4d25a33ca5b8f2ee6a44c38f864a",
+    "app/src/main/assets/engine-builds.json": "c9e319e7cba397cad1993ad290743a65bc566192339fd6d6c06cbcc99675468d",
+    "app/src/main/assets/foundation.css": "7ef5fcb33c697d8d30912eb61524f828af18487ccf037b81e88bdfadcb48ae94",
+    "app/src/main/assets/foundation.js": "ad64a696963ca969745b1f304e155bf051f8cfb41b400910d39d7bc5e108b87c",
     "app/src/main/assets/index.html": "406a11f10a3380d2db0325ffd148dcb55b2eabe35aa2bcd001864aafa57afd62",
-    "app/src/main/assets/license.js": "e483d5f5a7dfe6a58419081cdd2cfc78b0a9796aa833cdaf2e1075303d680278",
+    "app/src/main/assets/license.js": "f429d4bc26c56c52bdc2ea21edd170478211b1d6b0a288c9b03bf53ff970d8bb",
     "app/src/main/assets/licenses/LLAMA_CPP_LICENSE": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
     "app/src/main/assets/licenses/LMA_LICENSE": "6ae3f5efa412d91cbf66e44f743e5ce41a8044309d05d893365206ab9bc35fc3",
     "app/src/main/assets/licenses/cpp-httplib-LICENSE.txt": "bb546eae5924d8ee842e0e567e6d533c5824bdebccf605f99a5b3429034e6697",
     "app/src/main/assets/licenses/libcxx-LICENSE.txt": "a7de191338d328257ecec5ba1ea971ebd67633d0b4fce7d6272a39749547ec6b",
     "app/src/main/assets/licenses/libcxxabi-LICENSE.txt": "da1b3a1b8e0a947d934acfbe4e356b864199f65923cc2f89d8330b8b678e3cdd",
     "app/src/main/assets/licenses/libunwind-LICENSE.txt": "6ac83ceee5f3a784aed98f250bc7acf68dd7112528512c1a6d40dcb5a29154bf",
+    "app/src/main/assets/licenses/ltx098-Lightricks-Apache-2.0.txt": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
     "app/src/main/assets/licenses/miniaudio-LICENSE.txt": "6c36f269eb9346c1bc9d857250bd6a1132a5e65e700bea99ea1836c1658cf13b",
     "app/src/main/assets/licenses/mnn-LICENSE.txt": "b51146f2ab748a8681aa7b603e81d94dd431ea0fb3af59e10f91cf82e43b9cf9",
     "app/src/main/assets/licenses/mnn-flatbuffers-LICENSE.txt": "d9188c683ca4a5d24b771dc946e431aaa425fc3ea167abf0cc5bf18ab99c1afd",
@@ -655,8 +723,17 @@
     "app/src/main/assets/licenses/tts-simple-sentencepiece-LICENSE.txt": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
     "app/src/main/assets/licenses/tts-utf8proc-LICENSE.md.txt": "3b510150d34f248a221bb88e1d811238d6c6c18b51231822c42974c39bb07256",
     "app/src/main/assets/licenses/xxhash-LICENSE.txt": "a2973411d278045bde3c7161b911e0680d53e2d73d6457c77068d2e55d816d67",
-    "app/src/main/assets/model-bundles.json": "0e211bd78b3b43e6cf7631c294629f6494bcf814dbe7f1a73157901447707627",
+    "app/src/main/assets/model-bundles.json": "2c99810290d2ec2d6f7866dfb4a2d3f8e2f204e108a5bffe21c68fbfb1fb4150",
     "app/src/main/assets/models.json": "c3e884b4e5fb06f20c036deebc78e6f953ac420e76fca72bab5a25fd59927156",
+    "app/src/main/assets/preparations/ltx098_vae_prepare/stage-00.onnx": "33f367287eaf5bc67aead22132d9d73aeaf66b51387bbc3a032a1c7eb936ff8b",
+    "app/src/main/assets/preparations/ltx098_vae_prepare/stage-01.onnx": "29ede53a11d80957e6f0abe38780511c267762feba725b49c29bd36fa35d31b3",
+    "app/src/main/assets/preparations/ltx098_vae_prepare/stage-02.onnx": "1b74a179d5f160239411d234411641195548607eb523e74c82e34a66b41df415",
+    "app/src/main/assets/preparations/ltx098_vae_prepare/stage-03.onnx": "77422f7cab2804d8b7b2b1f160623571a0ed66561e77c69fb6ce741e453b8a3f",
+    "app/src/main/assets/preparations/ltx098_vae_prepare/stage-04.onnx": "d264368af810ad36e82b5038311cb86f3acb84351dc58f713ce7691732b6043a",
+    "app/src/main/assets/preparations/ltx098_vae_prepare/stage-05.onnx": "489050eeef9cf3c5378145c13b3819cfc2c84cc02a5eae0f20bb543b47cc0fab",
+    "app/src/main/assets/preparations/ltx098_vae_prepare/stage-06.onnx": "c737a55510880d4b92e12e9aca7138a154ad6e58a96e89a4f2a530a3f369b88c",
+    "app/src/main/assets/preparations/ltx098_vae_prepare/stage-07.onnx": "239145b9c04cbb5513ee96d2a41ff5b1f8db2c4cf0d9148c3092028b858b3576",
+    "app/src/main/assets/preparations/ltx098_vae_prepare/stage-08.onnx": "ff463e05293456c25aa5b1a14d82b1f732f1aee0f00da45f8e28419509ba8ac9",
     "app/src/main/assets/recipe-templates.json": "4abedebe4d01f45e4d0b22506071c83bfddeb3e6750950630a9ff5a5f5b5b958",
     "app/src/main/assets/recipes.js": "648e1ff046ab20e2ae7f658a7cb82c895c042ea81dca5cd943141626eea6deba",
     "app/src/main/assets/versions.js": "2d629929a6db642c12a242ddcc62cd4f4090ab307e0cb669ceb98add031977e1",
@@ -667,6 +744,7 @@
     "tests/migration-ui.cjs": "6843bdcf1783795ed10cccc8b200aee40188e8a1fe950f8d23027d828ff6b3b4",
     "tests/moss-delay-ui.cjs": "c81985d2792835efb9e2ac31719abc161a478118b477b91d424963b38807d31b",
     "tests/openmoss-ui.cjs": "27ecc68726b35032fb38ae7693f6fd1b4ce1c7c76eb0cfe1783103f207de4fa4",
+    "tests/preparations-ui.cjs": "a9d234011203367adc9073019c1736bf412f51f4bde0c66cc3e9458fd3cb4ac4",
     "tests/qwen-ui.cjs": "8eabdacb7db1b43e0ac203d31709ce0d505bf3cee05a6d5d07b25a3795d1d239",
     "tests/recipes-ui.cjs": "d1aaee793efac075b55ab0b8e6ccf26f5c3ac32ed6da6a6f41c19bd47b3dad77",
     "tests/scheduler-ui.cjs": "3b89c2121953c6e17e2e978a3639915ba1d1b799750e85f38d6e104d8b7e0599",
@@ -674,6 +752,6 @@
     "tests/stable-audio-ui.cjs": "b4acad2dfb0e5cba079e66410543b9c4990005df06faeb7da23990c51950676a",
     "tests/text-ui.cjs": "bc5969aa9329380b590a6055daa6fe1177f956f73bb212a18cf19d2b6576b8db",
     "tests/versions-ui.cjs": "13f6e194c00fa3a819c44da35788aa28b94ba05325e3f2b1257350c04b67babd",
-    "tools/capture_foundation.cjs": "15933579fea873bd6935c29f62617f113d413d4f83b7bdb7303f63204cc908c0"
+    "tools/capture_foundation.cjs": "477f4a0eb0cf1e02cdb4606cd0e15fe256de93db876a9b5fa4eefddfd1e6fcfb"
   }
 }

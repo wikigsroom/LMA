@@ -9,7 +9,8 @@ import subprocess
 import tarfile
 from urllib.parse import unquote, urlsplit
 import zipfile
-from evidence import version, current, build_inputs
+from evidence import version, current
+from preparation_build_inputs import build_inputs
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -133,6 +134,8 @@ def main():
         check_ltx_prepare(records, status, digest, ROOT)
         from check_ltx098_vae_prepare_evidence import check as check_ltx_vae_prepare
         check_ltx_vae_prepare(records, status, digest, ROOT)
+        from check_preparation_evidence import check as check_preparations
+        check_preparations(records, status, digest, ROOT)
         vae_lock = json.loads((ROOT / "third_party/ltx098-vae-source-lock.json").read_text(encoding="utf-8"))
         assert vae["checks"] >= 355 and vae["native_children"] >= 36 and len(vae["metrics"]) == 40 and len(vae["guards"]) >= 31
         assert vae["trained_decoder_tensors"] == 132 and vae["trained_decoder_parameters"] == 552814641
@@ -277,7 +280,7 @@ def main():
         assert records["diffusion.json"]["passed"] >= 174 and records["diffusion.json"]["production_sd_binding"] and records["diffusion.json"]["actual_host_children"] and records["diffusion.json"]["native"]["production_cpp_policy"] and not records["diffusion.json"]["physical_android"] and not records["diffusion.json"]["model_inference"] and not records["diffusion.json"]["image_outputs"]
         assert records["build-info.json"]["input_fingerprint"] == build_inputs()
         assert records["build-info.json"]["sha256"] == records["package.json"]["sha256"]
-        assert records["native-payload.json"]["passed"] >= 10 and records["native-payload.json"]["exact_shared_base_runtime_reuse"] and records["native-payload.json"]["native_files"] == 27
+        assert records["native-payload.json"]["passed"] >= 10 and records["native-payload.json"]["exact_shared_base_runtime_reuse"] and records["native-payload.json"]["native_files"] == 29
         assert records["foundation.json"]["passed"] >= 302 and records["foundation.json"]["model_update_assertions"] >= 62 and records["foundation.json"]["recipe_integrity_assertions"] >= 87 and records["foundation.json"]["adapter_contract_assertions"] >= 45 and records["backend.json"]["passed"] >= 85 and records["hub.json"]["passed"] >= 74
         assert records["text.json"]["passed"] >= 66 and records["text.json"]["actual_host_child_processes"] and records["text.json"]["actual_loopback_http"] and not records["text.json"]["model_inference"]
         assert records["tts.json"]["passed"] >= 62 and records["tts.json"]["actual_host_child_processes"] and not records["tts.json"]["model_inference"]

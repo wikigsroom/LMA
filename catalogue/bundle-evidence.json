@@ -223,6 +223,22 @@
       ],
       "ggufHeaderReview": "qwen-gguf-headers.json",
       "tensor_weights_read": false
+    },
+    {
+      "bundleId": "ltx098_source_r8984fa2",
+      "components": [
+        {
+          "role": "checkpoint",
+          "kind": "measured_checkpoint",
+          "source": "verification/development/ltx098-vae-prepare.json",
+          "live_hf_metadata_checked_this_update": false,
+          "path": "ltxv-2b-0.9.8-distilled.safetensors",
+          "bytes": 6340744492,
+          "sha256": "76aa8c4786af752fa6f951947129d5290c3c6c0b2fadcadea6b5e114ae2cad8f",
+          "repository": "Lightricks/LTX-Video",
+          "revision": "8984fa25007f376c1a299016d0957a37a2f797bb"
+        }
+      ]
     }
   ],
   "gguf_header_metadata_read": true,

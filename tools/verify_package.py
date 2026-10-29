@@ -8,7 +8,8 @@ import subprocess
 import zipfile
 import shutil
 import re
-from evidence import version, build_inputs, fingerprint
+from evidence import version, fingerprint
+from preparation_build_inputs import build_inputs
 
 ROOT = Path(__file__).resolve().parents[1]
 APK = ROOT / ("dist/LMA-" + version() + "-arm64-v8a.apk")
@@ -77,8 +78,8 @@ def merged_native_files(runtime_files, engines):
 def main():
     (ROOT / "build/package-verification.json").unlink(missing_ok=True)
     lock = json.loads((ROOT / "third_party/runtime-lock.json").read_text(encoding="utf-8"))
-    engines = json.loads((ROOT / "third_party/engine-lock.json").read_text(encoding="utf-8"))["engines"]
-    lock["files"] = merged_native_files(lock["files"], engines)
+    engine_lock = json.loads((ROOT / "third_party/engine-lock.json").read_text(encoding="utf-8")); engines = engine_lock["engines"]; preparations = engine_lock.get("preparations", [])
+    lock["files"] = merged_native_files(lock["files"], engines + preparations)
     names = {item["name"] for item in lock["files"]}
     assert {p.name for p in LIBS.glob("*.so")} == names, "Unexpected or missing native payload"
     assert "libggml-cpu-android_armv8.0_1.so" in names, "Baseline ARMv8 CPU kernel missing"
@@ -91,7 +92,16 @@ def main():
             assert name in members, "Missing APK entry: " + name
         assert archive.read("classes.dex").startswith(b"dex\n"), "DEX header missing"
         source = ROOT / "app/src/main"
-        ui_assets = ("index.html", "app.css", "app.js", "foundation.css", "foundation.js", "recipes.js", "versions.js", "recipe-templates.json", "license.js", "models.json", "model-bundles.json", "engine-builds.json")
+        ui_assets = ("index.html", "app.css", "app.js", "foundation.css", "foundation.js", "recipes.js", "versions.js", "recipe-templates.json", "asset-preparations.json", "license.js", "models.json", "model-bundles.json", "engine-builds.json")
+        architecture_assets = {}
+        preparation_catalogue = json.loads((ROOT / "catalogue/asset-preparations.json").read_text(encoding="utf-8"))
+        for plan in preparation_catalogue["plans"]:
+            for stage in plan["stages"]:
+                for graph in stage.get("graphs", []):
+                    name = "assets/preparations/" + stage["module"] + "/" + graph["file"]
+                    data = archive.read(name); assert len(data) == graph["bytes"] and hashlib.sha256(data).hexdigest() == graph["sha256"]
+                    assert data == (ROOT / "research/ltx098_vae_prepare/graphs" / graph["file"]).read_bytes()
+                    architecture_assets[name] = graph
         for name in ui_assets:
             assert archive.read("assets/" + name) == (source / "assets" / name).read_bytes(), "Stale packaged UI: " + name
         for name in ("license.js", "app.js"):
@@ -131,9 +141,14 @@ def main():
         for name in members:
             assert not name.startswith("signing/") and not name.endswith((".p12", ".part", ".gguf")), "Private key or model weight accidentally packaged"
             if name.startswith("assets/"):
-                assert name[7:] in ui_assets or name.startswith("assets/licenses/"), "Unreviewed model-specific or other asset in APK: " + name
+                assert name[7:] in ui_assets or name.startswith("assets/licenses/") or name in architecture_assets, "Unreviewed model-specific or other asset in APK: " + name
         engine_manifest = json.loads(archive.read("assets/engine-builds.json"))
         assert len(engine_manifest["engines"]) == len(engines)
+        assert len(engine_manifest.get("preparations", [])) == len(preparations)
+        for module in preparations:
+            included = next(p for p in engine_manifest["preparations"] if p["engine"] == module["engine"])
+            assert included["sha256"] == module["sha256"] and included["bytes"] == module["bytes"] and not included["deviceValidated"] and not included["model_data_embedded"]
+            for name, digest in module["notices"].items(): assert hashlib.sha256(archive.read("assets/licenses/" + name)).hexdigest() == digest
         text = engine_manifest["textRuntime"]
         assert text["engine"] == "llama_text" and text["backend"] == "cpu" and not text["deviceValidated"] and not text["model_inference_tested"]
         text_items = [text] + text["dependencies"]

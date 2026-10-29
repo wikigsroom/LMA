@@ -39,3 +39,7 @@
 #taskInputs { margin: 18px 0; padding: 14px; border: 1px solid var(--line); border-radius: 12px; }
 #taskInputs h3 { margin: 0 0 12px; font-size: 14px; }
 #inputImportStatus .button { margin-left: 8px; padding: 5px 8px; font-size: 12px; }
+
+.preparation-section{margin-top:24px;padding-top:16px;border-top:1px solid var(--line)}
+.preparation-section .hub-file{margin-top:12px}
+.preparation-section small{display:block;margin-top:8px}

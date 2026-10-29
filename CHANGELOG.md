@@ -1,5 +1,12 @@
 # Changelog / 更新记录
 
+## 0.3.0-dev.22 — explicit local runtime preparation / unreleased
+
+用户下载/导入固定源模型后明确选择准备；签名方案、两个原生程序、共享任务/执行槽、独立派生存储/恢复/删除、源删除后本地可管理、过热/空间/内存检查。生产Java核心处理完整旧LTX源文件并校验20个结果（6,061,184,991字节），44项生命周期契约通过；两个准备器的Android父进程结束保护及主机/ARM64重编译。原签名APK code26含29原生文件和九份审计无参数图，不含学习模型数据。双语文档、截图62–65、录像/GIF与编号待办同步。
+
+Trusted plans and two native preparers reuse shared jobs and atomic derived-asset storage. Full trained production-core HOST preparation passed; package/host/UI/Android evidence remains separate. Updated APK fingerprints include all preparation code without invalidating unchanged math producers. Android execution, T5 user assets, production video integration and six failed full-chain float gates remain open. No automatic model retrieval, frozen-target deferral or complete Release. [中文](docs/MODEL_PREPARATION.md) / [English](docs/MODEL_PREPARATION.en.md) / [Numbered delivery and full pending scope](docs/releases/v0.3.0-dev.22.md).
+
+
 ## 0.3.0-dev.21 source follow-up / 2026-10-29 — native VAE asset preparation
 
 新增共用原生准备 I/O、旧 VAE 九图无学习数据审计、从原始用户 checkpoint 流式生成九份参数文件及事务提交。18 资产 /2.212 GB 与独立 Python 导出整文件身份一致；243 检查、25 组失败保护、31 原生子进程及四种尺寸的 40 个原始前向解码对照通过。DiT 156 检查与 Windows / ARM64 构建重新通过。

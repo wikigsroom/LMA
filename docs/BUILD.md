@@ -139,3 +139,7 @@ SoulX生产worker原生构建：`build_soulx.py`（主机）→ `build_soulx.py 
 原生旧 LTX 转换复现见[中文指南](LTX098_PREPARE.md) / [English](LTX098_PREPARE.en.md)：顺序运行 `tools/build_ltx098_prepare.py`、`--android`、`tools/test_ltx098_prepare.py --trained`，然后开发导出、`tools/plot_ltx098_prepare.py` 和开发仓库检查。仅复用显式取得的本地开发资产，无自动下载。自有 SHA / 半精度转换与已有固定 JSON 头，ARM64 API28 / 16KiB；源码组件不进入本次 APK。
 
 旧 VAE 准备复现见[中文](LTX098_VAE_PREPARE.md) / [English](LTX098_VAE_PREPARE.en.md)：审计图模板，顺序构建 DiT / VAE 两种准备器的 MSVC 与 ARM64 版本，再执行各自完整训练文件测试和 VAE 真实解码。`tools/prepare_ltx098_vae_templates.py` 是开发构建工具；Android 转换不使用 Python / Torch / ONNX 或网络。使用公开记录回退的构建仍核对图审计输入及模板输出指纹。
+
+## dev.22：准备模块打包与证据
+
+[运行资产方案](MODEL_PREPARATION.md)的两个准备器按原生Windows/NDK步骤顺序构建，九份无模型参数图经过模板审计后才由 `tools/package_preparations.py` 打包；不运行权重下载或转换。`tools/preparation_build_inputs.py`在既有构建指纹上加入全部准备源码/锁/合同；不修改其他神经网络数学检查的通用指纹辅助文件。构建 `python tools/build.py`、核心 `python tools/test_preparations.py`、完整已有训练源 `python tools/test_preparations.py --trained`、包验证/Lint/相关回归、开发证据导出与仓库审计分别执行。训练转换与构建分开，输出和checkpoint都不进入APK/Git。77份Java编译输入、29个原生文件；签名密钥沿用原有本地文件。Android测试、完整视频数值/质量和完整Release仍未完成。

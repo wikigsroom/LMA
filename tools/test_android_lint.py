@@ -10,7 +10,8 @@ from pathlib import Path
 import subprocess
 import sys
 import xml.etree.ElementTree as ET
-from evidence import build_inputs, fingerprint
+from evidence import fingerprint
+from preparation_build_inputs import build_inputs
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "build/android-lint"

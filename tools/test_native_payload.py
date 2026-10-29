@@ -19,8 +19,8 @@ def main():
         try:merged_native_files(base,engines)
         except RuntimeError:passed+=1
         else:raise AssertionError('Accepted duplicate or worker alias')
-    base=json.loads((ROOT/'third_party/runtime-lock.json').read_text(encoding='utf-8'))['files'];engines=json.loads((ROOT/'third_party/engine-lock.json').read_text(encoding='utf-8'))['engines']
-    actual=merged_native_files(base,engines);assert len(actual)==27 and len({f['name'] for f in actual})==27;passed+=2
+    base=json.loads((ROOT/'third_party/runtime-lock.json').read_text(encoding='utf-8'))['files'];lock=json.loads((ROOT/'third_party/engine-lock.json').read_text(encoding='utf-8'));engines=lock['engines']+lock.get('preparations',[])
+    actual=merged_native_files(base,engines);assert len(actual)==29 and len({f['name'] for f in actual})==29;passed+=2
     current(inputs);report=dict(passed=passed,native_files=len(actual),exact_shared_base_runtime_reuse=True,model_inference=False,physical_android=False,input_fingerprint=inputs);out=ROOT/'build/native-payload-tests';out.mkdir(exist_ok=True);(out/'results.json').write_text(json.dumps(report,indent=2)+'\n',encoding='utf-8');print(json.dumps({k:v for k,v in report.items() if k!='input_fingerprint'}))
 
 if __name__=='__main__':main()

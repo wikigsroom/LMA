@@ -88,6 +88,10 @@ public final class LmaService extends Service {
                 case "stopApi": api.stop(); break;
                 case "declareBundle": { requireBundles(); ModelBundle bundle = new ModelBundle(command.getJSONObject("manifest")); app.bundles.declare(bundle); command.put("result", app.bundles.plan(bundle.id)); break; }
                 case "submitTask": requireJobs(); api.start(); command.put("result", localJobs.submit(command.getJSONObject("request"), command.optString("idempotencyKey"))); break;
+                case "deletePreparedAssets": {
+                    requireJobs(); if (app.prepared == null) throw new IllegalStateException("准备资产存储不可用");
+                    app.prepared.remove(command.getString("id")); break;
+                }
                 case "cancelTask": requireJobs(); localJobs.cancel(command.getString("id")); break;
                 case "deleteTask": requireJobs(); app.jobs.remove(command.getString("id")); break;
                 case "importInput": if (inputImports == null) throw new IllegalStateException("Local input storage is unavailable"); inputImports.add(android.net.Uri.parse(command.getString("uri")), command.getString("name")); break;

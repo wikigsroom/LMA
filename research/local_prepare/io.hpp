@@ -8,6 +8,10 @@
 #include <sys/stat.h>
 #include <sys/syscall.h>
 #include <unistd.h>
+#ifdef __ANDROID__
+#include <signal.h>
+#include <sys/prctl.h>
+#endif
 #endif
 #include <json.hpp>
 #include <algorithm>
@@ -206,6 +210,11 @@ public:
     }
 };
 std::string read_request(const fs::path& path) {
+#ifdef __ANDROID__
+    // An interrupted App must not leave an orphan converter writing user assets.
+    const auto owner=getppid();
+    require(owner>1&&prctl(PR_SET_PDEATHSIG,SIGKILL)==0&&getppid()==owner,"Preparation owner ended");
+#endif
     File file(path);require(file.size>=2&&file.size<=32768,"Request outside budget");std::string text(static_cast<size_t>(file.size),'\0');
     file.read(text.data(),text.size());file.unchanged();return text;
 }

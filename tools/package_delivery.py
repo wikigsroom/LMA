@@ -3,7 +3,8 @@ import hashlib
 import json
 from pathlib import Path
 import zipfile
-from evidence import current, build_inputs, version
+from evidence import current, version
+from preparation_build_inputs import build_inputs
 
 ROOT = Path(__file__).resolve().parents[1]
 DIST = ROOT / "dist"

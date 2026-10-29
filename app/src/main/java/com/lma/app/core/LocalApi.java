@@ -73,6 +73,7 @@ public final class LocalApi implements LocalHttp.Handler {
                 method(r, "POST"); emptyOrObject(r);
                 if (!Arrays.asList("failed", "cancelled", "interrupted").contains(job.getString("state"))) throw new IllegalStateException("Only failed, cancelled or interrupted jobs may be retried");
                 JSONObject original = DataFiles.copy(job.getJSONObject("request")); original.remove("submissionHash"); original.remove("adjustments"); original.remove("parameterSchemaVersion"); original.remove("adapterAdjustments"); original.remove("textMetadata"); original.remove("inputReceipts"); original.remove("diffusionPlan");
+                original.remove("preparationSource"); original.remove("sourceBundleFingerprint");
                 return json(202, runtime.submit(original, r.header("idempotency-key")));
             }
         }

@@ -474,6 +474,44 @@
       ]
     }
   ],
+  "preparations": [
+    {
+      "engine": "ltx098_dit_prepare",
+      "file": "liblma-ltx098-prepare.so",
+      "bytes": 549832,
+      "sha256": "85a603b9ad6fa2d8f9cefa4b6e0ec6aad51d018e575917f24e0fe4c0a5be06fe",
+      "abi": "arm64-v8a",
+      "android_api_notes": [
+        28
+      ],
+      "backend": "cpu",
+      "notices": {
+        "ltx098-Lightricks-Apache-2.0.txt": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+        "sd-nlohmann-json-LICENSE.txt": "0e592e358cf7722906f417be85bc514f15bf6efd28cea98cb84e56ef7fddfc3e"
+      },
+      "deviceValidated": false,
+      "status": "compiled_not_device_tested",
+      "model_data_embedded": false
+    },
+    {
+      "engine": "ltx098_vae_prepare",
+      "file": "liblma-ltx098-vae-prepare.so",
+      "bytes": 614792,
+      "sha256": "857be98d88efc6f39548ba8f03ecc82ba0d8ef0cec5dbc13775be1e25af1cb45",
+      "abi": "arm64-v8a",
+      "android_api_notes": [
+        28
+      ],
+      "backend": "cpu",
+      "notices": {
+        "ltx098-Lightricks-Apache-2.0.txt": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+        "sd-nlohmann-json-LICENSE.txt": "0e592e358cf7722906f417be85bc514f15bf6efd28cea98cb84e56ef7fddfc3e"
+      },
+      "deviceValidated": false,
+      "status": "compiled_not_device_tested",
+      "model_data_embedded": false
+    }
+  ],
   "textRuntime": {
     "file": "libllama-server.so",
     "bytes": 4608,

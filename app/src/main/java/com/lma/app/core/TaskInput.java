@@ -8,6 +8,12 @@ import java.util.*;
 public final class TaskInput {
     private TaskInput() {}
     public static JSONObject validate(JSONObject source) throws Exception {
+        if ("model.prepare".equals(source.optString("type"))) {
+            for (Iterator<String> it = source.keys(); it.hasNext();) if (!Arrays.asList("bundleId", "type", "preparationId", "planFingerprint").contains(it.next())) throw new IllegalArgumentException("Unknown preparation field; paths and executable modules cannot be supplied");
+            ModelBundle.key(source.getString("bundleId")); ModelBundle.key(source.getString("preparationId"));
+            if (!Protocol.isSha256(source.getString("planFingerprint"))) throw new IllegalArgumentException("Select the current App preparation plan");
+            return DataFiles.copy(source);
+        }
         for (Iterator<String> it = source.keys(); it.hasNext();) if (!Arrays.asList("bundleId", "type", "input", "parameters", "allowUnmeasured", "adapters").contains(it.next())) throw new IllegalArgumentException("Unknown task request field");
         ModelBundle.key(source.getString("bundleId"));
         if (!Arrays.asList("text.generate", "image.generate", "video.generate", "speech.synthesize", "audio.generate").contains(source.getString("type"))) throw new IllegalArgumentException("Unknown local task type");

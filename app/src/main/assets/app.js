@@ -162,14 +162,14 @@
     $('modelSearch').placeholder = filter === 'local' ? '搜索本地模型' : '搜索 HF 模型、owner/model 或仓库链接';
     if (filter === 'all') { renderHub(); return; }
     var all = models().filter(function (m) {
-      var included = filter === 'recommended' && m.recommended || filter === 'light' && m.tier === 'light' || filter === 'quality' && (m.tier === 'quality' || m.tier === 'experimental') || filter === 'local' && (m.installed || m.partialBytes || m.download && m.download.state || m.hub || m.imported || m.tier === 'custom');
+      var included = filter === 'recommended' && m.recommended || filter === 'light' && m.tier === 'light' || filter === 'quality' && (m.tier === 'quality' || m.tier === 'experimental') || filter === 'local' && (m.installed || m.hasPreparedAssets || m.partialBytes || m.download && m.download.state || m.hub || m.imported || m.tier === 'custom');
       return included && matchesTask(m) && (!query || [m.name, m.family, m.repository, m.description, (m.tags || []).join(' ')].join(' ').toLowerCase().indexOf(query.toLowerCase()) >= 0);
     });
     var signature = JSON.stringify([all, engine().state, engine().modelId, filter, query, taskFilter]);
     if (signature === modelSignature) return; modelSignature = signature;
     var focused = document.activeElement && document.activeElement.closest('#modelList button'), focusAction = focused && focused.dataset.action, focusId = focused && focused.dataset.id;
     $('modelListTitle').textContent = query ? '本地搜索结果' : {recommended: '适合先试的模型', light: '先从轻量开始', quality: '更高容量的选择', local: '你的本地模型'}[filter];
-    $('modelResultCount').textContent = filter === 'local' ? all.filter(function (m) { return m.installed; }).length + ' 已下载 · ' + all.filter(function (m) { return !m.installed; }).length + ' 下载任务' : all.length + ' 个模型';
+    $('modelResultCount').textContent = filter === 'local' ? all.filter(function (m) { return m.installed; }).length + ' 已下载 · ' + all.filter(function (m) { return !m.installed && !m.hasPreparedAssets; }).length + ' 下载任务' + (all.some(function (m) { return !m.installed && m.hasPreparedAssets; }) ? ' · ' + all.filter(function (m) { return !m.installed && m.hasPreparedAssets; }).length + ' 仅运行资产' : '') : all.length + ' 个模型';
     $('modelList').innerHTML = all.length ? all.map(modelCard).join('') : '<div class="empty-list"><h3>' + (filter === 'local' && !query ? '还没有下载模型' : '没有匹配的模型') + '</h3><p>' + (filter === 'local' ? '下载、导入的模型和未完成的下载会出现在这里。' : '尝试其他关键词，或添加自己的 GGUF 文件。') + '</p><button class="button subtle" data-action="showAll">浏览全部模型</button></div>';
     if (focusId) $('modelList').querySelectorAll('button').forEach(function (b) { if (b.dataset.action === focusAction && b.dataset.id === focusId) b.focus({preventScroll: true}); });
   }

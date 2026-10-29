@@ -1,7 +1,7 @@
 {
   "kind": "android_compile",
-  "executable_bytes": 614472,
-  "executable_sha256": "be5dc8b4fcdd7fee09b8d92b548360e2493d0ec7b9dac91af4449dfc2418e424",
+  "executable_bytes": 614792,
+  "executable_sha256": "857be98d88efc6f39548ba8f03ecc82ba0d8ef0cec5dbc13775be1e25af1cb45",
   "model_data_embedded": false,
   "model_inference": false,
   "engine_registered": false,
@@ -9,7 +9,7 @@
   "physical_android": false,
   "virtualization_used": false,
   "input_fingerprint": {
-    "research/local_prepare/io.hpp": "162b24f6a5b828a6308a0abc9a5451dae8c7ed4f142adde12b76b0afa9206587",
+    "research/local_prepare/io.hpp": "fc1f412b47619a1b0f63256590ca025353bd8637d7900a6f546f21a4d2241358",
     "research/local_prepare/NOTICE": "abd98f3b203aa21aaece257200b42c9478ab0a06f44ad1208e5663ec4287a6d1",
     "research/ltx098_vae_prepare/CMakeLists.txt": "894a7bb2d4c8ec7a5c487636bbe64b0143ceeb70d67a88dc168a95736b6431b0",
     "research/ltx098_vae_prepare/contract.json": "606dde071dd474ca96d5829982ef3f1f9fad055184bd4fbbe320b0a7e7799d2c",
@@ -44,7 +44,7 @@
       16384
     ],
     "interpreter": "/system/bin/linker64",
-    "entry_point": 195680,
+    "entry_point": 195824,
     "android_api_notes": [
       28
     ],

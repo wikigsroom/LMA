@@ -201,3 +201,7 @@ The four added openmoss delay recipes reuse `POST /v1/jobs` / `speech.synthesize
 ## dev.21 SoulX paired inputs
 
 An installed SoulX bundle uses existing `POST /v1/jobs` / `speech.synthesize`, binding contiguous `reference_s1`–`reference_s4` via `input.artifacts` and their actual words under matching `input.transcripts` keys. Both freeze with the task. Missing/dangling text, reference gaps, unbound speakers and external paths fail. Authentication, idempotency, events, cancellation/retry and artifacts stay shared; no off-device execution or new speech-endpoint claim is added. See the [complete request and gates](SOULX_ENGINE.en.md#5-shared-authenticated-api).
+
+## dev.22: explicit runtime-preparation jobs
+
+[Preparation API contract and example](MODEL_PREPARATION.en.md) adds `model.prepare` through existing `POST /v1/jobs`, authentication, idempotency, events, cancellation and retry. Accepts only the selected bundle ID, trusted plan ID and fingerprint; the server freezes source-bundle identity and rejects client paths/URLs/modules/generation parameters. Success produces a preparation receipt, without fabricated media. `GET /v1/models` adds `preparation_plans` / `prepared_assets` and includes derived-only local records; `installed` still describes source components. Preparers are separate from generation engines; full video generation remains unavailable. Derived-file deletion is an App operation, without an arbitrary filesystem deletion API.

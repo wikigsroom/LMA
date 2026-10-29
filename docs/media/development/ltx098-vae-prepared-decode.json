@@ -1,11 +1,11 @@
 {
   "schema": "lma.ltx098-vae-prepared-media/1",
-  "evidence_sha256": "8727d4c17f359ee888edb5b2097f8a962f4cb8a36e1e3295b81b2aba2170c966",
+  "evidence_sha256": "89105c9126dec27603f6778ac8981815a668b37fd51b93e39336e3f6209c2dd3",
   "sources": [
     {
       "case": "case-0",
       "frame": 8,
-      "native_file": "build/ltx098-vae-prepare-tests/run-1793249390510072700/case-0.f32",
+      "native_file": "build/ltx098-vae-prepare-tests/run-1793251351307477300/case-0.f32",
       "native_bytes": 835584,
       "native_sha256": "020afbae71a2c687b5f83e20029b03c8ae8be5b06eed6037ebe4e011c3943221",
       "original_file": "case-0-output.f32",
@@ -22,7 +22,7 @@
     {
       "case": "case-1",
       "frame": 0,
-      "native_file": "build/ltx098-vae-prepare-tests/run-1793249390510072700/case-1.f32",
+      "native_file": "build/ltx098-vae-prepare-tests/run-1793251351307477300/case-1.f32",
       "native_bytes": 12288,
       "native_sha256": "539dd2031e02a172ed25019c4014e4ade60f6916d5781b9df235f3e842a955d1",
       "original_file": "case-1-output.f32",
@@ -39,7 +39,7 @@
     {
       "case": "case-2",
       "frame": 8,
-      "native_file": "build/ltx098-vae-prepare-tests/run-1793249390510072700/case-2.f32",
+      "native_file": "build/ltx098-vae-prepare-tests/run-1793251351307477300/case-2.f32",
       "native_bytes": 417792,
       "native_sha256": "cdb5ef3859b49617797e8b2f80961a9afb0415637f1ec0cdb5ea367e629b7b8f",
       "original_file": "case-2-output.f32",
@@ -56,7 +56,7 @@
     {
       "case": "case-3",
       "frame": 4,
-      "native_file": "build/ltx098-vae-prepare-tests/run-1793249390510072700/case-3.f32",
+      "native_file": "build/ltx098-vae-prepare-tests/run-1793251351307477300/case-3.f32",
       "native_bytes": 221184,
       "native_sha256": "c8a3057665e1ad11bf24a618004ce56841792213478554e49a63dbd1f07dd354",
       "original_file": "case-3-output.f32",
@@ -71,9 +71,9 @@
       }
     }
   ],
-  "png_bytes": 224835,
-  "png_sha256": "96afcdfb1bf528281fb63ef8bb2e4a12a0eb0261d00d98e442448020882516e2",
-  "host_preparation_peak_bytes": 18423808,
+  "png_bytes": 225221,
+  "png_sha256": "70f6f5b9bd91302d38eae0705a96d5eee8e0abc1a0b6349d9254c5f481bd5fe2",
+  "host_preparation_peak_bytes": 18456576,
   "native_children_executed_this_tool": 0,
   "capture_reused": true,
   "synthetic_latent_inputs": true,

@@ -1,14 +1,14 @@
 {
   "passed": 10,
-  "native_files": 27,
+  "native_files": 29,
   "exact_shared_base_runtime_reuse": true,
   "model_inference": false,
   "physical_android": false,
   "input_fingerprint": {
-    "third_party/engine-lock.json": "78f7422f8776c49f42726e73d01b5748e1bf053a83e5cd30c09064dda0aa4e4d",
+    "third_party/engine-lock.json": "45db8985550ddcac50ce6b4967f1bbe9433de38ce0e32734a12f626bc52ba687",
     "third_party/runtime-lock.json": "839687301b04bb7b29443e01f8e0efee892cc01858fba85b5b78fd3fa0ed5e62",
     "tools/native_payload.py": "bb831ad2c08ac0ef7817272ac94c098bb47576fc658de30f482d2dd6d5edac06",
-    "tools/test_native_payload.py": "688bf7cb0d1c9533d577ec8c23d6ff7f2aed39d906db58fff7f3c66939a6ddad",
-    "tools/verify_package.py": "d748a1ebbd982b13f1228f3f0c3ace08d92e8c48aafc72f097df7f111f44524d"
+    "tools/test_native_payload.py": "e0f2efaff54bb1e2452906205f72f120eb99fbc397a2e3bf588b539b1109819e",
+    "tools/verify_package.py": "636dbad97530399d2cbb9550689512964fd88646464cb478b0bd06c7924a8376"
   }
 }

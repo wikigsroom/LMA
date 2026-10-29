@@ -9,7 +9,7 @@
   "physical_android": false,
   "virtualization_used": false,
   "input_fingerprint": {
-    "research/local_prepare/io.hpp": "162b24f6a5b828a6308a0abc9a5451dae8c7ed4f142adde12b76b0afa9206587",
+    "research/local_prepare/io.hpp": "fc1f412b47619a1b0f63256590ca025353bd8637d7900a6f546f21a4d2241358",
     "research/local_prepare/NOTICE": "abd98f3b203aa21aaece257200b42c9478ab0a06f44ad1208e5663ec4287a6d1",
     "research/ltx098_vae_prepare/CMakeLists.txt": "894a7bb2d4c8ec7a5c487636bbe64b0143ceeb70d67a88dc168a95736b6431b0",
     "research/ltx098_vae_prepare/contract.json": "606dde071dd474ca96d5829982ef3f1f9fad055184bd4fbbe320b0a7e7799d2c",

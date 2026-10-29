@@ -3,6 +3,7 @@ import hashlib
 import json
 from pathlib import Path
 import re
+from evidence import current
 from urllib.parse import urlparse
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -37,6 +38,19 @@ def main():
                 assert c["repository"] == "k2-fsa/sherpa-onnx" and c["revision"] == "github_asset_" + str(checked["assetId"])
                 assert c["url"].startswith("https://github.com/k2-fsa/sherpa-onnx/releases/download/") and c["url"].endswith("/" + c["path"])
                 assert checked.get("publisherDigest") == "sha256:" + c["sha256"] or urlparse(checked["crossCheckedShaSource"]).netloc == "huggingface.co"
+            elif checked["kind"] == "measured_checkpoint":
+                # Immutable source identity measured from the complete developer-selected file.
+                # This does not claim that the current HF metadata/download endpoint was reached.
+                assert checked["source"] == "verification/development/ltx098-vae-prepare.json" and checked["live_hf_metadata_checked_this_update"] is False
+                path = ROOT / "build/ltx098-vae-prepare-tests/results.json"
+                if not path.exists(): path = ROOT / checked["source"]
+                measured = json.loads(path.read_text(encoding="utf-8")); current(measured["input_fingerprint"])
+                assert measured["passed"] and measured["actual_trained_conversions"] == 1
+                source = measured["trained_conversion"]
+                assert source["source_sha256_verified"] and source["source_sha256"] == c["sha256"] and source["source_bytes"] == c["bytes"]
+                identity = json.loads((ROOT / "research/ltx098_vae_prepare/contract.json").read_text(encoding="utf-8"))["checkpoint"]
+                assert (c["repository"], c["revision"], c["path"]) == (identity["repository"], identity["revision"], identity["file"])
+                assert c["url"] == "https://huggingface.co/" + c["repository"] + "/resolve/" + c["revision"] + "/" + c["path"]
             else: raise AssertionError("Unreviewed catalogue component evidence")
     assert ids == set(proofs), "Each shipped candidate requires individual component evidence"
     (ROOT / "app/src/main/assets/model-bundles.json").write_bytes(data)

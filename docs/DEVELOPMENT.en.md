@@ -2,7 +2,7 @@
 
 [中文](DEVELOPMENT.md) · [Full scope](MULTIMODAL_RELEASE_PLAN.en.md) · [Build](BUILD.en.md) · [English home](../README.en.md)
 
-The current public release remains **v0.2.0**. This branch is **0.3.0-dev.21 / versionCode 25**, not the complete v0.3.0, and has no new Release. F-01–F-12, selections 01–14/16/17 and frozen subtargets still belong to one delivery; these are internal implementation checkpoints.
+The current public release remains **v0.2.0**. This branch is **0.3.0-dev.22 / versionCode 26**, not the complete v0.3.0, and has no new Release. F-01–F-12, selections 01–14/16/17 and frozen subtargets still belong to one delivery; these are internal implementation checkpoints.
 
 ## Implemented development code
 
@@ -210,3 +210,7 @@ The full original-forward review is not accepted: 157 of 163 checks pass and six
 [Native old-LTX asset preparation](LTX098_PREPARE.en.md) adds a portable CLI for later same-phone production acquisition. Distinguish metadata preflight from complete source SHA verification. Stream/hash the same bytes, commit without replacement and retain user sources. Trained tests compare complete GGUF identity with independent Python output; abrupt-kill orphan recovery, SAF and persistent App jobs still need integration. Development checks and ARM64 compilation cannot replace failed full-chain numerical gates, quality or physical-device acceptance.
 
 [Native old-VAE preparation](LTX098_VAE_PREPARE.en.md) separates audited architecture graphs from external user-checkpoint data; learned timestep scale/statistics must never become foundation constants. Graph audit, full source SHA, 18 whole-asset identities, four actual decodes and ARM64 compilation are separate evidence. Changes to `research/local_prepare/` require the complete DiT preparation regression. Audit every initializer and Constant attribute before treating a graph as model-free. Production App/SAF/persistent recovery and full Release gates remain open.
+
+## dev.22: App runtime-asset preparation
+
+[Complete design](MODEL_PREPARATION.en.md) / [中文](MODEL_PREPARATION.md) / [Numbered delivery and full pending scope](releases/v0.3.0-dev.22.md). Users select/download/import the pinned source and explicitly confirm preparation. Trusted plans share jobs and the execution slot; derived assets remain independently manageable. Forty-four core contracts and one complete trained production-Java preparation passed with two native programs and 20 outputs totaling 6,061,184,991 bytes. Android compilation/packaging does not establish Service, SAF, converter or screen-off execution. There are six fixed bundle candidates and 34 HF component templates; Recommended remains m08→m06→m01. Six prior video float failures and all frozen targets still block the same complete v0.3.0.

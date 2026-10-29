@@ -18,9 +18,10 @@ import com.lma.app.core.BundleStore;
 import com.lma.app.core.JobStore;
 import com.lma.app.core.ArtifactStore;
 import com.lma.app.core.InputUploads;
+import com.lma.app.core.PreparedAssets;
 
 public final class LmaApp extends Application {
-    public static final String VERSION = "0.3.0-dev.21";
+    public static final String VERSION = "0.3.0-dev.22";
     public static final String UPDATE = "com.lma.app.STATE_CHANGED";
     public Store store;
     private final java.util.concurrent.atomic.AtomicBoolean migrationRunning = new java.util.concurrent.atomic.AtomicBoolean(), migrationPending = new java.util.concurrent.atomic.AtomicBoolean();
@@ -31,6 +32,8 @@ public final class LmaApp extends Application {
     public InputUploads uploads;
     public volatile InputImports inputHost;
     public LocalEngines localEngines;
+    public PreparedAssets prepared;
+    public ModelPreparations preparations;
     public volatile LocalJobs jobHost;
     public volatile ApiHost apiHost;
     public volatile String apiState = "stopped", apiDetail = "启动接口后可管理本机任务与结果";
@@ -79,6 +82,8 @@ public final class LmaApp extends Application {
             uploads = new InputUploads(new java.io.File(getFilesDir(), "input-uploads"), artifacts);
             com.lma.app.core.EngineWorkspace.recover(new java.io.File(getFilesDir(), "engine-work"));
             localEngines = new LocalEngines(this);
+            prepared = new PreparedAssets(new java.io.File(getFilesDir(), "prepared-assets")); prepared.reconcile(jobs);
+            preparations = new ModelPreparations(this);
             bundles.setParameterResolver(localEngines::parameters);
         }
         catch (Exception error) { bundleStoreError = error.getMessage(); log("模型包存储不可用，原始数据已保留：" + bundleStoreError); }
@@ -161,6 +166,9 @@ public final class LmaApp extends Application {
             value.put("models", store.snapshot()); value.put("settings", settings()); value.put("hub", hub.snapshot());
             JSONArray bundleRecords = bundles == null ? new JSONArray() : bundles.snapshot();
             if (localEngines != null) for (int i = 0; i < bundleRecords.length(); i++) { JSONObject record = bundleRecords.getJSONObject(i); record.put("inputSchemas", localEngines.inputSchemas(bundles.bundle(record.getString("id")))); }
+            if (preparations != null && prepared != null) for (int i = 0; i < bundleRecords.length(); i++) {
+                JSONObject record = bundleRecords.getJSONObject(i); record.put("preparationPlans", preparations.options(bundles.bundle(record.getString("id")))).put("preparedAssets", prepared.snapshot(record.getString("id")));
+            }
             value.put("bundles", bundleRecords);
             value.put("jobs", jobs == null ? new JSONArray() : jobs.summaries());
             value.put("artifacts", artifacts == null ? new JSONArray() : artifacts.snapshot());

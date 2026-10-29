@@ -866,6 +866,56 @@
           "url": "https://huggingface.co/Serveurperso/Qwen3-TTS-GGUF/resolve/b7ee2e8c7459c3bea99da23e3d178125a7d1713c/qwen-tokenizer-12hz-Q8_0.gguf"
         }
       ]
+    },
+    {
+      "schema": "lma.model-bundle/1",
+      "id": "ltx098_source_r8984fa2",
+      "modelId": "ltx_video_2b_098_distilled",
+      "recipeId": "ltx098_checkpoint_source",
+      "name": "LTX-Video 2B 0.9.8 distilled",
+      "description": "旧版源模型，可在下载或导入后准备 DiT / VAE 运行资产。完整生视频引擎及 T5 用户资产流程尚待接入。",
+      "catalogue": true,
+      "engine": "ltx098_native",
+      "architecture": "ltx098",
+      "pipeline": "ltx098_checkpoint_source",
+      "backend": "vulkan",
+      "tasks": [
+        "video"
+      ],
+      "capabilities": [
+        "source_assets",
+        "local_asset_preparation"
+      ],
+      "license": {
+        "name": "LTX-Video Open Weights License 0.x",
+        "url": "https://huggingface.co/Lightricks/LTX-Video/tree/8984fa25007f376c1a299016d0957a37a2f797bb"
+      },
+      "evidence": {
+        "sourceReviewed": true,
+        "physicalDeviceTests": 0,
+        "status": "source_assets_only",
+        "generationSupported": false
+      },
+      "parameters": {
+        "version": 1,
+        "fields": {}
+      },
+      "resources": {
+        "estimatedPeakRamBytes": 0,
+        "known": false
+      },
+      "components": [
+        {
+          "role": "checkpoint",
+          "path": "ltxv-2b-0.9.8-distilled.safetensors",
+          "format": "safetensors",
+          "bytes": 6340744492,
+          "sha256": "76aa8c4786af752fa6f951947129d5290c3c6c0b2fadcadea6b5e114ae2cad8f",
+          "repository": "Lightricks/LTX-Video",
+          "revision": "8984fa25007f376c1a299016d0957a37a2f797bb",
+          "url": "https://huggingface.co/Lightricks/LTX-Video/resolve/8984fa25007f376c1a299016d0957a37a2f797bb/ltxv-2b-0.9.8-distilled.safetensors"
+        }
+      ]
     }
   ]
 }

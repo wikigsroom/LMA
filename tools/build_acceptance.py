@@ -6,7 +6,8 @@ from pathlib import Path
 import shutil
 import zipfile
 from build import run
-from evidence import build_inputs, fingerprint
+from evidence import fingerprint
+from preparation_build_inputs import build_inputs
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "build/device-tests"

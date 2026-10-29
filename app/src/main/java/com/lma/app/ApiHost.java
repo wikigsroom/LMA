@@ -70,12 +70,15 @@ public final class ApiHost implements LocalApi.Runtime, AutoCloseable {
         if (app.bundles != null) {
             JSONArray bundles = app.bundles.snapshot();
             for (int i = 0; i < bundles.length(); i++) {
-                JSONObject record = bundles.getJSONObject(i); if (!record.optBoolean("installed")) continue;
+                JSONObject record = bundles.getJSONObject(i);
+                JSONArray derived = app.prepared == null ? new JSONArray() : app.prepared.snapshot(record.getString("id"));
+                if (!record.optBoolean("installed") && derived.length() == 0) continue;
                 ModelBundle bundle = app.bundles.bundle(record.getString("id")); if (aliases.contains(bundle.id)) continue;
                 result.put(new JSONObject().put("id", bundle.id).put("model_id", bundle.modelId).put("object", "model").put("owned_by", "local").put("name", bundle.name)
                         .put("task_tags", new JSONArray(bundle.tasks)).put("tags", bundle.tags()).put("uncensored", new JSONObject().put("status", "unknown"))
                         .put("input_schemas", app.localEngines.inputSchemas(bundle)).put("engine", bundle.engine).put("recipe", bundle.recipeId).put("backend", bundle.backend)
-                        .put("installed", true).put("loaded", record.optBoolean("inUse")).put("parameters", record.getJSONObject("config")).put("parameter_error", record.optString("parameterError")).put("version", record.getJSONObject("version")).put("deviceValidated", false));
+                        .put("preparation_plans", app.preparations == null ? new JSONArray() : app.preparations.options(bundle)).put("prepared_assets", derived)
+                        .put("installed", record.optBoolean("installed")).put("loaded", record.optBoolean("inUse")).put("parameters", record.getJSONObject("config")).put("parameter_error", record.optString("parameterError")).put("version", record.getJSONObject("version")).put("deviceValidated", false));
             }
         }
         return result;

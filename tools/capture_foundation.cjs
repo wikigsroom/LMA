@@ -18,6 +18,7 @@ const mossDelayUI = require('../tests/moss-delay-ui.cjs');
 const openMossUI = require('../tests/openmoss-ui.cjs');
 const stableAudioUI = require('../tests/stable-audio-ui.cjs');
 const soulxUI = require('../tests/soulx-ui.cjs');
+const preparationsUI = require('../tests/preparations-ui.cjs');
 const {hubFixture, installHubBridge} = require('../tests/hub-fixture.cjs');
 const root = path.resolve(__dirname, '..');
 const assets = path.join(root, 'app/src/main/assets');
@@ -343,13 +344,24 @@ async function main() {
     await page.locator('#localTaskForm .task-parameters').evaluate(e=>{e.open=true;});await page.locator('[data-bundle-field="context"]').fill('256');await page.locator('[data-bundle-field="context"]').blur();
     await page.locator('[data-bundle-field="maxNewTokens"]').evaluate(e=>e.scrollIntoView({block:'center'}));await shot('61-soulx-context-bounds.png','UI FIXTURE / 每模型独立上下文、输出与历史联合归位；未执行模型');await page.keyboard.press('Escape');
   }
+  {
+    await preparationsUI.install(page); const id = preparationsUI.data().manifest.id;
+    await page.locator('.nav-item[data-tab="models"]').click(); await page.locator('[data-filter="local"]').click(); await page.locator('[data-task="any"]').click();
+    await page.locator('[data-bundle="'+id+'"] [data-action="bundleInfo"]').first().click();
+    await page.locator('.preparation-section').evaluate(e=>e.scrollIntoView({block:'start'})); await shot('62-preparation-source.png','UI FIXTURE / 用户已有源模型，单独选择准备；没有下载或运行 Android 模型');
+    await page.locator('[data-action="preparationInfo"]').click(); await shot('63-preparation-confirm.png','UI FIXTURE / 保留源模型，明确确认额外空间与准备任务；非 Android 实测');
+    await page.locator('[data-action="prepareAssets"]').click(); await page.locator('.nav-item[data-tab="tasks"]').click(); await page.locator('.job-card').filter({hasText:'模型运行资产准备'}).waitFor(); await shot('64-preparation-queue.png','UI FIXTURE / 准备任务共用队列，可取消和明确重试；没有执行转换或生成');
+    await page.evaluate(preparationsUI.markPrepared); await page.locator('.nav-item[data-tab="models"]').click();
+    await page.locator('[data-bundle="'+id+'"] [data-action="bundleInfo"]').first().click();
+    await page.locator('.preparation-section').evaluate(e=>e.scrollIntoView({block:'start'})); await shot('65-preparation-management.png','UI FIXTURE / 派生运行资产独立管理；未因此启用生视频引擎'); await page.keyboard.press('Escape');
+  }
   if (errors.length) throw new Error(JSON.stringify(errors));
   const video = page.video(); await context.close(); context = null;
   const raw = await video.path();
   ffmpeg(['-i', raw, '-an', '-c:v', 'libx264', '-crf', '22', '-pix_fmt', 'yuv420p', '-movflags', '+faststart', path.join(out, 'foundation-ui.mp4')]);
   ffmpeg(['-i', path.join(out, 'foundation-ui.mp4'), '-vf', 'fps=6,scale=320:-2:flags=lanczos,split[a][b];[a]palettegen=max_colors=96[p];[b][p]paletteuse=dither=bayer:bayer_scale=3', '-loop', '0', path.join(out, 'foundation-ui.gif')]);
   const files = fs.readdirSync(out).filter(n => /\.(png|gif|mp4)$/.test(n)).sort().map(file => ({file, bytes: fs.statSync(path.join(out, file)).size, sha256: digest(path.join(out, file))}));
-  const sourceFiles = fs.readdirSync(assets, {recursive: true}).map(n => path.join(assets, n)).filter(p => fs.statSync(p).isFile()).concat(__filename, path.join(root, 'tests/foundation-ui.cjs'), path.join(root, 'tests/recipes-ui.cjs'), path.join(root, 'tests/hub-fixture.cjs'), path.join(root, 'tests/versions-ui.cjs'), path.join(root, 'tests/text-ui.cjs'), path.join(root, 'tests/migration-ui.cjs'), path.join(root, 'tests/scheduler-ui.cjs'), path.join(root, 'tests/inputs-ui.cjs'), path.join(root, 'tests/diffusion-ui.cjs'), path.join(root, 'tests/qwen-ui.cjs'), path.join(root, 'tests/moss-delay-ui.cjs'), path.join(root, 'tests/openmoss-ui.cjs'), path.join(root, 'tests/stable-audio-ui.cjs'), path.join(root, 'tests/soulx-ui.cjs'));
+  const sourceFiles = fs.readdirSync(assets, {recursive: true}).map(n => path.join(assets, n)).filter(p => fs.statSync(p).isFile()).concat(__filename, path.join(root, 'tests/foundation-ui.cjs'), path.join(root, 'tests/recipes-ui.cjs'), path.join(root, 'tests/hub-fixture.cjs'), path.join(root, 'tests/versions-ui.cjs'), path.join(root, 'tests/text-ui.cjs'), path.join(root, 'tests/migration-ui.cjs'), path.join(root, 'tests/scheduler-ui.cjs'), path.join(root, 'tests/inputs-ui.cjs'), path.join(root, 'tests/diffusion-ui.cjs'), path.join(root, 'tests/qwen-ui.cjs'), path.join(root, 'tests/moss-delay-ui.cjs'), path.join(root, 'tests/openmoss-ui.cjs'), path.join(root, 'tests/stable-audio-ui.cjs'), path.join(root, 'tests/soulx-ui.cjs'), path.join(root, 'tests/preparations-ui.cjs'));
   const input_fingerprint = Object.fromEntries(sourceFiles.sort().map(file => [path.relative(root, file).split(path.sep).join('/'), digest(file)]));
   fs.writeFileSync(path.join(out, 'manifest.json'), JSON.stringify({version, kind: 'development UI with explicit simulated native bridge', android_device: false, model_inference: false, weights_downloaded: false, browser_closed: true, browser_errors: errors, screenshots, files, input_fingerprint}, null, 2) + '\n');
   console.log(JSON.stringify({version, screenshots: screenshots.length, files: files.length, android_device: false, model_inference: false, browser_closed: true}));

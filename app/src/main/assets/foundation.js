@@ -27,14 +27,14 @@
     return entries().filter(function (b) { var legacy = b.manifest.migration && b.manifest.migration.source === 'legacy_text_store' && b.manifest.migration.legacyId;
       return aliases.indexOf(b.id) < 0 && !(legacy && (ui.state().models || []).some(function (m) { return m.id === legacy; })); }).map(function (b) {
       var m = b.manifest, p = b.plan || {};
-      return {id: 'bundle::' + b.id, bundleId: b.id, isBundle: true, name: m.name, family: m.architecture, repository: (m.components[0] || {}).repository || '', description: m.description || '', taskTags: tasks(b), tier: m.catalogue ? 'catalogue' : 'custom', installed: b.installed, bytes: p.totalBytes, installedBytes: p.totalBytes, download: b.transfer, imported: !m.catalogue, bundle: b};
+      return {id: 'bundle::' + b.id, bundleId: b.id, isBundle: true, name: m.name, family: m.architecture, repository: (m.components[0] || {}).repository || '', description: m.description || '', taskTags: tasks(b), tier: m.catalogue ? 'catalogue' : 'custom', installed: b.installed, hasPreparedAssets: (b.preparedAssets || []).length > 0, bytes: p.totalBytes, installedBytes: p.totalBytes, download: b.transfer, imported: !m.catalogue, bundle: b};
     });
   }
   function card(m) {
     var b = m.bundle, manifest = b.manifest, t = b.transfer || {}, plan = b.plan || {};
     var active = ['queued', 'downloading', 'verifying', 'installing'].indexOf(t.state) >= 0;
-    var message = b.installed ? '已安装 · 设备待验证' : active ? ({queued: '等待下载', downloading: '下载组件', verifying: '校验组件', installing: '安装中'}[t.state]) : t.state === 'paused' ? '已暂停' : t.state === 'failed' ? '下载失败' : '尚未下载';
-    return '<article class="model-card bundle-card" data-bundle="' + e(b.id) + '"><div class="model-top"><span class="model-symbol">' + ui.icon('cube') + '</span><div class="model-top-copy"><button class="model-name" data-action="bundleInfo" data-id="' + e(b.id) + '"><strong>' + e(manifest.name) + '</strong><span class="model-caption">' + e(manifest.architecture) + ' / ' + e(manifest.backend) + '</span></button></div></div><p class="model-description">' + e(manifest.description || '由用户选择的本地模型包') + '</p><div class="model-tags">' + taskTags(b) + window.LMAVersions.badge(b) + '<span class="tag">' + e(manifest.engine) + '</span><span class="tag">' + e(message) + '</span></div><div class="model-footer"><div class="model-size">' + ui.bytes(plan.totalBytes) + '<small>' + manifest.components.length + ' 个必需组件</small></div><div class="model-footer-actions">' + (b.installed ? button('bundleUse', b.id, isAdapter(b) ? '配对使用' : '使用', 'primary', b.inUse || !engineAvailable(b)) : active ? button('pauseBundle', b.id, '暂停') : button('bundleInfo', b.id, t.state === 'paused' || t.state === 'failed' ? '继续下载' : '查看并下载', 'primary')) + '</div></div>' + (active ? '<p class="form-help">' + e(t.role || '') + (t.received ? ' · ' + ui.bytes(t.received) : '') + '</p>' : '') + (t.error ? '<p class="download-error">' + e(t.error) + '</p>' : '') + '</article>';
+    var message = b.installed ? '已安装 · 设备待验证' : m.hasPreparedAssets ? '运行资产已准备 · 源文件未安装' : active ? ({queued: '等待下载', downloading: '下载组件', verifying: '校验组件', installing: '安装中'}[t.state]) : t.state === 'paused' ? '已暂停' : t.state === 'failed' ? '下载失败' : '尚未下载';
+    return '<article class="model-card bundle-card" data-bundle="' + e(b.id) + '"><div class="model-top"><span class="model-symbol">' + ui.icon('cube') + '</span><div class="model-top-copy"><button class="model-name" data-action="bundleInfo" data-id="' + e(b.id) + '"><strong>' + e(manifest.name) + '</strong><span class="model-caption">' + e(manifest.architecture) + ' / ' + e(manifest.backend) + '</span></button></div></div><p class="model-description">' + e(manifest.description || '由用户选择的本地模型包') + '</p><div class="model-tags">' + taskTags(b) + window.LMAVersions.badge(b) + '<span class="tag">' + e(manifest.engine) + '</span><span class="tag">' + e(message) + '</span></div><div class="model-footer"><div class="model-size">' + ui.bytes(plan.totalBytes) + '<small>' + manifest.components.length + ' 个必需组件</small></div><div class="model-footer-actions">' + (b.installed ? (!engineAvailable(b) && (b.preparationPlans || []).length ? button('bundleInfo', b.id, '运行资产', 'primary', b.inUse) : button('bundleUse', b.id, isAdapter(b) ? '配对使用' : '使用', 'primary', b.inUse || !engineAvailable(b))) : active ? button('pauseBundle', b.id, '暂停') : button('bundleInfo', b.id, m.hasPreparedAssets ? '管理运行资产' : t.state === 'paused' || t.state === 'failed' ? '继续下载' : '查看并下载', 'primary')) + '</div></div>' + (active ? '<p class="form-help">' + e(t.role || '') + (t.received ? ' · ' + ui.bytes(t.received) : '') + '</p>' : '') + (t.error ? '<p class="download-error">' + e(t.error) + '</p>' : '') + '</article>';
   }
   function info(id) {
     var b = find(id); if (!b) return; var m = b.manifest, p = b.plan || {};
@@ -44,9 +44,23 @@
     if (b.installed) html += button('bundleSettings', id, '模型设置') + button('bundleUse', id, isAdapter(b) ? '选择基础模型' : '使用模型', 'primary', !engineAvailable(b) || b.inUse);
     else html += button('bundleFolderPicker', id, '从文件夹导入') + button('downloadBundle', id, '下载所选模型包', 'primary', files.some(function (c) { return !c.reusable && !c.downloadable; }));
     html += '</div>' + (b.installed || (b.version || {}).groupId ? button('bundleVersions', id, '版本管理 / 独立更新') : '') + button('bundleRemove', id, '删除本地资产', 'danger', b.inUse) + '</div>';
-    editor = null; ui.openModal(m.name, html, 'bundleInfo');
+    editor = null; ui.openModal(m.name, html + preparationSection(b), 'bundleInfo');
   }
   function schemaFor(b) { return b.parameterSchema || b.manifest.parameters || {}; }
+  function preparationSection(b) {
+    var plans = b.preparationPlans || [], prepared = b.preparedAssets || [];
+    if (!plans.length && !prepared.length) return '';
+    return '<section class="preparation-section"><h3>运行资产</h3><p>从已下载或导入的源模型准备运行文件。源文件与模型设置保留，准备后的文件可单独管理。</p>' + plans.map(function (plan) {
+      return '<article class="hub-file"><strong>' + e(plan.name) + '</strong><p>' + ui.bytes(plan.outputBytes) + ' · ' + (plan.ready ? '已准备' : '待准备') + '</p><button class="button secondary" data-action="preparationInfo" data-id="' + e(b.id) + '" data-preparation="' + e(plan.id) + '"' + (!b.installed || b.inUse || plan.ready ? ' disabled' : '') + '>查看准备方案</button>' + (!b.installed ? '<small>先选择下载或文件夹导入，再准备运行资产。</small>' : '') + '</article>';
+    }).join('') + prepared.map(function (record) {
+      return '<article class="hub-file"><strong>' + (record.available ? '已准备的运行资产' : '运行资产缺失或已改变') + '</strong><p>' + ui.bytes(record.bytes) + ' · ' + new Date(record.createdAt).toLocaleString('zh-CN') + '</p>' + button('preparedRemove', record.id, '删除准备资产', 'danger', record.inUse) + '</article>';
+    }).join('') + '</section>';
+  }
+  function preparationInfo(id, planId) {
+    var b = find(id); if (!b) return;
+    var plan = (b.preparationPlans || []).filter(function (p) { return p.id === planId; })[0]; if (!plan || !b.installed || plan.ready) return;
+    editor = null; ui.openModal('准备运行资产', '<div class="model-info"><h3>' + e(b.manifest.name) + '</h3><p>' + e(plan.name) + '</p><dl><dt>保留源模型</dt><dd>' + ui.bytes(plan.sourceBytes) + '</dd><dt>新增运行资产</dt><dd>' + ui.bytes(plan.outputBytes) + '</dd><dt>所需额外可用空间</dt><dd>' + ui.bytes(plan.requiredFreeBytes) + '</dd></dl><p>点击后加入本机任务队列，离开页面后继续。可在任务页取消；中断后由你选择重试。准备完成后，生成能力和设备兼容性仍以模型状态为准。</p><div class="modal-actions"><button class="button primary" data-action="prepareAssets" data-id="' + e(id) + '" data-preparation="' + e(plan.id) + '" data-fingerprint="' + e(plan.fingerprint) + '">开始准备</button></div></div>', 'preparationInfo');
+  }
   function numericHint(f, values, all) {
     var maximum = f.maximum, bound = f.maximumFrom;
     if (bound && all[bound.field]) {
@@ -216,8 +230,8 @@
     $('jobCount').textContent = jobs.filter(function (j) { return ['queued', 'loading', 'running', 'cancelling'].indexOf(j.state) >= 0; }).length + ' 个待完成';
     $('jobList').innerHTML = jobs.length ? jobs.slice().reverse().map(function (job) {
       var b = find(job.request.bundleId), terminal = ['cancelled', 'failed', 'succeeded', 'interrupted'].indexOf(job.state) >= 0;
-      var progress = typeof job.progress === 'number' ? '<progress max="1" value="' + Math.max(0, Math.min(1, job.progress)) + '" aria-label="生成进度"></progress>' : '';
-      return '<article class="job-card"><div class="section-heading"><strong>' + e(b ? b.manifest.name : job.request.bundleId) + '</strong><span class="status-pill">' + e(job.stage === 'waiting_engine' && ['loading', 'running'].indexOf(job.state) >= 0 ? '排队中' : states[job.state] || job.state) + '</span></div><p class="job-prompt">' + e(job.request.inputSummary || job.request.input && job.request.input.prompt || '') + '</p><p class="form-help">' + e(stages[job.stage] || job.stage || '') + ' · ' + new Date(job.createdAt).toLocaleString('zh-CN') + '</p>' + progress + (job.error ? '<p class="download-error">' + e(job.error) + '</p>' : '') + '<div class="job-actions">' + button('jobInfo', job.id, '详情') + (!terminal ? button('cancelTask', job.id, '取消任务', 'danger', job.state === 'cancelling') : ['failed', 'interrupted', 'cancelled'].indexOf(job.state) >= 0 ? button('retryTask', job.id, '重试') : '') + (terminal ? button('deleteTask', job.id, '删除记录') : '') + '</div></article>';
+      var progress = typeof job.progress === 'number' ? '<progress max="1" value="' + Math.max(0, Math.min(1, job.progress)) + '" aria-label="任务进度"></progress>' : '';
+      return '<article class="job-card"><div class="section-heading"><strong>' + e(b ? b.manifest.name : job.request.bundleId) + '</strong><span class="status-pill">' + e(job.stage === 'waiting_engine' && ['loading', 'running'].indexOf(job.state) >= 0 ? '排队中' : job.request.type === 'model.prepare' && job.state === 'running' ? '准备中' : states[job.state] || job.state) + '</span></div><p class="job-prompt">' + e(job.request.type === 'model.prepare' ? '模型运行资产准备' : job.request.inputSummary || job.request.input && job.request.input.prompt || '') + '</p><p class="form-help">' + e(job.stage && job.stage.indexOf('preparing_') === 0 ? '准备运行组件' : job.stage === 'verifying_prepared_assets' ? '校验准备资产' : stages[job.stage] || job.stage || '') + ' · ' + new Date(job.createdAt).toLocaleString('zh-CN') + '</p>' + progress + (job.error ? '<p class="download-error">' + e(job.error) + '</p>' : '') + '<div class="job-actions">' + button('jobInfo', job.id, '详情') + (!terminal ? button('cancelTask', job.id, '取消任务', 'danger', job.state === 'cancelling') : ['failed', 'interrupted', 'cancelled'].indexOf(job.state) >= 0 ? button('retryTask', job.id, '重试') : '') + (terminal ? button('deleteTask', job.id, '删除记录') : '') + '</div></article>';
     }).join('') : '<div class="empty-list"><h3>队列里还没有任务</h3><p>在本地模型中选择已安装的模型，填写提示词后加入队列。</p>' + button('showLocal', '', '选择本地模型', 'primary') + '</div>';
   }
   function renderArtifacts() {
@@ -258,6 +272,11 @@
       case 'cancelInputImport': track(action); return true;
       case 'filterArtifacts': artifactKind = ['all', 'generated', 'imported'].indexOf(el.dataset.kind) >= 0 ? el.dataset.kind : 'all'; renderArtifacts(); return true;
       case 'bundleInfo': info(id); return true;
+      case 'preparationInfo': preparationInfo(id, el.dataset.preparation); return true;
+      case 'prepareAssets':
+        track('submitTask', {request: {type: 'model.prepare', bundleId: id, preparationId: el.dataset.preparation, planFingerprint: el.dataset.fingerprint}}, function () { ui.closeModal(); ui.route('tasks'); ui.toast('运行资产准备已加入本机队列'); }); return true;
+      case 'preparedRemove': ui.confirm('删除准备资产？', '只删除这次准备的运行文件；下载或导入的源模型和独立设置保留。', 'deletePreparedAssets', id, '删除准备资产'); return true;
+      case 'deletePreparedAssets': track(action, {id: id}); return true;
       case 'bundleSettings': settings(id); return true;
       case 'bundleUse': use(id); return true;
       case 'downloadBundle': track(action, {id: id}, function () { ui.closeModal(); ui.selectLocal(); }); return true;

@@ -201,3 +201,7 @@ Qwen3-TTS 0.6B Base 复用 `POST /v1/jobs` 的 `speech.synthesize` 与本地 `re
 ## dev.21 SoulX配套输入
 
 `POST /v1/jobs` 的 `speech.synthesize` 可选择实际已安装的SoulX包，通过 `input.artifacts` 绑定 `reference_s1`–`reference_s4`，并在 `input.transcripts` 用同名角色填写实际原文。任务冻结两者；缺原文、编号断档、未提供参考的说话人或外部路径均拒绝。仍沿用相同鉴权、幂等键、事件、取消、重试及产物读取，不增加远程推理或语音端点兼容声明。完整JSON、参数和未完成门槛见 [SoulX接口与使用逻辑](SOULX_ENGINE.md#5-同一鉴权任务接口)。
+
+## dev.22：明确的运行资产准备任务
+
+[准备 API 合同与示例](MODEL_PREPARATION.md)增加 `model.prepare`，使用现有 `POST /v1/jobs`、鉴权、幂等、事件、取消和重试。只接收所选 bundleId、准备方案ID和指纹；服务器冻结源包身份，拒绝客户端文件路径/URL/模块/生成参数。成功保存准备回执，不伪造媒体产物。`GET /v1/models`增加 `preparation_plans` / `prepared_assets`，包含只有派生资产的本地记录；`installed`仍表示源组件安装状态。准备程序不登记为生成引擎，完整视频生成仍未开放。独立删除派生文件通过App，不提供任意路径删除接口。

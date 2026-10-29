@@ -13,7 +13,8 @@ import shutil
 import subprocess
 import sys
 import zipfile
-from evidence import version, build_inputs
+from evidence import version
+from preparation_build_inputs import build_inputs
 from package_native import prepare as prepare_native
 
 if hasattr(sys.stdout, "reconfigure"):
@@ -62,7 +63,7 @@ def main():
     native = ROOT / "app/src/main/jniLibs/arm64-v8a"
     if not (native / "libllama-server.so").exists(): raise RuntimeError("Run python tools/bootstrap_runtime.py first")
     source = ROOT / "app/src/main"
-    for name in ("index.html", "app.css", "app.js", "foundation.css", "foundation.js", "recipes.js", "versions.js", "recipe-templates.json", "license.js", "models.json", "model-bundles.json", "engine-builds.json"):
+    for name in ("index.html", "app.css", "app.js", "foundation.css", "foundation.js", "recipes.js", "versions.js", "recipe-templates.json", "asset-preparations.json", "license.js", "models.json", "model-bundles.json", "engine-builds.json"):
         if not (source / "assets" / name).is_file(): raise RuntimeError("Missing application UI asset: " + name)
     license_text = (ROOT / "third_party/LLAMA_CPP_LICENSE").read_text(encoding="utf-8")
     (source / "assets/licenses").mkdir(exist_ok=True)
@@ -82,6 +83,7 @@ def main():
         if not path.is_file() or hashlib.sha256(path.read_bytes()).hexdigest() != record["sha256"]:
             raise RuntimeError("Pinned runtime file mismatch: " + record["name"])
     native_names = {record["name"] for record in lock["files"]} | {engine["file"] for engine in engines} | {dep["file"] for engine in engines for dep in engine.get("dependencies", [])}
+    native_names |= {module["file"] for module in json.loads((ROOT / "third_party/engine-lock.json").read_text(encoding="utf-8")).get("preparations", [])}
     if {path.name for path in native.glob("*.so")} != native_names:
         raise RuntimeError("Unreviewed native libraries exist in the APK input directory")
     run("Compile Android resources", [tools / "aapt2.exe", "compile", "--dir", source / "res", "-o", BUILD / "resources.zip"])

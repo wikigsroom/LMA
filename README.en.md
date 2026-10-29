@@ -2,6 +2,8 @@
 
 [中文](README.md) · [English](README.en.md) · [Releases](https://github.com/wikigsroom/LMA/releases) · [Documentation](docs/README.md) · [Changelog](CHANGELOG.md)
 
+> **Current development: 0.3.0-dev.22 / code 26; complete v0.3.0 remains unpublished.** [Runtime asset preparation](docs/MODEL_PREPARATION.en.md) adds explicit user-selected preparation after download/import, shared jobs and independent derived-file management. The production Java core processed the full old-LTX checkpoint on the host and verified all 20 runtime files. The signed APK packages 29 native files and model-free architecture graphs, without learned data. Android preparation/generation/screen-off execution remains untested; six required video float gates remain failed. [Numbered implementation and full pending scope](docs/releases/v0.3.0-dev.22.md) · [Confirmation screenshot](docs/media/development/63-preparation-confirm.png) · [Recording](docs/media/development/foundation-ui.mp4) · [GIF](docs/media/development/foundation-ui.gif) (UI FIXTURE). The v0.2.0 description below documents the preserved public version.
+
 **Choose a local model, discover more on Hugging Face, download a compatible GGUF, chat locally, and serve an OpenAI-compatible API from an Android phone.**
 
 LMA (Local Model App) brings a desktop model-workbench workflow into one APK: model selection, downloads, local chat, and an API server. It requires no ROOT, Termux, or separate server. This is an independent community project, unaffiliated with LM Studio. The application UI is currently primarily Chinese; the documentation is bilingual.

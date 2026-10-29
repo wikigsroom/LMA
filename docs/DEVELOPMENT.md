@@ -2,7 +2,7 @@
 
 [English](DEVELOPMENT.en.md) · [完整范围](MULTIMODAL_RELEASE_PLAN.md) · [构建](BUILD.md) · [中文首页](../README.md)
 
-当前公开发行仍为 **v0.2.0**。本分支为 **0.3.0-dev.21 / versionCode 25**，不是完整 v0.3.0，也没有创建对应 Release。下一版本仍一次交付 F-01–F-12、01–14 / 16 / 17 及冻结子目标；以下是同一版本内的实施记录，不是拆版安排。
+当前公开发行仍为 **v0.2.0**。本分支为 **0.3.0-dev.22 / versionCode 26**，不是完整 v0.3.0，也没有创建对应 Release。下一版本仍一次交付 F-01–F-12、01–14 / 16 / 17 及冻结子目标；以下是同一版本内的实施记录，不是拆版安排。
 
 ## 已写入开发代码的部分
 
@@ -215,3 +215,7 @@ Internal dev.19 / 内部 dev.19：[旧 Local / Realtime 原生 RQ](MOSS_RQ_ENGIN
 [旧 LTX 本机资产准备组件](LTX098_PREPARE.md)将格式转换实现为原生可移植 CLI，供后续同机生产资产流程接入。必须区分 inspect 头部预检与完整源 SHA 验证，分块读取同流哈希并无覆盖提交，保留用户源文件。训练验证核对完整 GGUF 与独立 Python 文件身份；强杀残留暂存 / SAF / 持久任务恢复仍需 App 集成。开发证据与 Android 编译不替代六项完整数值失败、生成质量或任何真机门槛。
 
 [旧 VAE 原生准备](LTX098_VAE_PREPARE.md)采用已审计结构图 + 从用户原始 checkpoint 生成的外部数据；学习时间缩放和统计量不能烘焙为基座常量。图审计、完整源 SHA、18 资产字节身份、四组真实解码和 ARM64 编译分别记录。共用 `research/local_prepare/` 变更必须重跑完整 DiT 准备回归；模板无权重需要审查所有 initializer 和 Constant 属性。生产 App / SAF / 持久恢复仍需接入，不能借独立组件改变完整 Release 门槛。
+
+## dev.22：运行资产准备接入 App
+
+[完整方案](MODEL_PREPARATION.md) / [English](MODEL_PREPARATION.en.md) / [编号交付和完整待办](releases/v0.3.0-dev.22.md)。源模型固定版本由用户下载或导入；明确确认后，受信任方案复用共享任务/执行槽，独立管理派生资产。44项核心契约与一次生产Java核心完整训练转换（两个原生程序、20结果、6,061,184,991字节）通过；Android仅编译/打包，不宣称Service/SAF/准备/锁屏实测。源码候选数现为6，HF组件配方仍34；推荐m08→m06→m01不变。六项既有视频浮点失败及全部冻结范围继续阻塞同一完整v0.3.0。

@@ -2,6 +2,8 @@
 
 [中文](LTX098_VAE_PREPARE.md) · [Numbered handoff and full pending scope](releases/v0.3.0-dev.21-ltx-vae-prepare.md) · [DiT preparation](LTX098_PREPARE.en.md) · [Original decoder comparisons](LTX098_VAE.en.md) · [Complete release scope](MULTIMODAL_RELEASE_PLAN.en.md)
 
+> **dev.22 integration:** [App runtime-asset preparation](MODEL_PREPARATION.en.md) now packages the preparers and audited model-free architecture graphs, separately from generation engines. Users explicitly select/download/import source weights and start preparation; Android execution remains untested. Standalone component receipts below retain their original scoped meaning.
+
 The old LTX 0.9.8 VAE now has a **native asset preparer without Python, ONNX or Torch runtime dependencies**. It generates all external parameters for nine decoder stages from an original checkpoint explicitly selected/acquired by the user. It shares bounded file reading, SHA, numeric conversion and transactional directory handling with the DiT preparer.
 
 This remains source/host evidence plus Android compilation, without App registration or phone execution. Moving necessary preparation into portable native code advances the complete same-phone design; desktop tools must not become end-user prerequisites. App updates deliver the foundation. Weights and statistics remain user-selected assets, never implicitly acquired on installation, upgrade, browsing or missing-asset discovery.

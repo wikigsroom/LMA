@@ -2,6 +2,8 @@
 
 [English](LTX098_PREPARE.en.md) · [编号交付与完整待办](releases/v0.3.0-dev.21-ltx-prepare.md) · [完整版本范围](MULTIMODAL_RELEASE_PLAN.md) · [完整主机视频与数值缺口](LTX098_PIPELINE.md)
 
+> **dev.22 接入：** [App 运行资产准备](MODEL_PREPARATION.md)现已打包准备器与审计后的无模型参数结构图，准备模块和生成引擎分别登记。源文件仍由用户选择/下载/导入并明确开始准备；尚未在 Android 执行。下文独立组件回执保留其原有限定范围。
+
 本次增加可原生编译的 **safetensors → DiT GGUF 流式转换组件**，为后续用户在同一 Android 手机上准备已选模型提供基础。它读取用户已有的本地文件，不需要 Python / Torch、ROOT、Termux、网络或其他设备服务。它是尚未接入 App 的独立源码组件；Android 编译成功不表示手机执行或 17 号模型完整支持。
 
 App 继续只更新基座。权重由用户选择、下载或导入；本组件不包含、获取、删除或静默替换原始模型。准备转换也必须由用户明确操作触发，不能成为安装、升级、浏览或发现缺件后的自动行为。

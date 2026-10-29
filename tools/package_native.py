@@ -5,6 +5,7 @@ from pathlib import Path
 from evidence import current
 from verify_package import elf_info
 from native_payload import engine_files
+from package_preparations import prepare as prepare_preparations
 
 ROOT = Path(__file__).resolve().parents[1]
 RECEIPTS = {"sd_cpp": "native-build-info.json", "sherpa_tts": "tts-build-info.json", "moss_nano_ort": "moss-nano-build-info.json", "mnn_diffusion": "mnn-build-info.json", "qwen_tts_native": "qwen-tts-build-info.json", "moss_delay_native": "moss-delay-build-info.json", "openmoss_native": "openmoss-build-info.json", "moss_rq_native": "moss_rq-build-info.json", "stable_audio_litert": "stable-audio-build-info.json", "soulx_native": "soulx-build-info.json"}
@@ -29,7 +30,7 @@ def text_runtime():
 def prepare():
     lock = json.loads((ROOT / "third_party/engine-lock.json").read_text(encoding="utf-8"))
     engines = []
-    engine_files(lock["engines"])
+    engine_files(lock["engines"] + lock.get("preparations", []))
     for expected in lock["engines"]:
         receipt = json.loads((ROOT / "build" / RECEIPTS[expected["engine"]]).read_text(encoding="utf-8"))
         current(receipt["source_inputs"])
@@ -55,7 +56,8 @@ def prepare():
         build.update({"deviceValidated": False, "status": "compiled_not_device_tested", "notices": list(notices)})
         engines.append(build)
     path = ROOT / "app/src/main/assets/engine-builds.json"
-    path.write_text(json.dumps({"schema": "lma.engine-builds/1", "engines": engines, "textRuntime": text_runtime()}, indent=2) + "\n", encoding="utf-8")
+    preparations = prepare_preparations()
+    path.write_text(json.dumps({"schema": "lma.engine-builds/1", "engines": engines, "preparations": preparations, "textRuntime": text_runtime()}, indent=2) + "\n", encoding="utf-8")
     return engines
 
 

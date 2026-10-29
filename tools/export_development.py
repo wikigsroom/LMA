@@ -2,7 +2,8 @@
 import json
 from pathlib import Path
 import shutil
-from evidence import current, build_inputs, version
+from evidence import current, version
+from preparation_build_inputs import build_inputs
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -14,6 +15,8 @@ def main():
         "build-info.json": "dist/build-info.json",
         "package.json": "build/package-verification.json",
         "native-payload.json": "build/native-payload-tests/results.json",
+        "preparation-core.json": "build/preparation-tests/results.json",
+        "preparation-trained.json": "build/preparation-tests/trained-results.json",
         "foundation.json": "build/foundation-tests/results.json",
         "tts.json": "build/tts-tests/results.json",
         "text.json": "build/text-tests/results.json",
@@ -111,6 +114,10 @@ def main():
               "ltx098_t5_roundoff_repair_accepted": False,
               "ltx098_native_asset_prepare_host_tested": records["ltx098-prepare.json"]["actual_trained_conversions"] == 1,
               "ltx098_native_asset_prepare_android_compiled": records["ltx098-prepare-arm64.json"]["android_arm64_compiled"],
+              "app_asset_preparation_registered": len(json.loads((ROOT / "app/src/main/assets/engine-builds.json").read_text(encoding="utf-8")).get("preparations", [])) == 2,
+              "app_asset_preparation_core_host_tested": records["preparation-core.json"]["passed"],
+              "app_asset_preparation_trained_host_tested": records["preparation-trained.json"]["actual_trained_preparations"] == 1,
+              "app_asset_preparation_android_executed": False,
               "ltx098_vae_asset_prepare_host_tested": records["ltx098-vae-prepare.json"]["actual_trained_conversions"] == 1,
               "ltx098_vae_asset_prepare_android_compiled": records["ltx098-vae-prepare-arm64.json"]["android_arm64_compiled"],
               "ltx098_prepared_vae_decode_host_tested": records["ltx098-vae-prepare.json"]["actual_trained_decode_jobs"] == 4,
@@ -128,12 +135,17 @@ def main():
               "ltx098_video_quality_accepted": False,
               "ltx098_trained_video_tested": False, "ltx098_app_engine_registered": False,
               "scope_definitions": {
+                  "app_asset_preparation_registered": "Two signed ARM64 preparation programs and audited model-free architecture resources packaged in dev.22, separate from generation engines; no Android execution",
+                  "app_asset_preparation_core_host_tested": "44 production-core filesystem/lifecycle contracts and four protocol-fixture children on Windows; no Service, SAF or model inference",
+                  "app_asset_preparation_trained_host_tested": "One full original checkpoint through production Java storage/jobs/native preparation, two actual native children and 20 fully verified runtime outputs; no neural inference or Android execution",
+                  "app_asset_preparation_android_executed": "False until actual same-phone Service/SAF/preparation and background evidence exists",
+
                   "ltx098_t5_intermediate_diagnostic_executed": "314 trained host intermediate comparisons, 628 hashed raw tensors and 120 matched-native-input operator comparisons; trace retention changes diagnostic memory, not the accepted native caption or original forward",
                   "ltx098_t5_roundoff_repair_accepted": "Remains false until a repaired implementation passes unchanged complete-chain gates and required regression checks; local operator diagnostics or isolated precision candidates do not close this gate",
                   "ltx098_native_asset_prepare_host_tested": "Bounded model-free native CLI converted the whole user-local old DiT checkpoint and matched independent Python GGUF bytes; conversion is not inference or production App acquisition",
-                  "ltx098_native_asset_prepare_android_compiled": "ARM64 API28/16KiB portable CLI compiled only; not packaged, registered, or executed on Android",
+                  "ltx098_native_asset_prepare_android_compiled": "ARM64 API28/16KiB portable CLI compiled; dev.22 packages it as an explicit asset-preparation program, separately from generation engines; not executed on Android",
                   "ltx098_vae_asset_prepare_host_tested": "Native streaming preparation of all 132 decoder tensors and two statistics vectors; 18 output assets match Python bytes; model-free graph audit is separate from the full-source SHA verification",
-                  "ltx098_vae_asset_prepare_android_compiled": "Python/ONNX/Torch-free native asset preparation CLI, ARM64 API28/16KiB compile only; not App registration or Android execution",
+                  "ltx098_vae_asset_prepare_android_compiled": "Python/ONNX/Torch-free native asset preparation CLI, ARM64 API28/16KiB compiled and packaged separately from generation engines; not executed on Android",
                   "ltx098_prepared_vae_decode_host_tested": "Four real native ORT decoder geometries consuming newly prepared trained assets, 40 original-forward comparisons; synthetic latent inputs, not prompt-to-video quality or phone acceptance",
                   "ltx098_t5_precision_candidates_host_executed": "Two isolated trained CPU variants, each with three A/B/A jobs; attention F64 and optional dense F64 accumulation, not promoted encoder, complete-chain repair, Android or performance acceptance",
                   "model_inference_tested": "Legacy complete physical-Android acceptance flag; scoped host execution has a separate flag",
@@ -151,7 +163,7 @@ def main():
                   "ltx098_trained_video_tested": "Legacy complete Android target-17 acceptance flag; actual host videos have their own explicit flag",
                   "ltx098_tensor_primitives_android_compiled": "Portable RNG/layout/frame CLI ARM64/API28/16KiB compile only; no model data, APK registration or phone execution",
               },
-              "scope": "Source-only development checkpoint; existing dev.21 APK/UI and signing identity are unchanged. Packaged SoulX and other existing App engine contracts retain their scoped records; complete trained SoulX host speech is separate from quality, public user acquisition and Android acceptance. New old-LTX evidence runs three real-prompt single-scale trained HOST video jobs with explicit Google/community Q5 T5, original 0.9.8 distilled DiT/VAE, independent original-forward comparison and actual RGB/MP4 media. Frozen full-chain float gates remain failed despite passing RGB gates; numerical acceptance is false. Separate tensor/T5/DiT/VAE Android compilation is not App registration or phone execution. Official default multi-scale/PixArt text-weight identity, video quality, complete public assets and target-17 Android acceptance remain open. Older component receipts retain their original scope. App updates deliver foundation code only; users explicitly select/manage all model assets, with no automatic model retrieval. One complete v0.3.0 still requires F-01-F-12, existing text, selections 01-14/16/17 and every frozen subtarget, trained quality/resources, physical-phone load/unload/screen-off/API/upgrade evidence and A1-A11/R01-R05. No complete Release, physical-device acceptance or all-selected-model support is claimed.",
+              "scope": "Development APK dev.22 adds explicit user-selected native asset preparation, independent derived-asset management and shared queued jobs. Two signed preparation programs and nine audited model-free architecture graphs are packaged without learned model data. The production Java core performed one full trained host preparation with 20 verified outputs; Android Service, SAF, converter execution and background endurance remain untested. The original signing identity is preserved. Packaged SoulX and other existing App engine contracts retain their scoped records; complete trained SoulX host speech is separate from quality, public user acquisition and Android acceptance. Retained old-LTX evidence records three real-prompt single-scale trained HOST video jobs with explicit Google/community Q5 T5, original 0.9.8 distilled DiT/VAE, independent original-forward comparison and actual RGB/MP4 media. Frozen full-chain float gates remain failed despite passing RGB gates; numerical acceptance is false. Separate tensor/T5/DiT/VAE Android compilation is not App registration or phone execution. Official default multi-scale/PixArt text-weight identity, video quality, complete public assets and target-17 Android acceptance remain open. Older component receipts retain their original scope. App updates deliver foundation code only; users explicitly select/manage all model assets, with no automatic model retrieval. One complete v0.3.0 still requires F-01-F-12, existing text, selections 01-14/16/17 and every frozen subtarget, trained quality/resources, physical-phone load/unload/screen-off/API/upgrade evidence and A1-A11/R01-R05. No complete Release, physical-device acceptance or all-selected-model support is claimed.",
               "required_scope": "docs/MULTIMODAL_RELEASE_PLAN.md", "sources": sources}
     (out / "status.json").write_text(json.dumps(status, indent=2) + "\n", encoding="utf-8")
     # Keep complete Android/Release acceptance false despite real host video output.

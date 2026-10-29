@@ -2,6 +2,8 @@
 
 [中文](LTX098_PREPARE.md) · [Numbered delivery and complete pending scope](releases/v0.3.0-dev.21-ltx-prepare.md) · [Complete release scope](MULTIMODAL_RELEASE_PLAN.en.md) · [Host video and numerical gaps](LTX098_PIPELINE.en.md)
 
+> **dev.22 integration:** [App runtime-asset preparation](MODEL_PREPARATION.en.md) now packages the preparers and audited model-free architecture graphs, separately from generation engines. Users explicitly select/download/import source weights and start preparation; Android execution remains untested. Standalone component receipts below retain their original scoped meaning.
+
 This adds a portable **streaming safetensors → DiT GGUF converter**, preparing the foundation for users to prepare selected assets on the same Android phone. It reads an existing user-local file and requires no Python / Torch, ROOT, Termux, network or service on another device. It remains a standalone source component without production App integration. Android compilation is separate from execution and complete target 17 support.
 
 App updates continue to deliver the foundation. Users select, download or import model assets; this component embeds, retrieves, deletes and silently replaces none of the original model data. Preparation must follow an explicit user action, never installation, upgrade, browsing or discovery of missing assets.
