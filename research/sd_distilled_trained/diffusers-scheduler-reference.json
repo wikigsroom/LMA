@@ -1,0 +1,11 @@
+{
+  "repository": "huggingface/diffusers",
+  "revision": "df60b35e4747c6fba196922de42a383ec0e82c06",
+  "path": "src/diffusers/schedulers/scheduling_lcm.py",
+  "url": "https://api.github.com/repos/huggingface/diffusers/contents/src/diffusers/schedulers/scheduling_lcm.py?ref=df60b35e4747c6fba196922de42a383ec0e82c06",
+  "git_blob": "8e2627b6f477cc70ff7f600e0c621db0e035bf07",
+  "bytes": 25063,
+  "sha256": "89b6713ed5ba691b041b5d355ae06208b3dbae3706331d9cedebdc49289ee9e5",
+  "local_file": "reference-scheduling_lcm.py",
+  "executed": false
+}

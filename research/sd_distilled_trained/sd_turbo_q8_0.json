@@ -1,0 +1,153 @@
+{
+  "engine": "sd_cpp",
+  "backend": "cpu",
+  "tasks": [
+    "image"
+  ],
+  "capabilities": [
+    "text_to_image",
+    "distilled_sampling"
+  ],
+  "parameters": {
+    "version": 1,
+    "fields": {
+      "width": {
+        "type": "integer",
+        "label": "宽度",
+        "default": 512,
+        "minimum": 64,
+        "maximum": 2048,
+        "presets": [
+          256,
+          384,
+          512,
+          768,
+          1024
+        ],
+        "multipleOf": 64,
+        "limitSource": "application_guard"
+      },
+      "height": {
+        "type": "integer",
+        "label": "高度",
+        "default": 512,
+        "minimum": 64,
+        "maximum": 2048,
+        "presets": [
+          256,
+          384,
+          512,
+          768,
+          1024
+        ],
+        "multipleOf": 64,
+        "limitSource": "application_guard"
+      },
+      "steps": {
+        "type": "integer",
+        "label": "采样步数",
+        "default": 1,
+        "minimum": 1,
+        "maximum": 4,
+        "presets": [
+          1,
+          2,
+          4
+        ],
+        "multipleOf": 1,
+        "limitSource": "application_sampling_policy"
+      },
+      "threads": {
+        "type": "integer",
+        "label": "CPU 线程",
+        "default": 4,
+        "minimum": 1,
+        "maximum": 64,
+        "presets": [
+          1,
+          2,
+          4,
+          6,
+          8
+        ],
+        "multipleOf": 1,
+        "limitSource": "application_guard"
+      },
+      "seed": {
+        "type": "integer",
+        "label": "随机种子（-1 为随机）",
+        "default": -1,
+        "minimum": -1,
+        "maximum": 2147483647,
+        "presets": [
+          -1,
+          0,
+          42
+        ],
+        "multipleOf": 1,
+        "limitSource": "application_guard"
+      },
+      "cfg": {
+        "type": "number",
+        "label": "提示词引导",
+        "default": 1,
+        "minimum": 1,
+        "maximum": 1,
+        "presets": [
+          1
+        ],
+        "limitSource": "application_sampling_policy"
+      },
+      "sampler": {
+        "type": "enum",
+        "label": "采样器",
+        "default": "euler_a",
+        "values": [
+          "euler_a"
+        ]
+      },
+      "vaeTiling": {
+        "type": "boolean",
+        "label": "分块解码 VAE",
+        "default": true
+      },
+      "scheduler": {
+        "type": "enum",
+        "label": "调度器",
+        "default": "discrete",
+        "values": [
+          "discrete"
+        ]
+      }
+    }
+  },
+  "architecture": "sd21",
+  "pipeline": "sd21_turbo",
+  "schema": "lma.model-bundle/1",
+  "id": "sd_turbo_greensky_q8_0_r19a3158",
+  "modelId": "sd_turbo_greensky_q8_0_r19a3158",
+  "recipeId": "sd21_turbo_checkpoint_cpu_v1",
+  "name": "SD-Turbo Q8_0 (Green-Sky)",
+  "components": [
+    {
+      "role": "model",
+      "format": "gguf",
+      "repository": "Green-Sky/SD-Turbo-GGUF",
+      "revision": "19a31586d02d64a73b4419bc193b3ecfaf38e1f0",
+      "path": "sd_turbo-f16-q8_0.gguf",
+      "bytes": 2023745376,
+      "sha256": "d50be7655f0a554cf8041c145d88b210bd5f3c545423119dee62ae08cae51580",
+      "url": "https://huggingface.co/Green-Sky/SD-Turbo-GGUF/resolve/19a31586d02d64a73b4419bc193b3ecfaf38e1f0/sd_turbo-f16-q8_0.gguf"
+    },
+    {
+      "role": "clip_merges",
+      "repository": "stable-diffusion-v1-5/stable-diffusion-v1-5",
+      "revision": "451f4fe16113bff5a5d2269ed5ad43b0592e9a14",
+      "path": "tokenizer/merges.txt",
+      "bytes": 524619,
+      "sha256": "9fd691f7c8039210e0fced15865466c65820d09b63988b0174bfe25de299051a",
+      "format": "text",
+      "url": "https://huggingface.co/stable-diffusion-v1-5/stable-diffusion-v1-5/resolve/451f4fe16113bff5a5d2269ed5ad43b0592e9a14/tokenizer/merges.txt"
+    }
+  ]
+}

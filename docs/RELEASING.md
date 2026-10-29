@@ -2,6 +2,8 @@
 
 [贡献约定 / Contributing](../CONTRIBUTING.md) · [文档目录 / Documentation](README.md)
 
+本轮新增 [SD-Turbo / 独立 LCM 主机专项](SD_DISTILLED_TRAINED.md) / [English](SD_DISTILLED_TRAINED.en.md)，五份公开 JSON 与真实图像静态媒体纳入开发审计。完整 UNet 数值通过、原生出图或 Java 导入不能关闭 LCM 产品准备、画质、完整官方采样、Android / Release 门槛。See [numbered full pending scope](releases/v0.3.0-dev.24-sd-distilled.md).
+
 ## 持续要求 / Standing instruction
 
 用户已要求后续 LMA 更新同步推送到 `git@github.com:wikigsroom/LMA.git`，且同步代码、文档、媒体和更新说明。This repository's authorized future changes must be committed and pushed together with both languages, affected media, and release notes. This is recorded in [AGENTS.md](../AGENTS.md); it is not a background scheduler.

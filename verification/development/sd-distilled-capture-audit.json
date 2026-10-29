@@ -1,0 +1,506 @@
+{
+  "schema": "lma.sd-distilled-capture-audit/1",
+  "raw_capture_audit_passed": true,
+  "native_children": 10,
+  "java_native_children": 5,
+  "png_files": 9,
+  "trained_unet_forward_calls": 30,
+  "full_original_objects": 4,
+  "full_imported_objects": 2,
+  "originals": [
+    {
+      "id": "sd_turbo_q8_0",
+      "bytes": 2023745376,
+      "sha256": "d50be7655f0a554cf8041c145d88b210bd5f3c545423119dee62ae08cae51580"
+    },
+    {
+      "id": "lcm_dreamshaper_v7_f16",
+      "bytes": 2134675232,
+      "sha256": "0642060766117fdeb8cae0ccdc73ee974ac5779be1112d0a82f2b965bbd00e15"
+    },
+    {
+      "id": "lcm_original_unet_f32",
+      "bytes": 3438495328,
+      "sha256": "7be468469c513f8614a73423aa009581295fbd8c903703450632b2275c0145a9"
+    },
+    {
+      "id": "clip_merges",
+      "bytes": 524619,
+      "sha256": "9fd691f7c8039210e0fced15865466c65820d09b63988b0174bfe25de299051a"
+    }
+  ],
+  "prepared_candidate": {
+    "path": "build/sd-distilled-asset-probe/lcm-fixed-guidance-experiment-1793297800143307100/LCM_Dreamshaper_v7-f16-guidance8p5.gguf",
+    "bytes": 2134675232,
+    "sha256": "a307d7a72384ece75380ac91c0fe2d012dc9599c95224e1a5abe2a0bfaa6d298"
+  },
+  "files": {
+    "build/sd-distilled-asset-probe/sd-turbo-private-1793295796368509400/cancel-step1-capture.json": {
+      "bytes": 2022,
+      "sha256": "e1131b0b0d238f603cbeb0f3cce475877c5720c3dd3d86efa3b28e81cf8d5c25"
+    },
+    "build/sd-distilled-asset-probe/sd-turbo-private-1793295796368509400/cancel-step1.json": {
+      "bytes": 909,
+      "sha256": "6e18fdd6228d5a0e543092184b592d7910eb4111a34e8b0411bc5d3e8142ca9c"
+    },
+    "build/sd-distilled-asset-probe/sd-turbo-private-1793295796368509400/cancel-step1.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "build/sd-distilled-asset-probe/sd-turbo-private-1793295796368509400/cancel-step1.stdout": {
+      "bytes": 608,
+      "sha256": "e4f67f624c6677da9961d4c39de6a87ea9e9b94259df0dd7f225219674bb7555"
+    },
+    "build/sd-distilled-asset-probe/sd-turbo-private-1793295796368509400/four-step-capture.json": {
+      "bytes": 10839,
+      "sha256": "73bf953771d0a4b78a09ad928f152ca71ae3a1d500a735ff82fe04f6a67d6143"
+    },
+    "build/sd-distilled-asset-probe/sd-turbo-private-1793295796368509400/four-step.json": {
+      "bytes": 906,
+      "sha256": "9bca5b5ffd03eb0a9e8f75e45bb57a708df3a881bf2cf3e69f28b2a3e4974832"
+    },
+    "build/sd-distilled-asset-probe/sd-turbo-private-1793295796368509400/four-step.png": {
+      "bytes": 612816,
+      "sha256": "5845daae68c1712e1af6f2b03537505dafe10aa38ba167a4285f8fcb4742f013"
+    },
+    "build/sd-distilled-asset-probe/sd-turbo-private-1793295796368509400/four-step.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "build/sd-distilled-asset-probe/sd-turbo-private-1793295796368509400/four-step.stdout": {
+      "bytes": 5813,
+      "sha256": "3cc54da5f5b882a6add6745d5bd73f4facbf245b2f72247f3a881b07f0fc2ff5"
+    },
+    "build/sd-distilled-asset-probe/sd-turbo-private-1793295796368509400/invalid-cfg-capture.json": {
+      "bytes": 1365,
+      "sha256": "8092bbe14eeb2665e34f9bfd5c50b58593bf8f43a35596963647e3c00a574e7c"
+    },
+    "build/sd-distilled-asset-probe/sd-turbo-private-1793295796368509400/invalid-cfg.json": {
+      "bytes": 908,
+      "sha256": "bf4e52389d084ecf53c057f371932f56bc3fda32c3156cc7bc646bd47222edc6"
+    },
+    "build/sd-distilled-asset-probe/sd-turbo-private-1793295796368509400/invalid-cfg.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "build/sd-distilled-asset-probe/sd-turbo-private-1793295796368509400/invalid-cfg.stdout": {
+      "bytes": 313,
+      "sha256": "3f44e7f25b2ed59c3ae9f527cee3070b9e674ec8aed39c06c5f87a0f64134509"
+    },
+    "build/sd-distilled-asset-probe/sd-turbo-private-1793295796368509400/one-step-capture.json": {
+      "bytes": 10432,
+      "sha256": "22b7d427410a80aa64bd53d82ad27d620d08e78b49379ed4dd7417ca9c2f02f2"
+    },
+    "build/sd-distilled-asset-probe/sd-turbo-private-1793295796368509400/one-step.json": {
+      "bytes": 905,
+      "sha256": "14cd46121b4feed7d53719325bad623b653ac33c9bad2223d29f7b085ed2b7c4"
+    },
+    "build/sd-distilled-asset-probe/sd-turbo-private-1793295796368509400/one-step.png": {
+      "bytes": 626945,
+      "sha256": "fcb9a5ae36e5e45b61ce13a0d674ea8d47444371d5ba1adad95c32f1b84e9572"
+    },
+    "build/sd-distilled-asset-probe/sd-turbo-private-1793295796368509400/one-step.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "build/sd-distilled-asset-probe/sd-turbo-private-1793295796368509400/one-step.stdout": {
+      "bytes": 5572,
+      "sha256": "1332948b21419a257937c322017b14d4c1851ae7ba4ec6af0f3b8ccfd7bc1e75"
+    },
+    "build/sd-distilled-asset-probe/sd-turbo-private-1793295796368509400/recovery-capture.json": {
+      "bytes": 10868,
+      "sha256": "69c09fefea75feb971d2da0f3591e5ba80a11a9ad0c5ac1385b6cc6fbb83ddac"
+    },
+    "build/sd-distilled-asset-probe/sd-turbo-private-1793295796368509400/recovery.json": {
+      "bytes": 905,
+      "sha256": "e3064e6e69c26a797961b1b2505e790adafdba2281731fb3ecc3e663f8ac3620"
+    },
+    "build/sd-distilled-asset-probe/sd-turbo-private-1793295796368509400/recovery.png": {
+      "bytes": 612816,
+      "sha256": "5845daae68c1712e1af6f2b03537505dafe10aa38ba167a4285f8fcb4742f013"
+    },
+    "build/sd-distilled-asset-probe/sd-turbo-private-1793295796368509400/recovery.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "build/sd-distilled-asset-probe/sd-turbo-private-1793295796368509400/recovery.stdout": {
+      "bytes": 5842,
+      "sha256": "377495ab292e52afd23b7ec822e5e34636d1ecb6e2c278c7985db23de25d17fc"
+    },
+    "build/sd-distilled-asset-probe/sd-turbo-private-1793295796368509400/results.json": {
+      "bytes": 45649,
+      "sha256": "0373cd2f3f49991d0945ab6675079f57aac6c871ac1bd7a413a44d38264ee907"
+    },
+    "build/sd-distilled-asset-probe/lcm-checkpoint-private-1793300235058319800/cancel-step1-capture.json": {
+      "bytes": 2355,
+      "sha256": "9fab67cd735fdf40ba32da5458abf1be0e811d69a4370f808b2b3ac407a78125"
+    },
+    "build/sd-distilled-asset-probe/lcm-checkpoint-private-1793300235058319800/cancel-step1.json": {
+      "bytes": 891,
+      "sha256": "efea7c5b19d3a590d227d17d9e1a7359eca31f8b6098ca386441c59410ef2852"
+    },
+    "build/sd-distilled-asset-probe/lcm-checkpoint-private-1793300235058319800/cancel-step1.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "build/sd-distilled-asset-probe/lcm-checkpoint-private-1793300235058319800/cancel-step1.stdout": {
+      "bytes": 794,
+      "sha256": "ef2fcfc57bef1e45a744f93ead508f00f1b6116b6ae7ab315cc8a04093958d5c"
+    },
+    "build/sd-distilled-asset-probe/lcm-checkpoint-private-1793300235058319800/converted-original-capture.json": {
+      "bytes": 11207,
+      "sha256": "ce770292fab0376f63aafa4d9e49bc6e4307b549702c3caf1b31bf7ba66eff6f"
+    },
+    "build/sd-distilled-asset-probe/lcm-checkpoint-private-1793300235058319800/converted-original.json": {
+      "bytes": 910,
+      "sha256": "e05241c8b3d5ef36d63f01a2434a39f0b588360d3bd975be15a2ae3ba104923a"
+    },
+    "build/sd-distilled-asset-probe/lcm-checkpoint-private-1793300235058319800/converted-original.png": {
+      "bytes": 531990,
+      "sha256": "7d25b2edc3d68433fbcd99bda0d386f4103777e966f388eaea44a85c50ceae42"
+    },
+    "build/sd-distilled-asset-probe/lcm-checkpoint-private-1793300235058319800/converted-original.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "build/sd-distilled-asset-probe/lcm-checkpoint-private-1793300235058319800/converted-original.stdout": {
+      "bytes": 6015,
+      "sha256": "82da49ea0dc09af6201b1674bef106d1bfd474d84478e01c08216ce39e0808b4"
+    },
+    "build/sd-distilled-asset-probe/lcm-checkpoint-private-1793300235058319800/fixed-guidance8p5-capture.json": {
+      "bytes": 11188,
+      "sha256": "4097e13f18ebd3011e88b55f0f2ef3ff90d3a8f723ec6991d98afb41ff6a29b7"
+    },
+    "build/sd-distilled-asset-probe/lcm-checkpoint-private-1793300235058319800/fixed-guidance8p5.json": {
+      "bytes": 896,
+      "sha256": "6126b933e8b263730cd210f799911eb3887b5f024b29aead8b1b47a48dbec29e"
+    },
+    "build/sd-distilled-asset-probe/lcm-checkpoint-private-1793300235058319800/fixed-guidance8p5.png": {
+      "bytes": 528970,
+      "sha256": "3565db6b81852987157e4a41d6d51709b53e236f02ed9ca1abb4c8ce9c429680"
+    },
+    "build/sd-distilled-asset-probe/lcm-checkpoint-private-1793300235058319800/fixed-guidance8p5.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "build/sd-distilled-asset-probe/lcm-checkpoint-private-1793300235058319800/fixed-guidance8p5.stdout": {
+      "bytes": 6007,
+      "sha256": "54edceaccea935281d9a55b13ed83008c8cb64d1e319d2d088681bd75bb4ff75"
+    },
+    "build/sd-distilled-asset-probe/lcm-checkpoint-private-1793300235058319800/invalid-cfg-capture.json": {
+      "bytes": 1388,
+      "sha256": "e4add51898f02cd9c91badff24a238223a2d51115a5c766d311950e116e43a67"
+    },
+    "build/sd-distilled-asset-probe/lcm-checkpoint-private-1793300235058319800/invalid-cfg.json": {
+      "bytes": 890,
+      "sha256": "158ff24cc5b204a68cc44847d3ec3ddfb73feef1d1bba663b57f7e8201be7eef"
+    },
+    "build/sd-distilled-asset-probe/lcm-checkpoint-private-1793300235058319800/invalid-cfg.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "build/sd-distilled-asset-probe/lcm-checkpoint-private-1793300235058319800/invalid-cfg.stdout": {
+      "bytes": 304,
+      "sha256": "77827eec911d537da901c2821461855791927fd111ba03cd11a339e45e6b0af3"
+    },
+    "build/sd-distilled-asset-probe/lcm-checkpoint-private-1793300235058319800/recovery-capture.json": {
+      "bytes": 11180,
+      "sha256": "b2631a21bba0d7ee3cce8c351700e9e37cb5db4a2124b113c5504a79827c2103"
+    },
+    "build/sd-distilled-asset-probe/lcm-checkpoint-private-1793300235058319800/recovery.json": {
+      "bytes": 887,
+      "sha256": "7132d8ad1e53db81cc9b9fe00235baa7b13273381352bae6f2037cb885498e63"
+    },
+    "build/sd-distilled-asset-probe/lcm-checkpoint-private-1793300235058319800/recovery.png": {
+      "bytes": 528970,
+      "sha256": "3565db6b81852987157e4a41d6d51709b53e236f02ed9ca1abb4c8ce9c429680"
+    },
+    "build/sd-distilled-asset-probe/lcm-checkpoint-private-1793300235058319800/recovery.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "build/sd-distilled-asset-probe/lcm-checkpoint-private-1793300235058319800/recovery.stdout": {
+      "bytes": 6008,
+      "sha256": "109f4eca74bc561a4b68dc4e2388846c383943ae471f3cb512bb3af97999b1b6"
+    },
+    "build/sd-distilled-asset-probe/lcm-checkpoint-private-1793300235058319800/results.json": {
+      "bytes": 51881,
+      "sha256": "7d4db670314e06f9d1ad57994a5ed1cc9d700a7ccba83d4d2ece4009399b0d5e"
+    },
+    "build/sd-distilled-asset-probe/lcm-checkpoint-private-1793300235058319800/review-pair.png": {
+      "bytes": 746358,
+      "sha256": "48e64dca96f4241e12cf6440ce724a8855dd4cbbe54fd7beaf497a7d035acfba"
+    },
+    "build/sd-distilled-asset-probe/lcm-full-unet-fold-1793299593425299500/original-omitted-branch-f32-0.f32": {
+      "bytes": 1024,
+      "sha256": "83683896c29ab0c40c4883d91977699533de5fed9a0a90b24b4c2874a816e3b5"
+    },
+    "build/sd-distilled-asset-probe/lcm-full-unet-fold-1793299593425299500/original-conditioned-f32-0.f32": {
+      "bytes": 1024,
+      "sha256": "2ee5f3388657301d6d73f55debe1b6363e6582710f0a36bf2aeb95c25bedf982"
+    },
+    "build/sd-distilled-asset-probe/lcm-full-unet-fold-1793299593425299500/original-omitted-branch-f32-1.f32": {
+      "bytes": 4096,
+      "sha256": "086984b4298657a018318ab943190d127f5540b8f8fef7b12c2581958e0403eb"
+    },
+    "build/sd-distilled-asset-probe/lcm-full-unet-fold-1793299593425299500/original-conditioned-f32-1.f32": {
+      "bytes": 4096,
+      "sha256": "32895cc8949dc7f2b3258783c134f68b1bade5c46a232087111d1d95ab87bf27"
+    },
+    "build/sd-distilled-asset-probe/lcm-full-unet-fold-1793299593425299500/original-omitted-branch-f32-2.f32": {
+      "bytes": 1024,
+      "sha256": "db8664bba0038e03c9dcb4ecca8bb9c9c7a830a9fd55801d10a06b34592d61c3"
+    },
+    "build/sd-distilled-asset-probe/lcm-full-unet-fold-1793299593425299500/original-conditioned-f32-2.f32": {
+      "bytes": 1024,
+      "sha256": "ea3e93199a647115c429db57cad9bb1d0d123e8f54ca6bccedfc3567a0a9c1a1"
+    },
+    "build/sd-distilled-asset-probe/lcm-full-unet-fold-1793299593425299500/original-omitted-branch-f32-3.f32": {
+      "bytes": 4096,
+      "sha256": "94ccd2b6864ed2ce78ed183f1b438e1b68b4fda98b88ba5536b226c2ac0e0df1"
+    },
+    "build/sd-distilled-asset-probe/lcm-full-unet-fold-1793299593425299500/original-conditioned-f32-3.f32": {
+      "bytes": 4096,
+      "sha256": "58c75143317e6186ef5aff4d05ddfa530a3dca2fc8fbb5b7597fa1ddf97dee93"
+    },
+    "build/sd-distilled-asset-probe/lcm-full-unet-fold-1793299593425299500/original-omitted-branch-f32-4.f32": {
+      "bytes": 1024,
+      "sha256": "384d138862973a196be54b074dd094769ff634fb9cd8c53937d62d03ef951c34"
+    },
+    "build/sd-distilled-asset-probe/lcm-full-unet-fold-1793299593425299500/original-conditioned-f32-4.f32": {
+      "bytes": 1024,
+      "sha256": "4e34e0c4af0d5b5c481a385a2b6e1595413d4ae5cac16e8da28f351e694d357b"
+    },
+    "build/sd-distilled-asset-probe/lcm-full-unet-fold-1793299593425299500/original-omitted-branch-f32-5.f32": {
+      "bytes": 4096,
+      "sha256": "dc7d91acb154f72c65d8a4da43dddc750df57d5215e401af392f7bb99018ffc1"
+    },
+    "build/sd-distilled-asset-probe/lcm-full-unet-fold-1793299593425299500/original-conditioned-f32-5.f32": {
+      "bytes": 4096,
+      "sha256": "b574d4d846abfe31fc7be508767a938d6800271d45db5d2443524bd6166e0924"
+    },
+    "build/sd-distilled-asset-probe/lcm-full-unet-fold-1793299593425299500/original-folded-f32-0.f32": {
+      "bytes": 1024,
+      "sha256": "6a1c9ebe21e53406b8100474ad1f63057997ff62b913bbefd65b04764f676e18"
+    },
+    "build/sd-distilled-asset-probe/lcm-full-unet-fold-1793299593425299500/original-folded-f32-1.f32": {
+      "bytes": 4096,
+      "sha256": "e597cc2fafc53b85f722861541fbc2f13d43679e14eca602f0392566f2fb3aaf"
+    },
+    "build/sd-distilled-asset-probe/lcm-full-unet-fold-1793299593425299500/original-folded-f32-2.f32": {
+      "bytes": 1024,
+      "sha256": "cce9f6d081115e3a91f4cc2e27ae0844610a34c403942bf2d347ca23274c094a"
+    },
+    "build/sd-distilled-asset-probe/lcm-full-unet-fold-1793299593425299500/original-folded-f32-3.f32": {
+      "bytes": 4096,
+      "sha256": "96840ebd40c289ab3e06d4ce9ce0fc5eb5eaf8ec0a3b28d05fc18784937c7b3b"
+    },
+    "build/sd-distilled-asset-probe/lcm-full-unet-fold-1793299593425299500/original-folded-f32-4.f32": {
+      "bytes": 1024,
+      "sha256": "1f1111f640dae5b827a9fc84096b556969174bac7b0a6743c86b85bc62f53361"
+    },
+    "build/sd-distilled-asset-probe/lcm-full-unet-fold-1793299593425299500/original-folded-f32-5.f32": {
+      "bytes": 4096,
+      "sha256": "1187d9a9e90565d5163b3bd4e91c7bfa5e4c790329674b46453d07b981099887"
+    },
+    "build/sd-distilled-asset-probe/lcm-full-unet-fold-1793299593425299500/converted-conditioned-f32-compute-0.f32": {
+      "bytes": 1024,
+      "sha256": "835eb638d236008da268fc3d26a77ddf33f5ded91dd18922a4db4a60f7e6178d"
+    },
+    "build/sd-distilled-asset-probe/lcm-full-unet-fold-1793299593425299500/converted-conditioned-f32-compute-1.f32": {
+      "bytes": 4096,
+      "sha256": "e11a164a6935e79bd3eb67762cafd505980748a5dcee88db6bb3201fa9ae1250"
+    },
+    "build/sd-distilled-asset-probe/lcm-full-unet-fold-1793299593425299500/converted-conditioned-f32-compute-2.f32": {
+      "bytes": 1024,
+      "sha256": "4513fd42a7d07f0be33e2fb0c647f7cffb7a8abeab9330be23a7955c7a13fba9"
+    },
+    "build/sd-distilled-asset-probe/lcm-full-unet-fold-1793299593425299500/converted-conditioned-f32-compute-3.f32": {
+      "bytes": 4096,
+      "sha256": "945549db6f658af516d84bebb7ccacbc2fe397910471e1851bd19bfe90ee2f28"
+    },
+    "build/sd-distilled-asset-probe/lcm-full-unet-fold-1793299593425299500/converted-conditioned-f32-compute-4.f32": {
+      "bytes": 1024,
+      "sha256": "c0016807967da6b300f77524610fe5d466efd503e72cfdbf51387dd01c2e3695"
+    },
+    "build/sd-distilled-asset-probe/lcm-full-unet-fold-1793299593425299500/converted-conditioned-f32-compute-5.f32": {
+      "bytes": 4096,
+      "sha256": "3f148df81acaf0ea9d58a85bbad966435a6b1ce24c4c968ae8fbebab9624fb73"
+    },
+    "build/sd-distilled-asset-probe/lcm-full-unet-fold-1793299593425299500/converted-folded-f32-compute-0.f32": {
+      "bytes": 1024,
+      "sha256": "35cdc0543b349521b66dc05ed76c39701344eca3716daadf9d762594217cbba2"
+    },
+    "build/sd-distilled-asset-probe/lcm-full-unet-fold-1793299593425299500/converted-folded-f32-compute-1.f32": {
+      "bytes": 4096,
+      "sha256": "b68ee00f40fd383f687a612e265f38e2cf1b97cf1da734b56acd8134f51c37e7"
+    },
+    "build/sd-distilled-asset-probe/lcm-full-unet-fold-1793299593425299500/converted-folded-f32-compute-2.f32": {
+      "bytes": 1024,
+      "sha256": "e0ffdcb446b81169c7236f11480b9bcf5f7413f7de78dd7051c5caf2297831ba"
+    },
+    "build/sd-distilled-asset-probe/lcm-full-unet-fold-1793299593425299500/converted-folded-f32-compute-3.f32": {
+      "bytes": 4096,
+      "sha256": "8e59426a64496b4d1b9e102eee383f4551c483a4aa0f314cbd1e7c5b7d763cc1"
+    },
+    "build/sd-distilled-asset-probe/lcm-full-unet-fold-1793299593425299500/converted-folded-f32-compute-4.f32": {
+      "bytes": 1024,
+      "sha256": "a3521c32de29187a013ddaee844e74bf4c9a0ada004c690545d624abb254d501"
+    },
+    "build/sd-distilled-asset-probe/lcm-full-unet-fold-1793299593425299500/converted-folded-f32-compute-5.f32": {
+      "bytes": 4096,
+      "sha256": "35e6bdc71c6a73e3240b743e52da83602e3075e21ab752aef974b748d7265816"
+    },
+    "build/sd-distilled-asset-probe/lcm-full-unet-fold-retry.log": {
+      "bytes": 6521,
+      "sha256": "2cffb9596be0687de77bf81e2b46cb43e4b8b1d0dd8a68b620845e462048caed"
+    },
+    "build/sd-turbo-app-host-tests/run-1793300418393226900/compile.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "build/sd-turbo-app-host-tests/run-1793300418393226900/data/files/bundles/bundles.json": {
+      "bytes": 7299,
+      "sha256": "45948b2a01edf761236ebe542b47b9f9fc780fcaeacf989b0c018baca35352b0"
+    },
+    "build/sd-turbo-app-host-tests/run-1793300418393226900/data/four-step/48a55022-4cbd-4e04-b1aa-52454aa71e80.png": {
+      "bytes": 612816,
+      "sha256": "5845daae68c1712e1af6f2b03537505dafe10aa38ba167a4285f8fcb4742f013"
+    },
+    "build/sd-turbo-app-host-tests/run-1793300418393226900/data/java-results.json": {
+      "bytes": 30437,
+      "sha256": "5768656fef84e64e7bfc465da3877b32506969a4c55906e611e4ed7253dc0936"
+    },
+    "build/sd-turbo-app-host-tests/run-1793300418393226900/data/one-step/2a450a1d-ac92-4e48-96c6-d984c783efc0.png": {
+      "bytes": 626945,
+      "sha256": "fcb9a5ae36e5e45b61ce13a0d674ea8d47444371d5ba1adad95c32f1b84e9572"
+    },
+    "build/sd-turbo-app-host-tests/run-1793300418393226900/data/recovery/e7626b3c-9ba1-45d5-a36e-6a5b14bd6446.png": {
+      "bytes": 612816,
+      "sha256": "5845daae68c1712e1af6f2b03537505dafe10aa38ba167a4285f8fcb4742f013"
+    },
+    "build/sd-turbo-app-host-tests/run-1793300418393226900/java.stderr": {
+      "bytes": 495,
+      "sha256": "56231079ae8fc6ef9b4e0f69884c114fd484585bb072f0642ab769168513065f"
+    },
+    "build/sd-turbo-app-host-tests/run-1793300418393226900/java.stdout": {
+      "bytes": 19112,
+      "sha256": "642b5846e26772d25ddb3aba39e8144b39338003ee3a1c50b6fb1dbfa4c68c39"
+    },
+    "build/sd-turbo-app-host-tests/run-1793300418393226900/sources.rsp": {
+      "bytes": 5139,
+      "sha256": "908eb25450cbd87baefa5fbf1256113a38944675e59820e3694cd39266e128f1"
+    }
+  },
+  "sources": {
+    "sd-distilled-assets.json": "78560bd08ff4ca7ef022cf6eaf4d6069b79d12690ad0f707e91700e209110076",
+    "sd-distilled-native.json": "34b1050f86b2d6d1d22e3f06f5a9210a047395e725f3dc0defdb258fa5b9cec1",
+    "sd-distilled-lcm-analysis.json": "080d7a296229f9f35454520cad6129a83ce6e53c149ab98d15715e301ed98fe5",
+    "sd-turbo-app-host.json": "c452a8898dcab85f71f0a045f5a6dea6e24069fec5e09f2186e82300c0b81daf"
+  },
+  "negative_controls": [
+    "promote-android",
+    "promote-quality",
+    "promote-product-preparation",
+    "promote-complete-target",
+    "missing-actual-java-children",
+    "changed-output",
+    "changed-cancel-step",
+    "relaxed-numerical-gate"
+  ],
+  "physical_android": false,
+  "image_quality_accepted": false,
+  "complete_target03_accepted": false,
+  "complete_release_accepted": false,
+  "input_fingerprint": {
+    "app/src/main/assets/model-bundles.json": "bb2272dfa95443c9391fb858fd19b52d539126ca209319c190b420e734bc97b8",
+    "native/sd_policy.hpp": "c7d987ffc6b905fbad9d6a47be98d10f57b2060728f00801742a4ec346a5c7ba",
+    "native/sd_worker.cpp": "47e1c3344c63fb90bc240e2743f8257904e831b1597b9d0b9bd780011e8969d0",
+    "native/vocab_external.cpp": "8bfe3af4f45363554f58009efcd7404e3af9da768cb65762de6c6b91621c81f1",
+    "research/sd_host/CMakeLists.txt": "0870d59e689181eddd9690cc537da9b9abf4a252791ae6dd0506aa95fe4051d3",
+    "research/sd_host/compat/sys/prctl.h": "87c9ddf82ce059bf303486b0e10b22dce6d972e87f83836d148e631dcdad9c9e",
+    "research/sd_host/compat/unistd.h": "e467e7f5855c286b3ce40268146ed34d153a5fbf8a42d5c36b26a6293142068b",
+    "research/sd_host/NOTICE": "90e18935ca8ba71ac1a5ce59e3a2f0b0580cd246877f65cba402deff67eb18fc",
+    "research/sd_host/platform.hpp": "c377ed1b676707a469a192d96ae9b748802e1f62ad0674366b593b2b5b2daf67",
+    "third_party/engine-lock.json": "1341d53deca6412779d197b5fc978a37a55462ee4d86df4b6db4b3c7bf97ec7a",
+    "third_party/notices/sd-sources.json": "91ee744071aa93c4bd4d40476d3582fa4bf4d00a628527e196d4856c06ec77c1",
+    "tools/build_native.py": "f3876b3c254ee367a55f15bcbf9cd8c0dc2eb243b53b59796a282f2afc4a7c11",
+    "tools/build_sd_host.py": "25943d201f98b806c15df691f87fd496f7988f4d104e92549bf5a3ed2e787e13",
+    "tools/fetch_sd15_trained.py": "91392401d9739f15b14fa4e42b74f13bbdd719a382746541cc69952966e6f307",
+    "research/sd_distilled_trained/assets.json": "0eb451932dbb30c2129d94c60e74ccbde1685c6ac3dba42de868ae5909cdc72c",
+    "tools/fetch_sd_distilled_trained.py": "dc568e0d46da91e046dfbd6d4fbbc8d2cfa5cda75e5dbdd82c6bb3f5594fe2d5",
+    "app/src/main/assets/recipe-templates.json": "4abedebe4d01f45e4d0b22506071c83bfddeb3e6750950630a9ff5a5f5b5b958",
+    "app/src/main/java/com/lma/app/core/AdapterSpec.java": "aff8572d14ac8d616be0a1b0da395e52ed5bddcd5ae407a969c2657bf9257581",
+    "app/src/main/java/com/lma/app/core/ArtifactStore.java": "0336ab2425868bf2cb5a2fc37d97afbcdf838bb5f977b874e0f98c9db777be55",
+    "app/src/main/java/com/lma/app/core/AssemblyPlan.java": "80e81dea2a831d3955aa5ae21323eb0432fb448f78994901633fbb6e85d77e7c",
+    "app/src/main/java/com/lma/app/core/BundleStore.java": "a773aaa8f83410da9ccbf499b9a19ee4166e2c094c2e992699424c0ac68f3e74",
+    "app/src/main/java/com/lma/app/core/BundleTransfers.java": "926596119a2c3f6bc089516e7bbd7db3016487d60c24f908ea646dfc76707f3e",
+    "app/src/main/java/com/lma/app/core/BundleUpdates.java": "f31a65d0e172aa75f6131deace828875534ccc756ed93fac83bb09d5a4162fe1",
+    "app/src/main/java/com/lma/app/core/ByteRange.java": "31723bf112e630de6c2a1cd8d525be7bbd4706e151fa5a297a5e641f59b5c752",
+    "app/src/main/java/com/lma/app/core/ChatHistory.java": "3046a52c3f611b83b46cfed94afe0f4b31667f77986b7ca1737169ec8c4ce951",
+    "app/src/main/java/com/lma/app/core/ComponentIntegrity.java": "7a5977c607f624f8763a782b1b081c4e485c8c05c2caae15986ad2f2388f5bce",
+    "app/src/main/java/com/lma/app/core/DataFiles.java": "02d3212885376e7073a785801dbb81073b13cc87c5fc0e85ac4373fd346696bc",
+    "app/src/main/java/com/lma/app/core/EngineWorkspace.java": "6c632861e13d0a8950cdee66e8bea8a8760d23550c10343d6cfdd8a6e9af29dd",
+    "app/src/main/java/com/lma/app/core/ExecutionGate.java": "45d783f80953a364115525a361cb3490871b8ec8dfb0f386d90d83c81fc281bc",
+    "app/src/main/java/com/lma/app/core/InputSelection.java": "963fe60973caab82b9dfedaa7c1661f236aed6ea158fcda8f4a86d02ba33d509",
+    "app/src/main/java/com/lma/app/core/InputSpec.java": "a2d34c41a8c623eb31bbcae412037705ea7e4c69e06c9de6f62c83f199f97728",
+    "app/src/main/java/com/lma/app/core/InputUploads.java": "5debd68a73abc8bde8174c985dfec8f534c6bf8df58dda8810b0cc3541fe1d53",
+    "app/src/main/java/com/lma/app/core/JobStore.java": "d03a21e563f0c2803cb444c8c564f87b6330c583ac7d9316f5732e0e17567630",
+    "app/src/main/java/com/lma/app/core/LocalApi.java": "bb1b463524a4c30a2f67a9407d0e2bb36bce7446c19ac99dd2ebde7a1c6465d7",
+    "app/src/main/java/com/lma/app/core/LocalHttp.java": "428acea4f950bd2ae2948e5b418f5f98259640108427fd9c59d918809787c9cd",
+    "app/src/main/java/com/lma/app/core/MnnSpec.java": "ef8a51675cdda887a1b7c78b8b1c6398b71c87a004327fbda5af62f8b52d8315",
+    "app/src/main/java/com/lma/app/core/ModelBundle.java": "ad08c033a2c9a215c292d20a5a97a65c85db91ce6a86609a8eed9e846449e84b",
+    "app/src/main/java/com/lma/app/core/ModelSelection.java": "965c9f22f16fc822f792ebef6e0de0a0c67f5a6882d5e7ef77be05b83ea1aeb2",
+    "app/src/main/java/com/lma/app/core/MossDelaySpec.java": "2f680d68cf78517f234c336c77e0b584bf40300fd6294514b7cd457149d41bd0",
+    "app/src/main/java/com/lma/app/core/MossNanoSpec.java": "4b784a773fb85550eba8f169a62cab9a274a332519ec700b595694378e9e39ed",
+    "app/src/main/java/com/lma/app/core/MossRqSpec.java": "74f68a8374b5436cf73688e427e9cad244a198f6f8faa2c5fea686bb04bc99a2",
+    "app/src/main/java/com/lma/app/core/NativePreparation.java": "641a9eac9289f66f13c25707f44cf4c51873b2d97a51bb29db2447dcaa1621fd",
+    "app/src/main/java/com/lma/app/core/OpenMossSpec.java": "4a9af3c92d87be65c4f617677eaed31576f9160a3355518fff7cb874192a5258",
+    "app/src/main/java/com/lma/app/core/ParameterSchema.java": "d536dd7e01107785076f5d1cd3c1c7ff89f6a3711ec130d3ec13e4b20d73bef1",
+    "app/src/main/java/com/lma/app/core/PreparationPlan.java": "dfee63b84035c6ca18b0647aecb947070b983b6b2f1de08247129dddfa64a0bf",
+    "app/src/main/java/com/lma/app/core/PreparedAssets.java": "ae09c7aa1643fc22b76cbe11182a742f26aa0ea95bc9b7166d685433a603dd02",
+    "app/src/main/java/com/lma/app/core/PreparedModelAssembly.java": "eef243d48c9b2b7d3d9b08b2ddf8129ff3884bbdd6c00ecd28a83c0f4bbfa384",
+    "app/src/main/java/com/lma/app/core/ProcessControl.java": "a1950624951d41c040b0b9f44cd8ef5faff16ed22dae880d626e4619d77c155d",
+    "app/src/main/java/com/lma/app/core/Protocol.java": "d49f47884aec0cb03347023119c2808330fa9970689dcd9d33c30ca653d03b85",
+    "app/src/main/java/com/lma/app/core/QwenTtsSpec.java": "e94d96d7ce7c499b2d4bafbd35740c690b32169a142a9a55aae7a8b03364125b",
+    "app/src/main/java/com/lma/app/core/RecipeCatalogue.java": "7b27a07355fe4f7671eef7fa17c9f9ab8512f3f52ccc1de15d4069f15bc6384a",
+    "app/src/main/java/com/lma/app/core/SdSpec.java": "07c4a9c69071a72fe70b37dfa85294d70cd387365545f885b671dc20c7332694",
+    "app/src/main/java/com/lma/app/core/SoulxSpec.java": "a761d40965d041d38cc1f629418017103c9eefabf5904814fad9de6372b6bcc7",
+    "app/src/main/java/com/lma/app/core/StableAudioSpec.java": "0cc04143a8c8c2afa4dc3d9726f4891779b352404d97c70d6fdc260fbe27ee6c",
+    "app/src/main/java/com/lma/app/core/TaskInput.java": "6f186b392f9e2fd70f253398f4becf9604d22e03c132f18b3bb93f635f637d7b",
+    "app/src/main/java/com/lma/app/core/TextRequest.java": "bfdb23db96512f00f362b49951c1fee4162ca2d441482eb6ebf180a8d3574d5f",
+    "app/src/main/java/com/lma/app/core/TextResult.java": "2dd7968a40cc917fab5b8bc412ef00d21348abec1d844b140b843b1bba57c6ab",
+    "app/src/main/java/com/lma/app/core/TextSpec.java": "4521ce8e833d88276f6b98d446e0171c48602d67ce2cf4b372d425e56d6d149e",
+    "app/src/main/java/com/lma/app/core/TtsSpec.java": "54f841e2ca5e93d3c3e1845014029b96912291fcf50a50c26a0124325a7a962a",
+    "app/src/main/java/com/lma/app/core/WaveFile.java": "cf70b9bbafb6aa23cc25217d4883e769173b00f74571d1b115c50a8ad6b15361",
+    "app/src/main/java/com/lma/app/LocalEngine.java": "db9b46d2e05802bec96f2fb428469553d95c3424228dd06fd617c361b99b9f7d",
+    "app/src/main/java/com/lma/app/NativeWorker.java": "c3324271639c6e77495e9aac78a663c6110dfef1026d0cc320ca82344ddd030d",
+    "app/src/main/java/com/lma/app/SdEngine.java": "052d59633d322cb94c4e64b525604fb6424c824c8fdf2e97e4d181c7059a8372",
+    "research/sd_distilled_trained/sd_turbo_q8_0.json": "b3b4668f994ae9be01b63bdf816ed8b6af4eafa310bafa83443d077b7b432683",
+    "tests/sd-distilled/com/lma/app/SdTurboTrainedAppTest.java": "b824b8995fce119a5e091202b3327ec8504d55db1849345cf5d979ac716dc2ac",
+    "tests/sd-host/com/lma/app/VideoEncoder.java": "96e480bec46860cd05e40d55b7e21710069f71f1f54c4cc543f26d6505efa146",
+    "tests/sd-trained/android/util/AtomicFile.java": "99bc308a86040ee296fb15be67ecd639eedfcdba9a8023f26d8d1b73f6d4d579",
+    "tests/sd-trained/com/lma/app/SdTrainedAppTest.java": "1758b45dee8f3ba4840aaa7b216d0ac666ab22ce0e5fb463ebe1e6f7c1781216",
+    "tests/tts-host/com/lma/app/LmaApp.java": "9f27bd7188d03aa4eb95b007111daff697d39515dc41884d4569e2f382d0577b",
+    "tools/test_sd_turbo_app_host.py": "2a2a04acfb1510ff58ac7ad5ab9e75e350f30999f62d7c29142202a5adf49d52",
+    "tools/test_sd_variants_trained.py": "bfc2b5eb71be4650c35cec5328ca24083e35d4123d064c07ed9f2ad7bce70424",
+    "research/sd_distilled_trained/diffusers-package-reference.json": "cdf7d58528d2173067b36b3d36bea852879b0adc61a7707ff18ac85964a84f3d",
+    "research/sd_distilled_trained/diffusers-reference.json": "b869e393d5c87f0b2d0b77665b4a1a1d3c2b6e2e5ec8b3ad9480269ff7d98f5e",
+    "research/sd_distilled_trained/diffusers-scheduler-reference.json": "b4fc85b05761675570e53a5b569eddb419ae233e7f67ad1dcdc712e7ba81c166",
+    "research/sd_distilled_trained/experiments/compare_lcm_bias.py": "e900f24ead508f3eec90cfa52d2e6ea8a8e356acc68e2aad725f5702914f3791",
+    "research/sd_distilled_trained/experiments/compare_lcm_unet.py": "b9143e1efeaa91fd00ce311ba1c2c0e0ebdf437fc05740fb25686c1e147e64fd",
+    "research/sd_distilled_trained/experiments/inspect_lcm_header.py": "df8ce181752cbb10b554525832a2363f82c45d038ccc66789202c4863287b7df",
+    "research/sd_distilled_trained/experiments/map_lcm_tensors.py": "b5a403d6b8b8a315472777e5e381d5f14370a284eedf7d0d38a62dc46535af18",
+    "research/sd_distilled_trained/experiments/prepare_lcm_bias_experiment.py": "14c60c0068f74d011786a9cc51a53c802cb72763590909f2712804e70cc4aa9f",
+    "research/sd_distilled_trained/experiments/probe_condition_fold.py": "353c72fc337a256503e3dcb62360ff0318ea348eb739544b63007a1bc1a0a8cb",
+    "research/sd_distilled_trained/experiments/probe_lcm_checkpoint.py": "386fd6ba5fe1698cbbe3d034285c281e640eaa7b54b2edda099c61778a04aee3",
+    "research/sd_distilled_trained/experiments/probe_lcm_full_unet_fold.py": "c8ceb3d22cde2507e05484d63d694e459fd1d197748d5a2fe50e8f5093badede",
+    "research/sd_distilled_trained/experiments/probe_lcm_schedules.py": "55e065a6b48aac12c6164ade1af5c2aef0212171dc2205773a97ce13a3dfde9c",
+    "research/sd_distilled_trained/experiments/probe_sd_turbo.py": "4cbf4a7e1c16182b0f868b34a6edceec27ce6e1aac42b4a60b5348b794eddd60",
+    "research/sd_distilled_trained/experiments/README.md": "5a2396f4272fed7972b4ea938235b270adabda50b7999d55a0ceb2c2572a5018",
+    "research/sd_distilled_trained/NOTICE": "d2dffa2de065206898d13c90b588337af620d9926c27a0c321b338536331996a",
+    "research/sd_distilled_trained/original-unet--config.json": "49af23f70a2c86813bf1840421207a5269f27b0cd00f26585957e18595cfb816",
+    "tools/check_sd_distilled_evidence.py": "3476bf8caac39d155c1cac81eef66ca9440a0851b73fbaea343ef524f78ffcd5",
+    "tools/replay_sd_turbo_native.py": "eb81a064d4534beda4df8401e491127dded30b45e09764729ff341e9dbed4917"
+  }
+}

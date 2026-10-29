@@ -1,0 +1,23 @@
+{
+  "schema": "lma.private-official-source-lock/1",
+  "repository": "huggingface/diffusers",
+  "tag": "v0.22.0",
+  "revision": "df60b35e4747c6fba196922de42a383ec0e82c06",
+  "files": [
+    {
+      "path": "src/diffusers/models/embeddings.py",
+      "url": "https://api.github.com/repos/huggingface/diffusers/contents/src/diffusers/models/embeddings.py?ref=df60b35e4747c6fba196922de42a383ec0e82c06",
+      "bytes": 29744,
+      "sha256": "0fa0f14ac39f629cb096495018d7d41b493bb1f8671fdf73b8cce98ae54f6aee",
+      "local_file": "reference-embeddings.py"
+    },
+    {
+      "path": "src/diffusers/pipelines/latent_consistency_models/pipeline_latent_consistency_text2img.py",
+      "url": "https://api.github.com/repos/huggingface/diffusers/contents/src/diffusers/pipelines/latent_consistency_models/pipeline_latent_consistency_text2img.py?ref=df60b35e4747c6fba196922de42a383ec0e82c06",
+      "bytes": 38496,
+      "sha256": "3723feda1acdf64913f6a8911f7f578dd3725fec61ff9a5174ef863b742f3549",
+      "local_file": "reference-pipeline_latent_consistency_text2img.py"
+    }
+  ],
+  "model_execution": false
+}

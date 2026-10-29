@@ -1,0 +1,13 @@
+{
+  "package": "diffusers",
+  "version": "0.42.1",
+  "filename": "diffusers-0.42.1-py3-none-any.whl",
+  "url": "https://files.pythonhosted.org/packages/e1/e9/4328c781bc64f8b74363f66674c00e65021e9a857fb9cb4882ed447956cd/diffusers-0.42.1-py3-none-any.whl",
+  "bytes": 6355908,
+  "sha256": "9154faa704ce00e0b77f568e0d64786064368528aab5fc14eeea92f87d788014",
+  "source_path": "build/sd-distilled-asset-probe/reference-package/0.42.1/source",
+  "no_dependencies_installed": true,
+  "global_environment_modified": false,
+  "model_downloaded": false,
+  "model_executed": false
+}

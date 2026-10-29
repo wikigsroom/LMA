@@ -149,6 +149,8 @@ def main():
         check_qwen_trained(records, status, ROOT)
         from check_sd_variants_trained_evidence import check as check_sd_variants_trained
         check_sd_variants_trained(records, status, ROOT)
+        from check_sd_distilled_evidence import check as check_sd_distilled
+        check_sd_distilled(records, status, ROOT)
         from check_ltx098_prepare_evidence import check as check_ltx_prepare
         check_ltx_prepare(records, status, digest, ROOT)
         from check_ltx098_vae_prepare_evidence import check as check_ltx_vae_prepare

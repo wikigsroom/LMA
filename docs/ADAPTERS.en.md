@@ -2,6 +2,8 @@
 
 [中文](ADAPTERS.md) · [Asset-control audit](ASSET_CONTROL_AUDIT.en.md) · [Development](DEVELOPMENT.en.md) · [Full scope](MULTIMODAL_RELEASE_PLAN.en.md)
 
+Standalone LCM checkpoints and LCM-LoRA remain separate targets. [New host analysis](SD_DISTILLED_TRAINED.en.md) identifies a dropped guidance condition in one conversion and retains numerical/native-image fold candidates; neither adapter execution nor this derivation establishes complete product checkpoint support.
+
 Applies to internal **0.3.0-dev.12 / code 16**. Pairing, storage and task code is integrated; **there is no LMA Android LoRA-generation evidence**. Real SD 1.5/SDXL weights, quality and lifecycle acceptance for selection 02 remain mandatory in the same complete v0.3.0.
 
 ## User flow

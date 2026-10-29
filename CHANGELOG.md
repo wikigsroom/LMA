@@ -2,6 +2,8 @@
 
 ## 0.3.0-dev.24 — diffusion progress and trained host evidence / unreleased
 
+新增独立 SD-Turbo / LCM checkpoint 主机验证：10 原生子进程 / 6 PNG，80 项生产 Java / 绑定检查、完整2对象导入、5真实 worker / 3 PNG；LCM 原始687张量 / 859,602,884参数、686转换张量逐值对照、30完整 UNet 前向、仅5120字节偏置的固定引导候选及原生取消恢复。五份公开记录、原始PNG / GIF / MP4、[中文](docs/SD_DISTILLED_TRAINED.md) / [English](docs/SD_DISTILLED_TRAINED.en.md)及[编号完整待办](docs/releases/v0.3.0-dev.24-sd-distilled.md)同步。LCM face/detail quality remains failed; product preparation, canonical pipeline, phone/resource/endurance and full Release remain open. Production sources and APK inputs/bytes are unchanged.
+
 新增完整 SDXL 与 SD1.5 / SDXL 风格 LoRA、LCM-LoRA 的真实训练主机专项：固定五新对象、双 CLIP / UNet / VAE 与适配器完整结构、零强度 / 启用 / LCM 权重反事实 / 组合 / 取消恢复对照；生产 Java 完整导入七唯一对象、模型参数 / 适配器租约 / 快照 / 实际 worker。原始 PNG、联系图、标明范围的 GIF / MP4、独立原始复核、五份公开 JSON、双语文档和[编号完整待办](docs/releases/v0.3.0-dev.24-sd-variants.md)同步。Low-step sample quality is not accepted; actual hash differences do not establish semantic quality. This developer-only follow-up leaves production sources/APK bytes unchanged and does not close SD-Turbo, the separate LCM checkpoint, Android or complete Release gates. [中文](docs/SD_VARIANTS_TRAINED.md) / [English](docs/SD_VARIANTS_TRAINED.en.md).
 
 新增编号11完整Qwen0.6BBase/12Hz codec两GGUF/920MB取得及真实生产源码主机执行：18WAV/12控制涵盖十语言、参考、采样和frame16后取消恢复；94项生产Java检查、6真实worker、2完整对象导入且零网络，145原始文件/31协议/22WAV/2对象独立复核及8项错误范围提升控制。原始音频/波形PNG/GIF/MP4、双语指南/README与[编号完整待办](docs/releases/v0.3.0-dev.24-qwen-tts.md)同步；生产/APK字节不变。The greedy short-text output matches the30-second budget, without a separate EOS/budget reason; quality, voice similarity, Z20 fit, Android endurance and the complete Release remain unaccepted. [中文](docs/QWEN_TTS_TRAINED.md) / [English](docs/QWEN_TTS_TRAINED.en.md).

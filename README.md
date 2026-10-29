@@ -2,6 +2,8 @@
 
 [中文](README.md) · [English](README.en.md) · [下载 / Releases](https://github.com/wikigsroom/LMA/releases) · [文档导航](docs/README.md) · [更新记录](CHANGELOG.md)
 
+新增[SD-Turbo 与独立 LCM checkpoint 训练验证](docs/SD_DISTILLED_TRAINED.md)：两组10个原生进程 / 6 PNG，SD-Turbo 另经完整生产 HF 配方、2对象导入、80项 Java / 绑定检查、5真实 worker / 3 PNG；LCM 定位遗漏条件并完成30次完整 UNet 数值前向与原生修复候选出图。质量 / 完整官方管线 / 手机验收仍未关闭；LCM 候选不是产品准备方案。双语指南、原图 / GIF / MP4 和[编号实现 / 完整待办](docs/releases/v0.3.0-dev.24-sd-distilled.md)同步，生产源码和 APK 字节保持不变。
+
 > **当前开发：0.3.0-dev.24 / code 28。** 修正扩散 worker 的加载/生成进度，补充 [SD 1.5 真实权重验证](docs/SD15_TRAINED.md)与[旧 LTX 调制顺序诊断](docs/LTX098_MODULATION.md)；LTX 新候选仍未通过冻结数值门槛。[本轮编号实现与全部待办](docs/releases/v0.3.0-dev.24.md)。App 仅更新基座，模型仍由用户自行选择、下载或导入；完整 v0.3.0 与手机验收尚未完成。
 
 新增 [SDXL / 双架构 LoRA / LCM-LoRA 真实训练验证](docs/SD_VARIANTS_TRAINED.md)：五个新固定对象，加既有 SD1.5 / 外部词表共七个唯一对象，覆盖标准对照、风格强度 0 / 1、LCM 权重反事实、组合与取消恢复，以及生产 Java 的完整导入和实际原生子进程。[实际 PNG / 联系图 / GIF / MP4](docs/SD_VARIANTS_TRAINED.md#4-实际图片与演示媒体)与[编号实现 / 全部待办](docs/releases/v0.3.0-dev.24-sd-variants.md)同步。低步数样例有主体不清等画质问题，质量和 Android 仍待验收；APK 字节不变，完整 Release 未完成。

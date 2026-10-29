@@ -1,0 +1,1427 @@
+{
+  "schema": "lma.sd-turbo-app-host/1",
+  "java": {
+    "production_hf_selection": {
+      "schema": "lma.model-bundle/2",
+      "components": [
+        {
+          "importPath": "model/sd_turbo-f16-q8_0.gguf",
+          "path": "sd_turbo-f16-q8_0.gguf",
+          "role": "model",
+          "sha256": "d50be7655f0a554cf8041c145d88b210bd5f3c545423119dee62ae08cae51580",
+          "bytes": 2023745376,
+          "format": "gguf",
+          "repository": "Green-Sky/SD-Turbo-GGUF",
+          "url": "https://huggingface.co/Green-Sky/SD-Turbo-GGUF/resolve/19a31586d02d64a73b4419bc193b3ecfaf38e1f0/sd_turbo-f16-q8_0.gguf",
+          "revision": "19a31586d02d64a73b4419bc193b3ecfaf38e1f0"
+        },
+        {
+          "importPath": "clip_merges/tokenizer/merges.txt",
+          "path": "tokenizer/merges.txt",
+          "role": "clip_merges",
+          "sha256": "9fd691f7c8039210e0fced15865466c65820d09b63988b0174bfe25de299051a",
+          "bytes": 524619,
+          "format": "text",
+          "repository": "stable-diffusion-v1-5/stable-diffusion-v1-5",
+          "url": "https://huggingface.co/stable-diffusion-v1-5/stable-diffusion-v1-5/resolve/451f4fe16113bff5a5d2269ed5ad43b0592e9a14/tokenizer/merges.txt",
+          "revision": "451f4fe16113bff5a5d2269ed5ad43b0592e9a14"
+        }
+      ],
+      "capabilities": [
+        "text_to_image",
+        "distilled_sampling"
+      ],
+      "evidence": {
+        "architectureVerified": false,
+        "status": "user_selected_hf_components_not_device_tested",
+        "physicalDeviceTests": 0
+      },
+      "modelId": "hfb_f03dda326391ad02b6b6b98d4a5ecef06a5074a4",
+      "description": "用户从固定 HF 版本明确选择的组件配方；架构与实际手机执行尚未验证。",
+      "recipeId": "sd21_turbo_checkpoint_cpu_v1",
+      "catalogue": false,
+      "pipeline": "sd21_turbo",
+      "sourceUrl": "https://huggingface.co/Green-Sky/SD-Turbo-GGUF",
+      "license": {
+        "name": "请分别核对模型与各组件许可",
+        "url": "https://huggingface.co/Green-Sky/SD-Turbo-GGUF"
+      },
+      "engine": "sd_cpp",
+      "name": "SD-Turbo-GGUF · SD-Turbo · SD 2.1",
+      "backend": "cpu",
+      "id": "hfb_f03dda326391ad02b6b6b98d4a5ecef06a5074a4",
+      "parameters": {
+        "fields": {
+          "scheduler": {
+            "default": "discrete",
+            "values": [
+              "discrete"
+            ],
+            "label": "调度器",
+            "type": "enum"
+          },
+          "seed": {
+            "multipleOf": 1,
+            "default": -1,
+            "presets": [
+              -1,
+              0,
+              42
+            ],
+            "limitSource": "application_guard",
+            "maximum": 2147483647,
+            "label": "随机种子（-1 为随机）",
+            "type": "integer",
+            "minimum": -1
+          },
+          "cfg": {
+            "default": 1,
+            "presets": [
+              1
+            ],
+            "limitSource": "application_sampling_policy",
+            "maximum": 1,
+            "label": "提示词引导",
+            "type": "number",
+            "minimum": 1
+          },
+          "vaeTiling": {
+            "default": true,
+            "label": "分块解码 VAE",
+            "type": "boolean"
+          },
+          "width": {
+            "multipleOf": 64,
+            "default": 512,
+            "presets": [
+              256,
+              384,
+              512,
+              768,
+              1024
+            ],
+            "limitSource": "application_guard",
+            "maximum": 2048,
+            "label": "宽度",
+            "type": "integer",
+            "minimum": 64
+          },
+          "threads": {
+            "multipleOf": 1,
+            "default": 4,
+            "presets": [
+              1,
+              2,
+              4,
+              6,
+              8
+            ],
+            "limitSource": "application_guard",
+            "maximum": 64,
+            "label": "CPU 线程",
+            "type": "integer",
+            "minimum": 1
+          },
+          "steps": {
+            "multipleOf": 1,
+            "default": 1,
+            "presets": [
+              1,
+              2,
+              4
+            ],
+            "limitSource": "application_sampling_policy",
+            "maximum": 4,
+            "label": "采样步数",
+            "type": "integer",
+            "minimum": 1
+          },
+          "height": {
+            "multipleOf": 64,
+            "default": 512,
+            "presets": [
+              256,
+              384,
+              512,
+              768,
+              1024
+            ],
+            "limitSource": "application_guard",
+            "maximum": 2048,
+            "label": "高度",
+            "type": "integer",
+            "minimum": 64
+          },
+          "sampler": {
+            "default": "euler_a",
+            "values": [
+              "euler_a"
+            ],
+            "label": "采样器",
+            "type": "enum"
+          }
+        },
+        "version": 1
+      },
+      "uncensored": {
+        "declared": false,
+        "detected": false,
+        "basis": "repository-metadata",
+        "refusalRateTested": false
+      },
+      "tasks": [
+        "image"
+      ],
+      "architecture": "sd21"
+    },
+    "android_saf_tested": false,
+    "android_atomicfile_tested": false,
+    "android_background_tested": false,
+    "android_application_executed": false,
+    "host_metadata_port": "windows_atomic_replace_functional_only",
+    "host_java_production_binding": true,
+    "actual_host_children": 5,
+    "host_metadata_fsync": false,
+    "java_cancel_at_sampler_step_tested": false,
+    "imported_objects": 2,
+    "metadata_power_loss_durability_tested": false,
+    "network_calls": 0,
+    "image_quality_accepted": false,
+    "passed": 60,
+    "imported_unique_bytes": 2024269995,
+    "binding_checks": 20,
+    "runs": [
+      {
+        "output": "U:\\build\\sd-turbo-app-host-tests\\run-1793300418393226900\\data\\one-step\\2a450a1d-ac92-4e48-96c6-d984c783efc0.png",
+        "execution": {
+          "effectiveParameters": {
+            "scheduler": "discrete",
+            "seed": 42,
+            "cfg": 1,
+            "vaeTiling": true,
+            "width": 512,
+            "threads": 6,
+            "steps": 1,
+            "height": 512,
+            "sampler": "euler_a"
+          },
+          "pipeline": "sd21_turbo",
+          "samplingProfile": "sd_turbo",
+          "samplingAdjustments": []
+        },
+        "seconds": 292.0195819,
+        "sha256": "fcb9a5ae36e5e45b61ce13a0d674ea8d47444371d5ba1adad95c32f1b84e9572",
+        "bytes": 626945,
+        "name": "one-step",
+        "progress": [
+          {
+            "stage": "loading",
+            "fraction": null
+          },
+          {
+            "stage": "loading",
+            "fraction": 0
+          },
+          {
+            "stage": "generating",
+            "fraction": null
+          },
+          {
+            "stage": "generating",
+            "fraction": 0
+          },
+          {
+            "stage": "generating",
+            "fraction": 0
+          },
+          {
+            "stage": "generating",
+            "fraction": 1
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.02040816326530612
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.04081632653061224
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.061224489795918366
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.08163265306122448
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.10204081632653061
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.12244897959183673
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.14285714285714285
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.16326530612244897
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.1836734693877551
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.20408163265306123
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.22448979591836735
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.24489795918367346
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.2653061224489796
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.2857142857142857
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.30612244897959184
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.32653061224489793
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.3469387755102041
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.3673469387755102
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.3877551020408163
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.40816326530612246
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.42857142857142855
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.4489795918367347
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.46938775510204084
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.4897959183673469
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.5102040816326531
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.5306122448979592
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.5510204081632653
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.5714285714285714
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.5918367346938775
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.6122448979591837
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.6326530612244898
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.6530612244897959
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.673469387755102
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.6938775510204082
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.7142857142857143
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.7346938775510204
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.7551020408163265
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.7755102040816326
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.7959183673469388
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.8163265306122449
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.8367346938775511
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.8571428571428571
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.8775510204081632
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.8979591836734694
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.9183673469387755
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.9387755102040817
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.9591836734693877
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.9795918367346939
+          },
+          {
+            "stage": "generating",
+            "fraction": 1
+          }
+        ],
+        "steps": 1
+      },
+      {
+        "output": "U:\\build\\sd-turbo-app-host-tests\\run-1793300418393226900\\data\\four-step\\48a55022-4cbd-4e04-b1aa-52454aa71e80.png",
+        "execution": {
+          "effectiveParameters": {
+            "scheduler": "discrete",
+            "seed": 42,
+            "cfg": 1,
+            "vaeTiling": true,
+            "width": 512,
+            "threads": 6,
+            "steps": 4,
+            "height": 512,
+            "sampler": "euler_a"
+          },
+          "pipeline": "sd21_turbo",
+          "samplingProfile": "sd_turbo",
+          "samplingAdjustments": []
+        },
+        "seconds": 183.1710083,
+        "sha256": "5845daae68c1712e1af6f2b03537505dafe10aa38ba167a4285f8fcb4742f013",
+        "bytes": 612816,
+        "name": "four-step",
+        "progress": [
+          {
+            "stage": "loading",
+            "fraction": null
+          },
+          {
+            "stage": "loading",
+            "fraction": 0
+          },
+          {
+            "stage": "generating",
+            "fraction": null
+          },
+          {
+            "stage": "generating",
+            "fraction": 0
+          },
+          {
+            "stage": "generating",
+            "fraction": 0
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.25
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.5
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.75
+          },
+          {
+            "stage": "generating",
+            "fraction": 1
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.02040816326530612
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.04081632653061224
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.061224489795918366
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.08163265306122448
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.10204081632653061
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.12244897959183673
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.14285714285714285
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.16326530612244897
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.1836734693877551
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.20408163265306123
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.22448979591836735
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.24489795918367346
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.2653061224489796
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.2857142857142857
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.30612244897959184
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.32653061224489793
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.3469387755102041
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.3673469387755102
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.3877551020408163
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.40816326530612246
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.42857142857142855
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.4489795918367347
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.46938775510204084
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.4897959183673469
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.5102040816326531
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.5306122448979592
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.5510204081632653
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.5714285714285714
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.5918367346938775
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.6122448979591837
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.6326530612244898
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.6530612244897959
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.673469387755102
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.6938775510204082
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.7142857142857143
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.7346938775510204
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.7551020408163265
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.7755102040816326
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.7959183673469388
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.8163265306122449
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.8367346938775511
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.8571428571428571
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.8775510204081632
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.8979591836734694
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.9183673469387755
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.9387755102040817
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.9591836734693877
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.9795918367346939
+          },
+          {
+            "stage": "generating",
+            "fraction": 1
+          }
+        ],
+        "steps": 4
+      },
+      {
+        "execution": {
+          "effectiveParameters": {
+            "scheduler": "discrete",
+            "seed": 42,
+            "cfg": 1,
+            "vaeTiling": true,
+            "width": 512,
+            "threads": 6,
+            "steps": 4,
+            "height": 512,
+            "sampler": "euler_a"
+          },
+          "pipeline": "sd21_turbo",
+          "samplingProfile": "sd_turbo",
+          "samplingAdjustments": []
+        },
+        "seconds": 2.2089187,
+        "name": "empty-prompt",
+        "cancelled": false,
+        "progress": [],
+        "steps": 4,
+        "expected_error": "Invalid prompt or output"
+      },
+      {
+        "execution": {
+          "effectiveParameters": {
+            "scheduler": "discrete",
+            "seed": 42,
+            "cfg": 1,
+            "vaeTiling": true,
+            "width": 512,
+            "threads": 6,
+            "steps": 4,
+            "height": 512,
+            "sampler": "euler_a"
+          },
+          "pipeline": "sd21_turbo",
+          "samplingProfile": "sd_turbo",
+          "samplingAdjustments": []
+        },
+        "seconds": 1.4662194,
+        "name": "cancel-stage-entry",
+        "cancelled": true,
+        "progress": [
+          {
+            "stage": "loading",
+            "fraction": null
+          },
+          {
+            "stage": "loading",
+            "fraction": 0
+          },
+          {
+            "stage": "generating",
+            "fraction": null
+          }
+        ],
+        "steps": 4,
+        "expected_error": "Requested cancellation at native generating-stage entry"
+      },
+      {
+        "output": "U:\\build\\sd-turbo-app-host-tests\\run-1793300418393226900\\data\\recovery\\e7626b3c-9ba1-45d5-a36e-6a5b14bd6446.png",
+        "execution": {
+          "effectiveParameters": {
+            "scheduler": "discrete",
+            "seed": 42,
+            "cfg": 1,
+            "vaeTiling": true,
+            "width": 512,
+            "threads": 6,
+            "steps": 4,
+            "height": 512,
+            "sampler": "euler_a"
+          },
+          "pipeline": "sd21_turbo",
+          "samplingProfile": "sd_turbo",
+          "samplingAdjustments": []
+        },
+        "seconds": 159.7662424,
+        "sha256": "5845daae68c1712e1af6f2b03537505dafe10aa38ba167a4285f8fcb4742f013",
+        "bytes": 612816,
+        "name": "recovery",
+        "progress": [
+          {
+            "stage": "loading",
+            "fraction": null
+          },
+          {
+            "stage": "loading",
+            "fraction": 0
+          },
+          {
+            "stage": "generating",
+            "fraction": null
+          },
+          {
+            "stage": "generating",
+            "fraction": 0
+          },
+          {
+            "stage": "generating",
+            "fraction": 0
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.25
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.5
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.75
+          },
+          {
+            "stage": "generating",
+            "fraction": 1
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.02040816326530612
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.04081632653061224
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.061224489795918366
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.08163265306122448
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.10204081632653061
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.12244897959183673
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.14285714285714285
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.16326530612244897
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.1836734693877551
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.20408163265306123
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.22448979591836735
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.24489795918367346
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.2653061224489796
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.2857142857142857
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.30612244897959184
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.32653061224489793
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.3469387755102041
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.3673469387755102
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.3877551020408163
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.40816326530612246
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.42857142857142855
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.4489795918367347
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.46938775510204084
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.4897959183673469
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.5102040816326531
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.5306122448979592
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.5510204081632653
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.5714285714285714
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.5918367346938775
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.6122448979591837
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.6326530612244898
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.6530612244897959
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.673469387755102
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.6938775510204082
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.7142857142857143
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.7346938775510204
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.7551020408163265
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.7755102040816326
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.7959183673469388
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.8163265306122449
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.8367346938775511
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.8571428571428571
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.8775510204081632
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.8979591836734694
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.9183673469387755
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.9387755102040817
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.9591836734693877
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.9795918367346939
+          },
+          {
+            "stage": "generating",
+            "fraction": 1
+          }
+        ],
+        "steps": 4
+      }
+    ],
+    "launches": [
+      {
+        "schema": "lma.engine-request/1",
+        "pipeline": "sd21_turbo",
+        "output": "U:\\build\\sd-turbo-app-host-tests\\run-1793300418393226900\\data\\one-step\\2a450a1d-ac92-4e48-96c6-d984c783efc0.png",
+        "input": {
+          "prompt": "A small red fox sitting beside a blue ceramic teapot on a wooden table, clean composition"
+        },
+        "components": {
+          "model": "U:\\build\\sd-turbo-app-host-tests\\run-1793300418393226900\\data\\files\\bundles\\objects\\d50be7655f0a554cf8041c145d88b210bd5f3c545423119dee62ae08cae51580",
+          "clip_merges": "U:\\build\\sd-turbo-app-host-tests\\run-1793300418393226900\\data\\files\\bundles\\objects\\9fd691f7c8039210e0fced15865466c65820d09b63988b0174bfe25de299051a"
+        },
+        "loras": [],
+        "type": "image.generate",
+        "samplingProfile": "sd_turbo",
+        "parameters": {
+          "scheduler": "discrete",
+          "seed": 42,
+          "cfg": 1,
+          "vaeTiling": true,
+          "width": 512,
+          "threads": 6,
+          "steps": 1,
+          "height": 512,
+          "sampler": "euler_a"
+        },
+        "architecture": "sd21"
+      },
+      {
+        "schema": "lma.engine-request/1",
+        "pipeline": "sd21_turbo",
+        "output": "U:\\build\\sd-turbo-app-host-tests\\run-1793300418393226900\\data\\four-step\\48a55022-4cbd-4e04-b1aa-52454aa71e80.png",
+        "input": {
+          "prompt": "A small red fox sitting beside a blue ceramic teapot on a wooden table, clean composition"
+        },
+        "components": {
+          "model": "U:\\build\\sd-turbo-app-host-tests\\run-1793300418393226900\\data\\files\\bundles\\objects\\d50be7655f0a554cf8041c145d88b210bd5f3c545423119dee62ae08cae51580",
+          "clip_merges": "U:\\build\\sd-turbo-app-host-tests\\run-1793300418393226900\\data\\files\\bundles\\objects\\9fd691f7c8039210e0fced15865466c65820d09b63988b0174bfe25de299051a"
+        },
+        "loras": [],
+        "type": "image.generate",
+        "samplingProfile": "sd_turbo",
+        "parameters": {
+          "scheduler": "discrete",
+          "seed": 42,
+          "cfg": 1,
+          "vaeTiling": true,
+          "width": 512,
+          "threads": 6,
+          "steps": 4,
+          "height": 512,
+          "sampler": "euler_a"
+        },
+        "architecture": "sd21"
+      },
+      {
+        "schema": "lma.engine-request/1",
+        "pipeline": "sd21_turbo",
+        "output": "U:\\build\\sd-turbo-app-host-tests\\run-1793300418393226900\\data\\empty-prompt\\6230ee91-8c76-4e8f-a509-63923d3882bb.png",
+        "input": {
+          "prompt": ""
+        },
+        "components": {
+          "model": "U:\\build\\sd-turbo-app-host-tests\\run-1793300418393226900\\data\\files\\bundles\\objects\\d50be7655f0a554cf8041c145d88b210bd5f3c545423119dee62ae08cae51580",
+          "clip_merges": "U:\\build\\sd-turbo-app-host-tests\\run-1793300418393226900\\data\\files\\bundles\\objects\\9fd691f7c8039210e0fced15865466c65820d09b63988b0174bfe25de299051a"
+        },
+        "loras": [],
+        "type": "image.generate",
+        "samplingProfile": "sd_turbo",
+        "parameters": {
+          "scheduler": "discrete",
+          "seed": 42,
+          "cfg": 1,
+          "vaeTiling": true,
+          "width": 512,
+          "threads": 6,
+          "steps": 4,
+          "height": 512,
+          "sampler": "euler_a"
+        },
+        "architecture": "sd21"
+      },
+      {
+        "schema": "lma.engine-request/1",
+        "pipeline": "sd21_turbo",
+        "output": "U:\\build\\sd-turbo-app-host-tests\\run-1793300418393226900\\data\\cancel-stage-entry\\1196c778-279a-4e6a-aebd-98d7450ffec7.png",
+        "input": {
+          "prompt": "A small red fox sitting beside a blue ceramic teapot on a wooden table, clean composition"
+        },
+        "components": {
+          "model": "U:\\build\\sd-turbo-app-host-tests\\run-1793300418393226900\\data\\files\\bundles\\objects\\d50be7655f0a554cf8041c145d88b210bd5f3c545423119dee62ae08cae51580",
+          "clip_merges": "U:\\build\\sd-turbo-app-host-tests\\run-1793300418393226900\\data\\files\\bundles\\objects\\9fd691f7c8039210e0fced15865466c65820d09b63988b0174bfe25de299051a"
+        },
+        "loras": [],
+        "type": "image.generate",
+        "samplingProfile": "sd_turbo",
+        "parameters": {
+          "scheduler": "discrete",
+          "seed": 42,
+          "cfg": 1,
+          "vaeTiling": true,
+          "width": 512,
+          "threads": 6,
+          "steps": 4,
+          "height": 512,
+          "sampler": "euler_a"
+        },
+        "architecture": "sd21"
+      },
+      {
+        "schema": "lma.engine-request/1",
+        "pipeline": "sd21_turbo",
+        "output": "U:\\build\\sd-turbo-app-host-tests\\run-1793300418393226900\\data\\recovery\\e7626b3c-9ba1-45d5-a36e-6a5b14bd6446.png",
+        "input": {
+          "prompt": "A small red fox sitting beside a blue ceramic teapot on a wooden table, clean composition"
+        },
+        "components": {
+          "model": "U:\\build\\sd-turbo-app-host-tests\\run-1793300418393226900\\data\\files\\bundles\\objects\\d50be7655f0a554cf8041c145d88b210bd5f3c545423119dee62ae08cae51580",
+          "clip_merges": "U:\\build\\sd-turbo-app-host-tests\\run-1793300418393226900\\data\\files\\bundles\\objects\\9fd691f7c8039210e0fced15865466c65820d09b63988b0174bfe25de299051a"
+        },
+        "loras": [],
+        "type": "image.generate",
+        "samplingProfile": "sd_turbo",
+        "parameters": {
+          "scheduler": "discrete",
+          "seed": 42,
+          "cfg": 1,
+          "vaeTiling": true,
+          "width": 512,
+          "threads": 6,
+          "steps": 4,
+          "height": 512,
+          "sampler": "euler_a"
+        },
+        "architecture": "sd21"
+      }
+    ]
+  },
+  "compilation": {
+    "schema": "lma.sd-host-build/1",
+    "executable": "build/sd-worker-host/a3bf87b8e136d993/bin/lma_sd_host.exe",
+    "sha256": "57b262d251aba1bc1ba1d6c64f1983075508dac1bb4b5ec4b729cff9306598c9",
+    "bytes": 8633856,
+    "source_revision": "be486498eadc29dc3cd234d944c2180ed42b1415",
+    "ggml_revision": "a5915eb0e47adef21c3f25b889a008925ea838c2",
+    "backend": "cpu",
+    "production_worker_source_unmodified": true,
+    "production_vocabulary_source_unmodified": true,
+    "windows_parent_guard": true,
+    "external_vocabulary": true,
+    "bundled_model_data": false,
+    "android_compiled": false,
+    "physical_android": false,
+    "packaged_in_apk": false,
+    "model_executed": false,
+    "input_fingerprint": {
+      "app/src/main/assets/model-bundles.json": "bb2272dfa95443c9391fb858fd19b52d539126ca209319c190b420e734bc97b8",
+      "native/sd_policy.hpp": "c7d987ffc6b905fbad9d6a47be98d10f57b2060728f00801742a4ec346a5c7ba",
+      "native/sd_worker.cpp": "47e1c3344c63fb90bc240e2743f8257904e831b1597b9d0b9bd780011e8969d0",
+      "native/vocab_external.cpp": "8bfe3af4f45363554f58009efcd7404e3af9da768cb65762de6c6b91621c81f1",
+      "research/sd_host/CMakeLists.txt": "0870d59e689181eddd9690cc537da9b9abf4a252791ae6dd0506aa95fe4051d3",
+      "research/sd_host/compat/sys/prctl.h": "87c9ddf82ce059bf303486b0e10b22dce6d972e87f83836d148e631dcdad9c9e",
+      "research/sd_host/compat/unistd.h": "e467e7f5855c286b3ce40268146ed34d153a5fbf8a42d5c36b26a6293142068b",
+      "research/sd_host/NOTICE": "90e18935ca8ba71ac1a5ce59e3a2f0b0580cd246877f65cba402deff67eb18fc",
+      "research/sd_host/platform.hpp": "c377ed1b676707a469a192d96ae9b748802e1f62ad0674366b593b2b5b2daf67",
+      "third_party/engine-lock.json": "1341d53deca6412779d197b5fc978a37a55462ee4d86df4b6db4b3c7bf97ec7a",
+      "third_party/notices/sd-sources.json": "91ee744071aa93c4bd4d40476d3582fa4bf4d00a628527e196d4856c06ec77c1",
+      "tools/build_native.py": "f3876b3c254ee367a55f15bcbf9cd8c0dc2eb243b53b59796a282f2afc4a7c11",
+      "tools/build_sd_host.py": "25943d201f98b806c15df691f87fd496f7988f4d104e92549bf5a3ed2e787e13",
+      "tools/fetch_sd15_trained.py": "91392401d9739f15b14fa4e42b74f13bbdd719a382746541cc69952966e6f307"
+    }
+  },
+  "outputs": [
+    {
+      "name": "one-step",
+      "file": "build/sd-turbo-app-host-tests/run-1793300418393226900/data/one-step/2a450a1d-ac92-4e48-96c6-d984c783efc0.png",
+      "image": {
+        "width": 512,
+        "height": 512,
+        "format": "PNG",
+        "mode": "RGB",
+        "bytes": 626945,
+        "sha256": "fcb9a5ae36e5e45b61ce13a0d674ea8d47444371d5ba1adad95c32f1b84e9572",
+        "channel_mean": [
+          136.02720260620117,
+          98.82448196411133,
+          80.0719108581543
+        ],
+        "channel_stddev": [
+          50.946455916592775,
+          44.037973284105256,
+          43.13003852969938
+        ],
+        "extrema": [
+          [
+            0,
+            255
+          ],
+          [
+            0,
+            255
+          ],
+          [
+            0,
+            255
+          ]
+        ],
+        "entropy": 9.071742817477043
+      },
+      "bitwise_equal_to_direct_native": true
+    },
+    {
+      "name": "four-step",
+      "file": "build/sd-turbo-app-host-tests/run-1793300418393226900/data/four-step/48a55022-4cbd-4e04-b1aa-52454aa71e80.png",
+      "image": {
+        "width": 512,
+        "height": 512,
+        "format": "PNG",
+        "mode": "RGB",
+        "bytes": 612816,
+        "sha256": "5845daae68c1712e1af6f2b03537505dafe10aa38ba167a4285f8fcb4742f013",
+        "channel_mean": [
+          135.1165542602539,
+          99.66633224487305,
+          81.63237380981445
+        ],
+        "channel_stddev": [
+          61.31168484863981,
+          50.92754323486748,
+          50.08923306139136
+        ],
+        "extrema": [
+          [
+            0,
+            255
+          ],
+          [
+            0,
+            255
+          ],
+          [
+            0,
+            255
+          ]
+        ],
+        "entropy": 9.233831864447893
+      },
+      "bitwise_equal_to_direct_native": true
+    },
+    {
+      "name": "recovery",
+      "file": "build/sd-turbo-app-host-tests/run-1793300418393226900/data/recovery/e7626b3c-9ba1-45d5-a36e-6a5b14bd6446.png",
+      "image": {
+        "width": 512,
+        "height": 512,
+        "format": "PNG",
+        "mode": "RGB",
+        "bytes": 612816,
+        "sha256": "5845daae68c1712e1af6f2b03537505dafe10aa38ba167a4285f8fcb4742f013",
+        "channel_mean": [
+          135.1165542602539,
+          99.66633224487305,
+          81.63237380981445
+        ],
+        "channel_stddev": [
+          61.31168484863981,
+          50.92754323486748,
+          50.08923306139136
+        ],
+        "extrema": [
+          [
+            0,
+            255
+          ],
+          [
+            0,
+            255
+          ],
+          [
+            0,
+            255
+          ]
+        ],
+        "entropy": 9.233831864447893
+      },
+      "bitwise_equal_to_direct_native": true
+    }
+  ],
+  "files": {
+    "compile.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "data/files/bundles/bundles.json": {
+      "bytes": 7299,
+      "sha256": "45948b2a01edf761236ebe542b47b9f9fc780fcaeacf989b0c018baca35352b0"
+    },
+    "data/four-step/48a55022-4cbd-4e04-b1aa-52454aa71e80.png": {
+      "bytes": 612816,
+      "sha256": "5845daae68c1712e1af6f2b03537505dafe10aa38ba167a4285f8fcb4742f013"
+    },
+    "data/java-results.json": {
+      "bytes": 30437,
+      "sha256": "5768656fef84e64e7bfc465da3877b32506969a4c55906e611e4ed7253dc0936"
+    },
+    "data/one-step/2a450a1d-ac92-4e48-96c6-d984c783efc0.png": {
+      "bytes": 626945,
+      "sha256": "fcb9a5ae36e5e45b61ce13a0d674ea8d47444371d5ba1adad95c32f1b84e9572"
+    },
+    "data/recovery/e7626b3c-9ba1-45d5-a36e-6a5b14bd6446.png": {
+      "bytes": 612816,
+      "sha256": "5845daae68c1712e1af6f2b03537505dafe10aa38ba167a4285f8fcb4742f013"
+    },
+    "java.stderr": {
+      "bytes": 495,
+      "sha256": "56231079ae8fc6ef9b4e0f69884c114fd484585bb072f0642ab769168513065f"
+    },
+    "java.stdout": {
+      "bytes": 19112,
+      "sha256": "642b5846e26772d25ddb3aba39e8144b39338003ee3a1c50b6fb1dbfa4c68c39"
+    },
+    "sources.rsp": {
+      "bytes": 5139,
+      "sha256": "908eb25450cbd87baefa5fbf1256113a38944675e59820e3694cd39266e128f1"
+    }
+  },
+  "capture_directory": "build/sd-turbo-app-host-tests/run-1793300418393226900",
+  "direct_trained_report_sha256": "0373cd2f3f49991d0945ab6675079f57aac6c871ac1bd7a413a44d38264ee907",
+  "production_java_native_host_executed": true,
+  "asset_download_attempted": false,
+  "physical_android": false,
+  "android_saf_tested": false,
+  "android_background_accepted": false,
+  "image_quality_accepted": false,
+  "complete_target03_accepted": false,
+  "complete_release_accepted": false,
+  "input_fingerprint": {
+    "app/src/main/assets/model-bundles.json": "bb2272dfa95443c9391fb858fd19b52d539126ca209319c190b420e734bc97b8",
+    "native/sd_policy.hpp": "c7d987ffc6b905fbad9d6a47be98d10f57b2060728f00801742a4ec346a5c7ba",
+    "native/sd_worker.cpp": "47e1c3344c63fb90bc240e2743f8257904e831b1597b9d0b9bd780011e8969d0",
+    "native/vocab_external.cpp": "8bfe3af4f45363554f58009efcd7404e3af9da768cb65762de6c6b91621c81f1",
+    "research/sd_host/CMakeLists.txt": "0870d59e689181eddd9690cc537da9b9abf4a252791ae6dd0506aa95fe4051d3",
+    "research/sd_host/compat/sys/prctl.h": "87c9ddf82ce059bf303486b0e10b22dce6d972e87f83836d148e631dcdad9c9e",
+    "research/sd_host/compat/unistd.h": "e467e7f5855c286b3ce40268146ed34d153a5fbf8a42d5c36b26a6293142068b",
+    "research/sd_host/NOTICE": "90e18935ca8ba71ac1a5ce59e3a2f0b0580cd246877f65cba402deff67eb18fc",
+    "research/sd_host/platform.hpp": "c377ed1b676707a469a192d96ae9b748802e1f62ad0674366b593b2b5b2daf67",
+    "third_party/engine-lock.json": "1341d53deca6412779d197b5fc978a37a55462ee4d86df4b6db4b3c7bf97ec7a",
+    "third_party/notices/sd-sources.json": "91ee744071aa93c4bd4d40476d3582fa4bf4d00a628527e196d4856c06ec77c1",
+    "tools/build_native.py": "f3876b3c254ee367a55f15bcbf9cd8c0dc2eb243b53b59796a282f2afc4a7c11",
+    "tools/build_sd_host.py": "25943d201f98b806c15df691f87fd496f7988f4d104e92549bf5a3ed2e787e13",
+    "tools/fetch_sd15_trained.py": "91392401d9739f15b14fa4e42b74f13bbdd719a382746541cc69952966e6f307",
+    "research/sd_distilled_trained/assets.json": "0eb451932dbb30c2129d94c60e74ccbde1685c6ac3dba42de868ae5909cdc72c",
+    "tools/fetch_sd_distilled_trained.py": "dc568e0d46da91e046dfbd6d4fbbc8d2cfa5cda75e5dbdd82c6bb3f5594fe2d5",
+    "app/src/main/assets/recipe-templates.json": "4abedebe4d01f45e4d0b22506071c83bfddeb3e6750950630a9ff5a5f5b5b958",
+    "app/src/main/java/com/lma/app/core/AdapterSpec.java": "aff8572d14ac8d616be0a1b0da395e52ed5bddcd5ae407a969c2657bf9257581",
+    "app/src/main/java/com/lma/app/core/ArtifactStore.java": "0336ab2425868bf2cb5a2fc37d97afbcdf838bb5f977b874e0f98c9db777be55",
+    "app/src/main/java/com/lma/app/core/AssemblyPlan.java": "80e81dea2a831d3955aa5ae21323eb0432fb448f78994901633fbb6e85d77e7c",
+    "app/src/main/java/com/lma/app/core/BundleStore.java": "a773aaa8f83410da9ccbf499b9a19ee4166e2c094c2e992699424c0ac68f3e74",
+    "app/src/main/java/com/lma/app/core/BundleTransfers.java": "926596119a2c3f6bc089516e7bbd7db3016487d60c24f908ea646dfc76707f3e",
+    "app/src/main/java/com/lma/app/core/BundleUpdates.java": "f31a65d0e172aa75f6131deace828875534ccc756ed93fac83bb09d5a4162fe1",
+    "app/src/main/java/com/lma/app/core/ByteRange.java": "31723bf112e630de6c2a1cd8d525be7bbd4706e151fa5a297a5e641f59b5c752",
+    "app/src/main/java/com/lma/app/core/ChatHistory.java": "3046a52c3f611b83b46cfed94afe0f4b31667f77986b7ca1737169ec8c4ce951",
+    "app/src/main/java/com/lma/app/core/ComponentIntegrity.java": "7a5977c607f624f8763a782b1b081c4e485c8c05c2caae15986ad2f2388f5bce",
+    "app/src/main/java/com/lma/app/core/DataFiles.java": "02d3212885376e7073a785801dbb81073b13cc87c5fc0e85ac4373fd346696bc",
+    "app/src/main/java/com/lma/app/core/EngineWorkspace.java": "6c632861e13d0a8950cdee66e8bea8a8760d23550c10343d6cfdd8a6e9af29dd",
+    "app/src/main/java/com/lma/app/core/ExecutionGate.java": "45d783f80953a364115525a361cb3490871b8ec8dfb0f386d90d83c81fc281bc",
+    "app/src/main/java/com/lma/app/core/InputSelection.java": "963fe60973caab82b9dfedaa7c1661f236aed6ea158fcda8f4a86d02ba33d509",
+    "app/src/main/java/com/lma/app/core/InputSpec.java": "a2d34c41a8c623eb31bbcae412037705ea7e4c69e06c9de6f62c83f199f97728",
+    "app/src/main/java/com/lma/app/core/InputUploads.java": "5debd68a73abc8bde8174c985dfec8f534c6bf8df58dda8810b0cc3541fe1d53",
+    "app/src/main/java/com/lma/app/core/JobStore.java": "d03a21e563f0c2803cb444c8c564f87b6330c583ac7d9316f5732e0e17567630",
+    "app/src/main/java/com/lma/app/core/LocalApi.java": "bb1b463524a4c30a2f67a9407d0e2bb36bce7446c19ac99dd2ebde7a1c6465d7",
+    "app/src/main/java/com/lma/app/core/LocalHttp.java": "428acea4f950bd2ae2948e5b418f5f98259640108427fd9c59d918809787c9cd",
+    "app/src/main/java/com/lma/app/core/MnnSpec.java": "ef8a51675cdda887a1b7c78b8b1c6398b71c87a004327fbda5af62f8b52d8315",
+    "app/src/main/java/com/lma/app/core/ModelBundle.java": "ad08c033a2c9a215c292d20a5a97a65c85db91ce6a86609a8eed9e846449e84b",
+    "app/src/main/java/com/lma/app/core/ModelSelection.java": "965c9f22f16fc822f792ebef6e0de0a0c67f5a6882d5e7ef77be05b83ea1aeb2",
+    "app/src/main/java/com/lma/app/core/MossDelaySpec.java": "2f680d68cf78517f234c336c77e0b584bf40300fd6294514b7cd457149d41bd0",
+    "app/src/main/java/com/lma/app/core/MossNanoSpec.java": "4b784a773fb85550eba8f169a62cab9a274a332519ec700b595694378e9e39ed",
+    "app/src/main/java/com/lma/app/core/MossRqSpec.java": "74f68a8374b5436cf73688e427e9cad244a198f6f8faa2c5fea686bb04bc99a2",
+    "app/src/main/java/com/lma/app/core/NativePreparation.java": "641a9eac9289f66f13c25707f44cf4c51873b2d97a51bb29db2447dcaa1621fd",
+    "app/src/main/java/com/lma/app/core/OpenMossSpec.java": "4a9af3c92d87be65c4f617677eaed31576f9160a3355518fff7cb874192a5258",
+    "app/src/main/java/com/lma/app/core/ParameterSchema.java": "d536dd7e01107785076f5d1cd3c1c7ff89f6a3711ec130d3ec13e4b20d73bef1",
+    "app/src/main/java/com/lma/app/core/PreparationPlan.java": "dfee63b84035c6ca18b0647aecb947070b983b6b2f1de08247129dddfa64a0bf",
+    "app/src/main/java/com/lma/app/core/PreparedAssets.java": "ae09c7aa1643fc22b76cbe11182a742f26aa0ea95bc9b7166d685433a603dd02",
+    "app/src/main/java/com/lma/app/core/PreparedModelAssembly.java": "eef243d48c9b2b7d3d9b08b2ddf8129ff3884bbdd6c00ecd28a83c0f4bbfa384",
+    "app/src/main/java/com/lma/app/core/ProcessControl.java": "a1950624951d41c040b0b9f44cd8ef5faff16ed22dae880d626e4619d77c155d",
+    "app/src/main/java/com/lma/app/core/Protocol.java": "d49f47884aec0cb03347023119c2808330fa9970689dcd9d33c30ca653d03b85",
+    "app/src/main/java/com/lma/app/core/QwenTtsSpec.java": "e94d96d7ce7c499b2d4bafbd35740c690b32169a142a9a55aae7a8b03364125b",
+    "app/src/main/java/com/lma/app/core/RecipeCatalogue.java": "7b27a07355fe4f7671eef7fa17c9f9ab8512f3f52ccc1de15d4069f15bc6384a",
+    "app/src/main/java/com/lma/app/core/SdSpec.java": "07c4a9c69071a72fe70b37dfa85294d70cd387365545f885b671dc20c7332694",
+    "app/src/main/java/com/lma/app/core/SoulxSpec.java": "a761d40965d041d38cc1f629418017103c9eefabf5904814fad9de6372b6bcc7",
+    "app/src/main/java/com/lma/app/core/StableAudioSpec.java": "0cc04143a8c8c2afa4dc3d9726f4891779b352404d97c70d6fdc260fbe27ee6c",
+    "app/src/main/java/com/lma/app/core/TaskInput.java": "6f186b392f9e2fd70f253398f4becf9604d22e03c132f18b3bb93f635f637d7b",
+    "app/src/main/java/com/lma/app/core/TextRequest.java": "bfdb23db96512f00f362b49951c1fee4162ca2d441482eb6ebf180a8d3574d5f",
+    "app/src/main/java/com/lma/app/core/TextResult.java": "2dd7968a40cc917fab5b8bc412ef00d21348abec1d844b140b843b1bba57c6ab",
+    "app/src/main/java/com/lma/app/core/TextSpec.java": "4521ce8e833d88276f6b98d446e0171c48602d67ce2cf4b372d425e56d6d149e",
+    "app/src/main/java/com/lma/app/core/TtsSpec.java": "54f841e2ca5e93d3c3e1845014029b96912291fcf50a50c26a0124325a7a962a",
+    "app/src/main/java/com/lma/app/core/WaveFile.java": "cf70b9bbafb6aa23cc25217d4883e769173b00f74571d1b115c50a8ad6b15361",
+    "app/src/main/java/com/lma/app/LocalEngine.java": "db9b46d2e05802bec96f2fb428469553d95c3424228dd06fd617c361b99b9f7d",
+    "app/src/main/java/com/lma/app/NativeWorker.java": "c3324271639c6e77495e9aac78a663c6110dfef1026d0cc320ca82344ddd030d",
+    "app/src/main/java/com/lma/app/SdEngine.java": "052d59633d322cb94c4e64b525604fb6424c824c8fdf2e97e4d181c7059a8372",
+    "research/sd_distilled_trained/sd_turbo_q8_0.json": "b3b4668f994ae9be01b63bdf816ed8b6af4eafa310bafa83443d077b7b432683",
+    "tests/sd-distilled/com/lma/app/SdTurboTrainedAppTest.java": "b824b8995fce119a5e091202b3327ec8504d55db1849345cf5d979ac716dc2ac",
+    "tests/sd-host/com/lma/app/VideoEncoder.java": "96e480bec46860cd05e40d55b7e21710069f71f1f54c4cc543f26d6505efa146",
+    "tests/sd-trained/android/util/AtomicFile.java": "99bc308a86040ee296fb15be67ecd639eedfcdba9a8023f26d8d1b73f6d4d579",
+    "tests/sd-trained/com/lma/app/SdTrainedAppTest.java": "1758b45dee8f3ba4840aaa7b216d0ac666ab22ce0e5fb463ebe1e6f7c1781216",
+    "tests/tts-host/com/lma/app/LmaApp.java": "9f27bd7188d03aa4eb95b007111daff697d39515dc41884d4569e2f382d0577b",
+    "tools/test_sd_turbo_app_host.py": "2a2a04acfb1510ff58ac7ad5ab9e75e350f30999f62d7c29142202a5adf49d52",
+    "tools/test_sd_variants_trained.py": "bfc2b5eb71be4650c35cec5328ca24083e35d4123d064c07ed9f2ad7bce70424"
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "schema": "lma.sd-distilled-trained-assets-lock/1",
+  "selection_ids": [
+    "03"
+  ],
+  "assets": [
+    {
+      "id": "sd_turbo_q8_0",
+      "repository": "Green-Sky/SD-Turbo-GGUF",
+      "revision": "19a31586d02d64a73b4419bc193b3ecfaf38e1f0",
+      "path": "sd_turbo-f16-q8_0.gguf",
+      "bytes": 2023745376,
+      "sha256": "d50be7655f0a554cf8041c145d88b210bd5f3c545423119dee62ae08cae51580",
+      "url": "https://huggingface.co/Green-Sky/SD-Turbo-GGUF/resolve/19a31586d02d64a73b4419bc193b3ecfaf38e1f0/sd_turbo-f16-q8_0.gguf",
+      "public_metadata_sha256": "14cb9846a722fd85923b8f9482bf271a9ebafda449b4c06b835089c5bc85d03b",
+      "role": "model",
+      "architecture": "sd21",
+      "format": "gguf",
+      "sampling": "sd_turbo",
+      "production_user_flow_tested": false,
+      "model_card": "https://huggingface.co/Green-Sky/SD-Turbo-GGUF/blob/19a31586d02d64a73b4419bc193b3ecfaf38e1f0/README.md",
+      "license_metadata": {
+        "license": "other",
+        "license_name": "stability-ai-community-license-agreement",
+        "license_link": "https://huggingface.co/stabilityai/sd-turbo/blob/main/LICENSE.md",
+        "base_model": [
+          "stabilityai/sd-turbo"
+        ]
+      }
+    },
+    {
+      "id": "lcm_dreamshaper_v7_f16",
+      "repository": "Steward/lcm-dreamshaper-v7-gguf",
+      "revision": "ae3fa73e105d5f848a4ef122e2ce14c92123bf1a",
+      "path": "LCM_Dreamshaper_v7-f16.gguf",
+      "bytes": 2134675232,
+      "sha256": "0642060766117fdeb8cae0ccdc73ee974ac5779be1112d0a82f2b965bbd00e15",
+      "url": "https://huggingface.co/Steward/lcm-dreamshaper-v7-gguf/resolve/ae3fa73e105d5f848a4ef122e2ce14c92123bf1a/LCM_Dreamshaper_v7-f16.gguf",
+      "public_metadata_sha256": "1f08750f2fe902fd49f5fdbf8f8a0be95416004e6b846426e8ee801d314ce514",
+      "role": "model",
+      "architecture": "sd15",
+      "format": "gguf",
+      "sampling": "lcm",
+      "production_user_flow_tested": false,
+      "model_card": "https://huggingface.co/Steward/lcm-dreamshaper-v7-gguf/blob/ae3fa73e105d5f848a4ef122e2ce14c92123bf1a/README.md",
+      "license_metadata": {}
+    },
+    {
+      "id": "lcm_original_unet_f32",
+      "repository": "SimianLuo/LCM_Dreamshaper_v7",
+      "revision": "a85df6a8bd976cdd08b4fd8f3b73f229c9e54df5",
+      "path": "unet/diffusion_pytorch_model.safetensors",
+      "bytes": 3438495328,
+      "sha256": "7be468469c513f8614a73423aa009581295fbd8c903703450632b2275c0145a9",
+      "url": "https://huggingface.co/SimianLuo/LCM_Dreamshaper_v7/resolve/a85df6a8bd976cdd08b4fd8f3b73f229c9e54df5/unet/diffusion_pytorch_model.safetensors",
+      "role": "unet_reference",
+      "architecture": "sd15",
+      "format": "safetensors",
+      "sampling": "lcm",
+      "production_user_flow_tested": false,
+      "model_card": "https://huggingface.co/SimianLuo/LCM_Dreamshaper_v7/blob/a85df6a8bd976cdd08b4fd8f3b73f229c9e54df5/README.md",
+      "license_metadata": {
+        "license": "mit"
+      }
+    }
+  ],
+  "developer_assets_only": true,
+  "models_in_apk": false
+}

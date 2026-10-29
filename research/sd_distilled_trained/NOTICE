@@ -1,0 +1,16 @@
+This directory contains metadata and a data-only SD-Turbo selection reference.
+It contains no model weights, tensor payloads, vocabulary or generated media.
+
+SD-Turbo original model: stabilityai/sd-turbo; quantization: Green-Sky/SD-Turbo-GGUF.
+Review both original and quantizer licenses; metadata is not a complete review.
+LCM original: SimianLuo/LCM_Dreamshaper_v7, derived from DreamShaper v7 and SD1.5.
+GGUF conversion: Steward/lcm-dreamshaper-v7-gguf. Missing conversion license
+metadata is not permission to redistribute original, converted or derived weights.
+The original UNet is a developer diagnostic reference, not an extra App download.
+No standalone LCM import recommendation or product repair is asserted here.
+
+All acquisitions are explicit developer actions. Tests use already verified
+assets and never install, download or enable an Android model automatically.
+The unchanged CPU sd.cpp/ggml source is pinned in third_party/engine-lock.json.
+Host numerical/PNG/Java checks do not establish phone execution, quality,
+resource fit, background endurance, complete target03 or v0.3.0 acceptance.

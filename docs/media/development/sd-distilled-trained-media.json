@@ -1,0 +1,60 @@
+{
+  "schema": "lma.sd-distilled-trained-media/1",
+  "kind": "actual_trained_host_png_outputs",
+  "source_pngs": {
+    "sd-turbo-one-step": "fcb9a5ae36e5e45b61ce13a0d674ea8d47444371d5ba1adad95c32f1b84e9572",
+    "sd-turbo-four-step": "5845daae68c1712e1af6f2b03537505dafe10aa38ba167a4285f8fcb4742f013",
+    "lcm-checkpoint-converted-original": "7d25b2edc3d68433fbcd99bda0d386f4103777e966f388eaea44a85c50ceae42",
+    "lcm-checkpoint-fixed-guidance8p5": "3565db6b81852987157e4a41d6d51709b53e236f02ed9ca1abb4c8ce9c429680"
+  },
+  "slideshow_frames": 4,
+  "gif_duration_ms": 8800,
+  "mp4_frames": 88,
+  "mp4_fps": 10,
+  "original_pngs_copied_without_reencoding": true,
+  "sources": {
+    "build\\sd-distilled-asset-probe\\sd-turbo-probe-results.json": "0373cd2f3f49991d0945ab6675079f57aac6c871ac1bd7a413a44d38264ee907",
+    "build\\sd-distilled-asset-probe\\lcm-checkpoint-probe-results.json": "7d4db670314e06f9d1ad57994a5ed1cc9d700a7ccba83d4d2ece4009399b0d5e"
+  },
+  "files": {
+    "sd-distilled-sd-turbo-one-step.png": {
+      "bytes": 626945,
+      "sha256": "fcb9a5ae36e5e45b61ce13a0d674ea8d47444371d5ba1adad95c32f1b84e9572"
+    },
+    "sd-distilled-sd-turbo-four-step.png": {
+      "bytes": 612816,
+      "sha256": "5845daae68c1712e1af6f2b03537505dafe10aa38ba167a4285f8fcb4742f013"
+    },
+    "sd-distilled-sd-turbo-contact-sheet.png": {
+      "bytes": 924939,
+      "sha256": "3f108db662bf3610ac93014417b22bb14b18f2a3e3ee1ccdcb3d587b7fa41aaf"
+    },
+    "sd-distilled-lcm-checkpoint-converted-original.png": {
+      "bytes": 531990,
+      "sha256": "7d25b2edc3d68433fbcd99bda0d386f4103777e966f388eaea44a85c50ceae42"
+    },
+    "sd-distilled-lcm-checkpoint-fixed-guidance8p5.png": {
+      "bytes": 528970,
+      "sha256": "3565db6b81852987157e4a41d6d51709b53e236f02ed9ca1abb4c8ce9c429680"
+    },
+    "sd-distilled-lcm-checkpoint-contact-sheet.png": {
+      "bytes": 778639,
+      "sha256": "90e1bf8de564984ee4f5f817d4db2d4f03c664e658b891a12867673ca46b90e3"
+    },
+    "sd-distilled-trained-slideshow.gif": {
+      "bytes": 733422,
+      "sha256": "fad06f9b0a12e2e595a29a8257f4737761c01264b98c1bc6cacc7e0655d91a33"
+    },
+    "sd-distilled-trained-slideshow.mp4": {
+      "bytes": 362413,
+      "sha256": "169623f1194dbd88b9d3ef562d0d1e09cf38ac258e0e54343667f148164a4020"
+    }
+  },
+  "physical_android": false,
+  "app_screen_recording": false,
+  "semantic_quality_accepted": false,
+  "complete_release_accepted": false,
+  "input_fingerprint": {
+    "tools/render_sd_distilled_trained.py": "31a17c0e3a3e4ed930ef6cebfcb9ba08573031110b3f8b9bb22176837bbadf10"
+  }
+}

@@ -2,6 +2,8 @@
 
 [English](ADAPTERS.en.md) · [资产控制核对](ASSET_CONTROL_AUDIT.md) · [开发状态](DEVELOPMENT.md) · [完整需求](MULTIMODAL_RELEASE_PLAN.md)
 
+独立 LCM checkpoint 与 LCM-LoRA 分开验收。[新主机对照](SD_DISTILLED_TRAINED.md)确认一份 checkpoint 转换漏掉引导条件，并保留固定引导数值 / 原生图像修复候选；这不是 LoRA 支持或完整产品修复的替代证据。
+
 适用于内部 **0.3.0-dev.12 / code 16**。这里说明已接入的配对、存储和任务代码；**尚无 LMA Android LoRA 生成证据**。编号 02 的 SD 1.5 / SDXL 实际权重、质量与生命周期验收仍属于同一完整 v0.3.0，不能按此文计为完成。
 
 ## 用户使用逻辑

@@ -2,6 +2,8 @@
 
 [English](DIFFUSION_ENGINE.en.md) · [HF 组件选择](HF_RECIPES.md) · [LoRA](ADAPTERS.md) · [开发状态](DEVELOPMENT.md)
 
+新增实际主机专项：[SD-Turbo 与独立 LCM checkpoint](SD_DISTILLED_TRAINED.md)。SD-Turbo 完整 HF / 导入 / 原生链路通过；LCM 转换漏掉条件分支，固定引导候选完成完整 UNet 数值与实际 PNG 对照，但画质、完整官方管线和产品准备 / Android 均未验收。
+
 适用内部 **0.3.0-dev.13 / code 17**。这里记录实际接入的代码、配方、Windows 原生编译与限定开发检查。尚未取得 Android 模型输出、图像质量、内存或锁屏证据；编号 01 / 02 / 03 / 05 及其他全部所选目标继续属于同一完整 v0.3.0。
 
 ## 用户选择与组件
