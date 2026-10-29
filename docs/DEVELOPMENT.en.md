@@ -2,6 +2,8 @@
 
 [中文](DEVELOPMENT.md) · [Full scope](MULTIMODAL_RELEASE_PLAN.en.md) · [Build](BUILD.en.md) · [English home](../README.en.md)
 
+New [small native LCM preparation](LCM_LOCAL_PREPARATION.en.md):24 native children/105 checks, complete trained-source preparation, actual output/cancellation/recovery and separate Android compilation. The new C++ pixel comparison fails its preset max gate (8 > 5), so the candidate remains rejected. App integration, quality, phone and complete release stay open; APK inputs/bytes are unchanged.
+
 New: [trained SD-Turbo and standalone LCM checkpoint validation](SD_DISTILLED_TRAINED.en.md): ten native children /six PNGs, plus production HF selection, two whole-object imports,80 Java/binding checks and five actual workers /three PNGs for SD-Turbo. LCM analysis identifies a missing condition, executes30 complete UNet forwards and produces a private folded native candidate. Quality, canonical pipeline and phone acceptance remain open; LCM product preparation is unimplemented. Bilingual guides, original PNG/GIF/MP4 and [numbered work/full pending scope](releases/v0.3.0-dev.24-sd-distilled.md) accompany unchanged production sources/APK bytes.
 
 The current public release remains **v0.2.0**. This branch is **0.3.0-dev.24 / versionCode 28**, not the complete v0.3.0, and has no new Release. F-01–F-12, selections 01–14/16/17 and frozen subtargets still belong to one delivery; these are internal implementation checkpoints.

@@ -1,0 +1,2 @@
+#pragma once
+static constexpr const char* lma_lcm_contract = R"LMA_CONTRACT(@LMA_LCM_CONTRACT@)LMA_CONTRACT";

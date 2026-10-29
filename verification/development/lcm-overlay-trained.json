@@ -1,0 +1,1927 @@
+{
+  "schema": "lma.lcm-native-prepared-overlay-trained/1",
+  "passed": false,
+  "compilation": {
+    "schema": "lma.sd-host-build/1",
+    "executable": "build/sd-worker-host/a3bf87b8e136d993/bin/lma_sd_host.exe",
+    "sha256": "57b262d251aba1bc1ba1d6c64f1983075508dac1bb4b5ec4b729cff9306598c9",
+    "bytes": 8633856,
+    "source_revision": "be486498eadc29dc3cd234d944c2180ed42b1415",
+    "ggml_revision": "a5915eb0e47adef21c3f25b889a008925ea838c2",
+    "backend": "cpu",
+    "production_worker_source_unmodified": true,
+    "production_vocabulary_source_unmodified": true,
+    "windows_parent_guard": true,
+    "external_vocabulary": true,
+    "bundled_model_data": false,
+    "android_compiled": false,
+    "physical_android": false,
+    "packaged_in_apk": false,
+    "model_executed": false,
+    "input_fingerprint": {
+      "app/src/main/assets/model-bundles.json": "bb2272dfa95443c9391fb858fd19b52d539126ca209319c190b420e734bc97b8",
+      "native/sd_policy.hpp": "c7d987ffc6b905fbad9d6a47be98d10f57b2060728f00801742a4ec346a5c7ba",
+      "native/sd_worker.cpp": "47e1c3344c63fb90bc240e2743f8257904e831b1597b9d0b9bd780011e8969d0",
+      "native/vocab_external.cpp": "8bfe3af4f45363554f58009efcd7404e3af9da768cb65762de6c6b91621c81f1",
+      "research/sd_host/CMakeLists.txt": "0870d59e689181eddd9690cc537da9b9abf4a252791ae6dd0506aa95fe4051d3",
+      "research/sd_host/compat/sys/prctl.h": "87c9ddf82ce059bf303486b0e10b22dce6d972e87f83836d148e631dcdad9c9e",
+      "research/sd_host/compat/unistd.h": "e467e7f5855c286b3ce40268146ed34d153a5fbf8a42d5c36b26a6293142068b",
+      "research/sd_host/NOTICE": "90e18935ca8ba71ac1a5ce59e3a2f0b0580cd246877f65cba402deff67eb18fc",
+      "research/sd_host/platform.hpp": "c377ed1b676707a469a192d96ae9b748802e1f62ad0674366b593b2b5b2daf67",
+      "third_party/engine-lock.json": "1341d53deca6412779d197b5fc978a37a55462ee4d86df4b6db4b3c7bf97ec7a",
+      "third_party/notices/sd-sources.json": "91ee744071aa93c4bd4d40476d3582fa4bf4d00a628527e196d4856c06ec77c1",
+      "tools/build_native.py": "f3876b3c254ee367a55f15bcbf9cd8c0dc2eb243b53b59796a282f2afc4a7c11",
+      "tools/build_sd_host.py": "25943d201f98b806c15df691f87fd496f7988f4d104e92549bf5a3ed2e787e13",
+      "tools/fetch_sd15_trained.py": "91392401d9739f15b14fa4e42b74f13bbdd719a382746541cc69952966e6f307"
+    }
+  },
+  "base": {
+    "id": "lcm_dreamshaper_v7_f16",
+    "repository": "Steward/lcm-dreamshaper-v7-gguf",
+    "revision": "ae3fa73e105d5f848a4ef122e2ce14c92123bf1a",
+    "path": "LCM_Dreamshaper_v7-f16.gguf",
+    "bytes": 2134675232,
+    "sha256": "0642060766117fdeb8cae0ccdc73ee974ac5779be1112d0a82f2b965bbd00e15",
+    "url": "https://huggingface.co/Steward/lcm-dreamshaper-v7-gguf/resolve/ae3fa73e105d5f848a4ef122e2ce14c92123bf1a/LCM_Dreamshaper_v7-f16.gguf",
+    "public_metadata_sha256": "1f08750f2fe902fd49f5fdbf8f8a0be95416004e6b846426e8ee801d314ce514",
+    "role": "model",
+    "architecture": "sd15",
+    "format": "gguf",
+    "sampling": "lcm",
+    "production_user_flow_tested": false,
+    "model_card": "https://huggingface.co/Steward/lcm-dreamshaper-v7-gguf/blob/ae3fa73e105d5f848a4ef122e2ce14c92123bf1a/README.md",
+    "license_metadata": {}
+  },
+  "base_whole_sha256_verified": true,
+  "preparation": {
+    "path": "build/lcm-preparation-trained/run-1793303060658650300/prepared/lcm-condition-bias.gguf",
+    "bytes": 5696,
+    "sha256": "213f8a346cf0a70b2cfbb6460f2c9e990b3c45c6fdd435002a82c906e2d3c66c",
+    "payload_sha256": "d68884bc71fb3774d1c479425a11a3a77ebb562f5f3a9a46797cf3d22a9931d9",
+    "payload_bytes": 5120
+  },
+  "references": {
+    "original": {
+      "path": "build/sd-distilled-asset-probe/lcm-checkpoint-private-1793300235058319800/converted-original.png",
+      "sha256": "7d25b2edc3d68433fbcd99bda0d386f4103777e966f388eaea44a85c50ceae42"
+    },
+    "folded": {
+      "path": "build/sd-distilled-asset-probe/lcm-checkpoint-private-1793300235058319800/fixed-guidance8p5.png",
+      "sha256": "3565db6b81852987157e4a41d6d51709b53e236f02ed9ca1abb4c8ce9c429680"
+    }
+  },
+  "jobs": [
+    {
+      "returncode": 0,
+      "seconds": 120.32522210000025,
+      "events": [
+        {
+          "event": "stage",
+          "stage": "loading"
+        },
+        {
+          "event": "progress",
+          "seconds": 1000.0000610351562,
+          "stage": "loading",
+          "step": 0,
+          "steps": 1
+        },
+        {
+          "event": "progress",
+          "seconds": 0.020999979227781296,
+          "stage": "loading",
+          "step": 1,
+          "steps": 1
+        },
+        {
+          "event": "stage",
+          "stage": "generating"
+        },
+        {
+          "event": "progress",
+          "seconds": 0.0009999991161748767,
+          "stage": "generating",
+          "step": 1,
+          "steps": 196
+        },
+        {
+          "event": "progress",
+          "seconds": 0.001040816307067871,
+          "stage": "generating",
+          "step": 196,
+          "steps": 196
+        },
+        {
+          "event": "progress",
+          "seconds": 0.0,
+          "stage": "generating",
+          "step": 0,
+          "steps": 4
+        },
+        {
+          "event": "progress",
+          "seconds": 2000.0001220703125,
+          "stage": "generating",
+          "step": 0,
+          "steps": 686
+        },
+        {
+          "event": "progress",
+          "seconds": 0.0003007299383170903,
+          "stage": "generating",
+          "step": 685,
+          "steps": 686
+        },
+        {
+          "event": "progress",
+          "seconds": 0.0003007299383170903,
+          "stage": "generating",
+          "step": 685,
+          "steps": 686
+        },
+        {
+          "event": "progress",
+          "seconds": 0.0006107871886342764,
+          "stage": "generating",
+          "step": 686,
+          "steps": 686
+        },
+        {
+          "event": "progress",
+          "seconds": 7.016071796417236,
+          "stage": "generating",
+          "step": 1,
+          "steps": 4
+        },
+        {
+          "event": "progress",
+          "seconds": 6.00875997543335,
+          "stage": "generating",
+          "step": 2,
+          "steps": 4
+        },
+        {
+          "event": "progress",
+          "seconds": 6.830286026000977,
+          "stage": "generating",
+          "step": 3,
+          "steps": 4
+        },
+        {
+          "event": "progress",
+          "seconds": 8.117706298828125,
+          "stage": "generating",
+          "step": 4,
+          "steps": 4
+        },
+        {
+          "event": "progress",
+          "seconds": 0.0,
+          "stage": "generating",
+          "step": 0,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 0.00028571425355039537,
+          "stage": "generating",
+          "step": 7,
+          "steps": 140
+        },
+        {
+          "event": "progress",
+          "seconds": 0.001449999981559813,
+          "stage": "generating",
+          "step": 140,
+          "steps": 140
+        },
+        {
+          "event": "progress",
+          "seconds": 2.1670000553131104,
+          "stage": "generating",
+          "step": 1,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.7200000286102295,
+          "stage": "generating",
+          "step": 2,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.8839999437332153,
+          "stage": "generating",
+          "step": 3,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.6419999599456787,
+          "stage": "generating",
+          "step": 4,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.6399999856948853,
+          "stage": "generating",
+          "step": 5,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.8969999551773071,
+          "stage": "generating",
+          "step": 6,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.784999966621399,
+          "stage": "generating",
+          "step": 7,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.940000057220459,
+          "stage": "generating",
+          "step": 8,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.1649999618530273,
+          "stage": "generating",
+          "step": 9,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.4649999141693115,
+          "stage": "generating",
+          "step": 10,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.1080000400543213,
+          "stage": "generating",
+          "step": 11,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.0759999752044678,
+          "stage": "generating",
+          "step": 12,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.6759999990463257,
+          "stage": "generating",
+          "step": 13,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.4779999256134033,
+          "stage": "generating",
+          "step": 14,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.975000023841858,
+          "stage": "generating",
+          "step": 15,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.812000036239624,
+          "stage": "generating",
+          "step": 16,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.6469999551773071,
+          "stage": "generating",
+          "step": 17,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.6419999599456787,
+          "stage": "generating",
+          "step": 18,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.7300000190734863,
+          "stage": "generating",
+          "step": 19,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.6890000104904175,
+          "stage": "generating",
+          "step": 20,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.8359999656677246,
+          "stage": "generating",
+          "step": 21,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.815999984741211,
+          "stage": "generating",
+          "step": 22,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.8930000066757202,
+          "stage": "generating",
+          "step": 23,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.815999984741211,
+          "stage": "generating",
+          "step": 24,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.8309999704360962,
+          "stage": "generating",
+          "step": 25,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.7680000066757202,
+          "stage": "generating",
+          "step": 26,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.9199999570846558,
+          "stage": "generating",
+          "step": 27,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.687999963760376,
+          "stage": "generating",
+          "step": 28,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.5499999523162842,
+          "stage": "generating",
+          "step": 29,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.9539999961853027,
+          "stage": "generating",
+          "step": 30,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.968000054359436,
+          "stage": "generating",
+          "step": 31,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.3499999046325684,
+          "stage": "generating",
+          "step": 32,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.8890000581741333,
+          "stage": "generating",
+          "step": 33,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.718999981880188,
+          "stage": "generating",
+          "step": 34,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.8079999685287476,
+          "stage": "generating",
+          "step": 35,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.5549999475479126,
+          "stage": "generating",
+          "step": 36,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.5379999876022339,
+          "stage": "generating",
+          "step": 37,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.6710000038146973,
+          "stage": "generating",
+          "step": 38,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.9589999914169312,
+          "stage": "generating",
+          "step": 39,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.0880000591278076,
+          "stage": "generating",
+          "step": 40,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.812999963760376,
+          "stage": "generating",
+          "step": 41,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.6449999809265137,
+          "stage": "generating",
+          "step": 42,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.6419999599456787,
+          "stage": "generating",
+          "step": 43,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.5839999914169312,
+          "stage": "generating",
+          "step": 44,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.753000020980835,
+          "stage": "generating",
+          "step": 45,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.9550000429153442,
+          "stage": "generating",
+          "step": 46,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.812999963760376,
+          "stage": "generating",
+          "step": 47,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.7230000495910645,
+          "stage": "generating",
+          "step": 48,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.1740000247955322,
+          "stage": "generating",
+          "step": 49,
+          "steps": 49
+        },
+        {
+          "event": "complete",
+          "format": "png",
+          "height": 512,
+          "output": "T:/build/lcm-overlay-trained/run-1793303393281833900/original-bias-control.png",
+          "width": 512
+        }
+      ],
+      "protocol_errors": [
+        "Non-protocol stdout"
+      ],
+      "logs_truncated": [
+        false,
+        false
+      ],
+      "timed_out": false,
+      "forced_host_termination": false,
+      "cancel_trigger": null,
+      "cancel_to_exit_seconds": null,
+      "android_cooperative_cancellation_tested": false,
+      "resources": {
+        "observed": true,
+        "samples": 5462,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 2155941888,
+        "sampled_peak_private_bytes": 2516582400,
+        "gpu_memory_measured": false,
+        "physical_device_memory_measured": false
+      },
+      "image": {
+        "width": 512,
+        "height": 512,
+        "format": "PNG",
+        "mode": "RGB",
+        "bytes": 531990,
+        "sha256": "7d25b2edc3d68433fbcd99bda0d386f4103777e966f388eaea44a85c50ceae42",
+        "channel_mean": [
+          90.7232666015625,
+          83.0217399597168,
+          74.25282287597656
+        ],
+        "channel_stddev": [
+          47.124067085901245,
+          43.598681497497104,
+          41.481349748773866
+        ],
+        "extrema": [
+          [
+            16,
+            255
+          ],
+          [
+            11,
+            211
+          ],
+          [
+            3,
+            195
+          ]
+        ],
+        "entropy": 8.850570850925989
+      },
+      "name": "original-bias-control",
+      "parameters": {
+        "width": 512,
+        "height": 512,
+        "steps": 4,
+        "cfg": 1,
+        "sampler": "lcm",
+        "scheduler": "lcm",
+        "seed": 42,
+        "threads": 6,
+        "vaeTiling": true,
+        "flowShift": 0
+      },
+      "whitespace_only_stdout_lines": 1,
+      "whitespace_tolerant_protocol_valid": true,
+      "component_sha256": "e078aa63ce436e969580c811c652aaddb2f9f7bf803a0e2de5206637e5f5b1d0",
+      "passed": true
+    },
+    {
+      "returncode": 0,
+      "seconds": 123.76175610000064,
+      "events": [
+        {
+          "event": "stage",
+          "stage": "loading"
+        },
+        {
+          "event": "progress",
+          "seconds": 1000.0000610351562,
+          "stage": "loading",
+          "step": 0,
+          "steps": 1
+        },
+        {
+          "event": "progress",
+          "seconds": 0.015999985858798027,
+          "stage": "loading",
+          "step": 1,
+          "steps": 1
+        },
+        {
+          "event": "stage",
+          "stage": "generating"
+        },
+        {
+          "event": "progress",
+          "seconds": 2.040816434600856e-05,
+          "stage": "generating",
+          "step": 196,
+          "steps": 196
+        },
+        {
+          "event": "progress",
+          "seconds": 0.0,
+          "stage": "generating",
+          "step": 0,
+          "steps": 4
+        },
+        {
+          "event": "progress",
+          "seconds": 2000.0001220703125,
+          "stage": "generating",
+          "step": 0,
+          "steps": 686
+        },
+        {
+          "event": "progress",
+          "seconds": 0.0003036496345885098,
+          "stage": "generating",
+          "step": 685,
+          "steps": 686
+        },
+        {
+          "event": "progress",
+          "seconds": 0.0003036496345885098,
+          "stage": "generating",
+          "step": 685,
+          "steps": 686
+        },
+        {
+          "event": "progress",
+          "seconds": 0.0005976676475256681,
+          "stage": "generating",
+          "step": 686,
+          "steps": 686
+        },
+        {
+          "event": "progress",
+          "seconds": 8.182611465454102,
+          "stage": "generating",
+          "step": 1,
+          "steps": 4
+        },
+        {
+          "event": "progress",
+          "seconds": 7.604529857635498,
+          "stage": "generating",
+          "step": 2,
+          "steps": 4
+        },
+        {
+          "event": "progress",
+          "seconds": 7.385549068450928,
+          "stage": "generating",
+          "step": 3,
+          "steps": 4
+        },
+        {
+          "event": "progress",
+          "seconds": 7.042014122009277,
+          "stage": "generating",
+          "step": 4,
+          "steps": 4
+        },
+        {
+          "event": "progress",
+          "seconds": 0.0,
+          "stage": "generating",
+          "step": 0,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 3000.0,
+          "stage": "generating",
+          "step": 0,
+          "steps": 140
+        },
+        {
+          "event": "progress",
+          "seconds": 0.0015428571496158838,
+          "stage": "generating",
+          "step": 140,
+          "steps": 140
+        },
+        {
+          "event": "progress",
+          "seconds": 1.715999960899353,
+          "stage": "generating",
+          "step": 1,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.694000005722046,
+          "stage": "generating",
+          "step": 2,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.7669999599456787,
+          "stage": "generating",
+          "step": 3,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.8179999589920044,
+          "stage": "generating",
+          "step": 4,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.8669999837875366,
+          "stage": "generating",
+          "step": 5,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.6979999542236328,
+          "stage": "generating",
+          "step": 6,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.6130000352859497,
+          "stage": "generating",
+          "step": 7,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.8890000581741333,
+          "stage": "generating",
+          "step": 8,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.6619999408721924,
+          "stage": "generating",
+          "step": 9,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.6690000295639038,
+          "stage": "generating",
+          "step": 10,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.6050000190734863,
+          "stage": "generating",
+          "step": 11,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.621000051498413,
+          "stage": "generating",
+          "step": 12,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.6080000400543213,
+          "stage": "generating",
+          "step": 13,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.6770000457763672,
+          "stage": "generating",
+          "step": 14,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.071000099182129,
+          "stage": "generating",
+          "step": 15,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.8279999494552612,
+          "stage": "generating",
+          "step": 16,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.8070000410079956,
+          "stage": "generating",
+          "step": 17,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.6109999418258667,
+          "stage": "generating",
+          "step": 18,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.840999960899353,
+          "stage": "generating",
+          "step": 19,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.0299999713897705,
+          "stage": "generating",
+          "step": 20,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.8899999856948853,
+          "stage": "generating",
+          "step": 21,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.7869999408721924,
+          "stage": "generating",
+          "step": 22,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.6269999742507935,
+          "stage": "generating",
+          "step": 23,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.555999994277954,
+          "stage": "generating",
+          "step": 24,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.5219999551773071,
+          "stage": "generating",
+          "step": 25,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.5779999494552612,
+          "stage": "generating",
+          "step": 26,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.5180000066757202,
+          "stage": "generating",
+          "step": 27,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.531999945640564,
+          "stage": "generating",
+          "step": 28,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.6469999551773071,
+          "stage": "generating",
+          "step": 29,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.6610000133514404,
+          "stage": "generating",
+          "step": 30,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.5950000286102295,
+          "stage": "generating",
+          "step": 31,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.562000036239624,
+          "stage": "generating",
+          "step": 32,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.6430000066757202,
+          "stage": "generating",
+          "step": 33,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.6619999408721924,
+          "stage": "generating",
+          "step": 34,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.5010000467300415,
+          "stage": "generating",
+          "step": 35,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.5199999809265137,
+          "stage": "generating",
+          "step": 36,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.6540000438690186,
+          "stage": "generating",
+          "step": 37,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.6009999513626099,
+          "stage": "generating",
+          "step": 38,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.7879999876022339,
+          "stage": "generating",
+          "step": 39,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.8140000104904175,
+          "stage": "generating",
+          "step": 40,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.5950000286102295,
+          "stage": "generating",
+          "step": 41,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.649999976158142,
+          "stage": "generating",
+          "step": 42,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.590000033378601,
+          "stage": "generating",
+          "step": 43,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.6440000534057617,
+          "stage": "generating",
+          "step": 44,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.7130000591278076,
+          "stage": "generating",
+          "step": 45,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.684999942779541,
+          "stage": "generating",
+          "step": 46,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.6330000162124634,
+          "stage": "generating",
+          "step": 47,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.8890000581741333,
+          "stage": "generating",
+          "step": 48,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.6030000448226929,
+          "stage": "generating",
+          "step": 49,
+          "steps": 49
+        },
+        {
+          "event": "complete",
+          "format": "png",
+          "height": 512,
+          "output": "T:/build/lcm-overlay-trained/run-1793303393281833900/native-prepared.png",
+          "width": 512
+        }
+      ],
+      "protocol_errors": [
+        "Non-protocol stdout"
+      ],
+      "logs_truncated": [
+        false,
+        false
+      ],
+      "timed_out": false,
+      "forced_host_termination": false,
+      "cancel_trigger": null,
+      "cancel_to_exit_seconds": null,
+      "android_cooperative_cancellation_tested": false,
+      "resources": {
+        "observed": true,
+        "samples": 5891,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 2155642880,
+        "sampled_peak_private_bytes": 2515132416,
+        "gpu_memory_measured": false,
+        "physical_device_memory_measured": false
+      },
+      "image": {
+        "width": 512,
+        "height": 512,
+        "format": "PNG",
+        "mode": "RGB",
+        "bytes": 528741,
+        "sha256": "ccaef785950eb3d7a0d23a57eb73dc94c9c4bf9c4197ee12b2c442ae83b2d348",
+        "channel_mean": [
+          91.9520378112793,
+          84.23711013793945,
+          76.17533874511719
+        ],
+        "channel_stddev": [
+          49.17991329451528,
+          45.71304850804038,
+          43.69294439529588
+        ],
+        "extrema": [
+          [
+            13,
+            247
+          ],
+          [
+            7,
+            220
+          ],
+          [
+            0,
+            211
+          ]
+        ],
+        "entropy": 8.878461395099102
+      },
+      "name": "native-prepared",
+      "parameters": {
+        "width": 512,
+        "height": 512,
+        "steps": 4,
+        "cfg": 1,
+        "sampler": "lcm",
+        "scheduler": "lcm",
+        "seed": 42,
+        "threads": 6,
+        "vaeTiling": true,
+        "flowShift": 0
+      },
+      "whitespace_only_stdout_lines": 1,
+      "whitespace_tolerant_protocol_valid": true,
+      "component_sha256": "213f8a346cf0a70b2cfbb6460f2c9e990b3c45c6fdd435002a82c906e2d3c66c",
+      "passed": true
+    },
+    {
+      "returncode": 1,
+      "seconds": 0.29656030000114697,
+      "events": [
+        {
+          "event": "stage",
+          "stage": "loading"
+        },
+        {
+          "event": "progress",
+          "seconds": 1000.0000610351562,
+          "stage": "loading",
+          "step": 0,
+          "steps": 1
+        },
+        {
+          "event": "progress",
+          "seconds": 0.019999980926513672,
+          "stage": "loading",
+          "step": 1,
+          "steps": 1
+        },
+        {
+          "event": "error",
+          "message": "Distilled sampling parameters do not match the frozen plan"
+        }
+      ],
+      "protocol_errors": [],
+      "logs_truncated": [
+        false,
+        false
+      ],
+      "timed_out": false,
+      "forced_host_termination": false,
+      "cancel_trigger": null,
+      "cancel_to_exit_seconds": null,
+      "android_cooperative_cancellation_tested": false,
+      "resources": {
+        "observed": true,
+        "samples": 15,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 50024448,
+        "sampled_peak_private_bytes": 2185871360,
+        "gpu_memory_measured": false,
+        "physical_device_memory_measured": false
+      },
+      "name": "invalid-cfg",
+      "parameters": {
+        "width": 512,
+        "height": 512,
+        "steps": 4,
+        "cfg": 7,
+        "sampler": "lcm",
+        "scheduler": "lcm",
+        "seed": 42,
+        "threads": 6,
+        "vaeTiling": true,
+        "flowShift": 0
+      },
+      "whitespace_only_stdout_lines": 0,
+      "whitespace_tolerant_protocol_valid": true,
+      "component_sha256": "213f8a346cf0a70b2cfbb6460f2c9e990b3c45c6fdd435002a82c906e2d3c66c",
+      "passed": true
+    },
+    {
+      "returncode": 1,
+      "seconds": 9.210576200002834,
+      "events": [
+        {
+          "event": "stage",
+          "stage": "loading"
+        },
+        {
+          "event": "progress",
+          "seconds": 1000.0000610351562,
+          "stage": "loading",
+          "step": 0,
+          "steps": 1
+        },
+        {
+          "event": "progress",
+          "seconds": 0.017999982461333275,
+          "stage": "loading",
+          "step": 1,
+          "steps": 1
+        },
+        {
+          "event": "stage",
+          "stage": "generating"
+        },
+        {
+          "event": "progress",
+          "seconds": 1.2987013178644702e-05,
+          "stage": "generating",
+          "step": 77,
+          "steps": 196
+        },
+        {
+          "event": "progress",
+          "seconds": 0.001040816307067871,
+          "stage": "generating",
+          "step": 196,
+          "steps": 196
+        },
+        {
+          "event": "progress",
+          "seconds": 0.0,
+          "stage": "generating",
+          "step": 0,
+          "steps": 4
+        },
+        {
+          "event": "progress",
+          "seconds": 1000.0000610351562,
+          "stage": "generating",
+          "step": 0,
+          "steps": 686
+        },
+        {
+          "event": "progress",
+          "seconds": 0.0003065693308599293,
+          "stage": "generating",
+          "step": 685,
+          "steps": 686
+        },
+        {
+          "event": "progress",
+          "seconds": 0.0003065693308599293,
+          "stage": "generating",
+          "step": 685,
+          "steps": 686
+        },
+        {
+          "event": "progress",
+          "seconds": 0.0006151603301987052,
+          "stage": "generating",
+          "step": 686,
+          "steps": 686
+        },
+        {
+          "event": "progress",
+          "seconds": 8.08511734008789,
+          "stage": "generating",
+          "step": 1,
+          "steps": 4
+        }
+      ],
+      "protocol_errors": [
+        "Non-protocol stdout"
+      ],
+      "logs_truncated": [
+        false,
+        false
+      ],
+      "timed_out": false,
+      "forced_host_termination": true,
+      "cancel_trigger": {
+        "event": "progress",
+        "seconds": 8.08511734008789,
+        "stage": "generating",
+        "step": 1,
+        "steps": 4
+      },
+      "cancel_to_exit_seconds": 0.48540999999750056,
+      "android_cooperative_cancellation_tested": false,
+      "resources": {
+        "observed": true,
+        "samples": 442,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 2078199808,
+        "sampled_peak_private_bytes": 2515124224,
+        "gpu_memory_measured": false,
+        "physical_device_memory_measured": false
+      },
+      "name": "cancel-step1",
+      "parameters": {
+        "width": 512,
+        "height": 512,
+        "steps": 4,
+        "cfg": 1,
+        "sampler": "lcm",
+        "scheduler": "lcm",
+        "seed": 42,
+        "threads": 6,
+        "vaeTiling": true,
+        "flowShift": 0
+      },
+      "whitespace_only_stdout_lines": 1,
+      "whitespace_tolerant_protocol_valid": true,
+      "component_sha256": "213f8a346cf0a70b2cfbb6460f2c9e990b3c45c6fdd435002a82c906e2d3c66c",
+      "passed": true
+    },
+    {
+      "returncode": 0,
+      "seconds": 114.98031149999952,
+      "events": [
+        {
+          "event": "stage",
+          "stage": "loading"
+        },
+        {
+          "event": "progress",
+          "seconds": 1000.0000610351562,
+          "stage": "loading",
+          "step": 0,
+          "steps": 1
+        },
+        {
+          "event": "progress",
+          "seconds": 0.011999988928437233,
+          "stage": "loading",
+          "step": 1,
+          "steps": 1
+        },
+        {
+          "event": "stage",
+          "stage": "generating"
+        },
+        {
+          "event": "progress",
+          "seconds": 1000.0000610351562,
+          "stage": "generating",
+          "step": 0,
+          "steps": 196
+        },
+        {
+          "event": "progress",
+          "seconds": 0.0010510204592719674,
+          "stage": "generating",
+          "step": 196,
+          "steps": 196
+        },
+        {
+          "event": "progress",
+          "seconds": 0.0,
+          "stage": "generating",
+          "step": 0,
+          "steps": 4
+        },
+        {
+          "event": "progress",
+          "seconds": 2000.0001220703125,
+          "stage": "generating",
+          "step": 0,
+          "steps": 686
+        },
+        {
+          "event": "progress",
+          "seconds": 0.00030218978645280004,
+          "stage": "generating",
+          "step": 685,
+          "steps": 686
+        },
+        {
+          "event": "progress",
+          "seconds": 0.00030218978645280004,
+          "stage": "generating",
+          "step": 685,
+          "steps": 686
+        },
+        {
+          "event": "progress",
+          "seconds": 0.000599125400185585,
+          "stage": "generating",
+          "step": 686,
+          "steps": 686
+        },
+        {
+          "event": "progress",
+          "seconds": 8.044907569885254,
+          "stage": "generating",
+          "step": 1,
+          "steps": 4
+        },
+        {
+          "event": "progress",
+          "seconds": 7.297915935516357,
+          "stage": "generating",
+          "step": 2,
+          "steps": 4
+        },
+        {
+          "event": "progress",
+          "seconds": 6.957686901092529,
+          "stage": "generating",
+          "step": 3,
+          "steps": 4
+        },
+        {
+          "event": "progress",
+          "seconds": 8.10872745513916,
+          "stage": "generating",
+          "step": 4,
+          "steps": 4
+        },
+        {
+          "event": "progress",
+          "seconds": 0.0,
+          "stage": "generating",
+          "step": 0,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2000.0001220703125,
+          "stage": "generating",
+          "step": 0,
+          "steps": 140
+        },
+        {
+          "event": "progress",
+          "seconds": 0.0014785714447498322,
+          "stage": "generating",
+          "step": 140,
+          "steps": 140
+        },
+        {
+          "event": "progress",
+          "seconds": 2.1670000553131104,
+          "stage": "generating",
+          "step": 1,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.7269999980926514,
+          "stage": "generating",
+          "step": 2,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.906000018119812,
+          "stage": "generating",
+          "step": 3,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.6799999475479126,
+          "stage": "generating",
+          "step": 4,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.5549999475479126,
+          "stage": "generating",
+          "step": 5,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.9140000343322754,
+          "stage": "generating",
+          "step": 6,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.9129999876022339,
+          "stage": "generating",
+          "step": 7,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.075000047683716,
+          "stage": "generating",
+          "step": 8,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.5499999523162842,
+          "stage": "generating",
+          "step": 9,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.4470000267028809,
+          "stage": "generating",
+          "step": 10,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.9639999866485596,
+          "stage": "generating",
+          "step": 11,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.5609999895095825,
+          "stage": "generating",
+          "step": 12,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.6069999933242798,
+          "stage": "generating",
+          "step": 13,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.527999997138977,
+          "stage": "generating",
+          "step": 14,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.4329999685287476,
+          "stage": "generating",
+          "step": 15,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.4889999628067017,
+          "stage": "generating",
+          "step": 16,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.5800000429153442,
+          "stage": "generating",
+          "step": 17,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.010999917984009,
+          "stage": "generating",
+          "step": 18,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.9850000143051147,
+          "stage": "generating",
+          "step": 19,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.4989999532699585,
+          "stage": "generating",
+          "step": 20,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.5420000553131104,
+          "stage": "generating",
+          "step": 21,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.4170000553131104,
+          "stage": "generating",
+          "step": 22,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.5850000381469727,
+          "stage": "generating",
+          "step": 23,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.7300000190734863,
+          "stage": "generating",
+          "step": 24,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.909000039100647,
+          "stage": "generating",
+          "step": 25,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.7489999532699585,
+          "stage": "generating",
+          "step": 26,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.5470000505447388,
+          "stage": "generating",
+          "step": 27,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.4819999933242798,
+          "stage": "generating",
+          "step": 28,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.468000054359436,
+          "stage": "generating",
+          "step": 29,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.409999966621399,
+          "stage": "generating",
+          "step": 30,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.6790000200271606,
+          "stage": "generating",
+          "step": 31,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.7050000429153442,
+          "stage": "generating",
+          "step": 32,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.437000036239624,
+          "stage": "generating",
+          "step": 33,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.8630000352859497,
+          "stage": "generating",
+          "step": 34,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.428999900817871,
+          "stage": "generating",
+          "step": 35,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.6399999856948853,
+          "stage": "generating",
+          "step": 36,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.524999976158142,
+          "stage": "generating",
+          "step": 37,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.5269999504089355,
+          "stage": "generating",
+          "step": 38,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.5850000381469727,
+          "stage": "generating",
+          "step": 39,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.437000036239624,
+          "stage": "generating",
+          "step": 40,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.4420000314712524,
+          "stage": "generating",
+          "step": 41,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.5290000438690186,
+          "stage": "generating",
+          "step": 42,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.128999948501587,
+          "stage": "generating",
+          "step": 43,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.190000057220459,
+          "stage": "generating",
+          "step": 44,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.909999966621399,
+          "stage": "generating",
+          "step": 45,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.7120000123977661,
+          "stage": "generating",
+          "step": 46,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.5269999504089355,
+          "stage": "generating",
+          "step": 47,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.6779999732971191,
+          "stage": "generating",
+          "step": 48,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.1419999599456787,
+          "stage": "generating",
+          "step": 49,
+          "steps": 49
+        },
+        {
+          "event": "complete",
+          "format": "png",
+          "height": 512,
+          "output": "T:/build/lcm-overlay-trained/run-1793303393281833900/recovery.png",
+          "width": 512
+        }
+      ],
+      "protocol_errors": [
+        "Non-protocol stdout"
+      ],
+      "logs_truncated": [
+        false,
+        false
+      ],
+      "timed_out": false,
+      "forced_host_termination": false,
+      "cancel_trigger": null,
+      "cancel_to_exit_seconds": null,
+      "android_cooperative_cancellation_tested": false,
+      "resources": {
+        "observed": true,
+        "samples": 5312,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 2155171840,
+        "sampled_peak_private_bytes": 2515128320,
+        "gpu_memory_measured": false,
+        "physical_device_memory_measured": false
+      },
+      "image": {
+        "width": 512,
+        "height": 512,
+        "format": "PNG",
+        "mode": "RGB",
+        "bytes": 528741,
+        "sha256": "ccaef785950eb3d7a0d23a57eb73dc94c9c4bf9c4197ee12b2c442ae83b2d348",
+        "channel_mean": [
+          91.9520378112793,
+          84.23711013793945,
+          76.17533874511719
+        ],
+        "channel_stddev": [
+          49.17991329451528,
+          45.71304850804038,
+          43.69294439529588
+        ],
+        "extrema": [
+          [
+            13,
+            247
+          ],
+          [
+            7,
+            220
+          ],
+          [
+            0,
+            211
+          ]
+        ],
+        "entropy": 8.878461395099102
+      },
+      "name": "recovery",
+      "parameters": {
+        "width": 512,
+        "height": 512,
+        "steps": 4,
+        "cfg": 1,
+        "sampler": "lcm",
+        "scheduler": "lcm",
+        "seed": 42,
+        "threads": 6,
+        "vaeTiling": true,
+        "flowShift": 0
+      },
+      "whitespace_only_stdout_lines": 1,
+      "whitespace_tolerant_protocol_valid": true,
+      "component_sha256": "213f8a346cf0a70b2cfbb6460f2c9e990b3c45c6fdd435002a82c906e2d3c66c",
+      "passed": true
+    }
+  ],
+  "comparisons": {
+    "recovery_exact": true,
+    "differs_from_original": true,
+    "previous_torch_folded_image_exact": false,
+    "mean_abs_rgb_vs_previous": 0.083892822265625,
+    "max_abs_rgb_vs_previous": 8,
+    "mean_abs_gate": 0.1,
+    "max_abs_gate": 5
+  },
+  "capture_directory": "build/lcm-overlay-trained/run-1793303393281833900",
+  "input_fingerprint": {
+    "native/sd_policy.hpp": "c7d987ffc6b905fbad9d6a47be98d10f57b2060728f00801742a4ec346a5c7ba",
+    "native/sd_worker.cpp": "47e1c3344c63fb90bc240e2743f8257904e831b1597b9d0b9bd780011e8969d0",
+    "native/vocab_external.cpp": "8bfe3af4f45363554f58009efcd7404e3af9da768cb65762de6c6b91621c81f1",
+    "research/lcm_prepare/contract.json": "543385d7ada78b84875d938f74d02768c90d33b5ba16b85f2d827b9d7497634f",
+    "tools/build_sd_host.py": "25943d201f98b806c15df691f87fd496f7988f4d104e92549bf5a3ed2e787e13",
+    "tools/lcm_prepare_data.py": "4a1ed1b0f2cec5ad38dcbc268c0b14f21dd99e98354cc5f6a8c2d8121420c95c",
+    "tools/sd_variants_capture.py": "1c3a576bdc3189ccb2657f8dda179d3ce589297aaee012545dc0ea8f453731da",
+    "tools/test_lcm_overlay_trained.py": "dbe6efd8f3f94e16952ba0f2eb14334f0486452e08ab4cda56977cd97402cf32"
+  },
+  "production_app_executed": false,
+  "physical_android": false,
+  "canonical_pipeline_equivalence_proven": false,
+  "image_quality_accepted": false,
+  "complete_target03_accepted": false,
+  "complete_release_accepted": false
+}

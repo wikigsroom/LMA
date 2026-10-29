@@ -1,0 +1,46 @@
+{
+  "schema": "lma.lcm-preparation-media/1",
+  "kind": "actual_trained_host_png_outputs",
+  "original_pngs_copied_without_reencoding": true,
+  "source_pngs": {
+    "original-bias-control": "7d25b2edc3d68433fbcd99bda0d386f4103777e966f388eaea44a85c50ceae42",
+    "native-prepared": "ccaef785950eb3d7a0d23a57eb73dc94c9c4bf9c4197ee12b2c442ae83b2d348"
+  },
+  "slideshow_frames": 2,
+  "gif_duration_ms": 4800,
+  "mp4_frames": 48,
+  "mp4_fps": 10,
+  "sources": {
+    "build/lcm-overlay-trained/results.json": "aee735b12771136552c04bbdc39277e8276b88a0c927305a24bc7c36f18e1aa7"
+  },
+  "files": {
+    "lcm-preparation-original-bias-control.png": {
+      "bytes": 531990,
+      "sha256": "7d25b2edc3d68433fbcd99bda0d386f4103777e966f388eaea44a85c50ceae42"
+    },
+    "lcm-preparation-native-prepared.png": {
+      "bytes": 528741,
+      "sha256": "ccaef785950eb3d7a0d23a57eb73dc94c9c4bf9c4197ee12b2c442ae83b2d348"
+    },
+    "lcm-preparation-contact-sheet.png": {
+      "bytes": 786586,
+      "sha256": "a4517c04f4b3a6eb93804f7e4c35561fdb500cc2e7f8122bcad72224fa74e0f3"
+    },
+    "lcm-preparation-slideshow.gif": {
+      "bytes": 344988,
+      "sha256": "18ee015246f3545cd7b849c5ae4f17c21ab6fadafe30dcc39770ddbddf023790"
+    },
+    "lcm-preparation-slideshow.mp4": {
+      "bytes": 181813,
+      "sha256": "13385a4f17c9d8f5c0cfe91ab9b9449991fbd27c43a18fa1244712cfe3e43118"
+    }
+  },
+  "physical_android": false,
+  "app_screen_recording": false,
+  "semantic_quality_accepted": false,
+  "image_comparison_gate_passed": false,
+  "complete_release_accepted": false,
+  "input_fingerprint": {
+    "tools/render_lcm_preparation.py": "ff00c037912dc9631c9ab81a0105e7f173b0c73fe586acd89cf6bfd7cd399c47"
+  }
+}

@@ -2,6 +2,8 @@
 
 [English](ADAPTERS.en.md) · [资产控制核对](ASSET_CONTROL_AUDIT.md) · [开发状态](DEVELOPMENT.md) · [完整需求](MULTIMODAL_RELEASE_PLAN.md)
 
+[LCM 原生准备专项](LCM_LOCAL_PREPARATION.md)：新程序仅生成来源 / 基础绑定的小型条件组件，尚未注册为 App 模块；不得将底层双文件试验描述为生产配方支持。 新 C++ 候选像素门槛仍失败（8 > 5），未提升为产品支持。
+
 独立 LCM checkpoint 与 LCM-LoRA 分开验收。[新主机对照](SD_DISTILLED_TRAINED.md)确认一份 checkpoint 转换漏掉引导条件，并保留固定引导数值 / 原生图像修复候选；这不是 LoRA 支持或完整产品修复的替代证据。
 
 适用于内部 **0.3.0-dev.12 / code 16**。这里说明已接入的配对、存储和任务代码；**尚无 LMA Android LoRA 生成证据**。编号 02 的 SD 1.5 / SDXL 实际权重、质量与生命周期验收仍属于同一完整 v0.3.0，不能按此文计为完成。

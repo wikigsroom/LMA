@@ -2,6 +2,8 @@
 
 [贡献约定 / Contributing](../CONTRIBUTING.md) · [文档目录 / Documentation](README.md)
 
+本轮新增 [LCM 小型原生准备](LCM_LOCAL_PREPARATION.md) / [English](LCM_LOCAL_PREPARATION.en.md)。五份公开 JSON、编译与真实训练主机媒体分别审计；程序未打包，App 接入 / 质量 / 真机仍阻塞。APK 输入 / 字节不变；[编号完整待办](releases/v0.3.0-dev.24-lcm-preparation.md)继续保留完整同版范围。 新 C++ 候选像素门槛仍失败（8 > 5），未提升为产品支持。
+
 本轮新增 [SD-Turbo / 独立 LCM 主机专项](SD_DISTILLED_TRAINED.md) / [English](SD_DISTILLED_TRAINED.en.md)，五份公开 JSON 与真实图像静态媒体纳入开发审计。完整 UNet 数值通过、原生出图或 Java 导入不能关闭 LCM 产品准备、画质、完整官方采样、Android / Release 门槛。See [numbered full pending scope](releases/v0.3.0-dev.24-sd-distilled.md).
 
 ## 持续要求 / Standing instruction

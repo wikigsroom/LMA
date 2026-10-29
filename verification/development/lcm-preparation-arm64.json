@@ -1,0 +1,45 @@
+{
+  "schema": "lma.lcm-preparer-build/1",
+  "android_arm64_compiled": true,
+  "executable": "build/lcm-prepare-arm64/bin/liblma-lcm-prepare.so",
+  "executable_bytes": 534184,
+  "executable_sha256": "603189df847d4f4556b7c75b40f74706f0e6119e7a6397c8e6aa2aa948cdf00b",
+  "input_fingerprint": {
+    "research/lcm_prepare/CMakeLists.txt": "9d02f66eaf7f7fcba96fa38e28d7eda4387d42bc519eaba2eb395b1b4037ee46",
+    "research/lcm_prepare/contract.hpp.in": "ef99078e0b5aa12b1dda780fd38fd76541524b1ca7025cc10f3b1ee452a9dfc9",
+    "research/lcm_prepare/contract.json": "543385d7ada78b84875d938f74d02768c90d33b5ba16b85f2d827b9d7497634f",
+    "research/lcm_prepare/prepare.cpp": "fb7dfd877337c3da35089db3704a105cc7bc857ec85bc4886214ea8892a52fac",
+    "research/local_prepare/io.hpp": "fc1f412b47619a1b0f63256590ca025353bd8637d7900a6f546f21a4d2241358",
+    "research/local_prepare/NOTICE": "abd98f3b203aa21aaece257200b42c9478ab0a06f44ad1208e5663ec4287a6d1",
+    "third_party/ltx098-text-source-lock.json": "04b2f7892a4f047363fbaf3ba555682bf201c8320fa1cc7f4d5a68b2884512f4",
+    "tools/build_lcm_prepare.py": "ba010b5b0ccdd316bb4b8f5427c557107bc0ea5208e22358cd3d0df6f45c2f1e",
+    "tools/generate_lcm_condition_contract.py": "a1ec1932cd031eecdd3aa7d3c50e9fa6866e9bcd624692c492bedfb8577faf79"
+  },
+  "learned_data_embedded": false,
+  "mathematical_guidance_constants": 256,
+  "packaged_in_apk": false,
+  "production_app_integrated": false,
+  "physical_android": false,
+  "model_inference": false,
+  "virtualization_used": false,
+  "elf": {
+    "machine": "aarch64",
+    "needed": [
+      "libm.so",
+      "libdl.so",
+      "libc.so"
+    ],
+    "load_segment_alignment": [
+      16384
+    ],
+    "interpreter": "/system/bin/linker64",
+    "entry_point": 129248,
+    "android_api_notes": [
+      28
+    ],
+    "16k_elf_aligned": true
+  },
+  "android_platform": 28,
+  "ndk": "30.0.16248370",
+  "forbidden_network_process_imports": []
+}

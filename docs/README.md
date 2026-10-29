@@ -6,6 +6,7 @@
 
 | 主题 / Topic | 中文 | English |
 | --- | --- | --- |
+| LCM 小型原生准备 / Small native preparation | [中文](LCM_LOCAL_PREPARATION.md) | [English](LCM_LOCAL_PREPARATION.en.md) |
 | SD-Turbo / 独立 LCM checkpoint / Standalone distilled checkpoints | [中文](SD_DISTILLED_TRAINED.md) | [English](SD_DISTILLED_TRAINED.en.md) |
 | SDXL / 两类 LoRA / LCM-LoRA真实训练 / Trained diffusion variants | [中文](SD_VARIANTS_TRAINED.md) | [English](SD_VARIANTS_TRAINED.en.md) |
 | 编号11真实Qwen语音 / Trained Qwen Base | [中文](QWEN_TTS_TRAINED.md) | [English](QWEN_TTS_TRAINED.en.md) |

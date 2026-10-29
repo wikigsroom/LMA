@@ -2,6 +2,8 @@
 
 [中文](DIFFUSION_ENGINE.md) · [HF components](HF_RECIPES.en.md) · [LoRA](ADAPTERS.en.md) · [Development status](DEVELOPMENT.en.md)
 
+See [small native LCM conditioning preparation](LCM_LOCAL_PREPARATION.en.md): a source-bound 5,696-byte component with actual host captures. The separate native program is not packaged or accepted by production `SdSpec`; App integration, canonical equivalence, quality and phone execution remain open. The new C++ candidate fails its preset pixel maximum (8 > 5) and remains rejected.
+
 New actual host follow-up: [SD-Turbo and standalone LCM checkpoint](SD_DISTILLED_TRAINED.en.md). SD-Turbo completes HF/import/native checks. The LCM conversion omits a condition branch; a fixed-guidance candidate passes complete-UNet numerical checks and actual PNG controls, with quality, canonical pipeline, product preparation and Android still unaccepted.
 
 Applies to internal **0.3.0-dev.13 / code 17**. This describes implemented bindings, recipes, native Windows compilation and scoped checks. Android model output, image quality, memory and screen-off behavior remain unverified. Selections 01/02/03/05 and every other selected target remain in the same complete v0.3.0.

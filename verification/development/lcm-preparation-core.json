@@ -1,0 +1,921 @@
+{
+  "schema": "lma.lcm-native-preparation-tests/1",
+  "passed": true,
+  "checks": 105,
+  "actual_native_children": 24,
+  "synthetic_parameters": true,
+  "trained_weights_loaded": false,
+  "numerical_max_abs_vs_torch": 5.960464477539063e-08,
+  "native_scalar_values_match_independent_oracle": true,
+  "cancellation_after_native_progress": true,
+  "output_bytes": 5696,
+  "payload_bytes": 5120,
+  "repeat_recovery_sha256": "07b5d7ff88bf8aea978b3a1b4245a0cf24176e637e4791a1188f7e2cf7a7bda6",
+  "cases": [
+    {
+      "returncode": 0,
+      "seconds": 3.3361586999999417,
+      "events": [
+        {
+          "schema": "lma.lcm-native-prepare/1",
+          "ok": true,
+          "operation": "fold_condition_bias",
+          "fixture": true,
+          "algorithm": "lcm-fixed-guidance-f16-mlp-double-dot/1",
+          "source_bytes": 1971529,
+          "source_sha256_verified": true,
+          "source_sha256": "d43fafae8dbe250f5cd7ecd360c3b80a003980da1631c839a4e1fa422b423d5f",
+          "source_header_bytes": 321,
+          "source_header_sha256": "06fd3ba7b0811f7212c185f6b2eeff7730458202821a2625e7d672872eccda87",
+          "source_tensor_count": 3,
+          "source_streamed_bytes": 1971529,
+          "source_retained": true,
+          "base_sha256": "0642060766117fdeb8cae0ccdc73ee974ac5779be1112d0a82f2b965bbd00e15",
+          "distilled_guidance": 8.5,
+          "sampler_cfg": 1.0,
+          "guidance_bytes_sha256": "54d6aabf1d7a3082cbf26313138517135674c6216bd9c2a2636e1f8809ea8250",
+          "output_file": "lcm-condition-bias.gguf",
+          "output_bytes": 5696,
+          "output_sha256": "07b5d7ff88bf8aea978b3a1b4245a0cf24176e637e4791a1188f7e2cf7a7bda6",
+          "payload_bytes": 5120,
+          "payload_sha256": "7723aa44fd1420bc22921d60b8acdece60e839fec1420f6ba158a42ad71afc42",
+          "output_tensor": "model.diffusion_model.time_embed.0.bias",
+          "output_shape": [
+            1280
+          ],
+          "selected_parameter_bytes": 1971200,
+          "input_chunk_bytes": 4194304,
+          "whole_checkpoint_allocated": false,
+          "mathematical_constants_only": true,
+          "model_data_embedded": false,
+          "model_inference": false,
+          "packaged_in_apk": false,
+          "production_app_integrated": false,
+          "physical_android": false,
+          "image_quality_accepted": false,
+          "complete_release_accepted": false
+        }
+      ],
+      "protocol_errors": [],
+      "logs_truncated": [
+        false,
+        false
+      ],
+      "timed_out": false,
+      "forced_host_termination": false,
+      "cancel_trigger": null,
+      "cancel_to_exit_seconds": null,
+      "android_cooperative_cancellation_tested": false,
+      "resources": {
+        "observed": true,
+        "samples": 160,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 13361152,
+        "sampled_peak_private_bytes": 7311360,
+        "gpu_memory_measured": false,
+        "physical_device_memory_measured": false
+      },
+      "name": "success",
+      "expected_error": null,
+      "passed": true
+    },
+    {
+      "returncode": 0,
+      "seconds": 3.721368300000904,
+      "events": [
+        {
+          "schema": "lma.lcm-native-prepare/1",
+          "ok": true,
+          "operation": "fold_condition_bias",
+          "fixture": true,
+          "algorithm": "lcm-fixed-guidance-f16-mlp-double-dot/1",
+          "source_bytes": 1971529,
+          "source_sha256_verified": true,
+          "source_sha256": "d43fafae8dbe250f5cd7ecd360c3b80a003980da1631c839a4e1fa422b423d5f",
+          "source_header_bytes": 321,
+          "source_header_sha256": "06fd3ba7b0811f7212c185f6b2eeff7730458202821a2625e7d672872eccda87",
+          "source_tensor_count": 3,
+          "source_streamed_bytes": 1971529,
+          "source_retained": true,
+          "base_sha256": "0642060766117fdeb8cae0ccdc73ee974ac5779be1112d0a82f2b965bbd00e15",
+          "distilled_guidance": 8.5,
+          "sampler_cfg": 1.0,
+          "guidance_bytes_sha256": "54d6aabf1d7a3082cbf26313138517135674c6216bd9c2a2636e1f8809ea8250",
+          "output_file": "lcm-condition-bias.gguf",
+          "output_bytes": 5696,
+          "output_sha256": "07b5d7ff88bf8aea978b3a1b4245a0cf24176e637e4791a1188f7e2cf7a7bda6",
+          "payload_bytes": 5120,
+          "payload_sha256": "7723aa44fd1420bc22921d60b8acdece60e839fec1420f6ba158a42ad71afc42",
+          "output_tensor": "model.diffusion_model.time_embed.0.bias",
+          "output_shape": [
+            1280
+          ],
+          "selected_parameter_bytes": 1971200,
+          "input_chunk_bytes": 4194304,
+          "whole_checkpoint_allocated": false,
+          "mathematical_constants_only": true,
+          "model_data_embedded": false,
+          "model_inference": false,
+          "packaged_in_apk": false,
+          "production_app_integrated": false,
+          "physical_android": false,
+          "image_quality_accepted": false,
+          "complete_release_accepted": false
+        }
+      ],
+      "protocol_errors": [],
+      "logs_truncated": [
+        false,
+        false
+      ],
+      "timed_out": false,
+      "forced_host_termination": false,
+      "cancel_trigger": null,
+      "cancel_to_exit_seconds": null,
+      "android_cooperative_cancellation_tested": false,
+      "resources": {
+        "observed": true,
+        "samples": 182,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 12832768,
+        "sampled_peak_private_bytes": 7278592,
+        "gpu_memory_measured": false,
+        "physical_device_memory_measured": false
+      },
+      "name": "repeat",
+      "expected_error": null,
+      "passed": true
+    },
+    {
+      "returncode": 1,
+      "seconds": 0.02722609999909764,
+      "events": [
+        {
+          "ok": false,
+          "error": "Unknown preparation operation"
+        }
+      ],
+      "protocol_errors": [],
+      "logs_truncated": [
+        false,
+        false
+      ],
+      "timed_out": false,
+      "forced_host_termination": false,
+      "cancel_trigger": null,
+      "cancel_to_exit_seconds": null,
+      "android_cooperative_cancellation_tested": false,
+      "resources": {
+        "observed": true,
+        "samples": 2,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 5144576,
+        "sampled_peak_private_bytes": 409600,
+        "gpu_memory_measured": false,
+        "physical_device_memory_measured": false
+      },
+      "name": "unknown-operation",
+      "expected_error": "Unknown preparation operation",
+      "passed": true
+    },
+    {
+      "returncode": 1,
+      "seconds": 0.025848999997833744,
+      "events": [
+        {
+          "ok": false,
+          "error": "Unknown field: remote"
+        }
+      ],
+      "protocol_errors": [],
+      "logs_truncated": [
+        false,
+        false
+      ],
+      "timed_out": false,
+      "forced_host_termination": false,
+      "cancel_trigger": null,
+      "cancel_to_exit_seconds": null,
+      "android_cooperative_cancellation_tested": false,
+      "resources": {
+        "observed": true,
+        "samples": 2,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 5140480,
+        "sampled_peak_private_bytes": 409600,
+        "gpu_memory_measured": false,
+        "physical_device_memory_measured": false
+      },
+      "name": "unknown-field",
+      "expected_error": "Unknown field",
+      "passed": true
+    },
+    {
+      "returncode": 1,
+      "seconds": 0.02631689999907394,
+      "events": [
+        {
+          "ok": false,
+          "error": "Source byte/hash identity mismatch"
+        }
+      ],
+      "protocol_errors": [],
+      "logs_truncated": [
+        false,
+        false
+      ],
+      "timed_out": false,
+      "forced_host_termination": false,
+      "cancel_trigger": null,
+      "cancel_to_exit_seconds": null,
+      "android_cooperative_cancellation_tested": false,
+      "resources": {
+        "observed": true,
+        "samples": 2,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 5197824,
+        "sampled_peak_private_bytes": 413696,
+        "gpu_memory_measured": false,
+        "physical_device_memory_measured": false
+      },
+      "name": "wrong-bytes",
+      "expected_error": "Source byte/hash identity mismatch",
+      "passed": true
+    },
+    {
+      "returncode": 1,
+      "seconds": 0.05026549999820418,
+      "events": [
+        {
+          "ok": false,
+          "error": "Source SHA-256 mismatch; output discarded"
+        }
+      ],
+      "protocol_errors": [],
+      "logs_truncated": [
+        false,
+        false
+      ],
+      "timed_out": false,
+      "forced_host_termination": false,
+      "cancel_trigger": null,
+      "cancel_to_exit_seconds": null,
+      "android_cooperative_cancellation_tested": false,
+      "resources": {
+        "observed": true,
+        "samples": 3,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 10915840,
+        "sampled_peak_private_bytes": 1069056,
+        "gpu_memory_measured": false,
+        "physical_device_memory_measured": false
+      },
+      "name": "wrong-sha",
+      "expected_error": "Source SHA-256 mismatch",
+      "passed": true
+    },
+    {
+      "returncode": 1,
+      "seconds": 0.02730159999919124,
+      "events": [
+        {
+          "ok": false,
+          "error": "Source byte/hash identity mismatch"
+        }
+      ],
+      "protocol_errors": [],
+      "logs_truncated": [
+        false,
+        false
+      ],
+      "timed_out": false,
+      "forced_host_termination": false,
+      "cancel_trigger": null,
+      "cancel_to_exit_seconds": null,
+      "android_cooperative_cancellation_tested": false,
+      "resources": {
+        "observed": true,
+        "samples": 2,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 5193728,
+        "sampled_peak_private_bytes": 409600,
+        "gpu_memory_measured": false,
+        "physical_device_memory_measured": false
+      },
+      "name": "bad-sha",
+      "expected_error": "Source byte/hash identity mismatch",
+      "passed": true
+    },
+    {
+      "returncode": 1,
+      "seconds": 0.025195300000632415,
+      "events": [
+        {
+          "ok": false,
+          "error": "Output exceeds selected storage budget"
+        }
+      ],
+      "protocol_errors": [],
+      "logs_truncated": [
+        false,
+        false
+      ],
+      "timed_out": false,
+      "forced_host_termination": false,
+      "cancel_trigger": null,
+      "cancel_to_exit_seconds": null,
+      "android_cooperative_cancellation_tested": false,
+      "resources": {
+        "observed": true,
+        "samples": 2,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 5206016,
+        "sampled_peak_private_bytes": 409600,
+        "gpu_memory_measured": false,
+        "physical_device_memory_measured": false
+      },
+      "name": "small-budget",
+      "expected_error": "Output exceeds selected storage budget",
+      "passed": true
+    },
+    {
+      "returncode": 1,
+      "seconds": 0.027048500000091735,
+      "events": [
+        {
+          "ok": false,
+          "error": "Integer outside budget"
+        }
+      ],
+      "protocol_errors": [],
+      "logs_truncated": [
+        false,
+        false
+      ],
+      "timed_out": false,
+      "forced_host_termination": false,
+      "cancel_trigger": null,
+      "cancel_to_exit_seconds": null,
+      "android_cooperative_cancellation_tested": false,
+      "resources": {
+        "observed": true,
+        "samples": 2,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 5201920,
+        "sampled_peak_private_bytes": 401408,
+        "gpu_memory_measured": false,
+        "physical_device_memory_measured": false
+      },
+      "name": "large-budget",
+      "expected_error": "Integer outside budget",
+      "passed": true
+    },
+    {
+      "returncode": 1,
+      "seconds": 0.025630899999669055,
+      "events": [
+        {
+          "ok": false,
+          "error": "Invalid output basename"
+        }
+      ],
+      "protocol_errors": [],
+      "logs_truncated": [
+        false,
+        false
+      ],
+      "timed_out": false,
+      "forced_host_termination": false,
+      "cancel_trigger": null,
+      "cancel_to_exit_seconds": null,
+      "android_cooperative_cancellation_tested": false,
+      "resources": {
+        "observed": true,
+        "samples": 2,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 5230592,
+        "sampled_peak_private_bytes": 409600,
+        "gpu_memory_measured": false,
+        "physical_device_memory_measured": false
+      },
+      "name": "unsafe-output",
+      "expected_error": "Invalid output basename",
+      "passed": true
+    },
+    {
+      "returncode": 1,
+      "seconds": 0.026259499998559477,
+      "events": [
+        {
+          "ok": false,
+          "error": "Reserved output basename"
+        }
+      ],
+      "protocol_errors": [],
+      "logs_truncated": [
+        false,
+        false
+      ],
+      "timed_out": false,
+      "forced_host_termination": false,
+      "cancel_trigger": null,
+      "cancel_to_exit_seconds": null,
+      "android_cooperative_cancellation_tested": false,
+      "resources": {
+        "observed": true,
+        "samples": 2,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 5230592,
+        "sampled_peak_private_bytes": 409600,
+        "gpu_memory_measured": false,
+        "physical_device_memory_measured": false
+      },
+      "name": "reserved-output",
+      "expected_error": "Reserved output basename",
+      "passed": true
+    },
+    {
+      "returncode": 1,
+      "seconds": 0.02554510000118171,
+      "events": [
+        {
+          "ok": false,
+          "error": "Expected local path"
+        }
+      ],
+      "protocol_errors": [],
+      "logs_truncated": [
+        false,
+        false
+      ],
+      "timed_out": false,
+      "forced_host_termination": false,
+      "cancel_trigger": null,
+      "cancel_to_exit_seconds": null,
+      "android_cooperative_cancellation_tested": false,
+      "resources": {
+        "observed": true,
+        "samples": 2,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 5197824,
+        "sampled_peak_private_bytes": 405504,
+        "gpu_memory_measured": false,
+        "physical_device_memory_measured": false
+      },
+      "name": "remote-source",
+      "expected_error": "Expected local path",
+      "passed": true
+    },
+    {
+      "returncode": 1,
+      "seconds": 0.02583969999977853,
+      "events": [
+        {
+          "ok": false,
+          "error": "Expected local path"
+        }
+      ],
+      "protocol_errors": [],
+      "logs_truncated": [
+        false,
+        false
+      ],
+      "timed_out": false,
+      "forced_host_termination": false,
+      "cancel_trigger": null,
+      "cancel_to_exit_seconds": null,
+      "android_cooperative_cancellation_tested": false,
+      "resources": {
+        "observed": true,
+        "samples": 2,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 5206016,
+        "sampled_peak_private_bytes": 339968,
+        "gpu_memory_measured": false,
+        "physical_device_memory_measured": false
+      },
+      "name": "remote-storage",
+      "expected_error": "Expected local path",
+      "passed": true
+    },
+    {
+      "returncode": 1,
+      "seconds": 0.025545500000589527,
+      "events": [
+        {
+          "ok": false,
+          "error": "Output directory already exists"
+        }
+      ],
+      "protocol_errors": [],
+      "logs_truncated": [
+        false,
+        false
+      ],
+      "timed_out": false,
+      "forced_host_termination": false,
+      "cancel_trigger": null,
+      "cancel_to_exit_seconds": null,
+      "android_cooperative_cancellation_tested": false,
+      "resources": {
+        "observed": true,
+        "samples": 2,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 5222400,
+        "sampled_peak_private_bytes": 405504,
+        "gpu_memory_measured": false,
+        "physical_device_memory_measured": false
+      },
+      "name": "existing-output",
+      "expected_error": "Output directory already exists",
+      "passed": true
+    },
+    {
+      "returncode": 1,
+      "seconds": 0.02911630000016885,
+      "events": [
+        {
+          "ok": false,
+          "error": "No signed conditioning contract for this source"
+        }
+      ],
+      "protocol_errors": [],
+      "logs_truncated": [
+        false,
+        false
+      ],
+      "timed_out": false,
+      "forced_host_termination": false,
+      "cancel_trigger": null,
+      "cancel_to_exit_seconds": null,
+      "android_cooperative_cancellation_tested": false,
+      "resources": {
+        "observed": true,
+        "samples": 2,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 5181440,
+        "sampled_peak_private_bytes": 409600,
+        "gpu_memory_measured": false,
+        "physical_device_memory_measured": false
+      },
+      "name": "unsigned-production-source",
+      "expected_error": "No signed conditioning contract for this source",
+      "passed": true
+    },
+    {
+      "returncode": 1,
+      "seconds": 0.026673500000470085,
+      "events": [
+        {
+          "ok": false,
+          "error": "Duplicate JSON key"
+        }
+      ],
+      "protocol_errors": [],
+      "logs_truncated": [
+        false,
+        false
+      ],
+      "timed_out": false,
+      "forced_host_termination": false,
+      "cancel_trigger": null,
+      "cancel_to_exit_seconds": null,
+      "android_cooperative_cancellation_tested": false,
+      "resources": {
+        "observed": true,
+        "samples": 2,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 5152768,
+        "sampled_peak_private_bytes": 409600,
+        "gpu_memory_measured": false,
+        "physical_device_memory_measured": false
+      },
+      "name": "duplicate-field",
+      "expected_error": "Duplicate JSON key",
+      "passed": true
+    },
+    {
+      "returncode": 1,
+      "seconds": 0.025800499999604654,
+      "events": [
+        {
+          "ok": false,
+          "error": "Conditioning tensor shape mismatch"
+        }
+      ],
+      "protocol_errors": [],
+      "logs_truncated": [
+        false,
+        false
+      ],
+      "timed_out": false,
+      "forced_host_termination": false,
+      "cancel_trigger": null,
+      "cancel_to_exit_seconds": null,
+      "android_cooperative_cancellation_tested": false,
+      "resources": {
+        "observed": true,
+        "samples": 2,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 5201920,
+        "sampled_peak_private_bytes": 405504,
+        "gpu_memory_measured": false,
+        "physical_device_memory_measured": false
+      },
+      "name": "wrong-shape",
+      "expected_error": "Conditioning tensor shape mismatch",
+      "passed": true
+    },
+    {
+      "returncode": 1,
+      "seconds": 0.025848000001133187,
+      "events": [
+        {
+          "ok": false,
+          "error": "Conditioned source must contain original F32 tensors"
+        }
+      ],
+      "protocol_errors": [],
+      "logs_truncated": [
+        false,
+        false
+      ],
+      "timed_out": false,
+      "forced_host_termination": false,
+      "cancel_trigger": null,
+      "cancel_to_exit_seconds": null,
+      "android_cooperative_cancellation_tested": false,
+      "resources": {
+        "observed": true,
+        "samples": 2,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 5210112,
+        "sampled_peak_private_bytes": 446464,
+        "gpu_memory_measured": false,
+        "physical_device_memory_measured": false
+      },
+      "name": "wrong-dtype",
+      "expected_error": "Conditioned source must contain original F32 tensors",
+      "passed": true
+    },
+    {
+      "returncode": 1,
+      "seconds": 0.025933500000974163,
+      "events": [
+        {
+          "ok": false,
+          "error": "Tensor ranges overlap or leave unreviewed bytes"
+        }
+      ],
+      "protocol_errors": [],
+      "logs_truncated": [
+        false,
+        false
+      ],
+      "timed_out": false,
+      "forced_host_termination": false,
+      "cancel_trigger": null,
+      "cancel_to_exit_seconds": null,
+      "android_cooperative_cancellation_tested": false,
+      "resources": {
+        "observed": true,
+        "samples": 2,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 5206016,
+        "sampled_peak_private_bytes": 401408,
+        "gpu_memory_measured": false,
+        "physical_device_memory_measured": false
+      },
+      "name": "overlap",
+      "expected_error": "Tensor ranges overlap",
+      "passed": true
+    },
+    {
+      "returncode": 1,
+      "seconds": 0.026700700000219513,
+      "events": [
+        {
+          "ok": false,
+          "error": "Missing conditioning tensor"
+        }
+      ],
+      "protocol_errors": [],
+      "logs_truncated": [
+        false,
+        false
+      ],
+      "timed_out": false,
+      "forced_host_termination": false,
+      "cancel_trigger": null,
+      "cancel_to_exit_seconds": null,
+      "android_cooperative_cancellation_tested": false,
+      "resources": {
+        "observed": true,
+        "samples": 2,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 5201920,
+        "sampled_peak_private_bytes": 409600,
+        "gpu_memory_measured": false,
+        "physical_device_memory_measured": false
+      },
+      "name": "missing-tensor",
+      "expected_error": "Missing conditioning tensor",
+      "passed": true
+    },
+    {
+      "returncode": 1,
+      "seconds": 0.04743339999913587,
+      "events": [
+        {
+          "ok": false,
+          "error": "Non-finite trained parameter"
+        }
+      ],
+      "protocol_errors": [],
+      "logs_truncated": [
+        false,
+        false
+      ],
+      "timed_out": false,
+      "forced_host_termination": false,
+      "cancel_trigger": null,
+      "cancel_to_exit_seconds": null,
+      "android_cooperative_cancellation_tested": false,
+      "resources": {
+        "observed": true,
+        "samples": 3,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 12906496,
+        "sampled_peak_private_bytes": 6930432,
+        "gpu_memory_measured": false,
+        "physical_device_memory_measured": false
+      },
+      "name": "nonfinite",
+      "expected_error": "Non-finite trained parameter",
+      "passed": true
+    },
+    {
+      "returncode": 1,
+      "seconds": 0.032069199998659315,
+      "timed_out": false,
+      "protocol_errors": [],
+      "logs_truncated": [
+        false,
+        false
+      ],
+      "events": [
+        {
+          "ok": false,
+          "error": "Cancelled"
+        }
+      ],
+      "cancel_after_native_progress": true,
+      "name": "cancel-during-hash",
+      "expected_error": "Cancelled",
+      "passed": true
+    },
+    {
+      "returncode": 1,
+      "seconds": 0.030770400000619702,
+      "events": [
+        {
+          "ok": false,
+          "error": "Cancelled"
+        }
+      ],
+      "protocol_errors": [],
+      "logs_truncated": [
+        false,
+        false
+      ],
+      "timed_out": false,
+      "forced_host_termination": false,
+      "cancel_trigger": null,
+      "cancel_to_exit_seconds": null,
+      "android_cooperative_cancellation_tested": false,
+      "resources": {
+        "observed": true,
+        "samples": 2,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 5193728,
+        "sampled_peak_private_bytes": 409600,
+        "gpu_memory_measured": false,
+        "physical_device_memory_measured": false
+      },
+      "name": "cancel-before-start",
+      "expected_error": "Cancelled",
+      "passed": true
+    },
+    {
+      "returncode": 0,
+      "seconds": 2.9997614000021713,
+      "events": [
+        {
+          "schema": "lma.lcm-native-prepare/1",
+          "ok": true,
+          "operation": "fold_condition_bias",
+          "fixture": true,
+          "algorithm": "lcm-fixed-guidance-f16-mlp-double-dot/1",
+          "source_bytes": 1971529,
+          "source_sha256_verified": true,
+          "source_sha256": "d43fafae8dbe250f5cd7ecd360c3b80a003980da1631c839a4e1fa422b423d5f",
+          "source_header_bytes": 321,
+          "source_header_sha256": "06fd3ba7b0811f7212c185f6b2eeff7730458202821a2625e7d672872eccda87",
+          "source_tensor_count": 3,
+          "source_streamed_bytes": 1971529,
+          "source_retained": true,
+          "base_sha256": "0642060766117fdeb8cae0ccdc73ee974ac5779be1112d0a82f2b965bbd00e15",
+          "distilled_guidance": 8.5,
+          "sampler_cfg": 1.0,
+          "guidance_bytes_sha256": "54d6aabf1d7a3082cbf26313138517135674c6216bd9c2a2636e1f8809ea8250",
+          "output_file": "lcm-condition-bias.gguf",
+          "output_bytes": 5696,
+          "output_sha256": "07b5d7ff88bf8aea978b3a1b4245a0cf24176e637e4791a1188f7e2cf7a7bda6",
+          "payload_bytes": 5120,
+          "payload_sha256": "7723aa44fd1420bc22921d60b8acdece60e839fec1420f6ba158a42ad71afc42",
+          "output_tensor": "model.diffusion_model.time_embed.0.bias",
+          "output_shape": [
+            1280
+          ],
+          "selected_parameter_bytes": 1971200,
+          "input_chunk_bytes": 4194304,
+          "whole_checkpoint_allocated": false,
+          "mathematical_constants_only": true,
+          "model_data_embedded": false,
+          "model_inference": false,
+          "packaged_in_apk": false,
+          "production_app_integrated": false,
+          "physical_android": false,
+          "image_quality_accepted": false,
+          "complete_release_accepted": false
+        }
+      ],
+      "protocol_errors": [],
+      "logs_truncated": [
+        false,
+        false
+      ],
+      "timed_out": false,
+      "forced_host_termination": false,
+      "cancel_trigger": null,
+      "cancel_to_exit_seconds": null,
+      "android_cooperative_cancellation_tested": false,
+      "resources": {
+        "observed": true,
+        "samples": 147,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 12832768,
+        "sampled_peak_private_bytes": 7282688,
+        "gpu_memory_measured": false,
+        "physical_device_memory_measured": false
+      },
+      "name": "recovery",
+      "expected_error": null,
+      "passed": true
+    }
+  ],
+  "compilation": {
+    "schema": "lma.lcm-preparer-build/1",
+    "android_arm64_compiled": false,
+    "executable": "build/lcm-prepare-host/bin/lma_lcm_prepare.exe",
+    "executable_bytes": 225792,
+    "executable_sha256": "a3d9cc90671380372ed87f775a09bbf62f4a0bfab7b57224dc7b90f6e5007586",
+    "input_fingerprint": {
+      "research/lcm_prepare/CMakeLists.txt": "9d02f66eaf7f7fcba96fa38e28d7eda4387d42bc519eaba2eb395b1b4037ee46",
+      "research/lcm_prepare/contract.hpp.in": "ef99078e0b5aa12b1dda780fd38fd76541524b1ca7025cc10f3b1ee452a9dfc9",
+      "research/lcm_prepare/contract.json": "543385d7ada78b84875d938f74d02768c90d33b5ba16b85f2d827b9d7497634f",
+      "research/lcm_prepare/prepare.cpp": "fb7dfd877337c3da35089db3704a105cc7bc857ec85bc4886214ea8892a52fac",
+      "research/local_prepare/io.hpp": "fc1f412b47619a1b0f63256590ca025353bd8637d7900a6f546f21a4d2241358",
+      "research/local_prepare/NOTICE": "abd98f3b203aa21aaece257200b42c9478ab0a06f44ad1208e5663ec4287a6d1",
+      "third_party/ltx098-text-source-lock.json": "04b2f7892a4f047363fbaf3ba555682bf201c8320fa1cc7f4d5a68b2884512f4",
+      "tools/build_lcm_prepare.py": "ba010b5b0ccdd316bb4b8f5427c557107bc0ea5208e22358cd3d0df6f45c2f1e",
+      "tools/generate_lcm_condition_contract.py": "a1ec1932cd031eecdd3aa7d3c50e9fa6866e9bcd624692c492bedfb8577faf79"
+    },
+    "learned_data_embedded": false,
+    "mathematical_guidance_constants": 256,
+    "packaged_in_apk": false,
+    "production_app_integrated": false,
+    "physical_android": false,
+    "model_inference": false,
+    "virtualization_used": false
+  },
+  "capture_directory": "build/lcm-preparation-tests/run-1793303042000217800",
+  "input_fingerprint": {
+    "research/lcm_prepare/CMakeLists.txt": "9d02f66eaf7f7fcba96fa38e28d7eda4387d42bc519eaba2eb395b1b4037ee46",
+    "research/lcm_prepare/contract.hpp.in": "ef99078e0b5aa12b1dda780fd38fd76541524b1ca7025cc10f3b1ee452a9dfc9",
+    "research/lcm_prepare/contract.json": "543385d7ada78b84875d938f74d02768c90d33b5ba16b85f2d827b9d7497634f",
+    "research/lcm_prepare/prepare.cpp": "fb7dfd877337c3da35089db3704a105cc7bc857ec85bc4886214ea8892a52fac",
+    "research/local_prepare/io.hpp": "fc1f412b47619a1b0f63256590ca025353bd8637d7900a6f546f21a4d2241358",
+    "research/local_prepare/NOTICE": "abd98f3b203aa21aaece257200b42c9478ab0a06f44ad1208e5663ec4287a6d1",
+    "third_party/ltx098-text-source-lock.json": "04b2f7892a4f047363fbaf3ba555682bf201c8320fa1cc7f4d5a68b2884512f4",
+    "tools/build_lcm_prepare.py": "ba010b5b0ccdd316bb4b8f5427c557107bc0ea5208e22358cd3d0df6f45c2f1e",
+    "tools/generate_lcm_condition_contract.py": "a1ec1932cd031eecdd3aa7d3c50e9fa6866e9bcd624692c492bedfb8577faf79",
+    "tools/lcm_prepare_data.py": "4a1ed1b0f2cec5ad38dcbc268c0b14f21dd99e98354cc5f6a8c2d8121420c95c",
+    "tools/sd_variants_capture.py": "1c3a576bdc3189ccb2657f8dda179d3ce589297aaee012545dc0ea8f453731da",
+    "tools/test_lcm_prepare.py": "07d31004fe42ea58a4ce3363ed108c3249aaa373aedaf8259c1ebb7b26dc96b8"
+  },
+  "production_app_integrated": false,
+  "physical_android": false,
+  "model_inference": false,
+  "complete_release_accepted": false
+}

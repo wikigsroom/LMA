@@ -2,6 +2,8 @@
 
 [English](SD_DISTILLED_TRAINED.en.md) · [扩散基座](DIFFUSION_ENGINE.md) · [LCM-LoRA 与双架构适配器](SD_VARIANTS_TRAINED.md) · [编号交付 / 完整待办](releases/v0.3.0-dev.24-sd-distilled.md)
 
+后续 [LCM 小型原生准备](LCM_LOCAL_PREPARATION.md) / [English](LCM_LOCAL_PREPARATION.en.md)：避免整份修正版副本，新增真实训练准备与小组件出图；新 C++ 候选的像素等价上限未过（8 > 5），未接入 App，原有质量 / 完整管线 / 手机门槛继续保留。
+
 这轮在原生 Windows CPU 上验证独立 SD-Turbo 和 LCM checkpoint，复用 App 中未修改的 C++ 引擎、词表实现及 Java 绑定。SD-Turbo 走完生产 HF 配方、完整导入和真实推理；LCM 识别出转换遗漏、验证固定引导的数值修复候选并实际出图。它们分别是主机验证与开发实验，尚未通过画质、完整官方管线、手机资源或后台耐久验收。APK 仍为 **0.3.0-dev.24 / code 28**，本轮没有更改生产代码、APK 输入或字节，也不发布缩减版 v0.3.0。
 
 ## 1. 用户选择、下载与管理

@@ -2,6 +2,8 @@
 
 [中文](SD_DISTILLED_TRAINED.md) · [Diffusion foundation](DIFFUSION_ENGINE.en.md) · [Paired adapters / LCM-LoRA](SD_VARIANTS_TRAINED.en.md) · [Numbered work and full pending scope](releases/v0.3.0-dev.24-sd-distilled.md)
 
+Follow-up: [small native LCM preparation](LCM_LOCAL_PREPARATION.en.md), with trained source preparation and small-component native output. The new C++ candidate fails its preset pixel maximum (8 > 5), remains unintegrated, and does not close quality, canonical pipeline or phone gates.
+
 This follow-up executes independent SD-Turbo and LCM checkpoints on native Windows CPU using unchanged production C++, vocabulary code and Java binding. SD-Turbo completes the production HF composition/import/inference path. LCM investigation identifies a conversion omission, validates a fixed-guidance fold and produces actual native PNGs. These are scoped host observations and a developer derivation; quality, canonical image-pipeline equivalence, phone resources and endurance remain unaccepted. The APK stays **0.3.0-dev.24 / code28**, with unchanged production sources, APK inputs and bytes. This is not a reduced v0.3.0 release.
 
 ## 1. User selection, acquisition and management

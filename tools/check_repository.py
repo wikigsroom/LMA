@@ -151,6 +151,10 @@ def main():
         check_sd_variants_trained(records, status, ROOT)
         from check_sd_distilled_evidence import check as check_sd_distilled
         check_sd_distilled(records, status, ROOT)
+        from check_lcm_preparation_evidence import check as check_lcm_preparation
+        check_lcm_preparation(records, status, ROOT)
+        from check_lcm_preparation_media import check as check_lcm_preparation_media
+        check_lcm_preparation_media(records, ROOT)
         from check_ltx098_prepare_evidence import check as check_ltx_prepare
         check_ltx_prepare(records, status, digest, ROOT)
         from check_ltx098_vae_prepare_evidence import check as check_ltx_vae_prepare

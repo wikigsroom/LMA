@@ -2,6 +2,8 @@
 
 [中文](README.md) · [English](README.en.md) · [下载 / Releases](https://github.com/wikigsroom/LMA/releases) · [文档导航](docs/README.md) · [更新记录](CHANGELOG.md)
 
+新增[LCM 小型原生准备基座](docs/LCM_LOCAL_PREPARATION.md)：完整 3.44 GB 来源校验后生成 5,696 字节条件组件，24 原生进程 / 105 项检查与真实训练出图、取消恢复分别记录；Android 编译独立于手机执行。附[编号实现与完整待办](docs/releases/v0.3.0-dev.24-lcm-preparation.md)和真实 HOST 图片 / GIF / MP4。新 C++ 组件像素比较最大差值 8 超过预设上限 5，候选保持未通过；准备程序尚未接入 App，画质与完整版本仍待验收；APK 及生产输入不变。
+
 新增[SD-Turbo 与独立 LCM checkpoint 训练验证](docs/SD_DISTILLED_TRAINED.md)：两组10个原生进程 / 6 PNG，SD-Turbo 另经完整生产 HF 配方、2对象导入、80项 Java / 绑定检查、5真实 worker / 3 PNG；LCM 定位遗漏条件并完成30次完整 UNet 数值前向与原生修复候选出图。质量 / 完整官方管线 / 手机验收仍未关闭；LCM 候选不是产品准备方案。双语指南、原图 / GIF / MP4 和[编号实现 / 完整待办](docs/releases/v0.3.0-dev.24-sd-distilled.md)同步，生产源码和 APK 字节保持不变。
 
 > **当前开发：0.3.0-dev.24 / code 28。** 修正扩散 worker 的加载/生成进度，补充 [SD 1.5 真实权重验证](docs/SD15_TRAINED.md)与[旧 LTX 调制顺序诊断](docs/LTX098_MODULATION.md)；LTX 新候选仍未通过冻结数值门槛。[本轮编号实现与全部待办](docs/releases/v0.3.0-dev.24.md)。App 仅更新基座，模型仍由用户自行选择、下载或导入；完整 v0.3.0 与手机验收尚未完成。

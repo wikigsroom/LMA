@@ -2,6 +2,8 @@
 
 [中文](ADAPTERS.md) · [Asset-control audit](ASSET_CONTROL_AUDIT.en.md) · [Development](DEVELOPMENT.en.md) · [Full scope](MULTIMODAL_RELEASE_PLAN.en.md)
 
+[Native LCM preparation follow-up](LCM_LOCAL_PREPARATION.en.md): the new program derives a source/base-bound component but is not an App module yet; direct two-file host experiments do not establish product recipe support. The new C++ candidate fails its preset pixel maximum (8 > 5) and remains rejected.
+
 Standalone LCM checkpoints and LCM-LoRA remain separate targets. [New host analysis](SD_DISTILLED_TRAINED.en.md) identifies a dropped guidance condition in one conversion and retains numerical/native-image fold candidates; neither adapter execution nor this derivation establishes complete product checkpoint support.
 
 Applies to internal **0.3.0-dev.12 / code 16**. Pairing, storage and task code is integrated; **there is no LMA Android LoRA-generation evidence**. Real SD 1.5/SDXL weights, quality and lifecycle acceptance for selection 02 remain mandatory in the same complete v0.3.0.
