@@ -1,0 +1,87 @@
+{
+  "schema": "lma.ltx098-vae-prepared-media/1",
+  "evidence_sha256": "8727d4c17f359ee888edb5b2097f8a962f4cb8a36e1e3295b81b2aba2170c966",
+  "sources": [
+    {
+      "case": "case-0",
+      "frame": 8,
+      "native_file": "build/ltx098-vae-prepare-tests/run-1793249390510072700/case-0.f32",
+      "native_bytes": 835584,
+      "native_sha256": "020afbae71a2c687b5f83e20029b03c8ae8be5b06eed6037ebe4e011c3943221",
+      "original_file": "case-0-output.f32",
+      "original_sha256": "794d74870c2b4319336f0cfe3896dc6f9dcd1858330aeb83daa95fb03e9cd098",
+      "metric": {
+        "case": "case-0",
+        "stage": 9,
+        "max_absolute_error": 2.0265579223632812e-06,
+        "relative_rmse": 9.89524251781094e-07,
+        "cosine": 0.999999999999512,
+        "elements": 208896
+      }
+    },
+    {
+      "case": "case-1",
+      "frame": 0,
+      "native_file": "build/ltx098-vae-prepare-tests/run-1793249390510072700/case-1.f32",
+      "native_bytes": 12288,
+      "native_sha256": "539dd2031e02a172ed25019c4014e4ade60f6916d5781b9df235f3e842a955d1",
+      "original_file": "case-1-output.f32",
+      "original_sha256": "fb79ef8aac02e78f4cac712810ba1c0b24aeef492b572859a89663af90de8db8",
+      "metric": {
+        "case": "case-1",
+        "stage": 9,
+        "max_absolute_error": 4.470348358154297e-07,
+        "relative_rmse": 5.124110623207251e-07,
+        "cosine": 0.9999999999998713,
+        "elements": 3072
+      }
+    },
+    {
+      "case": "case-2",
+      "frame": 8,
+      "native_file": "build/ltx098-vae-prepare-tests/run-1793249390510072700/case-2.f32",
+      "native_bytes": 417792,
+      "native_sha256": "cdb5ef3859b49617797e8b2f80961a9afb0415637f1ec0cdb5ea367e629b7b8f",
+      "original_file": "case-2-output.f32",
+      "original_sha256": "46946552a1379ae05dc78b19d00189bdbb8bfa349218efb78f1ba628e1c42afb",
+      "metric": {
+        "case": "case-2",
+        "stage": 9,
+        "max_absolute_error": 5.513429641723633e-07,
+        "relative_rmse": 2.952582273786566e-07,
+        "cosine": 0.9999999999999677,
+        "elements": 104448
+      }
+    },
+    {
+      "case": "case-3",
+      "frame": 4,
+      "native_file": "build/ltx098-vae-prepare-tests/run-1793249390510072700/case-3.f32",
+      "native_bytes": 221184,
+      "native_sha256": "c8a3057665e1ad11bf24a618004ce56841792213478554e49a63dbd1f07dd354",
+      "original_file": "case-3-output.f32",
+      "original_sha256": "3476ffe0715d69751ea5b2654139c695350f79df5cf5107d8c8532d3799b99e2",
+      "metric": {
+        "case": "case-3",
+        "stage": 9,
+        "max_absolute_error": 2.1457672119140625e-06,
+        "relative_rmse": 1.0391661386302773e-06,
+        "cosine": 0.999999999999462,
+        "elements": 55296
+      }
+    }
+  ],
+  "png_bytes": 224835,
+  "png_sha256": "96afcdfb1bf528281fb63ef8bb2e4a12a0eb0261d00d98e442448020882516e2",
+  "host_preparation_peak_bytes": 18423808,
+  "native_children_executed_this_tool": 0,
+  "capture_reused": true,
+  "synthetic_latent_inputs": true,
+  "ui_recording": false,
+  "physical_android": false,
+  "prompt_to_video_quality_accepted": false,
+  "release_ready": false,
+  "input_fingerprint": {
+    "tools/plot_ltx098_vae_prepare.py": "4cbcc70c40a9b89465497453109aa7ed6f8ae7ad182c4a0746687078aaac363e"
+  }
+}

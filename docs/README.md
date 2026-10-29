@@ -100,3 +100,5 @@
 旧 LTX 文本数值定位：[中文](LTX098_PRECISION.md) / [English](LTX098_PRECISION.en.md) / [本轮编号交付及完整同版待办](releases/v0.3.0-dev.21-ltx-precision.md)。314 训练中间对照、628 文件身份 / 误差重算、120 同输入算子；[实际主机误差图](media/development/ltx098-text-roundoff.png)不表示完整数值或 Android 验收，精度候选与生产代码分开记录。
 
 旧 LTX 原生资产准备：[中文](LTX098_PREPARE.md) / [English](LTX098_PREPARE.en.md) / [编号实现与完整待办](releases/v0.3.0-dev.21-ltx-prepare.md)。可移植分块转换、独立完整训练文件字节对照、取消 / 已有资产保护及 ARM64 编译；[实测图](media/development/ltx098-native-prepare.png)不是 App 或手机记录。No production App or model inference acceptance.
+
+旧 VAE 原生资产准备：[中文](LTX098_VAE_PREPARE.md) / [English](LTX098_VAE_PREPARE.en.md) / [本轮编号与完整待办](releases/v0.3.0-dev.21-ltx-vae-prepare.md)。九图学习参数外置、原生完整源校验与分块数据写入、18 资产字节对照、四种尺寸真实解码；[实际主机图](media/development/ltx098-vae-prepared-decode.png)是合成 latent 的训练解码器验证，不是 App / 手机或生成质量验收。

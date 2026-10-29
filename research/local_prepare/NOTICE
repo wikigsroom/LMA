@@ -1,0 +1,8 @@
+LMA shared native local asset preparation primitives
+Copyright (c) 2026 LMA contributors. MIT, see the repository LICENSE.
+
+Original SHA-256, bounded file/JSON/safetensors reading, IEEE-754 conversion and
+exclusive staging helpers extracted from research/ltx098_prepare. No model data,
+inference, network or child-process implementation is included. nlohmann/json
+remains the exact existing pinned MIT code dependency, with its original notice
+at third_party/notices/nlohmann-json-LICENSE.txt.

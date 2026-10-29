@@ -1,0 +1,3013 @@
+{
+  "schema": "lma.ltx098-vae-prepare-contract/1",
+  "checkpoint": {
+    "repository": "Lightricks/LTX-Video",
+    "revision": "8984fa25007f376c1a299016d0957a37a2f797bb",
+    "file": "ltxv-2b-0.9.8-distilled.safetensors",
+    "bytes": 6340744492,
+    "sha256": "76aa8c4786af752fa6f951947129d5290c3c6c0b2fadcadea6b5e114ae2cad8f"
+  },
+  "vae_config": {
+    "_class_name": "CausalVideoAutoencoder",
+    "dims": 3,
+    "in_channels": 3,
+    "out_channels": 3,
+    "latent_channels": 128,
+    "encoder_blocks": [
+      [
+        "res_x",
+        {
+          "num_layers": 4
+        }
+      ],
+      [
+        "compress_space_res",
+        {
+          "multiplier": 2
+        }
+      ],
+      [
+        "res_x",
+        {
+          "num_layers": 6
+        }
+      ],
+      [
+        "compress_time_res",
+        {
+          "multiplier": 2
+        }
+      ],
+      [
+        "res_x",
+        {
+          "num_layers": 6
+        }
+      ],
+      [
+        "compress_all_res",
+        {
+          "multiplier": 2
+        }
+      ],
+      [
+        "res_x",
+        {
+          "num_layers": 2
+        }
+      ],
+      [
+        "compress_all_res",
+        {
+          "multiplier": 2
+        }
+      ],
+      [
+        "res_x",
+        {
+          "num_layers": 2
+        }
+      ]
+    ],
+    "decoder_blocks": [
+      [
+        "res_x",
+        {
+          "num_layers": 5,
+          "inject_noise": false
+        }
+      ],
+      [
+        "compress_all",
+        {
+          "residual": true,
+          "multiplier": 2
+        }
+      ],
+      [
+        "res_x",
+        {
+          "num_layers": 5,
+          "inject_noise": false
+        }
+      ],
+      [
+        "compress_all",
+        {
+          "residual": true,
+          "multiplier": 2
+        }
+      ],
+      [
+        "res_x",
+        {
+          "num_layers": 5,
+          "inject_noise": false
+        }
+      ],
+      [
+        "compress_all",
+        {
+          "residual": true,
+          "multiplier": 2
+        }
+      ],
+      [
+        "res_x",
+        {
+          "num_layers": 5,
+          "inject_noise": false
+        }
+      ]
+    ],
+    "scaling_factor": 1.0,
+    "norm_layer": "pixel_norm",
+    "patch_size": 4,
+    "latent_log_var": "uniform",
+    "use_quant_conv": false,
+    "causal_decoder": false,
+    "timestep_conditioning": true,
+    "normalize_latent_channels": false
+  },
+  "layout": {
+    "vae.decoder.timestep_scale_multiplier": [],
+    "vae.decoder.last_scale_shift_table": [
+      2,
+      128
+    ],
+    "vae.decoder.conv_in.conv.weight": [
+      1024,
+      128,
+      3,
+      3,
+      3
+    ],
+    "vae.decoder.conv_in.conv.bias": [
+      1024
+    ],
+    "vae.decoder.up_blocks.0.time_embedder.timestep_embedder.linear_1.weight": [
+      4096,
+      256
+    ],
+    "vae.decoder.up_blocks.0.time_embedder.timestep_embedder.linear_1.bias": [
+      4096
+    ],
+    "vae.decoder.up_blocks.0.time_embedder.timestep_embedder.linear_2.weight": [
+      4096,
+      4096
+    ],
+    "vae.decoder.up_blocks.0.time_embedder.timestep_embedder.linear_2.bias": [
+      4096
+    ],
+    "vae.decoder.up_blocks.0.res_blocks.0.scale_shift_table": [
+      4,
+      1024
+    ],
+    "vae.decoder.up_blocks.0.res_blocks.0.conv1.conv.weight": [
+      1024,
+      1024,
+      3,
+      3,
+      3
+    ],
+    "vae.decoder.up_blocks.0.res_blocks.0.conv1.conv.bias": [
+      1024
+    ],
+    "vae.decoder.up_blocks.0.res_blocks.0.conv2.conv.weight": [
+      1024,
+      1024,
+      3,
+      3,
+      3
+    ],
+    "vae.decoder.up_blocks.0.res_blocks.0.conv2.conv.bias": [
+      1024
+    ],
+    "vae.decoder.up_blocks.0.res_blocks.1.scale_shift_table": [
+      4,
+      1024
+    ],
+    "vae.decoder.up_blocks.0.res_blocks.1.conv1.conv.weight": [
+      1024,
+      1024,
+      3,
+      3,
+      3
+    ],
+    "vae.decoder.up_blocks.0.res_blocks.1.conv1.conv.bias": [
+      1024
+    ],
+    "vae.decoder.up_blocks.0.res_blocks.1.conv2.conv.weight": [
+      1024,
+      1024,
+      3,
+      3,
+      3
+    ],
+    "vae.decoder.up_blocks.0.res_blocks.1.conv2.conv.bias": [
+      1024
+    ],
+    "vae.decoder.up_blocks.0.res_blocks.2.scale_shift_table": [
+      4,
+      1024
+    ],
+    "vae.decoder.up_blocks.0.res_blocks.2.conv1.conv.weight": [
+      1024,
+      1024,
+      3,
+      3,
+      3
+    ],
+    "vae.decoder.up_blocks.0.res_blocks.2.conv1.conv.bias": [
+      1024
+    ],
+    "vae.decoder.up_blocks.0.res_blocks.2.conv2.conv.weight": [
+      1024,
+      1024,
+      3,
+      3,
+      3
+    ],
+    "vae.decoder.up_blocks.0.res_blocks.2.conv2.conv.bias": [
+      1024
+    ],
+    "vae.decoder.up_blocks.0.res_blocks.3.scale_shift_table": [
+      4,
+      1024
+    ],
+    "vae.decoder.up_blocks.0.res_blocks.3.conv1.conv.weight": [
+      1024,
+      1024,
+      3,
+      3,
+      3
+    ],
+    "vae.decoder.up_blocks.0.res_blocks.3.conv1.conv.bias": [
+      1024
+    ],
+    "vae.decoder.up_blocks.0.res_blocks.3.conv2.conv.weight": [
+      1024,
+      1024,
+      3,
+      3,
+      3
+    ],
+    "vae.decoder.up_blocks.0.res_blocks.3.conv2.conv.bias": [
+      1024
+    ],
+    "vae.decoder.up_blocks.0.res_blocks.4.scale_shift_table": [
+      4,
+      1024
+    ],
+    "vae.decoder.up_blocks.0.res_blocks.4.conv1.conv.weight": [
+      1024,
+      1024,
+      3,
+      3,
+      3
+    ],
+    "vae.decoder.up_blocks.0.res_blocks.4.conv1.conv.bias": [
+      1024
+    ],
+    "vae.decoder.up_blocks.0.res_blocks.4.conv2.conv.weight": [
+      1024,
+      1024,
+      3,
+      3,
+      3
+    ],
+    "vae.decoder.up_blocks.0.res_blocks.4.conv2.conv.bias": [
+      1024
+    ],
+    "vae.decoder.up_blocks.1.conv.conv.weight": [
+      4096,
+      1024,
+      3,
+      3,
+      3
+    ],
+    "vae.decoder.up_blocks.1.conv.conv.bias": [
+      4096
+    ],
+    "vae.decoder.up_blocks.2.time_embedder.timestep_embedder.linear_1.weight": [
+      2048,
+      256
+    ],
+    "vae.decoder.up_blocks.2.time_embedder.timestep_embedder.linear_1.bias": [
+      2048
+    ],
+    "vae.decoder.up_blocks.2.time_embedder.timestep_embedder.linear_2.weight": [
+      2048,
+      2048
+    ],
+    "vae.decoder.up_blocks.2.time_embedder.timestep_embedder.linear_2.bias": [
+      2048
+    ],
+    "vae.decoder.up_blocks.2.res_blocks.0.scale_shift_table": [
+      4,
+      512
+    ],
+    "vae.decoder.up_blocks.2.res_blocks.0.conv1.conv.weight": [
+      512,
+      512,
+      3,
+      3,
+      3
+    ],
+    "vae.decoder.up_blocks.2.res_blocks.0.conv1.conv.bias": [
+      512
+    ],
+    "vae.decoder.up_blocks.2.res_blocks.0.conv2.conv.weight": [
+      512,
+      512,
+      3,
+      3,
+      3
+    ],
+    "vae.decoder.up_blocks.2.res_blocks.0.conv2.conv.bias": [
+      512
+    ],
+    "vae.decoder.up_blocks.2.res_blocks.1.scale_shift_table": [
+      4,
+      512
+    ],
+    "vae.decoder.up_blocks.2.res_blocks.1.conv1.conv.weight": [
+      512,
+      512,
+      3,
+      3,
+      3
+    ],
+    "vae.decoder.up_blocks.2.res_blocks.1.conv1.conv.bias": [
+      512
+    ],
+    "vae.decoder.up_blocks.2.res_blocks.1.conv2.conv.weight": [
+      512,
+      512,
+      3,
+      3,
+      3
+    ],
+    "vae.decoder.up_blocks.2.res_blocks.1.conv2.conv.bias": [
+      512
+    ],
+    "vae.decoder.up_blocks.2.res_blocks.2.scale_shift_table": [
+      4,
+      512
+    ],
+    "vae.decoder.up_blocks.2.res_blocks.2.conv1.conv.weight": [
+      512,
+      512,
+      3,
+      3,
+      3
+    ],
+    "vae.decoder.up_blocks.2.res_blocks.2.conv1.conv.bias": [
+      512
+    ],
+    "vae.decoder.up_blocks.2.res_blocks.2.conv2.conv.weight": [
+      512,
+      512,
+      3,
+      3,
+      3
+    ],
+    "vae.decoder.up_blocks.2.res_blocks.2.conv2.conv.bias": [
+      512
+    ],
+    "vae.decoder.up_blocks.2.res_blocks.3.scale_shift_table": [
+      4,
+      512
+    ],
+    "vae.decoder.up_blocks.2.res_blocks.3.conv1.conv.weight": [
+      512,
+      512,
+      3,
+      3,
+      3
+    ],
+    "vae.decoder.up_blocks.2.res_blocks.3.conv1.conv.bias": [
+      512
+    ],
+    "vae.decoder.up_blocks.2.res_blocks.3.conv2.conv.weight": [
+      512,
+      512,
+      3,
+      3,
+      3
+    ],
+    "vae.decoder.up_blocks.2.res_blocks.3.conv2.conv.bias": [
+      512
+    ],
+    "vae.decoder.up_blocks.2.res_blocks.4.scale_shift_table": [
+      4,
+      512
+    ],
+    "vae.decoder.up_blocks.2.res_blocks.4.conv1.conv.weight": [
+      512,
+      512,
+      3,
+      3,
+      3
+    ],
+    "vae.decoder.up_blocks.2.res_blocks.4.conv1.conv.bias": [
+      512
+    ],
+    "vae.decoder.up_blocks.2.res_blocks.4.conv2.conv.weight": [
+      512,
+      512,
+      3,
+      3,
+      3
+    ],
+    "vae.decoder.up_blocks.2.res_blocks.4.conv2.conv.bias": [
+      512
+    ],
+    "vae.decoder.up_blocks.3.conv.conv.weight": [
+      2048,
+      512,
+      3,
+      3,
+      3
+    ],
+    "vae.decoder.up_blocks.3.conv.conv.bias": [
+      2048
+    ],
+    "vae.decoder.up_blocks.4.time_embedder.timestep_embedder.linear_1.weight": [
+      1024,
+      256
+    ],
+    "vae.decoder.up_blocks.4.time_embedder.timestep_embedder.linear_1.bias": [
+      1024
+    ],
+    "vae.decoder.up_blocks.4.time_embedder.timestep_embedder.linear_2.weight": [
+      1024,
+      1024
+    ],
+    "vae.decoder.up_blocks.4.time_embedder.timestep_embedder.linear_2.bias": [
+      1024
+    ],
+    "vae.decoder.up_blocks.4.res_blocks.0.scale_shift_table": [
+      4,
+      256
+    ],
+    "vae.decoder.up_blocks.4.res_blocks.0.conv1.conv.weight": [
+      256,
+      256,
+      3,
+      3,
+      3
+    ],
+    "vae.decoder.up_blocks.4.res_blocks.0.conv1.conv.bias": [
+      256
+    ],
+    "vae.decoder.up_blocks.4.res_blocks.0.conv2.conv.weight": [
+      256,
+      256,
+      3,
+      3,
+      3
+    ],
+    "vae.decoder.up_blocks.4.res_blocks.0.conv2.conv.bias": [
+      256
+    ],
+    "vae.decoder.up_blocks.4.res_blocks.1.scale_shift_table": [
+      4,
+      256
+    ],
+    "vae.decoder.up_blocks.4.res_blocks.1.conv1.conv.weight": [
+      256,
+      256,
+      3,
+      3,
+      3
+    ],
+    "vae.decoder.up_blocks.4.res_blocks.1.conv1.conv.bias": [
+      256
+    ],
+    "vae.decoder.up_blocks.4.res_blocks.1.conv2.conv.weight": [
+      256,
+      256,
+      3,
+      3,
+      3
+    ],
+    "vae.decoder.up_blocks.4.res_blocks.1.conv2.conv.bias": [
+      256
+    ],
+    "vae.decoder.up_blocks.4.res_blocks.2.scale_shift_table": [
+      4,
+      256
+    ],
+    "vae.decoder.up_blocks.4.res_blocks.2.conv1.conv.weight": [
+      256,
+      256,
+      3,
+      3,
+      3
+    ],
+    "vae.decoder.up_blocks.4.res_blocks.2.conv1.conv.bias": [
+      256
+    ],
+    "vae.decoder.up_blocks.4.res_blocks.2.conv2.conv.weight": [
+      256,
+      256,
+      3,
+      3,
+      3
+    ],
+    "vae.decoder.up_blocks.4.res_blocks.2.conv2.conv.bias": [
+      256
+    ],
+    "vae.decoder.up_blocks.4.res_blocks.3.scale_shift_table": [
+      4,
+      256
+    ],
+    "vae.decoder.up_blocks.4.res_blocks.3.conv1.conv.weight": [
+      256,
+      256,
+      3,
+      3,
+      3
+    ],
+    "vae.decoder.up_blocks.4.res_blocks.3.conv1.conv.bias": [
+      256
+    ],
+    "vae.decoder.up_blocks.4.res_blocks.3.conv2.conv.weight": [
+      256,
+      256,
+      3,
+      3,
+      3
+    ],
+    "vae.decoder.up_blocks.4.res_blocks.3.conv2.conv.bias": [
+      256
+    ],
+    "vae.decoder.up_blocks.4.res_blocks.4.scale_shift_table": [
+      4,
+      256
+    ],
+    "vae.decoder.up_blocks.4.res_blocks.4.conv1.conv.weight": [
+      256,
+      256,
+      3,
+      3,
+      3
+    ],
+    "vae.decoder.up_blocks.4.res_blocks.4.conv1.conv.bias": [
+      256
+    ],
+    "vae.decoder.up_blocks.4.res_blocks.4.conv2.conv.weight": [
+      256,
+      256,
+      3,
+      3,
+      3
+    ],
+    "vae.decoder.up_blocks.4.res_blocks.4.conv2.conv.bias": [
+      256
+    ],
+    "vae.decoder.up_blocks.5.conv.conv.weight": [
+      1024,
+      256,
+      3,
+      3,
+      3
+    ],
+    "vae.decoder.up_blocks.5.conv.conv.bias": [
+      1024
+    ],
+    "vae.decoder.up_blocks.6.time_embedder.timestep_embedder.linear_1.weight": [
+      512,
+      256
+    ],
+    "vae.decoder.up_blocks.6.time_embedder.timestep_embedder.linear_1.bias": [
+      512
+    ],
+    "vae.decoder.up_blocks.6.time_embedder.timestep_embedder.linear_2.weight": [
+      512,
+      512
+    ],
+    "vae.decoder.up_blocks.6.time_embedder.timestep_embedder.linear_2.bias": [
+      512
+    ],
+    "vae.decoder.up_blocks.6.res_blocks.0.scale_shift_table": [
+      4,
+      128
+    ],
+    "vae.decoder.up_blocks.6.res_blocks.0.conv1.conv.weight": [
+      128,
+      128,
+      3,
+      3,
+      3
+    ],
+    "vae.decoder.up_blocks.6.res_blocks.0.conv1.conv.bias": [
+      128
+    ],
+    "vae.decoder.up_blocks.6.res_blocks.0.conv2.conv.weight": [
+      128,
+      128,
+      3,
+      3,
+      3
+    ],
+    "vae.decoder.up_blocks.6.res_blocks.0.conv2.conv.bias": [
+      128
+    ],
+    "vae.decoder.up_blocks.6.res_blocks.1.scale_shift_table": [
+      4,
+      128
+    ],
+    "vae.decoder.up_blocks.6.res_blocks.1.conv1.conv.weight": [
+      128,
+      128,
+      3,
+      3,
+      3
+    ],
+    "vae.decoder.up_blocks.6.res_blocks.1.conv1.conv.bias": [
+      128
+    ],
+    "vae.decoder.up_blocks.6.res_blocks.1.conv2.conv.weight": [
+      128,
+      128,
+      3,
+      3,
+      3
+    ],
+    "vae.decoder.up_blocks.6.res_blocks.1.conv2.conv.bias": [
+      128
+    ],
+    "vae.decoder.up_blocks.6.res_blocks.2.scale_shift_table": [
+      4,
+      128
+    ],
+    "vae.decoder.up_blocks.6.res_blocks.2.conv1.conv.weight": [
+      128,
+      128,
+      3,
+      3,
+      3
+    ],
+    "vae.decoder.up_blocks.6.res_blocks.2.conv1.conv.bias": [
+      128
+    ],
+    "vae.decoder.up_blocks.6.res_blocks.2.conv2.conv.weight": [
+      128,
+      128,
+      3,
+      3,
+      3
+    ],
+    "vae.decoder.up_blocks.6.res_blocks.2.conv2.conv.bias": [
+      128
+    ],
+    "vae.decoder.up_blocks.6.res_blocks.3.scale_shift_table": [
+      4,
+      128
+    ],
+    "vae.decoder.up_blocks.6.res_blocks.3.conv1.conv.weight": [
+      128,
+      128,
+      3,
+      3,
+      3
+    ],
+    "vae.decoder.up_blocks.6.res_blocks.3.conv1.conv.bias": [
+      128
+    ],
+    "vae.decoder.up_blocks.6.res_blocks.3.conv2.conv.weight": [
+      128,
+      128,
+      3,
+      3,
+      3
+    ],
+    "vae.decoder.up_blocks.6.res_blocks.3.conv2.conv.bias": [
+      128
+    ],
+    "vae.decoder.up_blocks.6.res_blocks.4.scale_shift_table": [
+      4,
+      128
+    ],
+    "vae.decoder.up_blocks.6.res_blocks.4.conv1.conv.weight": [
+      128,
+      128,
+      3,
+      3,
+      3
+    ],
+    "vae.decoder.up_blocks.6.res_blocks.4.conv1.conv.bias": [
+      128
+    ],
+    "vae.decoder.up_blocks.6.res_blocks.4.conv2.conv.weight": [
+      128,
+      128,
+      3,
+      3,
+      3
+    ],
+    "vae.decoder.up_blocks.6.res_blocks.4.conv2.conv.bias": [
+      128
+    ],
+    "vae.decoder.conv_out.conv.weight": [
+      48,
+      128,
+      3,
+      3,
+      3
+    ],
+    "vae.decoder.conv_out.conv.bias": [
+      48
+    ],
+    "vae.decoder.last_time_embedder.timestep_embedder.linear_1.weight": [
+      256,
+      256
+    ],
+    "vae.decoder.last_time_embedder.timestep_embedder.linear_1.bias": [
+      256
+    ],
+    "vae.decoder.last_time_embedder.timestep_embedder.linear_2.weight": [
+      256,
+      256
+    ],
+    "vae.decoder.last_time_embedder.timestep_embedder.linear_2.bias": [
+      256
+    ],
+    "vae.per_channel_statistics.mean-of-means": [
+      128
+    ],
+    "vae.per_channel_statistics.std-of-means": [
+      128
+    ]
+  },
+  "graphs": [
+    {
+      "file": "stage-00.onnx",
+      "bytes": 3451,
+      "sha256": "33f367287eaf5bc67aead22132d9d73aeaf66b51387bbc3a032a1c7eb936ff8b",
+      "data_file": "stage-00.onnx.data",
+      "data_bytes": 14160896,
+      "data_sha256": "8bfd5b8f04a0d924707997f112e9df029442404e749d596e529a9db2a08f6384",
+      "nodes": 30,
+      "initializers": 4
+    },
+    {
+      "file": "stage-01.onnx",
+      "bytes": 80554,
+      "sha256": "29ede53a11d80957e6f0abe38780511c267762feba725b49c29bd36fa35d31b3",
+      "data_file": "stage-01.onnx.data",
+      "data_bytes": 1203920900,
+      "data_sha256": "f8b34f9531d3efb14455dde1acb032b6be2bbaeadb4066f6b400b0905cb885ba",
+      "nodes": 484,
+      "initializers": 30
+    },
+    {
+      "file": "stage-02.onnx",
+      "bytes": 20672,
+      "sha256": "1b74a179d5f160239411d234411641195548607eb523e74c82e34a66b41df415",
+      "data_file": "stage-02.onnx.data",
+      "data_bytes": 453001216,
+      "data_sha256": "fbcc19df16368b873c1c4bf21a9e15861884d2a46b7674b9d946339760531aa6",
+      "nodes": 155,
+      "initializers": 2
+    },
+    {
+      "file": "stage-03.onnx",
+      "bytes": 80515,
+      "sha256": "77422f7cab2804d8b7b2b1f160623571a0ed66561e77c69fb6ce741e453b8a3f",
+      "data_file": "stage-03.onnx.data",
+      "data_bytes": 302067716,
+      "data_sha256": "49880337fe10880ac3a6f92e63f2bda75a8f67738215be86b6fa34c3a2f6fe47",
+      "nodes": 484,
+      "initializers": 30
+    },
+    {
+      "file": "stage-04.onnx",
+      "bytes": 20671,
+      "sha256": "d264368af810ad36e82b5038311cb86f3acb84351dc58f713ce7691732b6043a",
+      "data_file": "stage-04.onnx.data",
+      "data_bytes": 113254400,
+      "data_sha256": "7b0a476b6c29b9db4739e1b2fba33778eaec25ce687a4763f55773a2b5d6b38d",
+      "nodes": 155,
+      "initializers": 2
+    },
+    {
+      "file": "stage-05.onnx",
+      "bytes": 80481,
+      "sha256": "489050eeef9cf3c5378145c13b3819cfc2c84cc02a5eae0f20bb543b47cc0fab",
+      "data_file": "stage-05.onnx.data",
+      "data_bytes": 76060676,
+      "data_sha256": "81789f36e257d9b7c22e6934955cee0c3fde3c2725591efa66cf96621d5d31b7",
+      "nodes": 484,
+      "initializers": 30
+    },
+    {
+      "file": "stage-06.onnx",
+      "bytes": 20669,
+      "sha256": "c737a55510880d4b92e12e9aca7138a154ad6e58a96e89a4f2a530a3f369b88c",
+      "data_file": "stage-06.onnx.data",
+      "data_bytes": 28315648,
+      "data_sha256": "d377a63aee6e1ec50a92fab21aa4e354a23ff8496921528d9af581d272639e9b",
+      "nodes": 155,
+      "initializers": 2
+    },
+    {
+      "file": "stage-07.onnx",
+      "bytes": 80460,
+      "sha256": "239145b9c04cbb5513ee96d2a41ff5b1f8db2c4cf0d9148c3092028b858b3576",
+      "data_file": "stage-07.onnx.data",
+      "data_bytes": 19287044,
+      "data_sha256": "22cad42d7baa91055ac2645d1f2c9ee5019ccf4907d40de4058edadbcf209f30",
+      "nodes": 484,
+      "initializers": 30
+    },
+    {
+      "file": "stage-08.onnx",
+      "bytes": 14758,
+      "sha256": "ff463e05293456c25aa5b1a14d82b1f732f1aee0f00da45f8e28419509ba8ac9",
+      "data_file": "stage-08.onnx.data",
+      "data_bytes": 1191108,
+      "data_sha256": "6bf9520daca30d56175d92ce125337eb2bec547a229579279f835d70b09c8298",
+      "nodes": 137,
+      "initializers": 8
+    }
+  ],
+  "routes": [
+    {
+      "source": "vae.per_channel_statistics.mean-of-means",
+      "stage": 0,
+      "initializer": "mean",
+      "shape": [
+        1,
+        128,
+        1,
+        1,
+        1
+      ],
+      "offset": 0,
+      "bytes": 512,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.per_channel_statistics.std-of-means",
+      "stage": 0,
+      "initializer": "std",
+      "shape": [
+        1,
+        128,
+        1,
+        1,
+        1
+      ],
+      "offset": 512,
+      "bytes": 512,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.conv_in.conv.weight",
+      "stage": 0,
+      "initializer": "conv.conv.weight",
+      "shape": [
+        1024,
+        128,
+        3,
+        3,
+        3
+      ],
+      "offset": 1024,
+      "bytes": 14155776,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.conv_in.conv.bias",
+      "stage": 0,
+      "initializer": "conv.conv.bias",
+      "shape": [
+        1024
+      ],
+      "offset": 14156800,
+      "bytes": 4096,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.timestep_scale_multiplier",
+      "stage": 1,
+      "initializer": "multiplier",
+      "shape": [],
+      "offset": 0,
+      "bytes": 4,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.0.time_embedder.timestep_embedder.linear_1.weight",
+      "stage": 1,
+      "initializer": "block.time_embedder.timestep_embedder.linear_1.weight",
+      "shape": [
+        4096,
+        256
+      ],
+      "offset": 4,
+      "bytes": 4194304,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.0.time_embedder.timestep_embedder.linear_1.bias",
+      "stage": 1,
+      "initializer": "block.time_embedder.timestep_embedder.linear_1.bias",
+      "shape": [
+        4096
+      ],
+      "offset": 4194308,
+      "bytes": 16384,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.0.time_embedder.timestep_embedder.linear_2.weight",
+      "stage": 1,
+      "initializer": "block.time_embedder.timestep_embedder.linear_2.weight",
+      "shape": [
+        4096,
+        4096
+      ],
+      "offset": 4210692,
+      "bytes": 67108864,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.0.time_embedder.timestep_embedder.linear_2.bias",
+      "stage": 1,
+      "initializer": "block.time_embedder.timestep_embedder.linear_2.bias",
+      "shape": [
+        4096
+      ],
+      "offset": 71319556,
+      "bytes": 16384,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.0.res_blocks.0.conv1.conv.weight",
+      "stage": 1,
+      "initializer": "block.res_blocks.0.conv1.conv.weight",
+      "shape": [
+        1024,
+        1024,
+        3,
+        3,
+        3
+      ],
+      "offset": 71335940,
+      "bytes": 113246208,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.0.res_blocks.0.conv1.conv.bias",
+      "stage": 1,
+      "initializer": "block.res_blocks.0.conv1.conv.bias",
+      "shape": [
+        1024
+      ],
+      "offset": 184582148,
+      "bytes": 4096,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.0.res_blocks.0.conv2.conv.weight",
+      "stage": 1,
+      "initializer": "block.res_blocks.0.conv2.conv.weight",
+      "shape": [
+        1024,
+        1024,
+        3,
+        3,
+        3
+      ],
+      "offset": 184586244,
+      "bytes": 113246208,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.0.res_blocks.0.conv2.conv.bias",
+      "stage": 1,
+      "initializer": "block.res_blocks.0.conv2.conv.bias",
+      "shape": [
+        1024
+      ],
+      "offset": 297832452,
+      "bytes": 4096,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.0.res_blocks.1.conv1.conv.weight",
+      "stage": 1,
+      "initializer": "block.res_blocks.1.conv1.conv.weight",
+      "shape": [
+        1024,
+        1024,
+        3,
+        3,
+        3
+      ],
+      "offset": 297836548,
+      "bytes": 113246208,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.0.res_blocks.1.conv1.conv.bias",
+      "stage": 1,
+      "initializer": "block.res_blocks.1.conv1.conv.bias",
+      "shape": [
+        1024
+      ],
+      "offset": 411082756,
+      "bytes": 4096,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.0.res_blocks.1.conv2.conv.weight",
+      "stage": 1,
+      "initializer": "block.res_blocks.1.conv2.conv.weight",
+      "shape": [
+        1024,
+        1024,
+        3,
+        3,
+        3
+      ],
+      "offset": 411086852,
+      "bytes": 113246208,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.0.res_blocks.1.conv2.conv.bias",
+      "stage": 1,
+      "initializer": "block.res_blocks.1.conv2.conv.bias",
+      "shape": [
+        1024
+      ],
+      "offset": 524333060,
+      "bytes": 4096,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.0.res_blocks.2.conv1.conv.weight",
+      "stage": 1,
+      "initializer": "block.res_blocks.2.conv1.conv.weight",
+      "shape": [
+        1024,
+        1024,
+        3,
+        3,
+        3
+      ],
+      "offset": 524337156,
+      "bytes": 113246208,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.0.res_blocks.2.conv1.conv.bias",
+      "stage": 1,
+      "initializer": "block.res_blocks.2.conv1.conv.bias",
+      "shape": [
+        1024
+      ],
+      "offset": 637583364,
+      "bytes": 4096,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.0.res_blocks.2.conv2.conv.weight",
+      "stage": 1,
+      "initializer": "block.res_blocks.2.conv2.conv.weight",
+      "shape": [
+        1024,
+        1024,
+        3,
+        3,
+        3
+      ],
+      "offset": 637587460,
+      "bytes": 113246208,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.0.res_blocks.2.conv2.conv.bias",
+      "stage": 1,
+      "initializer": "block.res_blocks.2.conv2.conv.bias",
+      "shape": [
+        1024
+      ],
+      "offset": 750833668,
+      "bytes": 4096,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.0.res_blocks.3.conv1.conv.weight",
+      "stage": 1,
+      "initializer": "block.res_blocks.3.conv1.conv.weight",
+      "shape": [
+        1024,
+        1024,
+        3,
+        3,
+        3
+      ],
+      "offset": 750837764,
+      "bytes": 113246208,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.0.res_blocks.3.conv1.conv.bias",
+      "stage": 1,
+      "initializer": "block.res_blocks.3.conv1.conv.bias",
+      "shape": [
+        1024
+      ],
+      "offset": 864083972,
+      "bytes": 4096,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.0.res_blocks.3.conv2.conv.weight",
+      "stage": 1,
+      "initializer": "block.res_blocks.3.conv2.conv.weight",
+      "shape": [
+        1024,
+        1024,
+        3,
+        3,
+        3
+      ],
+      "offset": 864088068,
+      "bytes": 113246208,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.0.res_blocks.3.conv2.conv.bias",
+      "stage": 1,
+      "initializer": "block.res_blocks.3.conv2.conv.bias",
+      "shape": [
+        1024
+      ],
+      "offset": 977334276,
+      "bytes": 4096,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.0.res_blocks.4.conv1.conv.weight",
+      "stage": 1,
+      "initializer": "block.res_blocks.4.conv1.conv.weight",
+      "shape": [
+        1024,
+        1024,
+        3,
+        3,
+        3
+      ],
+      "offset": 977338372,
+      "bytes": 113246208,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.0.res_blocks.4.conv1.conv.bias",
+      "stage": 1,
+      "initializer": "block.res_blocks.4.conv1.conv.bias",
+      "shape": [
+        1024
+      ],
+      "offset": 1090584580,
+      "bytes": 4096,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.0.res_blocks.4.conv2.conv.weight",
+      "stage": 1,
+      "initializer": "block.res_blocks.4.conv2.conv.weight",
+      "shape": [
+        1024,
+        1024,
+        3,
+        3,
+        3
+      ],
+      "offset": 1090588676,
+      "bytes": 113246208,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.0.res_blocks.4.conv2.conv.bias",
+      "stage": 1,
+      "initializer": "block.res_blocks.4.conv2.conv.bias",
+      "shape": [
+        1024
+      ],
+      "offset": 1203834884,
+      "bytes": 4096,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.0.res_blocks.0.scale_shift_table",
+      "stage": 1,
+      "initializer": "onnx::Add_714",
+      "shape": [
+        1,
+        4,
+        1024,
+        1,
+        1,
+        1
+      ],
+      "offset": 1203838980,
+      "bytes": 16384,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.0.res_blocks.1.scale_shift_table",
+      "stage": 1,
+      "initializer": "onnx::Add_743",
+      "shape": [
+        1,
+        4,
+        1024,
+        1,
+        1,
+        1
+      ],
+      "offset": 1203855364,
+      "bytes": 16384,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.0.res_blocks.2.scale_shift_table",
+      "stage": 1,
+      "initializer": "onnx::Add_772",
+      "shape": [
+        1,
+        4,
+        1024,
+        1,
+        1,
+        1
+      ],
+      "offset": 1203871748,
+      "bytes": 16384,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.0.res_blocks.3.scale_shift_table",
+      "stage": 1,
+      "initializer": "onnx::Add_801",
+      "shape": [
+        1,
+        4,
+        1024,
+        1,
+        1,
+        1
+      ],
+      "offset": 1203888132,
+      "bytes": 16384,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.0.res_blocks.4.scale_shift_table",
+      "stage": 1,
+      "initializer": "onnx::Add_830",
+      "shape": [
+        1,
+        4,
+        1024,
+        1,
+        1,
+        1
+      ],
+      "offset": 1203904516,
+      "bytes": 16384,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.1.conv.conv.weight",
+      "stage": 2,
+      "initializer": "block.conv.conv.weight",
+      "shape": [
+        4096,
+        1024,
+        3,
+        3,
+        3
+      ],
+      "offset": 0,
+      "bytes": 452984832,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.1.conv.conv.bias",
+      "stage": 2,
+      "initializer": "block.conv.conv.bias",
+      "shape": [
+        4096
+      ],
+      "offset": 452984832,
+      "bytes": 16384,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.timestep_scale_multiplier",
+      "stage": 3,
+      "initializer": "multiplier",
+      "shape": [],
+      "offset": 0,
+      "bytes": 4,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.2.time_embedder.timestep_embedder.linear_1.weight",
+      "stage": 3,
+      "initializer": "block.time_embedder.timestep_embedder.linear_1.weight",
+      "shape": [
+        2048,
+        256
+      ],
+      "offset": 4,
+      "bytes": 2097152,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.2.time_embedder.timestep_embedder.linear_1.bias",
+      "stage": 3,
+      "initializer": "block.time_embedder.timestep_embedder.linear_1.bias",
+      "shape": [
+        2048
+      ],
+      "offset": 2097156,
+      "bytes": 8192,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.2.time_embedder.timestep_embedder.linear_2.weight",
+      "stage": 3,
+      "initializer": "block.time_embedder.timestep_embedder.linear_2.weight",
+      "shape": [
+        2048,
+        2048
+      ],
+      "offset": 2105348,
+      "bytes": 16777216,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.2.time_embedder.timestep_embedder.linear_2.bias",
+      "stage": 3,
+      "initializer": "block.time_embedder.timestep_embedder.linear_2.bias",
+      "shape": [
+        2048
+      ],
+      "offset": 18882564,
+      "bytes": 8192,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.2.res_blocks.0.conv1.conv.weight",
+      "stage": 3,
+      "initializer": "block.res_blocks.0.conv1.conv.weight",
+      "shape": [
+        512,
+        512,
+        3,
+        3,
+        3
+      ],
+      "offset": 18890756,
+      "bytes": 28311552,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.2.res_blocks.0.conv1.conv.bias",
+      "stage": 3,
+      "initializer": "block.res_blocks.0.conv1.conv.bias",
+      "shape": [
+        512
+      ],
+      "offset": 47202308,
+      "bytes": 2048,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.2.res_blocks.0.conv2.conv.weight",
+      "stage": 3,
+      "initializer": "block.res_blocks.0.conv2.conv.weight",
+      "shape": [
+        512,
+        512,
+        3,
+        3,
+        3
+      ],
+      "offset": 47204356,
+      "bytes": 28311552,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.2.res_blocks.0.conv2.conv.bias",
+      "stage": 3,
+      "initializer": "block.res_blocks.0.conv2.conv.bias",
+      "shape": [
+        512
+      ],
+      "offset": 75515908,
+      "bytes": 2048,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.2.res_blocks.1.conv1.conv.weight",
+      "stage": 3,
+      "initializer": "block.res_blocks.1.conv1.conv.weight",
+      "shape": [
+        512,
+        512,
+        3,
+        3,
+        3
+      ],
+      "offset": 75517956,
+      "bytes": 28311552,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.2.res_blocks.1.conv1.conv.bias",
+      "stage": 3,
+      "initializer": "block.res_blocks.1.conv1.conv.bias",
+      "shape": [
+        512
+      ],
+      "offset": 103829508,
+      "bytes": 2048,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.2.res_blocks.1.conv2.conv.weight",
+      "stage": 3,
+      "initializer": "block.res_blocks.1.conv2.conv.weight",
+      "shape": [
+        512,
+        512,
+        3,
+        3,
+        3
+      ],
+      "offset": 103831556,
+      "bytes": 28311552,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.2.res_blocks.1.conv2.conv.bias",
+      "stage": 3,
+      "initializer": "block.res_blocks.1.conv2.conv.bias",
+      "shape": [
+        512
+      ],
+      "offset": 132143108,
+      "bytes": 2048,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.2.res_blocks.2.conv1.conv.weight",
+      "stage": 3,
+      "initializer": "block.res_blocks.2.conv1.conv.weight",
+      "shape": [
+        512,
+        512,
+        3,
+        3,
+        3
+      ],
+      "offset": 132145156,
+      "bytes": 28311552,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.2.res_blocks.2.conv1.conv.bias",
+      "stage": 3,
+      "initializer": "block.res_blocks.2.conv1.conv.bias",
+      "shape": [
+        512
+      ],
+      "offset": 160456708,
+      "bytes": 2048,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.2.res_blocks.2.conv2.conv.weight",
+      "stage": 3,
+      "initializer": "block.res_blocks.2.conv2.conv.weight",
+      "shape": [
+        512,
+        512,
+        3,
+        3,
+        3
+      ],
+      "offset": 160458756,
+      "bytes": 28311552,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.2.res_blocks.2.conv2.conv.bias",
+      "stage": 3,
+      "initializer": "block.res_blocks.2.conv2.conv.bias",
+      "shape": [
+        512
+      ],
+      "offset": 188770308,
+      "bytes": 2048,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.2.res_blocks.3.conv1.conv.weight",
+      "stage": 3,
+      "initializer": "block.res_blocks.3.conv1.conv.weight",
+      "shape": [
+        512,
+        512,
+        3,
+        3,
+        3
+      ],
+      "offset": 188772356,
+      "bytes": 28311552,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.2.res_blocks.3.conv1.conv.bias",
+      "stage": 3,
+      "initializer": "block.res_blocks.3.conv1.conv.bias",
+      "shape": [
+        512
+      ],
+      "offset": 217083908,
+      "bytes": 2048,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.2.res_blocks.3.conv2.conv.weight",
+      "stage": 3,
+      "initializer": "block.res_blocks.3.conv2.conv.weight",
+      "shape": [
+        512,
+        512,
+        3,
+        3,
+        3
+      ],
+      "offset": 217085956,
+      "bytes": 28311552,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.2.res_blocks.3.conv2.conv.bias",
+      "stage": 3,
+      "initializer": "block.res_blocks.3.conv2.conv.bias",
+      "shape": [
+        512
+      ],
+      "offset": 245397508,
+      "bytes": 2048,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.2.res_blocks.4.conv1.conv.weight",
+      "stage": 3,
+      "initializer": "block.res_blocks.4.conv1.conv.weight",
+      "shape": [
+        512,
+        512,
+        3,
+        3,
+        3
+      ],
+      "offset": 245399556,
+      "bytes": 28311552,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.2.res_blocks.4.conv1.conv.bias",
+      "stage": 3,
+      "initializer": "block.res_blocks.4.conv1.conv.bias",
+      "shape": [
+        512
+      ],
+      "offset": 273711108,
+      "bytes": 2048,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.2.res_blocks.4.conv2.conv.weight",
+      "stage": 3,
+      "initializer": "block.res_blocks.4.conv2.conv.weight",
+      "shape": [
+        512,
+        512,
+        3,
+        3,
+        3
+      ],
+      "offset": 273713156,
+      "bytes": 28311552,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.2.res_blocks.4.conv2.conv.bias",
+      "stage": 3,
+      "initializer": "block.res_blocks.4.conv2.conv.bias",
+      "shape": [
+        512
+      ],
+      "offset": 302024708,
+      "bytes": 2048,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.2.res_blocks.0.scale_shift_table",
+      "stage": 3,
+      "initializer": "onnx::Add_714",
+      "shape": [
+        1,
+        4,
+        512,
+        1,
+        1,
+        1
+      ],
+      "offset": 302026756,
+      "bytes": 8192,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.2.res_blocks.1.scale_shift_table",
+      "stage": 3,
+      "initializer": "onnx::Add_743",
+      "shape": [
+        1,
+        4,
+        512,
+        1,
+        1,
+        1
+      ],
+      "offset": 302034948,
+      "bytes": 8192,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.2.res_blocks.2.scale_shift_table",
+      "stage": 3,
+      "initializer": "onnx::Add_772",
+      "shape": [
+        1,
+        4,
+        512,
+        1,
+        1,
+        1
+      ],
+      "offset": 302043140,
+      "bytes": 8192,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.2.res_blocks.3.scale_shift_table",
+      "stage": 3,
+      "initializer": "onnx::Add_801",
+      "shape": [
+        1,
+        4,
+        512,
+        1,
+        1,
+        1
+      ],
+      "offset": 302051332,
+      "bytes": 8192,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.2.res_blocks.4.scale_shift_table",
+      "stage": 3,
+      "initializer": "onnx::Add_830",
+      "shape": [
+        1,
+        4,
+        512,
+        1,
+        1,
+        1
+      ],
+      "offset": 302059524,
+      "bytes": 8192,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.3.conv.conv.weight",
+      "stage": 4,
+      "initializer": "block.conv.conv.weight",
+      "shape": [
+        2048,
+        512,
+        3,
+        3,
+        3
+      ],
+      "offset": 0,
+      "bytes": 113246208,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.3.conv.conv.bias",
+      "stage": 4,
+      "initializer": "block.conv.conv.bias",
+      "shape": [
+        2048
+      ],
+      "offset": 113246208,
+      "bytes": 8192,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.timestep_scale_multiplier",
+      "stage": 5,
+      "initializer": "multiplier",
+      "shape": [],
+      "offset": 0,
+      "bytes": 4,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.4.time_embedder.timestep_embedder.linear_1.weight",
+      "stage": 5,
+      "initializer": "block.time_embedder.timestep_embedder.linear_1.weight",
+      "shape": [
+        1024,
+        256
+      ],
+      "offset": 4,
+      "bytes": 1048576,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.4.time_embedder.timestep_embedder.linear_1.bias",
+      "stage": 5,
+      "initializer": "block.time_embedder.timestep_embedder.linear_1.bias",
+      "shape": [
+        1024
+      ],
+      "offset": 1048580,
+      "bytes": 4096,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.4.time_embedder.timestep_embedder.linear_2.weight",
+      "stage": 5,
+      "initializer": "block.time_embedder.timestep_embedder.linear_2.weight",
+      "shape": [
+        1024,
+        1024
+      ],
+      "offset": 1052676,
+      "bytes": 4194304,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.4.time_embedder.timestep_embedder.linear_2.bias",
+      "stage": 5,
+      "initializer": "block.time_embedder.timestep_embedder.linear_2.bias",
+      "shape": [
+        1024
+      ],
+      "offset": 5246980,
+      "bytes": 4096,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.4.res_blocks.0.conv1.conv.weight",
+      "stage": 5,
+      "initializer": "block.res_blocks.0.conv1.conv.weight",
+      "shape": [
+        256,
+        256,
+        3,
+        3,
+        3
+      ],
+      "offset": 5251076,
+      "bytes": 7077888,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.4.res_blocks.0.conv1.conv.bias",
+      "stage": 5,
+      "initializer": "block.res_blocks.0.conv1.conv.bias",
+      "shape": [
+        256
+      ],
+      "offset": 12328964,
+      "bytes": 1024,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.4.res_blocks.0.conv2.conv.weight",
+      "stage": 5,
+      "initializer": "block.res_blocks.0.conv2.conv.weight",
+      "shape": [
+        256,
+        256,
+        3,
+        3,
+        3
+      ],
+      "offset": 12329988,
+      "bytes": 7077888,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.4.res_blocks.0.conv2.conv.bias",
+      "stage": 5,
+      "initializer": "block.res_blocks.0.conv2.conv.bias",
+      "shape": [
+        256
+      ],
+      "offset": 19407876,
+      "bytes": 1024,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.4.res_blocks.1.conv1.conv.weight",
+      "stage": 5,
+      "initializer": "block.res_blocks.1.conv1.conv.weight",
+      "shape": [
+        256,
+        256,
+        3,
+        3,
+        3
+      ],
+      "offset": 19408900,
+      "bytes": 7077888,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.4.res_blocks.1.conv1.conv.bias",
+      "stage": 5,
+      "initializer": "block.res_blocks.1.conv1.conv.bias",
+      "shape": [
+        256
+      ],
+      "offset": 26486788,
+      "bytes": 1024,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.4.res_blocks.1.conv2.conv.weight",
+      "stage": 5,
+      "initializer": "block.res_blocks.1.conv2.conv.weight",
+      "shape": [
+        256,
+        256,
+        3,
+        3,
+        3
+      ],
+      "offset": 26487812,
+      "bytes": 7077888,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.4.res_blocks.1.conv2.conv.bias",
+      "stage": 5,
+      "initializer": "block.res_blocks.1.conv2.conv.bias",
+      "shape": [
+        256
+      ],
+      "offset": 33565700,
+      "bytes": 1024,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.4.res_blocks.2.conv1.conv.weight",
+      "stage": 5,
+      "initializer": "block.res_blocks.2.conv1.conv.weight",
+      "shape": [
+        256,
+        256,
+        3,
+        3,
+        3
+      ],
+      "offset": 33566724,
+      "bytes": 7077888,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.4.res_blocks.2.conv1.conv.bias",
+      "stage": 5,
+      "initializer": "block.res_blocks.2.conv1.conv.bias",
+      "shape": [
+        256
+      ],
+      "offset": 40644612,
+      "bytes": 1024,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.4.res_blocks.2.conv2.conv.weight",
+      "stage": 5,
+      "initializer": "block.res_blocks.2.conv2.conv.weight",
+      "shape": [
+        256,
+        256,
+        3,
+        3,
+        3
+      ],
+      "offset": 40645636,
+      "bytes": 7077888,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.4.res_blocks.2.conv2.conv.bias",
+      "stage": 5,
+      "initializer": "block.res_blocks.2.conv2.conv.bias",
+      "shape": [
+        256
+      ],
+      "offset": 47723524,
+      "bytes": 1024,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.4.res_blocks.3.conv1.conv.weight",
+      "stage": 5,
+      "initializer": "block.res_blocks.3.conv1.conv.weight",
+      "shape": [
+        256,
+        256,
+        3,
+        3,
+        3
+      ],
+      "offset": 47724548,
+      "bytes": 7077888,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.4.res_blocks.3.conv1.conv.bias",
+      "stage": 5,
+      "initializer": "block.res_blocks.3.conv1.conv.bias",
+      "shape": [
+        256
+      ],
+      "offset": 54802436,
+      "bytes": 1024,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.4.res_blocks.3.conv2.conv.weight",
+      "stage": 5,
+      "initializer": "block.res_blocks.3.conv2.conv.weight",
+      "shape": [
+        256,
+        256,
+        3,
+        3,
+        3
+      ],
+      "offset": 54803460,
+      "bytes": 7077888,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.4.res_blocks.3.conv2.conv.bias",
+      "stage": 5,
+      "initializer": "block.res_blocks.3.conv2.conv.bias",
+      "shape": [
+        256
+      ],
+      "offset": 61881348,
+      "bytes": 1024,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.4.res_blocks.4.conv1.conv.weight",
+      "stage": 5,
+      "initializer": "block.res_blocks.4.conv1.conv.weight",
+      "shape": [
+        256,
+        256,
+        3,
+        3,
+        3
+      ],
+      "offset": 61882372,
+      "bytes": 7077888,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.4.res_blocks.4.conv1.conv.bias",
+      "stage": 5,
+      "initializer": "block.res_blocks.4.conv1.conv.bias",
+      "shape": [
+        256
+      ],
+      "offset": 68960260,
+      "bytes": 1024,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.4.res_blocks.4.conv2.conv.weight",
+      "stage": 5,
+      "initializer": "block.res_blocks.4.conv2.conv.weight",
+      "shape": [
+        256,
+        256,
+        3,
+        3,
+        3
+      ],
+      "offset": 68961284,
+      "bytes": 7077888,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.4.res_blocks.4.conv2.conv.bias",
+      "stage": 5,
+      "initializer": "block.res_blocks.4.conv2.conv.bias",
+      "shape": [
+        256
+      ],
+      "offset": 76039172,
+      "bytes": 1024,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.4.res_blocks.0.scale_shift_table",
+      "stage": 5,
+      "initializer": "onnx::Add_714",
+      "shape": [
+        1,
+        4,
+        256,
+        1,
+        1,
+        1
+      ],
+      "offset": 76040196,
+      "bytes": 4096,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.4.res_blocks.1.scale_shift_table",
+      "stage": 5,
+      "initializer": "onnx::Add_743",
+      "shape": [
+        1,
+        4,
+        256,
+        1,
+        1,
+        1
+      ],
+      "offset": 76044292,
+      "bytes": 4096,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.4.res_blocks.2.scale_shift_table",
+      "stage": 5,
+      "initializer": "onnx::Add_772",
+      "shape": [
+        1,
+        4,
+        256,
+        1,
+        1,
+        1
+      ],
+      "offset": 76048388,
+      "bytes": 4096,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.4.res_blocks.3.scale_shift_table",
+      "stage": 5,
+      "initializer": "onnx::Add_801",
+      "shape": [
+        1,
+        4,
+        256,
+        1,
+        1,
+        1
+      ],
+      "offset": 76052484,
+      "bytes": 4096,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.4.res_blocks.4.scale_shift_table",
+      "stage": 5,
+      "initializer": "onnx::Add_830",
+      "shape": [
+        1,
+        4,
+        256,
+        1,
+        1,
+        1
+      ],
+      "offset": 76056580,
+      "bytes": 4096,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.5.conv.conv.weight",
+      "stage": 6,
+      "initializer": "block.conv.conv.weight",
+      "shape": [
+        1024,
+        256,
+        3,
+        3,
+        3
+      ],
+      "offset": 0,
+      "bytes": 28311552,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.5.conv.conv.bias",
+      "stage": 6,
+      "initializer": "block.conv.conv.bias",
+      "shape": [
+        1024
+      ],
+      "offset": 28311552,
+      "bytes": 4096,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.timestep_scale_multiplier",
+      "stage": 7,
+      "initializer": "multiplier",
+      "shape": [],
+      "offset": 0,
+      "bytes": 4,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.6.time_embedder.timestep_embedder.linear_1.weight",
+      "stage": 7,
+      "initializer": "block.time_embedder.timestep_embedder.linear_1.weight",
+      "shape": [
+        512,
+        256
+      ],
+      "offset": 4,
+      "bytes": 524288,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.6.time_embedder.timestep_embedder.linear_1.bias",
+      "stage": 7,
+      "initializer": "block.time_embedder.timestep_embedder.linear_1.bias",
+      "shape": [
+        512
+      ],
+      "offset": 524292,
+      "bytes": 2048,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.6.time_embedder.timestep_embedder.linear_2.weight",
+      "stage": 7,
+      "initializer": "block.time_embedder.timestep_embedder.linear_2.weight",
+      "shape": [
+        512,
+        512
+      ],
+      "offset": 526340,
+      "bytes": 1048576,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.6.time_embedder.timestep_embedder.linear_2.bias",
+      "stage": 7,
+      "initializer": "block.time_embedder.timestep_embedder.linear_2.bias",
+      "shape": [
+        512
+      ],
+      "offset": 1574916,
+      "bytes": 2048,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.6.res_blocks.0.conv1.conv.weight",
+      "stage": 7,
+      "initializer": "block.res_blocks.0.conv1.conv.weight",
+      "shape": [
+        128,
+        128,
+        3,
+        3,
+        3
+      ],
+      "offset": 1576964,
+      "bytes": 1769472,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.6.res_blocks.0.conv1.conv.bias",
+      "stage": 7,
+      "initializer": "block.res_blocks.0.conv1.conv.bias",
+      "shape": [
+        128
+      ],
+      "offset": 3346436,
+      "bytes": 512,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.6.res_blocks.0.conv2.conv.weight",
+      "stage": 7,
+      "initializer": "block.res_blocks.0.conv2.conv.weight",
+      "shape": [
+        128,
+        128,
+        3,
+        3,
+        3
+      ],
+      "offset": 3346948,
+      "bytes": 1769472,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.6.res_blocks.0.conv2.conv.bias",
+      "stage": 7,
+      "initializer": "block.res_blocks.0.conv2.conv.bias",
+      "shape": [
+        128
+      ],
+      "offset": 5116420,
+      "bytes": 512,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.6.res_blocks.1.conv1.conv.weight",
+      "stage": 7,
+      "initializer": "block.res_blocks.1.conv1.conv.weight",
+      "shape": [
+        128,
+        128,
+        3,
+        3,
+        3
+      ],
+      "offset": 5116932,
+      "bytes": 1769472,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.6.res_blocks.1.conv1.conv.bias",
+      "stage": 7,
+      "initializer": "block.res_blocks.1.conv1.conv.bias",
+      "shape": [
+        128
+      ],
+      "offset": 6886404,
+      "bytes": 512,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.6.res_blocks.1.conv2.conv.weight",
+      "stage": 7,
+      "initializer": "block.res_blocks.1.conv2.conv.weight",
+      "shape": [
+        128,
+        128,
+        3,
+        3,
+        3
+      ],
+      "offset": 6886916,
+      "bytes": 1769472,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.6.res_blocks.1.conv2.conv.bias",
+      "stage": 7,
+      "initializer": "block.res_blocks.1.conv2.conv.bias",
+      "shape": [
+        128
+      ],
+      "offset": 8656388,
+      "bytes": 512,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.6.res_blocks.2.conv1.conv.weight",
+      "stage": 7,
+      "initializer": "block.res_blocks.2.conv1.conv.weight",
+      "shape": [
+        128,
+        128,
+        3,
+        3,
+        3
+      ],
+      "offset": 8656900,
+      "bytes": 1769472,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.6.res_blocks.2.conv1.conv.bias",
+      "stage": 7,
+      "initializer": "block.res_blocks.2.conv1.conv.bias",
+      "shape": [
+        128
+      ],
+      "offset": 10426372,
+      "bytes": 512,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.6.res_blocks.2.conv2.conv.weight",
+      "stage": 7,
+      "initializer": "block.res_blocks.2.conv2.conv.weight",
+      "shape": [
+        128,
+        128,
+        3,
+        3,
+        3
+      ],
+      "offset": 10426884,
+      "bytes": 1769472,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.6.res_blocks.2.conv2.conv.bias",
+      "stage": 7,
+      "initializer": "block.res_blocks.2.conv2.conv.bias",
+      "shape": [
+        128
+      ],
+      "offset": 12196356,
+      "bytes": 512,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.6.res_blocks.3.conv1.conv.weight",
+      "stage": 7,
+      "initializer": "block.res_blocks.3.conv1.conv.weight",
+      "shape": [
+        128,
+        128,
+        3,
+        3,
+        3
+      ],
+      "offset": 12196868,
+      "bytes": 1769472,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.6.res_blocks.3.conv1.conv.bias",
+      "stage": 7,
+      "initializer": "block.res_blocks.3.conv1.conv.bias",
+      "shape": [
+        128
+      ],
+      "offset": 13966340,
+      "bytes": 512,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.6.res_blocks.3.conv2.conv.weight",
+      "stage": 7,
+      "initializer": "block.res_blocks.3.conv2.conv.weight",
+      "shape": [
+        128,
+        128,
+        3,
+        3,
+        3
+      ],
+      "offset": 13966852,
+      "bytes": 1769472,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.6.res_blocks.3.conv2.conv.bias",
+      "stage": 7,
+      "initializer": "block.res_blocks.3.conv2.conv.bias",
+      "shape": [
+        128
+      ],
+      "offset": 15736324,
+      "bytes": 512,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.6.res_blocks.4.conv1.conv.weight",
+      "stage": 7,
+      "initializer": "block.res_blocks.4.conv1.conv.weight",
+      "shape": [
+        128,
+        128,
+        3,
+        3,
+        3
+      ],
+      "offset": 15736836,
+      "bytes": 1769472,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.6.res_blocks.4.conv1.conv.bias",
+      "stage": 7,
+      "initializer": "block.res_blocks.4.conv1.conv.bias",
+      "shape": [
+        128
+      ],
+      "offset": 17506308,
+      "bytes": 512,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.6.res_blocks.4.conv2.conv.weight",
+      "stage": 7,
+      "initializer": "block.res_blocks.4.conv2.conv.weight",
+      "shape": [
+        128,
+        128,
+        3,
+        3,
+        3
+      ],
+      "offset": 17506820,
+      "bytes": 1769472,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.6.res_blocks.4.conv2.conv.bias",
+      "stage": 7,
+      "initializer": "block.res_blocks.4.conv2.conv.bias",
+      "shape": [
+        128
+      ],
+      "offset": 19276292,
+      "bytes": 512,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.6.res_blocks.0.scale_shift_table",
+      "stage": 7,
+      "initializer": "onnx::Add_714",
+      "shape": [
+        1,
+        4,
+        128,
+        1,
+        1,
+        1
+      ],
+      "offset": 19276804,
+      "bytes": 2048,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.6.res_blocks.1.scale_shift_table",
+      "stage": 7,
+      "initializer": "onnx::Add_743",
+      "shape": [
+        1,
+        4,
+        128,
+        1,
+        1,
+        1
+      ],
+      "offset": 19278852,
+      "bytes": 2048,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.6.res_blocks.2.scale_shift_table",
+      "stage": 7,
+      "initializer": "onnx::Add_772",
+      "shape": [
+        1,
+        4,
+        128,
+        1,
+        1,
+        1
+      ],
+      "offset": 19280900,
+      "bytes": 2048,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.6.res_blocks.3.scale_shift_table",
+      "stage": 7,
+      "initializer": "onnx::Add_801",
+      "shape": [
+        1,
+        4,
+        128,
+        1,
+        1,
+        1
+      ],
+      "offset": 19282948,
+      "bytes": 2048,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.up_blocks.6.res_blocks.4.scale_shift_table",
+      "stage": 7,
+      "initializer": "onnx::Add_830",
+      "shape": [
+        1,
+        4,
+        128,
+        1,
+        1,
+        1
+      ],
+      "offset": 19284996,
+      "bytes": 2048,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.timestep_scale_multiplier",
+      "stage": 8,
+      "initializer": "multiplier",
+      "shape": [],
+      "offset": 0,
+      "bytes": 4,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.last_time_embedder.timestep_embedder.linear_1.weight",
+      "stage": 8,
+      "initializer": "embed.timestep_embedder.linear_1.weight",
+      "shape": [
+        256,
+        256
+      ],
+      "offset": 4,
+      "bytes": 262144,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.last_time_embedder.timestep_embedder.linear_1.bias",
+      "stage": 8,
+      "initializer": "embed.timestep_embedder.linear_1.bias",
+      "shape": [
+        256
+      ],
+      "offset": 262148,
+      "bytes": 1024,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.last_time_embedder.timestep_embedder.linear_2.weight",
+      "stage": 8,
+      "initializer": "embed.timestep_embedder.linear_2.weight",
+      "shape": [
+        256,
+        256
+      ],
+      "offset": 263172,
+      "bytes": 262144,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.last_time_embedder.timestep_embedder.linear_2.bias",
+      "stage": 8,
+      "initializer": "embed.timestep_embedder.linear_2.bias",
+      "shape": [
+        256
+      ],
+      "offset": 525316,
+      "bytes": 1024,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.conv_out.conv.weight",
+      "stage": 8,
+      "initializer": "conv.conv.weight",
+      "shape": [
+        48,
+        128,
+        3,
+        3,
+        3
+      ],
+      "offset": 526340,
+      "bytes": 663552,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.conv_out.conv.bias",
+      "stage": 8,
+      "initializer": "conv.conv.bias",
+      "shape": [
+        48
+      ],
+      "offset": 1189892,
+      "bytes": 192,
+      "transform": "reshape_f32"
+    },
+    {
+      "source": "vae.decoder.last_scale_shift_table",
+      "stage": 8,
+      "initializer": "onnx::Add_198",
+      "shape": [
+        1,
+        2,
+        128,
+        1,
+        1,
+        1
+      ],
+      "offset": 1190084,
+      "bytes": 1024,
+      "transform": "reshape_f32"
+    }
+  ],
+  "manifest": {
+    "schema": "lma.ltx098-vae/1",
+    "source": {
+      "repository": "Lightricks/LTX-Video",
+      "revision": "8984fa25007f376c1a299016d0957a37a2f797bb",
+      "file": "ltxv-2b-0.9.8-distilled.safetensors",
+      "bytes": 6340744492,
+      "sha256": "76aa8c4786af752fa6f951947129d5290c3c6c0b2fadcadea6b5e114ae2cad8f"
+    },
+    "precision": "float32",
+    "stages": [
+      {
+        "index": 0,
+        "file": "stage-00.onnx",
+        "inputs": [
+          "latent",
+          "noise",
+          "noise_scale"
+        ],
+        "input_shapes": [
+          [
+            1,
+            128,
+            3,
+            2,
+            2
+          ],
+          [
+            1,
+            128,
+            3,
+            2,
+            2
+          ],
+          [
+            1
+          ]
+        ],
+        "output_shape": [
+          1,
+          1024,
+          3,
+          2,
+          2
+        ]
+      },
+      {
+        "index": 1,
+        "file": "stage-01.onnx",
+        "inputs": [
+          "sample",
+          "timestep"
+        ],
+        "input_shapes": [
+          [
+            1,
+            1024,
+            3,
+            2,
+            2
+          ],
+          [
+            1
+          ]
+        ],
+        "output_shape": [
+          1,
+          1024,
+          3,
+          2,
+          2
+        ]
+      },
+      {
+        "index": 2,
+        "file": "stage-02.onnx",
+        "inputs": [
+          "sample"
+        ],
+        "input_shapes": [
+          [
+            1,
+            1024,
+            3,
+            2,
+            2
+          ]
+        ],
+        "output_shape": [
+          1,
+          512,
+          5,
+          4,
+          4
+        ]
+      },
+      {
+        "index": 3,
+        "file": "stage-03.onnx",
+        "inputs": [
+          "sample",
+          "timestep"
+        ],
+        "input_shapes": [
+          [
+            1,
+            512,
+            5,
+            4,
+            4
+          ],
+          [
+            1
+          ]
+        ],
+        "output_shape": [
+          1,
+          512,
+          5,
+          4,
+          4
+        ]
+      },
+      {
+        "index": 4,
+        "file": "stage-04.onnx",
+        "inputs": [
+          "sample"
+        ],
+        "input_shapes": [
+          [
+            1,
+            512,
+            5,
+            4,
+            4
+          ]
+        ],
+        "output_shape": [
+          1,
+          256,
+          9,
+          8,
+          8
+        ]
+      },
+      {
+        "index": 5,
+        "file": "stage-05.onnx",
+        "inputs": [
+          "sample",
+          "timestep"
+        ],
+        "input_shapes": [
+          [
+            1,
+            256,
+            9,
+            8,
+            8
+          ],
+          [
+            1
+          ]
+        ],
+        "output_shape": [
+          1,
+          256,
+          9,
+          8,
+          8
+        ]
+      },
+      {
+        "index": 6,
+        "file": "stage-06.onnx",
+        "inputs": [
+          "sample"
+        ],
+        "input_shapes": [
+          [
+            1,
+            256,
+            9,
+            8,
+            8
+          ]
+        ],
+        "output_shape": [
+          1,
+          128,
+          17,
+          16,
+          16
+        ]
+      },
+      {
+        "index": 7,
+        "file": "stage-07.onnx",
+        "inputs": [
+          "sample",
+          "timestep"
+        ],
+        "input_shapes": [
+          [
+            1,
+            128,
+            17,
+            16,
+            16
+          ],
+          [
+            1
+          ]
+        ],
+        "output_shape": [
+          1,
+          128,
+          17,
+          16,
+          16
+        ]
+      },
+      {
+        "index": 8,
+        "file": "stage-08.onnx",
+        "inputs": [
+          "sample",
+          "timestep"
+        ],
+        "input_shapes": [
+          [
+            1,
+            128,
+            17,
+            16,
+            16
+          ],
+          [
+            1
+          ]
+        ],
+        "output_shape": [
+          1,
+          3,
+          17,
+          64,
+          64
+        ]
+      }
+    ],
+    "assets": [
+      {
+        "file": "stage-00.onnx",
+        "bytes": 3451,
+        "sha256": "33f367287eaf5bc67aead22132d9d73aeaf66b51387bbc3a032a1c7eb936ff8b"
+      },
+      {
+        "file": "stage-00.onnx.data",
+        "bytes": 14160896,
+        "sha256": "8bfd5b8f04a0d924707997f112e9df029442404e749d596e529a9db2a08f6384"
+      },
+      {
+        "file": "stage-01.onnx",
+        "bytes": 80554,
+        "sha256": "29ede53a11d80957e6f0abe38780511c267762feba725b49c29bd36fa35d31b3"
+      },
+      {
+        "file": "stage-01.onnx.data",
+        "bytes": 1203920900,
+        "sha256": "f8b34f9531d3efb14455dde1acb032b6be2bbaeadb4066f6b400b0905cb885ba"
+      },
+      {
+        "file": "stage-02.onnx",
+        "bytes": 20672,
+        "sha256": "1b74a179d5f160239411d234411641195548607eb523e74c82e34a66b41df415"
+      },
+      {
+        "file": "stage-02.onnx.data",
+        "bytes": 453001216,
+        "sha256": "fbcc19df16368b873c1c4bf21a9e15861884d2a46b7674b9d946339760531aa6"
+      },
+      {
+        "file": "stage-03.onnx",
+        "bytes": 80515,
+        "sha256": "77422f7cab2804d8b7b2b1f160623571a0ed66561e77c69fb6ce741e453b8a3f"
+      },
+      {
+        "file": "stage-03.onnx.data",
+        "bytes": 302067716,
+        "sha256": "49880337fe10880ac3a6f92e63f2bda75a8f67738215be86b6fa34c3a2f6fe47"
+      },
+      {
+        "file": "stage-04.onnx",
+        "bytes": 20671,
+        "sha256": "d264368af810ad36e82b5038311cb86f3acb84351dc58f713ce7691732b6043a"
+      },
+      {
+        "file": "stage-04.onnx.data",
+        "bytes": 113254400,
+        "sha256": "7b0a476b6c29b9db4739e1b2fba33778eaec25ce687a4763f55773a2b5d6b38d"
+      },
+      {
+        "file": "stage-05.onnx",
+        "bytes": 80481,
+        "sha256": "489050eeef9cf3c5378145c13b3819cfc2c84cc02a5eae0f20bb543b47cc0fab"
+      },
+      {
+        "file": "stage-05.onnx.data",
+        "bytes": 76060676,
+        "sha256": "81789f36e257d9b7c22e6934955cee0c3fde3c2725591efa66cf96621d5d31b7"
+      },
+      {
+        "file": "stage-06.onnx",
+        "bytes": 20669,
+        "sha256": "c737a55510880d4b92e12e9aca7138a154ad6e58a96e89a4f2a530a3f369b88c"
+      },
+      {
+        "file": "stage-06.onnx.data",
+        "bytes": 28315648,
+        "sha256": "d377a63aee6e1ec50a92fab21aa4e354a23ff8496921528d9af581d272639e9b"
+      },
+      {
+        "file": "stage-07.onnx",
+        "bytes": 80460,
+        "sha256": "239145b9c04cbb5513ee96d2a41ff5b1f8db2c4cf0d9148c3092028b858b3576"
+      },
+      {
+        "file": "stage-07.onnx.data",
+        "bytes": 19287044,
+        "sha256": "22cad42d7baa91055ac2645d1f2c9ee5019ccf4907d40de4058edadbcf209f30"
+      },
+      {
+        "file": "stage-08.onnx",
+        "bytes": 14758,
+        "sha256": "ff463e05293456c25aa5b1a14d82b1f732f1aee0f00da45f8e28419509ba8ac9"
+      },
+      {
+        "file": "stage-08.onnx.data",
+        "bytes": 1191108,
+        "sha256": "6bf9520daca30d56175d92ce125337eb2bec547a229579279f835d70b09c8298"
+      }
+    ],
+    "decoder_tensors": 132,
+    "decoder_parameters": 552814641,
+    "temporal_scale": 8,
+    "spatial_scale": 32,
+    "output_channels": 3,
+    "decode_timestep": 0.05,
+    "decode_noise_scale": 0.025,
+    "tone_map_compression_ratio": 0.0,
+    "complete_video_pipeline": false,
+    "engine_registered": false,
+    "packaged_in_apk": false,
+    "physical_android": false
+  },
+  "learned_tensors": 134,
+  "decoder_tensors": 132,
+  "decoder_parameters": 552814641,
+  "transformations": [
+    "reshape_f32"
+  ],
+  "model_data_embedded": false
+}

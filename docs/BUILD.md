@@ -137,3 +137,5 @@ SoulX生产worker原生构建：`build_soulx.py`（主机）→ `build_soulx.py 
 旧 LTX 精度定位采用原生 Windows MSVC、已锁定的现有 GGML 静态库与独立源码副本；命令与前置资产见[中文指南](LTX098_PRECISION.md) / [English](LTX098_PRECISION.en.md)。不修改生产源、不自动取模型；314 / 628 / 120 为诊断 / 文件 / 算子数量。候选 F64 计算尚非 Android 构建或验收，不提升 APK 版本；全部完整链路门槛保持。
 
 原生旧 LTX 转换复现见[中文指南](LTX098_PREPARE.md) / [English](LTX098_PREPARE.en.md)：顺序运行 `tools/build_ltx098_prepare.py`、`--android`、`tools/test_ltx098_prepare.py --trained`，然后开发导出、`tools/plot_ltx098_prepare.py` 和开发仓库检查。仅复用显式取得的本地开发资产，无自动下载。自有 SHA / 半精度转换与已有固定 JSON 头，ARM64 API28 / 16KiB；源码组件不进入本次 APK。
+
+旧 VAE 准备复现见[中文](LTX098_VAE_PREPARE.md) / [English](LTX098_VAE_PREPARE.en.md)：审计图模板，顺序构建 DiT / VAE 两种准备器的 MSVC 与 ARM64 版本，再执行各自完整训练文件测试和 VAE 真实解码。`tools/prepare_ltx098_vae_templates.py` 是开发构建工具；Android 转换不使用 Python / Torch / ONNX 或网络。使用公开记录回退的构建仍核对图审计输入及模板输出指纹。

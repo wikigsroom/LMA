@@ -11,18 +11,28 @@ from verify_package import elf_info, SYSTEM_LIBS
 ROOT = Path(__file__).resolve().parents[1]
 
 
-def inputs():
-    return fingerprint('research/ltx098_prepare', 'tools/build_ltx098_prepare.py',
-                       'third_party/ltx098-source-lock.json', 'third_party/ltx098-text-source-lock.json')
+def inputs(vae=False):
+    names=['research/ltx098_vae_prepare' if vae else 'research/ltx098_prepare', 'research/local_prepare',
+           'tools/build_ltx098_prepare.py', 'third_party/ltx098-source-lock.json', 'third_party/ltx098-text-source-lock.json']
+    if vae:names+=['tools/build_ltx098_vae_prepare.py','tools/prepare_ltx098_vae_templates.py','third_party/ltx098-vae-source-lock.json']
+    return fingerprint(*names)
 
 
-def build(android=False):
+def build(android=False,vae=False):
     if os.name != 'nt': raise RuntimeError('Use native Windows MSVC/NDK tools')
-    before = inputs()
+    before = inputs(vae)
+    if vae:
+        proof=ROOT/'build/ltx098-vae-template-tests/results.json'
+        if not proof.exists():proof=ROOT/'verification/development/ltx098-vae-templates.json'
+        audit=json.loads(proof.read_text(encoding='utf-8'))
+        current(audit['input_fingerprint']);current(audit['output_fingerprint'])
+        if not (audit['passed'] and audit['all_graph_constants_classified'] and not audit['inline_learned_data']):raise RuntimeError('Architecture graphs need a current audit')
     lock = json.loads((ROOT / 'third_party/ltx098-text-source-lock.json').read_text(encoding='utf-8'))
     if hashlib.sha256((ROOT / 'build/native-src/sd-cpp/thirdparty/json.hpp').read_bytes()).hexdigest() != lock['json_header_sha256']:
         raise RuntimeError('Changed pinned JSON header')
-    name = 'ltx098-prepare-arm64' if android else 'ltx098-prepare-host'
+    stem='ltx098-vae-prepare' if vae else 'ltx098-prepare'
+    source='ltx098_vae_prepare' if vae else 'ltx098_prepare';target='lma_'+source
+    name=stem+('-arm64' if android else '-host')
     out = ROOT / 'build' / name; out.mkdir(exist_ok=True); (out / 'receipt.json').unlink(missing_ok=True)
     drive = next((c + ':' for c in 'RSTUVWXYZ' if not Path(c + ':/').exists()), None)
     if not drive: raise RuntimeError('No free ASCII build alias')
@@ -35,12 +45,12 @@ def build(android=False):
             options.update(CMAKE_TOOLCHAIN_FILE=tool + 'android-ndk-r30/build/cmake/android.toolchain.cmake',
                            ANDROID_ABI='arm64-v8a', ANDROID_PLATFORM='android-28', ANDROID_STL='c++_static')
         cmake = tool + 'cmake-3.31.6/bin/cmake.exe'
-        commands = [[cmake, '-S', alias + 'research/ltx098_prepare', '-B', directory, '-G', 'Ninja'] +
+        commands = [[cmake, '-S', alias + 'research/'+source, '-B', directory, '-G', 'Ninja'] +
                     ['-D' + k + '=' + v for k, v in options.items()],
-                    [cmake, '--build', directory, '--target', 'lma_ltx098_prepare', '-j', '4']]
+                    [cmake, '--build', directory, '--target', target, '-j', '4']]
         if android:
             commands.append([tool + 'android-ndk-r30/toolchains/llvm/prebuilt/windows-x86_64/bin/llvm-strip.exe',
-                             '--strip-unneeded', directory + '/bin/liblma-ltx098-prepare.so'])
+                             '--strip-unneeded', directory + '/bin/liblma-'+stem+'.so'])
         for i, command in enumerate(commands):
             if android: result = subprocess.run(command, capture_output=True, timeout=300)
             else:
@@ -53,7 +63,7 @@ def build(android=False):
             if result.returncode: raise RuntimeError(f'Inspect build/{name}/build-{i}.log')
     finally:
         subprocess.run(['subst', drive, '/D'], check=True, capture_output=True)
-    binary = out / 'bin' / ('liblma-ltx098-prepare.so' if android else 'lma_ltx098_prepare.exe')
+    binary = out / 'bin' / ('liblma-'+stem+'.so' if android else target+'.exe')
     data = binary.read_bytes()
     record = dict(kind='android_compile' if android else 'host_compile', executable_bytes=len(data),
                   executable_sha256=hashlib.sha256(data).hexdigest(), model_data_embedded=False,

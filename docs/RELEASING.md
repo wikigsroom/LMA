@@ -122,3 +122,5 @@ dev.21 SoulX App接入使用 [中文](SOULX_ENGINE.md) / [English](SOULX_ENGINE.
 候选 `ltx098-text-precision-attention.json` / `ltx098-text-precision-linear.json` 各三次完整T5，不等同完整视频验收。两份 `ltx098-precision-sampling-*.json` 是复核捕获的A轨迹，均未过原0.003门槛并保持exit 1；必须保留partial / reused / no-VAE / no-B-video范围，不能由开发审计成功覆盖失败结论。
 
 旧 LTX [原生资产准备](LTX098_PREPARE.md) / [English](LTX098_PREPARE.en.md)公开转换测试、独立 Windows / ARM64 编译身份与来源图；开发审计需交叉验证完整源 / 输出身份、各进程范围、内存和失败保护。转换不是推理，inspect 不等于完整源校验。组件未进入 APK / App registry；完整链路六项数值失败和全部冻结手机 / Release 门槛继续保持。This source-only handoff creates no new Release or tag.
+
+旧 VAE [原生准备](LTX098_VAE_PREPARE.md) / [English](LTX098_VAE_PREPARE.en.md)增加九图数据分离审计、完整源转换、18 资产独立重读身份和四组原生解码证据；需要重新核对共用 DiT 回归与两类 ARM64 构建。图模板是架构代码，不允许任意学习数据进入模板；开发仓库检查会重新解析全部图。转换 / 解码 / Android 编译均不关闭完整提示词视频六项失败、App 集成、任何冻结目标或真机 / Release 门槛。

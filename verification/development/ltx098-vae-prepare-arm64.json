@@ -1,0 +1,55 @@
+{
+  "kind": "android_compile",
+  "executable_bytes": 614472,
+  "executable_sha256": "be5dc8b4fcdd7fee09b8d92b548360e2493d0ec7b9dac91af4449dfc2418e424",
+  "model_data_embedded": false,
+  "model_inference": false,
+  "engine_registered": false,
+  "packaged_in_apk": false,
+  "physical_android": false,
+  "virtualization_used": false,
+  "input_fingerprint": {
+    "research/local_prepare/io.hpp": "162b24f6a5b828a6308a0abc9a5451dae8c7ed4f142adde12b76b0afa9206587",
+    "research/local_prepare/NOTICE": "abd98f3b203aa21aaece257200b42c9478ab0a06f44ad1208e5663ec4287a6d1",
+    "research/ltx098_vae_prepare/CMakeLists.txt": "894a7bb2d4c8ec7a5c487636bbe64b0143ceeb70d67a88dc168a95736b6431b0",
+    "research/ltx098_vae_prepare/contract.json": "606dde071dd474ca96d5829982ef3f1f9fad055184bd4fbbe320b0a7e7799d2c",
+    "research/ltx098_vae_prepare/graphs/stage-00.onnx": "33f367287eaf5bc67aead22132d9d73aeaf66b51387bbc3a032a1c7eb936ff8b",
+    "research/ltx098_vae_prepare/graphs/stage-01.onnx": "29ede53a11d80957e6f0abe38780511c267762feba725b49c29bd36fa35d31b3",
+    "research/ltx098_vae_prepare/graphs/stage-02.onnx": "1b74a179d5f160239411d234411641195548607eb523e74c82e34a66b41df415",
+    "research/ltx098_vae_prepare/graphs/stage-03.onnx": "77422f7cab2804d8b7b2b1f160623571a0ed66561e77c69fb6ce741e453b8a3f",
+    "research/ltx098_vae_prepare/graphs/stage-04.onnx": "d264368af810ad36e82b5038311cb86f3acb84351dc58f713ce7691732b6043a",
+    "research/ltx098_vae_prepare/graphs/stage-05.onnx": "489050eeef9cf3c5378145c13b3819cfc2c84cc02a5eae0f20bb543b47cc0fab",
+    "research/ltx098_vae_prepare/graphs/stage-06.onnx": "c737a55510880d4b92e12e9aca7138a154ad6e58a96e89a4f2a530a3f369b88c",
+    "research/ltx098_vae_prepare/graphs/stage-07.onnx": "239145b9c04cbb5513ee96d2a41ff5b1f8db2c4cf0d9148c3092028b858b3576",
+    "research/ltx098_vae_prepare/graphs/stage-08.onnx": "ff463e05293456c25aa5b1a14d82b1f732f1aee0f00da45f8e28419509ba8ac9",
+    "research/ltx098_vae_prepare/NOTICE": "6db31532485ed5089c96a8b317102fc39e075c30874d3fb150e50210d687027e",
+    "research/ltx098_vae_prepare/prepare.cpp": "e4274042fb417e35f2146677e730bc917346a4af570041adfe964ffa9b553e84",
+    "third_party/ltx098-source-lock.json": "28acd99486f6ca76a06d038076175ac01ca55c7b1d8c3ba6dab9190291ac8779",
+    "third_party/ltx098-text-source-lock.json": "04b2f7892a4f047363fbaf3ba555682bf201c8320fa1cc7f4d5a68b2884512f4",
+    "third_party/ltx098-vae-source-lock.json": "201ac18ca78b381f810f0567ecd300a5bfda1b489893be56d28b30d6e6db2dcb",
+    "tools/build_ltx098_prepare.py": "5f9d96a5fbed095f8c7f470ace3896d60781a7f9190b9ce741a22a19628bf7ca",
+    "tools/build_ltx098_vae_prepare.py": "c463cc8488bcb7e45b2d715745a9bf5790999cd4b86949b7eb5b3bdc48cb71ae",
+    "tools/prepare_ltx098_vae_templates.py": "526543af3e6d78efaa8bca90420fee2ad1ec4bb2880f2389eea006765b96b881"
+  },
+  "android_arm64_compiled": true,
+  "android_platform": 28,
+  "elf": {
+    "machine": "aarch64",
+    "needed": [
+      "libm.so",
+      "libdl.so",
+      "libc.so"
+    ],
+    "load_segment_alignment": [
+      16384
+    ],
+    "interpreter": "/system/bin/linker64",
+    "entry_point": 195680,
+    "android_api_notes": [
+      28
+    ],
+    "16k_elf_aligned": true
+  },
+  "ndk": "30.0.16248370",
+  "forbidden_network_process_imports": []
+}

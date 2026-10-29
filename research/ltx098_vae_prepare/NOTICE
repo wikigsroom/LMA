@@ -1,0 +1,18 @@
+LMA old-LTX VAE local asset preparation
+Copyright (c) 2026 LMA contributors. MIT for the converter and preparation tools.
+
+The nine ONNX files contain architecture, standard operators, external parameter
+descriptors and explicitly audited mathematical constants. They contain no
+inline learned tensors. 138 external initializer records map to 132 original
+decoder tensors and two learned statistics vectors. The learned timestep scale
+is also read from the user's checkpoint, never substituted with a code constant.
+
+Architecture graphs are derived from Lightricks/LTX-Video commit
+4b2d053057623ddd4d0a1d3e9cd28890e9ef487f, Apache-2.0. The original Apache-2.0
+license is retained in ../ltx098/licenses/Lightricks-Apache-2.0.txt. Source, graph audit and
+model terms are recorded in third_party/ltx098-vae-source-lock.json. Model weights
+are not distributed here; users acquire their selected assets separately.
+
+The converter reuses ../local_prepare (LMA MIT) and the existing pinned
+nlohmann/json MIT header. Python, ONNX and PyTorch are developer-only graph-audit
+dependencies, not Android preparation runtime dependencies.

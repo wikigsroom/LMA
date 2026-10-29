@@ -1,0 +1,161 @@
+{
+  "schema": "lma.ltx098-vae-templates/1",
+  "passed": true,
+  "graphs": [
+    {
+      "file": "stage-00.onnx",
+      "bytes": 3451,
+      "sha256": "33f367287eaf5bc67aead22132d9d73aeaf66b51387bbc3a032a1c7eb936ff8b",
+      "data_file": "stage-00.onnx.data",
+      "data_bytes": 14160896,
+      "data_sha256": "8bfd5b8f04a0d924707997f112e9df029442404e749d596e529a9db2a08f6384",
+      "nodes": 30,
+      "initializers": 4
+    },
+    {
+      "file": "stage-01.onnx",
+      "bytes": 80554,
+      "sha256": "29ede53a11d80957e6f0abe38780511c267762feba725b49c29bd36fa35d31b3",
+      "data_file": "stage-01.onnx.data",
+      "data_bytes": 1203920900,
+      "data_sha256": "f8b34f9531d3efb14455dde1acb032b6be2bbaeadb4066f6b400b0905cb885ba",
+      "nodes": 484,
+      "initializers": 30
+    },
+    {
+      "file": "stage-02.onnx",
+      "bytes": 20672,
+      "sha256": "1b74a179d5f160239411d234411641195548607eb523e74c82e34a66b41df415",
+      "data_file": "stage-02.onnx.data",
+      "data_bytes": 453001216,
+      "data_sha256": "fbcc19df16368b873c1c4bf21a9e15861884d2a46b7674b9d946339760531aa6",
+      "nodes": 155,
+      "initializers": 2
+    },
+    {
+      "file": "stage-03.onnx",
+      "bytes": 80515,
+      "sha256": "77422f7cab2804d8b7b2b1f160623571a0ed66561e77c69fb6ce741e453b8a3f",
+      "data_file": "stage-03.onnx.data",
+      "data_bytes": 302067716,
+      "data_sha256": "49880337fe10880ac3a6f92e63f2bda75a8f67738215be86b6fa34c3a2f6fe47",
+      "nodes": 484,
+      "initializers": 30
+    },
+    {
+      "file": "stage-04.onnx",
+      "bytes": 20671,
+      "sha256": "d264368af810ad36e82b5038311cb86f3acb84351dc58f713ce7691732b6043a",
+      "data_file": "stage-04.onnx.data",
+      "data_bytes": 113254400,
+      "data_sha256": "7b0a476b6c29b9db4739e1b2fba33778eaec25ce687a4763f55773a2b5d6b38d",
+      "nodes": 155,
+      "initializers": 2
+    },
+    {
+      "file": "stage-05.onnx",
+      "bytes": 80481,
+      "sha256": "489050eeef9cf3c5378145c13b3819cfc2c84cc02a5eae0f20bb543b47cc0fab",
+      "data_file": "stage-05.onnx.data",
+      "data_bytes": 76060676,
+      "data_sha256": "81789f36e257d9b7c22e6934955cee0c3fde3c2725591efa66cf96621d5d31b7",
+      "nodes": 484,
+      "initializers": 30
+    },
+    {
+      "file": "stage-06.onnx",
+      "bytes": 20669,
+      "sha256": "c737a55510880d4b92e12e9aca7138a154ad6e58a96e89a4f2a530a3f369b88c",
+      "data_file": "stage-06.onnx.data",
+      "data_bytes": 28315648,
+      "data_sha256": "d377a63aee6e1ec50a92fab21aa4e354a23ff8496921528d9af581d272639e9b",
+      "nodes": 155,
+      "initializers": 2
+    },
+    {
+      "file": "stage-07.onnx",
+      "bytes": 80460,
+      "sha256": "239145b9c04cbb5513ee96d2a41ff5b1f8db2c4cf0d9148c3092028b858b3576",
+      "data_file": "stage-07.onnx.data",
+      "data_bytes": 19287044,
+      "data_sha256": "22cad42d7baa91055ac2645d1f2c9ee5019ccf4907d40de4058edadbcf209f30",
+      "nodes": 484,
+      "initializers": 30
+    },
+    {
+      "file": "stage-08.onnx",
+      "bytes": 14758,
+      "sha256": "ff463e05293456c25aa5b1a14d82b1f732f1aee0f00da45f8e28419509ba8ac9",
+      "data_file": "stage-08.onnx.data",
+      "data_bytes": 1191108,
+      "data_sha256": "6bf9520daca30d56175d92ce125337eb2bec547a229579279f835d70b09c8298",
+      "nodes": 137,
+      "initializers": 8
+    }
+  ],
+  "external_initializers": 138,
+  "source_parameters_observed": 134,
+  "folded_reshape_tables": 21,
+  "architecture_frequency_vectors": 5,
+  "constant_tensor_types": {
+    "7": 1073,
+    "1": 129
+  },
+  "operator_counts": {
+    "Constant": 1109,
+    "Reshape": 40,
+    "Sub": 1,
+    "Mul": 142,
+    "Add": 169,
+    "Slice": 106,
+    "ConstantOfShape": 93,
+    "Expand": 93,
+    "Tile": 93,
+    "Concat": 94,
+    "Conv": 45,
+    "Shape": 56,
+    "Gather": 56,
+    "Unsqueeze": 100,
+    "Cast": 24,
+    "Sin": 5,
+    "Cos": 5,
+    "Gemm": 10,
+    "Sigmoid": 46,
+    "Pow": 41,
+    "ReduceMean": 41,
+    "Sqrt": 41,
+    "Div": 48,
+    "Split": 21,
+    "Squeeze": 82,
+    "Transpose": 7
+  },
+  "parameter_bytes_verified": 2211259604,
+  "source_header_sha256": "661003367bb40cf8ade77fb8eb91a55348a98bb95bf85c4ee31616a6133f8920",
+  "source_full_sha_verified_by_this_tool": false,
+  "all_external_parameters_match_original_source": true,
+  "all_graph_constants_classified": true,
+  "inline_learned_data": false,
+  "model_inference": false,
+  "packaged_in_apk": false,
+  "physical_android": false,
+  "seconds": 91.86162929999409,
+  "input_fingerprint": {
+    "third_party/ltx098-source-lock.json": "28acd99486f6ca76a06d038076175ac01ca55c7b1d8c3ba6dab9190291ac8779",
+    "third_party/ltx098-vae-source-lock.json": "201ac18ca78b381f810f0567ecd300a5bfda1b489893be56d28b30d6e6db2dcb",
+    "tools/ltx098_assets.py": "0380166ca9d3f2f9a028675e6f9d9a827005767a67f66e3c1f00626226ae155c",
+    "tools/ltx098_vae.py": "f64b71b00d95050bad34252db9ac4935e84d550790ae147b40eddc43c3b871dd",
+    "tools/prepare_ltx098_vae_templates.py": "526543af3e6d78efaa8bca90420fee2ad1ec4bb2880f2389eea006765b96b881"
+  },
+  "output_fingerprint": {
+    "research/ltx098_vae_prepare/contract.json": "606dde071dd474ca96d5829982ef3f1f9fad055184bd4fbbe320b0a7e7799d2c",
+    "research/ltx098_vae_prepare/graphs/stage-00.onnx": "33f367287eaf5bc67aead22132d9d73aeaf66b51387bbc3a032a1c7eb936ff8b",
+    "research/ltx098_vae_prepare/graphs/stage-01.onnx": "29ede53a11d80957e6f0abe38780511c267762feba725b49c29bd36fa35d31b3",
+    "research/ltx098_vae_prepare/graphs/stage-02.onnx": "1b74a179d5f160239411d234411641195548607eb523e74c82e34a66b41df415",
+    "research/ltx098_vae_prepare/graphs/stage-03.onnx": "77422f7cab2804d8b7b2b1f160623571a0ed66561e77c69fb6ce741e453b8a3f",
+    "research/ltx098_vae_prepare/graphs/stage-04.onnx": "d264368af810ad36e82b5038311cb86f3acb84351dc58f713ce7691732b6043a",
+    "research/ltx098_vae_prepare/graphs/stage-05.onnx": "489050eeef9cf3c5378145c13b3819cfc2c84cc02a5eae0f20bb543b47cc0fab",
+    "research/ltx098_vae_prepare/graphs/stage-06.onnx": "c737a55510880d4b92e12e9aca7138a154ad6e58a96e89a4f2a530a3f369b88c",
+    "research/ltx098_vae_prepare/graphs/stage-07.onnx": "239145b9c04cbb5513ee96d2a41ff5b1f8db2c4cf0d9148c3092028b858b3576",
+    "research/ltx098_vae_prepare/graphs/stage-08.onnx": "ff463e05293456c25aa5b1a14d82b1f732f1aee0f00da45f8e28419509ba8ac9"
+  }
+}

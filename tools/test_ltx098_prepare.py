@@ -26,7 +26,7 @@ OUTPUT_SHA = 'ef29c886b36f8a1dbc6693002256049407e512da7a61bf2cc750f1d4d2277ebf'
 
 
 def inputs():
-    return fingerprint('research/ltx098_prepare', 'tools/build_ltx098_prepare.py', 'tools/test_ltx098_prepare.py',
+    return fingerprint('research/ltx098_prepare', 'research/local_prepare', 'tools/build_ltx098_prepare.py', 'tools/test_ltx098_prepare.py',
                        'tools/test_ltx098_text.py', 'tools/ltx098_assets.py', 'tools/export_ltx098.py',
                        'third_party/ltx098-source-lock.json', 'third_party/ltx098-text-source-lock.json')
 

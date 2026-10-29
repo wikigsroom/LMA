@@ -349,4 +349,8 @@ LMA 自有代码使用 MIT 许可。llama.cpp 及其依赖保留各自许可；�
 
 ### 原生旧 LTX 本机资产准备（源码后续，未发布）
 
-[中文方案](docs/LTX098_PREPARE.md) / [English](docs/LTX098_PREPARE.en.md) / [本轮编号与完整待办](docs/releases/v0.3.0-dev.21-ltx-prepare.md)。新增不依赖 Python 的可移植 safetensors → DiT GGUF 流式组件，Windows / Android ARM64 编译通过。156 检查 / 46 组失败保护 / 51 原生子进程；完整 6.34 GB 训练源转换为 3.85 GB GGUF，与独立 Python 结果整文件 SHA 一致，主机峰值工作集 13.27 MiB。[来源图](docs/media/development/ltx098-native-prepare.png)为实际主机转换数据。用户资产继续显式选择 / 获取，原始文件保留；无模型数据进基座。App 用户入口、完整数值修复和手机验收仍待完成，不改现有 APK、不发布新 Release、不缩减完整 v0.3.0。
+[中文方案](docs/LTX098_PREPARE.md) / [English](docs/LTX098_PREPARE.en.md) / [本轮编号与完整待办](docs/releases/v0.3.0-dev.21-ltx-prepare.md)。新增不依赖 Python 的可移植 safetensors → DiT GGUF 流式组件，Windows / Android ARM64 编译通过。156 检查 / 46 组失败保护 / 51 原生子进程；完整 6.34 GB 训练源转换为 3.85 GB GGUF，与独立 Python 结果整文件 SHA 一致，主机峰值工作集 13.22 MiB。[来源图](docs/media/development/ltx098-native-prepare.png)为实际主机转换数据。用户资产继续显式选择 / 获取，原始文件保留；无模型数据进基座。App 用户入口、完整数值修复和手机验收仍待完成，不改现有 APK、不发布新 Release、不缩减完整 v0.3.0。
+
+### 旧 VAE 原生资产准备与真实解码（源码后续，未发布）
+
+[中文方案](docs/LTX098_VAE_PREPARE.md) / [English](docs/LTX098_VAE_PREPARE.en.md) / [本轮编号与完整待办](docs/releases/v0.3.0-dev.21-ltx-vae-prepare.md)。新增同机可编译的 VAE 流式准备器与共用原生 I/O 基座；九图无内联学习参数，全部权重 / 统计量从用户已选 checkpoint 读取。18 资产 /2.212 GB 与 Python 整文件字节身份一致；243 检查、25 组失败保护、31 原生子进程，四次真实训练解码与 40 个原始前向对照通过。[实际主机图](docs/media/development/ltx098-vae-prepared-decode.png)使用合成 latent，不是提示词视频或手机实录。DiT 156 项回归通过。App 用户流程、完整数值修复与全部冻结范围 / 手机 / Release 门槛仍待完成；APK 保持 dev.21。

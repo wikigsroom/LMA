@@ -213,3 +213,5 @@ Internal dev.19 / 内部 dev.19：[旧 Local / Realtime 原生 RQ](MOSS_RQ_ENGIN
 [旧 LTX 逐层精度定位](LTX098_PRECISION.md)增加仅主机的真实训练观测、同输入局部算子与全量误差重算，并核对原生 / 原始参考最终字节身份。隔离注意力 / 可选线性 F64 候选单独标识，不能用诊断替代六项失败的完整链路验收。中间张量留在忽略的 build；公开指标 / 来源 / 科学图，现有 APK 与 UI 媒体不变。
 
 [旧 LTX 本机资产准备组件](LTX098_PREPARE.md)将格式转换实现为原生可移植 CLI，供后续同机生产资产流程接入。必须区分 inspect 头部预检与完整源 SHA 验证，分块读取同流哈希并无覆盖提交，保留用户源文件。训练验证核对完整 GGUF 与独立 Python 文件身份；强杀残留暂存 / SAF / 持久任务恢复仍需 App 集成。开发证据与 Android 编译不替代六项完整数值失败、生成质量或任何真机门槛。
+
+[旧 VAE 原生准备](LTX098_VAE_PREPARE.md)采用已审计结构图 + 从用户原始 checkpoint 生成的外部数据；学习时间缩放和统计量不能烘焙为基座常量。图审计、完整源 SHA、18 资产字节身份、四组真实解码和 ARM64 编译分别记录。共用 `research/local_prepare/` 变更必须重跑完整 DiT 准备回归；模板无权重需要审查所有 initializer 和 Constant 属性。生产 App / SAF / 持久恢复仍需接入，不能借独立组件改变完整 Release 门槛。
