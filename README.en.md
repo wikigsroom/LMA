@@ -356,3 +356,7 @@ Actual host output, not App screen recording or Android evidence: [MP4](docs/med
 ![Actual host numerical diagnostic; no App or Android acceptance](docs/media/development/ltx098-text-roundoff.png)
 
 Both candidates completed trained T5 A/B/A sequences. Combined-candidate A/B embedding maximum errors are 2.861e-6 / 1.192e-6. Two partial eight-step A video probes still reach 0.003953 / 0.003829, both above the unchanged 0.003 gate and retaining exit 1; complete-chain repair remains unaccepted.
+
+### Native old-LTX asset preparation (source follow-up, unreleased)
+
+[English design](docs/LTX098_PREPARE.en.md) / [中文](docs/LTX098_PREPARE.md) / [numbered handoff and complete pending scope](docs/releases/v0.3.0-dev.21-ltx-prepare.md). A portable Python-free streaming safetensors → DiT GGUF component builds with native MSVC and Android ARM64 tools. 156 checks / 46 failure-protection cases / 51 native children pass. One complete 6.34-GB trained source produced a 3.85-GB GGUF with whole-file SHA identical to independent Python conversion; observed host peak working set was 13.27 MiB. The [measured figure](docs/media/development/ltx098-native-prepare.png) is host conversion evidence. Assets remain user-selected, sources retained, and model data excluded from the foundation. Production App acquisition, full-chain numerical repair and phone acceptance remain open; existing APK, full v0.3.0 scope and Release gates are unchanged.

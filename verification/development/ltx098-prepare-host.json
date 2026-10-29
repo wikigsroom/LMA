@@ -1,0 +1,20 @@
+{
+  "kind": "host_compile",
+  "executable_bytes": 224256,
+  "executable_sha256": "e673c423cd0a15dba0c17c70baf712f2b30a4107fe462dd2c4eb0b6dba58ff24",
+  "model_data_embedded": false,
+  "model_inference": false,
+  "engine_registered": false,
+  "packaged_in_apk": false,
+  "physical_android": false,
+  "virtualization_used": false,
+  "input_fingerprint": {
+    "research/ltx098_prepare/CMakeLists.txt": "6704731e27811dc7924a707f6955b40d85bc4cbc6d3bcfa13023c7b367a4544f",
+    "research/ltx098_prepare/contract.hpp.in": "bc72bda18a715db429fb6183630c104cae0fa178f33c0f842990f4df3aa6e1e3",
+    "research/ltx098_prepare/NOTICE": "b7868cb5a66d2a87437313496ef18f8596935a8846e50f38c4ed62c7b1bc7749",
+    "research/ltx098_prepare/prepare.cpp": "170191c6eb05e8742893fc06e94cb575955cbb3c607a23ec058325f663956988",
+    "third_party/ltx098-source-lock.json": "28acd99486f6ca76a06d038076175ac01ca55c7b1d8c3ba6dab9190291ac8779",
+    "third_party/ltx098-text-source-lock.json": "04b2f7892a4f047363fbaf3ba555682bf201c8320fa1cc7f4d5a68b2884512f4",
+    "tools/build_ltx098_prepare.py": "2c2ef2af6162200818129ca5c4ef034fcfd9aba23ba13f3844454606ca972a61"
+  }
+}

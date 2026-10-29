@@ -68,3 +68,5 @@ The [pipeline lock](ltx098-pipeline-source-lock.json) fixes recipe/RNG/precision
 The portable tensor helper also uses the exact nlohmann/JSON header pinned by the existing T5 lock. Its MIT attribution/license remains in [nlohmann JSON license](notices/nlohmann-json-LICENSE.txt); the header is a code dependency, not a model asset.
 
 旧 LTX [精度诊断与隔离候选](../docs/LTX098_PRECISION.md)复用已锁定 T5 / GGML / JSON 输入；自有 F64 实验代码为 MIT，不含权重 / 词表 / 模型统计，不进入 APK。Matplotlib/Agg 仅用于开发测量图，不是 Android 运行依赖。Native/original comparisons use the same external Q5 weights; no new model distribution, default multi-scale or PixArt identity claim.
+
+The [portable old-LTX preparation component](../research/ltx098_prepare/NOTICE) contains original MIT SHA-256, IEEE-754 conversion and container-writing code plus compiled structural metadata, with no learned model data. It reuses the exact pinned [nlohmann JSON MIT header](notices/nlohmann-json-LICENSE.txt); no new runtime library or model redistribution. Matplotlib is developer-only figure tooling. [中文方案](../docs/LTX098_PREPARE.md) / [English](../docs/LTX098_PREPARE.en.md).

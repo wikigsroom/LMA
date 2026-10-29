@@ -120,3 +120,5 @@ dev.21 SoulX App接入使用 [中文](SOULX_ENGINE.md) / [English](SOULX_ENGINE.
 旧 LTX 文本数值[中文定位](LTX098_PRECISION.md) / [English](LTX098_PRECISION.en.md) / [编号交付](releases/v0.3.0-dev.21-ltx-precision.md)包含逐层 / 算子 / 重算记录与来源图。必须交叉核对原生及原始参考最终 SHA、628 原始文件审核、公开指标与图的来源；诊断成功或候选 embedding 改善都不得覆盖冻结完整链路的六项失败。`ltx098_t5_roundoff_repair_accepted=false` 保持，App / 真机 / 全部冻结模型与正式 Release 门槛保持；本轮不改 APK / tag / Release。
 
 候选 `ltx098-text-precision-attention.json` / `ltx098-text-precision-linear.json` 各三次完整T5，不等同完整视频验收。两份 `ltx098-precision-sampling-*.json` 是复核捕获的A轨迹，均未过原0.003门槛并保持exit 1；必须保留partial / reused / no-VAE / no-B-video范围，不能由开发审计成功覆盖失败结论。
+
+旧 LTX [原生资产准备](LTX098_PREPARE.md) / [English](LTX098_PREPARE.en.md)公开转换测试、独立 Windows / ARM64 编译身份与来源图；开发审计需交叉验证完整源 / 输出身份、各进程范围、内存和失败保护。转换不是推理，inspect 不等于完整源校验。组件未进入 APK / App registry；完整链路六项数值失败和全部冻结手机 / Release 门槛继续保持。This source-only handoff creates no new Release or tag.

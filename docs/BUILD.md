@@ -135,3 +135,5 @@ SoulX生产worker原生构建：`build_soulx.py`（主机）→ `build_soulx.py 
 当前完整管线测试按原门槛返回 exit 1，并写出163项记录中的6项浮点失败；两组RGB通过。可重放已捕获且指纹有效的输出核验，不重新冒充推理执行。[详见数值失败与复用逻辑](LTX098_PIPELINE.md)。
 
 旧 LTX 精度定位采用原生 Windows MSVC、已锁定的现有 GGML 静态库与独立源码副本；命令与前置资产见[中文指南](LTX098_PRECISION.md) / [English](LTX098_PRECISION.en.md)。不修改生产源、不自动取模型；314 / 628 / 120 为诊断 / 文件 / 算子数量。候选 F64 计算尚非 Android 构建或验收，不提升 APK 版本；全部完整链路门槛保持。
+
+原生旧 LTX 转换复现见[中文指南](LTX098_PREPARE.md) / [English](LTX098_PREPARE.en.md)：顺序运行 `tools/build_ltx098_prepare.py`、`--android`、`tools/test_ltx098_prepare.py --trained`，然后开发导出、`tools/plot_ltx098_prepare.py` 和开发仓库检查。仅复用显式取得的本地开发资产，无自动下载。自有 SHA / 半精度转换与已有固定 JSON 头，ARM64 API28 / 16KiB；源码组件不进入本次 APK。

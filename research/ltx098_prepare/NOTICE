@@ -1,0 +1,11 @@
+LMA old-LTX local asset preparation component
+Copyright (c) 2026 LMA contributors. MIT, see the repository LICENSE.
+
+prepare.cpp contains an independently implemented streaming SHA-256, IEEE-754
+conversion and safetensors/GGUF container writer. It embeds no model weights,
+vocabulary, codec, or training statistics. contract.hpp embeds only structural
+metadata from third_party/ltx098-source-lock.json.
+
+The build uses the already pinned nlohmann/json header (MIT), whose original
+notices remain in the repository's third-party notices. This component does not
+use Python, PyTorch, external executables, network access, or inference APIs.

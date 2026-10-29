@@ -346,3 +346,7 @@ LMA 自有代码使用 MIT 许可。llama.cpp 及其依赖保留各自许可；�
 ![实际主机精度诊断，非 App 或 Android 验收](docs/media/development/ltx098-text-roundoff.png)
 
 两种候选各完成三次完整训练 T5 的 A/B/A 重复；组合候选的 A / B embedding 最大误差为2.861e-6 /1.192e-6。两次 A 的八步视频轨迹探测仍分别为0.003953 /0.003829，均超过原0.003门槛并返回exit 1，不能算作完整链路修复。
+
+### 原生旧 LTX 本机资产准备（源码后续，未发布）
+
+[中文方案](docs/LTX098_PREPARE.md) / [English](docs/LTX098_PREPARE.en.md) / [本轮编号与完整待办](docs/releases/v0.3.0-dev.21-ltx-prepare.md)。新增不依赖 Python 的可移植 safetensors → DiT GGUF 流式组件，Windows / Android ARM64 编译通过。156 检查 / 46 组失败保护 / 51 原生子进程；完整 6.34 GB 训练源转换为 3.85 GB GGUF，与独立 Python 结果整文件 SHA 一致，主机峰值工作集 13.27 MiB。[来源图](docs/media/development/ltx098-native-prepare.png)为实际主机转换数据。用户资产继续显式选择 / 获取，原始文件保留；无模型数据进基座。App 用户入口、完整数值修复和手机验收仍待完成，不改现有 APK、不发布新 Release、不缩减完整 v0.3.0。

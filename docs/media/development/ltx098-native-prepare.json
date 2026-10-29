@@ -1,0 +1,16 @@
+{
+  "schema": "lma.ltx098-native-prepare-media/1",
+  "evidence_sha256": "35c1d21ef27588b17d897d111174ffbd07bb166589626957564b2799186903db",
+  "source_bytes": 6340744492,
+  "output_bytes": 3849516416,
+  "host_peak_working_set_bytes": 13914112,
+  "png_bytes": 110938,
+  "png_sha256": "b7bc416f1c20ea946c7fe719727374e328b2d544df447ddd01310a502ae1c95e",
+  "ui_recording": false,
+  "physical_android": false,
+  "inference_acceptance": false,
+  "release_ready": false,
+  "input_fingerprint": {
+    "tools/plot_ltx098_prepare.py": "ad9887882871680b90fe0d187011d3975221265c0238226c25d6478e866e0786"
+  }
+}

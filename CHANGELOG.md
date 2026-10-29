@@ -1,5 +1,11 @@
 # Changelog / 更新记录
 
+## 0.3.0-dev.21 source follow-up / 2026-10-29 — native local asset preparation
+
+旧 LTX safetensors → DiT GGUF 改为独立可移植原生流式组件：完整同流 SHA、F16 / F32 分块转换、旧版结构校验、取消 / 源保留 / 无覆盖提交。156 检查、46 组失败保护、51 原生子进程；6.34 GB 完整训练源与 3.85 GB Python 基线整文件身份一致，主机观测峰值工作集 13.27 MiB。Windows / Android ARM64 API28 /16KiB 编译通过。
+
+Portable Python-free preparation contains no learned data and performs no inference. Production App acquisition, on-phone VAE preparation, six failed full-chain float gates and every frozen v0.3.0/device gate remain open. APK/UI unchanged; no new Release. [中文](docs/LTX098_PREPARE.md) / [English](docs/LTX098_PREPARE.en.md) / [numbered implemented and full pending scope](docs/releases/v0.3.0-dev.21-ltx-prepare.md).
+
 ## 0.3.0-dev.21 source follow-up / 2026-10-29 — text precision diagnostics
 
 旧 LTX 真实训练 T5：314 中间张量、628 原始文件哈希 / 误差重算、120 同输入算子对照；原生及原始参考最终 embedding 均保持既有字节身份。新增独立注意力 / 可选线性 F64 候选构建及 A/B/A 复现工具、双语指南、来源图与开发证据审计。
