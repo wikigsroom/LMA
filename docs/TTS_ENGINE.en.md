@@ -2,6 +2,8 @@
 
 [中文](TTS_ENGINE.md) · [Development status](DEVELOPMENT.en.md) · [Complete v0.3.0 scope](MULTIMODAL_RELEASE_PLAN.en.md)
 
+A dev.24 follow-up adds [actual trained validation of all three recipes](TTS_TRAINED.en.md): 68 successful WAV jobs/13 controls, Kokoro voices 0–53, 157 production Java checks, complete imports/independent settings and twelve actual worker children, with original audio/waveform media. This is separate from the 62 protocol-fixture checks below; production C++ and APK inputs are unchanged. Matching Windows C API/ORT versions establish neither Android log interception, speech quality, license clearance nor phone acceptance. Full release gates remain open.
+
 Internal **0.3.0-dev.3 / code 7** adds a compiled ARM64 CPU `sherpa_tts` worker using the sherpa-onnx 2.0.1 C API. Kokoro, Piper / VITS and Matcha have implementation paths, pinned candidate bundles and a speech form. **No Android inference has run. Selection 10 has not passed complete acceptance, and this is not a Release.** All other mandatory v0.3.0 work remains in scope.
 
 ## User flow and asset ownership

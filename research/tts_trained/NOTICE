@@ -1,0 +1,5 @@
+Metadata for exactly the three already pinned selection-10 App recipes.
+No weights, voice embeddings, phoneme tokens, lexicons or vocoder data are
+stored here. Publisher/model/dataset license review stays component-specific;
+the sherpa code license is not substituted for model-data terms.
+Actual execution and phone/quality acceptance must have separate records.

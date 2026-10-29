@@ -1,0 +1,34 @@
+{
+  "schema": "lma.tts-host-runtime/1",
+  "version": "2.0.1",
+  "host_only": true,
+  "archive": {
+    "file": "sherpa-onnx-v2.0.1-win-x64-shared-MT-Release-lib.tar.bz2",
+    "bytes": 7899712,
+    "sha256": "afa4de3ca4ab0afd53bb4aab40d28ee15608364b549ffc0fe0caf6489bfc39a5",
+    "asset_id": 679001950,
+    "url": "https://github.com/k2-fsa/sherpa-onnx/releases/download/v2.0.1/sherpa-onnx-v2.0.1-win-x64-shared-MT-Release-lib.tar.bz2"
+  },
+  "files": {
+    "onnxruntime.dll": {
+      "member": "sherpa-onnx-v2.0.1-win-x64-shared-MT-Release-lib/lib/onnxruntime.dll",
+      "bytes": 17799168,
+      "sha256": "7f66f939a881baf4f46a2216496798edf4a1429878b646d12674aa62f27d8a25"
+    },
+    "onnxruntime_providers_shared.dll": {
+      "member": "sherpa-onnx-v2.0.1-win-x64-shared-MT-Release-lib/lib/onnxruntime_providers_shared.dll",
+      "bytes": 104960,
+      "sha256": "551d0e1fe4c227d8542314ba718d52f4379e0c7bfe729a37c59833a884e27b4d"
+    },
+    "sherpa-onnx-c-api.dll": {
+      "member": "sherpa-onnx-v2.0.1-win-x64-shared-MT-Release-lib/lib/sherpa-onnx-c-api.dll",
+      "bytes": 4294656,
+      "sha256": "0965a6e4c0254da2beff489cf7a8aaffaf7dc94f90b43b3e66448b8cab4177ea"
+    },
+    "sherpa-onnx-c-api.lib": {
+      "member": "sherpa-onnx-v2.0.1-win-x64-shared-MT-Release-lib/lib/sherpa-onnx-c-api.lib",
+      "bytes": 59356,
+      "sha256": "edf4b780d0ab4f0320d210f9cfc7e96e01d9b0dbee7234746f6cb6b422065997"
+    }
+  }
+}

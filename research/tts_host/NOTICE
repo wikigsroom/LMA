@@ -1,0 +1,8 @@
+Native Windows developer validation only; never an App inference provider.
+The production native/tts/worker.cpp is unchanged. MIT CRT/parent-lifetime
+compatibility reuses ../moss_nano_host/compat and ../sd_host/platform.hpp.
+The official sherpa-onnx 2.0.1 Windows C API/ORT release is externally acquired,
+SHA256-pinned, Apache-2.0/MIT respectively, and is not packaged in the APK.
+Windows diagnostics do not use Android liblog interposition; no Android log,
+Service, physical-phone, quality or endurance acceptance is established here.
+All learned models, voice embeddings, lexicons and tokens remain user assets.

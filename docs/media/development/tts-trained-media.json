@@ -1,0 +1,109 @@
+{
+  "schema": "lma.tts-trained-media/1",
+  "kind": "actual_trained_host_wav_and_waveform_slideshow",
+  "sources": {
+    "verification/development/tts-trained.json": "83371afc6286cad337a9726f21856791b8728061e1279fa1a4e0fc986ba8406d",
+    "verification/development/tts-assets.json": "c73d76ed3f86e6bf00ad7f76d7634d645547ff403d98ff9dc3cca910b8b7ac24",
+    "verification/development/tts-app-host.json": "6e11fa4d0029e317932dbcd05292a1bd0eb0c5fd8f74295e920f83d295a49810"
+  },
+  "source_audio": [
+    {
+      "case": "kokoro-a",
+      "file": "tts-trained-kokoro.wav",
+      "audio": {
+        "format": "WAV",
+        "channels": 1,
+        "sample_width": 2,
+        "sample_rate": 24000,
+        "samples": 72000,
+        "seconds": 3.0,
+        "rms": 0.0711882039437378,
+        "peak": 0.62115478515625,
+        "clipping_fraction": 0.0,
+        "nonzero_samples": 62293,
+        "bytes": 144044,
+        "sha256": "b2f39aa6e39665de756dccd8f523a64b72ec7eb3853a6e754f3ca5ee8c0dfdeb"
+      }
+    },
+    {
+      "case": "piper_vits-a",
+      "file": "tts-trained-piper_vits.wav",
+      "audio": {
+        "format": "WAV",
+        "channels": 1,
+        "sample_width": 2,
+        "sample_rate": 22050,
+        "samples": 47872,
+        "seconds": 2.1710657596371883,
+        "rms": 0.10965413148610682,
+        "peak": 0.634735107421875,
+        "clipping_fraction": 0.0,
+        "nonzero_samples": 45634,
+        "bytes": 95788,
+        "sha256": "b13d76b89c1302064c9f6921b86b1be376040cc7e1aff09910b7f71d44713df7"
+      }
+    },
+    {
+      "case": "matcha-a",
+      "file": "tts-trained-matcha.wav",
+      "audio": {
+        "format": "WAV",
+        "channels": 1,
+        "sample_width": 2,
+        "sample_rate": 22050,
+        "samples": 52736,
+        "seconds": 2.391655328798186,
+        "rms": 0.10067492683847333,
+        "peak": 0.6282958984375,
+        "clipping_fraction": 0.0,
+        "nonzero_samples": 52604,
+        "bytes": 105516,
+        "sha256": "00864514d390ea3ae7e78458c2816944169949c178ef2bd3a37ab9418e75ca9c"
+      }
+    }
+  ],
+  "gif_frames": 3,
+  "gif_duration_ms": 5400,
+  "mp4_duration_seconds": 7.583979,
+  "mp4_codecs": [
+    "h264",
+    "aac"
+  ],
+  "waveform_amplitude_normalized": false,
+  "original_wav_bytes_unchanged": true,
+  "mp4_audio_transcoded_aac": true,
+  "mp4_audio_resampled_hz": 48000,
+  "files": {
+    "tts-trained-kokoro.wav": {
+      "bytes": 144044,
+      "sha256": "b2f39aa6e39665de756dccd8f523a64b72ec7eb3853a6e754f3ca5ee8c0dfdeb"
+    },
+    "tts-trained-piper_vits.wav": {
+      "bytes": 95788,
+      "sha256": "b13d76b89c1302064c9f6921b86b1be376040cc7e1aff09910b7f71d44713df7"
+    },
+    "tts-trained-matcha.wav": {
+      "bytes": 105516,
+      "sha256": "00864514d390ea3ae7e78458c2816944169949c178ef2bd3a37ab9418e75ca9c"
+    },
+    "tts-trained-contact-sheet.png": {
+      "bytes": 258240,
+      "sha256": "ea523fb6679ab6c526f3d08cd9db8431e66679bcecafb544b68cda99f5d06931"
+    },
+    "tts-trained-waveforms.gif": {
+      "bytes": 94610,
+      "sha256": "9245f644ba1414e1c5860160d25f12bb4a1dc380bf9a7cbecb0492da1cf2e55c"
+    },
+    "tts-trained-speech.mp4": {
+      "bytes": 289928,
+      "sha256": "f355f2cd307fa6a8c5e6b42ae1af076a70762ad02e35eb6f180a882ed4c52c09"
+    }
+  },
+  "physical_android": false,
+  "app_screen_recording": false,
+  "speech_quality_accepted": false,
+  "complete_release_accepted": false,
+  "input_fingerprint": {
+    "tools/render_tts_trained.py": "19ee427d57710d7713649610a34c565fd332d0035888ee13d1173dad1e299ebe"
+  }
+}

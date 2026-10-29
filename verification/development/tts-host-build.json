@@ -1,0 +1,65 @@
+{
+  "schema": "lma.tts-host-build/1",
+  "executable": "build/tts-worker-host/f838b94b5adb567e/bin/lma_tts_host.exe",
+  "bytes": 391680,
+  "sha256": "fe8800f84627ff8ba2339de0cf0d65d563d4de90e2599100b81fc843b77e9b21",
+  "source_revision": "af2d8d81dbfa61c4cea4c568da78f3982edca005",
+  "runtime": {
+    "schema": "lma.tts-host-runtime/1",
+    "version": "2.0.1",
+    "host_only": true,
+    "archive": {
+      "file": "sherpa-onnx-v2.0.1-win-x64-shared-MT-Release-lib.tar.bz2",
+      "bytes": 7899712,
+      "sha256": "afa4de3ca4ab0afd53bb4aab40d28ee15608364b549ffc0fe0caf6489bfc39a5",
+      "asset_id": 679001950,
+      "url": "https://github.com/k2-fsa/sherpa-onnx/releases/download/v2.0.1/sherpa-onnx-v2.0.1-win-x64-shared-MT-Release-lib.tar.bz2"
+    },
+    "files": {
+      "onnxruntime.dll": {
+        "member": "sherpa-onnx-v2.0.1-win-x64-shared-MT-Release-lib/lib/onnxruntime.dll",
+        "bytes": 17799168,
+        "sha256": "7f66f939a881baf4f46a2216496798edf4a1429878b646d12674aa62f27d8a25"
+      },
+      "onnxruntime_providers_shared.dll": {
+        "member": "sherpa-onnx-v2.0.1-win-x64-shared-MT-Release-lib/lib/onnxruntime_providers_shared.dll",
+        "bytes": 104960,
+        "sha256": "551d0e1fe4c227d8542314ba718d52f4379e0c7bfe729a37c59833a884e27b4d"
+      },
+      "sherpa-onnx-c-api.dll": {
+        "member": "sherpa-onnx-v2.0.1-win-x64-shared-MT-Release-lib/lib/sherpa-onnx-c-api.dll",
+        "bytes": 4294656,
+        "sha256": "0965a6e4c0254da2beff489cf7a8aaffaf7dc94f90b43b3e66448b8cab4177ea"
+      },
+      "sherpa-onnx-c-api.lib": {
+        "member": "sherpa-onnx-v2.0.1-win-x64-shared-MT-Release-lib/lib/sherpa-onnx-c-api.lib",
+        "bytes": 59356,
+        "sha256": "edf4b780d0ab4f0320d210f9cfc7e96e01d9b0dbee7234746f6cb6b422065997"
+      }
+    }
+  },
+  "backend": "cpu",
+  "production_worker_source_unmodified": true,
+  "windows_crt_parent_compatibility": true,
+  "external_model_data": true,
+  "android_log_interposition_tested": false,
+  "physical_android": false,
+  "android_compiled": false,
+  "packaged_in_apk": false,
+  "model_executed": false,
+  "input_fingerprint": {
+    "native/tts/CMakeLists.txt": "051b3139fed335c1b30bc6ac2d8e1c95e878f0ee278adfc2b90a09e21a8f1876",
+    "native/tts/worker.cpp": "fb6a3a1f89aacb6272d7209b79cd8f85787d0518898600afe789a17aecdca97c",
+    "research/moss_nano_host/compat/sys/prctl.h": "9322b99bb80674fd2d42eb2b94f5ee5519ab443da0cdffd5ae938ef855907569",
+    "research/moss_nano_host/compat/unistd.h": "1c843add75719822f7371cfafd97af1abdc1ffc52938f5cd96dfd407630d9f96",
+    "research/sd_host/platform.hpp": "c377ed1b676707a469a192d96ae9b748802e1f62ad0674366b593b2b5b2daf67",
+    "research/tts_host/CMakeLists.txt": "5e59c0f19f08cdb12dd6e067591f21808a04d8d00ef85f396630c17b3af08ad0",
+    "research/tts_host/compat/sys/prctl.h": "0e2a8e106274e1330cb0a6240583a75a4eecfe182bf0e08d141984aaae2a3987",
+    "research/tts_host/compat/unistd.h": "5442f456bcac9cdce85da2f4b3e81cded40ec5c21718d1fcb2ad4ed603898bf3",
+    "research/tts_host/NOTICE": "c0ddb2311c162e576a0849f242cd6118137409cd2b72fb783edcf16ccfac4d30",
+    "research/tts_host/runtime.json": "87340d90d230b24b0bee3617c671e463f8bbd8da6a06e3dcb301b72d8b717973",
+    "third_party/tts-source-lock.json": "05f26f4140344badd38ee7d754ba6750672480cbda9b1f75a721cac9baf51c75",
+    "tools/build_tts_host.py": "d169af22d96b0e0c7f6f7f03969033c84a6f27f46028b06d6f219c1a643ff440",
+    "tools/fetch_tts_host_runtime.py": "e4c2dbc7cc4759a3cdff0fa2b7f14f258e7ccb4b9915fec5119e2b976c33cb51"
+  }
+}

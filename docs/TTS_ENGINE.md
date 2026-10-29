@@ -2,6 +2,8 @@
 
 [English](TTS_ENGINE.en.md) · [开发状态](DEVELOPMENT.md) · [完整 v0.3.0 需求](MULTIMODAL_RELEASE_PLAN.md)
 
+dev.24后续新增[三套真实训练验证](TTS_TRAINED.md)：68成功WAV/13控制、Kokoro音色0–53、157项生产Java检查、全量导入/独立参数与12个真实worker子进程；附实际音频/波形媒体。它与下文62项协议夹具分别记录；生产C++及APK未改。Windows同版本C API/ORT不证明Android日志拦截、语音质量、许可或手机验收，完整版本门槛仍全部保留。
+
 内部 **0.3.0-dev.3 / code 7** 接入真实编译的 `sherpa_tts` ARM64 CPU worker，绑定 sherpa-onnx 2.0.1 C API。Kokoro、Piper / VITS 和 Matcha 已有代码路径、固定组件候选和任务表单。**没有执行 Android 推理；不表示编号 10 已通过完整验收，也不是新 Release。** v0.3.0 的其余必需范围保持不变。
 
 ## 用户流程与资产边界

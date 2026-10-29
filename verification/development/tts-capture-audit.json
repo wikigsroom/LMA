@@ -1,0 +1,15 @@
+{
+  "schema": "lma.tts-capture-audit/1",
+  "raw_files": 394,
+  "protocol_streams": 82,
+  "independent_wav_recalculations": 74,
+  "production_java_native_children": 12,
+  "imported_objects_verified": 9,
+  "trained_report_sha256": "83371afc6286cad337a9726f21856791b8728061e1279fa1a4e0fc986ba8406d",
+  "app_report_sha256": "6e11fa4d0029e317932dbcd05292a1bd0eb0c5fd8f74295e920f83d295a49810",
+  "physical_android": false,
+  "complete_release_accepted": false,
+  "input_fingerprint": {
+    "tools/check_tts_trained_evidence.py": "9b9f67ad92e73662b4b938e390ef5479c9d2aefe75452be366d91dd03957f65d"
+  }
+}

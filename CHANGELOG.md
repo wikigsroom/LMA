@@ -2,6 +2,8 @@
 
 ## 0.3.0-dev.24 — diffusion progress and trained host evidence / unreleased
 
+新增编号10全部三套冻结训练资产/真实生产worker主机验证：Kokoro54音色、Piper Lessac、Matcha LJSpeech/Vocos，共68成功WAV/13控制/82原生进程；157项生产Java检查、完整导入9对象/11引用、独立设置/快照、12真实子进程取消/时长错误/恢复。独立复核394原始文件/82协议/74WAV/9导入对象，拒绝8种错误范围提升。三套原始WAV/波形PNG/GIF/含实际音频MP4、五份公开JSON、双语文档及[编号完整待办](docs/releases/v0.3.0-dev.24-tts.md)同步。Unchanged production C++ uses official sherpa2.0.1/ORT1.28.2 Windows libraries; Android log interposition, speech quality, licenses, every phone/target and full Release remain open. No APK inputs/bytes or user asset policy change. [中文](docs/TTS_TRAINED.md) / [English](docs/TTS_TRAINED.en.md).
+
 新增Nano100M真实训练资产与独立用户导入清单：固定11组件/717,414,286字节、18音色范围，7成功WAV/7控制及40项生产Java→真实worker检查；原始65文件/15协议/9WAV/11对象复核，8种错误提升验收标记被拒绝。三语原始WAV、波形图/GIF/含真实音频MP4、双语指南和[编号完整待办](docs/releases/v0.3.0-dev.24-moss-nano.md)同步。This source/metadata follow-up preserves existing APK bytes. Host ORT1.28.0/API28 differs from Android1.28.2/API28; production neural C++ is unchanged. Model assets remain user-selected and external; speech quality, Android/background, every frozen target and full Release remain pending. [中文](docs/MOSS_NANO_TRAINED.md) / [English](docs/MOSS_NANO_TRAINED.en.md).
 
 修正生产扩散 worker 的 loading/generating 进度，避免把加载/VAE回调都当作采样；原生构建复用 CMake 缓存驱动器。新增固定 SD1.5 真实权重/外部词表、生产源码 CPU 推理、采样取消/恢复和 A/B/A 验证工具与实测媒体；首次错误阶段分类的尝试保留并重新执行。旧 LTX 两次原训练前向观察114调制位置、两次八步原生候选、478文件独立复算；两条B条件仍超冻结门槛。原签名 dev.24/code28 APK、限定回归、68界面截图/录像/GIF、双语文档及编号完整待办同步。

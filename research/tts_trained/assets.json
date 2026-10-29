@@ -1,0 +1,155 @@
+{
+  "schema": "lma.tts-trained-assets-lock/1",
+  "developer_assets_only": true,
+  "bundles": [
+    {
+      "id": "kokoro82_en_v1_rf7b96bb",
+      "pipeline": "kokoro",
+      "language": "en-US",
+      "declared_speakers": 54,
+      "license": {
+        "name": "Apache-2.0 (publisher LICENSE); shared lexicon terms require review",
+        "url": "https://huggingface.co/csukuangfj/kokoro-multi-lang-v1_0/blob/f7b96bb6bef5c5da4d3aa4f4e0498fbbf62dc78b/LICENSE",
+        "status": "component_review_pending"
+      },
+      "components": [
+        {
+          "role": "model",
+          "path": "model.onnx",
+          "bytes": 325560556,
+          "sha256": "b40f62b166ac8164b0627ef48a0b358eda0985e272fb03ef5252e7206305da11",
+          "format": "onnx",
+          "repository": "csukuangfj/kokoro-multi-lang-v1_0",
+          "revision": "f7b96bb6bef5c5da4d3aa4f4e0498fbbf62dc78b",
+          "url": "https://huggingface.co/csukuangfj/kokoro-multi-lang-v1_0/resolve/f7b96bb6bef5c5da4d3aa4f4e0498fbbf62dc78b/model.onnx"
+        },
+        {
+          "role": "tokens",
+          "path": "tokens.txt",
+          "bytes": 687,
+          "sha256": "6ebb6bb288f20f3ae8d004d3c2ca27697da27c037d75e81a60e2a6a663f95425",
+          "format": "text",
+          "repository": "csukuangfj/kokoro-multi-lang-v1_0",
+          "revision": "f7b96bb6bef5c5da4d3aa4f4e0498fbbf62dc78b",
+          "url": "https://huggingface.co/csukuangfj/kokoro-multi-lang-v1_0/resolve/f7b96bb6bef5c5da4d3aa4f4e0498fbbf62dc78b/tokens.txt"
+        },
+        {
+          "role": "lexicon",
+          "path": "lexicon-en-us.txt",
+          "bytes": 6305773,
+          "sha256": "8b67ae549a465eee78f92ecb74644ad90c3c58ce65f19c68baf85878a10ef73a",
+          "format": "text",
+          "url": "https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/lexicon-en-us.txt",
+          "repository": "k2-fsa/sherpa-onnx",
+          "revision": "github_asset_636425290"
+        },
+        {
+          "role": "voices",
+          "path": "voices.bin",
+          "bytes": 28200960,
+          "sha256": "1c5a5b983d3d50d8586d437a51f3faa2da7919ce76a013c081e65671a3447c29",
+          "format": "bin",
+          "repository": "csukuangfj/kokoro-multi-lang-v1_0",
+          "revision": "f7b96bb6bef5c5da4d3aa4f4e0498fbbf62dc78b",
+          "url": "https://huggingface.co/csukuangfj/kokoro-multi-lang-v1_0/resolve/f7b96bb6bef5c5da4d3aa4f4e0498fbbf62dc78b/voices.bin"
+        }
+      ]
+    },
+    {
+      "id": "piper_lessac_en_r83f7470",
+      "pipeline": "piper_vits",
+      "language": "en-US",
+      "declared_speakers": 1,
+      "license": {
+        "name": "Publisher MODEL_CARD / Lessac dataset terms; review required",
+        "url": "https://huggingface.co/csukuangfj/vits-piper-en_US-lessac-medium/blob/83f7470750b36549037551ef7007fa3b4b8697e0/MODEL_CARD",
+        "status": "review_pending"
+      },
+      "components": [
+        {
+          "role": "model",
+          "path": "en_US-lessac-medium.onnx",
+          "bytes": 63201425,
+          "sha256": "ea793a648ce0370665f99fbf891eae3b3a973565c72b08534bb5b2c04e8f2332",
+          "format": "onnx",
+          "repository": "csukuangfj/vits-piper-en_US-lessac-medium",
+          "revision": "83f7470750b36549037551ef7007fa3b4b8697e0",
+          "url": "https://huggingface.co/csukuangfj/vits-piper-en_US-lessac-medium/resolve/83f7470750b36549037551ef7007fa3b4b8697e0/en_US-lessac-medium.onnx"
+        },
+        {
+          "role": "tokens",
+          "path": "tokens.txt",
+          "bytes": 921,
+          "sha256": "87c8ef66eae5473ed0cc0366b3964c736ca6c5f676c979522ea31234e47430b9",
+          "format": "text",
+          "repository": "csukuangfj/vits-piper-en_US-lessac-medium",
+          "revision": "83f7470750b36549037551ef7007fa3b4b8697e0",
+          "url": "https://huggingface.co/csukuangfj/vits-piper-en_US-lessac-medium/resolve/83f7470750b36549037551ef7007fa3b4b8697e0/tokens.txt"
+        },
+        {
+          "role": "lexicon",
+          "path": "lexicon-en-us.txt",
+          "bytes": 6305773,
+          "sha256": "8b67ae549a465eee78f92ecb74644ad90c3c58ce65f19c68baf85878a10ef73a",
+          "format": "text",
+          "url": "https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/lexicon-en-us.txt",
+          "repository": "k2-fsa/sherpa-onnx",
+          "revision": "github_asset_636425290"
+        }
+      ]
+    },
+    {
+      "id": "matcha_ljs_en_rbe5535c",
+      "pipeline": "matcha",
+      "language": "en-US",
+      "declared_speakers": 1,
+      "license": {
+        "name": "Weights license not explicitly declared in the source card; review pending",
+        "url": "https://huggingface.co/csukuangfj/matcha-icefall-en_US-ljspeech/blob/be5535c9e754d0dfd3ab66dac34f78c5b5d66d50/README.md",
+        "status": "review_pending"
+      },
+      "components": [
+        {
+          "role": "model",
+          "path": "model-steps-3.onnx",
+          "bytes": 74157257,
+          "sha256": "f8e8bae6f731310a1cda0012871ed5e91b0d19f1e2ceff077f62922bba95e3c1",
+          "format": "onnx",
+          "repository": "csukuangfj/matcha-icefall-en_US-ljspeech",
+          "revision": "be5535c9e754d0dfd3ab66dac34f78c5b5d66d50",
+          "url": "https://huggingface.co/csukuangfj/matcha-icefall-en_US-ljspeech/resolve/be5535c9e754d0dfd3ab66dac34f78c5b5d66d50/model-steps-3.onnx"
+        },
+        {
+          "role": "tokens",
+          "path": "tokens.txt",
+          "bytes": 954,
+          "sha256": "bcb4a50830e9402112fe8cb57d53ae8523908868a5015f2040dde5f5fd231697",
+          "format": "text",
+          "repository": "csukuangfj/matcha-icefall-en_US-ljspeech",
+          "revision": "be5535c9e754d0dfd3ab66dac34f78c5b5d66d50",
+          "url": "https://huggingface.co/csukuangfj/matcha-icefall-en_US-ljspeech/resolve/be5535c9e754d0dfd3ab66dac34f78c5b5d66d50/tokens.txt"
+        },
+        {
+          "role": "lexicon",
+          "path": "lexicon-en-us.txt",
+          "bytes": 6305773,
+          "sha256": "8b67ae549a465eee78f92ecb74644ad90c3c58ce65f19c68baf85878a10ef73a",
+          "format": "text",
+          "url": "https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/lexicon-en-us.txt",
+          "repository": "k2-fsa/sherpa-onnx",
+          "revision": "github_asset_636425290"
+        },
+        {
+          "role": "vocoder",
+          "path": "vocos-22khz-univ.onnx",
+          "bytes": 53884024,
+          "sha256": "0574a135aa1db2de6e181050db2ec528496cacd4a4701fc5d7faf9f9804c0081",
+          "format": "onnx",
+          "url": "https://github.com/k2-fsa/sherpa-onnx/releases/download/vocoder-models/vocos-22khz-univ.onnx",
+          "repository": "k2-fsa/sherpa-onnx",
+          "revision": "github_asset_238058578"
+        }
+      ]
+    }
+  ]
+}

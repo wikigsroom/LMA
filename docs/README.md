@@ -6,6 +6,7 @@
 
 | 主题 / Topic | 中文 | English |
 | --- | --- | --- |
+| 编号10三套真实语音 / Trained Kokoro/Piper/Matcha | [中文](TTS_TRAINED.md) | [English](TTS_TRAINED.en.md) |
 | MOSS Nano训练资产/用户导入 / Trained assets and import | [中文](MOSS_NANO_TRAINED.md) | [English](MOSS_NANO_TRAINED.en.md) |
 | Trained SD1.5 / 真实权重 | [中文](SD15_TRAINED.md) | [English](SD15_TRAINED.en.md) |
 | Old-LTX modulation / 调制顺序 | [中文](LTX098_MODULATION.md) | [English](LTX098_MODULATION.en.md) |

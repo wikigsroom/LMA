@@ -2,6 +2,8 @@
 
 [文档目录 / Documentation](README.md)
 
+编号10 dev.24后续：[Kokoro/Piper/Matcha原始WAV与波形图](TTS_TRAINED.md#3-实际结果与媒体)、[静音GIF](media/development/tts-trained-waveforms.gif)、[带实际音频MP4](media/development/tts-trained-speech.mp4)由 `tools/render_tts_trained.py` 读取真实训练结果；[来源与身份](media/development/tts-trained-media.json)保留WAV原字节，MP4转AAC/48kHz。它们是HOST波形轮播，非手机/App录屏、性能或音质验收。生产UI未改，沿用68张明确夹具截图与录像；本轮未打开浏览器。Selection10 adds original generated speech and waveform media with explicit host scope, distinct from UI fixtures and pending physical-phone/quality acceptance. [English](TTS_TRAINED.en.md#3-measurements-and-media).
+
 ## 来源与范围 / Source and scope
 
 当前素材由 `tools/capture_media.cjs` 直接加载 `app/src/main/assets/` 中随 APK 分发的 HTML / CSS / JavaScript，通过明确的演示原生桥接录制。390 × 844 CSS 像素视口；截图为 2 倍像素比例。视频是浏览器页面实际录制，FFmpeg 转成 MP4 / GIF，非设计稿动画。

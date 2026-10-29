@@ -1,0 +1,16 @@
+cmake_minimum_required(VERSION 3.22)
+project(lma_tts_host LANGUAGES CXX)
+if(NOT WIN32 OR NOT MSVC)
+  message(FATAL_ERROR "Native Windows MSVC only, without virtualization")
+endif()
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_MSVC_RUNTIME_LIBRARY MultiThreaded)
+add_library(lma_sherpa SHARED IMPORTED)
+set_target_properties(lma_sherpa PROPERTIES IMPORTED_LOCATION "${RUNTIME}/sherpa-onnx-c-api.dll"
+  IMPORTED_IMPLIB "${RUNTIME}/sherpa-onnx-c-api.lib")
+add_executable(lma_tts_host "${ROOT}/native/tts/worker.cpp")
+target_include_directories(lma_tts_host PRIVATE "${ROOT}/research/tts_host/compat"
+  "${ROOT}/build/native-src/sherpa-onnx" "${ROOT}/build/native-src/sd-cpp/thirdparty")
+target_compile_definitions(lma_tts_host PRIVATE LMA_SHERPA_REVISION="${LMA_SHERPA_REVISION}" _CRT_SECURE_NO_WARNINGS)
+target_compile_options(lma_tts_host PRIVATE /utf-8 /bigobj)
+target_link_libraries(lma_tts_host PRIVATE lma_sherpa)

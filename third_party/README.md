@@ -82,6 +82,10 @@ The [old-VAE preparation graphs and converter](../research/ltx098_vae_prepare/NO
 
 The [native Windows SD port](../research/sd_host/NOTICE) adds original MIT parent-lifetime compatibility code only. Production worker/policy/external-vocabulary sources remain shared with Android and pinned sd.cpp/GGML attribution is retained. The exact SD1.5 Q4 checkpoint and CLIP merges are user-external CreativeML Open RAIL-M assets, never Git/APK payloads; [中文](../docs/SD15_TRAINED.md) / [English](../docs/SD15_TRAINED.en.md). The [isolated LTX modulation candidate](../research/ltx098_modulation/NOTICE) retains Apache-2.0 and existing pinned dependencies, without learned data, App registration or numerical acceptance. Matplotlib/FFmpeg media are developer-host tools only.
 
+## Selection10 trained host validation / 三套语音训练主机验证
+
+编号10三套训练验证另有[资产锁](../research/tts_trained/assets.json)与[Windows运行时锁/说明](../research/tts_host/NOTICE)：官方sherpa2.0.1 C API与ORT1.28.2依次为Apache-2.0/MIT，MIT父进程/CRT端口只用于开发；生产C++未改。Kokoro权重发布者Apache-2.0声明、Piper MODEL_CARD/Lessac、Matcha声学模型、共享词典与Vocos许可分别审查，不借引擎许可覆盖模型数据。所有权重/音色/语言组件均不入Git/APK。Actual generated samples and independent host audits establish no license clearance, Android log binding, quality or phone acceptance. [中文](../docs/TTS_TRAINED.md) / [English](../docs/TTS_TRAINED.en.md).
+
 ## Nano trained host validation / 真实资产主机验证
 
 [资产锁](../research/moss_nano_trained/assets.json)固定OpenMOSS发布者Apache-2.0的TTS/codec11组件，实际权重、学习音色提示、分词器和ONNX均只在被忽略的开发目录或用户模型存储。用户导入清单不包含其数据。[Windows兼容层](../research/moss_nano_host/NOTICE)重用MIT的父进程保护；MOSS/SentencePiece为Apache-2.0，隔离ORT运行时为MIT。生产神经C++未改；官方PyPI ORT1.28.0/API28仅用于主机测试，Android仍为1.28.2/API28。不修改全局Python、不打包Windows程序或运行时、不将开发模型变成用户必装。
