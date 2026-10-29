@@ -1,0 +1,163 @@
+{
+  "schema": "lma.ltx098-tensors-tests/1",
+  "checks": 157,
+  "native_children": 43,
+  "guards": [
+    "invalid-width-0",
+    "invalid-width-1",
+    "invalid-height-2",
+    "invalid-frames-3",
+    "invalid-frames-4",
+    "invalid-frames-5",
+    "invalid-fps-6",
+    "invalid-fps-7",
+    "invalid-fps-8",
+    "invalid-width-9",
+    "invalid-seed-10",
+    "invalid-seed-11",
+    "invalid-seed-12",
+    "invalid-cancel_file-13",
+    "invalid-operation-14",
+    "invalid-unknown-15",
+    "duplicate-key",
+    "pre-cancel",
+    "same-output",
+    "existing-output",
+    "transaction-rollback",
+    "unpatchify-short",
+    "unpatchify-long",
+    "unpatchify-nan",
+    "unpatchify-infinity",
+    "unpatchify-preserve",
+    "frames-short",
+    "frames-long",
+    "frames-nan",
+    "frames-infinity",
+    "frames-preserve"
+  ],
+  "metrics": [
+    {
+      "kind": "noise",
+      "seed": 0,
+      "shape": {
+        "width": 64,
+        "height": 64,
+        "frames": 9,
+        "fps": 24
+      },
+      "max_abs": 0.0,
+      "mean": -0.014543088153004646,
+      "std": 1.0115501880645752
+    },
+    {
+      "kind": "noise",
+      "seed": 42,
+      "shape": {
+        "width": 64,
+        "height": 64,
+        "frames": 9,
+        "fps": 24
+      },
+      "max_abs": 0.0,
+      "mean": -0.03258248418569565,
+      "std": 1.0032202005386353
+    },
+    {
+      "kind": "noise",
+      "seed": 2147483647,
+      "shape": {
+        "width": 64,
+        "height": 64,
+        "frames": 9,
+        "fps": 24
+      },
+      "max_abs": 0.0,
+      "mean": -0.012855272740125656,
+      "std": 0.9948580861091614
+    },
+    {
+      "kind": "noise",
+      "seed": 42,
+      "shape": {
+        "width": 256,
+        "height": 256,
+        "frames": 33,
+        "fps": 24
+      },
+      "max_abs": 0.0,
+      "mean": -0.004009681288152933,
+      "std": 1.0014086961746216
+    },
+    {
+      "kind": "noise",
+      "seed": 17,
+      "shape": {
+        "width": 96,
+        "height": 128,
+        "frames": 1,
+        "fps": 60
+      },
+      "max_abs": 0.0,
+      "mean": -0.005421046167612076,
+      "std": 1.0132966041564941
+    },
+    {
+      "kind": "frames",
+      "shape": {
+        "width": 64,
+        "height": 64,
+        "frames": 9,
+        "fps": 24
+      },
+      "rgb_max_error": 0,
+      "bytes": 110620
+    },
+    {
+      "kind": "frames",
+      "shape": {
+        "width": 96,
+        "height": 64,
+        "frames": 17,
+        "fps": 30
+      },
+      "rgb_max_error": 0,
+      "bytes": 313372
+    },
+    {
+      "kind": "frames",
+      "shape": {
+        "width": 256,
+        "height": 256,
+        "frames": 33,
+        "fps": 60
+      },
+      "rgb_max_error": 0,
+      "bytes": 6488092
+    }
+  ],
+  "executable_sha256": "244b223a2df8251b6aa4b5251f86e085ba71637cf9febe6b4cbcdf494bc8146f",
+  "original_patchifier_compared": true,
+  "original_diffusers_normalization_compared": true,
+  "rng_matches_frozen_definition": true,
+  "matches_pytorch_seed": false,
+  "model_inference": false,
+  "model_data_embedded": false,
+  "engine_registered": false,
+  "packaged_in_apk": false,
+  "physical_android": false,
+  "input_fingerprint": {
+    "research/ltx098_pipeline/CMakeLists.txt": "6115af1b7ee6798413e1c4617eca8a7b9076722237f922e0f133ef1ebd1c6acc",
+    "research/ltx098_pipeline/NOTICE": "9241c16fca4550e732057f10ac073002e72974b65684d0d3fdae56015ec4222c",
+    "research/ltx098_pipeline/tensors.cpp": "f323b5ebf9537df2f3e7db79e77633a2f30103c23135b21b89043e16109bf116",
+    "third_party/ltx098-pipeline-source-lock.json": "3fc857b18056ef284b17e656c4dfa2d79e320e8f5463277a40b054981190769b",
+    "third_party/ltx098-text-source-lock.json": "04b2f7892a4f047363fbaf3ba555682bf201c8320fa1cc7f4d5a68b2884512f4",
+    "tools/build_ltx098_tensors.py": "ea171eeeef578e193a96dd3c1a1471254d89d9d1f622797c32ef8e7f814157a1",
+    "third_party/ltx098-source-lock.json": "28acd99486f6ca76a06d038076175ac01ca55c7b1d8c3ba6dab9190291ac8779",
+    "third_party/ltx098-vae-source-lock.json": "201ac18ca78b381f810f0567ecd300a5bfda1b489893be56d28b30d6e6db2dcb",
+    "tools/build_ltx098.py": "bf39449e38190a666093f6954d133a76da36d519817ca636703f030100d4faf8",
+    "tools/ltx098_assets.py": "0380166ca9d3f2f9a028675e6f9d9a827005767a67f66e3c1f00626226ae155c",
+    "tools/ltx098_fixture.py": "60c5730c77dda5055a7cef23b91af0042493a53d49e8f3b898e7634b78170ef8",
+    "tools/ltx098_vae.py": "f64b71b00d95050bad34252db9ac4935e84d550790ae147b40eddc43c3b871dd",
+    "tools/test_ltx098_tensors.py": "9ef581c2887d0c62334ff094f1ff7f27590a62ceb305aa8f1c9f719d8a4c4587"
+  }
+}

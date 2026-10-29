@@ -1,0 +1,14 @@
+LMA exact old LTX-Video 0.9.8 pipeline tensor primitives (MIT).
+No model weights, vocabulary, channel statistics or graphs are included.
+
+The scalar SplitMix64 transition and Box-Muller equations specify a distinct
+versioned LMA RNG. A seed does not reproduce PyTorch CPU or CUDA random values.
+No vendor implementation of either algorithm is embedded.
+
+Layout, clipping/denormalization and frame conversion follow the reviewed
+Lightricks/LTX-Video source revision
+4b2d053057623ddd4d0a1d3e9cd28890e9ef487f (Apache-2.0).
+The LTX-Video Open Weights License 0.x applies separately to user model assets.
+
+The LMAFRM1 RGB container is consumed by LMA's existing Android MediaCodec /
+MediaMuxer encoder. Host FFmpeg validation is not Android codec evidence.

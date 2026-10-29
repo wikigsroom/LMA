@@ -59,3 +59,10 @@ The [T5 source/asset lock](ltx098-text-source-lock.json) pins MIT llama.cpp/GGML
 ## Old LTX trained VAE research
 
 The [separate VAE lock](ltx098-vae-source-lock.json) pins the complete original132-tensor decoder and its configuration,552,814,641 parameters, source/checkpoint identities, runtime dependencies and precision gates. The exporter casts original BF16 weights to F32 and produces nine sequential external ONNX CPU stages. Original Lightricks Apache-2.0 code and the distinct LTXV Open Weights License0.X remain separate; see [NOTICE](../research/ltx098_vae/NOTICE). Only developer test assets are used, with no weights/statistics/graphs/research executable in APK or Git. The existing read-only ORT helper carries its MIT notice; Android links the existing pinned ORT library. Host validation does not establish complete video, quality, App or phone acceptance. [中文](../docs/LTX098_VAE.md) / [English](../docs/LTX098_VAE.en.md).
+
+
+## Old LTX real-prompt single-scale host pipeline
+
+The [pipeline lock](ltx098-pipeline-source-lock.json) fixes recipe/RNG/precision gates and explicitly distinguishes the Google/community Q5 text variant from official PixArt weight identity and the default multi-scale preset. Portable C++ RNG/layout/RGB primitives embed no model data; [NOTICE](../research/ltx098_pipeline/NOTICE) retains the LMA MIT and reviewed upstream Apache-2.0 attribution. Existing component licenses and old-LTX model terms remain separate. Actual host FFmpeg/libx264 MP4 rendering is not packaged or required by the Android App; production still uses same-phone MediaCodec/MediaMuxer. [中文](../docs/LTX098_PIPELINE.md) / [English](../docs/LTX098_PIPELINE.en.md).
+
+The portable tensor helper also uses the exact nlohmann/JSON header pinned by the existing T5 lock. Its MIT attribution/license remains in [nlohmann JSON license](notices/nlohmann-json-LICENSE.txt); the header is a code dependency, not a model asset.

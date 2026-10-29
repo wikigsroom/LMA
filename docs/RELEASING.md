@@ -111,3 +111,8 @@ dev.21 SoulX App接入使用 [中文](SOULX_ENGINE.md) / [English](SOULX_ENGINE.
 
 
 旧LTX VAE后续：[中文](LTX098_VAE.md) / [English](LTX098_VAE.en.md) / [编号交付与完整待办](releases/v0.3.0-dev.21-ltx-vae.md)。新增独立VAE /host /ARM64三份记录，核对完整132张量、18外部资产、独立参考、精度门槛、顺序装卸与实际ORT计算中取消。`ltx098_vae_executed`仅为主机证据的兼容别名；Android执行 /完整提示词视频 /质量 /App /完整Release仍为false。Earlier DiT, synthetic-caption sampling and T5 records retain their independent scopes. APK/UI media and original signing identity remain unchanged.
+
+
+旧 LTX 真实提示词串联见[中文](LTX098_PIPELINE.md) / [English](LTX098_PIPELINE.en.md) / [编号交付与完整待办](releases/v0.3.0-dev.21-ltx-pipeline.md)。开发导出新增 tensor / host / ARM64 / pipeline 四份记录，独立核对原始前向门槛、A/B/A 实际训练任务、真实视频媒体与资源范围。本轮 `ltx098_complete_prompt_to_video_host_executed=true`，严格数值验收字段 `ltx098_complete_prompt_to_video_host_tested=false`；兼容字段 `ltx098_trained_video_tested` 明确定义为完整 Android 目标验收，仍为 false。官方多尺度默认 / PixArt 权重身份、画质、App / 手机验收不得由主机视频替代。No new APK, tag or Release is created for this source-only checkpoint; complete frozen v0.3.0 acceptance remains mandatory.
+
+本轮实际状态：`ltx098_complete_prompt_to_video_host_executed=true`，`ltx098_complete_prompt_to_video_host_tested=false`，`ltx098_full_chain_numeric_accepted=false`。163项记录中6项浮点门槛失败，测试必须保留exit 1；开发审计即使通过也只表示失败记录 / 媒体 / 指纹一致，不能签发模型验收或完整Release。The six failed float comparisons remain required work in the same version.

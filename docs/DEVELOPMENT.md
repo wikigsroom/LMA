@@ -204,3 +204,8 @@ Internal dev.19 / 内部 dev.19：[旧 Local / Realtime 原生 RQ](MOSS_RQ_ENGIN
 ## 旧 LTX 训练 VAE 后续
 
 [中文方案](LTX098_VAE.md) / [English](LTX098_VAE.en.md) / [本轮编号实现与完整待办](releases/v0.3.0-dev.21-ltx-vae.md)。132张量 /552,814,641训练参数只载入decoder，不实例化encoder；九段ONNX CPU会话顺序执行，原始BF16转F32，单独原始Decoder.forward参考验证不同几何 /时间 /噪声条件。模型图 /统计 /数据均为外部资产，当前离线导出不是完整公共下载候选或手机转换器；App /手机 /质量 /完整视频分别验收。No new APK, UI media or Release is produced by this source-only component.
+
+
+旧 LTX 完整主机串联：[中文](LTX098_PIPELINE.md) / [English](LTX098_PIPELINE.en.md) / [编号交付与完整待办](releases/v0.3.0-dev.21-ltx-pipeline.md)。独立单尺度 Google Q5 变体，不冒充官方多尺度默认 / PixArt 权重相同；每阶段保留身份、装卸、耗时和实际主机内存。独立参考从真实提示词计算到 RGB，跨阶段传播误差；非平坦 / 有变化统计不等于质量验收。新主机视频媒体必须显示 HOST 标签，不能替换既有准确标记的 App UI FIXTURE。App 引擎、公开用户资产路径和 Android 质量 / 资源 / 耐久验收仍须完成。
+
+本次完整原始对照未通过：163项中157通过、6项float gate失败；保留完整失败JSON与测试exit 1。开发仓库审计只验证证据一致性，不覆盖失败；同caption诊断仅定位文本编码误差放大，不关闭17号或Release。

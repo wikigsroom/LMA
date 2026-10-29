@@ -1,0 +1,46 @@
+{
+  "schema": "lma.ltx098-host-media/1",
+  "kind": "actual_trained_host_output",
+  "source_evidence": "verification/development/ltx098-pipeline.json",
+  "source_evidence_sha256": "677004c760a4cc27b9de61d329692382f1719d6488824fa840506e567a44622b",
+  "raw_source_frames": [
+    {
+      "file": "build/ltx098-pipeline-probe/red-42/frames.lma",
+      "bytes": 6488092,
+      "sha256": "d354f0f82a509ab3595578286bc96901fd3e57599806a78a7f84df96387ca4cb"
+    },
+    {
+      "file": "build/ltx098-pipeline-tests/run-s3z3urrv/native-1/frames.lma",
+      "bytes": 6488092,
+      "sha256": "567c76df6ab6b20bff6736d18424e41da50c59a58de2a6b4692282b2caf57d35"
+    }
+  ],
+  "gif_frame_duration_ms": 40,
+  "gif_duration_seconds": 1.32,
+  "mp4_fps": 24,
+  "mp4_duration_seconds": 1.375,
+  "physical_android": false,
+  "app_screen_recording": false,
+  "video_quality_accepted": false,
+  "numerical_acceptance_passed": false,
+  "official_multiscale_default_reproduced": false,
+  "official_pixart_weight_identity_compared": false,
+  "files": {
+    "ltx098-host-contact-sheet.png": {
+      "bytes": 599549,
+      "sha256": "49d1cead4be091aecc67eda95ba46b4b96284898ac6586180d8ec13572bbc7e3"
+    },
+    "ltx098-host-comparison.gif": {
+      "bytes": 2320517,
+      "sha256": "5715fc87dd91500373a3e0901782e78a2c9784463c999178bbb6316a4ef8ba43"
+    },
+    "ltx098-host-comparison.mp4": {
+      "bytes": 49526,
+      "sha256": "113b5e90b32800c161f12b4e661329e34005ea507e0b14c8270513b898febddd"
+    }
+  },
+  "input_fingerprint": {
+    "third_party/ltx098-pipeline-source-lock.json": "3fc857b18056ef284b17e656c4dfa2d79e320e8f5463277a40b054981190769b",
+    "tools/ltx098_pipeline_media.py": "efc288539a6c7a1d923a35e0d6017d3d0e53d64a0209715873c6b7fd1d3d7391"
+  }
+}

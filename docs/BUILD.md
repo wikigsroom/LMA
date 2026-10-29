@@ -128,3 +128,8 @@ SoulX生产worker原生构建：`build_soulx.py`（主机）→ `build_soulx.py 
 
 
 旧LTX训练VAE按[完整离线复现](LTX098_VAE.md)显式准备已固定的原始检查点，再运行 `tools/ltx098_vae.py export`、`references`、`tools/build_ltx098_vae.py`、其 `--android` 编译及 `tools/test_ltx098_vae.py`。原始官方forward作为独立参考；导出目录拒绝覆盖，不自动获取模型。两种原生编译顺序运行，SUBST别名在finally释放，所有缓存 /临时文件在项目内，不调度虚拟化；研究可执行文件和模型图不进入APK。
+
+
+旧 LTX 真实提示词管线按[中文完整复现](LTX098_PIPELINE.md)显式准备已有固定组件及外部资产，再顺序构建 `tools/build_ltx098_tensors.py` / `--android`，执行 `tools/test_ltx098_tensors.py` 与 `tools/test_ltx098_pipeline.py`。后者实际运行 A/B/A 三个训练任务和两个原始前向参考；无模型自动下载、无虚拟化或模拟器。开发 MP4 使用主机 FFmpeg，App 仍须接入同机 MediaCodec；源码后续不改 APK。
+
+当前完整管线测试按原门槛返回 exit 1，并写出163项记录中的6项浮点失败；两组RGB通过。可重放已捕获且指纹有效的输出核验，不重新冒充推理执行。[详见数值失败与复用逻辑](LTX098_PIPELINE.md)。

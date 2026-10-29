@@ -337,3 +337,14 @@ The [nine-stage local VAE decoder and reproduction](docs/LTX098_VAE.en.md) add a
 
 
 **Validation:**355 checks /36 actual native children /31 guards /40 comparison records pass. Four geometries and conditioning settings use44 independently hashed original references. Maximum intermediate error is1.14441e-4; final-frame error is2.14577e-6. Sequential sessions, repeatability and actual in-Run ORT termination pass. Maximum observed Windows working set is1,238,388,736 bytes, not phone memory. ARM64/API28/16KiB is compilation only; complete video, quality, App, phone and full Release acceptance remain pending.
+
+
+### Old LTX real-prompt video: independent host pipeline
+
+[English design and reproduction](docs/LTX098_PIPELINE.en.md) / [中文](docs/LTX098_PIPELINE.md) / [numbered implemented and complete pending scope](docs/releases/v0.3.0-dev.21-ltx-pipeline.md). The developer chain connects real prompts, complete trained T5, exact old 28-layer DiT/eight-step sampling, nine trained decoder stages and RGB/MP4. Portable RNG/layout/frame primitives also compile separately for Android ARM64. The explicit recipe is single-scale with Google/community Q5 text; official default multi-scale/PixArt weight identity, quality, App and phone acceptance remain separate. Users continue controlling all model assets. APK/UI media stay dev.21; older component receipts retain their historical scopes.
+
+The full original-forward review has **six failed float gates**: 157 of 163 checks pass, including both final RGB comparisons. The model test retains exit 1; strict numerical, App, phone and complete Release acceptance remain false. See [metrics and pending repair](docs/LTX098_PIPELINE.en.md). Media shows actual experimental outputs with NUMERIC + QUALITY GATES OPEN labels.
+
+Actual host output, not App screen recording or Android evidence: [MP4](docs/media/development/ltx098-host-comparison.mp4) / [GIF](docs/media/development/ltx098-host-comparison.gif) / [source and timing receipt](docs/media/development/ltx098-host-media.json).
+
+![HOST ONLY: real-prompt old LTX single-scale frames, quality and phone acceptance pending](docs/media/development/ltx098-host-contact-sheet.png)

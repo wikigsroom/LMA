@@ -1,5 +1,14 @@
 # Changelog / 更新记录
 
+## 0.3.0-dev.21 source follow-up — real-prompt old-LTX host pipeline / unreleased
+
+新增真实提示词、完整训练 T5、旧版 0.9.8 distilled DiT 八步采样、九段 VAE 与 RGB/MP4 的独立单尺度主机串联。可移植 RNG / 张量还原 / 帧封装组件独立 Android 编译；完整链路参考从原始模型前向传播到 RGB，保留固定精度门槛与实际 A/B/A 任务。基座与模型资产继续分离，没有模型隐式获取或 APK 模型数据。
+
+Real host outputs, separately labelled comparison media, component identities/lifetimes, independent original-forward checks and distinct Android compilation evidence. The explicit Google/community Q5 text variant does not establish official PixArt weight identity or the default multi-scale preset. Quality, production App integration, public user acquisition, phone/endurance and all frozen v0.3.0 gates remain open; APK/UI media remain dev.21 and no Release is created. [中文](docs/LTX098_PIPELINE.md) / [English](docs/LTX098_PIPELINE.en.md) / [numbered implemented and complete pending scope](docs/releases/v0.3.0-dev.21-ltx-pipeline.md).
+
+
+本次真实主机视频的完整参考验收：163 检查中 157 通过、6 项 float gate 失败；RGB 两组均通过。保留原门槛与 exit 1，并分开记录 executed=true / numeric accepted=false；同 caption 隔离诊断指向文本编码微小误差在采样中的放大。This checkpoint publishes real experimental outputs and the numerical failure, not successful full-chain acceptance or an APK Release.
+
 ## 0.3.0-dev.21 source follow-up / 2026-10-29 — trained old-LTX VAE
 
 旧版0.9.8 distilled完整训练VAE：132张量 /552,814,641参数从原始BF16转F32，九段CPU ONNX会话依次装卸；外部图 /数据2,211,661,835字节不进入APK。噪声先在归一化空间混合，原始通道统计 /时间条件 /PixelNorm /时空上采样保留。355检查 /36真实原生子进程 /31防护 /40逐段与最终误差记录通过；独立未修改原始Decoder.forward四组几何参考，44参考文件先核对SHA；最终帧最大误差2.14577e-6，真实ORT计算中取消和无会话泄漏通过。

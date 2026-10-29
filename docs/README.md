@@ -91,3 +91,8 @@
 - 旧LTX用户资产转换与原生采样：[中文](LTX098_SAMPLING.md) / [English](LTX098_SAMPLING.en.md) / [编号交付与完整待办](releases/v0.3.0-dev.21-ltx-sampling.md)。692检查 /58原生子进程 /111误差记录；完整训练28层Vulkan latent对照与ARM64采样编译分别记录，无T5 /VAE /视频 /App /手机结论。
 
 - 旧LTX T5文本组件：[中文](LTX098_TEXT.md) / [English](LTX098_TEXT.en.md) / [本轮编号已实现与完整待办](releases/v0.3.0-dev.21-ltx-text.md)。491检查 /76原生子进程；完整训练T5主机embedding、原始外部分词配置与独立ARM64编译，完整视频 /App /手机仍待验收。
+
+
+- 旧 LTX 真实提示词到主机视频：[中文](LTX098_PIPELINE.md) / [English](LTX098_PIPELINE.en.md) / [编号实现与完整待办](releases/v0.3.0-dev.21-ltx-pipeline.md)。独立单尺度 Google Q5 变体、完整训练串联与原始前向对照；[真实主机帧](media/development/ltx098-host-contact-sheet.png) / [GIF](media/development/ltx098-host-comparison.gif) / [MP4](media/development/ltx098-host-comparison.mp4)，不是 App 或手机验收。
+
+  上述主机链路完整精度检查当前有6项失败，163项中157通过；实际出片与严格数值验收分别记录，见[具体误差](LTX098_PIPELINE.md)。

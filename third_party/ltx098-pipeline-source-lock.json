@@ -1,0 +1,43 @@
+{
+  "schema": "lma.ltx098-pipeline-source/1",
+  "source_revision": "4b2d053057623ddd4d0a1d3e9cd28890e9ef487f",
+  "component_locks": [
+    "third_party/ltx098-source-lock.json",
+    "third_party/ltx098-trained-assets.json",
+    "third_party/ltx098-text-source-lock.json",
+    "third_party/ltx098-vae-source-lock.json"
+  ],
+  "pipeline_kind": "single_scale",
+  "sampler": "linear_quadratic_8_euler",
+  "sigmas": [1.0, 0.99375, 0.9875, 0.98125, 0.975, 0.909375, 0.725, 0.421875],
+  "guidance_scale": 1.0,
+  "stg_scale": 0.0,
+  "prompt_enhancement": false,
+  "text_variant": "city96/google-t5-v1_1-xxl-encoder-Q5_K_M",
+  "official_pixart_text_weight_identity_compared": false,
+  "official_multiscale_default_reproduced": false,
+  "decode_timestep": 0.05,
+  "decode_noise_scale": 0.025,
+  "tone_map_compression_ratio": 0.0,
+  "rng": "lma_splitmix64_box_muller_f32_v1",
+  "matches_pytorch_seed": false,
+  "initial_noise_layout": "batch_tokens_channels",
+  "decode_noise_layout": "batch_channels_frames_height_width",
+  "frame_format": "LMAFRM1_rgb24",
+  "pixel_conversion": "float32((clip(x/2+0.5,0,1))*255), truncate to uint8",
+  "host_gates": {
+    "full_chain_max_absolute_error": 0.003,
+    "full_chain_max_relative_rmse": 0.0003,
+    "full_chain_min_cosine": 0.99999,
+    "rgb_max_byte_error": 2,
+    "rgb_mean_byte_error": 0.02,
+    "all_values_finite": true
+  },
+  "scope": {
+    "engine_registered": false,
+    "packaged_in_apk": false,
+    "physical_android": false,
+    "video_quality_accepted": false,
+    "automatic_model_download": false
+  }
+}

@@ -199,3 +199,8 @@ Current dev.21 adds the [SoulX App foundation](SOULX_ENGINE.en.md): a registered
 ## Trained old-LTX VAE follow-up
 
 [English design](LTX098_VAE.en.md) / [中文](LTX098_VAE.md) / [numbered handoff and full pending scope](releases/v0.3.0-dev.21-ltx-vae.md). Only the132-tensor /552,814,641-parameter decoder is loaded, without instantiating the encoder. Nine sequential ONNX CPU sessions use original BF16 parameters cast to F32; independent original Decoder.forward references cover different geometry/time/noise conditions. Graphs/statistics/data remain external user assets. The offline exporter does not establish public one-click model acquisition or on-phone conversion. Complete video/quality/App/phone acceptance remains separate. APK and accurately labeled UI media remain unchanged.
+
+
+Real-prompt old-LTX host integration: [English](LTX098_PIPELINE.en.md) / [中文](LTX098_PIPELINE.md) / [numbered handoff and full pending scope](releases/v0.3.0-dev.21-ltx-pipeline.md). Keep the single-scale Google Q5 variant distinct from official multi-scale/PixArt identity. Retain stage identity, lifetimes, timings and actual host memory. The independent oracle propagates errors from real-prompt embeddings to RGB; non-flat/changing statistics do not establish quality. New host media must show HOST labels and cannot replace existing accurately marked App UI FIXTURE evidence. App binding, public user acquisition and Android quality/resources/endurance remain required.
+
+The full original-forward review is not accepted: 157 of 163 checks pass and six float gates fail. Preserve complete failure JSON and test exit 1. Repository auditing checks evidence consistency, without overriding failure; same-caption isolation does not close target17 or Release.

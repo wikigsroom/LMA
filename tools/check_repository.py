@@ -123,6 +123,8 @@ def main():
         assert not status["ltx098_t5_android_tested"] and status["ltx098_vae_executed"]
         assert status["ltx098_vae_host_tested"] and status["ltx098_vae_android_compiled"] and not status["ltx098_vae_android_tested"]
         vae = records["ltx098-vae.json"]
+        from check_ltx098_pipeline_evidence import check as check_ltx_pipeline
+        check_ltx_pipeline(records, status, ROOT, digest)
         vae_lock = json.loads((ROOT / "third_party/ltx098-vae-source-lock.json").read_text(encoding="utf-8"))
         assert vae["checks"] >= 355 and vae["native_children"] >= 36 and len(vae["metrics"]) == 40 and len(vae["guards"]) >= 31
         assert vae["trained_decoder_tensors"] == 132 and vae["trained_decoder_parameters"] == 552814641

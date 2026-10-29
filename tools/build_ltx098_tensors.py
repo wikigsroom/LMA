@@ -1,0 +1,76 @@
+"""Build model-free old-LTX RNG/layout/frame primitives; no APK modification."""
+import argparse, hashlib, json, os, subprocess
+from pathlib import Path
+from evidence import fingerprint, current
+from verify_package import elf_info, SYSTEM_LIBS
+ROOT = Path(__file__).resolve().parents[1]
+
+
+def inputs():
+    return fingerprint('research/ltx098_pipeline', 'tools/build_ltx098_tensors.py',
+                       'third_party/ltx098-pipeline-source-lock.json', 'third_party/ltx098-text-source-lock.json')
+
+
+def build(android=False):
+    if os.name != 'nt': raise RuntimeError('Use native Windows MSVC/NDK tools')
+    before = inputs()
+    lock = json.loads((ROOT / 'third_party/ltx098-text-source-lock.json').read_text(encoding='utf-8'))
+    if hashlib.sha256((ROOT / 'build/native-src/sd-cpp/thirdparty/json.hpp').read_bytes()).hexdigest() != lock['json_header_sha256']:
+        raise RuntimeError('Changed pinned JSON header')
+    name = 'ltx098-tensors-arm64' if android else 'ltx098-tensors-host'
+    out = ROOT / 'build' / name; out.mkdir(exist_ok=True); (out / 'receipt.json').unlink(missing_ok=True)
+    drive = next((c + ':' for c in 'RSTUVWXYZ' if not Path(c + ':/').exists()), None)
+    if not drive: raise RuntimeError('No free ASCII build alias')
+    subprocess.run(['subst', drive, str(ROOT)], check=True, capture_output=True)
+    try:
+        alias = drive + '/'; tool = alias + 'build/toolchain/'; directory = alias + 'build/' + name
+        cmake = tool + 'cmake-3.31.6/bin/cmake.exe'
+        options = dict(CMAKE_MAKE_PROGRAM=tool + 'cmake-3.31.6/bin/ninja.exe', CMAKE_BUILD_TYPE='Release',
+                       LMA_JSON_SOURCE=alias + 'build/native-src/sd-cpp/thirdparty')
+        if android:
+            options.update(CMAKE_TOOLCHAIN_FILE=tool + 'android-ndk-r30/build/cmake/android.toolchain.cmake',
+                           ANDROID_ABI='arm64-v8a', ANDROID_PLATFORM='android-28', ANDROID_STL='c++_static')
+        commands = [[cmake, '-S', alias + 'research/ltx098_pipeline', '-B', directory, '-G', 'Ninja'] +
+                    ['-D' + k + '=' + v for k, v in options.items()],
+                    [cmake, '--build', directory, '--target', 'lma_ltx098_tensors', '-j', '4']]
+        if android:
+            commands.append([tool + 'android-ndk-r30/toolchains/llvm/prebuilt/windows-x86_64/bin/llvm-strip.exe',
+                             '--strip-unneeded', directory + '/bin/liblma-ltx098-tensors.so'])
+        for i, command in enumerate(commands):
+            if android: result = subprocess.run(command, capture_output=True, timeout=300)
+            else:
+                setup = Path(os.environ.get('LMA_VCVARS', r'C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Auxiliary\Build\vcvars64.bat'))
+                script = out / f'build-{i}.cmd'
+                script.write_text('@echo off\ncall "' + str(setup) + '" >nul\nif errorlevel 1 exit /b %errorlevel%\n' +
+                                  subprocess.list2cmdline(command) + '\n', encoding='utf-8')
+                result = subprocess.run(['cmd', '/d', '/c', str(script)], capture_output=True, timeout=300)
+            (out / f'build-{i}.log').write_bytes(result.stdout + result.stderr)
+            if result.returncode: raise RuntimeError(f'Inspect build/{name}/build-{i}.log')
+    finally:
+        subprocess.run(['subst', drive, '/D'], check=True, capture_output=True)
+    binary = out / 'bin' / ('liblma-ltx098-tensors.so' if android else 'lma_ltx098_tensors.exe')
+    data = binary.read_bytes()
+    record = dict(kind='android_compile' if android else 'host_compile', executable_bytes=len(data),
+                  executable_sha256=hashlib.sha256(data).hexdigest(), model_data_embedded=False,
+                  model_inference=False, engine_registered=False, packaged_in_apk=False,
+                  physical_android=False, virtualization_used=False, input_fingerprint=before)
+    if android:
+        elf = elf_info(data)
+        if not elf['16k_elf_aligned'] or elf['android_api_notes'] != [28] or elf['interpreter'] != '/system/bin/linker64' or not elf['entry_point']:
+            raise RuntimeError('Tensor CLI ELF contract failed')
+        if set(elf['needed']) - SYSTEM_LIBS: raise RuntimeError('Unexpected tensor CLI dependency')
+        llvm = ROOT / 'build/toolchain/android-ndk-r30/toolchains/llvm/prebuilt/windows-x86_64/bin/llvm-nm.exe'
+        output = subprocess.check_output([str(llvm), '-D', '--undefined-only', str(binary)], text=True, encoding='utf-8')
+        imported = {line.split()[-1].split('@')[0] for line in output.splitlines()}
+        if imported & {'connect', 'socket', 'getaddrinfo', 'system', 'popen', 'execve', 'execvp', 'posix_spawn'}:
+            raise RuntimeError('Unexpected network/process import')
+        record.update(android_arm64_compiled=True, android_platform=28, elf=elf, ndk='30.0.16248370')
+    current(before)
+    (out / 'receipt.json').write_text(json.dumps(record, indent=2) + '\n', encoding='utf-8')
+    print(json.dumps({k: v for k, v in record.items() if k not in ('input_fingerprint', 'elf')}), flush=True)
+    return record
+
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description=__doc__); parser.add_argument('--android', action='store_true')
+    build(parser.parse_args().android)

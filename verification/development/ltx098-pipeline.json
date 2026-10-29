@@ -1,0 +1,2690 @@
+{
+  "schema": "lma.ltx098-pipeline-tests/1",
+  "checks": 163,
+  "guards": [
+    "prompt-0",
+    "prompt-1",
+    "prompt-2",
+    "prompt-3",
+    "seed-4",
+    "seed-5",
+    "seed-6",
+    "width-7",
+    "width-8",
+    "height-9",
+    "frames-10",
+    "frames-11",
+    "frames-12",
+    "fps-13",
+    "fps-14",
+    "fps-15",
+    "cancel_file-16",
+    "unknown-17"
+  ],
+  "metrics": [
+    {
+      "kind": "structural_rgb",
+      "case": 0,
+      "minimum_frame_std": 64.34956564875819,
+      "mean_adjacent_frame_mad": 1.3165589968363445
+    },
+    {
+      "kind": "structural_rgb",
+      "case": 1,
+      "minimum_frame_std": 53.08386278368347,
+      "mean_adjacent_frame_mad": 0.436768372853597
+    },
+    {
+      "kind": "structural_rgb",
+      "case": 2,
+      "minimum_frame_std": 64.34956564875819,
+      "mean_adjacent_frame_mad": 1.3165589968363445
+    },
+    {
+      "kind": "full_chain",
+      "case": 0,
+      "file": "caption.f32",
+      "max_abs": 2.3752450942993164e-05,
+      "relative_rmse": 1.5835138112703526e-06,
+      "cosine": 0.9999999999987477
+    },
+    {
+      "kind": "full_chain",
+      "case": 0,
+      "file": "denoised-tokens.f32",
+      "max_abs": 0.008309245109558105,
+      "relative_rmse": 0.0003941830968659341,
+      "cosine": 0.9999999223197493
+    },
+    {
+      "kind": "full_chain",
+      "case": 0,
+      "file": "denoised-ncthw.f32",
+      "max_abs": 0.008309245109558105,
+      "relative_rmse": 0.0003941830968659341,
+      "cosine": 0.9999999223197495
+    },
+    {
+      "kind": "full_chain",
+      "case": 0,
+      "file": "decoded-ncthw.f32",
+      "max_abs": 0.0037590712308883667,
+      "relative_rmse": 0.00018196531739733473,
+      "cosine": 0.9999999835208709
+    },
+    {
+      "kind": "full_chain_rgb",
+      "case": 0,
+      "max_error": 1.0,
+      "mean_error": 0.006070223721590909
+    },
+    {
+      "kind": "full_chain",
+      "case": 1,
+      "file": "caption.f32",
+      "max_abs": 1.430511474609375e-06,
+      "relative_rmse": 8.35578458210605e-07,
+      "cosine": 0.9999999999996515
+    },
+    {
+      "kind": "full_chain",
+      "case": 1,
+      "file": "denoised-tokens.f32",
+      "max_abs": 0.004991471767425537,
+      "relative_rmse": 0.00030555173526739963,
+      "cosine": 0.9999999533374717
+    },
+    {
+      "kind": "full_chain",
+      "case": 1,
+      "file": "denoised-ncthw.f32",
+      "max_abs": 0.004991471767425537,
+      "relative_rmse": 0.00030555173526739963,
+      "cosine": 0.9999999533374714
+    },
+    {
+      "kind": "full_chain",
+      "case": 1,
+      "file": "decoded-ncthw.f32",
+      "max_abs": 0.006175465881824493,
+      "relative_rmse": 0.00024025014793920303,
+      "cosine": 0.9999999711425188
+    },
+    {
+      "kind": "full_chain_rgb",
+      "case": 1,
+      "max_error": 1.0,
+      "mean_error": 0.0038163926866319445
+    }
+  ],
+  "gates": {
+    "full_chain_max_absolute_error": 0.003,
+    "full_chain_max_relative_rmse": 0.0003,
+    "full_chain_min_cosine": 0.99999,
+    "rgb_max_byte_error": 2,
+    "rgb_mean_byte_error": 0.02,
+    "all_values_finite": true
+  },
+  "actual_trained_jobs": 3,
+  "distinct_prompts": 2,
+  "geometry": {
+    "width": 256,
+    "height": 256,
+    "frames": 33,
+    "fps": 24
+  },
+  "native_children": 18,
+  "host_media_children": 6,
+  "jobs": [
+    {
+      "schema": "lma.ltx098-host-pipeline/1",
+      "request": {
+        "prompt": "A bright red balloon floats slowly from left to right against a clear blue sky. The camera stays still. Soft daylight illuminates the round balloon. Its thin white string sways gently in the breeze. Continuous smooth motion, realistic lighting.",
+        "seed": 42,
+        "width": 256,
+        "height": 256,
+        "frames": 33,
+        "fps": 24
+      },
+      "stages": [
+        {
+          "stage": "noise",
+          "seconds": 2.9394794999971054,
+          "resources": {
+            "observed": true,
+            "samples": 90,
+            "interval_ms": 20,
+            "observed_peak_working_set_bytes": 5722112,
+            "sampled_peak_private_bytes": 1093632,
+            "gpu_memory_measured": false
+          },
+          "native": {
+            "decode_noise_shape": [
+              1,
+              128,
+              5,
+              8,
+              8
+            ],
+            "engine_registered": false,
+            "initial_shape": [
+              1,
+              320,
+              128
+            ],
+            "matches_pytorch_seed": false,
+            "model_inference": false,
+            "ok": true,
+            "operation": "noise",
+            "physical_android": false,
+            "rng": "lma_splitmix64_box_muller_f32_v1",
+            "seed": 42,
+            "values_each": 40960
+          },
+          "vulkan_device_identity": []
+        },
+        {
+          "stage": "text",
+          "seconds": 687.5128545000334,
+          "resources": {
+            "observed": true,
+            "samples": 21605,
+            "interval_ms": 20,
+            "observed_peak_working_set_bytes": 3651080192,
+            "sampled_peak_private_bytes": 391618560,
+            "gpu_memory_measured": false
+          },
+          "native": {
+            "aborted_encodes": 0,
+            "backend": "cpu",
+            "buffers": {
+              "mapped_file_bytes": 3386856640,
+              "peak_compute_bytes": 342342112,
+              "tensor_bytes": 3385823232
+            },
+            "bytes": 868352,
+            "complete_video": false,
+            "encode_calls": 1,
+            "encoder_implementation": "independent_ggml_f32_compute",
+            "engine_registered": false,
+            "fixture": false,
+            "items": [
+              {
+                "bytes": 868352,
+                "mask": [
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1
+                ],
+                "offset_bytes": 0,
+                "shape": [
+                  1,
+                  53,
+                  4096
+                ],
+                "tokens": [
+                  71,
+                  2756,
+                  1131,
+                  14526,
+                  3,
+                  12660,
+                  7,
+                  5665,
+                  45,
+                  646,
+                  12,
+                  269,
+                  581,
+                  3,
+                  9,
+                  964,
+                  1692,
+                  5796,
+                  5,
+                  37,
+                  1861,
+                  13628,
+                  341,
+                  5,
+                  11759,
+                  24945,
+                  20468,
+                  7,
+                  8,
+                  1751,
+                  14526,
+                  5,
+                  94,
+                  7,
+                  5551,
+                  872,
+                  6108,
+                  3,
+                  7,
+                  6415,
+                  10772,
+                  16,
+                  8,
+                  15825,
+                  5,
+                  31295,
+                  3050,
+                  4644,
+                  6,
+                  9555,
+                  3598,
+                  5,
+                  1
+                ],
+                "truncated": false
+              }
+            ],
+            "layers": 24,
+            "model_inference": true,
+            "model_loads": 1,
+            "model_unloads": 1,
+            "normalization": "raw_final_rms_norm",
+            "operation": "encode",
+            "physical_android": false,
+            "pooling": "none",
+            "schema": "lma.ltx098-text/1",
+            "vocabulary_loads": 1,
+            "vocabulary_unloads": 1,
+            "weight_execution": "streamed_f32_matrix_casts",
+            "width": 4096
+          },
+          "vulkan_device_identity": []
+        },
+        {
+          "stage": "sampling",
+          "seconds": 445.8220175000024,
+          "resources": {
+            "observed": true,
+            "samples": 14268,
+            "interval_ms": 20,
+            "observed_peak_working_set_bytes": 1221013504,
+            "sampled_peak_private_bytes": 4352086016,
+            "gpu_memory_measured": false
+          },
+          "native": {
+            "backend": "vulkan",
+            "complete_video_pipeline": false,
+            "compute_bytes": [
+              42976496,
+              42976496,
+              42976496,
+              42976496,
+              42976496,
+              42976496,
+              42976496,
+              42976496
+            ],
+            "engine_registered": false,
+            "fixture": false,
+            "layers": 28,
+            "layout": "batch_tokens_channels",
+            "model_executed": true,
+            "ok": true,
+            "operation": "sample",
+            "parameters": 1923385472,
+            "physical_android": false,
+            "precision_policy": "baseline_f32_compute_optional_f16_weight_storage",
+            "steps": 8,
+            "values": 40960,
+            "weight_bytes": 3849462272
+          },
+          "vulkan_device_identity": [
+            "ggml_vulkan: Found 1 Vulkan devices:",
+            "ggml_vulkan: 0 = NVIDIA GeForce RTX 3060 (NVIDIA) | uma: 0 | fp16: 0 | bf16: 1 | fp4: 0 | warp size: 32 | shared memory: 49152 | int dot: 1 | matrix cores: none"
+          ]
+        },
+        {
+          "stage": "unpatchify",
+          "seconds": 0.09889900003327057,
+          "resources": {
+            "observed": true,
+            "samples": 4,
+            "interval_ms": 20,
+            "observed_peak_working_set_bytes": 4911104,
+            "sampled_peak_private_bytes": 1060864,
+            "gpu_memory_measured": false
+          },
+          "native": {
+            "engine_registered": false,
+            "model_inference": false,
+            "ok": true,
+            "operation": "unpatchify",
+            "physical_android": false,
+            "shape": [
+              1,
+              128,
+              5,
+              8,
+              8
+            ]
+          },
+          "vulkan_device_identity": []
+        },
+        {
+          "stage": "vae",
+          "seconds": 262.1077662999742,
+          "resources": {
+            "observed": true,
+            "samples": 8228,
+            "interval_ms": 20,
+            "observed_peak_working_set_bytes": 1278660608,
+            "sampled_peak_private_bytes": 365785088,
+            "gpu_memory_measured": false
+          },
+          "native": {
+            "backend": "cpu",
+            "complete_video_pipeline": false,
+            "engine_registered": false,
+            "graph_runs": 9,
+            "max_live_sessions": 1,
+            "ok": true,
+            "output_bytes": 25952256,
+            "output_shape": [
+              1,
+              3,
+              33,
+              256,
+              256
+            ],
+            "physical_android": false,
+            "runtime_version": "1.24.3",
+            "session_loads": 9,
+            "session_unloads": 9
+          },
+          "vulkan_device_identity": []
+        },
+        {
+          "stage": "frames",
+          "seconds": 0.4099885000032373,
+          "resources": {
+            "observed": true,
+            "samples": 14,
+            "interval_ms": 20,
+            "observed_peak_working_set_bytes": 37027840,
+            "sampled_peak_private_bytes": 33243136,
+            "gpu_memory_measured": false
+          },
+          "native": {
+            "bytes": 6488092,
+            "clipped_high": 4491,
+            "clipped_low": 432111,
+            "engine_registered": false,
+            "format": "LMAFRM1_rgb24",
+            "maximum": 1.328181266784668,
+            "minimum": -1.4326215982437134,
+            "model_inference": false,
+            "ok": true,
+            "operation": "frames",
+            "physical_android": false,
+            "rounding": "float32_scale_then_truncate",
+            "shape": [
+              33,
+              256,
+              256,
+              3
+            ]
+          },
+          "vulkan_device_identity": []
+        }
+      ],
+      "files": {
+        "initial-tokens.f32": {
+          "bytes": 163840,
+          "sha256": "f331d3651e15fe7ca29b9873ff6efac7307c5bd653ab24c7562a762cf0ccae41"
+        },
+        "decode-noise.f32": {
+          "bytes": 163840,
+          "sha256": "4e4bacaae0d3a6c302b3ed32ffbd3d732a53333df30cf27f29a161690601df89"
+        },
+        "caption.f32": {
+          "bytes": 868352,
+          "sha256": "02214c71ce0655c9ca336326a02151b6f16a6b90009aaaf1d11c713806b19c8f"
+        },
+        "denoised-tokens.f32": {
+          "bytes": 163840,
+          "sha256": "5f493bb0d262965059d759e07aad814dbeb33f3f1e252973a341c294b6ad16af"
+        },
+        "denoised-ncthw.f32": {
+          "bytes": 163840,
+          "sha256": "2c981b6b76f5a145015fd316a4968d96ddad8fbeda853872e6d7516c9dd4693c"
+        },
+        "decoded-ncthw.f32": {
+          "bytes": 25952256,
+          "sha256": "63d3b1467d77c0a2d620b31e83f363607843e5bed7b107bbe0ecd223bf1ee7da"
+        },
+        "frames.lma": {
+          "bytes": 6488092,
+          "sha256": "d354f0f82a509ab3595578286bc96901fd3e57599806a78a7f84df96387ca4cb"
+        },
+        "video.mp4": {
+          "bytes": 17738,
+          "sha256": "67c56a3c362fa2df106451179e275a0bbd50ca7aefe699535ba8665516ecad1d"
+        }
+      },
+      "text_tokens": 53,
+      "prompt_truncated": false,
+      "shape": {
+        "width": 256,
+        "height": 256,
+        "frames": 33,
+        "fps": 24
+      },
+      "seconds": 1410.8885794000234,
+      "assets": [
+        {
+          "file": "t5-v1_1-xxl-encoder-Q5_K_M.gguf",
+          "bytes": 3386856640,
+          "sha256": "b51cbb10b1a7aac6dd1c3b62f0ed908bfd06e0b42d2f3577d43e061361f51dae"
+        },
+        {
+          "file": "ltx098-dit.gguf",
+          "bytes": 3849516416,
+          "sha256": "ef29c886b36f8a1dbc6693002256049407e512da7a61bf2cc750f1d4d2277ebf"
+        },
+        {
+          "file": "tokenizer_config.json",
+          "bytes": 1857,
+          "sha256": "b971dce1d2805c2a66da8657156e7114a30501c6ba602fc947c8bf607a3ead2d"
+        },
+        {
+          "file": "stage-00.onnx",
+          "bytes": 3451,
+          "sha256": "33f367287eaf5bc67aead22132d9d73aeaf66b51387bbc3a032a1c7eb936ff8b"
+        },
+        {
+          "file": "stage-00.onnx.data",
+          "bytes": 14160896,
+          "sha256": "8bfd5b8f04a0d924707997f112e9df029442404e749d596e529a9db2a08f6384"
+        },
+        {
+          "file": "stage-01.onnx",
+          "bytes": 80554,
+          "sha256": "29ede53a11d80957e6f0abe38780511c267762feba725b49c29bd36fa35d31b3"
+        },
+        {
+          "file": "stage-01.onnx.data",
+          "bytes": 1203920900,
+          "sha256": "f8b34f9531d3efb14455dde1acb032b6be2bbaeadb4066f6b400b0905cb885ba"
+        },
+        {
+          "file": "stage-02.onnx",
+          "bytes": 20672,
+          "sha256": "1b74a179d5f160239411d234411641195548607eb523e74c82e34a66b41df415"
+        },
+        {
+          "file": "stage-02.onnx.data",
+          "bytes": 453001216,
+          "sha256": "fbcc19df16368b873c1c4bf21a9e15861884d2a46b7674b9d946339760531aa6"
+        },
+        {
+          "file": "stage-03.onnx",
+          "bytes": 80515,
+          "sha256": "77422f7cab2804d8b7b2b1f160623571a0ed66561e77c69fb6ce741e453b8a3f"
+        },
+        {
+          "file": "stage-03.onnx.data",
+          "bytes": 302067716,
+          "sha256": "49880337fe10880ac3a6f92e63f2bda75a8f67738215be86b6fa34c3a2f6fe47"
+        },
+        {
+          "file": "stage-04.onnx",
+          "bytes": 20671,
+          "sha256": "d264368af810ad36e82b5038311cb86f3acb84351dc58f713ce7691732b6043a"
+        },
+        {
+          "file": "stage-04.onnx.data",
+          "bytes": 113254400,
+          "sha256": "7b0a476b6c29b9db4739e1b2fba33778eaec25ce687a4763f55773a2b5d6b38d"
+        },
+        {
+          "file": "stage-05.onnx",
+          "bytes": 80481,
+          "sha256": "489050eeef9cf3c5378145c13b3819cfc2c84cc02a5eae0f20bb543b47cc0fab"
+        },
+        {
+          "file": "stage-05.onnx.data",
+          "bytes": 76060676,
+          "sha256": "81789f36e257d9b7c22e6934955cee0c3fde3c2725591efa66cf96621d5d31b7"
+        },
+        {
+          "file": "stage-06.onnx",
+          "bytes": 20669,
+          "sha256": "c737a55510880d4b92e12e9aca7138a154ad6e58a96e89a4f2a530a3f369b88c"
+        },
+        {
+          "file": "stage-06.onnx.data",
+          "bytes": 28315648,
+          "sha256": "d377a63aee6e1ec50a92fab21aa4e354a23ff8496921528d9af581d272639e9b"
+        },
+        {
+          "file": "stage-07.onnx",
+          "bytes": 80460,
+          "sha256": "239145b9c04cbb5513ee96d2a41ff5b1f8db2c4cf0d9148c3092028b858b3576"
+        },
+        {
+          "file": "stage-07.onnx.data",
+          "bytes": 19287044,
+          "sha256": "22cad42d7baa91055ac2645d1f2c9ee5019ccf4907d40de4058edadbcf209f30"
+        },
+        {
+          "file": "stage-08.onnx",
+          "bytes": 14758,
+          "sha256": "ff463e05293456c25aa5b1a14d82b1f732f1aee0f00da45f8e28419509ba8ac9"
+        },
+        {
+          "file": "stage-08.onnx.data",
+          "bytes": 1191108,
+          "sha256": "6bf9520daca30d56175d92ce125337eb2bec547a229579279f835d70b09c8298"
+        }
+      ],
+      "media": {
+        "backend": "host_ffmpeg_libx264_not_android_mediacodec",
+        "ffmpeg_sha256": "d1e2a156261ecc675081943197a85f08f2868784a0af499171ede89353edad31",
+        "ffprobe_sha256": "70872c3ffbc43d0b2c570f9837f54d6e9a832f4ca25463e9735b6a3ec0621478",
+        "probe": {
+          "programs": [],
+          "stream_groups": [],
+          "streams": [
+            {
+              "codec_name": "h264",
+              "width": 256,
+              "height": 256,
+              "avg_frame_rate": "24/1",
+              "duration": "1.375000",
+              "nb_read_frames": "33"
+            }
+          ],
+          "format": {
+            "duration": "1.375000"
+          }
+        }
+      },
+      "rgb_statistics": {
+        "mean": 171.33542332504734,
+        "std": 64.84043217405525,
+        "frame_mad": [
+          1.4727325439453125,
+          1.8839670817057292,
+          1.1939137776692708,
+          1.3356272379557292,
+          1.6312052408854167,
+          1.3342183430989583,
+          1.3241221110026042,
+          1.223785400390625,
+          1.2826182047526042,
+          1.3481648763020833,
+          1.2261505126953125,
+          1.5441131591796875,
+          1.4617513020833333,
+          0.8034210205078125,
+          1.49078369140625,
+          1.4185028076171875,
+          1.0359649658203125,
+          1.5329691569010417,
+          1.1284586588541667,
+          1.1514078776041667,
+          1.4918467203776042,
+          1.066131591796875,
+          1.4253438313802083,
+          1.1216379801432292,
+          1.4439849853515625,
+          1.1433308919270833,
+          1.2173309326171875,
+          1.4677480061848958,
+          1.2091267903645833,
+          1.2802581787109375,
+          1.2916412353515625,
+          1.1476287841796875
+        ]
+      },
+      "actual_prompt_conditioning": true,
+      "full_trained_host_text_to_frames": true,
+      "host_mp4_generated": true,
+      "official_pixart_weight_identity_compared": false,
+      "official_multiscale_default_reproduced": false,
+      "video_quality_accepted": false,
+      "engine_registered": false,
+      "packaged_in_apk": false,
+      "physical_android": false,
+      "remote_inference": false,
+      "virtualization_used": false,
+      "input_fingerprint": {
+        "native/moss_nano/onnx_external.hpp": "c1bb8f95ad2078472dbbf2ea0863493ac44f4aae7c4336cf5debb0db0d54fae5",
+        "research/ltx098/CMakeLists.txt": "cc86fb36397da930df9c30745c8a29a3748535a9dbd3e40b9f2a5f9c9886374f",
+        "research/ltx098/driver.cpp": "2c8b92b4826824d03ca7ec17e82b5f6ff6dba10b600013df6141d61c5df212f6",
+        "research/ltx098/licenses/ggml-MIT.txt": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
+        "research/ltx098/licenses/json-MIT.txt": "0e592e358cf7722906f417be85bc514f15bf6efd28cea98cb84e56ef7fddfc3e",
+        "research/ltx098/licenses/Lightricks-Apache-2.0.txt": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+        "research/ltx098/licenses/SPIRV-Headers-MIT.txt": "ea43b1de38a6f90c488800d66dec1ed671e68cda530266bc96951fb5b6307613",
+        "research/ltx098/licenses/Vulkan-Apache-2.0.txt": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+        "research/ltx098/licenses/Vulkan-Headers.txt": "95ad366d23fadf701d355bc45fb8b82ae2d700239471d35d41286ac3b08ff903",
+        "research/ltx098/licenses/Vulkan-MIT.txt": "1ca3502222d967f3be5751c55f6b7ee735b5383909c3b501495f54b216dbf227",
+        "research/ltx098/NOTICE": "bab99dbce59bed2470b85752c90464dcfac90c0c0d28577b9db1067ec1a5e872",
+        "research/ltx098/sampling.cpp": "6f5990a38f02462efeec0e68417f4c68981e9be2362b1e76cfd94e697f17003d",
+        "research/ltx098/sampling.hpp": "5e745b8b192cbec4881d9bb2fbfe2665670cc9cb3c853b319b8e8a896130d3cd",
+        "research/ltx098/sampling_driver.cpp": "3a8af8bc1bfcc28127649374e4818a1d368b46ad2ef0c24c1c998e8d32d80fc1",
+        "research/ltx098/transformer.cpp": "22c6d7ec964c5d9e25c90ba9f32c3a93b3d6d4db3c8aafb064cb45f3e03581fa",
+        "research/ltx098/transformer.hpp": "6f5fd68cba7278abb210322af20d70d3a0acd05631118bdeabdae54f4cd5e1d5",
+        "research/ltx098_pipeline/CMakeLists.txt": "6115af1b7ee6798413e1c4617eca8a7b9076722237f922e0f133ef1ebd1c6acc",
+        "research/ltx098_pipeline/NOTICE": "9241c16fca4550e732057f10ac073002e72974b65684d0d3fdae56015ec4222c",
+        "research/ltx098_pipeline/tensors.cpp": "f323b5ebf9537df2f3e7db79e77633a2f30103c23135b21b89043e16109bf116",
+        "research/ltx098_text/CMakeLists.txt": "695f191d631418b8c40fd7bf3887c10b316f92b15ad83d25568a7b06b50defda",
+        "research/ltx098_text/driver.cpp": "a81c396c91bf3c8da41ac2eb79ded04754737f553f46451228902504fef971eb",
+        "research/ltx098_text/encoder.cpp": "be727fc2645184560c25a2f6f90f30d780ae86b099716d67b2e8dd225b1009e6",
+        "research/ltx098_text/encoder.hpp": "592fe2f896174e69e807ce9a4343a2a1da54b523b3ccad0fa337f6d34b6cfbc1",
+        "research/ltx098_text/graph.cpp": "a17f97e9b932c302d3a7e8c1ca7020696ed765a4ddda51fefca9288d7b886190",
+        "research/ltx098_text/graph.hpp": "ae16035400caedb79f33db97497e6588f071901bd0935f7646e0e3b02bc7e36a",
+        "research/ltx098_text/licenses/llama-MIT.txt": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
+        "research/ltx098_text/NOTICE": "176bd96eed8972ba6a9c4bdebf9f19b166397c0eb50717be77547056ad974db4",
+        "research/ltx098_vae/CMakeLists.txt": "fcc7e89deb1b1bf4d1dc74c329225e4f6ceccd997a2370b8d06263293ec93b9f",
+        "research/ltx098_vae/driver.cpp": "f275cabc410dd07e38058902676e3ca9c4dc7a0684f4f39b5a386b74fb4d3604",
+        "research/ltx098_vae/NOTICE": "b5bec20058b46269f031462291b56fea8f5620359ec71f64353e76a9c4f6bcd3",
+        "research/soulx/dsp.hpp": "ef6a28cae0d2e72d1b84890437286b0ed8a20690c0ac07b2ddf8162ee2d2fd58",
+        "research/soulx_ort/android_log.cpp": "216f630761ff67a00cfe47db941338f45560fc45486ebcbdff196cf36dac3d04",
+        "research/soulx_ort/LICENSE-ONNX-RUNTIME-MIT": "c250d6278f0b47a6439fb7592b08b58a55eb9f535aa49a1db63211c3f982b674",
+        "research/soulx_ort/NOTICE": "69487267d86f7998917bc9f7e9b6d2e30e168f41c92369f41a33e225c0bfceb6",
+        "research/soulx_ort/runtime.hpp": "0586ad63c3210ec42d1c3cc956beb05614e56e9cb803632d596e57935689b2c8",
+        "research/soulx_ort/types.hpp": "f0822ae37dd26996501f2b69e4e1bb9404ad53903dd267ff793ee60d96f42de4",
+        "third_party/ltx098-pipeline-source-lock.json": "3fc857b18056ef284b17e656c4dfa2d79e320e8f5463277a40b054981190769b",
+        "third_party/ltx098-source-lock.json": "28acd99486f6ca76a06d038076175ac01ca55c7b1d8c3ba6dab9190291ac8779",
+        "third_party/ltx098-text-source-lock.json": "04b2f7892a4f047363fbaf3ba555682bf201c8320fa1cc7f4d5a68b2884512f4",
+        "third_party/ltx098-trained-assets.json": "0fe1d00ff9f921566b37b499cdc87c51f09947ca9f7a2e7ccd5af1ba3eeaca1c",
+        "third_party/ltx098-vae-source-lock.json": "201ac18ca78b381f810f0567ecd300a5bfda1b489893be56d28b30d6e6db2dcb",
+        "third_party/soulx-acoustic-source-lock.json": "b39e10c415c5f30d4e4adb52327e1e04df371407131f47617622da913b268ac5",
+        "tools/build_ltx098.py": "bf39449e38190a666093f6954d133a76da36d519817ca636703f030100d4faf8",
+        "tools/build_ltx098_tensors.py": "ea171eeeef578e193a96dd3c1a1471254d89d9d1f622797c32ef8e7f814157a1",
+        "tools/build_ltx098_text.py": "c9c7a6f1c619e9ab15d95baf9a53d8854cbe217a698b22e102cdf1cd7cf18b85",
+        "tools/build_ltx098_vae.py": "5ed2804db3fb13044e4aa30022368a8323ac73ed6ebcb875b27d5304b10c61c0",
+        "tools/evidence.py": "e7b177f6ee6793eeffbcc555127f6b9bc3ab2e5f318006302e75c0c41c6f5a5a",
+        "tools/export_ltx098.py": "1f0585251a4500bd8841d0deae95c5efc2b857d501d185ae1e0d7765fd62fcb7",
+        "tools/fetch_ltx098_text.py": "55782095a1b941dc809b33966f62aeffda1b2ca0c719033610432ec00599b577",
+        "tools/ltx098_assets.py": "0380166ca9d3f2f9a028675e6f9d9a827005767a67f66e3c1f00626226ae155c",
+        "tools/ltx098_fixture.py": "60c5730c77dda5055a7cef23b91af0042493a53d49e8f3b898e7634b78170ef8",
+        "tools/ltx098_pipeline.py": "e4a53be7a24852c3a3e8488cb5b7208f31648a9d902ef3202882ea4ed4ce7a6c",
+        "tools/ltx098_vae.py": "f64b71b00d95050bad34252db9ac4935e84d550790ae147b40eddc43c3b871dd",
+        "tools/test_ltx098_text.py": "79a4a7c35badeddb58c1bafe2fe5511cd309cff09e24afd25474fd748c41e260"
+      }
+    },
+    {
+      "schema": "lma.ltx098-host-pipeline/1",
+      "request": {
+        "prompt": "A small blue toy car drives slowly from right to left across a flat white tabletop. The camera stays still. Soft daylight illuminates the blue body and black wheels. A plain pale grey wall fills the background. Continuous smooth motion, realistic lighting.",
+        "seed": 42,
+        "width": 256,
+        "height": 256,
+        "frames": 33,
+        "fps": 24
+      },
+      "stages": [
+        {
+          "stage": "noise",
+          "seconds": 0.16232840000884607,
+          "resources": {
+            "observed": true,
+            "samples": 6,
+            "interval_ms": 20,
+            "observed_peak_working_set_bytes": 4935680,
+            "sampled_peak_private_bytes": 1064960,
+            "gpu_memory_measured": false
+          },
+          "native": {
+            "decode_noise_shape": [
+              1,
+              128,
+              5,
+              8,
+              8
+            ],
+            "engine_registered": false,
+            "initial_shape": [
+              1,
+              320,
+              128
+            ],
+            "matches_pytorch_seed": false,
+            "model_inference": false,
+            "ok": true,
+            "operation": "noise",
+            "physical_android": false,
+            "rng": "lma_splitmix64_box_muller_f32_v1",
+            "seed": 42,
+            "values_each": 40960
+          },
+          "vulkan_device_identity": []
+        },
+        {
+          "stage": "text",
+          "seconds": 202.87879049999174,
+          "resources": {
+            "observed": true,
+            "samples": 6489,
+            "interval_ms": 20,
+            "observed_peak_working_set_bytes": 3651268608,
+            "sampled_peak_private_bytes": 391901184,
+            "gpu_memory_measured": false
+          },
+          "native": {
+            "aborted_encodes": 0,
+            "backend": "cpu",
+            "buffers": {
+              "mapped_file_bytes": 3386856640,
+              "peak_compute_bytes": 342484192,
+              "tensor_bytes": 3385823232
+            },
+            "bytes": 884736,
+            "complete_video": false,
+            "encode_calls": 1,
+            "encoder_implementation": "independent_ggml_f32_compute",
+            "engine_registered": false,
+            "fixture": false,
+            "items": [
+              {
+                "bytes": 884736,
+                "mask": [
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1
+                ],
+                "offset_bytes": 0,
+                "shape": [
+                  1,
+                  54,
+                  4096
+                ],
+                "tokens": [
+                  71,
+                  422,
+                  1692,
+                  12,
+                  63,
+                  443,
+                  9350,
+                  5665,
+                  45,
+                  269,
+                  12,
+                  646,
+                  640,
+                  3,
+                  9,
+                  2667,
+                  872,
+                  953,
+                  2916,
+                  5,
+                  37,
+                  1861,
+                  13628,
+                  341,
+                  5,
+                  11759,
+                  24945,
+                  20468,
+                  7,
+                  8,
+                  1692,
+                  643,
+                  11,
+                  1001,
+                  8277,
+                  5,
+                  71,
+                  6080,
+                  12674,
+                  7592,
+                  1481,
+                  14,
+                  7,
+                  8,
+                  2458,
+                  5,
+                  31295,
+                  3050,
+                  4644,
+                  6,
+                  9555,
+                  3598,
+                  5,
+                  1
+                ],
+                "truncated": false
+              }
+            ],
+            "layers": 24,
+            "model_inference": true,
+            "model_loads": 1,
+            "model_unloads": 1,
+            "normalization": "raw_final_rms_norm",
+            "operation": "encode",
+            "physical_android": false,
+            "pooling": "none",
+            "schema": "lma.ltx098-text/1",
+            "vocabulary_loads": 1,
+            "vocabulary_unloads": 1,
+            "weight_execution": "streamed_f32_matrix_casts",
+            "width": 4096
+          },
+          "vulkan_device_identity": []
+        },
+        {
+          "stage": "sampling",
+          "seconds": 145.47745289996965,
+          "resources": {
+            "observed": true,
+            "samples": 4661,
+            "interval_ms": 20,
+            "observed_peak_working_set_bytes": 1179058176,
+            "sampled_peak_private_bytes": 4111736832,
+            "gpu_memory_measured": false
+          },
+          "native": {
+            "backend": "vulkan",
+            "complete_video_pipeline": false,
+            "compute_bytes": [
+              42992880,
+              42992880,
+              42992880,
+              42992880,
+              42992880,
+              42992880,
+              42992880,
+              42992880
+            ],
+            "engine_registered": false,
+            "fixture": false,
+            "layers": 28,
+            "layout": "batch_tokens_channels",
+            "model_executed": true,
+            "ok": true,
+            "operation": "sample",
+            "parameters": 1923385472,
+            "physical_android": false,
+            "precision_policy": "baseline_f32_compute_optional_f16_weight_storage",
+            "steps": 8,
+            "values": 40960,
+            "weight_bytes": 3849462272
+          },
+          "vulkan_device_identity": [
+            "ggml_vulkan: Found 1 Vulkan devices:",
+            "ggml_vulkan: 0 = NVIDIA GeForce RTX 3060 (NVIDIA) | uma: 0 | fp16: 0 | bf16: 1 | fp4: 0 | warp size: 32 | shared memory: 49152 | int dot: 1 | matrix cores: none"
+          ]
+        },
+        {
+          "stage": "unpatchify",
+          "seconds": 0.03267190000042319,
+          "resources": {
+            "observed": true,
+            "samples": 2,
+            "interval_ms": 20,
+            "observed_peak_working_set_bytes": 4911104,
+            "sampled_peak_private_bytes": 1060864,
+            "gpu_memory_measured": false
+          },
+          "native": {
+            "engine_registered": false,
+            "model_inference": false,
+            "ok": true,
+            "operation": "unpatchify",
+            "physical_android": false,
+            "shape": [
+              1,
+              128,
+              5,
+              8,
+              8
+            ]
+          },
+          "vulkan_device_identity": []
+        },
+        {
+          "stage": "vae",
+          "seconds": 223.49668380001094,
+          "resources": {
+            "observed": true,
+            "samples": 7137,
+            "interval_ms": 20,
+            "observed_peak_working_set_bytes": 1278820352,
+            "sampled_peak_private_bytes": 367230976,
+            "gpu_memory_measured": false
+          },
+          "native": {
+            "backend": "cpu",
+            "complete_video_pipeline": false,
+            "engine_registered": false,
+            "graph_runs": 9,
+            "max_live_sessions": 1,
+            "ok": true,
+            "output_bytes": 25952256,
+            "output_shape": [
+              1,
+              3,
+              33,
+              256,
+              256
+            ],
+            "physical_android": false,
+            "runtime_version": "1.24.3",
+            "session_loads": 9,
+            "session_unloads": 9
+          },
+          "vulkan_device_identity": []
+        },
+        {
+          "stage": "frames",
+          "seconds": 0.3003231000038795,
+          "resources": {
+            "observed": true,
+            "samples": 10,
+            "interval_ms": 20,
+            "observed_peak_working_set_bytes": 37015552,
+            "sampled_peak_private_bytes": 33218560,
+            "gpu_memory_measured": false
+          },
+          "native": {
+            "bytes": 6488092,
+            "clipped_high": 8353,
+            "clipped_low": 45498,
+            "engine_registered": false,
+            "format": "LMAFRM1_rgb24",
+            "maximum": 1.2221465110778809,
+            "minimum": -1.2729753255844116,
+            "model_inference": false,
+            "ok": true,
+            "operation": "frames",
+            "physical_android": false,
+            "rounding": "float32_scale_then_truncate",
+            "shape": [
+              33,
+              256,
+              256,
+              3
+            ]
+          },
+          "vulkan_device_identity": []
+        }
+      ],
+      "files": {
+        "initial-tokens.f32": {
+          "bytes": 163840,
+          "sha256": "f331d3651e15fe7ca29b9873ff6efac7307c5bd653ab24c7562a762cf0ccae41"
+        },
+        "decode-noise.f32": {
+          "bytes": 163840,
+          "sha256": "4e4bacaae0d3a6c302b3ed32ffbd3d732a53333df30cf27f29a161690601df89"
+        },
+        "caption.f32": {
+          "bytes": 884736,
+          "sha256": "b8f659fd16d9d78154d508057a974b380dd6b7849dac2f4fd46818a6447f1fff"
+        },
+        "denoised-tokens.f32": {
+          "bytes": 163840,
+          "sha256": "16d9aed7e02ee6222176f6d0534c5ec88bf2bed0dcbdd4490b87038172209cb7"
+        },
+        "denoised-ncthw.f32": {
+          "bytes": 163840,
+          "sha256": "2a8ae2e258e1efcde31ea03da502a78d370c5e4d5a61fb103bf23b4b66cb4226"
+        },
+        "decoded-ncthw.f32": {
+          "bytes": 25952256,
+          "sha256": "33fe9099a9bc4c125d916f390ad1cddedf8d99f48f463957c5c3c07f5af9412f"
+        },
+        "frames.lma": {
+          "bytes": 6488092,
+          "sha256": "567c76df6ab6b20bff6736d18424e41da50c59a58de2a6b4692282b2caf57d35"
+        },
+        "video.mp4": {
+          "bytes": 16623,
+          "sha256": "7228802045542f1682c9a17c0274f87e2cee8fdb63d86fb86d90ae65416b6b7e"
+        }
+      },
+      "text_tokens": 54,
+      "prompt_truncated": false,
+      "shape": {
+        "width": 256,
+        "height": 256,
+        "frames": 33,
+        "fps": 24
+      },
+      "seconds": 574.4049099000404,
+      "assets": [
+        {
+          "file": "t5-v1_1-xxl-encoder-Q5_K_M.gguf",
+          "bytes": 3386856640,
+          "sha256": "b51cbb10b1a7aac6dd1c3b62f0ed908bfd06e0b42d2f3577d43e061361f51dae"
+        },
+        {
+          "file": "ltx098-dit.gguf",
+          "bytes": 3849516416,
+          "sha256": "ef29c886b36f8a1dbc6693002256049407e512da7a61bf2cc750f1d4d2277ebf"
+        },
+        {
+          "file": "tokenizer_config.json",
+          "bytes": 1857,
+          "sha256": "b971dce1d2805c2a66da8657156e7114a30501c6ba602fc947c8bf607a3ead2d"
+        },
+        {
+          "file": "stage-00.onnx",
+          "bytes": 3451,
+          "sha256": "33f367287eaf5bc67aead22132d9d73aeaf66b51387bbc3a032a1c7eb936ff8b"
+        },
+        {
+          "file": "stage-00.onnx.data",
+          "bytes": 14160896,
+          "sha256": "8bfd5b8f04a0d924707997f112e9df029442404e749d596e529a9db2a08f6384"
+        },
+        {
+          "file": "stage-01.onnx",
+          "bytes": 80554,
+          "sha256": "29ede53a11d80957e6f0abe38780511c267762feba725b49c29bd36fa35d31b3"
+        },
+        {
+          "file": "stage-01.onnx.data",
+          "bytes": 1203920900,
+          "sha256": "f8b34f9531d3efb14455dde1acb032b6be2bbaeadb4066f6b400b0905cb885ba"
+        },
+        {
+          "file": "stage-02.onnx",
+          "bytes": 20672,
+          "sha256": "1b74a179d5f160239411d234411641195548607eb523e74c82e34a66b41df415"
+        },
+        {
+          "file": "stage-02.onnx.data",
+          "bytes": 453001216,
+          "sha256": "fbcc19df16368b873c1c4bf21a9e15861884d2a46b7674b9d946339760531aa6"
+        },
+        {
+          "file": "stage-03.onnx",
+          "bytes": 80515,
+          "sha256": "77422f7cab2804d8b7b2b1f160623571a0ed66561e77c69fb6ce741e453b8a3f"
+        },
+        {
+          "file": "stage-03.onnx.data",
+          "bytes": 302067716,
+          "sha256": "49880337fe10880ac3a6f92e63f2bda75a8f67738215be86b6fa34c3a2f6fe47"
+        },
+        {
+          "file": "stage-04.onnx",
+          "bytes": 20671,
+          "sha256": "d264368af810ad36e82b5038311cb86f3acb84351dc58f713ce7691732b6043a"
+        },
+        {
+          "file": "stage-04.onnx.data",
+          "bytes": 113254400,
+          "sha256": "7b0a476b6c29b9db4739e1b2fba33778eaec25ce687a4763f55773a2b5d6b38d"
+        },
+        {
+          "file": "stage-05.onnx",
+          "bytes": 80481,
+          "sha256": "489050eeef9cf3c5378145c13b3819cfc2c84cc02a5eae0f20bb543b47cc0fab"
+        },
+        {
+          "file": "stage-05.onnx.data",
+          "bytes": 76060676,
+          "sha256": "81789f36e257d9b7c22e6934955cee0c3fde3c2725591efa66cf96621d5d31b7"
+        },
+        {
+          "file": "stage-06.onnx",
+          "bytes": 20669,
+          "sha256": "c737a55510880d4b92e12e9aca7138a154ad6e58a96e89a4f2a530a3f369b88c"
+        },
+        {
+          "file": "stage-06.onnx.data",
+          "bytes": 28315648,
+          "sha256": "d377a63aee6e1ec50a92fab21aa4e354a23ff8496921528d9af581d272639e9b"
+        },
+        {
+          "file": "stage-07.onnx",
+          "bytes": 80460,
+          "sha256": "239145b9c04cbb5513ee96d2a41ff5b1f8db2c4cf0d9148c3092028b858b3576"
+        },
+        {
+          "file": "stage-07.onnx.data",
+          "bytes": 19287044,
+          "sha256": "22cad42d7baa91055ac2645d1f2c9ee5019ccf4907d40de4058edadbcf209f30"
+        },
+        {
+          "file": "stage-08.onnx",
+          "bytes": 14758,
+          "sha256": "ff463e05293456c25aa5b1a14d82b1f732f1aee0f00da45f8e28419509ba8ac9"
+        },
+        {
+          "file": "stage-08.onnx.data",
+          "bytes": 1191108,
+          "sha256": "6bf9520daca30d56175d92ce125337eb2bec547a229579279f835d70b09c8298"
+        }
+      ],
+      "media": {
+        "backend": "host_ffmpeg_libx264_not_android_mediacodec",
+        "ffmpeg_sha256": "d1e2a156261ecc675081943197a85f08f2868784a0af499171ede89353edad31",
+        "ffprobe_sha256": "70872c3ffbc43d0b2c570f9837f54d6e9a832f4ca25463e9735b6a3ec0621478",
+        "probe": {
+          "programs": [],
+          "stream_groups": [],
+          "streams": [
+            {
+              "codec_name": "h264",
+              "width": 256,
+              "height": 256,
+              "avg_frame_rate": "24/1",
+              "duration": "1.375000",
+              "nb_read_frames": "33"
+            }
+          ],
+          "format": {
+            "duration": "1.375000"
+          }
+        }
+      },
+      "rgb_statistics": {
+        "mean": 162.9823033496587,
+        "std": 53.16676359855212,
+        "frame_mad": [
+          0.4396921793619792,
+          0.4144287109375,
+          0.24122111002604166,
+          0.3236033121744792,
+          0.3252003987630208,
+          0.3087615966796875,
+          0.23468017578125,
+          0.18021647135416666,
+          0.224517822265625,
+          0.24042765299479166,
+          0.24707539876302084,
+          0.2602996826171875,
+          0.3551127115885417,
+          0.4224090576171875,
+          0.4269053141276042,
+          0.24032084147135416,
+          0.2738037109375,
+          0.399658203125,
+          0.330718994140625,
+          0.2579854329427083,
+          0.3859100341796875,
+          0.4291280110677083,
+          0.36981201171875,
+          0.4233907063802083,
+          1.5281575520833333,
+          1.3492685953776042,
+          0.8423258463541666,
+          0.3197784423828125,
+          0.6439310709635416,
+          0.65496826171875,
+          0.5001576741536459,
+          0.382720947265625
+        ]
+      },
+      "actual_prompt_conditioning": true,
+      "full_trained_host_text_to_frames": true,
+      "host_mp4_generated": true,
+      "official_pixart_weight_identity_compared": false,
+      "official_multiscale_default_reproduced": false,
+      "video_quality_accepted": false,
+      "engine_registered": false,
+      "packaged_in_apk": false,
+      "physical_android": false,
+      "remote_inference": false,
+      "virtualization_used": false,
+      "input_fingerprint": {
+        "native/moss_nano/onnx_external.hpp": "c1bb8f95ad2078472dbbf2ea0863493ac44f4aae7c4336cf5debb0db0d54fae5",
+        "research/ltx098/CMakeLists.txt": "cc86fb36397da930df9c30745c8a29a3748535a9dbd3e40b9f2a5f9c9886374f",
+        "research/ltx098/driver.cpp": "2c8b92b4826824d03ca7ec17e82b5f6ff6dba10b600013df6141d61c5df212f6",
+        "research/ltx098/licenses/ggml-MIT.txt": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
+        "research/ltx098/licenses/json-MIT.txt": "0e592e358cf7722906f417be85bc514f15bf6efd28cea98cb84e56ef7fddfc3e",
+        "research/ltx098/licenses/Lightricks-Apache-2.0.txt": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+        "research/ltx098/licenses/SPIRV-Headers-MIT.txt": "ea43b1de38a6f90c488800d66dec1ed671e68cda530266bc96951fb5b6307613",
+        "research/ltx098/licenses/Vulkan-Apache-2.0.txt": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+        "research/ltx098/licenses/Vulkan-Headers.txt": "95ad366d23fadf701d355bc45fb8b82ae2d700239471d35d41286ac3b08ff903",
+        "research/ltx098/licenses/Vulkan-MIT.txt": "1ca3502222d967f3be5751c55f6b7ee735b5383909c3b501495f54b216dbf227",
+        "research/ltx098/NOTICE": "bab99dbce59bed2470b85752c90464dcfac90c0c0d28577b9db1067ec1a5e872",
+        "research/ltx098/sampling.cpp": "6f5990a38f02462efeec0e68417f4c68981e9be2362b1e76cfd94e697f17003d",
+        "research/ltx098/sampling.hpp": "5e745b8b192cbec4881d9bb2fbfe2665670cc9cb3c853b319b8e8a896130d3cd",
+        "research/ltx098/sampling_driver.cpp": "3a8af8bc1bfcc28127649374e4818a1d368b46ad2ef0c24c1c998e8d32d80fc1",
+        "research/ltx098/transformer.cpp": "22c6d7ec964c5d9e25c90ba9f32c3a93b3d6d4db3c8aafb064cb45f3e03581fa",
+        "research/ltx098/transformer.hpp": "6f5fd68cba7278abb210322af20d70d3a0acd05631118bdeabdae54f4cd5e1d5",
+        "research/ltx098_pipeline/CMakeLists.txt": "6115af1b7ee6798413e1c4617eca8a7b9076722237f922e0f133ef1ebd1c6acc",
+        "research/ltx098_pipeline/NOTICE": "9241c16fca4550e732057f10ac073002e72974b65684d0d3fdae56015ec4222c",
+        "research/ltx098_pipeline/tensors.cpp": "f323b5ebf9537df2f3e7db79e77633a2f30103c23135b21b89043e16109bf116",
+        "research/ltx098_text/CMakeLists.txt": "695f191d631418b8c40fd7bf3887c10b316f92b15ad83d25568a7b06b50defda",
+        "research/ltx098_text/driver.cpp": "a81c396c91bf3c8da41ac2eb79ded04754737f553f46451228902504fef971eb",
+        "research/ltx098_text/encoder.cpp": "be727fc2645184560c25a2f6f90f30d780ae86b099716d67b2e8dd225b1009e6",
+        "research/ltx098_text/encoder.hpp": "592fe2f896174e69e807ce9a4343a2a1da54b523b3ccad0fa337f6d34b6cfbc1",
+        "research/ltx098_text/graph.cpp": "a17f97e9b932c302d3a7e8c1ca7020696ed765a4ddda51fefca9288d7b886190",
+        "research/ltx098_text/graph.hpp": "ae16035400caedb79f33db97497e6588f071901bd0935f7646e0e3b02bc7e36a",
+        "research/ltx098_text/licenses/llama-MIT.txt": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
+        "research/ltx098_text/NOTICE": "176bd96eed8972ba6a9c4bdebf9f19b166397c0eb50717be77547056ad974db4",
+        "research/ltx098_vae/CMakeLists.txt": "fcc7e89deb1b1bf4d1dc74c329225e4f6ceccd997a2370b8d06263293ec93b9f",
+        "research/ltx098_vae/driver.cpp": "f275cabc410dd07e38058902676e3ca9c4dc7a0684f4f39b5a386b74fb4d3604",
+        "research/ltx098_vae/NOTICE": "b5bec20058b46269f031462291b56fea8f5620359ec71f64353e76a9c4f6bcd3",
+        "research/soulx/dsp.hpp": "ef6a28cae0d2e72d1b84890437286b0ed8a20690c0ac07b2ddf8162ee2d2fd58",
+        "research/soulx_ort/android_log.cpp": "216f630761ff67a00cfe47db941338f45560fc45486ebcbdff196cf36dac3d04",
+        "research/soulx_ort/LICENSE-ONNX-RUNTIME-MIT": "c250d6278f0b47a6439fb7592b08b58a55eb9f535aa49a1db63211c3f982b674",
+        "research/soulx_ort/NOTICE": "69487267d86f7998917bc9f7e9b6d2e30e168f41c92369f41a33e225c0bfceb6",
+        "research/soulx_ort/runtime.hpp": "0586ad63c3210ec42d1c3cc956beb05614e56e9cb803632d596e57935689b2c8",
+        "research/soulx_ort/types.hpp": "f0822ae37dd26996501f2b69e4e1bb9404ad53903dd267ff793ee60d96f42de4",
+        "third_party/ltx098-pipeline-source-lock.json": "3fc857b18056ef284b17e656c4dfa2d79e320e8f5463277a40b054981190769b",
+        "third_party/ltx098-source-lock.json": "28acd99486f6ca76a06d038076175ac01ca55c7b1d8c3ba6dab9190291ac8779",
+        "third_party/ltx098-text-source-lock.json": "04b2f7892a4f047363fbaf3ba555682bf201c8320fa1cc7f4d5a68b2884512f4",
+        "third_party/ltx098-trained-assets.json": "0fe1d00ff9f921566b37b499cdc87c51f09947ca9f7a2e7ccd5af1ba3eeaca1c",
+        "third_party/ltx098-vae-source-lock.json": "201ac18ca78b381f810f0567ecd300a5bfda1b489893be56d28b30d6e6db2dcb",
+        "third_party/soulx-acoustic-source-lock.json": "b39e10c415c5f30d4e4adb52327e1e04df371407131f47617622da913b268ac5",
+        "tools/build_ltx098.py": "bf39449e38190a666093f6954d133a76da36d519817ca636703f030100d4faf8",
+        "tools/build_ltx098_tensors.py": "ea171eeeef578e193a96dd3c1a1471254d89d9d1f622797c32ef8e7f814157a1",
+        "tools/build_ltx098_text.py": "c9c7a6f1c619e9ab15d95baf9a53d8854cbe217a698b22e102cdf1cd7cf18b85",
+        "tools/build_ltx098_vae.py": "5ed2804db3fb13044e4aa30022368a8323ac73ed6ebcb875b27d5304b10c61c0",
+        "tools/evidence.py": "e7b177f6ee6793eeffbcc555127f6b9bc3ab2e5f318006302e75c0c41c6f5a5a",
+        "tools/export_ltx098.py": "1f0585251a4500bd8841d0deae95c5efc2b857d501d185ae1e0d7765fd62fcb7",
+        "tools/fetch_ltx098_text.py": "55782095a1b941dc809b33966f62aeffda1b2ca0c719033610432ec00599b577",
+        "tools/ltx098_assets.py": "0380166ca9d3f2f9a028675e6f9d9a827005767a67f66e3c1f00626226ae155c",
+        "tools/ltx098_fixture.py": "60c5730c77dda5055a7cef23b91af0042493a53d49e8f3b898e7634b78170ef8",
+        "tools/ltx098_pipeline.py": "e4a53be7a24852c3a3e8488cb5b7208f31648a9d902ef3202882ea4ed4ce7a6c",
+        "tools/ltx098_vae.py": "f64b71b00d95050bad34252db9ac4935e84d550790ae147b40eddc43c3b871dd",
+        "tools/test_ltx098_text.py": "79a4a7c35badeddb58c1bafe2fe5511cd309cff09e24afd25474fd748c41e260"
+      }
+    },
+    {
+      "schema": "lma.ltx098-host-pipeline/1",
+      "request": {
+        "prompt": "A bright red balloon floats slowly from left to right against a clear blue sky. The camera stays still. Soft daylight illuminates the round balloon. Its thin white string sways gently in the breeze. Continuous smooth motion, realistic lighting.",
+        "seed": 42,
+        "width": 256,
+        "height": 256,
+        "frames": 33,
+        "fps": 24
+      },
+      "stages": [
+        {
+          "stage": "noise",
+          "seconds": 0.05473929998697713,
+          "resources": {
+            "observed": true,
+            "samples": 2,
+            "interval_ms": 20,
+            "observed_peak_working_set_bytes": 4923392,
+            "sampled_peak_private_bytes": 1048576,
+            "gpu_memory_measured": false
+          },
+          "native": {
+            "decode_noise_shape": [
+              1,
+              128,
+              5,
+              8,
+              8
+            ],
+            "engine_registered": false,
+            "initial_shape": [
+              1,
+              320,
+              128
+            ],
+            "matches_pytorch_seed": false,
+            "model_inference": false,
+            "ok": true,
+            "operation": "noise",
+            "physical_android": false,
+            "rng": "lma_splitmix64_box_muller_f32_v1",
+            "seed": 42,
+            "values_each": 40960
+          },
+          "vulkan_device_identity": []
+        },
+        {
+          "stage": "text",
+          "seconds": 110.85423749999609,
+          "resources": {
+            "observed": true,
+            "samples": 3449,
+            "interval_ms": 20,
+            "observed_peak_working_set_bytes": 3650998272,
+            "sampled_peak_private_bytes": 391630848,
+            "gpu_memory_measured": false
+          },
+          "native": {
+            "aborted_encodes": 0,
+            "backend": "cpu",
+            "buffers": {
+              "mapped_file_bytes": 3386856640,
+              "peak_compute_bytes": 342342112,
+              "tensor_bytes": 3385823232
+            },
+            "bytes": 868352,
+            "complete_video": false,
+            "encode_calls": 1,
+            "encoder_implementation": "independent_ggml_f32_compute",
+            "engine_registered": false,
+            "fixture": false,
+            "items": [
+              {
+                "bytes": 868352,
+                "mask": [
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1
+                ],
+                "offset_bytes": 0,
+                "shape": [
+                  1,
+                  53,
+                  4096
+                ],
+                "tokens": [
+                  71,
+                  2756,
+                  1131,
+                  14526,
+                  3,
+                  12660,
+                  7,
+                  5665,
+                  45,
+                  646,
+                  12,
+                  269,
+                  581,
+                  3,
+                  9,
+                  964,
+                  1692,
+                  5796,
+                  5,
+                  37,
+                  1861,
+                  13628,
+                  341,
+                  5,
+                  11759,
+                  24945,
+                  20468,
+                  7,
+                  8,
+                  1751,
+                  14526,
+                  5,
+                  94,
+                  7,
+                  5551,
+                  872,
+                  6108,
+                  3,
+                  7,
+                  6415,
+                  10772,
+                  16,
+                  8,
+                  15825,
+                  5,
+                  31295,
+                  3050,
+                  4644,
+                  6,
+                  9555,
+                  3598,
+                  5,
+                  1
+                ],
+                "truncated": false
+              }
+            ],
+            "layers": 24,
+            "model_inference": true,
+            "model_loads": 1,
+            "model_unloads": 1,
+            "normalization": "raw_final_rms_norm",
+            "operation": "encode",
+            "physical_android": false,
+            "pooling": "none",
+            "schema": "lma.ltx098-text/1",
+            "vocabulary_loads": 1,
+            "vocabulary_unloads": 1,
+            "weight_execution": "streamed_f32_matrix_casts",
+            "width": 4096
+          },
+          "vulkan_device_identity": []
+        },
+        {
+          "stage": "sampling",
+          "seconds": 150.7573478000122,
+          "resources": {
+            "observed": true,
+            "samples": 4812,
+            "interval_ms": 20,
+            "observed_peak_working_set_bytes": 1220845568,
+            "sampled_peak_private_bytes": 4327120896,
+            "gpu_memory_measured": false
+          },
+          "native": {
+            "backend": "vulkan",
+            "complete_video_pipeline": false,
+            "compute_bytes": [
+              42976496,
+              42976496,
+              42976496,
+              42976496,
+              42976496,
+              42976496,
+              42976496,
+              42976496
+            ],
+            "engine_registered": false,
+            "fixture": false,
+            "layers": 28,
+            "layout": "batch_tokens_channels",
+            "model_executed": true,
+            "ok": true,
+            "operation": "sample",
+            "parameters": 1923385472,
+            "physical_android": false,
+            "precision_policy": "baseline_f32_compute_optional_f16_weight_storage",
+            "steps": 8,
+            "values": 40960,
+            "weight_bytes": 3849462272
+          },
+          "vulkan_device_identity": [
+            "ggml_vulkan: Found 1 Vulkan devices:",
+            "ggml_vulkan: 0 = NVIDIA GeForce RTX 3060 (NVIDIA) | uma: 0 | fp16: 0 | bf16: 1 | fp4: 0 | warp size: 32 | shared memory: 49152 | int dot: 1 | matrix cores: none"
+          ]
+        },
+        {
+          "stage": "unpatchify",
+          "seconds": 0.06161539995810017,
+          "resources": {
+            "observed": true,
+            "samples": 3,
+            "interval_ms": 20,
+            "observed_peak_working_set_bytes": 5083136,
+            "sampled_peak_private_bytes": 1060864,
+            "gpu_memory_measured": false
+          },
+          "native": {
+            "engine_registered": false,
+            "model_inference": false,
+            "ok": true,
+            "operation": "unpatchify",
+            "physical_android": false,
+            "shape": [
+              1,
+              128,
+              5,
+              8,
+              8
+            ]
+          },
+          "vulkan_device_identity": []
+        },
+        {
+          "stage": "vae",
+          "seconds": 133.39355079998495,
+          "resources": {
+            "observed": true,
+            "samples": 4238,
+            "interval_ms": 20,
+            "observed_peak_working_set_bytes": 1279008768,
+            "sampled_peak_private_bytes": 367681536,
+            "gpu_memory_measured": false
+          },
+          "native": {
+            "backend": "cpu",
+            "complete_video_pipeline": false,
+            "engine_registered": false,
+            "graph_runs": 9,
+            "max_live_sessions": 1,
+            "ok": true,
+            "output_bytes": 25952256,
+            "output_shape": [
+              1,
+              3,
+              33,
+              256,
+              256
+            ],
+            "physical_android": false,
+            "runtime_version": "1.24.3",
+            "session_loads": 9,
+            "session_unloads": 9
+          },
+          "vulkan_device_identity": []
+        },
+        {
+          "stage": "frames",
+          "seconds": 1.5677393000223674,
+          "resources": {
+            "observed": true,
+            "samples": 51,
+            "interval_ms": 20,
+            "observed_peak_working_set_bytes": 37011456,
+            "sampled_peak_private_bytes": 33226752,
+            "gpu_memory_measured": false
+          },
+          "native": {
+            "bytes": 6488092,
+            "clipped_high": 4491,
+            "clipped_low": 432111,
+            "engine_registered": false,
+            "format": "LMAFRM1_rgb24",
+            "maximum": 1.328181266784668,
+            "minimum": -1.4326215982437134,
+            "model_inference": false,
+            "ok": true,
+            "operation": "frames",
+            "physical_android": false,
+            "rounding": "float32_scale_then_truncate",
+            "shape": [
+              33,
+              256,
+              256,
+              3
+            ]
+          },
+          "vulkan_device_identity": []
+        }
+      ],
+      "files": {
+        "initial-tokens.f32": {
+          "bytes": 163840,
+          "sha256": "f331d3651e15fe7ca29b9873ff6efac7307c5bd653ab24c7562a762cf0ccae41"
+        },
+        "decode-noise.f32": {
+          "bytes": 163840,
+          "sha256": "4e4bacaae0d3a6c302b3ed32ffbd3d732a53333df30cf27f29a161690601df89"
+        },
+        "caption.f32": {
+          "bytes": 868352,
+          "sha256": "02214c71ce0655c9ca336326a02151b6f16a6b90009aaaf1d11c713806b19c8f"
+        },
+        "denoised-tokens.f32": {
+          "bytes": 163840,
+          "sha256": "5f493bb0d262965059d759e07aad814dbeb33f3f1e252973a341c294b6ad16af"
+        },
+        "denoised-ncthw.f32": {
+          "bytes": 163840,
+          "sha256": "2c981b6b76f5a145015fd316a4968d96ddad8fbeda853872e6d7516c9dd4693c"
+        },
+        "decoded-ncthw.f32": {
+          "bytes": 25952256,
+          "sha256": "63d3b1467d77c0a2d620b31e83f363607843e5bed7b107bbe0ecd223bf1ee7da"
+        },
+        "frames.lma": {
+          "bytes": 6488092,
+          "sha256": "d354f0f82a509ab3595578286bc96901fd3e57599806a78a7f84df96387ca4cb"
+        },
+        "video.mp4": {
+          "bytes": 17738,
+          "sha256": "67c56a3c362fa2df106451179e275a0bbd50ca7aefe699535ba8665516ecad1d"
+        }
+      },
+      "text_tokens": 53,
+      "prompt_truncated": false,
+      "shape": {
+        "width": 256,
+        "height": 256,
+        "frames": 33,
+        "fps": 24
+      },
+      "seconds": 398.16154080000706,
+      "assets": [
+        {
+          "file": "t5-v1_1-xxl-encoder-Q5_K_M.gguf",
+          "bytes": 3386856640,
+          "sha256": "b51cbb10b1a7aac6dd1c3b62f0ed908bfd06e0b42d2f3577d43e061361f51dae"
+        },
+        {
+          "file": "ltx098-dit.gguf",
+          "bytes": 3849516416,
+          "sha256": "ef29c886b36f8a1dbc6693002256049407e512da7a61bf2cc750f1d4d2277ebf"
+        },
+        {
+          "file": "tokenizer_config.json",
+          "bytes": 1857,
+          "sha256": "b971dce1d2805c2a66da8657156e7114a30501c6ba602fc947c8bf607a3ead2d"
+        },
+        {
+          "file": "stage-00.onnx",
+          "bytes": 3451,
+          "sha256": "33f367287eaf5bc67aead22132d9d73aeaf66b51387bbc3a032a1c7eb936ff8b"
+        },
+        {
+          "file": "stage-00.onnx.data",
+          "bytes": 14160896,
+          "sha256": "8bfd5b8f04a0d924707997f112e9df029442404e749d596e529a9db2a08f6384"
+        },
+        {
+          "file": "stage-01.onnx",
+          "bytes": 80554,
+          "sha256": "29ede53a11d80957e6f0abe38780511c267762feba725b49c29bd36fa35d31b3"
+        },
+        {
+          "file": "stage-01.onnx.data",
+          "bytes": 1203920900,
+          "sha256": "f8b34f9531d3efb14455dde1acb032b6be2bbaeadb4066f6b400b0905cb885ba"
+        },
+        {
+          "file": "stage-02.onnx",
+          "bytes": 20672,
+          "sha256": "1b74a179d5f160239411d234411641195548607eb523e74c82e34a66b41df415"
+        },
+        {
+          "file": "stage-02.onnx.data",
+          "bytes": 453001216,
+          "sha256": "fbcc19df16368b873c1c4bf21a9e15861884d2a46b7674b9d946339760531aa6"
+        },
+        {
+          "file": "stage-03.onnx",
+          "bytes": 80515,
+          "sha256": "77422f7cab2804d8b7b2b1f160623571a0ed66561e77c69fb6ce741e453b8a3f"
+        },
+        {
+          "file": "stage-03.onnx.data",
+          "bytes": 302067716,
+          "sha256": "49880337fe10880ac3a6f92e63f2bda75a8f67738215be86b6fa34c3a2f6fe47"
+        },
+        {
+          "file": "stage-04.onnx",
+          "bytes": 20671,
+          "sha256": "d264368af810ad36e82b5038311cb86f3acb84351dc58f713ce7691732b6043a"
+        },
+        {
+          "file": "stage-04.onnx.data",
+          "bytes": 113254400,
+          "sha256": "7b0a476b6c29b9db4739e1b2fba33778eaec25ce687a4763f55773a2b5d6b38d"
+        },
+        {
+          "file": "stage-05.onnx",
+          "bytes": 80481,
+          "sha256": "489050eeef9cf3c5378145c13b3819cfc2c84cc02a5eae0f20bb543b47cc0fab"
+        },
+        {
+          "file": "stage-05.onnx.data",
+          "bytes": 76060676,
+          "sha256": "81789f36e257d9b7c22e6934955cee0c3fde3c2725591efa66cf96621d5d31b7"
+        },
+        {
+          "file": "stage-06.onnx",
+          "bytes": 20669,
+          "sha256": "c737a55510880d4b92e12e9aca7138a154ad6e58a96e89a4f2a530a3f369b88c"
+        },
+        {
+          "file": "stage-06.onnx.data",
+          "bytes": 28315648,
+          "sha256": "d377a63aee6e1ec50a92fab21aa4e354a23ff8496921528d9af581d272639e9b"
+        },
+        {
+          "file": "stage-07.onnx",
+          "bytes": 80460,
+          "sha256": "239145b9c04cbb5513ee96d2a41ff5b1f8db2c4cf0d9148c3092028b858b3576"
+        },
+        {
+          "file": "stage-07.onnx.data",
+          "bytes": 19287044,
+          "sha256": "22cad42d7baa91055ac2645d1f2c9ee5019ccf4907d40de4058edadbcf209f30"
+        },
+        {
+          "file": "stage-08.onnx",
+          "bytes": 14758,
+          "sha256": "ff463e05293456c25aa5b1a14d82b1f732f1aee0f00da45f8e28419509ba8ac9"
+        },
+        {
+          "file": "stage-08.onnx.data",
+          "bytes": 1191108,
+          "sha256": "6bf9520daca30d56175d92ce125337eb2bec547a229579279f835d70b09c8298"
+        }
+      ],
+      "media": {
+        "backend": "host_ffmpeg_libx264_not_android_mediacodec",
+        "ffmpeg_sha256": "d1e2a156261ecc675081943197a85f08f2868784a0af499171ede89353edad31",
+        "ffprobe_sha256": "70872c3ffbc43d0b2c570f9837f54d6e9a832f4ca25463e9735b6a3ec0621478",
+        "probe": {
+          "programs": [],
+          "stream_groups": [],
+          "streams": [
+            {
+              "codec_name": "h264",
+              "width": 256,
+              "height": 256,
+              "avg_frame_rate": "24/1",
+              "duration": "1.375000",
+              "nb_read_frames": "33"
+            }
+          ],
+          "format": {
+            "duration": "1.375000"
+          }
+        }
+      },
+      "rgb_statistics": {
+        "mean": 171.33542332504734,
+        "std": 64.84043217405525,
+        "frame_mad": [
+          1.4727325439453125,
+          1.8839670817057292,
+          1.1939137776692708,
+          1.3356272379557292,
+          1.6312052408854167,
+          1.3342183430989583,
+          1.3241221110026042,
+          1.223785400390625,
+          1.2826182047526042,
+          1.3481648763020833,
+          1.2261505126953125,
+          1.5441131591796875,
+          1.4617513020833333,
+          0.8034210205078125,
+          1.49078369140625,
+          1.4185028076171875,
+          1.0359649658203125,
+          1.5329691569010417,
+          1.1284586588541667,
+          1.1514078776041667,
+          1.4918467203776042,
+          1.066131591796875,
+          1.4253438313802083,
+          1.1216379801432292,
+          1.4439849853515625,
+          1.1433308919270833,
+          1.2173309326171875,
+          1.4677480061848958,
+          1.2091267903645833,
+          1.2802581787109375,
+          1.2916412353515625,
+          1.1476287841796875
+        ]
+      },
+      "actual_prompt_conditioning": true,
+      "full_trained_host_text_to_frames": true,
+      "host_mp4_generated": true,
+      "official_pixart_weight_identity_compared": false,
+      "official_multiscale_default_reproduced": false,
+      "video_quality_accepted": false,
+      "engine_registered": false,
+      "packaged_in_apk": false,
+      "physical_android": false,
+      "remote_inference": false,
+      "virtualization_used": false,
+      "input_fingerprint": {
+        "native/moss_nano/onnx_external.hpp": "c1bb8f95ad2078472dbbf2ea0863493ac44f4aae7c4336cf5debb0db0d54fae5",
+        "research/ltx098/CMakeLists.txt": "cc86fb36397da930df9c30745c8a29a3748535a9dbd3e40b9f2a5f9c9886374f",
+        "research/ltx098/driver.cpp": "2c8b92b4826824d03ca7ec17e82b5f6ff6dba10b600013df6141d61c5df212f6",
+        "research/ltx098/licenses/ggml-MIT.txt": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
+        "research/ltx098/licenses/json-MIT.txt": "0e592e358cf7722906f417be85bc514f15bf6efd28cea98cb84e56ef7fddfc3e",
+        "research/ltx098/licenses/Lightricks-Apache-2.0.txt": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+        "research/ltx098/licenses/SPIRV-Headers-MIT.txt": "ea43b1de38a6f90c488800d66dec1ed671e68cda530266bc96951fb5b6307613",
+        "research/ltx098/licenses/Vulkan-Apache-2.0.txt": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+        "research/ltx098/licenses/Vulkan-Headers.txt": "95ad366d23fadf701d355bc45fb8b82ae2d700239471d35d41286ac3b08ff903",
+        "research/ltx098/licenses/Vulkan-MIT.txt": "1ca3502222d967f3be5751c55f6b7ee735b5383909c3b501495f54b216dbf227",
+        "research/ltx098/NOTICE": "bab99dbce59bed2470b85752c90464dcfac90c0c0d28577b9db1067ec1a5e872",
+        "research/ltx098/sampling.cpp": "6f5990a38f02462efeec0e68417f4c68981e9be2362b1e76cfd94e697f17003d",
+        "research/ltx098/sampling.hpp": "5e745b8b192cbec4881d9bb2fbfe2665670cc9cb3c853b319b8e8a896130d3cd",
+        "research/ltx098/sampling_driver.cpp": "3a8af8bc1bfcc28127649374e4818a1d368b46ad2ef0c24c1c998e8d32d80fc1",
+        "research/ltx098/transformer.cpp": "22c6d7ec964c5d9e25c90ba9f32c3a93b3d6d4db3c8aafb064cb45f3e03581fa",
+        "research/ltx098/transformer.hpp": "6f5fd68cba7278abb210322af20d70d3a0acd05631118bdeabdae54f4cd5e1d5",
+        "research/ltx098_pipeline/CMakeLists.txt": "6115af1b7ee6798413e1c4617eca8a7b9076722237f922e0f133ef1ebd1c6acc",
+        "research/ltx098_pipeline/NOTICE": "9241c16fca4550e732057f10ac073002e72974b65684d0d3fdae56015ec4222c",
+        "research/ltx098_pipeline/tensors.cpp": "f323b5ebf9537df2f3e7db79e77633a2f30103c23135b21b89043e16109bf116",
+        "research/ltx098_text/CMakeLists.txt": "695f191d631418b8c40fd7bf3887c10b316f92b15ad83d25568a7b06b50defda",
+        "research/ltx098_text/driver.cpp": "a81c396c91bf3c8da41ac2eb79ded04754737f553f46451228902504fef971eb",
+        "research/ltx098_text/encoder.cpp": "be727fc2645184560c25a2f6f90f30d780ae86b099716d67b2e8dd225b1009e6",
+        "research/ltx098_text/encoder.hpp": "592fe2f896174e69e807ce9a4343a2a1da54b523b3ccad0fa337f6d34b6cfbc1",
+        "research/ltx098_text/graph.cpp": "a17f97e9b932c302d3a7e8c1ca7020696ed765a4ddda51fefca9288d7b886190",
+        "research/ltx098_text/graph.hpp": "ae16035400caedb79f33db97497e6588f071901bd0935f7646e0e3b02bc7e36a",
+        "research/ltx098_text/licenses/llama-MIT.txt": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
+        "research/ltx098_text/NOTICE": "176bd96eed8972ba6a9c4bdebf9f19b166397c0eb50717be77547056ad974db4",
+        "research/ltx098_vae/CMakeLists.txt": "fcc7e89deb1b1bf4d1dc74c329225e4f6ceccd997a2370b8d06263293ec93b9f",
+        "research/ltx098_vae/driver.cpp": "f275cabc410dd07e38058902676e3ca9c4dc7a0684f4f39b5a386b74fb4d3604",
+        "research/ltx098_vae/NOTICE": "b5bec20058b46269f031462291b56fea8f5620359ec71f64353e76a9c4f6bcd3",
+        "research/soulx/dsp.hpp": "ef6a28cae0d2e72d1b84890437286b0ed8a20690c0ac07b2ddf8162ee2d2fd58",
+        "research/soulx_ort/android_log.cpp": "216f630761ff67a00cfe47db941338f45560fc45486ebcbdff196cf36dac3d04",
+        "research/soulx_ort/LICENSE-ONNX-RUNTIME-MIT": "c250d6278f0b47a6439fb7592b08b58a55eb9f535aa49a1db63211c3f982b674",
+        "research/soulx_ort/NOTICE": "69487267d86f7998917bc9f7e9b6d2e30e168f41c92369f41a33e225c0bfceb6",
+        "research/soulx_ort/runtime.hpp": "0586ad63c3210ec42d1c3cc956beb05614e56e9cb803632d596e57935689b2c8",
+        "research/soulx_ort/types.hpp": "f0822ae37dd26996501f2b69e4e1bb9404ad53903dd267ff793ee60d96f42de4",
+        "third_party/ltx098-pipeline-source-lock.json": "3fc857b18056ef284b17e656c4dfa2d79e320e8f5463277a40b054981190769b",
+        "third_party/ltx098-source-lock.json": "28acd99486f6ca76a06d038076175ac01ca55c7b1d8c3ba6dab9190291ac8779",
+        "third_party/ltx098-text-source-lock.json": "04b2f7892a4f047363fbaf3ba555682bf201c8320fa1cc7f4d5a68b2884512f4",
+        "third_party/ltx098-trained-assets.json": "0fe1d00ff9f921566b37b499cdc87c51f09947ca9f7a2e7ccd5af1ba3eeaca1c",
+        "third_party/ltx098-vae-source-lock.json": "201ac18ca78b381f810f0567ecd300a5bfda1b489893be56d28b30d6e6db2dcb",
+        "third_party/soulx-acoustic-source-lock.json": "b39e10c415c5f30d4e4adb52327e1e04df371407131f47617622da913b268ac5",
+        "tools/build_ltx098.py": "bf39449e38190a666093f6954d133a76da36d519817ca636703f030100d4faf8",
+        "tools/build_ltx098_tensors.py": "ea171eeeef578e193a96dd3c1a1471254d89d9d1f622797c32ef8e7f814157a1",
+        "tools/build_ltx098_text.py": "c9c7a6f1c619e9ab15d95baf9a53d8854cbe217a698b22e102cdf1cd7cf18b85",
+        "tools/build_ltx098_vae.py": "5ed2804db3fb13044e4aa30022368a8323ac73ed6ebcb875b27d5304b10c61c0",
+        "tools/evidence.py": "e7b177f6ee6793eeffbcc555127f6b9bc3ab2e5f318006302e75c0c41c6f5a5a",
+        "tools/export_ltx098.py": "1f0585251a4500bd8841d0deae95c5efc2b857d501d185ae1e0d7765fd62fcb7",
+        "tools/fetch_ltx098_text.py": "55782095a1b941dc809b33966f62aeffda1b2ca0c719033610432ec00599b577",
+        "tools/ltx098_assets.py": "0380166ca9d3f2f9a028675e6f9d9a827005767a67f66e3c1f00626226ae155c",
+        "tools/ltx098_fixture.py": "60c5730c77dda5055a7cef23b91af0042493a53d49e8f3b898e7634b78170ef8",
+        "tools/ltx098_pipeline.py": "e4a53be7a24852c3a3e8488cb5b7208f31648a9d902ef3202882ea4ed4ce7a6c",
+        "tools/ltx098_vae.py": "f64b71b00d95050bad34252db9ac4935e84d550790ae147b40eddc43c3b871dd",
+        "tools/test_ltx098_text.py": "79a4a7c35badeddb58c1bafe2fe5511cd309cff09e24afd25474fd748c41e260"
+      }
+    }
+  ],
+  "original_oracle": {
+    "schema": "lma.ltx098-pipeline-oracle/1",
+    "cases": [
+      {
+        "name": "case-0",
+        "native_pipeline": "build/ltx098-pipeline-probe/red-42",
+        "native_record_sha256": "141ee60b034b83c4d9dc718ef4cecbbc9e8092ee45183dfb10dba38b74b3558a",
+        "tokens": [
+          71,
+          2756,
+          1131,
+          14526,
+          3,
+          12660,
+          7,
+          5665,
+          45,
+          646,
+          12,
+          269,
+          581,
+          3,
+          9,
+          964,
+          1692,
+          5796,
+          5,
+          37,
+          1861,
+          13628,
+          341,
+          5,
+          11759,
+          24945,
+          20468,
+          7,
+          8,
+          1751,
+          14526,
+          5,
+          94,
+          7,
+          5551,
+          872,
+          6108,
+          3,
+          7,
+          6415,
+          10772,
+          16,
+          8,
+          15825,
+          5,
+          31295,
+          3050,
+          4644,
+          6,
+          9555,
+          3598,
+          5,
+          1
+        ],
+        "shape": {
+          "width": 256,
+          "height": 256,
+          "frames": 33,
+          "fps": 24
+        },
+        "sampling_steps": [
+          {
+            "step": 0,
+            "sigma": 1.0,
+            "seconds": 30.72566050000023,
+            "finite": true
+          },
+          {
+            "step": 1,
+            "sigma": 0.9937499761581421,
+            "seconds": 28.154717099969275,
+            "finite": true
+          },
+          {
+            "step": 2,
+            "sigma": 0.987500011920929,
+            "seconds": 30.738616799993906,
+            "finite": true
+          },
+          {
+            "step": 3,
+            "sigma": 0.981249988079071,
+            "seconds": 27.616051399963908,
+            "finite": true
+          },
+          {
+            "step": 4,
+            "sigma": 0.9750000238418579,
+            "seconds": 30.100290399976075,
+            "finite": true
+          },
+          {
+            "step": 5,
+            "sigma": 0.909375011920929,
+            "seconds": 28.84693810000317,
+            "finite": true
+          },
+          {
+            "step": 6,
+            "sigma": 0.7250000238418579,
+            "seconds": 29.41697329998715,
+            "finite": true
+          },
+          {
+            "step": 7,
+            "sigma": 0.421875,
+            "seconds": 29.691661699966062,
+            "finite": true
+          }
+        ],
+        "decoder_seconds": 12.698754400014877,
+        "files": {
+          "caption.f32": {
+            "bytes": 868352,
+            "sha256": "ca2583cf603ce3752000b49811f3da95358f25f0cff127041e52d8f4d23de13c"
+          },
+          "decoded-ncthw.f32": {
+            "bytes": 25952256,
+            "sha256": "af0c2c8615510edb43cb4f45fa91e490e6b7faff9c4b6d36e9e022a92846091e"
+          },
+          "denoised-ncthw.f32": {
+            "bytes": 163840,
+            "sha256": "a5cf2bd37c330da1af478d859648c15d9c5facdd69c868057b8c227d83716298"
+          },
+          "rgb.bin": {
+            "bytes": 6488064,
+            "sha256": "d65d23e3edf5dfb3aa37762127c3429f202ab94535a10d975e6448e4c94e5c73"
+          },
+          "sampling-step-0.f32": {
+            "bytes": 163840,
+            "sha256": "ed953817979abbed7c2c285193d3e71879f520159f7e9f4a233269b60b8467cf"
+          },
+          "sampling-step-1.f32": {
+            "bytes": 163840,
+            "sha256": "fdcc372dedb6cbd2fafb9bd08d9f63e4ff0071a9f6771418a2921b87657b6bbe"
+          },
+          "sampling-step-2.f32": {
+            "bytes": 163840,
+            "sha256": "85a60f0f2eef924ec8dc726e13afa6af31745b84b9e8c6e92de71a0e3993aa2a"
+          },
+          "sampling-step-3.f32": {
+            "bytes": 163840,
+            "sha256": "9f57f0a2557af1ebf02a6e10a071339623a43b97568e16ad46b2c990cb11d3e9"
+          },
+          "sampling-step-4.f32": {
+            "bytes": 163840,
+            "sha256": "dec80f614eb222845aa3429b2c8305adbac9505e4d350ecf7e92b1aef19fb29e"
+          },
+          "sampling-step-5.f32": {
+            "bytes": 163840,
+            "sha256": "9cdffd541c3b6dd5f93adba43391ed2e6b006f5b5803b962c7bf88971bc5ebba"
+          },
+          "sampling-step-6.f32": {
+            "bytes": 163840,
+            "sha256": "32f36c319db1b2d97d9c206e8c021e4d8611c9b50630d0b8bd8b255b8d7f4ffd"
+          },
+          "sampling-step-7.f32": {
+            "bytes": 163840,
+            "sha256": "dc97e73c80a6d53d3b948f34c24971ca916f48a91b7f1522c6ff26b81ebe8d38"
+          },
+          "sampling-velocity.f32": {
+            "bytes": 163840,
+            "sha256": "84722c80fbde8860b93796e5227d50c2c117601b6d7191c5889882d4dae05130"
+          }
+        }
+      },
+      {
+        "name": "case-1",
+        "native_pipeline": "build/ltx098-pipeline-tests/run-s3z3urrv/native-1",
+        "native_record_sha256": "f056002e1bee318f3c1d1b232bd8ebfc1631143cd40a9b0563709fe9d66dfa6a",
+        "tokens": [
+          71,
+          422,
+          1692,
+          12,
+          63,
+          443,
+          9350,
+          5665,
+          45,
+          269,
+          12,
+          646,
+          640,
+          3,
+          9,
+          2667,
+          872,
+          953,
+          2916,
+          5,
+          37,
+          1861,
+          13628,
+          341,
+          5,
+          11759,
+          24945,
+          20468,
+          7,
+          8,
+          1692,
+          643,
+          11,
+          1001,
+          8277,
+          5,
+          71,
+          6080,
+          12674,
+          7592,
+          1481,
+          14,
+          7,
+          8,
+          2458,
+          5,
+          31295,
+          3050,
+          4644,
+          6,
+          9555,
+          3598,
+          5,
+          1
+        ],
+        "shape": {
+          "width": 256,
+          "height": 256,
+          "frames": 33,
+          "fps": 24
+        },
+        "sampling_steps": [
+          {
+            "step": 0,
+            "sigma": 1.0,
+            "seconds": 31.27813430002425,
+            "finite": true
+          },
+          {
+            "step": 1,
+            "sigma": 0.9937499761581421,
+            "seconds": 31.76761430001352,
+            "finite": true
+          },
+          {
+            "step": 2,
+            "sigma": 0.987500011920929,
+            "seconds": 30.866764799982775,
+            "finite": true
+          },
+          {
+            "step": 3,
+            "sigma": 0.981249988079071,
+            "seconds": 28.083344399987254,
+            "finite": true
+          },
+          {
+            "step": 4,
+            "sigma": 0.9750000238418579,
+            "seconds": 27.44861109997146,
+            "finite": true
+          },
+          {
+            "step": 5,
+            "sigma": 0.909375011920929,
+            "seconds": 29.5133094000048,
+            "finite": true
+          },
+          {
+            "step": 6,
+            "sigma": 0.7250000238418579,
+            "seconds": 26.74678240000503,
+            "finite": true
+          },
+          {
+            "step": 7,
+            "sigma": 0.421875,
+            "seconds": 28.772170199954417,
+            "finite": true
+          }
+        ],
+        "decoder_seconds": 12.216886800015345,
+        "files": {
+          "caption.f32": {
+            "bytes": 884736,
+            "sha256": "bd187cc38ca471aec6cd1420880706f59e434d6ddb8fd04eb77c61c9d65c0c4f"
+          },
+          "decoded-ncthw.f32": {
+            "bytes": 25952256,
+            "sha256": "cea86e4489f32c718af00e97bc5c3f9a37f632b4f83efb99c2c6c2c0809b3d48"
+          },
+          "denoised-ncthw.f32": {
+            "bytes": 163840,
+            "sha256": "42fd977a8c574cbc44ddfba19a1418243203ac9e9905e883b0a706c5955369d8"
+          },
+          "rgb.bin": {
+            "bytes": 6488064,
+            "sha256": "0927958f3ccf6a706836afa17faac4b81457df508aceb5a319e8f06739219cd2"
+          },
+          "sampling-step-0.f32": {
+            "bytes": 163840,
+            "sha256": "13bc7a08528cd8ed2b52bb142ea1c912dfa40cdeafee5554e79db00cd7d0cdcc"
+          },
+          "sampling-step-1.f32": {
+            "bytes": 163840,
+            "sha256": "62a1b6919ec82e0ad94c1979c0d2ded8f9b8560cf3caaea1afe431fa98312449"
+          },
+          "sampling-step-2.f32": {
+            "bytes": 163840,
+            "sha256": "678ade54655b07461069a757f7fb0b2a1fe494c86527169f56859d3bbf78991b"
+          },
+          "sampling-step-3.f32": {
+            "bytes": 163840,
+            "sha256": "d6d12b357f2a4f21fd0e57f9f49ec7c3e09b186dbd204e2e8d519af55bc9f057"
+          },
+          "sampling-step-4.f32": {
+            "bytes": 163840,
+            "sha256": "f2b8fb822879584e3a6f7aacff8c3c27dffa8d25a40a9f328bec10637c976985"
+          },
+          "sampling-step-5.f32": {
+            "bytes": 163840,
+            "sha256": "ea5a48e71202104deafda97f19562e68be583233f982c284e0f344f043652d5a"
+          },
+          "sampling-step-6.f32": {
+            "bytes": 163840,
+            "sha256": "7bd2611c43d80212d2f10099ba9711faf3231d7e247e605eda4939167d00c274"
+          },
+          "sampling-step-7.f32": {
+            "bytes": 163840,
+            "sha256": "a0bd4d88945f5a157efab3a4782223e00f94ab9d01559f81e1c51105a4b7dbb3"
+          },
+          "sampling-velocity.f32": {
+            "bytes": 163840,
+            "sha256": "6371190f26462db186ad6bfdbe9db42c65b3ff80cea77ffb14d4dbb69b0fdb08"
+          }
+        }
+      }
+    ],
+    "versions": {
+      "transformers": "5.17.0",
+      "torch": "2.14.0+cpu",
+      "numpy": "2.4.2",
+      "sentencepiece": "0.2.1"
+    },
+    "reference": "Original Transformers T5EncoderModel plus original publisher Transformer3DModel, RectifiedFlowScheduler and Decoder forwards",
+    "trained_t5_tensors": 219,
+    "trained_dit_tensors": 715,
+    "trained_decoder_tensors": 132,
+    "t5_reference_seconds": 169.5726708000293,
+    "dit_parameter_paging": {
+      "loads": 512,
+      "max_scheduled_parameter_bytes": 268623872
+    },
+    "quantized_t5_dequantized": true,
+    "converted_dit_f16_equivalent": true,
+    "original_unquantized_t5_compared": false,
+    "explicit_noise_shared_as_inputs": true,
+    "matches_pytorch_seed": false,
+    "official_multiscale_default_reproduced": false,
+    "official_pixart_weight_identity_compared": false,
+    "physical_android": false,
+    "video_quality_accepted": false,
+    "native_inference_called": false,
+    "input_fingerprint": {
+      "native/moss_nano/onnx_external.hpp": "c1bb8f95ad2078472dbbf2ea0863493ac44f4aae7c4336cf5debb0db0d54fae5",
+      "research/ltx098/CMakeLists.txt": "cc86fb36397da930df9c30745c8a29a3748535a9dbd3e40b9f2a5f9c9886374f",
+      "research/ltx098/driver.cpp": "2c8b92b4826824d03ca7ec17e82b5f6ff6dba10b600013df6141d61c5df212f6",
+      "research/ltx098/licenses/ggml-MIT.txt": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
+      "research/ltx098/licenses/json-MIT.txt": "0e592e358cf7722906f417be85bc514f15bf6efd28cea98cb84e56ef7fddfc3e",
+      "research/ltx098/licenses/Lightricks-Apache-2.0.txt": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "research/ltx098/licenses/SPIRV-Headers-MIT.txt": "ea43b1de38a6f90c488800d66dec1ed671e68cda530266bc96951fb5b6307613",
+      "research/ltx098/licenses/Vulkan-Apache-2.0.txt": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "research/ltx098/licenses/Vulkan-Headers.txt": "95ad366d23fadf701d355bc45fb8b82ae2d700239471d35d41286ac3b08ff903",
+      "research/ltx098/licenses/Vulkan-MIT.txt": "1ca3502222d967f3be5751c55f6b7ee735b5383909c3b501495f54b216dbf227",
+      "research/ltx098/NOTICE": "bab99dbce59bed2470b85752c90464dcfac90c0c0d28577b9db1067ec1a5e872",
+      "research/ltx098/sampling.cpp": "6f5990a38f02462efeec0e68417f4c68981e9be2362b1e76cfd94e697f17003d",
+      "research/ltx098/sampling.hpp": "5e745b8b192cbec4881d9bb2fbfe2665670cc9cb3c853b319b8e8a896130d3cd",
+      "research/ltx098/sampling_driver.cpp": "3a8af8bc1bfcc28127649374e4818a1d368b46ad2ef0c24c1c998e8d32d80fc1",
+      "research/ltx098/transformer.cpp": "22c6d7ec964c5d9e25c90ba9f32c3a93b3d6d4db3c8aafb064cb45f3e03581fa",
+      "research/ltx098/transformer.hpp": "6f5fd68cba7278abb210322af20d70d3a0acd05631118bdeabdae54f4cd5e1d5",
+      "research/ltx098_pipeline/CMakeLists.txt": "6115af1b7ee6798413e1c4617eca8a7b9076722237f922e0f133ef1ebd1c6acc",
+      "research/ltx098_pipeline/NOTICE": "9241c16fca4550e732057f10ac073002e72974b65684d0d3fdae56015ec4222c",
+      "research/ltx098_pipeline/tensors.cpp": "f323b5ebf9537df2f3e7db79e77633a2f30103c23135b21b89043e16109bf116",
+      "research/ltx098_text/CMakeLists.txt": "695f191d631418b8c40fd7bf3887c10b316f92b15ad83d25568a7b06b50defda",
+      "research/ltx098_text/driver.cpp": "a81c396c91bf3c8da41ac2eb79ded04754737f553f46451228902504fef971eb",
+      "research/ltx098_text/encoder.cpp": "be727fc2645184560c25a2f6f90f30d780ae86b099716d67b2e8dd225b1009e6",
+      "research/ltx098_text/encoder.hpp": "592fe2f896174e69e807ce9a4343a2a1da54b523b3ccad0fa337f6d34b6cfbc1",
+      "research/ltx098_text/graph.cpp": "a17f97e9b932c302d3a7e8c1ca7020696ed765a4ddda51fefca9288d7b886190",
+      "research/ltx098_text/graph.hpp": "ae16035400caedb79f33db97497e6588f071901bd0935f7646e0e3b02bc7e36a",
+      "research/ltx098_text/licenses/llama-MIT.txt": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
+      "research/ltx098_text/NOTICE": "176bd96eed8972ba6a9c4bdebf9f19b166397c0eb50717be77547056ad974db4",
+      "research/ltx098_vae/CMakeLists.txt": "fcc7e89deb1b1bf4d1dc74c329225e4f6ceccd997a2370b8d06263293ec93b9f",
+      "research/ltx098_vae/driver.cpp": "f275cabc410dd07e38058902676e3ca9c4dc7a0684f4f39b5a386b74fb4d3604",
+      "research/ltx098_vae/NOTICE": "b5bec20058b46269f031462291b56fea8f5620359ec71f64353e76a9c4f6bcd3",
+      "research/soulx/dsp.hpp": "ef6a28cae0d2e72d1b84890437286b0ed8a20690c0ac07b2ddf8162ee2d2fd58",
+      "research/soulx_ort/android_log.cpp": "216f630761ff67a00cfe47db941338f45560fc45486ebcbdff196cf36dac3d04",
+      "research/soulx_ort/LICENSE-ONNX-RUNTIME-MIT": "c250d6278f0b47a6439fb7592b08b58a55eb9f535aa49a1db63211c3f982b674",
+      "research/soulx_ort/NOTICE": "69487267d86f7998917bc9f7e9b6d2e30e168f41c92369f41a33e225c0bfceb6",
+      "research/soulx_ort/runtime.hpp": "0586ad63c3210ec42d1c3cc956beb05614e56e9cb803632d596e57935689b2c8",
+      "research/soulx_ort/types.hpp": "f0822ae37dd26996501f2b69e4e1bb9404ad53903dd267ff793ee60d96f42de4",
+      "third_party/ltx098-pipeline-source-lock.json": "3fc857b18056ef284b17e656c4dfa2d79e320e8f5463277a40b054981190769b",
+      "third_party/ltx098-source-lock.json": "28acd99486f6ca76a06d038076175ac01ca55c7b1d8c3ba6dab9190291ac8779",
+      "third_party/ltx098-text-source-lock.json": "04b2f7892a4f047363fbaf3ba555682bf201c8320fa1cc7f4d5a68b2884512f4",
+      "third_party/ltx098-trained-assets.json": "0fe1d00ff9f921566b37b499cdc87c51f09947ca9f7a2e7ccd5af1ba3eeaca1c",
+      "third_party/ltx098-vae-source-lock.json": "201ac18ca78b381f810f0567ecd300a5bfda1b489893be56d28b30d6e6db2dcb",
+      "third_party/soulx-acoustic-source-lock.json": "b39e10c415c5f30d4e4adb52327e1e04df371407131f47617622da913b268ac5",
+      "tools/build_ltx098.py": "bf39449e38190a666093f6954d133a76da36d519817ca636703f030100d4faf8",
+      "tools/build_ltx098_tensors.py": "ea171eeeef578e193a96dd3c1a1471254d89d9d1f622797c32ef8e7f814157a1",
+      "tools/build_ltx098_text.py": "c9c7a6f1c619e9ab15d95baf9a53d8854cbe217a698b22e102cdf1cd7cf18b85",
+      "tools/build_ltx098_vae.py": "5ed2804db3fb13044e4aa30022368a8323ac73ed6ebcb875b27d5304b10c61c0",
+      "tools/evidence.py": "e7b177f6ee6793eeffbcc555127f6b9bc3ab2e5f318006302e75c0c41c6f5a5a",
+      "tools/export_ltx098.py": "1f0585251a4500bd8841d0deae95c5efc2b857d501d185ae1e0d7765fd62fcb7",
+      "tools/fetch_ltx098_text.py": "55782095a1b941dc809b33966f62aeffda1b2ca0c719033610432ec00599b577",
+      "tools/ltx098_assets.py": "0380166ca9d3f2f9a028675e6f9d9a827005767a67f66e3c1f00626226ae155c",
+      "tools/ltx098_fixture.py": "60c5730c77dda5055a7cef23b91af0042493a53d49e8f3b898e7634b78170ef8",
+      "tools/ltx098_pipeline.py": "e4a53be7a24852c3a3e8488cb5b7208f31648a9d902ef3202882ea4ed4ce7a6c",
+      "tools/ltx098_vae.py": "f64b71b00d95050bad34252db9ac4935e84d550790ae147b40eddc43c3b871dd",
+      "tools/test_ltx098_text.py": "79a4a7c35badeddb58c1bafe2fe5511cd309cff09e24afd25474fd748c41e260",
+      "tools/ltx098_pipeline_oracle.py": "4eb115a310680b657f555dfecc89582e2730290b50629b3715a78cc3b1a3081d",
+      "tools/ltx098_sampling_oracle.py": "32d31c7a549fe85f69f0e62d0cc8863a5df907f28abab12b827904da936cd064",
+      "tools/ltx098_text_oracle.py": "12c2b718e662703b06c4b11e2d0ddfe02180140ed8313a4746ed1faf2155a431"
+    }
+  },
+  "original_oracle_files": 26,
+  "prompt_change_rgb_mean_absolute_difference": 61.04385668822009,
+  "aba_bitwise_neural_reproducibility": true,
+  "real_prompt_to_video_host_executed": true,
+  "original_forward_comparison_executed": true,
+  "numerical_acceptance_passed": false,
+  "failures": [
+    "case-0: frozen original-forward full-chain gate failed: denoised-tokens.f32",
+    "case-0: frozen original-forward full-chain gate failed: denoised-ncthw.f32",
+    "case-0: frozen original-forward full-chain gate failed: decoded-ncthw.f32",
+    "case-1: frozen original-forward full-chain gate failed: denoised-tokens.f32",
+    "case-1: frozen original-forward full-chain gate failed: denoised-ncthw.f32",
+    "case-1: frozen original-forward full-chain gate failed: decoded-ncthw.f32"
+  ],
+  "passed_checks": 157,
+  "failed_checks": 6,
+  "conditioning_diagnostic": {
+    "case": 0,
+    "same_reference_caption": true,
+    "captured_native_children": 1,
+    "capture_reused": true,
+    "metrics": [
+      {
+        "step": 0,
+        "max_abs": 4.76837158203125e-07,
+        "relative_rmse": 5.408298673886477e-08
+      },
+      {
+        "step": 1,
+        "max_abs": 8.344650268554688e-07,
+        "relative_rmse": 8.045694680857892e-08
+      },
+      {
+        "step": 2,
+        "max_abs": 1.3113021850585938e-06,
+        "relative_rmse": 1.2673086038751518e-07
+      },
+      {
+        "step": 3,
+        "max_abs": 3.7550926208496094e-06,
+        "relative_rmse": 2.9510448253935087e-07
+      },
+      {
+        "step": 4,
+        "max_abs": 4.76837158203125e-05,
+        "relative_rmse": 4.109428638957279e-06
+      },
+      {
+        "step": 5,
+        "max_abs": 0.00016021728515625,
+        "relative_rmse": 1.584541724506009e-05
+      },
+      {
+        "step": 6,
+        "max_abs": 0.0005243420600891113,
+        "relative_rmse": 5.0323002530095625e-05
+      },
+      {
+        "step": 7,
+        "max_abs": 0.0017232894897460938,
+        "relative_rmse": 8.336110735047389e-05
+      }
+    ],
+    "resources": {
+      "observed": true,
+      "samples": 3567,
+      "interval_ms": 20,
+      "observed_peak_working_set_bytes": 1221033984,
+      "sampled_peak_private_bytes": 4329082880,
+      "gpu_memory_measured": false
+    },
+    "seconds": 111.02145739999833,
+    "native": {
+      "backend": "vulkan",
+      "complete_video_pipeline": false,
+      "compute_bytes": [
+        42976496,
+        42976496,
+        42976496,
+        42976496,
+        42976496,
+        42976496,
+        42976496,
+        42976496
+      ],
+      "engine_registered": false,
+      "fixture": false,
+      "layers": 28,
+      "layout": "batch_tokens_channels",
+      "model_executed": true,
+      "ok": true,
+      "operation": "sample",
+      "parameters": 1923385472,
+      "physical_android": false,
+      "precision_policy": "baseline_f32_compute_optional_f16_weight_storage",
+      "steps": 8,
+      "values": 40960,
+      "weight_bytes": 3849462272
+    },
+    "native_executable_sha256": "3bfe577513c0956919a5c6fb7c78ba3d4ae4cd9d56ee106fa2cbd92aa6b13ef8",
+    "final_within_latent_gates": true,
+    "files": {
+      "oracle-caption.json": {
+        "bytes": 5570242,
+        "sha256": "8b897b98440d768e95fbc07e1793f2897dcab450515f309ef6b6ceb1b192ef1a"
+      },
+      "oracle-caption.log": {
+        "bytes": 1542,
+        "sha256": "04dda3a305a803172105e91dbfc3948b571d5b1b99c8697f2dfebda8adcdf810"
+      },
+      "oracle-caption-metrics.json": {
+        "bytes": 1257,
+        "sha256": "6f18a3cab752e623e4443563b8a77885fba29a0fa4183a06d2c29d6349e9b438"
+      },
+      "oracle-caption-latents.f32": {
+        "bytes": 163840,
+        "sha256": "6aa2254144817dc93954375d95ebe07341d92486634170db50577540f12541b9"
+      },
+      "oracle-caption-trace/step-0.f32": {
+        "bytes": 163840,
+        "sha256": "31a031756478fffa6f759cbbae91ce22788855d1ef346085db6cc508468790c6"
+      },
+      "oracle-caption-trace/step-1.f32": {
+        "bytes": 163840,
+        "sha256": "c0fbd9298caaf6b69f1cd8d772fbcc9d7db0a4e4f6b0f9f710f1276086f7b6e3"
+      },
+      "oracle-caption-trace/step-2.f32": {
+        "bytes": 163840,
+        "sha256": "9c36662e91da5f56316c93d2404146e348ca17da52449e63ea1f8be92bd89aed"
+      },
+      "oracle-caption-trace/step-3.f32": {
+        "bytes": 163840,
+        "sha256": "c8e38741851a0c1116b4ef4fcb22420dacf346c6d68ed5d0c69c49c5910091aa"
+      },
+      "oracle-caption-trace/step-4.f32": {
+        "bytes": 163840,
+        "sha256": "47b9b1bee6494f8e8db92d00214136ffc55fa38033a39f4338224d3ba04ac939"
+      },
+      "oracle-caption-trace/step-5.f32": {
+        "bytes": 163840,
+        "sha256": "483727d5857ceba8ce723df9d3046d2efb19c434da4e1e10e3df31434030af56"
+      },
+      "oracle-caption-trace/step-6.f32": {
+        "bytes": 163840,
+        "sha256": "5c50dd786f4980777f5a79ecae93a8c3e39be9cac06df36b6d057817d0995903"
+      },
+      "oracle-caption-trace/step-7.f32": {
+        "bytes": 163840,
+        "sha256": "6aa2254144817dc93954375d95ebe07341d92486634170db50577540f12541b9"
+      }
+    },
+    "physical_android": false,
+    "full_pipeline_acceptance": false
+  },
+  "real_prompt_to_video_host_tested": false,
+  "full_chain_original_forward_parity": false,
+  "reused_native_jobs": 3,
+  "native_jobs_executed_this_invocation": 0,
+  "original_reference_reused": true,
+  "captured_native_pipelines": [
+    "build/ltx098-pipeline-probe/red-42",
+    "build/ltx098-pipeline-tests/run-s3z3urrv/native-1",
+    "build/ltx098-pipeline-tests/run-s3z3urrv/native-2"
+  ],
+  "captured_native_record_sha256": [
+    "141ee60b034b83c4d9dc718ef4cecbbc9e8092ee45183dfb10dba38b74b3558a",
+    "f056002e1bee318f3c1d1b232bd8ebfc1631143cd40a9b0563709fe9d66dfa6a",
+    "4d61e268c29540b8aee7d4603a4d02ee34a82822b16e394c76946de4fe66a4c9"
+  ],
+  "host_mp4_generated": true,
+  "single_scale": true,
+  "video_quality_accepted": false,
+  "original_unquantized_t5_compared": false,
+  "official_pixart_weight_identity_compared": false,
+  "official_multiscale_default_reproduced": false,
+  "matches_pytorch_seed": false,
+  "physical_android": false,
+  "engine_registered": false,
+  "packaged_in_apk": false,
+  "remote_inference": false,
+  "virtualization_used": false,
+  "input_fingerprint": {
+    "native/moss_nano/onnx_external.hpp": "c1bb8f95ad2078472dbbf2ea0863493ac44f4aae7c4336cf5debb0db0d54fae5",
+    "research/ltx098/CMakeLists.txt": "cc86fb36397da930df9c30745c8a29a3748535a9dbd3e40b9f2a5f9c9886374f",
+    "research/ltx098/driver.cpp": "2c8b92b4826824d03ca7ec17e82b5f6ff6dba10b600013df6141d61c5df212f6",
+    "research/ltx098/licenses/ggml-MIT.txt": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
+    "research/ltx098/licenses/json-MIT.txt": "0e592e358cf7722906f417be85bc514f15bf6efd28cea98cb84e56ef7fddfc3e",
+    "research/ltx098/licenses/Lightricks-Apache-2.0.txt": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+    "research/ltx098/licenses/SPIRV-Headers-MIT.txt": "ea43b1de38a6f90c488800d66dec1ed671e68cda530266bc96951fb5b6307613",
+    "research/ltx098/licenses/Vulkan-Apache-2.0.txt": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+    "research/ltx098/licenses/Vulkan-Headers.txt": "95ad366d23fadf701d355bc45fb8b82ae2d700239471d35d41286ac3b08ff903",
+    "research/ltx098/licenses/Vulkan-MIT.txt": "1ca3502222d967f3be5751c55f6b7ee735b5383909c3b501495f54b216dbf227",
+    "research/ltx098/NOTICE": "bab99dbce59bed2470b85752c90464dcfac90c0c0d28577b9db1067ec1a5e872",
+    "research/ltx098/sampling.cpp": "6f5990a38f02462efeec0e68417f4c68981e9be2362b1e76cfd94e697f17003d",
+    "research/ltx098/sampling.hpp": "5e745b8b192cbec4881d9bb2fbfe2665670cc9cb3c853b319b8e8a896130d3cd",
+    "research/ltx098/sampling_driver.cpp": "3a8af8bc1bfcc28127649374e4818a1d368b46ad2ef0c24c1c998e8d32d80fc1",
+    "research/ltx098/transformer.cpp": "22c6d7ec964c5d9e25c90ba9f32c3a93b3d6d4db3c8aafb064cb45f3e03581fa",
+    "research/ltx098/transformer.hpp": "6f5fd68cba7278abb210322af20d70d3a0acd05631118bdeabdae54f4cd5e1d5",
+    "research/ltx098_pipeline/CMakeLists.txt": "6115af1b7ee6798413e1c4617eca8a7b9076722237f922e0f133ef1ebd1c6acc",
+    "research/ltx098_pipeline/NOTICE": "9241c16fca4550e732057f10ac073002e72974b65684d0d3fdae56015ec4222c",
+    "research/ltx098_pipeline/tensors.cpp": "f323b5ebf9537df2f3e7db79e77633a2f30103c23135b21b89043e16109bf116",
+    "research/ltx098_text/CMakeLists.txt": "695f191d631418b8c40fd7bf3887c10b316f92b15ad83d25568a7b06b50defda",
+    "research/ltx098_text/driver.cpp": "a81c396c91bf3c8da41ac2eb79ded04754737f553f46451228902504fef971eb",
+    "research/ltx098_text/encoder.cpp": "be727fc2645184560c25a2f6f90f30d780ae86b099716d67b2e8dd225b1009e6",
+    "research/ltx098_text/encoder.hpp": "592fe2f896174e69e807ce9a4343a2a1da54b523b3ccad0fa337f6d34b6cfbc1",
+    "research/ltx098_text/graph.cpp": "a17f97e9b932c302d3a7e8c1ca7020696ed765a4ddda51fefca9288d7b886190",
+    "research/ltx098_text/graph.hpp": "ae16035400caedb79f33db97497e6588f071901bd0935f7646e0e3b02bc7e36a",
+    "research/ltx098_text/licenses/llama-MIT.txt": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
+    "research/ltx098_text/NOTICE": "176bd96eed8972ba6a9c4bdebf9f19b166397c0eb50717be77547056ad974db4",
+    "research/ltx098_vae/CMakeLists.txt": "fcc7e89deb1b1bf4d1dc74c329225e4f6ceccd997a2370b8d06263293ec93b9f",
+    "research/ltx098_vae/driver.cpp": "f275cabc410dd07e38058902676e3ca9c4dc7a0684f4f39b5a386b74fb4d3604",
+    "research/ltx098_vae/NOTICE": "b5bec20058b46269f031462291b56fea8f5620359ec71f64353e76a9c4f6bcd3",
+    "research/soulx/dsp.hpp": "ef6a28cae0d2e72d1b84890437286b0ed8a20690c0ac07b2ddf8162ee2d2fd58",
+    "research/soulx_ort/android_log.cpp": "216f630761ff67a00cfe47db941338f45560fc45486ebcbdff196cf36dac3d04",
+    "research/soulx_ort/LICENSE-ONNX-RUNTIME-MIT": "c250d6278f0b47a6439fb7592b08b58a55eb9f535aa49a1db63211c3f982b674",
+    "research/soulx_ort/NOTICE": "69487267d86f7998917bc9f7e9b6d2e30e168f41c92369f41a33e225c0bfceb6",
+    "research/soulx_ort/runtime.hpp": "0586ad63c3210ec42d1c3cc956beb05614e56e9cb803632d596e57935689b2c8",
+    "research/soulx_ort/types.hpp": "f0822ae37dd26996501f2b69e4e1bb9404ad53903dd267ff793ee60d96f42de4",
+    "third_party/ltx098-pipeline-source-lock.json": "3fc857b18056ef284b17e656c4dfa2d79e320e8f5463277a40b054981190769b",
+    "third_party/ltx098-source-lock.json": "28acd99486f6ca76a06d038076175ac01ca55c7b1d8c3ba6dab9190291ac8779",
+    "third_party/ltx098-text-source-lock.json": "04b2f7892a4f047363fbaf3ba555682bf201c8320fa1cc7f4d5a68b2884512f4",
+    "third_party/ltx098-trained-assets.json": "0fe1d00ff9f921566b37b499cdc87c51f09947ca9f7a2e7ccd5af1ba3eeaca1c",
+    "third_party/ltx098-vae-source-lock.json": "201ac18ca78b381f810f0567ecd300a5bfda1b489893be56d28b30d6e6db2dcb",
+    "third_party/soulx-acoustic-source-lock.json": "b39e10c415c5f30d4e4adb52327e1e04df371407131f47617622da913b268ac5",
+    "tools/build_ltx098.py": "bf39449e38190a666093f6954d133a76da36d519817ca636703f030100d4faf8",
+    "tools/build_ltx098_tensors.py": "ea171eeeef578e193a96dd3c1a1471254d89d9d1f622797c32ef8e7f814157a1",
+    "tools/build_ltx098_text.py": "c9c7a6f1c619e9ab15d95baf9a53d8854cbe217a698b22e102cdf1cd7cf18b85",
+    "tools/build_ltx098_vae.py": "5ed2804db3fb13044e4aa30022368a8323ac73ed6ebcb875b27d5304b10c61c0",
+    "tools/evidence.py": "e7b177f6ee6793eeffbcc555127f6b9bc3ab2e5f318006302e75c0c41c6f5a5a",
+    "tools/export_ltx098.py": "1f0585251a4500bd8841d0deae95c5efc2b857d501d185ae1e0d7765fd62fcb7",
+    "tools/fetch_ltx098_text.py": "55782095a1b941dc809b33966f62aeffda1b2ca0c719033610432ec00599b577",
+    "tools/ltx098_assets.py": "0380166ca9d3f2f9a028675e6f9d9a827005767a67f66e3c1f00626226ae155c",
+    "tools/ltx098_fixture.py": "60c5730c77dda5055a7cef23b91af0042493a53d49e8f3b898e7634b78170ef8",
+    "tools/ltx098_pipeline.py": "e4a53be7a24852c3a3e8488cb5b7208f31648a9d902ef3202882ea4ed4ce7a6c",
+    "tools/ltx098_vae.py": "f64b71b00d95050bad34252db9ac4935e84d550790ae147b40eddc43c3b871dd",
+    "tools/test_ltx098_text.py": "79a4a7c35badeddb58c1bafe2fe5511cd309cff09e24afd25474fd748c41e260",
+    "tools/ltx098_pipeline_oracle.py": "4eb115a310680b657f555dfecc89582e2730290b50629b3715a78cc3b1a3081d",
+    "tools/ltx098_sampling_oracle.py": "32d31c7a549fe85f69f0e62d0cc8863a5df907f28abab12b827904da936cd064",
+    "tools/ltx098_text_oracle.py": "12c2b718e662703b06c4b11e2d0ddfe02180140ed8313a4746ed1faf2155a431",
+    "tools/test_ltx098_pipeline.py": "568997aa1dd676c9f5918df649d830629da523f0880c760dc9ffead674e7ec8a"
+  }
+}

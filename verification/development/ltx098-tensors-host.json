@@ -1,0 +1,19 @@
+{
+  "kind": "host_compile",
+  "executable_bytes": 164352,
+  "executable_sha256": "244b223a2df8251b6aa4b5251f86e085ba71637cf9febe6b4cbcdf494bc8146f",
+  "model_data_embedded": false,
+  "model_inference": false,
+  "engine_registered": false,
+  "packaged_in_apk": false,
+  "physical_android": false,
+  "virtualization_used": false,
+  "input_fingerprint": {
+    "research/ltx098_pipeline/CMakeLists.txt": "6115af1b7ee6798413e1c4617eca8a7b9076722237f922e0f133ef1ebd1c6acc",
+    "research/ltx098_pipeline/NOTICE": "9241c16fca4550e732057f10ac073002e72974b65684d0d3fdae56015ec4222c",
+    "research/ltx098_pipeline/tensors.cpp": "f323b5ebf9537df2f3e7db79e77633a2f30103c23135b21b89043e16109bf116",
+    "third_party/ltx098-pipeline-source-lock.json": "3fc857b18056ef284b17e656c4dfa2d79e320e8f5463277a40b054981190769b",
+    "third_party/ltx098-text-source-lock.json": "04b2f7892a4f047363fbaf3ba555682bf201c8320fa1cc7f4d5a68b2884512f4",
+    "tools/build_ltx098_tensors.py": "ea171eeeef578e193a96dd3c1a1471254d89d9d1f622797c32ef8e7f814157a1"
+  }
+}

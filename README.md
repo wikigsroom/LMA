@@ -327,3 +327,14 @@ LMA 自有代码使用 MIT 许可。llama.cpp 及其依赖保留各自许可；�
 
 
 **本轮验证 / Validation:**355 checks /36 actual native children /31 guards /40 comparison records pass. 四种几何 /条件与44个独立原始参考逐段对照，最大中间误差1.14441e-4、最终帧2.14577e-6；单会话装卸、重复结果及真实ORT计算中取消通过。主机Windows峰值工作集观测最大1,238,388,736字节，不代表手机内存；ARM64/API28/16KiB仅编译。完整视频 /质量 /App /手机 /Release仍未验收。
+
+
+### 旧 LTX 真实提示词视频：独立主机管线
+
+[完整中文方案](docs/LTX098_PIPELINE.md) / [English](docs/LTX098_PIPELINE.en.md) / [编号实现与同版完整待办](docs/releases/v0.3.0-dev.21-ltx-pipeline.md)。新增真实提示词 → 完整训练 T5 → 旧版 28 层 DiT 八步采样 → 九段训练 VAE → RGB / MP4 的独立开发链路，以及可移植 RNG / 张量还原 / 帧封装的 Android ARM64 编译。固定为单尺度、Google/community Q5 文本变体；官方默认多尺度 / PixArt 权重身份、画质、App 与真机验收分别保留待办。模型资产继续由用户选择和管理，APK / UI 媒体继续沿用 dev.21；组件早期记录保持各自历史范围。
+
+当前完整原始前向对照有 **6 项浮点门槛未通过**：163 项检查中 157 通过，两个最终 RGB 对照通过；测试保持 exit 1，严格数值验收 / App / 真机 / 完整 Release 均未通过。详见[误差与待修复项](docs/LTX098_PIPELINE.md)。下方媒体仅展示实际实验产物，带 NUMERIC + QUALITY GATES OPEN 标记。
+
+真实主机产物（非 App 录屏，非 Android 验收）：[MP4](docs/media/development/ltx098-host-comparison.mp4) / [GIF](docs/media/development/ltx098-host-comparison.gif) / [来源与时序记录](docs/media/development/ltx098-host-media.json)。
+
+![HOST ONLY：旧 LTX 单尺度真实提示词帧对照，未通过质量与手机验收](docs/media/development/ltx098-host-contact-sheet.png)

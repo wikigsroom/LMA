@@ -128,3 +128,8 @@ The [old-LTX T5 reproduction](LTX098_TEXT.en.md) explicitly prepares the quantiz
 
 
 The [trained old-LTX VAE reproduction](LTX098_VAE.en.md) explicitly prepares the pinned checkpoint, then runs `tools/ltx098_vae.py export`, `references`, `tools/build_ltx098_vae.py`, its `--android` compilation and `tools/test_ltx098_vae.py`. Original publisher forwards provide independent references. Existing exports are not overwritten; no implicit model download occurs. Run native compilations sequentially; each releases only its own SUBST alias in finally. Cache/temp files remain project-local, no virtualization is used, and research executables/model graphs stay outside APK.
+
+
+Follow the [real-prompt old-LTX reproduction](LTX098_PIPELINE.en.md), explicitly preparing existing pinned components/assets before sequential `tools/build_ltx098_tensors.py` / `--android` builds and primitive/pipeline checks. The pipeline suite executes three actual trained A/B/A jobs and two independent original-forward references, without automatic retrieval or virtualization/emulators. Developer MP4 uses host FFmpeg; production still requires same-phone MediaCodec. APK bytes are unchanged.
+
+The current full pipeline check returns exit 1 and records six failed float gates among 163 checks; both RGB comparisons pass. Captured-output replay discloses reuse instead of claiming fresh inference. See [numerical failure and replay semantics](LTX098_PIPELINE.en.md).
