@@ -6,6 +6,7 @@
 
 | 主题 / Topic | 中文 | English |
 | --- | --- | --- |
+| 本机增量音频 / Incremental audio and playback | [中文](AUDIO_STREAMING.md) | [English](AUDIO_STREAMING.en.md) |
 | LCM 用户资产到生成 / User assets through generation | [中文](LCM_APP_FLOW.md) | [English](LCM_APP_FLOW.en.md) |
 | 任务恢复 / 历史 / 容量 | [中文](TASK_RECOVERY.md) | [English](TASK_RECOVERY.en.md) |
 | 运行前检查 / Task preflight | [中文](TASK_PREFLIGHT.md) | [English](TASK_PREFLIGHT.en.md) |

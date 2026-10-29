@@ -1,8 +1,11 @@
 # v0.3.0 开发状态与复查
 
-当前 dev.28：[LCM 生产准备 / 关联 / 生成](LCM_APP_FLOW.md) / [English](LCM_APP_FLOW.en.md)，[编号实现及全部待办](releases/v0.3.0-dev.28.md)。主机真实模型链路、界面模拟数据与 Android 验收分开；原像素失败保留。
+当前 dev.29：[本机增量音频与流式试听](AUDIO_STREAMING.md) / [English](AUDIO_STREAMING.en.md)，[编号交付及完整同版待办](releases/v0.3.0-dev.29.md)。模型独立选择流式设置；接口与页面共用有界缓存；完整 WAV 校验后发布。训练 Realtime / Android 尚未验收，历史失败保留。
 
-当前业务更新 dev.27：[任务恢复 / 历史 / 容量](TASK_RECOVERY.md)与[编号实现及全部待办](releases/v0.3.0-dev.27.md)。结果与任务启动对账，精确范围清理终态记录；源码、主机检查、Android 验收与完整 Release 分开记录。
+
+dev.28 历史检查点：[LCM 生产准备 / 关联 / 生成](LCM_APP_FLOW.md) / [English](LCM_APP_FLOW.en.md)，[编号实现及全部待办](releases/v0.3.0-dev.28.md)。主机真实模型链路、界面模拟数据与 Android 验收分开；原像素失败保留。
+
+dev.27 历史业务更新：[任务恢复 / 历史 / 容量](TASK_RECOVERY.md)与[编号实现及全部待办](releases/v0.3.0-dev.27.md)。结果与任务启动对账，精确范围清理终态记录；源码、主机检查、Android 验收与完整 Release 分开记录。
 
 [English](DEVELOPMENT.en.md) · [完整范围](MULTIMODAL_RELEASE_PLAN.md) · [构建](BUILD.md) · [中文首页](../README.md)
 

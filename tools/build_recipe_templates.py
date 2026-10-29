@@ -236,14 +236,15 @@ def build():
             ("audioTopK","音频 Top K","integer",30 if rt else 25,1,1024,[1,25,30,50]),
             ("audioRepetitionPenalty","音频重复惩罚","number",1.1,1,2,[1,1.1,1.2])]:
             fields[key]=dict(type=kind,label=label,default=value,minimum=low,maximum=high,presets=presets,limitSource="application_guard")
+        if rt:fields["streamAudio"]=dict(type="boolean",label="流式试听",default=False,help="逐帧输出并保留完整 WAV；试听与最终文件使用相同固定增益，不做整段响度调整。速度取决于设备，应用退到后台后仍继续生成。")
         if not rt:
             for key,label,kind,value,low,high in [("textTemperature","继续 / 停止头温度","number",1.5,0,3),("textTopP","继续 / 停止头 Top P","number",1,.01,1),("textTopK","继续 / 停止头 Top K","integer",50,1,1024)]:fields[key]=dict(type=kind,label=label,default=value,minimum=low,maximum=high,limitSource="application_guard")
             fields['voiceInstruction']=dict(type="string",label="声音描述（可选）",default="",maxLength=1000)
             fields['language']=dict(type="string",label="语言提示（可选）",default="",maxLength=64)
         templates.append(dict(id=ident,name=("MOSS-TTS-Realtime" if rt else "MOSS-TTS-Local-Transformer（旧版）")+" · 原生语音",primaryRole="model",
-            definition=dict(engine="moss_rq_native",backend="cpu",architecture="moss_tts_realtime" if rt else "moss_tts_local_v10",pipeline=ident,tasks=["audio"],capabilities=["text_to_speech","single_text_to_wav"],parameters=dict(version=1,fields=fields)),
+            definition=dict(engine="moss_rq_native",backend="cpu",architecture="moss_tts_realtime" if rt else "moss_tts_local_v10",pipeline=ident,tasks=["audio"],capabilities=["text_to_speech","single_text_to_wav"]+(["incremental_audio_output"] if rt else []),parameters=dict(version=1,fields=fields)),
             requirements=[dict(role="model",label="匹配的 "+("moss-tts-rt / 16 路" if rt else "moss-tts-local / 32 路旧 Local")+" GGUF",formats=["gguf"],required=True),dict(role="codec",label="v1 MOSS-Audio-Tokenizer GGUF（24 kHz / 32 路）",formats=["gguf"],required=True,provides=["audio_encoder","audio_decoder"]),dict(role="tokenizer",label="与此版本匹配的 moss-tokenizer BPE GGUF",formats=["gguf"],required=True,provides=["text_tokenizer"])],fixedComponents=[],
-            help="仅匹配固定 mudler/moss-tts.cpp 转换格式；模型 / codec / BPE 由用户显式选择，不能混用 openmoss、Nano、first-class 或 Local-v1.5。"+("Realtime 使用独立的 4 层 RoPE 深度 Transformer / 16 路编码，逐步注入文本，但当前接口是单次文本完成后返回 WAV，不提供增量文本输入或音频流。" if rt else "旧 Local 使用 4 层 Qwen3 深度 Transformer、输入及逐通道输出 MLP / 32 路编码，区别于 v1.5 的单层 GPT-J；支持可选声音描述及语言提示。")+"输出 24 kHz 单声道；可选 1–10 秒、≤1 MiB 同格式 PCM16 / float32 参考 WAV，不自动重采样。1.7B 主干与大 codec 同时驻留内存，需要高内存设备；未证明 Z20 可运行。无附带权重或词表；尚无 LMA Android 推理、质量、速度或后台验收。"))
+            help="仅匹配固定 mudler/moss-tts.cpp 转换格式；模型 / codec / BPE 由用户显式选择，不能混用 openmoss、Nano、first-class 或 Local-v1.5。"+("Realtime 使用独立的 4 层 RoPE 深度 Transformer / 16 路编码，逐步注入文本；可在本地模型设置中选择流式试听，逐帧输出 PCM 并保留完整 WAV，使用相同固定增益。当前仍一次提交完整文本，不提供增量文本会话。" if rt else "旧 Local 使用 4 层 Qwen3 深度 Transformer、输入及逐通道输出 MLP / 32 路编码，区别于 v1.5 的单层 GPT-J；支持可选声音描述及语言提示。")+"输出 24 kHz 单声道；可选 1–10 秒、≤1 MiB 同格式 PCM16 / float32 参考 WAV，不自动重采样。1.7B 主干与大 codec 同时驻留内存，需要高内存设备；未证明 Z20 可运行。无附带权重或词表；尚无 LMA Android 推理、质量、速度或后台验收。"))
     fields={}
     for key,label,value,low,high,presets,source in [
         ("threads","CPU 线程",4,1,32,[2,4,8],"application_guard"),

@@ -25,6 +25,7 @@ public final class MossRqSpec {
         if(!rt)f.put("textTemperature",field("number",1.5,0,3)).put("textTopP",field("number",1,.01,1)).put("textTopK",field("integer",50,1,1024))
             .put("voiceInstruction",new JSONObject().put("type","string").put("default","").put("maxLength",1000))
             .put("language",new JSONObject().put("type","string").put("default","").put("maxLength",64));
+        if(rt)f.put("streamAudio",new JSONObject().put("type","boolean").put("label","流式试听").put("default",false).put("help","逐帧输出并保留完整 WAV；试听与最终文件使用相同固定增益，不做整段响度调整。速度取决于设备，应用退到后台后仍继续生成。"));
         return new JSONObject().put("version",1).put("fields",f);
     }
     public static JSONObject parameters(ModelBundle b,JSONObject values) throws Exception {

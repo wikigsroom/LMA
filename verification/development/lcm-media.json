@@ -1,5 +1,5 @@
 {
-  "version": "0.3.0-dev.28",
+  "version": "0.3.0-dev.29",
   "kind": "current production UI with an explicit simulated bridge",
   "android_device": false,
   "model_inference": false,
@@ -55,23 +55,24 @@
     },
     {
       "file": "lcm-ui.gif",
-      "bytes": 464570,
-      "sha256": "19806ca32dd234a23cc705dad204afeaac1988a335d90d74e4e6541ef49481c1"
+      "bytes": 578863,
+      "sha256": "498f4b5bd79433a4ddd3699f2bce2ebc35745134f713afed6a47835ab8e792f1"
     },
     {
       "file": "lcm-ui.mp4",
-      "bytes": 206706,
-      "sha256": "bf934fb9c7724b8cb216e12b0a288f96e3e1386bd71ef9a6878dbe7a15d8c1de"
+      "bytes": 234853,
+      "sha256": "398e3cbbc86da9f5c3013e79f008d4c394d623658a82fc04bcbac87b8f4594b1"
     }
   ],
   "input_fingerprint": {
     "app/src/main/assets/app.css": "f2cb7b5ee9de8f3afac793e694dcf9fde0a855c0d4c7053ff986cc2a6d2bd3b1",
     "app/src/main/assets/app.js": "2240021b034e6259ac110fc48ede81c43be6fabf7200dde5ced7eeacbe9e5468",
     "app/src/main/assets/asset-preparations.json": "b0a7cbac1a633310b9fff84164439ee8fe20a1df137d1075eb9263f531ccfd3b",
-    "app/src/main/assets/engine-builds.json": "d4e32d948f3426581a32c112cee6a842ac99c9a7876950ee4e6c73e398a28f97",
+    "app/src/main/assets/audio-preview.js": "33bb898969f37c1f78c6664052c46da844d148defdcef4a54d64bc5829037f44",
+    "app/src/main/assets/engine-builds.json": "f542de7e776f00b82c428a8c4fdcf57ea4c55b7fff211de942e4b068f542dbfa",
     "app/src/main/assets/foundation.css": "ac77af14c0498d3c358d76814109cda4f49fb5c660c1f53961d8f9b7f6c3a53f",
-    "app/src/main/assets/foundation.js": "55db00f5770e29e9298374d931a458463cbb8d82ec33d8133abaffce6f846dbc",
-    "app/src/main/assets/index.html": "e9c9863abfafd43d391b786556f18ccc62f7deb87889517c95254ea91658b0a8",
+    "app/src/main/assets/foundation.js": "7de3829cb66a1e1ebb91d36747d53862ce1e182c060932714251ef150f2b94d4",
+    "app/src/main/assets/index.html": "3db7771089f0551a877e3b44106b50b37108219ab6daf0317927159670c87126",
     "app/src/main/assets/license.js": "f429d4bc26c56c52bdc2ea21edd170478211b1d6b0a288c9b03bf53ff970d8bb",
     "app/src/main/assets/licenses/LLAMA_CPP_LICENSE": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
     "app/src/main/assets/licenses/LMA_LICENSE": "6ae3f5efa412d91cbf66e44f743e5ce41a8044309d05d893365206ab9bc35fc3",
@@ -164,15 +165,15 @@
     "app/src/main/assets/preparations/ltx098_vae_prepare/stage-06.onnx": "c737a55510880d4b92e12e9aca7138a154ad6e58a96e89a4f2a530a3f369b88c",
     "app/src/main/assets/preparations/ltx098_vae_prepare/stage-07.onnx": "239145b9c04cbb5513ee96d2a41ff5b1f8db2c4cf0d9148c3092028b858b3576",
     "app/src/main/assets/preparations/ltx098_vae_prepare/stage-08.onnx": "ff463e05293456c25aa5b1a14d82b1f732f1aee0f00da45f8e28419509ba8ac9",
-    "app/src/main/assets/recipe-templates.json": "4abedebe4d01f45e4d0b22506071c83bfddeb3e6750950630a9ff5a5f5b5b958",
+    "app/src/main/assets/recipe-templates.json": "35e6305fef197407c1cef2c39b4b40ac8d7a23792660f34df9b07e097dbff578",
     "app/src/main/assets/recipes.js": "648e1ff046ab20e2ae7f658a7cb82c895c042ea81dca5cd943141626eea6deba",
     "app/src/main/assets/versions.js": "2d629929a6db642c12a242ddcc62cd4f4090ab307e0cb669ceb98add031977e1",
-    "app/src/main/assets/workbench.js": "fb78b9389a2f85529456adade3a9f9d08e08d7dd7341d508db46e1fb57b174f1",
+    "app/src/main/assets/workbench.js": "ee0d8a324d8f332aa455bf32e33b072b4b129efc0fc6bf1485140f53d350e90e",
+    "catalogue/asset-preparations.json": "b0a7cbac1a633310b9fff84164439ee8fe20a1df137d1075eb9263f531ccfd3b",
+    "catalogue/model-assemblies.json": "d256a7e419099569fdd166d3aa52004424ebfc6ec6d0976304d41089f1559c82",
+    "catalogue/model-bundles.json": "cd90229799c84fea337f742b48c4c9c30035a7f295e05da55db2d85d65fd5ed8",
     "tests/foundation-ui.cjs": "b8cc6e6dcd05054e8651c1ec908e8d1f8e1c65abe1cb6d81e77f52a7e9fea6ed",
-    "tests/lcm-ui.cjs": "904ffbfff08d929e0566de20ee761cbb81879f74c27fc2654cc4cf4606b927f6",
-    "tests/preflight-ui.cjs": "61219701604c5b626d31325ac44e2a58b57be96fb7a86337ce6d21591ee09f38",
-    "tests/recovery-ui.cjs": "cec3018fbc9c3c73aa7798177ee6956e1cda3b968d5257cda825d996ede27521",
-    "tests/workbench-ui.cjs": "8e95e45ba2991edaf254be296581525baab5490117c9b2850c73ab273738bb33",
-    "tools/capture_workbench.cjs": "fad92632d0d52f233f1d32c1dc6d1ea3bf0f697b13f936b3354c0125dd4a6342"
+    "tests/lcm-ui.cjs": "74f98ca447fc9aaacf9380bb5d28d48af9afc98c4485460c32dfc8df2783be36",
+    "tools/capture_workbench.cjs": "83b7ec2be6b717ebd2380892ff321805b4536268ca4ced8011085c6f286ad4d1"
   }
 }

@@ -65,6 +65,7 @@ public final class MainActivity extends Activity {
                 if (!trusted(uri)) return response(403, "Forbidden");
                 String path = uri.getPath();
                 if (path != null && path.startsWith("/artifacts/")) return artifactResponse(request, path.substring(11));
+                if (path != null && path.startsWith("/audio-streams/")) return audioResponse(request, path.substring(15));
                 if (path == null || !path.startsWith("/assets/") || path.contains("..")) return response(404, "Not found");
                 String asset = path.substring(8);
                 try {
@@ -104,6 +105,17 @@ public final class MainActivity extends Activity {
         } catch (Exception error) { return response(404, "Result unavailable"); }
     }
     private boolean trusted(Uri uri) { return "https".equals(uri.getScheme()) && "appassets.androidplatform.net".equals(uri.getHost()); }
+    private WebResourceResponse audioResponse(WebResourceRequest request, String path) {
+        try {
+            if (!request.getMethod().equals("GET") || app.audioStreams == null) return response(405, "Method not allowed");
+            String[] parts = path.split("/", -1); if (parts.length < 1 || parts.length > 2) return response(404, "Not found");
+            app.jobs.get(parts[0]); byte[] bytes; String mime;
+            if (parts.length == 1) { String after = request.getUrl().getQueryParameter("after"); if (after != null && !after.matches("[0-9]{1,4}")) return response(400, "Invalid cursor"); bytes = app.audioStreams.get(parts[0], after == null ? 0 : Integer.parseInt(after)).toString().getBytes(StandardCharsets.UTF_8); mime = "application/json"; }
+            else { if (!parts[1].matches("[0-9]{1,4}")) return response(404, "Not found"); bytes = app.audioStreams.read(parts[0], Integer.parseInt(parts[1])); mime = "application/octet-stream"; }
+            java.util.Map<String,String> headers = new java.util.HashMap<>(); headers.put("Cache-Control", "no-store"); headers.put("X-Content-Type-Options", "nosniff"); headers.put("Content-Length", String.valueOf(bytes.length));
+            return new WebResourceResponse(mime, null, 200, "OK", headers, new ByteArrayInputStream(bytes));
+        } catch (Exception error) { return response(404, "Audio preview expired or not started"); }
+    }
     private WebResourceResponse response(int status, String message) { return new WebResourceResponse("text/plain", "UTF-8", status, message, null, new ByteArrayInputStream(message.getBytes(StandardCharsets.UTF_8))); }
     private void scheduleRender() { main.removeCallbacks(render); main.postDelayed(render, 60); }
     @Override public void onStart() {

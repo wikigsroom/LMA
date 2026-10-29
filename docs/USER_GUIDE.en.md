@@ -1,6 +1,9 @@
 # LMA user guide
 
-Internal dev.28: [LCM user assets through local generation](LCM_APP_FLOW.en.md). Select a source, prepare, explicitly associate and choose missing dependencies before generating. Pixel/quality/device gates remain open; drafts, preflight and recovery remain.
+Current dev.29: [incremental local audio and playback](AUDIO_STREAMING.en.md) / [中文](AUDIO_STREAMING.md), with [numbered delivery and the full same-release scope](releases/v0.3.0-dev.29.md). Model-scoped opt-in streaming, bounded shared previews and verified full WAV publication. Trained Realtime/Android acceptance remains open; historical failures stay recorded.
+
+
+Earlier dev.28: [LCM user assets through local generation](LCM_APP_FLOW.en.md). Select a source, prepare, explicitly associate and choose missing dependencies before generating. Pixel/quality/device gates remain open; drafts, preflight and recovery remain.
 
 Internal dev.27 adds [output recovery, task filters and history management](TASK_RECOVERY.en.md): inspect recovered results/capacity and review exact terminal records before clearing. Models, media, drafts and active work remain; no automatic rerun.
 

@@ -62,6 +62,7 @@ module.exports=async function(page,checked,overflow,output,shot=async()=>{}){
   await page.locator('.nav-item[data-tab="models"]').click();await page.locator('[data-bundle="'+payload.target.id+'"] [data-action="bundleInfo"]').first().click();
   assert((await page.locator('#modalContent').textContent()).includes('像素'));await shot('03-dependencies.png','UI FIXTURE · Remaining user downloads and failed pixel gate / 用户选择依赖并保留像素失败状态');
   await page.locator('[data-action="downloadBundle"]').click();await page.waitForFunction(before=>window.__commands.filter(c=>c.action==='downloadBundle').length>before,initialDownloads);
+  await page.waitForFunction(()=>{const commands=window.__commands.filter(c=>c.action==='downloadBundle'),last=commands[commands.length-1];return last&&(window.__fixture.commandResults||[]).some(r=>r.requestId===last.requestId);});
   assert.equal(await page.evaluate(()=>window.__commands.filter(c=>c.action==='downloadBundle').length),initialDownloads+1);
   await page.evaluate(()=>{const f=window.__fixture,b=f.bundles[1];b.installed=true;delete b.transfer;b.plan.components.forEach(c=>{c.reusable=true;});b.plan.reusableBytes=b.plan.totalBytes;b.plan.remainingBytes=0;window.LMA.receive(f);});
   await page.keyboard.press('Escape');await page.locator('[data-bundle="'+payload.target.id+'"] [data-action="bundleUse"]').click();

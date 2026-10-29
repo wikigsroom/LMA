@@ -1,5 +1,14 @@
 # Changelog / 更新记录
 
+## 0.3.0-dev.29 — incremental audio business flow / unreleased
+
+- MOSS Realtime 非 EOS 编码帧直接进入有状态 codec，逐帧输出 PCM16 并保留完整 WAV；不等待文件完成后再切片。Actual stateful frame decode with final sample agreement.
+- 流式试听默认关闭，设置随模型与不可变请求保存；固定增益用于试听及最终文件，整段模式保留原 RMS 处理。Opt-in per-model settings and explicit gain semantics.
+- 基座新增有界、连续、校验结束边界的音频通道；私有缓存最多 4 次，成功 / 失败 / 取消 / 中断与真实队列一致，部分音频不发布为成功产物。Bounded previews share the production task lifecycle.
+- 鉴权 API 提供游标分页及不可变 PCM，页面明确点击播放、停止 / 关闭 / 后台释放音频资源，生成独立继续。Authenticated cursor-based reads and explicit playback controls.
+- 同步 ARM64、原签名开发 APK、当前回归与 3 张新截图 / MP4 / GIF、双语指南；dev.24 / dev.28 历史证据原样留存。完整训练 Realtime / 质量 / Android 及所有冻结目标未完成，不发布为完整 Release。[中文](docs/AUDIO_STREAMING.md) / [English](docs/AUDIO_STREAMING.en.md) / [编号完整待办](docs/releases/v0.3.0-dev.29.md)。
+
+
 ## 0.3.0-dev.28 — LCM user assets through generation / unreleased
 
 - LCM 准备程序注册进 App；用户明确选源、准备、关联、下载依赖和生成，复用共享队列与独立模型记录。Production preparation and association connect to generation without implicit transfers.

@@ -240,6 +240,9 @@ public final class LocalJobs implements AutoCloseable {
                 @Override public void progress(String stage, Double fraction) throws Exception { check(); app.jobs.progress(id, token, stage, fraction); changed.run(); }
                 @Override public void process(Process process) throws Exception { activeProcess = process; try { check(); } catch (Exception error) { destroy(process); throw error; } }
                 @Override public void execution(JSONObject details) throws Exception { check(); if (details.toString().length() > 16000) throw new IOException("引擎执行元数据过长"); executionDetails.put("details", DataFiles.copy(details)); }
+                @Override public boolean audioStreaming() { return app.audioStreams != null; }
+                @Override public void audioStart(AudioPcm.Format format) throws Exception { check(); app.audioStreams.begin(id, format); changed.run(); }
+                @Override public void audioChunk(AudioPcm.Chunk chunk) throws Exception { check(); app.audioStreams.append(id, chunk); if (chunk.sequence == 0 || chunk.sequence % 6 == 0) changed.run(); }
             });
             if (timedOut.get()) throw new IOException("本地执行超过应用的两小时单任务保护时限");
             JSONArray adapterManifests = new JSONArray(), adapterReceipts = new JSONArray(); for (BundleStore.Lease adapter : adapters) { adapterManifests.put(adapter.bundle.json()); adapterReceipts.put(new JSONObject().put("bundleId", adapter.bundle.id).put("components", adapter.integrity())); }
@@ -253,6 +256,7 @@ public final class LocalJobs implements AutoCloseable {
             if (closed) app.jobs.interrupt(id, token, "服务结束；此引擎没有可续步 checkpoint，可明确重试新任务");
             else app.jobs.finish(id, token, new JSONArray(), timedOut.get() ? "本地执行超过应用的两小时单任务保护时限" : error.getMessage() == null ? error.toString() : error.getMessage());
         } finally {
+            if (app.audioStreams != null) try { JSONObject terminal = app.jobs.get(id); String state = terminal.getString("state"); if (!java.util.Arrays.asList("succeeded", "failed", "cancelled", "interrupted").contains(state)) state = "interrupted"; app.audioStreams.finish(id, state, artifactId); } catch (Exception error) { app.log("音频试听状态清理失败：" + error.getMessage()); }
             if (timeout != null) timeout.cancel(false);
             Process child = activeProcess;
             try { ProcessControl.stop(child); } catch (IOException error) { app.log(error.getMessage()); }

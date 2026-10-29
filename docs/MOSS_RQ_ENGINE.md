@@ -13,7 +13,7 @@
 
 旧 Local 官方 config 的 `MossTTSDelayModel` 名称不能替代实际模型源码核对。它与 Local-v1.5 的单层 GPT-J / 12 路 / 48 kHz 双声道结构不同，也不复用 Delay 的一键开关。
 
-Realtime 是模型名称；**当前 LMA 接口接收一次完整文本，完成后返回完整 WAV**。没有增量文本会话、音频 chunk / WebSocket 输出或低延迟承诺；不暴露原生离线路径不消费的声音描述、语言或文本采样字段。实际速度与 RTF 需要手机测量。
+Realtime 是模型名称；当前接口仍一次接收完整文本。dev.29 可在本模型设置中开启[逐帧音频与边生成边听](AUDIO_STREAMING.md)，输出 PCM 并保留采样一致的完整 WAV；默认整段模式保留原响度处理。没有增量文本会话、WebSocket 输出或低延迟承诺；不暴露原生离线路径不消费的声音描述、语言或文本采样字段。实际速度与 RTF 需要手机测量。
 
 官方模型、processor、codec 和 tokenizer config 的固定 revision / 哈希见[发布者核对记录](../catalogue/evidence/moss-rq-publishers.json)。核对只读取 JSON / Markdown / Python 文本；没有下载权重或执行发布者 Python。
 

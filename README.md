@@ -2,15 +2,15 @@
 
 [中文](README.md) · [English](README.en.md) · [下载 / Releases](https://github.com/wikigsroom/LMA/releases) · [文档导航](docs/README.md) · [更新记录](CHANGELOG.md)
 
-> **当前开发：0.3.0-dev.28 / code 32。** LCM 已接入“用户选择来源 → 本机准备 → 明确关联 → 自选依赖 → 提交生成”的生产模块，修复准备输出预算，并增加 Java / 原生条件校验及加载失败处理。App 只更新基座，全部模型数据由用户选择、下载和管理。[方案与使用](docs/LCM_APP_FLOW.md) · [编号实现 / 全部待办](docs/releases/v0.3.0-dev.28.md) · [录屏](docs/media/development/lcm/lcm-ui.mp4) · [GIF](docs/media/development/lcm/lcm-ui.gif)。LCM 原像素门槛 **8 > 5** 仍失败；画质、Android 与完整 v0.3.0 尚未验收。
+> **当前开发：0.3.0-dev.29 / code 33。** 已接通 MOSS Realtime 的可选逐帧音频输出、共用试听缓存、鉴权接口与边生成边听；流式设置跟随模型，最终 WAV 必须与已发送采样一致才发布。App 只更新基座，模型仍由用户选择、下载和管理。[方案与使用](docs/AUDIO_STREAMING.md) · [编号实现 / 全部待办](docs/releases/v0.3.0-dev.29.md) · [录屏](docs/media/development/audio/audio-ui.mp4) · [GIF](docs/media/development/audio/audio-ui.gif)。当前为协议、真实小型解码图与页面检查；完整训练 Realtime 音质、手机性能与完整版本尚未验收。
 
-| 用户确认本机准备（桌面界面数据） | 用户确认关联与依赖（桌面界面数据） |
+| 本地模型的流式设置（界面测试数据） | 边生成边听（合成 PCM，非模型演示） |
 |---|---|
-| ![准备源模型](docs/media/development/lcm/01-prepare.png) | ![关联运行模型](docs/media/development/lcm/02-associate.png) |
+| ![模型独立流式设置](docs/media/development/audio/01-model-setting.png) | ![增量试听](docs/media/development/audio/02-incremental-playback.png) |
 
 保留[草稿 / 结果再生成](docs/TASK_WORKBENCH.md)、[运行前检查](docs/TASK_PREFLIGHT.md)、[任务恢复 / 历史 / 容量](docs/TASK_RECOVERY.md)，以及推荐 m08→m06→m01、HF 全部 / 搜索、本地管理与模型独立设置。
 
-当前检查与历史实验在[证据索引](verification/development/status.json)中分开标记。下列模型专项属于 dev.24 及其对应提交，“APK 不变”仅描述当时的更新；原失败和完整同版要求保留。
+当前检查与历史实验在[证据索引](verification/development/status.json)中分开标记；[LCM 生产准备 / 关联 / 生成](docs/LCM_APP_FLOW.md)的完整训练主机证据保留在对应 dev.28 提交，原像素失败 8 > 5 保留。下列模型专项属于 dev.24 及其对应提交，“APK 不变”仅描述当时的更新；原失败和完整同版要求保留。
 
 新增[LCM 小型原生准备基座](docs/LCM_LOCAL_PREPARATION.md)：完整 3.44 GB 来源校验后生成 5,696 字节条件组件，24 原生进程 / 105 项检查与真实训练出图、取消恢复分别记录；Android 编译独立于手机执行。附[编号实现与完整待办](docs/releases/v0.3.0-dev.24-lcm-preparation.md)和真实 HOST 图片 / GIF / MP4。新 C++ 组件像素比较最大差值 8 超过预设上限 5，候选保持未通过；准备程序尚未接入 App，画质与完整版本仍待验收；APK 及生产输入不变。
 

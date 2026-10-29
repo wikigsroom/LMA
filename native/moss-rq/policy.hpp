@@ -17,6 +17,7 @@ struct Run {
     int input_limit=0,prefill=0,remaining_text=0,reference_frames=0,steps=0,output_frames=0;bool stopped=false;
     double prefill_ms=0,generation_ms=0;Clock::time_point prefill_start,generation_start,codec_start;
     std::function<void(const std::string&,int,int)> notify;
+    std::function<void(const std::vector<float>&,int)> audio;
 };
 inline thread_local Run run;
 inline void before_prefill(int prefill,int remaining,int references,int max_steps) {

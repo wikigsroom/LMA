@@ -1,5 +1,8 @@
 # LMA API 接入
 
+当前 dev.29：[本机增量音频与流式试听](AUDIO_STREAMING.md) / [English](AUDIO_STREAMING.en.md)，[编号交付及完整同版待办](releases/v0.3.0-dev.29.md)。模型独立选择流式设置；接口与页面共用有界缓存；完整 WAV 校验后发布。训练 Realtime / Android 尚未验收，历史失败保留。
+
+
 dev.28 的 LCM 准备 / 关联复用本页的 `model.prepare` / `model.assemble` / `image.generate` 与共用任务协议。只能选择随 App 分发的固定方案，不接受程序路径或隐式补下载；见[来源、参数和使用顺序](LCM_APP_FLOW.md)。
 
 [历史管理 API](TASK_RECOVERY.md#4-本地-api)：先 `GET /v1/jobs/history` 检查计划，再明确将其中 `ids` / `review` 提交到 `POST /v1/jobs/history/clear`。只清理所选终态记录及幂等键，素材和活动任务保留。

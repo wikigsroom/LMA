@@ -18,6 +18,7 @@
     if (job.outputRecovery) html += '<p class="recovered-output">中断后找回了已保存的结果。任务仍为已中断，未自动续步或重新生成。</p>';
     if (job.error) html += '<p class="download-error">' + e(job.error) + '</p>';
     html += '<div class="job-actions task-next-actions">';
+    var stream = window.LMAAudioPreview.summary(job.id); if (stream) html += button('audioPreview', job.id, stream.state === 'streaming' ? '边生成边听' : '试听缓存', 'primary', stream.frames === 0);
     outputs.forEach(function (id, index) { var a = artifact(id); html += button('artifactInfo', id, '打开结果' + (outputs.length > 1 ? ' ' + (index + 1) : ''), 'primary', !a || !a.available); });
     if (generation(r.type)) html += button('editTask', job.id, '编辑后再次生成');
     if (b) html += button('bundleInfo', b.id, generation(r.type) ? '管理此模型' : '继续管理运行资产', generation(r.type) ? 'secondary' : 'primary');
@@ -76,10 +77,11 @@
     ui.openModal('用作下一次生成的素材', html, 'artifactInput');
   }
   window.LMAWorkbench = {
-    init: function (bridge, callbacks) { ui = bridge; host = callbacks; },
+    init: function (bridge, callbacks) { ui = bridge; host = callbacks; window.LMAAudioPreview.init(bridge, callbacks); },
     render: render, showJob: showJob, draft: draft,
     generation: generation,
     handle: function (action, el) {
+      if (window.LMAAudioPreview.handle(action, el)) return true;
       var id = el.dataset.id;
       if (action === 'planTaskHistory') { planHistory(); return true; }
       if (action === 'clearTaskHistory') {

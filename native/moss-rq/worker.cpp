@@ -1,6 +1,7 @@
 #include "json.hpp"
 #include "model_contract.hpp"
 #include "../openmoss/wave.hpp"
+#include "../audio_pcm.hpp"
 #include "moss_tts_local.hpp"
 #include "moss_tts_rt.hpp"
 #include "backend.hpp"
@@ -33,6 +34,14 @@ int main(int argc,char** argv) {
         require(setenv("MOSS_TTS_BACKEND","cpu",1)==0 && setenv("MOSS_TTS_FLASH_ATTN","0",1)==0 && setenv("MOSS_HEAD_PARALLEL_MIN","2147483647",1)==0,"Cannot apply CPU execution policy");
         moss::set_log_callback([](moss::moss_log_level,const char*,void*){},nullptr);auto backend=moss::backend();require(backend && ggml_backend_is_cpu(backend),"CPU graph backend unavailable");ggml_backend_cpu_set_n_threads(backend,threads);
         run=Run{};run.input_limit=p.at("maxInputTokens");run.notify=[](const std::string& stage,int current,int total){if(current>0)event({{"event","progress"},{"stage",stage},{"step",current},{"steps",total}});else event({{"event","stage"},{"stage",stage}});};
+        std::unique_ptr<lma_audio::Stream> stream;
+        require(p.value("streamAudio",false)==request.contains("audioStream"),"Streaming parameter and owned consumer disagree");
+        if(request.contains("audioStream")) {
+            const auto& format=request.at("audioStream");
+            require(rt && format.at("schema")=="lma.audio-stream/1" && format.at("format")=="pcm_s16le" && format.at("sampleRate")==24000 && format.at("channels")==1 && format.at("maxFrames")==max_steps*1920 && format.at("maxChunkFrames")==1920,"Invalid Realtime audio stream declaration");
+            stream=std::make_unique<lma_audio::Stream>(24000,1,max_steps*1920,1920,[](int sequence,int start,int frames,const std::string& pcm){event({{"event","audio_chunk"},{"schema","lma.audio-stream/1"},{"sequence",sequence},{"startFrame",start},{"frames",frames},{"sampleRate",24000},{"channels",1},{"pcm",pcm}});});
+            run.audio=[&](const std::vector<float>& pcm,int sample_rate){stream->write(pcm,sample_rate);};
+        }
         event({{"event","stage"},{"stage","loading_models"}});std::vector<float> audio;int rate=0;double load_ms=0;
         auto elapsed=[&](Clock::time_point from){return std::chrono::duration<double,std::milli>(Clock::now()-from).count();};
         if(rt) {
@@ -44,7 +53,9 @@ int main(int argc,char** argv) {
         }
         require(rate==24000 && run.steps>0 && run.output_frames>0 && run.output_frames<=max_steps,"RQ returned empty or incompatible audio frames");
         event({{"event","stage"},{"stage","saving_audio"}});lma_openmoss::write_wave(output,audio,1,60,24000);double duration=double(audio.size())/24000,total=elapsed(start);
+        if(stream) {require(stream->frames()==int(audio.size()),"Streamed audio differs from the final frame count");stream->finish();event({{"event","audio_end"},{"schema","lma.audio-stream/1"},{"nextSequence",stream->next()},{"frames",stream->frames()}});}
         json details={{"backend","cpu"},{"sampleRate",24000},{"channels",1},{"modelLoadMs",load_ms},{"formattedPrefillFrames",run.prefill},{"remainingTextTokens",run.remaining_text},{"referenceFrames",run.reference_frames},{"generationSteps",run.steps},{"audioFrames",run.output_frames},{"prefillMs",run.prefill_ms},{"generationMs",run.generation_ms},{"pipelineMs",total},{"audioDurationSeconds",duration},{"pipelineRTF",total/1000/duration},{"stopReason",run.stopped?"audio_end":"application_step_limit"},{"interfaceMode","single_text_to_wav"}};
+        details["interfaceMode"]=stream?"single_text_incremental_pcm_and_wav":"single_text_to_wav";details["outputGain"]=stream?"unity_for_stream_and_final":"whole_clip_rms_bounded_3db";
         event({{"event","execution"},{"details",details}});event({{"event","complete"},{"output",output}});return 0;
     }catch(const std::exception& error){event({{"event","error"},{"message",error.what()}});return 1;}
 }

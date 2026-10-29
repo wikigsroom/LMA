@@ -1,5 +1,8 @@
 # LCM: user assets through local generation
 
+Dev.29 retains this production flow. The trained host checks below belong to the dev.28 commit and remain in immutable checkpoint history. Their former input fingerprints are not promoted to current passes; the pixel failure 8 > 5 and quality/Android gates remain open.
+
+
 [中文](LCM_APP_FLOW.md) · [Numbered delivery and complete pending scope](releases/v0.3.0-dev.28.md) · [Original preparation experiment](LCM_LOCAL_PREPARATION.en.md) · [Complete release requirements](MULTIMODAL_RELEASE_PLAN.en.md)
 
 Dev.28 connects the small preparation program to the production asset, queue, model and generation modules. The APK contains runtime and preparation code. Users independently acquire the source, base and vocabulary and explicitly prepare derived condition data. The two entries are peers in the flat model library, tagged for images with separate source-asset, runtime and fixed-condition capabilities. Recommendations m08→m06→m01 remain.

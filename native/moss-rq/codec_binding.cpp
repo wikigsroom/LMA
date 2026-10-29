@@ -11,4 +11,6 @@ int Codec::num_quantizers() const {return impl_->num_quantizers();}
 bool Codec::encode(const std::vector<float>& wav,std::vector<int32_t>* codes,int* frames) {return impl_->encode(wav,codes,frames);}
 bool Codec::decode(const std::vector<int32_t>& codes,int frames,std::vector<float>* wav,int quantizers) {return impl_->decode(codes,frames,wav,quantizers);}
 bool Codec::reconstruct(const std::vector<float>& wav,std::vector<float>* out) {return impl_->reconstruct(wav,out);}
+std::unique_ptr<NanoCodecStream> Codec::stream_begin() {return impl_->decode_stream_begin();}
+bool Codec::stream_step(NanoCodecStream& state,const std::vector<int32_t>& codes,std::vector<float>* pcm) {return impl_->decode_stream_step(state,codes,pcm);}
 }

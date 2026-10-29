@@ -13,7 +13,7 @@ Internal **0.3.0-dev.19 / code 23** adds the ARM64 CPU `moss_rq_native` engine. 
 
 Old Local's official config calls the architecture `MossTTSDelayModel`, but its actual model source establishes the depth/adaptor structure. It differs from Local-v1.5's single-layer GPT-J / 12-codebook / 48 kHz stereo structure and cannot use a generic Delay switch.
 
-Realtime is the model's name. **LMA currently accepts a complete text request and returns a complete WAV after execution.** There is no incremental text session, audio chunk/WebSocket output or latency promise. Voice/language hints and text-sampling fields ignored by the native offline path are not exposed. Actual speed and RTF require phone measurement.
+Realtime is the model's name. Requests still contain the complete text. Dev.29 adds opt-in [frame-by-frame audio and playback](AUDIO_STREAMING.en.md) with a sample-identical final WAV; default whole-file mode retains its original gain handling. There is no incremental text session, WebSocket output or latency promise. Voice/language hints and text-sampling fields ignored by the native offline path are not exposed. Actual speed and RTF require phone measurement.
 
 Pinned official model/processor/codec/tokenizer revisions and hashes appear in the [publisher audit](../catalogue/evidence/moss-rq-publishers.json). Only JSON/Markdown/Python source text was read; no weights were downloaded or publisher Python executed.
 

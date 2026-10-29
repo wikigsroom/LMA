@@ -18,11 +18,13 @@ def main():
     lock = json.loads((ROOT/'third_party/moss-rq-source-lock.json').read_text(encoding='utf-8'))
     source=validate_sources(lock)
     if hashlib.sha256((ROOT/'build/native-src/sd-cpp/thirdparty/json.hpp').read_bytes()).hexdigest() != lock['json_header_sha256']: raise RuntimeError('Pinned JSON header changed')
-    inputs = fingerprint('native/moss-rq','native/openmoss','tools/build_moss_rq.py','tools/fetch_moss_rq.py','tools/moss_rq_pipeline.py','third_party/moss-rq-source-lock.json')
+    inputs = fingerprint('native/audio_pcm.hpp','native/moss-rq','native/openmoss','tools/build_moss_rq.py','tools/fetch_moss_rq.py','tools/moss_rq_pipeline.py','third_party/moss-rq-source-lock.json')
     generated=ROOT/'build/moss_rq-generated';generated.mkdir(parents=True,exist_ok=True)
     pipelines=generated_sources(source)
-    for name,data in pipelines.items():(generated/name).write_text(data,encoding='utf-8')
-    drive = next((c+':' for c in 'RSTUVWXYZ' if not Path(c+':/').exists()), None)
+    for name,data in pipelines.items():
+        target=generated/name
+        if not target.is_file() or target.read_text(encoding='utf-8')!=data:target.write_text(data,encoding='utf-8')
+    drive = next((c+':' for c in 'TUVWXYZ' if not Path(c+':/').exists()), None)
     if not drive: raise RuntimeError('No unused build path alias')
     subprocess.run(['subst',drive,str(ROOT)],check=True,capture_output=True)
     log = ROOT/'build/moss_rq-build.log'; log.write_bytes(b'')
@@ -48,6 +50,8 @@ def main():
     receipt=dict(schema='lma.native-build/1',engine='moss_rq_native',file=binary.name,source_revision=lock['revision'],ggml_revision=lock['ggml_revision'],abi='arm64-v8a',backend='cpu',ndk='30.0.16248370',min_sdk=28,bytes=len(data),sha256=hashlib.sha256(data).hexdigest(),elf_load_alignment=info['load_segment_alignment'],android_api_notes=[28],source_inputs=inputs,vocabularies='external_user_selected_components',model_inference_tested=False,physical_device_tests=0,virtualization_used=False)
     receipt['pipeline_guard_sha256']={name:hashlib.sha256(data.encode('utf-8')).hexdigest() for name,data in pipelines.items()}
     (ROOT/'build/moss_rq-build-info.json').write_text(json.dumps(receipt,indent=2)+'\n',encoding='utf-8')
+    evidence={k:v for k,v in receipt.items() if k!='source_inputs'};evidence['input_fingerprint']=inputs
+    (ROOT/'build/moss_rq-arm64-evidence.json').write_text(json.dumps(evidence,indent=2)+'\n',encoding='utf-8')
     print(json.dumps({k:receipt[k] for k in ('engine','bytes','sha256','source_revision')}))
 
 

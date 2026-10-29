@@ -18,6 +18,7 @@ public final class LocalApi implements LocalHttp.Handler {
         JSONArray engines() throws Exception;
         JobStore jobs() throws Exception;
         ArtifactStore artifacts() throws Exception;
+        default AudioStreams audioStreams() throws Exception { throw new IOException("Audio previews are unavailable"); }
         default TaskDrafts drafts() throws Exception { throw new IllegalStateException("Task drafts are unavailable"); }
         default void draftsChanged() {}
         default void jobsChanged() {}
@@ -79,6 +80,12 @@ public final class LocalApi implements LocalHttp.Handler {
         if (path.startsWith("/v1/jobs/")) {
             String[] parts = path.substring("/v1/jobs/".length()).split("/", -1); String id = id(parts[0]);
             JSONObject job = job(id);
+            if (parts.length >= 2 && parts[1].equals("audio")) {
+                method(r, "GET", "HEAD"); noBody(r);
+                if (parts.length == 2) { String after = r.query("after"); if (!after.isEmpty() && !after.matches("[0-9]{1,4}")) throw new IllegalArgumentException("Use a numeric audio cursor"); return json(200, runtime.audioStreams().get(id, after.isEmpty() ? 0 : Integer.parseInt(after))); }
+                if (parts.length == 3 && parts[2].matches("[0-9]{1,4}")) { byte[] pcm = runtime.audioStreams().read(id, Integer.parseInt(parts[2])); return LocalHttp.Response.bytes(200, "application/octet-stream", pcm).header("Cache-Control", "no-store").header("X-Audio-Format", "pcm_s16le"); }
+                throw new LocalHttp.Failure(404, "audio_chunk_not_found", "Unknown audio preview chunk");
+            }
             if (parts.length == 1) {
                 method(r, "GET", "HEAD", "DELETE"); noBody(r);
                 if (r.method.equals("DELETE")) { runtime.jobs().remove(id); runtime.jobsChanged(); return json(200, new JSONObject().put("deleted", true).put("id", id)); }

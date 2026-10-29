@@ -2,7 +2,7 @@
   "tool": "lint 8.9.0 [13114758] ",
   "default_checks": true,
   "offline": true,
-  "java_source_files": 82,
+  "java_source_files": 84,
   "resource_files": 3,
   "min_sdk": 28,
   "compile_sdk": 35,
@@ -24,7 +24,7 @@
       "message": "Use of `REQUEST_IGNORE_BATTERY_OPTIMIZATIONS` violates the Play Store Content Policy regarding acceptable use cases, as described in https://developer.android.com/training/monitoring-device-state/doze-standby.html",
       "location": {
         "file": "src\\main\\java\\com\\lma\\app\\MainActivity.java",
-        "line": "192",
+        "line": "204",
         "column": "95"
       }
     },
@@ -34,7 +34,7 @@
       "message": "Use `@RequiresApi(33) instead of `@TargetApi` to propagate the requirement to users of `Api33Back`",
       "location": {
         "file": "src\\main\\java\\com\\lma\\app\\MainActivity.java",
-        "line": "124",
+        "line": "136",
         "column": "5"
       }
     },
@@ -186,7 +186,7 @@
       "message": "Use of `REQUEST_IGNORE_BATTERY_OPTIMIZATIONS` violates the Play Store Content Policy regarding acceptable use cases, as described in https://developer.android.com/training/monitoring-device-state/doze-standby.html",
       "location": {
         "file": "src\\main\\java\\com\\lma\\app\\MainActivity.java",
-        "line": "192",
+        "line": "204",
         "column": "95"
       }
     },
@@ -196,7 +196,7 @@
       "message": "Use `@RequiresApi(33) instead of `@TargetApi` to propagate the requirement to users of `Api33Back`",
       "location": {
         "file": "src\\main\\java\\com\\lma\\app\\MainActivity.java",
-        "line": "124",
+        "line": "136",
         "column": "5"
       }
     },
@@ -332,10 +332,10 @@
     }
   ],
   "android_execution_tested": false,
-  "applicationApkSha256": "4bee3ed28944074b4a25c972b924734855ba01e48df57de80416bc4acb8f1238",
+  "applicationApkSha256": "dd993860ce067ac6b7e79bdda07b5531a6f7822e31f911e8412074c1b03d916f",
   "input_fingerprint": {
-    "app/src/main/AndroidManifest.xml": "4dcce834eea80ed758213ad8b991cb44e56009419da7935f3fceee93d3148246",
-    "app/src/main/java/com/lma/app/ApiHost.java": "4439cd4ab1fbbf83a8457c35fa7e8fdeeffdab00cd55e84e3007b9de5a34bde6",
+    "app/src/main/AndroidManifest.xml": "1d9dfe2a5e008478e9b5c2e9671893e9b584433f95691c10689b5d3fdcb8a70f",
+    "app/src/main/java/com/lma/app/ApiHost.java": "3080fa089d97386d74dc13e463830786fab86c90947120bbfb5c3791015ed314",
     "app/src/main/java/com/lma/app/BootReceiver.java": "2c1f72871ca122f8e9562edfc163105bd56ed1df81d3bcf60108a267b837dcee",
     "app/src/main/java/com/lma/app/BundleDocuments.java": "5b7039fae074adf35e117155e0337792e7ac7f08fa3630803fb1c9ac3b188d3a",
     "app/src/main/java/com/lma/app/ChatRunner.java": "7a99210f094bb2db89ff6c52fdc8b221d86c6621bf1805cd0890c769f0f8ef27",
@@ -343,6 +343,8 @@
     "app/src/main/java/com/lma/app/core/AdapterSpec.java": "aff8572d14ac8d616be0a1b0da395e52ed5bddcd5ae407a969c2657bf9257581",
     "app/src/main/java/com/lma/app/core/ArtifactStore.java": "6f85d2ac710cac0fb5a76cde9493ff1fef4d3e2e119c3e031b7c44ff65a49061",
     "app/src/main/java/com/lma/app/core/AssemblyPlan.java": "80e81dea2a831d3955aa5ae21323eb0432fb448f78994901633fbb6e85d77e7c",
+    "app/src/main/java/com/lma/app/core/AudioPcm.java": "9bf3270c83f57b7fa4e23fc4518fa063e72ca214675f9c23d45bd1788842f7b2",
+    "app/src/main/java/com/lma/app/core/AudioStreams.java": "de8a2cdd98d083b62515b067865182d9065bb00f14b8c70cacafba21de8407f1",
     "app/src/main/java/com/lma/app/core/BundleStore.java": "a773aaa8f83410da9ccbf499b9a19ee4166e2c094c2e992699424c0ac68f3e74",
     "app/src/main/java/com/lma/app/core/BundleTransfers.java": "926596119a2c3f6bc089516e7bbd7db3016487d60c24f908ea646dfc76707f3e",
     "app/src/main/java/com/lma/app/core/BundleUpdates.java": "f31a65d0e172aa75f6131deace828875534ccc756ed93fac83bb09d5a4162fe1",
@@ -357,14 +359,14 @@
     "app/src/main/java/com/lma/app/core/InputUploads.java": "5debd68a73abc8bde8174c985dfec8f534c6bf8df58dda8810b0cc3541fe1d53",
     "app/src/main/java/com/lma/app/core/JobStore.java": "2ea819922f6b069348848d6a8113f20257d120fef2d280e37d774f97a7cb637d",
     "app/src/main/java/com/lma/app/core/LcmCondition.java": "2177da94b69781263e36f3e379034619bf74c6856bc6a9108592d4f272e94b7a",
-    "app/src/main/java/com/lma/app/core/LocalApi.java": "d37a9007214d35ae396bc65ea34eec86c2199ed92a73f83be07914d6190a5d80",
+    "app/src/main/java/com/lma/app/core/LocalApi.java": "c9e1674f98ef12c7312ff42c50ba38a10c08d5cf1d3e173a8093ecd7fa67e5fc",
     "app/src/main/java/com/lma/app/core/LocalHttp.java": "428acea4f950bd2ae2948e5b418f5f98259640108427fd9c59d918809787c9cd",
     "app/src/main/java/com/lma/app/core/MnnSpec.java": "ef8a51675cdda887a1b7c78b8b1c6398b71c87a004327fbda5af62f8b52d8315",
     "app/src/main/java/com/lma/app/core/ModelBundle.java": "ad08c033a2c9a215c292d20a5a97a65c85db91ce6a86609a8eed9e846449e84b",
     "app/src/main/java/com/lma/app/core/ModelSelection.java": "965c9f22f16fc822f792ebef6e0de0a0c67f5a6882d5e7ef77be05b83ea1aeb2",
     "app/src/main/java/com/lma/app/core/MossDelaySpec.java": "2f680d68cf78517f234c336c77e0b584bf40300fd6294514b7cd457149d41bd0",
     "app/src/main/java/com/lma/app/core/MossNanoSpec.java": "4b784a773fb85550eba8f169a62cab9a274a332519ec700b595694378e9e39ed",
-    "app/src/main/java/com/lma/app/core/MossRqSpec.java": "74f68a8374b5436cf73688e427e9cad244a198f6f8faa2c5fea686bb04bc99a2",
+    "app/src/main/java/com/lma/app/core/MossRqSpec.java": "0713659ade3c172887527a9e961bbde4add5ed00bd2a564256bc11f9b4796b5e",
     "app/src/main/java/com/lma/app/core/NativePreparation.java": "cb8ee985ef2c6cba3e0d6bb924c940bcb197bd3f576ca7d6e1fa24442d44e1dd",
     "app/src/main/java/com/lma/app/core/OpenMossSpec.java": "4a9af3c92d87be65c4f617677eaed31576f9160a3355518fff7cb874192a5258",
     "app/src/main/java/com/lma/app/core/ParameterSchema.java": "d536dd7e01107785076f5d1cd3c1c7ff89f6a3711ec130d3ec13e4b20d73bef1",
@@ -392,12 +394,12 @@
     "app/src/main/java/com/lma/app/HubCatalog.java": "31c64a19e4162ce0b1d30428990a9272e4697f4393972a73e5e289a17a3e1a09",
     "app/src/main/java/com/lma/app/HubClient.java": "4479cd1145fb17ce1f563b09d413c061ab2b513375f37c2f1c7e8b6b534e031a",
     "app/src/main/java/com/lma/app/InputImports.java": "1f8b8b8a2a262fb57ed023c3eeb85fbb63a7c768b20196ef27d13295b26db437",
-    "app/src/main/java/com/lma/app/LmaApp.java": "9bc1457663af4a1da173ae195472631680da45d018d637e122eff3b1f7c3aa34",
+    "app/src/main/java/com/lma/app/LmaApp.java": "c11eb341260f9d2475dd139596d5c3c741947fd4cf7b583bd03a282348a83e6f",
     "app/src/main/java/com/lma/app/LmaService.java": "59ed5bbd88c0b6b4348a86db9efae8b8f2cb0095cb5dbdb4420d4d57bbd7a37f",
-    "app/src/main/java/com/lma/app/LocalEngine.java": "db9b46d2e05802bec96f2fb428469553d95c3424228dd06fd617c361b99b9f7d",
+    "app/src/main/java/com/lma/app/LocalEngine.java": "c7b1ae6b0ac675f0852b819c84ab73e70a750e641ba441a9f1ba4bbd27086e84",
     "app/src/main/java/com/lma/app/LocalEngines.java": "cabd1f006a0d373dfe3d7500928e280532b0c09058e9dc3cb3d7e360093ff2a5",
-    "app/src/main/java/com/lma/app/LocalJobs.java": "2885435109cf3fdfe823433cb35262a400e06831ea4c04ab878cebbdbca92d2c",
-    "app/src/main/java/com/lma/app/MainActivity.java": "7fc443e67cca241df58ff4baa24275f9d80a5d1eac02e0a3ee6d317cd63a3fdc",
+    "app/src/main/java/com/lma/app/LocalJobs.java": "c74640e319a4395302890fb4ee8d861924a019b632ca88547dcb8b2c5cebb7b4",
+    "app/src/main/java/com/lma/app/MainActivity.java": "6abf16a38fd141cf7bed6cc065883e47d7f1986265b19f747b13086e0ba325ab",
     "app/src/main/java/com/lma/app/MediaInspector.java": "663052a99df051bce6617b08e9b1df1f53fe061c88ef8681f759a373c5e5fe6a",
     "app/src/main/java/com/lma/app/MnnEngine.java": "85018a26be9129494e9fef4a45008c2098b9586bfe31af1cebb9a9baa88319a2",
     "app/src/main/java/com/lma/app/ModelAssemblies.java": "41b0ed3e84a9a58b97f539d342a11aad3e65ff567f8366ed6fe39a240aca7ebd",
@@ -405,8 +407,8 @@
     "app/src/main/java/com/lma/app/ModelSettings.java": "1ce0dfb9de2f57c39d8e536f1492bdacdcce587329f0a891e34ba9abb0c31c1c",
     "app/src/main/java/com/lma/app/MossDelayEngine.java": "a757a0f16a45cb1149da8e775218da48339e4c4a283cbdf9fb6b919c64b60760",
     "app/src/main/java/com/lma/app/MossNanoEngine.java": "abe52b92ca108c5d111510a75ea83a79f9cf8c2b961b1926ef35393f2d58119c",
-    "app/src/main/java/com/lma/app/MossRqEngine.java": "a4ef57b7581da3183c7724777f201887e44120bbd6bd7977d12bc379d1e6e085",
-    "app/src/main/java/com/lma/app/NativeWorker.java": "c3324271639c6e77495e9aac78a663c6110dfef1026d0cc320ca82344ddd030d",
+    "app/src/main/java/com/lma/app/MossRqEngine.java": "a6b38bbc2670250fb6432649654e0cfa04da998c66d4821b8a60e448339427c3",
+    "app/src/main/java/com/lma/app/NativeWorker.java": "8d9c5aa7cf5744e634c6c3eeb17a798bc429a8f22e172f6b75e1a1400d7c4eaa",
     "app/src/main/java/com/lma/app/Net.java": "c5e95315608f0483d7d8214d728f732c17f6c03ba1f17eea435ecde623e721f4",
     "app/src/main/java/com/lma/app/OpenMossEngine.java": "ef55fc1e5efd1fdc20b365108e326e25efc9273aa627f960d2bcaad06ccf1b8b",
     "app/src/main/java/com/lma/app/QwenTtsEngine.java": "20b9cf08f4ebcf5d9ba1774e6d503016a43565d2287de1eac4c414d4ab6520a0",

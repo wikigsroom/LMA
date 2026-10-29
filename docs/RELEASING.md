@@ -1,5 +1,8 @@
 # 更新、同步与发布 / Updating and releasing
 
+dev.29 新增 [增量音频 / 中文](AUDIO_STREAMING.md) / [English](AUDIO_STREAMING.en.md)。协议子进程、真实小型图、UI 与 ARM64 编译各自留证；训练 Realtime 和 Android 不冒充通过。dev.28 的 21 份原始收据与状态按原提交逐字节保留；不因共用源码变化重复运行历史训练模型。完整 Release 门槛及全部冻结目标不变。
+
+
 [贡献约定 / Contributing](../CONTRIBUTING.md) · [文档目录 / Documentation](README.md)
 
 当前为 [dev.27 任务恢复、历史与容量](releases/v0.3.0-dev.27.md)，见 [中文](TASK_RECOVERY.md) / [English](TASK_RECOVERY.en.md)；保留 dev.26 运行前检查与 dev.25 生成工作台。当前 APK 需新签名核对和业务回归；旧训练实验按原提交冻结并明确标为历史，不能用于新 APK 的推理验收。`export_development.py` / `check_repository.py --development` 识别 checkpoint/2；完整 Release 导出器及所有模型 / 手机门槛不变。

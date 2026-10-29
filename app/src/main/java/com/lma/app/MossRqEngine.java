@@ -5,13 +5,13 @@ import org.json.*;
 import java.io.*;
 import java.util.Collections;
 
-/** Same-phone old Local and Realtime single-text-to-WAV pipelines. */
+/** Same-phone old Local and Realtime WAV pipelines, with opt-in incremental Realtime PCM. */
 public final class MossRqEngine implements LocalEngine {
     private final LmaApp app;private final File binary;private final JSONObject build;private final NativeWorker.Launcher launcher;
     public MossRqEngine(LmaApp a,File f,JSONObject b) { this(a,f,b,ProcessBuilder::start); }
     MossRqEngine(LmaApp a,File f,JSONObject b,NativeWorker.Launcher l) { app=a;binary=f;build=DataFiles.copy(b);launcher=l; }
     @Override public String id() { return "moss_rq_native"; }
-    @Override public JSONObject describe() throws Exception { return DataFiles.copy(build).put("available",binary.isFile() && binary.canExecute()).put("deviceValidated",false); }
+    @Override public JSONObject describe() throws Exception { return DataFiles.copy(build).put("available",binary.isFile() && binary.canExecute()).put("deviceValidated",false).put("audioStream",new JSONObject().put("schema",AudioPcm.SCHEMA).put("pipelines",new JSONArray().put("moss_realtime_rq_cpu_v1")).put("incrementalTextInput",false)); }
     @Override public void validate(ModelBundle b,String type) throws Exception { if(!binary.isFile() || !binary.canExecute())throw new IOException("当前 App 未安装 openmoss 原生引擎");MossRqSpec.validate(b,type); }
     @Override public InputSpec inputs(ModelBundle b,String type) throws Exception { MossRqSpec.validate(b,type);return MossRqSpec.inputs(); }
     @Override public JSONObject prepare(ModelBundle b,JSONObject request) throws Exception {
@@ -31,6 +31,10 @@ public final class MossRqEngine implements LocalEngine {
         try {
             for(String role:new String[]{"model","codec","tokenizer"})work.link("models",role+".gguf",lease.file(role));File output=c.output("wav");
             JSONObject command=new JSONObject().put("schema","lma.engine-request/1").put("type",request.getString("type")).put("pipeline",lease.bundle.pipeline).put("input",request.getJSONObject("input")).put("parameters",p).put("workspace",work.directory().getPath()).put("output",output.getPath());
+            if(MossRqSpec.realtime(lease.bundle) && p.optBoolean("streamAudio")) {
+                if(!c.audioStreaming())throw new IOException("当前任务无法接收流式音频，请关闭模型的流式试听设置");
+                command.put("audioStream",new JSONObject().put("schema",AudioPcm.SCHEMA).put("format","pcm_s16le").put("sampleRate",24000).put("channels",1).put("maxFrames",p.getInt("maxNewTokens")*1920).put("maxChunkFrames",1920));
+            }
             JSONArray refs=request.getJSONObject("input").optJSONArray("artifacts");if(refs!=null && refs.length()>0) {
                 File f=c.input("reference_audio");MossRqSpec.reference(f);command.put("referenceAudio",work.link("inputs","reference_audio.wav",f).getPath());
             }

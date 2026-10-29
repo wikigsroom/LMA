@@ -1,4 +1,5 @@
 package com.lma.app;
+import com.lma.app.core.AudioStreams;
 
 import android.app.Application;
 import android.content.Intent;
@@ -22,7 +23,7 @@ import com.lma.app.core.InputUploads;
 import com.lma.app.core.PreparedAssets;
 
 public final class LmaApp extends Application {
-    public static final String VERSION = "0.3.0-dev.28";
+    public static final String VERSION = "0.3.0-dev.29";
     public static final String UPDATE = "com.lma.app.STATE_CHANGED";
     public Store store;
     private final java.util.concurrent.atomic.AtomicBoolean migrationRunning = new java.util.concurrent.atomic.AtomicBoolean(), migrationPending = new java.util.concurrent.atomic.AtomicBoolean();
@@ -31,6 +32,7 @@ public final class LmaApp extends Application {
     public JobStore jobs;
     public com.lma.app.core.TaskDrafts taskDrafts;
     public ArtifactStore artifacts;
+    public AudioStreams audioStreams;
     public JSONObject outputRecovery = new JSONObject();
     public InputUploads uploads;
     public volatile InputImports inputHost;
@@ -94,6 +96,8 @@ public final class LmaApp extends Application {
             bundles.setParameterResolver(localEngines::parameters);
         }
         catch (Exception error) { bundleStoreError = error.getMessage(); log("模型包存储不可用，原始数据已保留：" + bundleStoreError); }
+        try { audioStreams = new AudioStreams(new java.io.File(getCacheDir(), "audio-streams")); }
+        catch (Exception error) { log("流式试听缓存不可用：" + error.getMessage() + "。可在模型设置中关闭流式试听后生成完整 WAV。"); }
         try { taskDrafts = new com.lma.app.core.TaskDrafts(new java.io.File(getFilesDir(), "task-drafts")); }
         catch (Exception error) { log("草稿存储不可用，原始数据已保留：" + error.getMessage()); }
         chats = new Chats(this);
@@ -180,6 +184,7 @@ public final class LmaApp extends Application {
             }
             value.put("bundles", bundleRecords);
             value.put("jobs", jobs == null ? new JSONArray() : jobs.summaries());
+            value.put("audioStreams", audioStreams == null ? new JSONArray() : audioStreams.snapshot());
             value.put("artifacts", artifacts == null ? new JSONArray() : artifacts.snapshot());
             value.put("outputRecovery", DataFiles.copy(outputRecovery));
             value.put("taskCapacity", new JSONObject().put("jobs", jobs == null ? new JSONObject() : jobs.capacity()).put("artifacts", artifacts == null ? new JSONObject() : artifacts.capacity()));

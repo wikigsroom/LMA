@@ -1,5 +1,8 @@
 # LMA API integration
 
+Current dev.29: [incremental local audio and playback](AUDIO_STREAMING.en.md) / [中文](AUDIO_STREAMING.md), with [numbered delivery and the full same-release scope](releases/v0.3.0-dev.29.md). Model-scoped opt-in streaming, bounded shared previews and verified full WAV publication. Trained Realtime/Android acceptance remains open; historical failures stay recorded.
+
+
 Dev.28 LCM preparation/association reuses the shared `model.prepare`, `model.assemble` and `image.generate` contracts below. Clients select bundled fixed plans, never executable paths or implicit dependency downloads. See [source, settings and operation order](LCM_APP_FLOW.en.md).
 
 [History management](TASK_RECOVERY.en.md#4-local-api): read `GET /v1/jobs/history`, review the plan, then explicitly POST its `ids`/`review` to `/v1/jobs/history/clear`. Only selected terminal records/idempotency keys are removed; media and active work remain.

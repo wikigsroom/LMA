@@ -22,5 +22,8 @@ public interface LocalEngine {
         void progress(String stage, Double fraction) throws Exception;
         void process(Process process) throws Exception;
         void execution(JSONObject details) throws Exception;
+        default boolean audioStreaming() { return false; }
+        default void audioStart(AudioPcm.Format format) throws Exception { throw new java.io.IOException("Audio previews are unavailable in this context"); }
+        default void audioChunk(AudioPcm.Chunk chunk) throws Exception { throw new java.io.IOException("Audio previews are unavailable in this context"); }
     }
 }

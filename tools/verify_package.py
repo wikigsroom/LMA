@@ -92,7 +92,7 @@ def main():
             assert name in members, "Missing APK entry: " + name
         assert archive.read("classes.dex").startswith(b"dex\n"), "DEX header missing"
         source = ROOT / "app/src/main"
-        ui_assets = ("index.html", "app.css", "app.js", "foundation.css", "foundation.js", "workbench.js", "recipes.js", "versions.js", "recipe-templates.json", "asset-preparations.json", "model-assemblies.json", "license.js", "models.json", "model-bundles.json", "engine-builds.json")
+        ui_assets = ("index.html", "app.css", "app.js", "foundation.css", "foundation.js", "audio-preview.js", "workbench.js", "recipes.js", "versions.js", "recipe-templates.json", "asset-preparations.json", "model-assemblies.json", "license.js", "models.json", "model-bundles.json", "engine-builds.json")
         architecture_assets = {}
         preparation_catalogue = json.loads((ROOT / "catalogue/asset-preparations.json").read_text(encoding="utf-8"))
         for plan in preparation_catalogue["plans"]:
@@ -104,7 +104,7 @@ def main():
                     architecture_assets[name] = graph
         for name in ui_assets:
             assert hashlib.sha256(archive.read("assets/" + name)).hexdigest() == hashlib.sha256((source / "assets" / name).read_bytes()).hexdigest(), "Stale packaged UI: " + name
-        for name in ("license.js", "workbench.js", "foundation.js", "app.js"):
+        for name in ("license.js", "audio-preview.js", "workbench.js", "foundation.js", "app.js"):
             assert name in archive.read("assets/index.html").decode("utf-8"), "Missing UI script reference"
         for item in lock["files"]:
             data = archive.read("lib/arm64-v8a/" + item["name"])

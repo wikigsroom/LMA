@@ -1,6 +1,7 @@
 package com.lma.app;
 
 import com.lma.app.core.DataFiles;
+import com.lma.app.core.AudioPcm;
 import org.json.JSONObject;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -17,6 +18,12 @@ final class NativeWorker {
     static void run(LmaApp app, File binary, LocalEngine.Context context, JSONObject command, File output, Map<String, String> environment, Launcher launcher) throws Exception {
         File input = context.output("json"); Process process = null;
         try {
+            AudioPcm.Sequence audio = null;
+            if (command.has("audioStream")) {
+                if (!context.audioStreaming()) throw new IOException("This task has no audio stream consumer");
+                AudioPcm.Format format = new AudioPcm.Format(command.getJSONObject("audioStream"));
+                audio = new AudioPcm.Sequence(format); context.check(); context.audioStart(format);
+            }
             try (FileOutputStream file = new FileOutputStream(input)) { file.write(command.toString().getBytes(StandardCharsets.UTF_8)); file.getFD().sync(); }
             ProcessBuilder builder = new ProcessBuilder(binary.getPath(), input.getPath()).directory(app.getFilesDir()).redirectErrorStream(true);
             builder.environment().put("LD_LIBRARY_PATH", binary.getParent()); builder.environment().putAll(environment);
@@ -33,6 +40,13 @@ final class NativeWorker {
                     try { event = new JSONObject(line); } catch (Exception ignored) { continue; }
                     String kind = event.optString("event");
                     if (kind.equals("error")) failure = event.optString("message", "本地引擎执行失败");
+                    else if (kind.equals("audio_chunk")) {
+                        if (audio == null || complete || !failure.isEmpty()) throw new IOException("Unexpected audio chunk from this worker");
+                        context.audioChunk(audio.chunk(event));
+                    } else if (kind.equals("audio_end")) {
+                        if (audio == null || complete || !failure.isEmpty()) throw new IOException("Unexpected audio end from this worker");
+                        audio.end(event);
+                    }
                     else if (kind.equals("complete")) {
                         if (!event.getString("output").equals(output.getPath()) || complete) throw new IOException("引擎输出记录与任务不一致");
                         complete = true;
@@ -50,6 +64,7 @@ final class NativeWorker {
             }
             context.check();
             if (!process.waitFor(10, TimeUnit.SECONDS) || process.exitValue() != 0 || !complete || !failure.isEmpty() || !output.isFile() || output.length() == 0) throw new IOException(failure.isEmpty() ? "本地引擎未完成输出；请检查组件、资源和设备兼容性" : failure);
+            if (audio != null) { context.check(); audio.verify(output); context.check(); }
         } finally {
             if (process != null) {
                 process.destroy();

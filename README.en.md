@@ -2,15 +2,15 @@
 
 [中文](README.md) · [English](README.en.md) · [Releases](https://github.com/wikigsroom/LMA/releases) · [Documentation](docs/README.md) · [Changelog](CHANGELOG.md)
 
-> **Current development: 0.3.0-dev.28 / code 32.** Production modules now connect user-selected LCM sources, local preparation, explicit runtime association, user-selected dependencies and generation. Stage output budgeting, Java/native condition validation and failed-load handling are included. The App updates only its foundation; users independently select and manage all model data. [Design and usage](docs/LCM_APP_FLOW.en.md) · [Numbered delivery / full pending scope](docs/releases/v0.3.0-dev.28.md) · [Recording](docs/media/development/lcm/lcm-ui.mp4) · [GIF](docs/media/development/lcm/lcm-ui.gif). The earlier LCM pixel gate still fails (**8 > 5**); quality, Android and full v0.3.0 acceptance remain open.
+> **Current development: 0.3.0-dev.29 / code 33.** MOSS Realtime now connects optional frame-by-frame audio to a shared preview cache, authenticated API and incremental playback. The option is model-scoped; a final WAV must agree with the emitted samples before publication. The App updates its foundation, while users select and manage all model assets. [Design and usage](docs/AUDIO_STREAMING.en.md) · [Numbered delivery / full pending scope](docs/releases/v0.3.0-dev.29.md) · [Recording](docs/media/development/audio/audio-ui.mp4) · [GIF](docs/media/development/audio/audio-ui.gif). Current evidence covers protocols, real tiny decoder graphs and pages; complete trained Realtime quality, phone performance and the full release remain unaccepted.
 
-| Explicit source preparation (desktop fixture) | Explicit association/dependencies (desktop fixture) |
+| Per-model streaming setting (UI fixture) | Incremental playback (synthetic PCM, no inference) |
 |---|---|
-| ![Prepare source](docs/media/development/lcm/01-prepare.png) | ![Associate runtime](docs/media/development/lcm/02-associate.png) |
+| ![Streaming setting](docs/media/development/audio/01-model-setting.png) | ![Incremental playback](docs/media/development/audio/02-incremental-playback.png) |
 
 The [draft/result workflow](docs/TASK_WORKBENCH.en.md), [preflight](docs/TASK_PREFLIGHT.en.md), [recovery/history/capacity](docs/TASK_RECOVERY.en.md), recommendations m08→m06→m01, HF All/search, Local management and model-scoped settings remain available.
 
-The [evidence index](verification/development/status.json) distinguishes current checks from historical model experiments. The following dev.24 experiments describe their own commits; “unchanged APK” refers to those updates. Original failures and the entire same-release scope remain preserved.
+The [evidence index](verification/development/status.json) distinguishes current checks from historical experiments. [LCM preparation/association/generation](docs/LCM_APP_FLOW.en.md) retains trained host evidence at its dev.28 commit, including the failed pixel gate 8 > 5. The following dev.24 experiments describe their own commits; “unchanged APK” refers to those updates. Original failures and the entire same-release scope remain preserved.
 
 New: [small native LCM preparation foundation](docs/LCM_LOCAL_PREPARATION.en.md). A complete 3.44 GB source is verified to produce a 5,696-byte condition component. 24 native children/105 checks, trained output, cancellation/recovery and Android compilation have distinct scopes. [Numbered work/full pending scope](docs/releases/v0.3.0-dev.24-lcm-preparation.md) and actual HOST PNG/GIF/MP4 accompany unchanged production/APK inputs. The new C++ image comparison fails its preset maximum difference gate (8 > 5). The candidate stays rejected; App integration, quality and the complete release remain open.
 

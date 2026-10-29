@@ -1,5 +1,8 @@
 # LMA 0.2.0 architecture
 
+Current dev.29: [incremental local audio and playback](AUDIO_STREAMING.en.md) / [中文](AUDIO_STREAMING.md), with [numbered delivery and the full same-release scope](releases/v0.3.0-dev.29.md). Model-scoped opt-in streaming, bounded shared previews and verified full WAV publication. Trained Realtime/Android acceptance remains open; historical failures stay recorded.
+
+
 This guide describes the current APK. Unimplemented multimodal expansion follows the [current requirements/release plan](MULTIMODAL_RELEASE_PLAN.en.md): equal peer models with task/dependency tags, forms and an on-phone queue, without a ComfyUI canvas/node ecosystem. See [local tasks/background](WORKFLOWS.en.md), [source research](MULTIMODAL.en.md) and [foundation/migration](FOUNDATION.en.md).
 
 ## HF discovery and Local management

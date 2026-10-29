@@ -290,7 +290,7 @@ public final class SchedulerTest {
         if (args.length > 0 && args[0].equals("worker")) { runWorker(args[1]); return; }
         root = Paths.get(args[0]); work = Paths.get(args[1]); Files.createDirectories(work);
         try {
-            gateChecks(); runtimeChecks(); assemblyChecks();
+            gateChecks(); runtimeChecks(); assemblyChecks(); int audio=AudioQueueChecks.run(root,work.resolve("audio-queue"));passed+=audio;checks.add("Production incremental audio task lifecycle: "+audio);
             System.out.println(new JSONObject().put("passed", passed).put("checks", new JSONArray(checks)).put("actual_host_children", true).put("actual_loopback_http", true)
                     .put("production_job_runner", true).put("physical_android", false).put("model_inference", false).put("automatic_model_downloads", false));
         } finally { for (Process child : children) { child.destroyForcibly(); child.waitFor(5, TimeUnit.SECONDS); } }

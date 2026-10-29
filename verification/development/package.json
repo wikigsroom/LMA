@@ -1,6 +1,6 @@
 {
-  "apk": "LMA-0.3.0-dev.28-arm64-v8a.apk",
-  "sha256": "4bee3ed28944074b4a25c972b924734855ba01e48df57de80416bc4acb8f1238",
+  "apk": "LMA-0.3.0-dev.29-arm64-v8a.apk",
+  "sha256": "dd993860ce067ac6b7e79bdda07b5531a6f7822e31f911e8412074c1b03d916f",
   "native_libraries_verified": 30,
   "all_native_dependencies_resolved": true,
   "all_elf_load_segments_16k_aligned": true,
@@ -450,7 +450,7 @@
         16384
       ],
       "interpreter": "/system/bin/linker64",
-      "entry_point": 321024,
+      "entry_point": 327088,
       "android_api_notes": [
         28
       ],
@@ -586,6 +586,6 @@
   "input_fingerprint": {
     "catalogue/uncensored-evidence.json": "63f05e854772ade227750b19cb2288ebe53abb0d346ccc08cf5317b768ef5082",
     "third_party/BUILD_INFO.json": "de40253f34d47e5b692e8cd97d87eaa4ecbe549303718f69d286c85f81422acc",
-    "tools/verify_package.py": "ded3f6deaf165a757381028a77204c49388c63602229953b70a7ba3d0b345957"
+    "tools/verify_package.py": "e739a5fe6a4439b5041757529a9b20175bd7d822097a326758fe337e7f9cb1b5"
   }
 }
