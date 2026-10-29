@@ -1,5 +1,14 @@
 # Changelog / 更新记录
 
+## 0.3.0-dev.25 — generation workflow / unreleased
+
+- 原生每模型草稿、显式保存 / 恢复 / 删除、空提示词、单调版本号与冲突保护；草稿、参数、LoRA 与参考素材独立于模型设置。Native per-model drafts support explicit persistence, incomplete prompts and revision conflicts without changing model defaults.
+- 任务详情直接打开结果、编辑再生成；保留产物可从来源恢复请求，图片 / 音频 / 视频可填入匹配的下一次本机生成。Readable jobs, direct outputs, editable provenance and compatible reference reuse connect the generation workflow.
+- UI / API / retry 共用请求重建，移除执行回执并重新检查资产 / 参数；恢复编辑重新确认试运行，缺失 / 改变项目明确提示。Shared sanitized restoration and fresh validation retain immutable old records and disclose missing inputs.
+- 新增草稿与可编辑请求 API；修复窄屏预览按钮换行。Added authenticated draft/request routes and wrapped narrow-screen modal actions.
+- 原签名 ARM64 开发 APK、当前检查、双语[使用文档](docs/TASK_WORKBENCH.md) / [English](docs/TASK_WORKBENCH.en.md)、五张截图 / 录屏 / GIF 和[编号完整待办](docs/releases/v0.3.0-dev.25.md)。Original-signature APK and labelled UI media; device/model acceptance remains open.
+- 当前业务证据与 dev.24 不可变历史实验分开，原 LCM / LTX 失败及 F01–F12 / 01–14 / 16 / 17 全部同版门槛保留，未发布完整 v0.3.0。Current checks and historical experiments have separate applicability; no failed gate is waived or complete Release published.
+
 ## 0.3.0-dev.24 — diffusion progress and trained host evidence / unreleased
 
 新增 LCM 原生本地准备程序：流式校验完整原始 F32 UNet，确定性 F16/F64/F32 条件折算，只生成 5,696 字节来源 / 基础模型绑定组件，不含学习参数的程序及数学常量独立构建。24 原生进程 / 105 检查、真实训练源 / 数值、底层小组件出图对照 / 非法 CFG / 采样取消 / 恢复、Android ARM64 编译与五份公开证据分别审计；原始 PNG / GIF / MP4、双语文档与[编号完整待办](docs/releases/v0.3.0-dev.24-lcm-preparation.md)同步。All five execution cases complete, but the new C++ image comparison fails its unchanged max-difference gate (8 > 5; mean0.0838928 <=0.1). The candidate stays rejected. Native program is not yet packaged or integrated into App preparation/routing; source APK inputs/bytes stay unchanged. Image quality, canonical equivalence, phone/background and the complete v0.3.0 remain unaccepted. [中文](docs/LCM_LOCAL_PREPARATION.md) / [English](docs/LCM_LOCAL_PREPARATION.en.md).

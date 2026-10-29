@@ -159,6 +159,11 @@ public final class MainActivity extends Activity {
                 command = new JSONObject(raw); String action = command.getString("action");
                 switch (action) {
                     case "inspectModel": app.store.inspectModel(command.getString("id")); app.emit(); break;
+                    case "saveTaskDraft": if (app.taskDrafts == null) throw new IllegalStateException("草稿存储不可用"); command.put("result", app.taskDrafts.save(command.getJSONObject("request"), com.lma.app.core.TaskDrafts.revision(command))); app.emit(); break;
+                    case "deleteTaskDraft": if (app.taskDrafts == null) throw new IllegalStateException("草稿存储不可用"); app.taskDrafts.remove(command.getString("id"), com.lma.app.core.TaskDrafts.revision(command)); app.emit(); break;
+                    case "inspectTaskDraft": if (app.taskDrafts == null) throw new IllegalStateException("草稿存储不可用"); command.put("result", app.taskDrafts.get(command.getString("id"))); break;
+                    case "editTask": if (app.jobs == null) throw new IllegalStateException(app.bundleStoreError); command.put("result", com.lma.app.core.TaskRequests.editable(app.jobs.get(command.getString("id")).getJSONObject("request"))); break;
+                    case "editArtifact": if (app.artifacts == null) throw new IllegalStateException(app.bundleStoreError); command.put("result", com.lma.app.core.TaskRequests.fromArtifact(app.artifacts.get(command.getString("id")))); break;
                     case "inspectTask": if (app.jobs == null) throw new IllegalStateException(app.bundleStoreError); command.put("result", app.jobs.get(command.getString("id"))); break;
                     case "inspectArtifact": if (app.artifacts == null) throw new IllegalStateException(app.bundleStoreError); command.put("result", app.artifacts.get(command.getString("id"))); break;
                     case "inputPicker": main.post(() -> startActivityForResult(new Intent(Intent.ACTION_OPEN_DOCUMENT).setType("*/*").putExtra(Intent.EXTRA_MIME_TYPES, new String[]{"image/png", "image/jpeg", "audio/wav", "audio/x-wav", "video/mp4"}).addCategory(Intent.CATEGORY_OPENABLE).addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION), IMPORT_INPUT)); break;

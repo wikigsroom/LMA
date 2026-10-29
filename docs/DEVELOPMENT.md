@@ -2,11 +2,13 @@
 
 [English](DEVELOPMENT.en.md) · [完整范围](MULTIMODAL_RELEASE_PLAN.md) · [构建](BUILD.md) · [中文首页](../README.md)
 
+当前新增 [生成业务闭环](TASK_WORKBENCH.md)：原生草稿、任务 / 产物恢复、可读任务详情、匹配素材复用和共享 API 已进入 dev.25 APK。见[编号实现与全部待办](releases/v0.3.0-dev.25.md)。[当前检查索引](../verification/development/status.json) 将本次生产业务检查与 dev.24 历史模型实验分开；旧训练记录不作为本次 APK 的推理验收。
+
 新增 [LCM 小型原生准备](LCM_LOCAL_PREPARATION.md) / [English](LCM_LOCAL_PREPARATION.en.md)：源码、24 进程 / 105 检查、完整训练源准备与实际主机出图、Android 编译分别审计。App 注册 / 条件角色 / 用户准备关联、质量 / 真机仍未完成；APK 不变。 新 C++ 候选像素门槛仍失败（8 > 5），未提升为产品支持。
 
 新增[SD-Turbo 与独立 LCM checkpoint 训练验证](SD_DISTILLED_TRAINED.md)：两组10个原生进程 / 6 PNG，SD-Turbo 另经完整生产 HF 配方、2对象导入、80项 Java / 绑定检查、5真实 worker / 3 PNG；LCM 定位遗漏条件并完成30次完整 UNet 数值前向与原生修复候选出图。质量 / 完整官方管线 / 手机验收仍未关闭；LCM 候选不是产品准备方案。双语指南、原图 / GIF / MP4 和[编号实现 / 完整待办](releases/v0.3.0-dev.24-sd-distilled.md)同步，生产源码和 APK 字节保持不变。
 
-当前公开发行仍为 **v0.2.0**。本分支为 **0.3.0-dev.24 / versionCode 28**，不是完整 v0.3.0，也没有创建对应 Release。下一版本仍一次交付 F-01–F-12、01–14 / 16 / 17 及冻结子目标；以下是同一版本内的实施记录，不是拆版安排。
+当前公开发行仍为 **v0.2.0**。本分支为 **0.3.0-dev.25 / versionCode 29**，不是完整 v0.3.0，也没有创建对应 Release。下一版本仍一次交付 F-01–F-12、01–14 / 16 / 17 及冻结子目标；以下是同一版本内的实施记录，不是拆版安排。
 
 新增[SDXL / 双架构适配器真实训练验证](SD_VARIANTS_TRAINED.md)，涵盖两套 CLIP、UNet、VAE、完整 SD1.5 / SDXL 风格与 LCM 训练权重，基础 / 零强度 / 启用、LCM 反事实、组合及取消恢复；生产 Java 走完整对象导入和真实 worker。原始图片、媒体、独立复核及[编号全部待办](releases/v0.3.0-dev.24-sd-variants.md)分别记录范围。低步数样例有画质问题，Android、质量与完整 Release 未验收；生产源码和 APK 不变。
 

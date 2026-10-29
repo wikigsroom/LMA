@@ -1,275 +1,530 @@
 {
-  "version": "0.3.0-dev.24",
-  "kind": "development_checkpoint",
-  "release_ready": false,
-  "published": false,
-  "physical_device_tests": 0,
-  "model_inference_tested": false,
-  "all_selected_models_supported": false,
-  "trained_soulx_components_tested": 5,
-  "host_model_inference_tested": true,
-  "soulx_complete_host_text_to_speech_tested": true,
-  "soulx_complete_text_to_speech_tested": false,
-  "soulx_complete_android_text_to_speech_tested": false,
-  "soulx_speech_quality_tested": false,
-  "soulx_production_worker_host_tested": true,
-  "soulx_app_engine_registered": true,
-  "soulx_complete_public_download_candidate_verified": false,
-  "sd15_trained_production_source_host_executed": true,
-  "sd15_trained_host_execution_checks_passed": true,
-  "sd_variants_trained_production_source_host_executed": true,
-  "sd_variants_trained_host_execution_checks_passed": true,
-  "sd_variants_lcm_weights_effect_host_tested": true,
-  "sd_variants_production_java_native_host_executed": true,
-  "sd_turbo_production_java_native_host_executed": true,
-  "lcm_checkpoint_fixed_guidance_native_host_tested": true,
-  "lcm_checkpoint_complete_trained_unet_fold_host_tested": true,
-  "lcm_checkpoint_native_asset_preparation_host_tested": true,
-  "lcm_checkpoint_small_overlay_native_host_tested": true,
-  "lcm_checkpoint_small_overlay_image_gate_passed": false,
-  "lcm_checkpoint_preparer_arm64_compiled": true,
-  "lcm_checkpoint_product_preparation_implemented": false,
-  "sd_distilled_complete_android_image_tested": false,
-  "sd_distilled_image_quality_accepted": false,
-  "sd_variants_complete_android_image_tested": false,
-  "sd_variants_image_quality_accepted": false,
-  "sd15_complete_android_image_tested": false,
-  "moss_nano_trained_production_source_host_executed": true,
-  "moss_nano_production_java_native_host_executed": true,
-  "moss_nano_complete_android_speech_tested": false,
-  "moss_nano_speech_quality_accepted": false,
-  "tts_trained_production_source_host_executed": true,
-  "tts_production_java_native_host_executed": true,
-  "tts_complete_android_speech_tested": false,
-  "tts_speech_quality_accepted": false,
-  "qwen_tts_trained_production_source_host_executed": true,
-  "qwen_tts_production_java_native_host_executed": true,
-  "qwen_tts_complete_android_speech_tested": false,
-  "qwen_tts_speech_quality_accepted": false,
-  "ltx098_native_dit_host_parity_tested": true,
-  "ltx098_android_vulkan_compiled": true,
-  "ltx098_native_sampling_host_tested": true,
-  "ltx098_trained_dit_latent_host_tested": true,
-  "ltx098_t5_executed": true,
-  "ltx098_t5_host_tested": true,
-  "ltx098_t5_android_compiled": true,
-  "ltx098_t5_android_tested": false,
-  "ltx098_t5_intermediate_diagnostic_executed": true,
-  "ltx098_t5_roundoff_repair_accepted": false,
-  "ltx098_native_asset_prepare_host_tested": true,
-  "ltx098_native_asset_prepare_android_compiled": true,
-  "app_asset_preparation_registered": true,
-  "app_model_assembly_registered": true,
-  "app_model_assembly_core_host_tested": true,
-  "app_model_assembly_trained_host_tested": true,
-  "app_model_assembly_android_executed": false,
-  "app_asset_preparation_core_host_tested": true,
-  "app_asset_preparation_trained_host_tested": true,
-  "app_asset_preparation_android_executed": false,
-  "ltx098_vae_asset_prepare_host_tested": true,
-  "ltx098_vae_asset_prepare_android_compiled": true,
-  "ltx098_prepared_vae_decode_host_tested": true,
-  "ltx098_t5_precision_candidates_host_executed": true,
-  "ltx098_f32_staging_analysis_host_checked": true,
-  "ltx098_staged_t5_candidates_host_executed": true,
-  "ltx098_staged_full_chain_host_executed": true,
-  "ltx098_staged_full_chain_numerical_passed": false,
-  "ltx098_same_caption_sampler_diagnosis_host_executed": true,
-  "ltx098_cpu_f32_operands_diagnostic_host_executed": true,
-  "ltx098_cpu_f32_operands_diagnostic_latent_matched": false,
-  "ltx098_cpu_staged_rms_diagnostic_host_executed": true,
-  "ltx098_cpu_staged_rms_diagnostic_latent_matched": false,
-  "ltx098_modulation_host_diagnosis_executed": true,
-  "ltx098_publisher_modulation_full_model_repair_accepted": false,
-  "ltx098_vae_executed": true,
-  "ltx098_vae_host_tested": true,
-  "ltx098_vae_android_compiled": true,
-  "ltx098_vae_android_tested": false,
-  "ltx098_tensor_primitives_host_tested": true,
-  "ltx098_tensor_primitives_android_compiled": true,
-  "ltx098_complete_prompt_to_video_host_tested": false,
-  "ltx098_complete_prompt_to_video_host_executed": true,
-  "ltx098_full_chain_numeric_accepted": false,
-  "ltx098_complete_android_video_tested": false,
-  "ltx098_video_quality_accepted": false,
-  "ltx098_trained_video_tested": false,
-  "ltx098_app_engine_registered": false,
-  "scope_definitions": {
-    "tts_trained_production_source_host_executed": "All three frozen English recipes, 68 actual WAV jobs covering 54 Kokoro/one Piper/one Matcha voices plus 13 controls and info, using unchanged production C++ and official sherpa 2.0.1/ORT1.28.2 Windows C API; no phone/quality/license acceptance",
-    "tts_production_java_native_host_executed": "Production BundleStore/BundleTransfers/SherpaEngine/NativeWorker with all nine trained objects/eleven references, independent settings, twelve actual native children, partial-synthesis cancellation, duration errors, cleanup and recovery; Application/AtomicFile host ports, not Android Service/SAF",
-    "tts_complete_android_speech_tested": "False: host model execution and existing Android packaging do not establish physical-phone inference, Android liblog binding, resource fit, lifecycle, API or background endurance",
-    "tts_speech_quality_accepted": "False: English test text through every voice ID and valid waveforms do not certify pronunciation, intelligibility, speaker quality, other languages or component license clearance",
-    "moss_nano_trained_production_source_host_executed": "Seven actual trained WAV jobs plus seven controls using unchanged production C++ on native Windows; all eleven user-external assets verified; HOST ORT 1.28.0/API28 differs from Android ORT 1.28.2/API28",
-    "moss_nano_production_java_native_host_executed": "Forty actual production-core/Java/NativeWorker checks: full local eleven-component import, per-model settings and clamps, three actual native children, cancellation/recovery and workspace cleanup; filesystem Application/AtomicFile ports, not Android Service or SAF",
-    "moss_nano_complete_android_speech_tested": "False: trained host WAVs, a user-importable pinned metadata manifest and the existing packaged Android worker do not establish physical-phone execution, quality, resource fit, lifecycle or background endurance",
-    "moss_nano_speech_quality_accepted": "False: waveform validity, distinct outputs and same-runtime repeatability do not establish intelligibility, pronunciation, speaker similarity or every voice/language quality",
-    "sd_variants_trained_production_source_host_executed": "Unchanged production C++ on native Windows CPU: complete trained SDXL, SD1.5/SDXL style and LCM-LoRAs, actual PNGs and sampler cancellation; not Android, quality, all target03 subtargets or full-version acceptance",
-    "sd_variants_lcm_weights_effect_host_tested": "Two native-only counterfactual zero-scale LCM controls keep every other request parameter and trained file fixed; App deliberately rejects zero-scale LCM tasks",
-    "sd_variants_production_java_native_host_executed": "Unchanged production Java HF composition of five recipes, full import/settings/adapter leases and eight actual host workers with seven full objects; Java cancellation is at generating-stage entry; a Windows metadata port omits metadata fsync and establishes no Android AtomicFile or power-loss durability; not a claimed sampler-step or Android test",
-    "sd15_trained_production_source_host_executed": "Actual CPU PNG generation by the unchanged production C++ worker/vocabulary source using user-external pinned Q4_0/CLIP files; native Windows parent-lifetime port only, not Java Service/App/Android execution",
-    "sd15_trained_host_execution_checks_passed": "Scoped A/B/A PNG determinism/distinct prompts, actual sampler cancellation/recovery, request errors and sampled host resources; never semantic quality, all image targets or device/endurance acceptance",
-    "sd15_complete_android_image_tested": "False until the selected trained assets execute and meet all output/quality/resource/background/App/API gates on the same physical Android phone",
-    "ltx098_modulation_host_diagnosis_executed": "Two unmodified original trained forward observations, 114 modulation sites, two native eight-step Vulkan candidates and an independent retained-array/trajectory audit; all candidates remain unregistered and unpackaged",
-    "ltx098_publisher_modulation_full_model_repair_accepted": "False: reference-caption and actual native-T5-caption candidate B samplers still fail unchanged maximum-error gates; no repaired full chain, App or Android acceptance",
-    "app_model_assembly_registered": "Signed plan identities and explicit model.assemble jobs associate user-prepared outputs with a separate runtime model; missing dependencies stay paused; no inference engine is enabled",
-    "app_model_assembly_core_host_tested": "47 production-core storage/request/lease/cancellation contracts; additional production queue/API checks use host Android framework ports",
-    "app_model_assembly_trained_host_tested": "Twenty actual trained files, 6,061,184,991 bytes, fully verified and hardlinked without copying; T5 dependencies remain absent and no model execution takes place",
-    "app_model_assembly_android_executed": "False until installation, on-device filesystem association, Service lifecycle and background tests pass on a physical phone",
-    "app_asset_preparation_registered": "Two signed ARM64 preparation programs and audited model-free architecture resources packaged in dev.22, separate from generation engines; no Android execution",
-    "app_asset_preparation_core_host_tested": "44 production-core filesystem/lifecycle contracts and four protocol-fixture children on Windows; no Service, SAF or model inference",
-    "app_asset_preparation_trained_host_tested": "One full original checkpoint through production Java storage/jobs/native preparation, two actual native children and 20 fully verified runtime outputs; no neural inference or Android execution",
-    "app_asset_preparation_android_executed": "False until actual same-phone Service/SAF/preparation and background evidence exists",
-    "ltx098_t5_intermediate_diagnostic_executed": "314 trained host intermediate comparisons, 628 hashed raw tensors and 120 matched-native-input operator comparisons; trace retention changes diagnostic memory, not the accepted native caption or original forward",
-    "ltx098_t5_roundoff_repair_accepted": "Remains false until a repaired implementation passes unchanged complete-chain gates and required regression checks; local operator diagnostics or isolated precision candidates do not close this gate",
-    "ltx098_f32_staging_analysis_host_checked": "72 matched-input diagnostics: 2544 NumPy-simulated F32 means and 24 Torch activation-order comparisons; not native replacement or model/Android acceptance",
-    "ltx098_staged_t5_candidates_host_executed": "Four isolated trained T5 candidates, each A/B/A; explicit RMS/GeGLU operation staging, not production promotion or Android",
-    "ltx098_staged_full_chain_host_executed": "Three actual host native stage chains bound to captured trained T5 A/B/A; native DiT, seeded noise, layout, VAE, frames and host FFmpeg; unchanged original references and gates",
-    "ltx098_staged_full_chain_numerical_passed": "Scoped candidate's original-forward float/RGB gates only; production regression, semantics, phone resources/endurance, all other frozen targets and Release remain separate",
-    "ltx098_same_caption_sampler_diagnosis_host_executed": "B uses the exact original caption in separate CPU/Vulkan eight-step diagnostic runs; reference-conditioned diagnostics never count as native model acceptance",
-    "ltx098_cpu_f32_operands_diagnostic_host_executed": "An isolated native compute candidate explicitly casts matmul operands to F32 before CPU execution with frozen weights and the reference B caption; no App registration or complete-chain acceptance",
-    "ltx098_cpu_f32_operands_diagnostic_latent_matched": "Only a reference-caption sampler diagnostic's unchanged latent thresholds; never native T5 conditioning, VAE/video, quality, phone or Release acceptance",
-    "ltx098_cpu_staged_rms_diagnostic_host_executed": "Isolated F32 operand/CPU grouped-RMS candidate, exact original B caption, full eight-step trained sampler; unregistered and diagnostic only",
-    "ltx098_cpu_staged_rms_diagnostic_latent_matched": "Only the grouped-RMS reference-caption diagnostic's latent thresholds, never a repaired full model or Android acceptance",
-    "ltx098_native_asset_prepare_host_tested": "Bounded model-free native CLI converted the whole user-local old DiT checkpoint and matched independent Python GGUF bytes; conversion is not inference or production App acquisition",
-    "ltx098_native_asset_prepare_android_compiled": "ARM64 API28/16KiB portable CLI compiled; dev.22 packages it as an explicit asset-preparation program, separately from generation engines; not executed on Android",
-    "ltx098_vae_asset_prepare_host_tested": "Native streaming preparation of all 132 decoder tensors and two statistics vectors; 18 output assets match Python bytes; model-free graph audit is separate from the full-source SHA verification",
-    "ltx098_vae_asset_prepare_android_compiled": "Python/ONNX/Torch-free native asset preparation CLI, ARM64 API28/16KiB compiled and packaged separately from generation engines; not executed on Android",
-    "ltx098_prepared_vae_decode_host_tested": "Four real native ORT decoder geometries consuming newly prepared trained assets, 40 original-forward comparisons; synthetic latent inputs, not prompt-to-video quality or phone acceptance",
-    "ltx098_t5_precision_candidates_host_executed": "Two isolated trained CPU variants, each with three A/B/A jobs; attention F64 and optional dense F64 accumulation, not promoted encoder, complete-chain repair, Android or performance acceptance",
-    "model_inference_tested": "Legacy complete physical-Android acceptance flag; scoped host execution has a separate flag",
-    "soulx_complete_text_to_speech_tested": "Complete user-facing Android SoulX TTS acceptance, including App integration and quality",
-    "soulx_complete_host_text_to_speech_tested": "Sequential trained native developer-host execution with synthetic references, without quality or phone acceptance",
-    "ltx098_native_dit_host_parity_tested": "Unregistered old-0.9.8 DiT component only: untrained reduced-width 2/3/28-layer CPU/Vulkan forwards against original publisher PyTorch, with no complete trained video, App or phone acceptance",
-    "ltx098_trained_dit_latent_host_tested": "Full pinned trained 28-layer DiT, synthetic caption embeddings and eight-step latent denoising on host Vulkan against original publisher PyTorch; no T5, VAE, video, quality, App or Android execution",
-    "ltx098_t5_executed": "Host-only alias: separate unregistered trained quantized T5 encoder component; not T5 Android execution or complete video support",
-    "ltx098_t5_host_tested": "Independent GGML CPU F32-GELU graph against unmodified installed Transformers using pinned dequantized Q5_K_M weights, original external tokenizer config and full learned-vocabulary identity; no unquantized-weight or prompt/video quality acceptance",
-    "ltx098_vae_executed": "Host-only legacy alias for ltx098_vae_host_tested; not Android, App, complete prompt-to-video or quality acceptance",
-    "ltx098_vae_host_tested": "Nine sequential native ORT CPU stages using all 132 original trained decoder tensors cast to F32, explicit noise/statistics and independent unmodified publisher Decoder.forward; four geometries, not complete video generation",
-    "ltx098_vae_android_compiled": "Unregistered ARM64/API28 research CLI linked to pinned Android ORT; not packaged in APK or executed on a phone",
-    "ltx098_complete_prompt_to_video_host_tested": "Strict fixed full-chain numerical acceptance; actual execution is separate and a failed gate keeps this false",
-    "ltx098_complete_prompt_to_video_host_executed": "Three actual real-prompt single-scale host jobs with complete trained Google/community Q5 T5 and old 0.9.8 distilled DiT/VAE; not numerical, official-default/PixArt identity, quality or Android acceptance",
-    "ltx098_trained_video_tested": "Legacy complete Android target-17 acceptance flag; actual host videos have their own explicit flag",
-    "ltx098_tensor_primitives_android_compiled": "Portable RNG/layout/frame CLI ARM64/API28/16KiB compile only; no model data, APK registration or phone execution"
-  },
-  "scope": "A model-free native LCM condition preparer now passes24 real host children/105 checks, verifies the full original trained UNet and emits one source/base-bound5696-byte GGUF. A separately compiled ARM64/API28/16KiB program is not packaged or executed on a phone. All five trained small-overlay execution checks pass, but the image-comparison max8 exceeds the unchanged gate5 (mean0.0838928 passes0.1); this candidate remains rejected. Sampler-step cancellation/recovery and an independently retained strict-observer blank-line diagnostic remain HOST observations; App routing, user preparation/association, canonical pipeline and image quality are still open. The standalone distilled-model follow-up adds ten unchanged native CPU SD-Turbo/LCM checkpoint children, nine PNGs including three from five real production Java/native SD-Turbo children, complete explicit two-object import, and original trained687-tensor UNet condition-fold analysis across30 complete reduced-geometry synthetic forwards. A prepared LCM candidate alters only5120 bias bytes; no product preparation or canonical-pipeline/quality/Android equivalence is claimed. Source APK inputs and bytes remain unchanged. This Qwen developer-source follow-up executes the complete frozen 920MB Base/12Hz codec through unchanged production C++ on native Windows: eighteen WAV jobs across ten languages, reference conditioning, parameter changes and recovery, twelve controls and info. Production Java performs94 checks, complete two-object import and six actual children with zero network; independent audit rereads145 raw files,31 protocol streams,22 WAVs and two full imported objects. Original WAV and labelled waveform media retain HOST-only scope. A greedy short-text output equals the30-second budget without a distinct EOS/budget finish reason; quality, voice similarity, phone fit, Android and complete target11 remain unaccepted. APK inputs/bytes are unchanged. The previous developer-source follow-up executes all three frozen selection-10 English recipes through unchanged production C++ and official sherpa2.0.1/ORT1.28.2 Windows libraries: 68 actual WAV jobs covering all54 Kokoro/one Piper/one Matcha voices, thirteen controls and info. Production Java performs157 checks, full import of nine distinct objects/eleven references, twelve actual children, independent settings, partial-synthesis cancellation, duration errors and recovery with zero network calls. An independent audit rereads394 raw files,82 protocol streams,74 WAVs and nine imported objects; original audio and labelled waveform media retain explicit host scope. Windows does not test Android liblog interposition or skipped-word rejection; quality, licenses, physical-phone/background and complete target10 remain unaccepted. APK inputs/bytes are unchanged. The earlier metadata/source follow-up verifies eleven trained Nano assets, seven actual production-C++ WAV jobs plus seven controls, forty production Java/native checks, and independently rereads original outputs/imported objects. A user-importable pinned manifest and actual HOST audio/waveform media are supplied without changing APK inputs or bytes. Host ORT 1.28.0/API28 remains distinct from production Android 1.28.2/API28; phone, SAF, quality and endurance are untested. Development APK dev.24 corrects diffusion callback phases to loading/generating without changing model math; it includes signed explicit runtime association plans, hardlink reuse and independently managed source/runtime models, alongside user-selected native asset preparation and shared queued jobs. This checkpoint adds actual trained SD1.5 CPU host generation, sampler cancellation/recovery and A/B/A output checks using unchanged production C++ inference with a Windows-only parent-lifetime port. It also retains isolated T5 F32 staging and adds old-LTX publisher-modulation observations and native diagnostics; both new B sampling conditions still fail frozen latent gates. The full F32 candidate passes case A but fails case B; neither it nor the sampler diagnostics are registered or packaged. Two signed preparation programs and nine audited model-free architecture graphs are packaged without learned model data. The production Java core performed one full trained host preparation with 20 verified outputs; Android Service, SAF, converter execution and background endurance remain untested. The original signing identity is preserved. Packaged SoulX and other existing App engine contracts retain their scoped records; complete trained SoulX host speech is separate from quality, public user acquisition and Android acceptance. Retained old-LTX evidence records three real-prompt single-scale trained HOST video jobs with explicit Google/community Q5 T5, original 0.9.8 distilled DiT/VAE, independent original-forward comparison and actual RGB/MP4 media. Frozen full-chain float gates remain failed despite passing RGB gates; numerical acceptance is false. Separate tensor/T5/DiT/VAE Android compilation is not App registration or phone execution. Official default multi-scale/PixArt text-weight identity, video quality, complete public assets and target-17 Android acceptance remain open. Older component receipts retain their original scope. App updates deliver foundation code only; users explicitly select/manage all model assets, with no automatic model retrieval. One complete v0.3.0 still requires F-01-F-12, existing text, selections 01-14/16/17 and every frozen subtarget, trained quality/resources, physical-phone load/unload/screen-off/API/upgrade evidence and A1-A11/R01-R05. No complete Release, physical-device acceptance or all-selected-model support is claimed.",
-  "required_scope": "docs/MULTIMODAL_RELEASE_PLAN.md",
+  "schema": "lma.development-checkpoint/2",
+  "version": "0.3.0-dev.25",
   "sources": {
     "build-info.json": "dist/build-info.json",
     "package.json": "build/package-verification.json",
-    "native-payload.json": "build/native-payload-tests/results.json",
-    "assembly-core.json": "build/assembly-tests/results.json",
-    "assembly-trained.json": "build/assembly-tests/trained-results.json",
-    "preparation-core.json": "build/preparation-tests/results.json",
-    "preparation-trained.json": "build/preparation-tests/trained-results.json",
+    "workbench.json": "build/workbench-tests/results.json",
     "foundation.json": "build/foundation-tests/results.json",
-    "tts.json": "build/tts-tests/results.json",
-    "tts-assets.json": "build/tts-trained/receipt.json",
-    "tts-trained.json": "build/tts-trained-tests/results.json",
-    "tts-app-host.json": "build/tts-app-host-tests/results.json",
-    "tts-capture-audit.json": "build/tts-trained-tests/capture-audit.json",
+    "api.json": "build/api-tests/results.json",
+    "inputs.json": "build/input-tests/results.json",
     "text.json": "build/text-tests/results.json",
     "migration.json": "build/migration-tests/results.json",
     "scheduler.json": "build/scheduler-tests/results.json",
-    "inputs.json": "build/input-tests/results.json",
-    "diffusion.json": "build/diffusion-tests/results.json",
-    "sd15-assets.json": "build/sd15-trained/receipt.json",
-    "sd-variants-assets.json": "build/sd-variants-trained/receipt.json",
-    "lcm-preparation-core.json": "build/lcm-preparation-evidence/lcm-preparation-core.json",
-    "lcm-preparation-arm64.json": "build/lcm-preparation-evidence/lcm-preparation-arm64.json",
-    "lcm-preparation-trained.json": "build/lcm-preparation-evidence/lcm-preparation-trained.json",
-    "lcm-overlay-trained.json": "build/lcm-preparation-evidence/lcm-overlay-trained.json",
-    "lcm-preparation-capture-audit.json": "build/lcm-preparation-evidence/lcm-preparation-capture-audit.json",
-    "sd-distilled-assets.json": "build/sd-distilled-tests/sd-distilled-assets.json",
-    "sd-distilled-native.json": "build/sd-distilled-tests/sd-distilled-native.json",
-    "sd-distilled-lcm-analysis.json": "build/sd-distilled-tests/sd-distilled-lcm-analysis.json",
-    "sd-turbo-app-host.json": "build/sd-distilled-tests/sd-turbo-app-host.json",
-    "sd-distilled-capture-audit.json": "build/sd-distilled-tests/sd-distilled-capture-audit.json",
-    "sd-variants-trained.json": "build/sd-variants-trained-tests/results.json",
-    "sd-variants-lcm-effect.json": "build/sd-variants-lcm-effect-tests/results.json",
-    "sd-variants-app-host.json": "build/sd-variants-app-host-tests/results.json",
-    "sd-variants-capture-audit.json": "build/sd-variants-trained-tests/capture-audit.json",
-    "sd15-trained.json": "build/sd15-trained-tests/results.json",
-    "moss-nano.json": "build/moss-nano-tests/results.json",
-    "moss-nano-assets.json": "build/moss-nano-trained/receipt.json",
-    "moss-nano-trained.json": "build/moss-nano-trained-tests/results.json",
-    "moss-nano-app-host.json": "build/moss-nano-app-host-tests/results.json",
-    "moss-nano-capture-audit.json": "build/moss-nano-trained-tests/capture-audit.json",
-    "mnn.json": "build/mnn-tests/results.json",
-    "qwen-tts.json": "build/qwen-tts-tests/results.json",
-    "qwen-tts-assets.json": "build/qwen-tts-trained/receipt.json",
-    "qwen-tts-trained.json": "build/qwen-tts-trained-tests/results.json",
-    "qwen-tts-app-host.json": "build/qwen-tts-app-host-tests/results.json",
-    "qwen-tts-capture-audit.json": "build/qwen-tts-trained-tests/capture-audit.json",
-    "moss-delay.json": "build/moss-delay-tests/results.json",
-    "openmoss.json": "build/openmoss-tests/results.json",
-    "moss-rq.json": "build/moss-rq-tests/results.json",
-    "stable-audio.json": "build/stable-audio-tests/results.json",
-    "soulx.json": "build/soulx-tests/results.json",
-    "soulx-worker-trained.json": "build/soulx-worker-trained-tests/results.json",
-    "soulx-dsp.json": "build/soulx-dsp-tests/results.json",
-    "soulx-dsp-arm64.json": "build/soulx-dsp-arm64/receipt.json",
-    "soulx-acoustic.json": "build/soulx-acoustic-tests/results.json",
-    "soulx-acoustic-arm64.json": "build/soulx-acoustic-arm64/receipt.json",
-    "soulx-reference.json": "build/soulx-reference-tests/results.json",
-    "soulx-reference-arm64.json": "build/soulx-reference-arm64/receipt.json",
-    "soulx-trained.json": "build/soulx-trained-tests/results.json",
-    "soulx-language.json": "build/soulx-language-tests/results.json",
-    "soulx-language-host.json": "build/soulx-language-host/receipt.json",
-    "soulx-language-arm64.json": "build/soulx-language-arm64/receipt.json",
-    "soulx-pipeline.json": "build/soulx-pipeline-tests/results.json",
-    "ltx098-transformer.json": "build/ltx098-tests/results.json",
-    "ltx098-transformer-arm64.json": "build/ltx098-arm64-vulkan/receipt.json",
-    "ltx098-sampling.json": "build/ltx098-sampling-tests/results.json",
-    "ltx098-text.json": "build/ltx098-text-tests/results.json",
-    "ltx098-text-host.json": "build/ltx098-text-host/receipt.json",
-    "ltx098-text-arm64.json": "build/ltx098-text-arm64/receipt.json",
-    "ltx098-vae.json": "build/ltx098-vae-tests/results.json",
-    "ltx098-vae-host.json": "build/ltx098-vae-host/receipt.json",
-    "ltx098-vae-arm64.json": "build/ltx098-vae-arm64/receipt.json",
-    "ltx098-tensors.json": "build/ltx098-tensors-tests/results.json",
-    "ltx098-tensors-host.json": "build/ltx098-tensors-host/receipt.json",
-    "ltx098-tensors-arm64.json": "build/ltx098-tensors-arm64/receipt.json",
-    "ltx098-pipeline.json": "build/ltx098-pipeline-tests/results.json",
-    "ltx098-text-diagnosis.json": "build/ltx098-text-diagnosis/current-results.json",
-    "ltx098-text-operators.json": "build/ltx098-text-diagnosis/current-operators.json",
-    "ltx098-text-diagnosis-review.json": "build/ltx098-text-diagnosis/review.json",
-    "ltx098-text-precision-attention.json": "build/ltx098-text-precision-experiments/attention-results.json",
-    "ltx098-text-precision-linear.json": "build/ltx098-text-precision-experiments/linear-results.json",
-    "ltx098-precision-sampling-attention.json": "build/ltx098-text-precision-sampling/attention-results.json",
-    "ltx098-precision-sampling-linear.json": "build/ltx098-text-precision-sampling/linear-results.json",
-    "ltx098-staging-analysis.json": "build/ltx098-staging-analysis/results.json",
-    "ltx098-accuracy-activation.json": "build/ltx098-text-accuracy-experiments/activation-results.json",
-    "ltx098-accuracy-order.json": "build/ltx098-text-order-experiments/results.json",
-    "ltx098-accuracy-staging.json": "build/ltx098-text-staging-experiments/baseline-results.json",
-    "ltx098-accuracy-f32.json": "build/ltx098-text-f32-experiments/results.json",
-    "ltx098-accuracy-trajectory-f32.json": "build/ltx098-text-accuracy-trajectories/f32-results.json",
-    "ltx098-context-reference-vulkan.json": "build/ltx098-sampling-context-diagnosis/vulkan-reference-case-1-results.json",
-    "ltx098-context-reference-cpu.json": "build/ltx098-sampling-context-diagnosis/cpu-reference-case-1-results.json",
-    "ltx098-compute-f32-reference-cpu.json": "build/ltx098-compute-precision-tests/f32-cpu-reference-case-1-results.json",
-    "ltx098-compute-f32-reference-vulkan.json": "build/ltx098-compute-precision-tests/f32-vulkan-reference-case-1-results.json",
-    "ltx098-compute-f32-rms-reference-cpu.json": "build/ltx098-compute-precision-tests/f32-rms-cpu-reference-case-1-results.json",
-    "ltx098-modulation-step0.json": "build/ltx098-modulation-analysis/case-1-step-0-results.json",
-    "ltx098-modulation-step7.json": "build/ltx098-modulation-analysis/case-1-step-7-results.json",
-    "ltx098-modulation-reference-vulkan.json": "build/ltx098-modulation-tests/publisher_modulation-vulkan-reference-case-1-results.json",
-    "ltx098-modulation-f32-vulkan.json": "build/ltx098-modulation-tests/publisher_modulation-vulkan-f32-case-1-results.json",
-    "ltx098-modulation-capture-audit.json": "build/ltx098-modulation-tests/capture-audit.json",
-    "ltx098-prepare.json": "build/ltx098-prepare-tests/results.json",
-    "ltx098-prepare-host.json": "build/ltx098-prepare-host/receipt.json",
-    "ltx098-prepare-arm64.json": "build/ltx098-prepare-arm64/receipt.json",
-    "ltx098-vae-templates.json": "build/ltx098-vae-template-tests/results.json",
-    "ltx098-vae-prepare.json": "build/ltx098-vae-prepare-tests/results.json",
-    "ltx098-vae-prepare-host.json": "build/ltx098-vae-prepare-host/receipt.json",
-    "ltx098-vae-prepare-arm64.json": "build/ltx098-vae-prepare-arm64/receipt.json",
-    "qwen-headers.json": "build/qwen-headers.json",
-    "api.json": "build/api-tests/results.json",
-    "backend.json": "build/backend-tests/results.json",
-    "hub.json": "build/hub-tests/results.json",
-    "hub-live.json": "build/hub-tests/live-results.json",
     "ui.json": "build/ui-qa/results.json",
     "lint.json": "build/android-lint/results.json",
-    "sd15-host-build.json": "build/sd-worker-host/a3bf87b8e136d993/receipt.json",
-    "moss-nano-host-build.json": "build/moss-nano-worker-host/ed55e570d80c29d2/receipt.json",
-    "tts-host-build.json": "build/tts-worker-host/f838b94b5adb567e/receipt.json",
-    "qwen-tts-host-build.json": "build/qwen-tts-worker-host/ffab53f3a692901d/receipt.json"
+    "workbench-media.json": "docs/media/development/workbench/manifest.json"
+  },
+  "historical_sources": {
+    "build-info.json": {
+      "path": "verification/history/0.3.0-dev.24/build-info.json",
+      "sha256": "46e0111ffc0deb1d5648544474069f5fce8cf7bb6ccf3261243f29230c1b2fe7"
+    },
+    "package.json": {
+      "path": "verification/history/0.3.0-dev.24/package.json",
+      "sha256": "3ef6f0586e841a18fb90cff133201fc807befbd2ee9f845a15de3792dcdf1296"
+    },
+    "native-payload.json": {
+      "path": "verification/development/native-payload.json",
+      "sha256": "cdf5f865890ab1b09a735589936899cf1b59b6801127ac70f64cb5c91aabab8c"
+    },
+    "assembly-core.json": {
+      "path": "verification/development/assembly-core.json",
+      "sha256": "03f1c19571b130e67e46ae2707d56820eb0dcda3521cd42432d59069121bb075"
+    },
+    "assembly-trained.json": {
+      "path": "verification/development/assembly-trained.json",
+      "sha256": "eae81ff6c66ee0ed468a4f8e54c0f734b33f9fb98a4bfa2628d9d8cbba908164"
+    },
+    "preparation-core.json": {
+      "path": "verification/development/preparation-core.json",
+      "sha256": "ef12a089719e848f3465aa2f61b04b71db0445acda88ab688a99273300c66281"
+    },
+    "preparation-trained.json": {
+      "path": "verification/development/preparation-trained.json",
+      "sha256": "45ad856505c945575eb6b48dccbf42ce1546b4c0f2f0c7a6ae93e0a6f770319b"
+    },
+    "foundation.json": {
+      "path": "verification/history/0.3.0-dev.24/foundation.json",
+      "sha256": "c8cd4b39ba69062ee03cc3fe20240f6eabe33d0948e3ebb405dd80e680d8cb7e"
+    },
+    "tts.json": {
+      "path": "verification/development/tts.json",
+      "sha256": "651bea73a5187ee540b2fabff686f2d533c94cd4596d18988f54f8f73ffdd1d8"
+    },
+    "tts-assets.json": {
+      "path": "verification/development/tts-assets.json",
+      "sha256": "c73d76ed3f86e6bf00ad7f76d7634d645547ff403d98ff9dc3cca910b8b7ac24"
+    },
+    "tts-trained.json": {
+      "path": "verification/development/tts-trained.json",
+      "sha256": "83371afc6286cad337a9726f21856791b8728061e1279fa1a4e0fc986ba8406d"
+    },
+    "tts-app-host.json": {
+      "path": "verification/development/tts-app-host.json",
+      "sha256": "6e11fa4d0029e317932dbcd05292a1bd0eb0c5fd8f74295e920f83d295a49810"
+    },
+    "tts-capture-audit.json": {
+      "path": "verification/development/tts-capture-audit.json",
+      "sha256": "d380453c15ea0b93117086929db5b64f83a0b9edbce81fd511eb4574b1515579"
+    },
+    "text.json": {
+      "path": "verification/history/0.3.0-dev.24/text.json",
+      "sha256": "6ddc09e1bf66349f061d36ffb953c37e0aa45c0f4ee3e97780853431e9d7b0eb"
+    },
+    "migration.json": {
+      "path": "verification/history/0.3.0-dev.24/migration.json",
+      "sha256": "d0a636920121d37f6ab1581a1cfd90480cdfaf8e47978749b6036d9a0312ca12"
+    },
+    "scheduler.json": {
+      "path": "verification/history/0.3.0-dev.24/scheduler.json",
+      "sha256": "5104d39c8e31adfb9c0b4f5a8611f2c234c4e8253aae540c104f361140b205ab"
+    },
+    "inputs.json": {
+      "path": "verification/history/0.3.0-dev.24/inputs.json",
+      "sha256": "1a34ec7354febcab3414d9b779f11c70bc278e26b33803c386b1fc4cf07e48d8"
+    },
+    "diffusion.json": {
+      "path": "verification/development/diffusion.json",
+      "sha256": "0c714e91065c35c5a759c81b40786a4a2c29b093ffa672141626a694f55fd38a"
+    },
+    "sd15-assets.json": {
+      "path": "verification/development/sd15-assets.json",
+      "sha256": "8bf0c2b1fac294bb94aea60b1cf86e0463c1e17a386d2932665863ba65df4164"
+    },
+    "sd-variants-assets.json": {
+      "path": "verification/development/sd-variants-assets.json",
+      "sha256": "e0bf8a87584fee5c216b34bac9c8b2ff4d236ecbb7f7ab4006a498744264f882"
+    },
+    "lcm-preparation-core.json": {
+      "path": "verification/development/lcm-preparation-core.json",
+      "sha256": "d4135fda5863a09a3041f68ff09054461c6aadeb20a217c9db8f6a0335371ec7"
+    },
+    "lcm-preparation-arm64.json": {
+      "path": "verification/development/lcm-preparation-arm64.json",
+      "sha256": "4516d51743a3ed7d134db292062fe36087ba36ed554829e86e4e95e52dd0619c"
+    },
+    "lcm-preparation-trained.json": {
+      "path": "verification/development/lcm-preparation-trained.json",
+      "sha256": "5b09c84f3051f5ee4bb226c0f5f1be948967cdaf1f54b7cb9e21d63297ee730e"
+    },
+    "lcm-overlay-trained.json": {
+      "path": "verification/development/lcm-overlay-trained.json",
+      "sha256": "aee735b12771136552c04bbdc39277e8276b88a0c927305a24bc7c36f18e1aa7"
+    },
+    "lcm-preparation-capture-audit.json": {
+      "path": "verification/development/lcm-preparation-capture-audit.json",
+      "sha256": "f29dc9d577fb36764cf3fe5bcd3460f18628437f7c29393570c81958611e2e43"
+    },
+    "sd-distilled-assets.json": {
+      "path": "verification/development/sd-distilled-assets.json",
+      "sha256": "78560bd08ff4ca7ef022cf6eaf4d6069b79d12690ad0f707e91700e209110076"
+    },
+    "sd-distilled-native.json": {
+      "path": "verification/development/sd-distilled-native.json",
+      "sha256": "34b1050f86b2d6d1d22e3f06f5a9210a047395e725f3dc0defdb258fa5b9cec1"
+    },
+    "sd-distilled-lcm-analysis.json": {
+      "path": "verification/development/sd-distilled-lcm-analysis.json",
+      "sha256": "080d7a296229f9f35454520cad6129a83ce6e53c149ab98d15715e301ed98fe5"
+    },
+    "sd-turbo-app-host.json": {
+      "path": "verification/development/sd-turbo-app-host.json",
+      "sha256": "c452a8898dcab85f71f0a045f5a6dea6e24069fec5e09f2186e82300c0b81daf"
+    },
+    "sd-distilled-capture-audit.json": {
+      "path": "verification/development/sd-distilled-capture-audit.json",
+      "sha256": "e1d1a89b45a5bbc4554117501a3d4064b63ea240881570e2fb13945a02ede8d3"
+    },
+    "sd-variants-trained.json": {
+      "path": "verification/development/sd-variants-trained.json",
+      "sha256": "6bdf64ad56b8a7341ea7db6fcda7e98fa0634510687b13b31d50edd2789f4cfa"
+    },
+    "sd-variants-lcm-effect.json": {
+      "path": "verification/development/sd-variants-lcm-effect.json",
+      "sha256": "dddb8d1f5ba3e781aa397324b5737cc96ef5c5bc7a763a185999c41d042274bd"
+    },
+    "sd-variants-app-host.json": {
+      "path": "verification/development/sd-variants-app-host.json",
+      "sha256": "1ca2c7ad22d7ded1aa8657d26bf41441e1c4137d1a88929366fb958913b6e365"
+    },
+    "sd-variants-capture-audit.json": {
+      "path": "verification/development/sd-variants-capture-audit.json",
+      "sha256": "ddc6922a71b8bbcd9d7453376124a766ef05f7610050d6f6fafa4afd4b0272f3"
+    },
+    "sd15-trained.json": {
+      "path": "verification/development/sd15-trained.json",
+      "sha256": "890fc719b1d0e481f6c8b1af18ed40c9eed1b458721254db6cfba4b48ac2d042"
+    },
+    "moss-nano.json": {
+      "path": "verification/development/moss-nano.json",
+      "sha256": "343bdb23b48acc0114182598204b96c30b5bde420cbe4762f7734b32603c29d6"
+    },
+    "moss-nano-assets.json": {
+      "path": "verification/development/moss-nano-assets.json",
+      "sha256": "793a4c4d4b0ba58cfdfc62580d46f762bb55999afe82b1a1c7cbcd565bba5cef"
+    },
+    "moss-nano-trained.json": {
+      "path": "verification/development/moss-nano-trained.json",
+      "sha256": "30699686e97a2478ef8a2d7bdcf973a73288bc00c2b237139501504e99b69d3e"
+    },
+    "moss-nano-app-host.json": {
+      "path": "verification/development/moss-nano-app-host.json",
+      "sha256": "89385761a49e696a241d2eb997729e3fc3a67743022ad1546e7e3a4ed61e511e"
+    },
+    "moss-nano-capture-audit.json": {
+      "path": "verification/development/moss-nano-capture-audit.json",
+      "sha256": "1538cfb46989c99ef6503550169dbe2d44bc94c7e781d8f32f2ce1aa9b90f62c"
+    },
+    "mnn.json": {
+      "path": "verification/development/mnn.json",
+      "sha256": "91e6b5692f26c68f1c11229f8371c1544bdf71a2efea71115483c5bde5e6520e"
+    },
+    "qwen-tts.json": {
+      "path": "verification/development/qwen-tts.json",
+      "sha256": "cdf03b61f9f12bd2c1f47a321a241251088413557977cf259924b2a22159052b"
+    },
+    "qwen-tts-assets.json": {
+      "path": "verification/development/qwen-tts-assets.json",
+      "sha256": "967592298f5e3f8f9a3024d7779f1e3fb7269363cd564c5299881c032f272aca"
+    },
+    "qwen-tts-trained.json": {
+      "path": "verification/development/qwen-tts-trained.json",
+      "sha256": "e5f71d3d2273d6fdb0b1b55a105eb71970ef1702c741f470c6d6b03910c26a40"
+    },
+    "qwen-tts-app-host.json": {
+      "path": "verification/development/qwen-tts-app-host.json",
+      "sha256": "67d8e79335c5642e11f1b0f410d5d9249317704cfe212e1d4505fbd885c81e4a"
+    },
+    "qwen-tts-capture-audit.json": {
+      "path": "verification/development/qwen-tts-capture-audit.json",
+      "sha256": "b69d6174ec3fb7cb2f9d260995505325c6d120f185f29c013874ca79c30fd99a"
+    },
+    "moss-delay.json": {
+      "path": "verification/development/moss-delay.json",
+      "sha256": "2cea3152eb134d569b5b36cec9aae4463a275dc3644403722a02e52b07e0d115"
+    },
+    "openmoss.json": {
+      "path": "verification/development/openmoss.json",
+      "sha256": "3db144f40679e6271a841061d2571812c3aa9c8c15bac08995ad51fad24be2c8"
+    },
+    "moss-rq.json": {
+      "path": "verification/development/moss-rq.json",
+      "sha256": "f3b6355d14aaaf66db198044a9e0be71fdcc67dec703ea4970a4d5693be78e76"
+    },
+    "stable-audio.json": {
+      "path": "verification/development/stable-audio.json",
+      "sha256": "a75e76ba3a7b712e7c065a564bf6bbc7a44bf2ef55ba0ac61af4753e0ebb926a"
+    },
+    "soulx.json": {
+      "path": "verification/development/soulx.json",
+      "sha256": "53c2e3f03ea00b8fea564746c6fc5b0dacdf7c8a3729769292f1bc51692561a1"
+    },
+    "soulx-worker-trained.json": {
+      "path": "verification/development/soulx-worker-trained.json",
+      "sha256": "e71a3c88198e43546e1b2ed16b0fb07f25c8df5a5e215060b7f8aa91f232f634"
+    },
+    "soulx-dsp.json": {
+      "path": "verification/development/soulx-dsp.json",
+      "sha256": "2e5cab9d1fd96f24ad4f57fc2bcd062811257b85231931ebd50ad81761fd37d4"
+    },
+    "soulx-dsp-arm64.json": {
+      "path": "verification/development/soulx-dsp-arm64.json",
+      "sha256": "98096c8a49b4814b0fbcf5804f94c12e01fe38936b35e357a5238f439545f4d5"
+    },
+    "soulx-acoustic.json": {
+      "path": "verification/development/soulx-acoustic.json",
+      "sha256": "5745225c174bb9e24d3726b7d5123897157929457fa4effc90c8b7df824493d0"
+    },
+    "soulx-acoustic-arm64.json": {
+      "path": "verification/development/soulx-acoustic-arm64.json",
+      "sha256": "29eab26a688c5a1214e29ae267a4c9c7295406152ff3ac8377920d1dcd7ab234"
+    },
+    "soulx-reference.json": {
+      "path": "verification/development/soulx-reference.json",
+      "sha256": "06bbc6d5cd4dce77474e4dc0428179e69bf683ff1e10c39252481197f0669e63"
+    },
+    "soulx-reference-arm64.json": {
+      "path": "verification/development/soulx-reference-arm64.json",
+      "sha256": "32f0301be6e93cb94843298a11eed16b966d8c14877bc1860bbb886f22366944"
+    },
+    "soulx-trained.json": {
+      "path": "verification/development/soulx-trained.json",
+      "sha256": "991419a3021f4e2b146cd3aa2871b5be12cacabe3abd2a92304ce23ef9e258dd"
+    },
+    "soulx-language.json": {
+      "path": "verification/development/soulx-language.json",
+      "sha256": "9761b2313e571da0953b7f8e7d4cafd7c8a4fe2e70084e4bce0966094960f957"
+    },
+    "soulx-language-host.json": {
+      "path": "verification/development/soulx-language-host.json",
+      "sha256": "79f9a62bf9933b80059be4b35883b989f2218012cb12c83b4b5ebea4a0391280"
+    },
+    "soulx-language-arm64.json": {
+      "path": "verification/development/soulx-language-arm64.json",
+      "sha256": "b1e1fe345f65527ea3a5de46cd0480e33335ecc8dd2bb9e3095aca191f96a4d6"
+    },
+    "soulx-pipeline.json": {
+      "path": "verification/development/soulx-pipeline.json",
+      "sha256": "f75ffaf53571a34d99314f69bbc503904bebaf6b7a157c76533894a4934ed7d8"
+    },
+    "ltx098-transformer.json": {
+      "path": "verification/development/ltx098-transformer.json",
+      "sha256": "a1e9c582ea7117a4825e1c5be532f59835ce00a42ca26944030f680dd106981f"
+    },
+    "ltx098-transformer-arm64.json": {
+      "path": "verification/development/ltx098-transformer-arm64.json",
+      "sha256": "8ce99d2c5ab6e0979bb8985a5c57c71489e54c195fdbba68c6a2bab4ccefa9aa"
+    },
+    "ltx098-sampling.json": {
+      "path": "verification/development/ltx098-sampling.json",
+      "sha256": "324906763866e74701c18123e2437c3239383478c566da3897f78997547db2ee"
+    },
+    "ltx098-text.json": {
+      "path": "verification/development/ltx098-text.json",
+      "sha256": "e8ca7554ff3fc415bddb0a4c524369cf1f647b5587688f25d2eb197fa669558e"
+    },
+    "ltx098-text-host.json": {
+      "path": "verification/development/ltx098-text-host.json",
+      "sha256": "f81a43cc8d92d72fccf6df06337e5efc88b1d1ad6b02b920657ab4dafb5f3260"
+    },
+    "ltx098-text-arm64.json": {
+      "path": "verification/development/ltx098-text-arm64.json",
+      "sha256": "fe9c57a6c10300011daa450266b5e287bcd719539e34c6efdebd50dd63effddd"
+    },
+    "ltx098-vae.json": {
+      "path": "verification/development/ltx098-vae.json",
+      "sha256": "c33794695d2b2d10c262d824437c861ed67f0b8a8ebb35492813e622071a4232"
+    },
+    "ltx098-vae-host.json": {
+      "path": "verification/development/ltx098-vae-host.json",
+      "sha256": "7dbc9f7ed49d2a4ff06a6ef4698cfecc06890d33f5b927bb8d968447d622da13"
+    },
+    "ltx098-vae-arm64.json": {
+      "path": "verification/development/ltx098-vae-arm64.json",
+      "sha256": "c9106cdbd3ac7f0d8d6a328802d8c418e82a036348918e9356d127b2085be28e"
+    },
+    "ltx098-tensors.json": {
+      "path": "verification/development/ltx098-tensors.json",
+      "sha256": "787178fe039feccc47653a611867527d8ba551c679d13d0747f4f66763a292b3"
+    },
+    "ltx098-tensors-host.json": {
+      "path": "verification/development/ltx098-tensors-host.json",
+      "sha256": "aa9269fb0623f89bc0c0e3b9049ced42e96b2eeb9996429eee4b341f38c867ac"
+    },
+    "ltx098-tensors-arm64.json": {
+      "path": "verification/development/ltx098-tensors-arm64.json",
+      "sha256": "34680f274a9a0ededbffa0de9d1709a018810e97eb21b664ba9a794a9cad2304"
+    },
+    "ltx098-pipeline.json": {
+      "path": "verification/development/ltx098-pipeline.json",
+      "sha256": "677004c760a4cc27b9de61d329692382f1719d6488824fa840506e567a44622b"
+    },
+    "ltx098-text-diagnosis.json": {
+      "path": "verification/development/ltx098-text-diagnosis.json",
+      "sha256": "21ab9b9473a775824a733a4d3ac944c5d0a5806cc42bf7ef67c47dca9a8c1d65"
+    },
+    "ltx098-text-operators.json": {
+      "path": "verification/development/ltx098-text-operators.json",
+      "sha256": "e8baaafcfbcbd3c4ccfaa030c0e40411123985aee9c19524dca8a175a05811cd"
+    },
+    "ltx098-text-diagnosis-review.json": {
+      "path": "verification/development/ltx098-text-diagnosis-review.json",
+      "sha256": "7a150d1ff2c4ba4db835bf5c93dfeafddc6848db055869cbd8d3e6a01b4c4633"
+    },
+    "ltx098-text-precision-attention.json": {
+      "path": "verification/development/ltx098-text-precision-attention.json",
+      "sha256": "89d305c86332cd8822375b9c8dadc4409b51ad7b1b0825540bde58a358e67ef3"
+    },
+    "ltx098-text-precision-linear.json": {
+      "path": "verification/development/ltx098-text-precision-linear.json",
+      "sha256": "01d90e5662c3df32697b6f99358ccfeba958ab0f44d381f11ad2c9c56619085b"
+    },
+    "ltx098-precision-sampling-attention.json": {
+      "path": "verification/development/ltx098-precision-sampling-attention.json",
+      "sha256": "2d8fc30bc6504f042d0da5e181c18e56f96ae6cf4957a040653bcf5ea62496f9"
+    },
+    "ltx098-precision-sampling-linear.json": {
+      "path": "verification/development/ltx098-precision-sampling-linear.json",
+      "sha256": "94ca6f403de282c112cd6a2fe45dda57119049a5984e873cf1ffb15e1ed26b16"
+    },
+    "ltx098-staging-analysis.json": {
+      "path": "verification/development/ltx098-staging-analysis.json",
+      "sha256": "8403178092b179a230f2290117c7b7e01228bac3f9bff759680bdfae30a6f9c8"
+    },
+    "ltx098-accuracy-activation.json": {
+      "path": "verification/development/ltx098-accuracy-activation.json",
+      "sha256": "02d5e8610baf336a0c21246263fcab397f6f97bee8d7b05f9287daa211133188"
+    },
+    "ltx098-accuracy-order.json": {
+      "path": "verification/development/ltx098-accuracy-order.json",
+      "sha256": "8e9fcc5749443307e7b22738da6e534b60fa9767048fa8e5b27e3bb8e8111a0e"
+    },
+    "ltx098-accuracy-staging.json": {
+      "path": "verification/development/ltx098-accuracy-staging.json",
+      "sha256": "0465b6530b65b03d09d395114fcc8c7e3074bbafd813f779049bcc60e75b0b40"
+    },
+    "ltx098-accuracy-f32.json": {
+      "path": "verification/development/ltx098-accuracy-f32.json",
+      "sha256": "c98725bbadb741000e5ac5eb97306b37c2b3232884fb925650decd9049e52a96"
+    },
+    "ltx098-accuracy-trajectory-f32.json": {
+      "path": "verification/development/ltx098-accuracy-trajectory-f32.json",
+      "sha256": "c3feb4c65deb3323749d5a25447d4b3be8197964236fe6b195d4b293f1f799ac"
+    },
+    "ltx098-context-reference-vulkan.json": {
+      "path": "verification/development/ltx098-context-reference-vulkan.json",
+      "sha256": "c6b9a1f962fda9a353c88e620cf8d17e55886217a4961007f1ce60a994ac07e6"
+    },
+    "ltx098-context-reference-cpu.json": {
+      "path": "verification/development/ltx098-context-reference-cpu.json",
+      "sha256": "636cff793fd9f1e5088b11003082b5342437bcc6cdb8f2c9511f2e0f8a9d43d7"
+    },
+    "ltx098-compute-f32-reference-cpu.json": {
+      "path": "verification/development/ltx098-compute-f32-reference-cpu.json",
+      "sha256": "44e12d4948c47f2d7888cbc078da16613d5de38a3a97d9e1f82bf0ec0a909f78"
+    },
+    "ltx098-compute-f32-reference-vulkan.json": {
+      "path": "verification/development/ltx098-compute-f32-reference-vulkan.json",
+      "sha256": "2e7fe14e3664f7d7cb3676802d27991b9bb1279e9f8450adc376bbf8e4669a61"
+    },
+    "ltx098-compute-f32-rms-reference-cpu.json": {
+      "path": "verification/development/ltx098-compute-f32-rms-reference-cpu.json",
+      "sha256": "418771cc359494dd051e2380da3c2e3d547acf3305862b4bb07d3ff11f301eb2"
+    },
+    "ltx098-modulation-step0.json": {
+      "path": "verification/development/ltx098-modulation-step0.json",
+      "sha256": "b6b7a7070787041dc3f52b8c96e72ed77b7960eb50bbd035cb1cc573ecc572d5"
+    },
+    "ltx098-modulation-step7.json": {
+      "path": "verification/development/ltx098-modulation-step7.json",
+      "sha256": "22f6eb4297638a4e727bd476731d4e0b636ae8bdfbdf8cd0141fcce790bc37b1"
+    },
+    "ltx098-modulation-reference-vulkan.json": {
+      "path": "verification/development/ltx098-modulation-reference-vulkan.json",
+      "sha256": "cb6f4e23671c1775a7f191b2d9d9f2d1ae1a3e6c43e3d2d863776deb921060a9"
+    },
+    "ltx098-modulation-f32-vulkan.json": {
+      "path": "verification/development/ltx098-modulation-f32-vulkan.json",
+      "sha256": "db78bed8159d8e6d67affb81e9e58e36e12ddde9b0ace5b28beb4d37ec60ed93"
+    },
+    "ltx098-modulation-capture-audit.json": {
+      "path": "verification/development/ltx098-modulation-capture-audit.json",
+      "sha256": "7d1076a9dc8dd47e5b44d8fc4fa447db24f2ec461af504e64de3c57e467657a1"
+    },
+    "ltx098-prepare.json": {
+      "path": "verification/development/ltx098-prepare.json",
+      "sha256": "c9d0110e185afc1c071e606122b8632eaddbea3a8e873e477dbf07d1a2dbbf54"
+    },
+    "ltx098-prepare-host.json": {
+      "path": "verification/development/ltx098-prepare-host.json",
+      "sha256": "0e91d1161f1cdc5deeea61eb1824931e841cd779a2d77abe2f18ecf329532cf5"
+    },
+    "ltx098-prepare-arm64.json": {
+      "path": "verification/development/ltx098-prepare-arm64.json",
+      "sha256": "dfe55dc2a64de58dd46b0ebacc0f83db4de4428fd4384b99586f92b364155cd7"
+    },
+    "ltx098-vae-templates.json": {
+      "path": "verification/development/ltx098-vae-templates.json",
+      "sha256": "5d9ba14a07c4f3afb49d4d441e8cdbb65ce094b3ed48fd7b3ec3f0b4f4ff43c1"
+    },
+    "ltx098-vae-prepare.json": {
+      "path": "verification/development/ltx098-vae-prepare.json",
+      "sha256": "89105c9126dec27603f6778ac8981815a668b37fd51b93e39336e3f6209c2dd3"
+    },
+    "ltx098-vae-prepare-host.json": {
+      "path": "verification/development/ltx098-vae-prepare-host.json",
+      "sha256": "2fdf478573263fbe185884d2d50e774592763b5008ea280117eb86dd12961e2a"
+    },
+    "ltx098-vae-prepare-arm64.json": {
+      "path": "verification/development/ltx098-vae-prepare-arm64.json",
+      "sha256": "213d17a4969bedb013e3efae2f521a1a68926e488f28e9335f93740dc01f26d0"
+    },
+    "qwen-headers.json": {
+      "path": "verification/development/qwen-headers.json",
+      "sha256": "07f4f7d581b75cb6c7dfbf65d28dd1d3229cc59aac76a5dca1e7a73046324e82"
+    },
+    "api.json": {
+      "path": "verification/history/0.3.0-dev.24/api.json",
+      "sha256": "5faacf0a1506cb8765990e61a8e8e5f13a3403d09217d543f8394d9fec486087"
+    },
+    "backend.json": {
+      "path": "verification/development/backend.json",
+      "sha256": "9a9c0895a0aff012e05e858ca679462ff24fa97feee01c901366143aaaa6868c"
+    },
+    "hub.json": {
+      "path": "verification/development/hub.json",
+      "sha256": "4f20a0ae4ce9a4b6eaf30710836e2260025e69da16915a434b2d631f1952c5ae"
+    },
+    "hub-live.json": {
+      "path": "verification/development/hub-live.json",
+      "sha256": "e4a0cbd76cd11217ec0b02876b39683944b913bf50d7869c1b3f66c9c00f76b5"
+    },
+    "ui.json": {
+      "path": "verification/history/0.3.0-dev.24/ui.json",
+      "sha256": "19b7ce5a751523c2d766720e00c100727713f3c76d11e1e47807e2ac3980e4d1"
+    },
+    "lint.json": {
+      "path": "verification/history/0.3.0-dev.24/lint.json",
+      "sha256": "9644b5a235c5cb7befc66f1a95cdd4a949a36ec588df4774ddfb69dc1ca091b0"
+    },
+    "sd15-host-build.json": {
+      "path": "verification/development/sd15-host-build.json",
+      "sha256": "75584d1030af503be8eda4ede32503885413bd9ee5a7cfa761bef4ad6102b7c6"
+    },
+    "moss-nano-host-build.json": {
+      "path": "verification/development/moss-nano-host-build.json",
+      "sha256": "47629d5fa3b08dfef078466bbde85918c182ad8ef2073b561fd9e7c7fad9799c"
+    },
+    "tts-host-build.json": {
+      "path": "verification/development/tts-host-build.json",
+      "sha256": "8d07c597aaeecee92de169ff58934df5e157615398771c983f789ae3f0a7f58e"
+    },
+    "qwen-tts-host-build.json": {
+      "path": "verification/development/qwen-tts-host-build.json",
+      "sha256": "f6ea4a786482860fef4e59da27a52b7238a5e9e1b46d9ddfa5346e0ebf3284ce"
+    }
+  },
+  "historical_baseline": {
+    "commit": "6b1f3459a80db8b7b6838e7d5e492b8ef42d9033",
+    "version": "0.3.0-dev.24",
+    "status": "verification/history/0.3.0-dev.24/status.json",
+    "sha256": "3b35a599ec7375b52f5507154bf32891a0722fe5d30830d462d1dfa8e81af52d"
+  },
+  "release_ready": false,
+  "all_selected_models_supported": false,
+  "physical_device_tests": 0,
+  "model_inference_tested": false,
+  "historical_trained_results_apply_to_current_apk": false,
+  "scope": "Production task drafts, editable replay, input reuse, current core/API/UI/package checks; no new model inference claims",
+  "required_release_scope": {
+    "foundation": "F01–F12",
+    "existing_text": true,
+    "selected_ids": [
+      "01",
+      "02",
+      "03",
+      "04",
+      "05",
+      "06",
+      "07",
+      "08",
+      "09",
+      "10",
+      "11",
+      "12",
+      "13",
+      "14",
+      "16",
+      "17"
+    ],
+    "every_frozen_subtarget": true,
+    "sd15_and_sdxl_lora": true
+  },
+  "input_fingerprint": {
+    "docs/proposals/multimodal-release-scope.json": "03326504d2d1b52c315bef574325f2c05d43c6a65eafc9779cc33120b7801690",
+    "tools/check_repository.py": "f559e042c8104946f0032176367ca64ad3a077a57e0ad0569bf9628c05640fbd",
+    "tools/checkpoint_evidence.py": "40f046a4b2a138837707de60e301a881aeeaee4ced8c7142b5262a2b1f68cd08",
+    "tools/export_development.py": "d08958befd9df75080eb48e402e44953e22d9c3de8ad00dd00ae8bb85d399e56"
   }
 }

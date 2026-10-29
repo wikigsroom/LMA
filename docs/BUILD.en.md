@@ -2,6 +2,8 @@
 
 [中文](BUILD.md) · [Documentation](README.md)
 
+For dev.25, use `tools/export_development.py` and `tools/check_repository.py --development`. Current business checks are fresh; historical model JSON is compared byte for byte against commit `6b1f345` in the complete Git history, without serving as current-APK inference acceptance. Full Release export does not accept a development checkpoint.
+
 ## Verified toolchain
 
 Use native Windows JDK 21 (`java`, `javac`, `keytool` on PATH), Python 3, Android SDK Platform 35, and Build Tools 35.0.1. Standalone Lint additionally needs SDK Command-line Tools. The builder explicitly invokes Windows `.exe` tools; Linux and macOS are unverified. No Docker, WSL, virtual machine, or emulator is used.

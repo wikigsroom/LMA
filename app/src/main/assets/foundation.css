@@ -43,3 +43,17 @@
 .preparation-section{margin-top:24px;padding-top:16px;border-top:1px solid var(--line)}
 .preparation-section .hub-file{margin-top:12px}
 .preparation-section small{display:block;margin-top:8px}
+
+.draft-section { margin-bottom: 24px; }
+.draft-card { border: 1px solid var(--line); border-radius: 14px; padding: 16px; margin: 10px 0; overflow-wrap: anywhere; }
+.draft-card .job-actions { margin-top: 10px; }
+.task-detail h3, .task-detail h4 { overflow-wrap: anywhere; }
+.task-prompt-text { white-space: pre-wrap; overflow-wrap: anywhere; font: inherit; line-height: 1.6; user-select: text; max-height: 32vh; overflow: auto; }
+.task-value-list { display: grid; grid-template-columns: minmax(85px, 1fr) minmax(0, 1.5fr); gap: 8px 12px; font-size: 13px; }
+.task-value-list dt { color: var(--muted); } .task-value-list dd { margin: 0; overflow-wrap: anywhere; }
+.task-next-actions { margin: 18px 0; }
+.restore-notice { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 12px; margin-bottom: 16px; font-size: 13px; line-height: 1.6; }
+.restore-notice ul { padding-left: 20px; }
+
+.modal-actions { flex-wrap: wrap; }
+.modal-actions .button { min-width: 0; max-width: 100%; }

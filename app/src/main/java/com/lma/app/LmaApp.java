@@ -21,13 +21,14 @@ import com.lma.app.core.InputUploads;
 import com.lma.app.core.PreparedAssets;
 
 public final class LmaApp extends Application {
-    public static final String VERSION = "0.3.0-dev.24";
+    public static final String VERSION = "0.3.0-dev.25";
     public static final String UPDATE = "com.lma.app.STATE_CHANGED";
     public Store store;
     private final java.util.concurrent.atomic.AtomicBoolean migrationRunning = new java.util.concurrent.atomic.AtomicBoolean(), migrationPending = new java.util.concurrent.atomic.AtomicBoolean();
     private volatile JSONArray migrationResults = new JSONArray();
     public BundleStore bundles;
     public JobStore jobs;
+    public com.lma.app.core.TaskDrafts taskDrafts;
     public ArtifactStore artifacts;
     public InputUploads uploads;
     public volatile InputImports inputHost;
@@ -89,6 +90,8 @@ public final class LmaApp extends Application {
             bundles.setParameterResolver(localEngines::parameters);
         }
         catch (Exception error) { bundleStoreError = error.getMessage(); log("模型包存储不可用，原始数据已保留：" + bundleStoreError); }
+        try { taskDrafts = new com.lma.app.core.TaskDrafts(new java.io.File(getFilesDir(), "task-drafts")); }
+        catch (Exception error) { log("草稿存储不可用，原始数据已保留：" + error.getMessage()); }
         chats = new Chats(this);
         hub = new HubCatalog(this);
         migrateTextModels();
@@ -174,6 +177,7 @@ public final class LmaApp extends Application {
             value.put("bundles", bundleRecords);
             value.put("jobs", jobs == null ? new JSONArray() : jobs.summaries());
             value.put("artifacts", artifacts == null ? new JSONArray() : artifacts.snapshot());
+            value.put("taskDrafts", taskDrafts == null ? new JSONArray() : taskDrafts.summaries());
             value.put("inputImport", inputHost == null ? new JSONObject().put("busy", false) : inputHost.snapshot());
             value.put("localEngines", localEngines == null ? new JSONArray() : localEngines.snapshot());
             value.put("foundation", new JSONObject().put("status", "development").put("bundleSchema", "lma.model-bundle/1").put("bundleSchemas", new JSONArray().put("lma.model-bundle/1").put("lma.model-bundle/2")).put("error", bundleStoreError).put("bundledWeights", false).put("execution", execution.snapshot()).put("legacyMigration", new JSONObject().put("running", migrationRunning.get()).put("results", new JSONArray(migrationResults.toString()))));

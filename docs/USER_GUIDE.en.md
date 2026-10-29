@@ -2,6 +2,8 @@
 
 [中文](USER_GUIDE.md) · [Documentation](README.md)
 
+See the [draft → task → result → another generation workflow](TASK_WORKBENCH.en.md) for per-model persistence, parameter restoration, compatible references and recovery review.
+
 ## Installation and first run
 
 Use ARM64 Android 9 or newer; 32-bit Android and x86 are not supported. Device memory and Android/vendor behavior affect model compatibility. Physical-device acceptance has not yet been executed.

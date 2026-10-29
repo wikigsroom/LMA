@@ -2,6 +2,8 @@
 
 [中文](API.md) · [Documentation](README.md)
 
+New [draft and editable-request routes](TASK_WORKBENCH.en.md#local-api) persist drafts independently and restore task/result requests before explicit resubmission through the same phone queue.
+
 The existing text examples below describe public **v0.2.0**. The final section documents internal **0.3.0-dev.2** gateway/jobs/artifacts; complete model support and physical-device acceptance remain unfinished.
 
 ## Endpoint, authentication, and model ID

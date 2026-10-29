@@ -2,6 +2,8 @@
 
 [English](FOUNDATION.en.md) · [本地模型评估](MULTIMODAL.md) · [任务执行](WORKFLOWS.md) · [现行发版需求](MULTIMODAL_RELEASE_PLAN.md) · [文档目录](README.md)
 
+新增[生成业务闭环](TASK_WORKBENCH.md) / [English](TASK_WORKBENCH.en.md)：`TaskDrafts` 原生保存独立草稿，`TaskRequests` 共用 UI / API / retry 的可编辑请求重建，任务与产物可继续进入同一生成表单和本机队列。源任务与模型设置保留，新任务重新校验；匹配素材选择不创建外部工作流节点。
+
 日期：**2026-10-27（Asia/Taipei）**。结论：**可以构建，建议把产品主线定为可扩展的本地多引擎基座。** 核心目标是以后添加模型时复用下载、配置、任务与结果管理；不要求先把每个模型写成独立功能。全部推理在同一 Android 手机进行，无需 ROOT，无外部推理或回退。
 
 本文是对源码和上游 Android / 原生引擎的评估。**完整基座正在实施，尚未完成验收。** 当前公开 APK 仍为 0.2.0；内部 0.3.0-dev 已有组件包、独立参数、持久队列 / 产物、相关界面和 ARM64 CPU 扩散 worker，见[实际进展与剩余项](DEVELOPMENT.md)。没有 LMA 手机生成或耐久证据。Z20 是需要兼顾的低资源设备，不决定产品模型上限。

@@ -2,6 +2,8 @@
 
 [English](BUILD.en.md) · [文档目录](README.md)
 
+dev.25 的开发证据使用 `tools/export_development.py` 与 `tools/check_repository.py --development`。当前业务记录重新检查；历史模型 JSON 与完整 Git 历史中的 `6b1f345` 逐字节核对，不能作为新版 APK 推理验收。完整 Release 导出不接受开发检查点。
+
 ## 已验证工具链
 
 使用 Windows 原生工具：JDK 21（PATH 中含 java / javac / keytool）、Python 3、Android SDK Platform 35、Build Tools 35.0.1。独立 Lint 需要 SDK Command-line Tools。主构建脚本明确调用 `.exe`，Linux / macOS 没有验证；不使用 Docker、WSL、虚拟机或模拟器。

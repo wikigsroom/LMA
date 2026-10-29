@@ -1,5 +1,5 @@
 {
-  "passed": 308,
+  "passed": 316,
   "checks": [
     "Initial curated recommendations",
     "375px model library layout",
@@ -301,6 +301,14 @@
     "A cancelled association requires an explicit retry",
     "Local management shows 20 reusable components and two paused dependencies without enabling generation",
     "Only an explicit runtime-model download command can request the remaining components",
+    "Empty-prompt draft saves without task submission or admission consent",
+    "375px per-model draft cards",
+    "Draft restore recovers prompt and parameters without changing model settings or accepting admission",
+    "Completed task opens an editable new request without starting another generation",
+    "Result provenance restores the original generation inputs",
+    "Generated media fills a compatible local input role and waits for user text/confirmation",
+    "Missing restored references are disclosed and require an explicit review",
+    "Draft deletion keeps submitted history and model configuration independent",
     "Tablet library layout",
     "Short landscape server layout",
     "320px narrow phone layout",
@@ -319,9 +327,9 @@
     "app/src/main/assets/app.js": "2240021b034e6259ac110fc48ede81c43be6fabf7200dde5ced7eeacbe9e5468",
     "app/src/main/assets/asset-preparations.json": "3e11450877047dd4c63f11265d0549c9f50a4d25a33ca5b8f2ee6a44c38f864a",
     "app/src/main/assets/engine-builds.json": "18fc05c5eeab9a2b77418be24cb7621ed9b00d180bc9bf958ba8e3c1b1e9f742",
-    "app/src/main/assets/foundation.css": "7ef5fcb33c697d8d30912eb61524f828af18487ccf037b81e88bdfadcb48ae94",
-    "app/src/main/assets/foundation.js": "ffbfc2f7e550ff33555b4d5460fca84071553fee5ee81ae9aaa08a0a66970869",
-    "app/src/main/assets/index.html": "406a11f10a3380d2db0325ffd148dcb55b2eabe35aa2bcd001864aafa57afd62",
+    "app/src/main/assets/foundation.css": "6829606017945a7a17184b87ca3d6b534133824b75711a3a05194b8e263902bd",
+    "app/src/main/assets/foundation.js": "65aff9b45f3413b469264181c13ec019664fe481a33c79ff4ae009dc60d6aaba",
+    "app/src/main/assets/index.html": "ad8868119698a8c8845432764db07b2e116586c1681a878522e3846940fa5704",
     "app/src/main/assets/license.js": "f429d4bc26c56c52bdc2ea21edd170478211b1d6b0a288c9b03bf53ff970d8bb",
     "app/src/main/assets/licenses/LLAMA_CPP_LICENSE": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
     "app/src/main/assets/licenses/LMA_LICENSE": "6ae3f5efa412d91cbf66e44f743e5ce41a8044309d05d893365206ab9bc35fc3",
@@ -417,9 +425,10 @@
     "app/src/main/assets/recipe-templates.json": "4abedebe4d01f45e4d0b22506071c83bfddeb3e6750950630a9ff5a5f5b5b958",
     "app/src/main/assets/recipes.js": "648e1ff046ab20e2ae7f658a7cb82c895c042ea81dca5cd943141626eea6deba",
     "app/src/main/assets/versions.js": "2d629929a6db642c12a242ddcc62cd4f4090ab307e0cb669ceb98add031977e1",
+    "app/src/main/assets/workbench.js": "237223599e41a87f82dfaeb4f14ed344f03f626399a1ca8e9bb37762e9ea63b0",
     "tests/assemblies-ui.cjs": "5ced7e682506087b880a025b83acac600bb36f8203c99910c0d7070a06deded4",
     "tests/diffusion-ui.cjs": "f6f997afcee0d6ae5113097640f151a418b6d4c501838c5565c3c2fe29d724d1",
-    "tests/foundation-ui.cjs": "1c6721770e2d3336719c6cb096869aca3f966beff3fd958f814cda1cafee1e79",
+    "tests/foundation-ui.cjs": "b8cc6e6dcd05054e8651c1ec908e8d1f8e1c65abe1cb6d81e77f52a7e9fea6ed",
     "tests/hub-fixture.cjs": "5b3cb88b7fd4c45d26ce92e8598a1c3837a12b02eb898f67c9be10da2910ab83",
     "tests/inputs-ui.cjs": "da1958c5875da505af0502fd144c97604a21e3297aa684f3fd1eb422c9ad4206",
     "tests/migration-ui.cjs": "6843bdcf1783795ed10cccc8b200aee40188e8a1fe950f8d23027d828ff6b3b4",
@@ -432,7 +441,8 @@
     "tests/soulx-ui.cjs": "7b1e9336af93341b82fc9b49c944ed21573b25324202c0e44233c2a0f9a86051",
     "tests/stable-audio-ui.cjs": "b4acad2dfb0e5cba079e66410543b9c4990005df06faeb7da23990c51950676a",
     "tests/text-ui.cjs": "bc5969aa9329380b590a6055daa6fe1177f956f73bb212a18cf19d2b6576b8db",
-    "tests/ui-smoke.cjs": "69b3d9eab2508243af51737093fb5a7eda5f9be87f9e7b26befbb8f5aaab3ede",
-    "tests/versions-ui.cjs": "13f6e194c00fa3a819c44da35788aa28b94ba05325e3f2b1257350c04b67babd"
+    "tests/ui-smoke.cjs": "29d5594570fa5ca70ba02b80358b362d91929d831b1eb09e6fd90f6b65397025",
+    "tests/versions-ui.cjs": "13f6e194c00fa3a819c44da35788aa28b94ba05325e3f2b1257350c04b67babd",
+    "tests/workbench-ui.cjs": "e42642fab01944018f6a640a35a7deb0255750f10dcd7268b67c9889e8b87e5b"
   }
 }

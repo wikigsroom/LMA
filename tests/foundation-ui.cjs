@@ -96,7 +96,7 @@ module.exports = async function (page, checked, checkOverflow, output) {
   assert.equal(await page.evaluate(() => window.__pwned), false); checked('Task form submits a parameter snapshot and escapes the queue prompt');
   await checkOverflow(page, '375px task queue layout');
   await page.screenshot({path: path.join(output, '08-tasks-phone.png')});
-  await page.locator('[data-action="jobInfo"]').click(); await page.waitForSelector('.provenance');
+  await page.locator('[data-action="jobInfo"]').click(); await page.waitForSelector('.task-detail');
   assert((await page.locator('.provenance').textContent()).includes('ui_job')); checked('Task details use the matching native command result');
   await page.locator('[data-action="closeModal"]').click();
   await page.locator('[data-action="cancelTask"]').click();

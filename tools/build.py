@@ -63,7 +63,7 @@ def main():
     native = ROOT / "app/src/main/jniLibs/arm64-v8a"
     if not (native / "libllama-server.so").exists(): raise RuntimeError("Run python tools/bootstrap_runtime.py first")
     source = ROOT / "app/src/main"
-    for name in ("index.html", "app.css", "app.js", "foundation.css", "foundation.js", "recipes.js", "versions.js", "recipe-templates.json", "asset-preparations.json", "model-assemblies.json", "license.js", "models.json", "model-bundles.json", "engine-builds.json"):
+    for name in ("index.html", "app.css", "app.js", "foundation.css", "foundation.js", "workbench.js", "recipes.js", "versions.js", "recipe-templates.json", "asset-preparations.json", "model-assemblies.json", "license.js", "models.json", "model-bundles.json", "engine-builds.json"):
         if not (source / "assets" / name).is_file(): raise RuntimeError("Missing application UI asset: " + name)
     license_text = (ROOT / "third_party/LLAMA_CPP_LICENSE").read_text(encoding="utf-8")
     (source / "assets/licenses").mkdir(exist_ok=True)

@@ -18,6 +18,8 @@ public final class LocalApi implements LocalHttp.Handler {
         JSONArray engines() throws Exception;
         JobStore jobs() throws Exception;
         ArtifactStore artifacts() throws Exception;
+        default TaskDrafts drafts() throws Exception { throw new IllegalStateException("Task drafts are unavailable"); }
+        default void draftsChanged() {}
         default InputUploads uploads() throws Exception { throw new IllegalStateException("Input uploads are unavailable"); }
         JSONObject submit(JSONObject request, String idempotencyKey) throws Exception;
         void cancel(String id) throws Exception;
@@ -51,6 +53,18 @@ public final class LocalApi implements LocalHttp.Handler {
         if (path.equals("/v1/models")) { method(r, "GET", "HEAD"); noBody(r); return list(runtime.models()); }
         if (path.equals("/v1/engines")) { method(r, "GET", "HEAD"); noBody(r); return list(runtime.engines()); }
         if (path.equals("/v1/chat/completions") || path.equals("/v1/completions")) { method(r, "POST"); return runtime.text(path, body(r)); }
+        if (path.equals("/v1/drafts")) {
+            method(r, "GET", "HEAD", "POST");
+            if (r.method.equals("POST")) { JSONObject input = body(r), saved = runtime.drafts().save(input.getJSONObject("request"), TaskDrafts.revision(input)); runtime.draftsChanged(); return json(200, saved); }
+            noBody(r); return list(runtime.drafts().summaries());
+        }
+        if (path.startsWith("/v1/drafts/")) {
+            String[] parts = path.substring("/v1/drafts/".length()).split("/", -1); String id = id(parts[0]);
+            JSONObject draft;
+            try { draft = runtime.drafts().get(id); } catch (IllegalArgumentException absent) { throw new LocalHttp.Failure(404, "draft_not_found", "Unknown task draft"); }
+            if (parts.length == 1) { method(r, "GET", "HEAD"); noBody(r); return json(200, draft); }
+            if (parts.length == 2 && parts[1].equals("delete")) { method(r, "POST"); runtime.drafts().remove(id, TaskDrafts.revision(body(r))); runtime.draftsChanged(); return json(200, new JSONObject().put("deleted", true).put("bundleId", id)); }
+        }
         if (path.equals("/v1/jobs")) {
             method(r, "GET", "HEAD", "POST");
             if (r.method.equals("POST")) return json(202, runtime.submit(TaskInput.validate(body(r)), r.header("idempotency-key")));
@@ -65,6 +79,7 @@ public final class LocalApi implements LocalHttp.Handler {
                 if (r.method.equals("DELETE")) { runtime.jobs().remove(id); return json(200, new JSONObject().put("deleted", true).put("id", id)); }
                 return json(200, job);
             }
+            if (parts.length == 2 && parts[1].equals("request")) { method(r, "GET", "HEAD"); noBody(r); return json(200, TaskRequests.editable(job.getJSONObject("request"))); }
             if (parts.length == 2 && parts[1].equals("events")) { method(r, "GET"); noBody(r); return eventResponse(r, id); }
             if (parts.length == 2 && parts[1].equals("cancel")) {
                 method(r, "POST"); emptyOrObject(r); runtime.cancel(id); return json(200, runtime.jobs().get(id));
@@ -72,9 +87,7 @@ public final class LocalApi implements LocalHttp.Handler {
             if (parts.length == 2 && parts[1].equals("retry")) {
                 method(r, "POST"); emptyOrObject(r);
                 if (!Arrays.asList("failed", "cancelled", "interrupted").contains(job.getString("state"))) throw new IllegalStateException("Only failed, cancelled or interrupted jobs may be retried");
-                JSONObject original = DataFiles.copy(job.getJSONObject("request")); original.remove("submissionHash"); original.remove("adjustments"); original.remove("parameterSchemaVersion"); original.remove("adapterAdjustments"); original.remove("textMetadata"); original.remove("inputReceipts"); original.remove("diffusionPlan");
-                original.remove("preparationSource"); original.remove("sourceBundleFingerprint");
-                original.remove("assemblySourceFingerprint");
+                JSONObject original = TaskRequests.replay(job.getJSONObject("request"));
                 return json(202, runtime.submit(original, r.header("idempotency-key")));
             }
         }
@@ -113,6 +126,7 @@ public final class LocalApi implements LocalHttp.Handler {
                 if (r.method.equals("DELETE")) { runtime.artifacts().remove(id); return json(200, new JSONObject().put("deleted", true).put("id", id)); }
                 return json(200, artifact);
             }
+            if (parts.length == 2 && parts[1].equals("request")) { method(r, "GET", "HEAD"); noBody(r); return json(200, TaskRequests.fromArtifact(artifact)); }
             if (parts.length == 2 && parts[1].equals("content")) { method(r, "GET", "HEAD"); noBody(r); return content(r, artifact); }
         }
         throw new LocalHttp.Failure(404, "unknown_endpoint", "Unknown local API endpoint");
