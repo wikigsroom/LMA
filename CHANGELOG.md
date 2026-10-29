@@ -1,5 +1,11 @@
 # Changelog / 更新记录
 
+## 0.3.0-dev.23 source follow-up / 2026-10-29 — original F32 operation staging
+
+实现 F32 RMS 分组归约和 GeGLU 原始运算顺序；72 局部对照、四候选共 12 次真实 T5、三次实际 DiT/VAE/RGB 链路及重复 A 一致性。A 通过，B 三项浮点门槛失败；保留原参考和门槛。复核字段修复后显式恢复首条真实采样，执行与复用如实记录。新双语指南、误差图、真实主机帧/GIF/视频及来源审查同步；App/APK/注册引擎保持原状态。Four isolated T5 variants and actual host A/B/A improve diagnosis without accepting failed floats, Android or Release. [中文](docs/LTX098_STAGING.md) / [English](docs/LTX098_STAGING.en.md) / [编号及完整待办](docs/releases/v0.3.0-dev.23-ltx-staging.md).
+
+补充五次完全相同参考条件的采样器诊断，定位 CPU 激活隐式 F16 转换；显式 F32 输入减少该误差但未关闭完整模型门槛，Vulkan 未改善。所有候选均未注册或打包，公开证据 / 范围标记与双语说明同步。Five fixed-reference sampler diagnostics preserve all failed gates and separate CPU/Vulkan behavior.
+
 ## 0.3.0-dev.23 — user-selected runtime model association / unreleased
 
 新增通用签名关联方案、实际环境依赖指纹绑定、`model.assemble`共用任务、排队/运行引用保护、完整验哈希及本地硬链接复用。7个固定候选中新增旧LTX社区Google T5 Q5单尺度运行资产：20个派生组件复用，2项T5依赖由用户随后明确下载/导入，缺失时暂停、未安装。原模型参数和两份记录的独立删除保留。47项核心契约、生产队列/API检查、真实训练文件关联、原签名APK code27、中英说明及截图66–68/录屏/GIF同步。

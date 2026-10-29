@@ -1,0 +1,76 @@
+{
+  "schema": "lma.ltx098-staging-media/1",
+  "kind": "actual_trained_host_comparison_and_measurements",
+  "sources": {
+    "verification/development/ltx098-pipeline.json": "677004c760a4cc27b9de61d329692382f1719d6488824fa840506e567a44622b",
+    "verification/development/ltx098-text-precision-attention.json": "89d305c86332cd8822375b9c8dadc4409b51ad7b1b0825540bde58a358e67ef3",
+    "verification/development/ltx098-text-precision-linear.json": "01d90e5662c3df32697b6f99358ccfeba958ab0f44d381f11ad2c9c56619085b",
+    "verification/development/ltx098-accuracy-activation.json": "02d5e8610baf336a0c21246263fcab397f6f97bee8d7b05f9287daa211133188",
+    "verification/development/ltx098-accuracy-order.json": "8e9fcc5749443307e7b22738da6e534b60fa9767048fa8e5b27e3bb8e8111a0e",
+    "verification/development/ltx098-accuracy-staging.json": "0465b6530b65b03d09d395114fcc8c7e3074bbafd813f779049bcc60e75b0b40",
+    "verification/development/ltx098-accuracy-f32.json": "c98725bbadb741000e5ac5eb97306b37c2b3232884fb925650decd9049e52a96",
+    "verification/development/ltx098-accuracy-trajectory-f32.json": "c3feb4c65deb3323749d5a25447d4b3be8197964236fe6b195d4b293f1f799ac"
+  },
+  "raw_source_frames": [
+    {
+      "file": "build/ltx098-pipeline-probe/red-42/frames.lma",
+      "bytes": 6488092,
+      "sha256": "d354f0f82a509ab3595578286bc96901fd3e57599806a78a7f84df96387ca4cb"
+    },
+    {
+      "file": "build/ltx098-text-accuracy-video/run-1793264304570007200-9beed65a/frames.lma",
+      "bytes": 6488092,
+      "sha256": "57eae96e101fd2c83afc111ea16696fedcab6dd3f7f8e911d0f03c8d49bb1e64"
+    },
+    {
+      "file": "build/ltx098-pipeline-tests/run-s3z3urrv/original-reference/case-0/rgb.bin",
+      "bytes": 6488064,
+      "sha256": "d65d23e3edf5dfb3aa37762127c3429f202ab94535a10d975e6448e4c94e5c73"
+    },
+    {
+      "file": "build/ltx098-pipeline-tests/run-s3z3urrv/native-1/frames.lma",
+      "bytes": 6488092,
+      "sha256": "567c76df6ab6b20bff6736d18424e41da50c59a58de2a6b4692282b2caf57d35"
+    },
+    {
+      "file": "build/ltx098-text-accuracy-video/run-1793264401245370700-4e7db8d8/frames.lma",
+      "bytes": 6488092,
+      "sha256": "7bbb6342b7f247b5d8e24e4a6ee5f1a4256f6e78c4ce624868fdaf4a4226f391"
+    },
+    {
+      "file": "build/ltx098-pipeline-tests/run-s3z3urrv/original-reference/case-1/rgb.bin",
+      "bytes": 6488064,
+      "sha256": "0927958f3ccf6a706836afa17faac4b81457df508aceb5a319e8f06739219cd2"
+    }
+  ],
+  "candidate_numeric_gates_passed": false,
+  "gif_duration_ms": 1320,
+  "mp4_fps": 24,
+  "frames": 33,
+  "physical_android": false,
+  "app_screen_recording": false,
+  "video_quality_accepted": false,
+  "engine_registered": false,
+  "official_multiscale_default_reproduced": false,
+  "files": {
+    "ltx098-staging-errors.png": {
+      "bytes": 110181,
+      "sha256": "012d45f9f3d51c48678c45598f8410873894c5c3eebc307e3e8c364899c26ac9"
+    },
+    "ltx098-staging-frames.png": {
+      "bytes": 186923,
+      "sha256": "6959bdb8dddeab93e68e11cfa2c5c1249da85e6350bb824fb7e29bac2eb85306"
+    },
+    "ltx098-staging-comparison.gif": {
+      "bytes": 5109715,
+      "sha256": "64671d8e259cf8935154851f48d074b1e7e1e60f71751fee7c892570efc12856"
+    },
+    "ltx098-staging-comparison.mp4": {
+      "bytes": 112359,
+      "sha256": "bf39d1cb411023c2b0af3d053c4ff2a73e591bcfc914e258eb15fafe26147deb"
+    }
+  },
+  "input_fingerprint": {
+    "tools/render_ltx098_staging.py": "41c076a54469c487da4ca9210c15d8bbd5bfa899d31297e92dc651cc04d7f700"
+  }
+}

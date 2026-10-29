@@ -124,3 +124,7 @@ python tools/package_delivery.py
 在这些项目实测通过前，本次复查结论保持“待真机验收”。
 
 dev.20：Stable Audio 144 = Java 51 + C++ 93；6 个实际主机子进程、6 次真实 LiteRT ADD / CAST 微型图运行和 Arm 采样等价校验；音频为静音 WAV 结构夹具，完整模型推理 / Android 为 0。基座 561、UI 287，Lint 0 错误 / 13 警告。见[详细边界](STABLE_AUDIO_ENGINE.md)和[更新回执](releases/v0.3.0-dev.20.md)。
+
+## 旧 LTX 运算分步源码补充
+
+新增[双语运算分步证据](LTX098_STAGING.md)：72 局部对照、四候选12次真实 T5 和三条原生主机链路。候选 A 通过，B 三项浮点门槛失败。现有原生基线六项失败记录保留，App/APK未改变；主机数值/媒体不替代手机、质量、后台或完整版本验收。见[本轮编号及完整待办](releases/v0.3.0-dev.23-ltx-staging.md)。

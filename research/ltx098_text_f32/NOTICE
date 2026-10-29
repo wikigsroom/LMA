@@ -1,0 +1,6 @@
+Original MIT-licensed F32 staging candidate for LMA; no learned data.
+The reduction order was reviewed against PyTorch v2.14.0 SumKernel.cpp
+(PyTorch BSD-3-Clause; https://github.com/pytorch/pytorch/blob/v2.14.0/aten/src/ATen/native/cpu/SumKernel.cpp).
+This scalar implementation uses the existing GGML interfaces and notices.
+Validation at width 4096 is distinct from other shapes, Android compilation,
+full-chain numerical acceptance, and video quality.

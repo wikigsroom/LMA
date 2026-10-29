@@ -2,6 +2,8 @@
 
 [中文](README.md) · [English](README.en.md) · [下载 / Releases](https://github.com/wikigsroom/LMA/releases) · [文档导航](docs/README.md) · [更新记录](CHANGELOG.md)
 
+> **开发源码补充：旧 LTX F32 运算分步。** [实现与真实主机证据](docs/LTX098_STAGING.md)：72 个局部对照、四候选 12 次 T5、三次完整原生链路；A 通过原数值门槛，B 三项浮点门槛未通过。生产接入 / 回归和完整 v0.3.0 继续待完成。[编号已完成 / 全部待办](docs/releases/v0.3.0-dev.23-ltx-staging.md) · [实际主机数值图](docs/media/development/ltx098-staging-errors.png) · [GIF](docs/media/development/ltx098-staging-comparison.gif)。原有 APK 字节保留，模型仍由用户自行选择 / 取得。
+
 Android 版的本地模型管理、下载、对话和 API 服务应用。当前修订版本为 **0.2.0 / ARM64 / Android 9+**。
 
 安装包：[v0.2.0 Release](https://github.com/wikigsroom/LMA/releases/tag/v0.2.0) 中的 `LMA-0.2.0-arm64-v8a.apk`，约 10.9 MB。模型权重由用户在应用中选择下载，APK 不含模型权重。LMA（Local Model App）是独立社区项目，与 LM Studio 无隶属关系；当前应用界面主要为中文，文档提供中英双语。

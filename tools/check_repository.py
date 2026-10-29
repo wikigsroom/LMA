@@ -130,6 +130,8 @@ def main():
         check_ltx_text_diagnosis(records, status, ROOT, digest)
         from check_ltx098_text_precision_evidence import check as check_ltx_text_precision
         check_ltx_text_precision(records, status, digest, ROOT)
+        from check_ltx098_staging_evidence import check as check_ltx_staging
+        check_ltx_staging(records, status, digest, ROOT)
         from check_ltx098_prepare_evidence import check as check_ltx_prepare
         check_ltx_prepare(records, status, digest, ROOT)
         from check_ltx098_vae_prepare_evidence import check as check_ltx_vae_prepare

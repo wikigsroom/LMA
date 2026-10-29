@@ -54,3 +54,7 @@ The acceptance runner supports real-device checks and screen-off streaming workl
 Twelve screenshots, an MP4 and four GIFs use the actual packaged UI with simulated native state. HF metadata/download progress is simulated and replies are scripted. The visible demo banner and [media manifest](media/manifest.json) preserve this distinction. Browser pages and processes are closed after capture.
 
 dev.20: Stable Audio 144 = Java 51 + C++ 93; six actual host children, six real LiteRT ADD/CAST tiny-graph runs and Arm sampler equivalence. Audio is a silent structural WAV fixture; full-model inference/Android tests remain zero. Foundation 561, UI 287, Lint 0 errors/13 warnings. See [evidence limits](STABLE_AUDIO_ENGINE.en.md) and [checkpoint notes](releases/v0.3.0-dev.20.md).
+
+## Old LTX operation-staging source follow-up
+
+See [staging evidence](LTX098_STAGING.en.md): 72 local comparisons, four variants/twelve trained T5 jobs, and three native host chains. Candidate A passes; B fails three float gates. The baseline six failures remain recorded; App/APK are unchanged. Host numbers/media establish no phone, quality, endurance or complete Release acceptance. [Numbered handoff/full pending scope](releases/v0.3.0-dev.23-ltx-staging.md).

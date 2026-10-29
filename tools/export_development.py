@@ -66,6 +66,17 @@ def main():
         "ltx098-text-precision-linear.json": "build/ltx098-text-precision-experiments/linear-results.json",
         "ltx098-precision-sampling-attention.json": "build/ltx098-text-precision-sampling/attention-results.json",
         "ltx098-precision-sampling-linear.json": "build/ltx098-text-precision-sampling/linear-results.json",
+        "ltx098-staging-analysis.json": "build/ltx098-staging-analysis/results.json",
+        "ltx098-accuracy-activation.json": "build/ltx098-text-accuracy-experiments/activation-results.json",
+        "ltx098-accuracy-order.json": "build/ltx098-text-order-experiments/results.json",
+        "ltx098-accuracy-staging.json": "build/ltx098-text-staging-experiments/baseline-results.json",
+        "ltx098-accuracy-f32.json": "build/ltx098-text-f32-experiments/results.json",
+        "ltx098-accuracy-trajectory-f32.json": "build/ltx098-text-accuracy-trajectories/f32-results.json",
+        "ltx098-context-reference-vulkan.json": "build/ltx098-sampling-context-diagnosis/vulkan-reference-case-1-results.json",
+        "ltx098-context-reference-cpu.json": "build/ltx098-sampling-context-diagnosis/cpu-reference-case-1-results.json",
+        "ltx098-compute-f32-reference-cpu.json": "build/ltx098-compute-precision-tests/f32-cpu-reference-case-1-results.json",
+        "ltx098-compute-f32-reference-vulkan.json": "build/ltx098-compute-precision-tests/f32-vulkan-reference-case-1-results.json",
+        "ltx098-compute-f32-rms-reference-cpu.json": "build/ltx098-compute-precision-tests/f32-rms-cpu-reference-case-1-results.json",
         "ltx098-prepare.json": "build/ltx098-prepare-tests/results.json",
         "ltx098-prepare-host.json": "build/ltx098-prepare-host/receipt.json",
         "ltx098-prepare-arm64.json": "build/ltx098-prepare-arm64/receipt.json",
@@ -84,13 +95,21 @@ def main():
     out = ROOT / "verification/development"
     out.mkdir(parents=True, exist_ok=True)
     records = {}
+    checked = {}
     for name, source in sources.items():
         record = json.loads((ROOT / source).read_text(encoding="utf-8"))
-        current(record["input_fingerprint"])
+        recorded = record["input_fingerprint"]
+        if not recorded: raise RuntimeError("Missing verification input fingerprints")
+        if any(path in checked and checked[path] != identity for path, identity in recorded.items()):
+            raise RuntimeError("Conflicting verification input fingerprints: " + name)
+        pending = {path: identity for path, identity in recorded.items() if path not in checked}
+        if pending: current(pending)
+        checked.update(recorded)
         if name == "build-info.json" and record["input_fingerprint"] != build_inputs():
             raise RuntimeError("Rebuild development APK first")
         shutil.copyfile(ROOT / source, out / name)
         records[name] = record
+    current(checked)  # Recheck the complete union after copying; detect concurrent source changes.
     pipeline = records["soulx-pipeline.json"]
     soulx = next(engine for engine in records["build-info.json"]["native_engines"] if engine["engine"] == "soulx_native")
     soulx_registered = soulx["file"] in records["package.json"]["native"] and soulx["required_model_components"] == 14
@@ -128,6 +147,15 @@ def main():
               "ltx098_vae_asset_prepare_android_compiled": records["ltx098-vae-prepare-arm64.json"]["android_arm64_compiled"],
               "ltx098_prepared_vae_decode_host_tested": records["ltx098-vae-prepare.json"]["actual_trained_decode_jobs"] == 4,
               "ltx098_t5_precision_candidates_host_executed": records["ltx098-text-precision-attention.json"]["aba_bitwise_identical"] and records["ltx098-text-precision-linear.json"]["aba_bitwise_identical"],
+              "ltx098_f32_staging_analysis_host_checked": records["ltx098-staging-analysis.json"]["mean_bitwise_identical"] and records["ltx098-staging-analysis.json"]["activation_order_bitwise_identical"],
+              "ltx098_staged_t5_candidates_host_executed": all(records["ltx098-accuracy-" + name + ".json"]["actual_trained_jobs"] == 3 for name in ["activation", "order", "staging", "f32"]),
+              "ltx098_staged_full_chain_host_executed": len(records["ltx098-accuracy-trajectory-f32.json"]["jobs"]) == 3,
+              "ltx098_staged_full_chain_numerical_passed": records["ltx098-accuracy-trajectory-f32.json"]["full_chain_original_numeric_gates_passed"],
+              "ltx098_same_caption_sampler_diagnosis_host_executed": all(records["ltx098-context-reference-" + backend + ".json"]["captured_native_children"] == 1 for backend in ["cpu", "vulkan"]),
+              "ltx098_cpu_f32_operands_diagnostic_host_executed": records["ltx098-compute-f32-reference-cpu.json"]["captured_native_children"] == 1,
+              "ltx098_cpu_f32_operands_diagnostic_latent_matched": records["ltx098-compute-f32-reference-cpu.json"]["latent_gate_matched"],
+              "ltx098_cpu_staged_rms_diagnostic_host_executed": records["ltx098-compute-f32-rms-reference-cpu.json"]["captured_native_children"] == 1,
+              "ltx098_cpu_staged_rms_diagnostic_latent_matched": records["ltx098-compute-f32-rms-reference-cpu.json"]["latent_gate_matched"],
               "ltx098_vae_executed": records["ltx098-vae.json"]["host_model_inference_tested"],
               "ltx098_vae_host_tested": records["ltx098-vae.json"]["full_trained_decoder"],
               "ltx098_vae_android_compiled": records["ltx098-vae-arm64.json"]["android_arm64_compiled"],
@@ -146,16 +174,21 @@ def main():
                   "app_model_assembly_trained_host_tested": "Twenty actual trained files, 6,061,184,991 bytes, fully verified and hardlinked without copying; T5 dependencies remain absent and no model execution takes place",
                   "app_model_assembly_android_executed": "False until installation, on-device filesystem association, Service lifecycle and background tests pass on a physical phone",
                   "app_asset_preparation_registered": "Two signed ARM64 preparation programs and audited model-free architecture resources packaged in dev.22, separate from generation engines; no Android execution",
-                  "app_model_assembly_registered": True,
-              "app_model_assembly_core_host_tested": records["assembly-core.json"]["passed"],
-              "app_model_assembly_trained_host_tested": records["assembly-trained.json"]["actualTrainedAssociations"] == 1,
-              "app_model_assembly_android_executed": False,
               "app_asset_preparation_core_host_tested": "44 production-core filesystem/lifecycle contracts and four protocol-fixture children on Windows; no Service, SAF or model inference",
                   "app_asset_preparation_trained_host_tested": "One full original checkpoint through production Java storage/jobs/native preparation, two actual native children and 20 fully verified runtime outputs; no neural inference or Android execution",
                   "app_asset_preparation_android_executed": "False until actual same-phone Service/SAF/preparation and background evidence exists",
 
                   "ltx098_t5_intermediate_diagnostic_executed": "314 trained host intermediate comparisons, 628 hashed raw tensors and 120 matched-native-input operator comparisons; trace retention changes diagnostic memory, not the accepted native caption or original forward",
                   "ltx098_t5_roundoff_repair_accepted": "Remains false until a repaired implementation passes unchanged complete-chain gates and required regression checks; local operator diagnostics or isolated precision candidates do not close this gate",
+                  "ltx098_f32_staging_analysis_host_checked": "72 matched-input diagnostics: 2544 NumPy-simulated F32 means and 24 Torch activation-order comparisons; not native replacement or model/Android acceptance",
+                  "ltx098_staged_t5_candidates_host_executed": "Four isolated trained T5 candidates, each A/B/A; explicit RMS/GeGLU operation staging, not production promotion or Android",
+                  "ltx098_staged_full_chain_host_executed": "Three actual host native stage chains bound to captured trained T5 A/B/A; native DiT, seeded noise, layout, VAE, frames and host FFmpeg; unchanged original references and gates",
+                  "ltx098_staged_full_chain_numerical_passed": "Scoped candidate's original-forward float/RGB gates only; production regression, semantics, phone resources/endurance, all other frozen targets and Release remain separate",
+                  "ltx098_same_caption_sampler_diagnosis_host_executed": "B uses the exact original caption in separate CPU/Vulkan eight-step diagnostic runs; reference-conditioned diagnostics never count as native model acceptance",
+                  "ltx098_cpu_f32_operands_diagnostic_host_executed": "An isolated native compute candidate explicitly casts matmul operands to F32 before CPU execution with frozen weights and the reference B caption; no App registration or complete-chain acceptance",
+                  "ltx098_cpu_f32_operands_diagnostic_latent_matched": "Only a reference-caption sampler diagnostic's unchanged latent thresholds; never native T5 conditioning, VAE/video, quality, phone or Release acceptance",
+                  "ltx098_cpu_staged_rms_diagnostic_host_executed": "Isolated F32 operand/CPU grouped-RMS candidate, exact original B caption, full eight-step trained sampler; unregistered and diagnostic only",
+                  "ltx098_cpu_staged_rms_diagnostic_latent_matched": "Only the grouped-RMS reference-caption diagnostic's latent thresholds, never a repaired full model or Android acceptance",
                   "ltx098_native_asset_prepare_host_tested": "Bounded model-free native CLI converted the whole user-local old DiT checkpoint and matched independent Python GGUF bytes; conversion is not inference or production App acquisition",
                   "ltx098_native_asset_prepare_android_compiled": "ARM64 API28/16KiB portable CLI compiled; dev.22 packages it as an explicit asset-preparation program, separately from generation engines; not executed on Android",
                   "ltx098_vae_asset_prepare_host_tested": "Native streaming preparation of all 132 decoder tensors and two statistics vectors; 18 output assets match Python bytes; model-free graph audit is separate from the full-source SHA verification",
@@ -177,7 +210,7 @@ def main():
                   "ltx098_trained_video_tested": "Legacy complete Android target-17 acceptance flag; actual host videos have their own explicit flag",
                   "ltx098_tensor_primitives_android_compiled": "Portable RNG/layout/frame CLI ARM64/API28/16KiB compile only; no model data, APK registration or phone execution",
               },
-              "scope": "Development APK dev.22 adds explicit user-selected native asset preparation, independent derived-asset management and shared queued jobs. Two signed preparation programs and nine audited model-free architecture graphs are packaged without learned model data. The production Java core performed one full trained host preparation with 20 verified outputs; Android Service, SAF, converter execution and background endurance remain untested. The original signing identity is preserved. Packaged SoulX and other existing App engine contracts retain their scoped records; complete trained SoulX host speech is separate from quality, public user acquisition and Android acceptance. Retained old-LTX evidence records three real-prompt single-scale trained HOST video jobs with explicit Google/community Q5 T5, original 0.9.8 distilled DiT/VAE, independent original-forward comparison and actual RGB/MP4 media. Frozen full-chain float gates remain failed despite passing RGB gates; numerical acceptance is false. Separate tensor/T5/DiT/VAE Android compilation is not App registration or phone execution. Official default multi-scale/PixArt text-weight identity, video quality, complete public assets and target-17 Android acceptance remain open. Older component receipts retain their original scope. App updates deliver foundation code only; users explicitly select/manage all model assets, with no automatic model retrieval. One complete v0.3.0 still requires F-01-F-12, existing text, selections 01-14/16/17 and every frozen subtarget, trained quality/resources, physical-phone load/unload/screen-off/API/upgrade evidence and A1-A11/R01-R05. No complete Release, physical-device acceptance or all-selected-model support is claimed.",
+              "scope": "Development APK dev.23 includes signed explicit runtime association plans, hardlink reuse and independently managed source/runtime models, alongside user-selected native asset preparation and shared queued jobs. This source follow-up adds isolated T5 F32 staging candidates and reference-conditioned sampler diagnostics. The full F32 candidate passes case A but fails case B; neither it nor the sampler diagnostics are registered or packaged. Two signed preparation programs and nine audited model-free architecture graphs are packaged without learned model data. The production Java core performed one full trained host preparation with 20 verified outputs; Android Service, SAF, converter execution and background endurance remain untested. The original signing identity is preserved. Packaged SoulX and other existing App engine contracts retain their scoped records; complete trained SoulX host speech is separate from quality, public user acquisition and Android acceptance. Retained old-LTX evidence records three real-prompt single-scale trained HOST video jobs with explicit Google/community Q5 T5, original 0.9.8 distilled DiT/VAE, independent original-forward comparison and actual RGB/MP4 media. Frozen full-chain float gates remain failed despite passing RGB gates; numerical acceptance is false. Separate tensor/T5/DiT/VAE Android compilation is not App registration or phone execution. Official default multi-scale/PixArt text-weight identity, video quality, complete public assets and target-17 Android acceptance remain open. Older component receipts retain their original scope. App updates deliver foundation code only; users explicitly select/manage all model assets, with no automatic model retrieval. One complete v0.3.0 still requires F-01-F-12, existing text, selections 01-14/16/17 and every frozen subtarget, trained quality/resources, physical-phone load/unload/screen-off/API/upgrade evidence and A1-A11/R01-R05. No complete Release, physical-device acceptance or all-selected-model support is claimed.",
               "required_scope": "docs/MULTIMODAL_RELEASE_PLAN.md", "sources": sources}
     (out / "status.json").write_text(json.dumps(status, indent=2) + "\n", encoding="utf-8")
     # Keep complete Android/Release acceptance false despite real host video output.

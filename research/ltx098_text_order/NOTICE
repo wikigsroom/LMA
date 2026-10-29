@@ -1,0 +1,5 @@
+Original MIT-licensed numerical candidate for LMA.
+Uses the existing llama.cpp / GGML interfaces with their original notices.
+This directory contains no weights, vocabulary, or learned data.
+The original activation equation is retained with explicit F32 operation order.
+An offline host experiment does not register an Android runtime.

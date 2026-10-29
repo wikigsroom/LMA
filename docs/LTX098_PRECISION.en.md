@@ -78,3 +78,7 @@ Each raw capture/candidate uses a fresh directory, preserving old jobs, encoder 
 Retaining intermediates changes diagnostic memory. Candidate/check timings depend on host caches and concurrent audits and are not production benchmarks. Windows working sets are not VRAM, system or phone memory. No Android execution, long-input/all-language coverage, quality or endurance is established.
 
 App updates still deliver only foundation code; users explicitly choose, download, import and manage every model asset. This update adds no external inference path, automatic model retrieval, ComfyUI user nodes or APK. `ltx098_t5_intermediate_diagnostic_executed=true` and `ltx098_t5_roundoff_repair_accepted=false` distinguish execution from accepted repair. Every frozen v0.3.0 target remains required in the same complete release.
+
+## F32 staging follow-up
+
+[The source follow-up](LTX098_STAGING.en.md) implements grouped F32 RMS and original GeGLU order, with 72 matched-input comparisons, twelve trained T5 runs and three complete host chains. A passes the frozen gates; B fails three float gates. Original forwards/gates remain unchanged; production promotion/regression remain pending.

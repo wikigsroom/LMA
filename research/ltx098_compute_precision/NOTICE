@@ -1,0 +1,5 @@
+Original Apache-2.0 numerical candidate for the existing Apache-2.0 LTX port.
+No weights, model-specific learned statistics, or runtime registration.
+Optional CPU grouped F32 RMS uses the reviewed width-2048 reduction geometry;
+the same grouping principle is reviewed in PyTorch v2.14.0 SumKernel.cpp (BSD-3-Clause).
+Other shapes, backends, Android and complete output quality require separate evidence.

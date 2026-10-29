@@ -1,0 +1,6 @@
+LMA old-LTX T5 numerical accuracy candidate
+Original implementation: LMA contributors, MIT license (repository LICENSE).
+Uses existing separately attributed llama.cpp/GGML interfaces and the T5
+equations. No upstream source, model data, vocabulary or learned coefficients
+are embedded here. Existing dependency notices and pinned sources apply.
+This is an offline developer candidate, not an App engine or phone result.

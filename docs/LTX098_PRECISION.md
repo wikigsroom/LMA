@@ -78,3 +78,7 @@ python -B tools/check_repository.py --development
 保留中间张量会改变诊断内存；候选与检查的执行时间受主机缓存和并行审计影响，均不作为生产基准。Windows 工作集不是显存、整机或手机 RAM。没有 Android 执行、长输入 / 全语言覆盖、画质或后台耐久结论。
 
 App 继续只更新基座，所有模型资产仍由用户显式选择 / 下载 / 导入 / 管理。本轮不新增远程推理路径、自动资产获取、ComfyUI 用户节点或 APK。`ltx098_t5_intermediate_diagnostic_executed=true` 与 `ltx098_t5_roundoff_repair_accepted=false` 分别表达已执行诊断和修复尚未验收；完整 v0.3.0 的全部冻结范围不变。
+
+## F32 运算分步后续
+
+[本轮后续](LTX098_STAGING.md)实现原始 F32 RMS 分组归约和 GeGLU 运算顺序，增加 72 个同输入局部对照、12 次真实 T5 和三条完整主机链路。A通过原门槛，B仍有三项浮点失败；所有门槛和原始前向保持不变，生产接入及回归仍待完成。
