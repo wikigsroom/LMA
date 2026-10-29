@@ -4,6 +4,7 @@ import org.json.JSONObject;
 
 /** Host port only; these backend checks exercise the actual gateway/text proxy, not Android jobs. */
 public final class LocalJobs {
+    public static JSONObject preflight(LmaApp app, JSONObject request) throws Exception { throw new java.io.IOException("Android task preflight is unavailable in this host port"); }
     public boolean busy() { return false; }
     public String activeId() { return ""; }
     public JSONObject submit(JSONObject request, String key) throws Exception { throw new java.io.IOException("Android job execution is unavailable in this host port"); }

@@ -1,5 +1,7 @@
 # 生成业务闭环：草稿、任务与素材
 
+后续 dev.26 已加入[运行前检查与素材复核](TASK_PREFLIGHT.md)。下文本轮计数属于 dev.25；当前检查以[证据索引](../verification/development/status.json)及[dev.26 说明](releases/v0.3.0-dev.26.md)为准，工作台功能继续保留。
+
 [English](TASK_WORKBENCH.en.md) · [首页](../README.md) · [完整版本范围](MULTIMODAL_RELEASE_PLAN.md) · [本轮编号交付](releases/v0.3.0-dev.25.md)
 
 `0.3.0-dev.25` 将生成表单、草稿、历史任务和素材库连接起来。代码已进入 APK；桌面文件、接口与界面检查不代表 Android 推理或后台时长验收。App 只更新基座，模型仍由用户选择、下载、导入和管理。

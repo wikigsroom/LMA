@@ -89,6 +89,7 @@ public final class ApiHost implements LocalApi.Runtime, AutoCloseable {
     @Override public TaskDrafts drafts() throws Exception { if (app.taskDrafts == null) throw new IOException("Draft storage is unavailable"); return app.taskDrafts; }
     @Override public JobStore jobs() throws Exception { if (app.jobs == null) throw new IOException("任务存储不可用"); return app.jobs; }
     @Override public ArtifactStore artifacts() throws Exception { if (app.artifacts == null) throw new IOException("产物存储不可用"); return app.artifacts; }
+    @Override public JSONObject preflight(JSONObject request) throws Exception { return LocalJobs.preflight(app, request); }
     @Override public JSONObject submit(JSONObject request, String idempotencyKey) throws Exception {
         LocalJobs jobs = app.jobHost; if (jobs == null) throw new IOException("任务运行器不可用"); return jobs.submit(request, idempotencyKey);
     }

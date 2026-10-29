@@ -1,5 +1,11 @@
 # Changelog / 更新记录
 
+## 0.3.0-dev.26 — task preflight and input review / unreleased
+
+- 生成表单与 `POST /v1/jobs/preflight` 共用实际入队解析器，报告模型 / 引擎 / 组件 / LoRA / 素材 / 参数 / 资源与用户确认，检查不创建任务、不下载或更改独立设置。UI and authenticated API share the production submission resolver with read-only diagnostics.
+- 文字、参数、素材、LoRA 或用户选项改变使旧结果失效，丢弃修改期间返回的过期检查；素材刷新保留输入，失效引用须重新复核。Edits invalidate readiness; changed references require review before explicit submission.
+- 原签名 dev.26 / code30 APK、双语指南、4 张新截图 / MP4 / GIF、刷新工作台媒体及当前检查同步；保留所有历史失败、冻结子目标和同一个完整 v0.3.0 门槛。Signed development APK and matching docs/media/checks; no new model inference or Android acceptance claims. [中文](docs/TASK_PREFLIGHT.md) / [English](docs/TASK_PREFLIGHT.en.md) / [编号实现与完整待办](docs/releases/v0.3.0-dev.26.md).
+
 ## 0.3.0-dev.25 — generation workflow / unreleased
 
 - 原生每模型草稿、显式保存 / 恢复 / 删除、空提示词、单调版本号与冲突保护；草稿、参数、LoRA 与参考素材独立于模型设置。Native per-model drafts support explicit persistence, incomplete prompts and revision conflicts without changing model defaults.

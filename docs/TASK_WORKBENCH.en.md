@@ -1,5 +1,7 @@
 # Generation workflow: drafts, tasks and reusable media
 
+Dev.26 adds [preflight and input review](TASK_PREFLIGHT.en.md). Counts below describe the dev.25 checkpoint; use the [current evidence index](../verification/development/status.json) and [dev.26 notes](releases/v0.3.0-dev.26.md) for current checks. Workbench features remain available.
+
 [中文](TASK_WORKBENCH.md) · [Home](../README.en.md) · [Complete release scope](MULTIMODAL_RELEASE_PLAN.md) · [Numbered delivery](releases/v0.3.0-dev.25.md)
 
 `0.3.0-dev.25` connects the generation form, saved drafts, task history and media library. These changes are packaged in the APK. Desktop filesystem, socket and UI checks do not establish Android inference or background endurance. App updates provide the foundation; users continue to choose, download, import and manage model assets.

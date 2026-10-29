@@ -1,5 +1,7 @@
 # v0.3.0 开发状态与复查
 
+当前业务更新 dev.26：[运行前检查 / 素材复核](TASK_PREFLIGHT.md)与[编号实现及全部待办](releases/v0.3.0-dev.26.md)。检查与提交共用解析器；源码、主机检查、Android 验收与完整 Release 分开记录。
+
 [English](DEVELOPMENT.en.md) · [完整范围](MULTIMODAL_RELEASE_PLAN.md) · [构建](BUILD.md) · [中文首页](../README.md)
 
 当前新增 [生成业务闭环](TASK_WORKBENCH.md)：原生草稿、任务 / 产物恢复、可读任务详情、匹配素材复用和共享 API 已进入 dev.25 APK。见[编号实现与全部待办](releases/v0.3.0-dev.25.md)。[当前检查索引](../verification/development/status.json) 将本次生产业务检查与 dev.24 历史模型实验分开；旧训练记录不作为本次 APK 的推理验收。

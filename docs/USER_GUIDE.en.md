@@ -1,5 +1,7 @@
 # LMA user guide
 
+Internal dev.26 adds [task preflight and input review](TASK_PREFLIGHT.en.md): inspect, resolve requirements and submit explicitly. Edits invalidate results; removed references require review.
+
 [中文](USER_GUIDE.md) · [Documentation](README.md)
 
 See the [draft → task → result → another generation workflow](TASK_WORKBENCH.en.md) for per-model persistence, parameter restoration, compatible references and recovery review.

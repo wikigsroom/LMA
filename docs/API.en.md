@@ -1,5 +1,7 @@
 # LMA API integration
 
+[Task preflight](TASK_PREFLIGHT.en.md): `POST /v1/jobs/preflight` shares production submission validation and reports requirements, effective parameters and resources without creating a job or downloading assets.
+
 [中文](API.md) · [Documentation](README.md)
 
 New [draft and editable-request routes](TASK_WORKBENCH.en.md#local-api) persist drafts independently and restore task/result requests before explicit resubmission through the same phone queue.

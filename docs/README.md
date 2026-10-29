@@ -6,6 +6,7 @@
 
 | 主题 / Topic | 中文 | English |
 | --- | --- | --- |
+| 运行前检查 / Task preflight | [中文](TASK_PREFLIGHT.md) | [English](TASK_PREFLIGHT.en.md) |
 | 生成草稿 / 任务 / 素材闭环 | [中文](TASK_WORKBENCH.md) | [English](TASK_WORKBENCH.en.md) |
 | LCM 小型原生准备 / Small native preparation | [中文](LCM_LOCAL_PREPARATION.md) | [English](LCM_LOCAL_PREPARATION.en.md) |
 | SD-Turbo / 独立 LCM checkpoint / Standalone distilled checkpoints | [中文](SD_DISTILLED_TRAINED.md) | [English](SD_DISTILLED_TRAINED.en.md) |

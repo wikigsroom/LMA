@@ -1,5 +1,7 @@
 # v0.3.0 development status and evidence
 
+Current dev.26 business update: [preflight/input review](TASK_PREFLIGHT.en.md) and [numbered implementation/full pending scope](releases/v0.3.0-dev.26.md). Inspection and submission share one resolver. Source, host checks, Android acceptance and complete Release readiness remain distinct.
+
 [中文](DEVELOPMENT.md) · [Full scope](MULTIMODAL_RELEASE_PLAN.en.md) · [Build](BUILD.en.md) · [English home](../README.en.md)
 
 New [generation workflow](TASK_WORKBENCH.en.md): native drafts, editable task/result restoration, readable job details, compatible reference reuse and shared API routes are packaged in dev.25. See [numbered work and full pending scope](releases/v0.3.0-dev.25.md). The [current check index](../verification/development/status.json) separates current business-flow checks from dev.24 historical model experiments; historical inference is not acceptance of this APK.

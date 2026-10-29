@@ -1,5 +1,7 @@
 # LMA API 接入
 
+新增 [运行前检查 API](TASK_PREFLIGHT.md)：`POST /v1/jobs/preflight` 与实际生成提交共用校验器，返回缺失条件、有效参数与资源；不创建任务或下载模型。
+
 [English](API.en.md) · [文档目录](README.md)
 
 新增 [生成草稿 / 请求恢复 API](TASK_WORKBENCH.md#本地-api)：草稿独立保存，任务与结果可取得可编辑请求，再由客户端明确提交到同一本机队列。

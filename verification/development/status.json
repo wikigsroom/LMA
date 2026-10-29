@@ -1,6 +1,6 @@
 {
   "schema": "lma.development-checkpoint/2",
-  "version": "0.3.0-dev.25",
+  "version": "0.3.0-dev.26",
   "sources": {
     "build-info.json": "dist/build-info.json",
     "package.json": "build/package-verification.json",
@@ -13,7 +13,8 @@
     "scheduler.json": "build/scheduler-tests/results.json",
     "ui.json": "build/ui-qa/results.json",
     "lint.json": "build/android-lint/results.json",
-    "workbench-media.json": "docs/media/development/workbench/manifest.json"
+    "workbench-media.json": "docs/media/development/workbench/manifest.json",
+    "preflight-media.json": "docs/media/development/preflight/manifest.json"
   },
   "historical_sources": {
     "build-info.json": {
@@ -496,7 +497,7 @@
   "physical_device_tests": 0,
   "model_inference_tested": false,
   "historical_trained_results_apply_to_current_apk": false,
-  "scope": "Production task drafts, editable replay, input reuse, current core/API/UI/package checks; no new model inference claims",
+  "scope": "Production task preflight shared with admission, stale-result protection and changed-input review; current core/API/UI/package checks; no new model inference claims",
   "required_release_scope": {
     "foundation": "F01–F12",
     "existing_text": true,
@@ -523,8 +524,8 @@
   },
   "input_fingerprint": {
     "docs/proposals/multimodal-release-scope.json": "03326504d2d1b52c315bef574325f2c05d43c6a65eafc9779cc33120b7801690",
-    "tools/check_repository.py": "f559e042c8104946f0032176367ca64ad3a077a57e0ad0569bf9628c05640fbd",
-    "tools/checkpoint_evidence.py": "40f046a4b2a138837707de60e301a881aeeaee4ced8c7142b5262a2b1f68cd08",
-    "tools/export_development.py": "d08958befd9df75080eb48e402e44953e22d9c3de8ad00dd00ae8bb85d399e56"
+    "tools/check_repository.py": "bb109087463a4868d1133a11e33686de5b1a4bcae625628d65b202d691fff5bd",
+    "tools/checkpoint_evidence.py": "be0a6bf6683f2aead8baadccd52058f93b56d38ff9d7d4ec79a024a4ebd19a3d",
+    "tools/export_development.py": "33df31ce99b839a2691de872497ebe3f465465a93ecddb7c9c5642478ed5187c"
   }
 }

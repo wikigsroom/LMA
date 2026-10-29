@@ -138,9 +138,13 @@ public final class SchedulerTest {
             byte[] inputBytes = Base64.getDecoder().decode("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+/lWQAAAAASUVORK5CYII=");
             JSONObject imported = app.artifacts.importStream(new ByteArrayInputStream(inputBytes), "host-input.png", () -> {}); String inputId = imported.getString("id");
             JSONObject inputRequest = request("input-job"); inputRequest.getJSONObject("input").put("artifacts", new JSONArray().put(new JSONObject().put("role", "reference_image").put("artifactId", inputId)));
+            int preflight = PreflightChecks.run(app, api, inputRequest); passed += preflight; checks.add("Actual production task preflight, invariants and HTTP: " + preflight);
             JSONObject inputJob;
             try (ExecutionGate.Ticket blocker = app.execution.enqueue("api", "fixture-blocker")) {
                 blocker.await(() -> {}); inputJob = jobs.submit(inputRequest, "input-job");
+                JSONObject preview = LocalJobs.preflight(app, inputRequest);
+                check(preview.getBoolean("canEnqueue") && DataFiles.canonical(preview.getJSONObject("effectiveParameters")).equals(DataFiles.canonical(inputJob.getJSONObject("request").getJSONObject("parameters"))), "Preflight and the actual queued snapshot share parameter resolution");
+                check(preview.getString("submissionHash").equals(inputJob.getJSONObject("request").getString("submissionHash")), "Preview and submission fingerprint exactly the same user request");
                 until(() -> app.jobs.get(inputJob.getString("id")).optString("stage").equals("waiting_engine"), "Input job waits for the real shared slot");
                 check(app.jobs.referencesArtifact(inputId), "Production submission pins media before the engine slot is available");
                 boolean protectedInput = false; try { app.artifacts.remove(inputId); } catch (IllegalStateException expected) { protectedInput = true; }
@@ -229,7 +233,7 @@ public final class SchedulerTest {
             check(fixture.started.get(4).isAlive(), "Closing the API listener preserves an independent running job"); api.start();
             release("sixth"); until(() -> state(app, sixth, "succeeded") && engine.ready(), "Cancelled-API job still succeeds");
 
-            chat.send("stop"); until(() -> app.generating && app.execution.snapshot().getJSONObject("active").getString("kind").equals("chat"), "Chat owns the slot");
+            chat.send("stop"); until(() -> { JSONObject active = app.execution.snapshot().optJSONObject("active"); return app.generating && active != null && active.getString("kind").equals("chat"); }, "Chat owns the slot");
             JSONObject seventh = jobs.submit(request("seventh"), "seventh"); until(() -> app.jobs.get(seventh.getString("id")).getString("stage").equals("waiting_engine"), "Job waits behind chat");
             check(fixture.started.size() == 5, "Media submission preserves active in-app text generation"); chat.cancel(); started("seventh");
             check(app.chats.last().getString("status").equals("stopped"), "Active chat cancellation releases the slot after saving history");

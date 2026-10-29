@@ -1,5 +1,7 @@
 # LMA extensible local multimodal foundation
 
+Dev.26 [preflight](TASK_PREFLIGHT.en.md) shares `GenerationPlan` across UI/API/submission for read-only model, LoRA, media, parameter and resource resolution. Generation retains file revalidation and the shared execution slot. Input-change review, independent defaults and explicit enqueueing remain foundation behavior.
+
 [中文](FOUNDATION.md) · [Local-model assessment](MULTIMODAL.en.md) · [Task execution](WORKFLOWS.en.md) · [Current release requirements](MULTIMODAL_RELEASE_PLAN.en.md) · [Documentation](README.md)
 
 Date: **2026-10-27 (Asia/Taipei)**. Decision: **this is buildable, and an extensible local multi-engine foundation should be the main product direction.** New models should reuse downloading, settings, jobs and artifact management instead of becoming separate application features. Every inference stage remains on the same Android phone without ROOT or off-device inference/fallbacks.

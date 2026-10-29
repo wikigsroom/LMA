@@ -209,6 +209,18 @@
       var active = choices.some(function (a) { return a.id === selected[role]; });
       return '<label class="form-field"><span>' + e(rule.label) + (rule.required ? '（必选）' : '（可选）') + '</span><select data-input-role="' + e(role) + '"' + (rule.required ? ' required' : '') + '><option value="">选择已导入素材或已有结果</option>' + choices.map(function (a) { var origin = a.origin || {}; return '<option value="' + e(a.id) + '"' + (selected[role] === a.id ? ' selected' : '') + '>' + e(origin.name || a.id) + ' · ' + ui.bytes(a.bytes) + '</option>'; }).join('') + '</select><small>' + e((rule.mimes || []).join(' / ')) + ' · ≤ ' + ui.bytes(rule.maxBytes) + (choices.length ? '' : ' · 暂无匹配素材') + '</small></label>' + (rule.transcript ? '<label class="form-field"><span>' + e(rule.transcript.label) + '</span><textarea rows="2" data-input-transcript="' + e(role) + '" maxlength="' + Number(rule.transcript.maxLength) + '"' + (active ? ' required' : ' disabled') + ' placeholder="填写这段参考音频实际说出的原文">' + e(transcripts[role] || '') + '</textarea><small>选择对应素材后必填；原文与素材一起固定到本次任务。</small></label>' : '');
     }).join('') + button('inputPicker', '', '导入新素材') : '<p class="form-help">当前配方仅接受文字。导入素材不会自动开启图像编辑或语音克隆。</p>');
+    editor.inputSignature = inputSignature(b, form);
+  }
+  function inputSignature(b, form) { return JSON.stringify([form.elements.taskType.value, b.inputSchemas || {}, (ui.state().artifacts || []).map(function (a) { return [a.id, a.available, a.bytes, a.metadata, a.origin]; })]); }
+  function refreshTaskInputs() {
+    var form = $('localTaskForm'), b = editor && editor.mode === 'task' && find(editor.id); if (!form || !b || editor.inputSignature === inputSignature(b, form)) return;
+    var selected = {}; form.querySelectorAll('[data-input-role]').forEach(function (input) { if (input.value) selected[input.dataset.inputRole] = input.value; });
+    renderInputFields(); preflightChanged(form);
+    var removed = Object.keys(selected).filter(function (role) { return !Array.from(form.querySelectorAll('[data-input-role]')).some(function (input) { return input.dataset.inputRole === role && input.value === selected[role]; }); });
+    if (removed.length) {
+      var notice = $('inputRefreshNotice'); if (!notice) { notice = document.createElement('div'); notice.id = 'inputRefreshNotice'; notice.className = 'restore-notice'; $('taskInputs').after(notice); }
+      notice.innerHTML = '<p>已选参考素材已删除或不再符合输入要求，请重新选择。</p><label class="unmeasured-choice"><input type="checkbox" name="inputRefreshReview" required><span>我已检查本次参考素材，确认当前选择。</span></label>';
+    }
   }
   function readInputs(form) {
     var result = [];
@@ -229,6 +241,29 @@
     if (Object.keys(transcripts).length) request.input.transcripts = transcripts;
     if (request.type === 'image.generate') request.adapters = readAdapters(form, b);
     return request;
+  }
+  function preflightChanged(form) {
+    if (!form || form.id !== 'localTaskForm') return;
+    form.dataset.checkRevision = String(Number(form.dataset.checkRevision || 0) + 1);
+    var panel = $('taskPreflight');
+    if (panel && panel.textContent) { panel.className = 'task-preflight'; panel.textContent = '输入或参数已改变，请重新检查。提交时仍会重新校验。'; }
+  }
+  function showPreflight(report) {
+    var panel = $('taskPreflight'); if (!panel) return;
+    var names = {request:'请求格式',models:'模型能力',engine:'本地引擎',parameters:'模型参数',assets:'模型组件与 LoRA',inputs:'参考素材',recipe:'运行配方',resources:'资源预算',consent:'试运行确认'};
+    var resources = report.resources, issues = report.issues || [], changes = report.adjustments || [];
+    panel.className = 'task-preflight ' + (report.canEnqueue ? 'preflight-ready' : 'preflight-blocked');
+    panel.innerHTML = '<strong>' + (report.canEnqueue ? '可加入本机队列' : '需要处理后再提交') + '</strong><p class="form-help">这是当前条件下的提交检查。执行前会重新检查；尚无本机实测记录。</p>' +
+      issues.map(function (issue) { return '<p class="download-error">' + e(names[issue.code] || '本地检查') + '：' + e(issue.message) + '</p>'; }).join('') +
+      (report.warnings || []).map(function (warning) { return '<p class="form-help">' + e(warning.message) + '</p>'; }).join('') +
+      (resources ? '<dl><dt>当前可用内存</dt><dd>' + ui.bytes(resources.availableRamBytes) + '</dd><dt>排队内存预算</dt><dd>' + ui.bytes(resources.budgetRamBytes) + '</dd><dt>峰值内存估算</dt><dd>' + (resources.estimateKnown ? ui.bytes(resources.estimatedPeakRamBytes) : '未知') + '</dd><dt>产物预留空间</dt><dd>' + ui.bytes(resources.outputReserveBytes) + '</dd><dt>可用存储</dt><dd>' + ui.bytes(resources.availableStorageBytes) + '</dd></dl>' : '') +
+      (report.modelAssets || []).filter(function (asset) { return !asset.installed; }).map(function (asset) { var b = find(asset.bundleId); return '<p>' + e(b ? b.manifest.name : asset.bundleId) + '：' + (asset.components || []).filter(function (component) { return !component.present; }).map(function (component) { return e(component.role) + ' · ' + ui.bytes(component.bytes) + (component.downloadable ? '' : '（需导入）'); }).join('、') + '</p>'; }).join('') +
+      (changes.length ? '<p>本次参数自动调整：' + changes.map(function (change) { return e(paramNames[change.field] || change.field) + ' → ' + e(change.effective); }).join('、') + '</p>' : '') +
+      (report.effectiveParameters ? '<details><summary>查看本次有效参数</summary><dl>' + Object.keys(report.effectiveParameters).map(function (key) { return '<dt>' + e(paramNames[key] || key) + '</dt><dd>' + e(report.effectiveParameters[key]) + '</dd>'; }).join('') + '</dl></details>' : '') +
+      '<p class="form-help">已检查：' + (report.checkedStages || []).map(function (stage) { return e(names[stage] || stage); }).join('、') + '</p>' +
+      (issues.some(function (issue) { return issue.action === 'manage_models'; }) ? button('showLocal', '', '管理本地模型') : '') +
+      (issues.some(function (issue) { return issue.action === 'manage_inputs'; }) ? button('preflightInputs', '', '管理本地素材') : '');
+    panel.scrollIntoView({block:'start'});
   }
   function restoreForm(request, b) {
     var form = $('localTaskForm'), warnings = [], schema = schemaFor(b).fields || {}, input = request.input || {};
@@ -275,7 +310,7 @@
     var speechOnly = types.length === 1 && types[0][0] === 'speech.synthesize', textOnly = types.length === 1 && types[0][0] === 'text.generate';
     var noNegative = tasks(b).length === 1 && tasks(b)[0] === 'audio' && (b.manifest.capabilities || []).indexOf('negative_prompt') < 0;
     editor = {id: id, mode: 'task', draftRevision: revision === undefined ? ((window.LMAWorkbench.draft(id) || {}).revision || 0) : revision};
-    ui.openModal(b.manifest.name, '<form id="localTaskForm"><label class="form-field"><span>生成能力</span><select name="taskType">' + types.map(function (t) { return '<option value="' + t[0] + '">' + t[1] + '</option>'; }).join('') + '</select></label><label class="form-field"><span>' + (speechOnly ? '朗读文本' : '提示词 / 文本') + '</span><textarea name="prompt" rows="4" required maxlength="' + (speechOnly ? '4000' : '16000') + '" placeholder="' + (speechOnly ? '填写所选语言词表覆盖的朗读文本' : '描述你希望生成的内容') + '"></textarea></label>' + (speechOnly ? '<p class="form-help">请使用此配方声明的语言与输入。缺失组件或不支持的能力会在本机报错，不会下载或转出执行。</p>' : textOnly || noNegative ? '' : '<label class="form-field"><span>负面提示词（可选）</span><textarea name="negativePrompt" rows="2" maxlength="16000"></textarea></label>') + (tasks(b).indexOf('image') >= 0 ? adapterFields(b, selectedAdapter) : '') + '<div id="taskInputs"></div><p id="samplingHint" class="form-help" hidden></p><details class="task-parameters"><summary>本次参数</summary>' + fields(b) + '</details><label class="unmeasured-choice"><input type="checkbox" name="allowUnmeasured" required><span>此配方尚无本机实测记录，我选择在当前手机上尝试。</span></label><p class="form-help">一次执行一个大型引擎。任务等待当前回复结束后自动切换，队列空闲时恢复此前加载的文本模型。任务在后台通知中执行，结果保存在本机；缺少组件不会自动下载。</p><p id="bundleFormHint" role="status"></p><div class="modal-actions">' + button('closeModal', '', '取消') + button('saveTaskDraft', id, '保存草稿') + '<button type="submit" class="button primary">加入本机队列</button></div></form>', 'localTask');
+    ui.openModal(b.manifest.name, '<form id="localTaskForm"><label class="form-field"><span>生成能力</span><select name="taskType">' + types.map(function (t) { return '<option value="' + t[0] + '">' + t[1] + '</option>'; }).join('') + '</select></label><label class="form-field"><span>' + (speechOnly ? '朗读文本' : '提示词 / 文本') + '</span><textarea name="prompt" rows="4" required maxlength="' + (speechOnly ? '4000' : '16000') + '" placeholder="' + (speechOnly ? '填写所选语言词表覆盖的朗读文本' : '描述你希望生成的内容') + '"></textarea></label>' + (speechOnly ? '<p class="form-help">请使用此配方声明的语言与输入。缺失组件或不支持的能力会在本机报错，不会下载或转出执行。</p>' : textOnly || noNegative ? '' : '<label class="form-field"><span>负面提示词（可选）</span><textarea name="negativePrompt" rows="2" maxlength="16000"></textarea></label>') + (tasks(b).indexOf('image') >= 0 ? adapterFields(b, selectedAdapter) : '') + '<div id="taskInputs"></div><p id="samplingHint" class="form-help" hidden></p><details class="task-parameters"><summary>本次参数</summary>' + fields(b) + '</details><label class="unmeasured-choice"><input type="checkbox" name="allowUnmeasured" required><span>此配方尚无本机实测记录，我选择在当前手机上尝试。</span></label><p class="form-help">一次执行一个大型引擎。任务等待当前回复结束后自动切换，队列空闲时恢复此前加载的文本模型。任务在后台通知中执行，结果保存在本机；缺少组件不会自动下载。</p><section id="taskPreflight" class="task-preflight" role="status" aria-live="polite"></section><p id="bundleFormHint" role="status"></p><div class="modal-actions">' + button('preflightTask', id, '运行前检查') + button('closeModal', '', '取消') + button('saveTaskDraft', id, '保存草稿') + '<button type="submit" class="button primary">加入本机队列</button></div></form>', 'localTask');
     renderInputFields(); renderSamplingHint();
     if (restored) restoreForm(restored, b);
   }
@@ -295,7 +330,7 @@
     $('artifactCount').textContent = artifacts.length + ' 项';
     $('inputImportStatus').innerHTML = imports.busy ? '<p class="form-help">正在导入 ' + e(imports.name || '所选素材') + ' · ' + Number(imports.pending || 1) + ' 项' + button('cancelInputImport', '', '取消导入') + '</p>' : '';
     document.querySelectorAll('[data-action="filterArtifacts"]').forEach(function (b) { var active = b.dataset.kind === artifactKind; b.classList.toggle('active', active); b.setAttribute('aria-pressed', String(active)); });
-    renderInputFields();
+    refreshTaskInputs();
     $('artifactList').innerHTML = artifacts.length ? artifacts.slice().reverse().map(function (a) {
       var origin = a.origin || {}, imported = origin.kind === 'imported', m = a.metadata || {}, type = m.mime === 'application/vnd.lma.text+json' ? 'text' : (m.mime || '').split('/')[0];
       var cover = a.available && type === 'image' ? '<img class="artifact-thumb" src="/artifacts/' + e(a.id) + '" loading="lazy" alt="本地图片素材或结果">' : '<div class="artifact-placeholder">' + ui.icon(type === 'audio' ? 'play' : 'spark') + '<span>' + e(type === 'video' ? '视频' : type === 'audio' ? '音频' : type === 'text' ? '文本' : '生成结果') + '</span></div>';
@@ -324,6 +359,21 @@
     if (window.LMAWorkbench.handle(action, el)) return true;
     if (window.LMAVersions.handle(action, el)) { editor = null; return true; }
     switch (action) {
+      case 'preflightInputs': ui.route('tasks'); artifactKind = 'all'; renderArtifacts(); document.querySelector('.artifacts-heading').scrollIntoView({block:'start'}); return true;
+      case 'preflightTask': {
+        var form = $('localTaskForm'), b = editor && find(editor.id); if (!form || !b || editor.pending) return true;
+        try {
+          var request = taskRequest(form, b, true), editing = editor, revision = form.dataset.checkRevision || '0';
+          request.allowUnmeasured = form.elements.allowUnmeasured.checked;
+          el.disabled = true; $('taskPreflight').textContent = '正在检查本地模型与输入…';
+          editor.pending = track('preflightTask', {request: request}, function (report) {
+            if (editor !== editing) return; editor.pending = false; el.disabled = false;
+            if ((form.dataset.checkRevision || '0') !== revision) { $('taskPreflight').textContent = '检查期间输入已改变，请重新检查。'; return; }
+            showPreflight(report);
+          });
+        } catch (error) { el.disabled = false; $('bundleFormHint').textContent = error.message; }
+        return true;
+      }
       case 'saveTaskDraft': {
         var form = $('localTaskForm'), b = editor && find(editor.id); if (!form || !b || editor.pending) return true;
         try {
@@ -366,6 +416,7 @@
     init: function (bridge) {
       ui = bridge; window.LMAVersions.init(bridge);
       window.LMAWorkbench.init(bridge, {find: find, button: button, use: use, track: track, showArtifact: showArtifact, inputRuleMatch: inputRuleMatch, engineAvailable: engineAvailable, paramNames: paramNames, states: states});
+      document.addEventListener('input', function (event) { preflightChanged(event.target.form); });
       document.addEventListener('submit', function (event) {
         if (event.target.id === 'adapterPairForm') { event.preventDefault(); var adapter = editor && find(editor.id), base = find(event.target.elements.baseBundleId.value); if (adapter && base && base.installed && compatible(base, adapter)) use(base.id, adapter.id); return; }
         if (event.target.id !== 'bundleSettingsForm' && event.target.id !== 'localTaskForm') return;
@@ -381,6 +432,7 @@
         } catch (error) { $('bundleFormHint').textContent = error.message; }
       });
       document.addEventListener('change', function (event) {
+        preflightChanged(event.target.form);
         if (event.target.dataset.inputRole) { var panel = $('taskInputs'), text = panel && Array.from(panel.querySelectorAll('[data-input-transcript]')).find(function (t) { return t.dataset.inputTranscript === event.target.dataset.inputRole; }); if (text) { text.disabled = !event.target.value; text.required = !!event.target.value; } return; }
         if (event.target.dataset.adapterSelect) {
           var row = event.target.closest('.task-adapter'), scale = row.querySelector('[data-adapter-scale]'); scale.disabled = !event.target.checked; renderSamplingHint(); return;
@@ -399,11 +451,11 @@
     },
     views: views, card: card, handle: handle,
     receive: function () {
-      renderJobs(); renderArtifacts(); window.LMAWorkbench.render(); window.LMAVersions.receive();
+      renderJobs(); renderArtifacts(); refreshTaskInputs(); window.LMAWorkbench.render(); window.LMAVersions.receive();
       Object.keys(pending).forEach(function (id) {
         var result = ui.result(id); if (!result) return; var callback = pending[id]; delete pending[id];
         if (result.ok) callback(result.data);
-        else { if (editor) { editor.pending = false; var submit = $('modalContent').querySelector('[type="submit"]'); if (submit) submit.disabled = false; var save = $('modalContent').querySelector('[data-action="saveTaskDraft"]'); if (save) save.disabled = false; } if ($('bundleFormHint')) $('bundleFormHint').textContent = result.error; ui.toast(result.error || '操作失败'); }
+        else { if (editor) { editor.pending = false; var submit = $('modalContent').querySelector('[type="submit"]'); if (submit) submit.disabled = false; var save = $('modalContent').querySelector('[data-action="saveTaskDraft"]'); if (save) save.disabled = false; var check = $('modalContent').querySelector('[data-action="preflightTask"]'); if (check) check.disabled = false; } if ($('bundleFormHint')) $('bundleFormHint').textContent = result.error; ui.toast(result.error || '操作失败'); }
       });
     },
     close: function () { editor = null; window.LMAVersions.close(); $('modalContent').querySelectorAll('audio,video').forEach(function (media) { media.pause(); media.removeAttribute('src'); media.load(); }); }

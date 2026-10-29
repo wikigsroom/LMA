@@ -1,5 +1,7 @@
 # LMA 使用手册
 
+内部 dev.26 增加[运行前检查与素材复核](TASK_PREFLIGHT.md)：先检查、修复、再明确提交；旧结果随输入变化失效，素材失效要求重新确认。
+
 [English](USER_GUIDE.en.md) · [文档目录](README.md)
 
 新增 [草稿 → 任务 → 结果 → 再生成的完整使用流程](TASK_WORKBENCH.md)，包括按模型保存、恢复参数、匹配参考素材和错误检查。

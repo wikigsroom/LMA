@@ -33,22 +33,73 @@ public final class LocalJobs implements AutoCloseable {
         String submissionHash = TaskInput.fingerprint(input);
         JSONObject previous = app.jobs.lookup(idempotencyKey);
         if (previous != null) { if (!submissionHash.equals(previous.getJSONObject("request").optString("submissionHash"))) throw new IllegalStateException("此幂等键已经用于另一个任务请求"); return previous; }
-        String id = input.getString("bundleId"), type = input.getString("type"); ModelBundle bundle = app.bundles.bundle(id);
-        String tag = type.equals("image.generate") ? "image" : type.equals("video.generate") ? "video" : type.equals("text.generate") ? "text" : type.equals("speech.synthesize") || type.equals("audio.generate") ? "audio" : "";
-        if (tag.isEmpty() || !bundle.tasks.contains(tag)) throw new IllegalArgumentException("所选模型没有对应的输出能力");
-        if (AdapterSpec.isAdapter(bundle)) throw new IllegalArgumentException("LoRA 需要先选择兼容的基础模型，不能单独生成");
-        LocalEngine selectedEngine = app.localEngines.require(bundle, type);
-        JSONObject in = input.getJSONObject("input"); String prompt = in.optString("prompt");
-        if (prompt.trim().isEmpty() || prompt.length() > 16000 || in.optString("negativePrompt").length() > 16000) throw new IllegalArgumentException("请填写不超过 16000 字符的提示词");
-        JSONObject effective = app.bundles.parameters(id).normalize(app.bundles.settings(id).getJSONObject("values"), input.optJSONObject("parameters") == null ? new JSONObject() : input.getJSONObject("parameters"));
-        JSONObject request = new JSONObject().put("bundleId", id).put("type", type).put("input", DataFiles.copy(in)).put("parameters", effective.getJSONObject("values"))
-                .put("adjustments", effective.getJSONArray("adjustments")).put("parameterSchemaVersion", effective.getInt("schemaVersion")).put("allowUnmeasured", input.optBoolean("allowUnmeasured", false)).put("submissionHash", submissionHash);
-        if (input.has("adapters")) request.put("adapters", DataFiles.copy(input).getJSONArray("adapters"));
-        request = ModelSelection.prepare(app.bundles, bundle, request);
-        request = InputSelection.prepare(app.artifacts, selectedEngine.inputs(bundle, type), request);
-        request = selectedEngine.prepare(bundle, request);
-        admission(bundle, request, false);
+        JSONObject request = new GenerationPlan(app).resolve(input);
         JSONObject job = app.jobs.submit(request, idempotencyKey); app.prefs.edit().putBoolean("desiredJobs", true).apply(); wake(); changed.run(); return job;
+    }
+    /** Same resolver as submit, with no queue, preference, transfer, API or engine launch. */
+    public static JSONObject preflight(LmaApp app, JSONObject input) throws Exception {
+        if (app.bundles == null || app.artifacts == null || app.localEngines == null) throw new IOException("本地任务模块不可用");
+        synchronized (app.bundles) { synchronized (app.artifacts) {
+            GenerationPlan plan = new GenerationPlan(app);
+            try { plan.resolve(input); plan.report.put("canEnqueue", true); }
+            catch (Exception error) {
+                String message = error.getMessage(); if (message == null || message.isEmpty()) message = "本地检查未通过";
+                plan.report.getJSONArray("issues").put(new JSONObject().put("code", plan.stage).put("message", message.substring(0, Math.min(1200, message.length())))
+                        .put("action", plan.stage.equals("assets") || plan.stage.equals("models") || plan.stage.equals("engine") ? "manage_models" : plan.stage.equals("inputs") ? "manage_inputs" : "edit_request"));
+            }
+            return plan.report;
+        } }
+    }
+    private static final class GenerationPlan {
+        final LmaApp app;
+        final JSONObject report;
+        String stage = "request";
+        GenerationPlan(LmaApp app) throws Exception {
+            this.app = app;
+            report = new JSONObject().put("schema", "lma.task-preflight/1").put("checkedAt", System.currentTimeMillis()).put("canEnqueue", false)
+                    .put("deviceValidated", false).put("modelInferenceTested", false).put("checkedStages", new JSONArray()).put("issues", new JSONArray()).put("warnings", new JSONArray());
+        }
+        void next(String name) throws Exception { report.getJSONArray("checkedStages").put(stage); stage = name; }
+        JSONObject resolve(JSONObject raw) throws Exception {
+            JSONObject input = TaskInput.validate(raw);
+            if (!TaskRequests.generation(input.getString("type"))) throw new IllegalArgumentException("运行前检查仅接受生成任务；运行资产准备和关联请使用对应方案");
+            report.put("submissionHash", TaskInput.fingerprint(input));
+            next("models");
+            String id = input.getString("bundleId"), type = input.getString("type"); ModelBundle bundle = app.bundles.bundle(id);
+            report.put("bundleId", id).put("type", type);
+            String tag = type.equals("image.generate") ? "image" : type.equals("video.generate") ? "video" : type.equals("text.generate") ? "text" : "audio";
+            if (!bundle.tasks.contains(tag)) throw new IllegalArgumentException("所选模型没有对应的输出能力");
+            if (AdapterSpec.isAdapter(bundle)) throw new IllegalArgumentException("LoRA 需要先选择兼容的基础模型，不能单独生成");
+            next("engine"); LocalEngine selectedEngine = app.localEngines.require(bundle, type);
+            InputSpec spec = selectedEngine.inputs(bundle, type); report.put("inputSchema", spec.json());
+            next("parameters");
+            JSONObject in = input.getJSONObject("input"); String prompt = in.optString("prompt");
+            if (prompt.trim().isEmpty() || prompt.length() > 16000 || in.optString("negativePrompt").length() > 16000) throw new IllegalArgumentException("请填写不超过 16000 字符的提示词");
+            JSONObject effective = app.bundles.parameters(id).normalize(app.bundles.settings(id).getJSONObject("values"), input.optJSONObject("parameters") == null ? new JSONObject() : input.getJSONObject("parameters"));
+            JSONObject request = new JSONObject().put("bundleId", id).put("type", type).put("input", DataFiles.copy(in)).put("parameters", effective.getJSONObject("values"))
+                    .put("adjustments", effective.getJSONArray("adjustments")).put("parameterSchemaVersion", effective.getInt("schemaVersion")).put("allowUnmeasured", input.optBoolean("allowUnmeasured", false)).put("submissionHash", report.getString("submissionHash"));
+            if (input.has("adapters")) request.put("adapters", DataFiles.copy(input).getJSONArray("adapters"));
+            next("assets"); JSONArray assets = new JSONArray(); report.put("modelAssets", assets);
+            boolean missing = false;
+            for (String selected : ModelSelection.ids(request)) {
+                JSONObject plan = app.bundles.plan(selected); JSONArray files = plan.getJSONArray("components"), inventory = new JSONArray();
+                for (int i = 0; i < files.length(); i++) { JSONObject file = files.getJSONObject(i); inventory.put(new JSONObject().put("role", file.getString("role")).put("bytes", file.getLong("bytes")).put("present", file.getBoolean("reusable")).put("downloadable", file.getBoolean("downloadable"))); }
+                assets.put(new JSONObject().put("bundleId", selected).put("installed", plan.getBoolean("installed")).put("remainingBytes", plan.getLong("remainingBytes")).put("components", inventory));
+                if (!plan.getBoolean("installed")) missing = true;
+            }
+            if (missing) throw new IOException("所选模型或 LoRA 尚未完整安装；请在本地模型中明确下载、续传或导入缺少的组件");
+            request = ModelSelection.prepare(app.bundles, bundle, request);
+            next("inputs"); request = InputSelection.prepare(app.artifacts, spec, request);
+            next("recipe"); request = selectedEngine.prepare(bundle, request);
+            report.put("effectiveParameters", DataFiles.copy(request.getJSONObject("parameters"))).put("adjustments", new JSONArray(request.getJSONArray("adjustments").toString()));
+            if (request.has("adapters")) report.put("effectiveAdapters", new JSONArray(request.getJSONArray("adapters").toString()));
+            if (request.has("adapterAdjustments")) report.put("adapterAdjustments", new JSONArray(request.getJSONArray("adapterAdjustments").toString()));
+            next("resources"); JSONObject resources = resourceSnapshot(app, bundle, request, false); report.put("resources", resources); checkResources(resources);
+            if (resources.getBoolean("currentlyLowMemory") || resources.getLong("estimatedPeakRamBytes") > resources.getLong("availableRamBytes")) report.getJSONArray("warnings").put(new JSONObject().put("code", "current_memory_pressure").put("message", "当前可用内存偏低；允许排队，执行前会重新检查，可能需要先释放内存"));
+            if (!resources.getBoolean("estimateKnown")) report.getJSONArray("warnings").put(new JSONObject().put("code", "memory_estimate_unknown").put("message", "此配方尚无可信峰值内存估算；检查通过不能保证能够完成生成"));
+            next("consent"); if (!request.optBoolean("allowUnmeasured")) throw new IllegalStateException("此配方尚无本机实测记录；请明确选择允许尝试未测配方后运行");
+            report.getJSONArray("checkedStages").put(stage); return request;
+        }
     }
     public JSONObject retry(String id, String key) throws Exception {
         JSONObject old = app.jobs.get(id);
@@ -89,6 +140,9 @@ public final class LocalJobs implements AutoCloseable {
     }
     private JSONObject admission(ModelBundle bundle, JSONObject request, boolean executing) throws Exception {
         if (!request.optBoolean("allowUnmeasured")) throw new IllegalStateException("此配方尚无本机实测记录；请明确选择允许尝试未测配方后运行");
+        JSONObject resources = resourceSnapshot(app, bundle, request, executing); checkResources(resources); return resources;
+    }
+    private static JSONObject resourceSnapshot(LmaApp app, ModelBundle bundle, JSONObject request, boolean executing) throws Exception {
         ActivityManager.MemoryInfo memory = new ActivityManager.MemoryInfo(); ((ActivityManager) app.getSystemService(LmaApp.ACTIVITY_SERVICE)).getMemoryInfo(memory);
         long reserve = Math.max(384L * 1024 * 1024, memory.totalMem / 8), budget = Math.max(0, (executing ? memory.availMem : memory.totalMem) - reserve);
         JSONObject resources = bundle.json().optJSONObject("resources"); long estimate = resources == null ? 0 : resources.optLong("estimatedPeakRamBytes");
@@ -96,14 +150,19 @@ public final class LocalJobs implements AutoCloseable {
         JSONArray selectedAdapters = request.optJSONArray("adapters");
         if (selectedAdapters != null) for (int i = 0; i < selectedAdapters.length(); i++) adapterEstimate = Math.addExact(adapterEstimate, AdapterSpec.extraRam(app.bundles.bundle(selectedAdapters.getJSONObject(i).getString("bundleId"))));
         estimate = Math.addExact(estimate, adapterEstimate);
-        if (executing && memory.lowMemory || budget < 128L * 1024 * 1024 || estimate > 0 && estimate > budget) throw new IOException("当前共享内存不足，请释放内存或选择更小的合法配方");
-        if (executing && Build.VERSION.SDK_INT >= 29 && ((PowerManager) app.getSystemService(LmaApp.POWER_SERVICE)).getCurrentThermalStatus() >= PowerManager.THERMAL_STATUS_SEVERE) throw new IOException("手机当前温度过高，请降温后重试");
         JSONObject p = request.getJSONObject("parameters"); long width = p.optLong("width", 512), height = p.optLong("height", 512), frames = request.getString("type").equals("video.generate") ? p.optLong("frames", 17) : 1;
         if (width < 1 || height < 1 || width > 16384 || height > 16384 || frames < 1 || frames > 1000) throw new IOException("输出尺寸超出基座预算范围");
         long outputBytes = Math.addExact(Math.multiplyExact(Math.multiplyExact(width, height), Math.multiplyExact(frames, 4)), 128L * 1024 * 1024);
-        if (app.getFilesDir().getUsableSpace() < outputBytes) throw new IOException("生成产物和临时帧所需空间不足");
+        int thermal = Build.VERSION.SDK_INT >= 29 ? ((PowerManager) app.getSystemService(LmaApp.POWER_SERVICE)).getCurrentThermalStatus() : -1;
         return new JSONObject().put("phase", executing ? "execution" : "queue_preflight").put("availableRamBytes", memory.availMem).put("reservedRamBytes", reserve).put("budgetRamBytes", budget).put("estimatedPeakRamBytes", estimate)
-                .put("estimateKnown", baseEstimateKnown).put("adapterExtraRamGuardBytes", adapterEstimate).put("deviceValidated", false).put("outputReserveBytes", outputBytes).put("checkedAt", System.currentTimeMillis());
+                .put("estimateKnown", baseEstimateKnown).put("adapterExtraRamGuardBytes", adapterEstimate).put("deviceValidated", false).put("outputReserveBytes", outputBytes).put("availableStorageBytes", app.getFilesDir().getUsableSpace())
+                .put("currentlyLowMemory", memory.lowMemory).put("thermalStatus", thermal).put("checkedAt", System.currentTimeMillis());
+    }
+    private static void checkResources(JSONObject resources) throws Exception {
+        boolean executing = resources.getString("phase").equals("execution"); long budget = resources.getLong("budgetRamBytes"), estimate = resources.getLong("estimatedPeakRamBytes");
+        if (executing && resources.getBoolean("currentlyLowMemory") || budget < 128L * 1024 * 1024 || estimate > 0 && estimate > budget) throw new IOException("当前共享内存不足，请释放内存或选择更小的合法配方");
+        if (executing && resources.getInt("thermalStatus") >= PowerManager.THERMAL_STATUS_SEVERE) throw new IOException("手机当前温度过高，请降温后重试");
+        if (resources.getLong("availableStorageBytes") < resources.getLong("outputReserveBytes")) throw new IOException("生成产物和临时帧所需空间不足");
     }
     public boolean busy() { return pumping.get() || !activeId.isEmpty(); }
     public String activeId() { return activeId; }

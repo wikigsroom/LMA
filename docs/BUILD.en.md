@@ -1,5 +1,7 @@
 # Build and verification
 
+Internal dev.26 checks the production preflight resolver and real HTTP with `tools/test_scheduler.py`, and forms/input review with `tests/ui-smoke.cjs`. Build, package verification, Lint and current source fingerprints remain required. [Checkpoint notes](releases/v0.3.0-dev.26.md).
+
 [中文](BUILD.md) · [Documentation](README.md)
 
 For dev.25, use `tools/export_development.py` and `tools/check_repository.py --development`. Current business checks are fresh; historical model JSON is compared byte for byte against commit `6b1f345` in the complete Git history, without serving as current-APK inference acceptance. Full Release export does not accept a development checkpoint.
