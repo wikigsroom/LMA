@@ -1,0 +1,218 @@
+{
+  "schema": "lma.sd-variants-trained-assets/1",
+  "lock": {
+    "schema": "lma.sd-variants-trained-assets-lock/1",
+    "selection_ids": [
+      "02",
+      "03",
+      "05"
+    ],
+    "existing_sd15_bundle_id": "sd15_ss_q4_0_r031b5f5",
+    "assets": [
+      {
+        "id": "sdxl_base_q4_0",
+        "role": "model",
+        "architecture": "sdxl",
+        "format": "gguf",
+        "sampling": "standard",
+        "repository": "genai-archive/stable-diffusion-xl-base-1.0-gguf",
+        "revision": "a02cea32a07b564a566d323785c853f1f545c04c",
+        "path": "sd_xl_base_1.0.q4_0.gguf",
+        "bytes": 2598039488,
+        "sha256": "2fd031f69632039607a335c70fc0ea1b070181e3a7fb9df17198f8a26d7bf1c1",
+        "url": "https://huggingface.co/genai-archive/stable-diffusion-xl-base-1.0-gguf/resolve/a02cea32a07b564a566d323785c853f1f545c04c/sd_xl_base_1.0.q4_0.gguf",
+        "license_metadata": {
+          "license": "creativeml-openrail-m"
+        },
+        "model_card": "https://huggingface.co/genai-archive/stable-diffusion-xl-base-1.0-gguf/blob/a02cea32a07b564a566d323785c853f1f545c04c/README.md"
+      },
+      {
+        "id": "sd15_style_pixelart",
+        "role": "lora",
+        "architecture": "sd15",
+        "format": "safetensors",
+        "sampling": "standard",
+        "repository": "artificialguybr/pixelartredmond-1-5v-pixel-art-loras-for-sd-1-5",
+        "revision": "eb7c3bfe0c48e7fadd635a0cfb25c29b428c4e63",
+        "path": "PixelArtRedmond15V-PixelArt-PIXARFK.safetensors",
+        "bytes": 27216848,
+        "sha256": "b770d01002510180cd03b5f8c8199fdb41d924c51d4980fc86298d0e4cdf7953",
+        "url": "https://huggingface.co/artificialguybr/pixelartredmond-1-5v-pixel-art-loras-for-sd-1-5/resolve/eb7c3bfe0c48e7fadd635a0cfb25c29b428c4e63/PixelArtRedmond15V-PixelArt-PIXARFK.safetensors",
+        "license_metadata": {
+          "license": "other",
+          "license_name": "bespoke-lora-trained-license",
+          "license_link": "https://multimodal.art/civitai-licenses?allowNoCredit=True&allowCommercialUse=Rent&allowDerivatives=True&allowDifferentLicense=False",
+          "base_model": "runwayml/stable-diffusion-v1-5"
+        },
+        "model_card": "https://huggingface.co/artificialguybr/pixelartredmond-1-5v-pixel-art-loras-for-sd-1-5/blob/eb7c3bfe0c48e7fadd635a0cfb25c29b428c4e63/README.md"
+      },
+      {
+        "id": "sdxl_style_pixelart",
+        "role": "lora",
+        "architecture": "sdxl",
+        "format": "safetensors",
+        "sampling": "standard",
+        "repository": "nerijs/pixel-art-xl",
+        "revision": "8bf4a4d9ea283e00a51fafda8e0539f8248ea037",
+        "path": "pixel-art-xl.safetensors",
+        "bytes": 170543052,
+        "sha256": "4234637cb80c998f41e348e6a6cb6bc20d8d038b2b0f256b6129b3b5e353eef7",
+        "url": "https://huggingface.co/nerijs/pixel-art-xl/resolve/8bf4a4d9ea283e00a51fafda8e0539f8248ea037/pixel-art-xl.safetensors",
+        "license_metadata": {
+          "license": "creativeml-openrail-m",
+          "base_model": "stabilityai/stable-diffusion-xl-base-1.0"
+        },
+        "model_card": "https://huggingface.co/nerijs/pixel-art-xl/blob/8bf4a4d9ea283e00a51fafda8e0539f8248ea037/README.md"
+      },
+      {
+        "id": "sd15_lcm_lora",
+        "role": "lora",
+        "architecture": "sd15",
+        "format": "safetensors",
+        "sampling": "lcm",
+        "repository": "latent-consistency/lcm-lora-sdv1-5",
+        "revision": "cf2fced511dbe7e26c8d1d397e728fbab875db4b",
+        "path": "pytorch_lora_weights.safetensors",
+        "bytes": 134621556,
+        "sha256": "8f90d840e075ff588a58e22c6586e2ae9a6f7922996ee6649a7f01072333afe4",
+        "url": "https://huggingface.co/latent-consistency/lcm-lora-sdv1-5/resolve/cf2fced511dbe7e26c8d1d397e728fbab875db4b/pytorch_lora_weights.safetensors",
+        "license_metadata": {
+          "license": "openrail++",
+          "base_model": "runwayml/stable-diffusion-v1-5"
+        },
+        "model_card": "https://huggingface.co/latent-consistency/lcm-lora-sdv1-5/blob/cf2fced511dbe7e26c8d1d397e728fbab875db4b/README.md"
+      },
+      {
+        "id": "sdxl_lcm_lora",
+        "role": "lora",
+        "architecture": "sdxl",
+        "format": "safetensors",
+        "sampling": "lcm",
+        "repository": "latent-consistency/lcm-lora-sdxl",
+        "revision": "a18548dd4956b174ec5b0d78d340c8dae0a129cd",
+        "path": "pytorch_lora_weights.safetensors",
+        "bytes": 393855224,
+        "sha256": "a764e6859b6e04047cd761c08ff0cee96413a8e004c9f07707530cd776b19141",
+        "url": "https://huggingface.co/latent-consistency/lcm-lora-sdxl/resolve/a18548dd4956b174ec5b0d78d340c8dae0a129cd/pytorch_lora_weights.safetensors",
+        "license_metadata": {
+          "license": "openrail++",
+          "base_model": "stabilityai/stable-diffusion-xl-base-1.0"
+        },
+        "model_card": "https://huggingface.co/latent-consistency/lcm-lora-sdxl/blob/a18548dd4956b174ec5b0d78d340c8dae0a129cd/README.md"
+      }
+    ],
+    "developer_assets_only": true,
+    "app_assets_modified": false,
+    "model_data_in_git_or_apk": false,
+    "metadata_is_runtime_compatibility_evidence": false,
+    "license_review_complete": false
+  },
+  "assets": [
+    {
+      "id": "sdxl_base_q4_0",
+      "role": "model",
+      "architecture": "sdxl",
+      "format": "gguf",
+      "sampling": "standard",
+      "repository": "genai-archive/stable-diffusion-xl-base-1.0-gguf",
+      "revision": "a02cea32a07b564a566d323785c853f1f545c04c",
+      "path": "sd_xl_base_1.0.q4_0.gguf",
+      "bytes": 2598039488,
+      "sha256": "2fd031f69632039607a335c70fc0ea1b070181e3a7fb9df17198f8a26d7bf1c1",
+      "url": "https://huggingface.co/genai-archive/stable-diffusion-xl-base-1.0-gguf/resolve/a02cea32a07b564a566d323785c853f1f545c04c/sd_xl_base_1.0.q4_0.gguf",
+      "license_metadata": {
+        "license": "creativeml-openrail-m"
+      },
+      "model_card": "https://huggingface.co/genai-archive/stable-diffusion-xl-base-1.0-gguf/blob/a02cea32a07b564a566d323785c853f1f545c04c/README.md",
+      "local_path": "build/sd-variants-trained/originals/2fd031f69632039607a335c70fc0ea1b070181e3a7fb9df17198f8a26d7bf1c1/sd_xl_base_1.0.q4_0.gguf"
+    },
+    {
+      "id": "sd15_style_pixelart",
+      "role": "lora",
+      "architecture": "sd15",
+      "format": "safetensors",
+      "sampling": "standard",
+      "repository": "artificialguybr/pixelartredmond-1-5v-pixel-art-loras-for-sd-1-5",
+      "revision": "eb7c3bfe0c48e7fadd635a0cfb25c29b428c4e63",
+      "path": "PixelArtRedmond15V-PixelArt-PIXARFK.safetensors",
+      "bytes": 27216848,
+      "sha256": "b770d01002510180cd03b5f8c8199fdb41d924c51d4980fc86298d0e4cdf7953",
+      "url": "https://huggingface.co/artificialguybr/pixelartredmond-1-5v-pixel-art-loras-for-sd-1-5/resolve/eb7c3bfe0c48e7fadd635a0cfb25c29b428c4e63/PixelArtRedmond15V-PixelArt-PIXARFK.safetensors",
+      "license_metadata": {
+        "license": "other",
+        "license_name": "bespoke-lora-trained-license",
+        "license_link": "https://multimodal.art/civitai-licenses?allowNoCredit=True&allowCommercialUse=Rent&allowDerivatives=True&allowDifferentLicense=False",
+        "base_model": "runwayml/stable-diffusion-v1-5"
+      },
+      "model_card": "https://huggingface.co/artificialguybr/pixelartredmond-1-5v-pixel-art-loras-for-sd-1-5/blob/eb7c3bfe0c48e7fadd635a0cfb25c29b428c4e63/README.md",
+      "local_path": "build/sd-variants-trained/originals/b770d01002510180cd03b5f8c8199fdb41d924c51d4980fc86298d0e4cdf7953/PixelArtRedmond15V-PixelArt-PIXARFK.safetensors"
+    },
+    {
+      "id": "sdxl_style_pixelart",
+      "role": "lora",
+      "architecture": "sdxl",
+      "format": "safetensors",
+      "sampling": "standard",
+      "repository": "nerijs/pixel-art-xl",
+      "revision": "8bf4a4d9ea283e00a51fafda8e0539f8248ea037",
+      "path": "pixel-art-xl.safetensors",
+      "bytes": 170543052,
+      "sha256": "4234637cb80c998f41e348e6a6cb6bc20d8d038b2b0f256b6129b3b5e353eef7",
+      "url": "https://huggingface.co/nerijs/pixel-art-xl/resolve/8bf4a4d9ea283e00a51fafda8e0539f8248ea037/pixel-art-xl.safetensors",
+      "license_metadata": {
+        "license": "creativeml-openrail-m",
+        "base_model": "stabilityai/stable-diffusion-xl-base-1.0"
+      },
+      "model_card": "https://huggingface.co/nerijs/pixel-art-xl/blob/8bf4a4d9ea283e00a51fafda8e0539f8248ea037/README.md",
+      "local_path": "build/sd-variants-trained/originals/4234637cb80c998f41e348e6a6cb6bc20d8d038b2b0f256b6129b3b5e353eef7/pixel-art-xl.safetensors"
+    },
+    {
+      "id": "sd15_lcm_lora",
+      "role": "lora",
+      "architecture": "sd15",
+      "format": "safetensors",
+      "sampling": "lcm",
+      "repository": "latent-consistency/lcm-lora-sdv1-5",
+      "revision": "cf2fced511dbe7e26c8d1d397e728fbab875db4b",
+      "path": "pytorch_lora_weights.safetensors",
+      "bytes": 134621556,
+      "sha256": "8f90d840e075ff588a58e22c6586e2ae9a6f7922996ee6649a7f01072333afe4",
+      "url": "https://huggingface.co/latent-consistency/lcm-lora-sdv1-5/resolve/cf2fced511dbe7e26c8d1d397e728fbab875db4b/pytorch_lora_weights.safetensors",
+      "license_metadata": {
+        "license": "openrail++",
+        "base_model": "runwayml/stable-diffusion-v1-5"
+      },
+      "model_card": "https://huggingface.co/latent-consistency/lcm-lora-sdv1-5/blob/cf2fced511dbe7e26c8d1d397e728fbab875db4b/README.md",
+      "local_path": "build/sd-variants-trained/originals/8f90d840e075ff588a58e22c6586e2ae9a6f7922996ee6649a7f01072333afe4/pytorch_lora_weights.safetensors"
+    },
+    {
+      "id": "sdxl_lcm_lora",
+      "role": "lora",
+      "architecture": "sdxl",
+      "format": "safetensors",
+      "sampling": "lcm",
+      "repository": "latent-consistency/lcm-lora-sdxl",
+      "revision": "a18548dd4956b174ec5b0d78d340c8dae0a129cd",
+      "path": "pytorch_lora_weights.safetensors",
+      "bytes": 393855224,
+      "sha256": "a764e6859b6e04047cd761c08ff0cee96413a8e004c9f07707530cd776b19141",
+      "url": "https://huggingface.co/latent-consistency/lcm-lora-sdxl/resolve/a18548dd4956b174ec5b0d78d340c8dae0a129cd/pytorch_lora_weights.safetensors",
+      "license_metadata": {
+        "license": "openrail++",
+        "base_model": "stabilityai/stable-diffusion-xl-base-1.0"
+      },
+      "model_card": "https://huggingface.co/latent-consistency/lcm-lora-sdxl/blob/a18548dd4956b174ec5b0d78d340c8dae0a129cd/README.md",
+      "local_path": "build/sd-variants-trained/originals/a764e6859b6e04047cd761c08ff0cee96413a8e004c9f07707530cd776b19141/pytorch_lora_weights.safetensors"
+    }
+  ],
+  "developer_assets_only": true,
+  "model_executed": false,
+  "app_assets_modified": false,
+  "explicit_download": true,
+  "download_origin": "https://hf-mirror.com",
+  "input_fingerprint": {
+    "research/sd_variants_trained/assets.json": "9c561954a14268c4e3a06fe082e4c02c2451a4fb7ae2c692c82491583359f50e",
+    "tools/fetch_sd15_trained.py": "91392401d9739f15b14fa4e42b74f13bbdd719a382746541cc69952966e6f307",
+    "tools/fetch_sd_variants_trained.py": "badd13deebbd3c0ab1f3d6c4b08a09d39a4bdd926914be5753c04a370c85728b"
+  }
+}

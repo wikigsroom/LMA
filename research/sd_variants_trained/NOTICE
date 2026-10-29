@@ -1,0 +1,22 @@
+The files in this directory are LMA test metadata and optional user-import
+manifests. They contain no learned weights, tensors, tokenizer data or images.
+
+Runtime source is the unchanged pinned stable-diffusion.cpp/ggml identified by
+third_party/engine-lock.json and third_party/notices/sd-sources.json. The native
+Windows host compilation uses research/sd_host without a remote inference path.
+
+SDXL quantization: genai-archive/stable-diffusion-xl-base-1.0-gguf.
+Original architecture/weights: stabilityai/stable-diffusion-xl-base-1.0.
+The quantizer's CreativeML OpenRAIL-M metadata does not replace the base
+model's OpenRAIL++ terms. No redistribution rights or complete license review
+are certified here. Users must review each original model card and license.
+
+SD1.5 style adapter: artificialguybr/PixelArtRedmond (bespoke LoRA license).
+SDXL style adapter: nerijs/pixel-art-xl (publisher CreativeML OpenRAIL-M).
+LCM adapters: latent-consistency/lcm-lora-sdv1-5 and lcm-lora-sdxl
+(publisher OpenRAIL++). See assets.json for immutable revisions and links.
+
+Acquisition is an explicit developer action. Tests require already verified
+assets and do not download, install or enable models in the Android App.
+Host outputs do not certify Android operation, quality, background endurance,
+device suitability, all target02/03/05 subtargets, or complete v0.3.0 release.

@@ -1,0 +1,61 @@
+{
+  "engine": "sd_cpp",
+  "backend": "cpu",
+  "architecture": "sd15",
+  "pipeline": "lora",
+  "tasks": [
+    "image"
+  ],
+  "capabilities": [
+    "image_adapter"
+  ],
+  "adapter": {
+    "schema": "lma.adapter/1",
+    "kind": "lora",
+    "baseArchitectures": [
+      "sd15"
+    ],
+    "basePipelines": [
+      "sd15",
+      "sd15_lcm"
+    ],
+    "baseModelIds": [
+      "sd15_ss_q4_0"
+    ]
+  },
+  "parameters": {
+    "version": 1,
+    "fields": {
+      "scale": {
+        "type": "number",
+        "label": "LoRA 强度",
+        "default": 1,
+        "minimum": -4,
+        "maximum": 4,
+        "presets": [
+          0.5,
+          0.75,
+          1
+        ],
+        "limitSource": "application_guard"
+      }
+    }
+  },
+  "schema": "lma.model-bundle/1",
+  "id": "sd15_pixelart_redmond_reb7c3bf",
+  "modelId": "sd15_pixelart_redmond_reb7c3bf",
+  "recipeId": "sd15_lora_cpu_v1",
+  "name": "PixelArtRedmond SD 1.5",
+  "components": [
+    {
+      "role": "lora",
+      "format": "safetensors",
+      "repository": "artificialguybr/pixelartredmond-1-5v-pixel-art-loras-for-sd-1-5",
+      "revision": "eb7c3bfe0c48e7fadd635a0cfb25c29b428c4e63",
+      "path": "PixelArtRedmond15V-PixelArt-PIXARFK.safetensors",
+      "bytes": 27216848,
+      "sha256": "b770d01002510180cd03b5f8c8199fdb41d924c51d4980fc86298d0e4cdf7953",
+      "url": "https://huggingface.co/artificialguybr/pixelartredmond-1-5v-pixel-art-loras-for-sd-1-5/resolve/eb7c3bfe0c48e7fadd635a0cfb25c29b428c4e63/PixelArtRedmond15V-PixelArt-PIXARFK.safetensors"
+    }
+  ]
+}

@@ -76,3 +76,5 @@ App 只更新签名运行代码、数据配方和标签。模型、LoRA、CLIP �
 ## dev.24 生产进度与真实权重
 
 [真实 SD1.5 验证](SD15_TRAINED.md)补充本配方的主机训练输出、采样取消/恢复和外部词表流程。进度 callback 跟随 loading/generating；局部操作 steps 不统一当成扩散步数。Android编译、UI夹具、主机模型执行与手机验收分别记录，其他家族/LoRA仍需独立验收。
+
+[完整 SDXL 与双架构 LoRA / LCM-LoRA 实测](SD_VARIANTS_TRAINED.md)进一步使用完整训练文件、外部词表和未修改生产 worker，检查零强度 / 启用、LCM 权重反事实、实际采样取消恢复与生产 Java 全量导入。实际 PNG、耗时与主机内存观察独立记录；低步数样例未通过画质验收，03 的独立 SD-Turbo / LCM checkpoint 也仍待完整验收。源码、主机输出、Android 编译和手机 / 锁屏 / 完整 Release 不互相替代。

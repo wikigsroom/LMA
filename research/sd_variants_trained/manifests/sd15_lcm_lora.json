@@ -1,0 +1,62 @@
+{
+  "engine": "sd_cpp",
+  "backend": "cpu",
+  "architecture": "sd15",
+  "pipeline": "lora",
+  "tasks": [
+    "image"
+  ],
+  "capabilities": [
+    "image_adapter",
+    "distilled_sampling"
+  ],
+  "adapter": {
+    "schema": "lma.adapter/1",
+    "kind": "lora",
+    "baseArchitectures": [
+      "sd15"
+    ],
+    "basePipelines": [
+      "sd15"
+    ],
+    "sampling": "lcm",
+    "baseModelIds": [
+      "sd15_ss_q4_0"
+    ]
+  },
+  "parameters": {
+    "version": 1,
+    "fields": {
+      "scale": {
+        "type": "number",
+        "label": "LoRA 强度",
+        "default": 1,
+        "minimum": 0.1,
+        "maximum": 2,
+        "presets": [
+          0.5,
+          0.75,
+          1
+        ],
+        "limitSource": "application_guard"
+      }
+    }
+  },
+  "schema": "lma.model-bundle/1",
+  "id": "sd15_lcm_lora_rcf2fced",
+  "modelId": "sd15_lcm_lora_rcf2fced",
+  "recipeId": "sd15_lcm_lora_cpu_v1",
+  "name": "LCM-LoRA SD 1.5",
+  "components": [
+    {
+      "role": "lora",
+      "format": "safetensors",
+      "repository": "latent-consistency/lcm-lora-sdv1-5",
+      "revision": "cf2fced511dbe7e26c8d1d397e728fbab875db4b",
+      "path": "pytorch_lora_weights.safetensors",
+      "bytes": 134621556,
+      "sha256": "8f90d840e075ff588a58e22c6586e2ae9a6f7922996ee6649a7f01072333afe4",
+      "url": "https://huggingface.co/latent-consistency/lcm-lora-sdv1-5/resolve/cf2fced511dbe7e26c8d1d397e728fbab875db4b/pytorch_lora_weights.safetensors"
+    }
+  ]
+}

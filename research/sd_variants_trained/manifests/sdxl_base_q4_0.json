@@ -1,0 +1,151 @@
+{
+  "engine": "sd_cpp",
+  "backend": "cpu",
+  "tasks": [
+    "image"
+  ],
+  "capabilities": [
+    "text_to_image"
+  ],
+  "parameters": {
+    "version": 1,
+    "fields": {
+      "width": {
+        "type": "integer",
+        "label": "宽度",
+        "default": 1024,
+        "minimum": 64,
+        "maximum": 2048,
+        "presets": [
+          256,
+          384,
+          512,
+          768,
+          1024
+        ],
+        "multipleOf": 64,
+        "limitSource": "application_guard"
+      },
+      "height": {
+        "type": "integer",
+        "label": "高度",
+        "default": 1024,
+        "minimum": 64,
+        "maximum": 2048,
+        "presets": [
+          256,
+          384,
+          512,
+          768,
+          1024
+        ],
+        "multipleOf": 64,
+        "limitSource": "application_guard"
+      },
+      "steps": {
+        "type": "integer",
+        "label": "采样步数",
+        "default": 20,
+        "minimum": 1,
+        "maximum": 200,
+        "presets": [
+          4,
+          8,
+          12,
+          20,
+          30
+        ],
+        "multipleOf": 1,
+        "limitSource": "application_guard"
+      },
+      "threads": {
+        "type": "integer",
+        "label": "CPU 线程",
+        "default": 4,
+        "minimum": 1,
+        "maximum": 64,
+        "presets": [
+          1,
+          2,
+          4,
+          6,
+          8
+        ],
+        "multipleOf": 1,
+        "limitSource": "application_guard"
+      },
+      "seed": {
+        "type": "integer",
+        "label": "随机种子（-1 为随机）",
+        "default": -1,
+        "minimum": -1,
+        "maximum": 2147483647,
+        "presets": [
+          -1,
+          0,
+          42
+        ],
+        "multipleOf": 1,
+        "limitSource": "application_guard"
+      },
+      "cfg": {
+        "type": "number",
+        "label": "提示词引导",
+        "default": 7,
+        "minimum": 0,
+        "maximum": 30,
+        "presets": [
+          1,
+          3,
+          5,
+          7,
+          9
+        ],
+        "limitSource": "application_guard"
+      },
+      "sampler": {
+        "type": "enum",
+        "label": "采样器",
+        "default": "euler",
+        "values": [
+          "euler",
+          "euler_a"
+        ]
+      },
+      "vaeTiling": {
+        "type": "boolean",
+        "label": "分块解码 VAE",
+        "default": true
+      }
+    }
+  },
+  "architecture": "sdxl",
+  "pipeline": "sdxl",
+  "schema": "lma.model-bundle/1",
+  "id": "sdxl_genai_q4_0_ra02cea3",
+  "modelId": "sdxl_genai_q4_0_ra02cea3",
+  "recipeId": "sdxl_checkpoint_cpu_v1",
+  "name": "SDXL Base 1.0 Q4_0 (genai-archive)",
+  "components": [
+    {
+      "role": "model",
+      "format": "gguf",
+      "repository": "genai-archive/stable-diffusion-xl-base-1.0-gguf",
+      "revision": "a02cea32a07b564a566d323785c853f1f545c04c",
+      "path": "sd_xl_base_1.0.q4_0.gguf",
+      "bytes": 2598039488,
+      "sha256": "2fd031f69632039607a335c70fc0ea1b070181e3a7fb9df17198f8a26d7bf1c1",
+      "url": "https://huggingface.co/genai-archive/stable-diffusion-xl-base-1.0-gguf/resolve/a02cea32a07b564a566d323785c853f1f545c04c/sd_xl_base_1.0.q4_0.gguf"
+    },
+    {
+      "role": "clip_merges",
+      "repository": "stable-diffusion-v1-5/stable-diffusion-v1-5",
+      "revision": "451f4fe16113bff5a5d2269ed5ad43b0592e9a14",
+      "path": "tokenizer/merges.txt",
+      "bytes": 524619,
+      "sha256": "9fd691f7c8039210e0fced15865466c65820d09b63988b0174bfe25de299051a",
+      "format": "text",
+      "url": "https://huggingface.co/stable-diffusion-v1-5/stable-diffusion-v1-5/resolve/451f4fe16113bff5a5d2269ed5ad43b0592e9a14/tokenizer/merges.txt"
+    }
+  ]
+}

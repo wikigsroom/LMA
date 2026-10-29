@@ -65,3 +65,5 @@ See [advanced bindings](ADVANCED_DIFFUSION.en.md) for four additional image/vide
 ## dev.24 progress and actual trained assets
 
 [Trained SD1.5 validation](SD15_TRAINED.en.md) adds host PNGs, sampler cancellation/recovery and the external-vocabulary workflow. Callbacks follow loading/generating; local operation steps are not all diffusion steps. Android compilation, UI fixtures, host model execution and phone acceptance remain separate; other families and LoRAs need independent acceptance.
+
+[Complete SDXL and paired style/LCM-LoRA measurements](SD_VARIANTS_TRAINED.en.md) use complete learned files, external vocabulary and unchanged production code for zero/enabled scale, LCM weight-effect, actual-sampler cancellation/recovery and full production Java import. Actual PNGs, time and observed host memory remain separately scoped. Low-step samples fail quality acceptance; separate SD-Turbo/LCM checkpoints still require complete acceptance. Host outputs do not close Android, phone/endurance or full Release gates.

@@ -1,0 +1,61 @@
+{
+  "engine": "sd_cpp",
+  "backend": "cpu",
+  "architecture": "sdxl",
+  "pipeline": "lora",
+  "tasks": [
+    "image"
+  ],
+  "capabilities": [
+    "image_adapter"
+  ],
+  "adapter": {
+    "schema": "lma.adapter/1",
+    "kind": "lora",
+    "baseArchitectures": [
+      "sdxl"
+    ],
+    "basePipelines": [
+      "sdxl",
+      "sdxl_lcm"
+    ],
+    "baseModelIds": [
+      "sdxl_genai_q4_0_ra02cea3"
+    ]
+  },
+  "parameters": {
+    "version": 1,
+    "fields": {
+      "scale": {
+        "type": "number",
+        "label": "LoRA 强度",
+        "default": 1,
+        "minimum": -4,
+        "maximum": 4,
+        "presets": [
+          0.5,
+          0.75,
+          1
+        ],
+        "limitSource": "application_guard"
+      }
+    }
+  },
+  "schema": "lma.model-bundle/1",
+  "id": "sdxl_pixelart_nerijs_r8bf4a4d",
+  "modelId": "sdxl_pixelart_nerijs_r8bf4a4d",
+  "recipeId": "sdxl_lora_cpu_v1",
+  "name": "Pixel Art XL (nerijs)",
+  "components": [
+    {
+      "role": "lora",
+      "format": "safetensors",
+      "repository": "nerijs/pixel-art-xl",
+      "revision": "8bf4a4d9ea283e00a51fafda8e0539f8248ea037",
+      "path": "pixel-art-xl.safetensors",
+      "bytes": 170543052,
+      "sha256": "4234637cb80c998f41e348e6a6cb6bc20d8d038b2b0f256b6129b3b5e353eef7",
+      "url": "https://huggingface.co/nerijs/pixel-art-xl/resolve/8bf4a4d9ea283e00a51fafda8e0539f8248ea037/pixel-art-xl.safetensors"
+    }
+  ]
+}

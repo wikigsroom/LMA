@@ -6,6 +6,7 @@
 
 | 主题 / Topic | 中文 | English |
 | --- | --- | --- |
+| SDXL / 两类 LoRA / LCM-LoRA真实训练 / Trained diffusion variants | [中文](SD_VARIANTS_TRAINED.md) | [English](SD_VARIANTS_TRAINED.en.md) |
 | 编号11真实Qwen语音 / Trained Qwen Base | [中文](QWEN_TTS_TRAINED.md) | [English](QWEN_TTS_TRAINED.en.md) |
 | 编号10三套真实语音 / Trained Kokoro/Piper/Matcha | [中文](TTS_TRAINED.md) | [English](TTS_TRAINED.en.md) |
 | MOSS Nano训练资产/用户导入 / Trained assets and import | [中文](MOSS_NANO_TRAINED.md) | [English](MOSS_NANO_TRAINED.en.md) |

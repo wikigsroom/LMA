@@ -140,3 +140,5 @@ Nano100M真实训练后续：[中文](MOSS_NANO_TRAINED.md) / [English](MOSS_NAN
 
 
 编号11真实Qwen后续：[中文](QWEN_TTS_TRAINED.md) / [English](QWEN_TTS_TRAINED.en.md) / [编号交付与全部待办](releases/v0.3.0-dev.24-qwen-tts.md)。显式取得两个固定GGUF，运行原生Windows生产源码、Java完整导入/真实worker、独立原始复核/8项错误范围控制，再渲染原始语音/波形媒体、导出五份JSON并审计。核对18WAV/12控制、94项Java/6子进程、145文件/31协议/22WAV/2对象；保留30秒贪心预算样例及质量/结束原因未验收。APK输入/字节未改，不建tag或Release。All complete-v0.3.0 model, quality, physical-phone, endurance, upgrade and asset-control gates remain mandatory.
+
+完整 SDXL / 双架构 LoRA 后续：[中文](SD_VARIANTS_TRAINED.md) / [English](SD_VARIANTS_TRAINED.en.md) / [编号全部待办](releases/v0.3.0-dev.24-sd-variants.md)。显式取得固定五新对象，复用既有 SD1.5 / 词表，依次执行实际生产 C++、LCM 权重反事实、Java 全量导入 / 实际 worker、独立原始复核 / 九项错误证据控制，再渲染原始 PNG / 联系图 / 静态 GIF / MP4、导出五份 JSON 并审计。逐项核对真实 sampler 步数、原始请求 / 协议、每文件 SHA 与零强度 / 启用 / 恢复关系；LCM 强度 0 仅为原生诊断，不是用户配方。Production/APK inputs and bytes stay unchanged. Preserve observed low-step quality failures and every SD-Turbo, independent LCM checkpoint, phone, license, endurance and full-version gate; do not tag or publish a reduced Release.

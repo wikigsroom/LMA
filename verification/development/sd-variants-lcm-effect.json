@@ -1,0 +1,1267 @@
+{
+  "schema": "lma.sd-lcm-weight-effect-host/1",
+  "jobs": [
+    {
+      "returncode": 0,
+      "seconds": 170.83395550000023,
+      "events": [
+        {
+          "event": "stage",
+          "stage": "loading"
+        },
+        {
+          "event": "progress",
+          "seconds": 1000.0000610351562,
+          "stage": "loading",
+          "step": 0,
+          "steps": 1
+        },
+        {
+          "event": "progress",
+          "seconds": 0.022999977692961693,
+          "stage": "loading",
+          "step": 1,
+          "steps": 1
+        },
+        {
+          "event": "stage",
+          "stage": "generating"
+        },
+        {
+          "event": "progress",
+          "seconds": 1000.0000610351562,
+          "stage": "generating",
+          "step": 0,
+          "steps": 196
+        },
+        {
+          "event": "progress",
+          "seconds": 0.0010357142891734838,
+          "stage": "generating",
+          "step": 196,
+          "steps": 196
+        },
+        {
+          "event": "progress",
+          "seconds": 0.0,
+          "stage": "generating",
+          "step": 0,
+          "steps": 4
+        },
+        {
+          "event": "progress",
+          "seconds": 1000.0000610351562,
+          "stage": "generating",
+          "step": 0,
+          "steps": 686
+        },
+        {
+          "event": "progress",
+          "seconds": 0.00031049561221152544,
+          "stage": "generating",
+          "step": 686,
+          "steps": 686
+        },
+        {
+          "event": "progress",
+          "seconds": 8.290393829345703,
+          "stage": "generating",
+          "step": 1,
+          "steps": 4
+        },
+        {
+          "event": "progress",
+          "seconds": 8.630894660949707,
+          "stage": "generating",
+          "step": 2,
+          "steps": 4
+        },
+        {
+          "event": "progress",
+          "seconds": 13.572651863098145,
+          "stage": "generating",
+          "step": 3,
+          "steps": 4
+        },
+        {
+          "event": "progress",
+          "seconds": 16.010976791381836,
+          "stage": "generating",
+          "step": 4,
+          "steps": 4
+        },
+        {
+          "event": "progress",
+          "seconds": 0.0,
+          "stage": "generating",
+          "step": 0,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 3000.0,
+          "stage": "generating",
+          "step": 0,
+          "steps": 140
+        },
+        {
+          "event": "progress",
+          "seconds": 0.0015571428230032325,
+          "stage": "generating",
+          "step": 140,
+          "steps": 140
+        },
+        {
+          "event": "progress",
+          "seconds": 3.1559998989105225,
+          "stage": "generating",
+          "step": 1,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.4800000190734863,
+          "stage": "generating",
+          "step": 2,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.068000078201294,
+          "stage": "generating",
+          "step": 3,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.431999921798706,
+          "stage": "generating",
+          "step": 4,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.2339999675750732,
+          "stage": "generating",
+          "step": 5,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.634000062942505,
+          "stage": "generating",
+          "step": 6,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.486999988555908,
+          "stage": "generating",
+          "step": 7,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.933000087738037,
+          "stage": "generating",
+          "step": 8,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.680000066757202,
+          "stage": "generating",
+          "step": 9,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.718000054359436,
+          "stage": "generating",
+          "step": 10,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.5729999542236328,
+          "stage": "generating",
+          "step": 11,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.6380000114440918,
+          "stage": "generating",
+          "step": 12,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.8420000076293945,
+          "stage": "generating",
+          "step": 13,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.2339999675750732,
+          "stage": "generating",
+          "step": 14,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.753999948501587,
+          "stage": "generating",
+          "step": 15,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.9329999685287476,
+          "stage": "generating",
+          "step": 16,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.9129999876022339,
+          "stage": "generating",
+          "step": 17,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.121999979019165,
+          "stage": "generating",
+          "step": 18,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.252000093460083,
+          "stage": "generating",
+          "step": 19,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.562999963760376,
+          "stage": "generating",
+          "step": 20,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.7960000038146973,
+          "stage": "generating",
+          "step": 21,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.5260000228881836,
+          "stage": "generating",
+          "step": 22,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.680999994277954,
+          "stage": "generating",
+          "step": 23,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.803999900817871,
+          "stage": "generating",
+          "step": 24,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.625999927520752,
+          "stage": "generating",
+          "step": 25,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 3.4579999446868896,
+          "stage": "generating",
+          "step": 26,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 3.552999973297119,
+          "stage": "generating",
+          "step": 27,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 3.697999954223633,
+          "stage": "generating",
+          "step": 28,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 3.0840001106262207,
+          "stage": "generating",
+          "step": 29,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.937999963760376,
+          "stage": "generating",
+          "step": 30,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.559999942779541,
+          "stage": "generating",
+          "step": 31,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.5889999866485596,
+          "stage": "generating",
+          "step": 32,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.502000093460083,
+          "stage": "generating",
+          "step": 33,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.375,
+          "stage": "generating",
+          "step": 34,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.375,
+          "stage": "generating",
+          "step": 35,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.546999931335449,
+          "stage": "generating",
+          "step": 36,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.7799999713897705,
+          "stage": "generating",
+          "step": 37,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.384000062942505,
+          "stage": "generating",
+          "step": 38,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.8440001010894775,
+          "stage": "generating",
+          "step": 39,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.561000108718872,
+          "stage": "generating",
+          "step": 40,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.6029999256134033,
+          "stage": "generating",
+          "step": 41,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.740999937057495,
+          "stage": "generating",
+          "step": 42,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.7139999866485596,
+          "stage": "generating",
+          "step": 43,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.4140000343322754,
+          "stage": "generating",
+          "step": 44,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.8540000915527344,
+          "stage": "generating",
+          "step": 45,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.7730000019073486,
+          "stage": "generating",
+          "step": 46,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.9819999933242798,
+          "stage": "generating",
+          "step": 47,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.0810000896453857,
+          "stage": "generating",
+          "step": 48,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.2330000400543213,
+          "stage": "generating",
+          "step": 49,
+          "steps": 49
+        },
+        {
+          "event": "complete",
+          "format": "png",
+          "height": 512,
+          "output": "T:/build/sd-variants-lcm-effect-tests/run-1793292455301498000/sd15-lcm-zero-diagnostic.png",
+          "width": 512
+        }
+      ],
+      "protocol_errors": [],
+      "logs_truncated": [
+        false,
+        false
+      ],
+      "timed_out": false,
+      "forced_host_termination": false,
+      "cancel_trigger": null,
+      "cancel_to_exit_seconds": null,
+      "android_cooperative_cancellation_tested": false,
+      "resources": {
+        "observed": true,
+        "samples": 5782,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 1785470976,
+        "sampled_peak_private_bytes": 542072832,
+        "gpu_memory_measured": false,
+        "physical_device_memory_measured": false
+      },
+      "name": "sd15-lcm-zero-diagnostic",
+      "family": "sd15",
+      "request_sha256": "193fb7112ead8390d9e9675e8eafdc49b467ecb78fab8f0de5c0a68500193a5d",
+      "parameters": {
+        "width": 512,
+        "height": 512,
+        "steps": 4,
+        "cfg": 1.0,
+        "sampler": "lcm",
+        "scheduler": "lcm",
+        "seed": 42,
+        "threads": 6,
+        "vaeTiling": true,
+        "flowShift": 0
+      },
+      "baseline_name": "sd15-lcm-a",
+      "enabled_scale": 1.0,
+      "diagnostic_scale": 0.0,
+      "diagnostic_only": true,
+      "app_recipe": false,
+      "adapters": [
+        {
+          "path": "T:/build/sd-variants-trained/originals/8f90d840e075ff588a58e22c6586e2ae9a6f7922996ee6649a7f01072333afe4/pytorch_lora_weights.safetensors",
+          "scale": 0.0
+        }
+      ],
+      "case": {
+        "family": "sd15",
+        "prompt": "A small red fox sitting beside a blue ceramic teapot on a wooden table, pixel art, PixArFK, clean composition",
+        "width": 512,
+        "height": 512,
+        "profile": "lcm",
+        "adapters": [
+          [
+            "sd15_lcm_lora",
+            0.0
+          ]
+        ],
+        "cancel_step": null,
+        "diagnostic_only": true
+      },
+      "passed": true,
+      "image": {
+        "width": 512,
+        "height": 512,
+        "format": "PNG",
+        "mode": "RGB",
+        "bytes": 477867,
+        "sha256": "0847ab984123ab5c0ead54c5da70b6183d09736e1f15f2c98d62d477e1a6d53e",
+        "channel_mean": [
+          204.66884231567383,
+          5.865108489990234,
+          23.56505584716797
+        ],
+        "channel_stddev": [
+          13.670148449891347,
+          6.004926916090472,
+          7.4107952190531785
+        ],
+        "extrema": [
+          [
+            147,
+            234
+          ],
+          [
+            0,
+            30
+          ],
+          [
+            0,
+            51
+          ]
+        ],
+        "entropy": 6.393159866483775
+      },
+      "enabled_image_sha256": "c1a14c2da91e0825ce7c067797952294a37bb04a898dc909b94988b05e0ee477",
+      "only_scale_changed": true,
+      "enabled_weights_change_output": true,
+      "sampling_steps_observed": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "returncode": 0,
+      "seconds": 205.3357313000015,
+      "events": [
+        {
+          "event": "stage",
+          "stage": "loading"
+        },
+        {
+          "event": "stage",
+          "stage": "generating"
+        },
+        {
+          "event": "progress",
+          "seconds": 15000.0,
+          "stage": "generating",
+          "step": 0,
+          "steps": 178
+        },
+        {
+          "event": "progress",
+          "seconds": 0.0012134831631556153,
+          "stage": "generating",
+          "step": 178,
+          "steps": 178
+        },
+        {
+          "event": "progress",
+          "seconds": 4000.000244140625,
+          "stage": "generating",
+          "step": 0,
+          "steps": 498
+        },
+        {
+          "event": "progress",
+          "seconds": 0.0004277108528185636,
+          "stage": "generating",
+          "step": 498,
+          "steps": 498
+        },
+        {
+          "event": "progress",
+          "seconds": 3000.0,
+          "stage": "generating",
+          "step": 0,
+          "steps": 19
+        },
+        {
+          "event": "progress",
+          "seconds": 0.011421050876379013,
+          "stage": "generating",
+          "step": 19,
+          "steps": 19
+        },
+        {
+          "event": "progress",
+          "seconds": 0.0,
+          "stage": "generating",
+          "step": 0,
+          "steps": 4
+        },
+        {
+          "event": "progress",
+          "seconds": 4000.000244140625,
+          "stage": "generating",
+          "step": 0,
+          "steps": 1680
+        },
+        {
+          "event": "progress",
+          "seconds": 0.0001291666558245197,
+          "stage": "generating",
+          "step": 1680,
+          "steps": 1680
+        },
+        {
+          "event": "progress",
+          "seconds": 18.457984924316406,
+          "stage": "generating",
+          "step": 1,
+          "steps": 4
+        },
+        {
+          "event": "progress",
+          "seconds": 16.588703155517578,
+          "stage": "generating",
+          "step": 2,
+          "steps": 4
+        },
+        {
+          "event": "progress",
+          "seconds": 19.08902359008789,
+          "stage": "generating",
+          "step": 3,
+          "steps": 4
+        },
+        {
+          "event": "progress",
+          "seconds": 16.763959884643555,
+          "stage": "generating",
+          "step": 4,
+          "steps": 4
+        },
+        {
+          "event": "progress",
+          "seconds": 0.0,
+          "stage": "generating",
+          "step": 0,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2000.0001220703125,
+          "stage": "generating",
+          "step": 0,
+          "steps": 140
+        },
+        {
+          "event": "progress",
+          "seconds": 0.0014999998966231942,
+          "stage": "generating",
+          "step": 140,
+          "steps": 140
+        },
+        {
+          "event": "progress",
+          "seconds": 3.171999931335449,
+          "stage": "generating",
+          "step": 1,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.4140000343322754,
+          "stage": "generating",
+          "step": 2,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.322999954223633,
+          "stage": "generating",
+          "step": 3,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 4.00600004196167,
+          "stage": "generating",
+          "step": 4,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 3.677000045776367,
+          "stage": "generating",
+          "step": 5,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.940999984741211,
+          "stage": "generating",
+          "step": 6,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.11899995803833,
+          "stage": "generating",
+          "step": 7,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.677999973297119,
+          "stage": "generating",
+          "step": 8,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.968999981880188,
+          "stage": "generating",
+          "step": 9,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.9089999198913574,
+          "stage": "generating",
+          "step": 10,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 3.1419999599456787,
+          "stage": "generating",
+          "step": 11,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 4.504000186920166,
+          "stage": "generating",
+          "step": 12,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 4.0980000495910645,
+          "stage": "generating",
+          "step": 13,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 3.305000066757202,
+          "stage": "generating",
+          "step": 14,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.5920000076293945,
+          "stage": "generating",
+          "step": 15,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.9030001163482666,
+          "stage": "generating",
+          "step": 16,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.7090001106262207,
+          "stage": "generating",
+          "step": 17,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 3.005000114440918,
+          "stage": "generating",
+          "step": 18,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.4170000553131104,
+          "stage": "generating",
+          "step": 19,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.8919999599456787,
+          "stage": "generating",
+          "step": 20,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.7710000276565552,
+          "stage": "generating",
+          "step": 21,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.968000054359436,
+          "stage": "generating",
+          "step": 22,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.1640000343322754,
+          "stage": "generating",
+          "step": 23,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.871000051498413,
+          "stage": "generating",
+          "step": 24,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.8760000467300415,
+          "stage": "generating",
+          "step": 25,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.3239998817443848,
+          "stage": "generating",
+          "step": 26,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.260999917984009,
+          "stage": "generating",
+          "step": 27,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.188999891281128,
+          "stage": "generating",
+          "step": 28,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.2049999237060547,
+          "stage": "generating",
+          "step": 29,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.109999895095825,
+          "stage": "generating",
+          "step": 30,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.6489999294281006,
+          "stage": "generating",
+          "step": 31,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 3.140000104904175,
+          "stage": "generating",
+          "step": 32,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.628999948501587,
+          "stage": "generating",
+          "step": 33,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.6549999713897705,
+          "stage": "generating",
+          "step": 34,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.681999921798706,
+          "stage": "generating",
+          "step": 35,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.489000082015991,
+          "stage": "generating",
+          "step": 36,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.2960000038146973,
+          "stage": "generating",
+          "step": 37,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.6720000505447388,
+          "stage": "generating",
+          "step": 38,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.7769999504089355,
+          "stage": "generating",
+          "step": 39,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.6660000085830688,
+          "stage": "generating",
+          "step": 40,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.8389999866485596,
+          "stage": "generating",
+          "step": 41,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.784000039100647,
+          "stage": "generating",
+          "step": 42,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.937999963760376,
+          "stage": "generating",
+          "step": 43,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 3.5999999046325684,
+          "stage": "generating",
+          "step": 44,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 3.072999954223633,
+          "stage": "generating",
+          "step": 45,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 3.4010000228881836,
+          "stage": "generating",
+          "step": 46,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 3.38100004196167,
+          "stage": "generating",
+          "step": 47,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 3.109999895095825,
+          "stage": "generating",
+          "step": 48,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 3.4769999980926514,
+          "stage": "generating",
+          "step": 49,
+          "steps": 49
+        },
+        {
+          "event": "complete",
+          "format": "png",
+          "height": 512,
+          "output": "T:/build/sd-variants-lcm-effect-tests/run-1793292455301498000/sdxl-lcm-zero-diagnostic.png",
+          "width": 512
+        }
+      ],
+      "protocol_errors": [],
+      "logs_truncated": [
+        false,
+        false
+      ],
+      "timed_out": false,
+      "forced_host_termination": false,
+      "cancel_trigger": null,
+      "cancel_to_exit_seconds": null,
+      "android_cooperative_cancellation_tested": false,
+      "resources": {
+        "observed": true,
+        "samples": 7743,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 3082764288,
+        "sampled_peak_private_bytes": 851509248,
+        "gpu_memory_measured": false,
+        "physical_device_memory_measured": false
+      },
+      "name": "sdxl-lcm-zero-diagnostic",
+      "family": "sdxl",
+      "request_sha256": "bfb2381206e3672934465d681250053a5039e4c1fd759c5feb546f4d0254d5b5",
+      "parameters": {
+        "width": 512,
+        "height": 512,
+        "steps": 4,
+        "cfg": 1.0,
+        "sampler": "lcm",
+        "scheduler": "lcm",
+        "seed": 42,
+        "threads": 6,
+        "vaeTiling": true,
+        "flowShift": 0
+      },
+      "baseline_name": "sdxl-lcm-a",
+      "enabled_scale": 1.0,
+      "diagnostic_scale": 0.0,
+      "diagnostic_only": true,
+      "app_recipe": false,
+      "adapters": [
+        {
+          "path": "T:/build/sd-variants-trained/originals/a764e6859b6e04047cd761c08ff0cee96413a8e004c9f07707530cd776b19141/pytorch_lora_weights.safetensors",
+          "scale": 0.0
+        }
+      ],
+      "case": {
+        "family": "sdxl",
+        "prompt": "A small red fox sitting beside a blue ceramic teapot on a wooden table, pixel art, PixArFK, clean composition",
+        "width": 512,
+        "height": 512,
+        "profile": "lcm",
+        "adapters": [
+          [
+            "sdxl_lcm_lora",
+            0.0
+          ]
+        ],
+        "cancel_step": null,
+        "diagnostic_only": true
+      },
+      "passed": true,
+      "image": {
+        "width": 512,
+        "height": 512,
+        "format": "PNG",
+        "mode": "RGB",
+        "bytes": 576566,
+        "sha256": "611f3751a81ab6c1aea75d0f9bd46b9ea1245d53fbc0fe9e206a3c5e8ab4646b",
+        "channel_mean": [
+          120.23095321655273,
+          124.20138931274414,
+          122.4651870727539
+        ],
+        "channel_stddev": [
+          33.617116374005285,
+          36.91498226853119,
+          34.43881130579695
+        ],
+        "extrema": [
+          [
+            2,
+            198
+          ],
+          [
+            1,
+            211
+          ],
+          [
+            0,
+            197
+          ]
+        ],
+        "entropy": 8.604894733901657
+      },
+      "enabled_image_sha256": "ee7e1aa78ec5d6fe4f23df62a99a529671fb93878883c6c85ef0e8a230add1f7",
+      "only_scale_changed": true,
+      "enabled_weights_change_output": true,
+      "sampling_steps_observed": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ]
+    }
+  ],
+  "failures": [],
+  "host_weight_effect_checks_passed": true,
+  "compilation": {
+    "schema": "lma.sd-host-build/1",
+    "executable": "build/sd-worker-host/a3bf87b8e136d993/bin/lma_sd_host.exe",
+    "sha256": "57b262d251aba1bc1ba1d6c64f1983075508dac1bb4b5ec4b729cff9306598c9",
+    "bytes": 8633856,
+    "source_revision": "be486498eadc29dc3cd234d944c2180ed42b1415",
+    "ggml_revision": "a5915eb0e47adef21c3f25b889a008925ea838c2",
+    "backend": "cpu",
+    "production_worker_source_unmodified": true,
+    "production_vocabulary_source_unmodified": true,
+    "windows_parent_guard": true,
+    "external_vocabulary": true,
+    "bundled_model_data": false,
+    "android_compiled": false,
+    "physical_android": false,
+    "packaged_in_apk": false,
+    "model_executed": false,
+    "input_fingerprint": {
+      "app/src/main/assets/model-bundles.json": "bb2272dfa95443c9391fb858fd19b52d539126ca209319c190b420e734bc97b8",
+      "native/sd_policy.hpp": "c7d987ffc6b905fbad9d6a47be98d10f57b2060728f00801742a4ec346a5c7ba",
+      "native/sd_worker.cpp": "47e1c3344c63fb90bc240e2743f8257904e831b1597b9d0b9bd780011e8969d0",
+      "native/vocab_external.cpp": "8bfe3af4f45363554f58009efcd7404e3af9da768cb65762de6c6b91621c81f1",
+      "research/sd_host/CMakeLists.txt": "0870d59e689181eddd9690cc537da9b9abf4a252791ae6dd0506aa95fe4051d3",
+      "research/sd_host/compat/sys/prctl.h": "87c9ddf82ce059bf303486b0e10b22dce6d972e87f83836d148e631dcdad9c9e",
+      "research/sd_host/compat/unistd.h": "e467e7f5855c286b3ce40268146ed34d153a5fbf8a42d5c36b26a6293142068b",
+      "research/sd_host/NOTICE": "90e18935ca8ba71ac1a5ce59e3a2f0b0580cd246877f65cba402deff67eb18fc",
+      "research/sd_host/platform.hpp": "c377ed1b676707a469a192d96ae9b748802e1f62ad0674366b593b2b5b2daf67",
+      "third_party/engine-lock.json": "1341d53deca6412779d197b5fc978a37a55462ee4d86df4b6db4b3c7bf97ec7a",
+      "third_party/notices/sd-sources.json": "91ee744071aa93c4bd4d40476d3582fa4bf4d00a628527e196d4856c06ec77c1",
+      "tools/build_native.py": "f3876b3c254ee367a55f15bcbf9cd8c0dc2eb243b53b59796a282f2afc4a7c11",
+      "tools/build_sd_host.py": "25943d201f98b806c15df691f87fd496f7988f4d104e92549bf5a3ed2e787e13",
+      "tools/fetch_sd15_trained.py": "91392401d9739f15b14fa4e42b74f13bbdd719a382746541cc69952966e6f307"
+    }
+  },
+  "direct_trained_report_sha256": "6bdf64ad56b8a7341ea7db6fcda7e98fa0634510687b13b31d50edd2789f4cfa",
+  "capture_directory": "build/sd-variants-lcm-effect-tests/run-1793292455301498000",
+  "files": {
+    "sd15-lcm-zero-diagnostic-capture.json": {
+      "bytes": 12220,
+      "sha256": "c79d66e5aa5d89c6887e08638f0bdf07456b945b1f89ae4e004aa72c62adc655"
+    },
+    "sd15-lcm-zero-diagnostic.json": {
+      "bytes": 1052,
+      "sha256": "193fb7112ead8390d9e9675e8eafdc49b467ecb78fab8f0de5c0a68500193a5d"
+    },
+    "sd15-lcm-zero-diagnostic.png": {
+      "bytes": 477867,
+      "sha256": "0847ab984123ab5c0ead54c5da70b6183d09736e1f15f2c98d62d477e1a6d53e"
+    },
+    "sd15-lcm-zero-diagnostic.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "sd15-lcm-zero-diagnostic.stdout": {
+      "bytes": 5995,
+      "sha256": "b326461bfa4d00b90f01b821822f9f77e08a5b7663ebd5ae6b7d6f1b04103065"
+    },
+    "sdxl-lcm-zero-diagnostic-capture.json": {
+      "bytes": 12542,
+      "sha256": "9fe0de54203cdc44d0a649ecf09478e731694f20e97495d146ac95b6f898eb54"
+    },
+    "sdxl-lcm-zero-diagnostic.json": {
+      "bytes": 1102,
+      "sha256": "bfb2381206e3672934465d681250053a5039e4c1fd759c5feb546f4d0254d5b5"
+    },
+    "sdxl-lcm-zero-diagnostic.png": {
+      "bytes": 576566,
+      "sha256": "611f3751a81ab6c1aea75d0f9bd46b9ea1245d53fbc0fe9e206a3c5e8ab4646b"
+    },
+    "sdxl-lcm-zero-diagnostic.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "sdxl-lcm-zero-diagnostic.stdout": {
+      "bytes": 6206,
+      "sha256": "ed7510cd115054023989d374332e3230955b409b9036874d8ccdf3cb3e5f8ba1"
+    }
+  },
+  "diagnostic_only": true,
+  "app_recipe": false,
+  "asset_download_attempted": false,
+  "physical_android": false,
+  "semantic_quality_accepted": false,
+  "complete_release_accepted": false,
+  "input_fingerprint": {
+    "app/src/main/assets/model-bundles.json": "bb2272dfa95443c9391fb858fd19b52d539126ca209319c190b420e734bc97b8",
+    "native/sd_policy.hpp": "c7d987ffc6b905fbad9d6a47be98d10f57b2060728f00801742a4ec346a5c7ba",
+    "native/sd_worker.cpp": "47e1c3344c63fb90bc240e2743f8257904e831b1597b9d0b9bd780011e8969d0",
+    "native/vocab_external.cpp": "8bfe3af4f45363554f58009efcd7404e3af9da768cb65762de6c6b91621c81f1",
+    "research/sd_host/CMakeLists.txt": "0870d59e689181eddd9690cc537da9b9abf4a252791ae6dd0506aa95fe4051d3",
+    "research/sd_host/compat/sys/prctl.h": "87c9ddf82ce059bf303486b0e10b22dce6d972e87f83836d148e631dcdad9c9e",
+    "research/sd_host/compat/unistd.h": "e467e7f5855c286b3ce40268146ed34d153a5fbf8a42d5c36b26a6293142068b",
+    "research/sd_host/NOTICE": "90e18935ca8ba71ac1a5ce59e3a2f0b0580cd246877f65cba402deff67eb18fc",
+    "research/sd_host/platform.hpp": "c377ed1b676707a469a192d96ae9b748802e1f62ad0674366b593b2b5b2daf67",
+    "third_party/engine-lock.json": "1341d53deca6412779d197b5fc978a37a55462ee4d86df4b6db4b3c7bf97ec7a",
+    "third_party/notices/sd-sources.json": "91ee744071aa93c4bd4d40476d3582fa4bf4d00a628527e196d4856c06ec77c1",
+    "tools/build_native.py": "f3876b3c254ee367a55f15bcbf9cd8c0dc2eb243b53b59796a282f2afc4a7c11",
+    "tools/build_sd_host.py": "25943d201f98b806c15df691f87fd496f7988f4d104e92549bf5a3ed2e787e13",
+    "tools/fetch_sd15_trained.py": "91392401d9739f15b14fa4e42b74f13bbdd719a382746541cc69952966e6f307",
+    "research/sd_variants_trained/assets.json": "9c561954a14268c4e3a06fe082e4c02c2451a4fb7ae2c692c82491583359f50e",
+    "tools/fetch_sd_variants_trained.py": "badd13deebbd3c0ab1f3d6c4b08a09d39a4bdd926914be5753c04a370c85728b",
+    "app/src/main/assets/recipe-templates.json": "4abedebe4d01f45e4d0b22506071c83bfddeb3e6750950630a9ff5a5f5b5b958",
+    "tools/sd_variants_manifests.py": "781e1750ef567249eaf9bd7998365396ccd4a739990c7de1cae235d6935cfa2d",
+    "research/sd_variants_trained/manifests/sd15_lcm_lora.json": "27d39827e9db245db2e18b5abd8a058948ca2c16aef22b9654daf80f11b0130f",
+    "research/sd_variants_trained/manifests/sd15_style_pixelart.json": "443c14138f257c48a6f0e89f7031eda3313c69072e14683675ffef1c66dfbd1b",
+    "research/sd_variants_trained/manifests/sdxl_base_q4_0.json": "3db5eb6a506e8a1b607c08a037a73b4709074036c8a85c9211d0ac4557d5f8c3",
+    "research/sd_variants_trained/manifests/sdxl_lcm_lora.json": "b533451154103ed0e99303bc3f560912a0e40885e21ff8e10c88717f283a599d",
+    "research/sd_variants_trained/manifests/sdxl_style_pixelart.json": "2c198268a8e2533aaec8343d9a5daad0da2d9ac054b34297b469250f34b2bd6c",
+    "research/sd_variants_trained/NOTICE": "b3958e536003077472fbd8486980bfc6f32c4f27e1a696c0cb4fb5208270fa3b",
+    "tools/sd_variants_capture.py": "1c3a576bdc3189ccb2657f8dda179d3ce589297aaee012545dc0ea8f453731da",
+    "tools/sd_variants_inspect.py": "19144515074c00ef961540f8ca9d7c1b03f3b4c4554d5ae27c6592b3a1888414",
+    "tools/test_sd_variants_trained.py": "bfc2b5eb71be4650c35cec5328ca24083e35d4123d064c07ed9f2ad7bce70424",
+    "tools/test_sd_lcm_effect.py": "fff1d415f01bb800895f94645359a1adca26b3fa52a31ab583ceaa8b187c8ad8"
+  }
+}

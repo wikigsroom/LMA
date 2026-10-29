@@ -4,6 +4,8 @@
 
 > **当前开发：0.3.0-dev.24 / code 28。** 修正扩散 worker 的加载/生成进度，补充 [SD 1.5 真实权重验证](docs/SD15_TRAINED.md)与[旧 LTX 调制顺序诊断](docs/LTX098_MODULATION.md)；LTX 新候选仍未通过冻结数值门槛。[本轮编号实现与全部待办](docs/releases/v0.3.0-dev.24.md)。App 仅更新基座，模型仍由用户自行选择、下载或导入；完整 v0.3.0 与手机验收尚未完成。
 
+新增 [SDXL / 双架构 LoRA / LCM-LoRA 真实训练验证](docs/SD_VARIANTS_TRAINED.md)：五个新固定对象，加既有 SD1.5 / 外部词表共七个唯一对象，覆盖标准对照、风格强度 0 / 1、LCM 权重反事实、组合与取消恢复，以及生产 Java 的完整导入和实际原生子进程。[实际 PNG / 联系图 / GIF / MP4](docs/SD_VARIANTS_TRAINED.md#4-实际图片与演示媒体)与[编号实现 / 全部待办](docs/releases/v0.3.0-dev.24-sd-variants.md)同步。低步数样例有主体不清等画质问题，质量和 Android 仍待验收；APK 字节不变，完整 Release 未完成。
+
 新增 [Qwen3-TTS真实训练验证](docs/QWEN_TTS_TRAINED.md)：完整920MB冻结配方、十语言/参考/参数/取消恢复、18成功WAV/12控制，以及94项生产Java检查、两对象完整导入和6个真实worker子进程。[原始音频与波形媒体](docs/QWEN_TTS_TRAINED.md#3-实测与媒体)与[编号实现/完整待办](docs/releases/v0.3.0-dev.24-qwen-tts.md)分别记录主机、手机与质量范围；贪心短文本达到30秒预算仍需质量核查。本轮仅开发工具/证据/文档，APK字节不变，完整Release未完成。
 
 此前 [Kokoro/Piper/Matcha真实训练验证](docs/TTS_TRAINED.md)：三套完整配方、Kokoro54音色、68次实际WAV输出/13控制、157项生产Java检查、完整导入和12个真实worker子进程；附[原始音频与波形媒体](docs/TTS_TRAINED.md#3-实际结果与媒体)及[编号实现/完整待办](docs/releases/v0.3.0-dev.24-tts.md)。本轮仅增加开发工具/证据/文档，APK字节不变；手机、质量、许可与完整Release仍待验收。

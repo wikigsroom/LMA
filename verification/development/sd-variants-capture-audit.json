@@ -1,0 +1,60 @@
+{
+  "schema": "lma.sd-variants-capture-audit/1",
+  "raw_capture_audit_passed": true,
+  "files": 125,
+  "direct_protocols": 25,
+  "actual_java_native_children": 8,
+  "png_files": 20,
+  "full_trained_objects": 7,
+  "full_imported_objects": 7,
+  "negative_controls": [
+    {
+      "name": "promote-physical",
+      "rejected": true
+    },
+    {
+      "name": "promote-quality",
+      "rejected": true
+    },
+    {
+      "name": "changed-complete-asset",
+      "rejected": true
+    },
+    {
+      "name": "changed-sdxl-encoder",
+      "rejected": true
+    },
+    {
+      "name": "cancel-before-sampler",
+      "rejected": true
+    },
+    {
+      "name": "ignored-style-adapter",
+      "rejected": true
+    },
+    {
+      "name": "changed-zero-scale-output",
+      "rejected": true
+    },
+    {
+      "name": "changed-java-output",
+      "rejected": true
+    },
+    {
+      "name": "ignored-lcm-weights",
+      "rejected": true
+    }
+  ],
+  "sources": {
+    "sd-variants-assets.json": "e0bf8a87584fee5c216b34bac9c8b2ff4d236ecbb7f7ab4006a498744264f882",
+    "sd-variants-trained.json": "6bdf64ad56b8a7341ea7db6fcda7e98fa0634510687b13b31d50edd2789f4cfa",
+    "sd-variants-lcm-effect.json": "dddb8d1f5ba3e781aa397324b5737cc96ef5c5bc7a763a185999c41d042274bd",
+    "sd-variants-app-host.json": "1ca2c7ad22d7ded1aa8657d26bf41441e1c4137d1a88929366fb958913b6e365"
+  },
+  "physical_android": false,
+  "image_quality_accepted": false,
+  "complete_release_accepted": false,
+  "input_fingerprint": {
+    "tools/check_sd_variants_trained_evidence.py": "3c43680f13b84c2cd83d8415cf5ba7f364aaa128683d6dd3fd8c0c1cbf002cc7"
+  }
+}
