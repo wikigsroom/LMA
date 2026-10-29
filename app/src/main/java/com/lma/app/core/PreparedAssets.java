@@ -62,6 +62,13 @@ public final class PreparedAssets implements AutoCloseable {
         }
         return result;
     }
+    public synchronized JSONObject record(String id) throws Exception {
+        checkOpen(); ownedId(id); return DataFiles.copy(state.getJSONObject("entries").getJSONObject(id));
+    }
+    public synchronized void remove(String id, JobStore jobs) throws Exception {
+        if (jobs != null && jobs.referencesPrepared(id)) throw new IOException("Prepared assets are referenced by a queued/running task");
+        remove(id);
+    }
     public synchronized boolean contains(String bundleId, PreparationPlan plan) throws Exception {
         JSONArray records = snapshot(bundleId);
         for (int i = 0; i < records.length(); i++) if (records.getJSONObject(i).getString("planFingerprint").equals(plan.fingerprint) && records.getJSONObject(i).getBoolean("available")) return true;

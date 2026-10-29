@@ -55,3 +55,7 @@ Internal checkpoint (**0.3.0-dev.17 / code 21**, unpublished): the [native MOSS 
 ## dev.22: derived-runtime asset boundary
 
 [Preparation](MODEL_PREPARATION.en.md) preserves user sources and runs only after explicit confirmation. APK contains fixed programs and nine audited model-free graphs; learned parameters/statistics come from user data. Derived directories are separate from downloads, settings and generated results. Leases protect active files; cancellation/crash recovery removes owned unfinished data and retains committed assets. Derived-only data remains manageable in Local. Model/plan/component identity is frozen and validated; missing files do not trigger downloads. Forty-four host core contracts and one trained preparation do not establish A11 phone upgrades/background acceptance.
+
+## dev.23 runtime association
+
+Users explicitly obtain a source, prepare derived data, then confirm `model.assemble`; installation, upgrades, browsing and missing requests do none of these automatically. The separate runtime record retains settings and exact component identities. Twenty derived files are reused locally; two T5 dependencies stay paused until another explicit download/import. Prepared and runtime records have independent deletion protected by queued/active references. Shared hardlink bytes are freed only after the final owner releases them. Association proves neither a weight update, external execution nor generation support. See [contracts](MODEL_ASSEMBLY.en.md) and the [complete pending scope](releases/v0.3.0-dev.23.md).

@@ -250,11 +250,43 @@ public final class SchedulerTest {
             check(app.bundles.record(bundle.id).getJSONObject("transfer").getString("state").equals("installed"), "Scheduling never starts a model transfer");
         } finally { engine.stop(); chat.close(); api.close(); jobs.close(); engine.close(); pool.shutdownNow(); }
     }
+    private static void assemblyChecks() throws Exception {
+        LmaApp app = new LmaApp(work.resolve("assembly-app").toFile(), root.resolve("app/src/main/assets").toFile(), work.resolve("libraries").toFile());
+        PreparationPlan preparation = PreparationTest.fixturePlan(); ModelBundle source = PreparationTest.fixtureBundle(preparation);
+        JSONObject component = new JSONObject().put("role", "diffusion_model").put("path", "prepared.data").put("format", "bin").put("bytes", PreparationTest.OUTPUT.length).put("sha256", PreparationTest.sha(PreparationTest.OUTPUT));
+        JSONObject missing = new JSONObject().put("role", "text_encoder").put("path", "encoder.bin").put("format", "bin").put("bytes", 1).put("sha256", PreparationTest.sha(new byte[]{42}));
+        ModelBundle target = new ModelBundle(source.json().put("id", "assembly_runtime").put("components", new JSONArray().put(component).put(missing))); app.bundles.declare(target);
+        app.prepared = new PreparedAssets(new File(app.getFilesDir(), "prepared"));
+        JSONObject record;
+        try (PreparedAssets.Session session = app.prepared.begin("fixture_prepare")) { PreparationTest.outputs(session, preparation); record = session.commit(preparation, source.id, () -> {}); }
+        JSONObject descriptor = new JSONObject().put("schema", "lma.model-assembly/1").put("id", "fixture_assembly").put("name", "Fixture association")
+                .put("sourceBundleId", source.id).put("preparationId", preparation.id).put("bundleId", target.id)
+                .put("roles", new JSONArray().put(new JSONObject().put("source", "diffusion_model").put("target", "diffusion_model")));
+        AssemblyPlan plan = new AssemblyPlan(descriptor, preparation, target); app.assemblies = new LmaApp.AssemblyOptions(); app.assemblies.plan = plan;
+        JSONObject input = new JSONObject().put("type", "model.assemble").put("bundleId", target.id).put("preparedAssetsId", record.getString("id")).put("assemblyId", plan.id).put("assemblyFingerprint", plan.fingerprint);
+        LmaService service = new LmaService(); EngineHost engine = new EngineHost(service, app, builder -> { throw new IOException("Asset association must not spawn an inference child"); }); service.engine = engine;
+        LocalJobs jobs = new LocalJobs(app, engine, () -> {}); ApiHost api = new ApiHost(service, app);
+        ExecutionGate.Ticket hold = app.execution.enqueue("chat", "hold-assembly"); hold.await(() -> {});
+        try {
+            JSONObject cancelled = jobs.submit(input, "assembly-key");
+            check(jobs.submit(input, "assembly-key").getString("id").equals(cancelled.getString("id")), "Assembly shares production idempotency handling");
+            until(() -> !app.jobs.get(cancelled.getString("id")).getString("state").equals("queued"), "Assembly waits on the occupied execution slot");
+            try { jobs.submit(input, "duplicate-assembly"); throw new AssertionError("Duplicate association accepted"); } catch (IOException expected) { check(true, "A runtime model has only one active association task"); }
+            try { app.prepared.remove(record.getString("id"), app.jobs); throw new AssertionError("Waiting source deleted"); } catch (IOException expected) { check(true, "Production queue protects prepared data while waiting for the engine slot"); }
+            jobs.cancel(cancelled.getString("id")); hold.close(); until(() -> state(app, cancelled, "cancelled") && !jobs.busy(), "Waiting assembly cancels without acquiring an installed target");
+            JSONObject retry = jobs.retry(cancelled.getString("id"), "assembly-retry"); until(() -> state(app, retry, "succeeded") && !jobs.busy(), "Explicit retry rebinds the private source fingerprint");
+            JSONObject completed = app.jobs.get(retry.getString("id")); check(completed.has("assembly") && completed.getJSONArray("artifacts").length() == 0, "Production runner publishes an association receipt without media");
+            check(!app.bundles.plan(target.id).getBoolean("installed") && app.bundles.record(target.id).getJSONObject("transfer").getString("state").equals("paused"), "Production runner keeps missing dependencies paused");
+            JSONArray models = api.models(); JSONObject visible = null; for (int i = 0; i < models.length(); i++) if (models.getJSONObject(i).getString("id").equals(target.id)) visible = models.getJSONObject(i);
+            check(visible != null && !visible.getBoolean("installed") && visible.getLong("remaining_bytes") == 1, "API discovery shows partially associated models without claiming installation");
+            check(app.execution.snapshot().isNull("active") && !app.prefs.getBoolean("desiredJobs", false), "Association completion releases the shared execution slot and idle preference");
+        } finally { hold.close(); jobs.close(); api.close(); engine.close(); app.prepared.close(); }
+    }
     public static void main(String[] args) throws Exception {
         if (args.length > 0 && args[0].equals("worker")) { runWorker(args[1]); return; }
         root = Paths.get(args[0]); work = Paths.get(args[1]); Files.createDirectories(work);
         try {
-            gateChecks(); runtimeChecks();
+            gateChecks(); runtimeChecks(); assemblyChecks();
             System.out.println(new JSONObject().put("passed", passed).put("checks", new JSONArray(checks)).put("actual_host_children", true).put("actual_loopback_http", true)
                     .put("production_job_runner", true).put("physical_android", false).put("model_inference", false).put("automatic_model_downloads", false));
         } finally { for (Process child : children) { child.destroyForcibly(); child.waitFor(5, TimeUnit.SECONDS); } }

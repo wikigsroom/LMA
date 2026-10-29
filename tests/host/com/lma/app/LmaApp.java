@@ -14,7 +14,7 @@ public final class LmaApp {
     public final android.os.PowerManager power = new android.os.PowerManager();
     public Object getSystemService(String name) { return name.equals(ACTIVITY_SERVICE) ? memory : power; }
     public JSONObject device() { return new JSONObject().put("hostFrameworkPort", true).put("physicalAndroid", false); }
-    public static final String VERSION = "0.3.0-dev.22";
+    public static final String VERSION = "0.3.0-dev.23";
     public String apiState = "stopped", apiDetail = "";
     public com.lma.app.core.BundleStore bundles;
     public com.lma.app.core.JobStore jobs;
@@ -24,6 +24,17 @@ public final class LmaApp {
     public LocalEngines localEngines = new LocalEngines();
     public com.lma.app.core.PreparedAssets prepared;
     public PreparationOptions preparations;
+    public AssemblyOptions assemblies;
+    /** Deliberately unavailable unless a host test explicitly installs a signed plan. */
+    public static final class AssemblyOptions {
+        public com.lma.app.core.AssemblyPlan plan;
+        public com.lma.app.core.AssemblyPlan require(JSONObject input) throws IOException {
+            if (plan == null || !plan.id.equals(input.optString("assemblyId")) || !plan.fingerprint.equals(input.optString("assemblyFingerprint"))) throw new IOException("Assembly is not configured by this host framework fixture");
+            return plan;
+        }
+        public JSONObject admission() { return new JSONObject().put("hostFrameworkPort", true).put("physicalAndroid", false); }
+        public org.json.JSONArray snapshot(String bundleId) { return new org.json.JSONArray(); }
+    }
     /** Framework fixture only; production ModelPreparations is checked by APK compilation. */
     public static final class PreparationOptions {
         public org.json.JSONArray options(com.lma.app.core.ModelBundle bundle) { return new org.json.JSONArray(); }

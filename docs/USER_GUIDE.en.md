@@ -101,3 +101,7 @@ On development dev.21, open an installed SoulX model's local task, choose contig
 ## dev.22: separate source and runtime assets
 
 [Full workflow and storage requirements](MODEL_PREPARATION.en.md): select the pinned source under All, explicitly download or folder-import it, then review preparation in Local. Retain the source and review approximately 6.20GB additional free space before starting. Manage progress/cancellation/explicit retry in Tasks. Derived files can be deleted independently and remain under Local after source deletion. Installation/upgrades/browsing initiate neither downloads nor preparation. Successful preparation does not establish current video-generation support; the Android flow remains untested.
+
+## dev.23: associate runtime assets and choose remaining dependencies
+
+After preparation, use Local → Runtime assets → Review association, check the target and missing components, then explicitly start the shared job. Twenty verified existing files are reused without another copy/download. Missing T5 remains paused and uninstalled until you choose download or folder import in the runtime model details. Prepared and runtime records have independent deletion; settings survive and generation-engine availability is separate. See the [complete workflow](MODEL_ASSEMBLY.en.md) and [numbered implemented/pending handoff](releases/v0.3.0-dev.23.md). Android, six old-LTX numerical failures and complete Release gates remain open.

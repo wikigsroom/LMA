@@ -136,8 +136,17 @@ public final class BundleStore {
      */
     public void adoptLocal(ModelBundle bundle, Map<String, File> sources, JSONObject settings, DataFiles.Check check) throws Exception {
         if (sources.size() != bundle.components.size()) throw new IOException("Provide every existing component exactly once");
+        adoptAvailableLocal(bundle, sources, settings, check);
+    }
+    /** Explicitly associate already owned components; missing dependencies stay paused and uninstalled. */
+    public void adoptAvailableLocal(ModelBundle bundle, Map<String, File> sources, JSONObject settings, DataFiles.Check check) throws Exception {
+        if (sources.isEmpty() || sources.size() > bundle.components.size()) throw new IOException("Select at least one existing component");
+        Map<String, File> selected = new LinkedHashMap<>(sources);
+        for (String role : selected.keySet()) bundle.component(role);
+        List<ModelBundle.Component> components = new ArrayList<>();
+        for (ModelBundle.Component c : bundle.components) if (selected.containsKey(c.role)) components.add(c);
         List<ReentrantLock> locked = new ArrayList<>(); Map<String, JSONObject> receipts = new HashMap<>(); Map<String, File> staged = new HashMap<>();
-        List<ModelBundle.Component> ordered = new ArrayList<>(bundle.components); ordered.sort(Comparator.comparing(c -> c.objectId));
+        List<ModelBundle.Component> ordered = new ArrayList<>(components); ordered.sort(Comparator.comparing(c -> c.objectId));
         Set<String> seen = new HashSet<>();
         try {
             for (ModelBundle.Component c : ordered) if (seen.add(c.objectId)) { ReentrantLock lock = componentLock(c.objectId); lock.lockInterruptibly(); locked.add(lock); }
@@ -147,8 +156,8 @@ public final class BundleStore {
                 JSONObject transfer = existing == null ? null : existing.optJSONObject("transfer");
                 if (existing != null && (leases.containsKey(bundle.id) || transfer != null && Arrays.asList("queued", "downloading", "verifying", "installing").contains(transfer.optString("state")))) throw new IOException("Existing bundle is in use or transferring");
             }
-            for (ModelBundle.Component c : bundle.components) {
-                check.run(); File source = sources.get(c.role);
+            for (ModelBundle.Component c : components) {
+                check.run(); File source = selected.get(c.role);
                 if (source == null || !source.isFile() || source.length() != c.bytes || java.nio.file.Files.isSymbolicLink(source.toPath())) throw new IOException("Existing model file is missing or changed");
                 File link = staged.get(c.objectId);
                 if (link == null) {
@@ -175,15 +184,17 @@ public final class BundleStore {
                 if (existing != null && (!DataFiles.canonical(existing.getJSONObject("manifest")).equals(DataFiles.canonical(bundle.json())) || leases.containsKey(bundle.id))) throw new IOException("Bundle changed or is in use during adoption");
                 JSONObject transfer = existing == null ? null : existing.optJSONObject("transfer");
                 if (transfer != null && Arrays.asList("queued", "downloading", "verifying", "installing").contains(transfer.optString("state"))) throw new IOException("Bundle transfer started during adoption");
-                for (ModelBundle.Component c : bundle.components) {
+                for (ModelBundle.Component c : components) {
                     File target = object(c.objectId);
                     if (!target.exists()) DataFiles.move(staged.get(c.objectId), target);
                     if (!target.isFile() || target.length() != c.bytes || target.lastModified() != receipts.get(c.objectId).getLong("modified")) throw new IOException("Adopted component changed before commit");
                     next.getJSONObject("objects").put(c.objectId, receipts.get(c.objectId).put("modified", target.lastModified()).put("verifiedAt", System.currentTimeMillis()));
                 }
                 if (existing == null) existing = new JSONObject().put("manifest", bundle.json()).put("settings", bundle.parameters().normalize(new JSONObject(), settings).getJSONObject("values"));
-                existing.put("installed", true).put("installedAt", System.currentTimeMillis()).put("error", "");
-                existing.put("transfer", new JSONObject().put("state", "installed").put("token", "").put("error", "").put("origin", "existing_app_files"));
+                boolean ready = complete(bundle, next);
+                existing.put("installed", ready).put("error", "");
+                if (ready) existing.put("installedAt", System.currentTimeMillis()); else existing.remove("installedAt");
+                existing.put("transfer", new JSONObject().put("state", ready ? "installed" : "paused").put("token", "").put("error", "").put("origin", "existing_app_files"));
                 entries.put(bundle.id, existing); check.run(); persist(next);
             }
         } finally {

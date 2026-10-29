@@ -3397,7 +3397,7 @@
   "model_inference": false,
   "physical_android": false,
   "input_fingerprint": {
-    "catalogue/model-bundles.json": "2c99810290d2ec2d6f7866dfb4a2d3f8e2f204e108a5bffe21c68fbfb1fb4150",
+    "catalogue/model-bundles.json": "bb2272dfa95443c9391fb858fd19b52d539126ca209319c190b420e734bc97b8",
     "native/qwen_tts/model_contract.hpp": "e52ec225335a04120410ff5104e4cccf0c22a3dc5132b5272af6b0b88b889610",
     "third_party/qwen-tts-source-lock.json": "af76ff53e4b0592c0d141d307bf5fcf85b6e7f8cab17238b22d28f3b0796fb8b",
     "tools/audit_qwen_headers.py": "4f31d7af991be956e47c461d26aa8c403c0c2f07f7fb1b563f7e908bc127b9fc"

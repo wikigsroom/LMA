@@ -130,3 +130,6 @@ dev.21 SoulX App接入使用 [中文](SOULX_ENGINE.md) / [English](SOULX_ENGINE.
 当前内部APK为dev.22/code26，[双语方案](MODEL_PREPARATION.md)及[编号交付](releases/v0.3.0-dev.22.md)记录完整余项。原生准备器/无参数结构图的打包身份、44项核心契约、完整训练转换、UI夹具与Android执行分别记录；公开 `preparation-core.json` / `preparation-trained.json`不能代替手机验收。APK构建相关工具采用 `preparation_build_inputs.py`扩展输入指纹，全部模型数学门槛保持。新的截图62–65、MP4/GIF均标明演示。不得以此内部检查点新建完整v0.3.0 Release，所有冻结门槛仍须通过。
 
 The dev.22/code26 internal APK has separate packaging, host core/trained conversion, UI-fixture and Android scopes. Preparation receipts cannot establish device acceptance. APK tools include preparation sources in their fingerprints; numerical gates remain unchanged. Refresh bilingual docs/media together, preserve original signing identity and publish the complete v0.3.0 only after every frozen gate passes.
+
+
+Runtime association / 运行模型关联后续需执行 `python tools/test_assemblies.py`，完整训练准备完成后执行 `python tools/test_assemblies.py --trained`；重跑共用队列、API/UI、APK/包/Lint，并导出 `assembly-core.json` / `assembly-trained.json`。完整训练文件关联仅证明主机文件身份、硬链接及缺失依赖暂停，不代替模型生成、Android或正式Release。见[中文](MODEL_ASSEMBLY.md) / [English](MODEL_ASSEMBLY.en.md)。

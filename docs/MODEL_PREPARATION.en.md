@@ -13,7 +13,7 @@
 5. Explicitly start preparation and manage it in Tasks. It shares the execution slot with text and generation jobs, parks resident text before running, and supports cancellation and explicit retry. Memory, thermal, storage and identity failures are reported locally.
 6. Manage derived files separately in model details. Deleting them preserves source weights and settings. Deleting source weights still leaves their derived files visible and manageable under Local.
 
-This candidate supplies only the original checkpoint. User-facing T5 acquisition and the production video adapter remain open. Successful preparation neither enables a missing generator nor downloads additional dependencies. An unrelated checkpoint cannot use this exact conversion contract.
+This candidate supplies only the original checkpoint. dev.23 adds explicit [runtime association](MODEL_ASSEMBLY.en.md) followed by user-selected T5 download/import; the production video adapter remains open. Successful preparation neither enables a missing generator nor downloads additional dependencies. An unrelated checkpoint cannot use this exact conversion contract.
 
 ## Foundation structure
 

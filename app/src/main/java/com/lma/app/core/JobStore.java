@@ -51,6 +51,14 @@ public final class JobStore {
         }
         return false;
     }
+    public synchronized boolean referencesPrepared(String id) throws Exception {
+        ModelBundle.key(id); JSONArray jobs = state.getJSONArray("jobs");
+        for (int i = 0; i < jobs.length(); i++) {
+            JSONObject job = jobs.getJSONObject(i), request = job.getJSONObject("request");
+            if (!TERMINAL.contains(job.getString("state")) && id.equals(request.optString("preparedAssetsId"))) return true;
+        }
+        return false;
+    }
     public synchronized JSONArray snapshot() throws Exception { JSONArray jobs = state.getJSONArray("jobs"), result = new JSONArray(); for (int i = 0; i < jobs.length(); i++) result.put(publicJob(jobs.getJSONObject(i))); return result; }
     public synchronized JSONArray summaries() throws Exception {
         JSONArray jobs = snapshot();
@@ -72,7 +80,7 @@ public final class JobStore {
         validateKey(idempotencyKey);
         if (request.toString().length() > 32000) throw new IllegalArgumentException("Task request is too large");
         String type = request.getString("type");
-        if (!Arrays.asList("text.generate", "image.generate", "video.generate", "speech.synthesize", "audio.generate", "model.prepare").contains(type)) throw new IllegalArgumentException("Unknown local task type");
+        if (!Arrays.asList("text.generate", "image.generate", "video.generate", "speech.synthesize", "audio.generate", "model.prepare", "model.assemble").contains(type)) throw new IllegalArgumentException("Unknown local task type");
         ModelBundle.key(request.getString("bundleId"));
         JSONArray jobs = state.getJSONArray("jobs"); int pending = 0;
         for (int i = 0; i < jobs.length(); i++) {
@@ -128,6 +136,10 @@ public final class JobStore {
         if (!find(state, id).getJSONObject("request").getString("type").equals("model.prepare")) throw new IOException("A generation task cannot finish as asset preparation");
         finishResult(id, token, new JSONArray(), prepared, error);
     }
+    public synchronized void finishAssembly(String id, String token, JSONObject assembly, String error) throws Exception {
+        if (!find(state, id).getJSONObject("request").getString("type").equals("model.assemble")) throw new IOException("Only an assembly task can finish with an association receipt");
+        finishResult(id, token, new JSONArray(), assembly, error);
+    }
     private void finishResult(String id, String token, JSONArray artifacts, JSONObject prepared, String error) throws Exception {
         JSONObject next = DataFiles.copy(state), job = find(next, id);
         if (token.isEmpty() || !token.equals(job.optString("token")) || TERMINAL.contains(job.getString("state"))) throw new IOException("Stale task completion rejected");
@@ -140,6 +152,14 @@ public final class JobStore {
                 JSONObject request = job.getJSONObject("request"); ModelBundle.key(prepared.getString("id"));
                 if (!prepared.getString("planId").equals(request.getString("preparationId")) || !prepared.getString("planFingerprint").equals(request.getString("planFingerprint")) || prepared.getJSONArray("outputs").length() < 1) throw new IllegalArgumentException("Prepared assets do not match the immutable task");
                 job.put("preparation", DataFiles.copy(prepared));
+            } else if (job.getJSONObject("request").getString("type").equals("model.assemble")) {
+                JSONObject request = job.getJSONObject("request");
+                if (prepared == null || !prepared.getString("schema").equals("lma.model-assembly-result/1") || !prepared.getString("jobId").equals(id)
+                        || !prepared.getString("bundleId").equals(request.getString("bundleId")) || !prepared.getString("preparedAssetsId").equals(request.getString("preparedAssetsId"))
+                        || !prepared.getString("assemblyId").equals(request.getString("assemblyId")) || !prepared.getString("assemblyFingerprint").equals(request.getString("assemblyFingerprint"))
+                        || !prepared.getString("sourceFingerprint").equals(request.getString("assemblySourceFingerprint")) || prepared.getInt("linkedComponents") < 1 || prepared.getLong("linkedBytes") < 1
+                        || prepared.getBoolean("automaticDownloads") || prepared.getBoolean("modelInference") || prepared.getBoolean("physicalAndroid")) throw new IllegalArgumentException("Assembly receipt does not match the immutable local task");
+                job.put("assembly", DataFiles.copy(prepared));
             } else if (artifacts == null || artifacts.length() == 0) throw new IllegalArgumentException("A successful generation requires a committed output artifact");
             job.put("state", "succeeded").put("artifacts", new JSONArray(artifacts.toString()));
         }

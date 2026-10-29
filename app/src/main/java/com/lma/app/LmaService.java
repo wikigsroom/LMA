@@ -90,7 +90,7 @@ public final class LmaService extends Service {
                 case "submitTask": requireJobs(); api.start(); command.put("result", localJobs.submit(command.getJSONObject("request"), command.optString("idempotencyKey"))); break;
                 case "deletePreparedAssets": {
                     requireJobs(); if (app.prepared == null) throw new IllegalStateException("准备资产存储不可用");
-                    app.prepared.remove(command.getString("id")); break;
+                    app.prepared.remove(command.getString("id"), app.jobs); break;
                 }
                 case "cancelTask": requireJobs(); localJobs.cancel(command.getString("id")); break;
                 case "deleteTask": requireJobs(); app.jobs.remove(command.getString("id")); break;

@@ -8,6 +8,12 @@ import java.util.*;
 public final class TaskInput {
     private TaskInput() {}
     public static JSONObject validate(JSONObject source) throws Exception {
+        if ("model.assemble".equals(source.optString("type"))) {
+            for (Iterator<String> it = source.keys(); it.hasNext();) if (!Arrays.asList("bundleId", "type", "preparedAssetsId", "assemblyId", "assemblyFingerprint").contains(it.next())) throw new IllegalArgumentException("Assembly accepts selected asset IDs and a signed plan, never paths or downloads");
+            ModelBundle.key(source.getString("bundleId")); ModelBundle.key(source.getString("assemblyId"));
+            if (!source.getString("preparedAssetsId").matches("prep_[a-f0-9]{32}") || !Protocol.isSha256(source.getString("assemblyFingerprint"))) throw new IllegalArgumentException("Select prepared assets and the current App assembly plan");
+            return DataFiles.copy(source);
+        }
         if ("model.prepare".equals(source.optString("type"))) {
             for (Iterator<String> it = source.keys(); it.hasNext();) if (!Arrays.asList("bundleId", "type", "preparationId", "planFingerprint").contains(it.next())) throw new IllegalArgumentException("Unknown preparation field; paths and executable modules cannot be supplied");
             ModelBundle.key(source.getString("bundleId")); ModelBundle.key(source.getString("preparationId"));

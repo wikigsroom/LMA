@@ -15,7 +15,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 def main():
     names = ("Store", "Downloads", "Net", "ApiHost", "EngineHost", "ChatRunner", "HubClient", "HubCatalog", "ModelSettings", "GgufMetadata", "LocalEngine", "LocalJobs", "NativeWorker")
-    inputs = fingerprint("app/src/main/java/com/lma/app/core", *["app/src/main/java/com/lma/app/" + n + ".java" for n in names], "tests/host", "tests/scheduler-host", "app/src/main/assets/models.json", "app/src/main/assets/recipe-templates.json", "tools/test_scheduler.py")
+    inputs = fingerprint("app/src/main/java/com/lma/app/core", *["app/src/main/java/com/lma/app/" + n + ".java" for n in names], "tests/host", "tests/scheduler-host", "tests/PreparationTest.java", "app/src/main/assets/models.json", "app/src/main/assets/recipe-templates.json", "tools/test_scheduler.py")
     dep = ROOT / "build/test-deps/json-20250517.jar"
     assert hashlib.sha256(dep.read_bytes()).hexdigest() == "3ea61b2a06e31edf1c91134fe9106b0ebb16628be169f3db75bc7a2b06b45796"
     out = ROOT / "build/scheduler-tests"; out.mkdir(exist_ok=True)
@@ -28,6 +28,7 @@ def main():
     sources = sorted((ROOT / "app/src/main/java/com/lma/app/core").glob("*.java"))
     sources += [p for p in sorted((ROOT / "tests/host").rglob("*.java")) if p.name != "LocalJobs.java"]
     sources += sorted((ROOT / "tests/scheduler-host").rglob("*.java"))
+    sources += [ROOT / "tests/PreparationTest.java"]
     sources += [ROOT / "app/src/main/java/com/lma/app" / (n + ".java") for n in names]
     rsp = out / "sources.rsp"; rsp.write_text("\n".join('"' + p.as_posix() + '"' for p in sources), encoding="utf-8")
     subprocess.run([shutil.which("javac"), "-J-Duser.language=en", "-encoding", "UTF-8", "-Xlint:-options", "--release", "8", "-cp", str(dep), "-d", str(classes), "@" + str(rsp)], cwd=ROOT, check=True)

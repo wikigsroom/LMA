@@ -30,7 +30,7 @@ def main():
         for c in bundle["components"]:
             assert re.fullmatch("[0-9a-f]{64}", c["sha256"]) and c["bytes"] > 0
             checked = components[c["role"]]
-            assert all(c[key] == checked[key] for key in ("path", "bytes", "sha256", "repository", "revision"))
+            assert all(c.get(key, "") == checked.get(key, "") for key in ("path", "bytes", "sha256", "repository", "revision"))
             if checked["kind"] in ("hf_lfs", "downloaded_small_data"):
                 assert re.fullmatch("[0-9a-f]{40,64}", c["revision"])
                 assert c["url"] == "https://huggingface.co/" + c["repository"] + "/resolve/" + c["revision"] + "/" + c["path"]
@@ -38,6 +38,32 @@ def main():
                 assert c["repository"] == "k2-fsa/sherpa-onnx" and c["revision"] == "github_asset_" + str(checked["assetId"])
                 assert c["url"].startswith("https://github.com/k2-fsa/sherpa-onnx/releases/download/") and c["url"].endswith("/" + c["path"])
                 assert checked.get("publisherDigest") == "sha256:" + c["sha256"] or urlparse(checked["crossCheckedShaSource"]).netloc == "huggingface.co"
+            elif checked["kind"] == "measured_prepared_output":
+                preparation = next(p for p in json.loads((ROOT / "catalogue/asset-preparations.json").read_text(encoding="utf-8"))["plans"] if p["id"] == checked["preparationId"])
+                declared = next(o for stage in preparation["stages"] for o in stage["outputs"] if o["role"] == c["role"])
+                assert (c["path"], c["bytes"], c["sha256"]) == (declared["file"], declared["bytes"], declared["sha256"]) and not c.get("url")
+                path = ROOT / checked["source"]; measured = json.loads(path.read_text(encoding="utf-8")); current(measured["input_fingerprint"])
+                assert measured["passed"] and measured["actual_trained_conversions"] == 1
+                if c["role"] == "diffusion_model":
+                    assert checked["source"] == "verification/development/ltx098-prepare.json"
+                    actual = measured["trained"]["native"]
+                    assert (c["bytes"], c["sha256"]) == (actual["output_bytes"], actual["output_sha256"])
+                else:
+                    assert checked["source"] == "verification/development/ltx098-vae-prepare.json"
+                    actual = measured["trained_conversion"]
+                    if c["role"] == "vae_manifest": assert (c["bytes"], c["sha256"]) == (actual["manifest_bytes"], actual["manifest_sha256"])
+                    else:
+                        item = next(item for item in actual["assets"] if item["file"] == c["path"])
+                        assert (c["bytes"], c["sha256"]) == (item["bytes"], item["sha256"])
+            elif checked["kind"] == "measured_text_input":
+                assert checked["source"] == "verification/development/ltx098-text.json" and checked["live_hf_metadata_checked_this_update"] is False
+                measured = json.loads((ROOT / checked["source"]).read_text(encoding="utf-8")); current(measured["input_fingerprint"])
+                lock = json.loads((ROOT / "third_party/ltx098-text-source-lock.json").read_text(encoding="utf-8"))
+                assert measured["host_model_inference_tested"] and measured["trained"]["model"] == lock["model"]
+                assert c["role"] in ("text_encoder", "tokenizer_config")
+                item = lock["model"] if c["role"] == "text_encoder" else lock["runtime_tokenizer_config"]
+                assert (c["repository"], c["revision"], c["path"], c["bytes"], c["sha256"]) == (item["repo"], item["revision"], item["file"], item["bytes"], item["sha256"])
+                assert c["url"] == "https://huggingface.co/" + item["repo"] + "/resolve/" + item["revision"] + "/" + item["file"]
             elif checked["kind"] == "measured_checkpoint":
                 # Immutable source identity measured from the complete developer-selected file.
                 # This does not claim that the current HF metadata/download endpoint was reached.
@@ -54,6 +80,22 @@ def main():
             else: raise AssertionError("Unreviewed catalogue component evidence")
     assert ids == set(proofs), "Each shipped candidate requires individual component evidence"
     (ROOT / "app/src/main/assets/model-bundles.json").write_bytes(data)
+    # Association plans are signed metadata, with identity bindings computed by
+    # the production Java constructor from these exact App-delivered manifests.
+    assembly_path = ROOT / "catalogue/model-assemblies.json"
+    assembly_data = assembly_path.read_bytes(); assemblies = json.loads(assembly_data)
+    assert assemblies["schema"] == "lma.model-assembly-catalogue/1"
+    preparations = {p["id"]: p for p in json.loads((ROOT / "catalogue/asset-preparations.json").read_text(encoding="utf-8"))["plans"]}
+    models = {b["id"]: b for b in catalogue["bundles"]}; assembly_ids = set()
+    for plan in assemblies["plans"]:
+        assert plan["schema"] == "lma.model-assembly/1" and plan["id"] not in assembly_ids
+        assembly_ids.add(plan["id"]); assert plan["sourceBundleId"] in models and plan["sourceBundleId"] != plan["bundleId"]
+        outputs = {o["role"]: o for stage in preparations[plan["preparationId"]]["stages"] for o in stage["outputs"]}
+        target = {c["role"]: c for c in models[plan["bundleId"]]["components"]}
+        assert len({r["source"] for r in plan["roles"]}) == len({r["target"] for r in plan["roles"]}) == len(plan["roles"])
+        for role in plan["roles"]:
+            assert all(outputs[role["source"]][k] == target[role["target"]][k] for k in ("bytes", "sha256"))
+    (ROOT / "app/src/main/assets/model-assemblies.json").write_bytes(assembly_data)
     print(json.dumps({"bundles": len(ids), "model_assets_downloaded": False, "catalogue_sha256": hashlib.sha256(data).hexdigest()}))
 
 

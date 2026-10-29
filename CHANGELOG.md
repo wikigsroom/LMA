@@ -1,5 +1,11 @@
 # Changelog / 更新记录
 
+## 0.3.0-dev.23 — user-selected runtime model association / unreleased
+
+新增通用签名关联方案、实际环境依赖指纹绑定、`model.assemble`共用任务、排队/运行引用保护、完整验哈希及本地硬链接复用。7个固定候选中新增旧LTX社区Google T5 Q5单尺度运行资产：20个派生组件复用，2项T5依赖由用户随后明确下载/导入，缺失时暂停、未安装。原模型参数和两份记录的独立删除保留。47项核心契约、生产队列/API检查、真实训练文件关联、原签名APK code27、中英说明及截图66–68/录屏/GIF同步。
+
+Signed association plans bind preparation/runtime identities and share jobs, cancellation, explicit retry and storage. No automatic downloads, model bytes in the APK, remote execution or generation-engine availability is introduced. Actual trained asset association is a HOST filesystem check; UI media uses explicit fixtures. Six full-chain float failures, every frozen subtarget and all Android/background gates remain required for one complete v0.3.0. [中文](docs/MODEL_ASSEMBLY.md) / [English](docs/MODEL_ASSEMBLY.en.md) / [Numbered delivery and full pending scope](docs/releases/v0.3.0-dev.23.md).
+
 ## 0.3.0-dev.22 — explicit local runtime preparation / unreleased
 
 用户下载/导入固定源模型后明确选择准备；签名方案、两个原生程序、共享任务/执行槽、独立派生存储/恢复/删除、源删除后本地可管理、过热/空间/内存检查。生产Java核心处理完整旧LTX源文件并校验20个结果（6,061,184,991字节），44项生命周期契约通过；两个准备器的Android父进程结束保护及主机/ARM64重编译。原签名APK code26含29原生文件和九份审计无参数图，不含学习模型数据。双语文档、截图62–65、录像/GIF与编号待办同步。

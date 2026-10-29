@@ -136,6 +136,8 @@ def main():
         check_ltx_vae_prepare(records, status, digest, ROOT)
         from check_preparation_evidence import check as check_preparations
         check_preparations(records, status, digest, ROOT)
+        from check_assembly_evidence import check as check_assemblies
+        check_assemblies(records, status, digest, ROOT)
         vae_lock = json.loads((ROOT / "third_party/ltx098-vae-source-lock.json").read_text(encoding="utf-8"))
         assert vae["checks"] >= 355 and vae["native_children"] >= 36 and len(vae["metrics"]) == 40 and len(vae["guards"]) >= 31
         assert vae["trained_decoder_tensors"] == 132 and vae["trained_decoder_parameters"] == 552814641

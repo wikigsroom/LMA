@@ -4,7 +4,7 @@
   var $ = function (id) { return document.getElementById(id); };
   var labels = {text: '生文', image: '生图', video: '生视频', audio: '生音频'};
   var states = {queued: '排队中', loading: '加载中', running: '生成中', cancelling: '取消中', cancelled: '已取消', failed: '失败', succeeded: '已完成', interrupted: '已中断'};
-  var stages = {queued: '等待执行', waiting_engine: '等待本机执行槽', validating_inputs: '校验本地素材', loading: '加载模型', loading_diffusion: '加载生图组件', sampling: '采样中', encoding: '编码媒体', synthesizing: '合成语音', text_encoding: '编码文本', encoding_text: '编码文本', decoding: '解码输出', generating: '生成文本', saving: '保存结果'};
+  var stages = {queued: '等待执行', waiting_engine: '等待本机执行槽', validating_inputs: '校验本地素材', loading: '加载模型', loading_diffusion: '加载生图组件', sampling: '采样中', encoding: '编码媒体', synthesizing: '合成语音', text_encoding: '编码文本', encoding_text: '编码文本', decoding: '解码输出', generating: '生成文本', saving: '保存结果', associating_runtime_assets: '关联本地组件'};
   var paramNames = {width: '宽度', height: '高度', frames: '帧数', fps: '帧率', steps: '采样步数', cfg: '提示词引导', seed: '随机种子', threads: 'CPU 线程', sampler: '采样器', scheduler: '调度器', duration: '时长（秒）', speed: '语速', context: '上下文长度', maxTokens: '单次输出上限', temperature: '采样温度', reasoning: '思考模式', systemPrompt: '系统提示词'};
   function entries() { return ui.state() && ui.state().bundles || []; }
   function find(id) { return entries().filter(function (b) { return b.id === id; })[0]; }
@@ -53,8 +53,16 @@
     return '<section class="preparation-section"><h3>运行资产</h3><p>从已下载或导入的源模型准备运行文件。源文件与模型设置保留，准备后的文件可单独管理。</p>' + plans.map(function (plan) {
       return '<article class="hub-file"><strong>' + e(plan.name) + '</strong><p>' + ui.bytes(plan.outputBytes) + ' · ' + (plan.ready ? '已准备' : '待准备') + '</p><button class="button secondary" data-action="preparationInfo" data-id="' + e(b.id) + '" data-preparation="' + e(plan.id) + '"' + (!b.installed || b.inUse || plan.ready ? ' disabled' : '') + '>查看准备方案</button>' + (!b.installed ? '<small>先选择下载或文件夹导入，再准备运行资产。</small>' : '') + '</article>';
     }).join('') + prepared.map(function (record) {
-      return '<article class="hub-file"><strong>' + (record.available ? '已准备的运行资产' : '运行资产缺失或已改变') + '</strong><p>' + ui.bytes(record.bytes) + ' · ' + new Date(record.createdAt).toLocaleString('zh-CN') + '</p>' + button('preparedRemove', record.id, '删除准备资产', 'danger', record.inUse) + '</article>';
+      return '<article class="hub-file"><strong>' + (record.available ? '已准备的运行资产' : '运行资产缺失或已改变') + '</strong><p>' + ui.bytes(record.bytes) + ' · ' + new Date(record.createdAt).toLocaleString('zh-CN') + '</p>' + button('preparedRemove', record.id, '删除准备资产', 'danger', record.inUse) + (record.assemblyPlans || []).map(function (plan) { return '<p>' + button(plan.associated ? 'bundleInfo' : 'assemblyInfo', plan.associated ? plan.bundleId : record.id, plan.associated ? '管理运行模型' : '查看关联方案', 'secondary', !plan.associated && (!record.available || record.inUse)).replace('data-id=', 'data-assembly="' + e(plan.id) + '" data-id=') + '</p>'; }).join('') + '</article>';
     }).join('') + '</section>';
+  }
+  function assemblyInfo(id, planId) {
+    var record, plan;
+    entries().some(function (b) { record = (b.preparedAssets || []).filter(function (r) { return r.id === id; })[0]; return !!record; });
+    if (!record || !record.available || record.inUse) return;
+    plan = (record.assemblyPlans || []).filter(function (p) { return p.id === planId; })[0]; if (!plan || plan.associated) return;
+    var target = find(plan.bundleId); if (!target) return;
+    editor = null; ui.openModal('关联运行模型', '<div class="model-info"><h3>' + e(target.manifest.name) + '</h3><p>' + e(target.manifest.description) + '</p><dl><dt>复用本地组件</dt><dd>' + plan.linkedComponents + ' 个 · ' + ui.bytes(plan.linkedBytes) + '</dd><dt>仍需选择的依赖</dt><dd>' + (plan.remainingComponents || []).map(function (c) { return e(c.path) + ' · ' + ui.bytes(c.bytes); }).join('<br>') + '</dd></dl><p>点击后加入本机队列，校验并关联已有文件，不额外复制模型。缺少的依赖保持未安装、暂停状态，由你随后选择下载或导入。关联完成后可独立管理两份记录，生成能力和设备兼容性以模型状态为准。</p><div class="modal-actions"><button class="button primary" data-action="assembleAssets" data-id="' + e(id) + '" data-assembly="' + e(plan.id) + '" data-bundle="' + e(plan.bundleId) + '" data-fingerprint="' + e(plan.fingerprint) + '">开始关联</button></div></div>', 'assemblyInfo');
   }
   function preparationInfo(id, planId) {
     var b = find(id); if (!b) return;
@@ -231,7 +239,7 @@
     $('jobList').innerHTML = jobs.length ? jobs.slice().reverse().map(function (job) {
       var b = find(job.request.bundleId), terminal = ['cancelled', 'failed', 'succeeded', 'interrupted'].indexOf(job.state) >= 0;
       var progress = typeof job.progress === 'number' ? '<progress max="1" value="' + Math.max(0, Math.min(1, job.progress)) + '" aria-label="任务进度"></progress>' : '';
-      return '<article class="job-card"><div class="section-heading"><strong>' + e(b ? b.manifest.name : job.request.bundleId) + '</strong><span class="status-pill">' + e(job.stage === 'waiting_engine' && ['loading', 'running'].indexOf(job.state) >= 0 ? '排队中' : job.request.type === 'model.prepare' && job.state === 'running' ? '准备中' : states[job.state] || job.state) + '</span></div><p class="job-prompt">' + e(job.request.type === 'model.prepare' ? '模型运行资产准备' : job.request.inputSummary || job.request.input && job.request.input.prompt || '') + '</p><p class="form-help">' + e(job.stage && job.stage.indexOf('preparing_') === 0 ? '准备运行组件' : job.stage === 'verifying_prepared_assets' ? '校验准备资产' : stages[job.stage] || job.stage || '') + ' · ' + new Date(job.createdAt).toLocaleString('zh-CN') + '</p>' + progress + (job.error ? '<p class="download-error">' + e(job.error) + '</p>' : '') + '<div class="job-actions">' + button('jobInfo', job.id, '详情') + (!terminal ? button('cancelTask', job.id, '取消任务', 'danger', job.state === 'cancelling') : ['failed', 'interrupted', 'cancelled'].indexOf(job.state) >= 0 ? button('retryTask', job.id, '重试') : '') + (terminal ? button('deleteTask', job.id, '删除记录') : '') + '</div></article>';
+      return '<article class="job-card"><div class="section-heading"><strong>' + e(b ? b.manifest.name : job.request.bundleId) + '</strong><span class="status-pill">' + e(job.stage === 'waiting_engine' && ['loading', 'running'].indexOf(job.state) >= 0 ? '排队中' : ['model.prepare', 'model.assemble'].indexOf(job.request.type) >= 0 && job.state === 'running' ? job.request.type === 'model.prepare' ? '准备中' : '关联中' : states[job.state] || job.state) + '</span></div><p class="job-prompt">' + e(job.request.type === 'model.prepare' ? '模型运行资产准备' : job.request.type === 'model.assemble' ? '模型运行资产关联' : job.request.inputSummary || job.request.input && job.request.input.prompt || '') + '</p><p class="form-help">' + e(job.stage && job.stage.indexOf('preparing_') === 0 ? '准备运行组件' : job.stage === 'verifying_prepared_assets' ? '校验准备资产' : stages[job.stage] || job.stage || '') + ' · ' + new Date(job.createdAt).toLocaleString('zh-CN') + '</p>' + progress + (job.error ? '<p class="download-error">' + e(job.error) + '</p>' : '') + '<div class="job-actions">' + button('jobInfo', job.id, '详情') + (!terminal ? button('cancelTask', job.id, '取消任务', 'danger', job.state === 'cancelling') : ['failed', 'interrupted', 'cancelled'].indexOf(job.state) >= 0 ? button('retryTask', job.id, '重试') : '') + (terminal ? button('deleteTask', job.id, '删除记录') : '') + '</div></article>';
     }).join('') : '<div class="empty-list"><h3>队列里还没有任务</h3><p>在本地模型中选择已安装的模型，填写提示词后加入队列。</p>' + button('showLocal', '', '选择本地模型', 'primary') + '</div>';
   }
   function renderArtifacts() {
@@ -272,6 +280,9 @@
       case 'cancelInputImport': track(action); return true;
       case 'filterArtifacts': artifactKind = ['all', 'generated', 'imported'].indexOf(el.dataset.kind) >= 0 ? el.dataset.kind : 'all'; renderArtifacts(); return true;
       case 'bundleInfo': info(id); return true;
+      case 'assemblyInfo': assemblyInfo(id, el.dataset.assembly); return true;
+      case 'assembleAssets':
+        track('submitTask', {request: {type: 'model.assemble', bundleId: el.dataset.bundle, preparedAssetsId: id, assemblyId: el.dataset.assembly, assemblyFingerprint: el.dataset.fingerprint}}, function () { ui.closeModal(); ui.route('tasks'); ui.toast('运行模型关联已加入本机队列'); }); return true;
       case 'preparationInfo': preparationInfo(id, el.dataset.preparation); return true;
       case 'prepareAssets':
         track('submitTask', {request: {type: 'model.prepare', bundleId: id, preparationId: el.dataset.preparation, planFingerprint: el.dataset.fingerprint}}, function () { ui.closeModal(); ui.route('tasks'); ui.toast('运行资产准备已加入本机队列'); }); return true;

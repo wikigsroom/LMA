@@ -9,6 +9,6 @@
     "third_party/runtime-lock.json": "839687301b04bb7b29443e01f8e0efee892cc01858fba85b5b78fd3fa0ed5e62",
     "tools/native_payload.py": "bb831ad2c08ac0ef7817272ac94c098bb47576fc658de30f482d2dd6d5edac06",
     "tools/test_native_payload.py": "e0f2efaff54bb1e2452906205f72f120eb99fbc397a2e3bf588b539b1109819e",
-    "tools/verify_package.py": "636dbad97530399d2cbb9550689512964fd88646464cb478b0bd06c7924a8376"
+    "tools/verify_package.py": "64323d0a48582fcf1a31230af0bd52cafb853a6036a567163dde2767224da01e"
   }
 }

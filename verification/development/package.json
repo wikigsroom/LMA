@@ -1,6 +1,6 @@
 {
-  "apk": "LMA-0.3.0-dev.22-arm64-v8a.apk",
-  "sha256": "185ff85dc3a56dc93dc781f0259b1ab1c33f115eba491ecbde55133fcab3f4fa",
+  "apk": "LMA-0.3.0-dev.23-arm64-v8a.apk",
+  "sha256": "77e84be63d0c4bcf9ddc445eeea9aa983c63efeb1169a5197633ed67877acbe3",
   "native_libraries_verified": 29,
   "all_native_dependencies_resolved": true,
   "all_elf_load_segments_16k_aligned": true,
@@ -569,6 +569,6 @@
   "input_fingerprint": {
     "catalogue/uncensored-evidence.json": "63f05e854772ade227750b19cb2288ebe53abb0d346ccc08cf5317b768ef5082",
     "third_party/BUILD_INFO.json": "de40253f34d47e5b692e8cd97d87eaa4ecbe549303718f69d286c85f81422acc",
-    "tools/verify_package.py": "636dbad97530399d2cbb9550689512964fd88646464cb478b0bd06c7924a8376"
+    "tools/verify_package.py": "64323d0a48582fcf1a31230af0bd52cafb853a6036a567163dde2767224da01e"
   }
 }

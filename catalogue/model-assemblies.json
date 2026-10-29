@@ -1,0 +1,95 @@
+{
+  "schema": "lma.model-assembly-catalogue/1",
+  "plans": [
+    {
+      "schema": "lma.model-assembly/1",
+      "id": "ltx098_google_q5_runtime_v1",
+      "name": "关联运行模型 · Google T5 Q5",
+      "sourceBundleId": "ltx098_source_r8984fa2",
+      "preparationId": "ltx098_dit_vae_v1",
+      "bundleId": "ltx098_runtime_google_q5_v1",
+      "roles": [
+        {
+          "source": "diffusion_model",
+          "target": "diffusion_model"
+        },
+        {
+          "source": "vae_graph_0",
+          "target": "vae_graph_0"
+        },
+        {
+          "source": "vae_data_0",
+          "target": "vae_data_0"
+        },
+        {
+          "source": "vae_graph_1",
+          "target": "vae_graph_1"
+        },
+        {
+          "source": "vae_data_1",
+          "target": "vae_data_1"
+        },
+        {
+          "source": "vae_graph_2",
+          "target": "vae_graph_2"
+        },
+        {
+          "source": "vae_data_2",
+          "target": "vae_data_2"
+        },
+        {
+          "source": "vae_graph_3",
+          "target": "vae_graph_3"
+        },
+        {
+          "source": "vae_data_3",
+          "target": "vae_data_3"
+        },
+        {
+          "source": "vae_graph_4",
+          "target": "vae_graph_4"
+        },
+        {
+          "source": "vae_data_4",
+          "target": "vae_data_4"
+        },
+        {
+          "source": "vae_graph_5",
+          "target": "vae_graph_5"
+        },
+        {
+          "source": "vae_data_5",
+          "target": "vae_data_5"
+        },
+        {
+          "source": "vae_graph_6",
+          "target": "vae_graph_6"
+        },
+        {
+          "source": "vae_data_6",
+          "target": "vae_data_6"
+        },
+        {
+          "source": "vae_graph_7",
+          "target": "vae_graph_7"
+        },
+        {
+          "source": "vae_data_7",
+          "target": "vae_data_7"
+        },
+        {
+          "source": "vae_graph_8",
+          "target": "vae_graph_8"
+        },
+        {
+          "source": "vae_data_8",
+          "target": "vae_data_8"
+        },
+        {
+          "source": "vae_manifest",
+          "target": "vae_manifest"
+        }
+      ]
+    }
+  ]
+}

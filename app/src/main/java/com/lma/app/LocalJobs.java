@@ -29,6 +29,7 @@ public final class LocalJobs implements AutoCloseable {
         if (closed) throw new IllegalStateException("任务服务正在停止");
         input = TaskInput.validate(input);
         if (input.getString("type").equals("model.prepare")) return submitPreparation(input, idempotencyKey);
+        if (input.getString("type").equals("model.assemble")) return submitAssembly(input, idempotencyKey);
         String submissionHash = TaskInput.fingerprint(input);
         JSONObject previous = app.jobs.lookup(idempotencyKey);
         if (previous != null) { if (!submissionHash.equals(previous.getJSONObject("request").optString("submissionHash"))) throw new IllegalStateException("此幂等键已经用于另一个任务请求"); return previous; }
@@ -53,7 +54,7 @@ public final class LocalJobs implements AutoCloseable {
         JSONObject old = app.jobs.get(id);
         if (!java.util.Arrays.asList("failed", "interrupted", "cancelled").contains(old.getString("state"))) throw new IllegalStateException("仅已失败、中断或取消的任务可以重试");
         JSONObject request = DataFiles.copy(old.getJSONObject("request")); request.remove("submissionHash"); request.remove("adjustments"); request.remove("parameterSchemaVersion"); request.remove("adapterAdjustments"); request.remove("textMetadata"); request.remove("inputReceipts"); request.remove("diffusionPlan");
-        request.remove("preparationSource"); request.remove("sourceBundleFingerprint");
+        request.remove("preparationSource"); request.remove("sourceBundleFingerprint"); request.remove("assemblySourceFingerprint");
         return submit(request, key);
     }
     private JSONObject submitPreparation(JSONObject input, String key) throws Exception {
@@ -71,6 +72,20 @@ public final class LocalJobs implements AutoCloseable {
         app.preparations.admission(plan);
         JSONObject request = DataFiles.copy(input).put("submissionHash", hash).put("sourceBundleFingerprint", TaskInput.fingerprint(bundle.json()))
                 .put("preparationSource", new JSONObject().put("role", plan.sourceRole).put("bytes", plan.sourceBytes).put("sha256", plan.sourceSha256));
+        JSONObject job = app.jobs.submit(request, key); app.prefs.edit().putBoolean("desiredJobs", true).apply(); wake(); changed.run(); return job;
+    }
+    private JSONObject submitAssembly(JSONObject input, String key) throws Exception {
+        if (app.assemblies == null || app.prepared == null) throw new IOException("此基座的运行模型关联模块不可用");
+        String hash = TaskInput.fingerprint(input); JSONObject previous = app.jobs.lookup(key);
+        if (previous != null) { if (!hash.equals(previous.getJSONObject("request").optString("submissionHash"))) throw new IOException("幂等键已用于其他请求"); return previous; }
+        AssemblyPlan plan = app.assemblies.require(input);
+        JSONArray queued = app.jobs.snapshot();
+        for (int i = 0; i < queued.length(); i++) {
+            JSONObject job = queued.getJSONObject(i), request = job.getJSONObject("request");
+            if (!java.util.Arrays.asList("succeeded", "failed", "cancelled", "interrupted").contains(job.getString("state")) && request.optString("type").equals("model.assemble") && request.getString("bundleId").equals(plan.bundleId)) throw new IOException("这个运行模型已有资产关联任务，请查看任务页");
+        }
+        app.assemblies.admission();
+        JSONObject request = DataFiles.copy(input).put("submissionHash", hash).put("assemblySourceFingerprint", TaskInput.fingerprint(app.prepared.record(input.getString("preparedAssetsId"))));
         JSONObject job = app.jobs.submit(request, key); app.prefs.edit().putBoolean("desiredJobs", true).apply(); wake(); changed.run(); return job;
     }
     private JSONObject admission(ModelBundle bundle, JSONObject request, boolean executing) throws Exception {
@@ -118,8 +133,17 @@ public final class LocalJobs implements AutoCloseable {
             app.jobs.progress(id, token, "waiting_engine", null); changed.run();
             ExecutionGate.Check check = () -> { if (closed) throw new IOException("任务服务已结束"); app.jobs.check(id, token); };
             owned.await(check); acquired = true; check.run(); parked = true; resident.park(owned); check.run();
-            selection = app.bundles.acquireAll(ModelSelection.ids(request));
             timeout = timer.schedule(() -> { timedOut.set(true); signalStop(activeProcess); }, 2, TimeUnit.HOURS);
+            if (request.getString("type").equals("model.assemble")) {
+                final AssemblyPlan plan = app.assemblies.require(request); app.assemblies.admission();
+                PreparedModelAssembly.Context context = new PreparedModelAssembly.Context() {
+                    @Override public void check() throws IOException { owned.checkOwner(); if (closed || timedOut.get()) throw new IOException("运行模型关联已停止或超时，已校验的本地文件保留"); app.jobs.check(id, token); }
+                    @Override public void progress(String stage) throws Exception { check(); app.jobs.progress(id, token, stage, null); changed.run(); }
+                };
+                JSONObject result = PreparedModelAssembly.run(plan, app.prepared, app.bundles, request, id, context);
+                app.jobs.finishAssembly(id, token, result, ""); return;
+            }
+            selection = app.bundles.acquireAll(ModelSelection.ids(request));
             BundleStore.Lease model = selection.models.get(0);
             if (request.getString("type").equals("model.prepare")) {
                 final PreparationPlan plan = app.preparations.require(request, model.bundle); app.preparations.admission(plan);

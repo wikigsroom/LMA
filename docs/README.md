@@ -6,6 +6,7 @@
 
 | 主题 / Topic | 中文 | English |
 | --- | --- | --- |
+| Runtime model association / 运行模型关联 | [MODEL_ASSEMBLY.md](MODEL_ASSEMBLY.md) | [MODEL_ASSEMBLY.en.md](MODEL_ASSEMBLY.en.md) |
 | Model runtime preparation / 运行资产准备 | [MODEL_PREPARATION.md](MODEL_PREPARATION.md) | [MODEL_PREPARATION.en.md](MODEL_PREPARATION.en.md) |
 | 旧LTX训练VAE / Trained decoder | [中文](LTX098_VAE.md) | [English](LTX098_VAE.en.md) |
 | 安装与操作 / Installation and workflow | [USER_GUIDE.md](USER_GUIDE.md) | [USER_GUIDE.en.md](USER_GUIDE.en.md) |

@@ -1,5 +1,5 @@
 {
-  "version": "0.3.0-dev.22",
+  "version": "0.3.0-dev.23",
   "kind": "development UI with explicit simulated native bridge",
   "android_device": false,
   "model_inference": false,
@@ -266,6 +266,18 @@
     {
       "file": "65-preparation-management.png",
       "caption": "UI FIXTURE / 派生运行资产独立管理；未因此启用生视频引擎"
+    },
+    {
+      "file": "66-assembly-review.png",
+      "caption": "UI FIXTURE / 明确关联 20 个已有组件，T5 两项依赖由用户后续选择；非 Android 实测"
+    },
+    {
+      "file": "67-assembly-queue.png",
+      "caption": "UI FIXTURE / 关联任务复用共用队列与取消流程，没有执行真实转换或推理"
+    },
+    {
+      "file": "68-assembly-dependencies.png",
+      "caption": "UI FIXTURE / 20 个组件可复用，剩余 T5 依赖暂停，需主动下载或导入；生成引擎未注册"
     }
   ],
   "files": [
@@ -296,13 +308,13 @@
     },
     {
       "file": "06-queue-results.png",
-      "bytes": 48665,
-      "sha256": "a7645b77e8ef808928a9e1ace84606af212e514a85aa71771fca476e0fca7482"
+      "bytes": 48621,
+      "sha256": "98d12eec700077f4e0404a7b9aa0ca639732054cb158ade28213bf6465f0a422"
     },
     {
       "file": "07-cancelled.png",
-      "bytes": 48851,
-      "sha256": "697034df2bcb378eda60b37c3e989b6bf24d1998ab4efde6a742a194ab295c08"
+      "bytes": 48806,
+      "sha256": "f9c870a08b68d3601f323aa2e479b7a9904a1bb5e6c72f7ea08a4e8824b31ee9"
     },
     {
       "file": "08-zero-model-api.png",
@@ -371,8 +383,8 @@
     },
     {
       "file": "21-model-version-history.png",
-      "bytes": 49913,
-      "sha256": "092f95c83790d88d3b3423c5900855d99532a724781d329f38d5505f6e6865b5"
+      "bytes": 49631,
+      "sha256": "2516ef4eed2a3cc5ede02e20bc511dccfea3bb9899f0a399e3ce38eba660fb86"
     },
     {
       "file": "22-text-model-settings.png",
@@ -386,8 +398,8 @@
     },
     {
       "file": "24-text-result.png",
-      "bytes": 46970,
-      "sha256": "c3956b0f75632b173bb3c7478bb155318dcac174938f05dcbb16fc4feb8abc74"
+      "bytes": 46995,
+      "sha256": "700167efb4f5817b8324bcddecd832e7235c5e7ed85b7aabced6f08287b5b183"
     },
     {
       "file": "25-migrated-text-model.png",
@@ -586,23 +598,38 @@
     },
     {
       "file": "64-preparation-queue.png",
-      "bytes": 44067,
-      "sha256": "bbbad894dfcdac236014d5d31fba6336a420995608de20f6aa38c00c5ff45218"
+      "bytes": 44162,
+      "sha256": "eff934d9cffe64dab86a41798e78c662d3c390516fb76a3abd76aac34975d515"
     },
     {
       "file": "65-preparation-management.png",
-      "bytes": 43112,
-      "sha256": "4561cd65023578977d1ba8c9077233890807c4f86460da3898c35cfe0442ea20"
+      "bytes": 43259,
+      "sha256": "0c0004af38579292a1d8d61b025314df26677a0425943863aa9a62f824f4a671"
+    },
+    {
+      "file": "66-assembly-review.png",
+      "bytes": 57103,
+      "sha256": "6d3629bc126ea26f17e53ca35dabed5542e43f6123b4e4aa84fbfe642752119d"
+    },
+    {
+      "file": "67-assembly-queue.png",
+      "bytes": 44337,
+      "sha256": "dc4a0e288b27aa7adaddb96b530c40d6f36b8df8dfe75b1301fda57d370588cd"
+    },
+    {
+      "file": "68-assembly-dependencies.png",
+      "bytes": 52086,
+      "sha256": "3e31e13c16c8227b03e3ec3194d21165916a1b2fcea1d67e713c2f1dc35195b4"
     },
     {
       "file": "foundation-ui.gif",
-      "bytes": 9232868,
-      "sha256": "f123c0296556b1178de40adeec842f7393bdbc5a2998148201a22a021f246773"
+      "bytes": 10816107,
+      "sha256": "5c40ed5f6fbde4eeeb9f4c162069d91da845a34da21ce2e68a2dcc1336e46f0b"
     },
     {
       "file": "foundation-ui.mp4",
-      "bytes": 4433557,
-      "sha256": "d68356409b99da79b9a0be52d012f6bdfa4b59e0b423869725503360c603f8bb"
+      "bytes": 4970331,
+      "sha256": "530ce56e7fb17318d0267087f9ec65ad3200a416034b45096d3166627705e3db"
     },
     {
       "file": "ltx098-host-comparison.gif",
@@ -641,7 +668,7 @@
     "app/src/main/assets/asset-preparations.json": "3e11450877047dd4c63f11265d0549c9f50a4d25a33ca5b8f2ee6a44c38f864a",
     "app/src/main/assets/engine-builds.json": "c9e319e7cba397cad1993ad290743a65bc566192339fd6d6c06cbcc99675468d",
     "app/src/main/assets/foundation.css": "7ef5fcb33c697d8d30912eb61524f828af18487ccf037b81e88bdfadcb48ae94",
-    "app/src/main/assets/foundation.js": "ad64a696963ca969745b1f304e155bf051f8cfb41b400910d39d7bc5e108b87c",
+    "app/src/main/assets/foundation.js": "ffbfc2f7e550ff33555b4d5460fca84071553fee5ee81ae9aaa08a0a66970869",
     "app/src/main/assets/index.html": "406a11f10a3380d2db0325ffd148dcb55b2eabe35aa2bcd001864aafa57afd62",
     "app/src/main/assets/license.js": "f429d4bc26c56c52bdc2ea21edd170478211b1d6b0a288c9b03bf53ff970d8bb",
     "app/src/main/assets/licenses/LLAMA_CPP_LICENSE": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
@@ -723,7 +750,8 @@
     "app/src/main/assets/licenses/tts-simple-sentencepiece-LICENSE.txt": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
     "app/src/main/assets/licenses/tts-utf8proc-LICENSE.md.txt": "3b510150d34f248a221bb88e1d811238d6c6c18b51231822c42974c39bb07256",
     "app/src/main/assets/licenses/xxhash-LICENSE.txt": "a2973411d278045bde3c7161b911e0680d53e2d73d6457c77068d2e55d816d67",
-    "app/src/main/assets/model-bundles.json": "2c99810290d2ec2d6f7866dfb4a2d3f8e2f204e108a5bffe21c68fbfb1fb4150",
+    "app/src/main/assets/model-assemblies.json": "05beff21c0652a4fdd0255c438e695c099a2d06e16af19f12d1e254210ef32a6",
+    "app/src/main/assets/model-bundles.json": "bb2272dfa95443c9391fb858fd19b52d539126ca209319c190b420e734bc97b8",
     "app/src/main/assets/models.json": "c3e884b4e5fb06f20c036deebc78e6f953ac420e76fca72bab5a25fd59927156",
     "app/src/main/assets/preparations/ltx098_vae_prepare/stage-00.onnx": "33f367287eaf5bc67aead22132d9d73aeaf66b51387bbc3a032a1c7eb936ff8b",
     "app/src/main/assets/preparations/ltx098_vae_prepare/stage-01.onnx": "29ede53a11d80957e6f0abe38780511c267762feba725b49c29bd36fa35d31b3",
@@ -737,6 +765,7 @@
     "app/src/main/assets/recipe-templates.json": "4abedebe4d01f45e4d0b22506071c83bfddeb3e6750950630a9ff5a5f5b5b958",
     "app/src/main/assets/recipes.js": "648e1ff046ab20e2ae7f658a7cb82c895c042ea81dca5cd943141626eea6deba",
     "app/src/main/assets/versions.js": "2d629929a6db642c12a242ddcc62cd4f4090ab307e0cb669ceb98add031977e1",
+    "tests/assemblies-ui.cjs": "5ced7e682506087b880a025b83acac600bb36f8203c99910c0d7070a06deded4",
     "tests/diffusion-ui.cjs": "f6f997afcee0d6ae5113097640f151a418b6d4c501838c5565c3c2fe29d724d1",
     "tests/foundation-ui.cjs": "1c6721770e2d3336719c6cb096869aca3f966beff3fd958f814cda1cafee1e79",
     "tests/hub-fixture.cjs": "5b3cb88b7fd4c45d26ce92e8598a1c3837a12b02eb898f67c9be10da2910ab83",
@@ -752,6 +781,6 @@
     "tests/stable-audio-ui.cjs": "b4acad2dfb0e5cba079e66410543b9c4990005df06faeb7da23990c51950676a",
     "tests/text-ui.cjs": "bc5969aa9329380b590a6055daa6fe1177f956f73bb212a18cf19d2b6576b8db",
     "tests/versions-ui.cjs": "13f6e194c00fa3a819c44da35788aa28b94ba05325e3f2b1257350c04b67babd",
-    "tools/capture_foundation.cjs": "477f4a0eb0cf1e02cdb4606cd0e15fe256de93db876a9b5fa4eefddfd1e6fcfb"
+    "tools/capture_foundation.cjs": "0221b5fee29d7e799251a63ee70333e638e1918a5b11c9b40f206548a0311420"
   }
 }

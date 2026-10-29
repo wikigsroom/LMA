@@ -9,4 +9,4 @@ def build_inputs():
         "tools/build_ltx098_prepare.py", "tools/build_ltx098_vae_prepare.py",
         "tools/prepare_ltx098_vae_templates.py", "third_party/ltx098-source-lock.json",
         "third_party/ltx098-text-source-lock.json", "third_party/ltx098-vae-source-lock.json",
-        "catalogue/asset-preparations.json")
+        "catalogue/asset-preparations.json", "catalogue/model-assemblies.json", "catalogue/model-bundles.json", "tools/build_bundle_catalogue.py")
