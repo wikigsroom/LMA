@@ -11,8 +11,8 @@
       "ndk": "30.0.16248370",
       "backend": "cpu",
       "file": "liblma-sd.so",
-      "bytes": 8836208,
-      "sha256": "22f79477b04ff77244c7925b44877f4c4a6de74b5d1029a40baa44a31b7b6d8c",
+      "bytes": 8858128,
+      "sha256": "e3df5dbc798fa188d96ba75d9f30e1985fa4d6d5e5442b0a2e52024e9f4b72fd",
       "elf_load_alignment": [
         16384,
         16384,
@@ -505,6 +505,23 @@
       "backend": "cpu",
       "notices": {
         "ltx098-Lightricks-Apache-2.0.txt": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+        "sd-nlohmann-json-LICENSE.txt": "0e592e358cf7722906f417be85bc514f15bf6efd28cea98cb84e56ef7fddfc3e"
+      },
+      "deviceValidated": false,
+      "status": "compiled_not_device_tested",
+      "model_data_embedded": false
+    },
+    {
+      "engine": "lcm_condition_prepare",
+      "file": "liblma-lcm-prepare.so",
+      "bytes": 534184,
+      "sha256": "603189df847d4f4556b7c75b40f74706f0e6119e7a6397c8e6aa2aa948cdf00b",
+      "abi": "arm64-v8a",
+      "android_api_notes": [
+        28
+      ],
+      "backend": "cpu",
+      "notices": {
         "sd-nlohmann-json-LICENSE.txt": "0e592e358cf7722906f417be85bc514f15bf6efd28cea98cb84e56ef7fddfc3e"
       },
       "deviceValidated": false,

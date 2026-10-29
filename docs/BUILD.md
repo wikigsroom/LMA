@@ -1,5 +1,7 @@
 # 构建与验证
 
+内部 dev.28 增加 `tools/test_lcm_app_host.py`：完整源通过生产准备 / 关联 / 实际生成，并有 26 组 Java / 原生布局检查；只读取已取得的本地文件。准备模块由 App 随包分发，不含学习参数。[方案与复现](LCM_APP_FLOW.md) · [当前编号交付](releases/v0.3.0-dev.28.md)。
+
 内部 dev.27 用 `tools/test_recovery.py` 检查真实主机进程中断、结果对账、持久清理和鉴权 HTTP；调度与完整 UI 套件覆盖实际容量及用户确认。签名 APK、包核验、Lint 和当前指纹须一致，见[编号交付](releases/v0.3.0-dev.27.md)。
 
 [English](BUILD.en.md) · [文档目录](README.md)

@@ -1,5 +1,7 @@
 # 用户选择的运行模型关联
 
+dev.28 新增 [LCM 条件组件关联](LCM_APP_FLOW.md)，复用相同的角色、指纹、私有租约与暂停依赖流程；关联不会自动下载，完整安装后才允许用户明确提交生成。
+
 [English](MODEL_ASSEMBLY.en.md) · [源模型准备](MODEL_PREPARATION.md) · [完整发版范围](MULTIMODAL_RELEASE_PLAN.md) · [本轮编号交付](releases/v0.3.0-dev.23.md)
 
 dev.23 增加通用 `model.assemble` 任务。App 交付关联方案、存储和执行基座；用户选择源模型、准备资产、运行模型及后续依赖。安装、升级、浏览、缺少资产的请求都不触发模型下载。关联资产不代表生成引擎已经支持该模型。

@@ -9,8 +9,8 @@
       "abi": "arm64-v8a",
       "backend": "cpu",
       "ndk": "30.0.16248370",
-      "sha256": "22f79477b04ff77244c7925b44877f4c4a6de74b5d1029a40baa44a31b7b6d8c",
-      "bytes": 8836208,
+      "sha256": "e3df5dbc798fa188d96ba75d9f30e1985fa4d6d5e5442b0a2e52024e9f4b72fd",
+      "bytes": 8858128,
       "notices": {
         "sd-LICENSE.txt": "b53fa08f515cb5a6fff7b9fd8fcd0961a4b80df29d74372d25e1f9171aa042ee",
         "sd-ggml-LICENSE.txt": "94f29bbed6a22c35b992c5c6ebf0e7c92f13b836b90f36f461c9cf2f0f1d010d",
@@ -353,6 +353,22 @@
       "receipt": "build/ltx098-vae-prepare-arm64/receipt.json",
       "notices": {
         "ltx098-Lightricks-Apache-2.0.txt": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+        "sd-nlohmann-json-LICENSE.txt": "0e592e358cf7722906f417be85bc514f15bf6efd28cea98cb84e56ef7fddfc3e"
+      }
+    },
+    {
+      "engine": "lcm_condition_prepare",
+      "file": "liblma-lcm-prepare.so",
+      "bytes": 534184,
+      "sha256": "603189df847d4f4556b7c75b40f74706f0e6119e7a6397c8e6aa2aa948cdf00b",
+      "abi": "arm64-v8a",
+      "android_api_notes": [
+        28
+      ],
+      "backend": "cpu",
+      "binary": "build/lcm-prepare-arm64/bin/liblma-lcm-prepare.so",
+      "receipt": "build/lcm-prepare-arm64/receipt.json",
+      "notices": {
         "sd-nlohmann-json-LICENSE.txt": "0e592e358cf7722906f417be85bc514f15bf6efd28cea98cb84e56ef7fddfc3e"
       }
     }

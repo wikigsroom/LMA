@@ -1,5 +1,7 @@
 # Build and verification
 
+Internal dev.28 adds `tools/test_lcm_app_host.py`: production full-source preparation, explicit association and actual generation, plus 26 Java/native parser controls, using existing local files only. App preparation code contains no learned parameters. [Design/reproduction](LCM_APP_FLOW.en.md) · [Current delivery](releases/v0.3.0-dev.28.md).
+
 Internal dev.27 uses `tools/test_recovery.py` for real host process interruption, output reconciliation, persistent cleanup and authenticated HTTP. Scheduler/full UI suites cover actual capacity and confirmation. Signed APK, package checks, Lint and current fingerprints must match; see [numbered delivery](releases/v0.3.0-dev.27.md).
 
 [中文](BUILD.md) · [Documentation](README.md)

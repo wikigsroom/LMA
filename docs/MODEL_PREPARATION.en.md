@@ -1,5 +1,7 @@
 # User-selected local runtime asset preparation
 
+Dev.28 extends this shared foundation to [fixed-condition LCM](LCM_APP_FLOW.en.md): per-stage output budgets stay separate from disk reserves; association and missing dependency transfers remain explicit. The original dev.22 old-LTX flow below retains its own scope.
+
 [中文](MODEL_PREPARATION.md) · [Documentation](README.md) · [Numbered delivery](releases/v0.3.0-dev.22.md)
 
 **dev.22 / code 26 is an internal development checkpoint; complete v0.3.0 remains unpublished.** Existing native preparers now use the App's shared job foundation. Full trained-file preparation passed on Windows. Android installation, SAF, converter execution and background endurance remain untested; no video-generation engine is registered.

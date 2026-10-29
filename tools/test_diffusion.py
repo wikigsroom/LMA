@@ -11,7 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def main():
-    inputs = fingerprint("app/src/main/java/com/lma/app/core", "app/src/main/java/com/lma/app/SdEngine.java", "app/src/main/java/com/lma/app/LocalEngine.java", "app/src/main/java/com/lma/app/NativeWorker.java", "native/sd_policy.hpp", "native/sd_worker.cpp", "tests/sd-host", "tests/native/sd_policy_test.cpp", "tests/tts-host/com/lma/app/LmaApp.java", "tests/host/android/util/AtomicFile.java", "app/src/main/assets/recipe-templates.json", "tools/test_diffusion.py")
+    inputs = fingerprint("app/src/main/java/com/lma/app/core", "app/src/main/java/com/lma/app/SdEngine.java", "app/src/main/java/com/lma/app/LocalEngine.java", "app/src/main/java/com/lma/app/NativeWorker.java", "native/sd_policy.hpp", "native/sd_worker.cpp", "native/lcm_condition.hpp", "tests/sd-host", "tests/native/sd_policy_test.cpp", "tests/tts-host/com/lma/app/LmaApp.java", "tests/host/android/util/AtomicFile.java", "app/src/main/assets/recipe-templates.json", "tools/test_diffusion.py")
     out = ROOT / "build/diffusion-tests"; out.mkdir(parents=True, exist_ok=True)
     (out / "results.json").unlink(missing_ok=True)
     run = out / "run"

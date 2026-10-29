@@ -19,9 +19,10 @@ public final class NativePreparation {
         context.check();
         for (PreparationPlan.Stage stage : plan.stages) {
             File program = programs.get(stage.module); if (program == null || !program.isFile()) throw new IOException("Preparation program is missing from the App");
+            long outputBytes = 0; for (PreparationPlan.Output output : stage.outputs) outputBytes = Math.addExact(outputBytes, output.bytes);
             JSONObject request = new JSONObject().put("operation", stage.operation).put("checkpoint", source.getCanonicalPath())
                     .put("expected_source_bytes", plan.sourceBytes).put("expected_source_sha256", plan.sourceSha256)
-                    .put("storage_root", session.directory.getCanonicalPath()).put("output_name", stage.id).put("max_output_bytes", plan.reserveBytes);
+                    .put("storage_root", session.directory.getCanonicalPath()).put("output_name", stage.id).put("max_output_bytes", outputBytes);
             if (stage.graphs.length() > 0) request.put("graph_root", context.graphs(stage).getCanonicalPath());
             File command = DataFiles.child(session.directory, "request-" + stage.id + ".json");
             try (FileOutputStream out = new FileOutputStream(command)) { out.write(request.toString().getBytes(StandardCharsets.UTF_8)); out.getFD().sync(); }

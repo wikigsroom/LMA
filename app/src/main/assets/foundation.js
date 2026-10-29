@@ -10,10 +10,11 @@
   function find(id) { return entries().filter(function (b) { return b.id === id; })[0]; }
   function e(value) { return ui.esc(value); }
   function button(action, id, text, style, disabled) { return '<button class="button ' + (style || 'secondary') + '" data-action="' + action + '" data-id="' + e(id) + '"' + (disabled ? ' disabled' : '') + '>' + text + '</button>'; }
-  function engineAvailable(b) { return !b.parameterError && (ui.state().localEngines || []).some(function (engine) { return engine.engine === b.manifest.engine && engine.available; }); }
+  function engineAvailable(b) { return (b.manifest.capabilities || []).indexOf('source_assets') < 0 && !b.parameterError && (ui.state().localEngines || []).some(function (engine) { return engine.engine === b.manifest.engine && engine.available; }); }
   function isAdapter(b) { return !!(b.manifest.adapter && b.manifest.adapter.kind === 'lora'); }
   function compatible(base, adapter) {
     var m = base.manifest, a = adapter.manifest.adapter;
+    if (m.conditionBias) return false;
     return !!a && !isAdapter(base) && m.engine === adapter.manifest.engine && m.backend === adapter.manifest.backend && tasks(base).indexOf('image') >= 0 && (a.baseArchitectures || []).indexOf(m.architecture) >= 0 && (a.basePipelines || []).indexOf(m.pipeline) >= 0 && (!a.baseModelIds || a.baseModelIds.indexOf(m.modelId) >= 0);
   }
   function tasks(b) { return (b.manifest.tasks || []).filter(function (tag) { return labels[tag]; }); }
@@ -40,7 +41,7 @@
     var b = find(id); if (!b) return; var m = b.manifest, p = b.plan || {};
     var files = p.components || [];
     var adapterHelp = isAdapter(b) ? '<p class="form-help">此包仅包含 LoRA。基础模型由你另外选择、安装；只与声明兼容的 ' + e(m.adapter.baseArchitectures.join(' / ')) + ' / ' + e(m.adapter.basePipelines.join(' / ')) + ' 配方配对。兼容声明仍需实际权重验证。</p>' : '';
-    var html = '<div class="model-info"><div class="model-tags">' + taskTags(b) + '<span class="tag">' + e(m.engine) + '</span><span class="tag">' + e(m.pipeline) + '</span></div><p>' + e(m.description || '') + '</p><p>' + (b.parameterError ? e(b.parameterError) : engineAvailable(b) ? '运行引擎已随 App 安装，当前配方仍需手机实测。' : '当前基座缺少匹配引擎。下载文件不会安装引擎，请等待对应的 App 更新。') + '</p>' + adapterHelp + '<dl><dt>完整模型包</dt><dd>' + ui.bytes(p.totalBytes) + '</dd><dt>可复用资产</dt><dd>' + ui.bytes(p.reusableBytes) + '</dd><dt>剩余传输</dt><dd>' + ui.bytes(p.remainingBytes) + '</dd><dt>配方</dt><dd>' + e(m.recipeId) + '</dd><dt>许可</dt><dd>' + e(typeof m.license === 'string' ? m.license : m.license && m.license.name || '尚未声明，请核对来源') + '</dd></dl><div class="bundle-components">' + files.map(function (c) { return '<details><summary>' + e(c.role) + ' · ' + ui.bytes(c.bytes) + (c.reusable ? ' · 可复用' : '') + '</summary><p>' + e(c.path) + '</p>' + embedded(c) + (c.importPath && c.importPath !== c.path ? '<p class="modal-help">文件夹导入路径：' + e(c.importPath) + '</p>' : '') + '<code>' + e(c.sha256 ? 'SHA256 ' + c.sha256 : 'Git blob SHA-1 ' + c.gitBlobSha1) + '</code>' + (c.verifiedSha256 ? '<code>已校验 SHA256 ' + e(c.verifiedSha256) + '</code>' : '') + '</details>'; }).join('') + '</div><p class="modal-help">只下载这套包及上面列出的必需组件。浏览、App 升级与缺失模型的生成请求均不会触发下载。所有生成步骤在这部手机上执行。</p><div class="modal-actions">';
+    var html = '<div class="model-info"><div class="model-tags">' + taskTags(b) + '<span class="tag">' + e(m.engine) + '</span><span class="tag">' + e(m.pipeline) + '</span></div><p>' + e(m.description || '') + '</p><p>' + (b.parameterError ? e(b.parameterError) : (m.capabilities || []).indexOf('source_assets') >= 0 ? '这是用于准备运行资产的源模型。请选择下方的准备方案，再明确关联运行模型。' : engineAvailable(b) ? '运行引擎已随 App 安装，当前配方仍需手机实测。' : '当前基座缺少匹配引擎。下载文件不会安装引擎，请等待对应的 App 更新。') + '</p>' + adapterHelp + '<dl><dt>完整模型包</dt><dd>' + ui.bytes(p.totalBytes) + '</dd><dt>可复用资产</dt><dd>' + ui.bytes(p.reusableBytes) + '</dd><dt>剩余传输</dt><dd>' + ui.bytes(p.remainingBytes) + '</dd><dt>配方</dt><dd>' + e(m.recipeId) + '</dd><dt>许可</dt><dd>' + e(typeof m.license === 'string' ? m.license : m.license && m.license.name || '尚未声明，请核对来源') + '</dd></dl><div class="bundle-components">' + files.map(function (c) { return '<details><summary>' + e(c.role) + ' · ' + ui.bytes(c.bytes) + (c.reusable ? ' · 可复用' : '') + '</summary><p>' + e(c.path) + '</p>' + embedded(c) + (c.importPath && c.importPath !== c.path ? '<p class="modal-help">文件夹导入路径：' + e(c.importPath) + '</p>' : '') + '<code>' + e(c.sha256 ? 'SHA256 ' + c.sha256 : 'Git blob SHA-1 ' + c.gitBlobSha1) + '</code>' + (c.verifiedSha256 ? '<code>已校验 SHA256 ' + e(c.verifiedSha256) + '</code>' : '') + '</details>'; }).join('') + '</div><p class="modal-help">只下载这套包及上面列出的必需组件。浏览、App 升级与缺失模型的生成请求均不会触发下载。所有生成步骤在这部手机上执行。</p><div class="modal-actions">';
     if (b.installed) html += button('bundleSettings', id, '模型设置') + button('bundleUse', id, isAdapter(b) ? '选择基础模型' : '使用模型', 'primary', !engineAvailable(b) || b.inUse);
     else html += button('bundleFolderPicker', id, '从文件夹导入') + button('downloadBundle', id, '下载所选模型包', 'primary', files.some(function (c) { return !c.reusable && !c.downloadable; }));
     html += '</div>' + (b.installed || (b.version || {}).groupId ? button('bundleVersions', id, '版本管理 / 独立更新') : '') + button('bundleRemove', id, '删除本地资产', 'danger', b.inUse) + '</div>';
@@ -152,6 +153,7 @@
     ui.openModal('选择基础模型 · ' + adapter.manifest.name, '<form id="adapterPairForm"><p class="form-help">LoRA 需要与已安装的兼容基础模型配对。此操作不会下载或替换任何权重。</p>' + (bases.length ? '<label class="form-field"><span>已安装的兼容基础模型</span><select name="baseBundleId" required>' + bases.map(function (base) { return '<option value="' + e(base.id) + '">' + e(base.manifest.name) + '</option>'; }).join('') + '</select></label>' : '<p class="empty-list">尚未安装兼容的基础模型。请在模型库自行选择下载或导入，再回来配对。</p>') + '<div class="modal-actions">' + button('closeModal', '', '关闭') + (bases.length ? '<button class="button primary" type="submit">填写生成任务</button>' : '') + '</div></form>', 'adapterPair');
   }
   function adapterFields(base, selected) {
+    if (base.manifest.conditionBias) return '<p class="form-help">此模型的条件组件固定，不支持叠加 LoRA。使用 LoRA 时请选择独立基础模型。</p>';
     var adapters = entries().filter(function (adapter) { return adapter.installed && !adapter.inUse && engineAvailable(adapter) && compatible(base, adapter); });
     if (!adapters.length) return '<p class="form-help">当前没有已安装的兼容 LoRA；可在模型库自行选择下载或导入。</p>';
     return '<fieldset id="taskAdapters" class="task-adapters"><legend>LoRA（可选，最多 8 个）</legend><p class="form-help">仅列出已安装且声明兼容的适配器。各自强度独立保存，本次修改只用于当前任务。</p>' + adapters.map(function (adapter, index) {
@@ -168,7 +170,7 @@
     form.dataset.samplingProfile = active ? (lcm ? 'lcm' : z ? 'z_image_turbo' : flux ? 'flux2_klein' : 'sd_turbo') : '';
     hint.hidden = !active;
     hint.textContent = count > 1 || count && /_lcm$/.test(pipeline) ? '一次只使用一个 LCM 加速来源，请取消多余选择。' : (lcm ? 'LCM：采样器 lcm，调度器 lcm，1–8 步。' : z ? 'Z-Image-Turbo：采样器 euler，调度器 discrete，1–8 步。' : flux ? 'FLUX.2-klein：采样器 euler，调度器 flux2，1–4 步。' : 'SD-Turbo：采样器 euler_a，调度器 discrete，1–4 步。') + 'CFG 固定为 1，不使用负面提示词；仅影响本次任务，保存的模型设置保留。';
-    if (form.elements.negativePrompt) form.elements.negativePrompt.disabled = active;
+    if (form.elements.negativePrompt) { form.elements.negativePrompt.disabled = active; form.elements.negativePrompt.closest('label').hidden = active; }
     ['cfg', 'steps'].forEach(function (key) {
       var field = form.querySelector('[data-bundle-field="' + key + '"]'); if (!field) return;
       if (active) { if (field.dataset.beforeSampling === undefined) field.dataset.beforeSampling = field.value; field.value = key === 'cfg' ? 1 : Math.max(1, Math.min(limit, Math.floor(Number(field.value) || 4))); }

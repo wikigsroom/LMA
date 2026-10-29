@@ -1,0 +1,1357 @@
+{
+  "schema": "lma.lcm-app-host/1",
+  "passed": true,
+  "java": {
+    "generation_children": 4,
+    "android_saf_tested": false,
+    "android_atomicfile_tested": false,
+    "prepared": {
+      "outputs": [
+        {
+          "path": "condition/lcm-condition-bias.gguf",
+          "role": "condition_bias",
+          "sha256": "213f8a346cf0a70b2cfbb6460f2c9e990b3c45c6fdd435002a82c906e2d3c66c",
+          "bytes": 5696,
+          "modified": 1793311492132
+        }
+      ],
+      "jobId": "job_43cc51a0ff3845bb8fa0c061a7660a0d",
+      "sourceSha256": "7be468469c513f8614a73423aa009581295fbd8c903703450632b2275c0145a9",
+      "createdAt": 1793311492189,
+      "bytes": 5696,
+      "bundleId": "lcm_dreamshaper_source_ra85df6a",
+      "planId": "lcm_dreamshaper_guidance85_v1",
+      "id": "prep_5d7122f9c6fd4368984e08da76668fe1",
+      "planFingerprint": "44ea9efcc5172688d113f3082980a030ee4212f5b0ea9d06273bc9a261b07252",
+      "sourceBytes": 3438495328,
+      "sourceRetained": true
+    },
+    "association": {
+      "schema": "lma.model-assembly-result/1",
+      "installed": false,
+      "linkedComponents": 1,
+      "assemblyId": "lcm_dreamshaper_guidance85_association_v1",
+      "linkedBytes": 5696,
+      "bundleId": "lcm_dreamshaper_guidance85_runtime_v1",
+      "sourceFingerprint": "b24c164edddf8e51d3a3ea5506e2e9957e05dce7ac63476987ceade65f274892",
+      "preparedAssetsId": "prep_5d7122f9c6fd4368984e08da76668fe1",
+      "physicalAndroid": false,
+      "jobId": "job_46e801e434f446a6b6963ca25313eb59",
+      "assemblyFingerprint": "1f096db59c82e47b926d044e4e4389681ad7dbb00cb7b989df0b550e72f7699e",
+      "modelInference": false,
+      "remainingBytes": 2135199851,
+      "automaticDownloads": false
+    },
+    "android_application_executed": false,
+    "preparation_progress": [
+      {
+        "stage": "preparing_condition",
+        "fraction": 0
+      },
+      {
+        "stage": "preparing_condition",
+        "fraction": 2.4368798560717428e-05
+      },
+      {
+        "stage": "preparing_condition",
+        "fraction": 0.04010739432361387
+      },
+      {
+        "stage": "preparing_condition",
+        "fraction": 0.060164092798208973
+      },
+      {
+        "stage": "preparing_condition",
+        "fraction": 0.10060150123897449
+      },
+      {
+        "stage": "preparing_condition",
+        "fraction": 0.12043827095756926
+      },
+      {
+        "stage": "preparing_condition",
+        "fraction": 0.1408819666135082
+      },
+      {
+        "stage": "preparing_condition",
+        "fraction": 0.16047662112746078
+      },
+      {
+        "stage": "preparing_condition",
+        "fraction": 0.1810698147326376
+      },
+      {
+        "stage": "preparing_condition",
+        "fraction": 0.20135210025214842
+      },
+      {
+        "stage": "preparing_condition",
+        "fraction": 0.2216403418652544
+      },
+      {
+        "stage": "preparing_condition",
+        "fraction": 0.24123499637920695
+      },
+      {
+        "stage": "preparing_condition",
+        "fraction": 0.2615232379923129
+      },
+      {
+        "stage": "preparing_condition",
+        "fraction": 0.28111789250626545
+      },
+      {
+        "stage": "preparing_condition",
+        "fraction": 0.3011833762189134
+      },
+      {
+        "stage": "preparing_condition",
+        "fraction": 0.321399846904198
+      },
+      {
+        "stage": "preparing_condition",
+        "fraction": 0.34184354256013694
+      },
+      {
+        "stage": "preparing_condition",
+        "fraction": 0.3614381970740895
+      },
+      {
+        "stage": "preparing_condition",
+        "fraction": 0.38172643868719547
+      },
+      {
+        "stage": "preparing_condition",
+        "fraction": 0.401321093201148
+      },
+      {
+        "stage": "preparing_condition",
+        "fraction": 0.4216504318600604
+      },
+      {
+        "stage": "preparing_condition",
+        "fraction": 0.4413213243720307
+      },
+      {
+        "stage": "preparing_condition",
+        "fraction": 0.46091597888598324
+      },
+      {
+        "stage": "preparing_condition",
+        "fraction": 0.4812834365439045
+      },
+      {
+        "stage": "preparing_condition",
+        "fraction": 0.5009543290558748
+      },
+      {
+        "stage": "preparing_condition",
+        "fraction": 0.5213995137352125
+      },
+      {
+        "stage": "preparing_condition",
+        "fraction": 0.5409164412277485
+      },
+      {
+        "stage": "preparing_condition",
+        "fraction": 0.5605873337397188
+      },
+      {
+        "stage": "preparing_condition",
+        "fraction": 0.5810325184190566
+      },
+      {
+        "stage": "preparing_condition",
+        "fraction": 0.6014717470047992
+      },
+      {
+        "stage": "preparing_condition",
+        "fraction": 0.6218406936861192
+      },
+      {
+        "stage": "preparing_condition",
+        "fraction": 0.6419091554455647
+      },
+      {
+        "stage": "preparing_condition",
+        "fraction": 0.6622781021268848
+      },
+      {
+        "stage": "preparing_condition",
+        "fraction": 0.6823465638863302
+      },
+      {
+        "stage": "preparing_condition",
+        "fraction": 0.7231592062235892
+      },
+      {
+        "stage": "preparing_condition",
+        "fraction": 0.7623470262280956
+      },
+      {
+        "stage": "preparing_condition",
+        "fraction": 0.7827922109074333
+      },
+      {
+        "stage": "preparing_condition",
+        "fraction": 0.8023091383999693
+      },
+      {
+        "stage": "preparing_condition",
+        "fraction": 0.8219800309119396
+      },
+      {
+        "stage": "preparing_condition",
+        "fraction": 0.8424252155912774
+      },
+      {
+        "stage": "preparing_condition",
+        "fraction": 0.8620579891042388
+      },
+      {
+        "stage": "preparing_condition",
+        "fraction": 0.8827685177532397
+      },
+      {
+        "stage": "preparing_condition",
+        "fraction": 0.9024483444056027
+      },
+      {
+        "stage": "preparing_condition",
+        "fraction": 0.922606445373655
+      },
+      {
+        "stage": "preparing_condition",
+        "fraction": 0.9424159659640521
+      },
+      {
+        "stage": "preparing_condition",
+        "fraction": 0.9626537296839393
+      },
+      {
+        "stage": "preparing_condition",
+        "fraction": 1
+      },
+      {
+        "stage": "preparing_condition",
+        "fraction": 1
+      },
+      {
+        "stage": "verifying_prepared_assets",
+        "fraction": null
+      }
+    ],
+    "production_java_native_host_executed": true,
+    "host_metadata_port": "windows_atomic_replace_functional_only",
+    "preparation_children": 1,
+    "network_calls": 0,
+    "image_quality_accepted": false,
+    "pixel_equivalence_passed": false,
+    "passed": 43,
+    "binding_checks": 20,
+    "runs": [
+      {
+        "output": "T:\\build\\lcm-app-host-tests\\run-1793311438903172900\\data\\native-prepared\\cff6a257-c36e-4dfd-93f7-ad065733842f.png",
+        "execution": {
+          "effectiveParameters": {
+            "scheduler": "lcm",
+            "seed": 42,
+            "cfg": 1,
+            "vaeTiling": true,
+            "width": 512,
+            "threads": 6,
+            "steps": 4,
+            "height": 512,
+            "sampler": "lcm"
+          },
+          "pipeline": "sd15_lcm",
+          "samplingProfile": "lcm",
+          "samplingAdjustments": []
+        },
+        "seconds": 153.7691536,
+        "sha256": "ccaef785950eb3d7a0d23a57eb73dc94c9c4bf9c4197ee12b2c442ae83b2d348",
+        "bytes": 528741,
+        "name": "native-prepared",
+        "progress": [
+          {
+            "stage": "loading",
+            "fraction": null
+          },
+          {
+            "stage": "loading",
+            "fraction": 0
+          },
+          {
+            "stage": "generating",
+            "fraction": null
+          },
+          {
+            "stage": "generating",
+            "fraction": 0
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.25
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.5
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.75
+          },
+          {
+            "stage": "generating",
+            "fraction": 1
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.02040816326530612
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.04081632653061224
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.061224489795918366
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.08163265306122448
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.10204081632653061
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.12244897959183673
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.14285714285714285
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.16326530612244897
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.1836734693877551
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.20408163265306123
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.22448979591836735
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.24489795918367346
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.2653061224489796
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.2857142857142857
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.30612244897959184
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.32653061224489793
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.3469387755102041
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.3673469387755102
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.3877551020408163
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.40816326530612246
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.42857142857142855
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.4489795918367347
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.46938775510204084
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.4897959183673469
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.5102040816326531
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.5306122448979592
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.5510204081632653
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.5714285714285714
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.5918367346938775
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.6122448979591837
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.6326530612244898
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.6530612244897959
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.673469387755102
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.6938775510204082
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.7142857142857143
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.7346938775510204
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.7551020408163265
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.7755102040816326
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.7959183673469388
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.8163265306122449
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.8367346938775511
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.8571428571428571
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.8775510204081632
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.8979591836734694
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.9183673469387755
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.9387755102040817
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.9591836734693877
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.9795918367346939
+          },
+          {
+            "stage": "generating",
+            "fraction": 1
+          }
+        ]
+      },
+      {
+        "execution": {
+          "effectiveParameters": {
+            "scheduler": "lcm",
+            "seed": 42,
+            "cfg": 1,
+            "vaeTiling": true,
+            "width": 512,
+            "threads": 6,
+            "steps": 4,
+            "height": 512,
+            "sampler": "lcm"
+          },
+          "pipeline": "sd15_lcm",
+          "samplingProfile": "lcm",
+          "samplingAdjustments": []
+        },
+        "seconds": 0.147455,
+        "expected_failure": true,
+        "name": "empty-prompt",
+        "cancelled": false,
+        "progress": []
+      },
+      {
+        "execution": {
+          "effectiveParameters": {
+            "scheduler": "lcm",
+            "seed": 42,
+            "cfg": 1,
+            "vaeTiling": true,
+            "width": 512,
+            "threads": 6,
+            "steps": 4,
+            "height": 512,
+            "sampler": "lcm"
+          },
+          "pipeline": "sd15_lcm",
+          "samplingProfile": "lcm",
+          "samplingAdjustments": []
+        },
+        "seconds": 0.348238,
+        "expected_failure": true,
+        "name": "cancel-stage-entry",
+        "cancelled": true,
+        "progress": [
+          {
+            "stage": "loading",
+            "fraction": null
+          },
+          {
+            "stage": "loading",
+            "fraction": 0
+          },
+          {
+            "stage": "generating",
+            "fraction": null
+          }
+        ]
+      },
+      {
+        "output": "T:\\build\\lcm-app-host-tests\\run-1793311438903172900\\data\\recovery\\9d50402c-8ec5-4b14-9a74-88ef6beb2103.png",
+        "execution": {
+          "effectiveParameters": {
+            "scheduler": "lcm",
+            "seed": 42,
+            "cfg": 1,
+            "vaeTiling": true,
+            "width": 512,
+            "threads": 6,
+            "steps": 4,
+            "height": 512,
+            "sampler": "lcm"
+          },
+          "pipeline": "sd15_lcm",
+          "samplingProfile": "lcm",
+          "samplingAdjustments": []
+        },
+        "seconds": 134.5645671,
+        "sha256": "ccaef785950eb3d7a0d23a57eb73dc94c9c4bf9c4197ee12b2c442ae83b2d348",
+        "bytes": 528741,
+        "name": "recovery",
+        "progress": [
+          {
+            "stage": "loading",
+            "fraction": null
+          },
+          {
+            "stage": "loading",
+            "fraction": 0
+          },
+          {
+            "stage": "generating",
+            "fraction": null
+          },
+          {
+            "stage": "generating",
+            "fraction": 0
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.25
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.5
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.75
+          },
+          {
+            "stage": "generating",
+            "fraction": 1
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.02040816326530612
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.04081632653061224
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.061224489795918366
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.08163265306122448
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.10204081632653061
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.12244897959183673
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.14285714285714285
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.16326530612244897
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.1836734693877551
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.20408163265306123
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.22448979591836735
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.24489795918367346
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.2653061224489796
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.2857142857142857
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.30612244897959184
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.32653061224489793
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.3469387755102041
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.3673469387755102
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.3877551020408163
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.40816326530612246
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.42857142857142855
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.4489795918367347
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.46938775510204084
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.4897959183673469
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.5102040816326531
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.5306122448979592
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.5510204081632653
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.5714285714285714
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.5918367346938775
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.6122448979591837
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.6326530612244898
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.6530612244897959
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.673469387755102
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.6938775510204082
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.7142857142857143
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.7346938775510204
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.7551020408163265
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.7755102040816326
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.7959183673469388
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.8163265306122449
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.8367346938775511
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.8571428571428571
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.8775510204081632
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.8979591836734694
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.9183673469387755
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.9387755102040817
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.9591836734693877
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.9795918367346939
+          },
+          {
+            "stage": "generating",
+            "fraction": 1
+          }
+        ]
+      }
+    ],
+    "launches": [
+      {
+        "schema": "lma.engine-request/1",
+        "pipeline": "sd15_lcm",
+        "output": "T:\\build\\lcm-app-host-tests\\run-1793311438903172900\\data\\native-prepared\\cff6a257-c36e-4dfd-93f7-ad065733842f.png",
+        "input": {
+          "prompt": "A small red fox sitting beside a blue ceramic teapot on a wooden table, clean composition",
+          "negativePrompt": ""
+        },
+        "components": {
+          "condition_bias": "T:\\build\\lcm-app-host-tests\\run-1793311438903172900\\data\\files\\bundles\\objects\\213f8a346cf0a70b2cfbb6460f2c9e990b3c45c6fdd435002a82c906e2d3c66c",
+          "model": "T:\\build\\lcm-app-host-tests\\run-1793311438903172900\\data\\files\\bundles\\objects\\0642060766117fdeb8cae0ccdc73ee974ac5779be1112d0a82f2b965bbd00e15",
+          "clip_merges": "T:\\build\\lcm-app-host-tests\\run-1793311438903172900\\data\\files\\bundles\\objects\\9fd691f7c8039210e0fced15865466c65820d09b63988b0174bfe25de299051a"
+        },
+        "conditionBias": {
+          "schema": "lma.condition-bias-overlay/1",
+          "sourceSha256": "7be468469c513f8614a73423aa009581295fbd8c903703450632b2275c0145a9",
+          "baseSha256": "0642060766117fdeb8cae0ccdc73ee974ac5779be1112d0a82f2b965bbd00e15",
+          "distilledGuidance": 8.5,
+          "algorithm": "lcm-fixed-guidance-f16-mlp-double-dot/1"
+        },
+        "loras": [],
+        "type": "image.generate",
+        "samplingProfile": "lcm",
+        "parameters": {
+          "scheduler": "lcm",
+          "seed": 42,
+          "cfg": 1,
+          "vaeTiling": true,
+          "width": 512,
+          "threads": 6,
+          "steps": 4,
+          "height": 512,
+          "sampler": "lcm"
+        },
+        "architecture": "sd15"
+      },
+      {
+        "schema": "lma.engine-request/1",
+        "pipeline": "sd15_lcm",
+        "output": "T:\\build\\lcm-app-host-tests\\run-1793311438903172900\\data\\empty-prompt\\ba9802ed-11d0-4d33-9ac4-07eee27fa107.png",
+        "input": {
+          "prompt": "",
+          "negativePrompt": ""
+        },
+        "components": {
+          "condition_bias": "T:\\build\\lcm-app-host-tests\\run-1793311438903172900\\data\\files\\bundles\\objects\\213f8a346cf0a70b2cfbb6460f2c9e990b3c45c6fdd435002a82c906e2d3c66c",
+          "model": "T:\\build\\lcm-app-host-tests\\run-1793311438903172900\\data\\files\\bundles\\objects\\0642060766117fdeb8cae0ccdc73ee974ac5779be1112d0a82f2b965bbd00e15",
+          "clip_merges": "T:\\build\\lcm-app-host-tests\\run-1793311438903172900\\data\\files\\bundles\\objects\\9fd691f7c8039210e0fced15865466c65820d09b63988b0174bfe25de299051a"
+        },
+        "conditionBias": {
+          "schema": "lma.condition-bias-overlay/1",
+          "sourceSha256": "7be468469c513f8614a73423aa009581295fbd8c903703450632b2275c0145a9",
+          "baseSha256": "0642060766117fdeb8cae0ccdc73ee974ac5779be1112d0a82f2b965bbd00e15",
+          "distilledGuidance": 8.5,
+          "algorithm": "lcm-fixed-guidance-f16-mlp-double-dot/1"
+        },
+        "loras": [],
+        "type": "image.generate",
+        "samplingProfile": "lcm",
+        "parameters": {
+          "scheduler": "lcm",
+          "seed": 42,
+          "cfg": 1,
+          "vaeTiling": true,
+          "width": 512,
+          "threads": 6,
+          "steps": 4,
+          "height": 512,
+          "sampler": "lcm"
+        },
+        "architecture": "sd15"
+      },
+      {
+        "schema": "lma.engine-request/1",
+        "pipeline": "sd15_lcm",
+        "output": "T:\\build\\lcm-app-host-tests\\run-1793311438903172900\\data\\cancel-stage-entry\\58a8a212-4165-4e2b-a33a-5294eb7295a2.png",
+        "input": {
+          "prompt": "A small red fox sitting beside a blue ceramic teapot on a wooden table, clean composition",
+          "negativePrompt": ""
+        },
+        "components": {
+          "condition_bias": "T:\\build\\lcm-app-host-tests\\run-1793311438903172900\\data\\files\\bundles\\objects\\213f8a346cf0a70b2cfbb6460f2c9e990b3c45c6fdd435002a82c906e2d3c66c",
+          "model": "T:\\build\\lcm-app-host-tests\\run-1793311438903172900\\data\\files\\bundles\\objects\\0642060766117fdeb8cae0ccdc73ee974ac5779be1112d0a82f2b965bbd00e15",
+          "clip_merges": "T:\\build\\lcm-app-host-tests\\run-1793311438903172900\\data\\files\\bundles\\objects\\9fd691f7c8039210e0fced15865466c65820d09b63988b0174bfe25de299051a"
+        },
+        "conditionBias": {
+          "schema": "lma.condition-bias-overlay/1",
+          "sourceSha256": "7be468469c513f8614a73423aa009581295fbd8c903703450632b2275c0145a9",
+          "baseSha256": "0642060766117fdeb8cae0ccdc73ee974ac5779be1112d0a82f2b965bbd00e15",
+          "distilledGuidance": 8.5,
+          "algorithm": "lcm-fixed-guidance-f16-mlp-double-dot/1"
+        },
+        "loras": [],
+        "type": "image.generate",
+        "samplingProfile": "lcm",
+        "parameters": {
+          "scheduler": "lcm",
+          "seed": 42,
+          "cfg": 1,
+          "vaeTiling": true,
+          "width": 512,
+          "threads": 6,
+          "steps": 4,
+          "height": 512,
+          "sampler": "lcm"
+        },
+        "architecture": "sd15"
+      },
+      {
+        "schema": "lma.engine-request/1",
+        "pipeline": "sd15_lcm",
+        "output": "T:\\build\\lcm-app-host-tests\\run-1793311438903172900\\data\\recovery\\9d50402c-8ec5-4b14-9a74-88ef6beb2103.png",
+        "input": {
+          "prompt": "A small red fox sitting beside a blue ceramic teapot on a wooden table, clean composition",
+          "negativePrompt": ""
+        },
+        "components": {
+          "condition_bias": "T:\\build\\lcm-app-host-tests\\run-1793311438903172900\\data\\files\\bundles\\objects\\213f8a346cf0a70b2cfbb6460f2c9e990b3c45c6fdd435002a82c906e2d3c66c",
+          "model": "T:\\build\\lcm-app-host-tests\\run-1793311438903172900\\data\\files\\bundles\\objects\\0642060766117fdeb8cae0ccdc73ee974ac5779be1112d0a82f2b965bbd00e15",
+          "clip_merges": "T:\\build\\lcm-app-host-tests\\run-1793311438903172900\\data\\files\\bundles\\objects\\9fd691f7c8039210e0fced15865466c65820d09b63988b0174bfe25de299051a"
+        },
+        "conditionBias": {
+          "schema": "lma.condition-bias-overlay/1",
+          "sourceSha256": "7be468469c513f8614a73423aa009581295fbd8c903703450632b2275c0145a9",
+          "baseSha256": "0642060766117fdeb8cae0ccdc73ee974ac5779be1112d0a82f2b965bbd00e15",
+          "distilledGuidance": 8.5,
+          "algorithm": "lcm-fixed-guidance-f16-mlp-double-dot/1"
+        },
+        "loras": [],
+        "type": "image.generate",
+        "samplingProfile": "lcm",
+        "parameters": {
+          "scheduler": "lcm",
+          "seed": 42,
+          "cfg": 1,
+          "vaeTiling": true,
+          "width": 512,
+          "threads": 6,
+          "steps": 4,
+          "height": 512,
+          "sampler": "lcm"
+        },
+        "architecture": "sd15"
+      }
+    ]
+  },
+  "contracts": [
+    {
+      "name": "valid",
+      "java_accepted": true,
+      "native_error": "Diffusion model loading failed; verify the complete recipe and device resources",
+      "no_output": true
+    },
+    {
+      "name": "truncated",
+      "java_accepted": false,
+      "native_error": "LCM condition payload size mismatch",
+      "no_output": true
+    },
+    {
+      "name": "suffix",
+      "java_accepted": false,
+      "native_error": "LCM condition payload size mismatch",
+      "no_output": true
+    },
+    {
+      "name": "wrong-version",
+      "java_accepted": false,
+      "native_error": "LCM condition must contain one GGUFv3 tensor",
+      "no_output": true
+    },
+    {
+      "name": "extra-tensor",
+      "java_accepted": false,
+      "native_error": "LCM condition must contain one GGUFv3 tensor",
+      "no_output": true
+    },
+    {
+      "name": "missing-metadata",
+      "java_accepted": false,
+      "native_error": "LCM condition must contain one GGUFv3 tensor",
+      "no_output": true
+    },
+    {
+      "name": "wrong-name",
+      "java_accepted": false,
+      "native_error": "LCM condition tensor or source binding does not match",
+      "no_output": true
+    },
+    {
+      "name": "wrong-rank",
+      "java_accepted": false,
+      "native_error": "LCM condition tensor or source binding does not match",
+      "no_output": true
+    },
+    {
+      "name": "wrong-width",
+      "java_accepted": false,
+      "native_error": "LCM condition tensor or source binding does not match",
+      "no_output": true
+    },
+    {
+      "name": "wrong-type",
+      "java_accepted": false,
+      "native_error": "LCM condition tensor or source binding does not match",
+      "no_output": true
+    },
+    {
+      "name": "wrong-offset",
+      "java_accepted": false,
+      "native_error": "LCM condition tensor or source binding does not match",
+      "no_output": true
+    },
+    {
+      "name": "nonzero-padding",
+      "java_accepted": false,
+      "native_error": "Invalid LCM condition padding",
+      "no_output": true
+    },
+    {
+      "name": "nan",
+      "java_accepted": false,
+      "native_error": "Non-finite LCM condition parameter",
+      "no_output": true
+    },
+    {
+      "name": "infinity",
+      "java_accepted": false,
+      "native_error": "Non-finite LCM condition parameter",
+      "no_output": true
+    },
+    {
+      "name": "metadata-schema",
+      "java_accepted": false,
+      "native_error": "LCM condition tensor or source binding does not match",
+      "no_output": true
+    },
+    {
+      "name": "metadata-algorithm",
+      "java_accepted": false,
+      "native_error": "LCM condition tensor or source binding does not match",
+      "no_output": true
+    },
+    {
+      "name": "metadata-source_sha256",
+      "java_accepted": false,
+      "native_error": "LCM condition tensor or source binding does not match",
+      "no_output": true
+    },
+    {
+      "name": "metadata-base_sha256",
+      "java_accepted": false,
+      "native_error": "LCM condition tensor or source binding does not match",
+      "no_output": true
+    },
+    {
+      "name": "metadata-distilled_guidance",
+      "java_accepted": false,
+      "native_error": "LCM condition tensor or source binding does not match",
+      "no_output": true
+    },
+    {
+      "name": "metadata-sampler_cfg",
+      "java_accepted": false,
+      "native_error": "LCM condition tensor or source binding does not match",
+      "no_output": true
+    },
+    {
+      "name": "binding-sourceSha256",
+      "java_accepted": false,
+      "native_error": "LCM condition tensor or source binding does not match",
+      "no_output": true
+    },
+    {
+      "name": "binding-baseSha256",
+      "java_accepted": false,
+      "native_error": "LCM condition tensor or source binding does not match",
+      "no_output": true
+    },
+    {
+      "name": "binding-distilledGuidance",
+      "java_accepted": false,
+      "native_error": "Unknown LCM condition algorithm or source identity",
+      "no_output": true
+    },
+    {
+      "name": "binding-algorithm",
+      "java_accepted": false,
+      "native_error": "Unknown LCM condition algorithm or source identity",
+      "no_output": true
+    },
+    {
+      "name": "missing-binding",
+      "java_accepted": false,
+      "native_error": "LCM condition component requires its source binding",
+      "no_output": true
+    },
+    {
+      "name": "extra-binding",
+      "java_accepted": false,
+      "native_error": "Unknown LCM condition binding fields",
+      "no_output": true
+    }
+  ],
+  "outputs": [
+    {
+      "name": "native-prepared",
+      "path": "build/lcm-app-host-tests/run-1793311438903172900/data/native-prepared/cff6a257-c36e-4dfd-93f7-ad065733842f.png",
+      "image": {
+        "width": 512,
+        "height": 512,
+        "format": "PNG",
+        "mode": "RGB",
+        "bytes": 528741,
+        "sha256": "ccaef785950eb3d7a0d23a57eb73dc94c9c4bf9c4197ee12b2c442ae83b2d348",
+        "channel_mean": [
+          91.9520378112793,
+          84.23711013793945,
+          76.17533874511719
+        ],
+        "channel_stddev": [
+          49.17991329451528,
+          45.71304850804038,
+          43.69294439529588
+        ],
+        "extrema": [
+          [
+            13,
+            247
+          ],
+          [
+            7,
+            220
+          ],
+          [
+            0,
+            211
+          ]
+        ],
+        "entropy": 8.878461395099102
+      },
+      "bitwise_equal_to_historical_native_prepared": true
+    },
+    {
+      "name": "recovery",
+      "path": "build/lcm-app-host-tests/run-1793311438903172900/data/recovery/9d50402c-8ec5-4b14-9a74-88ef6beb2103.png",
+      "image": {
+        "width": 512,
+        "height": 512,
+        "format": "PNG",
+        "mode": "RGB",
+        "bytes": 528741,
+        "sha256": "ccaef785950eb3d7a0d23a57eb73dc94c9c4bf9c4197ee12b2c442ae83b2d348",
+        "channel_mean": [
+          91.9520378112793,
+          84.23711013793945,
+          76.17533874511719
+        ],
+        "channel_stddev": [
+          49.17991329451528,
+          45.71304850804038,
+          43.69294439529588
+        ],
+        "extrema": [
+          [
+            13,
+            247
+          ],
+          [
+            7,
+            220
+          ],
+          [
+            0,
+            211
+          ]
+        ],
+        "entropy": 8.878461395099102
+      },
+      "bitwise_equal_to_historical_native_prepared": true
+    }
+  ],
+  "compilation": {
+    "schema": "lma.sd-host-build/1",
+    "executable": "build/sd-worker-host/e88f452107cdbfb0/bin/lma_sd_host.exe",
+    "sha256": "aa690bc1a2be80de22666194a85f7e57a103b1505860af70b8b8428d5561526b",
+    "bytes": 8649728,
+    "source_revision": "be486498eadc29dc3cd234d944c2180ed42b1415",
+    "ggml_revision": "a5915eb0e47adef21c3f25b889a008925ea838c2",
+    "backend": "cpu",
+    "production_worker_source_unmodified": true,
+    "production_vocabulary_source_unmodified": true,
+    "windows_parent_guard": true,
+    "external_vocabulary": true,
+    "bundled_model_data": false,
+    "android_compiled": false,
+    "physical_android": false,
+    "packaged_in_apk": false,
+    "model_executed": false,
+    "input_fingerprint": {
+      "app/src/main/assets/model-bundles.json": "cd90229799c84fea337f742b48c4c9c30035a7f295e05da55db2d85d65fd5ed8",
+      "native/lcm_condition.hpp": "a5d94cf2f2453f3c8045418aa6b1a147ffa27557665bfc6f2203e04048899ea4",
+      "native/sd_policy.hpp": "c7d987ffc6b905fbad9d6a47be98d10f57b2060728f00801742a4ec346a5c7ba",
+      "native/sd_worker.cpp": "e7effd2775408b3c61f762d3765245f6098114c834544fc672bba8bcd85072d4",
+      "native/vocab_external.cpp": "8bfe3af4f45363554f58009efcd7404e3af9da768cb65762de6c6b91621c81f1",
+      "research/sd_host/CMakeLists.txt": "0870d59e689181eddd9690cc537da9b9abf4a252791ae6dd0506aa95fe4051d3",
+      "research/sd_host/compat/sys/prctl.h": "87c9ddf82ce059bf303486b0e10b22dce6d972e87f83836d148e631dcdad9c9e",
+      "research/sd_host/compat/unistd.h": "e467e7f5855c286b3ce40268146ed34d153a5fbf8a42d5c36b26a6293142068b",
+      "research/sd_host/NOTICE": "90e18935ca8ba71ac1a5ce59e3a2f0b0580cd246877f65cba402deff67eb18fc",
+      "research/sd_host/platform.hpp": "c377ed1b676707a469a192d96ae9b748802e1f62ad0674366b593b2b5b2daf67",
+      "third_party/engine-lock.json": "65f47d3dbb40f7ae621eb9b9d7df3aa3b69bb3e880a79b86d102666f5ddd0a63",
+      "third_party/notices/sd-sources.json": "91ee744071aa93c4bd4d40476d3582fa4bf4d00a628527e196d4856c06ec77c1",
+      "tools/build_native.py": "f3876b3c254ee367a55f15bcbf9cd8c0dc2eb243b53b59796a282f2afc4a7c11",
+      "tools/build_sd_host.py": "536859697788acf0531fe457cfa255ea9a11f897d58102d99e9fb859f116ec69",
+      "tools/fetch_sd15_trained.py": "91392401d9739f15b14fa4e42b74f13bbdd719a382746541cc69952966e6f307"
+    }
+  },
+  "preparer_build": {
+    "schema": "lma.lcm-preparer-build/1",
+    "android_arm64_compiled": false,
+    "executable": "build/lcm-prepare-host/bin/lma_lcm_prepare.exe",
+    "executable_bytes": 225792,
+    "executable_sha256": "a3d9cc90671380372ed87f775a09bbf62f4a0bfab7b57224dc7b90f6e5007586",
+    "input_fingerprint": {
+      "research/lcm_prepare/CMakeLists.txt": "9d02f66eaf7f7fcba96fa38e28d7eda4387d42bc519eaba2eb395b1b4037ee46",
+      "research/lcm_prepare/contract.hpp.in": "ef99078e0b5aa12b1dda780fd38fd76541524b1ca7025cc10f3b1ee452a9dfc9",
+      "research/lcm_prepare/contract.json": "543385d7ada78b84875d938f74d02768c90d33b5ba16b85f2d827b9d7497634f",
+      "research/lcm_prepare/prepare.cpp": "fb7dfd877337c3da35089db3704a105cc7bc857ec85bc4886214ea8892a52fac",
+      "research/local_prepare/io.hpp": "fc1f412b47619a1b0f63256590ca025353bd8637d7900a6f546f21a4d2241358",
+      "research/local_prepare/NOTICE": "abd98f3b203aa21aaece257200b42c9478ab0a06f44ad1208e5663ec4287a6d1",
+      "third_party/ltx098-text-source-lock.json": "04b2f7892a4f047363fbaf3ba555682bf201c8320fa1cc7f4d5a68b2884512f4",
+      "tools/build_lcm_prepare.py": "ba010b5b0ccdd316bb4b8f5427c557107bc0ea5208e22358cd3d0df6f45c2f1e",
+      "tools/generate_lcm_condition_contract.py": "a1ec1932cd031eecdd3aa7d3c50e9fa6866e9bcd624692c492bedfb8577faf79"
+    },
+    "learned_data_embedded": false,
+    "mathematical_guidance_constants": 256,
+    "packaged_in_apk": false,
+    "production_app_integrated": false,
+    "physical_android": false,
+    "model_inference": false,
+    "virtualization_used": false
+  },
+  "capture_directory": "build/lcm-app-host-tests/run-1793311438903172900",
+  "production_preparation_association_generation_host_executed": true,
+  "asset_download_attempted": false,
+  "physical_android": false,
+  "android_saf_tested": false,
+  "android_background_accepted": false,
+  "historical_pixel_comparison_passed": false,
+  "image_quality_accepted": false,
+  "complete_target03_accepted": false,
+  "complete_release_accepted": false,
+  "input_fingerprint": {
+    "app/src/main/assets/model-bundles.json": "cd90229799c84fea337f742b48c4c9c30035a7f295e05da55db2d85d65fd5ed8",
+    "native/lcm_condition.hpp": "a5d94cf2f2453f3c8045418aa6b1a147ffa27557665bfc6f2203e04048899ea4",
+    "native/sd_policy.hpp": "c7d987ffc6b905fbad9d6a47be98d10f57b2060728f00801742a4ec346a5c7ba",
+    "native/sd_worker.cpp": "e7effd2775408b3c61f762d3765245f6098114c834544fc672bba8bcd85072d4",
+    "native/vocab_external.cpp": "8bfe3af4f45363554f58009efcd7404e3af9da768cb65762de6c6b91621c81f1",
+    "research/sd_host/CMakeLists.txt": "0870d59e689181eddd9690cc537da9b9abf4a252791ae6dd0506aa95fe4051d3",
+    "research/sd_host/compat/sys/prctl.h": "87c9ddf82ce059bf303486b0e10b22dce6d972e87f83836d148e631dcdad9c9e",
+    "research/sd_host/compat/unistd.h": "e467e7f5855c286b3ce40268146ed34d153a5fbf8a42d5c36b26a6293142068b",
+    "research/sd_host/NOTICE": "90e18935ca8ba71ac1a5ce59e3a2f0b0580cd246877f65cba402deff67eb18fc",
+    "research/sd_host/platform.hpp": "c377ed1b676707a469a192d96ae9b748802e1f62ad0674366b593b2b5b2daf67",
+    "third_party/engine-lock.json": "65f47d3dbb40f7ae621eb9b9d7df3aa3b69bb3e880a79b86d102666f5ddd0a63",
+    "third_party/notices/sd-sources.json": "91ee744071aa93c4bd4d40476d3582fa4bf4d00a628527e196d4856c06ec77c1",
+    "tools/build_native.py": "f3876b3c254ee367a55f15bcbf9cd8c0dc2eb243b53b59796a282f2afc4a7c11",
+    "tools/build_sd_host.py": "536859697788acf0531fe457cfa255ea9a11f897d58102d99e9fb859f116ec69",
+    "tools/fetch_sd15_trained.py": "91392401d9739f15b14fa4e42b74f13bbdd719a382746541cc69952966e6f307",
+    "research/lcm_prepare/CMakeLists.txt": "9d02f66eaf7f7fcba96fa38e28d7eda4387d42bc519eaba2eb395b1b4037ee46",
+    "research/lcm_prepare/contract.hpp.in": "ef99078e0b5aa12b1dda780fd38fd76541524b1ca7025cc10f3b1ee452a9dfc9",
+    "research/lcm_prepare/contract.json": "543385d7ada78b84875d938f74d02768c90d33b5ba16b85f2d827b9d7497634f",
+    "research/lcm_prepare/prepare.cpp": "fb7dfd877337c3da35089db3704a105cc7bc857ec85bc4886214ea8892a52fac",
+    "research/local_prepare/io.hpp": "fc1f412b47619a1b0f63256590ca025353bd8637d7900a6f546f21a4d2241358",
+    "research/local_prepare/NOTICE": "abd98f3b203aa21aaece257200b42c9478ab0a06f44ad1208e5663ec4287a6d1",
+    "third_party/ltx098-text-source-lock.json": "04b2f7892a4f047363fbaf3ba555682bf201c8320fa1cc7f4d5a68b2884512f4",
+    "tools/build_lcm_prepare.py": "ba010b5b0ccdd316bb4b8f5427c557107bc0ea5208e22358cd3d0df6f45c2f1e",
+    "tools/generate_lcm_condition_contract.py": "a1ec1932cd031eecdd3aa7d3c50e9fa6866e9bcd624692c492bedfb8577faf79",
+    "app/src/main/java/com/lma/app/core/AdapterSpec.java": "aff8572d14ac8d616be0a1b0da395e52ed5bddcd5ae407a969c2657bf9257581",
+    "app/src/main/java/com/lma/app/core/ArtifactStore.java": "6f85d2ac710cac0fb5a76cde9493ff1fef4d3e2e119c3e031b7c44ff65a49061",
+    "app/src/main/java/com/lma/app/core/AssemblyPlan.java": "80e81dea2a831d3955aa5ae21323eb0432fb448f78994901633fbb6e85d77e7c",
+    "app/src/main/java/com/lma/app/core/BundleStore.java": "a773aaa8f83410da9ccbf499b9a19ee4166e2c094c2e992699424c0ac68f3e74",
+    "app/src/main/java/com/lma/app/core/BundleTransfers.java": "926596119a2c3f6bc089516e7bbd7db3016487d60c24f908ea646dfc76707f3e",
+    "app/src/main/java/com/lma/app/core/BundleUpdates.java": "f31a65d0e172aa75f6131deace828875534ccc756ed93fac83bb09d5a4162fe1",
+    "app/src/main/java/com/lma/app/core/ByteRange.java": "31723bf112e630de6c2a1cd8d525be7bbd4706e151fa5a297a5e641f59b5c752",
+    "app/src/main/java/com/lma/app/core/ChatHistory.java": "3046a52c3f611b83b46cfed94afe0f4b31667f77986b7ca1737169ec8c4ce951",
+    "app/src/main/java/com/lma/app/core/ComponentIntegrity.java": "7a5977c607f624f8763a782b1b081c4e485c8c05c2caae15986ad2f2388f5bce",
+    "app/src/main/java/com/lma/app/core/DataFiles.java": "02d3212885376e7073a785801dbb81073b13cc87c5fc0e85ac4373fd346696bc",
+    "app/src/main/java/com/lma/app/core/EngineWorkspace.java": "6c632861e13d0a8950cdee66e8bea8a8760d23550c10343d6cfdd8a6e9af29dd",
+    "app/src/main/java/com/lma/app/core/ExecutionGate.java": "45d783f80953a364115525a361cb3490871b8ec8dfb0f386d90d83c81fc281bc",
+    "app/src/main/java/com/lma/app/core/InputSelection.java": "963fe60973caab82b9dfedaa7c1661f236aed6ea158fcda8f4a86d02ba33d509",
+    "app/src/main/java/com/lma/app/core/InputSpec.java": "a2d34c41a8c623eb31bbcae412037705ea7e4c69e06c9de6f62c83f199f97728",
+    "app/src/main/java/com/lma/app/core/InputUploads.java": "5debd68a73abc8bde8174c985dfec8f534c6bf8df58dda8810b0cc3541fe1d53",
+    "app/src/main/java/com/lma/app/core/JobStore.java": "2ea819922f6b069348848d6a8113f20257d120fef2d280e37d774f97a7cb637d",
+    "app/src/main/java/com/lma/app/core/LcmCondition.java": "2177da94b69781263e36f3e379034619bf74c6856bc6a9108592d4f272e94b7a",
+    "app/src/main/java/com/lma/app/core/LocalApi.java": "d37a9007214d35ae396bc65ea34eec86c2199ed92a73f83be07914d6190a5d80",
+    "app/src/main/java/com/lma/app/core/LocalHttp.java": "428acea4f950bd2ae2948e5b418f5f98259640108427fd9c59d918809787c9cd",
+    "app/src/main/java/com/lma/app/core/MnnSpec.java": "ef8a51675cdda887a1b7c78b8b1c6398b71c87a004327fbda5af62f8b52d8315",
+    "app/src/main/java/com/lma/app/core/ModelBundle.java": "ad08c033a2c9a215c292d20a5a97a65c85db91ce6a86609a8eed9e846449e84b",
+    "app/src/main/java/com/lma/app/core/ModelSelection.java": "965c9f22f16fc822f792ebef6e0de0a0c67f5a6882d5e7ef77be05b83ea1aeb2",
+    "app/src/main/java/com/lma/app/core/MossDelaySpec.java": "2f680d68cf78517f234c336c77e0b584bf40300fd6294514b7cd457149d41bd0",
+    "app/src/main/java/com/lma/app/core/MossNanoSpec.java": "4b784a773fb85550eba8f169a62cab9a274a332519ec700b595694378e9e39ed",
+    "app/src/main/java/com/lma/app/core/MossRqSpec.java": "74f68a8374b5436cf73688e427e9cad244a198f6f8faa2c5fea686bb04bc99a2",
+    "app/src/main/java/com/lma/app/core/NativePreparation.java": "cb8ee985ef2c6cba3e0d6bb924c940bcb197bd3f576ca7d6e1fa24442d44e1dd",
+    "app/src/main/java/com/lma/app/core/OpenMossSpec.java": "4a9af3c92d87be65c4f617677eaed31576f9160a3355518fff7cb874192a5258",
+    "app/src/main/java/com/lma/app/core/ParameterSchema.java": "d536dd7e01107785076f5d1cd3c1c7ff89f6a3711ec130d3ec13e4b20d73bef1",
+    "app/src/main/java/com/lma/app/core/PreparationPlan.java": "dfee63b84035c6ca18b0647aecb947070b983b6b2f1de08247129dddfa64a0bf",
+    "app/src/main/java/com/lma/app/core/PreparedAssets.java": "ae09c7aa1643fc22b76cbe11182a742f26aa0ea95bc9b7166d685433a603dd02",
+    "app/src/main/java/com/lma/app/core/PreparedModelAssembly.java": "eef243d48c9b2b7d3d9b08b2ddf8129ff3884bbdd6c00ecd28a83c0f4bbfa384",
+    "app/src/main/java/com/lma/app/core/ProcessControl.java": "a1950624951d41c040b0b9f44cd8ef5faff16ed22dae880d626e4619d77c155d",
+    "app/src/main/java/com/lma/app/core/Protocol.java": "d49f47884aec0cb03347023119c2808330fa9970689dcd9d33c30ca653d03b85",
+    "app/src/main/java/com/lma/app/core/QwenTtsSpec.java": "e94d96d7ce7c499b2d4bafbd35740c690b32169a142a9a55aae7a8b03364125b",
+    "app/src/main/java/com/lma/app/core/RecipeCatalogue.java": "7b27a07355fe4f7671eef7fa17c9f9ab8512f3f52ccc1de15d4069f15bc6384a",
+    "app/src/main/java/com/lma/app/core/SdSpec.java": "bdd247408ebede1777a84a896a68947132ab8b5ee8d526b17742c565229fcb73",
+    "app/src/main/java/com/lma/app/core/SoulxSpec.java": "a761d40965d041d38cc1f629418017103c9eefabf5904814fad9de6372b6bcc7",
+    "app/src/main/java/com/lma/app/core/StableAudioSpec.java": "0cc04143a8c8c2afa4dc3d9726f4891779b352404d97c70d6fdc260fbe27ee6c",
+    "app/src/main/java/com/lma/app/core/TaskDrafts.java": "1c97a99a274abb5f38542eb2cea6834121f46b5dfb0e7cbaeaa5df25222c7ead",
+    "app/src/main/java/com/lma/app/core/TaskInput.java": "6f186b392f9e2fd70f253398f4becf9604d22e03c132f18b3bb93f635f637d7b",
+    "app/src/main/java/com/lma/app/core/TaskRequests.java": "6a9056c560a681891a0110b25d015494e0a73240034efde5ad565593a9d1dcc7",
+    "app/src/main/java/com/lma/app/core/TextRequest.java": "bfdb23db96512f00f362b49951c1fee4162ca2d441482eb6ebf180a8d3574d5f",
+    "app/src/main/java/com/lma/app/core/TextResult.java": "2dd7968a40cc917fab5b8bc412ef00d21348abec1d844b140b843b1bba57c6ab",
+    "app/src/main/java/com/lma/app/core/TextSpec.java": "4521ce8e833d88276f6b98d446e0171c48602d67ce2cf4b372d425e56d6d149e",
+    "app/src/main/java/com/lma/app/core/TtsSpec.java": "54f841e2ca5e93d3c3e1845014029b96912291fcf50a50c26a0124325a7a962a",
+    "app/src/main/java/com/lma/app/core/WaveFile.java": "cf70b9bbafb6aa23cc25217d4883e769173b00f74571d1b115c50a8ad6b15361",
+    "app/src/main/java/com/lma/app/LocalEngine.java": "db9b46d2e05802bec96f2fb428469553d95c3424228dd06fd617c361b99b9f7d",
+    "app/src/main/java/com/lma/app/NativeWorker.java": "c3324271639c6e77495e9aac78a663c6110dfef1026d0cc320ca82344ddd030d",
+    "app/src/main/java/com/lma/app/SdEngine.java": "7a385f4058505e4175b9a2a97fea1b854b797b4f4ef3d905d1ca87d8f82621c6",
+    "catalogue/asset-preparations.json": "b0a7cbac1a633310b9fff84164439ee8fe20a1df137d1075eb9263f531ccfd3b",
+    "catalogue/model-assemblies.json": "d256a7e419099569fdd166d3aa52004424ebfc6ec6d0976304d41089f1559c82",
+    "catalogue/model-bundles.json": "cd90229799c84fea337f742b48c4c9c30035a7f295e05da55db2d85d65fd5ed8",
+    "tests/lcm-app/com/lma/app/LcmConditionContractTest.java": "e95a8181a27c1d50de4e1c12943a134a72d64c4ea46ab664cb7169d13e7b7de2",
+    "tests/lcm-app/com/lma/app/LcmTrainedAppTest.java": "5e4027766dafb2149b099173ca40ffd90ee2c1960e2a32ae9d71e4f5887a4f1f",
+    "tests/sd-host/com/lma/app/VideoEncoder.java": "96e480bec46860cd05e40d55b7e21710069f71f1f54c4cc543f26d6505efa146",
+    "tests/sd-trained/android/util/AtomicFile.java": "99bc308a86040ee296fb15be67ecd639eedfcdba9a8023f26d8d1b73f6d4d579",
+    "tests/sd-trained/com/lma/app/SdTrainedAppTest.java": "1758b45dee8f3ba4840aaa7b216d0ac666ab22ce0e5fb463ebe1e6f7c1781216",
+    "tests/tts-host/com/lma/app/LmaApp.java": "9f27bd7188d03aa4eb95b007111daff697d39515dc41884d4569e2f382d0577b",
+    "tools/test_lcm_app_host.py": "b855a927e6ec89d425ad7c595373fc7acf0d11cf687b5205b31851b9d9801b52"
+  }
+}

@@ -14,6 +14,7 @@ public final class SdSpec {
         boolean video = type.equals("video.generate");
         if (!type.equals("image.generate") && !video || video != bundle.pipeline.equals("wan21_13b")) throw new IllegalArgumentException("此配方不支持所选生成任务");
         Set<String> roles = new HashSet<>(); for (ModelBundle.Component c : bundle.components) roles.add(c.role);
+        LcmCondition.descriptor(bundle);
         if (roles.contains("model") == roles.contains("diffusion")) throw new IllegalArgumentException("配方必须明确选择完整 checkpoint 或独立 diffusion 组件");
         String arch = bundle.pipeline.startsWith("sd15") ? "sd15" : bundle.pipeline.startsWith("sdxl") ? "sdxl" : bundle.pipeline.equals("sd21_turbo") ? "sd21" : "";
         boolean advanced = arch.isEmpty();
@@ -51,6 +52,7 @@ public final class SdSpec {
         if (!base.id.equals(request.getString("bundleId"))) throw new IllegalArgumentException("扩散任务与模型快照不匹配");
         JSONArray selected = request.optJSONArray("adapters");
         if ((selected == null ? 0 : selected.length()) != adapters.size()) throw new IllegalArgumentException("扩散适配器快照不完整");
+        if (LcmCondition.descriptor(base) != null && !adapters.isEmpty()) throw new IllegalArgumentException("固定 LCM 条件组件尚不支持叠加 LoRA；请使用独立基础模型配对");
         int lcm = 0;
         for (int i = 0; i < adapters.size(); i++) {
             ModelBundle adapter = adapters.get(i); JSONObject item = selected.getJSONObject(i);

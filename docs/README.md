@@ -6,6 +6,7 @@
 
 | 主题 / Topic | 中文 | English |
 | --- | --- | --- |
+| LCM 用户资产到生成 / User assets through generation | [中文](LCM_APP_FLOW.md) | [English](LCM_APP_FLOW.en.md) |
 | 任务恢复 / 历史 / 容量 | [中文](TASK_RECOVERY.md) | [English](TASK_RECOVERY.en.md) |
 | 运行前检查 / Task preflight | [中文](TASK_PREFLIGHT.md) | [English](TASK_PREFLIGHT.en.md) |
 | 生成草稿 / 任务 / 素材闭环 | [中文](TASK_WORKBENCH.md) | [English](TASK_WORKBENCH.en.md) |

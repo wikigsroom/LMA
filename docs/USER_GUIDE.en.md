@@ -1,5 +1,7 @@
 # LMA user guide
 
+Internal dev.28: [LCM user assets through local generation](LCM_APP_FLOW.en.md). Select a source, prepare, explicitly associate and choose missing dependencies before generating. Pixel/quality/device gates remain open; drafts, preflight and recovery remain.
+
 Internal dev.27 adds [output recovery, task filters and history management](TASK_RECOVERY.en.md): inspect recovered results/capacity and review exact terminal records before clearing. Models, media, drafts and active work remain; no automatic rerun.
 
 [中文](USER_GUIDE.md) · [Documentation](README.md)

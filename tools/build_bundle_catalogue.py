@@ -77,6 +77,25 @@ def main():
                 identity = json.loads((ROOT / "research/ltx098_vae_prepare/contract.json").read_text(encoding="utf-8"))["checkpoint"]
                 assert (c["repository"], c["revision"], c["path"]) == (identity["repository"], identity["revision"], identity["file"])
                 assert c["url"] == "https://huggingface.co/" + c["repository"] + "/resolve/" + c["revision"] + "/" + c["path"]
+            elif checked["kind"] in ("measured_lcm_source", "measured_lcm_base", "measured_lcm_condition"):
+                # Identity evidence is independent from the explicitly failed image-equivalence gate.
+                assert checked["live_hf_metadata_checked_this_update"] is False
+                trained = json.loads((ROOT / "verification/development/lcm-preparation-trained.json").read_text(encoding="utf-8"))
+                assert trained["passed"] and trained["source_complete_sha256_verified"]
+                if checked["kind"] == "measured_lcm_source":
+                    assert checked["source"] == "verification/development/lcm-preparation-trained.json"
+                    assert all(c[k] == trained["source"][k] for k in ("path", "bytes", "sha256", "repository", "revision", "url"))
+                elif checked["kind"] == "measured_lcm_base":
+                    assert checked["source"] == "verification/development/lcm-overlay-trained.json"
+                    capture = json.loads((ROOT / checked["source"]).read_text(encoding="utf-8"))
+                    assert capture["base_whole_sha256_verified"] and not capture["passed"] and not capture["image_quality_accepted"]
+                    assert all(c[k] == capture["base"][k] for k in ("path", "bytes", "sha256", "repository", "revision", "url"))
+                else:
+                    assert checked["source"] == "verification/development/lcm-preparation-trained.json" and not c.get("url")
+                    assert (c["bytes"], c["sha256"]) == (trained["output"]["bytes"], trained["output"]["sha256"])
+                    preparation = next(p for p in json.loads((ROOT / "catalogue/asset-preparations.json").read_text(encoding="utf-8"))["plans"] if p["id"] == checked["preparationId"])
+                    output = next(o for stage in preparation["stages"] for o in stage["outputs"] if o["role"] == c["role"])
+                    assert (c["path"], c["bytes"], c["sha256"]) == (output["file"], output["bytes"], output["sha256"])
             else: raise AssertionError("Unreviewed catalogue component evidence")
     assert ids == set(proofs), "Each shipped candidate requires individual component evidence"
     (ROOT / "app/src/main/assets/model-bundles.json").write_bytes(data)

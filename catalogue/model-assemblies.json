@@ -90,6 +90,20 @@
           "target": "vae_manifest"
         }
       ]
+    },
+    {
+      "schema": "lma.model-assembly/1",
+      "id": "lcm_dreamshaper_guidance85_association_v1",
+      "name": "关联 LCM 固定条件运行模型",
+      "sourceBundleId": "lcm_dreamshaper_source_ra85df6a",
+      "preparationId": "lcm_dreamshaper_guidance85_v1",
+      "bundleId": "lcm_dreamshaper_guidance85_runtime_v1",
+      "roles": [
+        {
+          "source": "condition_bias",
+          "target": "condition_bias"
+        }
+      ]
     }
   ]
 }

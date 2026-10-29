@@ -1,5 +1,13 @@
 # Changelog / 更新记录
 
+## 0.3.0-dev.28 — LCM user assets through generation / unreleased
+
+- LCM 准备程序注册进 App；用户明确选源、准备、关联、下载依赖和生成，复用共享队列与独立模型记录。Production preparation and association connect to generation without implicit transfers.
+- 修复阶段输出预算与磁盘余量混用；Java / C++ 验证来源、基础模型、GGUF 单张量、有限数值、填充与精确结束；原生加载错误停止。Separate native output budgets and strict source-bound condition parsing.
+- 固定条件不允许叠加未验证 LoRA，页面明确说明并隐藏低步数不用的负面条件；保留独立 SD1.5 / SDXL LoRA、推荐、HF 搜索、本地与参数归位。Fixed-condition limits remain distinct from independent adapters.
+- 完整训练源与实际生产 Java / 原生主机链路、结构拒绝对照、当前回归、原签名 APK、双语文档和四张新截图 / MP4 / GIF 同步。Known pixel failure 8 > 5, quality/device gates and all frozen release targets remain open. [中文](docs/LCM_APP_FLOW.md) / [English](docs/LCM_APP_FLOW.en.md) / [编号实现与完整待办](docs/releases/v0.3.0-dev.28.md).
+
+
 ## 0.3.0-dev.27 — task recovery, history and capacity / unreleased
 
 - 启动对账已提交结果，来源与不可变请求一致才关联 interrupted 任务；保留中断状态，不自动续步。回收有明确归属的未提交生成文件，保留索引结果、续传输入及模型。Startup reconciles committed results and reclaims owned uncommitted output files.

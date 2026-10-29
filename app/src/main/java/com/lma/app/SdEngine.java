@@ -36,9 +36,12 @@ public final class SdEngine implements LocalEngine {
         if (parameters.optLong("seed", -1) == -1) parameters.put("seed", new java.security.SecureRandom().nextInt(Integer.MAX_VALUE));
         context.execution(new JSONObject().put("effectiveParameters", parameters).put("pipeline", lease.bundle.pipeline).put("samplingProfile", planned.getString("profile")).put("samplingAdjustments", planned.getJSONArray("adjustments")));
         for (ModelBundle.Component c : lease.bundle.components) components.put(c.role, lease.file(c.role).getPath());
+        JSONObject condition = LcmCondition.descriptor(lease.bundle);
+        if (condition != null) condition = LcmCondition.verify(lease.bundle, lease.file(LcmCondition.ROLE));
         JSONObject command = new JSONObject().put("schema", "lma.engine-request/1").put("type", request.getString("type")).put("input", request.getJSONObject("input"))
                 .put("parameters", parameters).put("pipeline", lease.bundle.pipeline).put("architecture", lease.bundle.architecture).put("samplingProfile", planned.getString("profile"))
                 .put("components", components).put("output", generated.getPath()).put("loras", ModelSelection.nativeLoras(lease, context.adapters(), request));
+        if (condition != null) command.put("conditionBias", condition);
         Map<String, String> environment = new HashMap<>();
         String[][] vocab = {{"clip_merges", "CLIP_MERGES"}, {"qwen_merges", "QWEN_MERGES"}, {"mistral_merges", "MISTRAL_MERGES"}, {"mistral_vocab", "MISTRAL_JSON"}, {"t5_tokenizer", "T5_JSON"}, {"umt5_tokenizer", "UMT5_JSON"}, {"gemma_merges", "GEMMA_MERGES"}, {"gemma_vocab", "GEMMA_JSON"}};
         for (String[] item : vocab) if (components.has(item[0])) environment.put("LMA_VOCAB_" + item[1], components.getString(item[0]));

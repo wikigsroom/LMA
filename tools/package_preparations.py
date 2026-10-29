@@ -18,7 +18,7 @@ def prepare():
     result = []
     for module in modules:
         record = json.loads((ROOT / module['receipt']).read_text(encoding='utf-8')); current(record['input_fingerprint'])
-        assert record['android_arm64_compiled'] and not record['model_data_embedded']
+        assert record['android_arm64_compiled'] and not record.get('model_data_embedded', record.get('learned_data_embedded', True))
         source = ROOT / module['binary']; data = source.read_bytes(); info = elf_info(data)
         assert len(data) == module['bytes'] == record['executable_bytes']
         assert hashlib.sha256(data).hexdigest() == module['sha256'] == record['executable_sha256']

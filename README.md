@@ -2,11 +2,13 @@
 
 [中文](README.md) · [English](README.en.md) · [下载 / Releases](https://github.com/wikigsroom/LMA/releases) · [文档导航](docs/README.md) · [更新记录](CHANGELOG.md)
 
-> **当前开发：0.3.0-dev.27 / code 31。** 任务中断后对账已保存结果，保持中断状态；回收生成器遗留临时文件。新增任务筛选 / 搜索 / 分页、精确范围确认的终态记录清理及队列 / 结果容量检查，保留草稿与结果再生成闭环。[方案与用法](docs/TASK_RECOVERY.md) · [编号实现 / 全部待办](docs/releases/v0.3.0-dev.27.md) · [录屏](docs/media/development/recovery/recovery-ui.mp4) · [GIF](docs/media/development/recovery/recovery-ui.gif)。App 只更新基座，模型由用户独立选择、下载和管理；完整 v0.3.0 与真机验收尚未完成。
+> **当前开发：0.3.0-dev.28 / code 32。** LCM 已接入“用户选择来源 → 本机准备 → 明确关联 → 自选依赖 → 提交生成”的生产模块，修复准备输出预算，并增加 Java / 原生条件校验及加载失败处理。App 只更新基座，全部模型数据由用户选择、下载和管理。[方案与使用](docs/LCM_APP_FLOW.md) · [编号实现 / 全部待办](docs/releases/v0.3.0-dev.28.md) · [录屏](docs/media/development/lcm/lcm-ui.mp4) · [GIF](docs/media/development/lcm/lcm-ui.gif)。LCM 原像素门槛 **8 > 5** 仍失败；画质、Android 与完整 v0.3.0 尚未验收。
 
-| 中断结果与容量（桌面界面数据） | 清理范围确认（桌面界面数据） |
+| 用户确认本机准备（桌面界面数据） | 用户确认关联与依赖（桌面界面数据） |
 |---|---|
-| ![中断结果与容量](docs/media/development/recovery/01-recovery.png) | ![清理终态记录](docs/media/development/recovery/03-review.png) |
+| ![准备源模型](docs/media/development/lcm/01-prepare.png) | ![关联运行模型](docs/media/development/lcm/02-associate.png) |
+
+保留[草稿 / 结果再生成](docs/TASK_WORKBENCH.md)、[运行前检查](docs/TASK_PREFLIGHT.md)、[任务恢复 / 历史 / 容量](docs/TASK_RECOVERY.md)，以及推荐 m08→m06→m01、HF 全部 / 搜索、本地管理与模型独立设置。
 
 当前检查与历史实验在[证据索引](verification/development/status.json)中分开标记。下列模型专项属于 dev.24 及其对应提交，“APK 不变”仅描述当时的更新；原失败和完整同版要求保留。
 

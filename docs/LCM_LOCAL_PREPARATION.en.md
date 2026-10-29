@@ -1,5 +1,7 @@
 # Small local LCM preparation component
 
+**Historical scope:** This page preserves the original dev.24 experiment. Dev.28 connects preparation, the condition role, explicit association and generation to the App; see the [current flow](LCM_APP_FLOW.en.md). Statements about missing integration or unchanged APK describe the original commit. The maximum pixel difference failure 8 > 5, quality and Android gates remain open.
+
 [中文](LCM_LOCAL_PREPARATION.md) · [Previous trained checks](SD_DISTILLED_TRAINED.en.md) · [Numbered delivery and complete pending scope](releases/v0.3.0-dev.24-lcm-preparation.md)
 
 This round implements a native preparation program without learned parameters. It verifies the separately acquired original LCM UNet and creates a small conditioning component, avoiding an additional 2.13 GB patched checkpoint. Actual Windows execution and Android compilation have separate receipts. The current dev.24 APK does not yet include this program, a derived-component recipe or the corresponding user flow.

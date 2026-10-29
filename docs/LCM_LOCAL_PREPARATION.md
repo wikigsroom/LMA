@@ -1,5 +1,7 @@
 # LCM 小型本地准备组件
 
+**历史范围说明：** 本文保留 dev.24 原始准备实验。dev.28 已将准备、条件角色、明确关联与生成接入 App，见[当前流程](LCM_APP_FLOW.md)；下文“未接入 / APK 不变”仅描述原提交。像素最大差 8 > 5 的失败、画质和 Android 未验收状态保持。
+
 [English](LCM_LOCAL_PREPARATION.en.md) · [上轮训练权重检查](SD_DISTILLED_TRAINED.md) · [本轮编号交付与完整待办](releases/v0.3.0-dev.24-lcm-preparation.md)
 
 本轮实现一个不含学习参数的原生资产准备程序：读取用户单独取得的原始 LCM UNet，校验完整来源后生成小型条件组件，避免额外保留一份 2.13 GB 修正版 checkpoint。Windows 实际执行与 Android 编译分别记录；当前 APK 仍是 dev.24，尚未接入这个准备程序、派生组件配方或相应用户流程。

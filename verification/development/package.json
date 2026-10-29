@@ -1,7 +1,7 @@
 {
-  "apk": "LMA-0.3.0-dev.27-arm64-v8a.apk",
-  "sha256": "d61ab4271a0e97ef009d74434565e8948dd27785f30d541f5de1788fa5b56fed",
-  "native_libraries_verified": 29,
+  "apk": "LMA-0.3.0-dev.28-arm64-v8a.apk",
+  "sha256": "4bee3ed28944074b4a25c972b924734855ba01e48df57de80416bc4acb8f1238",
+  "native_libraries_verified": 30,
   "all_native_dependencies_resolved": true,
   "all_elf_load_segments_16k_aligned": true,
   "final_apk_zip_alignment_verified": true,
@@ -288,7 +288,7 @@
         16384
       ],
       "interpreter": "/system/bin/linker64",
-      "entry_point": 2131360,
+      "entry_point": 2135584,
       "android_api_notes": [
         28
       ],
@@ -543,6 +543,23 @@
       ],
       "interpreter": "/system/bin/linker64",
       "entry_point": 195824,
+      "android_api_notes": [
+        28
+      ],
+      "16k_elf_aligned": true
+    },
+    "liblma-lcm-prepare.so": {
+      "machine": "aarch64",
+      "needed": [
+        "libm.so",
+        "libdl.so",
+        "libc.so"
+      ],
+      "load_segment_alignment": [
+        16384
+      ],
+      "interpreter": "/system/bin/linker64",
+      "entry_point": 129248,
       "android_api_notes": [
         28
       ],

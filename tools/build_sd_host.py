@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def inputs():
-    return fingerprint('native/sd_worker.cpp', 'native/sd_policy.hpp', 'native/vocab_external.cpp',
+    return fingerprint('native/sd_worker.cpp', 'native/sd_policy.hpp', 'native/lcm_condition.hpp', 'native/vocab_external.cpp',
                        'research/sd_host', 'tools/build_sd_host.py', 'tools/build_native.py',
                        'tools/fetch_sd15_trained.py', 'app/src/main/assets/model-bundles.json',
                        'third_party/engine-lock.json', 'third_party/notices/sd-sources.json')

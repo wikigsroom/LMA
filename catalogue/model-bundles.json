@@ -1197,6 +1197,249 @@
         "estimatedPeakRamBytes": 0,
         "known": false
       }
+    },
+    {
+      "schema": "lma.model-bundle/1",
+      "catalogue": true,
+      "backend": "cpu",
+      "architecture": "sd15",
+      "tasks": [
+        "image"
+      ],
+      "resources": {
+        "estimatedPeakRamBytes": 0,
+        "estimateKnown": false
+      },
+      "license": {
+        "name": "Source author declares MIT; also review the separate converted-base license",
+        "url": "https://huggingface.co/SimianLuo/LCM_Dreamshaper_v7/blob/a85df6a8bd976cdd08b4fd8f3b73f229c9e54df5/README.md"
+      },
+      "id": "lcm_dreamshaper_source_ra85df6a",
+      "modelId": "lcm_dreamshaper_v7_source",
+      "recipeId": "lcm_guidance85_source_v1",
+      "name": "LCM Dreamshaper v7 · 条件准备来源",
+      "description": "由用户单独选择下载或导入原始 UNet，再明确准备小型条件组件。原始文件保留；此来源条目不直接生成图片。",
+      "engine": "asset_source",
+      "pipeline": "lcm_condition_source",
+      "capabilities": [
+        "source_assets",
+        "local_asset_preparation"
+      ],
+      "parameters": {
+        "version": 1,
+        "fields": {}
+      },
+      "evidence": {
+        "sourceReviewed": true,
+        "physicalDeviceTests": 0,
+        "status": "source_assets_only",
+        "generationSupported": false
+      },
+      "components": [
+        {
+          "path": "unet/diffusion_pytorch_model.safetensors",
+          "bytes": 3438495328,
+          "sha256": "7be468469c513f8614a73423aa009581295fbd8c903703450632b2275c0145a9",
+          "url": "https://huggingface.co/SimianLuo/LCM_Dreamshaper_v7/resolve/a85df6a8bd976cdd08b4fd8f3b73f229c9e54df5/unet/diffusion_pytorch_model.safetensors",
+          "repository": "SimianLuo/LCM_Dreamshaper_v7",
+          "revision": "a85df6a8bd976cdd08b4fd8f3b73f229c9e54df5",
+          "format": "safetensors",
+          "role": "checkpoint"
+        }
+      ]
+    },
+    {
+      "schema": "lma.model-bundle/1",
+      "id": "lcm_dreamshaper_guidance85_runtime_v1",
+      "modelId": "lcm_dreamshaper_v7_guidance85",
+      "recipeId": "sd15_lcm_fixed_condition_v1",
+      "name": "LCM Dreamshaper v7 · 本机条件组件",
+      "description": "先从来源模型准备并关联条件组件，再由用户选择基础 GGUF 与 CLIP 词表。固定 guidance 8.5、采样 CFG 1；暂不叠加 LoRA。已有像素等价检查未通过，画质与手机性能未验收；仅供明确选择的试运行。",
+      "catalogue": true,
+      "engine": "sd_cpp",
+      "architecture": "sd15",
+      "pipeline": "sd15_lcm",
+      "backend": "cpu",
+      "tasks": [
+        "image"
+      ],
+      "capabilities": [
+        "text_to_image",
+        "runtime_assets",
+        "derived_assets",
+        "lcm_sampling",
+        "fixed_distilled_guidance"
+      ],
+      "license": {
+        "name": "Source author declares MIT; also review the separate converted-base license",
+        "url": "https://huggingface.co/SimianLuo/LCM_Dreamshaper_v7/blob/a85df6a8bd976cdd08b4fd8f3b73f229c9e54df5/README.md"
+      },
+      "evidence": {
+        "sourceReviewed": true,
+        "physicalDeviceTests": 0,
+        "status": "unmeasured_candidate_pixel_equivalence_failed",
+        "pixelEquivalencePassed": false,
+        "imageQualityAccepted": false,
+        "generationSupported": false
+      },
+      "parameters": {
+        "version": 1,
+        "fields": {
+          "width": {
+            "type": "integer",
+            "label": "宽度",
+            "default": 512,
+            "minimum": 64,
+            "maximum": 2048,
+            "presets": [
+              256,
+              384,
+              512,
+              768,
+              1024
+            ],
+            "multipleOf": 64,
+            "limitSource": "application_guard"
+          },
+          "height": {
+            "type": "integer",
+            "label": "高度",
+            "default": 512,
+            "minimum": 64,
+            "maximum": 2048,
+            "presets": [
+              256,
+              384,
+              512,
+              768,
+              1024
+            ],
+            "multipleOf": 64,
+            "limitSource": "application_guard"
+          },
+          "steps": {
+            "type": "integer",
+            "label": "采样步数",
+            "default": 4,
+            "minimum": 1,
+            "maximum": 8,
+            "presets": [
+              1,
+              2,
+              4,
+              8
+            ],
+            "multipleOf": 1,
+            "limitSource": "application_guard"
+          },
+          "threads": {
+            "type": "integer",
+            "label": "CPU 线程",
+            "default": 4,
+            "minimum": 1,
+            "maximum": 64,
+            "presets": [
+              1,
+              2,
+              4,
+              6,
+              8
+            ],
+            "multipleOf": 1,
+            "limitSource": "application_guard"
+          },
+          "seed": {
+            "type": "integer",
+            "label": "随机种子（-1 为随机）",
+            "default": -1,
+            "minimum": -1,
+            "maximum": 2147483647,
+            "presets": [
+              -1,
+              0,
+              42
+            ],
+            "multipleOf": 1,
+            "limitSource": "application_guard"
+          },
+          "cfg": {
+            "type": "number",
+            "label": "提示词引导",
+            "default": 1,
+            "minimum": 1,
+            "maximum": 1,
+            "presets": [
+              1
+            ],
+            "limitSource": "application_guard"
+          },
+          "sampler": {
+            "type": "enum",
+            "label": "采样器",
+            "default": "lcm",
+            "values": [
+              "lcm"
+            ]
+          },
+          "vaeTiling": {
+            "type": "boolean",
+            "label": "分块解码 VAE",
+            "default": true
+          },
+          "scheduler": {
+            "type": "enum",
+            "label": "调度器",
+            "default": "lcm",
+            "values": [
+              "lcm"
+            ]
+          }
+        }
+      },
+      "resources": {
+        "estimatedPeakRamBytes": 0,
+        "estimateKnown": false
+      },
+      "components": [
+        {
+          "path": "LCM_Dreamshaper_v7-f16.gguf",
+          "bytes": 2134675232,
+          "sha256": "0642060766117fdeb8cae0ccdc73ee974ac5779be1112d0a82f2b965bbd00e15",
+          "url": "https://huggingface.co/Steward/lcm-dreamshaper-v7-gguf/resolve/ae3fa73e105d5f848a4ef122e2ce14c92123bf1a/LCM_Dreamshaper_v7-f16.gguf",
+          "repository": "Steward/lcm-dreamshaper-v7-gguf",
+          "revision": "ae3fa73e105d5f848a4ef122e2ce14c92123bf1a",
+          "format": "gguf",
+          "role": "model"
+        },
+        {
+          "role": "clip_merges",
+          "repository": "stable-diffusion-v1-5/stable-diffusion-v1-5",
+          "revision": "451f4fe16113bff5a5d2269ed5ad43b0592e9a14",
+          "path": "tokenizer/merges.txt",
+          "bytes": 524619,
+          "sha256": "9fd691f7c8039210e0fced15865466c65820d09b63988b0174bfe25de299051a",
+          "format": "text",
+          "url": "https://huggingface.co/stable-diffusion-v1-5/stable-diffusion-v1-5/resolve/451f4fe16113bff5a5d2269ed5ad43b0592e9a14/tokenizer/merges.txt"
+        },
+        {
+          "role": "condition_bias",
+          "path": "lcm-condition-bias.gguf",
+          "format": "gguf",
+          "bytes": 5696,
+          "sha256": "213f8a346cf0a70b2cfbb6460f2c9e990b3c45c6fdd435002a82c906e2d3c66c",
+          "derivedFrom": {
+            "preparationId": "lcm_dreamshaper_guidance85_v1",
+            "sourceRole": "condition_bias"
+          }
+        }
+      ],
+      "conditionBias": {
+        "schema": "lma.condition-bias-overlay/1",
+        "algorithm": "lcm-fixed-guidance-f16-mlp-double-dot/1",
+        "sourceSha256": "7be468469c513f8614a73423aa009581295fbd8c903703450632b2275c0145a9",
+        "baseSha256": "0642060766117fdeb8cae0ccdc73ee974ac5779be1112d0a82f2b965bbd00e15",
+        "distilledGuidance": 8.5
+      }
     }
   ]
 }

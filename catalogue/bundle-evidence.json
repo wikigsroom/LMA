@@ -446,6 +446,60 @@
           "live_hf_metadata_checked_this_update": false
         }
       ]
+    },
+    {
+      "bundleId": "lcm_dreamshaper_source_ra85df6a",
+      "components": [
+        {
+          "role": "checkpoint",
+          "path": "unet/diffusion_pytorch_model.safetensors",
+          "bytes": 3438495328,
+          "sha256": "7be468469c513f8614a73423aa009581295fbd8c903703450632b2275c0145a9",
+          "repository": "SimianLuo/LCM_Dreamshaper_v7",
+          "revision": "a85df6a8bd976cdd08b4fd8f3b73f229c9e54df5",
+          "kind": "measured_lcm_source",
+          "source": "verification/development/lcm-preparation-trained.json",
+          "live_hf_metadata_checked_this_update": false
+        }
+      ]
+    },
+    {
+      "bundleId": "lcm_dreamshaper_guidance85_runtime_v1",
+      "components": [
+        {
+          "role": "model",
+          "path": "LCM_Dreamshaper_v7-f16.gguf",
+          "bytes": 2134675232,
+          "sha256": "0642060766117fdeb8cae0ccdc73ee974ac5779be1112d0a82f2b965bbd00e15",
+          "repository": "Steward/lcm-dreamshaper-v7-gguf",
+          "revision": "ae3fa73e105d5f848a4ef122e2ce14c92123bf1a",
+          "kind": "measured_lcm_base",
+          "source": "verification/development/lcm-overlay-trained.json",
+          "live_hf_metadata_checked_this_update": false
+        },
+        {
+          "role": "clip_merges",
+          "kind": "downloaded_small_data",
+          "repository": "stable-diffusion-v1-5/stable-diffusion-v1-5",
+          "revision": "451f4fe16113bff5a5d2269ed5ad43b0592e9a14",
+          "path": "tokenizer/merges.txt",
+          "bytes": 524619,
+          "sha256": "9fd691f7c8039210e0fced15865466c65820d09b63988b0174bfe25de299051a",
+          "source": "https://huggingface.co/api/models/stable-diffusion-v1-5/stable-diffusion-v1-5/451f4fe16113bff5a5d2269ed5ad43b0592e9a14?blobs=true"
+        },
+        {
+          "role": "condition_bias",
+          "path": "lcm-condition-bias.gguf",
+          "bytes": 5696,
+          "sha256": "213f8a346cf0a70b2cfbb6460f2c9e990b3c45c6fdd435002a82c906e2d3c66c",
+          "repository": "",
+          "revision": "",
+          "kind": "measured_lcm_condition",
+          "source": "verification/development/lcm-preparation-trained.json",
+          "live_hf_metadata_checked_this_update": false,
+          "preparationId": "lcm_dreamshaper_guidance85_v1"
+        }
+      ]
     }
   ],
   "gguf_header_metadata_read": true,

@@ -14,7 +14,7 @@ from preparation_build_inputs import build_inputs
 ROOT = Path(__file__).resolve().parents[1]
 BASELINE = '6b1f3459a80db8b7b6838e7d5e492b8ef42d9033'
 BASE_VERSION = '0.3.0-dev.24'
-CURRENT_VERSION = '0.3.0-dev.27'
+CURRENT_VERSION = '0.3.0-dev.28'
 CERTIFICATE = '90444a717a55549e2094364d8d7d005cf8b7f4df24562da62cc1884a2f341c17'
 SOURCES = {
     'build-info.json': 'dist/build-info.json',
@@ -32,6 +32,12 @@ SOURCES = {
     'workbench-media.json': 'docs/media/development/workbench/manifest.json',
     'preflight-media.json': 'docs/media/development/preflight/manifest.json',
     'recovery-media.json': 'docs/media/development/recovery/manifest.json',
+    'preparation-core.json': 'build/preparation-tests/results.json',
+    'assembly-core.json': 'build/assembly-tests/results.json',
+    'diffusion.json': 'build/diffusion-tests/results.json',
+    'lcm-app-host.json': 'build/lcm-app-host-tests/results.json',
+    'lcm-media.json': 'docs/media/development/lcm/manifest.json',
+    'lcm-trained-media.json': 'docs/media/development/lcm-app-trained/manifest.json',
 }
 
 
@@ -83,7 +89,9 @@ def export():
         'release_ready': False, 'all_selected_models_supported': False,
         'physical_device_tests': 0, 'model_inference_tested': False,
         'historical_trained_results_apply_to_current_apk': False,
-        'scope': 'Production committed-output reconciliation, scoped orphan cleanup, reviewed terminal-history cleanup and capacity/filter UI; current core/API/UI/package checks; no new model inference claims',
+        'host_model_inference_tested': True, 'apk_model_inference_tested': False,
+        'model_inference_test_scope': 'Current Windows production LCM preparation/association/generation only; compiled Android APK remains unexecuted',
+        'scope': 'Production user-selected LCM source preparation, explicit runtime association and generation with bounded condition validation; current Windows trained Java/native execution, core/API/UI/package checks; no Android or quality acceptance',
         'required_release_scope': {'foundation': 'F01–F12', 'existing_text': True, 'selected_ids': ['01','02','03','04','05','06','07','08','09','10','11','12','13','14','16','17'], 'every_frozen_subtarget': True, 'sd15_and_sdxl_lora': True},
         'input_fingerprint': fingerprint('tools/checkpoint_evidence.py', 'tools/export_development.py', 'tools/check_repository.py', 'docs/proposals/multimodal-release-scope.json'),
     }
@@ -115,7 +123,7 @@ def check():
     assert build['version'] == CURRENT_VERSION and build['input_fingerprint'] == build_inputs()
     assert build['sha256'] == package['sha256'] == digest((ROOT / 'dist' / build['apk']).read_bytes())
     assert package['signing_certificate_sha256'] == CERTIFICATE and package['apk_signatures_independently_verified']
-    assert package['native_libraries_verified'] == 29 and package['packaged_ui_matches_source'] and package['source_inputs_match_build']
+    assert package['native_libraries_verified'] == 30 and package['packaged_ui_matches_source'] and package['source_inputs_match_build']
     assert not package['physical_device_tested'] and not package['private_keys_in_apk']
     workbench = records['workbench.json']; assert workbench['passed'] and workbench['count'] >= 44 and workbench['actual_socket_io'] and workbench['actual_persistence_io']
     assert not workbench['android_execution_tested'] and not workbench['model_inference_tested']
@@ -140,6 +148,30 @@ def check():
     assert not media['android_device'] and not media['model_inference'] and not media['weights_downloaded'] and len(media['screenshots']) == 4 and len(media['files']) == 6
     for item in media['files']:
         data = (ROOT / 'docs/media/development/recovery' / item['file']).read_bytes()
+        assert len(data) == item['bytes'] and digest(data) == item['sha256']
+    assert status['host_model_inference_tested'] and not status['apk_model_inference_tested']
+    preparation, assembly, diffusion = records['preparation-core.json'], records['assembly-core.json'], records['diffusion.json']
+    assert preparation['passed'] and preparation['checks'] >= 44 and not preparation['physical_android']
+    assert assembly['passed'] and assembly['checks'] >= 47 and not assembly['automatic_downloads'] and not assembly['physicalAndroid']
+    assert diffusion['passed'] >= 100 and diffusion['production_sd_binding'] and not diffusion['model_inference'] and not diffusion['physical_android']
+    lcm = records['lcm-app-host.json']
+    assert lcm['passed'] and lcm['production_preparation_association_generation_host_executed']
+    assert lcm['java']['preparation_children'] == 1 and lcm['java']['generation_children'] == 4 and lcm['java']['network_calls'] == 0
+    assert len(lcm['contracts']) == 26 and sum(c['java_accepted'] for c in lcm['contracts']) == 1
+    assert all(c['no_output'] for c in lcm['contracts'])
+    assert len(lcm['outputs']) == 2 and all(o['bitwise_equal_to_historical_native_prepared'] for o in lcm['outputs'])
+    assert not any(lcm[k] for k in ['asset_download_attempted','physical_android','android_saf_tested','android_background_accepted','historical_pixel_comparison_passed','image_quality_accepted','complete_target03_accepted','complete_release_accepted'])
+    media = records['lcm-media.json']; assert media['version'] == CURRENT_VERSION and media['browser_closed'] and not media['browser_errors']
+    assert not media['android_device'] and not media['model_inference'] and not media['weights_downloaded'] and len(media['screenshots']) == 4 and len(media['files']) == 6
+    for item in media['files']:
+        data = (ROOT / 'docs/media/development/lcm' / item['file']).read_bytes()
+        assert len(data) == item['bytes'] and digest(data) == item['sha256']
+    media = records['lcm-trained-media.json']
+    assert media['actual_production_java_native_host'] and media['model_inference'] and not media['physical_android']
+    assert not media['image_quality_accepted'] and not media['historical_pixel_comparison_passed'] and len(media['files']) == 2
+    assert media['trained_report_sha256'] == digest((ROOT / SOURCES['lcm-app-host.json']).read_bytes())
+    for item in media['files']:
+        data = (ROOT / 'docs/media/development/lcm-app-trained' / item['file']).read_bytes()
         assert len(data) == item['bytes'] and digest(data) == item['sha256']
     scope = json.loads((ROOT / 'docs/proposals/multimodal-release-scope.json').read_text(encoding='utf-8'))
     assert status['required_release_scope']['selected_ids'] == scope['selected_ids'] and scope['preserved_recommendation_ids'] == ['m08','m06','m01']

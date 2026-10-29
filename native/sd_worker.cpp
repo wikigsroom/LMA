@@ -1,6 +1,7 @@
 #include "stable-diffusion.h"
 #include "json.hpp"
 #include "sd_policy.hpp"
+#include "lcm_condition.hpp"
 #define STB_IMAGE_WRITE_IMPLEMENTATION
 #include "stb_image_write.h"
 #include <cstdio>
@@ -10,6 +11,7 @@
 #include <stdexcept>
 #include <string>
 #include <vector>
+#include <atomic>
 #include <signal.h>
 #include <sys/prctl.h>
 #include <unistd.h>
@@ -44,11 +46,21 @@ int main(int argc, char** argv) {
         if (prompt.empty() || prompt.size() > 64000 || negative.size() > 64000 || output.empty()) throw std::runtime_error("Invalid prompt or output");
         if (type != "image.generate" && type != "video.generate") throw std::runtime_error("Unsupported diffusion task");
         // Upstream logging may contain prompts, paths or generated text. Only structured progress leaves stdout.
-        sd_set_log_callback([](sd_log_level_t, const char*, void*) {}, nullptr);
+        std::atomic_bool load_failed{false};
+        sd_set_log_callback([](sd_log_level_t level, const char* text, void* state) {
+            if (level == SD_LOG_ERROR || (level == SD_LOG_WARN && text && std::strstr(text, "loading diffusion model") && std::strstr(text, "failed")))
+                static_cast<std::atomic_bool*>(state)->store(true, std::memory_order_relaxed);
+        }, &load_failed);
         sd_set_progress_callback(progress, nullptr);
         sd_ctx_params_t ctx_params; sd_ctx_params_init(&ctx_params);
         auto path = [&](const char* role) -> const char* { auto it = components.find(role); return it == components.end() ? nullptr : it->get_ref<const std::string&>().c_str(); };
         ctx_params.model_path = path("model"); ctx_params.diffusion_model_path = path("diffusion"); ctx_params.vae_path = path("vae");
+        std::string condition = lma_lcm_condition::validate(request);
+        if (!condition.empty()) {
+            if (request.contains("loras") && !request.at("loras").empty()) throw std::runtime_error("Fixed LCM condition cannot be combined with unverified LoRA changes");
+            lma_sd::sampling(profile, pipeline, params.at("sampler"), params.at("scheduler"), params.at("steps"), params.at("cfg"), negative);
+            ctx_params.diffusion_model_path = condition.c_str();
+        }
         ctx_params.clip_l_path = path("clip_l"); ctx_params.clip_g_path = path("clip_g"); ctx_params.clip_vision_path = path("clip_vision");
         ctx_params.t5xxl_path = path("t5"); ctx_params.llm_path = path("llm"); ctx_params.tokenizer = path("tokenizer");
         if (!ctx_params.model_path && !ctx_params.diffusion_model_path) throw std::runtime_error("Missing diffusion/checkpoint component");
@@ -58,6 +70,7 @@ int main(int argc, char** argv) {
         event({{"event", "stage"}, {"stage", "loading"}});
         std::unique_ptr<sd_ctx_t, decltype(&free_sd_ctx)> context(new_sd_ctx(&ctx_params), free_sd_ctx);
         if (!context) throw std::runtime_error("Diffusion model loading failed; verify the complete recipe and device resources");
+        if (!condition.empty() && load_failed.load(std::memory_order_relaxed)) throw std::runtime_error("LCM condition loading failed; refusing to generate with the original bias");
         lma_sd::route(pipeline, architecture, sd_get_model_version_name(context.get()));
         sd_sample_params_t sample; sd_sample_params_init(&sample);
         sample.sample_method = sd_get_default_sample_method(context.get());

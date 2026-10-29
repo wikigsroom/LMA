@@ -1,5 +1,7 @@
 # User-selected runtime model association
 
+Dev.28 adds [LCM condition association](LCM_APP_FLOW.en.md) using the same role/fingerprint/private-lease and paused-dependency flow. Association downloads nothing; explicit generation requires a complete installation.
+
 [中文](MODEL_ASSEMBLY.md) · [Source preparation](MODEL_PREPARATION.en.md) · [Complete release scope](MULTIMODAL_RELEASE_PLAN.en.md) · [Numbered handoff](releases/v0.3.0-dev.23.md)
 
 dev.23 adds the generic `model.assemble` task. The APK delivers association plans, storage and execution infrastructure; users choose source models, prepared data, runtime models and remaining dependencies. Installation, upgrades, browsing and missing-asset requests never start model downloads. Associating assets does not establish generation support.

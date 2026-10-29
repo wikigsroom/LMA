@@ -1,5 +1,7 @@
 # LMA API integration
 
+Dev.28 LCM preparation/association reuses the shared `model.prepare`, `model.assemble` and `image.generate` contracts below. Clients select bundled fixed plans, never executable paths or implicit dependency downloads. See [source, settings and operation order](LCM_APP_FLOW.en.md).
+
 [History management](TASK_RECOVERY.en.md#4-local-api): read `GET /v1/jobs/history`, review the plan, then explicitly POST its `ids`/`review` to `/v1/jobs/history/clear`. Only selected terminal records/idempotency keys are removed; media and active work remain.
 
 [Task preflight](TASK_PREFLIGHT.en.md): `POST /v1/jobs/preflight` shares production submission validation and reports requirements, effective parameters and resources without creating a job or downloading assets.

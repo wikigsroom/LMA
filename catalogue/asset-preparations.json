@@ -196,6 +196,32 @@
           ]
         }
       ]
+    },
+    {
+      "schema": "lma.asset-preparation/1",
+      "id": "lcm_dreamshaper_guidance85_v1",
+      "name": "LCM Dreamshaper v7 · 固定 guidance 8.5 条件组件",
+      "sourceRole": "checkpoint",
+      "sourceBytes": 3438495328,
+      "sourceSha256": "7be468469c513f8614a73423aa009581295fbd8c903703450632b2275c0145a9",
+      "stages": [
+        {
+          "id": "condition",
+          "module": "lcm_condition_prepare",
+          "operation": "fold_condition_bias",
+          "receipt": "conversion.json",
+          "receiptSchema": "lma.lcm-native-prepare/1",
+          "graphs": [],
+          "outputs": [
+            {
+              "file": "lcm-condition-bias.gguf",
+              "role": "condition_bias",
+              "bytes": 5696,
+              "sha256": "213f8a346cf0a70b2cfbb6460f2c9e990b3c45c6fdd435002a82c906e2d3c66c"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
