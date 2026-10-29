@@ -1,6 +1,6 @@
 # v0.3.0 开发状态与复查
 
-当前业务更新 dev.26：[运行前检查 / 素材复核](TASK_PREFLIGHT.md)与[编号实现及全部待办](releases/v0.3.0-dev.26.md)。检查与提交共用解析器；源码、主机检查、Android 验收与完整 Release 分开记录。
+当前业务更新 dev.27：[任务恢复 / 历史 / 容量](TASK_RECOVERY.md)与[编号实现及全部待办](releases/v0.3.0-dev.27.md)。结果与任务启动对账，精确范围清理终态记录；源码、主机检查、Android 验收与完整 Release 分开记录。
 
 [English](DEVELOPMENT.en.md) · [完整范围](MULTIMODAL_RELEASE_PLAN.md) · [构建](BUILD.md) · [中文首页](../README.md)
 

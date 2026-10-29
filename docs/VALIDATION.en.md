@@ -1,5 +1,7 @@
 # LMA 0.2.0 validation
 
+Current dev.27 business checks and APK are documented in [numbered delivery](releases/v0.3.0-dev.27.md) and the [evidence index](../verification/development/status.json). Recovery exercises real host processes/files/HTTP; UI uses a labelled bridge fixture. No new Android/model acceptance is claimed.
+
 [中文（含完整修复与警告复核）](VALIDATION.md) · [Documentation](README.md)
 
 ## What passed

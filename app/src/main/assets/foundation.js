@@ -1,6 +1,6 @@
 (function () {
   'use strict';
-  var ui, pending = {}, editor = null, listSignature = '', artifactSignature = '', artifactKind = 'all';
+  var ui, pending = {}, editor = null, listSignature = '', artifactSignature = '', artifactKind = 'all', jobKind = 'all', jobSearch = '', jobLimit = 20;
   var $ = function (id) { return document.getElementById(id); };
   var labels = {text: '生文', image: '生图', video: '生视频', audio: '生音频'};
   var states = {queued: '排队中', loading: '加载中', running: '生成中', cancelling: '取消中', cancelled: '已取消', failed: '失败', succeeded: '已完成', interrupted: '已中断'};
@@ -250,7 +250,7 @@
   }
   function showPreflight(report) {
     var panel = $('taskPreflight'); if (!panel) return;
-    var names = {request:'请求格式',models:'模型能力',engine:'本地引擎',parameters:'模型参数',assets:'模型组件与 LoRA',inputs:'参考素材',recipe:'运行配方',resources:'资源预算',consent:'试运行确认'};
+    var names = {request:'请求格式',models:'模型能力',engine:'本地引擎',parameters:'模型参数',assets:'模型组件与 LoRA',inputs:'参考素材',recipe:'运行配方',resources:'资源预算',capacity:'队列与结果容量',consent:'试运行确认'};
     var resources = report.resources, issues = report.issues || [], changes = report.adjustments || [];
     panel.className = 'task-preflight ' + (report.canEnqueue ? 'preflight-ready' : 'preflight-blocked');
     panel.innerHTML = '<strong>' + (report.canEnqueue ? '可加入本机队列' : '需要处理后再提交') + '</strong><p class="form-help">这是当前条件下的提交检查。执行前会重新检查；尚无本机实测记录。</p>' +
@@ -262,7 +262,8 @@
       (report.effectiveParameters ? '<details><summary>查看本次有效参数</summary><dl>' + Object.keys(report.effectiveParameters).map(function (key) { return '<dt>' + e(paramNames[key] || key) + '</dt><dd>' + e(report.effectiveParameters[key]) + '</dd>'; }).join('') + '</dl></details>' : '') +
       '<p class="form-help">已检查：' + (report.checkedStages || []).map(function (stage) { return e(names[stage] || stage); }).join('、') + '</p>' +
       (issues.some(function (issue) { return issue.action === 'manage_models'; }) ? button('showLocal', '', '管理本地模型') : '') +
-      (issues.some(function (issue) { return issue.action === 'manage_inputs'; }) ? button('preflightInputs', '', '管理本地素材') : '');
+      (issues.some(function (issue) { return issue.action === 'manage_inputs'; }) ? button('preflightInputs', '', '管理本地素材') : '') +
+      (issues.some(function (issue) { return issue.action === 'manage_tasks'; }) ? button('preflightHistory', '', '管理任务与结果') : '');
     panel.scrollIntoView({block:'start'});
   }
   function restoreForm(request, b) {
@@ -315,14 +316,16 @@
     if (restored) restoreForm(restored, b);
   }
   function renderJobs() {
-    var s = ui.state(), jobs = s.jobs || [], signature = JSON.stringify([jobs, (s.artifacts || []).map(function (a) { return [a.id, a.available]; })]);
+    var s = ui.state(), all = s.jobs || [], jobs = all.filter(function (job) { var active = ['queued','loading','running','cancelling'].indexOf(job.state) >= 0, b = find(job.request.bundleId); return (jobKind === 'all' || jobKind === 'active' && active || jobKind === 'succeeded' && job.state === 'succeeded' || jobKind === 'issues' && ['failed','cancelled','interrupted'].indexOf(job.state) >= 0) && (!jobSearch || [job.id,b && b.manifest.name,job.request.bundleId,job.request.inputSummary,job.request.input && job.request.input.prompt].join(' ').toLowerCase().indexOf(jobSearch.toLowerCase()) >= 0); }).slice().reverse();
+    var signature = JSON.stringify([all, jobKind, jobSearch, jobLimit, (s.artifacts || []).map(function (a) { return [a.id, a.available]; })]);
     if (signature === listSignature) return; listSignature = signature;
-    $('jobCount').textContent = jobs.filter(function (j) { return ['queued', 'loading', 'running', 'cancelling'].indexOf(j.state) >= 0; }).length + ' 个待完成';
-    $('jobList').innerHTML = jobs.length ? jobs.slice().reverse().map(function (job) {
+    $('jobCount').textContent = all.filter(function (j) { return ['queued', 'loading', 'running', 'cancelling'].indexOf(j.state) >= 0; }).length + ' 个待完成 · ' + jobs.length + ' 条匹配';
+    document.querySelectorAll('[data-action="filterJobs"]').forEach(function (b) { var active = b.dataset.kind === jobKind; b.classList.toggle('active', active); b.setAttribute('aria-pressed', String(active)); });
+    $('jobList').innerHTML = jobs.length ? jobs.slice(0, jobLimit).map(function (job) {
       var b = find(job.request.bundleId), terminal = ['cancelled', 'failed', 'succeeded', 'interrupted'].indexOf(job.state) >= 0;
       var progress = typeof job.progress === 'number' ? '<progress max="1" value="' + Math.max(0, Math.min(1, job.progress)) + '" aria-label="任务进度"></progress>' : '';
-      return '<article class="job-card"><div class="section-heading"><strong>' + e(b ? b.manifest.name : job.request.bundleId) + '</strong><span class="status-pill">' + e(job.stage === 'waiting_engine' && ['loading', 'running'].indexOf(job.state) >= 0 ? '排队中' : ['model.prepare', 'model.assemble'].indexOf(job.request.type) >= 0 && job.state === 'running' ? job.request.type === 'model.prepare' ? '准备中' : '关联中' : states[job.state] || job.state) + '</span></div><p class="job-prompt">' + e(job.request.type === 'model.prepare' ? '模型运行资产准备' : job.request.type === 'model.assemble' ? '模型运行资产关联' : job.request.inputSummary || job.request.input && job.request.input.prompt || '') + '</p><p class="form-help">' + e(job.stage && job.stage.indexOf('preparing_') === 0 ? '准备运行组件' : job.stage === 'verifying_prepared_assets' ? '校验准备资产' : stages[job.stage] || job.stage || '') + ' · ' + new Date(job.createdAt).toLocaleString('zh-CN') + '</p>' + progress + (job.error ? '<p class="download-error">' + e(job.error) + '</p>' : '') + '<div class="job-actions">' + button('jobInfo', job.id, '详情') + ((job.artifacts || []).length ? button('jobResults', job.id, '查看结果', 'primary') : '') + (window.LMAWorkbench.generation(job.request.type) && terminal ? button('editTask', job.id, '编辑再生成') : '') + (!terminal ? button('cancelTask', job.id, '取消任务', 'danger', job.state === 'cancelling') : ['failed', 'interrupted', 'cancelled'].indexOf(job.state) >= 0 ? button('retryTask', job.id, '重试') : '') + (terminal ? button('deleteTask', job.id, '删除记录') : '') + '</div></article>';
-    }).join('') : '<div class="empty-list"><h3>队列里还没有任务</h3><p>在本地模型中选择已安装的模型，填写提示词后加入队列。</p>' + button('showLocal', '', '选择本地模型', 'primary') + '</div>';
+      return '<article class="job-card"><div class="section-heading"><strong>' + e(b ? b.manifest.name : job.request.bundleId) + '</strong><span class="status-pill">' + e(job.stage === 'waiting_engine' && ['loading', 'running'].indexOf(job.state) >= 0 ? '排队中' : ['model.prepare', 'model.assemble'].indexOf(job.request.type) >= 0 && job.state === 'running' ? job.request.type === 'model.prepare' ? '准备中' : '关联中' : states[job.state] || job.state) + '</span></div><p class="job-prompt">' + e(job.request.type === 'model.prepare' ? '模型运行资产准备' : job.request.type === 'model.assemble' ? '模型运行资产关联' : job.request.inputSummary || job.request.input && job.request.input.prompt || '') + '</p><p class="form-help">' + e(job.stage && job.stage.indexOf('preparing_') === 0 ? '准备运行组件' : job.stage === 'verifying_prepared_assets' ? '校验准备资产' : stages[job.stage] || job.stage || '') + ' · ' + new Date(job.createdAt).toLocaleString('zh-CN') + '</p>' + progress + (job.outputRecovery ? '<p class="recovered-output">中断后找回已保存结果；任务未自动重跑。</p>' : '') + (job.error ? '<p class="download-error">' + e(job.error) + '</p>' : '') + '<div class="job-actions">' + button('jobInfo', job.id, '详情') + ((job.artifacts || []).length ? button('jobResults', job.id, '查看结果', 'primary') : '') + (window.LMAWorkbench.generation(job.request.type) && terminal ? button('editTask', job.id, '编辑再生成') : '') + (!terminal ? button('cancelTask', job.id, '取消任务', 'danger', job.state === 'cancelling') : ['failed', 'interrupted', 'cancelled'].indexOf(job.state) >= 0 ? button('retryTask', job.id, '重试') : '') + (terminal ? button('deleteTask', job.id, '删除记录') : '') + '</div></article>';
+    }).join('') + (jobs.length > jobLimit ? button('moreJobs', '', '显示更多任务（还有 ' + (jobs.length - jobLimit) + ' 条）') : '') : all.length ? '<div class="empty-list"><h3>没有匹配的任务</h3>' + button('resetJobFilters', '', '重置筛选与搜索') + '</div>' : '<div class="empty-list"><h3>队列里还没有任务</h3><p>在本地模型中选择已安装的模型，填写提示词后加入队列。</p>' + button('showLocal', '', '选择本地模型', 'primary') + '</div>';
   }
   function renderArtifacts() {
     var all = ui.state().artifacts || [], artifacts = all.filter(function (a) { return artifactKind === 'all' || ((a.origin || {}).kind || 'generated') === artifactKind; }), imports = ui.state().inputImport || {}, signature = JSON.stringify([artifacts, artifactKind, imports]);
@@ -337,7 +340,7 @@
       return '<article class="artifact-card">' + cover + '<div class="artifact-info"><strong>' + e(imported ? origin.name || '导入素材' : new Date(a.createdAt).toLocaleString('zh-CN')) + '</strong><p class="artifact-source">' + (imported ? '导入素材' : '生成结果') + (a.inUse ? ' · 任务正在引用' : '') + '</p><p>' + e(m.mime || '') + ' · ' + ui.bytes(a.bytes) + (m.width ? ' · ' + m.width + ' × ' + m.height : '') + '</p><div class="job-actions">' + button('artifactInfo', a.id, '打开', 'primary', !a.available) + button('exportArtifact', a.id, '导出', 'secondary', !a.available) + button('artifactInput', a.id, '用作素材', 'secondary', !a.available) + button('artifactRemove', a.id, '删除', 'secondary', a.inUse) + '</div></div></article>';
     }).join('') : '<div class="empty-list"><h3>这里还没有素材或结果</h3><p>导入本地素材，或选择模型生成结果。可预览、导出并查看文件来源。</p></div>';
   }
-  function track(action, args, callback) { var id = ui.dispatch(action, args); if (id) pending[id] = callback || function () {}; return id; }
+  function track(action, args, callback, failure) { var id = ui.dispatch(action, args); if (id) pending[id] = {success: callback || function () {}, failure: failure}; return id; }
   function showArtifact(id, data) {
     var a = data, mime = a.metadata.mime, path = '/artifacts/' + encodeURIComponent(id), text = mime === 'application/vnd.lma.text+json', media = mime.indexOf('image/') === 0 ? '<img src="' + path + '" alt="本地生成图片" class="artifact-preview">' : mime.indexOf('audio/') === 0 ? '<audio controls preload="metadata" src="' + path + '"></audio>' : mime.indexOf('video/') === 0 ? '<video controls playsinline preload="metadata" src="' + path + '"></video>' : '';
     if (text) media = '<div id="textArtifact" data-id="' + e(id) + '"><p role="status">正在读取本地文本结果…</p></div>';
@@ -359,6 +362,10 @@
     if (window.LMAWorkbench.handle(action, el)) return true;
     if (window.LMAVersions.handle(action, el)) { editor = null; return true; }
     switch (action) {
+      case 'filterJobs': jobKind = ['all','active','succeeded','issues'].indexOf(el.dataset.kind) >= 0 ? el.dataset.kind : 'all'; jobLimit = 20; renderJobs(); return true;
+      case 'moreJobs': jobLimit += 20; renderJobs(); return true;
+      case 'resetJobFilters': jobKind = 'all'; jobSearch = ''; jobLimit = 20; $('jobSearch').value = ''; renderJobs(); return true;
+      case 'preflightHistory': ui.route('tasks'); $('taskCapacity').scrollIntoView({block:'start'}); return true;
       case 'preflightInputs': ui.route('tasks'); artifactKind = 'all'; renderArtifacts(); document.querySelector('.artifacts-heading').scrollIntoView({block:'start'}); return true;
       case 'preflightTask': {
         var form = $('localTaskForm'), b = editor && find(editor.id); if (!form || !b || editor.pending) return true;
@@ -416,7 +423,7 @@
     init: function (bridge) {
       ui = bridge; window.LMAVersions.init(bridge);
       window.LMAWorkbench.init(bridge, {find: find, button: button, use: use, track: track, showArtifact: showArtifact, inputRuleMatch: inputRuleMatch, engineAvailable: engineAvailable, paramNames: paramNames, states: states});
-      document.addEventListener('input', function (event) { preflightChanged(event.target.form); });
+      document.addEventListener('input', function (event) { preflightChanged(event.target.form); if (event.target.id === 'jobSearch') { jobSearch = event.target.value.slice(0,120); jobLimit = 20; renderJobs(); } });
       document.addEventListener('submit', function (event) {
         if (event.target.id === 'adapterPairForm') { event.preventDefault(); var adapter = editor && find(editor.id), base = find(event.target.elements.baseBundleId.value); if (adapter && base && base.installed && compatible(base, adapter)) use(base.id, adapter.id); return; }
         if (event.target.id !== 'bundleSettingsForm' && event.target.id !== 'localTaskForm') return;
@@ -454,7 +461,8 @@
       renderJobs(); renderArtifacts(); refreshTaskInputs(); window.LMAWorkbench.render(); window.LMAVersions.receive();
       Object.keys(pending).forEach(function (id) {
         var result = ui.result(id); if (!result) return; var callback = pending[id]; delete pending[id];
-        if (result.ok) callback(result.data);
+        if (result.ok) callback.success(result.data);
+        else if (callback.failure) { callback.failure(result.error); ui.toast(result.error || '操作失败'); }
         else { if (editor) { editor.pending = false; var submit = $('modalContent').querySelector('[type="submit"]'); if (submit) submit.disabled = false; var save = $('modalContent').querySelector('[data-action="saveTaskDraft"]'); if (save) save.disabled = false; var check = $('modalContent').querySelector('[data-action="preflightTask"]'); if (check) check.disabled = false; } if ($('bundleFormHint')) $('bundleFormHint').textContent = result.error; ui.toast(result.error || '操作失败'); }
       });
     },

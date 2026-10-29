@@ -1,5 +1,7 @@
 # 生成业务闭环：草稿、任务与素材
 
+dev.27 新增[已提交结果对账、精确范围历史清理和共用容量检查](TASK_RECOVERY.md)。模型、结果和草稿独立保存；恢复不代表自动续步。
+
 后续 dev.26 已加入[运行前检查与素材复核](TASK_PREFLIGHT.md)。下文本轮计数属于 dev.25；当前检查以[证据索引](../verification/development/status.json)及[dev.26 说明](releases/v0.3.0-dev.26.md)为准，工作台功能继续保留。
 
 [English](TASK_WORKBENCH.en.md) · [首页](../README.md) · [完整版本范围](MULTIMODAL_RELEASE_PLAN.md) · [本轮编号交付](releases/v0.3.0-dev.25.md)

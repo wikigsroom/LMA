@@ -76,22 +76,78 @@ public final class JobStore {
         return null;
     }
     private static void validateKey(String key) { if (key == null || key.length() > 160 || key.chars().anyMatch(c -> c < 32 || c == 127)) throw new IllegalArgumentException("Invalid idempotency key"); }
+    public synchronized JSONObject capacity() throws Exception {
+        JSONArray jobs = state.getJSONArray("jobs"); int pending = 0;
+        for (int i = 0; i < jobs.length(); i++) if (!TERMINAL.contains(jobs.getJSONObject(i).getString("state"))) pending++;
+        return new JSONObject().put("history", jobs.length()).put("pending", pending).put("terminal", jobs.length() - pending).put("historyLimit", 256).put("pendingLimit", 64);
+    }
+    public synchronized void requireCapacity() throws Exception {
+        JSONObject slots = capacity();
+        if (slots.getInt("pending") >= slots.getInt("pendingLimit")) throw new IllegalStateException("本机队列已满；请等待任务结束，或明确取消不再需要的任务");
+        if (slots.getInt("history") >= slots.getInt("historyLimit")) throw new IllegalStateException("任务历史已满；可在任务页检查并清理已结束记录，保留结果文件");
+    }
+    /** Review freezes terminal identities; tasks that finish later are not part of this selection. */
+    public synchronized JSONObject historyPlan() throws Exception {
+        JSONArray ids = new JSONArray(), jobs = state.getJSONArray("jobs");
+        for (int i = 0; i < jobs.length(); i++) if (TERMINAL.contains(jobs.getJSONObject(i).getString("state"))) ids.put(jobs.getJSONObject(i).getString("id"));
+        return new JSONObject().put("ids", ids).put("count", ids.length()).put("review", historyReview(ids)).put("capacity", capacity());
+    }
+    private String historyReview(JSONArray ids) throws Exception {
+        if (ids == null || ids.length() > 256) throw new IllegalArgumentException("Choose at most 256 terminal task records");
+        JSONArray selection = new JSONArray(); Set<String> seen = new HashSet<>();
+        for (int i = 0; i < ids.length(); i++) {
+            String id = ModelBundle.key(ids.getString(i)); if (!seen.add(id)) throw new IllegalArgumentException("Select each task record once");
+            JSONObject job;
+            try { job = find(state, id); } catch (IllegalArgumentException absent) { throw new IllegalStateException("任务记录已经变化，请重新检查清理范围"); }
+            if (!TERMINAL.contains(job.getString("state"))) throw new IllegalStateException("清理只能选择已结束的任务记录；不会取消或删除排队 / 运行任务");
+            selection.put(new JSONObject().put("id", id).put("state", job.getString("state")).put("createdAt", job.getLong("createdAt")).put("finishedAt", job.optLong("finishedAt")));
+        }
+        return TaskInput.fingerprint(new JSONObject().put("records", selection));
+    }
+    public synchronized JSONObject clearHistory(JSONObject input) throws Exception {
+        for (Iterator<String> it = input.keys(); it.hasNext();) if (!Arrays.asList("ids", "review").contains(it.next())) throw new IllegalArgumentException("History cleanup accepts reviewed record IDs only");
+        JSONArray ids = input.getJSONArray("ids");
+        if (!historyReview(ids).equals(input.getString("review"))) throw new IllegalStateException("清理范围与确认内容不一致，请重新检查");
+        if (ids.length() > 0) {
+            Set<String> selected = new HashSet<>(); for (int i = 0; i < ids.length(); i++) selected.add(ids.getString(i));
+            JSONObject next = DataFiles.copy(state); JSONArray jobs = next.getJSONArray("jobs");
+            for (int i = jobs.length() - 1; i >= 0; i--) if (selected.contains(jobs.getJSONObject(i).getString("id"))) { event(next, jobs.getJSONObject(i), "removed"); jobs.remove(i); }
+            persist(next);
+        }
+        return new JSONObject().put("removed", ids.length()).put("capacity", capacity());
+    }
+    /** Startup only: restore links to committed outputs without claiming the interrupted job succeeded. */
+    public synchronized String recoverOutput(JSONObject artifact) throws Exception {
+        String id = artifact.optString("jobId"); if (id.isEmpty()) return "unlinked";
+        JSONObject job;
+        try { job = find(state, id); } catch (IllegalArgumentException absent) { return "unlinked"; }
+        JSONArray outputs = job.getJSONArray("artifacts"); String output = ModelBundle.key(artifact.getString("id"));
+        for (int i = 0; i < outputs.length(); i++) if (output.equals(outputs.getString(i))) return "linked";
+        if (!job.getString("state").equals("interrupted")) return "unlinked";
+        JSONObject provenance = artifact.optJSONObject("provenance"), request = job.getJSONObject("request"), origin = artifact.optJSONObject("origin");
+        if (!TaskRequests.generation(request.optString("type")) || origin != null && !origin.optString("kind").equals("generated") || provenance == null
+                || !provenance.optString("execution").equals("same_android_phone") || !DataFiles.canonical(request).equals(DataFiles.canonical(provenance.optJSONObject("request")))
+                || provenance.optJSONObject("bundle") == null || !request.getString("bundleId").equals(provenance.getJSONObject("bundle").optString("id"))) return "rejected";
+        if (outputs.length() >= 16) return "rejected";
+        JSONObject next = DataFiles.copy(state), restored = find(next, id); restored.getJSONArray("artifacts").put(output);
+        restored.put("outputRecovery", new JSONObject().put("kind", "committed_output_after_interruption").put("at", System.currentTimeMillis()).put("executionResumed", false));
+        event(next, restored, "output_recovered"); persist(next); return "recovered";
+    }
     public synchronized JSONObject submit(JSONObject request, String idempotencyKey) throws Exception {
         validateKey(idempotencyKey);
         if (request.toString().length() > 32000) throw new IllegalArgumentException("Task request is too large");
         String type = request.getString("type");
         if (!Arrays.asList("text.generate", "image.generate", "video.generate", "speech.synthesize", "audio.generate", "model.prepare", "model.assemble").contains(type)) throw new IllegalArgumentException("Unknown local task type");
         ModelBundle.key(request.getString("bundleId"));
-        JSONArray jobs = state.getJSONArray("jobs"); int pending = 0;
+        JSONArray jobs = state.getJSONArray("jobs");
         for (int i = 0; i < jobs.length(); i++) {
             JSONObject previous = jobs.getJSONObject(i);
             if (!idempotencyKey.isEmpty() && previous.optString("idempotencyKey").equals(idempotencyKey)) {
                 if (!DataFiles.canonical(previous.getJSONObject("request")).equals(DataFiles.canonical(request))) throw new IllegalStateException("Idempotency key already belongs to a different request");
                 return publicJob(previous);
             }
-            if (!TERMINAL.contains(previous.getString("state"))) pending++;
         }
-        if (pending >= 64 || jobs.length() >= 256) throw new IllegalStateException("Task history/queue is full; remove completed tasks first");
+        requireCapacity();
         String id = "job_" + UUID.randomUUID().toString().replace("-", "");
         JSONObject job = new JSONObject().put("id", id).put("state", "queued").put("request", DataFiles.copy(request)).put("idempotencyKey", idempotencyKey)
                 .put("createdAt", System.currentTimeMillis()).put("artifacts", new JSONArray()).put("error", "").put("stage", "queued");

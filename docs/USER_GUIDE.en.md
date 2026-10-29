@@ -1,6 +1,6 @@
 # LMA user guide
 
-Internal dev.26 adds [task preflight and input review](TASK_PREFLIGHT.en.md): inspect, resolve requirements and submit explicitly. Edits invalidate results; removed references require review.
+Internal dev.27 adds [output recovery, task filters and history management](TASK_RECOVERY.en.md): inspect recovered results/capacity and review exact terminal records before clearing. Models, media, drafts and active work remain; no automatic rerun.
 
 [中文](USER_GUIDE.md) · [Documentation](README.md)
 

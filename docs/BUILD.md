@@ -1,10 +1,10 @@
 # 构建与验证
 
-内部 dev.26 的运行前检查通过 `tools/test_scheduler.py` 覆盖生产校验器与实际 HTTP，通过 `tests/ui-smoke.cjs` 覆盖表单与素材复核；仍需构建、包核验、Lint 与全部当前源指纹。详见[本轮说明](releases/v0.3.0-dev.26.md)。
+内部 dev.27 用 `tools/test_recovery.py` 检查真实主机进程中断、结果对账、持久清理和鉴权 HTTP；调度与完整 UI 套件覆盖实际容量及用户确认。签名 APK、包核验、Lint 和当前指纹须一致，见[编号交付](releases/v0.3.0-dev.27.md)。
 
 [English](BUILD.en.md) · [文档目录](README.md)
 
-dev.25 的开发证据使用 `tools/export_development.py` 与 `tools/check_repository.py --development`。当前业务记录重新检查；历史模型 JSON 与完整 Git 历史中的 `6b1f345` 逐字节核对，不能作为新版 APK 推理验收。完整 Release 导出不接受开发检查点。
+dev.27 的开发证据使用 `tools/export_development.py` 与 `tools/check_repository.py --development`。当前业务记录重新检查；历史模型 JSON 与完整 Git 历史中的 `6b1f345` 逐字节核对，不能作为新版 APK 推理验收。完整 Release 导出不接受开发检查点。
 
 ## 已验证工具链
 

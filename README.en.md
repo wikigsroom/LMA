@@ -2,11 +2,11 @@
 
 [中文](README.md) · [English](README.en.md) · [Releases](https://github.com/wikigsroom/LMA/releases) · [Documentation](docs/README.md) · [Changelog](CHANGELOG.md)
 
-> **Current development: 0.3.0-dev.26 / code 30.** Task preflight now shares production validation with actual submission through the UI and local API. It reports missing assets, effective parameters and resources, invalidates stale results and requires review of removed references. Drafts, tasks, outputs and input reuse remain connected. [Design and usage](docs/TASK_PREFLIGHT.en.md) · [Numbered implementation / full pending scope](docs/releases/v0.3.0-dev.26.md) · [Recording](docs/media/development/preflight/preflight-ui.mp4) · [GIF](docs/media/development/preflight/preflight-ui.gif). App updates deliver only the foundation; users independently choose, download and manage models. Complete v0.3.0 and device acceptance remain open.
+> **Current development: 0.3.0-dev.27 / code 31.** Startup links committed results to interrupted tasks without resuming execution and reclaims owned uncommitted output files. Task filters/search/pagination, reviewed terminal-history cleanup and real queue/media capacity checks extend the draft/result workflow. [Design and usage](docs/TASK_RECOVERY.en.md) · [Numbered delivery / full pending scope](docs/releases/v0.3.0-dev.27.md) · [Recording](docs/media/development/recovery/recovery-ui.mp4) · [GIF](docs/media/development/recovery/recovery-ui.gif). App updates deliver only the foundation; users independently choose, download and manage models. Complete v0.3.0 and device acceptance remain open.
 
-| Preflight (desktop UI fixture) | Changed media (desktop UI fixture) |
+| Recovery and capacity (desktop fixture) | Reviewed selection (desktop fixture) |
 |---|---|
-| ![Admission and resources](docs/media/development/preflight/02-ready.png) | ![Changed input review](docs/media/development/preflight/04-input-review.png) |
+| ![Recovery and capacity](docs/media/development/recovery/01-recovery.png) | ![Terminal history review](docs/media/development/recovery/03-review.png) |
 
 The [evidence index](verification/development/status.json) distinguishes current checks from historical model experiments. The following dev.24 experiments describe their own commits; “unchanged APK” refers to those updates. Original failures and the entire same-release scope remain preserved.
 

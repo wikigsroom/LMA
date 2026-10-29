@@ -24,7 +24,7 @@
       "message": "Use of `REQUEST_IGNORE_BATTERY_OPTIMIZATIONS` violates the Play Store Content Policy regarding acceptable use cases, as described in https://developer.android.com/training/monitoring-device-state/doze-standby.html",
       "location": {
         "file": "src\\main\\java\\com\\lma\\app\\MainActivity.java",
-        "line": "190",
+        "line": "192",
         "column": "95"
       }
     },
@@ -84,7 +84,7 @@
       "message": "Consider also using `StorageManager#getAllocatableBytes` and `allocateBytes` which will consider clearable cached data",
       "location": {
         "file": "src\\main\\java\\com\\lma\\app\\core\\ArtifactStore.java",
-        "line": "74",
+        "line": "107",
         "column": "33"
       }
     },
@@ -134,7 +134,7 @@
       "message": "Consider also using `StorageManager#getAllocatableBytes` and `allocateBytes` which will consider clearable cached data",
       "location": {
         "file": "src\\main\\java\\com\\lma\\app\\LocalJobs.java",
-        "line": "158",
+        "line": "159",
         "column": "224"
       }
     },
@@ -186,7 +186,7 @@
       "message": "Use of `REQUEST_IGNORE_BATTERY_OPTIMIZATIONS` violates the Play Store Content Policy regarding acceptable use cases, as described in https://developer.android.com/training/monitoring-device-state/doze-standby.html",
       "location": {
         "file": "src\\main\\java\\com\\lma\\app\\MainActivity.java",
-        "line": "190",
+        "line": "192",
         "column": "95"
       }
     },
@@ -246,7 +246,7 @@
       "message": "Consider also using `StorageManager#getAllocatableBytes` and `allocateBytes` which will consider clearable cached data",
       "location": {
         "file": "src\\main\\java\\com\\lma\\app\\core\\ArtifactStore.java",
-        "line": "74",
+        "line": "107",
         "column": "33"
       }
     },
@@ -296,7 +296,7 @@
       "message": "Consider also using `StorageManager#getAllocatableBytes` and `allocateBytes` which will consider clearable cached data",
       "location": {
         "file": "src\\main\\java\\com\\lma\\app\\LocalJobs.java",
-        "line": "158",
+        "line": "159",
         "column": "224"
       }
     },
@@ -332,16 +332,16 @@
     }
   ],
   "android_execution_tested": false,
-  "applicationApkSha256": "7feadba488f56ef66ba7724cb772d1abf6867711c11939811a53be3c5867717d",
+  "applicationApkSha256": "d61ab4271a0e97ef009d74434565e8948dd27785f30d541f5de1788fa5b56fed",
   "input_fingerprint": {
-    "app/src/main/AndroidManifest.xml": "863242f5a6a6fb59be953eed280ce070b5c51e4a68a07e707e2a1ddcd346382e",
-    "app/src/main/java/com/lma/app/ApiHost.java": "a5e0400f4beac74434027456fbc783bfad50703b34b58b6e496720a3b777bdf2",
+    "app/src/main/AndroidManifest.xml": "1a179d663279278ab59ce2112160690b338707082ba226626cb6b7b52a785257",
+    "app/src/main/java/com/lma/app/ApiHost.java": "4439cd4ab1fbbf83a8457c35fa7e8fdeeffdab00cd55e84e3007b9de5a34bde6",
     "app/src/main/java/com/lma/app/BootReceiver.java": "2c1f72871ca122f8e9562edfc163105bd56ed1df81d3bcf60108a267b837dcee",
     "app/src/main/java/com/lma/app/BundleDocuments.java": "5b7039fae074adf35e117155e0337792e7ac7f08fa3630803fb1c9ac3b188d3a",
     "app/src/main/java/com/lma/app/ChatRunner.java": "7a99210f094bb2db89ff6c52fdc8b221d86c6621bf1805cd0890c769f0f8ef27",
     "app/src/main/java/com/lma/app/Chats.java": "ee21aea9b437716d6233b0fae7f04a9ecc1cc31c0e37e8fbe69484c2e0148434",
     "app/src/main/java/com/lma/app/core/AdapterSpec.java": "aff8572d14ac8d616be0a1b0da395e52ed5bddcd5ae407a969c2657bf9257581",
-    "app/src/main/java/com/lma/app/core/ArtifactStore.java": "0336ab2425868bf2cb5a2fc37d97afbcdf838bb5f977b874e0f98c9db777be55",
+    "app/src/main/java/com/lma/app/core/ArtifactStore.java": "6f85d2ac710cac0fb5a76cde9493ff1fef4d3e2e119c3e031b7c44ff65a49061",
     "app/src/main/java/com/lma/app/core/AssemblyPlan.java": "80e81dea2a831d3955aa5ae21323eb0432fb448f78994901633fbb6e85d77e7c",
     "app/src/main/java/com/lma/app/core/BundleStore.java": "a773aaa8f83410da9ccbf499b9a19ee4166e2c094c2e992699424c0ac68f3e74",
     "app/src/main/java/com/lma/app/core/BundleTransfers.java": "926596119a2c3f6bc089516e7bbd7db3016487d60c24f908ea646dfc76707f3e",
@@ -355,8 +355,8 @@
     "app/src/main/java/com/lma/app/core/InputSelection.java": "963fe60973caab82b9dfedaa7c1661f236aed6ea158fcda8f4a86d02ba33d509",
     "app/src/main/java/com/lma/app/core/InputSpec.java": "a2d34c41a8c623eb31bbcae412037705ea7e4c69e06c9de6f62c83f199f97728",
     "app/src/main/java/com/lma/app/core/InputUploads.java": "5debd68a73abc8bde8174c985dfec8f534c6bf8df58dda8810b0cc3541fe1d53",
-    "app/src/main/java/com/lma/app/core/JobStore.java": "d03a21e563f0c2803cb444c8c564f87b6330c583ac7d9316f5732e0e17567630",
-    "app/src/main/java/com/lma/app/core/LocalApi.java": "dbed4c810c90687fd22c04449b386e578958458cabf82bfe7f1d17d2991f6426",
+    "app/src/main/java/com/lma/app/core/JobStore.java": "2ea819922f6b069348848d6a8113f20257d120fef2d280e37d774f97a7cb637d",
+    "app/src/main/java/com/lma/app/core/LocalApi.java": "d37a9007214d35ae396bc65ea34eec86c2199ed92a73f83be07914d6190a5d80",
     "app/src/main/java/com/lma/app/core/LocalHttp.java": "428acea4f950bd2ae2948e5b418f5f98259640108427fd9c59d918809787c9cd",
     "app/src/main/java/com/lma/app/core/MnnSpec.java": "ef8a51675cdda887a1b7c78b8b1c6398b71c87a004327fbda5af62f8b52d8315",
     "app/src/main/java/com/lma/app/core/ModelBundle.java": "ad08c033a2c9a215c292d20a5a97a65c85db91ce6a86609a8eed9e846449e84b",
@@ -391,12 +391,12 @@
     "app/src/main/java/com/lma/app/HubCatalog.java": "31c64a19e4162ce0b1d30428990a9272e4697f4393972a73e5e289a17a3e1a09",
     "app/src/main/java/com/lma/app/HubClient.java": "4479cd1145fb17ce1f563b09d413c061ab2b513375f37c2f1c7e8b6b534e031a",
     "app/src/main/java/com/lma/app/InputImports.java": "1f8b8b8a2a262fb57ed023c3eeb85fbb63a7c768b20196ef27d13295b26db437",
-    "app/src/main/java/com/lma/app/LmaApp.java": "c9caeb34c9db6f739236cec66ae7afbdf68121592dc50e3b877eef4ee11d1435",
+    "app/src/main/java/com/lma/app/LmaApp.java": "65cc0c358bae4edc7f72979ef2f09cbe3b68ae4444db39208c5d5d7383d8972c",
     "app/src/main/java/com/lma/app/LmaService.java": "59ed5bbd88c0b6b4348a86db9efae8b8f2cb0095cb5dbdb4420d4d57bbd7a37f",
     "app/src/main/java/com/lma/app/LocalEngine.java": "db9b46d2e05802bec96f2fb428469553d95c3424228dd06fd617c361b99b9f7d",
     "app/src/main/java/com/lma/app/LocalEngines.java": "cabd1f006a0d373dfe3d7500928e280532b0c09058e9dc3cb3d7e360093ff2a5",
-    "app/src/main/java/com/lma/app/LocalJobs.java": "bd96091a34493f755ee1effd2e40c55050bf65fa9e77eccbd02a878aca57acdb",
-    "app/src/main/java/com/lma/app/MainActivity.java": "e54e5f9a72cf9e8a5c65e6f44298216de9259447ff5c78e65646a3ebd6fa5cc8",
+    "app/src/main/java/com/lma/app/LocalJobs.java": "2885435109cf3fdfe823433cb35262a400e06831ea4c04ab878cebbdbca92d2c",
+    "app/src/main/java/com/lma/app/MainActivity.java": "7fc443e67cca241df58ff4baa24275f9d80a5d1eac02e0a3ee6d317cd63a3fdc",
     "app/src/main/java/com/lma/app/MediaInspector.java": "663052a99df051bce6617b08e9b1df1f53fe061c88ef8681f759a373c5e5fe6a",
     "app/src/main/java/com/lma/app/MnnEngine.java": "85018a26be9129494e9fef4a45008c2098b9586bfe31af1cebb9a9baa88319a2",
     "app/src/main/java/com/lma/app/ModelAssemblies.java": "41b0ed3e84a9a58b97f539d342a11aad3e65ff567f8366ed6fe39a240aca7ebd",

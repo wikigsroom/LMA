@@ -22,6 +22,7 @@ const checkPreparations = require('./preparations-ui.cjs');
 const checkAssemblies = require('./assemblies-ui.cjs');
 const checkWorkbench = require('./workbench-ui.cjs');
 const checkPreflight = require('./preflight-ui.cjs');
+const checkRecovery = require('./recovery-ui.cjs');
 const {chromium} = require(process.env.LMA_PLAYWRIGHT || 'playwright');
 const root = path.resolve(__dirname, '..');
 const assets = path.join(root, 'app/src/main/assets');
@@ -29,7 +30,7 @@ const output = path.join(root, 'build/ui-qa');
 fs.mkdirSync(output, {recursive: true});
 if (fs.existsSync(path.join(output, 'results.json'))) fs.unlinkSync(path.join(output, 'results.json'));
 function inputFingerprint() {
-  const files = fs.readdirSync(assets, {recursive: true}).map(name => path.join(assets, name)).filter(file => fs.statSync(file).isFile()).concat(__filename, path.join(root, 'tests/hub-fixture.cjs'), path.join(root, 'tests/foundation-ui.cjs'), path.join(root, 'tests/recipes-ui.cjs'), path.join(root, 'tests/versions-ui.cjs'), path.join(root, 'tests/text-ui.cjs'), path.join(root, 'tests/migration-ui.cjs'), path.join(root, 'tests/scheduler-ui.cjs'), path.join(root, 'tests/inputs-ui.cjs'), path.join(root, 'tests/diffusion-ui.cjs'), path.join(root, 'tests/qwen-ui.cjs'), path.join(root, 'tests/moss-delay-ui.cjs'), path.join(root, 'tests/openmoss-ui.cjs'), path.join(root, 'tests/stable-audio-ui.cjs'), path.join(root, 'tests/soulx-ui.cjs'), path.join(root, 'tests/preparations-ui.cjs'), path.join(root, 'tests/assemblies-ui.cjs'), path.join(root, 'tests/workbench-ui.cjs'), path.join(root, 'tests/preflight-ui.cjs'));
+  const files = fs.readdirSync(assets, {recursive: true}).map(name => path.join(assets, name)).filter(file => fs.statSync(file).isFile()).concat(__filename, path.join(root, 'tests/hub-fixture.cjs'), path.join(root, 'tests/foundation-ui.cjs'), path.join(root, 'tests/recipes-ui.cjs'), path.join(root, 'tests/versions-ui.cjs'), path.join(root, 'tests/text-ui.cjs'), path.join(root, 'tests/migration-ui.cjs'), path.join(root, 'tests/scheduler-ui.cjs'), path.join(root, 'tests/inputs-ui.cjs'), path.join(root, 'tests/diffusion-ui.cjs'), path.join(root, 'tests/qwen-ui.cjs'), path.join(root, 'tests/moss-delay-ui.cjs'), path.join(root, 'tests/openmoss-ui.cjs'), path.join(root, 'tests/stable-audio-ui.cjs'), path.join(root, 'tests/soulx-ui.cjs'), path.join(root, 'tests/preparations-ui.cjs'), path.join(root, 'tests/assemblies-ui.cjs'), path.join(root, 'tests/workbench-ui.cjs'), path.join(root, 'tests/preflight-ui.cjs'), path.join(root, 'tests/recovery-ui.cjs'));
   return Object.fromEntries(files.sort().map(file => [path.relative(root, file).split(path.sep).join('/'), crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex')]));
 }
 const verifiedInputs = inputFingerprint();
@@ -84,7 +85,9 @@ async function main() {
       dispatch: raw => {
         const command = JSON.parse(raw); window.__commands.push(command);
         setTimeout(() => {
-          const f = window.__fixture, m = f.models.find(x => x.id === command.id);
+          const f = window.__fixture;
+          try {
+          const m = f.models.find(x => x.id === command.id);
           window.__handleHub(command);
           const recipeData = window.__handleRecipe ? window.__handleRecipe(command) : undefined;
           const data = recipeData === undefined && window.__handleFoundation ? window.__handleFoundation(command) : recipeData;
@@ -114,6 +117,10 @@ async function main() {
           f.commandResults.push({requestId: command.requestId, action: command.action, ok: true, error: '', data});
           f.commandResults = f.commandResults.slice(-24);
           window.LMA.receive(f);
+          } catch(error) {
+            f.commandResults.push({requestId:command.requestId,action:command.action,ok:false,error:error.message});
+            f.commandResults=f.commandResults.slice(-24);window.LMA.receive(f);
+          }
         }, 30);
       }
     };
@@ -289,6 +296,7 @@ async function main() {
   await checkAssemblies(page, checked, checkOverflow);
   await checkWorkbench(page, checked, checkOverflow, output);
   await checkPreflight(page, checked, checkOverflow, output);
+  await checkRecovery(page, checked, checkOverflow, output);
   await page.locator('.nav-item[data-tab="models"]').click();
   await page.setViewportSize({width: 1024, height: 768}); await checkOverflow(page, 'Tablet library layout');
   await page.screenshot({path: path.join(output, '05-tablet.png')});

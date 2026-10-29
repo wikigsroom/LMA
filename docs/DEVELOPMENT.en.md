@@ -1,6 +1,6 @@
 # v0.3.0 development status and evidence
 
-Current dev.26 business update: [preflight/input review](TASK_PREFLIGHT.en.md) and [numbered implementation/full pending scope](releases/v0.3.0-dev.26.md). Inspection and submission share one resolver. Source, host checks, Android acceptance and complete Release readiness remain distinct.
+Current dev.27 business update: [task recovery/history/capacity](TASK_RECOVERY.en.md) and [numbered delivery/full pending scope](releases/v0.3.0-dev.27.md). Reconcile committed outputs at startup and clear exact reviewed terminal records. Source, host checks, Android acceptance and complete Release readiness remain distinct.
 
 [中文](DEVELOPMENT.md) · [Full scope](MULTIMODAL_RELEASE_PLAN.en.md) · [Build](BUILD.en.md) · [English home](../README.en.md)
 

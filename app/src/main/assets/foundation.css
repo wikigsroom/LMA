@@ -65,3 +65,10 @@
 .task-preflight .button { max-width: 100%; margin-top: 8px; }
 .preflight-ready { border-left: 3px solid #32886a; }
 .preflight-blocked { border-left: 3px solid #c1843f; }
+.job-tools { display: grid; gap: 12px; margin-bottom: 18px; }
+.job-tools .form-field { margin: 0; }
+.job-tools .section-heading { gap: 12px; flex-wrap: wrap; }
+.job-tools .button { min-width: 0; max-width: 100%; }
+.history-review-list { max-height: 34vh; overflow: auto; padding-left: 20px; overflow-wrap: anywhere; font-size: 13px; }
+.history-review-list li { margin: 10px 0; }
+.recovered-output { margin: 12px 0; padding: 10px; border-left: 3px solid #32886a; background: var(--panel); font-size: 13px; }

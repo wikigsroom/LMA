@@ -71,7 +71,7 @@ module.exports = async function (page, checked, overflow, output, shot = async (
   await page.keyboard.press('Escape');
   await page.evaluate(()=>{window.__fixture.artifacts=[];window.LMA.receive(window.__fixture);});
   await page.locator('[data-action="restoreTaskDraft"]').click(); await page.waitForSelector('[name="reviewRestored"]');
-  assert((await page.locator('.restore-notice').textContent()).includes('参考素材不可用')); assert.equal(await page.locator('[name="reviewRestored"]').isChecked(),false); checked('Missing restored references are disclosed and require an explicit review');
+  assert((await page.locator('#localTaskForm .restore-notice').textContent()).includes('参考素材不可用')); assert.equal(await page.locator('[name="reviewRestored"]').isChecked(),false); checked('Missing restored references are disclosed and require an explicit review');
   await shot('05-missing-reference.png','UI FIXTURE · Missing media stays visible for user review / 缺失素材明确提示');
   await page.keyboard.press('Escape');
   await page.locator('[data-action="removeTaskDraft"]').click(); await page.locator('[data-action="deleteTaskDraft"]').click();

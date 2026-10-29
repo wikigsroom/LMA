@@ -1,5 +1,7 @@
 # LMA 多模态本地基座评估
 
+dev.27 新增[已提交结果对账、精确范围历史清理和共用容量检查](TASK_RECOVERY.md)。模型、结果和草稿独立保存；恢复不代表自动续步。
+
 dev.26 的[运行前检查](TASK_PREFLIGHT.md)由 UI / API / 提交共用 `GenerationPlan`，只读解析模型、LoRA、素材、参数与资源；生成阶段仍重新核验文件并进入同一个执行槽。素材变化复核、独立默认值及明确用户入队均属于共用业务基座。
 
 [English](FOUNDATION.en.md) · [本地模型评估](MULTIMODAL.md) · [任务执行](WORKFLOWS.md) · [现行发版需求](MULTIMODAL_RELEASE_PLAN.md) · [文档目录](README.md)

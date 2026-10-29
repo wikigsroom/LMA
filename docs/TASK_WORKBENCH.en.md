@@ -1,5 +1,7 @@
 # Generation workflow: drafts, tasks and reusable media
 
+dev.27 adds [committed-output recovery, reviewed history cleanup and shared capacity checks](TASK_RECOVERY.en.md). Model assets, results and drafts remain independent; recovery does not resume generation.
+
 Dev.26 adds [preflight and input review](TASK_PREFLIGHT.en.md). Counts below describe the dev.25 checkpoint; use the [current evidence index](../verification/development/status.json) and [dev.26 notes](releases/v0.3.0-dev.26.md) for current checks. Workbench features remain available.
 
 [中文](TASK_WORKBENCH.md) · [Home](../README.en.md) · [Complete release scope](MULTIMODAL_RELEASE_PLAN.md) · [Numbered delivery](releases/v0.3.0-dev.25.md)

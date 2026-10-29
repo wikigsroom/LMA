@@ -80,6 +80,15 @@ final class PreflightChecks {
             http(app, api, "POST", request, false, 401); http(app, api, "GET", null, true, 405);
         } finally { api.stop(); }
         check(app.jobs.snapshot().length() == jobs && app.prefs.getBoolean("desiredJobs", false) == desired && app.nativeProcess == null, "Direct and HTTP checks never enqueue, launch a model or enable job restoration");
+        JobStore original = app.jobs;
+        try {
+            app.jobs = new JobStore(new File(app.getFilesDir(), "preflight_capacity_fixture"));
+            for (int i = 0; i < 64; i++) app.jobs.submit(request, "capacity_" + i);
+            Map<String,String> full = disk(app.getFilesDir());
+            JSONObject capacity = issue(app, request, "capacity");
+            check(capacity.getJSONArray("issues").getJSONObject(0).getString("action").equals("manage_tasks") && capacity.getJSONObject("capacity").getJSONObject("jobs").getInt("pending") == 64, "Full queue produces actionable capacity diagnostics from the actual store");
+            check(full.equals(disk(app.getFilesDir())), "Capacity checks remain read-only even when the queue is full");
+        } finally { app.jobs = original; }
         return passed;
     }
 }

@@ -1,10 +1,11 @@
 {
   "schema": "lma.development-checkpoint/2",
-  "version": "0.3.0-dev.26",
+  "version": "0.3.0-dev.27",
   "sources": {
     "build-info.json": "dist/build-info.json",
     "package.json": "build/package-verification.json",
     "workbench.json": "build/workbench-tests/results.json",
+    "recovery.json": "build/recovery-tests/results.json",
     "foundation.json": "build/foundation-tests/results.json",
     "api.json": "build/api-tests/results.json",
     "inputs.json": "build/input-tests/results.json",
@@ -14,7 +15,8 @@
     "ui.json": "build/ui-qa/results.json",
     "lint.json": "build/android-lint/results.json",
     "workbench-media.json": "docs/media/development/workbench/manifest.json",
-    "preflight-media.json": "docs/media/development/preflight/manifest.json"
+    "preflight-media.json": "docs/media/development/preflight/manifest.json",
+    "recovery-media.json": "docs/media/development/recovery/manifest.json"
   },
   "historical_sources": {
     "build-info.json": {
@@ -497,7 +499,7 @@
   "physical_device_tests": 0,
   "model_inference_tested": false,
   "historical_trained_results_apply_to_current_apk": false,
-  "scope": "Production task preflight shared with admission, stale-result protection and changed-input review; current core/API/UI/package checks; no new model inference claims",
+  "scope": "Production committed-output reconciliation, scoped orphan cleanup, reviewed terminal-history cleanup and capacity/filter UI; current core/API/UI/package checks; no new model inference claims",
   "required_release_scope": {
     "foundation": "F01–F12",
     "existing_text": true,
@@ -524,8 +526,8 @@
   },
   "input_fingerprint": {
     "docs/proposals/multimodal-release-scope.json": "03326504d2d1b52c315bef574325f2c05d43c6a65eafc9779cc33120b7801690",
-    "tools/check_repository.py": "bb109087463a4868d1133a11e33686de5b1a4bcae625628d65b202d691fff5bd",
-    "tools/checkpoint_evidence.py": "be0a6bf6683f2aead8baadccd52058f93b56d38ff9d7d4ec79a024a4ebd19a3d",
-    "tools/export_development.py": "33df31ce99b839a2691de872497ebe3f465465a93ecddb7c9c5642478ed5187c"
+    "tools/check_repository.py": "a782e19252c738dce2855c3cefa4c61275f7534f9805f208602151e32c3877a5",
+    "tools/checkpoint_evidence.py": "580b6504b80ffe286522d006f54255fc4a1042b5e0a7229ecb514f619515caf3",
+    "tools/export_development.py": "eb28bb2f1a3e2c053a2f8f06a306797ef1d3dfbccfd80b5291e19c5e59ad8363"
   }
 }

@@ -1,5 +1,7 @@
 # Task preflight and input review
 
+dev.27 adds [committed-output recovery, reviewed history cleanup and shared capacity checks](TASK_RECOVERY.en.md). Model assets, results and drafts remain independent; recovery does not resume generation.
+
 [中文](TASK_PREFLIGHT.md) · [Generation workbench](TASK_WORKBENCH.en.md) · [API](API.en.md) · [Numbered implementation and full pending scope](releases/v0.3.0-dev.26.md)
 
 Internal **0.3.0-dev.26 / code 30** adds “运行前检查” to the generation form. Inspect whether the current request can enter the phone queue, resolve missing requirements, then submit explicitly. A check creates no job, starts no inference, downloads nothing, changes no model defaults and starts neither the background service nor the API listener.

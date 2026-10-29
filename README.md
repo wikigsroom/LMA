@@ -2,11 +2,11 @@
 
 [中文](README.md) · [English](README.en.md) · [下载 / Releases](https://github.com/wikigsroom/LMA/releases) · [文档导航](docs/README.md) · [更新记录](CHANGELOG.md)
 
-> **当前开发：0.3.0-dev.26 / code 30。** 已接入运行前检查：页面和本地 API 与实际提交共用校验器，显示缺失组件、有效参数和资源，输入改变后旧结果失效；失效参考素材要求明确复核。保留草稿、任务、结果与素材复用闭环。[使用与方案细节](docs/TASK_PREFLIGHT.md) · [编号实现 / 完整待办](docs/releases/v0.3.0-dev.26.md) · [录屏](docs/media/development/preflight/preflight-ui.mp4) · [GIF](docs/media/development/preflight/preflight-ui.gif)。App 只更新基座，模型由用户独立选择、下载和管理；完整 v0.3.0 与真机验收尚未完成。
+> **当前开发：0.3.0-dev.27 / code 31。** 任务中断后对账已保存结果，保持中断状态；回收生成器遗留临时文件。新增任务筛选 / 搜索 / 分页、精确范围确认的终态记录清理及队列 / 结果容量检查，保留草稿与结果再生成闭环。[方案与用法](docs/TASK_RECOVERY.md) · [编号实现 / 全部待办](docs/releases/v0.3.0-dev.27.md) · [录屏](docs/media/development/recovery/recovery-ui.mp4) · [GIF](docs/media/development/recovery/recovery-ui.gif)。App 只更新基座，模型由用户独立选择、下载和管理；完整 v0.3.0 与真机验收尚未完成。
 
-| 运行前检查（桌面界面数据） | 素材变化复核（桌面界面数据） |
+| 中断结果与容量（桌面界面数据） | 清理范围确认（桌面界面数据） |
 |---|---|
-| ![本机入队条件与资源](docs/media/development/preflight/02-ready.png) | ![失效素材复核](docs/media/development/preflight/04-input-review.png) |
+| ![中断结果与容量](docs/media/development/recovery/01-recovery.png) | ![清理终态记录](docs/media/development/recovery/03-review.png) |
 
 当前检查与历史实验在[证据索引](verification/development/status.json)中分开标记。下列模型专项属于 dev.24 及其对应提交，“APK 不变”仅描述当时的更新；原失败和完整同版要求保留。
 

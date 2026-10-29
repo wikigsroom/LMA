@@ -1,6 +1,6 @@
 (function () {
   'use strict';
-  var ui, host, signature = '';
+  var ui, host, signature = '', historyPlan = null, historyPending = null;
   var names = {'text.generate': '生文', 'image.generate': '生图', 'video.generate': '生视频', 'speech.synthesize': '语音合成', 'audio.generate': '生音频', 'model.prepare': '准备运行资产', 'model.assemble': '关联运行模型'};
   function e(v) { return ui.esc(v); }
   function button(action, id, label, style, disabled) { return host.button(action, id, label, style, disabled); }
@@ -15,6 +15,7 @@
     if (r.parameters) html += '<details open><summary>本次参数</summary><dl class="task-value-list">' + Object.keys(r.parameters).map(function (key) { return '<dt>' + e(host.paramNames[key] || key) + '</dt><dd>' + e(r.parameters[key]) + '</dd>'; }).join('') + '</dl></details>';
     if ((r.adapters || []).length) html += '<h4>LoRA</h4><ul>' + r.adapters.map(function (a) { var model = host.find(a.bundleId); return '<li>' + e(model ? model.manifest.name : a.bundleId) + ' · ' + e(a.scale) + '</li>'; }).join('') + '</ul>';
     if ((input.artifacts || []).length) html += '<h4>参考素材</h4><div class="job-actions">' + input.artifacts.map(function (ref) { var a = artifact(ref.artifactId); return button('artifactInfo', ref.artifactId, ref.role + (a && a.available ? ' · 打开' : ' · 文件不可用'), 'secondary', !a || !a.available); }).join('') + '</div>';
+    if (job.outputRecovery) html += '<p class="recovered-output">中断后找回了已保存的结果。任务仍为已中断，未自动续步或重新生成。</p>';
     if (job.error) html += '<p class="download-error">' + e(job.error) + '</p>';
     html += '<div class="job-actions task-next-actions">';
     outputs.forEach(function (id, index) { var a = artifact(id); html += button('artifactInfo', id, '打开结果' + (outputs.length > 1 ? ' ' + (index + 1) : ''), 'primary', !a || !a.available); });
@@ -24,6 +25,7 @@
     ui.openModal('任务详情', html, 'job');
   }
   function render() {
+    renderStatus();
     var drafts = (ui.state().taskDrafts || []).slice().sort(function (a, b) { return b.savedAt - a.savedAt; });
     var next = JSON.stringify([drafts, (ui.state().bundles || []).map(function (b) { return [b.id, b.installed, b.inUse]; })]);
     if (next === signature) return; signature = next;
@@ -33,6 +35,30 @@
       var b = host.find(d.bundleId);
       return '<article class="draft-card"><div><strong>' + e(b ? b.manifest.name : d.bundleId) + '</strong><p class="form-help">' + e(names[d.type] || d.type) + ' · ' + new Date(d.savedAt).toLocaleString('zh-CN') + '</p><p class="job-prompt">' + e(d.inputSummary || '尚未填写提示词') + '</p></div><div class="job-actions">' + button('restoreTaskDraft', d.bundleId, '继续编辑', 'primary') + button('removeTaskDraft', d.bundleId, '删除草稿') + '</div></article>';
     }).join('');
+  }
+  function renderStatus() {
+    var s = ui.state(), jobs = s.jobs || [], c = s.taskCapacity && s.taskCapacity.jobs || {}, outputs = s.taskCapacity && s.taskCapacity.artifacts || {}, recovery = s.outputRecovery || {};
+    var pending = jobs.filter(function (job) { return ['queued','loading','running','cancelling'].indexOf(job.state) >= 0; }).length;
+    document.getElementById('taskCapacity').textContent = '任务记录 ' + (c.history === undefined ? jobs.length : c.history) + ' / ' + (c.historyLimit || 256) + ' · 待处理 ' + (c.pending === undefined ? pending : c.pending) + ' / ' + (c.pendingLimit || 64) + ' · 素材与结果 ' + (outputs.count === undefined ? (s.artifacts || []).length : outputs.count) + ' / ' + (outputs.limit || 2048);
+    document.getElementById('clearTaskHistoryButton').disabled = !!historyPending || jobs.length === pending;
+    var messages = [];
+    if (recovery.error) messages.push(recovery.error);
+    if (recovery.recoveredOutputs) messages.push('中断后找回 ' + recovery.recoveredOutputs + ' 个已保存结果；原任务保持已中断，未自动重跑。');
+    if (recovery.discardedStagingFiles || recovery.discardedUncommittedFiles) messages.push('已回收上次中断遗留的未提交临时文件，释放 ' + ui.bytes(recovery.reclaimedBytes) + '。');
+    if (recovery.missingOutputs) messages.push(recovery.missingOutputs + ' 个已有结果文件不可用，请检查文件记录。');
+    if (recovery.rejectedBindings) messages.push(recovery.rejectedBindings + ' 个结果来源与原任务不符，文件已保留，请检查来源。');
+    if (recovery.cleanupFailures) messages.push('部分临时文件未能回收，已保留并记录，后续启动会再次检查。');
+    var panel = document.getElementById('outputRecoveryStatus'); panel.hidden = !messages.length; panel.textContent = messages.join(' ');
+  }
+  function planHistory() {
+    if (historyPending) return;
+    historyPending = host.track('planTaskHistory', {}, function (plan) {
+      historyPending = null; historyPlan = plan; renderStatus();
+      var jobs = ui.state().jobs || [], count = (plan.ids || []).length;
+      var html = '<form id="clearTaskHistoryForm"><p>将清理你本次检查的 <strong>' + count + '</strong> 条已结束任务记录。</p><p>结果文件、模型、独立设置与草稿保留；排队或运行任务不在清理范围内。检查之后结束的新任务也会保留。</p><p class="form-help">清理后，这些记录和对应幂等键不再保留；已有结果仍可查看来源并恢复生成输入。</p><details><summary>查看所选记录</summary><ul class="history-review-list">' + (plan.ids || []).map(function (id) { var job = jobs.find(function (j) { return j.id === id; }), b = job && host.find(job.request.bundleId); return '<li>' + e(job ? (b ? b.manifest.name : job.request.bundleId) + ' · ' + (host.states[job.state] || job.state) + ' · ' + new Date(job.createdAt).toLocaleString('zh-CN') : id) + '</li>'; }).join('') + '</ul></details><label class="unmeasured-choice"><input name="confirmHistory" type="checkbox" required><span>我确认清理这 ' + count + ' 条任务记录，保留结果文件。</span></label><p id="historyCleanupHint" role="status"></p><div class="modal-actions">' + button('closeModal', '', '取消') + button('planTaskHistory', '', '重新检查范围') + button('clearTaskHistory', '', '清理所选记录', 'danger', count === 0) + '</div></form>';
+      ui.openModal('清理已结束的任务记录', html, 'taskHistory');
+    }, function (error) { historyPending = null; renderStatus(); var hint = document.getElementById('historyCleanupHint'); if (hint) hint.textContent = error; });
+    renderStatus();
   }
   function reference(id) {
     var a = artifact(id); if (!a || !a.available) { ui.toast('所选素材不可用，请重新导入'); return; }
@@ -55,6 +81,15 @@
     generation: generation,
     handle: function (action, el) {
       var id = el.dataset.id;
+      if (action === 'planTaskHistory') { planHistory(); return true; }
+      if (action === 'clearTaskHistory') {
+        var form = document.getElementById('clearTaskHistoryForm'); if (!historyPlan || !form || historyPending) return true;
+        if (!form.reportValidity()) return true; el.disabled = true;
+        historyPending = host.track(action, {selection:{ids:historyPlan.ids,review:historyPlan.review}}, function (result) {
+          historyPending = null; historyPlan = null; if (document.getElementById('clearTaskHistoryForm')) ui.closeModal(); renderStatus(); ui.toast('已清理 ' + result.removed + ' 条任务记录，结果文件保留');
+        }, function (error) { historyPending = null; renderStatus(); var hint = document.getElementById('historyCleanupHint'); if (hint) { hint.textContent = error + '。请重新检查清理范围。'; form.elements.confirmHistory.checked = false; } });
+        renderStatus(); return true;
+      }
       if (action === 'restoreTaskDraft') { host.track('inspectTaskDraft', {id: id}, function (data) { host.use(data.request.bundleId, null, data.request, data.revision); }); return true; }
       if (action === 'removeTaskDraft') {
         var current = draft(id); if (!current) return true;

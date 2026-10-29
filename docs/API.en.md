@@ -1,5 +1,7 @@
 # LMA API integration
 
+[History management](TASK_RECOVERY.en.md#4-local-api): read `GET /v1/jobs/history`, review the plan, then explicitly POST its `ids`/`review` to `/v1/jobs/history/clear`. Only selected terminal records/idempotency keys are removed; media and active work remain.
+
 [Task preflight](TASK_PREFLIGHT.en.md): `POST /v1/jobs/preflight` shares production submission validation and reports requirements, effective parameters and resources without creating a job or downloading assets.
 
 [中文](API.md) · [Documentation](README.md)

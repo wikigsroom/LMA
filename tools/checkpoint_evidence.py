@@ -14,12 +14,13 @@ from preparation_build_inputs import build_inputs
 ROOT = Path(__file__).resolve().parents[1]
 BASELINE = '6b1f3459a80db8b7b6838e7d5e492b8ef42d9033'
 BASE_VERSION = '0.3.0-dev.24'
-CURRENT_VERSION = '0.3.0-dev.26'
+CURRENT_VERSION = '0.3.0-dev.27'
 CERTIFICATE = '90444a717a55549e2094364d8d7d005cf8b7f4df24562da62cc1884a2f341c17'
 SOURCES = {
     'build-info.json': 'dist/build-info.json',
     'package.json': 'build/package-verification.json',
     'workbench.json': 'build/workbench-tests/results.json',
+    'recovery.json': 'build/recovery-tests/results.json',
     'foundation.json': 'build/foundation-tests/results.json',
     'api.json': 'build/api-tests/results.json',
     'inputs.json': 'build/input-tests/results.json',
@@ -30,6 +31,7 @@ SOURCES = {
     'lint.json': 'build/android-lint/results.json',
     'workbench-media.json': 'docs/media/development/workbench/manifest.json',
     'preflight-media.json': 'docs/media/development/preflight/manifest.json',
+    'recovery-media.json': 'docs/media/development/recovery/manifest.json',
 }
 
 
@@ -81,7 +83,7 @@ def export():
         'release_ready': False, 'all_selected_models_supported': False,
         'physical_device_tests': 0, 'model_inference_tested': False,
         'historical_trained_results_apply_to_current_apk': False,
-        'scope': 'Production task preflight shared with admission, stale-result protection and changed-input review; current core/API/UI/package checks; no new model inference claims',
+        'scope': 'Production committed-output reconciliation, scoped orphan cleanup, reviewed terminal-history cleanup and capacity/filter UI; current core/API/UI/package checks; no new model inference claims',
         'required_release_scope': {'foundation': 'F01–F12', 'existing_text': True, 'selected_ids': ['01','02','03','04','05','06','07','08','09','10','11','12','13','14','16','17'], 'every_frozen_subtarget': True, 'sd15_and_sdxl_lora': True},
         'input_fingerprint': fingerprint('tools/checkpoint_evidence.py', 'tools/export_development.py', 'tools/check_repository.py', 'docs/proposals/multimodal-release-scope.json'),
     }
@@ -117,9 +119,11 @@ def check():
     assert not package['physical_device_tested'] and not package['private_keys_in_apk']
     workbench = records['workbench.json']; assert workbench['passed'] and workbench['count'] >= 44 and workbench['actual_socket_io'] and workbench['actual_persistence_io']
     assert not workbench['android_execution_tested'] and not workbench['model_inference_tested']
-    for name, minimum in [('foundation.json',582),('api.json',67),('inputs.json',64),('text.json',66),('migration.json',69),('scheduler.json',85)]:
+    recovery = records['recovery.json']; assert recovery['passed'] and recovery['count'] >= 47 and recovery['actual_process_interruption'] and recovery['actual_persistence_io'] and recovery['actual_socket_io']
+    assert not recovery['android_execution_tested'] and not recovery['model_inference_tested']
+    for name, minimum in [('foundation.json',582),('api.json',67),('inputs.json',64),('text.json',66),('migration.json',69),('scheduler.json',88)]:
         assert records[name]['passed'] >= minimum, name
-    ui = records['ui.json']; assert ui['passed'] >= 327 and not ui['errors'] and ui['bridge'] == 'test fixture only' and not ui['physicalDevice'] and not ui['emulatorUsed']
+    ui = records['ui.json']; assert ui['passed'] >= 342 and not ui['errors'] and ui['bridge'] == 'test fixture only' and not ui['physicalDevice'] and not ui['emulatorUsed']
     lint = records['lint.json']; assert lint['errors'] == 0 and lint['applicationApkSha256'] == build['sha256']
     assert lint['java_source_files'] == len(list((ROOT / 'app/src/main/java').rglob('*.java')))
     media = records['workbench-media.json']; assert media['version'] == CURRENT_VERSION and media['browser_closed'] and not media['browser_errors']
@@ -131,6 +135,11 @@ def check():
     assert not media['android_device'] and not media['model_inference'] and not media['weights_downloaded'] and len(media['screenshots']) == 4 and len(media['files']) == 6
     for item in media['files']:
         data = (ROOT / 'docs/media/development/preflight' / item['file']).read_bytes()
+        assert len(data) == item['bytes'] and digest(data) == item['sha256']
+    media = records['recovery-media.json']; assert media['version'] == CURRENT_VERSION and media['browser_closed'] and not media['browser_errors']
+    assert not media['android_device'] and not media['model_inference'] and not media['weights_downloaded'] and len(media['screenshots']) == 4 and len(media['files']) == 6
+    for item in media['files']:
+        data = (ROOT / 'docs/media/development/recovery' / item['file']).read_bytes()
         assert len(data) == item['bytes'] and digest(data) == item['sha256']
     scope = json.loads((ROOT / 'docs/proposals/multimodal-release-scope.json').read_text(encoding='utf-8'))
     assert status['required_release_scope']['selected_ids'] == scope['selected_ids'] and scope['preserved_recommendation_ids'] == ['m08','m06','m01']

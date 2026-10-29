@@ -1,5 +1,7 @@
 # 截图与演示 / Screenshots and demonstrations
 
+dev.27 新增 [4 张任务恢复 / 筛选 / 范围确认 / 冲突截图、MP4 与 GIF](TASK_RECOVERY.md)，并刷新工作台和运行前检查媒体。运行 `node tools/capture_workbench.cjs recovery`（另有 `workbench` / `preflight`）；使用真实页面及标记的模拟桥，浏览器 `finally` 关闭。Production UI and labelled simulated native data; no Android/model execution. 每组媒体清单记录当前源码、文件哈希与范围。
+
 [文档目录 / Documentation](README.md)
 
 编号11 dev.24后续：[Qwen原字节语音与真实波形](QWEN_TTS_TRAINED.md#3-实测与媒体)、[静音GIF](media/development/qwen-tts-trained-waveforms.gif)、[带实际音频MP4](media/development/qwen-tts-trained-speech.mp4)与[来源/身份](media/development/qwen-tts-trained-media.json)明确HOST范围。十语言有输出不等于语音质量通过，参考为上一轮Kokoro合成音频；WAV不改字节，MP4转AAC/48kHz。未改UI，保留68张夹具截图；本轮未打开浏览器。These waveform slideshows are developer-host evidence, not App/phone recordings or accepted quality/device performance. [English](QWEN_TTS_TRAINED.en.md#3-measurements-and-media).

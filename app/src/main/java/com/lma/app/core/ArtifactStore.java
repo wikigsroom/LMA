@@ -42,6 +42,39 @@ public final class ArtifactStore {
         File[] files = staging.listFiles(); if (files == null) throw new IOException("Cannot reconcile private input staging");
         for (File file : files) if (file.getName().matches("(?:input|upload)_[a-f0-9]{32}_[a-f0-9]{32}\\.input") && !retained.contains(file.getName()) && !file.delete()) throw new IOException("Cannot clean uncommitted input staging");
     }
+    public synchronized JSONObject capacity() throws Exception { return new JSONObject().put("count", state.getJSONObject("artifacts").length()).put("limit", 2048); }
+    public synchronized void requireCapacity() throws Exception {
+        JSONObject slots = capacity(); if (slots.getInt("count") >= slots.getInt("limit")) throw new IOException("素材与结果库已满；请明确删除不再需要的文件后生成，清理任务记录不会删除结果");
+    }
+    /** Application startup only, before workers/readers are admitted. Published records remain authoritative. */
+    public synchronized JSONObject reconcile(JobStore jobs) throws Exception {
+        if (!readers.isEmpty()) throw new IllegalStateException("Cannot reconcile outputs while media is being read");
+        JSONArray queue = jobs.snapshot();
+        for (int i = 0; i < queue.length(); i++) if (Arrays.asList("loading", "running", "cancelling").contains(queue.getJSONObject(i).getString("state"))) throw new IllegalStateException("Output recovery requires startup-reconciled tasks");
+        JSONObject entries = state.getJSONObject("artifacts"); Set<String> committed = new HashSet<>();
+        for (Iterator<String> it = entries.keys(); it.hasNext();) { JSONObject record = get(it.next()); committed.add(record.getString("filename")); DataFiles.child(media, record.getString("filename")); }
+        int recovered = 0, missing = 0, rejected = 0, unlinked = 0, removedStaging = 0, removedOrphans = 0, cleanupFailures = 0; long reclaimed = 0;
+        for (Iterator<String> it = entries.keys(); it.hasNext();) {
+            JSONObject record = get(it.next());
+            try { file(record.getString("id")); } catch (IOException absent) { missing++; continue; }
+            String result = jobs.recoverOutput(record);
+            if (result.equals("recovered")) recovered++; else if (result.equals("rejected")) rejected++;
+            else if (result.equals("unlinked") && !record.optString("jobId").isEmpty()) unlinked++;
+        }
+        File[] pending = staging.listFiles(), outputs = media.listFiles();
+        if (pending == null || outputs == null) throw new IOException("Cannot inspect private output storage for recovery");
+        for (File file : pending) if (file.getName().matches("job_[a-f0-9]{32}_[a-f0-9]{32}\\.[a-z0-9]{1,12}") && java.nio.file.Files.isRegularFile(file.toPath(), java.nio.file.LinkOption.NOFOLLOW_LINKS)) {
+            DataFiles.child(staging, file.getName()); long bytes = file.length();
+            if (file.delete()) { removedStaging++; reclaimed = Math.addExact(reclaimed, bytes); } else cleanupFailures++;
+        }
+        for (File file : outputs) if (file.getName().matches("artifact_[a-f0-9]{32}\\.(?:png|jpg|wav|mp4|txt|json)") && !committed.contains(file.getName()) && java.nio.file.Files.isRegularFile(file.toPath(), java.nio.file.LinkOption.NOFOLLOW_LINKS)) {
+            DataFiles.child(media, file.getName()); long bytes = file.length();
+            if (file.delete()) { removedOrphans++; reclaimed = Math.addExact(reclaimed, bytes); } else cleanupFailures++;
+        }
+        return new JSONObject().put("schema", "lma.output-recovery/1").put("checkedAt", System.currentTimeMillis()).put("recoveredOutputs", recovered).put("missingOutputs", missing).put("rejectedBindings", rejected)
+                .put("unlinkedOutputs", unlinked).put("discardedStagingFiles", removedStaging).put("discardedUncommittedFiles", removedOrphans).put("cleanupFailures", cleanupFailures).put("reclaimedBytes", reclaimed)
+                .put("executionResumed", false).put("modelDownloads", false).put("integrityCheck", "committed_metadata_and_size_execution_rehashes_selected_inputs");
+    }
     public JSONObject commit(String jobId, File generated, JSONObject provenance, DataFiles.Check check) throws Exception {
         ModelBundle.key(jobId); File candidate = generated.getCanonicalFile();
         if (!candidate.getParentFile().equals(staging) || !candidate.getName().startsWith(jobId + "_")) throw new IOException("Output does not belong to this task's staging area");
@@ -109,7 +142,7 @@ public final class ArtifactStore {
         }
         check.run();
         {
-            if (state.getJSONObject("artifacts").length() >= 2048) throw new IOException("Result library is full; delete unneeded results first");
+            requireCapacity();
             String id = "artifact_" + UUID.randomUUID().toString().replace("-", ""); String filename = id + "." + extension;
             File target = DataFiles.child(media, filename);
             JSONObject record = new JSONObject().put("id", id).put("jobId", jobId).put("filename", filename).put("metadata", DataFiles.copy(metadata))

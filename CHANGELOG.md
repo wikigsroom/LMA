@@ -1,5 +1,13 @@
 # Changelog / 更新记录
 
+## 0.3.0-dev.27 — task recovery, history and capacity / unreleased
+
+- 启动对账已提交结果，来源与不可变请求一致才关联 interrupted 任务；保留中断状态，不自动续步。回收有明确归属的未提交生成文件，保留索引结果、续传输入及模型。Startup reconciles committed results and reclaims owned uncommitted output files.
+- 终态历史清理先生成精确范围与状态指纹，用户确认后原子删除；过期范围整批拒绝，活动 / 后完成任务、草稿、模型、结果保留。API 共用原生存储与刷新。Reviewed cleanup retains active work and independent assets.
+- 任务状态筛选、搜索、20 条分页及 256 历史 / 64 待处理 / 2,048 素材结果容量；UI / API / 入队和结果发布独立复查。Search/filter/pagination and actionable capacity checks.
+- 原签名 dev.27 / code31 APK、双语方案与指南、4 张新截图 / MP4 / GIF、受影响媒体和当前检查同步；不提升历史模型实验为新版验收。[中文](docs/TASK_RECOVERY.md) / [English](docs/TASK_RECOVERY.en.md) / [编号实现与完整待办](docs/releases/v0.3.0-dev.27.md)。
+
+
 ## 0.3.0-dev.26 — task preflight and input review / unreleased
 
 - 生成表单与 `POST /v1/jobs/preflight` 共用实际入队解析器，报告模型 / 引擎 / 组件 / LoRA / 素材 / 参数 / 资源与用户确认，检查不创建任务、不下载或更改独立设置。UI and authenticated API share the production submission resolver with read-only diagnostics.

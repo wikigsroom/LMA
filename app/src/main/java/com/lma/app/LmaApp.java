@@ -14,6 +14,7 @@ import java.net.Inet4Address;
 import java.security.SecureRandom;
 import java.util.Collections;
 import com.lma.app.core.Protocol;
+import com.lma.app.core.DataFiles;
 import com.lma.app.core.BundleStore;
 import com.lma.app.core.JobStore;
 import com.lma.app.core.ArtifactStore;
@@ -21,7 +22,7 @@ import com.lma.app.core.InputUploads;
 import com.lma.app.core.PreparedAssets;
 
 public final class LmaApp extends Application {
-    public static final String VERSION = "0.3.0-dev.26";
+    public static final String VERSION = "0.3.0-dev.27";
     public static final String UPDATE = "com.lma.app.STATE_CHANGED";
     public Store store;
     private final java.util.concurrent.atomic.AtomicBoolean migrationRunning = new java.util.concurrent.atomic.AtomicBoolean(), migrationPending = new java.util.concurrent.atomic.AtomicBoolean();
@@ -30,6 +31,7 @@ public final class LmaApp extends Application {
     public JobStore jobs;
     public com.lma.app.core.TaskDrafts taskDrafts;
     public ArtifactStore artifacts;
+    public JSONObject outputRecovery = new JSONObject();
     public InputUploads uploads;
     public volatile InputImports inputHost;
     public LocalEngines localEngines;
@@ -82,6 +84,8 @@ public final class LmaApp extends Application {
             artifacts = new ArtifactStore(new java.io.File(getFilesDir(), "results"), new MediaInspector());
             artifacts.references(jobs::referencesArtifact);
             uploads = new InputUploads(new java.io.File(getFilesDir(), "input-uploads"), artifacts);
+            try { outputRecovery = artifacts.reconcile(jobs); }
+            catch (Exception error) { outputRecovery = new JSONObject().put("error", "中断结果检查未完成；已有记录保留，请查看日志"); log("中断结果检查未完成：" + error.getMessage()); }
             com.lma.app.core.EngineWorkspace.recover(new java.io.File(getFilesDir(), "engine-work"));
             localEngines = new LocalEngines(this);
             prepared = new PreparedAssets(new java.io.File(getFilesDir(), "prepared-assets")); prepared.reconcile(jobs);
@@ -177,6 +181,8 @@ public final class LmaApp extends Application {
             value.put("bundles", bundleRecords);
             value.put("jobs", jobs == null ? new JSONArray() : jobs.summaries());
             value.put("artifacts", artifacts == null ? new JSONArray() : artifacts.snapshot());
+            value.put("outputRecovery", DataFiles.copy(outputRecovery));
+            value.put("taskCapacity", new JSONObject().put("jobs", jobs == null ? new JSONObject() : jobs.capacity()).put("artifacts", artifacts == null ? new JSONObject() : artifacts.capacity()));
             value.put("taskDrafts", taskDrafts == null ? new JSONArray() : taskDrafts.summaries());
             value.put("inputImport", inputHost == null ? new JSONObject().put("busy", false) : inputHost.snapshot());
             value.put("localEngines", localEngines == null ? new JSONArray() : localEngines.snapshot());

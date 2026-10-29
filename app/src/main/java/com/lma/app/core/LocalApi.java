@@ -20,6 +20,7 @@ public final class LocalApi implements LocalHttp.Handler {
         ArtifactStore artifacts() throws Exception;
         default TaskDrafts drafts() throws Exception { throw new IllegalStateException("Task drafts are unavailable"); }
         default void draftsChanged() {}
+        default void jobsChanged() {}
         default InputUploads uploads() throws Exception { throw new IllegalStateException("Input uploads are unavailable"); }
         default JSONObject preflight(JSONObject request) throws Exception { throw new IllegalStateException("Task preflight is unavailable"); }
         JSONObject submit(JSONObject request, String idempotencyKey) throws Exception;
@@ -67,6 +68,8 @@ public final class LocalApi implements LocalHttp.Handler {
             if (parts.length == 2 && parts[1].equals("delete")) { method(r, "POST"); runtime.drafts().remove(id, TaskDrafts.revision(body(r))); runtime.draftsChanged(); return json(200, new JSONObject().put("deleted", true).put("bundleId", id)); }
         }
         if (path.equals("/v1/jobs/preflight")) { method(r, "POST"); return json(200, runtime.preflight(body(r))); }
+        if (path.equals("/v1/jobs/history")) { method(r, "GET", "HEAD"); noBody(r); return json(200, runtime.jobs().historyPlan()); }
+        if (path.equals("/v1/jobs/history/clear")) { method(r, "POST"); JSONObject result = runtime.jobs().clearHistory(body(r)); runtime.jobsChanged(); return json(200, result); }
         if (path.equals("/v1/jobs")) {
             method(r, "GET", "HEAD", "POST");
             if (r.method.equals("POST")) return json(202, runtime.submit(TaskInput.validate(body(r)), r.header("idempotency-key")));
@@ -78,7 +81,7 @@ public final class LocalApi implements LocalHttp.Handler {
             JSONObject job = job(id);
             if (parts.length == 1) {
                 method(r, "GET", "HEAD", "DELETE"); noBody(r);
-                if (r.method.equals("DELETE")) { runtime.jobs().remove(id); return json(200, new JSONObject().put("deleted", true).put("id", id)); }
+                if (r.method.equals("DELETE")) { runtime.jobs().remove(id); runtime.jobsChanged(); return json(200, new JSONObject().put("deleted", true).put("id", id)); }
                 return json(200, job);
             }
             if (parts.length == 2 && parts[1].equals("request")) { method(r, "GET", "HEAD"); noBody(r); return json(200, TaskRequests.editable(job.getJSONObject("request"))); }

@@ -1,5 +1,7 @@
 # Android local jobs and internal execution stages
 
+dev.27 adds [committed-output recovery, reviewed history cleanup and shared capacity checks](TASK_RECOVERY.en.md). Model assets, results and drafts remain independent; recovery does not resume generation.
+
 [中文](WORKFLOWS.md) · [Current requirements/releases](MULTIMODAL_RELEASE_PLAN.en.md) · [Foundation](FOUNDATION.en.md) · [Current architecture](ARCHITECTURE.en.md)
 
 Status: **v0.3.0 requirements with partial development implementation, 2026-10-27**. Parts of jobs/artifacts, asset management and UI are implemented; see [development progress](DEVELOPMENT.en.md). The implemented job gateway is documented under [API](API.en.md#030-dev2-independent-gateway-jobs-and-artifacts). Text now uses [shared scheduling](SCHEDULING.en.md); complete engines/model coverage and physical-device acceptance remain unfinished. This document describes target behavior, not a claim that every feature is available. The latest scope uses model selection, task forms, a queue and artifacts. No ComfyUI wiring, infinite canvas, user node/plugin ecosystem or graph import. The [update requirements](MULTIMODAL_RELEASE_PLAN.en.md) require the complete foundation and all 01–14/16/17/frozen subtargets together in v0.3.0, without split releases or automatic deferral. Every stage executes on the same Android phone, without ROOT, Docker, WSL, VMs or emulators.

@@ -45,7 +45,7 @@ public final class LocalJobs implements AutoCloseable {
             catch (Exception error) {
                 String message = error.getMessage(); if (message == null || message.isEmpty()) message = "本地检查未通过";
                 plan.report.getJSONArray("issues").put(new JSONObject().put("code", plan.stage).put("message", message.substring(0, Math.min(1200, message.length())))
-                        .put("action", plan.stage.equals("assets") || plan.stage.equals("models") || plan.stage.equals("engine") ? "manage_models" : plan.stage.equals("inputs") ? "manage_inputs" : "edit_request"));
+                        .put("action", plan.stage.equals("capacity") ? "manage_tasks" : plan.stage.equals("assets") || plan.stage.equals("models") || plan.stage.equals("engine") ? "manage_models" : plan.stage.equals("inputs") ? "manage_inputs" : "edit_request"));
             }
             return plan.report;
         } }
@@ -97,6 +97,7 @@ public final class LocalJobs implements AutoCloseable {
             next("resources"); JSONObject resources = resourceSnapshot(app, bundle, request, false); report.put("resources", resources); checkResources(resources);
             if (resources.getBoolean("currentlyLowMemory") || resources.getLong("estimatedPeakRamBytes") > resources.getLong("availableRamBytes")) report.getJSONArray("warnings").put(new JSONObject().put("code", "current_memory_pressure").put("message", "当前可用内存偏低；允许排队，执行前会重新检查，可能需要先释放内存"));
             if (!resources.getBoolean("estimateKnown")) report.getJSONArray("warnings").put(new JSONObject().put("code", "memory_estimate_unknown").put("message", "此配方尚无可信峰值内存估算；检查通过不能保证能够完成生成"));
+            next("capacity"); report.put("capacity", new JSONObject().put("jobs", app.jobs.capacity()).put("artifacts", app.artifacts.capacity())); app.jobs.requireCapacity(); app.artifacts.requireCapacity();
             next("consent"); if (!request.optBoolean("allowUnmeasured")) throw new IllegalStateException("此配方尚无本机实测记录；请明确选择允许尝试未测配方后运行");
             report.getJSONArray("checkedStages").put(stage); return request;
         }
@@ -140,7 +141,7 @@ public final class LocalJobs implements AutoCloseable {
     }
     private JSONObject admission(ModelBundle bundle, JSONObject request, boolean executing) throws Exception {
         if (!request.optBoolean("allowUnmeasured")) throw new IllegalStateException("此配方尚无本机实测记录；请明确选择允许尝试未测配方后运行");
-        JSONObject resources = resourceSnapshot(app, bundle, request, executing); checkResources(resources); return resources;
+        JSONObject resources = resourceSnapshot(app, bundle, request, executing); checkResources(resources); app.artifacts.requireCapacity(); return resources;
     }
     private static JSONObject resourceSnapshot(LmaApp app, ModelBundle bundle, JSONObject request, boolean executing) throws Exception {
         ActivityManager.MemoryInfo memory = new ActivityManager.MemoryInfo(); ((ActivityManager) app.getSystemService(LmaApp.ACTIVITY_SERVICE)).getMemoryInfo(memory);
