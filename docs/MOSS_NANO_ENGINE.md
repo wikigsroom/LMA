@@ -2,7 +2,7 @@
 
 [English](MOSS_NANO_ENGINE.en.md) · [完整范围](MULTIMODAL_RELEASE_PLAN.md) · [开发状态](DEVELOPMENT.md) · [HF 组件选择](HF_RECIPES.md)
 
-内部检查点 **0.3.0-dev.6 / code 10** 接入实际编译的 `moss_nano_ort` ARM64 CPU worker，覆盖编号 09 的原生实现工作。**尚无 LMA 的实际 MOSS 语音输出或 Android 真机证据，编号 09 和完整 v0.3.0 均未通过验收。** 本实现不代替编号 12 的其他九种 MOSS 架构。
+内部检查点 **0.3.0-dev.6 / code 10** 接入实际编译的 `moss_nano_ort` ARM64 CPU worker，覆盖编号 09 的原生实现工作。历史 dev.6 当时尚无真实语音输出；dev.24 后续已完成[真实训练生产源码及Java主机链路](MOSS_NANO_TRAINED.md)。**Android 真机、语音质量、编号09及完整v0.3.0仍未通过验收。** 本实现不代替编号 12 的其他九种 MOSS 架构。
 
 ## 用户使用
 
@@ -12,7 +12,7 @@
 4. 安装完整组件后，在“本地”编辑此模型的参数，点击使用，填写新的朗读文本并提交语音任务。计算、分词和解码全部在同一手机，不依赖 ROOT、Termux、Python 或外部推理。
 5. 成功输出由结果库保存为 PCM16 单声道 WAV，记录有效参数、组件校验回执、帧数、采样率及结束原因。任务取消后等待子进程退出，再移除临时执行链接；模型文件仍保留。
 
-App 安装 / 更新不下载模型。此配方没有固定模型权重或内嵌音色；缺失依赖直接在本机报错，不会补下载、换模型或转出手机。官方来源仓库可参考 [TTS ONNX](https://huggingface.co/OpenMOSS-Team/MOSS-TTS-Nano-100M-ONNX) 与 [codec ONNX](https://huggingface.co/OpenMOSS-Team/MOSS-Audio-Tokenizer-Nano-ONNX)。它们来自锁定的官方源码说明；本次未取得这些仓库的完整固定组件清单，因此没有新增冒充已核对的目录候选。
+App 安装 / 更新不下载模型。此配方没有固定模型权重或内嵌音色；缺失依赖直接在本机报错，不会补下载、换模型或转出手机。官方来源仓库可参考 [TTS ONNX](https://huggingface.co/OpenMOSS-Team/MOSS-TTS-Nano-100M-ONNX) 与 [codec ONNX](https://huggingface.co/OpenMOSS-Team/MOSS-Audio-Tokenizer-Nano-ONNX)。dev.6当时没有取得完整清单；dev.24后续已核对11组件及18音色，并提供[用户导入清单](../catalogue/moss-nano-100m-onnx.bundle.json)与[完整使用/实测](MOSS_NANO_TRAINED.md)。它不加入内置目录/推荐，也不宣称手机验收。
 
 ## 完整资产角色
 
@@ -45,7 +45,7 @@ App 安装 / 更新不下载模型。此配方没有固定模型权重或内嵌�
 
 这些是应用保护值，**不是经验证的模型最高上限**。朗读输入限制为 1–4000 字符，当前单次 codec 输出保护为 60 秒；超出会失败，不把截断音频记作成功。参数沿用模型 / 配方独立保存、可编辑预设和提交回填。固定采样图内的 temperature / top-k 等常量没有伪装成可编辑参数。本次提供用户已下载的音色提示 TTS，不提供参考音频克隆、流式音频接口或 WeText 额外规范化；数字读法和长文本仍需实际质量验收。
 
-原生执行为 SentencePiece 编码 → 组合用户音色提示 → prefill → 自回归 decode / local sampled frame → codec decode_full → WAV。prefill 会话先释放，TTS 会话与 KV 缓存在加载 codec 前释放，以减少同时驻留的数据；具体峰值内存和 Z20 适配仍未测量。
+原生执行为 SentencePiece 编码 → 组合用户音色提示 → prefill → 自回归 decode / local sampled frame → codec decode_full → WAV。prefill 会话先释放，TTS 会话与 KV 缓存在加载 codec 前释放，以减少同时驻留的数据；[后续主机测量](MOSS_NANO_TRAINED.md)记录了Windows资源；手机峰值内存和Z20适配仍未测量。
 
 `EngineWorkspace` 将持有租约的已校验内容对象硬链接到私有 `engine-work/work-UUID/tts` 与 `codec`，保留 ONNX 外置数据所需文件名。不会为改名再复制大模型。硬链接不可用则本机报错；正常、失败和取消路径清理链接，App 启动对账清理上次进程遗留目录。ONNX protobuf 检查覆盖 initializer、属性张量、子图、稀疏张量、函数和训练图；ORT 继续检查图本身。
 

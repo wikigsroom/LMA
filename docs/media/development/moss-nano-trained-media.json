@@ -1,0 +1,108 @@
+{
+  "schema": "lma.moss-nano-trained-media/1",
+  "kind": "actual_trained_host_wav_and_waveform_slideshow",
+  "sources": {
+    "verification/development/moss-nano-trained.json": "30699686e97a2478ef8a2d7bdcf973a73288bc00c2b237139501504e99b69d3e",
+    "verification/development/moss-nano-assets.json": "793a4c4d4b0ba58cfdfc62580d46f762bb55999afe82b1a1c7cbcd565bba5cef",
+    "verification/development/moss-nano-app-host.json": "89385761a49e696a241d2eb997729e3fc3a67743022ad1546e7e3a4ed61e511e"
+  },
+  "source_audio": [
+    {
+      "case": "prompt-a",
+      "file": "moss-nano-trained-zh.wav",
+      "audio": {
+        "format": "WAV",
+        "channels": 1,
+        "sample_width": 2,
+        "sample_rate": 48000,
+        "samples": 207360,
+        "seconds": 4.32,
+        "rms": 0.12221563333540866,
+        "peak": 0.927825927734375,
+        "clipping_fraction": 0.0,
+        "nonzero_samples": 205645,
+        "bytes": 414764,
+        "sha256": "252b14ed3d1c1216518f2afb0b7fa0f78821931c7658984a371641e483347856"
+      }
+    },
+    {
+      "case": "english",
+      "file": "moss-nano-trained-en.wav",
+      "audio": {
+        "format": "WAV",
+        "channels": 1,
+        "sample_width": 2,
+        "sample_rate": 48000,
+        "samples": 195840,
+        "seconds": 4.08,
+        "rms": 0.06758522420375673,
+        "peak": 0.445953369140625,
+        "clipping_fraction": 0.0,
+        "nonzero_samples": 190896,
+        "bytes": 391724,
+        "sha256": "23cc4926f9b0e6599135cce565f40beae8d5d23881b79382f0c88e6da9a79778"
+      }
+    },
+    {
+      "case": "japanese",
+      "file": "moss-nano-trained-ja.wav",
+      "audio": {
+        "format": "WAV",
+        "channels": 1,
+        "sample_width": 2,
+        "sample_rate": 48000,
+        "samples": 241920,
+        "seconds": 5.04,
+        "rms": 0.014031224152131438,
+        "peak": 0.098114013671875,
+        "clipping_fraction": 0.0,
+        "nonzero_samples": 240382,
+        "bytes": 483884,
+        "sha256": "5dc8bcc6a119ad924351c6fb59d80436b71ad505dbf7ba6e01aa30054713a077"
+      }
+    }
+  ],
+  "gif_frames": 3,
+  "gif_duration_ms": 5400,
+  "mp4_duration_seconds": 13.400976,
+  "mp4_codecs": [
+    "h264",
+    "aac"
+  ],
+  "waveform_amplitude_normalized": false,
+  "original_wav_bytes_unchanged": true,
+  "mp4_audio_transcoded_aac": true,
+  "files": {
+    "moss-nano-trained-zh.wav": {
+      "bytes": 414764,
+      "sha256": "252b14ed3d1c1216518f2afb0b7fa0f78821931c7658984a371641e483347856"
+    },
+    "moss-nano-trained-en.wav": {
+      "bytes": 391724,
+      "sha256": "23cc4926f9b0e6599135cce565f40beae8d5d23881b79382f0c88e6da9a79778"
+    },
+    "moss-nano-trained-ja.wav": {
+      "bytes": 483884,
+      "sha256": "5dc8bcc6a119ad924351c6fb59d80436b71ad505dbf7ba6e01aa30054713a077"
+    },
+    "moss-nano-trained-contact-sheet.png": {
+      "bytes": 235045,
+      "sha256": "82727325bfc66af176d7492083a8ebcaa7827aa4ab1b67efe011e76cc0221db0"
+    },
+    "moss-nano-trained-waveforms.gif": {
+      "bytes": 87057,
+      "sha256": "f3c096f3699548dea7648c2b8335cb2b331db3e520befc8099befafcf6342068"
+    },
+    "moss-nano-trained-speech.mp4": {
+      "bytes": 428306,
+      "sha256": "542e6462af3d400302e6402b0916b016eee6daa52654589df0cd6a43967830aa"
+    }
+  },
+  "physical_android": false,
+  "app_screen_recording": false,
+  "speech_quality_accepted": false,
+  "complete_release_accepted": false,
+  "input_fingerprint": {
+    "tools/render_moss_nano_trained.py": "007c367e2279e7ae04f498ea8dcc8aaea83afef1e738a32a2e88f6dd4be5f434"
+  }
+}

@@ -133,3 +133,5 @@ The dev.22/code26 internal APK has separate packaging, host core/trained convers
 
 
 Runtime association / 运行模型关联后续需执行 `python tools/test_assemblies.py`，完整训练准备完成后执行 `python tools/test_assemblies.py --trained`；重跑共用队列、API/UI、APK/包/Lint，并导出 `assembly-core.json` / `assembly-trained.json`。完整训练文件关联仅证明主机文件身份、硬链接及缺失依赖暂停，不代替模型生成、Android或正式Release。见[中文](MODEL_ASSEMBLY.md) / [English](MODEL_ASSEMBLY.en.md)。
+
+Nano100M真实训练后续：[中文](MOSS_NANO_TRAINED.md) / [English](MOSS_NANO_TRAINED.en.md) / [编号交付与全部待办](releases/v0.3.0-dev.24-moss-nano.md)。先显式取得11组件和隔离主机ORT，再运行生产C++/Java真实测试、独立原始复核/错误范围标记检查、媒体渲染、开发导出和仓库审计。新增五份公开JSON区分取得/主机构建/训练/Java/原始复核；主机ORT1.28.0不冒充Android1.28.2。APK输入未改，不重建、不创建tag或Release。The user-importable manifest is metadata only; no mandatory model, automatic download or complete target09/quality/physical acceptance is introduced.

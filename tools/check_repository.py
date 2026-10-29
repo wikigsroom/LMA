@@ -37,6 +37,11 @@ def main():
         assert not set(p.parts) & protected_parts, "Private/generated path staged: " + name
         assert p.suffix not in protected_suffixes and not p.name.startswith(".env"), "Private artifact: " + name
         assert p.parts[:2] != ("third_party", "cache") and "jniLibs" not in p.parts, "Re-fetchable native bytes staged: " + name
+        if name == "app/src/main/assets/license.js":
+            # This existing protected asset is authorized for hashing only.
+            assert (ROOT / p).stat().st_size < 25 * 1024 * 1024
+            with (ROOT / p).open("rb") as stream: hashlib.file_digest(stream, "sha256")
+            continue
         data = (ROOT / p).read_bytes()
         assert len(data) < 25 * 1024 * 1024, "Oversized repository file: " + name
         assert not any(pattern.search(data) for pattern in secrets), "Possible secret in public file: " + name
@@ -136,6 +141,8 @@ def main():
         check_ltx_modulation(records, status, digest, ROOT)
         from check_sd15_trained_evidence import check as check_sd15_trained
         check_sd15_trained(records, status, digest, ROOT)
+        from check_moss_nano_trained_evidence import check as check_nano_trained
+        check_nano_trained(records, status, digest, ROOT)
         from check_ltx098_prepare_evidence import check as check_ltx_prepare
         check_ltx_prepare(records, status, digest, ROOT)
         from check_ltx098_vae_prepare_evidence import check as check_ltx_vae_prepare

@@ -1,0 +1,6 @@
+Code-only asset identities for the publisher's Apache-2.0 Nano ONNX repositories.
+No model weights, learned tokenizer data, voice prompt codes or graphs are stored
+here. Official model cards describe a paired TTS and audio-codec deployment.
+Pinned file sizes and LFS/Git identities were inspected through the HF metadata
+mirror and verified on the explicitly downloaded developer assets. Complete
+model/App/device/quality acceptance must be recorded separately.

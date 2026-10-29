@@ -96,3 +96,5 @@ dev.20：新增 [56 四组件](media/development/56-stable-audio-components.png)
 
 
 dev.21：新增 [59 十四份组件](media/development/59-soulx-components.png)、[60 配套参考原文](media/development/60-soulx-paired-references.png)、[61 上下文联合归位](media/development/61-soulx-context-bounds.png)；当前61张PNG + MP4 /GIF，共63个媒体文件。全部是实际生产页面配明确模拟原生桥的UI FIXTURE，没有下载或运行模型。完整训练主机WAV留在忽略目录，不拿合成参考冒充音质演示。浏览器页面、context与本轮进程均在finally关闭；没有模拟器 /Docker /WSL。Production UI with explicit fixture state; no phone inference media or quality claim.
+
+Nano dev.24后续新增三语实际主机WAV、[波形总览](media/development/moss-nano-trained-contact-sheet.png)、[静音GIF](media/development/moss-nano-trained-waveforms.gif)及[真实音频波形轮播MP4](media/development/moss-nano-trained-speech.mp4)，由 `tools/render_moss_nano_trained.py` 读取实际训练输出生成。[来源回执](media/development/moss-nano-trained-media.json)绑定原始SHA；WAV不改字节/音量，MP4转AAC。它们是HOST结果，不是App/Android录屏、速度或语音质量验收。UI未改，沿用原68张页面夹具及录像；本轮没有打开浏览器。Three original trained-host WAVs plus a waveform sheet/GIF/real-audio MP4 are distinct from the unchanged UI fixtures, phone evidence and speech-quality acceptance. See [中文](MOSS_NANO_TRAINED.md) / [English](MOSS_NANO_TRAINED.en.md).

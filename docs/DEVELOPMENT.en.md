@@ -4,6 +4,8 @@
 
 The current public release remains **v0.2.0**. This branch is **0.3.0-dev.24 / versionCode 28**, not the complete v0.3.0, and has no new Release. F-01–F-12, selections 01–14/16/17 and frozen subtargets still belong to one delivery; these are internal implementation checkpoints.
 
+The [trained Nano100M follow-up](MOSS_NANO_TRAINED.en.md) verifies eleven explicitly acquired assets, seven actual production-source WAV jobs/seven controls and forty production Java/real-worker checks. Independent review rereads 65 raw files, fifteen protocol streams, nine WAVs and eleven imported objects. A user-importable manifest and three-language audio/waveform GIF/MP4 are included; host ORT 1.28.0 and Android 1.28.2 remain distinct. APK bytes stay unchanged. Selection 09 quality/Android and every full-version gate remain open; see [numbered implementation/full pending scope](releases/v0.3.0-dev.24-moss-nano.md).
+
 ## Implemented development code
 
 | Area | Current behavior | Evidence boundary |

@@ -1,0 +1,15 @@
+{
+  "schema": "lma.moss-nano-capture-audit/1",
+  "raw_files": 65,
+  "protocol_streams": 15,
+  "independent_wav_recalculations": 9,
+  "production_java_native_children": 3,
+  "imported_objects_verified": 11,
+  "trained_report_sha256": "30699686e97a2478ef8a2d7bdcf973a73288bc00c2b237139501504e99b69d3e",
+  "app_report_sha256": "89385761a49e696a241d2eb997729e3fc3a67743022ad1546e7e3a4ed61e511e",
+  "physical_android": false,
+  "complete_release_accepted": false,
+  "input_fingerprint": {
+    "tools/check_moss_nano_trained_evidence.py": "c11a53dd64e4f199b592571cc26f8fbbb6b99064002e4a9ff8878e502d01448a"
+  }
+}

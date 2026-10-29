@@ -1,0 +1,24 @@
+{
+  "schema": "lma.moss-nano-host-runtime/1",
+  "version": "1.28.0",
+  "api": 28,
+  "headers_version": "1.28.2",
+  "production_android_version": "1.28.2",
+  "host_only": true,
+  "archive": {
+    "url": "https://files.pythonhosted.org/packages/56/f1/51225c202edba4dfc94e1ea03f3d78f1aaf307da75fd792c0ce1946b2514/onnxruntime-1.28.0-cp313-cp313-win_amd64.whl",
+    "file": "onnxruntime-1.28.0-cp313-cp313-win_amd64.whl",
+    "bytes": 13755033,
+    "sha256": "1a1a19175464665c9b8d50bc916f216cc0b569110045b7bbca8f9f290b186f58"
+  },
+  "files": {
+    "onnxruntime.dll": {
+      "bytes": 17766712,
+      "sha256": "e23e1d0cef90ba2f10f48056fb8276b11c7fc714d1295aa4423c5ecd7a77a013"
+    },
+    "onnxruntime_providers_shared.dll": {
+      "bytes": 21816,
+      "sha256": "ff7b6f864cd9e67e13f3b6c6709af97283ef95abe254babac3a81acbcb2781b1"
+    }
+  }
+}

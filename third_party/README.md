@@ -81,3 +81,9 @@ The [old-VAE preparation graphs and converter](../research/ltx098_vae_prepare/NO
 ## dev.24 trained SD1.5 developer port and LTX modulation
 
 The [native Windows SD port](../research/sd_host/NOTICE) adds original MIT parent-lifetime compatibility code only. Production worker/policy/external-vocabulary sources remain shared with Android and pinned sd.cpp/GGML attribution is retained. The exact SD1.5 Q4 checkpoint and CLIP merges are user-external CreativeML Open RAIL-M assets, never Git/APK payloads; [中文](../docs/SD15_TRAINED.md) / [English](../docs/SD15_TRAINED.en.md). The [isolated LTX modulation candidate](../research/ltx098_modulation/NOTICE) retains Apache-2.0 and existing pinned dependencies, without learned data, App registration or numerical acceptance. Matplotlib/FFmpeg media are developer-host tools only.
+
+## Nano trained host validation / 真实资产主机验证
+
+[资产锁](../research/moss_nano_trained/assets.json)固定OpenMOSS发布者Apache-2.0的TTS/codec11组件，实际权重、学习音色提示、分词器和ONNX均只在被忽略的开发目录或用户模型存储。用户导入清单不包含其数据。[Windows兼容层](../research/moss_nano_host/NOTICE)重用MIT的父进程保护；MOSS/SentencePiece为Apache-2.0，隔离ORT运行时为MIT。生产神经C++未改；官方PyPI ORT1.28.0/API28仅用于主机测试，Android仍为1.28.2/API28。不修改全局Python、不打包Windows程序或运行时、不将开发模型变成用户必装。
+
+The pinned publisher models and learned tokenizer/voice data remain external assets. Windows-only CRT/parent-lifetime compatibility is separate from unchanged production inference and the existing Android runtime. Generated samples document actual host output without speech-quality/device acceptance. Full acquisition, identities and licenses: [中文](../docs/MOSS_NANO_TRAINED.md) / [English](../docs/MOSS_NANO_TRAINED.en.md).

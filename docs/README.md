@@ -6,6 +6,7 @@
 
 | 主题 / Topic | 中文 | English |
 | --- | --- | --- |
+| MOSS Nano训练资产/用户导入 / Trained assets and import | [中文](MOSS_NANO_TRAINED.md) | [English](MOSS_NANO_TRAINED.en.md) |
 | Trained SD1.5 / 真实权重 | [中文](SD15_TRAINED.md) | [English](SD15_TRAINED.en.md) |
 | Old-LTX modulation / 调制顺序 | [中文](LTX098_MODULATION.md) | [English](LTX098_MODULATION.en.md) |
 | Runtime model association / 运行模型关联 | [MODEL_ASSEMBLY.md](MODEL_ASSEMBLY.md) | [MODEL_ASSEMBLY.en.md](MODEL_ASSEMBLY.en.md) |

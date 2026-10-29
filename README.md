@@ -4,6 +4,8 @@
 
 > **当前开发：0.3.0-dev.24 / code 28。** 修正扩散 worker 的加载/生成进度，补充 [SD 1.5 真实权重验证](docs/SD15_TRAINED.md)与[旧 LTX 调制顺序诊断](docs/LTX098_MODULATION.md)；LTX 新候选仍未通过冻结数值门槛。[本轮编号实现与全部待办](docs/releases/v0.3.0-dev.24.md)。App 仅更新基座，模型仍由用户自行选择、下载或导入；完整 v0.3.0 与手机验收尚未完成。
 
+新增 [MOSS Nano 真实资产与用户导入指南](docs/MOSS_NANO_TRAINED.md)：固定11组件清单、7次实际WAV输出及7个控制、40项生产Java→原生主机检查；提供[三语音频和波形媒体](docs/MOSS_NANO_TRAINED.md#本轮实际结果)。[本轮编号实现与全部待办](docs/releases/v0.3.0-dev.24-moss-nano.md)。本轮仅增加清单/工具/文档，APK字节不变；语音质量、Android与完整Release仍未验收。
+
 Android 版的本地模型管理、下载、对话和 API 服务应用。当前修订版本为 **0.2.0 / ARM64 / Android 9+**。
 
 安装包：[v0.2.0 Release](https://github.com/wikigsroom/LMA/releases/tag/v0.2.0) 中的 `LMA-0.2.0-arm64-v8a.apk`，约 10.9 MB。模型权重由用户在应用中选择下载，APK 不含模型权重。LMA（Local Model App）是独立社区项目，与 LM Studio 无隶属关系；当前应用界面主要为中文，文档提供中英双语。

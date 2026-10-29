@@ -1,0 +1,9 @@
+The Windows compatibility headers are MIT-licensed developer code. The parent
+lifetime implementation is reused from ../sd_host/platform.hpp. They adapt CRT
+file descriptors, the null device and wide filesystem paths without changing
+native/moss_nano/worker.cpp or its neural/tokenizer/sampling math.
+
+Native Windows CPU host validation only. This is neither an Android executable
+nor a remote inference backend, and is never included in the APK. The pinned
+host runtime is ORT 1.28.0/API28; production Android retains ORT 1.28.2/API28.
+Model data, SentencePiece normalization data and voice codes remain external.

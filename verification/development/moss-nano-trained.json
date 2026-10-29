@@ -1,0 +1,2173 @@
+{
+  "schema": "lma.moss-nano-trained-host/1",
+  "compilation": {
+    "schema": "lma.moss-nano-host-build/1",
+    "executable": "build/moss-nano-worker-host/ed55e570d80c29d2/bin/lma_moss_nano_host.exe",
+    "bytes": 872960,
+    "sha256": "fc1e3d15ade7b3f5edf1b25a1e6c80ba46d02f9aa1758339c256880831500934",
+    "sources": {
+      "moss-nano": "8b7bcc9341b3b4ef3a3a58ba1338a7d85ff133eb",
+      "sentencepiece": "31646a467d2051eb904e0b45de3a73e91fe1c1e3",
+      "onnxruntime-headers": "33ca9628233dc8f002435e868d4c2e9f82766ca1"
+    },
+    "runtime": {
+      "schema": "lma.moss-nano-host-runtime/1",
+      "version": "1.28.0",
+      "api": 28,
+      "headers_version": "1.28.2",
+      "production_android_version": "1.28.2",
+      "host_only": true,
+      "archive": {
+        "url": "https://files.pythonhosted.org/packages/56/f1/51225c202edba4dfc94e1ea03f3d78f1aaf307da75fd792c0ce1946b2514/onnxruntime-1.28.0-cp313-cp313-win_amd64.whl",
+        "file": "onnxruntime-1.28.0-cp313-cp313-win_amd64.whl",
+        "bytes": 13755033,
+        "sha256": "1a1a19175464665c9b8d50bc916f216cc0b569110045b7bbca8f9f290b186f58"
+      },
+      "files": {
+        "onnxruntime.dll": {
+          "bytes": 17766712,
+          "sha256": "e23e1d0cef90ba2f10f48056fb8276b11c7fc714d1295aa4423c5ecd7a77a013"
+        },
+        "onnxruntime_providers_shared.dll": {
+          "bytes": 21816,
+          "sha256": "ff7b6f864cd9e67e13f3b6c6709af97283ef95abe254babac3a81acbcb2781b1"
+        }
+      }
+    },
+    "backend": "cpu",
+    "production_worker_source_unmodified": true,
+    "windows_crt_compatibility": true,
+    "external_tokenizer_and_voice_data": true,
+    "bundled_model_data": false,
+    "physical_android": false,
+    "android_compiled": false,
+    "packaged_in_apk": false,
+    "model_executed": false,
+    "input_fingerprint": {
+      "native/moss_nano/CMakeLists.txt": "7a40aa0f429264d735f3c6b7851377f9c33c5f47c52c33c393327568e14843d1",
+      "native/moss_nano/onnx_external.hpp": "c1bb8f95ad2078472dbbf2ea0863493ac44f4aae7c4336cf5debb0db0d54fae5",
+      "native/moss_nano/worker.cpp": "75846c4c25ea97f50ebfe5966f468d585c3e9a52bf8e8e06f8542873aafaa85d",
+      "research/moss_nano_host/CMakeLists.txt": "bbe636872db380b1f8524602b059849d06afb2ff92d56ce56091f7ee046b7808",
+      "research/moss_nano_host/compat/sys/prctl.h": "9322b99bb80674fd2d42eb2b94f5ee5519ab443da0cdffd5ae938ef855907569",
+      "research/moss_nano_host/compat/unistd.h": "1c843add75719822f7371cfafd97af1abdc1ffc52938f5cd96dfd407630d9f96",
+      "research/moss_nano_host/NOTICE": "e28323cd4e66e72e7f55582dff7c82fba05d23b1512e6da0b07384817d1b4e85",
+      "research/moss_nano_host/runtime.json": "c75e919fa3b28d96b556fd5580c36ba637f1b5df184e080cc1351422223d8fb1",
+      "research/sd_host/platform.hpp": "c377ed1b676707a469a192d96ae9b748802e1f62ad0674366b593b2b5b2daf67",
+      "third_party/moss-nano-source-lock.json": "cce6bb6921d1f476fa50a7e483f13daca030a750b68ea47feba9214635170da3",
+      "tools/build_moss_nano_host.py": "9899f6e4a2dcf0ca7eab17cf0511296c1dfd312a92744f53e8814c4064b04ed2",
+      "tools/fetch_moss_nano.py": "9895282af5c94c57b6da38e42164d3d0fe34a78576c1f59756fddb54e5eb817f",
+      "tools/fetch_moss_nano_host_runtime.py": "62e2656a1688de38914d894cf3f933f67adb9815879d862dda3a237fc3fbd9e1"
+    }
+  },
+  "acquisition": {
+    "schema": "lma.moss-nano-trained-assets/1",
+    "explicit_download": true,
+    "download_origin": "https://hf-mirror.com",
+    "components": [
+      {
+        "role": "manifest",
+        "repository": "OpenMOSS-Team/MOSS-TTS-Nano-100M-ONNX",
+        "revision": "f52645cb467506d8e18e746ddd59482685b74e58",
+        "path": "browser_poc_manifest.json",
+        "bytes": 503354,
+        "sha256": "097d80e993dc29f0bae427590b4f77084a161cb578b50d82c29f455d5faa9eee",
+        "format": "json",
+        "url": "https://huggingface.co/OpenMOSS-Team/MOSS-TTS-Nano-100M-ONNX/resolve/f52645cb467506d8e18e746ddd59482685b74e58/browser_poc_manifest.json",
+        "local_path": "build/moss-nano-trained/originals/tts/browser_poc_manifest.json"
+      },
+      {
+        "role": "tts_meta",
+        "repository": "OpenMOSS-Team/MOSS-TTS-Nano-100M-ONNX",
+        "revision": "f52645cb467506d8e18e746ddd59482685b74e58",
+        "path": "tts_browser_onnx_meta.json",
+        "bytes": 4487,
+        "sha256": "3edf25232dcd0af3d061c837e9a968a39e2f8592e06777d740503c4f2244f95c",
+        "format": "json",
+        "url": "https://huggingface.co/OpenMOSS-Team/MOSS-TTS-Nano-100M-ONNX/resolve/f52645cb467506d8e18e746ddd59482685b74e58/tts_browser_onnx_meta.json",
+        "local_path": "build/moss-nano-trained/originals/tts/tts_browser_onnx_meta.json"
+      },
+      {
+        "role": "codec_meta",
+        "repository": "OpenMOSS-Team/MOSS-Audio-Tokenizer-Nano-ONNX",
+        "revision": "ceff0d0749bfb3fa2d61149794ec6feef0d1e1ae",
+        "path": "codec_browser_onnx_meta.json",
+        "bytes": 17036,
+        "sha256": "3e291c883bb7d11ff2fe8e964e3e495519760358859f35c951254c7741592731",
+        "format": "json",
+        "url": "https://huggingface.co/OpenMOSS-Team/MOSS-Audio-Tokenizer-Nano-ONNX/resolve/ceff0d0749bfb3fa2d61149794ec6feef0d1e1ae/codec_browser_onnx_meta.json",
+        "local_path": "build/moss-nano-trained/originals/codec/codec_browser_onnx_meta.json"
+      },
+      {
+        "role": "text_tokenizer",
+        "repository": "OpenMOSS-Team/MOSS-TTS-Nano-100M-ONNX",
+        "revision": "f52645cb467506d8e18e746ddd59482685b74e58",
+        "path": "tokenizer.model",
+        "bytes": 470897,
+        "sha256": "c353ee1479b536bf414c1b247f5542b6607fb8ae91320e5af1781fee200fddff",
+        "format": "sentencepiece",
+        "url": "https://huggingface.co/OpenMOSS-Team/MOSS-TTS-Nano-100M-ONNX/resolve/f52645cb467506d8e18e746ddd59482685b74e58/tokenizer.model",
+        "local_path": "build/moss-nano-trained/originals/tts/tokenizer.model"
+      },
+      {
+        "role": "tts_prefill",
+        "repository": "OpenMOSS-Team/MOSS-TTS-Nano-100M-ONNX",
+        "revision": "f52645cb467506d8e18e746ddd59482685b74e58",
+        "path": "moss_tts_prefill.onnx",
+        "bytes": 283305,
+        "sha256": "d56126dcd0574c2f15d98fc6b35eda68d0386b5bd9c5e38e28548d6f2ea8f3db",
+        "format": "onnx",
+        "url": "https://huggingface.co/OpenMOSS-Team/MOSS-TTS-Nano-100M-ONNX/resolve/f52645cb467506d8e18e746ddd59482685b74e58/moss_tts_prefill.onnx",
+        "local_path": "build/moss-nano-trained/originals/tts/moss_tts_prefill.onnx"
+      },
+      {
+        "role": "tts_decode",
+        "repository": "OpenMOSS-Team/MOSS-TTS-Nano-100M-ONNX",
+        "revision": "f52645cb467506d8e18e746ddd59482685b74e58",
+        "path": "moss_tts_decode_step.onnx",
+        "bytes": 291483,
+        "sha256": "698cbc2fc1c2feca16e5895614ed52bbb32ded10f236c076f477b2e69abf32d8",
+        "format": "onnx",
+        "url": "https://huggingface.co/OpenMOSS-Team/MOSS-TTS-Nano-100M-ONNX/resolve/f52645cb467506d8e18e746ddd59482685b74e58/moss_tts_decode_step.onnx",
+        "local_path": "build/moss-nano-trained/originals/tts/moss_tts_decode_step.onnx"
+      },
+      {
+        "role": "tts_local",
+        "repository": "OpenMOSS-Team/MOSS-TTS-Nano-100M-ONNX",
+        "revision": "f52645cb467506d8e18e746ddd59482685b74e58",
+        "path": "moss_tts_local_fixed_sampled_frame.onnx",
+        "bytes": 471262,
+        "sha256": "40cdb00efc171c450cf91468e01429caa41b0252222cd308e978f58fe354afa8",
+        "format": "onnx",
+        "url": "https://huggingface.co/OpenMOSS-Team/MOSS-TTS-Nano-100M-ONNX/resolve/f52645cb467506d8e18e746ddd59482685b74e58/moss_tts_local_fixed_sampled_frame.onnx",
+        "local_path": "build/moss-nano-trained/originals/tts/moss_tts_local_fixed_sampled_frame.onnx"
+      },
+      {
+        "role": "codec_decode",
+        "repository": "OpenMOSS-Team/MOSS-Audio-Tokenizer-Nano-ONNX",
+        "revision": "ceff0d0749bfb3fa2d61149794ec6feef0d1e1ae",
+        "path": "moss_audio_tokenizer_decode_full.onnx",
+        "bytes": 681902,
+        "sha256": "0fbbafe3fd4afa2a019af5c5ced204af6e2d1db044fa40f021525d2aee95b4ac",
+        "format": "onnx",
+        "url": "https://huggingface.co/OpenMOSS-Team/MOSS-Audio-Tokenizer-Nano-ONNX/resolve/ceff0d0749bfb3fa2d61149794ec6feef0d1e1ae/moss_audio_tokenizer_decode_full.onnx",
+        "local_path": "build/moss-nano-trained/originals/codec/moss_audio_tokenizer_decode_full.onnx"
+      },
+      {
+        "role": "tts_data_1",
+        "repository": "OpenMOSS-Team/MOSS-TTS-Nano-100M-ONNX",
+        "revision": "f52645cb467506d8e18e746ddd59482685b74e58",
+        "path": "moss_tts_global_shared.data",
+        "bytes": 440813568,
+        "sha256": "bce8312c3df6a44545302cae229b61054fe0672e0b252ba59cba47adeed831dc",
+        "format": "onnx_data",
+        "url": "https://huggingface.co/OpenMOSS-Team/MOSS-TTS-Nano-100M-ONNX/resolve/f52645cb467506d8e18e746ddd59482685b74e58/moss_tts_global_shared.data",
+        "local_path": "build/moss-nano-trained/originals/tts/moss_tts_global_shared.data"
+      },
+      {
+        "role": "tts_data_2",
+        "repository": "OpenMOSS-Team/MOSS-TTS-Nano-100M-ONNX",
+        "revision": "f52645cb467506d8e18e746ddd59482685b74e58",
+        "path": "moss_tts_local_shared.data",
+        "bytes": 229678080,
+        "sha256": "bae7782032c0fb12490ab42afe009f87ae6c75a0f0596fc7b5c08e4d5ee93916",
+        "format": "onnx_data",
+        "url": "https://huggingface.co/OpenMOSS-Team/MOSS-TTS-Nano-100M-ONNX/resolve/f52645cb467506d8e18e746ddd59482685b74e58/moss_tts_local_shared.data",
+        "local_path": "build/moss-nano-trained/originals/tts/moss_tts_local_shared.data"
+      },
+      {
+        "role": "codec_data_1",
+        "repository": "OpenMOSS-Team/MOSS-Audio-Tokenizer-Nano-ONNX",
+        "revision": "ceff0d0749bfb3fa2d61149794ec6feef0d1e1ae",
+        "path": "moss_audio_tokenizer_decode_shared.data",
+        "bytes": 44198912,
+        "sha256": "e69d52e0f4e84ca27850557ee54face46632d3a5a16c89bd246c7c408466dcad",
+        "format": "onnx_data",
+        "url": "https://huggingface.co/OpenMOSS-Team/MOSS-Audio-Tokenizer-Nano-ONNX/resolve/ceff0d0749bfb3fa2d61149794ec6feef0d1e1ae/moss_audio_tokenizer_decode_shared.data",
+        "local_path": "build/moss-nano-trained/originals/codec/moss_audio_tokenizer_decode_shared.data"
+      }
+    ],
+    "developer_assets_only": true,
+    "model_executed": false,
+    "app_assets_modified": false,
+    "input_fingerprint": {
+      "research/moss_nano_trained/assets.json": "5a0fb1674909196b89ff4744057657292bfcde28abee0bd1b14dd8c41d6fae6b",
+      "tools/fetch_moss_nano_trained.py": "e1b99e58ff1490e24903dfd5bba688f3cb8e59a0454ee893d5921b83697eb667"
+    }
+  },
+  "acquisition_receipt_sha256": "793a4c4d4b0ba58cfdfc62580d46f762bb55999afe82b1a1c7cbcd565bba5cef",
+  "info": {
+    "returncode": 0,
+    "seconds": 0.3273030999698676,
+    "events": [
+      {
+        "backend": "cpu",
+        "engine": "moss_nano_ort",
+        "modelData": "user_selected_components",
+        "onnxruntime": "1.28.0",
+        "pipeline": "moss_nano",
+        "schema": "lma.native-worker/1",
+        "sourceRevision": "8b7bcc9341b3b4ef3a3a58ba1338a7d85ff133eb"
+      }
+    ],
+    "protocol_errors": [],
+    "logs_truncated": [
+      false,
+      false
+    ],
+    "timed_out": false,
+    "forced_host_termination": false,
+    "cancel_trigger": null,
+    "cancel_to_exit_seconds": null,
+    "android_cooperative_cancellation_tested": false,
+    "resources": {
+      "observed": true,
+      "samples": 8,
+      "interval_ms": 20,
+      "observed_peak_working_set_bytes": 10252288,
+      "sampled_peak_private_bytes": 3588096,
+      "gpu_memory_measured": false,
+      "physical_device_memory_measured": false
+    }
+  },
+  "jobs": [
+    {
+      "returncode": 0,
+      "seconds": 22.317375000042375,
+      "events": [
+        {
+          "event": "stage",
+          "stage": "text_encoding"
+        },
+        {
+          "event": "stage",
+          "stage": "loading"
+        },
+        {
+          "event": "stage",
+          "stage": "synthesizing"
+        },
+        {
+          "event": "progress",
+          "stage": "synthesizing",
+          "step": 1,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "synthesizing",
+          "step": 5,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "synthesizing",
+          "step": 9,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "synthesizing",
+          "step": 13,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "synthesizing",
+          "step": 17,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "synthesizing",
+          "step": 21,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "synthesizing",
+          "step": 25,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "synthesizing",
+          "step": 29,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "synthesizing",
+          "step": 33,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "synthesizing",
+          "step": 37,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "synthesizing",
+          "step": 41,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "synthesizing",
+          "step": 45,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "synthesizing",
+          "step": 49,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "synthesizing",
+          "step": 53,
+          "steps": 375
+        },
+        {
+          "event": "stage",
+          "stage": "decoding"
+        },
+        {
+          "details": {
+            "channels": 1,
+            "effectiveMaxFrames": 375,
+            "effectiveParameters": {
+              "maxFrames": 375,
+              "maxInputTokens": 1024,
+              "seed": 1234,
+              "speaker": 0,
+              "threads": 4
+            },
+            "engine": "moss_nano_ort",
+            "finishReason": "stop",
+            "generatedFrames": 54,
+            "inputTokens": 14,
+            "nativeSource": "8b7bcc9341b3b4ef3a3a58ba1338a7d85ff133eb",
+            "prefillRows": 189,
+            "sampleRate": 48000,
+            "samples": 207360,
+            "sourceChannels": 2
+          },
+          "event": "execution"
+        },
+        {
+          "event": "complete",
+          "output": "T:/build/moss-nano-trained-tests/run-1793277150776327700-221bf195/prompt-a.wav"
+        }
+      ],
+      "protocol_errors": [],
+      "logs_truncated": [
+        false,
+        false
+      ],
+      "timed_out": false,
+      "forced_host_termination": false,
+      "cancel_trigger": null,
+      "cancel_to_exit_seconds": null,
+      "android_cooperative_cancellation_tested": false,
+      "resources": {
+        "observed": true,
+        "samples": 994,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 616517632,
+        "sampled_peak_private_bytes": 659595264,
+        "gpu_memory_measured": false,
+        "physical_device_memory_measured": false
+      },
+      "name": "prompt-a",
+      "request_sha256": "bc74892cdaec78bb1acd337468a012b17cdfe2b6ac22c7f7e57b18de57251207",
+      "parameters": {
+        "threads": 4,
+        "speaker": 0,
+        "maxFrames": 375,
+        "maxInputTokens": 1024,
+        "seed": 1234
+      },
+      "prompt": "今天的天空很蓝，我们一起去公园散步。",
+      "output_exists": true,
+      "execution": {
+        "channels": 1,
+        "effectiveMaxFrames": 375,
+        "effectiveParameters": {
+          "maxFrames": 375,
+          "maxInputTokens": 1024,
+          "seed": 1234,
+          "speaker": 0,
+          "threads": 4
+        },
+        "engine": "moss_nano_ort",
+        "finishReason": "stop",
+        "generatedFrames": 54,
+        "inputTokens": 14,
+        "nativeSource": "8b7bcc9341b3b4ef3a3a58ba1338a7d85ff133eb",
+        "prefillRows": 189,
+        "sampleRate": 48000,
+        "samples": 207360,
+        "sourceChannels": 2
+      },
+      "passed": true,
+      "audio": {
+        "format": "WAV",
+        "channels": 1,
+        "sample_width": 2,
+        "sample_rate": 48000,
+        "samples": 207360,
+        "seconds": 4.32,
+        "rms": 0.12221563333540866,
+        "peak": 0.927825927734375,
+        "clipping_fraction": 0.0,
+        "nonzero_samples": 205645,
+        "bytes": 414764,
+        "sha256": "252b14ed3d1c1216518f2afb0b7fa0f78821931c7658984a371641e483347856"
+      }
+    },
+    {
+      "returncode": 0,
+      "seconds": 18.01672289997805,
+      "events": [
+        {
+          "event": "stage",
+          "stage": "text_encoding"
+        },
+        {
+          "event": "stage",
+          "stage": "loading"
+        },
+        {
+          "event": "stage",
+          "stage": "synthesizing"
+        },
+        {
+          "event": "progress",
+          "stage": "synthesizing",
+          "step": 1,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "synthesizing",
+          "step": 5,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "synthesizing",
+          "step": 9,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "synthesizing",
+          "step": 13,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "synthesizing",
+          "step": 17,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "synthesizing",
+          "step": 21,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "synthesizing",
+          "step": 25,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "synthesizing",
+          "step": 29,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "synthesizing",
+          "step": 33,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "synthesizing",
+          "step": 37,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "synthesizing",
+          "step": 41,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "synthesizing",
+          "step": 45,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "synthesizing",
+          "step": 49,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "synthesizing",
+          "step": 53,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "synthesizing",
+          "step": 57,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "synthesizing",
+          "step": 61,
+          "steps": 375
+        },
+        {
+          "event": "stage",
+          "stage": "decoding"
+        },
+        {
+          "details": {
+            "channels": 1,
+            "effectiveMaxFrames": 375,
+            "effectiveParameters": {
+              "maxFrames": 375,
+              "maxInputTokens": 1024,
+              "seed": 1234,
+              "speaker": 0,
+              "threads": 4
+            },
+            "engine": "moss_nano_ort",
+            "finishReason": "stop",
+            "generatedFrames": 63,
+            "inputTokens": 16,
+            "nativeSource": "8b7bcc9341b3b4ef3a3a58ba1338a7d85ff133eb",
+            "prefillRows": 191,
+            "sampleRate": 48000,
+            "samples": 241920,
+            "sourceChannels": 2
+          },
+          "event": "execution"
+        },
+        {
+          "event": "complete",
+          "output": "T:/build/moss-nano-trained-tests/run-1793277150776327700-221bf195/prompt-b.wav"
+        }
+      ],
+      "protocol_errors": [],
+      "logs_truncated": [
+        false,
+        false
+      ],
+      "timed_out": false,
+      "forced_host_termination": false,
+      "cancel_trigger": null,
+      "cancel_to_exit_seconds": null,
+      "android_cooperative_cancellation_tested": false,
+      "resources": {
+        "observed": true,
+        "samples": 850,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 622338048,
+        "sampled_peak_private_bytes": 659439616,
+        "gpu_memory_measured": false,
+        "physical_device_memory_measured": false
+      },
+      "name": "prompt-b",
+      "request_sha256": "748612c477c5c9d3ed5bca34e99a1e57df16e1fb3fc8fc1516432382aa34f17f",
+      "parameters": {
+        "threads": 4,
+        "speaker": 0,
+        "maxFrames": 375,
+        "maxInputTokens": 1024,
+        "seed": 1234
+      },
+      "prompt": "这是一段新的本地语音，模型正在朗读不同的文字。",
+      "output_exists": true,
+      "execution": {
+        "channels": 1,
+        "effectiveMaxFrames": 375,
+        "effectiveParameters": {
+          "maxFrames": 375,
+          "maxInputTokens": 1024,
+          "seed": 1234,
+          "speaker": 0,
+          "threads": 4
+        },
+        "engine": "moss_nano_ort",
+        "finishReason": "stop",
+        "generatedFrames": 63,
+        "inputTokens": 16,
+        "nativeSource": "8b7bcc9341b3b4ef3a3a58ba1338a7d85ff133eb",
+        "prefillRows": 191,
+        "sampleRate": 48000,
+        "samples": 241920,
+        "sourceChannels": 2
+      },
+      "passed": true,
+      "audio": {
+        "format": "WAV",
+        "channels": 1,
+        "sample_width": 2,
+        "sample_rate": 48000,
+        "samples": 241920,
+        "seconds": 5.04,
+        "rms": 0.11438694055068344,
+        "peak": 0.855743408203125,
+        "clipping_fraction": 0.0,
+        "nonzero_samples": 240782,
+        "bytes": 483884,
+        "sha256": "2fc320212c3fe629e3b2ef4edee557d160700b40f006fbc46c6c094c6c69ab48"
+      }
+    },
+    {
+      "returncode": 0,
+      "seconds": 28.593655499978922,
+      "events": [
+        {
+          "event": "stage",
+          "stage": "text_encoding"
+        },
+        {
+          "event": "stage",
+          "stage": "loading"
+        },
+        {
+          "event": "stage",
+          "stage": "synthesizing"
+        },
+        {
+          "event": "progress",
+          "stage": "synthesizing",
+          "step": 1,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "synthesizing",
+          "step": 5,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "synthesizing",
+          "step": 9,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "synthesizing",
+          "step": 13,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "synthesizing",
+          "step": 17,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "synthesizing",
+          "step": 21,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "synthesizing",
+          "step": 25,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "synthesizing",
+          "step": 29,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "synthesizing",
+          "step": 33,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "synthesizing",
+          "step": 37,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "synthesizing",
+          "step": 41,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "synthesizing",
+          "step": 45,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "synthesizing",
+          "step": 49,
+          "steps": 375
+        },
+        {
+          "event": "stage",
+          "stage": "decoding"
+        },
+        {
+          "details": {
+            "channels": 1,
+            "effectiveMaxFrames": 375,
+            "effectiveParameters": {
+              "maxFrames": 375,
+              "maxInputTokens": 1024,
+              "seed": 1234,
+              "speaker": 1,
+              "threads": 4
+            },
+            "engine": "moss_nano_ort",
+            "finishReason": "stop",
+            "generatedFrames": 49,
+            "inputTokens": 14,
+            "nativeSource": "8b7bcc9341b3b4ef3a3a58ba1338a7d85ff133eb",
+            "prefillRows": 189,
+            "sampleRate": 48000,
+            "samples": 188160,
+            "sourceChannels": 2
+          },
+          "event": "execution"
+        },
+        {
+          "event": "complete",
+          "output": "T:/build/moss-nano-trained-tests/run-1793277150776327700-221bf195/voice-change.wav"
+        }
+      ],
+      "protocol_errors": [],
+      "logs_truncated": [
+        false,
+        false
+      ],
+      "timed_out": false,
+      "forced_host_termination": false,
+      "cancel_trigger": null,
+      "cancel_to_exit_seconds": null,
+      "android_cooperative_cancellation_tested": false,
+      "resources": {
+        "observed": true,
+        "samples": 1258,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 614563840,
+        "sampled_peak_private_bytes": 659136512,
+        "gpu_memory_measured": false,
+        "physical_device_memory_measured": false
+      },
+      "name": "voice-change",
+      "request_sha256": "ba8670b1e25b2cc2ca414ea0c78de579ae2cee50c84d985619b8dcc303c2e33c",
+      "parameters": {
+        "threads": 4,
+        "speaker": 1,
+        "maxFrames": 375,
+        "maxInputTokens": 1024,
+        "seed": 1234
+      },
+      "prompt": "今天的天空很蓝，我们一起去公园散步。",
+      "output_exists": true,
+      "execution": {
+        "channels": 1,
+        "effectiveMaxFrames": 375,
+        "effectiveParameters": {
+          "maxFrames": 375,
+          "maxInputTokens": 1024,
+          "seed": 1234,
+          "speaker": 1,
+          "threads": 4
+        },
+        "engine": "moss_nano_ort",
+        "finishReason": "stop",
+        "generatedFrames": 49,
+        "inputTokens": 14,
+        "nativeSource": "8b7bcc9341b3b4ef3a3a58ba1338a7d85ff133eb",
+        "prefillRows": 189,
+        "sampleRate": 48000,
+        "samples": 188160,
+        "sourceChannels": 2
+      },
+      "passed": true,
+      "audio": {
+        "format": "WAV",
+        "channels": 1,
+        "sample_width": 2,
+        "sample_rate": 48000,
+        "samples": 188160,
+        "seconds": 3.92,
+        "rms": 0.09681151888618654,
+        "peak": 0.533782958984375,
+        "clipping_fraction": 0.0,
+        "nonzero_samples": 184432,
+        "bytes": 376364,
+        "sha256": "bb24adad3a0f9e5e974057131f682781e81ee3bcddecb25dcb9bdf34436b12be"
+      }
+    },
+    {
+      "returncode": 0,
+      "seconds": 13.01793989998987,
+      "events": [
+        {
+          "event": "stage",
+          "stage": "text_encoding"
+        },
+        {
+          "event": "stage",
+          "stage": "loading"
+        },
+        {
+          "event": "stage",
+          "stage": "synthesizing"
+        },
+        {
+          "event": "progress",
+          "stage": "synthesizing",
+          "step": 1,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "synthesizing",
+          "step": 5,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "synthesizing",
+          "step": 9,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "synthesizing",
+          "step": 13,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "synthesizing",
+          "step": 17,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "synthesizing",
+          "step": 21,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "synthesizing",
+          "step": 25,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "synthesizing",
+          "step": 29,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "synthesizing",
+          "step": 33,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "synthesizing",
+          "step": 37,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "synthesizing",
+          "step": 41,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "synthesizing",
+          "step": 45,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "synthesizing",
+          "step": 49,
+          "steps": 375
+        },
+        {
+          "event": "stage",
+          "stage": "decoding"
+        },
+        {
+          "details": {
+            "channels": 1,
+            "effectiveMaxFrames": 375,
+            "effectiveParameters": {
+              "maxFrames": 375,
+              "maxInputTokens": 1024,
+              "seed": 1234,
+              "speaker": 8,
+              "threads": 4
+            },
+            "engine": "moss_nano_ort",
+            "finishReason": "stop",
+            "generatedFrames": 51,
+            "inputTokens": 16,
+            "nativeSource": "8b7bcc9341b3b4ef3a3a58ba1338a7d85ff133eb",
+            "prefillRows": 152,
+            "sampleRate": 48000,
+            "samples": 195840,
+            "sourceChannels": 2
+          },
+          "event": "execution"
+        },
+        {
+          "event": "complete",
+          "output": "T:/build/moss-nano-trained-tests/run-1793277150776327700-221bf195/english.wav"
+        }
+      ],
+      "protocol_errors": [],
+      "logs_truncated": [
+        false,
+        false
+      ],
+      "timed_out": false,
+      "forced_host_termination": false,
+      "cancel_trigger": null,
+      "cancel_to_exit_seconds": null,
+      "android_cooperative_cancellation_tested": false,
+      "resources": {
+        "observed": true,
+        "samples": 630,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 596217856,
+        "sampled_peak_private_bytes": 589144064,
+        "gpu_memory_measured": false,
+        "physical_device_memory_measured": false
+      },
+      "name": "english",
+      "request_sha256": "5ea3e6c4274f247ded5a99568db4283df02e75f44f97d6cdee2350fa0fe6252a",
+      "parameters": {
+        "threads": 4,
+        "speaker": 8,
+        "maxFrames": 375,
+        "maxInputTokens": 1024,
+        "seed": 1234
+      },
+      "prompt": "The sun is shining. Let us take a walk in the park.",
+      "output_exists": true,
+      "execution": {
+        "channels": 1,
+        "effectiveMaxFrames": 375,
+        "effectiveParameters": {
+          "maxFrames": 375,
+          "maxInputTokens": 1024,
+          "seed": 1234,
+          "speaker": 8,
+          "threads": 4
+        },
+        "engine": "moss_nano_ort",
+        "finishReason": "stop",
+        "generatedFrames": 51,
+        "inputTokens": 16,
+        "nativeSource": "8b7bcc9341b3b4ef3a3a58ba1338a7d85ff133eb",
+        "prefillRows": 152,
+        "sampleRate": 48000,
+        "samples": 195840,
+        "sourceChannels": 2
+      },
+      "passed": true,
+      "audio": {
+        "format": "WAV",
+        "channels": 1,
+        "sample_width": 2,
+        "sample_rate": 48000,
+        "samples": 195840,
+        "seconds": 4.08,
+        "rms": 0.06758522420375673,
+        "peak": 0.445953369140625,
+        "clipping_fraction": 0.0,
+        "nonzero_samples": 190896,
+        "bytes": 391724,
+        "sha256": "23cc4926f9b0e6599135cce565f40beae8d5d23881b79382f0c88e6da9a79778"
+      }
+    },
+    {
+      "returncode": 0,
+      "seconds": 13.339193899999373,
+      "events": [
+        {
+          "event": "stage",
+          "stage": "text_encoding"
+        },
+        {
+          "event": "stage",
+          "stage": "loading"
+        },
+        {
+          "event": "stage",
+          "stage": "synthesizing"
+        },
+        {
+          "event": "progress",
+          "stage": "synthesizing",
+          "step": 1,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "synthesizing",
+          "step": 5,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "synthesizing",
+          "step": 9,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "synthesizing",
+          "step": 13,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "synthesizing",
+          "step": 17,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "synthesizing",
+          "step": 21,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "synthesizing",
+          "step": 25,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "synthesizing",
+          "step": 29,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "synthesizing",
+          "step": 33,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "synthesizing",
+          "step": 37,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "synthesizing",
+          "step": 41,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "synthesizing",
+          "step": 45,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "synthesizing",
+          "step": 49,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "synthesizing",
+          "step": 53,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "synthesizing",
+          "step": 57,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "synthesizing",
+          "step": 61,
+          "steps": 375
+        },
+        {
+          "event": "stage",
+          "stage": "decoding"
+        },
+        {
+          "details": {
+            "channels": 1,
+            "effectiveMaxFrames": 375,
+            "effectiveParameters": {
+              "maxFrames": 375,
+              "maxInputTokens": 1024,
+              "seed": 1234,
+              "speaker": 11,
+              "threads": 4
+            },
+            "engine": "moss_nano_ort",
+            "finishReason": "stop",
+            "generatedFrames": 63,
+            "inputTokens": 28,
+            "nativeSource": "8b7bcc9341b3b4ef3a3a58ba1338a7d85ff133eb",
+            "prefillRows": 230,
+            "sampleRate": 48000,
+            "samples": 241920,
+            "sourceChannels": 2
+          },
+          "event": "execution"
+        },
+        {
+          "event": "complete",
+          "output": "T:/build/moss-nano-trained-tests/run-1793277150776327700-221bf195/japanese.wav"
+        }
+      ],
+      "protocol_errors": [],
+      "logs_truncated": [
+        false,
+        false
+      ],
+      "timed_out": false,
+      "forced_host_termination": false,
+      "cancel_trigger": null,
+      "cancel_to_exit_seconds": null,
+      "android_cooperative_cancellation_tested": false,
+      "resources": {
+        "observed": true,
+        "samples": 632,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 605429760,
+        "sampled_peak_private_bytes": 659591168,
+        "gpu_memory_measured": false,
+        "physical_device_memory_measured": false
+      },
+      "name": "japanese",
+      "request_sha256": "b044f828f616a7abccfe89d4fabf449c06f9b7ad8bf5edf7b5fac76a660c2fa1",
+      "parameters": {
+        "threads": 4,
+        "speaker": 11,
+        "maxFrames": 375,
+        "maxInputTokens": 1024,
+        "seed": 1234
+      },
+      "prompt": "今日はいい天気です。一緒に公園を散歩しましょう。",
+      "output_exists": true,
+      "execution": {
+        "channels": 1,
+        "effectiveMaxFrames": 375,
+        "effectiveParameters": {
+          "maxFrames": 375,
+          "maxInputTokens": 1024,
+          "seed": 1234,
+          "speaker": 11,
+          "threads": 4
+        },
+        "engine": "moss_nano_ort",
+        "finishReason": "stop",
+        "generatedFrames": 63,
+        "inputTokens": 28,
+        "nativeSource": "8b7bcc9341b3b4ef3a3a58ba1338a7d85ff133eb",
+        "prefillRows": 230,
+        "sampleRate": 48000,
+        "samples": 241920,
+        "sourceChannels": 2
+      },
+      "passed": true,
+      "audio": {
+        "format": "WAV",
+        "channels": 1,
+        "sample_width": 2,
+        "sample_rate": 48000,
+        "samples": 241920,
+        "seconds": 5.04,
+        "rms": 0.014031224152131438,
+        "peak": 0.098114013671875,
+        "clipping_fraction": 0.0,
+        "nonzero_samples": 240382,
+        "bytes": 483884,
+        "sha256": "5dc8bcc6a119ad924351c6fb59d80436b71ad505dbf7ba6e01aa30054713a077"
+      }
+    },
+    {
+      "returncode": 0,
+      "seconds": 5.5505924000171944,
+      "events": [
+        {
+          "event": "stage",
+          "stage": "text_encoding"
+        },
+        {
+          "event": "stage",
+          "stage": "loading"
+        },
+        {
+          "event": "stage",
+          "stage": "synthesizing"
+        },
+        {
+          "event": "progress",
+          "stage": "synthesizing",
+          "step": 1,
+          "steps": 1
+        },
+        {
+          "event": "stage",
+          "stage": "decoding"
+        },
+        {
+          "details": {
+            "channels": 1,
+            "effectiveMaxFrames": 1,
+            "effectiveParameters": {
+              "maxFrames": 1,
+              "maxInputTokens": 1024,
+              "seed": 1234,
+              "speaker": 0,
+              "threads": 4
+            },
+            "engine": "moss_nano_ort",
+            "finishReason": "length",
+            "generatedFrames": 1,
+            "inputTokens": 14,
+            "nativeSource": "8b7bcc9341b3b4ef3a3a58ba1338a7d85ff133eb",
+            "prefillRows": 189,
+            "sampleRate": 48000,
+            "samples": 3840,
+            "sourceChannels": 2
+          },
+          "event": "execution"
+        },
+        {
+          "event": "complete",
+          "output": "T:/build/moss-nano-trained-tests/run-1793277150776327700-221bf195/frame-limit.wav"
+        }
+      ],
+      "protocol_errors": [],
+      "logs_truncated": [
+        false,
+        false
+      ],
+      "timed_out": false,
+      "forced_host_termination": false,
+      "cancel_trigger": null,
+      "cancel_to_exit_seconds": null,
+      "android_cooperative_cancellation_tested": false,
+      "resources": {
+        "observed": true,
+        "samples": 271,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 590934016,
+        "sampled_peak_private_bytes": 587878400,
+        "gpu_memory_measured": false,
+        "physical_device_memory_measured": false
+      },
+      "name": "frame-limit",
+      "request_sha256": "c79712173ee670ba010e85dd2b8595e97583282afde7b623a4e962da2366423c",
+      "parameters": {
+        "threads": 4,
+        "speaker": 0,
+        "maxFrames": 1,
+        "maxInputTokens": 1024,
+        "seed": 1234
+      },
+      "prompt": "今天的天空很蓝，我们一起去公园散步。",
+      "output_exists": true,
+      "execution": {
+        "channels": 1,
+        "effectiveMaxFrames": 1,
+        "effectiveParameters": {
+          "maxFrames": 1,
+          "maxInputTokens": 1024,
+          "seed": 1234,
+          "speaker": 0,
+          "threads": 4
+        },
+        "engine": "moss_nano_ort",
+        "finishReason": "length",
+        "generatedFrames": 1,
+        "inputTokens": 14,
+        "nativeSource": "8b7bcc9341b3b4ef3a3a58ba1338a7d85ff133eb",
+        "prefillRows": 189,
+        "sampleRate": 48000,
+        "samples": 3840,
+        "sourceChannels": 2
+      },
+      "passed": true,
+      "audio": {
+        "format": "WAV",
+        "channels": 1,
+        "sample_width": 2,
+        "sample_rate": 48000,
+        "samples": 3840,
+        "seconds": 0.08,
+        "rms": 0.23046213442983052,
+        "peak": 0.62591552734375,
+        "clipping_fraction": 0.0,
+        "nonzero_samples": 3840,
+        "bytes": 7724,
+        "sha256": "4247ce9e4b81bd64f5e37e05ad404404880a83f2b1b6b5ff39d173d1457dc792"
+      }
+    },
+    {
+      "returncode": 0,
+      "seconds": 13.142973300011363,
+      "events": [
+        {
+          "event": "stage",
+          "stage": "text_encoding"
+        },
+        {
+          "event": "stage",
+          "stage": "loading"
+        },
+        {
+          "event": "stage",
+          "stage": "synthesizing"
+        },
+        {
+          "event": "progress",
+          "stage": "synthesizing",
+          "step": 1,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "synthesizing",
+          "step": 5,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "synthesizing",
+          "step": 9,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "synthesizing",
+          "step": 13,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "synthesizing",
+          "step": 17,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "synthesizing",
+          "step": 21,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "synthesizing",
+          "step": 25,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "synthesizing",
+          "step": 29,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "synthesizing",
+          "step": 33,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "synthesizing",
+          "step": 37,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "synthesizing",
+          "step": 41,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "synthesizing",
+          "step": 45,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "synthesizing",
+          "step": 49,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "synthesizing",
+          "step": 53,
+          "steps": 375
+        },
+        {
+          "event": "stage",
+          "stage": "decoding"
+        },
+        {
+          "details": {
+            "channels": 1,
+            "effectiveMaxFrames": 375,
+            "effectiveParameters": {
+              "maxFrames": 375,
+              "maxInputTokens": 1024,
+              "seed": 1234,
+              "speaker": 0,
+              "threads": 4
+            },
+            "engine": "moss_nano_ort",
+            "finishReason": "stop",
+            "generatedFrames": 54,
+            "inputTokens": 14,
+            "nativeSource": "8b7bcc9341b3b4ef3a3a58ba1338a7d85ff133eb",
+            "prefillRows": 189,
+            "sampleRate": 48000,
+            "samples": 207360,
+            "sourceChannels": 2
+          },
+          "event": "execution"
+        },
+        {
+          "event": "complete",
+          "output": "T:/build/moss-nano-trained-tests/run-1793277150776327700-221bf195/recovery-a.wav"
+        }
+      ],
+      "protocol_errors": [],
+      "logs_truncated": [
+        false,
+        false
+      ],
+      "timed_out": false,
+      "forced_host_termination": false,
+      "cancel_trigger": null,
+      "cancel_to_exit_seconds": null,
+      "android_cooperative_cancellation_tested": false,
+      "resources": {
+        "observed": true,
+        "samples": 611,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 616026112,
+        "sampled_peak_private_bytes": 659415040,
+        "gpu_memory_measured": false,
+        "physical_device_memory_measured": false
+      },
+      "name": "recovery-a",
+      "request_sha256": "9d66ab0b9b677d88b28f7b95c48d4f299e135baebbec1d2e4db4f4e369ae93c1",
+      "parameters": {
+        "threads": 4,
+        "speaker": 0,
+        "maxFrames": 375,
+        "maxInputTokens": 1024,
+        "seed": 1234
+      },
+      "prompt": "今天的天空很蓝，我们一起去公园散步。",
+      "output_exists": true,
+      "execution": {
+        "channels": 1,
+        "effectiveMaxFrames": 375,
+        "effectiveParameters": {
+          "maxFrames": 375,
+          "maxInputTokens": 1024,
+          "seed": 1234,
+          "speaker": 0,
+          "threads": 4
+        },
+        "engine": "moss_nano_ort",
+        "finishReason": "stop",
+        "generatedFrames": 54,
+        "inputTokens": 14,
+        "nativeSource": "8b7bcc9341b3b4ef3a3a58ba1338a7d85ff133eb",
+        "prefillRows": 189,
+        "sampleRate": 48000,
+        "samples": 207360,
+        "sourceChannels": 2
+      },
+      "passed": true,
+      "audio": {
+        "format": "WAV",
+        "channels": 1,
+        "sample_width": 2,
+        "sample_rate": 48000,
+        "samples": 207360,
+        "seconds": 4.32,
+        "rms": 0.12221563333540866,
+        "peak": 0.927825927734375,
+        "clipping_fraction": 0.0,
+        "nonzero_samples": 205645,
+        "bytes": 414764,
+        "sha256": "252b14ed3d1c1216518f2afb0b7fa0f78821931c7658984a371641e483347856"
+      }
+    }
+  ],
+  "controls": [
+    {
+      "returncode": 1,
+      "seconds": 0.2714678000193089,
+      "events": [
+        {
+          "event": "error",
+          "message": "Unsupported MOSS Nano worker request"
+        }
+      ],
+      "protocol_errors": [],
+      "logs_truncated": [
+        false,
+        false
+      ],
+      "timed_out": false,
+      "forced_host_termination": false,
+      "cancel_trigger": null,
+      "cancel_to_exit_seconds": null,
+      "android_cooperative_cancellation_tested": false,
+      "resources": {
+        "observed": true,
+        "samples": 13,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 9482240,
+        "sampled_peak_private_bytes": 3592192,
+        "gpu_memory_measured": false,
+        "physical_device_memory_measured": false
+      },
+      "name": "bad-schema",
+      "request_sha256": "83c32916f0e7740fcbc4596d0f9720848ac1a2085fff039bf171a1d329839dfc",
+      "parameters": {
+        "threads": 4,
+        "speaker": 0,
+        "maxFrames": 375,
+        "maxInputTokens": 1024,
+        "seed": 1234
+      },
+      "prompt": "今天的天空很蓝，我们一起去公园散步。",
+      "passed": true
+    },
+    {
+      "returncode": 1,
+      "seconds": 0.18029889999888837,
+      "events": [
+        {
+          "event": "error",
+          "message": "Selected voice exceeds this model's actual voice count"
+        }
+      ],
+      "protocol_errors": [],
+      "logs_truncated": [
+        false,
+        false
+      ],
+      "timed_out": false,
+      "forced_host_termination": false,
+      "cancel_trigger": null,
+      "cancel_to_exit_seconds": null,
+      "android_cooperative_cancellation_tested": false,
+      "resources": {
+        "observed": true,
+        "samples": 9,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 9707520,
+        "sampled_peak_private_bytes": 3584000,
+        "gpu_memory_measured": false,
+        "physical_device_memory_measured": false
+      },
+      "name": "bad-speaker",
+      "request_sha256": "48cc3b419c2d2d5f5da916e35318d5b1aaddd2e78c10462b9da14c41391fe04b",
+      "parameters": {
+        "threads": 4,
+        "speaker": 18,
+        "maxFrames": 375,
+        "maxInputTokens": 1024,
+        "seed": 1234
+      },
+      "prompt": "今天的天空很蓝，我们一起去公园散步。",
+      "passed": true
+    },
+    {
+      "returncode": 1,
+      "seconds": 0.23731060000136495,
+      "events": [
+        {
+          "event": "stage",
+          "stage": "text_encoding"
+        },
+        {
+          "event": "error",
+          "message": "Narration exceeds the selected token budget or cannot be tokenized"
+        }
+      ],
+      "protocol_errors": [],
+      "logs_truncated": [
+        false,
+        false
+      ],
+      "timed_out": false,
+      "forced_host_termination": false,
+      "cancel_trigger": null,
+      "cancel_to_exit_seconds": null,
+      "android_cooperative_cancellation_tested": false,
+      "resources": {
+        "observed": true,
+        "samples": 11,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 13303808,
+        "sampled_peak_private_bytes": 7143424,
+        "gpu_memory_measured": false,
+        "physical_device_memory_measured": false
+      },
+      "name": "token-budget",
+      "request_sha256": "5b7d4e468a1c6e24cc5d708654a7d150003eb5bc886d33bb7b414dad0480cce7",
+      "parameters": {
+        "threads": 4,
+        "speaker": 0,
+        "maxFrames": 375,
+        "maxInputTokens": 1,
+        "seed": 1234
+      },
+      "prompt": "今天的天空很蓝，我们一起去公园散步。",
+      "passed": true
+    },
+    {
+      "returncode": 1,
+      "seconds": 0.24849710002308711,
+      "events": [
+        {
+          "event": "error",
+          "message": "MOSS Nano parameter exceeds application bounds"
+        }
+      ],
+      "protocol_errors": [],
+      "logs_truncated": [
+        false,
+        false
+      ],
+      "timed_out": false,
+      "forced_host_termination": false,
+      "cancel_trigger": null,
+      "cancel_to_exit_seconds": null,
+      "android_cooperative_cancellation_tested": false,
+      "resources": {
+        "observed": true,
+        "samples": 10,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 9494528,
+        "sampled_peak_private_bytes": 2703360,
+        "gpu_memory_measured": false,
+        "physical_device_memory_measured": false
+      },
+      "name": "bad-frame-limit",
+      "request_sha256": "fba2f75db098cdba40c0f35395c302f116be9beeef6f0de3bd00185a921f10b7",
+      "parameters": {
+        "threads": 4,
+        "speaker": 0,
+        "maxFrames": 1501,
+        "maxInputTokens": 1024,
+        "seed": 1234
+      },
+      "prompt": "今天的天空很蓝，我们一起去公园散步。",
+      "passed": true
+    },
+    {
+      "returncode": 1,
+      "seconds": 0.3347563000279479,
+      "events": [
+        {
+          "event": "error",
+          "message": "Component is outside its private execution workspace"
+        }
+      ],
+      "protocol_errors": [],
+      "logs_truncated": [
+        false,
+        false
+      ],
+      "timed_out": false,
+      "forced_host_termination": false,
+      "cancel_trigger": null,
+      "cancel_to_exit_seconds": null,
+      "android_cooperative_cancellation_tested": false,
+      "resources": {
+        "observed": true,
+        "samples": 12,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 9482240,
+        "sampled_peak_private_bytes": 3588096,
+        "gpu_memory_measured": false,
+        "physical_device_memory_measured": false
+      },
+      "name": "outside-workspace",
+      "request_sha256": "4e59191dafba04db2210d41e1daade3109b8c996c1920d7263f1bcdbb86efd09",
+      "parameters": {
+        "threads": 4,
+        "speaker": 0,
+        "maxFrames": 375,
+        "maxInputTokens": 1024,
+        "seed": 1234
+      },
+      "prompt": "今天的天空很蓝，我们一起去公园散步。",
+      "passed": true
+    },
+    {
+      "returncode": 1,
+      "seconds": 0.42042089998722076,
+      "events": [
+        {
+          "event": "stage",
+          "stage": "text_encoding"
+        },
+        {
+          "event": "stage",
+          "stage": "loading"
+        },
+        {
+          "event": "error",
+          "message": "MOSS Nano could not execute the selected components; check matching exports, metadata and local resources"
+        }
+      ],
+      "protocol_errors": [],
+      "logs_truncated": [
+        false,
+        false
+      ],
+      "timed_out": false,
+      "forced_host_termination": false,
+      "cancel_trigger": null,
+      "cancel_to_exit_seconds": null,
+      "android_cooperative_cancellation_tested": false,
+      "resources": {
+        "observed": true,
+        "samples": 19,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 29134848,
+        "sampled_peak_private_bytes": 18141184,
+        "gpu_memory_measured": false,
+        "physical_device_memory_measured": false
+      },
+      "name": "missing-global-data",
+      "request_sha256": "1cecfcea5e4f1e4929364a63bee265b1352bcfe6ceffe18b1a68a623437c01bd",
+      "parameters": {
+        "threads": 4,
+        "speaker": 0,
+        "maxFrames": 375,
+        "maxInputTokens": 1024,
+        "seed": 1234
+      },
+      "prompt": "今天的天空很蓝，我们一起去公园散步。",
+      "passed": true
+    },
+    {
+      "returncode": 1,
+      "seconds": 4.783528100000694,
+      "events": [
+        {
+          "event": "stage",
+          "stage": "text_encoding"
+        },
+        {
+          "event": "stage",
+          "stage": "loading"
+        },
+        {
+          "event": "stage",
+          "stage": "synthesizing"
+        },
+        {
+          "event": "progress",
+          "stage": "synthesizing",
+          "step": 1,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "synthesizing",
+          "step": 5,
+          "steps": 375
+        }
+      ],
+      "protocol_errors": [],
+      "logs_truncated": [
+        false,
+        false
+      ],
+      "timed_out": false,
+      "forced_host_termination": true,
+      "cancel_trigger": {
+        "event": "progress",
+        "stage": "synthesizing",
+        "step": 5,
+        "steps": 375
+      },
+      "cancel_to_exit_seconds": 0.06318589998409152,
+      "android_cooperative_cancellation_tested": false,
+      "resources": {
+        "observed": true,
+        "samples": 233,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 590843904,
+        "sampled_peak_private_bytes": 589950976,
+        "gpu_memory_measured": false,
+        "physical_device_memory_measured": false
+      },
+      "name": "cancel-after-frame",
+      "request_sha256": "b2075edbc4c036147175ca043b691a24f5369353b02827f620f7bc9f1d27727c",
+      "parameters": {
+        "threads": 4,
+        "speaker": 0,
+        "maxFrames": 375,
+        "maxInputTokens": 1024,
+        "seed": 1234
+      },
+      "prompt": "今天的天空很蓝，我们一起去公园散步。",
+      "output_exists": false,
+      "execution": null,
+      "passed": true
+    }
+  ],
+  "files": {
+    "bad-frame-limit-capture.json": {
+      "bytes": 1048,
+      "sha256": "3a961faa1aa67c596ac4c8e0210e07d1daca7e273f74df7ea7c40680d7719e37"
+    },
+    "bad-frame-limit.json": {
+      "bytes": 2000,
+      "sha256": "fba2f75db098cdba40c0f35395c302f116be9beeef6f0de3bd00185a921f10b7"
+    },
+    "bad-frame-limit.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "bad-frame-limit.stdout": {
+      "bytes": 78,
+      "sha256": "11933b92027061f502360f55c9ea3d45839b1669d0e687ccecf7fa36d466570c"
+    },
+    "bad-schema-capture.json": {
+      "bytes": 1031,
+      "sha256": "f91d60ed490c61e88115f02abdb6cdcdb6cfe84a7bb8d1837517bf88e35c9bf8"
+    },
+    "bad-schema.json": {
+      "bytes": 1981,
+      "sha256": "83c32916f0e7740fcbc4596d0f9720848ac1a2085fff039bf171a1d329839dfc"
+    },
+    "bad-schema.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "bad-schema.stdout": {
+      "bytes": 68,
+      "sha256": "46d0d8e4387396a617d31cb46a70a01f322c416b87746aae12fe09490bebae85"
+    },
+    "bad-speaker-capture.json": {
+      "bytes": 1051,
+      "sha256": "281e982a3d6efaa84a684a37f21c827000774dfd2c866163becf613e1dd2e21f"
+    },
+    "bad-speaker.json": {
+      "bytes": 1996,
+      "sha256": "48cc3b419c2d2d5f5da916e35318d5b1aaddd2e78c10462b9da14c41391fe04b"
+    },
+    "bad-speaker.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "bad-speaker.stdout": {
+      "bytes": 86,
+      "sha256": "c2ee13db0776b7fae0a14cab6ebf2bbc62d76ef9330880d221fa20cb2ce595d4"
+    },
+    "cancel-after-frame-capture.json": {
+      "bytes": 1536,
+      "sha256": "2732facc693710a836301e75ab5e51a52cd0f249dac01e6a180fdd1d57d9a2ab"
+    },
+    "cancel-after-frame.json": {
+      "bytes": 2002,
+      "sha256": "b2075edbc4c036147175ca043b691a24f5369353b02827f620f7bc9f1d27727c"
+    },
+    "cancel-after-frame.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "cancel-after-frame.stdout": {
+      "bytes": 254,
+      "sha256": "25337a28f3af89c781c7998a89e348f718047b598acab07ae04e820158e01ada"
+    },
+    "english-capture.json": {
+      "bytes": 4385,
+      "sha256": "b8b0c29e8d90cee8ea8e12dd8c33b95a7b198110ecf253c1e1a8c6b489f0985a"
+    },
+    "english.json": {
+      "bytes": 1988,
+      "sha256": "5ea3e6c4274f247ded5a99568db4283df02e75f44f97d6cdee2350fa0fe6252a"
+    },
+    "english.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "english.stdout": {
+      "bytes": 1526,
+      "sha256": "14d2cb0c8b9ecf12c69310d454dcb7f84720b86bed286c9918e8233bac1872b2"
+    },
+    "english.wav": {
+      "bytes": 391724,
+      "sha256": "23cc4926f9b0e6599135cce565f40beae8d5d23881b79382f0c88e6da9a79778"
+    },
+    "frame-limit-capture.json": {
+      "bytes": 3010,
+      "sha256": "19135bd0c296759bc86d893957057a55f33bb22699f731b82c51445e4a47d4b3"
+    },
+    "frame-limit.json": {
+      "bytes": 1993,
+      "sha256": "c79712173ee670ba010e85dd2b8595e97583282afde7b623a4e962da2366423c"
+    },
+    "frame-limit.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "frame-limit.stdout": {
+      "bytes": 721,
+      "sha256": "3e5efe206750ea90f3d4af61a6adafe8eac3240ed22f9629f169b16d4c81e19e"
+    },
+    "frame-limit.wav": {
+      "bytes": 7724,
+      "sha256": "4247ce9e4b81bd64f5e37e05ad404404880a83f2b1b6b5ff39d173d1457dc792"
+    },
+    "info.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "info.stdout": {
+      "bytes": 220,
+      "sha256": "e21f1e46f24ce099aa5465ab17b0689e44c5faa811a0da9576a6059a274c2950"
+    },
+    "japanese-capture.json": {
+      "bytes": 4755,
+      "sha256": "9e3d10e6efcea8dabcd500cac4fc1cab0c97e33af68018eb0f74fb0fb5ee1ee4"
+    },
+    "japanese.json": {
+      "bytes": 2011,
+      "sha256": "b044f828f616a7abccfe89d4fabf449c06f9b7ad8bf5edf7b5fac76a660c2fa1"
+    },
+    "japanese.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "japanese.stdout": {
+      "bytes": 1729,
+      "sha256": "a740896bbb68f7b4050df5e81894a809c154a3e641867b139dd4c1573199149d"
+    },
+    "japanese.wav": {
+      "bytes": 483884,
+      "sha256": "5dc8bcc6a119ad924351c6fb59d80436b71ad505dbf7ba6e01aa30054713a077"
+    },
+    "missing-global-data-capture.json": {
+      "bytes": 1250,
+      "sha256": "2eaed178846d2ad434fd7182489092cd0adcc013a4da09d3707dee02797fbff3"
+    },
+    "missing-global-data.json": {
+      "bytes": 1873,
+      "sha256": "1cecfcea5e4f1e4929364a63bee265b1352bcfe6ceffe18b1a68a623437c01bd"
+    },
+    "missing-global-data.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "missing-global-data.stdout": {
+      "bytes": 217,
+      "sha256": "2775f57ffca702583ca35a8fa2750f29d95a74b472cc6bd48670e25aa9deab1e"
+    },
+    "outside-workspace-capture.json": {
+      "bytes": 1054,
+      "sha256": "2c389580b91a4c8d8e639453a5ac2a890876c07a569986ed7d9303e0383545c7"
+    },
+    "outside-workspace.json": {
+      "bytes": 1962,
+      "sha256": "4e59191dafba04db2210d41e1daade3109b8c996c1920d7263f1bcdbb86efd09"
+    },
+    "outside-workspace.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "outside-workspace.stdout": {
+      "bytes": 84,
+      "sha256": "4b1c3fc6ea9a437e9fb7d35f85d78f7e02dc7cc780eb1358b0556cb0f51b107c"
+    },
+    "prompt-a-capture.json": {
+      "bytes": 4505,
+      "sha256": "80529598130ebf9bcf551434df3b5364abd847dc3f58eb6285921ed8710a6cdd"
+    },
+    "prompt-a.json": {
+      "bytes": 1992,
+      "sha256": "bc74892cdaec78bb1acd337468a012b17cdfe2b6ac22c7f7e57b18de57251207"
+    },
+    "prompt-a.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "prompt-a.stdout": {
+      "bytes": 1594,
+      "sha256": "a47f88ba12fa439ad70b6cdead2ef16783f76b9e716e6cfdb0144c2624b76de7"
+    },
+    "prompt-a.wav": {
+      "bytes": 414764,
+      "sha256": "252b14ed3d1c1216518f2afb0b7fa0f78821931c7658984a371641e483347856"
+    },
+    "prompt-b-capture.json": {
+      "bytes": 4747,
+      "sha256": "13d9eb89a692eb1c7401c3b08bd93219c49433d2b11500edf7b5c9b3c9782cca"
+    },
+    "prompt-b.json": {
+      "bytes": 2007,
+      "sha256": "748612c477c5c9d3ed5bca34e99a1e57df16e1fb3fc8fc1516432382aa34f17f"
+    },
+    "prompt-b.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "prompt-b.stdout": {
+      "bytes": 1728,
+      "sha256": "ec607a15ee21cc0dc8a80e1dfdd3529f0236ac082fc5a8adf6a9a34ef1bc3879"
+    },
+    "prompt-b.wav": {
+      "bytes": 483884,
+      "sha256": "2fc320212c3fe629e3b2ef4edee557d160700b40f006fbc46c6c094c6c69ab48"
+    },
+    "recovery-a-capture.json": {
+      "bytes": 4509,
+      "sha256": "2184a3fb18e257cbb91f91f8a8e33ee45a4f23126043806a87bdc229de03892e"
+    },
+    "recovery-a.json": {
+      "bytes": 1994,
+      "sha256": "9d66ab0b9b677d88b28f7b95c48d4f299e135baebbec1d2e4db4f4e369ae93c1"
+    },
+    "recovery-a.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "recovery-a.stdout": {
+      "bytes": 1596,
+      "sha256": "318cab861411514e223b30723e6e21a793ac5f8fc4a6a912b476954dd707a95e"
+    },
+    "recovery-a.wav": {
+      "bytes": 414764,
+      "sha256": "252b14ed3d1c1216518f2afb0b7fa0f78821931c7658984a371641e483347856"
+    },
+    "token-budget-capture.json": {
+      "bytes": 1134,
+      "sha256": "ab487cd2ae4f03434f5fd507c294ef6faa1afad3b8fd7d028e16f0d2fc413d2d"
+    },
+    "token-budget.json": {
+      "bytes": 1993,
+      "sha256": "5b7d4e468a1c6e24cc5d708654a7d150003eb5bc886d33bb7b414dad0480cce7"
+    },
+    "token-budget.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "token-budget.stdout": {
+      "bytes": 141,
+      "sha256": "cbdc0552802166735e90f112dc1d99803ce713e7a93f7250f9d0d6c3cbcee496"
+    },
+    "voice-change-capture.json": {
+      "bytes": 4400,
+      "sha256": "c62e0db32ae865f139594f3c700ab80eb91be8c5cc9433c324cb6d5f92f59711"
+    },
+    "voice-change.json": {
+      "bytes": 1996,
+      "sha256": "ba8670b1e25b2cc2ca414ea0c78de579ae2cee50c84d985619b8dcc303c2e33c"
+    },
+    "voice-change.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "voice-change.stdout": {
+      "bytes": 1531,
+      "sha256": "c7fd68d10d33858a0bb4e53d1c014a7723d1dcca8a0331958aecdd28d505c4b8"
+    },
+    "voice-change.wav": {
+      "bytes": 376364,
+      "sha256": "bb24adad3a0f9e5e974057131f682781e81ee3bcddecb25dcb9bdf34436b12be"
+    }
+  },
+  "capture_directory": "build/moss-nano-trained-tests/run-1793277150776327700-221bf195",
+  "failures": [],
+  "host_execution_checks_passed": true,
+  "aba_bitwise_identical": true,
+  "trained_production_worker_executed": true,
+  "production_worker_source_unmodified": true,
+  "backend": "cpu",
+  "fixture": false,
+  "asset_download_attempted": false,
+  "hardlinked_user_style_workspace": true,
+  "physical_android": false,
+  "app_executed": false,
+  "android_cooperative_cancellation_tested": false,
+  "speech_quality_accepted": false,
+  "android_background_accepted": false,
+  "device_resource_fit_accepted": false,
+  "complete_target09_accepted": false,
+  "complete_release_accepted": false,
+  "input_fingerprint": {
+    "native/moss_nano/CMakeLists.txt": "7a40aa0f429264d735f3c6b7851377f9c33c5f47c52c33c393327568e14843d1",
+    "native/moss_nano/onnx_external.hpp": "c1bb8f95ad2078472dbbf2ea0863493ac44f4aae7c4336cf5debb0db0d54fae5",
+    "native/moss_nano/worker.cpp": "75846c4c25ea97f50ebfe5966f468d585c3e9a52bf8e8e06f8542873aafaa85d",
+    "research/moss_nano_host/CMakeLists.txt": "bbe636872db380b1f8524602b059849d06afb2ff92d56ce56091f7ee046b7808",
+    "research/moss_nano_host/compat/sys/prctl.h": "9322b99bb80674fd2d42eb2b94f5ee5519ab443da0cdffd5ae938ef855907569",
+    "research/moss_nano_host/compat/unistd.h": "1c843add75719822f7371cfafd97af1abdc1ffc52938f5cd96dfd407630d9f96",
+    "research/moss_nano_host/NOTICE": "e28323cd4e66e72e7f55582dff7c82fba05d23b1512e6da0b07384817d1b4e85",
+    "research/moss_nano_host/runtime.json": "c75e919fa3b28d96b556fd5580c36ba637f1b5df184e080cc1351422223d8fb1",
+    "research/sd_host/platform.hpp": "c377ed1b676707a469a192d96ae9b748802e1f62ad0674366b593b2b5b2daf67",
+    "third_party/moss-nano-source-lock.json": "cce6bb6921d1f476fa50a7e483f13daca030a750b68ea47feba9214635170da3",
+    "tools/build_moss_nano_host.py": "9899f6e4a2dcf0ca7eab17cf0511296c1dfd312a92744f53e8814c4064b04ed2",
+    "tools/fetch_moss_nano.py": "9895282af5c94c57b6da38e42164d3d0fe34a78576c1f59756fddb54e5eb817f",
+    "tools/fetch_moss_nano_host_runtime.py": "62e2656a1688de38914d894cf3f933f67adb9815879d862dda3a237fc3fbd9e1",
+    "research/moss_nano_trained/assets.json": "5a0fb1674909196b89ff4744057657292bfcde28abee0bd1b14dd8c41d6fae6b",
+    "tools/fetch_moss_nano_trained.py": "e1b99e58ff1490e24903dfd5bba688f3cb8e59a0454ee893d5921b83697eb667",
+    "tools/test_moss_nano_trained.py": "f1fa3bc1573ed5361951d728b4042faad8f5c76b266ca753180de25c8c3df2cd"
+  }
+}
