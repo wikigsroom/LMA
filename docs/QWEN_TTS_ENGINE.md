@@ -2,6 +2,8 @@
 
 [English](QWEN_TTS_ENGINE.en.md) · [开发状态](DEVELOPMENT.md) · [组件配方](HF_RECIPES.md) · [本地素材](LOCAL_INPUTS.md) · [完整版本要求](MULTIMODAL_RELEASE_PLAN.md)
 
+**dev.24后续实测：** [完整训练验证](QWEN_TTS_TRAINED.md)新增920MB整文件、18真实WAV/12控制、十语言/参考与94项生产Java检查，APK字节不变。以下dev.15文件头/契约记录保留当时范围；当前已有完整主机推理，但语音质量、手机和完整Release仍未验收。贪心短文本达到30秒预算，不能以技术有效WAV替代完整朗读验收。
+
 适用：**0.3.0-dev.15 / code 19**，同一完整 v0.3.0 内的开发实现，未创建新 Release。编号 11 的原生 CPU 路线已编译并接入生产 Java 适配器；**没有完整模型推理、Android 输出、质量、实时性或后台验收证据**。文件头核对和主机子进程不能代替这些门槛。
 
 ## 用户选择与组件

@@ -1,0 +1,42 @@
+{
+  "schema": "lma.qwen-tts-trained-assets/1",
+  "bundle_id": "qwen3_tts_06b_base_q4_rb7ee2e8",
+  "explicit_download": true,
+  "download_origin": "https://hf-mirror.com",
+  "components": [
+    {
+      "role": "talker",
+      "path": "qwen-talker-0.6b-base-Q4_K_M.gguf",
+      "bytes": 628905056,
+      "sha256": "4b468ec7b1f62b90ef4ca316c0aa57deadfd54b2cf9651703ea753cedaf04226",
+      "format": "gguf",
+      "repository": "Serveurperso/Qwen3-TTS-GGUF",
+      "revision": "b7ee2e8c7459c3bea99da23e3d178125a7d1713c",
+      "url": "https://huggingface.co/Serveurperso/Qwen3-TTS-GGUF/resolve/b7ee2e8c7459c3bea99da23e3d178125a7d1713c/qwen-talker-0.6b-base-Q4_K_M.gguf",
+      "provides": [
+        "text_tokenizer",
+        "code_predictor",
+        "speaker_assets"
+      ],
+      "local_path": "build/qwen-tts-trained/originals/qwen-talker-0.6b-base-Q4_K_M.gguf"
+    },
+    {
+      "role": "audio_codec",
+      "path": "qwen-tokenizer-12hz-Q8_0.gguf",
+      "bytes": 291150624,
+      "sha256": "1883beeed99348fc35e23dd225e9082f93f6f8c109330a33d935baa8acdbfd94",
+      "format": "gguf",
+      "repository": "Serveurperso/Qwen3-TTS-GGUF",
+      "revision": "b7ee2e8c7459c3bea99da23e3d178125a7d1713c",
+      "url": "https://huggingface.co/Serveurperso/Qwen3-TTS-GGUF/resolve/b7ee2e8c7459c3bea99da23e3d178125a7d1713c/qwen-tokenizer-12hz-Q8_0.gguf",
+      "local_path": "build/qwen-tts-trained/originals/qwen-tokenizer-12hz-Q8_0.gguf"
+    }
+  ],
+  "developer_assets_only": true,
+  "app_assets_modified": false,
+  "model_executed": false,
+  "input_fingerprint": {
+    "catalogue/model-bundles.json": "bb2272dfa95443c9391fb858fd19b52d539126ca209319c190b420e734bc97b8",
+    "tools/fetch_qwen_tts_trained.py": "92d3385b5080c84b7cb9dea85d1fc5051588494f0d62c523f16a8eec145e1c56"
+  }
+}

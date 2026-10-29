@@ -145,6 +145,8 @@ def main():
         check_nano_trained(records, status, digest, ROOT)
         from check_tts_trained_evidence import check as check_tts_trained
         check_tts_trained(records, status, digest, ROOT)
+        from check_qwen_tts_trained_evidence import check as check_qwen_trained
+        check_qwen_trained(records, status, ROOT)
         from check_ltx098_prepare_evidence import check as check_ltx_prepare
         check_ltx_prepare(records, status, digest, ROOT)
         from check_ltx098_vae_prepare_evidence import check as check_ltx_vae_prepare

@@ -1,0 +1,20 @@
+{
+  "schema": "lma.qwen-tts-capture-audit/1",
+  "raw_capture_checks_passed": true,
+  "files_rehashed": 145,
+  "protocol_streams_checked": 31,
+  "original_wavs_recomputed": 22,
+  "imported_objects_rehashed": 2,
+  "sources": {
+    "qwen-tts-assets.json": "605bdabb531300f0e1848434bed9d4fd3680f47f33796dc61d126469b37e64d4",
+    "qwen-tts-trained.json": "a3e2bc3b1d827180d120a08b3dec23d10b75c56ce284fe6321e28043573c15e8",
+    "qwen-tts-app-host.json": "edb2358f4bf134bd59dee3780f7e095df4ededb115dab4d1543b7655dc776ead",
+    "qwen-tts-host-build.json": "7512f1838c59ec412f819f241a51208b317f4de90ef0d527c547ef2416ba0fc0"
+  },
+  "physical_android": false,
+  "speech_quality_accepted": false,
+  "complete_release_accepted": false,
+  "input_fingerprint": {
+    "tools/check_qwen_tts_trained_evidence.py": "42e84d5ab7f46e131362cd5c47ea9f049deab2a3bf20474e39fcf552fba18aa3"
+  }
+}

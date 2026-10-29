@@ -1,0 +1,109 @@
+{
+  "schema": "lma.qwen-tts-trained-media/1",
+  "kind": "actual_trained_host_wav_and_waveform_slideshow",
+  "sources": {
+    "verification/development/qwen-tts-trained.json": "e5f71d3d2273d6fdb0b1b55a105eb71970ef1702c741f470c6d6b03910c26a40",
+    "verification/development/qwen-tts-assets.json": "967592298f5e3f8f9a3024d7779f1e3fb7269363cd564c5299881c032f272aca",
+    "verification/development/qwen-tts-app-host.json": "67d8e79335c5642e11f1b0f410d5d9249317704cfe212e1d4505fbd885c81e4a"
+  },
+  "source_audio": [
+    {
+      "case": "prompt-a",
+      "file": "qwen-tts-trained-zh.wav",
+      "audio": {
+        "format": "WAV",
+        "channels": 1,
+        "sample_width": 2,
+        "sample_rate": 24000,
+        "samples": 96000,
+        "seconds": 4.0,
+        "rms": 0.042409349450662624,
+        "peak": 0.242919921875,
+        "clipping_fraction": 0.0,
+        "nonzero_samples": 91855,
+        "bytes": 192044,
+        "sha256": "cff5b25ed7cf72e4e33d9a4ac9c1fa35d9cff713ba60e839e155dc06d0451d4a"
+      }
+    },
+    {
+      "case": "language-en",
+      "file": "qwen-tts-trained-en.wav",
+      "audio": {
+        "format": "WAV",
+        "channels": 1,
+        "sample_width": 2,
+        "sample_rate": 24000,
+        "samples": 48000,
+        "seconds": 2.0,
+        "rms": 0.07324270473496272,
+        "peak": 0.55181884765625,
+        "clipping_fraction": 0.0,
+        "nonzero_samples": 45746,
+        "bytes": 96044,
+        "sha256": "f9381c7883417b9717d278796317c981d62f97c7d3b7ade88d18b8213f1d1215"
+      }
+    },
+    {
+      "case": "reference-a",
+      "file": "qwen-tts-trained-reference.wav",
+      "audio": {
+        "format": "WAV",
+        "channels": 1,
+        "sample_width": 2,
+        "sample_rate": 24000,
+        "samples": 96000,
+        "seconds": 4.0,
+        "rms": 0.10224015627273796,
+        "peak": 0.383392333984375,
+        "clipping_fraction": 0.0,
+        "nonzero_samples": 94595,
+        "bytes": 192044,
+        "sha256": "d50c88d66858a72173db9dcc246d8305bf70014ae9e9210fff2f9eac8f3ab3dd"
+      }
+    }
+  ],
+  "gif_frames": 3,
+  "gif_duration_ms": 5400,
+  "mp4_duration_seconds": 10.021333,
+  "mp4_codecs": [
+    "h264",
+    "aac"
+  ],
+  "waveform_amplitude_normalized": false,
+  "original_wav_bytes_unchanged": true,
+  "mp4_audio_transcoded_aac": true,
+  "mp4_audio_resampled_hz": 48000,
+  "files": {
+    "qwen-tts-trained-zh.wav": {
+      "bytes": 192044,
+      "sha256": "cff5b25ed7cf72e4e33d9a4ac9c1fa35d9cff713ba60e839e155dc06d0451d4a"
+    },
+    "qwen-tts-trained-en.wav": {
+      "bytes": 96044,
+      "sha256": "f9381c7883417b9717d278796317c981d62f97c7d3b7ade88d18b8213f1d1215"
+    },
+    "qwen-tts-trained-reference.wav": {
+      "bytes": 192044,
+      "sha256": "d50c88d66858a72173db9dcc246d8305bf70014ae9e9210fff2f9eac8f3ab3dd"
+    },
+    "qwen-tts-trained-contact-sheet.png": {
+      "bytes": 255693,
+      "sha256": "dd107eccb89ca50da75cec35fb758ba863efd551c1ba1291c7053463137c5875"
+    },
+    "qwen-tts-trained-waveforms.gif": {
+      "bytes": 94283,
+      "sha256": "21ee676e750f4c2632cb86780ef9533927e981ec9ed403d0ee05bb48767b041c"
+    },
+    "qwen-tts-trained-speech.mp4": {
+      "bytes": 336144,
+      "sha256": "2bc665aee2ecaac6ae219df81b508b197bac42c7a7902e93fb09a8e28996d69b"
+    }
+  },
+  "physical_android": false,
+  "app_screen_recording": false,
+  "speech_quality_accepted": false,
+  "complete_release_accepted": false,
+  "input_fingerprint": {
+    "tools/render_qwen_tts_trained.py": "8dee54068a2d7c5048a37aa60497fad2b24f1a5e44a951ad53b572321dce6a71"
+  }
+}

@@ -1,0 +1,8 @@
+MIT developer-host CRT, environment and parent-lifetime compatibility only.
+The production native/qwen_tts sources and pinned Danmoreng/qwen3-tts.cpp /
+ggml source remain unchanged; their MIT notices are retained separately.
+Only the 35 reviewed library sources are compiled, without upstream CLI,
+JNI, conversion/download scripts or any model data. All GGUF weights and
+embedded learned tokenizer/speaker/codec data remain external user assets.
+Native Windows execution is not an App provider or a phone, quality,
+resource-fit, lifecycle, background or complete-release acceptance result.

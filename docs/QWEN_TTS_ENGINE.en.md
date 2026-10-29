@@ -2,6 +2,8 @@
 
 [中文](QWEN_TTS_ENGINE.md) · [Development status](DEVELOPMENT.en.md) · [Component recipes](HF_RECIPES.en.md) · [Local inputs](LOCAL_INPUTS.en.md) · [Complete release requirements](MULTIMODAL_RELEASE_PLAN.en.md)
 
+**dev.24 follow-up:** [Complete trained validation](QWEN_TTS_TRAINED.en.md) adds both full GGUFs, eighteen actual WAVs/twelve controls, ten languages/references and94 production Java checks without changing APK bytes. The dev.15 header/contract record below retains its historical scope. Complete HOST inference now exists; quality, Android and full Release acceptance remain open. A greedy short-text case reaches30 seconds; a valid WAV does not establish complete reading.
+
 Applies to **0.3.0-dev.15 / code 19**, development within the same complete v0.3.0. No new Release exists. Selection 11 now has a compiled native CPU route and production Java adapter. **There is no complete-model inference, Android output, quality, real-time or background acceptance evidence.** Header review and host children do not establish those results.
 
 ## User choice and components

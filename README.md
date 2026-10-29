@@ -4,7 +4,9 @@
 
 > **当前开发：0.3.0-dev.24 / code 28。** 修正扩散 worker 的加载/生成进度，补充 [SD 1.5 真实权重验证](docs/SD15_TRAINED.md)与[旧 LTX 调制顺序诊断](docs/LTX098_MODULATION.md)；LTX 新候选仍未通过冻结数值门槛。[本轮编号实现与全部待办](docs/releases/v0.3.0-dev.24.md)。App 仅更新基座，模型仍由用户自行选择、下载或导入；完整 v0.3.0 与手机验收尚未完成。
 
-新增 [Kokoro/Piper/Matcha真实训练验证](docs/TTS_TRAINED.md)：三套完整配方、Kokoro54音色、68次实际WAV输出/13控制、157项生产Java检查、完整导入和12个真实worker子进程；附[原始音频与波形媒体](docs/TTS_TRAINED.md#3-实际结果与媒体)及[编号实现/完整待办](docs/releases/v0.3.0-dev.24-tts.md)。本轮仅增加开发工具/证据/文档，APK字节不变；手机、质量、许可与完整Release仍待验收。
+新增 [Qwen3-TTS真实训练验证](docs/QWEN_TTS_TRAINED.md)：完整920MB冻结配方、十语言/参考/参数/取消恢复、18成功WAV/12控制，以及94项生产Java检查、两对象完整导入和6个真实worker子进程。[原始音频与波形媒体](docs/QWEN_TTS_TRAINED.md#3-实测与媒体)与[编号实现/完整待办](docs/releases/v0.3.0-dev.24-qwen-tts.md)分别记录主机、手机与质量范围；贪心短文本达到30秒预算仍需质量核查。本轮仅开发工具/证据/文档，APK字节不变，完整Release未完成。
+
+此前 [Kokoro/Piper/Matcha真实训练验证](docs/TTS_TRAINED.md)：三套完整配方、Kokoro54音色、68次实际WAV输出/13控制、157项生产Java检查、完整导入和12个真实worker子进程；附[原始音频与波形媒体](docs/TTS_TRAINED.md#3-实际结果与媒体)及[编号实现/完整待办](docs/releases/v0.3.0-dev.24-tts.md)。本轮仅增加开发工具/证据/文档，APK字节不变；手机、质量、许可与完整Release仍待验收。
 
 此前 [MOSS Nano 真实资产与用户导入指南](docs/MOSS_NANO_TRAINED.md)：固定11组件清单、7次实际WAV输出及7个控制、40项生产Java→原生主机检查；提供[三语音频和波形媒体](docs/MOSS_NANO_TRAINED.md#本轮实际结果)。[编号实现与全部待办](docs/releases/v0.3.0-dev.24-moss-nano.md)。该次仅增加清单/工具/文档，APK字节不变；语音质量、Android与完整Release仍未验收。
 

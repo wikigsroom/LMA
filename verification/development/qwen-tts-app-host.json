@@ -1,0 +1,698 @@
+{
+  "schema": "lma.qwen-tts-app-host/1",
+  "java": {
+    "reference_sha256": "b2f39aa6e39665de756dccd8f523a64b72ec7eb3853a6e754f3ca5ee8c0dfdeb",
+    "android_saf_tested": false,
+    "android_background_tested": false,
+    "imported_bytes": 920055680,
+    "android_application_executed": false,
+    "speech_quality_accepted": false,
+    "host_java_production_binding": true,
+    "actual_host_children": 6,
+    "imported_objects": 2,
+    "network_calls": 0,
+    "passed": 94,
+    "runs": [
+      {
+        "pipeline": "qwen3_tts_06b_base",
+        "output": "T:\\build\\qwen-tts-app-host-tests\\run-1793284072562218600\\data\\initial-a\\6dc6ec81-5bee-4433-bb4a-4991b5895cef.wav",
+        "execution": {
+          "effectiveParameters": {
+            "topK": 50,
+            "maxInputTokens": 512,
+            "seed": 1234,
+            "maxAudioTokens": 375,
+            "temperature": 0.9,
+            "repetitionPenalty": 1.05,
+            "threads": 4,
+            "language": "zh",
+            "topP": 1
+          },
+          "generatedAudioFrames": 48,
+          "referenceMode": "none",
+          "audioSamples": 96000,
+          "inputTokens": 18,
+          "sampleRate": 24000,
+          "audioDurationSeconds": 4,
+          "pipeline": "qwen3_tts_06b_base",
+          "modelLoadMs": 860,
+          "synthesisMs": 11134,
+          "synthesisRTF": 2.7835,
+          "audioFrameLimit": 375,
+          "backend": "cpu",
+          "pipelineMs": 12275,
+          "pipelineRTF": 3.06875
+        },
+        "seconds": 12.5106227,
+        "sha256": "cff5b25ed7cf72e4e33d9a4ac9c1fa35d9cff713ba60e839e155dc06d0451d4a",
+        "bytes": 192044,
+        "bundle_id": "qwen3_tts_06b_base_q4_rb7ee2e8",
+        "name": "initial-a",
+        "progress": [
+          {
+            "stage": "validating_components",
+            "fraction": null
+          },
+          {
+            "stage": "loading_speech_model",
+            "fraction": null
+          },
+          {
+            "stage": "generating_audio_codes",
+            "fraction": null
+          },
+          {
+            "stage": "generating_audio_codes",
+            "fraction": null
+          },
+          {
+            "stage": "generating_audio_codes",
+            "fraction": null
+          },
+          {
+            "stage": "generating_audio_codes",
+            "fraction": null
+          },
+          {
+            "stage": "generating_audio_codes",
+            "fraction": null
+          },
+          {
+            "stage": "saving_audio",
+            "fraction": null
+          }
+        ]
+      },
+      {
+        "pipeline": "qwen3_tts_06b_base",
+        "output": "T:\\build\\qwen-tts-app-host-tests\\run-1793284072562218600\\data\\reference-a\\272550b9-2fbb-409e-90fb-227d97e62991.wav",
+        "execution": {
+          "effectiveParameters": {
+            "topK": 50,
+            "maxInputTokens": 512,
+            "seed": 1234,
+            "maxAudioTokens": 375,
+            "temperature": 0.9,
+            "repetitionPenalty": 1.05,
+            "threads": 4,
+            "language": "zh",
+            "topP": 1
+          },
+          "generatedAudioFrames": 48,
+          "referenceMode": "speaker_embedding",
+          "audioSamples": 96000,
+          "inputTokens": 18,
+          "sampleRate": 24000,
+          "audioDurationSeconds": 4,
+          "pipeline": "qwen3_tts_06b_base",
+          "modelLoadMs": 835,
+          "synthesisMs": 12305,
+          "synthesisRTF": 3.07625,
+          "audioFrameLimit": 375,
+          "backend": "cpu",
+          "pipelineMs": 13419,
+          "pipelineRTF": 3.35475
+        },
+        "seconds": 13.6362283,
+        "sha256": "d50c88d66858a72173db9dcc246d8305bf70014ae9e9210fff2f9eac8f3ab3dd",
+        "bytes": 192044,
+        "bundle_id": "qwen3_tts_06b_base_q4_rb7ee2e8",
+        "name": "reference-a",
+        "progress": [
+          {
+            "stage": "validating_components",
+            "fraction": null
+          },
+          {
+            "stage": "loading_speech_model",
+            "fraction": null
+          },
+          {
+            "stage": "encoding_reference_audio",
+            "fraction": null
+          },
+          {
+            "stage": "generating_audio_codes",
+            "fraction": null
+          },
+          {
+            "stage": "generating_audio_codes",
+            "fraction": null
+          },
+          {
+            "stage": "generating_audio_codes",
+            "fraction": null
+          },
+          {
+            "stage": "generating_audio_codes",
+            "fraction": null
+          },
+          {
+            "stage": "saving_audio",
+            "fraction": null
+          }
+        ]
+      },
+      {
+        "pipeline": "qwen3_tts_06b_base",
+        "output": "T:\\build\\qwen-tts-app-host-tests\\run-1793284072562218600\\data\\random-seed\\4d7434b2-7134-4f0c-858b-d53db8f43423.wav",
+        "execution": {
+          "effectiveParameters": {
+            "topK": 50,
+            "maxInputTokens": 512,
+            "seed": 923373068,
+            "maxAudioTokens": 375,
+            "temperature": 0.9,
+            "repetitionPenalty": 1.05,
+            "threads": 4,
+            "language": "zh",
+            "topP": 1
+          },
+          "generatedAudioFrames": 32,
+          "referenceMode": "none",
+          "audioSamples": 74880,
+          "inputTokens": 18,
+          "sampleRate": 24000,
+          "audioDurationSeconds": 3.12,
+          "pipeline": "qwen3_tts_06b_base",
+          "modelLoadMs": 920,
+          "synthesisMs": 7677,
+          "synthesisRTF": 2.460576923076923,
+          "audioFrameLimit": 375,
+          "backend": "cpu",
+          "pipelineMs": 8901,
+          "pipelineRTF": 2.8528846153846152
+        },
+        "seconds": 9.1029732,
+        "sha256": "997a88c6ab05a025e963779297faa3100ffad682ba0ddd51cbca73c2f9525255",
+        "bytes": 149804,
+        "bundle_id": "qwen3_tts_06b_base_q4_rb7ee2e8",
+        "name": "random-seed",
+        "progress": [
+          {
+            "stage": "validating_components",
+            "fraction": null
+          },
+          {
+            "stage": "loading_speech_model",
+            "fraction": null
+          },
+          {
+            "stage": "generating_audio_codes",
+            "fraction": null
+          },
+          {
+            "stage": "generating_audio_codes",
+            "fraction": null
+          },
+          {
+            "stage": "generating_audio_codes",
+            "fraction": null
+          },
+          {
+            "stage": "generating_audio_codes",
+            "fraction": null
+          },
+          {
+            "stage": "saving_audio",
+            "fraction": null
+          }
+        ]
+      },
+      {
+        "pipeline": "qwen3_tts_06b_base",
+        "execution": {
+          "effectiveParameters": {
+            "topK": 50,
+            "maxInputTokens": 512,
+            "seed": 1234,
+            "maxAudioTokens": 375,
+            "temperature": 0.9,
+            "repetitionPenalty": 1.05,
+            "threads": 4,
+            "language": "zh",
+            "topP": 1
+          },
+          "pipeline": "qwen3_tts_06b_base",
+          "audioFrameLimit": 375,
+          "generatedAudioFrames": 16,
+          "backend": "cpu"
+        },
+        "seconds": 3.4123119,
+        "bundle_id": "qwen3_tts_06b_base_q4_rb7ee2e8",
+        "name": "cancel-after-frame16",
+        "cancelled": true,
+        "progress": [
+          {
+            "stage": "validating_components",
+            "fraction": null
+          },
+          {
+            "stage": "loading_speech_model",
+            "fraction": null
+          },
+          {
+            "stage": "generating_audio_codes",
+            "fraction": null
+          },
+          {
+            "stage": "generating_audio_codes",
+            "fraction": null
+          },
+          {
+            "stage": "generating_audio_codes",
+            "fraction": null
+          }
+        ],
+        "expected_error": "Requested cancellation after actual audio frame 16"
+      },
+      {
+        "pipeline": "qwen3_tts_06b_base",
+        "execution": {
+          "effectiveParameters": {
+            "topK": 50,
+            "maxInputTokens": 1,
+            "seed": 1234,
+            "maxAudioTokens": 375,
+            "temperature": 0.9,
+            "repetitionPenalty": 1.05,
+            "threads": 4,
+            "language": "zh",
+            "topP": 1
+          },
+          "pipeline": "qwen3_tts_06b_base",
+          "backend": "cpu"
+        },
+        "seconds": 0.4450306,
+        "bundle_id": "qwen3_tts_06b_base_q4_rb7ee2e8",
+        "name": "token-budget",
+        "cancelled": false,
+        "progress": [
+          {
+            "stage": "validating_components",
+            "fraction": null
+          }
+        ],
+        "expected_error": "Formatted speech text exceeds this model's selected input token budget"
+      },
+      {
+        "pipeline": "qwen3_tts_06b_base",
+        "output": "T:\\build\\qwen-tts-app-host-tests\\run-1793284072562218600\\data\\recovery-a\\e46cae18-81ae-4777-83af-68836483ef07.wav",
+        "execution": {
+          "effectiveParameters": {
+            "topK": 50,
+            "maxInputTokens": 512,
+            "seed": 1234,
+            "maxAudioTokens": 375,
+            "temperature": 0.9,
+            "repetitionPenalty": 1.05,
+            "threads": 4,
+            "language": "zh",
+            "topP": 1
+          },
+          "generatedAudioFrames": 48,
+          "referenceMode": "none",
+          "audioSamples": 96000,
+          "inputTokens": 18,
+          "sampleRate": 24000,
+          "audioDurationSeconds": 4,
+          "pipeline": "qwen3_tts_06b_base",
+          "modelLoadMs": 853,
+          "synthesisMs": 11282,
+          "synthesisRTF": 2.8205,
+          "audioFrameLimit": 375,
+          "backend": "cpu",
+          "pipelineMs": 12438,
+          "pipelineRTF": 3.1095
+        },
+        "seconds": 12.6115776,
+        "sha256": "cff5b25ed7cf72e4e33d9a4ac9c1fa35d9cff713ba60e839e155dc06d0451d4a",
+        "bytes": 192044,
+        "bundle_id": "qwen3_tts_06b_base_q4_rb7ee2e8",
+        "name": "recovery-a",
+        "progress": [
+          {
+            "stage": "validating_components",
+            "fraction": null
+          },
+          {
+            "stage": "loading_speech_model",
+            "fraction": null
+          },
+          {
+            "stage": "generating_audio_codes",
+            "fraction": null
+          },
+          {
+            "stage": "generating_audio_codes",
+            "fraction": null
+          },
+          {
+            "stage": "generating_audio_codes",
+            "fraction": null
+          },
+          {
+            "stage": "generating_audio_codes",
+            "fraction": null
+          },
+          {
+            "stage": "generating_audio_codes",
+            "fraction": null
+          },
+          {
+            "stage": "saving_audio",
+            "fraction": null
+          }
+        ]
+      }
+    ],
+    "launches": [
+      {
+        "schema": "lma.engine-request/1",
+        "pipeline": "qwen3_tts_06b_base",
+        "output": "T:\\build\\qwen-tts-app-host-tests\\run-1793284072562218600\\data\\initial-a\\6dc6ec81-5bee-4433-bb4a-4991b5895cef.wav",
+        "input": {
+          "prompt": "今天的天空很蓝，我们一起去公园散步。"
+        },
+        "workspace": "T:\\build\\qwen-tts-app-host-tests\\run-1793284072562218600\\data\\files\\engine-work\\work-db67dce1-dafd-4d2a-b6ef-41636fda5a41",
+        "type": "speech.synthesize",
+        "parameters": {
+          "topK": 50,
+          "maxInputTokens": 512,
+          "seed": 1234,
+          "maxAudioTokens": 375,
+          "temperature": 0.9,
+          "threads": 4,
+          "repetitionPenalty": 1.05,
+          "language": "zh",
+          "topP": 1
+        }
+      },
+      {
+        "schema": "lma.engine-request/1",
+        "pipeline": "qwen3_tts_06b_base",
+        "output": "T:\\build\\qwen-tts-app-host-tests\\run-1793284072562218600\\data\\reference-a\\272550b9-2fbb-409e-90fb-227d97e62991.wav",
+        "input": {
+          "prompt": "今天的天空很蓝，我们一起去公园散步。",
+          "artifacts": [
+            {
+              "role": "reference_audio",
+              "artifactId": "explicit_trained_kokoro_reference"
+            }
+          ]
+        },
+        "referenceAudio": "T:\\build\\qwen-tts-app-host-tests\\run-1793284072562218600\\data\\files\\engine-work\\work-58d01a1e-08f0-45f6-845f-be86e6aaf8db\\inputs\\reference.wav",
+        "workspace": "T:\\build\\qwen-tts-app-host-tests\\run-1793284072562218600\\data\\files\\engine-work\\work-58d01a1e-08f0-45f6-845f-be86e6aaf8db",
+        "type": "speech.synthesize",
+        "parameters": {
+          "topK": 50,
+          "maxInputTokens": 512,
+          "seed": 1234,
+          "maxAudioTokens": 375,
+          "temperature": 0.9,
+          "threads": 4,
+          "repetitionPenalty": 1.05,
+          "language": "zh",
+          "topP": 1
+        }
+      },
+      {
+        "schema": "lma.engine-request/1",
+        "pipeline": "qwen3_tts_06b_base",
+        "output": "T:\\build\\qwen-tts-app-host-tests\\run-1793284072562218600\\data\\random-seed\\4d7434b2-7134-4f0c-858b-d53db8f43423.wav",
+        "input": {
+          "prompt": "今天的天空很蓝，我们一起去公园散步。"
+        },
+        "workspace": "T:\\build\\qwen-tts-app-host-tests\\run-1793284072562218600\\data\\files\\engine-work\\work-17950d14-598b-42ad-bc2c-59ec94eddb61",
+        "type": "speech.synthesize",
+        "parameters": {
+          "topK": 50,
+          "maxInputTokens": 512,
+          "seed": 923373068,
+          "maxAudioTokens": 375,
+          "temperature": 0.9,
+          "threads": 4,
+          "repetitionPenalty": 1.05,
+          "language": "zh",
+          "topP": 1
+        }
+      },
+      {
+        "schema": "lma.engine-request/1",
+        "pipeline": "qwen3_tts_06b_base",
+        "output": "T:\\build\\qwen-tts-app-host-tests\\run-1793284072562218600\\data\\cancel-after-frame16\\e4d27cf4-f87f-44f3-806a-58703dc9833e.wav",
+        "input": {
+          "prompt": "今天的天空很蓝，我们一起去公园散步。"
+        },
+        "workspace": "T:\\build\\qwen-tts-app-host-tests\\run-1793284072562218600\\data\\files\\engine-work\\work-b5586870-8b87-4236-b331-67467e595464",
+        "type": "speech.synthesize",
+        "parameters": {
+          "topK": 50,
+          "maxInputTokens": 512,
+          "seed": 1234,
+          "maxAudioTokens": 375,
+          "temperature": 0.9,
+          "threads": 4,
+          "repetitionPenalty": 1.05,
+          "language": "zh",
+          "topP": 1
+        }
+      },
+      {
+        "schema": "lma.engine-request/1",
+        "pipeline": "qwen3_tts_06b_base",
+        "output": "T:\\build\\qwen-tts-app-host-tests\\run-1793284072562218600\\data\\token-budget\\7ef7f184-933e-4d79-aa35-45116226ab77.wav",
+        "input": {
+          "prompt": "今天的天空很蓝，我们一起去公园散步。"
+        },
+        "workspace": "T:\\build\\qwen-tts-app-host-tests\\run-1793284072562218600\\data\\files\\engine-work\\work-7a90ab3f-dd25-4366-95c8-220158500201",
+        "type": "speech.synthesize",
+        "parameters": {
+          "topK": 50,
+          "maxInputTokens": 1,
+          "seed": 1234,
+          "maxAudioTokens": 375,
+          "temperature": 0.9,
+          "threads": 4,
+          "repetitionPenalty": 1.05,
+          "language": "zh",
+          "topP": 1
+        }
+      },
+      {
+        "schema": "lma.engine-request/1",
+        "pipeline": "qwen3_tts_06b_base",
+        "output": "T:\\build\\qwen-tts-app-host-tests\\run-1793284072562218600\\data\\recovery-a\\e46cae18-81ae-4777-83af-68836483ef07.wav",
+        "input": {
+          "prompt": "今天的天空很蓝，我们一起去公园散步。"
+        },
+        "workspace": "T:\\build\\qwen-tts-app-host-tests\\run-1793284072562218600\\data\\files\\engine-work\\work-6b97ae7e-9c71-4807-9da7-d89a3df94430",
+        "type": "speech.synthesize",
+        "parameters": {
+          "topK": 50,
+          "maxInputTokens": 512,
+          "seed": 1234,
+          "maxAudioTokens": 375,
+          "temperature": 0.9,
+          "threads": 4,
+          "repetitionPenalty": 1.05,
+          "language": "zh",
+          "topP": 1
+        }
+      }
+    ]
+  },
+  "compilation": {
+    "schema": "lma.qwen-tts-host-build/1",
+    "executable": "build/qwen-tts-worker-host/ffab53f3a692901d/bin/lma_qwen_tts_host.exe",
+    "bytes": 2235392,
+    "sha256": "249e0363f5b6f18988ccb56bed2ce8e81e0dcfa43d879f55e94555e40c2635b0",
+    "source_revision": "16bb5afcd06311031c72a8488f8d59660dc2fb46",
+    "ggml_revision": "af97976c7810cdabb1863172f31c432dab767de7",
+    "compiled_library_sources": 35,
+    "backend": "cpu",
+    "production_worker_source_unmodified": true,
+    "upstream_sources_unmodified": true,
+    "windows_crt_parent_environment_compatibility": true,
+    "bundled_model_data": false,
+    "physical_android": false,
+    "android_compiled": false,
+    "packaged_in_apk": false,
+    "model_executed": false,
+    "input_fingerprint": {
+      "native/qwen_tts/CMakeLists.txt": "80250803facc5f11e8a4f653461ed7103071a7e291334fbd84daf3c740af3c27",
+      "native/qwen_tts/model_contract.hpp": "e52ec225335a04120410ff5104e4cccf0c22a3dc5132b5272af6b0b88b889610",
+      "native/qwen_tts/policy.hpp": "d8241ab7019fe5e929740102da1dc9c9e9b007158c437557a9d7ca21c1901b95",
+      "native/qwen_tts/wave.hpp": "13d7bc7f0fec8358c3c741394f8d818f0508246852d14b7bbd2bb56d5a8aa214",
+      "native/qwen_tts/worker.cpp": "1bf5ea3106a47c02f64715e77068989738581e4f08953ad9bd75d87cdf60283a",
+      "research/moss_nano_host/compat/sys/prctl.h": "9322b99bb80674fd2d42eb2b94f5ee5519ab443da0cdffd5ae938ef855907569",
+      "research/moss_nano_host/compat/unistd.h": "1c843add75719822f7371cfafd97af1abdc1ffc52938f5cd96dfd407630d9f96",
+      "research/qwen_tts_host/CMakeLists.txt": "a7b634e707b204ded18cec64c239de8ee3bd3ec058249537168ce545206f9152",
+      "research/qwen_tts_host/compat/sys/prctl.h": "0e2a8e106274e1330cb0a6240583a75a4eecfe182bf0e08d141984aaae2a3987",
+      "research/qwen_tts_host/compat/unistd.h": "64e960a64922193f97a70eccaf9e4bfed7f70c79c1cbcadd82a984efc3a2e8ec",
+      "research/qwen_tts_host/NOTICE": "13eb812d7e75b3ee3fba3809b6ff8d5473d3f1219d454b99961eadacc1de5247",
+      "research/sd_host/platform.hpp": "c377ed1b676707a469a192d96ae9b748802e1f62ad0674366b593b2b5b2daf67",
+      "third_party/qwen-tts-source-lock.json": "af76ff53e4b0592c0d141d307bf5fcf85b6e7f8cab17238b22d28f3b0796fb8b",
+      "tools/build_qwen_tts_host.py": "b810f0574878824cab85d9e6a39e44a81c55d4cfb1af2e87cc611c1d379590a2",
+      "tools/fetch_qwen_tts.py": "e6a6446623bfde9947762c0dd38a412fab1fe9063bba0cc0dbb684a5fb217ff3"
+    }
+  },
+  "outputs": [
+    {
+      "file": "build/qwen-tts-app-host-tests/run-1793284072562218600/data/initial-a/6dc6ec81-5bee-4433-bb4a-4991b5895cef.wav",
+      "pipeline": "qwen3_tts_06b_base",
+      "name": "initial-a",
+      "audio": {
+        "format": "WAV",
+        "channels": 1,
+        "sample_width": 2,
+        "sample_rate": 24000,
+        "samples": 96000,
+        "seconds": 4.0,
+        "rms": 0.042409349450662624,
+        "peak": 0.242919921875,
+        "clipping_fraction": 0.0,
+        "nonzero_samples": 91855,
+        "bytes": 192044,
+        "sha256": "cff5b25ed7cf72e4e33d9a4ac9c1fa35d9cff713ba60e839e155dc06d0451d4a"
+      }
+    },
+    {
+      "file": "build/qwen-tts-app-host-tests/run-1793284072562218600/data/reference-a/272550b9-2fbb-409e-90fb-227d97e62991.wav",
+      "pipeline": "qwen3_tts_06b_base",
+      "name": "reference-a",
+      "audio": {
+        "format": "WAV",
+        "channels": 1,
+        "sample_width": 2,
+        "sample_rate": 24000,
+        "samples": 96000,
+        "seconds": 4.0,
+        "rms": 0.10224015627273796,
+        "peak": 0.383392333984375,
+        "clipping_fraction": 0.0,
+        "nonzero_samples": 94595,
+        "bytes": 192044,
+        "sha256": "d50c88d66858a72173db9dcc246d8305bf70014ae9e9210fff2f9eac8f3ab3dd"
+      }
+    },
+    {
+      "file": "build/qwen-tts-app-host-tests/run-1793284072562218600/data/random-seed/4d7434b2-7134-4f0c-858b-d53db8f43423.wav",
+      "pipeline": "qwen3_tts_06b_base",
+      "name": "random-seed",
+      "audio": {
+        "format": "WAV",
+        "channels": 1,
+        "sample_width": 2,
+        "sample_rate": 24000,
+        "samples": 74880,
+        "seconds": 3.12,
+        "rms": 0.08805632787223908,
+        "peak": 0.414520263671875,
+        "clipping_fraction": 0.0,
+        "nonzero_samples": 74772,
+        "bytes": 149804,
+        "sha256": "997a88c6ab05a025e963779297faa3100ffad682ba0ddd51cbca73c2f9525255"
+      }
+    },
+    {
+      "file": "build/qwen-tts-app-host-tests/run-1793284072562218600/data/recovery-a/e46cae18-81ae-4777-83af-68836483ef07.wav",
+      "pipeline": "qwen3_tts_06b_base",
+      "name": "recovery-a",
+      "audio": {
+        "format": "WAV",
+        "channels": 1,
+        "sample_width": 2,
+        "sample_rate": 24000,
+        "samples": 96000,
+        "seconds": 4.0,
+        "rms": 0.042409349450662624,
+        "peak": 0.242919921875,
+        "clipping_fraction": 0.0,
+        "nonzero_samples": 91855,
+        "bytes": 192044,
+        "sha256": "cff5b25ed7cf72e4e33d9a4ac9c1fa35d9cff713ba60e839e155dc06d0451d4a"
+      }
+    }
+  ],
+  "direct_trained_report_sha256": "e5f71d3d2273d6fdb0b1b55a105eb71970ef1702c741f470c6d6b03910c26a40",
+  "capture_directory": "build/qwen-tts-app-host-tests/run-1793284072562218600",
+  "production_java_native_host_executed": true,
+  "physical_android": false,
+  "android_saf_tested": false,
+  "android_background_accepted": false,
+  "speech_quality_accepted": false,
+  "complete_target11_accepted": false,
+  "complete_release_accepted": false,
+  "input_fingerprint": {
+    "native/qwen_tts/CMakeLists.txt": "80250803facc5f11e8a4f653461ed7103071a7e291334fbd84daf3c740af3c27",
+    "native/qwen_tts/model_contract.hpp": "e52ec225335a04120410ff5104e4cccf0c22a3dc5132b5272af6b0b88b889610",
+    "native/qwen_tts/policy.hpp": "d8241ab7019fe5e929740102da1dc9c9e9b007158c437557a9d7ca21c1901b95",
+    "native/qwen_tts/wave.hpp": "13d7bc7f0fec8358c3c741394f8d818f0508246852d14b7bbd2bb56d5a8aa214",
+    "native/qwen_tts/worker.cpp": "1bf5ea3106a47c02f64715e77068989738581e4f08953ad9bd75d87cdf60283a",
+    "research/moss_nano_host/compat/sys/prctl.h": "9322b99bb80674fd2d42eb2b94f5ee5519ab443da0cdffd5ae938ef855907569",
+    "research/moss_nano_host/compat/unistd.h": "1c843add75719822f7371cfafd97af1abdc1ffc52938f5cd96dfd407630d9f96",
+    "research/qwen_tts_host/CMakeLists.txt": "a7b634e707b204ded18cec64c239de8ee3bd3ec058249537168ce545206f9152",
+    "research/qwen_tts_host/compat/sys/prctl.h": "0e2a8e106274e1330cb0a6240583a75a4eecfe182bf0e08d141984aaae2a3987",
+    "research/qwen_tts_host/compat/unistd.h": "64e960a64922193f97a70eccaf9e4bfed7f70c79c1cbcadd82a984efc3a2e8ec",
+    "research/qwen_tts_host/NOTICE": "13eb812d7e75b3ee3fba3809b6ff8d5473d3f1219d454b99961eadacc1de5247",
+    "research/sd_host/platform.hpp": "c377ed1b676707a469a192d96ae9b748802e1f62ad0674366b593b2b5b2daf67",
+    "third_party/qwen-tts-source-lock.json": "af76ff53e4b0592c0d141d307bf5fcf85b6e7f8cab17238b22d28f3b0796fb8b",
+    "tools/build_qwen_tts_host.py": "b810f0574878824cab85d9e6a39e44a81c55d4cfb1af2e87cc611c1d379590a2",
+    "tools/fetch_qwen_tts.py": "e6a6446623bfde9947762c0dd38a412fab1fe9063bba0cc0dbb684a5fb217ff3",
+    "catalogue/model-bundles.json": "bb2272dfa95443c9391fb858fd19b52d539126ca209319c190b420e734bc97b8",
+    "tools/fetch_qwen_tts_trained.py": "92d3385b5080c84b7cb9dea85d1fc5051588494f0d62c523f16a8eec145e1c56",
+    "app/src/main/java/com/lma/app/core/AdapterSpec.java": "aff8572d14ac8d616be0a1b0da395e52ed5bddcd5ae407a969c2657bf9257581",
+    "app/src/main/java/com/lma/app/core/ArtifactStore.java": "0336ab2425868bf2cb5a2fc37d97afbcdf838bb5f977b874e0f98c9db777be55",
+    "app/src/main/java/com/lma/app/core/AssemblyPlan.java": "80e81dea2a831d3955aa5ae21323eb0432fb448f78994901633fbb6e85d77e7c",
+    "app/src/main/java/com/lma/app/core/BundleStore.java": "a773aaa8f83410da9ccbf499b9a19ee4166e2c094c2e992699424c0ac68f3e74",
+    "app/src/main/java/com/lma/app/core/BundleTransfers.java": "926596119a2c3f6bc089516e7bbd7db3016487d60c24f908ea646dfc76707f3e",
+    "app/src/main/java/com/lma/app/core/BundleUpdates.java": "f31a65d0e172aa75f6131deace828875534ccc756ed93fac83bb09d5a4162fe1",
+    "app/src/main/java/com/lma/app/core/ByteRange.java": "31723bf112e630de6c2a1cd8d525be7bbd4706e151fa5a297a5e641f59b5c752",
+    "app/src/main/java/com/lma/app/core/ChatHistory.java": "3046a52c3f611b83b46cfed94afe0f4b31667f77986b7ca1737169ec8c4ce951",
+    "app/src/main/java/com/lma/app/core/ComponentIntegrity.java": "7a5977c607f624f8763a782b1b081c4e485c8c05c2caae15986ad2f2388f5bce",
+    "app/src/main/java/com/lma/app/core/DataFiles.java": "02d3212885376e7073a785801dbb81073b13cc87c5fc0e85ac4373fd346696bc",
+    "app/src/main/java/com/lma/app/core/EngineWorkspace.java": "6c632861e13d0a8950cdee66e8bea8a8760d23550c10343d6cfdd8a6e9af29dd",
+    "app/src/main/java/com/lma/app/core/ExecutionGate.java": "45d783f80953a364115525a361cb3490871b8ec8dfb0f386d90d83c81fc281bc",
+    "app/src/main/java/com/lma/app/core/InputSelection.java": "963fe60973caab82b9dfedaa7c1661f236aed6ea158fcda8f4a86d02ba33d509",
+    "app/src/main/java/com/lma/app/core/InputSpec.java": "a2d34c41a8c623eb31bbcae412037705ea7e4c69e06c9de6f62c83f199f97728",
+    "app/src/main/java/com/lma/app/core/InputUploads.java": "5debd68a73abc8bde8174c985dfec8f534c6bf8df58dda8810b0cc3541fe1d53",
+    "app/src/main/java/com/lma/app/core/JobStore.java": "d03a21e563f0c2803cb444c8c564f87b6330c583ac7d9316f5732e0e17567630",
+    "app/src/main/java/com/lma/app/core/LocalApi.java": "bb1b463524a4c30a2f67a9407d0e2bb36bce7446c19ac99dd2ebde7a1c6465d7",
+    "app/src/main/java/com/lma/app/core/LocalHttp.java": "428acea4f950bd2ae2948e5b418f5f98259640108427fd9c59d918809787c9cd",
+    "app/src/main/java/com/lma/app/core/MnnSpec.java": "ef8a51675cdda887a1b7c78b8b1c6398b71c87a004327fbda5af62f8b52d8315",
+    "app/src/main/java/com/lma/app/core/ModelBundle.java": "ad08c033a2c9a215c292d20a5a97a65c85db91ce6a86609a8eed9e846449e84b",
+    "app/src/main/java/com/lma/app/core/ModelSelection.java": "965c9f22f16fc822f792ebef6e0de0a0c67f5a6882d5e7ef77be05b83ea1aeb2",
+    "app/src/main/java/com/lma/app/core/MossDelaySpec.java": "2f680d68cf78517f234c336c77e0b584bf40300fd6294514b7cd457149d41bd0",
+    "app/src/main/java/com/lma/app/core/MossNanoSpec.java": "4b784a773fb85550eba8f169a62cab9a274a332519ec700b595694378e9e39ed",
+    "app/src/main/java/com/lma/app/core/MossRqSpec.java": "74f68a8374b5436cf73688e427e9cad244a198f6f8faa2c5fea686bb04bc99a2",
+    "app/src/main/java/com/lma/app/core/NativePreparation.java": "641a9eac9289f66f13c25707f44cf4c51873b2d97a51bb29db2447dcaa1621fd",
+    "app/src/main/java/com/lma/app/core/OpenMossSpec.java": "4a9af3c92d87be65c4f617677eaed31576f9160a3355518fff7cb874192a5258",
+    "app/src/main/java/com/lma/app/core/ParameterSchema.java": "d536dd7e01107785076f5d1cd3c1c7ff89f6a3711ec130d3ec13e4b20d73bef1",
+    "app/src/main/java/com/lma/app/core/PreparationPlan.java": "dfee63b84035c6ca18b0647aecb947070b983b6b2f1de08247129dddfa64a0bf",
+    "app/src/main/java/com/lma/app/core/PreparedAssets.java": "ae09c7aa1643fc22b76cbe11182a742f26aa0ea95bc9b7166d685433a603dd02",
+    "app/src/main/java/com/lma/app/core/PreparedModelAssembly.java": "eef243d48c9b2b7d3d9b08b2ddf8129ff3884bbdd6c00ecd28a83c0f4bbfa384",
+    "app/src/main/java/com/lma/app/core/ProcessControl.java": "a1950624951d41c040b0b9f44cd8ef5faff16ed22dae880d626e4619d77c155d",
+    "app/src/main/java/com/lma/app/core/Protocol.java": "d49f47884aec0cb03347023119c2808330fa9970689dcd9d33c30ca653d03b85",
+    "app/src/main/java/com/lma/app/core/QwenTtsSpec.java": "e94d96d7ce7c499b2d4bafbd35740c690b32169a142a9a55aae7a8b03364125b",
+    "app/src/main/java/com/lma/app/core/RecipeCatalogue.java": "7b27a07355fe4f7671eef7fa17c9f9ab8512f3f52ccc1de15d4069f15bc6384a",
+    "app/src/main/java/com/lma/app/core/SdSpec.java": "07c4a9c69071a72fe70b37dfa85294d70cd387365545f885b671dc20c7332694",
+    "app/src/main/java/com/lma/app/core/SoulxSpec.java": "a761d40965d041d38cc1f629418017103c9eefabf5904814fad9de6372b6bcc7",
+    "app/src/main/java/com/lma/app/core/StableAudioSpec.java": "0cc04143a8c8c2afa4dc3d9726f4891779b352404d97c70d6fdc260fbe27ee6c",
+    "app/src/main/java/com/lma/app/core/TaskInput.java": "6f186b392f9e2fd70f253398f4becf9604d22e03c132f18b3bb93f635f637d7b",
+    "app/src/main/java/com/lma/app/core/TextRequest.java": "bfdb23db96512f00f362b49951c1fee4162ca2d441482eb6ebf180a8d3574d5f",
+    "app/src/main/java/com/lma/app/core/TextResult.java": "2dd7968a40cc917fab5b8bc412ef00d21348abec1d844b140b843b1bba57c6ab",
+    "app/src/main/java/com/lma/app/core/TextSpec.java": "4521ce8e833d88276f6b98d446e0171c48602d67ce2cf4b372d425e56d6d149e",
+    "app/src/main/java/com/lma/app/core/TtsSpec.java": "54f841e2ca5e93d3c3e1845014029b96912291fcf50a50c26a0124325a7a962a",
+    "app/src/main/java/com/lma/app/core/WaveFile.java": "cf70b9bbafb6aa23cc25217d4883e769173b00f74571d1b115c50a8ad6b15361",
+    "app/src/main/java/com/lma/app/LocalEngine.java": "db9b46d2e05802bec96f2fb428469553d95c3424228dd06fd617c361b99b9f7d",
+    "app/src/main/java/com/lma/app/NativeWorker.java": "c3324271639c6e77495e9aac78a663c6110dfef1026d0cc320ca82344ddd030d",
+    "app/src/main/java/com/lma/app/QwenTtsEngine.java": "20b9cf08f4ebcf5d9ba1774e6d503016a43565d2287de1eac4c414d4ab6520a0",
+    "docs/media/development/tts-trained-kokoro.wav": "b2f39aa6e39665de756dccd8f523a64b72ec7eb3853a6e754f3ca5ee8c0dfdeb",
+    "tests/host/android/util/AtomicFile.java": "a05b9c6ef4fa0f0f40aaa49b235faccc98d2d7d5aa1ea4bb8d2f535b8bad2796",
+    "tests/qwen-trained/com/lma/app/QwenTrainedAppTest.java": "fed06f1a4560e8d53eb97b2794b8666b04e2ff004aaab057e550d2a276237314",
+    "tests/tts-host/com/lma/app/LmaApp.java": "9f27bd7188d03aa4eb95b007111daff697d39515dc41884d4569e2f382d0577b",
+    "tools/test_moss_nano_trained.py": "f1fa3bc1573ed5361951d728b4042faad8f5c76b266ca753180de25c8c3df2cd",
+    "tools/test_qwen_tts_app_host.py": "55e582b65a9b5af0449f9ee7c7c2caef9361a3676714c237f0dbc7a9b64b047b"
+  }
+}

@@ -91,3 +91,8 @@ The [native Windows SD port](../research/sd_host/NOTICE) adds original MIT paren
 [资产锁](../research/moss_nano_trained/assets.json)固定OpenMOSS发布者Apache-2.0的TTS/codec11组件，实际权重、学习音色提示、分词器和ONNX均只在被忽略的开发目录或用户模型存储。用户导入清单不包含其数据。[Windows兼容层](../research/moss_nano_host/NOTICE)重用MIT的父进程保护；MOSS/SentencePiece为Apache-2.0，隔离ORT运行时为MIT。生产神经C++未改；官方PyPI ORT1.28.0/API28仅用于主机测试，Android仍为1.28.2/API28。不修改全局Python、不打包Windows程序或运行时、不将开发模型变成用户必装。
 
 The pinned publisher models and learned tokenizer/voice data remain external assets. Windows-only CRT/parent-lifetime compatibility is separate from unchanged production inference and the existing Android runtime. Generated samples document actual host output without speech-quality/device acceptance. Full acquisition, identities and licenses: [中文](../docs/MOSS_NANO_TRAINED.md) / [English](../docs/MOSS_NANO_TRAINED.en.md).
+
+
+## Qwen trained HOST follow-up / Qwen真实训练主机后续
+
+[Source/runtime lock](qwen-tts-source-lock.json) pins the unchanged MIT Qwen runtime and ggml; [Windows compatibility notice](../research/qwen_tts_host/NOTICE) covers only developer CRT/parent/environment ports. Both full user GGUFs are explicitly acquired from the existing catalogue, outside Git/APK. Publisher declares Apache-2.0; model and selected-reference terms remain independent. The reference is the previous actual synthetic Kokoro WAV. See [中文](../docs/QWEN_TTS_TRAINED.md) / [English](../docs/QWEN_TTS_TRAINED.en.md). No new runtime/model bytes are bundled, and HOST synthesis does not establish Android, speech quality or clone similarity.

@@ -2,6 +2,8 @@
 
 [文档目录 / Documentation](README.md)
 
+编号11 dev.24后续：[Qwen原字节语音与真实波形](QWEN_TTS_TRAINED.md#3-实测与媒体)、[静音GIF](media/development/qwen-tts-trained-waveforms.gif)、[带实际音频MP4](media/development/qwen-tts-trained-speech.mp4)与[来源/身份](media/development/qwen-tts-trained-media.json)明确HOST范围。十语言有输出不等于语音质量通过，参考为上一轮Kokoro合成音频；WAV不改字节，MP4转AAC/48kHz。未改UI，保留68张夹具截图；本轮未打开浏览器。These waveform slideshows are developer-host evidence, not App/phone recordings or accepted quality/device performance. [English](QWEN_TTS_TRAINED.en.md#3-measurements-and-media).
+
 编号10 dev.24后续：[Kokoro/Piper/Matcha原始WAV与波形图](TTS_TRAINED.md#3-实际结果与媒体)、[静音GIF](media/development/tts-trained-waveforms.gif)、[带实际音频MP4](media/development/tts-trained-speech.mp4)由 `tools/render_tts_trained.py` 读取真实训练结果；[来源与身份](media/development/tts-trained-media.json)保留WAV原字节，MP4转AAC/48kHz。它们是HOST波形轮播，非手机/App录屏、性能或音质验收。生产UI未改，沿用68张明确夹具截图与录像；本轮未打开浏览器。Selection10 adds original generated speech and waveform media with explicit host scope, distinct from UI fixtures and pending physical-phone/quality acceptance. [English](TTS_TRAINED.en.md#3-measurements-and-media).
 
 ## 来源与范围 / Source and scope
