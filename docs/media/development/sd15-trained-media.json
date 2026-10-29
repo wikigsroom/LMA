@@ -1,0 +1,135 @@
+{
+  "schema": "lma.sd15-trained-media/1",
+  "kind": "actual_trained_host_png_outputs",
+  "sources": {
+    "verification/development/sd15-trained.json": "890fc719b1d0e481f6c8b1af18ed40c9eed1b458721254db6cfba4b48ac2d042",
+    "verification/development/sd15-assets.json": "8bf0c2b1fac294bb94aea60b1cf86e0463c1e17a386d2932665863ba65df4164"
+  },
+  "source_images": [
+    {
+      "width": 512,
+      "height": 512,
+      "format": "PNG",
+      "mode": "RGB",
+      "sha256": "b142b765b526fa018601aeaf5e62d8b6b062137283349b5588094f98f46e3e2c",
+      "bytes": 367115,
+      "channel_mean": [
+        177.93830490112305,
+        45.58187484741211,
+        38.71958923339844
+      ],
+      "channel_stddev": [
+        50.86422492436051,
+        32.830655128999524,
+        25.53812621701125
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          151
+        ],
+        [
+          0,
+          152
+        ]
+      ],
+      "entropy": 8.14477645898643
+    },
+    {
+      "width": 512,
+      "height": 512,
+      "format": "PNG",
+      "mode": "RGB",
+      "sha256": "78e61f1a3b50ee52056aeb8d799eeff827b45949b11b49d7d44527a49a9d88c0",
+      "bytes": 598785,
+      "channel_mean": [
+        125.93441009521484,
+        108.917724609375,
+        118.63299560546875
+      ],
+      "channel_stddev": [
+        64.5118570665565,
+        70.44992504141267,
+        94.32971756719677
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "entropy": 8.896378461940268
+    },
+    {
+      "width": 512,
+      "height": 512,
+      "format": "PNG",
+      "mode": "RGB",
+      "sha256": "b142b765b526fa018601aeaf5e62d8b6b062137283349b5588094f98f46e3e2c",
+      "bytes": 367115,
+      "channel_mean": [
+        177.93830490112305,
+        45.58187484741211,
+        38.71958923339844
+      ],
+      "channel_stddev": [
+        50.86422492436051,
+        32.830655128999524,
+        25.53812621701125
+      ],
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          151
+        ],
+        [
+          0,
+          152
+        ]
+      ],
+      "entropy": 8.14477645898643
+    }
+  ],
+  "slideshow_frames": 3,
+  "gif_duration_ms": 5400,
+  "mp4_frames": 54,
+  "mp4_fps": 10,
+  "files": {
+    "sd15-trained-contact-sheet.png": {
+      "bytes": 793086,
+      "sha256": "d7f17022a6124a4a4fd23fe672fef2e9b4234d2231b683211f8b3026ce566c13"
+    },
+    "sd15-trained-slideshow.gif": {
+      "bytes": 365972,
+      "sha256": "307928af27b8adfd125de1ec4e443b7b2e330e2ac524bf2bdee4a2cb3d92d9c1"
+    },
+    "sd15-trained-slideshow.mp4": {
+      "bytes": 209285,
+      "sha256": "17853c68c89f1c9721ce08f151c2aa58a5e32104bcda60805d014ad27082b630"
+    }
+  },
+  "physical_android": false,
+  "app_screen_recording": false,
+  "semantic_quality_accepted": false,
+  "android_background_accepted": false,
+  "complete_release_accepted": false,
+  "input_fingerprint": {
+    "tools/render_sd15_trained.py": "b136a389978fe36edec4223f1d08aec3f39e47569fd6b7d59f03d6101bf30545"
+  }
+}

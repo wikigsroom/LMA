@@ -71,3 +71,8 @@ App 只更新签名运行代码、数据配方和标签。模型、LoRA、CLIP �
 
 
 其他四条扩散 / 视频路线、完整组件和 flowShift / 几何约束见[高级接入指南](ADVANCED_DIFFUSION.md)。同一扩散回执同时覆盖这些新增路线。
+
+
+## dev.24 生产进度与真实权重
+
+[真实 SD1.5 验证](SD15_TRAINED.md)补充本配方的主机训练输出、采样取消/恢复和外部词表流程。进度 callback 跟随 loading/generating；局部操作 steps 不统一当成扩散步数。Android编译、UI夹具、主机模型执行与手机验收分别记录，其他家族/LoRA仍需独立验收。

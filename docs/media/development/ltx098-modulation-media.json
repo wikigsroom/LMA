@@ -1,0 +1,27 @@
+{
+  "schema": "lma.ltx098-modulation-media/1",
+  "kind": "measured_host_errors",
+  "sources": {
+    "verification/development/ltx098-modulation-step0.json": "b6b7a7070787041dc3f52b8c96e72ed77b7960eb50bbd035cb1cc573ecc572d5",
+    "verification/development/ltx098-modulation-step7.json": "22f6eb4297638a4e727bd476731d4e0b636ae8bdfbdf8cd0141fcce790bc37b1",
+    "verification/development/ltx098-modulation-reference-vulkan.json": "cb6f4e23671c1775a7f191b2d9d9f2d1ae1a3e6c43e3d2d863776deb921060a9",
+    "verification/development/ltx098-modulation-f32-vulkan.json": "db78bed8159d8e6d67affb81e9e58e36e12ddde9b0ace5b28beb4d37ec60ed93",
+    "verification/development/ltx098-context-reference-vulkan.json": "c6b9a1f962fda9a353c88e620cf8d17e55886217a4961007f1ce60a994ac07e6",
+    "verification/development/ltx098-pipeline.json": "677004c760a4cc27b9de61d329692382f1719d6488824fa840506e567a44622b"
+  },
+  "files": {
+    "ltx098-modulation-errors.png": {
+      "bytes": 200160,
+      "sha256": "3d76129c218189d684951c06194b3aa21c3fc2b406a276913621298b69fb2442"
+    }
+  },
+  "physical_android": false,
+  "app_screen_recording": false,
+  "candidate_numeric_gates_passed": false,
+  "new_video_generated": false,
+  "video_quality_accepted": false,
+  "complete_release_accepted": false,
+  "input_fingerprint": {
+    "tools/render_ltx098_modulation.py": "2add86b46857b4f4e5057f49022d9c9ea01ea64cc5310079f9f44d194e91f794"
+  }
+}

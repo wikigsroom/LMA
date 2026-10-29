@@ -2,7 +2,7 @@
 
 [中文](README.md) · [English](README.en.md) · [下载 / Releases](https://github.com/wikigsroom/LMA/releases) · [文档导航](docs/README.md) · [更新记录](CHANGELOG.md)
 
-> **开发源码补充：旧 LTX F32 运算分步。** [实现与真实主机证据](docs/LTX098_STAGING.md)：72 个局部对照、四候选 12 次 T5、三次完整原生链路；A 通过原数值门槛，B 三项浮点门槛未通过。生产接入 / 回归和完整 v0.3.0 继续待完成。[编号已完成 / 全部待办](docs/releases/v0.3.0-dev.23-ltx-staging.md) · [实际主机数值图](docs/media/development/ltx098-staging-errors.png) · [GIF](docs/media/development/ltx098-staging-comparison.gif)。原有 APK 字节保留，模型仍由用户自行选择 / 取得。
+> **当前开发：0.3.0-dev.24 / code 28。** 修正扩散 worker 的加载/生成进度，补充 [SD 1.5 真实权重验证](docs/SD15_TRAINED.md)与[旧 LTX 调制顺序诊断](docs/LTX098_MODULATION.md)；LTX 新候选仍未通过冻结数值门槛。[本轮编号实现与全部待办](docs/releases/v0.3.0-dev.24.md)。App 仅更新基座，模型仍由用户自行选择、下载或导入；完整 v0.3.0 与手机验收尚未完成。
 
 Android 版的本地模型管理、下载、对话和 API 服务应用。当前修订版本为 **0.2.0 / ARM64 / Android 9+**。
 
@@ -301,7 +301,7 @@ LMA 自有代码使用 MIT 许可。llama.cpp 及其依赖保留各自许可；�
 
 源码后续更新（APK仍dev.20）：[SoulX语言与完整主机链路](docs/SOULX_LANGUAGE.md)已运行全部训练Qwen3 /S3 /CAMPPlus /Flow /HiFT，以两段新文字输出24kHz WAV。语言546项 /20次原生子进程、整链路60项 /5次原生子进程通过；官方与较早社区词表分开验证，实际原始HF logits、RAS /历史和运行中取消均核对。ARM64 /API28 /16KiB编译通过，执行器未进APK。参考PCM为合成输入，没有语音质量、App或手机验收结论；模型与WAV留在忽略目录，完整范围 /Release门槛保留。见[编号实现与完整待办](docs/releases/v0.3.0-dev.20-soulx-language.md)。
 
-> **当前开发：0.3.0-dev.23 / code 27，完整 v0.3.0 未发布。** [运行模型关联](docs/MODEL_ASSEMBLY.md)让用户明确复用已准备的 20 个组件，并随后自行下载或导入缺少的两项 T5 依赖；共享任务、引用保护、独立删除及原模型设置保留。App 只更新基座，不自动取得模型。原签名 APK 含 29 个原生文件和无学习数据的结构资源。主机组装和界面检查不能替代 Android 准备/关联/生成/锁屏实测；旧视频六项浮点失败及全部冻结范围仍阻塞完整版本。[本轮编号已完成与全部待办](docs/releases/v0.3.0-dev.23.md) · [关联确认截图](docs/media/development/66-assembly-review.png) · [录屏](docs/media/development/foundation-ui.mp4) · [GIF](docs/media/development/foundation-ui.gif)（UI FIXTURE）。以下 v0.2.0 是保留的公开版本说明。
+> **此前 dev.23 基础：运行模型关联。** [运行模型关联](docs/MODEL_ASSEMBLY.md)让用户明确复用已准备的 20 个组件，并随后自行下载或导入缺少的两项 T5 依赖；共享任务、引用保护、独立删除及原模型设置保留。App 只更新基座，不自动取得模型。原签名 APK 含 29 个原生文件和无学习数据的结构资源。主机组装和界面检查不能替代 Android 准备/关联/生成/锁屏实测；旧视频六项浮点失败及全部冻结范围仍阻塞完整版本。[本轮编号已完成与全部待办](docs/releases/v0.3.0-dev.23.md) · [关联确认截图](docs/media/development/66-assembly-review.png) · [录屏](docs/media/development/foundation-ui.mp4) · [GIF](docs/media/development/foundation-ui.gif)（UI FIXTURE）。以下 v0.2.0 是保留的公开版本说明。
 
 
 内部检查点（**0.3.0-dev.21 / code25**，未发布）：[SoulX App 本地音频基座](docs/SOULX_ENGINE.md)接入同机 CPU 的参考编码 → 完整 Qwen3 → Flow / HiFT → WAV、14份用户自选组件（包括40字节已训练声源参数）、S1–S4配套参考原文、模型独立联合参数及共享任务 / API。222项契约和95项完整训练生产worker检查通过；两说话人新文字生成4.84秒WAV，四说话人明确截断用例通过，参考PCM为合成输入，不能据此认定音质或Android可用。582项基座、295项UI检查通过；34个配方均为元数据，原签名APK含27个原生文件、无权重 / 词表 / 声源数据。59–61截图与刷新录屏 / GIF明确为UI FIXTURE。目标13仍缺完整的已核对公开用户下载候选、真实语音质量及手机验收；其余全部冻结目标与后台门槛仍属同一完整v0.3.0。见[本轮编号实现与待办](docs/releases/v0.3.0-dev.21.md)。

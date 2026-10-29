@@ -60,3 +60,8 @@ Implementation: [SdSpec](../app/src/main/java/com/lma/app/core/SdSpec.java), [Sd
 
 
 See [advanced bindings](ADVANCED_DIFFUSION.en.md) for four additional image/video routes, complete components, flowShift and geometry. The same diffusion receipt also covers these routes.
+
+
+## dev.24 progress and actual trained assets
+
+[Trained SD1.5 validation](SD15_TRAINED.en.md) adds host PNGs, sampler cancellation/recovery and the external-vocabulary workflow. Callbacks follow loading/generating; local operation steps are not all diffusion steps. Android compilation, UI fixtures, host model execution and phone acceptance remain separate; other families and LoRAs need independent acceptance.

@@ -1,5 +1,5 @@
 {
-  "version": "0.3.0-dev.23",
+  "version": "0.3.0-dev.24",
   "kind": "development_checkpoint",
   "release_ready": false,
   "published": false,
@@ -15,6 +15,9 @@
   "soulx_production_worker_host_tested": true,
   "soulx_app_engine_registered": true,
   "soulx_complete_public_download_candidate_verified": false,
+  "sd15_trained_production_source_host_executed": true,
+  "sd15_trained_host_execution_checks_passed": true,
+  "sd15_complete_android_image_tested": false,
   "ltx098_native_dit_host_parity_tested": true,
   "ltx098_android_vulkan_compiled": true,
   "ltx098_native_sampling_host_tested": true,
@@ -48,6 +51,8 @@
   "ltx098_cpu_f32_operands_diagnostic_latent_matched": false,
   "ltx098_cpu_staged_rms_diagnostic_host_executed": true,
   "ltx098_cpu_staged_rms_diagnostic_latent_matched": false,
+  "ltx098_modulation_host_diagnosis_executed": true,
+  "ltx098_publisher_modulation_full_model_repair_accepted": false,
   "ltx098_vae_executed": true,
   "ltx098_vae_host_tested": true,
   "ltx098_vae_android_compiled": true,
@@ -62,6 +67,11 @@
   "ltx098_trained_video_tested": false,
   "ltx098_app_engine_registered": false,
   "scope_definitions": {
+    "sd15_trained_production_source_host_executed": "Actual CPU PNG generation by the unchanged production C++ worker/vocabulary source using user-external pinned Q4_0/CLIP files; native Windows parent-lifetime port only, not Java Service/App/Android execution",
+    "sd15_trained_host_execution_checks_passed": "Scoped A/B/A PNG determinism/distinct prompts, actual sampler cancellation/recovery, request errors and sampled host resources; never semantic quality, all image targets or device/endurance acceptance",
+    "sd15_complete_android_image_tested": "False until the selected trained assets execute and meet all output/quality/resource/background/App/API gates on the same physical Android phone",
+    "ltx098_modulation_host_diagnosis_executed": "Two unmodified original trained forward observations, 114 modulation sites, two native eight-step Vulkan candidates and an independent retained-array/trajectory audit; all candidates remain unregistered and unpackaged",
+    "ltx098_publisher_modulation_full_model_repair_accepted": "False: reference-caption and actual native-T5-caption candidate B samplers still fail unchanged maximum-error gates; no repaired full chain, App or Android acceptance",
     "app_model_assembly_registered": "Signed plan identities and explicit model.assemble jobs associate user-prepared outputs with a separate runtime model; missing dependencies stay paused; no inference engine is enabled",
     "app_model_assembly_core_host_tested": "47 production-core storage/request/lease/cancellation contracts; additional production queue/API checks use host Android framework ports",
     "app_model_assembly_trained_host_tested": "Twenty actual trained files, 6,061,184,991 bytes, fully verified and hardlinked without copying; T5 dependencies remain absent and no model execution takes place",
@@ -102,7 +112,7 @@
     "ltx098_trained_video_tested": "Legacy complete Android target-17 acceptance flag; actual host videos have their own explicit flag",
     "ltx098_tensor_primitives_android_compiled": "Portable RNG/layout/frame CLI ARM64/API28/16KiB compile only; no model data, APK registration or phone execution"
   },
-  "scope": "Development APK dev.23 includes signed explicit runtime association plans, hardlink reuse and independently managed source/runtime models, alongside user-selected native asset preparation and shared queued jobs. This source follow-up adds isolated T5 F32 staging candidates and reference-conditioned sampler diagnostics. The full F32 candidate passes case A but fails case B; neither it nor the sampler diagnostics are registered or packaged. Two signed preparation programs and nine audited model-free architecture graphs are packaged without learned model data. The production Java core performed one full trained host preparation with 20 verified outputs; Android Service, SAF, converter execution and background endurance remain untested. The original signing identity is preserved. Packaged SoulX and other existing App engine contracts retain their scoped records; complete trained SoulX host speech is separate from quality, public user acquisition and Android acceptance. Retained old-LTX evidence records three real-prompt single-scale trained HOST video jobs with explicit Google/community Q5 T5, original 0.9.8 distilled DiT/VAE, independent original-forward comparison and actual RGB/MP4 media. Frozen full-chain float gates remain failed despite passing RGB gates; numerical acceptance is false. Separate tensor/T5/DiT/VAE Android compilation is not App registration or phone execution. Official default multi-scale/PixArt text-weight identity, video quality, complete public assets and target-17 Android acceptance remain open. Older component receipts retain their original scope. App updates deliver foundation code only; users explicitly select/manage all model assets, with no automatic model retrieval. One complete v0.3.0 still requires F-01-F-12, existing text, selections 01-14/16/17 and every frozen subtarget, trained quality/resources, physical-phone load/unload/screen-off/API/upgrade evidence and A1-A11/R01-R05. No complete Release, physical-device acceptance or all-selected-model support is claimed.",
+  "scope": "Development APK dev.24 corrects diffusion callback phases to loading/generating without changing model math; it includes signed explicit runtime association plans, hardlink reuse and independently managed source/runtime models, alongside user-selected native asset preparation and shared queued jobs. This checkpoint adds actual trained SD1.5 CPU host generation, sampler cancellation/recovery and A/B/A output checks using unchanged production C++ inference with a Windows-only parent-lifetime port. It also retains isolated T5 F32 staging and adds old-LTX publisher-modulation observations and native diagnostics; both new B sampling conditions still fail frozen latent gates. The full F32 candidate passes case A but fails case B; neither it nor the sampler diagnostics are registered or packaged. Two signed preparation programs and nine audited model-free architecture graphs are packaged without learned model data. The production Java core performed one full trained host preparation with 20 verified outputs; Android Service, SAF, converter execution and background endurance remain untested. The original signing identity is preserved. Packaged SoulX and other existing App engine contracts retain their scoped records; complete trained SoulX host speech is separate from quality, public user acquisition and Android acceptance. Retained old-LTX evidence records three real-prompt single-scale trained HOST video jobs with explicit Google/community Q5 T5, original 0.9.8 distilled DiT/VAE, independent original-forward comparison and actual RGB/MP4 media. Frozen full-chain float gates remain failed despite passing RGB gates; numerical acceptance is false. Separate tensor/T5/DiT/VAE Android compilation is not App registration or phone execution. Official default multi-scale/PixArt text-weight identity, video quality, complete public assets and target-17 Android acceptance remain open. Older component receipts retain their original scope. App updates deliver foundation code only; users explicitly select/manage all model assets, with no automatic model retrieval. One complete v0.3.0 still requires F-01-F-12, existing text, selections 01-14/16/17 and every frozen subtarget, trained quality/resources, physical-phone load/unload/screen-off/API/upgrade evidence and A1-A11/R01-R05. No complete Release, physical-device acceptance or all-selected-model support is claimed.",
   "required_scope": "docs/MULTIMODAL_RELEASE_PLAN.md",
   "sources": {
     "build-info.json": "dist/build-info.json",
@@ -119,6 +129,8 @@
     "scheduler.json": "build/scheduler-tests/results.json",
     "inputs.json": "build/input-tests/results.json",
     "diffusion.json": "build/diffusion-tests/results.json",
+    "sd15-assets.json": "build/sd15-trained/receipt.json",
+    "sd15-trained.json": "build/sd15-trained-tests/results.json",
     "moss-nano.json": "build/moss-nano-tests/results.json",
     "mnn.json": "build/mnn-tests/results.json",
     "qwen-tts.json": "build/qwen-tts-tests/results.json",
@@ -170,6 +182,11 @@
     "ltx098-compute-f32-reference-cpu.json": "build/ltx098-compute-precision-tests/f32-cpu-reference-case-1-results.json",
     "ltx098-compute-f32-reference-vulkan.json": "build/ltx098-compute-precision-tests/f32-vulkan-reference-case-1-results.json",
     "ltx098-compute-f32-rms-reference-cpu.json": "build/ltx098-compute-precision-tests/f32-rms-cpu-reference-case-1-results.json",
+    "ltx098-modulation-step0.json": "build/ltx098-modulation-analysis/case-1-step-0-results.json",
+    "ltx098-modulation-step7.json": "build/ltx098-modulation-analysis/case-1-step-7-results.json",
+    "ltx098-modulation-reference-vulkan.json": "build/ltx098-modulation-tests/publisher_modulation-vulkan-reference-case-1-results.json",
+    "ltx098-modulation-f32-vulkan.json": "build/ltx098-modulation-tests/publisher_modulation-vulkan-f32-case-1-results.json",
+    "ltx098-modulation-capture-audit.json": "build/ltx098-modulation-tests/capture-audit.json",
     "ltx098-prepare.json": "build/ltx098-prepare-tests/results.json",
     "ltx098-prepare-host.json": "build/ltx098-prepare-host/receipt.json",
     "ltx098-prepare-arm64.json": "build/ltx098-prepare-arm64/receipt.json",
@@ -183,6 +200,7 @@
     "hub.json": "build/hub-tests/results.json",
     "hub-live.json": "build/hub-tests/live-results.json",
     "ui.json": "build/ui-qa/results.json",
-    "lint.json": "build/android-lint/results.json"
+    "lint.json": "build/android-lint/results.json",
+    "sd15-host-build.json": "build/sd-worker-host/a3bf87b8e136d993/receipt.json"
   }
 }

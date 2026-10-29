@@ -143,3 +143,8 @@ SoulX生产worker原生构建：`build_soulx.py`（主机）→ `build_soulx.py 
 ## dev.22：准备模块打包与证据
 
 [运行资产方案](MODEL_PREPARATION.md)的两个准备器按原生Windows/NDK步骤顺序构建，九份无模型参数图经过模板审计后才由 `tools/package_preparations.py` 打包；不运行权重下载或转换。`tools/preparation_build_inputs.py`在既有构建指纹上加入全部准备源码/锁/合同；不修改其他神经网络数学检查的通用指纹辅助文件。构建 `python tools/build.py`、核心 `python tools/test_preparations.py`、完整已有训练源 `python tools/test_preparations.py --trained`、包验证/Lint/相关回归、开发证据导出与仓库审计分别执行。训练转换与构建分开，输出和checkpoint都不进入APK/Git。77份Java编译输入、29个原生文件；签名密钥沿用原有本地文件。Android测试、完整视频数值/质量和完整Release仍未完成。
+
+
+## dev.24 原生增量构建
+
+`tools/build_native.py` 优先使用现有 CMakeCache 的 ASCII 驱动器身份，避免旧 T: 缓存误用新 R:；别名被其他任务占用时明确失败并保留缓存。仅映射本工作区，结束后释放自己创建的别名，不借用或删除其他映射。SD1.5 训练验证另见[开发流程](SD15_TRAINED.md)，不把 Windows 测试程序打入 APK。

@@ -3,6 +3,7 @@ import argparse
 import hashlib
 import json
 import os
+import re
 from pathlib import Path
 import shutil
 import struct
@@ -42,7 +43,17 @@ def main():
         raise RuntimeError("Pinned upstream source has local modifications")
     # Some Windows CMake/LLVM probe parsers crash on non-ASCII paths. This temporary
     # filesystem alias points to this exact directory; no files leave the project.
-    drive = next((letter + ":" for letter in "RSTUVWXYZ" if not Path(letter + ":/").exists()), None)
+    cache = ROOT / "build/native-arm64-cpu-r30/CMakeCache.txt"
+    cached_drive = None
+    if cache.is_file():
+        homes = [re.fullmatch(r"CMAKE_HOME_DIRECTORY:INTERNAL=([A-Za-z]):[/\\]native", line)
+                 for line in cache.read_text(encoding="utf-8").splitlines()]
+        cached_drive = next((match[1].upper() + ":" for match in homes if match), None)
+        if cached_drive is None:
+            raise RuntimeError("Preserve the existing CMake cache for review: unexpected source alias")
+        if Path(cached_drive + "/").exists():
+            raise RuntimeError("The existing CMake build alias is occupied; release its owning task first")
+    drive = cached_drive or next((letter + ":" for letter in "RSTUVWXYZ" if not Path(letter + ":/").exists()), None)
     if drive is None:
         raise RuntimeError("No unused drive letter is available for a temporary build path alias")
     subprocess.run(["subst", drive, str(ROOT)], check=True, capture_output=True)

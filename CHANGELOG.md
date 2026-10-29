@@ -1,5 +1,11 @@
 # Changelog / 更新记录
 
+## 0.3.0-dev.24 — diffusion progress and trained host evidence / unreleased
+
+修正生产扩散 worker 的 loading/generating 进度，避免把加载/VAE回调都当作采样；原生构建复用 CMake 缓存驱动器。新增固定 SD1.5 真实权重/外部词表、生产源码 CPU 推理、采样取消/恢复和 A/B/A 验证工具与实测媒体；首次错误阶段分类的尝试保留并重新执行。旧 LTX 两次原训练前向观察114调制位置、两次八步原生候选、478文件独立复算；两条B条件仍超冻结门槛。原签名 dev.24/code28 APK、限定回归、68界面截图/录像/GIF、双语文档及编号完整待办同步。
+
+Corrects top-level diffusion progress without changing model math. Adds actual trained SD1.5 production-source host validation and a labelled still-image slideshow, with Windows/Android scopes separated. Old-LTX modulation staging matches all original observed sites but does not repair the failed full sampler gates. The App remains foundation-only, with explicit user-selected assets; all physical-phone, quality/background and complete-release gates remain open. [SD1.5 中文](docs/SD15_TRAINED.md) / [English](docs/SD15_TRAINED.en.md) / [LTX 中文](docs/LTX098_MODULATION.md) / [English](docs/LTX098_MODULATION.en.md) / [Numbered implementation and full pending scope](docs/releases/v0.3.0-dev.24.md).
+
 ## 0.3.0-dev.23 source follow-up / 2026-10-29 — original F32 operation staging
 
 实现 F32 RMS 分组归约和 GeGLU 原始运算顺序；72 局部对照、四候选共 12 次真实 T5、三次实际 DiT/VAE/RGB 链路及重复 A 一致性。A 通过，B 三项浮点门槛失败；保留原参考和门槛。复核字段修复后显式恢复首条真实采样，执行与复用如实记录。新双语指南、误差图、真实主机帧/GIF/视频及来源审查同步；App/APK/注册引擎保持原状态。Four isolated T5 variants and actual host A/B/A improve diagnosis without accepting failed floats, Android or Release. [中文](docs/LTX098_STAGING.md) / [English](docs/LTX098_STAGING.en.md) / [编号及完整待办](docs/releases/v0.3.0-dev.23-ltx-staging.md).

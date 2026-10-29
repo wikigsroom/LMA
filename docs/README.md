@@ -6,6 +6,8 @@
 
 | 主题 / Topic | 中文 | English |
 | --- | --- | --- |
+| Trained SD1.5 / 真实权重 | [中文](SD15_TRAINED.md) | [English](SD15_TRAINED.en.md) |
+| Old-LTX modulation / 调制顺序 | [中文](LTX098_MODULATION.md) | [English](LTX098_MODULATION.en.md) |
 | Runtime model association / 运行模型关联 | [MODEL_ASSEMBLY.md](MODEL_ASSEMBLY.md) | [MODEL_ASSEMBLY.en.md](MODEL_ASSEMBLY.en.md) |
 | Model runtime preparation / 运行资产准备 | [MODEL_PREPARATION.md](MODEL_PREPARATION.md) | [MODEL_PREPARATION.en.md](MODEL_PREPARATION.en.md) |
 | 旧LTX训练VAE / Trained decoder | [中文](LTX098_VAE.md) | [English](LTX098_VAE.en.md) |
@@ -108,3 +110,8 @@
 ## 旧 LTX F32 运算分步 / Original F32 staging
 
 [中文](LTX098_STAGING.md) / [English](LTX098_STAGING.en.md) / [编号实现与完整同版待办](releases/v0.3.0-dev.23-ltx-staging.md)。72 局部对照、12 次真实 T5、三次真实主机链路；A 通过、B 三项浮点失败。新[数值图](media/development/ltx098-staging-errors.png) / [实际帧](media/development/ltx098-staging-frames.png) / [GIF](media/development/ltx098-staging-comparison.gif) / [MP4](media/development/ltx098-staging-comparison.mp4)，HOST ONLY，生产接入、Android/质量/后台及完整 Release 均待完成。
+
+
+## dev.24：真实 SD1.5 与旧 LTX 调制 / Trained SD1.5 and old-LTX modulation
+
+[SD1.5 中文](SD15_TRAINED.md) / [English](SD15_TRAINED.en.md)：固定真实 Q4 checkpoint / 外部 merges、生产 C++ 源码 CPU 执行、阶段修正、采样取消和恢复、PNG/资源及[实际图片轮播](media/development/sd15-trained-slideshow.gif)。[LTX 中文](LTX098_MODULATION.md) / [English](LTX098_MODULATION.en.md)：114 原训练调制观察、两次原生八步采样、478 原文件复算及[实测误差图](media/development/ltx098-modulation-errors.png)；两条 B 条件仍失败。主机实测、UI FIXTURE、Android 编译和完整手机/质量/后台验收分开；[编号实现与全部待办](releases/v0.3.0-dev.24.md)。

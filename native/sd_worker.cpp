@@ -16,8 +16,9 @@
 
 using json = nlohmann::json;
 static void event(const json& value) { std::cout << value.dump() << std::endl; }
+static const char* progress_stage = "loading";
 static void progress(int step, int steps, float seconds, void*) {
-    event({{"event", "progress"}, {"stage", "sampling"}, {"step", step}, {"steps", steps}, {"seconds", seconds}});
+    event({{"event", "progress"}, {"stage", progress_stage}, {"step", step}, {"steps", steps}, {"seconds", seconds}});
 }
 static int bounded(const json& params, const char* key, int fallback, int low, int high) {
     int value = params.value(key, fallback);
@@ -81,6 +82,7 @@ int main(int argc, char** argv) {
             if (!std::isfinite(multiplier) || multiplier < -4 || multiplier > 4) throw std::runtime_error("LoRA scale out of bounds");
             loras.push_back({false, multiplier, adapter.at("path").get_ref<const std::string&>().c_str()});
         }
+        progress_stage = "generating";
         event({{"event", "stage"}, {"stage", "generating"}});
         if (type == "image.generate") {
             if (!sd_ctx_supports_image_generation(context.get())) throw std::runtime_error("This checkpoint does not support image generation");

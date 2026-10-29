@@ -1,0 +1,7 @@
+LMA native Windows developer port, MIT (repository LICENSE).
+The production sd_worker.cpp, sd_policy.hpp and vocab_external.cpp are compiled
+without modifying their source. Only POSIX parent-lifetime calls use this
+Windows compatibility layer; Android prctl/Service behavior is not tested.
+The separately licensed pinned stable-diffusion.cpp/GGML sources and all their
+notices remain applicable. No weights or tokenizer vocabulary are embedded.
+This is not an Android executable, App engine update, emulator or remote backend.

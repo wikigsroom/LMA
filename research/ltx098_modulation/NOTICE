@@ -1,0 +1,6 @@
+LMA old-LTX modulation-order candidate, Apache-2.0.
+Original mathematical implementation for the existing Apache-2.0 LTX port.
+Uses the fixed publisher's x * (1 + scale) + shift F32 operation order.
+No weights, vocabulary, learned statistics or App registration are included.
+Matched-input operator analysis, native sampler tests, full-chain acceptance,
+Android execution and video quality are separate evidence scopes.

@@ -67,7 +67,7 @@
     "app/src/main/java/com/lma/app/NativeWorker.java": "c3324271639c6e77495e9aac78a663c6110dfef1026d0cc320ca82344ddd030d",
     "app/src/main/java/com/lma/app/SdEngine.java": "052d59633d322cb94c4e64b525604fb6424c824c8fdf2e97e4d181c7059a8372",
     "native/sd_policy.hpp": "c7d987ffc6b905fbad9d6a47be98d10f57b2060728f00801742a4ec346a5c7ba",
-    "native/sd_worker.cpp": "b7a7f477f4572fa9bf03f323ac0868d55d2580626372596e80e67e357d3ffadb",
+    "native/sd_worker.cpp": "47e1c3344c63fb90bc240e2743f8257904e831b1597b9d0b9bd780011e8969d0",
     "tests/host/android/util/AtomicFile.java": "a05b9c6ef4fa0f0f40aaa49b235faccc98d2d7d5aa1ea4bb8d2f535b8bad2796",
     "tests/native/sd_policy_test.cpp": "ae668cb738514aae292fa52ae36bde8c2d330943a46d7af383fe512909a6e0ef",
     "tests/sd-host/com/lma/app/SdTest.java": "1bacbc0e3d3f20e824fdeb22fccc77fa47c5d698056d14669ffe55c5b95b5cf9",

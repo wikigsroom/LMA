@@ -1,0 +1,2811 @@
+{
+  "schema": "lma.sd15-trained-host/1",
+  "bundle": {
+    "schema": "lma.model-bundle/1",
+    "id": "sd15_ss_q4_0_r031b5f5",
+    "modelId": "sd15_ss_q4_0",
+    "recipeId": "sd15_cpu_v1",
+    "name": "Stable Diffusion 1.5 \u00b7 Q4_0",
+    "description": "SD 1.5 \u6587\u751f\u56fe\u5019\u9009\u914d\u65b9\u3002CPU \u5f15\u64ce\u5df2\u7f16\u8bd1\uff0c\u5c1a\u65e0 LMA \u771f\u673a\u8f93\u51fa\u4e0e\u5185\u5b58\u5b9e\u6d4b\u3002",
+    "catalogue": true,
+    "engine": "sd_cpp",
+    "architecture": "sd15",
+    "pipeline": "sd15",
+    "backend": "cpu",
+    "tasks": [
+      "image"
+    ],
+    "capabilities": [
+      "text_to_image"
+    ],
+    "license": {
+      "name": "CreativeML Open RAIL-M",
+      "url": "https://huggingface.co/stable-diffusion-v1-5/stable-diffusion-v1-5/blob/451f4fe16113bff5a5d2269ed5ad43b0592e9a14/LICENSE"
+    },
+    "evidence": {
+      "status": "pinned_assets_not_device_tested",
+      "physicalDeviceTests": 0,
+      "sourceUrl": "https://huggingface.co/second-state/stable-diffusion-v1-5-GGUF/blob/031b5f5df991f511b3f5fa8fed6d99048ababb69/README.md",
+      "componentCoverage": "all-in-one GGUF checkpoint contains model/text encoder/VAE; CLIP merges are separate user data",
+      "modelSpecificTokenizerMatchesPinnedEngine": true
+    },
+    "parameters": {
+      "version": 1,
+      "fields": {
+        "width": {
+          "type": "integer",
+          "label": "\u5bbd\u5ea6",
+          "default": 512,
+          "minimum": 64,
+          "maximum": 2048,
+          "presets": [
+            256,
+            384,
+            512,
+            768,
+            1024
+          ],
+          "multipleOf": 64,
+          "limitSource": "application_guard"
+        },
+        "height": {
+          "type": "integer",
+          "label": "\u9ad8\u5ea6",
+          "default": 512,
+          "minimum": 64,
+          "maximum": 2048,
+          "presets": [
+            256,
+            384,
+            512,
+            768,
+            1024
+          ],
+          "multipleOf": 64,
+          "limitSource": "application_guard"
+        },
+        "steps": {
+          "type": "integer",
+          "label": "\u91c7\u6837\u6b65\u6570",
+          "default": 20,
+          "minimum": 1,
+          "maximum": 200,
+          "presets": [
+            4,
+            8,
+            12,
+            20,
+            30
+          ],
+          "multipleOf": 1,
+          "limitSource": "application_guard"
+        },
+        "threads": {
+          "type": "integer",
+          "label": "CPU \u7ebf\u7a0b",
+          "default": 4,
+          "minimum": 1,
+          "maximum": 64,
+          "presets": [
+            1,
+            2,
+            4,
+            6,
+            8
+          ],
+          "multipleOf": 1,
+          "limitSource": "application_guard"
+        },
+        "seed": {
+          "type": "integer",
+          "label": "\u968f\u673a\u79cd\u5b50\uff08-1 \u4e3a\u968f\u673a\uff09",
+          "default": -1,
+          "minimum": -1,
+          "maximum": 2147483647,
+          "presets": [
+            -1,
+            0,
+            42
+          ],
+          "multipleOf": 1,
+          "limitSource": "application_guard"
+        },
+        "cfg": {
+          "type": "number",
+          "label": "\u63d0\u793a\u8bcd\u5f15\u5bfc",
+          "default": 7,
+          "minimum": 0,
+          "maximum": 30,
+          "presets": [
+            1,
+            3,
+            5,
+            7,
+            9
+          ],
+          "limitSource": "application_guard"
+        },
+        "sampler": {
+          "type": "enum",
+          "label": "\u91c7\u6837\u5668",
+          "default": "euler",
+          "values": [
+            "euler",
+            "euler_a"
+          ]
+        },
+        "vaeTiling": {
+          "type": "boolean",
+          "label": "\u5206\u5757\u89e3\u7801 VAE",
+          "default": true
+        }
+      }
+    },
+    "resources": {
+      "estimatedPeakRamBytes": 0,
+      "estimateKnown": false
+    },
+    "components": [
+      {
+        "role": "model",
+        "repository": "second-state/stable-diffusion-v1-5-GGUF",
+        "revision": "031b5f5df991f511b3f5fa8fed6d99048ababb69",
+        "path": "stable-diffusion-v1-5-pruned-emaonly-Q4_0.gguf",
+        "bytes": 1566768416,
+        "sha256": "b8944e9fe0b69b36ae1b5bb0185b3a7b8ef14347fe0fa9af6c64c4829022261f",
+        "format": "gguf",
+        "url": "https://huggingface.co/second-state/stable-diffusion-v1-5-GGUF/resolve/031b5f5df991f511b3f5fa8fed6d99048ababb69/stable-diffusion-v1-5-pruned-emaonly-Q4_0.gguf"
+      },
+      {
+        "role": "clip_merges",
+        "repository": "stable-diffusion-v1-5/stable-diffusion-v1-5",
+        "revision": "451f4fe16113bff5a5d2269ed5ad43b0592e9a14",
+        "path": "tokenizer/merges.txt",
+        "bytes": 524619,
+        "sha256": "9fd691f7c8039210e0fced15865466c65820d09b63988b0174bfe25de299051a",
+        "format": "text",
+        "url": "https://huggingface.co/stable-diffusion-v1-5/stable-diffusion-v1-5/resolve/451f4fe16113bff5a5d2269ed5ad43b0592e9a14/tokenizer/merges.txt"
+      }
+    ]
+  },
+  "compilation": {
+    "schema": "lma.sd-host-build/1",
+    "executable": "build/sd-worker-host/a3bf87b8e136d993/bin/lma_sd_host.exe",
+    "sha256": "57b262d251aba1bc1ba1d6c64f1983075508dac1bb4b5ec4b729cff9306598c9",
+    "bytes": 8633856,
+    "source_revision": "be486498eadc29dc3cd234d944c2180ed42b1415",
+    "ggml_revision": "a5915eb0e47adef21c3f25b889a008925ea838c2",
+    "backend": "cpu",
+    "production_worker_source_unmodified": true,
+    "production_vocabulary_source_unmodified": true,
+    "windows_parent_guard": true,
+    "external_vocabulary": true,
+    "bundled_model_data": false,
+    "android_compiled": false,
+    "physical_android": false,
+    "packaged_in_apk": false,
+    "model_executed": false,
+    "input_fingerprint": {
+      "app/src/main/assets/model-bundles.json": "bb2272dfa95443c9391fb858fd19b52d539126ca209319c190b420e734bc97b8",
+      "native/sd_policy.hpp": "c7d987ffc6b905fbad9d6a47be98d10f57b2060728f00801742a4ec346a5c7ba",
+      "native/sd_worker.cpp": "47e1c3344c63fb90bc240e2743f8257904e831b1597b9d0b9bd780011e8969d0",
+      "native/vocab_external.cpp": "8bfe3af4f45363554f58009efcd7404e3af9da768cb65762de6c6b91621c81f1",
+      "research/sd_host/CMakeLists.txt": "0870d59e689181eddd9690cc537da9b9abf4a252791ae6dd0506aa95fe4051d3",
+      "research/sd_host/compat/sys/prctl.h": "87c9ddf82ce059bf303486b0e10b22dce6d972e87f83836d148e631dcdad9c9e",
+      "research/sd_host/compat/unistd.h": "e467e7f5855c286b3ce40268146ed34d153a5fbf8a42d5c36b26a6293142068b",
+      "research/sd_host/NOTICE": "90e18935ca8ba71ac1a5ce59e3a2f0b0580cd246877f65cba402deff67eb18fc",
+      "research/sd_host/platform.hpp": "c377ed1b676707a469a192d96ae9b748802e1f62ad0674366b593b2b5b2daf67",
+      "third_party/engine-lock.json": "1341d53deca6412779d197b5fc978a37a55462ee4d86df4b6db4b3c7bf97ec7a",
+      "third_party/notices/sd-sources.json": "91ee744071aa93c4bd4d40476d3582fa4bf4d00a628527e196d4856c06ec77c1",
+      "tools/build_native.py": "f3876b3c254ee367a55f15bcbf9cd8c0dc2eb243b53b59796a282f2afc4a7c11",
+      "tools/build_sd_host.py": "25943d201f98b806c15df691f87fd496f7988f4d104e92549bf5a3ed2e787e13",
+      "tools/fetch_sd15_trained.py": "91392401d9739f15b14fa4e42b74f13bbdd719a382746541cc69952966e6f307"
+    }
+  },
+  "acquisition_receipt_sha256": "8bf0c2b1fac294bb94aea60b1cf86e0463c1e17a386d2932665863ba65df4164",
+  "acquisition": {
+    "schema": "lma.sd15-trained-assets/1",
+    "bundle_id": "sd15_ss_q4_0_r031b5f5",
+    "components": [
+      {
+        "role": "model",
+        "repository": "second-state/stable-diffusion-v1-5-GGUF",
+        "revision": "031b5f5df991f511b3f5fa8fed6d99048ababb69",
+        "path": "stable-diffusion-v1-5-pruned-emaonly-Q4_0.gguf",
+        "bytes": 1566768416,
+        "sha256": "b8944e9fe0b69b36ae1b5bb0185b3a7b8ef14347fe0fa9af6c64c4829022261f",
+        "format": "gguf",
+        "url": "https://huggingface.co/second-state/stable-diffusion-v1-5-GGUF/resolve/031b5f5df991f511b3f5fa8fed6d99048ababb69/stable-diffusion-v1-5-pruned-emaonly-Q4_0.gguf",
+        "local_path": "build/sd15-trained/originals/stable-diffusion-v1-5-pruned-emaonly-Q4_0.gguf"
+      },
+      {
+        "role": "clip_merges",
+        "repository": "stable-diffusion-v1-5/stable-diffusion-v1-5",
+        "revision": "451f4fe16113bff5a5d2269ed5ad43b0592e9a14",
+        "path": "tokenizer/merges.txt",
+        "bytes": 524619,
+        "sha256": "9fd691f7c8039210e0fced15865466c65820d09b63988b0174bfe25de299051a",
+        "format": "text",
+        "url": "https://huggingface.co/stable-diffusion-v1-5/stable-diffusion-v1-5/resolve/451f4fe16113bff5a5d2269ed5ad43b0592e9a14/tokenizer/merges.txt",
+        "local_path": "build/sd15-trained/originals/merges.txt"
+      }
+    ],
+    "developer_assets_only": true,
+    "model_executed": false,
+    "app_assets_modified": false,
+    "explicit_download": true,
+    "download_origin": "https://hf-mirror.com",
+    "input_fingerprint": {
+      "app/src/main/assets/model-bundles.json": "bb2272dfa95443c9391fb858fd19b52d539126ca209319c190b420e734bc97b8",
+      "tools/fetch_sd15_trained.py": "91392401d9739f15b14fa4e42b74f13bbdd719a382746541cc69952966e6f307"
+    }
+  },
+  "info": {
+    "returncode": 0,
+    "seconds": 0.45960360002936795,
+    "events": [
+      {
+        "backend": "cpu",
+        "bundled_model_data": false,
+        "engine": "sd_cpp",
+        "generation_tested": false,
+        "revision": "be486498eadc29dc3cd234d944c2180ed42b1415",
+        "schema": "lma.engine/1"
+      }
+    ],
+    "protocol_errors": [],
+    "logs_truncated": [
+      false,
+      false
+    ],
+    "cancelled": false,
+    "timed_out": false,
+    "cancel_trigger": null,
+    "cancel_to_exit_seconds": null,
+    "resources": {
+      "observed": true,
+      "samples": 7,
+      "interval_ms": 20,
+      "observed_peak_working_set_bytes": 6819840,
+      "sampled_peak_private_bytes": 2760704,
+      "gpu_memory_measured": false,
+      "physical_device_memory_measured": false
+    }
+  },
+  "jobs": [
+    {
+      "returncode": 0,
+      "seconds": 563.5798753999989,
+      "events": [
+        {
+          "event": "stage",
+          "stage": "loading"
+        },
+        {
+          "event": "progress",
+          "seconds": 0.0,
+          "stage": "loading",
+          "step": 0,
+          "steps": 1
+        },
+        {
+          "event": "progress",
+          "seconds": 0.017999982461333275,
+          "stage": "loading",
+          "step": 1,
+          "steps": 1
+        },
+        {
+          "event": "stage",
+          "stage": "generating"
+        },
+        {
+          "event": "progress",
+          "seconds": 1000.0000610351562,
+          "stage": "generating",
+          "step": 0,
+          "steps": 196
+        },
+        {
+          "event": "progress",
+          "seconds": 0.001040816307067871,
+          "stage": "generating",
+          "step": 196,
+          "steps": 196
+        },
+        {
+          "event": "progress",
+          "seconds": 0.0,
+          "stage": "generating",
+          "step": 0,
+          "steps": 20
+        },
+        {
+          "event": "progress",
+          "seconds": 1000.0000610351562,
+          "stage": "generating",
+          "step": 0,
+          "steps": 686
+        },
+        {
+          "event": "progress",
+          "seconds": 0.0003017492708750069,
+          "stage": "generating",
+          "step": 686,
+          "steps": 686
+        },
+        {
+          "event": "progress",
+          "seconds": 25.553773880004883,
+          "stage": "generating",
+          "step": 1,
+          "steps": 20
+        },
+        {
+          "event": "progress",
+          "seconds": 19.500036239624023,
+          "stage": "generating",
+          "step": 2,
+          "steps": 20
+        },
+        {
+          "event": "progress",
+          "seconds": 18.871856689453125,
+          "stage": "generating",
+          "step": 3,
+          "steps": 20
+        },
+        {
+          "event": "progress",
+          "seconds": 19.146268844604492,
+          "stage": "generating",
+          "step": 4,
+          "steps": 20
+        },
+        {
+          "event": "progress",
+          "seconds": 18.007139205932617,
+          "stage": "generating",
+          "step": 5,
+          "steps": 20
+        },
+        {
+          "event": "progress",
+          "seconds": 18.14500617980957,
+          "stage": "generating",
+          "step": 6,
+          "steps": 20
+        },
+        {
+          "event": "progress",
+          "seconds": 19.452529907226562,
+          "stage": "generating",
+          "step": 7,
+          "steps": 20
+        },
+        {
+          "event": "progress",
+          "seconds": 20.13760757446289,
+          "stage": "generating",
+          "step": 8,
+          "steps": 20
+        },
+        {
+          "event": "progress",
+          "seconds": 21.508363723754883,
+          "stage": "generating",
+          "step": 9,
+          "steps": 20
+        },
+        {
+          "event": "progress",
+          "seconds": 24.380884170532227,
+          "stage": "generating",
+          "step": 10,
+          "steps": 20
+        },
+        {
+          "event": "progress",
+          "seconds": 21.720773696899414,
+          "stage": "generating",
+          "step": 11,
+          "steps": 20
+        },
+        {
+          "event": "progress",
+          "seconds": 21.690109252929688,
+          "stage": "generating",
+          "step": 12,
+          "steps": 20
+        },
+        {
+          "event": "progress",
+          "seconds": 23.510698318481445,
+          "stage": "generating",
+          "step": 13,
+          "steps": 20
+        },
+        {
+          "event": "progress",
+          "seconds": 22.23532485961914,
+          "stage": "generating",
+          "step": 14,
+          "steps": 20
+        },
+        {
+          "event": "progress",
+          "seconds": 21.314422607421875,
+          "stage": "generating",
+          "step": 15,
+          "steps": 20
+        },
+        {
+          "event": "progress",
+          "seconds": 17.666423797607422,
+          "stage": "generating",
+          "step": 16,
+          "steps": 20
+        },
+        {
+          "event": "progress",
+          "seconds": 17.091995239257812,
+          "stage": "generating",
+          "step": 17,
+          "steps": 20
+        },
+        {
+          "event": "progress",
+          "seconds": 19.824108123779297,
+          "stage": "generating",
+          "step": 18,
+          "steps": 20
+        },
+        {
+          "event": "progress",
+          "seconds": 18.381296157836914,
+          "stage": "generating",
+          "step": 19,
+          "steps": 20
+        },
+        {
+          "event": "progress",
+          "seconds": 20.73198890686035,
+          "stage": "generating",
+          "step": 20,
+          "steps": 20
+        },
+        {
+          "event": "progress",
+          "seconds": 0.0,
+          "stage": "generating",
+          "step": 0,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2000.0001220703125,
+          "stage": "generating",
+          "step": 0,
+          "steps": 140
+        },
+        {
+          "event": "progress",
+          "seconds": 0.00963636301457882,
+          "stage": "generating",
+          "step": 22,
+          "steps": 140
+        },
+        {
+          "event": "progress",
+          "seconds": 0.008469387888908386,
+          "stage": "generating",
+          "step": 49,
+          "steps": 140
+        },
+        {
+          "event": "progress",
+          "seconds": 0.008253333158791065,
+          "stage": "generating",
+          "step": 75,
+          "steps": 140
+        },
+        {
+          "event": "progress",
+          "seconds": 0.008148514665663242,
+          "stage": "generating",
+          "step": 101,
+          "steps": 140
+        },
+        {
+          "event": "progress",
+          "seconds": 0.00807873997837305,
+          "stage": "generating",
+          "step": 127,
+          "steps": 140
+        },
+        {
+          "event": "progress",
+          "seconds": 0.008799999952316284,
+          "stage": "generating",
+          "step": 140,
+          "steps": 140
+        },
+        {
+          "event": "progress",
+          "seconds": 28.88800048828125,
+          "stage": "generating",
+          "step": 1,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.968999981880188,
+          "stage": "generating",
+          "step": 2,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.2709999084472656,
+          "stage": "generating",
+          "step": 3,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.0969998836517334,
+          "stage": "generating",
+          "step": 4,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.1610000133514404,
+          "stage": "generating",
+          "step": 5,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.0480000972747803,
+          "stage": "generating",
+          "step": 6,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.135999917984009,
+          "stage": "generating",
+          "step": 7,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.2049999237060547,
+          "stage": "generating",
+          "step": 8,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.5810000896453857,
+          "stage": "generating",
+          "step": 9,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.2100000381469727,
+          "stage": "generating",
+          "step": 10,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.250999927520752,
+          "stage": "generating",
+          "step": 11,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.194999933242798,
+          "stage": "generating",
+          "step": 12,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.5360000133514404,
+          "stage": "generating",
+          "step": 13,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.177999973297119,
+          "stage": "generating",
+          "step": 14,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.615999937057495,
+          "stage": "generating",
+          "step": 15,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.0789999961853027,
+          "stage": "generating",
+          "step": 16,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.236999988555908,
+          "stage": "generating",
+          "step": 17,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.5840001106262207,
+          "stage": "generating",
+          "step": 18,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.4230000972747803,
+          "stage": "generating",
+          "step": 19,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.7920000553131104,
+          "stage": "generating",
+          "step": 20,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.430999994277954,
+          "stage": "generating",
+          "step": 21,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.4000000953674316,
+          "stage": "generating",
+          "step": 22,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 3.3399999141693115,
+          "stage": "generating",
+          "step": 23,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 3.003000020980835,
+          "stage": "generating",
+          "step": 24,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.4010000228881836,
+          "stage": "generating",
+          "step": 25,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.3940000534057617,
+          "stage": "generating",
+          "step": 26,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.503000020980835,
+          "stage": "generating",
+          "step": 27,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.7750000953674316,
+          "stage": "generating",
+          "step": 28,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 3.260999917984009,
+          "stage": "generating",
+          "step": 29,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 3.2360000610351562,
+          "stage": "generating",
+          "step": 30,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 3.749000072479248,
+          "stage": "generating",
+          "step": 31,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 3.1449999809265137,
+          "stage": "generating",
+          "step": 32,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.813999891281128,
+          "stage": "generating",
+          "step": 33,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 3.000999927520752,
+          "stage": "generating",
+          "step": 34,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.8499999046325684,
+          "stage": "generating",
+          "step": 35,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.634000062942505,
+          "stage": "generating",
+          "step": 36,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.7660000324249268,
+          "stage": "generating",
+          "step": 37,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.760999917984009,
+          "stage": "generating",
+          "step": 38,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.191999912261963,
+          "stage": "generating",
+          "step": 39,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.8970000743865967,
+          "stage": "generating",
+          "step": 40,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.5199999809265137,
+          "stage": "generating",
+          "step": 41,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 3.109999895095825,
+          "stage": "generating",
+          "step": 42,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.571000099182129,
+          "stage": "generating",
+          "step": 43,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.177999973297119,
+          "stage": "generating",
+          "step": 44,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.2720000743865967,
+          "stage": "generating",
+          "step": 45,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 3.069000005722046,
+          "stage": "generating",
+          "step": 46,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.486999988555908,
+          "stage": "generating",
+          "step": 47,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.318000078201294,
+          "stage": "generating",
+          "step": 48,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.965000033378601,
+          "stage": "generating",
+          "step": 49,
+          "steps": 49
+        },
+        {
+          "event": "complete",
+          "format": "png",
+          "height": 512,
+          "output": "T:/build/sd15-trained-tests/run-1793273348967459600-489254f1/prompt-a.png",
+          "width": 512
+        }
+      ],
+      "protocol_errors": [],
+      "logs_truncated": [
+        false,
+        false
+      ],
+      "cancelled": false,
+      "timed_out": false,
+      "cancel_trigger": null,
+      "cancel_to_exit_seconds": null,
+      "resources": {
+        "observed": true,
+        "samples": 26062,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 1698885632,
+        "sampled_peak_private_bytes": 513703936,
+        "gpu_memory_measured": false,
+        "physical_device_memory_measured": false
+      },
+      "name": "prompt-a",
+      "request_sha256": "fb1db116d94f97650c70675e076977a5586c20fc5121c752d2085a98e3bb284b",
+      "case": 0,
+      "prompt": "A red ceramic teapot on a wooden table, studio photograph, soft light",
+      "parameters": {
+        "width": 512,
+        "height": 512,
+        "steps": 20,
+        "cfg": 7.0,
+        "sampler": "euler",
+        "scheduler": "discrete",
+        "seed": 42,
+        "threads": 4,
+        "vaeTiling": true,
+        "flowShift": 0
+      },
+      "output_exists": true,
+      "progress_phase_consistent": true,
+      "loading_progress_events": 2,
+      "generation_progress_events": 82,
+      "sampling_steps_observed": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20
+      ],
+      "passed": true,
+      "image": {
+        "width": 512,
+        "height": 512,
+        "format": "PNG",
+        "mode": "RGB",
+        "sha256": "b142b765b526fa018601aeaf5e62d8b6b062137283349b5588094f98f46e3e2c",
+        "bytes": 367115,
+        "channel_mean": [
+          177.93830490112305,
+          45.58187484741211,
+          38.71958923339844
+        ],
+        "channel_stddev": [
+          50.86422492436051,
+          32.830655128999524,
+          25.53812621701125
+        ],
+        "extrema": [
+          [
+            0,
+            255
+          ],
+          [
+            0,
+            151
+          ],
+          [
+            0,
+            152
+          ]
+        ],
+        "entropy": 8.14477645898643
+      }
+    },
+    {
+      "returncode": 0,
+      "seconds": 485.46318750001956,
+      "events": [
+        {
+          "event": "stage",
+          "stage": "loading"
+        },
+        {
+          "event": "progress",
+          "seconds": 1000.0000610351562,
+          "stage": "loading",
+          "step": 0,
+          "steps": 1
+        },
+        {
+          "event": "progress",
+          "seconds": 0.22599978744983673,
+          "stage": "loading",
+          "step": 1,
+          "steps": 1
+        },
+        {
+          "event": "stage",
+          "stage": "generating"
+        },
+        {
+          "event": "progress",
+          "seconds": 1000.0000610351562,
+          "stage": "generating",
+          "step": 0,
+          "steps": 196
+        },
+        {
+          "event": "progress",
+          "seconds": 0.0010969387367367744,
+          "stage": "generating",
+          "step": 196,
+          "steps": 196
+        },
+        {
+          "event": "progress",
+          "seconds": 0.0,
+          "stage": "generating",
+          "step": 0,
+          "steps": 20
+        },
+        {
+          "event": "progress",
+          "seconds": 1000.0000610351562,
+          "stage": "generating",
+          "step": 0,
+          "steps": 686
+        },
+        {
+          "event": "progress",
+          "seconds": 0.0002930029295384884,
+          "stage": "generating",
+          "step": 686,
+          "steps": 686
+        },
+        {
+          "event": "progress",
+          "seconds": 19.299720764160156,
+          "stage": "generating",
+          "step": 1,
+          "steps": 20
+        },
+        {
+          "event": "progress",
+          "seconds": 19.317529678344727,
+          "stage": "generating",
+          "step": 2,
+          "steps": 20
+        },
+        {
+          "event": "progress",
+          "seconds": 25.96055793762207,
+          "stage": "generating",
+          "step": 3,
+          "steps": 20
+        },
+        {
+          "event": "progress",
+          "seconds": 23.802499771118164,
+          "stage": "generating",
+          "step": 4,
+          "steps": 20
+        },
+        {
+          "event": "progress",
+          "seconds": 17.70787239074707,
+          "stage": "generating",
+          "step": 5,
+          "steps": 20
+        },
+        {
+          "event": "progress",
+          "seconds": 17.352380752563477,
+          "stage": "generating",
+          "step": 6,
+          "steps": 20
+        },
+        {
+          "event": "progress",
+          "seconds": 20.287973403930664,
+          "stage": "generating",
+          "step": 7,
+          "steps": 20
+        },
+        {
+          "event": "progress",
+          "seconds": 20.640958786010742,
+          "stage": "generating",
+          "step": 8,
+          "steps": 20
+        },
+        {
+          "event": "progress",
+          "seconds": 19.165016174316406,
+          "stage": "generating",
+          "step": 9,
+          "steps": 20
+        },
+        {
+          "event": "progress",
+          "seconds": 17.133596420288086,
+          "stage": "generating",
+          "step": 10,
+          "steps": 20
+        },
+        {
+          "event": "progress",
+          "seconds": 20.117143630981445,
+          "stage": "generating",
+          "step": 11,
+          "steps": 20
+        },
+        {
+          "event": "progress",
+          "seconds": 20.308013916015625,
+          "stage": "generating",
+          "step": 12,
+          "steps": 20
+        },
+        {
+          "event": "progress",
+          "seconds": 18.0218563079834,
+          "stage": "generating",
+          "step": 13,
+          "steps": 20
+        },
+        {
+          "event": "progress",
+          "seconds": 16.568540573120117,
+          "stage": "generating",
+          "step": 14,
+          "steps": 20
+        },
+        {
+          "event": "progress",
+          "seconds": 16.296085357666016,
+          "stage": "generating",
+          "step": 15,
+          "steps": 20
+        },
+        {
+          "event": "progress",
+          "seconds": 17.57340431213379,
+          "stage": "generating",
+          "step": 16,
+          "steps": 20
+        },
+        {
+          "event": "progress",
+          "seconds": 19.896278381347656,
+          "stage": "generating",
+          "step": 17,
+          "steps": 20
+        },
+        {
+          "event": "progress",
+          "seconds": 16.680665969848633,
+          "stage": "generating",
+          "step": 18,
+          "steps": 20
+        },
+        {
+          "event": "progress",
+          "seconds": 18.526180267333984,
+          "stage": "generating",
+          "step": 19,
+          "steps": 20
+        },
+        {
+          "event": "progress",
+          "seconds": 17.26197624206543,
+          "stage": "generating",
+          "step": 20,
+          "steps": 20
+        },
+        {
+          "event": "progress",
+          "seconds": 0.0,
+          "stage": "generating",
+          "step": 0,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2000.0001220703125,
+          "stage": "generating",
+          "step": 0,
+          "steps": 140
+        },
+        {
+          "event": "progress",
+          "seconds": 0.0015428571496158838,
+          "stage": "generating",
+          "step": 140,
+          "steps": 140
+        },
+        {
+          "event": "progress",
+          "seconds": 2.187999963760376,
+          "stage": "generating",
+          "step": 1,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.812000036239624,
+          "stage": "generating",
+          "step": 2,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.1549999713897705,
+          "stage": "generating",
+          "step": 3,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.2149999141693115,
+          "stage": "generating",
+          "step": 4,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.2149999141693115,
+          "stage": "generating",
+          "step": 5,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.007999897003174,
+          "stage": "generating",
+          "step": 6,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.9019999504089355,
+          "stage": "generating",
+          "step": 7,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.8009999990463257,
+          "stage": "generating",
+          "step": 8,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.7519999742507935,
+          "stage": "generating",
+          "step": 9,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.75,
+          "stage": "generating",
+          "step": 10,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.180000066757202,
+          "stage": "generating",
+          "step": 11,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.8289999961853027,
+          "stage": "generating",
+          "step": 12,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.8930000066757202,
+          "stage": "generating",
+          "step": 13,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.7280000448226929,
+          "stage": "generating",
+          "step": 14,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.878999948501587,
+          "stage": "generating",
+          "step": 15,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.8229999542236328,
+          "stage": "generating",
+          "step": 16,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.8819999694824219,
+          "stage": "generating",
+          "step": 17,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.809000015258789,
+          "stage": "generating",
+          "step": 18,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.8769999742507935,
+          "stage": "generating",
+          "step": 19,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.7769999504089355,
+          "stage": "generating",
+          "step": 20,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.7380000352859497,
+          "stage": "generating",
+          "step": 21,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.8980000019073486,
+          "stage": "generating",
+          "step": 22,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.8289999961853027,
+          "stage": "generating",
+          "step": 23,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.847000002861023,
+          "stage": "generating",
+          "step": 24,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.9919999837875366,
+          "stage": "generating",
+          "step": 25,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.9579999446868896,
+          "stage": "generating",
+          "step": 26,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.9950000047683716,
+          "stage": "generating",
+          "step": 27,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.875,
+          "stage": "generating",
+          "step": 28,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.9500000476837158,
+          "stage": "generating",
+          "step": 29,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.8220000267028809,
+          "stage": "generating",
+          "step": 30,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.8799999952316284,
+          "stage": "generating",
+          "step": 31,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.781999945640564,
+          "stage": "generating",
+          "step": 32,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.0269999504089355,
+          "stage": "generating",
+          "step": 33,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.8930000066757202,
+          "stage": "generating",
+          "step": 34,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.937999963760376,
+          "stage": "generating",
+          "step": 35,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.725000023841858,
+          "stage": "generating",
+          "step": 36,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.725000023841858,
+          "stage": "generating",
+          "step": 37,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.8509999513626099,
+          "stage": "generating",
+          "step": 38,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.2679998874664307,
+          "stage": "generating",
+          "step": 39,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.0360000133514404,
+          "stage": "generating",
+          "step": 40,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.015000104904175,
+          "stage": "generating",
+          "step": 41,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.9730000495910645,
+          "stage": "generating",
+          "step": 42,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.9179999828338623,
+          "stage": "generating",
+          "step": 43,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.4519999027252197,
+          "stage": "generating",
+          "step": 44,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.2230000495910645,
+          "stage": "generating",
+          "step": 45,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.812000036239624,
+          "stage": "generating",
+          "step": 46,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.617000102996826,
+          "stage": "generating",
+          "step": 47,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.881999969482422,
+          "stage": "generating",
+          "step": 48,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.4079999923706055,
+          "stage": "generating",
+          "step": 49,
+          "steps": 49
+        },
+        {
+          "event": "complete",
+          "format": "png",
+          "height": 512,
+          "output": "T:/build/sd15-trained-tests/run-1793273348967459600-489254f1/prompt-b.png",
+          "width": 512
+        }
+      ],
+      "protocol_errors": [],
+      "logs_truncated": [
+        false,
+        false
+      ],
+      "cancelled": false,
+      "timed_out": false,
+      "cancel_trigger": null,
+      "cancel_to_exit_seconds": null,
+      "resources": {
+        "observed": true,
+        "samples": 22619,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 1698828288,
+        "sampled_peak_private_bytes": 513474560,
+        "gpu_memory_measured": false,
+        "physical_device_memory_measured": false
+      },
+      "name": "prompt-b",
+      "request_sha256": "e858132f39b74e240305f259f369e2a21efcc7a9dabcf1c5dd3aaa7d36300fdd",
+      "case": 1,
+      "prompt": "A small sailboat on a blue lake, snow covered mountain, landscape photograph",
+      "parameters": {
+        "width": 512,
+        "height": 512,
+        "steps": 20,
+        "cfg": 7.0,
+        "sampler": "euler",
+        "scheduler": "discrete",
+        "seed": 42,
+        "threads": 4,
+        "vaeTiling": true,
+        "flowShift": 0
+      },
+      "output_exists": true,
+      "progress_phase_consistent": true,
+      "loading_progress_events": 2,
+      "generation_progress_events": 77,
+      "sampling_steps_observed": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20
+      ],
+      "passed": true,
+      "image": {
+        "width": 512,
+        "height": 512,
+        "format": "PNG",
+        "mode": "RGB",
+        "sha256": "78e61f1a3b50ee52056aeb8d799eeff827b45949b11b49d7d44527a49a9d88c0",
+        "bytes": 598785,
+        "channel_mean": [
+          125.93441009521484,
+          108.917724609375,
+          118.63299560546875
+        ],
+        "channel_stddev": [
+          64.5118570665565,
+          70.44992504141267,
+          94.32971756719677
+        ],
+        "extrema": [
+          [
+            0,
+            255
+          ],
+          [
+            0,
+            255
+          ],
+          [
+            0,
+            255
+          ]
+        ],
+        "entropy": 8.896378461940268
+      }
+    },
+    {
+      "returncode": 0,
+      "seconds": 549.6492981000338,
+      "events": [
+        {
+          "event": "stage",
+          "stage": "loading"
+        },
+        {
+          "event": "progress",
+          "seconds": 0.0,
+          "stage": "loading",
+          "step": 0,
+          "steps": 1
+        },
+        {
+          "event": "progress",
+          "seconds": 0.010999989695847034,
+          "stage": "loading",
+          "step": 1,
+          "steps": 1
+        },
+        {
+          "event": "stage",
+          "stage": "generating"
+        },
+        {
+          "event": "progress",
+          "seconds": 1000.0000610351562,
+          "stage": "generating",
+          "step": 0,
+          "steps": 196
+        },
+        {
+          "event": "progress",
+          "seconds": 0.0010306122712790966,
+          "stage": "generating",
+          "step": 196,
+          "steps": 196
+        },
+        {
+          "event": "progress",
+          "seconds": 0.0,
+          "stage": "generating",
+          "step": 0,
+          "steps": 20
+        },
+        {
+          "event": "progress",
+          "seconds": 1000.0000610351562,
+          "stage": "generating",
+          "step": 0,
+          "steps": 686
+        },
+        {
+          "event": "progress",
+          "seconds": 0.00030466471798717976,
+          "stage": "generating",
+          "step": 686,
+          "steps": 686
+        },
+        {
+          "event": "progress",
+          "seconds": 20.220468521118164,
+          "stage": "generating",
+          "step": 1,
+          "steps": 20
+        },
+        {
+          "event": "progress",
+          "seconds": 15.639205932617188,
+          "stage": "generating",
+          "step": 2,
+          "steps": 20
+        },
+        {
+          "event": "progress",
+          "seconds": 15.913060188293457,
+          "stage": "generating",
+          "step": 3,
+          "steps": 20
+        },
+        {
+          "event": "progress",
+          "seconds": 17.39321517944336,
+          "stage": "generating",
+          "step": 4,
+          "steps": 20
+        },
+        {
+          "event": "progress",
+          "seconds": 20.581159591674805,
+          "stage": "generating",
+          "step": 5,
+          "steps": 20
+        },
+        {
+          "event": "progress",
+          "seconds": 19.906648635864258,
+          "stage": "generating",
+          "step": 6,
+          "steps": 20
+        },
+        {
+          "event": "progress",
+          "seconds": 19.323144912719727,
+          "stage": "generating",
+          "step": 7,
+          "steps": 20
+        },
+        {
+          "event": "progress",
+          "seconds": 22.540184020996094,
+          "stage": "generating",
+          "step": 8,
+          "steps": 20
+        },
+        {
+          "event": "progress",
+          "seconds": 18.78815269470215,
+          "stage": "generating",
+          "step": 9,
+          "steps": 20
+        },
+        {
+          "event": "progress",
+          "seconds": 18.55256462097168,
+          "stage": "generating",
+          "step": 10,
+          "steps": 20
+        },
+        {
+          "event": "progress",
+          "seconds": 20.17535972595215,
+          "stage": "generating",
+          "step": 11,
+          "steps": 20
+        },
+        {
+          "event": "progress",
+          "seconds": 20.903032302856445,
+          "stage": "generating",
+          "step": 12,
+          "steps": 20
+        },
+        {
+          "event": "progress",
+          "seconds": 20.820964813232422,
+          "stage": "generating",
+          "step": 13,
+          "steps": 20
+        },
+        {
+          "event": "progress",
+          "seconds": 21.642183303833008,
+          "stage": "generating",
+          "step": 14,
+          "steps": 20
+        },
+        {
+          "event": "progress",
+          "seconds": 18.377565383911133,
+          "stage": "generating",
+          "step": 15,
+          "steps": 20
+        },
+        {
+          "event": "progress",
+          "seconds": 15.578736305236816,
+          "stage": "generating",
+          "step": 16,
+          "steps": 20
+        },
+        {
+          "event": "progress",
+          "seconds": 17.37026023864746,
+          "stage": "generating",
+          "step": 17,
+          "steps": 20
+        },
+        {
+          "event": "progress",
+          "seconds": 18.346675872802734,
+          "stage": "generating",
+          "step": 18,
+          "steps": 20
+        },
+        {
+          "event": "progress",
+          "seconds": 16.622486114501953,
+          "stage": "generating",
+          "step": 19,
+          "steps": 20
+        },
+        {
+          "event": "progress",
+          "seconds": 22.274272918701172,
+          "stage": "generating",
+          "step": 20,
+          "steps": 20
+        },
+        {
+          "event": "progress",
+          "seconds": 0.0,
+          "stage": "generating",
+          "step": 0,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1000.0000610351562,
+          "stage": "generating",
+          "step": 0,
+          "steps": 140
+        },
+        {
+          "event": "progress",
+          "seconds": 0.025749996304512024,
+          "stage": "generating",
+          "step": 8,
+          "steps": 140
+        },
+        {
+          "event": "progress",
+          "seconds": 0.050874993205070496,
+          "stage": "generating",
+          "step": 8,
+          "steps": 140
+        },
+        {
+          "event": "progress",
+          "seconds": 0.035823527723550797,
+          "stage": "generating",
+          "step": 17,
+          "steps": 140
+        },
+        {
+          "event": "progress",
+          "seconds": 0.04049999639391899,
+          "stage": "generating",
+          "step": 20,
+          "steps": 140
+        },
+        {
+          "event": "progress",
+          "seconds": 0.034931033849716187,
+          "stage": "generating",
+          "step": 29,
+          "steps": 140
+        },
+        {
+          "event": "progress",
+          "seconds": 0.030399998649954796,
+          "stage": "generating",
+          "step": 40,
+          "steps": 140
+        },
+        {
+          "event": "progress",
+          "seconds": 0.0289387758821249,
+          "stage": "generating",
+          "step": 49,
+          "steps": 140
+        },
+        {
+          "event": "progress",
+          "seconds": 0.024560606107115746,
+          "stage": "generating",
+          "step": 66,
+          "steps": 140
+        },
+        {
+          "event": "progress",
+          "seconds": 0.027208954095840454,
+          "stage": "generating",
+          "step": 67,
+          "steps": 140
+        },
+        {
+          "event": "progress",
+          "seconds": 0.027000000700354576,
+          "stage": "generating",
+          "step": 75,
+          "steps": 140
+        },
+        {
+          "event": "progress",
+          "seconds": 0.026843372732400894,
+          "stage": "generating",
+          "step": 83,
+          "steps": 140
+        },
+        {
+          "event": "progress",
+          "seconds": 0.02642391249537468,
+          "stage": "generating",
+          "step": 92,
+          "steps": 140
+        },
+        {
+          "event": "progress",
+          "seconds": 0.028619563207030296,
+          "stage": "generating",
+          "step": 92,
+          "steps": 140
+        },
+        {
+          "event": "progress",
+          "seconds": 0.028079207986593246,
+          "stage": "generating",
+          "step": 101,
+          "steps": 140
+        },
+        {
+          "event": "progress",
+          "seconds": 0.02574576437473297,
+          "stage": "generating",
+          "step": 118,
+          "steps": 140
+        },
+        {
+          "event": "progress",
+          "seconds": 0.025714285671710968,
+          "stage": "generating",
+          "step": 126,
+          "steps": 140
+        },
+        {
+          "event": "progress",
+          "seconds": 0.02548888884484768,
+          "stage": "generating",
+          "step": 135,
+          "steps": 140
+        },
+        {
+          "event": "progress",
+          "seconds": 0.026028571650385857,
+          "stage": "generating",
+          "step": 140,
+          "steps": 140
+        },
+        {
+          "event": "progress",
+          "seconds": 51.74700164794922,
+          "stage": "generating",
+          "step": 1,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.9869999885559082,
+          "stage": "generating",
+          "step": 2,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.190000057220459,
+          "stage": "generating",
+          "step": 3,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.5880000591278076,
+          "stage": "generating",
+          "step": 4,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 3.184999942779541,
+          "stage": "generating",
+          "step": 5,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 3.950000047683716,
+          "stage": "generating",
+          "step": 6,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.7290000915527344,
+          "stage": "generating",
+          "step": 7,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.3399999141693115,
+          "stage": "generating",
+          "step": 8,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.1579999923706055,
+          "stage": "generating",
+          "step": 9,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.111999988555908,
+          "stage": "generating",
+          "step": 10,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.3259999752044678,
+          "stage": "generating",
+          "step": 11,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.4030001163482666,
+          "stage": "generating",
+          "step": 12,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.5360000133514404,
+          "stage": "generating",
+          "step": 13,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.0269999504089355,
+          "stage": "generating",
+          "step": 14,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.3610000610351562,
+          "stage": "generating",
+          "step": 15,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.180999994277954,
+          "stage": "generating",
+          "step": 16,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.375999927520752,
+          "stage": "generating",
+          "step": 17,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.0260000228881836,
+          "stage": "generating",
+          "step": 18,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.5199999809265137,
+          "stage": "generating",
+          "step": 19,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.4509999752044678,
+          "stage": "generating",
+          "step": 20,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.7330000400543213,
+          "stage": "generating",
+          "step": 21,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.687000036239624,
+          "stage": "generating",
+          "step": 22,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.6449999809265137,
+          "stage": "generating",
+          "step": 23,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.5230000019073486,
+          "stage": "generating",
+          "step": 24,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.4230000972747803,
+          "stage": "generating",
+          "step": 25,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.1440000534057617,
+          "stage": "generating",
+          "step": 26,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.0390000343322754,
+          "stage": "generating",
+          "step": 27,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.0239999294281006,
+          "stage": "generating",
+          "step": 28,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.906999945640564,
+          "stage": "generating",
+          "step": 29,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.3410000801086426,
+          "stage": "generating",
+          "step": 30,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.9700000286102295,
+          "stage": "generating",
+          "step": 31,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.2939999103546143,
+          "stage": "generating",
+          "step": 32,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 3.424999952316284,
+          "stage": "generating",
+          "step": 33,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.9159998893737793,
+          "stage": "generating",
+          "step": 34,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.5239999294281006,
+          "stage": "generating",
+          "step": 35,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.3239998817443848,
+          "stage": "generating",
+          "step": 36,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.5850000381469727,
+          "stage": "generating",
+          "step": 37,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.3940000534057617,
+          "stage": "generating",
+          "step": 38,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.6630001068115234,
+          "stage": "generating",
+          "step": 39,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.76200008392334,
+          "stage": "generating",
+          "step": 40,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.1010000705718994,
+          "stage": "generating",
+          "step": 41,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.24399995803833,
+          "stage": "generating",
+          "step": 42,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.322999954223633,
+          "stage": "generating",
+          "step": 43,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.9830000400543213,
+          "stage": "generating",
+          "step": 44,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.1029999256134033,
+          "stage": "generating",
+          "step": 45,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 1.9670000076293945,
+          "stage": "generating",
+          "step": 46,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.0409998893737793,
+          "stage": "generating",
+          "step": 47,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.0899999141693115,
+          "stage": "generating",
+          "step": 48,
+          "steps": 49
+        },
+        {
+          "event": "progress",
+          "seconds": 2.5829999446868896,
+          "stage": "generating",
+          "step": 49,
+          "steps": 49
+        },
+        {
+          "event": "complete",
+          "format": "png",
+          "height": 512,
+          "output": "T:/build/sd15-trained-tests/run-1793273348967459600-489254f1/recovery-a.png",
+          "width": 512
+        }
+      ],
+      "protocol_errors": [],
+      "logs_truncated": [
+        false,
+        false
+      ],
+      "cancelled": false,
+      "timed_out": false,
+      "cancel_trigger": null,
+      "cancel_to_exit_seconds": null,
+      "resources": {
+        "observed": true,
+        "samples": 25656,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 1698816000,
+        "sampled_peak_private_bytes": 513548288,
+        "gpu_memory_measured": false,
+        "physical_device_memory_measured": false
+      },
+      "name": "recovery-a",
+      "request_sha256": "ab4547e4952da8d7e02576f4ba745b94b92372fa957fcb8ca7607904d91a0d6f",
+      "case": 0,
+      "prompt": "A red ceramic teapot on a wooden table, studio photograph, soft light",
+      "parameters": {
+        "width": 512,
+        "height": 512,
+        "steps": 20,
+        "cfg": 7.0,
+        "sampler": "euler",
+        "scheduler": "discrete",
+        "seed": 42,
+        "threads": 4,
+        "vaeTiling": true,
+        "flowShift": 0
+      },
+      "output_exists": true,
+      "progress_phase_consistent": true,
+      "loading_progress_events": 2,
+      "generation_progress_events": 94,
+      "sampling_steps_observed": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20
+      ],
+      "passed": true,
+      "image": {
+        "width": 512,
+        "height": 512,
+        "format": "PNG",
+        "mode": "RGB",
+        "sha256": "b142b765b526fa018601aeaf5e62d8b6b062137283349b5588094f98f46e3e2c",
+        "bytes": 367115,
+        "channel_mean": [
+          177.93830490112305,
+          45.58187484741211,
+          38.71958923339844
+        ],
+        "channel_stddev": [
+          50.86422492436051,
+          32.830655128999524,
+          25.53812621701125
+        ],
+        "extrema": [
+          [
+            0,
+            255
+          ],
+          [
+            0,
+            151
+          ],
+          [
+            0,
+            152
+          ]
+        ],
+        "entropy": 8.14477645898643
+      }
+    }
+  ],
+  "controls": [
+    {
+      "returncode": 1,
+      "seconds": 0.11522790003800765,
+      "events": [
+        {
+          "event": "error",
+          "message": "Unsupported engine request version"
+        }
+      ],
+      "protocol_errors": [],
+      "logs_truncated": [
+        false,
+        false
+      ],
+      "cancelled": false,
+      "timed_out": false,
+      "cancel_trigger": null,
+      "cancel_to_exit_seconds": null,
+      "resources": {
+        "observed": true,
+        "samples": 6,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 6430720,
+        "sampled_peak_private_bytes": 2715648,
+        "gpu_memory_measured": false,
+        "physical_device_memory_measured": false
+      },
+      "name": "bad-schema",
+      "request_sha256": "53bd9e5d889f59ae11bf8b5dd2b83c3157620c29ca497ad427703b7eee84033f",
+      "passed": true
+    },
+    {
+      "returncode": 1,
+      "seconds": 0.1141108000301756,
+      "events": [
+        {
+          "event": "error",
+          "message": "Invalid prompt or output"
+        }
+      ],
+      "protocol_errors": [],
+      "logs_truncated": [
+        false,
+        false
+      ],
+      "cancelled": false,
+      "timed_out": false,
+      "cancel_trigger": null,
+      "cancel_to_exit_seconds": null,
+      "resources": {
+        "observed": true,
+        "samples": 6,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 6434816,
+        "sampled_peak_private_bytes": 2686976,
+        "gpu_memory_measured": false,
+        "physical_device_memory_measured": false
+      },
+      "name": "empty-prompt",
+      "request_sha256": "cf3c3ba9ef209489fc65c31ee7f9cd9652e184cf349f29cace0f1413e28e4ffb",
+      "passed": true
+    },
+    {
+      "returncode": 1,
+      "seconds": 0.09261900000274181,
+      "events": [
+        {
+          "event": "error",
+          "message": "Native parameter out of bounds: threads"
+        }
+      ],
+      "protocol_errors": [],
+      "logs_truncated": [
+        false,
+        false
+      ],
+      "cancelled": false,
+      "timed_out": false,
+      "cancel_trigger": null,
+      "cancel_to_exit_seconds": null,
+      "resources": {
+        "observed": true,
+        "samples": 5,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 6426624,
+        "sampled_peak_private_bytes": 2682880,
+        "gpu_memory_measured": false,
+        "physical_device_memory_measured": false
+      },
+      "name": "bad-threads",
+      "request_sha256": "c5172322ebe4c6b400b3f6e3dedddae0bd072a8627c3196bfa703272d9c8a568",
+      "passed": true
+    },
+    {
+      "returncode": 1,
+      "seconds": 19.05253470002208,
+      "events": [
+        {
+          "event": "stage",
+          "stage": "loading"
+        },
+        {
+          "event": "progress",
+          "seconds": 0.0,
+          "stage": "loading",
+          "step": 0,
+          "steps": 1
+        },
+        {
+          "event": "progress",
+          "seconds": 0.019999980926513672,
+          "stage": "loading",
+          "step": 1,
+          "steps": 1
+        },
+        {
+          "event": "stage",
+          "stage": "generating"
+        },
+        {
+          "event": "progress",
+          "seconds": 1000.0000610351562,
+          "stage": "generating",
+          "step": 0,
+          "steps": 196
+        },
+        {
+          "event": "progress",
+          "seconds": 0.0011020408710464835,
+          "stage": "generating",
+          "step": 196,
+          "steps": 196
+        },
+        {
+          "event": "progress",
+          "seconds": 0.0,
+          "stage": "generating",
+          "step": 0,
+          "steps": 20
+        },
+        {
+          "event": "progress",
+          "seconds": 2000.0001220703125,
+          "stage": "generating",
+          "step": 0,
+          "steps": 686
+        },
+        {
+          "event": "progress",
+          "seconds": 0.00031486881198361516,
+          "stage": "generating",
+          "step": 686,
+          "steps": 686
+        },
+        {
+          "event": "progress",
+          "seconds": 18.115177154541016,
+          "stage": "generating",
+          "step": 1,
+          "steps": 20
+        }
+      ],
+      "protocol_errors": [],
+      "logs_truncated": [
+        false,
+        false
+      ],
+      "cancelled": true,
+      "timed_out": false,
+      "cancel_trigger": {
+        "event": "progress",
+        "seconds": 18.115177154541016,
+        "stage": "generating",
+        "step": 1,
+        "steps": 20
+      },
+      "cancel_to_exit_seconds": 0.22633900004439056,
+      "resources": {
+        "observed": true,
+        "samples": 920,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 1699016704,
+        "sampled_peak_private_bytes": 513187840,
+        "gpu_memory_measured": false,
+        "physical_device_memory_measured": false
+      },
+      "name": "cancel-after-step",
+      "request_sha256": "e66750eee97b864205553a96858ac95a31b335364367cf7befce2f4bcc343ca9",
+      "case": 0,
+      "prompt": "A red ceramic teapot on a wooden table, studio photograph, soft light",
+      "parameters": {
+        "width": 512,
+        "height": 512,
+        "steps": 20,
+        "cfg": 7.0,
+        "sampler": "euler",
+        "scheduler": "discrete",
+        "seed": 42,
+        "threads": 4,
+        "vaeTiling": true,
+        "flowShift": 0
+      },
+      "output_exists": false,
+      "progress_phase_consistent": true,
+      "loading_progress_events": 2,
+      "generation_progress_events": 6,
+      "sampling_steps_observed": [
+        0,
+        1
+      ],
+      "passed": true
+    }
+  ],
+  "files": {
+    "bad-schema.json": {
+      "bytes": 834,
+      "sha256": "53bd9e5d889f59ae11bf8b5dd2b83c3157620c29ca497ad427703b7eee84033f"
+    },
+    "bad-schema.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "bad-schema.stdout": {
+      "bytes": 66,
+      "sha256": "65b69170d080e81bf5160766638a2a6aeab90911459618ff6d647a005b1b876f"
+    },
+    "bad-threads.json": {
+      "bytes": 848,
+      "sha256": "c5172322ebe4c6b400b3f6e3dedddae0bd072a8627c3196bfa703272d9c8a568"
+    },
+    "bad-threads.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "bad-threads.stdout": {
+      "bytes": 71,
+      "sha256": "360132448d63c7050ea069dcd057b665f5ff85ec70d0db5a2ba95893e12fcd5e"
+    },
+    "cancel-after-step-capture.json": {
+      "bytes": 2633,
+      "sha256": "079995d805d1fc5b2712a9b18a04fc145893b14eb6fdce17634e508f8fc72c9c"
+    },
+    "cancel-after-step.json": {
+      "bytes": 854,
+      "sha256": "e66750eee97b864205553a96858ac95a31b335364367cf7befce2f4bcc343ca9"
+    },
+    "cancel-after-step.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "cancel-after-step.stdout": {
+      "bytes": 792,
+      "sha256": "b4d45ca1ffbf7cf76b8594b27a59399d2f5e4adcf87c8989a1efa6a7a87643b9"
+    },
+    "empty-prompt.json": {
+      "bytes": 780,
+      "sha256": "cf3c3ba9ef209489fc65c31ee7f9cd9652e184cf349f29cace0f1413e28e4ffb"
+    },
+    "empty-prompt.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "empty-prompt.stdout": {
+      "bytes": 56,
+      "sha256": "ba94da52f0e8f748947125cd9723791eeeb5f16cf73ccfaeec9735f25d38a9ea"
+    },
+    "info.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "info.stdout": {
+      "bytes": 168,
+      "sha256": "3491fde11126028c603a62dc8815cd677c67eb7f8f81f5e62ad49d02eee713a6"
+    },
+    "prompt-a-capture.json": {
+      "bytes": 14748,
+      "sha256": "65a2eacacde06c703866d7a55737c834551da3181a0df9e70e69b6089ea2fcfb"
+    },
+    "prompt-a.json": {
+      "bytes": 845,
+      "sha256": "fb1db116d94f97650c70675e076977a5586c20fc5121c752d2085a98e3bb284b"
+    },
+    "prompt-a.png": {
+      "bytes": 367115,
+      "sha256": "b142b765b526fa018601aeaf5e62d8b6b062137283349b5588094f98f46e3e2c"
+    },
+    "prompt-a.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "prompt-a.stdout": {
+      "bytes": 7962,
+      "sha256": "10ea296a496e8407d8dc81a5b39e23ab55778fc010c6634041ee16935cfaed3d"
+    },
+    "prompt-b-capture.json": {
+      "bytes": 13992,
+      "sha256": "8d9fdd278ca1589a5836074c79b00abed9b4a01cb57b3884e1f8652e9ee2793f"
+    },
+    "prompt-b.json": {
+      "bytes": 852,
+      "sha256": "e858132f39b74e240305f259f369e2a21efcc7a9dabcf1c5dd3aaa7d36300fdd"
+    },
+    "prompt-b.png": {
+      "bytes": 598785,
+      "sha256": "78e61f1a3b50ee52056aeb8d799eeff827b45949b11b49d7d44527a49a9d88c0"
+    },
+    "prompt-b.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "prompt-b.stdout": {
+      "bytes": 7479,
+      "sha256": "e6b82438140f81e9a30332eed47a2c3de23c3a6fca8731d86823a82397fc81df"
+    },
+    "recovery-a-capture.json": {
+      "bytes": 16583,
+      "sha256": "f89604b9829036d869c78bcbe9181aebb84bc5da3b8d987543276dddb9bb2546"
+    },
+    "recovery-a.json": {
+      "bytes": 847,
+      "sha256": "ab4547e4952da8d7e02576f4ba745b94b92372fa957fcb8ca7607904d91a0d6f"
+    },
+    "recovery-a.png": {
+      "bytes": 367115,
+      "sha256": "b142b765b526fa018601aeaf5e62d8b6b062137283349b5588094f98f46e3e2c"
+    },
+    "recovery-a.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "recovery-a.stdout": {
+      "bytes": 9123,
+      "sha256": "0f5778ff4571c40b7ce3cb8ffb78dc75ca4cb6f36e00544175e6862950379ad3"
+    }
+  },
+  "capture_directory": "build/sd15-trained-tests/run-1793273348967459600-489254f1",
+  "aba_bitwise_identical": true,
+  "distinct_prompt_images": true,
+  "failures": [],
+  "host_execution_checks_passed": true,
+  "trained_model_executed": true,
+  "production_worker_source_unmodified": true,
+  "production_vocabulary_source_unmodified": true,
+  "external_vocabulary": true,
+  "backend": "cpu",
+  "fixture": false,
+  "all_assets_already_present": true,
+  "asset_download_attempted": false,
+  "android_compiled": false,
+  "physical_android": false,
+  "app_executed": false,
+  "semantic_quality_accepted": false,
+  "device_resource_fit_accepted": false,
+  "android_background_accepted": false,
+  "complete_release_accepted": false,
+  "input_fingerprint": {
+    "app/src/main/assets/model-bundles.json": "bb2272dfa95443c9391fb858fd19b52d539126ca209319c190b420e734bc97b8",
+    "native/sd_policy.hpp": "c7d987ffc6b905fbad9d6a47be98d10f57b2060728f00801742a4ec346a5c7ba",
+    "native/sd_worker.cpp": "47e1c3344c63fb90bc240e2743f8257904e831b1597b9d0b9bd780011e8969d0",
+    "native/vocab_external.cpp": "8bfe3af4f45363554f58009efcd7404e3af9da768cb65762de6c6b91621c81f1",
+    "research/sd_host/CMakeLists.txt": "0870d59e689181eddd9690cc537da9b9abf4a252791ae6dd0506aa95fe4051d3",
+    "research/sd_host/compat/sys/prctl.h": "87c9ddf82ce059bf303486b0e10b22dce6d972e87f83836d148e631dcdad9c9e",
+    "research/sd_host/compat/unistd.h": "e467e7f5855c286b3ce40268146ed34d153a5fbf8a42d5c36b26a6293142068b",
+    "research/sd_host/NOTICE": "90e18935ca8ba71ac1a5ce59e3a2f0b0580cd246877f65cba402deff67eb18fc",
+    "research/sd_host/platform.hpp": "c377ed1b676707a469a192d96ae9b748802e1f62ad0674366b593b2b5b2daf67",
+    "third_party/engine-lock.json": "1341d53deca6412779d197b5fc978a37a55462ee4d86df4b6db4b3c7bf97ec7a",
+    "third_party/notices/sd-sources.json": "91ee744071aa93c4bd4d40476d3582fa4bf4d00a628527e196d4856c06ec77c1",
+    "tools/build_native.py": "f3876b3c254ee367a55f15bcbf9cd8c0dc2eb243b53b59796a282f2afc4a7c11",
+    "tools/build_sd_host.py": "25943d201f98b806c15df691f87fd496f7988f4d104e92549bf5a3ed2e787e13",
+    "tools/fetch_sd15_trained.py": "91392401d9739f15b14fa4e42b74f13bbdd719a382746541cc69952966e6f307",
+    "tools/test_sd15_trained.py": "60ecc9c6079208b2178d6796dcbf28dd241babbdc0b24d35814201f7552bd4b2"
+  }
+}

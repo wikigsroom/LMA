@@ -76,3 +76,8 @@ The [old-VAE preparation graphs and converter](../research/ltx098_vae_prepare/NO
 ## dev.22 asset-preparation programs / 运行资产准备器
 
 `engine-lock.json.preparations` separately pins the native DiT/VAE preparers. Their portable I/O/SHA/half conversion and model-free architecture resources are foundation code. Nine graphs contain no learned tensors; the learned timestep multiplier and statistics remain external user assets. Packaged notices include `ltx098-Lightricks-Apache-2.0.txt` and the pinned JSON notice. Original LTX checkpoint weights retain their separately displayed LTX-Video Open Weights 0.x license and are not shipped. See [中文](../docs/MODEL_PREPARATION.md) / [English](../docs/MODEL_PREPARATION.en.md). Generation registration, phone execution and quality acceptance are separate.
+
+
+## dev.24 trained SD1.5 developer port and LTX modulation
+
+The [native Windows SD port](../research/sd_host/NOTICE) adds original MIT parent-lifetime compatibility code only. Production worker/policy/external-vocabulary sources remain shared with Android and pinned sd.cpp/GGML attribution is retained. The exact SD1.5 Q4 checkpoint and CLIP merges are user-external CreativeML Open RAIL-M assets, never Git/APK payloads; [中文](../docs/SD15_TRAINED.md) / [English](../docs/SD15_TRAINED.en.md). The [isolated LTX modulation candidate](../research/ltx098_modulation/NOTICE) retains Apache-2.0 and existing pinned dependencies, without learned data, App registration or numerical acceptance. Matplotlib/FFmpeg media are developer-host tools only.

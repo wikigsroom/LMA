@@ -2,7 +2,7 @@
 
 [中文](DEVELOPMENT.md) · [Full scope](MULTIMODAL_RELEASE_PLAN.en.md) · [Build](BUILD.en.md) · [English home](../README.en.md)
 
-The current public release remains **v0.2.0**. This branch is **0.3.0-dev.22 / versionCode 26**, not the complete v0.3.0, and has no new Release. F-01–F-12, selections 01–14/16/17 and frozen subtargets still belong to one delivery; these are internal implementation checkpoints.
+The current public release remains **v0.2.0**. This branch is **0.3.0-dev.24 / versionCode 28**, not the complete v0.3.0, and has no new Release. F-01–F-12, selections 01–14/16/17 and frozen subtargets still belong to one delivery; these are internal implementation checkpoints.
 
 ## Implemented development code
 
@@ -47,7 +47,7 @@ Custom manifests gain neither device-validated nor checked-uncensored status. Un
 
 sd.cpp is pinned to `be486498eadc29dc3cd234d944c2180ed42b1415`, ggml to `a5915eb0e47adef21c3f25b889a008925ea838c2`, built using project-local NDK 30.0.16248370 on native Windows. The added worker SHA256 is `01e6c0a37fc56bb9268d0890c71d8dae57bd0ac41922cb2ec64ad6e5e7fd1d3c`. See [engine-lock.json](../third_party/engine-lock.json) for hashes/notices. Only actual compiled modules are registered, without empty providers counted as support.
 
-The SD1.5 candidate combines [Second State’s pinned GGUF](https://huggingface.co/second-state/stable-diffusion-v1-5-GGUF/tree/031b5f5df991f511b3f5fa8fed6d99048ababb69) and the [original CLIP merges](https://huggingface.co/stable-diffusion-v1-5/stable-diffusion-v1-5/blob/451f4fe16113bff5a5d2269ed5ad43b0592e9a14/tokenizer/merges.txt), totaling 1,567,293,035 bytes under the source CreativeML Open RAIL-M terms. Only metadata, publisher hashes and the small vocabulary were checked, without downloading weights. The vocabulary exactly matches the pinned engine’s original data. Recipe metadata ships with the App; user-selected assets do not. An unselected catalogue candidate is not a downloaded Local model. This is not accepted execution support; see [bundle-evidence.json](../catalogue/bundle-evidence.json).
+The pinned SD1.5 developer assets have been explicitly acquired and fully SHA256-verified: checkpoint plus external CLIP merges, 1,567,293,035 bytes. [Production-source trained host validation](SD15_TRAINED.en.md) covers A/B/A, sampler cancellation/recovery and resources; dev.24 corrects loading/generation progress. These assets stay outside the App, with no automatic download or Android/quality/background acceptance.
 
 ## Remaining work in the same release
 
@@ -214,3 +214,8 @@ The full original-forward review is not accepted: 157 of 163 checks pass and six
 ## dev.22: App runtime-asset preparation
 
 [Complete design](MODEL_PREPARATION.en.md) / [中文](MODEL_PREPARATION.md) / [Numbered delivery and full pending scope](releases/v0.3.0-dev.22.md). Users select/download/import the pinned source and explicitly confirm preparation. Trusted plans share jobs and the execution slot; derived assets remain independently manageable. Forty-four core contracts and one complete trained production-Java preparation passed with two native programs and 20 outputs totaling 6,061,184,991 bytes. Android compilation/packaging does not establish Service, SAF, converter or screen-off execution. There are six fixed bundle candidates and 34 HF component templates; Recommended remains m08→m06→m01. Six prior video float failures and all frozen targets still block the same complete v0.3.0.
+
+
+## dev.24: trained SD1.5 and old-LTX modulation
+
+[SD1.5 implementation](SD15_TRAINED.en.md) adds fixed trained Q4/external-merges CPU execution of production C++ sources, corrected progress phases, sampler cancellation/recovery, PNG/resource records and a labelled [actual-image slideshow](media/development/sd15-trained-slideshow.gif). [LTX modulation](LTX098_MODULATION.en.md) records 114 original trained sites, two native eight-step samplers, 478 verified raw files and a [measured error plot](media/development/ltx098-modulation-errors.png); both new B conditions still fail. Host execution, UI fixtures, Android compilation and complete phone/quality/background acceptance remain separate. [Numbered implementation and full pending scope](releases/v0.3.0-dev.24.md).

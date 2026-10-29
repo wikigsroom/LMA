@@ -1,5 +1,5 @@
 {
-  "version": "0.3.0-dev.23",
+  "version": "0.3.0-dev.24",
   "kind": "development UI with explicit simulated native bridge",
   "android_device": false,
   "model_inference": false,
@@ -308,13 +308,13 @@
     },
     {
       "file": "06-queue-results.png",
-      "bytes": 48621,
-      "sha256": "98d12eec700077f4e0404a7b9aa0ca639732054cb158ade28213bf6465f0a422"
+      "bytes": 48571,
+      "sha256": "50cd901ca4fefb47dbe0a6e4a04f1a3b03f5923857f1db8b65fa1882b06766ec"
     },
     {
       "file": "07-cancelled.png",
-      "bytes": 48806,
-      "sha256": "f9c870a08b68d3601f323aa2e479b7a9904a1bb5e6c72f7ea08a4e8824b31ee9"
+      "bytes": 48758,
+      "sha256": "9611c68707cb17d5ce9d031ac4975c44d01256e3ab09b64bee2012700f1ec34b"
     },
     {
       "file": "08-zero-model-api.png",
@@ -383,8 +383,8 @@
     },
     {
       "file": "21-model-version-history.png",
-      "bytes": 49631,
-      "sha256": "2516ef4eed2a3cc5ede02e20bc511dccfea3bb9899f0a399e3ce38eba660fb86"
+      "bytes": 49696,
+      "sha256": "40e0cfd6233341abe55be02286921521ce7a23903614d51a188967f5aefd811b"
     },
     {
       "file": "22-text-model-settings.png",
@@ -398,8 +398,8 @@
     },
     {
       "file": "24-text-result.png",
-      "bytes": 46995,
-      "sha256": "700167efb4f5817b8324bcddecd832e7235c5e7ed85b7aabced6f08287b5b183"
+      "bytes": 46890,
+      "sha256": "68cb4bf3d9db6a5dcd888e45d69549f0214f197ba8006a9361376b8936732158"
     },
     {
       "file": "25-migrated-text-model.png",
@@ -598,13 +598,13 @@
     },
     {
       "file": "64-preparation-queue.png",
-      "bytes": 44162,
-      "sha256": "eff934d9cffe64dab86a41798e78c662d3c390516fb76a3abd76aac34975d515"
+      "bytes": 43911,
+      "sha256": "9270a4ed06f1700382c0d912686b9e6ae60d461e5929bbb2213433c6d03413cf"
     },
     {
       "file": "65-preparation-management.png",
-      "bytes": 43259,
-      "sha256": "0c0004af38579292a1d8d61b025314df26677a0425943863aa9a62f824f4a671"
+      "bytes": 43118,
+      "sha256": "ebb99cb5a810ffac764ef2d63dc5b312bf6dc00d3ec4fe7947755814cb877680"
     },
     {
       "file": "66-assembly-review.png",
@@ -613,8 +613,8 @@
     },
     {
       "file": "67-assembly-queue.png",
-      "bytes": 44337,
-      "sha256": "dc4a0e288b27aa7adaddb96b530c40d6f36b8df8dfe75b1301fda57d370588cd"
+      "bytes": 44269,
+      "sha256": "4d527573e109bcd59333737379d8bc7aa7457ec730d9d0df43a2740607192c88"
     },
     {
       "file": "68-assembly-dependencies.png",
@@ -623,13 +623,13 @@
     },
     {
       "file": "foundation-ui.gif",
-      "bytes": 10816107,
-      "sha256": "5c40ed5f6fbde4eeeb9f4c162069d91da845a34da21ce2e68a2dcc1336e46f0b"
+      "bytes": 9854914,
+      "sha256": "6f430a748d828113b95e330beb5539ab264da5f1beee9faa5ce6ba1927baadef"
     },
     {
       "file": "foundation-ui.mp4",
-      "bytes": 4970331,
-      "sha256": "530ce56e7fb17318d0267087f9ec65ad3200a416034b45096d3166627705e3db"
+      "bytes": 4976090,
+      "sha256": "9d376f7f7627d5f25ef9b88377eb2365d2ec67250c6e6429869d152a7b3a99c2"
     },
     {
       "file": "ltx098-host-comparison.gif",
@@ -647,9 +647,34 @@
       "sha256": "49d1cead4be091aecc67eda95ba46b4b96284898ac6586180d8ec13572bbc7e3"
     },
     {
+      "file": "ltx098-modulation-errors.png",
+      "bytes": 200160,
+      "sha256": "3d76129c218189d684951c06194b3aa21c3fc2b406a276913621298b69fb2442"
+    },
+    {
       "file": "ltx098-native-prepare.png",
       "bytes": 110724,
       "sha256": "338251e5582f7f4a0dbe37894a84f24f3ba77ee742e15dfc53b2b479892f5812"
+    },
+    {
+      "file": "ltx098-staging-comparison.gif",
+      "bytes": 5109715,
+      "sha256": "64671d8e259cf8935154851f48d074b1e7e1e60f71751fee7c892570efc12856"
+    },
+    {
+      "file": "ltx098-staging-comparison.mp4",
+      "bytes": 112359,
+      "sha256": "bf39d1cb411023c2b0af3d053c4ff2a73e591bcfc914e258eb15fafe26147deb"
+    },
+    {
+      "file": "ltx098-staging-errors.png",
+      "bytes": 110181,
+      "sha256": "012d45f9f3d51c48678c45598f8410873894c5c3eebc307e3e8c364899c26ac9"
+    },
+    {
+      "file": "ltx098-staging-frames.png",
+      "bytes": 186923,
+      "sha256": "6959bdb8dddeab93e68e11cfa2c5c1249da85e6350bb824fb7e29bac2eb85306"
     },
     {
       "file": "ltx098-text-roundoff.png",
@@ -666,7 +691,7 @@
     "app/src/main/assets/app.css": "f2cb7b5ee9de8f3afac793e694dcf9fde0a855c0d4c7053ff986cc2a6d2bd3b1",
     "app/src/main/assets/app.js": "2240021b034e6259ac110fc48ede81c43be6fabf7200dde5ced7eeacbe9e5468",
     "app/src/main/assets/asset-preparations.json": "3e11450877047dd4c63f11265d0549c9f50a4d25a33ca5b8f2ee6a44c38f864a",
-    "app/src/main/assets/engine-builds.json": "c9e319e7cba397cad1993ad290743a65bc566192339fd6d6c06cbcc99675468d",
+    "app/src/main/assets/engine-builds.json": "18fc05c5eeab9a2b77418be24cb7621ed9b00d180bc9bf958ba8e3c1b1e9f742",
     "app/src/main/assets/foundation.css": "7ef5fcb33c697d8d30912eb61524f828af18487ccf037b81e88bdfadcb48ae94",
     "app/src/main/assets/foundation.js": "ffbfc2f7e550ff33555b4d5460fca84071553fee5ee81ae9aaa08a0a66970869",
     "app/src/main/assets/index.html": "406a11f10a3380d2db0325ffd148dcb55b2eabe35aa2bcd001864aafa57afd62",

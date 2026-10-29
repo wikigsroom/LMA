@@ -2,7 +2,7 @@
 
 [English](DEVELOPMENT.en.md) · [完整范围](MULTIMODAL_RELEASE_PLAN.md) · [构建](BUILD.md) · [中文首页](../README.md)
 
-当前公开发行仍为 **v0.2.0**。本分支为 **0.3.0-dev.22 / versionCode 26**，不是完整 v0.3.0，也没有创建对应 Release。下一版本仍一次交付 F-01–F-12、01–14 / 16 / 17 及冻结子目标；以下是同一版本内的实施记录，不是拆版安排。
+当前公开发行仍为 **v0.2.0**。本分支为 **0.3.0-dev.24 / versionCode 28**，不是完整 v0.3.0，也没有创建对应 Release。下一版本仍一次交付 F-01–F-12、01–14 / 16 / 17 及冻结子目标；以下是同一版本内的实施记录，不是拆版安排。
 
 ## 已写入开发代码的部分
 
@@ -47,7 +47,7 @@ APK 仅含通用应用代码、引擎、目录 / 标签 / 配方元数据及许�
 
 sd.cpp 来源固定为 `be486498eadc29dc3cd234d944c2180ed42b1415`，ggml 为 `a5915eb0e47adef21c3f25b889a008925ea838c2`，使用本项目内的 NDK 30.0.16248370 原生 Windows 编译。独立新增 worker 的 SHA256 为 `01e6c0a37fc56bb9268d0890c71d8dae57bd0ac41922cb2ec64ad6e5e7fd1d3c`。许可与文件哈希见 [engine-lock.json](../third_party/engine-lock.json)。新引擎仅注册真实已编译模块，不登记空 provider 充数。
 
-SD1.5 候选包使用 [Second State 的固定 GGUF 权重](https://huggingface.co/second-state/stable-diffusion-v1-5-GGUF/tree/031b5f5df991f511b3f5fa8fed6d99048ababb69) 和[原模型的 CLIP merges](https://huggingface.co/stable-diffusion-v1-5/stable-diffusion-v1-5/blob/451f4fe16113bff5a5d2269ed5ad43b0592e9a14/tokenizer/merges.txt)，共 1,567,293,035 字节，按 CreativeML Open RAIL-M 来源许可使用。仅核对公开元数据、权重发布者哈希及小型词表，不下载权重；词表与固定引擎原数据一致。配方元数据可以随 APK 更新，模型资产仍需用户下载，未选择时不会出现在已下载“本地”。该候选没有获得运行支持验收；见 [bundle-evidence.json](../catalogue/bundle-evidence.json)。
+SD1.5 固定候选的开发者资产已显式取得并完整验 SHA256；[生产源码真实权重主机验证](SD15_TRAINED.md)使用原 checkpoint 与外部 CLIP merges，共 1,567,293,035 字节。dev.24 修正加载/生成进度，新增真实 A/B/A、采样中取消/恢复及资源检查。App 不包含这些文件，不自动下载；Android 输出/质量/后台仍待验收。
 
 ## 尚未完成的同版工作
 
@@ -219,3 +219,8 @@ Internal dev.19 / 内部 dev.19：[旧 Local / Realtime 原生 RQ](MOSS_RQ_ENGIN
 ## dev.22：运行资产准备接入 App
 
 [完整方案](MODEL_PREPARATION.md) / [English](MODEL_PREPARATION.en.md) / [编号交付和完整待办](releases/v0.3.0-dev.22.md)。源模型固定版本由用户下载或导入；明确确认后，受信任方案复用共享任务/执行槽，独立管理派生资产。44项核心契约与一次生产Java核心完整训练转换（两个原生程序、20结果、6,061,184,991字节）通过；Android仅编译/打包，不宣称Service/SAF/准备/锁屏实测。源码候选数现为6，HF组件配方仍34；推荐m08→m06→m01不变。六项既有视频浮点失败及全部冻结范围继续阻塞同一完整v0.3.0。
+
+
+## dev.24：真实 SD1.5 与旧 LTX 调制 / Trained SD1.5 and old-LTX modulation
+
+[SD1.5 中文](SD15_TRAINED.md) / [English](SD15_TRAINED.en.md)：固定真实 Q4 checkpoint / 外部 merges、生产 C++ 源码 CPU 执行、阶段修正、采样取消和恢复、PNG/资源及[实际图片轮播](media/development/sd15-trained-slideshow.gif)。[LTX 中文](LTX098_MODULATION.md) / [English](LTX098_MODULATION.en.md)：114 原训练调制观察、两次原生八步采样、478 原文件复算及[实测误差图](media/development/ltx098-modulation-errors.png)；两条 B 条件仍失败。主机实测、UI FIXTURE、Android 编译和完整手机/质量/后台验收分开；[编号实现与全部待办](releases/v0.3.0-dev.24.md)。

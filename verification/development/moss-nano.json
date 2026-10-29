@@ -71,7 +71,7 @@
     "tests/moss-host/com/lma/app/MossNanoTest.java": "b972d2aa27b47ed09854be4d75fa28a7fb9ff9fcbba24560b787c21e1e9c2a7a",
     "tests/native/onnx_external_test.cpp": "91fbb9b607ac22676d5e57dfa8897b39b1cd98fad785ba459b4791d28152cbd8",
     "tests/tts-host/com/lma/app/LmaApp.java": "9f27bd7188d03aa4eb95b007111daff697d39515dc41884d4569e2f382d0577b",
-    "third_party/engine-lock.json": "45db8985550ddcac50ce6b4967f1bbe9433de38ce0e32734a12f626bc52ba687",
+    "third_party/engine-lock.json": "1341d53deca6412779d197b5fc978a37a55462ee4d86df4b6db4b3c7bf97ec7a",
     "tools/native_payload.py": "bb831ad2c08ac0ef7817272ac94c098bb47576fc658de30f482d2dd6d5edac06",
     "tools/test_moss_nano.py": "1e85fa998d92d20ff57f75b8ab1bdd32cd7b87479f659c72fc3b07c3f1a793e0"
   }

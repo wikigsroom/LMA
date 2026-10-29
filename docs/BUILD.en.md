@@ -143,3 +143,8 @@ For [native old-VAE asset preparation](LTX098_VAE_PREPARE.en.md), audit the temp
 ## dev.22: packaging preparation programs and evidence
 
 Build both [preparers](MODEL_PREPARATION.en.md) sequentially with native Windows/NDK tools. `tools/package_preparations.py` packages pinned programs and nine audited model-free graphs, without downloading or converting weights. `tools/preparation_build_inputs.py` extends APK fingerprints with all preparation sources/locks/contracts, leaving the unchanged generic helper used by neural-math records intact. Run `tools/build.py`, `tools/test_preparations.py`, its optional `--trained` execution using the existing pinned source, package verification/Lint/relevant regressions, development export and repository audit separately. Conversion outputs/checkpoints never enter APK or Git. The build has 77 Java compilation inputs and 29 native files; original local signing files are preserved. Android, complete video numerical/quality acceptance and complete Release remain open.
+
+
+## dev.24 native incremental builds
+
+`tools/build_native.py` reuses the existing CMake cache ASCII drive identity instead of opening a T: cache through R:. An occupied alias fails explicitly and preserves the cache. Only this workspace is mapped; the owner releases its own alias without borrowing/removing other mappings. See the [SD1.5 developer workflow](SD15_TRAINED.en.md); the Windows test executable is not packaged.

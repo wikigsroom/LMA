@@ -1,0 +1,19 @@
+{
+  "schema": "lma.ltx098-modulation-capture-audit/1",
+  "recomputed_modulation_sites": 114,
+  "raw_files_verified": 478,
+  "recomputed_sampler_steps": 16,
+  "all_recorded_metrics_reproduced": true,
+  "model_reexecuted": false,
+  "sources": {
+    "ltx098-modulation-step0.json": "b6b7a7070787041dc3f52b8c96e72ed77b7960eb50bbd035cb1cc573ecc572d5",
+    "ltx098-modulation-step7.json": "22f6eb4297638a4e727bd476731d4e0b636ae8bdfbdf8cd0141fcce790bc37b1",
+    "ltx098-modulation-reference-vulkan.json": "cb6f4e23671c1775a7f191b2d9d9f2d1ae1a3e6c43e3d2d863776deb921060a9",
+    "ltx098-modulation-f32-vulkan.json": "db78bed8159d8e6d67affb81e9e58e36e12ddde9b0ace5b28beb4d37ec60ed93"
+  },
+  "physical_android": false,
+  "complete_release_accepted": false,
+  "input_fingerprint": {
+    "tools/check_ltx098_modulation_evidence.py": "2f921d927895bfb55b77d9c0c74948637ed342a5eb5c86c28e991562e8e63f8c"
+  }
+}
