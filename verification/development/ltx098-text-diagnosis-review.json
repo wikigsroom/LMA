@@ -1,0 +1,17 @@
+{
+  "schema": "lma.ltx098-text-diagnosis-review/1",
+  "recomputed_tensor_comparisons": 314,
+  "hashed_raw_tensor_files": 628,
+  "reviewed_local_operator_comparisons": 120,
+  "native_output_matches_existing_baseline": true,
+  "reference_output_matches_existing_baseline": true,
+  "diagnosis_sha256": "21ab9b9473a775824a733a4d3ac944c5d0a5806cc42bf7ef67c47dca9a8c1d65",
+  "operators_sha256": "e8baaafcfbcbd3c4ccfaa030c0e40411123985aee9c19524dca8a175a05811cd",
+  "baseline_pipeline_sha256": "677004c760a4cc27b9de61d329692382f1719d6488824fa840506e567a44622b",
+  "physical_android": false,
+  "apk_changed": false,
+  "full_chain_numeric_accepted": false,
+  "input_fingerprint": {
+    "tools/review_ltx098_text_diagnosis.py": "cf926d13e370757f960c456dc72007211627f427d37834751237e000e08de414"
+  }
+}

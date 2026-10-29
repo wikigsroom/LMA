@@ -116,3 +116,7 @@ dev.21 SoulX App接入使用 [中文](SOULX_ENGINE.md) / [English](SOULX_ENGINE.
 旧 LTX 真实提示词串联见[中文](LTX098_PIPELINE.md) / [English](LTX098_PIPELINE.en.md) / [编号交付与完整待办](releases/v0.3.0-dev.21-ltx-pipeline.md)。开发导出新增 tensor / host / ARM64 / pipeline 四份记录，独立核对原始前向门槛、A/B/A 实际训练任务、真实视频媒体与资源范围。本轮 `ltx098_complete_prompt_to_video_host_executed=true`，严格数值验收字段 `ltx098_complete_prompt_to_video_host_tested=false`；兼容字段 `ltx098_trained_video_tested` 明确定义为完整 Android 目标验收，仍为 false。官方多尺度默认 / PixArt 权重身份、画质、App / 手机验收不得由主机视频替代。No new APK, tag or Release is created for this source-only checkpoint; complete frozen v0.3.0 acceptance remains mandatory.
 
 本轮实际状态：`ltx098_complete_prompt_to_video_host_executed=true`，`ltx098_complete_prompt_to_video_host_tested=false`，`ltx098_full_chain_numeric_accepted=false`。163项记录中6项浮点门槛失败，测试必须保留exit 1；开发审计即使通过也只表示失败记录 / 媒体 / 指纹一致，不能签发模型验收或完整Release。The six failed float comparisons remain required work in the same version.
+
+旧 LTX 文本数值[中文定位](LTX098_PRECISION.md) / [English](LTX098_PRECISION.en.md) / [编号交付](releases/v0.3.0-dev.21-ltx-precision.md)包含逐层 / 算子 / 重算记录与来源图。必须交叉核对原生及原始参考最终 SHA、628 原始文件审核、公开指标与图的来源；诊断成功或候选 embedding 改善都不得覆盖冻结完整链路的六项失败。`ltx098_t5_roundoff_repair_accepted=false` 保持，App / 真机 / 全部冻结模型与正式 Release 门槛保持；本轮不改 APK / tag / Release。
+
+候选 `ltx098-text-precision-attention.json` / `ltx098-text-precision-linear.json` 各三次完整T5，不等同完整视频验收。两份 `ltx098-precision-sampling-*.json` 是复核捕获的A轨迹，均未过原0.003门槛并保持exit 1；必须保留partial / reused / no-VAE / no-B-video范围，不能由开发审计成功覆盖失败结论。

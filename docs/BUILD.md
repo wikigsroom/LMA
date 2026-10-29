@@ -133,3 +133,5 @@ SoulX生产worker原生构建：`build_soulx.py`（主机）→ `build_soulx.py 
 旧 LTX 真实提示词管线按[中文完整复现](LTX098_PIPELINE.md)显式准备已有固定组件及外部资产，再顺序构建 `tools/build_ltx098_tensors.py` / `--android`，执行 `tools/test_ltx098_tensors.py` 与 `tools/test_ltx098_pipeline.py`。后者实际运行 A/B/A 三个训练任务和两个原始前向参考；无模型自动下载、无虚拟化或模拟器。开发 MP4 使用主机 FFmpeg，App 仍须接入同机 MediaCodec；源码后续不改 APK。
 
 当前完整管线测试按原门槛返回 exit 1，并写出163项记录中的6项浮点失败；两组RGB通过。可重放已捕获且指纹有效的输出核验，不重新冒充推理执行。[详见数值失败与复用逻辑](LTX098_PIPELINE.md)。
+
+旧 LTX 精度定位采用原生 Windows MSVC、已锁定的现有 GGML 静态库与独立源码副本；命令与前置资产见[中文指南](LTX098_PRECISION.md) / [English](LTX098_PRECISION.en.md)。不修改生产源、不自动取模型；314 / 628 / 120 为诊断 / 文件 / 算子数量。候选 F64 计算尚非 Android 构建或验收，不提升 APK 版本；全部完整链路门槛保持。

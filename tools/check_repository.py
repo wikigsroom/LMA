@@ -125,6 +125,10 @@ def main():
         vae = records["ltx098-vae.json"]
         from check_ltx098_pipeline_evidence import check as check_ltx_pipeline
         check_ltx_pipeline(records, status, ROOT, digest)
+        from check_ltx098_text_diagnosis_evidence import check as check_ltx_text_diagnosis
+        check_ltx_text_diagnosis(records, status, ROOT, digest)
+        from check_ltx098_text_precision_evidence import check as check_ltx_text_precision
+        check_ltx_text_precision(records, status, digest, ROOT)
         vae_lock = json.loads((ROOT / "third_party/ltx098-vae-source-lock.json").read_text(encoding="utf-8"))
         assert vae["checks"] >= 355 and vae["native_children"] >= 36 and len(vae["metrics"]) == 40 and len(vae["guards"]) >= 31
         assert vae["trained_decoder_tensors"] == 132 and vae["trained_decoder_parameters"] == 552814641

@@ -1,0 +1,759 @@
+{
+  "schema": "lma.ltx098-text-operators/1",
+  "metrics": [
+    {
+      "name": "block-0-attn-norm-same-input",
+      "max_abs": 1.1920928955078125e-07,
+      "relative_rmse": 4.0176371381018373e-08,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-0-ffn-norm-same-input",
+      "max_abs": 2.384185791015625e-07,
+      "relative_rmse": 4.086449333119395e-08,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-0-geglu-same-input",
+      "max_abs": 4.76837158203125e-07,
+      "relative_rmse": 2.6056523672658764e-08,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-0-sdpa-same-input",
+      "max_abs": 2.6226043701171875e-06,
+      "relative_rmse": 2.3747722707017594e-07,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-0-eager-attention-same-input",
+      "max_abs": 2.86102294921875e-06,
+      "relative_rmse": 1.9116557343200392e-07,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-1-attn-norm-same-input",
+      "max_abs": 2.384185791015625e-07,
+      "relative_rmse": 5.103638284673445e-08,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-1-ffn-norm-same-input",
+      "max_abs": 4.76837158203125e-07,
+      "relative_rmse": 5.817888277357625e-08,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-1-geglu-same-input",
+      "max_abs": 4.76837158203125e-07,
+      "relative_rmse": 2.8660824805064504e-08,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-1-sdpa-same-input",
+      "max_abs": 1.4454126358032227e-06,
+      "relative_rmse": 2.2242420618767874e-07,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-1-eager-attention-same-input",
+      "max_abs": 1.430511474609375e-06,
+      "relative_rmse": 1.9744269320751616e-07,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-2-attn-norm-same-input",
+      "max_abs": 1.1920928955078125e-07,
+      "relative_rmse": 2.64720994503798e-08,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-2-ffn-norm-same-input",
+      "max_abs": 7.152557373046875e-07,
+      "relative_rmse": 4.5211653159015116e-08,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-2-geglu-same-input",
+      "max_abs": 9.5367431640625e-07,
+      "relative_rmse": 4.0217063851340976e-08,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-2-sdpa-same-input",
+      "max_abs": 1.0728836059570312e-06,
+      "relative_rmse": 2.3439613510717994e-07,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-2-eager-attention-same-input",
+      "max_abs": 8.940696716308594e-07,
+      "relative_rmse": 1.8696610867708916e-07,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-3-attn-norm-same-input",
+      "max_abs": 2.384185791015625e-07,
+      "relative_rmse": 4.135322737699742e-08,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-3-ffn-norm-same-input",
+      "max_abs": 4.76837158203125e-07,
+      "relative_rmse": 4.68823293333409e-08,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-3-geglu-same-input",
+      "max_abs": 4.76837158203125e-07,
+      "relative_rmse": 3.9813376132160216e-08,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-3-sdpa-same-input",
+      "max_abs": 1.1920928955078125e-06,
+      "relative_rmse": 2.5228672900823616e-07,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-3-eager-attention-same-input",
+      "max_abs": 1.1920928955078125e-06,
+      "relative_rmse": 2.1272589573303577e-07,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-4-attn-norm-same-input",
+      "max_abs": 2.384185791015625e-07,
+      "relative_rmse": 4.3444226108332524e-08,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-4-ffn-norm-same-input",
+      "max_abs": 4.76837158203125e-07,
+      "relative_rmse": 5.157048099778571e-08,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-4-geglu-same-input",
+      "max_abs": 9.5367431640625e-07,
+      "relative_rmse": 3.89751941761695e-08,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-4-sdpa-same-input",
+      "max_abs": 2.6673078536987305e-06,
+      "relative_rmse": 2.5609226973835823e-07,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-4-eager-attention-same-input",
+      "max_abs": 2.7418136596679688e-06,
+      "relative_rmse": 2.216556774161945e-07,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-5-attn-norm-same-input",
+      "max_abs": 1.7881393432617188e-07,
+      "relative_rmse": 4.69738161269417e-08,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-5-ffn-norm-same-input",
+      "max_abs": 3.5762786865234375e-07,
+      "relative_rmse": 5.966944091569213e-08,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-5-geglu-same-input",
+      "max_abs": 4.76837158203125e-07,
+      "relative_rmse": 3.491153824404279e-08,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-5-sdpa-same-input",
+      "max_abs": 1.430511474609375e-06,
+      "relative_rmse": 2.5419884025477286e-07,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-5-eager-attention-same-input",
+      "max_abs": 1.1920928955078125e-06,
+      "relative_rmse": 2.1264309812034492e-07,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-6-attn-norm-same-input",
+      "max_abs": 1.1920928955078125e-07,
+      "relative_rmse": 2.5146869669151272e-08,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-6-ffn-norm-same-input",
+      "max_abs": 4.76837158203125e-07,
+      "relative_rmse": 5.5904655205742783e-08,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-6-geglu-same-input",
+      "max_abs": 4.76837158203125e-07,
+      "relative_rmse": 2.8014442858279917e-08,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-6-sdpa-same-input",
+      "max_abs": 1.430511474609375e-06,
+      "relative_rmse": 2.5401852607903627e-07,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-6-eager-attention-same-input",
+      "max_abs": 1.1324882507324219e-06,
+      "relative_rmse": 2.137292626225618e-07,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-7-attn-norm-same-input",
+      "max_abs": 2.384185791015625e-07,
+      "relative_rmse": 5.0884764073291656e-08,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-7-ffn-norm-same-input",
+      "max_abs": 3.5762786865234375e-07,
+      "relative_rmse": 4.7926059931464236e-08,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-7-geglu-same-input",
+      "max_abs": 4.76837158203125e-07,
+      "relative_rmse": 5.429126074887977e-10,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-7-sdpa-same-input",
+      "max_abs": 1.1920928955078125e-06,
+      "relative_rmse": 2.552933625586229e-07,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-7-eager-attention-same-input",
+      "max_abs": 1.1324882507324219e-06,
+      "relative_rmse": 2.239446834557538e-07,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-8-attn-norm-same-input",
+      "max_abs": 1.1920928955078125e-07,
+      "relative_rmse": 2.6151389083363496e-08,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-8-ffn-norm-same-input",
+      "max_abs": 1.7881393432617188e-07,
+      "relative_rmse": 5.542386916915837e-08,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-8-geglu-same-input",
+      "max_abs": 9.5367431640625e-07,
+      "relative_rmse": 2.0436711598192905e-08,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-8-sdpa-same-input",
+      "max_abs": 1.4007091522216797e-06,
+      "relative_rmse": 2.643499780526313e-07,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-8-eager-attention-same-input",
+      "max_abs": 1.3709068298339844e-06,
+      "relative_rmse": 2.3013744003585662e-07,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-9-attn-norm-same-input",
+      "max_abs": 2.384185791015625e-07,
+      "relative_rmse": 4.342763997502451e-08,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-9-ffn-norm-same-input",
+      "max_abs": 2.384185791015625e-07,
+      "relative_rmse": 4.8506809199550825e-08,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-9-geglu-same-input",
+      "max_abs": 4.76837158203125e-07,
+      "relative_rmse": 1.7230918411779318e-08,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-9-sdpa-same-input",
+      "max_abs": 1.6689300537109375e-06,
+      "relative_rmse": 2.727560975198476e-07,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-9-eager-attention-same-input",
+      "max_abs": 1.430511474609375e-06,
+      "relative_rmse": 2.3751614342343347e-07,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-10-attn-norm-same-input",
+      "max_abs": 1.1920928955078125e-07,
+      "relative_rmse": 3.676004950152132e-08,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-10-ffn-norm-same-input",
+      "max_abs": 2.384185791015625e-07,
+      "relative_rmse": 4.586474936897849e-08,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-10-geglu-same-input",
+      "max_abs": 4.76837158203125e-07,
+      "relative_rmse": 5.660555916508647e-10,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-10-sdpa-same-input",
+      "max_abs": 1.1920928955078125e-06,
+      "relative_rmse": 2.599129356497301e-07,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-10-eager-attention-same-input",
+      "max_abs": 1.1920928955078125e-06,
+      "relative_rmse": 2.309559425620129e-07,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-11-attn-norm-same-input",
+      "max_abs": 2.384185791015625e-07,
+      "relative_rmse": 5.149944677034347e-08,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-11-ffn-norm-same-input",
+      "max_abs": 2.384185791015625e-07,
+      "relative_rmse": 4.884324571179439e-08,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-11-geglu-same-input",
+      "max_abs": 4.76837158203125e-07,
+      "relative_rmse": 2.7636416189289537e-08,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-11-sdpa-same-input",
+      "max_abs": 1.5497207641601562e-06,
+      "relative_rmse": 2.5887222743887865e-07,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-11-eager-attention-same-input",
+      "max_abs": 1.4901161193847656e-06,
+      "relative_rmse": 2.2273954603252333e-07,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-12-attn-norm-same-input",
+      "max_abs": 1.7881393432617188e-07,
+      "relative_rmse": 4.531683672128821e-08,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-12-ffn-norm-same-input",
+      "max_abs": 1.1920928955078125e-07,
+      "relative_rmse": 4.506691800938649e-08,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-12-geglu-same-input",
+      "max_abs": 5.066394805908203e-07,
+      "relative_rmse": 1.2708884849165694e-08,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-12-sdpa-same-input",
+      "max_abs": 1.4901161193847656e-06,
+      "relative_rmse": 2.599375983518164e-07,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-12-eager-attention-same-input",
+      "max_abs": 1.7285346984863281e-06,
+      "relative_rmse": 2.2343039320283502e-07,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-13-attn-norm-same-input",
+      "max_abs": 3.5762786865234375e-07,
+      "relative_rmse": 4.142022834710593e-08,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-13-ffn-norm-same-input",
+      "max_abs": 1.1920928955078125e-07,
+      "relative_rmse": 5.2124686707357086e-08,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-13-geglu-same-input",
+      "max_abs": 9.5367431640625e-07,
+      "relative_rmse": 2.9364805266802206e-08,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-13-sdpa-same-input",
+      "max_abs": 1.430511474609375e-06,
+      "relative_rmse": 2.5606256531267667e-07,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-13-eager-attention-same-input",
+      "max_abs": 1.430511474609375e-06,
+      "relative_rmse": 2.197554969298778e-07,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-14-attn-norm-same-input",
+      "max_abs": 2.384185791015625e-07,
+      "relative_rmse": 5.310860224540961e-08,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-14-ffn-norm-same-input",
+      "max_abs": 5.960464477539063e-08,
+      "relative_rmse": 2.829095736461801e-08,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-14-geglu-same-input",
+      "max_abs": 1.9073486328125e-06,
+      "relative_rmse": 2.9355192251930947e-08,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-14-sdpa-same-input",
+      "max_abs": 1.5497207641601562e-06,
+      "relative_rmse": 2.628991809308576e-07,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-14-eager-attention-same-input",
+      "max_abs": 1.430511474609375e-06,
+      "relative_rmse": 2.3131138416618047e-07,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-15-attn-norm-same-input",
+      "max_abs": 4.76837158203125e-07,
+      "relative_rmse": 4.65962700887e-08,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-15-ffn-norm-same-input",
+      "max_abs": 1.1920928955078125e-07,
+      "relative_rmse": 3.321974537266844e-08,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-15-geglu-same-input",
+      "max_abs": 7.62939453125e-06,
+      "relative_rmse": 2.9740929504578372e-08,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-15-sdpa-same-input",
+      "max_abs": 2.1457672119140625e-06,
+      "relative_rmse": 2.7689481896582894e-07,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-15-eager-attention-same-input",
+      "max_abs": 1.9073486328125e-06,
+      "relative_rmse": 2.5259250489595343e-07,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-16-attn-norm-same-input",
+      "max_abs": 4.76837158203125e-07,
+      "relative_rmse": 3.246864437223602e-08,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-16-ffn-norm-same-input",
+      "max_abs": 1.1920928955078125e-07,
+      "relative_rmse": 4.954460557846175e-08,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-16-geglu-same-input",
+      "max_abs": 9.5367431640625e-07,
+      "relative_rmse": 1.7821768112785373e-08,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-16-sdpa-same-input",
+      "max_abs": 2.86102294921875e-06,
+      "relative_rmse": 2.782868314933286e-07,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-16-eager-attention-same-input",
+      "max_abs": 3.0994415283203125e-06,
+      "relative_rmse": 2.50509676399689e-07,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-17-attn-norm-same-input",
+      "max_abs": 4.76837158203125e-07,
+      "relative_rmse": 3.687126167884343e-08,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-17-ffn-norm-same-input",
+      "max_abs": 2.384185791015625e-07,
+      "relative_rmse": 3.924548518544799e-08,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-17-geglu-same-input",
+      "max_abs": 1.043081283569336e-06,
+      "relative_rmse": 1.935032122353814e-08,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-17-sdpa-same-input",
+      "max_abs": 2.384185791015625e-06,
+      "relative_rmse": 2.873053563961749e-07,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-17-eager-attention-same-input",
+      "max_abs": 3.0994415283203125e-06,
+      "relative_rmse": 2.6050175282062705e-07,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-18-attn-norm-same-input",
+      "max_abs": 4.76837158203125e-07,
+      "relative_rmse": 4.558608867807265e-08,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-18-ffn-norm-same-input",
+      "max_abs": 1.1920928955078125e-07,
+      "relative_rmse": 3.3832171238696664e-08,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-18-geglu-same-input",
+      "max_abs": 1.0937219485640526e-06,
+      "relative_rmse": 2.3712275904168035e-08,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-18-sdpa-same-input",
+      "max_abs": 3.0994415283203125e-06,
+      "relative_rmse": 2.8064603732982747e-07,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-18-eager-attention-same-input",
+      "max_abs": 2.6226043701171875e-06,
+      "relative_rmse": 2.511352155344267e-07,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-19-attn-norm-same-input",
+      "max_abs": 2.384185791015625e-07,
+      "relative_rmse": 5.385050788923e-08,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-19-ffn-norm-same-input",
+      "max_abs": 4.76837158203125e-07,
+      "relative_rmse": 3.768422811976418e-08,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-19-geglu-same-input",
+      "max_abs": 1.1920928955078125e-06,
+      "relative_rmse": 2.3200678227567498e-08,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-19-sdpa-same-input",
+      "max_abs": 4.76837158203125e-06,
+      "relative_rmse": 2.9868456799802194e-07,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-19-eager-attention-same-input",
+      "max_abs": 3.814697265625e-06,
+      "relative_rmse": 2.7255312282271324e-07,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-20-attn-norm-same-input",
+      "max_abs": 4.76837158203125e-07,
+      "relative_rmse": 3.800269610872489e-08,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-20-ffn-norm-same-input",
+      "max_abs": 4.76837158203125e-07,
+      "relative_rmse": 5.967328247693842e-08,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-20-geglu-same-input",
+      "max_abs": 3.814697265625e-06,
+      "relative_rmse": 1.9649160454495136e-08,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-20-sdpa-same-input",
+      "max_abs": 3.933906555175781e-06,
+      "relative_rmse": 2.908590901547563e-07,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-20-eager-attention-same-input",
+      "max_abs": 3.814697265625e-06,
+      "relative_rmse": 2.5897821942047605e-07,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-21-attn-norm-same-input",
+      "max_abs": 4.76837158203125e-07,
+      "relative_rmse": 4.859165873489e-08,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-21-ffn-norm-same-input",
+      "max_abs": 4.76837158203125e-07,
+      "relative_rmse": 3.7694656022081524e-08,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-21-geglu-same-input",
+      "max_abs": 7.62939453125e-06,
+      "relative_rmse": 1.7681730618977372e-08,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-21-sdpa-same-input",
+      "max_abs": 4.5299530029296875e-06,
+      "relative_rmse": 2.8474689703812424e-07,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-21-eager-attention-same-input",
+      "max_abs": 4.5299530029296875e-06,
+      "relative_rmse": 2.618673877281501e-07,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-22-attn-norm-same-input",
+      "max_abs": 7.152557373046875e-07,
+      "relative_rmse": 4.678770018249331e-08,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-22-ffn-norm-same-input",
+      "max_abs": 4.76837158203125e-07,
+      "relative_rmse": 5.563520313562068e-08,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-22-geglu-same-input",
+      "max_abs": 1.9073486328125e-06,
+      "relative_rmse": 1.0282003282032924e-08,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-22-sdpa-same-input",
+      "max_abs": 7.62939453125e-06,
+      "relative_rmse": 2.69413042842754e-07,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-22-eager-attention-same-input",
+      "max_abs": 4.76837158203125e-06,
+      "relative_rmse": 2.4665639572278593e-07,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-23-attn-norm-same-input",
+      "max_abs": 7.152557373046875e-07,
+      "relative_rmse": 4.73535958200815e-08,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-23-ffn-norm-same-input",
+      "max_abs": 9.5367431640625e-07,
+      "relative_rmse": 5.4842005992338465e-08,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-23-geglu-same-input",
+      "max_abs": 1.9073486328125e-06,
+      "relative_rmse": 2.765668182102062e-09,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-23-sdpa-same-input",
+      "max_abs": 1.049041748046875e-05,
+      "relative_rmse": 2.9943269846606444e-07,
+      "bitwise_identical": false
+    },
+    {
+      "name": "block-23-eager-attention-same-input",
+      "max_abs": 1.1444091796875e-05,
+      "relative_rmse": 2.735582657203134e-07,
+      "bitwise_identical": false
+    }
+  ],
+  "versions": {
+    "transformers": "5.17.0",
+    "torch": "2.14.0+cpu",
+    "numpy": "2.4.2",
+    "sentencepiece": "0.2.1"
+  },
+  "seconds": 2.810823799984064,
+  "dense_act_fn": "gelu_new",
+  "activation_class": "NewGELUActivation",
+  "native_capture_sha256": "21ab9b9473a775824a733a4d3ac944c5d0a5806cc42bf7ef67c47dca9a8c1d65",
+  "original_attention_implementation": "sdpa",
+  "matched_native_input_comparisons": true,
+  "full_model_rerun": false,
+  "original_forward_modified": false,
+  "acceptance_gates_changed": false,
+  "physical_android": false,
+  "apk_changed": false,
+  "input_fingerprint": {
+    "research/ltx098_text/CMakeLists.txt": "695f191d631418b8c40fd7bf3887c10b316f92b15ad83d25568a7b06b50defda",
+    "research/ltx098_text/driver.cpp": "a81c396c91bf3c8da41ac2eb79ded04754737f553f46451228902504fef971eb",
+    "research/ltx098_text/encoder.cpp": "be727fc2645184560c25a2f6f90f30d780ae86b099716d67b2e8dd225b1009e6",
+    "research/ltx098_text/encoder.hpp": "592fe2f896174e69e807ce9a4343a2a1da54b523b3ccad0fa337f6d34b6cfbc1",
+    "research/ltx098_text/graph.cpp": "a17f97e9b932c302d3a7e8c1ca7020696ed765a4ddda51fefca9288d7b886190",
+    "research/ltx098_text/graph.hpp": "ae16035400caedb79f33db97497e6588f071901bd0935f7646e0e3b02bc7e36a",
+    "research/ltx098_text/licenses/llama-MIT.txt": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
+    "research/ltx098_text/NOTICE": "176bd96eed8972ba6a9c4bdebf9f19b166397c0eb50717be77547056ad974db4",
+    "third_party/ltx098-text-source-lock.json": "04b2f7892a4f047363fbaf3ba555682bf201c8320fa1cc7f4d5a68b2884512f4",
+    "tools/build_ltx098_text.py": "c9c7a6f1c619e9ab15d95baf9a53d8854cbe217a698b22e102cdf1cd7cf18b85",
+    "tools/diagnose_ltx098_text.py": "2323bc7a09c38de44b28dd57899658e0934db9ad98abce624c709f273a17adee",
+    "tools/fetch_ltx098_text.py": "55782095a1b941dc809b33966f62aeffda1b2ca0c719033610432ec00599b577",
+    "tools/ltx098_text_oracle.py": "12c2b718e662703b06c4b11e2d0ddfe02180140ed8313a4746ed1faf2155a431",
+    "tools/test_ltx098_text.py": "79a4a7c35badeddb58c1bafe2fe5511cd309cff09e24afd25474fd748c41e260",
+    "tools/analyze_ltx098_text.py": "463d467a539b0e1302642781557234c667aa78632f33c705016a5db7d525d1a6"
+  }
+}

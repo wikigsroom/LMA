@@ -209,3 +209,5 @@ Internal dev.19 / 内部 dev.19：[旧 Local / Realtime 原生 RQ](MOSS_RQ_ENGIN
 旧 LTX 完整主机串联：[中文](LTX098_PIPELINE.md) / [English](LTX098_PIPELINE.en.md) / [编号交付与完整待办](releases/v0.3.0-dev.21-ltx-pipeline.md)。独立单尺度 Google Q5 变体，不冒充官方多尺度默认 / PixArt 权重相同；每阶段保留身份、装卸、耗时和实际主机内存。独立参考从真实提示词计算到 RGB，跨阶段传播误差；非平坦 / 有变化统计不等于质量验收。新主机视频媒体必须显示 HOST 标签，不能替换既有准确标记的 App UI FIXTURE。App 引擎、公开用户资产路径和 Android 质量 / 资源 / 耐久验收仍须完成。
 
 本次完整原始对照未通过：163项中157通过、6项float gate失败；保留完整失败JSON与测试exit 1。开发仓库审计只验证证据一致性，不覆盖失败；同caption诊断仅定位文本编码误差放大，不关闭17号或Release。
+
+[旧 LTX 逐层精度定位](LTX098_PRECISION.md)增加仅主机的真实训练观测、同输入局部算子与全量误差重算，并核对原生 / 原始参考最终字节身份。隔离注意力 / 可选线性 F64 候选单独标识，不能用诊断替代六项失败的完整链路验收。中间张量留在忽略的 build；公开指标 / 来源 / 科学图，现有 APK 与 UI 媒体不变。

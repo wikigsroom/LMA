@@ -338,3 +338,11 @@ LMA 自有代码使用 MIT 许可。llama.cpp 及其依赖保留各自许可；�
 真实主机产物（非 App 录屏，非 Android 验收）：[MP4](docs/media/development/ltx098-host-comparison.mp4) / [GIF](docs/media/development/ltx098-host-comparison.gif) / [来源与时序记录](docs/media/development/ltx098-host-media.json)。
 
 ![HOST ONLY：旧 LTX 单尺度真实提示词帧对照，未通过质量与手机验收](docs/media/development/ltx098-host-contact-sheet.png)
+
+### 旧 LTX 文本精度定位与隔离候选
+
+[中文诊断](docs/LTX098_PRECISION.md) / [English](docs/LTX098_PRECISION.en.md) / [本轮编号实现与全部待办](docs/releases/v0.3.0-dev.21-ltx-precision.md)。新增 314 个训练中间张量对照、628 份原始张量身份核对与误差重算、120 项同原生输入的算子比较；带观测的原生和原始参考最终 embedding 均保持既有字节结果。隔离精度候选与生产编码器分别标识，未进入 APK。完整链路仍有六项浮点门槛失败；诊断不替代严格数值 / 质量 / App / 真机验收，全部冻结范围保持同一个完整 v0.3.0。
+
+![实际主机精度诊断，非 App 或 Android 验收](docs/media/development/ltx098-text-roundoff.png)
+
+两种候选各完成三次完整训练 T5 的 A/B/A 重复；组合候选的 A / B embedding 最大误差为2.861e-6 /1.192e-6。两次 A 的八步视频轨迹探测仍分别为0.003953 /0.003829，均超过原0.003门槛并返回exit 1，不能算作完整链路修复。

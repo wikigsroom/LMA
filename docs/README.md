@@ -96,3 +96,5 @@
 - 旧 LTX 真实提示词到主机视频：[中文](LTX098_PIPELINE.md) / [English](LTX098_PIPELINE.en.md) / [编号实现与完整待办](releases/v0.3.0-dev.21-ltx-pipeline.md)。独立单尺度 Google Q5 变体、完整训练串联与原始前向对照；[真实主机帧](media/development/ltx098-host-contact-sheet.png) / [GIF](media/development/ltx098-host-comparison.gif) / [MP4](media/development/ltx098-host-comparison.mp4)，不是 App 或手机验收。
 
   上述主机链路完整精度检查当前有6项失败，163项中157通过；实际出片与严格数值验收分别记录，见[具体误差](LTX098_PIPELINE.md)。
+
+旧 LTX 文本数值定位：[中文](LTX098_PRECISION.md) / [English](LTX098_PRECISION.en.md) / [本轮编号交付及完整同版待办](releases/v0.3.0-dev.21-ltx-precision.md)。314 训练中间对照、628 文件身份 / 误差重算、120 同输入算子；[实际主机误差图](media/development/ltx098-text-roundoff.png)不表示完整数值或 Android 验收，精度候选与生产代码分开记录。

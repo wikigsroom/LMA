@@ -348,3 +348,11 @@ The full original-forward review has **six failed float gates**: 157 of 163 chec
 Actual host output, not App screen recording or Android evidence: [MP4](docs/media/development/ltx098-host-comparison.mp4) / [GIF](docs/media/development/ltx098-host-comparison.gif) / [source and timing receipt](docs/media/development/ltx098-host-media.json).
 
 ![HOST ONLY: real-prompt old LTX single-scale frames, quality and phone acceptance pending](docs/media/development/ltx098-host-contact-sheet.png)
+
+### Old LTX text roundoff and isolated precision candidates
+
+[English investigation](docs/LTX098_PRECISION.en.md) / [中文](docs/LTX098_PRECISION.md) / [numbered handoff and full pending scope](docs/releases/v0.3.0-dev.21-ltx-precision.md). Added 314 trained intermediate comparisons, 628 verified tensor identities/recomputed errors and 120 operator comparisons on identical native inputs. Both instrumented native and original reference final embeddings retain their existing bytes. Precision candidates have separate identities and are excluded from APK. The complete pipeline still has six failed float gates; diagnostics do not replace numerical, quality, App or phone acceptance. All frozen targets remain in one complete v0.3.0.
+
+![Actual host numerical diagnostic; no App or Android acceptance](docs/media/development/ltx098-text-roundoff.png)
+
+Both candidates completed trained T5 A/B/A sequences. Combined-candidate A/B embedding maximum errors are 2.861e-6 / 1.192e-6. Two partial eight-step A video probes still reach 0.003953 / 0.003829, both above the unchanged 0.003 gate and retaining exit 1; complete-chain repair remains unaccepted.

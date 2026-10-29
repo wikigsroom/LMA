@@ -1,5 +1,13 @@
 # Changelog / 更新记录
 
+## 0.3.0-dev.21 source follow-up / 2026-10-29 — text precision diagnostics
+
+旧 LTX 真实训练 T5：314 中间张量、628 原始文件哈希 / 误差重算、120 同输入算子对照；原生及原始参考最终 embedding 均保持既有字节身份。新增独立注意力 / 可选线性 F64 候选构建及 A/B/A 复现工具、双语指南、来源图与开发证据审计。
+
+Actual host diagnostics and separately identified precision candidates do not close six failed original full-chain float gates, establish phone execution or change APK. No automatic model retrieval or external inference is added. All frozen v0.3.0 targets remain required. [中文](docs/LTX098_PRECISION.md) / [English](docs/LTX098_PRECISION.en.md) / [numbered implementation and full pending scope](docs/releases/v0.3.0-dev.21-ltx-precision.md).
+
+候选实测：两种实现各完成三次训练T5 A/B/A，重复字节一致；组合候选A / B embedding最大误差2.861e-6 /1.192e-6。两次A原始八步轨迹仍超原0.003门槛（0.003953 /0.003829），证据保持失败及exit 1；候选VAE / B视频 / 完整修复未验收。Six trained candidate text jobs, two failed partial video probes; no gate relaxation.
+
 ## 0.3.0-dev.21 source follow-up — real-prompt old-LTX host pipeline / unreleased
 
 新增真实提示词、完整训练 T5、旧版 0.9.8 distilled DiT 八步采样、九段 VAE 与 RGB/MP4 的独立单尺度主机串联。可移植 RNG / 张量还原 / 帧封装组件独立 Android 编译；完整链路参考从原始模型前向传播到 RGB，保留固定精度门槛与实际 A/B/A 任务。基座与模型资产继续分离，没有模型隐式获取或 APK 模型数据。

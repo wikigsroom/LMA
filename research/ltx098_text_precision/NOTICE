@@ -1,0 +1,4 @@
+LMA host-only T5 precision experiment.
+Copyright LMA contributors. Code: MIT, see ../../LICENSE.
+Uses the separately pinned GGML/T5 source and user-prepared model assets.
+Not registered in the App, not packaged in APK, not phone evidence.
