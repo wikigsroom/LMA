@@ -1,5 +1,8 @@
 # LMA v0.3.0 complete update requirements and acceptance
 
+> 当前 / Current: **v0.3.0**. [完整程序集成 / implementation](IMPLEMENTATION_V030.en.md). [仅程序验证策略 / validation](PROGRAM_VALIDATION.md) 优先于下文历史完整模型 / 手机运行门槛；旧检查点与失败记录保留为历史。Original PixArt multiscale LTX is now integrated; quality/device acceptance remains untested. [Release](releases/v0.3.0.md).
+
+
 > **Acceptance revision, 2026-10-31:** the user requires [program validation only](PROGRAM_VALIDATION.en.md). Earlier complete-model, per-model quality and phone-endurance gates below no longer block program delivery/publication. Functional scope, same-phone local execution and user-owned assets remain. Complete missing implementation and preserve failures without claiming unperformed model/device tests. Original frozen requirements follow; see [dev.45](releases/v0.3.0-dev.45.md) for current status.
 
 [中文](MULTIMODAL_RELEASE_PLAN.md) · [Foundation](FOUNDATION.en.md) · [Task execution](WORKFLOWS.en.md) · [Structured scope and tags](proposals/multimodal-release-scope.json)

@@ -1,5 +1,13 @@
 # Changelog / 更新记录
 
+## 0.3.0 — 本地多模态基座 / Local multimodal foundation
+
+- 完整同版程序集成 F-01–F-12、既有文本、01–14/16/17、MOSS 九子目标及 SD1.5/SDXL LoRA；38 配方、23 模型包、12 扩展引擎。Complete frozen program scope in one release.
+- 原始 PixArt F32 T5、原始 SentencePiece、学习型空间放大 / AdaIN、旧 LTX 0.9.8 固定 7+3 阶段与手机 AVC 接入；Google Q5 单尺度保留独立身份。Model-free graph packaging and explicit user-selected dependencies.
+- 程序回归 23 组 / 3,590 项，页面 530 项；35 原生库、API28/16KiB、原签名、Lint 0 错误。Program-only validation follows the user's updated policy; zero complete model downloads/copies/runs and no phone/quality/endurance claims.
+- 重整双语 README / 文档索引，9 张当前截图、2 GIF / 2 MP4、完整实现矩阵、历史证据归档、源码与可审查验证附件。See [release notes](docs/releases/v0.3.0.md).
+
+
 ## 0.3.0-dev.45 — Sana-Sprint 本地文生图 / Local text-to-image
 
 - 新增具名 Sana-Sprint 0.6B MNN 配方，14 个固定组件 / 约 6.29 GiB 由用户明确选择、下载、导入；APK 不附模型或词表。Separate from Sana Edit/ordinary Sana; preserve original recommendation order and independent user assets.

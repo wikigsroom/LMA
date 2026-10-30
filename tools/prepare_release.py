@@ -14,6 +14,9 @@ def sha(path):
 
 
 def main():
+    if version() == '0.3.0':
+        from program_release import prepare
+        print(json.dumps(prepare())); return
     release = version()
     if "-dev" in release:
         raise RuntimeError("Development builds are not complete Release candidates. Program-only validation does not waive missing implementation; see docs/PROGRAM_VALIDATION.md")

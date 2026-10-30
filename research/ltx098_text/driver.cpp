@@ -53,7 +53,9 @@ template<class T> void append(std::vector<unsigned char>& output,const std::vect
 }
 int run(const std::vector<std::string>& args) {
     try {
-        require(args.size()==6 || (args.size()==7 && args[6]=="--fixture"),"Usage: lma_ltx098_text MODEL.gguf TOKENIZER_CONFIG.json REQUEST.json OUTPUT THREADS [--fixture]");
+        const bool pixart=args.size()>=7 && args[6]=="--pixart";
+        const bool fixture=(args.size()==7 && args[6]=="--fixture") || (args.size()==9 && pixart && args[8]=="--fixture");
+        require(args.size()==6 || (args.size()==7 && fixture) || (pixart && (args.size()==8 || (args.size()==9 && fixture))),"Usage: lma_ltx098_text MODEL TOKENIZER_CONFIG REQUEST OUTPUT THREADS [--pixart SPIECE] [--fixture]");
         size_t used=0; auto threads=std::stoi(args[5],&used); require(used==args[5].size() && threads>=1 && threads<=32,"Invalid thread count");
         auto tokenizer_file=std::filesystem::u8path(args[2]);require(std::filesystem::is_regular_file(tokenizer_file) && std::filesystem::file_size(tokenizer_file)<=32768,"Missing/oversized external tokenizer config");
         std::ifstream tokenizer_stream(tokenizer_file,std::ios::binary);auto tokenizer=parse_unique(tokenizer_stream);
@@ -63,7 +65,8 @@ int run(const std::vector<std::string>& args) {
         std::ifstream stream(file,std::ios::binary);Json request=parse_unique(stream);keys(request,{"operation","inputs","max_tokens","cancel_file"});
         require(request.contains("operation") && request["operation"].is_string(),"Missing T5 operation"); auto operation=request["operation"].get<std::string>();
         require(operation=="tokenize" || operation=="encode","Unknown T5 operation");
-        Options options; options.threads=threads; options.fixture=args.size()==7; options.vocabulary_only=operation=="tokenize";
+        Options options; options.threads=threads; options.fixture=fixture; options.vocabulary_only=operation=="tokenize";options.pixart=pixart;
+        if(pixart) options.tokenizer_model=std::filesystem::u8path(args[7]);
         options.additional_special_tokens=tokenizer["additional_special_tokens"].get<std::vector<std::string>>();
         if(request.contains("max_tokens")) options.max_tokens=integer(request["max_tokens"],1,256);
         require(request.contains("inputs") && request["inputs"].is_array() && !request["inputs"].empty() && request["inputs"].size()<=4,"Expected one to four T5 inputs");
@@ -96,11 +99,11 @@ int run(const std::vector<std::string>& args) {
             buffers=model.buffers();
         }
         exclusive_write(output,data,cancel);
-        std::cout<<Json{{"schema","lma.ltx098-text/1"},{"operation",operation},{"backend","cpu"},{"encoder_implementation","independent_ggml_f32_compute"},{"weight_execution","streamed_f32_matrix_casts"},{"pooling","none"},{"normalization","raw_final_rms_norm"},
+        std::cout<<Json{{"schema","lma.ltx098-text/1"},{"operation",operation},{"backend","cpu"},{"encoder_implementation","independent_ggml_f32_compute"},{"weight_execution",pixart?"mapped_original_f32":"streamed_f32_matrix_casts"},{"pooling","none"},{"normalization","raw_final_rms_norm"},
             {"buffers",{{"mapped_file_bytes",buffers.mapped_file_bytes},{"tensor_bytes",buffers.tensor_bytes},{"peak_compute_bytes",buffers.peak_compute_bytes}}},
             {"width",layout.width},{"layers",layout.layers},{"items",items},{"bytes",data.size()},{"vocabulary_loads",stats.vocabulary_loads},{"vocabulary_unloads",stats.vocabulary_unloads},
             {"model_loads",stats.model_loads},{"model_unloads",stats.model_unloads},{"encode_calls",stats.encode_calls},{"aborted_encodes",stats.aborted_encodes},
-            {"model_inference",operation=="encode"},{"fixture",options.fixture},{"engine_registered",false},{"complete_video",false},{"physical_android",false}}.dump()<<std::endl;
+            {"model_inference",operation=="encode"},{"text_variant",pixart?"pixart_original_f32":"google_community_t5_q5"},{"fixture",options.fixture},{"engine_registered",false},{"complete_video",false},{"physical_android",false}}.dump()<<std::endl;
         return 0;
     } catch(const std::exception& e) { std::cerr<<Json{{"error",e.what()}}.dump(-1,' ',false,Json::error_handler_t::replace)<<std::endl; return 2; }
 }

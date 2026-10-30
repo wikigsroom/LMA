@@ -32,6 +32,16 @@ std::array<float,8> distilled_sigmas() {
     // four-decimal allowed_inference_steps values.
     return {{1.f,.99375f,.9875f,.98125f,.975f,.909375f,.725f,.421875f}};
 }
+std::vector<float> multiscale_sigmas(bool second_pass) {
+    // Explicit timesteps from configs/ltxv-2b-0.9.8-distilled.yaml.
+    return second_pass?std::vector<float>{.9094f,.725f,.4219f}:std::vector<float>{1.f,.9937f,.9875f,.9812f,.975f,.9094f,.725f};
+}
+std::vector<float> multiscale_step(const std::vector<float>& sample,const std::vector<float>& velocity,float time,float next) {
+    require(!sample.empty() && sample.size()==velocity.size() && finite(sample) && finite(velocity),"Invalid multiscale tensors");
+    require(std::isfinite(time) && std::isfinite(next) && time>next && next>=0 && time<=1,"Invalid multiscale scheduler interval");
+    auto result=sample;float dt=time-next;for(size_t i=0;i<result.size();++i)result[i]-=dt*velocity[i];
+    require(finite(result),"Non-finite multiscale sampling update");return result;
+}
 std::vector<float> rf_step(const std::vector<float>& values,const std::vector<float>& velocity,const std::vector<float>& times,int channels,bool per_token) {
     require(channels>=1&&channels<=128&&!values.empty()&&values.size()%size_t(channels)==0,"Invalid rectified-flow channels/shape");
     require(values.size()==velocity.size()&&finite(values)&&finite(velocity)&&finite(times),"Invalid rectified-flow tensors");
@@ -54,16 +64,23 @@ std::vector<float> channels_first(const std::vector<float>& tokens,int channels,
     return result;
 }
 SamplingResult sample(Transformer& model,Input input,const std::function<bool()>& cancelled,
-                      const std::function<void(int,float)>& starting,const std::function<void(int,float,const std::vector<float>&)>& completed) {
+                      const std::function<void(int,float)>& starting,const std::function<void(int,float,const std::vector<float>&)>& completed,
+                      const std::vector<float>& explicit_schedule) {
     require(input.tokens>=1&&input.tokens<=4096&&!input.latents.empty()&&input.latents.size()%size_t(input.tokens)==0,"Invalid initial sample shape");
     int channels=int(input.latents.size()/size_t(input.tokens));require(channels>=1&&channels<=128,"Invalid sample channels");
     require(finite(input.latents),"Non-finite initial latent");SamplingResult result;
     auto check_cancel=[&](){if(cancelled&&cancelled()) throw std::runtime_error("Sampling cancelled");};
-    auto schedule=distilled_sigmas();
-    for(int step=0;step<8;++step) {
+    auto legacy=distilled_sigmas();auto schedule=explicit_schedule.empty()?std::vector<float>(legacy.begin(),legacy.end()):explicit_schedule;
+    require(!schedule.empty() && schedule.size()<=8 && finite(schedule),"Invalid explicit sampling schedule");
+    float previous=2;for(float time:schedule){require(time>1e-6f && time<=1 && time<previous,"Non-decreasing or invalid schedule");previous=time;}
+    for(int step=0;step<int(schedule.size());++step) {
         check_cancel();float sigma=schedule[size_t(step)];if(starting) starting(step,sigma);
         input.timesteps={sigma};auto forward=model.forward(input);check_cancel();
-        input.latents=rf_step(input.latents,forward.velocity,input.timesteps,channels);
+        if(explicit_schedule.empty())input.latents=rf_step(input.latents,forward.velocity,input.timesteps,channels);
+        else {
+            float next=step+1<int(schedule.size())?schedule[size_t(step+1)]:0;
+            input.latents=multiscale_step(input.latents,forward.velocity,sigma,next);
+        }
         result.compute_bytes.push_back(forward.compute_bytes);result.parameters=forward.parameters;result.layers=forward.layers;
         result.weight_bytes=forward.weight_bytes;result.backend=forward.backend;++result.steps;
         if(completed) completed(step,sigma,input.latents);check_cancel();

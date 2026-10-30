@@ -1,5 +1,8 @@
 # LMA 使用手册
 
+> 当前 / Current: **v0.3.0**. [完整程序集成 / implementation](IMPLEMENTATION_V030.md). [仅程序验证策略 / validation](PROGRAM_VALIDATION.md) 优先于下文历史完整模型 / 手机运行门槛；旧检查点与失败记录保留为历史。Original PixArt multiscale LTX is now integrated; quality/device acceptance remains untested. [Release](releases/v0.3.0.md).
+
+
 dev.34：HF 配方可“检查配套文件”，查看固定版本来源并勾选应用。确认只填写组件，随后仍需单独登记和下载；已有选择和设置保留。见[组件建议流程](COMPONENT_SUGGESTIONS.md)。
 
 dev.33：在“全部 → 生音频”明确选择 Nano 100M 完整包；在“本地”可按文件中的音色名称或编号设置 Kokoro / Nano，超限回填，参数按模型独立。下载、安装与推理证据分开，见[语音使用流程](SPEECH_SELECTION.md)。

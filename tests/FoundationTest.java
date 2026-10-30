@@ -36,6 +36,7 @@ public final class FoundationTest {
         File root = new File(args[0]); if (!root.isDirectory()) throw new IllegalArgumentException("Create a fresh test directory");
         byte[] a = new byte[300000], b = new byte[20000]; new Random(1941).nextBytes(a); new Random(1920).nextBytes(b);
         JSONObject catalogue = new JSONObject(new String(Files.readAllBytes(new File(args[1]).toPath()), "UTF-8"));
+        oldLtxMultiscale(catalogue.getJSONArray("bundles"));
         ModelBundle catalogued = new ModelBundle(catalogue.getJSONArray("bundles").getJSONObject(0));
         check(catalogued.id.equals("sd15_ss_q4_0_r031b5f5") && catalogued.tasks.contains("image"), "Production bundle metadata passes the same runtime schema as user imports");
         BundleStore cataloguedStore = new BundleStore(new File(root, "catalogued-assets")); cataloguedStore.declare(catalogued);
@@ -115,6 +116,27 @@ public final class FoundationTest {
         jobsAndArtifacts(root);
         ranges();
         System.out.println(new JSONObject().put("passed", passed).put("adapter_contract_assertions", adapterChecks).put("recipe_integrity_assertions", recipeChecks).put("model_update_assertions", updateChecks).put("android_device", false).put("model_inference", false).put("scope", "production bundle storage, parameter validation and transfer state on host filesystems/HTTP"));
+    }
+    private static void oldLtxMultiscale(JSONArray catalogue) throws Exception {
+        JSONObject source=null;for(int i=0;i<catalogue.length();i++)if(catalogue.getJSONObject(i).getString("pipeline").equals(LtxPixArtSpec.PIPELINE))source=catalogue.getJSONObject(i);
+        check(source!=null,"Official old LTX multiscale is an equal peer in the shipped catalogue");
+        final JSONObject original=source;ModelBundle bundle=new ModelBundle(source);LtxPixArtSpec.validate(bundle,"video.generate");passed++;
+        check(bundle.components.size()==27 && LtxPixArtSpec.files().size()==27,"Official variant requires all 27 user-controlled components");
+        rejects(()->Ltx098Spec.validate(bundle,"video.generate"),"Official variant never silently falls back to Google Q5");
+        rejects(()->LtxPixArtSpec.validate(bundle,"image.generate"),"Official video recipe cannot accept image tasks");
+        for(String role:Arrays.asList("text_config","text_index","text_shard_1","text_shard_2","tokenizer_config","tokenizer","upscaler")) {
+            JSONObject changed=DataFiles.copy(original);JSONArray files=changed.getJSONArray("components");
+            for(int i=0;i<files.length();i++)if(files.getJSONObject(i).getString("role").equals(role))files.getJSONObject(i).put("sha256",String.join("",Collections.nCopies(64,"0")));
+            rejects(()->LtxPixArtSpec.validate(new ModelBundle(changed),"video.generate"),"A different publisher component cannot masquerade as the official variant");
+        }
+        for(int width=128;width<=256;width+=32)for(int height=128;height<=256;height+=32) {
+            JSONObject normalized=LtxPixArtSpec.parameters(new JSONObject().put("width",width).put("height",height)).getJSONObject("values"),plan=LtxPixArtSpec.plan(normalized);
+            check(plan.getInt("firstWidth")%32==0 && plan.getInt("secondWidth")==2*plan.getInt("firstWidth") && plan.getInt("firstHeight")%32==0 && plan.getInt("secondHeight")==2*plan.getInt("firstHeight"),"Publisher floor-to-32 geometry remains consistent across every supported output extent");
+            check(plan.getJSONArray("firstTimesteps").length()==7 && plan.getJSONArray("secondTimesteps").length()==3 && !plan.getBoolean("promptEnhancement"),"Frozen plan retains explicit 7+3 sampling and user-written prompt");
+        }
+        JSONObject parameters=LtxPixArtSpec.parameters(new JSONObject().put("width",999).put("height",1).put("steps",999)).getJSONObject("values");
+        check(parameters.getInt("width")==256 && parameters.getInt("height")==128 && parameters.getInt("steps")==10,"Editable per-model controls clamp to the official variant's own bounds");
+        check(bundle.tags().getJSONArray("task").toString().contains("task:video") && bundle.tags().getJSONArray("dependency").toString().contains("dependency:upscaler"),"Output and foundation requirements are separate searchable tags");
     }
     private static JSONObject find(JSONArray entries, String id) throws Exception { for (int i = 0; i < entries.length(); i++) if (entries.getJSONObject(i).getString("id").equals(id)) return entries.getJSONObject(i); throw new AssertionError("Missing bundle"); }
     private static void ranges() throws Exception {

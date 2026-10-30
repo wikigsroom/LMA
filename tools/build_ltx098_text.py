@@ -7,25 +7,26 @@ import subprocess
 from pathlib import Path
 from evidence import fingerprint,current
 from fetch_ltx098_text import sources
+from sana_sprint_profile import sources as sentencepiece_sources
 from verify_package import elf_info,SYSTEM_LIBS
 
 ROOT=Path(__file__).resolve().parents[1]
 
 
 def inputs():
-    return fingerprint('research/ltx098_text','tools/build_ltx098_text.py','tools/fetch_ltx098_text.py','third_party/ltx098-text-source-lock.json')
+    return fingerprint('research/ltx098_text','tools/build_ltx098_text.py','tools/fetch_ltx098_text.py','third_party/ltx098-text-source-lock.json','tools/sana_sprint_profile.py','third_party/moss-nano-source-lock.json')
 
 
 def build(android=False):
     if os.name!='nt':raise RuntimeError('Use native Windows compilers; no virtualization')
-    lock=sources();record=inputs();name='ltx098-text-arm64' if android else 'ltx098-text-host'
+    lock=sources();sentencepiece_sources();record=inputs();name='ltx098-text-arm64' if android else 'ltx098-text-host'
     out=ROOT/'build'/name;out.mkdir(exist_ok=True);(out/'receipt.json').unlink(missing_ok=True)
     drive=next((c+':' for c in 'RSTUVWXYZ' if not Path(c+':/').exists()),None)
     if not drive:raise RuntimeError('No free ASCII build alias')
     subprocess.run(['subst',drive,str(ROOT)],check=True,capture_output=True)
     try:
         alias=drive+'/';tool=alias+'build/toolchain/';cmake=tool+'cmake-3.31.6/bin/cmake.exe';build_dir=alias+'build/'+name
-        options=dict(CMAKE_MAKE_PROGRAM=tool+'cmake-3.31.6/bin/ninja.exe',CMAKE_BUILD_TYPE='Release',LMA_LLAMA_SOURCE=alias+'build/native-src/llama-soulx',LMA_JSON_SOURCE=alias+'build/native-src/sd-cpp/thirdparty')
+        options=dict(CMAKE_MAKE_PROGRAM=tool+'cmake-3.31.6/bin/ninja.exe',CMAKE_BUILD_TYPE='Release',LMA_LLAMA_SOURCE=alias+'build/native-src/llama-soulx',LMA_JSON_SOURCE=alias+'build/native-src/sd-cpp/thirdparty',LMA_SENTENCEPIECE_SOURCE=alias+'build/native-src/sentencepiece')
         if android:
             for item in lock['android_runtime_files']:
                 data=(ROOT/'app/src/main/jniLibs/arm64-v8a'/item['name']).read_bytes()

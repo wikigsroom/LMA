@@ -4,6 +4,9 @@
 #include "ggml-alloc.h"
 #include "ggml-backend.h"
 #include "gguf.h"
+#include "json.hpp"
+#include <fstream>
+#include <set>
 #include <algorithm>
 #include <cmath>
 #include <cstring>
@@ -37,7 +40,8 @@ struct Mapping {
 #endif
     }
     void open(const std::filesystem::path& path) {
-        bytes=static_cast<size_t>(std::filesystem::file_size(path)); require(bytes>0 && bytes<=size_t(8)*1024*1024*1024,"T5 file exceeds mapping limit");
+        require(!std::filesystem::is_symlink(path) && std::filesystem::is_regular_file(path),"Unsafe T5 weight file");
+        bytes=static_cast<size_t>(std::filesystem::file_size(path)); require(bytes>0 && bytes<=size_t(32)*1024*1024*1024,"T5 file exceeds mapping limit");
 #ifdef _WIN32
         file=CreateFileW(path.c_str(),GENERIC_READ,FILE_SHARE_READ,nullptr,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,nullptr);
         require(file!=INVALID_HANDLE_VALUE,"Cannot open T5 mapping"); mapping=CreateFileMappingW(file,nullptr,PAGE_READONLY,0,0,nullptr);
@@ -68,6 +72,8 @@ int bucket(int key,int query) {
 struct Graph::State {
     Mapping mapping;
     Gguf metadata{nullptr,gguf_free}; Context tensors{nullptr,ggml_free}; Backend backend{nullptr,ggml_backend_free}; Buffer weights{nullptr,ggml_backend_buffer_free};
+    std::vector<std::unique_ptr<Mapping>> original_mappings;
+    std::vector<Buffer> original_buffers;
     Layout layout; Buffers buffers; int threads; Cancel cancel; Progress progress; std::map<std::string,ggml_tensor*> named;
     State(const Layout& l,int t,Cancel c,Progress p):layout(l),threads(t),cancel(std::move(c)),progress(std::move(p)) {}
     bool interrupted() noexcept { try{return cancel && cancel();}catch(...){return true;} }
@@ -79,11 +85,15 @@ struct Graph::State {
 };
 Graph::Graph(const std::filesystem::path& path,const Layout& layout,int threads,Cancel cancel,Progress progress)
     :state_(std::make_unique<State>(layout,threads,std::move(cancel),std::move(progress))) {
-    auto& s=*state_;s.stop();s.mapping.open(path);ggml_context* ctx=nullptr;
-    s.buffers.mapped_file_bytes=s.mapping.bytes;
-    s.metadata.reset(gguf_init_from_file(path.u8string().c_str(),{true,&ctx}));s.tensors.reset(ctx);
-    require(s.metadata && s.tensors,"Cannot read T5 GGUF tensors");
-    require(gguf_get_n_tensors(s.metadata.get())==9*layout.layers+3,"Unexpected T5 tensor count");
+    auto& s=*state_;s.stop();
+    const bool original=path.extension()==".json";
+    if(!original) {
+        s.mapping.open(path);ggml_context* ctx=nullptr;s.buffers.mapped_file_bytes=s.mapping.bytes;
+        s.metadata.reset(gguf_init_from_file(path.u8string().c_str(),{true,&ctx}));s.tensors.reset(ctx);
+        require(s.metadata && s.tensors,"Cannot read T5 GGUF tensors");
+        require(gguf_get_n_tensors(s.metadata.get())==9*layout.layers+3,"Unexpected T5 tensor count");
+    } else s.tensors.reset(ggml_init({4*1024*1024,nullptr,true}));
+    require(s.tensors!=nullptr,"Cannot allocate T5 weight descriptors");
     auto device=ggml_backend_dev_by_type(GGML_BACKEND_DEVICE_TYPE_CPU);require(device!=nullptr,"CPU backend missing");
     s.backend.reset(ggml_backend_dev_init(device,nullptr));require(s.backend!=nullptr,"Cannot initialize T5 CPU backend");
     auto reg=ggml_backend_dev_backend_reg(device);
@@ -91,6 +101,57 @@ Graph::Graph(const std::filesystem::path& path,const Layout& layout,int threads,
     auto set_abort=reinterpret_cast<ggml_backend_set_abort_callback_t>(ggml_backend_reg_get_proc_address(reg,"ggml_backend_set_abort_callback"));
     require(set_threads && set_abort,"Pinned CPU backend lacks thread/cancellation controls");set_threads(s.backend.get(),threads);
     set_abort(s.backend.get(),[](void* data){return static_cast<State*>(data)->interrupted();},&s);
+    if(original) {
+        using Json=nlohmann::json;
+        require(std::filesystem::file_size(path)<=65536,"Oversized original T5 index");
+        std::ifstream input(path);Json index;input>>index;
+        auto routes=index.at("weight_map");require(routes.is_object() && routes.size()==size_t(9*layout.layers+3),"Incomplete original T5 index");
+        std::map<std::string,std::string> rename{{"shared.weight","token_embd.weight"},{"encoder.final_layer_norm.weight","enc.output_norm.weight"},
+            {"encoder.block.0.layer.0.SelfAttention.relative_attention_bias.weight","enc.blk.0.attn_rel_b.weight"}};
+        for(int i=0;i<layout.layers;++i) {
+            auto src="encoder.block."+std::to_string(i)+".",dst="enc.blk."+std::to_string(i)+".";
+            for(auto name:{"q","k","v","o"}) rename[src+"layer.0.SelfAttention."+name+".weight"]=dst+"attn_"+name+".weight";
+            rename[src+"layer.0.layer_norm.weight"]=dst+"attn_norm.weight";rename[src+"layer.1.layer_norm.weight"]=dst+"ffn_norm.weight";
+            rename[src+"layer.1.DenseReluDense.wi_0.weight"]=dst+"ffn_gate.weight";rename[src+"layer.1.DenseReluDense.wi_1.weight"]=dst+"ffn_up.weight";
+            rename[src+"layer.1.DenseReluDense.wo.weight"]=dst+"ffn_down.weight";
+        }
+        std::set<std::string> seen;
+        for(const auto& filename:{"model-00001-of-00002.safetensors","model-00002-of-00002.safetensors"}) {
+            s.stop();auto mapping=std::make_unique<Mapping>();mapping->open(path.parent_path()/filename);
+            require(mapping->bytes>=10,"Truncated original T5 shard");auto* base=static_cast<unsigned char*>(mapping->data);
+            uint64_t header=0;for(int b=0;b<8;++b)header|=uint64_t(base[b])<<(b*8);
+            require(header>=2 && header<=65536 && header+8<mapping->bytes,"Invalid original T5 shard header");
+            std::vector<std::set<std::string>> keys;
+            auto unique=[&](int,Json::parse_event_t event,Json& value) {
+                if(event==Json::parse_event_t::object_start)keys.emplace_back();
+                else if(event==Json::parse_event_t::key)require(keys.back().insert(value.get<std::string>()).second,"Duplicate original tensor metadata");
+                else if(event==Json::parse_event_t::object_end)keys.pop_back();return true;
+            };
+            const char* header_text=reinterpret_cast<const char*>(base+8);
+            auto fields=Json::parse(header_text,header_text+header,unique);auto* data=base+8+header;size_t length=mapping->bytes-8-size_t(header);
+            // Safetensors aligns its JSON/data boundary to eight bytes. GGML
+            // requires only the buffer base to be aligned, so wrap the entire
+            // page-aligned file mapping and bind each tensor at its real offset.
+            Buffer buffer(ggml_backend_cpu_buffer_from_ptr(base,mapping->bytes),ggml_backend_buffer_free);require(buffer!=nullptr,"Cannot wrap original T5 shard");
+            ggml_backend_buffer_set_usage(buffer.get(),GGML_BACKEND_BUFFER_USAGE_WEIGHTS);
+            std::vector<std::pair<size_t,size_t>> ranges;
+            for(const auto& item:fields.items()) {
+                s.stop();if(item.key()=="__metadata__")continue;
+                require(rename.count(item.key()) && routes.contains(item.key()) && routes.at(item.key())==filename && seen.insert(item.key()).second,"Unexpected original T5 tensor/shard");
+                const auto& value=item.value();require(value.at("dtype")=="F32","Original PixArt weights must remain F32");
+                auto shape=value.at("shape").get<std::vector<int64_t>>();require(shape.size()==1 || shape.size()==2,"Invalid original T5 tensor rank");
+                for(auto n:shape)require(n>=1 && n<=32128,"Invalid original T5 dimension");
+                auto* t=ggml_new_tensor_2d(s.tensors.get(),GGML_TYPE_F32,shape.back(),shape.size()==1?1:shape.front());
+                auto range=value.at("data_offsets").get<std::vector<uint64_t>>();
+                require(range.size()==2 && range[0]<=range[1] && range[1]<=length && range[0]%4==0 && range[1]-range[0]==ggml_nbytes(t),"Invalid original T5 tensor extent");
+                ranges.emplace_back(size_t(range[0]),size_t(range[1]));require(s.named.emplace(rename.at(item.key()),t).second,"Duplicate renamed original T5 tensor");
+                require(ggml_backend_tensor_alloc(buffer.get(),t,data+range[0])==GGML_STATUS_SUCCESS,"Cannot bind original T5 tensor");s.buffers.tensor_bytes+=ggml_nbytes(t);
+            }
+            std::sort(ranges.begin(),ranges.end());size_t end=0;for(auto r:ranges){require(r.first==end,"Original shard has overlapping/missing data");end=r.second;}require(end==length,"Unexpected trailing original T5 data");
+            s.buffers.mapped_file_bytes+=mapping->bytes;s.original_mappings.push_back(std::move(mapping));s.original_buffers.push_back(std::move(buffer));
+        }
+        require(seen.size()==routes.size(),"Missing original T5 learned tensors");
+    } else {
     auto start=gguf_get_data_offset(s.metadata.get());require(start<s.mapping.bytes,"Invalid T5 data offset");
     auto* data=static_cast<unsigned char*>(s.mapping.data)+start;auto length=s.mapping.bytes-start;
     s.weights.reset(ggml_backend_cpu_buffer_from_ptr(data,length));require(s.weights!=nullptr,"Cannot wrap mapped T5 CPU weights");
@@ -105,6 +166,7 @@ Graph::Graph(const std::filesystem::path& path,const Layout& layout,int threads,
         require(ggml_backend_tensor_alloc(s.weights.get(),t,data+offset)==GGML_STATUS_SUCCESS,"Cannot bind mapped T5 tensor");
     }
     std::sort(ranges.begin(),ranges.end());for(size_t i=1;i<ranges.size();++i) require(ranges[i-1].second<=ranges[i].first,"Overlapping T5 weight ranges");
+    }
     s.tensor("token_embd.weight",layout.width,layout.vocabulary);require(s.tensor("enc.output_norm.weight",layout.width)->type==GGML_TYPE_F32,"T5 normalization must be F32");
     require(s.tensor("enc.blk.0.attn_rel_b.weight",layout.heads,32)->type==GGML_TYPE_F32,"T5 relative bias must be F32");
     for(int i=0;i<layout.layers;++i) {

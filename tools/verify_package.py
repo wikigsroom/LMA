@@ -94,6 +94,20 @@ def main():
         source = ROOT / "app/src/main"
         ui_assets = ("index.html", "app.css", "app.js", "foundation.css", "foundation.js", "audio-preview.js", "workbench.js", "recipes.js", "versions.js", "recipe-templates.json", "asset-preparations.json", "model-assemblies.json", "license.js", "models.json", "model-bundles.json", "engine-builds.json")
         architecture_assets = {}
+        # Rebuild this architecture from pinned tensor headers only. The 72
+        # learned tensors must all reference the separately selected user file.
+        from ltx098_official_profile import graph, META, lock as official_lock
+        official_lock()
+        header = json.loads((META / "ltx-ltxv-spatial-upscaler-0.9.8.header.json").read_text(encoding="utf-8"))
+        generated = graph(header)
+        graph_bytes = generated.SerializeToString()
+        graph_name = "assets/architectures/ltx098-upscaler.onnx"
+        assert archive.read(graph_name) == graph_bytes == (source / "assets/architectures/ltx098-upscaler.onnx").read_bytes()
+        learned = [t for t in generated.graph.initializer if t.data_location == 1]
+        assert len(learned) == 72 and all(not t.raw_data and not t.float_data for t in learned)
+        assert all(dict((v.key, v.value) for v in t.external_data)["location"] == "ltx098-upscaler.onnx.data" for t in learned)
+        assert all(t.data_location == 1 or not t.name.endswith((".weight", ".bias")) for t in generated.graph.initializer)
+        architecture_assets[graph_name] = dict(bytes=len(graph_bytes), sha256=hashlib.sha256(graph_bytes).hexdigest(), learned_tensors_embedded=0)
         preparation_catalogue = json.loads((ROOT / "catalogue/asset-preparations.json").read_text(encoding="utf-8"))
         for plan in preparation_catalogue["plans"]:
             for stage in plan["stages"]:
@@ -194,7 +208,8 @@ def main():
               "native": native, "physical_device_tested": False, "source_inputs_match_build": True,
               "apk_signatures_independently_verified": True, "signing_certificate_sha256": certificate.group(1), "permissions": permissions,
               "provider_declared_native_api_level": provider["androidApiLevel"], "packaged_service_manifest_verified": True,
-              "input_fingerprint": fingerprint("tools/verify_package.py", "third_party/BUILD_INFO.json", "catalogue/uncensored-evidence.json")}
+              "model_free_architectures": architecture_assets,
+              "input_fingerprint": fingerprint("tools/verify_package.py", "third_party/BUILD_INFO.json", "catalogue/uncensored-evidence.json", "tools/ltx098_official_profile.py", "third_party/ltx098-official")}
     (ROOT / "build/package-verification.json").write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(json.dumps({k: v for k, v in result.items() if k not in ("native", "input_fingerprint")}, ensure_ascii=True))
 

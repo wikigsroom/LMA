@@ -1,5 +1,8 @@
 # LMA v0.3.0 完整版本更新需求与验收
 
+> 当前 / Current: **v0.3.0**. [完整程序集成 / implementation](IMPLEMENTATION_V030.md). [仅程序验证策略 / validation](PROGRAM_VALIDATION.md) 优先于下文历史完整模型 / 手机运行门槛；旧检查点与失败记录保留为历史。Original PixArt multiscale LTX is now integrated; quality/device acceptance remains untested. [Release](releases/v0.3.0.md).
+
+
 > **验收修订：2026-10-31 用户要求后续仅做[程序验证](PROGRAM_VALIDATION.md)。** 本文原完整模型 / 逐模型质量 / 手机耐久门槛不再作为程序交付与发版前置项；功能范围、同手机本地架构和用户自主资产规则保持。未实现代码继续完成，既有失败保留，不宣称未做的模型 / 手机实测。原始冻结需求与当时评估保留如下，当前进展见[dev.45](releases/v0.3.0-dev.45.md)。
 
 [English](MULTIMODAL_RELEASE_PLAN.en.md) · [基座架构](FOUNDATION.md) · [执行方案](WORKFLOWS.md) · [结构化范围与标签](proposals/multimodal-release-scope.json)

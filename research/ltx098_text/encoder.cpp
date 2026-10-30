@@ -3,6 +3,9 @@
 #include "graph.hpp"
 #include "llama.h"
 #include "ggml-backend.h"
+#include "sentencepiece_processor.h"
+#include "json.hpp"
+#include <fstream>
 #include <cmath>
 #include <cstdio>
 #include <cstring>
@@ -43,9 +46,10 @@ struct Model::State {
     llama_model* model=nullptr;
     const llama_vocab* vocab=nullptr;
     std::unique_ptr<Graph> graph;
+    std::unique_ptr<sentencepiece::SentencePieceProcessor> piece;
     Options options; Stats& stats; Cancel cancelled; Progress progress; Layout layout;
     State(const Options& o,Stats& s,Cancel c,Progress p):options(o),stats(s),cancelled(std::move(c)),progress(std::move(p)) {}
-    ~State() { if(graph) {graph.reset();++stats.model_unloads;} if(model) {llama_model_free(model);++stats.vocabulary_unloads;} }
+    ~State() { if(graph) {graph.reset();++stats.model_unloads;} if(model) {llama_model_free(model);++stats.vocabulary_unloads;} if(piece) {piece.reset();++stats.vocabulary_unloads;} }
     bool interrupted() noexcept { try { return cancelled && cancelled(); } catch (...) { return true; } }
     void stop() { if(interrupted()) throw std::runtime_error("T5 execution cancelled"); }
     void event(const char* name,int done,int total) { stop(); if(progress) progress(name,done,total); stop(); }
@@ -90,6 +94,24 @@ Model::Model(const std::filesystem::path& file,const Options& options,Stats& sta
         llama_backend_init();
     });
     s.event("t5_load",0,1);
+    if(options.pixart) {
+        auto config=file.parent_path()/"text-config.json";
+        require(std::filesystem::is_regular_file(config) && std::filesystem::file_size(config)<=32768,"Missing PixArt T5 config");
+        std::ifstream input(config);nlohmann::json j;input>>j;
+        s.layout={j.at("d_model"),j.at("num_layers"),j.at("num_heads"),j.at("d_ff"),j.at("vocab_size"),512};
+        require((s.layout.width==4096 && s.layout.layers==24 && s.layout.heads==64 && s.layout.feed_forward==10240) ||
+                (options.fixture && s.layout.width==32 && s.layout.layers==2 && s.layout.heads==4 && s.layout.feed_forward==64),"Different PixArt T5 architecture");
+        require(s.layout.vocabulary==32128 && j.at("d_kv")==s.layout.width/s.layout.heads && j.at("model_type")=="t5" &&
+                j.at("feed_forward_proj")=="gated-gelu" && j.at("layer_norm_epsilon")==1e-6 && j.at("relative_attention_num_buckets")==32 &&
+                j.at("relative_attention_max_distance")==128 && j.at("eos_token_id")==1 && j.at("pad_token_id")==0,"Different PixArt T5 constants");
+        require(std::filesystem::is_regular_file(options.tokenizer_model) && std::filesystem::file_size(options.tokenizer_model)<=2*1024*1024,"Missing original SentencePiece vocabulary");
+        std::ifstream sp(options.tokenizer_model,std::ios::binary);std::string bytes((std::istreambuf_iterator<char>(sp)),{});
+        s.piece=std::make_unique<sentencepiece::SentencePieceProcessor>();
+        require(s.piece->LoadFromSerializedProto(bytes).ok() && s.piece->GetPieceSize()==32000 && s.piece->eos_id()==1 && s.piece->pad_id()==0 && s.piece->unk_id()==2,"Different PixArt T5 vocabulary");
+        ++stats.vocabulary_loads;
+        if(!options.vocabulary_only) {s.graph=std::make_unique<Graph>(file,s.layout,options.threads,[&s]{return s.interrupted();},Progress{});++stats.model_loads;}
+        s.event("t5_load",1,1);return;
+    }
     auto params=llama_model_default_params(); ggml_backend_dev_t cpu_only[]={nullptr};
     params.devices=cpu_only; params.n_gpu_layers=0; params.load_mode=LLAMA_LOAD_MODE_MMAP; params.vocab_only=true;
     params.progress_callback=[](float,void* data){return !static_cast<State*>(data)->interrupted();}; params.progress_callback_user_data=&s;
@@ -109,6 +131,10 @@ Tokenized Model::tokenize(const std::string& prompt) const {
     Tokens ids;
     auto segment=[&](const std::string& value) {
         if(value.empty()) return;
+        if(s.piece) {
+            std::vector<int> part;require(s.piece->Encode(value,&part).ok(),"Original T5 SentencePiece encode failed");
+            ids.insert(ids.end(),part.begin(),part.end());return;
+        }
         int count=llama_tokenize(s.vocab,value.data(),static_cast<int32_t>(value.size()),nullptr,0,false,true);
         require(count<=0 && count>=-131072,"Invalid T5 tokenizer length"); Tokens part(static_cast<size_t>(-count));
         if(count) require(llama_tokenize(s.vocab,value.data(),static_cast<int32_t>(value.size()),part.data(),static_cast<int32_t>(part.size()),false,true)==-count,"T5 tokenizer length changed");
@@ -121,8 +147,11 @@ Tokenized Model::tokenize(const std::string& prompt) const {
     while(offset<text.size()) {
         size_t next=std::string::npos;int marker=-1;
         for(int i=0;i<100;++i) { auto found=text.find(s.options.additional_special_tokens[i],offset);if(found<next) {next=found;marker=i;} }
+        if(s.piece) for(int i=0;i<3;++i) {const char* name=i==0?"<pad>":i==1?"</s>":"<unk>";auto found=text.find(name,offset);if(found<next){next=found;marker=100+i;}}
         if(marker<0) {segment(text.substr(offset));break;}
-        segment(text.substr(offset,next-offset));ids.push_back(32099-marker);offset=next+s.options.additional_special_tokens[marker].size();
+        segment(text.substr(offset,next-offset));
+        if(marker<100) {ids.push_back(32099-marker);offset=next+s.options.additional_special_tokens[marker].size();}
+        else {ids.push_back(marker-100);offset=next+(marker==100?5:marker==101?4:5);}
     }
     // The pinned Transformers 5.17 tokenizer postprocessor always appends EOS,
     // including after a literal EOS in user text. Preserve that exact contract.

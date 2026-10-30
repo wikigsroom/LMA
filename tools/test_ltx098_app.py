@@ -12,9 +12,10 @@ def inputs():
         'tests/host','tests/sd-host/com/lma/app/VideoEncoder.java','tests/ltx-app','tools/test_ltx098_app.py',
         'catalogue/model-bundles.json','catalogue/model-assemblies.json','app/src/main/assets/models.json','app/src/main/assets/recipe-templates.json')
 
-def main(trained=False):
+def main(trained=False,multiscale=False):
+    if trained and multiscale:raise RuntimeError('Multiscale validation uses program fixtures only')
     before=inputs();receipt=json.loads((ROOT/'build/ltx098-app-host/receipt.json').read_text(encoding='utf-8'));current(receipt['input_fingerprint'])
-    out=ROOT/'build'/('ltx098-app-trained' if trained else 'ltx098-app-tests');out.mkdir(exist_ok=True)
+    out=ROOT/'build'/('ltx098-multiscale-app-tests' if multiscale else 'ltx098-app-trained' if trained else 'ltx098-app-tests');out.mkdir(exist_ok=True)
     directory=out/('run-'+str(time.time_ns()));directory.mkdir()
     libraries=directory/'libraries';libraries.mkdir()
     for stage in receipt['stages']:
@@ -56,6 +57,7 @@ def main(trained=False):
         assets={k:alias(v) if isinstance(v,Path) else v for k,v in assets.items()}
         selected=directory/'selected-existing-assets.json';selected.write_text(json.dumps(assets),encoding='utf-8')
         command=[shutil.which('java'),'-Dfile.encoding=UTF-8','-Dstdout.encoding=UTF-8','-Dstderr.encoding=UTF-8','-Duser.language=en','-cp',alias(classes)+os.pathsep+alias(dependency),'com.lma.app.LtxAppTest',drive+'/',alias(directory/'data'),alias(libraries),str(trained).lower(),alias(selected),ffmpeg,ffprobe]
+        if multiscale:command.append('--multiscale')
         print('Production queue/engine '+('complete trained chain' if trained else 'synthetic neural stage controls')+': '+str(directory.relative_to(ROOT)),flush=True)
         with (directory/'java.stdout').open('xb') as stdout,(directory/'java.stderr').open('xb') as stderr:
             child=subprocess.Popen(command,cwd=ROOT,stdout=stdout,stderr=stderr)
@@ -79,4 +81,4 @@ def main(trained=False):
     print(json.dumps({k:v for k,v in report.items() if k in ['assertions','passed','modelInference','productionEngineAndQueue','actual_trained_jobs','numericalAccepted','qualityAccepted','physicalAndroid']}),flush=True)
 
 if __name__=='__main__':
-    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--trained',action='store_true');main(parser.parse_args().trained)
+    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--trained',action='store_true');parser.add_argument('--multiscale',action='store_true');args=parser.parse_args();main(args.trained,args.multiscale)

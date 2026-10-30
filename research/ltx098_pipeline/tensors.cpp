@@ -10,6 +10,7 @@
 #endif
 #include "json.hpp"
 #include <cmath>
+#include "../../native/ltx098/multiscale.hpp"
 #include <cstdint>
 #include <cstring>
 #include <filesystem>
@@ -48,7 +49,7 @@ fs::path path(const Json& value) {
 struct Shape {
     int width,height,frames,fps;size_t tokens,count;
     explicit Shape(const Json& request) {
-        width=integer(request.at("width"),64,256);height=integer(request.at("height"),64,256);
+        width=integer(request.at("width"),64,320);height=integer(request.at("height"),64,320);
         frames=integer(request.at("frames"),1,33);fps=integer(request.at("fps"),1,60);
         require(width%32==0 && height%32==0 && (frames-1)%8==0,"Invalid old-LTX latent grid");
         tokens=static_cast<size_t>((frames-1)/8+1)*static_cast<size_t>(height/32)*static_cast<size_t>(width/32);
@@ -78,7 +79,7 @@ void save(const fs::path& target,const void* memory,size_t bytes,const Cancel& c
     if(!ok || cancel.requested()){fs::remove(target);throw std::runtime_error("Tensor output write failed/cancelled");}
 }
 std::vector<float> read(const fs::path& source,size_t count,const Cancel& cancel) {
-    cancel.check();require(count<=8*1024*1024 && fs::is_regular_file(source) && fs::file_size(source)==count*sizeof(float),"Wrong tensor byte count");
+    cancel.check();require(count<=12*1024*1024 && fs::is_regular_file(source) && fs::file_size(source)==count*sizeof(float),"Wrong tensor byte count");
     std::vector<float> result(count);std::ifstream stream(source,std::ios::binary);
     require(static_cast<bool>(stream.read(reinterpret_cast<char*>(result.data()),static_cast<std::streamsize>(count*sizeof(float)))),"Tensor read failed");
     for(size_t i=0;i<count;++i){if(i%4096==0)cancel.check();require(std::isfinite(result[i]),"Non-finite tensor");}
@@ -122,6 +123,16 @@ int run(const std::vector<std::string>& args) {
             record["rng"]="lma_splitmix64_box_muller_f32_v1";record["seed"]=seed;
             record["initial_shape"]={1,shape.tokens,128};record["decode_noise_shape"]=shape.ncthw();record["values_each"]=shape.count;
             record["matches_pytorch_seed"]=false;
+        } else if(operation=="refine_noise") {
+            keys(request,{"operation","width","height","frames","fps","seed","input","latents","noise","cancel_file"});
+            auto initial=path(request.at("latents")),noise=path(request.at("noise"));
+            require(initial!=noise && !fs::exists(initial) && !fs::exists(noise),"Refinement outputs must be new distinct files");
+            int seed=integer(request.at("seed"),0,2147483647);auto high=read(path(request.at("input")),shape.count,cancel);
+            Normal rng(uint64_t(seed)^UINT64_C(0x4c54584d554c5449));auto values=rng.draw(shape.count,cancel);
+            for(size_t p=0;p<shape.tokens;++p){cancel.check();for(size_t c=0;c<128;++c){auto i=p*128+c;values[i]=.9094f*values[i]+(1.f-.9094f)*high[c*shape.tokens+p];}}
+            save(initial,values.data(),values.size()*4,cancel);created.push_back(initial);values=rng.draw(shape.count,cancel);
+            save(noise,values.data(),values.size()*4,cancel);created.push_back(noise);
+            record["timestep"]=.9094;record["matches_pytorch_seed"]=false;record["values_each"]=shape.count;
         } else if(operation=="unpatchify") {
             keys(request,{"operation","width","height","frames","fps","input","output","cancel_file"});
             auto target=path(request.at("output"));require(!fs::exists(target),"Output already exists");
@@ -129,10 +140,17 @@ int run(const std::vector<std::string>& args) {
             for(size_t p=0;p<shape.tokens;++p){cancel.check();for(size_t c=0;c<128;++c)restored[c*shape.tokens+p]=values[p*128+c];}
             save(target,restored.data(),restored.size()*sizeof(float),cancel);created.push_back(target);record["shape"]=shape.ncthw();
         } else if(operation=="frames") {
-            keys(request,{"operation","width","height","frames","fps","input","output","cancel_file"});
+            keys(request,{"operation","width","height","frames","fps","input","output","cancel_file","input_width","input_height"});
             auto target=path(request.at("output"));require(!fs::exists(target),"Output already exists");
             size_t pixels=static_cast<size_t>(shape.width)*shape.height,plane=pixels*shape.frames;
-            auto values=read(path(request.at("input")),plane*3,cancel);
+            int iw=request.contains("input_width")?integer(request.at("input_width"),64,320):shape.width,ih=request.contains("input_height")?integer(request.at("input_height"),64,320):shape.height;
+            auto values=read(path(request.at("input")),size_t(iw)*ih*shape.frames*3,cancel);
+            if(iw!=shape.width || ih!=shape.height) {
+                // Publisher VaeImageProcessor clamps/denormalizes before the
+                // outer multiscale pipeline resizes its decoded video.
+                for(auto& value:values)value=std::max(-1.f,std::min(1.f,value));
+                values=lma::ltx098::multiscale::resize_bilinear(values,shape.frames,ih,iw,shape.height,shape.width);
+            }
             std::vector<unsigned char> rgb={'L','M','A','F','R','M','1',0};
             u32(rgb,shape.width);u32(rgb,shape.height);u32(rgb,shape.frames);u32(rgb,shape.fps);u32(rgb,3);rgb.reserve(28+plane*3);
             size_t clipped_low=0,clipped_high=0;float minimum=values[0],maximum=values[0];

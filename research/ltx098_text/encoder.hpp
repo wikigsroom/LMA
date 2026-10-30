@@ -13,7 +13,7 @@ using Tokens = std::vector<int32_t>;
 using Cancel = std::function<bool()>;
 using Progress = std::function<void(const char*, int, int)>;
 inline void require(bool ok, const char* message) { if (!ok) throw std::runtime_error(message); }
-struct Options { int threads=4, max_tokens=256; bool fixture=false, vocabulary_only=false; std::vector<std::string> additional_special_tokens; };
+struct Options { int threads=4, max_tokens=256; bool fixture=false, vocabulary_only=false, pixart=false; std::filesystem::path tokenizer_model; std::vector<std::string> additional_special_tokens; };
 struct Stats { int vocabulary_loads=0, vocabulary_unloads=0, model_loads=0, model_unloads=0, encode_calls=0, aborted_encodes=0; };
 struct Tokenized { Tokens ids; bool truncated=false; };
 struct Layout { int width=0, layers=0, heads=0, feed_forward=0, vocabulary=0, context=0; };

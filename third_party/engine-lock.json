@@ -299,14 +299,14 @@
     },
     {
       "file": "liblma-ltx098-app-tensors.so",
-      "bytes": 426688,
-      "sha256": "4f665f743fd50971e9ad4c005c0243771944b9fc001527a9a9dfcd551524a2b5",
+      "bytes": 435024,
+      "sha256": "f9942e58192cdd41aeeeb685ef76daddeeff1fd4c243a0eb9306faa1ee3ebd07",
       "android_api_notes": [
         28
       ],
       "schema": "lma.native-build/1",
       "engine": "ltx098_native",
-      "version": "0.9.8-lma-single-scale-v1",
+      "version": "0.9.8-lma-multiscale-v1",
       "abi": "arm64-v8a",
       "min_sdk": 28,
       "backend": "vulkan",
@@ -317,24 +317,24 @@
       "dependencies": [
         {
           "file": "liblma-ltx098-app-text.so",
-          "bytes": 249480,
-          "sha256": "d9019a20767833e9e43342f10833956584f7f3119ed33cf01e02e4937ea6390e",
+          "bytes": 697328,
+          "sha256": "1603dab8179b81fcd9e81afde0c281a39c87854abb34ef740b8af0245995c645",
           "android_api_notes": [
             28
           ]
         },
         {
           "file": "liblma-ltx098-app-sample.so",
-          "bytes": 35599008,
-          "sha256": "39198a31bd0f81e82c8692a3bd48b2bc11b58c9b04fa4494c6574a01eb9934ee",
+          "bytes": 35600576,
+          "sha256": "f2782968ba0e23e215cd38798b2d2533c5eef68df89d01f42e30faf8c1640772",
           "android_api_notes": [
             28
           ]
         },
         {
           "file": "liblma-ltx098-app-vae.so",
-          "bytes": 504832,
-          "sha256": "e9b5011f190e37b4623f2ec0eb181f2e2952b0c2e808254cceb8d74006687e8f",
+          "bytes": 512704,
+          "sha256": "d27716743038506a33fbfd6b03fa6caa1291f5323705a9f894570d81c17d8af4",
           "android_api_notes": [
             28
           ]
@@ -392,7 +392,11 @@
         "moss-onnxruntime-LICENSE.txt": "c250d6278f0b47a6439fb7592b08b58a55eb9f535aa49a1db63211c3f982b674",
         "moss-onnxruntime-ThirdPartyNotices.txt.txt": "fb0af774b4d7cffc5b9d046f2aaeade2f37df2f80abf8033c95dfffcc77a8866",
         "sd-nlohmann-json-LICENSE.txt": "0e592e358cf7722906f417be85bc514f15bf6efd28cea98cb84e56ef7fddfc3e",
-        "sd-NDK-LLVM-NOTICE.txt": "f96f763beb66a7ba7a667647fc64c0226ace875e590c831fdd9579ec1c1d91e1"
+        "sd-NDK-LLVM-NOTICE.txt": "f96f763beb66a7ba7a667647fc64c0226ace875e590c831fdd9579ec1c1d91e1",
+        "moss-sentencepiece-LICENSE.txt": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5",
+        "moss-sentencepiece-third_party-protobuf-lite-LICENSE.txt": "f4df8b2457697851385d9ebb93267832c1dfa24e0e61881952f6b0c452663dc9",
+        "moss-sentencepiece-third_party-darts_clone-LICENSE.txt": "ed8437dc7358a40ef10afd3635ac1cd43c88fbaaaf6cd27c414f8ada5d68f447",
+        "moss-sentencepiece-third_party-absl-LICENSE.txt": "7871ddb0d7635157a82afc21720d795660a024c59652b7a5b1ed812355320fdc"
       },
       "elf_load_alignment": [
         16384
@@ -407,7 +411,12 @@
       "deviceValidated": false,
       "numerical_accepted": false,
       "quality_accepted": false,
-      "model_data_embedded": false
+      "model_data_embedded": false,
+      "pipelines": [
+        "ltx098_single_scale_google_q5",
+        "ltx098_pixart_multiscale_v1"
+      ],
+      "sentencepiece_revision": "31646a467d2051eb904e0b45de3a73e91fe1c1e3"
     },
     {
       "engine": "wan_sd_cpp",

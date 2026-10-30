@@ -1,6 +1,6 @@
 # Contributing / 贡献与更新约定
 
-**2026-10-31 用户更新：后续只做程序验证。** [中文规则](docs/PROGRAM_VALIDATION.md) / [English policy](docs/PROGRAM_VALIDATION.en.md) 覆盖下方历史条目中重跑完整模型、ASR 和手机耐久作为开发 / 发版前置项的要求。不得因此忽略缺少的适配代码或改写旧失败；当前程序证据使用 `python tools/export_development.py` 与 `python tools/check_repository.py --development`，不会运行旧模型检查。
+**2026-10-31 用户更新：后续只做程序验证。** [中文规则](docs/PROGRAM_VALIDATION.md) / [English policy](docs/PROGRAM_VALIDATION.en.md) 覆盖下方历史条目中重跑完整模型、ASR 和手机耐久作为开发 / 发版前置项的要求。不得因此忽略缺少的适配代码或改写旧失败；v0.3.0 当前程序证据使用 `python tools/program_evidence.py --export`，随后按 [RELEASING](docs/RELEASING.md) 打包 / 核查；旧 development 命令仅对应历史检查点。不会运行旧模型检查。
 
 dev.43 的 MOSS 共用引擎修改参照[中文](docs/MOSS_DELAY_FIX.md) / [English](docs/MOSS_DELAY_FIX.en.md)：官方提示 / 生成方法对照、实际 GGML 分配器、完整权重 / Java 业务分别验证；旧失败和 PCM 不覆盖。界面逻辑未改时保留精确历史媒体并检查源码不变，刷新受影响的真实产物媒体。
 

@@ -1338,6 +1338,282 @@
           "sha256": "01652cae83048c0ac993ffccb2c8193b4f10e0be59c0fdbadccec7a9df4c0106"
         }
       ]
+    },
+    {
+      "bundleId": "ltx098_runtime_pixart_multiscale_v1",
+      "components": [
+        {
+          "role": "diffusion_model",
+          "kind": "measured_prepared_output",
+          "preparationId": "ltx098_dit_vae_v1",
+          "source": "verification/development/ltx098-prepare.json",
+          "path": "ltx098-dit.gguf",
+          "bytes": 3849516416,
+          "sha256": "ef29c886b36f8a1dbc6693002256049407e512da7a61bf2cc750f1d4d2277ebf"
+        },
+        {
+          "role": "vae_graph_0",
+          "kind": "measured_prepared_output",
+          "preparationId": "ltx098_dit_vae_v1",
+          "source": "verification/development/ltx098-vae-prepare.json",
+          "path": "stage-00.onnx",
+          "bytes": 3451,
+          "sha256": "33f367287eaf5bc67aead22132d9d73aeaf66b51387bbc3a032a1c7eb936ff8b"
+        },
+        {
+          "role": "vae_data_0",
+          "kind": "measured_prepared_output",
+          "preparationId": "ltx098_dit_vae_v1",
+          "source": "verification/development/ltx098-vae-prepare.json",
+          "path": "stage-00.onnx.data",
+          "bytes": 14160896,
+          "sha256": "8bfd5b8f04a0d924707997f112e9df029442404e749d596e529a9db2a08f6384"
+        },
+        {
+          "role": "vae_graph_1",
+          "kind": "measured_prepared_output",
+          "preparationId": "ltx098_dit_vae_v1",
+          "source": "verification/development/ltx098-vae-prepare.json",
+          "path": "stage-01.onnx",
+          "bytes": 80554,
+          "sha256": "29ede53a11d80957e6f0abe38780511c267762feba725b49c29bd36fa35d31b3"
+        },
+        {
+          "role": "vae_data_1",
+          "kind": "measured_prepared_output",
+          "preparationId": "ltx098_dit_vae_v1",
+          "source": "verification/development/ltx098-vae-prepare.json",
+          "path": "stage-01.onnx.data",
+          "bytes": 1203920900,
+          "sha256": "f8b34f9531d3efb14455dde1acb032b6be2bbaeadb4066f6b400b0905cb885ba"
+        },
+        {
+          "role": "vae_graph_2",
+          "kind": "measured_prepared_output",
+          "preparationId": "ltx098_dit_vae_v1",
+          "source": "verification/development/ltx098-vae-prepare.json",
+          "path": "stage-02.onnx",
+          "bytes": 20672,
+          "sha256": "1b74a179d5f160239411d234411641195548607eb523e74c82e34a66b41df415"
+        },
+        {
+          "role": "vae_data_2",
+          "kind": "measured_prepared_output",
+          "preparationId": "ltx098_dit_vae_v1",
+          "source": "verification/development/ltx098-vae-prepare.json",
+          "path": "stage-02.onnx.data",
+          "bytes": 453001216,
+          "sha256": "fbcc19df16368b873c1c4bf21a9e15861884d2a46b7674b9d946339760531aa6"
+        },
+        {
+          "role": "vae_graph_3",
+          "kind": "measured_prepared_output",
+          "preparationId": "ltx098_dit_vae_v1",
+          "source": "verification/development/ltx098-vae-prepare.json",
+          "path": "stage-03.onnx",
+          "bytes": 80515,
+          "sha256": "77422f7cab2804d8b7b2b1f160623571a0ed66561e77c69fb6ce741e453b8a3f"
+        },
+        {
+          "role": "vae_data_3",
+          "kind": "measured_prepared_output",
+          "preparationId": "ltx098_dit_vae_v1",
+          "source": "verification/development/ltx098-vae-prepare.json",
+          "path": "stage-03.onnx.data",
+          "bytes": 302067716,
+          "sha256": "49880337fe10880ac3a6f92e63f2bda75a8f67738215be86b6fa34c3a2f6fe47"
+        },
+        {
+          "role": "vae_graph_4",
+          "kind": "measured_prepared_output",
+          "preparationId": "ltx098_dit_vae_v1",
+          "source": "verification/development/ltx098-vae-prepare.json",
+          "path": "stage-04.onnx",
+          "bytes": 20671,
+          "sha256": "d264368af810ad36e82b5038311cb86f3acb84351dc58f713ce7691732b6043a"
+        },
+        {
+          "role": "vae_data_4",
+          "kind": "measured_prepared_output",
+          "preparationId": "ltx098_dit_vae_v1",
+          "source": "verification/development/ltx098-vae-prepare.json",
+          "path": "stage-04.onnx.data",
+          "bytes": 113254400,
+          "sha256": "7b0a476b6c29b9db4739e1b2fba33778eaec25ce687a4763f55773a2b5d6b38d"
+        },
+        {
+          "role": "vae_graph_5",
+          "kind": "measured_prepared_output",
+          "preparationId": "ltx098_dit_vae_v1",
+          "source": "verification/development/ltx098-vae-prepare.json",
+          "path": "stage-05.onnx",
+          "bytes": 80481,
+          "sha256": "489050eeef9cf3c5378145c13b3819cfc2c84cc02a5eae0f20bb543b47cc0fab"
+        },
+        {
+          "role": "vae_data_5",
+          "kind": "measured_prepared_output",
+          "preparationId": "ltx098_dit_vae_v1",
+          "source": "verification/development/ltx098-vae-prepare.json",
+          "path": "stage-05.onnx.data",
+          "bytes": 76060676,
+          "sha256": "81789f36e257d9b7c22e6934955cee0c3fde3c2725591efa66cf96621d5d31b7"
+        },
+        {
+          "role": "vae_graph_6",
+          "kind": "measured_prepared_output",
+          "preparationId": "ltx098_dit_vae_v1",
+          "source": "verification/development/ltx098-vae-prepare.json",
+          "path": "stage-06.onnx",
+          "bytes": 20669,
+          "sha256": "c737a55510880d4b92e12e9aca7138a154ad6e58a96e89a4f2a530a3f369b88c"
+        },
+        {
+          "role": "vae_data_6",
+          "kind": "measured_prepared_output",
+          "preparationId": "ltx098_dit_vae_v1",
+          "source": "verification/development/ltx098-vae-prepare.json",
+          "path": "stage-06.onnx.data",
+          "bytes": 28315648,
+          "sha256": "d377a63aee6e1ec50a92fab21aa4e354a23ff8496921528d9af581d272639e9b"
+        },
+        {
+          "role": "vae_graph_7",
+          "kind": "measured_prepared_output",
+          "preparationId": "ltx098_dit_vae_v1",
+          "source": "verification/development/ltx098-vae-prepare.json",
+          "path": "stage-07.onnx",
+          "bytes": 80460,
+          "sha256": "239145b9c04cbb5513ee96d2a41ff5b1f8db2c4cf0d9148c3092028b858b3576"
+        },
+        {
+          "role": "vae_data_7",
+          "kind": "measured_prepared_output",
+          "preparationId": "ltx098_dit_vae_v1",
+          "source": "verification/development/ltx098-vae-prepare.json",
+          "path": "stage-07.onnx.data",
+          "bytes": 19287044,
+          "sha256": "22cad42d7baa91055ac2645d1f2c9ee5019ccf4907d40de4058edadbcf209f30"
+        },
+        {
+          "role": "vae_graph_8",
+          "kind": "measured_prepared_output",
+          "preparationId": "ltx098_dit_vae_v1",
+          "source": "verification/development/ltx098-vae-prepare.json",
+          "path": "stage-08.onnx",
+          "bytes": 14758,
+          "sha256": "ff463e05293456c25aa5b1a14d82b1f732f1aee0f00da45f8e28419509ba8ac9"
+        },
+        {
+          "role": "vae_data_8",
+          "kind": "measured_prepared_output",
+          "preparationId": "ltx098_dit_vae_v1",
+          "source": "verification/development/ltx098-vae-prepare.json",
+          "path": "stage-08.onnx.data",
+          "bytes": 1191108,
+          "sha256": "6bf9520daca30d56175d92ce125337eb2bec547a229579279f835d70b09c8298"
+        },
+        {
+          "role": "vae_manifest",
+          "kind": "measured_prepared_output",
+          "preparationId": "ltx098_dit_vae_v1",
+          "source": "verification/development/ltx098-vae-prepare.json",
+          "path": "ltx098-vae.json",
+          "bytes": 6740,
+          "sha256": "8b96527c93fc9cc65330de740e76b80e6fbba52ee47b301417202317bf53cb88"
+        },
+        {
+          "role": "text_config",
+          "path": "text_encoder/config.json",
+          "format": "json",
+          "bytes": 788,
+          "sha256": "9a2865cce66d6dbfdc0fd185faed2394344fc5f61b2cbf9579ca2e6dc882f927",
+          "repository": "PixArt-alpha/PixArt-XL-2-1024-MS",
+          "revision": "b89adadeccd9ead2adcb9fa2825d3fabec48d404",
+          "url": "https://huggingface.co/PixArt-alpha/PixArt-XL-2-1024-MS/resolve/b89adadeccd9ead2adcb9fa2825d3fabec48d404/text_encoder/config.json",
+          "kind": "downloaded_small_data",
+          "source": "third_party/ltx098-official/identity.json",
+          "full_model_downloaded_for_this_update": false
+        },
+        {
+          "role": "text_index",
+          "path": "text_encoder/model.safetensors.index.json",
+          "format": "json",
+          "bytes": 19886,
+          "sha256": "fb4665a1a122b7e5270f0e4494c653839c11a5a978e03b0df6dfa714258716e6",
+          "repository": "PixArt-alpha/PixArt-XL-2-1024-MS",
+          "revision": "b89adadeccd9ead2adcb9fa2825d3fabec48d404",
+          "url": "https://huggingface.co/PixArt-alpha/PixArt-XL-2-1024-MS/resolve/b89adadeccd9ead2adcb9fa2825d3fabec48d404/text_encoder/model.safetensors.index.json",
+          "kind": "downloaded_small_data",
+          "source": "third_party/ltx098-official/identity.json",
+          "full_model_downloaded_for_this_update": false
+        },
+        {
+          "role": "text_shard_1",
+          "path": "text_encoder/model-00001-of-00002.safetensors",
+          "format": "safetensors",
+          "bytes": 9989150328,
+          "sha256": "eb529f693f4b17773a24e787fcba29486d5e1700dadcc20bb91e4c8b00212d08",
+          "repository": "PixArt-alpha/PixArt-XL-2-1024-MS",
+          "revision": "b89adadeccd9ead2adcb9fa2825d3fabec48d404",
+          "url": "https://huggingface.co/PixArt-alpha/PixArt-XL-2-1024-MS/resolve/b89adadeccd9ead2adcb9fa2825d3fabec48d404/text_encoder/model-00001-of-00002.safetensors",
+          "kind": "hf_lfs",
+          "source": "third_party/ltx098-official/identity.json",
+          "full_model_downloaded_for_this_update": false
+        },
+        {
+          "role": "text_shard_2",
+          "path": "text_encoder/model-00002-of-00002.safetensors",
+          "format": "safetensors",
+          "bytes": 9060119392,
+          "sha256": "58f33f4acba7a5502b6b3e4cb7863f8fd503d5012016428099bb460c98e2fe77",
+          "repository": "PixArt-alpha/PixArt-XL-2-1024-MS",
+          "revision": "b89adadeccd9ead2adcb9fa2825d3fabec48d404",
+          "url": "https://huggingface.co/PixArt-alpha/PixArt-XL-2-1024-MS/resolve/b89adadeccd9ead2adcb9fa2825d3fabec48d404/text_encoder/model-00002-of-00002.safetensors",
+          "kind": "hf_lfs",
+          "source": "third_party/ltx098-official/identity.json",
+          "full_model_downloaded_for_this_update": false
+        },
+        {
+          "role": "tokenizer_config",
+          "path": "tokenizer/tokenizer_config.json",
+          "format": "json",
+          "bytes": 20509,
+          "sha256": "71730771351a8f0463bd2e545fbfaadc9dc01a7a222306ff4795cc48dfe168c0",
+          "repository": "PixArt-alpha/PixArt-XL-2-1024-MS",
+          "revision": "b89adadeccd9ead2adcb9fa2825d3fabec48d404",
+          "url": "https://huggingface.co/PixArt-alpha/PixArt-XL-2-1024-MS/resolve/b89adadeccd9ead2adcb9fa2825d3fabec48d404/tokenizer/tokenizer_config.json",
+          "kind": "downloaded_small_data",
+          "source": "third_party/ltx098-official/identity.json",
+          "full_model_downloaded_for_this_update": false
+        },
+        {
+          "role": "tokenizer",
+          "path": "tokenizer/spiece.model",
+          "format": "sentencepiece",
+          "bytes": 791656,
+          "sha256": "d60acb128cf7b7f2536e8f38a5b18a05535c9e14c7a355904270e15b0945ea86",
+          "repository": "PixArt-alpha/PixArt-XL-2-1024-MS",
+          "revision": "b89adadeccd9ead2adcb9fa2825d3fabec48d404",
+          "url": "https://huggingface.co/PixArt-alpha/PixArt-XL-2-1024-MS/resolve/b89adadeccd9ead2adcb9fa2825d3fabec48d404/tokenizer/spiece.model",
+          "kind": "downloaded_small_data",
+          "source": "third_party/ltx098-official/identity.json",
+          "full_model_downloaded_for_this_update": false
+        },
+        {
+          "role": "upscaler",
+          "path": "ltxv-spatial-upscaler-0.9.8.safetensors",
+          "format": "safetensors",
+          "bytes": 505024432,
+          "sha256": "5b076031c6f860db9037a54f3bb819f10bfb5532ea26a6d30062292428a0c208",
+          "repository": "Lightricks/LTX-Video",
+          "revision": "8984fa25007f376c1a299016d0957a37a2f797bb",
+          "url": "https://huggingface.co/Lightricks/LTX-Video/resolve/8984fa25007f376c1a299016d0957a37a2f797bb/ltxv-spatial-upscaler-0.9.8.safetensors",
+          "kind": "hf_lfs",
+          "source": "third_party/ltx098-official/identity.json",
+          "full_model_downloaded_for_this_update": false
+        }
+      ]
     }
   ],
   "gguf_header_metadata_read": true,

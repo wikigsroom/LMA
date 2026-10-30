@@ -1,5 +1,13 @@
 # 构建与验证
 
+## 当前 v0.3.0 源码与构建边界
+
+重建请使用 **完整 Git clone 并切到 `v0.3.0`**，保留历史：旧模型资产身份校验会读取不可变的早期提交。Release 源码 ZIP 供代码、文档和证据审阅，包含 2,497 份公开文件；排除 `.git`、原生二进制、缓存和签名材料，并非自包含二进制 SDK。先取得固定上游源码 / 库并运行相关原生构建器，再执行 `tools/build.py`；编译 APK 不需要完整训练模型。[当前发布流程](RELEASING.md) 优先于下方历史 ZIP / 真机门槛说明。
+
+
+> 当前 / Current: **v0.3.0**. [完整程序集成 / implementation](IMPLEMENTATION_V030.md). [仅程序验证策略 / validation](PROGRAM_VALIDATION.md) 优先于下文历史完整模型 / 手机运行门槛；旧检查点与失败记录保留为历史。Original PixArt multiscale LTX is now integrated; quality/device acceptance remains untested. [Release](releases/v0.3.0.md).
+
+
 dev.38 Z-Image 复现：`python tools/fetch_zimage_trained.py --download --reference-tokenizer`，再执行 `test_zimage_trained.py` / `test_zimage_app_host.py` / `render_zimage_trained.py`（均在 tools/）。默认只核验本地，不下载；[完整说明](ZIMAGE_TURBO.md#4-分词证据与复现)。
 
 dev.37 新增完整 FLUX.2-klein 本地验证：`python tools/fetch_flux2_trained.py` 默认仅核验已有文件；`python tools/test_qwen_tokenizer.py`、`python tools/test_flux2_trained.py` 与 `python tools/test_flux2_app_host.py` 分别验证独立分词、真实原生及完整业务。仅显式 `--download` 取得模型；不使用虚拟化。详见[完整复现](FLUX2_KLEIN.md#5-实际证据与复现)和[完整同版待办](releases/v0.3.0-dev.37.md)。

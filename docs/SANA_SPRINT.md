@@ -1,5 +1,8 @@
 # Sana-Sprint 0.6B 本地文生图
 
+> 当前 / Current: **v0.3.0**. [完整程序集成 / implementation](IMPLEMENTATION_V030.md). [仅程序验证策略 / validation](PROGRAM_VALIDATION.md) 优先于下文历史完整模型 / 手机运行门槛；旧检查点与失败记录保留为历史。Original PixArt multiscale LTX is now integrated; quality/device acceptance remains untested. [Release](releases/v0.3.0.md).
+
+
 [English](SANA_SPRINT.en.md) · [本轮交付](releases/v0.3.0-dev.45.md) · [程序验证规则](PROGRAM_VALIDATION.md)
 
 dev.45 新增具名的 **Sana-Sprint 0.6B MNN** 文生图适配，作为编号 04 中允许的匹配移动配方。所有阶段在同一手机执行，复用模型库、本地管理、逐模型参数、任务队列和图片产物。它与既有 Sana Edit、普通 Sana 600M、1.6B 是不同配方；不能互换组件，也不把旧 Edit 灰图记录改为通过。

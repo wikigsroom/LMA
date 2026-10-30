@@ -1,5 +1,8 @@
 # 旧 LTX 本地视频业务链路
 
+> 当前 / Current: **v0.3.0**. [完整程序集成 / implementation](IMPLEMENTATION_V030.md). [仅程序验证策略 / validation](PROGRAM_VALIDATION.md) 优先于下文历史完整模型 / 手机运行门槛；旧检查点与失败记录保留为历史。Original PixArt multiscale LTX is now integrated; quality/device acceptance remains untested. [Release](releases/v0.3.0.md).
+
+
 [English](LTX098_APP_FLOW.en.md) · [编号交付与完整待办](releases/v0.3.0-dev.30.md) · [完整版本要求](MULTIMODAL_RELEASE_PLAN.md)
 
 内部 **0.3.0-dev.30 / code 34** 将旧 LTX 的本地组件连接到生产队列、模型独立设置和结果库。新增的是运行基座，APK 不含视频权重、T5、分词配置或 VAE 数据。新配方明确标记为实验状态：原数值门槛仍有失败，视频质量、手机资源及 Android 运行尚未验收。

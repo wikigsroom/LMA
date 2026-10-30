@@ -56,8 +56,10 @@ int run(const std::vector<std::string>& args) {
         std::ifstream in(path,std::ios::binary);auto request=Json::parse(in,callback);
         const std::set<std::string> allowed={"operation","width","height","frames","fps","latents","context","text_tokens"};
         demand(request.is_object() && request.size()==allowed.size(),"Incomplete sampling request");for(const auto& item:request.items())demand(allowed.count(item.key())!=0,"Unsupported sampling setting");
-        demand(request.at("operation")=="sample_files","Unsupported operation");
-        int width=integer(request.at("width"),64,256),height=integer(request.at("height"),64,256),frames=integer(request.at("frames"),9,33),fps=integer(request.at("fps"),1,60);
+        auto operation=request.at("operation").get<std::string>();bool first=operation=="sample_multiscale_first",second=operation=="sample_multiscale_second";
+        demand(operation=="sample_files" || first || second,"Unsupported operation");
+        int maximum=first?160:second?320:256,minimum=second?128:64;
+        int width=integer(request.at("width"),minimum,maximum),height=integer(request.at("height"),minimum,maximum),frames=integer(request.at("frames"),9,33),fps=integer(request.at("fps"),1,60);
         demand(width%32==0 && height%32==0 && (frames-1)%8==0,"Unsupported latent grid");
         int text_tokens=integer(request.at("text_tokens"),1,256);size_t consumed=0;int threads=std::stoi(args[5],&consumed);
         demand(consumed==args[5].size() && threads>=1 && threads<=8 && args[4]=="vulkan","Unsupported sampler backend or thread count");
@@ -69,10 +71,11 @@ int run(const std::vector<std::string>& args) {
         Transformer model(args[1],"vulkan",threads,false);
         auto result=sample(model,std::move(input),{},
             [](int step,float sigma){std::cerr<<Json{{"event","step_start"},{"step",step},{"sigma",sigma}}.dump()<<std::endl;},
-            [](int step,float sigma,const std::vector<float>&){std::cerr<<Json{{"event","step_end"},{"step",step},{"sigma",sigma}}.dump()<<std::endl;});
-        demand(result.layers==28 && result.steps==8 && result.parameters==1923385472ULL && result.backend=="vulkan","Incomplete old-LTX trajectory");
+            [](int step,float sigma,const std::vector<float>&){std::cerr<<Json{{"event","step_end"},{"step",step},{"sigma",sigma}}.dump()<<std::endl;},
+            first||second?multiscale_sigmas(second):std::vector<float>{});
+        demand(result.layers==28 && result.steps==(first?7:second?3:8) && result.parameters==1923385472ULL && result.backend=="vulkan","Incomplete old-LTX trajectory");
         for(float value:result.latents)demand(std::isfinite(value),"Non-finite sampled tensor");save(output,result.latents);
-        std::cout<<Json{{"ok",true},{"operation","sample_files"},{"model_executed",true},{"fixture",false},{"backend",result.backend},{"layers",result.layers},{"steps",result.steps},{"parameters",result.parameters},{"layout","batch_tokens_channels"},{"bytes",result.latents.size()*4},{"weight_bytes",result.weight_bytes},{"compute_bytes",result.compute_bytes}}.dump()<<std::endl;
+        std::cout<<Json{{"ok",true},{"operation",operation},{"model_executed",true},{"fixture",false},{"backend",result.backend},{"layers",result.layers},{"steps",result.steps},{"parameters",result.parameters},{"layout","batch_tokens_channels"},{"bytes",result.latents.size()*4},{"weight_bytes",result.weight_bytes},{"compute_bytes",result.compute_bytes}}.dump()<<std::endl;
         return 0;
     }catch(const std::exception& error){std::cout<<Json{{"ok",false},{"error",error.what()}}.dump(-1,' ',false,Json::error_handler_t::replace)<<std::endl;return 1;}
 }

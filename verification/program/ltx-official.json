@@ -1,0 +1,366 @@
+{
+  "schema": "lma.ltx098-official-program-tests/1",
+  "passed": true,
+  "assertions": 89,
+  "cases": [
+    {
+      "kind": "random_small_t5",
+      "tokens": 3,
+      "max_error": 8.344650268554688e-07
+    },
+    {
+      "kind": "random_small_t5",
+      "tokens": 5,
+      "max_error": 7.152557373046875e-07
+    },
+    {
+      "kind": "random_small_t5",
+      "tokens": 15,
+      "max_error": 1.2516975402832031e-06
+    },
+    {
+      "kind": "random_small_t5",
+      "tokens": 4,
+      "max_error": 9.5367431640625e-07
+    },
+    {
+      "kind": "random_small_t5",
+      "tokens": 3,
+      "max_error": 6.183981895446777e-07
+    },
+    {
+      "kind": "random_small_t5",
+      "tokens": 2,
+      "max_error": 4.6193599700927734e-07
+    },
+    {
+      "kind": "random_small_t5",
+      "tokens": 3,
+      "max_error": 7.748603820800781e-07
+    },
+    {
+      "kind": "random_small_t5",
+      "tokens": 3,
+      "max_error": 4.76837158203125e-07
+    },
+    {
+      "kind": "random_small_t5",
+      "tokens": 3,
+      "max_error": 7.152557373046875e-07
+    },
+    {
+      "kind": "random_small_t5",
+      "tokens": 4,
+      "max_error": 6.332993507385254e-07
+    },
+    {
+      "kind": "random_small_t5",
+      "tokens": 1,
+      "max_error": 3.5762786865234375e-07
+    },
+    {
+      "kind": "random_small_t5",
+      "tokens": 1,
+      "max_error": 3.5762786865234375e-07
+    },
+    {
+      "kind": "random_small_t5",
+      "tokens": 256,
+      "max_error": 2.1457672119140625e-06
+    },
+    {
+      "kind": "random_small_upscaler",
+      "shape": [
+        1,
+        128,
+        2,
+        2,
+        3
+      ],
+      "max_error": 8.106231689453125e-06
+    },
+    {
+      "kind": "random_small_upscaler",
+      "shape": [
+        1,
+        128,
+        2,
+        3,
+        2
+      ],
+      "max_error": 7.957220077514648e-06
+    },
+    {
+      "kind": "random_small_upscaler",
+      "shape": [
+        1,
+        128,
+        3,
+        2,
+        2
+      ],
+      "max_error": 9.59634780883789e-06
+    }
+  ],
+  "fixture_neural_graphs_only": true,
+  "complete_trained_model_runs": 0,
+  "complete_model_downloads": 0,
+  "complete_model_copies": 0,
+  "model_inference": false,
+  "physicalAndroid": false,
+  "qualityAccepted": false,
+  "virtualization_used": false,
+  "input_fingerprint": {
+    "native/ltx098/CMakeLists.txt": "05bd2f7e2a96b679b0a1eaf9480e36d84b0d636310d95add37b8ce5ad4282d86",
+    "native/ltx098/multiscale.hpp": "5f6f54b44feeb5cbed8098f544522f2e68fd17e3766acef94baa18fe2a70e0f6",
+    "native/ltx098/parent_guard.cpp": "3c987bcf309a30b2502418d50086cec21073f93dffdee8a50da26f49e055a46d",
+    "native/ltx098/program_contract.cpp": "ed9fe175fc836f71f05ec733987795436ea8631fc07d10e95dd899344d36e940",
+    "native/ltx098/sample.cpp": "5315ee1d52f9430c5c487046340139827c1db508a521d5f2f604d2cbcf2bf158",
+    "native/moss_nano/onnx_external.hpp": "c1bb8f95ad2078472dbbf2ea0863493ac44f4aae7c4336cf5debb0db0d54fae5",
+    "research/ltx098/CMakeLists.txt": "cc86fb36397da930df9c30745c8a29a3748535a9dbd3e40b9f2a5f9c9886374f",
+    "research/ltx098/driver.cpp": "2c8b92b4826824d03ca7ec17e82b5f6ff6dba10b600013df6141d61c5df212f6",
+    "research/ltx098/licenses/ggml-MIT.txt": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
+    "research/ltx098/licenses/json-MIT.txt": "0e592e358cf7722906f417be85bc514f15bf6efd28cea98cb84e56ef7fddfc3e",
+    "research/ltx098/licenses/Lightricks-Apache-2.0.txt": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+    "research/ltx098/licenses/SPIRV-Headers-MIT.txt": "ea43b1de38a6f90c488800d66dec1ed671e68cda530266bc96951fb5b6307613",
+    "research/ltx098/licenses/Vulkan-Apache-2.0.txt": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+    "research/ltx098/licenses/Vulkan-Headers.txt": "95ad366d23fadf701d355bc45fb8b82ae2d700239471d35d41286ac3b08ff903",
+    "research/ltx098/licenses/Vulkan-MIT.txt": "1ca3502222d967f3be5751c55f6b7ee735b5383909c3b501495f54b216dbf227",
+    "research/ltx098/NOTICE": "bab99dbce59bed2470b85752c90464dcfac90c0c0d28577b9db1067ec1a5e872",
+    "research/ltx098/sampling.cpp": "b76d7b5b82814fbc2561eeeaca7308c5e34b58974defef9c318b712fae4e7c7c",
+    "research/ltx098/sampling.hpp": "a677b3375fb3201d1aac4c83ad9568e4ff6d44513f1670de79d2c6bf329622f2",
+    "research/ltx098/sampling_driver.cpp": "3a8af8bc1bfcc28127649374e4818a1d368b46ad2ef0c24c1c998e8d32d80fc1",
+    "research/ltx098/transformer.cpp": "22c6d7ec964c5d9e25c90ba9f32c3a93b3d6d4db3c8aafb064cb45f3e03581fa",
+    "research/ltx098/transformer.hpp": "6f5fd68cba7278abb210322af20d70d3a0acd05631118bdeabdae54f4cd5e1d5",
+    "research/ltx098_pipeline/CMakeLists.txt": "6115af1b7ee6798413e1c4617eca8a7b9076722237f922e0f133ef1ebd1c6acc",
+    "research/ltx098_pipeline/NOTICE": "9241c16fca4550e732057f10ac073002e72974b65684d0d3fdae56015ec4222c",
+    "research/ltx098_pipeline/tensors.cpp": "c58dca94dc600e29d19e00938c012f9973457617ea3cc656e15aa6d4c2eeb089",
+    "research/ltx098_text/CMakeLists.txt": "7aed8bbf3b4684b2e691291e08e5ff3751c17cf4d539d03fae4c87616cf2a61f",
+    "research/ltx098_text/driver.cpp": "02810c2f3dcd57c3751b1f218d353a64205e5df158ee2190533495695fb36923",
+    "research/ltx098_text/encoder.cpp": "7bc2d00219cb60b8451c73e1381aa266b616ed80f57a8335f50e7d46f8e71e4e",
+    "research/ltx098_text/encoder.hpp": "4f7987d40931fb90072a1e63d3cd5e327b22228c481a80de861dd7bb05a671cb",
+    "research/ltx098_text/graph.cpp": "be59a12411c7487a104b3e743824f638046ae8fb132533a4cc9bbbebbfd17475",
+    "research/ltx098_text/graph.hpp": "ae16035400caedb79f33db97497e6588f071901bd0935f7646e0e3b02bc7e36a",
+    "research/ltx098_text/licenses/llama-MIT.txt": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
+    "research/ltx098_text/NOTICE": "176bd96eed8972ba6a9c4bdebf9f19b166397c0eb50717be77547056ad974db4",
+    "research/ltx098_vae/CMakeLists.txt": "fcc7e89deb1b1bf4d1dc74c329225e4f6ceccd997a2370b8d06263293ec93b9f",
+    "research/ltx098_vae/driver.cpp": "da3f8b62b4da9db4577492d0df23ff07ac69832365b486a08bb76e2a79b61935",
+    "research/ltx098_vae/NOTICE": "b5bec20058b46269f031462291b56fea8f5620359ec71f64353e76a9c4f6bcd3",
+    "research/soulx/dsp.hpp": "ef6a28cae0d2e72d1b84890437286b0ed8a20690c0ac07b2ddf8162ee2d2fd58",
+    "research/soulx_ort/android_log.cpp": "216f630761ff67a00cfe47db941338f45560fc45486ebcbdff196cf36dac3d04",
+    "research/soulx_ort/LICENSE-ONNX-RUNTIME-MIT": "c250d6278f0b47a6439fb7592b08b58a55eb9f535aa49a1db63211c3f982b674",
+    "research/soulx_ort/NOTICE": "69487267d86f7998917bc9f7e9b6d2e30e168f41c92369f41a33e225c0bfceb6",
+    "research/soulx_ort/runtime.hpp": "0586ad63c3210ec42d1c3cc956beb05614e56e9cb803632d596e57935689b2c8",
+    "research/soulx_ort/types.hpp": "f0822ae37dd26996501f2b69e4e1bb9404ad53903dd267ff793ee60d96f42de4",
+    "third_party/ltx098-official/identity.json": "f428b4ee44210d5444d1211817d32171d1982bf62e525476d24fbb8be90af58a",
+    "third_party/ltx098-official/ltx-ltxv-spatial-upscaler-0.9.8.header.json": "bd1a5ac26beb28c82074098e4304c096c50e0857bc3690bec63502c9bf9610f4",
+    "third_party/ltx098-official/pixart-config.json": "9a2865cce66d6dbfdc0fd185faed2394344fc5f61b2cbf9579ca2e6dc882f927",
+    "third_party/ltx098-official/pixart-model-00001-of-00002.header.json": "5924a0d933a5f4c73cad26cc059952260e9484cf927307ce8907b2c9e17b8267",
+    "third_party/ltx098-official/pixart-model-00002-of-00002.header.json": "ba3f2010e6415bcccf119b73b5d03794783ee8aa1a39a539c5f8ca402afd80c9",
+    "third_party/ltx098-official/pixart-model.safetensors.index.json": "fb4665a1a122b7e5270f0e4494c653839c11a5a978e03b0df6dfa714258716e6",
+    "third_party/ltx098-official/pixart-special_tokens_map.json": "5c87151ef0f72a99d1f766a4c418bd2a1f90aaa30a8e22fe5eca9641daebb64f",
+    "third_party/ltx098-official/pixart-tokenizer_config.json": "71730771351a8f0463bd2e545fbfaadc9dc01a7a222306ff4795cc48dfe168c0",
+    "third_party/ltx098-pipeline-source-lock.json": "3fc857b18056ef284b17e656c4dfa2d79e320e8f5463277a40b054981190769b",
+    "third_party/ltx098-source-lock.json": "28acd99486f6ca76a06d038076175ac01ca55c7b1d8c3ba6dab9190291ac8779",
+    "third_party/ltx098-text-source-lock.json": "04b2f7892a4f047363fbaf3ba555682bf201c8320fa1cc7f4d5a68b2884512f4",
+    "third_party/ltx098-vae-source-lock.json": "201ac18ca78b381f810f0567ecd300a5bfda1b489893be56d28b30d6e6db2dcb",
+    "third_party/moss-nano-source-lock.json": "cce6bb6921d1f476fa50a7e483f13daca030a750b68ea47feba9214635170da3",
+    "third_party/soulx-acoustic-source-lock.json": "b39e10c415c5f30d4e4adb52327e1e04df371407131f47617622da913b268ac5",
+    "tools/build_ltx098.py": "bf39449e38190a666093f6954d133a76da36d519817ca636703f030100d4faf8",
+    "tools/build_ltx098_app.py": "f6350ba4a59e009e7b24020f2cd39ef871b481b901b73243054c6cd4382d6eab",
+    "tools/fetch_ltx098_text.py": "55782095a1b941dc809b33966f62aeffda1b2ca0c719033610432ec00599b577",
+    "tools/ltx098_official_profile.py": "dd58ce64cdb40fd4787b64e13f429302f69ba1d409a29a6348b8a5eb498b98dd",
+    "tools/sana_sprint_profile.py": "698f71b6afcc6d78ab269f949ac66edcc0f671ba5e098dd182095c23aa69e4fd",
+    "app/src/main/assets/architectures/ltx098-upscaler.onnx": "b7b3b8067dc247002b92fa228bf8bd1271d3b535f0ac8f70c7f7e5e94448e2d9",
+    "app/src/main/java/com/lma/app/core/LtxPixArtSpec.java": "3eb0cb14c75c0e190d611ee7ac259878a5a644e0bce0a4ee6003a1084668e00b",
+    "app/src/main/java/com/lma/app/Ltx098Engine.java": "6e7643d54d506ba9f8a63599a9efe8d513d1eebb1a9ac53adc9ee6281a7bc36c",
+    "catalogue/model-assemblies.json": "bda37b1411a28e8f396a03f0ccf8176b07469d402a858b5b8561410d13d8d572",
+    "catalogue/model-bundles.json": "cde60f64056788426517b98ea2fe7f6a74ecaf33bb5d68cb061d2b7f6ec59cba",
+    "tools/test_ltx098_official.py": "f6600c8eaef10feb6d44b85c58a9a0300fe279c9d090955ee40865af229c1b7a"
+  },
+  "python_versions": {
+    "torch": "2.14.0+cpu",
+    "onnxruntime": "1.24.3"
+  },
+  "source_identity": {
+    "schema": "lma.ltx098-official-metadata/1",
+    "sources": [
+      {
+        "repository": "PixArt-alpha/PixArt-XL-2-1024-MS",
+        "revision": "b89adadeccd9ead2adcb9fa2825d3fabec48d404",
+        "files": [
+          {
+            "file": "text_encoder/config.json",
+            "bytes": 788,
+            "sha256": "9a2865cce66d6dbfdc0fd185faed2394344fc5f61b2cbf9579ca2e6dc882f927",
+            "metadata_file": "pixart-config.json"
+          },
+          {
+            "file": "text_encoder/model.safetensors.index.json",
+            "bytes": 19886,
+            "sha256": "fb4665a1a122b7e5270f0e4494c653839c11a5a978e03b0df6dfa714258716e6",
+            "metadata_file": "pixart-model.safetensors.index.json"
+          },
+          {
+            "file": "tokenizer/tokenizer_config.json",
+            "bytes": 20509,
+            "sha256": "71730771351a8f0463bd2e545fbfaadc9dc01a7a222306ff4795cc48dfe168c0",
+            "metadata_file": "pixart-tokenizer_config.json"
+          },
+          {
+            "file": "tokenizer/special_tokens_map.json",
+            "bytes": 2201,
+            "sha256": "5c87151ef0f72a99d1f766a4c418bd2a1f90aaa30a8e22fe5eca9641daebb64f",
+            "metadata_file": "pixart-special_tokens_map.json"
+          },
+          {
+            "file": "tokenizer/spiece.model",
+            "bytes": 791656,
+            "sha256": "d60acb128cf7b7f2536e8f38a5b18a05535c9e14c7a355904270e15b0945ea86",
+            "metadata_file": "pixart-spiece.model"
+          },
+          {
+            "file": "text_encoder/model-00001-of-00002.safetensors",
+            "bytes": 9989150328,
+            "sha256": "eb529f693f4b17773a24e787fcba29486d5e1700dadcc20bb91e4c8b00212d08",
+            "header_bytes": 13936,
+            "header_sha256": "5924a0d933a5f4c73cad26cc059952260e9484cf927307ce8907b2c9e17b8267",
+            "metadata_file": "pixart-model-00001-of-00002.header.json"
+          },
+          {
+            "file": "text_encoder/model-00002-of-00002.safetensors",
+            "bytes": 9060119392,
+            "sha256": "58f33f4acba7a5502b6b3e4cb7863f8fd503d5012016428099bb460c98e2fe77",
+            "header_bytes": 13144,
+            "header_sha256": "ba3f2010e6415bcccf119b73b5d03794783ee8aa1a39a539c5f8ca402afd80c9",
+            "metadata_file": "pixart-model-00002-of-00002.header.json"
+          }
+        ]
+      },
+      {
+        "repository": "Lightricks/LTX-Video",
+        "revision": "8984fa25007f376c1a299016d0957a37a2f797bb",
+        "files": [
+          {
+            "file": "ltxv-spatial-upscaler-0.9.8.safetensors",
+            "bytes": 505024432,
+            "sha256": "5b076031c6f860db9037a54f3bb819f10bfb5532ea26a6d30062292428a0c208",
+            "header_bytes": 21928,
+            "header_sha256": "bd1a5ac26beb28c82074098e4304c096c50e0857bc3690bec63502c9bf9610f4",
+            "metadata_file": "ltx-ltxv-spatial-upscaler-0.9.8.header.json"
+          }
+        ]
+      }
+    ],
+    "complete_model_downloaded": false
+  },
+  "native_build": {
+    "schema": "lma.ltx098-app-build/1",
+    "android_arm64_compiled": false,
+    "min_sdk": null,
+    "stages": [
+      {
+        "stage": "tensors",
+        "file": "lma-ltx098-app-tensors.exe",
+        "bytes": 168448,
+        "sha256": "efa476815100ac57c0d1cc8eee7d762dbc660e37765a71910cb4f6427f1a086a",
+        "path": "build/ltx098-app-host/tensors/bin/lma-ltx098-app-tensors.exe"
+      },
+      {
+        "stage": "text",
+        "file": "lma-ltx098-app-text.exe",
+        "bytes": 3807232,
+        "sha256": "a8a9e585ff485afec6f2f862c8c5638eec07ff4265f98187cb790ad9d2be4cb6",
+        "path": "build/ltx098-app-host/text/bin/lma-ltx098-app-text.exe"
+      },
+      {
+        "stage": "sample",
+        "file": "lma-ltx098-app-sample.exe",
+        "bytes": 43138048,
+        "sha256": "94ebfc2dcf666fc561e06f674b3d82761697675a46b45562c348af4ccb6bac60",
+        "path": "build/ltx098-app-host/sample/bin/lma-ltx098-app-sample.exe"
+      },
+      {
+        "stage": "vae",
+        "file": "lma-ltx098-app-vae.exe",
+        "bytes": 228352,
+        "sha256": "4c93b8238fdbf056b065b2d7da2de1357e5b6366002963f3ddfd5ed741071a2d",
+        "path": "build/ltx098-app-host/vae/bin/lma-ltx098-app-vae.exe"
+      }
+    ],
+    "source_revision": "4b2d053057623ddd4d0a1d3e9cd28890e9ef487f",
+    "ggml_revision": "a5915eb0e47adef21c3f25b889a008925ea838c2",
+    "llama_revision": "b29c606e28a01b1bc8c1351026a0fa6e616bf6c4",
+    "sentencepiece_revision": "31646a467d2051eb904e0b45de3a73e91fe1c1e3",
+    "ndk": null,
+    "model_inference": false,
+    "physical_android": false,
+    "quality_accepted": false,
+    "numerical_accepted": false,
+    "no_automatic_model_download": true,
+    "virtualization_used": false,
+    "input_fingerprint": {
+      "native/ltx098/CMakeLists.txt": "05bd2f7e2a96b679b0a1eaf9480e36d84b0d636310d95add37b8ce5ad4282d86",
+      "native/ltx098/multiscale.hpp": "5f6f54b44feeb5cbed8098f544522f2e68fd17e3766acef94baa18fe2a70e0f6",
+      "native/ltx098/parent_guard.cpp": "3c987bcf309a30b2502418d50086cec21073f93dffdee8a50da26f49e055a46d",
+      "native/ltx098/program_contract.cpp": "ed9fe175fc836f71f05ec733987795436ea8631fc07d10e95dd899344d36e940",
+      "native/ltx098/sample.cpp": "5315ee1d52f9430c5c487046340139827c1db508a521d5f2f604d2cbcf2bf158",
+      "native/moss_nano/onnx_external.hpp": "c1bb8f95ad2078472dbbf2ea0863493ac44f4aae7c4336cf5debb0db0d54fae5",
+      "research/ltx098/CMakeLists.txt": "cc86fb36397da930df9c30745c8a29a3748535a9dbd3e40b9f2a5f9c9886374f",
+      "research/ltx098/driver.cpp": "2c8b92b4826824d03ca7ec17e82b5f6ff6dba10b600013df6141d61c5df212f6",
+      "research/ltx098/licenses/ggml-MIT.txt": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
+      "research/ltx098/licenses/json-MIT.txt": "0e592e358cf7722906f417be85bc514f15bf6efd28cea98cb84e56ef7fddfc3e",
+      "research/ltx098/licenses/Lightricks-Apache-2.0.txt": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "research/ltx098/licenses/SPIRV-Headers-MIT.txt": "ea43b1de38a6f90c488800d66dec1ed671e68cda530266bc96951fb5b6307613",
+      "research/ltx098/licenses/Vulkan-Apache-2.0.txt": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "research/ltx098/licenses/Vulkan-Headers.txt": "95ad366d23fadf701d355bc45fb8b82ae2d700239471d35d41286ac3b08ff903",
+      "research/ltx098/licenses/Vulkan-MIT.txt": "1ca3502222d967f3be5751c55f6b7ee735b5383909c3b501495f54b216dbf227",
+      "research/ltx098/NOTICE": "bab99dbce59bed2470b85752c90464dcfac90c0c0d28577b9db1067ec1a5e872",
+      "research/ltx098/sampling.cpp": "b76d7b5b82814fbc2561eeeaca7308c5e34b58974defef9c318b712fae4e7c7c",
+      "research/ltx098/sampling.hpp": "a677b3375fb3201d1aac4c83ad9568e4ff6d44513f1670de79d2c6bf329622f2",
+      "research/ltx098/sampling_driver.cpp": "3a8af8bc1bfcc28127649374e4818a1d368b46ad2ef0c24c1c998e8d32d80fc1",
+      "research/ltx098/transformer.cpp": "22c6d7ec964c5d9e25c90ba9f32c3a93b3d6d4db3c8aafb064cb45f3e03581fa",
+      "research/ltx098/transformer.hpp": "6f5fd68cba7278abb210322af20d70d3a0acd05631118bdeabdae54f4cd5e1d5",
+      "research/ltx098_pipeline/CMakeLists.txt": "6115af1b7ee6798413e1c4617eca8a7b9076722237f922e0f133ef1ebd1c6acc",
+      "research/ltx098_pipeline/NOTICE": "9241c16fca4550e732057f10ac073002e72974b65684d0d3fdae56015ec4222c",
+      "research/ltx098_pipeline/tensors.cpp": "c58dca94dc600e29d19e00938c012f9973457617ea3cc656e15aa6d4c2eeb089",
+      "research/ltx098_text/CMakeLists.txt": "7aed8bbf3b4684b2e691291e08e5ff3751c17cf4d539d03fae4c87616cf2a61f",
+      "research/ltx098_text/driver.cpp": "02810c2f3dcd57c3751b1f218d353a64205e5df158ee2190533495695fb36923",
+      "research/ltx098_text/encoder.cpp": "7bc2d00219cb60b8451c73e1381aa266b616ed80f57a8335f50e7d46f8e71e4e",
+      "research/ltx098_text/encoder.hpp": "4f7987d40931fb90072a1e63d3cd5e327b22228c481a80de861dd7bb05a671cb",
+      "research/ltx098_text/graph.cpp": "be59a12411c7487a104b3e743824f638046ae8fb132533a4cc9bbbebbfd17475",
+      "research/ltx098_text/graph.hpp": "ae16035400caedb79f33db97497e6588f071901bd0935f7646e0e3b02bc7e36a",
+      "research/ltx098_text/licenses/llama-MIT.txt": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
+      "research/ltx098_text/NOTICE": "176bd96eed8972ba6a9c4bdebf9f19b166397c0eb50717be77547056ad974db4",
+      "research/ltx098_vae/CMakeLists.txt": "fcc7e89deb1b1bf4d1dc74c329225e4f6ceccd997a2370b8d06263293ec93b9f",
+      "research/ltx098_vae/driver.cpp": "da3f8b62b4da9db4577492d0df23ff07ac69832365b486a08bb76e2a79b61935",
+      "research/ltx098_vae/NOTICE": "b5bec20058b46269f031462291b56fea8f5620359ec71f64353e76a9c4f6bcd3",
+      "research/soulx/dsp.hpp": "ef6a28cae0d2e72d1b84890437286b0ed8a20690c0ac07b2ddf8162ee2d2fd58",
+      "research/soulx_ort/android_log.cpp": "216f630761ff67a00cfe47db941338f45560fc45486ebcbdff196cf36dac3d04",
+      "research/soulx_ort/LICENSE-ONNX-RUNTIME-MIT": "c250d6278f0b47a6439fb7592b08b58a55eb9f535aa49a1db63211c3f982b674",
+      "research/soulx_ort/NOTICE": "69487267d86f7998917bc9f7e9b6d2e30e168f41c92369f41a33e225c0bfceb6",
+      "research/soulx_ort/runtime.hpp": "0586ad63c3210ec42d1c3cc956beb05614e56e9cb803632d596e57935689b2c8",
+      "research/soulx_ort/types.hpp": "f0822ae37dd26996501f2b69e4e1bb9404ad53903dd267ff793ee60d96f42de4",
+      "third_party/ltx098-official/identity.json": "f428b4ee44210d5444d1211817d32171d1982bf62e525476d24fbb8be90af58a",
+      "third_party/ltx098-official/ltx-ltxv-spatial-upscaler-0.9.8.header.json": "bd1a5ac26beb28c82074098e4304c096c50e0857bc3690bec63502c9bf9610f4",
+      "third_party/ltx098-official/pixart-config.json": "9a2865cce66d6dbfdc0fd185faed2394344fc5f61b2cbf9579ca2e6dc882f927",
+      "third_party/ltx098-official/pixart-model-00001-of-00002.header.json": "5924a0d933a5f4c73cad26cc059952260e9484cf927307ce8907b2c9e17b8267",
+      "third_party/ltx098-official/pixart-model-00002-of-00002.header.json": "ba3f2010e6415bcccf119b73b5d03794783ee8aa1a39a539c5f8ca402afd80c9",
+      "third_party/ltx098-official/pixart-model.safetensors.index.json": "fb4665a1a122b7e5270f0e4494c653839c11a5a978e03b0df6dfa714258716e6",
+      "third_party/ltx098-official/pixart-special_tokens_map.json": "5c87151ef0f72a99d1f766a4c418bd2a1f90aaa30a8e22fe5eca9641daebb64f",
+      "third_party/ltx098-official/pixart-tokenizer_config.json": "71730771351a8f0463bd2e545fbfaadc9dc01a7a222306ff4795cc48dfe168c0",
+      "third_party/ltx098-pipeline-source-lock.json": "3fc857b18056ef284b17e656c4dfa2d79e320e8f5463277a40b054981190769b",
+      "third_party/ltx098-source-lock.json": "28acd99486f6ca76a06d038076175ac01ca55c7b1d8c3ba6dab9190291ac8779",
+      "third_party/ltx098-text-source-lock.json": "04b2f7892a4f047363fbaf3ba555682bf201c8320fa1cc7f4d5a68b2884512f4",
+      "third_party/ltx098-vae-source-lock.json": "201ac18ca78b381f810f0567ecd300a5bfda1b489893be56d28b30d6e6db2dcb",
+      "third_party/moss-nano-source-lock.json": "cce6bb6921d1f476fa50a7e483f13daca030a750b68ea47feba9214635170da3",
+      "third_party/soulx-acoustic-source-lock.json": "b39e10c415c5f30d4e4adb52327e1e04df371407131f47617622da913b268ac5",
+      "tools/build_ltx098.py": "bf39449e38190a666093f6954d133a76da36d519817ca636703f030100d4faf8",
+      "tools/build_ltx098_app.py": "f6350ba4a59e009e7b24020f2cd39ef871b481b901b73243054c6cd4382d6eab",
+      "tools/fetch_ltx098_text.py": "55782095a1b941dc809b33966f62aeffda1b2ca0c719033610432ec00599b577",
+      "tools/ltx098_official_profile.py": "dd58ce64cdb40fd4787b64e13f429302f69ba1d409a29a6348b8a5eb498b98dd",
+      "tools/sana_sprint_profile.py": "698f71b6afcc6d78ab269f949ac66edcc0f671ba5e098dd182095c23aa69e4fd"
+    }
+  },
+  "capture": "build/ltx098-official-tests/run-1793397339168228400"
+}

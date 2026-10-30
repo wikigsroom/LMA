@@ -21,15 +21,18 @@ def package():
         path=destination/item['file'];assert path.stat().st_size==item['bytes'] and sha(path)==item['sha256']
     names=['ltx098-Lightricks-Apache-2.0.txt','ltx098-App-NOTICE.txt','ltx098-ggml-MIT.txt','ltx098-Vulkan-Headers.txt',
         'ltx098-Vulkan-MIT.txt','ltx098-Vulkan-Apache-2.0.txt','ltx098-SPIRV-Headers-MIT.txt','soulx-llama-MIT.txt',
-        'moss-onnxruntime-LICENSE.txt','moss-onnxruntime-ThirdPartyNotices.txt.txt','sd-nlohmann-json-LICENSE.txt','sd-NDK-LLVM-NOTICE.txt']
+        'moss-onnxruntime-LICENSE.txt','moss-onnxruntime-ThirdPartyNotices.txt.txt','sd-nlohmann-json-LICENSE.txt','sd-NDK-LLVM-NOTICE.txt',
+        'moss-sentencepiece-LICENSE.txt','moss-sentencepiece-third_party-protobuf-lite-LICENSE.txt','moss-sentencepiece-third_party-darts_clone-LICENSE.txt','moss-sentencepiece-third_party-absl-LICENSE.txt']
     notices={name:sha(ROOT/'third_party/notices'/name) for name in names}
     primary=next(c for c in compiled if 'tensors' in c['file']);dependencies=[c for c in compiled if c is not primary]+shared
-    result=dict(primary,schema='lma.native-build/1',engine='ltx098_native',version='0.9.8-lma-single-scale-v1',abi='arm64-v8a',min_sdk=28,backend='vulkan',
+    result=dict(primary,schema='lma.native-build/1',engine='ltx098_native',version='0.9.8-lma-multiscale-v1',abi='arm64-v8a',min_sdk=28,backend='vulkan',
         source_revision=receipt['source_revision'],ggml_revision=receipt['ggml_revision'],llama_revision=receipt['llama_revision'],ndk=receipt['ndk'],
         dependencies=dependencies,notices=notices,elf_load_alignment=receipt['stages'][0]['elf']['load_segment_alignment'],
         vocabularies='external_user_selected_components',pipeline='ltx098_single_scale_google_q5',stage_loading='sequential_processes',
         text_backend='cpu',vae_backend='cpu',media_backend='android_mediacodec_avc',model_inference_tested=False,deviceValidated=False,
         numerical_accepted=False,quality_accepted=False,model_data_embedded=False)
+    result['pipelines']=['ltx098_single_scale_google_q5','ltx098_pixart_multiscale_v1']
+    result['sentencepiece_revision']=receipt['sentencepiece_revision']
     result['source_inputs']=receipt['input_fingerprint']|fingerprint('tools/package_ltx098_app.py',*['third_party/notices/'+n for n in names])
     (ROOT/'build/ltx098-app-build-info.json').write_text(json.dumps(result,indent=2)+'\n',encoding='utf-8')
     expected={k:v for k,v in result.items() if k!='source_inputs'}

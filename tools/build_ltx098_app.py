@@ -5,6 +5,8 @@ from evidence import fingerprint, current
 from build_ltx098 import validate_sources
 from fetch_ltx098_text import sources as text_sources
 from verify_package import elf_info, SYSTEM_LIBS
+from sana_sprint_profile import sources as sentencepiece_source
+from ltx098_official_profile import lock as official_metadata
 
 ROOT=Path(__file__).resolve().parents[1]
 STAGES={'tensors':'lma_ltx098_tensors','text':'lma_ltx098_text_cli','sample':'lma_ltx098_app_sample','vae':'lma_ltx098_vae_cli'}
@@ -19,11 +21,12 @@ def inputs():
     return fingerprint('native/ltx098','research/ltx098','research/ltx098_text','research/ltx098_pipeline','research/ltx098_vae',
         'research/soulx_ort','research/soulx/dsp.hpp','native/moss_nano/onnx_external.hpp','tools/build_ltx098_app.py',
         'tools/build_ltx098.py','tools/fetch_ltx098_text.py','third_party/ltx098-source-lock.json','third_party/ltx098-text-source-lock.json',
-        'third_party/ltx098-vae-source-lock.json','third_party/ltx098-pipeline-source-lock.json','third_party/soulx-acoustic-source-lock.json')
+        'third_party/ltx098-vae-source-lock.json','third_party/ltx098-pipeline-source-lock.json','third_party/soulx-acoustic-source-lock.json',
+        'third_party/ltx098-official','tools/ltx098_official_profile.py','tools/sana_sprint_profile.py','third_party/moss-nano-source-lock.json')
 
 def build(android=False):
     if os.name!='nt':raise RuntimeError('Use native Windows tools; no virtualization')
-    lock=validate_sources(); text=text_sources(); before=inputs()
+    lock=validate_sources(); text=text_sources(); piece=sentencepiece_source(); official_metadata();before=inputs()
     vae=json.loads((ROOT/'third_party/ltx098-vae-source-lock.json').read_text(encoding='utf-8'))
     runtime=json.loads((ROOT/'third_party/soulx-acoustic-source-lock.json').read_text(encoding='utf-8'))
     header=next(s for s in runtime['sources'] if s['name']=='onnxruntime-headers')
@@ -64,6 +67,7 @@ def build(android=False):
             options=dict(CMAKE_MAKE_PROGRAM=tool+'cmake-3.31.6/bin/ninja.exe',CMAKE_BUILD_TYPE='Release',LMA_STAGE=stage,
                 LMA_JSON_SOURCE=alias+'build/native-src/sd-cpp/thirdparty',LMA_JSON_INCLUDE=alias+'build/native-src/sd-cpp/thirdparty',
                 LMA_LLAMA_SOURCE=alias+'build/native-src/llama-soulx',LMA_GGML_SOURCE=alias+'build/native-src/sd-cpp/ggml',
+                LMA_SENTENCEPIECE_SOURCE=alias+'build/native-src/sentencepiece',
                 LMA_ORT_HEADERS=alias+'build/native-src/onnxruntime-headers/include/onnxruntime/core/session')
             if android:
                 options.update(CMAKE_TOOLCHAIN_FILE=tool+'android-ndk-r30/build/cmake/android.toolchain.cmake',ANDROID_ABI='arm64-v8a',ANDROID_PLATFORM='android-28',ANDROID_STL='c++_static')
@@ -90,6 +94,7 @@ def build(android=False):
             execute([cmake,'-S',alias+'native/ltx098','-B',build_path,'-G','Ninja']+['-D'+k+'='+v for k,v in options.items()],directory,'configure')
             print('Building local LTX App stage: '+stage,flush=True)
             execute([cmake,'--build',build_path,'--target',target,'-j','4'],directory,'compile')
+            if not android and stage=='sample':execute([cmake,'--build',build_path,'--target','lma_ltx098_multiscale_contract','-j','2'],directory,'program-contract')
             file='liblma-ltx098-app-'+stage+'.so' if android else 'lma-ltx098-app-'+stage+'.exe';binary=directory/'bin'/file
             item=dict(stage=stage,file=file,bytes=binary.stat().st_size,sha256=sha(binary),path=str(binary.relative_to(ROOT)).replace('\\','/'))
             if android:
@@ -103,7 +108,7 @@ def build(android=False):
     finally:subprocess.run(['subst',drive,'/D'],check=True,capture_output=True)
     current(before)
     record=dict(schema='lma.ltx098-app-build/1',android_arm64_compiled=android,min_sdk=28 if android else None,stages=compiled,
-        source_revision=lock['sources'][0]['revision'],ggml_revision=lock['sources'][1]['revision'],llama_revision=text['source']['revision'],
+        source_revision=lock['sources'][0]['revision'],ggml_revision=lock['sources'][1]['revision'],llama_revision=text['source']['revision'],sentencepiece_revision=piece['revision'],
         ndk='30.0.16248370' if android else None,model_inference=False,physical_android=False,quality_accepted=False,numerical_accepted=False,
         no_automatic_model_download=True,virtualization_used=False,input_fingerprint=before)
     (out/'receipt.json').write_text(json.dumps(record,indent=2)+'\n',encoding='utf-8')

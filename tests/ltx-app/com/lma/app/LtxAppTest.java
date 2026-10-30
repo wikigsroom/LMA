@@ -32,11 +32,18 @@ public final class LtxAppTest {
         JSONObject payload=read(new File(original[stage.equals("text")?3:2]));File output=new File(original[stage.equals("text")?4:3]);JSONObject receipt=new JSONObject();
         if(stage.equals("text")){
             floats(output,4096,1);receipt.put("schema","lma.ltx098-text/1").put("fixture",false).put("model_inference",true).put("layers",24)
+                .put("text_variant",original.length>6?"pixart_original_f32":"google_community_t5_q5")
                 .put("items",new JSONArray().put(new JSONObject().put("tokens",new JSONArray().put(1)).put("mask",new JSONArray().put(1)).put("offset_bytes",0).put("bytes",16384).put("shape",new JSONArray().put(1).put(1).put(selected.equals("bad_text")?32:4096)).put("truncated",false)));
         }else if(stage.equals("sample")){
             int count=((payload.getInt("frames")-1)/8+1)*(payload.getInt("height")/32)*(payload.getInt("width")/32)*128;
-            floats(output,count,2);receipt.put("ok",true).put("operation","sample_files").put("model_executed",!selected.equals("bad_sample")).put("fixture",false).put("backend","vulkan").put("layers",28).put("steps",8).put("parameters",1923385472L);
+            String operation=payload.getString("operation");boolean second=operation.equals("sample_multiscale_second");
+            floats(output,count,2);receipt.put("ok",true).put("operation",operation).put("model_executed",!selected.equals("bad_sample") && !(second && selected.equals("bad_refinement"))).put("fixture",false).put("backend","vulkan").put("layers",28).put("steps",operation.equals("sample_files")?8:second?3:7).put("parameters",1923385472L);
         }else{
+            if(payload.optString("operation").equals("upsample")) {
+                JSONArray shape=payload.getJSONArray("latent_shape");int f=shape.getInt(2),h=shape.getInt(3)*2,w=shape.getInt(4)*2;
+                floats(output,128*f*h*w,4);receipt.put("ok",true).put("operation","upsample").put("output_shape",new JSONArray().put(1).put(128).put(f).put(h).put(w)).put("graph_runs",1).put("session_loads",1).put("session_unloads",1).put("max_live_sessions",1).put("adain",!selected.equals("bad_upscaler")).put("fixture",false).put("backend","cpu").put("normalization","vae_per_channel");
+                System.out.println(receipt);return;
+            }
             JSONArray shape=payload.getJSONArray("latent_shape");int frames=(shape.getInt(2)-1)*8+1,height=shape.getInt(3)*32,width=shape.getInt(4)*32;
             floats(output,frames*height*width*3,3);receipt.put("ok",true).put("output_shape",new JSONArray().put(1).put(3).put(frames).put(height).put(width)).put("graph_runs",selected.equals("bad_vae")?8:9).put("session_loads",9).put("session_unloads",9).put("max_live_sessions",1);
         }
@@ -75,9 +82,9 @@ public final class LtxAppTest {
     }
     public static void main(String[] args)throws Exception{
         if(args.length>0&&args[0].equals("--child")){child(args);return;}
-        File repository=new File(args[0]),root=new File(args[1]),libraries=new File(args[2]);boolean trained=Boolean.parseBoolean(args[3]);JSONObject selectedAssets=read(new File(args[4]));String ffmpeg=args[5],ffprobe=args[6];root.mkdirs();
-        JSONArray catalogue=read(new File(repository,"catalogue/model-bundles.json")).getJSONArray("bundles");JSONObject current=select(catalogue,"ltx098_runtime_google_q5_v2"),old=select(catalogue,"ltx098_runtime_google_q5_v1");ModelBundle production=new ModelBundle(current);
-        Ltx098Spec.validate(production,"video.generate");checks++;
+        File repository=new File(args[0]),root=new File(args[1]),libraries=new File(args[2]);boolean trained=Boolean.parseBoolean(args[3]);boolean multi=args.length>7 && args[7].equals("--multiscale");JSONObject selectedAssets=read(new File(args[4]));String ffmpeg=args[5],ffprobe=args[6];root.mkdirs();
+        JSONArray catalogue=read(new File(repository,"catalogue/model-bundles.json")).getJSONArray("bundles");JSONObject current=select(catalogue,multi?"ltx098_runtime_pixart_multiscale_v1":"ltx098_runtime_google_q5_v2"),old=select(catalogue,"ltx098_runtime_google_q5_v1");ModelBundle production=new ModelBundle(current);
+        if(multi)LtxPixArtSpec.validate(production,"video.generate");else Ltx098Spec.validate(production,"video.generate");checks++;
         rejects(()->Ltx098Spec.validate(new ModelBundle(old),"video.generate"),"Historical runtime-only record cannot silently change into a generation model");
         rejects(()->Ltx098Spec.validate(production,"image.generate"),"Image generation cannot use a video recipe");
         for(String prompt:Arrays.asList(""," ","bad\0text"))rejects(()->Ltx098Spec.prompt(new JSONObject().put("prompt",prompt)),"Invalid prompt rejected before native work");
@@ -93,13 +100,25 @@ public final class LtxAppTest {
         if(!trained){chosen.put("id","ltx_explicit_synthetic_fixture");JSONArray components=chosen.getJSONArray("components");File fixture=new File(root,"NOT_MODEL.bin");Files.write(fixture.toPath(),new byte[]{1,2,3,4});for(int i=0;i<components.length();i++){JSONObject component=components.getJSONObject(i);for(String key:Arrays.asList("url","repository","revision","derivedFrom"))component.remove(key);component.put("bytes",4).put("sha256",DataFiles.sha256(fixture));assets.put(component.getString("role"),fixture);}}
         else for(String role:Ltx098Spec.files().keySet())assets.put(role,new File(selectedAssets.getString(role)));
         ModelBundle model=new ModelBundle(chosen);app.bundles.adoptLocal(model,assets,new JSONObject(),()->{});verify(app.bundles.plan(model.id).getBoolean("installed"),"Only explicitly selected complete local components are adopted");
-        JSONObject p=new JSONObject().put("width",trained?256:64).put("height",trained?256:64).put("frames",trained?33:9).put("fps",24).put("seed",42).put("threads",4);app.bundles.saveSettings(model.id,p);
-        JSONArray runs=new JSONArray();List<String> modes=trained?Arrays.asList("succeeded"):Arrays.asList("succeeded","bad_text","bad_sample","bad_vae","missing_receipt","duplicate_receipt","bad_encoder","cancelled","interrupted");
+        JSONObject p=new JSONObject().put("width",trained||multi?256:64).put("height",multi?224:trained?256:64).put("frames",trained?33:9).put("fps",24).put("seed",42).put("threads",4);app.bundles.saveSettings(model.id,p);
+        JSONArray runs=new JSONArray();List<String> modes=trained?Arrays.asList("succeeded"):multi?Arrays.asList("succeeded","bad_text","bad_sample","bad_upscaler","bad_refinement","bad_vae","missing_receipt","duplicate_receipt","bad_encoder","cancelled","interrupted"):Arrays.asList("succeeded","bad_text","bad_sample","bad_vae","missing_receipt","duplicate_receipt","bad_encoder","cancelled","interrupted");
         for(String selected:modes){mode=selected;children.clear();commands.clear();JSONObject bridges=new JSONObject();File capture=trained?new File(root,"captured"):null;if(capture!=null)capture.mkdirs();
             NativeWorker.Launcher launcher=builder->{List<String> command=new ArrayList<>(builder.command());String name=new File(command.get(0)).getName();
                 if(!trained&&!name.contains("tensors")){String stage=name.contains("text")?"text":name.contains("sample")?"sample":"vae";List<String> child=new ArrayList<>(Arrays.asList(new File(System.getProperty("java.home"),"bin/java.exe").getPath(),"-Dfile.encoding=UTF-8","-Dstdout.encoding=UTF-8","-Dstderr.encoding=UTF-8","-cp",System.getProperty("java.class.path"),LtxAppTest.class.getName(),"--child",stage,mode));child.addAll(command);builder.command(child);}
                 Process child=builder.start();for(Process previous:children)verify(!previous.isAlive(),"Only one native stage is live at a time");children.add(child);commands.add(command);return child;};
-            Ltx098Engine engine=new Ltx098Engine(app,new File(libraries,"liblma-ltx098-app-tensors.so"),new JSONObject().put("engine","ltx098_native"),launcher,(frames,video,check)->encode(frames,video,check,ffmpeg,capture,bridges));app.localEngines.fixture(engine);
+            Ltx098Engine.Encoder media=(frames,video,check)->encode(frames,video,check,ffmpeg,capture,bridges);
+            Ltx098Engine engine;
+            if(multi) {
+                verify(!trained,"The original multi-scale program test never runs trained weights");
+                Ltx098Engine real=new Ltx098Engine(app,new File(libraries,"liblma-ltx098-app-tensors.so"),new JSONObject(),launcher,media);
+                rejects(()->real.validate(model,"video.generate"),"Production descriptor verification rejects the four-byte neural fixture");
+                // Explicit test port: production metadata above passed the real
+                // descriptor check. Only file identities are synthetic here.
+                engine=new Ltx098Engine(app,new File(libraries,"liblma-ltx098-app-tensors.so"),new JSONObject().put("engine","ltx098_native"),launcher,media,(b,t)->{
+                    if(!b.id.equals(model.id) || !b.pipeline.equals(LtxPixArtSpec.PIPELINE) || !t.equals("video.generate") || b.components.size()!=27)throw new IOException("Unexpected descriptor test port input");
+                });
+            }else engine=new Ltx098Engine(app,new File(libraries,"liblma-ltx098-app-tensors.so"),new JSONObject().put("engine","ltx098_native"),launcher,media);
+            app.localEngines.fixture(engine);
             LmaService service=new LmaService();EngineHost resident=new EngineHost(service,app);service.engine=resident;LocalJobs queue=new LocalJobs(app,resident,()->{});app.jobHost=queue;
             try{
                 JSONObject request=new JSONObject().put("type","video.generate").put("bundleId",model.id).put("input",new JSONObject().put("prompt",trained?selectedAssets.getString("prompt"):"Explicit synthetic protocol fixture")).put("parameters",new JSONObject()).put("allowUnmeasured",true);
@@ -113,12 +132,12 @@ public final class LtxAppTest {
                 verify(app.nativeProcess==null,"Actual stage ownership is released after "+selected);
                 until(()->!select(app.bundles.snapshot(),model.id).getBoolean("inUse"),15);verify(!select(app.bundles.snapshot(),model.id).getBoolean("inUse"),"Actual model leases are released after terminal cleanup");
                 JSONObject run=new JSONObject().put("case",selected).put("job",result).put("actualChildren",children.size()).put("bridgeFiles",bridges);
-                if(expected.equals("succeeded")){verify(children.size()==6,"One real task uses exactly six sequential native stages");String artifact=result.getJSONArray("artifacts").getString(0);JSONObject record=app.artifacts.get(artifact);File video=app.artifacts.file(artifact);verify(record.getJSONObject("metadata").getString("mime").equals("video/mp4"),"The production artifact store publishes the complete AVC result");verify(record.getJSONObject("provenance").getJSONObject("request").getJSONObject("ltx098Plan").getString("profile").equals(Ltx098Spec.PROFILE),"Artifact provenance retains the immutable exact profile");run.put("artifact",record).put("videoSha256",DataFiles.sha256(video)).put("videoBytes",video.length());if(capture!=null)Files.copy(video.toPath(),new File(capture,"video.mp4").toPath());}
+                if(expected.equals("succeeded")){verify(children.size()==(multi?10:6),"One real task uses the exact sequential native stages for its profile");String artifact=result.getJSONArray("artifacts").getString(0);JSONObject record=app.artifacts.get(artifact);File video=app.artifacts.file(artifact);verify(record.getJSONObject("metadata").getString("mime").equals("video/mp4"),"The production artifact store publishes the complete AVC result");verify(record.getJSONObject("provenance").getJSONObject("request").getJSONObject("ltx098Plan").getString("profile").equals(multi?LtxPixArtSpec.PROFILE:Ltx098Spec.PROFILE),"Artifact provenance retains the immutable exact profile");run.put("artifact",record).put("videoSha256",DataFiles.sha256(video)).put("videoBytes",video.length());if(capture!=null)Files.copy(video.toPath(),new File(capture,"video.mp4").toPath());}
                 else verify(result.getJSONArray("artifacts").length()==0,"Failed/cancelled/interrupted stages never publish partial video");
                 until(()->new File(app.getFilesDir(),"engine-work").list().length==0,15);verify(new File(app.getFilesDir(),"engine-work").list().length==0,"Filename-preserving model workspace is cleaned after "+selected);runs.put(run);
             }finally{queue.close();resident.close();for(Process child:children)ProcessControl.stop(child);}
         }
-        JSONObject report=new JSONObject().put("assertions",checks).put("runs",runs).put("productionEngineAndQueue",true).put("hostFrameworkPort",true).put("hostMediaPort","ffmpeg_libx264_not_android").put("modelInference",trained).put("syntheticNeuralStages",!trained).put("physicalAndroid",false).put("numericalAccepted",false).put("qualityAccepted",false);
+        JSONObject report=new JSONObject().put("assertions",checks).put("runs",runs).put("productionEngineAndQueue",true).put("hostFrameworkPort",true).put("syntheticDescriptorPort",multi).put("multiscale",multi).put("hostMediaPort","ffmpeg_libx264_not_android").put("modelInference",trained).put("syntheticNeuralStages",!trained).put("physicalAndroid",false).put("numericalAccepted",false).put("qualityAccepted",false);
         write(new File(root,"results.json"),report);System.out.println(new JSONObject().put("assertions",checks).put("runs",runs.length()).put("trained",trained));
     }
 }

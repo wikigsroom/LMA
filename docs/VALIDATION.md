@@ -1,5 +1,8 @@
 # LMA 0.2.0 全面复查记录
 
+> 当前 / Current: **v0.3.0**. [完整程序集成 / implementation](IMPLEMENTATION_V030.md). [仅程序验证策略 / validation](PROGRAM_VALIDATION.md) 优先于下文历史完整模型 / 手机运行门槛；旧检查点与失败记录保留为历史。Original PixArt multiscale LTX is now integrated; quality/device acceptance remains untested. [Release](releases/v0.3.0.md).
+
+
 当前 dev.27 的业务检查与 APK 见[编号交付](releases/v0.3.0-dev.27.md)及[证据索引](../verification/development/status.json)。恢复专项使用真实主机进程 / 文件 / HTTP；页面采用标识清楚的桥接夹具，没有新增 Android / 模型推理验收通过项。
 
 日期：2026-10-27。当前结论：0.2.0 已保留推荐，接入 HF 分页发现、文件选择、本地管理，以及每个模型独立的可编辑参数和超限归位。226 项桌面断言、5 项实时公开 HF 元数据检查，以及构建 / APK / Lint 检查通过。没有可用 Android 真机，真实 ARM 推理、Android 服务生命周期、局域网与锁屏耐久仍未验收。

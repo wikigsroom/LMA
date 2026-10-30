@@ -3,10 +3,29 @@ import hashlib
 import json
 from pathlib import Path
 import re
+import subprocess
+from functools import lru_cache
 from evidence import current
 from urllib.parse import urlparse
 
 ROOT = Path(__file__).resolve().parents[1]
+LTX_IDENTITY_COMMIT = 'da179315377957a449d94817f0a2b7d2030aea44'
+
+
+@lru_cache(maxsize=8)
+def historical_ltx_identity(name):
+    """Asset identities survive adapter changes; never relabel trained evidence as current."""
+    path = ROOT / name
+    frozen = subprocess.check_output(['git', 'show', LTX_IDENTITY_COMMIT + ':' + name], cwd=ROOT)
+    assert path.read_bytes() == frozen, 'Historical LTX identity record changed'
+    value = json.loads(frozen)
+    for file, digest in value['input_fingerprint'].items():
+        current_path = ROOT / file
+        if current_path.is_file() and hashlib.sha256(current_path.read_bytes()).hexdigest() == digest:
+            continue
+        original = subprocess.check_output(['git', 'show', LTX_IDENTITY_COMMIT + ':' + file], cwd=ROOT)
+        assert hashlib.sha256(original).hexdigest() == digest, 'Historical LTX source identity differs: ' + file
+    return value
 
 
 def main():
@@ -65,7 +84,7 @@ def main():
                 preparation = next(p for p in json.loads((ROOT / "catalogue/asset-preparations.json").read_text(encoding="utf-8"))["plans"] if p["id"] == checked["preparationId"])
                 declared = next(o for stage in preparation["stages"] for o in stage["outputs"] if o["role"] == c["role"])
                 assert (c["path"], c["bytes"], c["sha256"]) == (declared["file"], declared["bytes"], declared["sha256"]) and not c.get("url")
-                path = ROOT / checked["source"]; measured = json.loads(path.read_text(encoding="utf-8")); current(measured["input_fingerprint"])
+                measured = historical_ltx_identity(checked["source"])
                 assert measured["passed"] and measured["actual_trained_conversions"] == 1
                 if c["role"] == "diffusion_model":
                     assert checked["source"] == "verification/development/ltx098-prepare.json"
@@ -80,7 +99,7 @@ def main():
                         assert (c["bytes"], c["sha256"]) == (item["bytes"], item["sha256"])
             elif checked["kind"] == "measured_text_input":
                 assert checked["source"] == "verification/development/ltx098-text.json" and checked["live_hf_metadata_checked_this_update"] is False
-                measured = json.loads((ROOT / checked["source"]).read_text(encoding="utf-8")); current(measured["input_fingerprint"])
+                measured = historical_ltx_identity(checked["source"])
                 lock = json.loads((ROOT / "third_party/ltx098-text-source-lock.json").read_text(encoding="utf-8"))
                 assert measured["host_model_inference_tested"] and measured["trained"]["model"] == lock["model"]
                 assert c["role"] in ("text_encoder", "tokenizer_config")
@@ -91,9 +110,7 @@ def main():
                 # Immutable source identity measured from the complete developer-selected file.
                 # This does not claim that the current HF metadata/download endpoint was reached.
                 assert checked["source"] == "verification/development/ltx098-vae-prepare.json" and checked["live_hf_metadata_checked_this_update"] is False
-                path = ROOT / "build/ltx098-vae-prepare-tests/results.json"
-                if not path.exists(): path = ROOT / checked["source"]
-                measured = json.loads(path.read_text(encoding="utf-8")); current(measured["input_fingerprint"])
+                measured = historical_ltx_identity(checked["source"])
                 assert measured["passed"] and measured["actual_trained_conversions"] == 1
                 source = measured["trained_conversion"]
                 assert source["source_sha256_verified"] and source["source_sha256"] == c["sha256"] and source["source_bytes"] == c["bytes"]

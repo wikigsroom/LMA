@@ -1,5 +1,8 @@
 # Old-LTX local video business flow
 
+> 当前 / Current: **v0.3.0**. [完整程序集成 / implementation](IMPLEMENTATION_V030.en.md). [仅程序验证策略 / validation](PROGRAM_VALIDATION.md) 优先于下文历史完整模型 / 手机运行门槛；旧检查点与失败记录保留为历史。Original PixArt multiscale LTX is now integrated; quality/device acceptance remains untested. [Release](releases/v0.3.0.md).
+
+
 [中文](LTX098_APP_FLOW.md) · [Numbered delivery and complete pending scope](releases/v0.3.0-dev.30.md) · [Complete release requirements](MULTIMODAL_RELEASE_PLAN.en.md)
 
 Internal **0.3.0-dev.30 / code 34** connects old-LTX components to the production queue, independent model settings and artifact library. The APK delivers runtime code; users choose all weights, T5, tokenizer configuration and VAE assets. This recipe remains experimental: original numerical failures, video quality, phone resources and Android execution are unaccepted.

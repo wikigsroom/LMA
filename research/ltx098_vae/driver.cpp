@@ -10,6 +10,7 @@
 #endif
 #include "../soulx_ort/runtime.hpp"
 #include "json.hpp"
+#include "../../native/ltx098/multiscale.hpp"
 #include <cstdio>
 #include <iostream>
 #include <set>
@@ -95,13 +96,46 @@ void write_exclusive(const fs::path& path,const Samples& values,Cancel cancel) {
 int run(const std::vector<std::string>& args) {
     OrtStats stats;std::vector<fs::path> created;fs::path trace_directory;bool made_trace=false;
     try {
-        require(args.size()==4,"Usage: lma_ltx098_vae BUNDLE REQUEST.json OUTPUT.f32");
+        const bool fixture=args.size()==5 && args[4]=="--fixture";
+        require(args.size()==4 || fixture,"Usage: lma_ltx098_vae BUNDLE REQUEST.json OUTPUT.f32 [--fixture]");
         auto request=read_json(fs::u8path(args[2]),32768);
+        if(request.at("operation")=="upsample") {
+            keys(request,{"operation","latent_shape","latents","threads","cancel_file"});
+            auto dims=request.at("latent_shape");require(dims.is_array() && dims.size()==5,"Expected upscaler NCTHW shape");
+            integer(dims[0],1,1);integer(dims[1],128,128);
+            std::vector<int64_t> shape={1,128,integer(dims[2],2,5),integer(dims[3],2,5),integer(dims[4],2,5)},expected=shape;
+            expected[3]*=2;expected[4]*=2;
+            int threads=integer(request.value("threads",Json(4)),1,8);fs::path flag;
+            if(request.contains("cancel_file"))flag=fs::u8path(request.at("cancel_file").get<std::string>());
+            Cancel cancel=[&]{return !flag.empty() && fs::exists(flag);};stop(cancel);
+            auto directory=fs::u8path(args[1]),target=fs::u8path(args[3]);require(!fs::exists(target),"Upscaler output already exists");
+            auto weights=directory/"ltx098-upscaler.onnx.data";
+            require(fs::is_regular_file(weights) && !fs::is_symlink(weights) && (fixture?(fs::file_size(weights)>1024 && fs::file_size(weights)<16*1024*1024):fs::file_size(weights)==505024432),"Different official spatial upscaler file");
+            auto stats_file=directory/"stage-00.onnx.data";require(fs::is_regular_file(stats_file) && !fs::is_symlink(stats_file) && fs::file_size(stats_file)>=1024,"Missing VAE normalization statistics");
+            Samples statistics(256);std::ifstream stream(stats_file,std::ios::binary);
+            require(bool(stream.read(reinterpret_cast<char*>(statistics.data()),1024)),"Truncated VAE normalization statistics");finite(statistics);
+            size_t count=1;for(auto n:shape)count*=size_t(n);auto reference=read_floats(request.at("latents"),count),values=reference;
+            size_t plane=count/128;
+            for(size_t c=0;c<128;++c){stop(cancel);require(statistics[128+c]>0,"Non-positive VAE normalization scale");for(size_t i=0;i<plane;++i)values[c*plane+i]=values[c*plane+i]*statistics[128+c]+statistics[c];}
+            initialize();Ort::Env env(ORT_LOGGING_LEVEL_FATAL,"LMA-LTX098-UPSCALER");stats.runtime_version=OrtGetApiBase()->GetVersionString();
+            {
+                Graph graph(env,directory,"ltx098-upscaler.onnx",threads,stats,{{"latents",f32,{1,128,-1,-1,-1}}},{{"upsampled",f32,{1,128,-1,-1,-1}}});
+                std::vector<Ort::Value> feeds;feeds.push_back(floats(values,shape));auto results=graph.run(feeds,cancel);values=output(results[0],expected);
+            }
+            plane=values.size()/128;
+            for(size_t c=0;c<128;++c){stop(cancel);for(size_t i=0;i<plane;++i)values[c*plane+i]=(values[c*plane+i]-statistics[c])/statistics[128+c];}
+            lma::ltx098::multiscale::adain(values,reference,128,[&]{stop(cancel);});
+            write_exclusive(target,values,cancel);created.push_back(target);
+            std::cout<<Json{{"ok",true},{"operation","upsample"},{"output_shape",expected},{"output_bytes",values.size()*4},{"graph_runs",stats.graph_runs},
+                {"session_loads",stats.session_loads},{"session_unloads",stats.session_unloads},{"max_live_sessions",stats.max_live_sessions},
+                {"normalization","vae_per_channel"},{"adain",true},{"fixture",fixture},{"backend","cpu"},{"physical_android",false}}.dump()<<std::endl;return 0;
+        }
+        require(!fixture,"Fixture flag is restricted to the bounded upscaler program test");
         keys(request,{"operation","latent_shape","latents","noise","timestep","noise_scale","threads","cancel_file","trace_dir"});
         require(request.at("operation")=="decode","Unsupported VAE operation");
         auto dims=request.at("latent_shape");require(dims.is_array() && dims.size()==5,"Expected NCTHW latent shape");
         integer(dims[0],1,1);integer(dims[1],128,128);
-        std::vector<int64_t> shape={1,128,integer(dims[2],1,5),integer(dims[3],1,8),integer(dims[4],1,8)};
+        std::vector<int64_t> shape={1,128,integer(dims[2],1,5),integer(dims[3],1,10),integer(dims[4],1,10)};
         int threads=integer(request.value("threads",Json(4)),1,32);
         Samples timestep={number(request.value("timestep",Json(.05)),0,1)};
         Samples noise_scale={number(request.value("noise_scale",Json(.025)),0,1)};

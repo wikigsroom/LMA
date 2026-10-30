@@ -11,6 +11,9 @@ DIST = ROOT / "dist"
 
 
 def main():
+    if version() == '0.3.0':
+        from program_release import package
+        print(json.dumps(package())); return
     if "-dev" in version():
         raise RuntimeError("Internal development builds cannot substitute for the complete v0.3.0 delivery; use export_development.py for scoped evidence")
     build = json.loads((DIST / "build-info.json").read_text(encoding="utf-8"))

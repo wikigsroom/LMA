@@ -1,5 +1,8 @@
 # LMA API 接入
 
+> 当前 / Current: **v0.3.0**. [完整程序集成 / implementation](IMPLEMENTATION_V030.md). [仅程序验证策略 / validation](PROGRAM_VALIDATION.md) 优先于下文历史完整模型 / 手机运行门槛；旧检查点与失败记录保留为历史。Original PixArt multiscale LTX is now integrated; quality/device acceptance remains untested. [Release](releases/v0.3.0.md).
+
+
 dev.38 新增 [Z-Image-Turbo 完整四组件、下载与本地业务](ZIMAGE_TURBO.md)，复用匹配原 Qwen3-4B 和外置词表，保留独立八步配置与全部冻结验收门槛。
 
 FLUX.2-klein 4B 新增完整四组件可选目录和匹配 HF 文件建议；[使用逻辑、参数与证据](FLUX2_KLEIN.md)。App 只交付基座，所有下载仍由用户主动选择。

@@ -1,33 +1,21 @@
-# 后续程序验证规则
+# 仅程序验证策略
 
-[English](PROGRAM_VALIDATION.en.md) · [完整功能范围](MULTIMODAL_RELEASE_PLAN.md) · [结构化规则](proposals/program-validation-policy.json) · [本轮交付](releases/v0.3.0-dev.45.md)
+[English](PROGRAM_VALIDATION.en.md) · [v0.3.0](releases/v0.3.0.md) · [policy JSON](proposals/program-validation-policy.json)
 
-**2026-10-31 起，按照用户要求，后续仅做程序验证，不再执行耗时的完整模型运行验证。** 用户原文：“请你后续内容只做程序验证，不需要走完完整的模型运行验证，太耗费时间了。”
+用户于 2026-10-31 明确要求：“请你后续内容只做程序验证，不需要走完完整的模型运行验证，太耗费时间了。”此指令覆盖旧文档的完整训练模型运行、ASR、真机推理和长时耐久发布门槛；不豁免缺失的程序功能，不拆分冻结范围。
 
-这条规则覆盖先前文档中将完整权重推理、逐模型画质 / 语音评分、长时间运行或真机推理作为每轮开发、程序交付及发版前置条件的要求。既有程序缺陷仍需修复，未实现的适配仍需完成；功能范围依旧为 F01–F12、既有生文、01–14 / 16 / 17、全部冻结子目标与 SD1.5 / SDXL 两套 LoRA，不拆版本。
+v0.3.0 已补齐旧 LTX 原始 PixArt T5 / 多尺度程序路线，并包含此前接入的 Sana-Sprint。F-01–F-12、原有文本、01–14/16/17 的完整程序映射见[实现矩阵](IMPLEMENTATION_V030.md)。
 
-| 编号 | 后续检查 | 通过意味着什么 |
-|---|---|---|
-| V01 | Android 编译、APK 签名 / 依赖 / API / 对齐 / 资源核对 | 程序可以构建且交付身份一致；不代表手机实际推理 |
-| V02 | 推荐、HF 全部 / 搜索、本地管理、组件与配方 | 用户可以明确选择、下载、导入、暂停 / 恢复、更新 / 删除；安装和浏览不自动获取模型 |
-| V03 | 按模型保存设置、可编辑选择框、约束归位、任务快照 | 参数与模型绑定，超限受控，既有任务不随设置修改 |
-| V04 | 生产队列、接口、鉴权、结果、取消 / 关闭 / 重启恢复 | 使用真实程序、文件和本机接口配合明确标记的受限测试数据验证业务行为 |
-| V05 | 引擎协议、错误路径和小型算法检查 | 核对适配程序行为；测试子进程、固定 logits 和合成小图均不冒充完整模型 |
-| V06 | 页面回归、截图 / GIF / MP4、文档和源包审计 | 展示真实页面与明确标记的测试状态；浏览器结束即关闭 |
+| Validation / 验证 | Current result / 当前结果 |
+| --- | --- |
+| Program suites / 程序回归 | 23 suites, 3,590 assertions; source fingerprints checked |
+| Android package / 安装包 | ARM64, API28, 35 native libraries, resolved dependencies, 16 KiB ELF/ZIP alignment, original signing certificate |
+| Android Lint | 0 errors, 16 retained warnings |
+| Current UI / 当前界面 | 530 regression checks; 9 screenshots, 2 GIFs and 2 MP4 recordings across two flows |
+| Bounded neural fixtures / 有界神经夹具 | Small random T5/upsampler/MNN graphs and reference math; not complete trained models |
+| Complete weights / 完整模型 | 0 complete downloads, copies or executions for this validation |
+| Phone / quality / endurance | Not tested; not required by updated policy; no quality or phone suitability claims |
 
-不再为验证下载或复制完整模型资产，不重新生成整套图片 / 语音 / 视频，不跑 ASR 评分、逐模型三次加载、15 分钟锁屏或一小时 API 推理。网络元数据 / 小型开发依赖与用户主动下载功能不受此限制；程序实现仍必须全部在同一 Android 手机执行，无 ROOT、外部推理或虚拟化回退。
+当前[28 份记录](../verification/program/status.json)绑定本版源码与 APK。此前 dev.45 程序记录逐字节归档到[历史目录](../verification/history/dev45-program/status.json)；dev.44/dev.42 与旧完整模型失败保持原身份。旧失败不改为通过。`release_ready` 仅表示符合本策略的程序发行要求，不表示手机可用性已实测。
 
-## 如何阅读结果
-
-- **程序已接入 / 程序检查通过**：仅指具名适配、参数、业务及对应程序检查。
-- **模型已实测**：只用于既有具名模型、原始文件、原提交及实际运行记录；不能自动沿用到新 APK。
-- **Android / 速度 / 内存 / 质量 / 后台实测**：无对应记录就保持未测。本会话没有可用真机，不再反复要求提供手机。
-- 历史 LCM 像素差、Sana 灰图 / 用途纠正、MOSS 参考模式与 Wan 伪影等结果原样保留。免做重跑不等于修复或通过。
-
-## 发版与仍需完成的代码
-
-正式版本继续要求具名功能实现、相关程序检查、版本与原签名、精确源包 / APK SHA、双语文档和更新说明一致。完整模型质量及手机耐久检查不再作为程序发版门槛。
-
-dev.45 是原签名的程序开发检查点，不冒充全部冻结功能已完成。[Sana-Sprint 0.6B](SANA_SPRINT.md)已作为编号 04 的匹配移动文生图配方接入，保留与 Edit / 普通 Sana 的组件边界和未测标记。旧 LTX 官方 PixArt / 多尺度管线与现有 Google T5 Q5 单尺度变体仍不能互相替代；该适配代码缺口继续在完整 v0.3.0 内处理，不因免做完整模型验证而标成完成。
-
-旧模型实验和旧开发检查点继续保存在 `verification/development/`、`verification/history/` 与具名研究目录。本轮程序结果单独导出至 `verification/program/`，核对当前源码指纹，不触发旧模型运行。本轮 Sana 媒体为当前页面新录制；旧页面媒体只保留历史身份，不声称覆盖已修改的当前页面。
+检查通过明确的桌面 Android / 媒体 / 神经阶段替身调用生产校验、存储、调度及进程管理。Android Service、SAF、MediaCodec 的真实系统执行只做编译及包检查，未在设备执行。页面素材明确标记夹具，浏览器在 finally 中关闭。未使用 Docker、WSL、虚拟机或模拟器。App 只更新程序和元数据，模型取得与管理仍由用户主动决定。

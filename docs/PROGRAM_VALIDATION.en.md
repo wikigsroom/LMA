@@ -1,24 +1,21 @@
-# Program validation for subsequent development
+# Program-only validation policy
 
-[中文](PROGRAM_VALIDATION.md) · [Full functional scope](MULTIMODAL_RELEASE_PLAN.en.md) · [Machine-readable policy](proposals/program-validation-policy.json) · [This delivery](releases/v0.3.0-dev.45.md)
+[中文](PROGRAM_VALIDATION.md) · [v0.3.0](releases/v0.3.0.md) · [policy JSON](proposals/program-validation-policy.json)
 
-**From 2026-10-31 the user requires program validation only, without time-consuming complete-model execution.** This supersedes earlier requirements to repeat full-weight inference, model-quality/ASR scoring and phone inference/endurance before subsequent program deliveries or publication. It does not waive missing implementation. F01–F12, existing text, selections 01–14/16/17, every frozen subtarget and both SD1.5/SDXL LoRA remain in the same version scope.
+The user explicitly requested on 2026-10-31: “请你后续内容只做程序验证，不需要走完完整的模型运行验证，太耗费时间了。” This supersedes older release requirements for complete trained-model execution, ASR scoring, phone inference and prolonged endurance. Missing program functionality is not waived, and the frozen scope is not split into later releases.
 
-| ID | Checks | Meaning of a pass |
-|---|---|---|
-| V01 | Android compilation, signature, dependencies, API, alignment and packaged resources | Consistent build and delivery identity; not phone inference |
-| V02 | Recommendations, HF All/search, Local, components and recipes | Explicit user-owned selection, download/import, pause/resume, update/delete; no asset downloads on installation or browsing |
-| V03 | Independent editable model parameters, bounds and immutable job snapshots | Model-bound settings and controlled limits |
-| V04 | Production queue, authenticated API, artifacts, cancel/shutdown/restart recovery | Actual program/file/loopback behavior with clearly identified bounded fixtures |
-| V05 | Engine contracts, failures and small algorithm checks | Adapter behavior; synthetic children, fixed logits and small graphs are not complete models |
-| V06 | UI regression, screenshots/GIF/MP4, documentation and source auditing | Actual pages with labelled test state; owned browsers always close |
+v0.3.0 closes the original PixArt T5/multiscale LTX program gap and includes the previously integrated Sana-Sprint route. The full F-01–F-12/text/01–14/16/17 program mapping is in the [implementation matrix](IMPLEMENTATION_V030.en.md).
 
-Do not download/copy complete model assets for validation, regenerate complete image/speech/video suites, run ASR scores, three loads per model, 15-minute screen-off inference or one-hour inference APIs. Metadata and small development dependencies remain allowed. Production inference must still execute entirely on the same no-ROOT Android phone, without off-device/virtualized fallback.
+| Validation / 验证 | Current result / 当前结果 |
+| --- | --- |
+| Program suites / 程序回归 | 23 suites, 3,590 assertions; source fingerprints checked |
+| Android package / 安装包 | ARM64, API28, 35 native libraries, resolved dependencies, 16 KiB ELF/ZIP alignment, original signing certificate |
+| Android Lint | 0 errors, 16 retained warnings |
+| Current UI / 当前界面 | 530 regression checks; 9 screenshots, 2 GIFs and 2 MP4 recordings across two flows |
+| Bounded neural fixtures / 有界神经夹具 | Small random T5/upsampler/MNN graphs and reference math; not complete trained models |
+| Complete weights / 完整模型 | 0 complete downloads, copies or executions for this validation |
+| Phone / quality / endurance | Not tested; not required by updated policy; no quality or phone suitability claims |
 
-“Program integrated/checked” names the actual adapter, business flow and checks. “Model tested” refers only to the exact historical files, model and commit. Phone execution, performance, memory, quality and background endurance remain untested without corresponding records. No phone is available in this conversation; do not request one repeatedly. Preserve historical LCM differences, Sana gray outputs/purpose correction, MOSS reference failures and Wan artifacts without promoting them to passes.
+Current evidence: [28 records](../verification/program/status.json). Prior dev.45 program records are archived byte-for-byte in [history](../verification/history/dev45-program/status.json); dev.44/dev.42 and complete-model failures retain their identities. A stale model-quality failure is never relabelled as a pass. `release_ready` means readiness under this program-only policy, not verified phone usability.
 
-Publication still requires implemented functionality, relevant program checks, consistent version/original signature, exact source/APK identities, bilingual documentation and release notes. Complete-model quality and phone endurance are no longer program-release gates.
-
-dev.45 is a signed program-development checkpoint, not complete frozen feature coverage. [Sana-Sprint 0.6B](SANA_SPRINT.en.md) now implements the matched mobile text-to-image alternative in selection 04, with explicit component and evidence boundaries. Original PixArt/multiscale LTX still differs from the existing Google T5 Q5 single-scale variant; that missing adapter remains in the complete v0.3.0 scope. Waiving model runs does not implement missing code.
-
-Existing model experiments and checkpoints remain in `verification/development/`, `verification/history/` and named research directories. Current program records go to `verification/program/` with checked source fingerprints, without running historical models. Unchanged UI recordings may be reused with their original version explicitly stated and matching page-source hashes.
+Tests exercise production validators, stores, scheduling and process ownership using explicit host Android/media/neural ports. Android Service/SAF/MediaCodec execution is compiled and inspected, not physically exercised. UI recordings visibly identify fixture data; browsers close in finally blocks. No Docker, WSL, virtual machine or emulator is used. App updates contain code and metadata only; users retain explicit model acquisition and management.

@@ -1,19 +1,20 @@
-"""Export/check program-only development evidence without running trained models.
+"""Export/check complete v0.3.0 program evidence without running trained models.
 
-Historical model records retain their original identity. This checkpoint does
-not waive missing feature implementation or claim complete v0.3.0 readiness.
+Historical model records retain their original identity. Required program
+implementation is traced separately; phone and model quality remain untested.
 """
 import argparse
 import hashlib
 import json
+import subprocess
 from pathlib import Path
 from evidence import current, fingerprint, version
 from preparation_build_inputs import build_inputs
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / 'verification/program'
-VERSION = '0.3.0-dev.45'
-PRIOR_COMMIT = '2db629653453f2c0ec7d23112043a770d1d01d17'
+VERSION = '0.3.0'
+PRIOR_COMMIT = 'da179315377957a449d94817f0a2b7d2030aea44'
 CERTIFICATE = '90444a717a55549e2094364d8d7d005cf8b7f4df24562da62cc1884a2f341c17'
 SOURCES = {
     'build.json': 'dist/build-info.json',
@@ -40,13 +41,17 @@ SOURCES = {
     'speech-voices.json': 'build/speech-voice-tests/results.json',
     'ui.json': 'build/ui-qa/results.json',
     'lint.json': 'build/android-lint/results.json',
+    'ltx-official.json': 'build/ltx098-official-tests/results.json',
+    'ltx-multiscale-app.json': 'build/ltx098-multiscale-app-tests/results.json',
+    'ltx-single-scale-app.json': 'build/ltx098-app-tests/results.json',
+    'ltx-android.json': 'build/ltx098-app-build-info.json',
 }
-MINIMUM = dict(foundation=722, backend=138, **{'bundle-pause':22, 'document-input':15},
+MINIMUM = dict(foundation=820, backend=138, **{'bundle-pause':22, 'document-input':15},
     api=68, workbench=44, recovery=47, inputs=64, text=66, migration=69, scheduler=151,
     preparations=44, assemblies=47, diffusion=197, mnn=101, hub=80,
-    **{'recipe-suggestions':73, 'speech-voices':70, 'sana-sprint':448}, ui=509)
+    **{'recipe-suggestions':73, 'speech-voices':70, 'sana-sprint':448}, ui=530, **{'ltx-official':89, 'ltx-multiscale-app':280, 'ltx-single-scale-app':127})
 MEDIA = ['workbench', 'preflight', 'recovery', 'lcm', 'audio', 'ltx', 'resources',
-         'curated', 'speech', 'components', 'wan', 'openmoss']
+         'curated', 'speech', 'components', 'wan', 'openmoss', 'sana']
 UI_LOGIC = ['app/src/main/assets/' + name for name in (
     'index.html', 'app.css', 'app.js', 'foundation.css', 'foundation.js',
     'audio-preview.js', 'workbench.js', 'recipes.js', 'versions.js')]
@@ -84,24 +89,24 @@ def export():
         data = (ROOT / original).read_bytes()
         (OUT / name).write_bytes(data)
         items[name] = dict(source=original, **identity(OUT / name))
-    historical = ROOT / 'verification/history/dev44-program/status.json'
-    assert record(historical)['version'] == '0.3.0-dev.44'
+    historical = ROOT / 'verification/history/dev45-program/status.json'
+    assert record(historical)['version'] == '0.3.0-dev.45'
     media = {}
     for name in MEDIA:
         path = ROOT / 'docs/media/development' / name / 'manifest.json'
         media[name] = dict(path=path.relative_to(ROOT).as_posix(), **identity(path))
-    fresh = ROOT / 'docs/media/development/sana/manifest.json'
-    status = dict(schema='lma.program-checkpoint/1', version=VERSION,
+    fresh_media = {name:ROOT/'docs/media/development'/name/'manifest.json' for name in ['ltx-official','release-workbench']}
+    from release_scope import check as check_scope
+    check_scope()
+    status = dict(schema='lma.program-release/1', version=VERSION,
         validation_mode='program_only', sources=items, historical_ui_media=media,
         historical_media_comparison='historical_identity_only; not current page or APK validation',
-        current_ui_media={'sana':dict(path=fresh.relative_to(ROOT).as_posix(), **identity(fresh))},
-        prior_checkpoint=dict(commit=PRIOR_COMMIT, version='0.3.0-dev.44',
+        current_ui_media={name:dict(path=path.relative_to(ROOT).as_posix(), **identity(path)) for name,path in fresh_media.items()},
+        prior_checkpoint=dict(commit=PRIOR_COMMIT, version='0.3.0-dev.45',
             path=historical.relative_to(ROOT).as_posix(), **identity(historical)),
         policy='docs/proposals/program-validation-policy.json',
-        release_ready=False, full_scope_implementation_complete=False,
-        known_implementation_gaps=[
-            dict(selection_id='17', target='original PixArt T5 / multiscale LTX 0.9.8',
-                 existing_variant_is_not_substitute='Google T5 Q5 single-scale')],
+        release_ready=True, full_scope_implementation_complete=True,
+        implementation_matrix='catalogue/release-0.3.0-implementation.json', known_implementation_gaps=[],
         selected_ids=record(ROOT / 'docs/proposals/multimodal-release-scope.json')['selected_ids'],
         physical_device_tests=0, phone_inference_tested=False, model_inference_tested=False,
         all_selected_models_tested=False, model_quality_accepted=False, background_endurance_tested=False,
@@ -113,7 +118,8 @@ def export():
         browser_closed=True, virtualization_used=False,
         input_fingerprint=fingerprint('tools/program_evidence.py', 'tools/check_repository.py',
             'docs/proposals/program-validation-policy.json', 'docs/proposals/multimodal-release-scope.json',
-            'app/build.gradle', 'app/src/main/AndroidManifest.xml'))
+            'app/build.gradle', 'app/src/main/AndroidManifest.xml', 'catalogue/release-0.3.0-implementation.json',
+            'tools/program_release.py', 'tools/package_delivery.py', 'tools/prepare_release.py'))
     (OUT / 'status.json').write_text(json.dumps(status, ensure_ascii=False, indent=2)+'\n', encoding='utf-8')
     return check()
 
@@ -129,8 +135,10 @@ def check():
     assert status['selected_ids'] == policy['selected_ids'] == scope['selected_ids']
     assert scope['preserved_recommendation_ids'] == ['m08', 'm06', 'm01']
     assert policy['lora_required_base_families'] == ['sd15', 'sdxl']
-    assert not any(status[key] for key in ['release_ready', 'full_scope_implementation_complete',
-        'phone_inference_tested', 'model_inference_tested', 'all_selected_models_tested',
+    assert status['release_ready'] and status['full_scope_implementation_complete'] and not status['known_implementation_gaps']
+    from release_scope import check as check_scope
+    check_scope()
+    assert not any(status[key] for key in ['phone_inference_tested', 'model_inference_tested', 'all_selected_models_tested',
         'model_quality_accepted', 'background_endurance_tested', 'model_weights_in_apk',
         'historical_model_results_are_current_apk_validation', 'automatic_model_asset_downloads',
         'virtualization_used', 'complete_model_downloads_for_validation', 'complete_model_copies_for_validation'])
@@ -139,7 +147,7 @@ def check():
     records = {}
     for name, item in status['sources'].items():
         assert item['source'] == SOURCES[name] and identity(OUT / name) == {k:item[k] for k in ['bytes','sha256']}
-        value = record(OUT / name); current(value['source_inputs'] if name == 'mnn-android.json' else value['input_fingerprint']); records[name] = value
+        value = record(OUT / name); current(value['source_inputs'] if name in ['mnn-android.json','ltx-android.json'] else value['input_fingerprint']); records[name] = value
         for key in ['model_inference', 'model_inference_tested', 'modelInference']:
             assert not value.get(key, False), 'Unexpected neural execution in program evidence: ' + name
     counts = {name:counted(name, records[name+'.json']) for name in MINIMUM}
@@ -161,25 +169,45 @@ def check():
     assert arm['abi'] == 'arm64-v8a' and arm['min_sdk'] == 28 and arm['android_api_notes'] == [28]
     assert arm['static_dependencies']['sentencepiece'] == '31646a467d2051eb904e0b45de3a73e91fe1c1e3'
     assert not arm['http_resources_compiled'] and not arm['logcat_compiled'] and not arm['virtualization_used']
+    ltx, official = records['ltx-android.json'], records['ltx-official.json']
+    assert ltx['abi'] == 'arm64-v8a' and ltx['min_sdk'] == 28 and ltx['android_api_notes'] == [28]
+    assert 'ltx098_pixart_multiscale_v1' in ltx['pipelines']
+    assert not ltx['model_data_embedded'] and not ltx['deviceValidated']
+    assert official['fixture_neural_graphs_only'] and official['complete_trained_model_runs'] == 0
+    assert official['complete_model_downloads'] == official['complete_model_copies'] == 0
+    for name, multiscale in [('ltx-multiscale-app.json', True), ('ltx-single-scale-app.json', False)]:
+        case = records[name]
+        assert case['productionEngineAndQueue'] and case['syntheticNeuralStages'] and case['multiscale'] == multiscale
+        assert not any(case[k] for k in ['physicalAndroid', 'modelInference', 'qualityAccepted', 'numericalAccepted'])
     # Old fixture media retains identity; changed workbench code is checked by current UI tests.
     assert set(status['historical_ui_media']) == set(MEDIA)
     for item in status['historical_ui_media'].values():
         path = ROOT / item['path']; assert identity(path) == {k:item[k] for k in ['bytes','sha256']}
         media = record(path)
-        assert media['version'] == '0.3.0-dev.42' and media['browser_closed'] and not media['browser_errors']
+        assert media['version'] == ('0.3.0-dev.45' if path.parent.name=='sana' else '0.3.0-dev.42') and media['browser_closed'] and not media['browser_errors']
         assert not media['android_device'] and not media['model_inference']
         for file in media['files']:
             assert identity(path.parent / file['file']) == {k:file[k] for k in ['bytes','sha256']}
-    assert set(status['current_ui_media']) == {'sana'}
+    assert set(status['current_ui_media']) == {'ltx-official','release-workbench'}
     for item in status['current_ui_media'].values():
         path=ROOT/item['path']; assert identity(path)=={k:item[k] for k in ['bytes','sha256']}
         media=record(path); current(media['input_fingerprint'])
         assert media['version']==VERSION and media['browser_closed'] and not media['browser_errors']
         assert not media['android_device'] and not media['model_inference'] and not media['weights_downloaded']
-        assert len(media['screenshots'])==4 and len(media['checks'])>=19
+        assert len(media['screenshots'])==(4 if path.parent.name=='ltx-official' else 5)
+        assert len(media['checks']) >= (21 if path.parent.name=='ltx-official' else 8)
         for file in media['files']: assert identity(path.parent/file['file'])=={k:file[k] for k in ['bytes','sha256']}
-    prior = status['prior_checkpoint']; assert prior['commit'] == PRIOR_COMMIT and prior['version'] == '0.3.0-dev.44'
+    prior = status['prior_checkpoint']; assert prior['commit'] == PRIOR_COMMIT and prior['version'] == '0.3.0-dev.45'
     assert identity(ROOT / prior['path']) == {k:prior[k] for k in ['bytes','sha256']}
+    tree = subprocess.run(['git', 'ls-tree', '-rz', PRIOR_COMMIT, 'verification/program'], cwd=ROOT, capture_output=True, check=True)
+    archived = ROOT / 'verification/history/dev45-program'
+    originals = {}
+    for item in tree.stdout.decode('utf-8').strip('\0').split('\0'):
+        metadata, path = item.split('\t'); originals[Path(path).name] = metadata.split()[2]
+    assert set(originals) == {p.name for p in archived.iterdir() if p.is_file()}
+    for name, blob in originals.items():
+        data = (archived / name).read_bytes()
+        assert hashlib.sha1(('blob '+str(len(data))+'\0').encode()+data).hexdigest() == blob, 'Changed historical evidence: '+name
     # Preserve the first reproduced failure without evaluating old model acceptance gates.
     issue = ROOT / 'verification/research/input-opening-issue'
     capture = record(issue / 'capture.json'); assert not capture['host_contract_passed']
@@ -191,9 +219,9 @@ def check():
         assert sha(ROOT/'app/src/main/assets'/name) == expected
     result = dict(passed=True, version=VERSION, validation_mode='program_only',
         current_records=len(records), program_suites=len(counts), program_assertions=sum(counts.values()),
-        checks=counts, historical_ui_manifests=len(MEDIA), current_ui_manifests=1, original_failure_preserved=True,
+        checks=counts, historical_ui_manifests=len(MEDIA), current_ui_manifests=2, original_failure_preserved=True,
         native_libraries=35, lint_errors=0, lint_warnings=len(lint['warnings']),
-        apk=build['apk'], apk_sha256=build['sha256'], release_ready=False,
+        apk=build['apk'], apk_sha256=build['sha256'], release_ready=True, full_scope_implementation_complete=True,
         model_inference_tested=False, phone_inference_tested=False)
     (ROOT/'build/program-evidence-check.json').write_text(json.dumps(result, indent=2)+'\n', encoding='utf-8')
     return result

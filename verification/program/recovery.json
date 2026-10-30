@@ -54,9 +54,9 @@
   "android_execution_tested": false,
   "count": 47,
   "host_phase_seconds": {
-    "durable_history": 11.6559493,
-    "actual_http": 0.1669275,
-    "crash_recovery": 0.696408
+    "durable_history": 5.2024306,
+    "actual_http": 0.1096602,
+    "crash_recovery": 0.5851566
   },
   "actual_process_interruption": true,
   "passed": true,
@@ -69,13 +69,13 @@
     "missingOutputs": 0,
     "discardedUncommittedFiles": 1,
     "unlinkedOutputs": 1,
-    "checkedAt": 1793395403409,
+    "checkedAt": 1793397358790,
     "rejectedBindings": 0,
     "integrityCheck": "committed_metadata_and_size_execution_rehashes_selected_inputs",
     "cleanupFailures": 0,
     "reclaimedBytes": 8
   },
-  "host_elapsed_seconds": 12.65519609999319,
+  "host_elapsed_seconds": 6.029824099998223,
   "input_fingerprint": {
     "app/src/main/java/com/lma/app/core/AdapterSpec.java": "aff8572d14ac8d616be0a1b0da395e52ed5bddcd5ae407a969c2657bf9257581",
     "app/src/main/java/com/lma/app/core/ArtifactStore.java": "6f85d2ac710cac0fb5a76cde9493ff1fef4d3e2e119c3e031b7c44ff65a49061",
@@ -100,6 +100,7 @@
     "app/src/main/java/com/lma/app/core/LocalApi.java": "c9e1674f98ef12c7312ff42c50ba38a10c08d5cf1d3e173a8093ecd7fa67e5fc",
     "app/src/main/java/com/lma/app/core/LocalHttp.java": "6f74e8acfe7072606c23e775f87fa5aa8d5ee094ffe20e96788f161674a947aa",
     "app/src/main/java/com/lma/app/core/Ltx098Spec.java": "8333ea906bc31ea9e014ce4840d15fc6253c91eda1f3688de4f8645738819abf",
+    "app/src/main/java/com/lma/app/core/LtxPixArtSpec.java": "3eb0cb14c75c0e190d611ee7ac259878a5a644e0bce0a4ee6003a1084668e00b",
     "app/src/main/java/com/lma/app/core/MnnSpec.java": "055cc06962da0fc34c1abdc57100ac52fca47a9d66ffea6621155c53046d5f1a",
     "app/src/main/java/com/lma/app/core/ModelBundle.java": "ad08c033a2c9a215c292d20a5a97a65c85db91ce6a86609a8eed9e846449e84b",
     "app/src/main/java/com/lma/app/core/ModelSelection.java": "965c9f22f16fc822f792ebef6e0de0a0c67f5a6882d5e7ef77be05b83ea1aeb2",

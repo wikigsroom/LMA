@@ -6406,6 +6406,344 @@
       "help": "推荐选择目录中的旧 LTX 源模型，显式下载 / 导入后准备 DiT 与九段 VAE，再关联运行模型并自行取得 T5 与分词配置。此表单也可逐项选择已有匹配组件。T5 CPU、DiT Vulkan、VAE CPU、手机 AVC 编码顺序执行；支持 64–256（32 倍数）、9–33 帧（8n+1）、固定八步。Google/community T5 量化单尺度变体不等于官方 PixArt / 多尺度默认；原数值门槛仍有失败，画质和 Android 尚未验收。模型与专用数据不随 App 提供；不自动下载，不接受图像 LoRA 或远端执行。"
     },
     {
+      "id": "ltx098_pixart_multiscale_v1",
+      "name": "旧 LTX 2B 0.9.8 · PixArt 多尺度",
+      "primaryRole": "diffusion_model",
+      "definition": {
+        "engine": "ltx098_native",
+        "backend": "vulkan",
+        "architecture": "ltx098",
+        "pipeline": "ltx098_pixart_multiscale_v1",
+        "tasks": [
+          "video"
+        ],
+        "capabilities": [
+          "text_to_video",
+          "multiscale",
+          "pixart_t5"
+        ],
+        "parameters": {
+          "version": 1,
+          "fields": {
+            "width": {
+              "type": "integer",
+              "label": "宽度",
+              "default": 256,
+              "minimum": 128,
+              "maximum": 256,
+              "presets": [
+                128,
+                192,
+                256
+              ],
+              "limitSource": "explicit_old_ltx_profile",
+              "multipleOf": 32
+            },
+            "height": {
+              "type": "integer",
+              "label": "高度",
+              "default": 256,
+              "minimum": 128,
+              "maximum": 256,
+              "presets": [
+                128,
+                192,
+                256
+              ],
+              "limitSource": "explicit_old_ltx_profile",
+              "multipleOf": 32
+            },
+            "frames": {
+              "type": "integer",
+              "label": "视频帧数",
+              "default": 33,
+              "minimum": 9,
+              "maximum": 33,
+              "presets": [
+                9,
+                17,
+                25,
+                33
+              ],
+              "limitSource": "explicit_old_ltx_profile",
+              "multipleOf": 8,
+              "alignmentOrigin": 1
+            },
+            "fps": {
+              "type": "integer",
+              "label": "帧率",
+              "default": 24,
+              "minimum": 1,
+              "maximum": 60,
+              "presets": [
+                8,
+                16,
+                24
+              ],
+              "limitSource": "explicit_old_ltx_profile"
+            },
+            "seed": {
+              "type": "integer",
+              "label": "种子（-1 自动）",
+              "default": -1,
+              "minimum": -1,
+              "maximum": 2147483647,
+              "presets": [
+                -1,
+                42
+              ],
+              "limitSource": "explicit_old_ltx_profile"
+            },
+            "threads": {
+              "type": "integer",
+              "label": "CPU 线程",
+              "default": 4,
+              "minimum": 1,
+              "maximum": 8,
+              "presets": [
+                2,
+                4,
+                8
+              ],
+              "limitSource": "explicit_old_ltx_profile"
+            },
+            "steps": {
+              "type": "integer",
+              "label": "固定蒸馏步数",
+              "default": 10,
+              "minimum": 10,
+              "maximum": 10,
+              "presets": [
+                10
+              ],
+              "limitSource": "explicit_old_ltx_profile",
+              "help": "官方多尺度调度：7 步初次生成、空间放大和 AdaIN、3 步细化。"
+            }
+          }
+        }
+      },
+      "requirements": [
+        {
+          "role": "diffusion_model",
+          "label": "已在本机准备的旧 0.9.8 DiT",
+          "formats": [
+            "gguf"
+          ],
+          "required": true
+        },
+        {
+          "role": "vae_graph_0",
+          "label": "旧 LTX VAE 第 1 段图",
+          "formats": [
+            "onnx"
+          ],
+          "required": true
+        },
+        {
+          "role": "vae_data_0",
+          "label": "旧 LTX VAE 第 1 段权重",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": true
+        },
+        {
+          "role": "vae_graph_1",
+          "label": "旧 LTX VAE 第 2 段图",
+          "formats": [
+            "onnx"
+          ],
+          "required": true
+        },
+        {
+          "role": "vae_data_1",
+          "label": "旧 LTX VAE 第 2 段权重",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": true
+        },
+        {
+          "role": "vae_graph_2",
+          "label": "旧 LTX VAE 第 3 段图",
+          "formats": [
+            "onnx"
+          ],
+          "required": true
+        },
+        {
+          "role": "vae_data_2",
+          "label": "旧 LTX VAE 第 3 段权重",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": true
+        },
+        {
+          "role": "vae_graph_3",
+          "label": "旧 LTX VAE 第 4 段图",
+          "formats": [
+            "onnx"
+          ],
+          "required": true
+        },
+        {
+          "role": "vae_data_3",
+          "label": "旧 LTX VAE 第 4 段权重",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": true
+        },
+        {
+          "role": "vae_graph_4",
+          "label": "旧 LTX VAE 第 5 段图",
+          "formats": [
+            "onnx"
+          ],
+          "required": true
+        },
+        {
+          "role": "vae_data_4",
+          "label": "旧 LTX VAE 第 5 段权重",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": true
+        },
+        {
+          "role": "vae_graph_5",
+          "label": "旧 LTX VAE 第 6 段图",
+          "formats": [
+            "onnx"
+          ],
+          "required": true
+        },
+        {
+          "role": "vae_data_5",
+          "label": "旧 LTX VAE 第 6 段权重",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": true
+        },
+        {
+          "role": "vae_graph_6",
+          "label": "旧 LTX VAE 第 7 段图",
+          "formats": [
+            "onnx"
+          ],
+          "required": true
+        },
+        {
+          "role": "vae_data_6",
+          "label": "旧 LTX VAE 第 7 段权重",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": true
+        },
+        {
+          "role": "vae_graph_7",
+          "label": "旧 LTX VAE 第 8 段图",
+          "formats": [
+            "onnx"
+          ],
+          "required": true
+        },
+        {
+          "role": "vae_data_7",
+          "label": "旧 LTX VAE 第 8 段权重",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": true
+        },
+        {
+          "role": "vae_graph_8",
+          "label": "旧 LTX VAE 第 9 段图",
+          "formats": [
+            "onnx"
+          ],
+          "required": true
+        },
+        {
+          "role": "vae_data_8",
+          "label": "旧 LTX VAE 第 9 段权重",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": true
+        },
+        {
+          "role": "vae_manifest",
+          "label": "准备得到的 ltx098-vae.json",
+          "formats": [
+            "json"
+          ],
+          "required": true
+        },
+        {
+          "role": "text_config",
+          "label": "PixArt T5 · config.json",
+          "formats": [
+            "json"
+          ],
+          "required": true
+        },
+        {
+          "role": "text_index",
+          "label": "PixArt T5 · 分片索引",
+          "formats": [
+            "json"
+          ],
+          "required": true
+        },
+        {
+          "role": "text_shard_1",
+          "label": "PixArt T5 · 官方 F32 分片 1",
+          "formats": [
+            "safetensors"
+          ],
+          "required": true
+        },
+        {
+          "role": "text_shard_2",
+          "label": "PixArt T5 · 官方 F32 分片 2",
+          "formats": [
+            "safetensors"
+          ],
+          "required": true
+        },
+        {
+          "role": "tokenizer_config",
+          "label": "PixArt T5 · tokenizer_config.json",
+          "formats": [
+            "json"
+          ],
+          "required": true
+        },
+        {
+          "role": "tokenizer",
+          "label": "PixArt T5 · spiece.model",
+          "formats": [
+            "sentencepiece"
+          ],
+          "required": true
+        },
+        {
+          "role": "upscaler",
+          "label": "LTX 0.9.8 · 官方空间放大器",
+          "formats": [
+            "safetensors"
+          ],
+          "required": true
+        }
+      ],
+      "fixedComponents": [],
+      "help": "用户自行选择、下载或导入旧 0.9.8 DiT / 九段 VAE，以及官方 PixArt T5 F32 两分片、分词文件和空间放大器。全部在本手机顺序运行：T5 CPU → Vulkan 初次采样 7 步 → CPU 空间放大与 AdaIN → 重新加噪 → Vulkan 细化 3 步 → VAE CPU → 双线性缩放 → AVC 视频。输出 128–256（32 倍数）、9–33 帧（8n+1），CFG=1、STG=0，提示词直接编码，不自动下载可选的提示词增强模型。官方 T5 原文件约 17.74 GiB，总运行资产约 24 GiB；映射读取不代表手机可用内存足够。不代表 Z20 可运行，画质与真机未验收。App 仅提供程序，不内置模型。"
+    },
+    {
       "id": "wan21_13b_split_vulkan_v1",
       "name": "Wan 2.1 1.3B · 本地 GPU 视频",
       "primaryRole": "diffusion",

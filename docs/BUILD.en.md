@@ -1,5 +1,13 @@
 # Build and verification
 
+## Current v0.3.0 source and build boundary
+
+Rebuild from a **full Git clone checked out at `v0.3.0`**, retaining history: historical asset identity checks deliberately read immutable earlier commits. The release source ZIP contains the 2,497 public source/document/evidence files for review; it excludes `.git`, native binaries, caches and signing material. It is not a self-contained binary SDK. Fetch pinned upstream code/libraries and run the relevant native builders before `tools/build.py`. APK compilation does not require trained models. The current program-only package path in [RELEASING](RELEASING.md) replaces earlier ZIP/device-gate descriptions below.
+
+
+> 当前 / Current: **v0.3.0**. [完整程序集成 / implementation](IMPLEMENTATION_V030.en.md). [仅程序验证策略 / validation](PROGRAM_VALIDATION.md) 优先于下文历史完整模型 / 手机运行门槛；旧检查点与失败记录保留为历史。Original PixArt multiscale LTX is now integrated; quality/device acceptance remains untested. [Release](releases/v0.3.0.md).
+
+
 dev.38 Z-Image reproduction: explicitly acquire with `python tools/fetch_zimage_trained.py --download --reference-tokenizer`, then run the native/application/media tools in [the complete guide](ZIMAGE_TURBO.en.md#4-tokenizer-evidence-and-reproduction). Default verification and inference never acquire files.
 
 dev.37 adds complete local FLUX.2-klein verification: `python tools/fetch_flux2_trained.py` verifies existing files by default; `python tools/test_qwen_tokenizer.py`, `python tools/test_flux2_trained.py` and `python tools/test_flux2_app_host.py` exercise independent tokenization, actual native generation and the production business flow. Only explicit `--download` acquires assets. No virtualization is used. See [reproduction](FLUX2_KLEIN.en.md#5-evidence-and-reproduction) and [full same-release pending scope](releases/v0.3.0-dev.37.md).

@@ -1,5 +1,8 @@
 # LMA 0.2.0 validation
 
+> 当前 / Current: **v0.3.0**. [完整程序集成 / implementation](IMPLEMENTATION_V030.en.md). [仅程序验证策略 / validation](PROGRAM_VALIDATION.md) 优先于下文历史完整模型 / 手机运行门槛；旧检查点与失败记录保留为历史。Original PixArt multiscale LTX is now integrated; quality/device acceptance remains untested. [Release](releases/v0.3.0.md).
+
+
 Current dev.27 business checks and APK are documented in [numbered delivery](releases/v0.3.0-dev.27.md) and the [evidence index](../verification/development/status.json). Recovery exercises real host processes/files/HTTP; UI uses a labelled bridge fixture. No new Android/model acceptance is claimed.
 
 [中文（含完整修复与警告复核）](VALIDATION.md) · [Documentation](README.md)

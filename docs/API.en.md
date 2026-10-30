@@ -1,5 +1,8 @@
 # LMA API integration
 
+> 当前 / Current: **v0.3.0**. [完整程序集成 / implementation](IMPLEMENTATION_V030.en.md). [仅程序验证策略 / validation](PROGRAM_VALIDATION.md) 优先于下文历史完整模型 / 手机运行门槛；旧检查点与失败记录保留为历史。Original PixArt multiscale LTX is now integrated; quality/device acceptance remains untested. [Release](releases/v0.3.0.md).
+
+
 dev.38 adds [complete Z-Image-Turbo selection, downloads and local business flow](ZIMAGE_TURBO.en.md), with original matching Qwen3-4B, external tokenizer and independent eight-step settings. All frozen acceptance gates remain mandatory.
 
 FLUX.2-klein 4B now has an optional complete four-component catalogue flow and matching HF suggestions. [User flow, parameters and evidence](FLUX2_KLEIN.en.md). The App ships foundation code only; downloads remain explicit.
