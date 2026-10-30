@@ -1,5 +1,7 @@
 # Local MOSS-TTS 1.5 speech
 
+dev.42 leaves native engines/weights unchanged. The 87-check Java model run below is exact dev.41 history after the importer changed. See [shared imports](MODEL_TRANSFERS.en.md) and [independent diagnostics](MOSS_REFERENCE_DIAGNOSTICS.en.md).
+
 [中文](MOSS_TTS15.md) · [MOSS engine and format boundaries](OPENMOSS_ENGINE.en.md) · [Complete version scope](proposals/multimodal-release-scope.json)
 
 ## User workflow
@@ -52,7 +54,7 @@ Chinese and English WAV bytes match the original upload-based loader exactly. En
 
 The mapped English case records about 1.5 seconds to load, 97 seconds total and a 10.89 GB observed peak Windows working set. Source files total 13.43 GB and auxiliary mapped views about 5.37 GB. These observations are neither a controlled performance comparison nor an Android memory budget.
 
-Android compilation, complete public asset SHA verification, 530 MOSS-specific checks, 25 real mapping checks and 490 shared UI checks pass. The complete native pipeline produces five WAV cases and six controls: business checks pass while reference natural completion fails. Production Java passes 87 checks across five actual native runs and three WAVs, covering full-SHA existing-file adoption, independent/clamped settings, immutable requests, reference input, cancellation after actual steps, budget errors, recovery and process/work-file cleanup, with zero network calls. Existing-file adoption cannot establish the unpassed stream-copy path. UI media explicitly simulate the bridge and establish neither Android execution nor speech quality.
+Android compilation, complete public asset SHA verification, 530 MOSS-specific checks, 25 real mapping checks and 490 shared UI checks pass. The complete native pipeline produces five WAV cases and six controls: business checks pass while reference natural completion fails. The historical dev.41 production Java run passed 87 checks across five actual native runs and three WAVs, covering full-SHA existing-file adoption, independent/clamped settings, immutable requests, reference input, cancellation after actual steps, budget errors, recovery and process/work-file cleanup, with zero network calls. Existing-file adoption cannot establish the unpassed stream-copy path. UI media explicitly simulate the bridge and establish neither Android execution nor speech quality.
 
 This is **TTS-v1.5**, one of nine frozen MOSS targets. TTS-v1.0, old Local, Local-v1.5, TTSD, VoiceGenerator, old SoundEffect, SoundEffect-v2 and Realtime remain required, together with every model's quality, resources and same-phone background acceptance, in the same complete v0.3.0 scope. No reduced Release or automatic deferral is authorized.
 
@@ -84,4 +86,4 @@ These are actual native Windows outputs with unchanged original WAV bytes. The w
 
 ![Actual host WAVs and evidence scope, not an Android recording](media/development/openmoss-trained-contact-sheet.png)
 
-[Complete native execution and retained original failure](../verification/development/openmoss-trained.json) · [87 production Java checks](../verification/development/openmoss-app-host.json) · [Media provenance and file hashes](media/development/openmoss-trained-media.json). Chart timings come from the direct native captures; the Java English/reference/recovery runs took about 724/1551/43 seconds. Different disk caches and workloads prevent treating these observations as a controlled benchmark or phone-speed estimate.
+[Complete native execution and retained original failure](../verification/development/openmoss-trained.json) · [87 production Java checks](../verification/history/0.3.0-dev.41/openmoss-app-host.json) · [Media provenance and file hashes](media/development/openmoss-trained-media.json). Chart timings come from the direct native captures; the Java English/reference/recovery runs took about 724/1551/43 seconds. Different disk caches and workloads prevent treating these observations as a controlled benchmark or phone-speed estimate.

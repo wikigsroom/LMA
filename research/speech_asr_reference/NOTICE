@@ -1,0 +1,8 @@
+Developer-only English speech intelligibility diagnostic.
+Whisper tiny.en, openai/whisper-tiny.en@87c7102498dcde7456f24cfd30239ca606ed9063.
+Primary source: https://huggingface.co/openai/whisper-tiny.en
+The publisher's Hugging Face metadata declares Apache-2.0.
+No ASR weights or tokenizer data enter the APK or source archive.
+No inference endpoint is used. All ASR computation is native local CPU execution.
+Recognition can err; exact transcript checks do not establish subjective audio
+quality, voice similarity, languages outside this English probe, or Android support.

@@ -1,0 +1,39 @@
+{
+  "schema": "lma.native-build/1",
+  "engine": "openmoss_native",
+  "file": "liblma-openmoss.so",
+  "source_revision": "bfb1f465e0a86fb5a52bbf93e67ceba4b7d0b4e1",
+  "llama_revision": "050ee92d04c2e1f639025786dea701c70e7d4204",
+  "abi": "arm64-v8a",
+  "backend": "cpu",
+  "ndk": "30.0.16248370",
+  "min_sdk": 28,
+  "bytes": 3719640,
+  "sha256": "cf0f633a1de61a2ff093f10eb268032ead4e4d30d180f77cac0dfdfc5b82c027",
+  "elf_load_alignment": [
+    16384
+  ],
+  "android_api_notes": [
+    28
+  ],
+  "source_inputs": {
+    "native/openmoss/CMakeLists.txt": "83c84c6b36b70b7307a8c1b1b801b9b26f685d72f8a1d929d78c6351d1a9965a",
+    "native/openmoss/generation_guard.hpp": "9a7b420629f5502b66e2a95608aed0ac97780924fead745e7da02ab6c60db2c6",
+    "native/openmoss/model_contract.hpp": "0476e93090a14822f5544a485fd5f83fdd66f9c40cd18eb7c28389e45f1ee7cb",
+    "native/openmoss/policy.hpp": "eb164dba961c9065b8dd62b272050bdbb45c4d303b8e5b2455ec5441134f1684",
+    "native/openmoss/private_weights.hpp": "7a5bfc3b4a2df5873628036af85b578630e43907fb009d6c23d2fe240264a16f",
+    "native/openmoss/wave.hpp": "aaf85f286b9e9d95de808aae2088dadac7b9b06e35f51f31c05e272f7a112e7f",
+    "native/openmoss/worker.cpp": "a807ff77d40a12daf020e17a5517ae47476dd980227150c933635d7a80a2da15",
+    "third_party/openmoss-source-lock.json": "df2d062fe174080e95d1f2f05ef8e133616a1827637e62d7195181f1c9256295",
+    "tools/build_openmoss.py": "42c3c400953006e3946326bee74c7c199f25648eab92ca2f1d8bc6ed89d13642",
+    "tools/fetch_openmoss.py": "1c18d8c17de019a6b66321042cb14d61441d54fc370ef3f5547cacd627f1330b",
+    "tools/openmoss_pipeline.py": "483667858e0ce77742ae8242a15ae88bc8fdf76597d66191ad10ccdb172fbec3"
+  },
+  "vocabularies": "external_user_selected_components",
+  "model_inference_tested": false,
+  "physical_device_tests": 0,
+  "virtualization_used": false,
+  "private_weight_mapping": true,
+  "model_loader_sha256": "e345b83c942ff33b8a94137803622d3edc06807efeab571e0c4eceadde37ad6c",
+  "pipeline_guard_sha256": "f158aa7e928835ec0360ca1a14df0d54b9dc8755c06550090a7f9f6c1bcb586b"
+}

@@ -14,9 +14,9 @@ from preparation_build_inputs import build_inputs
 ROOT = Path(__file__).resolve().parents[1]
 BASELINE = '6b1f3459a80db8b7b6838e7d5e492b8ef42d9033'
 BASE_VERSION = '0.3.0-dev.24'
-CURRENT_VERSION = '0.3.0-dev.41'
-PRIOR_COMMIT = '026c16cc0a2ed94f2222e320f5eef479d223a998'
-PRIOR_VERSION = '0.3.0-dev.40'
+CURRENT_VERSION = '0.3.0-dev.42'
+PRIOR_COMMIT = 'd4ce9a6e46c6be3402ed515c2ab1324af1a4c3be'
+PRIOR_VERSION = '0.3.0-dev.41'
 CERTIFICATE = '90444a717a55549e2094364d8d7d005cf8b7f4df24562da62cc1884a2f341c17'
 SOURCES = {
     'build-info.json': 'dist/build-info.json',
@@ -24,6 +24,8 @@ SOURCES = {
     'workbench.json': 'build/workbench-tests/results.json',
     'recovery.json': 'build/recovery-tests/results.json',
     'foundation.json': 'build/foundation-tests/results.json',
+    'bundle-pause.json': 'build/bundle-pause-tests/results.json',
+    'speech-intelligibility.json': 'build/speech-intelligibility-tests/results.json',
     'api.json': 'build/api-tests/results.json',
     'inputs.json': 'build/input-tests/results.json',
     'text.json': 'build/text-tests/results.json',
@@ -60,8 +62,6 @@ SOURCES = {
     'openmoss-core.json': 'build/openmoss-tests/results.json',
     'openmoss-mapping.json': 'build/openmoss-mapping-tests/results.json',
     'openmoss-trained.json': 'build/openmoss-trained-tests/results.json',
-    'openmoss-app-host.json': 'build/openmoss-app-host-tests/results.json',
-    'openmoss-trained-media.json': 'docs/media/development/openmoss-trained-media.json',
     'openmoss-media.json': 'docs/media/development/openmoss/manifest.json',
 }
 
@@ -104,7 +104,7 @@ def prior_checkpoint(write=False):
     # Only archive this checkpoint's own records. Older model experiments have
     # separate immutable pointers and are not inputs to this incremental copy.
     status_data = subprocess.check_output(['git','show',PRIOR_COMMIT + ':verification/development/status.json'], cwd=ROOT)
-    status = json.loads(status_data); assert status['version'] == PRIOR_VERSION and len(status['sources']) == 41
+    status = json.loads(status_data); assert status['version'] == PRIOR_VERSION and len(status['sources']) == 44
     selected = ['status.json', *status['sources']]
     assert all(Path(name).name == name and name.endswith('.json') for name in selected)
     run = subprocess.run(['git', 'archive', '--format=tar', PRIOR_COMMIT, *['verification/development/' + name for name in selected]], cwd=ROOT, capture_output=True, check=True)
@@ -163,11 +163,11 @@ def export():
         'physical_device_tests': 0, 'model_inference_tested': False,
         'historical_trained_results_apply_to_current_apk': False,
         'host_model_inference_tested': True, 'current_trained_host_engines': ['openmoss_native'], 'apk_model_inference_tested': False, 'historical_host_model_inference_tested': True,
-        'model_inference_test_scope': 'Complete MOSS-TTS 1.5 Q8/BF16 weights, native Windows CPU and production Java business checks. Original reused case provenance is explicit. Reference speech reaches the output limit and FAILS natural completion; that gate remains false. Other trained experiments retain exact historical checkpoints. No Android inference, speech quality or complete MOSS-family acceptance.',
-        'current_failed_model_gates': {'moss_tts_v15_reference_natural_completion': 'failed_at_max_new_tokens_375'},
-        'scope': 'Optional user-selected MOSS-TTS 1.5 with a complete pinned 13.43 GB pair; actual CPU delayed speech and codec, immutable per-model parameters, real sampled progress, EOS versus truncation, reference encoding, cancellation and recovery, and managed WAV outputs. Foundation-only APK, preserved recommendations and HF search, no automatic model downloads, ROOT, off-device inference or ComfyUI graph ecosystem. Full frozen v0.3.0 requirements and all failed gates remain required.',
+        'model_inference_test_scope': 'Unchanged dev.41 MOSS native binary/assets and explicitly reused original cases. The 87-check production Java model run and actual media are immutable dev.41 history after the shared importer source changed. Current blocked-input regression covers 13 checks; foundation covers 692. Independent offline ASR on original WAVs passes two controls but fails reference text following. No Android inference, speech quality or complete MOSS-family acceptance.',
+        'current_failed_model_gates': {'moss_tts_v15_reference_natural_completion': 'failed_at_max_new_tokens_375', 'moss_tts_v15_reference_text_following': 'failed_original_wav_asr_35_errors_over_2_words', 'moss_prompt_candidate': 'experiment_timed_out_1800s_at_step332_of375_no_wav'},
+        'scope': 'Shared bundle imports close the active input on pause/shutdown and release the queue. Explicit file reselection restarts an incomplete local component, while HTTP resume keeps range validation. Original failure and independent offline prompt/ASR diagnostics are retained; the semantic prompt candidate is not adopted. Optional MOSS native assets and inference are unchanged. Foundation-only APK, preserved recommendations and HF search, no automatic model downloads, ROOT, off-device inference or ComfyUI graph ecosystem. Full frozen v0.3.0 requirements and all failed gates remain required.',
         'required_release_scope': {'foundation': 'F01–F12', 'existing_text': True, 'selected_ids': ['01','02','03','04','05','06','07','08','09','10','11','12','13','14','16','17'], 'every_frozen_subtarget': True, 'sd15_and_sdxl_lora': True},
-        'input_fingerprint': fingerprint('tools/checkpoint_evidence.py', 'tools/export_development.py', 'tools/check_repository.py', 'docs/proposals/multimodal-release-scope.json', 'research/openmoss_trained/reference-investigation.json'),
+        'input_fingerprint': fingerprint('tools/checkpoint_evidence.py', 'tools/export_development.py', 'tools/check_repository.py', 'docs/proposals/multimodal-release-scope.json', 'research/openmoss_trained/reference-investigation.json', 'verification/research/bundle-pause-issue', 'verification/research/openmoss-prompt-issue', 'verification/research/openmoss-reference-asr', 'verification/research/openmoss-prompt-candidate'),
     }
     (directory / 'status.json').write_text(json.dumps(status, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
     return check()
@@ -208,8 +208,29 @@ def check():
     assert not workbench['android_execution_tested'] and not workbench['model_inference_tested']
     recovery = records['recovery.json']; assert recovery['passed'] and recovery['count'] >= 47 and recovery['actual_process_interruption'] and recovery['actual_persistence_io'] and recovery['actual_socket_io']
     assert not recovery['android_execution_tested'] and not recovery['model_inference_tested']
-    for name, minimum in [('foundation.json',666),('api.json',67),('inputs.json',64),('text.json',66),('migration.json',69),('scheduler.json',151)]:
+    for name, minimum in [('foundation.json',692),('api.json',67),('inputs.json',64),('text.json',66),('migration.json',69),('scheduler.json',151)]:
         assert records[name]['passed'] >= minimum, name
+    pause=records['bundle-pause.json']
+    assert pause['passed'] and pause['checks']['passed']==13 and pause['checks']['blocked_provider_cases']==2 and pause['returncode']==0
+    assert pause['network_requests']==0 and not pause['physical_android'] and not pause['model_inference']
+    first=json.loads((ROOT/'verification/research/bundle-pause-issue/first-run.json').read_text(encoding='utf-8'))
+    assert not first['passed'] and first['returncode']!=0
+    asr=records['speech-intelligibility.json']
+    assert asr['passed']==2 and asr['expected_cases']==3 and not asr['all_exact_words']
+    assert asr['model_inference'] and not asr['remote_inference'] and not asr['apk_model_data']
+    assert not any(asr[k] for k in ['physical_android','speech_quality_accepted','voice_similarity_accepted','release_accepted'])
+    assert [c['exact_words'] for c in asr['cases']]==[True,True,False]
+    assert asr['cases'][2]['word_errors']==35 and asr['cases'][2]['normalized_reference']==['hello','world']
+    for case in asr['cases']: assert digest((ROOT/case['path']).read_bytes())==case['sha256'] and not case['prompt_hint_supplied']
+    prompt=json.loads((ROOT/'verification/research/openmoss-prompt-issue/first-run.json').read_text(encoding='utf-8'))
+    assert prompt['passed']==0 and prompt['expected_cases']==7 and not prompt['all_exact']
+    assert not prompt['model_inference'] and not prompt['codec_executed']
+    candidate=json.loads((ROOT/'verification/research/openmoss-prompt-candidate/results.json').read_text(encoding='utf-8'))
+    assert candidate['timed_out'] and candidate['experiment_not_production'] and candidate['parameters_unchanged']
+    assert digest((ROOT/'verification/research/openmoss-prompt-candidate/candidate-pipeline.cpp.txt').read_bytes())==candidate['pipeline_sha256']
+    assert not candidate['execution'] and not any(e.get('event')=='complete' for e in candidate['events'])
+    assert candidate['events'][-1]==dict(event='progress',stage='generating_speech',step=332,steps=375)
+    assert not candidate['physical_android'] and not candidate['release_accepted']
     ui = records['ui.json']; assert ui['passed'] >= 486 and not ui['errors'] and ui['bridge'] == 'test fixture only' and not ui['physicalDevice'] and not ui['emulatorUsed']
     lint = records['lint.json']; assert lint['errors'] == 0 and lint['applicationApkSha256'] == build['sha256']
     assert lint['java_source_files'] == len(list((ROOT / 'app/src/main/java').rglob('*.java')))
@@ -439,7 +460,8 @@ def check():
     for item in media['files']:
         data=(ROOT/'docs/media/development/zimage-trained'/item['file']).read_bytes();assert len(data)==item['bytes'] and digest(data)==item['sha256']
     # Exact dev.40 Wan evidence, including original failed quality gates.
-    wan_history={name:json.loads(prior_records[name]) for name in ['wan-assets.json','wan-trained.json','wan-app-host.json','wan-quality.json','wan-trained-media.json']}
+    wan_records=archived_checkpoint('0.3.0-dev.40',prior_records['status.json'])
+    wan_history={name:json.loads(wan_records[name]) for name in ['wan-assets.json','wan-trained.json','wan-app-host.json','wan-quality.json','wan-trained-media.json']}
     assets=wan_history['wan-assets.json'];trained=wan_history['wan-trained.json'];bridge=wan_history['wan-app-host.json']
     assert assets['developer_assets_only'] and assets['explicit_download'] and not assets['model_executed']
     assert len(assets['components'])==4 and sum(c['bytes'] for c in assets['components'])==4741874667
@@ -458,11 +480,11 @@ def check():
     assert bridge['production_java_native_host_executed'] and bridge['java']['passed']>=102
     assert bridge['java']['actual_host_children']==3 and bridge['java']['imported_objects']==4 and bridge['java']['network_calls']==0
     assert len(bridge['outputs'])==2 and all(i['raw_frames_bitwise_equal_to_direct_native'] for i in bridge['outputs'])
-    assert bridge['direct_trained_report_sha256']==digest(prior_records['wan-trained.json'])
+    assert bridge['direct_trained_report_sha256']==digest(wan_records['wan-trained.json'])
     assert bridge['compilation']==trained['compilation'] and bridge['host_ffmpeg'] and not bridge['android_codec_tested']
     assert not any(r[k] for r in [trained,bridge] for k in ['physical_android','independent_numerics_accepted','video_quality_accepted','complete_target16_accepted','complete_release_accepted'])
     quality=wan_history['wan-quality.json']
-    assert quality['version']==PRIOR_VERSION and quality['aggregation_current'] and not quality['original_captures_are_current_validation']
+    assert quality['version']=='0.3.0-dev.40' and quality['aggregation_current'] and not quality['original_captures_are_current_validation']
     assert len(quality['experiments'])==5 and len(quality['original_captures'])==7
     assert quality['default_decoder']==dict(vaeTileSize=128,vaeTemporalTiling=False)
     assert quality['official_vae_revision']=='9737cba9c1c3c4d04b33fcad41c111989865d315'
@@ -473,19 +495,19 @@ def check():
     for item in quality['media']:
         data=(ROOT/'docs/media/development/wan-quality'/item['file']).read_bytes();assert len(data)==item['bytes'] and digest(data)==item['sha256']
     for name,folder in [('wan-media.json','wan'),('wan-trained-media.json','wan-trained')]:
-        media=records[name] if name=='wan-media.json' else wan_history[name];assert media['version']==(CURRENT_VERSION if name=='wan-media.json' else PRIOR_VERSION)
+        media=records[name] if name=='wan-media.json' else wan_history[name];assert media['version']==(CURRENT_VERSION if name=='wan-media.json' else '0.3.0-dev.40')
         if name=='wan-media.json':
             assert media['browser_closed'] and not media['browser_errors'] and not media['android_device'] and not media['model_inference']
             assert len(media['screenshots'])==4 and len(media['checks'])>=9 and not media['weights_downloaded']
         else:
             assert media['real_trained_host_execution'] and not media['android_recording'] and not media['video_quality_accepted']
-            assert media['direct_report_sha256']==digest(prior_records['wan-trained.json'])
-            assert media['java_report_sha256']==digest(prior_records['wan-app-host.json'])
+            assert media['direct_report_sha256']==digest(wan_records['wan-trained.json'])
+            assert media['java_report_sha256']==digest(wan_records['wan-app-host.json'])
         for item in media['files']:
             data=(ROOT/'docs/media/development'/folder/item['file']).read_bytes();assert len(data)==item['bytes'] and digest(data)==item['sha256']
     # Current, complete MOSS-TTS 1.5 only; no other family or phone is inferred.
     moss_assets=records['openmoss-assets.json'];moss_core=records['openmoss-core.json']
-    moss_arm=records['openmoss-arm64.json'];moss=records['openmoss-trained.json'];moss_app=records['openmoss-app-host.json']
+    moss_arm=records['openmoss-arm64.json'];moss=records['openmoss-trained.json'];moss_app=json.loads(prior_records['openmoss-app-host.json'])
     assert moss_assets['explicit_download'] and moss_assets['developer_assets_only'] and not moss_assets['bundled_model_data']
     assert len(moss_assets['components'])==2 and sum(c['bytes'] for c in moss_assets['components'])==13430589376
     assert moss_core['passed']>=530 and moss_core['production_openmoss_binding'] and not moss_core['model_inference']
@@ -555,12 +577,15 @@ def check():
         if output['name'] in ['initial-a','recovery-a']:
             assert output['audio']['sha256']==next(j for j in moss['jobs'] if j['name']=='english')['audio']['sha256']
     assert not any(r['physical_android'] for r in [moss,moss_app]) and not moss_app['complete_target12_accepted'] and not moss_app['complete_release_accepted']
-    media=records['openmoss-trained-media.json']
+    media=json.loads(prior_records['openmoss-trained-media.json'])
+    # Exact dev.41 bytes above establish history; this media schema has no version field.
     assert media['original_wav_bytes_unchanged'] and not media['waveform_amplitude_normalized']
     assert not media['reference_natural_completion_accepted']
     assert not media['physical_android'] and not media['app_screen_recording'] and not media['speech_quality_accepted']
     assert media['gif_frames']==3 and len(media['source_audio'])==3 and len(media['files'])==6
-    for name,expected in media['sources'].items():assert digest((ROOT/name).read_bytes())==expected
+    for name,expected in media['sources'].items():
+        data=prior_records['openmoss-app-host.json'] if name=='verification/development/openmoss-app-host.json' else (ROOT/name).read_bytes()
+        assert digest(data)==expected
     for name,item in media['files'].items():
         data=(ROOT/'docs/media/development'/name).read_bytes();assert len(data)==item['bytes'] and digest(data)==item['sha256']
     for item in media['source_audio']:

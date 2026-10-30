@@ -1,5 +1,5 @@
 {
-  "version": "0.3.0-dev.41",
+  "version": "0.3.0-dev.42",
   "kind": "current production UI with an explicit simulated bridge",
   "android_device": false,
   "model_inference": false,
@@ -118,8 +118,8 @@
     },
     {
       "file": "04-queued-task.png",
-      "bytes": 48069,
-      "sha256": "f09b2c2ab832ac507419981083c49028967301c609d7c019aade6b3a982c7ee4"
+      "bytes": 48155,
+      "sha256": "9cb63091f0c782093d57dea2d8a6460c8892910779bb35b35b49b005923a7dc1"
     },
     {
       "file": "05-flux2-components.png",
@@ -143,13 +143,13 @@
     },
     {
       "file": "curated-ui.gif",
-      "bytes": 1332418,
-      "sha256": "4fbed91735d3352f712e9023abf12ccfec203ccaa6b344042596aa4a4fcf01d3"
+      "bytes": 1420068,
+      "sha256": "7efa6134ba0e9c501f5548dad1d7487d856dc9cf2d1acc750778c0b436b63669"
     },
     {
       "file": "curated-ui.mp4",
-      "bytes": 630293,
-      "sha256": "e7cbf12a4bd8a63af32c13d4308a7f99bb633a1b1db32b96f33acf4ffe1f1709"
+      "bytes": 701017,
+      "sha256": "9f481feda0e73d0dfb4bf14cdc0d0d0f495fa595a641835f90f84cd8789d21d3"
     }
   ],
   "input_fingerprint": {

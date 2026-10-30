@@ -1,0 +1,53 @@
+import sys,os,json,pathlib,subprocess,time
+ROOT=pathlib.Path(__file__).resolve().parents[2];sys.path.insert(0,str(ROOT/'tools'))
+from build_openmoss_host import build
+from openmoss_pipeline import guarded_pipeline
+from fetch_openmoss import validate_sources
+from fetch_openmoss_trained import assets,asset_path
+from fetch_sd15_trained import sha
+from openmoss_host_capture import execute
+from test_moss_nano_trained import audio_stats
+binary,compilation=build();cache=ROOT/compilation['compile_cache']
+lock=json.loads((ROOT/'third_party/openmoss-source-lock.json').read_text(encoding='utf-8'));source=validate_sources(lock)
+folder=ROOT/'build/openmoss-reference-candidate'/('run-'+str(time.time_ns()));folder.mkdir(parents=True)
+pipeline=guarded_pipeline(source)
+seam='+ im_start + "assistant\\n" + build_assistant_prefix_block(tok, d, T_prefix);'
+assert pipeline.count(seam)==1
+changed=pipeline.replace(seam,'+ im_start + "assistant\\n" + ((d.n_vq == 32 && T_prefix == 0) ? std::string() : build_assistant_prefix_block(tok, d, T_prefix));')
+(folder/'pipeline.cpp').write_text(changed,encoding='utf-8')
+original=ROOT/'build/openmoss-trained-tests/run-1793373968567657100/reference.json'
+request=json.loads(original.read_text(encoding='utf-8'));original_request_sha=sha(original)
+models=folder/'workspace/models';models.mkdir(parents=True)
+for item in assets()['components']:
+ p=asset_path(item);assert p.stat().st_size==item['bytes'];os.link(p,models/('model.gguf' if item['role']=='model' else 'model.extras.gguf'))
+drive=next(c+':' for c in 'UVWXYT' if not pathlib.Path(c+':/').exists())
+subprocess.run(['subst',drive,str(ROOT)],capture_output=True,check=True)
+try:
+ def alias(p):return drive+'/'+p.relative_to(ROOT).as_posix()
+ worker=cache/'CMakeFiles/lma_openmoss_host.dir/U_/native/openmoss/worker.cpp.obj'
+ assert worker.is_file()
+ libs=[cache/'lma_openmoss_core.lib',cache/'llama/src/llama.lib']+[cache/('llama/ggml/src/'+n+'.lib') for n in ['ggml','ggml-cpu','ggml-base']]
+ command=['cl','/nologo','/std:c++17','/EHsc','/utf-8','/O2','/Ob2','/MT','/DNDEBUG','/DNOMINMAX','/D_CRT_SECURE_NO_WARNINGS',
+  '/I'+alias(ROOT/'native/openmoss'),'/I'+alias(source/'include'),'/I'+alias(source/'third_party/llama.cpp/include'),'/I'+alias(source/'third_party/llama.cpp/ggml/include'),
+  alias(folder/'pipeline.cpp'),alias(worker),'/Fe:'+alias(folder/'reference-candidate.exe'),'/Fo:'+alias(folder/'pipeline.obj'),'/link',*[alias(p) for p in libs],'advapi32.lib']
+ setup=os.environ.get('LMA_VCVARS',r'C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Auxiliary\Build\vcvars64.bat')
+ script=folder/'compile.cmd';script.write_text('@echo off\ncall "'+setup+'" >nul\nif errorlevel 1 exit /b %errorlevel%\n'+subprocess.list2cmdline(command)+'\n',encoding='utf-8')
+ r=subprocess.run(['cmd','/d','/c',str(script)],capture_output=True,timeout=120);(folder/'compile.log').write_bytes(r.stdout+r.stderr)
+ if r.returncode:raise RuntimeError('Inspect candidate compile log: '+str(folder))
+ request['workspace']=alias(models.parent);request['output']=alias(folder/'reference.wav');request['referenceAudios']=[alias(ROOT/'docs/media/development/tts-trained-kokoro.wav')]
+ request_path=folder/'reference.json';request_path.write_text(json.dumps(request,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+ print('Actual unchanged reference request with only official assistant-prefix candidate:',folder.relative_to(ROOT),flush=True)
+ result,logs=execute([alias(folder/'reference-candidate.exe'),alias(request_path)],timeout=1800)
+ for suffix,data in zip(['stdout','stderr'],logs):(folder/('reference.'+suffix)).write_bytes(data)
+ details={}
+ for event in result['events']:
+  if event.get('event')=='execution':details.update(event['details'])
+ result.update(experiment_not_production=True,only_source_change='omit forced audio_start for 32-codebook plain assistant generation',
+  original_request_sha256=original_request_sha,parameters_unchanged=request['parameters']==json.loads(original.read_text(encoding='utf-8'))['parameters'],
+  production_compilation=compilation,pipeline_sha256=sha(folder/'pipeline.cpp'),worker_object_sha256=sha(worker),
+  libraries={p.relative_to(ROOT).as_posix():sha(p) for p in libs},execution=details,
+  capture_directory=folder.relative_to(ROOT).as_posix(),physical_android=False,speech_quality_accepted=False,release_accepted=False)
+ if (folder/'reference.wav').exists():result['audio']=audio_stats(folder/'reference.wav')
+ for p in [folder/'results.json',folder.parent/'results.json']:p.write_text(json.dumps(result,indent=2)+'\n',encoding='utf-8')
+ print(json.dumps({k:result.get(k) for k in ['returncode','seconds','parameters_unchanged','execution','audio']}),flush=True)
+finally:subprocess.run(['subst',drive,'/D'],capture_output=True,check=True)

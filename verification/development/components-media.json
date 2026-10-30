@@ -1,5 +1,5 @@
 {
-  "version": "0.3.0-dev.41",
+  "version": "0.3.0-dev.42",
   "kind": "current production UI with an explicit simulated bridge",
   "android_device": false,
   "model_inference": false,
@@ -65,13 +65,13 @@
     },
     {
       "file": "components-ui.gif",
-      "bytes": 938053,
-      "sha256": "8e71a8f91b23eaab7a5ab0791dbe582100d84304f3357c3d935a3312cde1bf7a"
+      "bytes": 1004698,
+      "sha256": "eec842197b4fc2005d8fc2d4f7906bcdf59ee5fe214a238a1fcfd2ee8c6b753c"
     },
     {
       "file": "components-ui.mp4",
-      "bytes": 400212,
-      "sha256": "785765136236c7471ec12b2cdf5e5c53231cdf13d9ec8ee0e2473654ff92b800"
+      "bytes": 418045,
+      "sha256": "7804ffc1b9566e6fc786ee5b9fb88fe73d0278ea5f5ed32f282fa2375a8ac7b6"
     }
   ],
   "input_fingerprint": {

@@ -12,7 +12,7 @@
     "app/src/main/java/com/lma/app/core/AudioPcm.java": "9bf3270c83f57b7fa4e23fc4518fa063e72ca214675f9c23d45bd1788842f7b2",
     "app/src/main/java/com/lma/app/core/AudioStreams.java": "de8a2cdd98d083b62515b067865182d9065bb00f14b8c70cacafba21de8407f1",
     "app/src/main/java/com/lma/app/core/BundleStore.java": "a773aaa8f83410da9ccbf499b9a19ee4166e2c094c2e992699424c0ac68f3e74",
-    "app/src/main/java/com/lma/app/core/BundleTransfers.java": "926596119a2c3f6bc089516e7bbd7db3016487d60c24f908ea646dfc76707f3e",
+    "app/src/main/java/com/lma/app/core/BundleTransfers.java": "8b0a13e1d8b635efa6d5238ae7367efb9299109a0051d4e1adbe42c2cb9550b8",
     "app/src/main/java/com/lma/app/core/BundleUpdates.java": "f31a65d0e172aa75f6131deace828875534ccc756ed93fac83bb09d5a4162fe1",
     "app/src/main/java/com/lma/app/core/ByteRange.java": "31723bf112e630de6c2a1cd8d525be7bbd4706e151fa5a297a5e641f59b5c752",
     "app/src/main/java/com/lma/app/core/ChatHistory.java": "3046a52c3f611b83b46cfed94afe0f4b31667f77986b7ca1737169ec8c4ce951",
@@ -65,12 +65,12 @@
     "tests/PreparationTest.java": "7f1439e961fd70607a88fc42ca9e3bd676e0fb1670b1015c1973154ad7ed99e0",
     "tools/test_preparations.py": "ecc5be84b14a9e915363101df3cf9c142e88850df9557ef3bc32e9ece556e468"
   },
-  "artifacts_directory": "build/preparation-tests/contracts-1793377463359201600",
+  "artifacts_directory": "build/preparation-tests/contracts-1793385169710164700",
   "actual_trained_preparations": 0,
   "model_inference": false,
   "physical_android": false,
   "release_ready": false,
-  "seconds": 37.50594970000384,
+  "seconds": 15.720373099989956,
   "builds": {},
   "component_inference_validation_reused": false,
   "app_service_or_saf_executed": false

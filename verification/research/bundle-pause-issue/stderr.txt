@@ -1,0 +1,4 @@
+Exception in thread "main" java.lang.AssertionError: Pause must release the blocked read and let the next user-selected import run
+	at com.lma.app.BundlePauseTest.check(BundlePauseTest.java:16)
+	at com.lma.app.BundlePauseTest.pausedRead(BundlePauseTest.java:82)
+	at com.lma.app.BundlePauseTest.main(BundlePauseTest.java:117)

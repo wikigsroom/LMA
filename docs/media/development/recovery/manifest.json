@@ -1,5 +1,5 @@
 {
-  "version": "0.3.0-dev.41",
+  "version": "0.3.0-dev.42",
   "kind": "current production UI with an explicit simulated bridge",
   "android_device": false,
   "model_inference": false,
@@ -44,18 +44,18 @@
   "files": [
     {
       "file": "01-recovery.png",
-      "bytes": 42637,
-      "sha256": "44fe4291e4a8bec6748c8a8e5e89c5cca7822471ec5a2bd9b6fd18cd619f2533"
+      "bytes": 42689,
+      "sha256": "85c75dc7257ae40431a9c6ed713a1ba2288917e47c30eaf629bf855f3141da7c"
     },
     {
       "file": "02-filters.png",
-      "bytes": 43122,
-      "sha256": "64e2434f12b35ee33ade915381a66c2bd6c77e2c3d573db1015dbd7bebe35d6a"
+      "bytes": 43158,
+      "sha256": "21f4cb3c636742674a8da684b46bd78442da79aaa548a599edb58e7202cae944"
     },
     {
       "file": "03-review.png",
-      "bytes": 62525,
-      "sha256": "3d48c43248f193466d8e37c4d73bbd9a1c294815c231feca85d7f9db7e3ef161"
+      "bytes": 63211,
+      "sha256": "b2152d268ecf96f1aaedfa90d553cfe4719bd9c04eef19bf349533995433117e"
     },
     {
       "file": "04-conflict.png",
@@ -64,13 +64,13 @@
     },
     {
       "file": "recovery-ui.gif",
-      "bytes": 672763,
-      "sha256": "40a28f643ec2c139dd8d351c0ae3c8295675ca35dd9dc0344ab85207527f1d5e"
+      "bytes": 690861,
+      "sha256": "bf05f3827d764661d012c27f256622383bde99b24446f4a5b67fffc830216771"
     },
     {
       "file": "recovery-ui.mp4",
-      "bytes": 300921,
-      "sha256": "cc215359229dc6c5b43ac604c67f4413fd1de8e29aa70ad20c91b77ea3626099"
+      "bytes": 279367,
+      "sha256": "f097fef2e9433e4f1419ecbf591461fcd8400f638853733c575ab41002367001"
     }
   ],
   "input_fingerprint": {

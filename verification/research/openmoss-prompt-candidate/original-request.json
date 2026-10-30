@@ -1,0 +1,26 @@
+{
+  "schema": "lma.engine-request/1",
+  "type": "speech.synthesize",
+  "pipeline": "moss_tts_v15_openmoss_cpu_v1",
+  "input": {
+    "prompt": "Hello world."
+  },
+  "parameters": {
+    "threads": 4,
+    "seed": 1234,
+    "maxInputTokens": 1024,
+    "maxNewTokens": 375,
+    "textTemperature": 1,
+    "audioTemperature": 1.7,
+    "audioTopP": 0.8,
+    "audioTopK": 25,
+    "audioRepetitionPenalty": 1,
+    "voiceInstruction": "",
+    "language": "English"
+  },
+  "workspace": "U:/build/openmoss-reference-candidate/run-1793382630404699200/workspace",
+  "output": "U:/build/openmoss-reference-candidate/run-1793382630404699200/reference.wav",
+  "referenceAudios": [
+    "U:/docs/media/development/tts-trained-kokoro.wav"
+  ]
+}

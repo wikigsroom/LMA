@@ -1,5 +1,5 @@
 {
-  "version": "0.3.0-dev.41",
+  "version": "0.3.0-dev.42",
   "kind": "current production UI with an explicit simulated bridge",
   "android_device": false,
   "model_inference": false,
@@ -56,18 +56,18 @@
     },
     {
       "file": "04-video-queue.png",
-      "bytes": 48524,
-      "sha256": "317d778a20fb4f12cd3de5eb9ad808129d3605ad6213e0bf25de4d519bd8a6df"
+      "bytes": 48528,
+      "sha256": "3536d32b0de9ea4e04429848afad0fd2c25c039313656713259c4ed3e7767bb2"
     },
     {
       "file": "ltx-ui.gif",
-      "bytes": 428569,
-      "sha256": "4753a68cd94b4ddefa8105eb33c1595cbc2fb28bae3c656e992b578a57cca28c"
+      "bytes": 500487,
+      "sha256": "a41a50fbcc7b9ba3534abebeca83fc61e0ea027a09b11c784c28ceee24c9b4c5"
     },
     {
       "file": "ltx-ui.mp4",
-      "bytes": 193641,
-      "sha256": "7805e833a69c22b970f2a51848dc30e21bfdac56ccfbf58d69f39cd6692b5b0a"
+      "bytes": 198906,
+      "sha256": "3ef8a3873f7ecbc4fb100d62aa839356a93c65c9b1279da64e7d10b7bc17b9fe"
     }
   ],
   "input_fingerprint": {

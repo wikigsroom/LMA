@@ -1,0 +1,63 @@
+{
+  "schema": "lma.openmoss-prompt-reference-sources/1",
+  "repository": "OpenMOSS-Team/MOSS-TTS-v1.5",
+  "revision": "cdd3b911b1585e3f2dbc7775ef10f9926f58850a",
+  "developer_only": true,
+  "packaged_in_apk": false,
+  "files": [
+    {
+      "path": "config.json",
+      "bytes": 2275,
+      "sha256": "214fc997d98f51ab57925a5939afc6280e76044198b664221622e70d098ed06e",
+      "source": "https://huggingface.co/OpenMOSS-Team/MOSS-TTS-v1.5/blob/cdd3b911b1585e3f2dbc7775ef10f9926f58850a/config.json"
+    },
+    {
+      "path": "chat_template.jinja",
+      "bytes": 352,
+      "sha256": "894e3ace884e212ae34e1f46063686e7ebcc8b2fa0153af4579dfa5685f63184",
+      "source": "https://huggingface.co/OpenMOSS-Team/MOSS-TTS-v1.5/blob/cdd3b911b1585e3f2dbc7775ef10f9926f58850a/chat_template.jinja"
+    },
+    {
+      "path": "tokenizer_config.json",
+      "bytes": 5501,
+      "sha256": "87b1f37a4a73e4c4b61637a1446763e8bdea274347f0418cd5c68ead488c8ea4",
+      "source": "https://huggingface.co/OpenMOSS-Team/MOSS-TTS-v1.5/blob/cdd3b911b1585e3f2dbc7775ef10f9926f58850a/tokenizer_config.json"
+    },
+    {
+      "path": "tokenizer.json",
+      "bytes": 11422691,
+      "sha256": "cb3c8fa82993d515469c2800cc455bff4aaa3c4fed9da1f2b0c0668c304f335a",
+      "source": "https://huggingface.co/OpenMOSS-Team/MOSS-TTS-v1.5/blob/cdd3b911b1585e3f2dbc7775ef10f9926f58850a/tokenizer.json"
+    },
+    {
+      "path": "configuration_moss_tts.py",
+      "bytes": 5584,
+      "sha256": "257842f2fa90124307408f36d55b74e135ee32b7afacbe30280964f7feb329d1",
+      "source": "https://huggingface.co/OpenMOSS-Team/MOSS-TTS-v1.5/blob/cdd3b911b1585e3f2dbc7775ef10f9926f58850a/configuration_moss_tts.py"
+    },
+    {
+      "path": "modeling_moss_tts.py",
+      "bytes": 25330,
+      "sha256": "360ceee27c67831d820ff5324f8687f4408db1a91aef53683934544879aa90ca",
+      "source": "https://huggingface.co/OpenMOSS-Team/MOSS-TTS-v1.5/blob/cdd3b911b1585e3f2dbc7775ef10f9926f58850a/modeling_moss_tts.py"
+    },
+    {
+      "path": "tts_robust_normalizer_single_script.py",
+      "bytes": 14544,
+      "sha256": "b7c1fab4fd7bdc8c779df99f6af310fd8cd0746b759db684bf147e0c182b3183",
+      "source": "https://huggingface.co/OpenMOSS-Team/MOSS-TTS-v1.5/blob/cdd3b911b1585e3f2dbc7775ef10f9926f58850a/tts_robust_normalizer_single_script.py"
+    },
+    {
+      "path": "inference_utils.py",
+      "bytes": 5092,
+      "sha256": "12cdf3260114e44c8cba816782f743779ab621e0ba4047e59a3f3579cfcb0e26",
+      "source": "https://huggingface.co/OpenMOSS-Team/MOSS-TTS-v1.5/blob/cdd3b911b1585e3f2dbc7775ef10f9926f58850a/inference_utils.py"
+    },
+    {
+      "path": "processing_moss_tts.py",
+      "bytes": 35531,
+      "sha256": "e591ff156e8fadcae34db5613a2221fab7ec5d814bfc0ec001e8ec4ef2782425",
+      "source": "https://huggingface.co/OpenMOSS-Team/MOSS-TTS-v1.5/blob/cdd3b911b1585e3f2dbc7775ef10f9926f58850a/processing_moss_tts.py"
+    }
+  ]
+}

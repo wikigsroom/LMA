@@ -1,0 +1,23 @@
+{
+  "schema": "lma.speech-intelligibility-cases/1",
+  "cases": [
+    {
+      "name": "kokoro-reference-control",
+      "path": "docs/media/development/tts-trained-kokoro.wav",
+      "sha256": "b2f39aa6e39665de756dccd8f523a64b72ec7eb3853a6e754f3ca5ee8c0dfdeb",
+      "expected_text": "Hello world. The sun is shining."
+    },
+    {
+      "name": "moss-original-english",
+      "path": "docs/media/development/openmoss-trained-en.wav",
+      "sha256": "403d4aa9d0341c3cd8df4619311389941fea5326ab7fa77316d2c31b3fb24ac1",
+      "expected_text": "Hello world."
+    },
+    {
+      "name": "moss-original-reference",
+      "path": "docs/media/development/openmoss-trained-reference.wav",
+      "sha256": "6a6080b55f241563f95ff023c0c4c609127453d6a388f0ac5d94b28dd8e06808",
+      "expected_text": "Hello world."
+    }
+  ]
+}

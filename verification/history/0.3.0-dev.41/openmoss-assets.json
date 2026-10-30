@@ -1,0 +1,34 @@
+{
+  "schema": "lma.openmoss-trained-acquisition/1",
+  "components": [
+    {
+      "role": "model",
+      "repository": "ilintar/moss-tts-gguf",
+      "revision": "66bc8249cc3bae20547d312123f502332158c1d0",
+      "path": "moss-tts-1.5-q8_0.gguf",
+      "bytes": 9339597248,
+      "sha256": "83a7885739fe92113208c2abbb45985da30ac1a40c31d4b1a2e722a8ec5256ef",
+      "url": "https://huggingface.co/ilintar/moss-tts-gguf/resolve/66bc8249cc3bae20547d312123f502332158c1d0/moss-tts-1.5-q8_0.gguf"
+    },
+    {
+      "role": "extras",
+      "repository": "ilintar/moss-tts-gguf",
+      "revision": "66bc8249cc3bae20547d312123f502332158c1d0",
+      "path": "moss-tts-1.5-q8_0.extras.gguf",
+      "bytes": 4090992128,
+      "sha256": "d50f71cffd44e4b76db58e5be09155200b74c6058c5ebeac58e026926c9a72eb",
+      "url": "https://huggingface.co/ilintar/moss-tts-gguf/resolve/66bc8249cc3bae20547d312123f502332158c1d0/moss-tts-1.5-q8_0.extras.gguf"
+    }
+  ],
+  "explicit_download": true,
+  "download_origin": "https://hf-mirror.com",
+  "developer_assets_only": true,
+  "bundled_model_data": false,
+  "model_executed": false,
+  "input_fingerprint": {
+    "research/openmoss_trained/assets.json": "52cfd586e4de7c7859b61a83f1638c6183e962286deea9938ded161c01460107",
+    "tools/fetch_openmoss_trained.py": "eb1b7fea1796d2c09175176ed94568a2531e2d504b54324b8aebc42c596c88ec",
+    "tools/fetch_sd15_trained.py": "91392401d9739f15b14fa4e42b74f13bbdd719a382746541cc69952966e6f307",
+    "tools/fetch_wan_trained.py": "7dc5f8746f783774cfb1cda5ca2d5a22a2e957e4ab5490d6bcf7119ca90a31ef"
+  }
+}

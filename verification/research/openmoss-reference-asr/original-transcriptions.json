@@ -1,0 +1,53 @@
+{
+  "schema": "lma.openmoss-asr-investigation/1",
+  "asr_receipt_sha256": "b1cbed7625c89b44c5cee7b8f594458cc5088024ada124fa8828a90e66d3fe89",
+  "asr_model_repository": "openai/whisper-tiny.en",
+  "asr_model_revision": "87c7102498dcde7456f24cfd30239ca606ed9063",
+  "asr_weight_sha256": "db59695928ded6043adaef491a53ef4e12da9611184d77c53baa691a60b958ad",
+  "torch_version": "2.14.0+cpu",
+  "device": "cpu",
+  "generation": {
+    "do_sample": false,
+    "num_beams": 1,
+    "max_new_tokens": 128
+  },
+  "results": [
+    {
+      "name": "synthetic-reference-control",
+      "path": "docs/media/development/tts-trained-kokoro.wav",
+      "sha256": "b2f39aa6e39665de756dccd8f523a64b72ec7eb3853a6e754f3ca5ee8c0dfdeb",
+      "seconds_audio": 3.0,
+      "transcript": " Hello world, the sun is shining.",
+      "asr_seconds": 0.6369337000069208,
+      "asr_token_count": 11,
+      "prompt_hint_supplied": false
+    },
+    {
+      "name": "original-english",
+      "path": "docs/media/development/openmoss-trained-en.wav",
+      "sha256": "403d4aa9d0341c3cd8df4619311389941fea5326ab7fa77316d2c31b3fb24ac1",
+      "seconds_audio": 1.36,
+      "transcript": " Hello world!",
+      "asr_seconds": 0.38290859998960514,
+      "asr_token_count": 6,
+      "prompt_hint_supplied": false
+    },
+    {
+      "name": "original-reference",
+      "path": "docs/media/development/openmoss-trained-reference.wav",
+      "sha256": "6a6080b55f241563f95ff023c0c4c609127453d6a388f0ac5d94b28dd8e06808",
+      "seconds_audio": 27.44,
+      "transcript": " Hello world, sign is shining. Hello world, the sign is shining. Hello world, sign is shining. Hello world, the sign is shining. Hello world, the sign is shining. Hello master town and stroll. Hello world. Hello world,",
+      "asr_seconds": 1.2021355999895604,
+      "asr_token_count": 53,
+      "prompt_hint_supplied": false
+    }
+  ],
+  "remote_inference": false,
+  "model_weights_in_apk": false,
+  "physical_android": false,
+  "speech_quality_accepted": false,
+  "voice_similarity_accepted": false,
+  "release_accepted": false,
+  "driver_sha256": "b7f901f917f351c94e99ad071f3d9e18925005ba77941dec78ec84755a83d779"
+}

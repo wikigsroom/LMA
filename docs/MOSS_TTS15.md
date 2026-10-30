@@ -1,5 +1,7 @@
 # MOSS-TTS 1.5 本地语音
 
+dev.42 保留原生引擎 / 权重。下述 Java 87 项模型运行在导入源码变更后明确为 dev.41 历史。见[共用导入](MODEL_TRANSFERS.md)与[独立诊断](MOSS_REFERENCE_DIAGNOSTICS.md)。
+
 [English](MOSS_TTS15.en.md) · [MOSS 引擎与格式边界](OPENMOSS_ENGINE.md) · [完整版本范围](proposals/multimodal-release-scope.json)
 
 ## 使用方式
@@ -52,7 +54,7 @@ CPU 权重加载使用私有文件映射：只映射该组件实际需要的权�
 
 英文映射案例记录加载约 1.5 秒、总耗时约 97 秒；主机观察到的峰值工作集约 10.89 GB，源文件 13.43 GB、辅助映射区间约 5.37 GB。这些是 Windows 主机观测值，不是受控性能对比或 Android 内存预算。
 
-Android 编译、完整公开资产 SHA 校验、530 项 MOSS 专项、25 项真实映射与 490 项共用页面检查通过。完整原生管线完成 5 个 WAV 案例与 6 项控制检查，业务检查通过，参考模式正常结束失败。实际生产 Java 完成 87 项检查、5 次原生运行和 3 个 WAV：已有文件完整校验接入、独立设置与归位、不可变请求、参考输入、实际步骤后取消、预算错误、恢复和进程 / 工作文件清理，网络调用为零。已有文件接入不能代替尚未通过的流式复制；所有界面媒体明示模拟桥接，不构成 Android 或音质通过。
+Android 编译、完整公开资产 SHA 校验、530 项 MOSS 专项、25 项真实映射与 490 项共用页面检查通过。完整原生管线完成 5 个 WAV 案例与 6 项控制检查，业务检查通过，参考模式正常结束失败。dev.41 的实际生产 Java 完成 87 项检查、5 次原生运行和 3 个 WAV：已有文件完整校验接入、独立设置与归位、不可变请求、参考输入、实际步骤后取消、预算错误、恢复和进程 / 工作文件清理，网络调用为零。已有文件接入不能代替尚未通过的流式复制；所有界面媒体明示模拟桥接，不构成 Android 或音质通过。
 
 本项仅是冻结 MOSS 九个目标中的 **TTS-v1.5**。TTS-v1.0、旧 Local、Local-v1.5、TTSD、VoiceGenerator、旧 SoundEffect、SoundEffect-v2 与 Realtime，以及所有模型的质量、资源和同手机后台验收仍属于同一 v0.3.0 完整要求；不会自动延期或据此发布缩减范围的 Release。
 
@@ -84,4 +86,4 @@ python tools/build.py
 
 ![实际主机 WAV 与验证范围，非 Android 录屏](media/development/openmoss-trained-contact-sheet.png)
 
-[完整原生执行与原始失败](../verification/development/openmoss-trained.json) · [生产 Java 87 项检查](../verification/development/openmoss-app-host.json) · [媒体来源及每文件 SHA](media/development/openmoss-trained-media.json)。图表耗时取自直接原生捕获；本轮 Java 英文 / 参考 / 恢复分别约 724 / 1551 / 43 秒。磁盘缓存和负载不同，不能据这些数值外推手机速度或作为受控性能比较。
+[完整原生执行与原始失败](../verification/development/openmoss-trained.json) · [生产 Java 87 项检查](../verification/history/0.3.0-dev.41/openmoss-app-host.json) · [媒体来源及每文件 SHA](media/development/openmoss-trained-media.json)。图表耗时取自直接原生捕获；dev.41 Java 英文 / 参考 / 恢复分别约 724 / 1551 / 43 秒。磁盘缓存和负载不同，不能据这些数值外推手机速度或作为受控性能比较。

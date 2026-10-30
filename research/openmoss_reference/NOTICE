@@ -1,0 +1,9 @@
+LMA MOSS reference-input investigation, Apache-2.0.
+The diagnostic compiles the unchanged generated production pipeline translation
+unit and uses the existing pinned native libraries. It is not shipped in the APK.
+
+Native source: pwilkin/openmoss@bfb1f465e0a86fb5a52bbf93e67ceba4b7d0b4e1
+Processor/config/tokenizer: OpenMOSS-Team/MOSS-TTS-v1.5@
+cdd3b911b1585e3f2dbc7775ef10f9926f58850a
+Official source files remain in the ignored build directory with exact hashes.
+Prompt parity is not codec, speech quality, Android, or full-model acceptance.

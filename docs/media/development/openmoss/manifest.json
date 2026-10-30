@@ -1,5 +1,5 @@
 {
-  "version": "0.3.0-dev.41",
+  "version": "0.3.0-dev.42",
   "kind": "current production UI with an explicit simulated bridge",
   "android_device": false,
   "model_inference": false,
@@ -114,13 +114,13 @@
     },
     {
       "file": "openmoss-ui.gif",
-      "bytes": 1423523,
-      "sha256": "cb08167c67b86829d693693b8eec0849bffa494cef441e197008c47f0a1bbf44"
+      "bytes": 1141230,
+      "sha256": "c52e2bf08dee833484ba6865f0de9f4242378e98d1825b833b328ca564eb22d3"
     },
     {
       "file": "openmoss-ui.mp4",
-      "bytes": 709025,
-      "sha256": "2dab231389045d662272c49f685198b11ca2bd9f3bdc9c59e2ea7cb68a2969a4"
+      "bytes": 558104,
+      "sha256": "7f2287f4c9061595de8ac01f1e020b14eb2c8befd2ebd72641c9a5d949efa27f"
     }
   ],
   "input_fingerprint": {

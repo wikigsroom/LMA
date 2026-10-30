@@ -1,0 +1,2098 @@
+{
+  "returncode": 1,
+  "seconds": 1801.431852300011,
+  "events": [
+    {
+      "event": "stage",
+      "stage": "validating_model_layout"
+    },
+    {
+      "event": "stage",
+      "stage": "loading_models"
+    },
+    {
+      "event": "stage",
+      "stage": "encoding_reference"
+    },
+    {
+      "event": "stage",
+      "stage": "generating_speech"
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 0,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 1,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 2,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 3,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 4,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 5,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 6,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 7,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 8,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 9,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 10,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 11,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 12,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 13,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 14,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 15,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 16,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 17,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 18,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 19,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 20,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 21,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 22,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 23,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 24,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 25,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 26,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 27,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 28,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 29,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 30,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 31,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 32,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 33,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 34,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 35,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 36,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 37,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 38,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 39,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 40,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 41,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 42,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 43,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 44,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 45,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 46,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 47,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 48,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 49,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 50,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 51,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 52,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 53,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 54,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 55,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 56,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 57,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 58,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 59,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 60,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 61,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 62,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 63,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 64,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 65,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 66,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 67,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 68,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 69,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 70,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 71,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 72,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 73,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 74,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 75,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 76,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 77,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 78,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 79,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 80,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 81,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 82,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 83,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 84,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 85,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 86,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 87,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 88,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 89,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 90,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 91,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 92,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 93,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 94,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 95,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 96,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 97,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 98,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 99,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 100,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 101,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 102,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 103,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 104,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 105,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 106,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 107,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 108,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 109,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 110,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 111,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 112,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 113,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 114,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 115,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 116,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 117,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 118,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 119,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 120,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 121,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 122,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 123,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 124,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 125,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 126,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 127,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 128,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 129,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 130,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 131,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 132,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 133,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 134,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 135,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 136,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 137,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 138,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 139,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 140,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 141,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 142,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 143,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 144,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 145,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 146,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 147,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 148,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 149,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 150,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 151,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 152,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 153,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 154,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 155,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 156,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 157,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 158,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 159,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 160,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 161,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 162,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 163,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 164,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 165,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 166,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 167,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 168,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 169,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 170,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 171,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 172,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 173,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 174,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 175,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 176,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 177,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 178,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 179,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 180,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 181,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 182,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 183,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 184,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 185,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 186,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 187,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 188,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 189,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 190,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 191,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 192,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 193,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 194,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 195,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 196,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 197,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 198,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 199,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 200,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 201,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 202,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 203,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 204,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 205,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 206,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 207,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 208,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 209,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 210,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 211,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 212,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 213,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 214,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 215,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 216,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 217,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 218,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 219,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 220,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 221,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 222,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 223,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 224,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 225,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 226,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 227,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 228,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 229,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 230,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 231,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 232,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 233,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 234,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 235,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 236,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 237,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 238,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 239,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 240,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 241,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 242,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 243,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 244,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 245,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 246,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 247,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 248,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 249,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 250,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 251,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 252,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 253,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 254,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 255,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 256,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 257,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 258,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 259,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 260,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 261,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 262,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 263,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 264,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 265,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 266,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 267,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 268,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 269,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 270,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 271,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 272,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 273,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 274,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 275,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 276,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 277,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 278,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 279,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 280,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 281,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 282,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 283,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 284,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 285,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 286,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 287,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 288,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 289,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 290,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 291,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 292,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 293,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 294,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 295,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 296,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 297,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 298,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 299,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 300,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 301,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 302,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 303,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 304,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 305,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 306,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 307,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 308,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 309,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 310,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 311,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 312,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 313,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 314,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 315,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 316,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 317,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 318,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 319,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 320,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 321,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 322,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 323,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 324,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 325,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 326,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 327,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 328,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 329,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 330,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 331,
+      "steps": 375
+    },
+    {
+      "event": "progress",
+      "stage": "generating_speech",
+      "step": 332,
+      "steps": 375
+    }
+  ],
+  "protocol_errors": [],
+  "logs_truncated": [
+    false,
+    false
+  ],
+  "timed_out": true,
+  "forced_host_termination": false,
+  "cancel_trigger": null,
+  "cancel_to_exit_seconds": null,
+  "android_cooperative_cancellation_tested": false,
+  "resources": {
+    "observed": true,
+    "samples": 85987,
+    "interval_ms": 20,
+    "observed_peak_working_set_bytes": 11000279040,
+    "sampled_peak_private_bytes": 6580379648,
+    "gpu_memory_measured": false,
+    "physical_device_memory_measured": false
+  },
+  "experiment_not_production": true,
+  "only_source_change": "omit forced audio_start for 32-codebook plain assistant generation",
+  "original_request_sha256": "a4c40d1291d1460a33b1e81cb4b97fe703c8ad9c2bcd73364efe20617fb892fd",
+  "parameters_unchanged": true,
+  "production_compilation": {
+    "schema": "lma.openmoss-host-build/1",
+    "executable": "build/openmoss-worker-host/8551e120780d970c/bin/lma_openmoss_host.exe",
+    "bytes": 3950592,
+    "sha256": "80b8eda3b843c3ff0c724bc6933798b802a7ae7b7f969829f5620351f122249a",
+    "source_revision": "bfb1f465e0a86fb5a52bbf93e67ceba4b7d0b4e1",
+    "llama_revision": "050ee92d04c2e1f639025786dea701c70e7d4204",
+    "compiled_library_sources": 10,
+    "compile_cache": "build/openmoss-host-cache/cpu-050ee92d04c2-U/bin",
+    "backend": "cpu",
+    "private_weight_mapping": true,
+    "production_worker_source_unmodified": true,
+    "upstream_sources_unmodified": true,
+    "windows_crt_parent_environment_compatibility": true,
+    "bundled_model_data": false,
+    "physical_android": false,
+    "android_compiled": false,
+    "packaged_in_apk": false,
+    "model_executed": false,
+    "input_fingerprint": {
+      "native/openmoss/CMakeLists.txt": "83c84c6b36b70b7307a8c1b1b801b9b26f685d72f8a1d929d78c6351d1a9965a",
+      "native/openmoss/generation_guard.hpp": "9a7b420629f5502b66e2a95608aed0ac97780924fead745e7da02ab6c60db2c6",
+      "native/openmoss/model_contract.hpp": "0476e93090a14822f5544a485fd5f83fdd66f9c40cd18eb7c28389e45f1ee7cb",
+      "native/openmoss/policy.hpp": "eb164dba961c9065b8dd62b272050bdbb45c4d303b8e5b2455ec5441134f1684",
+      "native/openmoss/private_weights.hpp": "7a5bfc3b4a2df5873628036af85b578630e43907fb009d6c23d2fe240264a16f",
+      "native/openmoss/wave.hpp": "aaf85f286b9e9d95de808aae2088dadac7b9b06e35f51f31c05e272f7a112e7f",
+      "native/openmoss/worker.cpp": "a807ff77d40a12daf020e17a5517ae47476dd980227150c933635d7a80a2da15",
+      "research/moss_nano_host/compat/sys/prctl.h": "9322b99bb80674fd2d42eb2b94f5ee5519ab443da0cdffd5ae938ef855907569",
+      "research/moss_nano_host/compat/unistd.h": "1c843add75719822f7371cfafd97af1abdc1ffc52938f5cd96dfd407630d9f96",
+      "research/openmoss_host/CMakeLists.txt": "07dfb210c4668b1c3709ef1fdba3f72fd4079416631d85973f01e9b47d5662e3",
+      "research/openmoss_host/NOTICE": "4a34c40dceab4256b15fbf7eb7c0bd6b73d76b4f043cb3956b59d05034e82cfd",
+      "research/qwen_tts_host/compat/sys/prctl.h": "0e2a8e106274e1330cb0a6240583a75a4eecfe182bf0e08d141984aaae2a3987",
+      "research/qwen_tts_host/compat/unistd.h": "64e960a64922193f97a70eccaf9e4bfed7f70c79c1cbcadd82a984efc3a2e8ec",
+      "research/sd_host/platform.hpp": "c377ed1b676707a469a192d96ae9b748802e1f62ad0674366b593b2b5b2daf67",
+      "tests/native/openmoss_mapping_test.cpp": "4f676f86b3d22dee7b4ed67facd62971b6096e4c3f6ba1aa8a9592b667bb0947",
+      "third_party/openmoss-source-lock.json": "df2d062fe174080e95d1f2f05ef8e133616a1827637e62d7195181f1c9256295",
+      "tools/build_openmoss_host.py": "7e18dbebb8b073e5a4a55b059798d025d9233425aa8576e0f28eb8c3ecaf7aea",
+      "tools/fetch_openmoss.py": "1c18d8c17de019a6b66321042cb14d61441d54fc370ef3f5547cacd627f1330b",
+      "tools/openmoss_pipeline.py": "483667858e0ce77742ae8242a15ae88bc8fdf76597d66191ad10ccdb172fbec3"
+    }
+  },
+  "pipeline_sha256": "19afb8cf1f866d5cd0b51efbc0d14400e560cc71d964d8e1be825de9c505f364",
+  "worker_object_sha256": "71494738098a82cd4c76f0be21cb2c4396ef51422d211ae75f723fcd52a95aa2",
+  "libraries": {
+    "build/openmoss-host-cache/cpu-050ee92d04c2-U/bin/lma_openmoss_core.lib": "101ad4821e100cd452f046e8e4fb3614d59d0dcfade608a6c7ee6cdbb50fb163",
+    "build/openmoss-host-cache/cpu-050ee92d04c2-U/bin/llama/src/llama.lib": "e5e95c7e655c39957c01973239f402f2460f4c1a469758790b670f6acd379dd3",
+    "build/openmoss-host-cache/cpu-050ee92d04c2-U/bin/llama/ggml/src/ggml.lib": "6e92d7a5096612cf5db724174ccb9e780994b02a3ccefe9fa7a63c66d763607d",
+    "build/openmoss-host-cache/cpu-050ee92d04c2-U/bin/llama/ggml/src/ggml-cpu.lib": "312614c3fbb08d4f1a653f7b25341dbd3e8ac22d509c91a58e4bef1f3e35b0d3",
+    "build/openmoss-host-cache/cpu-050ee92d04c2-U/bin/llama/ggml/src/ggml-base.lib": "7f6acbb1eeb8162f3de4f7f3080a026ed82a0d7ee40103870a9f4db1fb17ee0e"
+  },
+  "execution": {},
+  "capture_directory": "build/openmoss-reference-candidate/run-1793382630404699200",
+  "physical_android": false,
+  "speech_quality_accepted": false,
+  "release_accepted": false
+}

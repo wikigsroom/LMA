@@ -6,6 +6,8 @@ app/src/main/assets/licenses/* -whitespace
 third_party/notices/* -whitespace
 # Retain the exact helper bytes used by recorded host runs; allow its final blank line.
 tools/openmoss_host_capture.py whitespace=cr-at-eol,-blank-at-eof
+# Preserve original diagnostic stderr bytes, including upstream trailing spaces.
+verification/research/openmoss-prompt-issue/native.stderr.txt -whitespace
 *.png binary
 *.gif binary
 *.mp4 binary

@@ -5,7 +5,7 @@
   "scope": "production bundle storage, parameter validation and transfer state on host filesystems/HTTP",
   "model_update_assertions": 62,
   "android_device": false,
-  "passed": 679,
+  "passed": 692,
   "input_fingerprint": {
     "app/src/main/assets/recipe-templates.json": "fb37b971eabbf520da49990187a6f0f334809efea088b0fac555e8d5ba3ee72d",
     "app/src/main/java/com/lma/app/core/AdapterSpec.java": "aff8572d14ac8d616be0a1b0da395e52ed5bddcd5ae407a969c2657bf9257581",
@@ -14,7 +14,7 @@
     "app/src/main/java/com/lma/app/core/AudioPcm.java": "9bf3270c83f57b7fa4e23fc4518fa063e72ca214675f9c23d45bd1788842f7b2",
     "app/src/main/java/com/lma/app/core/AudioStreams.java": "de8a2cdd98d083b62515b067865182d9065bb00f14b8c70cacafba21de8407f1",
     "app/src/main/java/com/lma/app/core/BundleStore.java": "a773aaa8f83410da9ccbf499b9a19ee4166e2c094c2e992699424c0ac68f3e74",
-    "app/src/main/java/com/lma/app/core/BundleTransfers.java": "926596119a2c3f6bc089516e7bbd7db3016487d60c24f908ea646dfc76707f3e",
+    "app/src/main/java/com/lma/app/core/BundleTransfers.java": "8b0a13e1d8b635efa6d5238ae7367efb9299109a0051d4e1adbe42c2cb9550b8",
     "app/src/main/java/com/lma/app/core/BundleUpdates.java": "f31a65d0e172aa75f6131deace828875534ccc756ed93fac83bb09d5a4162fe1",
     "app/src/main/java/com/lma/app/core/ByteRange.java": "31723bf112e630de6c2a1cd8d525be7bbd4706e151fa5a297a5e641f59b5c752",
     "app/src/main/java/com/lma/app/core/ChatHistory.java": "3046a52c3f611b83b46cfed94afe0f4b31667f77986b7ca1737169ec8c4ce951",
@@ -69,11 +69,12 @@
     "research/sd_variants_trained/manifests/sdxl_lcm_lora.json": "b533451154103ed0e99303bc3f560912a0e40885e21ff8e10c88717f283a599d",
     "research/sd_variants_trained/manifests/sdxl_style_pixelart.json": "2c198268a8e2533aaec8343d9a5daad0da2d9ac054b34297b469250f34b2bd6c",
     "tests/AdapterTest.java": "22fe975dac3e86f3bfe5fb11e575644f27a4b42968e45e0ea6406070a464d55f",
+    "tests/BundlePauseTest.java": "325e85c784acbab2363969054445fd61896cd6ccca78d44425309f845adb5de0",
     "tests/BundleUpdateTest.java": "4e63b6667723ae290dc45caf67b5f448c2d342fee5f0a5b709d545e02ef3c235",
     "tests/CuratedDiffusionTest.java": "e6c53591994eecb4f2e995a2b6d05ad799de99d1fbcde6b91bbb7f5d88344d63",
-    "tests/FoundationTest.java": "884c3fe2fd2c7513d6a5a827307c6b7b0402a067d84d7f1835d95fa315c3f23b",
+    "tests/FoundationTest.java": "2cde6df6760ec1dbcfee38c21f068fec3a9ef68c2de5f54a7a9df4b30973843f",
     "tests/host/android/util/AtomicFile.java": "a05b9c6ef4fa0f0f40aaa49b235faccc98d2d7d5aa1ea4bb8d2f535b8bad2796",
     "tests/RecipeTest.java": "70598bd4f2209d02dd38d351a712c4e1914f27b3ac9adf88e1fdc749536e7e3d",
-    "tools/test_foundation.py": "db035f5af015f1c4d6d89ea6a438562bfc50a2fd3241974c9225541b2fb13a9b"
+    "tools/test_foundation.py": "3bed4cea0479cd862bccd8ce4c180e717f685b64cdbeac73091e8d22936e81c4"
   }
 }

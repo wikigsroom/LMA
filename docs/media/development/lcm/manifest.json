@@ -1,5 +1,5 @@
 {
-  "version": "0.3.0-dev.41",
+  "version": "0.3.0-dev.42",
   "kind": "current production UI with an explicit simulated bridge",
   "android_device": false,
   "model_inference": false,
@@ -55,13 +55,13 @@
     },
     {
       "file": "lcm-ui.gif",
-      "bytes": 623542,
-      "sha256": "65414ef8d174150418ca954c0797b3d995602afc1ecda6ed21f30690c28b91ad"
+      "bytes": 598421,
+      "sha256": "df625f784b97f058828ac7c0eb103f373d9e27c04e638d9032378e3b0e3d36d3"
     },
     {
       "file": "lcm-ui.mp4",
-      "bytes": 253056,
-      "sha256": "783df8231cb3f98802cc3cc92cc7fe6e543dc53a3cb4e821d8bf2198f2100986"
+      "bytes": 265965,
+      "sha256": "20c67e536e75ac353e9906bdc462bd7f90dca4cf5bcf27cb213376a4d57956b7"
     }
   ],
   "input_fingerprint": {

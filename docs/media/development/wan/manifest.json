@@ -1,5 +1,5 @@
 {
-  "version": "0.3.0-dev.41",
+  "version": "0.3.0-dev.42",
   "kind": "current production UI with an explicit simulated bridge",
   "android_device": false,
   "model_inference": false,
@@ -53,18 +53,18 @@
     },
     {
       "file": "04-queued.png",
-      "bytes": 48691,
-      "sha256": "688e447f2821d014abb61317a06c3c690b1b74265a63fdb816c965d45879a6a6"
+      "bytes": 48769,
+      "sha256": "00b0c25351b4ef243b843aff3f4c58189d67efee446279e36de0e30632d0ec09"
     },
     {
       "file": "wan-ui.gif",
-      "bytes": 476852,
-      "sha256": "b1dc6afd6435e2d2723e515bf4d0c599ffa8709f774e7bc34741a0111fd27a2b"
+      "bytes": 576981,
+      "sha256": "a2e76b4a32dc7bb9f12c38a3289247335fd2537489bf08fae09d1ebba15f0633"
     },
     {
       "file": "wan-ui.mp4",
-      "bytes": 208945,
-      "sha256": "87821a2c2504c01c7561cf180c69b74a5d46f03f13a2f88df0c01355707434e2"
+      "bytes": 242952,
+      "sha256": "259e674adc1d3030ec6cb5ae7775d05ce05c140816830271d1771e6f13416388"
     }
   ],
   "input_fingerprint": {

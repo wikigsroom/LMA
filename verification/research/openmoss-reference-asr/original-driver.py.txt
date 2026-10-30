@@ -1,0 +1,32 @@
+import sys,pathlib,json,wave,time,hashlib
+ROOT=pathlib.Path(__file__).resolve().parents[2];sys.path.insert(0,str(ROOT/'tools'))
+from fetch_sd15_trained import sha
+import numpy as np
+import torch
+from scipy.signal import resample_poly
+from transformers import WhisperForConditionalGeneration,WhisperProcessor
+folder=ROOT/'build/dev42-asr-reference';receipt=json.loads((folder/'receipt.json').read_text(encoding='utf-8'));model_dir=folder/'model'
+assert sha(model_dir/'model.safetensors')=='db59695928ded6043adaef491a53ef4e12da9611184d77c53baa691a60b958ad'
+torch.set_num_threads(2);torch.set_num_interop_threads(1)
+print('Load local-only pinned Whisper tiny.en; CPU / no prompt hint',flush=True)
+processor=WhisperProcessor.from_pretrained(str(model_dir),local_files_only=True)
+model=WhisperForConditionalGeneration.from_pretrained(str(model_dir),local_files_only=True,dtype=torch.float32,attn_implementation='sdpa').eval()
+names=[('synthetic-reference-control','docs/media/development/tts-trained-kokoro.wav'),('original-english','docs/media/development/openmoss-trained-en.wav'),('original-reference','docs/media/development/openmoss-trained-reference.wav')]
+if len(sys.argv)>1:names=[('candidate-reference',sys.argv[1])]
+results=[]
+for name,rel in names:
+ path=ROOT/rel
+ with wave.open(str(path),'rb') as f:
+  rate=f.getframerate();channels=f.getnchannels();assert f.getsampwidth()==2
+  audio=np.frombuffer(f.readframes(f.getnframes()),dtype='<i2').reshape(-1,channels).astype(np.float32).mean(axis=1)/32768
+ if rate!=16000:
+  import math
+  divisor=math.gcd(rate,16000);audio=resample_poly(audio,16000//divisor,rate//divisor)
+ inputs=processor(audio,sampling_rate=16000,return_tensors='pt',return_attention_mask=True)
+ start=time.monotonic()
+ with torch.inference_mode():output=model.generate(input_features=inputs.input_features,attention_mask=inputs.attention_mask,max_new_tokens=128,do_sample=False,num_beams=1,return_dict_in_generate=True)
+ text=processor.batch_decode(output.sequences,skip_special_tokens=True)[0]
+ result=dict(name=name,path=rel,sha256=sha(path),seconds_audio=len(audio)/16000,transcript=text,asr_seconds=time.monotonic()-start,asr_token_count=int(output.sequences.shape[-1]),prompt_hint_supplied=False)
+ results.append(result);print(json.dumps(result,ensure_ascii=False),flush=True)
+report=dict(schema='lma.openmoss-asr-investigation/1',asr_receipt_sha256=sha(folder/'receipt.json'),asr_model_repository=receipt['repository'],asr_model_revision=receipt['revision'],asr_weight_sha256=sha(model_dir/'model.safetensors'),torch_version=torch.__version__,device='cpu',generation=dict(do_sample=False,num_beams=1,max_new_tokens=128),results=results,remote_inference=False,model_weights_in_apk=False,physical_android=False,speech_quality_accepted=False,voice_similarity_accepted=False,release_accepted=False,driver_sha256=sha(pathlib.Path(__file__)))
+output=folder/('candidate-transcription.json' if len(sys.argv)>1 else 'original-transcriptions.json');output.write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')

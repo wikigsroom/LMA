@@ -54,9 +54,9 @@
   "android_execution_tested": false,
   "count": 47,
   "host_phase_seconds": {
-    "durable_history": 7.4974237,
-    "actual_http": 0.080094,
-    "crash_recovery": 0.5193303
+    "durable_history": 74.4847921,
+    "actual_http": 0.3872308,
+    "crash_recovery": 2.8804472
   },
   "actual_process_interruption": true,
   "passed": true,
@@ -69,13 +69,13 @@
     "missingOutputs": 0,
     "discardedUncommittedFiles": 1,
     "unlinkedOutputs": 1,
-    "checkedAt": 1793363476308,
+    "checkedAt": 1793384888353,
     "rejectedBindings": 0,
     "integrityCheck": "committed_metadata_and_size_execution_rehashes_selected_inputs",
     "cleanupFailures": 0,
     "reclaimedBytes": 8
   },
-  "host_elapsed_seconds": 8.237103999999817,
+  "host_elapsed_seconds": 79.05944019999879,
   "input_fingerprint": {
     "app/src/main/java/com/lma/app/core/AdapterSpec.java": "aff8572d14ac8d616be0a1b0da395e52ed5bddcd5ae407a969c2657bf9257581",
     "app/src/main/java/com/lma/app/core/ArtifactStore.java": "6f85d2ac710cac0fb5a76cde9493ff1fef4d3e2e119c3e031b7c44ff65a49061",
@@ -83,7 +83,7 @@
     "app/src/main/java/com/lma/app/core/AudioPcm.java": "9bf3270c83f57b7fa4e23fc4518fa063e72ca214675f9c23d45bd1788842f7b2",
     "app/src/main/java/com/lma/app/core/AudioStreams.java": "de8a2cdd98d083b62515b067865182d9065bb00f14b8c70cacafba21de8407f1",
     "app/src/main/java/com/lma/app/core/BundleStore.java": "a773aaa8f83410da9ccbf499b9a19ee4166e2c094c2e992699424c0ac68f3e74",
-    "app/src/main/java/com/lma/app/core/BundleTransfers.java": "926596119a2c3f6bc089516e7bbd7db3016487d60c24f908ea646dfc76707f3e",
+    "app/src/main/java/com/lma/app/core/BundleTransfers.java": "8b0a13e1d8b635efa6d5238ae7367efb9299109a0051d4e1adbe42c2cb9550b8",
     "app/src/main/java/com/lma/app/core/BundleUpdates.java": "f31a65d0e172aa75f6131deace828875534ccc756ed93fac83bb09d5a4162fe1",
     "app/src/main/java/com/lma/app/core/ByteRange.java": "31723bf112e630de6c2a1cd8d525be7bbd4706e151fa5a297a5e641f59b5c752",
     "app/src/main/java/com/lma/app/core/ChatHistory.java": "3046a52c3f611b83b46cfed94afe0f4b31667f77986b7ca1737169ec8c4ce951",

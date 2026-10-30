@@ -42,6 +42,7 @@ public final class FoundationTest {
         check(!cataloguedStore.plan(catalogued.id).getBoolean("installed") && !cataloguedStore.snapshot().getJSONObject(0).has("transfer"), "Declaring the shipped SD recipe installs no model and starts no transfer");
         check(catalogued.parameters().normalize(new JSONObject(), new JSONObject()).getJSONObject("values").getInt("width") == 512, "Shipped recipe defaults satisfy its parameter schema");
         passed += CuratedDiffusionTest.run(root, new File(args[1]));
+        passed += BundlePauseTest.run(new File(root, "blocked-imports"));
         JSONObject first = manifest("one", component("backbone", a), component("decoder", b));
         rejects(() -> new ModelBundle(DataFiles.copy(first).put("schema", "future")), "Unknown bundle versions must fail");
         JSONObject bad = DataFiles.copy(first); bad.getJSONArray("components").getJSONObject(0).put("path", "../outside.bin");

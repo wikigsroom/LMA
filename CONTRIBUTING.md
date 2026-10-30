@@ -1,5 +1,7 @@
 # Contributing / 贡献与更新约定
 
+dev.42 共用传输修改参照[中文](docs/MODEL_TRANSFERS.md) / [English](docs/MODEL_TRANSFERS.en.md)：验证实际阻塞输入、暂停 / 关闭释放与后续队列。本地重新导入与 HTTP 续传分开；保留大模型复制超时。MOSS 格式 / ASR 诊断不能改写失败或冒充模型通过。
+
 dev.41 的 MOSS 语音修改参照[中文](docs/MOSS_TTS15.md) / [English](docs/MOSS_TTS15.en.md)：保持完整配对与逐模型参数、真实采样和结束原因、原始输出及取消恢复。CPU 私有映射修改须检查真实 GGML 计算、源文件不变与完全释放。已有文件校验接入与流式复制分别记录；保留原参考 EOS 失败和主机复制超时，不以界面或主机输出代替质量 / Android 验收。
 
 dev.40 的 Wan 参数与诊断修改参照[中文](docs/WAN_DECODER.md) / [English](docs/WAN_DECODER.en.md)：保留旧任务输出、逐模型设置、显式用户资产与原默认内存策略；实际主机 VAE 对照和质量失败不作为完整生成器 / Android 验收。Run relevant native/Java/UI checks, retain original reports and failed gates, and refresh bilingual media.

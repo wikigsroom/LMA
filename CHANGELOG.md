@@ -1,5 +1,13 @@
 # Changelog / 更新记录
 
+## 0.3.0-dev.42 — 导入暂停与队列 / Import pause and queue
+
+- 暂停或关闭时关闭实际本地输入，释放阻塞读取与后续队列；防止登记竞态，完整 SHA 接纳、用户显式传输、重启暂停及逐模型设置保留。Pause/shutdown close the actual input and release the queue while retaining full SHA acceptance and user ownership.
+- 冻结旧失败；13 项阻塞输入、692 项基座、68 项 API 通过。本地显式重选后重复制未完成组件；HTTP 保留校验续传。Android providers and full-size stream copying remain open.
+- 官方提示对照存在额外 audio_start 行；实际候选 1800 秒到 332/375 步，无 WAV、未采用。离线 ASR 两控制通过，原参考 WAV 35/2 词错误；EOS / 文本遵循继续失败。No diagnostic clears quality/Android gates.
+- 原签名 dev.42/code46，APK 61,342,218 bytes，SHA `fda9fbe41bcbf6ae4abb6eee6d8c88fe3e2ccab233792f0dab00bb6d974ae79b`。dev.41 的 44 份报告及状态原字节归档；原生 MOSS 不变，87 项 Java 模型运行及实际媒体明确历史。
+- [中文使用](docs/MODEL_TRANSFERS.md) · [English](docs/MODEL_TRANSFERS.en.md) · [独立诊断](docs/MOSS_REFERENCE_DIAGNOSTICS.md) · [编号实现与全部待办](docs/releases/v0.3.0-dev.42.md)。完整 v0.3.0 不拆分，本检查点不创建正式 Release。
+
 ## 0.3.0-dev.41 — MOSS 本地语音 / Local MOSS speech
 
 - Add an optional, complete pinned MOSS-TTS 1.5 Q8/BF16 pair; explicit user download/import, independent settings and lifecycle. APK remains free of learned assets.

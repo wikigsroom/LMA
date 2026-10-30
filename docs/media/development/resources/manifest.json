@@ -1,5 +1,5 @@
 {
-  "version": "0.3.0-dev.41",
+  "version": "0.3.0-dev.42",
   "kind": "current production UI with an explicit simulated bridge",
   "android_device": false,
   "model_inference": false,
@@ -44,18 +44,18 @@
     },
     {
       "file": "03-explicit-retry.png",
-      "bytes": 40369,
-      "sha256": "3737f385bfc9b7683379770dac3c4a9705ce1ee59b37462f8362c983bac6cd49"
+      "bytes": 40322,
+      "sha256": "bcaa6a19adc12b9d56d2deaf75ffaf513f9b1feb5f91ebbd056ea6e70a9bbdce"
     },
     {
       "file": "resources-ui.gif",
-      "bytes": 306461,
-      "sha256": "2e1f257703cefcceabe9e263bdae05976e0e08f832ea20a63204c94614b5ff9e"
+      "bytes": 416774,
+      "sha256": "24ab2a033fb5c029641efb8f7f8c25aa65722fc357c5ed8aec8e3406f3b86b30"
     },
     {
       "file": "resources-ui.mp4",
-      "bytes": 125521,
-      "sha256": "f85621c7a04aded4233504da3984df0ab4aa27561e8f4b5bc609376f62c8f67a"
+      "bytes": 139755,
+      "sha256": "fa34e6e10515e4bfffdc1ec3cbc7eb1639456304582464f25998742ddd44d38e"
     }
   ],
   "input_fingerprint": {

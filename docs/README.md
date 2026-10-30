@@ -1,5 +1,7 @@
 # LMA 文档 / Documentation
 
+dev.42：导入暂停与恢复 [中文](MODEL_TRANSFERS.md) / [English](MODEL_TRANSFERS.en.md)；参考输入独立诊断 [中文](MOSS_REFERENCE_DIAGNOSTICS.md) / [English](MOSS_REFERENCE_DIAGNOSTICS.en.md)；[本轮实现与完整待办](releases/v0.3.0-dev.42.md)。
+
 当前 dev.41：MOSS-TTS 1.5 [中文使用与边界](MOSS_TTS15.md) / [English workflow](MOSS_TTS15.en.md) · [编号实现和完整待完成表](releases/v0.3.0-dev.41.md)。完整资产由用户自行选择；参考模式的正常结束失败保留。
 
 当前 dev.38：[Z-Image-Turbo 完整用户流程](ZIMAGE_TURBO.md) / [English](ZIMAGE_TURBO.en.md)，[本轮实现与所有待办](releases/v0.3.0-dev.38.md)。App 仅更新基座，模型由用户自行选择、取得和管理。

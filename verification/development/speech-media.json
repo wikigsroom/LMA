@@ -1,5 +1,5 @@
 {
-  "version": "0.3.0-dev.41",
+  "version": "0.3.0-dev.42",
   "kind": "current production UI with an explicit simulated bridge",
   "android_device": false,
   "model_inference": false,
@@ -64,18 +64,18 @@
     },
     {
       "file": "04-speech-queue.png",
-      "bytes": 48146,
-      "sha256": "a3bade46b45ec3afc2411a7d72564cf90e59aeec69c26202821a7b6992e7ca0b"
+      "bytes": 48083,
+      "sha256": "7d5c245eaf2f5ed015b2c4effe97b1d2312c2835f3de6e233d0fa2ec20609d30"
     },
     {
       "file": "speech-ui.gif",
-      "bytes": 793870,
-      "sha256": "2ed4a41fcb216bfcc3498300fedd738aec0b459ca735ed9687e5b8a40d2d3d0c"
+      "bytes": 723643,
+      "sha256": "538785453b935861d297d4148ebc3efcbf99a5c5b6616690dff4b64431d85761"
     },
     {
       "file": "speech-ui.mp4",
-      "bytes": 353730,
-      "sha256": "03ee817d4ab04d3112c75c5b8196f884b0e9f8f0ab4197e25fb97fba4a35bb4b"
+      "bytes": 332200,
+      "sha256": "384e88387fa40c57e056934db49d1580c279280877ed8f4547431d33ee30af2b"
     }
   ],
   "input_fingerprint": {

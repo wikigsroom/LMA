@@ -1,6 +1,10 @@
 # LMA · Local models on Android
 
-> **Current development: 0.3.0-dev.41 / code45.** Complete the optional MOSS-TTS 1.5 pair, actual progress, independent settings, cancellation/recovery and results. The production Java/native path passes 87 checks across five actual runs; English and reference-input WAVs match direct native generation byte for byte. Reference mode still hits its output limit without natural completion, and that failure remains open. App updates deliver only the foundation, preserving recommendations and user control of model downloads, imports and versions.
+> **Current development: 0.3.0-dev.42 / code46.** Fix shared imports retaining the transfer queue after pause/shutdown. Thirteen real blocked-input, 692 foundation and 68 API checks pass. Users independently choose/manage model assets; App updates deliver the foundation. MOSS reference termination/text-following failures remain open; complete v0.3.0 acceptance is pending.
+
+[Import behavior](docs/MODEL_TRANSFERS.en.md) · [中文](docs/MODEL_TRANSFERS.md) · [Implemented work and full pending scope](docs/releases/v0.3.0-dev.42.md) · [Reference diagnostics](docs/MOSS_REFERENCE_DIAGNOSTICS.en.md)
+
+> **Previous checkpoint: 0.3.0-dev.41 / code45.** Complete the optional MOSS-TTS 1.5 pair, actual progress, independent settings, cancellation/recovery and results. The production Java/native path passes 87 checks across five actual runs; English and reference-input WAVs match direct native generation byte for byte. Reference mode still hits its output limit without natural completion, and that failure remains open. App updates deliver only the foundation, preserving recommendations and user control of model downloads, imports and versions.
 
 
 [Actual host audio, waveforms and video](docs/MOSS_TTS15.en.md#actual-artifacts-and-reports) · [UI output-limit notice](docs/media/development/openmoss/05-output-limit.png)

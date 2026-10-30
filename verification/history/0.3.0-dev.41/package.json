@@ -1,0 +1,682 @@
+{
+  "apk": "LMA-0.3.0-dev.41-arm64-v8a.apk",
+  "sha256": "33f78573d5658fea7ee0e7983c5e0779c0bf00fc0c2a0ff17eb17c8d52326af7",
+  "native_libraries_verified": 35,
+  "all_native_dependencies_resolved": true,
+  "all_elf_load_segments_16k_aligned": true,
+  "final_apk_zip_alignment_verified": true,
+  "packaged_ui_matches_source": true,
+  "catalogue_models": 14,
+  "known_publisher_hashes": 14,
+  "private_keys_in_apk": false,
+  "builtin_uncensored_declarations_verified": 14,
+  "refusal_rates_measured": false,
+  "native": {
+    "libggml-cpu-android_armv9.2_1.so": {
+      "machine": "aarch64",
+      "needed": [
+        "libggml-base.so",
+        "libm.so",
+        "libdl.so",
+        "libc.so"
+      ],
+      "load_segment_alignment": [
+        16384
+      ],
+      "interpreter": null,
+      "entry_point": 0,
+      "android_api_notes": [
+        28
+      ],
+      "16k_elf_aligned": true
+    },
+    "libllama-server-impl.so": {
+      "machine": "aarch64",
+      "needed": [
+        "libllama-common.so",
+        "libmtmd.so",
+        "libllama.so",
+        "libggml.so",
+        "libggml-base.so",
+        "libm.so",
+        "libdl.so",
+        "libc.so"
+      ],
+      "load_segment_alignment": [
+        16384
+      ],
+      "interpreter": null,
+      "entry_point": 0,
+      "android_api_notes": [
+        28
+      ],
+      "16k_elf_aligned": true
+    },
+    "libggml-cpu-android_armv9.0_1.so": {
+      "machine": "aarch64",
+      "needed": [
+        "libggml-base.so",
+        "libm.so",
+        "libdl.so",
+        "libc.so"
+      ],
+      "load_segment_alignment": [
+        16384
+      ],
+      "interpreter": null,
+      "entry_point": 0,
+      "android_api_notes": [
+        28
+      ],
+      "16k_elf_aligned": true
+    },
+    "libmtmd.so": {
+      "machine": "aarch64",
+      "needed": [
+        "libllama.so",
+        "libggml.so",
+        "libggml-base.so",
+        "libm.so",
+        "libdl.so",
+        "libc.so"
+      ],
+      "load_segment_alignment": [
+        16384
+      ],
+      "interpreter": null,
+      "entry_point": 0,
+      "android_api_notes": [
+        28
+      ],
+      "16k_elf_aligned": true
+    },
+    "libggml-cpu-android_armv8.2_1.so": {
+      "machine": "aarch64",
+      "needed": [
+        "libggml-base.so",
+        "libm.so",
+        "libdl.so",
+        "libc.so"
+      ],
+      "load_segment_alignment": [
+        16384
+      ],
+      "interpreter": null,
+      "entry_point": 0,
+      "android_api_notes": [
+        28
+      ],
+      "16k_elf_aligned": true
+    },
+    "libllama-server.so": {
+      "machine": "aarch64",
+      "needed": [
+        "libllama-server-impl.so",
+        "libllama-common.so",
+        "libmtmd.so",
+        "libllama.so",
+        "libggml.so",
+        "libggml-base.so",
+        "libm.so",
+        "libdl.so",
+        "libc.so"
+      ],
+      "load_segment_alignment": [
+        16384
+      ],
+      "interpreter": "/system/bin/linker64",
+      "entry_point": 1592,
+      "android_api_notes": [
+        28
+      ],
+      "16k_elf_aligned": true
+    },
+    "libllama.so": {
+      "machine": "aarch64",
+      "needed": [
+        "libggml.so",
+        "libggml-base.so",
+        "libm.so",
+        "libdl.so",
+        "libc.so"
+      ],
+      "load_segment_alignment": [
+        16384
+      ],
+      "interpreter": null,
+      "entry_point": 0,
+      "android_api_notes": [
+        28
+      ],
+      "16k_elf_aligned": true
+    },
+    "libggml-cpu-android_armv8.0_1.so": {
+      "machine": "aarch64",
+      "needed": [
+        "libggml-base.so",
+        "libm.so",
+        "libdl.so",
+        "libc.so"
+      ],
+      "load_segment_alignment": [
+        16384
+      ],
+      "interpreter": null,
+      "entry_point": 0,
+      "android_api_notes": [
+        28
+      ],
+      "16k_elf_aligned": true
+    },
+    "libggml-cpu-android_armv8.6_1.so": {
+      "machine": "aarch64",
+      "needed": [
+        "libggml-base.so",
+        "libm.so",
+        "libdl.so",
+        "libc.so"
+      ],
+      "load_segment_alignment": [
+        16384
+      ],
+      "interpreter": null,
+      "entry_point": 0,
+      "android_api_notes": [
+        28
+      ],
+      "16k_elf_aligned": true
+    },
+    "libggml.so": {
+      "machine": "aarch64",
+      "needed": [
+        "libggml-base.so",
+        "libm.so",
+        "libdl.so",
+        "libc.so"
+      ],
+      "load_segment_alignment": [
+        16384
+      ],
+      "interpreter": null,
+      "entry_point": 0,
+      "android_api_notes": [
+        28
+      ],
+      "16k_elf_aligned": true
+    },
+    "libllama-common.so": {
+      "machine": "aarch64",
+      "needed": [
+        "libllama.so",
+        "libggml.so",
+        "libggml-base.so",
+        "libm.so",
+        "libdl.so",
+        "libc.so"
+      ],
+      "load_segment_alignment": [
+        16384
+      ],
+      "interpreter": null,
+      "entry_point": 0,
+      "android_api_notes": [
+        28
+      ],
+      "16k_elf_aligned": true
+    },
+    "libggml-base.so": {
+      "machine": "aarch64",
+      "needed": [
+        "libm.so",
+        "libdl.so",
+        "libc.so"
+      ],
+      "load_segment_alignment": [
+        16384
+      ],
+      "interpreter": null,
+      "entry_point": 0,
+      "android_api_notes": [
+        28
+      ],
+      "16k_elf_aligned": true
+    },
+    "libggml-cpu-android_armv8.2_2.so": {
+      "machine": "aarch64",
+      "needed": [
+        "libggml-base.so",
+        "libm.so",
+        "libdl.so",
+        "libc.so"
+      ],
+      "load_segment_alignment": [
+        16384
+      ],
+      "interpreter": null,
+      "entry_point": 0,
+      "android_api_notes": [
+        28
+      ],
+      "16k_elf_aligned": true
+    },
+    "libggml-cpu-android_armv9.2_2.so": {
+      "machine": "aarch64",
+      "needed": [
+        "libggml-base.so",
+        "libm.so",
+        "libdl.so",
+        "libc.so"
+      ],
+      "load_segment_alignment": [
+        16384
+      ],
+      "interpreter": null,
+      "entry_point": 0,
+      "android_api_notes": [
+        28
+      ],
+      "16k_elf_aligned": true
+    },
+    "liblma-sd.so": {
+      "machine": "aarch64",
+      "needed": [
+        "libm.so",
+        "libdl.so",
+        "libc.so"
+      ],
+      "load_segment_alignment": [
+        16384
+      ],
+      "interpreter": "/system/bin/linker64",
+      "entry_point": 2138016,
+      "android_api_notes": [
+        28
+      ],
+      "16k_elf_aligned": true
+    },
+    "liblma-tts.so": {
+      "machine": "aarch64",
+      "needed": [
+        "libsherpa-onnx-c-api.so",
+        "libonnxruntime.so",
+        "libm.so",
+        "libdl.so",
+        "libc.so"
+      ],
+      "load_segment_alignment": [
+        16384
+      ],
+      "interpreter": "/system/bin/linker64",
+      "entry_point": 96096,
+      "android_api_notes": [
+        28
+      ],
+      "16k_elf_aligned": true
+    },
+    "libsherpa-onnx-c-api.so": {
+      "machine": "aarch64",
+      "needed": [
+        "libandroid.so",
+        "liblog.so",
+        "libonnxruntime.so",
+        "libm.so",
+        "libdl.so",
+        "libc.so"
+      ],
+      "load_segment_alignment": [
+        16384
+      ],
+      "interpreter": null,
+      "entry_point": 0,
+      "android_api_notes": [
+        21
+      ],
+      "16k_elf_aligned": true
+    },
+    "libonnxruntime.so": {
+      "machine": "aarch64",
+      "needed": [
+        "libdl.so",
+        "liblog.so",
+        "libm.so",
+        "libc.so"
+      ],
+      "load_segment_alignment": [
+        16384
+      ],
+      "interpreter": null,
+      "entry_point": 0,
+      "android_api_notes": [
+        27
+      ],
+      "16k_elf_aligned": true
+    },
+    "liblma-moss-nano.so": {
+      "machine": "aarch64",
+      "needed": [
+        "libonnxruntime.so",
+        "libm.so",
+        "libdl.so",
+        "libc.so"
+      ],
+      "load_segment_alignment": [
+        16384
+      ],
+      "interpreter": "/system/bin/linker64",
+      "entry_point": 203904,
+      "android_api_notes": [
+        28
+      ],
+      "16k_elf_aligned": true
+    },
+    "liblma-qwen-tts.so": {
+      "machine": "aarch64",
+      "needed": [
+        "libm.so",
+        "libdl.so",
+        "libc.so"
+      ],
+      "load_segment_alignment": [
+        16384
+      ],
+      "interpreter": "/system/bin/linker64",
+      "entry_point": 439744,
+      "android_api_notes": [
+        28
+      ],
+      "16k_elf_aligned": true
+    },
+    "liblma-moss-delay.so": {
+      "machine": "aarch64",
+      "needed": [
+        "libm.so",
+        "libdl.so",
+        "libc.so"
+      ],
+      "load_segment_alignment": [
+        16384
+      ],
+      "interpreter": "/system/bin/linker64",
+      "entry_point": 678352,
+      "android_api_notes": [
+        28
+      ],
+      "16k_elf_aligned": true
+    },
+    "liblma-openmoss.so": {
+      "machine": "aarch64",
+      "needed": [
+        "libm.so",
+        "libdl.so",
+        "libc.so"
+      ],
+      "load_segment_alignment": [
+        16384
+      ],
+      "interpreter": "/system/bin/linker64",
+      "entry_point": 765680,
+      "android_api_notes": [
+        28
+      ],
+      "16k_elf_aligned": true
+    },
+    "liblma-moss-rq.so": {
+      "machine": "aarch64",
+      "needed": [
+        "libm.so",
+        "libdl.so",
+        "libc.so"
+      ],
+      "load_segment_alignment": [
+        16384
+      ],
+      "interpreter": "/system/bin/linker64",
+      "entry_point": 327088,
+      "android_api_notes": [
+        28
+      ],
+      "16k_elf_aligned": true
+    },
+    "liblma-stable-audio.so": {
+      "machine": "aarch64",
+      "needed": [
+        "libLiteRt.so",
+        "libm.so",
+        "libdl.so",
+        "libc.so"
+      ],
+      "load_segment_alignment": [
+        16384
+      ],
+      "interpreter": "/system/bin/linker64",
+      "entry_point": 188640,
+      "android_api_notes": [
+        28
+      ],
+      "16k_elf_aligned": true
+    },
+    "libLiteRt.so": {
+      "machine": "aarch64",
+      "needed": [
+        "libdl.so",
+        "libGLESv3.so",
+        "libEGL.so",
+        "libm.so",
+        "liblog.so",
+        "libc.so"
+      ],
+      "load_segment_alignment": [
+        16384
+      ],
+      "interpreter": null,
+      "entry_point": 0,
+      "android_api_notes": [
+        23
+      ],
+      "16k_elf_aligned": true
+    },
+    "liblma-soulx.so": {
+      "machine": "aarch64",
+      "needed": [
+        "libonnxruntime.so",
+        "libllama.so",
+        "libggml.so",
+        "libdl.so",
+        "libm.so",
+        "libc.so"
+      ],
+      "load_segment_alignment": [
+        16384
+      ],
+      "interpreter": "/system/bin/linker64",
+      "entry_point": 126880,
+      "android_api_notes": [
+        28
+      ],
+      "16k_elf_aligned": true
+    },
+    "liblma-ltx098-app-tensors.so": {
+      "machine": "aarch64",
+      "needed": [
+        "libm.so",
+        "libdl.so",
+        "libc.so"
+      ],
+      "load_segment_alignment": [
+        16384
+      ],
+      "interpreter": "/system/bin/linker64",
+      "entry_point": 104848,
+      "android_api_notes": [
+        28
+      ],
+      "16k_elf_aligned": true
+    },
+    "liblma-ltx098-app-text.so": {
+      "machine": "aarch64",
+      "needed": [
+        "libllama.so",
+        "libggml.so",
+        "libggml-base.so",
+        "libdl.so",
+        "libm.so",
+        "libc.so"
+      ],
+      "load_segment_alignment": [
+        16384
+      ],
+      "interpreter": "/system/bin/linker64",
+      "entry_point": 75184,
+      "android_api_notes": [
+        28
+      ],
+      "16k_elf_aligned": true
+    },
+    "liblma-ltx098-app-sample.so": {
+      "machine": "aarch64",
+      "needed": [
+        "libm.so",
+        "libdl.so",
+        "libvulkan.so",
+        "libc.so"
+      ],
+      "load_segment_alignment": [
+        16384
+      ],
+      "interpreter": "/system/bin/linker64",
+      "entry_point": 33428272,
+      "android_api_notes": [
+        28
+      ],
+      "16k_elf_aligned": true
+    },
+    "liblma-ltx098-app-vae.so": {
+      "machine": "aarch64",
+      "needed": [
+        "libonnxruntime.so",
+        "libm.so",
+        "libdl.so",
+        "libc.so"
+      ],
+      "load_segment_alignment": [
+        16384
+      ],
+      "interpreter": "/system/bin/linker64",
+      "entry_point": 125072,
+      "android_api_notes": [
+        28
+      ],
+      "16k_elf_aligned": true
+    },
+    "liblma-mnn.so": {
+      "machine": "aarch64",
+      "needed": [
+        "liblog.so",
+        "libm.so",
+        "libandroid.so",
+        "libdl.so",
+        "libc.so"
+      ],
+      "load_segment_alignment": [
+        16384
+      ],
+      "interpreter": "/system/bin/linker64",
+      "entry_point": 541760,
+      "android_api_notes": [
+        28
+      ],
+      "16k_elf_aligned": true
+    },
+    "liblma-wan-vulkan.so": {
+      "machine": "aarch64",
+      "needed": [
+        "libm.so",
+        "libdl.so",
+        "libvulkan.so",
+        "libc.so"
+      ],
+      "load_segment_alignment": [
+        16384
+      ],
+      "interpreter": "/system/bin/linker64",
+      "entry_point": 35276144,
+      "android_api_notes": [
+        28
+      ],
+      "16k_elf_aligned": true
+    },
+    "liblma-ltx098-prepare.so": {
+      "machine": "aarch64",
+      "needed": [
+        "libm.so",
+        "libdl.so",
+        "libc.so"
+      ],
+      "load_segment_alignment": [
+        16384
+      ],
+      "interpreter": "/system/bin/linker64",
+      "entry_point": 125600,
+      "android_api_notes": [
+        28
+      ],
+      "16k_elf_aligned": true
+    },
+    "liblma-ltx098-vae-prepare.so": {
+      "machine": "aarch64",
+      "needed": [
+        "libm.so",
+        "libdl.so",
+        "libc.so"
+      ],
+      "load_segment_alignment": [
+        16384
+      ],
+      "interpreter": "/system/bin/linker64",
+      "entry_point": 195824,
+      "android_api_notes": [
+        28
+      ],
+      "16k_elf_aligned": true
+    },
+    "liblma-lcm-prepare.so": {
+      "machine": "aarch64",
+      "needed": [
+        "libm.so",
+        "libdl.so",
+        "libc.so"
+      ],
+      "load_segment_alignment": [
+        16384
+      ],
+      "interpreter": "/system/bin/linker64",
+      "entry_point": 129248,
+      "android_api_notes": [
+        28
+      ],
+      "16k_elf_aligned": true
+    }
+  },
+  "physical_device_tested": false,
+  "source_inputs_match_build": true,
+  "apk_signatures_independently_verified": true,
+  "signing_certificate_sha256": "90444a717a55549e2094364d8d7d005cf8b7f4df24562da62cc1884a2f341c17",
+  "permissions": [
+    "android.permission.INTERNET",
+    "android.permission.ACCESS_NETWORK_STATE",
+    "android.permission.ACCESS_WIFI_STATE",
+    "android.permission.WAKE_LOCK",
+    "android.permission.FOREGROUND_SERVICE",
+    "android.permission.FOREGROUND_SERVICE_SPECIAL_USE",
+    "android.permission.POST_NOTIFICATIONS",
+    "android.permission.RECEIVE_BOOT_COMPLETED",
+    "android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS"
+  ],
+  "provider_declared_native_api_level": 28,
+  "packaged_service_manifest_verified": true,
+  "input_fingerprint": {
+    "catalogue/uncensored-evidence.json": "63f05e854772ade227750b19cb2288ebe53abb0d346ccc08cf5317b768ef5082",
+    "third_party/BUILD_INFO.json": "de40253f34d47e5b692e8cd97d87eaa4ecbe549303718f69d286c85f81422acc",
+    "tools/verify_package.py": "762785db6b2d1fa8156bcb3d51ff2ce61df5e7130458a6c2c4d7046a961423ab"
+  }
+}
