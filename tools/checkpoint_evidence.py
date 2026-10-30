@@ -14,9 +14,9 @@ from preparation_build_inputs import build_inputs
 ROOT = Path(__file__).resolve().parents[1]
 BASELINE = '6b1f3459a80db8b7b6838e7d5e492b8ef42d9033'
 BASE_VERSION = '0.3.0-dev.24'
-CURRENT_VERSION = '0.3.0-dev.35'
-PRIOR_COMMIT = '76117271db1c477eb7b5b6e319a71a5d3111cadf'
-PRIOR_VERSION = '0.3.0-dev.34'
+CURRENT_VERSION = '0.3.0-dev.36'
+PRIOR_COMMIT = 'ab34f8160065898887dff7066660842b87c41811'
+PRIOR_VERSION = '0.3.0-dev.35'
 CERTIFICATE = '90444a717a55549e2094364d8d7d005cf8b7f4df24562da62cc1884a2f341c17'
 SOURCES = {
     'build-info.json': 'dist/build-info.json',
@@ -54,10 +54,10 @@ SOURCES = {
     'components-media.json': 'docs/media/development/components/manifest.json',
     'mnn.json': 'build/mnn-tests/results.json',
     'mnn-arm64.json': 'build/mnn-arm64-evidence.json',
-    'mnn-assets.json': 'build/mnn-trained/receipt.json',
-    'mnn-trained.json': 'build/mnn-trained-tests/results.json',
-    'mnn-app-host.json': 'build/mnn-app-host-tests/results.json',
-    'mnn-trained-media.json': 'docs/media/development/sana-trained/manifest.json',
+    'mnn-assets.json': 'build/mnn-edit-trained/receipt.json',
+    'mnn-trained.json': 'build/mnn-edit-trained-tests/results.json',
+    'mnn-app-host.json': 'build/mnn-edit-app-host-tests/results.json',
+    'mnn-trained-media.json': 'docs/media/development/sana-edit-trained/manifest.json',
 }
 
 
@@ -78,7 +78,7 @@ def prior_checkpoint(write=False):
     # Only archive this checkpoint's own records. Older model experiments have
     # separate immutable pointers and are not inputs to this incremental copy.
     status_data = subprocess.check_output(['git','show',PRIOR_COMMIT + ':verification/development/status.json'], cwd=ROOT)
-    status = json.loads(status_data); assert status['version'] == PRIOR_VERSION and len(status['sources']) == 33
+    status = json.loads(status_data); assert status['version'] == PRIOR_VERSION and len(status['sources']) == 39
     selected = ['status.json', *status['sources']]
     assert all(Path(name).name == name and name.endswith('.json') for name in selected)
     run = subprocess.run(['git', 'archive', '--format=tar', PRIOR_COMMIT, *['verification/development/' + name for name in selected]], cwd=ROOT, capture_output=True, check=True)
@@ -310,13 +310,13 @@ def check():
         data=(ROOT/'docs/media/development/components'/item['file']).read_bytes()
         assert len(data)==item['bytes'] and digest(data)==item['sha256']
     assert status['host_model_inference_tested'] and status['current_trained_host_engines']==['mnn_diffusion'] and not status['apk_model_inference_tested']
-    mnn=records['mnn.json']; assert mnn['passed']>=74 and mnn['production_mnn_binding'] and not mnn['model_inference']
+    mnn=records['mnn.json']; assert mnn['passed']>=101 and mnn['production_mnn_binding'] and not mnn['model_inference']
     assets=records['mnn-assets.json'];assert assets['developer_assets_only'] and assets['explicit_download'] and not assets['model_executed']
-    assert len(assets['components'])==13 and sum(i['bytes'] for i in assets['components'])==1505181194
+    assert len(assets['components'])==15 and sum(i['bytes'] for i in assets['components'])==1661730284
     trained=records['mnn-trained.json'];bridge=records['mnn-app-host.json'];arm=records['mnn-arm64.json']
-    assert trained['passed'] and trained['real_trained_host_execution'] and len(trained['runs'])==12 and len(trained['assets'])==13
-    assert all(c['passed'] for c in trained['checks']) and len(trained['checks'])>=60
-    success=['a','b','cfg-a','cfg-b','rectangle','single-step','recovery-a']
+    assert trained['passed'] and trained['real_trained_host_execution'] and len(trained['runs'])==14 and len(trained['assets'])==15 and trained['task']=='image_to_image' and trained['fixed_style']
+    assert all(c['passed'] for c in trained['checks']) and len(trained['checks'])>=52
+    success=['a','jpeg-crop','single-step','recovery-a']
     for run in trained['runs']:
         events=run['process']['events'];completed=[e for e in events if e.get('event')=='complete'];errors=[e for e in events if e.get('event')=='error']
         assert not run['process']['protocol_errors'] and not run['process']['timed_out']
@@ -327,9 +327,9 @@ def check():
             assert progress==[(i+1)/steps for i in range(steps)]
         else:
             assert run['process']['returncode']!=0 and not completed and len(errors)==1 and errors[0]['message']
-    assert trained['comparisons']['recovery']['maximum']==0 and all(trained['comparisons'][n]['maximum']>0 for n in ['prompt-effect','cfg-effect','negative-effect'])
-    assert bridge['passed'] and bridge['production_java_native_host_executed'] and bridge['java']['actual_host_children']==4 and bridge['java']['imported_objects']==13 and bridge['java']['network_calls']==0
-    assert len(bridge['outputs'])==3 and bridge['direct_report_sha256']==digest((ROOT/SOURCES['mnn-trained.json']).read_bytes())
+    assert trained['comparisons']['recovery']['maximum']==0 and all(trained['comparisons'][n]['maximum']>0 for n in ['source-effect','step-effect'])
+    assert bridge['passed'] and bridge['production_java_native_host_executed'] and bridge['java']['actual_host_children']==3 and bridge['java']['imported_objects']==15 and bridge['java']['network_calls']==0
+    assert len(bridge['outputs'])==2 and bridge['direct_report_sha256']==digest((ROOT/SOURCES['mnn-trained.json']).read_bytes())
     assert all(i['maximum']==0 for i in bridge['comparisons'].values())
     assert arm['identical_host_android_generated_pipeline'] and len(arm['generated_pipeline'])==2
     assert arm['native']['sha256']==digest((ROOT/'app/src/main/jniLibs/arm64-v8a/liblma-mnn.so').read_bytes())
@@ -337,10 +337,10 @@ def check():
     assert assets['components']==trained['assets']
     assert not any(r[k] for r in [trained,bridge] for k in ['physical_android','independent_reference_numerics_accepted','image_quality_accepted','complete_target04_accepted','complete_release_accepted'])
     media=records['mnn-trained-media.json'];assert media['version']==CURRENT_VERSION and media['real_trained_host_execution'] and not media['android_recording'] and not media['image_quality_accepted']
-    assert len(media['products'])==6 and len(media['files'])==9
+    assert len(media['products'])==3 and len(media['files'])==8 and media['task']=='image_to_image' and media['fixed_style']
     assert media['direct_report_sha256']==digest((ROOT/SOURCES['mnn-trained.json']).read_bytes()) and media['java_report_sha256']==digest((ROOT/SOURCES['mnn-app-host.json']).read_bytes())
     for item in media['files']:
-        data=(ROOT/'docs/media/development/sana-trained'/item['file']).read_bytes(); assert len(data)==item['bytes'] and digest(data)==item['sha256']
+        data=(ROOT/'docs/media/development/sana-edit-trained'/item['file']).read_bytes(); assert len(data)==item['bytes'] and digest(data)==item['sha256']
     scope = json.loads((ROOT / 'docs/proposals/multimodal-release-scope.json').read_text(encoding='utf-8'))
     assert status['required_release_scope']['selected_ids'] == scope['selected_ids'] and scope['preserved_recommendation_ids'] == ['m08','m06','m01']
     return {'passed': True, 'current_records': len(SOURCES), 'historical_records': len(status['historical_sources']), 'prior_checkpoint_records': len(prior['sources']) - 1, 'version': CURRENT_VERSION, 'release_ready': False, 'physical_device_tests': 0}

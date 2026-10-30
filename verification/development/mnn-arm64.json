@@ -9,8 +9,8 @@
     "backend": "cpu",
     "ndk": "30.0.16248370",
     "min_sdk": 28,
-    "bytes": 4049728,
-    "sha256": "983c0052009ecb08a94cd31f20e421c9736c45b9457716e1c4f612d99620f6f9",
+    "bytes": 4054928,
+    "sha256": "5f72a467454c2abe966ecedacb54c741f74998858ead10f1784fbd9e5fe0038a",
     "elf_load_alignment": [
       16384
     ],
@@ -19,15 +19,16 @@
     ],
     "source_inputs": {
       "native/mnn/bootstrap.cmake": "8f4046a160689828f5ef82effdb303e0fe4d8f709be887a3df97944da9339a17",
-      "native/mnn/policy.hpp": "02860c259fe519d30b49f53fa87ede734fcba936b35db02aba3d2a79ac99c407",
-      "native/mnn/worker.cpp": "17683a1ad687a93eee6b5b36485502e6370005932c672a3468592ba28862ad15",
+      "native/mnn/image.hpp": "1f66dfe180a818a38aaec1e9abb844d6d361b9f50f93970f8c3abbe39b0d71bb",
+      "native/mnn/policy.hpp": "54d94c5e2bf0bf9dbc38021d6e03eef4fd8fa5d65eb4ccc2c09a40b2afdc60d5",
+      "native/mnn/worker.cpp": "1bb92e7134b216114b11213dc6e93b29002f2d4cdffd4cfac74f0ddb0ccec4a1",
       "third_party/mnn-source-lock.json": "1639a5fe9610af47ab5b6f6d1fbb1df12083f240022f09e1beae5aecd0d2082f",
-      "tools/build_mnn.py": "577a6c6411bb91409b078e615de9e6c72f611a80c91a064d1aaf02da831fea9e",
+      "tools/build_mnn.py": "26c0c9871819a9cdfd21b3a96eb47af95183e85c27c913e3b4cdbf69cb7e8063",
       "tools/fetch_mnn.py": "3eca07c0a174eeafedcfb68cde69f16523902082fbc9b86339d52dea03bdded7"
     },
     "generated_sources": {
       "build/mnn-generated/lma_sana_llm.hpp": "8b2ad32220ec6394529389db579ce534b2bae187f46435695953b8cc04b9ea06",
-      "build/mnn-generated/sana_diffusion.cpp": "d57185d680ab83cfb35b15fc89dc5c68beea745b84add0d183740cd8218bb6ee"
+      "build/mnn-generated/sana_diffusion.cpp": "cd649676e0b3b3fcb46ce83e7e332f451a2bfe0049a81fed967cb8c6be77c514"
     },
     "vocabularies": "external_user_selected_components",
     "model_inference_tested": false,
@@ -39,25 +40,26 @@
   "identical_host_android_generated_pipeline": true,
   "generated_pipeline": {
     "lma_sana_llm.hpp": "8b2ad32220ec6394529389db579ce534b2bae187f46435695953b8cc04b9ea06",
-    "sana_diffusion.cpp": "d57185d680ab83cfb35b15fc89dc5c68beea745b84add0d183740cd8218bb6ee"
+    "sana_diffusion.cpp": "cd649676e0b3b3fcb46ce83e7e332f451a2bfe0049a81fed967cb8c6be77c514"
   },
-  "host_worker_sha256": "bf3e17e330ac9ea6aaa34f87374c3d65fdc1cf6166d516bb55cceccc70b978be",
+  "host_worker_sha256": "d4cc479e39d706ce159666308cf75d6d3272699ac38014d8d6d7a3eaac900c8c",
   "model_data_bundled": false,
   "host_execution_only": true,
   "physical_android": false,
   "complete_release_accepted": false,
   "input_fingerprint": {
     "native/mnn/bootstrap.cmake": "8f4046a160689828f5ef82effdb303e0fe4d8f709be887a3df97944da9339a17",
-    "native/mnn/policy.hpp": "02860c259fe519d30b49f53fa87ede734fcba936b35db02aba3d2a79ac99c407",
-    "native/mnn/worker.cpp": "17683a1ad687a93eee6b5b36485502e6370005932c672a3468592ba28862ad15",
+    "native/mnn/image.hpp": "1f66dfe180a818a38aaec1e9abb844d6d361b9f50f93970f8c3abbe39b0d71bb",
+    "native/mnn/policy.hpp": "54d94c5e2bf0bf9dbc38021d6e03eef4fd8fa5d65eb4ccc2c09a40b2afdc60d5",
+    "native/mnn/worker.cpp": "1bb92e7134b216114b11213dc6e93b29002f2d4cdffd4cfac74f0ddb0ccec4a1",
     "third_party/mnn-source-lock.json": "1639a5fe9610af47ab5b6f6d1fbb1df12083f240022f09e1beae5aecd0d2082f",
-    "tools/build_mnn.py": "577a6c6411bb91409b078e615de9e6c72f611a80c91a064d1aaf02da831fea9e",
+    "tools/build_mnn.py": "26c0c9871819a9cdfd21b3a96eb47af95183e85c27c913e3b4cdbf69cb7e8063",
     "tools/fetch_mnn.py": "3eca07c0a174eeafedcfb68cde69f16523902082fbc9b86339d52dea03bdded7",
     "build/mnn-generated/lma_sana_llm.hpp": "8b2ad32220ec6394529389db579ce534b2bae187f46435695953b8cc04b9ea06",
-    "build/mnn-generated/sana_diffusion.cpp": "d57185d680ab83cfb35b15fc89dc5c68beea745b84add0d183740cd8218bb6ee",
-    "build/mnn-app-host-tests/results.json": "5b7a9a840138697483941d80fa88280cba22af0a0885b0c181c70c4fa8a0c0f3",
-    "build/mnn-build-info.json": "fb0b345e81828a3ece1a1bac493f321d2ed78122ffbac226796d7b456e346093",
-    "build/mnn-trained-tests/results.json": "0519b1d4568e3fc75f5cc6b8144580637c8964f7b4b5e87ac3852a61250c6c66",
-    "tools/export_mnn_evidence.py": "ed8dacea25f42380938bcbf440eaab17d09a4f460431a93c0da273aec13aa2c7"
+    "build/mnn-generated/sana_diffusion.cpp": "cd649676e0b3b3fcb46ce83e7e332f451a2bfe0049a81fed967cb8c6be77c514",
+    "build/mnn-build-info.json": "b62f7c134de048e7e9510a137dc56d676fd5fc041b076614e8788d29e16a2253",
+    "build/mnn-edit-app-host-tests/results.json": "3ce2c8bd5a36c0a97cbbd28b25ed6965bc4c5eabb52f5418fc30ce73df2c6bbe",
+    "build/mnn-edit-trained-tests/results.json": "8fb8a6653525c4d3eef42c28e3ebbe06d7fcbf73669ce554846665abcfb07ae8",
+    "tools/export_mnn_evidence.py": "eb82f1d315e89cc90bd30f86d55913043a8a7754bf29bdef92c6c19646bbef42"
   }
 }

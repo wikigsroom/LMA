@@ -125,10 +125,14 @@ def build():
         ("vae", "vae_decoder.mnn", "mnn"), ("vae_data", "vae_decoder.mnn.weight", "mnn_data"),
         ("llm", "llm/llm.mnn", "mnn"), ("llm_data", "llm/llm.mnn.weight", "mnn_data"),
         ("llm_config", "llm/llm_config.json", "json"), ("tokenizer", "llm/tokenizer.txt", "text"), ("meta_queries", "llm/meta_queries.mnn", "mnn")]
-    templates.append(dict(id="sana_mnn_cpu_v1", name="Sana mobile · Qwen3 + MNN", primaryRole="diffusion",
-        definition=dict(engine="mnn_diffusion", backend="cpu", architecture="sana_mobile", pipeline="sana_mnn_v1", tasks=["image"], capabilities=["text_to_image"], parameters=dict(version=1, fields=sana_fields)),
+    sana_roles += [("vae_encoder", "vae_encoder.mnn", "mnn"), ("vae_encoder_data", "vae_encoder.mnn.weight", "mnn_data")]
+    for key in ("width", "height"):
+        sana_fields[key].update(default=512, minimum=512, maximum=512, presets=[512], limitSource="matched_edit_pipeline")
+    sana_fields.pop("useCfg"); sana_fields.pop("cfg")
+    templates.append(dict(id="sana_edit_mnn_cpu_v1", name="Sana Edit · 本地图片卡通转换", primaryRole="diffusion",
+        definition=dict(engine="mnn_diffusion", backend="cpu", architecture="sana_mobile_edit", pipeline="sana_edit_mnn_v1", tasks=["image"], capabilities=["image_to_image", "fixed_style"], parameters=dict(version=1, fields=sana_fields)),
         requirements=[dict(role=r, label=n, formats=[f], required=True) for r,n,f in sana_roles], fixedComponents=[],
-        help="仅匹配 MNN-Sana-Edit-V2 的 Qwen3-0.6B 移动管线；本配方仅文生图，不接受原版 Sana 或 LoRA。13 个组件全部由用户选择，MNN 图与 .weight 必须成套。编码器配置只提取已验证的架构 / embedding 字段，不执行任意路径 / 缓存 / 联网配置。负面提示词需启用 CFG；启用后增加编码和采样开销。当前只有 CPU 编译与主机协议验证，无手机生图 / 性能证据。"))
+        help="匹配 MNN-Sana-Edit-V2 图片卡通风格转换，不是通用文生图或原版 Sana 600M。15 个组件（含图片编码器）全部由用户选择；本地 PNG / JPEG 必选，固定提示词、512×512、无 CFG / 负面条件 / LoRA。建议正方形图片与 10 步；非正方形会按配套流程处理。登记和 App 更新不下载模型，不执行任意配置或外部推理。旧 13 组件文生图声明保留文件 / 设置，但须明确选择本配方和缺少的组件，不能自动迁移。手机质量 / 性能仍需验收。"))
     text_fields = {}
     for key, label, default, low, high, presets, kind in (
         ("threads", "CPU 线程", 4, 1, 256, [1, 2, 4, 8], "integer"),

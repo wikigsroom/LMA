@@ -119,9 +119,10 @@ public final class LocalHttp implements AutoCloseable {
         client.handlerThread = Thread.currentThread();
         try (Socket socket = client.socket) {
             Request request;
-            try { request = read(socket.getInputStream()); client.parsed = true; }
+            BufferedInputStream input = new BufferedInputStream(socket.getInputStream(), 8192);
+            try { request = read(input); client.parsed = true; }
             catch (SocketTimeoutException error) { send(client, null, plain(408, "Request timeout")); return; }
-            catch (Failure error) { send(client, null, plain(error.status, error.getMessage())); return; }
+            catch (Failure error) { send(client, null, plain(error.status, error.getMessage())); finishRejected(client, input); return; }
             Response response;
             try { response = handler.handle(request); }
             catch (Failure error) { response = plain(error.status, error.getMessage()); }
@@ -146,8 +147,23 @@ public final class LocalHttp implements AutoCloseable {
             if ((request == null || !request.method.equals("HEAD")) && response.body != null) { response.body.write(out); out.flush(); }
         }
     }
-    private static Request read(InputStream raw) throws IOException {
-        BufferedInputStream in = new BufferedInputStream(raw, 8192); int[] budget = {MAX_HEADERS};
+    private static void finishRejected(Client client, InputStream input) {
+        // Deliver the error before bounded draining: closing unread request bytes can
+        // reset TCP and discard the response on Windows/Android upload clients.
+        try {
+            client.socket.shutdownOutput();
+            long deadline = System.nanoTime() + TimeUnit.MILLISECONDS.toNanos(250);
+            byte[] discard = new byte[8192]; int remaining = MAX_BODY + 1;
+            while (remaining > 0) {
+                long time = deadline - System.nanoTime(); if (time <= 0) break;
+                client.socket.setSoTimeout((int)Math.max(1, Math.min(250, TimeUnit.NANOSECONDS.toMillis(time))));
+                int size = input.read(discard, 0, Math.min(discard.length, remaining));
+                if (size < 0) break; remaining -= size;
+            }
+        } catch (IOException ignored) { /* Disconnected or slow rejected input is closed by serve. */ }
+    }
+    private static Request read(InputStream in) throws IOException {
+        int[] budget = {MAX_HEADERS};
         String start = line(in, budget); String[] parts = start.split(" ", -1);
         if (parts.length != 3 || !parts[0].matches("[A-Z]+") || !Arrays.asList("HTTP/1.0", "HTTP/1.1").contains(parts[2])) throw new Failure(400, "invalid_request", "Invalid HTTP request line");
         String target = parts[1];

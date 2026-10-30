@@ -1,5 +1,7 @@
 # Sana trained assets and production execution
 
+> **Historical correction (dev.36):** This page records dev.35's thirteen-component text-to-image attempt and gray-output failure. The matched official application requires an image for fixed-style editing; use the [current fifteen-component flow](MNN_SANA_EDIT.en.md). Reproduce the old commands only at original commit ab34f8160065898887dff7066660842b87c41811. Historical text, numbers and failed outputs remain intact. Frozen text-to-image target 04 stays pending.
+
 [中文](MNN_SANA_TRAINED.md) · [Engine and parameters](MNN_SANA_ENGINE.en.md) · [Companion selection](COMPONENT_SUGGESTIONS.en.md) · [Delivery and full pending scope](releases/v0.3.0-dev.35.md)
 
 dev.35 / code 39 advances the matched Sana mobile variant through actual component execution and production Java import, generation, cancellation and recovery checks. Execution here uses native Windows CPU. Android has an ARM64 build from the same generated pipeline, with no physical-device execution. Existing PNGs do not establish prompt fidelity, independent reference numerics or image quality.

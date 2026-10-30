@@ -127,7 +127,9 @@ public final class InputTest {
             byte[] first = Arrays.copyOfRange(bytes,0,InputUploads.CHUNK_BYTES);
             check(request(port,"PUT",path,first,"text/plain",KEY,Collections.singletonMap("Upload-Offset","0")).status == 415, "Input chunks require the exact binary content type");
             check(request(port,"PUT",path,first,"application/octet-stream",KEY,Collections.singletonMap("Upload-Offset","1")).status == 409, "Out-of-order upload offsets are rejected");
-            check(request(port,"PUT",path,new byte[InputUploads.CHUNK_BYTES+1],"application/octet-stream",KEY,Collections.singletonMap("Upload-Offset","0")).status == 413, "HTTP chunk buffering remains bounded at 256 KiB");
+            boolean oversizedReplies = true;
+            for (int attempt=0; attempt<3; attempt++) oversizedReplies &= request(port,"PUT",path,new byte[InputUploads.CHUNK_BYTES+1],"application/octet-stream",KEY,Collections.singletonMap("Upload-Offset","0")).status == 413;
+            check(oversizedReplies, "Repeated oversized uploads receive 413 without a TCP reset; body buffering remains bounded");
             Reply appended = request(port,"PUT",path,first,"application/octet-stream",KEY,Collections.singletonMap("Upload-Offset","0"));
             check(appended.status == 200 && appended.json().getInt("received") == first.length, "An authenticated binary chunk commits a durable byte offset");
             check(request(port,"PUT",path,first,"application/octet-stream",KEY,Collections.singletonMap("Upload-Offset","0")).json().getInt("received") == first.length, "A lost-response retry with identical bytes is idempotent");

@@ -11,7 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def main():
-    inputs = fingerprint('app/src/main/java/com/lma/app/core', 'app/src/main/java/com/lma/app/MnnEngine.java', 'app/src/main/java/com/lma/app/LocalEngine.java', 'app/src/main/java/com/lma/app/NativeWorker.java', 'native/mnn', 'tools/build_mnn.py', 'third_party/mnn-source-lock.json', 'tests/mnn-host', 'tests/native/mnn_policy_test.cpp', 'tests/tts-host/com/lma/app/LmaApp.java', 'tests/host/android/util/AtomicFile.java', 'app/src/main/assets/recipe-templates.json', 'tools/test_mnn.py')
+    inputs = fingerprint('app/src/main/java/com/lma/app/core', 'app/src/main/java/com/lma/app/MnnEngine.java', 'app/src/main/java/com/lma/app/LocalEngine.java', 'app/src/main/java/com/lma/app/NativeWorker.java', 'native/mnn', 'tools/build_mnn.py', 'third_party/mnn-source-lock.json', 'tests/mnn-host', 'tests/fixtures/images', 'tests/native/mnn_policy_test.cpp', 'tests/tts-host/com/lma/app/LmaApp.java', 'tests/host/android/util/AtomicFile.java', 'app/src/main/assets/recipe-templates.json', 'tools/test_mnn.py')
     out = ROOT / 'build/mnn-tests'; out.mkdir(parents=True, exist_ok=True); (out/'results.json').unlink(missing_ok=True)
     run = out/'run'
     if run.exists():
@@ -24,7 +24,7 @@ def main():
     sources += [ROOT/'tests/tts-host/com/lma/app/LmaApp.java',ROOT/'tests/host/android/util/AtomicFile.java']
     rsp=out/'sources.rsp'; rsp.write_text('\n'.join('"'+p.as_posix()+'"' for p in sources),encoding='utf-8')
     subprocess.run([shutil.which('javac'),'-J-Duser.language=en','-encoding','UTF-8','--release','8','-cp',str(dep),'-d',str(classes),'@'+str(rsp)],cwd=ROOT,check=True)
-    result=subprocess.run([shutil.which('java'),'-Dfile.encoding=UTF-8','-Dstdout.encoding=UTF-8','-cp',str(classes)+os.pathsep+str(dep),'com.lma.app.MnnTest',str(run),str(ROOT/'app/src/main/assets/recipe-templates.json')],cwd=ROOT,capture_output=True,text=True,encoding='utf-8',errors='replace',timeout=120)
+    result=subprocess.run([shutil.which('java'),'-Dfile.encoding=UTF-8','-Dstdout.encoding=UTF-8','-cp',str(classes)+os.pathsep+str(dep),'com.lma.app.MnnTest',str(run),str(ROOT/'app/src/main/assets/recipe-templates.json'),str(ROOT/'tests/fixtures/images/astronaut.png')],cwd=ROOT,capture_output=True,text=True,encoding='utf-8',errors='replace',timeout=120)
     (out/'java-output.txt').write_text(result.stdout+result.stderr,encoding='utf-8')
     if result.returncode: raise RuntimeError(result.stdout+result.stderr)
     java=json.loads(result.stdout.strip().splitlines()[-1])
@@ -34,7 +34,7 @@ def main():
     command.write_text('@echo off\ncall "'+str(setup)+'" >nul\nif errorlevel 1 exit /b %errorlevel%\ncl /nologo /std:c++17 /EHsc /W4 "../../tests/native/mnn_policy_test.cpp" /Fe:mnn-policy-test.exe /Fo:mnn-policy-test.obj\n',encoding='ascii')
     result=subprocess.run(['cmd','/d','/c',command.name],cwd=out,capture_output=True,timeout=90); (out/'native-compile.log').write_bytes(result.stdout+result.stderr)
     if result.returncode: raise RuntimeError('Native MNN policy compile failed; inspect build/mnn-tests/native-compile.log')
-    result=subprocess.run([str(out/'mnn-policy-test.exe')],cwd=out,capture_output=True,text=True,timeout=20)
+    result=subprocess.run([str(out/'mnn-policy-test.exe'),str(ROOT/'tests/fixtures/images/astronaut.png')],cwd=out,capture_output=True,text=True,timeout=20)
     if result.returncode: raise RuntimeError(result.stdout+result.stderr)
     native=json.loads(result.stdout.strip()); current(inputs)
     report=dict(passed=java['passed']+native['passed'],java=java,native=native,production_mnn_binding=True,actual_host_children=True,model_inference=False,physical_android=False,image_outputs=False,input_fingerprint=inputs)

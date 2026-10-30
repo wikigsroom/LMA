@@ -1,8 +1,14 @@
 # LMA · Android 本地模型工作台
 
+> **当前开发：0.3.0-dev.36 / code 40。** 更正 Sana Edit 的实际用途：新增完整 15 组件、本地 PNG/JPEG 必选、固定提示词与 512×512 图片转换；接入独立参数、不可变任务、真实取消恢复和结果保存。App 只更新基座，所有模型仍由用户选择/下载/管理。共用上传接口修复超限请求偶发连接中断。[完整使用逻辑](docs/MNN_SANA_EDIT.md) · [编号实现和全部待办](docs/releases/v0.3.0-dev.36.md) · [实际产物 MP4](docs/media/development/sana-edit-trained/sana-host-outputs.mp4) · [GIF](docs/media/development/sana-edit-trained/sana-host-outputs.gif)。原 Sana 文生图目标仍待完成；实际主机运行、Android 编译、界面夹具与未完成的真机/正式 Release 验收分别记录。
+
+| 用户本地输入（公有领域样例） | 实际主机模型输出（非手机录屏） |
+|---|---|
+| ![用户输入](docs/media/development/sana-edit-trained/source.png) | ![真实图片转换结果](docs/media/development/sana-edit-trained/01-a.png) |
+
 [中文](README.md) · [English](README.en.md) · [下载 / Releases](https://github.com/wikigsroom/LMA/releases) · [文档导航](docs/README.md) · [更新记录](CHANGELOG.md)
 
-> **当前开发：0.3.0-dev.35 / code 39。** Sana 匹配变体已接入完整真实组件验证与生产 Java 导入 / 运行 / 采样取消 / 恢复链路。修复 CFG 编码 batch、浮点 mask、实际采样进度、单步调度与写入结果。13 个组件共 1,505,181,194 字节，全部由用户自行选择；APK 只更新基座。主机运行与 Android 编译分别留证，当前样例未呈现所需主体，画质仍未通过。[运行与使用](docs/MNN_SANA_TRAINED.md) · [编号交付 / 全部待办](docs/releases/v0.3.0-dev.35.md) · [实际产物 MP4](docs/media/development/sana-trained/sana-host-outputs.mp4) · [GIF](docs/media/development/sana-trained/sana-host-outputs.gif)。不是手机运行或完整 Release 验收。
+> **dev.35 历史记录（模型用途已由 dev.36 更正）。** Sana 匹配变体已接入完整真实组件验证与生产 Java 导入 / 运行 / 采样取消 / 恢复链路。修复 CFG 编码 batch、浮点 mask、实际采样进度、单步调度与写入结果。13 个组件共 1,505,181,194 字节，全部由用户自行选择；APK 只更新基座。主机运行与 Android 编译分别留证，当前样例未呈现所需主体，画质仍未通过。[运行与使用](docs/MNN_SANA_TRAINED.md) · [编号交付 / 全部待办](docs/releases/v0.3.0-dev.35.md) · [实际产物 MP4](docs/media/development/sana-trained/sana-host-outputs.mp4) · [GIF](docs/media/development/sana-trained/sana-host-outputs.gif)。不是手机运行或完整 Release 验收。
 
 > **保留 dev.34：配套文件管理。** 新增 HF 配套组件检查：同一固定版本分页查看文件名建议，用户勾选后才应用；不覆盖已有选择、不登记模型、不自动下载。35 套现有配方中 19 套提供 49 条文件提示，Sana 可检查完整 13 组件；歧义与未查全目录保留手选。旧模型 ID、参数和任务保持。[方案与使用](docs/COMPONENT_SUGGESTIONS.md) · [编号交付与完整待办](docs/releases/v0.3.0-dev.34.md) · [MP4](docs/media/development/components/components-ui.mp4) · [GIF](docs/media/development/components/components-ui.gif)。这是选择基座与元数据检查，不代表模型推理或手机验收，完整版本门槛保留。
 

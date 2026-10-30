@@ -1,66 +1,62 @@
 {
-  "schema": "lma.mnn-trained-media/1",
-  "version": "0.3.0-dev.35",
+  "schema": "lma.mnn-edit-trained-media/1",
+  "version": "0.3.0-dev.36",
   "kind": "actual_native_windows_output_slideshow",
   "files": [
     {
       "file": "00-contact-sheet.png",
-      "bytes": 1342190,
-      "sha256": "82a00ce0c9de5bde88595673e8d13865ee9d74c1fbbf59e3a0561704e2788bc3"
+      "bytes": 1142497,
+      "sha256": "32c69f294d61a9b516c281b9cfa10364046c73653a7fd8add9544829c4a6d8a3"
     },
     {
       "file": "01-a.png",
-      "bytes": 536536,
-      "sha256": "16695e6f777c57604fbdc6d3722b708a3bb866c9ebdbdbef21482b800a59cedd"
+      "bytes": 495385,
+      "sha256": "a8bd528b8297e5fe9d1215bd478d227cad01d56d799d554b3b02d0197eae689c"
     },
     {
-      "file": "02-b.png",
-      "bytes": 536834,
-      "sha256": "dad16d135b6e506c6a4c012599ae6926eb10de5a42e02f380b0e9ad67895ed7e"
+      "file": "02-jpeg-crop.png",
+      "bytes": 416192,
+      "sha256": "2652deab0a351b323d4fed0e20a6f8b1fe2db38e69fa452ea43d2bf6363c137e"
     },
     {
-      "file": "03-cfg-a.png",
-      "bytes": 538649,
-      "sha256": "f40766dab8604f195304415f8f478c44ff9ce5ab3d6704a6655afb925e41fe04"
-    },
-    {
-      "file": "04-cfg-b.png",
-      "bytes": 563108,
-      "sha256": "1dcd116e8a31d50e17af31b337c41f54e0ff535dd1a88f9e2ad9bd4a3b619b8c"
-    },
-    {
-      "file": "05-rectangle.png",
-      "bytes": 180536,
-      "sha256": "799523bcfd3e411c16245dd5f02a3ae7576bdbee78608c9aea95b42e06160be7"
-    },
-    {
-      "file": "06-single-step.png",
-      "bytes": 143748,
-      "sha256": "484dc8262f8c835a215693c76c01c37248ab6bbff67a21624fae00938a89e401"
+      "file": "03-single-step.png",
+      "bytes": 502372,
+      "sha256": "c9d2ef8543477d26eb14bbf60ca5f7dcb116568986bb241173ae52c240cc1b23"
     },
     {
       "file": "sana-host-outputs.gif",
-      "bytes": 762026,
-      "sha256": "71d6b2cf22c1095f3e717eb4974baa9c4a4fb97c284c61e19d83acae08e16e89"
+      "bytes": 268312,
+      "sha256": "fda9b8aa6da24d2a9b860e87de826c74a740c0fa28dd2fd1eb0a67cd4a1c374b"
     },
     {
       "file": "sana-host-outputs.mp4",
-      "bytes": 399994,
-      "sha256": "29bdcb6512d2f5d84b89bea7b65f6396492f41631c31c679a4e333552a7fd843"
+      "bytes": 192508,
+      "sha256": "96c25a3e433cf2765052c3b16fb1367ad2e62d66eb15ba6ef0a9540fef2b2c06"
+    },
+    {
+      "file": "source-crop.jpg",
+      "bytes": 46707,
+      "sha256": "2427713afd15f842757f571e8a5e9a75b95680c06cd281f2926c8444323a2e45"
+    },
+    {
+      "file": "source.png",
+      "bytes": 791555,
+      "sha256": "88431cd9653ccd539741b555fb0a46b61558b301d4110412b5bc28b5e3ea6cb5"
     }
   ],
   "products": [
     {
       "case": "a",
       "file": "01-a.png",
-      "sha256": "16695e6f777c57604fbdc6d3722b708a3bb866c9ebdbdbef21482b800a59cedd",
+      "sha256": "a8bd528b8297e5fe9d1215bd478d227cad01d56d799d554b3b02d0197eae689c",
       "request": {
         "schema": "lma.engine-request/1",
         "type": "image.generate",
-        "pipeline": "sana_mnn_v1",
+        "pipeline": "sana_edit_mnn_v1",
         "input": {
-          "prompt": "A red ceramic teapot on a wooden table, studio photograph, soft light",
-          "negativePrompt": ""
+          "prompt": "Convert to a Ghibli-style illustration: soft contrast, warm tones, slight linework, keep the scene consistent.",
+          "negativePrompt": "",
+          "imagePath": "T:/build/mnn-edit-trained-tests/run-1793338891338009900/source.png"
         },
         "parameters": {
           "width": 512,
@@ -72,324 +68,131 @@
           "cfg": 4,
           "seed": 42
         },
-        "workspace": "T:/build/mnn-trained-tests/run-1793332359644081100/workspace",
-        "output": "T:/build/mnn-trained-tests/run-1793332359644081100/a.png"
+        "workspace": "T:/build/mnn-edit-trained-tests/run-1793338891338009900/workspace",
+        "output": "T:/build/mnn-edit-trained-tests/run-1793338891338009900/a.png"
       },
       "image": {
-        "bytes": 536536,
-        "sha256": "16695e6f777c57604fbdc6d3722b708a3bb866c9ebdbdbef21482b800a59cedd",
+        "bytes": 495385,
+        "sha256": "a8bd528b8297e5fe9d1215bd478d227cad01d56d799d554b3b02d0197eae689c",
         "width": 512,
         "height": 512,
         "mean": [
-          123.1358757019043,
-          120.50979232788086,
-          111.61408615112305
+          164.8839569091797,
+          123.5143928527832,
+          106.1043586730957
         ],
         "stddev": [
-          11.68826523885714,
-          9.068407721991099,
-          7.721401985400155
+          80.90507860614923,
+          71.04995903254935,
+          67.39776487350927
         ],
         "extrema": [
           [
-            89,
-            165
-          ],
-          [
-            92,
-            164
-          ],
-          [
-            84,
-            161
-          ]
-        ]
-      },
-      "host_resources": {
-        "observed": true,
-        "samples": 4805,
-        "interval_ms": 20,
-        "observed_peak_working_set_bytes": 960110592,
-        "sampled_peak_private_bytes": 957550592,
-        "gpu_memory_measured": false,
-        "physical_device_memory_measured": false
-      }
-    },
-    {
-      "case": "b",
-      "file": "02-b.png",
-      "sha256": "dad16d135b6e506c6a4c012599ae6926eb10de5a42e02f380b0e9ad67895ed7e",
-      "request": {
-        "schema": "lma.engine-request/1",
-        "type": "image.generate",
-        "pipeline": "sana_mnn_v1",
-        "input": {
-          "prompt": "A small sailboat on a blue lake, snow covered mountain, landscape photograph",
-          "negativePrompt": ""
-        },
-        "parameters": {
-          "width": 512,
-          "height": 512,
-          "steps": 10,
-          "threads": 4,
-          "maxInputTokens": 512,
-          "useCfg": false,
-          "cfg": 4,
-          "seed": 42
-        },
-        "workspace": "T:/build/mnn-trained-tests/run-1793332359644081100/workspace",
-        "output": "T:/build/mnn-trained-tests/run-1793332359644081100/b.png"
-      },
-      "image": {
-        "bytes": 536834,
-        "sha256": "dad16d135b6e506c6a4c012599ae6926eb10de5a42e02f380b0e9ad67895ed7e",
-        "width": 512,
-        "height": 512,
-        "mean": [
-          123.18432998657227,
-          121.10762023925781,
-          112.32798767089844
-        ],
-        "stddev": [
-          11.851595329500734,
-          9.153086002809367,
-          7.710389245063758
-        ],
-        "extrema": [
-          [
-            88,
-            168
-          ],
-          [
-            92,
-            157
-          ],
-          [
-            85,
-            159
-          ]
-        ]
-      },
-      "host_resources": {
-        "observed": true,
-        "samples": 6227,
-        "interval_ms": 20,
-        "observed_peak_working_set_bytes": 960147456,
-        "sampled_peak_private_bytes": 957702144,
-        "gpu_memory_measured": false,
-        "physical_device_memory_measured": false
-      }
-    },
-    {
-      "case": "cfg-a",
-      "file": "03-cfg-a.png",
-      "sha256": "f40766dab8604f195304415f8f478c44ff9ce5ab3d6704a6655afb925e41fe04",
-      "request": {
-        "schema": "lma.engine-request/1",
-        "type": "image.generate",
-        "pipeline": "sana_mnn_v1",
-        "input": {
-          "prompt": "A red ceramic teapot on a wooden table, studio photograph, soft light",
-          "negativePrompt": "blurry, distorted, low quality"
-        },
-        "parameters": {
-          "width": 512,
-          "height": 512,
-          "steps": 10,
-          "threads": 4,
-          "maxInputTokens": 512,
-          "useCfg": true,
-          "cfg": 4,
-          "seed": 42
-        },
-        "workspace": "T:/build/mnn-trained-tests/run-1793332359644081100/workspace",
-        "output": "T:/build/mnn-trained-tests/run-1793332359644081100/cfg-a.png"
-      },
-      "image": {
-        "bytes": 538649,
-        "sha256": "f40766dab8604f195304415f8f478c44ff9ce5ab3d6704a6655afb925e41fe04",
-        "width": 512,
-        "height": 512,
-        "mean": [
-          124.54803848266602,
-          121.4286117553711,
-          110.26795959472656
-        ],
-        "stddev": [
-          11.34068455350354,
-          8.946285606610838,
-          7.985347071106156
-        ],
-        "extrema": [
-          [
-            90,
-            168
-          ],
-          [
-            94,
-            182
-          ],
-          [
-            84,
-            176
-          ]
-        ]
-      },
-      "host_resources": {
-        "observed": true,
-        "samples": 10603,
-        "interval_ms": 20,
-        "observed_peak_working_set_bytes": 999985152,
-        "sampled_peak_private_bytes": 997531648,
-        "gpu_memory_measured": false,
-        "physical_device_memory_measured": false
-      }
-    },
-    {
-      "case": "cfg-b",
-      "file": "04-cfg-b.png",
-      "sha256": "1dcd116e8a31d50e17af31b337c41f54e0ff535dd1a88f9e2ad9bd4a3b619b8c",
-      "request": {
-        "schema": "lma.engine-request/1",
-        "type": "image.generate",
-        "pipeline": "sana_mnn_v1",
-        "input": {
-          "prompt": "A red ceramic teapot on a wooden table, studio photograph, soft light",
-          "negativePrompt": "red, ceramic, teapot"
-        },
-        "parameters": {
-          "width": 512,
-          "height": 512,
-          "steps": 10,
-          "threads": 4,
-          "maxInputTokens": 512,
-          "useCfg": true,
-          "cfg": 4,
-          "seed": 42
-        },
-        "workspace": "T:/build/mnn-trained-tests/run-1793332359644081100/workspace",
-        "output": "T:/build/mnn-trained-tests/run-1793332359644081100/cfg-b.png"
-      },
-      "image": {
-        "bytes": 563108,
-        "sha256": "1dcd116e8a31d50e17af31b337c41f54e0ff535dd1a88f9e2ad9bd4a3b619b8c",
-        "width": 512,
-        "height": 512,
-        "mean": [
-          125.57344055175781,
-          122.98271942138672,
-          112.88569641113281
-        ],
-        "stddev": [
-          13.473732453428354,
-          10.323453455591634,
-          9.79169664452191
-        ],
-        "extrema": [
-          [
-            81,
-            179
-          ],
-          [
-            91,
-            172
-          ],
-          [
-            82,
-            176
-          ]
-        ]
-      },
-      "host_resources": {
-        "observed": true,
-        "samples": 8247,
-        "interval_ms": 20,
-        "observed_peak_working_set_bytes": 1000448000,
-        "sampled_peak_private_bytes": 998023168,
-        "gpu_memory_measured": false,
-        "physical_device_memory_measured": false
-      }
-    },
-    {
-      "case": "rectangle",
-      "file": "05-rectangle.png",
-      "sha256": "799523bcfd3e411c16245dd5f02a3ae7576bdbee78608c9aea95b42e06160be7",
-      "request": {
-        "schema": "lma.engine-request/1",
-        "type": "image.generate",
-        "pipeline": "sana_mnn_v1",
-        "input": {
-          "prompt": "A red ceramic teapot on a wooden table, studio photograph, soft light",
-          "negativePrompt": ""
-        },
-        "parameters": {
-          "width": 320,
-          "height": 256,
-          "steps": 2,
-          "threads": 4,
-          "maxInputTokens": 512,
-          "useCfg": false,
-          "cfg": 4,
-          "seed": 42
-        },
-        "workspace": "T:/build/mnn-trained-tests/run-1793332359644081100/workspace",
-        "output": "T:/build/mnn-trained-tests/run-1793332359644081100/rectangle.png"
-      },
-      "image": {
-        "bytes": 180536,
-        "sha256": "799523bcfd3e411c16245dd5f02a3ae7576bdbee78608c9aea95b42e06160be7",
-        "width": 320,
-        "height": 256,
-        "mean": [
-          121.6703857421875,
-          120.5371337890625,
-          108.646240234375
-        ],
-        "stddev": [
-          20.568373305091693,
-          16.038080689861918,
-          14.213062067165538
-        ],
-        "extrema": [
-          [
-            72,
+            8,
             255
           ],
           [
-            89,
-            247
+            3,
+            255
           ],
           [
-            78,
+            2,
             255
           ]
         ]
       },
       "host_resources": {
         "observed": true,
-        "samples": 975,
+        "samples": 6005,
         "interval_ms": 20,
-        "observed_peak_working_set_bytes": 939970560,
-        "sampled_peak_private_bytes": 937418752,
+        "observed_peak_working_set_bytes": 960540672,
+        "sampled_peak_private_bytes": 957935616,
+        "gpu_memory_measured": false,
+        "physical_device_memory_measured": false
+      }
+    },
+    {
+      "case": "jpeg-crop",
+      "file": "02-jpeg-crop.png",
+      "sha256": "2652deab0a351b323d4fed0e20a6f8b1fe2db38e69fa452ea43d2bf6363c137e",
+      "request": {
+        "schema": "lma.engine-request/1",
+        "type": "image.generate",
+        "pipeline": "sana_edit_mnn_v1",
+        "input": {
+          "prompt": "Convert to a Ghibli-style illustration: soft contrast, warm tones, slight linework, keep the scene consistent.",
+          "negativePrompt": "",
+          "imagePath": "T:/build/mnn-edit-trained-tests/run-1793338891338009900/source-crop.jpg"
+        },
+        "parameters": {
+          "width": 512,
+          "height": 512,
+          "steps": 10,
+          "threads": 4,
+          "maxInputTokens": 512,
+          "useCfg": false,
+          "cfg": 4,
+          "seed": 42
+        },
+        "workspace": "T:/build/mnn-edit-trained-tests/run-1793338891338009900/workspace",
+        "output": "T:/build/mnn-edit-trained-tests/run-1793338891338009900/jpeg-crop.png"
+      },
+      "image": {
+        "bytes": 416192,
+        "sha256": "2652deab0a351b323d4fed0e20a6f8b1fe2db38e69fa452ea43d2bf6363c137e",
+        "width": 512,
+        "height": 512,
+        "mean": [
+          148.41504287719727,
+          119.97007751464844,
+          99.80604934692383
+        ],
+        "stddev": [
+          97.32657481657839,
+          85.13764237480093,
+          77.25284756265589
+        ],
+        "extrema": [
+          [
+            0,
+            255
+          ],
+          [
+            0,
+            255
+          ],
+          [
+            0,
+            255
+          ]
+        ]
+      },
+      "host_resources": {
+        "observed": true,
+        "samples": 6268,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 960684032,
+        "sampled_peak_private_bytes": 958058496,
         "gpu_memory_measured": false,
         "physical_device_memory_measured": false
       }
     },
     {
       "case": "single-step",
-      "file": "06-single-step.png",
-      "sha256": "484dc8262f8c835a215693c76c01c37248ab6bbff67a21624fae00938a89e401",
+      "file": "03-single-step.png",
+      "sha256": "c9d2ef8543477d26eb14bbf60ca5f7dcb116568986bb241173ae52c240cc1b23",
       "request": {
         "schema": "lma.engine-request/1",
         "type": "image.generate",
-        "pipeline": "sana_mnn_v1",
+        "pipeline": "sana_edit_mnn_v1",
         "input": {
-          "prompt": "A red ceramic teapot on a wooden table, studio photograph, soft light",
-          "negativePrompt": ""
+          "prompt": "Convert to a Ghibli-style illustration: soft contrast, warm tones, slight linework, keep the scene consistent.",
+          "negativePrompt": "",
+          "imagePath": "T:/build/mnn-edit-trained-tests/run-1793338891338009900/source.png"
         },
         "parameters": {
-          "width": 256,
-          "height": 256,
+          "width": 512,
+          "height": 512,
           "steps": 1,
           "threads": 4,
           "maxInputTokens": 512,
@@ -397,52 +200,54 @@
           "cfg": 4,
           "seed": 42
         },
-        "workspace": "T:/build/mnn-trained-tests/run-1793332359644081100/workspace",
-        "output": "T:/build/mnn-trained-tests/run-1793332359644081100/single-step.png"
+        "workspace": "T:/build/mnn-edit-trained-tests/run-1793338891338009900/workspace",
+        "output": "T:/build/mnn-edit-trained-tests/run-1793338891338009900/single-step.png"
       },
       "image": {
-        "bytes": 143748,
-        "sha256": "484dc8262f8c835a215693c76c01c37248ab6bbff67a21624fae00938a89e401",
-        "width": 256,
-        "height": 256,
+        "bytes": 502372,
+        "sha256": "c9d2ef8543477d26eb14bbf60ca5f7dcb116568986bb241173ae52c240cc1b23",
+        "width": 512,
+        "height": 512,
         "mean": [
-          119.11993408203125,
-          108.25830078125,
-          99.73541259765625
+          162.52624893188477,
+          122.68693161010742,
+          105.81147384643555
         ],
         "stddev": [
-          23.382692205369455,
-          20.880701982374017,
-          23.487652088606627
+          74.45408032871762,
+          68.11882710032035,
+          65.9366512254503
         ],
         "extrema": [
           [
-            32,
-            206
+            3,
+            255
           ],
           [
-            52,
-            200
+            1,
+            255
           ],
           [
-            42,
-            215
+            0,
+            255
           ]
         ]
       },
       "host_resources": {
         "observed": true,
-        "samples": 950,
+        "samples": 3002,
         "interval_ms": 20,
-        "observed_peak_working_set_bytes": 938369024,
-        "sampled_peak_private_bytes": 935809024,
+        "observed_peak_working_set_bytes": 960757760,
+        "sampled_peak_private_bytes": 958103552,
         "gpu_memory_measured": false,
         "physical_device_memory_measured": false
       }
     }
   ],
-  "direct_report_sha256": "0519b1d4568e3fc75f5cc6b8144580637c8964f7b4b5e87ac3852a61250c6c66",
-  "java_report_sha256": "5b7a9a840138697483941d80fa88280cba22af0a0885b0c181c70c4fa8a0c0f3",
+  "task": "image_to_image",
+  "fixed_style": true,
+  "direct_report_sha256": "8fb8a6653525c4d3eef42c28e3ebbe06d7fcbf73669ce554846665abcfb07ae8",
+  "java_report_sha256": "3ce2c8bd5a36c0a97cbbd28b25ed6965bc4c5eabb52f5418fc30ce73df2c6bbe",
   "real_trained_host_execution": true,
   "production_java_native_host_executed": true,
   "android_recording": false,
@@ -451,18 +256,24 @@
   "complete_release_accepted": false,
   "input_fingerprint": {
     "native/mnn/bootstrap.cmake": "8f4046a160689828f5ef82effdb303e0fe4d8f709be887a3df97944da9339a17",
-    "native/mnn/policy.hpp": "02860c259fe519d30b49f53fa87ede734fcba936b35db02aba3d2a79ac99c407",
-    "native/mnn/worker.cpp": "17683a1ad687a93eee6b5b36485502e6370005932c672a3468592ba28862ad15",
+    "native/mnn/image.hpp": "1f66dfe180a818a38aaec1e9abb844d6d361b9f50f93970f8c3abbe39b0d71bb",
+    "native/mnn/policy.hpp": "54d94c5e2bf0bf9dbc38021d6e03eef4fd8fa5d65eb4ccc2c09a40b2afdc60d5",
+    "native/mnn/worker.cpp": "1bb92e7134b216114b11213dc6e93b29002f2d4cdffd4cfac74f0ddb0ccec4a1",
     "research/sd_host/platform.hpp": "c377ed1b676707a469a192d96ae9b748802e1f62ad0674366b593b2b5b2daf67",
     "third_party/mnn-source-lock.json": "1639a5fe9610af47ab5b6f6d1fbb1df12083f240022f09e1beae5aecd0d2082f",
-    "tools/build_mnn.py": "577a6c6411bb91409b078e615de9e6c72f611a80c91a064d1aaf02da831fea9e",
-    "tools/build_mnn_host.py": "e469769228eff3b8d661c505ee6b665beba04bcc50fa75c4c0ca49c7137544a7",
+    "tools/build_mnn.py": "26c0c9871819a9cdfd21b3a96eb47af95183e85c27c913e3b4cdbf69cb7e8063",
+    "tools/build_mnn_host.py": "13ad56bdf014cdbc2893828dd362ffeeb8cde450caddcd8dc9176aaf8c13e83e",
     "tools/fetch_mnn.py": "3eca07c0a174eeafedcfb68cde69f16523902082fbc9b86339d52dea03bdded7",
-    "tools/fetch_mnn_trained.py": "21e251bea2d8fe8f9a8035ab9ee67e3d885d2a5b76bebd24e8b4b21731a5ba1c",
+    "tools/fetch_mnn_trained.py": "45640f38a4bf5e70aabc5c3520424a0d7fe4eba9c944deb1dd2987cc0e5a6921",
+    "research/mnn_edit_trained/assets.json": "be056d5eb9152e6ccb0468e8108e7fee5b602b1a0401173d49961b616e9799c4",
     "research/mnn_trained/assets.json": "892f55d300af5e6ed94b68d8cd9a4e468bc869c52d67d108f08ffb404598ff68",
+    "tools/fetch_mnn_edit_trained.py": "5983493726b8bda222170c311b6891748823bdcdf47780c0064203354846e883",
+    "tests/fixtures/images/astronaut.png": "88431cd9653ccd539741b555fb0a46b61558b301d4110412b5bc28b5e3ea6cb5",
+    "tests/fixtures/images/LICENSE.md": "e16919f880e5fbbc4bdd8d1994eddeebb7599c2fcf86cbaad6402c659f2da37f",
+    "tools/test_mnn_edit_trained.py": "fc6087952c5111876c3c1fd48e49cb867cc030a7a7ee2b6da55a76096929afbf",
     "tools/test_mnn_trained.py": "c555dca8d2599f6751825a3d1aedea93b1ed348f4bd4cdaaaea43ad2eda7540d",
     "tools/test_sd15_trained.py": "60ecc9c6079208b2178d6796dcbf28dd241babbdc0b24d35814201f7552bd4b2",
-    "app/src/main/assets/recipe-templates.json": "107af9e62a783b9b6f806df8b8593446c2e6539b080ff04ee301932bfeeb964b",
+    "app/src/main/assets/recipe-templates.json": "91f2fb0aa811d467afb8f410a4ceaca7f1b6cd457c82ceef8968b0678872a503",
     "app/src/main/java/com/lma/app/core/AdapterSpec.java": "aff8572d14ac8d616be0a1b0da395e52ed5bddcd5ae407a969c2657bf9257581",
     "app/src/main/java/com/lma/app/core/ArtifactStore.java": "6f85d2ac710cac0fb5a76cde9493ff1fef4d3e2e119c3e031b7c44ff65a49061",
     "app/src/main/java/com/lma/app/core/AssemblyPlan.java": "80e81dea2a831d3955aa5ae21323eb0432fb448f78994901633fbb6e85d77e7c",
@@ -478,14 +289,14 @@
     "app/src/main/java/com/lma/app/core/EngineWorkspace.java": "6c632861e13d0a8950cdee66e8bea8a8760d23550c10343d6cfdd8a6e9af29dd",
     "app/src/main/java/com/lma/app/core/ExecutionGate.java": "143b6d145036c56ad0937316e87af5f4c44507ef89cf16affdc5bef0ad8e2126",
     "app/src/main/java/com/lma/app/core/InputSelection.java": "963fe60973caab82b9dfedaa7c1661f236aed6ea158fcda8f4a86d02ba33d509",
-    "app/src/main/java/com/lma/app/core/InputSpec.java": "a2d34c41a8c623eb31bbcae412037705ea7e4c69e06c9de6f62c83f199f97728",
+    "app/src/main/java/com/lma/app/core/InputSpec.java": "d535fc70bdbfbf7cd9ca2ce685c20735d67ed5c3b7132989ec683c74de779f97",
     "app/src/main/java/com/lma/app/core/InputUploads.java": "5debd68a73abc8bde8174c985dfec8f534c6bf8df58dda8810b0cc3541fe1d53",
     "app/src/main/java/com/lma/app/core/JobStore.java": "3f999d908b7667d35557c979a26dbf5544c712015b986a090946b76b8a680628",
     "app/src/main/java/com/lma/app/core/LcmCondition.java": "2177da94b69781263e36f3e379034619bf74c6856bc6a9108592d4f272e94b7a",
     "app/src/main/java/com/lma/app/core/LocalApi.java": "c9e1674f98ef12c7312ff42c50ba38a10c08d5cf1d3e173a8093ecd7fa67e5fc",
-    "app/src/main/java/com/lma/app/core/LocalHttp.java": "428acea4f950bd2ae2948e5b418f5f98259640108427fd9c59d918809787c9cd",
+    "app/src/main/java/com/lma/app/core/LocalHttp.java": "6f74e8acfe7072606c23e775f87fa5aa8d5ee094ffe20e96788f161674a947aa",
     "app/src/main/java/com/lma/app/core/Ltx098Spec.java": "8333ea906bc31ea9e014ce4840d15fc6253c91eda1f3688de4f8645738819abf",
-    "app/src/main/java/com/lma/app/core/MnnSpec.java": "ef8a51675cdda887a1b7c78b8b1c6398b71c87a004327fbda5af62f8b52d8315",
+    "app/src/main/java/com/lma/app/core/MnnSpec.java": "055cc06962da0fc34c1abdc57100ac52fca47a9d66ffea6621155c53046d5f1a",
     "app/src/main/java/com/lma/app/core/ModelBundle.java": "ad08c033a2c9a215c292d20a5a97a65c85db91ce6a86609a8eed9e846449e84b",
     "app/src/main/java/com/lma/app/core/ModelSelection.java": "965c9f22f16fc822f792ebef6e0de0a0c67f5a6882d5e7ef77be05b83ea1aeb2",
     "app/src/main/java/com/lma/app/core/MossDelaySpec.java": "2f680d68cf78517f234c336c77e0b584bf40300fd6294514b7cd457149d41bd0",
@@ -517,15 +328,15 @@
     "app/src/main/java/com/lma/app/core/TtsSpec.java": "54f841e2ca5e93d3c3e1845014029b96912291fcf50a50c26a0124325a7a962a",
     "app/src/main/java/com/lma/app/core/WaveFile.java": "cf70b9bbafb6aa23cc25217d4883e769173b00f74571d1b115c50a8ad6b15361",
     "app/src/main/java/com/lma/app/LocalEngine.java": "c06198df33cf290dff58d5d7d7f2b44b3d84d552c1a3c0f1cf35c30c6d5b7c19",
-    "app/src/main/java/com/lma/app/MnnEngine.java": "85018a26be9129494e9fef4a45008c2098b9586bfe31af1cebb9a9baa88319a2",
+    "app/src/main/java/com/lma/app/MnnEngine.java": "ba831762e7919c033f3ae5b2645ea61db70ec286f10008f9aef7ad73c72363fc",
     "app/src/main/java/com/lma/app/NativeWorker.java": "8d9c5aa7cf5744e634c6c3eeb17a798bc429a8f22e172f6b75e1a1400d7c4eaa",
     "tests/host/android/util/AtomicFile.java": "a05b9c6ef4fa0f0f40aaa49b235faccc98d2d7d5aa1ea4bb8d2f535b8bad2796",
-    "tests/mnn-trained/com/lma/app/MnnTrainedAppTest.java": "07433dff45122af951ceedd0478a717ca02dbb169d5529e11e391414d7d9b0a4",
+    "tests/mnn-edit-trained/com/lma/app/MnnEditTrainedAppTest.java": "8232e257343f6130ad8d2d4fe0674adda8a62bd22e1ae67373a8029325feb8ac",
     "tests/tts-host/com/lma/app/LmaApp.java": "9f27bd7188d03aa4eb95b007111daff697d39515dc41884d4569e2f382d0577b",
-    "tools/test_mnn_app_host.py": "b61e3f00fc03043701e388e402c1a16865351a625f0790a6289b43eeb50887d7",
-    "app/src/main/AndroidManifest.xml": "ff11b116fa9004e52668881362dbad9b82c0b3081ef2c407d37413191f13a117",
-    "build/mnn-app-host-tests/results.json": "5b7a9a840138697483941d80fa88280cba22af0a0885b0c181c70c4fa8a0c0f3",
-    "build/mnn-trained-tests/results.json": "0519b1d4568e3fc75f5cc6b8144580637c8964f7b4b5e87ac3852a61250c6c66",
-    "tools/render_mnn_trained.py": "f6224823fce2f3330cda1c0e58e253659add0dfecbb69a29e182d2efb7f4e5d9"
+    "tools/test_mnn_edit_app_host.py": "028a4d8e56dfcc1e60d597dee7d918210e11bb57108011ccb66dc1f80e8a4996",
+    "app/src/main/AndroidManifest.xml": "2cd4ab5a2c47d06af1ac8335bc782add6f6c3e25f849a12ec2aeef004541d459",
+    "build/mnn-edit-app-host-tests/results.json": "3ce2c8bd5a36c0a97cbbd28b25ed6965bc4c5eabb52f5418fc30ce73df2c6bbe",
+    "build/mnn-edit-trained-tests/results.json": "8fb8a6653525c4d3eef42c28e3ebbe06d7fcbf73669ce554846665abcfb07ae8",
+    "tools/render_mnn_edit_trained.py": "5f8c3c2e893c18aba721ec4b9df6f7b18077cec971dbe430450a0fbfa2300021"
   }
 }

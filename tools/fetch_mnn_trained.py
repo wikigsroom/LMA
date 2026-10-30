@@ -62,7 +62,7 @@ def verify():
     return lock
 
 
-def download(item, origin):
+def download(item, origin, user_agent='LMA-explicit-Sana-developer-assets/1'):
     path = asset_path(item); path.parent.mkdir(parents=True, exist_ok=True)
     if path.exists():
         if path.stat().st_size != item['bytes'] or sha(path) != item['sha256']:
@@ -82,7 +82,7 @@ def download(item, origin):
     while start < item['bytes']:
         end = min(start + CHUNK, item['bytes']) - 1
         url = origin + '/' + item['repository'] + '/resolve/' + item['revision'] + '/' + item['path'] + '?download=true&lma_range=' + str(start)
-        request = urllib.request.Request(url, headers={'Range': 'bytes=%d-%d' % (start, end), 'User-Agent': 'LMA-explicit-Sana-developer-assets/1'})
+        request = urllib.request.Request(url, headers={'Range': 'bytes=%d-%d' % (start, end), 'User-Agent': user_agent})
         for attempt in range(3):
             try:
                 with urllib.request.urlopen(request, timeout=45) as response:

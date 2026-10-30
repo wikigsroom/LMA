@@ -8,6 +8,7 @@ import java.util.*;
 public final class InputSpec {
     private final JSONObject roles;
     private String promptHelp = "";
+    private String fixedPrompt;
     public InputSpec(JSONObject roles) throws Exception {
         this.roles = DataFiles.copy(roles);
         if (roles.length() > 8) throw new IllegalArgumentException("At most eight input roles are allowed");
@@ -34,8 +35,12 @@ public final class InputSpec {
         if (promptHelp == null || promptHelp.length() > 400 || promptHelp.indexOf('\0') >= 0) throw new IllegalArgumentException("Invalid prompt help");
         this.promptHelp = promptHelp;
     }
+    public InputSpec withFixedPrompt(String value) {
+        if (value == null || value.trim().isEmpty() || value.length() > 4000 || value.indexOf(0) >= 0) throw new IllegalArgumentException("Invalid fixed prompt");
+        fixedPrompt = value; return this;
+    }
     public static InputSpec promptOnly() throws Exception { return new InputSpec(new JSONObject()); }
-    public JSONObject json() throws Exception { JSONObject result = new JSONObject().put("version", 1).put("roles", DataFiles.copy(roles)); if (!promptHelp.isEmpty()) result.put("promptHelp", promptHelp); return result; }
+    public JSONObject json() throws Exception { JSONObject result = new JSONObject().put("version", 1).put("roles", DataFiles.copy(roles)); if (!promptHelp.isEmpty()) result.put("promptHelp", promptHelp); if (fixedPrompt != null) result.put("fixedPrompt", fixedPrompt); return result; }
     public static String key(String role) {
         if (role == null || !role.matches("[a-z][a-z0-9_]{0,47}")) throw new IllegalArgumentException("Invalid input role"); return role;
     }
@@ -43,6 +48,7 @@ public final class InputSpec {
         validate(receipts, new JSONObject());
     }
     public void validate(JSONArray receipts, JSONObject input) throws Exception {
+        if (fixedPrompt != null && (!fixedPrompt.equals(input.optString("prompt")) || !input.optString("negativePrompt").isEmpty())) throw new IllegalArgumentException("This recipe requires its declared fixed prompt without negative conditioning");
         JSONObject transcripts = input.has("transcripts") ? input.getJSONObject("transcripts") : new JSONObject();
         Set<String> seen = new HashSet<>();
         for (int i = 0; i < receipts.length(); i++) {

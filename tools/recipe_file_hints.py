@@ -13,7 +13,7 @@ def add_hints(templates):
               'qwen3_tts_06b_base_cpu_v1':'qwen3_tts_06b_base'}
     sana = dict(diffusion='transformer.mnn', connector='connector.mnn', projector='projector.mnn',
                 vae='vae_decoder.mnn', llm='llm.mnn', llm_config='llm_config.json',
-                tokenizer='tokenizer.txt', meta_queries='meta_queries.mnn')
+                tokenizer='tokenizer.txt', meta_queries='meta_queries.mnn', vae_encoder='vae_encoder.mnn')
     split = dict(clip_l=['clip_l.safetensors','clip_l.gguf'],clip_g=['clip_g.safetensors','clip_g.gguf'],
                  t5=['umt5-xxl-encoder-*.gguf','umt5_xxl*.safetensors'],
                  umt5_tokenizer=['tokenizer.json'],qwen_merges=['merges.txt'])
@@ -22,9 +22,9 @@ def add_hints(templates):
         if template['id'] in speech:
             model = next(b for b in bundles if b['pipeline']==speech[template['id']])
             hints.update({c['role']:dict(matchFiles=[Path(c['path']).name]) for c in model['components']})
-        if template['id']=='sana_mnn_cpu_v1':
+        if template['id']=='sana_edit_mnn_cpu_v1':
             hints.update({role:dict(matchFiles=[name]) for role,name in sana.items()})
-            hints.update({role+'_data':dict(matchSibling=dict(role=role,suffix='.weight')) for role in ['diffusion','connector','projector','vae','llm']})
+            hints.update({role+'_data':dict(matchSibling=dict(role=role,suffix='.weight')) for role in ['diffusion','connector','projector','vae','llm','vae_encoder']})
         if template['definition']['engine']=='openmoss_native':
             hints['extras']=dict(matchFiles=['*.extras.gguf'])
         if template['definition']['engine']=='sd_cpp':

@@ -1,5 +1,5 @@
 {
-  "version": "0.3.0-dev.35",
+  "version": "0.3.0-dev.36",
   "kind": "current production UI with an explicit simulated bridge",
   "android_device": false,
   "model_inference": false,
@@ -44,18 +44,18 @@
   "files": [
     {
       "file": "01-recovery.png",
-      "bytes": 42753,
-      "sha256": "754593e113ab62ad647336803ce8bdcaa8651a1209c65fb8996a14d8c4f8d754"
+      "bytes": 42755,
+      "sha256": "bba8fd0436ab092b1d23a16ff2f9c7354e8fde620e66eadfcf2dae3da805e46c"
     },
     {
       "file": "02-filters.png",
-      "bytes": 43226,
-      "sha256": "977b7ff03017cc92a3f27c6761c7186c6cb95dc602e05f7f55131b58d2bd0788"
+      "bytes": 43200,
+      "sha256": "8848b0f3551b8a9a56bc7ae8212064d84600367247d76fd4b75b84289353e7f3"
     },
     {
       "file": "03-review.png",
-      "bytes": 62366,
-      "sha256": "9b0f37eb6ece1bb59a3ca32c43cf3daa0809307ac034eb99b2fa465cb68bd900"
+      "bytes": 62123,
+      "sha256": "84eb1b150051225bebedec0ebc2c3162b5111676c8ad52362d4823b75ce05e6b"
     },
     {
       "file": "04-conflict.png",
@@ -64,13 +64,13 @@
     },
     {
       "file": "recovery-ui.gif",
-      "bytes": 794023,
-      "sha256": "11d9abfcca2f2868345673c38a3c8a685c1df3ffff466f1c25bd36ae04ea998d"
+      "bytes": 910973,
+      "sha256": "9d6705b63372e15aac20cf1cee588775433e016ddb71ccd6ce87d839e99949aa"
     },
     {
       "file": "recovery-ui.mp4",
-      "bytes": 314153,
-      "sha256": "df2d7f2399131dbfc7dcf8a3b0b13aa0308912d264fb8a67627aba6a52263714"
+      "bytes": 333250,
+      "sha256": "73a146b195f8eb4663176c5a289a5598f8d6cef1b0bd00cba1eff0c260e13a2b"
     }
   ],
   "input_fingerprint": {
@@ -78,10 +78,10 @@
     "app/src/main/assets/app.js": "2240021b034e6259ac110fc48ede81c43be6fabf7200dde5ced7eeacbe9e5468",
     "app/src/main/assets/asset-preparations.json": "b0a7cbac1a633310b9fff84164439ee8fe20a1df137d1075eb9263f531ccfd3b",
     "app/src/main/assets/audio-preview.js": "33bb898969f37c1f78c6664052c46da844d148defdcef4a54d64bc5829037f44",
-    "app/src/main/assets/engine-builds.json": "677af54b59d0161f13f3a9c12b3813accee8f58689f099347acf7fa70f822e91",
+    "app/src/main/assets/engine-builds.json": "9f34a24cf031302c853f35eda44a82932d6a21058cc87f54374107d5a5be38b6",
     "app/src/main/assets/foundation.css": "ac77af14c0498d3c358d76814109cda4f49fb5c660c1f53961d8f9b7f6c3a53f",
-    "app/src/main/assets/foundation.js": "f188fbbe92cf03f2e06971f0baec25f8dfb0fee5ce21b2baeb749862b1059288",
-    "app/src/main/assets/index.html": "7c4d9e4f2c3f362a328f0899739f5776b26ffe2534328e332696aeda86441deb",
+    "app/src/main/assets/foundation.js": "a2bd9f0a92807a0d60a97884fb3dd123ddfc5cf42258b6577bff36b37f99cb14",
+    "app/src/main/assets/index.html": "12fdd076215e8bfc25f12d0ffc066436957fead220b68cb0c7aeeb0593068ef9",
     "app/src/main/assets/license.js": "838317c7653ca35291e9e18f2a7e2d98ed46a10880dfe144176f04ad994433d0",
     "app/src/main/assets/licenses/LLAMA_CPP_LICENSE": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
     "app/src/main/assets/licenses/LMA_LICENSE": "6ae3f5efa412d91cbf66e44f743e5ce41a8044309d05d893365206ab9bc35fc3",
@@ -180,7 +180,7 @@
     "app/src/main/assets/preparations/ltx098_vae_prepare/stage-06.onnx": "c737a55510880d4b92e12e9aca7138a154ad6e58a96e89a4f2a530a3f369b88c",
     "app/src/main/assets/preparations/ltx098_vae_prepare/stage-07.onnx": "239145b9c04cbb5513ee96d2a41ff5b1f8db2c4cf0d9148c3092028b858b3576",
     "app/src/main/assets/preparations/ltx098_vae_prepare/stage-08.onnx": "ff463e05293456c25aa5b1a14d82b1f732f1aee0f00da45f8e28419509ba8ac9",
-    "app/src/main/assets/recipe-templates.json": "107af9e62a783b9b6f806df8b8593446c2e6539b080ff04ee301932bfeeb964b",
+    "app/src/main/assets/recipe-templates.json": "91f2fb0aa811d467afb8f410a4ceaca7f1b6cd457c82ceef8968b0678872a503",
     "app/src/main/assets/recipes.js": "b27e75ed85948a63476bf351cde94a59bec935a540f65e1a9fe798322bcd1b39",
     "app/src/main/assets/versions.js": "2d629929a6db642c12a242ddcc62cd4f4090ab307e0cb669ceb98add031977e1",
     "app/src/main/assets/workbench.js": "17042106c2bbecf2ba42e1287682b0ad905fbe22137fbb5b3ea0bdee5f2745f4",

@@ -1,5 +1,5 @@
 {
-  "version": "0.3.0-dev.35",
+  "version": "0.3.0-dev.36",
   "kind": "current production UI with an explicit simulated bridge",
   "android_device": false,
   "model_inference": false,
@@ -66,13 +66,13 @@
     },
     {
       "file": "workbench-ui.gif",
-      "bytes": 840091,
-      "sha256": "79d967defe8329541908aa9577be990a4737e8023d65634b580ca77fea20a260"
+      "bytes": 1114673,
+      "sha256": "57ff5fe0ae11410ad0c08bbaaf7b624a7489c0a1282f1d1474e950eaa9159165"
     },
     {
       "file": "workbench-ui.mp4",
-      "bytes": 373581,
-      "sha256": "64f0be885d947a55c9360b9d3a5c868f85a3e0eb87f10e5cfb1c52898a97b64a"
+      "bytes": 413863,
+      "sha256": "19abd3451ac20658160b8437ca322244a87164decf2a8f3dc1ebd305bc40b09c"
     }
   ],
   "input_fingerprint": {
@@ -80,10 +80,10 @@
     "app/src/main/assets/app.js": "2240021b034e6259ac110fc48ede81c43be6fabf7200dde5ced7eeacbe9e5468",
     "app/src/main/assets/asset-preparations.json": "b0a7cbac1a633310b9fff84164439ee8fe20a1df137d1075eb9263f531ccfd3b",
     "app/src/main/assets/audio-preview.js": "33bb898969f37c1f78c6664052c46da844d148defdcef4a54d64bc5829037f44",
-    "app/src/main/assets/engine-builds.json": "677af54b59d0161f13f3a9c12b3813accee8f58689f099347acf7fa70f822e91",
+    "app/src/main/assets/engine-builds.json": "9f34a24cf031302c853f35eda44a82932d6a21058cc87f54374107d5a5be38b6",
     "app/src/main/assets/foundation.css": "ac77af14c0498d3c358d76814109cda4f49fb5c660c1f53961d8f9b7f6c3a53f",
-    "app/src/main/assets/foundation.js": "f188fbbe92cf03f2e06971f0baec25f8dfb0fee5ce21b2baeb749862b1059288",
-    "app/src/main/assets/index.html": "7c4d9e4f2c3f362a328f0899739f5776b26ffe2534328e332696aeda86441deb",
+    "app/src/main/assets/foundation.js": "a2bd9f0a92807a0d60a97884fb3dd123ddfc5cf42258b6577bff36b37f99cb14",
+    "app/src/main/assets/index.html": "12fdd076215e8bfc25f12d0ffc066436957fead220b68cb0c7aeeb0593068ef9",
     "app/src/main/assets/license.js": "838317c7653ca35291e9e18f2a7e2d98ed46a10880dfe144176f04ad994433d0",
     "app/src/main/assets/licenses/LLAMA_CPP_LICENSE": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
     "app/src/main/assets/licenses/LMA_LICENSE": "6ae3f5efa412d91cbf66e44f743e5ce41a8044309d05d893365206ab9bc35fc3",
@@ -182,7 +182,7 @@
     "app/src/main/assets/preparations/ltx098_vae_prepare/stage-06.onnx": "c737a55510880d4b92e12e9aca7138a154ad6e58a96e89a4f2a530a3f369b88c",
     "app/src/main/assets/preparations/ltx098_vae_prepare/stage-07.onnx": "239145b9c04cbb5513ee96d2a41ff5b1f8db2c4cf0d9148c3092028b858b3576",
     "app/src/main/assets/preparations/ltx098_vae_prepare/stage-08.onnx": "ff463e05293456c25aa5b1a14d82b1f732f1aee0f00da45f8e28419509ba8ac9",
-    "app/src/main/assets/recipe-templates.json": "107af9e62a783b9b6f806df8b8593446c2e6539b080ff04ee301932bfeeb964b",
+    "app/src/main/assets/recipe-templates.json": "91f2fb0aa811d467afb8f410a4ceaca7f1b6cd457c82ceef8968b0678872a503",
     "app/src/main/assets/recipes.js": "b27e75ed85948a63476bf351cde94a59bec935a540f65e1a9fe798322bcd1b39",
     "app/src/main/assets/versions.js": "2d629929a6db642c12a242ddcc62cd4f4090ab307e0cb669ceb98add031977e1",
     "app/src/main/assets/workbench.js": "17042106c2bbecf2ba42e1287682b0ad905fbe22137fbb5b3ea0bdee5f2745f4",

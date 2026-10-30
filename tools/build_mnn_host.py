@@ -37,13 +37,17 @@ def build():
         return executable, record
     directory.mkdir(parents=True, exist_ok=True)
     generated = directory / 'generated'; generate_sources(source, generated)
-    drive = next((c + ':' for c in 'TUVWXYZ' if not Path(c + ':/').exists()), None)
+    compile_relative = 'build/mnn-host-compile/' + lock['revision']
+    cache = ROOT / compile_relative / 'CMakeCache.txt'
+    cached = next((line.split('=',1)[1][:2].upper() for line in cache.read_text(encoding='utf-8').splitlines() if line.startswith('CMAKE_CACHEFILE_DIR:INTERNAL=')), None) if cache.is_file() else None
+    if cached and (cached[0] not in 'TUVWXYZ' or Path(cached+'/').exists()): raise RuntimeError('Cached MNN host alias is busy; finish its owning build first')
+    drive = cached or next((c + ':' for c in 'TUVWXYZ' if not Path(c + ':/').exists()), None)
     if not drive: raise RuntimeError('No free native build alias')
     subprocess.run(['subst', drive, str(ROOT)], check=True, capture_output=True)
     try:
         alias = drive + '/'; relative = directory.relative_to(ROOT).as_posix()
         # Reuse upstream object files; each fingerprint gets a separately frozen executable.
-        compile_relative = 'build/mnn-host-compile/' + lock['revision']
+        # compile_relative and its cache drive were resolved before claiming the alias.
         cmake = alias + 'build/toolchain/cmake-3.31.6/bin/cmake.exe'
         options = dict(CMAKE_BUILD_TYPE='Release', MNN_BUILD_SHARED_LIBS='OFF', MNN_SEP_BUILD='OFF',
                        MNN_WIN_RUNTIME_MT='ON', MNN_BUILD_LLM='ON', MNN_BUILD_LLM_OMNI='OFF',

@@ -556,8 +556,8 @@
       "backend": "cpu",
       "ndk": "30.0.16248370",
       "min_sdk": 28,
-      "bytes": 4049728,
-      "sha256": "983c0052009ecb08a94cd31f20e421c9736c45b9457716e1c4f612d99620f6f9",
+      "bytes": 4054928,
+      "sha256": "5f72a467454c2abe966ecedacb54c741f74998858ead10f1784fbd9e5fe0038a",
       "elf_load_alignment": [
         16384
       ],
@@ -566,7 +566,7 @@
       ],
       "generated_sources": {
         "build/mnn-generated/lma_sana_llm.hpp": "8b2ad32220ec6394529389db579ce534b2bae187f46435695953b8cc04b9ea06",
-        "build/mnn-generated/sana_diffusion.cpp": "d57185d680ab83cfb35b15fc89dc5c68beea745b84add0d183740cd8218bb6ee"
+        "build/mnn-generated/sana_diffusion.cpp": "cd649676e0b3b3fcb46ce83e7e332f451a2bfe0049a81fed967cb8c6be77c514"
       },
       "vocabularies": "external_user_selected_components",
       "model_inference_tested": false,

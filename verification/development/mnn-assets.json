@@ -1,5 +1,5 @@
 {
-  "schema": "lma.mnn-trained-acquisition/1",
+  "schema": "lma.mnn-edit-trained-acquisition/1",
   "components": [
     {
       "role": "diffusion",
@@ -130,15 +130,38 @@
       "sha256": "5e80d4e591af78cca31b6e4cf4ee4ead410e9d2f64ee34c73cf5b633def16e0c",
       "git_blob": "ba4d41a1586e17b403442b0c5fb7777f66a118a1",
       "url": "https://huggingface.co/taobao-mnn/MNN-Sana-Edit-V2/resolve/dd5955b4e63359b5822fa29a3b3711a112212046/llm/meta_queries.mnn"
+    },
+    {
+      "role": "vae_encoder",
+      "repository": "taobao-mnn/MNN-Sana-Edit-V2",
+      "revision": "dd5955b4e63359b5822fa29a3b3711a112212046",
+      "path": "vae_encoder.mnn",
+      "bytes": 761568,
+      "sha256": "06da21081f8ee98792bd1838990068e7284351157cafbfa8793282b611eacb24",
+      "git_blob": "bcf8f8e597607eb3e3398fd555f3a52038924c19",
+      "url": "https://huggingface.co/taobao-mnn/MNN-Sana-Edit-V2/resolve/dd5955b4e63359b5822fa29a3b3711a112212046/vae_encoder.mnn"
+    },
+    {
+      "role": "vae_encoder_data",
+      "repository": "taobao-mnn/MNN-Sana-Edit-V2",
+      "revision": "dd5955b4e63359b5822fa29a3b3711a112212046",
+      "path": "vae_encoder.mnn.weight",
+      "bytes": 155787522,
+      "sha256": "b44ac00f4683697add9578ef4c0f561fb5753fe24a3f4525e7f492028409d05e",
+      "git_blob": "dbac8f7128c42770ce4c82763217f71bf5bf2f40",
+      "url": "https://huggingface.co/taobao-mnn/MNN-Sana-Edit-V2/resolve/dd5955b4e63359b5822fa29a3b3711a112212046/vae_encoder.mnn.weight"
     }
   ],
   "developer_assets_only": true,
-  "bundled_model_data": false,
-  "model_executed": false,
   "explicit_download": true,
-  "download_origin": "https://hf-mirror.com",
+  "origin": "https://hf-mirror.com",
+  "model_executed": false,
+  "model_data_bundled": false,
+  "physical_android": false,
   "input_fingerprint": {
+    "research/mnn_edit_trained/assets.json": "be056d5eb9152e6ccb0468e8108e7fee5b602b1a0401173d49961b616e9799c4",
     "research/mnn_trained/assets.json": "892f55d300af5e6ed94b68d8cd9a4e468bc869c52d67d108f08ffb404598ff68",
-    "tools/fetch_mnn_trained.py": "21e251bea2d8fe8f9a8035ab9ee67e3d885d2a5b76bebd24e8b4b21731a5ba1c"
+    "tools/fetch_mnn_edit_trained.py": "5983493726b8bda222170c311b6891748823bdcdf47780c0064203354846e883",
+    "tools/fetch_mnn_trained.py": "45640f38a4bf5e70aabc5c3520424a0d7fe4eba9c944deb1dd2987cc0e5a6921"
   }
 }

@@ -1,6 +1,8 @@
 # LMA 文档 / Documentation
 
-当前 dev.35：[Sana 真实组件 / 中文](MNN_SANA_TRAINED.md) · [English](MNN_SANA_TRAINED.en.md) · [编号实现与完整待办](releases/v0.3.0-dev.35.md)。修复生产运行问题；真实主机执行、界面夹具、Android 编译和未通过的画质分别记录。
+历史 dev.35（用途已更正）：[Sana 真实组件 / 中文](MNN_SANA_TRAINED.md) · [English](MNN_SANA_TRAINED.en.md) · [编号实现与完整待办](releases/v0.3.0-dev.35.md)。修复生产运行问题；真实主机执行、界面夹具、Android 编译和未通过的画质分别记录。
+
+当前 dev.36：[本地图片编辑 / 中文](MNN_SANA_EDIT.md) · [English](MNN_SANA_EDIT.en.md) · [编号实现与完整待办](releases/v0.3.0-dev.36.md)。Sana Edit 必须输入图片；旧文生图分类已更正，原冻结文生图目标保留。App 只交付基座，模型仍由用户独立选择和管理。
 
 [项目首页 / 中文](../README.md) · [Project README / English](../README.en.md)
 

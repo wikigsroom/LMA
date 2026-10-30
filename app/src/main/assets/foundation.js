@@ -196,7 +196,7 @@
     form.dataset.samplingProfile = active ? (lcm ? 'lcm' : z ? 'z_image_turbo' : flux ? 'flux2_klein' : 'sd_turbo') : '';
     hint.hidden = !active;
     hint.textContent = count > 1 || count && /_lcm$/.test(pipeline) ? '一次只使用一个 LCM 加速来源，请取消多余选择。' : (lcm ? 'LCM：采样器 lcm，调度器 lcm，1–8 步。' : z ? 'Z-Image-Turbo：采样器 euler，调度器 discrete，1–8 步。' : flux ? 'FLUX.2-klein：采样器 euler，调度器 flux2，1–4 步。' : 'SD-Turbo：采样器 euler_a，调度器 discrete，1–4 步。') + 'CFG 固定为 1，不使用负面提示词；仅影响本次任务，保存的模型设置保留。';
-    if (form.elements.negativePrompt) { form.elements.negativePrompt.disabled = active; form.elements.negativePrompt.closest('label').hidden = active; }
+    if (form.elements.negativePrompt) { var fixed = ((b.inputSchemas || {})[form.elements.taskType.value] || {}).fixedPrompt; form.elements.negativePrompt.disabled = active || !!fixed; form.elements.negativePrompt.closest('label').hidden = active || !!fixed; }
     ['cfg', 'steps'].forEach(function (key) {
       var field = form.querySelector('[data-bundle-field="' + key + '"]'); if (!field) return;
       if (active) { if (field.dataset.beforeSampling === undefined) field.dataset.beforeSampling = field.value; field.value = key === 'cfg' ? 1 : Math.max(1, Math.min(limit, Math.floor(Number(field.value) || 4))); }
@@ -204,7 +204,8 @@
       if (key === 'cfg') field.disabled = active;
     });
     ['sampler', 'scheduler'].forEach(function (key) { var f = form.querySelector('[data-bundle-field="' + key + '"]'); if (f) f.closest('label').hidden = active; });
-    if (pipeline === 'sana_mnn_v1') { hint.hidden = false; hint.textContent = 'Sana 移动管线：13 个配套组件，256–2048 像素并按 32 对齐，1–50 步。负面提示词需要启用 CFG（双批次编码 / 采样），token 预算包含格式提示词。仅本机 CPU，手机输出与资源尚待实测。'; }
+    if (pipeline === 'sana_edit_mnn_v1') { hint.hidden = false; hint.textContent = 'Sana 图片风格转换：15 个配套组件；必选本地 PNG/JPEG，最多 16 MiB / 400 万像素；输出固定 512×512，1–50 步。使用配套固定提示词，不接收负面条件或 CFG。手机输出与资源尚待实测。'; }
+    if (pipeline === 'sana_mnn_v1') { hint.hidden = false; hint.textContent = '旧 Sana 文生图配方不兼容此编辑模型。文件、设置和历史任务保留；请在全部 / HF 中明确选择新的 15 组件图片风格转换配方。'; }
   }
   function readAdapters(form, base) {
     var selected = [];
@@ -232,6 +233,9 @@
     var selected = {}, transcripts = {}; panel.querySelectorAll('[data-input-role]').forEach(function (s) { selected[s.dataset.inputRole] = s.value; });
     panel.querySelectorAll('[data-input-transcript]').forEach(function (t) { transcripts[t.dataset.inputTranscript] = t.value; });
     var schema = (b.inputSchemas || {})[form.elements.taskType.value], roles = schema && schema.roles || {}, keys = Object.keys(roles);
+    var fixed = schema && schema.fixedPrompt; form.elements.prompt.readOnly = !!fixed;
+    if (fixed) form.elements.prompt.value = fixed;
+    if (form.elements.negativePrompt) { form.elements.negativePrompt.disabled = !!fixed || !!form.dataset.samplingProfile; form.elements.negativePrompt.closest('label').hidden = form.elements.negativePrompt.disabled; }
     panel.innerHTML = (schema && schema.promptHelp ? '<p class="form-help">' + e(schema.promptHelp) + '</p>' : '') + (keys.length ? '<h3>本地输入素材</h3>' + keys.map(function (role) {
       var rule = roles[role], choices = (ui.state().artifacts || []).filter(function (a) { return inputRuleMatch(a, rule); });
       var active = choices.some(function (a) { return a.id === selected[role]; });
@@ -298,6 +302,8 @@
     var form = $('localTaskForm'), warnings = [], schema = schemaFor(b).fields || {}, input = request.input || {};
     if (Array.from(form.elements.taskType.options).some(function (o) { return o.value === request.type; })) form.elements.taskType.value = request.type;
     else warnings.push('原任务类型已不在当前配方内，请重新选择生成能力。');
+    var fixed = ((b.inputSchemas || {})[form.elements.taskType.value] || {}).fixedPrompt;
+    if (fixed && input.prompt !== fixed) warnings.push('\u5f53\u524d\u914d\u65b9\u4f7f\u7528\u56fa\u5b9a\u63d0\u793a\u8bcd\uff0c\u5df2\u663e\u793a\u5bf9\u5e94\u9ed8\u8ba4\u5185\u5bb9\u3002');
     form.elements.prompt.value = input.prompt || '';
     if (form.elements.negativePrompt) form.elements.negativePrompt.value = input.negativePrompt || '';
     else if (input.negativePrompt) warnings.push('当前配方不接受原负面提示词。');

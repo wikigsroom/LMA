@@ -2,6 +2,7 @@
 #include "lma_sana_llm.hpp"
 #include "diffusion/diffusion.hpp"
 #include "policy.hpp"
+#include "image.hpp"
 #include <cstdio>
 #include <cmath>
 #include <cstdlib>
@@ -44,7 +45,7 @@ int main(int argc, char** argv) {
         std::ifstream in(argv[1], std::ios::binary | std::ios::ate);
         if (!in || in.tellg() < 1 || in.tellg() > 256 * 1024) throw std::runtime_error("Invalid native request");
         in.seekg(0); json request; in >> request;
-        if (request.at("schema") != "lma.engine-request/1" || request.at("type") != "image.generate" || request.at("pipeline") != "sana_mnn_v1") throw std::runtime_error("Unsupported MNN task/pipeline");
+        if (request.at("schema") != "lma.engine-request/1" || request.at("type") != "image.generate" || request.at("pipeline") != "sana_edit_mnn_v1") throw std::runtime_error("Unsupported MNN task/pipeline");
         const auto& p = request.at("parameters"); const auto& input = request.at("input");
         std::string prompt = input.value("prompt", ""), negative = input.value("negativePrompt", "");
         std::string root = request.at("workspace"), output = request.at("output");
@@ -52,6 +53,11 @@ int main(int argc, char** argv) {
         int width = p.at("width"), height = p.at("height"), steps = p.at("steps"), threads = p.at("threads"), maximum_tokens = p.at("maxInputTokens");
         bool cfg = p.at("useCfg"); float scale = p.at("cfg"); int seed = p.at("seed");
         lma_mnn::parameters(width, height, steps, threads, maximum_tokens, cfg, scale, negative);
+        lma_mnn::edit_parameters(width, height, cfg, prompt, negative);
+        std::string image = input.at("imagePath");
+        std::ifstream image_file(image, std::ios::binary | std::ios::ate);
+        if (!image_file || image_file.tellg() < 8 || image_file.tellg() > 16 * 1024 * 1024) throw std::runtime_error("Sana edit requires the selected bounded local image");
+        lma_mnn::image_dimensions(image);
         if (seed < 0) throw std::runtime_error("Record the actual nonnegative seed before execution");
         std::string thread_count = std::to_string(threads);
 
@@ -84,7 +90,8 @@ int main(int argc, char** argv) {
         event({{"event", "stage"}, {"stage", "loading_diffusion"}});
         std::unique_ptr<Diffusion> diffusion(Diffusion::createDiffusion(root + "/models", SANA_DIFFUSION, MNN_FORWARD_CPU, 0));
         if (!diffusion || !diffusion->load()) throw std::runtime_error("Complete matched Sana diffusion components could not load");
-        bool ok = diffusion->run(features, "text2img", "", output, width, height, steps, seed, cfg, scale,
+        event({{"event", "stage"}, {"stage", "encoding_image"}});
+        bool ok = diffusion->run(features, "img2img", image, output, width, height, steps, seed, cfg, scale,
             [](int percent) { if (percent >= 0 && percent <= 100) event({{"event", "progress"}, {"stage", "sampling"}, {"fraction", percent / 100.0}}); });
         std::ifstream result(output, std::ios::binary | std::ios::ate);
         if (!ok || !result || result.tellg() < 8) throw std::runtime_error("Sana did not return an image artifact");

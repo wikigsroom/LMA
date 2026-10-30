@@ -225,6 +225,8 @@ async function main() {
   await shot('33-zimage-sampling-policy.png', 'Z-Image-Turbo signed sampling policy and user-selected assets; UI fixture / Z-Image 采样策略，非模型输出');
   await page.keyboard.press('Escape'); await page.locator('[data-action="bundleInfo"][data-id="ui_sampling_qwen"]').click();
   await shot('34-qwen-image-components.png', 'Qwen-Image 2.1 separate diffusion/LLM/VAE/tokenizer user assets; UI fixture / Qwen 独立组件，非真机已安装证明');
+  await page.keyboard.press('Escape'); await page.locator('[data-action="bundleUse"][data-id="ui_sampling_sana"]').click();
+  await shot('sana-edit-required-source.png', 'Sana Edit required local photo, fixed prompt and supported parameters; UI fixture, not phone generation / 必选图片与固定提示词，界面夹具');
   await page.keyboard.press('Escape'); await page.locator('[data-task="video"]').click(); await page.locator('[data-action="bundleUse"][data-id="ui_sampling_wan"]').click();
   await page.locator('[name="prompt"]').fill('Wan 视频参数表单演示，没有生成帧或视频。');
   await page.locator('#localTaskForm .task-parameters').evaluate(e => {e.open=true;});
@@ -232,12 +234,12 @@ async function main() {
   await shot('35-wan-video-parameters.png', 'Wan frames/fps/flow-shift editable model parameters; UI fixture, no Android video / Wan 视频参数，未生成视频');
   await page.keyboard.press('Escape'); await page.locator('[data-task="image"]').click();
   await page.locator('[data-action="bundleInfo"][data-id="ui_sampling_sana"]').click();
-  await shot('36-sana-mobile-components.png', 'Matched Sana mobile MNN/Qwen3 user components; UI FIXTURE, no installed model proof / Sana 移动端配套组件，非真机模型证据');
+  await shot('36-sana-mobile-components.png', 'Matched Sana Edit fifteen MNN/Qwen3/image-encoder user components; UI FIXTURE / Sana Edit 完整 15 组件，界面夹具');
   await page.locator('#modal [data-action="bundleUse"][data-id="ui_sampling_sana"]').click();
-  await page.locator('[name="prompt"]').fill('Sana 移动管线表单演示，没有执行模型或生成图片。');
+  if (!await page.locator('[name="prompt"]').evaluate(e=>e.readOnly)) throw Error('Sana edit prompt must stay fixed');
   await page.locator('#localTaskForm .task-parameters').evaluate(e => {e.open=true;});
-  await page.locator('[data-bundle-field="useCfg"]').scrollIntoViewIfNeeded();
-  await shot('37-sana-mobile-parameters.png', 'Per-model Sana CFG/token/thread settings; UI FIXTURE, no image generation / Sana 独立 CFG、token 与线程参数，未生成图片');
+  await page.locator('[data-bundle-field="maxInputTokens"]').scrollIntoViewIfNeeded();
+  await shot('37-sana-mobile-parameters.png', 'Per-model Sana Edit fixed dimensions/token/thread settings; UI FIXTURE / Sana 图片编辑尺寸、token 与线程参数，界面夹具');
   await page.keyboard.press('Escape');
   await page.evaluate(qwenUI.installFixture, templates.find(t=>t.id==='qwen3_tts_06b_base_cpu_v1'));
   await page.locator('[data-task="audio"]').click();

@@ -47,6 +47,16 @@ public final class ApiTest {
             return line == null ? 0 : Integer.parseInt(line.split(" ")[1]);
         }
     }
+    private static boolean rejectedOpenInput(int port) throws Exception {
+        try (Socket socket = new Socket("127.0.0.1", port)) {
+            socket.setSoTimeout(2000);
+            socket.getOutputStream().write("POST /v1/jobs HTTP/1.1\r\nHost: localhost\r\nContent-Length: 99999999\r\n\r\n".getBytes(StandardCharsets.US_ASCII));
+            socket.getOutputStream().flush(); // Keep the request side open deliberately.
+            ByteArrayOutputStream received = new ByteArrayOutputStream(); byte[] buffer = new byte[512]; int count;
+            while ((count = socket.getInputStream().read(buffer)) != -1) { received.write(buffer,0,count); if(received.size()>4096)throw new IOException("Unbounded rejection response"); }
+            return new String(received.toByteArray(),StandardCharsets.US_ASCII).startsWith("HTTP/1.1 413 ");
+        }
+    }
     private static JSONObject task(String prompt) { return new JSONObject().put("bundleId", "fixture_bundle").put("type", "image.generate").put("input", new JSONObject().put("prompt", prompt)).put("parameters", new JSONObject()); }
     public static void main(String[] args) throws Exception {
         File root = new File(args[0]); JobStore jobs = new JobStore(new File(root, "jobs"));
@@ -86,6 +96,7 @@ public final class ApiTest {
             check(raw(port, "POST /v1/jobs HTTP/1.1\r\nHost: localhost\r\nContent-Length: 1\r\nContent-Length: 2\r\n\r\n") == 400, "Duplicate framing headers cannot smuggle requests");
             check(raw(port, "POST /v1/jobs HTTP/1.1\r\nHost: localhost\r\nContent-Length: 1\r\nTransfer-Encoding: chunked\r\n\r\n") == 501, "Unsupported chunked request bodies are rejected before body parsing");
             check(raw(port, "POST /v1/jobs HTTP/1.1\r\nHost: localhost\r\nContent-Length: 99999999\r\n\r\n") == 413, "Oversized bodies are rejected before allocation");
+            check(rejectedOpenInput(port), "Rejected slow uploads receive a complete error without waiting for the request side to close");
             check(raw(port, "POST /v1/jobs HTTP/1.1\r\nHost: localhost\r\n\r\n") == 411, "POST requests require an explicit bounded length");
             check(raw(port, "POST /v1/jobs HTTP/1.1\r\nHost: localhost\r\nContent-Length: 3\r\n\r\na") == 400, "Truncated request bodies never reach execution");
             check(raw(port, "GET /health HTTP/1.1\r\nHost: localhost\r\nX-Fill: " + String.join("", Collections.nCopies(17000, "x")) + "\r\n\r\n") == 431, "Header memory is bounded at 16 KiB");

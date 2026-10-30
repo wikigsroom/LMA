@@ -2899,19 +2899,20 @@
       "help": "仅接受匹配的 Nano browser ONNX 导出与 decode_full codec；不是其他 MOSS 架构。须自行选择图引用的全部 .data，缺少数据会在本机报错。所有词表和音色均需用户下载；不提供参考音频克隆。音色编号按已下载 manifest 回填，数值上限为应用保护值，手机效果与内存待实测。"
     },
     {
-      "id": "sana_mnn_cpu_v1",
-      "name": "Sana mobile · Qwen3 + MNN",
+      "id": "sana_edit_mnn_cpu_v1",
+      "name": "Sana Edit · 本地图片卡通转换",
       "primaryRole": "diffusion",
       "definition": {
         "engine": "mnn_diffusion",
         "backend": "cpu",
-        "architecture": "sana_mobile",
-        "pipeline": "sana_mnn_v1",
+        "architecture": "sana_mobile_edit",
+        "pipeline": "sana_edit_mnn_v1",
         "tasks": [
           "image"
         ],
         "capabilities": [
-          "text_to_image"
+          "image_to_image",
+          "fixed_style"
         ],
         "parameters": {
           "version": 1,
@@ -2920,28 +2921,24 @@
               "type": "integer",
               "label": "宽度（32 对齐）",
               "default": 512,
-              "minimum": 256,
-              "maximum": 2048,
+              "minimum": 512,
+              "maximum": 512,
               "presets": [
-                256,
-                512,
-                1024
+                512
               ],
-              "limitSource": "application_guard",
+              "limitSource": "matched_edit_pipeline",
               "multipleOf": 32
             },
             "height": {
               "type": "integer",
               "label": "高度（32 对齐）",
               "default": 512,
-              "minimum": 256,
-              "maximum": 2048,
+              "minimum": 512,
+              "maximum": 512,
               "presets": [
-                256,
-                512,
-                1024
+                512
               ],
-              "limitSource": "application_guard",
+              "limitSource": "matched_edit_pipeline",
               "multipleOf": 32
             },
             "steps": {
@@ -2993,24 +2990,6 @@
               "presets": [
                 -1,
                 42
-              ],
-              "limitSource": "application_guard"
-            },
-            "useCfg": {
-              "type": "boolean",
-              "label": "启用 CFG（双批次编码 / 采样）",
-              "default": false
-            },
-            "cfg": {
-              "type": "number",
-              "label": "启用 CFG 时的引导强度",
-              "default": 4,
-              "minimum": 0,
-              "maximum": 30,
-              "presets": [
-                1,
-                4,
-                6
               ],
               "limitSource": "application_guard"
             }
@@ -3165,10 +3144,33 @@
           "matchFiles": [
             "meta_queries.mnn"
           ]
+        },
+        {
+          "role": "vae_encoder",
+          "label": "vae_encoder.mnn",
+          "formats": [
+            "mnn"
+          ],
+          "required": true,
+          "matchFiles": [
+            "vae_encoder.mnn"
+          ]
+        },
+        {
+          "role": "vae_encoder_data",
+          "label": "vae_encoder.mnn.weight",
+          "formats": [
+            "mnn_data"
+          ],
+          "required": true,
+          "matchSibling": {
+            "role": "vae_encoder",
+            "suffix": ".weight"
+          }
         }
       ],
       "fixedComponents": [],
-      "help": "仅匹配 MNN-Sana-Edit-V2 的 Qwen3-0.6B 移动管线；本配方仅文生图，不接受原版 Sana 或 LoRA。13 个组件全部由用户选择，MNN 图与 .weight 必须成套。编码器配置只提取已验证的架构 / embedding 字段，不执行任意路径 / 缓存 / 联网配置。负面提示词需启用 CFG；启用后增加编码和采样开销。当前只有 CPU 编译与主机协议验证，无手机生图 / 性能证据。"
+      "help": "匹配 MNN-Sana-Edit-V2 图片卡通风格转换，不是通用文生图或原版 Sana 600M。15 个组件（含图片编码器）全部由用户选择；本地 PNG / JPEG 必选，固定提示词、512×512、无 CFG / 负面条件 / LoRA。建议正方形图片与 10 步；非正方形会按配套流程处理。登记和 App 更新不下载模型，不执行任意配置或外部推理。旧 13 组件文生图声明保留文件 / 设置，但须明确选择本配方和缺少的组件，不能自动迁移。手机质量 / 性能仍需验收。"
     },
     {
       "id": "text_gguf_cpu_v1",

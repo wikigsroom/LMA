@@ -1,6 +1,6 @@
 {
-  "apk": "LMA-0.3.0-dev.35-arm64-v8a.apk",
-  "sha256": "15d51b9a692ca567571c50451c1f798d238da8cc59dfd628be471aacc7b7bebd",
+  "apk": "LMA-0.3.0-dev.36-arm64-v8a.apk",
+  "sha256": "60017978bb5ddc88282fccc4103a83c5a27e39b4b5651ac295f9499303292cd4",
   "native_libraries_verified": 34,
   "all_native_dependencies_resolved": true,
   "all_elf_load_segments_16k_aligned": true,
@@ -581,7 +581,7 @@
         16384
       ],
       "interpreter": "/system/bin/linker64",
-      "entry_point": 540224,
+      "entry_point": 541760,
       "android_api_notes": [
         28
       ],

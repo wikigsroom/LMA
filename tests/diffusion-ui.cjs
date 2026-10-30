@@ -10,7 +10,8 @@ function installFixture(templates) {
     const components = t.requirements.filter(r => r.required).map(r => ({role:r.role, path:r.role + '.fixture', format:r.formats[0], bytes:1000, sha256:'a'.repeat(64)})).concat(t.fixedComponents);
     const manifest = {...definition, id, modelId:id, recipeId:template, name, description:'UI FIXTURE：未下载权重，未执行模型。', components, evidence:{physicalDeviceTests:0}};
     const values = Object.fromEntries(Object.entries(manifest.parameters.fields).map(([k,v]) => [k,v.default]));
-    return {id,manifest,installed:true,config:{values},plan:{installed:true,totalBytes:1000,remainingBytes:0,components}};
+    const inputSchemas = template === 'sana_edit_mnn_cpu_v1' ? {'image.generate': {version:1,fixedPrompt:'Convert to a Ghibli-style illustration: soft contrast, warm tones, slight linework, keep the scene consistent.',promptHelp:'必须选择本地图片，固定风格转换',roles:{source_image:{label:'原始图片',required:true,mimes:['image/png','image/jpeg'],maxBytes:16777216,maxPixels:4194304}}}} : {};
+    return {id,manifest,inputSchemas,installed:true,config:{values},plan:{installed:true,totalBytes:1000,remainingBytes:0,components}};
   };
   f.bundles = f.bundles.filter(b => !b.id.startsWith('ui_sampling_')).concat([
     make('ui_sampling_base','sd15_checkpoint_cpu_v1','SD 1.5 基础模型 · UI FIXTURE'),
@@ -20,7 +21,7 @@ function installFixture(templates) {
     make('ui_sampling_flux','flux2_klein_4b_split_cpu_v1','FLUX.2-klein 4B · UI FIXTURE'),
     make('ui_sampling_qwen','qwen_image_21_split_cpu_v1','Qwen-Image 2.1 · UI FIXTURE'),
     make('ui_sampling_wan','wan21_13b_split_cpu_v1','Wan 2.1 T2V 1.3B · UI FIXTURE'),
-    make('ui_sampling_sana','sana_mnn_cpu_v1','Sana mobile · MNN · UI FIXTURE')
+    make('ui_sampling_sana','sana_edit_mnn_cpu_v1','Sana image edit · MNN · UI FIXTURE')
   ]);
   if (!f.localEngines.some(e => e.engine === 'sd_cpp')) f.localEngines.push({engine:'sd_cpp',available:true,deviceValidated:false});
   f.localEngines.find(e => e.engine === 'sd_cpp').available = true;
@@ -71,9 +72,11 @@ module.exports = async function(page, checked, overflow) {
   assert((await page.locator('#modal').innerText()).includes('mnn_diffusion')); checked('Sana remains a peer image entry with its own engine requirement');
   await page.locator('#modal [data-action="bundleUse"][data-id="ui_sampling_sana"]').click();
   await page.locator('#localTaskForm .task-parameters').evaluate(e => {e.open=true;});
-  assert((await page.locator('#samplingHint').innerText()).includes('13 个')); checked('Sana form explains complete matched components and local CPU evidence limits');
-  const useCfg=page.locator('[data-bundle-field="useCfg"]'); assert.equal(await useCfg.isChecked(),false); assert.equal(await page.locator('[data-bundle-field="maxInputTokens"]').inputValue(),'512'); checked('Sana owns editable CFG and input token settings');
-  await useCfg.check(); await negative.fill('explicit negative conditioning'); assert(await negative.isEnabled()); checked('Sana allows explicit CFG and negative conditioning without discarding text');
+  assert((await page.locator('#samplingHint').innerText()).includes('15 个')); checked('Sana form explains complete matched components and local CPU evidence limits');
+  assert.equal(await page.locator('[data-bundle-field="useCfg"]').count(),0); assert.equal(await page.locator('[data-bundle-field="maxInputTokens"]').inputValue(),'512'); checked('Matched edit exposes supported per-model input budget and omits CFG');
+  assert(await negative.isDisabled()); const prompt=page.locator('#localTaskForm [name="prompt"]'); assert(await prompt.evaluate(e=>e.readOnly)); assert.match(await prompt.inputValue(),/^Convert to a Ghibli-style illustration/); checked('Signed fixed prompt cannot be replaced and negative conditioning is disabled');
+  assert.equal(await page.locator('#localTaskForm [data-input-role="source_image"]').count(),1); checked('The shared workbench requires a selected local source image');
+  assert.equal(await page.locator('[data-bundle-field="width"]').inputValue(),'512'); assert.equal(await page.locator('[data-bundle-field="height"]').inputValue(),'512'); checked('Matched output dimensions are fixed per model at 512x512');
   await overflow(page,'Sana mobile task');
   await page.keyboard.press('Escape'); await page.locator('[data-task="video"]').click();
   await page.locator('[data-action="bundleUse"][data-id="ui_sampling_wan"]').click();

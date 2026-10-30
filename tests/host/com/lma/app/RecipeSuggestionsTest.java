@@ -10,7 +10,7 @@ import java.util.concurrent.atomic.*;
 
 /** Production metadata client/controller/storage. All model data and HTTP responses are fixtures. */
 public final class RecipeSuggestionsTest {
-    private static final String REV="0123456789abcdef0123456789abcdef01234567", ID="sana_mnn_cpu_v1";
+    private static final String REV="0123456789abcdef0123456789abcdef01234567", ID="sana_edit_mnn_cpu_v1";
     private static int checks;
     private interface Attempt { void run() throws Exception; }
     private interface Condition { boolean done() throws Exception; }
@@ -23,7 +23,7 @@ public final class RecipeSuggestionsTest {
     private static String next(String value){return "<https://huggingface.co/api/models/fixture/sana/tree/"+REV+"?cursor="+value+">; rel=\"next\"";}
     private static JSONObject asset(String path)throws Exception{return HubClient.asset(HubClient.model(repo()),entry(path));}
     private static JSONArray files() {
-        JSONArray a=new JSONArray();for(String name:new String[]{"transformer.mnn","transformer.mnn.weight","connector.mnn","connector.mnn.weight","projector.mnn","projector.mnn.weight","vae_decoder.mnn","vae_decoder.mnn.weight","llm.mnn","llm.mnn.weight","llm_config.json","tokenizer.txt","meta_queries.mnn"})a.put(entry("export/"+name));return a;
+        JSONArray a=new JSONArray();for(String name:new String[]{"transformer.mnn","transformer.mnn.weight","connector.mnn","connector.mnn.weight","projector.mnn","projector.mnn.weight","vae_decoder.mnn","vae_decoder.mnn.weight","vae_encoder.mnn","vae_encoder.mnn.weight","llm.mnn","llm.mnn.weight","llm_config.json","tokenizer.txt","meta_queries.mnn"})a.put(entry("export/"+name));return a;
     }
     private static JSONObject inventory(JSONArray entries,boolean complete)throws Exception {
         JSONArray a=new JSONArray();for(int i=0;i<entries.length();i++)a.put(HubClient.asset(HubClient.model(repo()),entries.getJSONObject(i)));
@@ -40,15 +40,17 @@ public final class RecipeSuggestionsTest {
         Path root=Paths.get(args[0]),out=root.resolve("build/recipe-suggestion-tests");Files.createDirectories(out);
         RecipeCatalogue recipes=new RecipeCatalogue(new JSONObject(new String(Files.readAllBytes(root.resolve("app/src/main/assets/recipe-templates.json")),"UTF-8")));
         JSONObject empty=new JSONObject(),full=inventory(files(),true),r=RecipeSuggestions.review(recipes,ID,empty,full);
-        check(r.getInt("suggested")==13,"All thirteen Sana components have unique metadata suggestions");
+        check(r.getInt("suggested")==15,"All fifteen Sana components have unique metadata suggestions");
         check(empty.length()==0,"Review never binds components implicitly");
-        JSONObject applied=RecipeSuggestions.apply(recipes,ID,empty,r,selected(r));check(applied.length()==13,"Explicit confirmation applies all selected roles");
+        JSONObject applied=RecipeSuggestions.apply(recipes,ID,empty,r,selected(r));check(applied.length()==15,"Explicit confirmation applies all selected roles");
         check(empty.length()==0 && !r.has("bundleId"),"Application keeps original selection and does not declare/download a bundle");
-        for(String role:new String[]{"diffusion","connector","projector","vae","llm"}) check(applied.getJSONObject(role+"_data").getString("path").equals(applied.getJSONObject(role).getString("path")+".weight"),"Exact sibling data pairing: "+role);
-        check(new ModelBundle(recipes.compose(ID,applied).json()).components.size()==13,"Suggested components compose through the actual immutable bundle contract");
+        for(String role:new String[]{"diffusion","connector","projector","vae","vae_encoder","llm"}) check(applied.getJSONObject(role+"_data").getString("path").equals(applied.getJSONObject(role).getString("path")+".weight"),"Exact sibling data pairing: "+role);
+        check(new ModelBundle(recipes.compose(ID,applied).json()).components.size()==15,"Suggested components compose through the actual immutable bundle contract");
         RecipeCatalogue previous=new RecipeCatalogue(new JSONObject(new String(Files.readAllBytes(Paths.get(args[1])),"UTF-8")));
-        check(recipes.compose(ID,applied).id.equals(previous.compose(ID,applied).id),"Adding matching hints preserves the exact pre-update model identity");
-        check(DataFiles.canonical(recipes.compose(ID,applied).json()).equals(DataFiles.canonical(previous.compose(ID,applied).json())),"Matching metadata does not alter a registered manifest or its saved parameter identity");
+        JSONObject legacyBindings=DataFiles.copy(applied);legacyBindings.remove("vae_encoder");legacyBindings.remove("vae_encoder_data");
+        ModelBundle legacy=previous.compose("sana_mnn_cpu_v1",legacyBindings);String saved=DataFiles.canonical(legacy.json());
+        check(!recipes.compose(ID,applied).id.equals(legacy.id),"An incompatible image-edit recipe has an explicitly distinct identity");
+        check(DataFiles.canonical(new ModelBundle(legacy.json()).json()).equals(saved),"Old thirteen-component registered metadata remains byte-equivalent without implicit migration");
         JSONObject changed=new JSONObject().put("diffusion",asset("other/transformer.mnn"));rejects(()->RecipeSuggestions.apply(recipes,ID,changed,r,selected(r)),"Stale bindings invalidate review");
         rejects(()->RecipeSuggestions.apply(recipes,"text_gguf_cpu_v1",empty,r,selected(r)),"Wrong template invalidates review");
         rejects(()->RecipeSuggestions.apply(recipes,ID,empty,r,new JSONArray()),"Empty confirmation cannot mutate settings");
@@ -76,7 +78,7 @@ public final class RecipeSuggestionsTest {
         List<String> requests=Collections.synchronizedList(new ArrayList<>());HubClient client=new HubClient("auto","",(address,s,t)->{
             requests.add(address);if(!address.contains("/tree/"))return new HubClient.Response(repo().toString(),null,"fixture");
             JSONArray a=files(),part=new JSONArray();boolean second=address.contains("cursor=two");for(int i=second?6:0;i<(second?a.length():6);i++)part.put(a.getJSONObject(i));return new HubClient.Response(part.toString(),second?null:next("two"),"fixture");});
-        JSONObject collected=client.inventory(HubClient.model(repo()),()->{});check(collected.getInt("pages")==2 && collected.getJSONArray("assets").length()==13,"Actual production pagination collects all matching roles");
+        JSONObject collected=client.inventory(HubClient.model(repo()),()->{});check(collected.getInt("pages")==2 && collected.getJSONArray("assets").length()==15,"Actual production pagination collects all matching roles");
         check(requests.stream().allMatch(a->a.contains("/tree/"+REV)),"Metadata requests stay on exact frozen revision");
         AtomicInteger pages=new AtomicInteger();HubClient large=new HubClient("auto","",(a,s,t)->new HubClient.Response(new JSONArray().put(entry("f"+pages.incrementAndGet()+".txt")).toString(),next("p"+pages.get()),"fixture"));
         check(!large.inventory(HubClient.model(repo()),()->{}).getBoolean("complete") && pages.get()==8,"Large inventory stops at bounded pages and reports incomplete");
@@ -88,11 +90,11 @@ public final class RecipeSuggestionsTest {
             start(hub);hub.dispatch(command("hubRecipeBind").put("draftId",draft(hub)).put("role","diffusion").put("repository","fixture/sana").put("revision",REV).put("path","export/transformer.mnn"));
             JSONObject before=hub.snapshot().getJSONObject("recipeDraft").getJSONObject("bindings");
             hub.dispatch(command("hubRecipeReview").put("draftId",draft(hub)));await(()->!hub.snapshot().getJSONObject("recipeDraft").optBoolean("reviewing"));
-            JSONObject review=hub.snapshot().getJSONObject("recipeDraft").getJSONObject("suggestions");check(review.getInt("suggested")==12,"Controller checks remaining files while preserving manual primary");
+            JSONObject review=hub.snapshot().getJSONObject("recipeDraft").getJSONObject("suggestions");check(review.getInt("suggested")==14,"Controller checks remaining files while preserving manual primary");
             check(app.bundles.snapshot().length()==0,"Review leaves the user's local model store untouched");
             rejects(()->hub.dispatch(command("hubRecipeApply").put("draftId",draft(hub)).put("reviewId","invented").put("roles",selected(review))),"WebView cannot invent a review token");
             hub.dispatch(command("hubRecipeApply").put("draftId",draft(hub)).put("reviewId",review.getString("reviewId")).put("roles",selected(review)));
-            JSONObject bindings=hub.snapshot().getJSONObject("recipeDraft").getJSONObject("bindings");check(bindings.length()==13 && DataFiles.canonical(bindings.getJSONObject("diffusion")).equals(DataFiles.canonical(before.getJSONObject("diffusion"))),"Explicit native application merges choices without replacement");
+            JSONObject bindings=hub.snapshot().getJSONObject("recipeDraft").getJSONObject("bindings");check(bindings.length()==15 && DataFiles.canonical(bindings.getJSONObject("diffusion")).equals(DataFiles.canonical(before.getJSONObject("diffusion"))),"Explicit native application merges choices without replacement");
             check(app.bundles.snapshot().length()==0,"Applying suggestions still does not register or download a model");
             rejects(()->hub.dispatch(command("hubRecipeApply").put("draftId",draft(hub)).put("reviewId",review.getString("reviewId")).put("roles",selected(review))),"An applied token cannot be replayed");
             JSONObject declare=command("hubRecipeDeclare").put("draftId",draft(hub));hub.dispatch(declare);check(app.bundles.snapshot().length()==1 && !app.bundles.snapshot().getJSONObject(0).getBoolean("installed"),"Separate user declaration creates an uninstalled immutable bundle");

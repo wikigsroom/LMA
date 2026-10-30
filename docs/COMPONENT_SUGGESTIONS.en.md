@@ -17,7 +17,7 @@ A capped/incomplete directory disables suggestion application; a single file on 
 
 ## Coverage and boundaries
 
-There are **35 existing recipes**, with **49 declarative filename hints across 19 recipes**. These include Sana's thirteen components, the complete Nano profile's filenames, Kokoro/Piper/Matcha/Qwen TTS files, OpenMOSS extras and standard companions for some image/video recipes. Other roles retain manual selection; an extension alone never establishes pairing.
+There are **35 existing recipes**, with **51 declarative filename hints across 19 recipes**. These include Sana Edit's fifteen components, the complete Nano profile's filenames, Kokoro/Piper/Matcha/Qwen TTS files, OpenMOSS extras and standard companions for some image/video recipes. Other roles retain manual selection; an extension alone never establishes pairing.
 
 These counts describe selection rules, **not trained execution or Android acceptance of 35 models**. Matching names still require architecture, export, quantization, codec, tokenizer, license and device checks. They grant no extra source-model capabilities or verified uncensored classification to user-composed profiles.
 
@@ -34,9 +34,9 @@ These counts describe selection rules, **not trained execution or Android accept
 
 `RecipeSuggestions` consumes recipe `matchFiles`/`matchSibling` data. The UI, queue and controller add no model-ID branches. `HubClient.inventory` reuses production HF pagination and commit validation, with bounds of eight pages/2,048 candidate assets. It rejects duplicate paths/cursors, mixed repositories/commits, blocked files and invalid hints.
 
-Reviews remain temporary draft metadata, checked through a native review ID and binding fingerprint. Confirmation sends roles only; native checked records supply the actual files. Declaration/download remain separate. Matching hints are excluded from model identity: comparison with dev.33's exact original template produces the same Sana model ID and manifest for the same components, preserving parameter identity.
+Reviews remain temporary draft metadata, checked through a native review ID and binding fingerprint. Confirmation sends roles only; native checked records supply the actual files. Declaration/download remain separate. Matching hints are excluded from model identity. In dev.36, Sana image editing is an explicitly different recipe from the incompatible legacy text-to-image declaration and has its own identity. The exact old dev.33 thirteen-component manifest remains readable, without implicit migration or rewriting settings/jobs.
 
-[Production checks](../verification/development/recipe-suggestions.json) exercise the real Java client/controller/persistent store with explicit HTTP metadata and byte fixtures. They cover pagination, thirteen components, ambiguity, paired paths, confirmed merges, historical identity, cancellation, stale changes, errors and zero asset downloads. Current HF/backend regressions are also recorded. None executes models.
+[Production checks](../verification/development/recipe-suggestions.json) exercise the real Java client/controller/persistent store with explicit HTTP metadata and byte fixtures. They cover pagination, fifteen components, ambiguity, paired paths, confirmed merges, historical identity, cancellation, stale changes, errors and zero asset downloads. Current HF/backend regressions are also recorded. None executes models.
 
 [UI manifest](media/development/components/manifest.json) · [MP4](media/development/components/components-ui.mp4) · [GIF](media/development/components/components-ui.gif). Production pages use a simulated bridge: no actual downloads, inference or phone execution.
 

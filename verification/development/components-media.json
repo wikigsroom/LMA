@@ -1,5 +1,5 @@
 {
-  "version": "0.3.0-dev.35",
+  "version": "0.3.0-dev.36",
   "kind": "current production UI with an explicit simulated bridge",
   "android_device": false,
   "model_inference": false,
@@ -8,7 +8,7 @@
   "browser_errors": [],
   "checks": [
     "Component helper discloses metadata-only checking and preserves user control",
-    "Review offers all twelve missing Sana components beside the preserved primary",
+    "Review offers all fourteen missing Sana components beside the preserved primary",
     "Review identifies exact revision and does not claim architecture compatibility",
     "Viewing a complete proposal changes no binding",
     "Review neither registers nor downloads a model",
@@ -16,7 +16,7 @@
     "Unchecked required component remains missing and blocks declaration",
     "An empty confirmation displays guidance without sending a mutation",
     "Explicit remaining choice completes the existing recipe form",
-    "Separate declaration discloses thirteen files and waits for a separate download action",
+    "Separate declaration discloses fifteen files and waits for a separate download action",
     "Ambiguous companion has no preselected or confirmable candidate",
     "Incomplete directory disables automatic suggestions and retains manual selection",
     "Active metadata review has an enabled stop action and returns to preserved selection",
@@ -45,8 +45,8 @@
   "files": [
     {
       "file": "01-component-selection.png",
-      "bytes": 56342,
-      "sha256": "4c908634dd12e06ad8cb7d7740b218215e937a18e68f4e9b723c6611d3edafdc"
+      "bytes": 57651,
+      "sha256": "b675a4ca504384b309f52f108d1501059f7c9a2a19391bfb46b4fc8bf3467f4c"
     },
     {
       "file": "02-companion-review.png",
@@ -55,23 +55,23 @@
     },
     {
       "file": "03-complete-download-plan.png",
-      "bytes": 43579,
-      "sha256": "a201ed282822118ddec0688705b00d5d36ed6612fed58e51769cac21ec8bb44a"
+      "bytes": 44011,
+      "sha256": "0a331e7bda759370f8c4ba502288e408969cdc89fcf643685e86ca24ad2f4926"
     },
     {
       "file": "04-ambiguous-component.png",
-      "bytes": 38188,
-      "sha256": "a50b66e0934dd95fae3e8edf68352ddc4435a983086e5dd0318d78b5ce722371"
+      "bytes": 38183,
+      "sha256": "b4a33db427efae166522410439ee14778b202357ef51a80238df6c1c78db34e2"
     },
     {
       "file": "components-ui.gif",
-      "bytes": 906041,
-      "sha256": "32309e313c7523e0be6c448fc469346b15f1fadfe3dc5c5cb122693d5309326f"
+      "bytes": 928726,
+      "sha256": "e0174bea204f157d80a7d21744ba3ab49778c8b88297db0213b04041f5de9ad2"
     },
     {
       "file": "components-ui.mp4",
-      "bytes": 339860,
-      "sha256": "428c0dc8bb7461774faba4ed5051365bfb740f1cd18171c46b00a754b3a04a1c"
+      "bytes": 381678,
+      "sha256": "cc6f1cbe1212ecc402f9bd03fc3acd8cabca7611069b105c3d4372d272a0cc38"
     }
   ],
   "input_fingerprint": {
@@ -79,10 +79,10 @@
     "app/src/main/assets/app.js": "2240021b034e6259ac110fc48ede81c43be6fabf7200dde5ced7eeacbe9e5468",
     "app/src/main/assets/asset-preparations.json": "b0a7cbac1a633310b9fff84164439ee8fe20a1df137d1075eb9263f531ccfd3b",
     "app/src/main/assets/audio-preview.js": "33bb898969f37c1f78c6664052c46da844d148defdcef4a54d64bc5829037f44",
-    "app/src/main/assets/engine-builds.json": "677af54b59d0161f13f3a9c12b3813accee8f58689f099347acf7fa70f822e91",
+    "app/src/main/assets/engine-builds.json": "9f34a24cf031302c853f35eda44a82932d6a21058cc87f54374107d5a5be38b6",
     "app/src/main/assets/foundation.css": "ac77af14c0498d3c358d76814109cda4f49fb5c660c1f53961d8f9b7f6c3a53f",
-    "app/src/main/assets/foundation.js": "f188fbbe92cf03f2e06971f0baec25f8dfb0fee5ce21b2baeb749862b1059288",
-    "app/src/main/assets/index.html": "7c4d9e4f2c3f362a328f0899739f5776b26ffe2534328e332696aeda86441deb",
+    "app/src/main/assets/foundation.js": "a2bd9f0a92807a0d60a97884fb3dd123ddfc5cf42258b6577bff36b37f99cb14",
+    "app/src/main/assets/index.html": "12fdd076215e8bfc25f12d0ffc066436957fead220b68cb0c7aeeb0593068ef9",
     "app/src/main/assets/license.js": "838317c7653ca35291e9e18f2a7e2d98ed46a10880dfe144176f04ad994433d0",
     "app/src/main/assets/licenses/LLAMA_CPP_LICENSE": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
     "app/src/main/assets/licenses/LMA_LICENSE": "6ae3f5efa412d91cbf66e44f743e5ce41a8044309d05d893365206ab9bc35fc3",
@@ -181,14 +181,14 @@
     "app/src/main/assets/preparations/ltx098_vae_prepare/stage-06.onnx": "c737a55510880d4b92e12e9aca7138a154ad6e58a96e89a4f2a530a3f369b88c",
     "app/src/main/assets/preparations/ltx098_vae_prepare/stage-07.onnx": "239145b9c04cbb5513ee96d2a41ff5b1f8db2c4cf0d9148c3092028b858b3576",
     "app/src/main/assets/preparations/ltx098_vae_prepare/stage-08.onnx": "ff463e05293456c25aa5b1a14d82b1f732f1aee0f00da45f8e28419509ba8ac9",
-    "app/src/main/assets/recipe-templates.json": "107af9e62a783b9b6f806df8b8593446c2e6539b080ff04ee301932bfeeb964b",
+    "app/src/main/assets/recipe-templates.json": "91f2fb0aa811d467afb8f410a4ceaca7f1b6cd457c82ceef8968b0678872a503",
     "app/src/main/assets/recipes.js": "b27e75ed85948a63476bf351cde94a59bec935a540f65e1a9fe798322bcd1b39",
     "app/src/main/assets/versions.js": "2d629929a6db642c12a242ddcc62cd4f4090ab307e0cb669ceb98add031977e1",
     "app/src/main/assets/workbench.js": "17042106c2bbecf2ba42e1287682b0ad905fbe22137fbb5b3ea0bdee5f2745f4",
     "catalogue/asset-preparations.json": "b0a7cbac1a633310b9fff84164439ee8fe20a1df137d1075eb9263f531ccfd3b",
     "catalogue/model-assemblies.json": "af004a9e62205786cd2bd8ca74af4260dc125fdf1ac9e836968bab65747dd746",
     "catalogue/model-bundles.json": "1dbef13b696a882ff2fe3336319860e93aa10cb3e9adeede2bac0137da2b56d5",
-    "tests/components-ui.cjs": "560e579f75ccad00d94e4489de14417ad71aa76b818570d168456753914958d9",
+    "tests/components-ui.cjs": "0a379fb89ddde3c5251f8e3377af9f16ab8eab99df0081b1c4bffb3628144722",
     "tests/foundation-ui.cjs": "b8cc6e6dcd05054e8651c1ec908e8d1f8e1c65abe1cb6d81e77f52a7e9fea6ed",
     "tests/recipes-ui.cjs": "d1aaee793efac075b55ab0b8e6ccf26f5c3ac32ed6da6a6f41c19bd47b3dad77",
     "tools/capture_workbench.cjs": "f5a6337ac60f3b8f59469a64060c9456fcbeb61fb9d7010a82ce2a3ec4700f24"

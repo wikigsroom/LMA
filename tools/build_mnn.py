@@ -27,7 +27,9 @@ def generate_sources(source, generated):
     host = once(host, '#if 1\n        std::vector<int> mask_data', '#if 0\n        std::vector<int> mask_data')
     (generated / 'lma_sana_llm.hpp').write_text(host, encoding='utf-8')
     diffusion = (source / 'transformers/diffusion/engine/src/sana_diffusion.cpp').read_text(encoding='utf-8')
-    diffusion = once(diffusion, '#include "tokenizer.hpp"', '#include "tokenizer.hpp"\n#include <cstdlib>')
+    diffusion = once(diffusion, '#include "tokenizer.hpp"', '#include "tokenizer.hpp"\n#include <cstdlib>\n#include <cstdint>\n#include <stdexcept>')
+    diffusion = once(diffusion, '            VARP image = imread(imagePath);', '            VARP image = imread(imagePath);\n            if (!image.get() || !image->getInfo() || image->getInfo()->dim.size() != 3 || image->getInfo()->dim[0] < 1 || image->getInfo()->dim[1] < 1 || static_cast<int64_t>(image->getInfo()->dim[0]) * image->getInfo()->dim[1] > 4194304) return nullptr;')
+    diffusion = once(diffusion, '                VARP pixel_values = load_and_process_image(inputImagePath, orig_width, orig_height, pad_left, pad_top);', '                VARP pixel_values = load_and_process_image(inputImagePath, orig_width, orig_height, pad_left, pad_top);\n                if (!pixel_values.get()) return false;')
     diffusion = once(diffusion, 'config.numThread = 4;', 'const char* bounded_threads = std::getenv("LMA_MNN_THREADS");\n                config.numThread = bounded_threads ? std::atoi(bounded_threads) : 4;\n                if (config.numThread < 1 || config.numThread > 32) return false;')
     diffusion = once(diffusion, 'mModules[4] = nullptr;\n\n            return true;', 'mModules[4] = nullptr;\n            for (int i = 0; i < 4; ++i) if (!mModules[i]) return false;\n            return true;')
     diffusion = once(diffusion, '                    sample = _Concat({sample, sample}, 0);\n                }\n            }', '                    sample = _Concat({sample, sample}, 0);\n                }\n                // Report completed computation, not merely a queued expression.\n                ((MNN::Tensor *)(sample->getTensor()))->wait(Tensor::MAP_TENSOR_READ, true);\n                if (progressCallback) progressCallback((i + 1) * 100 / num_inference_steps);\n            }')
@@ -43,7 +45,11 @@ def main():
     generated = ROOT / 'build/mnn-generated'
     generate_sources(source, generated)
     inputs = fingerprint('native/mnn', 'tools/build_mnn.py', 'tools/fetch_mnn.py', 'third_party/mnn-source-lock.json')
-    drive = next((c+':' for c in 'TUVWXYZ' if not Path(c+':/').exists()), None)
+    # Reuse the existing cache's owned ASCII drive; never relocate a live CMake cache.
+    cache = ROOT / 'build/mnn-arm64-cpu-r30/CMakeCache.txt'
+    cached = next((line.split('=',1)[1][:2].upper() for line in cache.read_text(encoding='utf-8').splitlines() if line.startswith('CMAKE_CACHEFILE_DIR:INTERNAL=')), None) if cache.is_file() else None
+    if cached and (cached[0] not in 'TUVWXYZ' or Path(cached+'/').exists()): raise RuntimeError('Cached MNN build alias is busy; finish its owning build first')
+    drive = cached or next((c+':' for c in 'TUVWXYZ' if not Path(c+':/').exists()), None)
     if not drive: raise RuntimeError('No unused build path alias')
     subprocess.run(['subst', drive, str(ROOT)], check=True, capture_output=True)
     log = ROOT / 'build/mnn-build.log'; log.write_bytes(b'')

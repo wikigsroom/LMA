@@ -1,5 +1,12 @@
 # Changelog / 更新记录
 
+## 0.3.0-dev.36 — Local image-edit business flow / 本地图片编辑业务闭环
+
+- Correct the matched Sana model's task from generic text-to-image to fixed-style image editing, based on pinned official application sources. Preserve the legacy declarations, files, settings, jobs and failed gray outputs; the original frozen text-to-image target stays pending.
+- 完整 15 组件（1,661,730,284 字节），共用素材导入/必选图片/固定提示词/独立参数/不可变任务/实际采样取消/恢复/结果保存及重启读取。无模型数据进入 App，无自动下载或远程推理。
+- Bound actual PNG/JPEG bytes/pixels and decoded images; correct Android decode-failure handling. Deliver oversized-upload errors before bounded stream closure, preserving the 256 KiB body limit.
+- 双语指南、原始输入和实际结果、带标记 MP4/GIF、更新页面截图、原签名 dev.36/code40 APK；原样归档 dev.35 的 39 份记录及状态。所有原数值失败、冻结范围与手机/正式 Release 门槛保持。
+
 ## 0.3.0-dev.35 — Sana real execution / Sana 真实运行
 
 - 使用完整 13 组件（1,505,181,194 字节）执行实际生产 C++ 与 Java 导入 / 独立参数 / 不可变任务 / 采样取消 / 恢复；资产不进入 App。
