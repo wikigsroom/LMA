@@ -1,5 +1,7 @@
 # Sana 移动管线与 MNN 本地引擎
 
+dev.35 / code 39 更新：[真实组件与生产链路](MNN_SANA_TRAINED.md)。已验证完整主机组件执行与 Java 导入 / 采样取消 / 恢复，修复单 batch 编码、float mask、采样进度和单步边界；Android 只有同源编译。当前样例主体缺失，画质和手机仍未通过。下文 dev.14 是最初接入时的历史验证范围。
+
 [English](MNN_SANA_ENGINE.en.md) · [完整版本需求](MULTIMODAL_RELEASE_PLAN.md) · [HF 组件选择](HF_RECIPES.md) · [开发状态](DEVELOPMENT.md)
 
 内部检查点 **0.3.0-dev.14 / code 18** 接入真实 MNN CPU worker 和 Java 任务绑定。它是编号 04 允许的“明确匹配的 MNN 移动变体”路线，**不是原版 Sana 600M 的通用加载器**。已完成原生编译、主机协议和 APK 检查；没有 Android 生图、质量、速度、内存或后台耐久证据，也未发布完整 v0.3.0。

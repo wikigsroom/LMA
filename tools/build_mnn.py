@@ -15,12 +15,8 @@ def once(text, old, new):
     if text.count(old) != 1: raise RuntimeError('Reviewed upstream patch no longer matches')
     return text.replace(old, new)
 
-def main():
-    if os.name != 'nt': raise RuntimeError('Use native Windows NDK tools')
-    lock = json.loads((ROOT / 'third_party/mnn-source-lock.json').read_text(encoding='utf-8'))
-    source = validate_sources(lock)
-    if hashlib.sha256((ROOT / 'build/native-src/sd-cpp/thirdparty/json.hpp').read_bytes()).hexdigest() != lock['json_header_sha256']: raise RuntimeError('Pinned JSON header changed')
-    generated = ROOT / 'build/mnn-generated'; generated.mkdir(parents=True, exist_ok=True)
+def generate_sources(source, generated):
+    generated.mkdir(parents=True, exist_ok=True)
     host = (source / 'transformers/diffusion/engine/include/diffusion/sana_llm.hpp').read_text(encoding='utf-8')
     host = once(host, '#include <vector>', '#include <stdexcept>\n#include <vector>')
     host = once(host, 'SanaLlm(const std::string& config_path) {', 'SanaLlm(const std::string& config_path, int maximum_tokens) : mMaximumTokens(maximum_tokens) {')
@@ -28,14 +24,26 @@ def main():
     host = once(host, 'mLlm->load();', 'if (!mLlm->load()) throw std::runtime_error("Cannot load the complete Qwen3 encoder");')
     host = once(host, 'auto ids = mLlm->tokenizer_encode(p);', 'auto ids = mLlm->tokenizer_encode(p);\n            if (ids.empty() || ids.size() > static_cast<size_t>(mMaximumTokens)) throw std::runtime_error("Sana formatted input exceeds its selected token budget");')
     host = once(host, 'std::unique_ptr<Llm> mLlm;', 'int mMaximumTokens;\n    std::unique_ptr<Llm> mLlm;')
+    host = once(host, '#if 1\n        std::vector<int> mask_data', '#if 0\n        std::vector<int> mask_data')
     (generated / 'lma_sana_llm.hpp').write_text(host, encoding='utf-8')
     diffusion = (source / 'transformers/diffusion/engine/src/sana_diffusion.cpp').read_text(encoding='utf-8')
     diffusion = once(diffusion, '#include "tokenizer.hpp"', '#include "tokenizer.hpp"\n#include <cstdlib>')
     diffusion = once(diffusion, 'config.numThread = 4;', 'const char* bounded_threads = std::getenv("LMA_MNN_THREADS");\n                config.numThread = bounded_threads ? std::atoi(bounded_threads) : 4;\n                if (config.numThread < 1 || config.numThread > 32) return false;')
     diffusion = once(diffusion, 'mModules[4] = nullptr;\n\n            return true;', 'mModules[4] = nullptr;\n            for (int i = 0; i < 4; ++i) if (!mModules[i]) return false;\n            return true;')
+    diffusion = once(diffusion, '                    sample = _Concat({sample, sample}, 0);\n                }\n            }', '                    sample = _Concat({sample, sample}, 0);\n                }\n                // Report completed computation, not merely a queued expression.\n                ((MNN::Tensor *)(sample->getTensor()))->wait(Tensor::MAP_TENSOR_READ, true);\n                if (progressCallback) progressCallback((i + 1) * 100 / num_inference_steps);\n            }')
+    diffusion = once(diffusion, '                mModules[3].reset();\n            }\n\n            return true;', '                mModules[3].reset();\n            }\n\n            return success;')
+    diffusion = once(diffusion, 'double alpha = start + i * (end - start) / (double)(num_inference_steps - 1);', 'double alpha = num_inference_steps == 1 ? end : start + i * (end - start) / (double)(num_inference_steps - 1);')
     (generated / 'sana_diffusion.cpp').write_text(diffusion, encoding='utf-8')
+
+def main():
+    if os.name != 'nt': raise RuntimeError('Use native Windows NDK tools')
+    lock = json.loads((ROOT / 'third_party/mnn-source-lock.json').read_text(encoding='utf-8'))
+    source = validate_sources(lock)
+    if hashlib.sha256((ROOT / 'build/native-src/sd-cpp/thirdparty/json.hpp').read_bytes()).hexdigest() != lock['json_header_sha256']: raise RuntimeError('Pinned JSON header changed')
+    generated = ROOT / 'build/mnn-generated'
+    generate_sources(source, generated)
     inputs = fingerprint('native/mnn', 'tools/build_mnn.py', 'tools/fetch_mnn.py', 'third_party/mnn-source-lock.json')
-    drive = next((c+':' for c in 'RSTUVWXYZ' if not Path(c+':/').exists()), None)
+    drive = next((c+':' for c in 'TUVWXYZ' if not Path(c+':/').exists()), None)
     if not drive: raise RuntimeError('No unused build path alias')
     subprocess.run(['subst', drive, str(ROOT)], check=True, capture_output=True)
     log = ROOT / 'build/mnn-build.log'; log.write_bytes(b'')

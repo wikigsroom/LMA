@@ -1,5 +1,7 @@
 # 更新、同步与发布 / Updating and releasing
 
+dev.35 内部检查点：[Sana 真实组件](MNN_SANA_TRAINED.md) / [English](MNN_SANA_TRAINED.en.md) / [完整待办](releases/v0.3.0-dev.35.md)。先核对完整显式开发资产与生产原生 / Java 训练链路、相同生成源码的 ARM64 构建，再核对签名 APK、控件回归、真实产物媒体及双语文档。主机执行不关闭画质、独立数值或手机门槛；dev.34 的 33 份当前记录与原状态按原提交留存，不发布缩减正式版。
+
 dev.31 历史检查点：[共用运行资源保护](RUNTIME_RESOURCES.md) / [English](RUNTIME_RESOURCES.en.md) / [编号实现与完整待办](releases/v0.3.0-dev.31.md)。仅开发签名包；当前源码回归、主机训练链路、页面夹具和 Android 编译分别留证，完整 Release 门槛不变。dev.30 的 27 份当前记录及原状态按原提交保存在 `verification/history/0.3.0-dev.30/`。以下保留旧 LTX、音频与基座的构建 / 历史说明。
 
 dev.30 历史检查点：[旧 LTX 本地视频闭环](LTX098_APP_FLOW.md) / [English](LTX098_APP_FLOW.en.md) / [编号交付与完整待办](releases/v0.3.0-dev.30.md)。仅原签名开发包；四个原生阶段、实际生产 Java 主机链路、界面夹具与 Android 编译分别留证。原六项数值失败不改写，官方变体 / 质量 / 手机与完整 Release 仍待验收。dev.29 的 22 份当前记录及原状态按原提交留存在 `verification/history/0.3.0-dev.29/`。

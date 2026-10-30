@@ -352,9 +352,9 @@
     }
   ],
   "android_execution_tested": false,
-  "applicationApkSha256": "e6fa225ca839172d0d28a4f8147735263b019b21efc8ccc15ed1bf39bc56bfe7",
+  "applicationApkSha256": "15d51b9a692ca567571c50451c1f798d238da8cc59dfd628be471aacc7b7bebd",
   "input_fingerprint": {
-    "app/src/main/AndroidManifest.xml": "521c14c5412b4bbc07261171920dfb318b2c17702cee8270bbb50d08cbabeb42",
+    "app/src/main/AndroidManifest.xml": "ff11b116fa9004e52668881362dbad9b82c0b3081ef2c407d37413191f13a117",
     "app/src/main/java/com/lma/app/ApiHost.java": "288e80c8ef2328c1808920060848b3e12ebc4872d7919f2863f0c827eb0c3afc",
     "app/src/main/java/com/lma/app/BootReceiver.java": "2c1f72871ca122f8e9562edfc163105bd56ed1df81d3bcf60108a267b837dcee",
     "app/src/main/java/com/lma/app/BundleDocuments.java": "5b7039fae074adf35e117155e0337792e7ac7f08fa3630803fb1c9ac3b188d3a",
@@ -420,7 +420,7 @@
     "app/src/main/java/com/lma/app/HubCatalog.java": "2a5e513d896a4ba804a75ac35d8be15421757edf3f009bdb59fdb4228caae777",
     "app/src/main/java/com/lma/app/HubClient.java": "bade04fe276d833cfc4071c8ea333270cf888b9d34ecb6700db542b97798fb0f",
     "app/src/main/java/com/lma/app/InputImports.java": "1f8b8b8a2a262fb57ed023c3eeb85fbb63a7c768b20196ef27d13295b26db437",
-    "app/src/main/java/com/lma/app/LmaApp.java": "2ad795a3ba7d4321225b75396e59c45d0ca10cf77cf54ace35a7b26082433494",
+    "app/src/main/java/com/lma/app/LmaApp.java": "d213a8224b697b7a0c480c34f866ebed375320acc842e869463b2cdeb5c863fc",
     "app/src/main/java/com/lma/app/LmaService.java": "f780bf5c3e421c66fb499b9edf0c630c7c50dd387252d93213256cdd5c101976",
     "app/src/main/java/com/lma/app/LocalEngine.java": "c06198df33cf290dff58d5d7d7f2b44b3d84d552c1a3c0f1cf35c30c6d5b7c19",
     "app/src/main/java/com/lma/app/LocalEngines.java": "387bd24157acb064c1b99eee5b652d932260a93e1b8c82fe024276a5c18a2f03",

@@ -1,5 +1,7 @@
 # Sana mobile pipeline and local MNN engine
 
+dev.35 / code 39 update: [real components and production execution](MNN_SANA_TRAINED.en.md). Complete host component execution and Java import/sampling cancellation/recovery are checked, with single-batch encoding, float-mask, progress and one-step repairs. Android remains same-source compilation only. Requested subjects are missing in observed samples; quality and phone acceptance remain open. The dev.14 scope below describes the initial integration.
+
 [中文](MNN_SANA_ENGINE.md) · [Complete release requirements](MULTIMODAL_RELEASE_PLAN.en.md) · [HF components](HF_RECIPES.en.md) · [Development status](DEVELOPMENT.en.md)
 
 Internal checkpoint **0.3.0-dev.14 / code 18** adds a real MNN CPU worker and production Java job binding. This is selection 04's explicitly matched MNN mobile alternative, **not a universal loader for original Sana 600M**. Native compilation, host protocol and APK checks exist; Android image generation, quality, speed, memory and background endurance remain unverified. Complete v0.3.0 is unpublished.

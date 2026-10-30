@@ -1,5 +1,7 @@
 # LMA 文档 / Documentation
 
+当前 dev.35：[Sana 真实组件 / 中文](MNN_SANA_TRAINED.md) · [English](MNN_SANA_TRAINED.en.md) · [编号实现与完整待办](releases/v0.3.0-dev.35.md)。修复生产运行问题；真实主机执行、界面夹具、Android 编译和未通过的画质分别记录。
+
 [项目首页 / 中文](../README.md) · [Project README / English](../README.en.md)
 
 当前公开版本 **0.2.0**；内部开发 **0.3.0-dev**，完整版本尚未验收。文档整理日期：**2026-10-30（Asia/Taipei）**。产品行为以生产源码及对应版本的验证证据为准；历史审计保留其原始检查日期。

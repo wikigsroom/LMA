@@ -1,6 +1,6 @@
 {
-  "apk": "LMA-0.3.0-dev.34-arm64-v8a.apk",
-  "sha256": "e6fa225ca839172d0d28a4f8147735263b019b21efc8ccc15ed1bf39bc56bfe7",
+  "apk": "LMA-0.3.0-dev.35-arm64-v8a.apk",
+  "sha256": "15d51b9a692ca567571c50451c1f798d238da8cc59dfd628be471aacc7b7bebd",
   "native_libraries_verified": 34,
   "all_native_dependencies_resolved": true,
   "all_elf_load_segments_16k_aligned": true,
@@ -369,25 +369,6 @@
       ],
       "16k_elf_aligned": true
     },
-    "liblma-mnn.so": {
-      "machine": "aarch64",
-      "needed": [
-        "liblog.so",
-        "libm.so",
-        "libandroid.so",
-        "libdl.so",
-        "libc.so"
-      ],
-      "load_segment_alignment": [
-        16384
-      ],
-      "interpreter": "/system/bin/linker64",
-      "entry_point": 539968,
-      "android_api_notes": [
-        28
-      ],
-      "16k_elf_aligned": true
-    },
     "liblma-qwen-tts.so": {
       "machine": "aarch64",
       "needed": [
@@ -582,6 +563,25 @@
       ],
       "interpreter": "/system/bin/linker64",
       "entry_point": 125072,
+      "android_api_notes": [
+        28
+      ],
+      "16k_elf_aligned": true
+    },
+    "liblma-mnn.so": {
+      "machine": "aarch64",
+      "needed": [
+        "liblog.so",
+        "libm.so",
+        "libandroid.so",
+        "libdl.so",
+        "libc.so"
+      ],
+      "load_segment_alignment": [
+        16384
+      ],
+      "interpreter": "/system/bin/linker64",
+      "entry_point": 540224,
       "android_api_notes": [
         28
       ],

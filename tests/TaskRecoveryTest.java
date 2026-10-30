@@ -133,7 +133,10 @@ public final class TaskRecoveryTest {
     }
     public static void main(String[] args) throws Exception {
         if(args.length==2&&args[0].equals("crash")){crash(new File(args[1]));return;}
-        File root=new File(args[0]);JSONObject recovered=recovery(new File(root,"crash"));guards(new File(root,"guards"));api(new File(root,"api"));
-        System.out.println(new JSONObject().put("passed",true).put("count",checks.size()).put("checks",new JSONArray(checks)).put("actual_process_interruption",true).put("actual_persistence_io",true).put("actual_socket_io",true).put("recovery",recovered).put("android_execution_tested",false).put("model_inference_tested",false));
+        File root=new File(args[0]);long start=System.nanoTime();JSONObject phases=new JSONObject();
+        JSONObject recovered=recovery(new File(root,"crash"));phases.put("crash_recovery",(System.nanoTime()-start)/1e9);System.err.println("Task recovery phase complete: crash recovery");
+        start=System.nanoTime();guards(new File(root,"guards"));phases.put("durable_history",(System.nanoTime()-start)/1e9);System.err.println("Task recovery phase complete: durable history");
+        start=System.nanoTime();api(new File(root,"api"));phases.put("actual_http",(System.nanoTime()-start)/1e9);System.err.println("Task recovery phase complete: HTTP");
+        System.out.println(new JSONObject().put("passed",true).put("count",checks.size()).put("host_phase_seconds",phases).put("checks",new JSONArray(checks)).put("actual_process_interruption",true).put("actual_persistence_io",true).put("actual_socket_io",true).put("recovery",recovered).put("android_execution_tested",false).put("model_inference_tested",false));
     }
 }

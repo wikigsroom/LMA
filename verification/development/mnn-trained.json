@@ -1,0 +1,1695 @@
+{
+  "schema": "lma.mnn-trained-host/1",
+  "passed": true,
+  "checks": [
+    {
+      "passed": true,
+      "description": "Actual native engine identity"
+    },
+    {
+      "passed": true,
+      "description": "Identity diagnostics remain isolated"
+    },
+    {
+      "passed": true,
+      "description": "a: bounded structured protocol, no leaked diagnostics"
+    },
+    {
+      "passed": true,
+      "description": "a: actual complete image"
+    },
+    {
+      "passed": true,
+      "description": "a: requested dimensions and nonuniform RGB pixels; not a quality gate"
+    },
+    {
+      "passed": true,
+      "description": "a: output provenance"
+    },
+    {
+      "passed": true,
+      "description": "a: every completed real sampling step reported"
+    },
+    {
+      "passed": true,
+      "description": "a: real pipeline stage transitions"
+    },
+    {
+      "passed": true,
+      "description": "a: host process memory observed"
+    },
+    {
+      "passed": true,
+      "description": "b: bounded structured protocol, no leaked diagnostics"
+    },
+    {
+      "passed": true,
+      "description": "b: actual complete image"
+    },
+    {
+      "passed": true,
+      "description": "b: requested dimensions and nonuniform RGB pixels; not a quality gate"
+    },
+    {
+      "passed": true,
+      "description": "b: output provenance"
+    },
+    {
+      "passed": true,
+      "description": "b: every completed real sampling step reported"
+    },
+    {
+      "passed": true,
+      "description": "b: real pipeline stage transitions"
+    },
+    {
+      "passed": true,
+      "description": "b: host process memory observed"
+    },
+    {
+      "passed": true,
+      "description": "cfg-a: bounded structured protocol, no leaked diagnostics"
+    },
+    {
+      "passed": true,
+      "description": "cfg-a: actual complete image"
+    },
+    {
+      "passed": true,
+      "description": "cfg-a: requested dimensions and nonuniform RGB pixels; not a quality gate"
+    },
+    {
+      "passed": true,
+      "description": "cfg-a: output provenance"
+    },
+    {
+      "passed": true,
+      "description": "cfg-a: every completed real sampling step reported"
+    },
+    {
+      "passed": true,
+      "description": "cfg-a: real pipeline stage transitions"
+    },
+    {
+      "passed": true,
+      "description": "cfg-a: host process memory observed"
+    },
+    {
+      "passed": true,
+      "description": "cfg-b: bounded structured protocol, no leaked diagnostics"
+    },
+    {
+      "passed": true,
+      "description": "cfg-b: actual complete image"
+    },
+    {
+      "passed": true,
+      "description": "cfg-b: requested dimensions and nonuniform RGB pixels; not a quality gate"
+    },
+    {
+      "passed": true,
+      "description": "cfg-b: output provenance"
+    },
+    {
+      "passed": true,
+      "description": "cfg-b: every completed real sampling step reported"
+    },
+    {
+      "passed": true,
+      "description": "cfg-b: real pipeline stage transitions"
+    },
+    {
+      "passed": true,
+      "description": "cfg-b: host process memory observed"
+    },
+    {
+      "passed": true,
+      "description": "rectangle: bounded structured protocol, no leaked diagnostics"
+    },
+    {
+      "passed": true,
+      "description": "rectangle: actual complete image"
+    },
+    {
+      "passed": true,
+      "description": "rectangle: requested dimensions and nonuniform RGB pixels; not a quality gate"
+    },
+    {
+      "passed": true,
+      "description": "rectangle: output provenance"
+    },
+    {
+      "passed": true,
+      "description": "rectangle: every completed real sampling step reported"
+    },
+    {
+      "passed": true,
+      "description": "rectangle: real pipeline stage transitions"
+    },
+    {
+      "passed": true,
+      "description": "rectangle: host process memory observed"
+    },
+    {
+      "passed": true,
+      "description": "single-step: bounded structured protocol, no leaked diagnostics"
+    },
+    {
+      "passed": true,
+      "description": "single-step: actual complete image"
+    },
+    {
+      "passed": true,
+      "description": "single-step: requested dimensions and nonuniform RGB pixels; not a quality gate"
+    },
+    {
+      "passed": true,
+      "description": "single-step: output provenance"
+    },
+    {
+      "passed": true,
+      "description": "single-step: every completed real sampling step reported"
+    },
+    {
+      "passed": true,
+      "description": "single-step: real pipeline stage transitions"
+    },
+    {
+      "passed": true,
+      "description": "single-step: host process memory observed"
+    },
+    {
+      "passed": true,
+      "description": "token-budget: bounded structured protocol, no leaked diagnostics"
+    },
+    {
+      "passed": true,
+      "description": "token-budget: local failure does not publish an artifact"
+    },
+    {
+      "passed": true,
+      "description": "negative-needs-cfg: bounded structured protocol, no leaked diagnostics"
+    },
+    {
+      "passed": true,
+      "description": "negative-needs-cfg: local failure does not publish an artifact"
+    },
+    {
+      "passed": true,
+      "description": "missing-connector: bounded structured protocol, no leaked diagnostics"
+    },
+    {
+      "passed": true,
+      "description": "missing-connector: local failure does not publish an artifact"
+    },
+    {
+      "passed": true,
+      "description": "invalid-output: bounded structured protocol, no leaked diagnostics"
+    },
+    {
+      "passed": true,
+      "description": "invalid-output: local failure does not publish an artifact"
+    },
+    {
+      "passed": true,
+      "description": "wrong-pipeline: bounded structured protocol, no leaked diagnostics"
+    },
+    {
+      "passed": true,
+      "description": "wrong-pipeline: local failure does not publish an artifact"
+    },
+    {
+      "passed": true,
+      "description": "recovery-a: bounded structured protocol, no leaked diagnostics"
+    },
+    {
+      "passed": true,
+      "description": "recovery-a: actual complete image"
+    },
+    {
+      "passed": true,
+      "description": "recovery-a: requested dimensions and nonuniform RGB pixels; not a quality gate"
+    },
+    {
+      "passed": true,
+      "description": "recovery-a: output provenance"
+    },
+    {
+      "passed": true,
+      "description": "recovery-a: every completed real sampling step reported"
+    },
+    {
+      "passed": true,
+      "description": "recovery-a: real pipeline stage transitions"
+    },
+    {
+      "passed": true,
+      "description": "recovery-a: host process memory observed"
+    },
+    {
+      "passed": true,
+      "description": "prompt-effect: observed same-host pixel relationship"
+    },
+    {
+      "passed": true,
+      "description": "cfg-effect: observed same-host pixel relationship"
+    },
+    {
+      "passed": true,
+      "description": "negative-effect: observed same-host pixel relationship"
+    },
+    {
+      "passed": true,
+      "description": "recovery: observed same-host pixel relationship"
+    }
+  ],
+  "compilation": {
+    "schema": "lma.mnn-host-build/1",
+    "executable": "build/mnn-worker-host/b21079025c2187b5/lma_mnn_host.exe",
+    "bytes": 4592640,
+    "sha256": "bf3e17e330ac9ea6aaa34f87374c3d65fdc1cf6166d516bb55cceccc70b978be",
+    "source_revision": "35a20ca0995bb7e4a549b7def42c4acb30559a94",
+    "production_worker": true,
+    "identical_generated_pipeline": true,
+    "backend": "cpu",
+    "bundled_model_data": false,
+    "model_executed": false,
+    "android_compiled": false,
+    "physical_android": false,
+    "input_fingerprint": {
+      "native/mnn/bootstrap.cmake": "8f4046a160689828f5ef82effdb303e0fe4d8f709be887a3df97944da9339a17",
+      "native/mnn/policy.hpp": "02860c259fe519d30b49f53fa87ede734fcba936b35db02aba3d2a79ac99c407",
+      "native/mnn/worker.cpp": "17683a1ad687a93eee6b5b36485502e6370005932c672a3468592ba28862ad15",
+      "research/sd_host/platform.hpp": "c377ed1b676707a469a192d96ae9b748802e1f62ad0674366b593b2b5b2daf67",
+      "third_party/mnn-source-lock.json": "1639a5fe9610af47ab5b6f6d1fbb1df12083f240022f09e1beae5aecd0d2082f",
+      "tools/build_mnn.py": "577a6c6411bb91409b078e615de9e6c72f611a80c91a064d1aaf02da831fea9e",
+      "tools/build_mnn_host.py": "e469769228eff3b8d661c505ee6b665beba04bcc50fa75c4c0ca49c7137544a7",
+      "tools/fetch_mnn.py": "3eca07c0a174eeafedcfb68cde69f16523902082fbc9b86339d52dea03bdded7",
+      "tools/fetch_mnn_trained.py": "21e251bea2d8fe8f9a8035ab9ee67e3d885d2a5b76bebd24e8b4b21731a5ba1c"
+    },
+    "generated_sources": {
+      "build/mnn-worker-host/b21079025c2187b5/generated/lma_sana_llm.hpp": "8b2ad32220ec6394529389db579ce534b2bae187f46435695953b8cc04b9ea06",
+      "build/mnn-worker-host/b21079025c2187b5/generated/sana_diffusion.cpp": "d57185d680ab83cfb35b15fc89dc5c68beea745b84add0d183740cd8218bb6ee"
+    }
+  },
+  "assets": [
+    {
+      "role": "diffusion",
+      "repository": "taobao-mnn/MNN-Sana-Edit-V2",
+      "revision": "dd5955b4e63359b5822fa29a3b3711a112212046",
+      "path": "transformer.mnn",
+      "bytes": 1454264,
+      "sha256": "092dd75e8b8c12694ffe43476addcbde07fe7227774a1a40b19420f87b217386",
+      "git_blob": "48fe328410807e06786c1432ee1685afe5263c0e",
+      "url": "https://huggingface.co/taobao-mnn/MNN-Sana-Edit-V2/resolve/dd5955b4e63359b5822fa29a3b3711a112212046/transformer.mnn"
+    },
+    {
+      "role": "diffusion_data",
+      "repository": "taobao-mnn/MNN-Sana-Edit-V2",
+      "revision": "dd5955b4e63359b5822fa29a3b3711a112212046",
+      "path": "transformer.mnn.weight",
+      "bytes": 884435680,
+      "sha256": "b3bab45fbabc8dabd05840b52ea3cd9bd3e54dd990e153ff6fbecd8b6c17f331",
+      "git_blob": "59c7dd33748ebc424b423dc9dcde712c2b2b0e8f",
+      "url": "https://huggingface.co/taobao-mnn/MNN-Sana-Edit-V2/resolve/dd5955b4e63359b5822fa29a3b3711a112212046/transformer.mnn.weight"
+    },
+    {
+      "role": "connector",
+      "repository": "taobao-mnn/MNN-Sana-Edit-V2",
+      "revision": "dd5955b4e63359b5822fa29a3b3711a112212046",
+      "path": "connector.mnn",
+      "bytes": 99096,
+      "sha256": "d72239e1c2626cfb8f349b9d6b8c9d85f1cd9def0063d3ea23695aa6b2ef48fd",
+      "git_blob": "8d52eb2ded5e923062861810665f19f46f969b68",
+      "url": "https://huggingface.co/taobao-mnn/MNN-Sana-Edit-V2/resolve/dd5955b4e63359b5822fa29a3b3711a112212046/connector.mnn"
+    },
+    {
+      "role": "connector_data",
+      "repository": "taobao-mnn/MNN-Sana-Edit-V2",
+      "revision": "dd5955b4e63359b5822fa29a3b3711a112212046",
+      "path": "connector.mnn.weight",
+      "bytes": 76268760,
+      "sha256": "7128351d2de561932741f7f874b116ea3b4e5979296d8adf41472a93fcb889cd",
+      "git_blob": "fa78c9043c6a88f9ec750186d358d5abe1fbbaa8",
+      "url": "https://huggingface.co/taobao-mnn/MNN-Sana-Edit-V2/resolve/dd5955b4e63359b5822fa29a3b3711a112212046/connector.mnn.weight"
+    },
+    {
+      "role": "projector",
+      "repository": "taobao-mnn/MNN-Sana-Edit-V2",
+      "revision": "dd5955b4e63359b5822fa29a3b3711a112212046",
+      "path": "projector.mnn",
+      "bytes": 2416,
+      "sha256": "6236a92633bab8ee33416b2f84ec41b934885be652aea7f0412a057de817d4c0",
+      "git_blob": "63b5ecce659183a8fdc8c05fb6edb188744ae4ce",
+      "url": "https://huggingface.co/taobao-mnn/MNN-Sana-Edit-V2/resolve/dd5955b4e63359b5822fa29a3b3711a112212046/projector.mnn"
+    },
+    {
+      "role": "projector_data",
+      "repository": "taobao-mnn/MNN-Sana-Edit-V2",
+      "revision": "dd5955b4e63359b5822fa29a3b3711a112212046",
+      "path": "projector.mnn.weight",
+      "bytes": 2387206,
+      "sha256": "34b5afdb0c3b1fc815cdee7f3ed293e8d8f1f377328e5785cad2bd1768a843c3",
+      "git_blob": "1d75f2fd288793bc66e485cb323fdd69374872a7",
+      "url": "https://huggingface.co/taobao-mnn/MNN-Sana-Edit-V2/resolve/dd5955b4e63359b5822fa29a3b3711a112212046/projector.mnn.weight"
+    },
+    {
+      "role": "vae",
+      "repository": "taobao-mnn/MNN-Sana-Edit-V2",
+      "revision": "dd5955b4e63359b5822fa29a3b3711a112212046",
+      "path": "vae_decoder.mnn",
+      "bytes": 751784,
+      "sha256": "9fbe51979b27339b7685cf88f1010a0ff3ab7ff1a7d873fba321eea94b762911",
+      "git_blob": "4a3ad004d22032500ad30e67facced459abd6ab3",
+      "url": "https://huggingface.co/taobao-mnn/MNN-Sana-Edit-V2/resolve/dd5955b4e63359b5822fa29a3b3711a112212046/vae_decoder.mnn"
+    },
+    {
+      "role": "vae_data",
+      "repository": "taobao-mnn/MNN-Sana-Edit-V2",
+      "revision": "dd5955b4e63359b5822fa29a3b3711a112212046",
+      "path": "vae_decoder.mnn.weight",
+      "bytes": 162011594,
+      "sha256": "a6ef7a13ba9af29754adf9b97651cb29a7eaee20b716c16dbe079f500d5eddae",
+      "git_blob": "45cbe9c208c1074f1d7f9d2fd79220f44a1170f8",
+      "url": "https://huggingface.co/taobao-mnn/MNN-Sana-Edit-V2/resolve/dd5955b4e63359b5822fa29a3b3711a112212046/vae_decoder.mnn.weight"
+    },
+    {
+      "role": "llm",
+      "repository": "taobao-mnn/MNN-Sana-Edit-V2",
+      "revision": "dd5955b4e63359b5822fa29a3b3711a112212046",
+      "path": "llm/llm.mnn",
+      "bytes": 504504,
+      "sha256": "a3e32dc50e8988e78d416031023345048f4b6cf152db021da6ee1de921d45096",
+      "git_blob": "9ff4d475d0daba9220a94ece54ded7dae65237a2",
+      "url": "https://huggingface.co/taobao-mnn/MNN-Sana-Edit-V2/resolve/dd5955b4e63359b5822fa29a3b3711a112212046/llm/llm.mnn"
+    },
+    {
+      "role": "llm_data",
+      "repository": "taobao-mnn/MNN-Sana-Edit-V2",
+      "revision": "dd5955b4e63359b5822fa29a3b3711a112212046",
+      "path": "llm/llm.mnn.weight",
+      "bytes": 373018866,
+      "sha256": "79db6ac8267ec6a7c9172a363112fa613c0cf17d6f46121d947a75c987ccf49a",
+      "git_blob": "a518f6cdbf26a7e571fb4088a16f322d33b4b9eb",
+      "url": "https://huggingface.co/taobao-mnn/MNN-Sana-Edit-V2/resolve/dd5955b4e63359b5822fa29a3b3711a112212046/llm/llm.mnn.weight"
+    },
+    {
+      "role": "llm_config",
+      "repository": "taobao-mnn/MNN-Sana-Edit-V2",
+      "revision": "dd5955b4e63359b5822fa29a3b3711a112212046",
+      "path": "llm/llm_config.json",
+      "bytes": 4638,
+      "sha256": "2e45095efda4d17853d8b565f7f354210d3f14f97ac24b24a87a5ab771f5980a",
+      "git_blob": "82dbf008d7b1c7744db0908d2609655f7843ef08",
+      "url": "https://huggingface.co/taobao-mnn/MNN-Sana-Edit-V2/resolve/dd5955b4e63359b5822fa29a3b3711a112212046/llm/llm_config.json"
+    },
+    {
+      "role": "tokenizer",
+      "repository": "taobao-mnn/MNN-Sana-Edit-V2",
+      "revision": "dd5955b4e63359b5822fa29a3b3711a112212046",
+      "path": "llm/tokenizer.txt",
+      "bytes": 3193562,
+      "sha256": "80e75c6cbf70c75fdd51ac1cd53505ac127dcb0e21ebe4d19751fa772e2868bd",
+      "git_blob": "6925c080eead011874d2e8fd08916982e4c00161",
+      "url": "https://huggingface.co/taobao-mnn/MNN-Sana-Edit-V2/resolve/dd5955b4e63359b5822fa29a3b3711a112212046/llm/tokenizer.txt"
+    },
+    {
+      "role": "meta_queries",
+      "repository": "taobao-mnn/MNN-Sana-Edit-V2",
+      "revision": "dd5955b4e63359b5822fa29a3b3711a112212046",
+      "path": "llm/meta_queries.mnn",
+      "bytes": 1048824,
+      "sha256": "5e80d4e591af78cca31b6e4cf4ee4ead410e9d2f64ee34c73cf5b633def16e0c",
+      "git_blob": "ba4d41a1586e17b403442b0c5fb7777f66a118a1",
+      "url": "https://huggingface.co/taobao-mnn/MNN-Sana-Edit-V2/resolve/dd5955b4e63359b5822fa29a3b3711a112212046/llm/meta_queries.mnn"
+    }
+  ],
+  "runs": [
+    {
+      "name": "a",
+      "request": {
+        "schema": "lma.engine-request/1",
+        "type": "image.generate",
+        "pipeline": "sana_mnn_v1",
+        "input": {
+          "prompt": "A red ceramic teapot on a wooden table, studio photograph, soft light",
+          "negativePrompt": ""
+        },
+        "parameters": {
+          "width": 512,
+          "height": 512,
+          "steps": 10,
+          "threads": 4,
+          "maxInputTokens": 512,
+          "useCfg": false,
+          "cfg": 4,
+          "seed": 42
+        },
+        "workspace": "T:/build/mnn-trained-tests/run-1793332359644081100/workspace",
+        "output": "T:/build/mnn-trained-tests/run-1793332359644081100/a.png"
+      },
+      "process": {
+        "returncode": 0,
+        "seconds": 105.35986939999566,
+        "events": [
+          {
+            "event": "stage",
+            "stage": "encoding_text"
+          },
+          {
+            "event": "stage",
+            "stage": "loading_diffusion"
+          },
+          {
+            "event": "progress",
+            "fraction": 0.1,
+            "stage": "sampling"
+          },
+          {
+            "event": "progress",
+            "fraction": 0.2,
+            "stage": "sampling"
+          },
+          {
+            "event": "progress",
+            "fraction": 0.3,
+            "stage": "sampling"
+          },
+          {
+            "event": "progress",
+            "fraction": 0.4,
+            "stage": "sampling"
+          },
+          {
+            "event": "progress",
+            "fraction": 0.5,
+            "stage": "sampling"
+          },
+          {
+            "event": "progress",
+            "fraction": 0.6,
+            "stage": "sampling"
+          },
+          {
+            "event": "progress",
+            "fraction": 0.7,
+            "stage": "sampling"
+          },
+          {
+            "event": "progress",
+            "fraction": 0.8,
+            "stage": "sampling"
+          },
+          {
+            "event": "progress",
+            "fraction": 0.9,
+            "stage": "sampling"
+          },
+          {
+            "event": "progress",
+            "fraction": 1.0,
+            "stage": "sampling"
+          },
+          {
+            "event": "complete",
+            "format": "png",
+            "height": 512,
+            "output": "T:/build/mnn-trained-tests/run-1793332359644081100/a.png",
+            "width": 512
+          }
+        ],
+        "protocol_errors": [],
+        "logs_truncated": [
+          false,
+          false
+        ],
+        "cancelled": false,
+        "timed_out": false,
+        "cancel_trigger": null,
+        "cancel_to_exit_seconds": null,
+        "resources": {
+          "observed": true,
+          "samples": 4805,
+          "interval_ms": 20,
+          "observed_peak_working_set_bytes": 960110592,
+          "sampled_peak_private_bytes": 957550592,
+          "gpu_memory_measured": false,
+          "physical_device_memory_measured": false
+        }
+      },
+      "stdout_sha256": "a6bf4dd2bcc796e8bb2e0e83d4aba99eb766ff7283f0d6a68500fd78b0f51031",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "image": {
+        "bytes": 536536,
+        "sha256": "16695e6f777c57604fbdc6d3722b708a3bb866c9ebdbdbef21482b800a59cedd",
+        "width": 512,
+        "height": 512,
+        "mean": [
+          123.1358757019043,
+          120.50979232788086,
+          111.61408615112305
+        ],
+        "stddev": [
+          11.68826523885714,
+          9.068407721991099,
+          7.721401985400155
+        ],
+        "extrema": [
+          [
+            89,
+            165
+          ],
+          [
+            92,
+            164
+          ],
+          [
+            84,
+            161
+          ]
+        ]
+      }
+    },
+    {
+      "name": "b",
+      "request": {
+        "schema": "lma.engine-request/1",
+        "type": "image.generate",
+        "pipeline": "sana_mnn_v1",
+        "input": {
+          "prompt": "A small sailboat on a blue lake, snow covered mountain, landscape photograph",
+          "negativePrompt": ""
+        },
+        "parameters": {
+          "width": 512,
+          "height": 512,
+          "steps": 10,
+          "threads": 4,
+          "maxInputTokens": 512,
+          "useCfg": false,
+          "cfg": 4,
+          "seed": 42
+        },
+        "workspace": "T:/build/mnn-trained-tests/run-1793332359644081100/workspace",
+        "output": "T:/build/mnn-trained-tests/run-1793332359644081100/b.png"
+      },
+      "process": {
+        "returncode": 0,
+        "seconds": 176.12786810000398,
+        "events": [
+          {
+            "event": "stage",
+            "stage": "encoding_text"
+          },
+          {
+            "event": "stage",
+            "stage": "loading_diffusion"
+          },
+          {
+            "event": "progress",
+            "fraction": 0.1,
+            "stage": "sampling"
+          },
+          {
+            "event": "progress",
+            "fraction": 0.2,
+            "stage": "sampling"
+          },
+          {
+            "event": "progress",
+            "fraction": 0.3,
+            "stage": "sampling"
+          },
+          {
+            "event": "progress",
+            "fraction": 0.4,
+            "stage": "sampling"
+          },
+          {
+            "event": "progress",
+            "fraction": 0.5,
+            "stage": "sampling"
+          },
+          {
+            "event": "progress",
+            "fraction": 0.6,
+            "stage": "sampling"
+          },
+          {
+            "event": "progress",
+            "fraction": 0.7,
+            "stage": "sampling"
+          },
+          {
+            "event": "progress",
+            "fraction": 0.8,
+            "stage": "sampling"
+          },
+          {
+            "event": "progress",
+            "fraction": 0.9,
+            "stage": "sampling"
+          },
+          {
+            "event": "progress",
+            "fraction": 1.0,
+            "stage": "sampling"
+          },
+          {
+            "event": "complete",
+            "format": "png",
+            "height": 512,
+            "output": "T:/build/mnn-trained-tests/run-1793332359644081100/b.png",
+            "width": 512
+          }
+        ],
+        "protocol_errors": [],
+        "logs_truncated": [
+          false,
+          false
+        ],
+        "cancelled": false,
+        "timed_out": false,
+        "cancel_trigger": null,
+        "cancel_to_exit_seconds": null,
+        "resources": {
+          "observed": true,
+          "samples": 6227,
+          "interval_ms": 20,
+          "observed_peak_working_set_bytes": 960147456,
+          "sampled_peak_private_bytes": 957702144,
+          "gpu_memory_measured": false,
+          "physical_device_memory_measured": false
+        }
+      },
+      "stdout_sha256": "6d9a0be6647554261a0138ac5f768a21476c17e4ff8f5f4e27dab1eabdd104a0",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "image": {
+        "bytes": 536834,
+        "sha256": "dad16d135b6e506c6a4c012599ae6926eb10de5a42e02f380b0e9ad67895ed7e",
+        "width": 512,
+        "height": 512,
+        "mean": [
+          123.18432998657227,
+          121.10762023925781,
+          112.32798767089844
+        ],
+        "stddev": [
+          11.851595329500734,
+          9.153086002809367,
+          7.710389245063758
+        ],
+        "extrema": [
+          [
+            88,
+            168
+          ],
+          [
+            92,
+            157
+          ],
+          [
+            85,
+            159
+          ]
+        ]
+      }
+    },
+    {
+      "name": "cfg-a",
+      "request": {
+        "schema": "lma.engine-request/1",
+        "type": "image.generate",
+        "pipeline": "sana_mnn_v1",
+        "input": {
+          "prompt": "A red ceramic teapot on a wooden table, studio photograph, soft light",
+          "negativePrompt": "blurry, distorted, low quality"
+        },
+        "parameters": {
+          "width": 512,
+          "height": 512,
+          "steps": 10,
+          "threads": 4,
+          "maxInputTokens": 512,
+          "useCfg": true,
+          "cfg": 4,
+          "seed": 42
+        },
+        "workspace": "T:/build/mnn-trained-tests/run-1793332359644081100/workspace",
+        "output": "T:/build/mnn-trained-tests/run-1793332359644081100/cfg-a.png"
+      },
+      "process": {
+        "returncode": 0,
+        "seconds": 268.9115545999957,
+        "events": [
+          {
+            "event": "stage",
+            "stage": "encoding_text"
+          },
+          {
+            "event": "stage",
+            "stage": "loading_diffusion"
+          },
+          {
+            "event": "progress",
+            "fraction": 0.1,
+            "stage": "sampling"
+          },
+          {
+            "event": "progress",
+            "fraction": 0.2,
+            "stage": "sampling"
+          },
+          {
+            "event": "progress",
+            "fraction": 0.3,
+            "stage": "sampling"
+          },
+          {
+            "event": "progress",
+            "fraction": 0.4,
+            "stage": "sampling"
+          },
+          {
+            "event": "progress",
+            "fraction": 0.5,
+            "stage": "sampling"
+          },
+          {
+            "event": "progress",
+            "fraction": 0.6,
+            "stage": "sampling"
+          },
+          {
+            "event": "progress",
+            "fraction": 0.7,
+            "stage": "sampling"
+          },
+          {
+            "event": "progress",
+            "fraction": 0.8,
+            "stage": "sampling"
+          },
+          {
+            "event": "progress",
+            "fraction": 0.9,
+            "stage": "sampling"
+          },
+          {
+            "event": "progress",
+            "fraction": 1.0,
+            "stage": "sampling"
+          },
+          {
+            "event": "complete",
+            "format": "png",
+            "height": 512,
+            "output": "T:/build/mnn-trained-tests/run-1793332359644081100/cfg-a.png",
+            "width": 512
+          }
+        ],
+        "protocol_errors": [],
+        "logs_truncated": [
+          false,
+          false
+        ],
+        "cancelled": false,
+        "timed_out": false,
+        "cancel_trigger": null,
+        "cancel_to_exit_seconds": null,
+        "resources": {
+          "observed": true,
+          "samples": 10603,
+          "interval_ms": 20,
+          "observed_peak_working_set_bytes": 999985152,
+          "sampled_peak_private_bytes": 997531648,
+          "gpu_memory_measured": false,
+          "physical_device_memory_measured": false
+        }
+      },
+      "stdout_sha256": "c8bcd198a39c13ca9c6e865f800c3e29b722236989baeabb13084794e4d9f6ff",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "image": {
+        "bytes": 538649,
+        "sha256": "f40766dab8604f195304415f8f478c44ff9ce5ab3d6704a6655afb925e41fe04",
+        "width": 512,
+        "height": 512,
+        "mean": [
+          124.54803848266602,
+          121.4286117553711,
+          110.26795959472656
+        ],
+        "stddev": [
+          11.34068455350354,
+          8.946285606610838,
+          7.985347071106156
+        ],
+        "extrema": [
+          [
+            90,
+            168
+          ],
+          [
+            94,
+            182
+          ],
+          [
+            84,
+            176
+          ]
+        ]
+      }
+    },
+    {
+      "name": "cfg-b",
+      "request": {
+        "schema": "lma.engine-request/1",
+        "type": "image.generate",
+        "pipeline": "sana_mnn_v1",
+        "input": {
+          "prompt": "A red ceramic teapot on a wooden table, studio photograph, soft light",
+          "negativePrompt": "red, ceramic, teapot"
+        },
+        "parameters": {
+          "width": 512,
+          "height": 512,
+          "steps": 10,
+          "threads": 4,
+          "maxInputTokens": 512,
+          "useCfg": true,
+          "cfg": 4,
+          "seed": 42
+        },
+        "workspace": "T:/build/mnn-trained-tests/run-1793332359644081100/workspace",
+        "output": "T:/build/mnn-trained-tests/run-1793332359644081100/cfg-b.png"
+      },
+      "process": {
+        "returncode": 0,
+        "seconds": 182.40072399999917,
+        "events": [
+          {
+            "event": "stage",
+            "stage": "encoding_text"
+          },
+          {
+            "event": "stage",
+            "stage": "loading_diffusion"
+          },
+          {
+            "event": "progress",
+            "fraction": 0.1,
+            "stage": "sampling"
+          },
+          {
+            "event": "progress",
+            "fraction": 0.2,
+            "stage": "sampling"
+          },
+          {
+            "event": "progress",
+            "fraction": 0.3,
+            "stage": "sampling"
+          },
+          {
+            "event": "progress",
+            "fraction": 0.4,
+            "stage": "sampling"
+          },
+          {
+            "event": "progress",
+            "fraction": 0.5,
+            "stage": "sampling"
+          },
+          {
+            "event": "progress",
+            "fraction": 0.6,
+            "stage": "sampling"
+          },
+          {
+            "event": "progress",
+            "fraction": 0.7,
+            "stage": "sampling"
+          },
+          {
+            "event": "progress",
+            "fraction": 0.8,
+            "stage": "sampling"
+          },
+          {
+            "event": "progress",
+            "fraction": 0.9,
+            "stage": "sampling"
+          },
+          {
+            "event": "progress",
+            "fraction": 1.0,
+            "stage": "sampling"
+          },
+          {
+            "event": "complete",
+            "format": "png",
+            "height": 512,
+            "output": "T:/build/mnn-trained-tests/run-1793332359644081100/cfg-b.png",
+            "width": 512
+          }
+        ],
+        "protocol_errors": [],
+        "logs_truncated": [
+          false,
+          false
+        ],
+        "cancelled": false,
+        "timed_out": false,
+        "cancel_trigger": null,
+        "cancel_to_exit_seconds": null,
+        "resources": {
+          "observed": true,
+          "samples": 8247,
+          "interval_ms": 20,
+          "observed_peak_working_set_bytes": 1000448000,
+          "sampled_peak_private_bytes": 998023168,
+          "gpu_memory_measured": false,
+          "physical_device_memory_measured": false
+        }
+      },
+      "stdout_sha256": "5d0d86b0d82241a65f255762c274fde907e68cd7118f083ff479da218bce36b8",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "image": {
+        "bytes": 563108,
+        "sha256": "1dcd116e8a31d50e17af31b337c41f54e0ff535dd1a88f9e2ad9bd4a3b619b8c",
+        "width": 512,
+        "height": 512,
+        "mean": [
+          125.57344055175781,
+          122.98271942138672,
+          112.88569641113281
+        ],
+        "stddev": [
+          13.473732453428354,
+          10.323453455591634,
+          9.79169664452191
+        ],
+        "extrema": [
+          [
+            81,
+            179
+          ],
+          [
+            91,
+            172
+          ],
+          [
+            82,
+            176
+          ]
+        ]
+      }
+    },
+    {
+      "name": "rectangle",
+      "request": {
+        "schema": "lma.engine-request/1",
+        "type": "image.generate",
+        "pipeline": "sana_mnn_v1",
+        "input": {
+          "prompt": "A red ceramic teapot on a wooden table, studio photograph, soft light",
+          "negativePrompt": ""
+        },
+        "parameters": {
+          "width": 320,
+          "height": 256,
+          "steps": 2,
+          "threads": 4,
+          "maxInputTokens": 512,
+          "useCfg": false,
+          "cfg": 4,
+          "seed": 42
+        },
+        "workspace": "T:/build/mnn-trained-tests/run-1793332359644081100/workspace",
+        "output": "T:/build/mnn-trained-tests/run-1793332359644081100/rectangle.png"
+      },
+      "process": {
+        "returncode": 0,
+        "seconds": 21.257277199998498,
+        "events": [
+          {
+            "event": "stage",
+            "stage": "encoding_text"
+          },
+          {
+            "event": "stage",
+            "stage": "loading_diffusion"
+          },
+          {
+            "event": "progress",
+            "fraction": 0.5,
+            "stage": "sampling"
+          },
+          {
+            "event": "progress",
+            "fraction": 1.0,
+            "stage": "sampling"
+          },
+          {
+            "event": "complete",
+            "format": "png",
+            "height": 256,
+            "output": "T:/build/mnn-trained-tests/run-1793332359644081100/rectangle.png",
+            "width": 320
+          }
+        ],
+        "protocol_errors": [],
+        "logs_truncated": [
+          false,
+          false
+        ],
+        "cancelled": false,
+        "timed_out": false,
+        "cancel_trigger": null,
+        "cancel_to_exit_seconds": null,
+        "resources": {
+          "observed": true,
+          "samples": 975,
+          "interval_ms": 20,
+          "observed_peak_working_set_bytes": 939970560,
+          "sampled_peak_private_bytes": 937418752,
+          "gpu_memory_measured": false,
+          "physical_device_memory_measured": false
+        }
+      },
+      "stdout_sha256": "134891429e99733e1f76e081c957fd6b10d6144fcf16c9a0478ed983a306eaa0",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "image": {
+        "bytes": 180536,
+        "sha256": "799523bcfd3e411c16245dd5f02a3ae7576bdbee78608c9aea95b42e06160be7",
+        "width": 320,
+        "height": 256,
+        "mean": [
+          121.6703857421875,
+          120.5371337890625,
+          108.646240234375
+        ],
+        "stddev": [
+          20.568373305091693,
+          16.038080689861918,
+          14.213062067165538
+        ],
+        "extrema": [
+          [
+            72,
+            255
+          ],
+          [
+            89,
+            247
+          ],
+          [
+            78,
+            255
+          ]
+        ]
+      }
+    },
+    {
+      "name": "single-step",
+      "request": {
+        "schema": "lma.engine-request/1",
+        "type": "image.generate",
+        "pipeline": "sana_mnn_v1",
+        "input": {
+          "prompt": "A red ceramic teapot on a wooden table, studio photograph, soft light",
+          "negativePrompt": ""
+        },
+        "parameters": {
+          "width": 256,
+          "height": 256,
+          "steps": 1,
+          "threads": 4,
+          "maxInputTokens": 512,
+          "useCfg": false,
+          "cfg": 4,
+          "seed": 42
+        },
+        "workspace": "T:/build/mnn-trained-tests/run-1793332359644081100/workspace",
+        "output": "T:/build/mnn-trained-tests/run-1793332359644081100/single-step.png"
+      },
+      "process": {
+        "returncode": 0,
+        "seconds": 30.046285800002806,
+        "events": [
+          {
+            "event": "stage",
+            "stage": "encoding_text"
+          },
+          {
+            "event": "stage",
+            "stage": "loading_diffusion"
+          },
+          {
+            "event": "progress",
+            "fraction": 1.0,
+            "stage": "sampling"
+          },
+          {
+            "event": "complete",
+            "format": "png",
+            "height": 256,
+            "output": "T:/build/mnn-trained-tests/run-1793332359644081100/single-step.png",
+            "width": 256
+          }
+        ],
+        "protocol_errors": [],
+        "logs_truncated": [
+          false,
+          false
+        ],
+        "cancelled": false,
+        "timed_out": false,
+        "cancel_trigger": null,
+        "cancel_to_exit_seconds": null,
+        "resources": {
+          "observed": true,
+          "samples": 950,
+          "interval_ms": 20,
+          "observed_peak_working_set_bytes": 938369024,
+          "sampled_peak_private_bytes": 935809024,
+          "gpu_memory_measured": false,
+          "physical_device_memory_measured": false
+        }
+      },
+      "stdout_sha256": "7269529517cd901f318e17d6b55784b905b161a8d5cc2a317f5bc3680e4c0380",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "image": {
+        "bytes": 143748,
+        "sha256": "484dc8262f8c835a215693c76c01c37248ab6bbff67a21624fae00938a89e401",
+        "width": 256,
+        "height": 256,
+        "mean": [
+          119.11993408203125,
+          108.25830078125,
+          99.73541259765625
+        ],
+        "stddev": [
+          23.382692205369455,
+          20.880701982374017,
+          23.487652088606627
+        ],
+        "extrema": [
+          [
+            32,
+            206
+          ],
+          [
+            52,
+            200
+          ],
+          [
+            42,
+            215
+          ]
+        ]
+      }
+    },
+    {
+      "name": "token-budget",
+      "request": {
+        "schema": "lma.engine-request/1",
+        "type": "image.generate",
+        "pipeline": "sana_mnn_v1",
+        "input": {
+          "prompt": "A red ceramic teapot on a wooden table, studio photograph, soft light",
+          "negativePrompt": ""
+        },
+        "parameters": {
+          "width": 512,
+          "height": 512,
+          "steps": 10,
+          "threads": 4,
+          "maxInputTokens": 1,
+          "useCfg": false,
+          "cfg": 4,
+          "seed": 42
+        },
+        "workspace": "T:/build/mnn-trained-tests/run-1793332359644081100/workspace",
+        "output": "T:/build/mnn-trained-tests/run-1793332359644081100/token-budget.png"
+      },
+      "process": {
+        "returncode": 1,
+        "seconds": 4.3138034000003245,
+        "events": [
+          {
+            "event": "stage",
+            "stage": "encoding_text"
+          },
+          {
+            "event": "error",
+            "message": "Sana formatted input exceeds its selected token budget"
+          }
+        ],
+        "protocol_errors": [],
+        "logs_truncated": [
+          false,
+          false
+        ],
+        "cancelled": false,
+        "timed_out": false,
+        "cancel_trigger": null,
+        "cancel_to_exit_seconds": null,
+        "resources": {
+          "observed": true,
+          "samples": 181,
+          "interval_ms": 20,
+          "observed_peak_working_set_bytes": 662040576,
+          "sampled_peak_private_bytes": 659341312,
+          "gpu_memory_measured": false,
+          "physical_device_memory_measured": false
+        }
+      },
+      "stdout_sha256": "180c074e8f1732ef05fea1c5a03476b83b53861d859bbd9494e1e4bf220cda3f",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "negative-needs-cfg",
+      "request": {
+        "schema": "lma.engine-request/1",
+        "type": "image.generate",
+        "pipeline": "sana_mnn_v1",
+        "input": {
+          "prompt": "A red ceramic teapot on a wooden table, studio photograph, soft light",
+          "negativePrompt": "blurry"
+        },
+        "parameters": {
+          "width": 512,
+          "height": 512,
+          "steps": 10,
+          "threads": 4,
+          "maxInputTokens": 512,
+          "useCfg": false,
+          "cfg": 4,
+          "seed": 42
+        },
+        "workspace": "T:/build/mnn-trained-tests/run-1793332359644081100/workspace",
+        "output": "T:/build/mnn-trained-tests/run-1793332359644081100/negative-needs-cfg.png"
+      },
+      "process": {
+        "returncode": 1,
+        "seconds": 0.19853230000444455,
+        "events": [
+          {
+            "event": "error",
+            "message": "Negative conditioning requires enabled Sana CFG"
+          }
+        ],
+        "protocol_errors": [],
+        "logs_truncated": [
+          false,
+          false
+        ],
+        "cancelled": false,
+        "timed_out": false,
+        "cancel_trigger": null,
+        "cancel_to_exit_seconds": null,
+        "resources": {
+          "observed": true,
+          "samples": 9,
+          "interval_ms": 20,
+          "observed_peak_working_set_bytes": 5255168,
+          "sampled_peak_private_bytes": 1683456,
+          "gpu_memory_measured": false,
+          "physical_device_memory_measured": false
+        }
+      },
+      "stdout_sha256": "df57c53a6ca76a0d0b714f3dbe0164fcde6e73219409255aaa9f8641924a62be",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "missing-connector",
+      "request": {
+        "schema": "lma.engine-request/1",
+        "type": "image.generate",
+        "pipeline": "sana_mnn_v1",
+        "input": {
+          "prompt": "A red ceramic teapot on a wooden table, studio photograph, soft light",
+          "negativePrompt": ""
+        },
+        "parameters": {
+          "width": 512,
+          "height": 512,
+          "steps": 10,
+          "threads": 4,
+          "maxInputTokens": 512,
+          "useCfg": false,
+          "cfg": 4,
+          "seed": 42
+        },
+        "workspace": "T:/build/mnn-trained-tests/run-1793332359644081100/workspace",
+        "output": "T:/build/mnn-trained-tests/run-1793332359644081100/missing-connector.png"
+      },
+      "process": {
+        "returncode": 1,
+        "seconds": 8.527452100002847,
+        "events": [
+          {
+            "event": "stage",
+            "stage": "encoding_text"
+          },
+          {
+            "event": "stage",
+            "stage": "loading_diffusion"
+          },
+          {
+            "event": "error",
+            "message": "Complete matched Sana diffusion components could not load"
+          }
+        ],
+        "protocol_errors": [],
+        "logs_truncated": [
+          false,
+          false
+        ],
+        "cancelled": false,
+        "timed_out": false,
+        "cancel_trigger": null,
+        "cancel_to_exit_seconds": null,
+        "resources": {
+          "observed": true,
+          "samples": 375,
+          "interval_ms": 20,
+          "observed_peak_working_set_bytes": 904355840,
+          "sampled_peak_private_bytes": 903426048,
+          "gpu_memory_measured": false,
+          "physical_device_memory_measured": false
+        }
+      },
+      "stdout_sha256": "b18ad8f97ffeeaf18f88a232f39fad37a5d0aa91fcc49c431d7e394a5ee6bcbb",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "invalid-output",
+      "request": {
+        "schema": "lma.engine-request/1",
+        "type": "image.generate",
+        "pipeline": "sana_mnn_v1",
+        "input": {
+          "prompt": "A red ceramic teapot on a wooden table, studio photograph, soft light",
+          "negativePrompt": ""
+        },
+        "parameters": {
+          "width": 256,
+          "height": 256,
+          "steps": 1,
+          "threads": 4,
+          "maxInputTokens": 512,
+          "useCfg": false,
+          "cfg": 4,
+          "seed": 42
+        },
+        "workspace": "T:/build/mnn-trained-tests/run-1793332359644081100/workspace",
+        "output": "T:/build/mnn-trained-tests/run-1793332359644081100/missing-parent/invalid.png"
+      },
+      "process": {
+        "returncode": 1,
+        "seconds": 32.24566929999855,
+        "events": [
+          {
+            "event": "stage",
+            "stage": "encoding_text"
+          },
+          {
+            "event": "stage",
+            "stage": "loading_diffusion"
+          },
+          {
+            "event": "progress",
+            "fraction": 1.0,
+            "stage": "sampling"
+          },
+          {
+            "event": "error",
+            "message": "Sana did not return an image artifact"
+          }
+        ],
+        "protocol_errors": [],
+        "logs_truncated": [
+          false,
+          false
+        ],
+        "cancelled": false,
+        "timed_out": false,
+        "cancel_trigger": null,
+        "cancel_to_exit_seconds": null,
+        "resources": {
+          "observed": true,
+          "samples": 1284,
+          "interval_ms": 20,
+          "observed_peak_working_set_bytes": 937955328,
+          "sampled_peak_private_bytes": 935378944,
+          "gpu_memory_measured": false,
+          "physical_device_memory_measured": false
+        }
+      },
+      "stdout_sha256": "17bc4f5fb1d72d700ceb5832a955fe87c8c0409e63c564525ff29766844b06bd",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "wrong-pipeline",
+      "request": {
+        "schema": "lma.engine-request/1",
+        "type": "image.generate",
+        "pipeline": "sana_original",
+        "input": {
+          "prompt": "A red ceramic teapot on a wooden table, studio photograph, soft light",
+          "negativePrompt": ""
+        },
+        "parameters": {
+          "width": 512,
+          "height": 512,
+          "steps": 10,
+          "threads": 4,
+          "maxInputTokens": 512,
+          "useCfg": false,
+          "cfg": 4,
+          "seed": 42
+        },
+        "workspace": "T:/build/mnn-trained-tests/run-1793332359644081100/workspace",
+        "output": "T:/build/mnn-trained-tests/run-1793332359644081100/wrong-pipeline.png"
+      },
+      "process": {
+        "returncode": 1,
+        "seconds": 0.23214360000565648,
+        "events": [
+          {
+            "event": "error",
+            "message": "Unsupported MNN task/pipeline"
+          }
+        ],
+        "protocol_errors": [],
+        "logs_truncated": [
+          false,
+          false
+        ],
+        "cancelled": false,
+        "timed_out": false,
+        "cancel_trigger": null,
+        "cancel_to_exit_seconds": null,
+        "resources": {
+          "observed": true,
+          "samples": 10,
+          "interval_ms": 20,
+          "observed_peak_working_set_bytes": 5103616,
+          "sampled_peak_private_bytes": 1572864,
+          "gpu_memory_measured": false,
+          "physical_device_memory_measured": false
+        }
+      },
+      "stdout_sha256": "1b90259545befeed4939f47684d0974045822fd28cbbeec04f69921e9c74500a",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "recovery-a",
+      "request": {
+        "schema": "lma.engine-request/1",
+        "type": "image.generate",
+        "pipeline": "sana_mnn_v1",
+        "input": {
+          "prompt": "A red ceramic teapot on a wooden table, studio photograph, soft light",
+          "negativePrompt": ""
+        },
+        "parameters": {
+          "width": 512,
+          "height": 512,
+          "steps": 10,
+          "threads": 4,
+          "maxInputTokens": 512,
+          "useCfg": false,
+          "cfg": 4,
+          "seed": 42
+        },
+        "workspace": "T:/build/mnn-trained-tests/run-1793332359644081100/workspace",
+        "output": "T:/build/mnn-trained-tests/run-1793332359644081100/recovery-a.png"
+      },
+      "process": {
+        "returncode": 0,
+        "seconds": 148.39421810000204,
+        "events": [
+          {
+            "event": "stage",
+            "stage": "encoding_text"
+          },
+          {
+            "event": "stage",
+            "stage": "loading_diffusion"
+          },
+          {
+            "event": "progress",
+            "fraction": 0.1,
+            "stage": "sampling"
+          },
+          {
+            "event": "progress",
+            "fraction": 0.2,
+            "stage": "sampling"
+          },
+          {
+            "event": "progress",
+            "fraction": 0.3,
+            "stage": "sampling"
+          },
+          {
+            "event": "progress",
+            "fraction": 0.4,
+            "stage": "sampling"
+          },
+          {
+            "event": "progress",
+            "fraction": 0.5,
+            "stage": "sampling"
+          },
+          {
+            "event": "progress",
+            "fraction": 0.6,
+            "stage": "sampling"
+          },
+          {
+            "event": "progress",
+            "fraction": 0.7,
+            "stage": "sampling"
+          },
+          {
+            "event": "progress",
+            "fraction": 0.8,
+            "stage": "sampling"
+          },
+          {
+            "event": "progress",
+            "fraction": 0.9,
+            "stage": "sampling"
+          },
+          {
+            "event": "progress",
+            "fraction": 1.0,
+            "stage": "sampling"
+          },
+          {
+            "event": "complete",
+            "format": "png",
+            "height": 512,
+            "output": "T:/build/mnn-trained-tests/run-1793332359644081100/recovery-a.png",
+            "width": 512
+          }
+        ],
+        "protocol_errors": [],
+        "logs_truncated": [
+          false,
+          false
+        ],
+        "cancelled": false,
+        "timed_out": false,
+        "cancel_trigger": null,
+        "cancel_to_exit_seconds": null,
+        "resources": {
+          "observed": true,
+          "samples": 5809,
+          "interval_ms": 20,
+          "observed_peak_working_set_bytes": 960110592,
+          "sampled_peak_private_bytes": 957583360,
+          "gpu_memory_measured": false,
+          "physical_device_memory_measured": false
+        }
+      },
+      "stdout_sha256": "612faefad35186a2be38afb8276884786a74c658eb31846923d763b006a1cf6e",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "image": {
+        "bytes": 536536,
+        "sha256": "16695e6f777c57604fbdc6d3722b708a3bb866c9ebdbdbef21482b800a59cedd",
+        "width": 512,
+        "height": 512,
+        "mean": [
+          123.1358757019043,
+          120.50979232788086,
+          111.61408615112305
+        ],
+        "stddev": [
+          11.68826523885714,
+          9.068407721991099,
+          7.721401985400155
+        ],
+        "extrema": [
+          [
+            89,
+            165
+          ],
+          [
+            92,
+            164
+          ],
+          [
+            84,
+            161
+          ]
+        ]
+      }
+    }
+  ],
+  "comparisons": {
+    "prompt-effect": {
+      "maximum": 31,
+      "mean": 1.2830098470052083
+    },
+    "cfg-effect": {
+      "maximum": 65,
+      "mean": 2.6376927693684897
+    },
+    "negative-effect": {
+      "maximum": 66,
+      "mean": 3.8260103861490884
+    },
+    "recovery": {
+      "maximum": 0,
+      "mean": 0.0
+    }
+  },
+  "capture_directory": "build/mnn-trained-tests/run-1793332359644081100",
+  "real_trained_host_execution": true,
+  "model_data_bundled": false,
+  "network_inference": false,
+  "physical_android": false,
+  "independent_reference_numerics_accepted": false,
+  "image_quality_accepted": false,
+  "complete_target04_accepted": false,
+  "complete_release_accepted": false,
+  "input_fingerprint": {
+    "native/mnn/bootstrap.cmake": "8f4046a160689828f5ef82effdb303e0fe4d8f709be887a3df97944da9339a17",
+    "native/mnn/policy.hpp": "02860c259fe519d30b49f53fa87ede734fcba936b35db02aba3d2a79ac99c407",
+    "native/mnn/worker.cpp": "17683a1ad687a93eee6b5b36485502e6370005932c672a3468592ba28862ad15",
+    "research/sd_host/platform.hpp": "c377ed1b676707a469a192d96ae9b748802e1f62ad0674366b593b2b5b2daf67",
+    "third_party/mnn-source-lock.json": "1639a5fe9610af47ab5b6f6d1fbb1df12083f240022f09e1beae5aecd0d2082f",
+    "tools/build_mnn.py": "577a6c6411bb91409b078e615de9e6c72f611a80c91a064d1aaf02da831fea9e",
+    "tools/build_mnn_host.py": "e469769228eff3b8d661c505ee6b665beba04bcc50fa75c4c0ca49c7137544a7",
+    "tools/fetch_mnn.py": "3eca07c0a174eeafedcfb68cde69f16523902082fbc9b86339d52dea03bdded7",
+    "tools/fetch_mnn_trained.py": "21e251bea2d8fe8f9a8035ab9ee67e3d885d2a5b76bebd24e8b4b21731a5ba1c",
+    "research/mnn_trained/assets.json": "892f55d300af5e6ed94b68d8cd9a4e468bc869c52d67d108f08ffb404598ff68",
+    "tools/test_mnn_trained.py": "c555dca8d2599f6751825a3d1aedea93b1ed348f4bd4cdaaaea43ad2eda7540d",
+    "tools/test_sd15_trained.py": "60ecc9c6079208b2178d6796dcbf28dd241babbdc0b24d35814201f7552bd4b2"
+  }
+}

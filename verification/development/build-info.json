@@ -1,9 +1,9 @@
 {
-  "apk": "LMA-0.3.0-dev.34-arm64-v8a.apk",
+  "apk": "LMA-0.3.0-dev.35-arm64-v8a.apk",
   "bytes": 47206842,
-  "sha256": "e6fa225ca839172d0d28a4f8147735263b019b21efc8ccc15ed1bf39bc56bfe7",
+  "sha256": "15d51b9a692ca567571c50451c1f798d238da8cc59dfd628be471aacc7b7bebd",
   "package": "com.lma.app",
-  "version": "0.3.0-dev.34",
+  "version": "0.3.0-dev.35",
   "min_sdk": 28,
   "target_sdk": 35,
   "abi": "arm64-v8a",
@@ -184,46 +184,6 @@
         "moss-sentencepiece-third_party-absl-LICENSE.txt",
         "moss-onnxruntime-LICENSE.txt",
         "moss-onnxruntime-ThirdPartyNotices.txt.txt",
-        "sd-nlohmann-json-LICENSE.txt",
-        "sd-NDK-LLVM-NOTICE.txt"
-      ]
-    },
-    {
-      "schema": "lma.native-build/1",
-      "engine": "mnn_diffusion",
-      "file": "liblma-mnn.so",
-      "source_revision": "35a20ca0995bb7e4a549b7def42c4acb30559a94",
-      "abi": "arm64-v8a",
-      "backend": "cpu",
-      "ndk": "30.0.16248370",
-      "min_sdk": 28,
-      "bytes": 4048048,
-      "sha256": "dd9b64d6931c58b4679fe33db3021148d90f5aa392314781705362362edee32b",
-      "elf_load_alignment": [
-        16384
-      ],
-      "android_api_notes": [
-        28
-      ],
-      "generated_sources": {
-        "build/mnn-generated/lma_sana_llm.hpp": "f1eb523529ff3082acadd80880e0dc6ce7095a0b14149b055f7d39972842ddf4",
-        "build/mnn-generated/sana_diffusion.cpp": "64194f84b107bb5fcd77aa1af5f2a46bb64142ea9328d42ab9e86a1934077c4a"
-      },
-      "vocabularies": "external_user_selected_components",
-      "model_inference_tested": false,
-      "physical_device_tests": 0,
-      "virtualization_used": false,
-      "http_resources_compiled": false,
-      "logcat_compiled": false,
-      "deviceValidated": false,
-      "status": "compiled_not_device_tested",
-      "notices": [
-        "mnn-LICENSE.txt",
-        "mnn-half-LICENSE.txt",
-        "mnn-flatbuffers-LICENSE.txt",
-        "mnn-stb-image-NOTICE.txt",
-        "mnn-stb-write-NOTICE.txt",
-        "mnn-stb-resize-NOTICE.txt",
         "sd-nlohmann-json-LICENSE.txt",
         "sd-NDK-LLVM-NOTICE.txt"
       ]
@@ -595,6 +555,46 @@
       "quality_accepted": false,
       "model_data_embedded": false,
       "status": "compiled_not_device_tested"
+    },
+    {
+      "schema": "lma.native-build/1",
+      "engine": "mnn_diffusion",
+      "file": "liblma-mnn.so",
+      "source_revision": "35a20ca0995bb7e4a549b7def42c4acb30559a94",
+      "abi": "arm64-v8a",
+      "backend": "cpu",
+      "ndk": "30.0.16248370",
+      "min_sdk": 28,
+      "bytes": 4049728,
+      "sha256": "983c0052009ecb08a94cd31f20e421c9736c45b9457716e1c4f612d99620f6f9",
+      "elf_load_alignment": [
+        16384
+      ],
+      "android_api_notes": [
+        28
+      ],
+      "generated_sources": {
+        "build/mnn-generated/lma_sana_llm.hpp": "8b2ad32220ec6394529389db579ce534b2bae187f46435695953b8cc04b9ea06",
+        "build/mnn-generated/sana_diffusion.cpp": "d57185d680ab83cfb35b15fc89dc5c68beea745b84add0d183740cd8218bb6ee"
+      },
+      "vocabularies": "external_user_selected_components",
+      "model_inference_tested": false,
+      "physical_device_tests": 0,
+      "virtualization_used": false,
+      "http_resources_compiled": false,
+      "logcat_compiled": false,
+      "deviceValidated": false,
+      "status": "compiled_not_device_tested",
+      "notices": [
+        "mnn-LICENSE.txt",
+        "mnn-half-LICENSE.txt",
+        "mnn-flatbuffers-LICENSE.txt",
+        "mnn-stb-image-NOTICE.txt",
+        "mnn-stb-write-NOTICE.txt",
+        "mnn-stb-resize-NOTICE.txt",
+        "sd-nlohmann-json-LICENSE.txt",
+        "sd-NDK-LLVM-NOTICE.txt"
+      ]
     }
   ],
   "java_source_files": 93,
@@ -606,15 +606,15 @@
   "docker_or_wsl_used": false,
   "signing": "project-local persistent key; signing/ must be preserved for updates",
   "input_fingerprint": {
-    "app/src/main/AndroidManifest.xml": "521c14c5412b4bbc07261171920dfb318b2c17702cee8270bbb50d08cbabeb42",
+    "app/src/main/AndroidManifest.xml": "ff11b116fa9004e52668881362dbad9b82c0b3081ef2c407d37413191f13a117",
     "app/src/main/assets/app.css": "f2cb7b5ee9de8f3afac793e694dcf9fde0a855c0d4c7053ff986cc2a6d2bd3b1",
     "app/src/main/assets/app.js": "2240021b034e6259ac110fc48ede81c43be6fabf7200dde5ced7eeacbe9e5468",
     "app/src/main/assets/asset-preparations.json": "b0a7cbac1a633310b9fff84164439ee8fe20a1df137d1075eb9263f531ccfd3b",
     "app/src/main/assets/audio-preview.js": "33bb898969f37c1f78c6664052c46da844d148defdcef4a54d64bc5829037f44",
-    "app/src/main/assets/engine-builds.json": "b300af6fbcceec8691d187b1b1fa3f3802bb872cfcd9583bc680eaaf3bf90827",
+    "app/src/main/assets/engine-builds.json": "677af54b59d0161f13f3a9c12b3813accee8f58689f099347acf7fa70f822e91",
     "app/src/main/assets/foundation.css": "ac77af14c0498d3c358d76814109cda4f49fb5c660c1f53961d8f9b7f6c3a53f",
     "app/src/main/assets/foundation.js": "f188fbbe92cf03f2e06971f0baec25f8dfb0fee5ce21b2baeb749862b1059288",
-    "app/src/main/assets/index.html": "27db74b1db2cd0ea3db1739b0efb6732af2d47ed13112c7a0d1499f04f8cdf8e",
+    "app/src/main/assets/index.html": "7c4d9e4f2c3f362a328f0899739f5776b26ffe2534328e332696aeda86441deb",
     "app/src/main/assets/license.js": "838317c7653ca35291e9e18f2a7e2d98ed46a10880dfe144176f04ad994433d0",
     "app/src/main/assets/licenses/cpp-httplib-LICENSE.txt": "bb546eae5924d8ee842e0e567e6d533c5824bdebccf605f99a5b3429034e6697",
     "app/src/main/assets/licenses/libcxx-LICENSE.txt": "a7de191338d328257ecec5ba1ea971ebd67633d0b4fce7d6272a39749547ec6b",
@@ -782,7 +782,7 @@
     "app/src/main/java/com/lma/app/HubCatalog.java": "2a5e513d896a4ba804a75ac35d8be15421757edf3f009bdb59fdb4228caae777",
     "app/src/main/java/com/lma/app/HubClient.java": "bade04fe276d833cfc4071c8ea333270cf888b9d34ecb6700db542b97798fb0f",
     "app/src/main/java/com/lma/app/InputImports.java": "1f8b8b8a2a262fb57ed023c3eeb85fbb63a7c768b20196ef27d13295b26db437",
-    "app/src/main/java/com/lma/app/LmaApp.java": "2ad795a3ba7d4321225b75396e59c45d0ca10cf77cf54ace35a7b26082433494",
+    "app/src/main/java/com/lma/app/LmaApp.java": "d213a8224b697b7a0c480c34f866ebed375320acc842e869463b2cdeb5c863fc",
     "app/src/main/java/com/lma/app/LmaService.java": "f780bf5c3e421c66fb499b9edf0c630c7c50dd387252d93213256cdd5c101976",
     "app/src/main/java/com/lma/app/LocalEngine.java": "c06198df33cf290dff58d5d7d7f2b44b3d84d552c1a3c0f1cf35c30c6d5b7c19",
     "app/src/main/java/com/lma/app/LocalEngines.java": "387bd24157acb064c1b99eee5b652d932260a93e1b8c82fe024276a5c18a2f03",
@@ -830,7 +830,7 @@
     "app/src/main/jniLibs/arm64-v8a/liblma-ltx098-app-vae.so": "e9b5011f190e37b4623f2ec0eb181f2e2952b0c2e808254cceb8d74006687e8f",
     "app/src/main/jniLibs/arm64-v8a/liblma-ltx098-prepare.so": "85a603b9ad6fa2d8f9cefa4b6e0ec6aad51d018e575917f24e0fe4c0a5be06fe",
     "app/src/main/jniLibs/arm64-v8a/liblma-ltx098-vae-prepare.so": "857be98d88efc6f39548ba8f03ecc82ba0d8ef0cec5dbc13775be1e25af1cb45",
-    "app/src/main/jniLibs/arm64-v8a/liblma-mnn.so": "dd9b64d6931c58b4679fe33db3021148d90f5aa392314781705362362edee32b",
+    "app/src/main/jniLibs/arm64-v8a/liblma-mnn.so": "983c0052009ecb08a94cd31f20e421c9736c45b9457716e1c4f612d99620f6f9",
     "app/src/main/jniLibs/arm64-v8a/liblma-moss-delay.so": "c070752845c2ef8395cb2613807756a3c2b0d16be43897a63e9f962e48666cda",
     "app/src/main/jniLibs/arm64-v8a/liblma-moss-nano.so": "3cde4a274f286227a762b0dc6065c72e59fed7c1365a553e635fcaeedac785be",
     "app/src/main/jniLibs/arm64-v8a/liblma-moss-rq.so": "ceec1683d8e0ca30384c2df8d41efc6107acfe28265367b4161565a5f4a475e8",
@@ -857,9 +857,9 @@
     "native/ltx098/CMakeLists.txt": "4da0b39b8b57e9d4a974c8527abae6716b43f3fdf0bf5adabff92ecca9c833f6",
     "native/ltx098/parent_guard.cpp": "3c987bcf309a30b2502418d50086cec21073f93dffdee8a50da26f49e055a46d",
     "native/ltx098/sample.cpp": "85ce2e36f904c053272aedc41e8112b01dbcf894cfd98042ae4370b389a7083b",
-    "native/mnn/bootstrap.cmake": "39868dc474087d1a7eb37f6148d36a73e3830f15f80c16277bf58812e8ad1fa7",
+    "native/mnn/bootstrap.cmake": "8f4046a160689828f5ef82effdb303e0fe4d8f709be887a3df97944da9339a17",
     "native/mnn/policy.hpp": "02860c259fe519d30b49f53fa87ede734fcba936b35db02aba3d2a79ac99c407",
-    "native/mnn/worker.cpp": "1a49709927bc2c24f644bc7cc0498b7c5e3ded6a59f6d899d6a6f03900030ce6",
+    "native/mnn/worker.cpp": "17683a1ad687a93eee6b5b36485502e6370005932c672a3468592ba28862ad15",
     "native/moss-rq/CMakeLists.txt": "fd65897a940abada8d0654f92371813caabf5c9bd3a8e53cc71a12dc7248b874",
     "native/moss-rq/codec_binding.cpp": "35885514d32052f1ab2579b38e3dbd34eedf2bb8fee4c9784e550c1bb523ecab",
     "native/moss-rq/model_contract.hpp": "70b1c63b086359bb49682f44f3e9a96b7955e4947ced29e9b944aa28c53ea0fa",
@@ -934,8 +934,8 @@
     "research/soulx_reference/reference.cpp": "59219307bf63901c012ae1e16594c4236fbae147f758e3aca31142bfba231ae8",
     "research/soulx_reference/reference.hpp": "b56f4c888d7b51e46c2871e94c257441cc68a01c17c3b89c7b6aacc19498f07b",
     "third_party/BUILD_INFO.json": "de40253f34d47e5b692e8cd97d87eaa4ecbe549303718f69d286c85f81422acc",
-    "third_party/engine-lock.json": "87d7ad437dc08826d9b1218eac4125ab2691381c1f5c9a85aff609349e602c80",
-    "third_party/mnn-source-lock.json": "e4232cfe0ac5e75c7c51cd83c8b8bc0767561a01ad29c113501b3609f8b84210",
+    "third_party/engine-lock.json": "ce693ecfd6925294f9984959adbcb6bd030ae55328f8d4b4eecf609ad395c149",
+    "third_party/mnn-source-lock.json": "1639a5fe9610af47ab5b6f6d1fbb1df12083f240022f09e1beae5aecd0d2082f",
     "third_party/moss-delay-source-lock.json": "05e8ec33932a9456babfc8a2e4126ca62685cde70e40b1352417b83568b9bbf1",
     "third_party/moss-nano-source-lock.json": "cce6bb6921d1f476fa50a7e483f13daca030a750b68ea47feba9214635170da3",
     "third_party/moss-rq-source-lock.json": "00ece7a69e11e166b3e9ddd3535144f75d6d049a953e44b663bd411993353baa",
@@ -1047,7 +1047,7 @@
     "tools/build.py": "051ee015f0c0b1b42be384714ab66fce05a8476cf5462c8e60a3c3e39cf61242",
     "tools/build_bundle_catalogue.py": "1b002180c611d6a7355945a8c15424fe6f19018382be2caf2741f8fb912344b7",
     "tools/build_catalogue.py": "f86a076bac5d4bf951000aaecdd9a8575d287cfb2f49669450000bda0c6e3755",
-    "tools/build_mnn.py": "d368f3662094c2e150d8ce17d45536fba480b90e8a04d6a39dda60a352ffc5ee",
+    "tools/build_mnn.py": "577a6c6411bb91409b078e615de9e6c72f611a80c91a064d1aaf02da831fea9e",
     "tools/build_moss_delay.py": "1c78cf705edfa599c080d720e1b00fc2b61412e34a6cef4171ed94c52ccaa348",
     "tools/build_moss_nano.py": "25b85da8ff9a1face475733cad83161e241174eee9af3bb1eb90146bf79e3b60",
     "tools/build_moss_rq.py": "a56fb957c9c8f74154093c51a9471b7e98f397acca936542048bf51aa2e033e7",

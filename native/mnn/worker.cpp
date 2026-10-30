@@ -3,13 +3,19 @@
 #include "diffusion/diffusion.hpp"
 #include "policy.hpp"
 #include <cstdio>
+#include <cmath>
 #include <cstdlib>
 #include <fstream>
 #include <memory>
 #include <stdexcept>
 #include <signal.h>
+#ifdef _WIN32
+#include <io.h>
+#include "platform.hpp" // Native Windows test parent-lifetime guard; Android uses prctl below.
+#else
 #include <sys/prctl.h>
 #include <unistd.h>
+#endif
 
 using json = nlohmann::json;
 using namespace MNN;
@@ -20,8 +26,15 @@ static void event(const json& value) { if (events) { std::string line = value.du
 int main(int argc, char** argv) {
     try {
         // Upstream diagnostics include user prompts/paths. Keep only our protocol on stdout.
+
+#ifdef _WIN32
+        events = _fdopen(_dup(_fileno(stdout)), "w");
+        const char* null_device = "NUL";
+#else
         events = fdopen(dup(STDOUT_FILENO), "w");
-        if (!events || !freopen("/dev/null", "w", stdout) || !freopen("/dev/null", "w", stderr)) throw std::runtime_error("Cannot isolate native diagnostics");
+        const char* null_device = "/dev/null";
+#endif
+        if (!events || !freopen(null_device, "w", stdout) || !freopen(null_device, "w", stderr)) throw std::runtime_error("Cannot isolate native diagnostics");
         pid_t parent = getppid();
         if (prctl(PR_SET_PDEATHSIG, SIGKILL) != 0 || parent == 1 || getppid() != parent) throw std::runtime_error("Cannot bind worker lifetime to Android host");
         if (argc == 2 && std::string(argv[1]) == "--info") {
@@ -41,20 +54,33 @@ int main(int argc, char** argv) {
         lma_mnn::parameters(width, height, steps, threads, maximum_tokens, cfg, scale, negative);
         if (seed < 0) throw std::runtime_error("Record the actual nonnegative seed before execution");
         std::string thread_count = std::to_string(threads);
-        if (setenv("LMA_MNN_THREADS", thread_count.c_str(), 1)) throw std::runtime_error("Cannot set bounded CPU thread count");
+
+#ifdef _WIN32
+        const int environment_status = _putenv_s("LMA_MNN_THREADS", thread_count.c_str());
+#else
+        const int environment_status = setenv("LMA_MNN_THREADS", thread_count.c_str(), 1);
+#endif
+        if (environment_status != 0) throw std::runtime_error("Cannot set bounded CPU thread count");
         event({{"event", "stage"}, {"stage", "encoding_text"}});
-        VARP features;
-        {
+        // This matched Qwen export fixes its internal batch to one. Encode each
+        // CFG condition in a fresh instance, then combine the independent features.
+        auto encode = [&](const std::string& text) -> VARP {
             SanaLlm encoder(root + "/llm", maximum_tokens);
-            auto raw = encoder.process(prompt, cfg, negative);
+            auto raw = encoder.process(text, false, "");
             if (!raw.get() || !raw->getInfo()) throw std::runtime_error("Sana text encoding failed");
             auto info = raw->getInfo();
-            if (info->dim != std::vector<int>({cfg ? 2 : 1, 256, 1024}) || info->type != halide_type_of<float>()) throw std::runtime_error("Encoder features do not match the selected mobile Sana recipe");
+            if (info->dim != std::vector<int>({1, 256, 1024}) || info->type != halide_type_of<float>()) throw std::runtime_error("Encoder features do not match the selected mobile Sana recipe");
             const float* data = raw->readMap<float>();
             if (!data) throw std::runtime_error("Cannot materialize text features");
-            features = _Const(data, info->dim, NCHW, halide_type_of<float>());
-            features.fix(VARP::CONSTANT);
-        } // Encoder weights are released before loading the diffusion stages.
+            for (size_t i = 0; i < 256 * 1024; ++i) if (!std::isfinite(data[i])) throw std::runtime_error("Sana text encoder returned nonfinite features");
+            VARP result = _Const(data, info->dim, NCHW, halide_type_of<float>());
+            result.fix(VARP::CONSTANT);
+            return result;
+        };
+        VARP features = encode(prompt);
+        if (cfg) features = _Concat({features, encode(negative)}, 0);
+        features.fix(VARP::CONSTANT);
+        // Both text encoder instances exit before any diffusion model is loaded.
         event({{"event", "stage"}, {"stage", "loading_diffusion"}});
         std::unique_ptr<Diffusion> diffusion(Diffusion::createDiffusion(root + "/models", SANA_DIFFUSION, MNN_FORWARD_CPU, 0));
         if (!diffusion || !diffusion->load()) throw std::runtime_error("Complete matched Sana diffusion components could not load");

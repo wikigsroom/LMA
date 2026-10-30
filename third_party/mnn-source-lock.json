@@ -9,8 +9,8 @@
   "http_resources_compiled": false,
   "logcat_compiled": false,
   "upstream_overlays": [
-    "load/null guards and formatted input token budget in SanaLlm",
-    "bounded CPU thread binding and mandatory component load guards in SanaDiffusion"
+    "load/null guards, formatted input token budget and float additive attention mask in SanaLlm",
+    "bounded CPU thread binding and mandatory component load guards in SanaDiffusion; completed-step progress, single-step schedule and image-write status"
   ],
   "notices": [
     {

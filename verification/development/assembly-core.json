@@ -67,8 +67,8 @@
     "tests/PreparationTest.java": "7f1439e961fd70607a88fc42ca9e3bd676e0fb1670b1015c1973154ad7ed99e0",
     "tools/test_assemblies.py": "c30c3d10399d445300066dfaa8bb7577dc9938f84004b7901830e22cebd993ff"
   },
-  "artifacts_directory": "build/assembly-tests/contracts-1793329430133370700",
-  "seconds": 3.748835300000792,
+  "artifacts_directory": "build/assembly-tests/contracts-1793333817214870700",
+  "seconds": 1.1109152999997605,
   "automatic_downloads": false,
   "model_bytes_copied": 0,
   "release_ready": false,

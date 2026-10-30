@@ -1,5 +1,11 @@
 # Changelog / 更新记录
 
+## 0.3.0-dev.35 — Sana real execution / Sana 真实运行
+
+- 使用完整 13 组件（1,505,181,194 字节）执行实际生产 C++ 与 Java 导入 / 独立参数 / 不可变任务 / 采样取消 / 恢复；资产不进入 App。
+- 修复固定 batch Qwen 的 CFG 编码、浮点 additive mask、实际完成步回调、单步除零与图像写入状态；主机和 ARM64 使用相同生成源码。
+- Publish exact original outputs, labelled MP4/GIF, bilingual guides and original-signed dev.35/code39 APK. Preserve exact dev.34 records and old numerical failures. Observed missing-subject quality, independent reference numerics, physical Android and complete frozen v0.3.0 Release remain open.
+
 ## 0.3.0-dev.34 — companion-file review / HF 配套组件确认
 
 - Add generic pinned-revision metadata inventory, filename/sibling-path proposals and explicit confirmation. 35 套配方中 19 套提供 49 条数据提示，不按模型 ID 新增页面或队列分支。

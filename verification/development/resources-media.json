@@ -1,5 +1,5 @@
 {
-  "version": "0.3.0-dev.34",
+  "version": "0.3.0-dev.35",
   "kind": "current production UI with an explicit simulated bridge",
   "android_device": false,
   "model_inference": false,
@@ -44,18 +44,18 @@
     },
     {
       "file": "03-explicit-retry.png",
-      "bytes": 40451,
-      "sha256": "ab1023b402bdbb56c12dab2e414fdb274817c9ce70bb42703496a7f5d066b166"
+      "bytes": 40499,
+      "sha256": "e62cf32d22575728ac8044b444624432d909623b4c0d47c217b45d6e86462772"
     },
     {
       "file": "resources-ui.gif",
-      "bytes": 247181,
-      "sha256": "cf61f18f80365e674d4a3f39f50857921adb15119ca9f1894b67d28ce0b21f2f"
+      "bytes": 366090,
+      "sha256": "d0b74ab52b5a8e900da55db8ddce8a334bd496ece53f1adc306078f0ff389dd3"
     },
     {
       "file": "resources-ui.mp4",
-      "bytes": 102047,
-      "sha256": "44895f70a13eb3d6e307265125c30c852dbf56cb515e782aedbe5102d11ed8f0"
+      "bytes": 128837,
+      "sha256": "78a9d97446ea083d59a09f43c91ef1d9eb650f3f1b4f5dd211744043e1cf8a28"
     }
   ],
   "input_fingerprint": {
@@ -63,10 +63,10 @@
     "app/src/main/assets/app.js": "2240021b034e6259ac110fc48ede81c43be6fabf7200dde5ced7eeacbe9e5468",
     "app/src/main/assets/asset-preparations.json": "b0a7cbac1a633310b9fff84164439ee8fe20a1df137d1075eb9263f531ccfd3b",
     "app/src/main/assets/audio-preview.js": "33bb898969f37c1f78c6664052c46da844d148defdcef4a54d64bc5829037f44",
-    "app/src/main/assets/engine-builds.json": "b300af6fbcceec8691d187b1b1fa3f3802bb872cfcd9583bc680eaaf3bf90827",
+    "app/src/main/assets/engine-builds.json": "677af54b59d0161f13f3a9c12b3813accee8f58689f099347acf7fa70f822e91",
     "app/src/main/assets/foundation.css": "ac77af14c0498d3c358d76814109cda4f49fb5c660c1f53961d8f9b7f6c3a53f",
     "app/src/main/assets/foundation.js": "f188fbbe92cf03f2e06971f0baec25f8dfb0fee5ce21b2baeb749862b1059288",
-    "app/src/main/assets/index.html": "27db74b1db2cd0ea3db1739b0efb6732af2d47ed13112c7a0d1499f04f8cdf8e",
+    "app/src/main/assets/index.html": "7c4d9e4f2c3f362a328f0899739f5776b26ffe2534328e332696aeda86441deb",
     "app/src/main/assets/license.js": "838317c7653ca35291e9e18f2a7e2d98ed46a10880dfe144176f04ad994433d0",
     "app/src/main/assets/licenses/LLAMA_CPP_LICENSE": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
     "app/src/main/assets/licenses/LMA_LICENSE": "6ae3f5efa412d91cbf66e44f743e5ce41a8044309d05d893365206ab9bc35fc3",

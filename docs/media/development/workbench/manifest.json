@@ -1,5 +1,5 @@
 {
-  "version": "0.3.0-dev.34",
+  "version": "0.3.0-dev.35",
   "kind": "current production UI with an explicit simulated bridge",
   "android_device": false,
   "model_inference": false,
@@ -66,13 +66,13 @@
     },
     {
       "file": "workbench-ui.gif",
-      "bytes": 701614,
-      "sha256": "53a9e780013145adde522adc945683bf92859aea358b289856de75bc5690255f"
+      "bytes": 840091,
+      "sha256": "79d967defe8329541908aa9577be990a4737e8023d65634b580ca77fea20a260"
     },
     {
       "file": "workbench-ui.mp4",
-      "bytes": 324496,
-      "sha256": "f6fdd4105e94ce3d4ae7795ffa7920d1ff8f5fe4264d8479d306b60669259761"
+      "bytes": 373581,
+      "sha256": "64f0be885d947a55c9360b9d3a5c868f85a3e0eb87f10e5cfb1c52898a97b64a"
     }
   ],
   "input_fingerprint": {
@@ -80,10 +80,10 @@
     "app/src/main/assets/app.js": "2240021b034e6259ac110fc48ede81c43be6fabf7200dde5ced7eeacbe9e5468",
     "app/src/main/assets/asset-preparations.json": "b0a7cbac1a633310b9fff84164439ee8fe20a1df137d1075eb9263f531ccfd3b",
     "app/src/main/assets/audio-preview.js": "33bb898969f37c1f78c6664052c46da844d148defdcef4a54d64bc5829037f44",
-    "app/src/main/assets/engine-builds.json": "b300af6fbcceec8691d187b1b1fa3f3802bb872cfcd9583bc680eaaf3bf90827",
+    "app/src/main/assets/engine-builds.json": "677af54b59d0161f13f3a9c12b3813accee8f58689f099347acf7fa70f822e91",
     "app/src/main/assets/foundation.css": "ac77af14c0498d3c358d76814109cda4f49fb5c660c1f53961d8f9b7f6c3a53f",
     "app/src/main/assets/foundation.js": "f188fbbe92cf03f2e06971f0baec25f8dfb0fee5ce21b2baeb749862b1059288",
-    "app/src/main/assets/index.html": "27db74b1db2cd0ea3db1739b0efb6732af2d47ed13112c7a0d1499f04f8cdf8e",
+    "app/src/main/assets/index.html": "7c4d9e4f2c3f362a328f0899739f5776b26ffe2534328e332696aeda86441deb",
     "app/src/main/assets/license.js": "838317c7653ca35291e9e18f2a7e2d98ed46a10880dfe144176f04ad994433d0",
     "app/src/main/assets/licenses/LLAMA_CPP_LICENSE": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
     "app/src/main/assets/licenses/LMA_LICENSE": "6ae3f5efa412d91cbf66e44f743e5ce41a8044309d05d893365206ab9bc35fc3",

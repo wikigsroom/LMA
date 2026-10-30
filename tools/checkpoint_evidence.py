@@ -14,9 +14,9 @@ from preparation_build_inputs import build_inputs
 ROOT = Path(__file__).resolve().parents[1]
 BASELINE = '6b1f3459a80db8b7b6838e7d5e492b8ef42d9033'
 BASE_VERSION = '0.3.0-dev.24'
-CURRENT_VERSION = '0.3.0-dev.34'
-PRIOR_COMMIT = 'bb10c11714ab715258e20a904dd11a049e685701'
-PRIOR_VERSION = '0.3.0-dev.33'
+CURRENT_VERSION = '0.3.0-dev.35'
+PRIOR_COMMIT = '76117271db1c477eb7b5b6e319a71a5d3111cadf'
+PRIOR_VERSION = '0.3.0-dev.34'
 CERTIFICATE = '90444a717a55549e2094364d8d7d005cf8b7f4df24562da62cc1884a2f341c17'
 SOURCES = {
     'build-info.json': 'dist/build-info.json',
@@ -52,6 +52,12 @@ SOURCES = {
     'hub.json': 'build/hub-tests/results.json',
     'recipe-suggestions.json': 'build/recipe-suggestion-tests/results.json',
     'components-media.json': 'docs/media/development/components/manifest.json',
+    'mnn.json': 'build/mnn-tests/results.json',
+    'mnn-arm64.json': 'build/mnn-arm64-evidence.json',
+    'mnn-assets.json': 'build/mnn-trained/receipt.json',
+    'mnn-trained.json': 'build/mnn-trained-tests/results.json',
+    'mnn-app-host.json': 'build/mnn-app-host-tests/results.json',
+    'mnn-trained-media.json': 'docs/media/development/sana-trained/manifest.json',
 }
 
 
@@ -72,7 +78,7 @@ def prior_checkpoint(write=False):
     # Only archive this checkpoint's own records. Older model experiments have
     # separate immutable pointers and are not inputs to this incremental copy.
     status_data = subprocess.check_output(['git','show',PRIOR_COMMIT + ':verification/development/status.json'], cwd=ROOT)
-    status = json.loads(status_data); assert status['version'] == PRIOR_VERSION and len(status['sources']) == 29
+    status = json.loads(status_data); assert status['version'] == PRIOR_VERSION and len(status['sources']) == 33
     selected = ['status.json', *status['sources']]
     assert all(Path(name).name == name and name.endswith('.json') for name in selected)
     run = subprocess.run(['git', 'archive', '--format=tar', PRIOR_COMMIT, *['verification/development/' + name for name in selected]], cwd=ROOT, capture_output=True, check=True)
@@ -127,9 +133,9 @@ def export():
         'release_ready': False, 'all_selected_models_supported': False,
         'physical_device_tests': 0, 'model_inference_tested': False,
         'historical_trained_results_apply_to_current_apk': False,
-        'host_model_inference_tested': False, 'apk_model_inference_tested': False, 'historical_host_model_inference_tested': True,
-        'model_inference_test_scope': 'No trained inference rerun. Current production checks cover metadata-only HF inventory/review/application and immutable model identity, with explicit simulated UI. Four existing local voice headers are inspected after full SHA checks with a 48 MiB heap; metadata is not neural execution. Exact dev.31 old-LTX trained results/media, dev.28 LCM and dev.24 model experiments remain historical through checked immutable pointers. Phone, quality and original numerical failures remain open.',
-        'scope': 'Generic explicit HF companion-file review across signed recipes, pinned bounded inventory, ambiguity/incomplete-directory handling, user-confirmed merge without overriding bindings or initiating downloads, stale/cancel/error recovery and preserved historical model IDs. Existing catalogue, settings, voice metadata and frozen tasks retained. Full frozen release scope remains required.',
+        'host_model_inference_tested': True, 'current_trained_host_engines': ['mnn_diffusion'], 'apk_model_inference_tested': False, 'historical_host_model_inference_tested': True,
+        'model_inference_test_scope': 'Current real Sana mobile host execution uses all thirteen pinned external assets through the production native worker and Java import/settings/workspace/cancel/recovery path. Same-host pixel controls are not an independent reference or image-quality acceptance. Non-CFG samples fail requested-subject quality. Android is compilation only. All other trained model experiments, original LCM/LTX numerical failures and phone/endurance gates retain their prior historical/open scope.',
+        'scope': 'Matched Sana production runtime closure: float attention contract, sequential single-batch CFG encoding, completed-step progress, valid one-step schedule and actual image-write status. Shared user assets, independent parameters, immutable tasks and existing HF companion review are retained. Full frozen release scope remains required.',
         'required_release_scope': {'foundation': 'F01–F12', 'existing_text': True, 'selected_ids': ['01','02','03','04','05','06','07','08','09','10','11','12','13','14','16','17'], 'every_frozen_subtarget': True, 'sd15_and_sdxl_lora': True},
         'input_fingerprint': fingerprint('tools/checkpoint_evidence.py', 'tools/export_development.py', 'tools/check_repository.py', 'docs/proposals/multimodal-release-scope.json'),
     }
@@ -188,7 +194,7 @@ def check():
     for item in media['files']:
         data = (ROOT / 'docs/media/development/recovery' / item['file']).read_bytes()
         assert len(data) == item['bytes'] and digest(data) == item['sha256']
-    assert not status['host_model_inference_tested'] and not status['apk_model_inference_tested'] and status['historical_host_model_inference_tested']
+    assert status['host_model_inference_tested'] and not status['apk_model_inference_tested'] and status['historical_host_model_inference_tested']
     preparation, assembly, diffusion = records['preparation-core.json'], records['assembly-core.json'], records['diffusion.json']
     assert preparation['passed'] and preparation['checks'] >= 44 and not preparation['physical_android']
     assert assembly['passed'] and assembly['checks'] >= 47 and not assembly['automatic_downloads'] and not assembly['physicalAndroid']
@@ -303,6 +309,38 @@ def check():
     for item in media['files']:
         data=(ROOT/'docs/media/development/components'/item['file']).read_bytes()
         assert len(data)==item['bytes'] and digest(data)==item['sha256']
+    assert status['host_model_inference_tested'] and status['current_trained_host_engines']==['mnn_diffusion'] and not status['apk_model_inference_tested']
+    mnn=records['mnn.json']; assert mnn['passed']>=74 and mnn['production_mnn_binding'] and not mnn['model_inference']
+    assets=records['mnn-assets.json'];assert assets['developer_assets_only'] and assets['explicit_download'] and not assets['model_executed']
+    assert len(assets['components'])==13 and sum(i['bytes'] for i in assets['components'])==1505181194
+    trained=records['mnn-trained.json'];bridge=records['mnn-app-host.json'];arm=records['mnn-arm64.json']
+    assert trained['passed'] and trained['real_trained_host_execution'] and len(trained['runs'])==12 and len(trained['assets'])==13
+    assert all(c['passed'] for c in trained['checks']) and len(trained['checks'])>=60
+    success=['a','b','cfg-a','cfg-b','rectangle','single-step','recovery-a']
+    for run in trained['runs']:
+        events=run['process']['events'];completed=[e for e in events if e.get('event')=='complete'];errors=[e for e in events if e.get('event')=='error']
+        assert not run['process']['protocol_errors'] and not run['process']['timed_out']
+        if run['name'] in success:
+            assert run['process']['returncode']==0 and len(completed)==1 and not errors
+            path=ROOT/trained['capture_directory']/(run['name']+'.png'); assert digest(path.read_bytes())==run['image']['sha256']
+            progress=[e['fraction'] for e in events if e.get('event')=='progress'];steps=run['request']['parameters']['steps']
+            assert progress==[(i+1)/steps for i in range(steps)]
+        else:
+            assert run['process']['returncode']!=0 and not completed and len(errors)==1 and errors[0]['message']
+    assert trained['comparisons']['recovery']['maximum']==0 and all(trained['comparisons'][n]['maximum']>0 for n in ['prompt-effect','cfg-effect','negative-effect'])
+    assert bridge['passed'] and bridge['production_java_native_host_executed'] and bridge['java']['actual_host_children']==4 and bridge['java']['imported_objects']==13 and bridge['java']['network_calls']==0
+    assert len(bridge['outputs'])==3 and bridge['direct_report_sha256']==digest((ROOT/SOURCES['mnn-trained.json']).read_bytes())
+    assert all(i['maximum']==0 for i in bridge['comparisons'].values())
+    assert arm['identical_host_android_generated_pipeline'] and len(arm['generated_pipeline'])==2
+    assert arm['native']['sha256']==digest((ROOT/'app/src/main/jniLibs/arm64-v8a/liblma-mnn.so').read_bytes())
+    assert bridge['compilation']['sha256']==trained['compilation']['sha256']==arm['host_worker_sha256']
+    assert assets['components']==trained['assets']
+    assert not any(r[k] for r in [trained,bridge] for k in ['physical_android','independent_reference_numerics_accepted','image_quality_accepted','complete_target04_accepted','complete_release_accepted'])
+    media=records['mnn-trained-media.json'];assert media['version']==CURRENT_VERSION and media['real_trained_host_execution'] and not media['android_recording'] and not media['image_quality_accepted']
+    assert len(media['products'])==6 and len(media['files'])==9
+    assert media['direct_report_sha256']==digest((ROOT/SOURCES['mnn-trained.json']).read_bytes()) and media['java_report_sha256']==digest((ROOT/SOURCES['mnn-app-host.json']).read_bytes())
+    for item in media['files']:
+        data=(ROOT/'docs/media/development/sana-trained'/item['file']).read_bytes(); assert len(data)==item['bytes'] and digest(data)==item['sha256']
     scope = json.loads((ROOT / 'docs/proposals/multimodal-release-scope.json').read_text(encoding='utf-8'))
     assert status['required_release_scope']['selected_ids'] == scope['selected_ids'] and scope['preserved_recommendation_ids'] == ['m08','m06','m01']
     return {'passed': True, 'current_records': len(SOURCES), 'historical_records': len(status['historical_sources']), 'prior_checkpoint_records': len(prior['sources']) - 1, 'version': CURRENT_VERSION, 'release_ready': False, 'physical_device_tests': 0}
