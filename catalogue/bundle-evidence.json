@@ -1,6 +1,6 @@
 {
   "schema": "lma.bundle-metadata-evidence/2",
-  "checked_on": "2026-10-28",
+  "checked_on": "2026-10-30",
   "model_weights_downloaded": false,
   "model_inference_tested": false,
   "physical_device_tests": 0,
@@ -707,8 +707,149 @@
           "live_hf_metadata_checked_this_update": false
         }
       ]
+    },
+    {
+      "bundleId": "sdxl_base_q4_0_catalogue_v1",
+      "components": [
+        {
+          "role": "model",
+          "path": "sd_xl_base_1.0.q4_0.gguf",
+          "bytes": 2598039488,
+          "sha256": "2fd031f69632039607a335c70fc0ea1b070181e3a7fb9df17198f8a26d7bf1c1",
+          "repository": "genai-archive/stable-diffusion-xl-base-1.0-gguf",
+          "revision": "a02cea32a07b564a566d323785c853f1f545c04c",
+          "kind": "pinned_asset_history",
+          "source": "research/sd_variants_trained/assets.json",
+          "source_sha256": "9c561954a14268c4e3a06fe082e4c02c2451a4fb7ae2c692c82491583359f50e",
+          "receipt": "verification/development/sd-variants-assets.json",
+          "receipt_sha256": "e0bf8a87584fee5c216b34bac9c8b2ff4d236ecbb7f7ab4006a498744264f882",
+          "source_commit": "6b1f3459a80db8b7b6838e7d5e492b8ef42d9033",
+          "live_hf_metadata_checked_this_update": false
+        },
+        {
+          "role": "clip_merges",
+          "kind": "downloaded_small_data",
+          "repository": "stable-diffusion-v1-5/stable-diffusion-v1-5",
+          "revision": "451f4fe16113bff5a5d2269ed5ad43b0592e9a14",
+          "path": "tokenizer/merges.txt",
+          "bytes": 524619,
+          "sha256": "9fd691f7c8039210e0fced15865466c65820d09b63988b0174bfe25de299051a",
+          "source": "https://huggingface.co/api/models/stable-diffusion-v1-5/stable-diffusion-v1-5/451f4fe16113bff5a5d2269ed5ad43b0592e9a14?blobs=true"
+        }
+      ]
+    },
+    {
+      "bundleId": "sd15_pixelart_redmond_catalogue_v1",
+      "components": [
+        {
+          "role": "lora",
+          "path": "PixelArtRedmond15V-PixelArt-PIXARFK.safetensors",
+          "bytes": 27216848,
+          "sha256": "b770d01002510180cd03b5f8c8199fdb41d924c51d4980fc86298d0e4cdf7953",
+          "repository": "artificialguybr/pixelartredmond-1-5v-pixel-art-loras-for-sd-1-5",
+          "revision": "eb7c3bfe0c48e7fadd635a0cfb25c29b428c4e63",
+          "kind": "pinned_asset_history",
+          "source": "research/sd_variants_trained/assets.json",
+          "source_sha256": "9c561954a14268c4e3a06fe082e4c02c2451a4fb7ae2c692c82491583359f50e",
+          "receipt": "verification/development/sd-variants-assets.json",
+          "receipt_sha256": "e0bf8a87584fee5c216b34bac9c8b2ff4d236ecbb7f7ab4006a498744264f882",
+          "source_commit": "6b1f3459a80db8b7b6838e7d5e492b8ef42d9033",
+          "live_hf_metadata_checked_this_update": false
+        }
+      ]
+    },
+    {
+      "bundleId": "sdxl_pixelart_nerijs_catalogue_v1",
+      "components": [
+        {
+          "role": "lora",
+          "path": "pixel-art-xl.safetensors",
+          "bytes": 170543052,
+          "sha256": "4234637cb80c998f41e348e6a6cb6bc20d8d038b2b0f256b6129b3b5e353eef7",
+          "repository": "nerijs/pixel-art-xl",
+          "revision": "8bf4a4d9ea283e00a51fafda8e0539f8248ea037",
+          "kind": "pinned_asset_history",
+          "source": "research/sd_variants_trained/assets.json",
+          "source_sha256": "9c561954a14268c4e3a06fe082e4c02c2451a4fb7ae2c692c82491583359f50e",
+          "receipt": "verification/development/sd-variants-assets.json",
+          "receipt_sha256": "e0bf8a87584fee5c216b34bac9c8b2ff4d236ecbb7f7ab4006a498744264f882",
+          "source_commit": "6b1f3459a80db8b7b6838e7d5e492b8ef42d9033",
+          "live_hf_metadata_checked_this_update": false
+        }
+      ]
+    },
+    {
+      "bundleId": "sd15_lcm_lora_catalogue_v1",
+      "components": [
+        {
+          "role": "lora",
+          "path": "pytorch_lora_weights.safetensors",
+          "bytes": 134621556,
+          "sha256": "8f90d840e075ff588a58e22c6586e2ae9a6f7922996ee6649a7f01072333afe4",
+          "repository": "latent-consistency/lcm-lora-sdv1-5",
+          "revision": "cf2fced511dbe7e26c8d1d397e728fbab875db4b",
+          "kind": "pinned_asset_history",
+          "source": "research/sd_variants_trained/assets.json",
+          "source_sha256": "9c561954a14268c4e3a06fe082e4c02c2451a4fb7ae2c692c82491583359f50e",
+          "receipt": "verification/development/sd-variants-assets.json",
+          "receipt_sha256": "e0bf8a87584fee5c216b34bac9c8b2ff4d236ecbb7f7ab4006a498744264f882",
+          "source_commit": "6b1f3459a80db8b7b6838e7d5e492b8ef42d9033",
+          "live_hf_metadata_checked_this_update": false
+        }
+      ]
+    },
+    {
+      "bundleId": "sdxl_lcm_lora_catalogue_v1",
+      "components": [
+        {
+          "role": "lora",
+          "path": "pytorch_lora_weights.safetensors",
+          "bytes": 393855224,
+          "sha256": "a764e6859b6e04047cd761c08ff0cee96413a8e004c9f07707530cd776b19141",
+          "repository": "latent-consistency/lcm-lora-sdxl",
+          "revision": "a18548dd4956b174ec5b0d78d340c8dae0a129cd",
+          "kind": "pinned_asset_history",
+          "source": "research/sd_variants_trained/assets.json",
+          "source_sha256": "9c561954a14268c4e3a06fe082e4c02c2451a4fb7ae2c692c82491583359f50e",
+          "receipt": "verification/development/sd-variants-assets.json",
+          "receipt_sha256": "e0bf8a87584fee5c216b34bac9c8b2ff4d236ecbb7f7ab4006a498744264f882",
+          "source_commit": "6b1f3459a80db8b7b6838e7d5e492b8ef42d9033",
+          "live_hf_metadata_checked_this_update": false
+        }
+      ]
+    },
+    {
+      "bundleId": "sd_turbo_q8_0_catalogue_v1",
+      "components": [
+        {
+          "role": "model",
+          "path": "sd_turbo-f16-q8_0.gguf",
+          "bytes": 2023745376,
+          "sha256": "d50be7655f0a554cf8041c145d88b210bd5f3c545423119dee62ae08cae51580",
+          "repository": "Green-Sky/SD-Turbo-GGUF",
+          "revision": "19a31586d02d64a73b4419bc193b3ecfaf38e1f0",
+          "kind": "pinned_asset_history",
+          "source": "research/sd_distilled_trained/assets.json",
+          "source_sha256": "0eb451932dbb30c2129d94c60e74ccbde1685c6ac3dba42de868ae5909cdc72c",
+          "receipt": "verification/development/sd-distilled-assets.json",
+          "receipt_sha256": "78560bd08ff4ca7ef022cf6eaf4d6069b79d12690ad0f707e91700e209110076",
+          "source_commit": "6b1f3459a80db8b7b6838e7d5e492b8ef42d9033",
+          "live_hf_metadata_checked_this_update": false
+        },
+        {
+          "role": "clip_merges",
+          "kind": "downloaded_small_data",
+          "repository": "stable-diffusion-v1-5/stable-diffusion-v1-5",
+          "revision": "451f4fe16113bff5a5d2269ed5ad43b0592e9a14",
+          "path": "tokenizer/merges.txt",
+          "bytes": 524619,
+          "sha256": "9fd691f7c8039210e0fced15865466c65820d09b63988b0174bfe25de299051a",
+          "source": "https://huggingface.co/api/models/stable-diffusion-v1-5/stable-diffusion-v1-5/451f4fe16113bff5a5d2269ed5ad43b0592e9a14?blobs=true"
+        }
+      ]
     }
   ],
   "gguf_header_metadata_read": true,
-  "tensor_weights_read": false
+  "tensor_weights_read": false,
+  "curated_diffusion_scope": "Six fresh immutable catalogue profiles reuse exact historical developer asset locks/receipts. Publisher card licenses rechecked; no fresh pinned HF API response, weights downloaded or inference performed by this metadata update."
 }

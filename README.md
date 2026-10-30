@@ -2,7 +2,13 @@
 
 [中文](README.md) · [English](README.en.md) · [下载 / Releases](https://github.com/wikigsroom/LMA/releases) · [文档导航](docs/README.md) · [更新记录](CHANGELOG.md)
 
-> **当前开发：0.3.0-dev.31 / code 35。** 共用执行槽新增持续资源保护：生成 / 准备 / 关联任务、模型加载、聊天及 API 均可因严重高温、系统低内存或存储不足而停止；保存任务摘要，聊天保留部分文本，用户明确重试。App 仍只更新基座，模型由用户自主选择和管理。[方案与使用](docs/RUNTIME_RESOURCES.md) · [编号实现 / 完整待办](docs/releases/v0.3.0-dev.31.md) · [录屏](docs/media/development/resources/resources-ui.mp4) · [GIF](docs/media/development/resources/resources-ui.gif)。这些主机检查不代表 Android 测量；所有冻结模型、原数值失败、质量、手机与完整 Release 门槛继续保留。
+> **当前开发：0.3.0-dev.32 / code 36。** 六套已固定资产的生图方案加入“全部”：SDXL、SD 1.5 / SDXL 风格 LoRA、两类 LCM-LoRA、SD-Turbo。新增通用 LoRA 基础模型查看与返回入口，下载仍需用户逐项明确选择；旧导入、推荐、独立参数和冻结任务保留。[完整方案与使用](docs/CURATED_DIFFUSION.md) · [编号实现 / 完整待办](docs/releases/v0.3.0-dev.32.md) · [录屏](docs/media/development/curated/curated-ui.mp4) · [GIF](docs/media/development/curated/curated-ui.gif)。当前界面与数据层检查不等于模型下载、推理或手机验收；历史训练记录独立保留，完整版本门槛不变。
+
+| LoRA 基础模型依赖（界面夹具） | 配对并提交任务（界面夹具） |
+|---|---|
+| ![兼容基础模型](docs/media/development/curated/01-dependency-review.png) | ![配对生成请求](docs/media/development/curated/03-paired-task.png) |
+
+继续保留[共用运行资源保护](docs/RUNTIME_RESOURCES.md)：任务、加载、聊天及 API 可保存停止摘要，并由用户明确重试。以下界面为桌面夹具。
 
 | 运行资源（界面测试数据） | 已保存的停止详情（界面测试数据） |
 |---|---|

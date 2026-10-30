@@ -2,7 +2,13 @@
 
 [中文](README.md) · [English](README.en.md) · [Releases](https://github.com/wikigsroom/LMA/releases) · [Documentation](docs/README.md) · [Changelog](CHANGELOG.md)
 
-> **Current development: 0.3.0-dev.31 / code 35.** Continuous resource protection now covers generation/preparation/association, model loading, chat and API through the shared execution slot. Severe thermal status, OS low memory or low storage stops the current operation; tasks retain reports, chat keeps partial text, and users retry explicitly. The App delivers its foundation; users select and manage models. [Design and usage](docs/RUNTIME_RESOURCES.en.md) · [Numbered delivery/full pending scope](docs/releases/v0.3.0-dev.31.md) · [Recording](docs/media/development/resources/resources-ui.mp4) · [GIF](docs/media/development/resources/resources-ui.gif). Host controls are not Android measurements; every frozen target and original numerical, quality, phone and complete-release gate remains required.
+> **Current development: 0.3.0-dev.32 / code 36.** Six exact diffusion profiles now appear in All: SDXL, SD 1.5/SDXL style LoRAs, both LCM-LoRAs and SD-Turbo. Generic LoRA dependency review links to compatible bases and back; each download remains an explicit user choice. Old imports, Recommended, independent settings and frozen jobs are preserved. [Design and usage](docs/CURATED_DIFFUSION.en.md) · [Numbered delivery/full pending scope](docs/releases/v0.3.0-dev.32.md) · [MP4](docs/media/development/curated/curated-ui.mp4) · [GIF](docs/media/development/curated/curated-ui.gif). Current storage/UI controls are not model downloads, inference or phone acceptance. Historical trained records stay separate; complete-release gates remain required.
+
+| LoRA base dependency — UI fixture | Paired generation request — UI fixture |
+|---|---|
+| ![Compatible bases](docs/media/development/curated/01-dependency-review.png) | ![Paired task request](docs/media/development/curated/03-paired-task.png) |
+
+[Shared runtime resource protection](docs/RUNTIME_RESOURCES.en.md) remains available across jobs, loading, chat and API, with saved stop reports and explicit retry. The following pages use desktop fixtures.
 
 | Runtime observations (UI fixture) | Saved stop report (UI fixture) |
 |---|---|

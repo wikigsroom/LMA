@@ -1,5 +1,7 @@
 # SDXL、SD 1.5 / SDXL LoRA 与 LCM-LoRA：真实训练资产验证
 
+dev.32 用户入口更新：[固定生图清单与依赖查看](CURATED_DIFFUSION.md)。下文五套研究清单对应的新不可变模型包已加入“全部”；旧研究包、主机训练证据与以下自定义 HF 流程保持其原范围。
+
 [English](SD_VARIANTS_TRAINED.en.md) · [扩散使用](DIFFUSION_ENGINE.md) · [HF 组件选择](HF_RECIPES.md) · [独立适配器](ADAPTERS.md) · [编号交付与全部待办](releases/v0.3.0-dev.24-sd-variants.md)
 
 这批工作验证同一套生产扩散引擎能否执行完整 SDXL，以及两种基础架构的真实 LoRA / LCM-LoRA。开发测试在原生 Windows CPU 上运行，采用 App 中未修改的 C++ 和 Java 实现。它们不是 Android 实测、手机速度、画质验收或完整 v0.3.0 验收。APK 继续为 dev.24 / code 28；本轮只增加开发工具、数据清单、证据与文档。

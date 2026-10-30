@@ -1,5 +1,7 @@
 # SD-Turbo and the standalone LCM checkpoint: trained-weight validation
 
+dev.32 user-flow update: [curated diffusion](CURATED_DIFFUSION.en.md) adds the complete SD-Turbo package to All for explicit selection/download. The custom HF instructions and original trained/numerical records below remain valid in their original scope. The separate LCM checkpoint and its failed pixel gate are unchanged.
+
 [中文](SD_DISTILLED_TRAINED.md) · [Diffusion foundation](DIFFUSION_ENGINE.en.md) · [Paired adapters / LCM-LoRA](SD_VARIANTS_TRAINED.en.md) · [Numbered work and full pending scope](releases/v0.3.0-dev.24-sd-distilled.md)
 
 Follow-up: [small native LCM preparation](LCM_LOCAL_PREPARATION.en.md), with trained source preparation and small-component native output. The new C++ candidate fails its preset pixel maximum (8 > 5), remains unintegrated, and does not close quality, canonical pipeline or phone gates.

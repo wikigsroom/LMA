@@ -149,7 +149,7 @@
     "tests/host/com/lma/app/HubLiveTest.java": "308f69328ac67a2a59f525d6cbe35a7a6177bb4c7cdb1dc4e9df801f3c9da20e",
     "tests/host/com/lma/app/HubRecipeTest.java": "098ff0b84136231be8d7973b9d3d75b233555e23c13b90f727dd930bca9a238c",
     "tests/host/com/lma/app/HubTest.java": "004adc962fd03fae21d0b2c2c85d8cd23d3073f2e15f9b5a4cc94d696c6060dd",
-    "tests/host/com/lma/app/LmaApp.java": "c523cb29bca620ecc4a7af287b7034e2e49b2800c7bf241af212c513cc2124c1",
+    "tests/host/com/lma/app/LmaApp.java": "0813abd05158319858b0779e5e1cc6001521bc12b8bd29da8d1615495f262872",
     "tests/host/com/lma/app/LmaService.java": "9262851fb942a0e692bef32ef1f67118cc1f712cb2501efa61c635dfaec2d61a",
     "tests/host/com/lma/app/LocalEngines.java": "4cda8d9f46326a54c03482c808b446d0229573aae9e6274bbe0368701d96f0b2",
     "tests/host/com/lma/app/LocalJobs.java": "06b1d5ddd517fbebea7e939ee0fe184334d3a4c9c88f1b2d50b1f03413b77255",

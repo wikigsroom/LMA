@@ -1,8 +1,8 @@
 # 更新、同步与发布 / Updating and releasing
 
-当前 dev.31：[共用运行资源保护](RUNTIME_RESOURCES.md) / [English](RUNTIME_RESOURCES.en.md) / [编号实现与完整待办](releases/v0.3.0-dev.31.md)。仅开发签名包；当前源码回归、主机训练链路、页面夹具和 Android 编译分别留证，完整 Release 门槛不变。dev.30 的 27 份当前记录及原状态按原提交保存在 `verification/history/0.3.0-dev.30/`。以下保留旧 LTX、音频与基座的构建 / 历史说明。
+dev.31 历史检查点：[共用运行资源保护](RUNTIME_RESOURCES.md) / [English](RUNTIME_RESOURCES.en.md) / [编号实现与完整待办](releases/v0.3.0-dev.31.md)。仅开发签名包；当前源码回归、主机训练链路、页面夹具和 Android 编译分别留证，完整 Release 门槛不变。dev.30 的 27 份当前记录及原状态按原提交保存在 `verification/history/0.3.0-dev.30/`。以下保留旧 LTX、音频与基座的构建 / 历史说明。
 
-当前 dev.30：[旧 LTX 本地视频闭环](LTX098_APP_FLOW.md) / [English](LTX098_APP_FLOW.en.md) / [编号交付与完整待办](releases/v0.3.0-dev.30.md)。仅原签名开发包；四个原生阶段、实际生产 Java 主机链路、界面夹具与 Android 编译分别留证。原六项数值失败不改写，官方变体 / 质量 / 手机与完整 Release 仍待验收。dev.29 的 22 份当前记录及原状态按原提交留存在 `verification/history/0.3.0-dev.29/`。
+dev.30 历史检查点：[旧 LTX 本地视频闭环](LTX098_APP_FLOW.md) / [English](LTX098_APP_FLOW.en.md) / [编号交付与完整待办](releases/v0.3.0-dev.30.md)。仅原签名开发包；四个原生阶段、实际生产 Java 主机链路、界面夹具与 Android 编译分别留证。原六项数值失败不改写，官方变体 / 质量 / 手机与完整 Release 仍待验收。dev.29 的 22 份当前记录及原状态按原提交留存在 `verification/history/0.3.0-dev.29/`。
 
 旧 LTX 本地构建使用已有锁定源码：`python tools/build_ltx098_app.py`、`python tools/build_ltx098_app.py --android`、`python tools/package_ltx098_app.py`，再执行下述正常 APK 构建 / 验证。生产编排控制为 `python tools/test_ltx098_app.py`；`--trained` 只读取开发者已有完整资产并做全量 SHA 校验，不自动下载。`python tools/ltx098_app_media.py` 从已执行报告生成主机媒体；`node tools/capture_workbench.cjs ltx` 录制明确标记的页面夹具。开发资源不是用户运行前置要求，不能打入 APK。Existing pinned source and explicit local developer assets only; full-model output, UI fixtures and phone acceptance remain separate.
 
@@ -110,6 +110,8 @@ dev.17 新增检查 `python tools/test_openmoss.py`；其主机子进程、结�
 SoulX DSP 源码后续更新不新增 APK / Release：执行 `python tools/test_soulx_dsp.py` 和 `python tools/build_soulx_dsp.py`，由开发导出与仓库检查记录未注册静态库及数值证据。它不关闭13号完整模型门槛。The unregistered source library adds scoped evidence only; it does not close target13 or any phone/Release gate. See [中文](SOULX_DSP.md) / [English](SOULX_DSP.en.md).
 
 SoulX声学后续同样不发布 APK / Release：运行 `python tools/test_soulx_acoustic.py`、`python tools/build_soulx_acoustic.py`，并重跑 DSP检查和 ARM64静态编译后导出开发证据。完整结构未训练夹具、原生 ORT主机运行 / 真正终止和 ARM64编译分别核对；不能关闭13号整模型或手机门槛。The acoustic follow-up remains unregistered and does not alter complete Release gates. See [中文](SOULX_ACOUSTIC.md) / [English](SOULX_ACOUSTIC.en.md).
+
+当前 dev.32：[生图选择与依赖闭环](CURATED_DIFFUSION.md) / [English](CURATED_DIFFUSION.en.md) / [编号实现与完整待办](releases/v0.3.0-dev.32.md)。原签名开发 APK；本轮仅运行相关控制 / 界面检查，训练结果保留历史身份。dev.31 的 28 份当前记录及原状态按原提交完整归档；不为清单 / 界面修改重复运行无变化的训练模型。完整 Release 门槛不变。
 
 SoulX训练参考 /声学重建后续：先显式准备发布者权重，再顺序执行 `python tools/test_soulx_reference.py`、`python tools/test_soulx_trained.py`、`python tools/build_soulx_reference.py`；共享ORT修改需重跑声学244项和ARM64编译。开发导出 /仓库检查同时核对145参考 /253训练重建证据及完整模型未通过标记，绝不凭这些主机 /编译检查发布Release。Trained component execution does not close complete TTS, quality, App or phone gates. See [中文](SOULX_REFERENCE.md) / [English](SOULX_REFERENCE.en.md) / [编号交付](releases/v0.3.0-dev.20-soulx-reference.md).
 

@@ -1,6 +1,6 @@
 {
-  "apk": "LMA-0.3.0-dev.31-arm64-v8a.apk",
-  "sha256": "68a57e945033f360b7356e2717b31bafcb0b534837820df5f1c538786714eaf6",
+  "apk": "LMA-0.3.0-dev.32-arm64-v8a.apk",
+  "sha256": "ed28b28687a7daa44888b7925809720d83b1057b65c959dc9d80fcd0512d4270",
   "native_libraries_verified": 34,
   "all_native_dependencies_resolved": true,
   "all_elf_load_segments_16k_aligned": true,

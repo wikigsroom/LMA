@@ -1,8 +1,10 @@
 # LMA user guide
 
-Current dev.31: [runtime resource protection](RUNTIME_RESOURCES.en.md) / [中文](RUNTIME_RESOURCES.md). Review system resources in Tasks, inspect a saved stop and retry explicitly. Chat keeps partial text; text models require explicit loading again. [Numbered delivery/full pending scope](releases/v0.3.0-dev.31.md). The dev.30 video flow below remains available.
+Current dev.32: [curated diffusion, LoRA dependencies and tasks](CURATED_DIFFUSION.en.md) / [中文](CURATED_DIFFUSION.md). Explicitly choose six pinned profiles in All, review/download LoRA and base separately, then pair them in Local and submit to the shared queue. [Numbered delivery and full pending scope](releases/v0.3.0-dev.32.md). Existing resource, audio and video flows below remain available.
 
-Current dev.30: [old-LTX local video flow](LTX098_APP_FLOW.en.md) / [中文](LTX098_APP_FLOW.md), with [numbered delivery and complete same-release scope](releases/v0.3.0-dev.30.md). Sequential T5/Vulkan DiT/VAE/phone AVC connects independent settings, the shared queue and artifacts. Existing asset records stay immutable; users explicitly associate the new variant. Official-variant, numerical/quality/Android and complete Release gates remain open.
+Historical dev.31: [runtime resource protection](RUNTIME_RESOURCES.en.md) / [中文](RUNTIME_RESOURCES.md). Review system resources in Tasks, inspect a saved stop and retry explicitly. Chat keeps partial text; text models require explicit loading again. [Numbered delivery/full pending scope](releases/v0.3.0-dev.31.md). The dev.30 video flow below remains available.
+
+Historical dev.30: [old-LTX local video flow](LTX098_APP_FLOW.en.md) / [中文](LTX098_APP_FLOW.md), with [numbered delivery and complete same-release scope](releases/v0.3.0-dev.30.md). Sequential T5/Vulkan DiT/VAE/phone AVC connects independent settings, the shared queue and artifacts. Existing asset records stay immutable; users explicitly associate the new variant. Official-variant, numerical/quality/Android and complete Release gates remain open.
 
 dev.29 historical checkpoint: [incremental local audio and playback](AUDIO_STREAMING.en.md) / [中文](AUDIO_STREAMING.md), with [numbered delivery and the full same-release scope](releases/v0.3.0-dev.29.md). Model-scoped opt-in streaming, bounded shared previews and verified full WAV publication. Trained Realtime/Android acceptance remains open; historical failures stay recorded.
 

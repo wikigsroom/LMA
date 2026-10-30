@@ -1,5 +1,7 @@
 # Trained SDXL, SD 1.5 / SDXL LoRA and LCM-LoRA validation
 
+dev.32 user-flow update: [curated diffusion and dependency review](CURATED_DIFFUSION.en.md). Fresh immutable All profiles now cover the five research sets below. Old research imports, trained-host evidence and custom HF instructions retain their original scope.
+
 [中文](SD_VARIANTS_TRAINED.md) · [Diffusion workflow](DIFFUSION_ENGINE.en.md) · [HF component selection](HF_RECIPES.en.md) · [Adapters](ADAPTERS.en.md) · [Numbered work and complete pending scope](releases/v0.3.0-dev.24-sd-variants.md)
 
 This work checks complete SDXL and real SD 1.5 / SDXL style and LCM adapters through the same production diffusion engine. Developer tests execute unchanged production C++ and Java on native Windows CPU. They do not establish Android execution, phone performance, image quality or complete v0.3.0 acceptance. The APK remains dev.24 / code 28; this follow-up adds developer tools, data descriptors, evidence and documentation.

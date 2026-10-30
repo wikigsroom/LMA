@@ -1,8 +1,10 @@
 # LMA 使用手册
 
-当前 dev.31：[运行资源保护](RUNTIME_RESOURCES.md) / [English](RUNTIME_RESOURCES.en.md)。运行时可在“任务”查看系统资源，停止后查看详情并明确重试；聊天保留部分文本，文本模型需明确重载。[本轮编号交付与完整待办](releases/v0.3.0-dev.31.md)。下列 dev.30 说明保留既有视频业务。
+当前 dev.32：[生图模型选择、LoRA 依赖与任务闭环](CURATED_DIFFUSION.md) / [English](CURATED_DIFFUSION.en.md)。在“全部”明确选择六套固定方案；LoRA 与基础模型分别查看、分别下载，在“本地”配对并进入共用任务队列。[本轮编号交付与完整待办](releases/v0.3.0-dev.32.md)。下列资源、音频与视频说明继续适用。
 
-当前 dev.30：[旧 LTX 本地视频闭环](LTX098_APP_FLOW.md) / [English](LTX098_APP_FLOW.en.md)，[编号交付与完整同版待办](releases/v0.3.0-dev.30.md)。新增顺序执行的 T5 / Vulkan DiT / VAE / 手机 AVC 适配器，复用模型独立设置、共享队列和结果库；旧资产记录保持不可变，新生成变体由用户明确关联。官方变体、数值 / 画质 / Android 与完整 Release 尚未验收。
+dev.31 历史检查点：[运行资源保护](RUNTIME_RESOURCES.md) / [English](RUNTIME_RESOURCES.en.md)。运行时可在“任务”查看系统资源，停止后查看详情并明确重试；聊天保留部分文本，文本模型需明确重载。[本轮编号交付与完整待办](releases/v0.3.0-dev.31.md)。下列 dev.30 说明保留既有视频业务。
+
+dev.30 历史检查点：[旧 LTX 本地视频闭环](LTX098_APP_FLOW.md) / [English](LTX098_APP_FLOW.en.md)，[编号交付与完整同版待办](releases/v0.3.0-dev.30.md)。新增顺序执行的 T5 / Vulkan DiT / VAE / 手机 AVC 适配器，复用模型独立设置、共享队列和结果库；旧资产记录保持不可变，新生成变体由用户明确关联。官方变体、数值 / 画质 / Android 与完整 Release 尚未验收。
 
 dev.29 历史检查点：[本机增量音频与流式试听](AUDIO_STREAMING.md) / [English](AUDIO_STREAMING.en.md)，[编号交付及完整同版待办](releases/v0.3.0-dev.29.md)。模型独立选择流式设置；接口与页面共用有界缓存；完整 WAV 校验后发布。训练 Realtime / Android 尚未验收，历史失败保留。
 

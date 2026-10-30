@@ -1822,6 +1822,680 @@
         "estimatedPeakRamBytes": 0,
         "known": false
       }
+    },
+    {
+      "engine": "sd_cpp",
+      "backend": "cpu",
+      "tasks": [
+        "image"
+      ],
+      "capabilities": [
+        "text_to_image"
+      ],
+      "parameters": {
+        "version": 1,
+        "fields": {
+          "width": {
+            "type": "integer",
+            "label": "宽度",
+            "default": 1024,
+            "minimum": 64,
+            "maximum": 2048,
+            "presets": [
+              256,
+              384,
+              512,
+              768,
+              1024
+            ],
+            "multipleOf": 64,
+            "limitSource": "application_guard"
+          },
+          "height": {
+            "type": "integer",
+            "label": "高度",
+            "default": 1024,
+            "minimum": 64,
+            "maximum": 2048,
+            "presets": [
+              256,
+              384,
+              512,
+              768,
+              1024
+            ],
+            "multipleOf": 64,
+            "limitSource": "application_guard"
+          },
+          "steps": {
+            "type": "integer",
+            "label": "采样步数",
+            "default": 20,
+            "minimum": 1,
+            "maximum": 200,
+            "presets": [
+              4,
+              8,
+              12,
+              20,
+              30
+            ],
+            "multipleOf": 1,
+            "limitSource": "application_guard"
+          },
+          "threads": {
+            "type": "integer",
+            "label": "CPU 线程",
+            "default": 4,
+            "minimum": 1,
+            "maximum": 64,
+            "presets": [
+              1,
+              2,
+              4,
+              6,
+              8
+            ],
+            "multipleOf": 1,
+            "limitSource": "application_guard"
+          },
+          "seed": {
+            "type": "integer",
+            "label": "随机种子（-1 为随机）",
+            "default": -1,
+            "minimum": -1,
+            "maximum": 2147483647,
+            "presets": [
+              -1,
+              0,
+              42
+            ],
+            "multipleOf": 1,
+            "limitSource": "application_guard"
+          },
+          "cfg": {
+            "type": "number",
+            "label": "提示词引导",
+            "default": 7,
+            "minimum": 0,
+            "maximum": 30,
+            "presets": [
+              1,
+              3,
+              5,
+              7,
+              9
+            ],
+            "limitSource": "application_guard"
+          },
+          "sampler": {
+            "type": "enum",
+            "label": "采样器",
+            "default": "euler",
+            "values": [
+              "euler",
+              "euler_a"
+            ]
+          },
+          "vaeTiling": {
+            "type": "boolean",
+            "label": "分块解码 VAE",
+            "default": true
+          }
+        }
+      },
+      "architecture": "sdxl",
+      "pipeline": "sdxl",
+      "schema": "lma.model-bundle/1",
+      "id": "sdxl_base_q4_0_catalogue_v1",
+      "modelId": "sdxl_base_q4_0_catalogue_v1",
+      "recipeId": "sdxl_checkpoint_cpu_v1",
+      "name": "SDXL Base 1.0 Q4_0 (genai-archive)",
+      "components": [
+        {
+          "role": "model",
+          "format": "gguf",
+          "repository": "genai-archive/stable-diffusion-xl-base-1.0-gguf",
+          "revision": "a02cea32a07b564a566d323785c853f1f545c04c",
+          "path": "sd_xl_base_1.0.q4_0.gguf",
+          "bytes": 2598039488,
+          "sha256": "2fd031f69632039607a335c70fc0ea1b070181e3a7fb9df17198f8a26d7bf1c1",
+          "url": "https://huggingface.co/genai-archive/stable-diffusion-xl-base-1.0-gguf/resolve/a02cea32a07b564a566d323785c853f1f545c04c/sd_xl_base_1.0.q4_0.gguf"
+        },
+        {
+          "role": "clip_merges",
+          "repository": "stable-diffusion-v1-5/stable-diffusion-v1-5",
+          "revision": "451f4fe16113bff5a5d2269ed5ad43b0592e9a14",
+          "path": "tokenizer/merges.txt",
+          "bytes": 524619,
+          "sha256": "9fd691f7c8039210e0fced15865466c65820d09b63988b0174bfe25de299051a",
+          "format": "text",
+          "url": "https://huggingface.co/stable-diffusion-v1-5/stable-diffusion-v1-5/resolve/451f4fe16113bff5a5d2269ed5ad43b0592e9a14/tokenizer/merges.txt"
+        }
+      ],
+      "catalogue": true,
+      "description": "SDXL 生图基础模型，包含完整生成组件；下载前请核对所需空间。手机资源与画质尚待实测。",
+      "license": {
+        "name": "量化作者：CreativeML OpenRAIL-M；SDXL 上游：Open RAIL++",
+        "url": "https://huggingface.co/genai-archive/stable-diffusion-xl-base-1.0-gguf/blob/a02cea32a07b564a566d323785c853f1f545c04c/README.md",
+        "review": "Publisher card metadata; each component and upstream terms still require review. Not a blanket redistribution grant."
+      },
+      "evidence": {
+        "status": "host_trained_variant_not_device_tested",
+        "physicalDeviceTests": 0,
+        "sourceUrl": "https://huggingface.co/genai-archive/stable-diffusion-xl-base-1.0-gguf/blob/a02cea32a07b564a566d323785c853f1f545c04c/README.md",
+        "componentCoverage": "Exact complete trained-host asset set, with separately disclosed base dependencies for LoRA. No model data is packaged in the App.",
+        "phonePeakRamKnown": false,
+        "phoneQualityAccepted": false,
+        "publisherLicenseMetadataChecked": "2026-10-30; current public publisher cards, not a fresh pinned-revision API response"
+      },
+      "resources": {
+        "estimatedPeakRamBytes": 0,
+        "estimateKnown": false
+      }
+    },
+    {
+      "engine": "sd_cpp",
+      "backend": "cpu",
+      "architecture": "sd15",
+      "pipeline": "lora",
+      "tasks": [
+        "image"
+      ],
+      "capabilities": [
+        "image_adapter"
+      ],
+      "adapter": {
+        "schema": "lma.adapter/1",
+        "kind": "lora",
+        "baseArchitectures": [
+          "sd15"
+        ],
+        "basePipelines": [
+          "sd15",
+          "sd15_lcm"
+        ],
+        "baseModelIds": [
+          "sd15_ss_q4_0_r031b5f5",
+          "sd15_ss_q4_0"
+        ]
+      },
+      "parameters": {
+        "version": 1,
+        "fields": {
+          "scale": {
+            "type": "number",
+            "label": "LoRA 强度",
+            "default": 1,
+            "minimum": -4,
+            "maximum": 4,
+            "presets": [
+              0.5,
+              0.75,
+              1
+            ],
+            "limitSource": "application_guard"
+          }
+        }
+      },
+      "schema": "lma.model-bundle/1",
+      "id": "sd15_pixelart_redmond_catalogue_v1",
+      "modelId": "sd15_pixelart_redmond_catalogue_v1",
+      "recipeId": "sd15_lora_cpu_v1",
+      "name": "PixelArtRedmond SD 1.5",
+      "components": [
+        {
+          "role": "lora",
+          "format": "safetensors",
+          "repository": "artificialguybr/pixelartredmond-1-5v-pixel-art-loras-for-sd-1-5",
+          "revision": "eb7c3bfe0c48e7fadd635a0cfb25c29b428c4e63",
+          "path": "PixelArtRedmond15V-PixelArt-PIXARFK.safetensors",
+          "bytes": 27216848,
+          "sha256": "b770d01002510180cd03b5f8c8199fdb41d924c51d4980fc86298d0e4cdf7953",
+          "url": "https://huggingface.co/artificialguybr/pixelartredmond-1-5v-pixel-art-loras-for-sd-1-5/resolve/eb7c3bfe0c48e7fadd635a0cfb25c29b428c4e63/PixelArtRedmond15V-PixelArt-PIXARFK.safetensors"
+        }
+      ],
+      "catalogue": true,
+      "description": "SD 1.5 像素画 LoRA，需另选兼容基础模型。提示词可加入 pixel art、PixArFK；请核对作者自定义许可。手机运行尚待实测。",
+      "license": {
+        "name": "Bespoke LoRA Trained License · 发布者自定义许可",
+        "url": "https://huggingface.co/artificialguybr/pixelartredmond-1-5v-pixel-art-loras-for-sd-1-5/blob/eb7c3bfe0c48e7fadd635a0cfb25c29b428c4e63/README.md",
+        "review": "Publisher card metadata; each component and upstream terms still require review. Not a blanket redistribution grant."
+      },
+      "evidence": {
+        "status": "host_trained_variant_not_device_tested",
+        "physicalDeviceTests": 0,
+        "sourceUrl": "https://huggingface.co/artificialguybr/pixelartredmond-1-5v-pixel-art-loras-for-sd-1-5/blob/eb7c3bfe0c48e7fadd635a0cfb25c29b428c4e63/README.md",
+        "componentCoverage": "Exact complete trained-host asset set, with separately disclosed base dependencies for LoRA. No model data is packaged in the App.",
+        "phonePeakRamKnown": false,
+        "phoneQualityAccepted": false,
+        "publisherLicenseMetadataChecked": "2026-10-30; current public publisher cards, not a fresh pinned-revision API response"
+      },
+      "resources": {
+        "estimatedPeakRamBytes": 0,
+        "estimateKnown": false
+      }
+    },
+    {
+      "engine": "sd_cpp",
+      "backend": "cpu",
+      "architecture": "sdxl",
+      "pipeline": "lora",
+      "tasks": [
+        "image"
+      ],
+      "capabilities": [
+        "image_adapter"
+      ],
+      "adapter": {
+        "schema": "lma.adapter/1",
+        "kind": "lora",
+        "baseArchitectures": [
+          "sdxl"
+        ],
+        "basePipelines": [
+          "sdxl",
+          "sdxl_lcm"
+        ],
+        "baseModelIds": [
+          "sdxl_base_q4_0_catalogue_v1",
+          "sdxl_genai_q4_0_ra02cea3"
+        ]
+      },
+      "parameters": {
+        "version": 1,
+        "fields": {
+          "scale": {
+            "type": "number",
+            "label": "LoRA 强度",
+            "default": 1,
+            "minimum": -4,
+            "maximum": 4,
+            "presets": [
+              0.5,
+              0.75,
+              1
+            ],
+            "limitSource": "application_guard"
+          }
+        }
+      },
+      "schema": "lma.model-bundle/1",
+      "id": "sdxl_pixelart_nerijs_catalogue_v1",
+      "modelId": "sdxl_pixelart_nerijs_catalogue_v1",
+      "recipeId": "sdxl_lora_cpu_v1",
+      "name": "Pixel Art XL (nerijs)",
+      "components": [
+        {
+          "role": "lora",
+          "format": "safetensors",
+          "repository": "nerijs/pixel-art-xl",
+          "revision": "8bf4a4d9ea283e00a51fafda8e0539f8248ea037",
+          "path": "pixel-art-xl.safetensors",
+          "bytes": 170543052,
+          "sha256": "4234637cb80c998f41e348e6a6cb6bc20d8d038b2b0f256b6129b3b5e353eef7",
+          "url": "https://huggingface.co/nerijs/pixel-art-xl/resolve/8bf4a4d9ea283e00a51fafda8e0539f8248ea037/pixel-art-xl.safetensors"
+        }
+      ],
+      "catalogue": true,
+      "description": "SDXL 像素画 LoRA，需另选兼容基础模型。作者未要求专用触发词；手机资源与画质尚待实测。",
+      "license": {
+        "name": "CreativeML OpenRAIL-M",
+        "url": "https://huggingface.co/nerijs/pixel-art-xl/blob/8bf4a4d9ea283e00a51fafda8e0539f8248ea037/README.md",
+        "review": "Publisher card metadata; each component and upstream terms still require review. Not a blanket redistribution grant."
+      },
+      "evidence": {
+        "status": "host_trained_variant_not_device_tested",
+        "physicalDeviceTests": 0,
+        "sourceUrl": "https://huggingface.co/nerijs/pixel-art-xl/blob/8bf4a4d9ea283e00a51fafda8e0539f8248ea037/README.md",
+        "componentCoverage": "Exact complete trained-host asset set, with separately disclosed base dependencies for LoRA. No model data is packaged in the App.",
+        "phonePeakRamKnown": false,
+        "phoneQualityAccepted": false,
+        "publisherLicenseMetadataChecked": "2026-10-30; current public publisher cards, not a fresh pinned-revision API response"
+      },
+      "resources": {
+        "estimatedPeakRamBytes": 0,
+        "estimateKnown": false
+      }
+    },
+    {
+      "engine": "sd_cpp",
+      "backend": "cpu",
+      "architecture": "sd15",
+      "pipeline": "lora",
+      "tasks": [
+        "image"
+      ],
+      "capabilities": [
+        "image_adapter",
+        "distilled_sampling"
+      ],
+      "adapter": {
+        "schema": "lma.adapter/1",
+        "kind": "lora",
+        "baseArchitectures": [
+          "sd15"
+        ],
+        "basePipelines": [
+          "sd15"
+        ],
+        "sampling": "lcm",
+        "baseModelIds": [
+          "sd15_ss_q4_0_r031b5f5",
+          "sd15_ss_q4_0"
+        ]
+      },
+      "parameters": {
+        "version": 1,
+        "fields": {
+          "scale": {
+            "type": "number",
+            "label": "LoRA 强度",
+            "default": 1,
+            "minimum": 0.1,
+            "maximum": 2,
+            "presets": [
+              0.5,
+              0.75,
+              1
+            ],
+            "limitSource": "application_guard"
+          }
+        }
+      },
+      "schema": "lma.model-bundle/1",
+      "id": "sd15_lcm_lora_catalogue_v1",
+      "modelId": "sd15_lcm_lora_catalogue_v1",
+      "recipeId": "sd15_lcm_lora_cpu_v1",
+      "name": "LCM-LoRA SD 1.5",
+      "components": [
+        {
+          "role": "lora",
+          "format": "safetensors",
+          "repository": "latent-consistency/lcm-lora-sdv1-5",
+          "revision": "cf2fced511dbe7e26c8d1d397e728fbab875db4b",
+          "path": "pytorch_lora_weights.safetensors",
+          "bytes": 134621556,
+          "sha256": "8f90d840e075ff588a58e22c6586e2ae9a6f7922996ee6649a7f01072333afe4",
+          "url": "https://huggingface.co/latent-consistency/lcm-lora-sdv1-5/resolve/cf2fced511dbe7e26c8d1d397e728fbab875db4b/pytorch_lora_weights.safetensors"
+        }
+      ],
+      "catalogue": true,
+      "description": "SD 1.5 的 LCM 低步数 LoRA，需另选兼容基础模型。任务采用 1–8 步、CFG 1 和空负面提示词；手机运行尚待实测。",
+      "license": {
+        "name": "Open RAIL++",
+        "url": "https://huggingface.co/latent-consistency/lcm-lora-sdv1-5/blob/cf2fced511dbe7e26c8d1d397e728fbab875db4b/README.md",
+        "review": "Publisher card metadata; each component and upstream terms still require review. Not a blanket redistribution grant."
+      },
+      "evidence": {
+        "status": "host_trained_variant_not_device_tested",
+        "physicalDeviceTests": 0,
+        "sourceUrl": "https://huggingface.co/latent-consistency/lcm-lora-sdv1-5/blob/cf2fced511dbe7e26c8d1d397e728fbab875db4b/README.md",
+        "componentCoverage": "Exact complete trained-host asset set, with separately disclosed base dependencies for LoRA. No model data is packaged in the App.",
+        "phonePeakRamKnown": false,
+        "phoneQualityAccepted": false,
+        "publisherLicenseMetadataChecked": "2026-10-30; current public publisher cards, not a fresh pinned-revision API response"
+      },
+      "resources": {
+        "estimatedPeakRamBytes": 0,
+        "estimateKnown": false
+      }
+    },
+    {
+      "engine": "sd_cpp",
+      "backend": "cpu",
+      "architecture": "sdxl",
+      "pipeline": "lora",
+      "tasks": [
+        "image"
+      ],
+      "capabilities": [
+        "image_adapter",
+        "distilled_sampling"
+      ],
+      "adapter": {
+        "schema": "lma.adapter/1",
+        "kind": "lora",
+        "baseArchitectures": [
+          "sdxl"
+        ],
+        "basePipelines": [
+          "sdxl"
+        ],
+        "sampling": "lcm",
+        "baseModelIds": [
+          "sdxl_base_q4_0_catalogue_v1",
+          "sdxl_genai_q4_0_ra02cea3"
+        ]
+      },
+      "parameters": {
+        "version": 1,
+        "fields": {
+          "scale": {
+            "type": "number",
+            "label": "LoRA 强度",
+            "default": 1,
+            "minimum": 0.1,
+            "maximum": 2,
+            "presets": [
+              0.5,
+              0.75,
+              1
+            ],
+            "limitSource": "application_guard"
+          }
+        }
+      },
+      "schema": "lma.model-bundle/1",
+      "id": "sdxl_lcm_lora_catalogue_v1",
+      "modelId": "sdxl_lcm_lora_catalogue_v1",
+      "recipeId": "sdxl_lcm_lora_cpu_v1",
+      "name": "LCM-LoRA SDXL",
+      "components": [
+        {
+          "role": "lora",
+          "format": "safetensors",
+          "repository": "latent-consistency/lcm-lora-sdxl",
+          "revision": "a18548dd4956b174ec5b0d78d340c8dae0a129cd",
+          "path": "pytorch_lora_weights.safetensors",
+          "bytes": 393855224,
+          "sha256": "a764e6859b6e04047cd761c08ff0cee96413a8e004c9f07707530cd776b19141",
+          "url": "https://huggingface.co/latent-consistency/lcm-lora-sdxl/resolve/a18548dd4956b174ec5b0d78d340c8dae0a129cd/pytorch_lora_weights.safetensors"
+        }
+      ],
+      "catalogue": true,
+      "description": "SDXL 的 LCM 低步数 LoRA，需另选兼容基础模型。任务采用 1–8 步、CFG 1 和空负面提示词；手机运行尚待实测。",
+      "license": {
+        "name": "Open RAIL++",
+        "url": "https://huggingface.co/latent-consistency/lcm-lora-sdxl/blob/a18548dd4956b174ec5b0d78d340c8dae0a129cd/README.md",
+        "review": "Publisher card metadata; each component and upstream terms still require review. Not a blanket redistribution grant."
+      },
+      "evidence": {
+        "status": "host_trained_variant_not_device_tested",
+        "physicalDeviceTests": 0,
+        "sourceUrl": "https://huggingface.co/latent-consistency/lcm-lora-sdxl/blob/a18548dd4956b174ec5b0d78d340c8dae0a129cd/README.md",
+        "componentCoverage": "Exact complete trained-host asset set, with separately disclosed base dependencies for LoRA. No model data is packaged in the App.",
+        "phonePeakRamKnown": false,
+        "phoneQualityAccepted": false,
+        "publisherLicenseMetadataChecked": "2026-10-30; current public publisher cards, not a fresh pinned-revision API response"
+      },
+      "resources": {
+        "estimatedPeakRamBytes": 0,
+        "estimateKnown": false
+      }
+    },
+    {
+      "engine": "sd_cpp",
+      "backend": "cpu",
+      "tasks": [
+        "image"
+      ],
+      "capabilities": [
+        "text_to_image",
+        "distilled_sampling"
+      ],
+      "parameters": {
+        "version": 1,
+        "fields": {
+          "width": {
+            "type": "integer",
+            "label": "宽度",
+            "default": 512,
+            "minimum": 64,
+            "maximum": 2048,
+            "presets": [
+              256,
+              384,
+              512,
+              768,
+              1024
+            ],
+            "multipleOf": 64,
+            "limitSource": "application_guard"
+          },
+          "height": {
+            "type": "integer",
+            "label": "高度",
+            "default": 512,
+            "minimum": 64,
+            "maximum": 2048,
+            "presets": [
+              256,
+              384,
+              512,
+              768,
+              1024
+            ],
+            "multipleOf": 64,
+            "limitSource": "application_guard"
+          },
+          "steps": {
+            "type": "integer",
+            "label": "采样步数",
+            "default": 1,
+            "minimum": 1,
+            "maximum": 4,
+            "presets": [
+              1,
+              2,
+              4
+            ],
+            "multipleOf": 1,
+            "limitSource": "application_sampling_policy"
+          },
+          "threads": {
+            "type": "integer",
+            "label": "CPU 线程",
+            "default": 4,
+            "minimum": 1,
+            "maximum": 64,
+            "presets": [
+              1,
+              2,
+              4,
+              6,
+              8
+            ],
+            "multipleOf": 1,
+            "limitSource": "application_guard"
+          },
+          "seed": {
+            "type": "integer",
+            "label": "随机种子（-1 为随机）",
+            "default": -1,
+            "minimum": -1,
+            "maximum": 2147483647,
+            "presets": [
+              -1,
+              0,
+              42
+            ],
+            "multipleOf": 1,
+            "limitSource": "application_guard"
+          },
+          "cfg": {
+            "type": "number",
+            "label": "提示词引导",
+            "default": 1,
+            "minimum": 1,
+            "maximum": 1,
+            "presets": [
+              1
+            ],
+            "limitSource": "application_sampling_policy"
+          },
+          "sampler": {
+            "type": "enum",
+            "label": "采样器",
+            "default": "euler_a",
+            "values": [
+              "euler_a"
+            ]
+          },
+          "vaeTiling": {
+            "type": "boolean",
+            "label": "分块解码 VAE",
+            "default": true
+          },
+          "scheduler": {
+            "type": "enum",
+            "label": "调度器",
+            "default": "discrete",
+            "values": [
+              "discrete"
+            ]
+          }
+        }
+      },
+      "architecture": "sd21",
+      "pipeline": "sd21_turbo",
+      "schema": "lma.model-bundle/1",
+      "id": "sd_turbo_q8_0_catalogue_v1",
+      "modelId": "sd_turbo_q8_0_catalogue_v1",
+      "recipeId": "sd21_turbo_checkpoint_cpu_v1",
+      "name": "SD-Turbo Q8_0 (Green-Sky)",
+      "components": [
+        {
+          "role": "model",
+          "format": "gguf",
+          "repository": "Green-Sky/SD-Turbo-GGUF",
+          "revision": "19a31586d02d64a73b4419bc193b3ecfaf38e1f0",
+          "path": "sd_turbo-f16-q8_0.gguf",
+          "bytes": 2023745376,
+          "sha256": "d50be7655f0a554cf8041c145d88b210bd5f3c545423119dee62ae08cae51580",
+          "url": "https://huggingface.co/Green-Sky/SD-Turbo-GGUF/resolve/19a31586d02d64a73b4419bc193b3ecfaf38e1f0/sd_turbo-f16-q8_0.gguf"
+        },
+        {
+          "role": "clip_merges",
+          "repository": "stable-diffusion-v1-5/stable-diffusion-v1-5",
+          "revision": "451f4fe16113bff5a5d2269ed5ad43b0592e9a14",
+          "path": "tokenizer/merges.txt",
+          "bytes": 524619,
+          "sha256": "9fd691f7c8039210e0fced15865466c65820d09b63988b0174bfe25de299051a",
+          "format": "text",
+          "url": "https://huggingface.co/stable-diffusion-v1-5/stable-diffusion-v1-5/resolve/451f4fe16113bff5a5d2269ed5ad43b0592e9a14/tokenizer/merges.txt"
+        }
+      ],
+      "catalogue": true,
+      "description": "SD-Turbo 独立生图模型，采用 1–4 步、CFG 1 和空负面提示词。手机资源与画质尚待实测。",
+      "license": {
+        "name": "Stability AI Community License Agreement",
+        "url": "https://huggingface.co/Green-Sky/SD-Turbo-GGUF/blob/19a31586d02d64a73b4419bc193b3ecfaf38e1f0/README.md",
+        "review": "Publisher card metadata; each component and upstream terms still require review. Not a blanket redistribution grant."
+      },
+      "evidence": {
+        "status": "host_trained_variant_not_device_tested",
+        "physicalDeviceTests": 0,
+        "sourceUrl": "https://huggingface.co/Green-Sky/SD-Turbo-GGUF/blob/19a31586d02d64a73b4419bc193b3ecfaf38e1f0/README.md",
+        "componentCoverage": "Exact complete trained-host asset set, with separately disclosed base dependencies for LoRA. No model data is packaged in the App.",
+        "phonePeakRamKnown": false,
+        "phoneQualityAccepted": false,
+        "publisherLicenseMetadataChecked": "2026-10-30; current public publisher cards, not a fresh pinned-revision API response"
+      },
+      "resources": {
+        "estimatedPeakRamBytes": 0,
+        "estimateKnown": false
+      }
     }
   ]
 }

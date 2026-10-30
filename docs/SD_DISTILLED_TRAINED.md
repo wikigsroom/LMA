@@ -1,5 +1,7 @@
 # SD-Turbo 与独立 LCM checkpoint：训练权重验证
 
+dev.32 用户入口更新：[固定生图清单](CURATED_DIFFUSION.md)新增 SD-Turbo 完整包，可直接在“全部”查看并明确下载；下文自定义 HF 配方与原训练 / 数值记录保留。独立 LCM checkpoint 及其原像素失败不被此清单更新改写。
+
 [English](SD_DISTILLED_TRAINED.en.md) · [扩散基座](DIFFUSION_ENGINE.md) · [LCM-LoRA 与双架构适配器](SD_VARIANTS_TRAINED.md) · [编号交付 / 完整待办](releases/v0.3.0-dev.24-sd-distilled.md)
 
 后续 [LCM 小型原生准备](LCM_LOCAL_PREPARATION.md) / [English](LCM_LOCAL_PREPARATION.en.md)：避免整份修正版副本，新增真实训练准备与小组件出图；新 C++ 候选的像素等价上限未过（8 > 5），未接入 App，原有质量 / 完整管线 / 手机门槛继续保留。

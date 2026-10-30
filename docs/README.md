@@ -6,6 +6,7 @@
 
 | 主题 / Topic | 中文 | English |
 | --- | --- | --- |
+| 生图选择与 LoRA 依赖 / Curated diffusion and dependencies | [中文](CURATED_DIFFUSION.md) | [English](CURATED_DIFFUSION.en.md) |
 | 运行资源保护 / Runtime resource protection | [中文](RUNTIME_RESOURCES.md) | [English](RUNTIME_RESOURCES.en.md) |
 | 旧 LTX 视频生产闭环 / Old-LTX production video flow | [中文](LTX098_APP_FLOW.md) | [English](LTX098_APP_FLOW.en.md) |
 | 本机增量音频 / Incremental audio and playback | [中文](AUDIO_STREAMING.md) | [English](AUDIO_STREAMING.en.md) |

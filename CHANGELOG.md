@@ -1,5 +1,14 @@
 # Changelog / 更新记录
 
+## 0.3.0-dev.32 — explicit diffusion model selection / 生图选择与依赖闭环
+
+- Add six immutable All profiles: SDXL, SD 1.5/SDXL style and LCM LoRAs, SD-Turbo. 六套完整资产逐项固定 revision、URL、字节与 SHA，既有十项清单保持原样。
+- Add generic base review, install/transfer state and return navigation in LoRA details and missing-base pairing. 下载与导入始终由用户分别明确选择。
+- Bind new SD 1.5 LoRAs to the actual shipped base ID; preserve older imports/settings/jobs through fresh identities. 同时保留旧 SDXL / SD 1.5 导入身份兼容。
+- Add 55 production storage/upgrade/pairing checks and 40 UI checks across all four adapters. 上限回填、模型设置独立与冻结队列请求分别验证。
+- Verify historical asset locks/receipts by SHA during metadata-only builds; retain dev.31's 28 original records. 本轮未重跑训练模型，历史输出不作为当前 APK / 手机证据。
+- Synchronize bilingual guides/READMEs, four labelled screenshots, MP4/GIF and original-signed dev.32 APK. 所有冻结目标、LCM / LTX 原数值失败、Android 与完整 Release 门槛保留。
+
 ## 0.3.0-dev.31 — shared runtime resource protection / 共用运行资源保护
 
 - Continuous public Android resource observations cover the load/chat/API/job execution slot; stop on severe thermal status, OS low memory or a 64 MiB storage floor. 公开系统信号约每 2 秒采样，Android 9 温控保持未知，不重复扣除已加载模型内存。

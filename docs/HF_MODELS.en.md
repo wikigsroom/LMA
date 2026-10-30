@@ -1,5 +1,7 @@
 # HF discovery and local models
 
+dev.32 adds [curated diffusion and LoRA dependency review](CURATED_DIFFUSION.en.md): six exact profiles can be reviewed and explicitly downloaded in All, with separate base/LoRA choices. Full HF search/custom recipes below remain available. Recommended stays m08→m06→m01; users explicitly initiate every download.
+
 [中文](HF_MODELS.md) · [Documentation](README.md)
 
 LMA 0.2.0 is a local-model workbench. It preserves the existing recommendations and adds HF discovery and a dedicated Local manager. General models are eligible; uncensored variants carry separate evidence-based labels.
