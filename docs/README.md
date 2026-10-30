@@ -6,6 +6,7 @@
 
 | 主题 / Topic | 中文 | English |
 | --- | --- | --- |
+| 运行资源保护 / Runtime resource protection | [中文](RUNTIME_RESOURCES.md) | [English](RUNTIME_RESOURCES.en.md) |
 | 旧 LTX 视频生产闭环 / Old-LTX production video flow | [中文](LTX098_APP_FLOW.md) | [English](LTX098_APP_FLOW.en.md) |
 | 本机增量音频 / Incremental audio and playback | [中文](AUDIO_STREAMING.md) | [English](AUDIO_STREAMING.en.md) |
 | LCM 用户资产到生成 / User assets through generation | [中文](LCM_APP_FLOW.md) | [English](LCM_APP_FLOW.en.md) |

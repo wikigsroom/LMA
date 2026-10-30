@@ -124,12 +124,15 @@ public final class ApiHost implements LocalApi.Runtime, AutoCloseable {
                 private long received;
                 @Override public int read() throws IOException { byte[] one = new byte[1]; return read(one, 0, 1) < 0 ? -1 : one[0] & 255; }
                 @Override public int read(byte[] bytes, int offset, int length) throws IOException {
-                    int count = super.read(bytes, offset, length); if (count > 0 && (received += count) > 16L * 1024 * 1024) throw new IOException("文本响应超出应用的 16 MiB 保护上限"); return count;
+                    slot.checkOwner(); int count;
+                    try { count = super.read(bytes, offset, length); } catch (IOException error) { slot.checkOwner(); throw error; }
+                    slot.checkOwner(); if (count < 0) slot.finishResourceMonitoring();
+                    if (count > 0 && (received += count) > 16L * 1024 * 1024) throw new IOException("文本响应超出应用的 16 MiB 保护上限"); return count;
                 }
                 @Override public void close() throws IOException { if (!released) { released = true; try { super.close(); } finally { releaseText(active, slot); } } }
             };
             return LocalHttp.Response.stream(200, mime, connection.getContentLengthLong(), in).header("X-LMA-Max-Tokens", String.valueOf(request.getInt("max_tokens")));
-        } catch (Exception error) { releaseText(connection, slot); throw error; }
+        } catch (Exception error) { String resourceFailure = slot.resourceFailure(); releaseText(connection, slot); if (!resourceFailure.isEmpty()) throw new IOException(resourceFailure, error); throw error; }
     }
     private void releaseText(HttpURLConnection connection, ExecutionGate.Ticket slot) {
         if (connection != null) connection.disconnect();

@@ -1,5 +1,7 @@
 # Contributing / 贡献与更新约定
 
+dev.31 adds shared runtime resource protection. 修改执行槽、资源采样或文本 / 生成生命周期时运行生产调度及相关队列回归，更新双语[运行资源文档](docs/RUNTIME_RESOURCES.md) / [English](docs/RUNTIME_RESOURCES.en.md)与 `resources` 界面媒体；主机读数不写成手机测量，完整冻结范围仍是同一版本。
+
 [中文首页](README.md) · [English README](README.en.md) · [Release procedure / 发布流程](docs/RELEASING.md)
 
 ## 每次更新 / Every update

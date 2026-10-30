@@ -200,7 +200,7 @@ public final class LocalJobs implements AutoCloseable {
                     @Override public void progress(String stage) throws Exception { check(); app.jobs.progress(id, token, stage, null); changed.run(); }
                 };
                 JSONObject result = PreparedModelAssembly.run(plan, app.prepared, app.bundles, request, id, context);
-                app.jobs.finishAssembly(id, token, result, ""); return;
+                owned.finishResourceMonitoring(); app.jobs.finishAssembly(id, token, result, "", owned.runtimeResources()); return;
             }
             selection = app.bundles.acquireAll(ModelSelection.ids(request));
             BundleStore.Lease model = selection.models.get(0);
@@ -215,13 +215,13 @@ public final class LocalJobs implements AutoCloseable {
                         synchronized (app.nativeProcessLock) {
                             check(); if (app.nativeProcess != null && app.nativeProcess.isAlive()) throw new IOException("另一个本地进程仍在退出，请等待系统回收");
                             Process process = builder.start(); activeProcess = process; app.nativeProcess = process;
-                            try { check(); } catch (Exception error) { destroy(process); throw error; } return process;
+                            try { owned.watchProcess(process); check(); } catch (Exception error) { destroy(process); throw error; } return process;
                         }
                     }
                 };
                 app.preparations.run(plan, model, preparationSession, preparationContext);
                 JSONObject prepared = preparationSession.commit(plan, model.bundle.id, preparationContext::check); preparedId = prepared.getString("id");
-                app.jobs.finishPreparation(id, token, prepared, "");
+                owned.finishResourceMonitoring(); app.jobs.finishPreparation(id, token, prepared, "", owned.runtimeResources());
                 if (!app.jobs.get(id).getString("state").equals("succeeded")) { app.prepared.remove(preparedId); preparedId = ""; }
                 return;
             }
@@ -238,23 +238,26 @@ public final class LocalJobs implements AutoCloseable {
                 @Override public File output(String suffix) throws Exception { return app.artifacts.staging(id, suffix); }
                 @Override public void check() throws Exception { owned.checkOwner(); if (closed) throw new IOException("任务服务已结束"); if (timedOut.get()) throw new IOException("本地执行超过应用的两小时单任务保护时限"); app.jobs.check(id, token); }
                 @Override public void progress(String stage, Double fraction) throws Exception { check(); app.jobs.progress(id, token, stage, fraction); changed.run(); }
-                @Override public void process(Process process) throws Exception { activeProcess = process; try { check(); } catch (Exception error) { destroy(process); throw error; } }
+                @Override public void process(Process process) throws Exception { activeProcess = process; try { owned.watchProcess(process); check(); } catch (Exception error) { destroy(process); throw error; } }
                 @Override public void execution(JSONObject details) throws Exception { check(); if (details.toString().length() > 16000) throw new IOException("引擎执行元数据过长"); executionDetails.put("details", DataFiles.copy(details)); }
                 @Override public boolean audioStreaming() { return app.audioStreams != null; }
                 @Override public void audioStart(AudioPcm.Format format) throws Exception { check(); app.audioStreams.begin(id, format); changed.run(); }
                 @Override public void audioChunk(AudioPcm.Chunk chunk) throws Exception { check(); app.audioStreams.append(id, chunk); if (chunk.sequence == 0 || chunk.sequence % 6 == 0) changed.run(); }
             });
+            owned.finishResourceMonitoring();
             if (timedOut.get()) throw new IOException("本地执行超过应用的两小时单任务保护时限");
             JSONArray adapterManifests = new JSONArray(), adapterReceipts = new JSONArray(); for (BundleStore.Lease adapter : adapters) { adapterManifests.put(adapter.bundle.json()); adapterReceipts.put(new JSONObject().put("bundleId", adapter.bundle.id).put("components", adapter.integrity())); }
             JSONObject provenance = new JSONObject().put("adapters", adapterManifests).put("componentReceipts", model.integrity()).put("adapterComponentReceipts", adapterReceipts).put("request", request).put("bundle", model.bundle.json()).put("engine", engine.describe()).put("resourcePlan", resourcePlan).put("device", app.device()).put("execution", "same_android_phone").put("engineExecution", executionDetails);
+            provenance.put("runtimeResources", owned.runtimeResources());
             JSONObject artifact = app.artifacts.commit(id, output, provenance, () -> { if (closed || timedOut.get()) throw new IOException("任务已停止，结果不会记作成功"); app.jobs.check(id, token); }); artifactId = artifact.getString("id");
-            app.jobs.finish(id, token, new JSONArray().put(artifactId), "");
+            app.jobs.finish(id, token, new JSONArray().put(artifactId), "", owned.runtimeResources());
             if (!app.jobs.get(id).getString("state").equals("succeeded")) { app.artifacts.remove(artifactId); artifactId = ""; }
         } catch (Exception error) {
             if (!preparedId.isEmpty()) try { app.prepared.remove(preparedId); } catch (Exception cleanup) { app.log("准备资产清理待重试：" + cleanup.getMessage()); }
             if (!artifactId.isEmpty()) try { app.artifacts.remove(artifactId); } catch (Exception cleanup) { app.log("结果清理待重试：" + cleanup.getMessage()); }
-            if (closed) app.jobs.interrupt(id, token, "服务结束；此引擎没有可续步 checkpoint，可明确重试新任务");
-            else app.jobs.finish(id, token, new JSONArray(), timedOut.get() ? "本地执行超过应用的两小时单任务保护时限" : error.getMessage() == null ? error.toString() : error.getMessage());
+            JSONObject resources = slot == null ? null : slot.endResourceMonitoring();
+            if (closed) app.jobs.interrupt(id, token, "服务结束；此引擎没有可续步 checkpoint，可明确重试新任务", resources);
+            else app.jobs.finish(id, token, new JSONArray(), slot != null && !slot.resourceFailure().isEmpty() ? slot.resourceFailure() : timedOut.get() ? "本地执行超过应用的两小时单任务保护时限" : error.getMessage() == null ? error.toString() : error.getMessage(), resources);
         } finally {
             if (app.audioStreams != null) try { JSONObject terminal = app.jobs.get(id); String state = terminal.getString("state"); if (!java.util.Arrays.asList("succeeded", "failed", "cancelled", "interrupted").contains(state)) state = "interrupted"; app.audioStreams.finish(id, state, artifactId); } catch (Exception error) { app.log("音频试听状态清理失败：" + error.getMessage()); }
             if (timeout != null) timeout.cancel(false);

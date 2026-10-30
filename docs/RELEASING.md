@@ -1,5 +1,7 @@
 # 更新、同步与发布 / Updating and releasing
 
+当前 dev.31：[共用运行资源保护](RUNTIME_RESOURCES.md) / [English](RUNTIME_RESOURCES.en.md) / [编号实现与完整待办](releases/v0.3.0-dev.31.md)。仅开发签名包；当前源码回归、主机训练链路、页面夹具和 Android 编译分别留证，完整 Release 门槛不变。dev.30 的 27 份当前记录及原状态按原提交保存在 `verification/history/0.3.0-dev.30/`。以下保留旧 LTX、音频与基座的构建 / 历史说明。
+
 当前 dev.30：[旧 LTX 本地视频闭环](LTX098_APP_FLOW.md) / [English](LTX098_APP_FLOW.en.md) / [编号交付与完整待办](releases/v0.3.0-dev.30.md)。仅原签名开发包；四个原生阶段、实际生产 Java 主机链路、界面夹具与 Android 编译分别留证。原六项数值失败不改写，官方变体 / 质量 / 手机与完整 Release 仍待验收。dev.29 的 22 份当前记录及原状态按原提交留存在 `verification/history/0.3.0-dev.29/`。
 
 旧 LTX 本地构建使用已有锁定源码：`python tools/build_ltx098_app.py`、`python tools/build_ltx098_app.py --android`、`python tools/package_ltx098_app.py`，再执行下述正常 APK 构建 / 验证。生产编排控制为 `python tools/test_ltx098_app.py`；`--trained` 只读取开发者已有完整资产并做全量 SHA 校验，不自动下载。`python tools/ltx098_app_media.py` 从已执行报告生成主机媒体；`node tools/capture_workbench.cjs ltx` 录制明确标记的页面夹具。开发资源不是用户运行前置要求，不能打入 APK。Existing pinned source and explicit local developer assets only; full-model output, UI fixtures and phone acceptance remain separate.

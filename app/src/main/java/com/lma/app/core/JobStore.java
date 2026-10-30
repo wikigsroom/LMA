@@ -188,17 +188,35 @@ public final class JobStore {
     public synchronized void finish(String id, String token, JSONArray artifacts, String error) throws Exception {
         finishResult(id, token, artifacts, null, error);
     }
+    public synchronized void finish(String id, String token, JSONArray artifacts, String error, JSONObject resources) throws Exception {
+        finishResult(id, token, artifacts, null, error, resources);
+    }
     public synchronized void finishPreparation(String id, String token, JSONObject prepared, String error) throws Exception {
+        finishPreparation(id, token, prepared, error, null);
+    }
+    public synchronized void finishPreparation(String id, String token, JSONObject prepared, String error, JSONObject resources) throws Exception {
         if (!find(state, id).getJSONObject("request").getString("type").equals("model.prepare")) throw new IOException("A generation task cannot finish as asset preparation");
-        finishResult(id, token, new JSONArray(), prepared, error);
+        finishResult(id, token, new JSONArray(), prepared, error, resources);
     }
     public synchronized void finishAssembly(String id, String token, JSONObject assembly, String error) throws Exception {
+        finishAssembly(id, token, assembly, error, null);
+    }
+    public synchronized void finishAssembly(String id, String token, JSONObject assembly, String error, JSONObject resources) throws Exception {
         if (!find(state, id).getJSONObject("request").getString("type").equals("model.assemble")) throw new IOException("Only an assembly task can finish with an association receipt");
-        finishResult(id, token, new JSONArray(), assembly, error);
+        finishResult(id, token, new JSONArray(), assembly, error, resources);
     }
     private void finishResult(String id, String token, JSONArray artifacts, JSONObject prepared, String error) throws Exception {
+        finishResult(id, token, artifacts, prepared, error, null);
+    }
+    private static void runtimeResources(JSONObject job, JSONObject resources) throws Exception {
+        if (resources == null) return;
+        if (resources.toString().length() > 4096 || !resources.optString("scope").equals("shared_system_availability_not_model_peak_memory")) throw new IllegalArgumentException("Invalid runtime resource summary");
+        job.put("runtimeResources", DataFiles.copy(resources));
+    }
+    private void finishResult(String id, String token, JSONArray artifacts, JSONObject prepared, String error, JSONObject resources) throws Exception {
         JSONObject next = DataFiles.copy(state), job = find(next, id);
         if (token.isEmpty() || !token.equals(job.optString("token")) || TERMINAL.contains(job.getString("state"))) throw new IOException("Stale task completion rejected");
+        runtimeResources(job, resources);
         boolean cancelled = job.getString("state").equals("cancelling");
         if (cancelled) { job.put("state", "cancelled").put("artifacts", new JSONArray()).put("error", ""); }
         else if (error != null && !error.isEmpty()) { job.put("state", "failed").put("error", error.length() > 2000 ? error.substring(0, 2000) : error); }
@@ -228,8 +246,12 @@ public final class JobStore {
         persist(next);
     }
     public synchronized void interrupt(String id, String token, String reason) throws Exception {
+        interrupt(id, token, reason, null);
+    }
+    public synchronized void interrupt(String id, String token, String reason, JSONObject resources) throws Exception {
         JSONObject next = DataFiles.copy(state), job = find(next, id);
         if (!token.equals(job.optString("token")) || TERMINAL.contains(job.getString("state"))) return;
+        runtimeResources(job, resources);
         job.put("state", job.getString("state").equals("cancelling") ? "cancelled" : "interrupted").put("token", "").put("error", reason).put("finishedAt", System.currentTimeMillis());
         event(next, job, "interrupted"); persist(next);
     }

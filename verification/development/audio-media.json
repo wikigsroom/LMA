@@ -1,5 +1,5 @@
 {
-  "version": "0.3.0-dev.30",
+  "version": "0.3.0-dev.31",
   "kind": "current production UI with an explicit simulated bridge",
   "android_device": false,
   "model_inference": false,
@@ -52,13 +52,13 @@
     },
     {
       "file": "audio-ui.gif",
-      "bytes": 458541,
-      "sha256": "413376e6b622a4870971d22381db0726f8782607a9d154b611b58134bba8e0dc"
+      "bytes": 713417,
+      "sha256": "83e98dcaa4c48e7536ebb5637d393fceefdcbd06a8be5dac1b5e516200a49909"
     },
     {
       "file": "audio-ui.mp4",
-      "bytes": 182659,
-      "sha256": "549d08a1fb76e2b77c83935edaeac95788948cb89ea551c3da85f762b2a156ed"
+      "bytes": 253797,
+      "sha256": "75ef0204a77ead232963b3e9d6b8110a296f28b1d0471ec8c936e6a5cedfadbb"
     }
   ],
   "input_fingerprint": {
@@ -69,7 +69,7 @@
     "app/src/main/assets/engine-builds.json": "b300af6fbcceec8691d187b1b1fa3f3802bb872cfcd9583bc680eaaf3bf90827",
     "app/src/main/assets/foundation.css": "ac77af14c0498d3c358d76814109cda4f49fb5c660c1f53961d8f9b7f6c3a53f",
     "app/src/main/assets/foundation.js": "d7cdcc80ee6e4dabbfa66791a23e5faf5e6c5bd3b4e0c70628ea111ba3dd5a52",
-    "app/src/main/assets/index.html": "6a72ce1fa6607b6901c7f17789a9ee1c6b66cdcb55767c8a1a587b3ef74b8f91",
+    "app/src/main/assets/index.html": "31e8d43e2441d468d2fa889f86c98b791e73c28c695d1921a1278945e19fa1fa",
     "app/src/main/assets/license.js": "838317c7653ca35291e9e18f2a7e2d98ed46a10880dfe144176f04ad994433d0",
     "app/src/main/assets/licenses/LLAMA_CPP_LICENSE": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
     "app/src/main/assets/licenses/LMA_LICENSE": "6ae3f5efa412d91cbf66e44f743e5ce41a8044309d05d893365206ab9bc35fc3",
@@ -171,9 +171,9 @@
     "app/src/main/assets/recipe-templates.json": "3500cb486212c352b2384e7f38532e5eaa4fb78162b29719826b3b51a8b2ccae",
     "app/src/main/assets/recipes.js": "648e1ff046ab20e2ae7f658a7cb82c895c042ea81dca5cd943141626eea6deba",
     "app/src/main/assets/versions.js": "2d629929a6db642c12a242ddcc62cd4f4090ab307e0cb669ceb98add031977e1",
-    "app/src/main/assets/workbench.js": "ee0d8a324d8f332aa455bf32e33b072b4b129efc0fc6bf1485140f53d350e90e",
+    "app/src/main/assets/workbench.js": "17042106c2bbecf2ba42e1287682b0ad905fbe22137fbb5b3ea0bdee5f2745f4",
     "tests/audio-ui.cjs": "8ac7bcc80addc2613e0e284979d1528db13de7fb21b9272012ca687a38bbdbf0",
     "tests/foundation-ui.cjs": "b8cc6e6dcd05054e8651c1ec908e8d1f8e1c65abe1cb6d81e77f52a7e9fea6ed",
-    "tools/capture_workbench.cjs": "9cd362d5d4745ab7cf6c024b775e3c532db498cc2436faf63be2e1c532b04d4e"
+    "tools/capture_workbench.cjs": "15998298c166a24153ab191c4052b8c7c178fc685866993c8d8164055b896f41"
   }
 }

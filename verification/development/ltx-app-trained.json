@@ -40,8 +40,8 @@
         }
       },
       "artifact": {
-        "jobId": "job_f2041db56b0f43efa78cd919de35c150",
-        "createdAt": 1793317390780,
+        "jobId": "job_40f2797a42a54fbaa4fdff4a67f675c4",
+        "createdAt": 1793320918372,
         "metadata": {
           "frameCount": 33,
           "hostFfprobe": true,
@@ -49,8 +49,27 @@
           "width": 256,
           "height": 256
         },
-        "filename": "artifact_db21145408e64e9aa60fbe52b8f57ccd.mp4",
+        "filename": "artifact_b943fc12639040bdaa331ea7bbfc7a3f.mp4",
         "provenance": {
+          "runtimeResources": {
+            "stopCode": "",
+            "thermalStopAt": 3,
+            "minimumAvailableStorageBytes": null,
+            "lastSampleAt": 0,
+            "startedAt": 1793320175599,
+            "probeErrors": 0,
+            "message": "",
+            "enabled": false,
+            "samples": 0,
+            "storageFloorBytes": 67108864,
+            "minimumAvailableRamBytes": null,
+            "maximumThermalStatus": -1,
+            "endedAt": 1793320918227,
+            "sampleIntervalMs": 2000,
+            "scope": "shared_system_availability_not_model_peak_memory",
+            "thermalKnown": false,
+            "status": "ended"
+          },
           "request": {
             "input": {
               "prompt": "A bright red balloon floats slowly from left to right against a clear blue sky. The camera stays still. Soft daylight illuminates the round balloon. Its thin white string sways gently in the breeze. Continuous smooth motion, realistic lighting."
@@ -97,10 +116,10 @@
             "phase": "execution",
             "estimatedPeakRamBytes": 0,
             "thermalStatus": 0,
-            "availableStorageBytes": 637457645568,
+            "availableStorageBytes": 634338516992,
             "estimateKnown": false,
             "adapterExtraRamGuardBytes": 0,
-            "checkedAt": 1793317261069,
+            "checkedAt": 1793320175743,
             "deviceValidated": false,
             "budgetRamBytes": 5368709120,
             "currentlyLowMemory": false,
@@ -688,32 +707,32 @@
               "stageLoading": "sequential_processes",
               "stages": [
                 {
-                  "seconds": 2.1153372,
+                  "seconds": 2.7333417,
                   "stage": "video_noise",
                   "bytes": 163840
                 },
                 {
-                  "seconds": 15.9767467,
+                  "seconds": 16.2695174,
                   "stage": "video_text_encoding",
                   "bytes": 868352
                 },
                 {
-                  "seconds": 10.902892,
+                  "seconds": 311.3302151,
                   "stage": "video_sampling",
                   "bytes": 163840
                 },
                 {
-                  "seconds": 1.3138613,
+                  "seconds": 2.2924674,
                   "stage": "video_latent_layout",
                   "bytes": 163840
                 },
                 {
-                  "seconds": 44.9512849,
+                  "seconds": 405.4036989,
                   "stage": "video_decoding",
                   "bytes": 25952256
                 },
                 {
-                  "seconds": 1.1358416,
+                  "seconds": 2.5042145,
                   "stage": "video_frames",
                   "bytes": 6488092
                 }
@@ -739,7 +758,7 @@
         "origin": {
           "kind": "generated"
         },
-        "id": "artifact_db21145408e64e9aa60fbe52b8f57ccd"
+        "id": "artifact_b943fc12639040bdaa331ea7bbfc7a3f"
       },
       "videoSha256": "67c56a3c362fa2df106451179e275a0bbd50ca7aefe699535ba8665516ecad1d",
       "videoBytes": 17738,
@@ -785,18 +804,37 @@
             }
           }
         },
-        "createdAt": 1793317259997,
-        "stage": "encoding",
         "idempotencyKey": "ltx_succeeded",
-        "startedAt": 1793317260253,
-        "progress": null,
-        "id": "job_f2041db56b0f43efa78cd919de35c150",
-        "state": "succeeded",
+        "startedAt": 1793320175301,
         "error": "",
+        "finishedAt": 1793320918450,
+        "runtimeResources": {
+          "stopCode": "",
+          "thermalStopAt": 3,
+          "minimumAvailableStorageBytes": null,
+          "lastSampleAt": 0,
+          "startedAt": 1793320175599,
+          "probeErrors": 0,
+          "message": "",
+          "enabled": false,
+          "samples": 0,
+          "storageFloorBytes": 67108864,
+          "minimumAvailableRamBytes": null,
+          "maximumThermalStatus": -1,
+          "endedAt": 1793320918227,
+          "sampleIntervalMs": 2000,
+          "scope": "shared_system_availability_not_model_peak_memory",
+          "thermalKnown": false,
+          "status": "ended"
+        },
+        "createdAt": 1793320175199,
+        "stage": "encoding",
+        "progress": null,
+        "id": "job_40f2797a42a54fbaa4fdff4a67f675c4",
+        "state": "succeeded",
         "artifacts": [
-          "artifact_db21145408e64e9aa60fbe52b8f57ccd"
-        ],
-        "finishedAt": 1793317390908
+          "artifact_b943fc12639040bdaa331ea7bbfc7a3f"
+        ]
       },
       "actualChildren": 6,
       "case": "succeeded"
@@ -892,8 +930,8 @@
     "case-1: frozen original-forward full-chain gate failed: decoded-ncthw.f32"
   ],
   "actual_trained_jobs": 1,
-  "captured_frames": "build/ltx098-app-trained/run-1793317192910718500/data/captured/frames.lma",
-  "captured_video": "build/ltx098-app-trained/run-1793317192910718500/data/captured/video.mp4",
+  "captured_frames": "build/ltx098-app-trained/run-1793319082935700700/data/captured/frames.lma",
+  "captured_video": "build/ltx098-app-trained/run-1793319082935700700/data/captured/video.mp4",
   "asset_receipts": [
     {
       "role": "diffusion_model",
@@ -1104,7 +1142,7 @@
     "ffmpeg": "d1e2a156261ecc675081943197a85f08f2868784a0af499171ede89353edad31",
     "ffprobe": "70872c3ffbc43d0b2c570f9837f54d6e9a832f4ca25463e9735b6a3ec0621478"
   },
-  "capture": "build/ltx098-app-trained/run-1793317192910718500",
+  "capture": "build/ltx098-app-trained/run-1793319082935700700",
   "passed": true,
   "input_fingerprint": {
     "native/ltx098/CMakeLists.txt": "4da0b39b8b57e9d4a974c8527abae6716b43f3fdf0bf5adabff92ecca9c833f6",
@@ -1156,8 +1194,8 @@
     "tools/fetch_ltx098_text.py": "55782095a1b941dc809b33966f62aeffda1b2ca0c719033610432ec00599b577",
     "app/src/main/assets/models.json": "c3e884b4e5fb06f20c036deebc78e6f953ac420e76fca72bab5a25fd59927156",
     "app/src/main/assets/recipe-templates.json": "3500cb486212c352b2384e7f38532e5eaa4fb78162b29719826b3b51a8b2ccae",
-    "app/src/main/java/com/lma/app/ApiHost.java": "3080fa089d97386d74dc13e463830786fab86c90947120bbfb5c3791015ed314",
-    "app/src/main/java/com/lma/app/ChatRunner.java": "7a99210f094bb2db89ff6c52fdc8b221d86c6621bf1805cd0890c769f0f8ef27",
+    "app/src/main/java/com/lma/app/ApiHost.java": "288e80c8ef2328c1808920060848b3e12ebc4872d7919f2863f0c827eb0c3afc",
+    "app/src/main/java/com/lma/app/ChatRunner.java": "bf3f18528dad358ee1f7e13778bba458fc13cfd7caa0281e0d72058c52617586",
     "app/src/main/java/com/lma/app/core/AdapterSpec.java": "aff8572d14ac8d616be0a1b0da395e52ed5bddcd5ae407a969c2657bf9257581",
     "app/src/main/java/com/lma/app/core/ArtifactStore.java": "6f85d2ac710cac0fb5a76cde9493ff1fef4d3e2e119c3e031b7c44ff65a49061",
     "app/src/main/java/com/lma/app/core/AssemblyPlan.java": "80e81dea2a831d3955aa5ae21323eb0432fb448f78994901633fbb6e85d77e7c",
@@ -1171,11 +1209,11 @@
     "app/src/main/java/com/lma/app/core/ComponentIntegrity.java": "7a5977c607f624f8763a782b1b081c4e485c8c05c2caae15986ad2f2388f5bce",
     "app/src/main/java/com/lma/app/core/DataFiles.java": "02d3212885376e7073a785801dbb81073b13cc87c5fc0e85ac4373fd346696bc",
     "app/src/main/java/com/lma/app/core/EngineWorkspace.java": "6c632861e13d0a8950cdee66e8bea8a8760d23550c10343d6cfdd8a6e9af29dd",
-    "app/src/main/java/com/lma/app/core/ExecutionGate.java": "45d783f80953a364115525a361cb3490871b8ec8dfb0f386d90d83c81fc281bc",
+    "app/src/main/java/com/lma/app/core/ExecutionGate.java": "143b6d145036c56ad0937316e87af5f4c44507ef89cf16affdc5bef0ad8e2126",
     "app/src/main/java/com/lma/app/core/InputSelection.java": "963fe60973caab82b9dfedaa7c1661f236aed6ea158fcda8f4a86d02ba33d509",
     "app/src/main/java/com/lma/app/core/InputSpec.java": "a2d34c41a8c623eb31bbcae412037705ea7e4c69e06c9de6f62c83f199f97728",
     "app/src/main/java/com/lma/app/core/InputUploads.java": "5debd68a73abc8bde8174c985dfec8f534c6bf8df58dda8810b0cc3541fe1d53",
-    "app/src/main/java/com/lma/app/core/JobStore.java": "2ea819922f6b069348848d6a8113f20257d120fef2d280e37d774f97a7cb637d",
+    "app/src/main/java/com/lma/app/core/JobStore.java": "3f999d908b7667d35557c979a26dbf5544c712015b986a090946b76b8a680628",
     "app/src/main/java/com/lma/app/core/LcmCondition.java": "2177da94b69781263e36f3e379034619bf74c6856bc6a9108592d4f272e94b7a",
     "app/src/main/java/com/lma/app/core/LocalApi.java": "c9e1674f98ef12c7312ff42c50ba38a10c08d5cf1d3e173a8093ecd7fa67e5fc",
     "app/src/main/java/com/lma/app/core/LocalHttp.java": "428acea4f950bd2ae2948e5b418f5f98259640108427fd9c59d918809787c9cd",
@@ -1196,6 +1234,7 @@
     "app/src/main/java/com/lma/app/core/Protocol.java": "d49f47884aec0cb03347023119c2808330fa9970689dcd9d33c30ca653d03b85",
     "app/src/main/java/com/lma/app/core/QwenTtsSpec.java": "e94d96d7ce7c499b2d4bafbd35740c690b32169a142a9a55aae7a8b03364125b",
     "app/src/main/java/com/lma/app/core/RecipeCatalogue.java": "7b27a07355fe4f7671eef7fa17c9f9ab8512f3f52ccc1de15d4069f15bc6384a",
+    "app/src/main/java/com/lma/app/core/ResourceWatch.java": "6f6a4cb2159f7956d1ae8c202c61430be268d86d230245bccc952844f3816ec5",
     "app/src/main/java/com/lma/app/core/SdSpec.java": "bdd247408ebede1777a84a896a68947132ab8b5ee8d526b17742c565229fcb73",
     "app/src/main/java/com/lma/app/core/SoulxSpec.java": "a761d40965d041d38cc1f629418017103c9eefabf5904814fad9de6372b6bcc7",
     "app/src/main/java/com/lma/app/core/StableAudioSpec.java": "0cc04143a8c8c2afa4dc3d9726f4891779b352404d97c70d6fdc260fbe27ee6c",
@@ -1208,12 +1247,12 @@
     "app/src/main/java/com/lma/app/core/TtsSpec.java": "54f841e2ca5e93d3c3e1845014029b96912291fcf50a50c26a0124325a7a962a",
     "app/src/main/java/com/lma/app/core/WaveFile.java": "cf70b9bbafb6aa23cc25217d4883e769173b00f74571d1b115c50a8ad6b15361",
     "app/src/main/java/com/lma/app/Downloads.java": "681c534b5d97199157abff07a8e1ac1b96ebaf01c36ba2aff2d703517cfbb48c",
-    "app/src/main/java/com/lma/app/EngineHost.java": "2e14d4912b40663f9b5964b5bd681b23599f77609d3b09e29801f7890a1bd36e",
+    "app/src/main/java/com/lma/app/EngineHost.java": "8fddb293a0b56afc5707fe77cd5795ed574c046a14c48eac235d38147f5dd3c1",
     "app/src/main/java/com/lma/app/GgufMetadata.java": "704b05cb1de90340a3c8b37f1af9d2577418aeb95b5b06e88ea7903df6770e78",
     "app/src/main/java/com/lma/app/HubCatalog.java": "31c64a19e4162ce0b1d30428990a9272e4697f4393972a73e5e289a17a3e1a09",
     "app/src/main/java/com/lma/app/HubClient.java": "4479cd1145fb17ce1f563b09d413c061ab2b513375f37c2f1c7e8b6b534e031a",
     "app/src/main/java/com/lma/app/LocalEngine.java": "c7b1ae6b0ac675f0852b819c84ab73e70a750e641ba441a9f1ba4bbd27086e84",
-    "app/src/main/java/com/lma/app/LocalJobs.java": "c74640e319a4395302890fb4ee8d861924a019b632ca88547dcb8b2c5cebb7b4",
+    "app/src/main/java/com/lma/app/LocalJobs.java": "2fef6743a71fc2d4e0b60583af66ca2e48354c9d3738db86e454256dd45cc342",
     "app/src/main/java/com/lma/app/Ltx098Engine.java": "a05dbb97e9c84dfe897c86cf9df8a13a3c637bc9089a5523a62398c94306dcf9",
     "app/src/main/java/com/lma/app/ModelSettings.java": "1ce0dfb9de2f57c39d8e536f1492bdacdcce587329f0a891e34ba9abb0c31c1c",
     "app/src/main/java/com/lma/app/NativeStages.java": "f731ffe3f9d72f8c5b6596c360cbf7e492aa24c98f814a11def393f5ded1ed68",
@@ -1234,7 +1273,7 @@
     "tests/host/com/lma/app/HubLiveTest.java": "308f69328ac67a2a59f525d6cbe35a7a6177bb4c7cdb1dc4e9df801f3c9da20e",
     "tests/host/com/lma/app/HubRecipeTest.java": "098ff0b84136231be8d7973b9d3d75b233555e23c13b90f727dd930bca9a238c",
     "tests/host/com/lma/app/HubTest.java": "004adc962fd03fae21d0b2c2c85d8cd23d3073f2e15f9b5a4cc94d696c6060dd",
-    "tests/host/com/lma/app/LmaApp.java": "800120f38d559a36b291c60bbbe6cd996f42813cb7580e657e290f438bfbcade",
+    "tests/host/com/lma/app/LmaApp.java": "c523cb29bca620ecc4a7af287b7034e2e49b2800c7bf241af212c513cc2124c1",
     "tests/host/com/lma/app/LmaService.java": "9262851fb942a0e692bef32ef1f67118cc1f712cb2501efa61c635dfaec2d61a",
     "tests/host/com/lma/app/LocalEngines.java": "4cda8d9f46326a54c03482c808b446d0229573aae9e6274bbe0368701d96f0b2",
     "tests/host/com/lma/app/LocalJobs.java": "06b1d5ddd517fbebea7e939ee0fe184334d3a4c9c88f1b2d50b1f03413b77255",

@@ -6,7 +6,7 @@ const crypto = require('node:crypto');
 const cp = require('node:child_process');
 const assert = require('node:assert/strict');
 const {chromium} = require(process.env.LMA_PLAYWRIGHT || 'playwright');
-const mode=process.argv[2] || 'workbench'; assert(['workbench','preflight','recovery','lcm','audio','ltx'].includes(mode));
+const mode=process.argv[2] || 'workbench'; assert(['workbench','preflight','recovery','lcm','audio','ltx','resources'].includes(mode));
 const checkScreen=require('../tests/'+mode+'-ui.cjs');
 const root = path.resolve(__dirname, '..'), assets = path.join(root, 'app/src/main/assets');
 const out = path.join(root, 'docs/media/development',mode), work = path.join(root, 'build',mode+'-media');

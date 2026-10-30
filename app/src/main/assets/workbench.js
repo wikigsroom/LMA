@@ -7,6 +7,13 @@
   function draft(id) { return (ui.state().taskDrafts || []).find(function (d) { return d.bundleId === id; }); }
   function generation(type) { return ['text.generate', 'image.generate', 'video.generate', 'speech.synthesize', 'audio.generate'].indexOf(type) >= 0; }
   function artifact(id) { return (ui.state().artifacts || []).find(function (a) { return a.id === id; }); }
+  function resourceText(r) {
+    if (!r) return '';
+    var text = r.message || (r.status === 'waiting' ? '等待执行时开始检查运行资源。' : r.status === 'ended' ? r.samples ? '本次运行资源检查已结束。' : '本次执行未取得系统资源读数。' : !r.samples ? '等待系统资源读数。' : '正在检查运行资源。');
+    if (r.samples) text += ' 最低系统可用内存 ' + ui.bytes(r.minimumAvailableRamBytes) + ' · 最低可用存储 ' + ui.bytes(r.minimumAvailableStorageBytes) + ' · 最高温控等级 ' + (r.thermalKnown ? r.maximumThermalStatus + ' / 6' : '未知（系统未提供）') + '。';
+    if (r.probeErrors) text += ' 有 ' + r.probeErrors + ' 次系统读数不可用。';
+    return text;
+  }
   function showJob(job) {
     var r = job.request, b = host.find(r.bundleId), input = r.input || {}, outputs = job.artifacts || [];
     var html = '<div class="task-detail"><div class="model-tags"><span class="tag">' + e(names[r.type] || r.type) + '</span><span class="tag">' + e(host.states[job.state] || job.state) + '</span></div><h3>' + e(b ? b.manifest.name : r.bundleId) + '</h3>';
@@ -17,6 +24,7 @@
     if ((input.artifacts || []).length) html += '<h4>参考素材</h4><div class="job-actions">' + input.artifacts.map(function (ref) { var a = artifact(ref.artifactId); return button('artifactInfo', ref.artifactId, ref.role + (a && a.available ? ' · 打开' : ' · 文件不可用'), 'secondary', !a || !a.available); }).join('') + '</div>';
     if (job.outputRecovery) html += '<p class="recovered-output">中断后找回了已保存的结果。任务仍为已中断，未自动续步或重新生成。</p>';
     if (job.error) html += '<p class="download-error">' + e(job.error) + '</p>';
+    if (job.runtimeResources) html += '<details open><summary>运行资源</summary><p class="form-help">' + e(resourceText(job.runtimeResources)) + '</p><p class="form-help">这是系统可用资源记录；模型峰值内存和速度需单独测量。重试会创建新任务，保留本次记录。</p></details>';
     html += '<div class="job-actions task-next-actions">';
     var stream = window.LMAAudioPreview.summary(job.id); if (stream) html += button('audioPreview', job.id, stream.state === 'streaming' ? '边生成边听' : '试听缓存', 'primary', stream.frames === 0);
     outputs.forEach(function (id, index) { var a = artifact(id); html += button('artifactInfo', id, '打开结果' + (outputs.length > 1 ? ' ' + (index + 1) : ''), 'primary', !a || !a.available); });
@@ -39,6 +47,9 @@
   }
   function renderStatus() {
     var s = ui.state(), jobs = s.jobs || [], c = s.taskCapacity && s.taskCapacity.jobs || {}, outputs = s.taskCapacity && s.taskCapacity.artifacts || {}, recovery = s.outputRecovery || {};
+    var execution = (s.foundation || {}).execution || {}, observed = execution.active || execution.lastResourceStop, resourcePanel = document.getElementById('runtimeResourceStatus');
+    resourcePanel.hidden = !observed || !observed.runtimeResources || !observed.runtimeResources.enabled;
+    resourcePanel.textContent = observed ? (execution.active ? '当前执行 · ' : '最近停止 · ') + resourceText(observed.runtimeResources) : '';
     var pending = jobs.filter(function (job) { return ['queued','loading','running','cancelling'].indexOf(job.state) >= 0; }).length;
     document.getElementById('taskCapacity').textContent = '任务记录 ' + (c.history === undefined ? jobs.length : c.history) + ' / ' + (c.historyLimit || 256) + ' · 待处理 ' + (c.pending === undefined ? pending : c.pending) + ' / ' + (c.pendingLimit || 64) + ' · 素材与结果 ' + (outputs.count === undefined ? (s.artifacts || []).length : outputs.count) + ' / ' + (outputs.limit || 2048);
     document.getElementById('clearTaskHistoryButton').disabled = !!historyPending || jobs.length === pending;

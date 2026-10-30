@@ -53,6 +53,7 @@ public final class LmaService extends Service {
             wifi.setReferenceCounted(false); wifi.acquire();
         } catch (Exception error) { app.log("Wi-Fi 唤醒锁不可用：" + error.getMessage()); }
         engine = new EngineHost(this, app); chat = new ChatRunner(this, app); downloads = new Downloads(this, app);
+        app.execution.monitorResources(new DeviceResourceProbe(app), this::activityChanged);
         if (app.bundles != null) bundleTransfers = new BundleTransfers(app.bundles,
                 (component, offset, observer) -> {
                     String token = app.prefs.getString("hfToken", "");
@@ -248,6 +249,7 @@ public final class LmaService extends Service {
         api.stop(); chat.cancel(); downloads.pauseAll(); if (bundleTransfers != null) bundleTransfers.close(); engine.stop(); stopSelf();
     }
     @Override public void onDestroy() {
+        app.execution.stopResourceMonitor();
         stopping = true; main.removeCallbacksAndMessages(null);
         if (api != null) { api.close(); if (app.apiHost == api) app.apiHost = null; }
         if (localJobs != null) { localJobs.close(); if (app.jobHost == localJobs) app.jobHost = null; }

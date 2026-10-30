@@ -1,5 +1,14 @@
 # Changelog / 更新记录
 
+## 0.3.0-dev.31 — shared runtime resource protection / 共用运行资源保护
+
+- Continuous public Android resource observations cover the load/chat/API/job execution slot; stop on severe thermal status, OS low memory or a 64 MiB storage floor. 公开系统信号约每 2 秒采样，Android 9 温控保持未知，不重复扣除已加载模型内存。
+- Exact child ownership, stale-probe rejection and stop/release race handling preserve the shared queue. 多阶段引擎逐次绑定子进程，保留真实停止原因。
+- Bounded reports commit atomically with task terminal states and successful artifact provenance; explicit retry retains previous requests and records. 任务与结果保存有界摘要，重试创建新任务。
+- Chat preserves partial replies; text stops disable automatic restart; API interruptions do not become successful EOF. 聊天 / API 复用同一保护。
+- Tasks and details expose readable reports; bilingual guides, 3 screenshots, recording and GIF document the flow. 当前界面夹具与真实 Android 测量明确区分。
+- Current signed APK and regression receipts preserve original signing identity and historical evidence. All frozen targets, numerical/quality failures and Android/full Release gates remain open. 不拆分完整 v0.3.0 范围，不自动下载模型。
+
 ## 0.3.0-dev.30 — old-LTX local video business flow / unreleased
 
 - 新增生产旧 LTX 适配器：顺序 T5 / Vulkan 八步 DiT / 九段 VAE / RGB / 手机 MediaCodec，与共享模型租约、队列、取消、结果提交和来源记录整合。Sequential owned local stages share existing lifecycle and artifact services.

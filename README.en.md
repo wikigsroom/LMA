@@ -2,7 +2,13 @@
 
 [中文](README.md) · [English](README.en.md) · [Releases](https://github.com/wikigsroom/LMA/releases) · [Documentation](docs/README.md) · [Changelog](CHANGELOG.md)
 
-> **Current development: 0.3.0-dev.30 / code 34.** Old-LTX video now connects explicit asset preparation/association and independent settings to the production shared queue, sequential text encoding/Vulkan sampling/VAE/phone AVC and committed artifacts. Existing asset records remain unchanged. The App updates its foundation; users select and manage all models. [Design and usage](docs/LTX098_APP_FLOW.en.md) · [Numbered delivery/full pending scope](docs/releases/v0.3.0-dev.30.md) · [Recording](docs/media/development/ltx/ltx-ui.mp4) · [GIF](docs/media/development/ltx/ltx-ui.gif). The community Google T5 Q5 single-scale variant differs from the official default; original numerical failures, video quality, Android execution and the complete release remain unaccepted.
+> **Current development: 0.3.0-dev.31 / code 35.** Continuous resource protection now covers generation/preparation/association, model loading, chat and API through the shared execution slot. Severe thermal status, OS low memory or low storage stops the current operation; tasks retain reports, chat keeps partial text, and users retry explicitly. The App delivers its foundation; users select and manage models. [Design and usage](docs/RUNTIME_RESOURCES.en.md) · [Numbered delivery/full pending scope](docs/releases/v0.3.0-dev.31.md) · [Recording](docs/media/development/resources/resources-ui.mp4) · [GIF](docs/media/development/resources/resources-ui.gif). Host controls are not Android measurements; every frozen target and original numerical, quality, phone and complete-release gate remains required.
+
+| Runtime observations (UI fixture) | Saved stop report (UI fixture) |
+|---|---|
+| ![Runtime observations](docs/media/development/resources/01-running.png) | ![Stop details](docs/media/development/resources/02-stopped-detail.png) |
+
+The [old-LTX production video flow](docs/LTX098_APP_FLOW.en.md) and its UI/actual host media below remain available. The community Google T5 Q5 single-scale variant differs from the official default; all six original numerical failures remain unchanged.
 
 | Local video settings (UI fixture) | Shared video queue/cancellation (UI fixture) |
 |---|---|

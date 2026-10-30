@@ -245,6 +245,7 @@ public final class SchedulerTest {
             check(fixture.started.size() == beforeThermal, "Execution-time thermal checks prevent spawning an unsafe worker");
             check(app.jobs.get(thermal.getString("id")).getString("error").contains("温度"), "Actual admission failure remains visible on the job");
 
+            int resources = ResourceChecks.runtime(app, engine, jobs, chat, api, work, alias); passed += resources; checks.add("Production resource stops, retry, chat and API: " + resources);
             JSONObject finalJob = jobs.submit(request("service-close"), "service-close"); started("service-close"); engine.stop(); jobs.close();
             until(() -> state(app, finalJob, "interrupted") && !jobs.busy(), "Service shutdown interrupts an active job");
             until(() -> app.nativeProcess == null || !app.nativeProcess.isAlive(), "Shutdown reaps actual child");
@@ -290,7 +291,7 @@ public final class SchedulerTest {
         if (args.length > 0 && args[0].equals("worker")) { runWorker(args[1]); return; }
         root = Paths.get(args[0]); work = Paths.get(args[1]); Files.createDirectories(work);
         try {
-            gateChecks(); runtimeChecks(); assemblyChecks(); int audio=AudioQueueChecks.run(root,work.resolve("audio-queue"));passed+=audio;checks.add("Production incremental audio task lifecycle: "+audio);
+            gateChecks(); int resources = ResourceChecks.gate(); passed += resources; checks.add("Shared resource policy and ownership races: " + resources); runtimeChecks(); assemblyChecks(); int audio=AudioQueueChecks.run(root,work.resolve("audio-queue"));passed+=audio;checks.add("Production incremental audio task lifecycle: "+audio);
             System.out.println(new JSONObject().put("passed", passed).put("checks", new JSONArray(checks)).put("actual_host_children", true).put("actual_loopback_http", true)
                     .put("production_job_runner", true).put("physical_android", false).put("model_inference", false).put("automatic_model_downloads", false));
         } finally { for (Process child : children) { child.destroyForcibly(); child.waitFor(5, TimeUnit.SECONDS); } }

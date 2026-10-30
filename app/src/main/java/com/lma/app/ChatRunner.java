@@ -59,6 +59,7 @@ public final class ChatRunner {
             if (active.getResponseCode() != 200) throw new java.io.IOException(Net.errorBody(active));
             try (InputStreamReader in = new InputStreamReader(active.getInputStream(), StandardCharsets.UTF_8)) {
                 Protocol.readSse(in, data -> {
+                    slot.checkOwner();
                     if (cancelled) return false;
                     if (data.trim().equals("[DONE]")) { done[0] = true; return false; }
                     try {
@@ -84,9 +85,10 @@ public final class ChatRunner {
                     return true;
                 });
             }
+            slot.checkOwner(); slot.finishResourceMonitoring();
             if (!done[0] && !cancelled) throw new java.io.IOException("连接中断，已保留收到的回复");
         } catch (Exception error) {
-            if (!cancelled) { status = "error"; errorMessage = error.getMessage() == null ? "请求失败" : error.getMessage(); app.log("对话中断：" + errorMessage); }
+            if (!cancelled) { status = "error"; errorMessage = !slot.resourceFailure().isEmpty() ? slot.resourceFailure() : error.getMessage() == null ? "请求失败" : error.getMessage(); app.log("对话中断：" + errorMessage); }
         } finally {
             if (cancelled) status = "stopped";
             if (active != null) active.disconnect(); connection = null;

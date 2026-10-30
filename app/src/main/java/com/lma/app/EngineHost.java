@@ -73,7 +73,7 @@ public final class EngineHost {
         slot.checkOwner(); check.run(); long request;
         synchronized (this) {
             if (closed || !desired || !id.equals(app.engineModel)) throw new IOException("所选文本模型已停止或更改，请重新提交");
-            if (ready()) return;
+            if (ready()) { watchResources(slot, process, generation.get()); return; }
             if (warmTicket != null) { warmTicket.close(); warmTicket = null; }
             request = generation.incrementAndGet();
         }
@@ -123,6 +123,17 @@ public final class EngineHost {
         destroyProcess(); workers.shutdown();
     }
     private boolean current(long request) { return !closed && desired && request == generation.get(); }
+    private void watchResources(ExecutionGate.Ticket slot, Process selected, long request) throws IOException {
+        slot.watchProcess(selected, message -> {
+            synchronized (EngineHost.this) {
+                if (!current(request) || process != selected) return;
+                desired = false; generation.incrementAndGet();
+                app.prefs.edit().putBoolean("desiredRunning", false).apply();
+                app.engineState = "error"; app.engineDetail = message;
+            }
+            app.error(message); app.emit(); owner.activityChanged();
+        });
+    }
     private synchronized void destroyProcess() {
         Process old = process; process = null; currentLease = null;
         if (old != null) {
@@ -176,12 +187,13 @@ public final class EngineHost {
                     final BundleStore.Lease ownedLease = lease;
                     workers.execute(() -> watchExit(active, id, request, ownedLease));
                     workers.execute(() -> drain(active)); lease = null;
+                    watchResources(slot, active, request);
                 }
             }
             app.log("启动模型：" + app.store.model(id).optString("name") + " · CPU / " + settings.getInt("threads") + " 线程");
             long deadline = System.nanoTime() + TimeUnit.MINUTES.toNanos(5);
             while (current(request) && process == active && active.isAlive() && System.nanoTime() < deadline) {
-                check.run(); HttpURLConnection health = null;
+                check.run(); slot.checkOwner(); HttpURLConnection health = null;
                 try {
                     health = Net.engine(app, "/health"); health.setConnectTimeout(1000); health.setReadTimeout(1000);
                     if (health.getResponseCode() == 200 && new JSONObject(Store.read(health.getInputStream(), 65536)).optString("status").equals("ok") && ownsEndpoint(id)) {
@@ -189,13 +201,13 @@ public final class EngineHost {
                             if (!current(request) || process != active) throw new InterruptedIOException("文本加载已更改");
                             app.engineState = "ready"; app.engineDetail = "模型已就绪，可以对话或连接 API"; app.engineStarted = System.currentTimeMillis();
                         }
-                        app.emit(); owner.activityChanged(); return;
+                        slot.checkOwner(); app.emit(); owner.activityChanged(); return;
                     }
                 } catch (Exception ignored) {} finally { if (health != null) health.disconnect(); }
                 Thread.sleep(100);
             }
             // The registered exit watcher owns bounded recovery, including exits before readiness.
-            if (!active.isAlive() && current(request)) return;
+            slot.checkOwner(); if (!active.isAlive() && current(request)) return;
             check.run();
             if (current(request)) throw new IOException("模型加载超时，请尝试更小模型或降低上下文");
             throw new InterruptedIOException("文本模型已停止或更改");

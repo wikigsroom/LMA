@@ -14,9 +14,9 @@ from preparation_build_inputs import build_inputs
 ROOT = Path(__file__).resolve().parents[1]
 BASELINE = '6b1f3459a80db8b7b6838e7d5e492b8ef42d9033'
 BASE_VERSION = '0.3.0-dev.24'
-CURRENT_VERSION = '0.3.0-dev.30'
-PRIOR_COMMIT = 'e4cf93a8f235e227a16e7c28e4970d155e1fe22b'
-PRIOR_VERSION = '0.3.0-dev.29'
+CURRENT_VERSION = '0.3.0-dev.31'
+PRIOR_COMMIT = '0f2324c6ce509146c19fe4c4e8abb4e009e6c855'
+PRIOR_VERSION = '0.3.0-dev.30'
 CERTIFICATE = '90444a717a55549e2094364d8d7d005cf8b7f4df24562da62cc1884a2f341c17'
 SOURCES = {
     'build-info.json': 'dist/build-info.json',
@@ -46,6 +46,7 @@ SOURCES = {
     'ltx-app-trained.json': 'build/ltx098-app-trained/results.json',
     'ltx-media.json': 'docs/media/development/ltx/manifest.json',
     'ltx-trained-media.json': 'docs/media/development/ltx-app-trained/manifest.json',
+    'resources-media.json': 'docs/media/development/resources/manifest.json',
 }
 
 
@@ -66,7 +67,7 @@ def prior_checkpoint(write=False):
     # Only archive this checkpoint's own records. Older model experiments have
     # separate immutable pointers and are not inputs to this incremental copy.
     status_data = subprocess.check_output(['git','show',PRIOR_COMMIT + ':verification/development/status.json'], cwd=ROOT)
-    status = json.loads(status_data); assert status['version'] == PRIOR_VERSION and len(status['sources']) == 22
+    status = json.loads(status_data); assert status['version'] == PRIOR_VERSION and len(status['sources']) == 27
     selected = ['status.json', *status['sources']]
     assert all(Path(name).name == name and name.endswith('.json') for name in selected)
     run = subprocess.run(['git', 'archive', '--format=tar', PRIOR_COMMIT, *['verification/development/' + name for name in selected]], cwd=ROOT, capture_output=True, check=True)
@@ -123,7 +124,7 @@ def export():
         'historical_trained_results_apply_to_current_apk': False,
         'host_model_inference_tested': True, 'apk_model_inference_tested': False, 'historical_host_model_inference_tested': True,
         'model_inference_test_scope': 'One complete trained old-LTX community Google T5 Q5 single-scale job through the current production Java queue/adapter on native Windows with an explicit FFmpeg host encoder port. Original numerical/quality failures remain open; no Android inference or complete trained Realtime speech acceptance. Trained LCM evidence stays pinned to dev.28.',
-        'scope': 'Old-LTX sequential local stages, explicit immutable runtime association, per-model video settings, shared queue and MP4 artifacts; current audio and foundation regression. Full frozen release scope remains required.',
+        'scope': 'Continuous system resource observations and controlled stop across the shared load/chat/API/job slot, bounded persisted task/provenance reports, explicit retry and current UI media; retained old-LTX production host chain and full foundation regression. Full frozen release scope remains required.',
         'required_release_scope': {'foundation': 'F01–F12', 'existing_text': True, 'selected_ids': ['01','02','03','04','05','06','07','08','09','10','11','12','13','14','16','17'], 'every_frozen_subtarget': True, 'sd15_and_sdxl_lora': True},
         'input_fingerprint': fingerprint('tools/checkpoint_evidence.py', 'tools/export_development.py', 'tools/check_repository.py', 'docs/proposals/multimodal-release-scope.json'),
     }
@@ -162,9 +163,9 @@ def check():
     assert not workbench['android_execution_tested'] and not workbench['model_inference_tested']
     recovery = records['recovery.json']; assert recovery['passed'] and recovery['count'] >= 47 and recovery['actual_process_interruption'] and recovery['actual_persistence_io'] and recovery['actual_socket_io']
     assert not recovery['android_execution_tested'] and not recovery['model_inference_tested']
-    for name, minimum in [('foundation.json',611),('api.json',67),('inputs.json',64),('text.json',66),('migration.json',69),('scheduler.json',109)]:
+    for name, minimum in [('foundation.json',611),('api.json',67),('inputs.json',64),('text.json',66),('migration.json',69),('scheduler.json',151)]:
         assert records[name]['passed'] >= minimum, name
-    ui = records['ui.json']; assert ui['passed'] >= 372 and not ui['errors'] and ui['bridge'] == 'test fixture only' and not ui['physicalDevice'] and not ui['emulatorUsed']
+    ui = records['ui.json']; assert ui['passed'] >= 381 and not ui['errors'] and ui['bridge'] == 'test fixture only' and not ui['physicalDevice'] and not ui['emulatorUsed']
     lint = records['lint.json']; assert lint['errors'] == 0 and lint['applicationApkSha256'] == build['sha256']
     assert lint['java_source_files'] == len(list((ROOT / 'app/src/main/java').rglob('*.java')))
     media = records['workbench-media.json']; assert media['version'] == CURRENT_VERSION and media['browser_closed'] and not media['browser_errors']
@@ -190,6 +191,10 @@ def check():
     # dev.29 did not rerun trained LCM. Validate the immutable dev.28 pointer,
     # rather than presenting an old leftover public file as current evidence.
     lcm_history = json.loads(prior_records['status.json'])['prior_checkpoint']
+    while lcm_history['version'] != '0.3.0-dev.28':
+        item = lcm_history['sources']['status.json']; data = (ROOT / item['path']).read_bytes()
+        assert digest(data) == item['sha256'], 'Historical checkpoint pointer changed'
+        lcm_history = json.loads(data)['prior_checkpoint']
     assert lcm_history['version'] == '0.3.0-dev.28' and lcm_history['commit'] == '5abb90d3696b80f4b7c6963071e9ad625f551d6d'
     def lcm_historical(name):
         item = lcm_history['sources'][name]
@@ -252,6 +257,11 @@ def check():
     assert media['trained_report_sha256'] == digest((directory / 'ltx-app-trained.json').read_bytes()) and len(media['files']) == 3
     for item in media['files']:
         data = (ROOT / 'docs/media/development/ltx-app-trained' / item['file']).read_bytes()
+        assert len(data) == item['bytes'] and digest(data) == item['sha256']
+    media = records['resources-media.json']; assert media['version'] == CURRENT_VERSION and media['browser_closed'] and not media['browser_errors']
+    assert not media['android_device'] and not media['model_inference'] and not media['weights_downloaded'] and len(media['screenshots']) == 3 and len(media['files']) == 5 and len(media['checks']) >= 9
+    for item in media['files']:
+        data = (ROOT / 'docs/media/development/resources' / item['file']).read_bytes()
         assert len(data) == item['bytes'] and digest(data) == item['sha256']
     scope = json.loads((ROOT / 'docs/proposals/multimodal-release-scope.json').read_text(encoding='utf-8'))
     assert status['required_release_scope']['selected_ids'] == scope['selected_ids'] and scope['preserved_recommendation_ids'] == ['m08','m06','m01']

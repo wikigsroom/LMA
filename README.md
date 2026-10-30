@@ -2,7 +2,13 @@
 
 [中文](README.md) · [English](README.en.md) · [下载 / Releases](https://github.com/wikigsroom/LMA/releases) · [文档导航](docs/README.md) · [更新记录](CHANGELOG.md)
 
-> **当前开发：0.3.0-dev.30 / code 34。** 旧 LTX 视频已接入生产共享队列：用户明确准备 / 关联资产，独立设置后提交，顺序执行提示词编码、Vulkan 采样、VAE 与手机 AVC 编码，成功产物进入结果库；旧资产记录保持不变。App 只更新基座，模型由用户选择、下载和管理。[方案与使用](docs/LTX098_APP_FLOW.md) · [编号实现 / 完整待办](docs/releases/v0.3.0-dev.30.md) · [录屏](docs/media/development/ltx/ltx-ui.mp4) · [GIF](docs/media/development/ltx/ltx-ui.gif)。Google/community T5 Q5 单尺度变体不等于官方默认；原数值失败、视频质量、手机执行和完整 Release 仍未验收。
+> **当前开发：0.3.0-dev.31 / code 35。** 共用执行槽新增持续资源保护：生成 / 准备 / 关联任务、模型加载、聊天及 API 均可因严重高温、系统低内存或存储不足而停止；保存任务摘要，聊天保留部分文本，用户明确重试。App 仍只更新基座，模型由用户自主选择和管理。[方案与使用](docs/RUNTIME_RESOURCES.md) · [编号实现 / 完整待办](docs/releases/v0.3.0-dev.31.md) · [录屏](docs/media/development/resources/resources-ui.mp4) · [GIF](docs/media/development/resources/resources-ui.gif)。这些主机检查不代表 Android 测量；所有冻结模型、原数值失败、质量、手机与完整 Release 门槛继续保留。
+
+| 运行资源（界面测试数据） | 已保存的停止详情（界面测试数据） |
+|---|---|
+| ![运行资源检查](docs/media/development/resources/01-running.png) | ![停止详情](docs/media/development/resources/02-stopped-detail.png) |
+
+保留[旧 LTX 本地视频生产闭环](docs/LTX098_APP_FLOW.md)，详见下列界面及实际主机媒体。Google/community T5 Q5 单尺度变体不等于官方默认；原六项数值失败未改写。
 
 | 本地视频参数（界面测试数据） | 视频任务与取消（界面测试数据） |
 |---|---|
