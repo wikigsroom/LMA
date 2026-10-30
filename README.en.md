@@ -1,6 +1,14 @@
 # LMA · Local models on Android
 
-> **Current development: 0.3.0-dev.38 / code42.** Add the complete optional four-component Z-Image-Turbo model to All/HF/Local, independent eight-step settings, shared jobs, cancellation/recovery and results. Exact content hashes reuse matching files; browsing/declaration never implicitly download or install. The App remains foundation-only, preserving Recommended and user assets. [Complete design/user flow](docs/ZIMAGE_TURBO.en.md) · [Current changes/full pending scope](docs/releases/v0.3.0-dev.38.md).
+> **Current development: 0.3.0-dev.39 / code43.** Add optional local Wan 2.1 T2V 1.3B Q4 video: CPU text/VAE, Vulkan diffusion and MP4 encoding on the same phone, reusing All/HF/Local, independent settings, shared jobs and results. Users explicitly download/import all four components; APK updates supply only the foundation. Missing Vulkan fails locally; completed GPU computation is checked separately from enumeration. [Complete user and runtime guide](docs/WAN_VIDEO.en.md) · [Numbered delivery and full pending scope](docs/releases/v0.3.0-dev.39.md).
+
+dev.39 validation: **22 suites /3,057 passed checks**, including actual complete-model and production application execution. The 61,325,834-byte development APK retains the signing identity and35 verified native files. Later default frames show block artifacts; full quality, numerics, phone and formal Release acceptance remain pending. [Development package and evidence](docs/releases/v0.3.0-dev.39.md).
+
+![Wan model and parameter workflow; UI fixture, not phone inference](docs/media/development/wan/wan-ui.gif)
+
+Actual host model output, production UI demonstrations, Android compilation, independent numerics/quality and physical-phone acceptance remain separate. All frozen targets and phone gates still apply to the single complete Release.
+
+> **Retained dev.38: 0.3.0-dev.38 / code42.** Add the complete optional four-component Z-Image-Turbo model to All/HF/Local, independent eight-step settings, shared jobs, cancellation/recovery and results. Exact content hashes reuse matching files; browsing/declaration never implicitly download or install. The App remains foundation-only, preserving Recommended and user assets. [Complete design/user flow](docs/ZIMAGE_TURBO.en.md) · [Current changes/full pending scope](docs/releases/v0.3.0-dev.38.md).
 
 ![Actual Z-Image host output; not Android footage](docs/media/development/zimage-trained/01-robot.png)
 

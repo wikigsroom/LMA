@@ -1,5 +1,7 @@
 # Z-Image-Turbo: complete local model and user flow
 
+This guide retains the exact dev.38 host experiment and archived reports. See [Wan](WAN_VIDEO.en.md) for current development.
+
 [中文](ZIMAGE_TURBO.md) · [Model selection](CURATED_DIFFUSION.en.md) · [Component suggestions](COMPONENT_SUGGESTIONS.en.md) · [API](API.en.md) · [Current delivery/full pending scope](releases/v0.3.0-dev.38.md)
 
 Applies to dev.38/code42. The App updates foundation code; this is an optional image model, equal to other model records. Installation, upgrades and browsing never acquire it automatically. Recommended m08→m06→m01 remains intact. Source, actual Windows CPU execution, UI fixtures and Android ARM64 compilation are distinct evidence. Complete independent numerics, image quality, resource and physical-phone acceptance remain pending; these records cannot establish Nubia Z20 execution or sustained background operation.
@@ -45,9 +47,9 @@ Exact content hashes allow component reuse. Already acquired matching Qwen3-4B w
 
 The official Z-Image full tokenizer.json SHA exactly matches the independently validated Qwen reference, as do the complete merges bytes. The shared reader handles the HF header, BOM/CRLF and NFC in memory without changing installed files. The reference covers 151,643 base IDs, 26 special IDs, 33 texts and three representations:117 checks. This is not full-model numerical or image-quality acceptance.
 
-- [Actual native execution](../verification/development/zimage-trained.json): complete components, prompt/step changes, real sampling cancellation, errors, recovery and Windows process observations.
-- [Production Java/native flow](../verification/development/zimage-app-host.json): full imports, independent settings, leases, immutable jobs, actual generation/cancel/recovery, PNG provenance, restart and deletion.
-- [Actual output media](media/development/zimage-trained/manifest.json), [labelled UI recordings](media/development/curated/manifest.json), [independent tokenizer comparison](../verification/development/qwen-tokenizer.json).
+- [Actual native execution](../verification/history/0.3.0-dev.38/zimage-trained.json): complete components, prompt/step changes, real sampling cancellation, errors, recovery and Windows process observations.
+- [Production Java/native flow](../verification/history/0.3.0-dev.38/zimage-app-host.json): full imports, independent settings, leases, immutable jobs, actual generation/cancel/recovery, PNG provenance, restart and deletion.
+- [Actual output media](media/development/zimage-trained/manifest.json), [labelled UI recordings](media/development/curated/manifest.json), [independent tokenizer comparison](../verification/history/0.3.0-dev.38/qwen-tokenizer.json).
 
 ![Actual Windows CPU output slideshow; not Android footage](media/development/zimage-trained/zimage-trained.gif)
 

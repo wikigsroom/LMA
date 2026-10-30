@@ -1,5 +1,5 @@
 {
-  "version": "0.3.0-dev.38",
+  "version": "0.3.0-dev.39",
   "kind": "current production UI with an explicit simulated bridge",
   "android_device": false,
   "model_inference": false,
@@ -44,18 +44,18 @@
   "files": [
     {
       "file": "01-recovery.png",
-      "bytes": 42755,
-      "sha256": "8cba1ddb51b722ca1b71dccf0b0c1f1dd0cfd4e2482d5e5beb13b2f0851fc03f"
+      "bytes": 42822,
+      "sha256": "f143c302d7a5f386fe219752d7cf608284eb98b3647366cfd79879d7154019dd"
     },
     {
       "file": "02-filters.png",
-      "bytes": 43215,
-      "sha256": "a119f9947c5c12c63118a7d8f4335d2672f759ed86d327cef1a8e698fb054ffe"
+      "bytes": 43253,
+      "sha256": "a9dbeccc3e3f698e644727fe3165afe8405c776e916fe92509437c09c8b0434e"
     },
     {
       "file": "03-review.png",
-      "bytes": 61755,
-      "sha256": "56438615458727ed1fb9fa2a3dc4c6c2b82058aae3eddb7f2f496efdbe175eea"
+      "bytes": 62534,
+      "sha256": "1198531add2ffcc023d654acec483f68549cc665af486d0c6e3915958512892d"
     },
     {
       "file": "04-conflict.png",
@@ -64,13 +64,13 @@
     },
     {
       "file": "recovery-ui.gif",
-      "bytes": 916699,
-      "sha256": "f9b21c764eadc9000d2b5bb9da7c66634c18249c8a233de6b04e8ca8429dd59a"
+      "bytes": 727820,
+      "sha256": "62d2af0d8ebd7e7a3bf3041de46b28bfa8a67f8b661496bffd4841c1f525614a"
     },
     {
       "file": "recovery-ui.mp4",
-      "bytes": 343537,
-      "sha256": "bfdbdd23d85e02d5ff79a5d6235195b9dc4c090be3fc070ba6eaac77b1ebc6d1"
+      "bytes": 272027,
+      "sha256": "c12c1a0395218539b4077ad44058451a2ca44aa15f13f09b50af14a8483507bf"
     }
   ],
   "input_fingerprint": {
@@ -78,10 +78,10 @@
     "app/src/main/assets/app.js": "2240021b034e6259ac110fc48ede81c43be6fabf7200dde5ced7eeacbe9e5468",
     "app/src/main/assets/asset-preparations.json": "b0a7cbac1a633310b9fff84164439ee8fe20a1df137d1075eb9263f531ccfd3b",
     "app/src/main/assets/audio-preview.js": "33bb898969f37c1f78c6664052c46da844d148defdcef4a54d64bc5829037f44",
-    "app/src/main/assets/engine-builds.json": "8fb9f0e74b31b77872695dfa7e7dcd7d524a1ea2216d165b704e143c85764eee",
+    "app/src/main/assets/engine-builds.json": "f5c84596c623e12ec7043c97d837ca42441e8b1acab1129630dbd92694e63c93",
     "app/src/main/assets/foundation.css": "ac77af14c0498d3c358d76814109cda4f49fb5c660c1f53961d8f9b7f6c3a53f",
     "app/src/main/assets/foundation.js": "a2bd9f0a92807a0d60a97884fb3dd123ddfc5cf42258b6577bff36b37f99cb14",
-    "app/src/main/assets/index.html": "97019a3e5caf70dbc07922d4e5b1279ef3d72869f30d27eced130ec9f0b368e6",
+    "app/src/main/assets/index.html": "4706459e9f690667177f372806eac79e75eaa9a587cb6819a1247691bf6fc072",
     "app/src/main/assets/license.js": "838317c7653ca35291e9e18f2a7e2d98ed46a10880dfe144176f04ad994433d0",
     "app/src/main/assets/licenses/LLAMA_CPP_LICENSE": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
     "app/src/main/assets/licenses/LMA_LICENSE": "6ae3f5efa412d91cbf66e44f743e5ce41a8044309d05d893365206ab9bc35fc3",
@@ -169,7 +169,7 @@
     "app/src/main/assets/licenses/tts-utf8proc-LICENSE.md.txt": "3b510150d34f248a221bb88e1d811238d6c6c18b51231822c42974c39bb07256",
     "app/src/main/assets/licenses/xxhash-LICENSE.txt": "a2973411d278045bde3c7161b911e0680d53e2d73d6457c77068d2e55d816d67",
     "app/src/main/assets/model-assemblies.json": "af004a9e62205786cd2bd8ca74af4260dc125fdf1ac9e836968bab65747dd746",
-    "app/src/main/assets/model-bundles.json": "485815f00f475e285f478b5751850137a9a2f857160c1c2230b1119eb8bf6f11",
+    "app/src/main/assets/model-bundles.json": "23de2ead70bb616bfc41458d78da065f24ed54a345464282ad7a2f87ca7270cc",
     "app/src/main/assets/models.json": "c3e884b4e5fb06f20c036deebc78e6f953ac420e76fca72bab5a25fd59927156",
     "app/src/main/assets/preparations/ltx098_vae_prepare/stage-00.onnx": "33f367287eaf5bc67aead22132d9d73aeaf66b51387bbc3a032a1c7eb936ff8b",
     "app/src/main/assets/preparations/ltx098_vae_prepare/stage-01.onnx": "29ede53a11d80957e6f0abe38780511c267762feba725b49c29bd36fa35d31b3",
@@ -180,12 +180,12 @@
     "app/src/main/assets/preparations/ltx098_vae_prepare/stage-06.onnx": "c737a55510880d4b92e12e9aca7138a154ad6e58a96e89a4f2a530a3f369b88c",
     "app/src/main/assets/preparations/ltx098_vae_prepare/stage-07.onnx": "239145b9c04cbb5513ee96d2a41ff5b1f8db2c4cf0d9148c3092028b858b3576",
     "app/src/main/assets/preparations/ltx098_vae_prepare/stage-08.onnx": "ff463e05293456c25aa5b1a14d82b1f732f1aee0f00da45f8e28419509ba8ac9",
-    "app/src/main/assets/recipe-templates.json": "91fe5a1ee107a2f4938c80343f0e6483b25db3c5dc0042437751a34df8b64d66",
+    "app/src/main/assets/recipe-templates.json": "9e3995be14056926a996d7a1266330152f5043e3c436bedc69aa0b41b8037145",
     "app/src/main/assets/recipes.js": "b27e75ed85948a63476bf351cde94a59bec935a540f65e1a9fe798322bcd1b39",
     "app/src/main/assets/versions.js": "2d629929a6db642c12a242ddcc62cd4f4090ab307e0cb669ceb98add031977e1",
     "app/src/main/assets/workbench.js": "17042106c2bbecf2ba42e1287682b0ad905fbe22137fbb5b3ea0bdee5f2745f4",
     "tests/foundation-ui.cjs": "b8cc6e6dcd05054e8651c1ec908e8d1f8e1c65abe1cb6d81e77f52a7e9fea6ed",
     "tests/recovery-ui.cjs": "cec3018fbc9c3c73aa7798177ee6956e1cda3b968d5257cda825d996ede27521",
-    "tools/capture_workbench.cjs": "f5a6337ac60f3b8f59469a64060c9456fcbeb61fb9d7010a82ce2a3ec4700f24"
+    "tools/capture_workbench.cjs": "6a1b409988641162c2e7d03b1a84612e454fa82aded00d761c5a7136e4b0e429"
   }
 }

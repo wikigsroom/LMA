@@ -124,7 +124,7 @@ def main():
     digest = hashlib.sha256(apk.read_bytes()).hexdigest()
     (DIST / (apk.name + ".sha256")).write_text(digest + "  " + apk.name + "\n", encoding="utf-8")
     record = {"apk": apk.name, "bytes": apk.stat().st_size, "sha256": digest, "package": "com.lma.app", "version": release, "min_sdk": 28,
-              "target_sdk": 35, "abi": "arm64-v8a", "backend": "CPU", "native_libraries": len(native_names), "native_engines": engines, "java_source_files": len(sources), "build_tools": "35.0.1", "sdk_platform": "35",
+              "target_sdk": 35, "abi": "arm64-v8a", "backend": "CPU / Vulkan", "native_libraries": len(native_names), "native_engines": engines, "java_source_files": len(sources), "build_tools": "35.0.1", "sdk_platform": "35",
               "signatures_verified": True, "physical_device_tests": 0, "emulator_used": False, "docker_or_wsl_used": False,
               "signing": "project-local persistent key; signing/ must be preserved for updates", "input_fingerprint": build_inputs()}
     (DIST / "build-info.json").write_text(json.dumps(record, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")

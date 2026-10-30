@@ -10,7 +10,9 @@ public final class SdSpec {
     private static final Set<String> PIPELINES = new HashSet<>(Arrays.asList("sd15", "sd21_turbo", "sd15_lcm", "sdxl", "sdxl_lcm", "z_image_turbo", "flux2_klein_4b", "qwen_image_21", "wan21_13b"));
     public static void validate(ModelBundle bundle, String type) throws Exception {
         if (AdapterSpec.isAdapter(bundle)) throw new IllegalArgumentException("LoRA 需要与兼容的基础模型配对使用");
-        if (!bundle.engine.equals("sd_cpp") || !bundle.backend.equals("cpu") || !PIPELINES.contains(bundle.pipeline)) throw new IllegalArgumentException("当前扩散引擎没有匹配的管线或后端");
+        boolean cpu = bundle.engine.equals("sd_cpp") && bundle.backend.equals("cpu");
+        boolean vulkan = bundle.engine.equals("wan_sd_cpp") && bundle.backend.equals("vulkan") && bundle.pipeline.equals("wan21_13b");
+        if ((!cpu && !vulkan) || !PIPELINES.contains(bundle.pipeline)) throw new IllegalArgumentException("当前扩散引擎没有匹配的管线或后端");
         boolean video = type.equals("video.generate");
         if (!type.equals("image.generate") && !video || video != bundle.pipeline.equals("wan21_13b")) throw new IllegalArgumentException("此配方不支持所选生成任务");
         Set<String> roles = new HashSet<>(); for (ModelBundle.Component c : bundle.components) roles.add(c.role);

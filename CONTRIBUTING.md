@@ -1,5 +1,7 @@
 # Contributing / 贡献与更新约定
 
+dev.39 Wan 本地视频：[中文](docs/WAN_VIDEO.md) / [English](docs/WAN_VIDEO.en.md)。CPU 文字 / VAE、Vulkan 扩散、同手机 MP4 使用共用模型 / 参数 / 任务 / 结果基座；四组件用户明确取得，实际 GPU 运算与枚举分开记录。原生 Windows 模型 / FFmpeg、界面夹具、ARM64 编译与未完成的手机 / 画质 / 完整 Release 分开验收；保留全部冻结范围和历史失败。
+
 dev.38 Z-Image changes use the [native and production Java reproduction](docs/ZIMAGE_TURBO.en.md#4-tokenizer-evidence-and-reproduction), preserve real files/provenance/cancellation/recovery and distinguish host evidence from Android/quality acceptance. APK remains model-free; downloads are explicit.
 
 dev.35 的 Sana 运行修改需执行 [真实组件复现](docs/MNN_SANA_TRAINED.md) / [English](docs/MNN_SANA_TRAINED.en.md) 中的原生与生产 Java 检查，核对与 ARM64 相同的生成文件，保存真实产物 / 原始失败与明确画质边界；不要把流程检查作为手机或质量通过。

@@ -26,7 +26,7 @@ public final class LocalEngines {
                 if (!library.isFile() || !DataFiles.sha256(library).equals(dependency.getString("sha256"))) throw new IOException("引擎依赖与签名包清单不一致");
             }
             if (id.equals("llama_text")) register(new TextEngine(app, binary, build));
-            else if (id.equals("sd_cpp")) register(new SdEngine(app, binary, build));
+            else if (id.equals("sd_cpp") || id.equals("wan_sd_cpp")) register(new SdEngine(app, binary, build));
             else if (id.equals("sherpa_tts")) register(new SherpaEngine(app, binary, build));
             else if (id.equals("moss_nano_ort")) register(new MossNanoEngine(app, binary, build));
             else if (id.equals("mnn_diffusion")) register(new MnnEngine(app, binary, build));

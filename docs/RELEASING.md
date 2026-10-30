@@ -115,6 +115,8 @@ SoulX DSP 源码后续更新不新增 APK / Release：执行 `python tools/test_
 
 SoulX声学后续同样不发布 APK / Release：运行 `python tools/test_soulx_acoustic.py`、`python tools/build_soulx_acoustic.py`，并重跑 DSP检查和 ARM64静态编译后导出开发证据。完整结构未训练夹具、原生 ORT主机运行 / 真正终止和 ARM64编译分别核对；不能关闭13号整模型或手机门槛。The acoustic follow-up remains unregistered and does not alter complete Release gates. See [中文](SOULX_ACOUSTIC.md) / [English](SOULX_ACOUSTIC.en.md).
 
+dev.39 Wan 本地视频：[中文](WAN_VIDEO.md) / [English](WAN_VIDEO.en.md)。CPU 文字 / VAE、Vulkan 扩散、同手机 MP4 使用共用模型 / 参数 / 任务 / 结果基座；四组件用户明确取得，实际 GPU 运算与枚举分开记录。原生 Windows 模型 / FFmpeg、界面夹具、ARM64 编译与未完成的手机 / 画质 / 完整 Release 分开验收；保留全部冻结范围和历史失败。
+
 当前 dev.32：[生图选择与依赖闭环](CURATED_DIFFUSION.md) / [English](CURATED_DIFFUSION.en.md) / [编号实现与完整待办](releases/v0.3.0-dev.32.md)。原签名开发 APK；本轮仅运行相关控制 / 界面检查，训练结果保留历史身份。dev.31 的 28 份当前记录及原状态按原提交完整归档；不为清单 / 界面修改重复运行无变化的训练模型。完整 Release 门槛不变。
 
 SoulX训练参考 /声学重建后续：先显式准备发布者权重，再顺序执行 `python tools/test_soulx_reference.py`、`python tools/test_soulx_trained.py`、`python tools/build_soulx_reference.py`；共享ORT修改需重跑声学244项和ARM64编译。开发导出 /仓库检查同时核对145参考 /253训练重建证据及完整模型未通过标记，绝不凭这些主机 /编译检查发布Release。Trained component execution does not close complete TTS, quality, App or phone gates. See [中文](SOULX_REFERENCE.md) / [English](SOULX_REFERENCE.en.md) / [编号交付](releases/v0.3.0-dev.20-soulx-reference.md).

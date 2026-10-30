@@ -1,5 +1,7 @@
 # Z-Image-Turbo：完整本地模型与用户流程
 
+本指南保留 dev.38 的固定主机实验；完整报告按原字节归档。当前开发见 [Wan](WAN_VIDEO.md)。
+
 [English](ZIMAGE_TURBO.en.md) · [模型选择](CURATED_DIFFUSION.md) · [组件建议](COMPONENT_SUGGESTIONS.md) · [接口](API.md) · [本轮交付与完整待办](releases/v0.3.0-dev.38.md)
 
 适用 dev.38 / code42。App 只更新基座；Z-Image-Turbo 是可选的平级生图模型，不随安装、升级或浏览自动下载。推荐 m08→m06→m01 保留。源码、真实 Windows CPU 执行、页面夹具与 Android ARM64 编译分别留证；独立完整数值、画质、资源和物理手机验收尚未完成，不能据此认定努比亚 Z20 可运行或可持续后台。
@@ -45,9 +47,9 @@
 
 Z-Image 官方 `tokenizer.json` 的完整 SHA 与已独立验证的 Qwen 参考文件相同；merges 文件也完全一致。共用读取器在内存处理 HF 文件头、BOM / CRLF 和 NFC，原始文件及 SHA 不变。已验证 151,643 个基础词项、26 个特殊词项、33 组文本和三种表示，共117检查；这不能代替完整模型数值或画质验收。
 
-- [实际原生执行](../verification/development/zimage-trained.json)：完整组件、不同提示词/步数、真实采样取消、错误、恢复与 Windows 资源观测。
-- [生产 Java/native 流程](../verification/development/zimage-app-host.json)：完整导入、独立配置、租用、不可变任务、实际生成/取消/恢复、PNG 来源、重启和删除模型。
-- [实际产物及展示记录](media/development/zimage-trained/manifest.json)、[界面录制记录](media/development/curated/manifest.json)、[分词独立对照](../verification/development/qwen-tokenizer.json)。
+- [实际原生执行](../verification/history/0.3.0-dev.38/zimage-trained.json)：完整组件、不同提示词/步数、真实采样取消、错误、恢复与 Windows 资源观测。
+- [生产 Java/native 流程](../verification/history/0.3.0-dev.38/zimage-app-host.json)：完整导入、独立配置、租用、不可变任务、实际生成/取消/恢复、PNG 来源、重启和删除模型。
+- [实际产物及展示记录](media/development/zimage-trained/manifest.json)、[界面录制记录](media/development/curated/manifest.json)、[分词独立对照](../verification/history/0.3.0-dev.38/qwen-tokenizer.json)。
 
 ![实际 Windows CPU 图片展示；非 Android 录屏](media/development/zimage-trained/zimage-trained.gif)
 

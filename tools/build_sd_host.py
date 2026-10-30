@@ -15,7 +15,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def inputs():
-    return fingerprint('native/sd_worker.cpp', 'native/sd_policy.hpp', 'native/lcm_condition.hpp', 'native/vocab_external.cpp', 'native/tokenizer_data.hpp', 'native/qwen_prompt.hpp',
+    return fingerprint('native/sd_worker.cpp', 'native/sd_backend.hpp', 'native/sd_policy.hpp', 'native/lcm_condition.hpp', 'native/vocab_external.cpp', 'native/tokenizer_data.hpp', 'native/qwen_prompt.hpp',
                        'research/sd_host', 'tools/build_sd_host.py', 'tools/build_native.py',
                        'tools/fetch_sd15_trained.py', 'third_party/notices/sd-sources.json')
 

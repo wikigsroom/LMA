@@ -111,6 +111,8 @@
 - SoulX完整声学网络：[中文](SOULX_ACOUSTIC.md) / [English](SOULX_ACOUSTIC.en.md)；完整结构未训练回归与原生执行。
 - SoulX训练参考 /声学重建：[中文](SOULX_REFERENCE.md) / [English](SOULX_REFERENCE.en.md)；[双语编号实现与待办](releases/v0.3.0-dev.20-soulx-reference.md)，明确主机组件 /完整TTS /App /手机边界。
 
+dev.39 Wan 本地视频：[中文](WAN_VIDEO.md) / [English](WAN_VIDEO.en.md)。CPU 文字 / VAE、Vulkan 扩散、同手机 MP4 使用共用模型 / 参数 / 任务 / 结果基座；四组件用户明确取得，实际 GPU 运算与枚举分开记录。原生 Windows 模型 / FFmpeg、界面夹具、ARM64 编译与未完成的手机 / 画质 / 完整 Release 分开验收；保留全部冻结范围和历史失败。
+
 - SoulX语言 /完整主机链路：[中文](SOULX_LANGUAGE.md) / [English](SOULX_LANGUAGE.en.md)；[双语编号实现与待办](releases/v0.3.0-dev.20-soulx-language.md)，完整训练host输出与App /质量 /真机验收分别记录。
 
 - dev.21 SoulX App基座：[中文](SOULX_ENGINE.md) / [English](SOULX_ENGINE.en.md)；[双语编号交付与完整待办](releases/v0.3.0-dev.21.md)。14份用户资产、配套参考原文、生产worker真实训练主机证据，与公开下载候选 /质量 /Android /Release门槛分别记录。

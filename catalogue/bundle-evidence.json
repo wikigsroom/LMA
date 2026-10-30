@@ -1123,6 +1123,59 @@
           "source": "https://huggingface.co/api/models/Tongyi-MAI/Z-Image-Turbo/f332072aa78be7aecdf3ee76d5c247082da564a6?blobs=true"
         }
       ]
+    },
+    {
+      "bundleId": "wan21_13b_q4_vulkan_catalogue_v1",
+      "components": [
+        {
+          "role": "diffusion",
+          "repository": "off-grid-ai/Wan2.1-T2V-1.3B-GGUF",
+          "revision": "1ba777b2426d5717dd0fddb1100078604a9d4667",
+          "path": "Wan2.1-T2V-1.3B-Q4_K_S.gguf",
+          "bytes": 816061024,
+          "sha256": "65181afff758fba25cf311399ccb0638a746f8e0e6533e07a84a5a23e0c12318",
+          "format": "gguf",
+          "url": "https://huggingface.co/off-grid-ai/Wan2.1-T2V-1.3B-GGUF/resolve/1ba777b2426d5717dd0fddb1100078604a9d4667/Wan2.1-T2V-1.3B-Q4_K_S.gguf",
+          "kind": "hf_lfs",
+          "source": "https://huggingface.co/api/models/off-grid-ai/Wan2.1-T2V-1.3B-GGUF/1ba777b2426d5717dd0fddb1100078604a9d4667?blobs=true"
+        },
+        {
+          "role": "t5",
+          "repository": "off-grid-ai/Video-Companions-GGUF",
+          "revision": "18b5ae5e93799acd6cd20819f898ff60f4b822d1",
+          "path": "umt5-xxl-encoder-Q4_K_M.gguf",
+          "bytes": 3655145312,
+          "sha256": "17cf97a5bbbc60a646d6105b832b6f657ce904a8a1ad970e4b59df0c67584a40",
+          "format": "gguf",
+          "url": "https://huggingface.co/off-grid-ai/Video-Companions-GGUF/resolve/18b5ae5e93799acd6cd20819f898ff60f4b822d1/umt5-xxl-encoder-Q4_K_M.gguf",
+          "kind": "hf_lfs",
+          "source": "https://huggingface.co/api/models/off-grid-ai/Video-Companions-GGUF/18b5ae5e93799acd6cd20819f898ff60f4b822d1?blobs=true"
+        },
+        {
+          "role": "vae",
+          "repository": "off-grid-ai/Video-Companions-GGUF",
+          "revision": "18b5ae5e93799acd6cd20819f898ff60f4b822d1",
+          "path": "wan_2.1_vae.safetensors",
+          "bytes": 253815318,
+          "sha256": "2fc39d31359a4b0a64f55876d8ff7fa8d780956ae2cb13463b0223e15148976b",
+          "format": "safetensors",
+          "url": "https://huggingface.co/off-grid-ai/Video-Companions-GGUF/resolve/18b5ae5e93799acd6cd20819f898ff60f4b822d1/wan_2.1_vae.safetensors",
+          "kind": "hf_lfs",
+          "source": "https://huggingface.co/api/models/off-grid-ai/Video-Companions-GGUF/18b5ae5e93799acd6cd20819f898ff60f4b822d1?blobs=true"
+        },
+        {
+          "role": "umt5_tokenizer",
+          "repository": "google/umt5-xxl",
+          "revision": "66cb9e7e85526fe440a945569e42c72fb6cbc0ad",
+          "path": "tokenizer.json",
+          "bytes": 16853013,
+          "sha256": "af904105ce1071b1202bba0059a841f4a7b85b48b6ec179c4948e3483476e0dd",
+          "format": "json",
+          "url": "https://huggingface.co/google/umt5-xxl/resolve/66cb9e7e85526fe440a945569e42c72fb6cbc0ad/tokenizer.json",
+          "kind": "hf_lfs",
+          "source": "https://huggingface.co/api/models/google/umt5-xxl/66cb9e7e85526fe440a945569e42c72fb6cbc0ad?blobs=true"
+        }
+      ]
     }
   ],
   "gguf_header_metadata_read": true,

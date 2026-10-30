@@ -1,5 +1,14 @@
 # Changelog / 更新记录
 
+## 0.3.0-dev.39 — Local Wan video / 本地视频业务
+
+- 增加完整 Wan 2.1 T2V 1.3B Q4 四组件可选方案，共4,741,874,667字节；全部 / HF / 本地、独立可编辑参数、显式下载 / 导入、共用任务、取消恢复和结果管理沿用基座。App不含权重或分词数据，保留推荐与用户资产。
+- Add a distinct pinned Vulkan worker: CPU UMT5/VAE, Vulkan diffusion, a completed non-host GPU matrix-operation check and actual execution provenance. Reject unavailable/mismatched backends; no RPC, external inference or automatic CPU fallback. Production Android uses same-phone MediaCodec; native Windows FFmpeg is a labelled test port only.
+- 新增精确四角色 HF 文件建议与量化歧义检查、真实生产页面截图 / GIF / MP4、双语使用 / 复现说明和原签名 ARM64 开发包。具体检查、实际产物和限制见编号交付。
+- Preserve exact historical dev.38 and earlier trained reports, including failed LCM/Sana/LTX gates. Host operation and ARM64 compilation do not establish numerical, video quality, physical-phone or complete Release acceptance. All original targets remain in one v0.3.0 scope.
+
+[中文方案](docs/WAN_VIDEO.md) · [English guide](docs/WAN_VIDEO.en.md) · [Numbered implemented / full pending](docs/releases/v0.3.0-dev.39.md)
+
 ## 0.3.0-dev.38 — Complete Z-Image business / 完整Z-Image业务
 
 - 新增完整Z-Image-Turbo四组件可选方案（6,349,991,011字节），接入全部/HF/本地、显式下载/导入、独立八步配置、不可变任务、取消恢复与结果管理。原始匹配编码器和完整官方VAE；内容哈希复用不触发自动安装，App仍只交付基座。

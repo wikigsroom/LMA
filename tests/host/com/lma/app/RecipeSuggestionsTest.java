@@ -39,6 +39,17 @@ public final class RecipeSuggestionsTest {
     public static void main(String[] args)throws Exception {
         Path root=Paths.get(args[0]),out=root.resolve("build/recipe-suggestion-tests");Files.createDirectories(out);
         RecipeCatalogue recipes=new RecipeCatalogue(new JSONObject(new String(Files.readAllBytes(root.resolve("app/src/main/assets/recipe-templates.json")),"UTF-8")));
+        String wan="wan21_13b_split_vulkan_v1";
+        JSONArray wanFiles=new JSONArray();
+        for(String name:new String[]{"Wan2.1-T2V-1.3B-Q4_K_S.gguf","Wan2.1-T2V-14B-Q4_K_S.gguf","umt5-xxl-encoder-Q4_K_M.gguf","wan_2.1_vae.safetensors","tokenizer.json"})wanFiles.put(entry(name));
+        JSONObject wanReview=RecipeSuggestions.review(recipes,wan,new JSONObject(),inventory(wanFiles,true));
+        check(wanReview.getInt("suggested")==4 && row(wanReview,"diffusion").getString("state").equals("unique"),"Wan GPU hints identify the four exact roles and exclude the 14B generator");
+        JSONObject wanPartial=RecipeSuggestions.apply(recipes,wan,new JSONObject(),wanReview,new JSONArray().put("diffusion").put("vae"));
+        check(wanPartial.length()==2 && !wanPartial.has("t5"),"Only explicitly selected video components are bound");
+        wanFiles.put(entry("Wan2.1-T2V-1.3B-Q8_0.gguf"));
+        JSONObject wanAmbiguous=RecipeSuggestions.review(recipes,wan,new JSONObject(),inventory(wanFiles,true));
+        check(row(wanAmbiguous,"diffusion").getString("state").equals("ambiguous"),"Different Wan quantizations require a user choice");
+        rejects(()->RecipeSuggestions.apply(recipes,wan,new JSONObject(),wanAmbiguous,new JSONArray().put("diffusion")),"Ambiguous video weights cannot be silently selected");
         JSONObject empty=new JSONObject(),full=inventory(files(),true),r=RecipeSuggestions.review(recipes,ID,empty,full);
         check(r.getInt("suggested")==15,"All fifteen Sana components have unique metadata suggestions");
         check(empty.length()==0,"Review never binds components implicitly");

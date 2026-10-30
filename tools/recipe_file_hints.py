@@ -27,8 +27,11 @@ def add_hints(templates):
             hints.update({role+'_data':dict(matchSibling=dict(role=role,suffix='.weight')) for role in ['diffusion','connector','projector','vae','llm','vae_encoder']})
         if template['definition']['engine']=='openmoss_native':
             hints['extras']=dict(matchFiles=['*.extras.gguf'])
-        if template['definition']['engine']=='sd_cpp':
+        if template['definition']['engine'] in ('sd_cpp','wan_sd_cpp'):
             hints.update({role:dict(matchFiles=names) for role,names in split.items()})
+        if template['id']=='wan21_13b_split_vulkan_v1':
+            hints.update(diffusion=dict(matchFiles=['Wan2.1-T2V-1.3B-Q*.gguf','wan2.1_t2v_1.3B_*.safetensors']),
+                         vae=dict(matchFiles=['wan_2.1_vae.safetensors','Wan2.1_VAE.safetensors']))
         if template['id']=='z_image_turbo_split_cpu_v1':
             hints.update(diffusion=dict(matchFiles=['z_image_turbo-Q*.gguf','z_image_turbo.safetensors','z_image_turbo_bf16.safetensors']),
                          llm=dict(matchFiles=['Qwen3-4B-Q*.gguf','qwen_3_4b.safetensors']),

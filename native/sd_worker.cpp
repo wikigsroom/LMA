@@ -1,6 +1,7 @@
 #include "stable-diffusion.h"
 #include "json.hpp"
 #include "sd_policy.hpp"
+#include "sd_backend.hpp"
 #include "lcm_condition.hpp"
 #include "qwen_prompt.hpp"
 #define STB_IMAGE_WRITE_IMPLEMENTATION
@@ -34,7 +35,10 @@ int main(int argc, char** argv) {
         pid_t parent = getppid();
         if (prctl(PR_SET_PDEATHSIG, SIGKILL) != 0 || parent == 1 || getppid() != parent) throw std::runtime_error("Cannot bind worker lifetime to its Android host");
         if (argc == 2 && std::string(argv[1]) == "--info") {
-            event({{"schema", "lma.engine/1"}, {"engine", "sd_cpp"}, {"revision", LMA_SD_REVISION}, {"backend", "cpu"}, {"bundled_model_data", false}, {"generation_tested", false}}); return 0;
+            event({{"schema", "lma.engine/1"}, {"engine", lma_sd_backend::engine()}, {"revision", LMA_SD_REVISION}, {"backend", lma_sd_backend::name()}, {"bundled_model_data", false}, {"generation_tested", false}}); return 0;
+        }
+        if (argc == 2 && std::string(argv[1]) == "--devices") {
+            event({{"backend", lma_sd_backend::name()}, {"devices", lma_sd_backend::devices()}, {"bundled_model_data", false}}); return 0;
         }
         if (argc != 2) throw std::runtime_error("Pass a private lma.engine-request/1 JSON file");
         std::ifstream input(argv[1], std::ios::binary | std::ios::ate);
@@ -70,7 +74,9 @@ int main(int argc, char** argv) {
         ctx_params.t5xxl_path = path("t5"); ctx_params.llm_path = path("llm"); ctx_params.tokenizer = path("tokenizer");
         if (!ctx_params.model_path && !ctx_params.diffusion_model_path) throw std::runtime_error("Missing diffusion/checkpoint component");
         ctx_params.n_threads = bounded(params, "threads", 4, 1, 64);
-        ctx_params.enable_mmap = true; ctx_params.backend = "cpu"; ctx_params.params_backend = "cpu"; ctx_params.rpc_servers = nullptr;
+        ctx_params.enable_mmap = true; lma_sd_backend::configure(request, ctx_params);
+        lma_sd_backend::Observation backend_observation;
+        if (lma_sd_backend::vulkan) sd_set_backend_eval_callback(lma_sd_backend::Observation::callback, &backend_observation);
         ctx_params.conditioning_cache_size = 0;
         event({{"event", "stage"}, {"stage", "loading"}});
         std::unique_ptr<sd_ctx_t, decltype(&free_sd_ctx)> context(new_sd_ctx(&ctx_params), free_sd_ctx);
@@ -113,6 +119,8 @@ int main(int argc, char** argv) {
             std::unique_ptr<sd_image_generation_result_t, decltype(&free_sd_image_generation_result)> result(raw, free_sd_image_generation_result);
             if (result->count != 1 || !result->items[0].image.data) throw std::runtime_error("No generated image was returned");
             const sd_image_t& image = result->items[0].image;
+            backend_observation.require();
+            event({{"event", "execution"}, {"details", backend_observation.details()}});
             if (!stbi_write_png(output.c_str(), image.width, image.height, image.channel, image.data, image.width * image.channel)) throw std::runtime_error("Cannot write generated PNG");
             event({{"event", "complete"}, {"output", output}, {"format", "png"}, {"width", image.width}, {"height", image.height}});
         } else {
@@ -126,6 +134,8 @@ int main(int argc, char** argv) {
             if (!generate_video(context.get(), &generate, &raw) || !raw) throw std::runtime_error("Video generation failed");
             std::unique_ptr<sd_video_generation_result_t, decltype(&free_sd_video_generation_result)> result(raw, free_sd_video_generation_result);
             if (result->frame_count != frames_count || result->fps != fps || !result->frames) throw std::runtime_error("No generated motion frames were returned");
+            backend_observation.require();
+            event({{"event", "execution"}, {"details", backend_observation.details()}});
             std::ofstream frames(output, std::ios::binary); frames.write("LMAFRM1\0", 8); u32(frames, width); u32(frames, height); u32(frames, result->frame_count); u32(frames, result->fps); u32(frames, 3);
             for (int i = 0; i < result->frame_count; i++) {
                 const sd_image_t& frame = result->frames[i];

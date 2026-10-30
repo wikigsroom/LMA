@@ -1,7 +1,7 @@
 {
-  "apk": "LMA-0.3.0-dev.38-arm64-v8a.apk",
-  "sha256": "9797d27222ec0956d21974de64a3f5f2592da3b2a9d2a15d218ab8ca463e8ede",
-  "native_libraries_verified": 34,
+  "apk": "LMA-0.3.0-dev.39-arm64-v8a.apk",
+  "sha256": "5b012db197ebc42edad58b697c5ff4b8882f2ca87a10ba685db862ce39c63b8a",
+  "native_libraries_verified": 35,
   "all_native_dependencies_resolved": true,
   "all_elf_load_segments_16k_aligned": true,
   "final_apk_zip_alignment_verified": true,
@@ -288,7 +288,7 @@
         16384
       ],
       "interpreter": "/system/bin/linker64",
-      "entry_point": 2136064,
+      "entry_point": 2137280,
       "android_api_notes": [
         28
       ],
@@ -582,6 +582,24 @@
       ],
       "interpreter": "/system/bin/linker64",
       "entry_point": 541760,
+      "android_api_notes": [
+        28
+      ],
+      "16k_elf_aligned": true
+    },
+    "liblma-wan-vulkan.so": {
+      "machine": "aarch64",
+      "needed": [
+        "libm.so",
+        "libdl.so",
+        "libvulkan.so",
+        "libc.so"
+      ],
+      "load_segment_alignment": [
+        16384
+      ],
+      "interpreter": "/system/bin/linker64",
+      "entry_point": 35275408,
       "android_api_notes": [
         28
       ],

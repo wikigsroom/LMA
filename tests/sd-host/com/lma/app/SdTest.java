@@ -46,6 +46,7 @@ public final class SdTest {
         for (String[] mapping : new String[][]{{"clip_merges", "CLIP_MERGES"}, {"qwen_merges", "QWEN_MERGES"}, {"umt5_tokenizer", "UMT5_JSON"}})
             if (components.has(mapping[0]) && !components.getString(mapping[0]).equals(System.getenv("LMA_VOCAB_" + mapping[1]))) throw new IOException("Vocabulary environment must refer to user assets");
         Files.write(Paths.get(command.getString("output")), command.toString().getBytes("UTF-8"));
+        System.out.println(new JSONObject().put("event", "execution").put("details", new JSONObject().put("runtimeBackend", command.getString("backend"))));
         System.out.println(new JSONObject().put("event", "complete").put("output", command.getString("output")));
     }
     public static void main(String[] args) throws Exception {
@@ -53,6 +54,11 @@ public final class SdTest {
         File root = new File(args[0]); root.mkdirs(); templates = new RecipeCatalogue(new JSONObject(new String(Files.readAllBytes(Paths.get(args[1])), "UTF-8")));
         ModelBundle sd15 = bundle("sd15_checkpoint_cpu_v1"), xl = bundle("sdxl_checkpoint_cpu_v1"), turbo = bundle("sd21_turbo_checkpoint_cpu_v1"), lc = bundle("sd15_lcm_checkpoint_cpu_v1"), lcx = bundle("sdxl_lcm_checkpoint_cpu_v1");
         ModelBundle a = bundle("sd15_lcm_lora_cpu_v1"), ax = bundle("sdxl_lcm_lora_cpu_v1"), style = bundle("sd15_lora_cpu_v1");
+        ModelBundle wanGpu = bundle("wan21_13b_split_vulkan_v1");
+        SdSpec.validate(wanGpu, "video.generate"); check(true, "Explicit Wan Vulkan recipe validates through the shared schema");
+        rejects(() -> SdSpec.validate(altered(wanGpu, "backend", "cpu"), "video.generate"), "GPU engine rejects an implicit CPU fallback");
+        rejects(() -> SdSpec.validate(altered(wanGpu, "engine", "sd_cpp"), "video.generate"), "CPU worker cannot consume the Vulkan route");
+        rejects(() -> SdSpec.validate(wanGpu, "image.generate"), "Wan keeps the video task contract");
         for (ModelBundle b : Arrays.asList(sd15, xl, turbo, lc, lcx, bundle("sd15_split_cpu_v1"), bundle("sdxl_split_cpu_v1"))) { SdSpec.validate(b, "image.generate"); check(true, "Complete classic component routes validate"); }
         for (String key : Arrays.asList("clip_l", "clip_g", "vae", "clip_merges")) {
             JSONObject b = bundle("sdxl_split_cpu_v1").json(); JSONArray c = new JSONArray(); for (int i=0;i<b.getJSONArray("components").length();i++) if (!b.getJSONArray("components").getJSONObject(i).getString("role").equals(key)) c.put(b.getJSONArray("components").getJSONObject(i));
@@ -126,6 +132,15 @@ public final class SdTest {
         SdEngine engine = new SdEngine(app, java, new JSONObject(), builder -> {
             launched.incrementAndGet(); return launch(java, builder);
         });
+        rejects(() -> engine.validate(wanGpu, "video.generate"), "Registered CPU worker rejects the distinct Vulkan engine identity");
+        install(app.bundles, wanGpu);
+        SdEngine gpuEngine = new SdEngine(app, java, new JSONObject().put("engine", "wan_sd_cpp"), builder -> launch(java, builder));
+        try (BundleStore.Selection leases = app.bundles.acquireAll(Collections.singletonList(wanGpu.id))) {
+            TestContext gpuContext = new TestContext(root, leases, gpuEngine.prepare(wanGpu, request(wanGpu)));
+            rejects(() -> gpuEngine.generate(gpuContext), "Host protocol fixture never pretends to encode Android video");
+            JSONObject packet = new JSONObject(new String(Files.readAllBytes(gpuContext.output("rgb").toPath()), "UTF-8"));
+            check(packet.getString("backend").equals("vulkan") && packet.getString("pipeline").equals("wan21_13b") && packet.getString("samplingProfile").equals("standard"), "Explicit backend and immutable video plan reach the shared worker binding");
+        }
         JSONObject frozen = engine.prepare(sd15, ModelSelection.prepare(app.bundles, sd15, paired));
         check(frozen.getJSONObject("parameters").getInt("steps") == 20 && frozen.getJSONObject("diffusionPlan").getJSONObject("parameters").getInt("steps") == 8, "Requested and effective sampling are separately reviewable");
         check(app.bundles.settings(sd15.id).getJSONObject("values").getInt("steps") == 20, "Preparing LCM does not save over ordinary base settings");
@@ -135,6 +150,7 @@ public final class SdTest {
             check(packet.getJSONObject("parameters").getInt("steps") == 8 && packet.getJSONObject("parameters").getDouble("cfg") == 1, "Effective parameters reach the private worker file");
             check(packet.getJSONArray("loras").length() == 2 && packet.getJSONArray("loras").getJSONObject(0).getString("path").equals(leases.models.get(1).file("lora").getAbsolutePath()), "Base and every LoRA use held private object paths");
             check(packet.getJSONObject("parameters").getLong("seed") >= 0 && context.details.getString("samplingProfile").equals("lcm"), "Actual seed and policy are recorded for provenance");
+            check(context.details.getString("runtimeBackend").equals("cpu") && context.details.getJSONObject("effectiveParameters").getLong("seed") == packet.getJSONObject("parameters").getLong("seed"), "Worker backend observations merge with effective parameters without losing provenance");
             JSONObject bad = DataFiles.copy(frozen); bad.getJSONObject("diffusionPlan").getJSONObject("parameters").put("cfg", 7);
             rejects(() -> engine.generate(new TestContext(root, leases, bad)), "Tampered queued sampling plan fails before launching");
             check(launched.get() == 1 && app.nativeProcess == null, "Rejected plans cannot leave a child running");

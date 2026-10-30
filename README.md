@@ -1,6 +1,14 @@
 # LMA · Android 本地模型工作台
 
-> **当前开发：0.3.0-dev.38 / code42。** 新增 Z-Image-Turbo 完整四组件可选模型，接通全部 / HF / 本地、独立八步参数、共用队列、取消恢复和结果管理。完整哈希支持复用已有匹配文件，登记与浏览不自动下载或安装。App 继续只更新基座，推荐顺序与用户资产保留。[完整方案与操作](docs/ZIMAGE_TURBO.md) · [本轮实现及全部待办](docs/releases/v0.3.0-dev.38.md)。
+> **当前开发：0.3.0-dev.39 / code43。** 新增 Wan 2.1 T2V 1.3B Q4 本地视频方案：CPU 文字编码 / VAE、Vulkan 扩散和同手机 MP4 编码，复用全部 / HF / 本地、独立参数、共用任务与结果管理。四组件由用户明确下载或导入，APK 只交付基座。GPU 不可用时明确失败；实际 GPU 运算记录与设备枚举分开核验。[完整使用方案](docs/WAN_VIDEO.md) · [本轮实现与完整待办](docs/releases/v0.3.0-dev.39.md)。
+
+dev.39 验证：**22 组、3,057 项通过**，包括完整四组件主机推理与实际应用业务；开发 APK61,325,834字节、原签名、35份原生库核对通过。默认视频后段有块状伪影，完整画质 / 数值 / 手机 / 正式 Release 仍待完成。[开发包说明](docs/releases/v0.3.0-dev.39.md)。
+
+![Wan 用户模型与参数流程；界面夹具，非真机推理](docs/media/development/wan/wan-ui.gif)
+
+主机实际模型输出、生产页面演示、Android 编译、独立数值 / 画质与真机验收分别记录。正式完整 Release 仍受全部冻结目标和手机门槛约束。
+
+> **保留 dev.38：0.3.0-dev.38 / code42。** 新增 Z-Image-Turbo 完整四组件可选模型，接通全部 / HF / 本地、独立八步参数、共用队列、取消恢复和结果管理。完整哈希支持复用已有匹配文件，登记与浏览不自动下载或安装。App 继续只更新基座，推荐顺序与用户资产保留。[完整方案与操作](docs/ZIMAGE_TURBO.md) · [本轮实现及全部待办](docs/releases/v0.3.0-dev.38.md)。
 
 ![实际 Z-Image 主机生成；非 Android 录屏](docs/media/development/zimage-trained/01-robot.png)
 

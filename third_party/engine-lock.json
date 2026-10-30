@@ -9,8 +9,8 @@
       "abi": "arm64-v8a",
       "backend": "cpu",
       "ndk": "30.0.16248370",
-      "sha256": "2b6f4f122964452405989660cab9faf896f3284400b1924a7e75006e532c277a",
-      "bytes": 8860384,
+      "sha256": "9bb3d80e5c7355035fb55045fee9a7836007c42515cc3ac1aca0785f0d874311",
+      "bytes": 8866592,
       "notices": {
         "sd-LICENSE.txt": "b53fa08f515cb5a6fff7b9fd8fcd0961a4b80df29d74372d25e1f9171aa042ee",
         "sd-ggml-LICENSE.txt": "94f29bbed6a22c35b992c5c6ebf0e7c92f13b836b90f36f461c9cf2f0f1d010d",
@@ -430,6 +430,36 @@
         "mnn-stb-resize-NOTICE.txt": "1b04cf233a8d031d1b6012816bd68b2cad14cd563308d9db4a33f6e911ba2ac7",
         "sd-nlohmann-json-LICENSE.txt": "0e592e358cf7722906f417be85bc514f15bf6efd28cea98cb84e56ef7fddfc3e",
         "sd-NDK-LLVM-NOTICE.txt": "f96f763beb66a7ba7a667647fc64c0226ace875e590c831fdd9579ec1c1d91e1"
+      }
+    },
+    {
+      "engine": "wan_sd_cpp",
+      "file": "liblma-wan-vulkan.so",
+      "source_revision": "be486498eadc29dc3cd234d944c2180ed42b1415",
+      "ggml_revision": "a5915eb0e47adef21c3f25b889a008925ea838c2",
+      "abi": "arm64-v8a",
+      "backend": "vulkan",
+      "ndk": "30.0.16248370",
+      "sha256": "eb449e652a1eec67472700845ed05c7daca1d629e744c2826db92335ef263e94",
+      "bytes": 43001568,
+      "notices": {
+        "sd-LICENSE.txt": "b53fa08f515cb5a6fff7b9fd8fcd0961a4b80df29d74372d25e1f9171aa042ee",
+        "sd-ggml-LICENSE.txt": "94f29bbed6a22c35b992c5c6ebf0e7c92f13b836b90f36f461c9cf2f0f1d010d",
+        "sd-oniguruma-COPYING.txt": "70ba5469ea0bab6e18a32d7009068f996503168d27be57747e08da34337ff26f",
+        "sd-utf8proc-LICENSE.txt": "3b510150d34f248a221bb88e1d811238d6c6c18b51231822c42974c39bb07256",
+        "sd-darts-clone-LICENSE.txt": "155f59997298ee336602c49f9c1110f268ac394ca2197eb02647a3555935ad52",
+        "sd-stb_image.h-NOTICE.txt": "7587efcca32db8f95bf5860dea6dfa4be410ee723e1964db3689c8ddf2a2e4a9",
+        "sd-stb_image_write.h-NOTICE.txt": "7587efcca32db8f95bf5860dea6dfa4be410ee723e1964db3689c8ddf2a2e4a9",
+        "sd-stb_image_resize.h-NOTICE.txt": "4b1c06f001fd35b1b01ff6ed182f705785a4f5edf20e5f84ae44216bf7a91d7b",
+        "sd-miniz.h-NOTICE.txt": "8e0f8a8a5a7ddfa9f3f657abf244896da328790b9a90b3f69ef81fcc33a2647b",
+        "sd-zip.c-NOTICE.txt": "c5e5ac65e71c4cd155a5eeb43898697868297c9fe34ccf5249ac326c0b735120",
+        "sd-zip.h-NOTICE.txt": "c5e5ac65e71c4cd155a5eeb43898697868297c9fe34ccf5249ac326c0b735120",
+        "sd-nlohmann-json-LICENSE.txt": "0e592e358cf7722906f417be85bc514f15bf6efd28cea98cb84e56ef7fddfc3e",
+        "sd-NDK-LLVM-NOTICE.txt": "f96f763beb66a7ba7a667647fc64c0226ace875e590c831fdd9579ec1c1d91e1",
+        "ltx098-Vulkan-Headers.txt": "95ad366d23fadf701d355bc45fb8b82ae2d700239471d35d41286ac3b08ff903",
+        "ltx098-Vulkan-MIT.txt": "1ca3502222d967f3be5751c55f6b7ee735b5383909c3b501495f54b216dbf227",
+        "ltx098-Vulkan-Apache-2.0.txt": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+        "ltx098-SPIRV-Headers-MIT.txt": "ea43b1de38a6f90c488800d66dec1ed671e68cda530266bc96951fb5b6307613"
       }
     }
   ],

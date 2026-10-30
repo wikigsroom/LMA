@@ -16,6 +16,9 @@ final class NativeWorker {
         run(app, binary, context, command, output, environment, ProcessBuilder::start);
     }
     static void run(LmaApp app, File binary, LocalEngine.Context context, JSONObject command, File output, Map<String, String> environment, Launcher launcher) throws Exception {
+        run(app, binary, context, command, output, environment, new JSONObject(), launcher);
+    }
+    static void run(LmaApp app, File binary, LocalEngine.Context context, JSONObject command, File output, Map<String, String> environment, JSONObject initialExecution, Launcher launcher) throws Exception {
         File input = context.output("json"); Process process = null;
         try {
             AudioPcm.Sequence audio = null;
@@ -32,7 +35,7 @@ final class NativeWorker {
                 if (app.nativeProcess != null && app.nativeProcess.isAlive()) throw new IOException("另一个本地引擎仍在运行，请先停止它");
                 process = launcher.start(builder); app.nativeProcess = process; context.process(process);
             }
-            boolean complete = false; String failure = ""; long last = 0; JSONObject execution = new JSONObject();
+            boolean complete = false; String failure = ""; long last = 0; JSONObject execution = DataFiles.copy(initialExecution);
             try (InputStream stream = new BufferedInputStream(process.getInputStream())) {
                 String line;
                 while ((line = line(stream)) != null) {

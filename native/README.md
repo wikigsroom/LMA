@@ -6,6 +6,8 @@
 
 # Internal Android worker / Android 内部执行器
 
+`sd_backend.hpp` adds the distinct `wan_sd_cpp` worker (`liblma-wan-vulkan.so`): CPU UMT5 / VAE and `Vulkan0` diffusion. It requires a real completed non-host Vulkan matrix operation before publishing frames; enumeration alone is insufficient. It never enables RPC or falls back to CPU when Vulkan is missing. `tools/build_sd_vulkan.py --android` builds the same pinned source with native Windows NDK / shader tools. The existing `sd_cpp` CPU worker and saved user recipes remain independent. APKs contain neither model weights nor tokenizers. 此入口复用生产 Java、组件租约、队列与手机 MediaCodec；主机 Vulkan / FFmpeg 检查不代表手机推理或手机编码验收。
+
 This directory contains App code, not model weights or an executable model plugin system. 当前有实际编译的 `sd_cpp`、`sherpa_tts` 与 `moss_nano_ort` CPU worker，不代表所有模型目标已经适配或经手机验证。
 
 - `CMakeLists.txt` builds the exact pinned upstream sd.cpp / ggml from `third_party/engine-lock.json` using the Android ARM64 NDK. Builds stay under ignored `build/`, without Docker/WSL/emulation.

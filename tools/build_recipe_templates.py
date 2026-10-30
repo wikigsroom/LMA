@@ -269,6 +269,11 @@ def build():
     templates.append(soulx_recipe())
     from ltx098_recipe import recipe as ltx098_recipe
     templates.append(ltx098_recipe())
+    wan_vulkan = copy.deepcopy(next(t for t in templates if t["id"] == "wan21_13b_split_cpu_v1"))
+    wan_vulkan.update(id="wan21_13b_split_vulkan_v1", name="Wan 2.1 1.3B · 本地 GPU 视频")
+    wan_vulkan["definition"].update(engine="wan_sd_cpp", backend="vulkan")
+    wan_vulkan["help"] = "本地 GPU 生成视频，CPU 处理文字编码和画面解码。配齐四组件后手动运行；手机兼容性与资源需求尚待实测。GPU 不可用时显示明确错误。"
+    templates.append(wan_vulkan)
     from recipe_file_hints import add_hints
     add_hints(templates)
     return {"schema": "lma.recipe-catalogue/1", "templates": templates}

@@ -11,8 +11,8 @@
       "ndk": "30.0.16248370",
       "backend": "cpu",
       "file": "liblma-sd.so",
-      "bytes": 8860384,
-      "sha256": "2b6f4f122964452405989660cab9faf896f3284400b1924a7e75006e532c277a",
+      "bytes": 8866592,
+      "sha256": "9bb3d80e5c7355035fb55045fee9a7836007c42515cc3ac1aca0785f0d874311",
       "elf_load_alignment": [
         16384,
         16384,
@@ -585,6 +585,54 @@
         "mnn-stb-resize-NOTICE.txt",
         "sd-nlohmann-json-LICENSE.txt",
         "sd-NDK-LLVM-NOTICE.txt"
+      ]
+    },
+    {
+      "schema": "lma.native-build/1",
+      "engine": "wan_sd_cpp",
+      "source_revision": "be486498eadc29dc3cd234d944c2180ed42b1415",
+      "ggml_revision": "a5915eb0e47adef21c3f25b889a008925ea838c2",
+      "backend": "vulkan",
+      "file": "liblma-wan-vulkan.so",
+      "bytes": 43001568,
+      "sha256": "eb449e652a1eec67472700845ed05c7daca1d629e744c2826db92335ef263e94",
+      "vocabularies": "external_user_selected_components",
+      "physical_device_tests": 0,
+      "model_inference_tested": false,
+      "virtualization_used": false,
+      "module_backends": {
+        "text": "cpu",
+        "vae": "cpu",
+        "diffusion": "vulkan0"
+      },
+      "gpu_execution_requires_completed_operation": true,
+      "remote_inference": false,
+      "abi": "arm64-v8a",
+      "min_sdk": 28,
+      "ndk": "30.0.16248370",
+      "elf_load_alignment": [
+        16384
+      ],
+      "deviceValidated": false,
+      "status": "compiled_not_device_tested",
+      "notices": [
+        "sd-LICENSE.txt",
+        "sd-ggml-LICENSE.txt",
+        "sd-oniguruma-COPYING.txt",
+        "sd-utf8proc-LICENSE.txt",
+        "sd-darts-clone-LICENSE.txt",
+        "sd-stb_image.h-NOTICE.txt",
+        "sd-stb_image_write.h-NOTICE.txt",
+        "sd-stb_image_resize.h-NOTICE.txt",
+        "sd-miniz.h-NOTICE.txt",
+        "sd-zip.c-NOTICE.txt",
+        "sd-zip.h-NOTICE.txt",
+        "sd-nlohmann-json-LICENSE.txt",
+        "sd-NDK-LLVM-NOTICE.txt",
+        "ltx098-Vulkan-Headers.txt",
+        "ltx098-Vulkan-MIT.txt",
+        "ltx098-Vulkan-Apache-2.0.txt",
+        "ltx098-SPIRV-Headers-MIT.txt"
       ]
     }
   ],
