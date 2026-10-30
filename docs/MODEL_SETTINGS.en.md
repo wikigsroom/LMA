@@ -1,5 +1,7 @@
 # Per-model settings
 
+dev.33 adds named numeric suggestions. Voice names/counts come from the exact local file; users can select a name or edit the ID, with actual/recipe clamping. Tasks/API remain numeric; unknown metadata has a disclosed recipe fallback. See [speech parameter design](SPEECH_SELECTION.en.md).
+
 [中文](MODEL_SETTINGS.md) · [User guide](USER_GUIDE.en.md) · [Documentation](README.md)
 
 ## Open and save

@@ -1,5 +1,7 @@
 # LMA 使用手册
 
+dev.33：在“全部 → 生音频”明确选择 Nano 100M 完整包；在“本地”可按文件中的音色名称或编号设置 Kokoro / Nano，超限回填，参数按模型独立。下载、安装与推理证据分开，见[语音使用流程](SPEECH_SELECTION.md)。
+
 当前 dev.32：[生图模型选择、LoRA 依赖与任务闭环](CURATED_DIFFUSION.md) / [English](CURATED_DIFFUSION.en.md)。在“全部”明确选择六套固定方案；LoRA 与基础模型分别查看、分别下载，在“本地”配对并进入共用任务队列。[本轮编号交付与完整待办](releases/v0.3.0-dev.32.md)。下列资源、音频与视频说明继续适用。
 
 dev.31 历史检查点：[运行资源保护](RUNTIME_RESOURCES.md) / [English](RUNTIME_RESOURCES.en.md)。运行时可在“任务”查看系统资源，停止后查看详情并明确重试；聊天保留部分文本，文本模型需明确重载。[本轮编号交付与完整待办](releases/v0.3.0-dev.31.md)。下列 dev.30 说明保留既有视频业务。

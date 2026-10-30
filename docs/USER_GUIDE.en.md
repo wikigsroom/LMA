@@ -1,5 +1,7 @@
 # LMA user guide
 
+dev.33: explicitly select the complete Nano 100M bundle in All → Audio. Local offers Kokoro/Nano names or editable IDs from downloaded files, with per-model clamping/settings. See [speech usage](SPEECH_SELECTION.en.md); UI fixtures do not establish downloads, inference or phone acceptance.
+
 Current dev.32: [curated diffusion, LoRA dependencies and tasks](CURATED_DIFFUSION.en.md) / [中文](CURATED_DIFFUSION.md). Explicitly choose six pinned profiles in All, review/download LoRA and base separately, then pair them in Local and submit to the shared queue. [Numbered delivery and full pending scope](releases/v0.3.0-dev.32.md). Existing resource, audio and video flows below remain available.
 
 Historical dev.31: [runtime resource protection](RUNTIME_RESOURCES.en.md) / [中文](RUNTIME_RESOURCES.md). Review system resources in Tasks, inspect a saved stop and retry explicitly. Chat keeps partial text; text models require explicit loading again. [Numbered delivery/full pending scope](releases/v0.3.0-dev.31.md). The dev.30 video flow below remains available.

@@ -10,8 +10,15 @@ public final class SherpaEngine implements LocalEngine {
     private final LmaApp app;
     private final File binary;
     private final JSONObject build;
+    private final SpeechVoices voices = new SpeechVoices();
     public SherpaEngine(LmaApp app, File binary, JSONObject build) { this.app = app; this.binary = binary; this.build = DataFiles.copy(build); }
     @Override public String id() { return "sherpa_tts"; }
+    @Override public ParameterSchema schema(ModelBundle bundle) throws Exception {
+        ParameterSchema schema = bundle.parameters(); ModelBundle.Component component = bundle.component("model");
+        if (!app.bundles.hasObject(component)) return schema;
+        try { return voices.onnx(schema, app.bundles.object(component.sha256)); }
+        catch (IOException | org.json.JSONException unavailable) { return SpeechVoices.unavailable(schema); }
+    }
     @Override public JSONObject describe() throws Exception { return DataFiles.copy(build).put("available", binary.isFile() && binary.canExecute()).put("deviceValidated", false); }
     @Override public void validate(ModelBundle bundle, String type) throws Exception {
         if (!binary.isFile() || !binary.canExecute()) throw new IOException("当前 App 没有安装本地语音运行引擎");

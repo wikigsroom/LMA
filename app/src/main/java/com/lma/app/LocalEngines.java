@@ -48,7 +48,7 @@ public final class LocalEngines {
     }
     public ParameterSchema parameters(ModelBundle bundle) throws Exception {
         LocalEngine module = modules.get(bundle.engine);
-        return module instanceof TextEngine ? ((TextEngine) module).schema(bundle) : module instanceof Ltx098Engine ? new ParameterSchema(Ltx098Spec.schema()) : bundle.parameters();
+        return module == null ? bundle.parameters() : module.schema(bundle);
     }
     public JSONObject inputSchemas(ModelBundle bundle) throws Exception {
         JSONObject result = new JSONObject(); LocalEngine engine = modules.get(bundle.engine); if (engine == null) return result;

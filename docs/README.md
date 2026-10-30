@@ -6,6 +6,7 @@
 
 | 主题 / Topic | 中文 | English |
 | --- | --- | --- |
+| 语音选择与本地音色 / Speech selection and local voices | [中文](SPEECH_SELECTION.md) | [English](SPEECH_SELECTION.en.md) |
 | 生图选择与 LoRA 依赖 / Curated diffusion and dependencies | [中文](CURATED_DIFFUSION.md) | [English](CURATED_DIFFUSION.en.md) |
 | 运行资源保护 / Runtime resource protection | [中文](RUNTIME_RESOURCES.md) | [English](RUNTIME_RESOURCES.en.md) |
 | 旧 LTX 视频生产闭环 / Old-LTX production video flow | [中文](LTX098_APP_FLOW.md) | [English](LTX098_APP_FLOW.en.md) |

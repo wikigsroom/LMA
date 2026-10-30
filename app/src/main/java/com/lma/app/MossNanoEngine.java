@@ -10,10 +10,17 @@ public final class MossNanoEngine implements LocalEngine {
     private final LmaApp app;
     private final File binary;
     private final JSONObject build;
+    private final SpeechVoices voices = new SpeechVoices();
     private final NativeWorker.Launcher launcher;
     public MossNanoEngine(LmaApp app, File binary, JSONObject build) { this(app, binary, build, ProcessBuilder::start); }
     MossNanoEngine(LmaApp app, File binary, JSONObject build, NativeWorker.Launcher launcher) { this.app = app; this.binary = binary; this.build = DataFiles.copy(build); this.launcher = launcher; }
     @Override public String id() { return "moss_nano_ort"; }
+    @Override public ParameterSchema schema(ModelBundle bundle) throws Exception {
+        ParameterSchema schema = bundle.parameters(); ModelBundle.Component component = bundle.component("manifest");
+        if (!app.bundles.hasObject(component)) return schema;
+        try { return voices.nano(schema, app.bundles.object(component.sha256)); }
+        catch (IOException | org.json.JSONException unavailable) { return SpeechVoices.unavailable(schema); }
+    }
     @Override public JSONObject describe() throws Exception { return DataFiles.copy(build).put("available", binary.isFile() && binary.canExecute()).put("deviceValidated", false); }
     @Override public void validate(ModelBundle bundle, String type) throws Exception {
         if (!binary.isFile() || !binary.canExecute()) throw new IOException("当前 App 没有安装 MOSS Nano 本地语音引擎");

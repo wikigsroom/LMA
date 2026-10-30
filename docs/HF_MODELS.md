@@ -1,5 +1,7 @@
 # HF 发现与本地模型
 
+dev.33 的“全部 → 生音频”还提供完整 Nano 100M 的可选 11 文件清单；不随 App 下载。旧导入身份、推荐及广泛 HF 发现保留；不将 HF 搜索可见写成 Android 支持。见[语音选择](SPEECH_SELECTION.md)。
+
 dev.32 新增[固定生图模型与 LoRA 依赖查看](CURATED_DIFFUSION.md)：六套完整方案可在“全部”直接查看并明确下载，基础模型与 LoRA 分别选择；下面的完整 HF 搜索 / 自定义配方流程继续可用。推荐保持 m08→m06→m01，所有下载由用户明确发起。
 
 [English](HF_MODELS.en.md) · [文档导航](README.md)

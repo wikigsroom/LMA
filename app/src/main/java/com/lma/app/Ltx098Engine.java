@@ -15,6 +15,7 @@ public final class Ltx098Engine implements LocalEngine {
     public Ltx098Engine(LmaApp app, File binary, JSONObject build) { this(app,binary,build,ProcessBuilder::start,(frames,output,check)->VideoEncoder.encode(frames,output,check::run)); }
     Ltx098Engine(LmaApp app, File binary, JSONObject build, NativeWorker.Launcher launcher, Encoder encoder) { this.app=app; this.binary=binary; this.build=DataFiles.copy(build); this.launcher=launcher; this.encoder=encoder; }
     @Override public String id() { return "ltx098_native"; }
+    @Override public ParameterSchema schema(ModelBundle bundle) throws Exception { return new ParameterSchema(Ltx098Spec.schema()); }
     private File helper(String name) { return new File(binary.getParentFile(),name); }
     @Override public JSONObject describe() throws Exception { return DataFiles.copy(build).put("available",binary.isFile() && binary.canExecute()).put("requiredModelCapability","text_to_video").put("deviceValidated",false).put("numericalAccepted",false).put("qualityAccepted",false); }
     @Override public void validate(ModelBundle b,String type) throws Exception {

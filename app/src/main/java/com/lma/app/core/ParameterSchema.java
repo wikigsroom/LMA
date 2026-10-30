@@ -7,6 +7,20 @@ import java.util.*;
 /** Recipe limits, independent of device resource estimates. Produces an effective snapshot. */
 public final class ParameterSchema {
     private final JSONObject schema, fields;
+    private static void choices(JSONObject field, String type) throws Exception {
+        JSONArray choices = field.getJSONArray("choices");
+        if (!Arrays.asList("integer", "number").contains(type) || choices.length() > 128) throw new IllegalArgumentException("Invalid numeric parameter choices");
+        Set<Double> values = new HashSet<>();
+        for (int i = 0; i < choices.length(); i++) {
+            JSONObject choice = choices.getJSONObject(i); Object raw = choice.get("value"); String label = choice.getString("label");
+            if (choice.length() != 2 || !(raw instanceof Number) || label.isEmpty() || label.length() > 80 || !label.equals(label.trim())) throw new IllegalArgumentException("Invalid parameter choice label/value");
+            for (int c = 0; c < label.length(); c++) if (Character.isISOControl(label.charAt(c))) throw new IllegalArgumentException("Parameter choice label contains controls");
+            double value = ((Number) raw).doubleValue();
+            if (!Double.isFinite(value) || Math.abs(value) > 9007199254740991d || type.equals("integer") && value != Math.floor(value) || !values.add(value == 0 ? 0d : value)) throw new IllegalArgumentException("Invalid or duplicate parameter choice value");
+            if (field.has("minimum") && value < field.getDouble("minimum") || field.has("maximum") && value > field.getDouble("maximum")) throw new IllegalArgumentException("Parameter choice exceeds declared bounds");
+            if (field.has("multipleOf")) { double steps = (value - field.optDouble("alignmentOrigin", 0)) / field.getDouble("multipleOf"); if (Math.abs(steps - Math.rint(steps)) > 1e-9) throw new IllegalArgumentException("Unaligned parameter choice"); }
+        }
+    }
     public ParameterSchema(JSONObject value) {
         schema = DataFiles.copy(value); fields = schema.optJSONObject("fields") == null ? new JSONObject() : schema.optJSONObject("fields");
         try {
@@ -24,6 +38,7 @@ public final class ParameterSchema {
                 if (type.equals("integer")) for (String limit : Arrays.asList("minimum", "maximum", "multipleOf", "alignmentOrigin")) if (field.has(limit) && field.getDouble(limit) != Math.floor(field.getDouble(limit))) throw new IllegalArgumentException("Integer parameters require integer limits");
                 if (field.has("maxLength") && (field.getInt("maxLength") < 0 || field.getInt("maxLength") > 16000)) throw new IllegalArgumentException("Invalid text length limit");
                 if (type.equals("enum") && (field.optJSONArray("values") == null || field.getJSONArray("values").length() == 0)) throw new IllegalArgumentException("Empty enum");
+                if (field.has("choices")) choices(field, type);
                 if (field.has("maximumFrom")) {
                     JSONObject bound = field.getJSONObject("maximumFrom"); String source = ModelBundle.key(bound.getString("field"));
                     if (!Arrays.asList("integer", "number").contains(type) || source.equals(key) || !fields.has(source) || !Arrays.asList("integer", "number").contains(fields.getJSONObject(source).getString("type"))) throw new IllegalArgumentException("Invalid dependent parameter bound");

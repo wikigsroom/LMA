@@ -7,6 +7,7 @@ import java.io.File;
 /** Internal signed-App module contract, implemented by each actual local runtime. */
 public interface LocalEngine {
     String id();
+    default ParameterSchema schema(ModelBundle bundle) throws Exception { return bundle.parameters(); }
     JSONObject describe() throws Exception;
     void validate(ModelBundle bundle, String type) throws Exception;
     default InputSpec inputs(ModelBundle bundle, String type) throws Exception { return InputSpec.promptOnly(); }

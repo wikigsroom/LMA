@@ -14,9 +14,9 @@ from preparation_build_inputs import build_inputs
 ROOT = Path(__file__).resolve().parents[1]
 BASELINE = '6b1f3459a80db8b7b6838e7d5e492b8ef42d9033'
 BASE_VERSION = '0.3.0-dev.24'
-CURRENT_VERSION = '0.3.0-dev.32'
-PRIOR_COMMIT = '251c69db9c19bafb7416d023053600643109995c'
-PRIOR_VERSION = '0.3.0-dev.31'
+CURRENT_VERSION = '0.3.0-dev.33'
+PRIOR_COMMIT = '85e843c1b0bf6b7b4cf0335c34fee2eb11d41e72'
+PRIOR_VERSION = '0.3.0-dev.32'
 CERTIFICATE = '90444a717a55549e2094364d8d7d005cf8b7f4df24562da62cc1884a2f341c17'
 SOURCES = {
     'build-info.json': 'dist/build-info.json',
@@ -46,6 +46,8 @@ SOURCES = {
     'ltx-media.json': 'docs/media/development/ltx/manifest.json',
     'resources-media.json': 'docs/media/development/resources/manifest.json',
     'curated-media.json': 'docs/media/development/curated/manifest.json',
+    'speech-voices.json': 'build/speech-voice-tests/results.json',
+    'speech-media.json': 'docs/media/development/speech/manifest.json',
 }
 
 
@@ -66,7 +68,7 @@ def prior_checkpoint(write=False):
     # Only archive this checkpoint's own records. Older model experiments have
     # separate immutable pointers and are not inputs to this incremental copy.
     status_data = subprocess.check_output(['git','show',PRIOR_COMMIT + ':verification/development/status.json'], cwd=ROOT)
-    status = json.loads(status_data); assert status['version'] == PRIOR_VERSION and len(status['sources']) == 28
+    status = json.loads(status_data); assert status['version'] == PRIOR_VERSION and len(status['sources']) == 27
     selected = ['status.json', *status['sources']]
     assert all(Path(name).name == name and name.endswith('.json') for name in selected)
     run = subprocess.run(['git', 'archive', '--format=tar', PRIOR_COMMIT, *['verification/development/' + name for name in selected]], cwd=ROOT, capture_output=True, check=True)
@@ -122,8 +124,8 @@ def export():
         'physical_device_tests': 0, 'model_inference_tested': False,
         'historical_trained_results_apply_to_current_apk': False,
         'host_model_inference_tested': False, 'apk_model_inference_tested': False, 'historical_host_model_inference_tested': True,
-        'model_inference_test_scope': 'No trained inference rerun for this catalogue/UI update. Exact dev.31 old-LTX Google T5 Q5 single-scale trained result/media stay under prior_checkpoint; dev.28 LCM and dev.24 frozen-model experiments remain historical. Current tests cover production store upgrades, pairing contracts, queue controls and explicitly simulated UI; phone, quality and original numerical failures remain open.',
-        'scope': 'Six immutable curated diffusion profiles, exact historical asset attribution, generic explicit LoRA base review, user-selected downloads, per-model parameters and queued generation requests; current source/host/UI/package regression with original trained evidence retained separately. Full frozen release scope remains required.',
+        'model_inference_test_scope': 'No trained inference rerun. Four exact downloaded model headers are read by production Java within a 48 MiB heap, after full SHA checks; this is metadata inspection only. Exact dev.31 old-LTX trained results/media, dev.28 LCM and dev.24 model experiments remain historical through checked immutable pointers. Phone, quality and original numerical failures remain open.',
+        'scope': 'Optional complete Nano catalogue bundle, local-file voice names/counts, shared editable numeric suggestions and engine schema dispatch, per-model settings and immutable speech requests; current source/host/UI/package regression. No weights, prompt codes or voice tables in APK. Full frozen release scope remains required.',
         'required_release_scope': {'foundation': 'F01–F12', 'existing_text': True, 'selected_ids': ['01','02','03','04','05','06','07','08','09','10','11','12','13','14','16','17'], 'every_frozen_subtarget': True, 'sd15_and_sdxl_lora': True},
         'input_fingerprint': fingerprint('tools/checkpoint_evidence.py', 'tools/export_development.py', 'tools/check_repository.py', 'docs/proposals/multimodal-release-scope.json'),
     }
@@ -164,7 +166,7 @@ def check():
     assert not recovery['android_execution_tested'] and not recovery['model_inference_tested']
     for name, minimum in [('foundation.json',666),('api.json',67),('inputs.json',64),('text.json',66),('migration.json',69),('scheduler.json',151)]:
         assert records[name]['passed'] >= minimum, name
-    ui = records['ui.json']; assert ui['passed'] >= 421 and not ui['errors'] and ui['bridge'] == 'test fixture only' and not ui['physicalDevice'] and not ui['emulatorUsed']
+    ui = records['ui.json']; assert ui['passed'] >= 441 and not ui['errors'] and ui['bridge'] == 'test fixture only' and not ui['physicalDevice'] and not ui['emulatorUsed']
     lint = records['lint.json']; assert lint['errors'] == 0 and lint['applicationApkSha256'] == build['sha256']
     assert lint['java_source_files'] == len(list((ROOT / 'app/src/main/java').rglob('*.java')))
     media = records['workbench-media.json']; assert media['version'] == CURRENT_VERSION and media['browser_closed'] and not media['browser_errors']
@@ -233,7 +235,18 @@ def check():
     for item in media['files']:
         data = (ROOT / 'docs/media/development/audio' / item['file']).read_bytes()
         assert len(data) == item['bytes'] and digest(data) == item['sha256']
-    app, trained, arm = records['ltx-app.json'], json.loads(prior_records['ltx-app-trained.json']), records['ltx-app-arm64.json']
+    ltx_history = json.loads(prior_records['status.json'])['prior_checkpoint']
+    while ltx_history['version'] != '0.3.0-dev.31':
+        item = ltx_history['sources']['status.json']; data = (ROOT / item['path']).read_bytes()
+        assert digest(data) == item['sha256'], 'Historical LTX checkpoint pointer changed'
+        ltx_history = json.loads(data)['prior_checkpoint']
+    assert ltx_history['commit'] == '251c69db9c19bafb7416d023053600643109995c'
+    def ltx_historical(name):
+        item = ltx_history['sources'][name]; path = (ROOT / item['path']).resolve()
+        assert path.is_relative_to((ROOT / 'verification/history/0.3.0-dev.31').resolve())
+        data = path.read_bytes(); assert digest(data) == item['sha256']
+        return data
+    app, trained, arm = records['ltx-app.json'], json.loads(ltx_historical('ltx-app-trained.json')), records['ltx-app-arm64.json']
     assert app['passed'] and app['assertions'] >= 127 and app['productionEngineAndQueue'] and app['syntheticNeuralStages'] and not app['modelInference']
     assert len(app['runs']) == 9 and [run['actualChildren'] for run in app['runs']] == [6,2,3,5,2,2,6,2,2]
     assert trained['passed'] and trained['productionEngineAndQueue'] and trained['modelInference'] and trained['actual_trained_jobs'] == 1
@@ -251,9 +264,9 @@ def check():
     for item in media['files']:
         data = (ROOT / 'docs/media/development/ltx' / item['file']).read_bytes()
         assert len(data) == item['bytes'] and digest(data) == item['sha256']
-    media = json.loads(prior_records['ltx-trained-media.json'])
+    media = json.loads(ltx_historical('ltx-trained-media.json'))
     assert media['model_inference'] and media['actual_production_java_native_host'] and not media['physical_android'] and not media['numerical_accepted'] and not media['quality_accepted']
-    assert media['trained_report_sha256'] == digest(prior_records['ltx-app-trained.json']) and len(media['files']) == 3
+    assert media['trained_report_sha256'] == digest(ltx_historical('ltx-app-trained.json')) and len(media['files']) == 3
     for item in media['files']:
         data = (ROOT / 'docs/media/development/ltx-app-trained' / item['file']).read_bytes()
         assert len(data) == item['bytes'] and digest(data) == item['sha256']
@@ -266,6 +279,15 @@ def check():
     assert not media['android_device'] and not media['model_inference'] and not media['weights_downloaded'] and len(media['screenshots']) == 4 and len(media['files']) == 6 and len(media['checks']) >= 40
     for item in media['files']:
         data = (ROOT / 'docs/media/development/curated' / item['file']).read_bytes()
+        assert len(data) == item['bytes'] and digest(data) == item['sha256']
+    voices = records['speech-voices.json']
+    assert voices['passed'] and voices['checks'] >= 70 and voices['max_java_heap_bytes'] == 50331648
+    assert not voices['model_inference'] and not voices['android_device'] and not voices['weights_downloaded']
+    assert [(m['id'],m['voices'],m['names']) for m in voices['actual_local_headers']] == [('kokoro',54,54),('piper',1,0),('matcha',1,0),('nano',18,18)]
+    media = records['speech-media.json']; assert media['version'] == CURRENT_VERSION and media['browser_closed'] and not media['browser_errors']
+    assert not media['android_device'] and not media['model_inference'] and not media['weights_downloaded'] and len(media['screenshots']) == 4 and len(media['files']) == 6 and len(media['checks']) >= 20
+    for item in media['files']:
+        data = (ROOT / 'docs/media/development/speech' / item['file']).read_bytes()
         assert len(data) == item['bytes'] and digest(data) == item['sha256']
     scope = json.loads((ROOT / 'docs/proposals/multimodal-release-scope.json').read_text(encoding='utf-8'))
     assert status['required_release_scope']['selected_ids'] == scope['selected_ids'] and scope['preserved_recommendation_ids'] == ['m08','m06','m01']

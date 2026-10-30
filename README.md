@@ -2,7 +2,13 @@
 
 [中文](README.md) · [English](README.en.md) · [下载 / Releases](https://github.com/wikigsroom/LMA/releases) · [文档导航](docs/README.md) · [更新记录](CHANGELOG.md)
 
-> **当前开发：0.3.0-dev.32 / code 36。** 六套已固定资产的生图方案加入“全部”：SDXL、SD 1.5 / SDXL 风格 LoRA、两类 LCM-LoRA、SD-Turbo。新增通用 LoRA 基础模型查看与返回入口，下载仍需用户逐项明确选择；旧导入、推荐、独立参数和冻结任务保留。[完整方案与使用](docs/CURATED_DIFFUSION.md) · [编号实现 / 完整待办](docs/releases/v0.3.0-dev.32.md) · [录屏](docs/media/development/curated/curated-ui.mp4) · [GIF](docs/media/development/curated/curated-ui.gif)。当前界面与数据层检查不等于模型下载、推理或手机验收；历史训练记录独立保留，完整版本门槛不变。
+> **当前开发：0.3.0-dev.33 / code 37。** Nano 100M 完整 11 文件方案加入“全部”，Kokoro / Nano 音色按用户本地文件显示名称、数量及编号；可选可编辑、超限回填，设置与排队快照仍按模型独立。App 不附权重、预设声音或提示音频码，也不自动下载。[方案与使用](docs/SPEECH_SELECTION.md) · [编号交付及完整待办](docs/releases/v0.3.0-dev.33.md) · [录屏](docs/media/development/speech/speech-ui.mp4) · [GIF](docs/media/development/speech/speech-ui.gif)。本轮 70 项生产 Java 元数据检查（四个真实本地文件，48 MiB 堆）及 20 项新增界面检查；未执行本轮训练推理或手机验收，完整版本门槛保留。
+
+| 可选语音模型（界面夹具） | 本地音色名称与上限（界面夹具） |
+|---|---|
+| ![语音模型清单](docs/media/development/speech/01-audio-catalogue.png) | ![Kokoro 本地音色](docs/media/development/speech/02-kokoro-voices.png) |
+
+保留[生图选择与通用 LoRA 依赖](docs/CURATED_DIFFUSION.md)，以下同为桌面页面夹具。
 
 | LoRA 基础模型依赖（界面夹具） | 配对并提交任务（界面夹具） |
 |---|---|

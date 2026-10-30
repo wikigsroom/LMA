@@ -1,5 +1,14 @@
 # Changelog / 更新记录
 
+## 0.3.0-dev.33 — local voice selection / 本地语音选择闭环
+
+- Add complete optional Nano 100M All profile: eleven pinned files, 717,414,286 bytes, fresh immutable ID. 原导入与设置不变，App 不附模型或预设声音数据。
+- Read names/counts from exact local ONNX/Nano metadata without loading weights; Kokoro 54 voices (ID53 em_santa), Nano18, Piper/Matcha numeric fallback. 名称不扩展英文配方的语言范围。
+- Add shared editable named numeric suggestions, actual-limit clamping, numeric API/job snapshots and engine schema dispatch. 无按模型 ID 分裂的页面 / 队列流程。
+- Add 70 production Java checks including four full-SHA local headers under 48 MiB heap and 20 UI checks; current 15 suites / 2,383 controls. 真实文件检查不是推理，未重复旧训练模型或冒充手机验收。
+- Update bilingual READMEs/guides, four labelled screenshots, MP4/GIF and original-signed dev.33/code37 APK. Retain exact dev.32 receipts and older failed numerical evidence; full v0.3.0 scope remains required.
+
+
 ## 0.3.0-dev.32 — explicit diffusion model selection / 生图选择与依赖闭环
 
 - Add six immutable All profiles: SDXL, SD 1.5/SDXL style and LCM LoRAs, SD-Turbo. 六套完整资产逐项固定 revision、URL、字节与 SHA，既有十项清单保持原样。

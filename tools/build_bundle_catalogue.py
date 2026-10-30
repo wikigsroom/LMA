@@ -20,7 +20,7 @@ def main():
     assert len(proofs) == len(evidence["bundles"])
     ids = set()
     for bundle in catalogue["bundles"]:
-        assert bundle["id"] not in ids and bundle["schema"] == "lma.model-bundle/1"
+        assert bundle["id"] not in ids and bundle["schema"] in ("lma.model-bundle/1", "lma.model-bundle/2")
         ids.add(bundle["id"])
         assert bundle["catalogue"] and bundle["evidence"]["physicalDeviceTests"] == 0
         assert bundle["tasks"] and all(task in ("text", "image", "video", "audio") for task in bundle["tasks"])
@@ -36,18 +36,25 @@ def main():
                 assert c["url"] == "https://huggingface.co/" + c["repository"] + "/resolve/" + c["revision"] + "/" + c["path"]
             elif checked["kind"] == "pinned_asset_history":
                 # Historical asset identities are not fresh HF availability or current inference evidence.
-                assert checked["source"] in ("research/sd_variants_trained/assets.json", "research/sd_distilled_trained/assets.json")
-                assert checked["receipt"] in ("verification/development/sd-variants-assets.json", "verification/development/sd-distilled-assets.json")
+                assert checked["source"] in ("research/sd_variants_trained/assets.json", "research/sd_distilled_trained/assets.json", "research/moss_nano_trained/assets.json")
+                assert checked["receipt"] in ("verification/development/sd-variants-assets.json", "verification/development/sd-distilled-assets.json", "verification/development/moss-nano-assets.json")
                 assert checked["source_commit"] == "6b1f3459a80db8b7b6838e7d5e492b8ef42d9033"
                 assert checked["live_hf_metadata_checked_this_update"] is False
                 lock_data = (ROOT / checked["source"]).read_bytes(); receipt_data = (ROOT / checked["receipt"]).read_bytes()
                 assert hashlib.sha256(lock_data).hexdigest() == checked["source_sha256"]
                 assert hashlib.sha256(receipt_data).hexdigest() == checked["receipt_sha256"]
                 lock = json.loads(lock_data); receipt = json.loads(receipt_data)
-                assert receipt["lock"] == lock and receipt["developer_assets_only"] and receipt["explicit_download"]
+                assert receipt["developer_assets_only"] and receipt["explicit_download"]
+                if checked["source"] == "research/moss_nano_trained/assets.json":
+                    assert checked["receipt"] == "verification/development/moss-nano-assets.json"
+                    assert receipt["input_fingerprint"][checked["source"]] == checked["source_sha256"]
+                    locked_assets, measured_assets = lock["components"], receipt["components"]
+                else:
+                    assert receipt["lock"] == lock
+                    locked_assets, measured_assets = lock["assets"], receipt["assets"]
                 identity = ("path", "bytes", "sha256", "repository", "revision", "url")
-                assert any(all(item.get(k) == c.get(k) for k in identity) for item in lock["assets"])
-                assert any(all(item.get(k) == c.get(k) for k in identity) for item in receipt["assets"])
+                assert any(all(item.get(k) == c.get(k) for k in identity) for item in locked_assets)
+                assert any(all(item.get(k) == c.get(k) for k in identity) for item in measured_assets)
                 assert re.fullmatch("[0-9a-f]{40,64}", c["revision"])
                 assert c["url"] == "https://huggingface.co/" + c["repository"] + "/resolve/" + c["revision"] + "/" + c["path"]
             elif checked["kind"] == "github_release_asset":

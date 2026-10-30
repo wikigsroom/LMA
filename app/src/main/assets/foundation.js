@@ -80,6 +80,19 @@
     var plan = (b.preparationPlans || []).filter(function (p) { return p.id === planId; })[0]; if (!plan || !b.installed || plan.ready) return;
     editor = null; ui.openModal('准备运行资产', '<div class="model-info"><h3>' + e(b.manifest.name) + '</h3><p>' + e(plan.name) + '</p><dl><dt>保留源模型</dt><dd>' + ui.bytes(plan.sourceBytes) + '</dd><dt>新增运行资产</dt><dd>' + ui.bytes(plan.outputBytes) + '</dd><dt>所需额外可用空间</dt><dd>' + ui.bytes(plan.requiredFreeBytes) + '</dd></dl><p>点击后加入本机任务队列，离开页面后继续。可在任务页取消；中断后由你选择重试。准备完成后，生成能力和设备兼容性仍以模型状态为准。</p><div class="modal-actions"><button class="button primary" data-action="prepareAssets" data-id="' + e(id) + '" data-preparation="' + e(plan.id) + '" data-fingerprint="' + e(plan.fingerprint) + '">开始准备</button></div></div>', 'preparationInfo');
   }
+  function numericChoices(f) {
+    return (Array.isArray(f.choices) ? f.choices : []).slice(0, 128).filter(function (choice) { return choice && typeof choice.value === 'number' && isFinite(choice.value) && typeof choice.label === 'string' && choice.label.length <= 80; });
+  }
+  function numericDisplay(f, value) {
+    var choice = numericChoices(f).filter(function (choice) { return choice.value === value; })[0];
+    return choice ? String(value) + ' · ' + choice.label : String(value);
+  }
+  function numericValue(f, raw) {
+    var text = raw.trim(), choices = numericChoices(f), match = choices.filter(function (choice) { return numericDisplay(f, choice.value) === text; });
+    if (match.length === 1) return match[0].value;
+    match = choices.filter(function (choice) { return choice.label === text; });
+    return match.length === 1 ? match[0].value : Number(text);
+  }
   function numericHint(f, values, all) {
     var maximum = f.maximum, bound = f.maximumFrom;
     if (bound && all[bound.field]) {
@@ -88,7 +101,7 @@
       if (f.type === 'integer') maximum = Math.floor(maximum);
       if (f.multipleOf) maximum = (f.alignmentOrigin || 0) + Math.floor((maximum - (f.alignmentOrigin || 0)) / f.multipleOf) * f.multipleOf;
     }
-    return (f.minimum !== undefined ? '最低 ' + e(f.minimum) + ' · ' : '') + (maximum !== undefined && isFinite(maximum) ? (bound ? '当前上限 ' : f.limitSource === 'application_guard' ? '应用保护上限 ' : f.limitSource === 'publisher_metadata_unverified' ? '发布者声明上限（待核对）' : '上限 ') + e(maximum) : '模型上限未声明') + (bound ? ' · 受' + e(all[bound.field] && all[bound.field].label || paramNames[bound.field] || bound.field) + '约束' : '') + (f.multipleOf ? ' · 步长 ' + e(f.multipleOf) : '');
+    return (f.minimum !== undefined ? '最低 ' + e(f.minimum) + ' · ' : '') + (maximum !== undefined && isFinite(maximum) ? (bound ? '当前上限 ' : f.limitSource === 'application_guard' ? '应用保护上限 ' : f.limitSource === 'publisher_metadata_unverified' ? '发布者声明上限（待核对）' : '上限 ') + e(maximum) : '模型上限未声明') + (bound ? ' · 受' + e(all[bound.field] && all[bound.field].label || paramNames[bound.field] || bound.field) + '约束' : '') + (f.multipleOf ? ' · 步长 ' + e(f.multipleOf) : '') + (f.actualVoiceCount ? ' · ' + e(f.actualVoiceCount) + ' 个音色' : '');
   }
   function fields(b) {
     var schema = schemaFor(b), values = b.config && b.config.values || {}, all = schema.fields || {};
@@ -101,8 +114,8 @@
       else if (f.type === 'enum') out += '<select data-bundle-field="' + e(key) + '">' + f.values.map(function (v, index) { return '<option value="' + index + '"' + (v === value ? ' selected' : '') + '>' + e(v) + '</option>'; }).join('') + '</select>';
       else if (f.type === 'string') out += '<input data-bundle-field="' + e(key) + '" value="' + e(value) + '" maxlength="' + (f.maxLength === undefined ? 16000 : f.maxLength) + '">';
       else {
-        var presets = (f.presets || []).filter(function (v) { return typeof v === 'number' && isFinite(v); });
-        out += '<input type="text" role="combobox" aria-autocomplete="list" aria-expanded="false" list="' + name + '" data-bundle-field="' + e(key) + '" data-numeric="true" value="' + e(value) + '" inputmode="' + (f.type === 'integer' ? 'numeric' : 'decimal') + '" autocomplete="off"><datalist id="' + name + '">' + presets.map(function (v) { return '<option value="' + v + '"></option>'; }).join('') + '</datalist><small data-bundle-bound-caption="' + e(key) + '">' + numericHint(f, values, all) + '</small>';
+        var presets = (f.presets || []).filter(function (v) { return typeof v === 'number' && isFinite(v); }), choices = numericChoices(f);
+        out += '<input type="text" role="combobox" aria-autocomplete="list" aria-expanded="false" list="' + name + '" data-bundle-field="' + e(key) + '" data-numeric="true" value="' + e(numericDisplay(f, value)) + '" inputmode="' + (f.type === 'integer' ? 'numeric' : 'decimal') + '" autocomplete="off"><datalist id="' + name + '">' + (choices.length ? choices.map(function (choice) { return '<option value="' + e(numericDisplay(f, choice.value)) + '">' + e(choice.label) + '</option>'; }) : presets.map(function (v) { return '<option value="' + v + '"></option>'; })).join('') + '</datalist><small data-bundle-bound-caption="' + e(key) + '">' + numericHint(f, values, all) + '</small>';
       }
       if (f.help) out += '<small>' + e(f.help) + '</small>';
       out += '</label>';
@@ -119,13 +132,14 @@
       else if (f.type === 'enum') value = f.values[Number(input.value)];
       else if (f.type === 'string') value = input.value;
       else {
-        if (!input.value.trim() || !isFinite(Number(input.value))) throw new Error((f.label || paramNames[key] || key) + '需要有效数字');
-        value = Number(input.value); if (f.type === 'integer') value = Math.floor(value);
+        var parsed = numericValue(f, input.value);
+        if (!input.value.trim() || !isFinite(parsed)) throw new Error((f.label || paramNames[key] || key) + '需要有效数字或已列出的选项');
+        value = parsed; if (f.type === 'integer') value = Math.floor(value);
         if (f.minimum !== undefined) value = Math.max(value, f.minimum);
         if (f.maximum !== undefined) value = Math.min(value, f.maximum);
         if (f.multipleOf) value = (f.alignmentOrigin || 0) + Math.floor((value - (f.alignmentOrigin || 0)) / f.multipleOf) * f.multipleOf;
         if (f.minimum !== undefined && value < f.minimum) throw new Error('参数没有满足约束的值');
-        input.value = value;
+        input.value = numericDisplay(f, value);
       }
       out[key] = value;
     });
@@ -143,7 +157,7 @@
         if (f.multipleOf) value = (f.alignmentOrigin || 0) + Math.floor((value - (f.alignmentOrigin || 0)) / f.multipleOf) * f.multipleOf;
         if (!isFinite(value) || f.minimum !== undefined && value < f.minimum) throw new Error('参数联合约束没有合法值');
         out[key] = value;
-        form.querySelectorAll('[data-bundle-field]').forEach(function (input) { if (input.dataset.bundleField === key) input.value = value; });
+        form.querySelectorAll('[data-bundle-field]').forEach(function (input) { if (input.dataset.bundleField === key) input.value = numericDisplay(f, value); });
       }
       delete visiting[key]; complete[key] = true;
     }

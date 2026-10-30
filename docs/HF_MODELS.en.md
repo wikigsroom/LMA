@@ -1,5 +1,7 @@
 # HF discovery and local models
 
+dev.33 adds the optional complete eleven-file Nano 100M profile to All → Audio. No files are bundled or silently downloaded. Existing imports, Recommended and broad HF discovery remain; discovery is not Android compatibility. See [speech selection](SPEECH_SELECTION.en.md).
+
 dev.32 adds [curated diffusion and LoRA dependency review](CURATED_DIFFUSION.en.md): six exact profiles can be reviewed and explicitly downloaded in All, with separate base/LoRA choices. Full HF search/custom recipes below remain available. Recommended stays m08→m06→m01; users explicitly initiate every download.
 
 [中文](HF_MODELS.md) · [Documentation](README.md)

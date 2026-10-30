@@ -2,7 +2,13 @@
 
 [中文](README.md) · [English](README.en.md) · [Releases](https://github.com/wikigsroom/LMA/releases) · [Documentation](docs/README.md) · [Changelog](CHANGELOG.md)
 
-> **Current development: 0.3.0-dev.32 / code 36.** Six exact diffusion profiles now appear in All: SDXL, SD 1.5/SDXL style LoRAs, both LCM-LoRAs and SD-Turbo. Generic LoRA dependency review links to compatible bases and back; each download remains an explicit user choice. Old imports, Recommended, independent settings and frozen jobs are preserved. [Design and usage](docs/CURATED_DIFFUSION.en.md) · [Numbered delivery/full pending scope](docs/releases/v0.3.0-dev.32.md) · [MP4](docs/media/development/curated/curated-ui.mp4) · [GIF](docs/media/development/curated/curated-ui.gif). Current storage/UI controls are not model downloads, inference or phone acceptance. Historical trained records stay separate; complete-release gates remain required.
+> **Current development: 0.3.0-dev.33 / code 37.** All now includes the complete eleven-file Nano 100M profile. Kokoro/Nano voice names, counts and IDs come from user-downloaded files; editable choices clamp to local limits. Settings and queued snapshots remain per model. The APK contains no weights, preset voices or prompt codes, and never downloads models automatically. [Design/usage](docs/SPEECH_SELECTION.en.md) · [Numbered delivery/full pending scope](docs/releases/v0.3.0-dev.33.md) · [MP4](docs/media/development/speech/speech-ui.mp4) · [GIF](docs/media/development/speech/speech-ui.gif). This round adds 70 production Java metadata checks (four exact local files, 48 MiB heap) and 20 UI controls; no new trained inference or phone acceptance. All complete-release gates remain required.
+
+| Optional speech models — UI fixture | Local voice names and limits — UI fixture |
+|---|---|
+| ![Speech catalogue](docs/media/development/speech/01-audio-catalogue.png) | ![Kokoro local voices](docs/media/development/speech/02-kokoro-voices.png) |
+
+[Curated diffusion and generic LoRA dependencies](docs/CURATED_DIFFUSION.en.md) remain available; the following are also desktop UI fixtures.
 
 | LoRA base dependency — UI fixture | Paired generation request — UI fixture |
 |---|---|

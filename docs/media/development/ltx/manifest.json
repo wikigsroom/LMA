@@ -1,5 +1,5 @@
 {
-  "version": "0.3.0-dev.32",
+  "version": "0.3.0-dev.33",
   "kind": "current production UI with an explicit simulated bridge",
   "android_device": false,
   "model_inference": false,
@@ -56,18 +56,18 @@
     },
     {
       "file": "04-video-queue.png",
-      "bytes": 48641,
-      "sha256": "77b7662bac8e1dd4e99d1584f957d988af41690f2cdc0dc6b374fc47df38f565"
+      "bytes": 48600,
+      "sha256": "56242e4612ad498e507a31c1c30619dc6d2e7b9907257e1ae39775d6e37a62b3"
     },
     {
       "file": "ltx-ui.gif",
-      "bytes": 454179,
-      "sha256": "b8353b3953f968dd475ee4d2f379c617deb85df5612c61b9d58283be2709e087"
+      "bytes": 387678,
+      "sha256": "7254c9e5a43101d1a1b0a19d457feaa4e6e2b91a40b6954a70d3b78f01511eea"
     },
     {
       "file": "ltx-ui.mp4",
-      "bytes": 190331,
-      "sha256": "459d4f3a68e5e3b1aaf83454b3641759aea9bc55cf10e269d945320ceb90955d"
+      "bytes": 167247,
+      "sha256": "753c4796cbf33c537e49f98e6bd8eab150d739a4404e80281f1fb65f61fdbe0f"
     }
   ],
   "input_fingerprint": {
@@ -77,8 +77,8 @@
     "app/src/main/assets/audio-preview.js": "33bb898969f37c1f78c6664052c46da844d148defdcef4a54d64bc5829037f44",
     "app/src/main/assets/engine-builds.json": "b300af6fbcceec8691d187b1b1fa3f3802bb872cfcd9583bc680eaaf3bf90827",
     "app/src/main/assets/foundation.css": "ac77af14c0498d3c358d76814109cda4f49fb5c660c1f53961d8f9b7f6c3a53f",
-    "app/src/main/assets/foundation.js": "72e39035f6bb1cb2aa8beda6fa961d66be2c4a7ec24fdd1a9270d06354558f48",
-    "app/src/main/assets/index.html": "59ef03ed802d85bdedb59341693dc00d144a43061e648ffeb619c73078387be1",
+    "app/src/main/assets/foundation.js": "f188fbbe92cf03f2e06971f0baec25f8dfb0fee5ce21b2baeb749862b1059288",
+    "app/src/main/assets/index.html": "7eeae2f4e42a52f5e0574175ff5e93414a11b3c115aba45d3f4d4bada24299e3",
     "app/src/main/assets/license.js": "838317c7653ca35291e9e18f2a7e2d98ed46a10880dfe144176f04ad994433d0",
     "app/src/main/assets/licenses/LLAMA_CPP_LICENSE": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
     "app/src/main/assets/licenses/LMA_LICENSE": "6ae3f5efa412d91cbf66e44f743e5ce41a8044309d05d893365206ab9bc35fc3",
@@ -166,7 +166,7 @@
     "app/src/main/assets/licenses/tts-utf8proc-LICENSE.md.txt": "3b510150d34f248a221bb88e1d811238d6c6c18b51231822c42974c39bb07256",
     "app/src/main/assets/licenses/xxhash-LICENSE.txt": "a2973411d278045bde3c7161b911e0680d53e2d73d6457c77068d2e55d816d67",
     "app/src/main/assets/model-assemblies.json": "af004a9e62205786cd2bd8ca74af4260dc125fdf1ac9e836968bab65747dd746",
-    "app/src/main/assets/model-bundles.json": "6732a05e442cbccca2cab5af442a64b46a689ca5632323daac230be025b08289",
+    "app/src/main/assets/model-bundles.json": "1dbef13b696a882ff2fe3336319860e93aa10cb3e9adeede2bac0137da2b56d5",
     "app/src/main/assets/models.json": "c3e884b4e5fb06f20c036deebc78e6f953ac420e76fca72bab5a25fd59927156",
     "app/src/main/assets/preparations/ltx098_vae_prepare/stage-00.onnx": "33f367287eaf5bc67aead22132d9d73aeaf66b51387bbc3a032a1c7eb936ff8b",
     "app/src/main/assets/preparations/ltx098_vae_prepare/stage-01.onnx": "29ede53a11d80957e6f0abe38780511c267762feba725b49c29bd36fa35d31b3",
@@ -183,9 +183,9 @@
     "app/src/main/assets/workbench.js": "17042106c2bbecf2ba42e1287682b0ad905fbe22137fbb5b3ea0bdee5f2745f4",
     "catalogue/asset-preparations.json": "b0a7cbac1a633310b9fff84164439ee8fe20a1df137d1075eb9263f531ccfd3b",
     "catalogue/model-assemblies.json": "af004a9e62205786cd2bd8ca74af4260dc125fdf1ac9e836968bab65747dd746",
-    "catalogue/model-bundles.json": "6732a05e442cbccca2cab5af442a64b46a689ca5632323daac230be025b08289",
+    "catalogue/model-bundles.json": "1dbef13b696a882ff2fe3336319860e93aa10cb3e9adeede2bac0137da2b56d5",
     "tests/foundation-ui.cjs": "b8cc6e6dcd05054e8651c1ec908e8d1f8e1c65abe1cb6d81e77f52a7e9fea6ed",
     "tests/ltx-ui.cjs": "c2731a6aaec5956d3bf61b589b1d73f1e689c305b4f46757f237c02aecaab4bb",
-    "tools/capture_workbench.cjs": "39fc3ae14242ffc3758048119e877f47b80c33fec3737cb97cff8aac47b533c7"
+    "tools/capture_workbench.cjs": "26355f59cb8f7ab443955167bd61798eaaafcb6fe5256524b677030ae9abd189"
   }
 }
