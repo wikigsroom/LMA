@@ -4,7 +4,7 @@
   "revision": "35a20ca0995bb7e4a549b7def42c4acb30559a94",
   "license": "Apache-2.0",
   "pipeline": "sana_mnn_v1",
-  "matched_model_family": "MNN Sana mobile with Qwen3-0.6B/connector/projector/DiT/VAE",
+  "matched_model_family": "Separate matched variants: Qwen3 Sana-Edit; Gemma2 four-chunk Sana-Sprint 0.6B text-to-image",
   "bundled_model_assets": false,
   "http_resources_compiled": false,
   "logcat_compiled": false,
@@ -47,5 +47,12 @@
       "embedded_stb_notice": true
     }
   ],
-  "json_header_sha256": "2dd8db723cff3e44198e14d6038ea6443dc6171a564bb82cd6ee81f0edc316e5"
+  "json_header_sha256": "2dd8db723cff3e44198e14d6038ea6443dc6171a564bb82cd6ee81f0edc316e5",
+  "pipelines": [
+    "sana_mnn_v1",
+    "sana_sprint_06b_mnn_v1"
+  ],
+  "static_dependencies": {
+    "sentencepiece": "31646a467d2051eb904e0b45de3a73e91fe1c1e3"
+  }
 }

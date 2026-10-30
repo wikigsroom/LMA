@@ -64,7 +64,7 @@ def main():
             assert resolved.is_relative_to(ROOT.resolve()) and resolved.exists(), "Broken local link: " + str(document.relative_to(ROOT)) + " -> " + target
             links += 1
     release = version()
-    if args.development and release == "0.3.0-dev.44":
+    if args.development and release == "0.3.0-dev.45":
         assert not args.published
         from program_evidence import check
         scoped = check()

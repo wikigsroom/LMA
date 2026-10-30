@@ -1,6 +1,6 @@
 # Program validation for subsequent development
 
-[中文](PROGRAM_VALIDATION.md) · [Full functional scope](MULTIMODAL_RELEASE_PLAN.en.md) · [Machine-readable policy](proposals/program-validation-policy.json) · [This delivery](releases/v0.3.0-dev.44.md)
+[中文](PROGRAM_VALIDATION.md) · [Full functional scope](MULTIMODAL_RELEASE_PLAN.en.md) · [Machine-readable policy](proposals/program-validation-policy.json) · [This delivery](releases/v0.3.0-dev.45.md)
 
 **From 2026-10-31 the user requires program validation only, without time-consuming complete-model execution.** This supersedes earlier requirements to repeat full-weight inference, model-quality/ASR scoring and phone inference/endurance before subsequent program deliveries or publication. It does not waive missing implementation. F01–F12, existing text, selections 01–14/16/17, every frozen subtarget and both SD1.5/SDXL LoRA remain in the same version scope.
 
@@ -19,6 +19,6 @@ Do not download/copy complete model assets for validation, regenerate complete i
 
 Publication still requires implemented functionality, relevant program checks, consistent version/original signature, exact source/APK identities, bilingual documentation and release notes. Complete-model quality and phone endurance are no longer program-release gates.
 
-dev.44 is a signed program-fix checkpoint, not a claim of complete frozen feature coverage. Sana **text-to-image** is separate from Sana Edit. The original LTX PixArt/multiscale pipeline is separate from the existing Google T5 Q5 single-scale variant. Those implementation gaps stay in the complete v0.3.0 scope; waiving model validation does not mark them complete.
+dev.45 is a signed program-development checkpoint, not complete frozen feature coverage. [Sana-Sprint 0.6B](SANA_SPRINT.en.md) now implements the matched mobile text-to-image alternative in selection 04, with explicit component and evidence boundaries. Original PixArt/multiscale LTX still differs from the existing Google T5 Q5 single-scale variant; that missing adapter remains in the complete v0.3.0 scope. Waiving model runs does not implement missing code.
 
 Existing model experiments and checkpoints remain in `verification/development/`, `verification/history/` and named research directories. Current program records go to `verification/program/` with checked source fingerprints, without running historical models. Unchanged UI recordings may be reused with their original version explicitly stated and matching page-source hashes.

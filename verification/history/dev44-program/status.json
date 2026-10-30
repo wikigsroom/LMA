@@ -1,0 +1,252 @@
+{
+  "schema": "lma.program-checkpoint/1",
+  "version": "0.3.0-dev.44",
+  "validation_mode": "program_only",
+  "sources": {
+    "build.json": {
+      "source": "dist/build-info.json",
+      "bytes": 85923,
+      "sha256": "0ba0d1287e70cd0bd73f05d0ed5258b8db912c3ec27d9751432056eccbbe4df0"
+    },
+    "package.json": {
+      "source": "build/package-verification.json",
+      "bytes": 15786,
+      "sha256": "745d31be29daf7429cbd3be1b6704f3c4ce399ecced88f3f90d7830134cc1a1c"
+    },
+    "foundation.json": {
+      "source": "build/foundation-tests/results.json",
+      "bytes": 9140,
+      "sha256": "5b8aec02350cc25c9792da5add65b44c0d0e78e785f958ca3750b2242dc1550e"
+    },
+    "backend.json": {
+      "source": "build/backend-tests/results.json",
+      "bytes": 24081,
+      "sha256": "d04eb8254b8bc3ad2a1208796848d407c9098b74a7e6671806c76bacecf2c6ec"
+    },
+    "bundle-pause.json": {
+      "source": "build/bundle-pause-tests/results.json",
+      "bytes": 7715,
+      "sha256": "1239414699e8cc7a82c8846268b04c1f91864a8cec49e3e41aa367aa433d7360"
+    },
+    "document-input.json": {
+      "source": "build/document-input-tests/results.json",
+      "bytes": 8106,
+      "sha256": "d338f78aaa63cb7a55bcaef3312e005fbe21da4b2e5a60ff0f068e0761fda026"
+    },
+    "api.json": {
+      "source": "build/api-tests/results.json",
+      "bytes": 11692,
+      "sha256": "d7e1f8123228c336bb7499e26d253b8a081f572213445ebb40aa3092526e233a"
+    },
+    "workbench.json": {
+      "source": "build/workbench-tests/results.json",
+      "bytes": 10195,
+      "sha256": "b86f871474c7b17020e8041f7cd3d56ef8b26149ff8adf3451c650cfca0d6367"
+    },
+    "recovery.json": {
+      "source": "build/recovery-tests/results.json",
+      "bytes": 11241,
+      "sha256": "ed489927c5a6f0d902cd4a954ed6d11806515d99ce98a86885c630c5825a6867"
+    },
+    "inputs.json": {
+      "source": "build/input-tests/results.json",
+      "bytes": 11916,
+      "sha256": "1ec5b34267476b1ecb0c09065205e84dce549d807db15971d2cc711a5639e224"
+    },
+    "text.json": {
+      "source": "build/text-tests/results.json",
+      "bytes": 8399,
+      "sha256": "c9bd6cc276d43a6c49addb9ad157dea7220f4bc8166657f2cb616df69eb2e7bb"
+    },
+    "migration.json": {
+      "source": "build/migration-tests/results.json",
+      "bytes": 15769,
+      "sha256": "0bb727d34220d16811b465c5cd39e180ed05672757e2b378a8e05195e056356a"
+    },
+    "scheduler.json": {
+      "source": "build/scheduler-tests/results.json",
+      "bytes": 16582,
+      "sha256": "17505a159858dafec35d76279ffdc7cd3e3f706605c0a3638f528d5d1f2eafc7"
+    },
+    "preparations.json": {
+      "source": "build/preparation-tests/results.json",
+      "bytes": 8039,
+      "sha256": "4c302fd913480e2802e2f6d4652726dfc788c8a3e9a69b05792bfa266757147f"
+    },
+    "assemblies.json": {
+      "source": "build/assembly-tests/results.json",
+      "bytes": 8141,
+      "sha256": "59611fdf6fd945d7a36e5f1fe10d1dade0a1b6b72915ef8286decab509b3d407"
+    },
+    "diffusion.json": {
+      "source": "build/diffusion-tests/results.json",
+      "bytes": 8916,
+      "sha256": "f699b31c330d321fdc9f6b488cfb5babe44d20f1855045d11e680141a694f71b"
+    },
+    "mnn.json": {
+      "source": "build/mnn-tests/results.json",
+      "bytes": 9250,
+      "sha256": "ccd705d2cf72adbe9b539ef37477a7d81028e8f3cb9cc1b8bf91f3a040cd4c0f"
+    },
+    "hub.json": {
+      "source": "build/hub-tests/results.json",
+      "bytes": 19524,
+      "sha256": "af3699a0bcef56ae058f6301413a78b05eed95557e6086b4c138910d1c8797f6"
+    },
+    "recipe-suggestions.json": {
+      "source": "build/recipe-suggestion-tests/results.json",
+      "bytes": 15291,
+      "sha256": "02981e85abcce48c08a134d495e65736168fa5e34914b25d531db12b9efb7a3c"
+    },
+    "speech-voices.json": {
+      "source": "build/speech-voice-tests/results.json",
+      "bytes": 9058,
+      "sha256": "e92217a4087c2880ff4a960228f897795c23baa1526e9fa2c3cba2f542ca1d7b"
+    },
+    "ui.json": {
+      "source": "build/ui-qa/results.json",
+      "bytes": 51402,
+      "sha256": "8665378f52e6e2a989860b5999d09efdb292374afb1a4d7ee9dfcd7d23d7c74d"
+    },
+    "lint.json": {
+      "source": "build/android-lint/results.json",
+      "bytes": 25225,
+      "sha256": "24907a466923253f6880b1caad30be0284fc9b1a328bec0d6eb1ee02afbeb31d"
+    }
+  },
+  "historical_ui_media": {
+    "workbench": {
+      "path": "docs/media/development/workbench/manifest.json",
+      "bytes": 17234,
+      "sha256": "f9866346fcbe8955f0f23ec5a3875fd3716ae0f4675376f3806564905ee4aef7"
+    },
+    "preflight": {
+      "path": "docs/media/development/preflight/manifest.json",
+      "bytes": 17048,
+      "sha256": "0a215f64cd53dec4e29e0753f2a6b46d101e67d6c0362eac2d2ad3d8bdf8e6fe"
+    },
+    "recovery": {
+      "path": "docs/media/development/recovery/manifest.json",
+      "bytes": 17457,
+      "sha256": "c1dd79fe2197dbc6dfc8b0e9bdc8b1cb466ac391cf93ad79178de47de53095bf"
+    },
+    "lcm": {
+      "path": "docs/media/development/lcm/manifest.json",
+      "bytes": 17002,
+      "sha256": "8afc4962a81d3bf8c81485e269f58fda57f591aa3a5686aaf4556eb0601acbec"
+    },
+    "audio": {
+      "path": "docs/media/development/audio/manifest.json",
+      "bytes": 16842,
+      "sha256": "788d56623f639992b8ae7e78a6415b0212834d52c84617230aec457f475d82bd"
+    },
+    "ltx": {
+      "path": "docs/media/development/ltx/manifest.json",
+      "bytes": 17686,
+      "sha256": "466b7d9f7aa6bb85bd5e82651dd8155916c716f4c172a098c50ff802b002d6a7"
+    },
+    "resources": {
+      "path": "docs/media/development/resources/manifest.json",
+      "bytes": 16670,
+      "sha256": "66f09ba8d389c68b5a873f5e4bb50af48688c097f5283e3047e60e1c50d62b68"
+    },
+    "curated": {
+      "path": "docs/media/development/curated/manifest.json",
+      "bytes": 22727,
+      "sha256": "7434dcf36dd91c86ac0d8127ca33c67efd35988d2eeb577c03b3f4c2b4545015"
+    },
+    "speech": {
+      "path": "docs/media/development/speech/manifest.json",
+      "bytes": 18140,
+      "sha256": "44f20bb2b90bf75ce931c1857cd73a0c5357dd184d96cdf174f91eafb2abf006"
+    },
+    "components": {
+      "path": "docs/media/development/components/manifest.json",
+      "bytes": 17960,
+      "sha256": "a55d3b00b81dd93f5beb7817756f7a8feabedcbaaa899f251116f5b1f628be93"
+    },
+    "wan": {
+      "path": "docs/media/development/wan/manifest.json",
+      "bytes": 16898,
+      "sha256": "1c2a704dec3547ab79f7eaec65cf7ca13a127668d3a941e2f1366d3f20cd189e"
+    },
+    "openmoss": {
+      "path": "docs/media/development/openmoss/manifest.json",
+      "bytes": 20056,
+      "sha256": "c3218e57e6f0f9d5b5e648abf702403a3ec4058a10a361f02d19699db9620526"
+    }
+  },
+  "historical_media_comparison": "unchanged_page_logic_only; original metadata/fixture/version retained",
+  "historical_ui_logic_paths": [
+    "app/src/main/assets/index.html",
+    "app/src/main/assets/app.css",
+    "app/src/main/assets/app.js",
+    "app/src/main/assets/foundation.css",
+    "app/src/main/assets/foundation.js",
+    "app/src/main/assets/audio-preview.js",
+    "app/src/main/assets/workbench.js",
+    "app/src/main/assets/recipes.js",
+    "app/src/main/assets/versions.js"
+  ],
+  "prior_checkpoint": {
+    "commit": "1c0f5d3735d31913069cce64625a101c85c3b8cb",
+    "version": "0.3.0-dev.43",
+    "path": "verification/development/status.json",
+    "bytes": 46253,
+    "sha256": "52f54ce2a541ca841619fafe7f23c9d8e8f8ff4527416b802b903020383dd2e9"
+  },
+  "policy": "docs/proposals/program-validation-policy.json",
+  "release_ready": false,
+  "full_scope_implementation_complete": false,
+  "known_implementation_gaps": [
+    {
+      "selection_id": "04",
+      "target": "Sana text-to-image",
+      "existing_variant_is_not_substitute": "Sana Edit"
+    },
+    {
+      "selection_id": "17",
+      "target": "original PixArt T5 / multiscale LTX 0.9.8",
+      "existing_variant_is_not_substitute": "Google T5 Q5 single-scale"
+    }
+  ],
+  "selected_ids": [
+    "01",
+    "02",
+    "03",
+    "04",
+    "05",
+    "06",
+    "07",
+    "08",
+    "09",
+    "10",
+    "11",
+    "12",
+    "13",
+    "14",
+    "16",
+    "17"
+  ],
+  "physical_device_tests": 0,
+  "phone_inference_tested": false,
+  "model_inference_tested": false,
+  "all_selected_models_tested": false,
+  "model_quality_accepted": false,
+  "background_endurance_tested": false,
+  "historical_model_results_are_current_apk_validation": false,
+  "model_asset_downloads_for_validation": 0,
+  "model_asset_copies_for_validation": 0,
+  "model_weights_in_apk": false,
+  "automatic_model_asset_downloads": false,
+  "browser_closed": true,
+  "virtualization_used": false,
+  "input_fingerprint": {
+    "app/build.gradle": "5aebd46c85a8171e592e0671535c1257fded7c863fe81af423e6558bcf6d6038",
+    "app/src/main/AndroidManifest.xml": "21a81b0c8f01bb1c3c8b3f4872a2081885d54afb6aa8024cafe79087e4143ce4",
+    "docs/proposals/multimodal-release-scope.json": "03326504d2d1b52c315bef574325f2c05d43c6a65eafc9779cc33120b7801690",
+    "docs/proposals/program-validation-policy.json": "0810f0ae684b894d40c92a8bff08e05f46ed320e8290b85edd63530eb9eae4c0",
+    "tools/check_repository.py": "8b352ce9001c14e30ff1a4c1ab89c89e829d32537041b57e734327930def66ff",
+    "tools/program_evidence.py": "81f93d9684db068f32729c7fb39a036fa2d242a478d6ad6fb86b87bcd8c76b5e"
+  }
+}

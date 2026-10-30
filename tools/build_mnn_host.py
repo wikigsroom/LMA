@@ -10,6 +10,7 @@ from build_mnn import generate_sources
 from evidence import current, fingerprint
 from fetch_mnn import validate_sources
 from fetch_mnn_trained import sha
+from sana_sprint_profile import sources as sprint_sources
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -17,7 +18,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def inputs():
     return fingerprint('native/mnn', 'tools/build_mnn.py', 'tools/build_mnn_host.py',
                        'tools/fetch_mnn.py', 'tools/fetch_mnn_trained.py',
-                       'research/sd_host/platform.hpp', 'third_party/mnn-source-lock.json')
+                       'research/sd_host/platform.hpp', 'third_party/mnn-source-lock.json', 'tools/sana_sprint_profile.py', 'third_party/moss-nano-source-lock.json')
 
 
 def build():
@@ -25,6 +26,7 @@ def build():
     before = inputs()
     lock = json.loads((ROOT / 'third_party/mnn-source-lock.json').read_text(encoding='utf-8'))
     source = validate_sources(lock)
+    sprint_sources()
     if sha(ROOT / 'build/native-src/sd-cpp/thirdparty/json.hpp') != lock['json_header_sha256']:
         raise ValueError('Pinned JSON header differs')
     key = hashlib.sha256(json.dumps(before, sort_keys=True).encode()).hexdigest()[:16]
@@ -64,6 +66,7 @@ def build():
                      '-DLMA_MNN_GENERATED=' + alias + relative + '/generated',
                      '-DLMA_MNN_HOST_COMPAT=' + alias + 'research/sd_host',
                      '-DLMA_JSON_SOURCE=' + alias + 'build/native-src/sd-cpp/thirdparty',
+                     '-DLMA_SENTENCEPIECE_SOURCE=' + alias + 'build/native-src/sentencepiece',
                      '-DLMA_MNN_REVISION=' + lock['revision']] + ['-D' + k + '=' + v for k, v in options.items()],
                     [cmake, '--build', alias + compile_relative, '--target', 'lma_mnn_worker', '-j', '4']]
         setup = os.environ.get('LMA_VCVARS', r'C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Auxiliary\Build\vcvars64.bat')

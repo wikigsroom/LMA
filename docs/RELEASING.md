@@ -1,6 +1,6 @@
 # 更新、同步与发布 / Updating and releasing
 
-**当前验收规则（2026-10-31）：[后续仅做程序验证](PROGRAM_VALIDATION.md) / [Program-only validation](PROGRAM_VALIDATION.en.md)。** 该用户指令覆盖本页下方历史要求中的完整模型、ASR、真机推理及耐久门槛；缺失功能仍需实现，不能改写成已支持。Current dev.44/code48 uses `python tools/export_development.py` and `python tools/check_repository.py --development`, exports fresh program records to `verification/program/`, retains historical model results, and does not run trained models. See [numbered delivery and full scope](releases/v0.3.0-dev.44.md). dev.44 不创建完整 v0.3.0 标签；当前原因是具体代码适配尚未完成，**不是**缺少完整模型运行验证或手机。
+**当前验收规则（2026-10-31）：[后续仅做程序验证](PROGRAM_VALIDATION.md) / [Program-only validation](PROGRAM_VALIDATION.en.md)。** 该用户指令覆盖本页下方历史要求中的完整模型、ASR、真机推理及耐久门槛；缺失功能仍需实现，不能改写成已支持。Current dev.45/code49 uses `python tools/export_development.py` and `python tools/check_repository.py --development`, exports fresh program records to `verification/program/`, retains historical model results, and does not run trained models. See [numbered delivery and full scope](releases/v0.3.0-dev.45.md). dev.45 不创建完整 v0.3.0 标签；当前原因是具体代码适配尚未完成，**不是**缺少完整模型运行验证或手机。
 
 下面各开发条目与原 v0.2.0 发布步骤保留历史语境。后续正式版本需以程序验收、完整代码覆盖、原签名、精确源码 / APK SHA、双语文档、媒体身份与更新说明发布，不恢复已取消的模型实跑门槛。
 

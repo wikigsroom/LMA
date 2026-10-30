@@ -1,18 +1,22 @@
 # LMA · Android 本地模型工作台
 
-> **当前：0.3.0-dev.44 / code48。后续仅做程序验证。** 按用户最新要求，不再执行耗时的完整模型推理、ASR 评分或长时间模型运行。保留历史失败与未测标记；程序适配缺口继续收口。
+> **当前：0.3.0-dev.45 / code49。后续仅做程序验证。** App 仅交付本机基座，模型由用户自主选择、下载、导入和管理。保持生文 / 生图 / 生视频 / 生音频平级标签、HF 全部 / 搜索与本地管理，推荐 m08 → m06 → m01 保留。
 
-[程序验证规则](docs/PROGRAM_VALIDATION.md) · [English](docs/PROGRAM_VALIDATION.en.md) · [本轮实现 / 完整待办](docs/releases/v0.3.0-dev.44.md) · [本地导入与取消](docs/MODEL_TRANSFERS.md)
+[English README](README.en.md) · [Sana-Sprint 方案与使用](docs/SANA_SPRINT.md) · [English guide](docs/SANA_SPRINT.en.md) · [本轮实现 / 完整待办](docs/releases/v0.3.0-dev.45.md) · [程序验证规则](docs/PROGRAM_VALIDATION.md)
 
-本轮修复文件仍在“打开中”时无法取消、从而阻塞下一项导入的问题。模型包、原有文本模型和媒体素材共用取消机制；通过 Android 文档取消信号处理等待打开，关闭已打开的输入，并拒绝取消后才返回的句柄。模型仍由用户自主选择 / 下载 / 导入 / 管理，APK 仅更新基座，推荐 m08→m06→m01 保留。
+本轮接入具名 **Sana-Sprint 0.6B MNN 文生图**：14 个固定组件由用户明确确认后下载，四段 Gemma2、SentencePiece、SCM 采样和 DC-AE 全部在同一手机执行。支持独立可编辑参数、超限归位、共享任务队列、取消与 PNG 结果；通用输入规则隐藏不支持的负面提示词。该配方固定 1024²、1–4 步，资产约 **6.29 GiB**，与 Sana Edit / 普通 Sana 不可互换，也不承诺 Z20 可运行。
 
-程序检查：基座 **701**、后端 **138**、模型包阻塞输入 **22**、Android 文件桥接逻辑 **15** 项通过；这些均不代表完整模型或 Android 真机推理。当前签名 APK 见[交付记录](docs/releases/v0.3.0-dev.44.md)，完整 v0.3.0 仍需补齐具体适配代码，不再要求重跑完整模型来通过程序验收。
+在「模型 → 全部 → 生图」选择并查看所需组件，点击下载；在「本地」管理下载、导入和此模型参数，完整安装后再点击使用、填写提示词并提交。本轮 **448 项** Sana 程序检查通过；另做基座、接口、资产生命周期、UI、Android 编译、包和原签名核对，详情见[交付记录](docs/releases/v0.3.0-dev.45.md)。没有运行完整模型、生成模型图片或验证手机性能；旧 LTX 官方 PixArt / 多尺度适配仍需完成。
 
-页面未改；[恢复管理截图 / GIF / MP4](docs/media/development/recovery/manifest.json)复用 dev.42 原始页面夹具并核对源码，当前页面另做回归。下面的模型输出与各开发版本条目均为**历史实测**，不是 dev.44 新运行结果；旧文档中的完整模型 / 真机发版门槛由[新规则](docs/PROGRAM_VALIDATION.md)覆盖。
+![dev.45 当前页面交互；明确模拟桥接，未运行模型](docs/media/development/sana/sana-ui.gif)
+
+[14 组件截图](docs/media/development/sana/01-sana-components.png) · [独立设置截图](docs/media/development/sana/02-sana-settings.png) · [任务截图](docs/media/development/sana/03-sana-task.png) · [队列截图](docs/media/development/sana/04-sana-queue.png) · [MP4 录屏](docs/media/development/sana/sana-ui.mp4) · [媒体身份](docs/media/development/sana/manifest.json)
+
+本轮录制当前实际页面与模拟安装 / 队列状态，浏览器已关闭。dev.44 程序证据[原字节归档](verification/history/dev44-program/status.json)，12 组 dev.42 页面媒体与下方模型输出均保持历史身份；不作为当前 APK 的模型 / 真机结果。完整模型、ASR、质量与长时间后台运行不再作为后续程序发版门槛；具体代码缺口仍需完成。取消导入的共用机制继续保留，见[本地导入与取消](docs/MODEL_TRANSFERS.md)。
 
 ---
 
-> **当前开发进展：0.3.0-dev.43 / code47。** 接通官方一致的 MOSS 提示与排空修正，以及参考编码临时缓存释放；提示 7/7、状态机 5/5、真实计算缓存 21 项检查通过。模型由用户自主选择、下载和管理，App 仅更新基座。完整权重、实际质量与 Android 验收分别留证，完整 v0.3.0 尚未验收。
+> **保留历史：0.3.0-dev.43 / code47。** 接通官方一致的 MOSS 提示与排空修正，以及参考编码临时缓存释放；提示 7/7、状态机 5/5、真实计算缓存 21 项检查通过。模型由用户自主选择、下载和管理，App 仅更新基座。完整权重、实际质量与 Android 验收分别留证，完整 v0.3.0 尚未验收。
 
 [修正方案与复现](docs/MOSS_DELAY_FIX.md) · [English](docs/MOSS_DELAY_FIX.en.md) · [本轮实现与完整待办](docs/releases/v0.3.0-dev.43.md) · [模型导入](docs/MODEL_TRANSFERS.md)
 

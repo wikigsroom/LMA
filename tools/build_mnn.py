@@ -8,6 +8,7 @@ import subprocess
 from evidence import fingerprint
 from fetch_mnn import validate_sources
 from verify_package import elf_info
+from sana_sprint_profile import sources as sprint_sources
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -41,10 +42,11 @@ def main():
     if os.name != 'nt': raise RuntimeError('Use native Windows NDK tools')
     lock = json.loads((ROOT / 'third_party/mnn-source-lock.json').read_text(encoding='utf-8'))
     source = validate_sources(lock)
+    sentencepiece = sprint_sources()
     if hashlib.sha256((ROOT / 'build/native-src/sd-cpp/thirdparty/json.hpp').read_bytes()).hexdigest() != lock['json_header_sha256']: raise RuntimeError('Pinned JSON header changed')
     generated = ROOT / 'build/mnn-generated'
     generate_sources(source, generated)
-    inputs = fingerprint('native/mnn', 'tools/build_mnn.py', 'tools/fetch_mnn.py', 'third_party/mnn-source-lock.json')
+    inputs = fingerprint('native/mnn', 'tools/build_mnn.py', 'tools/fetch_mnn.py', 'tools/sana_sprint_profile.py', 'third_party/mnn-source-lock.json', 'third_party/moss-nano-source-lock.json')
     # Reuse the existing cache's owned ASCII drive; never relocate a live CMake cache.
     cache = ROOT / 'build/mnn-arm64-cpu-r30/CMakeCache.txt'
     cached = next((line.split('=',1)[1][:2].upper() for line in cache.read_text(encoding='utf-8').splitlines() if line.startswith('CMAKE_CACHEFILE_DIR:INTERNAL=')), None) if cache.is_file() else None
@@ -57,7 +59,7 @@ def main():
         alias = drive+'/'; ndk=alias+'build/toolchain/android-ndk-r30'; cmake=alias+'build/toolchain/cmake-3.31.6/bin/cmake.exe'; output=alias+'build/mnn-arm64-cpu-r30'
         options = {'ANDROID_ABI':'arm64-v8a','ANDROID_PLATFORM':'android-28','ANDROID_STL':'c++_static','CMAKE_BUILD_TYPE':'Release','MNN_BUILD_SHARED_LIBS':'OFF','MNN_SEP_BUILD':'OFF','MNN_BUILD_LLM':'ON','MNN_BUILD_LLM_OMNI':'OFF','MNN_BUILD_DIFFUSION':'ON','MNN_IMGCODECS':'ON','MNN_ARM82':'OFF','MNN_OPENMP':'OFF','MNN_OPENCL':'OFF','MNN_VULKAN':'OFF','MNN_BUILD_AUDIO':'OFF','MNN_BUILD_TRAIN':'OFF','MNN_BUILD_TEST':'OFF','MNN_BUILD_CONVERTER':'OFF','MNN_BUILD_BENCHMARK':'OFF','MNN_LLM_BUILD_DEMO':'OFF','LLM_SUPPORT_HTTP_RESOURCE':'OFF','MNN_USE_LOGCAT':'OFF','MNN_BUILD_FOR_ANDROID_COMMAND':'ON'}
         commands = [[cmake,'-S',alias+'build/native-src/mnn','-B',output,'-G','Ninja','-DCMAKE_MAKE_PROGRAM='+alias+'build/toolchain/cmake-3.31.6/bin/ninja.exe','-DCMAKE_TOOLCHAIN_FILE='+ndk+'/build/cmake/android.toolchain.cmake',
-            '-DCMAKE_PROJECT_INCLUDE='+alias+'native/mnn/bootstrap.cmake','-DLMA_MNN_SOURCE='+alias+'build/native-src/mnn','-DLMA_MNN_INTEGRATION='+alias+'native/mnn','-DLMA_MNN_GENERATED='+alias+'build/mnn-generated','-DLMA_JSON_SOURCE='+alias+'build/native-src/sd-cpp/thirdparty','-DLMA_MNN_REVISION='+lock['revision']] + ['-D'+k+'='+v for k,v in options.items()],
+            '-DCMAKE_PROJECT_INCLUDE='+alias+'native/mnn/bootstrap.cmake','-DLMA_MNN_SOURCE='+alias+'build/native-src/mnn','-DLMA_MNN_INTEGRATION='+alias+'native/mnn','-DLMA_MNN_GENERATED='+alias+'build/mnn-generated','-DLMA_JSON_SOURCE='+alias+'build/native-src/sd-cpp/thirdparty','-DLMA_SENTENCEPIECE_SOURCE='+alias+'build/native-src/sentencepiece','-DLMA_MNN_REVISION='+lock['revision']] + ['-D'+k+'='+v for k,v in options.items()],
             [cmake,'--build',output,'--target','lma_mnn_worker','-j','4'],[ndk+'/toolchains/llvm/prebuilt/windows-x86_64/bin/llvm-strip.exe','--strip-unneeded',output+'/liblma-mnn.so']]
         for command in commands:
             result = subprocess.run(command, cwd=alias, capture_output=True)
@@ -75,6 +77,7 @@ def main():
     shutil.copy2(binary,ROOT/'app/src/main/jniLibs/arm64-v8a/liblma-mnn.so')
     receipt=dict(schema='lma.native-build/1',engine='mnn_diffusion',file=binary.name,source_revision=lock['revision'],abi='arm64-v8a',backend='cpu',ndk='30.0.16248370',min_sdk=28,bytes=len(data),sha256=hashlib.sha256(data).hexdigest(),elf_load_alignment=info['load_segment_alignment'],android_api_notes=[28],source_inputs=inputs,
         generated_sources=fingerprint('build/mnn-generated'),vocabularies='external_user_selected_components',model_inference_tested=False,physical_device_tests=0,virtualization_used=False,http_resources_compiled=False,logcat_compiled=False)
+    receipt['static_dependencies'] = {sentencepiece['name']: sentencepiece['revision']}
     (ROOT/'build/mnn-build-info.json').write_text(json.dumps(receipt,indent=2)+'\n',encoding='utf-8')
     print(json.dumps({k:receipt[k] for k in ('engine','bytes','sha256','source_revision')}))
 

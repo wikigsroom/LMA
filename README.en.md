@@ -1,18 +1,22 @@
-# LMA · Local models on Android
+# LMA · Local model workbench for Android
 
-> **Current: 0.3.0-dev.44 / code48. Subsequent validation is program-only.** At the user's request, do not repeat complete-model inference, ASR scoring or long model runs. Keep original failures and untested claims explicit; continue closing implementation gaps.
+> **Current: 0.3.0-dev.45 / code49. Program-only validation.** App updates deliver the local foundation; users select, download, import and manage model assets. Text/image/video/audio remain equal peers with capability/dependency tags, HF All/search and Local management. Recommended stays m08 → m06 → m01.
 
-[Validation policy](docs/PROGRAM_VALIDATION.en.md) · [中文](docs/PROGRAM_VALIDATION.md) · [Numbered changes / complete pending scope](docs/releases/v0.3.0-dev.44.md) · [Local imports and cancellation](docs/MODEL_TRANSFERS.en.md)
+[中文 README](README.md) · [Sana-Sprint implementation and use](docs/SANA_SPRINT.en.md) · [中文方案](docs/SANA_SPRINT.md) · [Numbered delivery / complete pending scope](docs/releases/v0.3.0-dev.45.md) · [Validation policy](docs/PROGRAM_VALIDATION.en.md)
 
-Fix cancellation while a selected document is still opening, which previously stalled the next import. Model bundles, legacy text models and media imports share input ownership: signal pending Android document opens, close readable inputs and reject late descriptors. Users still choose/download/import/manage model assets; the APK updates the foundation. Recommended stays m08→m06→m01.
+This update adds a named **Sana-Sprint 0.6B MNN text-to-image** adapter: fourteen pinned components download only after explicit user confirmation. Four Gemma2 chunks, SentencePiece, SCM sampling and DC-AE execute on the same phone. It uses editable per-model bounds, the shared queue, cancellation and PNG artifacts; engine-owned input rules hide unsupported negatives. The matched profile uses 1024² and 1–4 steps, with about **6.29 GiB** of assets. It is separate from Sana Edit/ordinary Sana, with no nubia Z20 runnability claim.
 
-Program checks pass: **701** foundation, **138** backend, **22** blocked bundle-input and **15** Android document-bridge logic assertions. These are not complete-model or physical Android inference results. See the [signed APK delivery](docs/releases/v0.3.0-dev.44.md). Complete v0.3.0 still needs specific missing adapter code; program acceptance no longer requires repeated complete-model execution.
+Choose **Models → All → Image**, review components and explicitly download. Use Local to manage transfers/imports and this model's parameters. After installation, choose Use, enter a prompt and submit. **448 Sana program checks** pass, alongside foundation/API/lifecycle/UI checks, Android compilation, packaging and original-signature audits detailed in the [delivery record](docs/releases/v0.3.0-dev.45.md). No complete model, generated model image or phone performance test ran. Original PixArt/multiscale LTX implementation remains open.
 
-No page changes: [recovery screenshots/GIF/MP4](docs/media/development/recovery/manifest.json) retain their original dev.42 fixture identity with matching UI source hashes; current pages are checked separately. Model outputs and development entries below are **historical**, not fresh dev.44 executions. The [new policy](docs/PROGRAM_VALIDATION.en.md) supersedes older complete-model/device publication gates.
+![dev.45 current-page interaction; simulated bridge, no model execution](docs/media/development/sana/sana-ui.gif)
+
+[Fourteen components](docs/media/development/sana/01-sana-components.png) · [Per-model settings](docs/media/development/sana/02-sana-settings.png) · [Task form](docs/media/development/sana/03-sana-task.png) · [Queue](docs/media/development/sana/04-sana-queue.png) · [MP4 recording](docs/media/development/sana/sana-ui.mp4) · [Media identity](docs/media/development/sana/manifest.json)
+
+Fresh media records actual current pages with simulated installation/queue state, and its browser is closed. dev.44 program records are [archived byte-for-byte](verification/history/dev44-program/status.json). Twelve dev.42 UI recordings and model outputs below retain their historical identity, not current-APK model/device evidence. Subsequent program publication no longer requires complete-model, ASR, quality or background-endurance runs; missing code still needs implementation. Shared cancellable imports remain available; see [transfer behavior](docs/MODEL_TRANSFERS.en.md).
 
 ---
 
-> **Current development: 0.3.0-dev.43 / code47.** Integrate official MOSS prompt/delayed-state corrections and reference-encoder scratch release: 7/7 prompt grids, 5/5 state cases and 21 real allocator checks pass. Users control model selection, downloads and management; App updates deliver the foundation. Trained output, quality and Android acceptance remain separate; complete v0.3.0 acceptance is pending.
+> **Historical: 0.3.0-dev.43 / code47.** Integrate official MOSS prompt/delayed-state corrections and reference-encoder scratch release: 7/7 prompt grids, 5/5 state cases and 21 real allocator checks pass. Users control model selection, downloads and management; App updates deliver the foundation. Trained output, quality and Android acceptance remain separate; complete v0.3.0 acceptance is pending.
 
 [Corrections and reproduction](docs/MOSS_DELAY_FIX.en.md) · [中文](docs/MOSS_DELAY_FIX.md) · [Implemented work and full pending scope](docs/releases/v0.3.0-dev.43.md) · [Model imports](docs/MODEL_TRANSFERS.en.md)
 

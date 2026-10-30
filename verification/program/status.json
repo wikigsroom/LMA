@@ -1,117 +1,127 @@
 {
   "schema": "lma.program-checkpoint/1",
-  "version": "0.3.0-dev.44",
+  "version": "0.3.0-dev.45",
   "validation_mode": "program_only",
   "sources": {
     "build.json": {
       "source": "dist/build-info.json",
-      "bytes": 85923,
-      "sha256": "0ba0d1287e70cd0bd73f05d0ed5258b8db912c3ec27d9751432056eccbbe4df0"
+      "bytes": 86932,
+      "sha256": "9d23d83b4f6dd7b3147008bd2d6236e1582cc4cc6ce705fcc8d87cd4b1838262"
     },
     "package.json": {
       "source": "build/package-verification.json",
       "bytes": 15786,
-      "sha256": "745d31be29daf7429cbd3be1b6704f3c4ce399ecced88f3f90d7830134cc1a1c"
+      "sha256": "dac826a472e2e37b24ecfa54e3895926a240e09750a38c3381a15ae210b62637"
     },
     "foundation.json": {
       "source": "build/foundation-tests/results.json",
-      "bytes": 9140,
-      "sha256": "5b8aec02350cc25c9792da5add65b44c0d0e78e785f958ca3750b2242dc1550e"
+      "bytes": 9271,
+      "sha256": "7dc472874fd46aafe53cafc8316aca1b7352a1734579412cae3ff81dac2823bf"
     },
     "backend.json": {
       "source": "build/backend-tests/results.json",
-      "bytes": 24081,
-      "sha256": "d04eb8254b8bc3ad2a1208796848d407c9098b74a7e6671806c76bacecf2c6ec"
+      "bytes": 24212,
+      "sha256": "6baf5b188d949552a11508d744047456fecfd2a03dacba800a090c022a79498e"
     },
     "bundle-pause.json": {
       "source": "build/bundle-pause-tests/results.json",
-      "bytes": 7715,
-      "sha256": "1239414699e8cc7a82c8846268b04c1f91864a8cec49e3e41aa367aa433d7360"
+      "bytes": 7846,
+      "sha256": "57beb6b4ffb970af660dec4853bde5b3d9fdb3ff37bee1b308242e4203c69da0"
     },
     "document-input.json": {
       "source": "build/document-input-tests/results.json",
-      "bytes": 8106,
-      "sha256": "d338f78aaa63cb7a55bcaef3312e005fbe21da4b2e5a60ff0f068e0761fda026"
+      "bytes": 8237,
+      "sha256": "4178e614500366b9df87ea3e99ed4a04a346b97d32a8e12a79a402da9530ed27"
     },
     "api.json": {
       "source": "build/api-tests/results.json",
-      "bytes": 11692,
-      "sha256": "d7e1f8123228c336bb7499e26d253b8a081f572213445ebb40aa3092526e233a"
+      "bytes": 11823,
+      "sha256": "d6d910eed81711b5e229111d1cadcb3d5a23acdbf613c5154aab09e31a6cd16f"
     },
     "workbench.json": {
       "source": "build/workbench-tests/results.json",
-      "bytes": 10195,
-      "sha256": "b86f871474c7b17020e8041f7cd3d56ef8b26149ff8adf3451c650cfca0d6367"
+      "bytes": 10326,
+      "sha256": "d9eee9047deae5cd398e0d04791ce4ea196278896557d57c006edd12f48055c8"
     },
     "recovery.json": {
       "source": "build/recovery-tests/results.json",
-      "bytes": 11241,
-      "sha256": "ed489927c5a6f0d902cd4a954ed6d11806515d99ce98a86885c630c5825a6867"
+      "bytes": 11372,
+      "sha256": "1fc19575b46eaa532214915b44ba3f1ca1ce858109dbfd89b37d398d2043ffaf"
     },
     "inputs.json": {
       "source": "build/input-tests/results.json",
-      "bytes": 11916,
-      "sha256": "1ec5b34267476b1ecb0c09065205e84dce549d807db15971d2cc711a5639e224"
+      "bytes": 12047,
+      "sha256": "45b262c1d365f7d9ae3c65b1efb707019d231575aa59d42be6cfb11c9697232b"
     },
     "text.json": {
       "source": "build/text-tests/results.json",
-      "bytes": 8399,
-      "sha256": "c9bd6cc276d43a6c49addb9ad157dea7220f4bc8166657f2cb616df69eb2e7bb"
+      "bytes": 8530,
+      "sha256": "d1ffc557d4d792bc88d586ec52ff05f16ba9a7bc6281761b741dc400dd894617"
     },
     "migration.json": {
       "source": "build/migration-tests/results.json",
-      "bytes": 15769,
-      "sha256": "0bb727d34220d16811b465c5cd39e180ed05672757e2b378a8e05195e056356a"
+      "bytes": 15900,
+      "sha256": "b6af24a13212efd2101077dfafaf9b5c2f2878d746c0525f246218fc0ba64edc"
     },
     "scheduler.json": {
       "source": "build/scheduler-tests/results.json",
-      "bytes": 16582,
-      "sha256": "17505a159858dafec35d76279ffdc7cd3e3f706605c0a3638f528d5d1f2eafc7"
+      "bytes": 16713,
+      "sha256": "bd9adf32dc81323c1df65d168995743fb04a8526954cc88595025c0b19252664"
     },
     "preparations.json": {
       "source": "build/preparation-tests/results.json",
-      "bytes": 8039,
-      "sha256": "4c302fd913480e2802e2f6d4652726dfc788c8a3e9a69b05792bfa266757147f"
+      "bytes": 8171,
+      "sha256": "7a6eff7d01c8bea414757cd48e4541ddad9d34b081110a4e99202beea5da466c"
     },
     "assemblies.json": {
       "source": "build/assembly-tests/results.json",
-      "bytes": 8141,
-      "sha256": "59611fdf6fd945d7a36e5f1fe10d1dade0a1b6b72915ef8286decab509b3d407"
+      "bytes": 8272,
+      "sha256": "ed365da34eb6a567563ea75fff7ef3807f86bb177cb894ab9bc62d45e6ce541f"
     },
     "diffusion.json": {
       "source": "build/diffusion-tests/results.json",
-      "bytes": 8916,
-      "sha256": "f699b31c330d321fdc9f6b488cfb5babe44d20f1855045d11e680141a694f71b"
+      "bytes": 9047,
+      "sha256": "c42de63b5c9e38415377d6d10329fcb3788160c15cd6e502c1a287b87050bdc0"
     },
     "mnn.json": {
       "source": "build/mnn-tests/results.json",
-      "bytes": 9250,
-      "sha256": "ccd705d2cf72adbe9b539ef37477a7d81028e8f3cb9cc1b8bf91f3a040cd4c0f"
+      "bytes": 9815,
+      "sha256": "ad7ea75630dee9086ca560f7fd2ec26bfa5ff52c29999dd7b2cdd26d0d84e511"
+    },
+    "sana-sprint.json": {
+      "source": "build/sana-sprint-tests/results.json",
+      "bytes": 10274,
+      "sha256": "00315601298c1264ae322ab7bdced81d0c158023dbb7523c3de02e6339dd79f6"
+    },
+    "mnn-android.json": {
+      "source": "build/mnn-build-info.json",
+      "bytes": 2272,
+      "sha256": "c326d3314d3b4bb42ec811eb0c87eb884ec67b4ae4882a2edcd4942ccc520e8a"
     },
     "hub.json": {
       "source": "build/hub-tests/results.json",
-      "bytes": 19524,
-      "sha256": "af3699a0bcef56ae058f6301413a78b05eed95557e6086b4c138910d1c8797f6"
+      "bytes": 19667,
+      "sha256": "b98eaec61228fc9fa6ae6e8fb982d86f7a9482b43b10980aaf90b117ac1d0207"
     },
     "recipe-suggestions.json": {
       "source": "build/recipe-suggestion-tests/results.json",
-      "bytes": 15291,
-      "sha256": "02981e85abcce48c08a134d495e65736168fa5e34914b25d531db12b9efb7a3c"
+      "bytes": 15422,
+      "sha256": "c3a5a7f20336f45f0b1f76277b8c8b81652e16a8160babe40c70b77a76677a8a"
     },
     "speech-voices.json": {
       "source": "build/speech-voice-tests/results.json",
-      "bytes": 9058,
-      "sha256": "e92217a4087c2880ff4a960228f897795c23baa1526e9fa2c3cba2f542ca1d7b"
+      "bytes": 9189,
+      "sha256": "5756a2d79426ec71c5be895c4d40a35df767d64e56d6519e77f2a59b0aea0a46"
     },
     "ui.json": {
       "source": "build/ui-qa/results.json",
-      "bytes": 51402,
-      "sha256": "8665378f52e6e2a989860b5999d09efdb292374afb1a4d7ee9dfcd7d23d7c74d"
+      "bytes": 52732,
+      "sha256": "2cb90cd9e30e76fe2c3ac8407655198a05528d799a659dc8a3f18f7512f41c55"
     },
     "lint.json": {
       "source": "build/android-lint/results.json",
-      "bytes": 25225,
-      "sha256": "24907a466923253f6880b1caad30be0284fc9b1a328bec0d6eb1ee02afbeb31d"
+      "bytes": 25356,
+      "sha256": "400653a2606efecf2938bd5f11671da4465d2f39b1974735d95bfa338e2fa5c8"
     }
   },
   "historical_ui_media": {
@@ -176,34 +186,25 @@
       "sha256": "c3218e57e6f0f9d5b5e648abf702403a3ec4058a10a361f02d19699db9620526"
     }
   },
-  "historical_media_comparison": "unchanged_page_logic_only; original metadata/fixture/version retained",
-  "historical_ui_logic_paths": [
-    "app/src/main/assets/index.html",
-    "app/src/main/assets/app.css",
-    "app/src/main/assets/app.js",
-    "app/src/main/assets/foundation.css",
-    "app/src/main/assets/foundation.js",
-    "app/src/main/assets/audio-preview.js",
-    "app/src/main/assets/workbench.js",
-    "app/src/main/assets/recipes.js",
-    "app/src/main/assets/versions.js"
-  ],
+  "historical_media_comparison": "historical_identity_only; not current page or APK validation",
+  "current_ui_media": {
+    "sana": {
+      "path": "docs/media/development/sana/manifest.json",
+      "bytes": 17818,
+      "sha256": "d0e6de2dd399d5b72efa2e58383210c37a8843f001d52a6fb852d831d576cc84"
+    }
+  },
   "prior_checkpoint": {
-    "commit": "1c0f5d3735d31913069cce64625a101c85c3b8cb",
-    "version": "0.3.0-dev.43",
-    "path": "verification/development/status.json",
-    "bytes": 46253,
-    "sha256": "52f54ce2a541ca841619fafe7f23c9d8e8f8ff4527416b802b903020383dd2e9"
+    "commit": "2db629653453f2c0ec7d23112043a770d1d01d17",
+    "version": "0.3.0-dev.44",
+    "path": "verification/history/dev44-program/status.json",
+    "bytes": 9407,
+    "sha256": "c86f85208e824d67994949d54b578c2d1bb1ba7e9f1c8b8e3da56f6fa5dd7775"
   },
   "policy": "docs/proposals/program-validation-policy.json",
   "release_ready": false,
   "full_scope_implementation_complete": false,
   "known_implementation_gaps": [
-    {
-      "selection_id": "04",
-      "target": "Sana text-to-image",
-      "existing_variant_is_not_substitute": "Sana Edit"
-    },
     {
       "selection_id": "17",
       "target": "original PixArt T5 / multiscale LTX 0.9.8",
@@ -235,18 +236,21 @@
   "model_quality_accepted": false,
   "background_endurance_tested": false,
   "historical_model_results_are_current_apk_validation": false,
-  "model_asset_downloads_for_validation": 0,
-  "model_asset_copies_for_validation": 0,
+  "complete_model_downloads_for_validation": 0,
+  "complete_model_copies_for_validation": 0,
+  "small_program_metadata_fetched": true,
+  "metadata_audit": "catalogue/sana-sprint-evidence.json",
+  "sana_text_to_image_variant": "matched Sana-Sprint 0.6B MNN; program adapter, not device or image-quality evidence",
   "model_weights_in_apk": false,
   "automatic_model_asset_downloads": false,
   "browser_closed": true,
   "virtualization_used": false,
   "input_fingerprint": {
-    "app/build.gradle": "5aebd46c85a8171e592e0671535c1257fded7c863fe81af423e6558bcf6d6038",
-    "app/src/main/AndroidManifest.xml": "21a81b0c8f01bb1c3c8b3f4872a2081885d54afb6aa8024cafe79087e4143ce4",
+    "app/build.gradle": "36ee62a1ae1659384d27adcba39c20df1a6b9cf44335aa4668615d625409c84d",
+    "app/src/main/AndroidManifest.xml": "5b5e68866cef205a41e16744c80fd2108c5fcd37775647d415f6d939bdf11bfb",
     "docs/proposals/multimodal-release-scope.json": "03326504d2d1b52c315bef574325f2c05d43c6a65eafc9779cc33120b7801690",
     "docs/proposals/program-validation-policy.json": "0810f0ae684b894d40c92a8bff08e05f46ed320e8290b85edd63530eb9eae4c0",
-    "tools/check_repository.py": "8b352ce9001c14e30ff1a4c1ab89c89e829d32537041b57e734327930def66ff",
-    "tools/program_evidence.py": "81f93d9684db068f32729c7fb39a036fa2d242a478d6ad6fb86b87bcd8c76b5e"
+    "tools/check_repository.py": "c4ffb48ec59ee907d9e92208458ac24bb2319c16821c6c017fc2cdcc97ba7182",
+    "tools/program_evidence.py": "905ca83234492802efb473f1624456a1b482730cdc368112f6916500ca7c6097"
   }
 }

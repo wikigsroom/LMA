@@ -7,6 +7,25 @@
   function draft(id) { return (ui.state().taskDrafts || []).find(function (d) { return d.bundleId === id; }); }
   function generation(type) { return ['text.generate', 'image.generate', 'video.generate', 'speech.synthesize', 'audio.generate'].indexOf(type) >= 0; }
   function artifact(id) { return (ui.state().artifacts || []).find(function (a) { return a.id === id; }); }
+  // Engine-owned input rules apply equally to any model using this capability.
+  function applyInputConstraints(id) {
+    var form = document.getElementById('localTaskForm'), b = host.find(id);
+    if (!form || !b) return;
+    function apply() {
+      var type = form.elements.taskType && form.elements.taskType.value, schema = (b.inputSchemas || {})[type] || {};
+      var negative = form.elements.negativePrompt;
+      if (!negative) return;
+      var label = negative.closest('label');
+      if (schema.negativePrompt === false) {
+        if (!negative.dataset.inputConstraint) { negative.dataset.inputConstraint = 'true'; negative.dataset.previousDisabled = String(negative.disabled); if (label) negative.dataset.previousHidden = String(label.hidden); }
+        negative.value = ''; negative.disabled = true; if (label) label.hidden = true;
+      } else if (negative.dataset.inputConstraint) {
+        negative.disabled = negative.dataset.previousDisabled === 'true'; if (label) label.hidden = negative.dataset.previousHidden === 'true'; delete negative.dataset.inputConstraint;
+      }
+    }
+    apply(); form.addEventListener('change', apply);
+  }
+  function use(id, adapter, request, revision) { host.use(id, adapter, request, revision); applyInputConstraints(id); }
   var limitMessage = '本次输出已达到所选上限，内容可能不完整。可调整此模型的输出上限后再次生成。';
   function limitedOutput(data) {
     var details = ((((data || {}).provenance || {}).engineExecution || {}).details || {});
@@ -116,6 +135,10 @@
     handle: function (action, el) {
       if (window.LMAAudioPreview.handle(action, el)) return true;
       var id = el.dataset.id;
+      if (action === 'bundleUse') {
+        var selected = host.find(id);
+        if (selected && Object.keys(selected.inputSchemas || {}).some(function (type) { return selected.inputSchemas[type].negativePrompt === false; })) { use(id); return true; }
+      }
       if (action === 'planTaskHistory') { planHistory(); return true; }
       if (action === 'clearTaskHistory') {
         var form = document.getElementById('clearTaskHistoryForm'); if (!historyPlan || !form || historyPending) return true;
@@ -125,20 +148,20 @@
         }, function (error) { historyPending = null; renderStatus(); var hint = document.getElementById('historyCleanupHint'); if (hint) { hint.textContent = error + '。请重新检查清理范围。'; form.elements.confirmHistory.checked = false; } });
         renderStatus(); return true;
       }
-      if (action === 'restoreTaskDraft') { host.track('inspectTaskDraft', {id: id}, function (data) { host.use(data.request.bundleId, null, data.request, data.revision); }); return true; }
+      if (action === 'restoreTaskDraft') { host.track('inspectTaskDraft', {id: id}, function (data) { use(data.request.bundleId, null, data.request, data.revision); }); return true; }
       if (action === 'removeTaskDraft') {
         var current = draft(id); if (!current) return true;
         ui.openModal('删除生成草稿？', '<p>模型设置、已提交任务与产物均独立保存。</p><div class="modal-actions">' + button('closeModal', '', '取消') + '<button class="button danger" data-action="deleteTaskDraft" data-id="' + e(id) + '" data-revision="' + current.revision + '">删除草稿</button></div>', 'confirm'); return true;
       }
       if (action === 'deleteTaskDraft') { host.track(action, {id: id, expectedRevision: Number(el.dataset.revision)}, function () { ui.closeModal(); ui.toast('草稿已删除'); }); return true; }
-      if (action === 'editTask' || action === 'editArtifact') { host.track(action, {id: id}, function (request) { host.use(request.bundleId, null, request); }); return true; }
+      if (action === 'editTask' || action === 'editArtifact') { host.track(action, {id: id}, function (request) { use(request.bundleId, null, request); }); return true; }
       if (action === 'artifactInfo') { host.track('inspectArtifact', {id: id}, function (a) { showOutputArtifact(id, a); }); return true; }
       if (action === 'jobResults') { var job = (ui.state().jobs || []).find(function (j) { return j.id === id; }); if (job && (job.artifacts || []).length === 1) host.track('inspectArtifact', {id: job.artifacts[0]}, function (a) { showOutputArtifact(a.id, a); }); else host.track('inspectTask', {id: id}, showJob); return true; }
       if (action === 'artifactInput') { reference(id); return true; }
       if (action === 'useArtifactInput') {
         var a = artifact(id), b = host.find(el.dataset.bundle), schema = b && (b.inputSchemas || {})[el.dataset.type], rule = schema && (schema.roles || {})[el.dataset.role];
         if (!a || !b || !rule || !host.inputRuleMatch(a, rule)) { ui.toast('素材或配方已改变，请重新选择'); return true; }
-        host.use(b.id, null, {bundleId: b.id, type: el.dataset.type, input: {prompt: '', artifacts: [{role: el.dataset.role, artifactId: id}]}}); return true;
+        use(b.id, null, {bundleId: b.id, type: el.dataset.type, input: {prompt: '', artifacts: [{role: el.dataset.role, artifactId: id}]}}); return true;
       }
       return false;
     }

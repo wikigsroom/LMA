@@ -1207,6 +1207,137 @@
           "source": "https://huggingface.co/api/models/ilintar/moss-tts-gguf/66bc8249cc3bae20547d312123f502332158c1d0?blobs=true"
         }
       ]
+    },
+    {
+      "bundleId": "sana_sprint_06b_mnn_rc7b846e",
+      "components": [
+        {
+          "kind": "hf_lfs",
+          "role": "diffusion",
+          "path": "dit.mnn",
+          "repository": "simota1987/Sana_Sprint",
+          "revision": "c7b846e1cec3ec9ec7ae456cf7d3ceb36742d656",
+          "bytes": 1490256,
+          "sha256": "8c08f432ca41383e4ea49a4ddb3c7f0b0deb1bc065c0cbb435d6b7e6ef0c3f12"
+        },
+        {
+          "kind": "hf_lfs",
+          "role": "diffusion_data",
+          "path": "dit.mnn.weight",
+          "repository": "simota1987/Sana_Sprint",
+          "revision": "c7b846e1cec3ec9ec7ae456cf7d3ceb36742d656",
+          "bytes": 1189430912,
+          "sha256": "751ad7297729023a17d2bceedd8b2adffc4d026c5c2a4608444a23d4f0fbade5"
+        },
+        {
+          "kind": "hf_lfs",
+          "role": "gemma0",
+          "path": "gemma/gemma_chunk0.mnn",
+          "repository": "simota1987/Sana_Sprint",
+          "revision": "c7b846e1cec3ec9ec7ae456cf7d3ceb36742d656",
+          "bytes": 631304,
+          "sha256": "a3a6f54506b93cc9228103d7ce05622b006fbcb2a03e1e002336da7c89d58034"
+        },
+        {
+          "kind": "hf_lfs",
+          "role": "gemma0_data",
+          "path": "gemma/gemma_chunk0.mnn.weight",
+          "repository": "simota1987/Sana_Sprint",
+          "revision": "c7b846e1cec3ec9ec7ae456cf7d3ceb36742d656",
+          "bytes": 936398992,
+          "sha256": "7b6956e59d1a10bfaf08d36c47fa8fddb407308dfb06439667341a2fbf9c7f96"
+        },
+        {
+          "kind": "hf_lfs",
+          "role": "gemma1",
+          "path": "gemma/gemma_chunk1.mnn",
+          "repository": "simota1987/Sana_Sprint",
+          "revision": "c7b846e1cec3ec9ec7ae456cf7d3ceb36742d656",
+          "bytes": 649152,
+          "sha256": "b241d2edd7f8809503faa19cec1b9c0db2b38e4aad0562a82f77e6909de3130c"
+        },
+        {
+          "kind": "hf_lfs",
+          "role": "gemma1_data",
+          "path": "gemma/gemma_chunk1.mnn.weight",
+          "repository": "simota1987/Sana_Sprint",
+          "revision": "c7b846e1cec3ec9ec7ae456cf7d3ceb36742d656",
+          "bytes": 1092294800,
+          "sha256": "6e7456420c136a9b2075b40efada93a9787f8ec57c56ab309fb44823b7f9b42f"
+        },
+        {
+          "kind": "hf_lfs",
+          "role": "gemma2",
+          "path": "gemma/gemma_chunk2.mnn",
+          "repository": "simota1987/Sana_Sprint",
+          "revision": "c7b846e1cec3ec9ec7ae456cf7d3ceb36742d656",
+          "bytes": 631120,
+          "sha256": "8dd381c57a8362b0bdfcbf1015e37f1f071d27af74c8bd8d43a57d59f1f78d17"
+        },
+        {
+          "kind": "hf_lfs",
+          "role": "gemma2_data",
+          "path": "gemma/gemma_chunk2.mnn.weight",
+          "repository": "simota1987/Sana_Sprint",
+          "revision": "c7b846e1cec3ec9ec7ae456cf7d3ceb36742d656",
+          "bytes": 936398992,
+          "sha256": "7e96704972cdd24866232184b2f786181f68e7eb0956d2f9c37f7cb02ff52a3b"
+        },
+        {
+          "kind": "hf_lfs",
+          "role": "gemma3",
+          "path": "gemma/gemma_chunk3.mnn",
+          "repository": "simota1987/Sana_Sprint",
+          "revision": "c7b846e1cec3ec9ec7ae456cf7d3ceb36742d656",
+          "bytes": 649208,
+          "sha256": "1bdd3a2301baf9cb925e0622554f775f0803ad34eeb97f4942a5590585d393db"
+        },
+        {
+          "kind": "hf_lfs",
+          "role": "gemma3_data",
+          "path": "gemma/gemma_chunk3.mnn.weight",
+          "repository": "simota1987/Sana_Sprint",
+          "revision": "c7b846e1cec3ec9ec7ae456cf7d3ceb36742d656",
+          "bytes": 1092313232,
+          "sha256": "e9ff0cb93909a103effd934af0ab81ad390299cd16d54dcce6c46458ec094119"
+        },
+        {
+          "kind": "hf_lfs",
+          "role": "embeddings",
+          "path": "gemma/token_emb.bin",
+          "repository": "simota1987/Sana_Sprint",
+          "revision": "c7b846e1cec3ec9ec7ae456cf7d3ceb36742d656",
+          "bytes": 1179648000,
+          "sha256": "64a9d30707e659e2e673656d71f5aef7a9fb9fd83bb9a77558dfc5abbe218a05"
+        },
+        {
+          "kind": "downloaded_small_data",
+          "role": "encoder_config",
+          "path": "gemma/gemma_meta.json",
+          "repository": "simota1987/Sana_Sprint",
+          "revision": "c7b846e1cec3ec9ec7ae456cf7d3ceb36742d656",
+          "bytes": 122,
+          "sha256": "443666ef0061ece40dedbaf17d81ff032a553191845077594dbfb3783c00938a"
+        },
+        {
+          "kind": "hf_lfs",
+          "role": "tokenizer",
+          "path": "tokenizer/tokenizer.model",
+          "repository": "Efficient-Large-Model/Sana_600M_1024px_diffusers",
+          "revision": "28f3af7689de15f3883d5863059a2fca0aa9b829",
+          "bytes": 4241003,
+          "sha256": "61a7b147390c64585d6c3543dd6fc636906c9af3865a5548f27f31aee1d4c8e2"
+        },
+        {
+          "kind": "hf_lfs",
+          "role": "vae",
+          "path": "vae_decoder.mnn",
+          "repository": "simota1987/Sana_Sprint",
+          "revision": "c7b846e1cec3ec9ec7ae456cf7d3ceb36742d656",
+          "bytes": 319804044,
+          "sha256": "01652cae83048c0ac993ffccb2c8193b4f10e0be59c0fdbadccec7a9df4c0106"
+        }
+      ]
     }
   ],
   "gguf_header_metadata_read": true,

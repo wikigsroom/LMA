@@ -3585,6 +3585,261 @@
           "format": "gguf"
         }
       ]
+    },
+    {
+      "schema": "lma.model-bundle/1",
+      "id": "sana_sprint_06b_mnn_rc7b846e",
+      "modelId": "sana_sprint_06b",
+      "recipeId": "sana_sprint_06b_mnn_cpu_v1",
+      "name": "Sana-Sprint 0.6B · 文生图",
+      "description": "仅适用于匹配的 Sana-Sprint 0.6B MNN 转换：四段 Gemma2-2B、FP16 embedding、SentencePiece 与 DC-AE，14 个组件由用户选择。固定 1024×1024、1–4 步 SCM、内嵌引导，不支持负面提示词 / LoRA / 图片输入。提示词经小写和首尾空白处理，加固定文本编码前缀；超过 506 token 时截断，扩散选择首 token 加末 299 个位置。不是 Sana Edit、普通 600M 或 1.6B 的通用配方；Gemma 有独立条款。总资产约 6.29 GiB，编码器分段释放；高内存需求与 CPU 耗时没有 LMA 手机实测，不代表 Z20 可运行。App 更新与浏览不会下载权重。",
+      "catalogue": true,
+      "engine": "mnn_diffusion",
+      "backend": "cpu",
+      "architecture": "sana_sprint_06b",
+      "pipeline": "sana_sprint_06b_mnn_v1",
+      "tasks": [
+        "image"
+      ],
+      "capabilities": [
+        "text_to_image",
+        "distilled_sampling"
+      ],
+      "parameters": {
+        "version": 1,
+        "fields": {
+          "width": {
+            "type": "integer",
+            "label": "宽度（配方固定）",
+            "default": 1024,
+            "minimum": 1024,
+            "maximum": 1024,
+            "presets": [
+              1024
+            ],
+            "limitSource": "matched_export"
+          },
+          "height": {
+            "type": "integer",
+            "label": "高度（配方固定）",
+            "default": 1024,
+            "minimum": 1024,
+            "maximum": 1024,
+            "presets": [
+              1024
+            ],
+            "limitSource": "matched_export"
+          },
+          "steps": {
+            "type": "integer",
+            "label": "SCM 采样步数",
+            "default": 2,
+            "minimum": 1,
+            "maximum": 4,
+            "presets": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "limitSource": "application_guard"
+          },
+          "guidance": {
+            "type": "number",
+            "label": "内嵌引导强度",
+            "default": 4.5,
+            "minimum": 1,
+            "maximum": 30,
+            "presets": [
+              1,
+              3,
+              4.5,
+              7
+            ],
+            "limitSource": "application_guard"
+          },
+          "threads": {
+            "type": "integer",
+            "label": "CPU 线程",
+            "default": 4,
+            "minimum": 1,
+            "maximum": 32,
+            "presets": [
+              1,
+              2,
+              4,
+              8
+            ],
+            "limitSource": "application_guard"
+          },
+          "seed": {
+            "type": "integer",
+            "label": "随机种子（-1 随机）",
+            "default": -1,
+            "minimum": -1,
+            "maximum": 2147483647,
+            "presets": [
+              -1,
+              42
+            ],
+            "limitSource": "application_guard"
+          }
+        }
+      },
+      "components": [
+        {
+          "role": "diffusion",
+          "path": "dit.mnn",
+          "repository": "simota1987/Sana_Sprint",
+          "revision": "c7b846e1cec3ec9ec7ae456cf7d3ceb36742d656",
+          "bytes": 1490256,
+          "sha256": "8c08f432ca41383e4ea49a4ddb3c7f0b0deb1bc065c0cbb435d6b7e6ef0c3f12",
+          "format": "mnn",
+          "url": "https://huggingface.co/simota1987/Sana_Sprint/resolve/c7b846e1cec3ec9ec7ae456cf7d3ceb36742d656/dit.mnn"
+        },
+        {
+          "role": "diffusion_data",
+          "path": "dit.mnn.weight",
+          "repository": "simota1987/Sana_Sprint",
+          "revision": "c7b846e1cec3ec9ec7ae456cf7d3ceb36742d656",
+          "bytes": 1189430912,
+          "sha256": "751ad7297729023a17d2bceedd8b2adffc4d026c5c2a4608444a23d4f0fbade5",
+          "format": "mnn_data",
+          "url": "https://huggingface.co/simota1987/Sana_Sprint/resolve/c7b846e1cec3ec9ec7ae456cf7d3ceb36742d656/dit.mnn.weight"
+        },
+        {
+          "role": "gemma0",
+          "path": "gemma/gemma_chunk0.mnn",
+          "repository": "simota1987/Sana_Sprint",
+          "revision": "c7b846e1cec3ec9ec7ae456cf7d3ceb36742d656",
+          "bytes": 631304,
+          "sha256": "a3a6f54506b93cc9228103d7ce05622b006fbcb2a03e1e002336da7c89d58034",
+          "format": "mnn",
+          "url": "https://huggingface.co/simota1987/Sana_Sprint/resolve/c7b846e1cec3ec9ec7ae456cf7d3ceb36742d656/gemma/gemma_chunk0.mnn"
+        },
+        {
+          "role": "gemma0_data",
+          "path": "gemma/gemma_chunk0.mnn.weight",
+          "repository": "simota1987/Sana_Sprint",
+          "revision": "c7b846e1cec3ec9ec7ae456cf7d3ceb36742d656",
+          "bytes": 936398992,
+          "sha256": "7b6956e59d1a10bfaf08d36c47fa8fddb407308dfb06439667341a2fbf9c7f96",
+          "format": "mnn_data",
+          "url": "https://huggingface.co/simota1987/Sana_Sprint/resolve/c7b846e1cec3ec9ec7ae456cf7d3ceb36742d656/gemma/gemma_chunk0.mnn.weight"
+        },
+        {
+          "role": "gemma1",
+          "path": "gemma/gemma_chunk1.mnn",
+          "repository": "simota1987/Sana_Sprint",
+          "revision": "c7b846e1cec3ec9ec7ae456cf7d3ceb36742d656",
+          "bytes": 649152,
+          "sha256": "b241d2edd7f8809503faa19cec1b9c0db2b38e4aad0562a82f77e6909de3130c",
+          "format": "mnn",
+          "url": "https://huggingface.co/simota1987/Sana_Sprint/resolve/c7b846e1cec3ec9ec7ae456cf7d3ceb36742d656/gemma/gemma_chunk1.mnn"
+        },
+        {
+          "role": "gemma1_data",
+          "path": "gemma/gemma_chunk1.mnn.weight",
+          "repository": "simota1987/Sana_Sprint",
+          "revision": "c7b846e1cec3ec9ec7ae456cf7d3ceb36742d656",
+          "bytes": 1092294800,
+          "sha256": "6e7456420c136a9b2075b40efada93a9787f8ec57c56ab309fb44823b7f9b42f",
+          "format": "mnn_data",
+          "url": "https://huggingface.co/simota1987/Sana_Sprint/resolve/c7b846e1cec3ec9ec7ae456cf7d3ceb36742d656/gemma/gemma_chunk1.mnn.weight"
+        },
+        {
+          "role": "gemma2",
+          "path": "gemma/gemma_chunk2.mnn",
+          "repository": "simota1987/Sana_Sprint",
+          "revision": "c7b846e1cec3ec9ec7ae456cf7d3ceb36742d656",
+          "bytes": 631120,
+          "sha256": "8dd381c57a8362b0bdfcbf1015e37f1f071d27af74c8bd8d43a57d59f1f78d17",
+          "format": "mnn",
+          "url": "https://huggingface.co/simota1987/Sana_Sprint/resolve/c7b846e1cec3ec9ec7ae456cf7d3ceb36742d656/gemma/gemma_chunk2.mnn"
+        },
+        {
+          "role": "gemma2_data",
+          "path": "gemma/gemma_chunk2.mnn.weight",
+          "repository": "simota1987/Sana_Sprint",
+          "revision": "c7b846e1cec3ec9ec7ae456cf7d3ceb36742d656",
+          "bytes": 936398992,
+          "sha256": "7e96704972cdd24866232184b2f786181f68e7eb0956d2f9c37f7cb02ff52a3b",
+          "format": "mnn_data",
+          "url": "https://huggingface.co/simota1987/Sana_Sprint/resolve/c7b846e1cec3ec9ec7ae456cf7d3ceb36742d656/gemma/gemma_chunk2.mnn.weight"
+        },
+        {
+          "role": "gemma3",
+          "path": "gemma/gemma_chunk3.mnn",
+          "repository": "simota1987/Sana_Sprint",
+          "revision": "c7b846e1cec3ec9ec7ae456cf7d3ceb36742d656",
+          "bytes": 649208,
+          "sha256": "1bdd3a2301baf9cb925e0622554f775f0803ad34eeb97f4942a5590585d393db",
+          "format": "mnn",
+          "url": "https://huggingface.co/simota1987/Sana_Sprint/resolve/c7b846e1cec3ec9ec7ae456cf7d3ceb36742d656/gemma/gemma_chunk3.mnn"
+        },
+        {
+          "role": "gemma3_data",
+          "path": "gemma/gemma_chunk3.mnn.weight",
+          "repository": "simota1987/Sana_Sprint",
+          "revision": "c7b846e1cec3ec9ec7ae456cf7d3ceb36742d656",
+          "bytes": 1092313232,
+          "sha256": "e9ff0cb93909a103effd934af0ab81ad390299cd16d54dcce6c46458ec094119",
+          "format": "mnn_data",
+          "url": "https://huggingface.co/simota1987/Sana_Sprint/resolve/c7b846e1cec3ec9ec7ae456cf7d3ceb36742d656/gemma/gemma_chunk3.mnn.weight"
+        },
+        {
+          "role": "embeddings",
+          "path": "gemma/token_emb.bin",
+          "repository": "simota1987/Sana_Sprint",
+          "revision": "c7b846e1cec3ec9ec7ae456cf7d3ceb36742d656",
+          "bytes": 1179648000,
+          "sha256": "64a9d30707e659e2e673656d71f5aef7a9fb9fd83bb9a77558dfc5abbe218a05",
+          "format": "bin",
+          "url": "https://huggingface.co/simota1987/Sana_Sprint/resolve/c7b846e1cec3ec9ec7ae456cf7d3ceb36742d656/gemma/token_emb.bin"
+        },
+        {
+          "role": "encoder_config",
+          "path": "gemma/gemma_meta.json",
+          "repository": "simota1987/Sana_Sprint",
+          "revision": "c7b846e1cec3ec9ec7ae456cf7d3ceb36742d656",
+          "bytes": 122,
+          "sha256": "443666ef0061ece40dedbaf17d81ff032a553191845077594dbfb3783c00938a",
+          "format": "json",
+          "url": "https://huggingface.co/simota1987/Sana_Sprint/resolve/c7b846e1cec3ec9ec7ae456cf7d3ceb36742d656/gemma/gemma_meta.json"
+        },
+        {
+          "role": "tokenizer",
+          "path": "tokenizer/tokenizer.model",
+          "repository": "Efficient-Large-Model/Sana_600M_1024px_diffusers",
+          "revision": "28f3af7689de15f3883d5863059a2fca0aa9b829",
+          "bytes": 4241003,
+          "sha256": "61a7b147390c64585d6c3543dd6fc636906c9af3865a5548f27f31aee1d4c8e2",
+          "format": "sentencepiece",
+          "url": "https://huggingface.co/Efficient-Large-Model/Sana_600M_1024px_diffusers/resolve/28f3af7689de15f3883d5863059a2fca0aa9b829/tokenizer/tokenizer.model"
+        },
+        {
+          "role": "vae",
+          "path": "vae_decoder.mnn",
+          "repository": "simota1987/Sana_Sprint",
+          "revision": "c7b846e1cec3ec9ec7ae456cf7d3ceb36742d656",
+          "bytes": 319804044,
+          "sha256": "01652cae83048c0ac993ffccb2c8193b4f10e0be59c0fdbadccec7a9df4c0106",
+          "format": "mnn",
+          "url": "https://huggingface.co/simota1987/Sana_Sprint/resolve/c7b846e1cec3ec9ec7ae456cf7d3ceb36742d656/vae_decoder.mnn"
+        }
+      ],
+      "license": {
+        "name": "Sana/DC-AE: Apache-2.0; Gemma2: Gemma Terms",
+        "url": "https://huggingface.co/simota1987/Sana_Sprint/blob/c7b846e1cec3ec9ec7ae456cf7d3ceb36742d656/README.md"
+      },
+      "evidence": {
+        "status": "pinned_assets_program_adapter_not_device_tested",
+        "physicalDeviceTests": 0,
+        "sourceUrl": "https://huggingface.co/simota1987/Sana_Sprint/blob/c7b846e1cec3ec9ec7ae456cf7d3ceb36742d656/README.md",
+        "componentCoverage": "four Gemma2 chunks / external FP16 embeddings / matched tokenizer / Sana-Sprint DiT / DC-AE; user-selected assets",
+        "modelInferenceTested": false,
+        "phoneInferenceTested": false
+      }
     }
   ]
 }

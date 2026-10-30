@@ -2945,6 +2945,268 @@
       "help": "仅接受匹配的 Nano browser ONNX 导出与 decode_full codec；不是其他 MOSS 架构。须自行选择图引用的全部 .data，缺少数据会在本机报错。所有词表和音色均需用户下载；不提供参考音频克隆。音色编号按已下载 manifest 回填，数值上限为应用保护值，手机效果与内存待实测。"
     },
     {
+      "id": "sana_sprint_06b_mnn_cpu_v1",
+      "name": "Sana-Sprint 0.6B · 文生图",
+      "primaryRole": "diffusion",
+      "definition": {
+        "engine": "mnn_diffusion",
+        "backend": "cpu",
+        "architecture": "sana_sprint_06b",
+        "pipeline": "sana_sprint_06b_mnn_v1",
+        "tasks": [
+          "image"
+        ],
+        "capabilities": [
+          "text_to_image",
+          "distilled_sampling"
+        ],
+        "parameters": {
+          "version": 1,
+          "fields": {
+            "width": {
+              "type": "integer",
+              "label": "宽度（配方固定）",
+              "default": 1024,
+              "minimum": 1024,
+              "maximum": 1024,
+              "presets": [
+                1024
+              ],
+              "limitSource": "matched_export"
+            },
+            "height": {
+              "type": "integer",
+              "label": "高度（配方固定）",
+              "default": 1024,
+              "minimum": 1024,
+              "maximum": 1024,
+              "presets": [
+                1024
+              ],
+              "limitSource": "matched_export"
+            },
+            "steps": {
+              "type": "integer",
+              "label": "SCM 采样步数",
+              "default": 2,
+              "minimum": 1,
+              "maximum": 4,
+              "presets": [
+                1,
+                2,
+                3,
+                4
+              ],
+              "limitSource": "application_guard"
+            },
+            "guidance": {
+              "type": "number",
+              "label": "内嵌引导强度",
+              "default": 4.5,
+              "minimum": 1,
+              "maximum": 30,
+              "presets": [
+                1,
+                3,
+                4.5,
+                7
+              ],
+              "limitSource": "application_guard"
+            },
+            "threads": {
+              "type": "integer",
+              "label": "CPU 线程",
+              "default": 4,
+              "minimum": 1,
+              "maximum": 32,
+              "presets": [
+                1,
+                2,
+                4,
+                8
+              ],
+              "limitSource": "application_guard"
+            },
+            "seed": {
+              "type": "integer",
+              "label": "随机种子（-1 随机）",
+              "default": -1,
+              "minimum": -1,
+              "maximum": 2147483647,
+              "presets": [
+                -1,
+                42
+              ],
+              "limitSource": "application_guard"
+            }
+          }
+        }
+      },
+      "requirements": [
+        {
+          "role": "diffusion",
+          "label": "dit.mnn",
+          "formats": [
+            "mnn"
+          ],
+          "required": true,
+          "matchFiles": [
+            "dit.mnn"
+          ]
+        },
+        {
+          "role": "diffusion_data",
+          "label": "dit.mnn.weight",
+          "formats": [
+            "mnn_data"
+          ],
+          "required": true,
+          "matchSibling": {
+            "role": "diffusion",
+            "suffix": ".weight"
+          }
+        },
+        {
+          "role": "gemma0",
+          "label": "gemma_chunk0.mnn",
+          "formats": [
+            "mnn"
+          ],
+          "required": true,
+          "matchFiles": [
+            "gemma_chunk0.mnn"
+          ]
+        },
+        {
+          "role": "gemma0_data",
+          "label": "gemma_chunk0.mnn.weight",
+          "formats": [
+            "mnn_data"
+          ],
+          "required": true,
+          "matchSibling": {
+            "role": "gemma0",
+            "suffix": ".weight"
+          }
+        },
+        {
+          "role": "gemma1",
+          "label": "gemma_chunk1.mnn",
+          "formats": [
+            "mnn"
+          ],
+          "required": true,
+          "matchFiles": [
+            "gemma_chunk1.mnn"
+          ]
+        },
+        {
+          "role": "gemma1_data",
+          "label": "gemma_chunk1.mnn.weight",
+          "formats": [
+            "mnn_data"
+          ],
+          "required": true,
+          "matchSibling": {
+            "role": "gemma1",
+            "suffix": ".weight"
+          }
+        },
+        {
+          "role": "gemma2",
+          "label": "gemma_chunk2.mnn",
+          "formats": [
+            "mnn"
+          ],
+          "required": true,
+          "matchFiles": [
+            "gemma_chunk2.mnn"
+          ]
+        },
+        {
+          "role": "gemma2_data",
+          "label": "gemma_chunk2.mnn.weight",
+          "formats": [
+            "mnn_data"
+          ],
+          "required": true,
+          "matchSibling": {
+            "role": "gemma2",
+            "suffix": ".weight"
+          }
+        },
+        {
+          "role": "gemma3",
+          "label": "gemma_chunk3.mnn",
+          "formats": [
+            "mnn"
+          ],
+          "required": true,
+          "matchFiles": [
+            "gemma_chunk3.mnn"
+          ]
+        },
+        {
+          "role": "gemma3_data",
+          "label": "gemma_chunk3.mnn.weight",
+          "formats": [
+            "mnn_data"
+          ],
+          "required": true,
+          "matchSibling": {
+            "role": "gemma3",
+            "suffix": ".weight"
+          }
+        },
+        {
+          "role": "embeddings",
+          "label": "token_emb.bin",
+          "formats": [
+            "bin"
+          ],
+          "required": true,
+          "matchFiles": [
+            "token_emb.bin"
+          ]
+        },
+        {
+          "role": "encoder_config",
+          "label": "gemma_meta.json",
+          "formats": [
+            "json"
+          ],
+          "required": true,
+          "matchFiles": [
+            "gemma_meta.json"
+          ]
+        },
+        {
+          "role": "tokenizer",
+          "label": "tokenizer.model",
+          "formats": [
+            "sentencepiece"
+          ],
+          "required": true,
+          "matchFiles": [
+            "tokenizer.model"
+          ]
+        },
+        {
+          "role": "vae",
+          "label": "vae_decoder.mnn",
+          "formats": [
+            "mnn"
+          ],
+          "required": true,
+          "matchFiles": [
+            "vae_decoder.mnn"
+          ]
+        }
+      ],
+      "fixedComponents": [],
+      "help": "仅适用于匹配的 Sana-Sprint 0.6B MNN 转换：四段 Gemma2-2B、FP16 embedding、SentencePiece 与 DC-AE，14 个组件由用户选择。固定 1024×1024、1–4 步 SCM、内嵌引导，不支持负面提示词 / LoRA / 图片输入。提示词经小写和首尾空白处理，加固定文本编码前缀；超过 506 token 时截断，扩散选择首 token 加末 299 个位置。不是 Sana Edit、普通 600M 或 1.6B 的通用配方；Gemma 有独立条款。总资产约 6.29 GiB，编码器分段释放；高内存需求与 CPU 耗时没有 LMA 手机实测，不代表 Z20 可运行。App 更新与浏览不会下载权重。"
+    },
+    {
       "id": "sana_edit_mnn_cpu_v1",
       "name": "Sana Edit · 本地图片卡通转换",
       "primaryRole": "diffusion",

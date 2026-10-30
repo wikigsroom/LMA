@@ -5,6 +5,7 @@ from pathlib import Path
 from evidence import current
 from fetch_mnn import validate_sources
 from native_payload import engine_files
+from sana_sprint_profile import sources as sprint_sources
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -24,6 +25,11 @@ def main():
         (output / item['output']).write_bytes(data)
         records.append(dict(file=item['output'], sha256=hashlib.sha256(data).hexdigest(), source=lock['repository'].removesuffix('.git') + '/blob/' + lock['revision'] + '/' + item['path']))
     notices = {r['file']: r['sha256'] for r in records}
+    piece = sprint_sources()
+    for item in piece['notices']:
+        file = output/item['output']
+        if hashlib.sha256(file.read_bytes()).hexdigest() != item['sha256']: raise RuntimeError('Existing SentencePiece notice differs')
+        notices[item['output']] = item['sha256']
     for name in ('sd-nlohmann-json-LICENSE.txt', 'sd-NDK-LLVM-NOTICE.txt'): notices[name] = hashlib.sha256((output / name).read_bytes()).hexdigest()
     engine = {k: receipt[k] for k in ('engine', 'file', 'source_revision', 'abi', 'backend', 'ndk', 'sha256', 'bytes', 'android_api_notes')}; engine['notices'] = notices
     path = ROOT / 'third_party/engine-lock.json'; engines = json.loads(path.read_text(encoding='utf-8'))

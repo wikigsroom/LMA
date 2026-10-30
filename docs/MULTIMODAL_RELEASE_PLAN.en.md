@@ -1,6 +1,6 @@
 # LMA v0.3.0 complete update requirements and acceptance
 
-> **Acceptance revision, 2026-10-31:** the user requires [program validation only](PROGRAM_VALIDATION.en.md). Earlier complete-model, per-model quality and phone-endurance gates below no longer block program delivery/publication. Functional scope, same-phone local execution and user-owned assets remain. Complete missing implementation and preserve failures without claiming unperformed model/device tests. Original frozen requirements follow; see [dev.44](releases/v0.3.0-dev.44.md) for current status.
+> **Acceptance revision, 2026-10-31:** the user requires [program validation only](PROGRAM_VALIDATION.en.md). Earlier complete-model, per-model quality and phone-endurance gates below no longer block program delivery/publication. Functional scope, same-phone local execution and user-owned assets remain. Complete missing implementation and preserve failures without claiming unperformed model/device tests. Original frozen requirements follow; see [dev.45](releases/v0.3.0-dev.45.md) for current status.
 
 [中文](MULTIMODAL_RELEASE_PLAN.md) · [Foundation](FOUNDATION.en.md) · [Task execution](WORKFLOWS.en.md) · [Structured scope and tags](proposals/multimodal-release-scope.json)
 

@@ -1,5 +1,13 @@
 # Changelog / 更新记录
 
+## 0.3.0-dev.45 — Sana-Sprint 本地文生图 / Local text-to-image
+
+- 新增具名 Sana-Sprint 0.6B MNN 配方，14 个固定组件 / 约 6.29 GiB 由用户明确选择、下载、导入；APK 不附模型或词表。Separate from Sana Edit/ordinary Sana; preserve original recommendation order and independent user assets.
+- 实现同手机 SentencePiece、按行 embedding、四段 Gemma2、SCM / DiT、DC-AE、PNG 与共用任务 / 取消 / 参数快照；1024²、1–4 步等约束分别标明导出和应用来源。Engine-owned input rules hide unsupported negative conditioning and enforce the same restriction at the API boundary.
+- 448 项 Sana 程序检查、25 分词用例、10 采样数学步骤、两个微型图；20 组共 2,975 项程序回归。No complete weights downloaded/copied or complete model/image generation executed; no new phone/quality/endurance claims.
+- 原签名 dev.45/code49，35 份原生库与 API28 / 16KiB 包核对；新增 4 张当前页面截图、GIF / MP4 和 19 项 Sana UI 交互。Browsers close after checks; historical dev.44 program evidence and dev.42 recordings retain their original identity.
+- [中文方案](docs/SANA_SPRINT.md) · [English guide](docs/SANA_SPRINT.en.md) · [本轮实现与完整待办](docs/releases/v0.3.0-dev.45.md)。Sana 匹配移动文生图代码已接入；旧 LTX 官方 PixArt / 多尺度代码阻塞仍在同一个完整 v0.3.0 内处理，后续仅做程序验证。
+
 ## 0.3.0-dev.44 — 程序验证与导入取消 / Program validation and import cancellation
 
 - 按 2026-10-31 用户指令，后续仅做程序验证；不再重跑完整模型、ASR 或耗时推理，不将未实现适配或历史失败改为通过。Record the explicit override of older full-model/device gates in a bilingual policy and machine-readable manifest.

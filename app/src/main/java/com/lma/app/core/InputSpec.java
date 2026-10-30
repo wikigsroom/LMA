@@ -9,6 +9,7 @@ public final class InputSpec {
     private final JSONObject roles;
     private String promptHelp = "";
     private String fixedPrompt;
+    private boolean negativePrompt = true;
     public InputSpec(JSONObject roles) throws Exception {
         this.roles = DataFiles.copy(roles);
         if (roles.length() > 8) throw new IllegalArgumentException("At most eight input roles are allowed");
@@ -40,7 +41,8 @@ public final class InputSpec {
         fixedPrompt = value; return this;
     }
     public static InputSpec promptOnly() throws Exception { return new InputSpec(new JSONObject()); }
-    public JSONObject json() throws Exception { JSONObject result = new JSONObject().put("version", 1).put("roles", DataFiles.copy(roles)); if (!promptHelp.isEmpty()) result.put("promptHelp", promptHelp); if (fixedPrompt != null) result.put("fixedPrompt", fixedPrompt); return result; }
+    public InputSpec withNegativePrompt(boolean allowed) { negativePrompt = allowed; return this; }
+    public JSONObject json() throws Exception { JSONObject result = new JSONObject().put("version", 1).put("roles", DataFiles.copy(roles)); if (!promptHelp.isEmpty()) result.put("promptHelp", promptHelp); if (fixedPrompt != null) result.put("fixedPrompt", fixedPrompt); if (!negativePrompt) result.put("negativePrompt", false); return result; }
     public static String key(String role) {
         if (role == null || !role.matches("[a-z][a-z0-9_]{0,47}")) throw new IllegalArgumentException("Invalid input role"); return role;
     }
@@ -48,6 +50,7 @@ public final class InputSpec {
         validate(receipts, new JSONObject());
     }
     public void validate(JSONArray receipts, JSONObject input) throws Exception {
+        if (!negativePrompt && !input.optString("negativePrompt").isEmpty()) throw new IllegalArgumentException("This recipe does not accept negative conditioning");
         if (fixedPrompt != null && (!fixedPrompt.equals(input.optString("prompt")) || !input.optString("negativePrompt").isEmpty())) throw new IllegalArgumentException("This recipe requires its declared fixed prompt without negative conditioning");
         JSONObject transcripts = input.has("transcripts") ? input.getJSONObject("transcripts") : new JSONObject();
         Set<String> seen = new HashSet<>();

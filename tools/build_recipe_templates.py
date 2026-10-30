@@ -2,6 +2,7 @@
 import copy
 import json
 from pathlib import Path
+from sana_sprint_profile import recipe_template as sana_sprint_template
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -112,6 +113,7 @@ def build():
         definition=dict(engine="moss_nano_ort", backend="cpu", architecture="moss_tts_nano", pipeline="moss_nano", tasks=["audio"], capabilities=["text_to_speech"], parameters=dict(version=1, fields=fields)),
         requirements=requirements, fixedComponents=[],
         help="仅接受匹配的 Nano browser ONNX 导出与 decode_full codec；不是其他 MOSS 架构。须自行选择图引用的全部 .data，缺少数据会在本机报错。所有词表和音色均需用户下载；不提供参考音频克隆。音色编号按已下载 manifest 回填，数值上限为应用保护值，手机效果与内存待实测。"))
+    templates.append(sana_sprint_template())
     sana_fields = {}
     for key, label, default, low, high, presets in (
         ("width", "宽度（32 对齐）", 512, 256, 2048, [256, 512, 1024]), ("height", "高度（32 对齐）", 512, 256, 2048, [256, 512, 1024]),

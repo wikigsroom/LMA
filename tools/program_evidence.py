@@ -12,8 +12,8 @@ from preparation_build_inputs import build_inputs
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / 'verification/program'
-VERSION = '0.3.0-dev.44'
-PRIOR_COMMIT = '1c0f5d3735d31913069cce64625a101c85c3b8cb'
+VERSION = '0.3.0-dev.45'
+PRIOR_COMMIT = '2db629653453f2c0ec7d23112043a770d1d01d17'
 CERTIFICATE = '90444a717a55549e2094364d8d7d005cf8b7f4df24562da62cc1884a2f341c17'
 SOURCES = {
     'build.json': 'dist/build-info.json',
@@ -33,16 +33,18 @@ SOURCES = {
     'assemblies.json': 'build/assembly-tests/results.json',
     'diffusion.json': 'build/diffusion-tests/results.json',
     'mnn.json': 'build/mnn-tests/results.json',
+    'sana-sprint.json': 'build/sana-sprint-tests/results.json',
+    'mnn-android.json': 'build/mnn-build-info.json',
     'hub.json': 'build/hub-tests/results.json',
     'recipe-suggestions.json': 'build/recipe-suggestion-tests/results.json',
     'speech-voices.json': 'build/speech-voice-tests/results.json',
     'ui.json': 'build/ui-qa/results.json',
     'lint.json': 'build/android-lint/results.json',
 }
-MINIMUM = dict(foundation=701, backend=138, **{'bundle-pause':22, 'document-input':15},
+MINIMUM = dict(foundation=722, backend=138, **{'bundle-pause':22, 'document-input':15},
     api=68, workbench=44, recovery=47, inputs=64, text=66, migration=69, scheduler=151,
     preparations=44, assemblies=47, diffusion=197, mnn=101, hub=80,
-    **{'recipe-suggestions':73, 'speech-voices':70}, ui=490)
+    **{'recipe-suggestions':73, 'speech-voices':70, 'sana-sprint':448}, ui=509)
 MEDIA = ['workbench', 'preflight', 'recovery', 'lcm', 'audio', 'ltx', 'resources',
          'curated', 'speech', 'components', 'wan', 'openmoss']
 UI_LOGIC = ['app/src/main/assets/' + name for name in (
@@ -82,29 +84,31 @@ def export():
         data = (ROOT / original).read_bytes()
         (OUT / name).write_bytes(data)
         items[name] = dict(source=original, **identity(OUT / name))
-    historical = ROOT / 'verification/development/status.json'
-    assert record(historical)['version'] == '0.3.0-dev.43'
+    historical = ROOT / 'verification/history/dev44-program/status.json'
+    assert record(historical)['version'] == '0.3.0-dev.44'
     media = {}
     for name in MEDIA:
         path = ROOT / 'docs/media/development' / name / 'manifest.json'
         media[name] = dict(path=path.relative_to(ROOT).as_posix(), **identity(path))
+    fresh = ROOT / 'docs/media/development/sana/manifest.json'
     status = dict(schema='lma.program-checkpoint/1', version=VERSION,
         validation_mode='program_only', sources=items, historical_ui_media=media,
-        historical_media_comparison='unchanged_page_logic_only; original metadata/fixture/version retained',
-        historical_ui_logic_paths=UI_LOGIC,
-        prior_checkpoint=dict(commit=PRIOR_COMMIT, version='0.3.0-dev.43',
+        historical_media_comparison='historical_identity_only; not current page or APK validation',
+        current_ui_media={'sana':dict(path=fresh.relative_to(ROOT).as_posix(), **identity(fresh))},
+        prior_checkpoint=dict(commit=PRIOR_COMMIT, version='0.3.0-dev.44',
             path=historical.relative_to(ROOT).as_posix(), **identity(historical)),
         policy='docs/proposals/program-validation-policy.json',
         release_ready=False, full_scope_implementation_complete=False,
         known_implementation_gaps=[
-            dict(selection_id='04', target='Sana text-to-image', existing_variant_is_not_substitute='Sana Edit'),
             dict(selection_id='17', target='original PixArt T5 / multiscale LTX 0.9.8',
                  existing_variant_is_not_substitute='Google T5 Q5 single-scale')],
         selected_ids=record(ROOT / 'docs/proposals/multimodal-release-scope.json')['selected_ids'],
         physical_device_tests=0, phone_inference_tested=False, model_inference_tested=False,
         all_selected_models_tested=False, model_quality_accepted=False, background_endurance_tested=False,
         historical_model_results_are_current_apk_validation=False,
-        model_asset_downloads_for_validation=0, model_asset_copies_for_validation=0,
+        complete_model_downloads_for_validation=0, complete_model_copies_for_validation=0,
+        small_program_metadata_fetched=True, metadata_audit='catalogue/sana-sprint-evidence.json',
+        sana_text_to_image_variant='matched Sana-Sprint 0.6B MNN; program adapter, not device or image-quality evidence',
         model_weights_in_apk=False, automatic_model_asset_downloads=False,
         browser_closed=True, virtualization_used=False,
         input_fingerprint=fingerprint('tools/program_evidence.py', 'tools/check_repository.py',
@@ -129,13 +133,13 @@ def check():
         'phone_inference_tested', 'model_inference_tested', 'all_selected_models_tested',
         'model_quality_accepted', 'background_endurance_tested', 'model_weights_in_apk',
         'historical_model_results_are_current_apk_validation', 'automatic_model_asset_downloads',
-        'virtualization_used', 'model_asset_downloads_for_validation', 'model_asset_copies_for_validation'])
+        'virtualization_used', 'complete_model_downloads_for_validation', 'complete_model_copies_for_validation'])
     assert status['physical_device_tests'] == 0 and status['browser_closed']
     assert set(status['sources']) == set(SOURCES)
     records = {}
     for name, item in status['sources'].items():
         assert item['source'] == SOURCES[name] and identity(OUT / name) == {k:item[k] for k in ['bytes','sha256']}
-        value = record(OUT / name); current(value['input_fingerprint']); records[name] = value
+        value = record(OUT / name); current(value['source_inputs'] if name == 'mnn-android.json' else value['input_fingerprint']); records[name] = value
         for key in ['model_inference', 'model_inference_tested', 'modelInference']:
             assert not value.get(key, False), 'Unexpected neural execution in program evidence: ' + name
     counts = {name:counted(name, records[name+'.json']) for name in MINIMUM}
@@ -151,19 +155,30 @@ def check():
     assert package['packaged_ui_matches_source'] and package['apk_signatures_independently_verified']
     assert lint['errors'] == 0 and lint['java_source_files'] == len(list((ROOT/'app/src/main/java').rglob('*.java')))
     ui = records['ui.json']; assert not ui['errors'] and ui['passed'] == len(ui['checks'])
-    # This validates unchanged page bytes and media identity, not fresh phone/model execution.
-    assert set(status['historical_ui_media']) == set(MEDIA) and status['historical_ui_logic_paths'] == UI_LOGIC
+    sprint=records['sana-sprint.json']; arm=records['mnn-android.json']
+    assert sprint['bounded_graphs'] == 2 and sprint['production_worker_handshake'] and sprint['production_parameter_rejection']
+    assert not any(sprint[k] for k in ['trained_model_execution','complete_model_downloaded','physical_android','image_generation'])
+    assert arm['abi'] == 'arm64-v8a' and arm['min_sdk'] == 28 and arm['android_api_notes'] == [28]
+    assert arm['static_dependencies']['sentencepiece'] == '31646a467d2051eb904e0b45de3a73e91fe1c1e3'
+    assert not arm['http_resources_compiled'] and not arm['logcat_compiled'] and not arm['virtualization_used']
+    # Old fixture media retains identity; changed workbench code is checked by current UI tests.
+    assert set(status['historical_ui_media']) == set(MEDIA)
     for item in status['historical_ui_media'].values():
         path = ROOT / item['path']; assert identity(path) == {k:item[k] for k in ['bytes','sha256']}
         media = record(path)
-        # Build metadata changes when Java changes. Old recordings are explicitly
-        # historical fixtures; only unchanged page logic is reused, not old data.
-        current({name:media['input_fingerprint'][name] for name in UI_LOGIC})
         assert media['version'] == '0.3.0-dev.42' and media['browser_closed'] and not media['browser_errors']
         assert not media['android_device'] and not media['model_inference']
         for file in media['files']:
             assert identity(path.parent / file['file']) == {k:file[k] for k in ['bytes','sha256']}
-    prior = status['prior_checkpoint']; assert prior['commit'] == PRIOR_COMMIT and prior['version'] == '0.3.0-dev.43'
+    assert set(status['current_ui_media']) == {'sana'}
+    for item in status['current_ui_media'].values():
+        path=ROOT/item['path']; assert identity(path)=={k:item[k] for k in ['bytes','sha256']}
+        media=record(path); current(media['input_fingerprint'])
+        assert media['version']==VERSION and media['browser_closed'] and not media['browser_errors']
+        assert not media['android_device'] and not media['model_inference'] and not media['weights_downloaded']
+        assert len(media['screenshots'])==4 and len(media['checks'])>=19
+        for file in media['files']: assert identity(path.parent/file['file'])=={k:file[k] for k in ['bytes','sha256']}
+    prior = status['prior_checkpoint']; assert prior['commit'] == PRIOR_COMMIT and prior['version'] == '0.3.0-dev.44'
     assert identity(ROOT / prior['path']) == {k:prior[k] for k in ['bytes','sha256']}
     # Preserve the first reproduced failure without evaluating old model acceptance gates.
     issue = ROOT / 'verification/research/input-opening-issue'
@@ -176,7 +191,7 @@ def check():
         assert sha(ROOT/'app/src/main/assets'/name) == expected
     result = dict(passed=True, version=VERSION, validation_mode='program_only',
         current_records=len(records), program_suites=len(counts), program_assertions=sum(counts.values()),
-        checks=counts, historical_ui_manifests=len(MEDIA), original_failure_preserved=True,
+        checks=counts, historical_ui_manifests=len(MEDIA), current_ui_manifests=1, original_failure_preserved=True,
         native_libraries=35, lint_errors=0, lint_warnings=len(lint['warnings']),
         apk=build['apk'], apk_sha256=build['sha256'], release_ready=False,
         model_inference_tested=False, phone_inference_tested=False)

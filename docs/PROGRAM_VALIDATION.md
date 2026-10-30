@@ -1,6 +1,6 @@
 # 后续程序验证规则
 
-[English](PROGRAM_VALIDATION.en.md) · [完整功能范围](MULTIMODAL_RELEASE_PLAN.md) · [结构化规则](proposals/program-validation-policy.json) · [本轮交付](releases/v0.3.0-dev.44.md)
+[English](PROGRAM_VALIDATION.en.md) · [完整功能范围](MULTIMODAL_RELEASE_PLAN.md) · [结构化规则](proposals/program-validation-policy.json) · [本轮交付](releases/v0.3.0-dev.45.md)
 
 **2026-10-31 起，按照用户要求，后续仅做程序验证，不再执行耗时的完整模型运行验证。** 用户原文：“请你后续内容只做程序验证，不需要走完完整的模型运行验证，太耗费时间了。”
 
@@ -28,6 +28,6 @@
 
 正式版本继续要求具名功能实现、相关程序检查、版本与原签名、精确源包 / APK SHA、双语文档和更新说明一致。完整模型质量及手机耐久检查不再作为程序发版门槛。
 
-dev.44 是原签名的程序修复检查点，不冒充全部冻结功能已完成。Sana **文生图**与现有 Sana Edit 是不同目标；旧 LTX 官方 PixArt / 多尺度管线与现有 Google T5 Q5 单尺度变体也不能互相替代。以上代码适配缺口继续在完整 v0.3.0 范围内处理；不会为了免做验证而将它们标成已完成。
+dev.45 是原签名的程序开发检查点，不冒充全部冻结功能已完成。[Sana-Sprint 0.6B](SANA_SPRINT.md)已作为编号 04 的匹配移动文生图配方接入，保留与 Edit / 普通 Sana 的组件边界和未测标记。旧 LTX 官方 PixArt / 多尺度管线与现有 Google T5 Q5 单尺度变体仍不能互相替代；该适配代码缺口继续在完整 v0.3.0 内处理，不因免做完整模型验证而标成完成。
 
-旧模型实验和旧开发检查点继续保存在 `verification/development/`、`verification/history/` 与具名研究目录。本轮程序结果单独导出至 `verification/program/`，核对当前源码指纹，不触发旧模型运行。更新浏览页面未改的行为时可以复用原页面媒体，但需明确原版本并校验对应页面源码一致。
+旧模型实验和旧开发检查点继续保存在 `verification/development/`、`verification/history/` 与具名研究目录。本轮程序结果单独导出至 `verification/program/`，核对当前源码指纹，不触发旧模型运行。本轮 Sana 媒体为当前页面新录制；旧页面媒体只保留历史身份，不声称覆盖已修改的当前页面。

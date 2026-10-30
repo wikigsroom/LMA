@@ -54,9 +54,9 @@
   "android_execution_tested": false,
   "count": 47,
   "host_phase_seconds": {
-    "durable_history": 74.4365795,
-    "actual_http": 0.404576,
-    "crash_recovery": 1.1328449
+    "durable_history": 11.6559493,
+    "actual_http": 0.1669275,
+    "crash_recovery": 0.696408
   },
   "actual_process_interruption": true,
   "passed": true,
@@ -69,13 +69,13 @@
     "missingOutputs": 0,
     "discardedUncommittedFiles": 1,
     "unlinkedOutputs": 1,
-    "checkedAt": 1793392728799,
+    "checkedAt": 1793395403409,
     "rejectedBindings": 0,
     "integrityCheck": "committed_metadata_and_size_execution_rehashes_selected_inputs",
     "cleanupFailures": 0,
     "reclaimedBytes": 8
   },
-  "host_elapsed_seconds": 76.34076900000218,
+  "host_elapsed_seconds": 12.65519609999319,
   "input_fingerprint": {
     "app/src/main/java/com/lma/app/core/AdapterSpec.java": "aff8572d14ac8d616be0a1b0da395e52ed5bddcd5ae407a969c2657bf9257581",
     "app/src/main/java/com/lma/app/core/ArtifactStore.java": "6f85d2ac710cac0fb5a76cde9493ff1fef4d3e2e119c3e031b7c44ff65a49061",
@@ -93,7 +93,7 @@
     "app/src/main/java/com/lma/app/core/ExecutionGate.java": "143b6d145036c56ad0937316e87af5f4c44507ef89cf16affdc5bef0ad8e2126",
     "app/src/main/java/com/lma/app/core/InputHandle.java": "f3b4ef8cf58b1ff2eb1d9f3eae3f789cb1c7d9870786de9cc70e5be431489410",
     "app/src/main/java/com/lma/app/core/InputSelection.java": "963fe60973caab82b9dfedaa7c1661f236aed6ea158fcda8f4a86d02ba33d509",
-    "app/src/main/java/com/lma/app/core/InputSpec.java": "d535fc70bdbfbf7cd9ca2ce685c20735d67ed5c3b7132989ec683c74de779f97",
+    "app/src/main/java/com/lma/app/core/InputSpec.java": "51eb954c2c973a92b6be4b59c3b7857d8749476e7446045627e59e06ee76a838",
     "app/src/main/java/com/lma/app/core/InputUploads.java": "5debd68a73abc8bde8174c985dfec8f534c6bf8df58dda8810b0cc3541fe1d53",
     "app/src/main/java/com/lma/app/core/JobStore.java": "3f999d908b7667d35557c979a26dbf5544c712015b986a090946b76b8a680628",
     "app/src/main/java/com/lma/app/core/LcmCondition.java": "2177da94b69781263e36f3e379034619bf74c6856bc6a9108592d4f272e94b7a",
@@ -119,6 +119,7 @@
     "app/src/main/java/com/lma/app/core/RecipeCatalogue.java": "539dcd55124ce71e32476edb8a7efd25d533935847a8357ac3a6dddf68b71a47",
     "app/src/main/java/com/lma/app/core/RecipeSuggestions.java": "57d9d7b5fc5f3c61a3ab3524af8789df58dbc8ce1923b2c09e139649057beda0",
     "app/src/main/java/com/lma/app/core/ResourceWatch.java": "6f6a4cb2159f7956d1ae8c202c61430be268d86d230245bccc952844f3816ec5",
+    "app/src/main/java/com/lma/app/core/SanaSprintSpec.java": "12190d684368b219f17e582d774830d0a946bf5b7e2d25146371325b6fc8b3d3",
     "app/src/main/java/com/lma/app/core/SdSpec.java": "e26906c0c338deff725d8b5c316beb8205eacbe26ea91cfb3ef0861bf94103b5",
     "app/src/main/java/com/lma/app/core/SoulxSpec.java": "a761d40965d041d38cc1f629418017103c9eefabf5904814fad9de6372b6bcc7",
     "app/src/main/java/com/lma/app/core/SpeechVoices.java": "b413549e7721d07c88fec135b01b26a18d9dc0cc686a37dd180309ee10900967",

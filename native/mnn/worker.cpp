@@ -3,6 +3,7 @@
 #include "diffusion/diffusion.hpp"
 #include "policy.hpp"
 #include "image.hpp"
+#include "sprint.hpp"
 #include <cstdio>
 #include <cmath>
 #include <cstdlib>
@@ -16,6 +17,9 @@
 #else
 #include <sys/prctl.h>
 #include <unistd.h>
+// SentencePiece's bundled protobuf has an Android logger. Resolve it locally
+// so malformed user model/tokenizer diagnostics never enter system logcat.
+extern "C" int __android_log_write(int, const char*, const char*) { return 0; }
 #endif
 
 using json = nlohmann::json;
@@ -45,7 +49,19 @@ int main(int argc, char** argv) {
         std::ifstream in(argv[1], std::ios::binary | std::ios::ate);
         if (!in || in.tellg() < 1 || in.tellg() > 256 * 1024) throw std::runtime_error("Invalid native request");
         in.seekg(0); json request; in >> request;
-        if (request.at("schema") != "lma.engine-request/1" || request.at("type") != "image.generate" || request.at("pipeline") != "sana_edit_mnn_v1") throw std::runtime_error("Unsupported MNN task/pipeline");
+        if (request.at("schema") != "lma.engine-request/1" || request.at("type") != "image.generate") throw std::runtime_error("Unsupported MNN task");
+        if (request.at("pipeline") == "sana_sprint_06b_mnn_v1") {
+            const auto& p = request.at("parameters"); const auto& input = request.at("input");
+            std::string prompt = input.at("prompt"), negative = input.value("negativePrompt", ""), root = request.at("workspace"), output = request.at("output");
+            lma_mnn::sprint::parameters(p.at("width"), p.at("height"), p.at("steps"), p.at("threads"), p.at("guidance"), p.at("seed"), prompt, negative);
+            lma_mnn::sprint::run(std::filesystem::u8path(root), std::filesystem::u8path(output), prompt, p.at("steps"), p.at("threads"), p.at("guidance"), p.at("seed"),
+                [](const std::string& stage, int done, int total) {
+                    event({{"event", "stage"}, {"stage", stage}});
+                    if (stage == "sampling" && total > 0) event({{"event", "progress"}, {"stage", stage}, {"fraction", double(done)/total}});
+                });
+            event({{"event", "complete"}, {"output", output}, {"format", "png"}, {"width", 1024}, {"height", 1024}}); return 0;
+        }
+        if (request.at("pipeline") != "sana_edit_mnn_v1") throw std::runtime_error("Unsupported MNN pipeline");
         const auto& p = request.at("parameters"); const auto& input = request.at("input");
         std::string prompt = input.value("prompt", ""), negative = input.value("negativePrompt", "");
         std::string root = request.at("workspace"), output = request.at("output");
