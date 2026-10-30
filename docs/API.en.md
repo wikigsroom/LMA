@@ -1,5 +1,7 @@
 # LMA API integration
 
+dev.38 adds [complete Z-Image-Turbo selection, downloads and local business flow](ZIMAGE_TURBO.en.md), with original matching Qwen3-4B, external tokenizer and independent eight-step settings. All frozen acceptance gates remain mandatory.
+
 FLUX.2-klein 4B now has an optional complete four-component catalogue flow and matching HF suggestions. [User flow, parameters and evidence](FLUX2_KLEIN.en.md). The App ships foundation code only; downloads remain explicit.
 
 dev.36: oversized uploads still return 413 with the unchanged 256 KiB request-body limit. Parse failures send the response before draining at most 256 KiB + 1 byte for at most 250 ms and closing. This prevents unread input from discarding the error through TCP reset while bounding slow/oversized connections.

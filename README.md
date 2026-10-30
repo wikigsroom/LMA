@@ -1,6 +1,12 @@
 # LMA · Android 本地模型工作台
 
-> **当前开发：0.3.0-dev.37 / code 41。** 新增可由用户自行下载的 FLUX.2-klein 4B 完整四组件方案，接入 HF / 全部 / 本地、独立参数、不可变任务和结果管理。修复 Qwen 分词文件头造成的编号偏移，并完成全部词项及多语言输入的官方对照。App 仅更新基座；推荐顺序、用户模型与旧任务保留。[方案与使用](docs/FLUX2_KLEIN.md) · [编号实现、完整待办与验证边界](docs/releases/v0.3.0-dev.37.md)。真实 Windows CPU 执行、界面夹具、Android 编译和真机/画质验收分别记录；完整 v0.3.0 Release 尚未发布。
+> **当前开发：0.3.0-dev.38 / code42。** 新增 Z-Image-Turbo 完整四组件可选模型，接通全部 / HF / 本地、独立八步参数、共用队列、取消恢复和结果管理。完整哈希支持复用已有匹配文件，登记与浏览不自动下载或安装。App 继续只更新基座，推荐顺序与用户资产保留。[完整方案与操作](docs/ZIMAGE_TURBO.md) · [本轮实现及全部待办](docs/releases/v0.3.0-dev.38.md)。
+
+![实际 Z-Image 主机生成；非 Android 录屏](docs/media/development/zimage-trained/01-robot.png)
+
+主机生成、页面演示和 Android 编译分别记录；完整数值、画质、资源及手机验收尚未完成，正式 Release 未发布。
+
+> **保留 dev.37：0.3.0-dev.37 / code 41。** 新增可由用户自行下载的 FLUX.2-klein 4B 完整四组件方案，接入 HF / 全部 / 本地、独立参数、不可变任务和结果管理。修复 Qwen 分词文件头造成的编号偏移，并完成全部词项及多语言输入的官方对照。App 仅更新基座；推荐顺序、用户模型与旧任务保留。[方案与使用](docs/FLUX2_KLEIN.md) · [编号实现、完整待办与验证边界](docs/releases/v0.3.0-dev.37.md)。真实 Windows CPU 执行、界面夹具、Android 编译和真机/画质验收分别记录；完整 v0.3.0 Release 尚未发布。
 
 | 实际本地文生图：机器人与茶壶 | 实际本地文生图：帆船 |
 |---|---|
@@ -16,7 +22,7 @@
 
 [中文](README.md) · [English](README.en.md) · [下载 / Releases](https://github.com/wikigsroom/LMA/releases) · [文档导航](docs/README.md) · [更新记录](CHANGELOG.md)
 
-本轮验证：**22 组、3,006 项通过**，包括 117 项官方分词对照、35 项完整模型原生检查和 99 项应用业务检查；APK 签名 / 依赖 / 16 KiB 对齐通过，Lint 0 错误 / 17 警告。真实主机执行、Android 编译和仍待完成的真机 / 正式 Release 验收分别记录。
+dev.38 验证：**22 组、3,022 项通过**，包括 117 项官方分词对照、35 项完整 Z-Image 原生检查和 100 项应用业务检查；APK 签名 / 依赖 / 16 KiB 对齐通过，Lint 0 错误 / 17 警告。真实主机执行、Android 编译和仍待完成的真机 / 正式 Release 验收分别记录。
 
 > **dev.35 历史记录（模型用途已由 dev.36 更正）。** Sana 匹配变体已接入完整真实组件验证与生产 Java 导入 / 运行 / 采样取消 / 恢复链路。修复 CFG 编码 batch、浮点 mask、实际采样进度、单步调度与写入结果。13 个组件共 1,505,181,194 字节，全部由用户自行选择；APK 只更新基座。主机运行与 Android 编译分别留证，当前样例未呈现所需主体，画质仍未通过。[运行与使用](docs/MNN_SANA_TRAINED.md) · [编号交付 / 全部待办](docs/releases/v0.3.0-dev.35.md) · [实际产物 MP4](docs/media/development/sana-trained/sana-host-outputs.mp4) · [GIF](docs/media/development/sana-trained/sana-host-outputs.gif)。不是手机运行或完整 Release 验收。
 

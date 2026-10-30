@@ -1,5 +1,13 @@
 # Changelog / 更新记录
 
+## 0.3.0-dev.38 — Complete Z-Image business / 完整Z-Image业务
+
+- 新增完整Z-Image-Turbo四组件可选方案（6,349,991,011字节），接入全部/HF/本地、显式下载/导入、独立八步配置、不可变任务、取消恢复与结果管理。原始匹配编码器和完整官方VAE；内容哈希复用不触发自动安装，App仍只交付基座。
+- Add six checked suggestion cases for complete roles, explicit application, quantization ambiguity, base/encoder mismatch, FLUX.2 VAE exclusion and incomplete inventory. Preserve all shared lifecycle/settings/queue behavior and exact source attribution.
+- 实际原生及生产Java完整训练模型链路，真实PNG/MP4/GIF、八张相关页面截图与十组业务录制、双语完整文档；签名dev.38/code42 APK和既有17项Lint警告如实留证。主机不替代完整数值、画质、资源、手机与Release验收。
+- Preserve dev.37 reports/status byte-for-byte and retain all earlier experiments, failures, selected models and full-v0.3.0 gates. No formal Release or scope reduction.
+- [完整更新与所有待办 / Changes and full pending scope](docs/releases/v0.3.0-dev.38.md) · [中文方案](docs/ZIMAGE_TURBO.md) · [English](docs/ZIMAGE_TURBO.en.md)。
+
 ## 0.3.0-dev.37 — Complete local FLUX flow / 完整本地 FLUX 业务
 
 - 新增 FLUX.2-klein 4B distilled 完整四组件（5,127,452,603 字节）可选目录及 HF 配套建议；全部 / HF / 本地、独立参数与上限归位、不可变任务、真实采样取消 / 恢复、PNG 来源、重启及删除模型后保留结果接通共用业务。App 仍只更新基座，所有资产由用户显式选择取得，不附模型或自动下载。

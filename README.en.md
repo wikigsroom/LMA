@@ -1,6 +1,12 @@
 # LMA · Local models on Android
 
-> **Current development: 0.3.0-dev.37 / code 41.** Add an optional complete four-component FLUX.2-klein 4B download with HF / All / Local selection, independent settings, immutable jobs and output management. Fix shifted Qwen token IDs caused by HF merge-file headers and compare the full vocabulary and multilingual inputs with the official tokenizer. App updates deliver foundation code only; recommendations, user models and old jobs remain preserved. [Design and user flow](docs/FLUX2_KLEIN.en.md) · [Numbered changes, full pending scope and evidence limits](docs/releases/v0.3.0-dev.37.md). Actual Windows CPU execution, UI fixtures, Android compilation and physical-phone/quality acceptance are separate. The complete v0.3.0 Release remains unpublished.
+> **Current development: 0.3.0-dev.38 / code42.** Add the complete optional four-component Z-Image-Turbo model to All/HF/Local, independent eight-step settings, shared jobs, cancellation/recovery and results. Exact content hashes reuse matching files; browsing/declaration never implicitly download or install. The App remains foundation-only, preserving Recommended and user assets. [Complete design/user flow](docs/ZIMAGE_TURBO.en.md) · [Current changes/full pending scope](docs/releases/v0.3.0-dev.38.md).
+
+![Actual Z-Image host output; not Android footage](docs/media/development/zimage-trained/01-robot.png)
+
+Host execution, UI fixtures and Android compilation are separate. Complete numerics, quality, resources and phone acceptance remain pending; no formal Release is published.
+
+> **Retained dev.37: 0.3.0-dev.37 / code 41.** Add an optional complete four-component FLUX.2-klein 4B download with HF / All / Local selection, independent settings, immutable jobs and output management. Fix shifted Qwen token IDs caused by HF merge-file headers and compare the full vocabulary and multilingual inputs with the official tokenizer. App updates deliver foundation code only; recommendations, user models and old jobs remain preserved. [Design and user flow](docs/FLUX2_KLEIN.en.md) · [Numbered changes, full pending scope and evidence limits](docs/releases/v0.3.0-dev.37.md). Actual Windows CPU execution, UI fixtures, Android compilation and physical-phone/quality acceptance are separate. The complete v0.3.0 Release remains unpublished.
 
 | Actual local text-to-image: robot and teapot | Actual local text-to-image: sailboat |
 |---|---|
@@ -16,7 +22,7 @@
 
 [中文](README.md) · [English](README.en.md) · [Releases](https://github.com/wikigsroom/LMA/releases) · [Documentation](docs/README.md) · [Changelog](CHANGELOG.md)
 
-Validation: **22 suites / 3,006 passed checks**, including 117 independent tokenizer comparisons, 35 complete-model native checks and 99 application-flow checks. APK signature/dependencies/16 KiB alignment pass; Lint has 0 errors and 17 warnings. Actual host execution, Android compilation and pending physical-phone/formal Release acceptance remain separate.
+dev.38 validation: **22 suites / 3,022 passed checks**, including 117 independent tokenizer comparisons, 35 complete Z-Image native checks and 100 application-flow checks. APK signature/dependencies/16 KiB alignment pass; Lint has 0 errors and 17 warnings. Actual host execution, Android compilation and pending physical-phone/formal Release acceptance remain separate.
 
 > **Historical dev.35 (model capability corrected in dev.36).** The matched Sana variant now has real-component execution and the production Java import / generation / sampling cancellation / recovery path. Repairs cover CFG encoder batching, float masks, completed-step progress, one-step scheduling and write results. All thirteen components (1,505,181,194 bytes) remain user-selected; the APK only updates foundation code. Host execution and Android compilation have separate evidence. Observed samples do not depict the requested subjects; image quality remains unaccepted. [Execution/usage](docs/MNN_SANA_TRAINED.en.md) · [Numbered delivery/full pending scope](docs/releases/v0.3.0-dev.35.md) · [Actual-output MP4](docs/media/development/sana-trained/sana-host-outputs.mp4) · [GIF](docs/media/development/sana-trained/sana-host-outputs.gif). This is not phone or complete Release acceptance.
 

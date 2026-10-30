@@ -1,6 +1,8 @@
 # v0.3.0 开发状态与复查
 
-当前 **dev.37 / code 41**：[FLUX.2-klein 完整业务与分词修复](FLUX2_KLEIN.md) / [English](FLUX2_KLEIN.en.md)，[本轮实现与完整待办](releases/v0.3.0-dev.37.md)。完整四组件经生产 Java / native 实际导入、生成、采样取消、恢复和结果管理；独立官方 tokenizer 核对与 Android 同源编译分别记录。完整数值、质量、资源及真机仍待验收，保留所有冻结目标与既有失败。App 不附模型；用户自行选择取得与管理。
+当前 **dev.38 / code42**：[Z-Image-Turbo 完整四组件与业务](ZIMAGE_TURBO.md)，[本轮实现与全部待办](releases/v0.3.0-dev.38.md)。真实主机生成 / 生产 Java 与 Android 编译分别留证；冻结范围和全部数值 / 质量 / 资源 / 手机门槛不变。
+
+保留历史 **dev.37 / code 41**：[FLUX.2-klein 完整业务与分词修复](FLUX2_KLEIN.md) / [English](FLUX2_KLEIN.en.md)，[本轮实现与完整待办](releases/v0.3.0-dev.37.md)。完整四组件经生产 Java / native 实际导入、生成、采样取消、恢复和结果管理；独立官方 tokenizer 核对与 Android 同源编译分别记录。完整数值、质量、资源及真机仍待验收，保留所有冻结目标与既有失败。App 不附模型；用户自行选择取得与管理。
 
 保留历史 **dev.35 / code 39**：[Sana 完整组件与生产执行](MNN_SANA_TRAINED.md) / [English](MNN_SANA_TRAINED.en.md)，[本轮实现与全部待办](releases/v0.3.0-dev.35.md)。真实主机模型执行与生产 Java 导入、取消和恢复，Android 同源编译；样例主体缺失，质量与手机仍未通过。dev.34 原 33 份记录及状态逐字节保留。完整冻结 v0.3.0 不缩减、不分版。
 

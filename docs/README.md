@@ -1,5 +1,7 @@
 # LMA 文档 / Documentation
 
+当前 dev.38：[Z-Image-Turbo 完整用户流程](ZIMAGE_TURBO.md) / [English](ZIMAGE_TURBO.en.md)，[本轮实现与所有待办](releases/v0.3.0-dev.38.md)。App 仅更新基座，模型由用户自行选择、取得和管理。
+
 当前 dev.37：[FLUX.2-klein 本地文生图 / 中文](FLUX2_KLEIN.md) · [English](FLUX2_KLEIN.en.md) · [编号实现与完整待办](releases/v0.3.0-dev.37.md)。四组件由用户选择取得；修复 Qwen 文件头和 Unicode 规范化，完整词项独立对照，真实主机执行与手机验收分开记录。
 
 

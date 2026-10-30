@@ -1,5 +1,7 @@
 # Build and verification
 
+dev.38 Z-Image reproduction: explicitly acquire with `python tools/fetch_zimage_trained.py --download --reference-tokenizer`, then run the native/application/media tools in [the complete guide](ZIMAGE_TURBO.en.md#4-tokenizer-evidence-and-reproduction). Default verification and inference never acquire files.
+
 dev.37 adds complete local FLUX.2-klein verification: `python tools/fetch_flux2_trained.py` verifies existing files by default; `python tools/test_qwen_tokenizer.py`, `python tools/test_flux2_trained.py` and `python tools/test_flux2_app_host.py` exercise independent tokenization, actual native generation and the production business flow. Only explicit `--download` acquires assets. No virtualization is used. See [reproduction](FLUX2_KLEIN.en.md#5-evidence-and-reproduction) and [full same-release pending scope](releases/v0.3.0-dev.37.md).
 
 dev.31 resource controls: `python tools/test_scheduler.py`, `node tests/ui-smoke.cjs` and `node tools/capture_workbench.cjs resources`. Controlled OS inputs and host children are not Android measurements. See [the guide](RUNTIME_RESOURCES.en.md) and [full same-release scope](releases/v0.3.0-dev.31.md).

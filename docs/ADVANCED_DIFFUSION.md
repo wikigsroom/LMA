@@ -1,5 +1,7 @@
 # Z-Image、FLUX、Qwen-Image 与 Wan 的本机基座接入
 
+dev.38 新增 [Z-Image-Turbo 完整四组件、下载与本地业务](ZIMAGE_TURBO.md)，复用匹配原 Qwen3-4B 和外置词表，保留独立八步配置与全部冻结验收门槛。
+
 [English](ADVANCED_DIFFUSION.en.md) · [扩散基础](DIFFUSION_ENGINE.md) · [HF 配方](HF_RECIPES.md) · [实施状态](DEVELOPMENT.md)
 
 适用内部 **0.3.0-dev.13 / code 17**，不是完整 Release。已接入组件契约、任务采样计划、原生参数及 ARM64 CPU worker；**尚无这些模型的 Android 输出、质量、速度、内存或锁屏实测**。06 / 07 / 08 / 16 及其他全部目标仍须在同一完整 v0.3.0 验收。

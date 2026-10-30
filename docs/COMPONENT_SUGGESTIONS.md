@@ -1,5 +1,7 @@
 # HF 配套组件建议与确认
 
+dev.38 新增 [Z-Image-Turbo 完整四组件、下载与本地业务](ZIMAGE_TURBO.md)，复用匹配原 Qwen3-4B 和外置词表，保留独立八步配置与全部冻结验收门槛。
+
 FLUX.2-klein 4B 新增完整四组件可选目录和匹配 HF 文件建议；[使用逻辑、参数与证据](FLUX2_KLEIN.md)。App 只交付基座，所有下载仍由用户主动选择。
 
 [中文](COMPONENT_SUGGESTIONS.md) · [English](COMPONENT_SUGGESTIONS.en.md) · [完整版本待办](releases/v0.3.0-dev.34.md)
@@ -19,7 +21,7 @@ dev.34 为现有模型配方增加“检查配套文件”。用户不必在能�
 
 ## 覆盖与限制
 
-当前保留 **35 套配方**，其中 **19 套具有 54 条声明式文件匹配提示**。包括 Sana Edit 的 15 个组件、Nano 完整方案的文件名、Kokoro / Piper / Matcha / Qwen TTS 的匹配文件、OpenMOSS extras 和部分生图 / 视频配方的标准配套文件。其余角色继续使用手选，不根据扩展名自动认定配套关系。
+当前保留 **35 套配方**，其中 **19 套具有 57 条声明式文件匹配提示**。包括 Sana Edit 的 15 个组件、Nano 完整方案的文件名、Kokoro / Piper / Matcha / Qwen TTS 的匹配文件、OpenMOSS extras 和部分生图 / 视频配方的标准配套文件。其余角色继续使用手选，不根据扩展名自动认定配套关系。
 
 这些数字描述选择流程与文件名规则，**不代表 35 套模型已经通过实际推理或 Android 验收**。命名相符仍需核对模型架构、同次导出、量化、codec、分词器、许可和设备资源；不自动获得源模型的其他能力，也不会将用户配方提升为已核对的无审查条目。
 

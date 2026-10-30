@@ -1,5 +1,7 @@
 # Diffusion foundation: SDXL, SD-Turbo and LCM
 
+dev.38 adds [complete Z-Image-Turbo selection, downloads and local business flow](ZIMAGE_TURBO.en.md), with original matching Qwen3-4B, external tokenizer and independent eight-step settings. All frozen acceptance gates remain mandatory.
+
 dev.37: [complete four-component FLUX.2-klein 4B, production flow and Qwen tokenizer correction](FLUX2_KLEIN.en.md). Original full VAE, external user-owned tokenizer and same-source CPU worker. Complete trained host execution and independent tokenizer evidence are separate from pending quality, full numerical, resource and Android acceptance.
 
 [中文](DIFFUSION_ENGINE.md) · [HF components](HF_RECIPES.en.md) · [LoRA](ADAPTERS.en.md) · [Development status](DEVELOPMENT.en.md)

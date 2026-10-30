@@ -1,6 +1,6 @@
 {
   "schema": "lma.development-checkpoint/2",
-  "version": "0.3.0-dev.37",
+  "version": "0.3.0-dev.38",
   "sources": {
     "build-info.json": "dist/build-info.json",
     "package.json": "build/package-verification.json",
@@ -36,10 +36,10 @@
     "recipe-suggestions.json": "build/recipe-suggestion-tests/results.json",
     "components-media.json": "docs/media/development/components/manifest.json",
     "mnn.json": "build/mnn-tests/results.json",
-    "flux2-assets.json": "build/flux2-trained/receipt.json",
-    "flux2-trained.json": "build/flux2-trained-tests/results.json",
-    "flux2-app-host.json": "build/flux2-app-host-tests/results.json",
-    "flux2-trained-media.json": "docs/media/development/flux2-trained/manifest.json",
+    "zimage-assets.json": "build/zimage-trained/receipt.json",
+    "zimage-trained.json": "build/zimage-trained-tests/results.json",
+    "zimage-app-host.json": "build/zimage-app-host-tests/results.json",
+    "zimage-trained-media.json": "docs/media/development/zimage-trained/manifest.json",
     "qwen-tokenizer.json": "build/qwen-tokenizer-tests/results.json"
   },
   "historical_sources": {
@@ -513,168 +513,168 @@
     }
   },
   "prior_checkpoint": {
-    "commit": "77d95dbc838d4bc573478265d68b647c3a2c864b",
-    "version": "0.3.0-dev.36",
+    "commit": "dd2c0e3232777765e6887c1d7386f6fedd2a9b4a",
+    "version": "0.3.0-dev.37",
     "sources": {
       "status.json": {
-        "path": "verification/history/0.3.0-dev.36/status.json",
-        "sha256": "de7c0077a5b5a3e70815d27b39b6c1df2290c77cae427277cab0f83a0dfa3207"
+        "path": "verification/history/0.3.0-dev.37/status.json",
+        "sha256": "07ba8651f3bd865ccf7c7ad088478e64e7793f07cea8dd1fc449b30b0469ef44"
       },
       "build-info.json": {
-        "path": "verification/history/0.3.0-dev.36/build-info.json",
-        "sha256": "75ae932aa6cb34ebb369e22905056ff65b7657cad0822cc64146d198ee08a08a"
+        "path": "verification/history/0.3.0-dev.37/build-info.json",
+        "sha256": "bd85ecabdc406207f21b23204f03aaba65afd24053f8f3f20074fd13c9782453"
       },
       "package.json": {
-        "path": "verification/history/0.3.0-dev.36/package.json",
-        "sha256": "dd5cbb235b394793a11b662f8154ac1ace919c04a7b94153ea74c5ad709b2910"
+        "path": "verification/history/0.3.0-dev.37/package.json",
+        "sha256": "6f53302eeccab6e511833ba4d226147cc38a661b2d1af1ff44c677c6319a21f0"
       },
       "workbench.json": {
-        "path": "verification/history/0.3.0-dev.36/workbench.json",
+        "path": "verification/history/0.3.0-dev.37/workbench.json",
         "sha256": "81fc46a06f5a701ab22959dfd9444a6df945f251249581287baf408a79349fac"
       },
       "recovery.json": {
-        "path": "verification/history/0.3.0-dev.36/recovery.json",
-        "sha256": "7889406e860c7e3617c58da6ee6f0dc5dba28bffe09192301e28dc0f0045ec1b"
+        "path": "verification/history/0.3.0-dev.37/recovery.json",
+        "sha256": "599b937e4a48e2825f612afb87701f74b06598903a396a0d2974131217fb4654"
       },
       "foundation.json": {
-        "path": "verification/history/0.3.0-dev.36/foundation.json",
-        "sha256": "66dfaa986cba8709a5c92f288098c59f293e9bbc5bbe9fcee1b525c6e7063e85"
+        "path": "verification/history/0.3.0-dev.37/foundation.json",
+        "sha256": "756566e39ce582a073644d15e0bbe1d96fa600a955ef19778c8071f7c54c33e3"
       },
       "api.json": {
-        "path": "verification/history/0.3.0-dev.36/api.json",
+        "path": "verification/history/0.3.0-dev.37/api.json",
         "sha256": "c1c3249d1e5a130242fc474639b608077d0d45726019b0a2b52185dd92eda83e"
       },
       "inputs.json": {
-        "path": "verification/history/0.3.0-dev.36/inputs.json",
+        "path": "verification/history/0.3.0-dev.37/inputs.json",
         "sha256": "514ceb6f98b29a5dcfc5ed41885d1c0737c7193126e401db1053fdc31934fc8b"
       },
       "text.json": {
-        "path": "verification/history/0.3.0-dev.36/text.json",
-        "sha256": "c96daebce68dda556f90c71a292803a278e68d2cb31187fafd5d72c7f2378677"
+        "path": "verification/history/0.3.0-dev.37/text.json",
+        "sha256": "a9e6378d33db25c4f28209ec1cc74b3da34fac230c5ea85a170e00a9b861ea9e"
       },
       "migration.json": {
-        "path": "verification/history/0.3.0-dev.36/migration.json",
-        "sha256": "b78e516dd5ee93a233584136f7b2b56226b43ceb340d9b72dc7fbfeb0008f633"
+        "path": "verification/history/0.3.0-dev.37/migration.json",
+        "sha256": "34c6b94dce9c2b6302e72e0b1969fc2a6dfe908bcdb735816926f47799f90066"
       },
       "scheduler.json": {
-        "path": "verification/history/0.3.0-dev.36/scheduler.json",
-        "sha256": "506354c2221459c100dd2e535f75211a605446e9674cb73076373cce6fcdece9"
+        "path": "verification/history/0.3.0-dev.37/scheduler.json",
+        "sha256": "2ae9e6567630de33b121d4c89b87a967649282a2d0bd2996ff860594260b6667"
       },
       "ui.json": {
-        "path": "verification/history/0.3.0-dev.36/ui.json",
-        "sha256": "626b5c80c6e9bae6c21fd5b201ccfd65538b3a3f36a9b04af69158ec49397f7e"
+        "path": "verification/history/0.3.0-dev.37/ui.json",
+        "sha256": "bdc1c0e5bf22934bc31aa46f725772c0540ba726ae0507ba50fadcf3c0afd8c1"
       },
       "lint.json": {
-        "path": "verification/history/0.3.0-dev.36/lint.json",
-        "sha256": "2022a91bab036e6fb03bcc0a6fa67b1fc16c2f07b2caa9630406365f20530a44"
+        "path": "verification/history/0.3.0-dev.37/lint.json",
+        "sha256": "0bd38dda57e26062d2d20901cc78bb112c7e5b5759e7d477785b84675b09db87"
       },
       "workbench-media.json": {
-        "path": "verification/history/0.3.0-dev.36/workbench-media.json",
-        "sha256": "22a860e8a488d47c8b8de3a4c1231c545821ea5a2e3123f083e30a482735bee9"
+        "path": "verification/history/0.3.0-dev.37/workbench-media.json",
+        "sha256": "3ef57b953ee278b63d6a4ef0edfebb893c5ddaede690607aa2789306997ee27c"
       },
       "preflight-media.json": {
-        "path": "verification/history/0.3.0-dev.36/preflight-media.json",
-        "sha256": "5d540c99c34a12ff8ff05c74d6dac70ec8ae9d4a0390eeffa6f6afec3a0a8493"
+        "path": "verification/history/0.3.0-dev.37/preflight-media.json",
+        "sha256": "8c81f0b42a4785841351afe5d7b1693978c634f9e0f21ecb947b614aa15316f4"
       },
       "recovery-media.json": {
-        "path": "verification/history/0.3.0-dev.36/recovery-media.json",
-        "sha256": "0aade509835acec19f43c4e61173601469e9916a7a734e9526f77122d84e8670"
+        "path": "verification/history/0.3.0-dev.37/recovery-media.json",
+        "sha256": "0d1eaa69ce8c39530e6c867cf8bc3b6e66918d64ad0132506f6325d1f71ebd58"
       },
       "preparation-core.json": {
-        "path": "verification/history/0.3.0-dev.36/preparation-core.json",
-        "sha256": "3faede482c58450d7e0245c4b970ab1775b9d355bcf8aea43dcd45c766caf5a2"
+        "path": "verification/history/0.3.0-dev.37/preparation-core.json",
+        "sha256": "2590c411b1040127b26f374ef25d47f0488bf158f71924f1d7a9de2db43d549a"
       },
       "assembly-core.json": {
-        "path": "verification/history/0.3.0-dev.36/assembly-core.json",
-        "sha256": "dd364a00ba7b8618577af43c5bacd51005b8426214ed5933946c1f6a40519a36"
+        "path": "verification/history/0.3.0-dev.37/assembly-core.json",
+        "sha256": "f8a608d5eafc933a0af3c8309e4fc52bd3b29e3cdf0e198b4ef0aac1601585e0"
       },
       "diffusion.json": {
-        "path": "verification/history/0.3.0-dev.36/diffusion.json",
-        "sha256": "80f2f56716966697681f1e280bc613ab7fe7df146fe61d31ccdbd16c87284071"
+        "path": "verification/history/0.3.0-dev.37/diffusion.json",
+        "sha256": "04dc4f226358d6aa4d2606d2913bf80deaf21101257ea7b422b0ccb9909e583c"
       },
       "lcm-media.json": {
-        "path": "verification/history/0.3.0-dev.36/lcm-media.json",
-        "sha256": "75fc63be046bac18ae290c03fc1f31a75048eb0e4074ba834711c0e77f2f7476"
+        "path": "verification/history/0.3.0-dev.37/lcm-media.json",
+        "sha256": "39d94c16528507d117f52942cea60f6ea6b6fab8ede15d106a81e4234121e121"
       },
       "moss-rq.json": {
-        "path": "verification/history/0.3.0-dev.36/moss-rq.json",
-        "sha256": "de61db5463938dc7f5adeeed5668fb30dfe4e4f9eb5569bba2d6d545aa43f9a0"
+        "path": "verification/history/0.3.0-dev.37/moss-rq.json",
+        "sha256": "da047c7ac80cdc9db722f30641579c28de423fb0cbafd26ad07b75f347028761"
       },
       "moss-rq-arm64.json": {
-        "path": "verification/history/0.3.0-dev.36/moss-rq-arm64.json",
+        "path": "verification/history/0.3.0-dev.37/moss-rq-arm64.json",
         "sha256": "9e64c6a3fdf0936b096839edb6e33cbf4845d1b5f16a9619e290b7b55a17506d"
       },
       "audio-media.json": {
-        "path": "verification/history/0.3.0-dev.36/audio-media.json",
-        "sha256": "6c837ea261a40a4dcd1e81bb078478dd22b060b94d484c062ff191d90d377d0b"
+        "path": "verification/history/0.3.0-dev.37/audio-media.json",
+        "sha256": "f5f994f64f590a50dbc911fbf51682eeb058daff612edaaf23d33e0404c75aab"
       },
       "ltx-app.json": {
-        "path": "verification/history/0.3.0-dev.36/ltx-app.json",
-        "sha256": "fd2c57830343b91352841a6f1e1c634ad20e4bbb13d897c3adfa396e35c895e3"
+        "path": "verification/history/0.3.0-dev.37/ltx-app.json",
+        "sha256": "18738d10f7d40f880265a7ee96803e925dae55ef833b76c20dfb3fae8ef61f6f"
       },
       "ltx-app-arm64.json": {
-        "path": "verification/history/0.3.0-dev.36/ltx-app-arm64.json",
+        "path": "verification/history/0.3.0-dev.37/ltx-app-arm64.json",
         "sha256": "8b6828ec1861d71478a209c4d90f40d8995823f59255b1166c3080b48cb4c54f"
       },
       "ltx-media.json": {
-        "path": "verification/history/0.3.0-dev.36/ltx-media.json",
-        "sha256": "e32d2992714034b83ebf07d9916ffee16743fe1f95e6c9a74d1afe48215ebb6e"
+        "path": "verification/history/0.3.0-dev.37/ltx-media.json",
+        "sha256": "07458e1dcbb917798554de0407a84cce200f47f931905684fed3e632e1330a0c"
       },
       "resources-media.json": {
-        "path": "verification/history/0.3.0-dev.36/resources-media.json",
-        "sha256": "ed6843d9a1a4194025cf2afead9ee4811031c39dc3371cee71b52e878f3c5022"
+        "path": "verification/history/0.3.0-dev.37/resources-media.json",
+        "sha256": "471ac71aef694a8897d9adaa68e98542a13a4c63ea9666ed835a35c06b4c7da3"
       },
       "curated-media.json": {
-        "path": "verification/history/0.3.0-dev.36/curated-media.json",
-        "sha256": "3850dbae0002ecf5f0c065d37c03ddd31a521f42f6f2736874fe256e46ac707a"
+        "path": "verification/history/0.3.0-dev.37/curated-media.json",
+        "sha256": "779c479ccb06c3fb680f2aee9f8a6ad06058ab6627a68d304186d17a037e54fa"
       },
       "speech-voices.json": {
-        "path": "verification/history/0.3.0-dev.36/speech-voices.json",
-        "sha256": "bbbf42f361661cd9b9aa5556192232cad05bfc2e6f4c9fb09b721aeebe021664"
+        "path": "verification/history/0.3.0-dev.37/speech-voices.json",
+        "sha256": "191ec5c819c13fb4a6956788f6cecdf17a556aa797ceaad7c5720300e6561fd5"
       },
       "speech-media.json": {
-        "path": "verification/history/0.3.0-dev.36/speech-media.json",
-        "sha256": "14bf870fc147463a6ffba20d95bbe82887c821436ff06f855dd25b196db6d1c5"
+        "path": "verification/history/0.3.0-dev.37/speech-media.json",
+        "sha256": "9b7e2f37911a408daafe315213bfd3f138682ec2d8542c6b0ae8804d59238441"
       },
       "backend.json": {
-        "path": "verification/history/0.3.0-dev.36/backend.json",
-        "sha256": "26a152acb00f2638759e03ea8ef7fbd879059408b3684d4e65519f51e8408eda"
+        "path": "verification/history/0.3.0-dev.37/backend.json",
+        "sha256": "3fefe0b9b379814ed939b123f5c01afedf07498b157863af4645866f6ba68a49"
       },
       "hub.json": {
-        "path": "verification/history/0.3.0-dev.36/hub.json",
-        "sha256": "ff61f2739b194c62fe95323631fa4937898161f5cd231cf0867e0afc0290ec61"
+        "path": "verification/history/0.3.0-dev.37/hub.json",
+        "sha256": "8d50ef296582f05cc7ed5777cbc284bd328e2a3bb124ea0ba75686149b4780fa"
       },
       "recipe-suggestions.json": {
-        "path": "verification/history/0.3.0-dev.36/recipe-suggestions.json",
-        "sha256": "c2a20ccf7d628f6e30a05ff641128c4088732b189ff01b1560ba1f0c5093e44b"
+        "path": "verification/history/0.3.0-dev.37/recipe-suggestions.json",
+        "sha256": "30569cf519a4feee65321d9db0b3a20144d7ec2c67655288c7fb6226e93829be"
       },
       "components-media.json": {
-        "path": "verification/history/0.3.0-dev.36/components-media.json",
-        "sha256": "695779e69437ad51bfebaad024bcfe92306e558186ca3c77d7567ae8d9c50b80"
+        "path": "verification/history/0.3.0-dev.37/components-media.json",
+        "sha256": "2c50c723ff799cce00aad48970f0b2ea8a3be1502e0c557a2746562ff51ac030"
       },
       "mnn.json": {
-        "path": "verification/history/0.3.0-dev.36/mnn.json",
-        "sha256": "c57f5b62dffa85cb48db93993fa1f78b20e93d9402d069220b8d44531adaa212"
+        "path": "verification/history/0.3.0-dev.37/mnn.json",
+        "sha256": "f7027c45f8601841903a56116c34b2f349aac4b19e18df1689c7de39128a0462"
       },
-      "mnn-arm64.json": {
-        "path": "verification/history/0.3.0-dev.36/mnn-arm64.json",
-        "sha256": "9823ca792d7bfec8b7eccb21cc876c6d0249dc047698a7f14088c557f9f9fbb0"
+      "flux2-assets.json": {
+        "path": "verification/history/0.3.0-dev.37/flux2-assets.json",
+        "sha256": "928b45e1172c4aaccf5290f1ea84bfae93db37fce4406c0e1f9fbd5ce35df9f0"
       },
-      "mnn-assets.json": {
-        "path": "verification/history/0.3.0-dev.36/mnn-assets.json",
-        "sha256": "675b919b4a82c42951c8cf6a42135f918ee0b6accf626076b1a5e3b04c5b356e"
+      "flux2-trained.json": {
+        "path": "verification/history/0.3.0-dev.37/flux2-trained.json",
+        "sha256": "bf0f3b46654f43deb94bc1b6d95ce3120aff6950f07644b984eeaff525a5e022"
       },
-      "mnn-trained.json": {
-        "path": "verification/history/0.3.0-dev.36/mnn-trained.json",
-        "sha256": "8fb8a6653525c4d3eef42c28e3ebbe06d7fcbf73669ce554846665abcfb07ae8"
+      "flux2-app-host.json": {
+        "path": "verification/history/0.3.0-dev.37/flux2-app-host.json",
+        "sha256": "dd832f7935a75921e630b46d3f281c672787aa16a579988d7a97ce04eb7b193b"
       },
-      "mnn-app-host.json": {
-        "path": "verification/history/0.3.0-dev.36/mnn-app-host.json",
-        "sha256": "3ce2c8bd5a36c0a97cbbd28b25ed6965bc4c5eabb52f5418fc30ce73df2c6bbe"
+      "flux2-trained-media.json": {
+        "path": "verification/history/0.3.0-dev.37/flux2-trained-media.json",
+        "sha256": "9772491b8c21925fe4107552a20601ae2188d31a6e17ff2676a098820cc125b4"
       },
-      "mnn-trained-media.json": {
-        "path": "verification/history/0.3.0-dev.36/mnn-trained-media.json",
-        "sha256": "a2a3c7e0d04c73bc788809271ed5d2a9f0d4de4b876591e668a35e48276bd004"
+      "qwen-tokenizer.json": {
+        "path": "verification/history/0.3.0-dev.37/qwen-tokenizer.json",
+        "sha256": "e6ec16a7c602212fcace5c30cf6ba04dc357230826925888b65bed877c0958e8"
       }
     }
   },
@@ -695,7 +695,7 @@
   ],
   "apk_model_inference_tested": false,
   "historical_host_model_inference_tested": true,
-  "model_inference_test_scope": "Current complete FLUX.2-klein 4B native Windows CPU and production Java execution; four user-owned pinned components and independent official Qwen tokenizer IDs. Sana Edit trained execution remains exact dev.36 history. No Android model inference, image quality or full numerical acceptance.",
+  "model_inference_test_scope": "Current complete Z-Image-Turbo native Windows CPU and production Java execution; four complete user-owned components and the identical official Qwen tokenizer reference. FLUX.2-klein remains exact dev.37 and Sana Edit exact dev.36 history. No Android model inference, image quality or full numerical acceptance.",
   "scope": "Optional FLUX.2-klein 4B catalogue/HF selection, explicit complete-asset lifecycle, independent settings, immutable jobs, real generation/cancellation/recovery and managed outputs; shared external Qwen merge header correction with complete vocabulary/reference checks. Foundation-only APK, preserved recommendations, no automatic downloads, no ROOT or off-device inference, no ComfyUI graph ecosystem. Full frozen v0.3.0 requirements and failed gates remain unchanged.",
   "required_release_scope": {
     "foundation": "F01–F12",
@@ -723,8 +723,8 @@
   },
   "input_fingerprint": {
     "docs/proposals/multimodal-release-scope.json": "03326504d2d1b52c315bef574325f2c05d43c6a65eafc9779cc33120b7801690",
-    "tools/check_repository.py": "0bd9d7a79023e840a9aca3cd2b9004058c2fcb9ef5891cee67364e77d52a0bca",
-    "tools/checkpoint_evidence.py": "55ef6263fa29c43fabb7a1c828533f4a3b4ed08d7583f62fe7ff7fb892ce50b8",
-    "tools/export_development.py": "86a711f3cdb5c43a511a0cae26393ef3d6f08e95ed909001480bc62bb4cb89cf"
+    "tools/check_repository.py": "18a5da41e89bacf446a4da1fc6f096c36ec9dc36520d63f8a2c3a64ed0b8b197",
+    "tools/checkpoint_evidence.py": "22de7b373bc9fe2af155ec820fa651d00662e43aa77dab77e708112707462512",
+    "tools/export_development.py": "406d033880270d1d0d975bd59e6c85cdbdedb1718c1d93dba791b27a32b5a2a7"
   }
 }

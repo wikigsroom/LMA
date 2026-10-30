@@ -1,0 +1,56 @@
+{
+  "schema": "lma.flux2-trained-acquisition/1",
+  "components": [
+    {
+      "role": "diffusion",
+      "format": "gguf",
+      "repository": "leejet/FLUX.2-klein-4B-GGUF",
+      "revision": "3b1f5a9dc3abb32238b053aeb3d823c30afdacbd",
+      "path": "flux-2-klein-4b-Q4_0.gguf",
+      "bytes": 2460378560,
+      "sha256": "d1023499ef3f2f82ff7c50e6778495195c1b6cc34835741778868428111f9ff4",
+      "url": "https://huggingface.co/leejet/FLUX.2-klein-4B-GGUF/resolve/3b1f5a9dc3abb32238b053aeb3d823c30afdacbd/flux-2-klein-4b-Q4_0.gguf"
+    },
+    {
+      "role": "llm",
+      "format": "gguf",
+      "repository": "unsloth/Qwen3-4B-GGUF",
+      "revision": "22c9fc8a8c7700b76a1789366280a6a5a1ad1120",
+      "path": "Qwen3-4B-Q4_K_M.gguf",
+      "bytes": 2497281312,
+      "sha256": "f6f851777709861056efcdad3af01da38b31223a3ba26e61a4f8bf3a2195813a",
+      "url": "https://huggingface.co/unsloth/Qwen3-4B-GGUF/resolve/22c9fc8a8c7700b76a1789366280a6a5a1ad1120/Qwen3-4B-Q4_K_M.gguf"
+    },
+    {
+      "role": "vae",
+      "format": "safetensors",
+      "repository": "black-forest-labs/FLUX.2-klein-4B",
+      "revision": "e7b7dc27f91deacad38e78976d1f2b499d76a294",
+      "path": "vae/diffusion_pytorch_model.safetensors",
+      "bytes": 168120878,
+      "sha256": "ca70d2202afe6415bdbcb8793ba8cd99fd159cfe6192381504d6c4d3036e0f04",
+      "url": "https://huggingface.co/black-forest-labs/FLUX.2-klein-4B/resolve/e7b7dc27f91deacad38e78976d1f2b499d76a294/vae/diffusion_pytorch_model.safetensors"
+    },
+    {
+      "role": "qwen_merges",
+      "format": "text",
+      "repository": "black-forest-labs/FLUX.2-klein-4B",
+      "revision": "e7b7dc27f91deacad38e78976d1f2b499d76a294",
+      "path": "tokenizer/merges.txt",
+      "bytes": 1671853,
+      "sha256": "8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5",
+      "url": "https://huggingface.co/black-forest-labs/FLUX.2-klein-4B/resolve/e7b7dc27f91deacad38e78976d1f2b499d76a294/tokenizer/merges.txt"
+    }
+  ],
+  "explicit_download": true,
+  "download_origin": "https://hf-mirror.com",
+  "developer_assets_only": true,
+  "bundled_model_data": false,
+  "model_executed": false,
+  "reference_tokenizer_verified": true,
+  "input_fingerprint": {
+    "research/flux2_trained/assets.json": "77d268da7aaf6d9a861c92e6c82d4dc2e279218af1c67e48f63a73816b0991cb",
+    "tools/fetch_flux2_trained.py": "a103482c4ede9c93616a8b3d04d07cb55ba6fe32d2945321d3299f17bc7f5de0",
+    "tools/fetch_sd15_trained.py": "91392401d9739f15b14fa4e42b74f13bbdd719a382746541cc69952966e6f307"
+  }
+}

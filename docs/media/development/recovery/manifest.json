@@ -1,5 +1,5 @@
 {
-  "version": "0.3.0-dev.37",
+  "version": "0.3.0-dev.38",
   "kind": "current production UI with an explicit simulated bridge",
   "android_device": false,
   "model_inference": false,
@@ -44,18 +44,18 @@
   "files": [
     {
       "file": "01-recovery.png",
-      "bytes": 42828,
-      "sha256": "bc259bb4fb086e99d46bde1ca857c6cbfa80fcc0abfef1b90e674787754ca075"
+      "bytes": 42755,
+      "sha256": "8cba1ddb51b722ca1b71dccf0b0c1f1dd0cfd4e2482d5e5beb13b2f0851fc03f"
     },
     {
       "file": "02-filters.png",
-      "bytes": 43261,
-      "sha256": "855a8746a4ab309bc7b33271fdd7f1a5c0c14a1fb2855cbe7c816f5199ec2199"
+      "bytes": 43215,
+      "sha256": "a119f9947c5c12c63118a7d8f4335d2672f759ed86d327cef1a8e698fb054ffe"
     },
     {
       "file": "03-review.png",
-      "bytes": 62783,
-      "sha256": "bb5aaca64ce2f2d5f6b1b5710c9cae9274d4bb1d686e679a0b4b2ba15cbb5aea"
+      "bytes": 61755,
+      "sha256": "56438615458727ed1fb9fa2a3dc4c6c2b82058aae3eddb7f2f496efdbe175eea"
     },
     {
       "file": "04-conflict.png",
@@ -64,13 +64,13 @@
     },
     {
       "file": "recovery-ui.gif",
-      "bytes": 690377,
-      "sha256": "0b49d46df2babd8ffee149ed586bb3289a9cc9c94d3c2df7fef38f2fc9eb4aa2"
+      "bytes": 916699,
+      "sha256": "f9b21c764eadc9000d2b5bb9da7c66634c18249c8a233de6b04e8ca8429dd59a"
     },
     {
       "file": "recovery-ui.mp4",
-      "bytes": 283791,
-      "sha256": "796bdfd8527bfe4d31751aad17385a3b0cd2bd574dedaf85fd0fa90cddb11be3"
+      "bytes": 343537,
+      "sha256": "bfdbdd23d85e02d5ff79a5d6235195b9dc4c090be3fc070ba6eaac77b1ebc6d1"
     }
   ],
   "input_fingerprint": {
@@ -81,7 +81,7 @@
     "app/src/main/assets/engine-builds.json": "8fb9f0e74b31b77872695dfa7e7dcd7d524a1ea2216d165b704e143c85764eee",
     "app/src/main/assets/foundation.css": "ac77af14c0498d3c358d76814109cda4f49fb5c660c1f53961d8f9b7f6c3a53f",
     "app/src/main/assets/foundation.js": "a2bd9f0a92807a0d60a97884fb3dd123ddfc5cf42258b6577bff36b37f99cb14",
-    "app/src/main/assets/index.html": "695e9dc76c218f56bfc059e4d4a4bb30fef791c75f9a2cb716b280299b62a2a7",
+    "app/src/main/assets/index.html": "97019a3e5caf70dbc07922d4e5b1279ef3d72869f30d27eced130ec9f0b368e6",
     "app/src/main/assets/license.js": "838317c7653ca35291e9e18f2a7e2d98ed46a10880dfe144176f04ad994433d0",
     "app/src/main/assets/licenses/LLAMA_CPP_LICENSE": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
     "app/src/main/assets/licenses/LMA_LICENSE": "6ae3f5efa412d91cbf66e44f743e5ce41a8044309d05d893365206ab9bc35fc3",
@@ -169,7 +169,7 @@
     "app/src/main/assets/licenses/tts-utf8proc-LICENSE.md.txt": "3b510150d34f248a221bb88e1d811238d6c6c18b51231822c42974c39bb07256",
     "app/src/main/assets/licenses/xxhash-LICENSE.txt": "a2973411d278045bde3c7161b911e0680d53e2d73d6457c77068d2e55d816d67",
     "app/src/main/assets/model-assemblies.json": "af004a9e62205786cd2bd8ca74af4260dc125fdf1ac9e836968bab65747dd746",
-    "app/src/main/assets/model-bundles.json": "461a7cebcb8ad9aa99435ca2e7f2f71ba8acee7219bf577398ce2535c99ed33a",
+    "app/src/main/assets/model-bundles.json": "485815f00f475e285f478b5751850137a9a2f857160c1c2230b1119eb8bf6f11",
     "app/src/main/assets/models.json": "c3e884b4e5fb06f20c036deebc78e6f953ac420e76fca72bab5a25fd59927156",
     "app/src/main/assets/preparations/ltx098_vae_prepare/stage-00.onnx": "33f367287eaf5bc67aead22132d9d73aeaf66b51387bbc3a032a1c7eb936ff8b",
     "app/src/main/assets/preparations/ltx098_vae_prepare/stage-01.onnx": "29ede53a11d80957e6f0abe38780511c267762feba725b49c29bd36fa35d31b3",
@@ -180,7 +180,7 @@
     "app/src/main/assets/preparations/ltx098_vae_prepare/stage-06.onnx": "c737a55510880d4b92e12e9aca7138a154ad6e58a96e89a4f2a530a3f369b88c",
     "app/src/main/assets/preparations/ltx098_vae_prepare/stage-07.onnx": "239145b9c04cbb5513ee96d2a41ff5b1f8db2c4cf0d9148c3092028b858b3576",
     "app/src/main/assets/preparations/ltx098_vae_prepare/stage-08.onnx": "ff463e05293456c25aa5b1a14d82b1f732f1aee0f00da45f8e28419509ba8ac9",
-    "app/src/main/assets/recipe-templates.json": "0ac0d11381d784f7267771e2d17daa8bf8356662b912736e3c830c21e6c144aa",
+    "app/src/main/assets/recipe-templates.json": "91fe5a1ee107a2f4938c80343f0e6483b25db3c5dc0042437751a34df8b64d66",
     "app/src/main/assets/recipes.js": "b27e75ed85948a63476bf351cde94a59bec935a540f65e1a9fe798322bcd1b39",
     "app/src/main/assets/versions.js": "2d629929a6db642c12a242ddcc62cd4f4090ab307e0cb669ceb98add031977e1",
     "app/src/main/assets/workbench.js": "17042106c2bbecf2ba42e1287682b0ad905fbe22137fbb5b3ea0bdee5f2745f4",

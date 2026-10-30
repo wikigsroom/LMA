@@ -1,0 +1,1338 @@
+{
+  "schema": "lma.zimage-app-host/1",
+  "capture_directory": "build/zimage-app-host-tests/run-1793349249166863500",
+  "java": {
+    "android_saf_tested": false,
+    "android_background_accepted": false,
+    "imported_bytes": 6349991011,
+    "production_java_native_host_executed": true,
+    "complete_release_accepted": false,
+    "actual_host_children": 3,
+    "imported_objects": 4,
+    "network_calls": 0,
+    "image_quality_accepted": false,
+    "passed": 100,
+    "physical_android": false,
+    "bundle": {
+      "schema": "lma.model-bundle/2",
+      "components": [
+        {
+          "importPath": "diffusion/z_image_turbo-Q4_0.gguf",
+          "path": "z_image_turbo-Q4_0.gguf",
+          "role": "diffusion",
+          "sha256": "2bc57986874c84f7ec6d02d9d7070a53b0029954a0e38a6e1342eb91095572f5",
+          "bytes": 3683370944,
+          "format": "gguf",
+          "repository": "leejet/Z-Image-Turbo-GGUF",
+          "url": "https://huggingface.co/leejet/Z-Image-Turbo-GGUF/resolve/c61c0e422dc8b541b7548cf33a4ef8302b0f8085/z_image_turbo-Q4_0.gguf",
+          "revision": "c61c0e422dc8b541b7548cf33a4ef8302b0f8085"
+        },
+        {
+          "importPath": "llm/Qwen3-4B-Q4_K_M.gguf",
+          "path": "Qwen3-4B-Q4_K_M.gguf",
+          "role": "llm",
+          "sha256": "f6f851777709861056efcdad3af01da38b31223a3ba26e61a4f8bf3a2195813a",
+          "bytes": 2497281312,
+          "format": "gguf",
+          "repository": "unsloth/Qwen3-4B-GGUF",
+          "url": "https://huggingface.co/unsloth/Qwen3-4B-GGUF/resolve/22c9fc8a8c7700b76a1789366280a6a5a1ad1120/Qwen3-4B-Q4_K_M.gguf",
+          "revision": "22c9fc8a8c7700b76a1789366280a6a5a1ad1120"
+        },
+        {
+          "importPath": "vae/vae/diffusion_pytorch_model.safetensors",
+          "path": "vae/diffusion_pytorch_model.safetensors",
+          "role": "vae",
+          "sha256": "f5b59a26851551b67ae1fe58d32e76486e1e812def4696a4bea97f16604d40a3",
+          "bytes": 167666902,
+          "format": "safetensors",
+          "repository": "Tongyi-MAI/Z-Image-Turbo",
+          "url": "https://huggingface.co/Tongyi-MAI/Z-Image-Turbo/resolve/f332072aa78be7aecdf3ee76d5c247082da564a6/vae/diffusion_pytorch_model.safetensors",
+          "revision": "f332072aa78be7aecdf3ee76d5c247082da564a6"
+        },
+        {
+          "importPath": "qwen_merges/tokenizer/merges.txt",
+          "path": "tokenizer/merges.txt",
+          "role": "qwen_merges",
+          "sha256": "8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5",
+          "bytes": 1671853,
+          "format": "text",
+          "repository": "Tongyi-MAI/Z-Image-Turbo",
+          "url": "https://huggingface.co/Tongyi-MAI/Z-Image-Turbo/resolve/f332072aa78be7aecdf3ee76d5c247082da564a6/tokenizer/merges.txt",
+          "revision": "f332072aa78be7aecdf3ee76d5c247082da564a6"
+        }
+      ],
+      "capabilities": [
+        "text_to_image",
+        "distilled_sampling"
+      ],
+      "evidence": {
+        "architectureVerified": false,
+        "status": "user_selected_hf_components_not_device_tested",
+        "physicalDeviceTests": 0
+      },
+      "modelId": "hfb_40635d96c59e15b9c4423c7e6473a69cd16c2287",
+      "description": "\u7528\u6237\u4ece\u56fa\u5b9a HF \u7248\u672c\u660e\u786e\u9009\u62e9\u7684\u7ec4\u4ef6\u914d\u65b9\uff1b\u67b6\u6784\u4e0e\u5b9e\u9645\u624b\u673a\u6267\u884c\u5c1a\u672a\u9a8c\u8bc1\u3002",
+      "recipeId": "z_image_turbo_split_cpu_v1",
+      "catalogue": false,
+      "pipeline": "z_image_turbo",
+      "sourceUrl": "https://huggingface.co/leejet/Z-Image-Turbo-GGUF",
+      "license": {
+        "name": "\u8bf7\u5206\u522b\u6838\u5bf9\u6a21\u578b\u4e0e\u5404\u7ec4\u4ef6\u8bb8\u53ef",
+        "url": "https://huggingface.co/leejet/Z-Image-Turbo-GGUF"
+      },
+      "engine": "sd_cpp",
+      "name": "Z-Image-Turbo-GGUF \u00b7 Z-Image-Turbo",
+      "backend": "cpu",
+      "id": "hfb_40635d96c59e15b9c4423c7e6473a69cd16c2287",
+      "parameters": {
+        "fields": {
+          "scheduler": {
+            "default": "discrete",
+            "values": [
+              "discrete"
+            ],
+            "label": "\u8c03\u5ea6\u5668",
+            "type": "enum"
+          },
+          "seed": {
+            "multipleOf": 1,
+            "default": -1,
+            "presets": [
+              -1,
+              0,
+              42
+            ],
+            "limitSource": "application_guard",
+            "maximum": 2147483647,
+            "label": "\u968f\u673a\u79cd\u5b50\uff08-1 \u4e3a\u968f\u673a\uff09",
+            "type": "integer",
+            "minimum": -1
+          },
+          "cfg": {
+            "default": 1,
+            "presets": [
+              1
+            ],
+            "limitSource": "application_guard",
+            "maximum": 1,
+            "label": "\u63d0\u793a\u8bcd\u5f15\u5bfc",
+            "type": "number",
+            "minimum": 1
+          },
+          "vaeTiling": {
+            "default": true,
+            "label": "\u5206\u5757\u89e3\u7801 VAE",
+            "type": "boolean"
+          },
+          "width": {
+            "multipleOf": 16,
+            "default": 1024,
+            "presets": [
+              256,
+              384,
+              512,
+              768,
+              1024
+            ],
+            "limitSource": "pipeline_alignment_and_application_guard",
+            "maximum": 2048,
+            "label": "\u5bbd\u5ea6",
+            "type": "integer",
+            "minimum": 64
+          },
+          "threads": {
+            "multipleOf": 1,
+            "default": 4,
+            "presets": [
+              1,
+              2,
+              4,
+              6,
+              8
+            ],
+            "limitSource": "application_guard",
+            "maximum": 64,
+            "label": "CPU \u7ebf\u7a0b",
+            "type": "integer",
+            "minimum": 1
+          },
+          "steps": {
+            "multipleOf": 1,
+            "default": 8,
+            "presets": [
+              1,
+              2,
+              4,
+              8
+            ],
+            "limitSource": "application_sampling_policy",
+            "maximum": 8,
+            "label": "\u91c7\u6837\u6b65\u6570",
+            "type": "integer",
+            "minimum": 1
+          },
+          "flowShift": {
+            "default": 0,
+            "presets": [
+              0,
+              1,
+              3,
+              5
+            ],
+            "limitSource": "application_guard",
+            "maximum": 32,
+            "label": "\u6d41\u5339\u914d\u504f\u79fb\uff080 \u81ea\u52a8\uff09",
+            "type": "number",
+            "minimum": 0
+          },
+          "height": {
+            "multipleOf": 16,
+            "default": 1024,
+            "presets": [
+              256,
+              384,
+              512,
+              768,
+              1024
+            ],
+            "limitSource": "pipeline_alignment_and_application_guard",
+            "maximum": 2048,
+            "label": "\u9ad8\u5ea6",
+            "type": "integer",
+            "minimum": 64
+          },
+          "sampler": {
+            "default": "euler",
+            "values": [
+              "euler"
+            ],
+            "label": "\u91c7\u6837\u5668",
+            "type": "enum"
+          }
+        },
+        "version": 1
+      },
+      "uncensored": {
+        "declared": false,
+        "detected": false,
+        "basis": "repository-metadata",
+        "refusalRateTested": false
+      },
+      "tasks": [
+        "image"
+      ],
+      "architecture": "z_image"
+    },
+    "runs": [
+      {
+        "artifact": {
+          "jobId": "job_28cfd7bdbd4c4c31b0b9428e71db2ed1",
+          "createdAt": 1793351330023,
+          "metadata": {
+            "mime": "image/png",
+            "width": 512,
+            "height": 512
+          },
+          "filename": "artifact_098ab118440b49ed84b98364aa44d7ed.png",
+          "provenance": {
+            "input": {
+              "prompt": "A small red toy robot standing beside a blue ceramic teapot on a wooden table, studio photograph, soft daylight, clean background",
+              "negativePrompt": ""
+            },
+            "execution": {
+              "effectiveParameters": {
+                "scheduler": "discrete",
+                "seed": 42,
+                "cfg": 1,
+                "vaeTiling": true,
+                "width": 512,
+                "threads": 6,
+                "steps": 8,
+                "flowShift": 0,
+                "height": 512,
+                "sampler": "euler"
+              },
+              "pipeline": "z_image_turbo",
+              "samplingProfile": "z_image_turbo",
+              "samplingAdjustments": []
+            },
+            "adapters": [],
+            "bundleId": "hfb_40635d96c59e15b9c4423c7e6473a69cd16c2287",
+            "diffusionPlan": {
+              "schema": "lma.diffusion-plan/1",
+              "adjustments": [],
+              "profile": "z_image_turbo",
+              "parameters": {
+                "scheduler": "discrete",
+                "seed": 42,
+                "cfg": 1,
+                "vaeTiling": true,
+                "width": 512,
+                "threads": 6,
+                "steps": 8,
+                "flowShift": 0,
+                "height": 512,
+                "sampler": "euler"
+              }
+            },
+            "type": "image.generate",
+            "parameters": {
+              "scheduler": "discrete",
+              "seed": 42,
+              "cfg": 1,
+              "vaeTiling": true,
+              "width": 512,
+              "threads": 6,
+              "steps": 8,
+              "flowShift": 0,
+              "height": 512,
+              "sampler": "euler"
+            }
+          },
+          "sha256": "52a0bb75abdefd5a33d09981d81ae771fb52b3f57c136bf9e193f6be5c411b06",
+          "bytes": 386652,
+          "origin": {
+            "kind": "generated"
+          },
+          "id": "artifact_098ab118440b49ed84b98364aa44d7ed"
+        },
+        "output": "U:\\build\\zimage-app-host-tests\\run-1793349249166863500\\data\\artifacts\\media\\artifact_098ab118440b49ed84b98364aa44d7ed.png",
+        "execution": {
+          "effectiveParameters": {
+            "scheduler": "discrete",
+            "seed": 42,
+            "cfg": 1,
+            "vaeTiling": true,
+            "width": 512,
+            "threads": 6,
+            "steps": 8,
+            "flowShift": 0,
+            "height": 512,
+            "sampler": "euler"
+          },
+          "pipeline": "z_image_turbo",
+          "samplingProfile": "z_image_turbo",
+          "samplingAdjustments": []
+        },
+        "sha256": "52a0bb75abdefd5a33d09981d81ae771fb52b3f57c136bf9e193f6be5c411b06",
+        "bytes": 386652,
+        "name": "a",
+        "progress": [
+          {
+            "stage": "loading",
+            "fraction": null
+          },
+          {
+            "stage": "generating",
+            "fraction": null
+          },
+          {
+            "stage": "generating",
+            "fraction": 0
+          },
+          {
+            "stage": "generating",
+            "fraction": 0
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.125
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.25
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.375
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.5
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.625
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.75
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.875
+          },
+          {
+            "stage": "generating",
+            "fraction": 1
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.2608695652173913
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.43478260869565216
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.6086956521739131
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.7681159420289855
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.02040816326530612
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.04081632653061224
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.061224489795918366
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.08163265306122448
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.10204081632653061
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.12244897959183673
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.14285714285714285
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.16326530612244897
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.1836734693877551
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.20408163265306123
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.22448979591836735
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.24489795918367346
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.2653061224489796
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.2857142857142857
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.30612244897959184
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.32653061224489793
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.3469387755102041
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.3673469387755102
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.3877551020408163
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.40816326530612246
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.42857142857142855
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.4489795918367347
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.46938775510204084
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.4897959183673469
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.5102040816326531
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.5306122448979592
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.5510204081632653
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.5714285714285714
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.5918367346938775
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.6122448979591837
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.6326530612244898
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.6530612244897959
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.673469387755102
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.6938775510204082
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.7142857142857143
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.7346938775510204
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.7551020408163265
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.7755102040816326
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.7959183673469388
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.8163265306122449
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.8367346938775511
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.8571428571428571
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.8775510204081632
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.8979591836734694
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.9183673469387755
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.9387755102040817
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.9591836734693877
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.9795918367346939
+          },
+          {
+            "stage": "generating",
+            "fraction": 1
+          }
+        ]
+      },
+      {
+        "execution": {
+          "effectiveParameters": {
+            "scheduler": "discrete",
+            "seed": 42,
+            "cfg": 1,
+            "vaeTiling": true,
+            "width": 512,
+            "threads": 6,
+            "steps": 8,
+            "flowShift": 0,
+            "height": 512,
+            "sampler": "euler"
+          },
+          "pipeline": "z_image_turbo",
+          "samplingProfile": "z_image_turbo",
+          "samplingAdjustments": []
+        },
+        "name": "cancel-sampling",
+        "cancelled": true,
+        "progress": [
+          {
+            "stage": "loading",
+            "fraction": null
+          },
+          {
+            "stage": "generating",
+            "fraction": null
+          },
+          {
+            "stage": "generating",
+            "fraction": 0
+          },
+          {
+            "stage": "generating",
+            "fraction": 0
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.125
+          }
+        ]
+      },
+      {
+        "artifact": {
+          "jobId": "job_48d6c915a3274cc4a5512a648384df22",
+          "createdAt": 1793352812965,
+          "metadata": {
+            "mime": "image/png",
+            "width": 512,
+            "height": 512
+          },
+          "filename": "artifact_57393735957c48c3914f176e603332db.png",
+          "provenance": {
+            "input": {
+              "prompt": "A small red toy robot standing beside a blue ceramic teapot on a wooden table, studio photograph, soft daylight, clean background",
+              "negativePrompt": ""
+            },
+            "execution": {
+              "effectiveParameters": {
+                "scheduler": "discrete",
+                "seed": 42,
+                "cfg": 1,
+                "vaeTiling": true,
+                "width": 512,
+                "threads": 6,
+                "steps": 8,
+                "flowShift": 0,
+                "height": 512,
+                "sampler": "euler"
+              },
+              "pipeline": "z_image_turbo",
+              "samplingProfile": "z_image_turbo",
+              "samplingAdjustments": []
+            },
+            "adapters": [],
+            "bundleId": "hfb_40635d96c59e15b9c4423c7e6473a69cd16c2287",
+            "diffusionPlan": {
+              "schema": "lma.diffusion-plan/1",
+              "adjustments": [],
+              "profile": "z_image_turbo",
+              "parameters": {
+                "scheduler": "discrete",
+                "seed": 42,
+                "cfg": 1,
+                "vaeTiling": true,
+                "width": 512,
+                "threads": 6,
+                "steps": 8,
+                "flowShift": 0,
+                "height": 512,
+                "sampler": "euler"
+              }
+            },
+            "type": "image.generate",
+            "parameters": {
+              "scheduler": "discrete",
+              "seed": 42,
+              "cfg": 1,
+              "vaeTiling": true,
+              "width": 512,
+              "threads": 6,
+              "steps": 8,
+              "flowShift": 0,
+              "height": 512,
+              "sampler": "euler"
+            }
+          },
+          "sha256": "52a0bb75abdefd5a33d09981d81ae771fb52b3f57c136bf9e193f6be5c411b06",
+          "bytes": 386652,
+          "origin": {
+            "kind": "generated"
+          },
+          "id": "artifact_57393735957c48c3914f176e603332db"
+        },
+        "output": "U:\\build\\zimage-app-host-tests\\run-1793349249166863500\\data\\artifacts\\media\\artifact_57393735957c48c3914f176e603332db.png",
+        "execution": {
+          "effectiveParameters": {
+            "scheduler": "discrete",
+            "seed": 42,
+            "cfg": 1,
+            "vaeTiling": true,
+            "width": 512,
+            "threads": 6,
+            "steps": 8,
+            "flowShift": 0,
+            "height": 512,
+            "sampler": "euler"
+          },
+          "pipeline": "z_image_turbo",
+          "samplingProfile": "z_image_turbo",
+          "samplingAdjustments": []
+        },
+        "sha256": "52a0bb75abdefd5a33d09981d81ae771fb52b3f57c136bf9e193f6be5c411b06",
+        "bytes": 386652,
+        "name": "recovery-a",
+        "progress": [
+          {
+            "stage": "loading",
+            "fraction": null
+          },
+          {
+            "stage": "generating",
+            "fraction": null
+          },
+          {
+            "stage": "generating",
+            "fraction": 0
+          },
+          {
+            "stage": "generating",
+            "fraction": 0
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.125
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.25
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.375
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.5
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.625
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.75
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.875
+          },
+          {
+            "stage": "generating",
+            "fraction": 1
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.2608695652173913
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.38405797101449274
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.43478260869565216
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.6231884057971014
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.8188405797101449
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.02040816326530612
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.04081632653061224
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.061224489795918366
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.08163265306122448
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.10204081632653061
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.12244897959183673
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.14285714285714285
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.16326530612244897
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.1836734693877551
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.20408163265306123
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.22448979591836735
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.24489795918367346
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.2653061224489796
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.2857142857142857
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.30612244897959184
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.32653061224489793
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.3469387755102041
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.3673469387755102
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.3877551020408163
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.40816326530612246
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.42857142857142855
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.4489795918367347
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.46938775510204084
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.4897959183673469
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.5102040816326531
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.5306122448979592
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.5510204081632653
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.5714285714285714
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.5918367346938775
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.6122448979591837
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.6326530612244898
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.6530612244897959
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.673469387755102
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.6938775510204082
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.7142857142857143
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.7346938775510204
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.7551020408163265
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.7755102040816326
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.7959183673469388
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.8163265306122449
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.8367346938775511
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.8571428571428571
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.8775510204081632
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.8979591836734694
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.9183673469387755
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.9387755102040817
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.9591836734693877
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.9795918367346939
+          },
+          {
+            "stage": "generating",
+            "fraction": 1
+          }
+        ]
+      }
+    ],
+    "launches": [
+      {
+        "schema": "lma.engine-request/1",
+        "pipeline": "z_image_turbo",
+        "output": "U:\\build\\zimage-app-host-tests\\run-1793349249166863500\\data\\artifacts\\staging\\job_28cfd7bdbd4c4c31b0b9428e71db2ed1_55d346a0b89f488ba99b11112644716e.png",
+        "input": {
+          "prompt": "A small red toy robot standing beside a blue ceramic teapot on a wooden table, studio photograph, soft daylight, clean background",
+          "negativePrompt": ""
+        },
+        "components": {
+          "diffusion": "U:\\build\\zimage-app-host-tests\\run-1793349249166863500\\data\\files\\bundles\\objects\\2bc57986874c84f7ec6d02d9d7070a53b0029954a0e38a6e1342eb91095572f5",
+          "qwen_merges": "U:\\build\\zimage-app-host-tests\\run-1793349249166863500\\data\\files\\bundles\\objects\\8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5",
+          "vae": "U:\\build\\zimage-app-host-tests\\run-1793349249166863500\\data\\files\\bundles\\objects\\f5b59a26851551b67ae1fe58d32e76486e1e812def4696a4bea97f16604d40a3",
+          "llm": "U:\\build\\zimage-app-host-tests\\run-1793349249166863500\\data\\files\\bundles\\objects\\f6f851777709861056efcdad3af01da38b31223a3ba26e61a4f8bf3a2195813a"
+        },
+        "loras": [],
+        "type": "image.generate",
+        "samplingProfile": "z_image_turbo",
+        "parameters": {
+          "scheduler": "discrete",
+          "seed": 42,
+          "cfg": 1,
+          "vaeTiling": true,
+          "width": 512,
+          "threads": 6,
+          "steps": 8,
+          "flowShift": 0,
+          "height": 512,
+          "sampler": "euler"
+        },
+        "architecture": "z_image"
+      },
+      {
+        "schema": "lma.engine-request/1",
+        "pipeline": "z_image_turbo",
+        "output": "U:\\build\\zimage-app-host-tests\\run-1793349249166863500\\data\\artifacts\\staging\\job_3af03bf4f135405197b48e8da155cbdc_f66cfa1e4fbb457fb9562e5457a7a82c.png",
+        "input": {
+          "prompt": "A small red toy robot standing beside a blue ceramic teapot on a wooden table, studio photograph, soft daylight, clean background",
+          "negativePrompt": ""
+        },
+        "components": {
+          "diffusion": "U:\\build\\zimage-app-host-tests\\run-1793349249166863500\\data\\files\\bundles\\objects\\2bc57986874c84f7ec6d02d9d7070a53b0029954a0e38a6e1342eb91095572f5",
+          "qwen_merges": "U:\\build\\zimage-app-host-tests\\run-1793349249166863500\\data\\files\\bundles\\objects\\8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5",
+          "vae": "U:\\build\\zimage-app-host-tests\\run-1793349249166863500\\data\\files\\bundles\\objects\\f5b59a26851551b67ae1fe58d32e76486e1e812def4696a4bea97f16604d40a3",
+          "llm": "U:\\build\\zimage-app-host-tests\\run-1793349249166863500\\data\\files\\bundles\\objects\\f6f851777709861056efcdad3af01da38b31223a3ba26e61a4f8bf3a2195813a"
+        },
+        "loras": [],
+        "type": "image.generate",
+        "samplingProfile": "z_image_turbo",
+        "parameters": {
+          "scheduler": "discrete",
+          "seed": 42,
+          "cfg": 1,
+          "vaeTiling": true,
+          "width": 512,
+          "threads": 6,
+          "steps": 8,
+          "flowShift": 0,
+          "height": 512,
+          "sampler": "euler"
+        },
+        "architecture": "z_image"
+      },
+      {
+        "schema": "lma.engine-request/1",
+        "pipeline": "z_image_turbo",
+        "output": "U:\\build\\zimage-app-host-tests\\run-1793349249166863500\\data\\artifacts\\staging\\job_48d6c915a3274cc4a5512a648384df22_74eca6e69d66477bac63e9cc55761c8b.png",
+        "input": {
+          "prompt": "A small red toy robot standing beside a blue ceramic teapot on a wooden table, studio photograph, soft daylight, clean background",
+          "negativePrompt": ""
+        },
+        "components": {
+          "diffusion": "U:\\build\\zimage-app-host-tests\\run-1793349249166863500\\data\\files\\bundles\\objects\\2bc57986874c84f7ec6d02d9d7070a53b0029954a0e38a6e1342eb91095572f5",
+          "qwen_merges": "U:\\build\\zimage-app-host-tests\\run-1793349249166863500\\data\\files\\bundles\\objects\\8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5",
+          "vae": "U:\\build\\zimage-app-host-tests\\run-1793349249166863500\\data\\files\\bundles\\objects\\f5b59a26851551b67ae1fe58d32e76486e1e812def4696a4bea97f16604d40a3",
+          "llm": "U:\\build\\zimage-app-host-tests\\run-1793349249166863500\\data\\files\\bundles\\objects\\f6f851777709861056efcdad3af01da38b31223a3ba26e61a4f8bf3a2195813a"
+        },
+        "loras": [],
+        "type": "image.generate",
+        "samplingProfile": "z_image_turbo",
+        "parameters": {
+          "scheduler": "discrete",
+          "seed": 42,
+          "cfg": 1,
+          "vaeTiling": true,
+          "width": 512,
+          "threads": 6,
+          "steps": 8,
+          "flowShift": 0,
+          "height": 512,
+          "sampler": "euler"
+        },
+        "architecture": "z_image"
+      }
+    ]
+  },
+  "outputs": [
+    {
+      "name": "a",
+      "file": "build/zimage-app-host-tests/run-1793349249166863500/data/artifacts/media/artifact_098ab118440b49ed84b98364aa44d7ed.png",
+      "image": {
+        "width": 512,
+        "height": 512,
+        "format": "PNG",
+        "mode": "RGB",
+        "bytes": 386652,
+        "sha256": "52a0bb75abdefd5a33d09981d81ae771fb52b3f57c136bf9e193f6be5c411b06",
+        "channel_mean": [
+          190.17126083374023,
+          180.14047622680664,
+          181.05678176879883
+        ],
+        "channel_stddev": [
+          58.65595305833136,
+          58.238049896878195,
+          55.736493097100265
+        ],
+        "extrema": [
+          [
+            0,
+            255
+          ],
+          [
+            0,
+            245
+          ],
+          [
+            0,
+            255
+          ]
+        ],
+        "entropy": 7.868608143976585
+      },
+      "bitwise_equal_to_direct_native": true
+    },
+    {
+      "name": "recovery-a",
+      "file": "build/zimage-app-host-tests/run-1793349249166863500/data/artifacts/media/artifact_57393735957c48c3914f176e603332db.png",
+      "image": {
+        "width": 512,
+        "height": 512,
+        "format": "PNG",
+        "mode": "RGB",
+        "bytes": 386652,
+        "sha256": "52a0bb75abdefd5a33d09981d81ae771fb52b3f57c136bf9e193f6be5c411b06",
+        "channel_mean": [
+          190.17126083374023,
+          180.14047622680664,
+          181.05678176879883
+        ],
+        "channel_stddev": [
+          58.65595305833136,
+          58.238049896878195,
+          55.736493097100265
+        ],
+        "extrema": [
+          [
+            0,
+            255
+          ],
+          [
+            0,
+            245
+          ],
+          [
+            0,
+            255
+          ]
+        ],
+        "entropy": 7.868608143976585
+      },
+      "bitwise_equal_to_direct_native": true
+    }
+  ],
+  "files": {
+    "compile.log": {
+      "bytes": 188,
+      "sha256": "0776deeb6ace85f83d60a9ba535cbe73a21566505b5aec2fd5c75b2bde065172"
+    },
+    "data/artifacts/artifacts.json": {
+      "bytes": 2732,
+      "sha256": "fc5c63ee5bd447acdcbbce570799b2475c6f659883530ffd9be4ce999192ff17"
+    },
+    "data/artifacts/media/artifact_098ab118440b49ed84b98364aa44d7ed.png": {
+      "bytes": 386652,
+      "sha256": "52a0bb75abdefd5a33d09981d81ae771fb52b3f57c136bf9e193f6be5c411b06"
+    },
+    "data/artifacts/media/artifact_57393735957c48c3914f176e603332db.png": {
+      "bytes": 386652,
+      "sha256": "52a0bb75abdefd5a33d09981d81ae771fb52b3f57c136bf9e193f6be5c411b06"
+    },
+    "data/files/bundles/bundles.json": {
+      "bytes": 9984,
+      "sha256": "ff3b48dbcefd0c94db6b3f4842f3b9229ad4313ec4859bf800a16b5b21dea598"
+    },
+    "data/java-results.json": {
+      "bytes": 30424,
+      "sha256": "b9881db4cf67d3e8e933e12726abc4281de4fe06145923be51cc245986a31208"
+    },
+    "execution.json": {
+      "bytes": 13270,
+      "sha256": "cbad9b5d4b97f4f617f13790286926c371cab83ff0a45564f4afd8ae51682116"
+    },
+    "java.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "java.stdout": {
+      "bytes": 199,
+      "sha256": "c7ba7ab9795c60eaac081500e684b942af820f6a76ebda3925a580a3efcf4830"
+    },
+    "sources.rsp": {
+      "bytes": 6052,
+      "sha256": "037126faa45be5eb0a4aab531c7610eacb943ad45a053153fb41af27e134dce5"
+    }
+  },
+  "compilation": {
+    "schema": "lma.sd-host-build/1",
+    "executable": "build/sd-worker-host/c0dddf254c3c99bd/bin/lma_sd_host.exe",
+    "sha256": "bcc1b84cf8f6d1b7d51f11234a2c22a7de78e77ee212533313b14a1a9ebd6ed1",
+    "bytes": 8651264,
+    "tokenizer_executable": "build/sd-worker-host/c0dddf254c3c99bd/bin/lma_sd_tokenizer_host.exe",
+    "tokenizer_sha256": "602228cab2830b4cd41fefd14971203d42b4d01e6d0e6a55b6d87a08373b522a",
+    "tokenizer_bytes": 3154944,
+    "source_revision": "be486498eadc29dc3cd234d944c2180ed42b1415",
+    "ggml_revision": "a5915eb0e47adef21c3f25b889a008925ea838c2",
+    "backend": "cpu",
+    "production_worker_source_unmodified": true,
+    "production_vocabulary_source_unmodified": true,
+    "windows_parent_guard": true,
+    "external_vocabulary": true,
+    "bundled_model_data": false,
+    "android_compiled": false,
+    "physical_android": false,
+    "packaged_in_apk": false,
+    "model_executed": false,
+    "reused_unaccepted_build_cache": true,
+    "compile_workspace": "build/sd-worker-host/d796da2dd260b023/bin",
+    "input_fingerprint": {
+      "native/lcm_condition.hpp": "a5d94cf2f2453f3c8045418aa6b1a147ffa27557665bfc6f2203e04048899ea4",
+      "native/qwen_prompt.hpp": "ec9a45781b93eff62c6f0a4eca2c59fe1088c931d4c1150dcd903ae5c84c1c0f",
+      "native/sd_policy.hpp": "c7d987ffc6b905fbad9d6a47be98d10f57b2060728f00801742a4ec346a5c7ba",
+      "native/sd_worker.cpp": "c8e04e54eb1d36aebaafaf726e609ef94afac32672046d887d1289dfe2ed8cec",
+      "native/tokenizer_data.hpp": "c752eb62a3c915be4742124bb25e6ada9ea952bbc81c62a1a864cfe39a3ddd6d",
+      "native/vocab_external.cpp": "b8e568f72914833f66bbe338fb877d98d1cb954525a7d3d9a1f8364e4e1c90af",
+      "research/sd_host/CMakeLists.txt": "e954e15097133eaad44b656c6b2c8a998916ea22047fe8504d08d11d95ffd240",
+      "research/sd_host/compat/sys/prctl.h": "87c9ddf82ce059bf303486b0e10b22dce6d972e87f83836d148e631dcdad9c9e",
+      "research/sd_host/compat/unistd.h": "e467e7f5855c286b3ce40268146ed34d153a5fbf8a42d5c36b26a6293142068b",
+      "research/sd_host/NOTICE": "90e18935ca8ba71ac1a5ce59e3a2f0b0580cd246877f65cba402deff67eb18fc",
+      "research/sd_host/platform.hpp": "c377ed1b676707a469a192d96ae9b748802e1f62ad0674366b593b2b5b2daf67",
+      "research/sd_host/tokenizer_driver.cpp": "ffce0ff4c40580d635233c0f3fe646e78636ad53c8bdb0aea620e855d60d2abf",
+      "third_party/notices/sd-sources.json": "91ee744071aa93c4bd4d40476d3582fa4bf4d00a628527e196d4856c06ec77c1",
+      "tools/build_native.py": "f3876b3c254ee367a55f15bcbf9cd8c0dc2eb243b53b59796a282f2afc4a7c11",
+      "tools/build_sd_host.py": "4d94023a5323f991674df6f85348432d1cdb874eb41ab14dd34ce58f122327eb",
+      "tools/fetch_sd15_trained.py": "91392401d9739f15b14fa4e42b74f13bbdd719a382746541cc69952966e6f307"
+    }
+  },
+  "direct_trained_report_sha256": "0195fcc2afee260a864e0fafb300761cd4cbada85bd8e2551eb3ad2f505a7cd6",
+  "production_java_native_host_executed": true,
+  "physical_android": false,
+  "android_saf_tested": false,
+  "android_background_accepted": false,
+  "independent_numerics_accepted": false,
+  "image_quality_accepted": false,
+  "complete_target06_accepted": false,
+  "complete_release_accepted": false,
+  "input_fingerprint": {
+    "native/lcm_condition.hpp": "a5d94cf2f2453f3c8045418aa6b1a147ffa27557665bfc6f2203e04048899ea4",
+    "native/qwen_prompt.hpp": "ec9a45781b93eff62c6f0a4eca2c59fe1088c931d4c1150dcd903ae5c84c1c0f",
+    "native/sd_policy.hpp": "c7d987ffc6b905fbad9d6a47be98d10f57b2060728f00801742a4ec346a5c7ba",
+    "native/sd_worker.cpp": "c8e04e54eb1d36aebaafaf726e609ef94afac32672046d887d1289dfe2ed8cec",
+    "native/tokenizer_data.hpp": "c752eb62a3c915be4742124bb25e6ada9ea952bbc81c62a1a864cfe39a3ddd6d",
+    "native/vocab_external.cpp": "b8e568f72914833f66bbe338fb877d98d1cb954525a7d3d9a1f8364e4e1c90af",
+    "research/sd_host/CMakeLists.txt": "e954e15097133eaad44b656c6b2c8a998916ea22047fe8504d08d11d95ffd240",
+    "research/sd_host/compat/sys/prctl.h": "87c9ddf82ce059bf303486b0e10b22dce6d972e87f83836d148e631dcdad9c9e",
+    "research/sd_host/compat/unistd.h": "e467e7f5855c286b3ce40268146ed34d153a5fbf8a42d5c36b26a6293142068b",
+    "research/sd_host/NOTICE": "90e18935ca8ba71ac1a5ce59e3a2f0b0580cd246877f65cba402deff67eb18fc",
+    "research/sd_host/platform.hpp": "c377ed1b676707a469a192d96ae9b748802e1f62ad0674366b593b2b5b2daf67",
+    "research/sd_host/tokenizer_driver.cpp": "ffce0ff4c40580d635233c0f3fe646e78636ad53c8bdb0aea620e855d60d2abf",
+    "third_party/notices/sd-sources.json": "91ee744071aa93c4bd4d40476d3582fa4bf4d00a628527e196d4856c06ec77c1",
+    "tools/build_native.py": "f3876b3c254ee367a55f15bcbf9cd8c0dc2eb243b53b59796a282f2afc4a7c11",
+    "tools/build_sd_host.py": "4d94023a5323f991674df6f85348432d1cdb874eb41ab14dd34ce58f122327eb",
+    "tools/fetch_sd15_trained.py": "91392401d9739f15b14fa4e42b74f13bbdd719a382746541cc69952966e6f307",
+    "research/zimage_trained/assets.json": "bdca93596bf6730b531ceef6f03b1b07dda8c4804cf2768a7f093c6d493d4a06",
+    "tools/fetch_zimage_trained.py": "a4b8c8840c6d0ae54de298784d12c4d86279c98ada35a4dc8fe2bc3197e73f2f",
+    "app/src/main/assets/recipe-templates.json": "91fe5a1ee107a2f4938c80343f0e6483b25db3c5dc0042437751a34df8b64d66",
+    "app/src/main/java/com/lma/app/core/AdapterSpec.java": "aff8572d14ac8d616be0a1b0da395e52ed5bddcd5ae407a969c2657bf9257581",
+    "app/src/main/java/com/lma/app/core/ArtifactStore.java": "6f85d2ac710cac0fb5a76cde9493ff1fef4d3e2e119c3e031b7c44ff65a49061",
+    "app/src/main/java/com/lma/app/core/AssemblyPlan.java": "80e81dea2a831d3955aa5ae21323eb0432fb448f78994901633fbb6e85d77e7c",
+    "app/src/main/java/com/lma/app/core/AudioPcm.java": "9bf3270c83f57b7fa4e23fc4518fa063e72ca214675f9c23d45bd1788842f7b2",
+    "app/src/main/java/com/lma/app/core/AudioStreams.java": "de8a2cdd98d083b62515b067865182d9065bb00f14b8c70cacafba21de8407f1",
+    "app/src/main/java/com/lma/app/core/BundleStore.java": "a773aaa8f83410da9ccbf499b9a19ee4166e2c094c2e992699424c0ac68f3e74",
+    "app/src/main/java/com/lma/app/core/BundleTransfers.java": "926596119a2c3f6bc089516e7bbd7db3016487d60c24f908ea646dfc76707f3e",
+    "app/src/main/java/com/lma/app/core/BundleUpdates.java": "f31a65d0e172aa75f6131deace828875534ccc756ed93fac83bb09d5a4162fe1",
+    "app/src/main/java/com/lma/app/core/ByteRange.java": "31723bf112e630de6c2a1cd8d525be7bbd4706e151fa5a297a5e641f59b5c752",
+    "app/src/main/java/com/lma/app/core/ChatHistory.java": "3046a52c3f611b83b46cfed94afe0f4b31667f77986b7ca1737169ec8c4ce951",
+    "app/src/main/java/com/lma/app/core/ComponentIntegrity.java": "7a5977c607f624f8763a782b1b081c4e485c8c05c2caae15986ad2f2388f5bce",
+    "app/src/main/java/com/lma/app/core/DataFiles.java": "02d3212885376e7073a785801dbb81073b13cc87c5fc0e85ac4373fd346696bc",
+    "app/src/main/java/com/lma/app/core/EngineWorkspace.java": "6c632861e13d0a8950cdee66e8bea8a8760d23550c10343d6cfdd8a6e9af29dd",
+    "app/src/main/java/com/lma/app/core/ExecutionGate.java": "143b6d145036c56ad0937316e87af5f4c44507ef89cf16affdc5bef0ad8e2126",
+    "app/src/main/java/com/lma/app/core/InputSelection.java": "963fe60973caab82b9dfedaa7c1661f236aed6ea158fcda8f4a86d02ba33d509",
+    "app/src/main/java/com/lma/app/core/InputSpec.java": "d535fc70bdbfbf7cd9ca2ce685c20735d67ed5c3b7132989ec683c74de779f97",
+    "app/src/main/java/com/lma/app/core/InputUploads.java": "5debd68a73abc8bde8174c985dfec8f534c6bf8df58dda8810b0cc3541fe1d53",
+    "app/src/main/java/com/lma/app/core/JobStore.java": "3f999d908b7667d35557c979a26dbf5544c712015b986a090946b76b8a680628",
+    "app/src/main/java/com/lma/app/core/LcmCondition.java": "2177da94b69781263e36f3e379034619bf74c6856bc6a9108592d4f272e94b7a",
+    "app/src/main/java/com/lma/app/core/LocalApi.java": "c9e1674f98ef12c7312ff42c50ba38a10c08d5cf1d3e173a8093ecd7fa67e5fc",
+    "app/src/main/java/com/lma/app/core/LocalHttp.java": "6f74e8acfe7072606c23e775f87fa5aa8d5ee094ffe20e96788f161674a947aa",
+    "app/src/main/java/com/lma/app/core/Ltx098Spec.java": "8333ea906bc31ea9e014ce4840d15fc6253c91eda1f3688de4f8645738819abf",
+    "app/src/main/java/com/lma/app/core/MnnSpec.java": "055cc06962da0fc34c1abdc57100ac52fca47a9d66ffea6621155c53046d5f1a",
+    "app/src/main/java/com/lma/app/core/ModelBundle.java": "ad08c033a2c9a215c292d20a5a97a65c85db91ce6a86609a8eed9e846449e84b",
+    "app/src/main/java/com/lma/app/core/ModelSelection.java": "965c9f22f16fc822f792ebef6e0de0a0c67f5a6882d5e7ef77be05b83ea1aeb2",
+    "app/src/main/java/com/lma/app/core/MossDelaySpec.java": "2f680d68cf78517f234c336c77e0b584bf40300fd6294514b7cd457149d41bd0",
+    "app/src/main/java/com/lma/app/core/MossNanoSpec.java": "4b784a773fb85550eba8f169a62cab9a274a332519ec700b595694378e9e39ed",
+    "app/src/main/java/com/lma/app/core/MossRqSpec.java": "0713659ade3c172887527a9e961bbde4add5ed00bd2a564256bc11f9b4796b5e",
+    "app/src/main/java/com/lma/app/core/NativePreparation.java": "cb8ee985ef2c6cba3e0d6bb924c940bcb197bd3f576ca7d6e1fa24442d44e1dd",
+    "app/src/main/java/com/lma/app/core/OnnxMetadata.java": "51db38a424032ac21a8a4185745a272db9034a94d2e8b2d0671c11289e9719e3",
+    "app/src/main/java/com/lma/app/core/OpenMossSpec.java": "4a9af3c92d87be65c4f617677eaed31576f9160a3355518fff7cb874192a5258",
+    "app/src/main/java/com/lma/app/core/ParameterSchema.java": "a566c6d452461ee14333caf7e732a33f8d94b12b33cbabc851f5f3fcc6bdb019",
+    "app/src/main/java/com/lma/app/core/PreparationPlan.java": "dfee63b84035c6ca18b0647aecb947070b983b6b2f1de08247129dddfa64a0bf",
+    "app/src/main/java/com/lma/app/core/PreparedAssets.java": "ae09c7aa1643fc22b76cbe11182a742f26aa0ea95bc9b7166d685433a603dd02",
+    "app/src/main/java/com/lma/app/core/PreparedModelAssembly.java": "eef243d48c9b2b7d3d9b08b2ddf8129ff3884bbdd6c00ecd28a83c0f4bbfa384",
+    "app/src/main/java/com/lma/app/core/ProcessControl.java": "a1950624951d41c040b0b9f44cd8ef5faff16ed22dae880d626e4619d77c155d",
+    "app/src/main/java/com/lma/app/core/Protocol.java": "d49f47884aec0cb03347023119c2808330fa9970689dcd9d33c30ca653d03b85",
+    "app/src/main/java/com/lma/app/core/QwenTtsSpec.java": "e94d96d7ce7c499b2d4bafbd35740c690b32169a142a9a55aae7a8b03364125b",
+    "app/src/main/java/com/lma/app/core/RecipeCatalogue.java": "539dcd55124ce71e32476edb8a7efd25d533935847a8357ac3a6dddf68b71a47",
+    "app/src/main/java/com/lma/app/core/RecipeSuggestions.java": "57d9d7b5fc5f3c61a3ab3524af8789df58dbc8ce1923b2c09e139649057beda0",
+    "app/src/main/java/com/lma/app/core/ResourceWatch.java": "6f6a4cb2159f7956d1ae8c202c61430be268d86d230245bccc952844f3816ec5",
+    "app/src/main/java/com/lma/app/core/SdSpec.java": "bdd247408ebede1777a84a896a68947132ab8b5ee8d526b17742c565229fcb73",
+    "app/src/main/java/com/lma/app/core/SoulxSpec.java": "a761d40965d041d38cc1f629418017103c9eefabf5904814fad9de6372b6bcc7",
+    "app/src/main/java/com/lma/app/core/SpeechVoices.java": "b413549e7721d07c88fec135b01b26a18d9dc0cc686a37dd180309ee10900967",
+    "app/src/main/java/com/lma/app/core/StableAudioSpec.java": "0cc04143a8c8c2afa4dc3d9726f4891779b352404d97c70d6fdc260fbe27ee6c",
+    "app/src/main/java/com/lma/app/core/TaskDrafts.java": "1c97a99a274abb5f38542eb2cea6834121f46b5dfb0e7cbaeaa5df25222c7ead",
+    "app/src/main/java/com/lma/app/core/TaskInput.java": "6f186b392f9e2fd70f253398f4becf9604d22e03c132f18b3bb93f635f637d7b",
+    "app/src/main/java/com/lma/app/core/TaskRequests.java": "6a9056c560a681891a0110b25d015494e0a73240034efde5ad565593a9d1dcc7",
+    "app/src/main/java/com/lma/app/core/TextRequest.java": "bfdb23db96512f00f362b49951c1fee4162ca2d441482eb6ebf180a8d3574d5f",
+    "app/src/main/java/com/lma/app/core/TextResult.java": "2dd7968a40cc917fab5b8bc412ef00d21348abec1d844b140b843b1bba57c6ab",
+    "app/src/main/java/com/lma/app/core/TextSpec.java": "4521ce8e833d88276f6b98d446e0171c48602d67ce2cf4b372d425e56d6d149e",
+    "app/src/main/java/com/lma/app/core/TtsSpec.java": "54f841e2ca5e93d3c3e1845014029b96912291fcf50a50c26a0124325a7a962a",
+    "app/src/main/java/com/lma/app/core/WaveFile.java": "cf70b9bbafb6aa23cc25217d4883e769173b00f74571d1b115c50a8ad6b15361",
+    "app/src/main/java/com/lma/app/LocalEngine.java": "c06198df33cf290dff58d5d7d7f2b44b3d84d552c1a3c0f1cf35c30c6d5b7c19",
+    "app/src/main/java/com/lma/app/NativeWorker.java": "8d9c5aa7cf5744e634c6c3eeb17a798bc429a8f22e172f6b75e1a1400d7c4eaa",
+    "app/src/main/java/com/lma/app/SdEngine.java": "7a385f4058505e4175b9a2a97fea1b854b797b4f4ef3d905d1ca87d8f82621c6",
+    "research/zimage_trained/catalogue-bundle.json": "0e1660fd6bc8afa2ab511278a06d113df961cc91d56d79b6706c9894fa34df95",
+    "research/zimage_trained/NOTICE": "1c63d6dc996eb0ab3c4f5a97f9befcf49588c127e3f9d60a2f4d5800f23dd7cd",
+    "tests/host/android/util/AtomicFile.java": "a05b9c6ef4fa0f0f40aaa49b235faccc98d2d7d5aa1ea4bb8d2f535b8bad2796",
+    "tests/sd-host/com/lma/app/VideoEncoder.java": "96e480bec46860cd05e40d55b7e21710069f71f1f54c4cc543f26d6505efa146",
+    "tests/tts-host/com/lma/app/LmaApp.java": "9f27bd7188d03aa4eb95b007111daff697d39515dc41884d4569e2f382d0577b",
+    "tests/zimage-trained/com/lma/app/ZImageTrainedAppTest.java": "7039c6b8fd8e29c86551b58bf52c0ea68474441a60a4f3a1165796354e8f9636",
+    "tools/test_sd_variants_trained.py": "bfc2b5eb71be4650c35cec5328ca24083e35d4123d064c07ed9f2ad7bce70424",
+    "tools/test_zimage_app_host.py": "fa15035fd5f9f97d7568dd4103ba47cd28a3585a52668fc0fffa3b9299296dec"
+  }
+}

@@ -1,5 +1,7 @@
 # Curated diffusion selection, dependencies and task flow
 
+dev.38 adds [complete Z-Image-Turbo selection, downloads and local business flow](ZIMAGE_TURBO.en.md), with original matching Qwen3-4B, external tokenizer and independent eight-step settings. All frozen acceptance gates remain mandatory.
+
 FLUX.2-klein 4B now has an optional complete four-component catalogue flow and matching HF suggestions. [User flow, parameters and evidence](FLUX2_KLEIN.en.md). The App ships foundation code only; downloads remain explicit.
 
 [中文](CURATED_DIFFUSION.md) · [User guide](USER_GUIDE.en.md) · [Numbered delivery and full pending scope](releases/v0.3.0-dev.32.md)

@@ -1,5 +1,7 @@
 # Local foundation bindings for Z-Image, FLUX, Qwen-Image and Wan
 
+dev.38 adds [complete Z-Image-Turbo selection, downloads and local business flow](ZIMAGE_TURBO.en.md), with original matching Qwen3-4B, external tokenizer and independent eight-step settings. All frozen acceptance gates remain mandatory.
+
 [中文](ADVANCED_DIFFUSION.md) · [Diffusion basics](DIFFUSION_ENGINE.en.md) · [HF recipes](HF_RECIPES.en.md) · [Development](DEVELOPMENT.en.md)
 
 Applies to internal **0.3.0-dev.13 / code 17**, not a complete Release. Component contracts, sampling plans, native parameters and an ARM64 CPU worker are integrated. **Android model outputs, quality, speed, memory and screen-off operation remain unverified.** Selections 06/07/08/16 and every other target retain the same complete v0.3.0 gates.

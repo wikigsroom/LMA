@@ -1,0 +1,2819 @@
+{
+  "schema": "lma.flux2-trained-host/1",
+  "selection_id": "07",
+  "bundle_id": "flux2_klein4b_q4_0_catalogue_v1",
+  "components": [
+    {
+      "role": "diffusion",
+      "format": "gguf",
+      "repository": "leejet/FLUX.2-klein-4B-GGUF",
+      "revision": "3b1f5a9dc3abb32238b053aeb3d823c30afdacbd",
+      "path": "flux-2-klein-4b-Q4_0.gguf",
+      "bytes": 2460378560,
+      "sha256": "d1023499ef3f2f82ff7c50e6778495195c1b6cc34835741778868428111f9ff4",
+      "url": "https://huggingface.co/leejet/FLUX.2-klein-4B-GGUF/resolve/3b1f5a9dc3abb32238b053aeb3d823c30afdacbd/flux-2-klein-4b-Q4_0.gguf"
+    },
+    {
+      "role": "llm",
+      "format": "gguf",
+      "repository": "unsloth/Qwen3-4B-GGUF",
+      "revision": "22c9fc8a8c7700b76a1789366280a6a5a1ad1120",
+      "path": "Qwen3-4B-Q4_K_M.gguf",
+      "bytes": 2497281312,
+      "sha256": "f6f851777709861056efcdad3af01da38b31223a3ba26e61a4f8bf3a2195813a",
+      "url": "https://huggingface.co/unsloth/Qwen3-4B-GGUF/resolve/22c9fc8a8c7700b76a1789366280a6a5a1ad1120/Qwen3-4B-Q4_K_M.gguf"
+    },
+    {
+      "role": "vae",
+      "format": "safetensors",
+      "repository": "black-forest-labs/FLUX.2-klein-4B",
+      "revision": "e7b7dc27f91deacad38e78976d1f2b499d76a294",
+      "path": "vae/diffusion_pytorch_model.safetensors",
+      "bytes": 168120878,
+      "sha256": "ca70d2202afe6415bdbcb8793ba8cd99fd159cfe6192381504d6c4d3036e0f04",
+      "url": "https://huggingface.co/black-forest-labs/FLUX.2-klein-4B/resolve/e7b7dc27f91deacad38e78976d1f2b499d76a294/vae/diffusion_pytorch_model.safetensors"
+    },
+    {
+      "role": "qwen_merges",
+      "format": "text",
+      "repository": "black-forest-labs/FLUX.2-klein-4B",
+      "revision": "e7b7dc27f91deacad38e78976d1f2b499d76a294",
+      "path": "tokenizer/merges.txt",
+      "bytes": 1671853,
+      "sha256": "8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5",
+      "url": "https://huggingface.co/black-forest-labs/FLUX.2-klein-4B/resolve/e7b7dc27f91deacad38e78976d1f2b499d76a294/tokenizer/merges.txt"
+    }
+  ],
+  "capture_directory": "build/flux2-trained-tests/run-1793345145231183400",
+  "compilation": {
+    "schema": "lma.sd-host-build/1",
+    "executable": "build/sd-worker-host/c0dddf254c3c99bd/bin/lma_sd_host.exe",
+    "sha256": "bcc1b84cf8f6d1b7d51f11234a2c22a7de78e77ee212533313b14a1a9ebd6ed1",
+    "bytes": 8651264,
+    "tokenizer_executable": "build/sd-worker-host/c0dddf254c3c99bd/bin/lma_sd_tokenizer_host.exe",
+    "tokenizer_sha256": "602228cab2830b4cd41fefd14971203d42b4d01e6d0e6a55b6d87a08373b522a",
+    "tokenizer_bytes": 3154944,
+    "source_revision": "be486498eadc29dc3cd234d944c2180ed42b1415",
+    "ggml_revision": "a5915eb0e47adef21c3f25b889a008925ea838c2",
+    "backend": "cpu",
+    "production_worker_source_unmodified": true,
+    "production_vocabulary_source_unmodified": true,
+    "windows_parent_guard": true,
+    "external_vocabulary": true,
+    "bundled_model_data": false,
+    "android_compiled": false,
+    "physical_android": false,
+    "packaged_in_apk": false,
+    "model_executed": false,
+    "reused_unaccepted_build_cache": true,
+    "compile_workspace": "build/sd-worker-host/d796da2dd260b023/bin",
+    "input_fingerprint": {
+      "native/lcm_condition.hpp": "a5d94cf2f2453f3c8045418aa6b1a147ffa27557665bfc6f2203e04048899ea4",
+      "native/qwen_prompt.hpp": "ec9a45781b93eff62c6f0a4eca2c59fe1088c931d4c1150dcd903ae5c84c1c0f",
+      "native/sd_policy.hpp": "c7d987ffc6b905fbad9d6a47be98d10f57b2060728f00801742a4ec346a5c7ba",
+      "native/sd_worker.cpp": "c8e04e54eb1d36aebaafaf726e609ef94afac32672046d887d1289dfe2ed8cec",
+      "native/tokenizer_data.hpp": "c752eb62a3c915be4742124bb25e6ada9ea952bbc81c62a1a864cfe39a3ddd6d",
+      "native/vocab_external.cpp": "b8e568f72914833f66bbe338fb877d98d1cb954525a7d3d9a1f8364e4e1c90af",
+      "research/sd_host/CMakeLists.txt": "e954e15097133eaad44b656c6b2c8a998916ea22047fe8504d08d11d95ffd240",
+      "research/sd_host/compat/sys/prctl.h": "87c9ddf82ce059bf303486b0e10b22dce6d972e87f83836d148e631dcdad9c9e",
+      "research/sd_host/compat/unistd.h": "e467e7f5855c286b3ce40268146ed34d153a5fbf8a42d5c36b26a6293142068b",
+      "research/sd_host/NOTICE": "90e18935ca8ba71ac1a5ce59e3a2f0b0580cd246877f65cba402deff67eb18fc",
+      "research/sd_host/platform.hpp": "c377ed1b676707a469a192d96ae9b748802e1f62ad0674366b593b2b5b2daf67",
+      "research/sd_host/tokenizer_driver.cpp": "ffce0ff4c40580d635233c0f3fe646e78636ad53c8bdb0aea620e855d60d2abf",
+      "third_party/notices/sd-sources.json": "91ee744071aa93c4bd4d40476d3582fa4bf4d00a628527e196d4856c06ec77c1",
+      "tools/build_native.py": "f3876b3c254ee367a55f15bcbf9cd8c0dc2eb243b53b59796a282f2afc4a7c11",
+      "tools/build_sd_host.py": "4d94023a5323f991674df6f85348432d1cdb874eb41ab14dd34ce58f122327eb",
+      "tools/fetch_sd15_trained.py": "91392401d9739f15b14fa4e42b74f13bbdd719a382746541cc69952966e6f307"
+    }
+  },
+  "runs": [
+    {
+      "name": "a",
+      "request": {
+        "schema": "lma.engine-request/1",
+        "type": "image.generate",
+        "pipeline": "flux2_klein_4b",
+        "architecture": "flux2_klein",
+        "samplingProfile": "flux2_klein",
+        "input": {
+          "prompt": "A small red toy robot standing beside a blue ceramic teapot on a wooden table, studio photograph, soft daylight, clean background",
+          "negativePrompt": ""
+        },
+        "parameters": {
+          "width": 512,
+          "height": 512,
+          "steps": 4,
+          "threads": 6,
+          "seed": 42,
+          "cfg": 1,
+          "sampler": "euler",
+          "scheduler": "flux2",
+          "flowShift": 0,
+          "vaeTiling": true
+        },
+        "components": {
+          "diffusion": "T:/build/flux2-trained/originals/d1023499ef3f2f82ff7c50e6778495195c1b6cc34835741778868428111f9ff4/flux-2-klein-4b-Q4_0.gguf",
+          "llm": "T:/build/flux2-trained/originals/f6f851777709861056efcdad3af01da38b31223a3ba26e61a4f8bf3a2195813a/Qwen3-4B-Q4_K_M.gguf",
+          "vae": "T:/build/flux2-trained/originals/ca70d2202afe6415bdbcb8793ba8cd99fd159cfe6192381504d6c4d3036e0f04/diffusion_pytorch_model.safetensors",
+          "qwen_merges": "T:/build/flux2-trained/originals/8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5/merges.txt"
+        },
+        "loras": [],
+        "output": "T:/build/flux2-trained-tests/run-1793345145231183400/a.png"
+      },
+      "process": {
+        "returncode": 0,
+        "seconds": 373.3746620999955,
+        "events": [
+          {
+            "event": "stage",
+            "stage": "loading"
+          },
+          {
+            "event": "stage",
+            "stage": "generating"
+          },
+          {
+            "event": "progress",
+            "seconds": 2000.0001220703125,
+            "stage": "generating",
+            "step": 0,
+            "steps": 298
+          },
+          {
+            "event": "progress",
+            "seconds": 0.0006845637690275908,
+            "stage": "generating",
+            "step": 298,
+            "steps": 298
+          },
+          {
+            "event": "progress",
+            "seconds": 0.0,
+            "stage": "generating",
+            "step": 0,
+            "steps": 4
+          },
+          {
+            "event": "progress",
+            "seconds": 1000.0000610351562,
+            "stage": "generating",
+            "step": 0,
+            "steps": 149
+          },
+          {
+            "event": "progress",
+            "seconds": 0.001402684603817761,
+            "stage": "generating",
+            "step": 149,
+            "steps": 149
+          },
+          {
+            "event": "progress",
+            "seconds": 69.15129852294922,
+            "stage": "generating",
+            "step": 1,
+            "steps": 4
+          },
+          {
+            "event": "progress",
+            "seconds": 63.85622024536133,
+            "stage": "generating",
+            "step": 2,
+            "steps": 4
+          },
+          {
+            "event": "progress",
+            "seconds": 64.0804214477539,
+            "stage": "generating",
+            "step": 3,
+            "steps": 4
+          },
+          {
+            "event": "progress",
+            "seconds": 70.74900817871094,
+            "stage": "generating",
+            "step": 4,
+            "steps": 4
+          },
+          {
+            "event": "progress",
+            "seconds": 0.0,
+            "stage": "generating",
+            "step": 0,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 0.0,
+            "stage": "generating",
+            "step": 0,
+            "steps": 140
+          },
+          {
+            "event": "progress",
+            "seconds": 0.0015142856864258647,
+            "stage": "generating",
+            "step": 140,
+            "steps": 140
+          },
+          {
+            "event": "progress",
+            "seconds": 1.753999948501587,
+            "stage": "generating",
+            "step": 1,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.5820000171661377,
+            "stage": "generating",
+            "step": 2,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.534999966621399,
+            "stage": "generating",
+            "step": 3,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.6670000553131104,
+            "stage": "generating",
+            "step": 4,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.6360000371932983,
+            "stage": "generating",
+            "step": 5,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.5390000343322754,
+            "stage": "generating",
+            "step": 6,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.6519999504089355,
+            "stage": "generating",
+            "step": 7,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.5980000495910645,
+            "stage": "generating",
+            "step": 8,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.7059999704360962,
+            "stage": "generating",
+            "step": 9,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.684000015258789,
+            "stage": "generating",
+            "step": 10,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.7239999771118164,
+            "stage": "generating",
+            "step": 11,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.6729999780654907,
+            "stage": "generating",
+            "step": 12,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.7990000247955322,
+            "stage": "generating",
+            "step": 13,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.5850000381469727,
+            "stage": "generating",
+            "step": 14,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.5800000429153442,
+            "stage": "generating",
+            "step": 15,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.8320000171661377,
+            "stage": "generating",
+            "step": 16,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.9789999723434448,
+            "stage": "generating",
+            "step": 17,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 2.1440000534057617,
+            "stage": "generating",
+            "step": 18,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.9950000047683716,
+            "stage": "generating",
+            "step": 19,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.934999942779541,
+            "stage": "generating",
+            "step": 20,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 2.184000015258789,
+            "stage": "generating",
+            "step": 21,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 2.002000093460083,
+            "stage": "generating",
+            "step": 22,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.9490000009536743,
+            "stage": "generating",
+            "step": 23,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 2.0339999198913574,
+            "stage": "generating",
+            "step": 24,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.6990000009536743,
+            "stage": "generating",
+            "step": 25,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.815999984741211,
+            "stage": "generating",
+            "step": 26,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.4859999418258667,
+            "stage": "generating",
+            "step": 27,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.8619999885559082,
+            "stage": "generating",
+            "step": 28,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.7259999513626099,
+            "stage": "generating",
+            "step": 29,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.6510000228881836,
+            "stage": "generating",
+            "step": 30,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.6440000534057617,
+            "stage": "generating",
+            "step": 31,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.9479999542236328,
+            "stage": "generating",
+            "step": 32,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.7580000162124634,
+            "stage": "generating",
+            "step": 33,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.8550000190734863,
+            "stage": "generating",
+            "step": 34,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.9179999828338623,
+            "stage": "generating",
+            "step": 35,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 2.0320000648498535,
+            "stage": "generating",
+            "step": 36,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.8259999752044678,
+            "stage": "generating",
+            "step": 37,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.7289999723434448,
+            "stage": "generating",
+            "step": 38,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.8509999513626099,
+            "stage": "generating",
+            "step": 39,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.8259999752044678,
+            "stage": "generating",
+            "step": 40,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 2.1670000553131104,
+            "stage": "generating",
+            "step": 41,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.7170000076293945,
+            "stage": "generating",
+            "step": 42,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.5640000104904175,
+            "stage": "generating",
+            "step": 43,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.909999966621399,
+            "stage": "generating",
+            "step": 44,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.784000039100647,
+            "stage": "generating",
+            "step": 45,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 2.2219998836517334,
+            "stage": "generating",
+            "step": 46,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.9550000429153442,
+            "stage": "generating",
+            "step": 47,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 2.0220000743865967,
+            "stage": "generating",
+            "step": 48,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.8849999904632568,
+            "stage": "generating",
+            "step": 49,
+            "steps": 49
+          },
+          {
+            "event": "complete",
+            "format": "png",
+            "height": 512,
+            "output": "T:/build/flux2-trained-tests/run-1793345145231183400/a.png",
+            "width": 512
+          }
+        ],
+        "protocol_errors": [],
+        "logs_truncated": [
+          false,
+          false
+        ],
+        "timed_out": false,
+        "forced_host_termination": false,
+        "cancel_trigger": null,
+        "cancel_to_exit_seconds": null,
+        "android_cooperative_cancellation_tested": false,
+        "resources": {
+          "observed": true,
+          "samples": 16954,
+          "interval_ms": 20,
+          "observed_peak_working_set_bytes": 4577222656,
+          "sampled_peak_private_bytes": 708952064,
+          "gpu_memory_measured": false,
+          "physical_device_memory_measured": false
+        }
+      },
+      "stdout_sha256": "279d7b492efde5c60661b5c5fc0abc80f94abd407c0a79baa011a9273832b2aa",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "image": {
+        "width": 512,
+        "height": 512,
+        "format": "PNG",
+        "mode": "RGB",
+        "bytes": 404476,
+        "sha256": "50ef2c45a1aa729987fffa32673e30e1a32e43d10c933926f628879a7877df71",
+        "channel_mean": [
+          188.6589698791504,
+          177.52767944335938,
+          176.34478759765625
+        ],
+        "channel_stddev": [
+          83.32366550882496,
+          71.70299059106884,
+          80.82918940264449
+        ],
+        "extrema": [
+          [
+            0,
+            255
+          ],
+          [
+            0,
+            255
+          ],
+          [
+            0,
+            255
+          ]
+        ],
+        "entropy": 8.155307530167516
+      }
+    },
+    {
+      "name": "b",
+      "request": {
+        "schema": "lma.engine-request/1",
+        "type": "image.generate",
+        "pipeline": "flux2_klein_4b",
+        "architecture": "flux2_klein",
+        "samplingProfile": "flux2_klein",
+        "input": {
+          "prompt": "A yellow sailboat on a calm blue lake below snow covered mountains, bright daylight, detailed landscape photograph",
+          "negativePrompt": ""
+        },
+        "parameters": {
+          "width": 512,
+          "height": 512,
+          "steps": 4,
+          "threads": 6,
+          "seed": 42,
+          "cfg": 1,
+          "sampler": "euler",
+          "scheduler": "flux2",
+          "flowShift": 0,
+          "vaeTiling": true
+        },
+        "components": {
+          "diffusion": "T:/build/flux2-trained/originals/d1023499ef3f2f82ff7c50e6778495195c1b6cc34835741778868428111f9ff4/flux-2-klein-4b-Q4_0.gguf",
+          "llm": "T:/build/flux2-trained/originals/f6f851777709861056efcdad3af01da38b31223a3ba26e61a4f8bf3a2195813a/Qwen3-4B-Q4_K_M.gguf",
+          "vae": "T:/build/flux2-trained/originals/ca70d2202afe6415bdbcb8793ba8cd99fd159cfe6192381504d6c4d3036e0f04/diffusion_pytorch_model.safetensors",
+          "qwen_merges": "T:/build/flux2-trained/originals/8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5/merges.txt"
+        },
+        "loras": [],
+        "output": "T:/build/flux2-trained-tests/run-1793345145231183400/b.png"
+      },
+      "process": {
+        "returncode": 0,
+        "seconds": 376.2519012000048,
+        "events": [
+          {
+            "event": "stage",
+            "stage": "loading"
+          },
+          {
+            "event": "stage",
+            "stage": "generating"
+          },
+          {
+            "event": "progress",
+            "seconds": 1.4084507711231709e-05,
+            "stage": "generating",
+            "step": 71,
+            "steps": 298
+          },
+          {
+            "event": "progress",
+            "seconds": 0.0007046979735605419,
+            "stage": "generating",
+            "step": 298,
+            "steps": 298
+          },
+          {
+            "event": "progress",
+            "seconds": 0.0,
+            "stage": "generating",
+            "step": 0,
+            "steps": 4
+          },
+          {
+            "event": "progress",
+            "seconds": 1000.0000610351562,
+            "stage": "generating",
+            "step": 0,
+            "steps": 149
+          },
+          {
+            "event": "progress",
+            "seconds": 0.0014161074068397284,
+            "stage": "generating",
+            "step": 149,
+            "steps": 149
+          },
+          {
+            "event": "progress",
+            "seconds": 61.885677337646484,
+            "stage": "generating",
+            "step": 1,
+            "steps": 4
+          },
+          {
+            "event": "progress",
+            "seconds": 60.112735748291016,
+            "stage": "generating",
+            "step": 2,
+            "steps": 4
+          },
+          {
+            "event": "progress",
+            "seconds": 71.08016967773438,
+            "stage": "generating",
+            "step": 3,
+            "steps": 4
+          },
+          {
+            "event": "progress",
+            "seconds": 75.04074096679688,
+            "stage": "generating",
+            "step": 4,
+            "steps": 4
+          },
+          {
+            "event": "progress",
+            "seconds": 0.0,
+            "stage": "generating",
+            "step": 0,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1000.0000610351562,
+            "stage": "generating",
+            "step": 0,
+            "steps": 140
+          },
+          {
+            "event": "progress",
+            "seconds": 0.0014571428764611483,
+            "stage": "generating",
+            "step": 140,
+            "steps": 140
+          },
+          {
+            "event": "progress",
+            "seconds": 2.250999927520752,
+            "stage": "generating",
+            "step": 1,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 2.0329999923706055,
+            "stage": "generating",
+            "step": 2,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 2.0859999656677246,
+            "stage": "generating",
+            "step": 3,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.8609999418258667,
+            "stage": "generating",
+            "step": 4,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.8559999465942383,
+            "stage": "generating",
+            "step": 5,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 2.1740000247955322,
+            "stage": "generating",
+            "step": 6,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.9930000305175781,
+            "stage": "generating",
+            "step": 7,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.9359999895095825,
+            "stage": "generating",
+            "step": 8,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.8650000095367432,
+            "stage": "generating",
+            "step": 9,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.7450000047683716,
+            "stage": "generating",
+            "step": 10,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.565000057220459,
+            "stage": "generating",
+            "step": 11,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.7669999599456787,
+            "stage": "generating",
+            "step": 12,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.8020000457763672,
+            "stage": "generating",
+            "step": 13,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.6410000324249268,
+            "stage": "generating",
+            "step": 14,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.7760000228881836,
+            "stage": "generating",
+            "step": 15,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.5789999961853027,
+            "stage": "generating",
+            "step": 16,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 2.0769999027252197,
+            "stage": "generating",
+            "step": 17,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 2.2799999713897705,
+            "stage": "generating",
+            "step": 18,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.9889999628067017,
+            "stage": "generating",
+            "step": 19,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 2.117000102996826,
+            "stage": "generating",
+            "step": 20,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.9709999561309814,
+            "stage": "generating",
+            "step": 21,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 2.1440000534057617,
+            "stage": "generating",
+            "step": 22,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 2.0179998874664307,
+            "stage": "generating",
+            "step": 23,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 2.000999927520752,
+            "stage": "generating",
+            "step": 24,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 2.132999897003174,
+            "stage": "generating",
+            "step": 25,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 2.2049999237060547,
+            "stage": "generating",
+            "step": 26,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 2.3350000381469727,
+            "stage": "generating",
+            "step": 27,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.812000036239624,
+            "stage": "generating",
+            "step": 28,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 2.1059999465942383,
+            "stage": "generating",
+            "step": 29,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 2.059999942779541,
+            "stage": "generating",
+            "step": 30,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 2.315000057220459,
+            "stage": "generating",
+            "step": 31,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 2.255000114440918,
+            "stage": "generating",
+            "step": 32,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.9019999504089355,
+            "stage": "generating",
+            "step": 33,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 2.8289999961853027,
+            "stage": "generating",
+            "step": 34,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 2.4619998931884766,
+            "stage": "generating",
+            "step": 35,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.809000015258789,
+            "stage": "generating",
+            "step": 36,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.7430000305175781,
+            "stage": "generating",
+            "step": 37,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.937999963760376,
+            "stage": "generating",
+            "step": 38,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.7269999980926514,
+            "stage": "generating",
+            "step": 39,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.8730000257492065,
+            "stage": "generating",
+            "step": 40,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.6339999437332153,
+            "stage": "generating",
+            "step": 41,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.7929999828338623,
+            "stage": "generating",
+            "step": 42,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.628999948501587,
+            "stage": "generating",
+            "step": 43,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.6469999551773071,
+            "stage": "generating",
+            "step": 44,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 2.2190001010894775,
+            "stage": "generating",
+            "step": 45,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 2.01200008392334,
+            "stage": "generating",
+            "step": 46,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 2.118000030517578,
+            "stage": "generating",
+            "step": 47,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.9930000305175781,
+            "stage": "generating",
+            "step": 48,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.680999994277954,
+            "stage": "generating",
+            "step": 49,
+            "steps": 49
+          },
+          {
+            "event": "complete",
+            "format": "png",
+            "height": 512,
+            "output": "T:/build/flux2-trained-tests/run-1793345145231183400/b.png",
+            "width": 512
+          }
+        ],
+        "protocol_errors": [],
+        "logs_truncated": [
+          false,
+          false
+        ],
+        "timed_out": false,
+        "forced_host_termination": false,
+        "cancel_trigger": null,
+        "cancel_to_exit_seconds": null,
+        "android_cooperative_cancellation_tested": false,
+        "resources": {
+          "observed": true,
+          "samples": 16607,
+          "interval_ms": 20,
+          "observed_peak_working_set_bytes": 4577730560,
+          "sampled_peak_private_bytes": 709881856,
+          "gpu_memory_measured": false,
+          "physical_device_memory_measured": false
+        }
+      },
+      "stdout_sha256": "be33fcfd6eca223a02b014192f4dc31e2243e70de97edaee477d1d5d88f2236f",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "image": {
+        "width": 512,
+        "height": 512,
+        "format": "PNG",
+        "mode": "RGB",
+        "bytes": 606138,
+        "sha256": "defd00834e9ace1bc3983e1a2d692babced39cc8f8c378b114e3eed412b029ee",
+        "channel_mean": [
+          118.83612823486328,
+          156.02062606811523,
+          198.43052673339844
+        ],
+        "channel_stddev": [
+          69.74200203264631,
+          56.52198652259216,
+          53.15595091443723
+        ],
+        "extrema": [
+          [
+            0,
+            255
+          ],
+          [
+            0,
+            255
+          ],
+          [
+            0,
+            255
+          ]
+        ],
+        "entropy": 8.55039529627116
+      }
+    },
+    {
+      "name": "one-step",
+      "request": {
+        "schema": "lma.engine-request/1",
+        "type": "image.generate",
+        "pipeline": "flux2_klein_4b",
+        "architecture": "flux2_klein",
+        "samplingProfile": "flux2_klein",
+        "input": {
+          "prompt": "A small red toy robot standing beside a blue ceramic teapot on a wooden table, studio photograph, soft daylight, clean background",
+          "negativePrompt": ""
+        },
+        "parameters": {
+          "width": 512,
+          "height": 512,
+          "steps": 1,
+          "threads": 6,
+          "seed": 42,
+          "cfg": 1,
+          "sampler": "euler",
+          "scheduler": "flux2",
+          "flowShift": 0,
+          "vaeTiling": true
+        },
+        "components": {
+          "diffusion": "T:/build/flux2-trained/originals/d1023499ef3f2f82ff7c50e6778495195c1b6cc34835741778868428111f9ff4/flux-2-klein-4b-Q4_0.gguf",
+          "llm": "T:/build/flux2-trained/originals/f6f851777709861056efcdad3af01da38b31223a3ba26e61a4f8bf3a2195813a/Qwen3-4B-Q4_K_M.gguf",
+          "vae": "T:/build/flux2-trained/originals/ca70d2202afe6415bdbcb8793ba8cd99fd159cfe6192381504d6c4d3036e0f04/diffusion_pytorch_model.safetensors",
+          "qwen_merges": "T:/build/flux2-trained/originals/8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5/merges.txt"
+        },
+        "loras": [],
+        "output": "T:/build/flux2-trained-tests/run-1793345145231183400/one-step.png"
+      },
+      "process": {
+        "returncode": 0,
+        "seconds": 153.97965049999766,
+        "events": [
+          {
+            "event": "stage",
+            "stage": "loading"
+          },
+          {
+            "event": "stage",
+            "stage": "generating"
+          },
+          {
+            "event": "progress",
+            "seconds": 2.564102760516107e-05,
+            "stage": "generating",
+            "step": 39,
+            "steps": 298
+          },
+          {
+            "event": "progress",
+            "seconds": 0.000677852367516607,
+            "stage": "generating",
+            "step": 298,
+            "steps": 298
+          },
+          {
+            "event": "progress",
+            "seconds": 0.0,
+            "stage": "generating",
+            "step": 0,
+            "steps": 1
+          },
+          {
+            "event": "progress",
+            "seconds": 1000.0000610351562,
+            "stage": "generating",
+            "step": 0,
+            "steps": 149
+          },
+          {
+            "event": "progress",
+            "seconds": 0.0013959731440991163,
+            "stage": "generating",
+            "step": 149,
+            "steps": 149
+          },
+          {
+            "event": "progress",
+            "seconds": 65.08855438232422,
+            "stage": "generating",
+            "step": 1,
+            "steps": 1
+          },
+          {
+            "event": "progress",
+            "seconds": 0.0,
+            "stage": "generating",
+            "step": 0,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 0.0,
+            "stage": "generating",
+            "step": 0,
+            "steps": 140
+          },
+          {
+            "event": "progress",
+            "seconds": 0.0015285714762285352,
+            "stage": "generating",
+            "step": 140,
+            "steps": 140
+          },
+          {
+            "event": "progress",
+            "seconds": 1.7419999837875366,
+            "stage": "generating",
+            "step": 1,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.472000002861023,
+            "stage": "generating",
+            "step": 2,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.4320000410079956,
+            "stage": "generating",
+            "step": 3,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.4259999990463257,
+            "stage": "generating",
+            "step": 4,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.5149999856948853,
+            "stage": "generating",
+            "step": 5,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.684999942779541,
+            "stage": "generating",
+            "step": 6,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.7400000095367432,
+            "stage": "generating",
+            "step": 7,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.5920000076293945,
+            "stage": "generating",
+            "step": 8,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.6480000019073486,
+            "stage": "generating",
+            "step": 9,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.5529999732971191,
+            "stage": "generating",
+            "step": 10,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.5379999876022339,
+            "stage": "generating",
+            "step": 11,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.50600004196167,
+            "stage": "generating",
+            "step": 12,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.7300000190734863,
+            "stage": "generating",
+            "step": 13,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.5410000085830688,
+            "stage": "generating",
+            "step": 14,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.531000018119812,
+            "stage": "generating",
+            "step": 15,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.5579999685287476,
+            "stage": "generating",
+            "step": 16,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.5479999780654907,
+            "stage": "generating",
+            "step": 17,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.5110000371932983,
+            "stage": "generating",
+            "step": 18,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.652999997138977,
+            "stage": "generating",
+            "step": 19,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.8270000219345093,
+            "stage": "generating",
+            "step": 20,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.5579999685287476,
+            "stage": "generating",
+            "step": 21,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.5950000286102295,
+            "stage": "generating",
+            "step": 22,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.465000033378601,
+            "stage": "generating",
+            "step": 23,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.496000051498413,
+            "stage": "generating",
+            "step": 24,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.5180000066757202,
+            "stage": "generating",
+            "step": 25,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.5429999828338623,
+            "stage": "generating",
+            "step": 26,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.4830000400543213,
+            "stage": "generating",
+            "step": 27,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.4930000305175781,
+            "stage": "generating",
+            "step": 28,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.5540000200271606,
+            "stage": "generating",
+            "step": 29,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.7020000219345093,
+            "stage": "generating",
+            "step": 30,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.6460000276565552,
+            "stage": "generating",
+            "step": 31,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.8250000476837158,
+            "stage": "generating",
+            "step": 32,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.468000054359436,
+            "stage": "generating",
+            "step": 33,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.4880000352859497,
+            "stage": "generating",
+            "step": 34,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.472000002861023,
+            "stage": "generating",
+            "step": 35,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.4110000133514404,
+            "stage": "generating",
+            "step": 36,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.559000015258789,
+            "stage": "generating",
+            "step": 37,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.562999963760376,
+            "stage": "generating",
+            "step": 38,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.4850000143051147,
+            "stage": "generating",
+            "step": 39,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.5779999494552612,
+            "stage": "generating",
+            "step": 40,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.86899995803833,
+            "stage": "generating",
+            "step": 41,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.9700000286102295,
+            "stage": "generating",
+            "step": 42,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.534000039100647,
+            "stage": "generating",
+            "step": 43,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.4520000219345093,
+            "stage": "generating",
+            "step": 44,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.9170000553131104,
+            "stage": "generating",
+            "step": 45,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.8569999933242798,
+            "stage": "generating",
+            "step": 46,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.7280000448226929,
+            "stage": "generating",
+            "step": 47,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.5609999895095825,
+            "stage": "generating",
+            "step": 48,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1.680999994277954,
+            "stage": "generating",
+            "step": 49,
+            "steps": 49
+          },
+          {
+            "event": "complete",
+            "format": "png",
+            "height": 512,
+            "output": "T:/build/flux2-trained-tests/run-1793345145231183400/one-step.png",
+            "width": 512
+          }
+        ],
+        "protocol_errors": [],
+        "logs_truncated": [
+          false,
+          false
+        ],
+        "timed_out": false,
+        "forced_host_termination": false,
+        "cancel_trigger": null,
+        "cancel_to_exit_seconds": null,
+        "android_cooperative_cancellation_tested": false,
+        "resources": {
+          "observed": true,
+          "samples": 7201,
+          "interval_ms": 20,
+          "observed_peak_working_set_bytes": 4578140160,
+          "sampled_peak_private_bytes": 709656576,
+          "gpu_memory_measured": false,
+          "physical_device_memory_measured": false
+        }
+      },
+      "stdout_sha256": "fc80e16d701aeb8a1d5968a1d8c124241424348baf4f34bb84b6cc10a10505a4",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "image": {
+        "width": 512,
+        "height": 512,
+        "format": "PNG",
+        "mode": "RGB",
+        "bytes": 242279,
+        "sha256": "18ab50eb7b0a4b9e15aa080a91d97f26085ef067320667063b2de28986de6d0a",
+        "channel_mean": [
+          182.3111457824707,
+          167.69635391235352,
+          161.30953979492188
+        ],
+        "channel_stddev": [
+          93.18427434043298,
+          85.41359773330055,
+          107.32452678354625
+        ],
+        "extrema": [
+          [
+            0,
+            255
+          ],
+          [
+            0,
+            255
+          ],
+          [
+            0,
+            255
+          ]
+        ],
+        "entropy": 6.674974783693945
+      }
+    },
+    {
+      "name": "cancel-step1",
+      "request": {
+        "schema": "lma.engine-request/1",
+        "type": "image.generate",
+        "pipeline": "flux2_klein_4b",
+        "architecture": "flux2_klein",
+        "samplingProfile": "flux2_klein",
+        "input": {
+          "prompt": "A small red toy robot standing beside a blue ceramic teapot on a wooden table, studio photograph, soft daylight, clean background",
+          "negativePrompt": ""
+        },
+        "parameters": {
+          "width": 512,
+          "height": 512,
+          "steps": 4,
+          "threads": 6,
+          "seed": 42,
+          "cfg": 1,
+          "sampler": "euler",
+          "scheduler": "flux2",
+          "flowShift": 0,
+          "vaeTiling": true
+        },
+        "components": {
+          "diffusion": "T:/build/flux2-trained/originals/d1023499ef3f2f82ff7c50e6778495195c1b6cc34835741778868428111f9ff4/flux-2-klein-4b-Q4_0.gguf",
+          "llm": "T:/build/flux2-trained/originals/f6f851777709861056efcdad3af01da38b31223a3ba26e61a4f8bf3a2195813a/Qwen3-4B-Q4_K_M.gguf",
+          "vae": "T:/build/flux2-trained/originals/ca70d2202afe6415bdbcb8793ba8cd99fd159cfe6192381504d6c4d3036e0f04/diffusion_pytorch_model.safetensors",
+          "qwen_merges": "T:/build/flux2-trained/originals/8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5/merges.txt"
+        },
+        "loras": [],
+        "output": "T:/build/flux2-trained-tests/run-1793345145231183400/cancel-step1.png"
+      },
+      "process": {
+        "returncode": 1,
+        "seconds": 82.10584889999882,
+        "events": [
+          {
+            "event": "stage",
+            "stage": "loading"
+          },
+          {
+            "event": "stage",
+            "stage": "generating"
+          },
+          {
+            "event": "progress",
+            "seconds": 0.0,
+            "stage": "generating",
+            "step": 0,
+            "steps": 298
+          },
+          {
+            "event": "progress",
+            "seconds": 0.0006946309003978968,
+            "stage": "generating",
+            "step": 298,
+            "steps": 298
+          },
+          {
+            "event": "progress",
+            "seconds": 0.0,
+            "stage": "generating",
+            "step": 0,
+            "steps": 4
+          },
+          {
+            "event": "progress",
+            "seconds": 0.0009999991161748767,
+            "stage": "generating",
+            "step": 1,
+            "steps": 149
+          },
+          {
+            "event": "progress",
+            "seconds": 0.0013758388813585043,
+            "stage": "generating",
+            "step": 149,
+            "steps": 149
+          },
+          {
+            "event": "progress",
+            "seconds": 71.16533660888672,
+            "stage": "generating",
+            "step": 1,
+            "steps": 4
+          }
+        ],
+        "protocol_errors": [],
+        "logs_truncated": [
+          false,
+          false
+        ],
+        "timed_out": false,
+        "forced_host_termination": true,
+        "cancel_trigger": {
+          "event": "progress",
+          "seconds": 71.16533660888672,
+          "stage": "generating",
+          "step": 1,
+          "steps": 4
+        },
+        "cancel_to_exit_seconds": 1.0213190999929793,
+        "android_cooperative_cancellation_tested": false,
+        "resources": {
+          "observed": true,
+          "samples": 3188,
+          "interval_ms": 20,
+          "observed_peak_working_set_bytes": 4578369536,
+          "sampled_peak_private_bytes": 710279168,
+          "gpu_memory_measured": false,
+          "physical_device_memory_measured": false
+        }
+      },
+      "stdout_sha256": "d8f7c87fee528ec14ec6259de61628dedf1425eb12aab78f7e083f87972fb63a",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "empty-prompt",
+      "request": {
+        "schema": "lma.engine-request/1",
+        "type": "image.generate",
+        "pipeline": "flux2_klein_4b",
+        "architecture": "flux2_klein",
+        "samplingProfile": "flux2_klein",
+        "input": {
+          "prompt": "",
+          "negativePrompt": ""
+        },
+        "parameters": {
+          "width": 512,
+          "height": 512,
+          "steps": 4,
+          "threads": 6,
+          "seed": 42,
+          "cfg": 1,
+          "sampler": "euler",
+          "scheduler": "flux2",
+          "flowShift": 0,
+          "vaeTiling": true
+        },
+        "components": {
+          "diffusion": "T:/build/flux2-trained/originals/d1023499ef3f2f82ff7c50e6778495195c1b6cc34835741778868428111f9ff4/flux-2-klein-4b-Q4_0.gguf",
+          "llm": "T:/build/flux2-trained/originals/f6f851777709861056efcdad3af01da38b31223a3ba26e61a4f8bf3a2195813a/Qwen3-4B-Q4_K_M.gguf",
+          "vae": "T:/build/flux2-trained/originals/ca70d2202afe6415bdbcb8793ba8cd99fd159cfe6192381504d6c4d3036e0f04/diffusion_pytorch_model.safetensors",
+          "qwen_merges": "T:/build/flux2-trained/originals/8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5/merges.txt"
+        },
+        "loras": [],
+        "output": "T:/build/flux2-trained-tests/run-1793345145231183400/empty-prompt.png"
+      },
+      "process": {
+        "returncode": 1,
+        "seconds": 0.20356559999345336,
+        "events": [
+          {
+            "event": "error",
+            "message": "Invalid prompt or output"
+          }
+        ],
+        "protocol_errors": [],
+        "logs_truncated": [
+          false,
+          false
+        ],
+        "timed_out": false,
+        "forced_host_termination": false,
+        "cancel_trigger": null,
+        "cancel_to_exit_seconds": null,
+        "android_cooperative_cancellation_tested": false,
+        "resources": {
+          "observed": true,
+          "samples": 6,
+          "interval_ms": 20,
+          "observed_peak_working_set_bytes": 9285632,
+          "sampled_peak_private_bytes": 2633728,
+          "gpu_memory_measured": false,
+          "physical_device_memory_measured": false
+        }
+      },
+      "stdout_sha256": "ba94da52f0e8f748947125cd9723791eeeb5f16cf73ccfaeec9735f25d38a9ea",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "wrong-task",
+      "request": {
+        "schema": "lma.engine-request/1",
+        "type": "audio.generate",
+        "pipeline": "flux2_klein_4b",
+        "architecture": "flux2_klein",
+        "samplingProfile": "flux2_klein",
+        "input": {
+          "prompt": "A small red toy robot standing beside a blue ceramic teapot on a wooden table, studio photograph, soft daylight, clean background",
+          "negativePrompt": ""
+        },
+        "parameters": {
+          "width": 512,
+          "height": 512,
+          "steps": 4,
+          "threads": 6,
+          "seed": 42,
+          "cfg": 1,
+          "sampler": "euler",
+          "scheduler": "flux2",
+          "flowShift": 0,
+          "vaeTiling": true
+        },
+        "components": {
+          "diffusion": "T:/build/flux2-trained/originals/d1023499ef3f2f82ff7c50e6778495195c1b6cc34835741778868428111f9ff4/flux-2-klein-4b-Q4_0.gguf",
+          "llm": "T:/build/flux2-trained/originals/f6f851777709861056efcdad3af01da38b31223a3ba26e61a4f8bf3a2195813a/Qwen3-4B-Q4_K_M.gguf",
+          "vae": "T:/build/flux2-trained/originals/ca70d2202afe6415bdbcb8793ba8cd99fd159cfe6192381504d6c4d3036e0f04/diffusion_pytorch_model.safetensors",
+          "qwen_merges": "T:/build/flux2-trained/originals/8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5/merges.txt"
+        },
+        "loras": [],
+        "output": "T:/build/flux2-trained-tests/run-1793345145231183400/wrong-task.png"
+      },
+      "process": {
+        "returncode": 1,
+        "seconds": 0.18684039999789093,
+        "events": [
+          {
+            "event": "error",
+            "message": "Unsupported diffusion task"
+          }
+        ],
+        "protocol_errors": [],
+        "logs_truncated": [
+          false,
+          false
+        ],
+        "timed_out": false,
+        "forced_host_termination": false,
+        "cancel_trigger": null,
+        "cancel_to_exit_seconds": null,
+        "android_cooperative_cancellation_tested": false,
+        "resources": {
+          "observed": true,
+          "samples": 7,
+          "interval_ms": 20,
+          "observed_peak_working_set_bytes": 9285632,
+          "sampled_peak_private_bytes": 1806336,
+          "gpu_memory_measured": false,
+          "physical_device_memory_measured": false
+        }
+      },
+      "stdout_sha256": "fa854b315d775a5d0bed6bc28db1ce25e92476ddae7e8604e4ebf84149044d3c",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "recovery-a",
+      "request": {
+        "schema": "lma.engine-request/1",
+        "type": "image.generate",
+        "pipeline": "flux2_klein_4b",
+        "architecture": "flux2_klein",
+        "samplingProfile": "flux2_klein",
+        "input": {
+          "prompt": "A small red toy robot standing beside a blue ceramic teapot on a wooden table, studio photograph, soft daylight, clean background",
+          "negativePrompt": ""
+        },
+        "parameters": {
+          "width": 512,
+          "height": 512,
+          "steps": 4,
+          "threads": 6,
+          "seed": 42,
+          "cfg": 1,
+          "sampler": "euler",
+          "scheduler": "flux2",
+          "flowShift": 0,
+          "vaeTiling": true
+        },
+        "components": {
+          "diffusion": "T:/build/flux2-trained/originals/d1023499ef3f2f82ff7c50e6778495195c1b6cc34835741778868428111f9ff4/flux-2-klein-4b-Q4_0.gguf",
+          "llm": "T:/build/flux2-trained/originals/f6f851777709861056efcdad3af01da38b31223a3ba26e61a4f8bf3a2195813a/Qwen3-4B-Q4_K_M.gguf",
+          "vae": "T:/build/flux2-trained/originals/ca70d2202afe6415bdbcb8793ba8cd99fd159cfe6192381504d6c4d3036e0f04/diffusion_pytorch_model.safetensors",
+          "qwen_merges": "T:/build/flux2-trained/originals/8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5/merges.txt"
+        },
+        "loras": [],
+        "output": "T:/build/flux2-trained-tests/run-1793345145231183400/recovery-a.png"
+      },
+      "process": {
+        "returncode": 0,
+        "seconds": 524.1027017999877,
+        "events": [
+          {
+            "event": "stage",
+            "stage": "loading"
+          },
+          {
+            "event": "stage",
+            "stage": "generating"
+          },
+          {
+            "event": "progress",
+            "seconds": 1000.0000610351562,
+            "stage": "generating",
+            "step": 0,
+            "steps": 298
+          },
+          {
+            "event": "progress",
+            "seconds": 0.0007416107691824436,
+            "stage": "generating",
+            "step": 298,
+            "steps": 298
+          },
+          {
+            "event": "progress",
+            "seconds": 0.0,
+            "stage": "generating",
+            "step": 0,
+            "steps": 4
+          },
+          {
+            "event": "progress",
+            "seconds": 1000.0000610351562,
+            "stage": "generating",
+            "step": 0,
+            "steps": 149
+          },
+          {
+            "event": "progress",
+            "seconds": 0.0015033558011054993,
+            "stage": "generating",
+            "step": 149,
+            "steps": 149
+          },
+          {
+            "event": "progress",
+            "seconds": 92.3409423828125,
+            "stage": "generating",
+            "step": 1,
+            "steps": 4
+          },
+          {
+            "event": "progress",
+            "seconds": 93.47427368164062,
+            "stage": "generating",
+            "step": 2,
+            "steps": 4
+          },
+          {
+            "event": "progress",
+            "seconds": 94.33809661865234,
+            "stage": "generating",
+            "step": 3,
+            "steps": 4
+          },
+          {
+            "event": "progress",
+            "seconds": 90.34548950195312,
+            "stage": "generating",
+            "step": 4,
+            "steps": 4
+          },
+          {
+            "event": "progress",
+            "seconds": 0.0,
+            "stage": "generating",
+            "step": 0,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 1000.0000610351562,
+            "stage": "generating",
+            "step": 0,
+            "steps": 140
+          },
+          {
+            "event": "progress",
+            "seconds": 0.0015357142547145486,
+            "stage": "generating",
+            "step": 140,
+            "steps": 140
+          },
+          {
+            "event": "progress",
+            "seconds": 3.428999900817871,
+            "stage": "generating",
+            "step": 1,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 3.440000057220459,
+            "stage": "generating",
+            "step": 2,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 2.8589999675750732,
+            "stage": "generating",
+            "step": 3,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 2.6519999504089355,
+            "stage": "generating",
+            "step": 4,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 2.5929999351501465,
+            "stage": "generating",
+            "step": 5,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 2.428999900817871,
+            "stage": "generating",
+            "step": 6,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 2.428999900817871,
+            "stage": "generating",
+            "step": 7,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 3.308000087738037,
+            "stage": "generating",
+            "step": 8,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 2.7249999046325684,
+            "stage": "generating",
+            "step": 9,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 2.5269999504089355,
+            "stage": "generating",
+            "step": 10,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 2.6089999675750732,
+            "stage": "generating",
+            "step": 11,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 2.4839999675750732,
+            "stage": "generating",
+            "step": 12,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 2.4059998989105225,
+            "stage": "generating",
+            "step": 13,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 2.611999988555908,
+            "stage": "generating",
+            "step": 14,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 2.315000057220459,
+            "stage": "generating",
+            "step": 15,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 2.5329999923706055,
+            "stage": "generating",
+            "step": 16,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 2.4549999237060547,
+            "stage": "generating",
+            "step": 17,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 2.249000072479248,
+            "stage": "generating",
+            "step": 18,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 2.321000099182129,
+            "stage": "generating",
+            "step": 19,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 2.2960000038146973,
+            "stage": "generating",
+            "step": 20,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 2.4159998893737793,
+            "stage": "generating",
+            "step": 21,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 3.2100000381469727,
+            "stage": "generating",
+            "step": 22,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 2.5309998989105225,
+            "stage": "generating",
+            "step": 23,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 2.7160000801086426,
+            "stage": "generating",
+            "step": 24,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 2.453000068664551,
+            "stage": "generating",
+            "step": 25,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 3.115999937057495,
+            "stage": "generating",
+            "step": 26,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 3.5959999561309814,
+            "stage": "generating",
+            "step": 27,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 3.822000026702881,
+            "stage": "generating",
+            "step": 28,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 2.444999933242798,
+            "stage": "generating",
+            "step": 29,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 2.4679999351501465,
+            "stage": "generating",
+            "step": 30,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 2.694000005722046,
+            "stage": "generating",
+            "step": 31,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 2.7739999294281006,
+            "stage": "generating",
+            "step": 32,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 2.7739999294281006,
+            "stage": "generating",
+            "step": 33,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 2.8980000019073486,
+            "stage": "generating",
+            "step": 34,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 3.311000108718872,
+            "stage": "generating",
+            "step": 35,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 2.6489999294281006,
+            "stage": "generating",
+            "step": 36,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 2.546999931335449,
+            "stage": "generating",
+            "step": 37,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 2.3940000534057617,
+            "stage": "generating",
+            "step": 38,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 2.1549999713897705,
+            "stage": "generating",
+            "step": 39,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 3.130000114440918,
+            "stage": "generating",
+            "step": 40,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 2.6630001068115234,
+            "stage": "generating",
+            "step": 41,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 3.3259999752044678,
+            "stage": "generating",
+            "step": 42,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 2.7249999046325684,
+            "stage": "generating",
+            "step": 43,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 3.1029999256134033,
+            "stage": "generating",
+            "step": 44,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 3.2360000610351562,
+            "stage": "generating",
+            "step": 45,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 2.881999969482422,
+            "stage": "generating",
+            "step": 46,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 2.443000078201294,
+            "stage": "generating",
+            "step": 47,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 2.13700008392334,
+            "stage": "generating",
+            "step": 48,
+            "steps": 49
+          },
+          {
+            "event": "progress",
+            "seconds": 2.380000114440918,
+            "stage": "generating",
+            "step": 49,
+            "steps": 49
+          },
+          {
+            "event": "complete",
+            "format": "png",
+            "height": 512,
+            "output": "T:/build/flux2-trained-tests/run-1793345145231183400/recovery-a.png",
+            "width": 512
+          }
+        ],
+        "protocol_errors": [],
+        "logs_truncated": [
+          false,
+          false
+        ],
+        "timed_out": false,
+        "forced_host_termination": false,
+        "cancel_trigger": null,
+        "cancel_to_exit_seconds": null,
+        "android_cooperative_cancellation_tested": false,
+        "resources": {
+          "observed": true,
+          "samples": 14454,
+          "interval_ms": 20,
+          "observed_peak_working_set_bytes": 4578385920,
+          "sampled_peak_private_bytes": 710504448,
+          "gpu_memory_measured": false,
+          "physical_device_memory_measured": false
+        }
+      },
+      "stdout_sha256": "dcf44e28cbcc051a0bfe45603b550b2d332d2b6094eedab374ecdc7e1c0eb401",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "image": {
+        "width": 512,
+        "height": 512,
+        "format": "PNG",
+        "mode": "RGB",
+        "bytes": 404476,
+        "sha256": "50ef2c45a1aa729987fffa32673e30e1a32e43d10c933926f628879a7877df71",
+        "channel_mean": [
+          188.6589698791504,
+          177.52767944335938,
+          176.34478759765625
+        ],
+        "channel_stddev": [
+          83.32366550882496,
+          71.70299059106884,
+          80.82918940264449
+        ],
+        "extrema": [
+          [
+            0,
+            255
+          ],
+          [
+            0,
+            255
+          ],
+          [
+            0,
+            255
+          ]
+        ],
+        "entropy": 8.155307530167516
+      }
+    }
+  ],
+  "comparisons": {
+    "b": {
+      "maximum": 255,
+      "mean": 76.3668950398763
+    },
+    "one-step": {
+      "maximum": 255,
+      "mean": 26.349842071533203
+    },
+    "recovery-a": {
+      "maximum": 0,
+      "mean": 0.0
+    }
+  },
+  "files": {
+    "a-capture.json": {
+      "bytes": 12440,
+      "sha256": "69ff4edaf92fba172788e92edadc94f5fdee56d077c97e647225c8830fdc4e38"
+    },
+    "a-result.json": {
+      "bytes": 13057,
+      "sha256": "ad748dd2846a95f9a9f9440fb9d18dae79d8d265531373418e7299db722e9c29"
+    },
+    "a.json": {
+      "bytes": 1272,
+      "sha256": "f1d6776959353c885725922db4ad70c60b2ef9e8513825e0fabe9eae9b72d76d"
+    },
+    "a.png": {
+      "bytes": 404476,
+      "sha256": "50ef2c45a1aa729987fffa32673e30e1a32e43d10c933926f628879a7877df71"
+    },
+    "a.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "a.stdout": {
+      "bytes": 5817,
+      "sha256": "279d7b492efde5c60661b5c5fc0abc80f94abd407c0a79baa011a9273832b2aa"
+    },
+    "b-capture.json": {
+      "bytes": 12442,
+      "sha256": "a59808e4362a391e85c4e761a0f429b269063ed544863db5cf82a9bf034a785d"
+    },
+    "b-result.json": {
+      "bytes": 13059,
+      "sha256": "c845fcaeee8312540aa9d921046905e3091bef955be56b65f95a9b1e28c72783"
+    },
+    "b.json": {
+      "bytes": 1257,
+      "sha256": "3ca2d1d7775be8b33cfcd75454f635ae12ba46c83391fda6b1f1ef0eda90336d"
+    },
+    "b.png": {
+      "bytes": 606138,
+      "sha256": "defd00834e9ace1bc3983e1a2d692babced39cc8f8c378b114e3eed412b029ee"
+    },
+    "b.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "b.stdout": {
+      "bytes": 5834,
+      "sha256": "be33fcfd6eca223a02b014192f4dc31e2243e70de97edaee477d1d5d88f2236f"
+    },
+    "cancel-step1-capture.json": {
+      "bytes": 3485,
+      "sha256": "5d9e3489de5cc3320b172b89f0bfbdda95c9e9c66a3af981fb2d58eb83520872"
+    },
+    "cancel-step1-result.json": {
+      "bytes": 3485,
+      "sha256": "5d9e3489de5cc3320b172b89f0bfbdda95c9e9c66a3af981fb2d58eb83520872"
+    },
+    "cancel-step1.json": {
+      "bytes": 1283,
+      "sha256": "ae5f66ef2efc60e11cc204c0861061476230a6f1120434edf4b63de40a4dd4a0"
+    },
+    "cancel-step1.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "cancel-step1.stdout": {
+      "bytes": 613,
+      "sha256": "d8f7c87fee528ec14ec6259de61628dedf1425eb12aab78f7e083f87972fb63a"
+    },
+    "empty-prompt-capture.json": {
+      "bytes": 2188,
+      "sha256": "8ca9f4f687e7def137015a8709214df97b2f5016b90d87f4972fdbc1d0d21ee9"
+    },
+    "empty-prompt-result.json": {
+      "bytes": 2188,
+      "sha256": "8ca9f4f687e7def137015a8709214df97b2f5016b90d87f4972fdbc1d0d21ee9"
+    },
+    "empty-prompt.json": {
+      "bytes": 1154,
+      "sha256": "daa5420519fcd170ce481ccaf4b0105b998bf2f6a26ccc8f1483a2a950ec4a89"
+    },
+    "empty-prompt.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "empty-prompt.stdout": {
+      "bytes": 56,
+      "sha256": "ba94da52f0e8f748947125cd9723791eeeb5f16cf73ccfaeec9735f25d38a9ea"
+    },
+    "info.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "info.stdout": {
+      "bytes": 168,
+      "sha256": "3491fde11126028c603a62dc8815cd677c67eb7f8f81f5e62ad49d02eee713a6"
+    },
+    "one-step-capture.json": {
+      "bytes": 11979,
+      "sha256": "5013d137a1c36a17c2d7b613c89c71f5400e61d778b3102bf4f51a3bba9d4a73"
+    },
+    "one-step-result.json": {
+      "bytes": 12597,
+      "sha256": "a074120531fd97980b5cea2391c60a2f3ab7b87a2943a2fbc3a2800001e286ed"
+    },
+    "one-step.json": {
+      "bytes": 1279,
+      "sha256": "0ad355e10e7aa845ca540586ef25367fc69b784fd7a3d7e26978cad320a2fffa"
+    },
+    "one-step.png": {
+      "bytes": 242279,
+      "sha256": "18ab50eb7b0a4b9e15aa080a91d97f26085ef067320667063b2de28986de6d0a"
+    },
+    "one-step.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "one-step.stdout": {
+      "bytes": 5552,
+      "sha256": "fc80e16d701aeb8a1d5968a1d8c124241424348baf4f34bb84b6cc10a10505a4"
+    },
+    "recovery-a-capture.json": {
+      "bytes": 12470,
+      "sha256": "91fe8b6382f43540ba91ea24cb82649709cd1f10b391784d69e0f91d6ef00daf"
+    },
+    "recovery-a-result.json": {
+      "bytes": 13087,
+      "sha256": "7336aed5d99cb146410f14f51e4326b0331ac7b555872e895fc4cc5817c575c3"
+    },
+    "recovery-a.json": {
+      "bytes": 1281,
+      "sha256": "9ae8d25b806adc2b4fa794c484c3072e14632d54cd2212cc9cce1041af1ba75c"
+    },
+    "recovery-a.png": {
+      "bytes": 404476,
+      "sha256": "50ef2c45a1aa729987fffa32673e30e1a32e43d10c933926f628879a7877df71"
+    },
+    "recovery-a.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "recovery-a.stdout": {
+      "bytes": 5829,
+      "sha256": "dcf44e28cbcc051a0bfe45603b550b2d332d2b6094eedab374ecdc7e1c0eb401"
+    },
+    "wrong-task-capture.json": {
+      "bytes": 2315,
+      "sha256": "7b30c877eaee5f42e5f877235126989c6ac667f8cecc88fcafe0523787e69ee0"
+    },
+    "wrong-task-result.json": {
+      "bytes": 2315,
+      "sha256": "7b30c877eaee5f42e5f877235126989c6ac667f8cecc88fcafe0523787e69ee0"
+    },
+    "wrong-task.json": {
+      "bytes": 1281,
+      "sha256": "a1d358ed57291c51f1522a1d19ae81f13ab538a45c4bc401145390cd79305bcc"
+    },
+    "wrong-task.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "wrong-task.stdout": {
+      "bytes": 58,
+      "sha256": "fa854b315d775a5d0bed6bc28db1ce25e92476ddae7e8604e4ebf84149044d3c"
+    }
+  },
+  "checks": [
+    {
+      "passed": true,
+      "description": "Actual pinned production worker identity"
+    },
+    {
+      "passed": true,
+      "description": "a: bounded structured worker protocol"
+    },
+    {
+      "passed": true,
+      "description": "a: actual complete trained PNG"
+    },
+    {
+      "passed": true,
+      "description": "a: 512x512 nonuniform decoded pixels, not a quality gate"
+    },
+    {
+      "passed": true,
+      "description": "a: exact output identity"
+    },
+    {
+      "passed": true,
+      "description": "a: actual final sampler step"
+    },
+    {
+      "passed": true,
+      "description": "a: observed Windows process memory"
+    },
+    {
+      "passed": true,
+      "description": "b: bounded structured worker protocol"
+    },
+    {
+      "passed": true,
+      "description": "b: actual complete trained PNG"
+    },
+    {
+      "passed": true,
+      "description": "b: 512x512 nonuniform decoded pixels, not a quality gate"
+    },
+    {
+      "passed": true,
+      "description": "b: exact output identity"
+    },
+    {
+      "passed": true,
+      "description": "b: actual final sampler step"
+    },
+    {
+      "passed": true,
+      "description": "b: observed Windows process memory"
+    },
+    {
+      "passed": true,
+      "description": "one-step: bounded structured worker protocol"
+    },
+    {
+      "passed": true,
+      "description": "one-step: actual complete trained PNG"
+    },
+    {
+      "passed": true,
+      "description": "one-step: 512x512 nonuniform decoded pixels, not a quality gate"
+    },
+    {
+      "passed": true,
+      "description": "one-step: exact output identity"
+    },
+    {
+      "passed": true,
+      "description": "one-step: actual final sampler step"
+    },
+    {
+      "passed": true,
+      "description": "one-step: observed Windows process memory"
+    },
+    {
+      "passed": true,
+      "description": "cancel-step1: bounded structured worker protocol"
+    },
+    {
+      "passed": true,
+      "description": "cancel-step1: terminate after an actual completed sampler step"
+    },
+    {
+      "passed": true,
+      "description": "cancel-step1: cancelled computation publishes no PNG"
+    },
+    {
+      "passed": true,
+      "description": "empty-prompt: bounded structured worker protocol"
+    },
+    {
+      "passed": true,
+      "description": "empty-prompt: actual structured failure and no output"
+    },
+    {
+      "passed": true,
+      "description": "wrong-task: bounded structured worker protocol"
+    },
+    {
+      "passed": true,
+      "description": "wrong-task: actual structured failure and no output"
+    },
+    {
+      "passed": true,
+      "description": "recovery-a: bounded structured worker protocol"
+    },
+    {
+      "passed": true,
+      "description": "recovery-a: actual complete trained PNG"
+    },
+    {
+      "passed": true,
+      "description": "recovery-a: 512x512 nonuniform decoded pixels, not a quality gate"
+    },
+    {
+      "passed": true,
+      "description": "recovery-a: exact output identity"
+    },
+    {
+      "passed": true,
+      "description": "recovery-a: actual final sampler step"
+    },
+    {
+      "passed": true,
+      "description": "recovery-a: observed Windows process memory"
+    },
+    {
+      "passed": true,
+      "description": "b: prompt/step changes actual pixels"
+    },
+    {
+      "passed": true,
+      "description": "one-step: prompt/step changes actual pixels"
+    },
+    {
+      "passed": true,
+      "description": "Exact recovery pixels"
+    }
+  ],
+  "passed": 35,
+  "host_execution_checks_passed": true,
+  "full_components_executed": true,
+  "production_worker_source_unmodified": true,
+  "physical_android": false,
+  "independent_numerics_accepted": false,
+  "image_quality_accepted": false,
+  "complete_target07_accepted": false,
+  "complete_release_accepted": false,
+  "input_fingerprint": {
+    "native/lcm_condition.hpp": "a5d94cf2f2453f3c8045418aa6b1a147ffa27557665bfc6f2203e04048899ea4",
+    "native/qwen_prompt.hpp": "ec9a45781b93eff62c6f0a4eca2c59fe1088c931d4c1150dcd903ae5c84c1c0f",
+    "native/sd_policy.hpp": "c7d987ffc6b905fbad9d6a47be98d10f57b2060728f00801742a4ec346a5c7ba",
+    "native/sd_worker.cpp": "c8e04e54eb1d36aebaafaf726e609ef94afac32672046d887d1289dfe2ed8cec",
+    "native/tokenizer_data.hpp": "c752eb62a3c915be4742124bb25e6ada9ea952bbc81c62a1a864cfe39a3ddd6d",
+    "native/vocab_external.cpp": "b8e568f72914833f66bbe338fb877d98d1cb954525a7d3d9a1f8364e4e1c90af",
+    "research/sd_host/CMakeLists.txt": "e954e15097133eaad44b656c6b2c8a998916ea22047fe8504d08d11d95ffd240",
+    "research/sd_host/compat/sys/prctl.h": "87c9ddf82ce059bf303486b0e10b22dce6d972e87f83836d148e631dcdad9c9e",
+    "research/sd_host/compat/unistd.h": "e467e7f5855c286b3ce40268146ed34d153a5fbf8a42d5c36b26a6293142068b",
+    "research/sd_host/NOTICE": "90e18935ca8ba71ac1a5ce59e3a2f0b0580cd246877f65cba402deff67eb18fc",
+    "research/sd_host/platform.hpp": "c377ed1b676707a469a192d96ae9b748802e1f62ad0674366b593b2b5b2daf67",
+    "research/sd_host/tokenizer_driver.cpp": "ffce0ff4c40580d635233c0f3fe646e78636ad53c8bdb0aea620e855d60d2abf",
+    "third_party/notices/sd-sources.json": "91ee744071aa93c4bd4d40476d3582fa4bf4d00a628527e196d4856c06ec77c1",
+    "tools/build_native.py": "f3876b3c254ee367a55f15bcbf9cd8c0dc2eb243b53b59796a282f2afc4a7c11",
+    "tools/build_sd_host.py": "4d94023a5323f991674df6f85348432d1cdb874eb41ab14dd34ce58f122327eb",
+    "tools/fetch_sd15_trained.py": "91392401d9739f15b14fa4e42b74f13bbdd719a382746541cc69952966e6f307",
+    "research/flux2_trained/assets.json": "77d268da7aaf6d9a861c92e6c82d4dc2e279218af1c67e48f63a73816b0991cb",
+    "tools/fetch_flux2_trained.py": "a103482c4ede9c93616a8b3d04d07cb55ba6fe32d2945321d3299f17bc7f5de0",
+    "app/src/main/assets/recipe-templates.json": "0ac0d11381d784f7267771e2d17daa8bf8356662b912736e3c830c21e6c144aa",
+    "catalogue/model-bundles.json": "461a7cebcb8ad9aa99435ca2e7f2f71ba8acee7219bf577398ce2535c99ed33a",
+    "research/flux2_trained/catalogue-bundle.json": "b3b95d2848e04ebced531a073049b1fca4def2c1e08f37901d7555e3eb76cf94",
+    "research/flux2_trained/NOTICE": "07c300fbaa64b05cedba7952a54339a6253dea894501e903e2b213bff7628f35",
+    "tools/sd_variants_capture.py": "1c3a576bdc3189ccb2657f8dda179d3ce589297aaee012545dc0ea8f453731da",
+    "tools/test_flux2_trained.py": "5d749bd1116b17f08fb647e0501da4835d71d29a1593105af4796bec31c7a4b6",
+    "tools/test_sd_variants_trained.py": "bfc2b5eb71be4650c35cec5328ca24083e35d4123d064c07ed9f2ad7bce70424"
+  }
+}

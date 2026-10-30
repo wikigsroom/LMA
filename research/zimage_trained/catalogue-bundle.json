@@ -1,0 +1,205 @@
+{
+  "engine": "sd_cpp",
+  "backend": "cpu",
+  "tasks": [
+    "image"
+  ],
+  "capabilities": [
+    "text_to_image",
+    "distilled_sampling"
+  ],
+  "parameters": {
+    "version": 1,
+    "fields": {
+      "width": {
+        "type": "integer",
+        "label": "宽度",
+        "default": 1024,
+        "minimum": 64,
+        "maximum": 2048,
+        "presets": [
+          256,
+          384,
+          512,
+          768,
+          1024
+        ],
+        "multipleOf": 16,
+        "limitSource": "pipeline_alignment_and_application_guard"
+      },
+      "height": {
+        "type": "integer",
+        "label": "高度",
+        "default": 1024,
+        "minimum": 64,
+        "maximum": 2048,
+        "presets": [
+          256,
+          384,
+          512,
+          768,
+          1024
+        ],
+        "multipleOf": 16,
+        "limitSource": "pipeline_alignment_and_application_guard"
+      },
+      "steps": {
+        "type": "integer",
+        "label": "采样步数",
+        "default": 8,
+        "minimum": 1,
+        "maximum": 8,
+        "presets": [
+          1,
+          2,
+          4,
+          8
+        ],
+        "multipleOf": 1,
+        "limitSource": "application_sampling_policy"
+      },
+      "threads": {
+        "type": "integer",
+        "label": "CPU 线程",
+        "default": 4,
+        "minimum": 1,
+        "maximum": 64,
+        "presets": [
+          1,
+          2,
+          4,
+          6,
+          8
+        ],
+        "multipleOf": 1,
+        "limitSource": "application_guard"
+      },
+      "seed": {
+        "type": "integer",
+        "label": "随机种子（-1 为随机）",
+        "default": -1,
+        "minimum": -1,
+        "maximum": 2147483647,
+        "presets": [
+          -1,
+          0,
+          42
+        ],
+        "multipleOf": 1,
+        "limitSource": "application_guard"
+      },
+      "cfg": {
+        "type": "number",
+        "label": "提示词引导",
+        "default": 1,
+        "minimum": 1,
+        "maximum": 1,
+        "presets": [
+          1
+        ],
+        "limitSource": "application_guard"
+      },
+      "sampler": {
+        "type": "enum",
+        "label": "采样器",
+        "default": "euler",
+        "values": [
+          "euler"
+        ]
+      },
+      "vaeTiling": {
+        "type": "boolean",
+        "label": "分块解码 VAE",
+        "default": true
+      },
+      "scheduler": {
+        "type": "enum",
+        "label": "调度器",
+        "default": "discrete",
+        "values": [
+          "discrete"
+        ]
+      },
+      "flowShift": {
+        "type": "number",
+        "label": "流匹配偏移（0 自动）",
+        "default": 0,
+        "minimum": 0,
+        "maximum": 32,
+        "presets": [
+          0,
+          1,
+          3,
+          5
+        ],
+        "limitSource": "application_guard"
+      }
+    }
+  },
+  "architecture": "z_image",
+  "pipeline": "z_image_turbo",
+  "schema": "lma.model-bundle/1",
+  "id": "z_image_turbo_q4_0_catalogue_v1",
+  "modelId": "z_image_turbo_q4_0",
+  "recipeId": "z_image_turbo_split_cpu_v1",
+  "name": "Z-Image-Turbo · Q4_0 + Qwen3-4B",
+  "description": "完整四组件文生图方案；原 Qwen3-4B 编码器、官方完整 VAE 与外置词表。用户自行选择下载；主机与 Android 验收分别记录。",
+  "catalogue": true,
+  "components": [
+    {
+      "role": "diffusion",
+      "format": "gguf",
+      "repository": "leejet/Z-Image-Turbo-GGUF",
+      "revision": "c61c0e422dc8b541b7548cf33a4ef8302b0f8085",
+      "path": "z_image_turbo-Q4_0.gguf",
+      "bytes": 3683370944,
+      "sha256": "2bc57986874c84f7ec6d02d9d7070a53b0029954a0e38a6e1342eb91095572f5",
+      "url": "https://huggingface.co/leejet/Z-Image-Turbo-GGUF/resolve/c61c0e422dc8b541b7548cf33a4ef8302b0f8085/z_image_turbo-Q4_0.gguf"
+    },
+    {
+      "role": "llm",
+      "format": "gguf",
+      "repository": "unsloth/Qwen3-4B-GGUF",
+      "revision": "22c9fc8a8c7700b76a1789366280a6a5a1ad1120",
+      "path": "Qwen3-4B-Q4_K_M.gguf",
+      "bytes": 2497281312,
+      "sha256": "f6f851777709861056efcdad3af01da38b31223a3ba26e61a4f8bf3a2195813a",
+      "url": "https://huggingface.co/unsloth/Qwen3-4B-GGUF/resolve/22c9fc8a8c7700b76a1789366280a6a5a1ad1120/Qwen3-4B-Q4_K_M.gguf"
+    },
+    {
+      "role": "vae",
+      "format": "safetensors",
+      "repository": "Tongyi-MAI/Z-Image-Turbo",
+      "revision": "f332072aa78be7aecdf3ee76d5c247082da564a6",
+      "path": "vae/diffusion_pytorch_model.safetensors",
+      "bytes": 167666902,
+      "sha256": "f5b59a26851551b67ae1fe58d32e76486e1e812def4696a4bea97f16604d40a3",
+      "url": "https://huggingface.co/Tongyi-MAI/Z-Image-Turbo/resolve/f332072aa78be7aecdf3ee76d5c247082da564a6/vae/diffusion_pytorch_model.safetensors"
+    },
+    {
+      "role": "qwen_merges",
+      "format": "text",
+      "repository": "Tongyi-MAI/Z-Image-Turbo",
+      "revision": "f332072aa78be7aecdf3ee76d5c247082da564a6",
+      "path": "tokenizer/merges.txt",
+      "bytes": 1671853,
+      "sha256": "8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5",
+      "url": "https://huggingface.co/Tongyi-MAI/Z-Image-Turbo/resolve/f332072aa78be7aecdf3ee76d5c247082da564a6/tokenizer/merges.txt"
+    }
+  ],
+  "license": {
+    "name": "Apache-2.0",
+    "url": "https://huggingface.co/Tongyi-MAI/Z-Image-Turbo/blob/f332072aa78be7aecdf3ee76d5c247082da564a6/README.md"
+  },
+  "evidence": {
+    "status": "pinned_assets_not_device_tested",
+    "physicalDeviceTests": 0,
+    "sourceUrl": "https://huggingface.co/Tongyi-MAI/Z-Image-Turbo",
+    "componentCoverage": "Complete Turbo diffusion Q4_0, original Qwen3-4B Q4_K_M, original full AutoencoderKL and external Qwen merges. Original encoder matches the official 40960 context / rope_theta 1000000 configuration; no learned bytes or automatic transfer in the App.",
+    "contentClassification": "no_uncensored_claim"
+  },
+  "resources": {
+    "estimatedPeakRamBytes": 0,
+    "estimateKnown": false
+  }
+}

@@ -1,5 +1,7 @@
 # 扩散基座：SDXL、SD-Turbo 与 LCM
 
+dev.38 新增 [Z-Image-Turbo 完整四组件、下载与本地业务](ZIMAGE_TURBO.md)，复用匹配原 Qwen3-4B 和外置词表，保留独立八步配置与全部冻结验收门槛。
+
 dev.37：[FLUX.2-klein 4B 完整四组件、实际业务与 Qwen 分词修复](FLUX2_KLEIN.md)。原始完整 VAE、外置用户 tokenizer、CPU 同源 worker；本轮完整训练主机产物和独立分词证据单独记录，画质 / 完整数值 / 资源 / Android 尚未验收。
 
 [English](DIFFUSION_ENGINE.en.md) · [HF 组件选择](HF_RECIPES.md) · [LoRA](ADAPTERS.md) · [开发状态](DEVELOPMENT.md)

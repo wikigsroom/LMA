@@ -54,9 +54,9 @@
   "android_execution_tested": false,
   "count": 47,
   "host_phase_seconds": {
-    "durable_history": 11.6002224,
-    "actual_http": 0.6256043,
-    "crash_recovery": 2.1836478
+    "durable_history": 39.300998699,
+    "actual_http": 0.235215599,
+    "crash_recovery": 1.2270287
   },
   "actual_process_interruption": true,
   "passed": true,
@@ -69,13 +69,13 @@
     "missingOutputs": 0,
     "discardedUncommittedFiles": 1,
     "unlinkedOutputs": 1,
-    "checkedAt": 1793342640289,
+    "checkedAt": 1793349581872,
     "rejectedBindings": 0,
     "integrityCheck": "committed_metadata_and_size_execution_rehashes_selected_inputs",
     "cleanupFailures": 0,
     "reclaimedBytes": 8
   },
-  "host_elapsed_seconds": 15.167631999996956,
+  "host_elapsed_seconds": 41.05121839999629,
   "input_fingerprint": {
     "app/src/main/java/com/lma/app/core/AdapterSpec.java": "aff8572d14ac8d616be0a1b0da395e52ed5bddcd5ae407a969c2657bf9257581",
     "app/src/main/java/com/lma/app/core/ArtifactStore.java": "6f85d2ac710cac0fb5a76cde9493ff1fef4d3e2e119c3e031b7c44ff65a49061",

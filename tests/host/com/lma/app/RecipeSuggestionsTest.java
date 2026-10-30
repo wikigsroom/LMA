@@ -87,6 +87,18 @@ public final class RecipeSuggestionsTest {
         JSONObject fluxWrong=RecipeSuggestions.review(recipes,flux,empty,inventory(fluxBase,true));
         check(row(fluxWrong,"diffusion").getString("state").equals("missing") && row(fluxWrong,"llm").getString("state").equals("missing"),"Base checkpoint and alternate text encoder are not guessed as matched distilled recipe");
         check(RecipeSuggestions.review(recipes,flux,empty,inventory(fluxFiles,false)).getInt("suggested")==0,"Incomplete FLUX metadata cannot establish unique components");
+        String zimage="z_image_turbo_split_cpu_v1";
+        JSONArray zFiles=new JSONArray().put(entry("z_image_turbo-Q4_0.gguf")).put(entry("Qwen3-4B-Q4_K_M.gguf")).put(entry("vae/diffusion_pytorch_model.safetensors")).put(entry("tokenizer/merges.txt"));
+        JSONObject zReview=RecipeSuggestions.review(recipes,zimage,empty,inventory(zFiles,true));
+        check(zReview.getInt("suggested")==4,"Complete Z-Image Turbo metadata suggests all four explicit roles");
+        check(RecipeSuggestions.apply(recipes,zimage,empty,zReview,selected(zReview)).length()==4,"Z-Image suggestions need explicit application before declaration");
+        JSONArray zAmbiguous=new JSONArray(zFiles.toString()).put(entry("z_image_turbo-Q8_0.gguf"));
+        check(row(RecipeSuggestions.review(recipes,zimage,empty,inventory(zAmbiguous,true)),"diffusion").getString("state").equals("ambiguous"),"Z-Image quantizations remain an explicit user choice");
+        JSONArray zWrong=new JSONArray().put(entry("z_image_base-Q4_0.gguf")).put(entry("Qwen3-4B-Instruct-2507-Q4_K_M.gguf"));
+        JSONObject zWrongReview=RecipeSuggestions.review(recipes,zimage,empty,inventory(zWrong,true));
+        check(row(zWrongReview,"diffusion").getString("state").equals("missing") && row(zWrongReview,"llm").getString("state").equals("missing"),"Turbo selection does not guess a base checkpoint or alternate encoder");
+        check(row(RecipeSuggestions.review(recipes,zimage,empty,inventory(new JSONArray().put(entry("flux2_ae.safetensors")),true)),"vae").getString("state").equals("missing"),"FLUX.2 VAE is not suggested as the original Z-Image VAE");
+        check(RecipeSuggestions.review(recipes,zimage,empty,inventory(zFiles,false)).getInt("suggested")==0,"Partial Z-Image inventory never establishes uniqueness");
         List<String> requests=Collections.synchronizedList(new ArrayList<>());HubClient client=new HubClient("auto","",(address,s,t)->{
             requests.add(address);if(!address.contains("/tree/"))return new HubClient.Response(repo().toString(),null,"fixture");
             JSONArray a=files(),part=new JSONArray();boolean second=address.contains("cursor=two");for(int i=second?6:0;i<(second?a.length():6);i++)part.put(a.getJSONObject(i));return new HubClient.Response(part.toString(),second?null:next("two"),"fixture");});

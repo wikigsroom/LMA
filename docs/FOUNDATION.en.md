@@ -1,5 +1,7 @@
 # LMA extensible local multimodal foundation
 
+dev.38 adds [Z-Image-Turbo](ZIMAGE_TURBO.en.md) through the shared download/local-settings/immutable-queue/cancel/recovery/result foundation. Exact objects are reusable by content hash; task/foundation tags and installation state remain separate.
+
 dev.37 connects the [complete four-component FLUX.2-klein flow](FLUX2_KLEIN.en.md) to shared HF/local selection, per-model settings, immutable jobs, cancellation/recovery and results, and corrects the shared Qwen tokenizer. App updates and user assets stay independent; models remain peers with separate task/foundation tags. [Current delivery and full pending scope](releases/v0.3.0-dev.37.md) preserve every frozen target. Host evidence does not replace Android acceptance.
 
 dev.27 adds [committed-output recovery, reviewed history cleanup and shared capacity checks](TASK_RECOVERY.en.md). Model assets, results and drafts remain independent; recovery does not resume generation.

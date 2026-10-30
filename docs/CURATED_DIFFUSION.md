@@ -1,5 +1,7 @@
 # 生图模型选择、依赖与任务闭环
 
+dev.38 新增 [Z-Image-Turbo 完整四组件、下载与本地业务](ZIMAGE_TURBO.md)，复用匹配原 Qwen3-4B 和外置词表，保留独立八步配置与全部冻结验收门槛。
+
 FLUX.2-klein 4B 新增完整四组件可选目录和匹配 HF 文件建议；[使用逻辑、参数与证据](FLUX2_KLEIN.md)。App 只交付基座，所有下载仍由用户主动选择。
 
 [English](CURATED_DIFFUSION.en.md) · [使用手册](USER_GUIDE.md) · [本轮实现及完整待办](releases/v0.3.0-dev.32.md)

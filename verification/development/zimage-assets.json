@@ -1,0 +1,56 @@
+{
+  "schema": "lma.zimage-trained-acquisition/1",
+  "components": [
+    {
+      "role": "diffusion",
+      "format": "gguf",
+      "repository": "leejet/Z-Image-Turbo-GGUF",
+      "revision": "c61c0e422dc8b541b7548cf33a4ef8302b0f8085",
+      "path": "z_image_turbo-Q4_0.gguf",
+      "bytes": 3683370944,
+      "sha256": "2bc57986874c84f7ec6d02d9d7070a53b0029954a0e38a6e1342eb91095572f5",
+      "url": "https://huggingface.co/leejet/Z-Image-Turbo-GGUF/resolve/c61c0e422dc8b541b7548cf33a4ef8302b0f8085/z_image_turbo-Q4_0.gguf"
+    },
+    {
+      "role": "llm",
+      "format": "gguf",
+      "repository": "unsloth/Qwen3-4B-GGUF",
+      "revision": "22c9fc8a8c7700b76a1789366280a6a5a1ad1120",
+      "path": "Qwen3-4B-Q4_K_M.gguf",
+      "bytes": 2497281312,
+      "sha256": "f6f851777709861056efcdad3af01da38b31223a3ba26e61a4f8bf3a2195813a",
+      "url": "https://huggingface.co/unsloth/Qwen3-4B-GGUF/resolve/22c9fc8a8c7700b76a1789366280a6a5a1ad1120/Qwen3-4B-Q4_K_M.gguf"
+    },
+    {
+      "role": "vae",
+      "format": "safetensors",
+      "repository": "Tongyi-MAI/Z-Image-Turbo",
+      "revision": "f332072aa78be7aecdf3ee76d5c247082da564a6",
+      "path": "vae/diffusion_pytorch_model.safetensors",
+      "bytes": 167666902,
+      "sha256": "f5b59a26851551b67ae1fe58d32e76486e1e812def4696a4bea97f16604d40a3",
+      "url": "https://huggingface.co/Tongyi-MAI/Z-Image-Turbo/resolve/f332072aa78be7aecdf3ee76d5c247082da564a6/vae/diffusion_pytorch_model.safetensors"
+    },
+    {
+      "role": "qwen_merges",
+      "format": "text",
+      "repository": "Tongyi-MAI/Z-Image-Turbo",
+      "revision": "f332072aa78be7aecdf3ee76d5c247082da564a6",
+      "path": "tokenizer/merges.txt",
+      "bytes": 1671853,
+      "sha256": "8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5",
+      "url": "https://huggingface.co/Tongyi-MAI/Z-Image-Turbo/resolve/f332072aa78be7aecdf3ee76d5c247082da564a6/tokenizer/merges.txt"
+    }
+  ],
+  "explicit_download": true,
+  "download_origin": "https://hf-mirror.com",
+  "developer_assets_only": true,
+  "bundled_model_data": false,
+  "model_executed": false,
+  "reference_tokenizer_verified": true,
+  "input_fingerprint": {
+    "research/zimage_trained/assets.json": "bdca93596bf6730b531ceef6f03b1b07dda8c4804cf2768a7f093c6d493d4a06",
+    "tools/fetch_sd15_trained.py": "91392401d9739f15b14fa4e42b74f13bbdd719a382746541cc69952966e6f307",
+    "tools/fetch_zimage_trained.py": "a4b8c8840c6d0ae54de298784d12c4d86279c98ada35a4dc8fe2bc3197e73f2f"
+  }
+}

@@ -1,0 +1,1269 @@
+{
+  "schema": "lma.flux2-app-host/1",
+  "capture_directory": "build/flux2-app-host-tests/run-1793345862740182300",
+  "java": {
+    "android_saf_tested": false,
+    "android_background_accepted": false,
+    "imported_bytes": 5127452603,
+    "production_java_native_host_executed": true,
+    "complete_release_accepted": false,
+    "actual_host_children": 3,
+    "imported_objects": 4,
+    "network_calls": 0,
+    "image_quality_accepted": false,
+    "passed": 99,
+    "physical_android": false,
+    "bundle": {
+      "schema": "lma.model-bundle/2",
+      "components": [
+        {
+          "importPath": "diffusion/flux-2-klein-4b-Q4_0.gguf",
+          "path": "flux-2-klein-4b-Q4_0.gguf",
+          "role": "diffusion",
+          "sha256": "d1023499ef3f2f82ff7c50e6778495195c1b6cc34835741778868428111f9ff4",
+          "bytes": 2460378560,
+          "format": "gguf",
+          "repository": "leejet/FLUX.2-klein-4B-GGUF",
+          "url": "https://huggingface.co/leejet/FLUX.2-klein-4B-GGUF/resolve/3b1f5a9dc3abb32238b053aeb3d823c30afdacbd/flux-2-klein-4b-Q4_0.gguf",
+          "revision": "3b1f5a9dc3abb32238b053aeb3d823c30afdacbd"
+        },
+        {
+          "importPath": "llm/Qwen3-4B-Q4_K_M.gguf",
+          "path": "Qwen3-4B-Q4_K_M.gguf",
+          "role": "llm",
+          "sha256": "f6f851777709861056efcdad3af01da38b31223a3ba26e61a4f8bf3a2195813a",
+          "bytes": 2497281312,
+          "format": "gguf",
+          "repository": "unsloth/Qwen3-4B-GGUF",
+          "url": "https://huggingface.co/unsloth/Qwen3-4B-GGUF/resolve/22c9fc8a8c7700b76a1789366280a6a5a1ad1120/Qwen3-4B-Q4_K_M.gguf",
+          "revision": "22c9fc8a8c7700b76a1789366280a6a5a1ad1120"
+        },
+        {
+          "importPath": "vae/vae/diffusion_pytorch_model.safetensors",
+          "path": "vae/diffusion_pytorch_model.safetensors",
+          "role": "vae",
+          "sha256": "ca70d2202afe6415bdbcb8793ba8cd99fd159cfe6192381504d6c4d3036e0f04",
+          "bytes": 168120878,
+          "format": "safetensors",
+          "repository": "black-forest-labs/FLUX.2-klein-4B",
+          "url": "https://huggingface.co/black-forest-labs/FLUX.2-klein-4B/resolve/e7b7dc27f91deacad38e78976d1f2b499d76a294/vae/diffusion_pytorch_model.safetensors",
+          "revision": "e7b7dc27f91deacad38e78976d1f2b499d76a294"
+        },
+        {
+          "importPath": "qwen_merges/tokenizer/merges.txt",
+          "path": "tokenizer/merges.txt",
+          "role": "qwen_merges",
+          "sha256": "8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5",
+          "bytes": 1671853,
+          "format": "text",
+          "repository": "black-forest-labs/FLUX.2-klein-4B",
+          "url": "https://huggingface.co/black-forest-labs/FLUX.2-klein-4B/resolve/e7b7dc27f91deacad38e78976d1f2b499d76a294/tokenizer/merges.txt",
+          "revision": "e7b7dc27f91deacad38e78976d1f2b499d76a294"
+        }
+      ],
+      "capabilities": [
+        "text_to_image",
+        "distilled_sampling"
+      ],
+      "evidence": {
+        "architectureVerified": false,
+        "status": "user_selected_hf_components_not_device_tested",
+        "physicalDeviceTests": 0
+      },
+      "modelId": "hfb_2406b8c09163dcc4099b8f3064d48f5194c1e843",
+      "description": "\u7528\u6237\u4ece\u56fa\u5b9a HF \u7248\u672c\u660e\u786e\u9009\u62e9\u7684\u7ec4\u4ef6\u914d\u65b9\uff1b\u67b6\u6784\u4e0e\u5b9e\u9645\u624b\u673a\u6267\u884c\u5c1a\u672a\u9a8c\u8bc1\u3002",
+      "recipeId": "flux2_klein_4b_split_cpu_v1",
+      "catalogue": false,
+      "pipeline": "flux2_klein_4b",
+      "sourceUrl": "https://huggingface.co/leejet/FLUX.2-klein-4B-GGUF",
+      "license": {
+        "name": "\u8bf7\u5206\u522b\u6838\u5bf9\u6a21\u578b\u4e0e\u5404\u7ec4\u4ef6\u8bb8\u53ef",
+        "url": "https://huggingface.co/leejet/FLUX.2-klein-4B-GGUF"
+      },
+      "engine": "sd_cpp",
+      "name": "FLUX.2-klein-4B-GGUF \u00b7 FLUX.2-klein 4B \u00b7 distilled",
+      "backend": "cpu",
+      "id": "hfb_2406b8c09163dcc4099b8f3064d48f5194c1e843",
+      "parameters": {
+        "fields": {
+          "scheduler": {
+            "default": "flux2",
+            "values": [
+              "flux2"
+            ],
+            "label": "\u8c03\u5ea6\u5668",
+            "type": "enum"
+          },
+          "seed": {
+            "multipleOf": 1,
+            "default": -1,
+            "presets": [
+              -1,
+              0,
+              42
+            ],
+            "limitSource": "application_guard",
+            "maximum": 2147483647,
+            "label": "\u968f\u673a\u79cd\u5b50\uff08-1 \u4e3a\u968f\u673a\uff09",
+            "type": "integer",
+            "minimum": -1
+          },
+          "cfg": {
+            "default": 1,
+            "presets": [
+              1
+            ],
+            "limitSource": "application_guard",
+            "maximum": 1,
+            "label": "\u63d0\u793a\u8bcd\u5f15\u5bfc",
+            "type": "number",
+            "minimum": 1
+          },
+          "vaeTiling": {
+            "default": true,
+            "label": "\u5206\u5757\u89e3\u7801 VAE",
+            "type": "boolean"
+          },
+          "width": {
+            "multipleOf": 16,
+            "default": 1024,
+            "presets": [
+              256,
+              384,
+              512,
+              768,
+              1024
+            ],
+            "limitSource": "pipeline_alignment_and_application_guard",
+            "maximum": 2048,
+            "label": "\u5bbd\u5ea6",
+            "type": "integer",
+            "minimum": 64
+          },
+          "threads": {
+            "multipleOf": 1,
+            "default": 4,
+            "presets": [
+              1,
+              2,
+              4,
+              6,
+              8
+            ],
+            "limitSource": "application_guard",
+            "maximum": 64,
+            "label": "CPU \u7ebf\u7a0b",
+            "type": "integer",
+            "minimum": 1
+          },
+          "steps": {
+            "multipleOf": 1,
+            "default": 4,
+            "presets": [
+              1,
+              2,
+              4
+            ],
+            "limitSource": "application_sampling_policy",
+            "maximum": 4,
+            "label": "\u91c7\u6837\u6b65\u6570",
+            "type": "integer",
+            "minimum": 1
+          },
+          "flowShift": {
+            "default": 0,
+            "presets": [
+              0,
+              1,
+              3,
+              5
+            ],
+            "limitSource": "application_guard",
+            "maximum": 32,
+            "label": "\u6d41\u5339\u914d\u504f\u79fb\uff080 \u81ea\u52a8\uff09",
+            "type": "number",
+            "minimum": 0
+          },
+          "height": {
+            "multipleOf": 16,
+            "default": 1024,
+            "presets": [
+              256,
+              384,
+              512,
+              768,
+              1024
+            ],
+            "limitSource": "pipeline_alignment_and_application_guard",
+            "maximum": 2048,
+            "label": "\u9ad8\u5ea6",
+            "type": "integer",
+            "minimum": 64
+          },
+          "sampler": {
+            "default": "euler",
+            "values": [
+              "euler"
+            ],
+            "label": "\u91c7\u6837\u5668",
+            "type": "enum"
+          }
+        },
+        "version": 1
+      },
+      "uncensored": {
+        "declared": false,
+        "detected": false,
+        "basis": "repository-metadata",
+        "refusalRateTested": false
+      },
+      "tasks": [
+        "image"
+      ],
+      "architecture": "flux2_klein"
+    },
+    "runs": [
+      {
+        "artifact": {
+          "jobId": "job_3a13fa74d4824f71835534cce0702fae",
+          "createdAt": 1793346626137,
+          "metadata": {
+            "mime": "image/png",
+            "width": 512,
+            "height": 512
+          },
+          "filename": "artifact_87eee4ab450f4e378681661d2fb8dcca.png",
+          "provenance": {
+            "input": {
+              "prompt": "A small red toy robot standing beside a blue ceramic teapot on a wooden table, studio photograph, soft daylight, clean background",
+              "negativePrompt": ""
+            },
+            "execution": {
+              "effectiveParameters": {
+                "scheduler": "flux2",
+                "seed": 42,
+                "cfg": 1,
+                "vaeTiling": true,
+                "width": 512,
+                "threads": 6,
+                "steps": 4,
+                "flowShift": 0,
+                "height": 512,
+                "sampler": "euler"
+              },
+              "pipeline": "flux2_klein_4b",
+              "samplingProfile": "flux2_klein",
+              "samplingAdjustments": []
+            },
+            "adapters": [],
+            "bundleId": "hfb_2406b8c09163dcc4099b8f3064d48f5194c1e843",
+            "diffusionPlan": {
+              "schema": "lma.diffusion-plan/1",
+              "adjustments": [],
+              "profile": "flux2_klein",
+              "parameters": {
+                "scheduler": "flux2",
+                "seed": 42,
+                "cfg": 1,
+                "vaeTiling": true,
+                "width": 512,
+                "threads": 6,
+                "steps": 4,
+                "flowShift": 0,
+                "height": 512,
+                "sampler": "euler"
+              }
+            },
+            "type": "image.generate",
+            "parameters": {
+              "scheduler": "flux2",
+              "seed": 42,
+              "cfg": 1,
+              "vaeTiling": true,
+              "width": 512,
+              "threads": 6,
+              "steps": 4,
+              "flowShift": 0,
+              "height": 512,
+              "sampler": "euler"
+            }
+          },
+          "sha256": "50ef2c45a1aa729987fffa32673e30e1a32e43d10c933926f628879a7877df71",
+          "bytes": 404476,
+          "origin": {
+            "kind": "generated"
+          },
+          "id": "artifact_87eee4ab450f4e378681661d2fb8dcca"
+        },
+        "output": "U:\\build\\flux2-app-host-tests\\run-1793345862740182300\\data\\artifacts\\media\\artifact_87eee4ab450f4e378681661d2fb8dcca.png",
+        "execution": {
+          "effectiveParameters": {
+            "scheduler": "flux2",
+            "seed": 42,
+            "cfg": 1,
+            "vaeTiling": true,
+            "width": 512,
+            "threads": 6,
+            "steps": 4,
+            "flowShift": 0,
+            "height": 512,
+            "sampler": "euler"
+          },
+          "pipeline": "flux2_klein_4b",
+          "samplingProfile": "flux2_klein",
+          "samplingAdjustments": []
+        },
+        "sha256": "50ef2c45a1aa729987fffa32673e30e1a32e43d10c933926f628879a7877df71",
+        "bytes": 404476,
+        "name": "a",
+        "progress": [
+          {
+            "stage": "loading",
+            "fraction": null
+          },
+          {
+            "stage": "generating",
+            "fraction": null
+          },
+          {
+            "stage": "generating",
+            "fraction": 0
+          },
+          {
+            "stage": "generating",
+            "fraction": 0
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.25
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.5
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.75
+          },
+          {
+            "stage": "generating",
+            "fraction": 1
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.02040816326530612
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.04081632653061224
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.061224489795918366
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.08163265306122448
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.10204081632653061
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.12244897959183673
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.14285714285714285
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.16326530612244897
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.1836734693877551
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.20408163265306123
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.22448979591836735
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.24489795918367346
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.2653061224489796
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.2857142857142857
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.30612244897959184
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.32653061224489793
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.3469387755102041
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.3673469387755102
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.3877551020408163
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.40816326530612246
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.42857142857142855
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.4489795918367347
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.46938775510204084
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.4897959183673469
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.5102040816326531
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.5306122448979592
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.5510204081632653
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.5714285714285714
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.5918367346938775
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.6122448979591837
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.6326530612244898
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.6530612244897959
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.673469387755102
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.6938775510204082
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.7142857142857143
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.7346938775510204
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.7551020408163265
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.7755102040816326
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.7959183673469388
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.8163265306122449
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.8367346938775511
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.8571428571428571
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.8775510204081632
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.8979591836734694
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.9183673469387755
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.9387755102040817
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.9591836734693877
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.9795918367346939
+          },
+          {
+            "stage": "generating",
+            "fraction": 1
+          }
+        ]
+      },
+      {
+        "execution": {
+          "effectiveParameters": {
+            "scheduler": "flux2",
+            "seed": 42,
+            "cfg": 1,
+            "vaeTiling": true,
+            "width": 512,
+            "threads": 6,
+            "steps": 4,
+            "flowShift": 0,
+            "height": 512,
+            "sampler": "euler"
+          },
+          "pipeline": "flux2_klein_4b",
+          "samplingProfile": "flux2_klein",
+          "samplingAdjustments": []
+        },
+        "name": "cancel-sampling",
+        "cancelled": true,
+        "progress": [
+          {
+            "stage": "loading",
+            "fraction": null
+          },
+          {
+            "stage": "generating",
+            "fraction": null
+          },
+          {
+            "stage": "generating",
+            "fraction": 0
+          },
+          {
+            "stage": "generating",
+            "fraction": 0
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.25
+          }
+        ]
+      },
+      {
+        "artifact": {
+          "jobId": "job_e6833ea623414c18b5d8c6c5fc28eaca",
+          "createdAt": 1793347082966,
+          "metadata": {
+            "mime": "image/png",
+            "width": 512,
+            "height": 512
+          },
+          "filename": "artifact_dd718d175ccc479aaa1227552167544f.png",
+          "provenance": {
+            "input": {
+              "prompt": "A small red toy robot standing beside a blue ceramic teapot on a wooden table, studio photograph, soft daylight, clean background",
+              "negativePrompt": ""
+            },
+            "execution": {
+              "effectiveParameters": {
+                "scheduler": "flux2",
+                "seed": 42,
+                "cfg": 1,
+                "vaeTiling": true,
+                "width": 512,
+                "threads": 6,
+                "steps": 4,
+                "flowShift": 0,
+                "height": 512,
+                "sampler": "euler"
+              },
+              "pipeline": "flux2_klein_4b",
+              "samplingProfile": "flux2_klein",
+              "samplingAdjustments": []
+            },
+            "adapters": [],
+            "bundleId": "hfb_2406b8c09163dcc4099b8f3064d48f5194c1e843",
+            "diffusionPlan": {
+              "schema": "lma.diffusion-plan/1",
+              "adjustments": [],
+              "profile": "flux2_klein",
+              "parameters": {
+                "scheduler": "flux2",
+                "seed": 42,
+                "cfg": 1,
+                "vaeTiling": true,
+                "width": 512,
+                "threads": 6,
+                "steps": 4,
+                "flowShift": 0,
+                "height": 512,
+                "sampler": "euler"
+              }
+            },
+            "type": "image.generate",
+            "parameters": {
+              "scheduler": "flux2",
+              "seed": 42,
+              "cfg": 1,
+              "vaeTiling": true,
+              "width": 512,
+              "threads": 6,
+              "steps": 4,
+              "flowShift": 0,
+              "height": 512,
+              "sampler": "euler"
+            }
+          },
+          "sha256": "50ef2c45a1aa729987fffa32673e30e1a32e43d10c933926f628879a7877df71",
+          "bytes": 404476,
+          "origin": {
+            "kind": "generated"
+          },
+          "id": "artifact_dd718d175ccc479aaa1227552167544f"
+        },
+        "output": "U:\\build\\flux2-app-host-tests\\run-1793345862740182300\\data\\artifacts\\media\\artifact_dd718d175ccc479aaa1227552167544f.png",
+        "execution": {
+          "effectiveParameters": {
+            "scheduler": "flux2",
+            "seed": 42,
+            "cfg": 1,
+            "vaeTiling": true,
+            "width": 512,
+            "threads": 6,
+            "steps": 4,
+            "flowShift": 0,
+            "height": 512,
+            "sampler": "euler"
+          },
+          "pipeline": "flux2_klein_4b",
+          "samplingProfile": "flux2_klein",
+          "samplingAdjustments": []
+        },
+        "sha256": "50ef2c45a1aa729987fffa32673e30e1a32e43d10c933926f628879a7877df71",
+        "bytes": 404476,
+        "name": "recovery-a",
+        "progress": [
+          {
+            "stage": "loading",
+            "fraction": null
+          },
+          {
+            "stage": "generating",
+            "fraction": null
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.003355704697986577
+          },
+          {
+            "stage": "generating",
+            "fraction": 0
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.25
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.5
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.75
+          },
+          {
+            "stage": "generating",
+            "fraction": 1
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.02040816326530612
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.04081632653061224
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.061224489795918366
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.08163265306122448
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.10204081632653061
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.12244897959183673
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.14285714285714285
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.16326530612244897
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.1836734693877551
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.20408163265306123
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.22448979591836735
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.24489795918367346
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.2653061224489796
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.2857142857142857
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.30612244897959184
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.32653061224489793
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.3469387755102041
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.3673469387755102
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.3877551020408163
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.40816326530612246
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.42857142857142855
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.4489795918367347
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.46938775510204084
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.4897959183673469
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.5102040816326531
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.5306122448979592
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.5510204081632653
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.5714285714285714
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.5918367346938775
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.6122448979591837
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.6326530612244898
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.6530612244897959
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.673469387755102
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.6938775510204082
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.7142857142857143
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.7346938775510204
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.7551020408163265
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.7755102040816326
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.7959183673469388
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.8163265306122449
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.8367346938775511
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.8571428571428571
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.8775510204081632
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.8979591836734694
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.9183673469387755
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.9387755102040817
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.9591836734693877
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.9795918367346939
+          },
+          {
+            "stage": "generating",
+            "fraction": 1
+          }
+        ]
+      }
+    ],
+    "launches": [
+      {
+        "schema": "lma.engine-request/1",
+        "pipeline": "flux2_klein_4b",
+        "output": "U:\\build\\flux2-app-host-tests\\run-1793345862740182300\\data\\artifacts\\staging\\job_3a13fa74d4824f71835534cce0702fae_906a976372404f969a36a084b439f7e3.png",
+        "input": {
+          "prompt": "A small red toy robot standing beside a blue ceramic teapot on a wooden table, studio photograph, soft daylight, clean background",
+          "negativePrompt": ""
+        },
+        "components": {
+          "diffusion": "U:\\build\\flux2-app-host-tests\\run-1793345862740182300\\data\\files\\bundles\\objects\\d1023499ef3f2f82ff7c50e6778495195c1b6cc34835741778868428111f9ff4",
+          "qwen_merges": "U:\\build\\flux2-app-host-tests\\run-1793345862740182300\\data\\files\\bundles\\objects\\8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5",
+          "vae": "U:\\build\\flux2-app-host-tests\\run-1793345862740182300\\data\\files\\bundles\\objects\\ca70d2202afe6415bdbcb8793ba8cd99fd159cfe6192381504d6c4d3036e0f04",
+          "llm": "U:\\build\\flux2-app-host-tests\\run-1793345862740182300\\data\\files\\bundles\\objects\\f6f851777709861056efcdad3af01da38b31223a3ba26e61a4f8bf3a2195813a"
+        },
+        "loras": [],
+        "type": "image.generate",
+        "samplingProfile": "flux2_klein",
+        "parameters": {
+          "scheduler": "flux2",
+          "seed": 42,
+          "cfg": 1,
+          "vaeTiling": true,
+          "width": 512,
+          "threads": 6,
+          "steps": 4,
+          "flowShift": 0,
+          "height": 512,
+          "sampler": "euler"
+        },
+        "architecture": "flux2_klein"
+      },
+      {
+        "schema": "lma.engine-request/1",
+        "pipeline": "flux2_klein_4b",
+        "output": "U:\\build\\flux2-app-host-tests\\run-1793345862740182300\\data\\artifacts\\staging\\job_f694f4c2a1374cfb9cd60729521d10dd_067b14a46d14434ba55a27bad858816c.png",
+        "input": {
+          "prompt": "A small red toy robot standing beside a blue ceramic teapot on a wooden table, studio photograph, soft daylight, clean background",
+          "negativePrompt": ""
+        },
+        "components": {
+          "diffusion": "U:\\build\\flux2-app-host-tests\\run-1793345862740182300\\data\\files\\bundles\\objects\\d1023499ef3f2f82ff7c50e6778495195c1b6cc34835741778868428111f9ff4",
+          "qwen_merges": "U:\\build\\flux2-app-host-tests\\run-1793345862740182300\\data\\files\\bundles\\objects\\8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5",
+          "vae": "U:\\build\\flux2-app-host-tests\\run-1793345862740182300\\data\\files\\bundles\\objects\\ca70d2202afe6415bdbcb8793ba8cd99fd159cfe6192381504d6c4d3036e0f04",
+          "llm": "U:\\build\\flux2-app-host-tests\\run-1793345862740182300\\data\\files\\bundles\\objects\\f6f851777709861056efcdad3af01da38b31223a3ba26e61a4f8bf3a2195813a"
+        },
+        "loras": [],
+        "type": "image.generate",
+        "samplingProfile": "flux2_klein",
+        "parameters": {
+          "scheduler": "flux2",
+          "seed": 42,
+          "cfg": 1,
+          "vaeTiling": true,
+          "width": 512,
+          "threads": 6,
+          "steps": 4,
+          "flowShift": 0,
+          "height": 512,
+          "sampler": "euler"
+        },
+        "architecture": "flux2_klein"
+      },
+      {
+        "schema": "lma.engine-request/1",
+        "pipeline": "flux2_klein_4b",
+        "output": "U:\\build\\flux2-app-host-tests\\run-1793345862740182300\\data\\artifacts\\staging\\job_e6833ea623414c18b5d8c6c5fc28eaca_efb51ff939c641d694b45ff8e53c9990.png",
+        "input": {
+          "prompt": "A small red toy robot standing beside a blue ceramic teapot on a wooden table, studio photograph, soft daylight, clean background",
+          "negativePrompt": ""
+        },
+        "components": {
+          "diffusion": "U:\\build\\flux2-app-host-tests\\run-1793345862740182300\\data\\files\\bundles\\objects\\d1023499ef3f2f82ff7c50e6778495195c1b6cc34835741778868428111f9ff4",
+          "qwen_merges": "U:\\build\\flux2-app-host-tests\\run-1793345862740182300\\data\\files\\bundles\\objects\\8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5",
+          "vae": "U:\\build\\flux2-app-host-tests\\run-1793345862740182300\\data\\files\\bundles\\objects\\ca70d2202afe6415bdbcb8793ba8cd99fd159cfe6192381504d6c4d3036e0f04",
+          "llm": "U:\\build\\flux2-app-host-tests\\run-1793345862740182300\\data\\files\\bundles\\objects\\f6f851777709861056efcdad3af01da38b31223a3ba26e61a4f8bf3a2195813a"
+        },
+        "loras": [],
+        "type": "image.generate",
+        "samplingProfile": "flux2_klein",
+        "parameters": {
+          "scheduler": "flux2",
+          "seed": 42,
+          "cfg": 1,
+          "vaeTiling": true,
+          "width": 512,
+          "threads": 6,
+          "steps": 4,
+          "flowShift": 0,
+          "height": 512,
+          "sampler": "euler"
+        },
+        "architecture": "flux2_klein"
+      }
+    ]
+  },
+  "outputs": [
+    {
+      "name": "a",
+      "file": "build/flux2-app-host-tests/run-1793345862740182300/data/artifacts/media/artifact_87eee4ab450f4e378681661d2fb8dcca.png",
+      "image": {
+        "width": 512,
+        "height": 512,
+        "format": "PNG",
+        "mode": "RGB",
+        "bytes": 404476,
+        "sha256": "50ef2c45a1aa729987fffa32673e30e1a32e43d10c933926f628879a7877df71",
+        "channel_mean": [
+          188.6589698791504,
+          177.52767944335938,
+          176.34478759765625
+        ],
+        "channel_stddev": [
+          83.32366550882496,
+          71.70299059106884,
+          80.82918940264449
+        ],
+        "extrema": [
+          [
+            0,
+            255
+          ],
+          [
+            0,
+            255
+          ],
+          [
+            0,
+            255
+          ]
+        ],
+        "entropy": 8.155307530167516
+      },
+      "bitwise_equal_to_direct_native": true
+    },
+    {
+      "name": "recovery-a",
+      "file": "build/flux2-app-host-tests/run-1793345862740182300/data/artifacts/media/artifact_dd718d175ccc479aaa1227552167544f.png",
+      "image": {
+        "width": 512,
+        "height": 512,
+        "format": "PNG",
+        "mode": "RGB",
+        "bytes": 404476,
+        "sha256": "50ef2c45a1aa729987fffa32673e30e1a32e43d10c933926f628879a7877df71",
+        "channel_mean": [
+          188.6589698791504,
+          177.52767944335938,
+          176.34478759765625
+        ],
+        "channel_stddev": [
+          83.32366550882496,
+          71.70299059106884,
+          80.82918940264449
+        ],
+        "extrema": [
+          [
+            0,
+            255
+          ],
+          [
+            0,
+            255
+          ],
+          [
+            0,
+            255
+          ]
+        ],
+        "entropy": 8.155307530167516
+      },
+      "bitwise_equal_to_direct_native": true
+    }
+  ],
+  "files": {
+    "compile.log": {
+      "bytes": 188,
+      "sha256": "0776deeb6ace85f83d60a9ba535cbe73a21566505b5aec2fd5c75b2bde065172"
+    },
+    "data/artifacts/artifacts.json": {
+      "bytes": 2708,
+      "sha256": "1c5b8c8a68612d9a2bd9b8c43d34abf9d7d398940e3f100e83a916fa9d11fff4"
+    },
+    "data/artifacts/media/artifact_87eee4ab450f4e378681661d2fb8dcca.png": {
+      "bytes": 404476,
+      "sha256": "50ef2c45a1aa729987fffa32673e30e1a32e43d10c933926f628879a7877df71"
+    },
+    "data/artifacts/media/artifact_dd718d175ccc479aaa1227552167544f.png": {
+      "bytes": 404476,
+      "sha256": "50ef2c45a1aa729987fffa32673e30e1a32e43d10c933926f628879a7877df71"
+    },
+    "data/files/bundles/bundles.json": {
+      "bytes": 10017,
+      "sha256": "37480d659759013f4f6f69eb35b65a548e64ca45373696b107f07b67c85fac6e"
+    },
+    "data/java-results.json": {
+      "bytes": 28926,
+      "sha256": "86d78b111eeb722bd8842e1e646d76693af7b7a551654f046507b72d77f13ccd"
+    },
+    "execution.json": {
+      "bytes": 13262,
+      "sha256": "dc06fa4656ec7e420fdc6626a1cd653a79753b2d820860c90a1566210acb21ae"
+    },
+    "java.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "java.stdout": {
+      "bytes": 195,
+      "sha256": "d44e1fa10a10a2934017117ea8c723e8d19b66c2bceed26ad3625e4e0f11c820"
+    },
+    "sources.rsp": {
+      "bytes": 6050,
+      "sha256": "da814ce2886b55f8e57b1a17d026acd57c94f3625e07f3419424ce98e232ca76"
+    }
+  },
+  "compilation": {
+    "schema": "lma.sd-host-build/1",
+    "executable": "build/sd-worker-host/c0dddf254c3c99bd/bin/lma_sd_host.exe",
+    "sha256": "bcc1b84cf8f6d1b7d51f11234a2c22a7de78e77ee212533313b14a1a9ebd6ed1",
+    "bytes": 8651264,
+    "tokenizer_executable": "build/sd-worker-host/c0dddf254c3c99bd/bin/lma_sd_tokenizer_host.exe",
+    "tokenizer_sha256": "602228cab2830b4cd41fefd14971203d42b4d01e6d0e6a55b6d87a08373b522a",
+    "tokenizer_bytes": 3154944,
+    "source_revision": "be486498eadc29dc3cd234d944c2180ed42b1415",
+    "ggml_revision": "a5915eb0e47adef21c3f25b889a008925ea838c2",
+    "backend": "cpu",
+    "production_worker_source_unmodified": true,
+    "production_vocabulary_source_unmodified": true,
+    "windows_parent_guard": true,
+    "external_vocabulary": true,
+    "bundled_model_data": false,
+    "android_compiled": false,
+    "physical_android": false,
+    "packaged_in_apk": false,
+    "model_executed": false,
+    "reused_unaccepted_build_cache": true,
+    "compile_workspace": "build/sd-worker-host/d796da2dd260b023/bin",
+    "input_fingerprint": {
+      "native/lcm_condition.hpp": "a5d94cf2f2453f3c8045418aa6b1a147ffa27557665bfc6f2203e04048899ea4",
+      "native/qwen_prompt.hpp": "ec9a45781b93eff62c6f0a4eca2c59fe1088c931d4c1150dcd903ae5c84c1c0f",
+      "native/sd_policy.hpp": "c7d987ffc6b905fbad9d6a47be98d10f57b2060728f00801742a4ec346a5c7ba",
+      "native/sd_worker.cpp": "c8e04e54eb1d36aebaafaf726e609ef94afac32672046d887d1289dfe2ed8cec",
+      "native/tokenizer_data.hpp": "c752eb62a3c915be4742124bb25e6ada9ea952bbc81c62a1a864cfe39a3ddd6d",
+      "native/vocab_external.cpp": "b8e568f72914833f66bbe338fb877d98d1cb954525a7d3d9a1f8364e4e1c90af",
+      "research/sd_host/CMakeLists.txt": "e954e15097133eaad44b656c6b2c8a998916ea22047fe8504d08d11d95ffd240",
+      "research/sd_host/compat/sys/prctl.h": "87c9ddf82ce059bf303486b0e10b22dce6d972e87f83836d148e631dcdad9c9e",
+      "research/sd_host/compat/unistd.h": "e467e7f5855c286b3ce40268146ed34d153a5fbf8a42d5c36b26a6293142068b",
+      "research/sd_host/NOTICE": "90e18935ca8ba71ac1a5ce59e3a2f0b0580cd246877f65cba402deff67eb18fc",
+      "research/sd_host/platform.hpp": "c377ed1b676707a469a192d96ae9b748802e1f62ad0674366b593b2b5b2daf67",
+      "research/sd_host/tokenizer_driver.cpp": "ffce0ff4c40580d635233c0f3fe646e78636ad53c8bdb0aea620e855d60d2abf",
+      "third_party/notices/sd-sources.json": "91ee744071aa93c4bd4d40476d3582fa4bf4d00a628527e196d4856c06ec77c1",
+      "tools/build_native.py": "f3876b3c254ee367a55f15bcbf9cd8c0dc2eb243b53b59796a282f2afc4a7c11",
+      "tools/build_sd_host.py": "4d94023a5323f991674df6f85348432d1cdb874eb41ab14dd34ce58f122327eb",
+      "tools/fetch_sd15_trained.py": "91392401d9739f15b14fa4e42b74f13bbdd719a382746541cc69952966e6f307"
+    }
+  },
+  "direct_trained_report_sha256": "bf0f3b46654f43deb94bc1b6d95ce3120aff6950f07644b984eeaff525a5e022",
+  "production_java_native_host_executed": true,
+  "physical_android": false,
+  "android_saf_tested": false,
+  "android_background_accepted": false,
+  "independent_numerics_accepted": false,
+  "image_quality_accepted": false,
+  "complete_target07_accepted": false,
+  "complete_release_accepted": false,
+  "input_fingerprint": {
+    "native/lcm_condition.hpp": "a5d94cf2f2453f3c8045418aa6b1a147ffa27557665bfc6f2203e04048899ea4",
+    "native/qwen_prompt.hpp": "ec9a45781b93eff62c6f0a4eca2c59fe1088c931d4c1150dcd903ae5c84c1c0f",
+    "native/sd_policy.hpp": "c7d987ffc6b905fbad9d6a47be98d10f57b2060728f00801742a4ec346a5c7ba",
+    "native/sd_worker.cpp": "c8e04e54eb1d36aebaafaf726e609ef94afac32672046d887d1289dfe2ed8cec",
+    "native/tokenizer_data.hpp": "c752eb62a3c915be4742124bb25e6ada9ea952bbc81c62a1a864cfe39a3ddd6d",
+    "native/vocab_external.cpp": "b8e568f72914833f66bbe338fb877d98d1cb954525a7d3d9a1f8364e4e1c90af",
+    "research/sd_host/CMakeLists.txt": "e954e15097133eaad44b656c6b2c8a998916ea22047fe8504d08d11d95ffd240",
+    "research/sd_host/compat/sys/prctl.h": "87c9ddf82ce059bf303486b0e10b22dce6d972e87f83836d148e631dcdad9c9e",
+    "research/sd_host/compat/unistd.h": "e467e7f5855c286b3ce40268146ed34d153a5fbf8a42d5c36b26a6293142068b",
+    "research/sd_host/NOTICE": "90e18935ca8ba71ac1a5ce59e3a2f0b0580cd246877f65cba402deff67eb18fc",
+    "research/sd_host/platform.hpp": "c377ed1b676707a469a192d96ae9b748802e1f62ad0674366b593b2b5b2daf67",
+    "research/sd_host/tokenizer_driver.cpp": "ffce0ff4c40580d635233c0f3fe646e78636ad53c8bdb0aea620e855d60d2abf",
+    "third_party/notices/sd-sources.json": "91ee744071aa93c4bd4d40476d3582fa4bf4d00a628527e196d4856c06ec77c1",
+    "tools/build_native.py": "f3876b3c254ee367a55f15bcbf9cd8c0dc2eb243b53b59796a282f2afc4a7c11",
+    "tools/build_sd_host.py": "4d94023a5323f991674df6f85348432d1cdb874eb41ab14dd34ce58f122327eb",
+    "tools/fetch_sd15_trained.py": "91392401d9739f15b14fa4e42b74f13bbdd719a382746541cc69952966e6f307",
+    "research/flux2_trained/assets.json": "77d268da7aaf6d9a861c92e6c82d4dc2e279218af1c67e48f63a73816b0991cb",
+    "tools/fetch_flux2_trained.py": "a103482c4ede9c93616a8b3d04d07cb55ba6fe32d2945321d3299f17bc7f5de0",
+    "app/src/main/assets/recipe-templates.json": "0ac0d11381d784f7267771e2d17daa8bf8356662b912736e3c830c21e6c144aa",
+    "app/src/main/java/com/lma/app/core/AdapterSpec.java": "aff8572d14ac8d616be0a1b0da395e52ed5bddcd5ae407a969c2657bf9257581",
+    "app/src/main/java/com/lma/app/core/ArtifactStore.java": "6f85d2ac710cac0fb5a76cde9493ff1fef4d3e2e119c3e031b7c44ff65a49061",
+    "app/src/main/java/com/lma/app/core/AssemblyPlan.java": "80e81dea2a831d3955aa5ae21323eb0432fb448f78994901633fbb6e85d77e7c",
+    "app/src/main/java/com/lma/app/core/AudioPcm.java": "9bf3270c83f57b7fa4e23fc4518fa063e72ca214675f9c23d45bd1788842f7b2",
+    "app/src/main/java/com/lma/app/core/AudioStreams.java": "de8a2cdd98d083b62515b067865182d9065bb00f14b8c70cacafba21de8407f1",
+    "app/src/main/java/com/lma/app/core/BundleStore.java": "a773aaa8f83410da9ccbf499b9a19ee4166e2c094c2e992699424c0ac68f3e74",
+    "app/src/main/java/com/lma/app/core/BundleTransfers.java": "926596119a2c3f6bc089516e7bbd7db3016487d60c24f908ea646dfc76707f3e",
+    "app/src/main/java/com/lma/app/core/BundleUpdates.java": "f31a65d0e172aa75f6131deace828875534ccc756ed93fac83bb09d5a4162fe1",
+    "app/src/main/java/com/lma/app/core/ByteRange.java": "31723bf112e630de6c2a1cd8d525be7bbd4706e151fa5a297a5e641f59b5c752",
+    "app/src/main/java/com/lma/app/core/ChatHistory.java": "3046a52c3f611b83b46cfed94afe0f4b31667f77986b7ca1737169ec8c4ce951",
+    "app/src/main/java/com/lma/app/core/ComponentIntegrity.java": "7a5977c607f624f8763a782b1b081c4e485c8c05c2caae15986ad2f2388f5bce",
+    "app/src/main/java/com/lma/app/core/DataFiles.java": "02d3212885376e7073a785801dbb81073b13cc87c5fc0e85ac4373fd346696bc",
+    "app/src/main/java/com/lma/app/core/EngineWorkspace.java": "6c632861e13d0a8950cdee66e8bea8a8760d23550c10343d6cfdd8a6e9af29dd",
+    "app/src/main/java/com/lma/app/core/ExecutionGate.java": "143b6d145036c56ad0937316e87af5f4c44507ef89cf16affdc5bef0ad8e2126",
+    "app/src/main/java/com/lma/app/core/InputSelection.java": "963fe60973caab82b9dfedaa7c1661f236aed6ea158fcda8f4a86d02ba33d509",
+    "app/src/main/java/com/lma/app/core/InputSpec.java": "d535fc70bdbfbf7cd9ca2ce685c20735d67ed5c3b7132989ec683c74de779f97",
+    "app/src/main/java/com/lma/app/core/InputUploads.java": "5debd68a73abc8bde8174c985dfec8f534c6bf8df58dda8810b0cc3541fe1d53",
+    "app/src/main/java/com/lma/app/core/JobStore.java": "3f999d908b7667d35557c979a26dbf5544c712015b986a090946b76b8a680628",
+    "app/src/main/java/com/lma/app/core/LcmCondition.java": "2177da94b69781263e36f3e379034619bf74c6856bc6a9108592d4f272e94b7a",
+    "app/src/main/java/com/lma/app/core/LocalApi.java": "c9e1674f98ef12c7312ff42c50ba38a10c08d5cf1d3e173a8093ecd7fa67e5fc",
+    "app/src/main/java/com/lma/app/core/LocalHttp.java": "6f74e8acfe7072606c23e775f87fa5aa8d5ee094ffe20e96788f161674a947aa",
+    "app/src/main/java/com/lma/app/core/Ltx098Spec.java": "8333ea906bc31ea9e014ce4840d15fc6253c91eda1f3688de4f8645738819abf",
+    "app/src/main/java/com/lma/app/core/MnnSpec.java": "055cc06962da0fc34c1abdc57100ac52fca47a9d66ffea6621155c53046d5f1a",
+    "app/src/main/java/com/lma/app/core/ModelBundle.java": "ad08c033a2c9a215c292d20a5a97a65c85db91ce6a86609a8eed9e846449e84b",
+    "app/src/main/java/com/lma/app/core/ModelSelection.java": "965c9f22f16fc822f792ebef6e0de0a0c67f5a6882d5e7ef77be05b83ea1aeb2",
+    "app/src/main/java/com/lma/app/core/MossDelaySpec.java": "2f680d68cf78517f234c336c77e0b584bf40300fd6294514b7cd457149d41bd0",
+    "app/src/main/java/com/lma/app/core/MossNanoSpec.java": "4b784a773fb85550eba8f169a62cab9a274a332519ec700b595694378e9e39ed",
+    "app/src/main/java/com/lma/app/core/MossRqSpec.java": "0713659ade3c172887527a9e961bbde4add5ed00bd2a564256bc11f9b4796b5e",
+    "app/src/main/java/com/lma/app/core/NativePreparation.java": "cb8ee985ef2c6cba3e0d6bb924c940bcb197bd3f576ca7d6e1fa24442d44e1dd",
+    "app/src/main/java/com/lma/app/core/OnnxMetadata.java": "51db38a424032ac21a8a4185745a272db9034a94d2e8b2d0671c11289e9719e3",
+    "app/src/main/java/com/lma/app/core/OpenMossSpec.java": "4a9af3c92d87be65c4f617677eaed31576f9160a3355518fff7cb874192a5258",
+    "app/src/main/java/com/lma/app/core/ParameterSchema.java": "a566c6d452461ee14333caf7e732a33f8d94b12b33cbabc851f5f3fcc6bdb019",
+    "app/src/main/java/com/lma/app/core/PreparationPlan.java": "dfee63b84035c6ca18b0647aecb947070b983b6b2f1de08247129dddfa64a0bf",
+    "app/src/main/java/com/lma/app/core/PreparedAssets.java": "ae09c7aa1643fc22b76cbe11182a742f26aa0ea95bc9b7166d685433a603dd02",
+    "app/src/main/java/com/lma/app/core/PreparedModelAssembly.java": "eef243d48c9b2b7d3d9b08b2ddf8129ff3884bbdd6c00ecd28a83c0f4bbfa384",
+    "app/src/main/java/com/lma/app/core/ProcessControl.java": "a1950624951d41c040b0b9f44cd8ef5faff16ed22dae880d626e4619d77c155d",
+    "app/src/main/java/com/lma/app/core/Protocol.java": "d49f47884aec0cb03347023119c2808330fa9970689dcd9d33c30ca653d03b85",
+    "app/src/main/java/com/lma/app/core/QwenTtsSpec.java": "e94d96d7ce7c499b2d4bafbd35740c690b32169a142a9a55aae7a8b03364125b",
+    "app/src/main/java/com/lma/app/core/RecipeCatalogue.java": "539dcd55124ce71e32476edb8a7efd25d533935847a8357ac3a6dddf68b71a47",
+    "app/src/main/java/com/lma/app/core/RecipeSuggestions.java": "57d9d7b5fc5f3c61a3ab3524af8789df58dbc8ce1923b2c09e139649057beda0",
+    "app/src/main/java/com/lma/app/core/ResourceWatch.java": "6f6a4cb2159f7956d1ae8c202c61430be268d86d230245bccc952844f3816ec5",
+    "app/src/main/java/com/lma/app/core/SdSpec.java": "bdd247408ebede1777a84a896a68947132ab8b5ee8d526b17742c565229fcb73",
+    "app/src/main/java/com/lma/app/core/SoulxSpec.java": "a761d40965d041d38cc1f629418017103c9eefabf5904814fad9de6372b6bcc7",
+    "app/src/main/java/com/lma/app/core/SpeechVoices.java": "b413549e7721d07c88fec135b01b26a18d9dc0cc686a37dd180309ee10900967",
+    "app/src/main/java/com/lma/app/core/StableAudioSpec.java": "0cc04143a8c8c2afa4dc3d9726f4891779b352404d97c70d6fdc260fbe27ee6c",
+    "app/src/main/java/com/lma/app/core/TaskDrafts.java": "1c97a99a274abb5f38542eb2cea6834121f46b5dfb0e7cbaeaa5df25222c7ead",
+    "app/src/main/java/com/lma/app/core/TaskInput.java": "6f186b392f9e2fd70f253398f4becf9604d22e03c132f18b3bb93f635f637d7b",
+    "app/src/main/java/com/lma/app/core/TaskRequests.java": "6a9056c560a681891a0110b25d015494e0a73240034efde5ad565593a9d1dcc7",
+    "app/src/main/java/com/lma/app/core/TextRequest.java": "bfdb23db96512f00f362b49951c1fee4162ca2d441482eb6ebf180a8d3574d5f",
+    "app/src/main/java/com/lma/app/core/TextResult.java": "2dd7968a40cc917fab5b8bc412ef00d21348abec1d844b140b843b1bba57c6ab",
+    "app/src/main/java/com/lma/app/core/TextSpec.java": "4521ce8e833d88276f6b98d446e0171c48602d67ce2cf4b372d425e56d6d149e",
+    "app/src/main/java/com/lma/app/core/TtsSpec.java": "54f841e2ca5e93d3c3e1845014029b96912291fcf50a50c26a0124325a7a962a",
+    "app/src/main/java/com/lma/app/core/WaveFile.java": "cf70b9bbafb6aa23cc25217d4883e769173b00f74571d1b115c50a8ad6b15361",
+    "app/src/main/java/com/lma/app/LocalEngine.java": "c06198df33cf290dff58d5d7d7f2b44b3d84d552c1a3c0f1cf35c30c6d5b7c19",
+    "app/src/main/java/com/lma/app/NativeWorker.java": "8d9c5aa7cf5744e634c6c3eeb17a798bc429a8f22e172f6b75e1a1400d7c4eaa",
+    "app/src/main/java/com/lma/app/SdEngine.java": "7a385f4058505e4175b9a2a97fea1b854b797b4f4ef3d905d1ca87d8f82621c6",
+    "research/flux2_trained/catalogue-bundle.json": "b3b95d2848e04ebced531a073049b1fca4def2c1e08f37901d7555e3eb76cf94",
+    "research/flux2_trained/NOTICE": "07c300fbaa64b05cedba7952a54339a6253dea894501e903e2b213bff7628f35",
+    "tests/flux2-trained/com/lma/app/Flux2TrainedAppTest.java": "c9657db0287a73c059e3b74f069739f14e3511f06c3a59525352b4f6e36c194f",
+    "tests/host/android/util/AtomicFile.java": "a05b9c6ef4fa0f0f40aaa49b235faccc98d2d7d5aa1ea4bb8d2f535b8bad2796",
+    "tests/sd-host/com/lma/app/VideoEncoder.java": "96e480bec46860cd05e40d55b7e21710069f71f1f54c4cc543f26d6505efa146",
+    "tests/tts-host/com/lma/app/LmaApp.java": "9f27bd7188d03aa4eb95b007111daff697d39515dc41884d4569e2f382d0577b",
+    "tools/test_flux2_app_host.py": "a94adacaa4a0887f0450df81a9371dc7f10200ea815523985860903c7d09f4dd",
+    "tools/test_sd_variants_trained.py": "bfc2b5eb71be4650c35cec5328ca24083e35d4123d064c07ed9f2ad7bce70424"
+  }
+}

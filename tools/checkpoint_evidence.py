@@ -14,9 +14,9 @@ from preparation_build_inputs import build_inputs
 ROOT = Path(__file__).resolve().parents[1]
 BASELINE = '6b1f3459a80db8b7b6838e7d5e492b8ef42d9033'
 BASE_VERSION = '0.3.0-dev.24'
-CURRENT_VERSION = '0.3.0-dev.37'
-PRIOR_COMMIT = '77d95dbc838d4bc573478265d68b647c3a2c864b'
-PRIOR_VERSION = '0.3.0-dev.36'
+CURRENT_VERSION = '0.3.0-dev.38'
+PRIOR_COMMIT = 'dd2c0e3232777765e6887c1d7386f6fedd2a9b4a'
+PRIOR_VERSION = '0.3.0-dev.37'
 CERTIFICATE = '90444a717a55549e2094364d8d7d005cf8b7f4df24562da62cc1884a2f341c17'
 SOURCES = {
     'build-info.json': 'dist/build-info.json',
@@ -53,16 +53,31 @@ SOURCES = {
     'recipe-suggestions.json': 'build/recipe-suggestion-tests/results.json',
     'components-media.json': 'docs/media/development/components/manifest.json',
     'mnn.json': 'build/mnn-tests/results.json',
-    'flux2-assets.json': 'build/flux2-trained/receipt.json',
-    'flux2-trained.json': 'build/flux2-trained-tests/results.json',
-    'flux2-app-host.json': 'build/flux2-app-host-tests/results.json',
-    'flux2-trained-media.json': 'docs/media/development/flux2-trained/manifest.json',
+    'zimage-assets.json': 'build/zimage-trained/receipt.json',
+    'zimage-trained.json': 'build/zimage-trained-tests/results.json',
+    'zimage-app-host.json': 'build/zimage-app-host-tests/results.json',
+    'zimage-trained-media.json': 'docs/media/development/zimage-trained/manifest.json',
     'qwen-tokenizer.json': 'build/qwen-tokenizer-tests/results.json',
 }
 
 
 def digest(data):
     return hashlib.sha256(data).hexdigest()
+
+
+
+def archived_checkpoint(target_version, starting_status):
+    """Read an exact older receipt chain; never refresh historical fingerprints."""
+    status=json.loads(starting_status)
+    for _ in range(32):
+        link=status['prior_checkpoint']; records={}
+        for name,item in link['sources'].items():
+            path=(ROOT/item['path']).resolve();path.relative_to(ROOT.resolve())
+            data=path.read_bytes();assert digest(data)==item['sha256'],'Historical checkpoint bytes changed: '+name
+            records[name]=data
+        status=json.loads(records['status.json']);assert status['version']==link['version']
+        if status['version']==target_version:return records
+    raise AssertionError('Required frozen historical checkpoint missing')
 
 
 def baseline():
@@ -134,7 +149,7 @@ def export():
         'physical_device_tests': 0, 'model_inference_tested': False,
         'historical_trained_results_apply_to_current_apk': False,
         'host_model_inference_tested': True, 'current_trained_host_engines': ['sd_cpp'], 'apk_model_inference_tested': False, 'historical_host_model_inference_tested': True,
-        'model_inference_test_scope': 'Current complete FLUX.2-klein 4B native Windows CPU and production Java execution; four user-owned pinned components and independent official Qwen tokenizer IDs. Sana Edit trained execution remains exact dev.36 history. No Android model inference, image quality or full numerical acceptance.',
+        'model_inference_test_scope': 'Current complete Z-Image-Turbo native Windows CPU and production Java execution; four complete user-owned components and the identical official Qwen tokenizer reference. FLUX.2-klein remains exact dev.37 and Sana Edit exact dev.36 history. No Android model inference, image quality or full numerical acceptance.',
         'scope': 'Optional FLUX.2-klein 4B catalogue/HF selection, explicit complete-asset lifecycle, independent settings, immutable jobs, real generation/cancellation/recovery and managed outputs; shared external Qwen merge header correction with complete vocabulary/reference checks. Foundation-only APK, preserved recommendations, no automatic downloads, no ROOT or off-device inference, no ComfyUI graph ecosystem. Full frozen v0.3.0 requirements and failed gates remain unchanged.',
         'required_release_scope': {'foundation': 'F01–F12', 'existing_text': True, 'selected_ids': ['01','02','03','04','05','06','07','08','09','10','11','12','13','14','16','17'], 'every_frozen_subtarget': True, 'sd15_and_sdxl_lora': True},
         'input_fingerprint': fingerprint('tools/checkpoint_evidence.py', 'tools/export_development.py', 'tools/check_repository.py', 'docs/proposals/multimodal-release-scope.json'),
@@ -286,7 +301,7 @@ def check():
         data = (ROOT / 'docs/media/development/resources' / item['file']).read_bytes()
         assert len(data) == item['bytes'] and digest(data) == item['sha256']
     media = records['curated-media.json']; assert media['version'] == CURRENT_VERSION and media['browser_closed'] and not media['browser_errors']
-    assert not media['android_device'] and not media['model_inference'] and not media['weights_downloaded'] and len(media['screenshots']) == 6 and len(media['files']) == 8 and len(media['checks']) >= 49
+    assert not media['android_device'] and not media['model_inference'] and not media['weights_downloaded'] and len(media['screenshots']) == 8 and len(media['files']) == 10 and len(media['checks']) >= 58
     for item in media['files']:
         data = (ROOT / 'docs/media/development/curated' / item['file']).read_bytes()
         assert len(data) == item['bytes'] and digest(data) == item['sha256']
@@ -300,7 +315,7 @@ def check():
         data = (ROOT / 'docs/media/development/speech' / item['file']).read_bytes()
         assert len(data) == item['bytes'] and digest(data) == item['sha256']
     suggestions=records['recipe-suggestions.json']
-    assert suggestions['passed'] and suggestions['checks'] >= 57 and suggestions['production_metadata_client_controller']
+    assert suggestions['passed'] and suggestions['checks'] >= 69 and suggestions['production_metadata_client_controller']
     assert not suggestions['model_inference'] and not suggestions['physical_android'] and suggestions['asset_downloads']==0
     assert suggestions['historical_identity_source_commit']=='bb10c11714ab715258e20a904dd11a049e685701'
     assert records['backend.json']['passed']>=98 and records['hub.json']['passed']>=80
@@ -311,9 +326,10 @@ def check():
         assert len(data)==item['bytes'] and digest(data)==item['sha256']
     assert status['host_model_inference_tested'] and status['current_trained_host_engines']==['sd_cpp'] and not status['apk_model_inference_tested']
     mnn=records['mnn.json']; assert mnn['passed']>=101 and mnn['production_mnn_binding'] and not mnn['model_inference']
-    assets=json.loads(prior_records['mnn-assets.json']);assert assets['developer_assets_only'] and assets['explicit_download'] and not assets['model_executed']
+    mnn_history=archived_checkpoint('0.3.0-dev.36',prior_records['status.json'])
+    assets=json.loads(mnn_history['mnn-assets.json']);assert assets['developer_assets_only'] and assets['explicit_download'] and not assets['model_executed']
     assert len(assets['components'])==15 and sum(i['bytes'] for i in assets['components'])==1661730284
-    trained=json.loads(prior_records['mnn-trained.json']);bridge=json.loads(prior_records['mnn-app-host.json']);arm=json.loads(prior_records['mnn-arm64.json'])
+    trained=json.loads(mnn_history['mnn-trained.json']);bridge=json.loads(mnn_history['mnn-app-host.json']);arm=json.loads(mnn_history['mnn-arm64.json'])
     assert trained['passed'] and trained['real_trained_host_execution'] and len(trained['runs'])==14 and len(trained['assets'])==15 and trained['task']=='image_to_image' and trained['fixed_style']
     assert all(c['passed'] for c in trained['checks']) and len(trained['checks'])>=52
     success=['a','jpeg-crop','single-step','recovery-a']
@@ -329,20 +345,20 @@ def check():
             assert run['process']['returncode']!=0 and not completed and len(errors)==1 and errors[0]['message']
     assert trained['comparisons']['recovery']['maximum']==0 and all(trained['comparisons'][n]['maximum']>0 for n in ['source-effect','step-effect'])
     assert bridge['passed'] and bridge['production_java_native_host_executed'] and bridge['java']['actual_host_children']==3 and bridge['java']['imported_objects']==15 and bridge['java']['network_calls']==0
-    assert len(bridge['outputs'])==2 and bridge['direct_report_sha256']==digest(prior_records['mnn-trained.json'])
+    assert len(bridge['outputs'])==2 and bridge['direct_report_sha256']==digest(mnn_history['mnn-trained.json'])
     assert all(i['maximum']==0 for i in bridge['comparisons'].values())
     assert arm['identical_host_android_generated_pipeline'] and len(arm['generated_pipeline'])==2
     assert arm['native']['sha256']==digest((ROOT/'app/src/main/jniLibs/arm64-v8a/liblma-mnn.so').read_bytes())
     assert bridge['compilation']['sha256']==trained['compilation']['sha256']==arm['host_worker_sha256']
     assert assets['components']==trained['assets']
     assert not any(r[k] for r in [trained,bridge] for k in ['physical_android','independent_reference_numerics_accepted','image_quality_accepted','complete_target04_accepted','complete_release_accepted'])
-    media=json.loads(prior_records['mnn-trained-media.json']);assert media['version']==PRIOR_VERSION and media['real_trained_host_execution'] and not media['android_recording'] and not media['image_quality_accepted']
+    media=json.loads(mnn_history['mnn-trained-media.json']);assert media['version']=='0.3.0-dev.36' and media['real_trained_host_execution'] and not media['android_recording'] and not media['image_quality_accepted']
     assert len(media['products'])==3 and len(media['files'])==8 and media['task']=='image_to_image' and media['fixed_style']
-    assert media['direct_report_sha256']==digest(prior_records['mnn-trained.json']) and media['java_report_sha256']==digest(prior_records['mnn-app-host.json'])
+    assert media['direct_report_sha256']==digest(mnn_history['mnn-trained.json']) and media['java_report_sha256']==digest(mnn_history['mnn-app-host.json'])
     for item in media['files']:
         data=(ROOT/'docs/media/development/sana-edit-trained'/item['file']).read_bytes(); assert len(data)==item['bytes'] and digest(data)==item['sha256']
-    # Current FLUX execution is distinct from the byte-exact historical Sana experiment.
-    assets=records['flux2-assets.json']; trained=records['flux2-trained.json']; bridge=records['flux2-app-host.json']
+    # Preserve the complete dev.37 FLUX experiment at its original bytes and scope.
+    assets=json.loads(prior_records['flux2-assets.json']); trained=json.loads(prior_records['flux2-trained.json']); bridge=json.loads(prior_records['flux2-app-host.json'])
     assert assets['developer_assets_only'] and assets['explicit_download'] and not assets['model_executed']
     assert len(assets['components'])==4 and sum(c['bytes'] for c in assets['components'])==5127452603
     assert trained['host_execution_checks_passed'] and trained['passed']>=35 and len(trained['runs'])==7
@@ -358,19 +374,49 @@ def check():
     assert bridge['production_java_native_host_executed'] and bridge['java']['passed']>=50
     assert bridge['java']['actual_host_children']==3 and bridge['java']['imported_objects']==4 and bridge['java']['network_calls']==0
     assert len(bridge['outputs'])==2 and all(i['bitwise_equal_to_direct_native'] for i in bridge['outputs'])
-    assert bridge['direct_trained_report_sha256']==digest((ROOT/SOURCES['flux2-trained.json']).read_bytes())
+    assert bridge['direct_trained_report_sha256']==digest(prior_records['flux2-trained.json'])
     assert bridge['compilation']==trained['compilation']
     assert not any(r[k] for r in [trained,bridge] for k in ['physical_android','independent_numerics_accepted','image_quality_accepted','complete_target07_accepted','complete_release_accepted'])
+    media=json.loads(prior_records['flux2-trained-media.json']); assert media['version']==PRIOR_VERSION and media['real_trained_host_execution'] and not media['android_recording']
+    assert media['direct_report_sha256']==digest(prior_records['flux2-trained.json']) and media['java_report_sha256']==digest(prior_records['flux2-app-host.json'])
+    assert not media['image_quality_accepted'] and len(media['products'])==3
+    for item in media['files']:
+        data=(ROOT/'docs/media/development/flux2-trained'/item['file']).read_bytes();assert len(data)==item['bytes'] and digest(data)==item['sha256']
+    # Current Z-Image execution is distinct from the byte-exact historical Sana experiment.
+    assets=records['zimage-assets.json']; trained=records['zimage-trained.json']; bridge=records['zimage-app-host.json']
+    zimage_lock=json.loads((ROOT/'research/zimage_trained/assets.json').read_text(encoding='utf-8'))
+    assert zimage_lock['reference_tokenizer']['sha256']==records['qwen-tokenizer.json']['reference']['sha256']
+    assert assets['developer_assets_only'] and assets['explicit_download'] and not assets['model_executed']
+    assert len(assets['components'])==4 and sum(c['bytes'] for c in assets['components'])==6349991011
+    assert trained['host_execution_checks_passed'] and trained['passed']>=35 and len(trained['runs'])==7
+    assert trained['components']==assets['components'] and all(c['passed'] for c in trained['checks'])
+    for run in trained['runs']:
+        assert not run['process']['protocol_errors'] and not run['process']['timed_out']
+        if 'image' in run:
+            assert run['process']['returncode']==0
+            path=ROOT/trained['capture_directory']/(run['name']+'.png');assert digest(path.read_bytes())==run['image']['sha256']
+    first=next(r for r in trained['runs'] if r['name']=='a')['process']['events']
+    eighth=[e for e in first if e.get('event')=='progress' and e.get('step',0)>0 and e.get('steps')==8*e['step']]
+    assert [(e['step'],e['steps']) for e in eighth]==[(1,8)]
+    cancel=next(r for r in trained['runs'] if r['name']=='cancel-step1')['process']
+    assert cancel['forced_host_termination'] and cancel['cancel_trigger']['steps']==8 and cancel['cancel_trigger']['step']==1
+    assert trained['comparisons']['recovery-a']['maximum']==0 and all(trained['comparisons'][n]['maximum']>0 for n in ['b','one-step'])
+    assert bridge['production_java_native_host_executed'] and bridge['java']['passed']>=100
+    assert bridge['java']['actual_host_children']==3 and bridge['java']['imported_objects']==4 and bridge['java']['network_calls']==0
+    assert len(bridge['outputs'])==2 and all(i['bitwise_equal_to_direct_native'] for i in bridge['outputs'])
+    assert bridge['direct_trained_report_sha256']==digest((ROOT/SOURCES['zimage-trained.json']).read_bytes())
+    assert bridge['compilation']==trained['compilation']
+    assert not any(r[k] for r in [trained,bridge] for k in ['physical_android','independent_numerics_accepted','image_quality_accepted','complete_target06_accepted','complete_release_accepted'])
     tokenizer=records['qwen-tokenizer.json']
     assert tokenizer['passed'] and tokenizer['check_count']>=117 and tokenizer['official_base_vocabulary_ids']>=150000
     assert tokenizer['actual_production_tokenizer'] and tokenizer['independent_reference']=='Hugging Face tokenizer.json + Rust tokenizers'
     assert tokenizer['variants']==3 and tokenizer['texts']==33 and tokenizer['network_calls']==0 and not tokenizer['bundled_tokenizer_data']
     assert tokenizer['compilation']==trained['compilation'] and not tokenizer['model_inference'] and not tokenizer['physical_android']
-    media=records['flux2-trained-media.json']; assert media['version']==CURRENT_VERSION and media['real_trained_host_execution'] and not media['android_recording']
-    assert media['direct_report_sha256']==digest((ROOT/SOURCES['flux2-trained.json']).read_bytes()) and media['java_report_sha256']==digest((ROOT/SOURCES['flux2-app-host.json']).read_bytes())
+    media=records['zimage-trained-media.json']; assert media['version']==CURRENT_VERSION and media['real_trained_host_execution'] and not media['android_recording']
+    assert media['direct_report_sha256']==digest((ROOT/SOURCES['zimage-trained.json']).read_bytes()) and media['java_report_sha256']==digest((ROOT/SOURCES['zimage-app-host.json']).read_bytes())
     assert not media['image_quality_accepted'] and len(media['products'])==3
     for item in media['files']:
-        data=(ROOT/'docs/media/development/flux2-trained'/item['file']).read_bytes();assert len(data)==item['bytes'] and digest(data)==item['sha256']
+        data=(ROOT/'docs/media/development/zimage-trained'/item['file']).read_bytes();assert len(data)==item['bytes'] and digest(data)==item['sha256']
     scope = json.loads((ROOT / 'docs/proposals/multimodal-release-scope.json').read_text(encoding='utf-8'))
     assert status['required_release_scope']['selected_ids'] == scope['selected_ids'] and scope['preserved_recommendation_ids'] == ['m08','m06','m01']
     return {'passed': True, 'current_records': len(SOURCES), 'historical_records': len(status['historical_sources']), 'prior_checkpoint_records': len(prior['sources']) - 1, 'version': CURRENT_VERSION, 'release_ready': False, 'physical_device_tests': 0}

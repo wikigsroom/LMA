@@ -29,6 +29,10 @@ def add_hints(templates):
             hints['extras']=dict(matchFiles=['*.extras.gguf'])
         if template['definition']['engine']=='sd_cpp':
             hints.update({role:dict(matchFiles=names) for role,names in split.items()})
+        if template['id']=='z_image_turbo_split_cpu_v1':
+            hints.update(diffusion=dict(matchFiles=['z_image_turbo-Q*.gguf','z_image_turbo.safetensors','z_image_turbo_bf16.safetensors']),
+                         llm=dict(matchFiles=['Qwen3-4B-Q*.gguf','qwen_3_4b.safetensors']),
+                         vae=dict(matchFiles=['diffusion_pytorch_model.safetensors','ae.safetensors','ae.sft']))
         if template['id']=='flux2_klein_4b_split_cpu_v1':
             hints.update(diffusion=dict(matchFiles=['flux-2-klein-4b-Q*.gguf','flux-2-klein-4b.safetensors']),
                          llm=dict(matchFiles=['Qwen3-4B-Q*.gguf','qwen_3_4b.safetensors']),

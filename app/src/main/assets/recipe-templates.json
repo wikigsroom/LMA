@@ -1573,7 +1573,12 @@
             "gguf",
             "safetensors"
           ],
-          "required": true
+          "required": true,
+          "matchFiles": [
+            "z_image_turbo-Q*.gguf",
+            "z_image_turbo.safetensors",
+            "z_image_turbo_bf16.safetensors"
+          ]
         },
         {
           "role": "llm",
@@ -1582,7 +1587,11 @@
             "gguf",
             "safetensors"
           ],
-          "required": true
+          "required": true,
+          "matchFiles": [
+            "Qwen3-4B-Q*.gguf",
+            "qwen_3_4b.safetensors"
+          ]
         },
         {
           "role": "vae",
@@ -1591,7 +1600,12 @@
             "gguf",
             "safetensors"
           ],
-          "required": true
+          "required": true,
+          "matchFiles": [
+            "diffusion_pytorch_model.safetensors",
+            "ae.safetensors",
+            "ae.sft"
+          ]
         },
         {
           "role": "qwen_merges",
