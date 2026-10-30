@@ -24,11 +24,15 @@ module.exports=async function(page,checked,overflow,output,capture=async()=>{}) 
   assert.deepEqual(await downloads(),before.concat(id));checked('Explicit download selects only the chosen video model');
   await page.evaluate(id=>{const b=window.__fixture.bundles.find(b=>b.id===id);b.installed=true;delete b.transfer;window.LMA.receive(window.__fixture);},id);
   await page.locator('[data-filter="local"]').click();await page.locator('[data-action="bundleInfo"][data-id="'+id+'"]').first().click();await page.locator('#modal [data-action="bundleSettings"]').click();
-  for(const [field,value] of [['steps','200'],['frames','129'],['fps','60']]) {
+  for(const [field,value] of [['steps','200'],['frames','129'],['fps','60'],['vaeTileSize','960']]) {
     await page.locator('#bundleSettingsForm [data-bundle-field="'+field+'"]').fill('999');await page.locator('#bundleSettingsForm [data-bundle-field="'+field+'"]').blur();
     assert.equal(await page.locator('#bundleSettingsForm [data-bundle-field="'+field+'"]').inputValue(),value);
   }
   checked('Editable per-model video steps, frame count and frame rate clamp to declared ceilings');
+  await page.locator('#bundleSettingsForm [data-bundle-field="vaeTileSize"]').fill('99999');await page.locator('#bundleSettingsForm [data-bundle-field="vaeTileSize"]').blur();
+  assert.equal(await page.locator('#bundleSettingsForm [data-bundle-field="vaeTileSize"]').inputValue(),'1024');
+  checked('Editable VAE block size clamps to 1024 and aligns intermediate values to 64');
+  await page.locator('#bundleSettingsForm [data-bundle-field="vaeTileSize"]').evaluate(el=>el.scrollIntoView({block:'center'}));
   await overflow(page,'Wan per-model settings');await capture('02-settings.png','Independent editable video settings / production UI fixture');
   await page.keyboard.press('Escape');await page.locator('[data-action="bundleUse"][data-id="'+id+'"]').click();
   await page.locator('#localTaskForm .task-parameters').evaluate(e=>{e.open=true;});
@@ -40,6 +44,7 @@ module.exports=async function(page,checked,overflow,output,capture=async()=>{}) 
   const request=await page.evaluate(()=>window.__commands.findLast(c=>c.action==='submitTask').request);
   assert.equal(request.type,'video.generate');assert.equal(request.bundleId,id);
   assert.equal(request.parameters.steps,20);assert.equal(request.parameters.frames,17);assert.equal(request.parameters.fps,8);assert.equal(request.parameters.flowShift,3);
+  assert.equal(request.parameters.vaeTileSize,128);assert.equal(request.parameters.vaeTemporalTiling,false);
   checked('Shared task queue retains selected model identity and exact video parameters');
   assert.deepEqual(await downloads(),before.concat(id));checked('Settings, Local management and task submission issue no implicit second download');
   await capture('04-queued.png','Shared persistent video queue / simulated bridge, not execution evidence');

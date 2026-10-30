@@ -1,0 +1,731 @@
+{
+  "schema": "lma.development-checkpoint/2",
+  "version": "0.3.0-dev.39",
+  "sources": {
+    "build-info.json": "dist/build-info.json",
+    "package.json": "build/package-verification.json",
+    "workbench.json": "build/workbench-tests/results.json",
+    "recovery.json": "build/recovery-tests/results.json",
+    "foundation.json": "build/foundation-tests/results.json",
+    "api.json": "build/api-tests/results.json",
+    "inputs.json": "build/input-tests/results.json",
+    "text.json": "build/text-tests/results.json",
+    "migration.json": "build/migration-tests/results.json",
+    "scheduler.json": "build/scheduler-tests/results.json",
+    "ui.json": "build/ui-qa/results.json",
+    "lint.json": "build/android-lint/results.json",
+    "workbench-media.json": "docs/media/development/workbench/manifest.json",
+    "preflight-media.json": "docs/media/development/preflight/manifest.json",
+    "recovery-media.json": "docs/media/development/recovery/manifest.json",
+    "preparation-core.json": "build/preparation-tests/results.json",
+    "assembly-core.json": "build/assembly-tests/results.json",
+    "diffusion.json": "build/diffusion-tests/results.json",
+    "lcm-media.json": "docs/media/development/lcm/manifest.json",
+    "moss-rq.json": "build/moss-rq-tests/results.json",
+    "moss-rq-arm64.json": "build/moss_rq-arm64-evidence.json",
+    "audio-media.json": "docs/media/development/audio/manifest.json",
+    "ltx-app.json": "build/ltx098-app-tests/results.json",
+    "ltx-app-arm64.json": "build/ltx098-app-arm64/receipt.json",
+    "ltx-media.json": "docs/media/development/ltx/manifest.json",
+    "resources-media.json": "docs/media/development/resources/manifest.json",
+    "curated-media.json": "docs/media/development/curated/manifest.json",
+    "speech-voices.json": "build/speech-voice-tests/results.json",
+    "speech-media.json": "docs/media/development/speech/manifest.json",
+    "backend.json": "build/backend-tests/results.json",
+    "hub.json": "build/hub-tests/results.json",
+    "recipe-suggestions.json": "build/recipe-suggestion-tests/results.json",
+    "components-media.json": "docs/media/development/components/manifest.json",
+    "mnn.json": "build/mnn-tests/results.json",
+    "wan-assets.json": "build/wan-trained/receipt.json",
+    "wan-trained.json": "build/wan-trained-tests/results.json",
+    "wan-app-host.json": "build/wan-app-host-tests/results.json",
+    "wan-trained-media.json": "docs/media/development/wan-trained/manifest.json",
+    "wan-media.json": "docs/media/development/wan/manifest.json",
+    "qwen-tokenizer.json": "build/qwen-tokenizer-tests/results.json"
+  },
+  "historical_sources": {
+    "build-info.json": {
+      "path": "verification/history/0.3.0-dev.24/build-info.json",
+      "sha256": "46e0111ffc0deb1d5648544474069f5fce8cf7bb6ccf3261243f29230c1b2fe7"
+    },
+    "package.json": {
+      "path": "verification/history/0.3.0-dev.24/package.json",
+      "sha256": "3ef6f0586e841a18fb90cff133201fc807befbd2ee9f845a15de3792dcdf1296"
+    },
+    "native-payload.json": {
+      "path": "verification/development/native-payload.json",
+      "sha256": "cdf5f865890ab1b09a735589936899cf1b59b6801127ac70f64cb5c91aabab8c"
+    },
+    "assembly-core.json": {
+      "path": "verification/history/0.3.0-dev.24/assembly-core.json",
+      "sha256": "03f1c19571b130e67e46ae2707d56820eb0dcda3521cd42432d59069121bb075"
+    },
+    "assembly-trained.json": {
+      "path": "verification/development/assembly-trained.json",
+      "sha256": "eae81ff6c66ee0ed468a4f8e54c0f734b33f9fb98a4bfa2628d9d8cbba908164"
+    },
+    "preparation-core.json": {
+      "path": "verification/history/0.3.0-dev.24/preparation-core.json",
+      "sha256": "ef12a089719e848f3465aa2f61b04b71db0445acda88ab688a99273300c66281"
+    },
+    "preparation-trained.json": {
+      "path": "verification/development/preparation-trained.json",
+      "sha256": "45ad856505c945575eb6b48dccbf42ce1546b4c0f2f0c7a6ae93e0a6f770319b"
+    },
+    "foundation.json": {
+      "path": "verification/history/0.3.0-dev.24/foundation.json",
+      "sha256": "c8cd4b39ba69062ee03cc3fe20240f6eabe33d0948e3ebb405dd80e680d8cb7e"
+    },
+    "tts.json": {
+      "path": "verification/development/tts.json",
+      "sha256": "651bea73a5187ee540b2fabff686f2d533c94cd4596d18988f54f8f73ffdd1d8"
+    },
+    "tts-assets.json": {
+      "path": "verification/development/tts-assets.json",
+      "sha256": "c73d76ed3f86e6bf00ad7f76d7634d645547ff403d98ff9dc3cca910b8b7ac24"
+    },
+    "tts-trained.json": {
+      "path": "verification/development/tts-trained.json",
+      "sha256": "83371afc6286cad337a9726f21856791b8728061e1279fa1a4e0fc986ba8406d"
+    },
+    "tts-app-host.json": {
+      "path": "verification/development/tts-app-host.json",
+      "sha256": "6e11fa4d0029e317932dbcd05292a1bd0eb0c5fd8f74295e920f83d295a49810"
+    },
+    "tts-capture-audit.json": {
+      "path": "verification/development/tts-capture-audit.json",
+      "sha256": "d380453c15ea0b93117086929db5b64f83a0b9edbce81fd511eb4574b1515579"
+    },
+    "text.json": {
+      "path": "verification/history/0.3.0-dev.24/text.json",
+      "sha256": "6ddc09e1bf66349f061d36ffb953c37e0aa45c0f4ee3e97780853431e9d7b0eb"
+    },
+    "migration.json": {
+      "path": "verification/history/0.3.0-dev.24/migration.json",
+      "sha256": "d0a636920121d37f6ab1581a1cfd90480cdfaf8e47978749b6036d9a0312ca12"
+    },
+    "scheduler.json": {
+      "path": "verification/history/0.3.0-dev.24/scheduler.json",
+      "sha256": "5104d39c8e31adfb9c0b4f5a8611f2c234c4e8253aae540c104f361140b205ab"
+    },
+    "inputs.json": {
+      "path": "verification/history/0.3.0-dev.24/inputs.json",
+      "sha256": "1a34ec7354febcab3414d9b779f11c70bc278e26b33803c386b1fc4cf07e48d8"
+    },
+    "diffusion.json": {
+      "path": "verification/history/0.3.0-dev.24/diffusion.json",
+      "sha256": "0c714e91065c35c5a759c81b40786a4a2c29b093ffa672141626a694f55fd38a"
+    },
+    "sd15-assets.json": {
+      "path": "verification/development/sd15-assets.json",
+      "sha256": "8bf0c2b1fac294bb94aea60b1cf86e0463c1e17a386d2932665863ba65df4164"
+    },
+    "sd-variants-assets.json": {
+      "path": "verification/development/sd-variants-assets.json",
+      "sha256": "e0bf8a87584fee5c216b34bac9c8b2ff4d236ecbb7f7ab4006a498744264f882"
+    },
+    "lcm-preparation-core.json": {
+      "path": "verification/development/lcm-preparation-core.json",
+      "sha256": "d4135fda5863a09a3041f68ff09054461c6aadeb20a217c9db8f6a0335371ec7"
+    },
+    "lcm-preparation-arm64.json": {
+      "path": "verification/development/lcm-preparation-arm64.json",
+      "sha256": "4516d51743a3ed7d134db292062fe36087ba36ed554829e86e4e95e52dd0619c"
+    },
+    "lcm-preparation-trained.json": {
+      "path": "verification/development/lcm-preparation-trained.json",
+      "sha256": "5b09c84f3051f5ee4bb226c0f5f1be948967cdaf1f54b7cb9e21d63297ee730e"
+    },
+    "lcm-overlay-trained.json": {
+      "path": "verification/development/lcm-overlay-trained.json",
+      "sha256": "aee735b12771136552c04bbdc39277e8276b88a0c927305a24bc7c36f18e1aa7"
+    },
+    "lcm-preparation-capture-audit.json": {
+      "path": "verification/development/lcm-preparation-capture-audit.json",
+      "sha256": "f29dc9d577fb36764cf3fe5bcd3460f18628437f7c29393570c81958611e2e43"
+    },
+    "sd-distilled-assets.json": {
+      "path": "verification/development/sd-distilled-assets.json",
+      "sha256": "78560bd08ff4ca7ef022cf6eaf4d6069b79d12690ad0f707e91700e209110076"
+    },
+    "sd-distilled-native.json": {
+      "path": "verification/development/sd-distilled-native.json",
+      "sha256": "34b1050f86b2d6d1d22e3f06f5a9210a047395e725f3dc0defdb258fa5b9cec1"
+    },
+    "sd-distilled-lcm-analysis.json": {
+      "path": "verification/development/sd-distilled-lcm-analysis.json",
+      "sha256": "080d7a296229f9f35454520cad6129a83ce6e53c149ab98d15715e301ed98fe5"
+    },
+    "sd-turbo-app-host.json": {
+      "path": "verification/development/sd-turbo-app-host.json",
+      "sha256": "c452a8898dcab85f71f0a045f5a6dea6e24069fec5e09f2186e82300c0b81daf"
+    },
+    "sd-distilled-capture-audit.json": {
+      "path": "verification/development/sd-distilled-capture-audit.json",
+      "sha256": "e1d1a89b45a5bbc4554117501a3d4064b63ea240881570e2fb13945a02ede8d3"
+    },
+    "sd-variants-trained.json": {
+      "path": "verification/development/sd-variants-trained.json",
+      "sha256": "6bdf64ad56b8a7341ea7db6fcda7e98fa0634510687b13b31d50edd2789f4cfa"
+    },
+    "sd-variants-lcm-effect.json": {
+      "path": "verification/development/sd-variants-lcm-effect.json",
+      "sha256": "dddb8d1f5ba3e781aa397324b5737cc96ef5c5bc7a763a185999c41d042274bd"
+    },
+    "sd-variants-app-host.json": {
+      "path": "verification/development/sd-variants-app-host.json",
+      "sha256": "1ca2c7ad22d7ded1aa8657d26bf41441e1c4137d1a88929366fb958913b6e365"
+    },
+    "sd-variants-capture-audit.json": {
+      "path": "verification/development/sd-variants-capture-audit.json",
+      "sha256": "ddc6922a71b8bbcd9d7453376124a766ef05f7610050d6f6fafa4afd4b0272f3"
+    },
+    "sd15-trained.json": {
+      "path": "verification/development/sd15-trained.json",
+      "sha256": "890fc719b1d0e481f6c8b1af18ed40c9eed1b458721254db6cfba4b48ac2d042"
+    },
+    "moss-nano.json": {
+      "path": "verification/development/moss-nano.json",
+      "sha256": "343bdb23b48acc0114182598204b96c30b5bde420cbe4762f7734b32603c29d6"
+    },
+    "moss-nano-assets.json": {
+      "path": "verification/development/moss-nano-assets.json",
+      "sha256": "793a4c4d4b0ba58cfdfc62580d46f762bb55999afe82b1a1c7cbcd565bba5cef"
+    },
+    "moss-nano-trained.json": {
+      "path": "verification/development/moss-nano-trained.json",
+      "sha256": "30699686e97a2478ef8a2d7bdcf973a73288bc00c2b237139501504e99b69d3e"
+    },
+    "moss-nano-app-host.json": {
+      "path": "verification/development/moss-nano-app-host.json",
+      "sha256": "89385761a49e696a241d2eb997729e3fc3a67743022ad1546e7e3a4ed61e511e"
+    },
+    "moss-nano-capture-audit.json": {
+      "path": "verification/development/moss-nano-capture-audit.json",
+      "sha256": "1538cfb46989c99ef6503550169dbe2d44bc94c7e781d8f32f2ce1aa9b90f62c"
+    },
+    "mnn.json": {
+      "path": "verification/history/0.3.0-dev.24/mnn.json",
+      "sha256": "91e6b5692f26c68f1c11229f8371c1544bdf71a2efea71115483c5bde5e6520e"
+    },
+    "qwen-tts.json": {
+      "path": "verification/development/qwen-tts.json",
+      "sha256": "cdf03b61f9f12bd2c1f47a321a241251088413557977cf259924b2a22159052b"
+    },
+    "qwen-tts-assets.json": {
+      "path": "verification/development/qwen-tts-assets.json",
+      "sha256": "967592298f5e3f8f9a3024d7779f1e3fb7269363cd564c5299881c032f272aca"
+    },
+    "qwen-tts-trained.json": {
+      "path": "verification/development/qwen-tts-trained.json",
+      "sha256": "e5f71d3d2273d6fdb0b1b55a105eb71970ef1702c741f470c6d6b03910c26a40"
+    },
+    "qwen-tts-app-host.json": {
+      "path": "verification/development/qwen-tts-app-host.json",
+      "sha256": "67d8e79335c5642e11f1b0f410d5d9249317704cfe212e1d4505fbd885c81e4a"
+    },
+    "qwen-tts-capture-audit.json": {
+      "path": "verification/development/qwen-tts-capture-audit.json",
+      "sha256": "b69d6174ec3fb7cb2f9d260995505325c6d120f185f29c013874ca79c30fd99a"
+    },
+    "moss-delay.json": {
+      "path": "verification/development/moss-delay.json",
+      "sha256": "2cea3152eb134d569b5b36cec9aae4463a275dc3644403722a02e52b07e0d115"
+    },
+    "openmoss.json": {
+      "path": "verification/development/openmoss.json",
+      "sha256": "3db144f40679e6271a841061d2571812c3aa9c8c15bac08995ad51fad24be2c8"
+    },
+    "moss-rq.json": {
+      "path": "verification/history/0.3.0-dev.24/moss-rq.json",
+      "sha256": "f3b6355d14aaaf66db198044a9e0be71fdcc67dec703ea4970a4d5693be78e76"
+    },
+    "stable-audio.json": {
+      "path": "verification/development/stable-audio.json",
+      "sha256": "a75e76ba3a7b712e7c065a564bf6bbc7a44bf2ef55ba0ac61af4753e0ebb926a"
+    },
+    "soulx.json": {
+      "path": "verification/development/soulx.json",
+      "sha256": "53c2e3f03ea00b8fea564746c6fc5b0dacdf7c8a3729769292f1bc51692561a1"
+    },
+    "soulx-worker-trained.json": {
+      "path": "verification/development/soulx-worker-trained.json",
+      "sha256": "e71a3c88198e43546e1b2ed16b0fb07f25c8df5a5e215060b7f8aa91f232f634"
+    },
+    "soulx-dsp.json": {
+      "path": "verification/development/soulx-dsp.json",
+      "sha256": "2e5cab9d1fd96f24ad4f57fc2bcd062811257b85231931ebd50ad81761fd37d4"
+    },
+    "soulx-dsp-arm64.json": {
+      "path": "verification/development/soulx-dsp-arm64.json",
+      "sha256": "98096c8a49b4814b0fbcf5804f94c12e01fe38936b35e357a5238f439545f4d5"
+    },
+    "soulx-acoustic.json": {
+      "path": "verification/development/soulx-acoustic.json",
+      "sha256": "5745225c174bb9e24d3726b7d5123897157929457fa4effc90c8b7df824493d0"
+    },
+    "soulx-acoustic-arm64.json": {
+      "path": "verification/development/soulx-acoustic-arm64.json",
+      "sha256": "29eab26a688c5a1214e29ae267a4c9c7295406152ff3ac8377920d1dcd7ab234"
+    },
+    "soulx-reference.json": {
+      "path": "verification/development/soulx-reference.json",
+      "sha256": "06bbc6d5cd4dce77474e4dc0428179e69bf683ff1e10c39252481197f0669e63"
+    },
+    "soulx-reference-arm64.json": {
+      "path": "verification/development/soulx-reference-arm64.json",
+      "sha256": "32f0301be6e93cb94843298a11eed16b966d8c14877bc1860bbb886f22366944"
+    },
+    "soulx-trained.json": {
+      "path": "verification/development/soulx-trained.json",
+      "sha256": "991419a3021f4e2b146cd3aa2871b5be12cacabe3abd2a92304ce23ef9e258dd"
+    },
+    "soulx-language.json": {
+      "path": "verification/development/soulx-language.json",
+      "sha256": "9761b2313e571da0953b7f8e7d4cafd7c8a4fe2e70084e4bce0966094960f957"
+    },
+    "soulx-language-host.json": {
+      "path": "verification/development/soulx-language-host.json",
+      "sha256": "79f9a62bf9933b80059be4b35883b989f2218012cb12c83b4b5ebea4a0391280"
+    },
+    "soulx-language-arm64.json": {
+      "path": "verification/development/soulx-language-arm64.json",
+      "sha256": "b1e1fe345f65527ea3a5de46cd0480e33335ecc8dd2bb9e3095aca191f96a4d6"
+    },
+    "soulx-pipeline.json": {
+      "path": "verification/development/soulx-pipeline.json",
+      "sha256": "f75ffaf53571a34d99314f69bbc503904bebaf6b7a157c76533894a4934ed7d8"
+    },
+    "ltx098-transformer.json": {
+      "path": "verification/development/ltx098-transformer.json",
+      "sha256": "a1e9c582ea7117a4825e1c5be532f59835ce00a42ca26944030f680dd106981f"
+    },
+    "ltx098-transformer-arm64.json": {
+      "path": "verification/development/ltx098-transformer-arm64.json",
+      "sha256": "8ce99d2c5ab6e0979bb8985a5c57c71489e54c195fdbba68c6a2bab4ccefa9aa"
+    },
+    "ltx098-sampling.json": {
+      "path": "verification/development/ltx098-sampling.json",
+      "sha256": "324906763866e74701c18123e2437c3239383478c566da3897f78997547db2ee"
+    },
+    "ltx098-text.json": {
+      "path": "verification/development/ltx098-text.json",
+      "sha256": "e8ca7554ff3fc415bddb0a4c524369cf1f647b5587688f25d2eb197fa669558e"
+    },
+    "ltx098-text-host.json": {
+      "path": "verification/development/ltx098-text-host.json",
+      "sha256": "f81a43cc8d92d72fccf6df06337e5efc88b1d1ad6b02b920657ab4dafb5f3260"
+    },
+    "ltx098-text-arm64.json": {
+      "path": "verification/development/ltx098-text-arm64.json",
+      "sha256": "fe9c57a6c10300011daa450266b5e287bcd719539e34c6efdebd50dd63effddd"
+    },
+    "ltx098-vae.json": {
+      "path": "verification/development/ltx098-vae.json",
+      "sha256": "c33794695d2b2d10c262d824437c861ed67f0b8a8ebb35492813e622071a4232"
+    },
+    "ltx098-vae-host.json": {
+      "path": "verification/development/ltx098-vae-host.json",
+      "sha256": "7dbc9f7ed49d2a4ff06a6ef4698cfecc06890d33f5b927bb8d968447d622da13"
+    },
+    "ltx098-vae-arm64.json": {
+      "path": "verification/development/ltx098-vae-arm64.json",
+      "sha256": "c9106cdbd3ac7f0d8d6a328802d8c418e82a036348918e9356d127b2085be28e"
+    },
+    "ltx098-tensors.json": {
+      "path": "verification/development/ltx098-tensors.json",
+      "sha256": "787178fe039feccc47653a611867527d8ba551c679d13d0747f4f66763a292b3"
+    },
+    "ltx098-tensors-host.json": {
+      "path": "verification/development/ltx098-tensors-host.json",
+      "sha256": "aa9269fb0623f89bc0c0e3b9049ced42e96b2eeb9996429eee4b341f38c867ac"
+    },
+    "ltx098-tensors-arm64.json": {
+      "path": "verification/development/ltx098-tensors-arm64.json",
+      "sha256": "34680f274a9a0ededbffa0de9d1709a018810e97eb21b664ba9a794a9cad2304"
+    },
+    "ltx098-pipeline.json": {
+      "path": "verification/development/ltx098-pipeline.json",
+      "sha256": "677004c760a4cc27b9de61d329692382f1719d6488824fa840506e567a44622b"
+    },
+    "ltx098-text-diagnosis.json": {
+      "path": "verification/development/ltx098-text-diagnosis.json",
+      "sha256": "21ab9b9473a775824a733a4d3ac944c5d0a5806cc42bf7ef67c47dca9a8c1d65"
+    },
+    "ltx098-text-operators.json": {
+      "path": "verification/development/ltx098-text-operators.json",
+      "sha256": "e8baaafcfbcbd3c4ccfaa030c0e40411123985aee9c19524dca8a175a05811cd"
+    },
+    "ltx098-text-diagnosis-review.json": {
+      "path": "verification/development/ltx098-text-diagnosis-review.json",
+      "sha256": "7a150d1ff2c4ba4db835bf5c93dfeafddc6848db055869cbd8d3e6a01b4c4633"
+    },
+    "ltx098-text-precision-attention.json": {
+      "path": "verification/development/ltx098-text-precision-attention.json",
+      "sha256": "89d305c86332cd8822375b9c8dadc4409b51ad7b1b0825540bde58a358e67ef3"
+    },
+    "ltx098-text-precision-linear.json": {
+      "path": "verification/development/ltx098-text-precision-linear.json",
+      "sha256": "01d90e5662c3df32697b6f99358ccfeba958ab0f44d381f11ad2c9c56619085b"
+    },
+    "ltx098-precision-sampling-attention.json": {
+      "path": "verification/development/ltx098-precision-sampling-attention.json",
+      "sha256": "2d8fc30bc6504f042d0da5e181c18e56f96ae6cf4957a040653bcf5ea62496f9"
+    },
+    "ltx098-precision-sampling-linear.json": {
+      "path": "verification/development/ltx098-precision-sampling-linear.json",
+      "sha256": "94ca6f403de282c112cd6a2fe45dda57119049a5984e873cf1ffb15e1ed26b16"
+    },
+    "ltx098-staging-analysis.json": {
+      "path": "verification/development/ltx098-staging-analysis.json",
+      "sha256": "8403178092b179a230f2290117c7b7e01228bac3f9bff759680bdfae30a6f9c8"
+    },
+    "ltx098-accuracy-activation.json": {
+      "path": "verification/development/ltx098-accuracy-activation.json",
+      "sha256": "02d5e8610baf336a0c21246263fcab397f6f97bee8d7b05f9287daa211133188"
+    },
+    "ltx098-accuracy-order.json": {
+      "path": "verification/development/ltx098-accuracy-order.json",
+      "sha256": "8e9fcc5749443307e7b22738da6e534b60fa9767048fa8e5b27e3bb8e8111a0e"
+    },
+    "ltx098-accuracy-staging.json": {
+      "path": "verification/development/ltx098-accuracy-staging.json",
+      "sha256": "0465b6530b65b03d09d395114fcc8c7e3074bbafd813f779049bcc60e75b0b40"
+    },
+    "ltx098-accuracy-f32.json": {
+      "path": "verification/development/ltx098-accuracy-f32.json",
+      "sha256": "c98725bbadb741000e5ac5eb97306b37c2b3232884fb925650decd9049e52a96"
+    },
+    "ltx098-accuracy-trajectory-f32.json": {
+      "path": "verification/development/ltx098-accuracy-trajectory-f32.json",
+      "sha256": "c3feb4c65deb3323749d5a25447d4b3be8197964236fe6b195d4b293f1f799ac"
+    },
+    "ltx098-context-reference-vulkan.json": {
+      "path": "verification/development/ltx098-context-reference-vulkan.json",
+      "sha256": "c6b9a1f962fda9a353c88e620cf8d17e55886217a4961007f1ce60a994ac07e6"
+    },
+    "ltx098-context-reference-cpu.json": {
+      "path": "verification/development/ltx098-context-reference-cpu.json",
+      "sha256": "636cff793fd9f1e5088b11003082b5342437bcc6cdb8f2c9511f2e0f8a9d43d7"
+    },
+    "ltx098-compute-f32-reference-cpu.json": {
+      "path": "verification/development/ltx098-compute-f32-reference-cpu.json",
+      "sha256": "44e12d4948c47f2d7888cbc078da16613d5de38a3a97d9e1f82bf0ec0a909f78"
+    },
+    "ltx098-compute-f32-reference-vulkan.json": {
+      "path": "verification/development/ltx098-compute-f32-reference-vulkan.json",
+      "sha256": "2e7fe14e3664f7d7cb3676802d27991b9bb1279e9f8450adc376bbf8e4669a61"
+    },
+    "ltx098-compute-f32-rms-reference-cpu.json": {
+      "path": "verification/development/ltx098-compute-f32-rms-reference-cpu.json",
+      "sha256": "418771cc359494dd051e2380da3c2e3d547acf3305862b4bb07d3ff11f301eb2"
+    },
+    "ltx098-modulation-step0.json": {
+      "path": "verification/development/ltx098-modulation-step0.json",
+      "sha256": "b6b7a7070787041dc3f52b8c96e72ed77b7960eb50bbd035cb1cc573ecc572d5"
+    },
+    "ltx098-modulation-step7.json": {
+      "path": "verification/development/ltx098-modulation-step7.json",
+      "sha256": "22f6eb4297638a4e727bd476731d4e0b636ae8bdfbdf8cd0141fcce790bc37b1"
+    },
+    "ltx098-modulation-reference-vulkan.json": {
+      "path": "verification/development/ltx098-modulation-reference-vulkan.json",
+      "sha256": "cb6f4e23671c1775a7f191b2d9d9f2d1ae1a3e6c43e3d2d863776deb921060a9"
+    },
+    "ltx098-modulation-f32-vulkan.json": {
+      "path": "verification/development/ltx098-modulation-f32-vulkan.json",
+      "sha256": "db78bed8159d8e6d67affb81e9e58e36e12ddde9b0ace5b28beb4d37ec60ed93"
+    },
+    "ltx098-modulation-capture-audit.json": {
+      "path": "verification/development/ltx098-modulation-capture-audit.json",
+      "sha256": "7d1076a9dc8dd47e5b44d8fc4fa447db24f2ec461af504e64de3c57e467657a1"
+    },
+    "ltx098-prepare.json": {
+      "path": "verification/development/ltx098-prepare.json",
+      "sha256": "c9d0110e185afc1c071e606122b8632eaddbea3a8e873e477dbf07d1a2dbbf54"
+    },
+    "ltx098-prepare-host.json": {
+      "path": "verification/development/ltx098-prepare-host.json",
+      "sha256": "0e91d1161f1cdc5deeea61eb1824931e841cd779a2d77abe2f18ecf329532cf5"
+    },
+    "ltx098-prepare-arm64.json": {
+      "path": "verification/development/ltx098-prepare-arm64.json",
+      "sha256": "dfe55dc2a64de58dd46b0ebacc0f83db4de4428fd4384b99586f92b364155cd7"
+    },
+    "ltx098-vae-templates.json": {
+      "path": "verification/development/ltx098-vae-templates.json",
+      "sha256": "5d9ba14a07c4f3afb49d4d441e8cdbb65ce094b3ed48fd7b3ec3f0b4f4ff43c1"
+    },
+    "ltx098-vae-prepare.json": {
+      "path": "verification/development/ltx098-vae-prepare.json",
+      "sha256": "89105c9126dec27603f6778ac8981815a668b37fd51b93e39336e3f6209c2dd3"
+    },
+    "ltx098-vae-prepare-host.json": {
+      "path": "verification/development/ltx098-vae-prepare-host.json",
+      "sha256": "2fdf478573263fbe185884d2d50e774592763b5008ea280117eb86dd12961e2a"
+    },
+    "ltx098-vae-prepare-arm64.json": {
+      "path": "verification/development/ltx098-vae-prepare-arm64.json",
+      "sha256": "213d17a4969bedb013e3efae2f521a1a68926e488f28e9335f93740dc01f26d0"
+    },
+    "qwen-headers.json": {
+      "path": "verification/development/qwen-headers.json",
+      "sha256": "07f4f7d581b75cb6c7dfbf65d28dd1d3229cc59aac76a5dca1e7a73046324e82"
+    },
+    "api.json": {
+      "path": "verification/history/0.3.0-dev.24/api.json",
+      "sha256": "5faacf0a1506cb8765990e61a8e8e5f13a3403d09217d543f8394d9fec486087"
+    },
+    "backend.json": {
+      "path": "verification/history/0.3.0-dev.24/backend.json",
+      "sha256": "9a9c0895a0aff012e05e858ca679462ff24fa97feee01c901366143aaaa6868c"
+    },
+    "hub.json": {
+      "path": "verification/history/0.3.0-dev.24/hub.json",
+      "sha256": "4f20a0ae4ce9a4b6eaf30710836e2260025e69da16915a434b2d631f1952c5ae"
+    },
+    "hub-live.json": {
+      "path": "verification/development/hub-live.json",
+      "sha256": "e4a0cbd76cd11217ec0b02876b39683944b913bf50d7869c1b3f66c9c00f76b5"
+    },
+    "ui.json": {
+      "path": "verification/history/0.3.0-dev.24/ui.json",
+      "sha256": "19b7ce5a751523c2d766720e00c100727713f3c76d11e1e47807e2ac3980e4d1"
+    },
+    "lint.json": {
+      "path": "verification/history/0.3.0-dev.24/lint.json",
+      "sha256": "9644b5a235c5cb7befc66f1a95cdd4a949a36ec588df4774ddfb69dc1ca091b0"
+    },
+    "sd15-host-build.json": {
+      "path": "verification/development/sd15-host-build.json",
+      "sha256": "75584d1030af503be8eda4ede32503885413bd9ee5a7cfa761bef4ad6102b7c6"
+    },
+    "moss-nano-host-build.json": {
+      "path": "verification/development/moss-nano-host-build.json",
+      "sha256": "47629d5fa3b08dfef078466bbde85918c182ad8ef2073b561fd9e7c7fad9799c"
+    },
+    "tts-host-build.json": {
+      "path": "verification/development/tts-host-build.json",
+      "sha256": "8d07c597aaeecee92de169ff58934df5e157615398771c983f789ae3f0a7f58e"
+    },
+    "qwen-tts-host-build.json": {
+      "path": "verification/development/qwen-tts-host-build.json",
+      "sha256": "f6ea4a786482860fef4e59da27a52b7238a5e9e1b46d9ddfa5346e0ebf3284ce"
+    }
+  },
+  "prior_checkpoint": {
+    "commit": "bda76b7830812125d0835c4af67e0be9d2db0b9a",
+    "version": "0.3.0-dev.38",
+    "sources": {
+      "status.json": {
+        "path": "verification/history/0.3.0-dev.38/status.json",
+        "sha256": "741ca8e9dcd8e1cc8a9e9da0e5f8c74ec17520d692ce1c52072ee0d962879d37"
+      },
+      "build-info.json": {
+        "path": "verification/history/0.3.0-dev.38/build-info.json",
+        "sha256": "5a411033a0d8722aa082ef0fc2ed5b29814eb395c3537161b4b06e4ef1eaedbb"
+      },
+      "package.json": {
+        "path": "verification/history/0.3.0-dev.38/package.json",
+        "sha256": "1f1556a8982a6c09f127d125490e6363dbee8c34f1bdd7377c7e484e27d3cbe7"
+      },
+      "workbench.json": {
+        "path": "verification/history/0.3.0-dev.38/workbench.json",
+        "sha256": "81fc46a06f5a701ab22959dfd9444a6df945f251249581287baf408a79349fac"
+      },
+      "recovery.json": {
+        "path": "verification/history/0.3.0-dev.38/recovery.json",
+        "sha256": "e9d1f50d592d51c94e5137711308c249f5a7a468068cff0a8ef14b9aa5abf8bf"
+      },
+      "foundation.json": {
+        "path": "verification/history/0.3.0-dev.38/foundation.json",
+        "sha256": "d11371f6f920713880931af14fbbd5bc6d982a5dc468ca1618559ea336ae9d1b"
+      },
+      "api.json": {
+        "path": "verification/history/0.3.0-dev.38/api.json",
+        "sha256": "c1c3249d1e5a130242fc474639b608077d0d45726019b0a2b52185dd92eda83e"
+      },
+      "inputs.json": {
+        "path": "verification/history/0.3.0-dev.38/inputs.json",
+        "sha256": "514ceb6f98b29a5dcfc5ed41885d1c0737c7193126e401db1053fdc31934fc8b"
+      },
+      "text.json": {
+        "path": "verification/history/0.3.0-dev.38/text.json",
+        "sha256": "f592fd6b240c3c14cedd66191bb0c3a04643c1710a519cb18a8facb62e2ac138"
+      },
+      "migration.json": {
+        "path": "verification/history/0.3.0-dev.38/migration.json",
+        "sha256": "01050e2ab5d170dd580375cf23c43bb44725f1391ff904deeefd1e1a1dea2a87"
+      },
+      "scheduler.json": {
+        "path": "verification/history/0.3.0-dev.38/scheduler.json",
+        "sha256": "6d29aafc17cbe638a9936c5ee288f4fc1494890a328843bd62a5b67ce722732d"
+      },
+      "ui.json": {
+        "path": "verification/history/0.3.0-dev.38/ui.json",
+        "sha256": "cad855be2198234da290567f95fe5fbf5f13eabc6ae9bbd4eba5948a449f011e"
+      },
+      "lint.json": {
+        "path": "verification/history/0.3.0-dev.38/lint.json",
+        "sha256": "eee85063c083d012be072da429a02e427143335f52b1d0f87ac1a6b9041a9f99"
+      },
+      "workbench-media.json": {
+        "path": "verification/history/0.3.0-dev.38/workbench-media.json",
+        "sha256": "b2cfcee0f0ca1861d32543b2c002de0b8e5777e5948bfe079444cfa5c60d35b3"
+      },
+      "preflight-media.json": {
+        "path": "verification/history/0.3.0-dev.38/preflight-media.json",
+        "sha256": "14d8d53653b7a24fab83babe902e7f9645d388c1fa27b30f2a47da92c0f268e3"
+      },
+      "recovery-media.json": {
+        "path": "verification/history/0.3.0-dev.38/recovery-media.json",
+        "sha256": "8bff7ae8e73d8cf45d12de238f4b8d386a19da3ce0bd5392b0f67412fadfa25c"
+      },
+      "preparation-core.json": {
+        "path": "verification/history/0.3.0-dev.38/preparation-core.json",
+        "sha256": "8186940ff8da7367f11aebcfdaa89ef20be712c714ac934a450ae29bde23c9b2"
+      },
+      "assembly-core.json": {
+        "path": "verification/history/0.3.0-dev.38/assembly-core.json",
+        "sha256": "767a37b6985b428f18660a26c1be2f24ba5a96a4bb0690f8697a6a9f4673a167"
+      },
+      "diffusion.json": {
+        "path": "verification/history/0.3.0-dev.38/diffusion.json",
+        "sha256": "b9e16fac79448d494bb9d75fd5428460554af2d068a1ca7cf8ba70387fd16fa3"
+      },
+      "lcm-media.json": {
+        "path": "verification/history/0.3.0-dev.38/lcm-media.json",
+        "sha256": "b7270eceab6d01489f063eea622a64299c353c7bfa517fff3b3a7f0bacf17d7b"
+      },
+      "moss-rq.json": {
+        "path": "verification/history/0.3.0-dev.38/moss-rq.json",
+        "sha256": "228afd0c82c176a6f0835968c47eeb5264353a1a6ff0f3219d605b1a1a740581"
+      },
+      "moss-rq-arm64.json": {
+        "path": "verification/history/0.3.0-dev.38/moss-rq-arm64.json",
+        "sha256": "9e64c6a3fdf0936b096839edb6e33cbf4845d1b5f16a9619e290b7b55a17506d"
+      },
+      "audio-media.json": {
+        "path": "verification/history/0.3.0-dev.38/audio-media.json",
+        "sha256": "6a3900fdae5cce23e273e948e784d798a9150e6f791d77eac60966f727ee1e45"
+      },
+      "ltx-app.json": {
+        "path": "verification/history/0.3.0-dev.38/ltx-app.json",
+        "sha256": "f0cc2cc35d49e401164f93723be253cfee400d9261bba93f34baa3c04b4cd84b"
+      },
+      "ltx-app-arm64.json": {
+        "path": "verification/history/0.3.0-dev.38/ltx-app-arm64.json",
+        "sha256": "8b6828ec1861d71478a209c4d90f40d8995823f59255b1166c3080b48cb4c54f"
+      },
+      "ltx-media.json": {
+        "path": "verification/history/0.3.0-dev.38/ltx-media.json",
+        "sha256": "38a44868941915ac5a1430e5dcfc0fe49df5a484f985df95213778fe7574d23e"
+      },
+      "resources-media.json": {
+        "path": "verification/history/0.3.0-dev.38/resources-media.json",
+        "sha256": "801797fc092a442941f70e268391929f994709db7d2bd270514d55999f2dcbed"
+      },
+      "curated-media.json": {
+        "path": "verification/history/0.3.0-dev.38/curated-media.json",
+        "sha256": "4a669ed6839e1f006d7c051399b15d2d0ba30d8ec7099c9a95aa7301e906f54e"
+      },
+      "speech-voices.json": {
+        "path": "verification/history/0.3.0-dev.38/speech-voices.json",
+        "sha256": "b255a006d4e0349a3cf3cbdef964b5ad34d21ce4b81c5fb49337da284f9657e4"
+      },
+      "speech-media.json": {
+        "path": "verification/history/0.3.0-dev.38/speech-media.json",
+        "sha256": "80ba5b12b7645bbc778e0fcf92d40fa282e16577df61b7942ad5ac1ea56d66d9"
+      },
+      "backend.json": {
+        "path": "verification/history/0.3.0-dev.38/backend.json",
+        "sha256": "ea43ebb953d0c98d2b17b7d91e317a801e3124f57e89d2f8077041c6c4f834a4"
+      },
+      "hub.json": {
+        "path": "verification/history/0.3.0-dev.38/hub.json",
+        "sha256": "87eb62defcc4122e8eada37e6f94efd11600b657145443978bc761c1868f30d1"
+      },
+      "recipe-suggestions.json": {
+        "path": "verification/history/0.3.0-dev.38/recipe-suggestions.json",
+        "sha256": "23ea7e402cbf8414f152f93b9b9d670d864d17e9c678d3ee86fd75052e69e892"
+      },
+      "components-media.json": {
+        "path": "verification/history/0.3.0-dev.38/components-media.json",
+        "sha256": "c602b0a0aed32fdb5ed6287e43a403df47139c83f2470b759ea6fed33b0402f5"
+      },
+      "mnn.json": {
+        "path": "verification/history/0.3.0-dev.38/mnn.json",
+        "sha256": "eed347bf286d87fcfc856b22144bbf5358ae91e74dd6c96e36e6aeed28082a35"
+      },
+      "zimage-assets.json": {
+        "path": "verification/history/0.3.0-dev.38/zimage-assets.json",
+        "sha256": "9e55f26c4b2320e748e290315cf884a875b7586aad4a188834d0042620b696cc"
+      },
+      "zimage-trained.json": {
+        "path": "verification/history/0.3.0-dev.38/zimage-trained.json",
+        "sha256": "0195fcc2afee260a864e0fafb300761cd4cbada85bd8e2551eb3ad2f505a7cd6"
+      },
+      "zimage-app-host.json": {
+        "path": "verification/history/0.3.0-dev.38/zimage-app-host.json",
+        "sha256": "443a7d4c403c48e9f3c35a3a2a6dd2d33d45af2fb23fd7adc23b805a55799cd4"
+      },
+      "zimage-trained-media.json": {
+        "path": "verification/history/0.3.0-dev.38/zimage-trained-media.json",
+        "sha256": "078f57df7fe0c251e37dd8fdd00b6836e781a662edbebaf93194c41a8732b22a"
+      },
+      "qwen-tokenizer.json": {
+        "path": "verification/history/0.3.0-dev.38/qwen-tokenizer.json",
+        "sha256": "e6ec16a7c602212fcace5c30cf6ba04dc357230826925888b65bed877c0958e8"
+      }
+    }
+  },
+  "historical_baseline": {
+    "commit": "6b1f3459a80db8b7b6838e7d5e492b8ef42d9033",
+    "version": "0.3.0-dev.24",
+    "status": "verification/history/0.3.0-dev.24/status.json",
+    "sha256": "3b35a599ec7375b52f5507154bf32891a0722fe5d30830d462d1dfa8e81af52d"
+  },
+  "release_ready": false,
+  "all_selected_models_supported": false,
+  "physical_device_tests": 0,
+  "model_inference_tested": false,
+  "historical_trained_results_apply_to_current_apk": false,
+  "host_model_inference_tested": true,
+  "current_trained_host_engines": [
+    "wan_sd_cpp"
+  ],
+  "apk_model_inference_tested": false,
+  "historical_host_model_inference_tested": true,
+  "model_inference_test_scope": "Current complete Z-Image-Turbo native Windows CPU and production Java execution; four complete user-owned components and the identical official Qwen tokenizer reference. FLUX.2-klein remains exact dev.37 and Sana Edit exact dev.36 history. No Android model inference, image quality or full numerical acceptance.",
+  "scope": "Optional Wan 2.1 T2V 1.3B Q4 selection and complete four-asset lifecycle; CPU UMT5/VAE, actual Vulkan diffusion observations, independent settings, immutable video jobs, cancellation/recovery and managed MP4s. Windows FFmpeg is an explicit test port, not Android encoding evidence. Foundation-only APK, preserved recommendations, no automatic downloads, no ROOT or off-device inference, no ComfyUI graph ecosystem. Full frozen v0.3.0 requirements and failed gates remain unchanged.",
+  "required_release_scope": {
+    "foundation": "F01–F12",
+    "existing_text": true,
+    "selected_ids": [
+      "01",
+      "02",
+      "03",
+      "04",
+      "05",
+      "06",
+      "07",
+      "08",
+      "09",
+      "10",
+      "11",
+      "12",
+      "13",
+      "14",
+      "16",
+      "17"
+    ],
+    "every_frozen_subtarget": true,
+    "sd15_and_sdxl_lora": true
+  },
+  "input_fingerprint": {
+    "docs/proposals/multimodal-release-scope.json": "03326504d2d1b52c315bef574325f2c05d43c6a65eafc9779cc33120b7801690",
+    "tools/check_repository.py": "e83a6d1fc012d15951231defcbffb22fc5accbba61f359ff79c0a2be798c2336",
+    "tools/checkpoint_evidence.py": "c229593784f202c3c6f7a217c68e8ba8a64dc9a184cc2625960f53749a9a158d",
+    "tools/export_development.py": "cdac0f0fa331f674ebffcc148dee1dddb618d0217f08d665c3b4aea719ca9241"
+  }
+}

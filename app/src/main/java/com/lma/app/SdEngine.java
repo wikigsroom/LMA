@@ -14,6 +14,7 @@ public final class SdEngine implements LocalEngine {
     public SdEngine(LmaApp app, File binary, JSONObject build) { this(app, binary, build, ProcessBuilder::start); }
     SdEngine(LmaApp app, File binary, JSONObject build, NativeWorker.Launcher launcher) { this.app = app; this.binary = binary; this.build = DataFiles.copy(build); this.launcher = launcher; }
     @Override public String id() { return build.optString("engine", "sd_cpp"); }
+    @Override public ParameterSchema schema(ModelBundle bundle) throws Exception { return SdSpec.schema(bundle); }
     @Override public JSONObject describe() throws Exception { return DataFiles.copy(build).put("available", binary.isFile() && binary.canExecute()).put("deviceValidated", false); }
     @Override public void validate(ModelBundle bundle, String type) throws Exception {
         if (!binary.isFile() || !binary.canExecute()) throw new IOException("当前 App 没有安装扩散运行引擎");

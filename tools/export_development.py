@@ -9,7 +9,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def main():
-    if version() == "0.3.0-dev.39":
+    if version() == "0.3.0-dev.40":
         from checkpoint_evidence import export
         print(json.dumps(export())); return
     if "-dev" not in version():

@@ -1,5 +1,7 @@
 # 更新、同步与发布 / Updating and releasing
 
+dev.40 的 Wan 参数与诊断修改参照[中文](WAN_DECODER.md) / [English](WAN_DECODER.en.md)：保留旧任务输出、逐模型设置、显式用户资产与原默认内存策略；实际主机 VAE 对照和质量失败不作为完整生成器 / Android 验收。Run relevant native/Java/UI checks, retain original reports and failed gates, and refresh bilingual media.
+
 dev.38：[Z-Image-Turbo 完整流程](ZIMAGE_TURBO.md) / [English](ZIMAGE_TURBO.en.md) / [编号交付与全部待办](releases/v0.3.0-dev.38.md)。实际完整组件与生产 Java、控件 / 界面、原签名 APK / 当前指纹分开核验；按原字节保留 dev.37 的39份报告和状态，所有完整 Release 门槛不变。
 
 dev.35 内部检查点：[Sana 真实组件](MNN_SANA_TRAINED.md) / [English](MNN_SANA_TRAINED.en.md) / [完整待办](releases/v0.3.0-dev.35.md)。先核对完整显式开发资产与生产原生 / Java 训练链路、相同生成源码的 ARM64 构建，再核对签名 APK、控件回归、真实产物媒体及双语文档。主机执行不关闭画质、独立数值或手机门槛；dev.34 的 33 份当前记录与原状态按原提交留存，不发布缩减正式版。

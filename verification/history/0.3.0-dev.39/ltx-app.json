@@ -1,0 +1,1617 @@
+{
+  "qualityAccepted": false,
+  "hostMediaPort": "ffmpeg_libx264_not_android",
+  "syntheticNeuralStages": true,
+  "hostFrameworkPort": true,
+  "numericalAccepted": false,
+  "productionEngineAndQueue": true,
+  "modelInference": false,
+  "assertions": 127,
+  "runs": [
+    {
+      "bridgeFiles": {
+        "decode-noise.f32": {
+          "sha256": "0dc2961f4d6319666101caa214114c28d4eb1ad53cec86dc5d31bd3690351cd0",
+          "bytes": 4096
+        },
+        "frames.lma": {
+          "sha256": "d029637686b4a622818050128826931e3364bf3f0f99ae86c53f40819f13ac7e",
+          "bytes": 110620
+        },
+        "initial-tokens.f32": {
+          "sha256": "d3bf13dd44c59024bb58a1fdc076d642f82ce0ae7de11decb13ccee74676f19c",
+          "bytes": 4096
+        },
+        "caption.f32": {
+          "sha256": "82d3e319511d3c336b834a27578edfa7a097c3e0373e3238937d9a934e618bb7",
+          "bytes": 16384
+        },
+        "denoised-ncthw.f32": {
+          "sha256": "40867e0b9178b0645a19e6b5ba704c0e0d71609f14d52203a1b1168d15601a68",
+          "bytes": 4096
+        },
+        "decoded-ncthw.f32": {
+          "sha256": "ddfe340a808a763579a26071b28fbdc71693a91af0d54873062404c0a8a93e52",
+          "bytes": 442368
+        },
+        "denoised-tokens.f32": {
+          "sha256": "6f245a01bee2efded5bd62dc08dd28b7a7e3291501d34ee232b97b030f039152",
+          "bytes": 4096
+        }
+      },
+      "artifact": {
+        "jobId": "job_2fd25de91c8c4da0b56fc8045ce0ab88",
+        "createdAt": 1793357961647,
+        "metadata": {
+          "frameCount": 9,
+          "hostFfprobe": true,
+          "mime": "video/mp4",
+          "width": 64,
+          "height": 64
+        },
+        "filename": "artifact_1c154c0080ca46caa444fb51b6f17855.mp4",
+        "provenance": {
+          "runtimeResources": {
+            "stopCode": "",
+            "thermalStopAt": 3,
+            "minimumAvailableStorageBytes": null,
+            "lastSampleAt": 0,
+            "startedAt": 1793357947209,
+            "probeErrors": 0,
+            "message": "",
+            "enabled": false,
+            "samples": 0,
+            "storageFloorBytes": 67108864,
+            "minimumAvailableRamBytes": null,
+            "maximumThermalStatus": -1,
+            "endedAt": 1793357961167,
+            "sampleIntervalMs": 2000,
+            "scope": "shared_system_availability_not_model_peak_memory",
+            "thermalKnown": false,
+            "status": "ended"
+          },
+          "request": {
+            "input": {
+              "prompt": "Explicit synthetic protocol fixture"
+            },
+            "adjustments": [],
+            "parameterSchemaVersion": 1,
+            "bundleId": "ltx_explicit_synthetic_fixture",
+            "allowUnmeasured": true,
+            "submissionHash": "3b65281d0e5bde0b5a9f3c5523c34a977620acf7349595f5d8521f07364f1a06",
+            "type": "video.generate",
+            "parameters": {
+              "frames": 9,
+              "seed": 42,
+              "width": 64,
+              "fps": 24,
+              "threads": 4,
+              "steps": 8,
+              "height": 64
+            },
+            "ltx098Plan": {
+              "decodeTimestep": 0.05,
+              "qualityAccepted": false,
+              "decodeNoiseScale": 0.025,
+              "promptEnhancement": false,
+              "textVariant": "google_community_t5_q5",
+              "guidanceScale": 1,
+              "profile": "ltx098_google_q5_linear_quadratic_8_v1",
+              "numericalAccepted": false,
+              "stgScale": 0,
+              "pipelineKind": "single_scale",
+              "parameters": {
+                "frames": 9,
+                "seed": 42,
+                "width": 64,
+                "fps": 24,
+                "threads": 4,
+                "steps": 8,
+                "height": 64
+              }
+            }
+          },
+          "execution": "same_android_phone",
+          "resourcePlan": {
+            "phase": "execution",
+            "estimatedPeakRamBytes": 0,
+            "thermalStatus": 0,
+            "availableStorageBytes": 573466365952,
+            "estimateKnown": false,
+            "adapterExtraRamGuardBytes": 0,
+            "checkedAt": 1793357947235,
+            "deviceValidated": false,
+            "budgetRamBytes": 5368709120,
+            "currentlyLowMemory": false,
+            "availableRamBytes": 6442450944,
+            "reservedRamBytes": 1073741824,
+            "outputReserveBytes": 134365184
+          },
+          "adapters": [],
+          "componentReceipts": {
+            "vae_data_0": {
+              "sha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+              "bytes": 4,
+              "expectedGitBlobSha1": "",
+              "expectedSha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+              "algorithm": "sha256"
+            },
+            "vae_data_1": {
+              "sha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+              "bytes": 4,
+              "expectedGitBlobSha1": "",
+              "expectedSha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+              "algorithm": "sha256"
+            },
+            "vae_graph_8": {
+              "sha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+              "bytes": 4,
+              "expectedGitBlobSha1": "",
+              "expectedSha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+              "algorithm": "sha256"
+            },
+            "vae_data_2": {
+              "sha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+              "bytes": 4,
+              "expectedGitBlobSha1": "",
+              "expectedSha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+              "algorithm": "sha256"
+            },
+            "vae_graph_7": {
+              "sha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+              "bytes": 4,
+              "expectedGitBlobSha1": "",
+              "expectedSha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+              "algorithm": "sha256"
+            },
+            "vae_data_3": {
+              "sha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+              "bytes": 4,
+              "expectedGitBlobSha1": "",
+              "expectedSha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+              "algorithm": "sha256"
+            },
+            "vae_graph_6": {
+              "sha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+              "bytes": 4,
+              "expectedGitBlobSha1": "",
+              "expectedSha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+              "algorithm": "sha256"
+            },
+            "text_encoder": {
+              "sha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+              "bytes": 4,
+              "expectedGitBlobSha1": "",
+              "expectedSha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+              "algorithm": "sha256"
+            },
+            "vae_data_4": {
+              "sha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+              "bytes": 4,
+              "expectedGitBlobSha1": "",
+              "expectedSha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+              "algorithm": "sha256"
+            },
+            "vae_data_5": {
+              "sha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+              "bytes": 4,
+              "expectedGitBlobSha1": "",
+              "expectedSha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+              "algorithm": "sha256"
+            },
+            "vae_manifest": {
+              "sha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+              "bytes": 4,
+              "expectedGitBlobSha1": "",
+              "expectedSha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+              "algorithm": "sha256"
+            },
+            "vae_data_6": {
+              "sha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+              "bytes": 4,
+              "expectedGitBlobSha1": "",
+              "expectedSha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+              "algorithm": "sha256"
+            },
+            "vae_data_7": {
+              "sha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+              "bytes": 4,
+              "expectedGitBlobSha1": "",
+              "expectedSha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+              "algorithm": "sha256"
+            },
+            "vae_data_8": {
+              "sha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+              "bytes": 4,
+              "expectedGitBlobSha1": "",
+              "expectedSha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+              "algorithm": "sha256"
+            },
+            "diffusion_model": {
+              "sha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+              "bytes": 4,
+              "expectedGitBlobSha1": "",
+              "expectedSha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+              "algorithm": "sha256"
+            },
+            "tokenizer_config": {
+              "sha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+              "bytes": 4,
+              "expectedGitBlobSha1": "",
+              "expectedSha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+              "algorithm": "sha256"
+            },
+            "vae_graph_1": {
+              "sha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+              "bytes": 4,
+              "expectedGitBlobSha1": "",
+              "expectedSha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+              "algorithm": "sha256"
+            },
+            "vae_graph_0": {
+              "sha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+              "bytes": 4,
+              "expectedGitBlobSha1": "",
+              "expectedSha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+              "algorithm": "sha256"
+            },
+            "vae_graph_5": {
+              "sha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+              "bytes": 4,
+              "expectedGitBlobSha1": "",
+              "expectedSha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+              "algorithm": "sha256"
+            },
+            "vae_graph_4": {
+              "sha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+              "bytes": 4,
+              "expectedGitBlobSha1": "",
+              "expectedSha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+              "algorithm": "sha256"
+            },
+            "vae_graph_3": {
+              "sha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+              "bytes": 4,
+              "expectedGitBlobSha1": "",
+              "expectedSha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+              "algorithm": "sha256"
+            },
+            "vae_graph_2": {
+              "sha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+              "bytes": 4,
+              "expectedGitBlobSha1": "",
+              "expectedSha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+              "algorithm": "sha256"
+            }
+          },
+          "engine": {
+            "qualityAccepted": false,
+            "requiredModelCapability": "text_to_video",
+            "engine": "ltx098_native",
+            "deviceValidated": false,
+            "available": true,
+            "numericalAccepted": false
+          },
+          "adapterComponentReceipts": [],
+          "bundle": {
+            "schema": "lma.model-bundle/1",
+            "components": [
+              {
+                "path": "ltx098-dit.gguf",
+                "role": "diffusion_model",
+                "sha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+                "bytes": 4,
+                "format": "gguf"
+              },
+              {
+                "path": "stage-00.onnx",
+                "role": "vae_graph_0",
+                "sha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+                "bytes": 4,
+                "format": "onnx"
+              },
+              {
+                "path": "stage-00.onnx.data",
+                "role": "vae_data_0",
+                "sha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+                "bytes": 4,
+                "format": "onnx_data"
+              },
+              {
+                "path": "stage-01.onnx",
+                "role": "vae_graph_1",
+                "sha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+                "bytes": 4,
+                "format": "onnx"
+              },
+              {
+                "path": "stage-01.onnx.data",
+                "role": "vae_data_1",
+                "sha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+                "bytes": 4,
+                "format": "onnx_data"
+              },
+              {
+                "path": "stage-02.onnx",
+                "role": "vae_graph_2",
+                "sha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+                "bytes": 4,
+                "format": "onnx"
+              },
+              {
+                "path": "stage-02.onnx.data",
+                "role": "vae_data_2",
+                "sha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+                "bytes": 4,
+                "format": "onnx_data"
+              },
+              {
+                "path": "stage-03.onnx",
+                "role": "vae_graph_3",
+                "sha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+                "bytes": 4,
+                "format": "onnx"
+              },
+              {
+                "path": "stage-03.onnx.data",
+                "role": "vae_data_3",
+                "sha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+                "bytes": 4,
+                "format": "onnx_data"
+              },
+              {
+                "path": "stage-04.onnx",
+                "role": "vae_graph_4",
+                "sha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+                "bytes": 4,
+                "format": "onnx"
+              },
+              {
+                "path": "stage-04.onnx.data",
+                "role": "vae_data_4",
+                "sha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+                "bytes": 4,
+                "format": "onnx_data"
+              },
+              {
+                "path": "stage-05.onnx",
+                "role": "vae_graph_5",
+                "sha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+                "bytes": 4,
+                "format": "onnx"
+              },
+              {
+                "path": "stage-05.onnx.data",
+                "role": "vae_data_5",
+                "sha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+                "bytes": 4,
+                "format": "onnx_data"
+              },
+              {
+                "path": "stage-06.onnx",
+                "role": "vae_graph_6",
+                "sha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+                "bytes": 4,
+                "format": "onnx"
+              },
+              {
+                "path": "stage-06.onnx.data",
+                "role": "vae_data_6",
+                "sha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+                "bytes": 4,
+                "format": "onnx_data"
+              },
+              {
+                "path": "stage-07.onnx",
+                "role": "vae_graph_7",
+                "sha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+                "bytes": 4,
+                "format": "onnx"
+              },
+              {
+                "path": "stage-07.onnx.data",
+                "role": "vae_data_7",
+                "sha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+                "bytes": 4,
+                "format": "onnx_data"
+              },
+              {
+                "path": "stage-08.onnx",
+                "role": "vae_graph_8",
+                "sha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+                "bytes": 4,
+                "format": "onnx"
+              },
+              {
+                "path": "stage-08.onnx.data",
+                "role": "vae_data_8",
+                "sha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+                "bytes": 4,
+                "format": "onnx_data"
+              },
+              {
+                "path": "ltx098-vae.json",
+                "role": "vae_manifest",
+                "sha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+                "bytes": 4,
+                "format": "json"
+              },
+              {
+                "path": "t5-v1_1-xxl-encoder-Q5_K_M.gguf",
+                "license": "Apache-2.0",
+                "role": "text_encoder",
+                "sha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+                "bytes": 4,
+                "format": "gguf"
+              },
+              {
+                "path": "tokenizer_config.json",
+                "license": "Apache-2.0",
+                "role": "tokenizer_config",
+                "sha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+                "bytes": 4,
+                "format": "json"
+              }
+            ],
+            "capabilities": [
+              "text_to_video",
+              "runtime_assets",
+              "derived_assets",
+              "community_google_t5_q5",
+              "single_scale",
+              "experimental_numerical_gates_open"
+            ],
+            "evidence": {
+              "qualityAccepted": false,
+              "numericalAccepted": false,
+              "sourceReviewed": true,
+              "physicalDeviceTests": 0,
+              "status": "experimental_adapter_numerical_gates_open"
+            },
+            "modelId": "ltx_video_2b_098_distilled_google_q5",
+            "description": "先在源模型中准备并显式关联 DiT / 九段 VAE，再自行下载或导入 T5 与分词配置；复用已有组件。CPU T5 → Vulkan 八步采样 → CPU VAE → 手机 AVC 编码。Google/community T5 Q5 单尺度变体，非官方 PixArt / 多尺度默认；数值与画质尚未通过验收。",
+            "resources": {
+              "known": false,
+              "estimatedPeakRamBytes": 0
+            },
+            "recipeId": "ltx098_single_scale_google_q5_v1",
+            "catalogue": true,
+            "pipeline": "ltx098_single_scale_google_q5",
+            "license": {
+              "name": "LTX-Video Open Weights 0.x; Google/community T5 Apache-2.0",
+              "url": "https://huggingface.co/Lightricks/LTX-Video/tree/8984fa25007f376c1a299016d0957a37a2f797bb"
+            },
+            "engine": "ltx098_native",
+            "name": "旧 LTX 0.9.8 · 本机视频实验配方",
+            "backend": "vulkan",
+            "id": "ltx_explicit_synthetic_fixture",
+            "parameters": {
+              "fields": {
+                "frames": {
+                  "multipleOf": 8,
+                  "default": 33,
+                  "presets": [
+                    9,
+                    17,
+                    25,
+                    33
+                  ],
+                  "limitSource": "explicit_old_ltx_profile",
+                  "maximum": 33,
+                  "alignmentOrigin": 1,
+                  "label": "视频帧数",
+                  "type": "integer",
+                  "minimum": 9
+                },
+                "seed": {
+                  "default": -1,
+                  "presets": [
+                    -1,
+                    42
+                  ],
+                  "limitSource": "explicit_old_ltx_profile",
+                  "maximum": 2147483647,
+                  "label": "种子（-1 自动）",
+                  "type": "integer",
+                  "minimum": -1
+                },
+                "width": {
+                  "multipleOf": 32,
+                  "default": 256,
+                  "presets": [
+                    128,
+                    192,
+                    256
+                  ],
+                  "limitSource": "explicit_old_ltx_profile",
+                  "maximum": 256,
+                  "label": "宽度",
+                  "type": "integer",
+                  "minimum": 64
+                },
+                "fps": {
+                  "default": 24,
+                  "presets": [
+                    8,
+                    16,
+                    24
+                  ],
+                  "limitSource": "explicit_old_ltx_profile",
+                  "maximum": 60,
+                  "label": "帧率",
+                  "type": "integer",
+                  "minimum": 1
+                },
+                "threads": {
+                  "default": 4,
+                  "presets": [
+                    2,
+                    4,
+                    8
+                  ],
+                  "limitSource": "explicit_old_ltx_profile",
+                  "maximum": 8,
+                  "label": "CPU 线程",
+                  "type": "integer",
+                  "minimum": 1
+                },
+                "steps": {
+                  "help": "此蒸馏配方固定八步；单尺度、CFG=1、STG=0，数值与画质尚未验收。",
+                  "default": 8,
+                  "presets": [
+                    8
+                  ],
+                  "limitSource": "explicit_old_ltx_profile",
+                  "maximum": 8,
+                  "label": "固定蒸馏步数",
+                  "type": "integer",
+                  "minimum": 8
+                },
+                "height": {
+                  "multipleOf": 32,
+                  "default": 256,
+                  "presets": [
+                    128,
+                    192,
+                    256
+                  ],
+                  "limitSource": "explicit_old_ltx_profile",
+                  "maximum": 256,
+                  "label": "高度",
+                  "type": "integer",
+                  "minimum": 64
+                }
+              },
+              "version": 1
+            },
+            "tasks": [
+              "video"
+            ],
+            "architecture": "ltx098"
+          },
+          "device": {
+            "hostFrameworkPort": true,
+            "physicalAndroid": false
+          },
+          "engineExecution": {
+            "details": {
+              "effectiveParameters": {
+                "frames": 9,
+                "seed": 42,
+                "width": 64,
+                "fps": 24,
+                "threads": 4,
+                "steps": 8,
+                "height": 64
+              },
+              "encodedVideoBytes": 3036,
+              "qualityAccepted": false,
+              "guidanceScale": 1,
+              "profile": "ltx098_google_q5_linear_quadratic_8_v1",
+              "numericalAccepted": false,
+              "mediaBackend": "android_mediacodec_avc",
+              "pipelineKind": "single_scale",
+              "textTokens": 1,
+              "samplerBackend": "vulkan",
+              "promptTruncated": false,
+              "decodeTimestep": 0.05,
+              "decodeNoiseScale": 0.025,
+              "promptEnhancement": false,
+              "textVariant": "google_community_t5_q5",
+              "stageLoading": "sequential_processes",
+              "stages": [
+                {
+                  "seconds": 3.0291473,
+                  "stage": "video_noise",
+                  "bytes": 4096
+                },
+                {
+                  "seconds": 0.2811093,
+                  "stage": "video_text_encoding",
+                  "bytes": 16384
+                },
+                {
+                  "seconds": 0.1434459,
+                  "stage": "video_sampling",
+                  "bytes": 4096
+                },
+                {
+                  "seconds": 1.0292402,
+                  "stage": "video_latent_layout",
+                  "bytes": 4096
+                },
+                {
+                  "seconds": 0.1658798,
+                  "stage": "video_decoding",
+                  "bytes": 442368
+                },
+                {
+                  "seconds": 0.5938882,
+                  "stage": "video_frames",
+                  "bytes": 110620
+                }
+              ],
+              "stgScale": 0,
+              "textBackend": "cpu",
+              "completeGeneratedFrames": true,
+              "parameters": {
+                "frames": 9,
+                "seed": 42,
+                "width": 64,
+                "fps": 24,
+                "threads": 4,
+                "steps": 8,
+                "height": 64
+              },
+              "vaeBackend": "cpu"
+            }
+          }
+        },
+        "sha256": "b0fff475ad542cf6cf133cc60c0ad0c1251cf6bc1a04c7be83f5846b8eb020eb",
+        "bytes": 3036,
+        "origin": {
+          "kind": "generated"
+        },
+        "id": "artifact_1c154c0080ca46caa444fb51b6f17855"
+      },
+      "videoSha256": "b0fff475ad542cf6cf133cc60c0ad0c1251cf6bc1a04c7be83f5846b8eb020eb",
+      "videoBytes": 3036,
+      "job": {
+        "request": {
+          "input": {
+            "prompt": "Explicit synthetic protocol fixture"
+          },
+          "adjustments": [],
+          "parameterSchemaVersion": 1,
+          "bundleId": "ltx_explicit_synthetic_fixture",
+          "allowUnmeasured": true,
+          "submissionHash": "3b65281d0e5bde0b5a9f3c5523c34a977620acf7349595f5d8521f07364f1a06",
+          "type": "video.generate",
+          "parameters": {
+            "frames": 9,
+            "seed": 42,
+            "width": 64,
+            "fps": 24,
+            "threads": 4,
+            "steps": 8,
+            "height": 64
+          },
+          "ltx098Plan": {
+            "decodeTimestep": 0.05,
+            "qualityAccepted": false,
+            "decodeNoiseScale": 0.025,
+            "promptEnhancement": false,
+            "textVariant": "google_community_t5_q5",
+            "guidanceScale": 1,
+            "profile": "ltx098_google_q5_linear_quadratic_8_v1",
+            "numericalAccepted": false,
+            "stgScale": 0,
+            "pipelineKind": "single_scale",
+            "parameters": {
+              "frames": 9,
+              "seed": 42,
+              "width": 64,
+              "fps": 24,
+              "threads": 4,
+              "steps": 8,
+              "height": 64
+            }
+          }
+        },
+        "idempotencyKey": "ltx_succeeded",
+        "startedAt": 1793357946539,
+        "error": "",
+        "finishedAt": 1793357961922,
+        "runtimeResources": {
+          "stopCode": "",
+          "thermalStopAt": 3,
+          "minimumAvailableStorageBytes": null,
+          "lastSampleAt": 0,
+          "startedAt": 1793357947209,
+          "probeErrors": 0,
+          "message": "",
+          "enabled": false,
+          "samples": 0,
+          "storageFloorBytes": 67108864,
+          "minimumAvailableRamBytes": null,
+          "maximumThermalStatus": -1,
+          "endedAt": 1793357961167,
+          "sampleIntervalMs": 2000,
+          "scope": "shared_system_availability_not_model_peak_memory",
+          "thermalKnown": false,
+          "status": "ended"
+        },
+        "createdAt": 1793357946087,
+        "stage": "encoding",
+        "progress": null,
+        "id": "job_2fd25de91c8c4da0b56fc8045ce0ab88",
+        "state": "succeeded",
+        "artifacts": [
+          "artifact_1c154c0080ca46caa444fb51b6f17855"
+        ]
+      },
+      "actualChildren": 6,
+      "case": "succeeded"
+    },
+    {
+      "bridgeFiles": {},
+      "job": {
+        "request": {
+          "input": {
+            "prompt": "Explicit synthetic protocol fixture"
+          },
+          "adjustments": [],
+          "parameterSchemaVersion": 1,
+          "bundleId": "ltx_explicit_synthetic_fixture",
+          "allowUnmeasured": true,
+          "submissionHash": "3b65281d0e5bde0b5a9f3c5523c34a977620acf7349595f5d8521f07364f1a06",
+          "type": "video.generate",
+          "parameters": {
+            "frames": 9,
+            "seed": 42,
+            "width": 64,
+            "fps": 24,
+            "threads": 4,
+            "steps": 8,
+            "height": 64
+          },
+          "ltx098Plan": {
+            "decodeTimestep": 0.05,
+            "qualityAccepted": false,
+            "decodeNoiseScale": 0.025,
+            "promptEnhancement": false,
+            "textVariant": "google_community_t5_q5",
+            "guidanceScale": 1,
+            "profile": "ltx098_google_q5_linear_quadratic_8_v1",
+            "numericalAccepted": false,
+            "stgScale": 0,
+            "pipelineKind": "single_scale",
+            "parameters": {
+              "frames": 9,
+              "seed": 42,
+              "width": 64,
+              "fps": 24,
+              "threads": 4,
+              "steps": 8,
+              "height": 64
+            }
+          }
+        },
+        "idempotencyKey": "ltx_bad_text",
+        "startedAt": 1793357963742,
+        "error": "旧 LTX T5 桥接格式不匹配",
+        "finishedAt": 1793357969379,
+        "runtimeResources": {
+          "stopCode": "",
+          "thermalStopAt": 3,
+          "minimumAvailableStorageBytes": null,
+          "lastSampleAt": 0,
+          "startedAt": 1793357964040,
+          "probeErrors": 0,
+          "message": "",
+          "enabled": false,
+          "samples": 0,
+          "storageFloorBytes": 67108864,
+          "minimumAvailableRamBytes": null,
+          "maximumThermalStatus": -1,
+          "endedAt": 1793357969379,
+          "sampleIntervalMs": 2000,
+          "scope": "shared_system_availability_not_model_peak_memory",
+          "thermalKnown": false,
+          "status": "ended"
+        },
+        "createdAt": 1793357963411,
+        "stage": "video_text_encoding",
+        "progress": null,
+        "id": "job_7a4b5e13064e43168c3ae334ced746c1",
+        "state": "failed",
+        "artifacts": []
+      },
+      "actualChildren": 2,
+      "case": "bad_text"
+    },
+    {
+      "bridgeFiles": {},
+      "job": {
+        "request": {
+          "input": {
+            "prompt": "Explicit synthetic protocol fixture"
+          },
+          "adjustments": [],
+          "parameterSchemaVersion": 1,
+          "bundleId": "ltx_explicit_synthetic_fixture",
+          "allowUnmeasured": true,
+          "submissionHash": "3b65281d0e5bde0b5a9f3c5523c34a977620acf7349595f5d8521f07364f1a06",
+          "type": "video.generate",
+          "parameters": {
+            "frames": 9,
+            "seed": 42,
+            "width": 64,
+            "fps": 24,
+            "threads": 4,
+            "steps": 8,
+            "height": 64
+          },
+          "ltx098Plan": {
+            "decodeTimestep": 0.05,
+            "qualityAccepted": false,
+            "decodeNoiseScale": 0.025,
+            "promptEnhancement": false,
+            "textVariant": "google_community_t5_q5",
+            "guidanceScale": 1,
+            "profile": "ltx098_google_q5_linear_quadratic_8_v1",
+            "numericalAccepted": false,
+            "stgScale": 0,
+            "pipelineKind": "single_scale",
+            "parameters": {
+              "frames": 9,
+              "seed": 42,
+              "width": 64,
+              "fps": 24,
+              "threads": 4,
+              "steps": 8,
+              "height": 64
+            }
+          }
+        },
+        "idempotencyKey": "ltx_bad_sample",
+        "startedAt": 1793357973082,
+        "error": "旧 LTX 采样未完成完整八步训练管线",
+        "finishedAt": 1793357981714,
+        "runtimeResources": {
+          "stopCode": "",
+          "thermalStopAt": 3,
+          "minimumAvailableStorageBytes": null,
+          "lastSampleAt": 0,
+          "startedAt": 1793357974747,
+          "probeErrors": 0,
+          "message": "",
+          "enabled": false,
+          "samples": 0,
+          "storageFloorBytes": 67108864,
+          "minimumAvailableRamBytes": null,
+          "maximumThermalStatus": -1,
+          "endedAt": 1793357981713,
+          "sampleIntervalMs": 2000,
+          "scope": "shared_system_availability_not_model_peak_memory",
+          "thermalKnown": false,
+          "status": "ended"
+        },
+        "createdAt": 1793357972216,
+        "stage": "video_sampling",
+        "progress": null,
+        "id": "job_ce1c0f9444a2499abda0a24e51fb4bce",
+        "state": "failed",
+        "artifacts": []
+      },
+      "actualChildren": 3,
+      "case": "bad_sample"
+    },
+    {
+      "bridgeFiles": {},
+      "job": {
+        "request": {
+          "input": {
+            "prompt": "Explicit synthetic protocol fixture"
+          },
+          "adjustments": [],
+          "parameterSchemaVersion": 1,
+          "bundleId": "ltx_explicit_synthetic_fixture",
+          "allowUnmeasured": true,
+          "submissionHash": "3b65281d0e5bde0b5a9f3c5523c34a977620acf7349595f5d8521f07364f1a06",
+          "type": "video.generate",
+          "parameters": {
+            "frames": 9,
+            "seed": 42,
+            "width": 64,
+            "fps": 24,
+            "threads": 4,
+            "steps": 8,
+            "height": 64
+          },
+          "ltx098Plan": {
+            "decodeTimestep": 0.05,
+            "qualityAccepted": false,
+            "decodeNoiseScale": 0.025,
+            "promptEnhancement": false,
+            "textVariant": "google_community_t5_q5",
+            "guidanceScale": 1,
+            "profile": "ltx098_google_q5_linear_quadratic_8_v1",
+            "numericalAccepted": false,
+            "stgScale": 0,
+            "pipelineKind": "single_scale",
+            "parameters": {
+              "frames": 9,
+              "seed": 42,
+              "width": 64,
+              "fps": 24,
+              "threads": 4,
+              "steps": 8,
+              "height": 64
+            }
+          }
+        },
+        "idempotencyKey": "ltx_bad_vae",
+        "startedAt": 1793357984168,
+        "error": "旧 LTX VAE 阶段或会话释放不完整",
+        "finishedAt": 1793357998836,
+        "runtimeResources": {
+          "stopCode": "",
+          "thermalStopAt": 3,
+          "minimumAvailableStorageBytes": null,
+          "lastSampleAt": 0,
+          "startedAt": 1793357986053,
+          "probeErrors": 0,
+          "message": "",
+          "enabled": false,
+          "samples": 0,
+          "storageFloorBytes": 67108864,
+          "minimumAvailableRamBytes": null,
+          "maximumThermalStatus": -1,
+          "endedAt": 1793357998835,
+          "sampleIntervalMs": 2000,
+          "scope": "shared_system_availability_not_model_peak_memory",
+          "thermalKnown": false,
+          "status": "ended"
+        },
+        "createdAt": 1793357983182,
+        "stage": "video_decoding",
+        "progress": null,
+        "id": "job_145c35c027804795810d330ba9f837e4",
+        "state": "failed",
+        "artifacts": []
+      },
+      "actualChildren": 5,
+      "case": "bad_vae"
+    },
+    {
+      "bridgeFiles": {},
+      "job": {
+        "request": {
+          "input": {
+            "prompt": "Explicit synthetic protocol fixture"
+          },
+          "adjustments": [],
+          "parameterSchemaVersion": 1,
+          "bundleId": "ltx_explicit_synthetic_fixture",
+          "allowUnmeasured": true,
+          "submissionHash": "3b65281d0e5bde0b5a9f3c5523c34a977620acf7349595f5d8521f07364f1a06",
+          "type": "video.generate",
+          "parameters": {
+            "frames": 9,
+            "seed": 42,
+            "width": 64,
+            "fps": 24,
+            "threads": 4,
+            "steps": 8,
+            "height": 64
+          },
+          "ltx098Plan": {
+            "decodeTimestep": 0.05,
+            "qualityAccepted": false,
+            "decodeNoiseScale": 0.025,
+            "promptEnhancement": false,
+            "textVariant": "google_community_t5_q5",
+            "guidanceScale": 1,
+            "profile": "ltx098_google_q5_linear_quadratic_8_v1",
+            "numericalAccepted": false,
+            "stgScale": 0,
+            "pipelineKind": "single_scale",
+            "parameters": {
+              "frames": 9,
+              "seed": 42,
+              "width": 64,
+              "fps": 24,
+              "threads": 4,
+              "steps": 8,
+              "height": 64
+            }
+          }
+        },
+        "idempotencyKey": "ltx_missing_receipt",
+        "startedAt": 1793358000145,
+        "error": "本地阶段未完整完成：video_text_encoding",
+        "finishedAt": 1793358003722,
+        "runtimeResources": {
+          "stopCode": "",
+          "thermalStopAt": 3,
+          "minimumAvailableStorageBytes": null,
+          "lastSampleAt": 0,
+          "startedAt": 1793358000751,
+          "probeErrors": 0,
+          "message": "",
+          "enabled": false,
+          "samples": 0,
+          "storageFloorBytes": 67108864,
+          "minimumAvailableRamBytes": null,
+          "maximumThermalStatus": -1,
+          "endedAt": 1793358003721,
+          "sampleIntervalMs": 2000,
+          "scope": "shared_system_availability_not_model_peak_memory",
+          "thermalKnown": false,
+          "status": "ended"
+        },
+        "createdAt": 1793357999986,
+        "stage": "video_text_encoding",
+        "progress": null,
+        "id": "job_2697ed4cf31c46b19c49b408a58b7127",
+        "state": "failed",
+        "artifacts": []
+      },
+      "actualChildren": 2,
+      "case": "missing_receipt"
+    },
+    {
+      "bridgeFiles": {},
+      "job": {
+        "request": {
+          "input": {
+            "prompt": "Explicit synthetic protocol fixture"
+          },
+          "adjustments": [],
+          "parameterSchemaVersion": 1,
+          "bundleId": "ltx_explicit_synthetic_fixture",
+          "allowUnmeasured": true,
+          "submissionHash": "3b65281d0e5bde0b5a9f3c5523c34a977620acf7349595f5d8521f07364f1a06",
+          "type": "video.generate",
+          "parameters": {
+            "frames": 9,
+            "seed": 42,
+            "width": 64,
+            "fps": 24,
+            "threads": 4,
+            "steps": 8,
+            "height": 64
+          },
+          "ltx098Plan": {
+            "decodeTimestep": 0.05,
+            "qualityAccepted": false,
+            "decodeNoiseScale": 0.025,
+            "promptEnhancement": false,
+            "textVariant": "google_community_t5_q5",
+            "guidanceScale": 1,
+            "profile": "ltx098_google_q5_linear_quadratic_8_v1",
+            "numericalAccepted": false,
+            "stgScale": 0,
+            "pipelineKind": "single_scale",
+            "parameters": {
+              "frames": 9,
+              "seed": 42,
+              "width": 64,
+              "fps": 24,
+              "threads": 4,
+              "steps": 8,
+              "height": 64
+            }
+          }
+        },
+        "idempotencyKey": "ltx_duplicate_receipt",
+        "startedAt": 1793358006487,
+        "error": "本地阶段重复或迟到的完成记录",
+        "finishedAt": 1793358010103,
+        "runtimeResources": {
+          "stopCode": "",
+          "thermalStopAt": 3,
+          "minimumAvailableStorageBytes": null,
+          "lastSampleAt": 0,
+          "startedAt": 1793358006823,
+          "probeErrors": 0,
+          "message": "",
+          "enabled": false,
+          "samples": 0,
+          "storageFloorBytes": 67108864,
+          "minimumAvailableRamBytes": null,
+          "maximumThermalStatus": -1,
+          "endedAt": 1793358010102,
+          "sampleIntervalMs": 2000,
+          "scope": "shared_system_availability_not_model_peak_memory",
+          "thermalKnown": false,
+          "status": "ended"
+        },
+        "createdAt": 1793358006135,
+        "stage": "video_text_encoding",
+        "progress": null,
+        "id": "job_e00c33c2138a40ddbd48f417658904dc",
+        "state": "failed",
+        "artifacts": []
+      },
+      "actualChildren": 2,
+      "case": "duplicate_receipt"
+    },
+    {
+      "bridgeFiles": {},
+      "job": {
+        "request": {
+          "input": {
+            "prompt": "Explicit synthetic protocol fixture"
+          },
+          "adjustments": [],
+          "parameterSchemaVersion": 1,
+          "bundleId": "ltx_explicit_synthetic_fixture",
+          "allowUnmeasured": true,
+          "submissionHash": "3b65281d0e5bde0b5a9f3c5523c34a977620acf7349595f5d8521f07364f1a06",
+          "type": "video.generate",
+          "parameters": {
+            "frames": 9,
+            "seed": 42,
+            "width": 64,
+            "fps": 24,
+            "threads": 4,
+            "steps": 8,
+            "height": 64
+          },
+          "ltx098Plan": {
+            "decodeTimestep": 0.05,
+            "qualityAccepted": false,
+            "decodeNoiseScale": 0.025,
+            "promptEnhancement": false,
+            "textVariant": "google_community_t5_q5",
+            "guidanceScale": 1,
+            "profile": "ltx098_google_q5_linear_quadratic_8_v1",
+            "numericalAccepted": false,
+            "stgScale": 0,
+            "pipelineKind": "single_scale",
+            "parameters": {
+              "frames": 9,
+              "seed": 42,
+              "width": 64,
+              "fps": 24,
+              "threads": 4,
+              "steps": 8,
+              "height": 64
+            }
+          }
+        },
+        "idempotencyKey": "ltx_bad_encoder",
+        "startedAt": 1793358011899,
+        "error": "Explicit failing host encoder port",
+        "finishedAt": 1793358016748,
+        "runtimeResources": {
+          "stopCode": "",
+          "thermalStopAt": 3,
+          "minimumAvailableStorageBytes": null,
+          "lastSampleAt": 0,
+          "startedAt": 1793358012321,
+          "probeErrors": 0,
+          "message": "",
+          "enabled": false,
+          "samples": 0,
+          "storageFloorBytes": 67108864,
+          "minimumAvailableRamBytes": null,
+          "maximumThermalStatus": -1,
+          "endedAt": 1793358016743,
+          "sampleIntervalMs": 2000,
+          "scope": "shared_system_availability_not_model_peak_memory",
+          "thermalKnown": false,
+          "status": "ended"
+        },
+        "createdAt": 1793358011646,
+        "stage": "encoding",
+        "progress": null,
+        "id": "job_0ba890a442c044818579b0dc9b611d1d",
+        "state": "failed",
+        "artifacts": []
+      },
+      "actualChildren": 6,
+      "case": "bad_encoder"
+    },
+    {
+      "bridgeFiles": {},
+      "job": {
+        "request": {
+          "input": {
+            "prompt": "Explicit synthetic protocol fixture"
+          },
+          "adjustments": [],
+          "parameterSchemaVersion": 1,
+          "bundleId": "ltx_explicit_synthetic_fixture",
+          "allowUnmeasured": true,
+          "submissionHash": "3b65281d0e5bde0b5a9f3c5523c34a977620acf7349595f5d8521f07364f1a06",
+          "type": "video.generate",
+          "parameters": {
+            "frames": 9,
+            "seed": 42,
+            "width": 64,
+            "fps": 24,
+            "threads": 4,
+            "steps": 8,
+            "height": 64
+          },
+          "ltx098Plan": {
+            "decodeTimestep": 0.05,
+            "qualityAccepted": false,
+            "decodeNoiseScale": 0.025,
+            "promptEnhancement": false,
+            "textVariant": "google_community_t5_q5",
+            "guidanceScale": 1,
+            "profile": "ltx098_google_q5_linear_quadratic_8_v1",
+            "numericalAccepted": false,
+            "stgScale": 0,
+            "pipelineKind": "single_scale",
+            "parameters": {
+              "frames": 9,
+              "seed": 42,
+              "width": 64,
+              "fps": 24,
+              "threads": 4,
+              "steps": 8,
+              "height": 64
+            }
+          }
+        },
+        "idempotencyKey": "ltx_cancelled",
+        "startedAt": 1793358018898,
+        "error": "",
+        "finishedAt": 1793358020611,
+        "runtimeResources": {
+          "stopCode": "",
+          "thermalStopAt": 3,
+          "minimumAvailableStorageBytes": null,
+          "lastSampleAt": 0,
+          "startedAt": 1793358018985,
+          "probeErrors": 0,
+          "message": "",
+          "enabled": false,
+          "samples": 0,
+          "storageFloorBytes": 67108864,
+          "minimumAvailableRamBytes": null,
+          "maximumThermalStatus": -1,
+          "endedAt": 1793358020610,
+          "sampleIntervalMs": 2000,
+          "scope": "shared_system_availability_not_model_peak_memory",
+          "thermalKnown": false,
+          "status": "ended"
+        },
+        "createdAt": 1793358018766,
+        "stage": "video_text_encoding",
+        "progress": null,
+        "id": "job_8da908405f1740b0afc29cac41bb3d43",
+        "state": "cancelled",
+        "artifacts": []
+      },
+      "actualChildren": 2,
+      "case": "cancelled"
+    },
+    {
+      "bridgeFiles": {},
+      "job": {
+        "request": {
+          "input": {
+            "prompt": "Explicit synthetic protocol fixture"
+          },
+          "adjustments": [],
+          "parameterSchemaVersion": 1,
+          "bundleId": "ltx_explicit_synthetic_fixture",
+          "allowUnmeasured": true,
+          "submissionHash": "3b65281d0e5bde0b5a9f3c5523c34a977620acf7349595f5d8521f07364f1a06",
+          "type": "video.generate",
+          "parameters": {
+            "frames": 9,
+            "seed": 42,
+            "width": 64,
+            "fps": 24,
+            "threads": 4,
+            "steps": 8,
+            "height": 64
+          },
+          "ltx098Plan": {
+            "decodeTimestep": 0.05,
+            "qualityAccepted": false,
+            "decodeNoiseScale": 0.025,
+            "promptEnhancement": false,
+            "textVariant": "google_community_t5_q5",
+            "guidanceScale": 1,
+            "profile": "ltx098_google_q5_linear_quadratic_8_v1",
+            "numericalAccepted": false,
+            "stgScale": 0,
+            "pipelineKind": "single_scale",
+            "parameters": {
+              "frames": 9,
+              "seed": 42,
+              "width": 64,
+              "fps": 24,
+              "threads": 4,
+              "steps": 8,
+              "height": 64
+            }
+          }
+        },
+        "idempotencyKey": "ltx_interrupted",
+        "startedAt": 1793358022670,
+        "error": "服务结束；此引擎没有可续步 checkpoint，可明确重试新任务",
+        "finishedAt": 1793358028868,
+        "runtimeResources": {
+          "stopCode": "",
+          "thermalStopAt": 3,
+          "minimumAvailableStorageBytes": null,
+          "lastSampleAt": 0,
+          "startedAt": 1793358022953,
+          "probeErrors": 0,
+          "message": "",
+          "enabled": false,
+          "samples": 0,
+          "storageFloorBytes": 67108864,
+          "minimumAvailableRamBytes": null,
+          "maximumThermalStatus": -1,
+          "endedAt": 1793358028867,
+          "sampleIntervalMs": 2000,
+          "scope": "shared_system_availability_not_model_peak_memory",
+          "thermalKnown": false,
+          "status": "ended"
+        },
+        "createdAt": 1793358022516,
+        "stage": "video_text_encoding",
+        "progress": null,
+        "id": "job_6bb315dc649243dd9c6d5fe28eaa9a23",
+        "state": "interrupted",
+        "artifacts": []
+      },
+      "actualChildren": 2,
+      "case": "interrupted"
+    }
+  ],
+  "physicalAndroid": false,
+  "native_build": {
+    "schema": "lma.ltx098-app-build/1",
+    "android_arm64_compiled": false,
+    "min_sdk": null,
+    "stages": [
+      {
+        "stage": "tensors",
+        "file": "lma-ltx098-app-tensors.exe",
+        "bytes": 164352,
+        "sha256": "f9368d3afc334e7bace59a77b16924a9efde36e687633e9d2a6cf3776a9487ad",
+        "path": "build/ltx098-app-host/tensors/bin/lma-ltx098-app-tensors.exe"
+      },
+      {
+        "stage": "text",
+        "file": "lma-ltx098-app-text.exe",
+        "bytes": 3443200,
+        "sha256": "95966bc364c59ba7a1566b09e0ce261fc35956e238aa468e73f45fd1c14023b2",
+        "path": "build/ltx098-app-host/text/bin/lma-ltx098-app-text.exe"
+      },
+      {
+        "stage": "sample",
+        "file": "lma-ltx098-app-sample.exe",
+        "bytes": 43136512,
+        "sha256": "23c19a39c9e0ee401699382b46adeeb8765ffea8c6b6afdd87bf4e045ed6beec",
+        "path": "build/ltx098-app-host/sample/bin/lma-ltx098-app-sample.exe"
+      },
+      {
+        "stage": "vae",
+        "file": "lma-ltx098-app-vae.exe",
+        "bytes": 217088,
+        "sha256": "8e21b5e1d7a5cb93b33ce303560d3d90bd9b3e40eddb00fd42e636cf5796f5c8",
+        "path": "build/ltx098-app-host/vae/bin/lma-ltx098-app-vae.exe"
+      }
+    ],
+    "source_revision": "4b2d053057623ddd4d0a1d3e9cd28890e9ef487f",
+    "ggml_revision": "a5915eb0e47adef21c3f25b889a008925ea838c2",
+    "llama_revision": "b29c606e28a01b1bc8c1351026a0fa6e616bf6c4",
+    "ndk": null,
+    "model_inference": false,
+    "physical_android": false,
+    "quality_accepted": false,
+    "numerical_accepted": false,
+    "no_automatic_model_download": true,
+    "virtualization_used": false,
+    "input_fingerprint": {
+      "native/ltx098/CMakeLists.txt": "4da0b39b8b57e9d4a974c8527abae6716b43f3fdf0bf5adabff92ecca9c833f6",
+      "native/ltx098/parent_guard.cpp": "3c987bcf309a30b2502418d50086cec21073f93dffdee8a50da26f49e055a46d",
+      "native/ltx098/sample.cpp": "85ce2e36f904c053272aedc41e8112b01dbcf894cfd98042ae4370b389a7083b",
+      "native/moss_nano/onnx_external.hpp": "c1bb8f95ad2078472dbbf2ea0863493ac44f4aae7c4336cf5debb0db0d54fae5",
+      "research/ltx098/CMakeLists.txt": "cc86fb36397da930df9c30745c8a29a3748535a9dbd3e40b9f2a5f9c9886374f",
+      "research/ltx098/driver.cpp": "2c8b92b4826824d03ca7ec17e82b5f6ff6dba10b600013df6141d61c5df212f6",
+      "research/ltx098/licenses/ggml-MIT.txt": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
+      "research/ltx098/licenses/json-MIT.txt": "0e592e358cf7722906f417be85bc514f15bf6efd28cea98cb84e56ef7fddfc3e",
+      "research/ltx098/licenses/Lightricks-Apache-2.0.txt": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "research/ltx098/licenses/SPIRV-Headers-MIT.txt": "ea43b1de38a6f90c488800d66dec1ed671e68cda530266bc96951fb5b6307613",
+      "research/ltx098/licenses/Vulkan-Apache-2.0.txt": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "research/ltx098/licenses/Vulkan-Headers.txt": "95ad366d23fadf701d355bc45fb8b82ae2d700239471d35d41286ac3b08ff903",
+      "research/ltx098/licenses/Vulkan-MIT.txt": "1ca3502222d967f3be5751c55f6b7ee735b5383909c3b501495f54b216dbf227",
+      "research/ltx098/NOTICE": "bab99dbce59bed2470b85752c90464dcfac90c0c0d28577b9db1067ec1a5e872",
+      "research/ltx098/sampling.cpp": "6f5990a38f02462efeec0e68417f4c68981e9be2362b1e76cfd94e697f17003d",
+      "research/ltx098/sampling.hpp": "5e745b8b192cbec4881d9bb2fbfe2665670cc9cb3c853b319b8e8a896130d3cd",
+      "research/ltx098/sampling_driver.cpp": "3a8af8bc1bfcc28127649374e4818a1d368b46ad2ef0c24c1c998e8d32d80fc1",
+      "research/ltx098/transformer.cpp": "22c6d7ec964c5d9e25c90ba9f32c3a93b3d6d4db3c8aafb064cb45f3e03581fa",
+      "research/ltx098/transformer.hpp": "6f5fd68cba7278abb210322af20d70d3a0acd05631118bdeabdae54f4cd5e1d5",
+      "research/ltx098_pipeline/CMakeLists.txt": "6115af1b7ee6798413e1c4617eca8a7b9076722237f922e0f133ef1ebd1c6acc",
+      "research/ltx098_pipeline/NOTICE": "9241c16fca4550e732057f10ac073002e72974b65684d0d3fdae56015ec4222c",
+      "research/ltx098_pipeline/tensors.cpp": "f323b5ebf9537df2f3e7db79e77633a2f30103c23135b21b89043e16109bf116",
+      "research/ltx098_text/CMakeLists.txt": "695f191d631418b8c40fd7bf3887c10b316f92b15ad83d25568a7b06b50defda",
+      "research/ltx098_text/driver.cpp": "a81c396c91bf3c8da41ac2eb79ded04754737f553f46451228902504fef971eb",
+      "research/ltx098_text/encoder.cpp": "be727fc2645184560c25a2f6f90f30d780ae86b099716d67b2e8dd225b1009e6",
+      "research/ltx098_text/encoder.hpp": "592fe2f896174e69e807ce9a4343a2a1da54b523b3ccad0fa337f6d34b6cfbc1",
+      "research/ltx098_text/graph.cpp": "a17f97e9b932c302d3a7e8c1ca7020696ed765a4ddda51fefca9288d7b886190",
+      "research/ltx098_text/graph.hpp": "ae16035400caedb79f33db97497e6588f071901bd0935f7646e0e3b02bc7e36a",
+      "research/ltx098_text/licenses/llama-MIT.txt": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
+      "research/ltx098_text/NOTICE": "176bd96eed8972ba6a9c4bdebf9f19b166397c0eb50717be77547056ad974db4",
+      "research/ltx098_vae/CMakeLists.txt": "fcc7e89deb1b1bf4d1dc74c329225e4f6ceccd997a2370b8d06263293ec93b9f",
+      "research/ltx098_vae/driver.cpp": "f275cabc410dd07e38058902676e3ca9c4dc7a0684f4f39b5a386b74fb4d3604",
+      "research/ltx098_vae/NOTICE": "b5bec20058b46269f031462291b56fea8f5620359ec71f64353e76a9c4f6bcd3",
+      "research/soulx/dsp.hpp": "ef6a28cae0d2e72d1b84890437286b0ed8a20690c0ac07b2ddf8162ee2d2fd58",
+      "research/soulx_ort/android_log.cpp": "216f630761ff67a00cfe47db941338f45560fc45486ebcbdff196cf36dac3d04",
+      "research/soulx_ort/LICENSE-ONNX-RUNTIME-MIT": "c250d6278f0b47a6439fb7592b08b58a55eb9f535aa49a1db63211c3f982b674",
+      "research/soulx_ort/NOTICE": "69487267d86f7998917bc9f7e9b6d2e30e168f41c92369f41a33e225c0bfceb6",
+      "research/soulx_ort/runtime.hpp": "0586ad63c3210ec42d1c3cc956beb05614e56e9cb803632d596e57935689b2c8",
+      "research/soulx_ort/types.hpp": "f0822ae37dd26996501f2b69e4e1bb9404ad53903dd267ff793ee60d96f42de4",
+      "third_party/ltx098-pipeline-source-lock.json": "3fc857b18056ef284b17e656c4dfa2d79e320e8f5463277a40b054981190769b",
+      "third_party/ltx098-source-lock.json": "28acd99486f6ca76a06d038076175ac01ca55c7b1d8c3ba6dab9190291ac8779",
+      "third_party/ltx098-text-source-lock.json": "04b2f7892a4f047363fbaf3ba555682bf201c8320fa1cc7f4d5a68b2884512f4",
+      "third_party/ltx098-vae-source-lock.json": "201ac18ca78b381f810f0567ecd300a5bfda1b489893be56d28b30d6e6db2dcb",
+      "third_party/soulx-acoustic-source-lock.json": "b39e10c415c5f30d4e4adb52327e1e04df371407131f47617622da913b268ac5",
+      "tools/build_ltx098.py": "bf39449e38190a666093f6954d133a76da36d519817ca636703f030100d4faf8",
+      "tools/build_ltx098_app.py": "7749a112ef0d5f7109f1f78db056689e823137dfd3e0c0db7ca8c483c6f512a2",
+      "tools/fetch_ltx098_text.py": "55782095a1b941dc809b33966f62aeffda1b2ca0c719033610432ec00599b577"
+    }
+  },
+  "host_media_tools": {
+    "ffmpeg": "d1e2a156261ecc675081943197a85f08f2868784a0af499171ede89353edad31",
+    "ffprobe": "70872c3ffbc43d0b2c570f9837f54d6e9a832f4ca25463e9735b6a3ec0621478"
+  },
+  "capture": "build/ltx098-app-tests/run-1793357918692976100",
+  "passed": true,
+  "input_fingerprint": {
+    "native/ltx098/CMakeLists.txt": "4da0b39b8b57e9d4a974c8527abae6716b43f3fdf0bf5adabff92ecca9c833f6",
+    "native/ltx098/parent_guard.cpp": "3c987bcf309a30b2502418d50086cec21073f93dffdee8a50da26f49e055a46d",
+    "native/ltx098/sample.cpp": "85ce2e36f904c053272aedc41e8112b01dbcf894cfd98042ae4370b389a7083b",
+    "native/moss_nano/onnx_external.hpp": "c1bb8f95ad2078472dbbf2ea0863493ac44f4aae7c4336cf5debb0db0d54fae5",
+    "research/ltx098/CMakeLists.txt": "cc86fb36397da930df9c30745c8a29a3748535a9dbd3e40b9f2a5f9c9886374f",
+    "research/ltx098/driver.cpp": "2c8b92b4826824d03ca7ec17e82b5f6ff6dba10b600013df6141d61c5df212f6",
+    "research/ltx098/licenses/ggml-MIT.txt": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
+    "research/ltx098/licenses/json-MIT.txt": "0e592e358cf7722906f417be85bc514f15bf6efd28cea98cb84e56ef7fddfc3e",
+    "research/ltx098/licenses/Lightricks-Apache-2.0.txt": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+    "research/ltx098/licenses/SPIRV-Headers-MIT.txt": "ea43b1de38a6f90c488800d66dec1ed671e68cda530266bc96951fb5b6307613",
+    "research/ltx098/licenses/Vulkan-Apache-2.0.txt": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+    "research/ltx098/licenses/Vulkan-Headers.txt": "95ad366d23fadf701d355bc45fb8b82ae2d700239471d35d41286ac3b08ff903",
+    "research/ltx098/licenses/Vulkan-MIT.txt": "1ca3502222d967f3be5751c55f6b7ee735b5383909c3b501495f54b216dbf227",
+    "research/ltx098/NOTICE": "bab99dbce59bed2470b85752c90464dcfac90c0c0d28577b9db1067ec1a5e872",
+    "research/ltx098/sampling.cpp": "6f5990a38f02462efeec0e68417f4c68981e9be2362b1e76cfd94e697f17003d",
+    "research/ltx098/sampling.hpp": "5e745b8b192cbec4881d9bb2fbfe2665670cc9cb3c853b319b8e8a896130d3cd",
+    "research/ltx098/sampling_driver.cpp": "3a8af8bc1bfcc28127649374e4818a1d368b46ad2ef0c24c1c998e8d32d80fc1",
+    "research/ltx098/transformer.cpp": "22c6d7ec964c5d9e25c90ba9f32c3a93b3d6d4db3c8aafb064cb45f3e03581fa",
+    "research/ltx098/transformer.hpp": "6f5fd68cba7278abb210322af20d70d3a0acd05631118bdeabdae54f4cd5e1d5",
+    "research/ltx098_pipeline/CMakeLists.txt": "6115af1b7ee6798413e1c4617eca8a7b9076722237f922e0f133ef1ebd1c6acc",
+    "research/ltx098_pipeline/NOTICE": "9241c16fca4550e732057f10ac073002e72974b65684d0d3fdae56015ec4222c",
+    "research/ltx098_pipeline/tensors.cpp": "f323b5ebf9537df2f3e7db79e77633a2f30103c23135b21b89043e16109bf116",
+    "research/ltx098_text/CMakeLists.txt": "695f191d631418b8c40fd7bf3887c10b316f92b15ad83d25568a7b06b50defda",
+    "research/ltx098_text/driver.cpp": "a81c396c91bf3c8da41ac2eb79ded04754737f553f46451228902504fef971eb",
+    "research/ltx098_text/encoder.cpp": "be727fc2645184560c25a2f6f90f30d780ae86b099716d67b2e8dd225b1009e6",
+    "research/ltx098_text/encoder.hpp": "592fe2f896174e69e807ce9a4343a2a1da54b523b3ccad0fa337f6d34b6cfbc1",
+    "research/ltx098_text/graph.cpp": "a17f97e9b932c302d3a7e8c1ca7020696ed765a4ddda51fefca9288d7b886190",
+    "research/ltx098_text/graph.hpp": "ae16035400caedb79f33db97497e6588f071901bd0935f7646e0e3b02bc7e36a",
+    "research/ltx098_text/licenses/llama-MIT.txt": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
+    "research/ltx098_text/NOTICE": "176bd96eed8972ba6a9c4bdebf9f19b166397c0eb50717be77547056ad974db4",
+    "research/ltx098_vae/CMakeLists.txt": "fcc7e89deb1b1bf4d1dc74c329225e4f6ceccd997a2370b8d06263293ec93b9f",
+    "research/ltx098_vae/driver.cpp": "f275cabc410dd07e38058902676e3ca9c4dc7a0684f4f39b5a386b74fb4d3604",
+    "research/ltx098_vae/NOTICE": "b5bec20058b46269f031462291b56fea8f5620359ec71f64353e76a9c4f6bcd3",
+    "research/soulx/dsp.hpp": "ef6a28cae0d2e72d1b84890437286b0ed8a20690c0ac07b2ddf8162ee2d2fd58",
+    "research/soulx_ort/android_log.cpp": "216f630761ff67a00cfe47db941338f45560fc45486ebcbdff196cf36dac3d04",
+    "research/soulx_ort/LICENSE-ONNX-RUNTIME-MIT": "c250d6278f0b47a6439fb7592b08b58a55eb9f535aa49a1db63211c3f982b674",
+    "research/soulx_ort/NOTICE": "69487267d86f7998917bc9f7e9b6d2e30e168f41c92369f41a33e225c0bfceb6",
+    "research/soulx_ort/runtime.hpp": "0586ad63c3210ec42d1c3cc956beb05614e56e9cb803632d596e57935689b2c8",
+    "research/soulx_ort/types.hpp": "f0822ae37dd26996501f2b69e4e1bb9404ad53903dd267ff793ee60d96f42de4",
+    "third_party/ltx098-pipeline-source-lock.json": "3fc857b18056ef284b17e656c4dfa2d79e320e8f5463277a40b054981190769b",
+    "third_party/ltx098-source-lock.json": "28acd99486f6ca76a06d038076175ac01ca55c7b1d8c3ba6dab9190291ac8779",
+    "third_party/ltx098-text-source-lock.json": "04b2f7892a4f047363fbaf3ba555682bf201c8320fa1cc7f4d5a68b2884512f4",
+    "third_party/ltx098-vae-source-lock.json": "201ac18ca78b381f810f0567ecd300a5bfda1b489893be56d28b30d6e6db2dcb",
+    "third_party/soulx-acoustic-source-lock.json": "b39e10c415c5f30d4e4adb52327e1e04df371407131f47617622da913b268ac5",
+    "tools/build_ltx098.py": "bf39449e38190a666093f6954d133a76da36d519817ca636703f030100d4faf8",
+    "tools/build_ltx098_app.py": "7749a112ef0d5f7109f1f78db056689e823137dfd3e0c0db7ca8c483c6f512a2",
+    "tools/fetch_ltx098_text.py": "55782095a1b941dc809b33966f62aeffda1b2ca0c719033610432ec00599b577",
+    "app/src/main/assets/models.json": "c3e884b4e5fb06f20c036deebc78e6f953ac420e76fca72bab5a25fd59927156",
+    "app/src/main/assets/recipe-templates.json": "9e3995be14056926a996d7a1266330152f5043e3c436bedc69aa0b41b8037145",
+    "app/src/main/java/com/lma/app/ApiHost.java": "288e80c8ef2328c1808920060848b3e12ebc4872d7919f2863f0c827eb0c3afc",
+    "app/src/main/java/com/lma/app/ChatRunner.java": "bf3f18528dad358ee1f7e13778bba458fc13cfd7caa0281e0d72058c52617586",
+    "app/src/main/java/com/lma/app/core/AdapterSpec.java": "aff8572d14ac8d616be0a1b0da395e52ed5bddcd5ae407a969c2657bf9257581",
+    "app/src/main/java/com/lma/app/core/ArtifactStore.java": "6f85d2ac710cac0fb5a76cde9493ff1fef4d3e2e119c3e031b7c44ff65a49061",
+    "app/src/main/java/com/lma/app/core/AssemblyPlan.java": "80e81dea2a831d3955aa5ae21323eb0432fb448f78994901633fbb6e85d77e7c",
+    "app/src/main/java/com/lma/app/core/AudioPcm.java": "9bf3270c83f57b7fa4e23fc4518fa063e72ca214675f9c23d45bd1788842f7b2",
+    "app/src/main/java/com/lma/app/core/AudioStreams.java": "de8a2cdd98d083b62515b067865182d9065bb00f14b8c70cacafba21de8407f1",
+    "app/src/main/java/com/lma/app/core/BundleStore.java": "a773aaa8f83410da9ccbf499b9a19ee4166e2c094c2e992699424c0ac68f3e74",
+    "app/src/main/java/com/lma/app/core/BundleTransfers.java": "926596119a2c3f6bc089516e7bbd7db3016487d60c24f908ea646dfc76707f3e",
+    "app/src/main/java/com/lma/app/core/BundleUpdates.java": "f31a65d0e172aa75f6131deace828875534ccc756ed93fac83bb09d5a4162fe1",
+    "app/src/main/java/com/lma/app/core/ByteRange.java": "31723bf112e630de6c2a1cd8d525be7bbd4706e151fa5a297a5e641f59b5c752",
+    "app/src/main/java/com/lma/app/core/ChatHistory.java": "3046a52c3f611b83b46cfed94afe0f4b31667f77986b7ca1737169ec8c4ce951",
+    "app/src/main/java/com/lma/app/core/ComponentIntegrity.java": "7a5977c607f624f8763a782b1b081c4e485c8c05c2caae15986ad2f2388f5bce",
+    "app/src/main/java/com/lma/app/core/DataFiles.java": "02d3212885376e7073a785801dbb81073b13cc87c5fc0e85ac4373fd346696bc",
+    "app/src/main/java/com/lma/app/core/EngineWorkspace.java": "6c632861e13d0a8950cdee66e8bea8a8760d23550c10343d6cfdd8a6e9af29dd",
+    "app/src/main/java/com/lma/app/core/ExecutionGate.java": "143b6d145036c56ad0937316e87af5f4c44507ef89cf16affdc5bef0ad8e2126",
+    "app/src/main/java/com/lma/app/core/InputSelection.java": "963fe60973caab82b9dfedaa7c1661f236aed6ea158fcda8f4a86d02ba33d509",
+    "app/src/main/java/com/lma/app/core/InputSpec.java": "d535fc70bdbfbf7cd9ca2ce685c20735d67ed5c3b7132989ec683c74de779f97",
+    "app/src/main/java/com/lma/app/core/InputUploads.java": "5debd68a73abc8bde8174c985dfec8f534c6bf8df58dda8810b0cc3541fe1d53",
+    "app/src/main/java/com/lma/app/core/JobStore.java": "3f999d908b7667d35557c979a26dbf5544c712015b986a090946b76b8a680628",
+    "app/src/main/java/com/lma/app/core/LcmCondition.java": "2177da94b69781263e36f3e379034619bf74c6856bc6a9108592d4f272e94b7a",
+    "app/src/main/java/com/lma/app/core/LocalApi.java": "c9e1674f98ef12c7312ff42c50ba38a10c08d5cf1d3e173a8093ecd7fa67e5fc",
+    "app/src/main/java/com/lma/app/core/LocalHttp.java": "6f74e8acfe7072606c23e775f87fa5aa8d5ee094ffe20e96788f161674a947aa",
+    "app/src/main/java/com/lma/app/core/Ltx098Spec.java": "8333ea906bc31ea9e014ce4840d15fc6253c91eda1f3688de4f8645738819abf",
+    "app/src/main/java/com/lma/app/core/MnnSpec.java": "055cc06962da0fc34c1abdc57100ac52fca47a9d66ffea6621155c53046d5f1a",
+    "app/src/main/java/com/lma/app/core/ModelBundle.java": "ad08c033a2c9a215c292d20a5a97a65c85db91ce6a86609a8eed9e846449e84b",
+    "app/src/main/java/com/lma/app/core/ModelSelection.java": "965c9f22f16fc822f792ebef6e0de0a0c67f5a6882d5e7ef77be05b83ea1aeb2",
+    "app/src/main/java/com/lma/app/core/MossDelaySpec.java": "2f680d68cf78517f234c336c77e0b584bf40300fd6294514b7cd457149d41bd0",
+    "app/src/main/java/com/lma/app/core/MossNanoSpec.java": "4b784a773fb85550eba8f169a62cab9a274a332519ec700b595694378e9e39ed",
+    "app/src/main/java/com/lma/app/core/MossRqSpec.java": "0713659ade3c172887527a9e961bbde4add5ed00bd2a564256bc11f9b4796b5e",
+    "app/src/main/java/com/lma/app/core/NativePreparation.java": "cb8ee985ef2c6cba3e0d6bb924c940bcb197bd3f576ca7d6e1fa24442d44e1dd",
+    "app/src/main/java/com/lma/app/core/OnnxMetadata.java": "51db38a424032ac21a8a4185745a272db9034a94d2e8b2d0671c11289e9719e3",
+    "app/src/main/java/com/lma/app/core/OpenMossSpec.java": "4a9af3c92d87be65c4f617677eaed31576f9160a3355518fff7cb874192a5258",
+    "app/src/main/java/com/lma/app/core/ParameterSchema.java": "a566c6d452461ee14333caf7e732a33f8d94b12b33cbabc851f5f3fcc6bdb019",
+    "app/src/main/java/com/lma/app/core/PreparationPlan.java": "dfee63b84035c6ca18b0647aecb947070b983b6b2f1de08247129dddfa64a0bf",
+    "app/src/main/java/com/lma/app/core/PreparedAssets.java": "ae09c7aa1643fc22b76cbe11182a742f26aa0ea95bc9b7166d685433a603dd02",
+    "app/src/main/java/com/lma/app/core/PreparedModelAssembly.java": "eef243d48c9b2b7d3d9b08b2ddf8129ff3884bbdd6c00ecd28a83c0f4bbfa384",
+    "app/src/main/java/com/lma/app/core/ProcessControl.java": "a1950624951d41c040b0b9f44cd8ef5faff16ed22dae880d626e4619d77c155d",
+    "app/src/main/java/com/lma/app/core/Protocol.java": "d49f47884aec0cb03347023119c2808330fa9970689dcd9d33c30ca653d03b85",
+    "app/src/main/java/com/lma/app/core/QwenTtsSpec.java": "e94d96d7ce7c499b2d4bafbd35740c690b32169a142a9a55aae7a8b03364125b",
+    "app/src/main/java/com/lma/app/core/RecipeCatalogue.java": "539dcd55124ce71e32476edb8a7efd25d533935847a8357ac3a6dddf68b71a47",
+    "app/src/main/java/com/lma/app/core/RecipeSuggestions.java": "57d9d7b5fc5f3c61a3ab3524af8789df58dbc8ce1923b2c09e139649057beda0",
+    "app/src/main/java/com/lma/app/core/ResourceWatch.java": "6f6a4cb2159f7956d1ae8c202c61430be268d86d230245bccc952844f3816ec5",
+    "app/src/main/java/com/lma/app/core/SdSpec.java": "96b66e3da9b47b025cd7ef15f21634fe83998f7789d7728030efb4cc950b496c",
+    "app/src/main/java/com/lma/app/core/SoulxSpec.java": "a761d40965d041d38cc1f629418017103c9eefabf5904814fad9de6372b6bcc7",
+    "app/src/main/java/com/lma/app/core/SpeechVoices.java": "b413549e7721d07c88fec135b01b26a18d9dc0cc686a37dd180309ee10900967",
+    "app/src/main/java/com/lma/app/core/StableAudioSpec.java": "0cc04143a8c8c2afa4dc3d9726f4891779b352404d97c70d6fdc260fbe27ee6c",
+    "app/src/main/java/com/lma/app/core/TaskDrafts.java": "1c97a99a274abb5f38542eb2cea6834121f46b5dfb0e7cbaeaa5df25222c7ead",
+    "app/src/main/java/com/lma/app/core/TaskInput.java": "6f186b392f9e2fd70f253398f4becf9604d22e03c132f18b3bb93f635f637d7b",
+    "app/src/main/java/com/lma/app/core/TaskRequests.java": "6a9056c560a681891a0110b25d015494e0a73240034efde5ad565593a9d1dcc7",
+    "app/src/main/java/com/lma/app/core/TextRequest.java": "bfdb23db96512f00f362b49951c1fee4162ca2d441482eb6ebf180a8d3574d5f",
+    "app/src/main/java/com/lma/app/core/TextResult.java": "2dd7968a40cc917fab5b8bc412ef00d21348abec1d844b140b843b1bba57c6ab",
+    "app/src/main/java/com/lma/app/core/TextSpec.java": "4521ce8e833d88276f6b98d446e0171c48602d67ce2cf4b372d425e56d6d149e",
+    "app/src/main/java/com/lma/app/core/TtsSpec.java": "54f841e2ca5e93d3c3e1845014029b96912291fcf50a50c26a0124325a7a962a",
+    "app/src/main/java/com/lma/app/core/WaveFile.java": "cf70b9bbafb6aa23cc25217d4883e769173b00f74571d1b115c50a8ad6b15361",
+    "app/src/main/java/com/lma/app/Downloads.java": "681c534b5d97199157abff07a8e1ac1b96ebaf01c36ba2aff2d703517cfbb48c",
+    "app/src/main/java/com/lma/app/EngineHost.java": "8fddb293a0b56afc5707fe77cd5795ed574c046a14c48eac235d38147f5dd3c1",
+    "app/src/main/java/com/lma/app/GgufMetadata.java": "704b05cb1de90340a3c8b37f1af9d2577418aeb95b5b06e88ea7903df6770e78",
+    "app/src/main/java/com/lma/app/HubCatalog.java": "2a5e513d896a4ba804a75ac35d8be15421757edf3f009bdb59fdb4228caae777",
+    "app/src/main/java/com/lma/app/HubClient.java": "bade04fe276d833cfc4071c8ea333270cf888b9d34ecb6700db542b97798fb0f",
+    "app/src/main/java/com/lma/app/LocalEngine.java": "c06198df33cf290dff58d5d7d7f2b44b3d84d552c1a3c0f1cf35c30c6d5b7c19",
+    "app/src/main/java/com/lma/app/LocalJobs.java": "2fef6743a71fc2d4e0b60583af66ca2e48354c9d3738db86e454256dd45cc342",
+    "app/src/main/java/com/lma/app/Ltx098Engine.java": "5306570a7cf0b341dc3910ecb407cd0ed1d89bccee9ca9a0654e78214fb97348",
+    "app/src/main/java/com/lma/app/ModelSettings.java": "1ce0dfb9de2f57c39d8e536f1492bdacdcce587329f0a891e34ba9abb0c31c1c",
+    "app/src/main/java/com/lma/app/NativeStages.java": "f731ffe3f9d72f8c5b6596c360cbf7e492aa24c98f814a11def393f5ded1ed68",
+    "app/src/main/java/com/lma/app/NativeWorker.java": "f58974d67bdd5d017fb85adabe23687704d35b3c7d90d9800ea2875fddfae74f",
+    "app/src/main/java/com/lma/app/Net.java": "c5e95315608f0483d7d8214d728f732c17f6c03ba1f17eea435ecde623e721f4",
+    "app/src/main/java/com/lma/app/Store.java": "16b854ea07dcbcdeae3dd25092d5388b323a4493641644c82df83aaf9761699d",
+    "catalogue/model-assemblies.json": "af004a9e62205786cd2bd8ca74af4260dc125fdf1ac9e836968bab65747dd746",
+    "catalogue/model-bundles.json": "23de2ead70bb616bfc41458d78da065f24ed54a345464282ad7a2f87ca7270cc",
+    "tests/host/android/app/ActivityManager.java": "cbb20e9153d8adf50b6194b9ac409b2c0fb4c340e66ff283d47390d7e2f13731",
+    "tests/host/android/net/Uri.java": "287a1a394caa7c4969120e38eeeacd5dc01ddf601041114aa3af731b5a2bad46",
+    "tests/host/android/os/Build.java": "9319739bdb4653b1ee357ae9d531f02414bfe2947c6664096a5483bf0d0feb5a",
+    "tests/host/android/os/PowerManager.java": "4060378684f115fde0bd224ce2b5c44e735feee954cf2652c999407d1c2b1876",
+    "tests/host/android/os/StatFs.java": "18ed47953e1bc92bfd23beda8df64c5f51cb712756fc4f148e28dc449d72968b",
+    "tests/host/android/util/AtomicFile.java": "a05b9c6ef4fa0f0f40aaa49b235faccc98d2d7d5aa1ea4bb8d2f535b8bad2796",
+    "tests/host/com/lma/app/BackendTest.java": "b4d4939131fb821a49cd1159527ee6dc0fcccc8d228638d5996161250b11d26a",
+    "tests/host/com/lma/app/Chats.java": "ec0f715d8f062a110bdb8f99a07b98c452d9b0b8d4af935cd49f80a92ea5ce3b",
+    "tests/host/com/lma/app/HostServer.java": "430c8b3716ae293aaea8c6237fda0010af978c857ef8c711c0739d2d2b1765c6",
+    "tests/host/com/lma/app/HubLiveTest.java": "308f69328ac67a2a59f525d6cbe35a7a6177bb4c7cdb1dc4e9df801f3c9da20e",
+    "tests/host/com/lma/app/HubRecipeTest.java": "dcd0d94743b49a89321eb60f66d66d7d591a0fcbcace977072940bde5ef0df0c",
+    "tests/host/com/lma/app/HubTest.java": "004adc962fd03fae21d0b2c2c85d8cd23d3073f2e15f9b5a4cc94d696c6060dd",
+    "tests/host/com/lma/app/LmaApp.java": "5f712266a67875b17dc0d90b0c7c545ef8b61a00d5ba75092d0db8329d88550e",
+    "tests/host/com/lma/app/LmaService.java": "9262851fb942a0e692bef32ef1f67118cc1f712cb2501efa61c635dfaec2d61a",
+    "tests/host/com/lma/app/LocalEngines.java": "4cda8d9f46326a54c03482c808b446d0229573aae9e6274bbe0368701d96f0b2",
+    "tests/host/com/lma/app/LocalJobs.java": "06b1d5ddd517fbebea7e939ee0fe184334d3a4c9c88f1b2d50b1f03413b77255",
+    "tests/host/com/lma/app/MigrationTest.java": "b2936e4e7d1fb6ef7e79a81bf672c6c35bd7ba527c71405ff7c8cc43e8627074",
+    "tests/host/com/lma/app/ModelSettingsTest.java": "5be5534e97ed09d40b5a3f9f849ed26b9d69520cec1409fadda5bbf3d353d7f6",
+    "tests/host/com/lma/app/RecipeSuggestionsTest.java": "3a9a9164eb4eb9b753ea803e7a44f7f73b4d596138696475e3ffc469e3d7fa81",
+    "tests/ltx-app/com/lma/app/LtxAppTest.java": "55ba9dcbae50d131f34a9d452a89bbe575aa2710c7eb5b8cc6fbca784f43b7cd",
+    "tests/sd-host/com/lma/app/VideoEncoder.java": "96e480bec46860cd05e40d55b7e21710069f71f1f54c4cc543f26d6505efa146",
+    "tools/test_ltx098_app.py": "9bda85e4cd44f31f7749ef03bdd930c5c6dc37754d1f99b64bdc517d5a0d2db9"
+  }
+}

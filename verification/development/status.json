@@ -1,6 +1,6 @@
 {
   "schema": "lma.development-checkpoint/2",
-  "version": "0.3.0-dev.39",
+  "version": "0.3.0-dev.40",
   "sources": {
     "build-info.json": "dist/build-info.json",
     "package.json": "build/package-verification.json",
@@ -37,6 +37,7 @@
     "components-media.json": "docs/media/development/components/manifest.json",
     "mnn.json": "build/mnn-tests/results.json",
     "wan-assets.json": "build/wan-trained/receipt.json",
+    "wan-quality.json": "build/wan-quality/summary.json",
     "wan-trained.json": "build/wan-trained-tests/results.json",
     "wan-app-host.json": "build/wan-app-host-tests/results.json",
     "wan-trained-media.json": "docs/media/development/wan-trained/manifest.json",
@@ -514,168 +515,172 @@
     }
   },
   "prior_checkpoint": {
-    "commit": "bda76b7830812125d0835c4af67e0be9d2db0b9a",
-    "version": "0.3.0-dev.38",
+    "commit": "0ec5042515656481c7c728cce5039a1aec979dff",
+    "version": "0.3.0-dev.39",
     "sources": {
       "status.json": {
-        "path": "verification/history/0.3.0-dev.38/status.json",
-        "sha256": "741ca8e9dcd8e1cc8a9e9da0e5f8c74ec17520d692ce1c52072ee0d962879d37"
+        "path": "verification/history/0.3.0-dev.39/status.json",
+        "sha256": "098fa749b62e05b75811859a87fc07723fb35daea9d0a3ac13659b11d9768c4e"
       },
       "build-info.json": {
-        "path": "verification/history/0.3.0-dev.38/build-info.json",
-        "sha256": "5a411033a0d8722aa082ef0fc2ed5b29814eb395c3537161b4b06e4ef1eaedbb"
+        "path": "verification/history/0.3.0-dev.39/build-info.json",
+        "sha256": "7f50833030139572a26244e8f171c24da39d3fdfd126b65da597e26f5fb9f598"
       },
       "package.json": {
-        "path": "verification/history/0.3.0-dev.38/package.json",
-        "sha256": "1f1556a8982a6c09f127d125490e6363dbee8c34f1bdd7377c7e484e27d3cbe7"
+        "path": "verification/history/0.3.0-dev.39/package.json",
+        "sha256": "906f63e936c0430c1c68baa1bff58a2fc7b68aab3803197145011ae52f15855e"
       },
       "workbench.json": {
-        "path": "verification/history/0.3.0-dev.38/workbench.json",
-        "sha256": "81fc46a06f5a701ab22959dfd9444a6df945f251249581287baf408a79349fac"
+        "path": "verification/history/0.3.0-dev.39/workbench.json",
+        "sha256": "547927b1b2919c6a9e53cb19dd0ca64ef54cb403a55d2d318d4d8f406decfa22"
       },
       "recovery.json": {
-        "path": "verification/history/0.3.0-dev.38/recovery.json",
-        "sha256": "e9d1f50d592d51c94e5137711308c249f5a7a468068cff0a8ef14b9aa5abf8bf"
+        "path": "verification/history/0.3.0-dev.39/recovery.json",
+        "sha256": "c8a84eefc493923fd2a54c5b2d9793458868f064a29f8f128c25d5d3f40193ab"
       },
       "foundation.json": {
-        "path": "verification/history/0.3.0-dev.38/foundation.json",
-        "sha256": "d11371f6f920713880931af14fbbd5bc6d982a5dc468ca1618559ea336ae9d1b"
+        "path": "verification/history/0.3.0-dev.39/foundation.json",
+        "sha256": "c81b8299eacd0729b9c0104127141f1076acad3e076c28b0680f5e67a0c407dc"
       },
       "api.json": {
-        "path": "verification/history/0.3.0-dev.38/api.json",
-        "sha256": "c1c3249d1e5a130242fc474639b608077d0d45726019b0a2b52185dd92eda83e"
+        "path": "verification/history/0.3.0-dev.39/api.json",
+        "sha256": "c1977ecdcbda6afca9127ffccc568d54bb0d6bcda28d2c28490f0cc02fac6d56"
       },
       "inputs.json": {
-        "path": "verification/history/0.3.0-dev.38/inputs.json",
-        "sha256": "514ceb6f98b29a5dcfc5ed41885d1c0737c7193126e401db1053fdc31934fc8b"
+        "path": "verification/history/0.3.0-dev.39/inputs.json",
+        "sha256": "d763c05af7675db0754812562d22bdefef9869aba231b97859816d37aef7b799"
       },
       "text.json": {
-        "path": "verification/history/0.3.0-dev.38/text.json",
-        "sha256": "f592fd6b240c3c14cedd66191bb0c3a04643c1710a519cb18a8facb62e2ac138"
+        "path": "verification/history/0.3.0-dev.39/text.json",
+        "sha256": "165b3284493e42dda58511ffb4c18edf1960b5606df8e1206189026ab32e86e0"
       },
       "migration.json": {
-        "path": "verification/history/0.3.0-dev.38/migration.json",
-        "sha256": "01050e2ab5d170dd580375cf23c43bb44725f1391ff904deeefd1e1a1dea2a87"
+        "path": "verification/history/0.3.0-dev.39/migration.json",
+        "sha256": "0da04283c3f293a20ff85b677230178a96e3abb6d6c68f054628c29c4c9aad4a"
       },
       "scheduler.json": {
-        "path": "verification/history/0.3.0-dev.38/scheduler.json",
-        "sha256": "6d29aafc17cbe638a9936c5ee288f4fc1494890a328843bd62a5b67ce722732d"
+        "path": "verification/history/0.3.0-dev.39/scheduler.json",
+        "sha256": "a1834b6767f7ef9e5e7893720df5ea503f078512f0ddf6bb2f33bc623bd92728"
       },
       "ui.json": {
-        "path": "verification/history/0.3.0-dev.38/ui.json",
-        "sha256": "cad855be2198234da290567f95fe5fbf5f13eabc6ae9bbd4eba5948a449f011e"
+        "path": "verification/history/0.3.0-dev.39/ui.json",
+        "sha256": "db028d48bafceaaac73c65c7d9b313153f5054f5a6e577e26b0c4a8e107b5d43"
       },
       "lint.json": {
-        "path": "verification/history/0.3.0-dev.38/lint.json",
-        "sha256": "eee85063c083d012be072da429a02e427143335f52b1d0f87ac1a6b9041a9f99"
+        "path": "verification/history/0.3.0-dev.39/lint.json",
+        "sha256": "720f61b03c0a987d170186f045f7294df7215111dd09cd8bbaf3d35686b1bdfe"
       },
       "workbench-media.json": {
-        "path": "verification/history/0.3.0-dev.38/workbench-media.json",
-        "sha256": "b2cfcee0f0ca1861d32543b2c002de0b8e5777e5948bfe079444cfa5c60d35b3"
+        "path": "verification/history/0.3.0-dev.39/workbench-media.json",
+        "sha256": "51669835837de13b969a4b354c711bbd2e32e1d1cffe649c46d91651ac9fc440"
       },
       "preflight-media.json": {
-        "path": "verification/history/0.3.0-dev.38/preflight-media.json",
-        "sha256": "14d8d53653b7a24fab83babe902e7f9645d388c1fa27b30f2a47da92c0f268e3"
+        "path": "verification/history/0.3.0-dev.39/preflight-media.json",
+        "sha256": "c17fe21c369eefb83d00687215db60b87384f6e567675c66c25491036dc316c7"
       },
       "recovery-media.json": {
-        "path": "verification/history/0.3.0-dev.38/recovery-media.json",
-        "sha256": "8bff7ae8e73d8cf45d12de238f4b8d386a19da3ce0bd5392b0f67412fadfa25c"
+        "path": "verification/history/0.3.0-dev.39/recovery-media.json",
+        "sha256": "4dca17299413d4b93818a7abdb25ca1d5f762bb1991cf92f228bc603eb179b19"
       },
       "preparation-core.json": {
-        "path": "verification/history/0.3.0-dev.38/preparation-core.json",
-        "sha256": "8186940ff8da7367f11aebcfdaa89ef20be712c714ac934a450ae29bde23c9b2"
+        "path": "verification/history/0.3.0-dev.39/preparation-core.json",
+        "sha256": "adb2b887346dcc2077b168de57b66e55604b9e967d20f05cc2fb5c87109ec3d0"
       },
       "assembly-core.json": {
-        "path": "verification/history/0.3.0-dev.38/assembly-core.json",
-        "sha256": "767a37b6985b428f18660a26c1be2f24ba5a96a4bb0690f8697a6a9f4673a167"
+        "path": "verification/history/0.3.0-dev.39/assembly-core.json",
+        "sha256": "8d88ad68724cc2a2ff232f28aca28b37a78203bde8bbb882328ac35fcb92d00e"
       },
       "diffusion.json": {
-        "path": "verification/history/0.3.0-dev.38/diffusion.json",
-        "sha256": "b9e16fac79448d494bb9d75fd5428460554af2d068a1ca7cf8ba70387fd16fa3"
+        "path": "verification/history/0.3.0-dev.39/diffusion.json",
+        "sha256": "b0f9a1f233649593e8f88f9c2660987e54fac3502043fdff66cf27ec45ab6508"
       },
       "lcm-media.json": {
-        "path": "verification/history/0.3.0-dev.38/lcm-media.json",
-        "sha256": "b7270eceab6d01489f063eea622a64299c353c7bfa517fff3b3a7f0bacf17d7b"
+        "path": "verification/history/0.3.0-dev.39/lcm-media.json",
+        "sha256": "602140cf78a5eefae1cb4248bb228e24f0b43fd1cedf751fc6f00e02fc704890"
       },
       "moss-rq.json": {
-        "path": "verification/history/0.3.0-dev.38/moss-rq.json",
-        "sha256": "228afd0c82c176a6f0835968c47eeb5264353a1a6ff0f3219d605b1a1a740581"
+        "path": "verification/history/0.3.0-dev.39/moss-rq.json",
+        "sha256": "80d91c6447da0d0e56986da4152d0184f74d53081d591b5a546e135d9fdb7120"
       },
       "moss-rq-arm64.json": {
-        "path": "verification/history/0.3.0-dev.38/moss-rq-arm64.json",
+        "path": "verification/history/0.3.0-dev.39/moss-rq-arm64.json",
         "sha256": "9e64c6a3fdf0936b096839edb6e33cbf4845d1b5f16a9619e290b7b55a17506d"
       },
       "audio-media.json": {
-        "path": "verification/history/0.3.0-dev.38/audio-media.json",
-        "sha256": "6a3900fdae5cce23e273e948e784d798a9150e6f791d77eac60966f727ee1e45"
+        "path": "verification/history/0.3.0-dev.39/audio-media.json",
+        "sha256": "17d287fd77e397d7fe2601e1012b2c2be1834fe5acd18190c8be67e5c5f20ef3"
       },
       "ltx-app.json": {
-        "path": "verification/history/0.3.0-dev.38/ltx-app.json",
-        "sha256": "f0cc2cc35d49e401164f93723be253cfee400d9261bba93f34baa3c04b4cd84b"
+        "path": "verification/history/0.3.0-dev.39/ltx-app.json",
+        "sha256": "1e13a6e2d989acfd66284a18ad7a4aab6f97a56c4678626727771d074c5872a1"
       },
       "ltx-app-arm64.json": {
-        "path": "verification/history/0.3.0-dev.38/ltx-app-arm64.json",
+        "path": "verification/history/0.3.0-dev.39/ltx-app-arm64.json",
         "sha256": "8b6828ec1861d71478a209c4d90f40d8995823f59255b1166c3080b48cb4c54f"
       },
       "ltx-media.json": {
-        "path": "verification/history/0.3.0-dev.38/ltx-media.json",
-        "sha256": "38a44868941915ac5a1430e5dcfc0fe49df5a484f985df95213778fe7574d23e"
+        "path": "verification/history/0.3.0-dev.39/ltx-media.json",
+        "sha256": "a4514c11b8b400bb5c8e03d229a1edee793baea927b60df82b08a33d2cb45cfb"
       },
       "resources-media.json": {
-        "path": "verification/history/0.3.0-dev.38/resources-media.json",
-        "sha256": "801797fc092a442941f70e268391929f994709db7d2bd270514d55999f2dcbed"
+        "path": "verification/history/0.3.0-dev.39/resources-media.json",
+        "sha256": "8c4b5af893e4e6f29eb4d75c82d53a644d31bc012a804ec20b43d1a029c9656d"
       },
       "curated-media.json": {
-        "path": "verification/history/0.3.0-dev.38/curated-media.json",
-        "sha256": "4a669ed6839e1f006d7c051399b15d2d0ba30d8ec7099c9a95aa7301e906f54e"
+        "path": "verification/history/0.3.0-dev.39/curated-media.json",
+        "sha256": "dc6fb373830a2a73b28cdf84e244ad511690837c820f4e51e1428d0e790046de"
       },
       "speech-voices.json": {
-        "path": "verification/history/0.3.0-dev.38/speech-voices.json",
-        "sha256": "b255a006d4e0349a3cf3cbdef964b5ad34d21ce4b81c5fb49337da284f9657e4"
+        "path": "verification/history/0.3.0-dev.39/speech-voices.json",
+        "sha256": "e5f9c1e8495b4fb16af5d06fb2e9dda408e5706ec7705404dea02d663bbf7a51"
       },
       "speech-media.json": {
-        "path": "verification/history/0.3.0-dev.38/speech-media.json",
-        "sha256": "80ba5b12b7645bbc778e0fcf92d40fa282e16577df61b7942ad5ac1ea56d66d9"
+        "path": "verification/history/0.3.0-dev.39/speech-media.json",
+        "sha256": "bafe2d73d42cae31645a928d36e5a93a3f58c57a9976eb47634924cb46e868fc"
       },
       "backend.json": {
-        "path": "verification/history/0.3.0-dev.38/backend.json",
-        "sha256": "ea43ebb953d0c98d2b17b7d91e317a801e3124f57e89d2f8077041c6c4f834a4"
+        "path": "verification/history/0.3.0-dev.39/backend.json",
+        "sha256": "f9c99344fd3ae96a6d491a93e884f9ae226df9ca417d4df2bb11b97116ed26f9"
       },
       "hub.json": {
-        "path": "verification/history/0.3.0-dev.38/hub.json",
-        "sha256": "87eb62defcc4122e8eada37e6f94efd11600b657145443978bc761c1868f30d1"
+        "path": "verification/history/0.3.0-dev.39/hub.json",
+        "sha256": "ebac500f51b7c20ec0bee731731fa18b0cafb4d19ada289c3b0134527c985d98"
       },
       "recipe-suggestions.json": {
-        "path": "verification/history/0.3.0-dev.38/recipe-suggestions.json",
-        "sha256": "23ea7e402cbf8414f152f93b9b9d670d864d17e9c678d3ee86fd75052e69e892"
+        "path": "verification/history/0.3.0-dev.39/recipe-suggestions.json",
+        "sha256": "1ec3bdff775c5547938959c052bd9a95d228f57f961a80ab4d3d9fc50e7a5250"
       },
       "components-media.json": {
-        "path": "verification/history/0.3.0-dev.38/components-media.json",
-        "sha256": "c602b0a0aed32fdb5ed6287e43a403df47139c83f2470b759ea6fed33b0402f5"
+        "path": "verification/history/0.3.0-dev.39/components-media.json",
+        "sha256": "ecdd6fb603d17101d30371bdfd0122eeafc8787dad473c990cf1a4bf9be72259"
       },
       "mnn.json": {
-        "path": "verification/history/0.3.0-dev.38/mnn.json",
-        "sha256": "eed347bf286d87fcfc856b22144bbf5358ae91e74dd6c96e36e6aeed28082a35"
+        "path": "verification/history/0.3.0-dev.39/mnn.json",
+        "sha256": "7f1c228603e96a939b541e66341671cd960f6aab2d2ce3ea6fa63b9a825f1bec"
       },
-      "zimage-assets.json": {
-        "path": "verification/history/0.3.0-dev.38/zimage-assets.json",
-        "sha256": "9e55f26c4b2320e748e290315cf884a875b7586aad4a188834d0042620b696cc"
+      "wan-assets.json": {
+        "path": "verification/history/0.3.0-dev.39/wan-assets.json",
+        "sha256": "e9e1c83d5e737e1b37105f37fcf15d6f951582d0f33517ce72be308d89b370f9"
       },
-      "zimage-trained.json": {
-        "path": "verification/history/0.3.0-dev.38/zimage-trained.json",
-        "sha256": "0195fcc2afee260a864e0fafb300761cd4cbada85bd8e2551eb3ad2f505a7cd6"
+      "wan-trained.json": {
+        "path": "verification/history/0.3.0-dev.39/wan-trained.json",
+        "sha256": "1053e9fe0e9ceca7dafa0dbeb2942cd30feb337276555256531655cca85027bf"
       },
-      "zimage-app-host.json": {
-        "path": "verification/history/0.3.0-dev.38/zimage-app-host.json",
-        "sha256": "443a7d4c403c48e9f3c35a3a2a6dd2d33d45af2fb23fd7adc23b805a55799cd4"
+      "wan-app-host.json": {
+        "path": "verification/history/0.3.0-dev.39/wan-app-host.json",
+        "sha256": "05912fd51f1d5c07c930d1e2e3453c6924378ada717e0ea61e3f8647cecd3b4c"
       },
-      "zimage-trained-media.json": {
-        "path": "verification/history/0.3.0-dev.38/zimage-trained-media.json",
-        "sha256": "078f57df7fe0c251e37dd8fdd00b6836e781a662edbebaf93194c41a8732b22a"
+      "wan-trained-media.json": {
+        "path": "verification/history/0.3.0-dev.39/wan-trained-media.json",
+        "sha256": "8a90357860bec622460ed562754673d81c388ae3e21a238fd50eb10b22934910"
+      },
+      "wan-media.json": {
+        "path": "verification/history/0.3.0-dev.39/wan-media.json",
+        "sha256": "a342b064a98e0e55e0e4222a8f4f359d04c3e640223fc80c4d3431b5eb99dca2"
       },
       "qwen-tokenizer.json": {
-        "path": "verification/history/0.3.0-dev.38/qwen-tokenizer.json",
-        "sha256": "e6ec16a7c602212fcace5c30cf6ba04dc357230826925888b65bed877c0958e8"
+        "path": "verification/history/0.3.0-dev.39/qwen-tokenizer.json",
+        "sha256": "95c8f0fcf9fae5acee19ba1d38e468c5ac9fb72202859f2ac1d171aeca8d9b8e"
       }
     }
   },
@@ -697,7 +702,7 @@
   "apk_model_inference_tested": false,
   "historical_host_model_inference_tested": true,
   "model_inference_test_scope": "Current complete Z-Image-Turbo native Windows CPU and production Java execution; four complete user-owned components and the identical official Qwen tokenizer reference. FLUX.2-klein remains exact dev.37 and Sana Edit exact dev.36 history. No Android model inference, image quality or full numerical acceptance.",
-  "scope": "Optional Wan 2.1 T2V 1.3B Q4 selection and complete four-asset lifecycle; CPU UMT5/VAE, actual Vulkan diffusion observations, independent settings, immutable video jobs, cancellation/recovery and managed MP4s. Windows FFmpeg is an explicit test port, not Android encoding evidence. Foundation-only APK, preserved recommendations, no automatic downloads, no ROOT or off-device inference, no ComfyUI graph ecosystem. Full frozen v0.3.0 requirements and failed gates remain unchanged.",
+  "scope": "Optional Wan 2.1 T2V 1.3B Q4 selection and complete four-asset lifecycle; CPU UMT5/VAE, actual Vulkan diffusion observations, independent settings, immutable video jobs, cancellation/recovery and managed MP4s. Per-model spatial/temporal decoder controls preserve legacy jobs and default memory policy. Five full-geometry historical experiments and an unchanged official CPU VAE comparison retain failed later-frame quality; their exact provenance is not refreshed. Windows FFmpeg is an explicit test port, not Android encoding evidence. Foundation-only APK, preserved recommendations, no automatic downloads, no ROOT or off-device inference, no ComfyUI graph ecosystem. Full frozen v0.3.0 requirements and failed gates remain unchanged.",
   "required_release_scope": {
     "foundation": "F01–F12",
     "existing_text": true,
@@ -724,8 +729,8 @@
   },
   "input_fingerprint": {
     "docs/proposals/multimodal-release-scope.json": "03326504d2d1b52c315bef574325f2c05d43c6a65eafc9779cc33120b7801690",
-    "tools/check_repository.py": "e83a6d1fc012d15951231defcbffb22fc5accbba61f359ff79c0a2be798c2336",
-    "tools/checkpoint_evidence.py": "c229593784f202c3c6f7a217c68e8ba8a64dc9a184cc2625960f53749a9a158d",
-    "tools/export_development.py": "cdac0f0fa331f674ebffcc148dee1dddb618d0217f08d665c3b4aea719ca9241"
+    "tools/check_repository.py": "24ca1c383b060db6e1b946d360373c553d32b31483c2b80ea58f9b07031fc82d",
+    "tools/checkpoint_evidence.py": "e98974936c05006e6c9ca699b12ab89fd5e531295be6684b906384c6ed24f41a",
+    "tools/export_development.py": "4d294e16bdebf32d78a05eddb1ec3ab3df07f10a901a6f2d76813ae3944ed3b6"
   }
 }

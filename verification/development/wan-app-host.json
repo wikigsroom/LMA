@@ -1,6 +1,6 @@
 {
   "schema": "lma.wan-app-host/1",
-  "capture_directory": "build/wan-app-host-tests/run-1793357376918518900",
+  "capture_directory": "build/wan-app-host-tests/run-1793365426105109700",
   "java": {
     "android_saf_tested": false,
     "android_background_accepted": false,
@@ -11,7 +11,7 @@
     "imported_objects": 4,
     "network_calls": 0,
     "video_quality_accepted": false,
-    "passed": 100,
+    "passed": 102,
     "android_codec_tested": false,
     "physical_android": false,
     "bundle": {
@@ -70,7 +70,7 @@
         "status": "user_selected_hf_components_not_device_tested",
         "physicalDeviceTests": 0
       },
-      "modelId": "hfb_ccc4a37727d7b39db4c5af296536ae84f1733b86",
+      "modelId": "hfb_d7dbe87c19b7b891917556496ff65e332a66c0d2",
       "description": "\u7528\u6237\u4ece\u56fa\u5b9a HF \u7248\u672c\u660e\u786e\u9009\u62e9\u7684\u7ec4\u4ef6\u914d\u65b9\uff1b\u67b6\u6784\u4e0e\u5b9e\u9645\u624b\u673a\u6267\u884c\u5c1a\u672a\u9a8c\u8bc1\u3002",
       "recipeId": "wan21_13b_split_vulkan_v1",
       "catalogue": false,
@@ -83,17 +83,9 @@
       "engine": "wan_sd_cpp",
       "name": "Wan2.1-T2V-1.3B-GGUF \u00b7 Wan 2.1 1.3B \u00b7 \u672c\u5730 GPU \u89c6\u9891",
       "backend": "vulkan",
-      "id": "hfb_ccc4a37727d7b39db4c5af296536ae84f1733b86",
+      "id": "hfb_d7dbe87c19b7b891917556496ff65e332a66c0d2",
       "parameters": {
         "fields": {
-          "scheduler": {
-            "default": "discrete",
-            "values": [
-              "discrete"
-            ],
-            "label": "\u8c03\u5ea6\u5668",
-            "type": "enum"
-          },
           "seed": {
             "multipleOf": 1,
             "default": -1,
@@ -144,21 +136,10 @@
             "label": "\u5206\u5757\u89e3\u7801 VAE",
             "type": "boolean"
           },
-          "width": {
-            "multipleOf": 16,
-            "default": 512,
-            "presets": [
-              256,
-              384,
-              512,
-              768,
-              1024
-            ],
-            "limitSource": "pipeline_alignment_and_application_guard",
-            "maximum": 2048,
-            "label": "\u5bbd\u5ea6",
-            "type": "integer",
-            "minimum": 64
+          "vaeTemporalTiling": {
+            "default": false,
+            "label": "VAE \u6309\u65f6\u95f4\u5206\u6bb5\u89e3\u7801\uff08\u5b9e\u9a8c\uff09",
+            "type": "boolean"
           },
           "fps": {
             "default": 8,
@@ -205,6 +186,53 @@
             "type": "integer",
             "minimum": 1
           },
+          "sampler": {
+            "default": "euler",
+            "values": [
+              "euler"
+            ],
+            "label": "\u91c7\u6837\u5668",
+            "type": "enum"
+          },
+          "scheduler": {
+            "default": "discrete",
+            "values": [
+              "discrete"
+            ],
+            "label": "\u8c03\u5ea6\u5668",
+            "type": "enum"
+          },
+          "width": {
+            "multipleOf": 16,
+            "default": 512,
+            "presets": [
+              256,
+              384,
+              512,
+              768,
+              1024
+            ],
+            "limitSource": "pipeline_alignment_and_application_guard",
+            "maximum": 2048,
+            "label": "\u5bbd\u5ea6",
+            "type": "integer",
+            "minimum": 64
+          },
+          "vaeTileSize": {
+            "multipleOf": 64,
+            "default": 128,
+            "presets": [
+              128,
+              256,
+              512,
+              1024
+            ],
+            "limitSource": "application_guard",
+            "maximum": 1024,
+            "label": "VAE \u7a7a\u95f4\u5206\u5757\u5927\u5c0f\uff08\u50cf\u7d20\uff09",
+            "type": "integer",
+            "minimum": 128
+          },
           "flowShift": {
             "default": 3,
             "presets": [
@@ -234,14 +262,6 @@
             "label": "\u9ad8\u5ea6",
             "type": "integer",
             "minimum": 64
-          },
-          "sampler": {
-            "default": "euler",
-            "values": [
-              "euler"
-            ],
-            "label": "\u91c7\u6837\u5668",
-            "type": "enum"
           }
         },
         "version": 1
@@ -260,15 +280,15 @@
     "runs": [
       {
         "artifact": {
-          "jobId": "job_8f71159879e24033ad7a86a30bf34c3b",
-          "createdAt": 1793358159980,
+          "jobId": "job_87ff78b0e1b348e784f8bc385de9326f",
+          "createdAt": 1793365731112,
           "metadata": {
             "mime": "video/mp4",
             "width": 256,
             "durationMs": 625,
             "height": 256
           },
-          "filename": "artifact_9a733f89828e4582a728f2867f5c4fa2.mp4",
+          "filename": "artifact_f9bebd91eac14d8dbeeeab9f0e6cc157.mp4",
           "provenance": {
             "input": {
               "prompt": "A small red toy robot waving its hand beside a blue ceramic teapot on a wooden table, gentle camera movement, soft daylight",
@@ -276,18 +296,20 @@
             },
             "execution": {
               "effectiveParameters": {
-                "scheduler": "discrete",
                 "seed": 42,
                 "frames": 5,
                 "cfg": 6,
                 "vaeTiling": true,
-                "width": 256,
+                "vaeTemporalTiling": true,
                 "fps": 8,
                 "threads": 6,
                 "steps": 4,
+                "sampler": "euler",
+                "scheduler": "discrete",
+                "width": 256,
+                "vaeTileSize": 512,
                 "flowShift": 3,
-                "height": 256,
-                "sampler": "euler"
+                "height": 256
               },
               "pipeline": "wan21_13b",
               "remoteInference": false,
@@ -300,64 +322,70 @@
               "vaeBackend": "cpu"
             },
             "adapters": [],
-            "bundleId": "hfb_ccc4a37727d7b39db4c5af296536ae84f1733b86",
+            "bundleId": "hfb_d7dbe87c19b7b891917556496ff65e332a66c0d2",
             "diffusionPlan": {
               "schema": "lma.diffusion-plan/1",
               "adjustments": [],
               "profile": "standard",
               "parameters": {
-                "scheduler": "discrete",
                 "seed": 42,
                 "frames": 5,
                 "cfg": 6,
                 "vaeTiling": true,
-                "width": 256,
+                "vaeTemporalTiling": true,
                 "fps": 8,
                 "threads": 6,
                 "steps": 4,
+                "sampler": "euler",
+                "scheduler": "discrete",
+                "width": 256,
+                "vaeTileSize": 512,
                 "flowShift": 3,
-                "height": 256,
-                "sampler": "euler"
+                "height": 256
               }
             },
             "type": "video.generate",
             "parameters": {
-              "scheduler": "discrete",
               "seed": 42,
               "frames": 5,
               "cfg": 6,
               "vaeTiling": true,
-              "width": 256,
+              "vaeTemporalTiling": true,
               "fps": 8,
               "threads": 6,
               "steps": 4,
+              "sampler": "euler",
+              "scheduler": "discrete",
+              "width": 256,
+              "vaeTileSize": 512,
               "flowShift": 3,
-              "height": 256,
-              "sampler": "euler"
+              "height": 256
             }
           },
-          "sha256": "158c429c1edac4a1ab6300123ab17ea504e19f23f1200dc6c3c2a8c93c089082",
-          "bytes": 15472,
+          "sha256": "5f78a44e717a91dc02bd882fe200a6a71758ff8bb798017c33a96c16b7d050a5",
+          "bytes": 15191,
           "origin": {
             "kind": "generated"
           },
-          "id": "artifact_9a733f89828e4582a728f2867f5c4fa2"
+          "id": "artifact_f9bebd91eac14d8dbeeeab9f0e6cc157"
         },
-        "output": "U:\\build\\wan-app-host-tests\\run-1793357376918518900\\data\\artifacts\\media\\artifact_9a733f89828e4582a728f2867f5c4fa2.mp4",
+        "output": "U:\\build\\wan-app-host-tests\\run-1793365426105109700\\data\\artifacts\\media\\artifact_f9bebd91eac14d8dbeeeab9f0e6cc157.mp4",
         "execution": {
           "effectiveParameters": {
-            "scheduler": "discrete",
             "seed": 42,
             "frames": 5,
             "cfg": 6,
             "vaeTiling": true,
-            "width": 256,
+            "vaeTemporalTiling": true,
             "fps": 8,
             "threads": 6,
             "steps": 4,
+            "sampler": "euler",
+            "scheduler": "discrete",
+            "width": 256,
+            "vaeTileSize": 512,
             "flowShift": 3,
-            "height": 256,
-            "sampler": "euler"
+            "height": 256
           },
           "pipeline": "wan21_13b",
           "remoteInference": false,
@@ -369,8 +397,8 @@
           "samplingAdjustments": [],
           "vaeBackend": "cpu"
         },
-        "sha256": "158c429c1edac4a1ab6300123ab17ea504e19f23f1200dc6c3c2a8c93c089082",
-        "bytes": 15472,
+        "sha256": "5f78a44e717a91dc02bd882fe200a6a71758ff8bb798017c33a96c16b7d050a5",
+        "bytes": 15191,
         "name": "a",
         "progress": [
           {
@@ -387,7 +415,7 @@
           },
           {
             "stage": "generating",
-            "fraction": 0
+            "fraction": 1
           },
           {
             "stage": "generating",
@@ -395,855 +423,15 @@
           },
           {
             "stage": "generating",
-            "fraction": 0.01575757575757576
+            "fraction": 0
           },
           {
             "stage": "generating",
-            "fraction": 0.01696969696969697
+            "fraction": 0.24727272727272728
           },
           {
             "stage": "generating",
-            "fraction": 0.01696969696969697
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.01696969696969697
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.01696969696969697
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.03151515151515152
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.03272727272727273
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.03515151515151515
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.04363636363636364
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.044848484848484846
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.0496969696969697
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.06060606060606061
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.06545454545454546
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.06545454545454546
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.07393939393939394
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.08242424242424243
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.09333333333333334
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.09333333333333334
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.09818181818181818
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.09818181818181818
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.1103030303030303
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.1103030303030303
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.11515151515151516
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.12606060606060607
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.12606060606060607
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.12606060606060607
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.12606060606060607
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.12848484848484848
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.13090909090909092
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.13090909090909092
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.1406060606060606
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.14303030303030304
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.14545454545454545
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.15878787878787878
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.16363636363636364
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.16363636363636364
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.17454545454545456
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.1806060606060606
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.19151515151515153
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.19151515151515153
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.19636363636363635
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.2084848484848485
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.21333333333333335
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.22424242424242424
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.2290909090909091
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.2290909090909091
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.23757575757575758
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.2412121212121212
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.2412121212121212
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.2412121212121212
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.2412121212121212
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.24606060606060606
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.25696969696969696
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.25696969696969696
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.25696969696969696
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.25696969696969696
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.26181818181818184
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.26181818181818184
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.26181818181818184
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.2690909090909091
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.2739393939393939
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.27636363636363637
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.2787878787878788
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.2787878787878788
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.2896969696969697
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.2896969696969697
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.29454545454545455
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.29454545454545455
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.30666666666666664
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.32242424242424245
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.3236363636363636
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.32727272727272727
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.3393939393939394
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.35515151515151516
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.35515151515151516
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.35515151515151516
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.3563636363636364
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.36
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.36
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.36
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.36
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.36
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.3624242424242424
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.36727272727272725
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.36727272727272725
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.3696969696969697
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.37212121212121213
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.37454545454545457
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.37696969696969695
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.3842424242424242
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.3878787878787879
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.3927272727272727
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.39636363636363636
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.40484848484848485
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.4206060606060606
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.4254545454545455
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.44
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.45696969696969697
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.4666666666666667
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.47515151515151516
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.4860606060606061
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.4921212121212121
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.5078787878787879
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.5187878787878788
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.5187878787878788
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.5236363636363637
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.5236363636363637
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.5309090909090909
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.5393939393939394
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.5406060606060606
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.5406060606060606
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.5466666666666666
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.5466666666666666
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.5466666666666666
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.5466666666666666
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.5515151515151515
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.5515151515151515
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.553939393939394
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.553939393939394
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.5563636363636364
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.5563636363636364
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.566060606060606
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.5684848484848485
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.5793939393939394
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.5842424242424242
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.5890909090909091
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.5987878787878788
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.6012121212121212
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.616969696969697
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.616969696969697
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.6218181818181818
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.6218181818181818
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.6339393939393939
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.6351515151515151
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.6448484848484849
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.6496969696969697
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.6496969696969697
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.6496969696969697
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.6545454545454545
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.6545454545454545
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.6545454545454545
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.656969696969697
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.6666666666666666
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.6666666666666666
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.6666666666666666
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.6666666666666666
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.6715151515151515
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.6824242424242424
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.6824242424242424
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.6824242424242424
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.6824242424242424
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.6872727272727273
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.6872727272727273
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.6872727272727273
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.6872727272727273
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.6945454545454546
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.6993939393939393
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.703030303030303
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.7151515151515152
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.7151515151515152
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.7151515151515152
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.7163636363636363
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.72
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.72
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.72
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.72
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.7224242424242424
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.7296969696969697
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.7321212121212122
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.7321212121212122
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.7321212121212122
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.7321212121212122
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.7321212121212122
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.7357575757575757
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.743030303030303
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.7478787878787879
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.7478787878787879
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.7478787878787879
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.7478787878787879
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.7503030303030302
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.7527272727272727
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.7527272727272727
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.7527272727272727
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.7563636363636363
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.7636363636363637
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.7648484848484849
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.7806060606060606
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.7818181818181819
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.7854545454545454
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.7975757575757576
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.8133333333333334
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.8181818181818182
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.8303030303030303
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.8327272727272728
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.8460606060606061
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.850909090909091
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.8618181818181818
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.8690909090909091
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.8787878787878788
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.8836363636363637
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.8933333333333333
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.8993939393939394
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.9115151515151515
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.9175757575757576
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.9442424242424242
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.9490909090909091
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.9515151515151515
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.96
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.9721212121212122
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.9769696969696969
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.9793939393939394
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.983030303030303
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.9975757575757576
+            "fraction": 0.8
           },
           {
             "stage": "generating",
@@ -1255,7 +443,15 @@
           },
           {
             "stage": "generating",
-            "fraction": 0.75
+            "fraction": 1
+          },
+          {
+            "stage": "generating",
+            "fraction": 0
+          },
+          {
+            "stage": "generating",
+            "fraction": 0
           },
           {
             "stage": "generating",
@@ -1263,35 +459,11 @@
           },
           {
             "stage": "generating",
-            "fraction": 0.1111111111111111
+            "fraction": 0
           },
           {
             "stage": "generating",
-            "fraction": 0.2222222222222222
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.3333333333333333
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.4444444444444444
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.5555555555555556
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.6666666666666666
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.7777777777777778
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.8888888888888888
+            "fraction": 1
           },
           {
             "stage": "generating",
@@ -1306,18 +478,20 @@
       {
         "execution": {
           "effectiveParameters": {
-            "scheduler": "discrete",
             "seed": 42,
             "frames": 5,
             "cfg": 6,
             "vaeTiling": true,
-            "width": 256,
+            "vaeTemporalTiling": true,
             "fps": 8,
             "threads": 6,
             "steps": 4,
+            "sampler": "euler",
+            "scheduler": "discrete",
+            "width": 256,
+            "vaeTileSize": 512,
             "flowShift": 3,
-            "height": 256,
-            "sampler": "euler"
+            "height": 256
           },
           "pipeline": "wan21_13b",
           "samplingProfile": "standard",
@@ -1340,7 +514,7 @@
           },
           {
             "stage": "generating",
-            "fraction": 0
+            "fraction": 1
           },
           {
             "stage": "generating",
@@ -1348,7 +522,11 @@
           },
           {
             "stage": "generating",
-            "fraction": 0.7660606060606061
+            "fraction": 0
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.39515151515151514
           },
           {
             "stage": "generating",
@@ -1362,15 +540,15 @@
       },
       {
         "artifact": {
-          "jobId": "job_7c3e32eea1ff433b84332af04f5f7611",
-          "createdAt": 1793358413070,
+          "jobId": "job_6361d16d1e5a48109a7a32f77b1fee4b",
+          "createdAt": 1793365870865,
           "metadata": {
             "mime": "video/mp4",
             "width": 256,
             "durationMs": 625,
             "height": 256
           },
-          "filename": "artifact_882bd878948543a8b73534b4e8759ea2.mp4",
+          "filename": "artifact_2e25ba92e2a2417f9ca746d7bb94d42d.mp4",
           "provenance": {
             "input": {
               "prompt": "A small red toy robot waving its hand beside a blue ceramic teapot on a wooden table, gentle camera movement, soft daylight",
@@ -1378,18 +556,20 @@
             },
             "execution": {
               "effectiveParameters": {
-                "scheduler": "discrete",
                 "seed": 42,
                 "frames": 5,
                 "cfg": 6,
                 "vaeTiling": true,
-                "width": 256,
+                "vaeTemporalTiling": true,
                 "fps": 8,
                 "threads": 6,
                 "steps": 4,
+                "sampler": "euler",
+                "scheduler": "discrete",
+                "width": 256,
+                "vaeTileSize": 512,
                 "flowShift": 3,
-                "height": 256,
-                "sampler": "euler"
+                "height": 256
               },
               "pipeline": "wan21_13b",
               "remoteInference": false,
@@ -1402,64 +582,70 @@
               "vaeBackend": "cpu"
             },
             "adapters": [],
-            "bundleId": "hfb_ccc4a37727d7b39db4c5af296536ae84f1733b86",
+            "bundleId": "hfb_d7dbe87c19b7b891917556496ff65e332a66c0d2",
             "diffusionPlan": {
               "schema": "lma.diffusion-plan/1",
               "adjustments": [],
               "profile": "standard",
               "parameters": {
-                "scheduler": "discrete",
                 "seed": 42,
                 "frames": 5,
                 "cfg": 6,
                 "vaeTiling": true,
-                "width": 256,
+                "vaeTemporalTiling": true,
                 "fps": 8,
                 "threads": 6,
                 "steps": 4,
+                "sampler": "euler",
+                "scheduler": "discrete",
+                "width": 256,
+                "vaeTileSize": 512,
                 "flowShift": 3,
-                "height": 256,
-                "sampler": "euler"
+                "height": 256
               }
             },
             "type": "video.generate",
             "parameters": {
-              "scheduler": "discrete",
               "seed": 42,
               "frames": 5,
               "cfg": 6,
               "vaeTiling": true,
-              "width": 256,
+              "vaeTemporalTiling": true,
               "fps": 8,
               "threads": 6,
               "steps": 4,
+              "sampler": "euler",
+              "scheduler": "discrete",
+              "width": 256,
+              "vaeTileSize": 512,
               "flowShift": 3,
-              "height": 256,
-              "sampler": "euler"
+              "height": 256
             }
           },
-          "sha256": "158c429c1edac4a1ab6300123ab17ea504e19f23f1200dc6c3c2a8c93c089082",
-          "bytes": 15472,
+          "sha256": "5f78a44e717a91dc02bd882fe200a6a71758ff8bb798017c33a96c16b7d050a5",
+          "bytes": 15191,
           "origin": {
             "kind": "generated"
           },
-          "id": "artifact_882bd878948543a8b73534b4e8759ea2"
+          "id": "artifact_2e25ba92e2a2417f9ca746d7bb94d42d"
         },
-        "output": "U:\\build\\wan-app-host-tests\\run-1793357376918518900\\data\\artifacts\\media\\artifact_882bd878948543a8b73534b4e8759ea2.mp4",
+        "output": "U:\\build\\wan-app-host-tests\\run-1793365426105109700\\data\\artifacts\\media\\artifact_2e25ba92e2a2417f9ca746d7bb94d42d.mp4",
         "execution": {
           "effectiveParameters": {
-            "scheduler": "discrete",
             "seed": 42,
             "frames": 5,
             "cfg": 6,
             "vaeTiling": true,
-            "width": 256,
+            "vaeTemporalTiling": true,
             "fps": 8,
             "threads": 6,
             "steps": 4,
+            "sampler": "euler",
+            "scheduler": "discrete",
+            "width": 256,
+            "vaeTileSize": 512,
             "flowShift": 3,
-            "height": 256,
-            "sampler": "euler"
+            "height": 256
           },
           "pipeline": "wan21_13b",
           "remoteInference": false,
@@ -1471,8 +657,8 @@
           "samplingAdjustments": [],
           "vaeBackend": "cpu"
         },
-        "sha256": "158c429c1edac4a1ab6300123ab17ea504e19f23f1200dc6c3c2a8c93c089082",
-        "bytes": 15472,
+        "sha256": "5f78a44e717a91dc02bd882fe200a6a71758ff8bb798017c33a96c16b7d050a5",
+        "bytes": 15191,
         "name": "recovery-a",
         "progress": [
           {
@@ -1489,7 +675,7 @@
           },
           {
             "stage": "generating",
-            "fraction": 0
+            "fraction": 1
           },
           {
             "stage": "generating",
@@ -1497,15 +683,11 @@
           },
           {
             "stage": "generating",
-            "fraction": 0.8315151515151515
+            "fraction": 0
           },
           {
             "stage": "generating",
-            "fraction": 0.25
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.75
+            "fraction": 0.4254545454545455
           },
           {
             "stage": "generating",
@@ -1513,35 +695,31 @@
           },
           {
             "stage": "generating",
-            "fraction": 0.1111111111111111
+            "fraction": 0.25
           },
           {
             "stage": "generating",
-            "fraction": 0.2222222222222222
+            "fraction": 1
           },
           {
             "stage": "generating",
-            "fraction": 0.3333333333333333
+            "fraction": 0
           },
           {
             "stage": "generating",
-            "fraction": 0.4444444444444444
+            "fraction": 0
           },
           {
             "stage": "generating",
-            "fraction": 0.5555555555555556
+            "fraction": 1
           },
           {
             "stage": "generating",
-            "fraction": 0.6666666666666666
+            "fraction": 0
           },
           {
             "stage": "generating",
-            "fraction": 0.7777777777777778
-          },
-          {
-            "stage": "generating",
-            "fraction": 0.8888888888888888
+            "fraction": 1
           },
           {
             "stage": "generating",
@@ -1558,115 +736,121 @@
       {
         "schema": "lma.engine-request/1",
         "pipeline": "wan21_13b",
-        "output": "U:\\build\\wan-app-host-tests\\run-1793357376918518900\\data\\artifacts\\staging\\job_8f71159879e24033ad7a86a30bf34c3b_d48445c57b704a2295c45c5d58bf50e9.rgb",
+        "output": "U:\\build\\wan-app-host-tests\\run-1793365426105109700\\data\\artifacts\\staging\\job_87ff78b0e1b348e784f8bc385de9326f_a3f7d94ba2ff42749f50832af71b7a15.rgb",
         "input": {
           "prompt": "A small red toy robot waving its hand beside a blue ceramic teapot on a wooden table, gentle camera movement, soft daylight",
           "negativePrompt": ""
         },
         "components": {
-          "t5": "U:\\build\\wan-app-host-tests\\run-1793357376918518900\\data\\files\\bundles\\objects\\17cf97a5bbbc60a646d6105b832b6f657ce904a8a1ad970e4b59df0c67584a40",
-          "diffusion": "U:\\build\\wan-app-host-tests\\run-1793357376918518900\\data\\files\\bundles\\objects\\65181afff758fba25cf311399ccb0638a746f8e0e6533e07a84a5a23e0c12318",
-          "umt5_tokenizer": "U:\\build\\wan-app-host-tests\\run-1793357376918518900\\data\\files\\bundles\\objects\\af904105ce1071b1202bba0059a841f4a7b85b48b6ec179c4948e3483476e0dd",
-          "vae": "U:\\build\\wan-app-host-tests\\run-1793357376918518900\\data\\files\\bundles\\objects\\2fc39d31359a4b0a64f55876d8ff7fa8d780956ae2cb13463b0223e15148976b"
+          "t5": "U:\\build\\wan-app-host-tests\\run-1793365426105109700\\data\\files\\bundles\\objects\\17cf97a5bbbc60a646d6105b832b6f657ce904a8a1ad970e4b59df0c67584a40",
+          "diffusion": "U:\\build\\wan-app-host-tests\\run-1793365426105109700\\data\\files\\bundles\\objects\\65181afff758fba25cf311399ccb0638a746f8e0e6533e07a84a5a23e0c12318",
+          "umt5_tokenizer": "U:\\build\\wan-app-host-tests\\run-1793365426105109700\\data\\files\\bundles\\objects\\af904105ce1071b1202bba0059a841f4a7b85b48b6ec179c4948e3483476e0dd",
+          "vae": "U:\\build\\wan-app-host-tests\\run-1793365426105109700\\data\\files\\bundles\\objects\\2fc39d31359a4b0a64f55876d8ff7fa8d780956ae2cb13463b0223e15148976b"
         },
         "loras": [],
         "backend": "vulkan",
         "type": "video.generate",
         "samplingProfile": "standard",
         "parameters": {
-          "scheduler": "discrete",
           "seed": 42,
           "frames": 5,
           "cfg": 6,
           "vaeTiling": true,
-          "width": 256,
+          "vaeTemporalTiling": true,
           "fps": 8,
           "threads": 6,
           "steps": 4,
+          "sampler": "euler",
+          "scheduler": "discrete",
+          "width": 256,
+          "vaeTileSize": 512,
           "flowShift": 3,
-          "height": 256,
-          "sampler": "euler"
+          "height": 256
         },
         "architecture": "wan21"
       },
       {
         "schema": "lma.engine-request/1",
         "pipeline": "wan21_13b",
-        "output": "U:\\build\\wan-app-host-tests\\run-1793357376918518900\\data\\artifacts\\staging\\job_fe5d3a71bf0549edbcdcb8c065736e81_fdf4949e95194d09bc30a4db9630ae0a.rgb",
+        "output": "U:\\build\\wan-app-host-tests\\run-1793365426105109700\\data\\artifacts\\staging\\job_8cd34d500ee1418ca05ca9b82d1cb0e4_255ac18cb17246b892ab88cdb97304a7.rgb",
         "input": {
           "prompt": "A small red toy robot waving its hand beside a blue ceramic teapot on a wooden table, gentle camera movement, soft daylight",
           "negativePrompt": ""
         },
         "components": {
-          "t5": "U:\\build\\wan-app-host-tests\\run-1793357376918518900\\data\\files\\bundles\\objects\\17cf97a5bbbc60a646d6105b832b6f657ce904a8a1ad970e4b59df0c67584a40",
-          "diffusion": "U:\\build\\wan-app-host-tests\\run-1793357376918518900\\data\\files\\bundles\\objects\\65181afff758fba25cf311399ccb0638a746f8e0e6533e07a84a5a23e0c12318",
-          "umt5_tokenizer": "U:\\build\\wan-app-host-tests\\run-1793357376918518900\\data\\files\\bundles\\objects\\af904105ce1071b1202bba0059a841f4a7b85b48b6ec179c4948e3483476e0dd",
-          "vae": "U:\\build\\wan-app-host-tests\\run-1793357376918518900\\data\\files\\bundles\\objects\\2fc39d31359a4b0a64f55876d8ff7fa8d780956ae2cb13463b0223e15148976b"
+          "t5": "U:\\build\\wan-app-host-tests\\run-1793365426105109700\\data\\files\\bundles\\objects\\17cf97a5bbbc60a646d6105b832b6f657ce904a8a1ad970e4b59df0c67584a40",
+          "diffusion": "U:\\build\\wan-app-host-tests\\run-1793365426105109700\\data\\files\\bundles\\objects\\65181afff758fba25cf311399ccb0638a746f8e0e6533e07a84a5a23e0c12318",
+          "umt5_tokenizer": "U:\\build\\wan-app-host-tests\\run-1793365426105109700\\data\\files\\bundles\\objects\\af904105ce1071b1202bba0059a841f4a7b85b48b6ec179c4948e3483476e0dd",
+          "vae": "U:\\build\\wan-app-host-tests\\run-1793365426105109700\\data\\files\\bundles\\objects\\2fc39d31359a4b0a64f55876d8ff7fa8d780956ae2cb13463b0223e15148976b"
         },
         "loras": [],
         "backend": "vulkan",
         "type": "video.generate",
         "samplingProfile": "standard",
         "parameters": {
-          "scheduler": "discrete",
           "seed": 42,
           "frames": 5,
           "cfg": 6,
           "vaeTiling": true,
-          "width": 256,
+          "vaeTemporalTiling": true,
           "fps": 8,
           "threads": 6,
           "steps": 4,
+          "sampler": "euler",
+          "scheduler": "discrete",
+          "width": 256,
+          "vaeTileSize": 512,
           "flowShift": 3,
-          "height": 256,
-          "sampler": "euler"
+          "height": 256
         },
         "architecture": "wan21"
       },
       {
         "schema": "lma.engine-request/1",
         "pipeline": "wan21_13b",
-        "output": "U:\\build\\wan-app-host-tests\\run-1793357376918518900\\data\\artifacts\\staging\\job_7c3e32eea1ff433b84332af04f5f7611_e560b0f101b24d2787346888e78519e5.rgb",
+        "output": "U:\\build\\wan-app-host-tests\\run-1793365426105109700\\data\\artifacts\\staging\\job_6361d16d1e5a48109a7a32f77b1fee4b_06976a1b2be4486f81f8c9ab95f25fce.rgb",
         "input": {
           "prompt": "A small red toy robot waving its hand beside a blue ceramic teapot on a wooden table, gentle camera movement, soft daylight",
           "negativePrompt": ""
         },
         "components": {
-          "t5": "U:\\build\\wan-app-host-tests\\run-1793357376918518900\\data\\files\\bundles\\objects\\17cf97a5bbbc60a646d6105b832b6f657ce904a8a1ad970e4b59df0c67584a40",
-          "diffusion": "U:\\build\\wan-app-host-tests\\run-1793357376918518900\\data\\files\\bundles\\objects\\65181afff758fba25cf311399ccb0638a746f8e0e6533e07a84a5a23e0c12318",
-          "umt5_tokenizer": "U:\\build\\wan-app-host-tests\\run-1793357376918518900\\data\\files\\bundles\\objects\\af904105ce1071b1202bba0059a841f4a7b85b48b6ec179c4948e3483476e0dd",
-          "vae": "U:\\build\\wan-app-host-tests\\run-1793357376918518900\\data\\files\\bundles\\objects\\2fc39d31359a4b0a64f55876d8ff7fa8d780956ae2cb13463b0223e15148976b"
+          "t5": "U:\\build\\wan-app-host-tests\\run-1793365426105109700\\data\\files\\bundles\\objects\\17cf97a5bbbc60a646d6105b832b6f657ce904a8a1ad970e4b59df0c67584a40",
+          "diffusion": "U:\\build\\wan-app-host-tests\\run-1793365426105109700\\data\\files\\bundles\\objects\\65181afff758fba25cf311399ccb0638a746f8e0e6533e07a84a5a23e0c12318",
+          "umt5_tokenizer": "U:\\build\\wan-app-host-tests\\run-1793365426105109700\\data\\files\\bundles\\objects\\af904105ce1071b1202bba0059a841f4a7b85b48b6ec179c4948e3483476e0dd",
+          "vae": "U:\\build\\wan-app-host-tests\\run-1793365426105109700\\data\\files\\bundles\\objects\\2fc39d31359a4b0a64f55876d8ff7fa8d780956ae2cb13463b0223e15148976b"
         },
         "loras": [],
         "backend": "vulkan",
         "type": "video.generate",
         "samplingProfile": "standard",
         "parameters": {
-          "scheduler": "discrete",
           "seed": 42,
           "frames": 5,
           "cfg": 6,
           "vaeTiling": true,
-          "width": 256,
+          "vaeTemporalTiling": true,
           "fps": 8,
           "threads": 6,
           "steps": 4,
+          "sampler": "euler",
+          "scheduler": "discrete",
+          "width": 256,
+          "vaeTileSize": 512,
           "flowShift": 3,
-          "height": 256,
-          "sampler": "euler"
+          "height": 256
         },
         "architecture": "wan21"
       }
     ],
     "host_encoder_receipts": [
       {
-        "output_sha256": "158c429c1edac4a1ab6300123ab17ea504e19f23f1200dc6c3c2a8c93c089082",
-        "output": "U:\\build\\wan-app-host-tests\\run-1793357376918518900\\data\\artifacts\\staging\\job_8f71159879e24033ad7a86a30bf34c3b_fa1a7d6c78f94d0d970645ca26cf060a.mp4",
+        "output_sha256": "5f78a44e717a91dc02bd882fe200a6a71758ff8bb798017c33a96c16b7d050a5",
+        "output": "U:\\build\\wan-app-host-tests\\run-1793365426105109700\\data\\artifacts\\staging\\job_87ff78b0e1b348e784f8bc385de9326f_fc39037e589749d78ac7a38cc672ab8f.mp4",
         "input_raw_bytes": 983068,
         "frames": 5,
-        "input_raw_sha256": "a7ed9560ed46f449654bc4e3e1c42d55ff51c984090c8fc9f846365aa149d9d2",
+        "input_raw_sha256": "40bdc402f4eeab9871fb6cfca32099c2e7d130ee1b10c03596c0c9cc4a119ce5",
         "motion_observed": true,
-        "output_bytes": 15472,
+        "output_bytes": 15191,
         "width": 256,
         "fps": 8,
         "android_codec_tested": false,
@@ -1674,13 +858,13 @@
         "height": 256
       },
       {
-        "output_sha256": "158c429c1edac4a1ab6300123ab17ea504e19f23f1200dc6c3c2a8c93c089082",
-        "output": "U:\\build\\wan-app-host-tests\\run-1793357376918518900\\data\\artifacts\\staging\\job_7c3e32eea1ff433b84332af04f5f7611_227de613ac9c4e1d85cc1e0ffd960653.mp4",
+        "output_sha256": "5f78a44e717a91dc02bd882fe200a6a71758ff8bb798017c33a96c16b7d050a5",
+        "output": "U:\\build\\wan-app-host-tests\\run-1793365426105109700\\data\\artifacts\\staging\\job_6361d16d1e5a48109a7a32f77b1fee4b_b6f36a721c0541639fb512107d520d6a.mp4",
         "input_raw_bytes": 983068,
         "frames": 5,
-        "input_raw_sha256": "a7ed9560ed46f449654bc4e3e1c42d55ff51c984090c8fc9f846365aa149d9d2",
+        "input_raw_sha256": "40bdc402f4eeab9871fb6cfca32099c2e7d130ee1b10c03596c0c9cc4a119ce5",
         "motion_observed": true,
-        "output_bytes": 15472,
+        "output_bytes": 15191,
         "width": 256,
         "fps": 8,
         "android_codec_tested": false,
@@ -1692,9 +876,9 @@
   "outputs": [
     {
       "name": "a",
-      "file": "build/wan-app-host-tests/run-1793357376918518900/data/artifacts/media/artifact_9a733f89828e4582a728f2867f5c4fa2.mp4",
-      "bytes": 15472,
-      "sha256": "158c429c1edac4a1ab6300123ab17ea504e19f23f1200dc6c3c2a8c93c089082",
+      "file": "build/wan-app-host-tests/run-1793365426105109700/data/artifacts/media/artifact_f9bebd91eac14d8dbeeeab9f0e6cc157.mp4",
+      "bytes": 15191,
+      "sha256": "5f78a44e717a91dc02bd882fe200a6a71758ff8bb798017c33a96c16b7d050a5",
       "media": {
         "codec_name": "h264",
         "width": 256,
@@ -1708,9 +892,9 @@
     },
     {
       "name": "recovery-a",
-      "file": "build/wan-app-host-tests/run-1793357376918518900/data/artifacts/media/artifact_882bd878948543a8b73534b4e8759ea2.mp4",
-      "bytes": 15472,
-      "sha256": "158c429c1edac4a1ab6300123ab17ea504e19f23f1200dc6c3c2a8c93c089082",
+      "file": "build/wan-app-host-tests/run-1793365426105109700/data/artifacts/media/artifact_2e25ba92e2a2417f9ca746d7bb94d42d.mp4",
+      "bytes": 15191,
+      "sha256": "5f78a44e717a91dc02bd882fe200a6a71758ff8bb798017c33a96c16b7d050a5",
       "media": {
         "codec_name": "h264",
         "width": 256,
@@ -1729,44 +913,44 @@
       "sha256": "0776deeb6ace85f83d60a9ba535cbe73a21566505b5aec2fd5c75b2bde065172"
     },
     "data/artifacts/artifacts.json": {
-      "bytes": 3128,
-      "sha256": "dadd3a4777b538ab00e03181d0ef7731e8d23fb53a32245d63ec48e39cc11e8c"
+      "bytes": 3386,
+      "sha256": "814da80ea2bc97972ede40dc530a0161b8e0b73100feed40c72cdefa72ff5a23"
     },
-    "data/artifacts/media/artifact_882bd878948543a8b73534b4e8759ea2.mp4": {
-      "bytes": 15472,
-      "sha256": "158c429c1edac4a1ab6300123ab17ea504e19f23f1200dc6c3c2a8c93c089082"
+    "data/artifacts/media/artifact_2e25ba92e2a2417f9ca746d7bb94d42d.mp4": {
+      "bytes": 15191,
+      "sha256": "5f78a44e717a91dc02bd882fe200a6a71758ff8bb798017c33a96c16b7d050a5"
     },
-    "data/artifacts/media/artifact_9a733f89828e4582a728f2867f5c4fa2.mp4": {
-      "bytes": 15472,
-      "sha256": "158c429c1edac4a1ab6300123ab17ea504e19f23f1200dc6c3c2a8c93c089082"
+    "data/artifacts/media/artifact_f9bebd91eac14d8dbeeeab9f0e6cc157.mp4": {
+      "bytes": 15191,
+      "sha256": "5f78a44e717a91dc02bd882fe200a6a71758ff8bb798017c33a96c16b7d050a5"
     },
-    "data/artifacts/staging/job_7c3e32eea1ff433b84332af04f5f7611_227de613ac9c4e1d85cc1e0ffd960653.mp4.host-encoder.log": {
+    "data/artifacts/staging/job_6361d16d1e5a48109a7a32f77b1fee4b_06976a1b2be4486f81f8c9ab95f25fce.rgb": {
+      "bytes": 983068,
+      "sha256": "40bdc402f4eeab9871fb6cfca32099c2e7d130ee1b10c03596c0c9cc4a119ce5"
+    },
+    "data/artifacts/staging/job_6361d16d1e5a48109a7a32f77b1fee4b_b6f36a721c0541639fb512107d520d6a.mp4.host-encoder.log": {
       "bytes": 0,
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     },
-    "data/artifacts/staging/job_7c3e32eea1ff433b84332af04f5f7611_e560b0f101b24d2787346888e78519e5.rgb": {
+    "data/artifacts/staging/job_87ff78b0e1b348e784f8bc385de9326f_a3f7d94ba2ff42749f50832af71b7a15.rgb": {
       "bytes": 983068,
-      "sha256": "a7ed9560ed46f449654bc4e3e1c42d55ff51c984090c8fc9f846365aa149d9d2"
+      "sha256": "40bdc402f4eeab9871fb6cfca32099c2e7d130ee1b10c03596c0c9cc4a119ce5"
     },
-    "data/artifacts/staging/job_8f71159879e24033ad7a86a30bf34c3b_d48445c57b704a2295c45c5d58bf50e9.rgb": {
-      "bytes": 983068,
-      "sha256": "a7ed9560ed46f449654bc4e3e1c42d55ff51c984090c8fc9f846365aa149d9d2"
-    },
-    "data/artifacts/staging/job_8f71159879e24033ad7a86a30bf34c3b_fa1a7d6c78f94d0d970645ca26cf060a.mp4.host-encoder.log": {
+    "data/artifacts/staging/job_87ff78b0e1b348e784f8bc385de9326f_fc39037e589749d78ac7a38cc672ab8f.mp4.host-encoder.log": {
       "bytes": 0,
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     },
     "data/files/bundles/bundles.json": {
-      "bytes": 10785,
-      "sha256": "2769ec1ccf67c20fc6c808b206fdd9831345a8f3a4871ab08d291d03ccb51462"
+      "bytes": 11478,
+      "sha256": "53889617216108d81e6dfc5e30eab5f3f51f25adbb560ce040d40495844d1473"
     },
     "data/java-results.json": {
-      "bytes": 45498,
-      "sha256": "85f0831879b99f5aa04925e58fe59589edbd0b11fdb07f8c01663ee0d87cf1ce"
+      "bytes": 26316,
+      "sha256": "f101c3fe0973cfb0de85de6850e824b621bdcae0bb9785a9790d81335897e57e"
     },
     "execution.json": {
       "bytes": 13216,
-      "sha256": "0a522675d6f727c98ac4c6d2d1ed5e5ca088f059a9dea2a60f07b1310e535cd7"
+      "sha256": "9265b0326f91e3bb4efe9f861db31660b249b916e396ce53039c1fe10c770f6c"
     },
     "java.stderr": {
       "bytes": 0,
@@ -1774,7 +958,7 @@
     },
     "java.stdout": {
       "bytes": 190,
-      "sha256": "5274cba7f6e2dfd7a36a2f1e9966e7500e8c4ab89933806be291bdf97cd69cb9"
+      "sha256": "3dfcb3e9767bf246e9def021e9fa26c5b9134fdb08fcfb14d10ded9e43c6d76b"
     },
     "sources.rsp": {
       "bytes": 6050,
@@ -1788,8 +972,8 @@
     "ggml_revision": "a5915eb0e47adef21c3f25b889a008925ea838c2",
     "backend": "vulkan",
     "file": "lma_sd_vulkan_host.exe",
-    "bytes": 49657856,
-    "sha256": "ccca373f7852397867515e24fc9f9edd43aa2bb6fb4b919c6c98a97fa6a72f10",
+    "bytes": 49658880,
+    "sha256": "e2008534191f75dc9c4f07eab9200f66646664eefab2c120c2193d346c52d6ca",
     "vocabularies": "external_user_selected_components",
     "physical_device_tests": 0,
     "model_inference_tested": false,
@@ -1799,8 +983,8 @@
       "native/lcm_condition.hpp": "a5d94cf2f2453f3c8045418aa6b1a147ffa27557665bfc6f2203e04048899ea4",
       "native/qwen_prompt.hpp": "ec9a45781b93eff62c6f0a4eca2c59fe1088c931d4c1150dcd903ae5c84c1c0f",
       "native/sd_backend.hpp": "0e3123316a382566c30dfe0a207e9f130242629d0e3a5fb164be7fe243c0364c",
-      "native/sd_policy.hpp": "c7d987ffc6b905fbad9d6a47be98d10f57b2060728f00801742a4ec346a5c7ba",
-      "native/sd_worker.cpp": "38d9813306eb330a16f810587582d23213d97bd06117370238064567f6ac2dc3",
+      "native/sd_policy.hpp": "e60d0f67258e15754930f38aec97522fff28475c4cb3c92524d5daa785178619",
+      "native/sd_worker.cpp": "a6ce16e26c047231326fe1fd2551d75cabf2d47381d6489d73ef7b8c712ac96a",
       "native/tokenizer_data.hpp": "c752eb62a3c915be4742124bb25e6ada9ea952bbc81c62a1a864cfe39a3ddd6d",
       "native/vocab_external.cpp": "b8e568f72914833f66bbe338fb877d98d1cb954525a7d3d9a1f8364e4e1c90af",
       "research/sd_host/compat/sys/prctl.h": "87c9ddf82ce059bf303486b0e10b22dce6d972e87f83836d148e631dcdad9c9e",
@@ -1822,7 +1006,7 @@
     "abi": "windows-x86_64",
     "compiler": "native MSVC"
   },
-  "direct_trained_report_sha256": "1053e9fe0e9ceca7dafa0dbeb2942cd30feb337276555256531655cca85027bf",
+  "direct_trained_report_sha256": "fe56e8bc0cdcd735588c138b030047c0b47457f347b6db9424f34d2b7f0eb840",
   "production_java_native_host_executed": true,
   "physical_android": false,
   "android_saf_tested": false,
@@ -1842,8 +1026,8 @@
     "native/lcm_condition.hpp": "a5d94cf2f2453f3c8045418aa6b1a147ffa27557665bfc6f2203e04048899ea4",
     "native/qwen_prompt.hpp": "ec9a45781b93eff62c6f0a4eca2c59fe1088c931d4c1150dcd903ae5c84c1c0f",
     "native/sd_backend.hpp": "0e3123316a382566c30dfe0a207e9f130242629d0e3a5fb164be7fe243c0364c",
-    "native/sd_policy.hpp": "c7d987ffc6b905fbad9d6a47be98d10f57b2060728f00801742a4ec346a5c7ba",
-    "native/sd_worker.cpp": "38d9813306eb330a16f810587582d23213d97bd06117370238064567f6ac2dc3",
+    "native/sd_policy.hpp": "e60d0f67258e15754930f38aec97522fff28475c4cb3c92524d5daa785178619",
+    "native/sd_worker.cpp": "a6ce16e26c047231326fe1fd2551d75cabf2d47381d6489d73ef7b8c712ac96a",
     "native/tokenizer_data.hpp": "c752eb62a3c915be4742124bb25e6ada9ea952bbc81c62a1a864cfe39a3ddd6d",
     "native/vocab_external.cpp": "b8e568f72914833f66bbe338fb877d98d1cb954525a7d3d9a1f8364e4e1c90af",
     "research/sd_host/compat/sys/prctl.h": "87c9ddf82ce059bf303486b0e10b22dce6d972e87f83836d148e631dcdad9c9e",
@@ -1857,7 +1041,7 @@
     "research/wan_trained/assets.json": "920c7d0a222cb658dc6923531c008e96bf0213e31eb1f30ddb10ea949bb14aa6",
     "tools/fetch_sd15_trained.py": "91392401d9739f15b14fa4e42b74f13bbdd719a382746541cc69952966e6f307",
     "tools/fetch_wan_trained.py": "7dc5f8746f783774cfb1cda5ca2d5a22a2e957e4ab5490d6bcf7119ca90a31ef",
-    "app/src/main/assets/recipe-templates.json": "9e3995be14056926a996d7a1266330152f5043e3c436bedc69aa0b41b8037145",
+    "app/src/main/assets/recipe-templates.json": "fb37b971eabbf520da49990187a6f0f334809efea088b0fac555e8d5ba3ee72d",
     "app/src/main/java/com/lma/app/core/AdapterSpec.java": "aff8572d14ac8d616be0a1b0da395e52ed5bddcd5ae407a969c2657bf9257581",
     "app/src/main/java/com/lma/app/core/ArtifactStore.java": "6f85d2ac710cac0fb5a76cde9493ff1fef4d3e2e119c3e031b7c44ff65a49061",
     "app/src/main/java/com/lma/app/core/AssemblyPlan.java": "80e81dea2a831d3955aa5ae21323eb0432fb448f78994901633fbb6e85d77e7c",
@@ -1899,7 +1083,7 @@
     "app/src/main/java/com/lma/app/core/RecipeCatalogue.java": "539dcd55124ce71e32476edb8a7efd25d533935847a8357ac3a6dddf68b71a47",
     "app/src/main/java/com/lma/app/core/RecipeSuggestions.java": "57d9d7b5fc5f3c61a3ab3524af8789df58dbc8ce1923b2c09e139649057beda0",
     "app/src/main/java/com/lma/app/core/ResourceWatch.java": "6f6a4cb2159f7956d1ae8c202c61430be268d86d230245bccc952844f3816ec5",
-    "app/src/main/java/com/lma/app/core/SdSpec.java": "96b66e3da9b47b025cd7ef15f21634fe83998f7789d7728030efb4cc950b496c",
+    "app/src/main/java/com/lma/app/core/SdSpec.java": "e26906c0c338deff725d8b5c316beb8205eacbe26ea91cfb3ef0861bf94103b5",
     "app/src/main/java/com/lma/app/core/SoulxSpec.java": "a761d40965d041d38cc1f629418017103c9eefabf5904814fad9de6372b6bcc7",
     "app/src/main/java/com/lma/app/core/SpeechVoices.java": "b413549e7721d07c88fec135b01b26a18d9dc0cc686a37dd180309ee10900967",
     "app/src/main/java/com/lma/app/core/StableAudioSpec.java": "0cc04143a8c8c2afa4dc3d9726f4891779b352404d97c70d6fdc260fbe27ee6c",
@@ -1912,15 +1096,15 @@
     "app/src/main/java/com/lma/app/core/TtsSpec.java": "54f841e2ca5e93d3c3e1845014029b96912291fcf50a50c26a0124325a7a962a",
     "app/src/main/java/com/lma/app/core/WaveFile.java": "cf70b9bbafb6aa23cc25217d4883e769173b00f74571d1b115c50a8ad6b15361",
     "app/src/main/java/com/lma/app/LocalEngine.java": "c06198df33cf290dff58d5d7d7f2b44b3d84d552c1a3c0f1cf35c30c6d5b7c19",
-    "app/src/main/java/com/lma/app/NativeWorker.java": "f58974d67bdd5d017fb85adabe23687704d35b3c7d90d9800ea2875fddfae74f",
-    "app/src/main/java/com/lma/app/SdEngine.java": "5b33b01d755d5211546ef5a57c08c5c3c662bce48a4ecc0be444b143fd4eedcd",
-    "research/wan_trained/catalogue-bundle.json": "dc9d2d988980efffe5523bd4e6d998efa869f8892dd2bc29299ed3bcba36a276",
+    "app/src/main/java/com/lma/app/NativeWorker.java": "08090e4b6f169b2ffc6bd654b6eb4d64aaf62fdd16508efa39ecb2e9fa15b174",
+    "app/src/main/java/com/lma/app/SdEngine.java": "544ca66c16cee37af8659384d57c28e0800463e4d910f8e0733dbefc227d9387",
+    "research/wan_trained/catalogue-bundle.json": "a936081e8ca82a762a7c837021170fc215172d0272dec747ae501f335efa1b7d",
     "research/wan_trained/NOTICE": "051dc688525f94d8ff8b2649b268a72ef1247ab021e160693c276dc123dbea9a",
     "tests/host/android/util/AtomicFile.java": "a05b9c6ef4fa0f0f40aaa49b235faccc98d2d7d5aa1ea4bb8d2f535b8bad2796",
     "tests/tts-host/com/lma/app/LmaApp.java": "9f27bd7188d03aa4eb95b007111daff697d39515dc41884d4569e2f382d0577b",
     "tests/wan-trained/com/lma/app/VideoEncoder.java": "f8f176b882dd117905b6d3899853e8f88a08e586bcb38ee775148121467052c9",
-    "tests/wan-trained/com/lma/app/WanTrainedAppTest.java": "308abdab11bea955555a4e8566eefdbfe799da5cb328179ab58d03d3d24540c3",
-    "tools/test_wan_app_host.py": "b8fecb1774743a6ba1ac29ae1b8b0a744f58107204c2acde6ca86d9fadec53ca",
-    "tools/test_wan_trained.py": "281c35da19781b92f5de7f6eba77f23a9bf01d391b7fd15ae1e37f9cde619f27"
+    "tests/wan-trained/com/lma/app/WanTrainedAppTest.java": "ef792e24c6a1800b3610580f942256a0e4c2e00340b7cc580b698e350dadf1d3",
+    "tools/test_wan_app_host.py": "cacbfc4f62ad473faca84edbb0a04eee28a770d8fb2b649c70a227aef8e0d2fc",
+    "tools/test_wan_trained.py": "4facc518a0b7e0f91a22cbc5ca6bda36c1d9cc54b3b12afc57bbec1b9fcb8e35"
   }
 }

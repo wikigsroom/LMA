@@ -1,5 +1,5 @@
 {
-  "version": "0.3.0-dev.39",
+  "version": "0.3.0-dev.40",
   "kind": "current production UI with an explicit simulated bridge",
   "android_device": false,
   "model_inference": false,
@@ -52,13 +52,13 @@
     },
     {
       "file": "audio-ui.gif",
-      "bytes": 468457,
-      "sha256": "8a636ecf516c4972c0dfd9060fde4e5af3dcb226389b4c82b2726abb605e7974"
+      "bytes": 468527,
+      "sha256": "fdb9201849d891ee40e8548b5f956d40914d3cb518b2ace8108bc77f62ba29ae"
     },
     {
       "file": "audio-ui.mp4",
-      "bytes": 199438,
-      "sha256": "a65b6560ab91ee8226c2a0ee7891c53b777ab4ee499a62ae40417adbdf4ce6ec"
+      "bytes": 197945,
+      "sha256": "1447dcf4a675bc726dbbd2b11535977a553791d0e594072ab39ad20a6582c6c3"
     }
   ],
   "input_fingerprint": {
@@ -66,10 +66,10 @@
     "app/src/main/assets/app.js": "2240021b034e6259ac110fc48ede81c43be6fabf7200dde5ced7eeacbe9e5468",
     "app/src/main/assets/asset-preparations.json": "b0a7cbac1a633310b9fff84164439ee8fe20a1df137d1075eb9263f531ccfd3b",
     "app/src/main/assets/audio-preview.js": "33bb898969f37c1f78c6664052c46da844d148defdcef4a54d64bc5829037f44",
-    "app/src/main/assets/engine-builds.json": "f5c84596c623e12ec7043c97d837ca42441e8b1acab1129630dbd92694e63c93",
+    "app/src/main/assets/engine-builds.json": "ba3ce9cc96438ee1836f1390bab3312b4aaf364286679cd351a4711daa512740",
     "app/src/main/assets/foundation.css": "ac77af14c0498d3c358d76814109cda4f49fb5c660c1f53961d8f9b7f6c3a53f",
     "app/src/main/assets/foundation.js": "a2bd9f0a92807a0d60a97884fb3dd123ddfc5cf42258b6577bff36b37f99cb14",
-    "app/src/main/assets/index.html": "4706459e9f690667177f372806eac79e75eaa9a587cb6819a1247691bf6fc072",
+    "app/src/main/assets/index.html": "36cec4480075da6d9109bace9c2a87ef4e28a9ddf62c1c83bf686bf7f1970477",
     "app/src/main/assets/license.js": "838317c7653ca35291e9e18f2a7e2d98ed46a10880dfe144176f04ad994433d0",
     "app/src/main/assets/licenses/LLAMA_CPP_LICENSE": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
     "app/src/main/assets/licenses/LMA_LICENSE": "6ae3f5efa412d91cbf66e44f743e5ce41a8044309d05d893365206ab9bc35fc3",
@@ -157,7 +157,7 @@
     "app/src/main/assets/licenses/tts-utf8proc-LICENSE.md.txt": "3b510150d34f248a221bb88e1d811238d6c6c18b51231822c42974c39bb07256",
     "app/src/main/assets/licenses/xxhash-LICENSE.txt": "a2973411d278045bde3c7161b911e0680d53e2d73d6457c77068d2e55d816d67",
     "app/src/main/assets/model-assemblies.json": "af004a9e62205786cd2bd8ca74af4260dc125fdf1ac9e836968bab65747dd746",
-    "app/src/main/assets/model-bundles.json": "23de2ead70bb616bfc41458d78da065f24ed54a345464282ad7a2f87ca7270cc",
+    "app/src/main/assets/model-bundles.json": "1a304917d889efd034b385abf43bce04b99530b1cd45e2ce2217a29d12ef12e0",
     "app/src/main/assets/models.json": "c3e884b4e5fb06f20c036deebc78e6f953ac420e76fca72bab5a25fd59927156",
     "app/src/main/assets/preparations/ltx098_vae_prepare/stage-00.onnx": "33f367287eaf5bc67aead22132d9d73aeaf66b51387bbc3a032a1c7eb936ff8b",
     "app/src/main/assets/preparations/ltx098_vae_prepare/stage-01.onnx": "29ede53a11d80957e6f0abe38780511c267762feba725b49c29bd36fa35d31b3",
@@ -168,7 +168,7 @@
     "app/src/main/assets/preparations/ltx098_vae_prepare/stage-06.onnx": "c737a55510880d4b92e12e9aca7138a154ad6e58a96e89a4f2a530a3f369b88c",
     "app/src/main/assets/preparations/ltx098_vae_prepare/stage-07.onnx": "239145b9c04cbb5513ee96d2a41ff5b1f8db2c4cf0d9148c3092028b858b3576",
     "app/src/main/assets/preparations/ltx098_vae_prepare/stage-08.onnx": "ff463e05293456c25aa5b1a14d82b1f732f1aee0f00da45f8e28419509ba8ac9",
-    "app/src/main/assets/recipe-templates.json": "9e3995be14056926a996d7a1266330152f5043e3c436bedc69aa0b41b8037145",
+    "app/src/main/assets/recipe-templates.json": "fb37b971eabbf520da49990187a6f0f334809efea088b0fac555e8d5ba3ee72d",
     "app/src/main/assets/recipes.js": "b27e75ed85948a63476bf351cde94a59bec935a540f65e1a9fe798322bcd1b39",
     "app/src/main/assets/versions.js": "2d629929a6db642c12a242ddcc62cd4f4090ab307e0cb669ceb98add031977e1",
     "app/src/main/assets/workbench.js": "17042106c2bbecf2ba42e1287682b0ad905fbe22137fbb5b3ea0bdee5f2745f4",

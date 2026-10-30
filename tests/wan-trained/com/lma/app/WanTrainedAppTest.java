@@ -78,11 +78,13 @@ public final class WanTrainedAppTest {
         }
         check(total==4741874667L && new File(app.getFilesDir(),"bundles/objects").listFiles().length==4,"Four complete user-owned objects; no partial substitutes");
         check(app.bundles.plan(catalogue.id).getLong("reusableBytes")==total && app.bundles.plan(catalogue.id).getLong("remainingBytes")==0,"Exact existing component hashes are reusable without a second copy or automatic installation");
-        JSONObject bounded=app.bundles.saveSettings(bundle.id,new JSONObject().put("width",99999).put("steps",999).put("cfg",99).put("threads",999).put("flowShift",999)).getJSONObject("values");
+        JSONObject bounded=app.bundles.saveSettings(bundle.id,new JSONObject().put("width",99999).put("steps",999).put("cfg",99).put("threads",999).put("flowShift",999).put("vaeTileSize",99999)).getJSONObject("values");
         check(bounded.getInt("width")==2048 && bounded.getInt("steps")==200 && bounded.getDouble("cfg")==30 && bounded.getInt("threads")==64 && bounded.getDouble("flowShift")==32,"Editable model settings clamp to declared ceilings");
-        JSONObject settings=app.bundles.saveSettings(bundle.id,new JSONObject().put("width",256).put("height",256).put("steps",4).put("threads",6).put("seed",42).put("cfg",6).put("flowShift",3).put("frames",5).put("fps",8)).getJSONObject("values");
+        check(bounded.getInt("vaeTileSize")==1024,"User VAE tile size clamps to its declared application ceiling");
+        JSONObject settings=app.bundles.saveSettings(bundle.id,new JSONObject().put("width",256).put("height",256).put("steps",4).put("threads",6).put("seed",42).put("cfg",6).put("flowShift",3).put("frames",5).put("fps",8).put("vaeTileSize",512).put("vaeTemporalTiling",true)).getJSONObject("values");
         check(DataFiles.canonical(peerBefore).equals(DataFiles.canonical(app.bundles.settings(catalogue.id))),"Other model settings remain independent");
         app.bundles=new BundleStore(new File(app.getFilesDir(),"bundles"));
+        check(app.bundles.settings(bundle.id).getJSONObject("values").getInt("vaeTileSize")==512 && app.bundles.settings(bundle.id).getJSONObject("values").getBoolean("vaeTemporalTiling"),"Model-specific decoder controls survive restart");
         check(app.bundles.plan(bundle.id).getBoolean("installed") && !app.bundles.plan(catalogue.id).getBoolean("installed"),"Restart retains explicit installation without activating peer");
         artifacts=new ArtifactStore(new File(root,"artifacts"),VideoEncoder::inspect);
         SdEngine engine=new SdEngine(app,binary,new JSONObject().put("engine","wan_sd_cpp"),(builder)->{

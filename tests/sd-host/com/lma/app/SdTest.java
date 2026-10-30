@@ -46,6 +46,11 @@ public final class SdTest {
         for (String[] mapping : new String[][]{{"clip_merges", "CLIP_MERGES"}, {"qwen_merges", "QWEN_MERGES"}, {"umt5_tokenizer", "UMT5_JSON"}})
             if (components.has(mapping[0]) && !components.getString(mapping[0]).equals(System.getenv("LMA_VOCAB_" + mapping[1]))) throw new IOException("Vocabulary environment must refer to user assets");
         Files.write(Paths.get(command.getString("output")), command.toString().getBytes("UTF-8"));
+        System.out.println(new JSONObject().put("event", "progress").put("stage", "fast_fixture").put("step", 0).put("steps", 4));
+        // Backends interleave graph-node counters with the actual sampler's total.
+        System.out.println(new JSONObject().put("event", "progress").put("stage", "fast_fixture").put("step", 825).put("steps", 825));
+        for (int step : new int[]{1, 2, 4}) System.out.println(new JSONObject().put("event", "progress").put("stage", "fast_fixture").put("step", step).put("steps", 4));
+        System.out.println(new JSONObject().put("event", "progress").put("stage", "next_fixture").put("fraction", 0.1));
         System.out.println(new JSONObject().put("event", "execution").put("details", new JSONObject().put("runtimeBackend", command.getString("backend"))));
         System.out.println(new JSONObject().put("event", "complete").put("output", command.getString("output")));
     }
@@ -119,6 +124,19 @@ public final class SdTest {
                 check(resolved.getString("sampler").equals("euler") && resolved.getString("scheduler").equals(pipe.equals("qwen_image_21") ? "flux" : "discrete"), "Non-distilled advanced routes bind their actual scheduler");
             }
             if (pipe.equals("wan21_13b")) {
+                JSONObject legacy = b.json();
+                legacy.getJSONObject("parameters").getJSONObject("fields").remove("vaeTileSize");
+                legacy.getJSONObject("parameters").getJSONObject("fields").remove("vaeTemporalTiling");
+                ModelBundle old = new ModelBundle(legacy); String original = DataFiles.canonical(old.json());
+                JSONObject upgraded = SdSpec.schema(old).normalize(new JSONObject().put("threads", 6).put("vaeTiling", false), new JSONObject()).getJSONObject("values");
+                check(upgraded.getInt("vaeTileSize") == 128 && !upgraded.getBoolean("vaeTemporalTiling"), "Existing Wan manifests receive signed-engine VAE controls without a model replacement or decoder change");
+                check(upgraded.getInt("threads") == 6 && !upgraded.getBoolean("vaeTiling") && original.equals(DataFiles.canonical(old.json())), "Adding VAE controls preserves existing settings and immutable manifest bytes");
+                JSONObject oldPlan = plan(old, request(old));
+                check(!oldPlan.getJSONObject("parameters").has("vaeTileSize") && !oldPlan.getJSONObject("parameters").has("vaeTemporalTiling"), "Already-frozen legacy requests keep their original decoder behavior");
+                JSONObject tile = SdSpec.schema(b).normalize(new JSONObject(), new JSONObject().put("vaeTileSize", 99999)).getJSONObject("values");
+                check(tile.getInt("vaeTileSize") == 1024, "Editable VAE block sizes clamp to the signed application ceiling");
+                tile = SdSpec.schema(b).normalize(new JSONObject(), new JSONObject().put("vaeTileSize", 193)).getJSONObject("values");
+                check(tile.getInt("vaeTileSize") == 192, "Manually entered VAE block sizes align to 64 pixels");
                 input.getJSONObject("parameters").put("frames", 18).put("fps", 99);
                 resolved = plan(b, input).getJSONObject("parameters");
                 check(resolved.getInt("frames") == 17 && resolved.getInt("fps") == 60, "Wan frame count follows 4n+1 and a bounded frame rate");
@@ -147,6 +165,9 @@ public final class SdTest {
         try (BundleStore.Selection leases = app.bundles.acquireAll(ModelSelection.ids(frozen))) {
             TestContext context = new TestContext(root, leases, frozen); File output = engine.generate(context); JSONObject packet = new JSONObject(new String(Files.readAllBytes(output.toPath()), "UTF-8"));
             check(launched.get() == 1 && packet.getString("samplingProfile").equals("lcm"), "Actual binding launches a host protocol child with the frozen profile");
+            check(context.progress.contains("fast_fixture:0.25"), "Fast native sampling retains the first completed step despite progress throttling");
+            check(context.progress.contains("fast_fixture:1.0"), "Fast native sampling always forwards completion");
+            check(context.progress.contains("next_fixture:0.1"), "A new native stage is visible without waiting for the prior throttle interval");
             check(packet.getJSONObject("parameters").getInt("steps") == 8 && packet.getJSONObject("parameters").getDouble("cfg") == 1, "Effective parameters reach the private worker file");
             check(packet.getJSONArray("loras").length() == 2 && packet.getJSONArray("loras").getJSONObject(0).getString("path").equals(leases.models.get(1).file("lora").getAbsolutePath()), "Base and every LoRA use held private object paths");
             check(packet.getJSONObject("parameters").getLong("seed") >= 0 && context.details.getString("samplingProfile").equals("lcm"), "Actual seed and policy are recorded for provenance");
@@ -178,14 +199,14 @@ public final class SdTest {
         b.environment().putAll(original.environment()); return b.start();
     }
     private static final class TestContext implements LocalEngine.Context {
-        final BundleStore.Selection leases; final JSONObject request; final File directory; JSONObject details; File json;
+        final BundleStore.Selection leases; final JSONObject request; final File directory; final Set<String> progress = new HashSet<>(); JSONObject details; File json;
         TestContext(File root, BundleStore.Selection leases, JSONObject request) { this.leases=leases;this.request=request;directory=new File(root,"out-"+UUID.randomUUID());directory.mkdirs(); }
         public BundleStore.Lease model() { return leases.models.get(0); }
         public List<BundleStore.Lease> adapters() { return leases.models.subList(1,leases.models.size()); }
         public JSONObject request() { return DataFiles.copy(request); }
         public File output(String suffix) { File file=new File(directory,"protocol-fixture."+suffix);if(suffix.equals("json"))json=file;return file; }
         public void check() {}
-        public void progress(String stage, Double fraction) {}
+        public void progress(String stage, Double fraction) { progress.add(stage+":"+fraction); }
         public void process(Process process) {}
         public void execution(JSONObject value) { details=DataFiles.copy(value); }
     }

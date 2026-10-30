@@ -1,5 +1,7 @@
 # Local Wan video
 
+dev.40 adds per-model 128–1024-pixel spatial tiles and experimental temporal decoding, with existing-installation and legacy-job compatibility. Defaults remain128 / temporal off. Five full-geometry experiments and the unchanged official CPU VAE retain the later artifacts. [Settings, resource observations and quality diagnosis](WAN_DECODER.en.md).
+
 [中文](WAN_VIDEO.md) · [English README](../README.en.md) · [Complete release scope](MULTIMODAL_RELEASE_PLAN.en.md)
 
 LMA adds an optional Wan 2.1 T2V 1.3B Q4 model alongside text, image and audio peers. Its tags identify video/text-to-video and the Vulkan diffusion / CPU text and VAE foundation. App updates supply the runtime only. Users explicitly choose, download or import all four components; browsing, installation and upgrades never fetch weights.

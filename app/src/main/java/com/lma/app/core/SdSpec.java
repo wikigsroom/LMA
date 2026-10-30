@@ -6,6 +6,20 @@ import java.util.*;
 
 /** Signed diffusion routing and sampling policy; declarations do not verify weight tensors. */
 public final class SdSpec {
+    /** Add signed-engine controls without rewriting user manifests, weights or frozen jobs. */
+    public static ParameterSchema schema(ModelBundle bundle) throws Exception {
+        JSONObject schema = bundle.parameters().json();
+        if (bundle.pipeline.equals("wan21_13b")) {
+            JSONObject fields = schema.getJSONObject("fields");
+            if (!fields.has("vaeTileSize")) fields.put("vaeTileSize", new JSONObject()
+                .put("type", "integer").put("label", "VAE 空间分块大小（像素）").put("default", 128)
+                .put("minimum", 128).put("maximum", 1024).put("multipleOf", 64)
+                .put("presets", new JSONArray(Arrays.asList(128, 256, 512, 1024))).put("limitSource", "application_guard"));
+            if (!fields.has("vaeTemporalTiling")) fields.put("vaeTemporalTiling", new JSONObject()
+                .put("type", "boolean").put("label", "VAE 按时间分段解码").put("default", false));
+        }
+        return new ParameterSchema(schema);
+    }
     private SdSpec() {}
     private static final Set<String> PIPELINES = new HashSet<>(Arrays.asList("sd15", "sd21_turbo", "sd15_lcm", "sdxl", "sdxl_lcm", "z_image_turbo", "flux2_klein_4b", "qwen_image_21", "wan21_13b"));
     public static void validate(ModelBundle bundle, String type) throws Exception {
@@ -79,6 +93,8 @@ public final class SdSpec {
             set(p, changes, "sampler", "euler", "pipeline_sampling_method");
             set(p, changes, "scheduler", base.pipeline.equals("qwen_image_21") ? "flux" : "discrete", "pipeline_sampling_schedule");
         }
+        if (p.has("vaeTileSize")) set(p, changes, "vaeTileSize", Math.max(128, Math.min(1024, p.getInt("vaeTileSize"))) / 64 * 64, "vae_tile_application_guard");
+        if (!base.pipeline.equals("wan21_13b") && p.optBoolean("vaeTemporalTiling", false)) throw new IllegalArgumentException("当前模型管线不支持 VAE 按时间分段解码");
         if (Arrays.asList("z_image_turbo", "flux2_klein_4b", "qwen_image_21", "wan21_13b").contains(base.pipeline)) {
             int alignment = base.pipeline.equals("qwen_image_21") ? 32 : 16;
             for (String dim : Arrays.asList("width", "height")) set(p, changes, dim, Math.max(64, Math.min(2048, p.optInt(dim, 512))) / alignment * alignment, "pipeline_dimension_alignment");

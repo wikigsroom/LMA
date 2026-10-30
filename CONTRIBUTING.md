@@ -1,5 +1,7 @@
 # Contributing / 贡献与更新约定
 
+dev.40 的 Wan 参数与诊断修改参照[中文](docs/WAN_DECODER.md) / [English](docs/WAN_DECODER.en.md)：保留旧任务输出、逐模型设置、显式用户资产与原默认内存策略；实际主机 VAE 对照和质量失败不作为完整生成器 / Android 验收。Run relevant native/Java/UI checks, retain original reports and failed gates, and refresh bilingual media.
+
 dev.39 Wan 本地视频：[中文](docs/WAN_VIDEO.md) / [English](docs/WAN_VIDEO.en.md)。CPU 文字 / VAE、Vulkan 扩散、同手机 MP4 使用共用模型 / 参数 / 任务 / 结果基座；四组件用户明确取得，实际 GPU 运算与枚举分开记录。原生 Windows 模型 / FFmpeg、界面夹具、ARM64 编译与未完成的手机 / 画质 / 完整 Release 分开验收；保留全部冻结范围和历史失败。
 
 dev.38 Z-Image changes use the [native and production Java reproduction](docs/ZIMAGE_TURBO.en.md#4-tokenizer-evidence-and-reproduction), preserve real files/provenance/cancellation/recovery and distinguish host evidence from Android/quality acceptance. APK remains model-free; downloads are explicit.

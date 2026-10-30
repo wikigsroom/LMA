@@ -56,6 +56,10 @@ int main() {
     rejects([] { flow_shift(33); });
     rejects([] { flow_shift(std::numeric_limits<float>::infinity()); });
     rejects([] { flow_shift(std::numeric_limits<float>::quiet_NaN()); });
+    for (int tile : {128, 256, 512, 1024}) { if (vae_tile_size(tile) != tile) throw std::runtime_error("VAE tile changed"); passed++; }
+    rejects([] { vae_tile_size(127); });
+    rejects([] { vae_tile_size(1088); });
+    rejects([] { vae_tile_size(257); });
     geometry("qwen_image_21", 1024, 1024, 0, 0); passed++;
     geometry("wan21_13b", 512, 288, 17, 8); passed++;
     rejects([] { geometry("qwen_image_21", 1008, 1024, 0, 0); });

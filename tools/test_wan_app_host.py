@@ -59,7 +59,7 @@ def main():
         result=subprocess.run([shutil.which('javac'),'-encoding','UTF-8','--release','8','-cp',str(dependency),'-d',str(classes),'@'+str(rsp)],capture_output=True,timeout=90)
         (folder/'compile.log').write_bytes(result.stdout+result.stderr)
         if result.returncode:raise RuntimeError('Inspect retained actual Java compile log: '+str(folder.relative_to(ROOT)))
-        drive=next((c+':' for c in 'TUVWXYZ' if not Path(c+':/').exists()),None)
+        drive=next((c+':' for c in 'UVWXYZT' if not Path(c+':/').exists()),None)
         if not drive:raise RuntimeError('No free owned ASCII alias')
         subprocess.run(['subst',drive,str(ROOT)],capture_output=True,check=True)
         try:

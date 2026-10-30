@@ -15,7 +15,7 @@ ROOT=Path(__file__).resolve().parents[1]
 def main():
     from PIL import Image,ImageDraw,ImageFont
     parser=argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--default-capture',help='Optional existing owned build/wan-smoke/run-* capture; never reruns inference')
+    parser.add_argument('--decoder-capture',help='Existing owned 512-pixel/temporal decoder experiment; not the model defaults')
     args=parser.parse_args()
     direct_path=ROOT/'build/wan-trained-tests/results.json';bridge_path=ROOT/'build/wan-app-host-tests/results.json'
     direct=json.loads(direct_path.read_text(encoding='utf-8'));bridge=json.loads(bridge_path.read_text(encoding='utf-8'))
@@ -26,18 +26,19 @@ def main():
     for name,label in [('a','Robot / 4 steps / explicit small test'),('b','Sailboat / 4 steps / explicit small test'),('one-step','Robot / 1 step / not a quality claim')]:
         run=next(r for r in direct['runs'] if r['name']==name)
         candidates.append((name,ROOT/direct['capture_directory']/(name+'.rgb'),run['frames'],run['request'],label))
-    if args.default_capture:
-        folder=(ROOT/args.default_capture).resolve()
-        if folder.parent!=(ROOT/'build/wan-smoke').resolve() or not folder.name.startswith('run-'):raise ValueError('Not an owned default capture')
+    if args.decoder_capture:
+        folder=(ROOT/args.decoder_capture).resolve()
+        if folder.parent not in [(ROOT/'build/wan-smoke').resolve(),(ROOT/'build/wan-quality').resolve()] or not (folder.name.startswith('run-') or folder.name.startswith('current-default-')):raise ValueError('Not an owned default capture')
         report_path=folder/'result.json';report=json.loads(report_path.read_text(encoding='utf-8'))
         if report['compilation']!=direct['compilation'] or report['components']!=direct['components'] or report['process']['returncode']!=0:raise ValueError('Default capture differs from current complete source/assets')
         request=report['request'];params=request['parameters']
         if request['backend']!='vulkan' or request['pipeline']!='wan21_13b' or tuple(params[k] for k in ['width','height','frames','fps','steps','cfg','flowShift'])!=(512,288,17,8,20,6,3):raise ValueError('Not the exact default configuration')
+        if params.get('vaeTileSize')!=512 or params.get('vaeTemporalTiling') is not True:raise ValueError('Not the explicit experimental decoder configuration')
         execution=[e['details'] for e in report['process']['events'] if e.get('event')=='execution']
         if len(execution)!=1 or not execution[0]['vulkanGraphObserved'] or execution[0]['remoteInference']:raise ValueError('No completed GPU operation in default capture')
-        raw=folder/'a.rgb';stats=frame_stats(raw)
+        raw=folder/Path(request['output'].replace('\\','/')).name;stats=frame_stats(raw)
         if stats['sha256']!=report['output']['sha256'] or stats['changed_from_first']==0:raise ValueError('Default output changed or lacks motion')
-        candidates.insert(0,('default',raw,stats,request,'Default smoke / 20 steps / 17 frames / quality unaccepted'))
+        candidates.insert(0,('decoder',raw,stats,request,'Explicit VAE 512 / temporal / NOT defaults / quality unaccepted'))
         source_inputs.append(report_path.relative_to(ROOT).as_posix())
     before=fingerprint(*source_inputs)
     ffmpeg=shutil.which('ffmpeg')
@@ -74,7 +75,7 @@ def main():
             result=subprocess.run([ffmpeg,'-y','-hide_banner','-loglevel','error',*command],capture_output=True,timeout=120)
             if result.returncode:raise RuntimeError(result.stderr.decode('utf-8',errors='replace')[-700:])
         products.append(dict(name=name,source_sha256=stats['sha256'],source_bytes=stats['bytes'],frames=stats['frames'],width=width,height=height,
-            request=request,quality_accepted=False,default_smoke=name=='default'))
+            request=request,quality_accepted=False,default_smoke=False,controlled_full_geometry=name=='decoder'))
     for output in bridge['outputs']:
         source=ROOT/output['file']
         if sha(source)!=output['sha256']:raise ValueError('Actual Java MP4 changed')
@@ -83,6 +84,8 @@ def main():
     report=dict(schema='lma.wan-trained-media/1',version=version(),real_trained_host_execution=True,android_recording=False,
         host_encoder='native_windows_ffmpeg_libx264',generation_timing_depicted=False,independent_numerics_accepted=False,
         video_quality_accepted=False,complete_release_accepted=False,products=products,
+        historical_default_smoke=dict(checkpoint='0.3.0-dev.39',current_execution=False,quality_accepted=False,
+            files=['default-frames.png','default.gif','default.mp4']),
         files=[dict(file=p.name,bytes=p.stat().st_size,sha256=sha(p)) for p in sorted(out.iterdir()) if p.suffix in ['.png','.gif','.mp4']],
         direct_report_sha256=sha(direct_path),java_report_sha256=sha(bridge_path),input_fingerprint=before)
     (out/'manifest.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')

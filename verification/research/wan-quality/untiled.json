@@ -1,0 +1,518 @@
+{
+  "experiment": "dev39 default, only vaeTiling true -> false",
+  "compilation": {
+    "schema": "lma.native-build/1",
+    "engine": "wan_sd_cpp",
+    "source_revision": "be486498eadc29dc3cd234d944c2180ed42b1415",
+    "ggml_revision": "a5915eb0e47adef21c3f25b889a008925ea838c2",
+    "backend": "vulkan",
+    "file": "lma_sd_vulkan_host.exe",
+    "bytes": 49657856,
+    "sha256": "ccca373f7852397867515e24fc9f9edd43aa2bb6fb4b919c6c98a97fa6a72f10",
+    "vocabularies": "external_user_selected_components",
+    "physical_device_tests": 0,
+    "model_inference_tested": false,
+    "virtualization_used": false,
+    "source_inputs": {
+      "native/CMakeLists.txt": "bbeee4fa61d80500eeecb80dde2be73296e13ec637fc8a2d57a5faaee867e2aa",
+      "native/lcm_condition.hpp": "a5d94cf2f2453f3c8045418aa6b1a147ffa27557665bfc6f2203e04048899ea4",
+      "native/qwen_prompt.hpp": "ec9a45781b93eff62c6f0a4eca2c59fe1088c931d4c1150dcd903ae5c84c1c0f",
+      "native/sd_backend.hpp": "0e3123316a382566c30dfe0a207e9f130242629d0e3a5fb164be7fe243c0364c",
+      "native/sd_policy.hpp": "c7d987ffc6b905fbad9d6a47be98d10f57b2060728f00801742a4ec346a5c7ba",
+      "native/sd_worker.cpp": "38d9813306eb330a16f810587582d23213d97bd06117370238064567f6ac2dc3",
+      "native/tokenizer_data.hpp": "c752eb62a3c915be4742124bb25e6ada9ea952bbc81c62a1a864cfe39a3ddd6d",
+      "native/vocab_external.cpp": "b8e568f72914833f66bbe338fb877d98d1cb954525a7d3d9a1f8364e4e1c90af",
+      "research/sd_host/compat/sys/prctl.h": "87c9ddf82ce059bf303486b0e10b22dce6d972e87f83836d148e631dcdad9c9e",
+      "research/sd_host/compat/unistd.h": "e467e7f5855c286b3ce40268146ed34d153a5fbf8a42d5c36b26a6293142068b",
+      "research/sd_vulkan_host/CMakeLists.txt": "752440871771be3b3519361e9c488669ca691d875737eac9e489e24870948feb",
+      "research/sd_vulkan_host/NOTICE": "9b917aa087e1d8cda34b8ae50ca88d9a1e73b7ae2c7917130656f9f9579d1ff9",
+      "third_party/ltx098-source-lock.json": "28acd99486f6ca76a06d038076175ac01ca55c7b1d8c3ba6dab9190291ac8779",
+      "third_party/notices/sd-sources.json": "91ee744071aa93c4bd4d40476d3582fa4bf4d00a628527e196d4856c06ec77c1",
+      "tools/build_ltx098.py": "bf39449e38190a666093f6954d133a76da36d519817ca636703f030100d4faf8",
+      "tools/build_sd_vulkan.py": "465f3e0bf42bb555be5f41a609bbb6c510dd5869a07b0a7b0ea2a5e6d0f2454e"
+    },
+    "module_backends": {
+      "text": "cpu",
+      "vae": "cpu",
+      "diffusion": "vulkan0"
+    },
+    "gpu_execution_requires_completed_operation": true,
+    "remote_inference": false,
+    "abi": "windows-x86_64",
+    "compiler": "native MSVC"
+  },
+  "components": [
+    {
+      "role": "diffusion",
+      "repository": "off-grid-ai/Wan2.1-T2V-1.3B-GGUF",
+      "revision": "1ba777b2426d5717dd0fddb1100078604a9d4667",
+      "path": "Wan2.1-T2V-1.3B-Q4_K_S.gguf",
+      "bytes": 816061024,
+      "sha256": "65181afff758fba25cf311399ccb0638a746f8e0e6533e07a84a5a23e0c12318",
+      "format": "gguf",
+      "url": "https://huggingface.co/off-grid-ai/Wan2.1-T2V-1.3B-GGUF/resolve/1ba777b2426d5717dd0fddb1100078604a9d4667/Wan2.1-T2V-1.3B-Q4_K_S.gguf"
+    },
+    {
+      "role": "t5",
+      "repository": "off-grid-ai/Video-Companions-GGUF",
+      "revision": "18b5ae5e93799acd6cd20819f898ff60f4b822d1",
+      "path": "umt5-xxl-encoder-Q4_K_M.gguf",
+      "bytes": 3655145312,
+      "sha256": "17cf97a5bbbc60a646d6105b832b6f657ce904a8a1ad970e4b59df0c67584a40",
+      "format": "gguf",
+      "url": "https://huggingface.co/off-grid-ai/Video-Companions-GGUF/resolve/18b5ae5e93799acd6cd20819f898ff60f4b822d1/umt5-xxl-encoder-Q4_K_M.gguf"
+    },
+    {
+      "role": "vae",
+      "repository": "off-grid-ai/Video-Companions-GGUF",
+      "revision": "18b5ae5e93799acd6cd20819f898ff60f4b822d1",
+      "path": "wan_2.1_vae.safetensors",
+      "bytes": 253815318,
+      "sha256": "2fc39d31359a4b0a64f55876d8ff7fa8d780956ae2cb13463b0223e15148976b",
+      "format": "safetensors",
+      "url": "https://huggingface.co/off-grid-ai/Video-Companions-GGUF/resolve/18b5ae5e93799acd6cd20819f898ff60f4b822d1/wan_2.1_vae.safetensors"
+    },
+    {
+      "role": "umt5_tokenizer",
+      "repository": "google/umt5-xxl",
+      "revision": "66cb9e7e85526fe440a945569e42c72fb6cbc0ad",
+      "path": "tokenizer.json",
+      "bytes": 16853013,
+      "sha256": "af904105ce1071b1202bba0059a841f4a7b85b48b6ec179c4948e3483476e0dd",
+      "format": "json",
+      "url": "https://huggingface.co/google/umt5-xxl/resolve/66cb9e7e85526fe440a945569e42c72fb6cbc0ad/tokenizer.json"
+    }
+  ],
+  "request": {
+    "schema": "lma.engine-request/1",
+    "backend": "vulkan",
+    "type": "video.generate",
+    "pipeline": "wan21_13b",
+    "architecture": "wan21",
+    "samplingProfile": "standard",
+    "input": {
+      "prompt": "A small red toy robot waving its hand beside a blue ceramic teapot on a wooden table, gentle camera movement, soft daylight",
+      "negativePrompt": ""
+    },
+    "parameters": {
+      "width": 512,
+      "height": 288,
+      "frames": 17,
+      "fps": 8,
+      "steps": 20,
+      "threads": 6,
+      "seed": 42,
+      "cfg": 6,
+      "sampler": "euler",
+      "scheduler": "discrete",
+      "flowShift": 3,
+      "vaeTiling": false
+    },
+    "components": {
+      "diffusion": "T:/build/wan-trained/originals/65181afff758fba25cf311399ccb0638a746f8e0e6533e07a84a5a23e0c12318/Wan2.1-T2V-1.3B-Q4_K_S.gguf",
+      "t5": "T:/build/wan-trained/originals/17cf97a5bbbc60a646d6105b832b6f657ce904a8a1ad970e4b59df0c67584a40/umt5-xxl-encoder-Q4_K_M.gguf",
+      "vae": "T:/build/wan-trained/originals/2fc39d31359a4b0a64f55876d8ff7fa8d780956ae2cb13463b0223e15148976b/wan_2.1_vae.safetensors",
+      "umt5_tokenizer": "T:/build/wan-trained/originals/af904105ce1071b1202bba0059a841f4a7b85b48b6ec179c4948e3483476e0dd/tokenizer.json"
+    },
+    "loras": [],
+    "output": "T:/build/wan-quality/untiled-1793360295780024600/untiled.rgb"
+  },
+  "process": {
+    "returncode": 0,
+    "seconds": 440.46044369999436,
+    "events": [
+      {
+        "event": "stage",
+        "stage": "loading"
+      },
+      {
+        "event": "stage",
+        "stage": "generating"
+      },
+      {
+        "event": "progress",
+        "seconds": 2000.0001220703125,
+        "stage": "generating",
+        "step": 0,
+        "steps": 242
+      },
+      {
+        "event": "progress",
+        "seconds": 0.0008347107795998454,
+        "stage": "generating",
+        "step": 242,
+        "steps": 242
+      },
+      {
+        "event": "progress",
+        "seconds": 0.0,
+        "stage": "generating",
+        "step": 0,
+        "steps": 20
+      },
+      {
+        "event": "progress",
+        "seconds": 3000.0,
+        "stage": "generating",
+        "step": 0,
+        "steps": 825
+      },
+      {
+        "event": "progress",
+        "seconds": 0.000796078413259238,
+        "stage": "generating",
+        "step": 255,
+        "steps": 825
+      },
+      {
+        "event": "progress",
+        "seconds": 0.0006986531661823392,
+        "stage": "generating",
+        "step": 594,
+        "steps": 825
+      },
+      {
+        "event": "progress",
+        "seconds": 0.0009321266552433372,
+        "stage": "generating",
+        "step": 663,
+        "steps": 825
+      },
+      {
+        "event": "progress",
+        "seconds": 0.0012352941557765007,
+        "stage": "generating",
+        "step": 663,
+        "steps": 825
+      },
+      {
+        "event": "progress",
+        "seconds": 0.0012703030370175838,
+        "stage": "generating",
+        "step": 825,
+        "steps": 825
+      },
+      {
+        "event": "progress",
+        "seconds": 4.634045124053955,
+        "stage": "generating",
+        "step": 1,
+        "steps": 20
+      },
+      {
+        "event": "progress",
+        "seconds": 1.180408000946045,
+        "stage": "generating",
+        "step": 2,
+        "steps": 20
+      },
+      {
+        "event": "progress",
+        "seconds": 1.1224859952926636,
+        "stage": "generating",
+        "step": 3,
+        "steps": 20
+      },
+      {
+        "event": "progress",
+        "seconds": 1.1197739839553833,
+        "stage": "generating",
+        "step": 4,
+        "steps": 20
+      },
+      {
+        "event": "progress",
+        "seconds": 1.13503098487854,
+        "stage": "generating",
+        "step": 5,
+        "steps": 20
+      },
+      {
+        "event": "progress",
+        "seconds": 1.1270259618759155,
+        "stage": "generating",
+        "step": 6,
+        "steps": 20
+      },
+      {
+        "event": "progress",
+        "seconds": 1.1365360021591187,
+        "stage": "generating",
+        "step": 7,
+        "steps": 20
+      },
+      {
+        "event": "progress",
+        "seconds": 1.1266449689865112,
+        "stage": "generating",
+        "step": 8,
+        "steps": 20
+      },
+      {
+        "event": "progress",
+        "seconds": 1.1475900411605835,
+        "stage": "generating",
+        "step": 9,
+        "steps": 20
+      },
+      {
+        "event": "progress",
+        "seconds": 1.122778058052063,
+        "stage": "generating",
+        "step": 10,
+        "steps": 20
+      },
+      {
+        "event": "progress",
+        "seconds": 1.125133991241455,
+        "stage": "generating",
+        "step": 11,
+        "steps": 20
+      },
+      {
+        "event": "progress",
+        "seconds": 1.1240299940109253,
+        "stage": "generating",
+        "step": 12,
+        "steps": 20
+      },
+      {
+        "event": "progress",
+        "seconds": 1.1297539472579956,
+        "stage": "generating",
+        "step": 13,
+        "steps": 20
+      },
+      {
+        "event": "progress",
+        "seconds": 1.123108983039856,
+        "stage": "generating",
+        "step": 14,
+        "steps": 20
+      },
+      {
+        "event": "progress",
+        "seconds": 1.1275060176849365,
+        "stage": "generating",
+        "step": 15,
+        "steps": 20
+      },
+      {
+        "event": "progress",
+        "seconds": 1.2221009731292725,
+        "stage": "generating",
+        "step": 16,
+        "steps": 20
+      },
+      {
+        "event": "progress",
+        "seconds": 1.1479610204696655,
+        "stage": "generating",
+        "step": 17,
+        "steps": 20
+      },
+      {
+        "event": "progress",
+        "seconds": 1.133105993270874,
+        "stage": "generating",
+        "step": 18,
+        "steps": 20
+      },
+      {
+        "event": "progress",
+        "seconds": 1.1335049867630005,
+        "stage": "generating",
+        "step": 19,
+        "steps": 20
+      },
+      {
+        "event": "progress",
+        "seconds": 1.155722975730896,
+        "stage": "generating",
+        "step": 20,
+        "steps": 20
+      },
+      {
+        "event": "progress",
+        "seconds": 2000.0001220703125,
+        "stage": "generating",
+        "step": 0,
+        "steps": 108
+      },
+      {
+        "event": "progress",
+        "seconds": 0.002009803894907236,
+        "stage": "generating",
+        "step": 102,
+        "steps": 108
+      },
+      {
+        "event": "progress",
+        "seconds": 0.0037499999161809683,
+        "stage": "generating",
+        "step": 108,
+        "steps": 108
+      },
+      {
+        "details": {
+          "diffusionBackend": "vulkan0",
+          "remoteInference": false,
+          "runtimeBackend": "vulkan",
+          "textBackend": "cpu",
+          "vaeBackend": "cpu",
+          "vulkanGraphObserved": true
+        },
+        "event": "execution"
+      },
+      {
+        "event": "complete",
+        "format": "lma_rgb_frames",
+        "fps": 8,
+        "frames": 17,
+        "height": 288,
+        "output": "T:/build/wan-quality/untiled-1793360295780024600/untiled.rgb",
+        "width": 512
+      }
+    ],
+    "protocol_errors": [],
+    "logs_truncated": [
+      false,
+      false
+    ],
+    "timed_out": false,
+    "forced_host_termination": false,
+    "cancel_trigger": null,
+    "cancel_to_exit_seconds": null,
+    "android_cooperative_cancellation_tested": false,
+    "resources": {
+      "observed": true,
+      "samples": 17815,
+      "interval_ms": 20,
+      "observed_peak_working_set_bytes": 11291410432,
+      "sampled_peak_private_bytes": 8773832704,
+      "gpu_memory_measured": false,
+      "physical_device_memory_measured": false
+    }
+  },
+  "physical_android": false,
+  "independent_numerics_accepted": false,
+  "video_quality_accepted": false,
+  "output": {
+    "bytes": 7520284,
+    "sha256": "21feb001d290ed76f3a78a877b8cebedfbea9ea3aa5b111b44a4f8ce573512c6",
+    "width": 512,
+    "height": 288,
+    "frames": 17,
+    "fps": 8,
+    "channels": 3,
+    "frame_sha256": [
+      "fc99c2a651d4782017fb767ed6dfec47d0014437d4b90818187605c69b6297e4",
+      "392341fa555397b5bd8fbc254a39cb0bf4a25c2cf3624f3dce8058f3eedeaf8d",
+      "4e5059f82a6b8c07c76eb63efd80aa0c5ff858b91fc2b46560ab8a3bc14275f8",
+      "af9af35431a6a2f312f72cd63360b5d1eace05b773097bd4317b638e98c9f8a5",
+      "2b9fbd8f01a05debaa248f15e0d12a059ae1a6b95cb8282ce6f12c01fe847708",
+      "b88c407d015be8185486c5b4cc9e40c4b7cf82ec4ee710f689674a2590b479d0",
+      "83b257e0279b4d693fe335e5bb2ee4cdd2805801460c17bab9c896b5824e5105",
+      "4d0a34023d1509679fd8c6473ff2fd0c1e54324cfaa6e48e7777548592b9dcb3",
+      "ed52357e7ef0769d40c32e405659203ca8627ac83263ef57a0c181387c833e5b",
+      "c9982e1dc6f77804966acae55cabfd8c498f38af2cdc4a406c17ce3e536ca4fe",
+      "8d065c194b3445c302c109cf9a32c2fd9aef944b8ba6358be160621b681ccd32",
+      "8375edc6d2f39a769968ab930fd8767357f83a16565384c98ccb5d54579c4959",
+      "6fc11d47f07ca442ea0ab3918bf23f8edb6f39daff596404f9765b5b2e018ef6",
+      "3ec0cd734ac95aeed1f58138651fa084f474f90602c400829ab49ab3eadebd13",
+      "0d5a7894cf5ee3f1cafd33d6e5660adb7f2c318f25d86683dccadc2e96a64117",
+      "79aa0cbd892097de4041dfaacebaf8313f6f9ac8631d28da4e66531ea8840871",
+      "c5e2e209cf8291af71e1a8d6bd5ed021fb6546d33e939a339282415db11c8f7b"
+    ],
+    "channel_stddev": [
+      [
+        66.70890659138864,
+        48.5082955000741,
+        42.470063631413225
+      ],
+      [
+        66.0876416789801,
+        47.889165635943016,
+        41.96401398440173
+      ],
+      [
+        65.78189381239618,
+        47.563472390586696,
+        41.723989971351706
+      ],
+      [
+        65.29997057130464,
+        47.17625517815614,
+        41.42599704856762
+      ],
+      [
+        65.11132249278327,
+        46.99177296134595,
+        41.12156870721683
+      ],
+      [
+        64.74354110462619,
+        47.47762280576702,
+        41.340936546709834
+      ],
+      [
+        66.3293440723104,
+        47.05177771318452,
+        41.27221150402323
+      ],
+      [
+        65.65826858246365,
+        47.26888294488309,
+        42.0379549026372
+      ],
+      [
+        65.48348377962176,
+        47.18040619272302,
+        41.95313885579728
+      ],
+      [
+        65.1039002990441,
+        47.70369934203125,
+        43.054082454258996
+      ],
+      [
+        66.25185748207198,
+        48.15965957392862,
+        43.93773436858551
+      ],
+      [
+        66.10651460435554,
+        48.192162210312325,
+        44.192719242703035
+      ],
+      [
+        64.59784910601745,
+        47.62585649137068,
+        43.525577643011836
+      ],
+      [
+        62.8710725645885,
+        48.59225281837916,
+        48.422428365376646
+      ],
+      [
+        62.337624676635905,
+        48.69416803938067,
+        48.929311403386876
+      ],
+      [
+        62.14323445039842,
+        48.91382724399598,
+        49.6925722366045
+      ],
+      [
+        62.45563067566561,
+        49.53702555388069,
+        50.31438889274441
+      ]
+    ],
+    "changed_from_first": 16,
+    "maximum_motion_delta": 255,
+    "quality_accepted": false
+  }
+}

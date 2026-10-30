@@ -1,0 +1,14 @@
+LMA Wan diagnostic only. Not packaged or registered as a product engine.
+
+Links the existing pinned native-Windows Vulkan libraries from stable-diffusion.cpp
+be486498eadc29dc3cd234d944c2180ed42b1415 and ggml
+a5915eb0e47adef21c3f25b889a008925ea838c2. Their MIT and dependency notices are
+preserved in third_party/notices/sd-sources.json and adjacent notice files.
+
+A build-only copy of pipeline/video.cpp receives one reviewed diagnostic seam:
+save the actual denoised F32 tensor immediately before VAE decoding and exit the
+generation path without creating frames. Pinned upstream files stay pristine.
+The original production worker still reports generation failure, as no video was
+decoded. A diagnostic capture is not a completed video or Android acceptance.
+
+No checkpoint, tokenizer or other model data is distributed with this probe.

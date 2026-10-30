@@ -1,0 +1,563 @@
+{
+  "compilation": {
+    "schema": "lma.native-build/1",
+    "engine": "wan_sd_cpp",
+    "source_revision": "be486498eadc29dc3cd234d944c2180ed42b1415",
+    "ggml_revision": "a5915eb0e47adef21c3f25b889a008925ea838c2",
+    "backend": "vulkan",
+    "file": "lma_sd_vulkan_host.exe",
+    "bytes": 49657856,
+    "sha256": "ccca373f7852397867515e24fc9f9edd43aa2bb6fb4b919c6c98a97fa6a72f10",
+    "vocabularies": "external_user_selected_components",
+    "physical_device_tests": 0,
+    "model_inference_tested": false,
+    "virtualization_used": false,
+    "source_inputs": {
+      "native/CMakeLists.txt": "bbeee4fa61d80500eeecb80dde2be73296e13ec637fc8a2d57a5faaee867e2aa",
+      "native/lcm_condition.hpp": "a5d94cf2f2453f3c8045418aa6b1a147ffa27557665bfc6f2203e04048899ea4",
+      "native/qwen_prompt.hpp": "ec9a45781b93eff62c6f0a4eca2c59fe1088c931d4c1150dcd903ae5c84c1c0f",
+      "native/sd_backend.hpp": "0e3123316a382566c30dfe0a207e9f130242629d0e3a5fb164be7fe243c0364c",
+      "native/sd_policy.hpp": "c7d987ffc6b905fbad9d6a47be98d10f57b2060728f00801742a4ec346a5c7ba",
+      "native/sd_worker.cpp": "38d9813306eb330a16f810587582d23213d97bd06117370238064567f6ac2dc3",
+      "native/tokenizer_data.hpp": "c752eb62a3c915be4742124bb25e6ada9ea952bbc81c62a1a864cfe39a3ddd6d",
+      "native/vocab_external.cpp": "b8e568f72914833f66bbe338fb877d98d1cb954525a7d3d9a1f8364e4e1c90af",
+      "research/sd_host/compat/sys/prctl.h": "87c9ddf82ce059bf303486b0e10b22dce6d972e87f83836d148e631dcdad9c9e",
+      "research/sd_host/compat/unistd.h": "e467e7f5855c286b3ce40268146ed34d153a5fbf8a42d5c36b26a6293142068b",
+      "research/sd_vulkan_host/CMakeLists.txt": "752440871771be3b3519361e9c488669ca691d875737eac9e489e24870948feb",
+      "research/sd_vulkan_host/NOTICE": "9b917aa087e1d8cda34b8ae50ca88d9a1e73b7ae2c7917130656f9f9579d1ff9",
+      "third_party/ltx098-source-lock.json": "28acd99486f6ca76a06d038076175ac01ca55c7b1d8c3ba6dab9190291ac8779",
+      "third_party/notices/sd-sources.json": "91ee744071aa93c4bd4d40476d3582fa4bf4d00a628527e196d4856c06ec77c1",
+      "tools/build_ltx098.py": "bf39449e38190a666093f6954d133a76da36d519817ca636703f030100d4faf8",
+      "tools/build_sd_vulkan.py": "465f3e0bf42bb555be5f41a609bbb6c510dd5869a07b0a7b0ea2a5e6d0f2454e"
+    },
+    "module_backends": {
+      "text": "cpu",
+      "vae": "cpu",
+      "diffusion": "vulkan0"
+    },
+    "gpu_execution_requires_completed_operation": true,
+    "remote_inference": false,
+    "abi": "windows-x86_64",
+    "compiler": "native MSVC"
+  },
+  "components": [
+    {
+      "role": "diffusion",
+      "repository": "off-grid-ai/Wan2.1-T2V-1.3B-GGUF",
+      "revision": "1ba777b2426d5717dd0fddb1100078604a9d4667",
+      "path": "Wan2.1-T2V-1.3B-Q4_K_S.gguf",
+      "bytes": 816061024,
+      "sha256": "65181afff758fba25cf311399ccb0638a746f8e0e6533e07a84a5a23e0c12318",
+      "format": "gguf",
+      "url": "https://huggingface.co/off-grid-ai/Wan2.1-T2V-1.3B-GGUF/resolve/1ba777b2426d5717dd0fddb1100078604a9d4667/Wan2.1-T2V-1.3B-Q4_K_S.gguf"
+    },
+    {
+      "role": "t5",
+      "repository": "off-grid-ai/Video-Companions-GGUF",
+      "revision": "18b5ae5e93799acd6cd20819f898ff60f4b822d1",
+      "path": "umt5-xxl-encoder-Q4_K_M.gguf",
+      "bytes": 3655145312,
+      "sha256": "17cf97a5bbbc60a646d6105b832b6f657ce904a8a1ad970e4b59df0c67584a40",
+      "format": "gguf",
+      "url": "https://huggingface.co/off-grid-ai/Video-Companions-GGUF/resolve/18b5ae5e93799acd6cd20819f898ff60f4b822d1/umt5-xxl-encoder-Q4_K_M.gguf"
+    },
+    {
+      "role": "vae",
+      "repository": "off-grid-ai/Video-Companions-GGUF",
+      "revision": "18b5ae5e93799acd6cd20819f898ff60f4b822d1",
+      "path": "wan_2.1_vae.safetensors",
+      "bytes": 253815318,
+      "sha256": "2fc39d31359a4b0a64f55876d8ff7fa8d780956ae2cb13463b0223e15148976b",
+      "format": "safetensors",
+      "url": "https://huggingface.co/off-grid-ai/Video-Companions-GGUF/resolve/18b5ae5e93799acd6cd20819f898ff60f4b822d1/wan_2.1_vae.safetensors"
+    },
+    {
+      "role": "umt5_tokenizer",
+      "repository": "google/umt5-xxl",
+      "revision": "66cb9e7e85526fe440a945569e42c72fb6cbc0ad",
+      "path": "tokenizer.json",
+      "bytes": 16853013,
+      "sha256": "af904105ce1071b1202bba0059a841f4a7b85b48b6ec179c4948e3483476e0dd",
+      "format": "json",
+      "url": "https://huggingface.co/google/umt5-xxl/resolve/66cb9e7e85526fe440a945569e42c72fb6cbc0ad/tokenizer.json"
+    }
+  ],
+  "request": {
+    "schema": "lma.engine-request/1",
+    "backend": "vulkan",
+    "type": "video.generate",
+    "pipeline": "wan21_13b",
+    "architecture": "wan21",
+    "samplingProfile": "standard",
+    "input": {
+      "prompt": "A small red toy robot waving its hand beside a blue ceramic teapot on a wooden table, gentle camera movement, soft daylight",
+      "negativePrompt": ""
+    },
+    "parameters": {
+      "width": 512,
+      "height": 288,
+      "frames": 17,
+      "fps": 8,
+      "steps": 20,
+      "threads": 6,
+      "seed": 42,
+      "cfg": 6,
+      "sampler": "euler",
+      "scheduler": "discrete",
+      "flowShift": 3,
+      "vaeTiling": true
+    },
+    "components": {
+      "diffusion": "U:/build/wan-trained/originals/65181afff758fba25cf311399ccb0638a746f8e0e6533e07a84a5a23e0c12318/Wan2.1-T2V-1.3B-Q4_K_S.gguf",
+      "t5": "U:/build/wan-trained/originals/17cf97a5bbbc60a646d6105b832b6f657ce904a8a1ad970e4b59df0c67584a40/umt5-xxl-encoder-Q4_K_M.gguf",
+      "vae": "U:/build/wan-trained/originals/2fc39d31359a4b0a64f55876d8ff7fa8d780956ae2cb13463b0223e15148976b/wan_2.1_vae.safetensors",
+      "umt5_tokenizer": "U:/build/wan-trained/originals/af904105ce1071b1202bba0059a841f4a7b85b48b6ec179c4948e3483476e0dd/tokenizer.json"
+    },
+    "loras": [],
+    "output": "U:/build/wan-smoke/run-1793355854365738300/a.rgb"
+  },
+  "process": {
+    "returncode": 0,
+    "seconds": 1012.1578892999969,
+    "events": [
+      {
+        "event": "stage",
+        "stage": "loading"
+      },
+      {
+        "event": "stage",
+        "stage": "generating"
+      },
+      {
+        "event": "progress",
+        "seconds": 4000.000244140625,
+        "stage": "generating",
+        "step": 0,
+        "steps": 242
+      },
+      {
+        "event": "progress",
+        "seconds": 0.0008429752197116613,
+        "stage": "generating",
+        "step": 242,
+        "steps": 242
+      },
+      {
+        "event": "progress",
+        "seconds": 0.0,
+        "stage": "generating",
+        "step": 0,
+        "steps": 20
+      },
+      {
+        "event": "progress",
+        "seconds": 3000.0,
+        "stage": "generating",
+        "step": 0,
+        "steps": 825
+      },
+      {
+        "event": "progress",
+        "seconds": 0.0009070796659216285,
+        "stage": "generating",
+        "step": 226,
+        "steps": 825
+      },
+      {
+        "event": "progress",
+        "seconds": 0.0007012089481577277,
+        "stage": "generating",
+        "step": 579,
+        "steps": 825
+      },
+      {
+        "event": "progress",
+        "seconds": 0.0009412674116902053,
+        "stage": "generating",
+        "step": 647,
+        "steps": 825
+      },
+      {
+        "event": "progress",
+        "seconds": 0.0012503864709287882,
+        "stage": "generating",
+        "step": 647,
+        "steps": 825
+      },
+      {
+        "event": "progress",
+        "seconds": 0.0012308626901358366,
+        "stage": "generating",
+        "step": 823,
+        "steps": 825
+      },
+      {
+        "event": "progress",
+        "seconds": 0.0014715151628479362,
+        "stage": "generating",
+        "step": 825,
+        "steps": 825
+      },
+      {
+        "event": "progress",
+        "seconds": 38.42133712768555,
+        "stage": "generating",
+        "step": 1,
+        "steps": 20
+      },
+      {
+        "event": "progress",
+        "seconds": 1.2408360242843628,
+        "stage": "generating",
+        "step": 2,
+        "steps": 20
+      },
+      {
+        "event": "progress",
+        "seconds": 1.1735060214996338,
+        "stage": "generating",
+        "step": 3,
+        "steps": 20
+      },
+      {
+        "event": "progress",
+        "seconds": 1.1604770421981812,
+        "stage": "generating",
+        "step": 4,
+        "steps": 20
+      },
+      {
+        "event": "progress",
+        "seconds": 1.182908058166504,
+        "stage": "generating",
+        "step": 5,
+        "steps": 20
+      },
+      {
+        "event": "progress",
+        "seconds": 1.177394986152649,
+        "stage": "generating",
+        "step": 6,
+        "steps": 20
+      },
+      {
+        "event": "progress",
+        "seconds": 1.16920804977417,
+        "stage": "generating",
+        "step": 7,
+        "steps": 20
+      },
+      {
+        "event": "progress",
+        "seconds": 1.1517330408096313,
+        "stage": "generating",
+        "step": 8,
+        "steps": 20
+      },
+      {
+        "event": "progress",
+        "seconds": 1.1283049583435059,
+        "stage": "generating",
+        "step": 9,
+        "steps": 20
+      },
+      {
+        "event": "progress",
+        "seconds": 1.1080950498580933,
+        "stage": "generating",
+        "step": 10,
+        "steps": 20
+      },
+      {
+        "event": "progress",
+        "seconds": 1.1291879415512085,
+        "stage": "generating",
+        "step": 11,
+        "steps": 20
+      },
+      {
+        "event": "progress",
+        "seconds": 1.1251389980316162,
+        "stage": "generating",
+        "step": 12,
+        "steps": 20
+      },
+      {
+        "event": "progress",
+        "seconds": 1.1395039558410645,
+        "stage": "generating",
+        "step": 13,
+        "steps": 20
+      },
+      {
+        "event": "progress",
+        "seconds": 1.1184149980545044,
+        "stage": "generating",
+        "step": 14,
+        "steps": 20
+      },
+      {
+        "event": "progress",
+        "seconds": 1.1322050094604492,
+        "stage": "generating",
+        "step": 15,
+        "steps": 20
+      },
+      {
+        "event": "progress",
+        "seconds": 1.1728320121765137,
+        "stage": "generating",
+        "step": 16,
+        "steps": 20
+      },
+      {
+        "event": "progress",
+        "seconds": 1.2155799865722656,
+        "stage": "generating",
+        "step": 17,
+        "steps": 20
+      },
+      {
+        "event": "progress",
+        "seconds": 1.2293180227279663,
+        "stage": "generating",
+        "step": 18,
+        "steps": 20
+      },
+      {
+        "event": "progress",
+        "seconds": 1.2404299974441528,
+        "stage": "generating",
+        "step": 19,
+        "steps": 20
+      },
+      {
+        "event": "progress",
+        "seconds": 1.378803014755249,
+        "stage": "generating",
+        "step": 20,
+        "steps": 20
+      },
+      {
+        "event": "progress",
+        "seconds": 0.0,
+        "stage": "generating",
+        "step": 0,
+        "steps": 21
+      },
+      {
+        "event": "progress",
+        "seconds": 3000.0,
+        "stage": "generating",
+        "step": 0,
+        "steps": 108
+      },
+      {
+        "event": "progress",
+        "seconds": 0.0018888888880610466,
+        "stage": "generating",
+        "step": 108,
+        "steps": 108
+      },
+      {
+        "event": "progress",
+        "seconds": 45.27000045776367,
+        "stage": "generating",
+        "step": 1,
+        "steps": 21
+      },
+      {
+        "event": "progress",
+        "seconds": 41.11600112915039,
+        "stage": "generating",
+        "step": 2,
+        "steps": 21
+      },
+      {
+        "event": "progress",
+        "seconds": 41.106998443603516,
+        "stage": "generating",
+        "step": 3,
+        "steps": 21
+      },
+      {
+        "event": "progress",
+        "seconds": 43.6609992980957,
+        "stage": "generating",
+        "step": 4,
+        "steps": 21
+      },
+      {
+        "event": "progress",
+        "seconds": 37.27799987792969,
+        "stage": "generating",
+        "step": 5,
+        "steps": 21
+      },
+      {
+        "event": "progress",
+        "seconds": 43.540000915527344,
+        "stage": "generating",
+        "step": 6,
+        "steps": 21
+      },
+      {
+        "event": "progress",
+        "seconds": 44.77399826049805,
+        "stage": "generating",
+        "step": 7,
+        "steps": 21
+      },
+      {
+        "event": "progress",
+        "seconds": 41.50899887084961,
+        "stage": "generating",
+        "step": 8,
+        "steps": 21
+      },
+      {
+        "event": "progress",
+        "seconds": 37.05400085449219,
+        "stage": "generating",
+        "step": 9,
+        "steps": 21
+      },
+      {
+        "event": "progress",
+        "seconds": 43.22800064086914,
+        "stage": "generating",
+        "step": 10,
+        "steps": 21
+      },
+      {
+        "event": "progress",
+        "seconds": 36.85599899291992,
+        "stage": "generating",
+        "step": 11,
+        "steps": 21
+      },
+      {
+        "event": "progress",
+        "seconds": 40.599998474121094,
+        "stage": "generating",
+        "step": 12,
+        "steps": 21
+      },
+      {
+        "event": "progress",
+        "seconds": 34.52399826049805,
+        "stage": "generating",
+        "step": 13,
+        "steps": 21
+      },
+      {
+        "event": "progress",
+        "seconds": 46.59000015258789,
+        "stage": "generating",
+        "step": 14,
+        "steps": 21
+      },
+      {
+        "event": "progress",
+        "seconds": 43.25199890136719,
+        "stage": "generating",
+        "step": 15,
+        "steps": 21
+      },
+      {
+        "event": "progress",
+        "seconds": 50.21099853515625,
+        "stage": "generating",
+        "step": 16,
+        "steps": 21
+      },
+      {
+        "event": "progress",
+        "seconds": 45.1609992980957,
+        "stage": "generating",
+        "step": 17,
+        "steps": 21
+      },
+      {
+        "event": "progress",
+        "seconds": 37.78099822998047,
+        "stage": "generating",
+        "step": 18,
+        "steps": 21
+      },
+      {
+        "event": "progress",
+        "seconds": 39.20000076293945,
+        "stage": "generating",
+        "step": 19,
+        "steps": 21
+      },
+      {
+        "event": "progress",
+        "seconds": 48.76499938964844,
+        "stage": "generating",
+        "step": 20,
+        "steps": 21
+      },
+      {
+        "event": "progress",
+        "seconds": 40.625,
+        "stage": "generating",
+        "step": 21,
+        "steps": 21
+      },
+      {
+        "details": {
+          "diffusionBackend": "vulkan0",
+          "remoteInference": false,
+          "runtimeBackend": "vulkan",
+          "textBackend": "cpu",
+          "vaeBackend": "cpu",
+          "vulkanGraphObserved": true
+        },
+        "event": "execution"
+      },
+      {
+        "event": "complete",
+        "format": "lma_rgb_frames",
+        "fps": 8,
+        "frames": 17,
+        "height": 288,
+        "output": "U:/build/wan-smoke/run-1793355854365738300/a.rgb",
+        "width": 512
+      }
+    ],
+    "protocol_errors": [],
+    "logs_truncated": [
+      false,
+      false
+    ],
+    "timed_out": false,
+    "forced_host_termination": false,
+    "cancel_trigger": null,
+    "cancel_to_exit_seconds": null,
+    "android_cooperative_cancellation_tested": false,
+    "resources": {
+      "observed": true,
+      "samples": 35894,
+      "interval_ms": 20,
+      "observed_peak_working_set_bytes": 4973056000,
+      "sampled_peak_private_bytes": 2428551168,
+      "gpu_memory_measured": false,
+      "physical_device_memory_measured": false
+    }
+  },
+  "physical_android": false,
+  "output": {
+    "bytes": 7520284,
+    "sha256": "1bf6931fbe76618a4aa6434e09efc69530af2ad82bab59ee969a4ea40e76e1cc",
+    "magic": "4c4d4146524d3100",
+    "geometry": [
+      512,
+      288,
+      17,
+      8,
+      3
+    ]
+  }
+}

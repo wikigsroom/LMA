@@ -73,6 +73,8 @@ def build():
         if video:
             f["frames"] = dict(type="integer", label="视频帧数（4n+1）", default=17, minimum=5, maximum=129, multipleOf=4, alignmentOrigin=1, presets=[5, 9, 17, 33, 65], limitSource="pipeline_alignment_and_application_guard")
             f["fps"] = dict(type="integer", label="每秒帧数", default=8, minimum=1, maximum=60, presets=[8, 12, 16, 24], limitSource="application_guard")
+            f["vaeTileSize"] = dict(type="integer", label="VAE 空间分块大小（像素）", default=128, minimum=128, maximum=1024, multipleOf=64, presets=[128, 256, 512, 1024], limitSource="application_guard")
+            f["vaeTemporalTiling"] = dict(type="boolean", label="VAE 按时间分段解码（实验）", default=False)
         requirements = [dict(role=role, label=label, formats=formats, required=True) for role, label, formats in (
             ("diffusion", "仅选择 " + caption + " diffusion 权重", ["gguf", "safetensors"]),
             ("t5" if video else "llm", encoder, ["gguf", "safetensors"]),

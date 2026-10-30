@@ -35,7 +35,9 @@ final class NativeWorker {
                 if (app.nativeProcess != null && app.nativeProcess.isAlive()) throw new IOException("另一个本地引擎仍在运行，请先停止它");
                 process = launcher.start(builder); app.nativeProcess = process; context.process(process);
             }
-            boolean complete = false; String failure = ""; long last = 0; JSONObject execution = DataFiles.copy(initialExecution);
+            boolean complete = false; String failure = ""; long last = 0;
+            String lastProgressStage = ""; int lastProgressSteps = -1; double lastProgressFraction = Double.NaN;
+            JSONObject execution = DataFiles.copy(initialExecution);
             try (InputStream stream = new BufferedInputStream(process.getInputStream())) {
                 String line;
                 while ((line = line(stream)) != null) {
@@ -57,11 +59,22 @@ final class NativeWorker {
                         JSONObject details = event.getJSONObject("details");
                         for (Iterator<String> keys = details.keys(); keys.hasNext();) { String key = keys.next(); execution.put(key, details.get(key)); }
                         context.execution(DataFiles.copy(execution));
-                    } else if (kind.equals("stage")) context.progress(event.optString("stage", "generating"), null);
-                    else if (kind.equals("progress") && System.nanoTime() - last > 500_000_000L) {
-                        last = System.nanoTime(); double value = event.optDouble("fraction", Double.NaN);
-                        if (!Double.isFinite(value)) { int steps = event.optInt("steps"); value = steps > 0 ? (double) event.optInt("step") / steps : Double.NaN; }
-                        context.progress(event.optString("stage", "sampling"), Double.isFinite(value) ? Math.max(0, Math.min(1, value)) : null);
+                    } else if (kind.equals("stage")) {
+                        lastProgressStage = ""; lastProgressSteps = -1; lastProgressFraction = Double.NaN;
+                        context.progress(event.optString("stage", "generating"), null);
+                    }
+                    else if (kind.equals("progress")) {
+                        int steps = event.optInt("steps", -1); double value = event.optDouble("fraction", Double.NaN);
+                        if (!Double.isFinite(value)) value = steps > 0 ? (double) event.optInt("step") / steps : Double.NaN;
+                        if (Double.isFinite(value)) value = Math.max(0, Math.min(1, value));
+                        String stage = event.optString("stage", "sampling"); long now = System.nanoTime();
+                        // Stage changes, the first completed step and completion must survive throttling.
+                        if (!stage.equals(lastProgressStage) || steps != lastProgressSteps
+                                || (value == 0 && lastProgressFraction > 0) || (value > 0 && !(lastProgressFraction > 0))
+                                || (value >= 1 && !(lastProgressFraction >= 1)) || now - last > 500_000_000L) {
+                            last = now; lastProgressStage = stage; lastProgressSteps = steps; lastProgressFraction = value;
+                            context.progress(stage, Double.isFinite(value) ? value : null);
+                        }
                     }
                 }
             }

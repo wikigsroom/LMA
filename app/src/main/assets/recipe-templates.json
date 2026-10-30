@@ -2183,6 +2183,26 @@
                 24
               ],
               "limitSource": "application_guard"
+            },
+            "vaeTileSize": {
+              "type": "integer",
+              "label": "VAE 空间分块大小（像素）",
+              "default": 128,
+              "minimum": 128,
+              "maximum": 1024,
+              "multipleOf": 64,
+              "presets": [
+                128,
+                256,
+                512,
+                1024
+              ],
+              "limitSource": "application_guard"
+            },
+            "vaeTemporalTiling": {
+              "type": "boolean",
+              "label": "VAE 按时间分段解码（实验）",
+              "default": false
             }
           }
         },
@@ -6295,6 +6315,26 @@
                 24
               ],
               "limitSource": "application_guard"
+            },
+            "vaeTileSize": {
+              "type": "integer",
+              "label": "VAE 空间分块大小（像素）",
+              "default": 128,
+              "minimum": 128,
+              "maximum": 1024,
+              "multipleOf": 64,
+              "presets": [
+                128,
+                256,
+                512,
+                1024
+              ],
+              "limitSource": "application_guard"
+            },
+            "vaeTemporalTiling": {
+              "type": "boolean",
+              "label": "VAE 按时间分段解码（实验）",
+              "default": false
             }
           }
         },

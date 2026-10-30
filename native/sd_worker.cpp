@@ -50,6 +50,11 @@ int main(int argc, char** argv) {
         std::string type = request.at("type"), output = request.at("output"), prompt = request.at("input").value("prompt", ""), negative = request.at("input").value("negativePrompt", "");
         if (prompt.empty() || prompt.size() > 64000 || negative.size() > 64000 || output.empty()) throw std::runtime_error("Invalid prompt or output");
         if (type != "image.generate" && type != "video.generate") throw std::runtime_error("Unsupported diffusion task");
+        if (params.contains("vaeTileSize") && !params.at("vaeTileSize").is_number_integer()) throw std::runtime_error("VAE tile size must be an integer");
+        // Missing fields preserve the exact pre-dev40 behavior of immutable old jobs.
+        const int vae_tile_size = lma_sd::vae_tile_size(params.value("vaeTileSize", 128));
+        const bool vae_temporal_tiling = params.value("vaeTemporalTiling", false);
+        if (vae_temporal_tiling && pipeline != "wan21_13b") throw std::runtime_error("Temporal VAE decoding is not enabled for this pipeline");
         if (pipeline == "z_image_turbo" || pipeline == "flux2_klein_4b" || pipeline == "qwen_image_21") {
             prompt=lma_tokenizers::qwen_prompt(prompt);
             negative=lma_tokenizers::qwen_prompt(negative);
@@ -113,7 +118,7 @@ int main(int argc, char** argv) {
             sd_img_gen_params_t generate; sd_img_gen_params_init(&generate);
             generate.prompt = prompt.c_str(); generate.negative_prompt = negative.c_str(); generate.width = width; generate.height = height;
             generate.sample_params = sample; generate.seed = seed; generate.batch_count = 1; generate.loras = loras.data(); generate.lora_count = loras.size();
-            generate.vae_tiling_params.enabled = params.value("vaeTiling", true); generate.vae_tiling_params.tile_size_w = 128; generate.vae_tiling_params.tile_size_h = 128;
+            generate.vae_tiling_params.enabled = params.value("vaeTiling", true); generate.vae_tiling_params.tile_size_w = vae_tile_size; generate.vae_tiling_params.tile_size_h = vae_tile_size;
             sd_image_generation_result_t* raw = nullptr;
             if (!generate_image(context.get(), &generate, &raw) || !raw) throw std::runtime_error("Image generation failed");
             std::unique_ptr<sd_image_generation_result_t, decltype(&free_sd_image_generation_result)> result(raw, free_sd_image_generation_result);
@@ -129,7 +134,9 @@ int main(int argc, char** argv) {
             generate.prompt = prompt.c_str(); generate.negative_prompt = negative.c_str(); generate.width = width; generate.height = height; generate.sample_params = sample; generate.seed = seed;
             generate.video_frames = frames_count; generate.fps = fps;
             generate.loras = loras.data(); generate.lora_count = loras.size(); generate.vae_tiling_params.enabled = params.value("vaeTiling", true);
-            generate.vae_tiling_params.tile_size_w = 128; generate.vae_tiling_params.tile_size_h = 128;
+            generate.vae_tiling_params.tile_size_w = vae_tile_size; generate.vae_tiling_params.tile_size_h = vae_tile_size;
+            generate.vae_tiling_params.temporal_tiling = vae_temporal_tiling;
+            generate.vae_tiling_params.extra_tiling_args = vae_temporal_tiling ? "temporal_tile_frames=1" : nullptr;
             sd_video_generation_result_t* raw = nullptr;
             if (!generate_video(context.get(), &generate, &raw) || !raw) throw std::runtime_error("Video generation failed");
             std::unique_ptr<sd_video_generation_result_t, decltype(&free_sd_video_generation_result)> result(raw, free_sd_video_generation_result);

@@ -9,8 +9,8 @@
       "abi": "arm64-v8a",
       "backend": "cpu",
       "ndk": "30.0.16248370",
-      "sha256": "9bb3d80e5c7355035fb55045fee9a7836007c42515cc3ac1aca0785f0d874311",
-      "bytes": 8866592,
+      "sha256": "ac4b158744f6e92692ff66d1f1eb580db3a654a0ce7205eebe3896c87b9c99ff",
+      "bytes": 8869712,
       "notices": {
         "sd-LICENSE.txt": "b53fa08f515cb5a6fff7b9fd8fcd0961a4b80df29d74372d25e1f9171aa042ee",
         "sd-ggml-LICENSE.txt": "94f29bbed6a22c35b992c5c6ebf0e7c92f13b836b90f36f461c9cf2f0f1d010d",
@@ -440,8 +440,8 @@
       "abi": "arm64-v8a",
       "backend": "vulkan",
       "ndk": "30.0.16248370",
-      "sha256": "eb449e652a1eec67472700845ed05c7daca1d629e744c2826db92335ef263e94",
-      "bytes": 43001568,
+      "sha256": "6a92383bcfcffa08a52cfc216e9897e279b3fb064ded2da67a25fb3c10c8d99a",
+      "bytes": 43004704,
       "notices": {
         "sd-LICENSE.txt": "b53fa08f515cb5a6fff7b9fd8fcd0961a4b80df29d74372d25e1f9171aa042ee",
         "sd-ggml-LICENSE.txt": "94f29bbed6a22c35b992c5c6ebf0e7c92f13b836b90f36f461c9cf2f0f1d010d",

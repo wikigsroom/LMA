@@ -56,7 +56,7 @@ def main():
     bundle = next(b for b in json.loads((ROOT/'catalogue/model-bundles.json').read_text(encoding='utf-8'))['bundles'] if b['id'] == BUNDLE_ID)
     if bundle['components'] != lock['components']: raise ValueError('Catalogue differs from complete selected assets')
     folder = ROOT/'build/wan-trained-tests'/('run-'+str(time.time_ns())); folder.mkdir(parents=True, exist_ok=False)
-    drive = next((c+':' for c in 'TUVWXYZ' if not Path(c+':/').exists()), None)
+    drive = next((c+':' for c in 'UVWXYZT' if not Path(c+':/').exists()), None)
     if not drive: raise RuntimeError('No free owned ASCII alias')
     subprocess.run(['subst', drive, str(ROOT)], capture_output=True, check=True)
     runs = []; checks = []; outputs = {}
@@ -74,14 +74,20 @@ def main():
             ('one-step', PROMPT_A, 1, None, None), ('cancel-step1', PROMPT_A, 4, 1, None),
             ('empty-prompt', '', 4, None, 'Invalid prompt or output'),
             ('wrong-task', PROMPT_A, 4, None, 'Unsupported diffusion task'),
-            ('recovery-a', PROMPT_A, 4, None, None)]:
+            ('recovery-a', PROMPT_A, 4, None, None),
+            ('legacy-a', PROMPT_A, 4, None, None),
+            ('bad-tile', PROMPT_A, 4, None, 'VAE tile size must be 128-1024 pixels, aligned to 64')]:
             output = folder/(name+'.rgb')
             request = dict(schema='lma.engine-request/1', backend='vulkan',
                 type='audio.generate' if name == 'wrong-task' else 'video.generate', pipeline='wan21_13b',
                 architecture='wan21', samplingProfile='standard', input=dict(prompt=prompt, negativePrompt=''),
                 parameters=dict(width=256, height=256, frames=5, fps=8, steps=steps, threads=6, seed=42,
-                    cfg=6, sampler='euler', scheduler='discrete', flowShift=3, vaeTiling=True),
+                    cfg=6, sampler='euler', scheduler='discrete', flowShift=3, vaeTiling=True,
+                    vaeTileSize=512, vaeTemporalTiling=True),
                 components={c['role']: alias(asset_path(c)) for c in lock['components']}, loras=[], output=alias(output))
+            if name == 'legacy-a':
+                request['parameters'].pop('vaeTileSize'); request['parameters'].pop('vaeTemporalTiling')
+            if name == 'bad-tile': request['parameters']['vaeTileSize'] = 129
             path = folder/(name+'.json'); path.write_text(json.dumps(request, indent=2)+'\n', encoding='utf-8')
             print('Execute complete trained Wan Vulkan:', name, flush=True)
             result, logs = execute([alias(binary), alias(path)], env, sampler_steps=steps, cancel_step=cancel)
@@ -114,6 +120,10 @@ def main():
                 check(result['resources']['observed'] and result['resources']['observed_peak_working_set_bytes'] > 0, name+': observed Windows process memory')
             runs.append(item)
             (folder/(name+'-result.json')).write_text(json.dumps(item, indent=2)+'\n', encoding='utf-8')
+        historical = json.loads(subprocess.check_output(['git', 'show', '0ec5042515656481c7c728cce5039a1aec979dff:verification/development/wan-trained.json'], cwd=ROOT))
+        original = next(r['frames']['sha256'] for r in historical['runs'] if r['name'] == 'a')
+        check(outputs.get('legacy-a', {}).get('sha256') == original,
+              'Legacy frozen parameters reproduce the exact dev39 RGB SHA with the updated production worker')
         for right in ['b', 'one-step', 'recovery-a']:
             check('a' in outputs and right in outputs and
                   ((outputs['a']['sha256'] == outputs[right]['sha256']) if right == 'recovery-a' else (outputs['a']['sha256'] != outputs[right]['sha256'])),

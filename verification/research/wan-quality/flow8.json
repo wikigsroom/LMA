@@ -1,0 +1,578 @@
+{
+  "schema": "lma.wan-decoder-experiment/1",
+  "mode": "current-default",
+  "baseline": null,
+  "compilation": {
+    "schema": "lma.native-build/1",
+    "engine": "wan_sd_cpp",
+    "source_revision": "be486498eadc29dc3cd234d944c2180ed42b1415",
+    "ggml_revision": "a5915eb0e47adef21c3f25b889a008925ea838c2",
+    "backend": "vulkan",
+    "file": "lma_sd_vulkan_host.exe",
+    "bytes": 49658880,
+    "sha256": "e2008534191f75dc9c4f07eab9200f66646664eefab2c120c2193d346c52d6ca",
+    "vocabularies": "external_user_selected_components",
+    "physical_device_tests": 0,
+    "model_inference_tested": false,
+    "virtualization_used": false,
+    "source_inputs": {
+      "native/CMakeLists.txt": "bbeee4fa61d80500eeecb80dde2be73296e13ec637fc8a2d57a5faaee867e2aa",
+      "native/lcm_condition.hpp": "a5d94cf2f2453f3c8045418aa6b1a147ffa27557665bfc6f2203e04048899ea4",
+      "native/qwen_prompt.hpp": "ec9a45781b93eff62c6f0a4eca2c59fe1088c931d4c1150dcd903ae5c84c1c0f",
+      "native/sd_backend.hpp": "0e3123316a382566c30dfe0a207e9f130242629d0e3a5fb164be7fe243c0364c",
+      "native/sd_policy.hpp": "e60d0f67258e15754930f38aec97522fff28475c4cb3c92524d5daa785178619",
+      "native/sd_worker.cpp": "a6ce16e26c047231326fe1fd2551d75cabf2d47381d6489d73ef7b8c712ac96a",
+      "native/tokenizer_data.hpp": "c752eb62a3c915be4742124bb25e6ada9ea952bbc81c62a1a864cfe39a3ddd6d",
+      "native/vocab_external.cpp": "b8e568f72914833f66bbe338fb877d98d1cb954525a7d3d9a1f8364e4e1c90af",
+      "research/sd_host/compat/sys/prctl.h": "87c9ddf82ce059bf303486b0e10b22dce6d972e87f83836d148e631dcdad9c9e",
+      "research/sd_host/compat/unistd.h": "e467e7f5855c286b3ce40268146ed34d153a5fbf8a42d5c36b26a6293142068b",
+      "research/sd_vulkan_host/CMakeLists.txt": "752440871771be3b3519361e9c488669ca691d875737eac9e489e24870948feb",
+      "research/sd_vulkan_host/NOTICE": "9b917aa087e1d8cda34b8ae50ca88d9a1e73b7ae2c7917130656f9f9579d1ff9",
+      "third_party/ltx098-source-lock.json": "28acd99486f6ca76a06d038076175ac01ca55c7b1d8c3ba6dab9190291ac8779",
+      "third_party/notices/sd-sources.json": "91ee744071aa93c4bd4d40476d3582fa4bf4d00a628527e196d4856c06ec77c1",
+      "tools/build_ltx098.py": "bf39449e38190a666093f6954d133a76da36d519817ca636703f030100d4faf8",
+      "tools/build_sd_vulkan.py": "465f3e0bf42bb555be5f41a609bbb6c510dd5869a07b0a7b0ea2a5e6d0f2454e"
+    },
+    "module_backends": {
+      "text": "cpu",
+      "vae": "cpu",
+      "diffusion": "vulkan0"
+    },
+    "gpu_execution_requires_completed_operation": true,
+    "remote_inference": false,
+    "abi": "windows-x86_64",
+    "compiler": "native MSVC"
+  },
+  "components": [
+    {
+      "role": "diffusion",
+      "repository": "off-grid-ai/Wan2.1-T2V-1.3B-GGUF",
+      "revision": "1ba777b2426d5717dd0fddb1100078604a9d4667",
+      "path": "Wan2.1-T2V-1.3B-Q4_K_S.gguf",
+      "bytes": 816061024,
+      "sha256": "65181afff758fba25cf311399ccb0638a746f8e0e6533e07a84a5a23e0c12318",
+      "format": "gguf",
+      "url": "https://huggingface.co/off-grid-ai/Wan2.1-T2V-1.3B-GGUF/resolve/1ba777b2426d5717dd0fddb1100078604a9d4667/Wan2.1-T2V-1.3B-Q4_K_S.gguf"
+    },
+    {
+      "role": "t5",
+      "repository": "off-grid-ai/Video-Companions-GGUF",
+      "revision": "18b5ae5e93799acd6cd20819f898ff60f4b822d1",
+      "path": "umt5-xxl-encoder-Q4_K_M.gguf",
+      "bytes": 3655145312,
+      "sha256": "17cf97a5bbbc60a646d6105b832b6f657ce904a8a1ad970e4b59df0c67584a40",
+      "format": "gguf",
+      "url": "https://huggingface.co/off-grid-ai/Video-Companions-GGUF/resolve/18b5ae5e93799acd6cd20819f898ff60f4b822d1/umt5-xxl-encoder-Q4_K_M.gguf"
+    },
+    {
+      "role": "vae",
+      "repository": "off-grid-ai/Video-Companions-GGUF",
+      "revision": "18b5ae5e93799acd6cd20819f898ff60f4b822d1",
+      "path": "wan_2.1_vae.safetensors",
+      "bytes": 253815318,
+      "sha256": "2fc39d31359a4b0a64f55876d8ff7fa8d780956ae2cb13463b0223e15148976b",
+      "format": "safetensors",
+      "url": "https://huggingface.co/off-grid-ai/Video-Companions-GGUF/resolve/18b5ae5e93799acd6cd20819f898ff60f4b822d1/wan_2.1_vae.safetensors"
+    },
+    {
+      "role": "umt5_tokenizer",
+      "repository": "google/umt5-xxl",
+      "revision": "66cb9e7e85526fe440a945569e42c72fb6cbc0ad",
+      "path": "tokenizer.json",
+      "bytes": 16853013,
+      "sha256": "af904105ce1071b1202bba0059a841f4a7b85b48b6ec179c4948e3483476e0dd",
+      "format": "json",
+      "url": "https://huggingface.co/google/umt5-xxl/resolve/66cb9e7e85526fe440a945569e42c72fb6cbc0ad/tokenizer.json"
+    }
+  ],
+  "request": {
+    "schema": "lma.engine-request/1",
+    "backend": "vulkan",
+    "type": "video.generate",
+    "pipeline": "wan21_13b",
+    "architecture": "wan21",
+    "samplingProfile": "standard",
+    "input": {
+      "prompt": "A small red toy robot waving its hand beside a blue ceramic teapot on a wooden table, gentle camera movement, soft daylight",
+      "negativePrompt": ""
+    },
+    "parameters": {
+      "width": 512,
+      "height": 288,
+      "steps": 20,
+      "threads": 6,
+      "seed": 42,
+      "cfg": 6,
+      "sampler": "euler",
+      "vaeTiling": true,
+      "scheduler": "discrete",
+      "flowShift": 8.0,
+      "frames": 17,
+      "fps": 8,
+      "vaeTileSize": 512,
+      "vaeTemporalTiling": true
+    },
+    "components": {
+      "diffusion": "U:/build/wan-trained/originals/65181afff758fba25cf311399ccb0638a746f8e0e6533e07a84a5a23e0c12318/Wan2.1-T2V-1.3B-Q4_K_S.gguf",
+      "t5": "U:/build/wan-trained/originals/17cf97a5bbbc60a646d6105b832b6f657ce904a8a1ad970e4b59df0c67584a40/umt5-xxl-encoder-Q4_K_M.gguf",
+      "vae": "U:/build/wan-trained/originals/2fc39d31359a4b0a64f55876d8ff7fa8d780956ae2cb13463b0223e15148976b/wan_2.1_vae.safetensors",
+      "umt5_tokenizer": "U:/build/wan-trained/originals/af904105ce1071b1202bba0059a841f4a7b85b48b6ec179c4948e3483476e0dd/tokenizer.json"
+    },
+    "loras": [],
+    "output": "U:/build/wan-quality/current-default-1793362344786239200/generated.rgb"
+  },
+  "process": {
+    "returncode": 0,
+    "seconds": 312.57222540001385,
+    "events": [
+      {
+        "event": "stage",
+        "stage": "loading"
+      },
+      {
+        "event": "stage",
+        "stage": "generating"
+      },
+      {
+        "event": "progress",
+        "seconds": 3000.0,
+        "stage": "generating",
+        "step": 0,
+        "steps": 242
+      },
+      {
+        "event": "progress",
+        "seconds": 0.0008429752197116613,
+        "stage": "generating",
+        "step": 242,
+        "steps": 242
+      },
+      {
+        "event": "progress",
+        "seconds": 0.0,
+        "stage": "generating",
+        "step": 0,
+        "steps": 20
+      },
+      {
+        "event": "progress",
+        "seconds": 3000.0,
+        "stage": "generating",
+        "step": 0,
+        "steps": 825
+      },
+      {
+        "event": "progress",
+        "seconds": 0.0003592920256778598,
+        "stage": "generating",
+        "step": 565,
+        "steps": 825
+      },
+      {
+        "event": "progress",
+        "seconds": 0.0007150442688725889,
+        "stage": "generating",
+        "step": 565,
+        "steps": 825
+      },
+      {
+        "event": "progress",
+        "seconds": 0.0007369696977548301,
+        "stage": "generating",
+        "step": 825,
+        "steps": 825
+      },
+      {
+        "event": "progress",
+        "seconds": 3.4196629524230957,
+        "stage": "generating",
+        "step": 1,
+        "steps": 20
+      },
+      {
+        "event": "progress",
+        "seconds": 1.0842440128326416,
+        "stage": "generating",
+        "step": 2,
+        "steps": 20
+      },
+      {
+        "event": "progress",
+        "seconds": 1.086130976676941,
+        "stage": "generating",
+        "step": 3,
+        "steps": 20
+      },
+      {
+        "event": "progress",
+        "seconds": 1.0807470083236694,
+        "stage": "generating",
+        "step": 4,
+        "steps": 20
+      },
+      {
+        "event": "progress",
+        "seconds": 1.0845650434494019,
+        "stage": "generating",
+        "step": 5,
+        "steps": 20
+      },
+      {
+        "event": "progress",
+        "seconds": 1.0872139930725098,
+        "stage": "generating",
+        "step": 6,
+        "steps": 20
+      },
+      {
+        "event": "progress",
+        "seconds": 1.0852580070495605,
+        "stage": "generating",
+        "step": 7,
+        "steps": 20
+      },
+      {
+        "event": "progress",
+        "seconds": 1.0893820524215698,
+        "stage": "generating",
+        "step": 8,
+        "steps": 20
+      },
+      {
+        "event": "progress",
+        "seconds": 1.088083028793335,
+        "stage": "generating",
+        "step": 9,
+        "steps": 20
+      },
+      {
+        "event": "progress",
+        "seconds": 1.0891499519348145,
+        "stage": "generating",
+        "step": 10,
+        "steps": 20
+      },
+      {
+        "event": "progress",
+        "seconds": 1.0901479721069336,
+        "stage": "generating",
+        "step": 11,
+        "steps": 20
+      },
+      {
+        "event": "progress",
+        "seconds": 1.0892720222473145,
+        "stage": "generating",
+        "step": 12,
+        "steps": 20
+      },
+      {
+        "event": "progress",
+        "seconds": 1.0867279767990112,
+        "stage": "generating",
+        "step": 13,
+        "steps": 20
+      },
+      {
+        "event": "progress",
+        "seconds": 1.088001012802124,
+        "stage": "generating",
+        "step": 14,
+        "steps": 20
+      },
+      {
+        "event": "progress",
+        "seconds": 1.087069034576416,
+        "stage": "generating",
+        "step": 15,
+        "steps": 20
+      },
+      {
+        "event": "progress",
+        "seconds": 1.1038060188293457,
+        "stage": "generating",
+        "step": 16,
+        "steps": 20
+      },
+      {
+        "event": "progress",
+        "seconds": 1.0917160511016846,
+        "stage": "generating",
+        "step": 17,
+        "steps": 20
+      },
+      {
+        "event": "progress",
+        "seconds": 1.0900599956512451,
+        "stage": "generating",
+        "step": 18,
+        "steps": 20
+      },
+      {
+        "event": "progress",
+        "seconds": 1.0911229848861694,
+        "stage": "generating",
+        "step": 19,
+        "steps": 20
+      },
+      {
+        "event": "progress",
+        "seconds": 1.0914889574050903,
+        "stage": "generating",
+        "step": 20,
+        "steps": 20
+      },
+      {
+        "event": "progress",
+        "seconds": 0.0,
+        "stage": "generating",
+        "step": 0,
+        "steps": 1
+      },
+      {
+        "event": "progress",
+        "seconds": 2000.0001220703125,
+        "stage": "generating",
+        "step": 0,
+        "steps": 104
+      },
+      {
+        "event": "progress",
+        "seconds": 0.001942307804711163,
+        "stage": "generating",
+        "step": 104,
+        "steps": 104
+      },
+      {
+        "event": "progress",
+        "seconds": 2000.0001220703125,
+        "stage": "generating",
+        "step": 0,
+        "steps": 4
+      },
+      {
+        "event": "progress",
+        "seconds": 0.0032499993685632944,
+        "stage": "generating",
+        "step": 4,
+        "steps": 4
+      },
+      {
+        "event": "progress",
+        "seconds": 253.0749969482422,
+        "stage": "generating",
+        "step": 1,
+        "steps": 1
+      },
+      {
+        "details": {
+          "diffusionBackend": "vulkan0",
+          "remoteInference": false,
+          "runtimeBackend": "vulkan",
+          "textBackend": "cpu",
+          "vaeBackend": "cpu",
+          "vulkanGraphObserved": true
+        },
+        "event": "execution"
+      },
+      {
+        "event": "complete",
+        "format": "lma_rgb_frames",
+        "fps": 8,
+        "frames": 17,
+        "height": 288,
+        "output": "U:/build/wan-quality/current-default-1793362344786239200/generated.rgb",
+        "width": 512
+      }
+    ],
+    "protocol_errors": [],
+    "logs_truncated": [
+      false,
+      false
+    ],
+    "timed_out": false,
+    "forced_host_termination": false,
+    "cancel_trigger": null,
+    "cancel_to_exit_seconds": null,
+    "android_cooperative_cancellation_tested": false,
+    "resources": {
+      "observed": true,
+      "samples": 15100,
+      "interval_ms": 20,
+      "observed_peak_working_set_bytes": 12561133568,
+      "sampled_peak_private_bytes": 9898979328,
+      "gpu_memory_measured": false,
+      "physical_device_memory_measured": false
+    }
+  },
+  "physical_android": false,
+  "independent_numerics_accepted": false,
+  "video_quality_accepted": false,
+  "complete_target16_accepted": false,
+  "complete_release_accepted": false,
+  "input_fingerprint": {
+    "native/CMakeLists.txt": "bbeee4fa61d80500eeecb80dde2be73296e13ec637fc8a2d57a5faaee867e2aa",
+    "native/lcm_condition.hpp": "a5d94cf2f2453f3c8045418aa6b1a147ffa27557665bfc6f2203e04048899ea4",
+    "native/qwen_prompt.hpp": "ec9a45781b93eff62c6f0a4eca2c59fe1088c931d4c1150dcd903ae5c84c1c0f",
+    "native/sd_backend.hpp": "0e3123316a382566c30dfe0a207e9f130242629d0e3a5fb164be7fe243c0364c",
+    "native/sd_policy.hpp": "e60d0f67258e15754930f38aec97522fff28475c4cb3c92524d5daa785178619",
+    "native/sd_worker.cpp": "a6ce16e26c047231326fe1fd2551d75cabf2d47381d6489d73ef7b8c712ac96a",
+    "native/tokenizer_data.hpp": "c752eb62a3c915be4742124bb25e6ada9ea952bbc81c62a1a864cfe39a3ddd6d",
+    "native/vocab_external.cpp": "b8e568f72914833f66bbe338fb877d98d1cb954525a7d3d9a1f8364e4e1c90af",
+    "research/sd_host/compat/sys/prctl.h": "87c9ddf82ce059bf303486b0e10b22dce6d972e87f83836d148e631dcdad9c9e",
+    "research/sd_host/compat/unistd.h": "e467e7f5855c286b3ce40268146ed34d153a5fbf8a42d5c36b26a6293142068b",
+    "research/sd_vulkan_host/CMakeLists.txt": "752440871771be3b3519361e9c488669ca691d875737eac9e489e24870948feb",
+    "research/sd_vulkan_host/NOTICE": "9b917aa087e1d8cda34b8ae50ca88d9a1e73b7ae2c7917130656f9f9579d1ff9",
+    "third_party/ltx098-source-lock.json": "28acd99486f6ca76a06d038076175ac01ca55c7b1d8c3ba6dab9190291ac8779",
+    "third_party/notices/sd-sources.json": "91ee744071aa93c4bd4d40476d3582fa4bf4d00a628527e196d4856c06ec77c1",
+    "tools/build_ltx098.py": "bf39449e38190a666093f6954d133a76da36d519817ca636703f030100d4faf8",
+    "tools/build_sd_vulkan.py": "465f3e0bf42bb555be5f41a609bbb6c510dd5869a07b0a7b0ea2a5e6d0f2454e",
+    "research/wan_trained/assets.json": "920c7d0a222cb658dc6923531c008e96bf0213e31eb1f30ddb10ea949bb14aa6",
+    "tools/fetch_sd15_trained.py": "91392401d9739f15b14fa4e42b74f13bbdd719a382746541cc69952966e6f307",
+    "tools/fetch_wan_trained.py": "7dc5f8746f783774cfb1cda5ca2d5a22a2e957e4ab5490d6bcf7119ca90a31ef",
+    "research/wan_trained/catalogue-bundle.json": "4f631a5acd937469eac79e5f39a2ddee7306198c051ffd7ac7d805ab394c7c78",
+    "tools/probe_wan_quality.py": "6fe4d1486ae1d3dcd042bcbf1547e53565848adedc0f18496b1fb3008502b884",
+    "tools/sd_variants_capture.py": "1c3a576bdc3189ccb2657f8dda179d3ce589297aaee012545dc0ea8f453731da",
+    "tools/test_wan_trained.py": "4facc518a0b7e0f91a22cbc5ca6bda36c1d9cc54b3b12afc57bbec1b9fcb8e35"
+  },
+  "output": {
+    "bytes": 7520284,
+    "sha256": "594cab3a810651358e5d49d0224db621c96deb68436695c08952baf52eb4809e",
+    "width": 512,
+    "height": 288,
+    "frames": 17,
+    "fps": 8,
+    "channels": 3,
+    "frame_sha256": [
+      "4cc124e786185996bf139f299663887fd671386c8fd9a135d59b111e9699e8da",
+      "1550c20fa34f0e2bf31529c8b70c21bb7deac2bf04ddb38de8964838e3122360",
+      "b211e3f9fbbb070fc5ae540a8c8e7efa6d4ec5b04c8016eeb984af7ec030d603",
+      "4d9e233b5cfa9c1247c60193f38a46042c3c75c7a0d55181313ba77ab838d2f9",
+      "0ffb52090c976b5a6572ff14664397950b68058a94994ec448d9423c888f07a0",
+      "638acad1d97c6516644a2b10ba8ceca7abb2f35cdd8cfc2c9fcbe37bab09ef3f",
+      "1d0ac419ea45e42bb894c1786b2c3e32c86ff4e1a75767953f2dd9e2487848d2",
+      "f9dd61dec57456d80c317356d634b21203a637a0b98e0c658dba694bd291ac3c",
+      "61d305c1fec76faa034c991189a1203d4f7bda34fdfb57dee2b69b3fef553da3",
+      "3308512ecc0f339d8c41369f8fcac3d881064179d0e03da1cc8e0bc149edee1b",
+      "f344af0b354e2de0734fa8c0fb4d946ea699eed1ebec4466c4a57b9a7ede42ed",
+      "676382c6cd026d760c68e83bd72352b0abf16e87d4efb6963a819174464947aa",
+      "ab6bda3bbdb8fd5af46f7ac66f21e3d824d589da8b13a3961fc37b05bdc7deed",
+      "bd9c7ac2a0874a9db8613b367773a2bcbf2a6d27542976252d31fa302e6db858",
+      "5c2f9d36858fa29148d12a0d0e917c68a9813d0d99829d5539a96540c7833214",
+      "df20dc190474896177140a95af71a5a3e0f039faecea25790bf250bb373a60ce",
+      "c92c932d53c06f7a3ac164a15749b52684244b1748e5611b0dc096a7e59a1424"
+    ],
+    "channel_stddev": [
+      [
+        70.23271017078845,
+        52.40723823899369,
+        47.698225265174884
+      ],
+      [
+        69.62549982079089,
+        51.76420563864787,
+        47.21745382451583
+      ],
+      [
+        69.36555658453857,
+        51.428712379409276,
+        47.0279790701338
+      ],
+      [
+        69.00909660830327,
+        51.19673081206388,
+        46.83902955245451
+      ],
+      [
+        69.08616613278777,
+        51.23735005347982,
+        46.83648580122276
+      ],
+      [
+        70.27118780847222,
+        51.41876091103009,
+        46.15495181177555
+      ],
+      [
+        71.4189705635329,
+        51.683208537265436,
+        46.044692733120776
+      ],
+      [
+        71.20475237820975,
+        51.315426639492976,
+        45.63390604021751
+      ],
+      [
+        71.32705346669881,
+        51.267250129694624,
+        45.33256756549096
+      ],
+      [
+        71.26809548196712,
+        51.52589907021581,
+        46.17829388590978
+      ],
+      [
+        71.07440929235948,
+        51.4954296458052,
+        46.279692756437335
+      ],
+      [
+        71.10944304914604,
+        51.19907213648557,
+        46.39723830317884
+      ],
+      [
+        70.07286008095925,
+        51.03281295681915,
+        46.37150191799033
+      ],
+      [
+        67.00605357674858,
+        50.95373280053785,
+        54.1967614548293
+      ],
+      [
+        66.5111667729775,
+        50.71137894886956,
+        54.166925589001295
+      ],
+      [
+        66.41964380926096,
+        50.72018643140348,
+        55.4613217247169
+      ],
+      [
+        66.5913630997441,
+        51.072068303259044,
+        55.857759424324705
+      ]
+    ],
+    "changed_from_first": 16,
+    "maximum_motion_delta": 255,
+    "quality_accepted": false
+  },
+  "files": {
+    "contact.png": {
+      "bytes": 497009,
+      "sha256": "ee42acae1855a0d51704d7f2dc51ff022cabd3ac68abc132e21b061b7f7ba523"
+    },
+    "generated.rgb": {
+      "bytes": 7520284,
+      "sha256": "594cab3a810651358e5d49d0224db621c96deb68436695c08952baf52eb4809e"
+    },
+    "request.json": {
+      "bytes": 1381,
+      "sha256": "5d572cac04eb36daf472aedebee99bac35059c9f7a59e51ec9a52dc59abe893a"
+    },
+    "stderr": {
+      "bytes": 207,
+      "sha256": "0b58fe1ad054129e015cf22f0c3c8a088ed1428955f77552a73031448c6381d0"
+    },
+    "stdout": {
+      "bytes": 3451,
+      "sha256": "79c27b2dc636ee2e0df9884190d1f1ed504f7a171ffeec5210886b213b3969f3"
+    }
+  }
+}

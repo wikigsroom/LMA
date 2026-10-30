@@ -1,8 +1,8 @@
 # LMA · Local models on Android
 
-> **Current development: 0.3.0-dev.39 / code43.** Add optional local Wan 2.1 T2V 1.3B Q4 video: CPU text/VAE, Vulkan diffusion and MP4 encoding on the same phone, reusing All/HF/Local, independent settings, shared jobs and results. Users explicitly download/import all four components; APK updates supply only the foundation. Missing Vulkan fails locally; completed GPU computation is checked separately from enumeration. [Complete user and runtime guide](docs/WAN_VIDEO.en.md) · [Numbered delivery and full pending scope](docs/releases/v0.3.0-dev.39.md).
+> **Current development: 0.3.0-dev.40 / code44.** Fix dropped first-step and terminal progress during fast sampling; complete per-model Wan decoder controls, input clamping and native validation. Existing installations gain the controls while legacy jobs retain their behavior and defaults preserve the previous memory policy. Explicit assets, independent settings, queue/cancel/recovery and results use the shared foundation. The APK carries no models or automatic asset replacements. [Workflow and quality diagnosis](docs/WAN_DECODER.en.md) · [Implemented work and full pending scope](docs/releases/v0.3.0-dev.40.md).
 
-dev.39 validation: **22 suites /3,057 passed checks**, including actual complete-model and production application execution. The 61,325,834-byte development APK retains the signing identity and35 verified native files. Later default frames show block artifacts; full quality, numerics, phone and formal Release acceptance remain pending. [Development package and evidence](docs/releases/v0.3.0-dev.39.md).
+dev.40 validation: **22 suites / 3,085 passed checks**. The 61,329,930-byte development APK retains the signing identity; 35 native files and package checks pass, with Lint 0 errors /17 warnings. Five full-geometry experiments and an independent official CPU VAE comparison retain the later-frame artifacts. Quality, full numerics, resource fit, phone and formal Release acceptance remain pending.
 
 ![Wan model and parameter workflow; UI fixture, not phone inference](docs/media/development/wan/wan-ui.gif)
 

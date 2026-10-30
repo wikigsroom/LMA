@@ -4,6 +4,11 @@
 #include <string>
 
 namespace lma_sd {
+inline int vae_tile_size(int value) {
+    if (value < 128 || value > 1024 || value % 64)
+        throw std::runtime_error("VAE tile size must be 128-1024 pixels, aligned to 64");
+    return value;
+}
 inline void route(const std::string& pipeline, const std::string& architecture, const std::string& detected) {
     std::string expected, version;
     if (pipeline == "sd15" || pipeline == "sd15_lcm") { expected = "sd15"; version = "SD 1.x"; }

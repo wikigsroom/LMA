@@ -1,5 +1,14 @@
 # Changelog / 更新记录
 
+## 0.3.0-dev.40 — Per-model video decoding / 视频解码业务收口
+
+- 修复共用原生进度节流丢失快速采样首个完成步骤的问题；新阶段、首个已完成步骤和最终进度及时转发，其余保持节流。Add real child-protocol regressions and repeat actual Java/native sampler cancellation with the production fix.
+- Wan 新增空间分块大小和实验性时间分段，补齐配方生成、已有安装 schema、独立设置、不可变任务、原生校验和实际结果链路；默认保留128 / 时间分段关，旧任务精确 SHA 回归。
+- Preserve user assets and model-free upgrades. Five retained full-geometry experiments plus unchanged official CPU F32 VAE decoding reproduce later artifacts; preserve original failures and compilation provenance, without a quality/resource/phone pass.
+- 同步原签名开发 APK、双语完整操作 / 诊断、全部受影响截图 / GIF / MP4、当前业务回归与 dev.39 原字节归档。所有冻结目标仍归同一完整 v0.3.0，未发布缩减 Release。
+
+[中文](docs/WAN_DECODER.md) · [English](docs/WAN_DECODER.en.md) · [Numbered delivery and full pending scope](docs/releases/v0.3.0-dev.40.md)
+
 ## 0.3.0-dev.39 — Local Wan video / 本地视频业务
 
 - 增加完整 Wan 2.1 T2V 1.3B Q4 四组件可选方案，共4,741,874,667字节；全部 / HF / 本地、独立可编辑参数、显式下载 / 导入、共用任务、取消恢复和结果管理沿用基座。App不含权重或分词数据，保留推荐与用户资产。

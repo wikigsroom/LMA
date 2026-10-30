@@ -14,9 +14,9 @@ from preparation_build_inputs import build_inputs
 ROOT = Path(__file__).resolve().parents[1]
 BASELINE = '6b1f3459a80db8b7b6838e7d5e492b8ef42d9033'
 BASE_VERSION = '0.3.0-dev.24'
-CURRENT_VERSION = '0.3.0-dev.39'
-PRIOR_COMMIT = 'bda76b7830812125d0835c4af67e0be9d2db0b9a'
-PRIOR_VERSION = '0.3.0-dev.38'
+CURRENT_VERSION = '0.3.0-dev.40'
+PRIOR_COMMIT = '0ec5042515656481c7c728cce5039a1aec979dff'
+PRIOR_VERSION = '0.3.0-dev.39'
 CERTIFICATE = '90444a717a55549e2094364d8d7d005cf8b7f4df24562da62cc1884a2f341c17'
 SOURCES = {
     'build-info.json': 'dist/build-info.json',
@@ -54,6 +54,7 @@ SOURCES = {
     'components-media.json': 'docs/media/development/components/manifest.json',
     'mnn.json': 'build/mnn-tests/results.json',
     'wan-assets.json': 'build/wan-trained/receipt.json',
+    'wan-quality.json': 'build/wan-quality/summary.json',
     'wan-trained.json': 'build/wan-trained-tests/results.json',
     'wan-app-host.json': 'build/wan-app-host-tests/results.json',
     'wan-trained-media.json': 'docs/media/development/wan-trained/manifest.json',
@@ -94,7 +95,7 @@ def prior_checkpoint(write=False):
     # Only archive this checkpoint's own records. Older model experiments have
     # separate immutable pointers and are not inputs to this incremental copy.
     status_data = subprocess.check_output(['git','show',PRIOR_COMMIT + ':verification/development/status.json'], cwd=ROOT)
-    status = json.loads(status_data); assert status['version'] == PRIOR_VERSION and len(status['sources']) == 39
+    status = json.loads(status_data); assert status['version'] == PRIOR_VERSION and len(status['sources']) == 40
     selected = ['status.json', *status['sources']]
     assert all(Path(name).name == name and name.endswith('.json') for name in selected)
     run = subprocess.run(['git', 'archive', '--format=tar', PRIOR_COMMIT, *['verification/development/' + name for name in selected]], cwd=ROOT, capture_output=True, check=True)
@@ -151,7 +152,7 @@ def export():
         'historical_trained_results_apply_to_current_apk': False,
         'host_model_inference_tested': True, 'current_trained_host_engines': ['wan_sd_cpp'], 'apk_model_inference_tested': False, 'historical_host_model_inference_tested': True,
         'model_inference_test_scope': 'Current complete Z-Image-Turbo native Windows CPU and production Java execution; four complete user-owned components and the identical official Qwen tokenizer reference. FLUX.2-klein remains exact dev.37 and Sana Edit exact dev.36 history. No Android model inference, image quality or full numerical acceptance.',
-        'scope': 'Optional Wan 2.1 T2V 1.3B Q4 selection and complete four-asset lifecycle; CPU UMT5/VAE, actual Vulkan diffusion observations, independent settings, immutable video jobs, cancellation/recovery and managed MP4s. Windows FFmpeg is an explicit test port, not Android encoding evidence. Foundation-only APK, preserved recommendations, no automatic downloads, no ROOT or off-device inference, no ComfyUI graph ecosystem. Full frozen v0.3.0 requirements and failed gates remain unchanged.',
+        'scope': 'Optional Wan 2.1 T2V 1.3B Q4 selection and complete four-asset lifecycle; CPU UMT5/VAE, actual Vulkan diffusion observations, independent settings, immutable video jobs, cancellation/recovery and managed MP4s. Per-model spatial/temporal decoder controls preserve legacy jobs and default memory policy. Five full-geometry historical experiments and an unchanged official CPU VAE comparison retain failed later-frame quality; their exact provenance is not refreshed. Windows FFmpeg is an explicit test port, not Android encoding evidence. Foundation-only APK, preserved recommendations, no automatic downloads, no ROOT or off-device inference, no ComfyUI graph ecosystem. Full frozen v0.3.0 requirements and failed gates remain unchanged.',
         'required_release_scope': {'foundation': 'F01–F12', 'existing_text': True, 'selected_ids': ['01','02','03','04','05','06','07','08','09','10','11','12','13','14','16','17'], 'every_frozen_subtarget': True, 'sd15_and_sdxl_lora': True},
         'input_fingerprint': fingerprint('tools/checkpoint_evidence.py', 'tools/export_development.py', 'tools/check_repository.py', 'docs/proposals/multimodal-release-scope.json'),
     }
@@ -192,7 +193,7 @@ def check():
     assert not recovery['android_execution_tested'] and not recovery['model_inference_tested']
     for name, minimum in [('foundation.json',666),('api.json',67),('inputs.json',64),('text.json',66),('migration.json',69),('scheduler.json',151)]:
         assert records[name]['passed'] >= minimum, name
-    ui = records['ui.json']; assert ui['passed'] >= 457 and not ui['errors'] and ui['bridge'] == 'test fixture only' and not ui['physicalDevice'] and not ui['emulatorUsed']
+    ui = records['ui.json']; assert ui['passed'] >= 486 and not ui['errors'] and ui['bridge'] == 'test fixture only' and not ui['physicalDevice'] and not ui['emulatorUsed']
     lint = records['lint.json']; assert lint['errors'] == 0 and lint['applicationApkSha256'] == build['sha256']
     assert lint['java_source_files'] == len(list((ROOT / 'app/src/main/java').rglob('*.java')))
     media = records['workbench-media.json']; assert media['version'] == CURRENT_VERSION and media['browser_closed'] and not media['browser_errors']
@@ -214,7 +215,7 @@ def check():
     preparation, assembly, diffusion = records['preparation-core.json'], records['assembly-core.json'], records['diffusion.json']
     assert preparation['passed'] and preparation['checks'] >= 44 and not preparation['physical_android']
     assert assembly['passed'] and assembly['checks'] >= 47 and not assembly['automatic_downloads'] and not assembly['physicalAndroid']
-    assert diffusion['passed'] >= 100 and diffusion['production_sd_binding'] and not diffusion['model_inference'] and not diffusion['physical_android']
+    assert diffusion['passed'] >= 197 and diffusion['production_sd_binding'] and not diffusion['model_inference'] and not diffusion['physical_android']
     # dev.29 did not rerun trained LCM. Validate the immutable dev.28 pointer,
     # rather than presenting an old leftover public file as current evidence.
     lcm_history = json.loads(prior_records['status.json'])['prior_checkpoint']
@@ -385,7 +386,8 @@ def check():
     for item in media['files']:
         data=(ROOT/'docs/media/development/flux2-trained'/item['file']).read_bytes();assert len(data)==item['bytes'] and digest(data)==item['sha256']
     # Preserve complete dev.38 Z-Image execution as historical, never retimestamp it.
-    assets=json.loads(prior_records['zimage-assets.json']); trained=json.loads(prior_records['zimage-trained.json']); bridge=json.loads(prior_records['zimage-app-host.json'])
+    zimage_history=archived_checkpoint('0.3.0-dev.38',prior_records['status.json'])
+    assets=json.loads(zimage_history['zimage-assets.json']); trained=json.loads(zimage_history['zimage-trained.json']); bridge=json.loads(zimage_history['zimage-app-host.json'])
     zimage_lock=json.loads((ROOT/'research/zimage_trained/assets.json').read_text(encoding='utf-8'))
     assert zimage_lock['reference_tokenizer']['sha256']==records['qwen-tokenizer.json']['reference']['sha256']
     assert assets['developer_assets_only'] and assets['explicit_download'] and not assets['model_executed']
@@ -406,7 +408,7 @@ def check():
     assert bridge['production_java_native_host_executed'] and bridge['java']['passed']>=100
     assert bridge['java']['actual_host_children']==3 and bridge['java']['imported_objects']==4 and bridge['java']['network_calls']==0
     assert len(bridge['outputs'])==2 and all(i['bitwise_equal_to_direct_native'] for i in bridge['outputs'])
-    assert bridge['direct_trained_report_sha256']==digest(prior_records['zimage-trained.json'])
+    assert bridge['direct_trained_report_sha256']==digest(zimage_history['zimage-trained.json'])
     assert bridge['compilation']==trained['compilation']
     assert not any(r[k] for r in [trained,bridge] for k in ['physical_android','independent_numerics_accepted','image_quality_accepted','complete_target06_accepted','complete_release_accepted'])
     tokenizer=records['qwen-tokenizer.json']
@@ -414,8 +416,8 @@ def check():
     assert tokenizer['actual_production_tokenizer'] and tokenizer['independent_reference']=='Hugging Face tokenizer.json + Rust tokenizers'
     assert tokenizer['variants']==3 and tokenizer['texts']==33 and tokenizer['network_calls']==0 and not tokenizer['bundled_tokenizer_data']
     assert tokenizer['compilation']['source_revision']==trained['compilation']['source_revision'] and not tokenizer['model_inference'] and not tokenizer['physical_android']
-    media=json.loads(prior_records['zimage-trained-media.json']); assert media['version']==PRIOR_VERSION and media['real_trained_host_execution'] and not media['android_recording']
-    assert media['direct_report_sha256']==digest(prior_records['zimage-trained.json']) and media['java_report_sha256']==digest(prior_records['zimage-app-host.json'])
+    media=json.loads(zimage_history['zimage-trained-media.json']); assert media['version']=='0.3.0-dev.38' and media['real_trained_host_execution'] and not media['android_recording']
+    assert media['direct_report_sha256']==digest(zimage_history['zimage-trained.json']) and media['java_report_sha256']==digest(zimage_history['zimage-app-host.json'])
     assert not media['image_quality_accepted'] and len(media['products'])==3
     for item in media['files']:
         data=(ROOT/'docs/media/development/zimage-trained'/item['file']).read_bytes();assert len(data)==item['bytes'] and digest(data)==item['sha256']
@@ -423,8 +425,8 @@ def check():
     assets=records['wan-assets.json'];trained=records['wan-trained.json'];bridge=records['wan-app-host.json']
     assert assets['developer_assets_only'] and assets['explicit_download'] and not assets['model_executed']
     assert len(assets['components'])==4 and sum(c['bytes'] for c in assets['components'])==4741874667
-    assert trained['components']==assets['components'] and trained['host_execution_checks_passed'] and len(trained['runs'])==7
-    assert all(c['passed'] for c in trained['checks']) and trained['passed']>=39
+    assert trained['components']==assets['components'] and trained['host_execution_checks_passed'] and len(trained['runs'])==9
+    assert all(c['passed'] for c in trained['checks']) and trained['passed']>=49
     for run in trained['runs']:
         assert not run['process']['protocol_errors'] and not run['process']['timed_out']
         if 'frames' in run:
@@ -435,17 +437,28 @@ def check():
             assert details[0]['textBackend']==details[0]['vaeBackend']=='cpu' and not details[0]['remoteInference']
     cancel=next(r for r in trained['runs'] if r['name']=='cancel-step1')['process']
     assert cancel['forced_host_termination'] and cancel['cancel_trigger']['step']==1 and cancel['cancel_trigger']['steps']==4
-    assert bridge['production_java_native_host_executed'] and bridge['java']['passed']>=100
+    assert bridge['production_java_native_host_executed'] and bridge['java']['passed']>=102
     assert bridge['java']['actual_host_children']==3 and bridge['java']['imported_objects']==4 and bridge['java']['network_calls']==0
     assert len(bridge['outputs'])==2 and all(i['raw_frames_bitwise_equal_to_direct_native'] for i in bridge['outputs'])
     assert bridge['direct_trained_report_sha256']==digest((ROOT/SOURCES['wan-trained.json']).read_bytes())
     assert bridge['compilation']==trained['compilation'] and bridge['host_ffmpeg'] and not bridge['android_codec_tested']
     assert not any(r[k] for r in [trained,bridge] for k in ['physical_android','independent_numerics_accepted','video_quality_accepted','complete_target16_accepted','complete_release_accepted'])
+    quality=records['wan-quality.json']
+    assert quality['version']==CURRENT_VERSION and quality['aggregation_current'] and not quality['original_captures_are_current_validation']
+    assert len(quality['experiments'])==5 and len(quality['original_captures'])==7
+    assert quality['default_decoder']==dict(vaeTileSize=128,vaeTemporalTiling=False)
+    assert quality['official_vae_revision']=='9737cba9c1c3c4d04b33fcad41c111989865d315'
+    assert not any(quality[k] for k in ['physical_android','android_codec_tested','independent_diffusion_numerics_accepted','video_quality_accepted','resource_acceptance','complete_target16_accepted','complete_release_accepted'])
+    for item in quality['original_captures'].values():
+        assert not item['current_execution'] and item['original_provenance_preserved']
+        data=(ROOT/item['path']).read_bytes();assert len(data)==item['bytes'] and digest(data)==item['sha256']
+    for item in quality['media']:
+        data=(ROOT/'docs/media/development/wan-quality'/item['file']).read_bytes();assert len(data)==item['bytes'] and digest(data)==item['sha256']
     for name,folder in [('wan-media.json','wan'),('wan-trained-media.json','wan-trained')]:
         media=records[name];assert media['version']==CURRENT_VERSION
         if name=='wan-media.json':
             assert media['browser_closed'] and not media['browser_errors'] and not media['android_device'] and not media['model_inference']
-            assert len(media['screenshots'])==4 and len(media['checks'])>=8 and not media['weights_downloaded']
+            assert len(media['screenshots'])==4 and len(media['checks'])>=9 and not media['weights_downloaded']
         else:
             assert media['real_trained_host_execution'] and not media['android_recording'] and not media['video_quality_accepted']
             assert media['direct_report_sha256']==digest((ROOT/SOURCES['wan-trained.json']).read_bytes())

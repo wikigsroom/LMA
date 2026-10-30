@@ -1,0 +1,82 @@
+{
+  "schema": "lma.wan-reference-vae/1",
+  "source": {
+    "revision": "9737cba9c1c3c4d04b33fcad41c111989865d315",
+    "files": {
+      "wan/modules/vae.py": {
+        "sha256": "4912ffd7a9fbb17ceef9a17d4a9c4b8aee36ec37c32594f54e57693b29909498",
+        "bytes": 23163,
+        "url": "https://github.com/Wan-Video/Wan2.1/blob/9737cba9c1c3c4d04b33fcad41c111989865d315/wan/modules/vae.py"
+      },
+      "wan/configs/wan_t2v_1_3B.py": {
+        "sha256": "6976ec4c03f737b69ae17afe13339b32905739205d4c19f16c8b329f9f06e986",
+        "bytes": 759,
+        "url": "https://github.com/Wan-Video/Wan2.1/blob/9737cba9c1c3c4d04b33fcad41c111989865d315/wan/configs/wan_t2v_1_3B.py"
+      },
+      "LICENSE.txt": {
+        "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+        "bytes": 11357,
+        "url": "https://github.com/Wan-Video/Wan2.1/blob/9737cba9c1c3c4d04b33fcad41c111989865d315/LICENSE.txt"
+      }
+    }
+  },
+  "capture_sha256": "28aeedcca721779b145de020409f467dcc350d47b37106edc03699625a27eef0",
+  "latent_sha256": "bb69c075374418214adc74e814647109c24a34f9f57e8bad08c568a8f435df8e",
+  "weights": {
+    "role": "vae",
+    "repository": "off-grid-ai/Video-Companions-GGUF",
+    "revision": "18b5ae5e93799acd6cd20819f898ff60f4b822d1",
+    "path": "wan_2.1_vae.safetensors",
+    "bytes": 253815318,
+    "sha256": "2fc39d31359a4b0a64f55876d8ff7fa8d780956ae2cb13463b0223e15148976b",
+    "format": "safetensors",
+    "url": "https://huggingface.co/off-grid-ai/Video-Companions-GGUF/resolve/18b5ae5e93799acd6cd20819f898ff60f4b822d1/wan_2.1_vae.safetensors"
+  },
+  "dtype": "float32",
+  "device": "cpu",
+  "implementation": "unchanged official WanVAE_",
+  "strict_weight_loading": true,
+  "seconds": 114.32178240000212,
+  "packages": {
+    "torch": "2.14.0+cpu",
+    "numpy": "2.4.2",
+    "einops": "0.8.1",
+    "safetensors": "0.8.0"
+  },
+  "output": {
+    "bytes": 7520284,
+    "sha256": "32c2a07ab4b2afae91606e698431c465c4094fa7977668253ce51a2ff6a91a15"
+  },
+  "physical_android": false,
+  "video_quality_accepted": false,
+  "independent_diffusion_numerics_accepted": false,
+  "complete_release_accepted": false,
+  "input_fingerprint": {
+    "tools/probe_wan_latents.py": "9ac09d7773e30cd7d925fb5418214daf94b8149f318bb3233839da1dca7f0cb5"
+  },
+  "comparison": {
+    "path": "build/wan-quality/untiled-1793360295780024600/untiled.rgb",
+    "sha256": "21feb001d290ed76f3a78a877b8cebedfbea9ea3aa5b111b44a4f8ce573512c6",
+    "mean_absolute_byte_error": 0.49510881012561275,
+    "per_frame_mean_absolute_byte_error": [
+      0.49272099247685186,
+      0.49625424985532407,
+      0.4943553783275463,
+      0.49705448857060186,
+      0.49740035445601855,
+      0.4941541883680556,
+      0.4940253363715278,
+      0.49664306640625,
+      0.49737548828125,
+      0.4942310474537037,
+      0.49552182798032407,
+      0.49538619429976855,
+      0.49660011574074076,
+      0.49575240523726855,
+      0.4942672164351852,
+      0.4927029079861111,
+      0.4924045138888889
+    ],
+    "maximum_absolute_byte_error": 1
+  }
+}

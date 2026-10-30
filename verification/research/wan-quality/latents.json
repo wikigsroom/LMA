@@ -1,0 +1,404 @@
+{
+  "schema": "lma.wan-latent-capture/1",
+  "compilation": {
+    "schema": "lma.wan-latent-probe-build/1",
+    "source_revision": "be486498eadc29dc3cd234d944c2180ed42b1415",
+    "production_compilation": {
+      "schema": "lma.native-build/1",
+      "engine": "wan_sd_cpp",
+      "source_revision": "be486498eadc29dc3cd234d944c2180ed42b1415",
+      "ggml_revision": "a5915eb0e47adef21c3f25b889a008925ea838c2",
+      "backend": "vulkan",
+      "file": "lma_sd_vulkan_host.exe",
+      "bytes": 49658880,
+      "sha256": "e2008534191f75dc9c4f07eab9200f66646664eefab2c120c2193d346c52d6ca",
+      "vocabularies": "external_user_selected_components",
+      "physical_device_tests": 0,
+      "model_inference_tested": false,
+      "virtualization_used": false,
+      "source_inputs": {
+        "native/CMakeLists.txt": "bbeee4fa61d80500eeecb80dde2be73296e13ec637fc8a2d57a5faaee867e2aa",
+        "native/lcm_condition.hpp": "a5d94cf2f2453f3c8045418aa6b1a147ffa27557665bfc6f2203e04048899ea4",
+        "native/qwen_prompt.hpp": "ec9a45781b93eff62c6f0a4eca2c59fe1088c931d4c1150dcd903ae5c84c1c0f",
+        "native/sd_backend.hpp": "0e3123316a382566c30dfe0a207e9f130242629d0e3a5fb164be7fe243c0364c",
+        "native/sd_policy.hpp": "e60d0f67258e15754930f38aec97522fff28475c4cb3c92524d5daa785178619",
+        "native/sd_worker.cpp": "a6ce16e26c047231326fe1fd2551d75cabf2d47381d6489d73ef7b8c712ac96a",
+        "native/tokenizer_data.hpp": "c752eb62a3c915be4742124bb25e6ada9ea952bbc81c62a1a864cfe39a3ddd6d",
+        "native/vocab_external.cpp": "b8e568f72914833f66bbe338fb877d98d1cb954525a7d3d9a1f8364e4e1c90af",
+        "research/sd_host/compat/sys/prctl.h": "87c9ddf82ce059bf303486b0e10b22dce6d972e87f83836d148e631dcdad9c9e",
+        "research/sd_host/compat/unistd.h": "e467e7f5855c286b3ce40268146ed34d153a5fbf8a42d5c36b26a6293142068b",
+        "research/sd_vulkan_host/CMakeLists.txt": "752440871771be3b3519361e9c488669ca691d875737eac9e489e24870948feb",
+        "research/sd_vulkan_host/NOTICE": "9b917aa087e1d8cda34b8ae50ca88d9a1e73b7ae2c7917130656f9f9579d1ff9",
+        "third_party/ltx098-source-lock.json": "28acd99486f6ca76a06d038076175ac01ca55c7b1d8c3ba6dab9190291ac8779",
+        "third_party/notices/sd-sources.json": "91ee744071aa93c4bd4d40476d3582fa4bf4d00a628527e196d4856c06ec77c1",
+        "tools/build_ltx098.py": "bf39449e38190a666093f6954d133a76da36d519817ca636703f030100d4faf8",
+        "tools/build_sd_vulkan.py": "465f3e0bf42bb555be5f41a609bbb6c510dd5869a07b0a7b0ea2a5e6d0f2454e"
+      },
+      "module_backends": {
+        "text": "cpu",
+        "vae": "cpu",
+        "diffusion": "vulkan0"
+      },
+      "gpu_execution_requires_completed_operation": true,
+      "remote_inference": false,
+      "abi": "windows-x86_64",
+      "compiler": "native MSVC"
+    },
+    "modified_seams": 1,
+    "original_video_cpp_sha256": "330c493c2d26038a132d3a0ed97d9d4b5430c76c686e93fb4df998393c403312",
+    "diagnostic_video_cpp_sha256": "14d864702c5a676fd488dde9485d892ddfce330e2284c87ec65ca96ca7fb0bfa",
+    "sha256": "20897b093a579bd8527ecfd24b187fed47ed76c81f45890623dc394d009faf09",
+    "bytes": 49667072,
+    "packaged_in_apk": false,
+    "generation_completed": false,
+    "physical_android": false,
+    "input_fingerprint": {
+      "native/CMakeLists.txt": "bbeee4fa61d80500eeecb80dde2be73296e13ec637fc8a2d57a5faaee867e2aa",
+      "native/lcm_condition.hpp": "a5d94cf2f2453f3c8045418aa6b1a147ffa27557665bfc6f2203e04048899ea4",
+      "native/qwen_prompt.hpp": "ec9a45781b93eff62c6f0a4eca2c59fe1088c931d4c1150dcd903ae5c84c1c0f",
+      "native/sd_backend.hpp": "0e3123316a382566c30dfe0a207e9f130242629d0e3a5fb164be7fe243c0364c",
+      "native/sd_policy.hpp": "e60d0f67258e15754930f38aec97522fff28475c4cb3c92524d5daa785178619",
+      "native/sd_worker.cpp": "a6ce16e26c047231326fe1fd2551d75cabf2d47381d6489d73ef7b8c712ac96a",
+      "native/tokenizer_data.hpp": "c752eb62a3c915be4742124bb25e6ada9ea952bbc81c62a1a864cfe39a3ddd6d",
+      "native/vocab_external.cpp": "b8e568f72914833f66bbe338fb877d98d1cb954525a7d3d9a1f8364e4e1c90af",
+      "research/sd_host/compat/sys/prctl.h": "87c9ddf82ce059bf303486b0e10b22dce6d972e87f83836d148e631dcdad9c9e",
+      "research/sd_host/compat/unistd.h": "e467e7f5855c286b3ce40268146ed34d153a5fbf8a42d5c36b26a6293142068b",
+      "research/sd_vulkan_host/CMakeLists.txt": "752440871771be3b3519361e9c488669ca691d875737eac9e489e24870948feb",
+      "research/sd_vulkan_host/NOTICE": "9b917aa087e1d8cda34b8ae50ca88d9a1e73b7ae2c7917130656f9f9579d1ff9",
+      "third_party/ltx098-source-lock.json": "28acd99486f6ca76a06d038076175ac01ca55c7b1d8c3ba6dab9190291ac8779",
+      "third_party/notices/sd-sources.json": "91ee744071aa93c4bd4d40476d3582fa4bf4d00a628527e196d4856c06ec77c1",
+      "tools/build_ltx098.py": "bf39449e38190a666093f6954d133a76da36d519817ca636703f030100d4faf8",
+      "tools/build_sd_vulkan.py": "465f3e0bf42bb555be5f41a609bbb6c510dd5869a07b0a7b0ea2a5e6d0f2454e",
+      "research/wan_latent_probe/CMakeLists.txt": "2f27776486da1f61be2e638e51de7748e0364ac3adfd12d6f61cc8355729d96d",
+      "research/wan_latent_probe/NOTICE": "d62b6ed70460f1cab8d99253cbad9ed11828f3cd558ed93e9469ef78bff72365",
+      "tools/build_wan_latent_probe.py": "988ce05db16bc172328c12c0b1e8158d0fe595890f341923f9cd13ca710306b5"
+    }
+  },
+  "baseline": {
+    "path": "build/wan-smoke/run-1793355854365738300/request.json",
+    "sha256": "d19542d4ad89f5abd0d2e66383b0aa89c8fefb36c4b1e83f7a7f9c9bed3b49c4"
+  },
+  "components": [
+    {
+      "role": "diffusion",
+      "repository": "off-grid-ai/Wan2.1-T2V-1.3B-GGUF",
+      "revision": "1ba777b2426d5717dd0fddb1100078604a9d4667",
+      "path": "Wan2.1-T2V-1.3B-Q4_K_S.gguf",
+      "bytes": 816061024,
+      "sha256": "65181afff758fba25cf311399ccb0638a746f8e0e6533e07a84a5a23e0c12318",
+      "format": "gguf",
+      "url": "https://huggingface.co/off-grid-ai/Wan2.1-T2V-1.3B-GGUF/resolve/1ba777b2426d5717dd0fddb1100078604a9d4667/Wan2.1-T2V-1.3B-Q4_K_S.gguf"
+    },
+    {
+      "role": "t5",
+      "repository": "off-grid-ai/Video-Companions-GGUF",
+      "revision": "18b5ae5e93799acd6cd20819f898ff60f4b822d1",
+      "path": "umt5-xxl-encoder-Q4_K_M.gguf",
+      "bytes": 3655145312,
+      "sha256": "17cf97a5bbbc60a646d6105b832b6f657ce904a8a1ad970e4b59df0c67584a40",
+      "format": "gguf",
+      "url": "https://huggingface.co/off-grid-ai/Video-Companions-GGUF/resolve/18b5ae5e93799acd6cd20819f898ff60f4b822d1/umt5-xxl-encoder-Q4_K_M.gguf"
+    },
+    {
+      "role": "vae",
+      "repository": "off-grid-ai/Video-Companions-GGUF",
+      "revision": "18b5ae5e93799acd6cd20819f898ff60f4b822d1",
+      "path": "wan_2.1_vae.safetensors",
+      "bytes": 253815318,
+      "sha256": "2fc39d31359a4b0a64f55876d8ff7fa8d780956ae2cb13463b0223e15148976b",
+      "format": "safetensors",
+      "url": "https://huggingface.co/off-grid-ai/Video-Companions-GGUF/resolve/18b5ae5e93799acd6cd20819f898ff60f4b822d1/wan_2.1_vae.safetensors"
+    },
+    {
+      "role": "umt5_tokenizer",
+      "repository": "google/umt5-xxl",
+      "revision": "66cb9e7e85526fe440a945569e42c72fb6cbc0ad",
+      "path": "tokenizer.json",
+      "bytes": 16853013,
+      "sha256": "af904105ce1071b1202bba0059a841f4a7b85b48b6ec179c4948e3483476e0dd",
+      "format": "json",
+      "url": "https://huggingface.co/google/umt5-xxl/resolve/66cb9e7e85526fe440a945569e42c72fb6cbc0ad/tokenizer.json"
+    }
+  ],
+  "request": {
+    "schema": "lma.engine-request/1",
+    "backend": "vulkan",
+    "type": "video.generate",
+    "pipeline": "wan21_13b",
+    "architecture": "wan21",
+    "samplingProfile": "standard",
+    "input": {
+      "prompt": "A small red toy robot waving its hand beside a blue ceramic teapot on a wooden table, gentle camera movement, soft daylight",
+      "negativePrompt": ""
+    },
+    "parameters": {
+      "width": 512,
+      "height": 288,
+      "frames": 17,
+      "fps": 8,
+      "steps": 20,
+      "threads": 6,
+      "seed": 42,
+      "cfg": 6,
+      "sampler": "euler",
+      "scheduler": "discrete",
+      "flowShift": 3,
+      "vaeTiling": true
+    },
+    "components": {
+      "diffusion": "U:/build/wan-trained/originals/65181afff758fba25cf311399ccb0638a746f8e0e6533e07a84a5a23e0c12318/Wan2.1-T2V-1.3B-Q4_K_S.gguf",
+      "t5": "U:/build/wan-trained/originals/17cf97a5bbbc60a646d6105b832b6f657ce904a8a1ad970e4b59df0c67584a40/umt5-xxl-encoder-Q4_K_M.gguf",
+      "vae": "U:/build/wan-trained/originals/2fc39d31359a4b0a64f55876d8ff7fa8d780956ae2cb13463b0223e15148976b/wan_2.1_vae.safetensors",
+      "umt5_tokenizer": "U:/build/wan-trained/originals/af904105ce1071b1202bba0059a841f4a7b85b48b6ec179c4948e3483476e0dd/tokenizer.json"
+    },
+    "loras": [],
+    "output": "U:/build/wan-quality/latents-1793363361041000300/must-not-exist.rgb"
+  },
+  "process": {
+    "returncode": 1,
+    "seconds": 81.23963650000223,
+    "events": [
+      {
+        "event": "stage",
+        "stage": "loading"
+      },
+      {
+        "event": "stage",
+        "stage": "generating"
+      },
+      {
+        "event": "progress",
+        "seconds": 2000.0001220703125,
+        "stage": "generating",
+        "step": 0,
+        "steps": 242
+      },
+      {
+        "event": "progress",
+        "seconds": 0.0008388429414480925,
+        "stage": "generating",
+        "step": 242,
+        "steps": 242
+      },
+      {
+        "event": "progress",
+        "seconds": 0.0,
+        "stage": "generating",
+        "step": 0,
+        "steps": 20
+      },
+      {
+        "event": "progress",
+        "seconds": 3000.0,
+        "stage": "generating",
+        "step": 0,
+        "steps": 825
+      },
+      {
+        "event": "progress",
+        "seconds": 0.0006276923231780529,
+        "stage": "generating",
+        "step": 325,
+        "steps": 825
+      },
+      {
+        "event": "progress",
+        "seconds": 0.0012392638018354774,
+        "stage": "generating",
+        "step": 326,
+        "steps": 825
+      },
+      {
+        "event": "progress",
+        "seconds": 0.0007369696977548301,
+        "stage": "generating",
+        "step": 825,
+        "steps": 825
+      },
+      {
+        "event": "progress",
+        "seconds": 18.31037139892578,
+        "stage": "generating",
+        "step": 1,
+        "steps": 20
+      },
+      {
+        "event": "progress",
+        "seconds": 1.088683009147644,
+        "stage": "generating",
+        "step": 2,
+        "steps": 20
+      },
+      {
+        "event": "progress",
+        "seconds": 1.0895830392837524,
+        "stage": "generating",
+        "step": 3,
+        "steps": 20
+      },
+      {
+        "event": "progress",
+        "seconds": 1.0880260467529297,
+        "stage": "generating",
+        "step": 4,
+        "steps": 20
+      },
+      {
+        "event": "progress",
+        "seconds": 1.082990050315857,
+        "stage": "generating",
+        "step": 5,
+        "steps": 20
+      },
+      {
+        "event": "progress",
+        "seconds": 1.0841690301895142,
+        "stage": "generating",
+        "step": 6,
+        "steps": 20
+      },
+      {
+        "event": "progress",
+        "seconds": 1.0875940322875977,
+        "stage": "generating",
+        "step": 7,
+        "steps": 20
+      },
+      {
+        "event": "progress",
+        "seconds": 1.083346962928772,
+        "stage": "generating",
+        "step": 8,
+        "steps": 20
+      },
+      {
+        "event": "progress",
+        "seconds": 1.0862200260162354,
+        "stage": "generating",
+        "step": 9,
+        "steps": 20
+      },
+      {
+        "event": "progress",
+        "seconds": 1.0824569463729858,
+        "stage": "generating",
+        "step": 10,
+        "steps": 20
+      },
+      {
+        "event": "progress",
+        "seconds": 1.0821419954299927,
+        "stage": "generating",
+        "step": 11,
+        "steps": 20
+      },
+      {
+        "event": "progress",
+        "seconds": 1.0846840143203735,
+        "stage": "generating",
+        "step": 12,
+        "steps": 20
+      },
+      {
+        "event": "progress",
+        "seconds": 1.0932539701461792,
+        "stage": "generating",
+        "step": 13,
+        "steps": 20
+      },
+      {
+        "event": "progress",
+        "seconds": 1.089547038078308,
+        "stage": "generating",
+        "step": 14,
+        "steps": 20
+      },
+      {
+        "event": "progress",
+        "seconds": 1.0874069929122925,
+        "stage": "generating",
+        "step": 15,
+        "steps": 20
+      },
+      {
+        "event": "progress",
+        "seconds": 1.1031630039215088,
+        "stage": "generating",
+        "step": 16,
+        "steps": 20
+      },
+      {
+        "event": "progress",
+        "seconds": 1.0964330434799194,
+        "stage": "generating",
+        "step": 17,
+        "steps": 20
+      },
+      {
+        "event": "progress",
+        "seconds": 1.0907200574874878,
+        "stage": "generating",
+        "step": 18,
+        "steps": 20
+      },
+      {
+        "event": "progress",
+        "seconds": 1.092926025390625,
+        "stage": "generating",
+        "step": 19,
+        "steps": 20
+      },
+      {
+        "event": "progress",
+        "seconds": 1.1087570190429688,
+        "stage": "generating",
+        "step": 20,
+        "steps": 20
+      },
+      {
+        "event": "error",
+        "message": "Video generation failed"
+      }
+    ],
+    "protocol_errors": [],
+    "logs_truncated": [
+      false,
+      false
+    ],
+    "timed_out": false,
+    "forced_host_termination": false,
+    "cancel_trigger": null,
+    "cancel_to_exit_seconds": null,
+    "android_cooperative_cancellation_tested": false,
+    "resources": {
+      "observed": true,
+      "samples": 3885,
+      "interval_ms": 20,
+      "observed_peak_working_set_bytes": 4120092672,
+      "sampled_peak_private_bytes": 1616809984,
+      "gpu_memory_measured": false,
+      "physical_device_memory_measured": false
+    }
+  },
+  "generation_completed": false,
+  "physical_android": false,
+  "video_quality_accepted": false,
+  "independent_diffusion_numerics_accepted": false,
+  "complete_release_accepted": false,
+  "input_fingerprint": {
+    "tools/probe_wan_latents.py": "e8f70fea48f5899103119225278e2580edddfb7d60543177a5cce1cb3de4f45f"
+  },
+  "latent": {
+    "bytes": 737340,
+    "sha256": "bb69c075374418214adc74e814647109c24a34f9f57e8bad08c568a8f435df8e",
+    "dimensions": [
+      64,
+      36,
+      5,
+      16,
+      1
+    ],
+    "minimum": -3.680443525314331,
+    "maximum": 3.4208505153656006
+  }
+}
