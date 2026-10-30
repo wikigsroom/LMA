@@ -7,7 +7,7 @@
   "android_device": false,
   "passed": 668,
   "input_fingerprint": {
-    "app/src/main/assets/recipe-templates.json": "91f2fb0aa811d467afb8f410a4ceaca7f1b6cd457c82ceef8968b0678872a503",
+    "app/src/main/assets/recipe-templates.json": "0ac0d11381d784f7267771e2d17daa8bf8356662b912736e3c830c21e6c144aa",
     "app/src/main/java/com/lma/app/core/AdapterSpec.java": "aff8572d14ac8d616be0a1b0da395e52ed5bddcd5ae407a969c2657bf9257581",
     "app/src/main/java/com/lma/app/core/ArtifactStore.java": "6f85d2ac710cac0fb5a76cde9493ff1fef4d3e2e119c3e031b7c44ff65a49061",
     "app/src/main/java/com/lma/app/core/AssemblyPlan.java": "80e81dea2a831d3955aa5ae21323eb0432fb448f78994901633fbb6e85d77e7c",
@@ -61,7 +61,7 @@
     "app/src/main/java/com/lma/app/core/TextSpec.java": "4521ce8e833d88276f6b98d446e0171c48602d67ce2cf4b372d425e56d6d149e",
     "app/src/main/java/com/lma/app/core/TtsSpec.java": "54f841e2ca5e93d3c3e1845014029b96912291fcf50a50c26a0124325a7a962a",
     "app/src/main/java/com/lma/app/core/WaveFile.java": "cf70b9bbafb6aa23cc25217d4883e769173b00f74571d1b115c50a8ad6b15361",
-    "catalogue/model-bundles.json": "1dbef13b696a882ff2fe3336319860e93aa10cb3e9adeede2bac0137da2b56d5",
+    "catalogue/model-bundles.json": "461a7cebcb8ad9aa99435ca2e7f2f71ba8acee7219bf577398ce2535c99ed33a",
     "research/sd_distilled_trained/sd_turbo_q8_0.json": "b3b4668f994ae9be01b63bdf816ed8b6af4eafa310bafa83443d077b7b432683",
     "research/sd_variants_trained/manifests/sd15_lcm_lora.json": "27d39827e9db245db2e18b5abd8a058948ca2c16aef22b9654daf80f11b0130f",
     "research/sd_variants_trained/manifests/sd15_style_pixelart.json": "443c14138f257c48a6f0e89f7031eda3313c69072e14683675ffef1c66dfbd1b",

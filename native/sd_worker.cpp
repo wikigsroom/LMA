@@ -2,6 +2,7 @@
 #include "json.hpp"
 #include "sd_policy.hpp"
 #include "lcm_condition.hpp"
+#include "qwen_prompt.hpp"
 #define STB_IMAGE_WRITE_IMPLEMENTATION
 #include "stb_image_write.h"
 #include <cstdio>
@@ -45,6 +46,10 @@ int main(int argc, char** argv) {
         std::string type = request.at("type"), output = request.at("output"), prompt = request.at("input").value("prompt", ""), negative = request.at("input").value("negativePrompt", "");
         if (prompt.empty() || prompt.size() > 64000 || negative.size() > 64000 || output.empty()) throw std::runtime_error("Invalid prompt or output");
         if (type != "image.generate" && type != "video.generate") throw std::runtime_error("Unsupported diffusion task");
+        if (pipeline == "z_image_turbo" || pipeline == "flux2_klein_4b" || pipeline == "qwen_image_21") {
+            prompt=lma_tokenizers::qwen_prompt(prompt);
+            negative=lma_tokenizers::qwen_prompt(negative);
+        }
         // Upstream logging may contain prompts, paths or generated text. Only structured progress leaves stdout.
         std::atomic_bool load_failed{false};
         sd_set_log_callback([](sd_log_level_t level, const char* text, void* state) {

@@ -1,0 +1,1052 @@
+{
+  "schema": "lma.mnn-edit-app-host/1",
+  "passed": true,
+  "java": {
+    "imported_bytes": 1661730284,
+    "production_java_native_host_executed": true,
+    "complete_release_accepted": false,
+    "actual_host_children": 3,
+    "imported_objects": 15,
+    "network_calls": 0,
+    "image_quality_accepted": false,
+    "passed": 80,
+    "runtime_configs": [
+      {
+        "metadata": {
+          "attention_type": "full",
+          "hidden_size": 1024,
+          "tie_embeddings": [
+            275779826,
+            353571058,
+            19447808,
+            4,
+            64
+          ],
+          "model_type": "qwen3",
+          "attention_mask": "float"
+        },
+        "config": {
+          "backend_type": "cpu",
+          "llm_model": "llm.mnn",
+          "memory": "low",
+          "precision": "low",
+          "max_all_tokens": 768,
+          "reuse_kv": false,
+          "tmp_path": "U:\\build\\mnn-edit-app-host-tests\\run-1793339064792764700\\data\\app\\engine-work\\work-15b68046-1f01-471e-b0f1-7ba765c66733\\",
+          "llm_weight": "llm.mnn.weight",
+          "use_cached_mmap": false,
+          "thread_num": 4,
+          "kvcache_mmap": false,
+          "max_new_tokens": 0,
+          "prompt_cache": false,
+          "use_mmap": false
+        }
+      },
+      {
+        "metadata": {
+          "attention_type": "full",
+          "hidden_size": 1024,
+          "tie_embeddings": [
+            275779826,
+            353571058,
+            19447808,
+            4,
+            64
+          ],
+          "model_type": "qwen3",
+          "attention_mask": "float"
+        },
+        "config": {
+          "backend_type": "cpu",
+          "llm_model": "llm.mnn",
+          "memory": "low",
+          "precision": "low",
+          "max_all_tokens": 768,
+          "reuse_kv": false,
+          "tmp_path": "U:\\build\\mnn-edit-app-host-tests\\run-1793339064792764700\\data\\app\\engine-work\\work-b1b0cdd9-059d-4758-82e7-24e205a1f4c0\\",
+          "llm_weight": "llm.mnn.weight",
+          "use_cached_mmap": false,
+          "thread_num": 4,
+          "kvcache_mmap": false,
+          "max_new_tokens": 0,
+          "prompt_cache": false,
+          "use_mmap": false
+        }
+      },
+      {
+        "metadata": {
+          "attention_type": "full",
+          "hidden_size": 1024,
+          "tie_embeddings": [
+            275779826,
+            353571058,
+            19447808,
+            4,
+            64
+          ],
+          "model_type": "qwen3",
+          "attention_mask": "float"
+        },
+        "config": {
+          "backend_type": "cpu",
+          "llm_model": "llm.mnn",
+          "memory": "low",
+          "precision": "low",
+          "max_all_tokens": 768,
+          "reuse_kv": false,
+          "tmp_path": "U:\\build\\mnn-edit-app-host-tests\\run-1793339064792764700\\data\\app\\engine-work\\work-d4a5e794-1e45-4bfa-95ae-6482404425f5\\",
+          "llm_weight": "llm.mnn.weight",
+          "use_cached_mmap": false,
+          "thread_num": 4,
+          "kvcache_mmap": false,
+          "max_new_tokens": 0,
+          "prompt_cache": false,
+          "use_mmap": false
+        }
+      }
+    ],
+    "physical_android": false,
+    "bundle": {
+      "schema": "lma.model-bundle/2",
+      "components": [
+        {
+          "importPath": "diffusion/transformer.mnn",
+          "path": "transformer.mnn",
+          "role": "diffusion",
+          "sha256": "092dd75e8b8c12694ffe43476addcbde07fe7227774a1a40b19420f87b217386",
+          "bytes": 1454264,
+          "format": "mnn",
+          "repository": "taobao-mnn/MNN-Sana-Edit-V2",
+          "url": "https://huggingface.co/taobao-mnn/MNN-Sana-Edit-V2/resolve/dd5955b4e63359b5822fa29a3b3711a112212046/transformer.mnn",
+          "revision": "dd5955b4e63359b5822fa29a3b3711a112212046"
+        },
+        {
+          "importPath": "diffusion_data/transformer.mnn.weight",
+          "path": "transformer.mnn.weight",
+          "role": "diffusion_data",
+          "sha256": "b3bab45fbabc8dabd05840b52ea3cd9bd3e54dd990e153ff6fbecd8b6c17f331",
+          "bytes": 884435680,
+          "format": "mnn_data",
+          "repository": "taobao-mnn/MNN-Sana-Edit-V2",
+          "url": "https://huggingface.co/taobao-mnn/MNN-Sana-Edit-V2/resolve/dd5955b4e63359b5822fa29a3b3711a112212046/transformer.mnn.weight",
+          "revision": "dd5955b4e63359b5822fa29a3b3711a112212046"
+        },
+        {
+          "importPath": "connector/connector.mnn",
+          "path": "connector.mnn",
+          "role": "connector",
+          "sha256": "d72239e1c2626cfb8f349b9d6b8c9d85f1cd9def0063d3ea23695aa6b2ef48fd",
+          "bytes": 99096,
+          "format": "mnn",
+          "repository": "taobao-mnn/MNN-Sana-Edit-V2",
+          "url": "https://huggingface.co/taobao-mnn/MNN-Sana-Edit-V2/resolve/dd5955b4e63359b5822fa29a3b3711a112212046/connector.mnn",
+          "revision": "dd5955b4e63359b5822fa29a3b3711a112212046"
+        },
+        {
+          "importPath": "connector_data/connector.mnn.weight",
+          "path": "connector.mnn.weight",
+          "role": "connector_data",
+          "sha256": "7128351d2de561932741f7f874b116ea3b4e5979296d8adf41472a93fcb889cd",
+          "bytes": 76268760,
+          "format": "mnn_data",
+          "repository": "taobao-mnn/MNN-Sana-Edit-V2",
+          "url": "https://huggingface.co/taobao-mnn/MNN-Sana-Edit-V2/resolve/dd5955b4e63359b5822fa29a3b3711a112212046/connector.mnn.weight",
+          "revision": "dd5955b4e63359b5822fa29a3b3711a112212046"
+        },
+        {
+          "importPath": "projector/projector.mnn",
+          "path": "projector.mnn",
+          "role": "projector",
+          "sha256": "6236a92633bab8ee33416b2f84ec41b934885be652aea7f0412a057de817d4c0",
+          "bytes": 2416,
+          "format": "mnn",
+          "repository": "taobao-mnn/MNN-Sana-Edit-V2",
+          "url": "https://huggingface.co/taobao-mnn/MNN-Sana-Edit-V2/resolve/dd5955b4e63359b5822fa29a3b3711a112212046/projector.mnn",
+          "revision": "dd5955b4e63359b5822fa29a3b3711a112212046"
+        },
+        {
+          "importPath": "projector_data/projector.mnn.weight",
+          "path": "projector.mnn.weight",
+          "role": "projector_data",
+          "sha256": "34b5afdb0c3b1fc815cdee7f3ed293e8d8f1f377328e5785cad2bd1768a843c3",
+          "bytes": 2387206,
+          "format": "mnn_data",
+          "repository": "taobao-mnn/MNN-Sana-Edit-V2",
+          "url": "https://huggingface.co/taobao-mnn/MNN-Sana-Edit-V2/resolve/dd5955b4e63359b5822fa29a3b3711a112212046/projector.mnn.weight",
+          "revision": "dd5955b4e63359b5822fa29a3b3711a112212046"
+        },
+        {
+          "importPath": "vae/vae_decoder.mnn",
+          "path": "vae_decoder.mnn",
+          "role": "vae",
+          "sha256": "9fbe51979b27339b7685cf88f1010a0ff3ab7ff1a7d873fba321eea94b762911",
+          "bytes": 751784,
+          "format": "mnn",
+          "repository": "taobao-mnn/MNN-Sana-Edit-V2",
+          "url": "https://huggingface.co/taobao-mnn/MNN-Sana-Edit-V2/resolve/dd5955b4e63359b5822fa29a3b3711a112212046/vae_decoder.mnn",
+          "revision": "dd5955b4e63359b5822fa29a3b3711a112212046"
+        },
+        {
+          "importPath": "vae_data/vae_decoder.mnn.weight",
+          "path": "vae_decoder.mnn.weight",
+          "role": "vae_data",
+          "sha256": "a6ef7a13ba9af29754adf9b97651cb29a7eaee20b716c16dbe079f500d5eddae",
+          "bytes": 162011594,
+          "format": "mnn_data",
+          "repository": "taobao-mnn/MNN-Sana-Edit-V2",
+          "url": "https://huggingface.co/taobao-mnn/MNN-Sana-Edit-V2/resolve/dd5955b4e63359b5822fa29a3b3711a112212046/vae_decoder.mnn.weight",
+          "revision": "dd5955b4e63359b5822fa29a3b3711a112212046"
+        },
+        {
+          "importPath": "llm/llm/llm.mnn",
+          "path": "llm/llm.mnn",
+          "role": "llm",
+          "sha256": "a3e32dc50e8988e78d416031023345048f4b6cf152db021da6ee1de921d45096",
+          "bytes": 504504,
+          "format": "mnn",
+          "repository": "taobao-mnn/MNN-Sana-Edit-V2",
+          "url": "https://huggingface.co/taobao-mnn/MNN-Sana-Edit-V2/resolve/dd5955b4e63359b5822fa29a3b3711a112212046/llm/llm.mnn",
+          "revision": "dd5955b4e63359b5822fa29a3b3711a112212046"
+        },
+        {
+          "importPath": "llm_data/llm/llm.mnn.weight",
+          "path": "llm/llm.mnn.weight",
+          "role": "llm_data",
+          "sha256": "79db6ac8267ec6a7c9172a363112fa613c0cf17d6f46121d947a75c987ccf49a",
+          "bytes": 373018866,
+          "format": "mnn_data",
+          "repository": "taobao-mnn/MNN-Sana-Edit-V2",
+          "url": "https://huggingface.co/taobao-mnn/MNN-Sana-Edit-V2/resolve/dd5955b4e63359b5822fa29a3b3711a112212046/llm/llm.mnn.weight",
+          "revision": "dd5955b4e63359b5822fa29a3b3711a112212046"
+        },
+        {
+          "importPath": "llm_config/llm/llm_config.json",
+          "path": "llm/llm_config.json",
+          "role": "llm_config",
+          "sha256": "2e45095efda4d17853d8b565f7f354210d3f14f97ac24b24a87a5ab771f5980a",
+          "bytes": 4638,
+          "format": "json",
+          "repository": "taobao-mnn/MNN-Sana-Edit-V2",
+          "url": "https://huggingface.co/taobao-mnn/MNN-Sana-Edit-V2/resolve/dd5955b4e63359b5822fa29a3b3711a112212046/llm/llm_config.json",
+          "revision": "dd5955b4e63359b5822fa29a3b3711a112212046"
+        },
+        {
+          "importPath": "tokenizer/llm/tokenizer.txt",
+          "path": "llm/tokenizer.txt",
+          "role": "tokenizer",
+          "sha256": "80e75c6cbf70c75fdd51ac1cd53505ac127dcb0e21ebe4d19751fa772e2868bd",
+          "bytes": 3193562,
+          "format": "text",
+          "repository": "taobao-mnn/MNN-Sana-Edit-V2",
+          "url": "https://huggingface.co/taobao-mnn/MNN-Sana-Edit-V2/resolve/dd5955b4e63359b5822fa29a3b3711a112212046/llm/tokenizer.txt",
+          "revision": "dd5955b4e63359b5822fa29a3b3711a112212046"
+        },
+        {
+          "importPath": "meta_queries/llm/meta_queries.mnn",
+          "path": "llm/meta_queries.mnn",
+          "role": "meta_queries",
+          "sha256": "5e80d4e591af78cca31b6e4cf4ee4ead410e9d2f64ee34c73cf5b633def16e0c",
+          "bytes": 1048824,
+          "format": "mnn",
+          "repository": "taobao-mnn/MNN-Sana-Edit-V2",
+          "url": "https://huggingface.co/taobao-mnn/MNN-Sana-Edit-V2/resolve/dd5955b4e63359b5822fa29a3b3711a112212046/llm/meta_queries.mnn",
+          "revision": "dd5955b4e63359b5822fa29a3b3711a112212046"
+        },
+        {
+          "importPath": "vae_encoder/vae_encoder.mnn",
+          "path": "vae_encoder.mnn",
+          "role": "vae_encoder",
+          "sha256": "06da21081f8ee98792bd1838990068e7284351157cafbfa8793282b611eacb24",
+          "bytes": 761568,
+          "format": "mnn",
+          "repository": "taobao-mnn/MNN-Sana-Edit-V2",
+          "url": "https://huggingface.co/taobao-mnn/MNN-Sana-Edit-V2/resolve/dd5955b4e63359b5822fa29a3b3711a112212046/vae_encoder.mnn",
+          "revision": "dd5955b4e63359b5822fa29a3b3711a112212046"
+        },
+        {
+          "importPath": "vae_encoder_data/vae_encoder.mnn.weight",
+          "path": "vae_encoder.mnn.weight",
+          "role": "vae_encoder_data",
+          "sha256": "b44ac00f4683697add9578ef4c0f561fb5753fe24a3f4525e7f492028409d05e",
+          "bytes": 155787522,
+          "format": "mnn_data",
+          "repository": "taobao-mnn/MNN-Sana-Edit-V2",
+          "url": "https://huggingface.co/taobao-mnn/MNN-Sana-Edit-V2/resolve/dd5955b4e63359b5822fa29a3b3711a112212046/vae_encoder.mnn.weight",
+          "revision": "dd5955b4e63359b5822fa29a3b3711a112212046"
+        }
+      ],
+      "capabilities": [
+        "image_to_image",
+        "fixed_style"
+      ],
+      "evidence": {
+        "architectureVerified": false,
+        "status": "user_selected_hf_components_not_device_tested",
+        "physicalDeviceTests": 0
+      },
+      "modelId": "hfb_8d00623e125d9f2b4923416234709731449c233a",
+      "description": "用户从固定 HF 版本明确选择的组件配方；架构与实际手机执行尚未验证。",
+      "recipeId": "sana_edit_mnn_cpu_v1",
+      "catalogue": false,
+      "pipeline": "sana_edit_mnn_v1",
+      "sourceUrl": "https://huggingface.co/taobao-mnn/MNN-Sana-Edit-V2",
+      "license": {
+        "name": "请分别核对模型与各组件许可",
+        "url": "https://huggingface.co/taobao-mnn/MNN-Sana-Edit-V2"
+      },
+      "engine": "mnn_diffusion",
+      "name": "MNN-Sana-Edit-V2 · Sana Edit · 本地图片卡通转换",
+      "backend": "cpu",
+      "id": "hfb_8d00623e125d9f2b4923416234709731449c233a",
+      "parameters": {
+        "fields": {
+          "maxInputTokens": {
+            "default": 512,
+            "presets": [
+              256,
+              512,
+              1024,
+              1792
+            ],
+            "limitSource": "application_guard",
+            "maximum": 1792,
+            "label": "编码文本 token 预算",
+            "type": "integer",
+            "minimum": 1
+          },
+          "seed": {
+            "default": -1,
+            "presets": [
+              -1,
+              42
+            ],
+            "limitSource": "application_guard",
+            "maximum": 2147483647,
+            "label": "随机种子（-1 随机）",
+            "type": "integer",
+            "minimum": -1
+          },
+          "width": {
+            "multipleOf": 32,
+            "default": 512,
+            "presets": [
+              512
+            ],
+            "limitSource": "matched_edit_pipeline",
+            "maximum": 512,
+            "label": "宽度（32 对齐）",
+            "type": "integer",
+            "minimum": 512
+          },
+          "threads": {
+            "default": 4,
+            "presets": [
+              1,
+              2,
+              4
+            ],
+            "limitSource": "application_guard",
+            "maximum": 32,
+            "label": "CPU 线程",
+            "type": "integer",
+            "minimum": 1
+          },
+          "steps": {
+            "default": 10,
+            "presets": [
+              4,
+              10,
+              20
+            ],
+            "limitSource": "application_guard",
+            "maximum": 50,
+            "label": "采样步数",
+            "type": "integer",
+            "minimum": 1
+          },
+          "height": {
+            "multipleOf": 32,
+            "default": 512,
+            "presets": [
+              512
+            ],
+            "limitSource": "matched_edit_pipeline",
+            "maximum": 512,
+            "label": "高度（32 对齐）",
+            "type": "integer",
+            "minimum": 512
+          }
+        },
+        "version": 1
+      },
+      "uncensored": {
+        "declared": false,
+        "detected": false,
+        "basis": "repository-metadata",
+        "refusalRateTested": false
+      },
+      "tasks": [
+        "image"
+      ],
+      "architecture": "sana_mobile_edit"
+    },
+    "runs": [
+      {
+        "artifact": {
+          "jobId": "job_ea7a95b9249548238c5eac67d30d7706",
+          "createdAt": 1793339399768,
+          "metadata": {
+            "mime": "image/png",
+            "width": 512,
+            "height": 512
+          },
+          "filename": "artifact_b87a8d1671a24859bd11c5d5af6b3435.png",
+          "provenance": {
+            "input": {
+              "prompt": "Convert to a Ghibli-style illustration: soft contrast, warm tones, slight linework, keep the scene consistent.",
+              "negativePrompt": "",
+              "artifacts": [
+                {
+                  "role": "source_image",
+                  "artifactId": "artifact_dce412d44a0d479881efd2f311f14b1a"
+                }
+              ]
+            },
+            "bundleId": "hfb_8d00623e125d9f2b4923416234709731449c233a",
+            "diffusionPlan": {
+              "schema": "lma.diffusion-plan/1",
+              "adjustments": [
+                {
+                  "effective": false,
+                  "reason": "sana_mobile_pipeline_or_application_guard",
+                  "requested": null,
+                  "field": "useCfg"
+                },
+                {
+                  "effective": 4,
+                  "reason": "sana_mobile_pipeline_or_application_guard",
+                  "requested": null,
+                  "field": "cfg"
+                }
+              ],
+              "profile": "sana_edit_mnn",
+              "parameters": {
+                "maxInputTokens": 512,
+                "seed": 42,
+                "cfg": 4,
+                "useCfg": false,
+                "width": 512,
+                "threads": 4,
+                "steps": 10,
+                "height": 512
+              }
+            },
+            "type": "image.generate",
+            "parameters": {
+              "maxInputTokens": 512,
+              "seed": 42,
+              "width": 512,
+              "threads": 4,
+              "steps": 10,
+              "height": 512
+            },
+            "inputReceipts": [
+              {
+                "metadata": {
+                  "mime": "image/png",
+                  "width": 512,
+                  "height": 512
+                },
+                "role": "source_image",
+                "sha256": "88431cd9653ccd539741b555fb0a46b61558b301d4110412b5bc28b5e3ea6cb5",
+                "bytes": 791555,
+                "artifactId": "artifact_dce412d44a0d479881efd2f311f14b1a"
+              }
+            ]
+          },
+          "sha256": "a8bd528b8297e5fe9d1215bd478d227cad01d56d799d554b3b02d0197eae689c",
+          "bytes": 495385,
+          "origin": {
+            "kind": "generated"
+          },
+          "id": "artifact_b87a8d1671a24859bd11c5d5af6b3435"
+        },
+        "output": "U:\\build\\mnn-edit-app-host-tests\\run-1793339064792764700\\data\\artifacts\\media\\artifact_b87a8d1671a24859bd11c5d5af6b3435.png",
+        "execution": {
+          "effectiveParameters": {
+            "maxInputTokens": 512,
+            "seed": 42,
+            "cfg": 4,
+            "useCfg": false,
+            "width": 512,
+            "threads": 4,
+            "steps": 10,
+            "height": 512
+          },
+          "pipeline": "sana_edit_mnn_v1",
+          "samplingProfile": "sana_edit_mnn",
+          "samplingAdjustments": [
+            {
+              "effective": false,
+              "reason": "sana_mobile_pipeline_or_application_guard",
+              "requested": null,
+              "field": "useCfg"
+            },
+            {
+              "effective": 4,
+              "reason": "sana_mobile_pipeline_or_application_guard",
+              "requested": null,
+              "field": "cfg"
+            }
+          ]
+        },
+        "seconds": 222.6359404,
+        "sha256": "a8bd528b8297e5fe9d1215bd478d227cad01d56d799d554b3b02d0197eae689c",
+        "bytes": 495385,
+        "name": "a",
+        "progress": [
+          {
+            "stage": "encoding_text",
+            "fraction": null
+          },
+          {
+            "stage": "loading_diffusion",
+            "fraction": null
+          },
+          {
+            "stage": "encoding_image",
+            "fraction": null
+          },
+          {
+            "stage": "sampling",
+            "fraction": 0.1
+          },
+          {
+            "stage": "sampling",
+            "fraction": 0.2
+          },
+          {
+            "stage": "sampling",
+            "fraction": 0.3
+          },
+          {
+            "stage": "sampling",
+            "fraction": 0.4
+          },
+          {
+            "stage": "sampling",
+            "fraction": 0.5
+          },
+          {
+            "stage": "sampling",
+            "fraction": 0.6
+          },
+          {
+            "stage": "sampling",
+            "fraction": 0.7
+          },
+          {
+            "stage": "sampling",
+            "fraction": 0.8
+          },
+          {
+            "stage": "sampling",
+            "fraction": 0.9
+          },
+          {
+            "stage": "sampling",
+            "fraction": 1
+          }
+        ]
+      },
+      {
+        "execution": {
+          "effectiveParameters": {
+            "maxInputTokens": 512,
+            "seed": 42,
+            "cfg": 4,
+            "useCfg": false,
+            "width": 512,
+            "threads": 4,
+            "steps": 10,
+            "height": 512
+          },
+          "pipeline": "sana_edit_mnn_v1",
+          "samplingProfile": "sana_edit_mnn",
+          "samplingAdjustments": [
+            {
+              "effective": false,
+              "reason": "sana_mobile_pipeline_or_application_guard",
+              "requested": null,
+              "field": "useCfg"
+            },
+            {
+              "effective": 4,
+              "reason": "sana_mobile_pipeline_or_application_guard",
+              "requested": null,
+              "field": "cfg"
+            }
+          ]
+        },
+        "seconds": 51.4611843,
+        "name": "cancel-sampling",
+        "cancelled": true,
+        "progress": [
+          {
+            "stage": "encoding_text",
+            "fraction": null
+          },
+          {
+            "stage": "loading_diffusion",
+            "fraction": null
+          },
+          {
+            "stage": "encoding_image",
+            "fraction": null
+          },
+          {
+            "stage": "sampling",
+            "fraction": 0.1
+          }
+        ]
+      },
+      {
+        "artifact": {
+          "jobId": "job_dcb81e15c9f74c37bbc685e4616e1014",
+          "createdAt": 1793339598647,
+          "metadata": {
+            "mime": "image/png",
+            "width": 512,
+            "height": 512
+          },
+          "filename": "artifact_38660bddc64841589dd6e9419ad31232.png",
+          "provenance": {
+            "input": {
+              "prompt": "Convert to a Ghibli-style illustration: soft contrast, warm tones, slight linework, keep the scene consistent.",
+              "negativePrompt": "",
+              "artifacts": [
+                {
+                  "role": "source_image",
+                  "artifactId": "artifact_dce412d44a0d479881efd2f311f14b1a"
+                }
+              ]
+            },
+            "bundleId": "hfb_8d00623e125d9f2b4923416234709731449c233a",
+            "diffusionPlan": {
+              "schema": "lma.diffusion-plan/1",
+              "adjustments": [
+                {
+                  "effective": false,
+                  "reason": "sana_mobile_pipeline_or_application_guard",
+                  "requested": null,
+                  "field": "useCfg"
+                },
+                {
+                  "effective": 4,
+                  "reason": "sana_mobile_pipeline_or_application_guard",
+                  "requested": null,
+                  "field": "cfg"
+                }
+              ],
+              "profile": "sana_edit_mnn",
+              "parameters": {
+                "maxInputTokens": 512,
+                "seed": 42,
+                "cfg": 4,
+                "useCfg": false,
+                "width": 512,
+                "threads": 4,
+                "steps": 10,
+                "height": 512
+              }
+            },
+            "type": "image.generate",
+            "parameters": {
+              "maxInputTokens": 512,
+              "seed": 42,
+              "width": 512,
+              "threads": 4,
+              "steps": 10,
+              "height": 512
+            },
+            "inputReceipts": [
+              {
+                "metadata": {
+                  "mime": "image/png",
+                  "width": 512,
+                  "height": 512
+                },
+                "role": "source_image",
+                "sha256": "88431cd9653ccd539741b555fb0a46b61558b301d4110412b5bc28b5e3ea6cb5",
+                "bytes": 791555,
+                "artifactId": "artifact_dce412d44a0d479881efd2f311f14b1a"
+              }
+            ]
+          },
+          "sha256": "a8bd528b8297e5fe9d1215bd478d227cad01d56d799d554b3b02d0197eae689c",
+          "bytes": 495385,
+          "origin": {
+            "kind": "generated"
+          },
+          "id": "artifact_38660bddc64841589dd6e9419ad31232"
+        },
+        "output": "U:\\build\\mnn-edit-app-host-tests\\run-1793339064792764700\\data\\artifacts\\media\\artifact_38660bddc64841589dd6e9419ad31232.png",
+        "execution": {
+          "effectiveParameters": {
+            "maxInputTokens": 512,
+            "seed": 42,
+            "cfg": 4,
+            "useCfg": false,
+            "width": 512,
+            "threads": 4,
+            "steps": 10,
+            "height": 512
+          },
+          "pipeline": "sana_edit_mnn_v1",
+          "samplingProfile": "sana_edit_mnn",
+          "samplingAdjustments": [
+            {
+              "effective": false,
+              "reason": "sana_mobile_pipeline_or_application_guard",
+              "requested": null,
+              "field": "useCfg"
+            },
+            {
+              "effective": 4,
+              "reason": "sana_mobile_pipeline_or_application_guard",
+              "requested": null,
+              "field": "cfg"
+            }
+          ]
+        },
+        "seconds": 147.3392323,
+        "sha256": "a8bd528b8297e5fe9d1215bd478d227cad01d56d799d554b3b02d0197eae689c",
+        "bytes": 495385,
+        "name": "recovery-a",
+        "progress": [
+          {
+            "stage": "encoding_text",
+            "fraction": null
+          },
+          {
+            "stage": "loading_diffusion",
+            "fraction": null
+          },
+          {
+            "stage": "encoding_image",
+            "fraction": null
+          },
+          {
+            "stage": "sampling",
+            "fraction": 0.1
+          },
+          {
+            "stage": "sampling",
+            "fraction": 0.2
+          },
+          {
+            "stage": "sampling",
+            "fraction": 0.3
+          },
+          {
+            "stage": "sampling",
+            "fraction": 0.4
+          },
+          {
+            "stage": "sampling",
+            "fraction": 0.5
+          },
+          {
+            "stage": "sampling",
+            "fraction": 0.6
+          },
+          {
+            "stage": "sampling",
+            "fraction": 0.7
+          },
+          {
+            "stage": "sampling",
+            "fraction": 0.8
+          },
+          {
+            "stage": "sampling",
+            "fraction": 0.9
+          },
+          {
+            "stage": "sampling",
+            "fraction": 1
+          }
+        ]
+      }
+    ],
+    "launches": [
+      {
+        "schema": "lma.engine-request/1",
+        "pipeline": "sana_edit_mnn_v1",
+        "output": "U:\\build\\mnn-edit-app-host-tests\\run-1793339064792764700\\data\\artifacts\\staging\\job_ea7a95b9249548238c5eac67d30d7706_5e3830bb39f540d5a40101c82584c68c.png",
+        "input": {
+          "imagePath": "U:\\build\\mnn-edit-app-host-tests\\run-1793339064792764700\\data\\artifacts\\media\\artifact_dce412d44a0d479881efd2f311f14b1a.png",
+          "prompt": "Convert to a Ghibli-style illustration: soft contrast, warm tones, slight linework, keep the scene consistent.",
+          "negativePrompt": ""
+        },
+        "workspace": "U:\\build\\mnn-edit-app-host-tests\\run-1793339064792764700\\data\\app\\engine-work\\work-15b68046-1f01-471e-b0f1-7ba765c66733",
+        "type": "image.generate",
+        "parameters": {
+          "maxInputTokens": 512,
+          "seed": 42,
+          "cfg": 4,
+          "useCfg": false,
+          "width": 512,
+          "threads": 4,
+          "steps": 10,
+          "height": 512
+        }
+      },
+      {
+        "schema": "lma.engine-request/1",
+        "pipeline": "sana_edit_mnn_v1",
+        "output": "U:\\build\\mnn-edit-app-host-tests\\run-1793339064792764700\\data\\artifacts\\staging\\job_9a3f15363c374cddb58539b3ffe36850_c1764fa530454e30885738feb29379b1.png",
+        "input": {
+          "imagePath": "U:\\build\\mnn-edit-app-host-tests\\run-1793339064792764700\\data\\artifacts\\media\\artifact_dce412d44a0d479881efd2f311f14b1a.png",
+          "prompt": "Convert to a Ghibli-style illustration: soft contrast, warm tones, slight linework, keep the scene consistent.",
+          "negativePrompt": ""
+        },
+        "workspace": "U:\\build\\mnn-edit-app-host-tests\\run-1793339064792764700\\data\\app\\engine-work\\work-b1b0cdd9-059d-4758-82e7-24e205a1f4c0",
+        "type": "image.generate",
+        "parameters": {
+          "maxInputTokens": 512,
+          "seed": 42,
+          "cfg": 4,
+          "useCfg": false,
+          "width": 512,
+          "threads": 4,
+          "steps": 10,
+          "height": 512
+        }
+      },
+      {
+        "schema": "lma.engine-request/1",
+        "pipeline": "sana_edit_mnn_v1",
+        "output": "U:\\build\\mnn-edit-app-host-tests\\run-1793339064792764700\\data\\artifacts\\staging\\job_dcb81e15c9f74c37bbc685e4616e1014_e209467d5a774dbf93f9a48938ae2950.png",
+        "input": {
+          "imagePath": "U:\\build\\mnn-edit-app-host-tests\\run-1793339064792764700\\data\\artifacts\\media\\artifact_dce412d44a0d479881efd2f311f14b1a.png",
+          "prompt": "Convert to a Ghibli-style illustration: soft contrast, warm tones, slight linework, keep the scene consistent.",
+          "negativePrompt": ""
+        },
+        "workspace": "U:\\build\\mnn-edit-app-host-tests\\run-1793339064792764700\\data\\app\\engine-work\\work-d4a5e794-1e45-4bfa-95ae-6482404425f5",
+        "type": "image.generate",
+        "parameters": {
+          "maxInputTokens": 512,
+          "seed": 42,
+          "cfg": 4,
+          "useCfg": false,
+          "width": 512,
+          "threads": 4,
+          "steps": 10,
+          "height": 512
+        }
+      }
+    ]
+  },
+  "compilation": {
+    "schema": "lma.mnn-host-build/1",
+    "executable": "build/mnn-worker-host/c4e1bd96c96fa445/lma_mnn_host.exe",
+    "bytes": 4597760,
+    "sha256": "d4cc479e39d706ce159666308cf75d6d3272699ac38014d8d6d7a3eaac900c8c",
+    "source_revision": "35a20ca0995bb7e4a549b7def42c4acb30559a94",
+    "production_worker": true,
+    "identical_generated_pipeline": true,
+    "backend": "cpu",
+    "bundled_model_data": false,
+    "model_executed": false,
+    "android_compiled": false,
+    "physical_android": false,
+    "input_fingerprint": {
+      "native/mnn/bootstrap.cmake": "8f4046a160689828f5ef82effdb303e0fe4d8f709be887a3df97944da9339a17",
+      "native/mnn/image.hpp": "1f66dfe180a818a38aaec1e9abb844d6d361b9f50f93970f8c3abbe39b0d71bb",
+      "native/mnn/policy.hpp": "54d94c5e2bf0bf9dbc38021d6e03eef4fd8fa5d65eb4ccc2c09a40b2afdc60d5",
+      "native/mnn/worker.cpp": "1bb92e7134b216114b11213dc6e93b29002f2d4cdffd4cfac74f0ddb0ccec4a1",
+      "research/sd_host/platform.hpp": "c377ed1b676707a469a192d96ae9b748802e1f62ad0674366b593b2b5b2daf67",
+      "third_party/mnn-source-lock.json": "1639a5fe9610af47ab5b6f6d1fbb1df12083f240022f09e1beae5aecd0d2082f",
+      "tools/build_mnn.py": "26c0c9871819a9cdfd21b3a96eb47af95183e85c27c913e3b4cdbf69cb7e8063",
+      "tools/build_mnn_host.py": "13ad56bdf014cdbc2893828dd362ffeeb8cde450caddcd8dc9176aaf8c13e83e",
+      "tools/fetch_mnn.py": "3eca07c0a174eeafedcfb68cde69f16523902082fbc9b86339d52dea03bdded7",
+      "tools/fetch_mnn_trained.py": "45640f38a4bf5e70aabc5c3520424a0d7fe4eba9c944deb1dd2987cc0e5a6921"
+    },
+    "generated_sources": {
+      "build/mnn-worker-host/c4e1bd96c96fa445/generated/lma_sana_llm.hpp": "8b2ad32220ec6394529389db579ce534b2bae187f46435695953b8cc04b9ea06",
+      "build/mnn-worker-host/c4e1bd96c96fa445/generated/sana_diffusion.cpp": "cd649676e0b3b3fcb46ce83e7e332f451a2bfe0049a81fed967cb8c6be77c514"
+    }
+  },
+  "outputs": [
+    {
+      "name": "a",
+      "file": "build/mnn-edit-app-host-tests/run-1793339064792764700/data/artifacts/media/artifact_b87a8d1671a24859bd11c5d5af6b3435.png",
+      "image": {
+        "bytes": 495385,
+        "sha256": "a8bd528b8297e5fe9d1215bd478d227cad01d56d799d554b3b02d0197eae689c",
+        "width": 512,
+        "height": 512,
+        "mean": [
+          164.8839569091797,
+          123.5143928527832,
+          106.1043586730957
+        ],
+        "stddev": [
+          80.90507860614923,
+          71.04995903254935,
+          67.39776487350927
+        ],
+        "extrema": [
+          [
+            8,
+            255
+          ],
+          [
+            3,
+            255
+          ],
+          [
+            2,
+            255
+          ]
+        ]
+      }
+    },
+    {
+      "name": "recovery-a",
+      "file": "build/mnn-edit-app-host-tests/run-1793339064792764700/data/artifacts/media/artifact_38660bddc64841589dd6e9419ad31232.png",
+      "image": {
+        "bytes": 495385,
+        "sha256": "a8bd528b8297e5fe9d1215bd478d227cad01d56d799d554b3b02d0197eae689c",
+        "width": 512,
+        "height": 512,
+        "mean": [
+          164.8839569091797,
+          123.5143928527832,
+          106.1043586730957
+        ],
+        "stddev": [
+          80.90507860614923,
+          71.04995903254935,
+          67.39776487350927
+        ],
+        "extrema": [
+          [
+            8,
+            255
+          ],
+          [
+            3,
+            255
+          ],
+          [
+            2,
+            255
+          ]
+        ]
+      }
+    }
+  ],
+  "comparisons": {
+    "a": {
+      "maximum": 0,
+      "mean": 0.0
+    },
+    "recovery-a": {
+      "maximum": 0,
+      "mean": 0.0
+    }
+  },
+  "direct_report_sha256": "8fb8a6653525c4d3eef42c28e3ebbe06d7fcbf73669ce554846665abcfb07ae8",
+  "capture_directory": "build/mnn-edit-app-host-tests/run-1793339064792764700",
+  "production_java_native_host_executed": true,
+  "model_data_bundled": false,
+  "physical_android": false,
+  "android_saf_tested": false,
+  "android_background_accepted": false,
+  "independent_reference_numerics_accepted": false,
+  "image_quality_accepted": false,
+  "complete_target04_accepted": false,
+  "complete_release_accepted": false,
+  "input_fingerprint": {
+    "native/mnn/bootstrap.cmake": "8f4046a160689828f5ef82effdb303e0fe4d8f709be887a3df97944da9339a17",
+    "native/mnn/image.hpp": "1f66dfe180a818a38aaec1e9abb844d6d361b9f50f93970f8c3abbe39b0d71bb",
+    "native/mnn/policy.hpp": "54d94c5e2bf0bf9dbc38021d6e03eef4fd8fa5d65eb4ccc2c09a40b2afdc60d5",
+    "native/mnn/worker.cpp": "1bb92e7134b216114b11213dc6e93b29002f2d4cdffd4cfac74f0ddb0ccec4a1",
+    "research/sd_host/platform.hpp": "c377ed1b676707a469a192d96ae9b748802e1f62ad0674366b593b2b5b2daf67",
+    "third_party/mnn-source-lock.json": "1639a5fe9610af47ab5b6f6d1fbb1df12083f240022f09e1beae5aecd0d2082f",
+    "tools/build_mnn.py": "26c0c9871819a9cdfd21b3a96eb47af95183e85c27c913e3b4cdbf69cb7e8063",
+    "tools/build_mnn_host.py": "13ad56bdf014cdbc2893828dd362ffeeb8cde450caddcd8dc9176aaf8c13e83e",
+    "tools/fetch_mnn.py": "3eca07c0a174eeafedcfb68cde69f16523902082fbc9b86339d52dea03bdded7",
+    "tools/fetch_mnn_trained.py": "45640f38a4bf5e70aabc5c3520424a0d7fe4eba9c944deb1dd2987cc0e5a6921",
+    "research/mnn_edit_trained/assets.json": "be056d5eb9152e6ccb0468e8108e7fee5b602b1a0401173d49961b616e9799c4",
+    "research/mnn_trained/assets.json": "892f55d300af5e6ed94b68d8cd9a4e468bc869c52d67d108f08ffb404598ff68",
+    "tools/fetch_mnn_edit_trained.py": "5983493726b8bda222170c311b6891748823bdcdf47780c0064203354846e883",
+    "app/src/main/assets/recipe-templates.json": "91f2fb0aa811d467afb8f410a4ceaca7f1b6cd457c82ceef8968b0678872a503",
+    "app/src/main/java/com/lma/app/core/AdapterSpec.java": "aff8572d14ac8d616be0a1b0da395e52ed5bddcd5ae407a969c2657bf9257581",
+    "app/src/main/java/com/lma/app/core/ArtifactStore.java": "6f85d2ac710cac0fb5a76cde9493ff1fef4d3e2e119c3e031b7c44ff65a49061",
+    "app/src/main/java/com/lma/app/core/AssemblyPlan.java": "80e81dea2a831d3955aa5ae21323eb0432fb448f78994901633fbb6e85d77e7c",
+    "app/src/main/java/com/lma/app/core/AudioPcm.java": "9bf3270c83f57b7fa4e23fc4518fa063e72ca214675f9c23d45bd1788842f7b2",
+    "app/src/main/java/com/lma/app/core/AudioStreams.java": "de8a2cdd98d083b62515b067865182d9065bb00f14b8c70cacafba21de8407f1",
+    "app/src/main/java/com/lma/app/core/BundleStore.java": "a773aaa8f83410da9ccbf499b9a19ee4166e2c094c2e992699424c0ac68f3e74",
+    "app/src/main/java/com/lma/app/core/BundleTransfers.java": "926596119a2c3f6bc089516e7bbd7db3016487d60c24f908ea646dfc76707f3e",
+    "app/src/main/java/com/lma/app/core/BundleUpdates.java": "f31a65d0e172aa75f6131deace828875534ccc756ed93fac83bb09d5a4162fe1",
+    "app/src/main/java/com/lma/app/core/ByteRange.java": "31723bf112e630de6c2a1cd8d525be7bbd4706e151fa5a297a5e641f59b5c752",
+    "app/src/main/java/com/lma/app/core/ChatHistory.java": "3046a52c3f611b83b46cfed94afe0f4b31667f77986b7ca1737169ec8c4ce951",
+    "app/src/main/java/com/lma/app/core/ComponentIntegrity.java": "7a5977c607f624f8763a782b1b081c4e485c8c05c2caae15986ad2f2388f5bce",
+    "app/src/main/java/com/lma/app/core/DataFiles.java": "02d3212885376e7073a785801dbb81073b13cc87c5fc0e85ac4373fd346696bc",
+    "app/src/main/java/com/lma/app/core/EngineWorkspace.java": "6c632861e13d0a8950cdee66e8bea8a8760d23550c10343d6cfdd8a6e9af29dd",
+    "app/src/main/java/com/lma/app/core/ExecutionGate.java": "143b6d145036c56ad0937316e87af5f4c44507ef89cf16affdc5bef0ad8e2126",
+    "app/src/main/java/com/lma/app/core/InputSelection.java": "963fe60973caab82b9dfedaa7c1661f236aed6ea158fcda8f4a86d02ba33d509",
+    "app/src/main/java/com/lma/app/core/InputSpec.java": "d535fc70bdbfbf7cd9ca2ce685c20735d67ed5c3b7132989ec683c74de779f97",
+    "app/src/main/java/com/lma/app/core/InputUploads.java": "5debd68a73abc8bde8174c985dfec8f534c6bf8df58dda8810b0cc3541fe1d53",
+    "app/src/main/java/com/lma/app/core/JobStore.java": "3f999d908b7667d35557c979a26dbf5544c712015b986a090946b76b8a680628",
+    "app/src/main/java/com/lma/app/core/LcmCondition.java": "2177da94b69781263e36f3e379034619bf74c6856bc6a9108592d4f272e94b7a",
+    "app/src/main/java/com/lma/app/core/LocalApi.java": "c9e1674f98ef12c7312ff42c50ba38a10c08d5cf1d3e173a8093ecd7fa67e5fc",
+    "app/src/main/java/com/lma/app/core/LocalHttp.java": "6f74e8acfe7072606c23e775f87fa5aa8d5ee094ffe20e96788f161674a947aa",
+    "app/src/main/java/com/lma/app/core/Ltx098Spec.java": "8333ea906bc31ea9e014ce4840d15fc6253c91eda1f3688de4f8645738819abf",
+    "app/src/main/java/com/lma/app/core/MnnSpec.java": "055cc06962da0fc34c1abdc57100ac52fca47a9d66ffea6621155c53046d5f1a",
+    "app/src/main/java/com/lma/app/core/ModelBundle.java": "ad08c033a2c9a215c292d20a5a97a65c85db91ce6a86609a8eed9e846449e84b",
+    "app/src/main/java/com/lma/app/core/ModelSelection.java": "965c9f22f16fc822f792ebef6e0de0a0c67f5a6882d5e7ef77be05b83ea1aeb2",
+    "app/src/main/java/com/lma/app/core/MossDelaySpec.java": "2f680d68cf78517f234c336c77e0b584bf40300fd6294514b7cd457149d41bd0",
+    "app/src/main/java/com/lma/app/core/MossNanoSpec.java": "4b784a773fb85550eba8f169a62cab9a274a332519ec700b595694378e9e39ed",
+    "app/src/main/java/com/lma/app/core/MossRqSpec.java": "0713659ade3c172887527a9e961bbde4add5ed00bd2a564256bc11f9b4796b5e",
+    "app/src/main/java/com/lma/app/core/NativePreparation.java": "cb8ee985ef2c6cba3e0d6bb924c940bcb197bd3f576ca7d6e1fa24442d44e1dd",
+    "app/src/main/java/com/lma/app/core/OnnxMetadata.java": "51db38a424032ac21a8a4185745a272db9034a94d2e8b2d0671c11289e9719e3",
+    "app/src/main/java/com/lma/app/core/OpenMossSpec.java": "4a9af3c92d87be65c4f617677eaed31576f9160a3355518fff7cb874192a5258",
+    "app/src/main/java/com/lma/app/core/ParameterSchema.java": "a566c6d452461ee14333caf7e732a33f8d94b12b33cbabc851f5f3fcc6bdb019",
+    "app/src/main/java/com/lma/app/core/PreparationPlan.java": "dfee63b84035c6ca18b0647aecb947070b983b6b2f1de08247129dddfa64a0bf",
+    "app/src/main/java/com/lma/app/core/PreparedAssets.java": "ae09c7aa1643fc22b76cbe11182a742f26aa0ea95bc9b7166d685433a603dd02",
+    "app/src/main/java/com/lma/app/core/PreparedModelAssembly.java": "eef243d48c9b2b7d3d9b08b2ddf8129ff3884bbdd6c00ecd28a83c0f4bbfa384",
+    "app/src/main/java/com/lma/app/core/ProcessControl.java": "a1950624951d41c040b0b9f44cd8ef5faff16ed22dae880d626e4619d77c155d",
+    "app/src/main/java/com/lma/app/core/Protocol.java": "d49f47884aec0cb03347023119c2808330fa9970689dcd9d33c30ca653d03b85",
+    "app/src/main/java/com/lma/app/core/QwenTtsSpec.java": "e94d96d7ce7c499b2d4bafbd35740c690b32169a142a9a55aae7a8b03364125b",
+    "app/src/main/java/com/lma/app/core/RecipeCatalogue.java": "539dcd55124ce71e32476edb8a7efd25d533935847a8357ac3a6dddf68b71a47",
+    "app/src/main/java/com/lma/app/core/RecipeSuggestions.java": "57d9d7b5fc5f3c61a3ab3524af8789df58dbc8ce1923b2c09e139649057beda0",
+    "app/src/main/java/com/lma/app/core/ResourceWatch.java": "6f6a4cb2159f7956d1ae8c202c61430be268d86d230245bccc952844f3816ec5",
+    "app/src/main/java/com/lma/app/core/SdSpec.java": "bdd247408ebede1777a84a896a68947132ab8b5ee8d526b17742c565229fcb73",
+    "app/src/main/java/com/lma/app/core/SoulxSpec.java": "a761d40965d041d38cc1f629418017103c9eefabf5904814fad9de6372b6bcc7",
+    "app/src/main/java/com/lma/app/core/SpeechVoices.java": "b413549e7721d07c88fec135b01b26a18d9dc0cc686a37dd180309ee10900967",
+    "app/src/main/java/com/lma/app/core/StableAudioSpec.java": "0cc04143a8c8c2afa4dc3d9726f4891779b352404d97c70d6fdc260fbe27ee6c",
+    "app/src/main/java/com/lma/app/core/TaskDrafts.java": "1c97a99a274abb5f38542eb2cea6834121f46b5dfb0e7cbaeaa5df25222c7ead",
+    "app/src/main/java/com/lma/app/core/TaskInput.java": "6f186b392f9e2fd70f253398f4becf9604d22e03c132f18b3bb93f635f637d7b",
+    "app/src/main/java/com/lma/app/core/TaskRequests.java": "6a9056c560a681891a0110b25d015494e0a73240034efde5ad565593a9d1dcc7",
+    "app/src/main/java/com/lma/app/core/TextRequest.java": "bfdb23db96512f00f362b49951c1fee4162ca2d441482eb6ebf180a8d3574d5f",
+    "app/src/main/java/com/lma/app/core/TextResult.java": "2dd7968a40cc917fab5b8bc412ef00d21348abec1d844b140b843b1bba57c6ab",
+    "app/src/main/java/com/lma/app/core/TextSpec.java": "4521ce8e833d88276f6b98d446e0171c48602d67ce2cf4b372d425e56d6d149e",
+    "app/src/main/java/com/lma/app/core/TtsSpec.java": "54f841e2ca5e93d3c3e1845014029b96912291fcf50a50c26a0124325a7a962a",
+    "app/src/main/java/com/lma/app/core/WaveFile.java": "cf70b9bbafb6aa23cc25217d4883e769173b00f74571d1b115c50a8ad6b15361",
+    "app/src/main/java/com/lma/app/LocalEngine.java": "c06198df33cf290dff58d5d7d7f2b44b3d84d552c1a3c0f1cf35c30c6d5b7c19",
+    "app/src/main/java/com/lma/app/MnnEngine.java": "ba831762e7919c033f3ae5b2645ea61db70ec286f10008f9aef7ad73c72363fc",
+    "app/src/main/java/com/lma/app/NativeWorker.java": "8d9c5aa7cf5744e634c6c3eeb17a798bc429a8f22e172f6b75e1a1400d7c4eaa",
+    "tests/fixtures/images/astronaut.png": "88431cd9653ccd539741b555fb0a46b61558b301d4110412b5bc28b5e3ea6cb5",
+    "tests/fixtures/images/LICENSE.md": "e16919f880e5fbbc4bdd8d1994eddeebb7599c2fcf86cbaad6402c659f2da37f",
+    "tests/host/android/util/AtomicFile.java": "a05b9c6ef4fa0f0f40aaa49b235faccc98d2d7d5aa1ea4bb8d2f535b8bad2796",
+    "tests/mnn-edit-trained/com/lma/app/MnnEditTrainedAppTest.java": "8232e257343f6130ad8d2d4fe0674adda8a62bd22e1ae67373a8029325feb8ac",
+    "tests/tts-host/com/lma/app/LmaApp.java": "9f27bd7188d03aa4eb95b007111daff697d39515dc41884d4569e2f382d0577b",
+    "tools/test_mnn_edit_app_host.py": "028a4d8e56dfcc1e60d597dee7d918210e11bb57108011ccb66dc1f80e8a4996",
+    "tools/test_mnn_edit_trained.py": "fc6087952c5111876c3c1fd48e49cb867cc030a7a7ee2b6da55a76096929afbf",
+    "tools/test_mnn_trained.py": "c555dca8d2599f6751825a3d1aedea93b1ed348f4bd4cdaaaea43ad2eda7540d"
+  }
+}

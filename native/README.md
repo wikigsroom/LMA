@@ -1,5 +1,7 @@
 # Native MOSS Delay / 原生 MOSS Delay
 
+当前 Sana 支持是必选图片的固定风格编辑，见[中文](../docs/MNN_SANA_EDIT.md) / [English](../docs/MNN_SANA_EDIT.en.md)，不替代冻结 04 文生图。FLUX.2-klein 四组件文生图及共用 Qwen 分词修复见[中文](../docs/FLUX2_KLEIN.md) / [English](../docs/FLUX2_KLEIN.en.md)。本机主机执行、Android 编译、画质及物理手机验收分开记录。
+
 `moss_delay/` builds a CPU-only first-class MOSS backbone + optional reference encoder + waveform decoder from the pinned OpenMOSS fork. It extracts reviewed native primitives, excludes the upstream CLI/Python/shell helper, releases each model before the next stage and carries no model data. Source/build/asset boundaries: [中文](../docs/MOSS_DELAY_ENGINE.md) / [English](../docs/MOSS_DELAY_ENGINE.en.md). Compilation and host algorithm tests do not establish Android speech acceptance.
 
 # Internal Android worker / Android 内部执行器

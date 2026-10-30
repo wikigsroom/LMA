@@ -21,7 +21,7 @@ module.exports=async function(page,checked,overflow,output,capture=async()=>{}) 
   await page.locator('[data-tab="models"]').first().click(); await page.locator('[data-task="any"]').click(); await page.locator('[data-filter="recommended"]').click();
   assert.deepEqual(await page.locator('.model-card').evaluateAll(nodes=>nodes.map(n=>n.dataset.model)),['m08','m06','m01']);checked('New curated peers preserve the exact Recommended order');
   await page.locator('[data-filter="all"]').click(); await page.locator('[data-task="image"]').click();
-  assert.equal(await page.locator('[data-bundle]').count(),7); checked('All exposes six new complete diffusion profiles alongside the existing SD 1.5 base');
+  assert.equal(await page.locator('[data-bundle]').count(),8); checked('All exposes eight complete optional diffusion profiles including FLUX.2-klein');
   const downloads=()=>page.evaluate(()=>window.__commands.filter(c=>c.action==='downloadBundle').map(c=>c.id));
   const start=await downloads();
   const cases=[['sd15_pixelart_redmond_catalogue_v1','sd15_ss_q4_0_r031b5f5'],['sdxl_pixelart_nerijs_catalogue_v1','sdxl_base_q4_0_catalogue_v1'],['sd15_lcm_lora_catalogue_v1','sd15_ss_q4_0_r031b5f5'],['sdxl_lcm_lora_catalogue_v1','sdxl_base_q4_0_catalogue_v1']];
@@ -65,5 +65,28 @@ module.exports=async function(page,checked,overflow,output,capture=async()=>{}) 
     if(index===1) await capture('04-queued-task.png','Persistent task queue interaction · UI fixture / 无训练输出或 Android 证据');
   }
   assert.deepEqual(await downloads(),start.concat(cases[0][0],cases[0][1]));checked('Remaining dependency browsing, pairing and queued tasks issue zero implicit downloads');
+  await page.evaluate(installFixture);await page.evaluate(installCatalogue,fixtureData);
+  const flux='flux2_klein4b_q4_0_catalogue_v1',fluxBefore=await downloads();
+  await page.locator('[data-tab="models"]').first().click();await page.locator('[data-filter="all"]').click();await page.locator('[data-task="image"]').click();
+  await page.locator('[data-action="bundleInfo"][data-id="'+flux+'"]').first().click();
+  assert.equal(catalogue.find(m=>m.id===flux).components.length,4);assert((await page.locator('#modal').innerText()).includes('Q4_0'));checked('FLUX catalogue entry exposes complete four-component optional download');
+  assert.deepEqual(await downloads(),fluxBefore);checked('Viewing FLUX metadata starts no transfer');
+  await overflow(page,'FLUX complete metadata');await capture('05-flux2-components.png','FLUX.2-klein four complete optional components · UI fixture / 尚未执行模型');
+  await page.locator('#modal [data-action="downloadBundle"]').click();await page.waitForFunction(id=>window.__commands.some(c=>c.action==='downloadBundle'&&c.id===id),flux);
+  assert.deepEqual(await downloads(),fluxBefore.concat(flux));checked('One explicit FLUX download chooses only this model bundle');
+  await page.evaluate(id=>{const b=window.__fixture.bundles.find(b=>b.id===id);b.installed=true;delete b.transfer;window.LMA.receive(window.__fixture);},flux);
+  await page.locator('[data-filter="local"]').click();await page.locator('[data-action="bundleInfo"][data-id="'+flux+'"]').first().click();
+  await page.locator('#modal [data-action="bundleSettings"]').click();
+  await page.locator('#bundleSettingsForm [data-bundle-field="steps"]').fill('999');await page.locator('#bundleSettingsForm [data-bundle-field="steps"]').blur();
+  assert.equal(await page.locator('#bundleSettingsForm [data-bundle-field="steps"]').inputValue(),'4');checked('FLUX editable per-model steps clamp to its four-step ceiling');
+  await page.keyboard.press('Escape');await page.locator('[data-action="bundleUse"][data-id="'+flux+'"]').click();
+  await page.locator('#localTaskForm .task-parameters').evaluate(e=>{e.open=true;});
+  assert(await page.locator('#localTaskForm [name="negativePrompt"]').isDisabled());assert.equal(await page.locator('[data-bundle-field="scheduler"] option:checked').textContent(),'flux2');checked('Actual FLUX form binds distilled scheduler and disables unsupported negative conditioning');
+  await page.locator('#localTaskForm [name="prompt"]').fill('A red toy robot beside a blue teapot. UI fixture only.');await page.locator('#localTaskForm [name="allowUnmeasured"]').check();
+  await overflow(page,'FLUX generation');await capture('06-flux2-task.png','FLUX.2-klein independent model parameters · UI fixture / 本页不执行推理');
+  await page.locator('#localTaskForm [type="submit"]').click();await page.waitForSelector('#page-tasks.active .job-card');
+  const fluxRequest=await page.evaluate(()=>window.__commands.findLast(c=>c.action==='submitTask').request);
+  assert.equal(fluxRequest.bundleId,flux);assert.equal(fluxRequest.parameters.steps,4);assert.equal(fluxRequest.parameters.cfg,1);assert.equal(fluxRequest.parameters.scheduler,'flux2');checked('FLUX submits immutable selected model and distilled parameters through shared task queue');
+  assert.deepEqual(await downloads(),fluxBefore.concat(flux));checked('Settings, Local view and task submission never download a second model');
 };
 module.exports.installCatalogue=installCatalogue;

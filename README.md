@@ -1,12 +1,22 @@
 # LMA · Android 本地模型工作台
 
-> **当前开发：0.3.0-dev.36 / code 40。** 更正 Sana Edit 的实际用途：新增完整 15 组件、本地 PNG/JPEG 必选、固定提示词与 512×512 图片转换；接入独立参数、不可变任务、真实取消恢复和结果保存。App 只更新基座，所有模型仍由用户选择/下载/管理。共用上传接口修复超限请求偶发连接中断。[完整使用逻辑](docs/MNN_SANA_EDIT.md) · [编号实现和全部待办](docs/releases/v0.3.0-dev.36.md) · [实际产物 MP4](docs/media/development/sana-edit-trained/sana-host-outputs.mp4) · [GIF](docs/media/development/sana-edit-trained/sana-host-outputs.gif)。原 Sana 文生图目标仍待完成；实际主机运行、Android 编译、界面夹具与未完成的真机/正式 Release 验收分别记录。
+> **当前开发：0.3.0-dev.37 / code 41。** 新增可由用户自行下载的 FLUX.2-klein 4B 完整四组件方案，接入 HF / 全部 / 本地、独立参数、不可变任务和结果管理。修复 Qwen 分词文件头造成的编号偏移，并完成全部词项及多语言输入的官方对照。App 仅更新基座；推荐顺序、用户模型与旧任务保留。[方案与使用](docs/FLUX2_KLEIN.md) · [编号实现、完整待办与验证边界](docs/releases/v0.3.0-dev.37.md)。真实 Windows CPU 执行、界面夹具、Android 编译和真机/画质验收分别记录；完整 v0.3.0 Release 尚未发布。
+
+| 实际本地文生图：机器人与茶壶 | 实际本地文生图：帆船 |
+|---|---|
+| ![实际 CPU 输出，非 Android 录屏](docs/media/development/flux2-trained/01-robot.png) | ![实际 CPU 输出，非 Android 录屏](docs/media/development/flux2-trained/02-sailboat.png) |
+
+[完整图片、GIF 与视频展示](docs/FLUX2_KLEIN.md#5-实际证据与复现)；展示不代表生成速度或手机录像。
+
+> **保留 dev.36：0.3.0-dev.36 / code 40。** 更正 Sana Edit 的实际用途：新增完整 15 组件、本地 PNG/JPEG 必选、固定提示词与 512×512 图片转换；接入独立参数、不可变任务、真实取消恢复和结果保存。App 只更新基座，所有模型仍由用户选择/下载/管理。共用上传接口修复超限请求偶发连接中断。[完整使用逻辑](docs/MNN_SANA_EDIT.md) · [编号实现和全部待办](docs/releases/v0.3.0-dev.36.md) · [实际产物 MP4](docs/media/development/sana-edit-trained/sana-host-outputs.mp4) · [GIF](docs/media/development/sana-edit-trained/sana-host-outputs.gif)。原 Sana 文生图目标仍待完成；实际主机运行、Android 编译、界面夹具与未完成的真机/正式 Release 验收分别记录。
 
 | 用户本地输入（公有领域样例） | 实际主机模型输出（非手机录屏） |
 |---|---|
 | ![用户输入](docs/media/development/sana-edit-trained/source.png) | ![真实图片转换结果](docs/media/development/sana-edit-trained/01-a.png) |
 
 [中文](README.md) · [English](README.en.md) · [下载 / Releases](https://github.com/wikigsroom/LMA/releases) · [文档导航](docs/README.md) · [更新记录](CHANGELOG.md)
+
+本轮验证：**22 组、3,006 项通过**，包括 117 项官方分词对照、35 项完整模型原生检查和 99 项应用业务检查；APK 签名 / 依赖 / 16 KiB 对齐通过，Lint 0 错误 / 17 警告。真实主机执行、Android 编译和仍待完成的真机 / 正式 Release 验收分别记录。
 
 > **dev.35 历史记录（模型用途已由 dev.36 更正）。** Sana 匹配变体已接入完整真实组件验证与生产 Java 导入 / 运行 / 采样取消 / 恢复链路。修复 CFG 编码 batch、浮点 mask、实际采样进度、单步调度与写入结果。13 个组件共 1,505,181,194 字节，全部由用户自行选择；APK 只更新基座。主机运行与 Android 编译分别留证，当前样例未呈现所需主体，画质仍未通过。[运行与使用](docs/MNN_SANA_TRAINED.md) · [编号交付 / 全部待办](docs/releases/v0.3.0-dev.35.md) · [实际产物 MP4](docs/media/development/sana-trained/sana-host-outputs.mp4) · [GIF](docs/media/development/sana-trained/sana-host-outputs.gif)。不是手机运行或完整 Release 验收。
 

@@ -1,0 +1,204 @@
+{
+  "engine": "sd_cpp",
+  "backend": "cpu",
+  "tasks": [
+    "image"
+  ],
+  "capabilities": [
+    "text_to_image",
+    "distilled_sampling"
+  ],
+  "parameters": {
+    "version": 1,
+    "fields": {
+      "width": {
+        "type": "integer",
+        "label": "宽度",
+        "default": 1024,
+        "minimum": 64,
+        "maximum": 2048,
+        "presets": [
+          256,
+          384,
+          512,
+          768,
+          1024
+        ],
+        "multipleOf": 16,
+        "limitSource": "pipeline_alignment_and_application_guard"
+      },
+      "height": {
+        "type": "integer",
+        "label": "高度",
+        "default": 1024,
+        "minimum": 64,
+        "maximum": 2048,
+        "presets": [
+          256,
+          384,
+          512,
+          768,
+          1024
+        ],
+        "multipleOf": 16,
+        "limitSource": "pipeline_alignment_and_application_guard"
+      },
+      "steps": {
+        "type": "integer",
+        "label": "采样步数",
+        "default": 4,
+        "minimum": 1,
+        "maximum": 4,
+        "presets": [
+          1,
+          2,
+          4
+        ],
+        "multipleOf": 1,
+        "limitSource": "application_sampling_policy"
+      },
+      "threads": {
+        "type": "integer",
+        "label": "CPU 线程",
+        "default": 4,
+        "minimum": 1,
+        "maximum": 64,
+        "presets": [
+          1,
+          2,
+          4,
+          6,
+          8
+        ],
+        "multipleOf": 1,
+        "limitSource": "application_guard"
+      },
+      "seed": {
+        "type": "integer",
+        "label": "随机种子（-1 为随机）",
+        "default": -1,
+        "minimum": -1,
+        "maximum": 2147483647,
+        "presets": [
+          -1,
+          0,
+          42
+        ],
+        "multipleOf": 1,
+        "limitSource": "application_guard"
+      },
+      "cfg": {
+        "type": "number",
+        "label": "提示词引导",
+        "default": 1,
+        "minimum": 1,
+        "maximum": 1,
+        "presets": [
+          1
+        ],
+        "limitSource": "application_guard"
+      },
+      "sampler": {
+        "type": "enum",
+        "label": "采样器",
+        "default": "euler",
+        "values": [
+          "euler"
+        ]
+      },
+      "vaeTiling": {
+        "type": "boolean",
+        "label": "分块解码 VAE",
+        "default": true
+      },
+      "scheduler": {
+        "type": "enum",
+        "label": "调度器",
+        "default": "flux2",
+        "values": [
+          "flux2"
+        ]
+      },
+      "flowShift": {
+        "type": "number",
+        "label": "流匹配偏移（0 自动）",
+        "default": 0,
+        "minimum": 0,
+        "maximum": 32,
+        "presets": [
+          0,
+          1,
+          3,
+          5
+        ],
+        "limitSource": "application_guard"
+      }
+    }
+  },
+  "architecture": "flux2_klein",
+  "pipeline": "flux2_klein_4b",
+  "schema": "lma.model-bundle/1",
+  "id": "flux2_klein4b_q4_0_catalogue_v1",
+  "modelId": "flux2_klein4b_q4_0",
+  "recipeId": "flux2_klein_4b_split_cpu_v1",
+  "name": "FLUX.2-klein 4B · Q4_0",
+  "description": "低步数本地文生图。完整方案含 4 个组件；仅点击后下载。采用原版完整 VAE，非 small decoder。手机内存、速度与画质尚待实测。",
+  "catalogue": true,
+  "components": [
+    {
+      "role": "diffusion",
+      "format": "gguf",
+      "repository": "leejet/FLUX.2-klein-4B-GGUF",
+      "revision": "3b1f5a9dc3abb32238b053aeb3d823c30afdacbd",
+      "path": "flux-2-klein-4b-Q4_0.gguf",
+      "bytes": 2460378560,
+      "sha256": "d1023499ef3f2f82ff7c50e6778495195c1b6cc34835741778868428111f9ff4",
+      "url": "https://huggingface.co/leejet/FLUX.2-klein-4B-GGUF/resolve/3b1f5a9dc3abb32238b053aeb3d823c30afdacbd/flux-2-klein-4b-Q4_0.gguf"
+    },
+    {
+      "role": "llm",
+      "format": "gguf",
+      "repository": "unsloth/Qwen3-4B-GGUF",
+      "revision": "22c9fc8a8c7700b76a1789366280a6a5a1ad1120",
+      "path": "Qwen3-4B-Q4_K_M.gguf",
+      "bytes": 2497281312,
+      "sha256": "f6f851777709861056efcdad3af01da38b31223a3ba26e61a4f8bf3a2195813a",
+      "url": "https://huggingface.co/unsloth/Qwen3-4B-GGUF/resolve/22c9fc8a8c7700b76a1789366280a6a5a1ad1120/Qwen3-4B-Q4_K_M.gguf"
+    },
+    {
+      "role": "vae",
+      "format": "safetensors",
+      "repository": "black-forest-labs/FLUX.2-klein-4B",
+      "revision": "e7b7dc27f91deacad38e78976d1f2b499d76a294",
+      "path": "vae/diffusion_pytorch_model.safetensors",
+      "bytes": 168120878,
+      "sha256": "ca70d2202afe6415bdbcb8793ba8cd99fd159cfe6192381504d6c4d3036e0f04",
+      "url": "https://huggingface.co/black-forest-labs/FLUX.2-klein-4B/resolve/e7b7dc27f91deacad38e78976d1f2b499d76a294/vae/diffusion_pytorch_model.safetensors"
+    },
+    {
+      "role": "qwen_merges",
+      "format": "text",
+      "repository": "black-forest-labs/FLUX.2-klein-4B",
+      "revision": "e7b7dc27f91deacad38e78976d1f2b499d76a294",
+      "path": "tokenizer/merges.txt",
+      "bytes": 1671853,
+      "sha256": "8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5",
+      "url": "https://huggingface.co/black-forest-labs/FLUX.2-klein-4B/resolve/e7b7dc27f91deacad38e78976d1f2b499d76a294/tokenizer/merges.txt"
+    }
+  ],
+  "license": {
+    "name": "Apache-2.0",
+    "url": "https://huggingface.co/black-forest-labs/FLUX.2-klein-4B/blob/e7b7dc27f91deacad38e78976d1f2b499d76a294/LICENSE.md"
+  },
+  "evidence": {
+    "status": "pinned_assets_not_device_tested",
+    "physicalDeviceTests": 0,
+    "sourceUrl": "https://huggingface.co/black-forest-labs/FLUX.2-klein-4B",
+    "componentCoverage": "Distilled 4B diffusion Q4_0, matching Qwen3-4B Q4_K_M, original full FLUX.2 VAE, external Qwen merges; no embedded tokenizer, learned model or automatic transfer.",
+    "contentClassification": "no_uncensored_claim"
+  },
+  "resources": {
+    "estimatedPeakRamBytes": 0,
+    "estimateKnown": false
+  }
+}

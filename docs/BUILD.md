@@ -1,5 +1,7 @@
 # 构建与验证
 
+dev.37 新增完整 FLUX.2-klein 本地验证：`python tools/fetch_flux2_trained.py` 默认仅核验已有文件；`python tools/test_qwen_tokenizer.py`、`python tools/test_flux2_trained.py` 与 `python tools/test_flux2_app_host.py` 分别验证独立分词、真实原生及完整业务。仅显式 `--download` 取得模型；不使用虚拟化。详见[完整复现](FLUX2_KLEIN.md#5-实际证据与复现)和[完整同版待办](releases/v0.3.0-dev.37.md)。
+
 dev.31 共用资源保护：生产调度检查 `python tools/test_scheduler.py`，完整界面 `node tests/ui-smoke.cjs`，新页面媒体 `node tools/capture_workbench.cjs resources`。受控系统读数及主机子进程不冒充 Android 测量。见[中文方案](RUNTIME_RESOURCES.md) / [完整同版待办](releases/v0.3.0-dev.31.md)。
 
 内部 dev.28 增加 `tools/test_lcm_app_host.py`：完整源通过生产准备 / 关联 / 实际生成，并有 26 组 Java / 原生布局检查；只读取已取得的本地文件。准备模块由 App 随包分发，不含学习参数。[方案与复现](LCM_APP_FLOW.md) · [当前编号交付](releases/v0.3.0-dev.28.md)。

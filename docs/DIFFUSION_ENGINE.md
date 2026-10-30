@@ -1,5 +1,7 @@
 # 扩散基座：SDXL、SD-Turbo 与 LCM
 
+dev.37：[FLUX.2-klein 4B 完整四组件、实际业务与 Qwen 分词修复](FLUX2_KLEIN.md)。原始完整 VAE、外置用户 tokenizer、CPU 同源 worker；本轮完整训练主机产物和独立分词证据单独记录，画质 / 完整数值 / 资源 / Android 尚未验收。
+
 [English](DIFFUSION_ENGINE.en.md) · [HF 组件选择](HF_RECIPES.md) · [LoRA](ADAPTERS.md) · [开发状态](DEVELOPMENT.md)
 
 新增 [LCM 小型本地条件准备](LCM_LOCAL_PREPARATION.md)：独立原生程序生成 5,696 字节来源绑定组件；底层真实出图不等于生产 `SdSpec` 配方已支持。App 接入、完整官方管线、画质和真机仍待处理。 新 C++ 候选像素门槛仍失败（8 > 5），未提升为产品支持。

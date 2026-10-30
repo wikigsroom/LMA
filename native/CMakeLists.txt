@@ -28,6 +28,7 @@ target_include_directories(stable-diffusion PRIVATE "${LMA_SD_SOURCE}/src/tokeni
 
 add_executable(lma_sd_worker sd_worker.cpp)
 target_link_libraries(lma_sd_worker PRIVATE stable-diffusion)
+target_include_directories(lma_sd_worker PRIVATE "${LMA_SD_SOURCE}/thirdparty/utf8proc")
 target_compile_features(lma_sd_worker PRIVATE cxx_std_17)
 target_compile_definitions(lma_sd_worker PRIVATE LMA_SD_REVISION="${LMA_SD_REVISION}")
 target_link_options(lma_sd_worker PRIVATE -Wl,-z,max-page-size=16384 -Wl,-z,common-page-size=16384)

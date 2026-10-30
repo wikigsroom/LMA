@@ -1,5 +1,7 @@
 # Sana Edit: local fixed-style image conversion
 
+This guide retains dev.36 image-edit evidence. Its 39 reports and status are archived byte-for-byte in [dev.36 history](../verification/history/0.3.0-dev.36/status.json); see [dev.37](releases/v0.3.0-dev.37.md) for current development and full pending scope. Sana Edit does not replace frozen text-to-image target 04.
+
 [中文](MNN_SANA_EDIT.md) · [Documentation](README.md) · [dev.36 numbered delivery and full pending scope](releases/v0.3.0-dev.36.md)
 
 ## 1. Corrected capability

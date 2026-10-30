@@ -1,6 +1,8 @@
 # v0.3.0 开发状态与复查
 
-当前 **dev.35 / code 39**：[Sana 完整组件与生产执行](MNN_SANA_TRAINED.md) / [English](MNN_SANA_TRAINED.en.md)，[本轮实现与全部待办](releases/v0.3.0-dev.35.md)。真实主机模型执行与生产 Java 导入、取消和恢复，Android 同源编译；样例主体缺失，质量与手机仍未通过。dev.34 原 33 份记录及状态逐字节保留。完整冻结 v0.3.0 不缩减、不分版。
+当前 **dev.37 / code 41**：[FLUX.2-klein 完整业务与分词修复](FLUX2_KLEIN.md) / [English](FLUX2_KLEIN.en.md)，[本轮实现与完整待办](releases/v0.3.0-dev.37.md)。完整四组件经生产 Java / native 实际导入、生成、采样取消、恢复和结果管理；独立官方 tokenizer 核对与 Android 同源编译分别记录。完整数值、质量、资源及真机仍待验收，保留所有冻结目标与既有失败。App 不附模型；用户自行选择取得与管理。
+
+保留历史 **dev.35 / code 39**：[Sana 完整组件与生产执行](MNN_SANA_TRAINED.md) / [English](MNN_SANA_TRAINED.en.md)，[本轮实现与全部待办](releases/v0.3.0-dev.35.md)。真实主机模型执行与生产 Java 导入、取消和恢复，Android 同源编译；样例主体缺失，质量与手机仍未通过。dev.34 原 33 份记录及状态逐字节保留。完整冻结 v0.3.0 不缩减、不分版。
 
 dev.30 历史检查点：[旧 LTX 本地视频闭环](LTX098_APP_FLOW.md) / [English](LTX098_APP_FLOW.en.md)，[编号交付与完整同版待办](releases/v0.3.0-dev.30.md)。新增顺序执行的 T5 / Vulkan DiT / VAE / 手机 AVC 适配器，复用模型独立设置、共享队列和结果库；旧资产记录保持不可变，新生成变体由用户明确关联。官方变体、数值 / 画质 / Android 与完整 Release 尚未验收。
 

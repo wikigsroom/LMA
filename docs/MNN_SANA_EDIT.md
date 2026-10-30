@@ -1,5 +1,7 @@
 # Sana Edit：本地图片风格转换
 
+本指南保留 dev.36 的实际图片编辑记录。其 39 份报告和状态已按原字节归档于 [dev.36 历史](../verification/history/0.3.0-dev.36/status.json)；当前开发与完整待办见 [dev.37](releases/v0.3.0-dev.37.md)。Sana Edit 不替代冻结 04 文生图。
+
 [English](MNN_SANA_EDIT.en.md) · [文档导航](README.md) · [dev.36 编号交付及全部待办](releases/v0.3.0-dev.36.md)
 
 ## 1. 能力更正与边界

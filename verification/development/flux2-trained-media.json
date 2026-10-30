@@ -1,0 +1,175 @@
+{
+  "schema": "lma.flux2-trained-media/1",
+  "version": "0.3.0-dev.37",
+  "real_trained_host_execution": true,
+  "android_recording": false,
+  "slideshow_not_generation_timing": true,
+  "image_quality_accepted": false,
+  "complete_release_accepted": false,
+  "products": [
+    {
+      "name": "a",
+      "file": "01-robot.png",
+      "sha256": "50ef2c45a1aa729987fffa32673e30e1a32e43d10c933926f628879a7877df71",
+      "bytes": 404476,
+      "request": {
+        "schema": "lma.engine-request/1",
+        "type": "image.generate",
+        "pipeline": "flux2_klein_4b",
+        "architecture": "flux2_klein",
+        "samplingProfile": "flux2_klein",
+        "input": {
+          "prompt": "A small red toy robot standing beside a blue ceramic teapot on a wooden table, studio photograph, soft daylight, clean background",
+          "negativePrompt": ""
+        },
+        "parameters": {
+          "width": 512,
+          "height": 512,
+          "steps": 4,
+          "threads": 6,
+          "seed": 42,
+          "cfg": 1,
+          "sampler": "euler",
+          "scheduler": "flux2",
+          "flowShift": 0,
+          "vaeTiling": true
+        },
+        "components": {
+          "diffusion": "T:/build/flux2-trained/originals/d1023499ef3f2f82ff7c50e6778495195c1b6cc34835741778868428111f9ff4/flux-2-klein-4b-Q4_0.gguf",
+          "llm": "T:/build/flux2-trained/originals/f6f851777709861056efcdad3af01da38b31223a3ba26e61a4f8bf3a2195813a/Qwen3-4B-Q4_K_M.gguf",
+          "vae": "T:/build/flux2-trained/originals/ca70d2202afe6415bdbcb8793ba8cd99fd159cfe6192381504d6c4d3036e0f04/diffusion_pytorch_model.safetensors",
+          "qwen_merges": "T:/build/flux2-trained/originals/8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5/merges.txt"
+        },
+        "loras": [],
+        "output": "T:/build/flux2-trained-tests/run-1793345145231183400/a.png"
+      },
+      "quality_accepted": false
+    },
+    {
+      "name": "b",
+      "file": "02-sailboat.png",
+      "sha256": "defd00834e9ace1bc3983e1a2d692babced39cc8f8c378b114e3eed412b029ee",
+      "bytes": 606138,
+      "request": {
+        "schema": "lma.engine-request/1",
+        "type": "image.generate",
+        "pipeline": "flux2_klein_4b",
+        "architecture": "flux2_klein",
+        "samplingProfile": "flux2_klein",
+        "input": {
+          "prompt": "A yellow sailboat on a calm blue lake below snow covered mountains, bright daylight, detailed landscape photograph",
+          "negativePrompt": ""
+        },
+        "parameters": {
+          "width": 512,
+          "height": 512,
+          "steps": 4,
+          "threads": 6,
+          "seed": 42,
+          "cfg": 1,
+          "sampler": "euler",
+          "scheduler": "flux2",
+          "flowShift": 0,
+          "vaeTiling": true
+        },
+        "components": {
+          "diffusion": "T:/build/flux2-trained/originals/d1023499ef3f2f82ff7c50e6778495195c1b6cc34835741778868428111f9ff4/flux-2-klein-4b-Q4_0.gguf",
+          "llm": "T:/build/flux2-trained/originals/f6f851777709861056efcdad3af01da38b31223a3ba26e61a4f8bf3a2195813a/Qwen3-4B-Q4_K_M.gguf",
+          "vae": "T:/build/flux2-trained/originals/ca70d2202afe6415bdbcb8793ba8cd99fd159cfe6192381504d6c4d3036e0f04/diffusion_pytorch_model.safetensors",
+          "qwen_merges": "T:/build/flux2-trained/originals/8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5/merges.txt"
+        },
+        "loras": [],
+        "output": "T:/build/flux2-trained-tests/run-1793345145231183400/b.png"
+      },
+      "quality_accepted": false
+    },
+    {
+      "name": "one-step",
+      "file": "03-one-step.png",
+      "sha256": "18ab50eb7b0a4b9e15aa080a91d97f26085ef067320667063b2de28986de6d0a",
+      "bytes": 242279,
+      "request": {
+        "schema": "lma.engine-request/1",
+        "type": "image.generate",
+        "pipeline": "flux2_klein_4b",
+        "architecture": "flux2_klein",
+        "samplingProfile": "flux2_klein",
+        "input": {
+          "prompt": "A small red toy robot standing beside a blue ceramic teapot on a wooden table, studio photograph, soft daylight, clean background",
+          "negativePrompt": ""
+        },
+        "parameters": {
+          "width": 512,
+          "height": 512,
+          "steps": 1,
+          "threads": 6,
+          "seed": 42,
+          "cfg": 1,
+          "sampler": "euler",
+          "scheduler": "flux2",
+          "flowShift": 0,
+          "vaeTiling": true
+        },
+        "components": {
+          "diffusion": "T:/build/flux2-trained/originals/d1023499ef3f2f82ff7c50e6778495195c1b6cc34835741778868428111f9ff4/flux-2-klein-4b-Q4_0.gguf",
+          "llm": "T:/build/flux2-trained/originals/f6f851777709861056efcdad3af01da38b31223a3ba26e61a4f8bf3a2195813a/Qwen3-4B-Q4_K_M.gguf",
+          "vae": "T:/build/flux2-trained/originals/ca70d2202afe6415bdbcb8793ba8cd99fd159cfe6192381504d6c4d3036e0f04/diffusion_pytorch_model.safetensors",
+          "qwen_merges": "T:/build/flux2-trained/originals/8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5/merges.txt"
+        },
+        "loras": [],
+        "output": "T:/build/flux2-trained-tests/run-1793345145231183400/one-step.png"
+      },
+      "quality_accepted": false
+    }
+  ],
+  "files": [
+    {
+      "file": "01-robot.png",
+      "bytes": 404476,
+      "sha256": "50ef2c45a1aa729987fffa32673e30e1a32e43d10c933926f628879a7877df71"
+    },
+    {
+      "file": "02-sailboat.png",
+      "bytes": 606138,
+      "sha256": "defd00834e9ace1bc3983e1a2d692babced39cc8f8c378b114e3eed412b029ee"
+    },
+    {
+      "file": "03-one-step.png",
+      "bytes": 242279,
+      "sha256": "18ab50eb7b0a4b9e15aa080a91d97f26085ef067320667063b2de28986de6d0a"
+    },
+    {
+      "file": "before-tokenizer-fix.png",
+      "bytes": 303099,
+      "sha256": "55c9ebcaa1c8d72c1cd6aa698221d4d4d50c9b6d7cedf2f7e1f88d734683e6d9"
+    },
+    {
+      "file": "contact-sheet.png",
+      "bytes": 1261906,
+      "sha256": "d9d712e9ea3c558e6904283543124868bb458195de8e3a0456e342c01b4ec36e"
+    },
+    {
+      "file": "flux2-trained.gif",
+      "bytes": 124818,
+      "sha256": "a105b933a6e1db6ce01eb72fc59cba33efca5a9ecfcd4588f9fdb9ff63efb4ad"
+    },
+    {
+      "file": "flux2-trained.mp4",
+      "bytes": 206222,
+      "sha256": "138bd9bb3fe44b92764e0405a7e108aa70d5c358098760c157c7dc526342b198"
+    }
+  ],
+  "diagnostic": {
+    "file": "before-tokenizer-fix.png",
+    "sha256": "55c9ebcaa1c8d72c1cd6aa698221d4d4d50c9b6d7cedf2f7e1f88d734683e6d9",
+    "request_sha256": "a6324840c1f87e1bcedf97bd81586424c173b1980befac340f82fd2f7c6ebdf7",
+    "observation": "Failed semantic output before the shared Qwen header correction; preserved as a diagnostic only."
+  },
+  "direct_report_sha256": "bf0f3b46654f43deb94bc1b6d95ce3120aff6950f07644b984eeaff525a5e022",
+  "java_report_sha256": "dd832f7935a75921e630b46d3f281c672787aa16a579988d7a97ce04eb7b193b",
+  "input_fingerprint": {
+    "build/flux2-app-host-tests/results.json": "dd832f7935a75921e630b46d3f281c672787aa16a579988d7a97ce04eb7b193b",
+    "build/flux2-trained-tests/results.json": "bf0f3b46654f43deb94bc1b6d95ce3120aff6950f07644b984eeaff525a5e022",
+    "tools/render_flux2_trained.py": "b0c3cb26c464a4d423917c070b3f9024f929e6c85c0679b8d58a7a964a4ab7ea"
+  }
+}

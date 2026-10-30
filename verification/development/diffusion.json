@@ -19,7 +19,7 @@
   "physical_android": false,
   "image_outputs": false,
   "input_fingerprint": {
-    "app/src/main/assets/recipe-templates.json": "91f2fb0aa811d467afb8f410a4ceaca7f1b6cd457c82ceef8968b0678872a503",
+    "app/src/main/assets/recipe-templates.json": "0ac0d11381d784f7267771e2d17daa8bf8356662b912736e3c830c21e6c144aa",
     "app/src/main/java/com/lma/app/core/AdapterSpec.java": "aff8572d14ac8d616be0a1b0da395e52ed5bddcd5ae407a969c2657bf9257581",
     "app/src/main/java/com/lma/app/core/ArtifactStore.java": "6f85d2ac710cac0fb5a76cde9493ff1fef4d3e2e119c3e031b7c44ff65a49061",
     "app/src/main/java/com/lma/app/core/AssemblyPlan.java": "80e81dea2a831d3955aa5ae21323eb0432fb448f78994901633fbb6e85d77e7c",
@@ -78,7 +78,7 @@
     "app/src/main/java/com/lma/app/SdEngine.java": "7a385f4058505e4175b9a2a97fea1b854b797b4f4ef3d905d1ca87d8f82621c6",
     "native/lcm_condition.hpp": "a5d94cf2f2453f3c8045418aa6b1a147ffa27557665bfc6f2203e04048899ea4",
     "native/sd_policy.hpp": "c7d987ffc6b905fbad9d6a47be98d10f57b2060728f00801742a4ec346a5c7ba",
-    "native/sd_worker.cpp": "e7effd2775408b3c61f762d3765245f6098114c834544fc672bba8bcd85072d4",
+    "native/sd_worker.cpp": "c8e04e54eb1d36aebaafaf726e609ef94afac32672046d887d1289dfe2ed8cec",
     "tests/host/android/util/AtomicFile.java": "a05b9c6ef4fa0f0f40aaa49b235faccc98d2d7d5aa1ea4bb8d2f535b8bad2796",
     "tests/native/sd_policy_test.cpp": "ae668cb738514aae292fa52ae36bde8c2d330943a46d7af383fe512909a6e0ef",
     "tests/sd-host/com/lma/app/SdTest.java": "1bacbc0e3d3f20e824fdeb22fccc77fa47c5d698056d14669ffe55c5b95b5cf9",

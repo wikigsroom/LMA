@@ -1,5 +1,7 @@
 # Diffusion foundation: SDXL, SD-Turbo and LCM
 
+dev.37: [complete four-component FLUX.2-klein 4B, production flow and Qwen tokenizer correction](FLUX2_KLEIN.en.md). Original full VAE, external user-owned tokenizer and same-source CPU worker. Complete trained host execution and independent tokenizer evidence are separate from pending quality, full numerical, resource and Android acceptance.
+
 [中文](DIFFUSION_ENGINE.md) · [HF components](HF_RECIPES.en.md) · [LoRA](ADAPTERS.en.md) · [Development status](DEVELOPMENT.en.md)
 
 See [small native LCM conditioning preparation](LCM_LOCAL_PREPARATION.en.md): a source-bound 5,696-byte component with actual host captures. The separate native program is not packaged or accepted by production `SdSpec`; App integration, canonical equivalence, quality and phone execution remain open. The new C++ candidate fails its preset pixel maximum (8 > 5) and remains rejected.

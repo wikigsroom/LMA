@@ -1,12 +1,22 @@
 # LMA · Local models on Android
 
-> **Current development: 0.3.0-dev.36 / code 40.** Correct Sana Edit's capability: complete fifteen-component, required local PNG/JPEG, fixed-prompt 512×512 image conversion with per-model settings, immutable jobs, real cancellation/recovery and managed outputs. The App only updates foundation code; users choose/download/manage all model assets. The shared upload listener also fixes intermittent connection resets on oversized requests. [Complete user flow](docs/MNN_SANA_EDIT.en.md) · [Numbered work/full pending scope](docs/releases/v0.3.0-dev.36.md) · [Actual-output MP4](docs/media/development/sana-edit-trained/sana-host-outputs.mp4) · [GIF](docs/media/development/sana-edit-trained/sana-host-outputs.gif). Original Sana text-to-image remains pending. Actual host execution, Android compilation, UI fixtures and incomplete phone/formal Release acceptance are recorded separately.
+> **Current development: 0.3.0-dev.37 / code 41.** Add an optional complete four-component FLUX.2-klein 4B download with HF / All / Local selection, independent settings, immutable jobs and output management. Fix shifted Qwen token IDs caused by HF merge-file headers and compare the full vocabulary and multilingual inputs with the official tokenizer. App updates deliver foundation code only; recommendations, user models and old jobs remain preserved. [Design and user flow](docs/FLUX2_KLEIN.en.md) · [Numbered changes, full pending scope and evidence limits](docs/releases/v0.3.0-dev.37.md). Actual Windows CPU execution, UI fixtures, Android compilation and physical-phone/quality acceptance are separate. The complete v0.3.0 Release remains unpublished.
+
+| Actual local text-to-image: robot and teapot | Actual local text-to-image: sailboat |
+|---|---|
+| ![Actual CPU output, not Android footage](docs/media/development/flux2-trained/01-robot.png) | ![Actual CPU output, not Android footage](docs/media/development/flux2-trained/02-sailboat.png) |
+
+[Images, GIF and video](docs/FLUX2_KLEIN.en.md#5-evidence-and-reproduction) display actual outputs and do not represent generation speed or phone recordings.
+
+> **Retained dev.36: 0.3.0-dev.36 / code 40.** Correct Sana Edit's capability: complete fifteen-component, required local PNG/JPEG, fixed-prompt 512×512 image conversion with per-model settings, immutable jobs, real cancellation/recovery and managed outputs. The App only updates foundation code; users choose/download/manage all model assets. The shared upload listener also fixes intermittent connection resets on oversized requests. [Complete user flow](docs/MNN_SANA_EDIT.en.md) · [Numbered work/full pending scope](docs/releases/v0.3.0-dev.36.md) · [Actual-output MP4](docs/media/development/sana-edit-trained/sana-host-outputs.mp4) · [GIF](docs/media/development/sana-edit-trained/sana-host-outputs.gif). Original Sana text-to-image remains pending. Actual host execution, Android compilation, UI fixtures and incomplete phone/formal Release acceptance are recorded separately.
 
 | User input (public-domain sample) | Actual native host output (not phone footage) |
 |---|---|
 | ![Local source](docs/media/development/sana-edit-trained/source.png) | ![Actual model edit](docs/media/development/sana-edit-trained/01-a.png) |
 
 [中文](README.md) · [English](README.en.md) · [Releases](https://github.com/wikigsroom/LMA/releases) · [Documentation](docs/README.md) · [Changelog](CHANGELOG.md)
+
+Validation: **22 suites / 3,006 passed checks**, including 117 independent tokenizer comparisons, 35 complete-model native checks and 99 application-flow checks. APK signature/dependencies/16 KiB alignment pass; Lint has 0 errors and 17 warnings. Actual host execution, Android compilation and pending physical-phone/formal Release acceptance remain separate.
 
 > **Historical dev.35 (model capability corrected in dev.36).** The matched Sana variant now has real-component execution and the production Java import / generation / sampling cancellation / recovery path. Repairs cover CFG encoder batching, float masks, completed-step progress, one-step scheduling and write results. All thirteen components (1,505,181,194 bytes) remain user-selected; the APK only updates foundation code. Host execution and Android compilation have separate evidence. Observed samples do not depict the requested subjects; image quality remains unaccepted. [Execution/usage](docs/MNN_SANA_TRAINED.en.md) · [Numbered delivery/full pending scope](docs/releases/v0.3.0-dev.35.md) · [Actual-output MP4](docs/media/development/sana-trained/sana-host-outputs.mp4) · [GIF](docs/media/development/sana-trained/sana-host-outputs.gif). This is not phone or complete Release acceptance.
 

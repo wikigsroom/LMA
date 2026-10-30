@@ -1,5 +1,13 @@
 # Changelog / 更新记录
 
+## 0.3.0-dev.37 — Complete local FLUX flow / 完整本地 FLUX 业务
+
+- 新增 FLUX.2-klein 4B distilled 完整四组件（5,127,452,603 字节）可选目录及 HF 配套建议；全部 / HF / 本地、独立参数与上限归位、不可变任务、真实采样取消 / 恢复、PNG 来源、重启及删除模型后保留结果接通共用业务。App 仍只更新基座，所有资产由用户显式选择取得，不附模型或自动下载。
+- Correct the shared Qwen merge-header and NFC handling without changing installed user files or the pinned upstream checkout. Independently compare all 151,643 base IDs, 26 added IDs and 33 multilingual/Unicode inputs across three file representations with the official Rust tokenizer: 117 checks.
+- Complete trained native Windows CPU and production Java execution; preserve changed-prompt/step effects, exact recovery, actual child cancellation and the original failed-semantic diagnostic. Source/host evidence does not establish complete numerics, quality, resources or phone acceptance.
+- 原签名 dev.37/code41 ARM64 APK、双语完整指南与更新说明、十组业务页面录制和实际 PNG / MP4 / GIF；原字节归档 dev.36 的 39 份记录与状态。推荐 m08→m06→m01、全量冻结范围、既有失败及正式 Release 门槛保持。
+- Full details / 完整更新与所有待办：[v0.3.0-dev.37](docs/releases/v0.3.0-dev.37.md) · [中文方案](docs/FLUX2_KLEIN.md) · [English](docs/FLUX2_KLEIN.en.md)。
+
 ## 0.3.0-dev.36 — Local image-edit business flow / 本地图片编辑业务闭环
 
 - Correct the matched Sana model's task from generic text-to-image to fixed-style image editing, based on pinned official application sources. Preserve the legacy declarations, files, settings, jobs and failed gray outputs; the original frozen text-to-image target stays pending.

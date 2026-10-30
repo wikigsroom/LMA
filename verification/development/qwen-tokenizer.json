@@ -1,0 +1,706 @@
+{
+  "schema": "lma.qwen-tokenizer-reference/1",
+  "passed": true,
+  "checks": [
+    {
+      "passed": true,
+      "description": "hf-header: actual production tokenizer exits cleanly"
+    },
+    {
+      "passed": true,
+      "description": "hf-header: canonical in-memory rules exactly match pinned upstream bytes"
+    },
+    {
+      "passed": true,
+      "description": "hf-header: selected user file stays unchanged"
+    },
+    {
+      "passed": true,
+      "description": "hf-header: independent HF token IDs, text 0"
+    },
+    {
+      "passed": true,
+      "description": "hf-header: independent HF token IDs, text 1"
+    },
+    {
+      "passed": true,
+      "description": "hf-header: independent HF token IDs, text 2"
+    },
+    {
+      "passed": true,
+      "description": "hf-header: independent HF token IDs, text 3"
+    },
+    {
+      "passed": true,
+      "description": "hf-header: independent HF token IDs, text 4"
+    },
+    {
+      "passed": true,
+      "description": "hf-header: independent HF token IDs, text 5"
+    },
+    {
+      "passed": true,
+      "description": "hf-header: independent HF token IDs, text 6"
+    },
+    {
+      "passed": true,
+      "description": "hf-header: independent HF token IDs, text 7"
+    },
+    {
+      "passed": true,
+      "description": "hf-header: independent HF token IDs, text 8"
+    },
+    {
+      "passed": true,
+      "description": "hf-header: independent HF token IDs, text 9"
+    },
+    {
+      "passed": true,
+      "description": "hf-header: independent HF token IDs, text 10"
+    },
+    {
+      "passed": true,
+      "description": "hf-header: independent HF token IDs, text 11"
+    },
+    {
+      "passed": true,
+      "description": "hf-header: independent HF token IDs, text 12"
+    },
+    {
+      "passed": true,
+      "description": "hf-header: independent HF token IDs, text 13"
+    },
+    {
+      "passed": true,
+      "description": "hf-header: independent HF token IDs, text 14"
+    },
+    {
+      "passed": true,
+      "description": "hf-header: independent HF token IDs, text 15"
+    },
+    {
+      "passed": true,
+      "description": "hf-header: independent HF token IDs, text 16"
+    },
+    {
+      "passed": true,
+      "description": "hf-header: independent HF token IDs, text 17"
+    },
+    {
+      "passed": true,
+      "description": "hf-header: independent HF token IDs, text 18"
+    },
+    {
+      "passed": true,
+      "description": "hf-header: independent HF token IDs, text 19"
+    },
+    {
+      "passed": true,
+      "description": "hf-header: independent HF token IDs, text 20"
+    },
+    {
+      "passed": true,
+      "description": "hf-header: independent HF token IDs, text 21"
+    },
+    {
+      "passed": true,
+      "description": "hf-header: independent HF token IDs, text 22"
+    },
+    {
+      "passed": true,
+      "description": "hf-header: independent HF token IDs, text 23"
+    },
+    {
+      "passed": true,
+      "description": "hf-header: independent HF token IDs, text 24"
+    },
+    {
+      "passed": true,
+      "description": "hf-header: independent HF token IDs, text 25"
+    },
+    {
+      "passed": true,
+      "description": "hf-header: independent HF token IDs, text 26"
+    },
+    {
+      "passed": true,
+      "description": "hf-header: independent HF token IDs, text 27"
+    },
+    {
+      "passed": true,
+      "description": "hf-header: independent HF token IDs, text 28"
+    },
+    {
+      "passed": true,
+      "description": "hf-header: independent HF token IDs, text 29"
+    },
+    {
+      "passed": true,
+      "description": "hf-header: independent HF token IDs, text 30"
+    },
+    {
+      "passed": true,
+      "description": "hf-header: independent HF token IDs, text 31"
+    },
+    {
+      "passed": true,
+      "description": "hf-header: independent HF token IDs, text 32"
+    },
+    {
+      "passed": true,
+      "description": "hf-header: every multilingual test is encoded"
+    },
+    {
+      "passed": true,
+      "description": "Every one of 151643 official base vocabulary token IDs matches the actual C++ encoder"
+    },
+    {
+      "passed": true,
+      "description": "Every official added/special token ID matches the actual C++ encoder"
+    },
+    {
+      "passed": true,
+      "description": "canonical: actual production tokenizer exits cleanly"
+    },
+    {
+      "passed": true,
+      "description": "canonical: canonical in-memory rules exactly match pinned upstream bytes"
+    },
+    {
+      "passed": true,
+      "description": "canonical: selected user file stays unchanged"
+    },
+    {
+      "passed": true,
+      "description": "canonical: independent HF token IDs, text 0"
+    },
+    {
+      "passed": true,
+      "description": "canonical: independent HF token IDs, text 1"
+    },
+    {
+      "passed": true,
+      "description": "canonical: independent HF token IDs, text 2"
+    },
+    {
+      "passed": true,
+      "description": "canonical: independent HF token IDs, text 3"
+    },
+    {
+      "passed": true,
+      "description": "canonical: independent HF token IDs, text 4"
+    },
+    {
+      "passed": true,
+      "description": "canonical: independent HF token IDs, text 5"
+    },
+    {
+      "passed": true,
+      "description": "canonical: independent HF token IDs, text 6"
+    },
+    {
+      "passed": true,
+      "description": "canonical: independent HF token IDs, text 7"
+    },
+    {
+      "passed": true,
+      "description": "canonical: independent HF token IDs, text 8"
+    },
+    {
+      "passed": true,
+      "description": "canonical: independent HF token IDs, text 9"
+    },
+    {
+      "passed": true,
+      "description": "canonical: independent HF token IDs, text 10"
+    },
+    {
+      "passed": true,
+      "description": "canonical: independent HF token IDs, text 11"
+    },
+    {
+      "passed": true,
+      "description": "canonical: independent HF token IDs, text 12"
+    },
+    {
+      "passed": true,
+      "description": "canonical: independent HF token IDs, text 13"
+    },
+    {
+      "passed": true,
+      "description": "canonical: independent HF token IDs, text 14"
+    },
+    {
+      "passed": true,
+      "description": "canonical: independent HF token IDs, text 15"
+    },
+    {
+      "passed": true,
+      "description": "canonical: independent HF token IDs, text 16"
+    },
+    {
+      "passed": true,
+      "description": "canonical: independent HF token IDs, text 17"
+    },
+    {
+      "passed": true,
+      "description": "canonical: independent HF token IDs, text 18"
+    },
+    {
+      "passed": true,
+      "description": "canonical: independent HF token IDs, text 19"
+    },
+    {
+      "passed": true,
+      "description": "canonical: independent HF token IDs, text 20"
+    },
+    {
+      "passed": true,
+      "description": "canonical: independent HF token IDs, text 21"
+    },
+    {
+      "passed": true,
+      "description": "canonical: independent HF token IDs, text 22"
+    },
+    {
+      "passed": true,
+      "description": "canonical: independent HF token IDs, text 23"
+    },
+    {
+      "passed": true,
+      "description": "canonical: independent HF token IDs, text 24"
+    },
+    {
+      "passed": true,
+      "description": "canonical: independent HF token IDs, text 25"
+    },
+    {
+      "passed": true,
+      "description": "canonical: independent HF token IDs, text 26"
+    },
+    {
+      "passed": true,
+      "description": "canonical: independent HF token IDs, text 27"
+    },
+    {
+      "passed": true,
+      "description": "canonical: independent HF token IDs, text 28"
+    },
+    {
+      "passed": true,
+      "description": "canonical: independent HF token IDs, text 29"
+    },
+    {
+      "passed": true,
+      "description": "canonical: independent HF token IDs, text 30"
+    },
+    {
+      "passed": true,
+      "description": "canonical: independent HF token IDs, text 31"
+    },
+    {
+      "passed": true,
+      "description": "canonical: independent HF token IDs, text 32"
+    },
+    {
+      "passed": true,
+      "description": "canonical: every multilingual test is encoded"
+    },
+    {
+      "passed": true,
+      "description": "bom-crlf: actual production tokenizer exits cleanly"
+    },
+    {
+      "passed": true,
+      "description": "bom-crlf: canonical in-memory rules exactly match pinned upstream bytes"
+    },
+    {
+      "passed": true,
+      "description": "bom-crlf: selected user file stays unchanged"
+    },
+    {
+      "passed": true,
+      "description": "bom-crlf: independent HF token IDs, text 0"
+    },
+    {
+      "passed": true,
+      "description": "bom-crlf: independent HF token IDs, text 1"
+    },
+    {
+      "passed": true,
+      "description": "bom-crlf: independent HF token IDs, text 2"
+    },
+    {
+      "passed": true,
+      "description": "bom-crlf: independent HF token IDs, text 3"
+    },
+    {
+      "passed": true,
+      "description": "bom-crlf: independent HF token IDs, text 4"
+    },
+    {
+      "passed": true,
+      "description": "bom-crlf: independent HF token IDs, text 5"
+    },
+    {
+      "passed": true,
+      "description": "bom-crlf: independent HF token IDs, text 6"
+    },
+    {
+      "passed": true,
+      "description": "bom-crlf: independent HF token IDs, text 7"
+    },
+    {
+      "passed": true,
+      "description": "bom-crlf: independent HF token IDs, text 8"
+    },
+    {
+      "passed": true,
+      "description": "bom-crlf: independent HF token IDs, text 9"
+    },
+    {
+      "passed": true,
+      "description": "bom-crlf: independent HF token IDs, text 10"
+    },
+    {
+      "passed": true,
+      "description": "bom-crlf: independent HF token IDs, text 11"
+    },
+    {
+      "passed": true,
+      "description": "bom-crlf: independent HF token IDs, text 12"
+    },
+    {
+      "passed": true,
+      "description": "bom-crlf: independent HF token IDs, text 13"
+    },
+    {
+      "passed": true,
+      "description": "bom-crlf: independent HF token IDs, text 14"
+    },
+    {
+      "passed": true,
+      "description": "bom-crlf: independent HF token IDs, text 15"
+    },
+    {
+      "passed": true,
+      "description": "bom-crlf: independent HF token IDs, text 16"
+    },
+    {
+      "passed": true,
+      "description": "bom-crlf: independent HF token IDs, text 17"
+    },
+    {
+      "passed": true,
+      "description": "bom-crlf: independent HF token IDs, text 18"
+    },
+    {
+      "passed": true,
+      "description": "bom-crlf: independent HF token IDs, text 19"
+    },
+    {
+      "passed": true,
+      "description": "bom-crlf: independent HF token IDs, text 20"
+    },
+    {
+      "passed": true,
+      "description": "bom-crlf: independent HF token IDs, text 21"
+    },
+    {
+      "passed": true,
+      "description": "bom-crlf: independent HF token IDs, text 22"
+    },
+    {
+      "passed": true,
+      "description": "bom-crlf: independent HF token IDs, text 23"
+    },
+    {
+      "passed": true,
+      "description": "bom-crlf: independent HF token IDs, text 24"
+    },
+    {
+      "passed": true,
+      "description": "bom-crlf: independent HF token IDs, text 25"
+    },
+    {
+      "passed": true,
+      "description": "bom-crlf: independent HF token IDs, text 26"
+    },
+    {
+      "passed": true,
+      "description": "bom-crlf: independent HF token IDs, text 27"
+    },
+    {
+      "passed": true,
+      "description": "bom-crlf: independent HF token IDs, text 28"
+    },
+    {
+      "passed": true,
+      "description": "bom-crlf: independent HF token IDs, text 29"
+    },
+    {
+      "passed": true,
+      "description": "bom-crlf: independent HF token IDs, text 30"
+    },
+    {
+      "passed": true,
+      "description": "bom-crlf: independent HF token IDs, text 31"
+    },
+    {
+      "passed": true,
+      "description": "bom-crlf: independent HF token IDs, text 32"
+    },
+    {
+      "passed": true,
+      "description": "bom-crlf: every multilingual test is encoded"
+    },
+    {
+      "passed": true,
+      "description": "unknown-header: malformed data fails before tokenization"
+    },
+    {
+      "passed": true,
+      "description": "duplicate-header: malformed data fails before tokenization"
+    },
+    {
+      "passed": true,
+      "description": "bare-cr: malformed data fails before tokenization"
+    },
+    {
+      "passed": true,
+      "description": "only-header: malformed data fails before tokenization"
+    }
+  ],
+  "check_count": 117,
+  "official_base_vocabulary_ids": 151643,
+  "official_added_token_ids": 26,
+  "texts": 33,
+  "variants": 3,
+  "reference": {
+    "role": "reference_tokenizer",
+    "format": "json",
+    "repository": "black-forest-labs/FLUX.2-klein-4B",
+    "revision": "e7b7dc27f91deacad38e78976d1f2b499d76a294",
+    "path": "tokenizer/tokenizer.json",
+    "bytes": 11422654,
+    "sha256": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4",
+    "url": "https://huggingface.co/black-forest-labs/FLUX.2-klein-4B/resolve/e7b7dc27f91deacad38e78976d1f2b499d76a294/tokenizer/tokenizer.json",
+    "developer_reference_only": true,
+    "packaged_in_apk": false
+  },
+  "selected_merges": {
+    "role": "qwen_merges",
+    "format": "text",
+    "repository": "black-forest-labs/FLUX.2-klein-4B",
+    "revision": "e7b7dc27f91deacad38e78976d1f2b499d76a294",
+    "path": "tokenizer/merges.txt",
+    "bytes": 1671853,
+    "sha256": "8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5",
+    "url": "https://huggingface.co/black-forest-labs/FLUX.2-klein-4B/resolve/e7b7dc27f91deacad38e78976d1f2b499d76a294/tokenizer/merges.txt"
+  },
+  "canonical_bytes": 1671839,
+  "canonical_sha256": "599bab54075088774b1733fde865d5bd747cbcc7a547c5bc12610e874e26f5e3",
+  "compilation": {
+    "schema": "lma.sd-host-build/1",
+    "executable": "build/sd-worker-host/c0dddf254c3c99bd/bin/lma_sd_host.exe",
+    "sha256": "bcc1b84cf8f6d1b7d51f11234a2c22a7de78e77ee212533313b14a1a9ebd6ed1",
+    "bytes": 8651264,
+    "tokenizer_executable": "build/sd-worker-host/c0dddf254c3c99bd/bin/lma_sd_tokenizer_host.exe",
+    "tokenizer_sha256": "602228cab2830b4cd41fefd14971203d42b4d01e6d0e6a55b6d87a08373b522a",
+    "tokenizer_bytes": 3154944,
+    "source_revision": "be486498eadc29dc3cd234d944c2180ed42b1415",
+    "ggml_revision": "a5915eb0e47adef21c3f25b889a008925ea838c2",
+    "backend": "cpu",
+    "production_worker_source_unmodified": true,
+    "production_vocabulary_source_unmodified": true,
+    "windows_parent_guard": true,
+    "external_vocabulary": true,
+    "bundled_model_data": false,
+    "android_compiled": false,
+    "physical_android": false,
+    "packaged_in_apk": false,
+    "model_executed": false,
+    "reused_unaccepted_build_cache": true,
+    "compile_workspace": "build/sd-worker-host/d796da2dd260b023/bin",
+    "input_fingerprint": {
+      "native/lcm_condition.hpp": "a5d94cf2f2453f3c8045418aa6b1a147ffa27557665bfc6f2203e04048899ea4",
+      "native/qwen_prompt.hpp": "ec9a45781b93eff62c6f0a4eca2c59fe1088c931d4c1150dcd903ae5c84c1c0f",
+      "native/sd_policy.hpp": "c7d987ffc6b905fbad9d6a47be98d10f57b2060728f00801742a4ec346a5c7ba",
+      "native/sd_worker.cpp": "c8e04e54eb1d36aebaafaf726e609ef94afac32672046d887d1289dfe2ed8cec",
+      "native/tokenizer_data.hpp": "c752eb62a3c915be4742124bb25e6ada9ea952bbc81c62a1a864cfe39a3ddd6d",
+      "native/vocab_external.cpp": "b8e568f72914833f66bbe338fb877d98d1cb954525a7d3d9a1f8364e4e1c90af",
+      "research/sd_host/CMakeLists.txt": "e954e15097133eaad44b656c6b2c8a998916ea22047fe8504d08d11d95ffd240",
+      "research/sd_host/compat/sys/prctl.h": "87c9ddf82ce059bf303486b0e10b22dce6d972e87f83836d148e631dcdad9c9e",
+      "research/sd_host/compat/unistd.h": "e467e7f5855c286b3ce40268146ed34d153a5fbf8a42d5c36b26a6293142068b",
+      "research/sd_host/NOTICE": "90e18935ca8ba71ac1a5ce59e3a2f0b0580cd246877f65cba402deff67eb18fc",
+      "research/sd_host/platform.hpp": "c377ed1b676707a469a192d96ae9b748802e1f62ad0674366b593b2b5b2daf67",
+      "research/sd_host/tokenizer_driver.cpp": "ffce0ff4c40580d635233c0f3fe646e78636ad53c8bdb0aea620e855d60d2abf",
+      "third_party/notices/sd-sources.json": "91ee744071aa93c4bd4d40476d3582fa4bf4d00a628527e196d4856c06ec77c1",
+      "tools/build_native.py": "f3876b3c254ee367a55f15bcbf9cd8c0dc2eb243b53b59796a282f2afc4a7c11",
+      "tools/build_sd_host.py": "4d94023a5323f991674df6f85348432d1cdb874eb41ab14dd34ce58f122327eb",
+      "tools/fetch_sd15_trained.py": "91392401d9739f15b14fa4e42b74f13bbdd719a382746541cc69952966e6f307"
+    }
+  },
+  "runs": [
+    {
+      "name": "hf-header",
+      "returncode": 0,
+      "tokens_sha256": "b8d55a60d23f39918511a9f497fda7eb471e62778632240be0d3c5293dadae55",
+      "canonical_sha256": "599bab54075088774b1733fde865d5bd747cbcc7a547c5bc12610e874e26f5e3"
+    },
+    {
+      "name": "canonical",
+      "returncode": 0,
+      "tokens_sha256": "b8d55a60d23f39918511a9f497fda7eb471e62778632240be0d3c5293dadae55",
+      "canonical_sha256": "599bab54075088774b1733fde865d5bd747cbcc7a547c5bc12610e874e26f5e3"
+    },
+    {
+      "name": "bom-crlf",
+      "returncode": 0,
+      "tokens_sha256": "b8d55a60d23f39918511a9f497fda7eb471e62778632240be0d3c5293dadae55",
+      "canonical_sha256": "599bab54075088774b1733fde865d5bd747cbcc7a547c5bc12610e874e26f5e3"
+    }
+  ],
+  "files": {
+    "bare-cr.stderr": {
+      "bytes": 32,
+      "sha256": "95c3baec973337192a8d55ca54864a81d4a37f30c71274e47bf2ba0f28da8c66"
+    },
+    "bare-cr.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "bare-cr.txt": {
+      "bytes": 7,
+      "sha256": "fc9da00966cd99c32113ee8030b23dbc5791819b360c07be6cc914ae1ea751de"
+    },
+    "bom-crlf-canonical.txt": {
+      "bytes": 1671839,
+      "sha256": "599bab54075088774b1733fde865d5bd747cbcc7a547c5bc12610e874e26f5e3"
+    },
+    "bom-crlf.json": {
+      "bytes": 1131,
+      "sha256": "f7af212bb27667d699da35f5d4d856d2c0a7eadd49e625d475bb01ff3afa9921"
+    },
+    "bom-crlf.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "bom-crlf.stdout": {
+      "bytes": 1289,
+      "sha256": "8c52f961078a7a872448ea14986a30df6497a41bfc05287b1569f48f1cbc6def"
+    },
+    "bom-crlf.txt": {
+      "bytes": 1823244,
+      "sha256": "4bff62fd28ee841c9f25b895572d37a45e45b4488c08ee8b7074f41afeb6955b"
+    },
+    "canonical-canonical.txt": {
+      "bytes": 1671839,
+      "sha256": "599bab54075088774b1733fde865d5bd747cbcc7a547c5bc12610e874e26f5e3"
+    },
+    "canonical.json": {
+      "bytes": 1131,
+      "sha256": "f7af212bb27667d699da35f5d4d856d2c0a7eadd49e625d475bb01ff3afa9921"
+    },
+    "canonical.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "canonical.stdout": {
+      "bytes": 1289,
+      "sha256": "8c52f961078a7a872448ea14986a30df6497a41bfc05287b1569f48f1cbc6def"
+    },
+    "canonical.txt": {
+      "bytes": 1671839,
+      "sha256": "599bab54075088774b1733fde865d5bd747cbcc7a547c5bc12610e874e26f5e3"
+    },
+    "duplicate-header.stderr": {
+      "bytes": 36,
+      "sha256": "ec8a5ec520e5c088fab8840bb8d7d6db1327448c6140e8a7071db014c411cb29"
+    },
+    "duplicate-header.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "duplicate-header.txt": {
+      "bytes": 1671867,
+      "sha256": "7c030ddb653b62b989f483a34fdcd5b0a2a89a38c95428040d38723d675f8282"
+    },
+    "hf-header-canonical.txt": {
+      "bytes": 1671839,
+      "sha256": "599bab54075088774b1733fde865d5bd747cbcc7a547c5bc12610e874e26f5e3"
+    },
+    "hf-header.json": {
+      "bytes": 1130,
+      "sha256": "c9cfc72d5e0fe574451c4678a2dba1837da2238c1e219a0d9621c5131c723973"
+    },
+    "hf-header.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "hf-header.stdout": {
+      "bytes": 2778846,
+      "sha256": "77985c4fdaaeeebb22ef5a5a6c2859201fd35ddbbd15bea8753a85698c1e5731"
+    },
+    "hf-header.txt": {
+      "bytes": 1671853,
+      "sha256": "8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5"
+    },
+    "only-header.stderr": {
+      "bytes": 36,
+      "sha256": "ec8a5ec520e5c088fab8840bb8d7d6db1327448c6140e8a7071db014c411cb29"
+    },
+    "only-header.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "only-header.txt": {
+      "bytes": 14,
+      "sha256": "215a6aba00d27bcd42b8ad1dccc4b4d23f40decc150bdbf0d5ce6bb2410708df"
+    },
+    "unknown-header.stderr": {
+      "bytes": 36,
+      "sha256": "ec8a5ec520e5c088fab8840bb8d7d6db1327448c6140e8a7071db014c411cb29"
+    },
+    "unknown-header.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "unknown-header.txt": {
+      "bytes": 1671853,
+      "sha256": "2e73d199ae09ccb55ef304aac3f5415bce29b69d97f9345d42f7415bbe74ffa9"
+    }
+  },
+  "capture_directory": "build/qwen-tokenizer-tests/run-1793345098542220900",
+  "actual_production_tokenizer": true,
+  "independent_reference": "Hugging Face tokenizer.json + Rust tokenizers",
+  "bundled_tokenizer_data": false,
+  "hf_header_removed_in_memory": true,
+  "nfc_before_bpe": true,
+  "installed_asset_unchanged": true,
+  "network_calls": 0,
+  "model_inference": false,
+  "physical_android": false,
+  "complete_release_accepted": false,
+  "input_fingerprint": {
+    "native/lcm_condition.hpp": "a5d94cf2f2453f3c8045418aa6b1a147ffa27557665bfc6f2203e04048899ea4",
+    "native/qwen_prompt.hpp": "ec9a45781b93eff62c6f0a4eca2c59fe1088c931d4c1150dcd903ae5c84c1c0f",
+    "native/sd_policy.hpp": "c7d987ffc6b905fbad9d6a47be98d10f57b2060728f00801742a4ec346a5c7ba",
+    "native/sd_worker.cpp": "c8e04e54eb1d36aebaafaf726e609ef94afac32672046d887d1289dfe2ed8cec",
+    "native/tokenizer_data.hpp": "c752eb62a3c915be4742124bb25e6ada9ea952bbc81c62a1a864cfe39a3ddd6d",
+    "native/vocab_external.cpp": "b8e568f72914833f66bbe338fb877d98d1cb954525a7d3d9a1f8364e4e1c90af",
+    "research/sd_host/CMakeLists.txt": "e954e15097133eaad44b656c6b2c8a998916ea22047fe8504d08d11d95ffd240",
+    "research/sd_host/compat/sys/prctl.h": "87c9ddf82ce059bf303486b0e10b22dce6d972e87f83836d148e631dcdad9c9e",
+    "research/sd_host/compat/unistd.h": "e467e7f5855c286b3ce40268146ed34d153a5fbf8a42d5c36b26a6293142068b",
+    "research/sd_host/NOTICE": "90e18935ca8ba71ac1a5ce59e3a2f0b0580cd246877f65cba402deff67eb18fc",
+    "research/sd_host/platform.hpp": "c377ed1b676707a469a192d96ae9b748802e1f62ad0674366b593b2b5b2daf67",
+    "research/sd_host/tokenizer_driver.cpp": "ffce0ff4c40580d635233c0f3fe646e78636ad53c8bdb0aea620e855d60d2abf",
+    "third_party/notices/sd-sources.json": "91ee744071aa93c4bd4d40476d3582fa4bf4d00a628527e196d4856c06ec77c1",
+    "tools/build_native.py": "f3876b3c254ee367a55f15bcbf9cd8c0dc2eb243b53b59796a282f2afc4a7c11",
+    "tools/build_sd_host.py": "4d94023a5323f991674df6f85348432d1cdb874eb41ab14dd34ce58f122327eb",
+    "tools/fetch_sd15_trained.py": "91392401d9739f15b14fa4e42b74f13bbdd719a382746541cc69952966e6f307",
+    "research/flux2_trained/assets.json": "77d268da7aaf6d9a861c92e6c82d4dc2e279218af1c67e48f63a73816b0991cb",
+    "tools/fetch_flux2_trained.py": "a103482c4ede9c93616a8b3d04d07cb55ba6fe32d2945321d3299f17bc7f5de0",
+    "tools/test_qwen_tokenizer.py": "f2e7ca43bddeb98a847f267f119eb3d44fd69c87b87a2f39d7ea94188ac930de"
+  }
+}

@@ -1,0 +1,1588 @@
+{
+  "schema": "lma.mnn-edit-trained-host/1",
+  "passed": true,
+  "checks": [
+    {
+      "passed": true,
+      "description": "Production native identity"
+    },
+    {
+      "passed": true,
+      "description": "a: bounded structured protocol"
+    },
+    {
+      "passed": true,
+      "description": "a: actual complete image"
+    },
+    {
+      "passed": true,
+      "description": "a: actual 512x512 nonuniform image, not a quality gate"
+    },
+    {
+      "passed": true,
+      "description": "a: output provenance"
+    },
+    {
+      "passed": true,
+      "description": "a: real sampling steps"
+    },
+    {
+      "passed": true,
+      "description": "a: text, diffusion and source-image stages"
+    },
+    {
+      "passed": true,
+      "description": "a: native host resources observed"
+    },
+    {
+      "passed": true,
+      "description": "jpeg-crop: bounded structured protocol"
+    },
+    {
+      "passed": true,
+      "description": "jpeg-crop: actual complete image"
+    },
+    {
+      "passed": true,
+      "description": "jpeg-crop: actual 512x512 nonuniform image, not a quality gate"
+    },
+    {
+      "passed": true,
+      "description": "jpeg-crop: output provenance"
+    },
+    {
+      "passed": true,
+      "description": "jpeg-crop: real sampling steps"
+    },
+    {
+      "passed": true,
+      "description": "jpeg-crop: text, diffusion and source-image stages"
+    },
+    {
+      "passed": true,
+      "description": "jpeg-crop: native host resources observed"
+    },
+    {
+      "passed": true,
+      "description": "single-step: bounded structured protocol"
+    },
+    {
+      "passed": true,
+      "description": "single-step: actual complete image"
+    },
+    {
+      "passed": true,
+      "description": "single-step: actual 512x512 nonuniform image, not a quality gate"
+    },
+    {
+      "passed": true,
+      "description": "single-step: output provenance"
+    },
+    {
+      "passed": true,
+      "description": "single-step: real sampling steps"
+    },
+    {
+      "passed": true,
+      "description": "single-step: text, diffusion and source-image stages"
+    },
+    {
+      "passed": true,
+      "description": "single-step: native host resources observed"
+    },
+    {
+      "passed": true,
+      "description": "missing-image: bounded structured protocol"
+    },
+    {
+      "passed": true,
+      "description": "missing-image: failure publishes no artifact"
+    },
+    {
+      "passed": true,
+      "description": "oversized-image: bounded structured protocol"
+    },
+    {
+      "passed": true,
+      "description": "oversized-image: failure publishes no artifact"
+    },
+    {
+      "passed": true,
+      "description": "corrupt-image: bounded structured protocol"
+    },
+    {
+      "passed": true,
+      "description": "corrupt-image: failure publishes no artifact"
+    },
+    {
+      "passed": true,
+      "description": "arbitrary-prompt: bounded structured protocol"
+    },
+    {
+      "passed": true,
+      "description": "arbitrary-prompt: failure publishes no artifact"
+    },
+    {
+      "passed": true,
+      "description": "negative-conditioning: bounded structured protocol"
+    },
+    {
+      "passed": true,
+      "description": "negative-conditioning: failure publishes no artifact"
+    },
+    {
+      "passed": true,
+      "description": "unsupported-cfg: bounded structured protocol"
+    },
+    {
+      "passed": true,
+      "description": "unsupported-cfg: failure publishes no artifact"
+    },
+    {
+      "passed": true,
+      "description": "unsupported-resolution: bounded structured protocol"
+    },
+    {
+      "passed": true,
+      "description": "unsupported-resolution: failure publishes no artifact"
+    },
+    {
+      "passed": true,
+      "description": "legacy-text-pipeline: bounded structured protocol"
+    },
+    {
+      "passed": true,
+      "description": "legacy-text-pipeline: failure publishes no artifact"
+    },
+    {
+      "passed": true,
+      "description": "missing-image-encoder: bounded structured protocol"
+    },
+    {
+      "passed": true,
+      "description": "missing-image-encoder: failure publishes no artifact"
+    },
+    {
+      "passed": true,
+      "description": "token-budget: bounded structured protocol"
+    },
+    {
+      "passed": true,
+      "description": "token-budget: failure publishes no artifact"
+    },
+    {
+      "passed": true,
+      "description": "recovery-a: bounded structured protocol"
+    },
+    {
+      "passed": true,
+      "description": "recovery-a: actual complete image"
+    },
+    {
+      "passed": true,
+      "description": "recovery-a: actual 512x512 nonuniform image, not a quality gate"
+    },
+    {
+      "passed": true,
+      "description": "recovery-a: output provenance"
+    },
+    {
+      "passed": true,
+      "description": "recovery-a: real sampling steps"
+    },
+    {
+      "passed": true,
+      "description": "recovery-a: text, diffusion and source-image stages"
+    },
+    {
+      "passed": true,
+      "description": "recovery-a: native host resources observed"
+    },
+    {
+      "passed": true,
+      "description": "source-effect: observed same-host pixel relationship"
+    },
+    {
+      "passed": true,
+      "description": "step-effect: observed same-host pixel relationship"
+    },
+    {
+      "passed": true,
+      "description": "recovery: observed same-host pixel relationship"
+    }
+  ],
+  "compilation": {
+    "schema": "lma.mnn-host-build/1",
+    "executable": "build/mnn-worker-host/c4e1bd96c96fa445/lma_mnn_host.exe",
+    "bytes": 4597760,
+    "sha256": "d4cc479e39d706ce159666308cf75d6d3272699ac38014d8d6d7a3eaac900c8c",
+    "source_revision": "35a20ca0995bb7e4a549b7def42c4acb30559a94",
+    "production_worker": true,
+    "identical_generated_pipeline": true,
+    "backend": "cpu",
+    "bundled_model_data": false,
+    "model_executed": false,
+    "android_compiled": false,
+    "physical_android": false,
+    "input_fingerprint": {
+      "native/mnn/bootstrap.cmake": "8f4046a160689828f5ef82effdb303e0fe4d8f709be887a3df97944da9339a17",
+      "native/mnn/image.hpp": "1f66dfe180a818a38aaec1e9abb844d6d361b9f50f93970f8c3abbe39b0d71bb",
+      "native/mnn/policy.hpp": "54d94c5e2bf0bf9dbc38021d6e03eef4fd8fa5d65eb4ccc2c09a40b2afdc60d5",
+      "native/mnn/worker.cpp": "1bb92e7134b216114b11213dc6e93b29002f2d4cdffd4cfac74f0ddb0ccec4a1",
+      "research/sd_host/platform.hpp": "c377ed1b676707a469a192d96ae9b748802e1f62ad0674366b593b2b5b2daf67",
+      "third_party/mnn-source-lock.json": "1639a5fe9610af47ab5b6f6d1fbb1df12083f240022f09e1beae5aecd0d2082f",
+      "tools/build_mnn.py": "26c0c9871819a9cdfd21b3a96eb47af95183e85c27c913e3b4cdbf69cb7e8063",
+      "tools/build_mnn_host.py": "13ad56bdf014cdbc2893828dd362ffeeb8cde450caddcd8dc9176aaf8c13e83e",
+      "tools/fetch_mnn.py": "3eca07c0a174eeafedcfb68cde69f16523902082fbc9b86339d52dea03bdded7",
+      "tools/fetch_mnn_trained.py": "45640f38a4bf5e70aabc5c3520424a0d7fe4eba9c944deb1dd2987cc0e5a6921"
+    },
+    "generated_sources": {
+      "build/mnn-worker-host/c4e1bd96c96fa445/generated/lma_sana_llm.hpp": "8b2ad32220ec6394529389db579ce534b2bae187f46435695953b8cc04b9ea06",
+      "build/mnn-worker-host/c4e1bd96c96fa445/generated/sana_diffusion.cpp": "cd649676e0b3b3fcb46ce83e7e332f451a2bfe0049a81fed967cb8c6be77c514"
+    }
+  },
+  "assets": [
+    {
+      "role": "diffusion",
+      "repository": "taobao-mnn/MNN-Sana-Edit-V2",
+      "revision": "dd5955b4e63359b5822fa29a3b3711a112212046",
+      "path": "transformer.mnn",
+      "bytes": 1454264,
+      "sha256": "092dd75e8b8c12694ffe43476addcbde07fe7227774a1a40b19420f87b217386",
+      "git_blob": "48fe328410807e06786c1432ee1685afe5263c0e",
+      "url": "https://huggingface.co/taobao-mnn/MNN-Sana-Edit-V2/resolve/dd5955b4e63359b5822fa29a3b3711a112212046/transformer.mnn"
+    },
+    {
+      "role": "diffusion_data",
+      "repository": "taobao-mnn/MNN-Sana-Edit-V2",
+      "revision": "dd5955b4e63359b5822fa29a3b3711a112212046",
+      "path": "transformer.mnn.weight",
+      "bytes": 884435680,
+      "sha256": "b3bab45fbabc8dabd05840b52ea3cd9bd3e54dd990e153ff6fbecd8b6c17f331",
+      "git_blob": "59c7dd33748ebc424b423dc9dcde712c2b2b0e8f",
+      "url": "https://huggingface.co/taobao-mnn/MNN-Sana-Edit-V2/resolve/dd5955b4e63359b5822fa29a3b3711a112212046/transformer.mnn.weight"
+    },
+    {
+      "role": "connector",
+      "repository": "taobao-mnn/MNN-Sana-Edit-V2",
+      "revision": "dd5955b4e63359b5822fa29a3b3711a112212046",
+      "path": "connector.mnn",
+      "bytes": 99096,
+      "sha256": "d72239e1c2626cfb8f349b9d6b8c9d85f1cd9def0063d3ea23695aa6b2ef48fd",
+      "git_blob": "8d52eb2ded5e923062861810665f19f46f969b68",
+      "url": "https://huggingface.co/taobao-mnn/MNN-Sana-Edit-V2/resolve/dd5955b4e63359b5822fa29a3b3711a112212046/connector.mnn"
+    },
+    {
+      "role": "connector_data",
+      "repository": "taobao-mnn/MNN-Sana-Edit-V2",
+      "revision": "dd5955b4e63359b5822fa29a3b3711a112212046",
+      "path": "connector.mnn.weight",
+      "bytes": 76268760,
+      "sha256": "7128351d2de561932741f7f874b116ea3b4e5979296d8adf41472a93fcb889cd",
+      "git_blob": "fa78c9043c6a88f9ec750186d358d5abe1fbbaa8",
+      "url": "https://huggingface.co/taobao-mnn/MNN-Sana-Edit-V2/resolve/dd5955b4e63359b5822fa29a3b3711a112212046/connector.mnn.weight"
+    },
+    {
+      "role": "projector",
+      "repository": "taobao-mnn/MNN-Sana-Edit-V2",
+      "revision": "dd5955b4e63359b5822fa29a3b3711a112212046",
+      "path": "projector.mnn",
+      "bytes": 2416,
+      "sha256": "6236a92633bab8ee33416b2f84ec41b934885be652aea7f0412a057de817d4c0",
+      "git_blob": "63b5ecce659183a8fdc8c05fb6edb188744ae4ce",
+      "url": "https://huggingface.co/taobao-mnn/MNN-Sana-Edit-V2/resolve/dd5955b4e63359b5822fa29a3b3711a112212046/projector.mnn"
+    },
+    {
+      "role": "projector_data",
+      "repository": "taobao-mnn/MNN-Sana-Edit-V2",
+      "revision": "dd5955b4e63359b5822fa29a3b3711a112212046",
+      "path": "projector.mnn.weight",
+      "bytes": 2387206,
+      "sha256": "34b5afdb0c3b1fc815cdee7f3ed293e8d8f1f377328e5785cad2bd1768a843c3",
+      "git_blob": "1d75f2fd288793bc66e485cb323fdd69374872a7",
+      "url": "https://huggingface.co/taobao-mnn/MNN-Sana-Edit-V2/resolve/dd5955b4e63359b5822fa29a3b3711a112212046/projector.mnn.weight"
+    },
+    {
+      "role": "vae",
+      "repository": "taobao-mnn/MNN-Sana-Edit-V2",
+      "revision": "dd5955b4e63359b5822fa29a3b3711a112212046",
+      "path": "vae_decoder.mnn",
+      "bytes": 751784,
+      "sha256": "9fbe51979b27339b7685cf88f1010a0ff3ab7ff1a7d873fba321eea94b762911",
+      "git_blob": "4a3ad004d22032500ad30e67facced459abd6ab3",
+      "url": "https://huggingface.co/taobao-mnn/MNN-Sana-Edit-V2/resolve/dd5955b4e63359b5822fa29a3b3711a112212046/vae_decoder.mnn"
+    },
+    {
+      "role": "vae_data",
+      "repository": "taobao-mnn/MNN-Sana-Edit-V2",
+      "revision": "dd5955b4e63359b5822fa29a3b3711a112212046",
+      "path": "vae_decoder.mnn.weight",
+      "bytes": 162011594,
+      "sha256": "a6ef7a13ba9af29754adf9b97651cb29a7eaee20b716c16dbe079f500d5eddae",
+      "git_blob": "45cbe9c208c1074f1d7f9d2fd79220f44a1170f8",
+      "url": "https://huggingface.co/taobao-mnn/MNN-Sana-Edit-V2/resolve/dd5955b4e63359b5822fa29a3b3711a112212046/vae_decoder.mnn.weight"
+    },
+    {
+      "role": "llm",
+      "repository": "taobao-mnn/MNN-Sana-Edit-V2",
+      "revision": "dd5955b4e63359b5822fa29a3b3711a112212046",
+      "path": "llm/llm.mnn",
+      "bytes": 504504,
+      "sha256": "a3e32dc50e8988e78d416031023345048f4b6cf152db021da6ee1de921d45096",
+      "git_blob": "9ff4d475d0daba9220a94ece54ded7dae65237a2",
+      "url": "https://huggingface.co/taobao-mnn/MNN-Sana-Edit-V2/resolve/dd5955b4e63359b5822fa29a3b3711a112212046/llm/llm.mnn"
+    },
+    {
+      "role": "llm_data",
+      "repository": "taobao-mnn/MNN-Sana-Edit-V2",
+      "revision": "dd5955b4e63359b5822fa29a3b3711a112212046",
+      "path": "llm/llm.mnn.weight",
+      "bytes": 373018866,
+      "sha256": "79db6ac8267ec6a7c9172a363112fa613c0cf17d6f46121d947a75c987ccf49a",
+      "git_blob": "a518f6cdbf26a7e571fb4088a16f322d33b4b9eb",
+      "url": "https://huggingface.co/taobao-mnn/MNN-Sana-Edit-V2/resolve/dd5955b4e63359b5822fa29a3b3711a112212046/llm/llm.mnn.weight"
+    },
+    {
+      "role": "llm_config",
+      "repository": "taobao-mnn/MNN-Sana-Edit-V2",
+      "revision": "dd5955b4e63359b5822fa29a3b3711a112212046",
+      "path": "llm/llm_config.json",
+      "bytes": 4638,
+      "sha256": "2e45095efda4d17853d8b565f7f354210d3f14f97ac24b24a87a5ab771f5980a",
+      "git_blob": "82dbf008d7b1c7744db0908d2609655f7843ef08",
+      "url": "https://huggingface.co/taobao-mnn/MNN-Sana-Edit-V2/resolve/dd5955b4e63359b5822fa29a3b3711a112212046/llm/llm_config.json"
+    },
+    {
+      "role": "tokenizer",
+      "repository": "taobao-mnn/MNN-Sana-Edit-V2",
+      "revision": "dd5955b4e63359b5822fa29a3b3711a112212046",
+      "path": "llm/tokenizer.txt",
+      "bytes": 3193562,
+      "sha256": "80e75c6cbf70c75fdd51ac1cd53505ac127dcb0e21ebe4d19751fa772e2868bd",
+      "git_blob": "6925c080eead011874d2e8fd08916982e4c00161",
+      "url": "https://huggingface.co/taobao-mnn/MNN-Sana-Edit-V2/resolve/dd5955b4e63359b5822fa29a3b3711a112212046/llm/tokenizer.txt"
+    },
+    {
+      "role": "meta_queries",
+      "repository": "taobao-mnn/MNN-Sana-Edit-V2",
+      "revision": "dd5955b4e63359b5822fa29a3b3711a112212046",
+      "path": "llm/meta_queries.mnn",
+      "bytes": 1048824,
+      "sha256": "5e80d4e591af78cca31b6e4cf4ee4ead410e9d2f64ee34c73cf5b633def16e0c",
+      "git_blob": "ba4d41a1586e17b403442b0c5fb7777f66a118a1",
+      "url": "https://huggingface.co/taobao-mnn/MNN-Sana-Edit-V2/resolve/dd5955b4e63359b5822fa29a3b3711a112212046/llm/meta_queries.mnn"
+    },
+    {
+      "role": "vae_encoder",
+      "repository": "taobao-mnn/MNN-Sana-Edit-V2",
+      "revision": "dd5955b4e63359b5822fa29a3b3711a112212046",
+      "path": "vae_encoder.mnn",
+      "bytes": 761568,
+      "sha256": "06da21081f8ee98792bd1838990068e7284351157cafbfa8793282b611eacb24",
+      "git_blob": "bcf8f8e597607eb3e3398fd555f3a52038924c19",
+      "url": "https://huggingface.co/taobao-mnn/MNN-Sana-Edit-V2/resolve/dd5955b4e63359b5822fa29a3b3711a112212046/vae_encoder.mnn"
+    },
+    {
+      "role": "vae_encoder_data",
+      "repository": "taobao-mnn/MNN-Sana-Edit-V2",
+      "revision": "dd5955b4e63359b5822fa29a3b3711a112212046",
+      "path": "vae_encoder.mnn.weight",
+      "bytes": 155787522,
+      "sha256": "b44ac00f4683697add9578ef4c0f561fb5753fe24a3f4525e7f492028409d05e",
+      "git_blob": "dbac8f7128c42770ce4c82763217f71bf5bf2f40",
+      "url": "https://huggingface.co/taobao-mnn/MNN-Sana-Edit-V2/resolve/dd5955b4e63359b5822fa29a3b3711a112212046/vae_encoder.mnn.weight"
+    }
+  ],
+  "runs": [
+    {
+      "name": "a",
+      "request": {
+        "schema": "lma.engine-request/1",
+        "type": "image.generate",
+        "pipeline": "sana_edit_mnn_v1",
+        "input": {
+          "prompt": "Convert to a Ghibli-style illustration: soft contrast, warm tones, slight linework, keep the scene consistent.",
+          "negativePrompt": "",
+          "imagePath": "T:/build/mnn-edit-trained-tests/run-1793338891338009900/source.png"
+        },
+        "parameters": {
+          "width": 512,
+          "height": 512,
+          "steps": 10,
+          "threads": 4,
+          "maxInputTokens": 512,
+          "useCfg": false,
+          "cfg": 4,
+          "seed": 42
+        },
+        "workspace": "T:/build/mnn-edit-trained-tests/run-1793338891338009900/workspace",
+        "output": "T:/build/mnn-edit-trained-tests/run-1793338891338009900/a.png"
+      },
+      "process": {
+        "returncode": 0,
+        "seconds": 135.4644621000043,
+        "events": [
+          {
+            "event": "stage",
+            "stage": "encoding_text"
+          },
+          {
+            "event": "stage",
+            "stage": "loading_diffusion"
+          },
+          {
+            "event": "stage",
+            "stage": "encoding_image"
+          },
+          {
+            "event": "progress",
+            "fraction": 0.1,
+            "stage": "sampling"
+          },
+          {
+            "event": "progress",
+            "fraction": 0.2,
+            "stage": "sampling"
+          },
+          {
+            "event": "progress",
+            "fraction": 0.3,
+            "stage": "sampling"
+          },
+          {
+            "event": "progress",
+            "fraction": 0.4,
+            "stage": "sampling"
+          },
+          {
+            "event": "progress",
+            "fraction": 0.5,
+            "stage": "sampling"
+          },
+          {
+            "event": "progress",
+            "fraction": 0.6,
+            "stage": "sampling"
+          },
+          {
+            "event": "progress",
+            "fraction": 0.7,
+            "stage": "sampling"
+          },
+          {
+            "event": "progress",
+            "fraction": 0.8,
+            "stage": "sampling"
+          },
+          {
+            "event": "progress",
+            "fraction": 0.9,
+            "stage": "sampling"
+          },
+          {
+            "event": "progress",
+            "fraction": 1.0,
+            "stage": "sampling"
+          },
+          {
+            "event": "complete",
+            "format": "png",
+            "height": 512,
+            "output": "T:/build/mnn-edit-trained-tests/run-1793338891338009900/a.png",
+            "width": 512
+          }
+        ],
+        "protocol_errors": [],
+        "logs_truncated": [
+          false,
+          false
+        ],
+        "cancelled": false,
+        "timed_out": false,
+        "cancel_trigger": null,
+        "cancel_to_exit_seconds": null,
+        "resources": {
+          "observed": true,
+          "samples": 6005,
+          "interval_ms": 20,
+          "observed_peak_working_set_bytes": 960540672,
+          "sampled_peak_private_bytes": 957935616,
+          "gpu_memory_measured": false,
+          "physical_device_memory_measured": false
+        }
+      },
+      "stdout_sha256": "02b2512dd806edc21797e9e9ca73668b00cd362430775c3b60518a56b7593643",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "image": {
+        "bytes": 495385,
+        "sha256": "a8bd528b8297e5fe9d1215bd478d227cad01d56d799d554b3b02d0197eae689c",
+        "width": 512,
+        "height": 512,
+        "mean": [
+          164.8839569091797,
+          123.5143928527832,
+          106.1043586730957
+        ],
+        "stddev": [
+          80.90507860614923,
+          71.04995903254935,
+          67.39776487350927
+        ],
+        "extrema": [
+          [
+            8,
+            255
+          ],
+          [
+            3,
+            255
+          ],
+          [
+            2,
+            255
+          ]
+        ]
+      }
+    },
+    {
+      "name": "jpeg-crop",
+      "request": {
+        "schema": "lma.engine-request/1",
+        "type": "image.generate",
+        "pipeline": "sana_edit_mnn_v1",
+        "input": {
+          "prompt": "Convert to a Ghibli-style illustration: soft contrast, warm tones, slight linework, keep the scene consistent.",
+          "negativePrompt": "",
+          "imagePath": "T:/build/mnn-edit-trained-tests/run-1793338891338009900/source-crop.jpg"
+        },
+        "parameters": {
+          "width": 512,
+          "height": 512,
+          "steps": 10,
+          "threads": 4,
+          "maxInputTokens": 512,
+          "useCfg": false,
+          "cfg": 4,
+          "seed": 42
+        },
+        "workspace": "T:/build/mnn-edit-trained-tests/run-1793338891338009900/workspace",
+        "output": "T:/build/mnn-edit-trained-tests/run-1793338891338009900/jpeg-crop.png"
+      },
+      "process": {
+        "returncode": 0,
+        "seconds": 140.38746959999844,
+        "events": [
+          {
+            "event": "stage",
+            "stage": "encoding_text"
+          },
+          {
+            "event": "stage",
+            "stage": "loading_diffusion"
+          },
+          {
+            "event": "stage",
+            "stage": "encoding_image"
+          },
+          {
+            "event": "progress",
+            "fraction": 0.1,
+            "stage": "sampling"
+          },
+          {
+            "event": "progress",
+            "fraction": 0.2,
+            "stage": "sampling"
+          },
+          {
+            "event": "progress",
+            "fraction": 0.3,
+            "stage": "sampling"
+          },
+          {
+            "event": "progress",
+            "fraction": 0.4,
+            "stage": "sampling"
+          },
+          {
+            "event": "progress",
+            "fraction": 0.5,
+            "stage": "sampling"
+          },
+          {
+            "event": "progress",
+            "fraction": 0.6,
+            "stage": "sampling"
+          },
+          {
+            "event": "progress",
+            "fraction": 0.7,
+            "stage": "sampling"
+          },
+          {
+            "event": "progress",
+            "fraction": 0.8,
+            "stage": "sampling"
+          },
+          {
+            "event": "progress",
+            "fraction": 0.9,
+            "stage": "sampling"
+          },
+          {
+            "event": "progress",
+            "fraction": 1.0,
+            "stage": "sampling"
+          },
+          {
+            "event": "complete",
+            "format": "png",
+            "height": 512,
+            "output": "T:/build/mnn-edit-trained-tests/run-1793338891338009900/jpeg-crop.png",
+            "width": 512
+          }
+        ],
+        "protocol_errors": [],
+        "logs_truncated": [
+          false,
+          false
+        ],
+        "cancelled": false,
+        "timed_out": false,
+        "cancel_trigger": null,
+        "cancel_to_exit_seconds": null,
+        "resources": {
+          "observed": true,
+          "samples": 6268,
+          "interval_ms": 20,
+          "observed_peak_working_set_bytes": 960684032,
+          "sampled_peak_private_bytes": 958058496,
+          "gpu_memory_measured": false,
+          "physical_device_memory_measured": false
+        }
+      },
+      "stdout_sha256": "32f43ac5566a3d976889f4611e75853cb92de0b3865210e46aaca07167757570",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "image": {
+        "bytes": 416192,
+        "sha256": "2652deab0a351b323d4fed0e20a6f8b1fe2db38e69fa452ea43d2bf6363c137e",
+        "width": 512,
+        "height": 512,
+        "mean": [
+          148.41504287719727,
+          119.97007751464844,
+          99.80604934692383
+        ],
+        "stddev": [
+          97.32657481657839,
+          85.13764237480093,
+          77.25284756265589
+        ],
+        "extrema": [
+          [
+            0,
+            255
+          ],
+          [
+            0,
+            255
+          ],
+          [
+            0,
+            255
+          ]
+        ]
+      }
+    },
+    {
+      "name": "single-step",
+      "request": {
+        "schema": "lma.engine-request/1",
+        "type": "image.generate",
+        "pipeline": "sana_edit_mnn_v1",
+        "input": {
+          "prompt": "Convert to a Ghibli-style illustration: soft contrast, warm tones, slight linework, keep the scene consistent.",
+          "negativePrompt": "",
+          "imagePath": "T:/build/mnn-edit-trained-tests/run-1793338891338009900/source.png"
+        },
+        "parameters": {
+          "width": 512,
+          "height": 512,
+          "steps": 1,
+          "threads": 4,
+          "maxInputTokens": 512,
+          "useCfg": false,
+          "cfg": 4,
+          "seed": 42
+        },
+        "workspace": "T:/build/mnn-edit-trained-tests/run-1793338891338009900/workspace",
+        "output": "T:/build/mnn-edit-trained-tests/run-1793338891338009900/single-step.png"
+      },
+      "process": {
+        "returncode": 0,
+        "seconds": 79.64801829999487,
+        "events": [
+          {
+            "event": "stage",
+            "stage": "encoding_text"
+          },
+          {
+            "event": "stage",
+            "stage": "loading_diffusion"
+          },
+          {
+            "event": "stage",
+            "stage": "encoding_image"
+          },
+          {
+            "event": "progress",
+            "fraction": 1.0,
+            "stage": "sampling"
+          },
+          {
+            "event": "complete",
+            "format": "png",
+            "height": 512,
+            "output": "T:/build/mnn-edit-trained-tests/run-1793338891338009900/single-step.png",
+            "width": 512
+          }
+        ],
+        "protocol_errors": [],
+        "logs_truncated": [
+          false,
+          false
+        ],
+        "cancelled": false,
+        "timed_out": false,
+        "cancel_trigger": null,
+        "cancel_to_exit_seconds": null,
+        "resources": {
+          "observed": true,
+          "samples": 3002,
+          "interval_ms": 20,
+          "observed_peak_working_set_bytes": 960757760,
+          "sampled_peak_private_bytes": 958103552,
+          "gpu_memory_measured": false,
+          "physical_device_memory_measured": false
+        }
+      },
+      "stdout_sha256": "c0c889430efce93fb75b7757b68b6c93dac96486066fea07470a137a79963086",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "image": {
+        "bytes": 502372,
+        "sha256": "c9d2ef8543477d26eb14bbf60ca5f7dcb116568986bb241173ae52c240cc1b23",
+        "width": 512,
+        "height": 512,
+        "mean": [
+          162.52624893188477,
+          122.68693161010742,
+          105.81147384643555
+        ],
+        "stddev": [
+          74.45408032871762,
+          68.11882710032035,
+          65.9366512254503
+        ],
+        "extrema": [
+          [
+            3,
+            255
+          ],
+          [
+            1,
+            255
+          ],
+          [
+            0,
+            255
+          ]
+        ]
+      }
+    },
+    {
+      "name": "missing-image",
+      "request": {
+        "schema": "lma.engine-request/1",
+        "type": "image.generate",
+        "pipeline": "sana_edit_mnn_v1",
+        "input": {
+          "prompt": "Convert to a Ghibli-style illustration: soft contrast, warm tones, slight linework, keep the scene consistent.",
+          "negativePrompt": "",
+          "imagePath": "T:/build/mnn-edit-trained-tests/run-1793338891338009900/not-selected.png"
+        },
+        "parameters": {
+          "width": 512,
+          "height": 512,
+          "steps": 10,
+          "threads": 4,
+          "maxInputTokens": 512,
+          "useCfg": false,
+          "cfg": 4,
+          "seed": 42
+        },
+        "workspace": "T:/build/mnn-edit-trained-tests/run-1793338891338009900/workspace",
+        "output": "T:/build/mnn-edit-trained-tests/run-1793338891338009900/missing-image.png"
+      },
+      "process": {
+        "returncode": 1,
+        "seconds": 0.1872399999992922,
+        "events": [
+          {
+            "event": "error",
+            "message": "Sana edit requires the selected bounded local image"
+          }
+        ],
+        "protocol_errors": [],
+        "logs_truncated": [
+          false,
+          false
+        ],
+        "cancelled": false,
+        "timed_out": false,
+        "cancel_trigger": null,
+        "cancel_to_exit_seconds": null,
+        "resources": {
+          "observed": true,
+          "samples": 8,
+          "interval_ms": 20,
+          "observed_peak_working_set_bytes": 7241728,
+          "sampled_peak_private_bytes": 1568768,
+          "gpu_memory_measured": false,
+          "physical_device_memory_measured": false
+        }
+      },
+      "stdout_sha256": "0e9ea5466f2b6e6da7c6f25b348ccb65639132af9320b4f4c62c9241774b53f9",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "oversized-image",
+      "request": {
+        "schema": "lma.engine-request/1",
+        "type": "image.generate",
+        "pipeline": "sana_edit_mnn_v1",
+        "input": {
+          "prompt": "Convert to a Ghibli-style illustration: soft contrast, warm tones, slight linework, keep the scene consistent.",
+          "negativePrompt": "",
+          "imagePath": "T:/build/mnn-edit-trained-tests/run-1793338891338009900/oversized.png"
+        },
+        "parameters": {
+          "width": 512,
+          "height": 512,
+          "steps": 10,
+          "threads": 4,
+          "maxInputTokens": 512,
+          "useCfg": false,
+          "cfg": 4,
+          "seed": 42
+        },
+        "workspace": "T:/build/mnn-edit-trained-tests/run-1793338891338009900/workspace",
+        "output": "T:/build/mnn-edit-trained-tests/run-1793338891338009900/oversized-image.png"
+      },
+      "process": {
+        "returncode": 1,
+        "seconds": 0.12899649999599205,
+        "events": [
+          {
+            "event": "error",
+            "message": "Sana source image exceeds the four-megapixel limit"
+          }
+        ],
+        "protocol_errors": [],
+        "logs_truncated": [
+          false,
+          false
+        ],
+        "cancelled": false,
+        "timed_out": false,
+        "cancel_trigger": null,
+        "cancel_to_exit_seconds": null,
+        "resources": {
+          "observed": true,
+          "samples": 6,
+          "interval_ms": 20,
+          "observed_peak_working_set_bytes": 7229440,
+          "sampled_peak_private_bytes": 1560576,
+          "gpu_memory_measured": false,
+          "physical_device_memory_measured": false
+        }
+      },
+      "stdout_sha256": "432990a2c91e35a4478185bc2e8ac92ffc3b264b31e6a0275c226651c33d2d43",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "corrupt-image",
+      "request": {
+        "schema": "lma.engine-request/1",
+        "type": "image.generate",
+        "pipeline": "sana_edit_mnn_v1",
+        "input": {
+          "prompt": "Convert to a Ghibli-style illustration: soft contrast, warm tones, slight linework, keep the scene consistent.",
+          "negativePrompt": "",
+          "imagePath": "T:/build/mnn-edit-trained-tests/run-1793338891338009900/corrupt.png"
+        },
+        "parameters": {
+          "width": 512,
+          "height": 512,
+          "steps": 10,
+          "threads": 4,
+          "maxInputTokens": 512,
+          "useCfg": false,
+          "cfg": 4,
+          "seed": 42
+        },
+        "workspace": "T:/build/mnn-edit-trained-tests/run-1793338891338009900/workspace",
+        "output": "T:/build/mnn-edit-trained-tests/run-1793338891338009900/corrupt-image.png"
+      },
+      "process": {
+        "returncode": 1,
+        "seconds": 13.18745069999568,
+        "events": [
+          {
+            "event": "stage",
+            "stage": "encoding_text"
+          },
+          {
+            "event": "stage",
+            "stage": "loading_diffusion"
+          },
+          {
+            "event": "stage",
+            "stage": "encoding_image"
+          },
+          {
+            "event": "error",
+            "message": "Sana did not return an image artifact"
+          }
+        ],
+        "protocol_errors": [],
+        "logs_truncated": [
+          false,
+          false
+        ],
+        "cancelled": false,
+        "timed_out": false,
+        "cancel_trigger": null,
+        "cancel_to_exit_seconds": null,
+        "resources": {
+          "observed": true,
+          "samples": 337,
+          "interval_ms": 20,
+          "observed_peak_working_set_bytes": 916590592,
+          "sampled_peak_private_bytes": 915668992,
+          "gpu_memory_measured": false,
+          "physical_device_memory_measured": false
+        }
+      },
+      "stdout_sha256": "223f58c0f397afe1f6e6bf9520dd48df10c84dcb2160bc4894b2b556d843aaba",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "arbitrary-prompt",
+      "request": {
+        "schema": "lma.engine-request/1",
+        "type": "image.generate",
+        "pipeline": "sana_edit_mnn_v1",
+        "input": {
+          "prompt": "a red teapot",
+          "negativePrompt": "",
+          "imagePath": "T:/build/mnn-edit-trained-tests/run-1793338891338009900/source.png"
+        },
+        "parameters": {
+          "width": 512,
+          "height": 512,
+          "steps": 10,
+          "threads": 4,
+          "maxInputTokens": 512,
+          "useCfg": false,
+          "cfg": 4,
+          "seed": 42
+        },
+        "workspace": "T:/build/mnn-edit-trained-tests/run-1793338891338009900/workspace",
+        "output": "T:/build/mnn-edit-trained-tests/run-1793338891338009900/arbitrary-prompt.png"
+      },
+      "process": {
+        "returncode": 1,
+        "seconds": 0.19904069999756757,
+        "events": [
+          {
+            "event": "error",
+            "message": "Sana edit requires a local image, fixed prompt, 512x512 and no CFG"
+          }
+        ],
+        "protocol_errors": [],
+        "logs_truncated": [
+          false,
+          false
+        ],
+        "cancelled": false,
+        "timed_out": false,
+        "cancel_trigger": null,
+        "cancel_to_exit_seconds": null,
+        "resources": {
+          "observed": true,
+          "samples": 6,
+          "interval_ms": 20,
+          "observed_peak_working_set_bytes": 7270400,
+          "sampled_peak_private_bytes": 696320,
+          "gpu_memory_measured": false,
+          "physical_device_memory_measured": false
+        }
+      },
+      "stdout_sha256": "9563a95a1f625499ed4656121fc58e08e35f43510e5b78fb1fb8d42248895796",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "negative-conditioning",
+      "request": {
+        "schema": "lma.engine-request/1",
+        "type": "image.generate",
+        "pipeline": "sana_edit_mnn_v1",
+        "input": {
+          "prompt": "Convert to a Ghibli-style illustration: soft contrast, warm tones, slight linework, keep the scene consistent.",
+          "negativePrompt": "blurry",
+          "imagePath": "T:/build/mnn-edit-trained-tests/run-1793338891338009900/source.png"
+        },
+        "parameters": {
+          "width": 512,
+          "height": 512,
+          "steps": 10,
+          "threads": 4,
+          "maxInputTokens": 512,
+          "useCfg": false,
+          "cfg": 4,
+          "seed": 42
+        },
+        "workspace": "T:/build/mnn-edit-trained-tests/run-1793338891338009900/workspace",
+        "output": "T:/build/mnn-edit-trained-tests/run-1793338891338009900/negative-conditioning.png"
+      },
+      "process": {
+        "returncode": 1,
+        "seconds": 0.30344979999790667,
+        "events": [
+          {
+            "event": "error",
+            "message": "Negative conditioning requires enabled Sana CFG"
+          }
+        ],
+        "protocol_errors": [],
+        "logs_truncated": [
+          false,
+          false
+        ],
+        "cancelled": false,
+        "timed_out": false,
+        "cancel_trigger": null,
+        "cancel_to_exit_seconds": null,
+        "resources": {
+          "observed": true,
+          "samples": 6,
+          "interval_ms": 20,
+          "observed_peak_working_set_bytes": 7270400,
+          "sampled_peak_private_bytes": 1581056,
+          "gpu_memory_measured": false,
+          "physical_device_memory_measured": false
+        }
+      },
+      "stdout_sha256": "df57c53a6ca76a0d0b714f3dbe0164fcde6e73219409255aaa9f8641924a62be",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "unsupported-cfg",
+      "request": {
+        "schema": "lma.engine-request/1",
+        "type": "image.generate",
+        "pipeline": "sana_edit_mnn_v1",
+        "input": {
+          "prompt": "Convert to a Ghibli-style illustration: soft contrast, warm tones, slight linework, keep the scene consistent.",
+          "negativePrompt": "",
+          "imagePath": "T:/build/mnn-edit-trained-tests/run-1793338891338009900/source.png"
+        },
+        "parameters": {
+          "width": 512,
+          "height": 512,
+          "steps": 10,
+          "threads": 4,
+          "maxInputTokens": 512,
+          "useCfg": true,
+          "cfg": 4,
+          "seed": 42
+        },
+        "workspace": "T:/build/mnn-edit-trained-tests/run-1793338891338009900/workspace",
+        "output": "T:/build/mnn-edit-trained-tests/run-1793338891338009900/unsupported-cfg.png"
+      },
+      "process": {
+        "returncode": 1,
+        "seconds": 0.22381229999882635,
+        "events": [
+          {
+            "event": "error",
+            "message": "Sana edit requires a local image, fixed prompt, 512x512 and no CFG"
+          }
+        ],
+        "protocol_errors": [],
+        "logs_truncated": [
+          false,
+          false
+        ],
+        "cancelled": false,
+        "timed_out": false,
+        "cancel_trigger": null,
+        "cancel_to_exit_seconds": null,
+        "resources": {
+          "observed": true,
+          "samples": 6,
+          "interval_ms": 20,
+          "observed_peak_working_set_bytes": 7274496,
+          "sampled_peak_private_bytes": 1585152,
+          "gpu_memory_measured": false,
+          "physical_device_memory_measured": false
+        }
+      },
+      "stdout_sha256": "9563a95a1f625499ed4656121fc58e08e35f43510e5b78fb1fb8d42248895796",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "unsupported-resolution",
+      "request": {
+        "schema": "lma.engine-request/1",
+        "type": "image.generate",
+        "pipeline": "sana_edit_mnn_v1",
+        "input": {
+          "prompt": "Convert to a Ghibli-style illustration: soft contrast, warm tones, slight linework, keep the scene consistent.",
+          "negativePrompt": "",
+          "imagePath": "T:/build/mnn-edit-trained-tests/run-1793338891338009900/source.png"
+        },
+        "parameters": {
+          "width": 256,
+          "height": 512,
+          "steps": 10,
+          "threads": 4,
+          "maxInputTokens": 512,
+          "useCfg": false,
+          "cfg": 4,
+          "seed": 42
+        },
+        "workspace": "T:/build/mnn-edit-trained-tests/run-1793338891338009900/workspace",
+        "output": "T:/build/mnn-edit-trained-tests/run-1793338891338009900/unsupported-resolution.png"
+      },
+      "process": {
+        "returncode": 1,
+        "seconds": 0.2882032000052277,
+        "events": [
+          {
+            "event": "error",
+            "message": "Sana edit requires a local image, fixed prompt, 512x512 and no CFG"
+          }
+        ],
+        "protocol_errors": [],
+        "logs_truncated": [
+          false,
+          false
+        ],
+        "cancelled": false,
+        "timed_out": false,
+        "cancel_trigger": null,
+        "cancel_to_exit_seconds": null,
+        "resources": {
+          "observed": true,
+          "samples": 9,
+          "interval_ms": 20,
+          "observed_peak_working_set_bytes": 7266304,
+          "sampled_peak_private_bytes": 1581056,
+          "gpu_memory_measured": false,
+          "physical_device_memory_measured": false
+        }
+      },
+      "stdout_sha256": "9563a95a1f625499ed4656121fc58e08e35f43510e5b78fb1fb8d42248895796",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "legacy-text-pipeline",
+      "request": {
+        "schema": "lma.engine-request/1",
+        "type": "image.generate",
+        "pipeline": "sana_mnn_v1",
+        "input": {
+          "prompt": "Convert to a Ghibli-style illustration: soft contrast, warm tones, slight linework, keep the scene consistent.",
+          "negativePrompt": "",
+          "imagePath": "T:/build/mnn-edit-trained-tests/run-1793338891338009900/source.png"
+        },
+        "parameters": {
+          "width": 512,
+          "height": 512,
+          "steps": 10,
+          "threads": 4,
+          "maxInputTokens": 512,
+          "useCfg": false,
+          "cfg": 4,
+          "seed": 42
+        },
+        "workspace": "T:/build/mnn-edit-trained-tests/run-1793338891338009900/workspace",
+        "output": "T:/build/mnn-edit-trained-tests/run-1793338891338009900/legacy-text-pipeline.png"
+      },
+      "process": {
+        "returncode": 1,
+        "seconds": 0.1850036999967415,
+        "events": [
+          {
+            "event": "error",
+            "message": "Unsupported MNN task/pipeline"
+          }
+        ],
+        "protocol_errors": [],
+        "logs_truncated": [
+          false,
+          false
+        ],
+        "cancelled": false,
+        "timed_out": false,
+        "cancel_trigger": null,
+        "cancel_to_exit_seconds": null,
+        "resources": {
+          "observed": true,
+          "samples": 8,
+          "interval_ms": 20,
+          "observed_peak_working_set_bytes": 7266304,
+          "sampled_peak_private_bytes": 1585152,
+          "gpu_memory_measured": false,
+          "physical_device_memory_measured": false
+        }
+      },
+      "stdout_sha256": "1b90259545befeed4939f47684d0974045822fd28cbbeec04f69921e9c74500a",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "missing-image-encoder",
+      "request": {
+        "schema": "lma.engine-request/1",
+        "type": "image.generate",
+        "pipeline": "sana_edit_mnn_v1",
+        "input": {
+          "prompt": "Convert to a Ghibli-style illustration: soft contrast, warm tones, slight linework, keep the scene consistent.",
+          "negativePrompt": "",
+          "imagePath": "T:/build/mnn-edit-trained-tests/run-1793338891338009900/source.png"
+        },
+        "parameters": {
+          "width": 512,
+          "height": 512,
+          "steps": 10,
+          "threads": 4,
+          "maxInputTokens": 512,
+          "useCfg": false,
+          "cfg": 4,
+          "seed": 42
+        },
+        "workspace": "T:/build/mnn-edit-trained-tests/run-1793338891338009900/workspace",
+        "output": "T:/build/mnn-edit-trained-tests/run-1793338891338009900/missing-image-encoder.png"
+      },
+      "process": {
+        "returncode": 1,
+        "seconds": 13.063589500001399,
+        "events": [
+          {
+            "event": "stage",
+            "stage": "encoding_text"
+          },
+          {
+            "event": "stage",
+            "stage": "loading_diffusion"
+          },
+          {
+            "event": "stage",
+            "stage": "encoding_image"
+          },
+          {
+            "event": "error",
+            "message": "Sana did not return an image artifact"
+          }
+        ],
+        "protocol_errors": [],
+        "logs_truncated": [
+          false,
+          false
+        ],
+        "cancelled": false,
+        "timed_out": false,
+        "cancel_trigger": null,
+        "cancel_to_exit_seconds": null,
+        "resources": {
+          "observed": true,
+          "samples": 405,
+          "interval_ms": 20,
+          "observed_peak_working_set_bytes": 916512768,
+          "sampled_peak_private_bytes": 915574784,
+          "gpu_memory_measured": false,
+          "physical_device_memory_measured": false
+        }
+      },
+      "stdout_sha256": "223f58c0f397afe1f6e6bf9520dd48df10c84dcb2160bc4894b2b556d843aaba",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "token-budget",
+      "request": {
+        "schema": "lma.engine-request/1",
+        "type": "image.generate",
+        "pipeline": "sana_edit_mnn_v1",
+        "input": {
+          "prompt": "Convert to a Ghibli-style illustration: soft contrast, warm tones, slight linework, keep the scene consistent.",
+          "negativePrompt": "",
+          "imagePath": "T:/build/mnn-edit-trained-tests/run-1793338891338009900/source.png"
+        },
+        "parameters": {
+          "width": 512,
+          "height": 512,
+          "steps": 10,
+          "threads": 4,
+          "maxInputTokens": 1,
+          "useCfg": false,
+          "cfg": 4,
+          "seed": 42
+        },
+        "workspace": "T:/build/mnn-edit-trained-tests/run-1793338891338009900/workspace",
+        "output": "T:/build/mnn-edit-trained-tests/run-1793338891338009900/token-budget.png"
+      },
+      "process": {
+        "returncode": 1,
+        "seconds": 4.086962100001983,
+        "events": [
+          {
+            "event": "stage",
+            "stage": "encoding_text"
+          },
+          {
+            "event": "error",
+            "message": "Sana formatted input exceeds its selected token budget"
+          }
+        ],
+        "protocol_errors": [],
+        "logs_truncated": [
+          false,
+          false
+        ],
+        "cancelled": false,
+        "timed_out": false,
+        "cancel_trigger": null,
+        "cancel_to_exit_seconds": null,
+        "resources": {
+          "observed": true,
+          "samples": 129,
+          "interval_ms": 20,
+          "observed_peak_working_set_bytes": 662999040,
+          "sampled_peak_private_bytes": 659533824,
+          "gpu_memory_measured": false,
+          "physical_device_memory_measured": false
+        }
+      },
+      "stdout_sha256": "180c074e8f1732ef05fea1c5a03476b83b53861d859bbd9494e1e4bf220cda3f",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "recovery-a",
+      "request": {
+        "schema": "lma.engine-request/1",
+        "type": "image.generate",
+        "pipeline": "sana_edit_mnn_v1",
+        "input": {
+          "prompt": "Convert to a Ghibli-style illustration: soft contrast, warm tones, slight linework, keep the scene consistent.",
+          "negativePrompt": "",
+          "imagePath": "T:/build/mnn-edit-trained-tests/run-1793338891338009900/source.png"
+        },
+        "parameters": {
+          "width": 512,
+          "height": 512,
+          "steps": 10,
+          "threads": 4,
+          "maxInputTokens": 512,
+          "useCfg": false,
+          "cfg": 4,
+          "seed": 42
+        },
+        "workspace": "T:/build/mnn-edit-trained-tests/run-1793338891338009900/workspace",
+        "output": "T:/build/mnn-edit-trained-tests/run-1793338891338009900/recovery-a.png"
+      },
+      "process": {
+        "returncode": 0,
+        "seconds": 208.62199379999947,
+        "events": [
+          {
+            "event": "stage",
+            "stage": "encoding_text"
+          },
+          {
+            "event": "stage",
+            "stage": "loading_diffusion"
+          },
+          {
+            "event": "stage",
+            "stage": "encoding_image"
+          },
+          {
+            "event": "progress",
+            "fraction": 0.1,
+            "stage": "sampling"
+          },
+          {
+            "event": "progress",
+            "fraction": 0.2,
+            "stage": "sampling"
+          },
+          {
+            "event": "progress",
+            "fraction": 0.3,
+            "stage": "sampling"
+          },
+          {
+            "event": "progress",
+            "fraction": 0.4,
+            "stage": "sampling"
+          },
+          {
+            "event": "progress",
+            "fraction": 0.5,
+            "stage": "sampling"
+          },
+          {
+            "event": "progress",
+            "fraction": 0.6,
+            "stage": "sampling"
+          },
+          {
+            "event": "progress",
+            "fraction": 0.7,
+            "stage": "sampling"
+          },
+          {
+            "event": "progress",
+            "fraction": 0.8,
+            "stage": "sampling"
+          },
+          {
+            "event": "progress",
+            "fraction": 0.9,
+            "stage": "sampling"
+          },
+          {
+            "event": "progress",
+            "fraction": 1.0,
+            "stage": "sampling"
+          },
+          {
+            "event": "complete",
+            "format": "png",
+            "height": 512,
+            "output": "T:/build/mnn-edit-trained-tests/run-1793338891338009900/recovery-a.png",
+            "width": 512
+          }
+        ],
+        "protocol_errors": [],
+        "logs_truncated": [
+          false,
+          false
+        ],
+        "cancelled": false,
+        "timed_out": false,
+        "cancel_trigger": null,
+        "cancel_to_exit_seconds": null,
+        "resources": {
+          "observed": true,
+          "samples": 6618,
+          "interval_ms": 20,
+          "observed_peak_working_set_bytes": 960847872,
+          "sampled_peak_private_bytes": 958218240,
+          "gpu_memory_measured": false,
+          "physical_device_memory_measured": false
+        }
+      },
+      "stdout_sha256": "d0a2f1ddc32aba2feac12b0d63d7d345ae400855270fa1a37a1877c22a538521",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "image": {
+        "bytes": 495385,
+        "sha256": "a8bd528b8297e5fe9d1215bd478d227cad01d56d799d554b3b02d0197eae689c",
+        "width": 512,
+        "height": 512,
+        "mean": [
+          164.8839569091797,
+          123.5143928527832,
+          106.1043586730957
+        ],
+        "stddev": [
+          80.90507860614923,
+          71.04995903254935,
+          67.39776487350927
+        ],
+        "extrema": [
+          [
+            8,
+            255
+          ],
+          [
+            3,
+            255
+          ],
+          [
+            2,
+            255
+          ]
+        ]
+      }
+    }
+  ],
+  "comparisons": {
+    "source-effect": {
+      "maximum": 252,
+      "mean": 79.50611877441406
+    },
+    "step-effect": {
+      "maximum": 251,
+      "mean": 17.104793548583984
+    },
+    "recovery": {
+      "maximum": 0,
+      "mean": 0.0
+    }
+  },
+  "source_images": [
+    {
+      "file": "build/mnn-edit-trained-tests/run-1793338891338009900/source.png",
+      "bytes": 791555,
+      "sha256": "88431cd9653ccd539741b555fb0a46b61558b301d4110412b5bc28b5e3ea6cb5"
+    },
+    {
+      "file": "build/mnn-edit-trained-tests/run-1793338891338009900/source-crop.jpg",
+      "bytes": 46707,
+      "sha256": "2427713afd15f842757f571e8a5e9a75b95680c06cd281f2926c8444323a2e45"
+    }
+  ],
+  "capture_directory": "build/mnn-edit-trained-tests/run-1793338891338009900",
+  "real_trained_host_execution": true,
+  "task": "image_to_image",
+  "fixed_style": true,
+  "model_data_bundled": false,
+  "network_inference": false,
+  "physical_android": false,
+  "independent_reference_numerics_accepted": false,
+  "image_quality_accepted": false,
+  "complete_target04_accepted": false,
+  "complete_release_accepted": false,
+  "input_fingerprint": {
+    "native/mnn/bootstrap.cmake": "8f4046a160689828f5ef82effdb303e0fe4d8f709be887a3df97944da9339a17",
+    "native/mnn/image.hpp": "1f66dfe180a818a38aaec1e9abb844d6d361b9f50f93970f8c3abbe39b0d71bb",
+    "native/mnn/policy.hpp": "54d94c5e2bf0bf9dbc38021d6e03eef4fd8fa5d65eb4ccc2c09a40b2afdc60d5",
+    "native/mnn/worker.cpp": "1bb92e7134b216114b11213dc6e93b29002f2d4cdffd4cfac74f0ddb0ccec4a1",
+    "research/sd_host/platform.hpp": "c377ed1b676707a469a192d96ae9b748802e1f62ad0674366b593b2b5b2daf67",
+    "third_party/mnn-source-lock.json": "1639a5fe9610af47ab5b6f6d1fbb1df12083f240022f09e1beae5aecd0d2082f",
+    "tools/build_mnn.py": "26c0c9871819a9cdfd21b3a96eb47af95183e85c27c913e3b4cdbf69cb7e8063",
+    "tools/build_mnn_host.py": "13ad56bdf014cdbc2893828dd362ffeeb8cde450caddcd8dc9176aaf8c13e83e",
+    "tools/fetch_mnn.py": "3eca07c0a174eeafedcfb68cde69f16523902082fbc9b86339d52dea03bdded7",
+    "tools/fetch_mnn_trained.py": "45640f38a4bf5e70aabc5c3520424a0d7fe4eba9c944deb1dd2987cc0e5a6921",
+    "research/mnn_edit_trained/assets.json": "be056d5eb9152e6ccb0468e8108e7fee5b602b1a0401173d49961b616e9799c4",
+    "research/mnn_trained/assets.json": "892f55d300af5e6ed94b68d8cd9a4e468bc869c52d67d108f08ffb404598ff68",
+    "tools/fetch_mnn_edit_trained.py": "5983493726b8bda222170c311b6891748823bdcdf47780c0064203354846e883",
+    "tests/fixtures/images/astronaut.png": "88431cd9653ccd539741b555fb0a46b61558b301d4110412b5bc28b5e3ea6cb5",
+    "tests/fixtures/images/LICENSE.md": "e16919f880e5fbbc4bdd8d1994eddeebb7599c2fcf86cbaad6402c659f2da37f",
+    "tools/test_mnn_edit_trained.py": "fc6087952c5111876c3c1fd48e49cb867cc030a7a7ee2b6da55a76096929afbf",
+    "tools/test_mnn_trained.py": "c555dca8d2599f6751825a3d1aedea93b1ed348f4bd4cdaaaea43ad2eda7540d",
+    "tools/test_sd15_trained.py": "60ecc9c6079208b2178d6796dcbf28dd241babbdc0b24d35814201f7552bd4b2"
+  }
+}

@@ -75,6 +75,18 @@ public final class RecipeSuggestionsTest {
         check(row(overlapping,"diffusion").getString("state").equals("overlap") && row(overlapping,"connector").getString("state").equals("overlap"),"Two roles cannot silently claim the same unique file");
         for(String hint:new String[]{"../model.mnn","a**b","file\n.mnn","x/y.mnn"}){JSONObject bad=recipes.template(ID);bad.getJSONArray("requirements").getJSONObject(0).put("matchFiles",new JSONArray().put(hint));rejects(()->RecipeSuggestions.validate(bad),"Malformed signed filename hint rejected");}
         JSONObject badSibling=recipes.template(ID);badSibling.getJSONArray("requirements").getJSONObject(1).put("matchSibling",new JSONObject().put("role","unknown").put("suffix",".weight"));rejects(()->RecipeSuggestions.validate(badSibling),"Unknown sibling anchor rejected");
+        String flux="flux2_klein_4b_split_cpu_v1";
+        JSONArray fluxFiles=new JSONArray().put(entry("flux-2-klein-4b-Q4_0.gguf")).put(entry("Qwen3-4B-Q4_K_M.gguf"))
+            .put(entry("vae/diffusion_pytorch_model.safetensors")).put(entry("tokenizer/merges.txt"));
+        JSONObject fluxReview=RecipeSuggestions.review(recipes,flux,empty,inventory(fluxFiles,true));
+        check(fluxReview.getInt("suggested")==4,"Distilled FLUX.2-klein complete metadata suggests every matching role");
+        check(RecipeSuggestions.apply(recipes,flux,empty,fluxReview,selected(fluxReview)).length()==4,"Every suggested component requires explicit application");
+        JSONArray fluxAmbiguous=new JSONArray(fluxFiles.toString()).put(entry("flux-2-klein-4b-Q8_0.gguf"));
+        check(row(RecipeSuggestions.review(recipes,flux,empty,inventory(fluxAmbiguous,true)),"diffusion").getString("state").equals("ambiguous"),"Multiple quantizations are not silently selected");
+        JSONArray fluxBase=new JSONArray().put(entry("flux-2-klein-base-4b-Q4_0.gguf")).put(entry("Qwen3-4B-Instruct-2507-Q4_K_M.gguf"));
+        JSONObject fluxWrong=RecipeSuggestions.review(recipes,flux,empty,inventory(fluxBase,true));
+        check(row(fluxWrong,"diffusion").getString("state").equals("missing") && row(fluxWrong,"llm").getString("state").equals("missing"),"Base checkpoint and alternate text encoder are not guessed as matched distilled recipe");
+        check(RecipeSuggestions.review(recipes,flux,empty,inventory(fluxFiles,false)).getInt("suggested")==0,"Incomplete FLUX metadata cannot establish unique components");
         List<String> requests=Collections.synchronizedList(new ArrayList<>());HubClient client=new HubClient("auto","",(address,s,t)->{
             requests.add(address);if(!address.contains("/tree/"))return new HubClient.Response(repo().toString(),null,"fixture");
             JSONArray a=files(),part=new JSONArray();boolean second=address.contains("cursor=two");for(int i=second?6:0;i<(second?a.length():6);i++)part.put(a.getJSONObject(i));return new HubClient.Response(part.toString(),second?null:next("two"),"fixture");});

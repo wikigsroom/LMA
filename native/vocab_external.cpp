@@ -1,4 +1,5 @@
 #include "vocab.h"
+#include "tokenizer_data.hpp"
 #include <cstdlib>
 #include <fstream>
 #include <iterator>
@@ -14,7 +15,7 @@ static std::string vocabulary(const char* key) {
     return std::string(std::istreambuf_iterator<char>(file), std::istreambuf_iterator<char>());
 }
 std::string load_clip_merges() { return vocabulary("LMA_VOCAB_CLIP_MERGES"); }
-std::string load_qwen2_merges() { return vocabulary("LMA_VOCAB_QWEN_MERGES"); }
+std::string load_qwen2_merges() { return lma_tokenizers::qwen_merges(vocabulary("LMA_VOCAB_QWEN_MERGES")); }
 std::string load_mistral_merges() { return vocabulary("LMA_VOCAB_MISTRAL_MERGES"); }
 std::string load_mistral_vocab_json() { return vocabulary("LMA_VOCAB_MISTRAL_JSON"); }
 std::string load_t5_tokenizer_json() { return vocabulary("LMA_VOCAB_T5_JSON"); }

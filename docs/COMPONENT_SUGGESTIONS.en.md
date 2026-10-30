@@ -1,5 +1,7 @@
 # HF companion-file review and confirmation
 
+FLUX.2-klein 4B now has an optional complete four-component catalogue flow and matching HF suggestions. [User flow, parameters and evidence](FLUX2_KLEIN.en.md). The App ships foundation code only; downloads remain explicit.
+
 [中文](COMPONENT_SUGGESTIONS.md) · [English](COMPONENT_SUGGESTIONS.en.md) · [Full pending scope](releases/v0.3.0-dev.34.md)
 
 dev.34 adds companion-file checking to existing recipes, reducing repetitive selection when names identify complete components. Reviewing suggestions, applying bindings, declaring a model and downloading it remain separate user actions. App updates deliver foundation code, filename hints and metadata, with no weights, learned vocabularies, voices or prompt codes.
@@ -17,7 +19,7 @@ A capped/incomplete directory disables suggestion application; a single file on 
 
 ## Coverage and boundaries
 
-There are **35 existing recipes**, with **51 declarative filename hints across 19 recipes**. These include Sana Edit's fifteen components, the complete Nano profile's filenames, Kokoro/Piper/Matcha/Qwen TTS files, OpenMOSS extras and standard companions for some image/video recipes. Other roles retain manual selection; an extension alone never establishes pairing.
+There are **35 existing recipes**, with **54 declarative filename hints across 19 recipes**. These include Sana Edit's fifteen components, the complete Nano profile's filenames, Kokoro/Piper/Matcha/Qwen TTS files, OpenMOSS extras and standard companions for some image/video recipes. Other roles retain manual selection; an extension alone never establishes pairing.
 
 These counts describe selection rules, **not trained execution or Android acceptance of 35 models**. Matching names still require architecture, export, quantization, codec, tokenizer, license and device checks. They grant no extra source-model capabilities or verified uncensored classification to user-composed profiles.
 

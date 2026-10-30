@@ -1,5 +1,7 @@
 # LMA extensible local multimodal foundation
 
+dev.37 connects the [complete four-component FLUX.2-klein flow](FLUX2_KLEIN.en.md) to shared HF/local selection, per-model settings, immutable jobs, cancellation/recovery and results, and corrects the shared Qwen tokenizer. App updates and user assets stay independent; models remain peers with separate task/foundation tags. [Current delivery and full pending scope](releases/v0.3.0-dev.37.md) preserve every frozen target. Host evidence does not replace Android acceptance.
+
 dev.27 adds [committed-output recovery, reviewed history cleanup and shared capacity checks](TASK_RECOVERY.en.md). Model assets, results and drafts remain independent; recovery does not resume generation.
 
 Dev.26 [preflight](TASK_PREFLIGHT.en.md) shares `GenerationPlan` across UI/API/submission for read-only model, LoRA, media, parameter and resource resolution. Generation retains file revalidation and the shared execution slot. Input-change review, independent defaults and explicit enqueueing remain foundation behavior.

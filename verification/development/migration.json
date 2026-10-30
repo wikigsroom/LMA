@@ -78,7 +78,7 @@
   "actual_host_hardlinks": true,
   "input_fingerprint": {
     "app/src/main/assets/models.json": "c3e884b4e5fb06f20c036deebc78e6f953ac420e76fca72bab5a25fd59927156",
-    "app/src/main/assets/recipe-templates.json": "91f2fb0aa811d467afb8f410a4ceaca7f1b6cd457c82ceef8968b0678872a503",
+    "app/src/main/assets/recipe-templates.json": "0ac0d11381d784f7267771e2d17daa8bf8356662b912736e3c830c21e6c144aa",
     "app/src/main/java/com/lma/app/ApiHost.java": "288e80c8ef2328c1808920060848b3e12ebc4872d7919f2863f0c827eb0c3afc",
     "app/src/main/java/com/lma/app/ChatRunner.java": "bf3f18528dad358ee1f7e13778bba458fc13cfd7caa0281e0d72058c52617586",
     "app/src/main/java/com/lma/app/core/AdapterSpec.java": "aff8572d14ac8d616be0a1b0da395e52ed5bddcd5ae407a969c2657bf9257581",
@@ -155,13 +155,13 @@
     "tests/host/com/lma/app/HubLiveTest.java": "308f69328ac67a2a59f525d6cbe35a7a6177bb4c7cdb1dc4e9df801f3c9da20e",
     "tests/host/com/lma/app/HubRecipeTest.java": "960a182b88e76d14f3e210c88c37b149b4491dadcae73281744239b93d7f5492",
     "tests/host/com/lma/app/HubTest.java": "004adc962fd03fae21d0b2c2c85d8cd23d3073f2e15f9b5a4cc94d696c6060dd",
-    "tests/host/com/lma/app/LmaApp.java": "e15eefaf0dc25ed38669a048ed8f8295245395f6870d367a0745416df1331e35",
+    "tests/host/com/lma/app/LmaApp.java": "5f0b56ee0554aa2745087f59b32892e6a83d446f2ef691a96eccd593316b0b01",
     "tests/host/com/lma/app/LmaService.java": "9262851fb942a0e692bef32ef1f67118cc1f712cb2501efa61c635dfaec2d61a",
     "tests/host/com/lma/app/LocalEngines.java": "4cda8d9f46326a54c03482c808b446d0229573aae9e6274bbe0368701d96f0b2",
     "tests/host/com/lma/app/LocalJobs.java": "06b1d5ddd517fbebea7e939ee0fe184334d3a4c9c88f1b2d50b1f03413b77255",
     "tests/host/com/lma/app/MigrationTest.java": "b2936e4e7d1fb6ef7e79a81bf672c6c35bd7ba527c71405ff7c8cc43e8627074",
     "tests/host/com/lma/app/ModelSettingsTest.java": "5be5534e97ed09d40b5a3f9f849ed26b9d69520cec1409fadda5bbf3d353d7f6",
-    "tests/host/com/lma/app/RecipeSuggestionsTest.java": "aa77664d6630c921fde309dcc70c2b02fbc40ec75196243c57d256e1326b9914",
+    "tests/host/com/lma/app/RecipeSuggestionsTest.java": "44780c946b28c442274fac5a3a1d3e8d7869610d08ebd069d921ea197cea0d9c",
     "tools/test_migration.py": "c820e768808e5dad4e5a03e02fa78e615d7f0fe9a3d374f9c2a65e4c6b8683b0"
   }
 }

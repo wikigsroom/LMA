@@ -1,0 +1,10 @@
+Data-only developer identities for frozen FLUX.2-klein 4B target 07.
+No learned weights, tokenizer vocabularies or reference data are included here or in the APK.
+Users/developers explicitly obtain the original pinned files under their respective licenses.
+Canonical repository/revision/path/size/SHA-256 identities are recorded in assets.json.
+The runtime bundle uses the official full FLUX.2 VAE, not the alternative small decoder.
+The optional tokenizer.json entry is an independent developer-only numerical reference.
+Model: https://huggingface.co/black-forest-labs/FLUX.2-klein-4B
+Diffusion conversion: https://huggingface.co/leejet/FLUX.2-klein-4B-GGUF
+Text encoder conversion: https://huggingface.co/unsloth/Qwen3-4B-GGUF
+Model licensing: Apache-2.0; see each pinned upstream repository.
