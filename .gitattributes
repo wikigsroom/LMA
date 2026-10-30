@@ -16,3 +16,6 @@ verification/research/openmoss-scratch-candidate/original-capture-helper.py.txt 
 *.so binary
 *.apk binary
 *.zip binary
+
+# Retain publisher header padding as part of the pinned raw-byte identity.
+third_party/ltx098-official/*.header.json whitespace=cr-at-eol,-blank-at-eol

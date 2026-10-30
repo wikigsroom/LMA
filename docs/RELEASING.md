@@ -1,5 +1,8 @@
 # 更新、同步与发布 / Updating and releasing
 
+上游 safetensors 的 `*.header.json` 按原始字节保留（含 JSON 填充）；`.gitattributes` 仅为这些原始头保留行末填充，大小 / SHA256 核对继续生效。Publisher headers retain exact padding; identity checks remain mandatory.
+
+
 ## v0.3.0 当前发布流程 / Current program-only release
 
 按用户明确指令仅做程序验证；下文旧完整模型 / 真机运行门槛保留为历史，不能再次作为本版前置要求。完整冻结程序范围不缩减。See [validation policy](PROGRAM_VALIDATION.md), [implementation matrix](IMPLEMENTATION_V030.md) and [release notes](releases/v0.3.0.md).
