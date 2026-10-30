@@ -352,9 +352,9 @@
     }
   ],
   "android_execution_tested": false,
-  "applicationApkSha256": "fda9fbe41bcbf6ae4abb6eee6d8c88fe3e2ccab233792f0dab00bb6d974ae79b",
+  "applicationApkSha256": "a763cd8045beabcf98a4338c7ed4898beaf604c82a06fc4f7b6db3f29b2c34bd",
   "input_fingerprint": {
-    "app/src/main/AndroidManifest.xml": "85786fc2a418ae1e053f66ab82f4fd450f581ec6befb1bd10d44ff638d96c0aa",
+    "app/src/main/AndroidManifest.xml": "a5ee24910066e7c04bbfc6e3c5e808d9b474cbb213d0a0256f4b4985268d9c5a",
     "app/src/main/java/com/lma/app/ApiHost.java": "288e80c8ef2328c1808920060848b3e12ebc4872d7919f2863f0c827eb0c3afc",
     "app/src/main/java/com/lma/app/BootReceiver.java": "2c1f72871ca122f8e9562edfc163105bd56ed1df81d3bcf60108a267b837dcee",
     "app/src/main/java/com/lma/app/BundleDocuments.java": "5b7039fae074adf35e117155e0337792e7ac7f08fa3630803fb1c9ac3b188d3a",

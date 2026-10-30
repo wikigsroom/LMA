@@ -8,7 +8,7 @@ import subprocess
 from evidence import fingerprint
 from fetch_openmoss import validate_sources
 from verify_package import elf_info
-from openmoss_pipeline import guarded_pipeline, guarded_model
+from openmoss_pipeline import guarded_pipeline, guarded_model, guarded_delay, guarded_codec
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -22,6 +22,8 @@ def main():
     generated=ROOT/'build/openmoss-generated';generated.mkdir(parents=True,exist_ok=True)
     pipeline=guarded_pipeline(source);(generated/'pipeline.cpp').write_text(pipeline,encoding='utf-8')
     model=guarded_model(source);(generated/'model.cpp').write_text(model,encoding='utf-8')
+    delay=guarded_delay(source);(generated/'delay.cpp').write_text(delay,encoding='utf-8')
+    codec=guarded_codec(source);(generated/'codec.cpp').write_text(codec,encoding='utf-8')
     drive = next((c+':' for c in 'TUVWXYZ' if not Path(c+':/').exists()), None)
     if not drive: raise RuntimeError('No unused build path alias')
     subprocess.run(['subst',drive,str(ROOT)],check=True,capture_output=True)
@@ -30,7 +32,8 @@ def main():
         alias=drive+'/'; ndk=alias+'build/toolchain/android-ndk-r30'; cmake=alias+'build/toolchain/cmake-3.31.6/bin/cmake.exe'; output=alias+'build/openmoss-arm64-cpu-r30'
         options={'ANDROID_ABI':'arm64-v8a','ANDROID_PLATFORM':'android-28','ANDROID_STL':'c++_static','CMAKE_BUILD_TYPE':'Release','BUILD_SHARED_LIBS':'OFF','GGML_NATIVE':'OFF','GGML_CPU_ARM_ARCH':'armv8-a','GGML_CPU_ALL_VARIANTS':'OFF','GGML_BACKEND_DL':'OFF','GGML_OPENMP':'OFF','GGML_CPU_KLEIDIAI':'OFF','GGML_BLAS':'OFF','GGML_CUDA':'OFF','GGML_VULKAN':'OFF','GGML_OPENCL':'OFF','GGML_METAL':'OFF','GGML_BUILD_TESTS':'OFF','GGML_BUILD_EXAMPLES':'OFF','GGML_CCACHE':'OFF','LLAMA_BUILD_COMMON':'OFF','LLAMA_BUILD_TESTS':'OFF','LLAMA_BUILD_TOOLS':'OFF','LLAMA_BUILD_EXAMPLES':'OFF','LLAMA_BUILD_SERVER':'OFF','LLAMA_CURL':'OFF','LLAMA_OPENSSL':'OFF','LLAMA_BUILD_NUMBER':'1','LLAMA_BUILD_COMMIT':lock['llama_revision']}
         commands=[[cmake,'-S',alias+'native/openmoss','-B',output,'-G','Ninja','-DCMAKE_MAKE_PROGRAM='+alias+'build/toolchain/cmake-3.31.6/bin/ninja.exe','-DCMAKE_TOOLCHAIN_FILE='+ndk+'/build/cmake/android.toolchain.cmake',
-            '-DLMA_OPENMOSS_SOURCE='+alias+'build/native-src/openmoss','-DLMA_JSON_SOURCE='+alias+'build/native-src/sd-cpp/thirdparty','-DLMA_OPENMOSS_REVISION='+lock['revision'],'-DLMA_GUARDED_PIPELINE='+alias+'build/openmoss-generated/pipeline.cpp','-DLMA_MAPPED_MODEL='+alias+'build/openmoss-generated/model.cpp']+['-D'+k+'='+v for k,v in options.items()],
+            '-DLMA_OPENMOSS_SOURCE='+alias+'build/native-src/openmoss','-DLMA_JSON_SOURCE='+alias+'build/native-src/sd-cpp/thirdparty','-DLMA_OPENMOSS_REVISION='+lock['revision'],'-DLMA_GUARDED_PIPELINE='+alias+'build/openmoss-generated/pipeline.cpp','-DLMA_MAPPED_MODEL='+alias+'build/openmoss-generated/model.cpp',
+            '-DLMA_GUARDED_DELAY='+alias+'build/openmoss-generated/delay.cpp','-DLMA_GUARDED_CODEC='+alias+'build/openmoss-generated/codec.cpp']+['-D'+k+'='+v for k,v in options.items()],
             [cmake,'--build',output,'--target','lma_openmoss_worker','-j','4'],[ndk+'/toolchains/llvm/prebuilt/windows-x86_64/bin/llvm-strip.exe','--strip-unneeded',output+'/liblma-openmoss.so']]
         for command in commands:
             result=subprocess.run(command,cwd=alias,capture_output=True)
@@ -49,6 +52,10 @@ def main():
     receipt['private_weight_mapping']=True
     receipt['model_loader_sha256']=hashlib.sha256(model.encode('utf-8')).hexdigest()
     receipt['pipeline_guard_sha256']=hashlib.sha256(pipeline.encode('utf-8')).hexdigest()
+    receipt['delay_guard_sha256']=hashlib.sha256(delay.encode('utf-8')).hexdigest()
+    receipt['codec_guard_sha256']=hashlib.sha256(codec.encode('utf-8')).hexdigest()
+    receipt['codec_encoder_scratch_released']=True
+    receipt['official_delay_flush_and_extraction']=True
     (ROOT/'build/openmoss-build-info.json').write_text(json.dumps(receipt,indent=2)+'\n',encoding='utf-8')
     print(json.dumps({k:receipt[k] for k in ('engine','bytes','sha256','source_revision')}))
 

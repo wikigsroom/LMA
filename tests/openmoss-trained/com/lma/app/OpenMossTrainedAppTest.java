@@ -52,6 +52,7 @@ public final class OpenMossTrainedAppTest {
     public static void main(String[] args)throws Exception{
         File root=new File(args[0]),assets=new File(args[1]),binary=new File(args[3]),reference=new File(args[4]);root.mkdirs();
         boolean adoptExisting=args.length>6&&args[6].equals("existing_local");
+        boolean skipReference=args.length>7&&args[7].equals("skip_reference");
         JSONArray originalJobs=new JSONObject(new String(Files.readAllBytes(Paths.get(args[5])),"UTF-8")).getJSONArray("jobs");
         JSONObject directEnglish=null,directReference=null;
         for(int i=0;i<originalJobs.length();i++){JSONObject j=originalJobs.getJSONObject(i);if(j.getString("name").equals("english"))directEnglish=j;if(j.getString("name").equals("reference"))directReference=j;}
@@ -91,7 +92,8 @@ public final class OpenMossTrainedAppTest {
         JSONObject prepared=engine.prepare(bundle,request(bundle.id,new JSONObject(parameters.toString()).put("threads",999),"你好。"));
         check(prepared.getJSONObject("parameters").getInt("threads")==32&&prepared.getJSONArray("adjustments").length()>0,"Production prepare records clamping");
         JSONArray runs=new JSONArray();
-        for(String name:new String[]{"initial-a","reference-a","cancel-after-step16","token-budget","recovery-a"}){
+        String[] cases=skipReference?new String[]{"initial-a","cancel-after-step16","token-budget","recovery-a"}:new String[]{"initial-a","reference-a","cancel-after-step16","token-budget","recovery-a"};
+        for(String name:cases){
             boolean cancel=name.equals("cancel-after-step16"),limited=name.equals("token-budget"),ref=name.equals("reference-a");
             File folder=new File(root,name);long start=System.nanoTime();JSONObject job=request(bundle.id,parameters,"Hello world.");
             if(ref)job.getJSONObject("input").put("artifacts",new JSONArray().put(new JSONObject().put("role","reference_audio").put("artifactId","explicit_trained_kokoro_reference")));
@@ -122,11 +124,11 @@ public final class OpenMossTrainedAppTest {
                 runs.put(run.put("execution",context.execution).put("progress",context.progress).put("seconds",(System.nanoTime()-start)/1e9));
             }
         }
-        check(children==5&&networkCalls==0,"Five real native jobs use zero network calls");BundleStore restored=new BundleStore(new File(app.getFilesDir(),"bundles"));
+        check(children==(skipReference?4:5)&&networkCalls==0,"Every explicitly scoped real native job uses zero network calls");BundleStore restored=new BundleStore(new File(app.getFilesDir(),"bundles"));
         check(restored.plan(bundle.id).getBoolean("installed")&&restored.settings(bundle.id).getJSONObject("values").toString().equals(parameters.toString()),"Restart retains model and independent settings");
         JSONObject result=new JSONObject().put("passed",passed).put("actual_host_children",children).put("network_calls",networkCalls).put("registered_objects",2).put("selected_asset_bytes",importedBytes)
             .put("asset_registration_mode",adoptExisting?"explicit_existing_local_full_sha_adoption":"explicit_full_stream_import").put("full_stream_import_tested",!adoptExisting).put("copied_import_bytes",adoptExisting?0:importedBytes)
-            .put("runs",runs).put("launches",launches).put("host_java_production_binding",true).put("reference_sha256",sha(reference))
+            .put("runs",runs).put("launches",launches).put("host_java_production_binding",true).put("reference_sha256",sha(reference)).put("reference_case_executed",!skipReference)
             .put("android_application_executed",false).put("android_saf_tested",false).put("android_background_tested",false).put("speech_quality_accepted",false);
         Files.write(new File(root,"java-results.json").toPath(),result.toString(2).getBytes("UTF-8"));System.out.println(result);
     }

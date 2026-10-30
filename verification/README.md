@@ -1,5 +1,7 @@
 # Verification records / 验证记录
 
+Current development / 当前开发 **0.3.0-dev.43**: [status](development/status.json), [numbered changes and complete pending scope](../docs/releases/v0.3.0-dev.43.md). Current algorithm/allocator contracts, fresh complete host output and independent ASR are separate from Android acceptance. The exact dev.42 reports and unchanged UI media remain explicitly historical. The public v0.2.0 records below are preserved; no complete v0.3.0 Release is claimed.
+
 These records belong to **LMA 0.2.0** and are exported by `tools/package_delivery.py` after checking current input fingerprints. 本目录由交付工具核对输入后生成，可公开复查；不要手工把未通过项目改为成功。
 
 | Record | Scope / 范围 |

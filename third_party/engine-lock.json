@@ -168,8 +168,8 @@
       "abi": "arm64-v8a",
       "backend": "cpu",
       "ndk": "30.0.16248370",
-      "sha256": "cf0f633a1de61a2ff093f10eb268032ead4e4d30d180f77cac0dfdfc5b82c027",
-      "bytes": 3719640,
+      "sha256": "55023979d3d1ba30c54303938ef9d138419bd44d0d8e4747800e2b1a2bb47fba",
+      "bytes": 3722352,
       "android_api_notes": [
         28
       ],

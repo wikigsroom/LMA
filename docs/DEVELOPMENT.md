@@ -1,6 +1,8 @@
 # v0.3.0 开发状态与复查
 
-当前 **dev.41/code45**：[MOSS-TTS 1.5 完整用户资产与业务流程](MOSS_TTS15.md)、[编号实现 / 全部待完成项](releases/v0.3.0-dev.41.md)。实际主机发声、原签名 Android 编译和界面演示分别留证；参考案例触及输出上限，正常结束验收失败，完整质量 / Android / Release 门槛未通过。
+当前 **dev.43/code47**：[共用语音提示、排空与参考缓存修正](MOSS_DELAY_FIX.md)、[编号实现与完整待办](releases/v0.3.0-dev.43.md)。提示 7/7、原生状态 5/5、真实分配器 21 项通过；新完整模型参考案例仍触及 375 步上限，独立识别 36 / 2 词错误。实际主机运行、页面回归与签名 Android 编译分别记录，全部冻结范围与正式 Release 门槛保留。
+
+保留历史 **dev.41/code45**：[MOSS-TTS 1.5 完整用户资产与业务流程](MOSS_TTS15.md)、[编号实现 / 全部待完成项](releases/v0.3.0-dev.41.md)。实际主机发声、原签名 Android 编译和界面演示分别留证；参考案例触及输出上限，正常结束验收失败，完整质量 / Android / Release 门槛未通过。
 
 当前 **dev.38 / code42**：[Z-Image-Turbo 完整四组件与业务](ZIMAGE_TURBO.md)，[本轮实现与全部待办](releases/v0.3.0-dev.38.md)。真实主机生成 / 生产 Java 与 Android 编译分别留证；冻结范围和全部数值 / 质量 / 资源 / 手机门槛不变。
 
@@ -25,7 +27,7 @@ dev.27 历史业务更新：[任务恢复 / 历史 / 容量](TASK_RECOVERY.md)�
 
 新增[SD-Turbo 与独立 LCM checkpoint 训练验证](SD_DISTILLED_TRAINED.md)：两组10个原生进程 / 6 PNG，SD-Turbo 另经完整生产 HF 配方、2对象导入、80项 Java / 绑定检查、5真实 worker / 3 PNG；LCM 定位遗漏条件并完成30次完整 UNet 数值前向与原生修复候选出图。质量 / 完整官方管线 / 手机验收仍未关闭；LCM 候选不是产品准备方案。双语指南、原图 / GIF / MP4 和[编号实现 / 完整待办](releases/v0.3.0-dev.24-sd-distilled.md)同步，生产源码和 APK 字节保持不变。
 
-当前公开发行仍为 **v0.2.0**。本分支为 **0.3.0-dev.35 / versionCode 39**，不是完整 v0.3.0，也没有创建对应 Release。下一版本仍一次交付 F-01–F-12、01–14 / 16 / 17 及冻结子目标；以下是同一版本内的实施记录，不是拆版安排。
+当前公开发行仍为 **v0.2.0**。本分支为 **0.3.0-dev.43 / versionCode 47**，不是完整 v0.3.0，也没有创建对应 Release。下一版本仍一次交付 F-01–F-12、01–14 / 16 / 17 及冻结子目标；以下是同一版本内的实施记录，不是拆版安排。
 
 新增[SDXL / 双架构适配器真实训练验证](SD_VARIANTS_TRAINED.md)，涵盖两套 CLIP、UNet、VAE、完整 SD1.5 / SDXL 风格与 LCM 训练权重，基础 / 零强度 / 启用、LCM 反事实、组合及取消恢复；生产 Java 走完整对象导入和真实 worker。原始图片、媒体、独立复核及[编号全部待办](releases/v0.3.0-dev.24-sd-variants.md)分别记录范围。低步数样例有画质问题，Android、质量与完整 Release 未验收；生产源码和 APK 不变。
 

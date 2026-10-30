@@ -1,10 +1,16 @@
 # LMA · Local models on Android
 
-> **Current development: 0.3.0-dev.42 / code46.** Fix shared imports retaining the transfer queue after pause/shutdown. Thirteen real blocked-input, 692 foundation and 68 API checks pass. Users independently choose/manage model assets; App updates deliver the foundation. MOSS reference termination/text-following failures remain open; complete v0.3.0 acceptance is pending.
+> **Current development: 0.3.0-dev.43 / code47.** Integrate official MOSS prompt/delayed-state corrections and reference-encoder scratch release: 7/7 prompt grids, 5/5 state cases and 21 real allocator checks pass. Users control model selection, downloads and management; App updates deliver the foundation. Trained output, quality and Android acceptance remain separate; complete v0.3.0 acceptance is pending.
 
-[Import behavior](docs/MODEL_TRANSFERS.en.md) · [中文](docs/MODEL_TRANSFERS.md) · [Implemented work and full pending scope](docs/releases/v0.3.0-dev.42.md) · [Reference diagnostics](docs/MOSS_REFERENCE_DIAGNOSTICS.en.md)
+[Corrections and reproduction](docs/MOSS_DELAY_FIX.en.md) · [中文](docs/MOSS_DELAY_FIX.md) · [Implemented work and full pending scope](docs/releases/v0.3.0-dev.43.md) · [Model imports](docs/MODEL_TRANSFERS.en.md)
 
-> **Previous checkpoint: 0.3.0-dev.41 / code45.** Complete the optional MOSS-TTS 1.5 pair, actual progress, independent settings, cancellation/recovery and results. The production Java/native path passes 87 checks across five actual runs; English and reference-input WAVs match direct native generation byte for byte. Reference mode still hits its output limit without natural completion, and that failure remains open. App updates deliver only the foundation, preserving recommendations and user control of model downloads, imports and versions.
+Fresh actual host validation: 71 Java checks and four real children cover English output, cancellation, budget errors and recovery, with byte-identical recovered WAVs. Complete native runs produce five WAVs/six controls. Reference mode still truncates at 375 steps and has 36/2 independent ASR word errors. The media below shows actual host audio; phone and speech-quality acceptance remain pending.
+
+![dev.43 actual host speech waveforms; failed reference completion retained](docs/media/development/openmoss-0.3.0-dev.43/openmoss-trained-waveforms.gif)
+
+[Actual-audio MP4](docs/media/development/openmoss-0.3.0-dev.43/openmoss-trained-speech.mp4) · [Waveform screenshot](docs/media/development/openmoss-0.3.0-dev.43/openmoss-trained-contact-sheet.png) · [Original English WAV](docs/media/development/openmoss-0.3.0-dev.43/openmoss-trained-en.wav)
+
+> **Retained history: 0.3.0-dev.41 / code45.** Complete the optional MOSS-TTS 1.5 pair, actual progress, independent settings, cancellation/recovery and results. The production Java/native path passes 87 checks across five actual runs; English and reference-input WAVs match direct native generation byte for byte. Reference mode still hits its output limit without natural completion, and that failure remains open. App updates deliver only the foundation, preserving recommendations and user control of model downloads, imports and versions.
 
 
 [Actual host audio, waveforms and video](docs/MOSS_TTS15.en.md#actual-artifacts-and-reports) · [UI output-limit notice](docs/media/development/openmoss/05-output-limit.png)

@@ -8,6 +8,7 @@ third_party/notices/* -whitespace
 tools/openmoss_host_capture.py whitespace=cr-at-eol,-blank-at-eof
 # Preserve original diagnostic stderr bytes, including upstream trailing spaces.
 verification/research/openmoss-prompt-issue/native.stderr.txt -whitespace
+verification/research/openmoss-scratch-candidate/original-capture-helper.py.txt -whitespace
 *.png binary
 *.gif binary
 *.mp4 binary

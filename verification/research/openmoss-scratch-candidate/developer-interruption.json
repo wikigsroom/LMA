@@ -1,0 +1,10 @@
+{
+  "schema": "lma.developer-experiment-interruption/1",
+  "pid": 24180,
+  "executable": "U:\\build\\openmoss-scratch-candidate\\run-1793386317716219800\\reference-candidate.exe",
+  "creationDate": "2026-10-31T02:52:07.4178410+08:00",
+  "interruptedAtUtc": "2026-10-30T19:26:49.3727058Z",
+  "reason": "Prioritize full production prompt/delay/cache validation after independent official parity and actual allocator regression passed; this old scratch-only experiment is incomplete, not a timeout or acceptance.",
+  "modelAccepted": false,
+  "productionAccepted": false
+}

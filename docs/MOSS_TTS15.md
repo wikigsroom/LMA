@@ -1,5 +1,7 @@
 # MOSS-TTS 1.5 本地语音
 
+dev.43 修正提示 / 排空与参考编码缓存，见[实现与复现](MOSS_DELAY_FIX.md)。下述 dev.41 原始语音与失败保持历史身份；当前验证另列于[本轮交付](releases/v0.3.0-dev.43.md)，不将旧模型结果作为当前 APK 通过。
+
 dev.42 保留原生引擎 / 权重。下述 Java 87 项模型运行在导入源码变更后明确为 dev.41 历史。见[共用导入](MODEL_TRANSFERS.md)与[独立诊断](MOSS_REFERENCE_DIAGNOSTICS.md)。
 
 [English](MOSS_TTS15.en.md) · [MOSS 引擎与格式边界](OPENMOSS_ENGINE.md) · [完整版本范围](proposals/multimodal-release-scope.json)
@@ -86,4 +88,4 @@ python tools/build.py
 
 ![实际主机 WAV 与验证范围，非 Android 录屏](media/development/openmoss-trained-contact-sheet.png)
 
-[完整原生执行与原始失败](../verification/development/openmoss-trained.json) · [生产 Java 87 项检查](../verification/history/0.3.0-dev.41/openmoss-app-host.json) · [媒体来源及每文件 SHA](media/development/openmoss-trained-media.json)。图表耗时取自直接原生捕获；dev.41 Java 英文 / 参考 / 恢复分别约 724 / 1551 / 43 秒。磁盘缓存和负载不同，不能据这些数值外推手机速度或作为受控性能比较。
+[完整原生执行与原始失败](../verification/history/0.3.0-dev.41/openmoss-trained.json) · [生产 Java 87 项检查](../verification/history/0.3.0-dev.41/openmoss-app-host.json) · [媒体来源及每文件 SHA](media/development/openmoss-trained-media.json)。图表耗时取自直接原生捕获；dev.41 Java 英文 / 参考 / 恢复分别约 724 / 1551 / 43 秒。磁盘缓存和负载不同，不能据这些数值外推手机速度或作为受控性能比较。

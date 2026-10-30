@@ -1,0 +1,195 @@
+{
+  "schema": "lma.openmoss-delay-reference/1",
+  "cases": [
+    {
+      "name": "plain-generation",
+      "exact_rows": false,
+      "first_different_step": 11,
+      "official_rows": 47,
+      "native_rows": 47,
+      "exact_codes": true,
+      "official_frames": 10,
+      "native_frames": 10
+    },
+    {
+      "name": "assistant-started",
+      "exact_rows": false,
+      "first_different_step": 11,
+      "official_rows": 47,
+      "native_rows": 47,
+      "exact_codes": true,
+      "official_frames": 11,
+      "native_frames": 11
+    },
+    {
+      "name": "reference-generation",
+      "exact_rows": false,
+      "first_different_step": 11,
+      "official_rows": 47,
+      "native_rows": 47,
+      "exact_codes": true,
+      "official_frames": 10,
+      "native_frames": 10
+    },
+    {
+      "name": "truncated",
+      "exact_rows": true,
+      "first_different_step": null,
+      "official_rows": 41,
+      "native_rows": 41,
+      "exact_codes": false,
+      "official_frames": 9,
+      "native_frames": 8
+    },
+    {
+      "name": "reference-without-generated-audio",
+      "exact_rows": true,
+      "first_different_step": null,
+      "official_rows": 40,
+      "native_rows": 40,
+      "exact_codes": false,
+      "official_frames": 0,
+      "native_frames": 8
+    }
+  ],
+  "passed": 0,
+  "expected_cases": 5,
+  "all_exact": false,
+  "official_sources": {
+    "schema": "lma.openmoss-prompt-reference-sources/1",
+    "repository": "OpenMOSS-Team/MOSS-TTS-v1.5",
+    "revision": "cdd3b911b1585e3f2dbc7775ef10f9926f58850a",
+    "developer_only": true,
+    "packaged_in_apk": false,
+    "files": [
+      {
+        "path": "config.json",
+        "bytes": 2275,
+        "sha256": "214fc997d98f51ab57925a5939afc6280e76044198b664221622e70d098ed06e",
+        "source": "https://huggingface.co/OpenMOSS-Team/MOSS-TTS-v1.5/blob/cdd3b911b1585e3f2dbc7775ef10f9926f58850a/config.json"
+      },
+      {
+        "path": "chat_template.jinja",
+        "bytes": 352,
+        "sha256": "894e3ace884e212ae34e1f46063686e7ebcc8b2fa0153af4579dfa5685f63184",
+        "source": "https://huggingface.co/OpenMOSS-Team/MOSS-TTS-v1.5/blob/cdd3b911b1585e3f2dbc7775ef10f9926f58850a/chat_template.jinja"
+      },
+      {
+        "path": "tokenizer_config.json",
+        "bytes": 5501,
+        "sha256": "87b1f37a4a73e4c4b61637a1446763e8bdea274347f0418cd5c68ead488c8ea4",
+        "source": "https://huggingface.co/OpenMOSS-Team/MOSS-TTS-v1.5/blob/cdd3b911b1585e3f2dbc7775ef10f9926f58850a/tokenizer_config.json"
+      },
+      {
+        "path": "tokenizer.json",
+        "bytes": 11422691,
+        "sha256": "cb3c8fa82993d515469c2800cc455bff4aaa3c4fed9da1f2b0c0668c304f335a",
+        "source": "https://huggingface.co/OpenMOSS-Team/MOSS-TTS-v1.5/blob/cdd3b911b1585e3f2dbc7775ef10f9926f58850a/tokenizer.json"
+      },
+      {
+        "path": "configuration_moss_tts.py",
+        "bytes": 5584,
+        "sha256": "257842f2fa90124307408f36d55b74e135ee32b7afacbe30280964f7feb329d1",
+        "source": "https://huggingface.co/OpenMOSS-Team/MOSS-TTS-v1.5/blob/cdd3b911b1585e3f2dbc7775ef10f9926f58850a/configuration_moss_tts.py"
+      },
+      {
+        "path": "modeling_moss_tts.py",
+        "bytes": 25330,
+        "sha256": "360ceee27c67831d820ff5324f8687f4408db1a91aef53683934544879aa90ca",
+        "source": "https://huggingface.co/OpenMOSS-Team/MOSS-TTS-v1.5/blob/cdd3b911b1585e3f2dbc7775ef10f9926f58850a/modeling_moss_tts.py"
+      },
+      {
+        "path": "tts_robust_normalizer_single_script.py",
+        "bytes": 14544,
+        "sha256": "b7c1fab4fd7bdc8c779df99f6af310fd8cd0746b759db684bf147e0c182b3183",
+        "source": "https://huggingface.co/OpenMOSS-Team/MOSS-TTS-v1.5/blob/cdd3b911b1585e3f2dbc7775ef10f9926f58850a/tts_robust_normalizer_single_script.py"
+      },
+      {
+        "path": "inference_utils.py",
+        "bytes": 5092,
+        "sha256": "12cdf3260114e44c8cba816782f743779ab621e0ba4047e59a3f3579cfcb0e26",
+        "source": "https://huggingface.co/OpenMOSS-Team/MOSS-TTS-v1.5/blob/cdd3b911b1585e3f2dbc7775ef10f9926f58850a/inference_utils.py"
+      },
+      {
+        "path": "processing_moss_tts.py",
+        "bytes": 35531,
+        "sha256": "e591ff156e8fadcae34db5613a2221fab7ec5d814bfc0ec001e8ec4ef2782425",
+        "source": "https://huggingface.co/OpenMOSS-Team/MOSS-TTS-v1.5/blob/cdd3b911b1585e3f2dbc7775ef10f9926f58850a/processing_moss_tts.py"
+      }
+    ]
+  },
+  "compilation": {
+    "schema": "lma.openmoss-host-build/1",
+    "executable": "build/openmoss-worker-host/8551e120780d970c/bin/lma_openmoss_host.exe",
+    "bytes": 3950592,
+    "sha256": "80b8eda3b843c3ff0c724bc6933798b802a7ae7b7f969829f5620351f122249a",
+    "source_revision": "bfb1f465e0a86fb5a52bbf93e67ceba4b7d0b4e1",
+    "llama_revision": "050ee92d04c2e1f639025786dea701c70e7d4204",
+    "compiled_library_sources": 10,
+    "compile_cache": "build/openmoss-host-cache/cpu-050ee92d04c2-U/bin",
+    "backend": "cpu",
+    "private_weight_mapping": true,
+    "production_worker_source_unmodified": true,
+    "upstream_sources_unmodified": true,
+    "windows_crt_parent_environment_compatibility": true,
+    "bundled_model_data": false,
+    "physical_android": false,
+    "android_compiled": false,
+    "packaged_in_apk": false,
+    "model_executed": false,
+    "input_fingerprint": {
+      "native/openmoss/CMakeLists.txt": "83c84c6b36b70b7307a8c1b1b801b9b26f685d72f8a1d929d78c6351d1a9965a",
+      "native/openmoss/generation_guard.hpp": "9a7b420629f5502b66e2a95608aed0ac97780924fead745e7da02ab6c60db2c6",
+      "native/openmoss/model_contract.hpp": "0476e93090a14822f5544a485fd5f83fdd66f9c40cd18eb7c28389e45f1ee7cb",
+      "native/openmoss/policy.hpp": "eb164dba961c9065b8dd62b272050bdbb45c4d303b8e5b2455ec5441134f1684",
+      "native/openmoss/private_weights.hpp": "7a5bfc3b4a2df5873628036af85b578630e43907fb009d6c23d2fe240264a16f",
+      "native/openmoss/wave.hpp": "aaf85f286b9e9d95de808aae2088dadac7b9b06e35f51f31c05e272f7a112e7f",
+      "native/openmoss/worker.cpp": "a807ff77d40a12daf020e17a5517ae47476dd980227150c933635d7a80a2da15",
+      "research/moss_nano_host/compat/sys/prctl.h": "9322b99bb80674fd2d42eb2b94f5ee5519ab443da0cdffd5ae938ef855907569",
+      "research/moss_nano_host/compat/unistd.h": "1c843add75719822f7371cfafd97af1abdc1ffc52938f5cd96dfd407630d9f96",
+      "research/openmoss_host/CMakeLists.txt": "07dfb210c4668b1c3709ef1fdba3f72fd4079416631d85973f01e9b47d5662e3",
+      "research/openmoss_host/NOTICE": "4a34c40dceab4256b15fbf7eb7c0bd6b73d76b4f043cb3956b59d05034e82cfd",
+      "research/qwen_tts_host/compat/sys/prctl.h": "0e2a8e106274e1330cb0a6240583a75a4eecfe182bf0e08d141984aaae2a3987",
+      "research/qwen_tts_host/compat/unistd.h": "64e960a64922193f97a70eccaf9e4bfed7f70c79c1cbcadd82a984efc3a2e8ec",
+      "research/sd_host/platform.hpp": "c377ed1b676707a469a192d96ae9b748802e1f62ad0674366b593b2b5b2daf67",
+      "tests/native/openmoss_mapping_test.cpp": "4f676f86b3d22dee7b4ed67facd62971b6096e4c3f6ba1aa8a9592b667bb0947",
+      "third_party/openmoss-source-lock.json": "df2d062fe174080e95d1f2f05ef8e133616a1827637e62d7195181f1c9256295",
+      "tools/build_openmoss_host.py": "7e18dbebb8b073e5a4a55b059798d025d9233425aa8576e0f28eb8c3ecaf7aea",
+      "tools/fetch_openmoss.py": "1c18d8c17de019a6b66321042cb14d61441d54fc370ef3f5547cacd627f1330b",
+      "tools/openmoss_pipeline.py": "483667858e0ce77742ae8242a15ae88bc8fdf76597d66191ad10ccdb172fbec3"
+    }
+  },
+  "native_executable_sha256": "c06887500223ba3904583857106cb386993b09bb9c19a649d417947e82859335",
+  "library_sha256": {
+    "build/openmoss-host-cache/cpu-050ee92d04c2-U/bin/lma_openmoss_core.lib": "101ad4821e100cd452f046e8e4fb3614d59d0dcfade608a6c7ee6cdbb50fb163",
+    "build/openmoss-host-cache/cpu-050ee92d04c2-U/bin/llama/src/llama.lib": "e5e95c7e655c39957c01973239f402f2460f4c1a469758790b670f6acd379dd3",
+    "build/openmoss-host-cache/cpu-050ee92d04c2-U/bin/llama/ggml/src/ggml.lib": "6e92d7a5096612cf5db724174ccb9e780994b02a3ccefe9fa7a63c66d763607d",
+    "build/openmoss-host-cache/cpu-050ee92d04c2-U/bin/llama/ggml/src/ggml-cpu.lib": "312614c3fbb08d4f1a653f7b25341dbd3e8ac22d509c91a58e4bef1f3e35b0d3",
+    "build/openmoss-host-cache/cpu-050ee92d04c2-U/bin/llama/ggml/src/ggml-base.lib": "7f6acbb1eeb8162f3de4f7f3080a026ed82a0d7ee40103870a9f4db1fb17ee0e"
+  },
+  "input_fingerprint": {
+    "native/openmoss/CMakeLists.txt": "83c84c6b36b70b7307a8c1b1b801b9b26f685d72f8a1d929d78c6351d1a9965a",
+    "native/openmoss/generation_guard.hpp": "9a7b420629f5502b66e2a95608aed0ac97780924fead745e7da02ab6c60db2c6",
+    "native/openmoss/model_contract.hpp": "0476e93090a14822f5544a485fd5f83fdd66f9c40cd18eb7c28389e45f1ee7cb",
+    "native/openmoss/policy.hpp": "eb164dba961c9065b8dd62b272050bdbb45c4d303b8e5b2455ec5441134f1684",
+    "native/openmoss/private_weights.hpp": "7a5bfc3b4a2df5873628036af85b578630e43907fb009d6c23d2fe240264a16f",
+    "native/openmoss/wave.hpp": "aaf85f286b9e9d95de808aae2088dadac7b9b06e35f51f31c05e272f7a112e7f",
+    "native/openmoss/worker.cpp": "a807ff77d40a12daf020e17a5517ae47476dd980227150c933635d7a80a2da15",
+    "research/openmoss_reference/delay_probe.cpp": "118e615a1616d4df664fa1f2e0607bbc7ffd4f5e46c8031e539cd9549c732919",
+    "research/openmoss_reference/NOTICE": "c2142613da76aeaa9444274e1d113d2f12e7ae21f6f91fdff72e182e77fccf3e",
+    "research/openmoss_reference/official-sources.json": "d3cd2b368195a79d6109493eca3da58582ec88124c32fe70822fa866325bf662",
+    "research/openmoss_reference/prompt_probe.cpp": "5a4170e28e5ff60b566999ea85c7c14fbada8c9eb0900dbb36a501cd9265ea5f",
+    "third_party/openmoss-source-lock.json": "df2d062fe174080e95d1f2f05ef8e133616a1827637e62d7195181f1c9256295",
+    "tools/fetch_openmoss_reference.py": "16261db8639138c28b544a8ea3426dd393b49df1a53416b7904521d37b8569c1",
+    "tools/openmoss_pipeline.py": "483667858e0ce77742ae8242a15ae88bc8fdf76597d66191ad10ccdb172fbec3",
+    "tools/test_openmoss_delay.py": "1de30b97c50e22b47822cf81181b9943d2c2b69ea7ae30c71f38b8e30131ab2e"
+  },
+  "capture_directory": "build/openmoss-delay-tests/run-1793386701608094500",
+  "model_inference": false,
+  "logits_are_fixtures": true,
+  "codec_executed": false,
+  "network_calls": 0,
+  "physical_android": false,
+  "speech_quality_accepted": false,
+  "release_accepted": false
+}

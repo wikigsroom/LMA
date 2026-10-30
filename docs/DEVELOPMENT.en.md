@@ -1,6 +1,8 @@
 # v0.3.0 development status and evidence
 
-Current **dev.41/code45**: [complete user-owned MOSS-TTS 1.5 assets and business flow](MOSS_TTS15.en.md), [numbered changes and full remaining scope](releases/v0.3.0-dev.41.md). Actual host synthesis, original-signature Android compilation and UI simulation are separate evidence. The reference case hits its output limit and fails natural-completion acceptance; quality, Android and full Release gates remain open.
+Current **dev.43/code47**: [shared speech prompt, delayed-state and reference scratch corrections](MOSS_DELAY_FIX.en.md), [numbered implementation and complete pending scope](releases/v0.3.0-dev.43.md). Prompt grids 7/7, native state cases 5/5 and 21 real allocator checks pass. The fresh complete reference run still reaches the 375-step limit and has 36/2 independent ASR word errors. Actual host execution, UI checks and signed Android compilation remain separate; every frozen target and formal Release gate is retained.
+
+Retained history **dev.41/code45**: [complete user-owned MOSS-TTS 1.5 assets and business flow](MOSS_TTS15.en.md), [numbered changes and full remaining scope](releases/v0.3.0-dev.41.md). Actual host synthesis, original-signature Android compilation and UI simulation are separate evidence. The reference case hits its output limit and fails natural-completion acceptance; quality, Android and full Release gates remain open.
 
 Retained history **dev.38/code42**: [complete Z-Image-Turbo components and business flow](ZIMAGE_TURBO.en.md), [numbered changes/full pending scope](releases/v0.3.0-dev.38.md). Actual native/production Java host execution and Android compilation are separate from every mandatory numerical, quality, resource and phone gate.
 
@@ -23,7 +25,7 @@ New [small native LCM preparation](LCM_LOCAL_PREPARATION.en.md):24 native childr
 
 New: [trained SD-Turbo and standalone LCM checkpoint validation](SD_DISTILLED_TRAINED.en.md): ten native children /six PNGs, plus production HF selection, two whole-object imports,80 Java/binding checks and five actual workers /three PNGs for SD-Turbo. LCM analysis identifies a missing condition, executes30 complete UNet forwards and produces a private folded native candidate. Quality, canonical pipeline and phone acceptance remain open; LCM product preparation is unimplemented. Bilingual guides, original PNG/GIF/MP4 and [numbered work/full pending scope](releases/v0.3.0-dev.24-sd-distilled.md) accompany unchanged production sources/APK bytes.
 
-The current public release remains **v0.2.0**. This branch is **0.3.0-dev.35 / versionCode 39**, not the complete v0.3.0, and has no new Release. F-01–F-12, selections 01–14/16/17 and frozen subtargets still belong to one delivery; these are internal implementation checkpoints.
+The current public release remains **v0.2.0**. This branch is **0.3.0-dev.43 / versionCode 47**, not the complete v0.3.0, and has no new Release. F-01–F-12, selections 01–14/16/17 and frozen subtargets still belong to one delivery; these are internal implementation checkpoints.
 
 The [trained SDXL/dual-architecture adapter follow-up](SD_VARIANTS_TRAINED.en.md) covers both CLIPs, UNet, VAE and complete SD1.5/SDXL style and LCM weights, using base/zero/enabled, LCM weight-effect, combination and cancellation/recovery controls. Production Java imports complete objects and invokes actual workers. Original images, media, independent audit and [numbered full pending scope](releases/v0.3.0-dev.24-sd-variants.md) keep their own boundaries. Low-step samples have quality problems; quality, Android and complete Release acceptance remain open. Production sources/APK bytes are unchanged.
 

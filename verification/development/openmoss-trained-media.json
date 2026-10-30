@@ -1,0 +1,115 @@
+{
+  "schema": "lma.openmoss-trained-media/1",
+  "kind": "actual_trained_host_wav_and_waveform_slideshow",
+  "sources": {
+    "verification/development/openmoss-trained.json": "a43c3ea9ebdc5f917f1e2ccc14122b0408e372ae6dfcae603105a35d7d95a867",
+    "verification/development/openmoss-assets.json": "1f9ab96780f0d8361c227e1a8d21855849aef1ca0b94e5c8eb4c96c30efb613f",
+    "verification/development/openmoss-app-host.json": "1c29020a6f692a97f253a201f5b0c1e31ca7da95b4328835f2860d17a85797ed"
+  },
+  "source_audio": [
+    {
+      "case": "chinese",
+      "file": "openmoss-trained-zh.wav",
+      "audio": {
+        "format": "WAV",
+        "channels": 1,
+        "sample_width": 2,
+        "sample_rate": 24000,
+        "samples": 36480,
+        "seconds": 1.52,
+        "rms": 0.06403529121022405,
+        "peak": 0.44097900390625,
+        "clipping_fraction": 0.0,
+        "nonzero_samples": 36321,
+        "bytes": 73004,
+        "sha256": "1f5e7cd95242679145fb6f4a58d6bf122b210226e9a035d72623b6b1fd981b3c"
+      }
+    },
+    {
+      "case": "english",
+      "file": "openmoss-trained-en.wav",
+      "audio": {
+        "format": "WAV",
+        "channels": 1,
+        "sample_width": 2,
+        "sample_rate": 24000,
+        "samples": 26880,
+        "seconds": 1.12,
+        "rms": 0.06888897527493665,
+        "peak": 0.442901611328125,
+        "clipping_fraction": 0.0,
+        "nonzero_samples": 26325,
+        "bytes": 53804,
+        "sha256": "fe9e1d614c7bdf25a2095208606127f1e998ae2c6be88f178a69b6cf51aabbd0"
+      }
+    },
+    {
+      "case": "reference",
+      "file": "openmoss-trained-reference.wav",
+      "audio": {
+        "format": "WAV",
+        "channels": 1,
+        "sample_width": 2,
+        "sample_rate": 24000,
+        "samples": 658560,
+        "seconds": 27.44,
+        "rms": 0.09993038443253696,
+        "peak": 0.997650146484375,
+        "clipping_fraction": 0.0,
+        "nonzero_samples": 610958,
+        "bytes": 1317164,
+        "sha256": "ea427795042040307582ded182980bdc29a9142438f5b1d8dfa5b2c9ad56a7dd"
+      }
+    }
+  ],
+  "version": "0.3.0-dev.43",
+  "directory": "docs/media/development/openmoss-0.3.0-dev.43",
+  "model_inference": true,
+  "actual_native_host": true,
+  "java_reference_case_executed": false,
+  "gif_frames": 3,
+  "gif_duration_ms": 5400,
+  "mp4_duration_seconds": 30.020996,
+  "mp4_codecs": [
+    "h264",
+    "aac"
+  ],
+  "waveform_amplitude_normalized": false,
+  "original_wav_bytes_unchanged": true,
+  "mp4_audio_transcoded_aac": true,
+  "mp4_audio_resampled_hz": 48000,
+  "files": {
+    "openmoss-trained-zh.wav": {
+      "bytes": 73004,
+      "sha256": "1f5e7cd95242679145fb6f4a58d6bf122b210226e9a035d72623b6b1fd981b3c"
+    },
+    "openmoss-trained-en.wav": {
+      "bytes": 53804,
+      "sha256": "fe9e1d614c7bdf25a2095208606127f1e998ae2c6be88f178a69b6cf51aabbd0"
+    },
+    "openmoss-trained-reference.wav": {
+      "bytes": 1317164,
+      "sha256": "ea427795042040307582ded182980bdc29a9142438f5b1d8dfa5b2c9ad56a7dd"
+    },
+    "openmoss-trained-contact-sheet.png": {
+      "bytes": 236213,
+      "sha256": "1b76ec46bc5c3a940f77737dd97c2a4a7ed394c869fbfaa6372d7c0d46ef9583"
+    },
+    "openmoss-trained-waveforms.gif": {
+      "bytes": 93325,
+      "sha256": "4204829fb788ae114084ea22d3efca96c601cae2a2d083c8c6e2804c8886b371"
+    },
+    "openmoss-trained-speech.mp4": {
+      "bytes": 760836,
+      "sha256": "24b706bf7cafece7abb0831065cbf2717aec2eac596da72bcac6b502a4550ea9"
+    }
+  },
+  "physical_android": false,
+  "app_screen_recording": false,
+  "speech_quality_accepted": false,
+  "reference_natural_completion_accepted": false,
+  "complete_release_accepted": false,
+  "input_fingerprint": {
+    "tools/render_openmoss_trained.py": "9fc5d103f19d5e921b7f263374a5e9e8e5230d05a67c56d8b1e9842a0df8881f"
+  }
+}

@@ -1,5 +1,14 @@
 # Changelog / 更新记录
 
+## 0.3.0-dev.43 — 共用语音引擎修正 / Shared speech corrections
+
+- 官方 Delay 普通提示 7/7、状态机 5/5；修正同一步排空递增、截断帧数和用户参考片段误提取，保留原始失败。Official method parity is scoped separately from trained output and Android acceptance.
+- 参考编码完成后释放 CPU 批处理临时缓存；21 项真实分配器检查、7 次实际计算，独立流式图 / 持久权重 / 重复输出保持正确。Allocated buffer bytes are not resident-memory measurements.
+- 完整模型执行记录实时事件；530 项 MOSS、306 项 RQ 回归通过。旧 PCM 比较继续记录，提示 / 状态语义修正后不把旧 WAV 字节相同作为新实现正确性条件；正常结束、取消与恢复门槛保留。
+- 71 项实际生产 Java 检查 / 4 次运行、2 个 WAV 与直接输出逐字节一致；完整原生 5 个 WAV / 6 项控制保留参考模式 375 步截断及新 ASR 36/2 词错误。Publish original WAVs and actual-host waveform PNG/GIF/audio MP4; original 35/2 failure remains separate.
+- 原签名 dev.43/code47；App 不附模型、不自动取得或替换权重，模型继续用户自主选择 / 下载 / 管理。保留 dev.42 的精确页面媒体并检查 UI 逻辑不变；界面 490 项通过，Lint 0 错误 / 17 警告。
+- [中文](docs/MOSS_DELAY_FIX.md) · [English](docs/MOSS_DELAY_FIX.en.md) · [本轮实现与完整待办](docs/releases/v0.3.0-dev.43.md)。所有冻结模型、子目标与同手机验收仍属于同一个完整 v0.3.0；本检查点不发布正式 Release。
+
 ## 0.3.0-dev.42 — 导入暂停与队列 / Import pause and queue
 
 - 暂停或关闭时关闭实际本地输入，释放阻塞读取与后续队列；防止登记竞态，完整 SHA 接纳、用户显式传输、重启暂停及逐模型设置保留。Pause/shutdown close the actual input and release the queue while retaining full SHA acceptance and user ownership.

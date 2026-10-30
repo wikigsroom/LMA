@@ -1,0 +1,167 @@
+{
+  "schema": "lma.ltx098-app-build/1",
+  "android_arm64_compiled": true,
+  "min_sdk": 28,
+  "stages": [
+    {
+      "stage": "tensors",
+      "file": "liblma-ltx098-app-tensors.so",
+      "bytes": 426688,
+      "sha256": "4f665f743fd50971e9ad4c005c0243771944b9fc001527a9a9dfcd551524a2b5",
+      "path": "build/ltx098-app-arm64/tensors/bin/liblma-ltx098-app-tensors.so",
+      "elf": {
+        "machine": "aarch64",
+        "needed": [
+          "libm.so",
+          "libdl.so",
+          "libc.so"
+        ],
+        "load_segment_alignment": [
+          16384
+        ],
+        "interpreter": "/system/bin/linker64",
+        "entry_point": 104848,
+        "android_api_notes": [
+          28
+        ],
+        "16k_elf_aligned": true
+      }
+    },
+    {
+      "stage": "text",
+      "file": "liblma-ltx098-app-text.so",
+      "bytes": 249480,
+      "sha256": "d9019a20767833e9e43342f10833956584f7f3119ed33cf01e02e4937ea6390e",
+      "path": "build/ltx098-app-arm64/text/bin/liblma-ltx098-app-text.so",
+      "elf": {
+        "machine": "aarch64",
+        "needed": [
+          "libllama.so",
+          "libggml.so",
+          "libggml-base.so",
+          "libdl.so",
+          "libm.so",
+          "libc.so"
+        ],
+        "load_segment_alignment": [
+          16384
+        ],
+        "interpreter": "/system/bin/linker64",
+        "entry_point": 75184,
+        "android_api_notes": [
+          28
+        ],
+        "16k_elf_aligned": true
+      }
+    },
+    {
+      "stage": "sample",
+      "file": "liblma-ltx098-app-sample.so",
+      "bytes": 35599008,
+      "sha256": "39198a31bd0f81e82c8692a3bd48b2bc11b58c9b04fa4494c6574a01eb9934ee",
+      "path": "build/ltx098-app-arm64/sample/bin/liblma-ltx098-app-sample.so",
+      "elf": {
+        "machine": "aarch64",
+        "needed": [
+          "libm.so",
+          "libdl.so",
+          "libvulkan.so",
+          "libc.so"
+        ],
+        "load_segment_alignment": [
+          16384
+        ],
+        "interpreter": "/system/bin/linker64",
+        "entry_point": 33428272,
+        "android_api_notes": [
+          28
+        ],
+        "16k_elf_aligned": true
+      }
+    },
+    {
+      "stage": "vae",
+      "file": "liblma-ltx098-app-vae.so",
+      "bytes": 504832,
+      "sha256": "e9b5011f190e37b4623f2ec0eb181f2e2952b0c2e808254cceb8d74006687e8f",
+      "path": "build/ltx098-app-arm64/vae/bin/liblma-ltx098-app-vae.so",
+      "elf": {
+        "machine": "aarch64",
+        "needed": [
+          "libonnxruntime.so",
+          "libm.so",
+          "libdl.so",
+          "libc.so"
+        ],
+        "load_segment_alignment": [
+          16384
+        ],
+        "interpreter": "/system/bin/linker64",
+        "entry_point": 125072,
+        "android_api_notes": [
+          28
+        ],
+        "16k_elf_aligned": true
+      }
+    }
+  ],
+  "source_revision": "4b2d053057623ddd4d0a1d3e9cd28890e9ef487f",
+  "ggml_revision": "a5915eb0e47adef21c3f25b889a008925ea838c2",
+  "llama_revision": "b29c606e28a01b1bc8c1351026a0fa6e616bf6c4",
+  "ndk": "30.0.16248370",
+  "model_inference": false,
+  "physical_android": false,
+  "quality_accepted": false,
+  "numerical_accepted": false,
+  "no_automatic_model_download": true,
+  "virtualization_used": false,
+  "input_fingerprint": {
+    "native/ltx098/CMakeLists.txt": "4da0b39b8b57e9d4a974c8527abae6716b43f3fdf0bf5adabff92ecca9c833f6",
+    "native/ltx098/parent_guard.cpp": "3c987bcf309a30b2502418d50086cec21073f93dffdee8a50da26f49e055a46d",
+    "native/ltx098/sample.cpp": "85ce2e36f904c053272aedc41e8112b01dbcf894cfd98042ae4370b389a7083b",
+    "native/moss_nano/onnx_external.hpp": "c1bb8f95ad2078472dbbf2ea0863493ac44f4aae7c4336cf5debb0db0d54fae5",
+    "research/ltx098/CMakeLists.txt": "cc86fb36397da930df9c30745c8a29a3748535a9dbd3e40b9f2a5f9c9886374f",
+    "research/ltx098/driver.cpp": "2c8b92b4826824d03ca7ec17e82b5f6ff6dba10b600013df6141d61c5df212f6",
+    "research/ltx098/licenses/ggml-MIT.txt": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
+    "research/ltx098/licenses/json-MIT.txt": "0e592e358cf7722906f417be85bc514f15bf6efd28cea98cb84e56ef7fddfc3e",
+    "research/ltx098/licenses/Lightricks-Apache-2.0.txt": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+    "research/ltx098/licenses/SPIRV-Headers-MIT.txt": "ea43b1de38a6f90c488800d66dec1ed671e68cda530266bc96951fb5b6307613",
+    "research/ltx098/licenses/Vulkan-Apache-2.0.txt": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+    "research/ltx098/licenses/Vulkan-Headers.txt": "95ad366d23fadf701d355bc45fb8b82ae2d700239471d35d41286ac3b08ff903",
+    "research/ltx098/licenses/Vulkan-MIT.txt": "1ca3502222d967f3be5751c55f6b7ee735b5383909c3b501495f54b216dbf227",
+    "research/ltx098/NOTICE": "bab99dbce59bed2470b85752c90464dcfac90c0c0d28577b9db1067ec1a5e872",
+    "research/ltx098/sampling.cpp": "6f5990a38f02462efeec0e68417f4c68981e9be2362b1e76cfd94e697f17003d",
+    "research/ltx098/sampling.hpp": "5e745b8b192cbec4881d9bb2fbfe2665670cc9cb3c853b319b8e8a896130d3cd",
+    "research/ltx098/sampling_driver.cpp": "3a8af8bc1bfcc28127649374e4818a1d368b46ad2ef0c24c1c998e8d32d80fc1",
+    "research/ltx098/transformer.cpp": "22c6d7ec964c5d9e25c90ba9f32c3a93b3d6d4db3c8aafb064cb45f3e03581fa",
+    "research/ltx098/transformer.hpp": "6f5fd68cba7278abb210322af20d70d3a0acd05631118bdeabdae54f4cd5e1d5",
+    "research/ltx098_pipeline/CMakeLists.txt": "6115af1b7ee6798413e1c4617eca8a7b9076722237f922e0f133ef1ebd1c6acc",
+    "research/ltx098_pipeline/NOTICE": "9241c16fca4550e732057f10ac073002e72974b65684d0d3fdae56015ec4222c",
+    "research/ltx098_pipeline/tensors.cpp": "f323b5ebf9537df2f3e7db79e77633a2f30103c23135b21b89043e16109bf116",
+    "research/ltx098_text/CMakeLists.txt": "695f191d631418b8c40fd7bf3887c10b316f92b15ad83d25568a7b06b50defda",
+    "research/ltx098_text/driver.cpp": "a81c396c91bf3c8da41ac2eb79ded04754737f553f46451228902504fef971eb",
+    "research/ltx098_text/encoder.cpp": "be727fc2645184560c25a2f6f90f30d780ae86b099716d67b2e8dd225b1009e6",
+    "research/ltx098_text/encoder.hpp": "592fe2f896174e69e807ce9a4343a2a1da54b523b3ccad0fa337f6d34b6cfbc1",
+    "research/ltx098_text/graph.cpp": "a17f97e9b932c302d3a7e8c1ca7020696ed765a4ddda51fefca9288d7b886190",
+    "research/ltx098_text/graph.hpp": "ae16035400caedb79f33db97497e6588f071901bd0935f7646e0e3b02bc7e36a",
+    "research/ltx098_text/licenses/llama-MIT.txt": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
+    "research/ltx098_text/NOTICE": "176bd96eed8972ba6a9c4bdebf9f19b166397c0eb50717be77547056ad974db4",
+    "research/ltx098_vae/CMakeLists.txt": "fcc7e89deb1b1bf4d1dc74c329225e4f6ceccd997a2370b8d06263293ec93b9f",
+    "research/ltx098_vae/driver.cpp": "f275cabc410dd07e38058902676e3ca9c4dc7a0684f4f39b5a386b74fb4d3604",
+    "research/ltx098_vae/NOTICE": "b5bec20058b46269f031462291b56fea8f5620359ec71f64353e76a9c4f6bcd3",
+    "research/soulx/dsp.hpp": "ef6a28cae0d2e72d1b84890437286b0ed8a20690c0ac07b2ddf8162ee2d2fd58",
+    "research/soulx_ort/android_log.cpp": "216f630761ff67a00cfe47db941338f45560fc45486ebcbdff196cf36dac3d04",
+    "research/soulx_ort/LICENSE-ONNX-RUNTIME-MIT": "c250d6278f0b47a6439fb7592b08b58a55eb9f535aa49a1db63211c3f982b674",
+    "research/soulx_ort/NOTICE": "69487267d86f7998917bc9f7e9b6d2e30e168f41c92369f41a33e225c0bfceb6",
+    "research/soulx_ort/runtime.hpp": "0586ad63c3210ec42d1c3cc956beb05614e56e9cb803632d596e57935689b2c8",
+    "research/soulx_ort/types.hpp": "f0822ae37dd26996501f2b69e4e1bb9404ad53903dd267ff793ee60d96f42de4",
+    "third_party/ltx098-pipeline-source-lock.json": "3fc857b18056ef284b17e656c4dfa2d79e320e8f5463277a40b054981190769b",
+    "third_party/ltx098-source-lock.json": "28acd99486f6ca76a06d038076175ac01ca55c7b1d8c3ba6dab9190291ac8779",
+    "third_party/ltx098-text-source-lock.json": "04b2f7892a4f047363fbaf3ba555682bf201c8320fa1cc7f4d5a68b2884512f4",
+    "third_party/ltx098-vae-source-lock.json": "201ac18ca78b381f810f0567ecd300a5bfda1b489893be56d28b30d6e6db2dcb",
+    "third_party/soulx-acoustic-source-lock.json": "b39e10c415c5f30d4e4adb52327e1e04df371407131f47617622da913b268ac5",
+    "tools/build_ltx098.py": "bf39449e38190a666093f6954d133a76da36d519817ca636703f030100d4faf8",
+    "tools/build_ltx098_app.py": "7749a112ef0d5f7109f1f78db056689e823137dfd3e0c0db7ca8c483c6f512a2",
+    "tools/fetch_ltx098_text.py": "55782095a1b941dc809b33966f62aeffda1b2ca0c719033610432ec00599b577"
+  }
+}

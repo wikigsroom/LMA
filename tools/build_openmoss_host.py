@@ -7,7 +7,7 @@ import subprocess
 
 from evidence import current, fingerprint
 from fetch_openmoss import validate_sources
-from openmoss_pipeline import guarded_pipeline, guarded_model
+from openmoss_pipeline import guarded_pipeline, guarded_model, guarded_delay, guarded_codec
 from fetch_sd15_trained import sha
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -15,7 +15,7 @@ ROOT=Path(__file__).resolve().parents[1]
 
 def inputs():
     return fingerprint('native/openmoss','research/openmoss_host','research/moss_nano_host/compat','research/qwen_tts_host/compat',
-        'tests/native/openmoss_mapping_test.cpp','research/sd_host/platform.hpp','third_party/openmoss-source-lock.json','tools/build_openmoss_host.py','tools/fetch_openmoss.py','tools/openmoss_pipeline.py')
+        'tests/native/openmoss_mapping_test.cpp','tests/native/openmoss_codec_memory_test.cpp','research/sd_host/platform.hpp','third_party/openmoss-source-lock.json','tools/build_openmoss_host.py','tools/fetch_openmoss.py','tools/openmoss_pipeline.py')
 
 
 def build():
@@ -24,7 +24,7 @@ def build():
     if not (ROOT/'build/native-src/openmoss/third_party/llama.cpp/ggml/include/ggml.h').is_file():raise RuntimeError('Explicitly fetch reviewed openmoss source first')
     source=validate_sources(lock)
     generated=ROOT/'build/openmoss-generated';generated.mkdir(parents=True,exist_ok=True)
-    for name,content in [('pipeline.cpp',guarded_pipeline(source)),('model.cpp',guarded_model(source))]:
+    for name,content in [('pipeline.cpp',guarded_pipeline(source)),('model.cpp',guarded_model(source)),('delay.cpp',guarded_delay(source)),('codec.cpp',guarded_codec(source))]:
         path=generated/name
         if not path.exists() or path.read_text(encoding='utf-8')!=content:path.write_text(content,encoding='utf-8')
     if sha(ROOT/'build/native-src/sd-cpp/thirdparty/json.hpp')!=lock['json_header_sha256']:raise ValueError('Different pinned JSON header')
@@ -48,8 +48,10 @@ def build():
             'GGML_BLAS','GGML_CUDA','GGML_VULKAN','GGML_OPENCL','GGML_METAL','GGML_BUILD_TESTS','GGML_BUILD_EXAMPLES','GGML_CCACHE']}
         commands=[[cmake,'-S',alias(ROOT/'research/openmoss_host'),'-B',alias(cache),'-G','Ninja','-DCMAKE_BUILD_TYPE=Release',
             '-DCMAKE_MAKE_PROGRAM='+alias(ROOT/'build/toolchain/cmake-3.31.6/bin/ninja.exe'),'-DROOT='+drive+'/',
-            '-DLMA_MAPPED_MODEL='+alias(generated/'model.cpp'),'-DLMA_GUARDED_PIPELINE='+alias(generated/'pipeline.cpp'),'-DOPENMOSS_SOURCE='+alias(source),'-DLMA_OPENMOSS_REVISION='+lock['revision']]+['-D'+key+'='+value for key,value in options.items()],
-            [cmake,'--build',alias(cache),'--target','lma_openmoss_host','lma_openmoss_mapping_test','-j','4']]
+            '-DLMA_MAPPED_MODEL='+alias(generated/'model.cpp'),'-DLMA_GUARDED_PIPELINE='+alias(generated/'pipeline.cpp'),
+            '-DLMA_GUARDED_DELAY='+alias(generated/'delay.cpp'),'-DLMA_GUARDED_CODEC='+alias(generated/'codec.cpp'),
+            '-DOPENMOSS_SOURCE='+alias(source),'-DLMA_OPENMOSS_REVISION='+lock['revision']]+['-D'+key+'='+value for key,value in options.items()],
+            [cmake,'--build',alias(cache),'--target','lma_openmoss_host','lma_openmoss_mapping_test','lma_openmoss_codec_memory_test','-j','4']]
         setup=os.environ.get('LMA_VCVARS',r'C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Auxiliary\Build\vcvars64.bat')
         for index,command in enumerate(commands):
             script=folder/('build-'+str(index)+'.cmd')
@@ -62,11 +64,12 @@ def build():
     current(before);validate_sources(lock)
     import shutil
     binary.parent.mkdir(parents=True,exist_ok=True)
-    for name in ['lma_openmoss_host.exe','lma_openmoss_mapping_test.exe']:
+    for name in ['lma_openmoss_host.exe','lma_openmoss_mapping_test.exe','lma_openmoss_codec_memory_test.exe']:
         shutil.copy2(cache/name,binary.parent/name)
     value=dict(schema='lma.openmoss-host-build/1',executable=binary.relative_to(ROOT).as_posix(),bytes=binary.stat().st_size,sha256=sha(binary),
         source_revision=lock['revision'],llama_revision=lock['llama_revision'],compiled_library_sources=10,compile_cache=cache.relative_to(ROOT).as_posix(),
         backend='cpu',private_weight_mapping=True,production_worker_source_unmodified=True,upstream_sources_unmodified=True,windows_crt_parent_environment_compatibility=True,
+        codec_encoder_scratch_released=True,official_delay_flush_and_extraction=True,
         bundled_model_data=False,physical_android=False,android_compiled=False,packaged_in_apk=False,model_executed=False,input_fingerprint=before)
     receipt.write_text(json.dumps(value,indent=2)+'\n',encoding='utf-8');return binary,value
 

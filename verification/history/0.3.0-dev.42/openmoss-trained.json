@@ -1,0 +1,5733 @@
+{
+  "schema": "lma.openmoss-trained-host/1",
+  "compilation": {
+    "schema": "lma.openmoss-host-build/1",
+    "executable": "build/openmoss-worker-host/8551e120780d970c/bin/lma_openmoss_host.exe",
+    "bytes": 3950592,
+    "sha256": "80b8eda3b843c3ff0c724bc6933798b802a7ae7b7f969829f5620351f122249a",
+    "source_revision": "bfb1f465e0a86fb5a52bbf93e67ceba4b7d0b4e1",
+    "llama_revision": "050ee92d04c2e1f639025786dea701c70e7d4204",
+    "compiled_library_sources": 10,
+    "compile_cache": "build/openmoss-host-cache/cpu-050ee92d04c2-U/bin",
+    "backend": "cpu",
+    "private_weight_mapping": true,
+    "production_worker_source_unmodified": true,
+    "upstream_sources_unmodified": true,
+    "windows_crt_parent_environment_compatibility": true,
+    "bundled_model_data": false,
+    "physical_android": false,
+    "android_compiled": false,
+    "packaged_in_apk": false,
+    "model_executed": false,
+    "input_fingerprint": {
+      "native/openmoss/CMakeLists.txt": "83c84c6b36b70b7307a8c1b1b801b9b26f685d72f8a1d929d78c6351d1a9965a",
+      "native/openmoss/generation_guard.hpp": "9a7b420629f5502b66e2a95608aed0ac97780924fead745e7da02ab6c60db2c6",
+      "native/openmoss/model_contract.hpp": "0476e93090a14822f5544a485fd5f83fdd66f9c40cd18eb7c28389e45f1ee7cb",
+      "native/openmoss/policy.hpp": "eb164dba961c9065b8dd62b272050bdbb45c4d303b8e5b2455ec5441134f1684",
+      "native/openmoss/private_weights.hpp": "7a5bfc3b4a2df5873628036af85b578630e43907fb009d6c23d2fe240264a16f",
+      "native/openmoss/wave.hpp": "aaf85f286b9e9d95de808aae2088dadac7b9b06e35f51f31c05e272f7a112e7f",
+      "native/openmoss/worker.cpp": "a807ff77d40a12daf020e17a5517ae47476dd980227150c933635d7a80a2da15",
+      "research/moss_nano_host/compat/sys/prctl.h": "9322b99bb80674fd2d42eb2b94f5ee5519ab443da0cdffd5ae938ef855907569",
+      "research/moss_nano_host/compat/unistd.h": "1c843add75719822f7371cfafd97af1abdc1ffc52938f5cd96dfd407630d9f96",
+      "research/openmoss_host/CMakeLists.txt": "07dfb210c4668b1c3709ef1fdba3f72fd4079416631d85973f01e9b47d5662e3",
+      "research/openmoss_host/NOTICE": "4a34c40dceab4256b15fbf7eb7c0bd6b73d76b4f043cb3956b59d05034e82cfd",
+      "research/qwen_tts_host/compat/sys/prctl.h": "0e2a8e106274e1330cb0a6240583a75a4eecfe182bf0e08d141984aaae2a3987",
+      "research/qwen_tts_host/compat/unistd.h": "64e960a64922193f97a70eccaf9e4bfed7f70c79c1cbcadd82a984efc3a2e8ec",
+      "research/sd_host/platform.hpp": "c377ed1b676707a469a192d96ae9b748802e1f62ad0674366b593b2b5b2daf67",
+      "tests/native/openmoss_mapping_test.cpp": "4f676f86b3d22dee7b4ed67facd62971b6096e4c3f6ba1aa8a9592b667bb0947",
+      "third_party/openmoss-source-lock.json": "df2d062fe174080e95d1f2f05ef8e133616a1827637e62d7195181f1c9256295",
+      "tools/build_openmoss_host.py": "7e18dbebb8b073e5a4a55b059798d025d9233425aa8576e0f28eb8c3ecaf7aea",
+      "tools/fetch_openmoss.py": "1c18d8c17de019a6b66321042cb14d61441d54fc370ef3f5547cacd627f1330b",
+      "tools/openmoss_pipeline.py": "483667858e0ce77742ae8242a15ae88bc8fdf76597d66191ad10ccdb172fbec3"
+    }
+  },
+  "acquisition": {
+    "schema": "lma.openmoss-trained-acquisition/1",
+    "components": [
+      {
+        "role": "model",
+        "repository": "ilintar/moss-tts-gguf",
+        "revision": "66bc8249cc3bae20547d312123f502332158c1d0",
+        "path": "moss-tts-1.5-q8_0.gguf",
+        "bytes": 9339597248,
+        "sha256": "83a7885739fe92113208c2abbb45985da30ac1a40c31d4b1a2e722a8ec5256ef",
+        "url": "https://huggingface.co/ilintar/moss-tts-gguf/resolve/66bc8249cc3bae20547d312123f502332158c1d0/moss-tts-1.5-q8_0.gguf"
+      },
+      {
+        "role": "extras",
+        "repository": "ilintar/moss-tts-gguf",
+        "revision": "66bc8249cc3bae20547d312123f502332158c1d0",
+        "path": "moss-tts-1.5-q8_0.extras.gguf",
+        "bytes": 4090992128,
+        "sha256": "d50f71cffd44e4b76db58e5be09155200b74c6058c5ebeac58e026926c9a72eb",
+        "url": "https://huggingface.co/ilintar/moss-tts-gguf/resolve/66bc8249cc3bae20547d312123f502332158c1d0/moss-tts-1.5-q8_0.extras.gguf"
+      }
+    ],
+    "explicit_download": true,
+    "download_origin": "https://hf-mirror.com",
+    "developer_assets_only": true,
+    "bundled_model_data": false,
+    "model_executed": false,
+    "input_fingerprint": {
+      "research/openmoss_trained/assets.json": "52cfd586e4de7c7859b61a83f1638c6183e962286deea9938ded161c01460107",
+      "tools/fetch_openmoss_trained.py": "eb1b7fea1796d2c09175176ed94568a2531e2d504b54324b8aebc42c596c88ec",
+      "tools/fetch_sd15_trained.py": "91392401d9739f15b14fa4e42b74f13bbdd719a382746541cc69952966e6f307",
+      "tools/fetch_wan_trained.py": "7dc5f8746f783774cfb1cda5ca2d5a22a2e957e4ab5490d6bcf7119ca90a31ef"
+    }
+  },
+  "acquisition_receipt_sha256": "1f9ab96780f0d8361c227e1a8d21855849aef1ca0b94e5c8eb4c96c30efb613f",
+  "info": {
+    "returncode": 0,
+    "seconds": 0.09089880000101402,
+    "events": [
+      {
+        "backend": "cpu",
+        "bundled_model_data": false,
+        "engine": "openmoss_native",
+        "generation_tested": false,
+        "revision": "bfb1f465e0a86fb5a52bbf93e67ceba4b7d0b4e1",
+        "schema": "lma.engine/1"
+      }
+    ],
+    "protocol_errors": [],
+    "logs_truncated": [
+      false,
+      false
+    ],
+    "timed_out": false,
+    "forced_host_termination": false,
+    "cancel_trigger": null,
+    "cancel_to_exit_seconds": null,
+    "android_cooperative_cancellation_tested": false,
+    "resources": {
+      "observed": true,
+      "samples": 5,
+      "interval_ms": 20,
+      "observed_peak_working_set_bytes": 6012928,
+      "sampled_peak_private_bytes": 2281472,
+      "gpu_memory_measured": false,
+      "physical_device_memory_measured": false
+    }
+  },
+  "jobs": [
+    {
+      "returncode": 0,
+      "seconds": 97.07419759999902,
+      "events": [
+        {
+          "event": "stage",
+          "stage": "validating_model_layout"
+        },
+        {
+          "event": "stage",
+          "stage": "loading_models"
+        },
+        {
+          "event": "stage",
+          "stage": "generating_speech"
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 0,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 1,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 2,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 3,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 4,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 5,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 6,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 7,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 8,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 9,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 10,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 11,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 12,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 13,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 14,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 15,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 16,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 17,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 18,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 19,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 20,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 21,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 22,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 23,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 24,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 25,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 26,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 27,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 28,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 29,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 30,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 31,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 32,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 33,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 34,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 35,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 36,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 37,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 38,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 39,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 40,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 41,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 42,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 43,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 44,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 45,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 46,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 47,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 48,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 49,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 50,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 51,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 52,
+          "steps": 375
+        },
+        {
+          "event": "stage",
+          "stage": "decoding_audio"
+        },
+        {
+          "event": "stage",
+          "stage": "saving_audio"
+        },
+        {
+          "details": {
+            "audioDurationSeconds": 1.36,
+            "audioFramesIncludingPrefix": 17,
+            "audioSamples": 32640,
+            "auxMappedFileBytes": 13430589376,
+            "auxMappedFiles": 2,
+            "auxMappedTensorBytes": 5365936128,
+            "auxMappedTensors": 1665,
+            "auxMappedViewBytes": 5366020032,
+            "auxWeightMappingsReleased": true,
+            "auxWeightStorage": "private_file_mapping",
+            "backend": "cpu",
+            "channels": 1,
+            "codecDecodeMs": 926.5449,
+            "continuationPrefixFrames": 0,
+            "formattedInputFrames": 61,
+            "generationMs": 28505.2116,
+            "generationSteps": 52,
+            "mappedBytesAreResidentMemory": false,
+            "modelLoadMs": 1546,
+            "pipelineMs": 95901,
+            "pipelineRTF": 70.51544117647057,
+            "prefillMs": 64642.6434,
+            "referenceEncodeMs": 0,
+            "referenceFrames": 0,
+            "referenceSpeakers": 0,
+            "sampleRate": 24000,
+            "stopReason": "end_of_speech",
+            "truncated": false
+          },
+          "event": "execution"
+        },
+        {
+          "event": "complete",
+          "output": "U:/build/openmoss-trained-tests/run-1793373968567657100/english.wav"
+        }
+      ],
+      "protocol_errors": [],
+      "logs_truncated": [
+        false,
+        false
+      ],
+      "timed_out": false,
+      "forced_host_termination": false,
+      "cancel_trigger": null,
+      "cancel_to_exit_seconds": null,
+      "android_cooperative_cancellation_tested": false,
+      "resources": {
+        "observed": true,
+        "samples": 4696,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 10889887744,
+        "sampled_peak_private_bytes": 6545608704,
+        "gpu_memory_measured": false,
+        "physical_device_memory_measured": false
+      },
+      "name": "english",
+      "request_sha256": "1b1edbad91bc4b79e1a56852f820bdc608c490a3c108161a5250d4d2960b4a8b",
+      "parameters": {
+        "threads": 4,
+        "seed": 1234,
+        "maxInputTokens": 1024,
+        "maxNewTokens": 375,
+        "textTemperature": 1,
+        "audioTemperature": 1.7,
+        "audioTopP": 0.8,
+        "audioTopK": 25,
+        "audioRepetitionPenalty": 1,
+        "voiceInstruction": "",
+        "language": "English"
+      },
+      "prompt": "Hello world.",
+      "output_exists": true,
+      "execution": {
+        "audioDurationSeconds": 1.36,
+        "audioFramesIncludingPrefix": 17,
+        "audioSamples": 32640,
+        "auxMappedFileBytes": 13430589376,
+        "auxMappedFiles": 2,
+        "auxMappedTensorBytes": 5365936128,
+        "auxMappedTensors": 1665,
+        "auxMappedViewBytes": 5366020032,
+        "auxWeightMappingsReleased": true,
+        "auxWeightStorage": "private_file_mapping",
+        "backend": "cpu",
+        "channels": 1,
+        "codecDecodeMs": 926.5449,
+        "continuationPrefixFrames": 0,
+        "formattedInputFrames": 61,
+        "generationMs": 28505.2116,
+        "generationSteps": 52,
+        "mappedBytesAreResidentMemory": false,
+        "modelLoadMs": 1546,
+        "pipelineMs": 95901,
+        "pipelineRTF": 70.51544117647057,
+        "prefillMs": 64642.6434,
+        "referenceEncodeMs": 0,
+        "referenceFrames": 0,
+        "referenceSpeakers": 0,
+        "sampleRate": 24000,
+        "stopReason": "end_of_speech",
+        "truncated": false
+      },
+      "passed": true,
+      "sampled_progress": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52
+      ],
+      "audio": {
+        "format": "WAV",
+        "channels": 1,
+        "sample_width": 2,
+        "sample_rate": 24000,
+        "samples": 32640,
+        "seconds": 1.36,
+        "rms": 0.05252800224000416,
+        "peak": 0.3858642578125,
+        "clipping_fraction": 0.0,
+        "nonzero_samples": 31209,
+        "bytes": 65324,
+        "sha256": "403d4aa9d0341c3cd8df4619311389941fea5326ab7fa77316d2c31b3fb24ac1"
+      },
+      "pre_mapping_pcm_bitwise_identical": true,
+      "capture_origin": {
+        "report": "verification/research/openmoss-reference-issue/first-run.json",
+        "report_sha256": "a396c9fb89d975a4f0466a3b3440fc8a488d1606bdc3b23a58bcced7ca71ed23",
+        "original_capture_directory": "build/openmoss-trained-tests/run-1793373968567657100",
+        "original_capture_sha256": "80aef8d9020b56b66e2a3dc31a83fe234395d154e8ae28a16435bb187dd879c5",
+        "reexecuted": false,
+        "native_build_and_exact_request_unchanged": true
+      },
+      "business_passed": true,
+      "natural_completion_passed": true
+    },
+    {
+      "returncode": 0,
+      "seconds": 89.39097459999903,
+      "events": [
+        {
+          "event": "stage",
+          "stage": "validating_model_layout"
+        },
+        {
+          "event": "stage",
+          "stage": "loading_models"
+        },
+        {
+          "event": "stage",
+          "stage": "generating_speech"
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 0,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 1,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 2,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 3,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 4,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 5,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 6,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 7,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 8,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 9,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 10,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 11,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 12,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 13,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 14,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 15,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 16,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 17,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 18,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 19,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 20,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 21,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 22,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 23,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 24,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 25,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 26,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 27,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 28,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 29,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 30,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 31,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 32,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 33,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 34,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 35,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 36,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 37,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 38,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 39,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 40,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 41,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 42,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 43,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 44,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 45,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 46,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 47,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 48,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 49,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 50,
+          "steps": 375
+        },
+        {
+          "event": "stage",
+          "stage": "decoding_audio"
+        },
+        {
+          "event": "stage",
+          "stage": "saving_audio"
+        },
+        {
+          "details": {
+            "audioDurationSeconds": 1.2,
+            "audioFramesIncludingPrefix": 15,
+            "audioSamples": 28800,
+            "auxMappedFileBytes": 13430589376,
+            "auxMappedFiles": 2,
+            "auxMappedTensorBytes": 5365936128,
+            "auxMappedTensors": 1665,
+            "auxMappedViewBytes": 5366020032,
+            "auxWeightMappingsReleased": true,
+            "auxWeightStorage": "private_file_mapping",
+            "backend": "cpu",
+            "channels": 1,
+            "codecDecodeMs": 752.8469,
+            "continuationPrefixFrames": 0,
+            "formattedInputFrames": 62,
+            "generationMs": 47780.3353,
+            "generationSteps": 50,
+            "mappedBytesAreResidentMemory": false,
+            "modelLoadMs": 30716,
+            "pipelineMs": 87011,
+            "pipelineRTF": 72.50916666666667,
+            "prefillMs": 7509.036499999999,
+            "referenceEncodeMs": 0,
+            "referenceFrames": 0,
+            "referenceSpeakers": 0,
+            "sampleRate": 24000,
+            "stopReason": "end_of_speech",
+            "truncated": false
+          },
+          "event": "execution"
+        },
+        {
+          "event": "complete",
+          "output": "U:/build/openmoss-trained-tests/run-1793373968567657100/chinese.wav"
+        }
+      ],
+      "protocol_errors": [],
+      "logs_truncated": [
+        false,
+        false
+      ],
+      "timed_out": false,
+      "forced_host_termination": false,
+      "cancel_trigger": null,
+      "cancel_to_exit_seconds": null,
+      "android_cooperative_cancellation_tested": false,
+      "resources": {
+        "observed": true,
+        "samples": 4279,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 10888978432,
+        "sampled_peak_private_bytes": 6545686528,
+        "gpu_memory_measured": false,
+        "physical_device_memory_measured": false
+      },
+      "name": "chinese",
+      "request_sha256": "b34480186c900c04555861e5cfc3a0aafccccdc3d008835bd4e5ccb8ce7670de",
+      "parameters": {
+        "threads": 4,
+        "seed": 1234,
+        "maxInputTokens": 1024,
+        "maxNewTokens": 375,
+        "textTemperature": 1,
+        "audioTemperature": 1.7,
+        "audioTopP": 0.8,
+        "audioTopK": 25,
+        "audioRepetitionPenalty": 1,
+        "voiceInstruction": "",
+        "language": "Chinese"
+      },
+      "prompt": "你好，世界。",
+      "output_exists": true,
+      "execution": {
+        "audioDurationSeconds": 1.2,
+        "audioFramesIncludingPrefix": 15,
+        "audioSamples": 28800,
+        "auxMappedFileBytes": 13430589376,
+        "auxMappedFiles": 2,
+        "auxMappedTensorBytes": 5365936128,
+        "auxMappedTensors": 1665,
+        "auxMappedViewBytes": 5366020032,
+        "auxWeightMappingsReleased": true,
+        "auxWeightStorage": "private_file_mapping",
+        "backend": "cpu",
+        "channels": 1,
+        "codecDecodeMs": 752.8469,
+        "continuationPrefixFrames": 0,
+        "formattedInputFrames": 62,
+        "generationMs": 47780.3353,
+        "generationSteps": 50,
+        "mappedBytesAreResidentMemory": false,
+        "modelLoadMs": 30716,
+        "pipelineMs": 87011,
+        "pipelineRTF": 72.50916666666667,
+        "prefillMs": 7509.036499999999,
+        "referenceEncodeMs": 0,
+        "referenceFrames": 0,
+        "referenceSpeakers": 0,
+        "sampleRate": 24000,
+        "stopReason": "end_of_speech",
+        "truncated": false
+      },
+      "passed": true,
+      "sampled_progress": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50
+      ],
+      "audio": {
+        "format": "WAV",
+        "channels": 1,
+        "sample_width": 2,
+        "sample_rate": 24000,
+        "samples": 28800,
+        "seconds": 1.2,
+        "rms": 0.05762714857762402,
+        "peak": 0.388214111328125,
+        "clipping_fraction": 0.0,
+        "nonzero_samples": 25349,
+        "bytes": 57644,
+        "sha256": "7575ef696518c2247ae5b04f4682aee01f078805bb73fe45c1567a5b903d9311"
+      },
+      "pre_mapping_pcm_bitwise_identical": true,
+      "capture_origin": {
+        "report": "verification/research/openmoss-reference-issue/first-run.json",
+        "report_sha256": "a396c9fb89d975a4f0466a3b3440fc8a488d1606bdc3b23a58bcced7ca71ed23",
+        "original_capture_directory": "build/openmoss-trained-tests/run-1793373968567657100",
+        "original_capture_sha256": "41c8f5fd053ec485051019e29daa12ca01cd18d0d75bf81b9f42b61d97802f51",
+        "reexecuted": false,
+        "native_build_and_exact_request_unchanged": true
+      },
+      "business_passed": true,
+      "natural_completion_passed": true
+    },
+    {
+      "returncode": 0,
+      "seconds": 634.2699602999928,
+      "events": [
+        {
+          "event": "stage",
+          "stage": "validating_model_layout"
+        },
+        {
+          "event": "stage",
+          "stage": "loading_models"
+        },
+        {
+          "event": "stage",
+          "stage": "encoding_reference"
+        },
+        {
+          "event": "stage",
+          "stage": "generating_speech"
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 0,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 1,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 2,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 3,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 4,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 5,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 6,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 7,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 8,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 9,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 10,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 11,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 12,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 13,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 14,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 15,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 16,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 17,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 18,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 19,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 20,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 21,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 22,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 23,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 24,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 25,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 26,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 27,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 28,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 29,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 30,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 31,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 32,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 33,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 34,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 35,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 36,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 37,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 38,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 39,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 40,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 41,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 42,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 43,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 44,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 45,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 46,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 47,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 48,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 49,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 50,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 51,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 52,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 53,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 54,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 55,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 56,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 57,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 58,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 59,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 60,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 61,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 62,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 63,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 64,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 65,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 66,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 67,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 68,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 69,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 70,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 71,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 72,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 73,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 74,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 75,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 76,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 77,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 78,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 79,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 80,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 81,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 82,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 83,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 84,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 85,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 86,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 87,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 88,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 89,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 90,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 91,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 92,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 93,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 94,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 95,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 96,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 97,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 98,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 99,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 100,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 101,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 102,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 103,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 104,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 105,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 106,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 107,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 108,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 109,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 110,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 111,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 112,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 113,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 114,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 115,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 116,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 117,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 118,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 119,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 120,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 121,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 122,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 123,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 124,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 125,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 126,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 127,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 128,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 129,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 130,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 131,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 132,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 133,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 134,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 135,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 136,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 137,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 138,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 139,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 140,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 141,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 142,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 143,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 144,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 145,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 146,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 147,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 148,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 149,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 150,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 151,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 152,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 153,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 154,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 155,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 156,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 157,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 158,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 159,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 160,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 161,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 162,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 163,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 164,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 165,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 166,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 167,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 168,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 169,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 170,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 171,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 172,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 173,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 174,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 175,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 176,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 177,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 178,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 179,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 180,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 181,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 182,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 183,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 184,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 185,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 186,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 187,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 188,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 189,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 190,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 191,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 192,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 193,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 194,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 195,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 196,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 197,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 198,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 199,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 200,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 201,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 202,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 203,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 204,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 205,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 206,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 207,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 208,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 209,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 210,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 211,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 212,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 213,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 214,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 215,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 216,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 217,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 218,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 219,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 220,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 221,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 222,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 223,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 224,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 225,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 226,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 227,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 228,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 229,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 230,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 231,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 232,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 233,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 234,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 235,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 236,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 237,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 238,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 239,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 240,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 241,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 242,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 243,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 244,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 245,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 246,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 247,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 248,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 249,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 250,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 251,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 252,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 253,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 254,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 255,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 256,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 257,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 258,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 259,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 260,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 261,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 262,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 263,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 264,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 265,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 266,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 267,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 268,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 269,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 270,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 271,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 272,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 273,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 274,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 275,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 276,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 277,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 278,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 279,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 280,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 281,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 282,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 283,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 284,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 285,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 286,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 287,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 288,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 289,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 290,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 291,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 292,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 293,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 294,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 295,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 296,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 297,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 298,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 299,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 300,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 301,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 302,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 303,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 304,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 305,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 306,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 307,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 308,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 309,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 310,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 311,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 312,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 313,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 314,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 315,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 316,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 317,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 318,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 319,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 320,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 321,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 322,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 323,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 324,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 325,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 326,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 327,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 328,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 329,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 330,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 331,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 332,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 333,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 334,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 335,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 336,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 337,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 338,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 339,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 340,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 341,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 342,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 343,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 344,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 345,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 346,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 347,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 348,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 349,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 350,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 351,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 352,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 353,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 354,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 355,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 356,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 357,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 358,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 359,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 360,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 361,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 362,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 363,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 364,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 365,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 366,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 367,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 368,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 369,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 370,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 371,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 372,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 373,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 374,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 375,
+          "steps": 375
+        },
+        {
+          "event": "stage",
+          "stage": "decoding_audio"
+        },
+        {
+          "event": "stage",
+          "stage": "saving_audio"
+        },
+        {
+          "details": {
+            "audioDurationSeconds": 27.44,
+            "audioFramesIncludingPrefix": 343,
+            "audioSamples": 658560,
+            "auxMappedFileBytes": 13430589376,
+            "auxMappedFiles": 2,
+            "auxMappedTensorBytes": 5365936128,
+            "auxMappedTensors": 1665,
+            "auxMappedViewBytes": 5366020032,
+            "auxWeightMappingsReleased": true,
+            "auxWeightStorage": "private_file_mapping",
+            "backend": "cpu",
+            "channels": 1,
+            "codecDecodeMs": 78284.87869999999,
+            "continuationPrefixFrames": 0,
+            "formattedInputFrames": 134,
+            "generationMs": 321005.40790000005,
+            "generationSteps": 375,
+            "mappedBytesAreResidentMemory": false,
+            "modelLoadMs": 1352,
+            "pipelineMs": 632937,
+            "pipelineRTF": 23.06621720116618,
+            "prefillMs": 29990.9499,
+            "referenceEncodeMs": 201655,
+            "referenceFrames": 38,
+            "referenceSpeakers": 1,
+            "sampleRate": 24000,
+            "stopReason": "max_new_tokens",
+            "truncated": true
+          },
+          "event": "execution"
+        },
+        {
+          "event": "complete",
+          "output": "U:/build/openmoss-trained-tests/run-1793373968567657100/reference.wav"
+        }
+      ],
+      "protocol_errors": [],
+      "logs_truncated": [
+        false,
+        false
+      ],
+      "timed_out": false,
+      "forced_host_termination": false,
+      "cancel_trigger": null,
+      "cancel_to_exit_seconds": null,
+      "android_cooperative_cancellation_tested": false,
+      "resources": {
+        "observed": true,
+        "samples": 30049,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 12933636096,
+        "sampled_peak_private_bytes": 6688452608,
+        "gpu_memory_measured": false,
+        "physical_device_memory_measured": false
+      },
+      "name": "reference",
+      "request_sha256": "a4c40d1291d1460a33b1e81cb4b97fe703c8ad9c2bcd73364efe20617fb892fd",
+      "parameters": {
+        "threads": 4,
+        "seed": 1234,
+        "maxInputTokens": 1024,
+        "maxNewTokens": 375,
+        "textTemperature": 1,
+        "audioTemperature": 1.7,
+        "audioTopP": 0.8,
+        "audioTopK": 25,
+        "audioRepetitionPenalty": 1,
+        "voiceInstruction": "",
+        "language": "English"
+      },
+      "prompt": "Hello world.",
+      "output_exists": true,
+      "execution": {
+        "audioDurationSeconds": 27.44,
+        "audioFramesIncludingPrefix": 343,
+        "audioSamples": 658560,
+        "auxMappedFileBytes": 13430589376,
+        "auxMappedFiles": 2,
+        "auxMappedTensorBytes": 5365936128,
+        "auxMappedTensors": 1665,
+        "auxMappedViewBytes": 5366020032,
+        "auxWeightMappingsReleased": true,
+        "auxWeightStorage": "private_file_mapping",
+        "backend": "cpu",
+        "channels": 1,
+        "codecDecodeMs": 78284.87869999999,
+        "continuationPrefixFrames": 0,
+        "formattedInputFrames": 134,
+        "generationMs": 321005.40790000005,
+        "generationSteps": 375,
+        "mappedBytesAreResidentMemory": false,
+        "modelLoadMs": 1352,
+        "pipelineMs": 632937,
+        "pipelineRTF": 23.06621720116618,
+        "prefillMs": 29990.9499,
+        "referenceEncodeMs": 201655,
+        "referenceFrames": 38,
+        "referenceSpeakers": 1,
+        "sampleRate": 24000,
+        "stopReason": "max_new_tokens",
+        "truncated": true
+      },
+      "passed": false,
+      "sampled_progress": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109,
+        110,
+        111,
+        112,
+        113,
+        114,
+        115,
+        116,
+        117,
+        118,
+        119,
+        120,
+        121,
+        122,
+        123,
+        124,
+        125,
+        126,
+        127,
+        128,
+        129,
+        130,
+        131,
+        132,
+        133,
+        134,
+        135,
+        136,
+        137,
+        138,
+        139,
+        140,
+        141,
+        142,
+        143,
+        144,
+        145,
+        146,
+        147,
+        148,
+        149,
+        150,
+        151,
+        152,
+        153,
+        154,
+        155,
+        156,
+        157,
+        158,
+        159,
+        160,
+        161,
+        162,
+        163,
+        164,
+        165,
+        166,
+        167,
+        168,
+        169,
+        170,
+        171,
+        172,
+        173,
+        174,
+        175,
+        176,
+        177,
+        178,
+        179,
+        180,
+        181,
+        182,
+        183,
+        184,
+        185,
+        186,
+        187,
+        188,
+        189,
+        190,
+        191,
+        192,
+        193,
+        194,
+        195,
+        196,
+        197,
+        198,
+        199,
+        200,
+        201,
+        202,
+        203,
+        204,
+        205,
+        206,
+        207,
+        208,
+        209,
+        210,
+        211,
+        212,
+        213,
+        214,
+        215,
+        216,
+        217,
+        218,
+        219,
+        220,
+        221,
+        222,
+        223,
+        224,
+        225,
+        226,
+        227,
+        228,
+        229,
+        230,
+        231,
+        232,
+        233,
+        234,
+        235,
+        236,
+        237,
+        238,
+        239,
+        240,
+        241,
+        242,
+        243,
+        244,
+        245,
+        246,
+        247,
+        248,
+        249,
+        250,
+        251,
+        252,
+        253,
+        254,
+        255,
+        256,
+        257,
+        258,
+        259,
+        260,
+        261,
+        262,
+        263,
+        264,
+        265,
+        266,
+        267,
+        268,
+        269,
+        270,
+        271,
+        272,
+        273,
+        274,
+        275,
+        276,
+        277,
+        278,
+        279,
+        280,
+        281,
+        282,
+        283,
+        284,
+        285,
+        286,
+        287,
+        288,
+        289,
+        290,
+        291,
+        292,
+        293,
+        294,
+        295,
+        296,
+        297,
+        298,
+        299,
+        300,
+        301,
+        302,
+        303,
+        304,
+        305,
+        306,
+        307,
+        308,
+        309,
+        310,
+        311,
+        312,
+        313,
+        314,
+        315,
+        316,
+        317,
+        318,
+        319,
+        320,
+        321,
+        322,
+        323,
+        324,
+        325,
+        326,
+        327,
+        328,
+        329,
+        330,
+        331,
+        332,
+        333,
+        334,
+        335,
+        336,
+        337,
+        338,
+        339,
+        340,
+        341,
+        342,
+        343,
+        344,
+        345,
+        346,
+        347,
+        348,
+        349,
+        350,
+        351,
+        352,
+        353,
+        354,
+        355,
+        356,
+        357,
+        358,
+        359,
+        360,
+        361,
+        362,
+        363,
+        364,
+        365,
+        366,
+        367,
+        368,
+        369,
+        370,
+        371,
+        372,
+        373,
+        374,
+        375
+      ],
+      "audio": {
+        "format": "WAV",
+        "channels": 1,
+        "sample_width": 2,
+        "sample_rate": 24000,
+        "samples": 658560,
+        "seconds": 27.44,
+        "rms": 0.09038358374864792,
+        "peak": 0.815643310546875,
+        "clipping_fraction": 0.0,
+        "nonzero_samples": 598518,
+        "bytes": 1317164,
+        "sha256": "6a6080b55f241563f95ff023c0c4c609127453d6a388f0ac5d94b28dd8e06808"
+      },
+      "capture_origin": {
+        "report": "verification/research/openmoss-reference-issue/first-run.json",
+        "report_sha256": "a396c9fb89d975a4f0466a3b3440fc8a488d1606bdc3b23a58bcced7ca71ed23",
+        "original_capture_directory": "build/openmoss-trained-tests/run-1793373968567657100",
+        "original_capture_sha256": "843d8454f131d2fc7dfacab45c4e4c5a04369c95750ffa1316af199f2f331d02",
+        "reexecuted": false,
+        "native_build_and_exact_request_unchanged": true
+      },
+      "business_passed": true,
+      "natural_completion_passed": false
+    },
+    {
+      "returncode": 0,
+      "seconds": 651.1545850999973,
+      "events": [
+        {
+          "event": "stage",
+          "stage": "validating_model_layout"
+        },
+        {
+          "event": "stage",
+          "stage": "loading_models"
+        },
+        {
+          "event": "stage",
+          "stage": "generating_speech"
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 0,
+          "steps": 40
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 1,
+          "steps": 40
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 2,
+          "steps": 40
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 3,
+          "steps": 40
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 4,
+          "steps": 40
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 5,
+          "steps": 40
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 6,
+          "steps": 40
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 7,
+          "steps": 40
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 8,
+          "steps": 40
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 9,
+          "steps": 40
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 10,
+          "steps": 40
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 11,
+          "steps": 40
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 12,
+          "steps": 40
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 13,
+          "steps": 40
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 14,
+          "steps": 40
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 15,
+          "steps": 40
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 16,
+          "steps": 40
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 17,
+          "steps": 40
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 18,
+          "steps": 40
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 19,
+          "steps": 40
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 20,
+          "steps": 40
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 21,
+          "steps": 40
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 22,
+          "steps": 40
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 23,
+          "steps": 40
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 24,
+          "steps": 40
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 25,
+          "steps": 40
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 26,
+          "steps": 40
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 27,
+          "steps": 40
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 28,
+          "steps": 40
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 29,
+          "steps": 40
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 30,
+          "steps": 40
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 31,
+          "steps": 40
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 32,
+          "steps": 40
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 33,
+          "steps": 40
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 34,
+          "steps": 40
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 35,
+          "steps": 40
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 36,
+          "steps": 40
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 37,
+          "steps": 40
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 38,
+          "steps": 40
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 39,
+          "steps": 40
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 40,
+          "steps": 40
+        },
+        {
+          "event": "stage",
+          "stage": "decoding_audio"
+        },
+        {
+          "event": "stage",
+          "stage": "saving_audio"
+        },
+        {
+          "details": {
+            "audioDurationSeconds": 0.64,
+            "audioFramesIncludingPrefix": 8,
+            "audioSamples": 15360,
+            "auxMappedFileBytes": 13430589376,
+            "auxMappedFiles": 2,
+            "auxMappedTensorBytes": 5365936128,
+            "auxMappedTensors": 1665,
+            "auxMappedViewBytes": 5366020032,
+            "auxWeightMappingsReleased": true,
+            "auxWeightStorage": "private_file_mapping",
+            "backend": "cpu",
+            "channels": 1,
+            "codecDecodeMs": 325449.0097,
+            "continuationPrefixFrames": 0,
+            "formattedInputFrames": 69,
+            "generationMs": 56361.8269,
+            "generationSteps": 40,
+            "mappedBytesAreResidentMemory": false,
+            "modelLoadMs": 132332,
+            "pipelineMs": 648566,
+            "pipelineRTF": 1013.384375,
+            "prefillMs": 133571.1125,
+            "referenceEncodeMs": 0,
+            "referenceFrames": 0,
+            "referenceSpeakers": 0,
+            "sampleRate": 24000,
+            "stopReason": "max_new_tokens",
+            "truncated": true
+          },
+          "event": "execution"
+        },
+        {
+          "event": "complete",
+          "output": "U:/build/openmoss-trained-tests/run-1793375906269017700/frame-limit.wav"
+        }
+      ],
+      "protocol_errors": [],
+      "logs_truncated": [
+        false,
+        false
+      ],
+      "timed_out": false,
+      "forced_host_termination": false,
+      "cancel_trigger": null,
+      "cancel_to_exit_seconds": null,
+      "android_cooperative_cancellation_tested": false,
+      "resources": {
+        "observed": true,
+        "samples": 31573,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 10899730432,
+        "sampled_peak_private_bytes": 6549778432,
+        "gpu_memory_measured": false,
+        "physical_device_memory_measured": false
+      },
+      "capture_origin": {
+        "reexecuted": true,
+        "native_build_and_exact_request_unchanged": true
+      },
+      "name": "frame-limit",
+      "request_sha256": "f151a82a5584ebf724adb447aa7e392c36b1c13251dd772ccf27905524ac54f7",
+      "parameters": {
+        "threads": 4,
+        "seed": 1234,
+        "maxInputTokens": 1024,
+        "maxNewTokens": 40,
+        "textTemperature": 1,
+        "audioTemperature": 1.7,
+        "audioTopP": 0.8,
+        "audioTopK": 25,
+        "audioRepetitionPenalty": 1,
+        "voiceInstruction": "",
+        "language": "English"
+      },
+      "prompt": "This sentence is deliberately longer than the selected output budget.",
+      "output_exists": true,
+      "execution": {
+        "audioDurationSeconds": 0.64,
+        "audioFramesIncludingPrefix": 8,
+        "audioSamples": 15360,
+        "auxMappedFileBytes": 13430589376,
+        "auxMappedFiles": 2,
+        "auxMappedTensorBytes": 5365936128,
+        "auxMappedTensors": 1665,
+        "auxMappedViewBytes": 5366020032,
+        "auxWeightMappingsReleased": true,
+        "auxWeightStorage": "private_file_mapping",
+        "backend": "cpu",
+        "channels": 1,
+        "codecDecodeMs": 325449.0097,
+        "continuationPrefixFrames": 0,
+        "formattedInputFrames": 69,
+        "generationMs": 56361.8269,
+        "generationSteps": 40,
+        "mappedBytesAreResidentMemory": false,
+        "modelLoadMs": 132332,
+        "pipelineMs": 648566,
+        "pipelineRTF": 1013.384375,
+        "prefillMs": 133571.1125,
+        "referenceEncodeMs": 0,
+        "referenceFrames": 0,
+        "referenceSpeakers": 0,
+        "sampleRate": 24000,
+        "stopReason": "max_new_tokens",
+        "truncated": true
+      },
+      "passed": true,
+      "sampled_progress": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40
+      ],
+      "audio": {
+        "format": "WAV",
+        "channels": 1,
+        "sample_width": 2,
+        "sample_rate": 24000,
+        "samples": 15360,
+        "seconds": 0.64,
+        "rms": 0.08534815250886062,
+        "peak": 0.999969482421875,
+        "clipping_fraction": 0.00013020833333333333,
+        "nonzero_samples": 13640,
+        "bytes": 30764,
+        "sha256": "ff1a62c615baad8f9c6af6ba0a70b1b02763e82a03d919b04ae8d58997f0ff55"
+      },
+      "business_passed": true,
+      "natural_completion_passed": false
+    },
+    {
+      "returncode": 0,
+      "seconds": 62.27398529999482,
+      "events": [
+        {
+          "event": "stage",
+          "stage": "validating_model_layout"
+        },
+        {
+          "event": "stage",
+          "stage": "loading_models"
+        },
+        {
+          "event": "stage",
+          "stage": "generating_speech"
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 0,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 1,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 2,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 3,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 4,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 5,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 6,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 7,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 8,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 9,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 10,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 11,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 12,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 13,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 14,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 15,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 16,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 17,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 18,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 19,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 20,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 21,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 22,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 23,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 24,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 25,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 26,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 27,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 28,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 29,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 30,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 31,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 32,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 33,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 34,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 35,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 36,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 37,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 38,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 39,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 40,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 41,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 42,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 43,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 44,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 45,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 46,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 47,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 48,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 49,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 50,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 51,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 52,
+          "steps": 375
+        },
+        {
+          "event": "stage",
+          "stage": "decoding_audio"
+        },
+        {
+          "event": "stage",
+          "stage": "saving_audio"
+        },
+        {
+          "details": {
+            "audioDurationSeconds": 1.36,
+            "audioFramesIncludingPrefix": 17,
+            "audioSamples": 32640,
+            "auxMappedFileBytes": 13430589376,
+            "auxMappedFiles": 2,
+            "auxMappedTensorBytes": 5365936128,
+            "auxMappedTensors": 1665,
+            "auxMappedViewBytes": 5366020032,
+            "auxWeightMappingsReleased": true,
+            "auxWeightStorage": "private_file_mapping",
+            "backend": "cpu",
+            "channels": 1,
+            "codecDecodeMs": 1094.088,
+            "continuationPrefixFrames": 0,
+            "formattedInputFrames": 61,
+            "generationMs": 49060.817299999995,
+            "generationSteps": 52,
+            "mappedBytesAreResidentMemory": false,
+            "modelLoadMs": 1410,
+            "pipelineMs": 60560,
+            "pipelineRTF": 44.529411764705884,
+            "prefillMs": 8614.5849,
+            "referenceEncodeMs": 0,
+            "referenceFrames": 0,
+            "referenceSpeakers": 0,
+            "sampleRate": 24000,
+            "stopReason": "end_of_speech",
+            "truncated": false
+          },
+          "event": "execution"
+        },
+        {
+          "event": "complete",
+          "output": "U:/build/openmoss-trained-tests/run-1793375906269017700/recovery.wav"
+        }
+      ],
+      "protocol_errors": [],
+      "logs_truncated": [
+        false,
+        false
+      ],
+      "timed_out": false,
+      "forced_host_termination": false,
+      "cancel_trigger": null,
+      "cancel_to_exit_seconds": null,
+      "android_cooperative_cancellation_tested": false,
+      "resources": {
+        "observed": true,
+        "samples": 2937,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 10889101312,
+        "sampled_peak_private_bytes": 6544297984,
+        "gpu_memory_measured": false,
+        "physical_device_memory_measured": false
+      },
+      "capture_origin": {
+        "reexecuted": true,
+        "native_build_and_exact_request_unchanged": true
+      },
+      "name": "recovery",
+      "request_sha256": "55fc02c4d8d487be0a6ca7062146084a0a2c2b0b4670b1fead588e8980ab44c9",
+      "parameters": {
+        "threads": 4,
+        "seed": 1234,
+        "maxInputTokens": 1024,
+        "maxNewTokens": 375,
+        "textTemperature": 1,
+        "audioTemperature": 1.7,
+        "audioTopP": 0.8,
+        "audioTopK": 25,
+        "audioRepetitionPenalty": 1,
+        "voiceInstruction": "",
+        "language": "English"
+      },
+      "prompt": "Hello world.",
+      "output_exists": true,
+      "execution": {
+        "audioDurationSeconds": 1.36,
+        "audioFramesIncludingPrefix": 17,
+        "audioSamples": 32640,
+        "auxMappedFileBytes": 13430589376,
+        "auxMappedFiles": 2,
+        "auxMappedTensorBytes": 5365936128,
+        "auxMappedTensors": 1665,
+        "auxMappedViewBytes": 5366020032,
+        "auxWeightMappingsReleased": true,
+        "auxWeightStorage": "private_file_mapping",
+        "backend": "cpu",
+        "channels": 1,
+        "codecDecodeMs": 1094.088,
+        "continuationPrefixFrames": 0,
+        "formattedInputFrames": 61,
+        "generationMs": 49060.817299999995,
+        "generationSteps": 52,
+        "mappedBytesAreResidentMemory": false,
+        "modelLoadMs": 1410,
+        "pipelineMs": 60560,
+        "pipelineRTF": 44.529411764705884,
+        "prefillMs": 8614.5849,
+        "referenceEncodeMs": 0,
+        "referenceFrames": 0,
+        "referenceSpeakers": 0,
+        "sampleRate": 24000,
+        "stopReason": "end_of_speech",
+        "truncated": false
+      },
+      "passed": true,
+      "sampled_progress": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52
+      ],
+      "audio": {
+        "format": "WAV",
+        "channels": 1,
+        "sample_width": 2,
+        "sample_rate": 24000,
+        "samples": 32640,
+        "seconds": 1.36,
+        "rms": 0.05252800224000416,
+        "peak": 0.3858642578125,
+        "clipping_fraction": 0.0,
+        "nonzero_samples": 31209,
+        "bytes": 65324,
+        "sha256": "403d4aa9d0341c3cd8df4619311389941fea5326ab7fa77316d2c31b3fb24ac1"
+      },
+      "business_passed": true,
+      "natural_completion_passed": true
+    }
+  ],
+  "controls": [
+    {
+      "returncode": 1,
+      "seconds": 0.05007480000494979,
+      "events": [
+        {
+          "event": "error",
+          "message": "Unsupported openmoss task"
+        }
+      ],
+      "protocol_errors": [],
+      "logs_truncated": [
+        false,
+        false
+      ],
+      "timed_out": false,
+      "forced_host_termination": false,
+      "cancel_trigger": null,
+      "cancel_to_exit_seconds": null,
+      "android_cooperative_cancellation_tested": false,
+      "resources": {
+        "observed": true,
+        "samples": 3,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 5996544,
+        "sampled_peak_private_bytes": 1560576,
+        "gpu_memory_measured": false,
+        "physical_device_memory_measured": false
+      },
+      "name": "bad-schema",
+      "request_sha256": "05c35177a031775a87fe6d92ad9c26c4fbebc7c39d461efc75077ebf5c6ee140",
+      "parameters": {
+        "threads": 4,
+        "seed": 1234,
+        "maxInputTokens": 1024,
+        "maxNewTokens": 375,
+        "textTemperature": 1,
+        "audioTemperature": 1.7,
+        "audioTopP": 0.8,
+        "audioTopK": 25,
+        "audioRepetitionPenalty": 1,
+        "voiceInstruction": "",
+        "language": "English"
+      },
+      "prompt": "Hello world.",
+      "output_exists": false,
+      "execution": {},
+      "expected_error": "Unsupported openmoss task",
+      "passed": true,
+      "capture_origin": {
+        "report": "verification/research/openmoss-reference-issue/first-run.json",
+        "report_sha256": "a396c9fb89d975a4f0466a3b3440fc8a488d1606bdc3b23a58bcced7ca71ed23",
+        "original_capture_directory": "build/openmoss-trained-tests/run-1793373968567657100",
+        "original_capture_sha256": "d3b3cd6a833f92b2090b1ddb6d4b0626611158fea763b147cae161805f2a002a",
+        "reexecuted": false,
+        "native_build_and_exact_request_unchanged": true
+      },
+      "business_passed": true
+    },
+    {
+      "returncode": 1,
+      "seconds": 0.07029289999627508,
+      "events": [
+        {
+          "event": "error",
+          "message": "Invalid CPU thread/seed range"
+        }
+      ],
+      "protocol_errors": [],
+      "logs_truncated": [
+        false,
+        false
+      ],
+      "timed_out": false,
+      "forced_host_termination": false,
+      "cancel_trigger": null,
+      "cancel_to_exit_seconds": null,
+      "android_cooperative_cancellation_tested": false,
+      "resources": {
+        "observed": true,
+        "samples": 4,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 5996544,
+        "sampled_peak_private_bytes": 1449984,
+        "gpu_memory_measured": false,
+        "physical_device_memory_measured": false
+      },
+      "name": "bad-threads",
+      "request_sha256": "afd9dfb7572596c15da385cb0d5b0e0fcc7ec0c63b679d0069a166ea6b3f7c21",
+      "parameters": {
+        "threads": 33,
+        "seed": 1234,
+        "maxInputTokens": 1024,
+        "maxNewTokens": 375,
+        "textTemperature": 1,
+        "audioTemperature": 1.7,
+        "audioTopP": 0.8,
+        "audioTopK": 25,
+        "audioRepetitionPenalty": 1,
+        "voiceInstruction": "",
+        "language": "English"
+      },
+      "prompt": "Hello world.",
+      "output_exists": false,
+      "execution": {},
+      "expected_error": "Invalid CPU thread/seed range",
+      "passed": true,
+      "capture_origin": {
+        "report": "verification/research/openmoss-reference-issue/first-run.json",
+        "report_sha256": "a396c9fb89d975a4f0466a3b3440fc8a488d1606bdc3b23a58bcced7ca71ed23",
+        "original_capture_directory": "build/openmoss-trained-tests/run-1793373968567657100",
+        "original_capture_sha256": "643115c6d3a4136847b6df7c982d597e1dff2d4861343540e66807cf467bbc77",
+        "reexecuted": false,
+        "native_build_and_exact_request_unchanged": true
+      },
+      "business_passed": true
+    },
+    {
+      "returncode": 1,
+      "seconds": 0.04782179999165237,
+      "events": [
+        {
+          "event": "error",
+          "message": "Invalid audio prompt length/content"
+        }
+      ],
+      "protocol_errors": [],
+      "logs_truncated": [
+        false,
+        false
+      ],
+      "timed_out": false,
+      "forced_host_termination": false,
+      "cancel_trigger": null,
+      "cancel_to_exit_seconds": null,
+      "android_cooperative_cancellation_tested": false,
+      "resources": {
+        "observed": true,
+        "samples": 3,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 5992448,
+        "sampled_peak_private_bytes": 1449984,
+        "gpu_memory_measured": false,
+        "physical_device_memory_measured": false
+      },
+      "name": "empty-text",
+      "request_sha256": "3b7001a4d89d5f3f3a35c8f40bb41e845c98020ef345730acea2e014362dd401",
+      "parameters": {
+        "threads": 4,
+        "seed": 1234,
+        "maxInputTokens": 1024,
+        "maxNewTokens": 375,
+        "textTemperature": 1,
+        "audioTemperature": 1.7,
+        "audioTopP": 0.8,
+        "audioTopK": 25,
+        "audioRepetitionPenalty": 1,
+        "voiceInstruction": "",
+        "language": "English"
+      },
+      "prompt": "",
+      "output_exists": false,
+      "execution": {},
+      "expected_error": "Invalid audio prompt length/content",
+      "passed": true,
+      "capture_origin": {
+        "report": "verification/research/openmoss-reference-issue/first-run.json",
+        "report_sha256": "a396c9fb89d975a4f0466a3b3440fc8a488d1606bdc3b23a58bcced7ca71ed23",
+        "original_capture_directory": "build/openmoss-trained-tests/run-1793373968567657100",
+        "original_capture_sha256": "cab120a3267b82bec37c617d8604643b4c78139664d5df65389d5d979c057b45",
+        "reexecuted": false,
+        "native_build_and_exact_request_unchanged": true
+      },
+      "business_passed": true
+    },
+    {
+      "returncode": 1,
+      "seconds": 0.07074539999302942,
+      "events": [
+        {
+          "event": "error",
+          "message": "Instruction/language must be bounded plain text without template markers"
+        }
+      ],
+      "protocol_errors": [],
+      "logs_truncated": [
+        false,
+        false
+      ],
+      "timed_out": false,
+      "forced_host_termination": false,
+      "cancel_trigger": null,
+      "cancel_to_exit_seconds": null,
+      "android_cooperative_cancellation_tested": false,
+      "resources": {
+        "observed": true,
+        "samples": 4,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 6004736,
+        "sampled_peak_private_bytes": 2256896,
+        "gpu_memory_measured": false,
+        "physical_device_memory_measured": false
+      },
+      "name": "template-injection",
+      "request_sha256": "29769021c69ad9994c0d0c8a74faccea3d8cd02bc2bee7e714c3146f9d749244",
+      "parameters": {
+        "threads": 4,
+        "seed": 1234,
+        "maxInputTokens": 1024,
+        "maxNewTokens": 375,
+        "textTemperature": 1,
+        "audioTemperature": 1.7,
+        "audioTopP": 0.8,
+        "audioTopK": 25,
+        "audioRepetitionPenalty": 1,
+        "voiceInstruction": "",
+        "language": "English"
+      },
+      "prompt": "<|im_start|>",
+      "output_exists": false,
+      "execution": {},
+      "expected_error": "Instruction/language must be bounded plain text without template markers",
+      "passed": true,
+      "capture_origin": {
+        "report": "verification/research/openmoss-reference-issue/first-run.json",
+        "report_sha256": "a396c9fb89d975a4f0466a3b3440fc8a488d1606bdc3b23a58bcced7ca71ed23",
+        "original_capture_directory": "build/openmoss-trained-tests/run-1793373968567657100",
+        "original_capture_sha256": "3d88bf54076b070dcfc1c83a63364dc62d69739e355411bbe3e95668caf5514f",
+        "reexecuted": false,
+        "native_build_and_exact_request_unchanged": true
+      },
+      "business_passed": true
+    },
+    {
+      "returncode": 1,
+      "seconds": 0.11233020000508986,
+      "events": [
+        {
+          "event": "stage",
+          "stage": "validating_model_layout"
+        },
+        {
+          "event": "error",
+          "message": "Cannot read complete GGUF metadata"
+        }
+      ],
+      "protocol_errors": [],
+      "logs_truncated": [
+        false,
+        false
+      ],
+      "timed_out": false,
+      "forced_host_termination": false,
+      "cancel_trigger": null,
+      "cancel_to_exit_seconds": null,
+      "android_cooperative_cancellation_tested": false,
+      "resources": {
+        "observed": true,
+        "samples": 6,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 22966272,
+        "sampled_peak_private_bytes": 8368128,
+        "gpu_memory_measured": false,
+        "physical_device_memory_measured": false
+      },
+      "name": "missing-extras",
+      "request_sha256": "ae249b401e1f0937c250e500faeec38788d89f1ccc0acdb5d9a5fad121359103",
+      "parameters": {
+        "threads": 4,
+        "seed": 1234,
+        "maxInputTokens": 1024,
+        "maxNewTokens": 375,
+        "textTemperature": 1,
+        "audioTemperature": 1.7,
+        "audioTopP": 0.8,
+        "audioTopK": 25,
+        "audioRepetitionPenalty": 1,
+        "voiceInstruction": "",
+        "language": "English"
+      },
+      "prompt": "Hello world.",
+      "output_exists": false,
+      "execution": {},
+      "expected_error": "Cannot read complete GGUF metadata",
+      "passed": true,
+      "capture_origin": {
+        "report": "verification/research/openmoss-reference-issue/first-run.json",
+        "report_sha256": "a396c9fb89d975a4f0466a3b3440fc8a488d1606bdc3b23a58bcced7ca71ed23",
+        "original_capture_directory": "build/openmoss-trained-tests/run-1793373968567657100",
+        "original_capture_sha256": "4bc147ca2de834f7e5d40f95e050338637dc9d04e102d4d047e9c78492155787",
+        "reexecuted": false,
+        "native_build_and_exact_request_unchanged": true
+      },
+      "business_passed": true
+    },
+    {
+      "returncode": 1,
+      "seconds": 65.52196349999576,
+      "events": [
+        {
+          "event": "stage",
+          "stage": "validating_model_layout"
+        },
+        {
+          "event": "stage",
+          "stage": "loading_models"
+        },
+        {
+          "event": "stage",
+          "stage": "generating_speech"
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 0,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 1,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 2,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 3,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 4,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 5,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 6,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 7,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 8,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 9,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 10,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 11,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 12,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 13,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 14,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 15,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 16,
+          "steps": 375
+        }
+      ],
+      "protocol_errors": [],
+      "logs_truncated": [
+        false,
+        false
+      ],
+      "timed_out": false,
+      "forced_host_termination": true,
+      "cancel_trigger": {
+        "event": "progress",
+        "stage": "generating_speech",
+        "step": 16,
+        "steps": 375
+      },
+      "cancel_to_exit_seconds": 2.5050788999942597,
+      "android_cooperative_cancellation_tested": false,
+      "resources": {
+        "observed": true,
+        "samples": 2868,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 9093128192,
+        "sampled_peak_private_bytes": 6509535232,
+        "gpu_memory_measured": false,
+        "physical_device_memory_measured": false
+      },
+      "capture_origin": {
+        "reexecuted": true,
+        "native_build_and_exact_request_unchanged": true
+      },
+      "name": "cancel",
+      "request_sha256": "8293f41a2a61cf37559ccf4beed595459fcb5ede2709360a63afb088a59d94c4",
+      "parameters": {
+        "threads": 4,
+        "seed": 1234,
+        "maxInputTokens": 1024,
+        "maxNewTokens": 375,
+        "textTemperature": 1,
+        "audioTemperature": 1.7,
+        "audioTopP": 0.8,
+        "audioTopK": 25,
+        "audioRepetitionPenalty": 1,
+        "voiceInstruction": "",
+        "language": "English"
+      },
+      "prompt": "Hello world.",
+      "output_exists": false,
+      "execution": {},
+      "passed": true,
+      "business_passed": true
+    }
+  ],
+  "recovery_bitwise_identical": true,
+  "failures": [
+    "Natural completion failed: reference reached the explicit output limit"
+  ],
+  "files": {
+    "bad-schema-capture.json": {
+      "bytes": 1750,
+      "sha256": "9aeb7b58b376761f6d124d5f2cc1932e501ffa8fb01ab89867f72bf8184182fd"
+    },
+    "bad-schema.json": {
+      "bytes": 640,
+      "sha256": "05c35177a031775a87fe6d92ad9c26c4fbebc7c39d461efc75077ebf5c6ee140"
+    },
+    "bad-schema.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "bad-schema.stdout": {
+      "bytes": 57,
+      "sha256": "1d3e107376c8141cbc56f4d682e11f86388b2d739c1a45d20c803d5f31518346"
+    },
+    "bad-threads-capture.json": {
+      "bytes": 1760,
+      "sha256": "394819ec4e42fa8a589c49834af2bc6669a0dc4d34d969e82d7b7c09e6b06528"
+    },
+    "bad-threads.json": {
+      "bytes": 655,
+      "sha256": "afd9dfb7572596c15da385cb0d5b0e0fcc7ec0c63b679d0069a166ea6b3f7c21"
+    },
+    "bad-threads.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "bad-threads.stdout": {
+      "bytes": 61,
+      "sha256": "2046ffcac5d94db4879704cbf2300765b27417c9e1e79671a66a8735efed62ab"
+    },
+    "cancel-capture.json": {
+      "bytes": 3610,
+      "sha256": "89e361833592386cac5ff6b4939a5c409ae9e7a6f812b82b1633c12940eb64f8"
+    },
+    "cancel.json": {
+      "bytes": 649,
+      "sha256": "8293f41a2a61cf37559ccf4beed595459fcb5ede2709360a63afb088a59d94c4"
+    },
+    "cancel.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "cancel.stdout": {
+      "bytes": 1358,
+      "sha256": "966ed8f68e8dcf510d8326807a761e6ada68aba49bb08583b2f41dff0df8fc67"
+    },
+    "chinese-capture.json": {
+      "bytes": 11159,
+      "sha256": "64e9b5b14db2549dfe0febc1ff6805457c48771a309e2a99dd633af5f7bfda53"
+    },
+    "chinese.json": {
+      "bytes": 656,
+      "sha256": "b34480186c900c04555861e5cfc3a0aafccccdc3d008835bd4e5ccb8ce7670de"
+    },
+    "chinese.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "chinese.stdout": {
+      "bytes": 4749,
+      "sha256": "8d7d417113b4c6ea578427add30d0e6764958a817be19f0441bc2ad18e3ce220"
+    },
+    "chinese.wav": {
+      "bytes": 57644,
+      "sha256": "7575ef696518c2247ae5b04f4682aee01f078805bb73fe45c1567a5b903d9311"
+    },
+    "empty-text-capture.json": {
+      "bytes": 1758,
+      "sha256": "f32164a4edbe0e135df6cd0bfb268dbd0f2f6ddafead472751554533d0a68e37"
+    },
+    "empty-text.json": {
+      "bytes": 641,
+      "sha256": "3b7001a4d89d5f3f3a35c8f40bb41e845c98020ef345730acea2e014362dd401"
+    },
+    "empty-text.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "empty-text.stdout": {
+      "bytes": 67,
+      "sha256": "fcb18da730c1902c51cc509b58713d85dd11ad9600a9ac20c34fad7a927e257a"
+    },
+    "english-capture.json": {
+      "bytes": 11394,
+      "sha256": "549ed6a48c466331f0115c4885d1d30584920e3cfabb219184a282ddf7299d92"
+    },
+    "english.json": {
+      "bytes": 650,
+      "sha256": "1b1edbad91bc4b79e1a56852f820bdc608c490a3c108161a5250d4d2960b4a8b"
+    },
+    "english.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "english.stdout": {
+      "bytes": 4886,
+      "sha256": "1c4fd774fe4ebdf405a6e4a8aa244fdec838a7ca8287c60044c415d4b25058ed"
+    },
+    "english.wav": {
+      "bytes": 65324,
+      "sha256": "403d4aa9d0341c3cd8df4619311389941fea5326ab7fa77316d2c31b3fb24ac1"
+    },
+    "frame-limit-capture.json": {
+      "bytes": 9496,
+      "sha256": "7990ce73118d7b29ce2764ef7cb6ff53c1d5dcd2fd53ca7cc218b40c25081d00"
+    },
+    "frame-limit.json": {
+      "bytes": 710,
+      "sha256": "f151a82a5584ebf724adb447aa7e392c36b1c13251dd772ccf27905524ac54f7"
+    },
+    "frame-limit.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "frame-limit.stdout": {
+      "bytes": 3985,
+      "sha256": "f6208be9eaca510580a051894d50d289080a85d47674efb5192520e61f102710"
+    },
+    "frame-limit.wav": {
+      "bytes": 30764,
+      "sha256": "ff1a62c615baad8f9c6af6ba0a70b1b02763e82a03d919b04ae8d58997f0ff55"
+    },
+    "info.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "info.stdout": {
+      "bytes": 177,
+      "sha256": "54a67863f107d6224e12f6d4ae9add3436a4c6c49461e7348e5c6772bfc4d6c3"
+    },
+    "missing-extras-capture.json": {
+      "bytes": 1855,
+      "sha256": "73421afb4b59640346759c2bd7fdfce038031510a86901fcc531e7962a0a69f0"
+    },
+    "missing-extras.json": {
+      "bytes": 655,
+      "sha256": "ae249b401e1f0937c250e500faeec38788d89f1ccc0acdb5d9a5fad121359103"
+    },
+    "missing-extras.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "missing-extras.stdout": {
+      "bytes": 119,
+      "sha256": "52bc8396f121f9605cd568c141ec689304e2e2c9538acc90ad2c3028792bd911"
+    },
+    "recovery-capture.json": {
+      "bytes": 11004,
+      "sha256": "b82e8a6a25417a3081f2abd64de3316b7784b6c299f82f3203dbc8fbecd39f5d"
+    },
+    "recovery.json": {
+      "bytes": 651,
+      "sha256": "55fc02c4d8d487be0a6ca7062146084a0a2c2b0b4670b1fead588e8980ab44c9"
+    },
+    "recovery.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "recovery.stdout": {
+      "bytes": 4895,
+      "sha256": "bde5b2dfc1f8f0daea655e73f6ea2daca4f79b3e3030edeb51d5335d489293a1"
+    },
+    "recovery.wav": {
+      "bytes": 65324,
+      "sha256": "403d4aa9d0341c3cd8df4619311389941fea5326ab7fa77316d2c31b3fb24ac1"
+    },
+    "reference-capture.json": {
+      "bytes": 53393,
+      "sha256": "0347eeb7577d5cb6f6e03828ab53a7c11816b2bab7386e807629709464544198"
+    },
+    "reference.json": {
+      "bytes": 738,
+      "sha256": "a4c40d1291d1460a33b1e81cb4b97fe703c8ad9c2bcd73364efe20617fb892fd"
+    },
+    "reference.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "reference.stdout": {
+      "bytes": 28497,
+      "sha256": "8e75d914113bb597136a863685ffb0928f11cef98e211e721aed0a54b732c79b"
+    },
+    "reference.wav": {
+      "bytes": 1317164,
+      "sha256": "6a6080b55f241563f95ff023c0c4c609127453d6a388f0ac5d94b28dd8e06808"
+    },
+    "template-injection-capture.json": {
+      "bytes": 1852,
+      "sha256": "fa67b095bb8123851a808de1683ae822353e430d9e0d184ca7f362a5c0168607"
+    },
+    "template-injection.json": {
+      "bytes": 661,
+      "sha256": "29769021c69ad9994c0d0c8a74faccea3d8cd02bc2bee7e714c3146f9d749244"
+    },
+    "template-injection.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "template-injection.stdout": {
+      "bytes": 104,
+      "sha256": "7a8b677f6db55b0b957ca0c151580eb6560e196e9cb5375fd1355d36634ea9b2"
+    }
+  },
+  "mapping_contract": {
+    "schema": "lma.openmoss-mapping-contract/1",
+    "passed": 25,
+    "mapped_cpu_graph_bitwise_equal": true,
+    "copy_on_write_preserves_file": true,
+    "sparse_offset_above_4gib": true,
+    "all_mappings_released": true,
+    "compilation": {
+      "schema": "lma.openmoss-host-build/1",
+      "executable": "build/openmoss-worker-host/8551e120780d970c/bin/lma_openmoss_host.exe",
+      "bytes": 3950592,
+      "sha256": "80b8eda3b843c3ff0c724bc6933798b802a7ae7b7f969829f5620351f122249a",
+      "source_revision": "bfb1f465e0a86fb5a52bbf93e67ceba4b7d0b4e1",
+      "llama_revision": "050ee92d04c2e1f639025786dea701c70e7d4204",
+      "compiled_library_sources": 10,
+      "compile_cache": "build/openmoss-host-cache/cpu-050ee92d04c2-U/bin",
+      "backend": "cpu",
+      "private_weight_mapping": true,
+      "production_worker_source_unmodified": true,
+      "upstream_sources_unmodified": true,
+      "windows_crt_parent_environment_compatibility": true,
+      "bundled_model_data": false,
+      "physical_android": false,
+      "android_compiled": false,
+      "packaged_in_apk": false,
+      "model_executed": false,
+      "input_fingerprint": {
+        "native/openmoss/CMakeLists.txt": "83c84c6b36b70b7307a8c1b1b801b9b26f685d72f8a1d929d78c6351d1a9965a",
+        "native/openmoss/generation_guard.hpp": "9a7b420629f5502b66e2a95608aed0ac97780924fead745e7da02ab6c60db2c6",
+        "native/openmoss/model_contract.hpp": "0476e93090a14822f5544a485fd5f83fdd66f9c40cd18eb7c28389e45f1ee7cb",
+        "native/openmoss/policy.hpp": "eb164dba961c9065b8dd62b272050bdbb45c4d303b8e5b2455ec5441134f1684",
+        "native/openmoss/private_weights.hpp": "7a5bfc3b4a2df5873628036af85b578630e43907fb009d6c23d2fe240264a16f",
+        "native/openmoss/wave.hpp": "aaf85f286b9e9d95de808aae2088dadac7b9b06e35f51f31c05e272f7a112e7f",
+        "native/openmoss/worker.cpp": "a807ff77d40a12daf020e17a5517ae47476dd980227150c933635d7a80a2da15",
+        "research/moss_nano_host/compat/sys/prctl.h": "9322b99bb80674fd2d42eb2b94f5ee5519ab443da0cdffd5ae938ef855907569",
+        "research/moss_nano_host/compat/unistd.h": "1c843add75719822f7371cfafd97af1abdc1ffc52938f5cd96dfd407630d9f96",
+        "research/openmoss_host/CMakeLists.txt": "07dfb210c4668b1c3709ef1fdba3f72fd4079416631d85973f01e9b47d5662e3",
+        "research/openmoss_host/NOTICE": "4a34c40dceab4256b15fbf7eb7c0bd6b73d76b4f043cb3956b59d05034e82cfd",
+        "research/qwen_tts_host/compat/sys/prctl.h": "0e2a8e106274e1330cb0a6240583a75a4eecfe182bf0e08d141984aaae2a3987",
+        "research/qwen_tts_host/compat/unistd.h": "64e960a64922193f97a70eccaf9e4bfed7f70c79c1cbcadd82a984efc3a2e8ec",
+        "research/sd_host/platform.hpp": "c377ed1b676707a469a192d96ae9b748802e1f62ad0674366b593b2b5b2daf67",
+        "tests/native/openmoss_mapping_test.cpp": "4f676f86b3d22dee7b4ed67facd62971b6096e4c3f6ba1aa8a9592b667bb0947",
+        "third_party/openmoss-source-lock.json": "df2d062fe174080e95d1f2f05ef8e133616a1827637e62d7195181f1c9256295",
+        "tools/build_openmoss_host.py": "7e18dbebb8b073e5a4a55b059798d025d9233425aa8576e0f28eb8c3ecaf7aea",
+        "tools/fetch_openmoss.py": "1c18d8c17de019a6b66321042cb14d61441d54fc370ef3f5547cacd627f1330b",
+        "tools/openmoss_pipeline.py": "483667858e0ce77742ae8242a15ae88bc8fdf76597d66191ad10ccdb172fbec3"
+      }
+    },
+    "executable_sha256": "ab508d3b5d08bda826a124c6fca86374430fa165543a38e09299544d532db26f",
+    "capture_directory": "build/openmoss-mapping-tests/run-1793375905861281300",
+    "model_weights_used": false,
+    "physical_android": false,
+    "virtualization_used": false,
+    "input_fingerprint": {
+      "native/openmoss/CMakeLists.txt": "83c84c6b36b70b7307a8c1b1b801b9b26f685d72f8a1d929d78c6351d1a9965a",
+      "native/openmoss/generation_guard.hpp": "9a7b420629f5502b66e2a95608aed0ac97780924fead745e7da02ab6c60db2c6",
+      "native/openmoss/model_contract.hpp": "0476e93090a14822f5544a485fd5f83fdd66f9c40cd18eb7c28389e45f1ee7cb",
+      "native/openmoss/policy.hpp": "eb164dba961c9065b8dd62b272050bdbb45c4d303b8e5b2455ec5441134f1684",
+      "native/openmoss/private_weights.hpp": "7a5bfc3b4a2df5873628036af85b578630e43907fb009d6c23d2fe240264a16f",
+      "native/openmoss/wave.hpp": "aaf85f286b9e9d95de808aae2088dadac7b9b06e35f51f31c05e272f7a112e7f",
+      "native/openmoss/worker.cpp": "a807ff77d40a12daf020e17a5517ae47476dd980227150c933635d7a80a2da15",
+      "research/moss_nano_host/compat/sys/prctl.h": "9322b99bb80674fd2d42eb2b94f5ee5519ab443da0cdffd5ae938ef855907569",
+      "research/moss_nano_host/compat/unistd.h": "1c843add75719822f7371cfafd97af1abdc1ffc52938f5cd96dfd407630d9f96",
+      "research/openmoss_host/CMakeLists.txt": "07dfb210c4668b1c3709ef1fdba3f72fd4079416631d85973f01e9b47d5662e3",
+      "research/openmoss_host/NOTICE": "4a34c40dceab4256b15fbf7eb7c0bd6b73d76b4f043cb3956b59d05034e82cfd",
+      "research/qwen_tts_host/compat/sys/prctl.h": "0e2a8e106274e1330cb0a6240583a75a4eecfe182bf0e08d141984aaae2a3987",
+      "research/qwen_tts_host/compat/unistd.h": "64e960a64922193f97a70eccaf9e4bfed7f70c79c1cbcadd82a984efc3a2e8ec",
+      "research/sd_host/platform.hpp": "c377ed1b676707a469a192d96ae9b748802e1f62ad0674366b593b2b5b2daf67",
+      "tests/native/openmoss_mapping_test.cpp": "4f676f86b3d22dee7b4ed67facd62971b6096e4c3f6ba1aa8a9592b667bb0947",
+      "third_party/openmoss-source-lock.json": "df2d062fe174080e95d1f2f05ef8e133616a1827637e62d7195181f1c9256295",
+      "tools/build_openmoss_host.py": "7e18dbebb8b073e5a4a55b059798d025d9233425aa8576e0f28eb8c3ecaf7aea",
+      "tools/fetch_openmoss.py": "1c18d8c17de019a6b66321042cb14d61441d54fc370ef3f5547cacd627f1330b",
+      "tools/openmoss_pipeline.py": "483667858e0ce77742ae8242a15ae88bc8fdf76597d66191ad10ccdb172fbec3",
+      "tools/test_openmoss_mapping.py": "950bb61f45cc37f4b5e55c557e39a2c6ec1c8c3627b9a7bd4a2599535cf37c87"
+    }
+  },
+  "memory_baseline_sha256": "05d002110cf0db2e6d24faa43528b8fdf0332bcfdc2e8f3a61d01288b6fedfd2",
+  "pre_mapping_pcm_bitwise_identical": true,
+  "capture_directory": "build/openmoss-trained-tests/run-1793375906269017700",
+  "smoke_only": false,
+  "host_execution_checks_passed": false,
+  "host_business_checks_passed": true,
+  "reference_natural_completion_accepted": false,
+  "reused_original_cases": [
+    "bad-schema",
+    "bad-threads",
+    "empty-text",
+    "template-injection",
+    "missing-extras",
+    "english",
+    "chinese",
+    "reference"
+  ],
+  "resumed_report_sha256": "a396c9fb89d975a4f0466a3b3440fc8a488d1606bdc3b23a58bcced7ca71ed23",
+  "asset_verification_mode": "reuse_original_full_sha_receipt",
+  "trained_production_worker_executed": true,
+  "production_worker_source_unmodified": true,
+  "backend": "cpu",
+  "fixture": false,
+  "asset_download_attempted": false,
+  "physical_android": false,
+  "android_background_tested": false,
+  "subjective_quality_reviewed": false,
+  "formal_release": false,
+  "input_fingerprint": {
+    "native/openmoss/CMakeLists.txt": "83c84c6b36b70b7307a8c1b1b801b9b26f685d72f8a1d929d78c6351d1a9965a",
+    "native/openmoss/generation_guard.hpp": "9a7b420629f5502b66e2a95608aed0ac97780924fead745e7da02ab6c60db2c6",
+    "native/openmoss/model_contract.hpp": "0476e93090a14822f5544a485fd5f83fdd66f9c40cd18eb7c28389e45f1ee7cb",
+    "native/openmoss/policy.hpp": "eb164dba961c9065b8dd62b272050bdbb45c4d303b8e5b2455ec5441134f1684",
+    "native/openmoss/private_weights.hpp": "7a5bfc3b4a2df5873628036af85b578630e43907fb009d6c23d2fe240264a16f",
+    "native/openmoss/wave.hpp": "aaf85f286b9e9d95de808aae2088dadac7b9b06e35f51f31c05e272f7a112e7f",
+    "native/openmoss/worker.cpp": "a807ff77d40a12daf020e17a5517ae47476dd980227150c933635d7a80a2da15",
+    "research/moss_nano_host/compat/sys/prctl.h": "9322b99bb80674fd2d42eb2b94f5ee5519ab443da0cdffd5ae938ef855907569",
+    "research/moss_nano_host/compat/unistd.h": "1c843add75719822f7371cfafd97af1abdc1ffc52938f5cd96dfd407630d9f96",
+    "research/openmoss_host/CMakeLists.txt": "07dfb210c4668b1c3709ef1fdba3f72fd4079416631d85973f01e9b47d5662e3",
+    "research/openmoss_host/NOTICE": "4a34c40dceab4256b15fbf7eb7c0bd6b73d76b4f043cb3956b59d05034e82cfd",
+    "research/qwen_tts_host/compat/sys/prctl.h": "0e2a8e106274e1330cb0a6240583a75a4eecfe182bf0e08d141984aaae2a3987",
+    "research/qwen_tts_host/compat/unistd.h": "64e960a64922193f97a70eccaf9e4bfed7f70c79c1cbcadd82a984efc3a2e8ec",
+    "research/sd_host/platform.hpp": "c377ed1b676707a469a192d96ae9b748802e1f62ad0674366b593b2b5b2daf67",
+    "tests/native/openmoss_mapping_test.cpp": "4f676f86b3d22dee7b4ed67facd62971b6096e4c3f6ba1aa8a9592b667bb0947",
+    "third_party/openmoss-source-lock.json": "df2d062fe174080e95d1f2f05ef8e133616a1827637e62d7195181f1c9256295",
+    "tools/build_openmoss_host.py": "7e18dbebb8b073e5a4a55b059798d025d9233425aa8576e0f28eb8c3ecaf7aea",
+    "tools/fetch_openmoss.py": "1c18d8c17de019a6b66321042cb14d61441d54fc370ef3f5547cacd627f1330b",
+    "tools/openmoss_pipeline.py": "483667858e0ce77742ae8242a15ae88bc8fdf76597d66191ad10ccdb172fbec3",
+    "research/openmoss_trained/assets.json": "52cfd586e4de7c7859b61a83f1638c6183e962286deea9938ded161c01460107",
+    "tools/fetch_openmoss_trained.py": "eb1b7fea1796d2c09175176ed94568a2531e2d504b54324b8aebc42c596c88ec",
+    "tools/fetch_sd15_trained.py": "91392401d9739f15b14fa4e42b74f13bbdd719a382746541cc69952966e6f307",
+    "tools/fetch_wan_trained.py": "7dc5f8746f783774cfb1cda5ca2d5a22a2e957e4ab5490d6bcf7119ca90a31ef",
+    "tools/test_openmoss_mapping.py": "950bb61f45cc37f4b5e55c557e39a2c6ec1c8c3627b9a7bd4a2599535cf37c87",
+    "docs/media/development/tts-trained-kokoro.wav": "b2f39aa6e39665de756dccd8f523a64b72ec7eb3853a6e754f3ca5ee8c0dfdeb",
+    "research/openmoss_trained/catalogue-bundle.json": "7d48fb40034a09b90ac099c1e5d40ed4cfa255967033d7dd0f44beb695f67f97",
+    "tools/openmoss_host_capture.py": "d99c62ddf4fb41edbdf0816baeb33d758ad710eee69a9979885e3a03eebe1723",
+    "tools/test_moss_nano_trained.py": "f1fa3bc1573ed5361951d728b4042faad8f5c76b266ca753180de25c8c3df2cd",
+    "tools/test_openmoss_trained.py": "e301aea70d487014638e7770c4683d1d4669263e71663b162040de734bc3ca37",
+    "verification/research/openmoss-memory/baseline.json": "05d002110cf0db2e6d24faa43528b8fdf0332bcfdc2e8f3a61d01288b6fedfd2",
+    "verification/research/openmoss-memory/chinese-capture.json": "4d38eb8ca198d165ca50df37673d1c0dce5c29a5c1dc3f41035cc5c7d2e55c2f",
+    "verification/research/openmoss-memory/english-capture.json": "d7f966840ce46d9f422434cd90af22b90266318a30924f5a1e75400ebe487e44",
+    "verification/research/openmoss-memory/lma-aborted-for-memory-optimization.json": "e2f6337934baa132f0d68375e08d7f584a5731bf565f2c594ac9c5d29826bbe7",
+    "verification/research/openmoss-memory/results.json": "13c5a35a5c58ca386cc5fbaf19e5020ed74278899689d10143529e893cae36e9",
+    "verification/research/openmoss-reference-issue/first-run.json": "a396c9fb89d975a4f0466a3b3440fc8a488d1606bdc3b23a58bcced7ca71ed23",
+    "verification/research/openmoss-reference-issue/original-driver.py.txt": "bfd226b3d9f27a7f54f97555764c25da0c18d75a08356377cdc2074946824bd6",
+    "verification/research/openmoss-reference-issue/reference-capture.json": "843d8454f131d2fc7dfacab45c4e4c5a04369c95750ffa1316af199f2f331d02"
+  },
+  "reference": {
+    "path": "docs/media/development/tts-trained-kokoro.wav",
+    "sha256": "b2f39aa6e39665de756dccd8f523a64b72ec7eb3853a6e754f3ca5ee8c0dfdeb",
+    "synthetic_trained_kokoro_output": true,
+    "human_identity_claimed": false
+  }
+}

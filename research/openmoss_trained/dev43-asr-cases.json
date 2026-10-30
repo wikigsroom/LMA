@@ -1,0 +1,25 @@
+{
+  "schema": "lma.speech-intelligibility-cases/1",
+  "cases": [
+    {
+      "name": "kokoro-reference-control",
+      "path": "docs/media/development/tts-trained-kokoro.wav",
+      "sha256": "b2f39aa6e39665de756dccd8f523a64b72ec7eb3853a6e754f3ca5ee8c0dfdeb",
+      "expected_text": "Hello world. The sun is shining."
+    },
+    {
+      "name": "corrected-moss-english",
+      "path": "docs/media/development/openmoss-0.3.0-dev.43/openmoss-trained-en.wav",
+      "sha256": "fe9e1d614c7bdf25a2095208606127f1e998ae2c6be88f178a69b6cf51aabbd0",
+      "expected_text": "Hello world."
+    },
+    {
+      "name": "corrected-moss-reference",
+      "path": "docs/media/development/openmoss-0.3.0-dev.43/openmoss-trained-reference.wav",
+      "sha256": "ea427795042040307582ded182980bdc29a9142438f5b1d8dfa5b2c9ad56a7dd",
+      "expected_text": "Hello world."
+    }
+  ],
+  "trained_report_sha256": "a43c3ea9ebdc5f917f1e2ccc14122b0408e372ae6dfcae603105a35d7d95a867",
+  "purpose": "Independent offline English words on corrected production output; no target hints and no Android/full-quality acceptance."
+}

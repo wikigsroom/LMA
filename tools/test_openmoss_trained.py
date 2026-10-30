@@ -103,7 +103,10 @@ def main():
                 print('Recheck unchanged original trained capture:',name,flush=True)
             else:
                 print('Execute complete trained MOSS production source:',name,flush=True)
-                result,logs=execute([alias(binary),alias(path)],cancel=cancel,timeout=1800)
+                with (folder/(name+'-events.jsonl')).open('x',encoding='utf-8') as journal:
+                    def record_event(event):
+                        journal.write(json.dumps(event,ensure_ascii=False)+'\n');journal.flush()
+                    result,logs=execute([alias(binary),alias(path)],cancel=cancel,timeout=1800,on_event=record_event)
                 for suffix,data in zip(['stdout','stderr'],logs):(folder/(name+'.'+suffix)).write_bytes(data)
                 result['capture_origin']=dict(reexecuted=True,native_build_and_exact_request_unchanged=True)
             result.update(name=name,request_sha256=sha(path),parameters=value['parameters'],prompt=value['input']['prompt'])
@@ -134,7 +137,12 @@ def main():
                     result['passed']=result['passed'] and details.get('auxMappedFiles')==2 and details.get('auxMappedTensors',0)>1000 and details.get('mappedBytesAreResidentMemory') is False
                     if name in baseline['cases']:
                         result['pre_mapping_pcm_bitwise_identical']=a['sha256']==baseline['cases'][name]['audio']['sha256']
-                        result['passed']=result['passed'] and result['pre_mapping_pcm_bitwise_identical']
+                        # Keep the original comparison visible. Correcting official
+                        # prompt/state semantics deliberately changes sampled input
+                        # rows, so old PCM identity is no longer an acceptance gate.
+                        if not compilation.get('official_delay_flush_and_extraction'):
+                            result['passed']=result['passed'] and result['pre_mapping_pcm_bitwise_identical']
+                        result['prior_pcm_identity_required']=not compilation.get('official_delay_flush_and_extraction',False)
                     steps=details.get('generationSteps',0)
                     result['passed']=result['passed'] and progress==list(range(steps+1)) and steps>0
                     result['passed']=result['passed'] and any(e.get('event')=='stage' and e.get('stage')=='decoding_audio' for e in result['events'])
@@ -181,6 +189,8 @@ def main():
         recovery_bitwise_identical=recovery_identical,failures=failures,files=files,mapping_contract=mapping,
         memory_baseline_sha256=sha(ROOT/'verification/research/openmoss-memory/baseline.json'),
         pre_mapping_pcm_bitwise_identical=all(by_name.get(n,{}).get('pre_mapping_pcm_bitwise_identical') is True for n in baseline['cases']),
+        prior_pcm_identity_required=not compilation.get('official_delay_flush_and_extraction',False),
+        prior_pcm_comparison_scope='Original pre-mapping output retained as a diagnostic; official prompt/delay corrections change autoregressive inputs, while natural EOS, audio, progress, cancellation and recovery gates remain required.',
         capture_directory=folder.relative_to(ROOT).as_posix(),smoke_only=args.smoke,
         host_execution_checks_passed=not failures and not args.smoke,
         host_business_checks_passed=len(jobs)==5 and len(controls)==6 and all(j.get('business_passed') for j in jobs+controls),

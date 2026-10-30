@@ -9,7 +9,7 @@ import time
 ROOT = Path(__file__).resolve().parents[1]
 
 
-def execute(command, cancel=False, timeout=1200):
+def execute(command, cancel=False, timeout=1200, on_event=None):
     from ctypes import wintypes
 
     class Counters(ctypes.Structure):
@@ -48,6 +48,7 @@ def execute(command, cancel=False, timeout=1200):
         while True:
             while not messages.empty():
                 value = messages.get_nowait(); events.append(value)
+                if on_event is not None: on_event(value)
                 if (cancel and cancel_at is None and value.get('event') == 'progress'
                     and value.get('stage') == 'generating_speech' and 16 <= value.get('step', 0) < value.get('steps', 0) and child.poll() is None):
                     cancel_at = time.perf_counter(); trigger = value; child.kill()
@@ -65,7 +66,9 @@ def execute(command, cancel=False, timeout=1200):
         if child.poll() is None: child.kill(); child.wait(timeout=10)
         for reader in readers: reader.join(timeout=10)
         if handle: kernel.CloseHandle(handle)
-    while not messages.empty(): events.append(messages.get_nowait())
+    while not messages.empty():
+        value = messages.get_nowait(); events.append(value)
+        if on_event is not None: on_event(value)
     if any(reader.is_alive() for reader in readers): raise RuntimeError('Owned log reader did not exit')
     return dict(returncode=child.returncode, seconds=time.perf_counter() - start, events=events,
                 protocol_errors=errors, logs_truncated=truncated, timed_out=timed_out,

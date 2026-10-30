@@ -1,6 +1,6 @@
 {
   "schema": "lma.development-checkpoint/2",
-  "version": "0.3.0-dev.42",
+  "version": "0.3.0-dev.43",
   "sources": {
     "build-info.json": "dist/build-info.json",
     "package.json": "build/package-verification.json",
@@ -8,7 +8,7 @@
     "recovery.json": "build/recovery-tests/results.json",
     "foundation.json": "build/foundation-tests/results.json",
     "bundle-pause.json": "build/bundle-pause-tests/results.json",
-    "speech-intelligibility.json": "build/speech-intelligibility-tests/results.json",
+    "speech-intelligibility.json": "verification/research/openmoss-reference-asr/dev42-final-transcriptions.json",
     "api.json": "build/api-tests/results.json",
     "inputs.json": "build/input-tests/results.json",
     "text.json": "build/text-tests/results.json",
@@ -16,36 +16,30 @@
     "scheduler.json": "build/scheduler-tests/results.json",
     "ui.json": "build/ui-qa/results.json",
     "lint.json": "build/android-lint/results.json",
-    "workbench-media.json": "docs/media/development/workbench/manifest.json",
-    "preflight-media.json": "docs/media/development/preflight/manifest.json",
-    "recovery-media.json": "docs/media/development/recovery/manifest.json",
     "preparation-core.json": "build/preparation-tests/results.json",
     "assembly-core.json": "build/assembly-tests/results.json",
     "diffusion.json": "build/diffusion-tests/results.json",
-    "lcm-media.json": "docs/media/development/lcm/manifest.json",
     "moss-rq.json": "build/moss-rq-tests/results.json",
     "moss-rq-arm64.json": "build/moss_rq-arm64-evidence.json",
-    "audio-media.json": "docs/media/development/audio/manifest.json",
     "ltx-app.json": "build/ltx098-app-tests/results.json",
     "ltx-app-arm64.json": "build/ltx098-app-arm64/receipt.json",
-    "ltx-media.json": "docs/media/development/ltx/manifest.json",
-    "resources-media.json": "docs/media/development/resources/manifest.json",
-    "curated-media.json": "docs/media/development/curated/manifest.json",
     "speech-voices.json": "build/speech-voice-tests/results.json",
-    "speech-media.json": "docs/media/development/speech/manifest.json",
     "backend.json": "build/backend-tests/results.json",
     "hub.json": "build/hub-tests/results.json",
     "recipe-suggestions.json": "build/recipe-suggestion-tests/results.json",
-    "components-media.json": "docs/media/development/components/manifest.json",
     "mnn.json": "build/mnn-tests/results.json",
-    "wan-media.json": "docs/media/development/wan/manifest.json",
     "qwen-tokenizer.json": "build/qwen-tokenizer-tests/results.json",
     "openmoss-assets.json": "build/openmoss-trained/receipt.json",
     "openmoss-arm64.json": "build/openmoss-build-info.json",
     "openmoss-core.json": "build/openmoss-tests/results.json",
     "openmoss-mapping.json": "build/openmoss-mapping-tests/results.json",
     "openmoss-trained.json": "build/openmoss-trained-tests/results.json",
-    "openmoss-media.json": "docs/media/development/openmoss/manifest.json"
+    "openmoss-delay.json": "build/openmoss-delay-tests/results.json",
+    "openmoss-codec-memory.json": "build/openmoss-codec-memory-tests/results.json",
+    "openmoss-prompt.json": "build/openmoss-prompt-tests/results.json",
+    "openmoss-intelligibility.json": "build/dev43-openmoss-asr.json",
+    "openmoss-app-host.json": "build/openmoss-app-host-tests/results.json",
+    "openmoss-trained-media.json": "docs/media/development/openmoss-0.3.0-dev.43/openmoss-trained-media.json"
   },
   "historical_sources": {
     "build-info.json": {
@@ -517,189 +511,251 @@
       "sha256": "f6ea4a786482860fef4e59da27a52b7238a5e9e1b46d9ddfa5346e0ebf3284ce"
     }
   },
+  "historical_ui_media": {
+    "workbench-media.json": {
+      "path": "verification/history/0.3.0-dev.42/workbench-media.json",
+      "sha256": "f9866346fcbe8955f0f23ec5a3875fd3716ae0f4675376f3806564905ee4aef7"
+    },
+    "preflight-media.json": {
+      "path": "verification/history/0.3.0-dev.42/preflight-media.json",
+      "sha256": "0a215f64cd53dec4e29e0753f2a6b46d101e67d6c0362eac2d2ad3d8bdf8e6fe"
+    },
+    "recovery-media.json": {
+      "path": "verification/history/0.3.0-dev.42/recovery-media.json",
+      "sha256": "c1dd79fe2197dbc6dfc8b0e9bdc8b1cb466ac391cf93ad79178de47de53095bf"
+    },
+    "lcm-media.json": {
+      "path": "verification/history/0.3.0-dev.42/lcm-media.json",
+      "sha256": "8afc4962a81d3bf8c81485e269f58fda57f591aa3a5686aaf4556eb0601acbec"
+    },
+    "audio-media.json": {
+      "path": "verification/history/0.3.0-dev.42/audio-media.json",
+      "sha256": "788d56623f639992b8ae7e78a6415b0212834d52c84617230aec457f475d82bd"
+    },
+    "ltx-media.json": {
+      "path": "verification/history/0.3.0-dev.42/ltx-media.json",
+      "sha256": "466b7d9f7aa6bb85bd5e82651dd8155916c716f4c172a098c50ff802b002d6a7"
+    },
+    "resources-media.json": {
+      "path": "verification/history/0.3.0-dev.42/resources-media.json",
+      "sha256": "66f09ba8d389c68b5a873f5e4bb50af48688c097f5283e3047e60e1c50d62b68"
+    },
+    "curated-media.json": {
+      "path": "verification/history/0.3.0-dev.42/curated-media.json",
+      "sha256": "7434dcf36dd91c86ac0d8127ca33c67efd35988d2eeb577c03b3f4c2b4545015"
+    },
+    "speech-media.json": {
+      "path": "verification/history/0.3.0-dev.42/speech-media.json",
+      "sha256": "44f20bb2b90bf75ce931c1857cd73a0c5357dd184d96cdf174f91eafb2abf006"
+    },
+    "components-media.json": {
+      "path": "verification/history/0.3.0-dev.42/components-media.json",
+      "sha256": "a55d3b00b81dd93f5beb7817756f7a8feabedcbaaa899f251116f5b1f628be93"
+    },
+    "wan-media.json": {
+      "path": "verification/history/0.3.0-dev.42/wan-media.json",
+      "sha256": "1c2a704dec3547ab79f7eaec65cf7ca13a127668d3a941e2f1366d3f20cd189e"
+    },
+    "openmoss-media.json": {
+      "path": "verification/history/0.3.0-dev.42/openmoss-media.json",
+      "sha256": "c3218e57e6f0f9d5b5e648abf702403a3ec4058a10a361f02d19699db9620526"
+    }
+  },
+  "historical_ui_version": "0.3.0-dev.42",
+  "unchanged_ui_logic": {
+    "app/src/main/assets/app.css": "f2cb7b5ee9de8f3afac793e694dcf9fde0a855c0d4c7053ff986cc2a6d2bd3b1",
+    "app/src/main/assets/app.js": "2240021b034e6259ac110fc48ede81c43be6fabf7200dde5ced7eeacbe9e5468",
+    "app/src/main/assets/audio-preview.js": "33bb898969f37c1f78c6664052c46da844d148defdcef4a54d64bc5829037f44",
+    "app/src/main/assets/foundation.css": "8bbd7a445a43d93f796be904e8f67b6e6120cf27547b93abb79cf41142078343",
+    "app/src/main/assets/foundation.js": "a2bd9f0a92807a0d60a97884fb3dd123ddfc5cf42258b6577bff36b37f99cb14",
+    "app/src/main/assets/index.html": "36cec4480075da6d9109bace9c2a87ef4e28a9ddf62c1c83bf686bf7f1970477",
+    "app/src/main/assets/recipes.js": "b27e75ed85948a63476bf351cde94a59bec935a540f65e1a9fe798322bcd1b39",
+    "app/src/main/assets/versions.js": "2d629929a6db642c12a242ddcc62cd4f4090ab307e0cb669ceb98add031977e1",
+    "app/src/main/assets/workbench.js": "7da42ca327ecc3ce3fe25d9a5431b67e2e24b1f76b784f62ef4e0cfec00fd514"
+  },
   "prior_checkpoint": {
-    "commit": "d4ce9a6e46c6be3402ed515c2ab1324af1a4c3be",
-    "version": "0.3.0-dev.41",
+    "commit": "9ab05996a60f5537e41815b29d780df978f242a0",
+    "version": "0.3.0-dev.42",
     "sources": {
       "status.json": {
-        "path": "verification/history/0.3.0-dev.41/status.json",
-        "sha256": "54a6019550c15e298dd5db114cfe6a588cdb37a1867e8e64809f46069fcef4ac"
+        "path": "verification/history/0.3.0-dev.42/status.json",
+        "sha256": "58fd5caad44b8f9c8c6a4cbb43e8251ac888ae5220e17659a3193eebeba5cd89"
       },
       "build-info.json": {
-        "path": "verification/history/0.3.0-dev.41/build-info.json",
-        "sha256": "aacb063c3b80f6377ac7fe4053aa118505d0ac2b605691dfce8a56c593822048"
+        "path": "verification/history/0.3.0-dev.42/build-info.json",
+        "sha256": "75f1819fc6094227eaa30e1ba84a7f4cc4d9aa689057191d2c1986045f81707a"
       },
       "package.json": {
-        "path": "verification/history/0.3.0-dev.41/package.json",
-        "sha256": "06ae3524096b95f68f44632ec3d9fb95cd229088c027ca5fc27419c38a94141b"
+        "path": "verification/history/0.3.0-dev.42/package.json",
+        "sha256": "edd55da6f93e59ee602093f164181e9c810cf87ed79f58a8d108433d5e607ee1"
       },
       "workbench.json": {
-        "path": "verification/history/0.3.0-dev.41/workbench.json",
-        "sha256": "9345ded6bec65d59c92b9040c743c59c135aa228eba96ff566fb71518835750e"
+        "path": "verification/history/0.3.0-dev.42/workbench.json",
+        "sha256": "c429449a0876fdc0ab1b6be8b7ee77587496e4976f474f8cbd5aa4a9b523e382"
       },
       "recovery.json": {
-        "path": "verification/history/0.3.0-dev.41/recovery.json",
-        "sha256": "b6c2c4852b515b5f366479f544e3c62225778261ae1d6c1c366a9195566940ea"
+        "path": "verification/history/0.3.0-dev.42/recovery.json",
+        "sha256": "f42d691ef9188e6865c899c12f9f94e3acdc0e953d4dd9d0dd63a24553df0270"
       },
       "foundation.json": {
-        "path": "verification/history/0.3.0-dev.41/foundation.json",
-        "sha256": "b88651e971406fc3dfd9c9dcdb581c480971eeedeb88c69b4dd5e7f6664a47e6"
+        "path": "verification/history/0.3.0-dev.42/foundation.json",
+        "sha256": "b3d99e5f67cd86ce64b09594e621fbd10f123da69535f0fb6895d09aa03333d8"
+      },
+      "bundle-pause.json": {
+        "path": "verification/history/0.3.0-dev.42/bundle-pause.json",
+        "sha256": "7c12f7cac0aa097b03921fd378cedfbc405ab412cccc73d7c38ed2183fd0a8a6"
+      },
+      "speech-intelligibility.json": {
+        "path": "verification/history/0.3.0-dev.42/speech-intelligibility.json",
+        "sha256": "b7b2e3df37b31478967e03bec4ff3e0f6e7562e1c470f8c76755c0cfc3973960"
       },
       "api.json": {
-        "path": "verification/history/0.3.0-dev.41/api.json",
-        "sha256": "17a74a4abb7d65bf71103f61c025412cee9d83e08c12599b0dd5ce24366d5cde"
+        "path": "verification/history/0.3.0-dev.42/api.json",
+        "sha256": "6886e657b9da467ef90dd29f64212a6b5106fcab6d28bc660838499425dacd82"
       },
       "inputs.json": {
-        "path": "verification/history/0.3.0-dev.41/inputs.json",
-        "sha256": "eaece8d5cba477a10f4b93a15156710f67e223540d2e374883f0fd3e3f83be66"
+        "path": "verification/history/0.3.0-dev.42/inputs.json",
+        "sha256": "b45dcfb30eaf327adec2f1afd720d10681ec48a0f6f28924a6cc55e3fc4d39de"
       },
       "text.json": {
-        "path": "verification/history/0.3.0-dev.41/text.json",
-        "sha256": "aa1bbe910d05ea21859a2d64fec7b75b29debfe480103a22698501c51be841be"
+        "path": "verification/history/0.3.0-dev.42/text.json",
+        "sha256": "510119025a47065b389a0a7524a7137e63b35a3f9d88357ba98e370e85cf0a40"
       },
       "migration.json": {
-        "path": "verification/history/0.3.0-dev.41/migration.json",
-        "sha256": "aa1b3a602aa24f2b8ffcfb9cf0ca23cfa4727f0e2371cfd69db31c30107dbdab"
+        "path": "verification/history/0.3.0-dev.42/migration.json",
+        "sha256": "984d7da518c6bb2872f7435dea74c5a3b9af1c89a61622c706aeacdb1b72dfe0"
       },
       "scheduler.json": {
-        "path": "verification/history/0.3.0-dev.41/scheduler.json",
-        "sha256": "657bc6cc2ff083a8a02993ae809cee459e03a424c3704395c8a72248a73404fb"
+        "path": "verification/history/0.3.0-dev.42/scheduler.json",
+        "sha256": "3783b562734436828e890848f2bb48e458065accaf9bf8326154ca99ec5120b9"
       },
       "ui.json": {
-        "path": "verification/history/0.3.0-dev.41/ui.json",
+        "path": "verification/history/0.3.0-dev.42/ui.json",
         "sha256": "2d17afaeb6f8501f04401ed80aa67970ccb487ce4a780c776e0ae24c01269822"
       },
       "lint.json": {
-        "path": "verification/history/0.3.0-dev.41/lint.json",
-        "sha256": "72af9f9edbf1e4c9d3eb17f4c98059114f94ff29ded31a5f8e03f354ce690825"
+        "path": "verification/history/0.3.0-dev.42/lint.json",
+        "sha256": "dc1a891fa02c235402db0a66cb6b0ac76507029ca9288a2edaf25c7da35b63d9"
       },
       "workbench-media.json": {
-        "path": "verification/history/0.3.0-dev.41/workbench-media.json",
-        "sha256": "08418267b0b54ea0fdd6ce3a4647f674501ef5a2237ba154296077d11888896f"
+        "path": "verification/history/0.3.0-dev.42/workbench-media.json",
+        "sha256": "f9866346fcbe8955f0f23ec5a3875fd3716ae0f4675376f3806564905ee4aef7"
       },
       "preflight-media.json": {
-        "path": "verification/history/0.3.0-dev.41/preflight-media.json",
-        "sha256": "3550a86157509628104b8d0f45afc16d1c63311985c30ddb69a9cc5b839454fe"
+        "path": "verification/history/0.3.0-dev.42/preflight-media.json",
+        "sha256": "0a215f64cd53dec4e29e0753f2a6b46d101e67d6c0362eac2d2ad3d8bdf8e6fe"
       },
       "recovery-media.json": {
-        "path": "verification/history/0.3.0-dev.41/recovery-media.json",
-        "sha256": "540fcf29e57504e51567565de91696a0a08b049ba99a673b70c674c605bbedc8"
+        "path": "verification/history/0.3.0-dev.42/recovery-media.json",
+        "sha256": "c1dd79fe2197dbc6dfc8b0e9bdc8b1cb466ac391cf93ad79178de47de53095bf"
       },
       "preparation-core.json": {
-        "path": "verification/history/0.3.0-dev.41/preparation-core.json",
-        "sha256": "a97305a1fdbbaa3c88e55223c9fe552a2ee6626e748d5381d24be99fae7a48b1"
+        "path": "verification/history/0.3.0-dev.42/preparation-core.json",
+        "sha256": "3c425684d8776b07802638c89fd4f6a3d26b065b036d909674b49edc72ca9d16"
       },
       "assembly-core.json": {
-        "path": "verification/history/0.3.0-dev.41/assembly-core.json",
-        "sha256": "9ae98cf7cf2dbbc79a91da2fa1e0c6b3fb7a8463c7514c9d6909c379559eca5f"
+        "path": "verification/history/0.3.0-dev.42/assembly-core.json",
+        "sha256": "65ddc52ffd396b2a581924153453ad597ef34d7687472c87459b62291c8fc561"
       },
       "diffusion.json": {
-        "path": "verification/history/0.3.0-dev.41/diffusion.json",
-        "sha256": "549d6826c567b6ae7ca757ab2a28044211d30a0a0fac9eb8356b9b3b7470dfcc"
+        "path": "verification/history/0.3.0-dev.42/diffusion.json",
+        "sha256": "4dc88985dc8e10ad38fb97424197aaff2900238ab5c5631523f48b7f76f8522e"
       },
       "lcm-media.json": {
-        "path": "verification/history/0.3.0-dev.41/lcm-media.json",
-        "sha256": "4f1618f67e2f6ba408b68591cff27cd641ece2b114dced7b825ebdc80a7a2b73"
+        "path": "verification/history/0.3.0-dev.42/lcm-media.json",
+        "sha256": "8afc4962a81d3bf8c81485e269f58fda57f591aa3a5686aaf4556eb0601acbec"
       },
       "moss-rq.json": {
-        "path": "verification/history/0.3.0-dev.41/moss-rq.json",
-        "sha256": "987a2272acd42e8dcb6f4c576e7891f7d2bfaaf752517acc035c5e3f8b35c2bb"
+        "path": "verification/history/0.3.0-dev.42/moss-rq.json",
+        "sha256": "1cb0b7c5a91f2ba6a6c0b309fc1c93a55fee6a4082fe15a73c976d01c3e9a4e8"
       },
       "moss-rq-arm64.json": {
-        "path": "verification/history/0.3.0-dev.41/moss-rq-arm64.json",
+        "path": "verification/history/0.3.0-dev.42/moss-rq-arm64.json",
         "sha256": "80ca1933a30ff591985ea5cab2e639f24dbc120679adc898ca97cabb90570bff"
       },
       "audio-media.json": {
-        "path": "verification/history/0.3.0-dev.41/audio-media.json",
-        "sha256": "41e0fbd79ab0f84c5160bcdd80bff4c6890bdd9e4e235b3e441ea84a370c5eb4"
+        "path": "verification/history/0.3.0-dev.42/audio-media.json",
+        "sha256": "788d56623f639992b8ae7e78a6415b0212834d52c84617230aec457f475d82bd"
       },
       "ltx-app.json": {
-        "path": "verification/history/0.3.0-dev.41/ltx-app.json",
-        "sha256": "eec4940a68141426eee1da55f47fd6072a296bd45f6771d33cd5130f30790bf6"
+        "path": "verification/history/0.3.0-dev.42/ltx-app.json",
+        "sha256": "c9d02f80737ef9a2b6f2865be3a87abd12428c71df31978e93e645d8bd37e748"
       },
       "ltx-app-arm64.json": {
-        "path": "verification/history/0.3.0-dev.41/ltx-app-arm64.json",
+        "path": "verification/history/0.3.0-dev.42/ltx-app-arm64.json",
         "sha256": "8b6828ec1861d71478a209c4d90f40d8995823f59255b1166c3080b48cb4c54f"
       },
       "ltx-media.json": {
-        "path": "verification/history/0.3.0-dev.41/ltx-media.json",
-        "sha256": "a6d6c8cba9627d61afdd80c77bb6ed6532b3619f6e552bcebed34ca00029ee64"
+        "path": "verification/history/0.3.0-dev.42/ltx-media.json",
+        "sha256": "466b7d9f7aa6bb85bd5e82651dd8155916c716f4c172a098c50ff802b002d6a7"
       },
       "resources-media.json": {
-        "path": "verification/history/0.3.0-dev.41/resources-media.json",
-        "sha256": "99a95711e155a46bfa5cb6c3aead124c789664628ee75479c9ee488c77406670"
+        "path": "verification/history/0.3.0-dev.42/resources-media.json",
+        "sha256": "66f09ba8d389c68b5a873f5e4bb50af48688c097f5283e3047e60e1c50d62b68"
       },
       "curated-media.json": {
-        "path": "verification/history/0.3.0-dev.41/curated-media.json",
-        "sha256": "03e0aae6f19faf670a8d4998d7cc77fe553aeacf89822afbeca68631a47e2aa8"
+        "path": "verification/history/0.3.0-dev.42/curated-media.json",
+        "sha256": "7434dcf36dd91c86ac0d8127ca33c67efd35988d2eeb577c03b3f4c2b4545015"
       },
       "speech-voices.json": {
-        "path": "verification/history/0.3.0-dev.41/speech-voices.json",
-        "sha256": "8549f9327df55b26912eea31ebe098c00ce2121acd03c63c82ad44d5b4138fdf"
+        "path": "verification/history/0.3.0-dev.42/speech-voices.json",
+        "sha256": "3048d1803200d329f864832e3798b2f429e52d07d5e31eeac7dec3d0ae80c061"
       },
       "speech-media.json": {
-        "path": "verification/history/0.3.0-dev.41/speech-media.json",
-        "sha256": "50fd175a71d6b22b31215c533dbc1c452fbebcbb391d9dfe134214df7da07f6d"
+        "path": "verification/history/0.3.0-dev.42/speech-media.json",
+        "sha256": "44f20bb2b90bf75ce931c1857cd73a0c5357dd184d96cdf174f91eafb2abf006"
       },
       "backend.json": {
-        "path": "verification/history/0.3.0-dev.41/backend.json",
-        "sha256": "e6782fb2b78c2ce6f476847fafc7a2ca64ce9502f950c3e5e58bceb598c87801"
+        "path": "verification/history/0.3.0-dev.42/backend.json",
+        "sha256": "2795cf7b6d67108cb092b80c847b5490a8e395296d7f5570527525cb9bb6931a"
       },
       "hub.json": {
-        "path": "verification/history/0.3.0-dev.41/hub.json",
-        "sha256": "9faa867af4e1d5677f44ab1e5b1799c942b59b85922048a33dbae22ba897dd19"
+        "path": "verification/history/0.3.0-dev.42/hub.json",
+        "sha256": "2e2e1647d9d650bbcc89c9b529f2a94ade0265f16ace86bd5e4d9aa59743e39d"
       },
       "recipe-suggestions.json": {
-        "path": "verification/history/0.3.0-dev.41/recipe-suggestions.json",
-        "sha256": "6e6d0653e9933c01bde609c4eb62153fa43f6a7f0e93390aae506b018ff7b586"
+        "path": "verification/history/0.3.0-dev.42/recipe-suggestions.json",
+        "sha256": "0110e36bfa68c892e4cd461d965e298a807bcb218aec869154630d396af0039d"
       },
       "components-media.json": {
-        "path": "verification/history/0.3.0-dev.41/components-media.json",
-        "sha256": "e3d2911cba660266e25d0a907a441c600287fdc86eb1fd03c938c0530105d3ec"
+        "path": "verification/history/0.3.0-dev.42/components-media.json",
+        "sha256": "a55d3b00b81dd93f5beb7817756f7a8feabedcbaaa899f251116f5b1f628be93"
       },
       "mnn.json": {
-        "path": "verification/history/0.3.0-dev.41/mnn.json",
-        "sha256": "dc99186ffc7163063c49965440a721c611cfaffe0c096e9fcf1239250582c120"
+        "path": "verification/history/0.3.0-dev.42/mnn.json",
+        "sha256": "56ad8e5b2f5f3b0fbc8c2ba0bc3a326470d54b1aa4db240731c97731883d0603"
       },
       "wan-media.json": {
-        "path": "verification/history/0.3.0-dev.41/wan-media.json",
-        "sha256": "7d31027d56ee22c7fb01739d83fc96ee3e82fc800b943a0a715eb62e9ab6ccf3"
+        "path": "verification/history/0.3.0-dev.42/wan-media.json",
+        "sha256": "1c2a704dec3547ab79f7eaec65cf7ca13a127668d3a941e2f1366d3f20cd189e"
       },
       "qwen-tokenizer.json": {
-        "path": "verification/history/0.3.0-dev.41/qwen-tokenizer.json",
+        "path": "verification/history/0.3.0-dev.42/qwen-tokenizer.json",
         "sha256": "db9f54475bec6f96ee59602a9b99e70fa9b5e254d2fe1dd45f5ffbe7c1ea829a"
       },
       "openmoss-assets.json": {
-        "path": "verification/history/0.3.0-dev.41/openmoss-assets.json",
+        "path": "verification/history/0.3.0-dev.42/openmoss-assets.json",
         "sha256": "1f9ab96780f0d8361c227e1a8d21855849aef1ca0b94e5c8eb4c96c30efb613f"
       },
       "openmoss-arm64.json": {
-        "path": "verification/history/0.3.0-dev.41/openmoss-arm64.json",
+        "path": "verification/history/0.3.0-dev.42/openmoss-arm64.json",
         "sha256": "a76a3b37a363410e0e22b10be26647f9a904a0dc45c4315aaea91e02d24cde1d"
       },
       "openmoss-core.json": {
-        "path": "verification/history/0.3.0-dev.41/openmoss-core.json",
-        "sha256": "2ff6fe7842c522fc4058af0132bb9dbaa395b133405883603ccc25406d64acfb"
+        "path": "verification/history/0.3.0-dev.42/openmoss-core.json",
+        "sha256": "43f052bd2e32386962de71bf896b0e4ab71adf5ff8053748cb91cd3668765afd"
       },
       "openmoss-mapping.json": {
-        "path": "verification/history/0.3.0-dev.41/openmoss-mapping.json",
+        "path": "verification/history/0.3.0-dev.42/openmoss-mapping.json",
         "sha256": "360dbcfff5bfa9100d12c7bb51c14c6ac7fd5de758e77d1f6b2339ae2bac291c"
       },
       "openmoss-trained.json": {
-        "path": "verification/history/0.3.0-dev.41/openmoss-trained.json",
+        "path": "verification/history/0.3.0-dev.42/openmoss-trained.json",
         "sha256": "5affecac6971c22fc3373105e12b17259f051e60e854c69aedacc225113d4e96"
       },
-      "openmoss-app-host.json": {
-        "path": "verification/history/0.3.0-dev.41/openmoss-app-host.json",
-        "sha256": "e08191b38eaf0530f61ee099066eed11afe845655d86ce2276ae4da182dd68cb"
-      },
-      "openmoss-trained-media.json": {
-        "path": "verification/history/0.3.0-dev.41/openmoss-trained-media.json",
-        "sha256": "f66c3ba8a94f4fddec0151dd5524597827b9820eb41975564117f123986c556b"
-      },
       "openmoss-media.json": {
-        "path": "verification/history/0.3.0-dev.41/openmoss-media.json",
-        "sha256": "e21108015d7f2d8a27357ae6c17331803ee80fda20fcb86da2073f31da229d62"
+        "path": "verification/history/0.3.0-dev.42/openmoss-media.json",
+        "sha256": "c3218e57e6f0f9d5b5e648abf702403a3ec4058a10a361f02d19699db9620526"
       }
     }
   },
@@ -720,13 +776,17 @@
   ],
   "apk_model_inference_tested": false,
   "historical_host_model_inference_tested": true,
-  "model_inference_test_scope": "Unchanged dev.41 MOSS native binary/assets and explicitly reused original cases. The 87-check production Java model run and actual media are immutable dev.41 history after the shared importer source changed. Current blocked-input regression covers 13 checks; foundation covers 692. Independent offline ASR on original WAVs passes two controls but fails reference text following. No Android inference, speech quality or complete MOSS-family acceptance.",
+  "model_inference_test_scope": "Corrected production MOSS prompt/delayed state/reference scratch with fresh full-weight Windows requests. Fixed-logit and vocabulary parity are independent algorithm contracts. Original dev.41/42 WAVs, Java/model evidence, failed ASR and incomplete candidates remain exact history. No Android inference, speech-quality or complete MOSS-family acceptance.",
   "current_failed_model_gates": {
+    "moss_tts_v15_text_following": "independent_original_request_asr_36_errors_over_2_words",
+    "moss_tts_v15_reference_natural_completion": "failed_at_max_new_tokens_375"
+  },
+  "original_failed_model_gates": {
     "moss_tts_v15_reference_natural_completion": "failed_at_max_new_tokens_375",
     "moss_tts_v15_reference_text_following": "failed_original_wav_asr_35_errors_over_2_words",
     "moss_prompt_candidate": "experiment_timed_out_1800s_at_step332_of375_no_wav"
   },
-  "scope": "Shared bundle imports close the active input on pause/shutdown and release the queue. Explicit file reselection restarts an incomplete local component, while HTTP resume keeps range validation. Original failure and independent offline prompt/ASR diagnostics are retained; the semantic prompt candidate is not adopted. Optional MOSS native assets and inference are unchanged. Foundation-only APK, preserved recommendations and HF search, no automatic model downloads, ROOT, off-device inference or ComfyUI graph ecosystem. Full frozen v0.3.0 requirements and all failed gates remain required.",
+  "scope": "Shared native engine corrects official Delay prompt, flush timing/frame extraction and user-reference isolation; completed CPU encoder scratch is released. Exact prior UI media is retained only while UI logic hashes match, with fresh UI checks. Foundation-only APK, preserved recommendations and HF search, no automatic model downloads, ROOT, off-device inference or ComfyUI ecosystem. Every frozen v0.3.0 requirement and failed gate remains required.",
   "required_release_scope": {
     "foundation": "F01–F12",
     "existing_text": true,
@@ -754,14 +814,22 @@
   "input_fingerprint": {
     "docs/proposals/multimodal-release-scope.json": "03326504d2d1b52c315bef574325f2c05d43c6a65eafc9779cc33120b7801690",
     "research/openmoss_trained/reference-investigation.json": "ab79b88c528d7ad626e435d71633bda6d5c001345fc98377358a11e584a24afc",
-    "tools/check_repository.py": "34fe716b3f8cf05d8e067a82eaeb8920a8de39f9728d9a6c5c66c6fd1f91c2b9",
-    "tools/checkpoint_evidence.py": "bdb3d8a4d5c70d1e8bde7ce0a80e20d5a8097f33758535d760b3256db6c49af0",
-    "tools/export_development.py": "d3dc286d3f1c59f77272b53e097cde210de542081b5b905496ba36981fadaad8",
+    "tools/check_repository.py": "3a12593d097f68fbf64fcb5a1ee556e0d918179f73bae7d743040d25e64fe431",
+    "tools/checkpoint_evidence.py": "04142dc81a32d583c0f1df58a4130ec664f8ec436684bc2471ceeade6176efea",
+    "tools/export_development.py": "db130b4c26e90ae5735abac1404a710f6a3d5b9513b408b94656e95e9bb60db5",
     "verification/research/bundle-pause-issue/first-run.json": "ed0d64eea7c4ea7cdee49edb4ff3670c86859cfec596484e136c9093d09e72b8",
     "verification/research/bundle-pause-issue/original-BundleTransfers.java.txt": "926596119a2c3f6bc089516e7bbd7db3016487d60c24f908ea646dfc76707f3e",
     "verification/research/bundle-pause-issue/original-driver.py.txt": "61087a74d63c1ea568219be0b00aea180b063640b11dc15b4deb5570be49e1ed",
     "verification/research/bundle-pause-issue/original-test.java.txt": "476aca5daf0a933f2f147fffb69a26577cfe49498a6e2afe9c696d5dbdf72e6c",
     "verification/research/bundle-pause-issue/stderr.txt": "ae7608c30f3a31ce439e08aa5dfcbc7141d09a0d8ccfadd727cd45092805b0b1",
+    "verification/research/openmoss-delay-issue/first-run.json": "6a0e779ac87d5f9ac36bb88afb97b2f8fa4f8bb97b56791235743ac230453069",
+    "verification/research/openmoss-delay-issue/native.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "verification/research/openmoss-delay-issue/native.stdout.json": "6349f31efaaa4df568d68706cb51631405e5014dda6d8c3ec930d7af10376b45",
+    "verification/research/openmoss-delay-issue/original-delay.cpp.txt": "e603396d1163e8cbff193ffe72f0e97cb2e59239f4856b8ca031fb2dab502e30",
+    "verification/research/openmoss-delay-issue/original-driver.py.txt": "1de30b97c50e22b47822cf81181b9943d2c2b69ea7ae30c71f38b8e30131ab2e",
+    "verification/research/openmoss-delay-issue/original-probe.cpp.txt": "118e615a1616d4df664fa1f2e0607bbc7ffd4f5e46c8031e539cd9549c732919",
+    "verification/research/openmoss-delay-issue/original-request.json": "78744a9adc9604875a1e1b8092f2d123389a4d7d64ae2664cc68c5922d640f54",
+    "verification/research/openmoss-delay-issue/README.md": "de257854f4bb01479319aee5e0d6f15234a99efbcddd5d431bf9084c29b566ba",
     "verification/research/openmoss-prompt-candidate/candidate-pipeline.cpp.txt": "19afb8cf1f866d5cd0b51efbc0d14400e560cc71d964d8e1be825de9c505f364",
     "verification/research/openmoss-prompt-candidate/original-driver.py.txt": "f8ef5c9d63209f73f405a9e3ad8598ada1dfdf2242524245c193fbd565eea226",
     "verification/research/openmoss-prompt-candidate/original-request.json": "8d9128a44d6c9a8bc3f27235fff14ff72cccca46fdf40bbe470ed420cda55ac7",
@@ -775,7 +843,19 @@
     "verification/research/openmoss-prompt-issue/original-driver.py.txt": "f6e2a3b075304841e5602580fcd6101521f33d08c3848b4be7e39b7fccf4de47",
     "verification/research/openmoss-prompt-issue/original-probe.cpp.txt": "5a4170e28e5ff60b566999ea85c7c14fbada8c9eb0900dbb36a501cd9265ea5f",
     "verification/research/openmoss-reference-asr/asset-receipt.json": "b1cbed7625c89b44c5cee7b8f594458cc5088024ada124fa8828a90e66d3fe89",
+    "verification/research/openmoss-reference-asr/dev42-final-transcriptions.json": "b7b2e3df37b31478967e03bec4ff3e0f6e7562e1c470f8c76755c0cfc3973960",
     "verification/research/openmoss-reference-asr/original-driver.py.txt": "b7f901f917f351c94e99ad071f3d9e18925005ba77941dec78ec84755a83d779",
-    "verification/research/openmoss-reference-asr/original-transcriptions.json": "94e29b5e60d55f5fec28f220db44307de8d2ff368d63a4fabf065e631d8aace7"
+    "verification/research/openmoss-reference-asr/original-transcriptions.json": "94e29b5e60d55f5fec28f220db44307de8d2ff368d63a4fabf065e631d8aace7",
+    "verification/research/openmoss-reference-asr/README.md": "408d2663a1a0174b708aedfeccadf49f5823d4edf3afbd242008abaff6e38131",
+    "verification/research/openmoss-scratch-candidate/candidate-codec.cpp.txt": "b219a628f74bf56e93d97f92d52a6a0a0afe98831f15433fb8660cafb869548a",
+    "verification/research/openmoss-scratch-candidate/candidate-pipeline.cpp.txt": "139ed26d10d594c8af4229215b51523bb86bc09ae4cd0d9d35e1cc2e343b1f9e",
+    "verification/research/openmoss-scratch-candidate/developer-interruption.json": "c09204263886408595a41ad815230c21cdd182d97cf57fea9f0f0f22e092176b",
+    "verification/research/openmoss-scratch-candidate/native.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "verification/research/openmoss-scratch-candidate/native.stdout.txt": "ff20a4806e2105736dc079c1435cd76c899ffdf366658f580dcf449a2be46813",
+    "verification/research/openmoss-scratch-candidate/original-capture-helper.py.txt": "d99c62ddf4fb41edbdf0816baeb33d758ad710eee69a9979885e3a03eebe1723",
+    "verification/research/openmoss-scratch-candidate/original-driver.py.txt": "872e454fa97c39bf0d40ca0d7dd821ea040eb1821e780b5f7e2d48ccf7c3f609",
+    "verification/research/openmoss-scratch-candidate/original-request.json": "27f897fccb62f2362076dcf81b799948cefc6514aa030c9d9c17d47752862d99",
+    "verification/research/openmoss-scratch-candidate/README.md": "720cada3280c7222393919620eafaf8f99a0402f5470023e4f13fd0b7208991e",
+    "verification/research/openmoss-scratch-candidate/results.json": "6217f0bd791abb4f261b87c60ef4c20b0e7656ec594938ea1a32bc4ed3539b2b"
   }
 }

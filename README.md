@@ -1,10 +1,16 @@
 # LMA · Android 本地模型工作台
 
-> **当前开发进展：0.3.0-dev.42 / code46。** 修复共用模型导入暂停 / 关闭后仍占用队列的问题；13 项真实阻塞读取、692 项基座、68 项 API 检查通过。模型仍由用户自主选择与管理，App 只更新基座。MOSS 参考模式结束与文本遵循失败继续保留，完整 v0.3.0 尚未验收。
+> **当前开发进展：0.3.0-dev.43 / code47。** 接通官方一致的 MOSS 提示与排空修正，以及参考编码临时缓存释放；提示 7/7、状态机 5/5、真实计算缓存 21 项检查通过。模型由用户自主选择、下载和管理，App 仅更新基座。完整权重、实际质量与 Android 验收分别留证，完整 v0.3.0 尚未验收。
 
-[导入操作逻辑](docs/MODEL_TRANSFERS.md) · [English](docs/MODEL_TRANSFERS.en.md) · [本轮实现与完整待办](docs/releases/v0.3.0-dev.42.md) · [参考模式诊断](docs/MOSS_REFERENCE_DIAGNOSTICS.md)
+[修正方案与复现](docs/MOSS_DELAY_FIX.md) · [English](docs/MOSS_DELAY_FIX.en.md) · [本轮实现与完整待办](docs/releases/v0.3.0-dev.43.md) · [模型导入](docs/MODEL_TRANSFERS.md)
 
-> **上一检查点：0.3.0-dev.41 / code45。** 接通用户自行选择的完整 MOSS-TTS 1.5 组合、真实采样进度、独立参数、取消恢复和结果管理。实际生产 Java / 原生路径 87 项检查、5 次运行通过；英文及参考输入结果与直接原生生成逐字节一致。参考模式触及上限未自然结束，失败继续保留。App 仅更新基座，原推荐顺序与用户的模型下载、导入及版本选择保留。
+当前实际主机验证：Java 71 项、4 次真实运行，英文 / 取消 / 预算错误 / 恢复通过，恢复 WAV 逐字节一致。完整原生运行 5 个 WAV / 6 项控制；参考模式仍在 375 步截断，独立识别 36 / 2 词错误。以下是实际主机音频波形展示；手机与语音质量验收仍未完成。
+
+![dev.43 实际主机语音波形；参考模式失败保留](docs/media/development/openmoss-0.3.0-dev.43/openmoss-trained-waveforms.gif)
+
+[实际音频 MP4](docs/media/development/openmoss-0.3.0-dev.43/openmoss-trained-speech.mp4) · [波形截图](docs/media/development/openmoss-0.3.0-dev.43/openmoss-trained-contact-sheet.png) · [英文原始 WAV](docs/media/development/openmoss-0.3.0-dev.43/openmoss-trained-en.wav)
+
+> **保留历史：0.3.0-dev.41 / code45。** 接通用户自行选择的完整 MOSS-TTS 1.5 组合、真实采样进度、独立参数、取消恢复和结果管理。实际生产 Java / 原生路径 87 项检查、5 次运行通过；英文及参考输入结果与直接原生生成逐字节一致。参考模式触及上限未自然结束，失败继续保留。App 仅更新基座，原推荐顺序与用户的模型下载、导入及版本选择保留。
 
 
 [实际主机音频 / 波形与视频](docs/MOSS_TTS15.md#实际产物与报告) · [界面输出上限提示](docs/media/development/openmoss/05-output-limit.png)

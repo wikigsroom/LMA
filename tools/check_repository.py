@@ -37,8 +37,8 @@ def main():
         assert not set(p.parts) & protected_parts, "Private/generated path staged: " + name
         assert p.suffix not in protected_suffixes and not p.name.startswith(".env"), "Private artifact: " + name
         assert p.parts[:2] != ("third_party", "cache") and "jniLibs" not in p.parts, "Re-fetchable native bytes staged: " + name
-        if name == "app/src/main/assets/license.js":
-            # This existing protected asset is authorized for hashing only.
+        if name in {"app/src/main/assets/license.js", "app/src/main/assets/foundation.js"}:
+            # Existing protected assets are authorized for hashing only.
             assert (ROOT / p).stat().st_size < 25 * 1024 * 1024
             with (ROOT / p).open("rb") as stream: hashlib.file_digest(stream, "sha256")
             continue
@@ -64,7 +64,7 @@ def main():
             assert resolved.is_relative_to(ROOT.resolve()) and resolved.exists(), "Broken local link: " + str(document.relative_to(ROOT)) + " -> " + target
             links += 1
     release = version()
-    if args.development and release == "0.3.0-dev.42":
+    if args.development and release == "0.3.0-dev.43":
         assert not args.published
         from checkpoint_evidence import check
         scoped = check()

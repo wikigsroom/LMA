@@ -1,5 +1,7 @@
 # MOSS reference input: independent diagnostics
 
+Current dev.43 prompt grids match 7/7 and delayed-state cases match 5/5; see [corrections and reproduction](MOSS_DELAY_FIX.en.md). This page preserves original dev.42 failures and incomplete candidates, not current model acceptance.
+
 [中文](MOSS_REFERENCE_DIAGNOSTICS.md) · [Model usage](MOSS_TTS15.en.md) · [Full pending scope](releases/v0.3.0-dev.42.md)
 
 Dev.42 investigates existing actual failures without changing production native engines, weights or sampler settings. Reference natural completion and text following still block acceptance.

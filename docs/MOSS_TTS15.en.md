@@ -1,5 +1,7 @@
 # Local MOSS-TTS 1.5 speech
 
+Dev.43 corrects prompt/delayed state and reference-encoder scratch; see [implementation and reproduction](MOSS_DELAY_FIX.en.md). Original dev.41 speech/failures below remain historical. [Current delivery](releases/v0.3.0-dev.43.md) records new validation separately; old model results do not establish current-APK acceptance.
+
 dev.42 leaves native engines/weights unchanged. The 87-check Java model run below is exact dev.41 history after the importer changed. See [shared imports](MODEL_TRANSFERS.en.md) and [independent diagnostics](MOSS_REFERENCE_DIAGNOSTICS.en.md).
 
 [中文](MOSS_TTS15.md) · [MOSS engine and format boundaries](OPENMOSS_ENGINE.en.md) · [Complete version scope](proposals/multimodal-release-scope.json)
@@ -86,4 +88,4 @@ These are actual native Windows outputs with unchanged original WAV bytes. The w
 
 ![Actual host WAVs and evidence scope, not an Android recording](media/development/openmoss-trained-contact-sheet.png)
 
-[Complete native execution and retained original failure](../verification/development/openmoss-trained.json) · [87 production Java checks](../verification/history/0.3.0-dev.41/openmoss-app-host.json) · [Media provenance and file hashes](media/development/openmoss-trained-media.json). Chart timings come from the direct native captures; the Java English/reference/recovery runs took about 724/1551/43 seconds. Different disk caches and workloads prevent treating these observations as a controlled benchmark or phone-speed estimate.
+[Complete native execution and retained original failure](../verification/history/0.3.0-dev.41/openmoss-trained.json) · [87 production Java checks](../verification/history/0.3.0-dev.41/openmoss-app-host.json) · [Media provenance and file hashes](media/development/openmoss-trained-media.json). Chart timings come from the direct native captures; the Java English/reference/recovery runs took about 724/1551/43 seconds. Different disk caches and workloads prevent treating these observations as a controlled benchmark or phone-speed estimate.

@@ -2,6 +2,7 @@
 #include "model_contract.hpp"
 #include "wave.hpp"
 #include "generation_guard.hpp"
+#include "codec_memory.hpp"
 #include "private_weights.hpp"
 #include "openmoss/model.h"
 #include "openmoss/pipeline.h"
@@ -40,6 +41,7 @@ int main(int argc,char** argv) {
         else {sound(p.at("seconds"),p.at("steps"),p.at("cfgScale"),p.at("sigmaShift"));require(p.at("cfgScale").get<double>()!=1 || clean(negative).empty(),"CFG=1 does not use negative conditioning; increase CFG or clear the negative prompt");}
         std::string workspace=request.at("workspace"),output=request.at("output"),backbone=workspace+"/models/model.gguf",extras=workspace+"/models/model.extras.gguf";
         if(is_delay) {instruction(text,32000);if(is_effect)require(!request.contains("referenceAudios"),"Old SoundEffect does not accept reference audio");else {speakers(text,dialogue(pipeline));instruction(p.at("voiceInstruction"),4000);instruction(p.at("language"),256);if(pipeline=="moss_voicegen_openmoss_cpu_v1")require(!clean(p.at("voiceInstruction")).empty() && !request.contains("referenceAudios"),"VoiceGenerator requires an instruction and no reference audio");}}
+        codec_memory_stats={};
         auto start=Clock::now();event({{"event","stage"},{"stage","validating_model_layout"}});int budget=is_delay?delay_contract(backbone,extras,pipeline):model_contract(backbone,extras,is_local);
         llama_backend_init();openmoss::LoadOptions options;options.n_ctx=is_sound?512:budget;options.n_batch=512;options.n_threads=threads;options.n_gpu_layers=0;options.aux_cpu=true;options.flash_attn=false;
         event({{"event","stage"},{"stage","loading_models"}});auto model=openmoss::Model::load(backbone,options);int64_t load_ms=elapsed(start);require(model->aux() && model->aux()->backend,"CPU auxiliary backend missing");ggml_backend_cpu_set_n_threads(model->aux()->backend,threads);
@@ -65,6 +67,8 @@ int main(int argc,char** argv) {
             details.update({{"promptTokens",result.n_prompt_tokens},{"latentFrames",result.n_latents},{"fullLatentSeconds",d.max_seconds},{"steps",r.num_inference_steps},{"textEncodeMs",result.text_seconds*1000},{"samplingMs",result.sample_seconds*1000},{"codecDecodeMs",result.decode_seconds*1000},{"stopReason","solver_complete"}});
         }
         model.reset();require(lma_openmoss::weight_mapping_stats().files==0,"CPU weight mappings outlived the model");details["auxWeightMappingsReleased"]=true;llama_backend_free();event({{"event","stage"},{"stage","saving_audio"}});write_wave(output,audio,channels,is_delay?120:is_local?60:30,rate);
-        int64_t total=elapsed(start);double duration=double(audio.size())/rate/channels;details.update({{"pipelineMs",total},{"audioDurationSeconds",duration},{"audioSamples",audio.size()/channels},{"pipelineRTF",double(total)/1000/duration}});event({{"event","execution"},{"details",details}});event({{"event","complete"},{"output",output}});return 0;
+        int64_t total=elapsed(start);double duration=double(audio.size())/rate/channels;details.update({{"pipelineMs",total},{"audioDurationSeconds",duration},{"audioSamples",audio.size()/channels},{"pipelineRTF",double(total)/1000/duration},
+            {"encoderScratchReleases",codec_memory_stats.releases},{"encoderScratchReleasedBytes",codec_memory_stats.released_bytes},
+            {"encoderScratchLargestReleasedBufferBytes",codec_memory_stats.largest_released_buffer},{"encoderScratchBytesAreResidentMeasurement",false}});event({{"event","execution"},{"details",details}});event({{"event","complete"},{"output",output}});return 0;
     } catch(const std::exception& error) {event({{"event","error"},{"message",error.what()}});return 1;}
 }

@@ -1,5 +1,7 @@
 # LMA 文档 / Documentation
 
+当前 dev.43 / Current dev.43：[共用语音引擎修正](MOSS_DELAY_FIX.md) / [English](MOSS_DELAY_FIX.en.md) · [本轮实现、真实验证与完整待办 / Numbered changes and full pending scope](releases/v0.3.0-dev.43.md)。App 仅交付基座；模型仍由用户自主选择、下载和管理。
+
 dev.42：导入暂停与恢复 [中文](MODEL_TRANSFERS.md) / [English](MODEL_TRANSFERS.en.md)；参考输入独立诊断 [中文](MOSS_REFERENCE_DIAGNOSTICS.md) / [English](MOSS_REFERENCE_DIAGNOSTICS.en.md)；[本轮实现与完整待办](releases/v0.3.0-dev.42.md)。
 
 当前 dev.41：MOSS-TTS 1.5 [中文使用与边界](MOSS_TTS15.md) / [English workflow](MOSS_TTS15.en.md) · [编号实现和完整待完成表](releases/v0.3.0-dev.41.md)。完整资产由用户自行选择；参考模式的正常结束失败保留。

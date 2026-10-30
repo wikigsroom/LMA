@@ -1,0 +1,215 @@
+{
+  "schema": "lma.speech-intelligibility-diagnostic/1",
+  "cases": [
+    {
+      "name": "kokoro-reference-control",
+      "path": "docs/media/development/tts-trained-kokoro.wav",
+      "sha256": "b2f39aa6e39665de756dccd8f523a64b72ec7eb3853a6e754f3ca5ee8c0dfdeb",
+      "expected_text": "Hello world. The sun is shining.",
+      "transcript": " Hello world, the sun is shining.",
+      "normalized_reference": [
+        "hello",
+        "world",
+        "the",
+        "sun",
+        "is",
+        "shining"
+      ],
+      "normalized_hypothesis": [
+        "hello",
+        "world",
+        "the",
+        "sun",
+        "is",
+        "shining"
+      ],
+      "word_errors": 0,
+      "word_error_rate": 0.0,
+      "exact_words": true,
+      "asr_tokens": 11,
+      "asr_seconds": 0.408046500000637,
+      "seconds_audio": 3.0,
+      "prompt_hint_supplied": false
+    },
+    {
+      "name": "moss-original-english",
+      "path": "docs/media/development/openmoss-trained-en.wav",
+      "sha256": "403d4aa9d0341c3cd8df4619311389941fea5326ab7fa77316d2c31b3fb24ac1",
+      "expected_text": "Hello world.",
+      "transcript": " Hello world!",
+      "normalized_reference": [
+        "hello",
+        "world"
+      ],
+      "normalized_hypothesis": [
+        "hello",
+        "world"
+      ],
+      "word_errors": 0,
+      "word_error_rate": 0.0,
+      "exact_words": true,
+      "asr_tokens": 6,
+      "asr_seconds": 0.32874749999609776,
+      "seconds_audio": 1.36,
+      "prompt_hint_supplied": false
+    },
+    {
+      "name": "moss-original-reference",
+      "path": "docs/media/development/openmoss-trained-reference.wav",
+      "sha256": "6a6080b55f241563f95ff023c0c4c609127453d6a388f0ac5d94b28dd8e06808",
+      "expected_text": "Hello world.",
+      "transcript": " Hello world, sign is shining. Hello world, the sign is shining. Hello world, sign is shining. Hello world, the sign is shining. Hello world, the sign is shining. Hello master town and stroll. Hello world. Hello world,",
+      "normalized_reference": [
+        "hello",
+        "world"
+      ],
+      "normalized_hypothesis": [
+        "hello",
+        "world",
+        "sign",
+        "is",
+        "shining",
+        "hello",
+        "world",
+        "the",
+        "sign",
+        "is",
+        "shining",
+        "hello",
+        "world",
+        "sign",
+        "is",
+        "shining",
+        "hello",
+        "world",
+        "the",
+        "sign",
+        "is",
+        "shining",
+        "hello",
+        "world",
+        "the",
+        "sign",
+        "is",
+        "shining",
+        "hello",
+        "master",
+        "town",
+        "and",
+        "stroll",
+        "hello",
+        "world",
+        "hello",
+        "world"
+      ],
+      "word_errors": 35,
+      "word_error_rate": 17.5,
+      "exact_words": false,
+      "asr_tokens": 53,
+      "asr_seconds": 1.0702936000016052,
+      "seconds_audio": 27.44,
+      "prompt_hint_supplied": false
+    }
+  ],
+  "passed": 2,
+  "expected_cases": 3,
+  "all_exact_words": false,
+  "asr_assets": {
+    "schema": "lma.speech-asr-reference-assets/1",
+    "repository": "openai/whisper-tiny.en",
+    "revision": "87c7102498dcde7456f24cfd30239ca606ed9063",
+    "license": "Apache-2.0 (HF publisher metadata)",
+    "developer_only": true,
+    "packaged_in_apk": false,
+    "components": [
+      {
+        "path": "config.json",
+        "bytes": 1937,
+        "sha256": "b5366317df280f79e6cc366f259f379674f81a8721d458acf2e00680ccb10b1d"
+      },
+      {
+        "path": "generation_config.json",
+        "bytes": 1621,
+        "sha256": "38744c19d5cede6ff4dab5079c6d6ddc02ca726960bbef208fb602ad5a030eab"
+      },
+      {
+        "path": "preprocessor_config.json",
+        "bytes": 184990,
+        "sha256": "9b5cd03a36fbb8a627c64d98a5b5b126ead95a77720723944487311f0110b666"
+      },
+      {
+        "path": "tokenizer_config.json",
+        "bytes": 805,
+        "sha256": "14f84bdf4b9ecdbd4738ddc81c17a1baedfc02bb93c6e049c951e15a1b40b70d"
+      },
+      {
+        "path": "vocab.json",
+        "bytes": 798156,
+        "sha256": "3ba3c3109ff33976c4bd966589c11ee14fcaa1f4c9e5e154c2ed7f99d80709e7"
+      },
+      {
+        "path": "merges.txt",
+        "bytes": 456318,
+        "sha256": "1ce1664773c50f3e0cc8842619a93edc4624525b728b188a9e0be33b7726adc5"
+      },
+      {
+        "path": "normalizer.json",
+        "bytes": 52666,
+        "sha256": "bf1c507dc8724ca9cf9903640dacfb69dae2f00edee4f21ceba106a7392f26dd"
+      },
+      {
+        "path": "added_tokens.json",
+        "bytes": 34604,
+        "sha256": "560be47bea388757f8d4cc185c5d82067426cbb6361e38016dd90ddc01ab203a"
+      },
+      {
+        "path": "special_tokens_map.json",
+        "bytes": 1830,
+        "sha256": "014f8f802366ed818919550be0ad9e35907327cb9e142e8aaa102420f460bda8"
+      },
+      {
+        "path": "tokenizer.json",
+        "bytes": 2405679,
+        "sha256": "5eb60cec1e77aeeb6869a2bb5a8e01a84c3fe5d072d75369343021fe6f5310d0"
+      },
+      {
+        "path": "README.md",
+        "bytes": 14861,
+        "sha256": "13627ce3d7dce389223eab7b6ed06738f0f1c786e5245e650b029e4e314c8ff1"
+      },
+      {
+        "role": "model",
+        "repository": "openai/whisper-tiny.en",
+        "revision": "87c7102498dcde7456f24cfd30239ca606ed9063",
+        "path": "model.safetensors",
+        "bytes": 151060136,
+        "sha256": "db59695928ded6043adaef491a53ef4e12da9611184d77c53baa691a60b958ad",
+        "url": "https://huggingface.co/openai/whisper-tiny.en/resolve/87c7102498dcde7456f24cfd30239ca606ed9063/model.safetensors"
+      }
+    ]
+  },
+  "torch_version": "2.14.0+cpu",
+  "transformers_version": "5.17.0",
+  "execution": {
+    "device": "cpu",
+    "threads": 2,
+    "do_sample": false,
+    "num_beams": 1,
+    "max_new_tokens": 128
+  },
+  "model_inference": true,
+  "remote_inference": false,
+  "apk_model_data": false,
+  "physical_android": false,
+  "speech_quality_accepted": false,
+  "voice_similarity_accepted": false,
+  "release_accepted": false,
+  "capture_directory": "build/speech-intelligibility-tests/run-1793383602225477700",
+  "input_fingerprint": {
+    "research/speech_asr_reference/assets.json": "83d9bd81b57d4f1630ca4ffd5a295015ec59c7f1e5899fd656ed74f95af03ff0",
+    "research/speech_asr_reference/NOTICE": "207bc837feee7644108bed146a5be0037db7b2c763487f3f57824799eae81bca",
+    "research/speech_asr_reference/openmoss-original-cases.json": "a155b444be6eb46ea0afa6105e5b5e0ed5c6922adc94b0051a2d4ebec5eaa9ce",
+    "tools/fetch_speech_asr_reference.py": "87377b7a04ecf8faa1989362dc0d79b6083ac2eb4ebb7fb6d195761fe7d19664",
+    "tools/test_speech_intelligibility.py": "9e705b7996b6abdd1f81a9f0747588672ae7c115d426e905c075bf0088aaeadb"
+  }
+}

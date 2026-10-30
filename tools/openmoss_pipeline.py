@@ -44,6 +44,12 @@ def guarded_model(source: Path) -> str:
 
 def guarded_pipeline(source: Path) -> str:
     text=(source/'src/pipeline.cpp').read_text(encoding='utf-8')
+    assistant = '+ im_start + "assistant\\n" + build_assistant_prefix_block(tok, d, T_prefix);'
+    if text.count(assistant) != 1: raise RuntimeError('Pinned assistant generation seam changed')
+    # The official delay-family generation template ends after assistant\n.
+    # Continuation and other architectures retain their own prefix handling.
+    text = text.replace(assistant, '+ im_start + "assistant\\n" + '
+        '((d.arch == Arch::TTSDelay && T_prefix == 0) ? std::string() : build_assistant_prefix_block(tok, d, T_prefix));')
     marker='    std::fprintf(stderr, "[generate] prompt_len = %d tokens\\n", prompt_len);'
     if text.count(marker)!=1:
         raise RuntimeError('Pinned MOSS generation seam changed; review before building')
@@ -57,7 +63,7 @@ def guarded_pipeline(source: Path) -> str:
         raise RuntimeError('Pinned actual sampling/codec seam changed; review before building')
     text=text.replace(sampled,sampled+'\n        lma_openmoss::generation_step(step + 1, req.max_new_tokens, last_step.stop);')
     text=text.replace(decode,'            lma_openmoss::generation_decoding();\n'+decode)
-    return '// Modified by LMA: enforce budgets, bind ambient conditioning, report actual sampled steps and termination.\n#include "generation_guard.hpp"\n'+text.replace(marker,guard+marker)
+    return '// Modified by LMA: official delay assistant prefix, budgets, ambient conditioning and actual generation progress.\n#include "generation_guard.hpp"\n'+text.replace(marker,guard+marker)
 
 
 def prompt_primitives(source: Path) -> str:
@@ -68,3 +74,39 @@ def prompt_primitives(source: Path) -> str:
     if any(x in defaults+body for x in ('llama_', 'ggml_', 'Model &', 'Tokenizer &')):
         raise RuntimeError('Prompt primitive extraction crossed a graph boundary')
     return '#include "openmoss/pipeline.h"\nnamespace openmoss {\n'+defaults+body+'\n}\n'
+
+
+def guarded_delay(source: Path) -> str:
+    """Align real delayed-state updates/extraction with the pinned processor."""
+    text = (source / 'src/delay.cpp').read_text(encoding='utf-8')
+    update = '    } else if (m_delayed_length >= 0) {\n        m_delayed_length++;'
+    boundary = '    if (start < 0) return {};'
+    threshold = '    if (T <= int64_t(m_dims.n_vq)) return {};'
+    length = '    const int64_t T_audio = T - int64_t(m_dims.n_vq);'
+    for seam in [update, boundary, threshold, length]:
+        if text.count(seam) != 1: raise RuntimeError('Pinned MOSS delay seam changed; review before building')
+    begin = text.index('    // delayed_length convention here differs')
+    end = text.index('    if (m_delayed_length < 0 && next_text', begin)
+    text = text[:begin] + ('    // Official generation starts the flush at zero and increments it in\n'
+        '    // that same step. Extraction removes n_vq - 1 trailing delay rows.\n') + text[end:]
+    text = text.replace(update, '    }\n    if (m_delayed_length >= 0) {\n        m_delayed_length++;')
+    text = text.replace(boundary, boundary + '\n'
+        '    // User reference slots are never generated assistant output.\n'
+        '    if (start < int64_t(m_history.size()) &&\n'
+        '        m_history[size_t(start)].front() == m_dims.audio_user_slot_token_id) return {};')
+    text = text.replace(threshold, '    if (T < int64_t(m_dims.n_vq)) return {};')
+    text = text.replace(length, '    const int64_t T_audio = T - int64_t(m_dims.n_vq) + 1;')
+    return '// Modified by LMA: match official flush timing/frame extraction; exclude user reference output.\n' + text
+
+
+def guarded_codec(source: Path) -> str:
+    """Release only completed CPU encoder scratch, after output codes are copied."""
+    text = (source / 'src/codec.cpp').read_text(encoding='utf-8')
+    seam = ('    ggml_free(gctx);\n    return out;\n}\n\n'
+        '// ───────────────────────────────────────────────────────────────────────────\n'
+        '// Model ctor/dtor + CodecGraphs accessor.')
+    if text.count(seam) != 1: raise RuntimeError('Pinned MOSS encoder lifetime seam changed; review before building')
+    replacement = seam.replace('    return out;',
+        '    lma_openmoss::release_encoder_scratch(m_galloc, aux->backend);\n    return out;')
+    return ('// Modified by LMA: release completed CPU reference encoder scratch before generation.\n'
+        '#include "codec_memory.hpp"\n' + text.replace(seam, replacement))

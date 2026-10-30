@@ -27,6 +27,7 @@ def inputs():
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--reuse-existing-local-files', action='store_true', help='Explicitly adopt the already-owned complete pair using the production full-SHA path; does not test stream copying or Android SAF')
+    parser.add_argument('--skip-reference-case', action='store_true', help='Explicitly scoped integration: full assets, English, budget error, cancellation and recovery; no current Java reference-generation claim')
     args = parser.parse_args()
     if os.name != 'nt': raise RuntimeError('Native Windows host only')
     before = inputs(); assets(); binary, compilation = build()
@@ -52,7 +53,8 @@ def main():
         command = [shutil.which('java'), '-Dfile.encoding=UTF-8', '-Dstdout.encoding=UTF-8', '-Dstderr.encoding=UTF-8', '-Duser.language=en',
             '-cp', alias(classes) + os.pathsep + alias(dependency), 'com.lma.app.OpenMossTrainedAppTest', alias(output / 'data'),
             alias(ROOT / 'build/openmoss-trained/originals'), alias(ROOT / 'catalogue/model-bundles.json'), alias(binary), alias(ROOT / 'docs/media/development/tts-trained-kokoro.wav'),alias(direct_path),
-            'existing_local' if args.reuse_existing_local_files else 'stream_import']
+            'existing_local' if args.reuse_existing_local_files else 'stream_import',
+            'skip_reference' if args.skip_reference_case else 'full_reference']
         print('Explicit existing-local full-SHA adoption and actual production Java/native paths' if args.reuse_existing_local_files else 'Full stream import and actual production Java/native paths', flush=True)
         result = subprocess.run(command, cwd=ROOT, capture_output=True, timeout=3600)
         (output / 'java.stdout').write_bytes(result.stdout); (output / 'java.stderr').write_bytes(result.stderr)
@@ -71,6 +73,7 @@ def main():
     report = dict(schema='lma.openmoss-app-host/1', java=java, compilation=compilation, outputs=outputs,
         direct_trained_report_sha256=sha(direct_path), capture_directory=output.relative_to(ROOT).as_posix(),
         reference_natural_completion_accepted=direct['reference_natural_completion_accepted'],
+        reference_case_executed=not args.skip_reference_case,
         production_java_native_host_executed=True, physical_android=False, android_saf_tested=False, android_background_accepted=False,
         speech_quality_accepted=False, complete_moss_tts_v15_accepted=False, complete_target12_accepted=False, complete_release_accepted=False,
         input_fingerprint=before)

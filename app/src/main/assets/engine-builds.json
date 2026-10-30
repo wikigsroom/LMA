@@ -249,8 +249,8 @@
       "backend": "cpu",
       "ndk": "30.0.16248370",
       "min_sdk": 28,
-      "bytes": 3719640,
-      "sha256": "cf0f633a1de61a2ff093f10eb268032ead4e4d30d180f77cac0dfdfc5b82c027",
+      "bytes": 3722352,
+      "sha256": "55023979d3d1ba30c54303938ef9d138419bd44d0d8e4747800e2b1a2bb47fba",
       "elf_load_alignment": [
         16384
       ],
@@ -263,7 +263,11 @@
       "virtualization_used": false,
       "private_weight_mapping": true,
       "model_loader_sha256": "e345b83c942ff33b8a94137803622d3edc06807efeab571e0c4eceadde37ad6c",
-      "pipeline_guard_sha256": "f158aa7e928835ec0360ca1a14df0d54b9dc8755c06550090a7f9f6c1bcb586b",
+      "pipeline_guard_sha256": "a4008f4a7f453ada8dca98c6556b76e7bb1483affe599b2711288cceb81f0402",
+      "delay_guard_sha256": "46e215ca48129b89d10f5d528e7e15e5cc59f174687010b7305c6813b9e94c40",
+      "codec_guard_sha256": "67dbe0089f968bfb4d91c5ed156986c46ce32587f3eec4984b75c0419e92d2a6",
+      "codec_encoder_scratch_released": true,
+      "official_delay_flush_and_extraction": true,
       "deviceValidated": false,
       "status": "compiled_not_device_tested",
       "notices": [

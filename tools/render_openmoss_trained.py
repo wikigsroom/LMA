@@ -1,4 +1,5 @@
 """Publish original trained speech samples and explicitly labelled HOST waveform media."""
+import argparse
 import json
 from pathlib import Path
 import shutil
@@ -6,27 +7,42 @@ import subprocess
 import time
 import wave
 
-from evidence import current, fingerprint
+from evidence import current, fingerprint, version
 from fetch_sd15_trained import sha
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / 'docs/media/development'
+OUT = ROOT / 'docs/media/development' / ('openmoss-' + version())
 
 
 def main():
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--audio-only',action='store_true',help='Publish verified native WAV bytes before optional Java/media checks; never overwrite different bytes')
+    args=parser.parse_args()
     from PIL import Image, ImageDraw, ImageFont
     import numpy as np
     before = fingerprint('tools/render_openmoss_trained.py')
     source = ROOT / 'build/openmoss-trained-tests/results.json'; report = json.loads(source.read_text(encoding='utf-8'))
-    app_source = ROOT / 'build/openmoss-app-host-tests/results.json'; app = json.loads(app_source.read_text(encoding='utf-8'))
-    current(report['input_fingerprint']); current(app['input_fingerprint'])
+    current(report['input_fingerprint'])
     if not report['host_business_checks_passed'] or report['physical_android']: raise ValueError('Require actual HOST business checks; never clear failed model-completion gates')
     cases = ['chinese', 'english', 'reference']
-    titles = ['MOSS-TTS 1.5 / Chinese', 'MOSS-TTS 1.5 / English', 'MOSS-TTS 1.5 / reference: OUTPUT LIMIT']
+    reference_status = 'NATURAL EOS' if report['reference_natural_completion_accepted'] else 'OUTPUT LIMIT'
+    titles = ['MOSS-TTS 1.5 / Chinese', 'MOSS-TTS 1.5 / English', 'MOSS-TTS 1.5 / reference: ' + reference_status]
     audio_names = ['openmoss-trained-'+p+'.wav' for p in ['zh','en','reference']]
     names = audio_names + ['openmoss-trained-contact-sheet.png','openmoss-trained-waveforms.gif','openmoss-trained-speech.mp4']
     receipt = OUT / 'openmoss-trained-media.json'
-    if receipt.exists() or any((OUT/name).exists() for name in names): raise FileExistsError('Preserve existing published media')
+    if receipt.exists() or any((OUT/name).exists() for name in names[3:]): raise FileExistsError('Preserve existing published media')
+    OUT.mkdir(parents=True,exist_ok=True)
+    if args.audio_only:
+        jobs={j['name']:j for j in report['jobs']}
+        for case,name in zip(cases,audio_names):
+            source_audio=ROOT/report['capture_directory']/(case+'.wav');target=OUT/name;identity=jobs[case]['audio']
+            if sha(source_audio)!=identity['sha256'] or source_audio.stat().st_size!=identity['bytes']: raise ValueError('Changed original native WAV')
+            if target.exists():
+                if sha(target)!=identity['sha256'] or target.stat().st_size!=identity['bytes']: raise ValueError('Preserve different published WAV')
+            else:shutil.copyfile(source_audio,target)
+        current(before);print('Published three verified native WAVs; Java/media acceptance is separate',flush=True);return
+    app_source = ROOT / 'build/openmoss-app-host-tests/results.json'; app = json.loads(app_source.read_text(encoding='utf-8'))
+    current(app['input_fingerprint'])
     temporary = ROOT / 'build/openmoss-trained-media' / str(time.time_ns()); temporary.mkdir(parents=True,exist_ok=False)
     font_path = r'C:\Windows\Fonts\msyh.ttc'
     title_font = ImageFont.truetype(font_path,31); font = ImageFont.truetype(font_path,22); small = ImageFont.truetype(font_path,17)
@@ -34,6 +50,7 @@ def main():
     for index,(case,title,name) in enumerate(zip(cases,titles,audio_names)):
         job=jobs[case]; path=ROOT/report['capture_directory']/(case+'.wav')
         if sha(path)!=job['audio']['sha256'] or path.stat().st_size!=job['audio']['bytes']: raise ValueError('Changed trained audio')
+        if (OUT/name).exists() and (sha(OUT/name)!=job['audio']['sha256'] or (OUT/name).stat().st_size!=job['audio']['bytes']): raise ValueError('Preserve different published WAV')
         shutil.copyfile(path,temporary/name)
         with wave.open(str(path),'rb') as stream:
             if (stream.getnchannels(),stream.getsampwidth(),stream.getframerate())!=(1,2,job['audio']['sample_rate']): raise ValueError('Different PCM format')
@@ -60,7 +77,7 @@ def main():
     for index,slide in enumerate(slides):sheet.paste(slide.resize((720,495)),((index%2)*720,(index//2)*495))
     draw=ImageDraw.Draw(sheet)
     lines=['Evidence scope / 验证范围',f"{len(report['jobs'])} actual WAV jobs / {len(report['controls'])} controls",
-        'Reference EOS FAILED / output limit retained',f"Java production binding: {app['java']['passed']} checks",'2 user-owned GGUFs / no APK weights','Phone, quality and resources: pending']
+        'Reference: ' + reference_status,f"Java scoped binding: {app['java']['passed']} checks",'Reference: current direct native only' if not app.get('reference_case_executed',True) else 'Reference: native and Java', 'Phone, quality and resources: pending']
     for index,text in enumerate(lines):draw.text((755,560+index*48),text,font=font,fill='#f9ce79' if index in [0,5] else '#dbe6f4')
     sheet.save(temporary/names[3]); slides[0].save(temporary/names[4],save_all=True,append_images=slides[1:],duration=1800,loop=0,optimize=False)
     ffmpeg,ffprobe=shutil.which('ffmpeg'),shutil.which('ffprobe')
@@ -78,6 +95,8 @@ def main():
     sources={'verification/development/openmoss-trained.json':sha(source),'verification/development/openmoss-assets.json':sha(ROOT/'build/openmoss-trained/receipt.json'),
         'verification/development/openmoss-app-host.json':sha(app_source)}
     record=dict(schema='lma.openmoss-trained-media/1',kind='actual_trained_host_wav_and_waveform_slideshow',sources=sources,source_audio=originals,
+        version=version(),directory=OUT.relative_to(ROOT).as_posix(),
+        model_inference=True,actual_native_host=True,java_reference_case_executed=app.get('reference_case_executed',True),
         gif_frames=3,gif_duration_ms=5400,mp4_duration_seconds=float(probe['format']['duration']),mp4_codecs=[x['codec_name'] for x in probe['streams']],
         waveform_amplitude_normalized=False,original_wav_bytes_unchanged=True,mp4_audio_transcoded_aac=True,mp4_audio_resampled_hz=48000,
         files={name:dict(bytes=(OUT/name).stat().st_size,sha256=sha(OUT/name)) for name in names},

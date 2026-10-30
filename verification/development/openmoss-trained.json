@@ -2,43 +2,47 @@
   "schema": "lma.openmoss-trained-host/1",
   "compilation": {
     "schema": "lma.openmoss-host-build/1",
-    "executable": "build/openmoss-worker-host/8551e120780d970c/bin/lma_openmoss_host.exe",
-    "bytes": 3950592,
-    "sha256": "80b8eda3b843c3ff0c724bc6933798b802a7ae7b7f969829f5620351f122249a",
+    "executable": "build/openmoss-worker-host/a21882ae36d836db/bin/lma_openmoss_host.exe",
+    "bytes": 3952640,
+    "sha256": "47dd746c90523964a7ee0ae09cfdfcccda2d0965603bce436ec1d392bafcfeff",
     "source_revision": "bfb1f465e0a86fb5a52bbf93e67ceba4b7d0b4e1",
     "llama_revision": "050ee92d04c2e1f639025786dea701c70e7d4204",
     "compiled_library_sources": 10,
-    "compile_cache": "build/openmoss-host-cache/cpu-050ee92d04c2-U/bin",
+    "compile_cache": "build/openmoss-host-cache/cpu-050ee92d04c2-V/bin",
     "backend": "cpu",
     "private_weight_mapping": true,
     "production_worker_source_unmodified": true,
     "upstream_sources_unmodified": true,
     "windows_crt_parent_environment_compatibility": true,
+    "codec_encoder_scratch_released": true,
+    "official_delay_flush_and_extraction": true,
     "bundled_model_data": false,
     "physical_android": false,
     "android_compiled": false,
     "packaged_in_apk": false,
     "model_executed": false,
     "input_fingerprint": {
-      "native/openmoss/CMakeLists.txt": "83c84c6b36b70b7307a8c1b1b801b9b26f685d72f8a1d929d78c6351d1a9965a",
+      "native/openmoss/CMakeLists.txt": "7ec569bb94f68c28607de3e14bfc827e3fb9ce82b37eed53b69d9b9afb2fa045",
+      "native/openmoss/codec_memory.hpp": "c870610dedd8d4ba17086b071025a64912cfc66ecd2327a0db62af23d4d9e9a9",
       "native/openmoss/generation_guard.hpp": "9a7b420629f5502b66e2a95608aed0ac97780924fead745e7da02ab6c60db2c6",
       "native/openmoss/model_contract.hpp": "0476e93090a14822f5544a485fd5f83fdd66f9c40cd18eb7c28389e45f1ee7cb",
       "native/openmoss/policy.hpp": "eb164dba961c9065b8dd62b272050bdbb45c4d303b8e5b2455ec5441134f1684",
       "native/openmoss/private_weights.hpp": "7a5bfc3b4a2df5873628036af85b578630e43907fb009d6c23d2fe240264a16f",
       "native/openmoss/wave.hpp": "aaf85f286b9e9d95de808aae2088dadac7b9b06e35f51f31c05e272f7a112e7f",
-      "native/openmoss/worker.cpp": "a807ff77d40a12daf020e17a5517ae47476dd980227150c933635d7a80a2da15",
+      "native/openmoss/worker.cpp": "2bf806071149b7042cf66206537577ef6c27d09ccab6b722324bc1ae1475d958",
       "research/moss_nano_host/compat/sys/prctl.h": "9322b99bb80674fd2d42eb2b94f5ee5519ab443da0cdffd5ae938ef855907569",
       "research/moss_nano_host/compat/unistd.h": "1c843add75719822f7371cfafd97af1abdc1ffc52938f5cd96dfd407630d9f96",
-      "research/openmoss_host/CMakeLists.txt": "07dfb210c4668b1c3709ef1fdba3f72fd4079416631d85973f01e9b47d5662e3",
+      "research/openmoss_host/CMakeLists.txt": "c9d581ad07bc5cdc500e638da61df2342c64666cf1805abede2bb54dc0d2f405",
       "research/openmoss_host/NOTICE": "4a34c40dceab4256b15fbf7eb7c0bd6b73d76b4f043cb3956b59d05034e82cfd",
       "research/qwen_tts_host/compat/sys/prctl.h": "0e2a8e106274e1330cb0a6240583a75a4eecfe182bf0e08d141984aaae2a3987",
       "research/qwen_tts_host/compat/unistd.h": "64e960a64922193f97a70eccaf9e4bfed7f70c79c1cbcadd82a984efc3a2e8ec",
       "research/sd_host/platform.hpp": "c377ed1b676707a469a192d96ae9b748802e1f62ad0674366b593b2b5b2daf67",
+      "tests/native/openmoss_codec_memory_test.cpp": "e8c80b8094c12fdc4a2510afae40ed6be41e89540c582f9c9cdb170dbb44364c",
       "tests/native/openmoss_mapping_test.cpp": "4f676f86b3d22dee7b4ed67facd62971b6096e4c3f6ba1aa8a9592b667bb0947",
       "third_party/openmoss-source-lock.json": "df2d062fe174080e95d1f2f05ef8e133616a1827637e62d7195181f1c9256295",
-      "tools/build_openmoss_host.py": "7e18dbebb8b073e5a4a55b059798d025d9233425aa8576e0f28eb8c3ecaf7aea",
+      "tools/build_openmoss_host.py": "4c018bd89934cf85c311ccbdf8a2ca26f76a8c4bc7a48c1dee42ae3f72b4a87e",
       "tools/fetch_openmoss.py": "1c18d8c17de019a6b66321042cb14d61441d54fc370ef3f5547cacd627f1330b",
-      "tools/openmoss_pipeline.py": "483667858e0ce77742ae8242a15ae88bc8fdf76597d66191ad10ccdb172fbec3"
+      "tools/openmoss_pipeline.py": "82b855fb113f9eb16aacb27f54b94d1eebf4156d4c4088d46eda05e52fb8282f"
     }
   },
   "acquisition": {
@@ -78,7 +82,7 @@
   "acquisition_receipt_sha256": "1f9ab96780f0d8361c227e1a8d21855849aef1ca0b94e5c8eb4c96c30efb613f",
   "info": {
     "returncode": 0,
-    "seconds": 0.09089880000101402,
+    "seconds": 0.21543630000087433,
     "events": [
       {
         "backend": "cpu",
@@ -101,10 +105,10 @@
     "android_cooperative_cancellation_tested": false,
     "resources": {
       "observed": true,
-      "samples": 5,
+      "samples": 4,
       "interval_ms": 20,
-      "observed_peak_working_set_bytes": 6012928,
-      "sampled_peak_private_bytes": 2281472,
+      "observed_peak_working_set_bytes": 6475776,
+      "sampled_peak_private_bytes": 2424832,
       "gpu_memory_measured": false,
       "physical_device_memory_measured": false
     }
@@ -112,7 +116,519 @@
   "jobs": [
     {
       "returncode": 0,
-      "seconds": 97.07419759999902,
+      "seconds": 41.98508729999594,
+      "events": [
+        {
+          "event": "stage",
+          "stage": "validating_model_layout"
+        },
+        {
+          "event": "stage",
+          "stage": "loading_models"
+        },
+        {
+          "event": "stage",
+          "stage": "generating_speech"
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 0,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 1,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 2,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 3,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 4,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 5,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 6,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 7,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 8,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 9,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 10,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 11,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 12,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 13,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 14,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 15,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 16,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 17,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 18,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 19,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 20,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 21,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 22,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 23,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 24,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 25,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 26,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 27,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 28,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 29,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 30,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 31,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 32,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 33,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 34,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 35,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 36,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 37,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 38,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 39,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 40,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 41,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 42,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 43,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 44,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 45,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 46,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 47,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 48,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 49,
+          "steps": 375
+        },
+        {
+          "event": "stage",
+          "stage": "decoding_audio"
+        },
+        {
+          "event": "stage",
+          "stage": "saving_audio"
+        },
+        {
+          "details": {
+            "audioDurationSeconds": 1.12,
+            "audioFramesIncludingPrefix": 14,
+            "audioSamples": 26880,
+            "auxMappedFileBytes": 13430589376,
+            "auxMappedFiles": 2,
+            "auxMappedTensorBytes": 5365936128,
+            "auxMappedTensors": 1665,
+            "auxMappedViewBytes": 5366020032,
+            "auxWeightMappingsReleased": true,
+            "auxWeightStorage": "private_file_mapping",
+            "backend": "cpu",
+            "channels": 1,
+            "codecDecodeMs": 1625.058,
+            "continuationPrefixFrames": 0,
+            "encoderScratchBytesAreResidentMeasurement": false,
+            "encoderScratchLargestReleasedBufferBytes": 0,
+            "encoderScratchReleasedBytes": 0,
+            "encoderScratchReleases": 0,
+            "formattedInputFrames": 60,
+            "generationMs": 28976.237999999998,
+            "generationSteps": 49,
+            "mappedBytesAreResidentMemory": false,
+            "modelLoadMs": 1512,
+            "pipelineMs": 40150,
+            "pipelineRTF": 35.84821428571428,
+            "prefillMs": 7669.0788999999995,
+            "referenceEncodeMs": 0,
+            "referenceFrames": 0,
+            "referenceSpeakers": 0,
+            "sampleRate": 24000,
+            "stopReason": "end_of_speech",
+            "truncated": false
+          },
+          "event": "execution"
+        },
+        {
+          "event": "complete",
+          "output": "U:/build/openmoss-trained-tests/run-1793388598643597300/english.wav"
+        }
+      ],
+      "protocol_errors": [],
+      "logs_truncated": [
+        false,
+        false
+      ],
+      "timed_out": false,
+      "forced_host_termination": false,
+      "cancel_trigger": null,
+      "cancel_to_exit_seconds": null,
+      "android_cooperative_cancellation_tested": false,
+      "resources": {
+        "observed": true,
+        "samples": 1947,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 10886012928,
+        "sampled_peak_private_bytes": 6544154624,
+        "gpu_memory_measured": false,
+        "physical_device_memory_measured": false
+      },
+      "capture_origin": {
+        "reexecuted": true,
+        "native_build_and_exact_request_unchanged": true
+      },
+      "name": "english",
+      "request_sha256": "f97983c00a5e379d506002e18f52e78be9e98bec6c5e5750eb201c6794fffca1",
+      "parameters": {
+        "threads": 4,
+        "seed": 1234,
+        "maxInputTokens": 1024,
+        "maxNewTokens": 375,
+        "textTemperature": 1,
+        "audioTemperature": 1.7,
+        "audioTopP": 0.8,
+        "audioTopK": 25,
+        "audioRepetitionPenalty": 1,
+        "voiceInstruction": "",
+        "language": "English"
+      },
+      "prompt": "Hello world.",
+      "output_exists": true,
+      "execution": {
+        "audioDurationSeconds": 1.12,
+        "audioFramesIncludingPrefix": 14,
+        "audioSamples": 26880,
+        "auxMappedFileBytes": 13430589376,
+        "auxMappedFiles": 2,
+        "auxMappedTensorBytes": 5365936128,
+        "auxMappedTensors": 1665,
+        "auxMappedViewBytes": 5366020032,
+        "auxWeightMappingsReleased": true,
+        "auxWeightStorage": "private_file_mapping",
+        "backend": "cpu",
+        "channels": 1,
+        "codecDecodeMs": 1625.058,
+        "continuationPrefixFrames": 0,
+        "encoderScratchBytesAreResidentMeasurement": false,
+        "encoderScratchLargestReleasedBufferBytes": 0,
+        "encoderScratchReleasedBytes": 0,
+        "encoderScratchReleases": 0,
+        "formattedInputFrames": 60,
+        "generationMs": 28976.237999999998,
+        "generationSteps": 49,
+        "mappedBytesAreResidentMemory": false,
+        "modelLoadMs": 1512,
+        "pipelineMs": 40150,
+        "pipelineRTF": 35.84821428571428,
+        "prefillMs": 7669.0788999999995,
+        "referenceEncodeMs": 0,
+        "referenceFrames": 0,
+        "referenceSpeakers": 0,
+        "sampleRate": 24000,
+        "stopReason": "end_of_speech",
+        "truncated": false
+      },
+      "passed": true,
+      "sampled_progress": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49
+      ],
+      "audio": {
+        "format": "WAV",
+        "channels": 1,
+        "sample_width": 2,
+        "sample_rate": 24000,
+        "samples": 26880,
+        "seconds": 1.12,
+        "rms": 0.06888897527493665,
+        "peak": 0.442901611328125,
+        "clipping_fraction": 0.0,
+        "nonzero_samples": 26325,
+        "bytes": 53804,
+        "sha256": "fe9e1d614c7bdf25a2095208606127f1e998ae2c6be88f178a69b6cf51aabbd0"
+      },
+      "pre_mapping_pcm_bitwise_identical": false,
+      "prior_pcm_identity_required": false,
+      "business_passed": true,
+      "natural_completion_passed": true
+    },
+    {
+      "returncode": 0,
+      "seconds": 48.66128670000762,
       "events": [
         {
           "event": "stage",
@@ -445,6 +961,18 @@
           "steps": 375
         },
         {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 53,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 54,
+          "steps": 375
+        },
+        {
           "event": "stage",
           "stage": "decoding_audio"
         },
@@ -454,9 +982,9 @@
         },
         {
           "details": {
-            "audioDurationSeconds": 1.36,
-            "audioFramesIncludingPrefix": 17,
-            "audioSamples": 32640,
+            "audioDurationSeconds": 1.52,
+            "audioFramesIncludingPrefix": 19,
+            "audioSamples": 36480,
             "auxMappedFileBytes": 13430589376,
             "auxMappedFiles": 2,
             "auxMappedTensorBytes": 5365936128,
@@ -466,16 +994,20 @@
             "auxWeightStorage": "private_file_mapping",
             "backend": "cpu",
             "channels": 1,
-            "codecDecodeMs": 926.5449,
+            "codecDecodeMs": 1117.7327,
             "continuationPrefixFrames": 0,
+            "encoderScratchBytesAreResidentMeasurement": false,
+            "encoderScratchLargestReleasedBufferBytes": 0,
+            "encoderScratchReleasedBytes": 0,
+            "encoderScratchReleases": 0,
             "formattedInputFrames": 61,
-            "generationMs": 28505.2116,
-            "generationSteps": 52,
+            "generationMs": 34591.2387,
+            "generationSteps": 54,
             "mappedBytesAreResidentMemory": false,
-            "modelLoadMs": 1546,
-            "pipelineMs": 95901,
-            "pipelineRTF": 70.51544117647057,
-            "prefillMs": 64642.6434,
+            "modelLoadMs": 1729,
+            "pipelineMs": 47403,
+            "pipelineRTF": 31.186184210526314,
+            "prefillMs": 9530.4995,
             "referenceEncodeMs": 0,
             "referenceFrames": 0,
             "referenceSpeakers": 0,
@@ -487,7 +1019,7 @@
         },
         {
           "event": "complete",
-          "output": "U:/build/openmoss-trained-tests/run-1793373968567657100/english.wav"
+          "output": "U:/build/openmoss-trained-tests/run-1793388598643597300/chinese.wav"
         }
       ],
       "protocol_errors": [],
@@ -502,15 +1034,19 @@
       "android_cooperative_cancellation_tested": false,
       "resources": {
         "observed": true,
-        "samples": 4696,
+        "samples": 2252,
         "interval_ms": 20,
-        "observed_peak_working_set_bytes": 10889887744,
-        "sampled_peak_private_bytes": 6545608704,
+        "observed_peak_working_set_bytes": 10890272768,
+        "sampled_peak_private_bytes": 6545870848,
         "gpu_memory_measured": false,
         "physical_device_memory_measured": false
       },
-      "name": "english",
-      "request_sha256": "1b1edbad91bc4b79e1a56852f820bdc608c490a3c108161a5250d4d2960b4a8b",
+      "capture_origin": {
+        "reexecuted": true,
+        "native_build_and_exact_request_unchanged": true
+      },
+      "name": "chinese",
+      "request_sha256": "99e1bf90a5e47adac3e9a0e81a32103736c22c557caa56b2fac9727e1459f0da",
       "parameters": {
         "threads": 4,
         "seed": 1234,
@@ -522,14 +1058,14 @@
         "audioTopK": 25,
         "audioRepetitionPenalty": 1,
         "voiceInstruction": "",
-        "language": "English"
+        "language": "Chinese"
       },
-      "prompt": "Hello world.",
+      "prompt": "你好，世界。",
       "output_exists": true,
       "execution": {
-        "audioDurationSeconds": 1.36,
-        "audioFramesIncludingPrefix": 17,
-        "audioSamples": 32640,
+        "audioDurationSeconds": 1.52,
+        "audioFramesIncludingPrefix": 19,
+        "audioSamples": 36480,
         "auxMappedFileBytes": 13430589376,
         "auxMappedFiles": 2,
         "auxMappedTensorBytes": 5365936128,
@@ -539,16 +1075,20 @@
         "auxWeightStorage": "private_file_mapping",
         "backend": "cpu",
         "channels": 1,
-        "codecDecodeMs": 926.5449,
+        "codecDecodeMs": 1117.7327,
         "continuationPrefixFrames": 0,
+        "encoderScratchBytesAreResidentMeasurement": false,
+        "encoderScratchLargestReleasedBufferBytes": 0,
+        "encoderScratchReleasedBytes": 0,
+        "encoderScratchReleases": 0,
         "formattedInputFrames": 61,
-        "generationMs": 28505.2116,
-        "generationSteps": 52,
+        "generationMs": 34591.2387,
+        "generationSteps": 54,
         "mappedBytesAreResidentMemory": false,
-        "modelLoadMs": 1546,
-        "pipelineMs": 95901,
-        "pipelineRTF": 70.51544117647057,
-        "prefillMs": 64642.6434,
+        "modelLoadMs": 1729,
+        "pipelineMs": 47403,
+        "pipelineRTF": 31.186184210526314,
+        "prefillMs": 9530.4995,
         "referenceEncodeMs": 0,
         "referenceFrames": 0,
         "referenceSpeakers": 0,
@@ -610,551 +1150,32 @@
         49,
         50,
         51,
-        52
+        52,
+        53,
+        54
       ],
       "audio": {
         "format": "WAV",
         "channels": 1,
         "sample_width": 2,
         "sample_rate": 24000,
-        "samples": 32640,
-        "seconds": 1.36,
-        "rms": 0.05252800224000416,
-        "peak": 0.3858642578125,
+        "samples": 36480,
+        "seconds": 1.52,
+        "rms": 0.06403529121022405,
+        "peak": 0.44097900390625,
         "clipping_fraction": 0.0,
-        "nonzero_samples": 31209,
-        "bytes": 65324,
-        "sha256": "403d4aa9d0341c3cd8df4619311389941fea5326ab7fa77316d2c31b3fb24ac1"
+        "nonzero_samples": 36321,
+        "bytes": 73004,
+        "sha256": "1f5e7cd95242679145fb6f4a58d6bf122b210226e9a035d72623b6b1fd981b3c"
       },
-      "pre_mapping_pcm_bitwise_identical": true,
-      "capture_origin": {
-        "report": "verification/research/openmoss-reference-issue/first-run.json",
-        "report_sha256": "a396c9fb89d975a4f0466a3b3440fc8a488d1606bdc3b23a58bcced7ca71ed23",
-        "original_capture_directory": "build/openmoss-trained-tests/run-1793373968567657100",
-        "original_capture_sha256": "80aef8d9020b56b66e2a3dc31a83fe234395d154e8ae28a16435bb187dd879c5",
-        "reexecuted": false,
-        "native_build_and_exact_request_unchanged": true
-      },
+      "pre_mapping_pcm_bitwise_identical": false,
+      "prior_pcm_identity_required": false,
       "business_passed": true,
       "natural_completion_passed": true
     },
     {
       "returncode": 0,
-      "seconds": 89.39097459999903,
-      "events": [
-        {
-          "event": "stage",
-          "stage": "validating_model_layout"
-        },
-        {
-          "event": "stage",
-          "stage": "loading_models"
-        },
-        {
-          "event": "stage",
-          "stage": "generating_speech"
-        },
-        {
-          "event": "progress",
-          "stage": "generating_speech",
-          "step": 0,
-          "steps": 375
-        },
-        {
-          "event": "progress",
-          "stage": "generating_speech",
-          "step": 1,
-          "steps": 375
-        },
-        {
-          "event": "progress",
-          "stage": "generating_speech",
-          "step": 2,
-          "steps": 375
-        },
-        {
-          "event": "progress",
-          "stage": "generating_speech",
-          "step": 3,
-          "steps": 375
-        },
-        {
-          "event": "progress",
-          "stage": "generating_speech",
-          "step": 4,
-          "steps": 375
-        },
-        {
-          "event": "progress",
-          "stage": "generating_speech",
-          "step": 5,
-          "steps": 375
-        },
-        {
-          "event": "progress",
-          "stage": "generating_speech",
-          "step": 6,
-          "steps": 375
-        },
-        {
-          "event": "progress",
-          "stage": "generating_speech",
-          "step": 7,
-          "steps": 375
-        },
-        {
-          "event": "progress",
-          "stage": "generating_speech",
-          "step": 8,
-          "steps": 375
-        },
-        {
-          "event": "progress",
-          "stage": "generating_speech",
-          "step": 9,
-          "steps": 375
-        },
-        {
-          "event": "progress",
-          "stage": "generating_speech",
-          "step": 10,
-          "steps": 375
-        },
-        {
-          "event": "progress",
-          "stage": "generating_speech",
-          "step": 11,
-          "steps": 375
-        },
-        {
-          "event": "progress",
-          "stage": "generating_speech",
-          "step": 12,
-          "steps": 375
-        },
-        {
-          "event": "progress",
-          "stage": "generating_speech",
-          "step": 13,
-          "steps": 375
-        },
-        {
-          "event": "progress",
-          "stage": "generating_speech",
-          "step": 14,
-          "steps": 375
-        },
-        {
-          "event": "progress",
-          "stage": "generating_speech",
-          "step": 15,
-          "steps": 375
-        },
-        {
-          "event": "progress",
-          "stage": "generating_speech",
-          "step": 16,
-          "steps": 375
-        },
-        {
-          "event": "progress",
-          "stage": "generating_speech",
-          "step": 17,
-          "steps": 375
-        },
-        {
-          "event": "progress",
-          "stage": "generating_speech",
-          "step": 18,
-          "steps": 375
-        },
-        {
-          "event": "progress",
-          "stage": "generating_speech",
-          "step": 19,
-          "steps": 375
-        },
-        {
-          "event": "progress",
-          "stage": "generating_speech",
-          "step": 20,
-          "steps": 375
-        },
-        {
-          "event": "progress",
-          "stage": "generating_speech",
-          "step": 21,
-          "steps": 375
-        },
-        {
-          "event": "progress",
-          "stage": "generating_speech",
-          "step": 22,
-          "steps": 375
-        },
-        {
-          "event": "progress",
-          "stage": "generating_speech",
-          "step": 23,
-          "steps": 375
-        },
-        {
-          "event": "progress",
-          "stage": "generating_speech",
-          "step": 24,
-          "steps": 375
-        },
-        {
-          "event": "progress",
-          "stage": "generating_speech",
-          "step": 25,
-          "steps": 375
-        },
-        {
-          "event": "progress",
-          "stage": "generating_speech",
-          "step": 26,
-          "steps": 375
-        },
-        {
-          "event": "progress",
-          "stage": "generating_speech",
-          "step": 27,
-          "steps": 375
-        },
-        {
-          "event": "progress",
-          "stage": "generating_speech",
-          "step": 28,
-          "steps": 375
-        },
-        {
-          "event": "progress",
-          "stage": "generating_speech",
-          "step": 29,
-          "steps": 375
-        },
-        {
-          "event": "progress",
-          "stage": "generating_speech",
-          "step": 30,
-          "steps": 375
-        },
-        {
-          "event": "progress",
-          "stage": "generating_speech",
-          "step": 31,
-          "steps": 375
-        },
-        {
-          "event": "progress",
-          "stage": "generating_speech",
-          "step": 32,
-          "steps": 375
-        },
-        {
-          "event": "progress",
-          "stage": "generating_speech",
-          "step": 33,
-          "steps": 375
-        },
-        {
-          "event": "progress",
-          "stage": "generating_speech",
-          "step": 34,
-          "steps": 375
-        },
-        {
-          "event": "progress",
-          "stage": "generating_speech",
-          "step": 35,
-          "steps": 375
-        },
-        {
-          "event": "progress",
-          "stage": "generating_speech",
-          "step": 36,
-          "steps": 375
-        },
-        {
-          "event": "progress",
-          "stage": "generating_speech",
-          "step": 37,
-          "steps": 375
-        },
-        {
-          "event": "progress",
-          "stage": "generating_speech",
-          "step": 38,
-          "steps": 375
-        },
-        {
-          "event": "progress",
-          "stage": "generating_speech",
-          "step": 39,
-          "steps": 375
-        },
-        {
-          "event": "progress",
-          "stage": "generating_speech",
-          "step": 40,
-          "steps": 375
-        },
-        {
-          "event": "progress",
-          "stage": "generating_speech",
-          "step": 41,
-          "steps": 375
-        },
-        {
-          "event": "progress",
-          "stage": "generating_speech",
-          "step": 42,
-          "steps": 375
-        },
-        {
-          "event": "progress",
-          "stage": "generating_speech",
-          "step": 43,
-          "steps": 375
-        },
-        {
-          "event": "progress",
-          "stage": "generating_speech",
-          "step": 44,
-          "steps": 375
-        },
-        {
-          "event": "progress",
-          "stage": "generating_speech",
-          "step": 45,
-          "steps": 375
-        },
-        {
-          "event": "progress",
-          "stage": "generating_speech",
-          "step": 46,
-          "steps": 375
-        },
-        {
-          "event": "progress",
-          "stage": "generating_speech",
-          "step": 47,
-          "steps": 375
-        },
-        {
-          "event": "progress",
-          "stage": "generating_speech",
-          "step": 48,
-          "steps": 375
-        },
-        {
-          "event": "progress",
-          "stage": "generating_speech",
-          "step": 49,
-          "steps": 375
-        },
-        {
-          "event": "progress",
-          "stage": "generating_speech",
-          "step": 50,
-          "steps": 375
-        },
-        {
-          "event": "stage",
-          "stage": "decoding_audio"
-        },
-        {
-          "event": "stage",
-          "stage": "saving_audio"
-        },
-        {
-          "details": {
-            "audioDurationSeconds": 1.2,
-            "audioFramesIncludingPrefix": 15,
-            "audioSamples": 28800,
-            "auxMappedFileBytes": 13430589376,
-            "auxMappedFiles": 2,
-            "auxMappedTensorBytes": 5365936128,
-            "auxMappedTensors": 1665,
-            "auxMappedViewBytes": 5366020032,
-            "auxWeightMappingsReleased": true,
-            "auxWeightStorage": "private_file_mapping",
-            "backend": "cpu",
-            "channels": 1,
-            "codecDecodeMs": 752.8469,
-            "continuationPrefixFrames": 0,
-            "formattedInputFrames": 62,
-            "generationMs": 47780.3353,
-            "generationSteps": 50,
-            "mappedBytesAreResidentMemory": false,
-            "modelLoadMs": 30716,
-            "pipelineMs": 87011,
-            "pipelineRTF": 72.50916666666667,
-            "prefillMs": 7509.036499999999,
-            "referenceEncodeMs": 0,
-            "referenceFrames": 0,
-            "referenceSpeakers": 0,
-            "sampleRate": 24000,
-            "stopReason": "end_of_speech",
-            "truncated": false
-          },
-          "event": "execution"
-        },
-        {
-          "event": "complete",
-          "output": "U:/build/openmoss-trained-tests/run-1793373968567657100/chinese.wav"
-        }
-      ],
-      "protocol_errors": [],
-      "logs_truncated": [
-        false,
-        false
-      ],
-      "timed_out": false,
-      "forced_host_termination": false,
-      "cancel_trigger": null,
-      "cancel_to_exit_seconds": null,
-      "android_cooperative_cancellation_tested": false,
-      "resources": {
-        "observed": true,
-        "samples": 4279,
-        "interval_ms": 20,
-        "observed_peak_working_set_bytes": 10888978432,
-        "sampled_peak_private_bytes": 6545686528,
-        "gpu_memory_measured": false,
-        "physical_device_memory_measured": false
-      },
-      "name": "chinese",
-      "request_sha256": "b34480186c900c04555861e5cfc3a0aafccccdc3d008835bd4e5ccb8ce7670de",
-      "parameters": {
-        "threads": 4,
-        "seed": 1234,
-        "maxInputTokens": 1024,
-        "maxNewTokens": 375,
-        "textTemperature": 1,
-        "audioTemperature": 1.7,
-        "audioTopP": 0.8,
-        "audioTopK": 25,
-        "audioRepetitionPenalty": 1,
-        "voiceInstruction": "",
-        "language": "Chinese"
-      },
-      "prompt": "你好，世界。",
-      "output_exists": true,
-      "execution": {
-        "audioDurationSeconds": 1.2,
-        "audioFramesIncludingPrefix": 15,
-        "audioSamples": 28800,
-        "auxMappedFileBytes": 13430589376,
-        "auxMappedFiles": 2,
-        "auxMappedTensorBytes": 5365936128,
-        "auxMappedTensors": 1665,
-        "auxMappedViewBytes": 5366020032,
-        "auxWeightMappingsReleased": true,
-        "auxWeightStorage": "private_file_mapping",
-        "backend": "cpu",
-        "channels": 1,
-        "codecDecodeMs": 752.8469,
-        "continuationPrefixFrames": 0,
-        "formattedInputFrames": 62,
-        "generationMs": 47780.3353,
-        "generationSteps": 50,
-        "mappedBytesAreResidentMemory": false,
-        "modelLoadMs": 30716,
-        "pipelineMs": 87011,
-        "pipelineRTF": 72.50916666666667,
-        "prefillMs": 7509.036499999999,
-        "referenceEncodeMs": 0,
-        "referenceFrames": 0,
-        "referenceSpeakers": 0,
-        "sampleRate": 24000,
-        "stopReason": "end_of_speech",
-        "truncated": false
-      },
-      "passed": true,
-      "sampled_progress": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        7,
-        8,
-        9,
-        10,
-        11,
-        12,
-        13,
-        14,
-        15,
-        16,
-        17,
-        18,
-        19,
-        20,
-        21,
-        22,
-        23,
-        24,
-        25,
-        26,
-        27,
-        28,
-        29,
-        30,
-        31,
-        32,
-        33,
-        34,
-        35,
-        36,
-        37,
-        38,
-        39,
-        40,
-        41,
-        42,
-        43,
-        44,
-        45,
-        46,
-        47,
-        48,
-        49,
-        50
-      ],
-      "audio": {
-        "format": "WAV",
-        "channels": 1,
-        "sample_width": 2,
-        "sample_rate": 24000,
-        "samples": 28800,
-        "seconds": 1.2,
-        "rms": 0.05762714857762402,
-        "peak": 0.388214111328125,
-        "clipping_fraction": 0.0,
-        "nonzero_samples": 25349,
-        "bytes": 57644,
-        "sha256": "7575ef696518c2247ae5b04f4682aee01f078805bb73fe45c1567a5b903d9311"
-      },
-      "pre_mapping_pcm_bitwise_identical": true,
-      "capture_origin": {
-        "report": "verification/research/openmoss-reference-issue/first-run.json",
-        "report_sha256": "a396c9fb89d975a4f0466a3b3440fc8a488d1606bdc3b23a58bcced7ca71ed23",
-        "original_capture_directory": "build/openmoss-trained-tests/run-1793373968567657100",
-        "original_capture_sha256": "41c8f5fd053ec485051019e29daa12ca01cd18d0d75bf81b9f42b61d97802f51",
-        "reexecuted": false,
-        "native_build_and_exact_request_unchanged": true
-      },
-      "business_passed": true,
-      "natural_completion_passed": true
-    },
-    {
-      "returncode": 0,
-      "seconds": 634.2699602999928,
+      "seconds": 1043.8993501000077,
       "events": [
         {
           "event": "stage",
@@ -3450,17 +3471,21 @@
             "auxWeightStorage": "private_file_mapping",
             "backend": "cpu",
             "channels": 1,
-            "codecDecodeMs": 78284.87869999999,
+            "codecDecodeMs": 430653.8408,
             "continuationPrefixFrames": 0,
-            "formattedInputFrames": 134,
-            "generationMs": 321005.40790000005,
+            "encoderScratchBytesAreResidentMeasurement": false,
+            "encoderScratchLargestReleasedBufferBytes": 7368704,
+            "encoderScratchReleasedBytes": 7368704,
+            "encoderScratchReleases": 1,
+            "formattedInputFrames": 133,
+            "generationMs": 587903.4824,
             "generationSteps": 375,
             "mappedBytesAreResidentMemory": false,
-            "modelLoadMs": 1352,
-            "pipelineMs": 632937,
-            "pipelineRTF": 23.06621720116618,
-            "prefillMs": 29990.9499,
-            "referenceEncodeMs": 201655,
+            "modelLoadMs": 3531,
+            "pipelineMs": 1041218,
+            "pipelineRTF": 37.94526239067056,
+            "prefillMs": 15941.597399999999,
+            "referenceEncodeMs": 1578,
             "referenceFrames": 38,
             "referenceSpeakers": 1,
             "sampleRate": 24000,
@@ -3471,7 +3496,7 @@
         },
         {
           "event": "complete",
-          "output": "U:/build/openmoss-trained-tests/run-1793373968567657100/reference.wav"
+          "output": "U:/build/openmoss-trained-tests/run-1793388598643597300/reference.wav"
         }
       ],
       "protocol_errors": [],
@@ -3486,15 +3511,19 @@
       "android_cooperative_cancellation_tested": false,
       "resources": {
         "observed": true,
-        "samples": 30049,
+        "samples": 49504,
         "interval_ms": 20,
-        "observed_peak_working_set_bytes": 12933636096,
-        "sampled_peak_private_bytes": 6688452608,
+        "observed_peak_working_set_bytes": 12938211328,
+        "sampled_peak_private_bytes": 6686920704,
         "gpu_memory_measured": false,
         "physical_device_memory_measured": false
       },
+      "capture_origin": {
+        "reexecuted": true,
+        "native_build_and_exact_request_unchanged": true
+      },
       "name": "reference",
-      "request_sha256": "a4c40d1291d1460a33b1e81cb4b97fe703c8ad9c2bcd73364efe20617fb892fd",
+      "request_sha256": "935e6ff9ac930364d1a2ea76fd15d6d7b1e1d30d6466135263078d0ba0f3996d",
       "parameters": {
         "threads": 4,
         "seed": 1234,
@@ -3523,17 +3552,21 @@
         "auxWeightStorage": "private_file_mapping",
         "backend": "cpu",
         "channels": 1,
-        "codecDecodeMs": 78284.87869999999,
+        "codecDecodeMs": 430653.8408,
         "continuationPrefixFrames": 0,
-        "formattedInputFrames": 134,
-        "generationMs": 321005.40790000005,
+        "encoderScratchBytesAreResidentMeasurement": false,
+        "encoderScratchLargestReleasedBufferBytes": 7368704,
+        "encoderScratchReleasedBytes": 7368704,
+        "encoderScratchReleases": 1,
+        "formattedInputFrames": 133,
+        "generationMs": 587903.4824,
         "generationSteps": 375,
         "mappedBytesAreResidentMemory": false,
-        "modelLoadMs": 1352,
-        "pipelineMs": 632937,
-        "pipelineRTF": 23.06621720116618,
-        "prefillMs": 29990.9499,
-        "referenceEncodeMs": 201655,
+        "modelLoadMs": 3531,
+        "pipelineMs": 1041218,
+        "pipelineRTF": 37.94526239067056,
+        "prefillMs": 15941.597399999999,
+        "referenceEncodeMs": 1578,
         "referenceFrames": 38,
         "referenceSpeakers": 1,
         "sampleRate": 24000,
@@ -3926,27 +3959,19 @@
         "sample_rate": 24000,
         "samples": 658560,
         "seconds": 27.44,
-        "rms": 0.09038358374864792,
-        "peak": 0.815643310546875,
+        "rms": 0.09993038443253696,
+        "peak": 0.997650146484375,
         "clipping_fraction": 0.0,
-        "nonzero_samples": 598518,
+        "nonzero_samples": 610958,
         "bytes": 1317164,
-        "sha256": "6a6080b55f241563f95ff023c0c4c609127453d6a388f0ac5d94b28dd8e06808"
-      },
-      "capture_origin": {
-        "report": "verification/research/openmoss-reference-issue/first-run.json",
-        "report_sha256": "a396c9fb89d975a4f0466a3b3440fc8a488d1606bdc3b23a58bcced7ca71ed23",
-        "original_capture_directory": "build/openmoss-trained-tests/run-1793373968567657100",
-        "original_capture_sha256": "843d8454f131d2fc7dfacab45c4e4c5a04369c95750ffa1316af199f2f331d02",
-        "reexecuted": false,
-        "native_build_and_exact_request_unchanged": true
+        "sha256": "ea427795042040307582ded182980bdc29a9142438f5b1d8dfa5b2c9ad56a7dd"
       },
       "business_passed": true,
       "natural_completion_passed": false
     },
     {
       "returncode": 0,
-      "seconds": 651.1545850999973,
+      "seconds": 105.47099260000687,
       "events": [
         {
           "event": "stage",
@@ -4228,16 +4253,20 @@
             "auxWeightStorage": "private_file_mapping",
             "backend": "cpu",
             "channels": 1,
-            "codecDecodeMs": 325449.0097,
+            "codecDecodeMs": 1681.8526,
             "continuationPrefixFrames": 0,
-            "formattedInputFrames": 69,
-            "generationMs": 56361.8269,
+            "encoderScratchBytesAreResidentMeasurement": false,
+            "encoderScratchLargestReleasedBufferBytes": 0,
+            "encoderScratchReleasedBytes": 0,
+            "encoderScratchReleases": 0,
+            "formattedInputFrames": 68,
+            "generationMs": 57616.9995,
             "generationSteps": 40,
             "mappedBytesAreResidentMemory": false,
-            "modelLoadMs": 132332,
-            "pipelineMs": 648566,
-            "pipelineRTF": 1013.384375,
-            "prefillMs": 133571.1125,
+            "modelLoadMs": 31133,
+            "pipelineMs": 104157,
+            "pipelineRTF": 162.74531249999998,
+            "prefillMs": 13426.3105,
             "referenceEncodeMs": 0,
             "referenceFrames": 0,
             "referenceSpeakers": 0,
@@ -4249,7 +4278,7 @@
         },
         {
           "event": "complete",
-          "output": "U:/build/openmoss-trained-tests/run-1793375906269017700/frame-limit.wav"
+          "output": "U:/build/openmoss-trained-tests/run-1793388598643597300/frame-limit.wav"
         }
       ],
       "protocol_errors": [],
@@ -4264,10 +4293,10 @@
       "android_cooperative_cancellation_tested": false,
       "resources": {
         "observed": true,
-        "samples": 31573,
+        "samples": 4793,
         "interval_ms": 20,
-        "observed_peak_working_set_bytes": 10899730432,
-        "sampled_peak_private_bytes": 6549778432,
+        "observed_peak_working_set_bytes": 10897817600,
+        "sampled_peak_private_bytes": 6547816448,
         "gpu_memory_measured": false,
         "physical_device_memory_measured": false
       },
@@ -4276,7 +4305,7 @@
         "native_build_and_exact_request_unchanged": true
       },
       "name": "frame-limit",
-      "request_sha256": "f151a82a5584ebf724adb447aa7e392c36b1c13251dd772ccf27905524ac54f7",
+      "request_sha256": "4f8c6686cd8c39b301a6ef4d993ae9120afd77c2d7134fe85020ef2972540c29",
       "parameters": {
         "threads": 4,
         "seed": 1234,
@@ -4305,16 +4334,20 @@
         "auxWeightStorage": "private_file_mapping",
         "backend": "cpu",
         "channels": 1,
-        "codecDecodeMs": 325449.0097,
+        "codecDecodeMs": 1681.8526,
         "continuationPrefixFrames": 0,
-        "formattedInputFrames": 69,
-        "generationMs": 56361.8269,
+        "encoderScratchBytesAreResidentMeasurement": false,
+        "encoderScratchLargestReleasedBufferBytes": 0,
+        "encoderScratchReleasedBytes": 0,
+        "encoderScratchReleases": 0,
+        "formattedInputFrames": 68,
+        "generationMs": 57616.9995,
         "generationSteps": 40,
         "mappedBytesAreResidentMemory": false,
-        "modelLoadMs": 132332,
-        "pipelineMs": 648566,
-        "pipelineRTF": 1013.384375,
-        "prefillMs": 133571.1125,
+        "modelLoadMs": 31133,
+        "pipelineMs": 104157,
+        "pipelineRTF": 162.74531249999998,
+        "prefillMs": 13426.3105,
         "referenceEncodeMs": 0,
         "referenceFrames": 0,
         "referenceSpeakers": 0,
@@ -4373,19 +4406,19 @@
         "sample_rate": 24000,
         "samples": 15360,
         "seconds": 0.64,
-        "rms": 0.08534815250886062,
-        "peak": 0.999969482421875,
-        "clipping_fraction": 0.00013020833333333333,
-        "nonzero_samples": 13640,
+        "rms": 0.08039579338002403,
+        "peak": 0.6278076171875,
+        "clipping_fraction": 0.0,
+        "nonzero_samples": 15203,
         "bytes": 30764,
-        "sha256": "ff1a62c615baad8f9c6af6ba0a70b1b02763e82a03d919b04ae8d58997f0ff55"
+        "sha256": "dc08918d4fecd86b980c167f15dbd3828ad9b7dd51fe5ed0adfded3b11af5d0d"
       },
       "business_passed": true,
       "natural_completion_passed": false
     },
     {
       "returncode": 0,
-      "seconds": 62.27398529999482,
+      "seconds": 72.21534650000103,
       "events": [
         {
           "event": "stage",
@@ -4700,24 +4733,6 @@
           "steps": 375
         },
         {
-          "event": "progress",
-          "stage": "generating_speech",
-          "step": 50,
-          "steps": 375
-        },
-        {
-          "event": "progress",
-          "stage": "generating_speech",
-          "step": 51,
-          "steps": 375
-        },
-        {
-          "event": "progress",
-          "stage": "generating_speech",
-          "step": 52,
-          "steps": 375
-        },
-        {
           "event": "stage",
           "stage": "decoding_audio"
         },
@@ -4727,9 +4742,9 @@
         },
         {
           "details": {
-            "audioDurationSeconds": 1.36,
-            "audioFramesIncludingPrefix": 17,
-            "audioSamples": 32640,
+            "audioDurationSeconds": 1.12,
+            "audioFramesIncludingPrefix": 14,
+            "audioSamples": 26880,
             "auxMappedFileBytes": 13430589376,
             "auxMappedFiles": 2,
             "auxMappedTensorBytes": 5365936128,
@@ -4739,16 +4754,20 @@
             "auxWeightStorage": "private_file_mapping",
             "backend": "cpu",
             "channels": 1,
-            "codecDecodeMs": 1094.088,
+            "codecDecodeMs": 744.6116000000001,
             "continuationPrefixFrames": 0,
-            "formattedInputFrames": 61,
-            "generationMs": 49060.817299999995,
-            "generationSteps": 52,
+            "encoderScratchBytesAreResidentMeasurement": false,
+            "encoderScratchLargestReleasedBufferBytes": 0,
+            "encoderScratchReleasedBytes": 0,
+            "encoderScratchReleases": 0,
+            "formattedInputFrames": 60,
+            "generationMs": 60172.3026,
+            "generationSteps": 49,
             "mappedBytesAreResidentMemory": false,
-            "modelLoadMs": 1410,
-            "pipelineMs": 60560,
-            "pipelineRTF": 44.529411764705884,
-            "prefillMs": 8614.5849,
+            "modelLoadMs": 1575,
+            "pipelineMs": 70912,
+            "pipelineRTF": 63.31428571428572,
+            "prefillMs": 8108.0299,
             "referenceEncodeMs": 0,
             "referenceFrames": 0,
             "referenceSpeakers": 0,
@@ -4760,7 +4779,7 @@
         },
         {
           "event": "complete",
-          "output": "U:/build/openmoss-trained-tests/run-1793375906269017700/recovery.wav"
+          "output": "U:/build/openmoss-trained-tests/run-1793388598643597300/recovery.wav"
         }
       ],
       "protocol_errors": [],
@@ -4775,10 +4794,10 @@
       "android_cooperative_cancellation_tested": false,
       "resources": {
         "observed": true,
-        "samples": 2937,
+        "samples": 3339,
         "interval_ms": 20,
-        "observed_peak_working_set_bytes": 10889101312,
-        "sampled_peak_private_bytes": 6544297984,
+        "observed_peak_working_set_bytes": 10885730304,
+        "sampled_peak_private_bytes": 6543683584,
         "gpu_memory_measured": false,
         "physical_device_memory_measured": false
       },
@@ -4787,7 +4806,7 @@
         "native_build_and_exact_request_unchanged": true
       },
       "name": "recovery",
-      "request_sha256": "55fc02c4d8d487be0a6ca7062146084a0a2c2b0b4670b1fead588e8980ab44c9",
+      "request_sha256": "9a70eda757179eb178b9ad9d3a5100f771ddd9245653d963f0d38ea03b82c723",
       "parameters": {
         "threads": 4,
         "seed": 1234,
@@ -4804,9 +4823,9 @@
       "prompt": "Hello world.",
       "output_exists": true,
       "execution": {
-        "audioDurationSeconds": 1.36,
-        "audioFramesIncludingPrefix": 17,
-        "audioSamples": 32640,
+        "audioDurationSeconds": 1.12,
+        "audioFramesIncludingPrefix": 14,
+        "audioSamples": 26880,
         "auxMappedFileBytes": 13430589376,
         "auxMappedFiles": 2,
         "auxMappedTensorBytes": 5365936128,
@@ -4816,16 +4835,20 @@
         "auxWeightStorage": "private_file_mapping",
         "backend": "cpu",
         "channels": 1,
-        "codecDecodeMs": 1094.088,
+        "codecDecodeMs": 744.6116000000001,
         "continuationPrefixFrames": 0,
-        "formattedInputFrames": 61,
-        "generationMs": 49060.817299999995,
-        "generationSteps": 52,
+        "encoderScratchBytesAreResidentMeasurement": false,
+        "encoderScratchLargestReleasedBufferBytes": 0,
+        "encoderScratchReleasedBytes": 0,
+        "encoderScratchReleases": 0,
+        "formattedInputFrames": 60,
+        "generationMs": 60172.3026,
+        "generationSteps": 49,
         "mappedBytesAreResidentMemory": false,
-        "modelLoadMs": 1410,
-        "pipelineMs": 60560,
-        "pipelineRTF": 44.529411764705884,
-        "prefillMs": 8614.5849,
+        "modelLoadMs": 1575,
+        "pipelineMs": 70912,
+        "pipelineRTF": 63.31428571428572,
+        "prefillMs": 8108.0299,
         "referenceEncodeMs": 0,
         "referenceFrames": 0,
         "referenceSpeakers": 0,
@@ -4884,24 +4907,21 @@
         46,
         47,
         48,
-        49,
-        50,
-        51,
-        52
+        49
       ],
       "audio": {
         "format": "WAV",
         "channels": 1,
         "sample_width": 2,
         "sample_rate": 24000,
-        "samples": 32640,
-        "seconds": 1.36,
-        "rms": 0.05252800224000416,
-        "peak": 0.3858642578125,
+        "samples": 26880,
+        "seconds": 1.12,
+        "rms": 0.06888897527493665,
+        "peak": 0.442901611328125,
         "clipping_fraction": 0.0,
-        "nonzero_samples": 31209,
-        "bytes": 65324,
-        "sha256": "403d4aa9d0341c3cd8df4619311389941fea5326ab7fa77316d2c31b3fb24ac1"
+        "nonzero_samples": 26325,
+        "bytes": 53804,
+        "sha256": "fe9e1d614c7bdf25a2095208606127f1e998ae2c6be88f178a69b6cf51aabbd0"
       },
       "business_passed": true,
       "natural_completion_passed": true
@@ -4910,7 +4930,7 @@
   "controls": [
     {
       "returncode": 1,
-      "seconds": 0.05007480000494979,
+      "seconds": 0.06989610000164248,
       "events": [
         {
           "event": "error",
@@ -4929,15 +4949,19 @@
       "android_cooperative_cancellation_tested": false,
       "resources": {
         "observed": true,
-        "samples": 3,
+        "samples": 4,
         "interval_ms": 20,
-        "observed_peak_working_set_bytes": 5996544,
-        "sampled_peak_private_bytes": 1560576,
+        "observed_peak_working_set_bytes": 6082560,
+        "sampled_peak_private_bytes": 2338816,
         "gpu_memory_measured": false,
         "physical_device_memory_measured": false
       },
+      "capture_origin": {
+        "reexecuted": true,
+        "native_build_and_exact_request_unchanged": true
+      },
       "name": "bad-schema",
-      "request_sha256": "05c35177a031775a87fe6d92ad9c26c4fbebc7c39d461efc75077ebf5c6ee140",
+      "request_sha256": "313b4187f808b2150f5e5130c69d3b3b9c6686d41837a035f938b9d6aafd1b42",
       "parameters": {
         "threads": 4,
         "seed": 1234,
@@ -4956,19 +4980,11 @@
       "execution": {},
       "expected_error": "Unsupported openmoss task",
       "passed": true,
-      "capture_origin": {
-        "report": "verification/research/openmoss-reference-issue/first-run.json",
-        "report_sha256": "a396c9fb89d975a4f0466a3b3440fc8a488d1606bdc3b23a58bcced7ca71ed23",
-        "original_capture_directory": "build/openmoss-trained-tests/run-1793373968567657100",
-        "original_capture_sha256": "d3b3cd6a833f92b2090b1ddb6d4b0626611158fea763b147cae161805f2a002a",
-        "reexecuted": false,
-        "native_build_and_exact_request_unchanged": true
-      },
       "business_passed": true
     },
     {
       "returncode": 1,
-      "seconds": 0.07029289999627508,
+      "seconds": 0.06972430000314489,
       "events": [
         {
           "event": "error",
@@ -4989,13 +5005,17 @@
         "observed": true,
         "samples": 4,
         "interval_ms": 20,
-        "observed_peak_working_set_bytes": 5996544,
-        "sampled_peak_private_bytes": 1449984,
+        "observed_peak_working_set_bytes": 6078464,
+        "sampled_peak_private_bytes": 2334720,
         "gpu_memory_measured": false,
         "physical_device_memory_measured": false
       },
+      "capture_origin": {
+        "reexecuted": true,
+        "native_build_and_exact_request_unchanged": true
+      },
       "name": "bad-threads",
-      "request_sha256": "afd9dfb7572596c15da385cb0d5b0e0fcc7ec0c63b679d0069a166ea6b3f7c21",
+      "request_sha256": "ae0e84d26ba2198654d655a51f239b6d3b5dc15b00746526bfabee1eb3e0d60b",
       "parameters": {
         "threads": 33,
         "seed": 1234,
@@ -5014,19 +5034,11 @@
       "execution": {},
       "expected_error": "Invalid CPU thread/seed range",
       "passed": true,
-      "capture_origin": {
-        "report": "verification/research/openmoss-reference-issue/first-run.json",
-        "report_sha256": "a396c9fb89d975a4f0466a3b3440fc8a488d1606bdc3b23a58bcced7ca71ed23",
-        "original_capture_directory": "build/openmoss-trained-tests/run-1793373968567657100",
-        "original_capture_sha256": "643115c6d3a4136847b6df7c982d597e1dff2d4861343540e66807cf467bbc77",
-        "reexecuted": false,
-        "native_build_and_exact_request_unchanged": true
-      },
       "business_passed": true
     },
     {
       "returncode": 1,
-      "seconds": 0.04782179999165237,
+      "seconds": 0.06870069999422412,
       "events": [
         {
           "event": "error",
@@ -5045,15 +5057,19 @@
       "android_cooperative_cancellation_tested": false,
       "resources": {
         "observed": true,
-        "samples": 3,
+        "samples": 4,
         "interval_ms": 20,
-        "observed_peak_working_set_bytes": 5992448,
-        "sampled_peak_private_bytes": 1449984,
+        "observed_peak_working_set_bytes": 6082560,
+        "sampled_peak_private_bytes": 2330624,
         "gpu_memory_measured": false,
         "physical_device_memory_measured": false
       },
+      "capture_origin": {
+        "reexecuted": true,
+        "native_build_and_exact_request_unchanged": true
+      },
       "name": "empty-text",
-      "request_sha256": "3b7001a4d89d5f3f3a35c8f40bb41e845c98020ef345730acea2e014362dd401",
+      "request_sha256": "c12016884b873700764f6730f20d4165004f03229c78b74a042edf0b7c3ffa57",
       "parameters": {
         "threads": 4,
         "seed": 1234,
@@ -5072,19 +5088,11 @@
       "execution": {},
       "expected_error": "Invalid audio prompt length/content",
       "passed": true,
-      "capture_origin": {
-        "report": "verification/research/openmoss-reference-issue/first-run.json",
-        "report_sha256": "a396c9fb89d975a4f0466a3b3440fc8a488d1606bdc3b23a58bcced7ca71ed23",
-        "original_capture_directory": "build/openmoss-trained-tests/run-1793373968567657100",
-        "original_capture_sha256": "cab120a3267b82bec37c617d8604643b4c78139664d5df65389d5d979c057b45",
-        "reexecuted": false,
-        "native_build_and_exact_request_unchanged": true
-      },
       "business_passed": true
     },
     {
       "returncode": 1,
-      "seconds": 0.07074539999302942,
+      "seconds": 0.07478500000433996,
       "events": [
         {
           "event": "error",
@@ -5105,13 +5113,17 @@
         "observed": true,
         "samples": 4,
         "interval_ms": 20,
-        "observed_peak_working_set_bytes": 6004736,
-        "sampled_peak_private_bytes": 2256896,
+        "observed_peak_working_set_bytes": 6082560,
+        "sampled_peak_private_bytes": 2367488,
         "gpu_memory_measured": false,
         "physical_device_memory_measured": false
       },
+      "capture_origin": {
+        "reexecuted": true,
+        "native_build_and_exact_request_unchanged": true
+      },
       "name": "template-injection",
-      "request_sha256": "29769021c69ad9994c0d0c8a74faccea3d8cd02bc2bee7e714c3146f9d749244",
+      "request_sha256": "27daaaa1858a5f18bd185d891f6fcfcfb02ece88b7e082490718b27559c09906",
       "parameters": {
         "threads": 4,
         "seed": 1234,
@@ -5130,19 +5142,11 @@
       "execution": {},
       "expected_error": "Instruction/language must be bounded plain text without template markers",
       "passed": true,
-      "capture_origin": {
-        "report": "verification/research/openmoss-reference-issue/first-run.json",
-        "report_sha256": "a396c9fb89d975a4f0466a3b3440fc8a488d1606bdc3b23a58bcced7ca71ed23",
-        "original_capture_directory": "build/openmoss-trained-tests/run-1793373968567657100",
-        "original_capture_sha256": "3d88bf54076b070dcfc1c83a63364dc62d69739e355411bbe3e95668caf5514f",
-        "reexecuted": false,
-        "native_build_and_exact_request_unchanged": true
-      },
       "business_passed": true
     },
     {
       "returncode": 1,
-      "seconds": 0.11233020000508986,
+      "seconds": 0.11045860000012908,
       "events": [
         {
           "event": "stage",
@@ -5167,13 +5171,17 @@
         "observed": true,
         "samples": 6,
         "interval_ms": 20,
-        "observed_peak_working_set_bytes": 22966272,
-        "sampled_peak_private_bytes": 8368128,
+        "observed_peak_working_set_bytes": 22974464,
+        "sampled_peak_private_bytes": 13631488,
         "gpu_memory_measured": false,
         "physical_device_memory_measured": false
       },
+      "capture_origin": {
+        "reexecuted": true,
+        "native_build_and_exact_request_unchanged": true
+      },
       "name": "missing-extras",
-      "request_sha256": "ae249b401e1f0937c250e500faeec38788d89f1ccc0acdb5d9a5fad121359103",
+      "request_sha256": "59dd89e26176373d7c75b1a15ef628fe609f85852fc75dd1032ffd2d1fc6deaa",
       "parameters": {
         "threads": 4,
         "seed": 1234,
@@ -5192,19 +5200,11 @@
       "execution": {},
       "expected_error": "Cannot read complete GGUF metadata",
       "passed": true,
-      "capture_origin": {
-        "report": "verification/research/openmoss-reference-issue/first-run.json",
-        "report_sha256": "a396c9fb89d975a4f0466a3b3440fc8a488d1606bdc3b23a58bcced7ca71ed23",
-        "original_capture_directory": "build/openmoss-trained-tests/run-1793373968567657100",
-        "original_capture_sha256": "4bc147ca2de834f7e5d40f95e050338637dc9d04e102d4d047e9c78492155787",
-        "reexecuted": false,
-        "native_build_and_exact_request_unchanged": true
-      },
       "business_passed": true
     },
     {
       "returncode": 1,
-      "seconds": 65.52196349999576,
+      "seconds": 25.236773900003755,
       "events": [
         {
           "event": "stage",
@@ -5334,14 +5334,14 @@
         "step": 16,
         "steps": 375
       },
-      "cancel_to_exit_seconds": 2.5050788999942597,
+      "cancel_to_exit_seconds": 1.5756259999907343,
       "android_cooperative_cancellation_tested": false,
       "resources": {
         "observed": true,
-        "samples": 2868,
+        "samples": 1186,
         "interval_ms": 20,
-        "observed_peak_working_set_bytes": 9093128192,
-        "sampled_peak_private_bytes": 6509535232,
+        "observed_peak_working_set_bytes": 9091350528,
+        "sampled_peak_private_bytes": 6508482560,
         "gpu_memory_measured": false,
         "physical_device_memory_measured": false
       },
@@ -5350,7 +5350,7 @@
         "native_build_and_exact_request_unchanged": true
       },
       "name": "cancel",
-      "request_sha256": "8293f41a2a61cf37559ccf4beed595459fcb5ede2709360a63afb088a59d94c4",
+      "request_sha256": "1ab7a8fee182b003b461f3f60968b0b8e396b57a494c0f04250413b0a12e95b1",
       "parameters": {
         "threads": 4,
         "seed": 1234,
@@ -5377,12 +5377,16 @@
   ],
   "files": {
     "bad-schema-capture.json": {
-      "bytes": 1750,
-      "sha256": "9aeb7b58b376761f6d124d5f2cc1932e501ffa8fb01ab89867f72bf8184182fd"
+      "bytes": 1388,
+      "sha256": "f94021c562ad0aed70ffa77b74359c44c8fb374d7c25c7bbe8bb4a2f3bea2895"
+    },
+    "bad-schema-events.jsonl": {
+      "bytes": 60,
+      "sha256": "26150f0dac0120d6a7a3c4f9633e6066b2f9da7ae6f1c5d884f581ea92f922b0"
     },
     "bad-schema.json": {
       "bytes": 640,
-      "sha256": "05c35177a031775a87fe6d92ad9c26c4fbebc7c39d461efc75077ebf5c6ee140"
+      "sha256": "313b4187f808b2150f5e5130c69d3b3b9c6686d41837a035f938b9d6aafd1b42"
     },
     "bad-schema.stderr": {
       "bytes": 0,
@@ -5393,12 +5397,16 @@
       "sha256": "1d3e107376c8141cbc56f4d682e11f86388b2d739c1a45d20c803d5f31518346"
     },
     "bad-threads-capture.json": {
-      "bytes": 1760,
-      "sha256": "394819ec4e42fa8a589c49834af2bc6669a0dc4d34d969e82d7b7c09e6b06528"
+      "bytes": 1398,
+      "sha256": "450c34a0014a33be7b8429816bdf934c497288f90b88029f00e48f05ce0913fc"
+    },
+    "bad-threads-events.jsonl": {
+      "bytes": 64,
+      "sha256": "86b3477c12f678042ddd3045dc7188be61790f67657666a174c6f9add798975a"
     },
     "bad-threads.json": {
       "bytes": 655,
-      "sha256": "afd9dfb7572596c15da385cb0d5b0e0fcc7ec0c63b679d0069a166ea6b3f7c21"
+      "sha256": "ae0e84d26ba2198654d655a51f239b6d3b5dc15b00746526bfabee1eb3e0d60b"
     },
     "bad-threads.stderr": {
       "bytes": 0,
@@ -5409,12 +5417,16 @@
       "sha256": "2046ffcac5d94db4879704cbf2300765b27417c9e1e79671a66a8735efed62ab"
     },
     "cancel-capture.json": {
-      "bytes": 3610,
-      "sha256": "89e361833592386cac5ff6b4939a5c409ae9e7a6f812b82b1633c12940eb64f8"
+      "bytes": 3611,
+      "sha256": "5b51e96ba0357dfdbd2dd78ad48e4de6e93460551fe68e36d279366401e04c74"
+    },
+    "cancel-events.jsonl": {
+      "bytes": 1486,
+      "sha256": "cb7ed7c8e49a5a4944255658b79d6c9d691818cad9151df5b5b178dca3e0dc2c"
     },
     "cancel.json": {
       "bytes": 649,
-      "sha256": "8293f41a2a61cf37559ccf4beed595459fcb5ede2709360a63afb088a59d94c4"
+      "sha256": "1ab7a8fee182b003b461f3f60968b0b8e396b57a494c0f04250413b0a12e95b1"
     },
     "cancel.stderr": {
       "bytes": 0,
@@ -5425,32 +5437,40 @@
       "sha256": "966ed8f68e8dcf510d8326807a761e6ada68aba49bb08583b2f41dff0df8fc67"
     },
     "chinese-capture.json": {
-      "bytes": 11159,
-      "sha256": "64e9b5b14db2549dfe0febc1ff6805457c48771a309e2a99dd633af5f7bfda53"
+      "bytes": 11719,
+      "sha256": "47c041e9d88440bad66563ccca2c70c208e587fd0de5ef64974490dea6b1a598"
+    },
+    "chinese-events.jsonl": {
+      "bytes": 5654,
+      "sha256": "eaefc76f1c58c04fbe12366c5c895e43c21357805518cb6496910317ffcad5b0"
     },
     "chinese.json": {
       "bytes": 656,
-      "sha256": "b34480186c900c04555861e5cfc3a0aafccccdc3d008835bd4e5ccb8ce7670de"
+      "sha256": "99e1bf90a5e47adac3e9a0e81a32103736c22c557caa56b2fac9727e1459f0da"
     },
     "chinese.stderr": {
       "bytes": 0,
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     },
     "chinese.stdout": {
-      "bytes": 4749,
-      "sha256": "8d7d417113b4c6ea578427add30d0e6764958a817be19f0441bc2ad18e3ce220"
+      "bytes": 5185,
+      "sha256": "844d9fde1c39db3bf16870082b0ab961cadd93a23addbe0278d22b21bf28edb0"
     },
     "chinese.wav": {
-      "bytes": 57644,
-      "sha256": "7575ef696518c2247ae5b04f4682aee01f078805bb73fe45c1567a5b903d9311"
+      "bytes": 73004,
+      "sha256": "1f5e7cd95242679145fb6f4a58d6bf122b210226e9a035d72623b6b1fd981b3c"
     },
     "empty-text-capture.json": {
-      "bytes": 1758,
-      "sha256": "f32164a4edbe0e135df6cd0bfb268dbd0f2f6ddafead472751554533d0a68e37"
+      "bytes": 1396,
+      "sha256": "212f50c62bced4a0e3e2ee9ddb2ec2d79b224a17d74f6bcca6089887254bea14"
+    },
+    "empty-text-events.jsonl": {
+      "bytes": 70,
+      "sha256": "f9f60b089df8559161f380531393c41de6f56411849c0ab1055b7b6a5f96fc94"
     },
     "empty-text.json": {
       "bytes": 641,
-      "sha256": "3b7001a4d89d5f3f3a35c8f40bb41e845c98020ef345730acea2e014362dd401"
+      "sha256": "c12016884b873700764f6730f20d4165004f03229c78b74a042edf0b7c3ffa57"
     },
     "empty-text.stderr": {
       "bytes": 0,
@@ -5461,44 +5481,52 @@
       "sha256": "fcb18da730c1902c51cc509b58713d85dd11ad9600a9ac20c34fad7a927e257a"
     },
     "english-capture.json": {
-      "bytes": 11394,
-      "sha256": "549ed6a48c466331f0115c4885d1d30584920e3cfabb219184a282ddf7299d92"
+      "bytes": 11104,
+      "sha256": "3498471581b964929f86b5069388a9c31a123f9a87ef6b9bc6ef1c6ecf7138b8"
+    },
+    "english-events.jsonl": {
+      "bytes": 5274,
+      "sha256": "109c4709a7aadff15b4b44254aa5c8640d6bcc1a70577aa67927eed1c4c4be2a"
     },
     "english.json": {
       "bytes": 650,
-      "sha256": "1b1edbad91bc4b79e1a56852f820bdc608c490a3c108161a5250d4d2960b4a8b"
+      "sha256": "f97983c00a5e379d506002e18f52e78be9e98bec6c5e5750eb201c6794fffca1"
     },
     "english.stderr": {
       "bytes": 0,
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     },
     "english.stdout": {
-      "bytes": 4886,
-      "sha256": "1c4fd774fe4ebdf405a6e4a8aa244fdec838a7ca8287c60044c415d4b25058ed"
+      "bytes": 4840,
+      "sha256": "1fe65c79c50c74d950dc02c952ee778f19fa7994a963421fa1a866e93d3d3b76"
     },
     "english.wav": {
-      "bytes": 65324,
-      "sha256": "403d4aa9d0341c3cd8df4619311389941fea5326ab7fa77316d2c31b3fb24ac1"
+      "bytes": 53804,
+      "sha256": "fe9e1d614c7bdf25a2095208606127f1e998ae2c6be88f178a69b6cf51aabbd0"
     },
     "frame-limit-capture.json": {
-      "bytes": 9496,
-      "sha256": "7990ce73118d7b29ce2764ef7cb6ff53c1d5dcd2fd53ca7cc218b40c25081d00"
+      "bytes": 9861,
+      "sha256": "6087d405a884a2f13808387a62a1f1bb459eba22988d0e27b42bf2f342be4fcb"
+    },
+    "frame-limit-events.jsonl": {
+      "bytes": 4513,
+      "sha256": "1d356ede1b522e9cb48fd6040c1fb938f522ba51f234b8632acb2952ab053803"
     },
     "frame-limit.json": {
       "bytes": 710,
-      "sha256": "f151a82a5584ebf724adb447aa7e392c36b1c13251dd772ccf27905524ac54f7"
+      "sha256": "4f8c6686cd8c39b301a6ef4d993ae9120afd77c2d7134fe85020ef2972540c29"
     },
     "frame-limit.stderr": {
       "bytes": 0,
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     },
     "frame-limit.stdout": {
-      "bytes": 3985,
-      "sha256": "f6208be9eaca510580a051894d50d289080a85d47674efb5192520e61f102710"
+      "bytes": 4142,
+      "sha256": "2456d7e45e0248606a5620c8d85dcb8df56eadf3ee0c17d794ea2afa6f240255"
     },
     "frame-limit.wav": {
       "bytes": 30764,
-      "sha256": "ff1a62c615baad8f9c6af6ba0a70b1b02763e82a03d919b04ae8d58997f0ff55"
+      "sha256": "dc08918d4fecd86b980c167f15dbd3828ad9b7dd51fe5ed0adfded3b11af5d0d"
     },
     "info.stderr": {
       "bytes": 0,
@@ -5509,12 +5537,16 @@
       "sha256": "54a67863f107d6224e12f6d4ae9add3436a4c6c49461e7348e5c6772bfc4d6c3"
     },
     "missing-extras-capture.json": {
-      "bytes": 1855,
-      "sha256": "73421afb4b59640346759c2bd7fdfce038031510a86901fcc531e7962a0a69f0"
+      "bytes": 1494,
+      "sha256": "d47f6d72e280653714c2b30cd9e0874f328c0b5f0b78845cf8d114e788798856"
+    },
+    "missing-extras-events.jsonl": {
+      "bytes": 125,
+      "sha256": "d238f99efea44f2f5afd9e576a7f675853ae09cd5426b137c667a0aa41622272"
     },
     "missing-extras.json": {
       "bytes": 655,
-      "sha256": "ae249b401e1f0937c250e500faeec38788d89f1ccc0acdb5d9a5fad121359103"
+      "sha256": "59dd89e26176373d7c75b1a15ef628fe609f85852fc75dd1032ffd2d1fc6deaa"
     },
     "missing-extras.stderr": {
       "bytes": 0,
@@ -5525,52 +5557,64 @@
       "sha256": "52bc8396f121f9605cd568c141ec689304e2e2c9538acc90ad2c3028792bd911"
     },
     "recovery-capture.json": {
-      "bytes": 11004,
-      "sha256": "b82e8a6a25417a3081f2abd64de3316b7784b6c299f82f3203dbc8fbecd39f5d"
+      "bytes": 11002,
+      "sha256": "b9da195b63058a432fcbb9829203a0617b34f4888585cee204fe4a712e3b14b0"
+    },
+    "recovery-events.jsonl": {
+      "bytes": 5267,
+      "sha256": "6b4bc3e870da2cfa2e7ec72953adc2df3af0d064e15eb608836f6b7510283d2a"
     },
     "recovery.json": {
       "bytes": 651,
-      "sha256": "55fc02c4d8d487be0a6ca7062146084a0a2c2b0b4670b1fead588e8980ab44c9"
+      "sha256": "9a70eda757179eb178b9ad9d3a5100f771ddd9245653d963f0d38ea03b82c723"
     },
     "recovery.stderr": {
       "bytes": 0,
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     },
     "recovery.stdout": {
-      "bytes": 4895,
-      "sha256": "bde5b2dfc1f8f0daea655e73f6ea2daca4f79b3e3030edeb51d5335d489293a1"
+      "bytes": 4833,
+      "sha256": "0794cfabbddfc58c360dd831b6818cde50e4aabe13672cca925fcd47576da7ba"
     },
     "recovery.wav": {
-      "bytes": 65324,
-      "sha256": "403d4aa9d0341c3cd8df4619311389941fea5326ab7fa77316d2c31b3fb24ac1"
+      "bytes": 53804,
+      "sha256": "fe9e1d614c7bdf25a2095208606127f1e998ae2c6be88f178a69b6cf51aabbd0"
     },
     "reference-capture.json": {
-      "bytes": 53393,
-      "sha256": "0347eeb7577d5cb6f6e03828ab53a7c11816b2bab7386e807629709464544198"
+      "bytes": 53424,
+      "sha256": "8b54b60649b59750a5d158215b9c5a85256c4763faa808d262c17a3614b0f1f7"
+    },
+    "reference-events.jsonl": {
+      "bytes": 31376,
+      "sha256": "db207bf945d24c9d5d2089bf2490f9a090cb2a41ca64eeb690dce9f92d14bf84"
     },
     "reference.json": {
       "bytes": 738,
-      "sha256": "a4c40d1291d1460a33b1e81cb4b97fe703c8ad9c2bcd73364efe20617fb892fd"
+      "sha256": "935e6ff9ac930364d1a2ea76fd15d6d7b1e1d30d6466135263078d0ba0f3996d"
     },
     "reference.stderr": {
       "bytes": 0,
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     },
     "reference.stdout": {
-      "bytes": 28497,
-      "sha256": "8e75d914113bb597136a863685ffb0928f11cef98e211e721aed0a54b732c79b"
+      "bytes": 28657,
+      "sha256": "cd5e43ac9fb7067dd09ffee56e2ae9b275c3ce4f7327a8624a2b2ef9d2f3597b"
     },
     "reference.wav": {
       "bytes": 1317164,
-      "sha256": "6a6080b55f241563f95ff023c0c4c609127453d6a388f0ac5d94b28dd8e06808"
+      "sha256": "ea427795042040307582ded182980bdc29a9142438f5b1d8dfa5b2c9ad56a7dd"
     },
     "template-injection-capture.json": {
-      "bytes": 1852,
-      "sha256": "fa67b095bb8123851a808de1683ae822353e430d9e0d184ca7f362a5c0168607"
+      "bytes": 1490,
+      "sha256": "422cb9cbd674c37bc20d32fd11c8c94470121778f40f22c28293d3aa261cfe61"
+    },
+    "template-injection-events.jsonl": {
+      "bytes": 107,
+      "sha256": "02f28643dc3fe12cde3e1f9997030239223fc4b498c927c2c7fce558535fe902"
     },
     "template-injection.json": {
       "bytes": 661,
-      "sha256": "29769021c69ad9994c0d0c8a74faccea3d8cd02bc2bee7e714c3146f9d749244"
+      "sha256": "27daaaa1858a5f18bd185d891f6fcfcfb02ece88b7e082490718b27559c09906"
     },
     "template-injection.stderr": {
       "bytes": 0,
@@ -5590,92 +5634,91 @@
     "all_mappings_released": true,
     "compilation": {
       "schema": "lma.openmoss-host-build/1",
-      "executable": "build/openmoss-worker-host/8551e120780d970c/bin/lma_openmoss_host.exe",
-      "bytes": 3950592,
-      "sha256": "80b8eda3b843c3ff0c724bc6933798b802a7ae7b7f969829f5620351f122249a",
+      "executable": "build/openmoss-worker-host/a21882ae36d836db/bin/lma_openmoss_host.exe",
+      "bytes": 3952640,
+      "sha256": "47dd746c90523964a7ee0ae09cfdfcccda2d0965603bce436ec1d392bafcfeff",
       "source_revision": "bfb1f465e0a86fb5a52bbf93e67ceba4b7d0b4e1",
       "llama_revision": "050ee92d04c2e1f639025786dea701c70e7d4204",
       "compiled_library_sources": 10,
-      "compile_cache": "build/openmoss-host-cache/cpu-050ee92d04c2-U/bin",
+      "compile_cache": "build/openmoss-host-cache/cpu-050ee92d04c2-V/bin",
       "backend": "cpu",
       "private_weight_mapping": true,
       "production_worker_source_unmodified": true,
       "upstream_sources_unmodified": true,
       "windows_crt_parent_environment_compatibility": true,
+      "codec_encoder_scratch_released": true,
+      "official_delay_flush_and_extraction": true,
       "bundled_model_data": false,
       "physical_android": false,
       "android_compiled": false,
       "packaged_in_apk": false,
       "model_executed": false,
       "input_fingerprint": {
-        "native/openmoss/CMakeLists.txt": "83c84c6b36b70b7307a8c1b1b801b9b26f685d72f8a1d929d78c6351d1a9965a",
+        "native/openmoss/CMakeLists.txt": "7ec569bb94f68c28607de3e14bfc827e3fb9ce82b37eed53b69d9b9afb2fa045",
+        "native/openmoss/codec_memory.hpp": "c870610dedd8d4ba17086b071025a64912cfc66ecd2327a0db62af23d4d9e9a9",
         "native/openmoss/generation_guard.hpp": "9a7b420629f5502b66e2a95608aed0ac97780924fead745e7da02ab6c60db2c6",
         "native/openmoss/model_contract.hpp": "0476e93090a14822f5544a485fd5f83fdd66f9c40cd18eb7c28389e45f1ee7cb",
         "native/openmoss/policy.hpp": "eb164dba961c9065b8dd62b272050bdbb45c4d303b8e5b2455ec5441134f1684",
         "native/openmoss/private_weights.hpp": "7a5bfc3b4a2df5873628036af85b578630e43907fb009d6c23d2fe240264a16f",
         "native/openmoss/wave.hpp": "aaf85f286b9e9d95de808aae2088dadac7b9b06e35f51f31c05e272f7a112e7f",
-        "native/openmoss/worker.cpp": "a807ff77d40a12daf020e17a5517ae47476dd980227150c933635d7a80a2da15",
+        "native/openmoss/worker.cpp": "2bf806071149b7042cf66206537577ef6c27d09ccab6b722324bc1ae1475d958",
         "research/moss_nano_host/compat/sys/prctl.h": "9322b99bb80674fd2d42eb2b94f5ee5519ab443da0cdffd5ae938ef855907569",
         "research/moss_nano_host/compat/unistd.h": "1c843add75719822f7371cfafd97af1abdc1ffc52938f5cd96dfd407630d9f96",
-        "research/openmoss_host/CMakeLists.txt": "07dfb210c4668b1c3709ef1fdba3f72fd4079416631d85973f01e9b47d5662e3",
+        "research/openmoss_host/CMakeLists.txt": "c9d581ad07bc5cdc500e638da61df2342c64666cf1805abede2bb54dc0d2f405",
         "research/openmoss_host/NOTICE": "4a34c40dceab4256b15fbf7eb7c0bd6b73d76b4f043cb3956b59d05034e82cfd",
         "research/qwen_tts_host/compat/sys/prctl.h": "0e2a8e106274e1330cb0a6240583a75a4eecfe182bf0e08d141984aaae2a3987",
         "research/qwen_tts_host/compat/unistd.h": "64e960a64922193f97a70eccaf9e4bfed7f70c79c1cbcadd82a984efc3a2e8ec",
         "research/sd_host/platform.hpp": "c377ed1b676707a469a192d96ae9b748802e1f62ad0674366b593b2b5b2daf67",
+        "tests/native/openmoss_codec_memory_test.cpp": "e8c80b8094c12fdc4a2510afae40ed6be41e89540c582f9c9cdb170dbb44364c",
         "tests/native/openmoss_mapping_test.cpp": "4f676f86b3d22dee7b4ed67facd62971b6096e4c3f6ba1aa8a9592b667bb0947",
         "third_party/openmoss-source-lock.json": "df2d062fe174080e95d1f2f05ef8e133616a1827637e62d7195181f1c9256295",
-        "tools/build_openmoss_host.py": "7e18dbebb8b073e5a4a55b059798d025d9233425aa8576e0f28eb8c3ecaf7aea",
+        "tools/build_openmoss_host.py": "4c018bd89934cf85c311ccbdf8a2ca26f76a8c4bc7a48c1dee42ae3f72b4a87e",
         "tools/fetch_openmoss.py": "1c18d8c17de019a6b66321042cb14d61441d54fc370ef3f5547cacd627f1330b",
-        "tools/openmoss_pipeline.py": "483667858e0ce77742ae8242a15ae88bc8fdf76597d66191ad10ccdb172fbec3"
+        "tools/openmoss_pipeline.py": "82b855fb113f9eb16aacb27f54b94d1eebf4156d4c4088d46eda05e52fb8282f"
       }
     },
-    "executable_sha256": "ab508d3b5d08bda826a124c6fca86374430fa165543a38e09299544d532db26f",
-    "capture_directory": "build/openmoss-mapping-tests/run-1793375905861281300",
+    "executable_sha256": "e04a6e61354e4ac7ab476b0a5b59b08958887a0a4344972238bffe0a22695c2c",
+    "capture_directory": "build/openmoss-mapping-tests/run-1793388447753599400",
     "model_weights_used": false,
     "physical_android": false,
     "virtualization_used": false,
     "input_fingerprint": {
-      "native/openmoss/CMakeLists.txt": "83c84c6b36b70b7307a8c1b1b801b9b26f685d72f8a1d929d78c6351d1a9965a",
+      "native/openmoss/CMakeLists.txt": "7ec569bb94f68c28607de3e14bfc827e3fb9ce82b37eed53b69d9b9afb2fa045",
+      "native/openmoss/codec_memory.hpp": "c870610dedd8d4ba17086b071025a64912cfc66ecd2327a0db62af23d4d9e9a9",
       "native/openmoss/generation_guard.hpp": "9a7b420629f5502b66e2a95608aed0ac97780924fead745e7da02ab6c60db2c6",
       "native/openmoss/model_contract.hpp": "0476e93090a14822f5544a485fd5f83fdd66f9c40cd18eb7c28389e45f1ee7cb",
       "native/openmoss/policy.hpp": "eb164dba961c9065b8dd62b272050bdbb45c4d303b8e5b2455ec5441134f1684",
       "native/openmoss/private_weights.hpp": "7a5bfc3b4a2df5873628036af85b578630e43907fb009d6c23d2fe240264a16f",
       "native/openmoss/wave.hpp": "aaf85f286b9e9d95de808aae2088dadac7b9b06e35f51f31c05e272f7a112e7f",
-      "native/openmoss/worker.cpp": "a807ff77d40a12daf020e17a5517ae47476dd980227150c933635d7a80a2da15",
+      "native/openmoss/worker.cpp": "2bf806071149b7042cf66206537577ef6c27d09ccab6b722324bc1ae1475d958",
       "research/moss_nano_host/compat/sys/prctl.h": "9322b99bb80674fd2d42eb2b94f5ee5519ab443da0cdffd5ae938ef855907569",
       "research/moss_nano_host/compat/unistd.h": "1c843add75719822f7371cfafd97af1abdc1ffc52938f5cd96dfd407630d9f96",
-      "research/openmoss_host/CMakeLists.txt": "07dfb210c4668b1c3709ef1fdba3f72fd4079416631d85973f01e9b47d5662e3",
+      "research/openmoss_host/CMakeLists.txt": "c9d581ad07bc5cdc500e638da61df2342c64666cf1805abede2bb54dc0d2f405",
       "research/openmoss_host/NOTICE": "4a34c40dceab4256b15fbf7eb7c0bd6b73d76b4f043cb3956b59d05034e82cfd",
       "research/qwen_tts_host/compat/sys/prctl.h": "0e2a8e106274e1330cb0a6240583a75a4eecfe182bf0e08d141984aaae2a3987",
       "research/qwen_tts_host/compat/unistd.h": "64e960a64922193f97a70eccaf9e4bfed7f70c79c1cbcadd82a984efc3a2e8ec",
       "research/sd_host/platform.hpp": "c377ed1b676707a469a192d96ae9b748802e1f62ad0674366b593b2b5b2daf67",
+      "tests/native/openmoss_codec_memory_test.cpp": "e8c80b8094c12fdc4a2510afae40ed6be41e89540c582f9c9cdb170dbb44364c",
       "tests/native/openmoss_mapping_test.cpp": "4f676f86b3d22dee7b4ed67facd62971b6096e4c3f6ba1aa8a9592b667bb0947",
       "third_party/openmoss-source-lock.json": "df2d062fe174080e95d1f2f05ef8e133616a1827637e62d7195181f1c9256295",
-      "tools/build_openmoss_host.py": "7e18dbebb8b073e5a4a55b059798d025d9233425aa8576e0f28eb8c3ecaf7aea",
+      "tools/build_openmoss_host.py": "4c018bd89934cf85c311ccbdf8a2ca26f76a8c4bc7a48c1dee42ae3f72b4a87e",
       "tools/fetch_openmoss.py": "1c18d8c17de019a6b66321042cb14d61441d54fc370ef3f5547cacd627f1330b",
-      "tools/openmoss_pipeline.py": "483667858e0ce77742ae8242a15ae88bc8fdf76597d66191ad10ccdb172fbec3",
+      "tools/openmoss_pipeline.py": "82b855fb113f9eb16aacb27f54b94d1eebf4156d4c4088d46eda05e52fb8282f",
       "tools/test_openmoss_mapping.py": "950bb61f45cc37f4b5e55c557e39a2c6ec1c8c3627b9a7bd4a2599535cf37c87"
     }
   },
   "memory_baseline_sha256": "05d002110cf0db2e6d24faa43528b8fdf0332bcfdc2e8f3a61d01288b6fedfd2",
-  "pre_mapping_pcm_bitwise_identical": true,
-  "capture_directory": "build/openmoss-trained-tests/run-1793375906269017700",
+  "pre_mapping_pcm_bitwise_identical": false,
+  "prior_pcm_identity_required": false,
+  "prior_pcm_comparison_scope": "Original pre-mapping output retained as a diagnostic; official prompt/delay corrections change autoregressive inputs, while natural EOS, audio, progress, cancellation and recovery gates remain required.",
+  "capture_directory": "build/openmoss-trained-tests/run-1793388598643597300",
   "smoke_only": false,
   "host_execution_checks_passed": false,
   "host_business_checks_passed": true,
   "reference_natural_completion_accepted": false,
-  "reused_original_cases": [
-    "bad-schema",
-    "bad-threads",
-    "empty-text",
-    "template-injection",
-    "missing-extras",
-    "english",
-    "chinese",
-    "reference"
-  ],
-  "resumed_report_sha256": "a396c9fb89d975a4f0466a3b3440fc8a488d1606bdc3b23a58bcced7ca71ed23",
-  "asset_verification_mode": "reuse_original_full_sha_receipt",
+  "reused_original_cases": [],
+  "resumed_report_sha256": null,
+  "asset_verification_mode": "complete_sha256_this_run",
   "trained_production_worker_executed": true,
   "production_worker_source_unmodified": true,
   "backend": "cpu",
@@ -5686,25 +5729,27 @@
   "subjective_quality_reviewed": false,
   "formal_release": false,
   "input_fingerprint": {
-    "native/openmoss/CMakeLists.txt": "83c84c6b36b70b7307a8c1b1b801b9b26f685d72f8a1d929d78c6351d1a9965a",
+    "native/openmoss/CMakeLists.txt": "7ec569bb94f68c28607de3e14bfc827e3fb9ce82b37eed53b69d9b9afb2fa045",
+    "native/openmoss/codec_memory.hpp": "c870610dedd8d4ba17086b071025a64912cfc66ecd2327a0db62af23d4d9e9a9",
     "native/openmoss/generation_guard.hpp": "9a7b420629f5502b66e2a95608aed0ac97780924fead745e7da02ab6c60db2c6",
     "native/openmoss/model_contract.hpp": "0476e93090a14822f5544a485fd5f83fdd66f9c40cd18eb7c28389e45f1ee7cb",
     "native/openmoss/policy.hpp": "eb164dba961c9065b8dd62b272050bdbb45c4d303b8e5b2455ec5441134f1684",
     "native/openmoss/private_weights.hpp": "7a5bfc3b4a2df5873628036af85b578630e43907fb009d6c23d2fe240264a16f",
     "native/openmoss/wave.hpp": "aaf85f286b9e9d95de808aae2088dadac7b9b06e35f51f31c05e272f7a112e7f",
-    "native/openmoss/worker.cpp": "a807ff77d40a12daf020e17a5517ae47476dd980227150c933635d7a80a2da15",
+    "native/openmoss/worker.cpp": "2bf806071149b7042cf66206537577ef6c27d09ccab6b722324bc1ae1475d958",
     "research/moss_nano_host/compat/sys/prctl.h": "9322b99bb80674fd2d42eb2b94f5ee5519ab443da0cdffd5ae938ef855907569",
     "research/moss_nano_host/compat/unistd.h": "1c843add75719822f7371cfafd97af1abdc1ffc52938f5cd96dfd407630d9f96",
-    "research/openmoss_host/CMakeLists.txt": "07dfb210c4668b1c3709ef1fdba3f72fd4079416631d85973f01e9b47d5662e3",
+    "research/openmoss_host/CMakeLists.txt": "c9d581ad07bc5cdc500e638da61df2342c64666cf1805abede2bb54dc0d2f405",
     "research/openmoss_host/NOTICE": "4a34c40dceab4256b15fbf7eb7c0bd6b73d76b4f043cb3956b59d05034e82cfd",
     "research/qwen_tts_host/compat/sys/prctl.h": "0e2a8e106274e1330cb0a6240583a75a4eecfe182bf0e08d141984aaae2a3987",
     "research/qwen_tts_host/compat/unistd.h": "64e960a64922193f97a70eccaf9e4bfed7f70c79c1cbcadd82a984efc3a2e8ec",
     "research/sd_host/platform.hpp": "c377ed1b676707a469a192d96ae9b748802e1f62ad0674366b593b2b5b2daf67",
+    "tests/native/openmoss_codec_memory_test.cpp": "e8c80b8094c12fdc4a2510afae40ed6be41e89540c582f9c9cdb170dbb44364c",
     "tests/native/openmoss_mapping_test.cpp": "4f676f86b3d22dee7b4ed67facd62971b6096e4c3f6ba1aa8a9592b667bb0947",
     "third_party/openmoss-source-lock.json": "df2d062fe174080e95d1f2f05ef8e133616a1827637e62d7195181f1c9256295",
-    "tools/build_openmoss_host.py": "7e18dbebb8b073e5a4a55b059798d025d9233425aa8576e0f28eb8c3ecaf7aea",
+    "tools/build_openmoss_host.py": "4c018bd89934cf85c311ccbdf8a2ca26f76a8c4bc7a48c1dee42ae3f72b4a87e",
     "tools/fetch_openmoss.py": "1c18d8c17de019a6b66321042cb14d61441d54fc370ef3f5547cacd627f1330b",
-    "tools/openmoss_pipeline.py": "483667858e0ce77742ae8242a15ae88bc8fdf76597d66191ad10ccdb172fbec3",
+    "tools/openmoss_pipeline.py": "82b855fb113f9eb16aacb27f54b94d1eebf4156d4c4088d46eda05e52fb8282f",
     "research/openmoss_trained/assets.json": "52cfd586e4de7c7859b61a83f1638c6183e962286deea9938ded161c01460107",
     "tools/fetch_openmoss_trained.py": "eb1b7fea1796d2c09175176ed94568a2531e2d504b54324b8aebc42c596c88ec",
     "tools/fetch_sd15_trained.py": "91392401d9739f15b14fa4e42b74f13bbdd719a382746541cc69952966e6f307",
@@ -5712,9 +5757,9 @@
     "tools/test_openmoss_mapping.py": "950bb61f45cc37f4b5e55c557e39a2c6ec1c8c3627b9a7bd4a2599535cf37c87",
     "docs/media/development/tts-trained-kokoro.wav": "b2f39aa6e39665de756dccd8f523a64b72ec7eb3853a6e754f3ca5ee8c0dfdeb",
     "research/openmoss_trained/catalogue-bundle.json": "7d48fb40034a09b90ac099c1e5d40ed4cfa255967033d7dd0f44beb695f67f97",
-    "tools/openmoss_host_capture.py": "d99c62ddf4fb41edbdf0816baeb33d758ad710eee69a9979885e3a03eebe1723",
+    "tools/openmoss_host_capture.py": "8334f54260dcf8ed32b4aea35c0c22af1f87e9bb7d4e7fe2e2764072b9c72be9",
     "tools/test_moss_nano_trained.py": "f1fa3bc1573ed5361951d728b4042faad8f5c76b266ca753180de25c8c3df2cd",
-    "tools/test_openmoss_trained.py": "e301aea70d487014638e7770c4683d1d4669263e71663b162040de734bc3ca37",
+    "tools/test_openmoss_trained.py": "50d55c5a7524b8276a356daea365567a0295d01c45cca57d08ea5fb2945ce6c9",
     "verification/research/openmoss-memory/baseline.json": "05d002110cf0db2e6d24faa43528b8fdf0332bcfdc2e8f3a61d01288b6fedfd2",
     "verification/research/openmoss-memory/chinese-capture.json": "4d38eb8ca198d165ca50df37673d1c0dce5c29a5c1dc3f41035cc5c7d2e55c2f",
     "verification/research/openmoss-memory/english-capture.json": "d7f966840ce46d9f422434cd90af22b90266318a30924f5a1e75400ebe487e44",

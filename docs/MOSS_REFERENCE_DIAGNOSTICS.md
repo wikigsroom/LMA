@@ -1,5 +1,7 @@
 # MOSS 参考输入：独立诊断
 
+dev.43 的当前提示已达 7/7、状态机 5/5 一致，见[修正与复现](MOSS_DELAY_FIX.md)。本文保留 dev.42 的原始失败及未完成候选身份，不改写为当前模型验收。
+
 [English](MOSS_REFERENCE_DIAGNOSTICS.en.md) · [模型使用](MOSS_TTS15.md) · [完整待办](releases/v0.3.0-dev.42.md)
 
 dev.42 检查已有真实失败，未修改生产原生引擎、权重或采样参数。参考模式正常结束和文本遵循仍阻塞验收。
