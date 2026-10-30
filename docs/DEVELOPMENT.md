@@ -1,5 +1,7 @@
 # v0.3.0 开发状态与复查
 
+当前 **dev.41/code45**：[MOSS-TTS 1.5 完整用户资产与业务流程](MOSS_TTS15.md)、[编号实现 / 全部待完成项](releases/v0.3.0-dev.41.md)。实际主机发声、原签名 Android 编译和界面演示分别留证；参考案例触及输出上限，正常结束验收失败，完整质量 / Android / Release 门槛未通过。
+
 当前 **dev.38 / code42**：[Z-Image-Turbo 完整四组件与业务](ZIMAGE_TURBO.md)，[本轮实现与全部待办](releases/v0.3.0-dev.38.md)。真实主机生成 / 生产 Java 与 Android 编译分别留证；冻结范围和全部数值 / 质量 / 资源 / 手机门槛不变。
 
 保留历史 **dev.37 / code 41**：[FLUX.2-klein 完整业务与分词修复](FLUX2_KLEIN.md) / [English](FLUX2_KLEIN.en.md)，[本轮实现与完整待办](releases/v0.3.0-dev.37.md)。完整四组件经生产 Java / native 实际导入、生成、采样取消、恢复和结果管理；独立官方 tokenizer 核对与 Android 同源编译分别记录。完整数值、质量、资源及真机仍待验收，保留所有冻结目标与既有失败。App 不附模型；用户自行选择取得与管理。

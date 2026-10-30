@@ -31,6 +31,8 @@ def main():
     if r.returncode:raise RuntimeError(r.stdout+r.stderr)
     native=json.loads(r.stdout.strip());current(inputs)
     pipeline=guarded_pipeline(source);assert pipeline.count('lma_openmoss::validate_generation_budget(')==1 and pipeline.index('lma_openmoss::validate_generation_budget(')<pipeline.index('// Chunking the prefill')
+    assert pipeline.count('lma_openmoss::generation_step(')==1 and pipeline.index('lma_openmoss::generation_step(')>pipeline.index('last_step = decoder->step(')
+    assert pipeline.count('lma_openmoss::generation_decoding(')==1 and pipeline.index('lma_openmoss::generation_decoding(')<pipeline.index('result.waveform = codec_decode(')
     report=dict(generation_budget_in_actual_pipeline=True,passed=java['passed']+native['passed'],java=java,native=native,production_openmoss_binding=True,actual_host_children=True,model_inference=False,physical_android=False,generated_audio_outputs=False,structural_wav_fixture=True,input_fingerprint=inputs)
     (out/'results.json').write_text(json.dumps(report,indent=2)+'\n',encoding='utf-8');print(json.dumps({k:v for k,v in report.items() if k!='input_fingerprint'}))
 

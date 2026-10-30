@@ -2,7 +2,9 @@
 
 [中文](OPENMOSS_ENGINE.md) · [Complete scope](MULTIMODAL_RELEASE_PLAN.en.md) · [Development evidence](DEVELOPMENT.en.md)
 
-Internal checkpoint **0.3.0-dev.19 / code 23** extends the ARM64 CPU `openmoss_native` worker and production Java adapter to seven equal-peer recipes. It links native graphs, tokenization, sampling and codecs; it invokes no Python, Termux, external inference or upstream HTTP server. **No full model or physical Android inference has been run.** This does not establish phone support. All frozen targets remain in the same complete v0.3.0; no new Release exists.
+See the current **dev.41** [local speech workflow](MOSS_TTS15.en.md) for the complete MOSS-TTS 1.5 pair, private weight mappings, actual progress, parameters and results. Actual host Chinese/English WAVs match the previous loader byte for byte. The reference case reaches its output limit without natural completion; that failure is retained. Full-family, quality and physical Android acceptance remain open.
+
+The following preserves the seven equal-peer recipes and scoped checks of internal checkpoint **0.3.0-dev.19 / code 23**. It links native graphs, tokenization, sampling and codecs; it invokes no Python, Termux, external inference or upstream HTTP server. **No full model or physical Android inference had been run at that checkpoint.** This historical record does not establish phone support. All frozen targets remain in the same complete v0.3.0; no new Release exists.
 
 ## Four added delay layouts
 
@@ -137,6 +139,6 @@ The equal-peer `moss_soundeffect_openmoss_cpu_v1` recipe uses architecture `moss
 
 Defaults are formatted input 1024 (1–2048), generated steps 375 (1–1500, including delay flush; no exact-duration promise), text continue/stop temperature 1 (0–3), audio temperature 1.5 (0–3), Top P .6 (.01–1), Top K 50 (1–1024), repetition penalty 1.2 (1–2). Thread/seed bounds, per-model settings, task snapshots, native budget guard and shared child/artifact lifecycle are retained. Capability metadata hides unsupported negative conditioning while preserving v2 negative prompts.
 
-Pinned publisher audits for old SoundEffect, old Local and Realtime appear in [the evidence record](../catalogue/evidence/moss-rq-publishers.json). The latter two use a separate [RQ engine](MOSS_RQ_ENGINE.en.md), so Delay geometry cannot establish their support. All nine MOSS subtargets now have distinct code routes; full-weight/phone/quality/endurance acceptance is still missing for each, and the family is not labelled phone-ready.
+Pinned publisher audits for old SoundEffect, old Local and Realtime appear in [the evidence record](../catalogue/evidence/moss-rq-publishers.json). The latter two use a separate [RQ engine](MOSS_RQ_ENGINE.en.md), so Delay geometry cannot establish their support. All nine MOSS subtargets have distinct code routes. The dev.41 [complete TTS-v1.5 host execution](MOSS_TTS15.en.md) adds evidence for that subtarget while retaining its reference natural-completion failure. Other subtargets still require complete-weight execution; phone, quality, resources and endurance remain open across the family. The family is not labelled phone-ready.
 
 <img src="media/development/53-moss_soundeffect_openmoss_cpu_v1.png" width="260" alt="Old SoundEffect ambient form; UI FIXTURE, no model output" />

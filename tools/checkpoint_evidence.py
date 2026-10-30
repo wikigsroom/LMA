@@ -14,9 +14,9 @@ from preparation_build_inputs import build_inputs
 ROOT = Path(__file__).resolve().parents[1]
 BASELINE = '6b1f3459a80db8b7b6838e7d5e492b8ef42d9033'
 BASE_VERSION = '0.3.0-dev.24'
-CURRENT_VERSION = '0.3.0-dev.40'
-PRIOR_COMMIT = '0ec5042515656481c7c728cce5039a1aec979dff'
-PRIOR_VERSION = '0.3.0-dev.39'
+CURRENT_VERSION = '0.3.0-dev.41'
+PRIOR_COMMIT = '026c16cc0a2ed94f2222e320f5eef479d223a998'
+PRIOR_VERSION = '0.3.0-dev.40'
 CERTIFICATE = '90444a717a55549e2094364d8d7d005cf8b7f4df24562da62cc1884a2f341c17'
 SOURCES = {
     'build-info.json': 'dist/build-info.json',
@@ -53,19 +53,28 @@ SOURCES = {
     'recipe-suggestions.json': 'build/recipe-suggestion-tests/results.json',
     'components-media.json': 'docs/media/development/components/manifest.json',
     'mnn.json': 'build/mnn-tests/results.json',
-    'wan-assets.json': 'build/wan-trained/receipt.json',
-    'wan-quality.json': 'build/wan-quality/summary.json',
-    'wan-trained.json': 'build/wan-trained-tests/results.json',
-    'wan-app-host.json': 'build/wan-app-host-tests/results.json',
-    'wan-trained-media.json': 'docs/media/development/wan-trained/manifest.json',
     'wan-media.json': 'docs/media/development/wan/manifest.json',
     'qwen-tokenizer.json': 'build/qwen-tokenizer-tests/results.json',
+    'openmoss-assets.json': 'build/openmoss-trained/receipt.json',
+    'openmoss-arm64.json': 'build/openmoss-build-info.json',
+    'openmoss-core.json': 'build/openmoss-tests/results.json',
+    'openmoss-mapping.json': 'build/openmoss-mapping-tests/results.json',
+    'openmoss-trained.json': 'build/openmoss-trained-tests/results.json',
+    'openmoss-app-host.json': 'build/openmoss-app-host-tests/results.json',
+    'openmoss-trained-media.json': 'docs/media/development/openmoss-trained-media.json',
+    'openmoss-media.json': 'docs/media/development/openmoss/manifest.json',
 }
 
 
 def digest(data):
     return hashlib.sha256(data).hexdigest()
 
+
+def receipt_inputs(name, record):
+    key = 'source_inputs' if name == 'openmoss-arm64.json' else 'input_fingerprint'
+    inputs = record.get(key)
+    assert isinstance(inputs, dict) and inputs, 'Missing current verification inputs: ' + name
+    return inputs
 
 
 def archived_checkpoint(target_version, starting_status):
@@ -95,7 +104,7 @@ def prior_checkpoint(write=False):
     # Only archive this checkpoint's own records. Older model experiments have
     # separate immutable pointers and are not inputs to this incremental copy.
     status_data = subprocess.check_output(['git','show',PRIOR_COMMIT + ':verification/development/status.json'], cwd=ROOT)
-    status = json.loads(status_data); assert status['version'] == PRIOR_VERSION and len(status['sources']) == 40
+    status = json.loads(status_data); assert status['version'] == PRIOR_VERSION and len(status['sources']) == 41
     selected = ['status.json', *status['sources']]
     assert all(Path(name).name == name and name.endswith('.json') for name in selected)
     run = subprocess.run(['git', 'archive', '--format=tar', PRIOR_COMMIT, *['verification/development/' + name for name in selected]], cwd=ROOT, capture_output=True, check=True)
@@ -132,16 +141,19 @@ def export():
         historical[name] = {'path': path.relative_to(ROOT).as_posix(), 'sha256': digest(old[name])}
     checked = {}
     records = {}
+    serialized = {}
     for name, source in SOURCES.items():
         data = (ROOT / source).read_bytes(); record = json.loads(data)
-        current(record['input_fingerprint'])
-        for path, identity in record['input_fingerprint'].items():
+        for path, identity in receipt_inputs(name, record).items():
             assert path not in checked or checked[path] == identity, 'Conflicting current source: ' + path
             checked[path] = identity
         records[name] = record
-        (directory / name).write_bytes(data)
+        serialized[name] = data
     assert records['build-info.json']['input_fingerprint'] == build_inputs()
+    # Hash each shared source once, retaining every receipt's exact expectations.
     current(checked)
+    for name, data in serialized.items():
+        (directory / name).write_bytes(data)
     status = {
         'schema': 'lma.development-checkpoint/2', 'version': CURRENT_VERSION,
         'sources': SOURCES, 'historical_sources': historical,
@@ -150,11 +162,12 @@ def export():
         'release_ready': False, 'all_selected_models_supported': False,
         'physical_device_tests': 0, 'model_inference_tested': False,
         'historical_trained_results_apply_to_current_apk': False,
-        'host_model_inference_tested': True, 'current_trained_host_engines': ['wan_sd_cpp'], 'apk_model_inference_tested': False, 'historical_host_model_inference_tested': True,
-        'model_inference_test_scope': 'Current complete Z-Image-Turbo native Windows CPU and production Java execution; four complete user-owned components and the identical official Qwen tokenizer reference. FLUX.2-klein remains exact dev.37 and Sana Edit exact dev.36 history. No Android model inference, image quality or full numerical acceptance.',
-        'scope': 'Optional Wan 2.1 T2V 1.3B Q4 selection and complete four-asset lifecycle; CPU UMT5/VAE, actual Vulkan diffusion observations, independent settings, immutable video jobs, cancellation/recovery and managed MP4s. Per-model spatial/temporal decoder controls preserve legacy jobs and default memory policy. Five full-geometry historical experiments and an unchanged official CPU VAE comparison retain failed later-frame quality; their exact provenance is not refreshed. Windows FFmpeg is an explicit test port, not Android encoding evidence. Foundation-only APK, preserved recommendations, no automatic downloads, no ROOT or off-device inference, no ComfyUI graph ecosystem. Full frozen v0.3.0 requirements and failed gates remain unchanged.',
+        'host_model_inference_tested': True, 'current_trained_host_engines': ['openmoss_native'], 'apk_model_inference_tested': False, 'historical_host_model_inference_tested': True,
+        'model_inference_test_scope': 'Complete MOSS-TTS 1.5 Q8/BF16 weights, native Windows CPU and production Java business checks. Original reused case provenance is explicit. Reference speech reaches the output limit and FAILS natural completion; that gate remains false. Other trained experiments retain exact historical checkpoints. No Android inference, speech quality or complete MOSS-family acceptance.',
+        'current_failed_model_gates': {'moss_tts_v15_reference_natural_completion': 'failed_at_max_new_tokens_375'},
+        'scope': 'Optional user-selected MOSS-TTS 1.5 with a complete pinned 13.43 GB pair; actual CPU delayed speech and codec, immutable per-model parameters, real sampled progress, EOS versus truncation, reference encoding, cancellation and recovery, and managed WAV outputs. Foundation-only APK, preserved recommendations and HF search, no automatic model downloads, ROOT, off-device inference or ComfyUI graph ecosystem. Full frozen v0.3.0 requirements and all failed gates remain required.',
         'required_release_scope': {'foundation': 'F01–F12', 'existing_text': True, 'selected_ids': ['01','02','03','04','05','06','07','08','09','10','11','12','13','14','16','17'], 'every_frozen_subtarget': True, 'sd15_and_sdxl_lora': True},
-        'input_fingerprint': fingerprint('tools/checkpoint_evidence.py', 'tools/export_development.py', 'tools/check_repository.py', 'docs/proposals/multimodal-release-scope.json'),
+        'input_fingerprint': fingerprint('tools/checkpoint_evidence.py', 'tools/export_development.py', 'tools/check_repository.py', 'docs/proposals/multimodal-release-scope.json', 'research/openmoss_trained/reference-investigation.json'),
     }
     (directory / 'status.json').write_text(json.dumps(status, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
     return check()
@@ -178,9 +191,13 @@ def check():
     # The known failed experiment remains failed; history is never a current-APK pass.
     assert json.loads(old['lcm-overlay-trained.json'])['passed'] is False
     records = {name: json.loads((directory / name).read_text(encoding='utf-8')) for name in SOURCES}
+    checked = {}
     for name, record in records.items():
-        current(record['input_fingerprint'])
+        for path, identity in receipt_inputs(name, record).items():
+            assert path not in checked or checked[path] == identity, 'Conflicting current source: ' + path
+            checked[path] = identity
         assert (directory / name).read_bytes() == (ROOT / SOURCES[name]).read_bytes(), 'Public receipt differs from its executed check: ' + name
+    current(checked)
     build, package = records['build-info.json'], records['package.json']
     assert build['version'] == CURRENT_VERSION and build['input_fingerprint'] == build_inputs()
     assert build['sha256'] == package['sha256'] == digest((ROOT / 'dist' / build['apk']).read_bytes())
@@ -326,7 +343,7 @@ def check():
     for item in media['files']:
         data=(ROOT/'docs/media/development/components'/item['file']).read_bytes()
         assert len(data)==item['bytes'] and digest(data)==item['sha256']
-    assert status['host_model_inference_tested'] and status['current_trained_host_engines']==['wan_sd_cpp'] and not status['apk_model_inference_tested']
+    assert status['host_model_inference_tested'] and status['current_trained_host_engines']==['openmoss_native'] and not status['apk_model_inference_tested']
     mnn=records['mnn.json']; assert mnn['passed']>=101 and mnn['production_mnn_binding'] and not mnn['model_inference']
     mnn_history=archived_checkpoint('0.3.0-dev.36',prior_records['status.json'])
     assets=json.loads(mnn_history['mnn-assets.json']);assert assets['developer_assets_only'] and assets['explicit_download'] and not assets['model_executed']
@@ -421,8 +438,9 @@ def check():
     assert not media['image_quality_accepted'] and len(media['products'])==3
     for item in media['files']:
         data=(ROOT/'docs/media/development/zimage-trained'/item['file']).read_bytes();assert len(data)==item['bytes'] and digest(data)==item['sha256']
-    # Current complete Wan files and actual Vulkan execution; host is not Android acceptance.
-    assets=records['wan-assets.json'];trained=records['wan-trained.json'];bridge=records['wan-app-host.json']
+    # Exact dev.40 Wan evidence, including original failed quality gates.
+    wan_history={name:json.loads(prior_records[name]) for name in ['wan-assets.json','wan-trained.json','wan-app-host.json','wan-quality.json','wan-trained-media.json']}
+    assets=wan_history['wan-assets.json'];trained=wan_history['wan-trained.json'];bridge=wan_history['wan-app-host.json']
     assert assets['developer_assets_only'] and assets['explicit_download'] and not assets['model_executed']
     assert len(assets['components'])==4 and sum(c['bytes'] for c in assets['components'])==4741874667
     assert trained['components']==assets['components'] and trained['host_execution_checks_passed'] and len(trained['runs'])==9
@@ -440,11 +458,11 @@ def check():
     assert bridge['production_java_native_host_executed'] and bridge['java']['passed']>=102
     assert bridge['java']['actual_host_children']==3 and bridge['java']['imported_objects']==4 and bridge['java']['network_calls']==0
     assert len(bridge['outputs'])==2 and all(i['raw_frames_bitwise_equal_to_direct_native'] for i in bridge['outputs'])
-    assert bridge['direct_trained_report_sha256']==digest((ROOT/SOURCES['wan-trained.json']).read_bytes())
+    assert bridge['direct_trained_report_sha256']==digest(prior_records['wan-trained.json'])
     assert bridge['compilation']==trained['compilation'] and bridge['host_ffmpeg'] and not bridge['android_codec_tested']
     assert not any(r[k] for r in [trained,bridge] for k in ['physical_android','independent_numerics_accepted','video_quality_accepted','complete_target16_accepted','complete_release_accepted'])
-    quality=records['wan-quality.json']
-    assert quality['version']==CURRENT_VERSION and quality['aggregation_current'] and not quality['original_captures_are_current_validation']
+    quality=wan_history['wan-quality.json']
+    assert quality['version']==PRIOR_VERSION and quality['aggregation_current'] and not quality['original_captures_are_current_validation']
     assert len(quality['experiments'])==5 and len(quality['original_captures'])==7
     assert quality['default_decoder']==dict(vaeTileSize=128,vaeTemporalTiling=False)
     assert quality['official_vae_revision']=='9737cba9c1c3c4d04b33fcad41c111989865d315'
@@ -455,16 +473,103 @@ def check():
     for item in quality['media']:
         data=(ROOT/'docs/media/development/wan-quality'/item['file']).read_bytes();assert len(data)==item['bytes'] and digest(data)==item['sha256']
     for name,folder in [('wan-media.json','wan'),('wan-trained-media.json','wan-trained')]:
-        media=records[name];assert media['version']==CURRENT_VERSION
+        media=records[name] if name=='wan-media.json' else wan_history[name];assert media['version']==(CURRENT_VERSION if name=='wan-media.json' else PRIOR_VERSION)
         if name=='wan-media.json':
             assert media['browser_closed'] and not media['browser_errors'] and not media['android_device'] and not media['model_inference']
             assert len(media['screenshots'])==4 and len(media['checks'])>=9 and not media['weights_downloaded']
         else:
             assert media['real_trained_host_execution'] and not media['android_recording'] and not media['video_quality_accepted']
-            assert media['direct_report_sha256']==digest((ROOT/SOURCES['wan-trained.json']).read_bytes())
-            assert media['java_report_sha256']==digest((ROOT/SOURCES['wan-app-host.json']).read_bytes())
+            assert media['direct_report_sha256']==digest(prior_records['wan-trained.json'])
+            assert media['java_report_sha256']==digest(prior_records['wan-app-host.json'])
         for item in media['files']:
             data=(ROOT/'docs/media/development'/folder/item['file']).read_bytes();assert len(data)==item['bytes'] and digest(data)==item['sha256']
+    # Current, complete MOSS-TTS 1.5 only; no other family or phone is inferred.
+    moss_assets=records['openmoss-assets.json'];moss_core=records['openmoss-core.json']
+    moss_arm=records['openmoss-arm64.json'];moss=records['openmoss-trained.json'];moss_app=records['openmoss-app-host.json']
+    assert moss_assets['explicit_download'] and moss_assets['developer_assets_only'] and not moss_assets['bundled_model_data']
+    assert len(moss_assets['components'])==2 and sum(c['bytes'] for c in moss_assets['components'])==13430589376
+    assert moss_core['passed']>=530 and moss_core['production_openmoss_binding'] and not moss_core['model_inference']
+    assert moss_arm['engine']=='openmoss_native' and moss_arm['backend']=='cpu' and moss_arm['physical_device_tests']==0
+    assert moss_arm['sha256']==next(e for e in json.loads((ROOT/'third_party/engine-lock.json').read_text(encoding='utf-8'))['engines'] if e['engine']=='openmoss_native')['sha256']
+    assert moss['host_business_checks_passed'] and not moss['host_execution_checks_passed'] and not moss['smoke_only']
+    assert moss['failures']==['Natural completion failed: reference reached the explicit output limit']
+    assert not moss['reference_natural_completion_accepted']
+    assert len(moss['jobs'])==5 and len(moss['controls'])==6 and all(j['business_passed'] for j in moss['jobs']+moss['controls'])
+    assert [j['name'] for j in moss['jobs']+moss['controls'] if not j['passed']]==['reference']
+    assert status['current_failed_model_gates']['moss_tts_v15_reference_natural_completion']=='failed_at_max_new_tokens_375'
+    # A source review is metadata supporting the retained failure, not a new executed test.
+    reference=json.loads((ROOT/'research/openmoss_trained/reference-investigation.json').read_text(encoding='utf-8'))
+    assert not reference['reference_natural_completion_accepted'] and not reference['cause_established']
+    original_report=ROOT/reference['original_failure_report'];original_moss=json.loads(original_report.read_text(encoding='utf-8'))
+    assert digest(original_report.read_bytes())==reference['original_failure_report_sha256']==moss['resumed_report_sha256']
+    assert not original_moss['host_execution_checks_passed'] and original_moss['jobs'][-1]['name']=='reference'
+    original_driver=original_report.parent/'original-driver.py.txt'
+    assert digest(original_driver.read_bytes())==original_moss['input_fingerprint']['tools/test_openmoss_trained.py']
+    assert original_moss['compilation']['sha256']==moss['compilation']['sha256']
+    assert len(moss['reused_original_cases'])==8 and moss['asset_verification_mode']=='reuse_original_full_sha_receipt'
+    for case in moss['jobs']+moss['controls']:
+        origin=case['capture_origin']
+        assert origin['native_build_and_exact_request_unchanged']
+        assert origin['reexecuted']==(case['name'] not in moss['reused_original_cases'])
+        if not origin['reexecuted']:
+            assert origin['report_sha256']==reference['original_failure_report_sha256']
+            assert origin['original_capture_directory']==original_moss['capture_directory']
+            assert origin['original_capture_sha256']==original_moss['files'][case['name']+'-capture.json']['sha256']
+    assert moss['recovery_bitwise_identical'] and moss['production_worker_source_unmodified'] and not moss['fixture']
+    mapping=records['openmoss-mapping.json']
+    assert mapping['passed']>=20 and mapping['mapped_cpu_graph_bitwise_equal'] and mapping['copy_on_write_preserves_file']
+    assert mapping['sparse_offset_above_4gib'] and mapping['all_mappings_released'] and not mapping['model_weights_used']
+    assert mapping['executable_sha256']==moss['mapping_contract']['executable_sha256']
+    assert moss['pre_mapping_pcm_bitwise_identical'] and moss_arm['private_weight_mapping']
+    baseline_path=ROOT/'verification/research/openmoss-memory/baseline.json'
+    baseline_moss=json.loads(baseline_path.read_text(encoding='utf-8'))
+    assert digest(baseline_path.read_bytes())==moss['memory_baseline_sha256']
+    assert not baseline_moss['full_run_passed'] and baseline_moss['interrupted_after_two_successes_for_memory_optimization']
+    for name,item in baseline_moss['files'].items():
+        data=(baseline_path.parent/name).read_bytes();assert len(data)==item['bytes'] and digest(data)==item['sha256']
+    for job in moss['jobs']:
+        assert job['audio']['sample_rate']==24000 and job['audio']['channels']==1 and job['audio']['sample_width']==2
+        assert job['sampled_progress']==list(range(job['execution']['generationSteps']+1))
+        assert job['execution']['truncated']==(job['name'] in ['frame-limit','reference'])
+        assert job['execution']['auxWeightStorage']=='private_file_mapping' and job['execution']['auxWeightMappingsReleased']
+        assert not job['execution']['mappedBytesAreResidentMemory']
+        path=ROOT/moss['capture_directory']/(job['name']+'.wav')
+        assert digest(path.read_bytes())==job['audio']['sha256']
+    assert moss_app['production_java_native_host_executed'] and moss_app['java']['passed']>=80
+    assert not moss_app['reference_natural_completion_accepted']
+    assert moss_app['java']['actual_host_children']==5 and moss_app['java']['registered_objects']==2 and moss_app['java']['network_calls']==0
+    assert moss_app['java']['selected_asset_bytes']==13430589376
+    assert moss_app['java']['asset_registration_mode']=='explicit_existing_local_full_sha_adoption'
+    assert not moss_app['java']['full_stream_import_tested'] and moss_app['java']['copied_import_bytes']==0
+    import_attempt_path=ROOT/'verification/research/openmoss-import-issue/attempt.json'
+    import_attempt=json.loads(import_attempt_path.read_text(encoding='utf-8'))
+    assert not import_attempt['host_stream_import_passed'] and not import_attempt['android_saf_tested']
+    assert import_attempt['deadline_seconds']==900 and import_attempt['actual_model_children']==0 and import_attempt['partial_bytes']==3565027328
+    for name,item in import_attempt['files'].items():
+        original=(import_attempt_path.parent/name).read_bytes()
+        assert len(original)==item['bytes'] and digest(original)==item['sha256'],'Original import timeout changed: '+name
+    assert len(moss_app['outputs'])==3 and moss_app['direct_trained_report_sha256']==digest((ROOT/SOURCES['openmoss-trained.json']).read_bytes())
+    for output in moss_app['outputs']:
+        job=next(j for j in moss_app['java']['runs'] if j['name']==output['name'])
+        assert job['execution']['auxWeightStorage']=='private_file_mapping' and job['execution']['auxWeightMappingsReleased']
+        if output['name'] in ['initial-a','recovery-a']:
+            assert output['audio']['sha256']==next(j for j in moss['jobs'] if j['name']=='english')['audio']['sha256']
+    assert not any(r['physical_android'] for r in [moss,moss_app]) and not moss_app['complete_target12_accepted'] and not moss_app['complete_release_accepted']
+    media=records['openmoss-trained-media.json']
+    assert media['original_wav_bytes_unchanged'] and not media['waveform_amplitude_normalized']
+    assert not media['reference_natural_completion_accepted']
+    assert not media['physical_android'] and not media['app_screen_recording'] and not media['speech_quality_accepted']
+    assert media['gif_frames']==3 and len(media['source_audio'])==3 and len(media['files'])==6
+    for name,expected in media['sources'].items():assert digest((ROOT/name).read_bytes())==expected
+    for name,item in media['files'].items():
+        data=(ROOT/'docs/media/development'/name).read_bytes();assert len(data)==item['bytes'] and digest(data)==item['sha256']
+    for item in media['source_audio']:
+        original_job=next(j for j in moss['jobs'] if j['name']==item['case'])
+        assert item['audio']['sha256']==original_job['audio']['sha256']==media['files'][item['file']]['sha256']
+    ui=records['openmoss-media.json'];assert ui['version']==CURRENT_VERSION and ui['browser_closed'] and not ui['browser_errors']
+    assert len(ui['screenshots'])==5 and len(ui['checks'])>=56 and not ui['model_inference'] and not ui['android_device']
+    for item in ui['files']:
+        data=(ROOT/'docs/media/development/openmoss'/item['file']).read_bytes();assert len(data)==item['bytes'] and digest(data)==item['sha256']
     scope = json.loads((ROOT / 'docs/proposals/multimodal-release-scope.json').read_text(encoding='utf-8'))
     assert status['required_release_scope']['selected_ids'] == scope['selected_ids'] and scope['preserved_recommendation_ids'] == ['m08','m06','m01']
     return {'passed': True, 'current_records': len(SOURCES), 'historical_records': len(status['historical_sources']), 'prior_checkpoint_records': len(prior['sources']) - 1, 'version': CURRENT_VERSION, 'release_ready': False, 'physical_device_tests': 0}

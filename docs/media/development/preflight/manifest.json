@@ -1,5 +1,5 @@
 {
-  "version": "0.3.0-dev.40",
+  "version": "0.3.0-dev.41",
   "kind": "current production UI with an explicit simulated bridge",
   "android_device": false,
   "model_inference": false,
@@ -60,13 +60,13 @@
     },
     {
       "file": "preflight-ui.gif",
-      "bytes": 593578,
-      "sha256": "2c4f99de3e22e1bb031323e5204f2cf75e6e03f01bb3a64e64b426083a041502"
+      "bytes": 684192,
+      "sha256": "5b7d37561947430b1193f0647fce38bce436bbdf585484525405e4ea02e784a2"
     },
     {
       "file": "preflight-ui.mp4",
-      "bytes": 246562,
-      "sha256": "bbcccb6604d3182dc2aede125e8d7b16e8fea58c29ed0afa1c021460a0cb3018"
+      "bytes": 245317,
+      "sha256": "b66a7c3ede78422f1b427a5df3e2cc17c95ea49b89d1be656ac30c04668374d4"
     }
   ],
   "input_fingerprint": {
@@ -74,8 +74,8 @@
     "app/src/main/assets/app.js": "2240021b034e6259ac110fc48ede81c43be6fabf7200dde5ced7eeacbe9e5468",
     "app/src/main/assets/asset-preparations.json": "b0a7cbac1a633310b9fff84164439ee8fe20a1df137d1075eb9263f531ccfd3b",
     "app/src/main/assets/audio-preview.js": "33bb898969f37c1f78c6664052c46da844d148defdcef4a54d64bc5829037f44",
-    "app/src/main/assets/engine-builds.json": "ba3ce9cc96438ee1836f1390bab3312b4aaf364286679cd351a4711daa512740",
-    "app/src/main/assets/foundation.css": "ac77af14c0498d3c358d76814109cda4f49fb5c660c1f53961d8f9b7f6c3a53f",
+    "app/src/main/assets/engine-builds.json": "3e1aa738d6bf5c9681f6455f170e2b17dcc541d6448f15f7ed7a9438bf82d044",
+    "app/src/main/assets/foundation.css": "8bbd7a445a43d93f796be904e8f67b6e6120cf27547b93abb79cf41142078343",
     "app/src/main/assets/foundation.js": "a2bd9f0a92807a0d60a97884fb3dd123ddfc5cf42258b6577bff36b37f99cb14",
     "app/src/main/assets/index.html": "36cec4480075da6d9109bace9c2a87ef4e28a9ddf62c1c83bf686bf7f1970477",
     "app/src/main/assets/license.js": "838317c7653ca35291e9e18f2a7e2d98ed46a10880dfe144176f04ad994433d0",
@@ -165,7 +165,7 @@
     "app/src/main/assets/licenses/tts-utf8proc-LICENSE.md.txt": "3b510150d34f248a221bb88e1d811238d6c6c18b51231822c42974c39bb07256",
     "app/src/main/assets/licenses/xxhash-LICENSE.txt": "a2973411d278045bde3c7161b911e0680d53e2d73d6457c77068d2e55d816d67",
     "app/src/main/assets/model-assemblies.json": "af004a9e62205786cd2bd8ca74af4260dc125fdf1ac9e836968bab65747dd746",
-    "app/src/main/assets/model-bundles.json": "1a304917d889efd034b385abf43bce04b99530b1cd45e2ce2217a29d12ef12e0",
+    "app/src/main/assets/model-bundles.json": "61a324b4520565a3a27738aa160ef913be915c00da017bf939b6ac157bac3976",
     "app/src/main/assets/models.json": "c3e884b4e5fb06f20c036deebc78e6f953ac420e76fca72bab5a25fd59927156",
     "app/src/main/assets/preparations/ltx098_vae_prepare/stage-00.onnx": "33f367287eaf5bc67aead22132d9d73aeaf66b51387bbc3a032a1c7eb936ff8b",
     "app/src/main/assets/preparations/ltx098_vae_prepare/stage-01.onnx": "29ede53a11d80957e6f0abe38780511c267762feba725b49c29bd36fa35d31b3",
@@ -179,9 +179,9 @@
     "app/src/main/assets/recipe-templates.json": "fb37b971eabbf520da49990187a6f0f334809efea088b0fac555e8d5ba3ee72d",
     "app/src/main/assets/recipes.js": "b27e75ed85948a63476bf351cde94a59bec935a540f65e1a9fe798322bcd1b39",
     "app/src/main/assets/versions.js": "2d629929a6db642c12a242ddcc62cd4f4090ab307e0cb669ceb98add031977e1",
-    "app/src/main/assets/workbench.js": "17042106c2bbecf2ba42e1287682b0ad905fbe22137fbb5b3ea0bdee5f2745f4",
+    "app/src/main/assets/workbench.js": "7da42ca327ecc3ce3fe25d9a5431b67e2e24b1f76b784f62ef4e0cfec00fd514",
     "tests/foundation-ui.cjs": "b8cc6e6dcd05054e8651c1ec908e8d1f8e1c65abe1cb6d81e77f52a7e9fea6ed",
     "tests/preflight-ui.cjs": "61219701604c5b626d31325ac44e2a58b57be96fb7a86337ce6d21591ee09f38",
-    "tools/capture_workbench.cjs": "6a1b409988641162c2e7d03b1a84612e454fa82aded00d761c5a7136e4b0e429"
+    "tools/capture_workbench.cjs": "bfd6e784d2949f209d88c51b9d5148ce10f0411da89d7a922ffa92410c04e0bc"
   }
 }

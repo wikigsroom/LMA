@@ -1,6 +1,8 @@
 # v0.3.0 development status and evidence
 
-Current **dev.38/code42**: [complete Z-Image-Turbo components and business flow](ZIMAGE_TURBO.en.md), [numbered changes/full pending scope](releases/v0.3.0-dev.38.md). Actual native/production Java host execution and Android compilation are separate from every mandatory numerical, quality, resource and phone gate.
+Current **dev.41/code45**: [complete user-owned MOSS-TTS 1.5 assets and business flow](MOSS_TTS15.en.md), [numbered changes and full remaining scope](releases/v0.3.0-dev.41.md). Actual host synthesis, original-signature Android compilation and UI simulation are separate evidence. The reference case hits its output limit and fails natural-completion acceptance; quality, Android and full Release gates remain open.
+
+Retained history **dev.38/code42**: [complete Z-Image-Turbo components and business flow](ZIMAGE_TURBO.en.md), [numbered changes/full pending scope](releases/v0.3.0-dev.38.md). Actual native/production Java host execution and Android compilation are separate from every mandatory numerical, quality, resource and phone gate.
 
 Retained history **dev.37 / code 41**: [complete FLUX.2-klein flow and tokenizer correction](FLUX2_KLEIN.en.md) / [中文](FLUX2_KLEIN.md), [numbered changes and full pending scope](releases/v0.3.0-dev.37.md). Actual full-component production Java/native import, generation, sampling cancellation, recovery and result management; independent official tokenizer comparison and same-source Android compilation are separate evidence. Full numerics, quality, resources and phone acceptance remain pending. Every frozen target and previous failure is retained. The App ships foundation code; users explicitly acquire and manage models.
 

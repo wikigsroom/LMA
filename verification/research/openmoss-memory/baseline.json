@@ -1,0 +1,1053 @@
+{
+  "schema": "lma.openmoss-memory-baseline/1",
+  "capture_directory": "build/openmoss-trained-tests/run-1793369806858533900",
+  "compilation": {
+    "schema": "lma.openmoss-host-build/1",
+    "executable": "build/openmoss-worker-host/d24c884382cf3c70/bin/lma_openmoss_host.exe",
+    "bytes": 3937792,
+    "sha256": "7a9132048c956fe210932ab7fb41aaf20f5b9c5434f09eb66d98519d9bde0b1a",
+    "source_revision": "bfb1f465e0a86fb5a52bbf93e67ceba4b7d0b4e1",
+    "llama_revision": "050ee92d04c2e1f639025786dea701c70e7d4204",
+    "compiled_library_sources": 10,
+    "backend": "cpu",
+    "production_worker_source_unmodified": true,
+    "upstream_sources_unmodified": true,
+    "windows_crt_parent_environment_compatibility": true,
+    "bundled_model_data": false,
+    "physical_android": false,
+    "android_compiled": false,
+    "packaged_in_apk": false,
+    "model_executed": false,
+    "input_fingerprint": {
+      "native/openmoss/CMakeLists.txt": "304ba16394eb23c8cd140b23842025491eb55a657503e28919236513c1d62ba0",
+      "native/openmoss/generation_guard.hpp": "9a7b420629f5502b66e2a95608aed0ac97780924fead745e7da02ab6c60db2c6",
+      "native/openmoss/model_contract.hpp": "0476e93090a14822f5544a485fd5f83fdd66f9c40cd18eb7c28389e45f1ee7cb",
+      "native/openmoss/policy.hpp": "eb164dba961c9065b8dd62b272050bdbb45c4d303b8e5b2455ec5441134f1684",
+      "native/openmoss/wave.hpp": "aaf85f286b9e9d95de808aae2088dadac7b9b06e35f51f31c05e272f7a112e7f",
+      "native/openmoss/worker.cpp": "7cd1fd448445a43773ce4f52aeb8e9a4f0a6a68a6f3f9330ad8fe7938c99b852",
+      "research/moss_nano_host/compat/sys/prctl.h": "9322b99bb80674fd2d42eb2b94f5ee5519ab443da0cdffd5ae938ef855907569",
+      "research/moss_nano_host/compat/unistd.h": "1c843add75719822f7371cfafd97af1abdc1ffc52938f5cd96dfd407630d9f96",
+      "research/openmoss_host/CMakeLists.txt": "0daf1423cff8ee6d124b9a34f7d5a181d5ecd103c9db1f15bb65579b7ef06c7b",
+      "research/openmoss_host/NOTICE": "4a34c40dceab4256b15fbf7eb7c0bd6b73d76b4f043cb3956b59d05034e82cfd",
+      "research/qwen_tts_host/compat/sys/prctl.h": "0e2a8e106274e1330cb0a6240583a75a4eecfe182bf0e08d141984aaae2a3987",
+      "research/qwen_tts_host/compat/unistd.h": "64e960a64922193f97a70eccaf9e4bfed7f70c79c1cbcadd82a984efc3a2e8ec",
+      "research/sd_host/platform.hpp": "c377ed1b676707a469a192d96ae9b748802e1f62ad0674366b593b2b5b2daf67",
+      "third_party/openmoss-source-lock.json": "df2d062fe174080e95d1f2f05ef8e133616a1827637e62d7195181f1c9256295",
+      "tools/build_openmoss_host.py": "1f4c97b9656513a4e5a2b35beb0ffc4203b8f078b4536c9c256b4ecb40b6aca7",
+      "tools/fetch_openmoss.py": "1c18d8c17de019a6b66321042cb14d61441d54fc370ef3f5547cacd627f1330b",
+      "tools/openmoss_pipeline.py": "d7e2ec47949aca5620dacc70839b2b5b3ea6d3ea4461357153b162465051b192"
+    }
+  },
+  "cases": {
+    "english": {
+      "returncode": 0,
+      "seconds": 1612.798310699989,
+      "events": [
+        {
+          "event": "stage",
+          "stage": "validating_model_layout"
+        },
+        {
+          "event": "stage",
+          "stage": "loading_models"
+        },
+        {
+          "event": "stage",
+          "stage": "generating_speech"
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 0,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 1,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 2,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 3,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 4,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 5,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 6,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 7,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 8,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 9,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 10,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 11,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 12,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 13,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 14,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 15,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 16,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 17,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 18,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 19,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 20,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 21,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 22,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 23,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 24,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 25,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 26,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 27,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 28,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 29,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 30,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 31,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 32,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 33,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 34,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 35,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 36,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 37,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 38,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 39,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 40,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 41,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 42,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 43,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 44,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 45,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 46,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 47,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 48,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 49,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 50,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 51,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 52,
+          "steps": 375
+        },
+        {
+          "event": "stage",
+          "stage": "decoding_audio"
+        },
+        {
+          "event": "stage",
+          "stage": "saving_audio"
+        },
+        {
+          "details": {
+            "audioDurationSeconds": 1.36,
+            "audioFramesIncludingPrefix": 17,
+            "audioSamples": 32640,
+            "backend": "cpu",
+            "channels": 1,
+            "codecDecodeMs": 1854.6363999999999,
+            "continuationPrefixFrames": 0,
+            "formattedInputFrames": 61,
+            "generationMs": 377913.2612,
+            "generationSteps": 52,
+            "modelLoadMs": 715015,
+            "pipelineMs": 1610945,
+            "pipelineRTF": 1184.518382352941,
+            "prefillMs": 515557.04319999996,
+            "referenceEncodeMs": 0,
+            "referenceFrames": 0,
+            "referenceSpeakers": 0,
+            "sampleRate": 24000,
+            "stopReason": "end_of_speech",
+            "truncated": false
+          },
+          "event": "execution"
+        },
+        {
+          "event": "complete",
+          "output": "U:/build/openmoss-trained-tests/run-1793369806858533900/english.wav"
+        }
+      ],
+      "protocol_errors": [],
+      "logs_truncated": [
+        false,
+        false
+      ],
+      "timed_out": false,
+      "forced_host_termination": false,
+      "cancel_trigger": null,
+      "cancel_to_exit_seconds": null,
+      "android_cooperative_cancellation_tested": false,
+      "resources": {
+        "observed": true,
+        "samples": 77763,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 13786996736,
+        "sampled_peak_private_bytes": 7754145792,
+        "gpu_memory_measured": false,
+        "physical_device_memory_measured": false
+      },
+      "name": "english",
+      "request_sha256": "0a68895289bfd98771b67dad4c1160348cb760704c571507b081fab7ca86ad95",
+      "parameters": {
+        "threads": 4,
+        "seed": 1234,
+        "maxInputTokens": 1024,
+        "maxNewTokens": 375,
+        "textTemperature": 1,
+        "audioTemperature": 1.7,
+        "audioTopP": 0.8,
+        "audioTopK": 25,
+        "audioRepetitionPenalty": 1,
+        "voiceInstruction": "",
+        "language": "English"
+      },
+      "prompt": "Hello world.",
+      "output_exists": true,
+      "execution": {
+        "audioDurationSeconds": 1.36,
+        "audioFramesIncludingPrefix": 17,
+        "audioSamples": 32640,
+        "backend": "cpu",
+        "channels": 1,
+        "codecDecodeMs": 1854.6363999999999,
+        "continuationPrefixFrames": 0,
+        "formattedInputFrames": 61,
+        "generationMs": 377913.2612,
+        "generationSteps": 52,
+        "modelLoadMs": 715015,
+        "pipelineMs": 1610945,
+        "pipelineRTF": 1184.518382352941,
+        "prefillMs": 515557.04319999996,
+        "referenceEncodeMs": 0,
+        "referenceFrames": 0,
+        "referenceSpeakers": 0,
+        "sampleRate": 24000,
+        "stopReason": "end_of_speech",
+        "truncated": false
+      },
+      "passed": true,
+      "sampled_progress": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52
+      ],
+      "audio": {
+        "format": "WAV",
+        "channels": 1,
+        "sample_width": 2,
+        "sample_rate": 24000,
+        "samples": 32640,
+        "seconds": 1.36,
+        "rms": 0.05252800224000416,
+        "peak": 0.3858642578125,
+        "clipping_fraction": 0.0,
+        "nonzero_samples": 31209,
+        "bytes": 65324,
+        "sha256": "403d4aa9d0341c3cd8df4619311389941fea5326ab7fa77316d2c31b3fb24ac1"
+      }
+    },
+    "chinese": {
+      "returncode": 0,
+      "seconds": 622.7628886999883,
+      "events": [
+        {
+          "event": "stage",
+          "stage": "validating_model_layout"
+        },
+        {
+          "event": "stage",
+          "stage": "loading_models"
+        },
+        {
+          "event": "stage",
+          "stage": "generating_speech"
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 0,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 1,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 2,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 3,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 4,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 5,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 6,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 7,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 8,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 9,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 10,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 11,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 12,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 13,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 14,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 15,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 16,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 17,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 18,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 19,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 20,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 21,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 22,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 23,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 24,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 25,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 26,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 27,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 28,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 29,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 30,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 31,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 32,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 33,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 34,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 35,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 36,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 37,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 38,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 39,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 40,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 41,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 42,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 43,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 44,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 45,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 46,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 47,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 48,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 49,
+          "steps": 375
+        },
+        {
+          "event": "progress",
+          "stage": "generating_speech",
+          "step": 50,
+          "steps": 375
+        },
+        {
+          "event": "stage",
+          "stage": "decoding_audio"
+        },
+        {
+          "event": "stage",
+          "stage": "saving_audio"
+        },
+        {
+          "details": {
+            "audioDurationSeconds": 1.2,
+            "audioFramesIncludingPrefix": 15,
+            "audioSamples": 28800,
+            "backend": "cpu",
+            "channels": 1,
+            "codecDecodeMs": 611.7586,
+            "continuationPrefixFrames": 0,
+            "formattedInputFrames": 62,
+            "generationMs": 30767.1112,
+            "generationSteps": 50,
+            "modelLoadMs": 270532,
+            "pipelineMs": 621342,
+            "pipelineRTF": 517.785,
+            "prefillMs": 318735.4265,
+            "referenceEncodeMs": 0,
+            "referenceFrames": 0,
+            "referenceSpeakers": 0,
+            "sampleRate": 24000,
+            "stopReason": "end_of_speech",
+            "truncated": false
+          },
+          "event": "execution"
+        },
+        {
+          "event": "complete",
+          "output": "U:/build/openmoss-trained-tests/run-1793369806858533900/chinese.wav"
+        }
+      ],
+      "protocol_errors": [],
+      "logs_truncated": [
+        false,
+        false
+      ],
+      "timed_out": false,
+      "forced_host_termination": false,
+      "cancel_trigger": null,
+      "cancel_to_exit_seconds": null,
+      "android_cooperative_cancellation_tested": false,
+      "resources": {
+        "observed": true,
+        "samples": 30293,
+        "interval_ms": 20,
+        "observed_peak_working_set_bytes": 14199197696,
+        "sampled_peak_private_bytes": 7754129408,
+        "gpu_memory_measured": false,
+        "physical_device_memory_measured": false
+      },
+      "name": "chinese",
+      "request_sha256": "9f437dd514951b74fcc80eed54609a6bc25017ce0c1d390b968d04aeca2c1782",
+      "parameters": {
+        "threads": 4,
+        "seed": 1234,
+        "maxInputTokens": 1024,
+        "maxNewTokens": 375,
+        "textTemperature": 1,
+        "audioTemperature": 1.7,
+        "audioTopP": 0.8,
+        "audioTopK": 25,
+        "audioRepetitionPenalty": 1,
+        "voiceInstruction": "",
+        "language": "Chinese"
+      },
+      "prompt": "你好，世界。",
+      "output_exists": true,
+      "execution": {
+        "audioDurationSeconds": 1.2,
+        "audioFramesIncludingPrefix": 15,
+        "audioSamples": 28800,
+        "backend": "cpu",
+        "channels": 1,
+        "codecDecodeMs": 611.7586,
+        "continuationPrefixFrames": 0,
+        "formattedInputFrames": 62,
+        "generationMs": 30767.1112,
+        "generationSteps": 50,
+        "modelLoadMs": 270532,
+        "pipelineMs": 621342,
+        "pipelineRTF": 517.785,
+        "prefillMs": 318735.4265,
+        "referenceEncodeMs": 0,
+        "referenceFrames": 0,
+        "referenceSpeakers": 0,
+        "sampleRate": 24000,
+        "stopReason": "end_of_speech",
+        "truncated": false
+      },
+      "passed": true,
+      "sampled_progress": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50
+      ],
+      "audio": {
+        "format": "WAV",
+        "channels": 1,
+        "sample_width": 2,
+        "sample_rate": 24000,
+        "samples": 28800,
+        "seconds": 1.2,
+        "rms": 0.05762714857762402,
+        "peak": 0.388214111328125,
+        "clipping_fraction": 0.0,
+        "nonzero_samples": 25349,
+        "bytes": 57644,
+        "sha256": "7575ef696518c2247ae5b04f4682aee01f078805bb73fe45c1567a5b903d9311"
+      }
+    }
+  },
+  "interrupted_after_two_successes_for_memory_optimization": true,
+  "full_run_passed": false,
+  "physical_android": false,
+  "subjective_quality_reviewed": false,
+  "files": {
+    "chinese-capture.json": {
+      "bytes": 9898,
+      "sha256": "4d38eb8ca198d165ca50df37673d1c0dce5c29a5c1dc3f41035cc5c7d2e55c2f"
+    },
+    "english-capture.json": {
+      "bytes": 10207,
+      "sha256": "d7f966840ce46d9f422434cd90af22b90266318a30924f5a1e75400ebe487e44"
+    },
+    "lma-aborted-for-memory-optimization.json": {
+      "bytes": 421,
+      "sha256": "e2f6337934baa132f0d68375e08d7f584a5731bf565f2c594ac9c5d29826bbe7"
+    },
+    "results.json": {
+      "bytes": 47564,
+      "sha256": "13c5a35a5c58ca386cc5fbaf19e5020ed74278899689d10143529e893cae36e9"
+    }
+  }
+}

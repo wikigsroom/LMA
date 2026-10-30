@@ -1,6 +1,6 @@
 {
   "schema": "lma.development-checkpoint/2",
-  "version": "0.3.0-dev.40",
+  "version": "0.3.0-dev.41",
   "sources": {
     "build-info.json": "dist/build-info.json",
     "package.json": "build/package-verification.json",
@@ -36,13 +36,16 @@
     "recipe-suggestions.json": "build/recipe-suggestion-tests/results.json",
     "components-media.json": "docs/media/development/components/manifest.json",
     "mnn.json": "build/mnn-tests/results.json",
-    "wan-assets.json": "build/wan-trained/receipt.json",
-    "wan-quality.json": "build/wan-quality/summary.json",
-    "wan-trained.json": "build/wan-trained-tests/results.json",
-    "wan-app-host.json": "build/wan-app-host-tests/results.json",
-    "wan-trained-media.json": "docs/media/development/wan-trained/manifest.json",
     "wan-media.json": "docs/media/development/wan/manifest.json",
-    "qwen-tokenizer.json": "build/qwen-tokenizer-tests/results.json"
+    "qwen-tokenizer.json": "build/qwen-tokenizer-tests/results.json",
+    "openmoss-assets.json": "build/openmoss-trained/receipt.json",
+    "openmoss-arm64.json": "build/openmoss-build-info.json",
+    "openmoss-core.json": "build/openmoss-tests/results.json",
+    "openmoss-mapping.json": "build/openmoss-mapping-tests/results.json",
+    "openmoss-trained.json": "build/openmoss-trained-tests/results.json",
+    "openmoss-app-host.json": "build/openmoss-app-host-tests/results.json",
+    "openmoss-trained-media.json": "docs/media/development/openmoss-trained-media.json",
+    "openmoss-media.json": "docs/media/development/openmoss/manifest.json"
   },
   "historical_sources": {
     "build-info.json": {
@@ -515,172 +518,176 @@
     }
   },
   "prior_checkpoint": {
-    "commit": "0ec5042515656481c7c728cce5039a1aec979dff",
-    "version": "0.3.0-dev.39",
+    "commit": "026c16cc0a2ed94f2222e320f5eef479d223a998",
+    "version": "0.3.0-dev.40",
     "sources": {
       "status.json": {
-        "path": "verification/history/0.3.0-dev.39/status.json",
-        "sha256": "098fa749b62e05b75811859a87fc07723fb35daea9d0a3ac13659b11d9768c4e"
+        "path": "verification/history/0.3.0-dev.40/status.json",
+        "sha256": "7cd7073b9a6cfcfc31afef6d3e39e9378922d6c4f7946e7812d76cfd790d97dc"
       },
       "build-info.json": {
-        "path": "verification/history/0.3.0-dev.39/build-info.json",
-        "sha256": "7f50833030139572a26244e8f171c24da39d3fdfd126b65da597e26f5fb9f598"
+        "path": "verification/history/0.3.0-dev.40/build-info.json",
+        "sha256": "9b5c34c2328b939f9c8caf879fd31584c974a6e556b292fcc9f51ef8902dcec1"
       },
       "package.json": {
-        "path": "verification/history/0.3.0-dev.39/package.json",
-        "sha256": "906f63e936c0430c1c68baa1bff58a2fc7b68aab3803197145011ae52f15855e"
+        "path": "verification/history/0.3.0-dev.40/package.json",
+        "sha256": "57baf5d8a6c30b8fbd56a98cf754b1fa70d586ec75cd0df6f5d5a772bf99ecbe"
       },
       "workbench.json": {
-        "path": "verification/history/0.3.0-dev.39/workbench.json",
-        "sha256": "547927b1b2919c6a9e53cb19dd0ca64ef54cb403a55d2d318d4d8f406decfa22"
+        "path": "verification/history/0.3.0-dev.40/workbench.json",
+        "sha256": "9345ded6bec65d59c92b9040c743c59c135aa228eba96ff566fb71518835750e"
       },
       "recovery.json": {
-        "path": "verification/history/0.3.0-dev.39/recovery.json",
-        "sha256": "c8a84eefc493923fd2a54c5b2d9793458868f064a29f8f128c25d5d3f40193ab"
+        "path": "verification/history/0.3.0-dev.40/recovery.json",
+        "sha256": "b6c2c4852b515b5f366479f544e3c62225778261ae1d6c1c366a9195566940ea"
       },
       "foundation.json": {
-        "path": "verification/history/0.3.0-dev.39/foundation.json",
-        "sha256": "c81b8299eacd0729b9c0104127141f1076acad3e076c28b0680f5e67a0c407dc"
+        "path": "verification/history/0.3.0-dev.40/foundation.json",
+        "sha256": "6a001b0bf991c4029fd6f4ec68302dd7f2924e55da1d40f3348e7df4a9f2fd88"
       },
       "api.json": {
-        "path": "verification/history/0.3.0-dev.39/api.json",
-        "sha256": "c1977ecdcbda6afca9127ffccc568d54bb0d6bcda28d2c28490f0cc02fac6d56"
+        "path": "verification/history/0.3.0-dev.40/api.json",
+        "sha256": "17a74a4abb7d65bf71103f61c025412cee9d83e08c12599b0dd5ce24366d5cde"
       },
       "inputs.json": {
-        "path": "verification/history/0.3.0-dev.39/inputs.json",
-        "sha256": "d763c05af7675db0754812562d22bdefef9869aba231b97859816d37aef7b799"
+        "path": "verification/history/0.3.0-dev.40/inputs.json",
+        "sha256": "eaece8d5cba477a10f4b93a15156710f67e223540d2e374883f0fd3e3f83be66"
       },
       "text.json": {
-        "path": "verification/history/0.3.0-dev.39/text.json",
-        "sha256": "165b3284493e42dda58511ffb4c18edf1960b5606df8e1206189026ab32e86e0"
+        "path": "verification/history/0.3.0-dev.40/text.json",
+        "sha256": "aa1bbe910d05ea21859a2d64fec7b75b29debfe480103a22698501c51be841be"
       },
       "migration.json": {
-        "path": "verification/history/0.3.0-dev.39/migration.json",
-        "sha256": "0da04283c3f293a20ff85b677230178a96e3abb6d6c68f054628c29c4c9aad4a"
+        "path": "verification/history/0.3.0-dev.40/migration.json",
+        "sha256": "aa1b3a602aa24f2b8ffcfb9cf0ca23cfa4727f0e2371cfd69db31c30107dbdab"
       },
       "scheduler.json": {
-        "path": "verification/history/0.3.0-dev.39/scheduler.json",
-        "sha256": "a1834b6767f7ef9e5e7893720df5ea503f078512f0ddf6bb2f33bc623bd92728"
+        "path": "verification/history/0.3.0-dev.40/scheduler.json",
+        "sha256": "657bc6cc2ff083a8a02993ae809cee459e03a424c3704395c8a72248a73404fb"
       },
       "ui.json": {
-        "path": "verification/history/0.3.0-dev.39/ui.json",
-        "sha256": "db028d48bafceaaac73c65c7d9b313153f5054f5a6e577e26b0c4a8e107b5d43"
+        "path": "verification/history/0.3.0-dev.40/ui.json",
+        "sha256": "82c82d66d91bea8f8f006ccd381d4a2de3450e5ee68a0c55653bfd9943bbfa49"
       },
       "lint.json": {
-        "path": "verification/history/0.3.0-dev.39/lint.json",
-        "sha256": "720f61b03c0a987d170186f045f7294df7215111dd09cd8bbaf3d35686b1bdfe"
+        "path": "verification/history/0.3.0-dev.40/lint.json",
+        "sha256": "d8dd1909af2809b99163741e1c85e657382f3998eebe3794910cff9f31452b67"
       },
       "workbench-media.json": {
-        "path": "verification/history/0.3.0-dev.39/workbench-media.json",
-        "sha256": "51669835837de13b969a4b354c711bbd2e32e1d1cffe649c46d91651ac9fc440"
+        "path": "verification/history/0.3.0-dev.40/workbench-media.json",
+        "sha256": "c80dba405b54f2b6784ea861af1260a1727b345ecbc00e9f98d802e978bd8331"
       },
       "preflight-media.json": {
-        "path": "verification/history/0.3.0-dev.39/preflight-media.json",
-        "sha256": "c17fe21c369eefb83d00687215db60b87384f6e567675c66c25491036dc316c7"
+        "path": "verification/history/0.3.0-dev.40/preflight-media.json",
+        "sha256": "db15f4d1457b77cd883eb6537cb6878391c389cd40b30b9f82e3f57bd203bc7b"
       },
       "recovery-media.json": {
-        "path": "verification/history/0.3.0-dev.39/recovery-media.json",
-        "sha256": "4dca17299413d4b93818a7abdb25ca1d5f762bb1991cf92f228bc603eb179b19"
+        "path": "verification/history/0.3.0-dev.40/recovery-media.json",
+        "sha256": "7ff5f44a4ed675a684ff68fec7f86bd2111f68e812bdf7b8eacf2533a37179a5"
       },
       "preparation-core.json": {
-        "path": "verification/history/0.3.0-dev.39/preparation-core.json",
-        "sha256": "adb2b887346dcc2077b168de57b66e55604b9e967d20f05cc2fb5c87109ec3d0"
+        "path": "verification/history/0.3.0-dev.40/preparation-core.json",
+        "sha256": "d8437a6d99e47f85f257b694c89e3f13c66806c2a1c2be4ad74ae1dc76a8408b"
       },
       "assembly-core.json": {
-        "path": "verification/history/0.3.0-dev.39/assembly-core.json",
-        "sha256": "8d88ad68724cc2a2ff232f28aca28b37a78203bde8bbb882328ac35fcb92d00e"
+        "path": "verification/history/0.3.0-dev.40/assembly-core.json",
+        "sha256": "21e202d4d474d95d673a6faf92fd230eea00c1cb44e5df5c3ed1e6667727e4c6"
       },
       "diffusion.json": {
-        "path": "verification/history/0.3.0-dev.39/diffusion.json",
-        "sha256": "b0f9a1f233649593e8f88f9c2660987e54fac3502043fdff66cf27ec45ab6508"
+        "path": "verification/history/0.3.0-dev.40/diffusion.json",
+        "sha256": "549d6826c567b6ae7ca757ab2a28044211d30a0a0fac9eb8356b9b3b7470dfcc"
       },
       "lcm-media.json": {
-        "path": "verification/history/0.3.0-dev.39/lcm-media.json",
-        "sha256": "602140cf78a5eefae1cb4248bb228e24f0b43fd1cedf751fc6f00e02fc704890"
+        "path": "verification/history/0.3.0-dev.40/lcm-media.json",
+        "sha256": "843a122aadf0af3949e0b28ae498be0f400b40885404d6983d7d0b75674beedd"
       },
       "moss-rq.json": {
-        "path": "verification/history/0.3.0-dev.39/moss-rq.json",
-        "sha256": "80d91c6447da0d0e56986da4152d0184f74d53081d591b5a546e135d9fdb7120"
+        "path": "verification/history/0.3.0-dev.40/moss-rq.json",
+        "sha256": "1b37f04a8d9cba9fd3941d678e1e61399a5535c85334ff47c83a4d643dbcad72"
       },
       "moss-rq-arm64.json": {
-        "path": "verification/history/0.3.0-dev.39/moss-rq-arm64.json",
+        "path": "verification/history/0.3.0-dev.40/moss-rq-arm64.json",
         "sha256": "9e64c6a3fdf0936b096839edb6e33cbf4845d1b5f16a9619e290b7b55a17506d"
       },
       "audio-media.json": {
-        "path": "verification/history/0.3.0-dev.39/audio-media.json",
-        "sha256": "17d287fd77e397d7fe2601e1012b2c2be1834fe5acd18190c8be67e5c5f20ef3"
+        "path": "verification/history/0.3.0-dev.40/audio-media.json",
+        "sha256": "de247fe4478d12f5d7e36d90c1faf1692b24fd1b957306e50dcabb1eec6becd7"
       },
       "ltx-app.json": {
-        "path": "verification/history/0.3.0-dev.39/ltx-app.json",
-        "sha256": "1e13a6e2d989acfd66284a18ad7a4aab6f97a56c4678626727771d074c5872a1"
+        "path": "verification/history/0.3.0-dev.40/ltx-app.json",
+        "sha256": "86c8bcfe75e6b35ba7b7d48dfd40027b8a348d3defdd44f3ab353a65ac589b16"
       },
       "ltx-app-arm64.json": {
-        "path": "verification/history/0.3.0-dev.39/ltx-app-arm64.json",
+        "path": "verification/history/0.3.0-dev.40/ltx-app-arm64.json",
         "sha256": "8b6828ec1861d71478a209c4d90f40d8995823f59255b1166c3080b48cb4c54f"
       },
       "ltx-media.json": {
-        "path": "verification/history/0.3.0-dev.39/ltx-media.json",
-        "sha256": "a4514c11b8b400bb5c8e03d229a1edee793baea927b60df82b08a33d2cb45cfb"
+        "path": "verification/history/0.3.0-dev.40/ltx-media.json",
+        "sha256": "f2117c54c771de5c8c0c2d67b30b71aa5aa186544805db79f440fe488f00dc1d"
       },
       "resources-media.json": {
-        "path": "verification/history/0.3.0-dev.39/resources-media.json",
-        "sha256": "8c4b5af893e4e6f29eb4d75c82d53a644d31bc012a804ec20b43d1a029c9656d"
+        "path": "verification/history/0.3.0-dev.40/resources-media.json",
+        "sha256": "9af21b928939eef728fe285da91d7d273b18fe64572f25b10780c8c25294088d"
       },
       "curated-media.json": {
-        "path": "verification/history/0.3.0-dev.39/curated-media.json",
-        "sha256": "dc6fb373830a2a73b28cdf84e244ad511690837c820f4e51e1428d0e790046de"
+        "path": "verification/history/0.3.0-dev.40/curated-media.json",
+        "sha256": "fb4cc5a49fdb2291db80c3aa17af4d9d1aab30ec25107d4ce40d387877fa10f3"
       },
       "speech-voices.json": {
-        "path": "verification/history/0.3.0-dev.39/speech-voices.json",
-        "sha256": "e5f9c1e8495b4fb16af5d06fb2e9dda408e5706ec7705404dea02d663bbf7a51"
+        "path": "verification/history/0.3.0-dev.40/speech-voices.json",
+        "sha256": "ccb35bd0931278b465c48022c1f84070758ac1853d7107ce822a0d61c54a17f9"
       },
       "speech-media.json": {
-        "path": "verification/history/0.3.0-dev.39/speech-media.json",
-        "sha256": "bafe2d73d42cae31645a928d36e5a93a3f58c57a9976eb47634924cb46e868fc"
+        "path": "verification/history/0.3.0-dev.40/speech-media.json",
+        "sha256": "ae313077b71d33d8792589633d29fddb09dd580057e1b41a0c9c5b639e804861"
       },
       "backend.json": {
-        "path": "verification/history/0.3.0-dev.39/backend.json",
-        "sha256": "f9c99344fd3ae96a6d491a93e884f9ae226df9ca417d4df2bb11b97116ed26f9"
+        "path": "verification/history/0.3.0-dev.40/backend.json",
+        "sha256": "36f42ad616f3f6f9c5dbce53486911f1a28a1a1541573cd4031d3156b0675843"
       },
       "hub.json": {
-        "path": "verification/history/0.3.0-dev.39/hub.json",
-        "sha256": "ebac500f51b7c20ec0bee731731fa18b0cafb4d19ada289c3b0134527c985d98"
+        "path": "verification/history/0.3.0-dev.40/hub.json",
+        "sha256": "2d14ba1daa1d26a67a55e6d574229c20595ab3f35c1906762003e1a0667dd05b"
       },
       "recipe-suggestions.json": {
-        "path": "verification/history/0.3.0-dev.39/recipe-suggestions.json",
-        "sha256": "1ec3bdff775c5547938959c052bd9a95d228f57f961a80ab4d3d9fc50e7a5250"
+        "path": "verification/history/0.3.0-dev.40/recipe-suggestions.json",
+        "sha256": "51d29310a836bdc74d13f604cc5d0e02be2e96e74d84a666dca8cbe32f22e202"
       },
       "components-media.json": {
-        "path": "verification/history/0.3.0-dev.39/components-media.json",
-        "sha256": "ecdd6fb603d17101d30371bdfd0122eeafc8787dad473c990cf1a4bf9be72259"
+        "path": "verification/history/0.3.0-dev.40/components-media.json",
+        "sha256": "6599efd6695c5e151f2dab803a2e5f6d28d99cac5fe14aa80f2a15006f9c859f"
       },
       "mnn.json": {
-        "path": "verification/history/0.3.0-dev.39/mnn.json",
-        "sha256": "7f1c228603e96a939b541e66341671cd960f6aab2d2ce3ea6fa63b9a825f1bec"
+        "path": "verification/history/0.3.0-dev.40/mnn.json",
+        "sha256": "dc99186ffc7163063c49965440a721c611cfaffe0c096e9fcf1239250582c120"
       },
       "wan-assets.json": {
-        "path": "verification/history/0.3.0-dev.39/wan-assets.json",
+        "path": "verification/history/0.3.0-dev.40/wan-assets.json",
         "sha256": "e9e1c83d5e737e1b37105f37fcf15d6f951582d0f33517ce72be308d89b370f9"
       },
+      "wan-quality.json": {
+        "path": "verification/history/0.3.0-dev.40/wan-quality.json",
+        "sha256": "7a8369a18ee1b56c1312e969b901f8d3db5680ea48d8f7d325caea43acc81bb3"
+      },
       "wan-trained.json": {
-        "path": "verification/history/0.3.0-dev.39/wan-trained.json",
-        "sha256": "1053e9fe0e9ceca7dafa0dbeb2942cd30feb337276555256531655cca85027bf"
+        "path": "verification/history/0.3.0-dev.40/wan-trained.json",
+        "sha256": "fe56e8bc0cdcd735588c138b030047c0b47457f347b6db9424f34d2b7f0eb840"
       },
       "wan-app-host.json": {
-        "path": "verification/history/0.3.0-dev.39/wan-app-host.json",
-        "sha256": "05912fd51f1d5c07c930d1e2e3453c6924378ada717e0ea61e3f8647cecd3b4c"
+        "path": "verification/history/0.3.0-dev.40/wan-app-host.json",
+        "sha256": "0d71dfdafd25036f2ad13ce873f32e4a18aacadc32c821d532c0dfb0c51a5ef6"
       },
       "wan-trained-media.json": {
-        "path": "verification/history/0.3.0-dev.39/wan-trained-media.json",
-        "sha256": "8a90357860bec622460ed562754673d81c388ae3e21a238fd50eb10b22934910"
+        "path": "verification/history/0.3.0-dev.40/wan-trained-media.json",
+        "sha256": "6d2501c137644b387b07157d3083304b8674c83d50702ca36296da0e682bcfd9"
       },
       "wan-media.json": {
-        "path": "verification/history/0.3.0-dev.39/wan-media.json",
-        "sha256": "a342b064a98e0e55e0e4222a8f4f359d04c3e640223fc80c4d3431b5eb99dca2"
+        "path": "verification/history/0.3.0-dev.40/wan-media.json",
+        "sha256": "6493ceeff53ae404705e29c23e0f3250a37d3db6d98961489d1e75aaf2908053"
       },
       "qwen-tokenizer.json": {
-        "path": "verification/history/0.3.0-dev.39/qwen-tokenizer.json",
-        "sha256": "95c8f0fcf9fae5acee19ba1d38e468c5ac9fb72202859f2ac1d171aeca8d9b8e"
+        "path": "verification/history/0.3.0-dev.40/qwen-tokenizer.json",
+        "sha256": "db9f54475bec6f96ee59602a9b99e70fa9b5e254d2fe1dd45f5ffbe7c1ea829a"
       }
     }
   },
@@ -697,12 +704,15 @@
   "historical_trained_results_apply_to_current_apk": false,
   "host_model_inference_tested": true,
   "current_trained_host_engines": [
-    "wan_sd_cpp"
+    "openmoss_native"
   ],
   "apk_model_inference_tested": false,
   "historical_host_model_inference_tested": true,
-  "model_inference_test_scope": "Current complete Z-Image-Turbo native Windows CPU and production Java execution; four complete user-owned components and the identical official Qwen tokenizer reference. FLUX.2-klein remains exact dev.37 and Sana Edit exact dev.36 history. No Android model inference, image quality or full numerical acceptance.",
-  "scope": "Optional Wan 2.1 T2V 1.3B Q4 selection and complete four-asset lifecycle; CPU UMT5/VAE, actual Vulkan diffusion observations, independent settings, immutable video jobs, cancellation/recovery and managed MP4s. Per-model spatial/temporal decoder controls preserve legacy jobs and default memory policy. Five full-geometry historical experiments and an unchanged official CPU VAE comparison retain failed later-frame quality; their exact provenance is not refreshed. Windows FFmpeg is an explicit test port, not Android encoding evidence. Foundation-only APK, preserved recommendations, no automatic downloads, no ROOT or off-device inference, no ComfyUI graph ecosystem. Full frozen v0.3.0 requirements and failed gates remain unchanged.",
+  "model_inference_test_scope": "Complete MOSS-TTS 1.5 Q8/BF16 weights, native Windows CPU and production Java business checks. Original reused case provenance is explicit. Reference speech reaches the output limit and FAILS natural completion; that gate remains false. Other trained experiments retain exact historical checkpoints. No Android inference, speech quality or complete MOSS-family acceptance.",
+  "current_failed_model_gates": {
+    "moss_tts_v15_reference_natural_completion": "failed_at_max_new_tokens_375"
+  },
+  "scope": "Optional user-selected MOSS-TTS 1.5 with a complete pinned 13.43 GB pair; actual CPU delayed speech and codec, immutable per-model parameters, real sampled progress, EOS versus truncation, reference encoding, cancellation and recovery, and managed WAV outputs. Foundation-only APK, preserved recommendations and HF search, no automatic model downloads, ROOT, off-device inference or ComfyUI graph ecosystem. Full frozen v0.3.0 requirements and all failed gates remain required.",
   "required_release_scope": {
     "foundation": "F01–F12",
     "existing_text": true,
@@ -729,8 +739,9 @@
   },
   "input_fingerprint": {
     "docs/proposals/multimodal-release-scope.json": "03326504d2d1b52c315bef574325f2c05d43c6a65eafc9779cc33120b7801690",
-    "tools/check_repository.py": "24ca1c383b060db6e1b946d360373c553d32b31483c2b80ea58f9b07031fc82d",
-    "tools/checkpoint_evidence.py": "e98974936c05006e6c9ca699b12ab89fd5e531295be6684b906384c6ed24f41a",
-    "tools/export_development.py": "4d294e16bdebf32d78a05eddb1ec3ab3df07f10a901a6f2d76813ae3944ed3b6"
+    "research/openmoss_trained/reference-investigation.json": "ab79b88c528d7ad626e435d71633bda6d5c001345fc98377358a11e584a24afc",
+    "tools/check_repository.py": "9efc0b061d691c2855f5dfb1eb77ea05196ea64b92ac0bdd2cc7528f1344c1e4",
+    "tools/checkpoint_evidence.py": "d4507a341e42d0ae073a289e2fef76ebb0280c3e2a2cba60e2e5ee9e3e35d78b",
+    "tools/export_development.py": "81ed11cef63ebae5fca51686a94e58af26e8b966a60621335571485cce075ba9"
   }
 }

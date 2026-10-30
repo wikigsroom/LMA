@@ -1,0 +1,2224 @@
+{
+  "schema": "lma.wan-trained-host/1",
+  "selection_id": "16",
+  "bundle_id": "wan21_13b_q4_vulkan_catalogue_v1",
+  "components": [
+    {
+      "role": "diffusion",
+      "repository": "off-grid-ai/Wan2.1-T2V-1.3B-GGUF",
+      "revision": "1ba777b2426d5717dd0fddb1100078604a9d4667",
+      "path": "Wan2.1-T2V-1.3B-Q4_K_S.gguf",
+      "bytes": 816061024,
+      "sha256": "65181afff758fba25cf311399ccb0638a746f8e0e6533e07a84a5a23e0c12318",
+      "format": "gguf",
+      "url": "https://huggingface.co/off-grid-ai/Wan2.1-T2V-1.3B-GGUF/resolve/1ba777b2426d5717dd0fddb1100078604a9d4667/Wan2.1-T2V-1.3B-Q4_K_S.gguf"
+    },
+    {
+      "role": "t5",
+      "repository": "off-grid-ai/Video-Companions-GGUF",
+      "revision": "18b5ae5e93799acd6cd20819f898ff60f4b822d1",
+      "path": "umt5-xxl-encoder-Q4_K_M.gguf",
+      "bytes": 3655145312,
+      "sha256": "17cf97a5bbbc60a646d6105b832b6f657ce904a8a1ad970e4b59df0c67584a40",
+      "format": "gguf",
+      "url": "https://huggingface.co/off-grid-ai/Video-Companions-GGUF/resolve/18b5ae5e93799acd6cd20819f898ff60f4b822d1/umt5-xxl-encoder-Q4_K_M.gguf"
+    },
+    {
+      "role": "vae",
+      "repository": "off-grid-ai/Video-Companions-GGUF",
+      "revision": "18b5ae5e93799acd6cd20819f898ff60f4b822d1",
+      "path": "wan_2.1_vae.safetensors",
+      "bytes": 253815318,
+      "sha256": "2fc39d31359a4b0a64f55876d8ff7fa8d780956ae2cb13463b0223e15148976b",
+      "format": "safetensors",
+      "url": "https://huggingface.co/off-grid-ai/Video-Companions-GGUF/resolve/18b5ae5e93799acd6cd20819f898ff60f4b822d1/wan_2.1_vae.safetensors"
+    },
+    {
+      "role": "umt5_tokenizer",
+      "repository": "google/umt5-xxl",
+      "revision": "66cb9e7e85526fe440a945569e42c72fb6cbc0ad",
+      "path": "tokenizer.json",
+      "bytes": 16853013,
+      "sha256": "af904105ce1071b1202bba0059a841f4a7b85b48b6ec179c4948e3483476e0dd",
+      "format": "json",
+      "url": "https://huggingface.co/google/umt5-xxl/resolve/66cb9e7e85526fe440a945569e42c72fb6cbc0ad/tokenizer.json"
+    }
+  ],
+  "capture_directory": "build/wan-trained-tests/run-1793363825097505200",
+  "compilation": {
+    "schema": "lma.native-build/1",
+    "engine": "wan_sd_cpp",
+    "source_revision": "be486498eadc29dc3cd234d944c2180ed42b1415",
+    "ggml_revision": "a5915eb0e47adef21c3f25b889a008925ea838c2",
+    "backend": "vulkan",
+    "file": "lma_sd_vulkan_host.exe",
+    "bytes": 49658880,
+    "sha256": "e2008534191f75dc9c4f07eab9200f66646664eefab2c120c2193d346c52d6ca",
+    "vocabularies": "external_user_selected_components",
+    "physical_device_tests": 0,
+    "model_inference_tested": false,
+    "virtualization_used": false,
+    "source_inputs": {
+      "native/CMakeLists.txt": "bbeee4fa61d80500eeecb80dde2be73296e13ec637fc8a2d57a5faaee867e2aa",
+      "native/lcm_condition.hpp": "a5d94cf2f2453f3c8045418aa6b1a147ffa27557665bfc6f2203e04048899ea4",
+      "native/qwen_prompt.hpp": "ec9a45781b93eff62c6f0a4eca2c59fe1088c931d4c1150dcd903ae5c84c1c0f",
+      "native/sd_backend.hpp": "0e3123316a382566c30dfe0a207e9f130242629d0e3a5fb164be7fe243c0364c",
+      "native/sd_policy.hpp": "e60d0f67258e15754930f38aec97522fff28475c4cb3c92524d5daa785178619",
+      "native/sd_worker.cpp": "a6ce16e26c047231326fe1fd2551d75cabf2d47381d6489d73ef7b8c712ac96a",
+      "native/tokenizer_data.hpp": "c752eb62a3c915be4742124bb25e6ada9ea952bbc81c62a1a864cfe39a3ddd6d",
+      "native/vocab_external.cpp": "b8e568f72914833f66bbe338fb877d98d1cb954525a7d3d9a1f8364e4e1c90af",
+      "research/sd_host/compat/sys/prctl.h": "87c9ddf82ce059bf303486b0e10b22dce6d972e87f83836d148e631dcdad9c9e",
+      "research/sd_host/compat/unistd.h": "e467e7f5855c286b3ce40268146ed34d153a5fbf8a42d5c36b26a6293142068b",
+      "research/sd_vulkan_host/CMakeLists.txt": "752440871771be3b3519361e9c488669ca691d875737eac9e489e24870948feb",
+      "research/sd_vulkan_host/NOTICE": "9b917aa087e1d8cda34b8ae50ca88d9a1e73b7ae2c7917130656f9f9579d1ff9",
+      "third_party/ltx098-source-lock.json": "28acd99486f6ca76a06d038076175ac01ca55c7b1d8c3ba6dab9190291ac8779",
+      "third_party/notices/sd-sources.json": "91ee744071aa93c4bd4d40476d3582fa4bf4d00a628527e196d4856c06ec77c1",
+      "tools/build_ltx098.py": "bf39449e38190a666093f6954d133a76da36d519817ca636703f030100d4faf8",
+      "tools/build_sd_vulkan.py": "465f3e0bf42bb555be5f41a609bbb6c510dd5869a07b0a7b0ea2a5e6d0f2454e"
+    },
+    "module_backends": {
+      "text": "cpu",
+      "vae": "cpu",
+      "diffusion": "vulkan0"
+    },
+    "gpu_execution_requires_completed_operation": true,
+    "remote_inference": false,
+    "abi": "windows-x86_64",
+    "compiler": "native MSVC"
+  },
+  "runs": [
+    {
+      "name": "a",
+      "request": {
+        "schema": "lma.engine-request/1",
+        "backend": "vulkan",
+        "type": "video.generate",
+        "pipeline": "wan21_13b",
+        "architecture": "wan21",
+        "samplingProfile": "standard",
+        "input": {
+          "prompt": "A small red toy robot waving its hand beside a blue ceramic teapot on a wooden table, gentle camera movement, soft daylight",
+          "negativePrompt": ""
+        },
+        "parameters": {
+          "width": 256,
+          "height": 256,
+          "frames": 5,
+          "fps": 8,
+          "steps": 4,
+          "threads": 6,
+          "seed": 42,
+          "cfg": 6,
+          "sampler": "euler",
+          "scheduler": "discrete",
+          "flowShift": 3,
+          "vaeTiling": true,
+          "vaeTileSize": 512,
+          "vaeTemporalTiling": true
+        },
+        "components": {
+          "diffusion": "U:/build/wan-trained/originals/65181afff758fba25cf311399ccb0638a746f8e0e6533e07a84a5a23e0c12318/Wan2.1-T2V-1.3B-Q4_K_S.gguf",
+          "t5": "U:/build/wan-trained/originals/17cf97a5bbbc60a646d6105b832b6f657ce904a8a1ad970e4b59df0c67584a40/umt5-xxl-encoder-Q4_K_M.gguf",
+          "vae": "U:/build/wan-trained/originals/2fc39d31359a4b0a64f55876d8ff7fa8d780956ae2cb13463b0223e15148976b/wan_2.1_vae.safetensors",
+          "umt5_tokenizer": "U:/build/wan-trained/originals/af904105ce1071b1202bba0059a841f4a7b85b48b6ec179c4948e3483476e0dd/tokenizer.json"
+        },
+        "loras": [],
+        "output": "U:/build/wan-trained-tests/run-1793363825097505200/a.rgb"
+      },
+      "process": {
+        "returncode": 0,
+        "seconds": 102.27154359999986,
+        "events": [
+          {
+            "event": "stage",
+            "stage": "loading"
+          },
+          {
+            "event": "stage",
+            "stage": "generating"
+          },
+          {
+            "event": "progress",
+            "seconds": 3000.0,
+            "stage": "generating",
+            "step": 0,
+            "steps": 242
+          },
+          {
+            "event": "progress",
+            "seconds": 0.0008388429414480925,
+            "stage": "generating",
+            "step": 242,
+            "steps": 242
+          },
+          {
+            "event": "progress",
+            "seconds": 0.0,
+            "stage": "generating",
+            "step": 0,
+            "steps": 4
+          },
+          {
+            "event": "progress",
+            "seconds": 4000.000244140625,
+            "stage": "generating",
+            "step": 0,
+            "steps": 825
+          },
+          {
+            "event": "progress",
+            "seconds": 0.0004861110937781632,
+            "stage": "generating",
+            "step": 432,
+            "steps": 825
+          },
+          {
+            "event": "progress",
+            "seconds": 0.0009277652716264129,
+            "stage": "generating",
+            "step": 443,
+            "steps": 825
+          },
+          {
+            "event": "progress",
+            "seconds": 0.0007503030356019735,
+            "stage": "generating",
+            "step": 825,
+            "steps": 825
+          },
+          {
+            "event": "progress",
+            "seconds": 3.4940409660339355,
+            "stage": "generating",
+            "step": 1,
+            "steps": 4
+          },
+          {
+            "event": "progress",
+            "seconds": 0.41459500789642334,
+            "stage": "generating",
+            "step": 2,
+            "steps": 4
+          },
+          {
+            "event": "progress",
+            "seconds": 0.3429880142211914,
+            "stage": "generating",
+            "step": 3,
+            "steps": 4
+          },
+          {
+            "event": "progress",
+            "seconds": 0.2710399925708771,
+            "stage": "generating",
+            "step": 4,
+            "steps": 4
+          },
+          {
+            "event": "progress",
+            "seconds": 0.0,
+            "stage": "generating",
+            "step": 0,
+            "steps": 1
+          },
+          {
+            "event": "progress",
+            "seconds": 3000.0,
+            "stage": "generating",
+            "step": 0,
+            "steps": 104
+          },
+          {
+            "event": "progress",
+            "seconds": 0.0019615383353084326,
+            "stage": "generating",
+            "step": 104,
+            "steps": 104
+          },
+          {
+            "event": "progress",
+            "seconds": 3000.0,
+            "stage": "generating",
+            "step": 0,
+            "steps": 4
+          },
+          {
+            "event": "progress",
+            "seconds": 0.00449999887496233,
+            "stage": "generating",
+            "step": 4,
+            "steps": 4
+          },
+          {
+            "event": "progress",
+            "seconds": 42.733001708984375,
+            "stage": "generating",
+            "step": 1,
+            "steps": 1
+          },
+          {
+            "details": {
+              "diffusionBackend": "vulkan0",
+              "remoteInference": false,
+              "runtimeBackend": "vulkan",
+              "textBackend": "cpu",
+              "vaeBackend": "cpu",
+              "vulkanGraphObserved": true
+            },
+            "event": "execution"
+          },
+          {
+            "event": "complete",
+            "format": "lma_rgb_frames",
+            "fps": 8,
+            "frames": 5,
+            "height": 256,
+            "output": "U:/build/wan-trained-tests/run-1793363825097505200/a.rgb",
+            "width": 256
+          }
+        ],
+        "protocol_errors": [],
+        "logs_truncated": [
+          false,
+          false
+        ],
+        "timed_out": false,
+        "forced_host_termination": false,
+        "cancel_trigger": null,
+        "cancel_to_exit_seconds": null,
+        "android_cooperative_cancellation_tested": false,
+        "resources": {
+          "observed": true,
+          "samples": 4023,
+          "interval_ms": 20,
+          "observed_peak_working_set_bytes": 7497383936,
+          "sampled_peak_private_bytes": 4802207744,
+          "gpu_memory_measured": false,
+          "physical_device_memory_measured": false
+        }
+      },
+      "stdout_sha256": "1e3d1937923ab7414b052f34b632cc1986bdd40e08e2faa3c63423e97a73b677",
+      "stderr_sha256": "0b58fe1ad054129e015cf22f0c3c8a088ed1428955f77552a73031448c6381d0",
+      "frames": {
+        "bytes": 983068,
+        "sha256": "40bdc402f4eeab9871fb6cfca32099c2e7d130ee1b10c03596c0c9cc4a119ce5",
+        "width": 256,
+        "height": 256,
+        "frames": 5,
+        "fps": 8,
+        "channels": 3,
+        "frame_sha256": [
+          "bc78deb100c3389687a5452cea78c68042a6c1c5420408e572b015c0ed348034",
+          "7fd491fbe11308b67d717d423f71cc6dbd5e13c5a4c6d77d5b83b36903dc2ae5",
+          "e804d3a5b9edee831bbd6d0f9ce8476972e944127ab0499776efc82ae4a7f4f5",
+          "1867cedbbbff3aa5821abcf1733d31c58905eb5571455f628fd855708a663395",
+          "74e905f345b27633a1d366259e2f7fdf1e37d7d6e2ecfeecbd829b19d7b993e0"
+        ],
+        "channel_stddev": [
+          [
+            44.111965614990226,
+            43.58863834232575,
+            42.35333301933835
+          ],
+          [
+            41.96331899762254,
+            38.4089686838986,
+            38.05802357397377
+          ],
+          [
+            35.42415341587668,
+            33.9126832763823,
+            33.77788809073972
+          ],
+          [
+            34.424441267126284,
+            33.56659902677978,
+            33.45796648989523
+          ],
+          [
+            33.610051477244056,
+            32.12553188605177,
+            33.21984432860417
+          ]
+        ],
+        "changed_from_first": 4,
+        "maximum_motion_delta": 132,
+        "quality_accepted": false
+      }
+    },
+    {
+      "name": "b",
+      "request": {
+        "schema": "lma.engine-request/1",
+        "backend": "vulkan",
+        "type": "video.generate",
+        "pipeline": "wan21_13b",
+        "architecture": "wan21",
+        "samplingProfile": "standard",
+        "input": {
+          "prompt": "A yellow sailboat moving across a calm blue lake below snow covered mountains, bright daylight, detailed landscape",
+          "negativePrompt": ""
+        },
+        "parameters": {
+          "width": 256,
+          "height": 256,
+          "frames": 5,
+          "fps": 8,
+          "steps": 4,
+          "threads": 6,
+          "seed": 42,
+          "cfg": 6,
+          "sampler": "euler",
+          "scheduler": "discrete",
+          "flowShift": 3,
+          "vaeTiling": true,
+          "vaeTileSize": 512,
+          "vaeTemporalTiling": true
+        },
+        "components": {
+          "diffusion": "U:/build/wan-trained/originals/65181afff758fba25cf311399ccb0638a746f8e0e6533e07a84a5a23e0c12318/Wan2.1-T2V-1.3B-Q4_K_S.gguf",
+          "t5": "U:/build/wan-trained/originals/17cf97a5bbbc60a646d6105b832b6f657ce904a8a1ad970e4b59df0c67584a40/umt5-xxl-encoder-Q4_K_M.gguf",
+          "vae": "U:/build/wan-trained/originals/2fc39d31359a4b0a64f55876d8ff7fa8d780956ae2cb13463b0223e15148976b/wan_2.1_vae.safetensors",
+          "umt5_tokenizer": "U:/build/wan-trained/originals/af904105ce1071b1202bba0059a841f4a7b85b48b6ec179c4948e3483476e0dd/tokenizer.json"
+        },
+        "loras": [],
+        "output": "U:/build/wan-trained-tests/run-1793363825097505200/b.rgb"
+      },
+      "process": {
+        "returncode": 0,
+        "seconds": 94.8373305999994,
+        "events": [
+          {
+            "event": "stage",
+            "stage": "loading"
+          },
+          {
+            "event": "stage",
+            "stage": "generating"
+          },
+          {
+            "event": "progress",
+            "seconds": 2000.0001220703125,
+            "stage": "generating",
+            "step": 0,
+            "steps": 242
+          },
+          {
+            "event": "progress",
+            "seconds": 0.0008388429414480925,
+            "stage": "generating",
+            "step": 242,
+            "steps": 242
+          },
+          {
+            "event": "progress",
+            "seconds": 0.0,
+            "stage": "generating",
+            "step": 0,
+            "steps": 4
+          },
+          {
+            "event": "progress",
+            "seconds": 3000.0,
+            "stage": "generating",
+            "step": 0,
+            "steps": 825
+          },
+          {
+            "event": "progress",
+            "seconds": 0.0004594594647642225,
+            "stage": "generating",
+            "step": 444,
+            "steps": 825
+          },
+          {
+            "event": "progress",
+            "seconds": 0.0009121621842496097,
+            "stage": "generating",
+            "step": 444,
+            "steps": 825
+          },
+          {
+            "event": "progress",
+            "seconds": 0.0007928039412945509,
+            "stage": "generating",
+            "step": 806,
+            "steps": 825
+          },
+          {
+            "event": "progress",
+            "seconds": 0.001018181792460382,
+            "stage": "generating",
+            "step": 825,
+            "steps": 825
+          },
+          {
+            "event": "progress",
+            "seconds": 3.2988650798797607,
+            "stage": "generating",
+            "step": 1,
+            "steps": 4
+          },
+          {
+            "event": "progress",
+            "seconds": 0.24410900473594666,
+            "stage": "generating",
+            "step": 2,
+            "steps": 4
+          },
+          {
+            "event": "progress",
+            "seconds": 0.22977499663829803,
+            "stage": "generating",
+            "step": 3,
+            "steps": 4
+          },
+          {
+            "event": "progress",
+            "seconds": 0.22817499935626984,
+            "stage": "generating",
+            "step": 4,
+            "steps": 4
+          },
+          {
+            "event": "progress",
+            "seconds": 0.0,
+            "stage": "generating",
+            "step": 0,
+            "steps": 1
+          },
+          {
+            "event": "progress",
+            "seconds": 2000.0001220703125,
+            "stage": "generating",
+            "step": 0,
+            "steps": 104
+          },
+          {
+            "event": "progress",
+            "seconds": 0.001951923011802137,
+            "stage": "generating",
+            "step": 104,
+            "steps": 104
+          },
+          {
+            "event": "progress",
+            "seconds": 3000.0,
+            "stage": "generating",
+            "step": 0,
+            "steps": 4
+          },
+          {
+            "event": "progress",
+            "seconds": 0.004249999299645424,
+            "stage": "generating",
+            "step": 4,
+            "steps": 4
+          },
+          {
+            "event": "progress",
+            "seconds": 44.79499816894531,
+            "stage": "generating",
+            "step": 1,
+            "steps": 1
+          },
+          {
+            "details": {
+              "diffusionBackend": "vulkan0",
+              "remoteInference": false,
+              "runtimeBackend": "vulkan",
+              "textBackend": "cpu",
+              "vaeBackend": "cpu",
+              "vulkanGraphObserved": true
+            },
+            "event": "execution"
+          },
+          {
+            "event": "complete",
+            "format": "lma_rgb_frames",
+            "fps": 8,
+            "frames": 5,
+            "height": 256,
+            "output": "U:/build/wan-trained-tests/run-1793363825097505200/b.rgb",
+            "width": 256
+          }
+        ],
+        "protocol_errors": [],
+        "logs_truncated": [
+          false,
+          false
+        ],
+        "timed_out": false,
+        "forced_host_termination": false,
+        "cancel_trigger": null,
+        "cancel_to_exit_seconds": null,
+        "android_cooperative_cancellation_tested": false,
+        "resources": {
+          "observed": true,
+          "samples": 4062,
+          "interval_ms": 20,
+          "observed_peak_working_set_bytes": 7496151040,
+          "sampled_peak_private_bytes": 4795863040,
+          "gpu_memory_measured": false,
+          "physical_device_memory_measured": false
+        }
+      },
+      "stdout_sha256": "131cdb9a0fe945ce82555a050ab1d40ff8208cf35f9164e4ac47ebf950b62711",
+      "stderr_sha256": "0b58fe1ad054129e015cf22f0c3c8a088ed1428955f77552a73031448c6381d0",
+      "frames": {
+        "bytes": 983068,
+        "sha256": "3ecbb0cdf14b0098fa158789f5b2f8645c8cdc433bdce23d0e05c1b9197e012a",
+        "width": 256,
+        "height": 256,
+        "frames": 5,
+        "fps": 8,
+        "channels": 3,
+        "frame_sha256": [
+          "261202d5fdb9abe3e5c64084fe365d3b7f227213ab81f30331e27e54e831b171",
+          "467b2ad7cab61f27368d5abd3c40e18d7f932d364e595ae5b597c82f640ecfe4",
+          "783489c7fc6d6a9f06a9d561209b464abb85a88f0d89c5f3275f04c4c553aaa3",
+          "e9bd7d8aca3f961a549bb0a0282754228dc6ea461b9c7b16729c699bc8137c8b",
+          "9907d092f6085a3e0011340ca94ed5a5e8f5a6f68764e6a087edbcb91ebdd1ec"
+        ],
+        "channel_stddev": [
+          [
+            34.154015426522655,
+            24.695669013487606,
+            4.654533965457846
+          ],
+          [
+            36.51306838693317,
+            25.57779154910811,
+            5.898082840734075
+          ],
+          [
+            34.84410302213937,
+            24.266705514308192,
+            7.972812690711592
+          ],
+          [
+            36.61312861969025,
+            24.434165652646502,
+            8.502653118860563
+          ],
+          [
+            37.314363598397925,
+            24.833309065579858,
+            9.820955185469918
+          ]
+        ],
+        "changed_from_first": 4,
+        "maximum_motion_delta": 153,
+        "quality_accepted": false
+      }
+    },
+    {
+      "name": "one-step",
+      "request": {
+        "schema": "lma.engine-request/1",
+        "backend": "vulkan",
+        "type": "video.generate",
+        "pipeline": "wan21_13b",
+        "architecture": "wan21",
+        "samplingProfile": "standard",
+        "input": {
+          "prompt": "A small red toy robot waving its hand beside a blue ceramic teapot on a wooden table, gentle camera movement, soft daylight",
+          "negativePrompt": ""
+        },
+        "parameters": {
+          "width": 256,
+          "height": 256,
+          "frames": 5,
+          "fps": 8,
+          "steps": 1,
+          "threads": 6,
+          "seed": 42,
+          "cfg": 6,
+          "sampler": "euler",
+          "scheduler": "discrete",
+          "flowShift": 3,
+          "vaeTiling": true,
+          "vaeTileSize": 512,
+          "vaeTemporalTiling": true
+        },
+        "components": {
+          "diffusion": "U:/build/wan-trained/originals/65181afff758fba25cf311399ccb0638a746f8e0e6533e07a84a5a23e0c12318/Wan2.1-T2V-1.3B-Q4_K_S.gguf",
+          "t5": "U:/build/wan-trained/originals/17cf97a5bbbc60a646d6105b832b6f657ce904a8a1ad970e4b59df0c67584a40/umt5-xxl-encoder-Q4_K_M.gguf",
+          "vae": "U:/build/wan-trained/originals/2fc39d31359a4b0a64f55876d8ff7fa8d780956ae2cb13463b0223e15148976b/wan_2.1_vae.safetensors",
+          "umt5_tokenizer": "U:/build/wan-trained/originals/af904105ce1071b1202bba0059a841f4a7b85b48b6ec179c4948e3483476e0dd/tokenizer.json"
+        },
+        "loras": [],
+        "output": "U:/build/wan-trained-tests/run-1793363825097505200/one-step.rgb"
+      },
+      "process": {
+        "returncode": 0,
+        "seconds": 92.66208769999503,
+        "events": [
+          {
+            "event": "stage",
+            "stage": "loading"
+          },
+          {
+            "event": "stage",
+            "stage": "generating"
+          },
+          {
+            "event": "progress",
+            "seconds": 2000.0001220703125,
+            "stage": "generating",
+            "step": 0,
+            "steps": 242
+          },
+          {
+            "event": "progress",
+            "seconds": 0.0008388429414480925,
+            "stage": "generating",
+            "step": 242,
+            "steps": 242
+          },
+          {
+            "event": "progress",
+            "seconds": 0.0,
+            "stage": "generating",
+            "step": 0,
+            "steps": 1
+          },
+          {
+            "event": "progress",
+            "seconds": 3000.0,
+            "stage": "generating",
+            "step": 0,
+            "steps": 825
+          },
+          {
+            "event": "progress",
+            "seconds": 0.0004246861790306866,
+            "stage": "generating",
+            "step": 478,
+            "steps": 825
+          },
+          {
+            "event": "progress",
+            "seconds": 0.0005572413792833686,
+            "stage": "generating",
+            "step": 725,
+            "steps": 825
+          },
+          {
+            "event": "progress",
+            "seconds": 0.000733333348762244,
+            "stage": "generating",
+            "step": 825,
+            "steps": 825
+          },
+          {
+            "event": "progress",
+            "seconds": 2.8780601024627686,
+            "stage": "generating",
+            "step": 1,
+            "steps": 1
+          },
+          {
+            "event": "progress",
+            "seconds": 0.0,
+            "stage": "generating",
+            "step": 0,
+            "steps": 1
+          },
+          {
+            "event": "progress",
+            "seconds": 4000.000244140625,
+            "stage": "generating",
+            "step": 0,
+            "steps": 104
+          },
+          {
+            "event": "progress",
+            "seconds": 0.0019615383353084326,
+            "stage": "generating",
+            "step": 104,
+            "steps": 104
+          },
+          {
+            "event": "progress",
+            "seconds": 3000.0,
+            "stage": "generating",
+            "step": 0,
+            "steps": 4
+          },
+          {
+            "event": "progress",
+            "seconds": 0.00449999887496233,
+            "stage": "generating",
+            "step": 4,
+            "steps": 4
+          },
+          {
+            "event": "progress",
+            "seconds": 44.632999420166016,
+            "stage": "generating",
+            "step": 1,
+            "steps": 1
+          },
+          {
+            "details": {
+              "diffusionBackend": "vulkan0",
+              "remoteInference": false,
+              "runtimeBackend": "vulkan",
+              "textBackend": "cpu",
+              "vaeBackend": "cpu",
+              "vulkanGraphObserved": true
+            },
+            "event": "execution"
+          },
+          {
+            "event": "complete",
+            "format": "lma_rgb_frames",
+            "fps": 8,
+            "frames": 5,
+            "height": 256,
+            "output": "U:/build/wan-trained-tests/run-1793363825097505200/one-step.rgb",
+            "width": 256
+          }
+        ],
+        "protocol_errors": [],
+        "logs_truncated": [
+          false,
+          false
+        ],
+        "timed_out": false,
+        "forced_host_termination": false,
+        "cancel_trigger": null,
+        "cancel_to_exit_seconds": null,
+        "android_cooperative_cancellation_tested": false,
+        "resources": {
+          "observed": true,
+          "samples": 4011,
+          "interval_ms": 20,
+          "observed_peak_working_set_bytes": 7497588736,
+          "sampled_peak_private_bytes": 4785819648,
+          "gpu_memory_measured": false,
+          "physical_device_memory_measured": false
+        }
+      },
+      "stdout_sha256": "67e05a6d2cc66c408fd01a013ee3b6548271e4ced00e08ead0d083bc1c022e17",
+      "stderr_sha256": "0b58fe1ad054129e015cf22f0c3c8a088ed1428955f77552a73031448c6381d0",
+      "frames": {
+        "bytes": 983068,
+        "sha256": "f388dcc442e9bcf9197352c0c223c8878ff85bbe966a19580d4db32a4691c296",
+        "width": 256,
+        "height": 256,
+        "frames": 5,
+        "fps": 8,
+        "channels": 3,
+        "frame_sha256": [
+          "a808b56371b8c32a1118c95feac9091a343c48b5e8babc6c7e086bcd71f60599",
+          "e4f1f00d0952b79a22fb0bc119eea1c1ffd85420a1ed42cd774c9332c7579c73",
+          "5578a5edc3c85d27b7678ea96e093e381a4c9f3530be4832789aa56d19fb6ebf",
+          "746956c6a1354208a3879a4f83f6b55bfa9db1550b8165ff8f4cbbd5bf58ef32",
+          "6ef15096a1ad454c9c187f24e6c52e02ef1e9c3d7e23f9a8e9221011aaa5af93"
+        ],
+        "channel_stddev": [
+          [
+            21.12224232060257,
+            19.084216850218734,
+            22.794183249261543
+          ],
+          [
+            19.560872268826998,
+            17.06069322849729,
+            21.73966957465489
+          ],
+          [
+            18.729500205443372,
+            15.577580984348485,
+            18.35004874520427
+          ],
+          [
+            17.639600915569726,
+            14.873182816668463,
+            18.357783563405043
+          ],
+          [
+            17.448015423202847,
+            14.720983975263133,
+            19.11526383137716
+          ]
+        ],
+        "changed_from_first": 4,
+        "maximum_motion_delta": 41,
+        "quality_accepted": false
+      }
+    },
+    {
+      "name": "cancel-step1",
+      "request": {
+        "schema": "lma.engine-request/1",
+        "backend": "vulkan",
+        "type": "video.generate",
+        "pipeline": "wan21_13b",
+        "architecture": "wan21",
+        "samplingProfile": "standard",
+        "input": {
+          "prompt": "A small red toy robot waving its hand beside a blue ceramic teapot on a wooden table, gentle camera movement, soft daylight",
+          "negativePrompt": ""
+        },
+        "parameters": {
+          "width": 256,
+          "height": 256,
+          "frames": 5,
+          "fps": 8,
+          "steps": 4,
+          "threads": 6,
+          "seed": 42,
+          "cfg": 6,
+          "sampler": "euler",
+          "scheduler": "discrete",
+          "flowShift": 3,
+          "vaeTiling": true,
+          "vaeTileSize": 512,
+          "vaeTemporalTiling": true
+        },
+        "components": {
+          "diffusion": "U:/build/wan-trained/originals/65181afff758fba25cf311399ccb0638a746f8e0e6533e07a84a5a23e0c12318/Wan2.1-T2V-1.3B-Q4_K_S.gguf",
+          "t5": "U:/build/wan-trained/originals/17cf97a5bbbc60a646d6105b832b6f657ce904a8a1ad970e4b59df0c67584a40/umt5-xxl-encoder-Q4_K_M.gguf",
+          "vae": "U:/build/wan-trained/originals/2fc39d31359a4b0a64f55876d8ff7fa8d780956ae2cb13463b0223e15148976b/wan_2.1_vae.safetensors",
+          "umt5_tokenizer": "U:/build/wan-trained/originals/af904105ce1071b1202bba0059a841f4a7b85b48b6ec179c4948e3483476e0dd/tokenizer.json"
+        },
+        "loras": [],
+        "output": "U:/build/wan-trained-tests/run-1793363825097505200/cancel-step1.rgb"
+      },
+      "process": {
+        "returncode": 1,
+        "seconds": 49.87880669999868,
+        "events": [
+          {
+            "event": "stage",
+            "stage": "loading"
+          },
+          {
+            "event": "stage",
+            "stage": "generating"
+          },
+          {
+            "event": "progress",
+            "seconds": 4000.000244140625,
+            "stage": "generating",
+            "step": 0,
+            "steps": 242
+          },
+          {
+            "event": "progress",
+            "seconds": 0.0008429752197116613,
+            "stage": "generating",
+            "step": 242,
+            "steps": 242
+          },
+          {
+            "event": "progress",
+            "seconds": 0.0,
+            "stage": "generating",
+            "step": 0,
+            "steps": 4
+          },
+          {
+            "event": "progress",
+            "seconds": 4000.000244140625,
+            "stage": "generating",
+            "step": 0,
+            "steps": 825
+          },
+          {
+            "event": "progress",
+            "seconds": 0.0007033639121800661,
+            "stage": "generating",
+            "step": 327,
+            "steps": 825
+          },
+          {
+            "event": "progress",
+            "seconds": 0.001318042748607695,
+            "stage": "generating",
+            "step": 327,
+            "steps": 825
+          },
+          {
+            "event": "progress",
+            "seconds": 0.0009097420843318105,
+            "stage": "generating",
+            "step": 698,
+            "steps": 825
+          },
+          {
+            "event": "progress",
+            "seconds": 0.0010133333271369338,
+            "stage": "generating",
+            "step": 825,
+            "steps": 825
+          },
+          {
+            "event": "progress",
+            "seconds": 3.947374105453491,
+            "stage": "generating",
+            "step": 1,
+            "steps": 4
+          }
+        ],
+        "protocol_errors": [],
+        "logs_truncated": [
+          false,
+          false
+        ],
+        "timed_out": false,
+        "forced_host_termination": true,
+        "cancel_trigger": {
+          "event": "progress",
+          "seconds": 3.947374105453491,
+          "stage": "generating",
+          "step": 1,
+          "steps": 4
+        },
+        "cancel_to_exit_seconds": 3.0230221999954665,
+        "android_cooperative_cancellation_tested": false,
+        "resources": {
+          "observed": true,
+          "samples": 2227,
+          "interval_ms": 20,
+          "observed_peak_working_set_bytes": 4103180288,
+          "sampled_peak_private_bytes": 1290051584,
+          "gpu_memory_measured": false,
+          "physical_device_memory_measured": false
+        }
+      },
+      "stdout_sha256": "8da6ad4ad0863851c52144e4e79840a749bdea7f4e06b75b36c9a252d10613b9",
+      "stderr_sha256": "0b58fe1ad054129e015cf22f0c3c8a088ed1428955f77552a73031448c6381d0"
+    },
+    {
+      "name": "empty-prompt",
+      "request": {
+        "schema": "lma.engine-request/1",
+        "backend": "vulkan",
+        "type": "video.generate",
+        "pipeline": "wan21_13b",
+        "architecture": "wan21",
+        "samplingProfile": "standard",
+        "input": {
+          "prompt": "",
+          "negativePrompt": ""
+        },
+        "parameters": {
+          "width": 256,
+          "height": 256,
+          "frames": 5,
+          "fps": 8,
+          "steps": 4,
+          "threads": 6,
+          "seed": 42,
+          "cfg": 6,
+          "sampler": "euler",
+          "scheduler": "discrete",
+          "flowShift": 3,
+          "vaeTiling": true,
+          "vaeTileSize": 512,
+          "vaeTemporalTiling": true
+        },
+        "components": {
+          "diffusion": "U:/build/wan-trained/originals/65181afff758fba25cf311399ccb0638a746f8e0e6533e07a84a5a23e0c12318/Wan2.1-T2V-1.3B-Q4_K_S.gguf",
+          "t5": "U:/build/wan-trained/originals/17cf97a5bbbc60a646d6105b832b6f657ce904a8a1ad970e4b59df0c67584a40/umt5-xxl-encoder-Q4_K_M.gguf",
+          "vae": "U:/build/wan-trained/originals/2fc39d31359a4b0a64f55876d8ff7fa8d780956ae2cb13463b0223e15148976b/wan_2.1_vae.safetensors",
+          "umt5_tokenizer": "U:/build/wan-trained/originals/af904105ce1071b1202bba0059a841f4a7b85b48b6ec179c4948e3483476e0dd/tokenizer.json"
+        },
+        "loras": [],
+        "output": "U:/build/wan-trained-tests/run-1793363825097505200/empty-prompt.rgb"
+      },
+      "process": {
+        "returncode": 1,
+        "seconds": 0.09898989999783225,
+        "events": [
+          {
+            "event": "error",
+            "message": "Invalid prompt or output"
+          }
+        ],
+        "protocol_errors": [],
+        "logs_truncated": [
+          false,
+          false
+        ],
+        "timed_out": false,
+        "forced_host_termination": false,
+        "cancel_trigger": null,
+        "cancel_to_exit_seconds": null,
+        "android_cooperative_cancellation_tested": false,
+        "resources": {
+          "observed": true,
+          "samples": 5,
+          "interval_ms": 20,
+          "observed_peak_working_set_bytes": 8060928,
+          "sampled_peak_private_bytes": 2940928,
+          "gpu_memory_measured": false,
+          "physical_device_memory_measured": false
+        }
+      },
+      "stdout_sha256": "ba94da52f0e8f748947125cd9723791eeeb5f16cf73ccfaeec9735f25d38a9ea",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "wrong-task",
+      "request": {
+        "schema": "lma.engine-request/1",
+        "backend": "vulkan",
+        "type": "audio.generate",
+        "pipeline": "wan21_13b",
+        "architecture": "wan21",
+        "samplingProfile": "standard",
+        "input": {
+          "prompt": "A small red toy robot waving its hand beside a blue ceramic teapot on a wooden table, gentle camera movement, soft daylight",
+          "negativePrompt": ""
+        },
+        "parameters": {
+          "width": 256,
+          "height": 256,
+          "frames": 5,
+          "fps": 8,
+          "steps": 4,
+          "threads": 6,
+          "seed": 42,
+          "cfg": 6,
+          "sampler": "euler",
+          "scheduler": "discrete",
+          "flowShift": 3,
+          "vaeTiling": true,
+          "vaeTileSize": 512,
+          "vaeTemporalTiling": true
+        },
+        "components": {
+          "diffusion": "U:/build/wan-trained/originals/65181afff758fba25cf311399ccb0638a746f8e0e6533e07a84a5a23e0c12318/Wan2.1-T2V-1.3B-Q4_K_S.gguf",
+          "t5": "U:/build/wan-trained/originals/17cf97a5bbbc60a646d6105b832b6f657ce904a8a1ad970e4b59df0c67584a40/umt5-xxl-encoder-Q4_K_M.gguf",
+          "vae": "U:/build/wan-trained/originals/2fc39d31359a4b0a64f55876d8ff7fa8d780956ae2cb13463b0223e15148976b/wan_2.1_vae.safetensors",
+          "umt5_tokenizer": "U:/build/wan-trained/originals/af904105ce1071b1202bba0059a841f4a7b85b48b6ec179c4948e3483476e0dd/tokenizer.json"
+        },
+        "loras": [],
+        "output": "U:/build/wan-trained-tests/run-1793363825097505200/wrong-task.rgb"
+      },
+      "process": {
+        "returncode": 1,
+        "seconds": 0.07138269999995828,
+        "events": [
+          {
+            "event": "error",
+            "message": "Unsupported diffusion task"
+          }
+        ],
+        "protocol_errors": [],
+        "logs_truncated": [
+          false,
+          false
+        ],
+        "timed_out": false,
+        "forced_host_termination": false,
+        "cancel_trigger": null,
+        "cancel_to_exit_seconds": null,
+        "android_cooperative_cancellation_tested": false,
+        "resources": {
+          "observed": true,
+          "samples": 4,
+          "interval_ms": 20,
+          "observed_peak_working_set_bytes": 8048640,
+          "sampled_peak_private_bytes": 2928640,
+          "gpu_memory_measured": false,
+          "physical_device_memory_measured": false
+        }
+      },
+      "stdout_sha256": "fa854b315d775a5d0bed6bc28db1ce25e92476ddae7e8604e4ebf84149044d3c",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "recovery-a",
+      "request": {
+        "schema": "lma.engine-request/1",
+        "backend": "vulkan",
+        "type": "video.generate",
+        "pipeline": "wan21_13b",
+        "architecture": "wan21",
+        "samplingProfile": "standard",
+        "input": {
+          "prompt": "A small red toy robot waving its hand beside a blue ceramic teapot on a wooden table, gentle camera movement, soft daylight",
+          "negativePrompt": ""
+        },
+        "parameters": {
+          "width": 256,
+          "height": 256,
+          "frames": 5,
+          "fps": 8,
+          "steps": 4,
+          "threads": 6,
+          "seed": 42,
+          "cfg": 6,
+          "sampler": "euler",
+          "scheduler": "discrete",
+          "flowShift": 3,
+          "vaeTiling": true,
+          "vaeTileSize": 512,
+          "vaeTemporalTiling": true
+        },
+        "components": {
+          "diffusion": "U:/build/wan-trained/originals/65181afff758fba25cf311399ccb0638a746f8e0e6533e07a84a5a23e0c12318/Wan2.1-T2V-1.3B-Q4_K_S.gguf",
+          "t5": "U:/build/wan-trained/originals/17cf97a5bbbc60a646d6105b832b6f657ce904a8a1ad970e4b59df0c67584a40/umt5-xxl-encoder-Q4_K_M.gguf",
+          "vae": "U:/build/wan-trained/originals/2fc39d31359a4b0a64f55876d8ff7fa8d780956ae2cb13463b0223e15148976b/wan_2.1_vae.safetensors",
+          "umt5_tokenizer": "U:/build/wan-trained/originals/af904105ce1071b1202bba0059a841f4a7b85b48b6ec179c4948e3483476e0dd/tokenizer.json"
+        },
+        "loras": [],
+        "output": "U:/build/wan-trained-tests/run-1793363825097505200/recovery-a.rgb"
+      },
+      "process": {
+        "returncode": 0,
+        "seconds": 86.68066199999885,
+        "events": [
+          {
+            "event": "stage",
+            "stage": "loading"
+          },
+          {
+            "event": "stage",
+            "stage": "generating"
+          },
+          {
+            "event": "progress",
+            "seconds": 2000.0001220703125,
+            "stage": "generating",
+            "step": 0,
+            "steps": 242
+          },
+          {
+            "event": "progress",
+            "seconds": 0.0008388429414480925,
+            "stage": "generating",
+            "step": 242,
+            "steps": 242
+          },
+          {
+            "event": "progress",
+            "seconds": 0.0,
+            "stage": "generating",
+            "step": 0,
+            "steps": 4
+          },
+          {
+            "event": "progress",
+            "seconds": 2000.0001220703125,
+            "stage": "generating",
+            "step": 0,
+            "steps": 825
+          },
+          {
+            "event": "progress",
+            "seconds": 0.0007898832554928958,
+            "stage": "generating",
+            "step": 257,
+            "steps": 825
+          },
+          {
+            "event": "progress",
+            "seconds": 0.001568093430250883,
+            "stage": "generating",
+            "step": 257,
+            "steps": 825
+          },
+          {
+            "event": "progress",
+            "seconds": 0.000977346207946539,
+            "stage": "generating",
+            "step": 618,
+            "steps": 825
+          },
+          {
+            "event": "progress",
+            "seconds": 0.0009745454881340265,
+            "stage": "generating",
+            "step": 825,
+            "steps": 825
+          },
+          {
+            "event": "progress",
+            "seconds": 4.163617134094238,
+            "stage": "generating",
+            "step": 1,
+            "steps": 4
+          },
+          {
+            "event": "progress",
+            "seconds": 0.23071299493312836,
+            "stage": "generating",
+            "step": 2,
+            "steps": 4
+          },
+          {
+            "event": "progress",
+            "seconds": 0.22904300689697266,
+            "stage": "generating",
+            "step": 3,
+            "steps": 4
+          },
+          {
+            "event": "progress",
+            "seconds": 0.2369379997253418,
+            "stage": "generating",
+            "step": 4,
+            "steps": 4
+          },
+          {
+            "event": "progress",
+            "seconds": 0.0,
+            "stage": "generating",
+            "step": 0,
+            "steps": 1
+          },
+          {
+            "event": "progress",
+            "seconds": 2000.0001220703125,
+            "stage": "generating",
+            "step": 0,
+            "steps": 104
+          },
+          {
+            "event": "progress",
+            "seconds": 0.001942307804711163,
+            "stage": "generating",
+            "step": 104,
+            "steps": 104
+          },
+          {
+            "event": "progress",
+            "seconds": 3000.0,
+            "stage": "generating",
+            "step": 0,
+            "steps": 4
+          },
+          {
+            "event": "progress",
+            "seconds": 0.0037499989848583937,
+            "stage": "generating",
+            "step": 4,
+            "steps": 4
+          },
+          {
+            "event": "progress",
+            "seconds": 38.44499969482422,
+            "stage": "generating",
+            "step": 1,
+            "steps": 1
+          },
+          {
+            "details": {
+              "diffusionBackend": "vulkan0",
+              "remoteInference": false,
+              "runtimeBackend": "vulkan",
+              "textBackend": "cpu",
+              "vaeBackend": "cpu",
+              "vulkanGraphObserved": true
+            },
+            "event": "execution"
+          },
+          {
+            "event": "complete",
+            "format": "lma_rgb_frames",
+            "fps": 8,
+            "frames": 5,
+            "height": 256,
+            "output": "U:/build/wan-trained-tests/run-1793363825097505200/recovery-a.rgb",
+            "width": 256
+          }
+        ],
+        "protocol_errors": [],
+        "logs_truncated": [
+          false,
+          false
+        ],
+        "timed_out": false,
+        "forced_host_termination": false,
+        "cancel_trigger": null,
+        "cancel_to_exit_seconds": null,
+        "android_cooperative_cancellation_tested": false,
+        "resources": {
+          "observed": true,
+          "samples": 3924,
+          "interval_ms": 20,
+          "observed_peak_working_set_bytes": 7497076736,
+          "sampled_peak_private_bytes": 4785401856,
+          "gpu_memory_measured": false,
+          "physical_device_memory_measured": false
+        }
+      },
+      "stdout_sha256": "0618b56375be66da7094298bf34aed68335d87ee9db6ffd0b6fa73fa234ca0e6",
+      "stderr_sha256": "0b58fe1ad054129e015cf22f0c3c8a088ed1428955f77552a73031448c6381d0",
+      "frames": {
+        "bytes": 983068,
+        "sha256": "40bdc402f4eeab9871fb6cfca32099c2e7d130ee1b10c03596c0c9cc4a119ce5",
+        "width": 256,
+        "height": 256,
+        "frames": 5,
+        "fps": 8,
+        "channels": 3,
+        "frame_sha256": [
+          "bc78deb100c3389687a5452cea78c68042a6c1c5420408e572b015c0ed348034",
+          "7fd491fbe11308b67d717d423f71cc6dbd5e13c5a4c6d77d5b83b36903dc2ae5",
+          "e804d3a5b9edee831bbd6d0f9ce8476972e944127ab0499776efc82ae4a7f4f5",
+          "1867cedbbbff3aa5821abcf1733d31c58905eb5571455f628fd855708a663395",
+          "74e905f345b27633a1d366259e2f7fdf1e37d7d6e2ecfeecbd829b19d7b993e0"
+        ],
+        "channel_stddev": [
+          [
+            44.111965614990226,
+            43.58863834232575,
+            42.35333301933835
+          ],
+          [
+            41.96331899762254,
+            38.4089686838986,
+            38.05802357397377
+          ],
+          [
+            35.42415341587668,
+            33.9126832763823,
+            33.77788809073972
+          ],
+          [
+            34.424441267126284,
+            33.56659902677978,
+            33.45796648989523
+          ],
+          [
+            33.610051477244056,
+            32.12553188605177,
+            33.21984432860417
+          ]
+        ],
+        "changed_from_first": 4,
+        "maximum_motion_delta": 132,
+        "quality_accepted": false
+      }
+    },
+    {
+      "name": "legacy-a",
+      "request": {
+        "schema": "lma.engine-request/1",
+        "backend": "vulkan",
+        "type": "video.generate",
+        "pipeline": "wan21_13b",
+        "architecture": "wan21",
+        "samplingProfile": "standard",
+        "input": {
+          "prompt": "A small red toy robot waving its hand beside a blue ceramic teapot on a wooden table, gentle camera movement, soft daylight",
+          "negativePrompt": ""
+        },
+        "parameters": {
+          "width": 256,
+          "height": 256,
+          "frames": 5,
+          "fps": 8,
+          "steps": 4,
+          "threads": 6,
+          "seed": 42,
+          "cfg": 6,
+          "sampler": "euler",
+          "scheduler": "discrete",
+          "flowShift": 3,
+          "vaeTiling": true
+        },
+        "components": {
+          "diffusion": "U:/build/wan-trained/originals/65181afff758fba25cf311399ccb0638a746f8e0e6533e07a84a5a23e0c12318/Wan2.1-T2V-1.3B-Q4_K_S.gguf",
+          "t5": "U:/build/wan-trained/originals/17cf97a5bbbc60a646d6105b832b6f657ce904a8a1ad970e4b59df0c67584a40/umt5-xxl-encoder-Q4_K_M.gguf",
+          "vae": "U:/build/wan-trained/originals/2fc39d31359a4b0a64f55876d8ff7fa8d780956ae2cb13463b0223e15148976b/wan_2.1_vae.safetensors",
+          "umt5_tokenizer": "U:/build/wan-trained/originals/af904105ce1071b1202bba0059a841f4a7b85b48b6ec179c4948e3483476e0dd/tokenizer.json"
+        },
+        "loras": [],
+        "output": "U:/build/wan-trained-tests/run-1793363825097505200/legacy-a.rgb"
+      },
+      "process": {
+        "returncode": 0,
+        "seconds": 124.6679284999991,
+        "events": [
+          {
+            "event": "stage",
+            "stage": "loading"
+          },
+          {
+            "event": "stage",
+            "stage": "generating"
+          },
+          {
+            "event": "progress",
+            "seconds": 2000.0001220703125,
+            "stage": "generating",
+            "step": 0,
+            "steps": 242
+          },
+          {
+            "event": "progress",
+            "seconds": 0.0008347107795998454,
+            "stage": "generating",
+            "step": 242,
+            "steps": 242
+          },
+          {
+            "event": "progress",
+            "seconds": 0.0,
+            "stage": "generating",
+            "step": 0,
+            "steps": 4
+          },
+          {
+            "event": "progress",
+            "seconds": 2000.0001220703125,
+            "stage": "generating",
+            "step": 0,
+            "steps": 825
+          },
+          {
+            "event": "progress",
+            "seconds": 0.0006215384928509593,
+            "stage": "generating",
+            "step": 325,
+            "steps": 825
+          },
+          {
+            "event": "progress",
+            "seconds": 0.0012400000123307109,
+            "stage": "generating",
+            "step": 325,
+            "steps": 825
+          },
+          {
+            "event": "progress",
+            "seconds": 0.0008435753989033401,
+            "stage": "generating",
+            "step": 716,
+            "steps": 825
+          },
+          {
+            "event": "progress",
+            "seconds": 0.0009769697207957506,
+            "stage": "generating",
+            "step": 825,
+            "steps": 825
+          },
+          {
+            "event": "progress",
+            "seconds": 3.172842025756836,
+            "stage": "generating",
+            "step": 1,
+            "steps": 4
+          },
+          {
+            "event": "progress",
+            "seconds": 0.2349119931459427,
+            "stage": "generating",
+            "step": 2,
+            "steps": 4
+          },
+          {
+            "event": "progress",
+            "seconds": 0.24710999429225922,
+            "stage": "generating",
+            "step": 3,
+            "steps": 4
+          },
+          {
+            "event": "progress",
+            "seconds": 0.2439669966697693,
+            "stage": "generating",
+            "step": 4,
+            "steps": 4
+          },
+          {
+            "event": "progress",
+            "seconds": 0.0,
+            "stage": "generating",
+            "step": 0,
+            "steps": 9
+          },
+          {
+            "event": "progress",
+            "seconds": 2000.0001220703125,
+            "stage": "generating",
+            "step": 0,
+            "steps": 108
+          },
+          {
+            "event": "progress",
+            "seconds": 0.0018703704699873924,
+            "stage": "generating",
+            "step": 108,
+            "steps": 108
+          },
+          {
+            "event": "progress",
+            "seconds": 8.062000274658203,
+            "stage": "generating",
+            "step": 1,
+            "steps": 9
+          },
+          {
+            "event": "progress",
+            "seconds": 8.116000175476074,
+            "stage": "generating",
+            "step": 2,
+            "steps": 9
+          },
+          {
+            "event": "progress",
+            "seconds": 9.461000442504883,
+            "stage": "generating",
+            "step": 3,
+            "steps": 9
+          },
+          {
+            "event": "progress",
+            "seconds": 8.272000312805176,
+            "stage": "generating",
+            "step": 4,
+            "steps": 9
+          },
+          {
+            "event": "progress",
+            "seconds": 7.817999839782715,
+            "stage": "generating",
+            "step": 5,
+            "steps": 9
+          },
+          {
+            "event": "progress",
+            "seconds": 7.61899995803833,
+            "stage": "generating",
+            "step": 6,
+            "steps": 9
+          },
+          {
+            "event": "progress",
+            "seconds": 7.961999893188477,
+            "stage": "generating",
+            "step": 7,
+            "steps": 9
+          },
+          {
+            "event": "progress",
+            "seconds": 9.6899995803833,
+            "stage": "generating",
+            "step": 8,
+            "steps": 9
+          },
+          {
+            "event": "progress",
+            "seconds": 9.651000022888184,
+            "stage": "generating",
+            "step": 9,
+            "steps": 9
+          },
+          {
+            "details": {
+              "diffusionBackend": "vulkan0",
+              "remoteInference": false,
+              "runtimeBackend": "vulkan",
+              "textBackend": "cpu",
+              "vaeBackend": "cpu",
+              "vulkanGraphObserved": true
+            },
+            "event": "execution"
+          },
+          {
+            "event": "complete",
+            "format": "lma_rgb_frames",
+            "fps": 8,
+            "frames": 5,
+            "height": 256,
+            "output": "U:/build/wan-trained-tests/run-1793363825097505200/legacy-a.rgb",
+            "width": 256
+          }
+        ],
+        "protocol_errors": [],
+        "logs_truncated": [
+          false,
+          false
+        ],
+        "timed_out": false,
+        "forced_host_termination": false,
+        "cancel_trigger": null,
+        "cancel_to_exit_seconds": null,
+        "android_cooperative_cancellation_tested": false,
+        "resources": {
+          "observed": true,
+          "samples": 5694,
+          "interval_ms": 20,
+          "observed_peak_working_set_bytes": 4616278016,
+          "sampled_peak_private_bytes": 1954992128,
+          "gpu_memory_measured": false,
+          "physical_device_memory_measured": false
+        }
+      },
+      "stdout_sha256": "df4a6d982529c839277ad584536d13a87da9cac7fd863cb377b9d2ef07a7e9c1",
+      "stderr_sha256": "0b58fe1ad054129e015cf22f0c3c8a088ed1428955f77552a73031448c6381d0",
+      "frames": {
+        "bytes": 983068,
+        "sha256": "a7ed9560ed46f449654bc4e3e1c42d55ff51c984090c8fc9f846365aa149d9d2",
+        "width": 256,
+        "height": 256,
+        "frames": 5,
+        "fps": 8,
+        "channels": 3,
+        "frame_sha256": [
+          "ec2dbeec9f10fe438f811a085147ac6dc75c5bb4126953b078300d982c1bc34a",
+          "58f942838a959d50c143e33901699f4466dfc97d6d3b022af4f6d3f6ba2c3824",
+          "8ed6a14aaf4320019fac22b46f9abceeb748c8dcd72d169e709530c7a26b67a6",
+          "e4003c182f6ab239da1d75a5755eb3f0b442e89dfd71ae5f11c99463214c9447",
+          "18c529b4db89ea866aafa3eeeffbd3f472c3c055eaf33b226920b8a0cb5dca78"
+        ],
+        "channel_stddev": [
+          [
+            44.1054614660146,
+            43.58037317654006,
+            42.35564703156444
+          ],
+          [
+            41.949939659425354,
+            38.3730467186876,
+            38.06658645437254
+          ],
+          [
+            35.44095161262312,
+            33.957440536454314,
+            33.81007429062263
+          ],
+          [
+            34.39930122772565,
+            33.58887082160687,
+            33.486401639205745
+          ],
+          [
+            33.62238423160954,
+            32.08095609554707,
+            33.195095748043194
+          ]
+        ],
+        "changed_from_first": 4,
+        "maximum_motion_delta": 132,
+        "quality_accepted": false
+      }
+    },
+    {
+      "name": "bad-tile",
+      "request": {
+        "schema": "lma.engine-request/1",
+        "backend": "vulkan",
+        "type": "video.generate",
+        "pipeline": "wan21_13b",
+        "architecture": "wan21",
+        "samplingProfile": "standard",
+        "input": {
+          "prompt": "A small red toy robot waving its hand beside a blue ceramic teapot on a wooden table, gentle camera movement, soft daylight",
+          "negativePrompt": ""
+        },
+        "parameters": {
+          "width": 256,
+          "height": 256,
+          "frames": 5,
+          "fps": 8,
+          "steps": 4,
+          "threads": 6,
+          "seed": 42,
+          "cfg": 6,
+          "sampler": "euler",
+          "scheduler": "discrete",
+          "flowShift": 3,
+          "vaeTiling": true,
+          "vaeTileSize": 129,
+          "vaeTemporalTiling": true
+        },
+        "components": {
+          "diffusion": "U:/build/wan-trained/originals/65181afff758fba25cf311399ccb0638a746f8e0e6533e07a84a5a23e0c12318/Wan2.1-T2V-1.3B-Q4_K_S.gguf",
+          "t5": "U:/build/wan-trained/originals/17cf97a5bbbc60a646d6105b832b6f657ce904a8a1ad970e4b59df0c67584a40/umt5-xxl-encoder-Q4_K_M.gguf",
+          "vae": "U:/build/wan-trained/originals/2fc39d31359a4b0a64f55876d8ff7fa8d780956ae2cb13463b0223e15148976b/wan_2.1_vae.safetensors",
+          "umt5_tokenizer": "U:/build/wan-trained/originals/af904105ce1071b1202bba0059a841f4a7b85b48b6ec179c4948e3483476e0dd/tokenizer.json"
+        },
+        "loras": [],
+        "output": "U:/build/wan-trained-tests/run-1793363825097505200/bad-tile.rgb"
+      },
+      "process": {
+        "returncode": 1,
+        "seconds": 0.13884499999403488,
+        "events": [
+          {
+            "event": "error",
+            "message": "VAE tile size must be 128-1024 pixels, aligned to 64"
+          }
+        ],
+        "protocol_errors": [],
+        "logs_truncated": [
+          false,
+          false
+        ],
+        "timed_out": false,
+        "forced_host_termination": false,
+        "cancel_trigger": null,
+        "cancel_to_exit_seconds": null,
+        "android_cooperative_cancellation_tested": false,
+        "resources": {
+          "observed": true,
+          "samples": 7,
+          "interval_ms": 20,
+          "observed_peak_working_set_bytes": 8015872,
+          "sampled_peak_private_bytes": 2945024,
+          "gpu_memory_measured": false,
+          "physical_device_memory_measured": false
+        }
+      },
+      "stdout_sha256": "c8e40da5091498c55d128ecbf05d3fcdcd5ea3a0dae6753c2f68de00dd276881",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "checks": [
+    {
+      "passed": true,
+      "description": "Actual signed-source Vulkan worker identity"
+    },
+    {
+      "passed": true,
+      "description": "a: bounded structured protocol"
+    },
+    {
+      "passed": true,
+      "description": "a: complete trained RGB video"
+    },
+    {
+      "passed": true,
+      "description": "a: completed real GPU matrix operation with CPU text/VAE"
+    },
+    {
+      "passed": true,
+      "description": "a: exact explicitly selected small test geometry"
+    },
+    {
+      "passed": true,
+      "description": "a: actual nonuniform moving frames, not a quality assessment"
+    },
+    {
+      "passed": true,
+      "description": "a: actual final sampler step"
+    },
+    {
+      "passed": true,
+      "description": "a: observed Windows process memory"
+    },
+    {
+      "passed": true,
+      "description": "b: bounded structured protocol"
+    },
+    {
+      "passed": true,
+      "description": "b: complete trained RGB video"
+    },
+    {
+      "passed": true,
+      "description": "b: completed real GPU matrix operation with CPU text/VAE"
+    },
+    {
+      "passed": true,
+      "description": "b: exact explicitly selected small test geometry"
+    },
+    {
+      "passed": true,
+      "description": "b: actual nonuniform moving frames, not a quality assessment"
+    },
+    {
+      "passed": true,
+      "description": "b: actual final sampler step"
+    },
+    {
+      "passed": true,
+      "description": "b: observed Windows process memory"
+    },
+    {
+      "passed": true,
+      "description": "one-step: bounded structured protocol"
+    },
+    {
+      "passed": true,
+      "description": "one-step: complete trained RGB video"
+    },
+    {
+      "passed": true,
+      "description": "one-step: completed real GPU matrix operation with CPU text/VAE"
+    },
+    {
+      "passed": true,
+      "description": "one-step: exact explicitly selected small test geometry"
+    },
+    {
+      "passed": true,
+      "description": "one-step: actual nonuniform moving frames, not a quality assessment"
+    },
+    {
+      "passed": true,
+      "description": "one-step: actual final sampler step"
+    },
+    {
+      "passed": true,
+      "description": "one-step: observed Windows process memory"
+    },
+    {
+      "passed": true,
+      "description": "cancel-step1: bounded structured protocol"
+    },
+    {
+      "passed": true,
+      "description": "cancel-step1: actual sampler step triggers owned child termination"
+    },
+    {
+      "passed": true,
+      "description": "cancel-step1: no cancelled result published"
+    },
+    {
+      "passed": true,
+      "description": "empty-prompt: bounded structured protocol"
+    },
+    {
+      "passed": true,
+      "description": "empty-prompt: explicit structured local rejection"
+    },
+    {
+      "passed": true,
+      "description": "wrong-task: bounded structured protocol"
+    },
+    {
+      "passed": true,
+      "description": "wrong-task: explicit structured local rejection"
+    },
+    {
+      "passed": true,
+      "description": "recovery-a: bounded structured protocol"
+    },
+    {
+      "passed": true,
+      "description": "recovery-a: complete trained RGB video"
+    },
+    {
+      "passed": true,
+      "description": "recovery-a: completed real GPU matrix operation with CPU text/VAE"
+    },
+    {
+      "passed": true,
+      "description": "recovery-a: exact explicitly selected small test geometry"
+    },
+    {
+      "passed": true,
+      "description": "recovery-a: actual nonuniform moving frames, not a quality assessment"
+    },
+    {
+      "passed": true,
+      "description": "recovery-a: actual final sampler step"
+    },
+    {
+      "passed": true,
+      "description": "recovery-a: observed Windows process memory"
+    },
+    {
+      "passed": true,
+      "description": "legacy-a: bounded structured protocol"
+    },
+    {
+      "passed": true,
+      "description": "legacy-a: complete trained RGB video"
+    },
+    {
+      "passed": true,
+      "description": "legacy-a: completed real GPU matrix operation with CPU text/VAE"
+    },
+    {
+      "passed": true,
+      "description": "legacy-a: exact explicitly selected small test geometry"
+    },
+    {
+      "passed": true,
+      "description": "legacy-a: actual nonuniform moving frames, not a quality assessment"
+    },
+    {
+      "passed": true,
+      "description": "legacy-a: actual final sampler step"
+    },
+    {
+      "passed": true,
+      "description": "legacy-a: observed Windows process memory"
+    },
+    {
+      "passed": true,
+      "description": "bad-tile: bounded structured protocol"
+    },
+    {
+      "passed": true,
+      "description": "bad-tile: explicit structured local rejection"
+    },
+    {
+      "passed": true,
+      "description": "Legacy frozen parameters reproduce the exact dev39 RGB SHA with the updated production worker"
+    },
+    {
+      "passed": true,
+      "description": "b: exact deterministic recovery or changed prompt/steps"
+    },
+    {
+      "passed": true,
+      "description": "one-step: exact deterministic recovery or changed prompt/steps"
+    },
+    {
+      "passed": true,
+      "description": "recovery-a: exact deterministic recovery or changed prompt/steps"
+    }
+  ],
+  "passed": 49,
+  "host_execution_checks_passed": true,
+  "full_components_executed": true,
+  "production_worker_source_unmodified": true,
+  "physical_android": false,
+  "android_codec_tested": false,
+  "independent_numerics_accepted": false,
+  "video_quality_accepted": false,
+  "complete_target16_accepted": false,
+  "complete_release_accepted": false,
+  "input_fingerprint": {
+    "native/CMakeLists.txt": "bbeee4fa61d80500eeecb80dde2be73296e13ec637fc8a2d57a5faaee867e2aa",
+    "native/lcm_condition.hpp": "a5d94cf2f2453f3c8045418aa6b1a147ffa27557665bfc6f2203e04048899ea4",
+    "native/qwen_prompt.hpp": "ec9a45781b93eff62c6f0a4eca2c59fe1088c931d4c1150dcd903ae5c84c1c0f",
+    "native/sd_backend.hpp": "0e3123316a382566c30dfe0a207e9f130242629d0e3a5fb164be7fe243c0364c",
+    "native/sd_policy.hpp": "e60d0f67258e15754930f38aec97522fff28475c4cb3c92524d5daa785178619",
+    "native/sd_worker.cpp": "a6ce16e26c047231326fe1fd2551d75cabf2d47381d6489d73ef7b8c712ac96a",
+    "native/tokenizer_data.hpp": "c752eb62a3c915be4742124bb25e6ada9ea952bbc81c62a1a864cfe39a3ddd6d",
+    "native/vocab_external.cpp": "b8e568f72914833f66bbe338fb877d98d1cb954525a7d3d9a1f8364e4e1c90af",
+    "research/sd_host/compat/sys/prctl.h": "87c9ddf82ce059bf303486b0e10b22dce6d972e87f83836d148e631dcdad9c9e",
+    "research/sd_host/compat/unistd.h": "e467e7f5855c286b3ce40268146ed34d153a5fbf8a42d5c36b26a6293142068b",
+    "research/sd_vulkan_host/CMakeLists.txt": "752440871771be3b3519361e9c488669ca691d875737eac9e489e24870948feb",
+    "research/sd_vulkan_host/NOTICE": "9b917aa087e1d8cda34b8ae50ca88d9a1e73b7ae2c7917130656f9f9579d1ff9",
+    "third_party/ltx098-source-lock.json": "28acd99486f6ca76a06d038076175ac01ca55c7b1d8c3ba6dab9190291ac8779",
+    "third_party/notices/sd-sources.json": "91ee744071aa93c4bd4d40476d3582fa4bf4d00a628527e196d4856c06ec77c1",
+    "tools/build_ltx098.py": "bf39449e38190a666093f6954d133a76da36d519817ca636703f030100d4faf8",
+    "tools/build_sd_vulkan.py": "465f3e0bf42bb555be5f41a609bbb6c510dd5869a07b0a7b0ea2a5e6d0f2454e",
+    "research/wan_trained/assets.json": "920c7d0a222cb658dc6923531c008e96bf0213e31eb1f30ddb10ea949bb14aa6",
+    "tools/fetch_sd15_trained.py": "91392401d9739f15b14fa4e42b74f13bbdd719a382746541cc69952966e6f307",
+    "tools/fetch_wan_trained.py": "7dc5f8746f783774cfb1cda5ca2d5a22a2e957e4ab5490d6bcf7119ca90a31ef",
+    "app/src/main/assets/recipe-templates.json": "fb37b971eabbf520da49990187a6f0f334809efea088b0fac555e8d5ba3ee72d",
+    "catalogue/model-bundles.json": "1a304917d889efd034b385abf43bce04b99530b1cd45e2ce2217a29d12ef12e0",
+    "research/wan_trained/catalogue-bundle.json": "a936081e8ca82a762a7c837021170fc215172d0272dec747ae501f335efa1b7d",
+    "research/wan_trained/NOTICE": "051dc688525f94d8ff8b2649b268a72ef1247ab021e160693c276dc123dbea9a",
+    "tools/sd_variants_capture.py": "1c3a576bdc3189ccb2657f8dda179d3ce589297aaee012545dc0ea8f453731da",
+    "tools/test_wan_trained.py": "4facc518a0b7e0f91a22cbc5ca6bda36c1d9cc54b3b12afc57bbec1b9fcb8e35"
+  },
+  "files": {
+    "a-capture.json": {
+      "bytes": 5732,
+      "sha256": "43c388c0c83b6322176dd4dfb980be9a04efdad863b8231a9e23c1d8eb0194e9"
+    },
+    "a-result.json": {
+      "bytes": 6993,
+      "sha256": "e21100fa4c5b0ff994caf1f4a5bbd99be33dff8fc158b09454a3f1d3cc0b12b5"
+    },
+    "a.json": {
+      "bytes": 1363,
+      "sha256": "3c4ffbf9c409a17151d333e3445967b9cc5c4003f6c0d261e5f97cc271a2bb64"
+    },
+    "a.rgb": {
+      "bytes": 983068,
+      "sha256": "40bdc402f4eeab9871fb6cfca32099c2e7d130ee1b10c03596c0c9cc4a119ce5"
+    },
+    "a.stderr": {
+      "bytes": 207,
+      "sha256": "0b58fe1ad054129e015cf22f0c3c8a088ed1428955f77552a73031448c6381d0"
+    },
+    "a.stdout": {
+      "bytes": 1940,
+      "sha256": "1e3d1937923ab7414b052f34b632cc1986bdd40e08e2faa3c63423e97a73b677"
+    },
+    "b-capture.json": {
+      "bytes": 5902,
+      "sha256": "5641d75db23f33317774fabb59d4e6fcb5f5398f05b2817b180f7adc3f6a07af"
+    },
+    "b-result.json": {
+      "bytes": 7168,
+      "sha256": "791fc66a832cd39e96399bae63709cb938af871d4a36643726a3e22ffa170fdf"
+    },
+    "b.json": {
+      "bytes": 1354,
+      "sha256": "e205fd7c46cd0e516800bfc171f515e54f508ff50728df4e7010ffa44f705256"
+    },
+    "b.rgb": {
+      "bytes": 983068,
+      "sha256": "3ecbb0cdf14b0098fa158789f5b2f8645c8cdc433bdce23d0e05c1b9197e012a"
+    },
+    "b.stderr": {
+      "bytes": 207,
+      "sha256": "0b58fe1ad054129e015cf22f0c3c8a088ed1428955f77552a73031448c6381d0"
+    },
+    "b.stdout": {
+      "bytes": 2051,
+      "sha256": "131cdb9a0fe945ce82555a050ab1d40ff8208cf35f9164e4ac47ebf950b62711"
+    },
+    "bad-tile-capture.json": {
+      "bytes": 2438,
+      "sha256": "06f4653b48ec2443f2ae970ee3aa5be3081c7aeedc269777f6c794c8e78a2076"
+    },
+    "bad-tile-result.json": {
+      "bytes": 2438,
+      "sha256": "06f4653b48ec2443f2ae970ee3aa5be3081c7aeedc269777f6c794c8e78a2076"
+    },
+    "bad-tile.json": {
+      "bytes": 1370,
+      "sha256": "ffd687e08cb8b7b5e3b41e7514eb2af0770009c38615c0dd9ac0a3b4ce26861a"
+    },
+    "bad-tile.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "bad-tile.stdout": {
+      "bytes": 84,
+      "sha256": "c8e40da5091498c55d128ecbf05d3fcdcd5ea3a0dae6753c2f68de00dd276881"
+    },
+    "cancel-step1-capture.json": {
+      "bytes": 4100,
+      "sha256": "0e7f285fd272c5d1a27619848d55fa895b2071b3a9aa1265371ed7fb83a44921"
+    },
+    "cancel-step1-result.json": {
+      "bytes": 4100,
+      "sha256": "0e7f285fd272c5d1a27619848d55fa895b2071b3a9aa1265371ed7fb83a44921"
+    },
+    "cancel-step1.json": {
+      "bytes": 1374,
+      "sha256": "7aff91e8c732cf42349baeb2bd37f0e92531762de1e05f2fba670ffa5ec77320"
+    },
+    "cancel-step1.stderr": {
+      "bytes": 207,
+      "sha256": "0b58fe1ad054129e015cf22f0c3c8a088ed1428955f77552a73031448c6381d0"
+    },
+    "cancel-step1.stdout": {
+      "bytes": 916,
+      "sha256": "8da6ad4ad0863851c52144e4e79840a749bdea7f4e06b75b36c9a252d10613b9"
+    },
+    "empty-prompt-capture.json": {
+      "bytes": 2295,
+      "sha256": "8b340075866dbfb78b71511b84512448d944b30434b976ccd6eef8b0b6994568"
+    },
+    "empty-prompt-result.json": {
+      "bytes": 2295,
+      "sha256": "8b340075866dbfb78b71511b84512448d944b30434b976ccd6eef8b0b6994568"
+    },
+    "empty-prompt.json": {
+      "bytes": 1251,
+      "sha256": "1c3e4fefc680d0e2f96000a02aa443dd67d3e6581f49e984d6ef0fe7a8d402f3"
+    },
+    "empty-prompt.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "empty-prompt.stdout": {
+      "bytes": 56,
+      "sha256": "ba94da52f0e8f748947125cd9723791eeeb5f16cf73ccfaeec9735f25d38a9ea"
+    },
+    "info.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "info.stdout": {
+      "bytes": 175,
+      "sha256": "6787b54d0db7bc78706dcc68d268e1347f491b19cd96e5c01711746528750202"
+    },
+    "legacy-a-capture.json": {
+      "bytes": 6848,
+      "sha256": "d340e8290a616fed390f8e23265e9fbb338edfccfd88c8c3965ccf19d5cfac8d"
+    },
+    "legacy-a-result.json": {
+      "bytes": 8110,
+      "sha256": "e10b423e631db6190587612cd2bbf9daced27106725c47c7c478b2ff1d7ba4c3"
+    },
+    "legacy-a.json": {
+      "bytes": 1313,
+      "sha256": "a2bbdb47b9bf15c230ee95a141154f644f876de874db67af20707625241f301a"
+    },
+    "legacy-a.rgb": {
+      "bytes": 983068,
+      "sha256": "a7ed9560ed46f449654bc4e3e1c42d55ff51c984090c8fc9f846365aa149d9d2"
+    },
+    "legacy-a.stderr": {
+      "bytes": 207,
+      "sha256": "0b58fe1ad054129e015cf22f0c3c8a088ed1428955f77552a73031448c6381d0"
+    },
+    "legacy-a.stdout": {
+      "bytes": 2614,
+      "sha256": "df4a6d982529c839277ad584536d13a87da9cac7fd863cb377b9d2ef07a7e9c1"
+    },
+    "one-step-capture.json": {
+      "bytes": 5279,
+      "sha256": "c7d3d869aa95f53cda2d0a25b981f11847598b7e173108fe69b959bcc2797c77"
+    },
+    "one-step-result.json": {
+      "bytes": 6548,
+      "sha256": "789dcb58175275ae77f7f7e71d180edd66c4ea0c0260c7d9911a3b2590831804"
+    },
+    "one-step.json": {
+      "bytes": 1370,
+      "sha256": "61e908b414bd5f381e96bc939f0d674022ae34c6fd1d43581ac6582c533f20da"
+    },
+    "one-step.rgb": {
+      "bytes": 983068,
+      "sha256": "f388dcc442e9bcf9197352c0c223c8878ff85bbe966a19580d4db32a4691c296"
+    },
+    "one-step.stderr": {
+      "bytes": 207,
+      "sha256": "0b58fe1ad054129e015cf22f0c3c8a088ed1428955f77552a73031448c6381d0"
+    },
+    "one-step.stdout": {
+      "bytes": 1684,
+      "sha256": "67e05a6d2cc66c408fd01a013ee3b6548271e4ced00e08ead0d083bc1c022e17"
+    },
+    "recovery-a-capture.json": {
+      "bytes": 5949,
+      "sha256": "1dafcab81cfd28b04524d211864870315decd1773f18fad18c2f285a896351d2"
+    },
+    "recovery-a-result.json": {
+      "bytes": 7210,
+      "sha256": "875cceb49af284fb1849ce4bccf6e31a69fae323be17b95db6208f82234e3b75"
+    },
+    "recovery-a.json": {
+      "bytes": 1372,
+      "sha256": "e518fac0a8bf1b7b15e4114b4c06ba71effa9e7aeedac1d7b102e913261c7966"
+    },
+    "recovery-a.rgb": {
+      "bytes": 983068,
+      "sha256": "40bdc402f4eeab9871fb6cfca32099c2e7d130ee1b10c03596c0c9cc4a119ce5"
+    },
+    "recovery-a.stderr": {
+      "bytes": 207,
+      "sha256": "0b58fe1ad054129e015cf22f0c3c8a088ed1428955f77552a73031448c6381d0"
+    },
+    "recovery-a.stdout": {
+      "bytes": 2070,
+      "sha256": "0618b56375be66da7094298bf34aed68335d87ee9db6ffd0b6fa73fa234ca0e6"
+    },
+    "wrong-task-capture.json": {
+      "bytes": 2416,
+      "sha256": "c6418f312942cb3b93ffde9f75488a80d1788d9000401ccd9919bbb395ff12b6"
+    },
+    "wrong-task-result.json": {
+      "bytes": 2416,
+      "sha256": "c6418f312942cb3b93ffde9f75488a80d1788d9000401ccd9919bbb395ff12b6"
+    },
+    "wrong-task.json": {
+      "bytes": 1372,
+      "sha256": "bd9af359a26c976c1756000634f0ae2539644b32a16c43ec75316b9a684e26cc"
+    },
+    "wrong-task.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "wrong-task.stdout": {
+      "bytes": 58,
+      "sha256": "fa854b315d775a5d0bed6bc28db1ce25e92476ddae7e8604e4ebf84149044d3c"
+    }
+  }
+}

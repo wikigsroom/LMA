@@ -1,6 +1,16 @@
 # LMA · Local models on Android
 
-> **Current development: 0.3.0-dev.40 / code44.** Fix dropped first-step and terminal progress during fast sampling; complete per-model Wan decoder controls, input clamping and native validation. Existing installations gain the controls while legacy jobs retain their behavior and defaults preserve the previous memory policy. Explicit assets, independent settings, queue/cancel/recovery and results use the shared foundation. The APK carries no models or automatic asset replacements. [Workflow and quality diagnosis](docs/WAN_DECODER.en.md) · [Implemented work and full pending scope](docs/releases/v0.3.0-dev.40.md).
+> **Current development: 0.3.0-dev.41 / code45.** Complete the optional MOSS-TTS 1.5 pair, actual progress, independent settings, cancellation/recovery and results. The production Java/native path passes 87 checks across five actual runs; English and reference-input WAVs match direct native generation byte for byte. Reference mode still hits its output limit without natural completion, and that failure remains open. App updates deliver only the foundation, preserving recommendations and user control of model downloads, imports and versions.
+
+
+[Actual host audio, waveforms and video](docs/MOSS_TTS15.en.md#actual-artifacts-and-reports) · [UI output-limit notice](docs/media/development/openmoss/05-output-limit.png)
+[English workflow](docs/MOSS_TTS15.en.md) · [中文方案](docs/MOSS_TTS15.md) · [Implemented work and complete pending scope](docs/releases/v0.3.0-dev.41.md)
+
+![MOSS components, tasks and model parameters; UI simulation, not phone inference](docs/media/development/openmoss/openmoss-ui.gif)
+
+The optional matched pair occupies approximately **13.43 GB** and is absent from the APK. File size does not establish RAM requirements; no Z20 or other physical Android pass is claimed. The complete frozen v0.3.0 targets, quality, resources and background gates remain required.
+
+> **Previous development: 0.3.0-dev.40 / code44.** Fix dropped first-step and terminal progress during fast sampling; complete per-model Wan decoder controls, input clamping and native validation. Existing installations gain the controls while legacy jobs retain their behavior and defaults preserve the previous memory policy. Explicit assets, independent settings, queue/cancel/recovery and results use the shared foundation. The APK carries no models or automatic asset replacements. [Workflow and quality diagnosis](docs/WAN_DECODER.en.md) · [Implemented work and full pending scope](docs/releases/v0.3.0-dev.40.md).
 
 dev.40 validation: **22 suites / 3,085 passed checks**. The 61,329,930-byte development APK retains the signing identity; 35 native files and package checks pass, with Lint 0 errors /17 warnings. Five full-geometry experiments and an independent official CPU VAE comparison retain the later-frame artifacts. Quality, full numerics, resource fit, phone and formal Release acceptance remain pending.
 

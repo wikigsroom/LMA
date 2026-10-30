@@ -1,0 +1,55 @@
+{
+  "schema": "lma.wan-trained-acquisition/1",
+  "components": [
+    {
+      "role": "diffusion",
+      "repository": "off-grid-ai/Wan2.1-T2V-1.3B-GGUF",
+      "revision": "1ba777b2426d5717dd0fddb1100078604a9d4667",
+      "path": "Wan2.1-T2V-1.3B-Q4_K_S.gguf",
+      "bytes": 816061024,
+      "sha256": "65181afff758fba25cf311399ccb0638a746f8e0e6533e07a84a5a23e0c12318",
+      "format": "gguf",
+      "url": "https://huggingface.co/off-grid-ai/Wan2.1-T2V-1.3B-GGUF/resolve/1ba777b2426d5717dd0fddb1100078604a9d4667/Wan2.1-T2V-1.3B-Q4_K_S.gguf"
+    },
+    {
+      "role": "t5",
+      "repository": "off-grid-ai/Video-Companions-GGUF",
+      "revision": "18b5ae5e93799acd6cd20819f898ff60f4b822d1",
+      "path": "umt5-xxl-encoder-Q4_K_M.gguf",
+      "bytes": 3655145312,
+      "sha256": "17cf97a5bbbc60a646d6105b832b6f657ce904a8a1ad970e4b59df0c67584a40",
+      "format": "gguf",
+      "url": "https://huggingface.co/off-grid-ai/Video-Companions-GGUF/resolve/18b5ae5e93799acd6cd20819f898ff60f4b822d1/umt5-xxl-encoder-Q4_K_M.gguf"
+    },
+    {
+      "role": "vae",
+      "repository": "off-grid-ai/Video-Companions-GGUF",
+      "revision": "18b5ae5e93799acd6cd20819f898ff60f4b822d1",
+      "path": "wan_2.1_vae.safetensors",
+      "bytes": 253815318,
+      "sha256": "2fc39d31359a4b0a64f55876d8ff7fa8d780956ae2cb13463b0223e15148976b",
+      "format": "safetensors",
+      "url": "https://huggingface.co/off-grid-ai/Video-Companions-GGUF/resolve/18b5ae5e93799acd6cd20819f898ff60f4b822d1/wan_2.1_vae.safetensors"
+    },
+    {
+      "role": "umt5_tokenizer",
+      "repository": "google/umt5-xxl",
+      "revision": "66cb9e7e85526fe440a945569e42c72fb6cbc0ad",
+      "path": "tokenizer.json",
+      "bytes": 16853013,
+      "sha256": "af904105ce1071b1202bba0059a841f4a7b85b48b6ec179c4948e3483476e0dd",
+      "format": "json",
+      "url": "https://huggingface.co/google/umt5-xxl/resolve/66cb9e7e85526fe440a945569e42c72fb6cbc0ad/tokenizer.json"
+    }
+  ],
+  "explicit_download": true,
+  "download_origin": "https://hf-mirror.com",
+  "developer_assets_only": true,
+  "bundled_model_data": false,
+  "model_executed": false,
+  "input_fingerprint": {
+    "research/wan_trained/assets.json": "920c7d0a222cb658dc6923531c008e96bf0213e31eb1f30ddb10ea949bb14aa6",
+    "tools/fetch_sd15_trained.py": "91392401d9739f15b14fa4e42b74f13bbdd719a382746541cc69952966e6f307",
+    "tools/fetch_wan_trained.py": "7dc5f8746f783774cfb1cda5ca2d5a22a2e957e4ab5490d6bcf7119ca90a31ef"
+  }
+}

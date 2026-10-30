@@ -1,0 +1,307 @@
+{
+  "schema": "lma.wan-trained-media/1",
+  "version": "0.3.0-dev.40",
+  "real_trained_host_execution": true,
+  "android_recording": false,
+  "host_encoder": "native_windows_ffmpeg_libx264",
+  "generation_timing_depicted": false,
+  "independent_numerics_accepted": false,
+  "video_quality_accepted": false,
+  "complete_release_accepted": false,
+  "products": [
+    {
+      "name": "decoder",
+      "source_sha256": "21feb001d290ed76f3a78a877b8cebedfbea9ea3aa5b111b44a4f8ce573512c6",
+      "source_bytes": 7520284,
+      "frames": 17,
+      "width": 512,
+      "height": 288,
+      "request": {
+        "schema": "lma.engine-request/1",
+        "backend": "vulkan",
+        "type": "video.generate",
+        "pipeline": "wan21_13b",
+        "architecture": "wan21",
+        "samplingProfile": "standard",
+        "input": {
+          "prompt": "A small red toy robot waving its hand beside a blue ceramic teapot on a wooden table, gentle camera movement, soft daylight",
+          "negativePrompt": ""
+        },
+        "parameters": {
+          "width": 512,
+          "height": 288,
+          "steps": 20,
+          "threads": 6,
+          "seed": 42,
+          "cfg": 6,
+          "sampler": "euler",
+          "vaeTiling": true,
+          "scheduler": "discrete",
+          "flowShift": 3,
+          "frames": 17,
+          "fps": 8,
+          "vaeTileSize": 512,
+          "vaeTemporalTiling": true
+        },
+        "components": {
+          "diffusion": "U:/build/wan-trained/originals/65181afff758fba25cf311399ccb0638a746f8e0e6533e07a84a5a23e0c12318/Wan2.1-T2V-1.3B-Q4_K_S.gguf",
+          "t5": "U:/build/wan-trained/originals/17cf97a5bbbc60a646d6105b832b6f657ce904a8a1ad970e4b59df0c67584a40/umt5-xxl-encoder-Q4_K_M.gguf",
+          "vae": "U:/build/wan-trained/originals/2fc39d31359a4b0a64f55876d8ff7fa8d780956ae2cb13463b0223e15148976b/wan_2.1_vae.safetensors",
+          "umt5_tokenizer": "U:/build/wan-trained/originals/af904105ce1071b1202bba0059a841f4a7b85b48b6ec179c4948e3483476e0dd/tokenizer.json"
+        },
+        "loras": [],
+        "output": "U:/build/wan-quality/current-default-1793361987282718000/generated.rgb"
+      },
+      "quality_accepted": false,
+      "default_smoke": false,
+      "controlled_full_geometry": true
+    },
+    {
+      "name": "a",
+      "source_sha256": "40bdc402f4eeab9871fb6cfca32099c2e7d130ee1b10c03596c0c9cc4a119ce5",
+      "source_bytes": 983068,
+      "frames": 5,
+      "width": 256,
+      "height": 256,
+      "request": {
+        "schema": "lma.engine-request/1",
+        "backend": "vulkan",
+        "type": "video.generate",
+        "pipeline": "wan21_13b",
+        "architecture": "wan21",
+        "samplingProfile": "standard",
+        "input": {
+          "prompt": "A small red toy robot waving its hand beside a blue ceramic teapot on a wooden table, gentle camera movement, soft daylight",
+          "negativePrompt": ""
+        },
+        "parameters": {
+          "width": 256,
+          "height": 256,
+          "frames": 5,
+          "fps": 8,
+          "steps": 4,
+          "threads": 6,
+          "seed": 42,
+          "cfg": 6,
+          "sampler": "euler",
+          "scheduler": "discrete",
+          "flowShift": 3,
+          "vaeTiling": true,
+          "vaeTileSize": 512,
+          "vaeTemporalTiling": true
+        },
+        "components": {
+          "diffusion": "U:/build/wan-trained/originals/65181afff758fba25cf311399ccb0638a746f8e0e6533e07a84a5a23e0c12318/Wan2.1-T2V-1.3B-Q4_K_S.gguf",
+          "t5": "U:/build/wan-trained/originals/17cf97a5bbbc60a646d6105b832b6f657ce904a8a1ad970e4b59df0c67584a40/umt5-xxl-encoder-Q4_K_M.gguf",
+          "vae": "U:/build/wan-trained/originals/2fc39d31359a4b0a64f55876d8ff7fa8d780956ae2cb13463b0223e15148976b/wan_2.1_vae.safetensors",
+          "umt5_tokenizer": "U:/build/wan-trained/originals/af904105ce1071b1202bba0059a841f4a7b85b48b6ec179c4948e3483476e0dd/tokenizer.json"
+        },
+        "loras": [],
+        "output": "U:/build/wan-trained-tests/run-1793363825097505200/a.rgb"
+      },
+      "quality_accepted": false,
+      "default_smoke": false,
+      "controlled_full_geometry": false
+    },
+    {
+      "name": "b",
+      "source_sha256": "3ecbb0cdf14b0098fa158789f5b2f8645c8cdc433bdce23d0e05c1b9197e012a",
+      "source_bytes": 983068,
+      "frames": 5,
+      "width": 256,
+      "height": 256,
+      "request": {
+        "schema": "lma.engine-request/1",
+        "backend": "vulkan",
+        "type": "video.generate",
+        "pipeline": "wan21_13b",
+        "architecture": "wan21",
+        "samplingProfile": "standard",
+        "input": {
+          "prompt": "A yellow sailboat moving across a calm blue lake below snow covered mountains, bright daylight, detailed landscape",
+          "negativePrompt": ""
+        },
+        "parameters": {
+          "width": 256,
+          "height": 256,
+          "frames": 5,
+          "fps": 8,
+          "steps": 4,
+          "threads": 6,
+          "seed": 42,
+          "cfg": 6,
+          "sampler": "euler",
+          "scheduler": "discrete",
+          "flowShift": 3,
+          "vaeTiling": true,
+          "vaeTileSize": 512,
+          "vaeTemporalTiling": true
+        },
+        "components": {
+          "diffusion": "U:/build/wan-trained/originals/65181afff758fba25cf311399ccb0638a746f8e0e6533e07a84a5a23e0c12318/Wan2.1-T2V-1.3B-Q4_K_S.gguf",
+          "t5": "U:/build/wan-trained/originals/17cf97a5bbbc60a646d6105b832b6f657ce904a8a1ad970e4b59df0c67584a40/umt5-xxl-encoder-Q4_K_M.gguf",
+          "vae": "U:/build/wan-trained/originals/2fc39d31359a4b0a64f55876d8ff7fa8d780956ae2cb13463b0223e15148976b/wan_2.1_vae.safetensors",
+          "umt5_tokenizer": "U:/build/wan-trained/originals/af904105ce1071b1202bba0059a841f4a7b85b48b6ec179c4948e3483476e0dd/tokenizer.json"
+        },
+        "loras": [],
+        "output": "U:/build/wan-trained-tests/run-1793363825097505200/b.rgb"
+      },
+      "quality_accepted": false,
+      "default_smoke": false,
+      "controlled_full_geometry": false
+    },
+    {
+      "name": "one-step",
+      "source_sha256": "f388dcc442e9bcf9197352c0c223c8878ff85bbe966a19580d4db32a4691c296",
+      "source_bytes": 983068,
+      "frames": 5,
+      "width": 256,
+      "height": 256,
+      "request": {
+        "schema": "lma.engine-request/1",
+        "backend": "vulkan",
+        "type": "video.generate",
+        "pipeline": "wan21_13b",
+        "architecture": "wan21",
+        "samplingProfile": "standard",
+        "input": {
+          "prompt": "A small red toy robot waving its hand beside a blue ceramic teapot on a wooden table, gentle camera movement, soft daylight",
+          "negativePrompt": ""
+        },
+        "parameters": {
+          "width": 256,
+          "height": 256,
+          "frames": 5,
+          "fps": 8,
+          "steps": 1,
+          "threads": 6,
+          "seed": 42,
+          "cfg": 6,
+          "sampler": "euler",
+          "scheduler": "discrete",
+          "flowShift": 3,
+          "vaeTiling": true,
+          "vaeTileSize": 512,
+          "vaeTemporalTiling": true
+        },
+        "components": {
+          "diffusion": "U:/build/wan-trained/originals/65181afff758fba25cf311399ccb0638a746f8e0e6533e07a84a5a23e0c12318/Wan2.1-T2V-1.3B-Q4_K_S.gguf",
+          "t5": "U:/build/wan-trained/originals/17cf97a5bbbc60a646d6105b832b6f657ce904a8a1ad970e4b59df0c67584a40/umt5-xxl-encoder-Q4_K_M.gguf",
+          "vae": "U:/build/wan-trained/originals/2fc39d31359a4b0a64f55876d8ff7fa8d780956ae2cb13463b0223e15148976b/wan_2.1_vae.safetensors",
+          "umt5_tokenizer": "U:/build/wan-trained/originals/af904105ce1071b1202bba0059a841f4a7b85b48b6ec179c4948e3483476e0dd/tokenizer.json"
+        },
+        "loras": [],
+        "output": "U:/build/wan-trained-tests/run-1793363825097505200/one-step.rgb"
+      },
+      "quality_accepted": false,
+      "default_smoke": false,
+      "controlled_full_geometry": false
+    }
+  ],
+  "historical_default_smoke": {
+    "checkpoint": "0.3.0-dev.39",
+    "current_execution": false,
+    "quality_accepted": false,
+    "files": [
+      "default-frames.png",
+      "default.gif",
+      "default.mp4"
+    ]
+  },
+  "files": [
+    {
+      "file": "a-frames.png",
+      "bytes": 260709,
+      "sha256": "056231782b19b40dbbb95a580c753f9a6685893fc26c0361bb584829cdb32d6a"
+    },
+    {
+      "file": "a.gif",
+      "bytes": 85197,
+      "sha256": "c8033def519aedc0b292dc037f11ec1ca2e86ef745dda99c7c423daf7d4cc68f"
+    },
+    {
+      "file": "a.mp4",
+      "bytes": 22178,
+      "sha256": "05d657e772209c3faace62b3c1bffcfce6e441c0469687c0f99b44242309f78c"
+    },
+    {
+      "file": "b-frames.png",
+      "bytes": 290455,
+      "sha256": "355a76b4147cc7b633f93ebea103dee371c87ced7d07b103f1918d4669e7f048"
+    },
+    {
+      "file": "b.gif",
+      "bytes": 95247,
+      "sha256": "22f72182c85db11c36bbfaf6fb9ff6c141759528a76f7221f52d04d009c623f9"
+    },
+    {
+      "file": "b.mp4",
+      "bytes": 39604,
+      "sha256": "3927ecf9d06a343f8c0c03d42dad4c43d787c43c25d469d47d5f89043ca3764e"
+    },
+    {
+      "file": "decoder-frames.png",
+      "bytes": 577234,
+      "sha256": "fb4c5396067385a207145e1e26d893f700294b783fc1508fb63b9b362c79da92"
+    },
+    {
+      "file": "decoder.gif",
+      "bytes": 422144,
+      "sha256": "9f6b9307e8490b9f11aa7df5151a74b4e1edb55d5a60f4904743ff4c83d5f4de"
+    },
+    {
+      "file": "decoder.mp4",
+      "bytes": 119459,
+      "sha256": "d6491f6e22914db8fb79963876a5bb6d9978ce15b73bfb28f11a237481f6d55e"
+    },
+    {
+      "file": "default-frames.png",
+      "bytes": 574696,
+      "sha256": "9b12a2fa12ce6c7ab975e2c2a5d98bb740afd56ddc208b10981014be0ce72484"
+    },
+    {
+      "file": "default.gif",
+      "bytes": 430468,
+      "sha256": "94dff22f0de5670428d00fa82c35f367534e530864a7db5723bee23fe1365dea"
+    },
+    {
+      "file": "default.mp4",
+      "bytes": 118824,
+      "sha256": "449924274a5456f7b67bcfb993220cf89afbe630b412b28f1285339e963df73e"
+    },
+    {
+      "file": "java-a.mp4",
+      "bytes": 15191,
+      "sha256": "5f78a44e717a91dc02bd882fe200a6a71758ff8bb798017c33a96c16b7d050a5"
+    },
+    {
+      "file": "java-recovery-a.mp4",
+      "bytes": 15191,
+      "sha256": "5f78a44e717a91dc02bd882fe200a6a71758ff8bb798017c33a96c16b7d050a5"
+    },
+    {
+      "file": "one-step-frames.png",
+      "bytes": 188656,
+      "sha256": "cd9148f119c304814641facfdaa159a7105a322987ba0c0f9ddc62a4a970b439"
+    },
+    {
+      "file": "one-step.gif",
+      "bytes": 91411,
+      "sha256": "9ed888f68792e0b46abec9e3bd0c398d363ffeff554bb50c8bf9e46f051e4cf2"
+    },
+    {
+      "file": "one-step.mp4",
+      "bytes": 20915,
+      "sha256": "53c34e8f57d790f5e3842b34c7fdb5422d0faab36be655491fdfde81988afdf0"
+    }
+  ],
+  "direct_report_sha256": "fe56e8bc0cdcd735588c138b030047c0b47457f347b6db9424f34d2b7f0eb840",
+  "java_report_sha256": "0d71dfdafd25036f2ad13ce873f32e4a18aacadc32c821d532c0dfb0c51a5ef6",
+  "input_fingerprint": {
+    "build/wan-app-host-tests/results.json": "0d71dfdafd25036f2ad13ce873f32e4a18aacadc32c821d532c0dfb0c51a5ef6",
+    "build/wan-quality/current-default-1793361987282718000/result.json": "b5d50b32d7af9d93b9a4b8af5911c97d536cb699bac3f36ba4d36fd4fdaf2ba1",
+    "build/wan-trained-tests/results.json": "fe56e8bc0cdcd735588c138b030047c0b47457f347b6db9424f34d2b7f0eb840",
+    "tools/render_wan_trained.py": "899a8a1fd4fd7de83ecbfd7b9a81e1e70ad0fe6b61144aa7492f0d153ab534b6",
+    "tools/test_wan_trained.py": "4facc518a0b7e0f91a22cbc5ca6bda36c1d9cc54b3b12afc57bbec1b9fcb8e35"
+  }
+}

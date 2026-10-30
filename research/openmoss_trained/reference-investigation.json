@@ -1,0 +1,24 @@
+{
+  "schema": "lma.openmoss-reference-investigation/1",
+  "model_revision": "cdd3b911b1585e3f2dbc7775ef10f9926f58850a",
+  "processor_source": "https://huggingface.co/OpenMOSS-Team/MOSS-TTS-v1.5/blob/cdd3b911b1585e3f2dbc7775ef10f9926f58850a/processing_moss_tts.py",
+  "processor_sha256": "e591ff156e8fadcae34db5613a2221fab7ec5d814bfc0ec001e8ec4ef2782425",
+  "reviewed_seams": [
+    "per-speaker [S1] reference block and user_inst fields",
+    "RMS -20 dBFS, gain limited to +/-3 dB",
+    "32-codebook layout, no assistant continuation for flagship TTS"
+  ],
+  "original_failure_report": "verification/research/openmoss-reference-issue/first-run.json",
+  "original_failure_report_sha256": "a396c9fb89d975a4f0466a3b3440fc8a488d1606bdc3b23a58bcced7ca71ed23",
+  "runtime_completed": true,
+  "reference_natural_completion_accepted": false,
+  "observed_stop_reason": "max_new_tokens",
+  "max_new_tokens": 375,
+  "output_seconds": 27.44,
+  "cause_established": false,
+  "sampling_changed": false,
+  "weights_changed": false,
+  "physical_android": false,
+  "speech_quality_accepted": false,
+  "release_accepted": false
+}

@@ -1,0 +1,9 @@
+Developer-only acquisition of the complete public MOSS-TTS-v1.5 Q8_0/BF16 pair.
+Conversion: https://huggingface.co/ilintar/moss-tts-gguf
+Source: https://huggingface.co/OpenMOSS-Team/MOSS-TTS-v1.5
+Codec: https://huggingface.co/OpenMOSS-Team/MOSS-Audio-Tokenizer
+All three model cards identify Apache-2.0. Consult their pinned model cards and
+license files before redistribution. No weights, vocabulary or voice data are
+included in the LMA APK or this repository. Assets are stored under ignored build/.
+An explicit developer acquisition does not initiate an App download or establish
+Android compatibility, resource feasibility, speech quality or Release acceptance.

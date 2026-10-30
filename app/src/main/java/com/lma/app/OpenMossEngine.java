@@ -26,7 +26,7 @@ public final class OpenMossEngine implements LocalEngine {
         if(!c.adapters().isEmpty())throw new IOException("MOSS 音频不接受图像 LoRA");
         JSONObject n=OpenMossSpec.parameters(lease.bundle,request.getJSONObject("parameters"));if(n.getJSONArray("adjustments").length()!=0)throw new IOException("MOSS 参数快照超出范围，请明确重试任务");
         JSONObject p=n.getJSONObject("values");conditioning(lease.bundle,request.getJSONObject("input"),p);if(p.getLong("seed")==-1)p.put("seed",new java.security.SecureRandom().nextInt(Integer.MAX_VALUE));
-        c.execution(new JSONObject().put("effectiveParameters",p).put("pipeline",lease.bundle.pipeline).put("backend","cpu"));
+        JSONObject execution=new JSONObject().put("effectiveParameters",p).put("pipeline",lease.bundle.pipeline).put("backend","cpu");c.execution(execution);
         EngineWorkspace work=new EngineWorkspace(new File(app.getFilesDir(),"engine-work"),c::check);final Process[] child={null};
         try {
             work.link("models","model.gguf",lease.file("backbone"));work.link("models","model.extras.gguf",lease.file("extras"));File output=c.output("wav");
@@ -35,7 +35,7 @@ public final class OpenMossEngine implements LocalEngine {
                 JSONArray paths=new JSONArray();for(String role:OpenMossSpec.referenceRoles(lease.bundle)) {File f=c.input(role);OpenMossSpec.reference(lease.bundle,f);paths.put(work.link("inputs",role+".wav",f).getPath());}
                 if(OpenMossSpec.delay(lease.bundle))command.put("referenceAudios",paths);else command.put("referenceAudio",paths.getString(0));
             }
-            NativeWorker.run(app,binary,c,command,output,Collections.emptyMap(),builder->{Process process=launcher.start(builder);child[0]=process;return process;});
+            NativeWorker.run(app,binary,c,command,output,Collections.emptyMap(),execution,builder->{Process process=launcher.start(builder);child[0]=process;return process;});
             JSONObject audio=WaveFile.inspect(output);
             if(audio.getInt("sampleRate")!=OpenMossSpec.sampleRate(lease.bundle) || audio.getInt("channels")!=OpenMossSpec.channels(lease.bundle) || audio.getInt("formatCode")!=1 || audio.getInt("bitsPerSample")!=16)throw new IOException("MOSS 未生成匹配模型采样率 / 声道的 PCM16 音频");return output;
         }finally{work.closeAfter(child[0]);}

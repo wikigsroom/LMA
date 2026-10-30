@@ -2,7 +2,9 @@
 
 [English](OPENMOSS_ENGINE.en.md) · [完整版本范围](MULTIMODAL_RELEASE_PLAN.md) · [开发证据](DEVELOPMENT.md)
 
-内部检查点 **0.3.0-dev.19 / code 23** 扩展 `openmoss_native` ARM64 CPU worker 和生产 Java 适配器，现有七个平级配方。它实际链接原生图、分词、采样和 codec 代码，不调用 Python、Termux、外部服务或上游 HTTP server。**尚未运行完整模型或物理 Android 推理，不能宣称这些模型已通过手机验收。** 完整 v0.3.0 的冻结目标与门槛没有缩减，也没有创建新 Release。
+当前 **dev.41** 的完整 MOSS-TTS 1.5 配对、私有权重映射、真实进度、参数与结果流程见[本地语音使用方案](MOSS_TTS15.md)。中英文实际主机发声与原加载方式逐字节一致；参考案例达到输出上限而未自然结束，该失败保留。完整系列、音质和物理 Android 仍未验收。
+
+以下保留内部检查点 **0.3.0-dev.19 / code 23** 的七个平级配方和限定检查。它实际链接原生图、分词、采样和 codec 代码，不调用 Python、Termux、外部服务或上游 HTTP server。**当时尚未运行完整模型或物理 Android 推理。** 该历史记录不构成手机验收；完整 v0.3.0 的冻结目标与门槛没有缩减，也没有创建新 Release。
 
 ## 新增四种 delay 布局
 
@@ -137,6 +139,6 @@ python tools/build.py
 
 默认格式化输入预算 1024（1–2048）、生成步数 375（1–1500，含 delay 收尾，不承诺精确时长）、文本继续 / 停止头温度 1（0–3）；音频温度 1.5（0–3）、Top P .6（.01–1）、Top K 50（1–1024）、重复惩罚 1.2（1–2）。线程和种子范围沿用上述语音配方。每模型参数 / 本次快照、预算保护、私有子进程和产物流程相同。任务表单按能力元数据隐藏没有实现的负面条件入口，仍保留 v2 的负面提示词。
 
-旧 SoundEffect、旧 Local 和 Realtime 的固定发布者核对见[记录](../catalogue/evidence/moss-rq-publishers.json)。后两种架构由独立 [RQ 引擎](MOSS_RQ_ENGINE.md) 处理；不能用 delay 几何推断其支持。所有九个 MOSS 子目标已有各自代码路线，仍各自缺少完整权重 / 手机 / 质量与耐久验收，不标记“全家族已可用”。
+旧 SoundEffect、旧 Local 和 Realtime 的固定发布者核对见[记录](../catalogue/evidence/moss-rq-publishers.json)。后两种架构由独立 [RQ 引擎](MOSS_RQ_ENGINE.md) 处理；不能用 delay 几何推断其支持。所有九个 MOSS 子目标已有各自代码路线。dev.41 的 [TTS-v1.5 实际完整权重执行](MOSS_TTS15.md)补充了该子目标的主机证据，但参考模式正常结束失败；其他子目标的完整权重运行，以及全系列手机 / 质量 / 资源与耐久仍待验收，不标记“全家族已可用”。
 
 <img src="media/development/53-moss_soundeffect_openmoss_cpu_v1.png" width="260" alt="旧 SoundEffect 环境音效表单，UI FIXTURE，非模型输出" />

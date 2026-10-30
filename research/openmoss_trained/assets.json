@@ -1,0 +1,35 @@
+{
+  "schema": "lma.openmoss-trained-assets/1",
+  "selection_id": "10",
+  "target": "MOSS-TTS-v1.5",
+  "repository": "ilintar/moss-tts-gguf",
+  "revision": "66bc8249cc3bae20547d312123f502332158c1d0",
+  "license": "Apache-2.0",
+  "model_card": "https://huggingface.co/ilintar/moss-tts-gguf/blob/66bc8249cc3bae20547d312123f502332158c1d0/README.md",
+  "source_model": "OpenMOSS-Team/MOSS-TTS-v1.5@cdd3b911b1585e3f2dbc7775ef10f9926f58850a",
+  "source_codec": "OpenMOSS-Team/MOSS-Audio-Tokenizer@3cd226ba2947efa357ef453bcad111b6eafba782",
+  "precision": "Q8_0 backbone with BF16 embedding; BF16 codec and FP32 RVQ statistics, no FP16 conversion",
+  "components": [
+    {
+      "role": "model",
+      "repository": "ilintar/moss-tts-gguf",
+      "revision": "66bc8249cc3bae20547d312123f502332158c1d0",
+      "path": "moss-tts-1.5-q8_0.gguf",
+      "bytes": 9339597248,
+      "sha256": "83a7885739fe92113208c2abbb45985da30ac1a40c31d4b1a2e722a8ec5256ef",
+      "url": "https://huggingface.co/ilintar/moss-tts-gguf/resolve/66bc8249cc3bae20547d312123f502332158c1d0/moss-tts-1.5-q8_0.gguf"
+    },
+    {
+      "role": "extras",
+      "repository": "ilintar/moss-tts-gguf",
+      "revision": "66bc8249cc3bae20547d312123f502332158c1d0",
+      "path": "moss-tts-1.5-q8_0.extras.gguf",
+      "bytes": 4090992128,
+      "sha256": "d50f71cffd44e4b76db58e5be09155200b74c6058c5ebeac58e026926c9a72eb",
+      "url": "https://huggingface.co/ilintar/moss-tts-gguf/resolve/66bc8249cc3bae20547d312123f502332158c1d0/moss-tts-1.5-q8_0.extras.gguf"
+    }
+  ],
+  "developer_assets_only": true,
+  "bundled_model_data": false,
+  "android_inference_verified": false
+}

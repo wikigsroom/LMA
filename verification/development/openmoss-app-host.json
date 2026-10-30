@@ -1,0 +1,2645 @@
+{
+  "schema": "lma.openmoss-app-host/1",
+  "java": {
+    "reference_sha256": "b2f39aa6e39665de756dccd8f523a64b72ec7eb3853a6e754f3ca5ee8c0dfdeb",
+    "android_saf_tested": false,
+    "registered_objects": 2,
+    "android_background_tested": false,
+    "asset_registration_mode": "explicit_existing_local_full_sha_adoption",
+    "android_application_executed": false,
+    "selected_asset_bytes": 13430589376,
+    "speech_quality_accepted": false,
+    "host_java_production_binding": true,
+    "actual_host_children": 5,
+    "network_calls": 0,
+    "copied_import_bytes": 0,
+    "passed": 87,
+    "runs": [
+      {
+        "pipeline": "moss_tts_v15_openmoss_cpu_v1",
+        "output": "U:\\build\\openmoss-app-host-tests\\run-1793377703182408000\\data\\initial-a\\a624c0ea-0605-428c-b338-1e2131cd6f7a.wav",
+        "execution": {
+          "effectiveParameters": {
+            "maxInputTokens": 1024,
+            "seed": 1234,
+            "audioTemperature": 1.7,
+            "maxNewTokens": 375,
+            "audioTopP": 0.8,
+            "audioRepetitionPenalty": 1,
+            "voiceInstruction": "",
+            "threads": 4,
+            "textTemperature": 1,
+            "language": "English",
+            "audioTopK": 25
+          },
+          "auxWeightStorage": "private_file_mapping",
+          "audioSamples": 32640,
+          "audioFramesIncludingPrefix": 17,
+          "auxMappedViewBytes": 5366020032,
+          "modelLoadMs": 222031,
+          "referenceEncodeMs": 0,
+          "auxMappedFileBytes": 13430589376,
+          "backend": "cpu",
+          "referenceFrames": 0,
+          "pipelineRTF": 530.5867647058823,
+          "stopReason": "end_of_speech",
+          "auxMappedFiles": 2,
+          "referenceSpeakers": 0,
+          "truncated": false,
+          "auxMappedTensors": 1665,
+          "generationSteps": 52,
+          "generationMs": 95266.0424,
+          "auxMappedTensorBytes": 5365936128,
+          "sampleRate": 24000,
+          "audioDurationSeconds": 1.36,
+          "pipeline": "moss_tts_v15_openmoss_cpu_v1",
+          "codecDecodeMs": 388252.57399999996,
+          "formattedInputFrames": 61,
+          "channels": 1,
+          "continuationPrefixFrames": 0,
+          "prefillMs": 15399.0264,
+          "pipelineMs": 721598,
+          "mappedBytesAreResidentMemory": false,
+          "auxWeightMappingsReleased": true
+        },
+        "seconds": 724.4510922,
+        "sha256": "403d4aa9d0341c3cd8df4619311389941fea5326ab7fa77316d2c31b3fb24ac1",
+        "bytes": 65324,
+        "bundle_id": "moss_tts_v15_q8_bf16_cpu_catalogue_v1",
+        "name": "initial-a",
+        "progress": [
+          {
+            "stage": "validating_model_layout",
+            "fraction": null
+          },
+          {
+            "stage": "loading_models",
+            "fraction": null
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": null
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.0026666666666666666
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.005333333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.008
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.010666666666666666
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.013333333333333334
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.016
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.018666666666666668
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.021333333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.024
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.02666666666666667
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.029333333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.032
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.034666666666666665
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.037333333333333336
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.04
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.042666666666666665
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.04533333333333334
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.048
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.050666666666666665
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.05333333333333334
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.056
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.058666666666666666
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.06133333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.064
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.06666666666666667
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.06933333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.072
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.07466666666666667
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.07733333333333334
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.08
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.08266666666666667
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.08533333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.088
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.09066666666666667
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.09333333333333334
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.096
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.09866666666666667
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.10133333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.104
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.10666666666666667
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.10933333333333334
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.112
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.11466666666666667
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.11733333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.12
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.12266666666666666
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.12533333333333332
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.128
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.13066666666666665
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.13333333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.136
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.13866666666666666
+          },
+          {
+            "stage": "decoding_audio",
+            "fraction": null
+          },
+          {
+            "stage": "saving_audio",
+            "fraction": null
+          }
+        ]
+      },
+      {
+        "pipeline": "moss_tts_v15_openmoss_cpu_v1",
+        "output": "U:\\build\\openmoss-app-host-tests\\run-1793377703182408000\\data\\reference-a\\f6239898-651e-4955-9bf9-f938d2b12aaf.wav",
+        "execution": {
+          "effectiveParameters": {
+            "maxInputTokens": 1024,
+            "seed": 1234,
+            "audioTemperature": 1.7,
+            "maxNewTokens": 375,
+            "audioTopP": 0.8,
+            "audioRepetitionPenalty": 1,
+            "voiceInstruction": "",
+            "threads": 4,
+            "textTemperature": 1,
+            "language": "English",
+            "audioTopK": 25
+          },
+          "auxWeightStorage": "private_file_mapping",
+          "audioSamples": 658560,
+          "audioFramesIncludingPrefix": 343,
+          "auxMappedViewBytes": 5366020032,
+          "modelLoadMs": 31184,
+          "referenceEncodeMs": 238230,
+          "auxMappedFileBytes": 13430589376,
+          "backend": "cpu",
+          "referenceFrames": 38,
+          "pipelineRTF": 56.44690233236152,
+          "stopReason": "max_new_tokens",
+          "auxMappedFiles": 2,
+          "referenceSpeakers": 1,
+          "truncated": true,
+          "auxMappedTensors": 1665,
+          "generationSteps": 375,
+          "generationMs": 470680.7163,
+          "auxMappedTensorBytes": 5365936128,
+          "sampleRate": 24000,
+          "audioDurationSeconds": 27.44,
+          "pipeline": "moss_tts_v15_openmoss_cpu_v1",
+          "codecDecodeMs": 166578.9658,
+          "formattedInputFrames": 134,
+          "channels": 1,
+          "continuationPrefixFrames": 0,
+          "prefillMs": 641517.8859999999,
+          "pipelineMs": 1548903,
+          "mappedBytesAreResidentMemory": false,
+          "auxWeightMappingsReleased": true
+        },
+        "seconds": 1550.7354238,
+        "sha256": "6a6080b55f241563f95ff023c0c4c609127453d6a388f0ac5d94b28dd8e06808",
+        "bytes": 1317164,
+        "bundle_id": "moss_tts_v15_q8_bf16_cpu_catalogue_v1",
+        "name": "reference-a",
+        "progress": [
+          {
+            "stage": "validating_model_layout",
+            "fraction": null
+          },
+          {
+            "stage": "loading_models",
+            "fraction": null
+          },
+          {
+            "stage": "encoding_reference",
+            "fraction": null
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": null
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.0026666666666666666
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.005333333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.008
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.010666666666666666
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.013333333333333334
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.016
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.018666666666666668
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.021333333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.024
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.02666666666666667
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.029333333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.032
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.034666666666666665
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.037333333333333336
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.04
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.042666666666666665
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.04533333333333334
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.048
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.050666666666666665
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.05333333333333334
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.056
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.058666666666666666
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.06133333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.064
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.06666666666666667
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.06933333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.072
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.07466666666666667
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.07733333333333334
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.08
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.08266666666666667
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.08533333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.088
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.09066666666666667
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.09333333333333334
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.096
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.09866666666666667
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.10133333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.104
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.10666666666666667
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.10933333333333334
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.112
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.11466666666666667
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.11733333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.12
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.12266666666666666
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.12533333333333332
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.128
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.13066666666666665
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.13333333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.136
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.13866666666666666
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.14133333333333334
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.144
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.14666666666666667
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.14933333333333335
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.152
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.15466666666666667
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.15733333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.16
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.16266666666666665
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.16533333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.168
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.17066666666666666
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.17333333333333334
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.176
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.17866666666666667
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.18133333333333335
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.184
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.18666666666666668
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.18933333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.192
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.19466666666666665
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.19733333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.2
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.20266666666666666
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.20533333333333334
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.208
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.21066666666666667
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.21333333333333335
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.216
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.21866666666666668
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.22133333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.224
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.22666666666666666
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.22933333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.232
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.23466666666666666
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.23733333333333334
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.24
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.24266666666666667
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.24533333333333332
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.248
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.25066666666666665
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.25333333333333335
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.256
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.25866666666666666
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.2613333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.264
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.26666666666666666
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.2693333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.272
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.27466666666666667
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.2773333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.28
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.2826666666666667
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.2853333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.288
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.2906666666666667
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.29333333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.296
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.2986666666666667
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.30133333333333334
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.304
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.30666666666666664
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.30933333333333335
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.312
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.31466666666666665
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.31733333333333336
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.32
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.32266666666666666
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.3253333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.328
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.33066666666666666
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.3333333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.336
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.33866666666666667
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.3413333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.344
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.3466666666666667
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.34933333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.352
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.3546666666666667
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.35733333333333334
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.36
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.3626666666666667
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.36533333333333334
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.368
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.37066666666666664
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.37333333333333335
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.376
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.37866666666666665
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.38133333333333336
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.384
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.38666666666666666
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.3893333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.392
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.39466666666666667
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.3973333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.4
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.4026666666666667
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.4053333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.408
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.4106666666666667
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.41333333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.416
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.4186666666666667
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.42133333333333334
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.424
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.4266666666666667
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.42933333333333334
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.432
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.43466666666666665
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.43733333333333335
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.44
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.44266666666666665
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.44533333333333336
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.448
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.45066666666666666
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.4533333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.456
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.45866666666666667
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.4613333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.464
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.4666666666666667
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.4693333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.472
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.4746666666666667
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.47733333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.48
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.4826666666666667
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.48533333333333334
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.488
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.49066666666666664
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.49333333333333335
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.496
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.49866666666666665
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.5013333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.504
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.5066666666666667
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.5093333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.512
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.5146666666666667
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.5173333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.52
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.5226666666666666
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.5253333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.528
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.5306666666666666
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.5333333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.536
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.5386666666666666
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.5413333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.544
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.5466666666666666
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.5493333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.552
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.5546666666666666
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.5573333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.56
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.5626666666666666
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.5653333333333334
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.568
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.5706666666666667
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.5733333333333334
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.576
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.5786666666666667
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.5813333333333334
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.584
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.5866666666666667
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.5893333333333334
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.592
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.5946666666666667
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.5973333333333334
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.6
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.6026666666666667
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.6053333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.608
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.6106666666666667
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.6133333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.616
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.6186666666666667
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.6213333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.624
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.6266666666666667
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.6293333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.632
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.6346666666666667
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.6373333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.64
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.6426666666666667
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.6453333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.648
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.6506666666666666
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.6533333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.656
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.6586666666666666
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.6613333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.664
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.6666666666666666
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.6693333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.672
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.6746666666666666
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.6773333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.68
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.6826666666666666
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.6853333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.688
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.6906666666666667
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.6933333333333334
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.696
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.6986666666666667
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.7013333333333334
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.704
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.7066666666666667
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.7093333333333334
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.712
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.7146666666666667
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.7173333333333334
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.72
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.7226666666666667
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.7253333333333334
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.728
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.7306666666666667
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.7333333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.736
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.7386666666666667
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.7413333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.744
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.7466666666666667
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.7493333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.752
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.7546666666666667
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.7573333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.76
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.7626666666666667
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.7653333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.768
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.7706666666666667
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.7733333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.776
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.7786666666666666
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.7813333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.784
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.7866666666666666
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.7893333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.792
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.7946666666666666
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.7973333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.8
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.8026666666666666
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.8053333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.808
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.8106666666666666
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.8133333333333334
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.816
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.8186666666666667
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.8213333333333334
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.824
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.8266666666666667
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.8293333333333334
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.832
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.8346666666666667
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.8373333333333334
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.84
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.8426666666666667
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.8453333333333334
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.848
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.8506666666666667
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.8533333333333334
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.856
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.8586666666666667
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.8613333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.864
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.8666666666666667
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.8693333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.872
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.8746666666666667
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.8773333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.88
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.8826666666666667
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.8853333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.888
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.8906666666666667
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.8933333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.896
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.8986666666666666
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.9013333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.904
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.9066666666666666
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.9093333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.912
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.9146666666666666
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.9173333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.92
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.9226666666666666
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.9253333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.928
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.9306666666666666
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.9333333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.936
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.9386666666666666
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.9413333333333334
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.944
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.9466666666666667
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.9493333333333334
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.952
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.9546666666666667
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.9573333333333334
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.96
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.9626666666666667
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.9653333333333334
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.968
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.9706666666666667
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.9733333333333334
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.976
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.9786666666666667
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.9813333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.984
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.9866666666666667
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.9893333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.992
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.9946666666666667
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.9973333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 1
+          },
+          {
+            "stage": "decoding_audio",
+            "fraction": null
+          },
+          {
+            "stage": "saving_audio",
+            "fraction": null
+          }
+        ]
+      },
+      {
+        "pipeline": "moss_tts_v15_openmoss_cpu_v1",
+        "execution": {
+          "effectiveParameters": {
+            "maxInputTokens": 1024,
+            "seed": 1234,
+            "audioTemperature": 1.7,
+            "maxNewTokens": 375,
+            "audioTopP": 0.8,
+            "audioRepetitionPenalty": 1,
+            "voiceInstruction": "",
+            "threads": 4,
+            "textTemperature": 1,
+            "language": "English",
+            "audioTopK": 25
+          },
+          "pipeline": "moss_tts_v15_openmoss_cpu_v1",
+          "backend": "cpu"
+        },
+        "seconds": 46.1971704,
+        "bundle_id": "moss_tts_v15_q8_bf16_cpu_catalogue_v1",
+        "name": "cancel-after-step16",
+        "cancelled": true,
+        "progress": [
+          {
+            "stage": "validating_model_layout",
+            "fraction": null
+          },
+          {
+            "stage": "loading_models",
+            "fraction": null
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": null
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.0026666666666666666
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.005333333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.008
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.010666666666666666
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.013333333333333334
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.016
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.018666666666666668
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.021333333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.024
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.02666666666666667
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.029333333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.032
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.034666666666666665
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.037333333333333336
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.04
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.042666666666666665
+          }
+        ],
+        "expected_error": "Requested cancellation after actual sampled step 16"
+      },
+      {
+        "pipeline": "moss_tts_v15_openmoss_cpu_v1",
+        "execution": {
+          "effectiveParameters": {
+            "maxInputTokens": 1,
+            "seed": 1234,
+            "audioTemperature": 1.7,
+            "maxNewTokens": 375,
+            "audioTopP": 0.8,
+            "audioRepetitionPenalty": 1,
+            "voiceInstruction": "",
+            "threads": 4,
+            "textTemperature": 1,
+            "language": "English",
+            "audioTopK": 25
+          },
+          "pipeline": "moss_tts_v15_openmoss_cpu_v1",
+          "backend": "cpu"
+        },
+        "seconds": 1.5502921,
+        "bundle_id": "moss_tts_v15_q8_bf16_cpu_catalogue_v1",
+        "name": "token-budget",
+        "cancelled": false,
+        "progress": [
+          {
+            "stage": "validating_model_layout",
+            "fraction": null
+          },
+          {
+            "stage": "loading_models",
+            "fraction": null
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": null
+          }
+        ],
+        "expected_error": "Formatted prompt and generation exceed the selected context budget"
+      },
+      {
+        "pipeline": "moss_tts_v15_openmoss_cpu_v1",
+        "output": "U:\\build\\openmoss-app-host-tests\\run-1793377703182408000\\data\\recovery-a\\e0819ae8-1c4a-4630-aeb6-31b07619c6a7.wav",
+        "execution": {
+          "effectiveParameters": {
+            "maxInputTokens": 1024,
+            "seed": 1234,
+            "audioTemperature": 1.7,
+            "maxNewTokens": 375,
+            "audioTopP": 0.8,
+            "audioRepetitionPenalty": 1,
+            "voiceInstruction": "",
+            "threads": 4,
+            "textTemperature": 1,
+            "language": "English",
+            "audioTopK": 25
+          },
+          "auxWeightStorage": "private_file_mapping",
+          "audioSamples": 32640,
+          "audioFramesIncludingPrefix": 17,
+          "auxMappedViewBytes": 5366020032,
+          "modelLoadMs": 1319,
+          "referenceEncodeMs": 0,
+          "auxMappedFileBytes": 13430589376,
+          "backend": "cpu",
+          "referenceFrames": 0,
+          "pipelineRTF": 30.903676470588234,
+          "stopReason": "end_of_speech",
+          "auxMappedFiles": 2,
+          "referenceSpeakers": 0,
+          "truncated": false,
+          "auxMappedTensors": 1665,
+          "generationSteps": 52,
+          "generationMs": 32678.487699999998,
+          "auxMappedTensorBytes": 5365936128,
+          "sampleRate": 24000,
+          "audioDurationSeconds": 1.36,
+          "pipeline": "moss_tts_v15_openmoss_cpu_v1",
+          "codecDecodeMs": 863.3333,
+          "formattedInputFrames": 61,
+          "channels": 1,
+          "continuationPrefixFrames": 0,
+          "prefillMs": 6917.377,
+          "pipelineMs": 42029,
+          "mappedBytesAreResidentMemory": false,
+          "auxWeightMappingsReleased": true
+        },
+        "seconds": 43.1226217,
+        "sha256": "403d4aa9d0341c3cd8df4619311389941fea5326ab7fa77316d2c31b3fb24ac1",
+        "bytes": 65324,
+        "bundle_id": "moss_tts_v15_q8_bf16_cpu_catalogue_v1",
+        "name": "recovery-a",
+        "progress": [
+          {
+            "stage": "validating_model_layout",
+            "fraction": null
+          },
+          {
+            "stage": "loading_models",
+            "fraction": null
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": null
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.0026666666666666666
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.005333333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.008
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.010666666666666666
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.013333333333333334
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.016
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.018666666666666668
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.021333333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.024
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.02666666666666667
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.032
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.034666666666666665
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.037333333333333336
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.04
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.042666666666666665
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.04533333333333334
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.048
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.050666666666666665
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.05333333333333334
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.056
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.058666666666666666
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.06133333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.064
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.06666666666666667
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.06933333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.072
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.07466666666666667
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.07733333333333334
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.08
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.08266666666666667
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.08533333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.088
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.09066666666666667
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.09333333333333334
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.096
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.09866666666666667
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.10133333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.104
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.10666666666666667
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.10933333333333334
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.112
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.11466666666666667
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.11733333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.12
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.12266666666666666
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.12533333333333332
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.128
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.13066666666666665
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.13333333333333333
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.136
+          },
+          {
+            "stage": "generating_speech",
+            "fraction": 0.13866666666666666
+          },
+          {
+            "stage": "decoding_audio",
+            "fraction": null
+          },
+          {
+            "stage": "saving_audio",
+            "fraction": null
+          }
+        ]
+      }
+    ],
+    "full_stream_import_tested": false,
+    "launches": [
+      {
+        "schema": "lma.engine-request/1",
+        "pipeline": "moss_tts_v15_openmoss_cpu_v1",
+        "output": "U:\\build\\openmoss-app-host-tests\\run-1793377703182408000\\data\\initial-a\\a624c0ea-0605-428c-b338-1e2131cd6f7a.wav",
+        "input": {
+          "prompt": "Hello world."
+        },
+        "workspace": "U:\\build\\openmoss-app-host-tests\\run-1793377703182408000\\data\\files\\engine-work\\work-942a94e6-5c09-4ec9-b8c1-fe1f5ea8ef4d",
+        "type": "speech.synthesize",
+        "parameters": {
+          "maxInputTokens": 1024,
+          "seed": 1234,
+          "audioTemperature": 1.7,
+          "maxNewTokens": 375,
+          "audioTopP": 0.8,
+          "audioRepetitionPenalty": 1,
+          "voiceInstruction": "",
+          "threads": 4,
+          "textTemperature": 1,
+          "language": "English",
+          "audioTopK": 25
+        }
+      },
+      {
+        "schema": "lma.engine-request/1",
+        "pipeline": "moss_tts_v15_openmoss_cpu_v1",
+        "output": "U:\\build\\openmoss-app-host-tests\\run-1793377703182408000\\data\\reference-a\\f6239898-651e-4955-9bf9-f938d2b12aaf.wav",
+        "input": {
+          "prompt": "Hello world.",
+          "artifacts": [
+            {
+              "role": "reference_audio",
+              "artifactId": "explicit_trained_kokoro_reference"
+            }
+          ]
+        },
+        "workspace": "U:\\build\\openmoss-app-host-tests\\run-1793377703182408000\\data\\files\\engine-work\\work-272ba1ad-67f7-4f3a-be39-e6972e3661ec",
+        "referenceAudios": [
+          "U:\\build\\openmoss-app-host-tests\\run-1793377703182408000\\data\\files\\engine-work\\work-272ba1ad-67f7-4f3a-be39-e6972e3661ec\\inputs\\reference_audio.wav"
+        ],
+        "type": "speech.synthesize",
+        "parameters": {
+          "maxInputTokens": 1024,
+          "seed": 1234,
+          "audioTemperature": 1.7,
+          "maxNewTokens": 375,
+          "audioTopP": 0.8,
+          "audioRepetitionPenalty": 1,
+          "voiceInstruction": "",
+          "threads": 4,
+          "textTemperature": 1,
+          "language": "English",
+          "audioTopK": 25
+        }
+      },
+      {
+        "schema": "lma.engine-request/1",
+        "pipeline": "moss_tts_v15_openmoss_cpu_v1",
+        "output": "U:\\build\\openmoss-app-host-tests\\run-1793377703182408000\\data\\cancel-after-step16\\4f4850c1-5c00-492c-9bb5-42d5cf3be130.wav",
+        "input": {
+          "prompt": "Hello world."
+        },
+        "workspace": "U:\\build\\openmoss-app-host-tests\\run-1793377703182408000\\data\\files\\engine-work\\work-5ee8a965-e803-421b-8d13-db7374c4dbe1",
+        "type": "speech.synthesize",
+        "parameters": {
+          "maxInputTokens": 1024,
+          "seed": 1234,
+          "audioTemperature": 1.7,
+          "maxNewTokens": 375,
+          "audioTopP": 0.8,
+          "audioRepetitionPenalty": 1,
+          "voiceInstruction": "",
+          "threads": 4,
+          "textTemperature": 1,
+          "language": "English",
+          "audioTopK": 25
+        }
+      },
+      {
+        "schema": "lma.engine-request/1",
+        "pipeline": "moss_tts_v15_openmoss_cpu_v1",
+        "output": "U:\\build\\openmoss-app-host-tests\\run-1793377703182408000\\data\\token-budget\\af7e7528-5028-47c1-9a02-bcb1fd419e1e.wav",
+        "input": {
+          "prompt": "Hello world."
+        },
+        "workspace": "U:\\build\\openmoss-app-host-tests\\run-1793377703182408000\\data\\files\\engine-work\\work-283484b9-83e1-4281-a801-754c0968d13d",
+        "type": "speech.synthesize",
+        "parameters": {
+          "maxInputTokens": 1,
+          "seed": 1234,
+          "audioTemperature": 1.7,
+          "maxNewTokens": 375,
+          "audioTopP": 0.8,
+          "audioRepetitionPenalty": 1,
+          "voiceInstruction": "",
+          "threads": 4,
+          "textTemperature": 1,
+          "language": "English",
+          "audioTopK": 25
+        }
+      },
+      {
+        "schema": "lma.engine-request/1",
+        "pipeline": "moss_tts_v15_openmoss_cpu_v1",
+        "output": "U:\\build\\openmoss-app-host-tests\\run-1793377703182408000\\data\\recovery-a\\e0819ae8-1c4a-4630-aeb6-31b07619c6a7.wav",
+        "input": {
+          "prompt": "Hello world."
+        },
+        "workspace": "U:\\build\\openmoss-app-host-tests\\run-1793377703182408000\\data\\files\\engine-work\\work-9c9638db-a48c-4655-8f3f-46affc73f19f",
+        "type": "speech.synthesize",
+        "parameters": {
+          "maxInputTokens": 1024,
+          "seed": 1234,
+          "audioTemperature": 1.7,
+          "maxNewTokens": 375,
+          "audioTopP": 0.8,
+          "audioRepetitionPenalty": 1,
+          "voiceInstruction": "",
+          "threads": 4,
+          "textTemperature": 1,
+          "language": "English",
+          "audioTopK": 25
+        }
+      }
+    ]
+  },
+  "compilation": {
+    "schema": "lma.openmoss-host-build/1",
+    "executable": "build/openmoss-worker-host/8551e120780d970c/bin/lma_openmoss_host.exe",
+    "bytes": 3950592,
+    "sha256": "80b8eda3b843c3ff0c724bc6933798b802a7ae7b7f969829f5620351f122249a",
+    "source_revision": "bfb1f465e0a86fb5a52bbf93e67ceba4b7d0b4e1",
+    "llama_revision": "050ee92d04c2e1f639025786dea701c70e7d4204",
+    "compiled_library_sources": 10,
+    "compile_cache": "build/openmoss-host-cache/cpu-050ee92d04c2-U/bin",
+    "backend": "cpu",
+    "private_weight_mapping": true,
+    "production_worker_source_unmodified": true,
+    "upstream_sources_unmodified": true,
+    "windows_crt_parent_environment_compatibility": true,
+    "bundled_model_data": false,
+    "physical_android": false,
+    "android_compiled": false,
+    "packaged_in_apk": false,
+    "model_executed": false,
+    "input_fingerprint": {
+      "native/openmoss/CMakeLists.txt": "83c84c6b36b70b7307a8c1b1b801b9b26f685d72f8a1d929d78c6351d1a9965a",
+      "native/openmoss/generation_guard.hpp": "9a7b420629f5502b66e2a95608aed0ac97780924fead745e7da02ab6c60db2c6",
+      "native/openmoss/model_contract.hpp": "0476e93090a14822f5544a485fd5f83fdd66f9c40cd18eb7c28389e45f1ee7cb",
+      "native/openmoss/policy.hpp": "eb164dba961c9065b8dd62b272050bdbb45c4d303b8e5b2455ec5441134f1684",
+      "native/openmoss/private_weights.hpp": "7a5bfc3b4a2df5873628036af85b578630e43907fb009d6c23d2fe240264a16f",
+      "native/openmoss/wave.hpp": "aaf85f286b9e9d95de808aae2088dadac7b9b06e35f51f31c05e272f7a112e7f",
+      "native/openmoss/worker.cpp": "a807ff77d40a12daf020e17a5517ae47476dd980227150c933635d7a80a2da15",
+      "research/moss_nano_host/compat/sys/prctl.h": "9322b99bb80674fd2d42eb2b94f5ee5519ab443da0cdffd5ae938ef855907569",
+      "research/moss_nano_host/compat/unistd.h": "1c843add75719822f7371cfafd97af1abdc1ffc52938f5cd96dfd407630d9f96",
+      "research/openmoss_host/CMakeLists.txt": "07dfb210c4668b1c3709ef1fdba3f72fd4079416631d85973f01e9b47d5662e3",
+      "research/openmoss_host/NOTICE": "4a34c40dceab4256b15fbf7eb7c0bd6b73d76b4f043cb3956b59d05034e82cfd",
+      "research/qwen_tts_host/compat/sys/prctl.h": "0e2a8e106274e1330cb0a6240583a75a4eecfe182bf0e08d141984aaae2a3987",
+      "research/qwen_tts_host/compat/unistd.h": "64e960a64922193f97a70eccaf9e4bfed7f70c79c1cbcadd82a984efc3a2e8ec",
+      "research/sd_host/platform.hpp": "c377ed1b676707a469a192d96ae9b748802e1f62ad0674366b593b2b5b2daf67",
+      "tests/native/openmoss_mapping_test.cpp": "4f676f86b3d22dee7b4ed67facd62971b6096e4c3f6ba1aa8a9592b667bb0947",
+      "third_party/openmoss-source-lock.json": "df2d062fe174080e95d1f2f05ef8e133616a1827637e62d7195181f1c9256295",
+      "tools/build_openmoss_host.py": "7e18dbebb8b073e5a4a55b059798d025d9233425aa8576e0f28eb8c3ecaf7aea",
+      "tools/fetch_openmoss.py": "1c18d8c17de019a6b66321042cb14d61441d54fc370ef3f5547cacd627f1330b",
+      "tools/openmoss_pipeline.py": "483667858e0ce77742ae8242a15ae88bc8fdf76597d66191ad10ccdb172fbec3"
+    }
+  },
+  "outputs": [
+    {
+      "file": "build/openmoss-app-host-tests/run-1793377703182408000/data/initial-a/a624c0ea-0605-428c-b338-1e2131cd6f7a.wav",
+      "pipeline": "moss_tts_v15_openmoss_cpu_v1",
+      "name": "initial-a",
+      "audio": {
+        "format": "WAV",
+        "channels": 1,
+        "sample_width": 2,
+        "sample_rate": 24000,
+        "samples": 32640,
+        "seconds": 1.36,
+        "rms": 0.05252800224000416,
+        "peak": 0.3858642578125,
+        "clipping_fraction": 0.0,
+        "nonzero_samples": 31209,
+        "bytes": 65324,
+        "sha256": "403d4aa9d0341c3cd8df4619311389941fea5326ab7fa77316d2c31b3fb24ac1"
+      }
+    },
+    {
+      "file": "build/openmoss-app-host-tests/run-1793377703182408000/data/reference-a/f6239898-651e-4955-9bf9-f938d2b12aaf.wav",
+      "pipeline": "moss_tts_v15_openmoss_cpu_v1",
+      "name": "reference-a",
+      "audio": {
+        "format": "WAV",
+        "channels": 1,
+        "sample_width": 2,
+        "sample_rate": 24000,
+        "samples": 658560,
+        "seconds": 27.44,
+        "rms": 0.09038358374864792,
+        "peak": 0.815643310546875,
+        "clipping_fraction": 0.0,
+        "nonzero_samples": 598518,
+        "bytes": 1317164,
+        "sha256": "6a6080b55f241563f95ff023c0c4c609127453d6a388f0ac5d94b28dd8e06808"
+      }
+    },
+    {
+      "file": "build/openmoss-app-host-tests/run-1793377703182408000/data/recovery-a/e0819ae8-1c4a-4630-aeb6-31b07619c6a7.wav",
+      "pipeline": "moss_tts_v15_openmoss_cpu_v1",
+      "name": "recovery-a",
+      "audio": {
+        "format": "WAV",
+        "channels": 1,
+        "sample_width": 2,
+        "sample_rate": 24000,
+        "samples": 32640,
+        "seconds": 1.36,
+        "rms": 0.05252800224000416,
+        "peak": 0.3858642578125,
+        "clipping_fraction": 0.0,
+        "nonzero_samples": 31209,
+        "bytes": 65324,
+        "sha256": "403d4aa9d0341c3cd8df4619311389941fea5326ab7fa77316d2c31b3fb24ac1"
+      }
+    }
+  ],
+  "direct_trained_report_sha256": "5affecac6971c22fc3373105e12b17259f051e60e854c69aedacc225113d4e96",
+  "capture_directory": "build/openmoss-app-host-tests/run-1793377703182408000",
+  "reference_natural_completion_accepted": false,
+  "production_java_native_host_executed": true,
+  "physical_android": false,
+  "android_saf_tested": false,
+  "android_background_accepted": false,
+  "speech_quality_accepted": false,
+  "complete_moss_tts_v15_accepted": false,
+  "complete_target12_accepted": false,
+  "complete_release_accepted": false,
+  "input_fingerprint": {
+    "native/openmoss/CMakeLists.txt": "83c84c6b36b70b7307a8c1b1b801b9b26f685d72f8a1d929d78c6351d1a9965a",
+    "native/openmoss/generation_guard.hpp": "9a7b420629f5502b66e2a95608aed0ac97780924fead745e7da02ab6c60db2c6",
+    "native/openmoss/model_contract.hpp": "0476e93090a14822f5544a485fd5f83fdd66f9c40cd18eb7c28389e45f1ee7cb",
+    "native/openmoss/policy.hpp": "eb164dba961c9065b8dd62b272050bdbb45c4d303b8e5b2455ec5441134f1684",
+    "native/openmoss/private_weights.hpp": "7a5bfc3b4a2df5873628036af85b578630e43907fb009d6c23d2fe240264a16f",
+    "native/openmoss/wave.hpp": "aaf85f286b9e9d95de808aae2088dadac7b9b06e35f51f31c05e272f7a112e7f",
+    "native/openmoss/worker.cpp": "a807ff77d40a12daf020e17a5517ae47476dd980227150c933635d7a80a2da15",
+    "research/moss_nano_host/compat/sys/prctl.h": "9322b99bb80674fd2d42eb2b94f5ee5519ab443da0cdffd5ae938ef855907569",
+    "research/moss_nano_host/compat/unistd.h": "1c843add75719822f7371cfafd97af1abdc1ffc52938f5cd96dfd407630d9f96",
+    "research/openmoss_host/CMakeLists.txt": "07dfb210c4668b1c3709ef1fdba3f72fd4079416631d85973f01e9b47d5662e3",
+    "research/openmoss_host/NOTICE": "4a34c40dceab4256b15fbf7eb7c0bd6b73d76b4f043cb3956b59d05034e82cfd",
+    "research/qwen_tts_host/compat/sys/prctl.h": "0e2a8e106274e1330cb0a6240583a75a4eecfe182bf0e08d141984aaae2a3987",
+    "research/qwen_tts_host/compat/unistd.h": "64e960a64922193f97a70eccaf9e4bfed7f70c79c1cbcadd82a984efc3a2e8ec",
+    "research/sd_host/platform.hpp": "c377ed1b676707a469a192d96ae9b748802e1f62ad0674366b593b2b5b2daf67",
+    "tests/native/openmoss_mapping_test.cpp": "4f676f86b3d22dee7b4ed67facd62971b6096e4c3f6ba1aa8a9592b667bb0947",
+    "third_party/openmoss-source-lock.json": "df2d062fe174080e95d1f2f05ef8e133616a1827637e62d7195181f1c9256295",
+    "tools/build_openmoss_host.py": "7e18dbebb8b073e5a4a55b059798d025d9233425aa8576e0f28eb8c3ecaf7aea",
+    "tools/fetch_openmoss.py": "1c18d8c17de019a6b66321042cb14d61441d54fc370ef3f5547cacd627f1330b",
+    "tools/openmoss_pipeline.py": "483667858e0ce77742ae8242a15ae88bc8fdf76597d66191ad10ccdb172fbec3",
+    "research/openmoss_trained/assets.json": "52cfd586e4de7c7859b61a83f1638c6183e962286deea9938ded161c01460107",
+    "tools/fetch_openmoss_trained.py": "eb1b7fea1796d2c09175176ed94568a2531e2d504b54324b8aebc42c596c88ec",
+    "tools/fetch_sd15_trained.py": "91392401d9739f15b14fa4e42b74f13bbdd719a382746541cc69952966e6f307",
+    "tools/fetch_wan_trained.py": "7dc5f8746f783774cfb1cda5ca2d5a22a2e957e4ab5490d6bcf7119ca90a31ef",
+    "app/src/main/java/com/lma/app/core/AdapterSpec.java": "aff8572d14ac8d616be0a1b0da395e52ed5bddcd5ae407a969c2657bf9257581",
+    "app/src/main/java/com/lma/app/core/ArtifactStore.java": "6f85d2ac710cac0fb5a76cde9493ff1fef4d3e2e119c3e031b7c44ff65a49061",
+    "app/src/main/java/com/lma/app/core/AssemblyPlan.java": "80e81dea2a831d3955aa5ae21323eb0432fb448f78994901633fbb6e85d77e7c",
+    "app/src/main/java/com/lma/app/core/AudioPcm.java": "9bf3270c83f57b7fa4e23fc4518fa063e72ca214675f9c23d45bd1788842f7b2",
+    "app/src/main/java/com/lma/app/core/AudioStreams.java": "de8a2cdd98d083b62515b067865182d9065bb00f14b8c70cacafba21de8407f1",
+    "app/src/main/java/com/lma/app/core/BundleStore.java": "a773aaa8f83410da9ccbf499b9a19ee4166e2c094c2e992699424c0ac68f3e74",
+    "app/src/main/java/com/lma/app/core/BundleTransfers.java": "926596119a2c3f6bc089516e7bbd7db3016487d60c24f908ea646dfc76707f3e",
+    "app/src/main/java/com/lma/app/core/BundleUpdates.java": "f31a65d0e172aa75f6131deace828875534ccc756ed93fac83bb09d5a4162fe1",
+    "app/src/main/java/com/lma/app/core/ByteRange.java": "31723bf112e630de6c2a1cd8d525be7bbd4706e151fa5a297a5e641f59b5c752",
+    "app/src/main/java/com/lma/app/core/ChatHistory.java": "3046a52c3f611b83b46cfed94afe0f4b31667f77986b7ca1737169ec8c4ce951",
+    "app/src/main/java/com/lma/app/core/ComponentIntegrity.java": "7a5977c607f624f8763a782b1b081c4e485c8c05c2caae15986ad2f2388f5bce",
+    "app/src/main/java/com/lma/app/core/DataFiles.java": "02d3212885376e7073a785801dbb81073b13cc87c5fc0e85ac4373fd346696bc",
+    "app/src/main/java/com/lma/app/core/EngineWorkspace.java": "6c632861e13d0a8950cdee66e8bea8a8760d23550c10343d6cfdd8a6e9af29dd",
+    "app/src/main/java/com/lma/app/core/ExecutionGate.java": "143b6d145036c56ad0937316e87af5f4c44507ef89cf16affdc5bef0ad8e2126",
+    "app/src/main/java/com/lma/app/core/InputSelection.java": "963fe60973caab82b9dfedaa7c1661f236aed6ea158fcda8f4a86d02ba33d509",
+    "app/src/main/java/com/lma/app/core/InputSpec.java": "d535fc70bdbfbf7cd9ca2ce685c20735d67ed5c3b7132989ec683c74de779f97",
+    "app/src/main/java/com/lma/app/core/InputUploads.java": "5debd68a73abc8bde8174c985dfec8f534c6bf8df58dda8810b0cc3541fe1d53",
+    "app/src/main/java/com/lma/app/core/JobStore.java": "3f999d908b7667d35557c979a26dbf5544c712015b986a090946b76b8a680628",
+    "app/src/main/java/com/lma/app/core/LcmCondition.java": "2177da94b69781263e36f3e379034619bf74c6856bc6a9108592d4f272e94b7a",
+    "app/src/main/java/com/lma/app/core/LocalApi.java": "c9e1674f98ef12c7312ff42c50ba38a10c08d5cf1d3e173a8093ecd7fa67e5fc",
+    "app/src/main/java/com/lma/app/core/LocalHttp.java": "6f74e8acfe7072606c23e775f87fa5aa8d5ee094ffe20e96788f161674a947aa",
+    "app/src/main/java/com/lma/app/core/Ltx098Spec.java": "8333ea906bc31ea9e014ce4840d15fc6253c91eda1f3688de4f8645738819abf",
+    "app/src/main/java/com/lma/app/core/MnnSpec.java": "055cc06962da0fc34c1abdc57100ac52fca47a9d66ffea6621155c53046d5f1a",
+    "app/src/main/java/com/lma/app/core/ModelBundle.java": "ad08c033a2c9a215c292d20a5a97a65c85db91ce6a86609a8eed9e846449e84b",
+    "app/src/main/java/com/lma/app/core/ModelSelection.java": "965c9f22f16fc822f792ebef6e0de0a0c67f5a6882d5e7ef77be05b83ea1aeb2",
+    "app/src/main/java/com/lma/app/core/MossDelaySpec.java": "2f680d68cf78517f234c336c77e0b584bf40300fd6294514b7cd457149d41bd0",
+    "app/src/main/java/com/lma/app/core/MossNanoSpec.java": "4b784a773fb85550eba8f169a62cab9a274a332519ec700b595694378e9e39ed",
+    "app/src/main/java/com/lma/app/core/MossRqSpec.java": "0713659ade3c172887527a9e961bbde4add5ed00bd2a564256bc11f9b4796b5e",
+    "app/src/main/java/com/lma/app/core/NativePreparation.java": "cb8ee985ef2c6cba3e0d6bb924c940bcb197bd3f576ca7d6e1fa24442d44e1dd",
+    "app/src/main/java/com/lma/app/core/OnnxMetadata.java": "51db38a424032ac21a8a4185745a272db9034a94d2e8b2d0671c11289e9719e3",
+    "app/src/main/java/com/lma/app/core/OpenMossSpec.java": "4a9af3c92d87be65c4f617677eaed31576f9160a3355518fff7cb874192a5258",
+    "app/src/main/java/com/lma/app/core/ParameterSchema.java": "a566c6d452461ee14333caf7e732a33f8d94b12b33cbabc851f5f3fcc6bdb019",
+    "app/src/main/java/com/lma/app/core/PreparationPlan.java": "dfee63b84035c6ca18b0647aecb947070b983b6b2f1de08247129dddfa64a0bf",
+    "app/src/main/java/com/lma/app/core/PreparedAssets.java": "ae09c7aa1643fc22b76cbe11182a742f26aa0ea95bc9b7166d685433a603dd02",
+    "app/src/main/java/com/lma/app/core/PreparedModelAssembly.java": "eef243d48c9b2b7d3d9b08b2ddf8129ff3884bbdd6c00ecd28a83c0f4bbfa384",
+    "app/src/main/java/com/lma/app/core/ProcessControl.java": "a1950624951d41c040b0b9f44cd8ef5faff16ed22dae880d626e4619d77c155d",
+    "app/src/main/java/com/lma/app/core/Protocol.java": "d49f47884aec0cb03347023119c2808330fa9970689dcd9d33c30ca653d03b85",
+    "app/src/main/java/com/lma/app/core/QwenTtsSpec.java": "e94d96d7ce7c499b2d4bafbd35740c690b32169a142a9a55aae7a8b03364125b",
+    "app/src/main/java/com/lma/app/core/RecipeCatalogue.java": "539dcd55124ce71e32476edb8a7efd25d533935847a8357ac3a6dddf68b71a47",
+    "app/src/main/java/com/lma/app/core/RecipeSuggestions.java": "57d9d7b5fc5f3c61a3ab3524af8789df58dbc8ce1923b2c09e139649057beda0",
+    "app/src/main/java/com/lma/app/core/ResourceWatch.java": "6f6a4cb2159f7956d1ae8c202c61430be268d86d230245bccc952844f3816ec5",
+    "app/src/main/java/com/lma/app/core/SdSpec.java": "e26906c0c338deff725d8b5c316beb8205eacbe26ea91cfb3ef0861bf94103b5",
+    "app/src/main/java/com/lma/app/core/SoulxSpec.java": "a761d40965d041d38cc1f629418017103c9eefabf5904814fad9de6372b6bcc7",
+    "app/src/main/java/com/lma/app/core/SpeechVoices.java": "b413549e7721d07c88fec135b01b26a18d9dc0cc686a37dd180309ee10900967",
+    "app/src/main/java/com/lma/app/core/StableAudioSpec.java": "0cc04143a8c8c2afa4dc3d9726f4891779b352404d97c70d6fdc260fbe27ee6c",
+    "app/src/main/java/com/lma/app/core/TaskDrafts.java": "1c97a99a274abb5f38542eb2cea6834121f46b5dfb0e7cbaeaa5df25222c7ead",
+    "app/src/main/java/com/lma/app/core/TaskInput.java": "6f186b392f9e2fd70f253398f4becf9604d22e03c132f18b3bb93f635f637d7b",
+    "app/src/main/java/com/lma/app/core/TaskRequests.java": "6a9056c560a681891a0110b25d015494e0a73240034efde5ad565593a9d1dcc7",
+    "app/src/main/java/com/lma/app/core/TextRequest.java": "bfdb23db96512f00f362b49951c1fee4162ca2d441482eb6ebf180a8d3574d5f",
+    "app/src/main/java/com/lma/app/core/TextResult.java": "2dd7968a40cc917fab5b8bc412ef00d21348abec1d844b140b843b1bba57c6ab",
+    "app/src/main/java/com/lma/app/core/TextSpec.java": "4521ce8e833d88276f6b98d446e0171c48602d67ce2cf4b372d425e56d6d149e",
+    "app/src/main/java/com/lma/app/core/TtsSpec.java": "54f841e2ca5e93d3c3e1845014029b96912291fcf50a50c26a0124325a7a962a",
+    "app/src/main/java/com/lma/app/core/WaveFile.java": "cf70b9bbafb6aa23cc25217d4883e769173b00f74571d1b115c50a8ad6b15361",
+    "app/src/main/java/com/lma/app/LocalEngine.java": "c06198df33cf290dff58d5d7d7f2b44b3d84d552c1a3c0f1cf35c30c6d5b7c19",
+    "app/src/main/java/com/lma/app/NativeWorker.java": "08090e4b6f169b2ffc6bd654b6eb4d64aaf62fdd16508efa39ecb2e9fa15b174",
+    "app/src/main/java/com/lma/app/OpenMossEngine.java": "4344ccb2f537fd7d8aa3a244a42013e364e54ce24932d17a72d0bd48ec54e326",
+    "catalogue/model-bundles.json": "61a324b4520565a3a27738aa160ef913be915c00da017bf939b6ac157bac3976",
+    "docs/media/development/tts-trained-kokoro.wav": "b2f39aa6e39665de756dccd8f523a64b72ec7eb3853a6e754f3ca5ee8c0dfdeb",
+    "tests/host/android/util/AtomicFile.java": "a05b9c6ef4fa0f0f40aaa49b235faccc98d2d7d5aa1ea4bb8d2f535b8bad2796",
+    "tests/openmoss-trained/com/lma/app/OpenMossTrainedAppTest.java": "e8b6b484f8d1261dfd967016790398a848941637b6bf9e8473c247ac08bbe2c2",
+    "tests/tts-host/com/lma/app/LmaApp.java": "9f27bd7188d03aa4eb95b007111daff697d39515dc41884d4569e2f382d0577b",
+    "tools/test_moss_nano_trained.py": "f1fa3bc1573ed5361951d728b4042faad8f5c76b266ca753180de25c8c3df2cd",
+    "tools/test_openmoss_app_host.py": "1beca975943ec01812e47b00d7de83009cf39a2e981714791d1670aad2ca90a9"
+  }
+}

@@ -1,0 +1,6 @@
+Native Windows developer harness for the unchanged production openmoss worker.
+The reviewed pwilkin/openmoss and llama revisions are pinned in
+third_party/openmoss-source-lock.json. LMA sources and harness are MIT.
+Compatibility headers reuse the existing Windows parent-lifetime and stdio port;
+they are never included in the Android executable or APK. No inference service,
+virtualization, model weights, vocabulary or voice assets are bundled.

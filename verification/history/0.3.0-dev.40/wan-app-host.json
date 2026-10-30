@@ -1,0 +1,1110 @@
+{
+  "schema": "lma.wan-app-host/1",
+  "capture_directory": "build/wan-app-host-tests/run-1793365426105109700",
+  "java": {
+    "android_saf_tested": false,
+    "android_background_accepted": false,
+    "imported_bytes": 4741874667,
+    "production_java_native_host_executed": true,
+    "complete_release_accepted": false,
+    "actual_host_children": 3,
+    "imported_objects": 4,
+    "network_calls": 0,
+    "video_quality_accepted": false,
+    "passed": 102,
+    "android_codec_tested": false,
+    "physical_android": false,
+    "bundle": {
+      "schema": "lma.model-bundle/2",
+      "components": [
+        {
+          "importPath": "diffusion/Wan2.1-T2V-1.3B-Q4_K_S.gguf",
+          "path": "Wan2.1-T2V-1.3B-Q4_K_S.gguf",
+          "role": "diffusion",
+          "sha256": "65181afff758fba25cf311399ccb0638a746f8e0e6533e07a84a5a23e0c12318",
+          "bytes": 816061024,
+          "format": "gguf",
+          "repository": "off-grid-ai/Wan2.1-T2V-1.3B-GGUF",
+          "url": "https://huggingface.co/off-grid-ai/Wan2.1-T2V-1.3B-GGUF/resolve/1ba777b2426d5717dd0fddb1100078604a9d4667/Wan2.1-T2V-1.3B-Q4_K_S.gguf",
+          "revision": "1ba777b2426d5717dd0fddb1100078604a9d4667"
+        },
+        {
+          "importPath": "t5/umt5-xxl-encoder-Q4_K_M.gguf",
+          "path": "umt5-xxl-encoder-Q4_K_M.gguf",
+          "role": "t5",
+          "sha256": "17cf97a5bbbc60a646d6105b832b6f657ce904a8a1ad970e4b59df0c67584a40",
+          "bytes": 3655145312,
+          "format": "gguf",
+          "repository": "off-grid-ai/Video-Companions-GGUF",
+          "url": "https://huggingface.co/off-grid-ai/Video-Companions-GGUF/resolve/18b5ae5e93799acd6cd20819f898ff60f4b822d1/umt5-xxl-encoder-Q4_K_M.gguf",
+          "revision": "18b5ae5e93799acd6cd20819f898ff60f4b822d1"
+        },
+        {
+          "importPath": "vae/wan_2.1_vae.safetensors",
+          "path": "wan_2.1_vae.safetensors",
+          "role": "vae",
+          "sha256": "2fc39d31359a4b0a64f55876d8ff7fa8d780956ae2cb13463b0223e15148976b",
+          "bytes": 253815318,
+          "format": "safetensors",
+          "repository": "off-grid-ai/Video-Companions-GGUF",
+          "url": "https://huggingface.co/off-grid-ai/Video-Companions-GGUF/resolve/18b5ae5e93799acd6cd20819f898ff60f4b822d1/wan_2.1_vae.safetensors",
+          "revision": "18b5ae5e93799acd6cd20819f898ff60f4b822d1"
+        },
+        {
+          "importPath": "umt5_tokenizer/tokenizer.json",
+          "path": "tokenizer.json",
+          "role": "umt5_tokenizer",
+          "sha256": "af904105ce1071b1202bba0059a841f4a7b85b48b6ec179c4948e3483476e0dd",
+          "bytes": 16853013,
+          "format": "json",
+          "repository": "google/umt5-xxl",
+          "url": "https://huggingface.co/google/umt5-xxl/resolve/66cb9e7e85526fe440a945569e42c72fb6cbc0ad/tokenizer.json",
+          "revision": "66cb9e7e85526fe440a945569e42c72fb6cbc0ad"
+        }
+      ],
+      "capabilities": [
+        "text_to_video"
+      ],
+      "evidence": {
+        "architectureVerified": false,
+        "status": "user_selected_hf_components_not_device_tested",
+        "physicalDeviceTests": 0
+      },
+      "modelId": "hfb_d7dbe87c19b7b891917556496ff65e332a66c0d2",
+      "description": "\u7528\u6237\u4ece\u56fa\u5b9a HF \u7248\u672c\u660e\u786e\u9009\u62e9\u7684\u7ec4\u4ef6\u914d\u65b9\uff1b\u67b6\u6784\u4e0e\u5b9e\u9645\u624b\u673a\u6267\u884c\u5c1a\u672a\u9a8c\u8bc1\u3002",
+      "recipeId": "wan21_13b_split_vulkan_v1",
+      "catalogue": false,
+      "pipeline": "wan21_13b",
+      "sourceUrl": "https://huggingface.co/off-grid-ai/Wan2.1-T2V-1.3B-GGUF",
+      "license": {
+        "name": "\u8bf7\u5206\u522b\u6838\u5bf9\u6a21\u578b\u4e0e\u5404\u7ec4\u4ef6\u8bb8\u53ef",
+        "url": "https://huggingface.co/off-grid-ai/Wan2.1-T2V-1.3B-GGUF"
+      },
+      "engine": "wan_sd_cpp",
+      "name": "Wan2.1-T2V-1.3B-GGUF \u00b7 Wan 2.1 1.3B \u00b7 \u672c\u5730 GPU \u89c6\u9891",
+      "backend": "vulkan",
+      "id": "hfb_d7dbe87c19b7b891917556496ff65e332a66c0d2",
+      "parameters": {
+        "fields": {
+          "seed": {
+            "multipleOf": 1,
+            "default": -1,
+            "presets": [
+              -1,
+              0,
+              42
+            ],
+            "limitSource": "application_guard",
+            "maximum": 2147483647,
+            "label": "\u968f\u673a\u79cd\u5b50\uff08-1 \u4e3a\u968f\u673a\uff09",
+            "type": "integer",
+            "minimum": -1
+          },
+          "frames": {
+            "multipleOf": 4,
+            "default": 17,
+            "presets": [
+              5,
+              9,
+              17,
+              33,
+              65
+            ],
+            "limitSource": "pipeline_alignment_and_application_guard",
+            "maximum": 129,
+            "alignmentOrigin": 1,
+            "label": "\u89c6\u9891\u5e27\u6570\uff084n+1\uff09",
+            "type": "integer",
+            "minimum": 5
+          },
+          "cfg": {
+            "default": 6,
+            "presets": [
+              1,
+              3,
+              6,
+              9
+            ],
+            "limitSource": "application_guard",
+            "maximum": 30,
+            "label": "\u63d0\u793a\u8bcd\u5f15\u5bfc",
+            "type": "number",
+            "minimum": 0
+          },
+          "vaeTiling": {
+            "default": true,
+            "label": "\u5206\u5757\u89e3\u7801 VAE",
+            "type": "boolean"
+          },
+          "vaeTemporalTiling": {
+            "default": false,
+            "label": "VAE \u6309\u65f6\u95f4\u5206\u6bb5\u89e3\u7801\uff08\u5b9e\u9a8c\uff09",
+            "type": "boolean"
+          },
+          "fps": {
+            "default": 8,
+            "presets": [
+              8,
+              12,
+              16,
+              24
+            ],
+            "limitSource": "application_guard",
+            "maximum": 60,
+            "label": "\u6bcf\u79d2\u5e27\u6570",
+            "type": "integer",
+            "minimum": 1
+          },
+          "threads": {
+            "multipleOf": 1,
+            "default": 4,
+            "presets": [
+              1,
+              2,
+              4,
+              6,
+              8
+            ],
+            "limitSource": "application_guard",
+            "maximum": 64,
+            "label": "CPU \u7ebf\u7a0b",
+            "type": "integer",
+            "minimum": 1
+          },
+          "steps": {
+            "multipleOf": 1,
+            "default": 20,
+            "presets": [
+              8,
+              12,
+              20,
+              30
+            ],
+            "limitSource": "application_guard",
+            "maximum": 200,
+            "label": "\u91c7\u6837\u6b65\u6570",
+            "type": "integer",
+            "minimum": 1
+          },
+          "sampler": {
+            "default": "euler",
+            "values": [
+              "euler"
+            ],
+            "label": "\u91c7\u6837\u5668",
+            "type": "enum"
+          },
+          "scheduler": {
+            "default": "discrete",
+            "values": [
+              "discrete"
+            ],
+            "label": "\u8c03\u5ea6\u5668",
+            "type": "enum"
+          },
+          "width": {
+            "multipleOf": 16,
+            "default": 512,
+            "presets": [
+              256,
+              384,
+              512,
+              768,
+              1024
+            ],
+            "limitSource": "pipeline_alignment_and_application_guard",
+            "maximum": 2048,
+            "label": "\u5bbd\u5ea6",
+            "type": "integer",
+            "minimum": 64
+          },
+          "vaeTileSize": {
+            "multipleOf": 64,
+            "default": 128,
+            "presets": [
+              128,
+              256,
+              512,
+              1024
+            ],
+            "limitSource": "application_guard",
+            "maximum": 1024,
+            "label": "VAE \u7a7a\u95f4\u5206\u5757\u5927\u5c0f\uff08\u50cf\u7d20\uff09",
+            "type": "integer",
+            "minimum": 128
+          },
+          "flowShift": {
+            "default": 3,
+            "presets": [
+              0,
+              1,
+              3,
+              5
+            ],
+            "limitSource": "application_guard",
+            "maximum": 32,
+            "label": "\u6d41\u5339\u914d\u504f\u79fb\uff080 \u81ea\u52a8\uff09",
+            "type": "number",
+            "minimum": 0
+          },
+          "height": {
+            "multipleOf": 16,
+            "default": 288,
+            "presets": [
+              256,
+              384,
+              512,
+              768,
+              1024
+            ],
+            "limitSource": "pipeline_alignment_and_application_guard",
+            "maximum": 2048,
+            "label": "\u9ad8\u5ea6",
+            "type": "integer",
+            "minimum": 64
+          }
+        },
+        "version": 1
+      },
+      "uncensored": {
+        "declared": false,
+        "detected": false,
+        "basis": "repository-metadata",
+        "refusalRateTested": false
+      },
+      "tasks": [
+        "video"
+      ],
+      "architecture": "wan21"
+    },
+    "runs": [
+      {
+        "artifact": {
+          "jobId": "job_87ff78b0e1b348e784f8bc385de9326f",
+          "createdAt": 1793365731112,
+          "metadata": {
+            "mime": "video/mp4",
+            "width": 256,
+            "durationMs": 625,
+            "height": 256
+          },
+          "filename": "artifact_f9bebd91eac14d8dbeeeab9f0e6cc157.mp4",
+          "provenance": {
+            "input": {
+              "prompt": "A small red toy robot waving its hand beside a blue ceramic teapot on a wooden table, gentle camera movement, soft daylight",
+              "negativePrompt": ""
+            },
+            "execution": {
+              "effectiveParameters": {
+                "seed": 42,
+                "frames": 5,
+                "cfg": 6,
+                "vaeTiling": true,
+                "vaeTemporalTiling": true,
+                "fps": 8,
+                "threads": 6,
+                "steps": 4,
+                "sampler": "euler",
+                "scheduler": "discrete",
+                "width": 256,
+                "vaeTileSize": 512,
+                "flowShift": 3,
+                "height": 256
+              },
+              "pipeline": "wan21_13b",
+              "remoteInference": false,
+              "diffusionBackend": "vulkan0",
+              "runtimeBackend": "vulkan",
+              "textBackend": "cpu",
+              "vulkanGraphObserved": true,
+              "samplingProfile": "standard",
+              "samplingAdjustments": [],
+              "vaeBackend": "cpu"
+            },
+            "adapters": [],
+            "bundleId": "hfb_d7dbe87c19b7b891917556496ff65e332a66c0d2",
+            "diffusionPlan": {
+              "schema": "lma.diffusion-plan/1",
+              "adjustments": [],
+              "profile": "standard",
+              "parameters": {
+                "seed": 42,
+                "frames": 5,
+                "cfg": 6,
+                "vaeTiling": true,
+                "vaeTemporalTiling": true,
+                "fps": 8,
+                "threads": 6,
+                "steps": 4,
+                "sampler": "euler",
+                "scheduler": "discrete",
+                "width": 256,
+                "vaeTileSize": 512,
+                "flowShift": 3,
+                "height": 256
+              }
+            },
+            "type": "video.generate",
+            "parameters": {
+              "seed": 42,
+              "frames": 5,
+              "cfg": 6,
+              "vaeTiling": true,
+              "vaeTemporalTiling": true,
+              "fps": 8,
+              "threads": 6,
+              "steps": 4,
+              "sampler": "euler",
+              "scheduler": "discrete",
+              "width": 256,
+              "vaeTileSize": 512,
+              "flowShift": 3,
+              "height": 256
+            }
+          },
+          "sha256": "5f78a44e717a91dc02bd882fe200a6a71758ff8bb798017c33a96c16b7d050a5",
+          "bytes": 15191,
+          "origin": {
+            "kind": "generated"
+          },
+          "id": "artifact_f9bebd91eac14d8dbeeeab9f0e6cc157"
+        },
+        "output": "U:\\build\\wan-app-host-tests\\run-1793365426105109700\\data\\artifacts\\media\\artifact_f9bebd91eac14d8dbeeeab9f0e6cc157.mp4",
+        "execution": {
+          "effectiveParameters": {
+            "seed": 42,
+            "frames": 5,
+            "cfg": 6,
+            "vaeTiling": true,
+            "vaeTemporalTiling": true,
+            "fps": 8,
+            "threads": 6,
+            "steps": 4,
+            "sampler": "euler",
+            "scheduler": "discrete",
+            "width": 256,
+            "vaeTileSize": 512,
+            "flowShift": 3,
+            "height": 256
+          },
+          "pipeline": "wan21_13b",
+          "remoteInference": false,
+          "diffusionBackend": "vulkan0",
+          "runtimeBackend": "vulkan",
+          "textBackend": "cpu",
+          "vulkanGraphObserved": true,
+          "samplingProfile": "standard",
+          "samplingAdjustments": [],
+          "vaeBackend": "cpu"
+        },
+        "sha256": "5f78a44e717a91dc02bd882fe200a6a71758ff8bb798017c33a96c16b7d050a5",
+        "bytes": 15191,
+        "name": "a",
+        "progress": [
+          {
+            "stage": "loading",
+            "fraction": null
+          },
+          {
+            "stage": "generating",
+            "fraction": null
+          },
+          {
+            "stage": "generating",
+            "fraction": 0
+          },
+          {
+            "stage": "generating",
+            "fraction": 1
+          },
+          {
+            "stage": "generating",
+            "fraction": 0
+          },
+          {
+            "stage": "generating",
+            "fraction": 0
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.24727272727272728
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.8
+          },
+          {
+            "stage": "generating",
+            "fraction": 1
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.25
+          },
+          {
+            "stage": "generating",
+            "fraction": 1
+          },
+          {
+            "stage": "generating",
+            "fraction": 0
+          },
+          {
+            "stage": "generating",
+            "fraction": 0
+          },
+          {
+            "stage": "generating",
+            "fraction": 1
+          },
+          {
+            "stage": "generating",
+            "fraction": 0
+          },
+          {
+            "stage": "generating",
+            "fraction": 1
+          },
+          {
+            "stage": "generating",
+            "fraction": 1
+          },
+          {
+            "stage": "encoding",
+            "fraction": null
+          }
+        ]
+      },
+      {
+        "execution": {
+          "effectiveParameters": {
+            "seed": 42,
+            "frames": 5,
+            "cfg": 6,
+            "vaeTiling": true,
+            "vaeTemporalTiling": true,
+            "fps": 8,
+            "threads": 6,
+            "steps": 4,
+            "sampler": "euler",
+            "scheduler": "discrete",
+            "width": 256,
+            "vaeTileSize": 512,
+            "flowShift": 3,
+            "height": 256
+          },
+          "pipeline": "wan21_13b",
+          "samplingProfile": "standard",
+          "samplingAdjustments": []
+        },
+        "name": "cancel-sampling",
+        "cancelled": true,
+        "progress": [
+          {
+            "stage": "loading",
+            "fraction": null
+          },
+          {
+            "stage": "generating",
+            "fraction": null
+          },
+          {
+            "stage": "generating",
+            "fraction": 0
+          },
+          {
+            "stage": "generating",
+            "fraction": 1
+          },
+          {
+            "stage": "generating",
+            "fraction": 0
+          },
+          {
+            "stage": "generating",
+            "fraction": 0
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.39515151515151514
+          },
+          {
+            "stage": "generating",
+            "fraction": 1
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.25
+          }
+        ]
+      },
+      {
+        "artifact": {
+          "jobId": "job_6361d16d1e5a48109a7a32f77b1fee4b",
+          "createdAt": 1793365870865,
+          "metadata": {
+            "mime": "video/mp4",
+            "width": 256,
+            "durationMs": 625,
+            "height": 256
+          },
+          "filename": "artifact_2e25ba92e2a2417f9ca746d7bb94d42d.mp4",
+          "provenance": {
+            "input": {
+              "prompt": "A small red toy robot waving its hand beside a blue ceramic teapot on a wooden table, gentle camera movement, soft daylight",
+              "negativePrompt": ""
+            },
+            "execution": {
+              "effectiveParameters": {
+                "seed": 42,
+                "frames": 5,
+                "cfg": 6,
+                "vaeTiling": true,
+                "vaeTemporalTiling": true,
+                "fps": 8,
+                "threads": 6,
+                "steps": 4,
+                "sampler": "euler",
+                "scheduler": "discrete",
+                "width": 256,
+                "vaeTileSize": 512,
+                "flowShift": 3,
+                "height": 256
+              },
+              "pipeline": "wan21_13b",
+              "remoteInference": false,
+              "diffusionBackend": "vulkan0",
+              "runtimeBackend": "vulkan",
+              "textBackend": "cpu",
+              "vulkanGraphObserved": true,
+              "samplingProfile": "standard",
+              "samplingAdjustments": [],
+              "vaeBackend": "cpu"
+            },
+            "adapters": [],
+            "bundleId": "hfb_d7dbe87c19b7b891917556496ff65e332a66c0d2",
+            "diffusionPlan": {
+              "schema": "lma.diffusion-plan/1",
+              "adjustments": [],
+              "profile": "standard",
+              "parameters": {
+                "seed": 42,
+                "frames": 5,
+                "cfg": 6,
+                "vaeTiling": true,
+                "vaeTemporalTiling": true,
+                "fps": 8,
+                "threads": 6,
+                "steps": 4,
+                "sampler": "euler",
+                "scheduler": "discrete",
+                "width": 256,
+                "vaeTileSize": 512,
+                "flowShift": 3,
+                "height": 256
+              }
+            },
+            "type": "video.generate",
+            "parameters": {
+              "seed": 42,
+              "frames": 5,
+              "cfg": 6,
+              "vaeTiling": true,
+              "vaeTemporalTiling": true,
+              "fps": 8,
+              "threads": 6,
+              "steps": 4,
+              "sampler": "euler",
+              "scheduler": "discrete",
+              "width": 256,
+              "vaeTileSize": 512,
+              "flowShift": 3,
+              "height": 256
+            }
+          },
+          "sha256": "5f78a44e717a91dc02bd882fe200a6a71758ff8bb798017c33a96c16b7d050a5",
+          "bytes": 15191,
+          "origin": {
+            "kind": "generated"
+          },
+          "id": "artifact_2e25ba92e2a2417f9ca746d7bb94d42d"
+        },
+        "output": "U:\\build\\wan-app-host-tests\\run-1793365426105109700\\data\\artifacts\\media\\artifact_2e25ba92e2a2417f9ca746d7bb94d42d.mp4",
+        "execution": {
+          "effectiveParameters": {
+            "seed": 42,
+            "frames": 5,
+            "cfg": 6,
+            "vaeTiling": true,
+            "vaeTemporalTiling": true,
+            "fps": 8,
+            "threads": 6,
+            "steps": 4,
+            "sampler": "euler",
+            "scheduler": "discrete",
+            "width": 256,
+            "vaeTileSize": 512,
+            "flowShift": 3,
+            "height": 256
+          },
+          "pipeline": "wan21_13b",
+          "remoteInference": false,
+          "diffusionBackend": "vulkan0",
+          "runtimeBackend": "vulkan",
+          "textBackend": "cpu",
+          "vulkanGraphObserved": true,
+          "samplingProfile": "standard",
+          "samplingAdjustments": [],
+          "vaeBackend": "cpu"
+        },
+        "sha256": "5f78a44e717a91dc02bd882fe200a6a71758ff8bb798017c33a96c16b7d050a5",
+        "bytes": 15191,
+        "name": "recovery-a",
+        "progress": [
+          {
+            "stage": "loading",
+            "fraction": null
+          },
+          {
+            "stage": "generating",
+            "fraction": null
+          },
+          {
+            "stage": "generating",
+            "fraction": 0
+          },
+          {
+            "stage": "generating",
+            "fraction": 1
+          },
+          {
+            "stage": "generating",
+            "fraction": 0
+          },
+          {
+            "stage": "generating",
+            "fraction": 0
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.4254545454545455
+          },
+          {
+            "stage": "generating",
+            "fraction": 1
+          },
+          {
+            "stage": "generating",
+            "fraction": 0.25
+          },
+          {
+            "stage": "generating",
+            "fraction": 1
+          },
+          {
+            "stage": "generating",
+            "fraction": 0
+          },
+          {
+            "stage": "generating",
+            "fraction": 0
+          },
+          {
+            "stage": "generating",
+            "fraction": 1
+          },
+          {
+            "stage": "generating",
+            "fraction": 0
+          },
+          {
+            "stage": "generating",
+            "fraction": 1
+          },
+          {
+            "stage": "generating",
+            "fraction": 1
+          },
+          {
+            "stage": "encoding",
+            "fraction": null
+          }
+        ]
+      }
+    ],
+    "launches": [
+      {
+        "schema": "lma.engine-request/1",
+        "pipeline": "wan21_13b",
+        "output": "U:\\build\\wan-app-host-tests\\run-1793365426105109700\\data\\artifacts\\staging\\job_87ff78b0e1b348e784f8bc385de9326f_a3f7d94ba2ff42749f50832af71b7a15.rgb",
+        "input": {
+          "prompt": "A small red toy robot waving its hand beside a blue ceramic teapot on a wooden table, gentle camera movement, soft daylight",
+          "negativePrompt": ""
+        },
+        "components": {
+          "t5": "U:\\build\\wan-app-host-tests\\run-1793365426105109700\\data\\files\\bundles\\objects\\17cf97a5bbbc60a646d6105b832b6f657ce904a8a1ad970e4b59df0c67584a40",
+          "diffusion": "U:\\build\\wan-app-host-tests\\run-1793365426105109700\\data\\files\\bundles\\objects\\65181afff758fba25cf311399ccb0638a746f8e0e6533e07a84a5a23e0c12318",
+          "umt5_tokenizer": "U:\\build\\wan-app-host-tests\\run-1793365426105109700\\data\\files\\bundles\\objects\\af904105ce1071b1202bba0059a841f4a7b85b48b6ec179c4948e3483476e0dd",
+          "vae": "U:\\build\\wan-app-host-tests\\run-1793365426105109700\\data\\files\\bundles\\objects\\2fc39d31359a4b0a64f55876d8ff7fa8d780956ae2cb13463b0223e15148976b"
+        },
+        "loras": [],
+        "backend": "vulkan",
+        "type": "video.generate",
+        "samplingProfile": "standard",
+        "parameters": {
+          "seed": 42,
+          "frames": 5,
+          "cfg": 6,
+          "vaeTiling": true,
+          "vaeTemporalTiling": true,
+          "fps": 8,
+          "threads": 6,
+          "steps": 4,
+          "sampler": "euler",
+          "scheduler": "discrete",
+          "width": 256,
+          "vaeTileSize": 512,
+          "flowShift": 3,
+          "height": 256
+        },
+        "architecture": "wan21"
+      },
+      {
+        "schema": "lma.engine-request/1",
+        "pipeline": "wan21_13b",
+        "output": "U:\\build\\wan-app-host-tests\\run-1793365426105109700\\data\\artifacts\\staging\\job_8cd34d500ee1418ca05ca9b82d1cb0e4_255ac18cb17246b892ab88cdb97304a7.rgb",
+        "input": {
+          "prompt": "A small red toy robot waving its hand beside a blue ceramic teapot on a wooden table, gentle camera movement, soft daylight",
+          "negativePrompt": ""
+        },
+        "components": {
+          "t5": "U:\\build\\wan-app-host-tests\\run-1793365426105109700\\data\\files\\bundles\\objects\\17cf97a5bbbc60a646d6105b832b6f657ce904a8a1ad970e4b59df0c67584a40",
+          "diffusion": "U:\\build\\wan-app-host-tests\\run-1793365426105109700\\data\\files\\bundles\\objects\\65181afff758fba25cf311399ccb0638a746f8e0e6533e07a84a5a23e0c12318",
+          "umt5_tokenizer": "U:\\build\\wan-app-host-tests\\run-1793365426105109700\\data\\files\\bundles\\objects\\af904105ce1071b1202bba0059a841f4a7b85b48b6ec179c4948e3483476e0dd",
+          "vae": "U:\\build\\wan-app-host-tests\\run-1793365426105109700\\data\\files\\bundles\\objects\\2fc39d31359a4b0a64f55876d8ff7fa8d780956ae2cb13463b0223e15148976b"
+        },
+        "loras": [],
+        "backend": "vulkan",
+        "type": "video.generate",
+        "samplingProfile": "standard",
+        "parameters": {
+          "seed": 42,
+          "frames": 5,
+          "cfg": 6,
+          "vaeTiling": true,
+          "vaeTemporalTiling": true,
+          "fps": 8,
+          "threads": 6,
+          "steps": 4,
+          "sampler": "euler",
+          "scheduler": "discrete",
+          "width": 256,
+          "vaeTileSize": 512,
+          "flowShift": 3,
+          "height": 256
+        },
+        "architecture": "wan21"
+      },
+      {
+        "schema": "lma.engine-request/1",
+        "pipeline": "wan21_13b",
+        "output": "U:\\build\\wan-app-host-tests\\run-1793365426105109700\\data\\artifacts\\staging\\job_6361d16d1e5a48109a7a32f77b1fee4b_06976a1b2be4486f81f8c9ab95f25fce.rgb",
+        "input": {
+          "prompt": "A small red toy robot waving its hand beside a blue ceramic teapot on a wooden table, gentle camera movement, soft daylight",
+          "negativePrompt": ""
+        },
+        "components": {
+          "t5": "U:\\build\\wan-app-host-tests\\run-1793365426105109700\\data\\files\\bundles\\objects\\17cf97a5bbbc60a646d6105b832b6f657ce904a8a1ad970e4b59df0c67584a40",
+          "diffusion": "U:\\build\\wan-app-host-tests\\run-1793365426105109700\\data\\files\\bundles\\objects\\65181afff758fba25cf311399ccb0638a746f8e0e6533e07a84a5a23e0c12318",
+          "umt5_tokenizer": "U:\\build\\wan-app-host-tests\\run-1793365426105109700\\data\\files\\bundles\\objects\\af904105ce1071b1202bba0059a841f4a7b85b48b6ec179c4948e3483476e0dd",
+          "vae": "U:\\build\\wan-app-host-tests\\run-1793365426105109700\\data\\files\\bundles\\objects\\2fc39d31359a4b0a64f55876d8ff7fa8d780956ae2cb13463b0223e15148976b"
+        },
+        "loras": [],
+        "backend": "vulkan",
+        "type": "video.generate",
+        "samplingProfile": "standard",
+        "parameters": {
+          "seed": 42,
+          "frames": 5,
+          "cfg": 6,
+          "vaeTiling": true,
+          "vaeTemporalTiling": true,
+          "fps": 8,
+          "threads": 6,
+          "steps": 4,
+          "sampler": "euler",
+          "scheduler": "discrete",
+          "width": 256,
+          "vaeTileSize": 512,
+          "flowShift": 3,
+          "height": 256
+        },
+        "architecture": "wan21"
+      }
+    ],
+    "host_encoder_receipts": [
+      {
+        "output_sha256": "5f78a44e717a91dc02bd882fe200a6a71758ff8bb798017c33a96c16b7d050a5",
+        "output": "U:\\build\\wan-app-host-tests\\run-1793365426105109700\\data\\artifacts\\staging\\job_87ff78b0e1b348e784f8bc385de9326f_fc39037e589749d78ac7a38cc672ab8f.mp4",
+        "input_raw_bytes": 983068,
+        "frames": 5,
+        "input_raw_sha256": "40bdc402f4eeab9871fb6cfca32099c2e7d130ee1b10c03596c0c9cc4a119ce5",
+        "motion_observed": true,
+        "output_bytes": 15191,
+        "width": 256,
+        "fps": 8,
+        "android_codec_tested": false,
+        "encoder": "native_windows_ffmpeg_libx264",
+        "height": 256
+      },
+      {
+        "output_sha256": "5f78a44e717a91dc02bd882fe200a6a71758ff8bb798017c33a96c16b7d050a5",
+        "output": "U:\\build\\wan-app-host-tests\\run-1793365426105109700\\data\\artifacts\\staging\\job_6361d16d1e5a48109a7a32f77b1fee4b_b6f36a721c0541639fb512107d520d6a.mp4",
+        "input_raw_bytes": 983068,
+        "frames": 5,
+        "input_raw_sha256": "40bdc402f4eeab9871fb6cfca32099c2e7d130ee1b10c03596c0c9cc4a119ce5",
+        "motion_observed": true,
+        "output_bytes": 15191,
+        "width": 256,
+        "fps": 8,
+        "android_codec_tested": false,
+        "encoder": "native_windows_ffmpeg_libx264",
+        "height": 256
+      }
+    ]
+  },
+  "outputs": [
+    {
+      "name": "a",
+      "file": "build/wan-app-host-tests/run-1793365426105109700/data/artifacts/media/artifact_f9bebd91eac14d8dbeeeab9f0e6cc157.mp4",
+      "bytes": 15191,
+      "sha256": "5f78a44e717a91dc02bd882fe200a6a71758ff8bb798017c33a96c16b7d050a5",
+      "media": {
+        "codec_name": "h264",
+        "width": 256,
+        "height": 256,
+        "r_frame_rate": "8/1",
+        "nb_read_frames": "5"
+      },
+      "raw_frames_bitwise_equal_to_direct_native": true,
+      "host_ffmpeg": true,
+      "android_codec_tested": false
+    },
+    {
+      "name": "recovery-a",
+      "file": "build/wan-app-host-tests/run-1793365426105109700/data/artifacts/media/artifact_2e25ba92e2a2417f9ca746d7bb94d42d.mp4",
+      "bytes": 15191,
+      "sha256": "5f78a44e717a91dc02bd882fe200a6a71758ff8bb798017c33a96c16b7d050a5",
+      "media": {
+        "codec_name": "h264",
+        "width": 256,
+        "height": 256,
+        "r_frame_rate": "8/1",
+        "nb_read_frames": "5"
+      },
+      "raw_frames_bitwise_equal_to_direct_native": true,
+      "host_ffmpeg": true,
+      "android_codec_tested": false
+    }
+  ],
+  "files": {
+    "compile.log": {
+      "bytes": 188,
+      "sha256": "0776deeb6ace85f83d60a9ba535cbe73a21566505b5aec2fd5c75b2bde065172"
+    },
+    "data/artifacts/artifacts.json": {
+      "bytes": 3386,
+      "sha256": "814da80ea2bc97972ede40dc530a0161b8e0b73100feed40c72cdefa72ff5a23"
+    },
+    "data/artifacts/media/artifact_2e25ba92e2a2417f9ca746d7bb94d42d.mp4": {
+      "bytes": 15191,
+      "sha256": "5f78a44e717a91dc02bd882fe200a6a71758ff8bb798017c33a96c16b7d050a5"
+    },
+    "data/artifacts/media/artifact_f9bebd91eac14d8dbeeeab9f0e6cc157.mp4": {
+      "bytes": 15191,
+      "sha256": "5f78a44e717a91dc02bd882fe200a6a71758ff8bb798017c33a96c16b7d050a5"
+    },
+    "data/artifacts/staging/job_6361d16d1e5a48109a7a32f77b1fee4b_06976a1b2be4486f81f8c9ab95f25fce.rgb": {
+      "bytes": 983068,
+      "sha256": "40bdc402f4eeab9871fb6cfca32099c2e7d130ee1b10c03596c0c9cc4a119ce5"
+    },
+    "data/artifacts/staging/job_6361d16d1e5a48109a7a32f77b1fee4b_b6f36a721c0541639fb512107d520d6a.mp4.host-encoder.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "data/artifacts/staging/job_87ff78b0e1b348e784f8bc385de9326f_a3f7d94ba2ff42749f50832af71b7a15.rgb": {
+      "bytes": 983068,
+      "sha256": "40bdc402f4eeab9871fb6cfca32099c2e7d130ee1b10c03596c0c9cc4a119ce5"
+    },
+    "data/artifacts/staging/job_87ff78b0e1b348e784f8bc385de9326f_fc39037e589749d78ac7a38cc672ab8f.mp4.host-encoder.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "data/files/bundles/bundles.json": {
+      "bytes": 11478,
+      "sha256": "53889617216108d81e6dfc5e30eab5f3f51f25adbb560ce040d40495844d1473"
+    },
+    "data/java-results.json": {
+      "bytes": 26316,
+      "sha256": "f101c3fe0973cfb0de85de6850e824b621bdcae0bb9785a9790d81335897e57e"
+    },
+    "execution.json": {
+      "bytes": 13216,
+      "sha256": "9265b0326f91e3bb4efe9f861db31660b249b916e396ce53039c1fe10c770f6c"
+    },
+    "java.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "java.stdout": {
+      "bytes": 190,
+      "sha256": "3dfcb3e9767bf246e9def021e9fa26c5b9134fdb08fcfb14d10ded9e43c6d76b"
+    },
+    "sources.rsp": {
+      "bytes": 6050,
+      "sha256": "b1ff527340efebd02da23d511400ed57582822031f35d0b51bb9559deceec2d1"
+    }
+  },
+  "compilation": {
+    "schema": "lma.native-build/1",
+    "engine": "wan_sd_cpp",
+    "source_revision": "be486498eadc29dc3cd234d944c2180ed42b1415",
+    "ggml_revision": "a5915eb0e47adef21c3f25b889a008925ea838c2",
+    "backend": "vulkan",
+    "file": "lma_sd_vulkan_host.exe",
+    "bytes": 49658880,
+    "sha256": "e2008534191f75dc9c4f07eab9200f66646664eefab2c120c2193d346c52d6ca",
+    "vocabularies": "external_user_selected_components",
+    "physical_device_tests": 0,
+    "model_inference_tested": false,
+    "virtualization_used": false,
+    "source_inputs": {
+      "native/CMakeLists.txt": "bbeee4fa61d80500eeecb80dde2be73296e13ec637fc8a2d57a5faaee867e2aa",
+      "native/lcm_condition.hpp": "a5d94cf2f2453f3c8045418aa6b1a147ffa27557665bfc6f2203e04048899ea4",
+      "native/qwen_prompt.hpp": "ec9a45781b93eff62c6f0a4eca2c59fe1088c931d4c1150dcd903ae5c84c1c0f",
+      "native/sd_backend.hpp": "0e3123316a382566c30dfe0a207e9f130242629d0e3a5fb164be7fe243c0364c",
+      "native/sd_policy.hpp": "e60d0f67258e15754930f38aec97522fff28475c4cb3c92524d5daa785178619",
+      "native/sd_worker.cpp": "a6ce16e26c047231326fe1fd2551d75cabf2d47381d6489d73ef7b8c712ac96a",
+      "native/tokenizer_data.hpp": "c752eb62a3c915be4742124bb25e6ada9ea952bbc81c62a1a864cfe39a3ddd6d",
+      "native/vocab_external.cpp": "b8e568f72914833f66bbe338fb877d98d1cb954525a7d3d9a1f8364e4e1c90af",
+      "research/sd_host/compat/sys/prctl.h": "87c9ddf82ce059bf303486b0e10b22dce6d972e87f83836d148e631dcdad9c9e",
+      "research/sd_host/compat/unistd.h": "e467e7f5855c286b3ce40268146ed34d153a5fbf8a42d5c36b26a6293142068b",
+      "research/sd_vulkan_host/CMakeLists.txt": "752440871771be3b3519361e9c488669ca691d875737eac9e489e24870948feb",
+      "research/sd_vulkan_host/NOTICE": "9b917aa087e1d8cda34b8ae50ca88d9a1e73b7ae2c7917130656f9f9579d1ff9",
+      "third_party/ltx098-source-lock.json": "28acd99486f6ca76a06d038076175ac01ca55c7b1d8c3ba6dab9190291ac8779",
+      "third_party/notices/sd-sources.json": "91ee744071aa93c4bd4d40476d3582fa4bf4d00a628527e196d4856c06ec77c1",
+      "tools/build_ltx098.py": "bf39449e38190a666093f6954d133a76da36d519817ca636703f030100d4faf8",
+      "tools/build_sd_vulkan.py": "465f3e0bf42bb555be5f41a609bbb6c510dd5869a07b0a7b0ea2a5e6d0f2454e"
+    },
+    "module_backends": {
+      "text": "cpu",
+      "vae": "cpu",
+      "diffusion": "vulkan0"
+    },
+    "gpu_execution_requires_completed_operation": true,
+    "remote_inference": false,
+    "abi": "windows-x86_64",
+    "compiler": "native MSVC"
+  },
+  "direct_trained_report_sha256": "fe56e8bc0cdcd735588c138b030047c0b47457f347b6db9424f34d2b7f0eb840",
+  "production_java_native_host_executed": true,
+  "physical_android": false,
+  "android_saf_tested": false,
+  "android_background_accepted": false,
+  "independent_numerics_accepted": false,
+  "video_quality_accepted": false,
+  "complete_target16_accepted": false,
+  "android_codec_tested": false,
+  "host_ffmpeg": true,
+  "complete_release_accepted": false,
+  "host_encoder": {
+    "sha256": "d1e2a156261ecc675081943197a85f08f2868784a0af499171ede89353edad31",
+    "bytes": 223360000
+  },
+  "input_fingerprint": {
+    "native/CMakeLists.txt": "bbeee4fa61d80500eeecb80dde2be73296e13ec637fc8a2d57a5faaee867e2aa",
+    "native/lcm_condition.hpp": "a5d94cf2f2453f3c8045418aa6b1a147ffa27557665bfc6f2203e04048899ea4",
+    "native/qwen_prompt.hpp": "ec9a45781b93eff62c6f0a4eca2c59fe1088c931d4c1150dcd903ae5c84c1c0f",
+    "native/sd_backend.hpp": "0e3123316a382566c30dfe0a207e9f130242629d0e3a5fb164be7fe243c0364c",
+    "native/sd_policy.hpp": "e60d0f67258e15754930f38aec97522fff28475c4cb3c92524d5daa785178619",
+    "native/sd_worker.cpp": "a6ce16e26c047231326fe1fd2551d75cabf2d47381d6489d73ef7b8c712ac96a",
+    "native/tokenizer_data.hpp": "c752eb62a3c915be4742124bb25e6ada9ea952bbc81c62a1a864cfe39a3ddd6d",
+    "native/vocab_external.cpp": "b8e568f72914833f66bbe338fb877d98d1cb954525a7d3d9a1f8364e4e1c90af",
+    "research/sd_host/compat/sys/prctl.h": "87c9ddf82ce059bf303486b0e10b22dce6d972e87f83836d148e631dcdad9c9e",
+    "research/sd_host/compat/unistd.h": "e467e7f5855c286b3ce40268146ed34d153a5fbf8a42d5c36b26a6293142068b",
+    "research/sd_vulkan_host/CMakeLists.txt": "752440871771be3b3519361e9c488669ca691d875737eac9e489e24870948feb",
+    "research/sd_vulkan_host/NOTICE": "9b917aa087e1d8cda34b8ae50ca88d9a1e73b7ae2c7917130656f9f9579d1ff9",
+    "third_party/ltx098-source-lock.json": "28acd99486f6ca76a06d038076175ac01ca55c7b1d8c3ba6dab9190291ac8779",
+    "third_party/notices/sd-sources.json": "91ee744071aa93c4bd4d40476d3582fa4bf4d00a628527e196d4856c06ec77c1",
+    "tools/build_ltx098.py": "bf39449e38190a666093f6954d133a76da36d519817ca636703f030100d4faf8",
+    "tools/build_sd_vulkan.py": "465f3e0bf42bb555be5f41a609bbb6c510dd5869a07b0a7b0ea2a5e6d0f2454e",
+    "research/wan_trained/assets.json": "920c7d0a222cb658dc6923531c008e96bf0213e31eb1f30ddb10ea949bb14aa6",
+    "tools/fetch_sd15_trained.py": "91392401d9739f15b14fa4e42b74f13bbdd719a382746541cc69952966e6f307",
+    "tools/fetch_wan_trained.py": "7dc5f8746f783774cfb1cda5ca2d5a22a2e957e4ab5490d6bcf7119ca90a31ef",
+    "app/src/main/assets/recipe-templates.json": "fb37b971eabbf520da49990187a6f0f334809efea088b0fac555e8d5ba3ee72d",
+    "app/src/main/java/com/lma/app/core/AdapterSpec.java": "aff8572d14ac8d616be0a1b0da395e52ed5bddcd5ae407a969c2657bf9257581",
+    "app/src/main/java/com/lma/app/core/ArtifactStore.java": "6f85d2ac710cac0fb5a76cde9493ff1fef4d3e2e119c3e031b7c44ff65a49061",
+    "app/src/main/java/com/lma/app/core/AssemblyPlan.java": "80e81dea2a831d3955aa5ae21323eb0432fb448f78994901633fbb6e85d77e7c",
+    "app/src/main/java/com/lma/app/core/AudioPcm.java": "9bf3270c83f57b7fa4e23fc4518fa063e72ca214675f9c23d45bd1788842f7b2",
+    "app/src/main/java/com/lma/app/core/AudioStreams.java": "de8a2cdd98d083b62515b067865182d9065bb00f14b8c70cacafba21de8407f1",
+    "app/src/main/java/com/lma/app/core/BundleStore.java": "a773aaa8f83410da9ccbf499b9a19ee4166e2c094c2e992699424c0ac68f3e74",
+    "app/src/main/java/com/lma/app/core/BundleTransfers.java": "926596119a2c3f6bc089516e7bbd7db3016487d60c24f908ea646dfc76707f3e",
+    "app/src/main/java/com/lma/app/core/BundleUpdates.java": "f31a65d0e172aa75f6131deace828875534ccc756ed93fac83bb09d5a4162fe1",
+    "app/src/main/java/com/lma/app/core/ByteRange.java": "31723bf112e630de6c2a1cd8d525be7bbd4706e151fa5a297a5e641f59b5c752",
+    "app/src/main/java/com/lma/app/core/ChatHistory.java": "3046a52c3f611b83b46cfed94afe0f4b31667f77986b7ca1737169ec8c4ce951",
+    "app/src/main/java/com/lma/app/core/ComponentIntegrity.java": "7a5977c607f624f8763a782b1b081c4e485c8c05c2caae15986ad2f2388f5bce",
+    "app/src/main/java/com/lma/app/core/DataFiles.java": "02d3212885376e7073a785801dbb81073b13cc87c5fc0e85ac4373fd346696bc",
+    "app/src/main/java/com/lma/app/core/EngineWorkspace.java": "6c632861e13d0a8950cdee66e8bea8a8760d23550c10343d6cfdd8a6e9af29dd",
+    "app/src/main/java/com/lma/app/core/ExecutionGate.java": "143b6d145036c56ad0937316e87af5f4c44507ef89cf16affdc5bef0ad8e2126",
+    "app/src/main/java/com/lma/app/core/InputSelection.java": "963fe60973caab82b9dfedaa7c1661f236aed6ea158fcda8f4a86d02ba33d509",
+    "app/src/main/java/com/lma/app/core/InputSpec.java": "d535fc70bdbfbf7cd9ca2ce685c20735d67ed5c3b7132989ec683c74de779f97",
+    "app/src/main/java/com/lma/app/core/InputUploads.java": "5debd68a73abc8bde8174c985dfec8f534c6bf8df58dda8810b0cc3541fe1d53",
+    "app/src/main/java/com/lma/app/core/JobStore.java": "3f999d908b7667d35557c979a26dbf5544c712015b986a090946b76b8a680628",
+    "app/src/main/java/com/lma/app/core/LcmCondition.java": "2177da94b69781263e36f3e379034619bf74c6856bc6a9108592d4f272e94b7a",
+    "app/src/main/java/com/lma/app/core/LocalApi.java": "c9e1674f98ef12c7312ff42c50ba38a10c08d5cf1d3e173a8093ecd7fa67e5fc",
+    "app/src/main/java/com/lma/app/core/LocalHttp.java": "6f74e8acfe7072606c23e775f87fa5aa8d5ee094ffe20e96788f161674a947aa",
+    "app/src/main/java/com/lma/app/core/Ltx098Spec.java": "8333ea906bc31ea9e014ce4840d15fc6253c91eda1f3688de4f8645738819abf",
+    "app/src/main/java/com/lma/app/core/MnnSpec.java": "055cc06962da0fc34c1abdc57100ac52fca47a9d66ffea6621155c53046d5f1a",
+    "app/src/main/java/com/lma/app/core/ModelBundle.java": "ad08c033a2c9a215c292d20a5a97a65c85db91ce6a86609a8eed9e846449e84b",
+    "app/src/main/java/com/lma/app/core/ModelSelection.java": "965c9f22f16fc822f792ebef6e0de0a0c67f5a6882d5e7ef77be05b83ea1aeb2",
+    "app/src/main/java/com/lma/app/core/MossDelaySpec.java": "2f680d68cf78517f234c336c77e0b584bf40300fd6294514b7cd457149d41bd0",
+    "app/src/main/java/com/lma/app/core/MossNanoSpec.java": "4b784a773fb85550eba8f169a62cab9a274a332519ec700b595694378e9e39ed",
+    "app/src/main/java/com/lma/app/core/MossRqSpec.java": "0713659ade3c172887527a9e961bbde4add5ed00bd2a564256bc11f9b4796b5e",
+    "app/src/main/java/com/lma/app/core/NativePreparation.java": "cb8ee985ef2c6cba3e0d6bb924c940bcb197bd3f576ca7d6e1fa24442d44e1dd",
+    "app/src/main/java/com/lma/app/core/OnnxMetadata.java": "51db38a424032ac21a8a4185745a272db9034a94d2e8b2d0671c11289e9719e3",
+    "app/src/main/java/com/lma/app/core/OpenMossSpec.java": "4a9af3c92d87be65c4f617677eaed31576f9160a3355518fff7cb874192a5258",
+    "app/src/main/java/com/lma/app/core/ParameterSchema.java": "a566c6d452461ee14333caf7e732a33f8d94b12b33cbabc851f5f3fcc6bdb019",
+    "app/src/main/java/com/lma/app/core/PreparationPlan.java": "dfee63b84035c6ca18b0647aecb947070b983b6b2f1de08247129dddfa64a0bf",
+    "app/src/main/java/com/lma/app/core/PreparedAssets.java": "ae09c7aa1643fc22b76cbe11182a742f26aa0ea95bc9b7166d685433a603dd02",
+    "app/src/main/java/com/lma/app/core/PreparedModelAssembly.java": "eef243d48c9b2b7d3d9b08b2ddf8129ff3884bbdd6c00ecd28a83c0f4bbfa384",
+    "app/src/main/java/com/lma/app/core/ProcessControl.java": "a1950624951d41c040b0b9f44cd8ef5faff16ed22dae880d626e4619d77c155d",
+    "app/src/main/java/com/lma/app/core/Protocol.java": "d49f47884aec0cb03347023119c2808330fa9970689dcd9d33c30ca653d03b85",
+    "app/src/main/java/com/lma/app/core/QwenTtsSpec.java": "e94d96d7ce7c499b2d4bafbd35740c690b32169a142a9a55aae7a8b03364125b",
+    "app/src/main/java/com/lma/app/core/RecipeCatalogue.java": "539dcd55124ce71e32476edb8a7efd25d533935847a8357ac3a6dddf68b71a47",
+    "app/src/main/java/com/lma/app/core/RecipeSuggestions.java": "57d9d7b5fc5f3c61a3ab3524af8789df58dbc8ce1923b2c09e139649057beda0",
+    "app/src/main/java/com/lma/app/core/ResourceWatch.java": "6f6a4cb2159f7956d1ae8c202c61430be268d86d230245bccc952844f3816ec5",
+    "app/src/main/java/com/lma/app/core/SdSpec.java": "e26906c0c338deff725d8b5c316beb8205eacbe26ea91cfb3ef0861bf94103b5",
+    "app/src/main/java/com/lma/app/core/SoulxSpec.java": "a761d40965d041d38cc1f629418017103c9eefabf5904814fad9de6372b6bcc7",
+    "app/src/main/java/com/lma/app/core/SpeechVoices.java": "b413549e7721d07c88fec135b01b26a18d9dc0cc686a37dd180309ee10900967",
+    "app/src/main/java/com/lma/app/core/StableAudioSpec.java": "0cc04143a8c8c2afa4dc3d9726f4891779b352404d97c70d6fdc260fbe27ee6c",
+    "app/src/main/java/com/lma/app/core/TaskDrafts.java": "1c97a99a274abb5f38542eb2cea6834121f46b5dfb0e7cbaeaa5df25222c7ead",
+    "app/src/main/java/com/lma/app/core/TaskInput.java": "6f186b392f9e2fd70f253398f4becf9604d22e03c132f18b3bb93f635f637d7b",
+    "app/src/main/java/com/lma/app/core/TaskRequests.java": "6a9056c560a681891a0110b25d015494e0a73240034efde5ad565593a9d1dcc7",
+    "app/src/main/java/com/lma/app/core/TextRequest.java": "bfdb23db96512f00f362b49951c1fee4162ca2d441482eb6ebf180a8d3574d5f",
+    "app/src/main/java/com/lma/app/core/TextResult.java": "2dd7968a40cc917fab5b8bc412ef00d21348abec1d844b140b843b1bba57c6ab",
+    "app/src/main/java/com/lma/app/core/TextSpec.java": "4521ce8e833d88276f6b98d446e0171c48602d67ce2cf4b372d425e56d6d149e",
+    "app/src/main/java/com/lma/app/core/TtsSpec.java": "54f841e2ca5e93d3c3e1845014029b96912291fcf50a50c26a0124325a7a962a",
+    "app/src/main/java/com/lma/app/core/WaveFile.java": "cf70b9bbafb6aa23cc25217d4883e769173b00f74571d1b115c50a8ad6b15361",
+    "app/src/main/java/com/lma/app/LocalEngine.java": "c06198df33cf290dff58d5d7d7f2b44b3d84d552c1a3c0f1cf35c30c6d5b7c19",
+    "app/src/main/java/com/lma/app/NativeWorker.java": "08090e4b6f169b2ffc6bd654b6eb4d64aaf62fdd16508efa39ecb2e9fa15b174",
+    "app/src/main/java/com/lma/app/SdEngine.java": "544ca66c16cee37af8659384d57c28e0800463e4d910f8e0733dbefc227d9387",
+    "research/wan_trained/catalogue-bundle.json": "a936081e8ca82a762a7c837021170fc215172d0272dec747ae501f335efa1b7d",
+    "research/wan_trained/NOTICE": "051dc688525f94d8ff8b2649b268a72ef1247ab021e160693c276dc123dbea9a",
+    "tests/host/android/util/AtomicFile.java": "a05b9c6ef4fa0f0f40aaa49b235faccc98d2d7d5aa1ea4bb8d2f535b8bad2796",
+    "tests/tts-host/com/lma/app/LmaApp.java": "9f27bd7188d03aa4eb95b007111daff697d39515dc41884d4569e2f382d0577b",
+    "tests/wan-trained/com/lma/app/VideoEncoder.java": "f8f176b882dd117905b6d3899853e8f88a08e586bcb38ee775148121467052c9",
+    "tests/wan-trained/com/lma/app/WanTrainedAppTest.java": "ef792e24c6a1800b3610580f942256a0e4c2e00340b7cc580b698e350dadf1d3",
+    "tools/test_wan_app_host.py": "cacbfc4f62ad473faca84edbb0a04eee28a770d8fb2b649c70a227aef8e0d2fc",
+    "tools/test_wan_trained.py": "4facc518a0b7e0f91a22cbc5ca6bda36c1d9cc54b3b12afc57bbec1b9fcb8e35"
+  }
+}

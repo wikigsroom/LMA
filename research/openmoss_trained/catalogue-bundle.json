@@ -1,0 +1,192 @@
+{
+  "engine": "openmoss_native",
+  "backend": "cpu",
+  "architecture": "moss_tts_v15",
+  "pipeline": "moss_tts_v15_openmoss_cpu_v1",
+  "tasks": [
+    "audio"
+  ],
+  "capabilities": [
+    "text_to_speech"
+  ],
+  "parameters": {
+    "version": 1,
+    "fields": {
+      "threads": {
+        "type": "integer",
+        "label": "CPU 线程",
+        "default": 4,
+        "minimum": 1,
+        "maximum": 32,
+        "presets": [
+          2,
+          4,
+          8
+        ],
+        "limitSource": "application_guard"
+      },
+      "seed": {
+        "type": "integer",
+        "label": "随机种子（-1 自动）",
+        "default": -1,
+        "minimum": -1,
+        "maximum": 2147483647,
+        "presets": [
+          -1,
+          0,
+          42
+        ],
+        "limitSource": "native_seed_range"
+      },
+      "maxInputTokens": {
+        "type": "integer",
+        "label": "格式化输入上限（含参考）",
+        "default": 1024,
+        "minimum": 1,
+        "maximum": 2048,
+        "presets": [
+          256,
+          512,
+          1024,
+          2048
+        ],
+        "limitSource": "application_guard"
+      },
+      "maxNewTokens": {
+        "type": "integer",
+        "label": "生成步数上限（含 delay flush；每音频帧 80 ms）",
+        "default": 375,
+        "minimum": 1,
+        "maximum": 1500,
+        "presets": [
+          125,
+          375,
+          750,
+          1500
+        ],
+        "limitSource": "application_guard"
+      },
+      "textTemperature": {
+        "type": "number",
+        "label": "继续 / 停止头温度",
+        "default": 1,
+        "minimum": 0,
+        "maximum": 3,
+        "presets": [
+          0,
+          1,
+          1.5
+        ],
+        "limitSource": "application_guard"
+      },
+      "audioTemperature": {
+        "type": "number",
+        "label": "音频温度",
+        "default": 1.7,
+        "minimum": 0,
+        "maximum": 3,
+        "presets": [
+          0,
+          1,
+          1.7
+        ],
+        "limitSource": "application_guard"
+      },
+      "audioTopP": {
+        "type": "number",
+        "label": "音频 Top P",
+        "default": 0.8,
+        "minimum": 0.01,
+        "maximum": 1,
+        "presets": [
+          0.8,
+          0.9,
+          1
+        ],
+        "limitSource": "application_guard"
+      },
+      "audioTopK": {
+        "type": "integer",
+        "label": "音频 Top K",
+        "default": 25,
+        "minimum": 1,
+        "maximum": 1024,
+        "presets": [
+          1,
+          25,
+          50
+        ],
+        "limitSource": "application_guard"
+      },
+      "audioRepetitionPenalty": {
+        "type": "number",
+        "label": "音频重复惩罚",
+        "default": 1,
+        "minimum": 1,
+        "maximum": 2,
+        "presets": [
+          1,
+          1.05,
+          1.1
+        ],
+        "limitSource": "application_guard"
+      },
+      "voiceInstruction": {
+        "type": "string",
+        "label": "声音描述（可选）",
+        "default": "",
+        "maxLength": 1000
+      },
+      "language": {
+        "type": "string",
+        "label": "语言提示（留空为 None）",
+        "default": "",
+        "maxLength": 64
+      }
+    }
+  },
+  "schema": "lma.model-bundle/1",
+  "id": "moss_tts_v15_q8_bf16_cpu_catalogue_v1",
+  "modelId": "moss_tts_v15_q8_bf16_cpu",
+  "recipeId": "moss_tts_v15_openmoss_cpu_v1",
+  "name": "MOSS-TTS 1.5 · Q8 / BF16 · CPU",
+  "description": "完整 MOSS-TTS 1.5 语音模型与同版音频编解码器；24 kHz 单声道。约 13.43 GB 文件，需高内存设备；参考音频案例曾到达输出上限而未正常结束，仍需验证；尚未通过 Android 真机验收。由用户选择下载，不随 App 安装。",
+  "catalogue": true,
+  "license": {
+    "name": "Apache-2.0",
+    "url": "https://huggingface.co/ilintar/moss-tts-gguf/blob/66bc8249cc3bae20547d312123f502332158c1d0/README.md"
+  },
+  "evidence": {
+    "status": "pinned_assets_not_device_tested",
+    "physicalDeviceTests": 0,
+    "sourceUrl": "https://huggingface.co/ilintar/moss-tts-gguf/blob/66bc8249cc3bae20547d312123f502332158c1d0/README.md",
+    "contentClassification": "no_uncensored_claim",
+    "componentCoverage": "Complete matched Q8_0/BF16 backbone and BF16/FP32 extras. CPU text, delayed audio generation and codec on the same phone. No weights, tokenizer or voice data in APK."
+  },
+  "resources": {
+    "estimatedPeakRamBytes": 0,
+    "estimateKnown": false
+  },
+  "components": [
+    {
+      "role": "backbone",
+      "repository": "ilintar/moss-tts-gguf",
+      "revision": "66bc8249cc3bae20547d312123f502332158c1d0",
+      "path": "moss-tts-1.5-q8_0.gguf",
+      "bytes": 9339597248,
+      "sha256": "83a7885739fe92113208c2abbb45985da30ac1a40c31d4b1a2e722a8ec5256ef",
+      "url": "https://huggingface.co/ilintar/moss-tts-gguf/resolve/66bc8249cc3bae20547d312123f502332158c1d0/moss-tts-1.5-q8_0.gguf",
+      "format": "gguf"
+    },
+    {
+      "role": "extras",
+      "repository": "ilintar/moss-tts-gguf",
+      "revision": "66bc8249cc3bae20547d312123f502332158c1d0",
+      "path": "moss-tts-1.5-q8_0.extras.gguf",
+      "bytes": 4090992128,
+      "sha256": "d50f71cffd44e4b76db58e5be09155200b74c6058c5ebeac58e026926c9a72eb",
+      "url": "https://huggingface.co/ilintar/moss-tts-gguf/resolve/66bc8249cc3bae20547d312123f502332158c1d0/moss-tts-1.5-q8_0.extras.gguf",
+      "format": "gguf"
+    }
+  ]
+}

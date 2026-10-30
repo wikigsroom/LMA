@@ -6,7 +6,7 @@ const crypto = require('node:crypto');
 const cp = require('node:child_process');
 const assert = require('node:assert/strict');
 const {chromium} = require(process.env.LMA_PLAYWRIGHT || 'playwright');
-const mode=process.argv[2] || 'workbench'; assert(['workbench','preflight','recovery','lcm','audio','ltx','resources','curated','speech','components','wan'].includes(mode));
+const mode=process.argv[2] || 'workbench'; assert(['workbench','preflight','recovery','lcm','audio','ltx','resources','curated','speech','components','wan','openmoss'].includes(mode));
 const checkScreen=require('../tests/'+mode+'-ui.cjs');
 const root = path.resolve(__dirname, '..'), assets = path.join(root, 'app/src/main/assets');
 const out = path.join(root, 'docs/media/development',mode), work = path.join(root, 'build',mode+'-media');
@@ -46,6 +46,11 @@ async function main() {
   await page.evaluate(()=>{const banner=document.createElement('div');banner.textContent='UI FIXTURE · 桌面界面录制 · 未执行 Android / 模型推理';banner.style.cssText='position:fixed;top:0;left:0;right:0;z-index:99999;padding:7px;background:#fff0c2;color:#633c00;font:10px sans-serif;text-align:center;pointer-events:none';document.body.appendChild(banner);});
   const checked=name=>{checks.push(name);console.log('PASS '+name);};
   const overflow=async(p,name)=>{assert(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),name);checked(name);};
+  if(mode==='openmoss'){
+    await page.evaluate(require('../tests/foundation-ui.cjs').installFixture);
+    await page.locator('.nav-item[data-tab="models"]').click();
+    await page.locator('[data-filter="local"]').click();await page.locator('[data-task="any"]').click();
+  }
   await checkScreen(page,checked,overflow,work,async(file,caption)=>{if(mode==='recovery'&&/^0[12]-/.test(file))await page.locator('.job-tools').evaluate(el=>el.scrollIntoView({block:'center'}));await page.evaluate(()=>{document.getElementById('toast').hidden=true;});await page.screenshot({path:path.join(out,file)});screenshots.push({file,caption});});
   assert.deepEqual(errors,[]);assert.deepEqual(fingerprint(),inputs);
   const video=page.video();await context.close();context=null;const raw=await video.path();

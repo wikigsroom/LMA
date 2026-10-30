@@ -1,5 +1,7 @@
 # 更新、同步与发布 / Updating and releasing
 
+dev.41：[MOSS-TTS 1.5 方案](MOSS_TTS15.md) / [English](MOSS_TTS15.en.md) / [编号交付与完整待办](releases/v0.3.0-dev.41.md)。先检查完整显式资产、原生真实采样 / 原始 WAV、生产 Java 绑定和已释放映射，再检查原签名 APK 与页面媒体。已有文件的完整 SHA 接入不替代流式复制或 Android 文件选择器；参考案例触及上限的正常结束失败继续保留。Scoped development evidence never clears the complete v0.3.0 Release gates.
+
 dev.40 的 Wan 参数与诊断修改参照[中文](WAN_DECODER.md) / [English](WAN_DECODER.en.md)：保留旧任务输出、逐模型设置、显式用户资产与原默认内存策略；实际主机 VAE 对照和质量失败不作为完整生成器 / Android 验收。Run relevant native/Java/UI checks, retain original reports and failed gates, and refresh bilingual media.
 
 dev.38：[Z-Image-Turbo 完整流程](ZIMAGE_TURBO.md) / [English](ZIMAGE_TURBO.en.md) / [编号交付与全部待办](releases/v0.3.0-dev.38.md)。实际完整组件与生产 Java、控件 / 界面、原签名 APK / 当前指纹分开核验；按原字节保留 dev.37 的39份报告和状态，所有完整 Release 门槛不变。

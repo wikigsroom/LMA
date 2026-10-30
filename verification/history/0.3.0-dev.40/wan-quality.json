@@ -1,0 +1,275 @@
+{
+  "schema": "lma.wan-quality-diagnosis/1",
+  "version": "0.3.0-dev.40",
+  "aggregation_current": true,
+  "original_captures_are_current_validation": false,
+  "original_captures": {
+    "baseline": {
+      "path": "verification/research/wan-quality/baseline.json",
+      "sha256": "f1822362bfab58d9aba351daa5529f646058e1cab2709e51bddf81c08c0f81b4",
+      "bytes": 16238,
+      "current_execution": false,
+      "original_provenance_preserved": true
+    },
+    "untiled": {
+      "path": "verification/research/wan-quality/untiled.json",
+      "sha256": "3ffd24dbead8052a90a61b5a2c9892a7a6699d6bb94ec13f8087745879b58a1e",
+      "bytes": 16036,
+      "current_execution": false,
+      "original_provenance_preserved": true
+    },
+    "temporal": {
+      "path": "verification/research/wan-quality/temporal.json",
+      "sha256": "ef1c4a09f6af76b04de8db45ca625e933d157cc23f39940852f1f5bedf6cf6d8",
+      "bytes": 19161,
+      "current_execution": false,
+      "original_provenance_preserved": true
+    },
+    "tile512": {
+      "path": "verification/research/wan-quality/tile512.json",
+      "sha256": "b5d50b32d7af9d93b9a4b8af5911c97d536cb699bac3f36ba4d36fd4fdaf2ba1",
+      "bytes": 19671,
+      "current_execution": false,
+      "original_provenance_preserved": true
+    },
+    "flow8": {
+      "path": "verification/research/wan-quality/flow8.json",
+      "sha256": "800967ef6a321d277b81eb3a948c607b7e41810e35a7b892f0ac8a696b42d83e",
+      "bytes": 19480,
+      "current_execution": false,
+      "original_provenance_preserved": true
+    },
+    "latents": {
+      "path": "verification/research/wan-quality/latents.json",
+      "sha256": "28aeedcca721779b145de020409f467dcc350d47b37106edc03699625a27eef0",
+      "bytes": 14731,
+      "current_execution": false,
+      "original_provenance_preserved": true
+    },
+    "official-vae": {
+      "path": "verification/research/wan-quality/official-vae.json",
+      "sha256": "6f6720e6ecc1e0324638a43aee02573454caf67e8305a29379723e3b899058a2",
+      "bytes": 3120,
+      "current_execution": false,
+      "original_provenance_preserved": true
+    }
+  },
+  "experiments": [
+    {
+      "name": "baseline",
+      "parameters": {
+        "width": 512,
+        "height": 288,
+        "frames": 17,
+        "fps": 8,
+        "steps": 20,
+        "threads": 6,
+        "seed": 42,
+        "cfg": 6,
+        "sampler": "euler",
+        "scheduler": "discrete",
+        "flowShift": 3,
+        "vaeTiling": true
+      },
+      "worker_sha256": "ccca373f7852397867515e24fc9f9edd43aa2bb6fb4b919c6c98a97fa6a72f10",
+      "rgb_sha256": "1bf6931fbe76618a4aa6434e09efc69530af2ad82bab59ee969a4ea40e76e1cc",
+      "seconds": 1012.1578892999969,
+      "windows_observed_peak_working_set_bytes": 4973056000,
+      "visible_later_frame_artifacts": true,
+      "video_quality_accepted": false
+    },
+    {
+      "name": "untiled",
+      "parameters": {
+        "width": 512,
+        "height": 288,
+        "frames": 17,
+        "fps": 8,
+        "steps": 20,
+        "threads": 6,
+        "seed": 42,
+        "cfg": 6,
+        "sampler": "euler",
+        "scheduler": "discrete",
+        "flowShift": 3,
+        "vaeTiling": false
+      },
+      "worker_sha256": "ccca373f7852397867515e24fc9f9edd43aa2bb6fb4b919c6c98a97fa6a72f10",
+      "rgb_sha256": "21feb001d290ed76f3a78a877b8cebedfbea9ea3aa5b111b44a4f8ce573512c6",
+      "seconds": 440.46044369999436,
+      "windows_observed_peak_working_set_bytes": 11291410432,
+      "visible_later_frame_artifacts": true,
+      "video_quality_accepted": false
+    },
+    {
+      "name": "temporal",
+      "parameters": {
+        "width": 512,
+        "height": 288,
+        "frames": 17,
+        "fps": 8,
+        "steps": 20,
+        "threads": 6,
+        "seed": 42,
+        "cfg": 6,
+        "sampler": "euler",
+        "scheduler": "discrete",
+        "flowShift": 3,
+        "vaeTiling": false,
+        "vaeTileSize": 128,
+        "vaeTemporalTiling": true
+      },
+      "worker_sha256": "ff30f7142f18d6b287ccd6c5e6f502defe3fb60ba48d7c476614235a80735777",
+      "rgb_sha256": "21feb001d290ed76f3a78a877b8cebedfbea9ea3aa5b111b44a4f8ce573512c6",
+      "seconds": 406.92117669999425,
+      "windows_observed_peak_working_set_bytes": 13261283328,
+      "visible_later_frame_artifacts": true,
+      "video_quality_accepted": false
+    },
+    {
+      "name": "tile512",
+      "parameters": {
+        "width": 512,
+        "height": 288,
+        "steps": 20,
+        "threads": 6,
+        "seed": 42,
+        "cfg": 6,
+        "sampler": "euler",
+        "vaeTiling": true,
+        "scheduler": "discrete",
+        "flowShift": 3,
+        "frames": 17,
+        "fps": 8,
+        "vaeTileSize": 512,
+        "vaeTemporalTiling": true
+      },
+      "worker_sha256": "e2008534191f75dc9c4f07eab9200f66646664eefab2c120c2193d346c52d6ca",
+      "rgb_sha256": "21feb001d290ed76f3a78a877b8cebedfbea9ea3aa5b111b44a4f8ce573512c6",
+      "seconds": 317.4634420000075,
+      "windows_observed_peak_working_set_bytes": 12558258176,
+      "visible_later_frame_artifacts": true,
+      "video_quality_accepted": false
+    },
+    {
+      "name": "flow8",
+      "parameters": {
+        "width": 512,
+        "height": 288,
+        "steps": 20,
+        "threads": 6,
+        "seed": 42,
+        "cfg": 6,
+        "sampler": "euler",
+        "vaeTiling": true,
+        "scheduler": "discrete",
+        "flowShift": 8.0,
+        "frames": 17,
+        "fps": 8,
+        "vaeTileSize": 512,
+        "vaeTemporalTiling": true
+      },
+      "worker_sha256": "e2008534191f75dc9c4f07eab9200f66646664eefab2c120c2193d346c52d6ca",
+      "rgb_sha256": "594cab3a810651358e5d49d0224db621c96deb68436695c08952baf52eb4809e",
+      "seconds": 312.57222540001385,
+      "windows_observed_peak_working_set_bytes": 12561133568,
+      "visible_later_frame_artifacts": true,
+      "video_quality_accepted": false
+    }
+  ],
+  "independent_vae_comparison": {
+    "path": "build/wan-quality/untiled-1793360295780024600/untiled.rgb",
+    "sha256": "21feb001d290ed76f3a78a877b8cebedfbea9ea3aa5b111b44a4f8ce573512c6",
+    "mean_absolute_byte_error": 0.49510881012561275,
+    "per_frame_mean_absolute_byte_error": [
+      0.49272099247685186,
+      0.49625424985532407,
+      0.4943553783275463,
+      0.49705448857060186,
+      0.49740035445601855,
+      0.4941541883680556,
+      0.4940253363715278,
+      0.49664306640625,
+      0.49737548828125,
+      0.4942310474537037,
+      0.49552182798032407,
+      0.49538619429976855,
+      0.49660011574074076,
+      0.49575240523726855,
+      0.4942672164351852,
+      0.4927029079861111,
+      0.4924045138888889
+    ],
+    "maximum_absolute_byte_error": 1
+  },
+  "official_vae_revision": "9737cba9c1c3c4d04b33fcad41c111989865d315",
+  "default_decoder": {
+    "vaeTileSize": 128,
+    "vaeTemporalTiling": false
+  },
+  "conclusion": "Later-frame artifacts persist in the unchanged official F32 CPU VAE. Decoder tiling and MP4 composition do not explain this sample; full generator numerics/model quality remain unresolved.",
+  "media": [
+    {
+      "file": "legacy-default-frames.png",
+      "bytes": 574696,
+      "sha256": "9b12a2fa12ce6c7ab975e2c2a5d98bb740afd56ddc208b10981014be0ce72484"
+    },
+    {
+      "file": "legacy-default.gif",
+      "bytes": 430468,
+      "sha256": "94dff22f0de5670428d00fa82c35f367534e530864a7db5723bee23fe1365dea"
+    },
+    {
+      "file": "legacy-default.mp4",
+      "bytes": 118824,
+      "sha256": "449924274a5456f7b67bcfb993220cf89afbe630b412b28f1285339e963df73e"
+    },
+    {
+      "file": "vae-comparison.png",
+      "bytes": 1030508,
+      "sha256": "5ede1eae35c0056049f986bdabc5c7893a9f058264c0886feb0790b218c2bdbf"
+    }
+  ],
+  "physical_android": false,
+  "android_codec_tested": false,
+  "independent_diffusion_numerics_accepted": false,
+  "video_quality_accepted": false,
+  "resource_acceptance": false,
+  "complete_target16_accepted": false,
+  "complete_release_accepted": false,
+  "input_fingerprint": {
+    "build/wan-quality/current-default-1793361987282718000/generated.rgb": "21feb001d290ed76f3a78a877b8cebedfbea9ea3aa5b111b44a4f8ce573512c6",
+    "build/wan-quality/current-default-1793361987282718000/result.json": "b5d50b32d7af9d93b9a4b8af5911c97d536cb699bac3f36ba4d36fd4fdaf2ba1",
+    "build/wan-quality/current-default-1793362344786239200/generated.rgb": "594cab3a810651358e5d49d0224db621c96deb68436695c08952baf52eb4809e",
+    "build/wan-quality/current-default-1793362344786239200/result.json": "800967ef6a321d277b81eb3a948c607b7e41810e35a7b892f0ac8a696b42d83e",
+    "build/wan-quality/latents-1793363361041000300/denoised.f32": "bb69c075374418214adc74e814647109c24a34f9f57e8bad08c568a8f435df8e",
+    "build/wan-quality/latents-1793363361041000300/official-vae.rgb": "32c2a07ab4b2afae91606e698431c465c4094fa7977668253ce51a2ff6a91a15",
+    "build/wan-quality/latents-1793363361041000300/reference.json": "6f6720e6ecc1e0324638a43aee02573454caf67e8305a29379723e3b899058a2",
+    "build/wan-quality/latents-1793363361041000300/result.json": "28aeedcca721779b145de020409f467dcc350d47b37106edc03699625a27eef0",
+    "build/wan-quality/temporal-1793361297754632000/generated.rgb": "21feb001d290ed76f3a78a877b8cebedfbea9ea3aa5b111b44a4f8ce573512c6",
+    "build/wan-quality/temporal-1793361297754632000/result.json": "ef1c4a09f6af76b04de8db45ca625e933d157cc23f39940852f1f5bedf6cf6d8",
+    "build/wan-quality/untiled-1793360295780024600/result.json": "3ffd24dbead8052a90a61b5a2c9892a7a6699d6bb94ec13f8087745879b58a1e",
+    "build/wan-quality/untiled-1793360295780024600/untiled.rgb": "21feb001d290ed76f3a78a877b8cebedfbea9ea3aa5b111b44a4f8ce573512c6",
+    "build/wan-smoke/run-1793355854365738300/a.rgb": "1bf6931fbe76618a4aa6434e09efc69530af2ad82bab59ee969a4ea40e76e1cc",
+    "build/wan-smoke/run-1793355854365738300/result.json": "f1822362bfab58d9aba351daa5529f646058e1cab2709e51bddf81c08c0f81b4",
+    "docs/media/development/wan-quality/legacy-default-frames.png": "9b12a2fa12ce6c7ab975e2c2a5d98bb740afd56ddc208b10981014be0ce72484",
+    "docs/media/development/wan-quality/legacy-default.gif": "94dff22f0de5670428d00fa82c35f367534e530864a7db5723bee23fe1365dea",
+    "docs/media/development/wan-quality/legacy-default.mp4": "449924274a5456f7b67bcfb993220cf89afbe630b412b28f1285339e963df73e",
+    "docs/media/development/wan-quality/vae-comparison.png": "5ede1eae35c0056049f986bdabc5c7893a9f058264c0886feb0790b218c2bdbf",
+    "native/sd_policy.hpp": "e60d0f67258e15754930f38aec97522fff28475c4cb3c92524d5daa785178619",
+    "native/sd_worker.cpp": "a6ce16e26c047231326fe1fd2551d75cabf2d47381d6489d73ef7b8c712ac96a",
+    "research/wan_latent_probe/CMakeLists.txt": "2f27776486da1f61be2e638e51de7748e0364ac3adfd12d6f61cc8355729d96d",
+    "research/wan_latent_probe/NOTICE": "d62b6ed70460f1cab8d99253cbad9ed11828f3cd558ed93e9469ef78bff72365",
+    "research/wan_trained/catalogue-bundle.json": "a936081e8ca82a762a7c837021170fc215172d0272dec747ae501f335efa1b7d",
+    "tools/export_wan_quality.py": "dc3675ef470f183e1dbe7e16d8b109bd6116e40819e648254814ad3f97b08c11",
+    "tools/probe_wan_latents.py": "9ac09d7773e30cd7d925fb5418214daf94b8149f318bb3233839da1dca7f0cb5",
+    "tools/probe_wan_quality.py": "6fe4d1486ae1d3dcd042bcbf1547e53565848adedc0f18496b1fb3008502b884",
+    "verification/research/wan-quality/baseline.json": "f1822362bfab58d9aba351daa5529f646058e1cab2709e51bddf81c08c0f81b4",
+    "verification/research/wan-quality/flow8.json": "800967ef6a321d277b81eb3a948c607b7e41810e35a7b892f0ac8a696b42d83e",
+    "verification/research/wan-quality/latents.json": "28aeedcca721779b145de020409f467dcc350d47b37106edc03699625a27eef0",
+    "verification/research/wan-quality/official-vae.json": "6f6720e6ecc1e0324638a43aee02573454caf67e8305a29379723e3b899058a2",
+    "verification/research/wan-quality/temporal.json": "ef1c4a09f6af76b04de8db45ca625e933d157cc23f39940852f1f5bedf6cf6d8",
+    "verification/research/wan-quality/tile512.json": "b5d50b32d7af9d93b9a4b8af5911c97d536cb699bac3f36ba4d36fd4fdaf2ba1",
+    "verification/research/wan-quality/untiled.json": "3ffd24dbead8052a90a61b5a2c9892a7a6699d6bb94ec13f8087745879b58a1e"
+  }
+}

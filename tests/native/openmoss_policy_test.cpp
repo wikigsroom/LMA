@@ -46,5 +46,19 @@ int main() {
     // A native float32 reference uses the same strict RIFF validation and finite-sample guard.
     std::vector<unsigned char> floats=good;floats.resize(44+96000*4);auto w32=[&](size_t p,uint32_t x){for(int i=0;i<4;i++)floats[p+i]=static_cast<unsigned char>(x>>(8*i));};floats[20]=3;floats[32]=8;floats[34]=32;w32(4,uint32_t(floats.size()-8));w32(28,48000*8);w32(40,96000*4);std::fill(floats.begin()+44,floats.end(),0);put("bad.wav",floats);check(reference_wave("bad.wav").size()==96000);w32(44,0x7fc00000);put("bad.wav",floats);rejects([]{reference_wave("bad.wav");});
     std::vector<float> mono(24000,.25f);write_wave("mono.wav",mono,1,10,24000);check(reference_wave("mono.wav",24000,1).size()==24000);rejects([]{reference_wave("mono.wav");});rejects([]{reference_wave("reference.wav",24000,1);});rejects([]{write_wave("bad.wav",std::vector<float>(240001,0),1,10,24000);});
+    // Real sampler instrumentation distinguishes EOS from application truncation.
+    static std::vector<int> observed;static int decoded=0;
+    generation_trace={};generation_trace.progress=+[](int n,int){observed.push_back(n);};generation_trace.decoding=+[]{++decoded;};
+    generation_budget={64,0,"None"};validate_generation_budget(8,4,128);
+    generation_step(1,4,false);generation_step(2,4,true);
+    check(generation_trace.steps==2 && generation_trace.end_of_speech && observed==std::vector<int>({0,1,2}));
+    rejects([]{generation_step(3,4,false);});
+    validate_generation_budget(8,3,128);check(!generation_trace.end_of_speech && generation_trace.steps==0);
+    rejects([]{generation_step(2,3,false);});rejects([]{generation_step(1,4,false);});
+    generation_step(1,3,false);generation_step(2,3,false);generation_step(3,3,false);
+    check(generation_trace.steps==3 && !generation_trace.end_of_speech);
+    rejects([]{generation_step(4,3,false);});generation_decoding();check(decoded==1);
+    generation_trace={};validate_generation_budget(8,1,128);generation_step(1,1,true);
+    check(generation_trace.end_of_speech && generation_trace.steps==1);
     std::remove("mono.wav");std::remove("reference.wav");std::remove("bad.wav");std::cout<<"{\"passed\":"<<checks<<",\"upstream_sound_primitives\":true,\"upstream_prompt_primitives\":true,\"model_inference\":false}";
 }

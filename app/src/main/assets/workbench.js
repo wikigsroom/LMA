@@ -7,6 +7,19 @@
   function draft(id) { return (ui.state().taskDrafts || []).find(function (d) { return d.bundleId === id; }); }
   function generation(type) { return ['text.generate', 'image.generate', 'video.generate', 'speech.synthesize', 'audio.generate'].indexOf(type) >= 0; }
   function artifact(id) { return (ui.state().artifacts || []).find(function (a) { return a.id === id; }); }
+  var limitMessage = '本次输出已达到所选上限，内容可能不完整。可调整此模型的输出上限后再次生成。';
+  function limitedOutput(data) {
+    var details = ((((data || {}).provenance || {}).engineExecution || {}).details || {});
+    return details.truncated === true || details.stopReason === 'max_new_tokens';
+  }
+  function showOutputArtifact(id, data) {
+    host.showArtifact(id, data);
+    var content = document.getElementById('modalContent');
+    if (!content || !limitedOutput(data)) return;
+    var notice = document.createElement('p'); notice.id = 'artifactCompletionNotice';
+    notice.className = 'output-limit-notice'; notice.setAttribute('role', 'status'); notice.textContent = limitMessage;
+    content.insertBefore(notice, content.firstChild);
+  }
   function resourceText(r) {
     if (!r) return '';
     var text = r.message || (r.status === 'waiting' ? '等待执行时开始检查运行资源。' : r.status === 'ended' ? r.samples ? '本次运行资源检查已结束。' : '本次执行未取得系统资源读数。' : !r.samples ? '等待系统资源读数。' : '正在检查运行资源。');
@@ -17,6 +30,7 @@
   function showJob(job) {
     var r = job.request, b = host.find(r.bundleId), input = r.input || {}, outputs = job.artifacts || [];
     var html = '<div class="task-detail"><div class="model-tags"><span class="tag">' + e(names[r.type] || r.type) + '</span><span class="tag">' + e(host.states[job.state] || job.state) + '</span></div><h3>' + e(b ? b.manifest.name : r.bundleId) + '</h3>';
+    html += '<p id="taskCompletionNotice" class="output-limit-notice" role="status" data-job="' + e(job.id) + '" hidden></p>';
     if (input.prompt) html += '<h4>提示词 / 文本</h4><pre class="task-prompt-text">' + e(input.prompt) + '</pre>';
     if (input.negativePrompt) html += '<h4>负面提示词</h4><pre class="task-prompt-text">' + e(input.negativePrompt) + '</pre>';
     if (r.parameters) html += '<details open><summary>本次参数</summary><dl class="task-value-list">' + Object.keys(r.parameters).map(function (key) { return '<dt>' + e(host.paramNames[key] || key) + '</dt><dd>' + e(r.parameters[key]) + '</dd>'; }).join('') + '</dl></details>';
@@ -32,6 +46,14 @@
     if (b) html += button('bundleInfo', b.id, generation(r.type) ? '管理此模型' : '继续管理运行资产', generation(r.type) ? 'secondary' : 'primary');
     html += '</div><details><summary>完整执行记录</summary><pre class="provenance">' + e(JSON.stringify(job, null, 2)) + '</pre></details></div>';
     ui.openModal('任务详情', html, 'job');
+    var firstOutput = outputs.find(function (id) { var a = artifact(id); return a && a.available; });
+    if (generation(r.type) && firstOutput) host.track('inspectArtifact', {id: firstOutput}, function (data) {
+      var target = document.getElementById('taskCompletionNotice');
+      if (!target || target.dataset.job !== String(job.id)) return;
+      var limited = limitedOutput(data);
+      target.hidden = !limited;
+      target.textContent = limited ? limitMessage : '';
+    });
   }
   function render() {
     renderStatus();
@@ -110,7 +132,8 @@
       }
       if (action === 'deleteTaskDraft') { host.track(action, {id: id, expectedRevision: Number(el.dataset.revision)}, function () { ui.closeModal(); ui.toast('草稿已删除'); }); return true; }
       if (action === 'editTask' || action === 'editArtifact') { host.track(action, {id: id}, function (request) { host.use(request.bundleId, null, request); }); return true; }
-      if (action === 'jobResults') { var job = (ui.state().jobs || []).find(function (j) { return j.id === id; }); if (job && (job.artifacts || []).length === 1) host.track('inspectArtifact', {id: job.artifacts[0]}, function (a) { host.showArtifact(a.id, a); }); else host.track('inspectTask', {id: id}, showJob); return true; }
+      if (action === 'artifactInfo') { host.track('inspectArtifact', {id: id}, function (a) { showOutputArtifact(id, a); }); return true; }
+      if (action === 'jobResults') { var job = (ui.state().jobs || []).find(function (j) { return j.id === id; }); if (job && (job.artifacts || []).length === 1) host.track('inspectArtifact', {id: job.artifacts[0]}, function (a) { showOutputArtifact(a.id, a); }); else host.track('inspectTask', {id: id}, showJob); return true; }
       if (action === 'artifactInput') { reference(id); return true; }
       if (action === 'useArtifactInput') {
         var a = artifact(id), b = host.find(el.dataset.bundle), schema = b && (b.inputSchemas || {})[el.dataset.type], rule = schema && (schema.roles || {})[el.dataset.role];

@@ -1,5 +1,16 @@
 # Changelog / 更新记录
 
+## 0.3.0-dev.41 — MOSS 本地语音 / Local MOSS speech
+
+- Add an optional, complete pinned MOSS-TTS 1.5 Q8/BF16 pair; explicit user download/import, independent settings and lifecycle. APK remains free of learned assets.
+- Report actual sampled steps, EOS versus output-limit truncation, audio decoding and final parameter/seed/audio telemetry.
+- Privately map required CPU weight ranges, retain tensor bytes and original user files, and release every mapping with the model. Add real GGML numerical, private-write, >4 GiB offset and cleanup contracts.
+- Show an incomplete-output notice when opening a limited result from tasks or artifacts; clear it for natural completion, retain original provenance and require an explicit user retry. Preserve the actual reference-case natural-EOS failure.
+- 新增可选完整 MOSS-TTS 1.5 用户资产，接通实际进度、独立参数与结果记录，优化 CPU 权重加载；达到输出上限时提示内容可能不完整。参考模式未自然结束，保留失败与原始产物，不自动重跑或替换用户模型。
+- Verify the actual production Java/native flow: 87 checks, five children, three original WAVs, zero network calls, explicit full-SHA existing-file adoption and exact direct/Java outputs. Retain the separate 900-second stream-copy timeout and failed reference natural completion.
+- Preserve prior trained and failed-quality evidence; retain all targets in the same complete v0.3.0 scope.
+- [中文方案](docs/MOSS_TTS15.md) · [English workflow](docs/MOSS_TTS15.en.md) · [本轮实现与完整待完成事项](docs/releases/v0.3.0-dev.41.md).
+
 ## 0.3.0-dev.40 — Per-model video decoding / 视频解码业务收口
 
 - 修复共用原生进度节流丢失快速采样首个完成步骤的问题；新阶段、首个已完成步骤和最终进度及时转发，其余保持节流。Add real child-protocol regressions and repeat actual Java/native sampler cancellation with the production fix.
