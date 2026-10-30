@@ -42,7 +42,7 @@ def main():
         shutil.rmtree(run_dir)
     source_root = ROOT / "app/src/main/java/com/lma/app"
     sources = sorted((ROOT / "tests/host").rglob("*.java")) + sorted((source_root / "core").glob("*.java"))
-    sources += [source_root / (name + ".java") for name in ("Store", "Downloads", "Net", "ApiHost", "EngineHost", "ChatRunner", "HubClient", "HubCatalog", "ModelSettings", "GgufMetadata", "LocalEngine")]
+    sources += [source_root / (name + ".java") for name in ("Store", "Downloads", "InputImports", "Net", "ApiHost", "EngineHost", "ChatRunner", "HubClient", "HubCatalog", "ModelSettings", "GgufMetadata", "LocalEngine")]
     classes = OUT / "classes"; classes.mkdir(exist_ok=True)
     response = OUT / "sources.rsp"
     response.write_text("\n".join('"' + p.as_posix() + '"' for p in sources), encoding="utf-8")

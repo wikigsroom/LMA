@@ -16,7 +16,7 @@ def sha(path):
 def main():
     release = version()
     if "-dev" in release:
-        raise RuntimeError("Development builds are not Release candidates; all frozen targets and physical-device gates remain required")
+        raise RuntimeError("Development builds are not complete Release candidates. Program-only validation does not waive missing implementation; see docs/PROGRAM_VALIDATION.md")
     tag = "v" + release
     dist = ROOT / "dist"
     output = dist / "releases" / tag

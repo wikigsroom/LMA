@@ -1,0 +1,35 @@
+{
+  "schema": "lma.pending-provider-open-issue/1",
+  "production_commit": "1c0f5d3735d31913069cce64625a101c85c3b8cb",
+  "host_contract_passed": false,
+  "failure": "Pause must cancel a pending provider open and release the queue",
+  "network_requests": 0,
+  "model_inference": false,
+  "physical_android": false,
+  "files": {
+    "first-run.json": {
+      "bytes": 7443,
+      "sha256": "bc39eaa0fcdc38d741fa791c067c73aa087df3e191d5def6d53c29d138ecc154"
+    },
+    "stdout.txt": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stderr.txt": {
+      "bytes": 379,
+      "sha256": "cd7c28f26e38552a43adc8fb1d553ad6cd6609b98ae03d49a5c5e7b7ece15889"
+    },
+    "original-transfer.java.txt": {
+      "bytes": 9362,
+      "sha256": "8b0a13e1d8b635efa6d5238ae7367efb9299109a0051d4e1adbe42c2cb9550b8"
+    },
+    "original-test.java.txt": {
+      "bytes": 11888,
+      "sha256": "30abc804fa299078d5a1d464996d55b53b83bfc1cc58475b9b2d8f38bd52f7fb"
+    },
+    "original-driver.py.txt": {
+      "bytes": 2764,
+      "sha256": "61087a74d63c1ea568219be0b00aea180b063640b11dc15b4deb5570be49e1ed"
+    }
+  }
+}

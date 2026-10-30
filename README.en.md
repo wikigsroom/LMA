@@ -1,5 +1,17 @@
 # LMA · Local models on Android
 
+> **Current: 0.3.0-dev.44 / code48. Subsequent validation is program-only.** At the user's request, do not repeat complete-model inference, ASR scoring or long model runs. Keep original failures and untested claims explicit; continue closing implementation gaps.
+
+[Validation policy](docs/PROGRAM_VALIDATION.en.md) · [中文](docs/PROGRAM_VALIDATION.md) · [Numbered changes / complete pending scope](docs/releases/v0.3.0-dev.44.md) · [Local imports and cancellation](docs/MODEL_TRANSFERS.en.md)
+
+Fix cancellation while a selected document is still opening, which previously stalled the next import. Model bundles, legacy text models and media imports share input ownership: signal pending Android document opens, close readable inputs and reject late descriptors. Users still choose/download/import/manage model assets; the APK updates the foundation. Recommended stays m08→m06→m01.
+
+Program checks pass: **701** foundation, **138** backend, **22** blocked bundle-input and **15** Android document-bridge logic assertions. These are not complete-model or physical Android inference results. See the [signed APK delivery](docs/releases/v0.3.0-dev.44.md). Complete v0.3.0 still needs specific missing adapter code; program acceptance no longer requires repeated complete-model execution.
+
+No page changes: [recovery screenshots/GIF/MP4](docs/media/development/recovery/manifest.json) retain their original dev.42 fixture identity with matching UI source hashes; current pages are checked separately. Model outputs and development entries below are **historical**, not fresh dev.44 executions. The [new policy](docs/PROGRAM_VALIDATION.en.md) supersedes older complete-model/device publication gates.
+
+---
+
 > **Current development: 0.3.0-dev.43 / code47.** Integrate official MOSS prompt/delayed-state corrections and reference-encoder scratch release: 7/7 prompt grids, 5/5 state cases and 21 real allocator checks pass. Users control model selection, downloads and management; App updates deliver the foundation. Trained output, quality and Android acceptance remain separate; complete v0.3.0 acceptance is pending.
 
 [Corrections and reproduction](docs/MOSS_DELAY_FIX.en.md) · [中文](docs/MOSS_DELAY_FIX.md) · [Implemented work and full pending scope](docs/releases/v0.3.0-dev.43.md) · [Model imports](docs/MODEL_TRANSFERS.en.md)

@@ -1,5 +1,17 @@
 # LMA · Android 本地模型工作台
 
+> **当前：0.3.0-dev.44 / code48。后续仅做程序验证。** 按用户最新要求，不再执行耗时的完整模型推理、ASR 评分或长时间模型运行。保留历史失败与未测标记；程序适配缺口继续收口。
+
+[程序验证规则](docs/PROGRAM_VALIDATION.md) · [English](docs/PROGRAM_VALIDATION.en.md) · [本轮实现 / 完整待办](docs/releases/v0.3.0-dev.44.md) · [本地导入与取消](docs/MODEL_TRANSFERS.md)
+
+本轮修复文件仍在“打开中”时无法取消、从而阻塞下一项导入的问题。模型包、原有文本模型和媒体素材共用取消机制；通过 Android 文档取消信号处理等待打开，关闭已打开的输入，并拒绝取消后才返回的句柄。模型仍由用户自主选择 / 下载 / 导入 / 管理，APK 仅更新基座，推荐 m08→m06→m01 保留。
+
+程序检查：基座 **701**、后端 **138**、模型包阻塞输入 **22**、Android 文件桥接逻辑 **15** 项通过；这些均不代表完整模型或 Android 真机推理。当前签名 APK 见[交付记录](docs/releases/v0.3.0-dev.44.md)，完整 v0.3.0 仍需补齐具体适配代码，不再要求重跑完整模型来通过程序验收。
+
+页面未改；[恢复管理截图 / GIF / MP4](docs/media/development/recovery/manifest.json)复用 dev.42 原始页面夹具并核对源码，当前页面另做回归。下面的模型输出与各开发版本条目均为**历史实测**，不是 dev.44 新运行结果；旧文档中的完整模型 / 真机发版门槛由[新规则](docs/PROGRAM_VALIDATION.md)覆盖。
+
+---
+
 > **当前开发进展：0.3.0-dev.43 / code47。** 接通官方一致的 MOSS 提示与排空修正，以及参考编码临时缓存释放；提示 7/7、状态机 5/5、真实计算缓存 21 项检查通过。模型由用户自主选择、下载和管理，App 仅更新基座。完整权重、实际质量与 Android 验收分别留证，完整 v0.3.0 尚未验收。
 
 [修正方案与复现](docs/MOSS_DELAY_FIX.md) · [English](docs/MOSS_DELAY_FIX.en.md) · [本轮实现与完整待办](docs/releases/v0.3.0-dev.43.md) · [模型导入](docs/MODEL_TRANSFERS.md)

@@ -11,7 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def main():
-    names = ("Store", "Downloads", "Net", "ApiHost", "EngineHost", "ChatRunner", "HubClient", "HubCatalog", "ModelSettings", "GgufMetadata", "LocalEngine")
+    names = ("Store", "Downloads", "InputImports", "Net", "ApiHost", "EngineHost", "ChatRunner", "HubClient", "HubCatalog", "ModelSettings", "GgufMetadata", "LocalEngine")
     inputs = fingerprint("app/src/main/java/com/lma/app/core", *["app/src/main/java/com/lma/app/" + n + ".java" for n in names], "tests/host", "app/src/main/assets/models.json", "app/src/main/assets/recipe-templates.json", "tools/test_migration.py")
     dep = ROOT / "build/test-deps/json-20250517.jar"
     assert hashlib.sha256(dep.read_bytes()).hexdigest() == "3ea61b2a06e31edf1c91134fe9106b0ebb16628be169f3db75bc7a2b06b45796"

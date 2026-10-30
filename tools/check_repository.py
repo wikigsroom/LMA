@@ -64,6 +64,13 @@ def main():
             assert resolved.is_relative_to(ROOT.resolve()) and resolved.exists(), "Broken local link: " + str(document.relative_to(ROOT)) + " -> " + target
             links += 1
     release = version()
+    if args.development and release == "0.3.0-dev.44":
+        assert not args.published
+        from program_evidence import check
+        scoped = check()
+        result = dict(scoped, development_only=True, public_files=len(names), documents=len(documents), local_links=links)
+        (ROOT / "build/repository-check-development.json").write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8")
+        print(json.dumps(result)); return
     if args.development and release == "0.3.0-dev.43":
         assert not args.published
         from checkpoint_evidence import check

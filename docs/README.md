@@ -1,5 +1,7 @@
 # LMA 文档 / Documentation
 
+当前 dev.44 / Current dev.44：[仅程序验证规则](PROGRAM_VALIDATION.md) / [English](PROGRAM_VALIDATION.en.md) · [导入与取消](MODEL_TRANSFERS.md) / [English](MODEL_TRANSFERS.en.md) · [编号实现与完整待办](releases/v0.3.0-dev.44.md)。以下旧模型实测与旧门槛为历史记录；新规则覆盖完整模型 / 手机发版验证要求，代码功能范围保持。
+
 当前 dev.43 / Current dev.43：[共用语音引擎修正](MOSS_DELAY_FIX.md) / [English](MOSS_DELAY_FIX.en.md) · [本轮实现、真实验证与完整待办 / Numbered changes and full pending scope](releases/v0.3.0-dev.43.md)。App 仅交付基座；模型仍由用户自主选择、下载和管理。
 
 dev.42：导入暂停与恢复 [中文](MODEL_TRANSFERS.md) / [English](MODEL_TRANSFERS.en.md)；参考输入独立诊断 [中文](MOSS_REFERENCE_DIAGNOSTICS.md) / [English](MOSS_REFERENCE_DIAGNOSTICS.en.md)；[本轮实现与完整待办](releases/v0.3.0-dev.42.md)。

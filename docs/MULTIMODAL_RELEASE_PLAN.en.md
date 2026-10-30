@@ -1,5 +1,7 @@
 # LMA v0.3.0 complete update requirements and acceptance
 
+> **Acceptance revision, 2026-10-31:** the user requires [program validation only](PROGRAM_VALIDATION.en.md). Earlier complete-model, per-model quality and phone-endurance gates below no longer block program delivery/publication. Functional scope, same-phone local execution and user-owned assets remain. Complete missing implementation and preserve failures without claiming unperformed model/device tests. Original frozen requirements follow; see [dev.44](releases/v0.3.0-dev.44.md) for current status.
+
 [中文](MULTIMODAL_RELEASE_PLAN.md) · [Foundation](FOUNDATION.en.md) · [Task execution](WORKFLOWS.en.md) · [Structured scope and tags](proposals/multimodal-release-scope.json)
 
 Date: **2026-10-27 (Asia/Taipei)**. Status: **complete requirements baseline for the next version, v0.3.0; unimplemented and unpublished.** The public APK remains 0.2.0. This consolidates all previously planned work and supersedes the split-release roadmap and ComfyUI canvas/node proposal. See the [v0.3.0 delivery summary](releases/v0.3.0-plan.md).

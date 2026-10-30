@@ -1,5 +1,7 @@
 # LMA v0.3.0 完整版本更新需求与验收
 
+> **验收修订：2026-10-31 用户要求后续仅做[程序验证](PROGRAM_VALIDATION.md)。** 本文原完整模型 / 逐模型质量 / 手机耐久门槛不再作为程序交付与发版前置项；功能范围、同手机本地架构和用户自主资产规则保持。未实现代码继续完成，既有失败保留，不宣称未做的模型 / 手机实测。原始冻结需求与当时评估保留如下，当前进展见[dev.44](releases/v0.3.0-dev.44.md)。
+
 [English](MULTIMODAL_RELEASE_PLAN.en.md) · [基座架构](FOUNDATION.md) · [执行方案](WORKFLOWS.md) · [结构化范围与标签](proposals/multimodal-release-scope.json)
 
 日期：**2026-10-27（Asia/Taipei）**。状态：**下一版本 v0.3.0 的完整需求基线，尚未完整实现、尚未发布。** 当前公开安装包仍为 0.2.0。本文件按用户最新指令合并全部原计划，覆盖早先的分版本线路与 ComfyUI 画布 / 节点方案。版本交付摘要见 [v0.3.0 计划](releases/v0.3.0-plan.md)。

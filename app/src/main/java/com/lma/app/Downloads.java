@@ -3,6 +3,7 @@ package com.lma.app;
 import android.net.Uri;
 import android.os.StatFs;
 import com.lma.app.core.Protocol;
+import com.lma.app.core.InputHandle;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import java.io.File;
@@ -28,6 +29,7 @@ public final class Downloads {
 
     private static final class Job {
         String id, uri; volatile boolean cancelled, started; volatile HttpURLConnection connection;
+        final InputHandle input = new InputHandle();
         Job(String id, String uri) { this.id = id; this.uri = uri; }
     }
     public Downloads(LmaService owner, LmaApp app) { this.owner = owner; this.app = app; }
@@ -47,22 +49,25 @@ public final class Downloads {
     }
     /** Retained for callers upgrading from older code; restoration never starts model downloads. */
     public void resumeInterrupted() { /* User must explicitly choose resumeDownload. */ }
-    public synchronized void pause(String id) {
-        Job job = jobs.get(id);
-        if (job != null) {
+    public void pause(String id) {
+        Job job;
+        synchronized (this) {
+            job = jobs.get(id);
+            if (job == null) return;
             job.cancelled = true;
-            if (job.connection != null) job.connection.disconnect();
             try {
                 JSONObject record = app.store.download(id);
                 record.put("state", job.started ? "pausing" : "paused").put("speed", 0).put("interrupted", false).put("error", "");
                 app.store.updateDownload(id, record, true);
             } catch (Exception error) { app.log("暂停记录失败：" + error.getMessage()); }
             if (!job.started) jobs.remove(id, job);
-            app.emit(); owner.activityChanged();
         }
+        job.input.close();
+        if (job.connection != null) job.connection.disconnect();
+        app.emit(); owner.activityChanged();
     }
     public void pauseAll() { for (String id : jobs.keySet()) pause(id); }
-    public synchronized void close() { closed = true; pauseAll(); executor.shutdown(); }
+    public void close() { synchronized (this) { closed = true; } pauseAll(); executor.shutdown(); }
 
     private void perform(Job job) {
         synchronized (this) {
@@ -88,8 +93,7 @@ public final class Downloads {
             InputStream input;
             long total;
             if (!job.uri.isEmpty()) {
-                input = app.getContentResolver().openInputStream(Uri.parse(job.uri)); total = 0;
-                if (input == null) throw new IOException("无法读取所选文件，请重新导入");
+                input = job.input.open(new DocumentInput(app.getContentResolver(), Uri.parse(job.uri))); total = 0;
             } else {
                 String url = model.getString("url");
                 String hfToken = app.prefs.getString("hfToken", "");
@@ -111,7 +115,7 @@ public final class Downloads {
                 if (total > 0 && new StatFs(partial.getParent()).getAvailableBytes() < total - offset + RESERVE)
                     throw new IOException("可用空间不足，完整文件需要 " + (total / (1024 * 1024)) + " MB");
                 String etag = connection.getHeaderField("ETag"); state.put("etag", etag == null ? "" : etag);
-                input = connection.getInputStream();
+                input = job.input.open(connection::getInputStream);
             }
             state.put("total", Math.max(0, total));
             long lastUpdate = 0, lastPersist = 0, startAt = System.currentTimeMillis(), initial = offset;
@@ -139,6 +143,7 @@ public final class Downloads {
             catch (Exception ignored) {}
             if (!job.cancelled) app.log("下载未完成：" + friendly(error));
         } finally {
+            job.input.close();
             if (job.connection != null) job.connection.disconnect();
             synchronized (this) {
                 // pause() can return from disconnect after the worker's catch has already

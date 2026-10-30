@@ -120,7 +120,7 @@ public final class LmaService extends Service {
                         if (!uris.has(component.role)) { if (!app.bundles.hasObject(component)) throw new IllegalArgumentException("导入缺少组件；不会转为网络下载：" + component.role); continue; }
                         android.net.Uri uri = android.net.Uri.parse(uris.getString(component.role));
                         if (!"content".equals(uri.getScheme())) throw new IllegalArgumentException("请从系统文件选择器导入模型组件");
-                        files.put(component.role, () -> getContentResolver().openInputStream(uri));
+                        files.put(component.role, new DocumentInput(getContentResolver(), uri));
                     }
                     bundleTransfers.importFiles(id, files); break;
                 }

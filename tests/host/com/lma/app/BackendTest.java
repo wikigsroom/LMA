@@ -280,7 +280,8 @@ public final class BackendTest {
         root = Paths.get(args[0]).toAbsolutePath(); work = root.resolve("build/backend-tests/run"); Files.createDirectories(work);
         assets = root.resolve("app/src/main/assets"); libraries = root.resolve("app/src/main/jniLibs/arm64-v8a");
         try {
-            httpsServer(root.resolve("build/backend-tests/loopback.p12")); passed.addAll(ModelSettingsTest.run(work, assets, libraries)); testHistory(); testDownloads(); testProcessesAndChat();
+            httpsServer(root.resolve("build/backend-tests/loopback.p12")); passed.addAll(ModelSettingsTest.run(work, assets, libraries)); testHistory(); testDownloads();
+            passed.addAll(ImportCancellationTest.run(app("import-cancellation"), payload, work.resolve("import-cancellation-artifacts").toFile())); testProcessesAndChat();
             JSONObject result = new JSONObject().put("passed", passed.size()).put("checks", new JSONArray(passed)).put("real_https_sockets", true).put("real_child_processes", true)
                 .put("production_backend_classes", new JSONArray(Arrays.asList("Store", "Downloads", "Net", "EngineHost", "ChatRunner", "ChatHistory", "Protocol", "ModelSettings", "GgufMetadata")))
                 .put("android_framework_adapters", true).put("physical_device", false).put("model_inference", false);

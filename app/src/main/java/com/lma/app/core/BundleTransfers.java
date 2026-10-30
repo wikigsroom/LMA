@@ -12,7 +12,7 @@ public final class BundleTransfers implements AutoCloseable {
     public interface Observer { void opened(HttpURLConnection connection) throws IOException; }
     public interface Network { HttpURLConnection open(ModelBundle.Component component, long offset, Observer observer) throws Exception; }
     public interface Listener { void changed(); void installed(String bundleId); void failed(String bundleId, String message); }
-    public interface Input { InputStream open() throws Exception; }
+    public interface Input extends InputHandle.Source {}
     private static final long RESERVE = 64L * 1024 * 1024;
     private final BundleStore store;
     private final Network network;
@@ -23,7 +23,7 @@ public final class BundleTransfers implements AutoCloseable {
     private static final class Transfer {
         final String id, token; final Map<String, Input> imports;
         volatile boolean paused; volatile HttpURLConnection connection;
-        InputStream input; // Guarded by this transfer, including pause/open races.
+        final InputHandle input = new InputHandle();
         Transfer(String id, String token, Map<String, Input> imports) { this.id = id; this.token = token; this.imports = imports; }
     }
     public BundleTransfers(BundleStore store, Network network, Listener listener) { this.store = store; this.network = network; this.listener = listener; }
@@ -40,17 +40,22 @@ public final class BundleTransfers implements AutoCloseable {
         Transfer job = new Transfer(id, token, imports); jobs.put(id, job);
         executor.execute(() -> perform(job)); listener.changed();
     }
-    public synchronized void pause(String id) throws Exception {
-        Transfer job = jobs.get(id);
-        if (job != null) job.paused = true;
-        try { store.pause(id); } finally { if (job != null) stopInput(job); }
+    public void pause(String id) throws Exception {
+        Transfer job = null;
+        try {
+            synchronized (this) {
+                job = jobs.get(id);
+                if (job != null) job.paused = true;
+                store.pause(id);
+            }
+        } finally {
+            // Stop the exact operation outside the transfer manager's monitor.
+            if (job != null) stopInput(job);
+        }
         listener.changed();
     }
     private static void stopInput(Transfer job) {
-        InputStream input;
-        synchronized (job) { input = job.input; job.input = null; }
-        // Closing the actual stream releases a blocked local/document-provider read.
-        if (input != null) try { input.close(); } catch (IOException ignored) {}
+        job.input.close();
         if (job.connection != null) job.connection.disconnect();
     }
     public boolean busy() { return !jobs.isEmpty(); }
@@ -79,8 +84,7 @@ public final class BundleTransfers implements AutoCloseable {
                     File partial = store.partial(component.objectId);
                     Input imported = job.imports.get(component.role);
                     if (imported != null) {
-                        try (InputStream in = imported.open()) {
-                            if (in == null) throw new IOException("Cannot read imported component");
+                        try (InputStream in = job.input.open(imported)) {
                             copy(job, component, in, partial, 0);
                         }
                     } else if (partial.length() != component.bytes) download(job, component, partial);
@@ -95,6 +99,7 @@ public final class BundleTransfers implements AutoCloseable {
                 catch (Exception superseded) { /* A newer user operation owns this bundle. */ }
             }
         } finally {
+            job.input.close();
             if (job.connection != null) job.connection.disconnect();
             jobs.remove(job.id, job); listener.changed();
         }
@@ -113,12 +118,11 @@ public final class BundleTransfers implements AutoCloseable {
             else throw new IOException("Component download returned HTTP " + status);
             long length = connection.getContentLengthLong();
             if (length >= 0 && length != component.bytes - offset) throw new IOException("Component Content-Length mismatch");
-            try (InputStream in = connection.getInputStream()) { copy(job, component, in, partial, offset); }
+            try (InputStream in = job.input.open(connection::getInputStream)) { copy(job, component, in, partial, offset); }
         } finally { connection.disconnect(); job.connection = null; }
     }
     private void copy(Transfer job, ModelBundle.Component c, InputStream in, File partial, long offset) throws Exception {
-        synchronized (job) { check(job); job.input = in; }
-        try {
+        check(job);
         store.progress(job.id, job.token, "downloading", c.role, offset, ""); listener.changed();
         try (FileOutputStream out = new FileOutputStream(partial, offset > 0)) {
             long received = offset, last = System.nanoTime(); byte[] buffer = new byte[128 * 1024]; int count;
@@ -132,11 +136,15 @@ public final class BundleTransfers implements AutoCloseable {
             check(job); out.getFD().sync();
             if (received != c.bytes) throw new IOException("Component download is incomplete; resume to continue");
         }
-        } finally { synchronized (job) { if (job.input == in) job.input = null; } }
     }
-    @Override public synchronized void close() {
-        closed = true;
-        for (Transfer job : jobs.values()) { job.paused = true; stopInput(job); try { store.pause(job.id); } catch (Exception ignored) {} }
+    @Override public void close() {
+        List<Transfer> stopping;
+        synchronized (this) {
+            closed = true;
+            stopping = new ArrayList<>(jobs.values());
+            for (Transfer job : stopping) { job.paused = true; try { store.pause(job.id); } catch (Exception ignored) {} }
+        }
+        for (Transfer job : stopping) stopInput(job);
         executor.shutdown();
     }
 }

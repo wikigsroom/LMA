@@ -1,0 +1,5 @@
+Exception in thread "main" java.lang.AssertionError: Pause must cancel a pending provider open and release the queue
+	at com.lma.app.BundlePauseTest.check(BundlePauseTest.java:16)
+	at com.lma.app.BundlePauseTest.pausedOpen(BundlePauseTest.java:142)
+	at com.lma.app.BundlePauseTest.run(BundlePauseTest.java:170)
+	at com.lma.app.BundlePauseTest.main(BundlePauseTest.java:175)

@@ -1,5 +1,13 @@
 # Changelog / 更新记录
 
+## 0.3.0-dev.44 — 程序验证与导入取消 / Program validation and import cancellation
+
+- 按 2026-10-31 用户指令，后续仅做程序验证；不再重跑完整模型、ASR 或耗时推理，不将未实现适配或历史失败改为通过。Record the explicit override of older full-model/device gates in a bilingual policy and machine-readable manifest.
+- 用原生产代码复现并保留“等待打开文件时暂停仍阻塞队列”的失败；共用 `InputHandle` / Android `DocumentInput` 支持打开前取消、取消信号、读取关闭与迟到资源释放。Cancellation covers bundles, legacy text models and media imports.
+- 22 项阻塞模型包输入、15 项实际 Android 桥接源码逻辑、138 项后端、701 项基座检查通过；夹具和 Android 编译分别记账，不运行完整模型。Original failure and historical model/media records remain unchanged.
+- 原签名 dev.44/code48；模型仍由用户自主选择、下载、导入和管理；推荐、HF 全部 / 搜索、本地、逐模型参数保留。Unchanged dev.42 page recordings retain their original identity; current UI regression is separate.
+- [验证规则 / Policy](docs/PROGRAM_VALIDATION.md) · [English](docs/PROGRAM_VALIDATION.en.md) · [本轮编号实现 / 完整待办](docs/releases/v0.3.0-dev.44.md)。正式 v0.3.0 的未实现代码继续收口，完整模型及手机耐久验证不再列为程序发版前置项。
+
 ## 0.3.0-dev.43 — 共用语音引擎修正 / Shared speech corrections
 
 - 官方 Delay 普通提示 7/7、状态机 5/5；修正同一步排空递增、截断帧数和用户参考片段误提取，保留原始失败。Official method parity is scoped separately from trained output and Android acceptance.

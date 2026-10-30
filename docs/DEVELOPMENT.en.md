@@ -1,5 +1,7 @@
 # v0.3.0 development status and evidence
 
+Current **dev.44/code48**: [program-only validation](PROGRAM_VALIDATION.en.md), [cancellable local imports](MODEL_TRANSFERS.en.md), [numbered delivery / full pending scope](releases/v0.3.0-dev.44.md). Check compilation, business/API/queue/cancel/recovery and UI without repeating complete models, ASR or phone endurance. Sana text-to-image and the original LTX variant remain implementation gaps in the same v0.3.0 scope. Model executions below are historical, not current APK inference acceptance.
+
 Current **dev.43/code47**: [shared speech prompt, delayed-state and reference scratch corrections](MOSS_DELAY_FIX.en.md), [numbered implementation and complete pending scope](releases/v0.3.0-dev.43.md). Prompt grids 7/7, native state cases 5/5 and 21 real allocator checks pass. The fresh complete reference run still reaches the 375-step limit and has 36/2 independent ASR word errors. Actual host execution, UI checks and signed Android compilation remain separate; every frozen target and formal Release gate is retained.
 
 Retained history **dev.41/code45**: [complete user-owned MOSS-TTS 1.5 assets and business flow](MOSS_TTS15.en.md), [numbered changes and full remaining scope](releases/v0.3.0-dev.41.md). Actual host synthesis, original-signature Android compilation and UI simulation are separate evidence. The reference case hits its output limit and fails natural-completion acceptance; quality, Android and full Release gates remain open.

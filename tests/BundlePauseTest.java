@@ -57,6 +57,20 @@ public final class BundlePauseTest {
         }
         @Override public void close() { closed = true; released.countDown(); }
     }
+    private static final class BlockedOpen implements BundleTransfers.Input {
+        final CountDownLatch opening = new CountDownLatch(1), released = new CountDownLatch(1);
+        final AtomicInteger cancellations = new AtomicInteger();
+        volatile boolean streamClosed;
+        public InputStream open() throws Exception {
+            opening.countDown();
+            if (!released.await(20, TimeUnit.SECONDS)) throw new IOException("Opening fixture timeout");
+            // A provider may still return a descriptor after accepting cancellation.
+            return new ByteArrayInputStream(bytes(46)) {
+                @Override public void close() throws IOException { streamClosed = true; super.close(); }
+            };
+        }
+        public void cancel() { cancellations.incrementAndGet(); released.countDown(); }
+    }
     private static BundleTransfers transfers(BundleStore store, AtomicInteger installed, AtomicInteger failures) {
         return new BundleTransfers(store, (component, offset, observer) -> {
             throw new IOException("No network in local import contract");
@@ -112,15 +126,54 @@ public final class BundlePauseTest {
                 && store.record(two.id).getJSONObject("transfer").getString("state").equals("paused"), "Both active and queued imports remain explicitly paused");
         } finally { input.close(); transfers.close(); }
     }
+    private static void pausedOpen(File root) throws Exception {
+        byte[] first = bytes(46), second = bytes(47);
+        BundleStore store = new BundleStore(root);
+        ModelBundle one = bundle("opening_one", first), two = bundle("after_open", second);
+        store.declare(one); store.declare(two);
+        AtomicInteger installed = new AtomicInteger(), failures = new AtomicInteger();
+        BlockedOpen input = new BlockedOpen();
+        try (BundleTransfers transfers = transfers(store, installed, failures)) {
+            try {
+                transfers.importFiles(one.id, Collections.singletonMap("model", input));
+                check(input.opening.await(3, TimeUnit.SECONDS), "Transfer reaches a real blocked provider open");
+                transfers.importFiles(two.id, Collections.singletonMap("model", () -> new ByteArrayInputStream(second)));
+                transfers.pause(one.id);
+                check(transfers.awaitIdle(3, TimeUnit.SECONDS), "Pause must cancel a pending provider open and release the queue");
+                check(input.cancellations.get() == 1 && input.streamClosed, "Cancel reaches the opener and closes a late returned stream");
+                check(!store.plan(one.id).getBoolean("installed") && store.plan(two.id).getBoolean("installed"), "Only the next explicit import installs");
+                check(store.record(one.id).getJSONObject("transfer").getString("state").equals("paused") && failures.get() == 0, "Opening cancellation stays paused without a failure");
+            } finally { input.cancel(); }
+        }
+    }
+    private static void closedOpen(File root) throws Exception {
+        BundleStore store = new BundleStore(root);
+        ModelBundle one = bundle("closing_open", bytes(46)), two = bundle("closing_wait", bytes(48));
+        store.declare(one); store.declare(two);
+        AtomicInteger installed = new AtomicInteger(), failures = new AtomicInteger(), opened = new AtomicInteger();
+        BlockedOpen input = new BlockedOpen();
+        BundleTransfers transfers = transfers(store, installed, failures);
+        try {
+            transfers.importFiles(one.id, Collections.singletonMap("model", input));
+            check(input.opening.await(3, TimeUnit.SECONDS), "Shutdown reaches a pending provider open");
+            transfers.importFiles(two.id, Collections.singletonMap("model", () -> { opened.incrementAndGet(); return new ByteArrayInputStream(bytes(48)); }));
+            transfers.close();
+            check(transfers.awaitIdle(3, TimeUnit.SECONDS) && input.cancellations.get() == 1 && input.streamClosed, "Shutdown cancels opening and closes late descriptors");
+            check(opened.get() == 0 && installed.get() == 0 && failures.get() == 0, "Shutdown starts no queued provider and publishes no partial model");
+            check(store.record(one.id).getJSONObject("transfer").getString("state").equals("paused") && store.record(two.id).getJSONObject("transfer").getString("state").equals("paused"), "Both records remain paused after opening cancellation");
+        } finally { input.cancel(); transfers.close(); }
+    }
     public static int run(File root) throws Exception {
         int before = passed;
         pausedRead(new File(root, "pause"));
         closedRead(new File(root, "shutdown"));
+        pausedOpen(new File(root, "opening-pause"));
+        closedOpen(new File(root, "opening-shutdown"));
         return passed - before;
     }
     public static void main(String[] args) throws Exception {
         run(new File(args[0]));
-        System.out.println(new JSONObject().put("passed", passed).put("blocked_provider_cases", 2)
+        System.out.println(new JSONObject().put("passed", passed).put("blocked_provider_cases", 4)
             .put("network_requests", 0).put("model_inference", false).put("physical_android", false));
     }
 }
