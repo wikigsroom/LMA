@@ -19,7 +19,7 @@ public final class HubCatalog implements AutoCloseable {
     private JSONObject draft = new JSONObject();
     private final ExecutorService searchWorker = Executors.newSingleThreadExecutor();
     private final ExecutorService fileWorker = Executors.newSingleThreadExecutor();
-    private long searchGeneration, fileGeneration;
+    private long searchGeneration, fileGeneration, reviewGeneration;
     private String query = "", format = "gguf", sort = "downloads", cursor = "", fileCursor = "";
     private final ArrayList<String> history = new ArrayList<>(), fileHistory = new ArrayList<>();
     private JSONObject search = emptySearch(), files = emptyFiles();
@@ -50,7 +50,7 @@ public final class HubCatalog implements AutoCloseable {
             case "hubPage": search(command, command.optString("direction")); return;
             case "hubFiles": files(command, "new"); return;
             case "hubFilePage": files(command, command.optString("direction")); return;
-            case "hubRecipeStart": case "hubRecipeTemplate": case "hubRecipeBind": case "hubRecipeDeclare": recipe(command); return;
+            case "hubRecipeStart": case "hubRecipeTemplate": case "hubRecipeBind": case "hubRecipeDeclare": case "hubRecipeReview": case "hubRecipeApply": case "hubRecipeCancelReview": recipe(command); return;
             case "hubToken": {
                 String token = command.optString("token").trim();
                 if (!token.isEmpty() && (!token.startsWith("hf_") || !token.matches("[A-Za-z0-9_]{6,512}"))) throw new IllegalArgumentException("请填写有效的 hf_ 访问令牌，或留空清除");
@@ -120,11 +120,12 @@ public final class HubCatalog implements AutoCloseable {
         if (action.equals("hubRecipeStart")) {
             JSONObject repository = files.optJSONObject("repository");
             if (files.optBoolean("loading") || repository == null || repository.optString("revision").isEmpty() || !repository.getString("id").equals(command.getString("repository"))) throw new IllegalStateException("请等待仓库元数据加载完成后选择配方");
+            reviewGeneration++;
             draft = new JSONObject().put("draftId", UUID.randomUUID().toString()).put("origin", DataFiles.copy(repository)).put("templateId", "").put("bindings", new JSONObject());
         } else {
             if (draft.optString("draftId").isEmpty() || !draft.getString("draftId").equals(command.getString("draftId"))) throw new IllegalStateException("组件选择已变化，请使用当前配方表单");
             if (action.equals("hubRecipeTemplate")) {
-                String id = command.getString("templateId"); recipes.template(id);
+                String id = command.getString("templateId"); recipes.template(id); invalidateReview();
                 draft.put("draftId", UUID.randomUUID().toString()).put("templateId", id).put("bindings", new JSONObject()); draft.remove("bundleId");
             } else if (action.equals("hubRecipeBind")) {
                 JSONObject repository = files.optJSONObject("repository");
@@ -133,14 +134,47 @@ public final class HubCatalog implements AutoCloseable {
                 for (int i = 0; i < assets.length(); i++) if (assets.getJSONObject(i).getString("path").equals(command.getString("path"))) selected = assets.getJSONObject(i);
                 if (selected == null) throw new IllegalArgumentException("组件不在当前 HF 文件页面");
                 String role = command.getString("role"); recipes.accept(draft.getString("templateId"), role, selected);
-                draft.getJSONObject("bindings").put(role, DataFiles.copy(selected)); draft.remove("bundleId");
+                invalidateReview(); draft.getJSONObject("bindings").put(role, DataFiles.copy(selected)); draft.remove("bundleId");
+            } else if (action.equals("hubRecipeReview")) {
+                beginReview(command); return;
+            } else if (action.equals("hubRecipeCancelReview")) {
+                invalidateReview();
+            } else if (action.equals("hubRecipeApply")) {
+                JSONObject review=draft.optJSONObject("suggestions");
+                if(review==null || !review.getString("reviewId").equals(command.getString("reviewId")))throw new IllegalArgumentException("配套建议已变化，请重新检查");
+                JSONObject applied=RecipeSuggestions.apply(recipes,draft.getString("templateId"),draft.getJSONObject("bindings"),review,command.getJSONArray("roles"));
+                invalidateReview();draft.put("bindings",applied);draft.remove("bundleId");
             } else if (action.equals("hubRecipeDeclare")) {
                 if (app.bundles == null) throw new IllegalStateException("模型资产存储不可用");
                 ModelBundle bundle = recipes.compose(draft.getString("templateId"), draft.getJSONObject("bindings"));
-                app.bundles.declare(bundle); draft.put("bundleId", bundle.id); command.put("result", new JSONObject().put("bundleId", bundle.id));
+                app.bundles.declare(bundle); invalidateReview(); draft.put("bundleId", bundle.id); command.put("result", new JSONObject().put("bundleId", bundle.id));
             } else throw new IllegalArgumentException("Unknown component-recipe action");
         }
         app.finishCommand(command, null);
+    }
+    private void invalidateReview() throws Exception {
+        reviewGeneration++;draft.remove("suggestions");draft.remove("reviewError");draft.put("reviewing",false);
+    }
+    private synchronized void beginReview(JSONObject command) throws Exception {
+        if(draft.optBoolean("reviewing"))throw new IllegalStateException("正在检查配套文件，请等待或停止检查");
+        String templateId=draft.getString("templateId");recipes.template(templateId);
+        JSONObject repo=files.optJSONObject("repository");
+        if(files.optBoolean("loading") || repo==null || !repo.optString("revision").matches("[a-f0-9]{40}"))throw new IllegalStateException("请先加载要检查的 HF 仓库文件");
+        final JSONObject repository=DataFiles.copy(repo),bindings=DataFiles.copy(draft.getJSONObject("bindings"));
+        final long generation=++reviewGeneration;final String draftId=draft.getString("draftId");
+        draft.remove("suggestions");draft.put("reviewing",true).put("reviewError","");app.emit();
+        fileWorker.execute(()->{
+            try {
+                DataFiles.Check check=()->{synchronized(this){if(generation!=reviewGeneration || !draftId.equals(draft.optString("draftId")))throw new java.io.IOException("配套检查已停止或选择已变化");}};
+                check.run();JSONObject inventory=client().inventory(repository,check);check.run();
+                JSONObject result=RecipeSuggestions.review(recipes,templateId,bindings,inventory);
+                synchronized(this){check.run();draft.put("suggestions",result).put("reviewing",false);}
+                app.finishCommand(command,null);
+            } catch(Exception error) {
+                synchronized(this){if(generation==reviewGeneration)try{draft.put("reviewing",false).put("reviewError",error.getMessage()==null?"检查失败，请重试或手动选择":error.getMessage());}catch(Exception ignored){}}
+                app.finishCommand(command,error,false);
+            }
+        });
     }
     private void completeError(JSONObject command, long generation, boolean isSearch, Exception error) {
         synchronized (this) {

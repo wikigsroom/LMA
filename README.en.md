@@ -2,7 +2,13 @@
 
 [中文](README.md) · [English](README.en.md) · [Releases](https://github.com/wikigsroom/LMA/releases) · [Documentation](docs/README.md) · [Changelog](CHANGELOG.md)
 
-> **Current development: 0.3.0-dev.33 / code 37.** All now includes the complete eleven-file Nano 100M profile. Kokoro/Nano voice names, counts and IDs come from user-downloaded files; editable choices clamp to local limits. Settings and queued snapshots remain per model. The APK contains no weights, preset voices or prompt codes, and never downloads models automatically. [Design/usage](docs/SPEECH_SELECTION.en.md) · [Numbered delivery/full pending scope](docs/releases/v0.3.0-dev.33.md) · [MP4](docs/media/development/speech/speech-ui.mp4) · [GIF](docs/media/development/speech/speech-ui.gif). This round adds 70 production Java metadata checks (four exact local files, 48 MiB heap) and 20 UI controls; no new trained inference or phone acceptance. All complete-release gates remain required.
+> **Current development: 0.3.0-dev.34 / code 38.** HF companion review scans one pinned revision and applies only user-confirmed suggestions. It never overwrites existing choices, declares a model or downloads weights. Nineteen of 35 existing recipes provide 49 filename hints, including all thirteen Sana roles; ambiguity and incomplete directories retain manual selection. Model IDs, parameters and queued snapshots are preserved. [Design/usage](docs/COMPONENT_SUGGESTIONS.en.md) · [Numbered delivery/full pending scope](docs/releases/v0.3.0-dev.34.md) · [MP4](docs/media/development/components/components-ui.mp4) · [GIF](docs/media/development/components/components-ui.gif). These are metadata/selection checks, not model inference or phone acceptance; all complete-version gates remain required.
+
+| Confirm companions — UI fixture | Complete download plan — UI fixture |
+|---|---|
+| ![Pinned companion review](docs/media/development/components/02-companion-review.png) | ![Separate declaration and download](docs/media/development/components/03-complete-download-plan.png) |
+
+[Nano and local voice selection](docs/SPEECH_SELECTION.en.md) remain available; the following are also desktop UI fixtures.
 
 | Optional speech models — UI fixture | Local voice names and limits — UI fixture |
 |---|---|

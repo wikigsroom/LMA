@@ -1,5 +1,14 @@
 # Changelog / 更新记录
 
+## 0.3.0-dev.34 — companion-file review / HF 配套组件确认
+
+- Add generic pinned-revision metadata inventory, filename/sibling-path proposals and explicit confirmation. 35 套配方中 19 套提供 49 条数据提示，不按模型 ID 新增页面或队列分支。
+- Keep review, apply, declaration and model download separate; preserve manual choices. 歧义、重复角色与未完整目录不自动选择，不隐式下载或覆盖。
+- Add native review tokens, binding fingerprints, stale/cancel/error recovery. Existing model IDs/manifests remain identical when only matching hints change; compared against exact dev.33 templates.
+- Add 57 production client/controller/store checks and 16 UI checks; rerun current HF80/backend98 controls and related regressions. 当前 18 套 / 2,634 项检查；元数据 / HTTP 夹具，不代表训练模型或手机推理。
+- Update original-signed dev.34/code38 APK, bilingual docs, four screenshots, MP4/GIF. Preserve dev.33 exact29 receipts and older trained/numerical failures; complete single v0.3.0 and phone gates remain open.
+
+
 ## 0.3.0-dev.33 — local voice selection / 本地语音选择闭环
 
 - Add complete optional Nano 100M All profile: eleven pinned files, 717,414,286 bytes, fresh immutable ID. 原导入与设置不变，App 不附模型或预设声音数据。

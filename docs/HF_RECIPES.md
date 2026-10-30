@@ -1,5 +1,7 @@
 # HF 组件选择与本地配方
 
+dev.34 新增“检查配套文件”：按同一固定版本检查唯一文件名与精确配套路径，由用户勾选应用，不覆盖现有绑定；缺件、歧义或目录不完整仍手选。登记和下载保持独立，模型 ID 不因匹配提示改变。见[完整使用流程](COMPONENT_SUGGESTIONS.md)。
+
 [English](HF_RECIPES.en.md) · [HF 发现](HF_MODELS.md) · [开发状态](DEVELOPMENT.md) · [资产边界核对](ASSET_CONTROL_AUDIT.md)
 
 适用：**0.3.0-dev.16 / code 20，内部开发检查点，未发 Release**。App 提供代码与配方元数据，用户选择和管理模型资产。以下流程不表示任意 HF 权重均能在 Android 上运行；实际架构、语言、组件配套、许可和设备资源仍需核对。

@@ -194,7 +194,7 @@ public final class MainActivity extends Activity {
                         String name = metadata ? id + ".json" : artifact.getString("filename"), mime = metadata ? "application/json" : artifact.getJSONObject("metadata").getString("mime");
                         main.post(() -> { exportArtifactId = id; exportMetadata = metadata; startActivityForResult(new Intent(Intent.ACTION_CREATE_DOCUMENT).setType(mime).putExtra(Intent.EXTRA_TITLE, name), EXPORT_ARTIFACT); }); break;
                     }
-                    case "hubRecipeStart": case "hubRecipeTemplate": case "hubRecipeBind": case "hubRecipeDeclare": case "hubSearch": case "hubPage": case "hubFiles": case "hubFilePage": case "hubToken": app.hub.dispatch(command); return;
+                    case "hubRecipeStart": case "hubRecipeTemplate": case "hubRecipeBind": case "hubRecipeDeclare": case "hubRecipeReview": case "hubRecipeApply": case "hubRecipeCancelReview": case "hubSearch": case "hubPage": case "hubFiles": case "hubFilePage": case "hubToken": app.hub.dispatch(command); return;
                     case "hubDownload": command.put("model", app.hub.selected(command)).put("action", "addHubModel"); service(command); return;
                     case "dismissError": app.lastError = ""; app.emit(); break;
                     case "newChat": if (app.generating) throw new IllegalStateException("请先停止当前回复"); app.chats.create(app.engineModel); app.emit(); break;

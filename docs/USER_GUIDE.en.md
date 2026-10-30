@@ -1,5 +1,7 @@
 # LMA user guide
 
+dev.34: HF recipes can review companion files from a pinned revision and explicitly apply checked suggestions. This only fills component choices; declaration/download are separate. Existing choices/settings remain. See [component review](COMPONENT_SUGGESTIONS.en.md).
+
 dev.33: explicitly select the complete Nano 100M bundle in All → Audio. Local offers Kokoro/Nano names or editable IDs from downloaded files, with per-model clamping/settings. See [speech usage](SPEECH_SELECTION.en.md); UI fixtures do not establish downloads, inference or phone acceptance.
 
 Current dev.32: [curated diffusion, LoRA dependencies and tasks](CURATED_DIFFUSION.en.md) / [中文](CURATED_DIFFUSION.md). Explicitly choose six pinned profiles in All, review/download LoRA and base separately, then pair them in Local and submit to the shared queue. [Numbered delivery and full pending scope](releases/v0.3.0-dev.32.md). Existing resource, audio and video flows below remain available.

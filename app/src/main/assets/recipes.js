@@ -13,7 +13,7 @@
     if (busy) return; var id = ui.dispatch(action, values); if (!id) return;
     busy = true; var generation = epoch;
     pending[id] = {epoch: generation, callback: callback};
-    if (owned()) $('recipePanel').querySelectorAll('button,select').forEach(function (b) { b.disabled = true; });
+    if (owned()) $('recipePanel').querySelectorAll('button,select').forEach(function (b) { if (b.dataset.action !== 'recipeCancelReview') b.disabled = true; });
   }
   function open(next) { mode = next; signature = ''; render(true); }
   function digest(c) { return c.sha256 ? 'SHA256 ' + c.sha256 : 'Git blob SHA-1 ' + (c.gitBlobSha1 || '缺失'); }
@@ -26,6 +26,8 @@
     if (t) {
       var engine = (ui.state().localEngines || []).filter(function (v) { return v.engine === t.definition.engine; })[0];
       html += '<div class="model-tags">' + (t.definition.tasks || []).map(function (task) { return '<span class="tag">' + e({text: '生文', image: '生图', video: '生视频', audio: '生音频'}[task] || task) + '</span>'; }).join('') + '<span class="tag">' + e(t.definition.engine) + '</span><span class="tag">' + e(t.definition.backend) + '</span></div><p class="modal-help">' + e(t.help) + '</p><p class="modal-help">' + (engine && engine.available ? 'App 已包含这个引擎；所选文件的架构与手机运行仍需核对。' : '当前基座未提供可用引擎；登记或下载不能安装引擎。') + '</p>';
+      var f = hub().files || {}, repo = f.repository || {}, hints = t.requirements.some(function (r) { return r.matchFiles || r.matchSibling; });
+      if (hints) html += '<p class="modal-help">可检查当前仓库的固定版本文件名并查看配套建议；不会下载文件，也不会覆盖已有选择。文件名匹配不代表架构兼容。</p><button class="button secondary" data-action="recipeReview"' + (f.loading || !repo.revision ? ' disabled' : '') + '>检查配套文件 · ' + e(repo.id || '请先加载仓库') + '</button>';
       html += '<div class="hub-files">' + t.requirements.map(function (r) {
         var c = bindings[r.role]; if (c) total += Number(c.bytes); else if (r.required !== false) complete = false;
         return '<article class="hub-file"><strong>' + e(r.label) + '</strong><small>' + e(r.formats.join(' / ')) + (r.required !== false ? ' · 必需' : ' · 可选') + '</small>' + (c ? component(Object.assign({role: r.role}, c)) : '<p>尚未选择</p>') + '<button class="button secondary" data-action="recipePick" data-role="' + e(r.role) + '">' + (c ? '更换组件' : '选择组件') + '</button></article>';
@@ -34,6 +36,19 @@
       html += '<p>已选总大小：' + ui.bytes(total) + '。实际剩余传输与可复用资产在下载计划中计算。</p>';
     }
     html += '<p id="recipeHint" class="form-help" role="status"></p><div class="modal-actions"><button class="button secondary" data-action="closeModal">关闭</button><button class="button primary" data-action="recipeDeclare"' + (!complete ? ' disabled' : '') + '>加入本地并查看下载计划</button></div>';
+    return html;
+  }
+  function review() {
+    var d = draft(), result = d.suggestions;
+    if (d.reviewing || !result && busy) return '<p role="status">正在检查固定版本的文件目录，不下载模型。已有选择会保留。</p><button class="button secondary" data-action="recipeCancelReview">停止检查</button>';
+    if (!result) return '<p role="status">' + e(d.reviewError || '尚无检查结果，请返回配方重试。') + '</p><button class="button secondary" data-action="recipeBack">返回配方</button>';
+    var labels = {existing:'保留已有选择',unique:'一个文件名匹配，待你确认',ambiguous:'多个文件匹配，请手动选择',missing:'本仓库未找到匹配文件',manual:'请手动选择这个组件',incomplete:'目录未检查完整，请手动选择',overlap:'文件与其他角色重叠，请手动选择'};
+    var html = '<p>检查仓库：<strong>' + e(result.repository.id) + '</strong></p><p class="modal-help">固定版本 ' + e(result.repository.revision) + '</p><p>这是文件名建议，仍需核对模型架构、配套版本和许可。确认只填写组件选择，不登记模型或下载文件。</p>';
+    if (!result.complete) html += '<p role="status">仓库较大，本次未检查完整。不会把部分目录中的唯一文件自动作为建议，请继续手动选择。</p>';
+    html += '<div class="hub-files">' + result.rows.map(function (row) {
+      var asset = row.state === 'existing' ? row.selected : row.state === 'unique' ? row.candidates[0] : null;
+      return '<article class="hub-file"><strong>' + e(row.label) + '</strong><small>' + e(labels[row.state] || row.state) + (row.count > 1 ? ' · ' + e(row.count) + ' 个' : '') + '</small>' + (asset ? component(Object.assign({role:row.role},asset)) : '') + (row.state === 'unique' ? '<label><input type="checkbox" data-recipe-suggestion="' + e(row.role) + '"' + (row.required ? ' checked' : '') + '> 应用这个建议' + (row.required ? '' : '（可选组件）') + '</label>' : '') + '</article>';
+    }).join('') + '</div><p id="recipeHint" class="form-help" role="status"></p><div class="modal-actions"><button class="button secondary" data-action="recipeBack">返回配方</button><button class="button primary" data-action="recipeApply"' + (!result.suggested ? ' disabled' : '') + '>应用已选建议</button></div>';
     return html;
   }
   function picker() {
@@ -55,9 +70,9 @@
     var next = JSON.stringify([mode, role, hub().recipeDraft, mode === 'pick' ? hub().files : hub().recipeTemplates]);
     if (!force && next === signature) return; signature = next;
     var input = $('recipeRepository'), editing = input && document.activeElement === input, typed = input && input.value, selection = editing && input.selectionStart;
-    ui.openModal(mode === 'pick' ? '选择 HF 组件文件' : '构建本地模型配方', '<div id="recipePanel">' + (mode === 'starting' ? '<p role="status">正在建立配方草稿…</p>' : mode === 'pick' ? picker() : form()) + '</div>', 'recipe');
+    ui.openModal(mode === 'pick' ? '选择 HF 组件文件' : '构建本地模型配方', '<div id="recipePanel">' + (mode === 'starting' ? '<p role="status">正在建立配方草稿…</p>' : mode === 'pick' ? picker() : mode === 'review' ? review() : form()) + '</div>', 'recipe');
     if (editing && $('recipeRepository')) { $('recipeRepository').value = typed; $('recipeRepository').focus(); $('recipeRepository').setSelectionRange(selection, selection); }
-    if (busy) $('recipePanel').querySelectorAll('button,select').forEach(function (b) { b.disabled = true; });
+    if (busy) $('recipePanel').querySelectorAll('button,select').forEach(function (b) { if (b.dataset.action !== 'recipeCancelReview') b.disabled = true; });
   }
   function handle(action, el) {
     var d = draft(), f = hub().files || {}, repo = f.repository || {};
@@ -72,6 +87,14 @@
       case 'recipePage': run('hubFilePage', {direction: el.dataset.direction}, function () { render(true); }); return true;
       case 'recipeBind':
         run('hubRecipeBind', {draftId: d.draftId, role: role, repository: repo.id, revision: repo.revision, path: el.dataset.path}, function () { open('form'); }); return true;
+      case 'recipeReview':
+        open('review'); run('hubRecipeReview', {draftId:d.draftId}, function () { open('review'); }); render(true); return true;
+      case 'recipeCancelReview':
+        epoch++; busy = false; run('hubRecipeCancelReview', {draftId:d.draftId}, function () { open('form'); }); return true;
+      case 'recipeApply':
+        var selected = Array.from($('recipePanel').querySelectorAll('[data-recipe-suggestion]:checked')).map(function (input) { return input.dataset.recipeSuggestion; });
+        if (!selected.length) { $('recipeHint').textContent = '请选择要应用的建议，或返回继续手动选择。'; return true; }
+        run('hubRecipeApply', {draftId:d.draftId,reviewId:d.suggestions.reviewId,roles:selected}, function () { open('form'); }); return true;
       case 'recipeDeclare':
         run('hubRecipeDeclare', {draftId: d.draftId}, function (result) {
           if (!result || !result.bundleId) { ui.toast('配方登记结果不完整，请在本地检查'); return; }

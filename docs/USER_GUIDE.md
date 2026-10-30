@@ -1,5 +1,7 @@
 # LMA 使用手册
 
+dev.34：HF 配方可“检查配套文件”，查看固定版本来源并勾选应用。确认只填写组件，随后仍需单独登记和下载；已有选择和设置保留。见[组件建议流程](COMPONENT_SUGGESTIONS.md)。
+
 dev.33：在“全部 → 生音频”明确选择 Nano 100M 完整包；在“本地”可按文件中的音色名称或编号设置 Kokoro / Nano，超限回填，参数按模型独立。下载、安装与推理证据分开，见[语音使用流程](SPEECH_SELECTION.md)。
 
 当前 dev.32：[生图模型选择、LoRA 依赖与任务闭环](CURATED_DIFFUSION.md) / [English](CURATED_DIFFUSION.en.md)。在“全部”明确选择六套固定方案；LoRA 与基础模型分别查看、分别下载，在“本地”配对并进入共用任务队列。[本轮编号交付与完整待办](releases/v0.3.0-dev.32.md)。下列资源、音频与视频说明继续适用。

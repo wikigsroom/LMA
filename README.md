@@ -2,7 +2,13 @@
 
 [中文](README.md) · [English](README.en.md) · [下载 / Releases](https://github.com/wikigsroom/LMA/releases) · [文档导航](docs/README.md) · [更新记录](CHANGELOG.md)
 
-> **当前开发：0.3.0-dev.33 / code 37。** Nano 100M 完整 11 文件方案加入“全部”，Kokoro / Nano 音色按用户本地文件显示名称、数量及编号；可选可编辑、超限回填，设置与排队快照仍按模型独立。App 不附权重、预设声音或提示音频码，也不自动下载。[方案与使用](docs/SPEECH_SELECTION.md) · [编号交付及完整待办](docs/releases/v0.3.0-dev.33.md) · [录屏](docs/media/development/speech/speech-ui.mp4) · [GIF](docs/media/development/speech/speech-ui.gif)。本轮 70 项生产 Java 元数据检查（四个真实本地文件，48 MiB 堆）及 20 项新增界面检查；未执行本轮训练推理或手机验收，完整版本门槛保留。
+> **当前开发：0.3.0-dev.34 / code 38。** 新增 HF 配套组件检查：同一固定版本分页查看文件名建议，用户勾选后才应用；不覆盖已有选择、不登记模型、不自动下载。35 套现有配方中 19 套提供 49 条文件提示，Sana 可检查完整 13 组件；歧义与未查全目录保留手选。旧模型 ID、参数和任务保持。[方案与使用](docs/COMPONENT_SUGGESTIONS.md) · [编号交付与完整待办](docs/releases/v0.3.0-dev.34.md) · [MP4](docs/media/development/components/components-ui.mp4) · [GIF](docs/media/development/components/components-ui.gif)。这是选择基座与元数据检查，不代表模型推理或手机验收，完整版本门槛保留。
+
+| 配套组件确认（界面夹具） | 完整下载计划（界面夹具） |
+|---|---|
+| ![固定版本配套建议](docs/media/development/components/02-companion-review.png) | ![单独登记与下载](docs/media/development/components/03-complete-download-plan.png) |
+
+保留[Nano 与本地音色选择](docs/SPEECH_SELECTION.md)，以下同为桌面界面夹具。
 
 | 可选语音模型（界面夹具） | 本地音色名称与上限（界面夹具） |
 |---|---|

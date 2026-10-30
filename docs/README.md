@@ -6,6 +6,7 @@
 
 | 主题 / Topic | 中文 | English |
 | --- | --- | --- |
+| HF 配套组件建议 / HF companion review | [中文](COMPONENT_SUGGESTIONS.md) | [English](COMPONENT_SUGGESTIONS.en.md) |
 | 语音选择与本地音色 / Speech selection and local voices | [中文](SPEECH_SELECTION.md) | [English](SPEECH_SELECTION.en.md) |
 | 生图选择与 LoRA 依赖 / Curated diffusion and dependencies | [中文](CURATED_DIFFUSION.md) | [English](CURATED_DIFFUSION.en.md) |
 | 运行资源保护 / Runtime resource protection | [中文](RUNTIME_RESOURCES.md) | [English](RUNTIME_RESOURCES.en.md) |

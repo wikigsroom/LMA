@@ -1,6 +1,6 @@
 {
   "schema": "lma.development-checkpoint/2",
-  "version": "0.3.0-dev.33",
+  "version": "0.3.0-dev.34",
   "sources": {
     "build-info.json": "dist/build-info.json",
     "package.json": "build/package-verification.json",
@@ -30,7 +30,11 @@
     "resources-media.json": "docs/media/development/resources/manifest.json",
     "curated-media.json": "docs/media/development/curated/manifest.json",
     "speech-voices.json": "build/speech-voice-tests/results.json",
-    "speech-media.json": "docs/media/development/speech/manifest.json"
+    "speech-media.json": "docs/media/development/speech/manifest.json",
+    "backend.json": "build/backend-tests/results.json",
+    "hub.json": "build/hub-tests/results.json",
+    "recipe-suggestions.json": "build/recipe-suggestion-tests/results.json",
+    "components-media.json": "docs/media/development/components/manifest.json"
   },
   "historical_sources": {
     "build-info.json": {
@@ -466,11 +470,11 @@
       "sha256": "5faacf0a1506cb8765990e61a8e8e5f13a3403d09217d543f8394d9fec486087"
     },
     "backend.json": {
-      "path": "verification/development/backend.json",
+      "path": "verification/history/0.3.0-dev.24/backend.json",
       "sha256": "9a9c0895a0aff012e05e858ca679462ff24fa97feee01c901366143aaaa6868c"
     },
     "hub.json": {
-      "path": "verification/development/hub.json",
+      "path": "verification/history/0.3.0-dev.24/hub.json",
       "sha256": "4f20a0ae4ce9a4b6eaf30710836e2260025e69da16915a434b2d631f1952c5ae"
     },
     "hub-live.json": {
@@ -503,120 +507,128 @@
     }
   },
   "prior_checkpoint": {
-    "commit": "85e843c1b0bf6b7b4cf0335c34fee2eb11d41e72",
-    "version": "0.3.0-dev.32",
+    "commit": "bb10c11714ab715258e20a904dd11a049e685701",
+    "version": "0.3.0-dev.33",
     "sources": {
       "status.json": {
-        "path": "verification/history/0.3.0-dev.32/status.json",
-        "sha256": "d88b1536873015ff1414b82fab2e03038152dca348f87da5120014784b1c0393"
+        "path": "verification/history/0.3.0-dev.33/status.json",
+        "sha256": "74b61b6371747943d8710d909282dc5b0b9acbda0c08941e91e85db822c3f999"
       },
       "build-info.json": {
-        "path": "verification/history/0.3.0-dev.32/build-info.json",
-        "sha256": "71d85df5bdda73dcea716ac563064a14e4bf6b7e410174832f299e74cf5d613b"
+        "path": "verification/history/0.3.0-dev.33/build-info.json",
+        "sha256": "8e87caedee3461d3d5832b7c283a257f2f74959a20e849237e7df07120693976"
       },
       "package.json": {
-        "path": "verification/history/0.3.0-dev.32/package.json",
-        "sha256": "01240dffa38d76c42fb4d8fb3dcc1ef4b9a15d51c220e1165b4e104274c40cf6"
+        "path": "verification/history/0.3.0-dev.33/package.json",
+        "sha256": "971bfc86662411fce0865fefbab2cd79741dceb220880305b97bc7255ece09e1"
       },
       "workbench.json": {
-        "path": "verification/history/0.3.0-dev.32/workbench.json",
-        "sha256": "f0f09ddf05cb4dd70ee2af82f0de97c06d4d97036eee362ac04b29ed720b2673"
+        "path": "verification/history/0.3.0-dev.33/workbench.json",
+        "sha256": "f88380f5d9fd14247c8fcf001c6ec3f4106fdcd7160d4a9922000a3c580100b7"
       },
       "recovery.json": {
-        "path": "verification/history/0.3.0-dev.32/recovery.json",
-        "sha256": "86a2709b446367b17ea2476a252fa44924c09ffdafe683fe267792a8cca28d6a"
+        "path": "verification/history/0.3.0-dev.33/recovery.json",
+        "sha256": "7c6bb356a3f7261ea6c9c3e133f5513f9ac2d3153f21fc00732141aaeacad357"
       },
       "foundation.json": {
-        "path": "verification/history/0.3.0-dev.32/foundation.json",
-        "sha256": "53816b978b18bc6b2f61abd950c04c29e6c766d006c09b5fe687e857fb171677"
+        "path": "verification/history/0.3.0-dev.33/foundation.json",
+        "sha256": "e4237a2022e353bc32f46b9766395c794b9a4a08d721396d5fb8413590d73c49"
       },
       "api.json": {
-        "path": "verification/history/0.3.0-dev.32/api.json",
-        "sha256": "058a93c348753166e2d92e60a5e6130dac8b2df440d608706b60a1d8ec307224"
+        "path": "verification/history/0.3.0-dev.33/api.json",
+        "sha256": "f5e4122de5d02152c73594358a806efa6198f1b249231c8417edda32eb979566"
       },
       "inputs.json": {
-        "path": "verification/history/0.3.0-dev.32/inputs.json",
-        "sha256": "db9e95ea9a07d9d2eedcb8030486b9219c4534ba830525d83db138d98214c107"
+        "path": "verification/history/0.3.0-dev.33/inputs.json",
+        "sha256": "f8015cbea96538e4c2f060e8491b9be54b9fad0c5a52602a01e343f93d5f4769"
       },
       "text.json": {
-        "path": "verification/history/0.3.0-dev.32/text.json",
-        "sha256": "be60949b281d42d48c834516f8c4b0fa595ff0dcf755c014eb7c3eac4a9d9601"
+        "path": "verification/history/0.3.0-dev.33/text.json",
+        "sha256": "8dfde4562d77f65a9285bc2ccc27690f3515370fb69f7110c6dd2be6cd7caf86"
       },
       "migration.json": {
-        "path": "verification/history/0.3.0-dev.32/migration.json",
-        "sha256": "2ec2b15862c3a6b0ce79ecbd4882fbe28bc1e8f59a02aeab03db69b12516ec25"
+        "path": "verification/history/0.3.0-dev.33/migration.json",
+        "sha256": "859c080d3c6a3bfe9c2ae4b19b51903e09001d6c21460b059cad2bac01bcfe17"
       },
       "scheduler.json": {
-        "path": "verification/history/0.3.0-dev.32/scheduler.json",
-        "sha256": "0903f3088868c8aa21d11814f065ff329dadb359bc37da37faa4638b9d8e7a9f"
+        "path": "verification/history/0.3.0-dev.33/scheduler.json",
+        "sha256": "ac282ce201550e3feaa623fc9304e1cfda840c96dc6f1608cd357a866428cb82"
       },
       "ui.json": {
-        "path": "verification/history/0.3.0-dev.32/ui.json",
-        "sha256": "5944a8114d7959f39d90e6bacb26d8f5ef7a5462d11b850a46fe4eb00d6ef96e"
+        "path": "verification/history/0.3.0-dev.33/ui.json",
+        "sha256": "18a680ab6110dad3cffece098cd527f560f6aaacc23e0efd5a17ee066d048d06"
       },
       "lint.json": {
-        "path": "verification/history/0.3.0-dev.32/lint.json",
-        "sha256": "9ab9c2a0cc6a2c8b86000780483731be0bf754984bb6ff401d60247c3178c96e"
+        "path": "verification/history/0.3.0-dev.33/lint.json",
+        "sha256": "356dfef2e93fc71cee134df8950c9616d43d16ad1b4825f6b2b17cafd4efd8dd"
       },
       "workbench-media.json": {
-        "path": "verification/history/0.3.0-dev.32/workbench-media.json",
-        "sha256": "00720f0f9ed638e2a4b0f574328c67dc6f428f48ab9cf7421cbe038ed3509e80"
+        "path": "verification/history/0.3.0-dev.33/workbench-media.json",
+        "sha256": "e1450895e08c1c320759b910ea6e620d0ed2dc9ab1d9466898ed9f555d02ee4b"
       },
       "preflight-media.json": {
-        "path": "verification/history/0.3.0-dev.32/preflight-media.json",
-        "sha256": "89a7aecf88d5cc2d415591f468e1ce523292b8a0e84ceed4fa2d71bd3afff606"
+        "path": "verification/history/0.3.0-dev.33/preflight-media.json",
+        "sha256": "bef95be122632cb35459a2b9eaeb5057d827723bc13a2a2336e1f90fd2c9fb64"
       },
       "recovery-media.json": {
-        "path": "verification/history/0.3.0-dev.32/recovery-media.json",
-        "sha256": "5ba389c6cf506f15b0c9da076e31f1154edfcd95e7e6c2f83426a2ee0c850b99"
+        "path": "verification/history/0.3.0-dev.33/recovery-media.json",
+        "sha256": "57983d98ea127999b4eb349f88b31e158e9829eaebafb5c6789b1a129123517b"
       },
       "preparation-core.json": {
-        "path": "verification/history/0.3.0-dev.32/preparation-core.json",
-        "sha256": "993cb91fb5cc24b0269add23fd52438d54bee96cb38fedc0872b034e11869d21"
+        "path": "verification/history/0.3.0-dev.33/preparation-core.json",
+        "sha256": "8ab13003b1d8130e30e10aff239c3c4cdc44b43bc3ef1595151fca0de6f3868b"
       },
       "assembly-core.json": {
-        "path": "verification/history/0.3.0-dev.32/assembly-core.json",
-        "sha256": "cf196f409d66536bc8d8d9dd2a41aa301d78abe36adf7b8cbacd8801457dd27e"
+        "path": "verification/history/0.3.0-dev.33/assembly-core.json",
+        "sha256": "15ca85a5f684adfd34260afbc1453f353c46e257a21ccfdf1b6a594c35e06079"
       },
       "diffusion.json": {
-        "path": "verification/history/0.3.0-dev.32/diffusion.json",
-        "sha256": "7444e18a27ef8117b73761b9009bf9b559a7fde8188850ab69572229561f1e67"
+        "path": "verification/history/0.3.0-dev.33/diffusion.json",
+        "sha256": "8a1952d261127bebd95a4401979fda8ef52eb13bfbc08160b82c500164380e1e"
       },
       "lcm-media.json": {
-        "path": "verification/history/0.3.0-dev.32/lcm-media.json",
-        "sha256": "1b666c9df0621161ad6055278ddd8346d98268cde787e039e33b276d8121182b"
+        "path": "verification/history/0.3.0-dev.33/lcm-media.json",
+        "sha256": "67fac5190fdf1214a37abaf37d956ca989a2f44bb176b60710513ef165ef35e3"
       },
       "moss-rq.json": {
-        "path": "verification/history/0.3.0-dev.32/moss-rq.json",
-        "sha256": "4709952662f1828f74aa9b295dc67f002248bde72b9104cefc39a2d0d771e7e2"
+        "path": "verification/history/0.3.0-dev.33/moss-rq.json",
+        "sha256": "5653c71261d4932e6e86329b3d94c99ee04381a4d79c7e7dbb792f089a894739"
       },
       "moss-rq-arm64.json": {
-        "path": "verification/history/0.3.0-dev.32/moss-rq-arm64.json",
+        "path": "verification/history/0.3.0-dev.33/moss-rq-arm64.json",
         "sha256": "9e64c6a3fdf0936b096839edb6e33cbf4845d1b5f16a9619e290b7b55a17506d"
       },
       "audio-media.json": {
-        "path": "verification/history/0.3.0-dev.32/audio-media.json",
-        "sha256": "92b01aff354a09de738b89f1ae228bed6c88078f07d6c6226fbfe87c78d5ff4e"
+        "path": "verification/history/0.3.0-dev.33/audio-media.json",
+        "sha256": "a0420aaaca11373ec893e174a82856a1d094da2d09d13155894cde9615292549"
       },
       "ltx-app.json": {
-        "path": "verification/history/0.3.0-dev.32/ltx-app.json",
-        "sha256": "341661f8a798b411d1f7f644d0f1c44a61c97100e7f15069328f71b754fe928f"
+        "path": "verification/history/0.3.0-dev.33/ltx-app.json",
+        "sha256": "adc2ee383a84111b4df778d384a7150726fb3dc5e5408f2d3dd4163cd7bdc300"
       },
       "ltx-app-arm64.json": {
-        "path": "verification/history/0.3.0-dev.32/ltx-app-arm64.json",
+        "path": "verification/history/0.3.0-dev.33/ltx-app-arm64.json",
         "sha256": "8b6828ec1861d71478a209c4d90f40d8995823f59255b1166c3080b48cb4c54f"
       },
       "ltx-media.json": {
-        "path": "verification/history/0.3.0-dev.32/ltx-media.json",
-        "sha256": "27487ee11921d0602ec0027477f7ca24c5d4d09d2aff5489b685ff1111122382"
+        "path": "verification/history/0.3.0-dev.33/ltx-media.json",
+        "sha256": "3feeb3f7bb2eb5313e395fe7e3ba2212955f4767563317b4cf603542ff6e1d26"
       },
       "resources-media.json": {
-        "path": "verification/history/0.3.0-dev.32/resources-media.json",
-        "sha256": "c638ad7abcc2beec8539fab5a87cfd69ee95d269d968d75a98805cbb30650bc7"
+        "path": "verification/history/0.3.0-dev.33/resources-media.json",
+        "sha256": "741a51dc2bd2dea365243bd8a749200a5394b429ab36cffa738132dace788c2f"
       },
       "curated-media.json": {
-        "path": "verification/history/0.3.0-dev.32/curated-media.json",
-        "sha256": "677031cc53be83773bbb2b08715c7564fa0a71d883e2715a6890069c198e05cb"
+        "path": "verification/history/0.3.0-dev.33/curated-media.json",
+        "sha256": "1367905489055ccd0212b178687d18fdbd9d6755b85d586985c0ca853f493fee"
+      },
+      "speech-voices.json": {
+        "path": "verification/history/0.3.0-dev.33/speech-voices.json",
+        "sha256": "dd1fbc36a02a752c47c6199d54e70dc3e4da3176b5f75430e01bdc4945cefb11"
+      },
+      "speech-media.json": {
+        "path": "verification/history/0.3.0-dev.33/speech-media.json",
+        "sha256": "9c04cb166c560805819948f3241ce733fb62be8cdae68dd80c51dfe41b25017f"
       }
     }
   },
@@ -634,8 +646,8 @@
   "host_model_inference_tested": false,
   "apk_model_inference_tested": false,
   "historical_host_model_inference_tested": true,
-  "model_inference_test_scope": "No trained inference rerun. Four exact downloaded model headers are read by production Java within a 48 MiB heap, after full SHA checks; this is metadata inspection only. Exact dev.31 old-LTX trained results/media, dev.28 LCM and dev.24 model experiments remain historical through checked immutable pointers. Phone, quality and original numerical failures remain open.",
-  "scope": "Optional complete Nano catalogue bundle, local-file voice names/counts, shared editable numeric suggestions and engine schema dispatch, per-model settings and immutable speech requests; current source/host/UI/package regression. No weights, prompt codes or voice tables in APK. Full frozen release scope remains required.",
+  "model_inference_test_scope": "No trained inference rerun. Current production checks cover metadata-only HF inventory/review/application and immutable model identity, with explicit simulated UI. Four existing local voice headers are inspected after full SHA checks with a 48 MiB heap; metadata is not neural execution. Exact dev.31 old-LTX trained results/media, dev.28 LCM and dev.24 model experiments remain historical through checked immutable pointers. Phone, quality and original numerical failures remain open.",
+  "scope": "Generic explicit HF companion-file review across signed recipes, pinned bounded inventory, ambiguity/incomplete-directory handling, user-confirmed merge without overriding bindings or initiating downloads, stale/cancel/error recovery and preserved historical model IDs. Existing catalogue, settings, voice metadata and frozen tasks retained. Full frozen release scope remains required.",
   "required_release_scope": {
     "foundation": "F01–F12",
     "existing_text": true,
@@ -662,8 +674,8 @@
   },
   "input_fingerprint": {
     "docs/proposals/multimodal-release-scope.json": "03326504d2d1b52c315bef574325f2c05d43c6a65eafc9779cc33120b7801690",
-    "tools/check_repository.py": "9b10d52a7cba13abaab4d546b0a4f6c0346097bb9a82e176011b48bf791e1c8a",
-    "tools/checkpoint_evidence.py": "db560439b3580105f6f061f0548299db0cc71b4a72a176e5dca57ed56ce8b337",
-    "tools/export_development.py": "f46c675f1a232d139fc6cf42ebdfa141c320fe71c36feb70bbe09de52df11187"
+    "tools/check_repository.py": "e848e07d91e7265eed2cb54aa295f46af408616eceeef585e815a1a09ed1a794",
+    "tools/checkpoint_evidence.py": "c4114c529f4ea607b22761af1b8fec6ffc13b0a5bddcac6c5ea2cebfdfe15add",
+    "tools/export_development.py": "7f1d1d9262ab4ce719e4af1edf799de24592edb3d3ad0e49cb7da13c192ea836"
   }
 }

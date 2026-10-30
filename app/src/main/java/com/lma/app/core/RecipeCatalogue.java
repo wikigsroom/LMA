@@ -22,6 +22,7 @@ public final class RecipeCatalogue {
             for (int r = 0; r < requirements.length(); r++) {
                 JSONObject item = requirements.getJSONObject(r); if (!roles.add(ModelBundle.key(item.getString("role"))) || item.getJSONArray("formats").length() == 0) throw new IllegalArgumentException("Invalid component requirement");
             }
+            RecipeSuggestions.validate(template);
             if (!roles.contains(template.getString("primaryRole"))) throw new IllegalArgumentException("Template primary role must be selectable");
             for (int r = 0; r < fixed.length(); r++) if (!roles.add(ModelBundle.key(fixed.getJSONObject(r).getString("role")))) throw new IllegalArgumentException("Duplicate fixed role");
         }
@@ -54,7 +55,10 @@ public final class RecipeCatalogue {
             component.put("importPath", role + "/" + component.getString("path")); components.put(component);
         }
         for (int i = 0; i < fixed.length(); i++) { JSONObject component = DataFiles.copy(fixed.getJSONObject(i)); component.put("importPath", component.getString("role") + "/" + component.getString("path")); components.put(component); }
-        JSONObject identity = new JSONObject().put("template", template).put("components", components);
+        // Matching aids do not change the identity of an existing model/component selection.
+        JSONObject identityTemplate=DataFiles.copy(template);JSONArray identityRules=identityTemplate.getJSONArray("requirements");
+        for(int i=0;i<identityRules.length();i++){identityRules.getJSONObject(i).remove("matchFiles");identityRules.getJSONObject(i).remove("matchSibling");}
+        JSONObject identity = new JSONObject().put("template", identityTemplate).put("components", components);
         String digest = Protocol.hex(MessageDigest.getInstance("SHA-256").digest(DataFiles.canonical(identity).getBytes(StandardCharsets.UTF_8)));
         String bundleId = "hfb_" + digest.substring(0, 40), repository = primary.getString("repository");
         String display = repository.substring(repository.indexOf('/') + 1) + " · " + template.getString("name");

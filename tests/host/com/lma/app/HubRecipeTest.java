@@ -60,7 +60,7 @@ public final class HubRecipeTest {
         Path disk = root.resolve("build/hub-tests/recipes-" + UUID.randomUUID());
         LmaApp app = new LmaApp(disk.toFile(), root.resolve("app/src/main/assets").toFile(), root.resolve("build/test-libraries").toFile());
         try (HubCatalog catalog = new HubCatalog(app, () -> client)) {
-            check(catalog.snapshot().getJSONArray("recipeTemplates").length() == 34, "HF controller loads signed data-only recipe templates including the complete SoulX CPU contract");
+            check(catalog.snapshot().getJSONArray("recipeTemplates").length() == 35, "HF controller loads all signed data-only recipe templates including SoulX and old LTX CPU contracts");
             files(catalog, "fixture/model"); check(catalog.snapshot().getJSONObject("files").getJSONArray("assets").length() == 3, "HF file pages expose ONNX, binary and text component metadata");
             catalog.dispatch(command("hubRecipeStart").put("repository", "fixture/model")); String initial = draft(catalog);
             catalog.dispatch(command("hubRecipeTemplate").put("draftId", initial).put("templateId", "kokoro_en_cpu_v1"));

@@ -71,7 +71,8 @@
     "app/src/main/java/com/lma/app/core/ProcessControl.java": "a1950624951d41c040b0b9f44cd8ef5faff16ed22dae880d626e4619d77c155d",
     "app/src/main/java/com/lma/app/core/Protocol.java": "d49f47884aec0cb03347023119c2808330fa9970689dcd9d33c30ca653d03b85",
     "app/src/main/java/com/lma/app/core/QwenTtsSpec.java": "e94d96d7ce7c499b2d4bafbd35740c690b32169a142a9a55aae7a8b03364125b",
-    "app/src/main/java/com/lma/app/core/RecipeCatalogue.java": "7b27a07355fe4f7671eef7fa17c9f9ab8512f3f52ccc1de15d4069f15bc6384a",
+    "app/src/main/java/com/lma/app/core/RecipeCatalogue.java": "539dcd55124ce71e32476edb8a7efd25d533935847a8357ac3a6dddf68b71a47",
+    "app/src/main/java/com/lma/app/core/RecipeSuggestions.java": "57d9d7b5fc5f3c61a3ab3524af8789df58dbc8ce1923b2c09e139649057beda0",
     "app/src/main/java/com/lma/app/core/ResourceWatch.java": "6f6a4cb2159f7956d1ae8c202c61430be268d86d230245bccc952844f3816ec5",
     "app/src/main/java/com/lma/app/core/SdSpec.java": "bdd247408ebede1777a84a896a68947132ab8b5ee8d526b17742c565229fcb73",
     "app/src/main/java/com/lma/app/core/SoulxSpec.java": "a761d40965d041d38cc1f629418017103c9eefabf5904814fad9de6372b6bcc7",
@@ -90,7 +91,7 @@
     "tests/fixtures/speech-voices.json": "418bc4cb6857f1617261f404c688fae0a277bd64ddd6cec4e9ff555a1938fe46",
     "tests/host/android/util/AtomicFile.java": "a05b9c6ef4fa0f0f40aaa49b235faccc98d2d7d5aa1ea4bb8d2f535b8bad2796",
     "tests/SpeechVoicesTest.java": "4181a774fe66557fc419fe4f88d8eb25b32b59a676a9b0090b5d4dbe9a4cd139",
-    "tools/evidence.py": "e7b177f6ee6793eeffbcc555127f6b9bc3ab2e5f318006302e75c0c41c6f5a5a",
+    "tools/evidence.py": "010a968470a42e97d7a843be9a61bfa7ae9132c785c7ae052d84e81397743e4c",
     "tools/test_speech_voices.py": "42699f2dbf118fcfde7f57012fa012bd252baaa3859feb4f9f79661e9d27d56f",
     "verification/development/moss-nano-assets.json": "793a4c4d4b0ba58cfdfc62580d46f762bb55999afe82b1a1c7cbcd565bba5cef",
     "verification/development/tts-assets.json": "c73d76ed3f86e6bf00ad7f76d7634d645547ff403d98ff9dc3cca910b8b7ac24"

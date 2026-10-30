@@ -1,5 +1,7 @@
 # HF components and local recipes
 
+dev.34 adds explicit companion review on one pinned revision. Confirm unique filename/paired-path suggestions without replacing bindings; unresolved or incomplete listings retain manual selection. Declaration/download remain separate and matching hints preserve model identity. See [usage and design](COMPONENT_SUGGESTIONS.en.md).
+
 [中文](HF_RECIPES.md) · [HF discovery](HF_MODELS.en.md) · [Development status](DEVELOPMENT.en.md) · [Asset-control audit](ASSET_CONTROL_AUDIT.en.md)
 
 Applies to **0.3.0-dev.16 / code 20, an internal checkpoint, not a Release**. The App supplies code and recipe metadata; users select and manage model assets. This workflow does not establish Android support for arbitrary HF weights. Architecture, language, matching components, licensing and device resources still need verification.

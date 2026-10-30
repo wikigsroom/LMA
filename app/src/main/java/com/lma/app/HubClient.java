@@ -133,6 +133,7 @@ public final class HubClient {
         String address = cursor.isEmpty() ? ORIGIN + prefix + "?recursive=true&limit=100" : validPage(cursor, prefix);
         Response response = transport.get(address, source, token);
         JSONArray raw = new JSONArray(response.body), files = new JSONArray(), assets = new JSONArray();
+        if(raw.length()>2048)throw new IOException("HF file page exceeds the metadata limit");
         for (int i = 0; i < raw.length(); i++) {
             JSONObject entry = raw.getJSONObject(i);
             String path = entry.optString("path");
@@ -141,6 +142,25 @@ public final class HubClient {
             try { files.put(file(repository, entry)); } catch (IllegalArgumentException ignored) {}
         }
         return new JSONObject().put("items", files).put("assets", assets).put("next", next(response.link, prefix)).put("origin", response.origin);
+    }
+    /** Metadata only, one pinned revision. A capped inventory cannot establish uniqueness. */
+    public JSONObject inventory(JSONObject repository, com.lma.app.core.DataFiles.Check check) throws Exception {
+        JSONArray assets=new JSONArray(); java.util.Set<String> cursors=new java.util.HashSet<>(), paths=new java.util.HashSet<>();
+        String cursor=""; int pages=0;
+        do {
+            check.run(); if(!cursors.add(cursor))throw new IOException("HF 文件分页重复，请重试或手动选择");
+            JSONObject page=files(repository,cursor); check.run(); pages++;
+            JSONArray entries=page.getJSONArray("assets");
+            for(int i=0;i<entries.length();i++) {
+                JSONObject asset=entries.getJSONObject(i);
+                if(!paths.add(asset.getString("path")))throw new IOException("固定版本中出现重复文件，请重新检查");
+                if(assets.length()>=2048)throw new IOException("仓库文件过多，请按组件手动选择");
+                assets.put(asset);
+            }
+            cursor=page.getString("next");
+        } while(!cursor.isEmpty() && pages<8);
+        check.run();
+        return new JSONObject().put("repository",new JSONObject(repository.toString())).put("assets",assets).put("pages",pages).put("complete",cursor.isEmpty());
     }
     public static JSONObject file(JSONObject repository, JSONObject entry) throws Exception {
         String id = repositoryId(repository.getString("id")), revision = repository.getString("revision"), path = entry.getString("path");

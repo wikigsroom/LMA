@@ -265,6 +265,8 @@ def build():
     templates.append(soulx_recipe())
     from ltx098_recipe import recipe as ltx098_recipe
     templates.append(ltx098_recipe())
+    from recipe_file_hints import add_hints
+    add_hints(templates)
     return {"schema": "lma.recipe-catalogue/1", "templates": templates}
 
 
