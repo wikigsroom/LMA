@@ -8321,6 +8321,730 @@
       ],
       "fixedComponents": [],
       "help": "从 HF 选择同一 MV 导出族配套组件，声明后自行确认下载或导入。四张 RGBA PNG 必须与相机参数一致；默认标准转台 20° 水平视角、零仰角、距离 3.119204998。允许填写四个 camera-to-world 矩阵与弧度制视角；不自动从任意照片恢复相机。1024、CPU，手机内存与效果未测。"
+    },
+    {
+      "id": "triposg_onnx_cpu_v1",
+      "name": "TripoSG · 配套 FP32 ONNX",
+      "primaryRole": "flow",
+      "definition": {
+        "engine": "rf_shape_ort",
+        "architecture": "triposg",
+        "pipeline": "triposg",
+        "backend": "cpu",
+        "tasks": [
+          "3d"
+        ],
+        "capabilities": [
+          "image_to_3d",
+          "sdf_geometry"
+        ],
+        "parameters": {
+          "version": 1,
+          "fields": {
+            "threads": {
+              "type": "integer",
+              "label": "CPU 线程",
+              "default": 2,
+              "presets": [
+                1,
+                2,
+                4,
+                8
+              ],
+              "minimum": 1,
+              "maximum": 16,
+              "limitSource": "application_guard"
+            },
+            "steps": {
+              "type": "integer",
+              "label": "形状采样步数",
+              "default": 30,
+              "presets": [
+                10,
+                20,
+                30,
+                50
+              ],
+              "minimum": 1,
+              "maximum": 100,
+              "limitSource": "application_guard"
+            },
+            "seed": {
+              "type": "integer",
+              "label": "随机种子",
+              "default": 1234,
+              "minimum": 0,
+              "maximum": 2147483647,
+              "limitSource": "application_guard"
+            },
+            "tokens": {
+              "type": "integer",
+              "label": "每部件潜变量 token",
+              "default": 2048,
+              "multipleOf": 512,
+              "presets": [
+                512,
+                1024,
+                2048,
+                4096
+              ],
+              "minimum": 512,
+              "maximum": 4096,
+              "limitSource": "application_guard"
+            },
+            "parts": {
+              "type": "integer",
+              "label": "部件数量",
+              "default": 1,
+              "presets": [
+                1
+              ],
+              "minimum": 1,
+              "maximum": 1,
+              "limitSource": "application_guard"
+            },
+            "grid": {
+              "type": "integer",
+              "label": "SDF 网格单轴格数",
+              "default": 64,
+              "multipleOf": 16,
+              "presets": [
+                32,
+                64,
+                96,
+                128
+              ],
+              "minimum": 32,
+              "maximum": 256,
+              "limitSource": "application_guard"
+            },
+            "queryChunk": {
+              "type": "integer",
+              "label": "SDF 分块查询点数",
+              "default": 512,
+              "presets": [
+                256,
+                512,
+                1024,
+                2048
+              ],
+              "minimum": 128,
+              "maximum": 4096,
+              "limitSource": "application_guard"
+            },
+            "guidance": {
+              "type": "number",
+              "label": "图像引导强度",
+              "default": 7,
+              "minimum": 0,
+              "maximum": 15,
+              "limitSource": "application_guard"
+            },
+            "maxTriangles": {
+              "type": "integer",
+              "label": "全部部件三角面保护上限",
+              "default": 300000,
+              "presets": [
+                100000,
+                300000,
+                600000
+              ],
+              "minimum": 1000,
+              "maximum": 1000000,
+              "limitSource": "application_guard"
+            }
+          }
+        }
+      },
+      "requirements": [
+        {
+          "role": "config",
+          "label": "配套 shape-config.json",
+          "formats": [
+            "json"
+          ],
+          "required": true,
+          "matchFiles": [
+            "shape-config.json"
+          ]
+        },
+        {
+          "role": "image_encoder",
+          "label": "image_encoder.onnx",
+          "formats": [
+            "onnx"
+          ],
+          "required": true,
+          "matchFiles": [
+            "image_encoder.onnx"
+          ]
+        },
+        {
+          "role": "image_encoder_data",
+          "label": "image_encoder.onnx.data（如导出包含）",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": false,
+          "matchFiles": [
+            "image_encoder.onnx.data"
+          ]
+        },
+        {
+          "role": "flow",
+          "label": "flow.onnx",
+          "formats": [
+            "onnx"
+          ],
+          "required": true,
+          "matchFiles": [
+            "flow.onnx"
+          ]
+        },
+        {
+          "role": "flow_data",
+          "label": "flow.onnx.data（如导出包含）",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": false,
+          "matchFiles": [
+            "flow.onnx.data"
+          ]
+        },
+        {
+          "role": "cache",
+          "label": "cache.onnx",
+          "formats": [
+            "onnx"
+          ],
+          "required": true,
+          "matchFiles": [
+            "cache.onnx"
+          ]
+        },
+        {
+          "role": "cache_data",
+          "label": "cache.onnx.data（如导出包含）",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": false,
+          "matchFiles": [
+            "cache.onnx.data"
+          ]
+        },
+        {
+          "role": "query",
+          "label": "query.onnx",
+          "formats": [
+            "onnx"
+          ],
+          "required": true,
+          "matchFiles": [
+            "query.onnx"
+          ]
+        },
+        {
+          "role": "query_data",
+          "label": "query.onnx.data（如导出包含）",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": false,
+          "matchFiles": [
+            "query.onnx.data"
+          ]
+        }
+      ],
+      "fixedComponents": [],
+      "help": "需要 LMA 离线转换工具生成的同一组 FP32 ONNX 图、外置 data 与 shape-config.json；原版 safetensors 不能直接运行。当前没有已核实的公开配套下载包，支持导入转换结果或从 HF 明确选择同格式文件。选择已去背景 / 白底 PNG；无自动抠图、贴图、外部 VLM 或云服务。全部手机 CPU，内存、速度与质量未测。"
+    },
+    {
+      "id": "partcrafter_onnx_cpu_v1",
+      "name": "PartCrafter · 物体部件 · 配套 FP32 ONNX",
+      "primaryRole": "flow",
+      "definition": {
+        "engine": "rf_shape_ort",
+        "architecture": "partcrafter",
+        "pipeline": "partcrafter",
+        "backend": "cpu",
+        "tasks": [
+          "3d"
+        ],
+        "capabilities": [
+          "image_to_3d",
+          "sdf_geometry",
+          "part_level_geometry"
+        ],
+        "parameters": {
+          "version": 1,
+          "fields": {
+            "threads": {
+              "type": "integer",
+              "label": "CPU 线程",
+              "default": 2,
+              "presets": [
+                1,
+                2,
+                4,
+                8
+              ],
+              "minimum": 1,
+              "maximum": 16,
+              "limitSource": "application_guard"
+            },
+            "steps": {
+              "type": "integer",
+              "label": "形状采样步数",
+              "default": 30,
+              "presets": [
+                10,
+                20,
+                30,
+                50
+              ],
+              "minimum": 1,
+              "maximum": 100,
+              "limitSource": "application_guard"
+            },
+            "seed": {
+              "type": "integer",
+              "label": "随机种子",
+              "default": 1234,
+              "minimum": 0,
+              "maximum": 2147483647,
+              "limitSource": "application_guard"
+            },
+            "tokens": {
+              "type": "integer",
+              "label": "每部件潜变量 token",
+              "default": 1024,
+              "multipleOf": 512,
+              "presets": [
+                512,
+                1024,
+                2048,
+                4096
+              ],
+              "minimum": 512,
+              "maximum": 4096,
+              "limitSource": "application_guard"
+            },
+            "parts": {
+              "type": "integer",
+              "label": "部件数量",
+              "default": 3,
+              "presets": [
+                1,
+                2,
+                3,
+                4,
+                8
+              ],
+              "minimum": 1,
+              "maximum": 16,
+              "limitSource": "application_guard"
+            },
+            "grid": {
+              "type": "integer",
+              "label": "SDF 网格单轴格数",
+              "default": 64,
+              "multipleOf": 16,
+              "presets": [
+                32,
+                64,
+                96,
+                128
+              ],
+              "minimum": 32,
+              "maximum": 256,
+              "limitSource": "application_guard"
+            },
+            "queryChunk": {
+              "type": "integer",
+              "label": "SDF 分块查询点数",
+              "default": 512,
+              "presets": [
+                256,
+                512,
+                1024,
+                2048
+              ],
+              "minimum": 128,
+              "maximum": 4096,
+              "limitSource": "application_guard"
+            },
+            "guidance": {
+              "type": "number",
+              "label": "图像引导强度",
+              "default": 7,
+              "minimum": 0,
+              "maximum": 15,
+              "limitSource": "application_guard"
+            },
+            "maxTriangles": {
+              "type": "integer",
+              "label": "全部部件三角面保护上限",
+              "default": 300000,
+              "presets": [
+                100000,
+                300000,
+                600000
+              ],
+              "minimum": 1000,
+              "maximum": 1000000,
+              "limitSource": "application_guard"
+            }
+          }
+        }
+      },
+      "requirements": [
+        {
+          "role": "config",
+          "label": "配套 shape-config.json",
+          "formats": [
+            "json"
+          ],
+          "required": true,
+          "matchFiles": [
+            "shape-config.json"
+          ]
+        },
+        {
+          "role": "image_encoder",
+          "label": "image_encoder.onnx",
+          "formats": [
+            "onnx"
+          ],
+          "required": true,
+          "matchFiles": [
+            "image_encoder.onnx"
+          ]
+        },
+        {
+          "role": "image_encoder_data",
+          "label": "image_encoder.onnx.data（如导出包含）",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": false,
+          "matchFiles": [
+            "image_encoder.onnx.data"
+          ]
+        },
+        {
+          "role": "flow",
+          "label": "flow.onnx",
+          "formats": [
+            "onnx"
+          ],
+          "required": true,
+          "matchFiles": [
+            "flow.onnx"
+          ]
+        },
+        {
+          "role": "flow_data",
+          "label": "flow.onnx.data（如导出包含）",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": false,
+          "matchFiles": [
+            "flow.onnx.data"
+          ]
+        },
+        {
+          "role": "cache",
+          "label": "cache.onnx",
+          "formats": [
+            "onnx"
+          ],
+          "required": true,
+          "matchFiles": [
+            "cache.onnx"
+          ]
+        },
+        {
+          "role": "cache_data",
+          "label": "cache.onnx.data（如导出包含）",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": false,
+          "matchFiles": [
+            "cache.onnx.data"
+          ]
+        },
+        {
+          "role": "query",
+          "label": "query.onnx",
+          "formats": [
+            "onnx"
+          ],
+          "required": true,
+          "matchFiles": [
+            "query.onnx"
+          ]
+        },
+        {
+          "role": "query_data",
+          "label": "query.onnx.data（如导出包含）",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": false,
+          "matchFiles": [
+            "query.onnx.data"
+          ]
+        }
+      ],
+      "fixedComponents": [],
+      "help": "需要 LMA 离线转换工具生成的同一组 FP32 ONNX 图、外置 data 与 shape-config.json；原版 safetensors 不能直接运行。当前没有已核实的公开配套下载包，支持导入转换结果或从 HF 明确选择同格式文件。选择已去背景 / 白底 PNG；无自动抠图、贴图、外部 VLM 或云服务。全部手机 CPU，内存、速度与质量未测。"
+    },
+    {
+      "id": "partcrafter_scene_onnx_cpu_v1",
+      "name": "PartCrafter · 场景部件 · 配套 FP32 ONNX",
+      "primaryRole": "flow",
+      "definition": {
+        "engine": "rf_shape_ort",
+        "architecture": "partcrafter",
+        "pipeline": "partcrafter_scene",
+        "backend": "cpu",
+        "tasks": [
+          "3d"
+        ],
+        "capabilities": [
+          "image_to_3d",
+          "sdf_geometry",
+          "part_level_geometry"
+        ],
+        "parameters": {
+          "version": 1,
+          "fields": {
+            "threads": {
+              "type": "integer",
+              "label": "CPU 线程",
+              "default": 2,
+              "presets": [
+                1,
+                2,
+                4,
+                8
+              ],
+              "minimum": 1,
+              "maximum": 16,
+              "limitSource": "application_guard"
+            },
+            "steps": {
+              "type": "integer",
+              "label": "形状采样步数",
+              "default": 30,
+              "presets": [
+                10,
+                20,
+                30,
+                50
+              ],
+              "minimum": 1,
+              "maximum": 100,
+              "limitSource": "application_guard"
+            },
+            "seed": {
+              "type": "integer",
+              "label": "随机种子",
+              "default": 1234,
+              "minimum": 0,
+              "maximum": 2147483647,
+              "limitSource": "application_guard"
+            },
+            "tokens": {
+              "type": "integer",
+              "label": "每部件潜变量 token",
+              "default": 2048,
+              "multipleOf": 512,
+              "presets": [
+                512,
+                1024,
+                2048,
+                4096
+              ],
+              "minimum": 512,
+              "maximum": 4096,
+              "limitSource": "application_guard"
+            },
+            "parts": {
+              "type": "integer",
+              "label": "部件数量",
+              "default": 3,
+              "presets": [
+                1,
+                2,
+                3,
+                4,
+                8
+              ],
+              "minimum": 1,
+              "maximum": 16,
+              "limitSource": "application_guard"
+            },
+            "grid": {
+              "type": "integer",
+              "label": "SDF 网格单轴格数",
+              "default": 64,
+              "multipleOf": 16,
+              "presets": [
+                32,
+                64,
+                96,
+                128
+              ],
+              "minimum": 32,
+              "maximum": 256,
+              "limitSource": "application_guard"
+            },
+            "queryChunk": {
+              "type": "integer",
+              "label": "SDF 分块查询点数",
+              "default": 512,
+              "presets": [
+                256,
+                512,
+                1024,
+                2048
+              ],
+              "minimum": 128,
+              "maximum": 4096,
+              "limitSource": "application_guard"
+            },
+            "guidance": {
+              "type": "number",
+              "label": "图像引导强度",
+              "default": 7,
+              "minimum": 0,
+              "maximum": 15,
+              "limitSource": "application_guard"
+            },
+            "maxTriangles": {
+              "type": "integer",
+              "label": "全部部件三角面保护上限",
+              "default": 300000,
+              "presets": [
+                100000,
+                300000,
+                600000
+              ],
+              "minimum": 1000,
+              "maximum": 1000000,
+              "limitSource": "application_guard"
+            }
+          }
+        }
+      },
+      "requirements": [
+        {
+          "role": "config",
+          "label": "配套 shape-config.json",
+          "formats": [
+            "json"
+          ],
+          "required": true,
+          "matchFiles": [
+            "shape-config.json"
+          ]
+        },
+        {
+          "role": "image_encoder",
+          "label": "image_encoder.onnx",
+          "formats": [
+            "onnx"
+          ],
+          "required": true,
+          "matchFiles": [
+            "image_encoder.onnx"
+          ]
+        },
+        {
+          "role": "image_encoder_data",
+          "label": "image_encoder.onnx.data（如导出包含）",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": false,
+          "matchFiles": [
+            "image_encoder.onnx.data"
+          ]
+        },
+        {
+          "role": "flow",
+          "label": "flow.onnx",
+          "formats": [
+            "onnx"
+          ],
+          "required": true,
+          "matchFiles": [
+            "flow.onnx"
+          ]
+        },
+        {
+          "role": "flow_data",
+          "label": "flow.onnx.data（如导出包含）",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": false,
+          "matchFiles": [
+            "flow.onnx.data"
+          ]
+        },
+        {
+          "role": "cache",
+          "label": "cache.onnx",
+          "formats": [
+            "onnx"
+          ],
+          "required": true,
+          "matchFiles": [
+            "cache.onnx"
+          ]
+        },
+        {
+          "role": "cache_data",
+          "label": "cache.onnx.data（如导出包含）",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": false,
+          "matchFiles": [
+            "cache.onnx.data"
+          ]
+        },
+        {
+          "role": "query",
+          "label": "query.onnx",
+          "formats": [
+            "onnx"
+          ],
+          "required": true,
+          "matchFiles": [
+            "query.onnx"
+          ]
+        },
+        {
+          "role": "query_data",
+          "label": "query.onnx.data（如导出包含）",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": false,
+          "matchFiles": [
+            "query.onnx.data"
+          ]
+        }
+      ],
+      "fixedComponents": [],
+      "help": "需要 LMA 离线转换工具生成的同一组 FP32 ONNX 图、外置 data 与 shape-config.json；原版 safetensors 不能直接运行。当前没有已核实的公开配套下载包，支持导入转换结果或从 HF 明确选择同格式文件。选择已去背景 / 白底 PNG；无自动抠图、贴图、外部 VLM 或云服务。全部手机 CPU，内存、速度与质量未测。"
     }
   ]
 }

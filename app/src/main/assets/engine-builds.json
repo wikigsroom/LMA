@@ -770,6 +770,53 @@
         "sd-nlohmann-json-LICENSE.txt",
         "sd-NDK-LLVM-NOTICE.txt"
       ]
+    },
+    {
+      "schema": "lma.native-build/1",
+      "engine": "rf_shape_ort",
+      "file": "liblma-rf-shape.so",
+      "source_revision": "fc5c40990181e2a756c4e0b1c2f4d6b5202faf8c",
+      "partcrafter_revision": "3d773bf02fad51c7ab31a5615573fec93b287b30",
+      "backend": "cpu",
+      "bytes": 582792,
+      "sha256": "8dc02aec200d4a9c1c94e8bdc6e98b918cf19a4db8eff7ab2581b7880c088f91",
+      "model_inference_tested": false,
+      "physical_device_tests": 0,
+      "virtualization_used": false,
+      "abi": "arm64-v8a",
+      "ndk": "30.0.16248370",
+      "min_sdk": 28,
+      "android_api_notes": [
+        28
+      ],
+      "elf_load_alignment": [
+        16384
+      ],
+      "dependencies": [
+        {
+          "file": "libonnxruntime.so",
+          "bytes": 22249560,
+          "sha256": "33847ad43bffe204699fd4a27f7f3603452a8cdaf2f9a44983a0bc31ffcf2da1",
+          "android_api_notes": [
+            27
+          ]
+        }
+      ],
+      "vocabularies": "external_user_selected_components",
+      "runtime_version": "ORT 1.28.2 API17",
+      "required_model_components": 5,
+      "deviceValidated": false,
+      "status": "compiled_not_device_tested",
+      "notices": [
+        "sd-nlohmann-json-LICENSE.txt",
+        "sd-NDK-LLVM-NOTICE.txt",
+        "expansion-shape-D11-LICENSE.txt",
+        "expansion-shape-D11-triposg-models-transformers-triposg_transformer.py-NOTICE.txt",
+        "expansion-shape-D12-LICENSE.txt",
+        "expansion-shape-D12-src-models-transformers-partcrafter_transformer.py-NOTICE.txt",
+        "expansion-shape-ORT-LICENSE.txt",
+        "expansion-shape-stb-NOTICE.txt"
+      ]
     }
   ],
   "preparations": [

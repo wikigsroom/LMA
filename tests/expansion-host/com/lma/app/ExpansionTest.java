@@ -124,6 +124,7 @@ public final class ExpansionTest {
             }
         }
         MultiViewTest.run(root,run);
+        RfShapeTest.run(root,run);
         System.out.println(new JSONObject().put("passed",count).put("model_inference",false).put("physical_device",false).put("complete_model_downloads",0).put("synthetic_glb",true).put("actual_host_child_processes",true));
     }
 }

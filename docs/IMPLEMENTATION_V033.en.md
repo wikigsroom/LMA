@@ -1,5 +1,7 @@
 # v0.3.3 implementation and remaining scope
 
+> 此页记录 v0.3.3 的历史范围。Current v0.3.4 adds matched TripoSG / PartCrafter shape subsets; see [当前实现 / current scope](IMPLEMENTATION_V034.md), [English](IMPLEMENTATION_V034.en.md).
+
 [中文](IMPLEMENTATION_V033.md) · [Complete design](MULTIVIEW_DIAGNOSTICS.en.md) · [Machine matrix](../catalogue/release-0.3.3-implementation.json)
 
 F-01–F-12, existing text, selections 01–14 / 16 / 17 and all nine frozen MOSS subtargets remain. The [v0.3.0 foundation](IMPLEMENTATION_V030.en.md), [community expansion](IMPLEMENTATION_V031.en.md) and [speech / single-image 3D](IMPLEMENTATION_V032.en.md) are preserved. There are 45 templates, 82 bundles and 15 extension engines plus text; users choose and manage all model assets independently.

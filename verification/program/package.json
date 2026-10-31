@@ -1,7 +1,7 @@
 {
-  "apk": "LMA-0.3.3-arm64-v8a.apk",
-  "sha256": "bf9c3a6feb03dc632df5cd0b58a0840c95d03bc18e3044925ed12c2add994cc5",
-  "native_libraries_verified": 38,
+  "apk": "LMA-0.3.4-arm64-v8a.apk",
+  "sha256": "fdf2fbd72e7bf12d1f6eb4f7de71b566d1250489e5ab990c7b365c36c9cbc522",
+  "native_libraries_verified": 39,
   "all_native_dependencies_resolved": true,
   "all_elf_load_segments_16k_aligned": true,
   "final_apk_zip_alignment_verified": true,
@@ -651,6 +651,24 @@
       ],
       "interpreter": "/system/bin/linker64",
       "entry_point": 401328,
+      "android_api_notes": [
+        28
+      ],
+      "16k_elf_aligned": true
+    },
+    "liblma-rf-shape.so": {
+      "machine": "aarch64",
+      "needed": [
+        "libonnxruntime.so",
+        "libm.so",
+        "libdl.so",
+        "libc.so"
+      ],
+      "load_segment_alignment": [
+        16384
+      ],
+      "interpreter": "/system/bin/linker64",
+      "entry_point": 129792,
       "android_api_notes": [
         28
       ],

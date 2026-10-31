@@ -12,7 +12,7 @@ from release_scope import check as scope_check
 ROOT=Path(__file__).resolve().parents[1]
 DIST=ROOT/'dist'
 VERSION=version()
-MEDIA=['community','release-workbench','expansion','multiview']
+MEDIA=['community','release-workbench','expansion','multiview','shape']
 
 def sha(path):
  with path.open('rb') as stream:return hashlib.file_digest(stream,'sha256').hexdigest()
@@ -142,7 +142,7 @@ def prepare():
    target=f'LMA-{VERSION}-{name}.'+extension;shutil.copy2(original,directory/target);names.append(target)
  names.sort()
  (directory/'SHA256SUMS').write_text(''.join(sha(directory/n)+'  '+n+'\n' for n in names),encoding='utf-8');names.append('SHA256SUMS')
- manifest=dict(repository='wikigsroom/LMA',version=VERSION,tag='v'+VERSION,title='LMA v'+VERSION+' · Local multiview 3D and diagnostics / 本地多视图 3D 与诊断',
+ manifest=dict(repository='wikigsroom/LMA',version=VERSION,tag='v'+VERSION,title='LMA v'+VERSION+' · Local RF Shape and part geometry / 本地 RF 形状与部件几何',
   prerelease=True,notes='docs/releases/v'+VERSION+'.md',validation_mode='program_only',full_scope_program_implementation_complete=True,
   apk_sha256=build['sha256'],physical_device_tested=False,phone_inference_tested=False,background_endurance_tested=False,
   model_quality_accepted=False,media_uses_simulated_native_state=True,signing_material_included=False,model_weights_included=False,

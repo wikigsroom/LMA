@@ -1,5 +1,13 @@
 # Changelog / 更新记录
 
+## 0.3.4 — 本地 RF 形状与部件几何 / Local RF Shape and part geometry
+
+- 新增 TripoSG / PartCrafter 物体 / 场景匹配 FP32 ONNX CPU：DINOv2、RF / 部件 DiT、SDF VAE cache / query、均匀网格提取与多部件 GLB，全部阶段同一手机。No remote fallback, texture or auto segmentation claim.
+- 离线 safetensors 转换与真实哈希清单，五必需角色及 data 校验导入；尚无核实公开配套 ONNX 下载包，不虚构一键下载。Three custom recipes; 48 templates / 82 catalogue bundles / 16 extensions plus text.
+- 复用本地模型、独立可编辑归位、PNG、预检、草稿 / 恢复、共用队列、幂等、取消和原子结果导出；保留原推荐与完整冻结范围。No model or auxiliary learned data bundled or automatically acquired.
+- 27 组 / 5,306 项程序检查，RF 专项161、Java 共用扩展428、完整 UI633；原签名 code54，39 库 / 16 KiB / API28，Lint 0 错误 / 16 保留警告。Zero complete trained-model downloads/copies/runs; full trained export and phone quality remain untested.
+- 中英 README 保留历史并扩展到 27 用例 / 27 测试组；25 当前截图 / 5 GIF / 5 MP4，v0.3.3 的36 JSON / 四组媒体按 Git 原字节归档。D04–D10 七配置 / 六组仍需原生移植；D11/12/15/16 为形状子集。[完整编号实现与待办 / Delivery](docs/releases/v0.3.4.md)。
+
 ## 0.3.3 — 本地多视图 3D 与诊断 / Local multiview 3D and diagnostics
 
 - 新增真正 Pixal3D MV CPU / ARM64、四张 RGBA PNG、标准转台 / 自定义相机、独立参数、草稿、预检、共用队列与 GLB。Actual feature projection/fusion, not repeated single-image generation; all stages remain on the same phone.

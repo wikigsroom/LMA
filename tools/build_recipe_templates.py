@@ -284,6 +284,8 @@ def build():
     templates.extend(expansion_recipes())
     from multiview_catalogue import recipes as multiview_recipes
     templates.extend(multiview_recipes())
+    from shape_catalogue import recipes as shape_recipes
+    templates.extend(shape_recipes())
     from recipe_file_hints import add_hints
     add_hints(templates)
     return {"schema": "lma.recipe-catalogue/1", "templates": templates}

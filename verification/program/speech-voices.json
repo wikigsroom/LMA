@@ -81,6 +81,7 @@
     "app/src/main/java/com/lma/app/core/RecipeCatalogue.java": "a01f9c6b094e84b29a8bbb349350a53e68fe1fd5daf4d7fc81fbd2067e00b773",
     "app/src/main/java/com/lma/app/core/RecipeSuggestions.java": "57d9d7b5fc5f3c61a3ab3524af8789df58dbc8ce1923b2c09e139649057beda0",
     "app/src/main/java/com/lma/app/core/ResourceWatch.java": "6f6a4cb2159f7956d1ae8c202c61430be268d86d230245bccc952844f3816ec5",
+    "app/src/main/java/com/lma/app/core/RfShapeSpec.java": "d39752738567b32e8b7308e0d18854c10752a0cd62f1376619b7e959ab00cc6c",
     "app/src/main/java/com/lma/app/core/RuntimeDiagnostics.java": "e543ff733e86ccbf11746dee14f320b184a79c8336163a815c89ba840063c97d",
     "app/src/main/java/com/lma/app/core/SanaSprintSpec.java": "12190d684368b219f17e582d774830d0a946bf5b7e2d25146371325b6fc8b3d3",
     "app/src/main/java/com/lma/app/core/SdSpec.java": "e26906c0c338deff725d8b5c316beb8205eacbe26ea91cfb3ef0861bf94103b5",
@@ -100,7 +101,7 @@
     "tests/fixtures/speech-voices.json": "418bc4cb6857f1617261f404c688fae0a277bd64ddd6cec4e9ff555a1938fe46",
     "tests/host/android/util/AtomicFile.java": "a05b9c6ef4fa0f0f40aaa49b235faccc98d2d7d5aa1ea4bb8d2f535b8bad2796",
     "tests/SpeechVoicesTest.java": "4181a774fe66557fc419fe4f88d8eb25b32b59a676a9b0090b5d4dbe9a4cd139",
-    "tools/evidence.py": "f81fd378310b421a6db69a61c4a66fe5149d33aa847575591d715911da5fa89d",
+    "tools/evidence.py": "d21f363f8d894ce73c285f0b973d55cdf8b991d7796dd9e7d1e8fbc064ae1098",
     "tools/test_speech_voices.py": "42699f2dbf118fcfde7f57012fa012bd252baaa3859feb4f9f79661e9d27d56f",
     "verification/development/moss-nano-assets.json": "793a4c4d4b0ba58cfdfc62580d46f762bb55999afe82b1a1c7cbcd565bba5cef",
     "verification/development/tts-assets.json": "c73d76ed3f86e6bf00ad7f76d7634d645547ff403d98ff9dc3cca910b8b7ac24"

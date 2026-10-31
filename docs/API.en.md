@@ -231,3 +231,21 @@ An installed SoulX bundle uses existing `POST /v1/jobs` / `speech.synthesize`, b
 ## dev.22: explicit runtime-preparation jobs
 
 [Preparation API contract and example](MODEL_PREPARATION.en.md) adds `model.prepare` through existing `POST /v1/jobs`, authentication, idempotency, events, cancellation and retry. Accepts only the selected bundle ID, trusted plan ID and fingerprint; the server freezes source-bundle identity and rejects client paths/URLs/modules/generation parameters. Success produces a preparation receipt, without fabricated media. `GET /v1/models` adds `preparation_plans` / `prepared_assets` and includes derived-only local records; `installed` still describes source components. Preparers are separate from generation engines; full video generation remains unavailable. Derived-file deletion is an App operation, without an arbitrary filesystem deletion API.
+
+## v0.3.4 RF Shape / 部件几何
+
+TripoSG / PartCrafter object / scene are optional matched FP32 ONNX recipes. No public complete matching download package is verified; explicit local export/import and compatible HF component selection reuse existing model management. 用户自主转换 / 导入，模型仍平级；PNG → 本机 CPU → 独立部件 GLB，独立参数、草稿、预检、队列、取消与导出均复用基座。[中文完整操作](RF_SHAPE.md) · [English workflow](RF_SHAPE.en.md)。Full checkpoint conversion and phone quality remain untested.
+
+Use the installed export's actual bundle ID and an authenticated imported PNG artifact, never arbitrary paths or remote execution URLs. 沿用鉴权 `POST /v1/jobs`、事件与取消端点；示例 ID 为占位符，不会创建模型。
+
+```json
+{
+  "bundleId": "your_installed_shape_bundle",
+  "type": "mesh.generate",
+  "input": {"prompt": "Generate local 3D geometry from the selected image.", "artifacts": [{"role": "reference_image", "artifactId": "your_imported_png"}]},
+  "parameters": {"steps": 10, "tokens": 512, "parts": 2, "grid": 32, "queryChunk": 256},
+  "allowUnmeasured": true
+}
+```
+
+`parts:2` applies to PartCrafter; use 1 for TripoSG. Effective parameters still follow the installed model schema. 参数、清单、来源、执行观察和 GLB metadata 沿用共用记录；没有新增云端或 OpenAI 3D API 兼容声明。

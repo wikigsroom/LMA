@@ -1,5 +1,7 @@
 # v0.3.3 程序实现与剩余范围
 
+> 此页记录 v0.3.3 的历史范围。Current v0.3.4 adds matched TripoSG / PartCrafter shape subsets; see [当前实现 / current scope](IMPLEMENTATION_V034.md), [English](IMPLEMENTATION_V034.en.md).
+
 [English](IMPLEMENTATION_V033.en.md) · [完整方案](MULTIVIEW_DIAGNOSTICS.md) · [机器矩阵](../catalogue/release-0.3.3-implementation.json)
 
 F-01–F-12、既有文本、01–14 / 16 / 17 和九个 MOSS 冻结子目标继续完整保留。[v0.3.0 基座](IMPLEMENTATION_V030.md)、[社区扩展](IMPLEMENTATION_V031.md)、[语音 / 单图 3D](IMPLEMENTATION_V032.md)不因本轮新增功能而削减。模板 45、模型包 82、扩展引擎 15＋文本，模型由用户独立选择与管理。

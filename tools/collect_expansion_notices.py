@@ -36,15 +36,30 @@ def main():
             files['expansion-'+prefix+'-'+header+'-NOTICE.txt']=notice.encode('utf-8')
     for name in ['sd-nlohmann-json-LICENSE.txt','sd-NDK-LLVM-NOTICE.txt']:
         files[name]=(ROOT/'third_party/notices'/name).read_bytes()
+    from fetch_shape_sources import verify
+    shape_lock=verify()
+    for source in shape_lock['sources']:
+        files['expansion-shape-'+source['id']+'-LICENSE.txt']=(ROOT/source['directory']/'LICENSE').read_bytes()
+        for relative in source['files']:
+            if not relative.endswith('.py'):continue
+            text=(ROOT/source['directory']/relative).read_text(encoding='utf-8');lines=text.splitlines();header=[]
+            for line in lines:
+                if line.strip() and not line.lstrip().startswith('#'):break
+                header.append(line)
+            if any('copyright' in line.lower() or 'license' in line.lower() for line in header):
+                files['expansion-shape-'+source['id']+'-'+relative.replace('/','-')+'-NOTICE.txt']=('\n'.join(header)+'\n').encode('utf-8')
+    files['expansion-shape-ORT-LICENSE.txt']=(ROOT/'third_party/notices/tts-onnxruntime-LICENSE.txt').read_bytes()
+    files['expansion-shape-stb-NOTICE.txt']=files['expansion-multiview-stb_image.h-NOTICE.txt']
     for name,data in files.items(): (ROOT/'third_party/notices'/name).write_bytes(data)
     notice_data={name:data.decode('utf-8') for name,data in files.items()}
     (ROOT/'app/src/main/assets/expansion-notices.json').write_text(json.dumps(notice_data,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     lock_path=ROOT/'third_party/engine-lock.json'; lock=json.loads(lock_path.read_text(encoding='utf-8'))
-    for engine,receipt_name in [('audio_cpp','speech_extra'),('trellis_native','mesh'),('pixal_multiview','multiview'),('sherpa_tts','tts')]:
+    for engine,receipt_name in [('audio_cpp','speech_extra'),('trellis_native','mesh'),('pixal_multiview','multiview'),('sherpa_tts','tts'),('rf_shape_ort','shape')]:
         receipt=json.loads((ROOT/('build/'+receipt_name+'-build-info.json')).read_text(encoding='utf-8'));current(receipt['source_inputs'])
         previous=next((e for e in lock['engines'] if e['engine']==engine),{})
         entry={k:receipt[k] for k in ('engine','file','source_revision','abi','backend','ndk','sha256','bytes','android_api_notes','dependencies')}
-        prefix={'audio_cpp':'speech','trellis_native':'mesh','pixal_multiview':'multiview'}.get(engine)
+        prefix={'audio_cpp':'speech','trellis_native':'mesh','pixal_multiview':'multiview','rf_shape_ort':'shape'}.get(engine)
+        if engine=='rf_shape_ort':entry['partcrafter_revision']=receipt['partcrafter_revision']
         entry['notices']=previous['notices'] if engine=='sherpa_tts' else {name:hashlib.sha256(data).hexdigest() for name,data in files.items() if not name.startswith('expansion-') or name.startswith('expansion-'+prefix+'-')}
         if previous: lock['engines'][lock['engines'].index(previous)]=entry
         else: lock['engines'].append(entry)

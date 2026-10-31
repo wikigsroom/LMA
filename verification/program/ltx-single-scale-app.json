@@ -42,8 +42,8 @@
         }
       },
       "artifact": {
-        "jobId": "job_0d3c01de57ec44b1a9502319885ac7d4",
-        "createdAt": 1793419807793,
+        "jobId": "job_8c276ef05c984357bc0dd82baf82905f",
+        "createdAt": 1793425388446,
         "metadata": {
           "frameCount": 9,
           "hostFfprobe": true,
@@ -51,14 +51,14 @@
           "width": 64,
           "height": 64
         },
-        "filename": "artifact_d462d0f87cbf429e98582fc1bdce5821.mp4",
+        "filename": "artifact_9f98b6f2b2854895afe6928a221a0ba1.mp4",
         "provenance": {
           "runtimeResources": {
             "stopCode": "",
             "thermalStopAt": 3,
             "minimumAvailableStorageBytes": null,
             "lastSampleAt": 0,
-            "startedAt": 1793419803966,
+            "startedAt": 1793425385351,
             "probeErrors": 0,
             "message": "",
             "enabled": false,
@@ -66,7 +66,7 @@
             "storageFloorBytes": 67108864,
             "minimumAvailableRamBytes": null,
             "maximumThermalStatus": -1,
-            "endedAt": 1793419807705,
+            "endedAt": 1793425388305,
             "sampleIntervalMs": 2000,
             "scope": "shared_system_availability_not_model_peak_memory",
             "thermalKnown": false,
@@ -118,10 +118,10 @@
             "phase": "execution",
             "estimatedPeakRamBytes": 0,
             "thermalStatus": 0,
-            "availableStorageBytes": 513835270144,
+            "availableStorageBytes": 512308858880,
             "estimateKnown": false,
             "adapterExtraRamGuardBytes": 0,
-            "checkedAt": 1793419803991,
+            "checkedAt": 1793425385393,
             "deviceValidated": false,
             "budgetRamBytes": 5368709120,
             "currentlyLowMemory": false,
@@ -623,32 +623,32 @@
               "stageLoading": "sequential_processes",
               "stages": [
                 {
-                  "seconds": 2.1559248,
+                  "seconds": 0.8006059,
                   "stage": "video_noise",
                   "bytes": 4096
                 },
                 {
-                  "seconds": 0.1693506,
+                  "seconds": 0.1710939,
                   "stage": "video_text_encoding",
                   "bytes": 16384
                 },
                 {
-                  "seconds": 0.129336899,
+                  "seconds": 0.1693412,
                   "stage": "video_sampling",
                   "bytes": 4096
                 },
                 {
-                  "seconds": 0.4050386,
+                  "seconds": 0.3740311,
                   "stage": "video_latent_layout",
                   "bytes": 4096
                 },
                 {
-                  "seconds": 0.1421556,
+                  "seconds": 0.3001876,
                   "stage": "video_decoding",
                   "bytes": 442368
                 },
                 {
-                  "seconds": 0.3796706,
+                  "seconds": 0.585379,
                   "stage": "video_frames",
                   "bytes": 110620
                 }
@@ -674,7 +674,7 @@
         "origin": {
           "kind": "generated"
         },
-        "id": "artifact_d462d0f87cbf429e98582fc1bdce5821"
+        "id": "artifact_9f98b6f2b2854895afe6928a221a0ba1"
       },
       "videoSha256": "b0fff475ad542cf6cf133cc60c0ad0c1251cf6bc1a04c7be83f5846b8eb020eb",
       "videoBytes": 3036,
@@ -721,7 +721,7 @@
           }
         },
         "idempotencyKey": "ltx_succeeded",
-        "startedAt": 1793419803956,
+        "startedAt": 1793425385339,
         "error": "",
         "engineExecution": {
           "effectiveParameters": {
@@ -750,32 +750,32 @@
           "stageLoading": "sequential_processes",
           "stages": [
             {
-              "seconds": 2.1559248,
+              "seconds": 0.8006059,
               "stage": "video_noise",
               "bytes": 4096
             },
             {
-              "seconds": 0.1693506,
+              "seconds": 0.1710939,
               "stage": "video_text_encoding",
               "bytes": 16384
             },
             {
-              "seconds": 0.129336899,
+              "seconds": 0.1693412,
               "stage": "video_sampling",
               "bytes": 4096
             },
             {
-              "seconds": 0.4050386,
+              "seconds": 0.3740311,
               "stage": "video_latent_layout",
               "bytes": 4096
             },
             {
-              "seconds": 0.1421556,
+              "seconds": 0.3001876,
               "stage": "video_decoding",
               "bytes": 442368
             },
             {
-              "seconds": 0.3796706,
+              "seconds": 0.585379,
               "stage": "video_frames",
               "bytes": 110620
             }
@@ -794,13 +794,13 @@
           },
           "vaeBackend": "cpu"
         },
-        "finishedAt": 1793419807800,
+        "finishedAt": 1793425388458,
         "runtimeResources": {
           "stopCode": "",
           "thermalStopAt": 3,
           "minimumAvailableStorageBytes": null,
           "lastSampleAt": 0,
-          "startedAt": 1793419803966,
+          "startedAt": 1793425385351,
           "probeErrors": 0,
           "message": "",
           "enabled": false,
@@ -808,19 +808,19 @@
           "storageFloorBytes": 67108864,
           "minimumAvailableRamBytes": null,
           "maximumThermalStatus": -1,
-          "endedAt": 1793419807705,
+          "endedAt": 1793425388305,
           "sampleIntervalMs": 2000,
           "scope": "shared_system_availability_not_model_peak_memory",
           "thermalKnown": false,
           "status": "ended"
         },
-        "createdAt": 1793419803934,
+        "createdAt": 1793425385322,
         "stage": "encoding",
         "progress": null,
-        "id": "job_0d3c01de57ec44b1a9502319885ac7d4",
+        "id": "job_8c276ef05c984357bc0dd82baf82905f",
         "state": "succeeded",
         "artifacts": [
-          "artifact_d462d0f87cbf429e98582fc1bdce5821"
+          "artifact_9f98b6f2b2854895afe6928a221a0ba1"
         ]
       },
       "actualChildren": 6,
@@ -871,7 +871,7 @@
           }
         },
         "idempotencyKey": "ltx_bad_text",
-        "startedAt": 1793419809184,
+        "startedAt": 1793425389897,
         "error": "旧 LTX T5 桥接格式不匹配",
         "engineExecution": {
           "effectiveParameters": {
@@ -897,7 +897,7 @@
           "stageLoading": "sequential_processes",
           "stages": [
             {
-              "seconds": 0.3771989,
+              "seconds": 0.6828918,
               "stage": "video_noise",
               "bytes": 4096
             }
@@ -915,13 +915,13 @@
           },
           "vaeBackend": "cpu"
         },
-        "finishedAt": 1793419809799,
+        "finishedAt": 1793425391048,
         "runtimeResources": {
           "stopCode": "",
           "thermalStopAt": 3,
           "minimumAvailableStorageBytes": null,
           "lastSampleAt": 0,
-          "startedAt": 1793419809190,
+          "startedAt": 1793425389911,
           "probeErrors": 0,
           "message": "",
           "enabled": false,
@@ -929,16 +929,16 @@
           "storageFloorBytes": 67108864,
           "minimumAvailableRamBytes": null,
           "maximumThermalStatus": -1,
-          "endedAt": 1793419809798,
+          "endedAt": 1793425391047,
           "sampleIntervalMs": 2000,
           "scope": "shared_system_availability_not_model_peak_memory",
           "thermalKnown": false,
           "status": "ended"
         },
-        "createdAt": 1793419809165,
+        "createdAt": 1793425389887,
         "stage": "video_text_encoding",
         "progress": null,
-        "id": "job_d9df10533e0a4a5d872965cebd0edf2e",
+        "id": "job_fb62a7041f634e87bd84247b6632b66f",
         "state": "failed",
         "artifacts": []
       },
@@ -990,7 +990,7 @@
           }
         },
         "idempotencyKey": "ltx_bad_sample",
-        "startedAt": 1793419812449,
+        "startedAt": 1793425392404,
         "error": "旧 LTX 采样阶段未完整执行",
         "engineExecution": {
           "effectiveParameters": {
@@ -1018,12 +1018,12 @@
           "stageLoading": "sequential_processes",
           "stages": [
             {
-              "seconds": 0.336540201,
+              "seconds": 0.3672934,
               "stage": "video_noise",
               "bytes": 4096
             },
             {
-              "seconds": 0.1319763,
+              "seconds": 0.1284705,
               "stage": "video_text_encoding",
               "bytes": 16384
             }
@@ -1041,13 +1041,13 @@
           },
           "vaeBackend": "cpu"
         },
-        "finishedAt": 1793419813175,
+        "finishedAt": 1793425393169,
         "runtimeResources": {
           "stopCode": "",
           "thermalStopAt": 3,
           "minimumAvailableStorageBytes": null,
           "lastSampleAt": 0,
-          "startedAt": 1793419812455,
+          "startedAt": 1793425392415,
           "probeErrors": 0,
           "message": "",
           "enabled": false,
@@ -1055,16 +1055,16 @@
           "storageFloorBytes": 67108864,
           "minimumAvailableRamBytes": null,
           "maximumThermalStatus": -1,
-          "endedAt": 1793419813175,
+          "endedAt": 1793425393168,
           "sampleIntervalMs": 2000,
           "scope": "shared_system_availability_not_model_peak_memory",
           "thermalKnown": false,
           "status": "ended"
         },
-        "createdAt": 1793419812443,
+        "createdAt": 1793425392398,
         "stage": "video_sampling",
         "progress": null,
-        "id": "job_a81ff0815ad147aea899dfd4f86dc41d",
+        "id": "job_9d4d5b764d3643f4ba2c630a60f36844",
         "state": "failed",
         "artifacts": []
       },
@@ -1116,7 +1116,7 @@
           }
         },
         "idempotencyKey": "ltx_bad_vae",
-        "startedAt": 1793419814099,
+        "startedAt": 1793425394048,
         "error": "旧 LTX VAE 阶段或会话释放不完整",
         "engineExecution": {
           "effectiveParameters": {
@@ -1144,17 +1144,17 @@
           "stageLoading": "sequential_processes",
           "stages": [
             {
-              "seconds": 0.3667618,
+              "seconds": 1.1633561,
               "stage": "video_noise",
               "bytes": 4096
             },
             {
-              "seconds": 0.124911701,
+              "seconds": 0.1069168,
               "stage": "video_text_encoding",
               "bytes": 16384
             },
             {
-              "seconds": 0.1308662,
+              "seconds": 0.1091016,
               "stage": "video_sampling",
               "bytes": 4096
             }
@@ -1172,13 +1172,13 @@
           },
           "vaeBackend": "cpu"
         },
-        "finishedAt": 1793419815596,
+        "finishedAt": 1793425397172,
         "runtimeResources": {
           "stopCode": "",
           "thermalStopAt": 3,
           "minimumAvailableStorageBytes": null,
           "lastSampleAt": 0,
-          "startedAt": 1793419814107,
+          "startedAt": 1793425394054,
           "probeErrors": 0,
           "message": "",
           "enabled": false,
@@ -1186,16 +1186,16 @@
           "storageFloorBytes": 67108864,
           "minimumAvailableRamBytes": null,
           "maximumThermalStatus": -1,
-          "endedAt": 1793419815595,
+          "endedAt": 1793425397171,
           "sampleIntervalMs": 2000,
           "scope": "shared_system_availability_not_model_peak_memory",
           "thermalKnown": false,
           "status": "ended"
         },
-        "createdAt": 1793419814082,
+        "createdAt": 1793425394026,
         "stage": "video_decoding",
         "progress": null,
-        "id": "job_405fa71926804b5d8014eb355f1b0d90",
+        "id": "job_47d90f12bf584db581ae1ee03e8c85e6",
         "state": "failed",
         "artifacts": []
       },
@@ -1247,7 +1247,7 @@
           }
         },
         "idempotencyKey": "ltx_missing_receipt",
-        "startedAt": 1793419816762,
+        "startedAt": 1793425398125,
         "error": "本地阶段未完整完成：video_text_encoding",
         "engineExecution": {
           "effectiveParameters": {
@@ -1273,7 +1273,7 @@
           "stageLoading": "sequential_processes",
           "stages": [
             {
-              "seconds": 0.3560971,
+              "seconds": 0.482556,
               "stage": "video_noise",
               "bytes": 4096
             }
@@ -1291,13 +1291,13 @@
           },
           "vaeBackend": "cpu"
         },
-        "finishedAt": 1793419817469,
+        "finishedAt": 1793425398875,
         "runtimeResources": {
           "stopCode": "",
           "thermalStopAt": 3,
           "minimumAvailableStorageBytes": null,
           "lastSampleAt": 0,
-          "startedAt": 1793419816843,
+          "startedAt": 1793425398135,
           "probeErrors": 0,
           "message": "",
           "enabled": false,
@@ -1305,16 +1305,16 @@
           "storageFloorBytes": 67108864,
           "minimumAvailableRamBytes": null,
           "maximumThermalStatus": -1,
-          "endedAt": 1793419817468,
+          "endedAt": 1793425398874,
           "sampleIntervalMs": 2000,
           "scope": "shared_system_availability_not_model_peak_memory",
           "thermalKnown": false,
           "status": "ended"
         },
-        "createdAt": 1793419816642,
+        "createdAt": 1793425398119,
         "stage": "video_text_encoding",
         "progress": null,
-        "id": "job_8a1023a84ee54c7bb7f66de16a489248",
+        "id": "job_6d6ea5b45ab44d41b1735b17f4e30152",
         "state": "failed",
         "artifacts": []
       },
@@ -1366,7 +1366,7 @@
           }
         },
         "idempotencyKey": "ltx_duplicate_receipt",
-        "startedAt": 1793419818444,
+        "startedAt": 1793425400182,
         "error": "本地阶段重复或迟到的完成记录",
         "engineExecution": {
           "effectiveParameters": {
@@ -1392,7 +1392,7 @@
           "stageLoading": "sequential_processes",
           "stages": [
             {
-              "seconds": 0.3518022,
+              "seconds": 0.4402889,
               "stage": "video_noise",
               "bytes": 4096
             }
@@ -1410,13 +1410,13 @@
           },
           "vaeBackend": "cpu"
         },
-        "finishedAt": 1793419819086,
+        "finishedAt": 1793425400922,
         "runtimeResources": {
           "stopCode": "",
           "thermalStopAt": 3,
           "minimumAvailableStorageBytes": null,
           "lastSampleAt": 0,
-          "startedAt": 1793419818478,
+          "startedAt": 1793425400194,
           "probeErrors": 0,
           "message": "",
           "enabled": false,
@@ -1424,16 +1424,16 @@
           "storageFloorBytes": 67108864,
           "minimumAvailableRamBytes": null,
           "maximumThermalStatus": -1,
-          "endedAt": 1793419819085,
+          "endedAt": 1793425400921,
           "sampleIntervalMs": 2000,
           "scope": "shared_system_availability_not_model_peak_memory",
           "thermalKnown": false,
           "status": "ended"
         },
-        "createdAt": 1793419818434,
+        "createdAt": 1793425400155,
         "stage": "video_text_encoding",
         "progress": null,
-        "id": "job_6b0407c0a8e947beb83c098dcffc7bed",
+        "id": "job_5b160a2f77a04dd8be6879227136ce8e",
         "state": "failed",
         "artifacts": []
       },
@@ -1485,7 +1485,7 @@
           }
         },
         "idempotencyKey": "ltx_bad_encoder",
-        "startedAt": 1793419820206,
+        "startedAt": 1793425401913,
         "error": "Explicit failing host encoder port",
         "engineExecution": {
           "effectiveParameters": {
@@ -1513,32 +1513,32 @@
           "stageLoading": "sequential_processes",
           "stages": [
             {
-              "seconds": 0.330427599,
+              "seconds": 0.3656829,
               "stage": "video_noise",
               "bytes": 4096
             },
             {
-              "seconds": 0.193122001,
+              "seconds": 0.1348593,
               "stage": "video_text_encoding",
               "bytes": 16384
             },
             {
-              "seconds": 0.153477599,
+              "seconds": 0.1375961,
               "stage": "video_sampling",
               "bytes": 4096
             },
             {
-              "seconds": 1.3391687,
+              "seconds": 0.4439638,
               "stage": "video_latent_layout",
               "bytes": 4096
             },
             {
-              "seconds": 0.176382201,
+              "seconds": 0.1226928,
               "stage": "video_decoding",
               "bytes": 442368
             },
             {
-              "seconds": 0.3205234,
+              "seconds": 0.3071756,
               "stage": "video_frames",
               "bytes": 110620
             }
@@ -1556,13 +1556,13 @@
           },
           "vaeBackend": "cpu"
         },
-        "finishedAt": 1793419822951,
+        "finishedAt": 1793425403695,
         "runtimeResources": {
           "stopCode": "",
           "thermalStopAt": 3,
           "minimumAvailableStorageBytes": null,
           "lastSampleAt": 0,
-          "startedAt": 1793419820217,
+          "startedAt": 1793425401924,
           "probeErrors": 0,
           "message": "",
           "enabled": false,
@@ -1570,16 +1570,16 @@
           "storageFloorBytes": 67108864,
           "minimumAvailableRamBytes": null,
           "maximumThermalStatus": -1,
-          "endedAt": 1793419822949,
+          "endedAt": 1793425403694,
           "sampleIntervalMs": 2000,
           "scope": "shared_system_availability_not_model_peak_memory",
           "thermalKnown": false,
           "status": "ended"
         },
-        "createdAt": 1793419820189,
+        "createdAt": 1793425401891,
         "stage": "encoding",
         "progress": null,
-        "id": "job_be8992046c2e4705814338aea4b9d8f4",
+        "id": "job_71ad635a5c7d4edca9d51b49c1814855",
         "state": "failed",
         "artifacts": []
       },
@@ -1631,7 +1631,7 @@
           }
         },
         "idempotencyKey": "ltx_cancelled",
-        "startedAt": 1793419824329,
+        "startedAt": 1793425404554,
         "error": "",
         "engineExecution": {
           "effectiveParameters": {
@@ -1657,7 +1657,7 @@
           "stageLoading": "sequential_processes",
           "stages": [
             {
-              "seconds": 0.3506095,
+              "seconds": 0.8986073,
               "stage": "video_noise",
               "bytes": 4096
             }
@@ -1675,13 +1675,13 @@
           },
           "vaeBackend": "cpu"
         },
-        "finishedAt": 1793419824902,
+        "finishedAt": 1793425405597,
         "runtimeResources": {
           "stopCode": "",
           "thermalStopAt": 3,
           "minimumAvailableStorageBytes": null,
           "lastSampleAt": 0,
-          "startedAt": 1793419824341,
+          "startedAt": 1793425404570,
           "probeErrors": 0,
           "message": "",
           "enabled": false,
@@ -1689,16 +1689,16 @@
           "storageFloorBytes": 67108864,
           "minimumAvailableRamBytes": null,
           "maximumThermalStatus": -1,
-          "endedAt": 1793419824901,
+          "endedAt": 1793425405596,
           "sampleIntervalMs": 2000,
           "scope": "shared_system_availability_not_model_peak_memory",
           "thermalKnown": false,
           "status": "ended"
         },
-        "createdAt": 1793419824318,
+        "createdAt": 1793425404541,
         "stage": "video_text_encoding",
         "progress": null,
-        "id": "job_20bb6f0c1cd9476183df0816aad7801a",
+        "id": "job_ad5f6e52a7bc4c1a80000feb284d8eed",
         "state": "cancelled",
         "artifacts": []
       },
@@ -1750,7 +1750,7 @@
           }
         },
         "idempotencyKey": "ltx_interrupted",
-        "startedAt": 1793419825863,
+        "startedAt": 1793425406388,
         "error": "服务结束；此引擎没有可续步 checkpoint，可明确重试新任务",
         "engineExecution": {
           "effectiveParameters": {
@@ -1776,7 +1776,7 @@
           "stageLoading": "sequential_processes",
           "stages": [
             {
-              "seconds": 0.308671299,
+              "seconds": 0.5374547,
               "stage": "video_noise",
               "bytes": 4096
             }
@@ -1794,13 +1794,13 @@
           },
           "vaeBackend": "cpu"
         },
-        "finishedAt": 1793419826309,
+        "finishedAt": 1793425407143,
         "runtimeResources": {
           "stopCode": "",
           "thermalStopAt": 3,
           "minimumAvailableStorageBytes": null,
           "lastSampleAt": 0,
-          "startedAt": 1793419825874,
+          "startedAt": 1793425406399,
           "probeErrors": 0,
           "message": "",
           "enabled": false,
@@ -1808,16 +1808,16 @@
           "storageFloorBytes": 67108864,
           "minimumAvailableRamBytes": null,
           "maximumThermalStatus": -1,
-          "endedAt": 1793419826307,
+          "endedAt": 1793425407142,
           "sampleIntervalMs": 2000,
           "scope": "shared_system_availability_not_model_peak_memory",
           "thermalKnown": false,
           "status": "ended"
         },
-        "createdAt": 1793419825854,
+        "createdAt": 1793425406380,
         "stage": "video_text_encoding",
         "progress": null,
-        "id": "job_31b13ef1a3ae4b4e9d21a165e4d0ee8b",
+        "id": "job_44c5c0c117eb4c998dfba6095d96546f",
         "state": "interrupted",
         "artifacts": []
       },
@@ -1938,7 +1938,7 @@
     "ffmpeg": "d1e2a156261ecc675081943197a85f08f2868784a0af499171ede89353edad31",
     "ffprobe": "70872c3ffbc43d0b2c570f9837f54d6e9a832f4ca25463e9735b6a3ec0621478"
   },
-  "capture": "build/ltx098-app-tests/run-1793419798513725700",
+  "capture": "build/ltx098-app-tests/run-1793425379227723100",
   "passed": true,
   "input_fingerprint": {
     "native/ltx098/CMakeLists.txt": "05bd2f7e2a96b679b0a1eaf9480e36d84b0d636310d95add37b8ce5ad4282d86",
@@ -2002,7 +2002,7 @@
     "tools/ltx098_official_profile.py": "dd58ce64cdb40fd4787b64e13f429302f69ba1d409a29a6348b8a5eb498b98dd",
     "tools/sana_sprint_profile.py": "698f71b6afcc6d78ab269f949ac66edcc0f671ba5e098dd182095c23aa69e4fd",
     "app/src/main/assets/models.json": "c3e884b4e5fb06f20c036deebc78e6f953ac420e76fca72bab5a25fd59927156",
-    "app/src/main/assets/recipe-templates.json": "df43feae1977c7005d1f9a3edabdedc5102d7c3ce2141d611017578d5f3b024a",
+    "app/src/main/assets/recipe-templates.json": "738166220d9f8973faf70124fb25dbdf11359186fc45ecc6ad6cabc020fafdf2",
     "app/src/main/java/com/lma/app/ApiHost.java": "288e80c8ef2328c1808920060848b3e12ebc4872d7919f2863f0c827eb0c3afc",
     "app/src/main/java/com/lma/app/ChatRunner.java": "bf3f18528dad358ee1f7e13778bba458fc13cfd7caa0281e0d72058c52617586",
     "app/src/main/java/com/lma/app/core/AdapterSpec.java": "aff8572d14ac8d616be0a1b0da395e52ed5bddcd5ae407a969c2657bf9257581",
@@ -2053,6 +2053,7 @@
     "app/src/main/java/com/lma/app/core/RecipeCatalogue.java": "a01f9c6b094e84b29a8bbb349350a53e68fe1fd5daf4d7fc81fbd2067e00b773",
     "app/src/main/java/com/lma/app/core/RecipeSuggestions.java": "57d9d7b5fc5f3c61a3ab3524af8789df58dbc8ce1923b2c09e139649057beda0",
     "app/src/main/java/com/lma/app/core/ResourceWatch.java": "6f6a4cb2159f7956d1ae8c202c61430be268d86d230245bccc952844f3816ec5",
+    "app/src/main/java/com/lma/app/core/RfShapeSpec.java": "d39752738567b32e8b7308e0d18854c10752a0cd62f1376619b7e959ab00cc6c",
     "app/src/main/java/com/lma/app/core/RuntimeDiagnostics.java": "e543ff733e86ccbf11746dee14f320b184a79c8336163a815c89ba840063c97d",
     "app/src/main/java/com/lma/app/core/SanaSprintSpec.java": "12190d684368b219f17e582d774830d0a946bf5b7e2d25146371325b6fc8b3d3",
     "app/src/main/java/com/lma/app/core/SdSpec.java": "e26906c0c338deff725d8b5c316beb8205eacbe26ea91cfb3ef0861bf94103b5",
@@ -2094,7 +2095,7 @@
     "tests/host/com/lma/app/DocumentInput.java": "3816275bf2db26275db83938c26c445db02bfbfa9669767e31bba6f0215c41c2",
     "tests/host/com/lma/app/HostServer.java": "430c8b3716ae293aaea8c6237fda0010af978c857ef8c711c0739d2d2b1765c6",
     "tests/host/com/lma/app/HubLiveTest.java": "308f69328ac67a2a59f525d6cbe35a7a6177bb4c7cdb1dc4e9df801f3c9da20e",
-    "tests/host/com/lma/app/HubRecipeTest.java": "183747ea818379a1d8d31192495e2e28fc39b9563aa8ff336926d8df4b37d5e4",
+    "tests/host/com/lma/app/HubRecipeTest.java": "152b075a68808615b429018e811b5bab50dff5d3d61803b0608217863269bd2f",
     "tests/host/com/lma/app/HubTest.java": "004adc962fd03fae21d0b2c2c85d8cd23d3073f2e15f9b5a4cc94d696c6060dd",
     "tests/host/com/lma/app/ImportCancellationTest.java": "5a1231a258b9d7c4b0f2fbe9d525453202664181a8d4ef12f5799f56bb915839",
     "tests/host/com/lma/app/LmaApp.java": "ddc709d46a373e83c70bd43e1c7f0641d18cdf7333cd4d32ee10d0ebd4d6e876",

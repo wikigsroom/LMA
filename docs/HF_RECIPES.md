@@ -72,3 +72,7 @@ Qwen3-TTS 新增第 22 个模板和一个固定版本可选包：两个 GGUF 分
 同一原生引擎另外提供 TTS / v1.5 / TTSD / VoiceGenerator 四个独立配方：分别检查 32 / 16 路、8B / 1.7B 主干布局。它们输出 24 kHz 单声道，TTSD 双参考成对映射，VoiceGenerator 必填声音描述；组件与其他 MOSS 格式不互换。详见[完整流程、参数与发布者证据](OPENMOSS_ENGINE.md)。模型仍是同列表中的平级记录，带生音频 / TTS / 多说话人或声音设计以及独立基座依赖标签。
 
 dev.20 新增第 33 个元数据配方：[Stable Audio Open Small](STABLE_AUDIO_ENGINE.md)。TFLite 文件可在 HF 文件列表中选择；需同版三个图与配套 SentencePiece，由用户明确下载 / 导入，未核验可一键运行的四文件社区包。模型许可与 App 许可分开，仍须整模型验收。
+
+## v0.3.4 RF Shape / 部件几何
+
+TripoSG / PartCrafter object / scene are optional matched FP32 ONNX recipes. No public complete matching download package is verified; explicit local export/import and compatible HF component selection reuse existing model management. 用户自主转换 / 导入，模型仍平级；PNG → 本机 CPU → 独立部件 GLB，独立参数、草稿、预检、队列、取消与导出均复用基座。[中文完整操作](RF_SHAPE.md) · [English workflow](RF_SHAPE.en.md)。Full checkpoint conversion and phone quality remain untested.

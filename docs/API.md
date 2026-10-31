@@ -231,3 +231,21 @@ Qwen3-TTS 0.6B Base 复用 `POST /v1/jobs` 的 `speech.synthesize` 与本地 `re
 ## dev.22：明确的运行资产准备任务
 
 [准备 API 合同与示例](MODEL_PREPARATION.md)增加 `model.prepare`，使用现有 `POST /v1/jobs`、鉴权、幂等、事件、取消和重试。只接收所选 bundleId、准备方案ID和指纹；服务器冻结源包身份，拒绝客户端文件路径/URL/模块/生成参数。成功保存准备回执，不伪造媒体产物。`GET /v1/models`增加 `preparation_plans` / `prepared_assets`，包含只有派生资产的本地记录；`installed`仍表示源组件安装状态。准备程序不登记为生成引擎，完整视频生成仍未开放。独立删除派生文件通过App，不提供任意路径删除接口。
+
+## v0.3.4 RF Shape / 部件几何
+
+TripoSG / PartCrafter object / scene are optional matched FP32 ONNX recipes. No public complete matching download package is verified; explicit local export/import and compatible HF component selection reuse existing model management. 用户自主转换 / 导入，模型仍平级；PNG → 本机 CPU → 独立部件 GLB，独立参数、草稿、预检、队列、取消与导出均复用基座。[中文完整操作](RF_SHAPE.md) · [English workflow](RF_SHAPE.en.md)。Full checkpoint conversion and phone quality remain untested.
+
+Use the installed export's actual bundle ID and an authenticated imported PNG artifact, never arbitrary paths or remote execution URLs. 沿用鉴权 `POST /v1/jobs`、事件与取消端点；示例 ID 为占位符，不会创建模型。
+
+```json
+{
+  "bundleId": "your_installed_shape_bundle",
+  "type": "mesh.generate",
+  "input": {"prompt": "Generate local 3D geometry from the selected image.", "artifacts": [{"role": "reference_image", "artifactId": "your_imported_png"}]},
+  "parameters": {"steps": 10, "tokens": 512, "parts": 2, "grid": 32, "queryChunk": 256},
+  "allowUnmeasured": true
+}
+```
+
+`parts:2` applies to PartCrafter; use 1 for TripoSG. Effective parameters still follow the installed model schema. 参数、清单、来源、执行观察和 GLB metadata 沿用共用记录；没有新增云端或 OpenAI 3D API 兼容声明。

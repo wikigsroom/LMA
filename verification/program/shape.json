@@ -1,0 +1,475 @@
+{
+  "passed": 161,
+  "graphParity": [
+    {
+      "case": "triposg_image_encoder",
+      "maxAbsoluteError": 7.450580596923828e-07
+    },
+    {
+      "case": "triposg_flow_p1_t5",
+      "maxAbsoluteError": 1.7881393432617188e-07
+    },
+    {
+      "case": "triposg_uncond_p1_t5",
+      "maxAbsoluteError": 2.384185791015625e-07
+    },
+    {
+      "case": "triposg_flow_p1_t9",
+      "maxAbsoluteError": 2.384185791015625e-07
+    },
+    {
+      "case": "triposg_uncond_p1_t9",
+      "maxAbsoluteError": 4.172325134277344e-07
+    },
+    {
+      "case": "triposg_flow_p1_t17",
+      "maxAbsoluteError": 3.725290298461914e-07
+    },
+    {
+      "case": "triposg_uncond_p1_t17",
+      "maxAbsoluteError": 2.980232238769531e-07
+    },
+    {
+      "case": "triposg_sdf_t5_q1",
+      "maxAbsoluteError": 2.9802322387695312e-08
+    },
+    {
+      "case": "triposg_sdf_t5_q7",
+      "maxAbsoluteError": 2.384185791015625e-07
+    },
+    {
+      "case": "triposg_sdf_t5_q137",
+      "maxAbsoluteError": 4.76837158203125e-07
+    },
+    {
+      "case": "triposg_sdf_t13_q1",
+      "maxAbsoluteError": 1.1920928955078125e-07
+    },
+    {
+      "case": "triposg_sdf_t13_q7",
+      "maxAbsoluteError": 2.384185791015625e-07
+    },
+    {
+      "case": "triposg_sdf_t13_q137",
+      "maxAbsoluteError": 3.2782554626464844e-07
+    },
+    {
+      "case": "triposg_scheduler_shift_1.0",
+      "maxAbsoluteError": 0.0
+    },
+    {
+      "case": "triposg_native_scheduler_shift_1.0",
+      "maxAbsoluteError": 2.9802322387695312e-08
+    },
+    {
+      "case": "triposg_native_timesteps_shift_1.0",
+      "maxAbsoluteError": 6.103515625e-05
+    },
+    {
+      "case": "triposg_native_resize_1.0",
+      "maxAbsoluteError": 0.0,
+      "limit": "one_8bit_level_after_normalization"
+    },
+    {
+      "case": "triposg_scheduler_shift_2.5",
+      "maxAbsoluteError": 1.1920928955078125e-07
+    },
+    {
+      "case": "triposg_native_scheduler_shift_2.5",
+      "maxAbsoluteError": 5.960464477539063e-08
+    },
+    {
+      "case": "triposg_native_timesteps_shift_2.5",
+      "maxAbsoluteError": 6.103515625e-05
+    },
+    {
+      "case": "triposg_native_resize_2.5",
+      "maxAbsoluteError": 0.0,
+      "limit": "one_8bit_level_after_normalization"
+    },
+    {
+      "case": "triposg_scheduler_shift_7.0",
+      "maxAbsoluteError": 2.9802322387695312e-08
+    },
+    {
+      "case": "triposg_native_scheduler_shift_7.0",
+      "maxAbsoluteError": 0.0
+    },
+    {
+      "case": "triposg_native_timesteps_shift_7.0",
+      "maxAbsoluteError": 6.103515625e-05
+    },
+    {
+      "case": "triposg_native_resize_7.0",
+      "maxAbsoluteError": 0.0,
+      "limit": "one_8bit_level_after_normalization"
+    },
+    {
+      "case": "triposg_documented_cli_random_safetensors",
+      "components": 9,
+      "network": false,
+      "trainedWeights": false
+    },
+    {
+      "case": "partcrafter_image_encoder",
+      "maxAbsoluteError": 1.1324882507324219e-06
+    },
+    {
+      "case": "partcrafter_flow_p1_t5",
+      "maxAbsoluteError": 2.384185791015625e-07
+    },
+    {
+      "case": "partcrafter_uncond_p1_t5",
+      "maxAbsoluteError": 3.5762786865234375e-07
+    },
+    {
+      "case": "partcrafter_flow_p1_t9",
+      "maxAbsoluteError": 2.384185791015625e-07
+    },
+    {
+      "case": "partcrafter_uncond_p1_t9",
+      "maxAbsoluteError": 2.980232238769531e-07
+    },
+    {
+      "case": "partcrafter_flow_p1_t17",
+      "maxAbsoluteError": 4.172325134277344e-07
+    },
+    {
+      "case": "partcrafter_uncond_p1_t17",
+      "maxAbsoluteError": 5.662441253662109e-07
+    },
+    {
+      "case": "partcrafter_flow_p2_t5",
+      "maxAbsoluteError": 2.384185791015625e-07
+    },
+    {
+      "case": "partcrafter_uncond_p2_t5",
+      "maxAbsoluteError": 2.384185791015625e-07
+    },
+    {
+      "case": "partcrafter_flow_p2_t9",
+      "maxAbsoluteError": 3.5762786865234375e-07
+    },
+    {
+      "case": "partcrafter_uncond_p2_t9",
+      "maxAbsoluteError": 3.8743019104003906e-07
+    },
+    {
+      "case": "partcrafter_flow_p2_t17",
+      "maxAbsoluteError": 3.2782554626464844e-07
+    },
+    {
+      "case": "partcrafter_uncond_p2_t17",
+      "maxAbsoluteError": 3.5762786865234375e-07
+    },
+    {
+      "case": "partcrafter_flow_p3_t5",
+      "maxAbsoluteError": 4.023313522338867e-07
+    },
+    {
+      "case": "partcrafter_uncond_p3_t5",
+      "maxAbsoluteError": 2.980232238769531e-07
+    },
+    {
+      "case": "partcrafter_flow_p3_t9",
+      "maxAbsoluteError": 4.76837158203125e-07
+    },
+    {
+      "case": "partcrafter_uncond_p3_t9",
+      "maxAbsoluteError": 2.682209014892578e-07
+    },
+    {
+      "case": "partcrafter_flow_p3_t17",
+      "maxAbsoluteError": 4.172325134277344e-07
+    },
+    {
+      "case": "partcrafter_uncond_p3_t17",
+      "maxAbsoluteError": 2.980232238769531e-07
+    },
+    {
+      "case": "partcrafter_flow_p16_t5",
+      "maxAbsoluteError": 5.960464477539062e-07
+    },
+    {
+      "case": "partcrafter_uncond_p16_t5",
+      "maxAbsoluteError": 4.76837158203125e-07
+    },
+    {
+      "case": "partcrafter_flow_p16_t9",
+      "maxAbsoluteError": 4.76837158203125e-07
+    },
+    {
+      "case": "partcrafter_uncond_p16_t9",
+      "maxAbsoluteError": 4.76837158203125e-07
+    },
+    {
+      "case": "partcrafter_flow_p16_t17",
+      "maxAbsoluteError": 5.960464477539062e-07
+    },
+    {
+      "case": "partcrafter_uncond_p16_t17",
+      "maxAbsoluteError": 4.76837158203125e-07
+    },
+    {
+      "case": "partcrafter_sdf_t5_q1",
+      "maxAbsoluteError": 2.9802322387695312e-08
+    },
+    {
+      "case": "partcrafter_sdf_t5_q7",
+      "maxAbsoluteError": 2.384185791015625e-07
+    },
+    {
+      "case": "partcrafter_sdf_t5_q137",
+      "maxAbsoluteError": 4.76837158203125e-07
+    },
+    {
+      "case": "partcrafter_sdf_t13_q1",
+      "maxAbsoluteError": 1.1920928955078125e-07
+    },
+    {
+      "case": "partcrafter_sdf_t13_q7",
+      "maxAbsoluteError": 2.384185791015625e-07
+    },
+    {
+      "case": "partcrafter_sdf_t13_q137",
+      "maxAbsoluteError": 3.2782554626464844e-07
+    },
+    {
+      "case": "partcrafter_scheduler_shift_1.0",
+      "maxAbsoluteError": 0.0
+    },
+    {
+      "case": "partcrafter_native_scheduler_shift_1.0",
+      "maxAbsoluteError": 2.9802322387695312e-08
+    },
+    {
+      "case": "partcrafter_native_timesteps_shift_1.0",
+      "maxAbsoluteError": 6.103515625e-05
+    },
+    {
+      "case": "partcrafter_native_resize_1.0",
+      "maxAbsoluteError": 0.0,
+      "limit": "one_8bit_level_after_normalization"
+    },
+    {
+      "case": "partcrafter_scheduler_shift_2.5",
+      "maxAbsoluteError": 1.1920928955078125e-07
+    },
+    {
+      "case": "partcrafter_native_scheduler_shift_2.5",
+      "maxAbsoluteError": 5.960464477539063e-08
+    },
+    {
+      "case": "partcrafter_native_timesteps_shift_2.5",
+      "maxAbsoluteError": 6.103515625e-05
+    },
+    {
+      "case": "partcrafter_native_resize_2.5",
+      "maxAbsoluteError": 0.0,
+      "limit": "one_8bit_level_after_normalization"
+    },
+    {
+      "case": "partcrafter_scheduler_shift_7.0",
+      "maxAbsoluteError": 2.9802322387695312e-08
+    },
+    {
+      "case": "partcrafter_native_scheduler_shift_7.0",
+      "maxAbsoluteError": 0.0
+    },
+    {
+      "case": "partcrafter_native_timesteps_shift_7.0",
+      "maxAbsoluteError": 6.103515625e-05
+    },
+    {
+      "case": "partcrafter_native_resize_7.0",
+      "maxAbsoluteError": 0.0,
+      "limit": "one_8bit_level_after_normalization"
+    },
+    {
+      "case": "partcrafter_documented_cli_random_safetensors",
+      "components": 9,
+      "network": false,
+      "trainedWeights": false
+    }
+  ],
+  "nativeProcesses": [
+    {
+      "pipeline": "triposg",
+      "case": "success",
+      "expectedSuccess": true,
+      "meshes": 1,
+      "bytes": 258824
+    },
+    {
+      "pipeline": "triposg",
+      "case": "source_revision",
+      "expectedSuccess": false
+    },
+    {
+      "pipeline": "triposg",
+      "case": "wrong_pipeline",
+      "expectedSuccess": false
+    },
+    {
+      "pipeline": "triposg",
+      "case": "missing_role",
+      "expectedSuccess": false
+    },
+    {
+      "pipeline": "triposg",
+      "case": "external_path",
+      "expectedSuccess": false
+    },
+    {
+      "pipeline": "triposg",
+      "case": "bad_dimensions",
+      "expectedSuccess": false
+    },
+    {
+      "pipeline": "triposg",
+      "case": "misaligned_grid",
+      "expectedSuccess": false
+    },
+    {
+      "pipeline": "triposg",
+      "case": "missing_image",
+      "expectedSuccess": false
+    },
+    {
+      "pipeline": "triposg",
+      "case": "empty_surface",
+      "expectedSuccess": false
+    },
+    {
+      "pipeline": "triposg",
+      "case": "triangle_budget",
+      "expectedSuccess": false
+    },
+    {
+      "pipeline": "partcrafter",
+      "case": "success",
+      "expectedSuccess": true,
+      "meshes": 2,
+      "bytes": 517448
+    },
+    {
+      "pipeline": "partcrafter",
+      "case": "source_revision",
+      "expectedSuccess": false
+    },
+    {
+      "pipeline": "partcrafter",
+      "case": "wrong_pipeline",
+      "expectedSuccess": false
+    },
+    {
+      "pipeline": "partcrafter",
+      "case": "missing_role",
+      "expectedSuccess": false
+    },
+    {
+      "pipeline": "partcrafter",
+      "case": "external_path",
+      "expectedSuccess": false
+    },
+    {
+      "pipeline": "partcrafter",
+      "case": "bad_dimensions",
+      "expectedSuccess": false
+    },
+    {
+      "pipeline": "partcrafter",
+      "case": "misaligned_grid",
+      "expectedSuccess": false
+    },
+    {
+      "pipeline": "partcrafter",
+      "case": "missing_image",
+      "expectedSuccess": false
+    },
+    {
+      "pipeline": "partcrafter",
+      "case": "empty_surface",
+      "expectedSuccess": false
+    },
+    {
+      "pipeline": "partcrafter",
+      "case": "triangle_budget",
+      "expectedSuccess": false
+    },
+    {
+      "pipeline": "partcrafter_scene",
+      "case": "success",
+      "expectedSuccess": true,
+      "meshes": 2,
+      "bytes": 517448
+    },
+    {
+      "pipeline": "partcrafter_scene",
+      "case": "source_revision",
+      "expectedSuccess": false
+    },
+    {
+      "pipeline": "partcrafter_scene",
+      "case": "wrong_pipeline",
+      "expectedSuccess": false
+    },
+    {
+      "pipeline": "partcrafter_scene",
+      "case": "missing_role",
+      "expectedSuccess": false
+    },
+    {
+      "pipeline": "partcrafter_scene",
+      "case": "external_path",
+      "expectedSuccess": false
+    },
+    {
+      "pipeline": "partcrafter_scene",
+      "case": "bad_dimensions",
+      "expectedSuccess": false
+    },
+    {
+      "pipeline": "partcrafter_scene",
+      "case": "misaligned_grid",
+      "expectedSuccess": false
+    },
+    {
+      "pipeline": "partcrafter_scene",
+      "case": "missing_image",
+      "expectedSuccess": false
+    },
+    {
+      "pipeline": "partcrafter_scene",
+      "case": "empty_surface",
+      "expectedSuccess": false
+    },
+    {
+      "pipeline": "partcrafter_scene",
+      "case": "triangle_budget",
+      "expectedSuccess": false
+    }
+  ],
+  "trainedModelDownloads": 0,
+  "trainedModelRuns": 0,
+  "physicalAndroidTests": 0,
+  "virtualizationUsed": false,
+  "input_fingerprint": {
+    "native/moss_nano/onnx_external.hpp": "c1bb8f95ad2078472dbbf2ea0863493ac44f4aae7c4336cf5debb0db0d54fae5",
+    "native/rf_shape/CMakeLists.txt": "48fd357aaf0e656dc65afc0d8442b9aa031426a5b7437c975c9871e90323be94",
+    "native/rf_shape/geometry.hpp": "95cbdc3dcf71629dfd685ee7efcad354e66b07c6dc786ebe8451ac8c2b950192",
+    "native/rf_shape/image.hpp": "89261f9cd2f0a1adb2ec0fc42f9da951e4898349b8f54ee4daa31415e49d6e78",
+    "native/rf_shape/math.hpp": "2f345d08ae7abe58bf8d8b567325b425f9c5d21383e75ce60b13dd5573790c0d",
+    "native/rf_shape/ort.hpp": "2b6e5722b757a027213482bfc1289348fd9454e8e00d49cdb0d47d87896fac71",
+    "native/rf_shape/worker.cpp": "bf18dba87ac45d9dc1100f8004b1ede16c8a100c9d8d560b0fc2f50c605bc819",
+    "native/runtime_metrics.hpp": "1fe93a5bd8426dbca3f8efaec6070c1cccc60e75006df40021141a69abec4a07",
+    "native/worker_common.hpp": "874ea65fb060c880b72484f771e2ea58dc5814480e76bfcb794ee8da87b5032c",
+    "tests/expansion-native/shape.cpp": "c0e394cf9565400922ded71217258886e6cfece021aaf91bb37876947c82472b",
+    "third_party/rf-shape-source-lock.json": "cc66fe41a216a40d7bb29d9f6a76873b0f29e63a46567e488445857b52695b58",
+    "tools/export_shape.py": "70c25e1e74eeb9de24ea3a36c26b31b26c82798606016dade617049c97a413f8",
+    "tools/fetch_shape_sources.py": "40c0b2007a42843b2055b2de391521d0b563a307e16016a45f999dd661076880",
+    "tools/shape_catalogue.py": "a0c4d9f357feaad938915cde934b9873277e4398d2d99830791ca37e8169b84d",
+    "tools/shape_graphs.py": "07ce9bdf1f1fcb813b678c9154f5959cfc78fe591949030aa80c47a0c135e955",
+    "tools/test_shape.py": "55f9cba99f1422800b5371f7f50e185063a766583ab571551c234dfffb5e018a"
+  }
+}

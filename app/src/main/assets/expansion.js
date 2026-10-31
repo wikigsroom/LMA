@@ -20,7 +20,7 @@
     return '<label class="form-field' + (rule.type === 'string' ? ' mesh-wide' : '') + '"><span>' + e(rule.label || key) + '</span>' + input + '</label>';
   }
   function use(id, request, revision) {
-    var b = find(id); if (!b || ['trellis_native','pixal_multiview'].indexOf(b.manifest.engine) < 0) return false;
+    var b = find(id); if (!b || ['trellis_native','pixal_multiview','rf_shape_ort'].indexOf(b.manifest.engine) < 0) return false;
     var values = Object.assign({}, (b.config || {}).values || {}, (request || {}).parameters || {}), fields = b.parameterSchema.fields;
     var inputSchema = (b.inputSchemas || {})['mesh.generate'] || {fixedPrompt:'Generate a 3D asset from the selected local image.',roles:{reference_image:{label:'参考图片（PNG / JPEG，最多 4 百万像素）',mimes:['image/png','image/jpeg'],required:true}}};
     var selected = (((request || {}).input || {}).artifacts || []), roles = Object.keys(inputSchema.roles || {});

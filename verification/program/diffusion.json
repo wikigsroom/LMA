@@ -19,7 +19,7 @@
   "physical_android": false,
   "image_outputs": false,
   "input_fingerprint": {
-    "app/src/main/assets/recipe-templates.json": "df43feae1977c7005d1f9a3edabdedc5102d7c3ce2141d611017578d5f3b024a",
+    "app/src/main/assets/recipe-templates.json": "738166220d9f8973faf70124fb25dbdf11359186fc45ecc6ad6cabc020fafdf2",
     "app/src/main/java/com/lma/app/core/AdapterSpec.java": "aff8572d14ac8d616be0a1b0da395e52ed5bddcd5ae407a969c2657bf9257581",
     "app/src/main/java/com/lma/app/core/ArtifactStore.java": "2943a05c29fe8fdd4f32e9f4575ddcc730e09b1b20c7ff40a7ac310b56551947",
     "app/src/main/java/com/lma/app/core/AssemblyPlan.java": "80e81dea2a831d3955aa5ae21323eb0432fb448f78994901633fbb6e85d77e7c",
@@ -68,6 +68,7 @@
     "app/src/main/java/com/lma/app/core/RecipeCatalogue.java": "a01f9c6b094e84b29a8bbb349350a53e68fe1fd5daf4d7fc81fbd2067e00b773",
     "app/src/main/java/com/lma/app/core/RecipeSuggestions.java": "57d9d7b5fc5f3c61a3ab3524af8789df58dbc8ce1923b2c09e139649057beda0",
     "app/src/main/java/com/lma/app/core/ResourceWatch.java": "6f6a4cb2159f7956d1ae8c202c61430be268d86d230245bccc952844f3816ec5",
+    "app/src/main/java/com/lma/app/core/RfShapeSpec.java": "d39752738567b32e8b7308e0d18854c10752a0cd62f1376619b7e959ab00cc6c",
     "app/src/main/java/com/lma/app/core/RuntimeDiagnostics.java": "e543ff733e86ccbf11746dee14f320b184a79c8336163a815c89ba840063c97d",
     "app/src/main/java/com/lma/app/core/SanaSprintSpec.java": "12190d684368b219f17e582d774830d0a946bf5b7e2d25146371325b6fc8b3d3",
     "app/src/main/java/com/lma/app/core/SdSpec.java": "e26906c0c338deff725d8b5c316beb8205eacbe26ea91cfb3ef0861bf94103b5",

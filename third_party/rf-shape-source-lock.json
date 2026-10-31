@@ -1,0 +1,48 @@
+{
+  "schema": "lma.rf-shape-sources/1",
+  "sources": [
+    {
+      "id": "D11",
+      "repository": "VAST-AI-Research/TripoSG",
+      "revision": "fc5c40990181e2a756c4e0b1c2f4d6b5202faf8c",
+      "directory": "build/shape-source-audit/D11",
+      "package": "triposg",
+      "files": {
+        "triposg/models/attention_processor.py": "ace9e1e66a14a8b10a6ccf6e25c848fd44bd26ba38f5d6a0b4905d45fafe5ed6",
+        "triposg/models/embeddings.py": "fd5ef3792bf1620b0f41a0001e229f39eb91f6d7ea3b4a25a828e5c9e004e343",
+        "triposg/models/autoencoders/autoencoder_kl_triposg.py": "ce038158925c87bd8f5b33919458d72a32299e031d2e43b99437e678edd03547",
+        "triposg/models/autoencoders/vae.py": "309195e744d71b349e0fd450b17a065172daac693afa43e22865231b25590dab",
+        "triposg/models/autoencoders/__init__.py": "9b698430cfcbe6389bc751d743578a87579cc97c8ac4effd5e062726e8e45087",
+        "triposg/models/transformers/modeling_outputs.py": "a73a4375f2341af4a3cbfddb67204bae81ebd53e6e8f4f951064879bbc68eee4",
+        "triposg/models/transformers/__init__.py": "0d6648bc1e3d115805f42ff5512b33f793429cc1c84155fb81af496b17de3b4c",
+        "triposg/models/transformers/triposg_transformer.py": "21d9ff8bea0067c7e03532f3dd91e71dfc5b915a2c0c4fd35ec0502ba6cb57ff",
+        "triposg/schedulers/scheduling_rectified_flow.py": "6edaa6f5bccbf99d11c2e5ab81fbf9c319dd0dc2f3b89235d3fd43a606a401f7",
+        "triposg/schedulers/__init__.py": "5559c9e43858b003dbfc86ac178ae0c84c2c2d834238c5af1f1843a2a64dbdcb",
+        "LICENSE": "0fc2acd0176b345d3da59f466861ad09b78698de4200739aeaa2ffc9ae7a6842",
+        "NOTICE": "b2a2b68a04f338d53fa7676c2033acb5dd165d0ce6324be0fa14894ee0bb0f39"
+      }
+    },
+    {
+      "id": "D12",
+      "repository": "wgsxm/PartCrafter",
+      "revision": "3d773bf02fad51c7ab31a5615573fec93b287b30",
+      "directory": "build/shape-source-audit/D12",
+      "package": "src",
+      "files": {
+        "src/models/attention_processor.py": "006cb82cc7fe025d0e7af5d8032e6198e03bc21ac5e381f027237c965e691912",
+        "src/models/embeddings.py": "fd5ef3792bf1620b0f41a0001e229f39eb91f6d7ea3b4a25a828e5c9e004e343",
+        "src/models/autoencoders/autoencoder_kl_triposg.py": "5b35dd51bedffbc1b31f522ccf0237408db24405789989fb6ed1d5de2fcb3c14",
+        "src/models/autoencoders/vae.py": "309195e744d71b349e0fd450b17a065172daac693afa43e22865231b25590dab",
+        "src/models/autoencoders/__init__.py": "9b698430cfcbe6389bc751d743578a87579cc97c8ac4effd5e062726e8e45087",
+        "src/models/transformers/modeling_outputs.py": "a73a4375f2341af4a3cbfddb67204bae81ebd53e6e8f4f951064879bbc68eee4",
+        "src/models/transformers/__init__.py": "f715bade59a252899e3f6305150c2df7e9a23f2b0fe943c8ac447cdf2cadc63a",
+        "src/models/transformers/partcrafter_transformer.py": "34f383d87380a32e5b7e4c54662ca307ae5950af1ed8f3dc6374b4ff8dc493c8",
+        "src/schedulers/scheduling_rectified_flow.py": "6edaa6f5bccbf99d11c2e5ab81fbf9c319dd0dc2f3b89235d3fd43a606a401f7",
+        "src/schedulers/__init__.py": "5559c9e43858b003dbfc86ac178ae0c84c2c2d834238c5af1f1843a2a64dbdcb",
+        "LICENSE": "ae8c80719a5c916e5fd99fd3da99f8cf74be1589e9e4a11d5754898967a54e1f"
+      }
+    }
+  ],
+  "model_weights_downloaded": false,
+  "scope": "source-only offline exporter; no install scripts, providers, demos or model assets"
+}

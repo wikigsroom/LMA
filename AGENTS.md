@@ -1,6 +1,6 @@
 # LMA repository instructions / 仓库工作约定
 
-- Current additive release is v0.3.3: retain the completed original scope, community, speech and single-image 3D; add the true four-view runtime and diagnostics described in docs/MULTIVIEW_DIAGNOSTICS.md. Matching MV weights are import-only until a download endpoint is verified. D04–D12 remain native-port implementation work, explicitly separate from frozen-scope completion. The older “next v0.3.0” requirement below records the complete original scope, not a request to reset versions. All new models remain optional peers; raw PyTorch, unported 3D families and phone performance must not be inferred from catalogue labels.
+- Current additive release is v0.3.4: retain the entire frozen scope, community, speech, single-image and four-view routes. Add the matched ONNX CPU TripoSG / PartCrafter object / scene shape subsets described in docs/RF_SHAPE.md. There is no verified public complete matched ONNX download package; users explicitly export/import or select compatible HF assets. D04–D10 remain native-port development; full trained exports and phone quality are untested under the user program-only policy. Raw PyTorch is not an Android executable. Older version requirements below are historical scope, not instructions to reset versions.
 
 - Work inside this repository and the user's designated `无审查小模型/` directory. Do not invoke Docker, WSL, virtual machines, or Android emulators. 使用原生工具，不调度任何虚拟化环境。
 - Close all browser pages, contexts, and browser processes created for a task in `finally` blocks. 浏览器调用结束必须关闭不用的页面并释放内存。

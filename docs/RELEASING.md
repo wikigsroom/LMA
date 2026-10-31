@@ -3,18 +3,18 @@
 上游 safetensors 的 `*.header.json` 按原始字节保留（含 JSON 填充）；`.gitattributes` 仅为这些原始头保留行末填充，大小 / SHA256 核对继续生效。Publisher headers retain exact padding; identity checks remain mandatory.
 
 
-## v0.3.3 当前发布流程 / Current program-only release
+## v0.3.4 当前发布流程 / Current program-only release
 
 **已发布后的文档维护 / Documentation maintenance after publication:** APK 内容不变时保留 versionName / code 和全部发布附件。更新双语 README、CHANGELOG 与维护说明；只做相关文档 / 工具检查。若修改发布核查工具，运行 `python tools/test_published_source.py`，再用 `python tools/program_evidence.py --export` 更新工具指纹并用 `python tools/check_repository.py --published` 核对当前链接、原标签 Git blob 与原源码 ZIP / 附件。不运行 package/prepare 覆盖已发布文件；不以文档变动触发模型或手机验收。See [README repair](releases/v0.3.1-readme.md).
 
-按用户明确指令仅做程序验证；下文旧完整模型 / 真机运行门槛保留为历史，不能再次作为本版前置要求。完整冻结程序范围不缩减。See [validation policy](PROGRAM_VALIDATION.md), [implementation matrix](IMPLEMENTATION_V033.md) and [release notes](releases/v0.3.3.md).
+按用户明确指令仅做程序验证；下文旧完整模型 / 真机运行门槛保留为历史，不能再次作为本版前置要求。完整冻结程序范围不缩减。See [validation policy](PROGRAM_VALIDATION.md), [implementation matrix](IMPLEMENTATION_V034.md) and [release notes](releases/v0.3.4.md).
 
 1. 完成受影响的生产代码、Java/原生合约、队列 / API / 生命周期与有界小图检查；不使用 `--trained`，不下载 / 复制完整模型，不调度 Docker / WSL / 模拟器。Run affected program checks only.
 2. 原生模块改变时用现有锁定构建器重新编译 / 打包；`python tools/build.py`、`python tools/verify_package.py`、`python tools/test_android_lint.py` 检查完整签名 APK。Preserve the original signing identity.
-3. 页面回归：`node tests/ui-smoke.cjs`。录制：`node tools/capture_workbench.cjs community` 、`node tools/capture_workbench.cjs release-workbench` 与 `node tools/capture_workbench.cjs expansion` 与 `node tools/capture_workbench.cjs multiview`。使用显式桥接夹具，finally 关闭浏览器。Protect user weights and credentials.
+3. 页面回归：`node tests/ui-smoke.cjs`。录制：`node tools/capture_workbench.cjs community` 、`node tools/capture_workbench.cjs release-workbench` 与 `node tools/capture_workbench.cjs expansion` 与 `node tools/capture_workbench.cjs multiview`、`node tools/capture_workbench.cjs shape`。使用显式桥接夹具，finally 关闭浏览器。Protect user weights and credentials.
 4. 更新双语 README、指南、CHANGELOG、本版说明与当前媒体；旧证据原样归档。`python tools/release_scope.py` 核对完整范围；`python tools/program_evidence.py --export` 核对 当前程序记录、检查数量及源码指纹。
 5. `python tools/package_delivery.py` 生成源码 / 验证清单，`python tools/check_repository.py` 检查公开文件、敏感内容、文档链接和源码 ZIP，`python tools/prepare_release.py` 生成哈希核对过的附件白名单。Any source/doc changes after packaging require repackaging; stale evidence fails locally.
-6. 精确暂存代码与文档（排除受保护文件和签名材料），普通提交与推送 main。创建并推送未存在的 `v0.3.3` 标签；不 force，不改写旧标签。
+6. 精确暂存代码与文档（排除受保护文件和签名材料），普通提交与推送 main。创建并推送未存在的 `v0.3.4` 标签；不 force，不改写旧标签。
 7. `python tools/publish_release.py --gh PATH_TO_AUTHENTICATED_GH --publish`。工具要求干净提交、远端标签一致、附件身份一致；先草稿上传，逐项验证 GitHub SHA256，再公开 prerelease。Never overwrite published assets under the same filename.
 
 GitHub prerelease 表示手机与模型质量未验，不表示拆分了功能版本。模型仍为可选用户资产。APK、源码、程序证据、截图、GIF/MP4、发布说明及 SHA256 清单全部同版交付。Historical guidance follows.

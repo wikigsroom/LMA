@@ -135,3 +135,7 @@ After preparation, use Local → Runtime assets → Review association, check th
 ## Community image and video models
 
 Models → All now includes an offline Registered recipes source and independent content filters. The 44 additional checkpoint variants include 28 sourced NSFW entries. Source, license and exact supported architecture are shown before downloading; only the selected model and disclosed dependencies are obtained. Local retains the same labels for downloads and unfinished transfers. [Full guide](COMMUNITY_MODELS.en.md).
+
+## v0.3.4 RF Shape / 部件几何
+
+TripoSG / PartCrafter object / scene are optional matched FP32 ONNX recipes. No public complete matching download package is verified; explicit local export/import and compatible HF component selection reuse existing model management. 用户自主转换 / 导入，模型仍平级；PNG → 本机 CPU → 独立部件 GLB，独立参数、草稿、预检、队列、取消与导出均复用基座。[中文完整操作](RF_SHAPE.md) · [English workflow](RF_SHAPE.en.md)。Full checkpoint conversion and phone quality remain untested.

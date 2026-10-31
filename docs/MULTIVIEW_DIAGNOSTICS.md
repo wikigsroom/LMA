@@ -1,5 +1,7 @@
 # 多视图 3D 与本机诊断 · v0.3.3
 
+> 此页记录 v0.3.3 的历史范围。Current v0.3.4 adds matched TripoSG / PartCrafter shape subsets; see [当前实现 / current scope](IMPLEMENTATION_V034.md), [English](IMPLEMENTATION_V034.en.md).
+
 [English](MULTIVIEW_DIAGNOSTICS.en.md) · [使用手册](USER_GUIDE.md) · [实现](IMPLEMENTATION_V033.md) · [版本说明](releases/v0.3.3.md)
 
 本版继续补齐可进行程序验证的开发：新增真正的 Pixal3D MV 运行器、四视图输入与相机检查、可选组件导入，以及失败任务也保留的运行观察。单图 TRELLIS.2 / Pixal3D、四类语音和原有全部基座继续保留。APK 不带模型，不自动取得任何模型资产，全部实际执行阶段均在同一 Android 手机。
@@ -128,6 +130,6 @@ node tools/capture_workbench.cjs multiview
 
 这些是实际代码缺口，**不是要求重新做耗时模型验收**。官方桌面 Python / CUDA 依赖说明原样安装不能成为 Android 运行器，也没有证明永久无法移植。本版没有声称全部测评架构已经支持；原有 F-01–F-12、文本、01–14 / 16 / 17 完整冻结范围继续保留。
 
-![四视图本地流程；UI FIXTURE，不是训练模型输出](media/development/multiview/multiview-ui.gif)
+![四视图本地流程；UI FIXTURE，不是训练模型输出](media/history/v0.3.3/multiview/multiview-ui.gif)
 
-[四个可选包](media/development/multiview/01-multiview-models.png) · [校验导入](media/development/multiview/02-import-plan.png) · [四图输入](media/development/multiview/03-four-view-form.png) · [队列](media/development/multiview/04-multiview-queue.png) · [后台状态](media/development/multiview/05-background-observations.png) · [MP4](media/development/multiview/multiview-ui.mp4) · [媒体身份](media/development/multiview/manifest.json)
+[四个可选包](media/history/v0.3.3/multiview/01-multiview-models.png) · [校验导入](media/history/v0.3.3/multiview/02-import-plan.png) · [四图输入](media/history/v0.3.3/multiview/03-four-view-form.png) · [队列](media/history/v0.3.3/multiview/04-multiview-queue.png) · [后台状态](media/history/v0.3.3/multiview/05-background-observations.png) · [MP4](media/history/v0.3.3/multiview/multiview-ui.mp4) · [媒体身份](media/history/v0.3.3/multiview/manifest.json)

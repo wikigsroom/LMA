@@ -1,0 +1,359 @@
+{
+  "schema": "lma.program-release/1",
+  "version": "0.3.3",
+  "validation_mode": "program_only",
+  "sources": {
+    "community.json": {
+      "source": "build/community-tests/results.json",
+      "bytes": 14337,
+      "sha256": "c26e8bff496b60068309353e3385d77ccb756532876be1302693710c8e83f337"
+    },
+    "expansion.json": {
+      "source": "build/expansion-tests/results.json",
+      "bytes": 10775,
+      "sha256": "5107f4df2e375f51bbbfdebd51a5684a1e035d42ce66e952de1b93692611d708"
+    },
+    "multiview.json": {
+      "source": "build/multiview-tests/results.json",
+      "bytes": 7372,
+      "sha256": "4a483784803be5c5f6d5b043ffd4517b0d3abeb2e9d417a4bab300ab617ad94d"
+    },
+    "multiview-android.json": {
+      "source": "build/multiview-build-info.json",
+      "bytes": 1394,
+      "sha256": "ae96838b6cbce48fe85f25e75c72d069814fd99afe616d22ea93f200bf3d759c"
+    },
+    "speech-extra-android.json": {
+      "source": "build/speech_extra-build-info.json",
+      "bytes": 1509,
+      "sha256": "4379e0211015adee9f7ef6ac5e0ff69b213b648a667f74159e2b385b1a2a275b"
+    },
+    "mesh-android.json": {
+      "source": "build/mesh-build-info.json",
+      "bytes": 1378,
+      "sha256": "9bd60639bd4a32b1dbc1e63a81888c80053b942dcb1bc609603ce484a6b2b013"
+    },
+    "tts-android.json": {
+      "source": "build/tts-build-info.json",
+      "bytes": 1950,
+      "sha256": "b312e1d5d0af6da739698f8003703462fc265434810e3a4bf964e01d8b911c96"
+    },
+    "build.json": {
+      "source": "dist/build-info.json",
+      "bytes": 106561,
+      "sha256": "a27399a29182d33dfdb06f91089383d1bfddba0dd4567359360d8689df77c1fa"
+    },
+    "package.json": {
+      "source": "build/package-verification.json",
+      "bytes": 20231,
+      "sha256": "bd143f7f81db85ddbcb7afa6c789e354ce11153d282aa02b69bfba1c561a064e"
+    },
+    "foundation.json": {
+      "source": "build/foundation-tests/results.json",
+      "bytes": 10176,
+      "sha256": "eebff22e5bfa4014d8682f8d65ee2dcc164b4fc26f26da80873b0027313325a2"
+    },
+    "backend.json": {
+      "source": "build/backend-tests/results.json",
+      "bytes": 25244,
+      "sha256": "a18cb7f759f109d0aa33173d1d00324e0e004b2c3317ffd5b68a681f431f0b22"
+    },
+    "bundle-pause.json": {
+      "source": "build/bundle-pause-tests/results.json",
+      "bytes": 8751,
+      "sha256": "5c5ffdbeb9c511abff860305e8bcaa178f99b6d3b056a38123eb131546cbff67"
+    },
+    "document-input.json": {
+      "source": "build/document-input-tests/results.json",
+      "bytes": 9142,
+      "sha256": "62dff73b9efdd931417be5b1b55675737e615dfd85467e1ba433b0d1d04b801c"
+    },
+    "api.json": {
+      "source": "build/api-tests/results.json",
+      "bytes": 12728,
+      "sha256": "97035e39dd24265f51bd0090f9d12ecab4aec76ad4af0d5ebbf29a1d4c430550"
+    },
+    "workbench.json": {
+      "source": "build/workbench-tests/results.json",
+      "bytes": 11231,
+      "sha256": "f2a511d11bafc65cf78faad0a65ecb1a24a6d178679e00a5ecd26095ea989241"
+    },
+    "recovery.json": {
+      "source": "build/recovery-tests/results.json",
+      "bytes": 12281,
+      "sha256": "efe1375381d9e165ef80acf56d95999a936c4f80e07e117045f0b0dbd25b1056"
+    },
+    "inputs.json": {
+      "source": "build/input-tests/results.json",
+      "bytes": 12952,
+      "sha256": "ca5c0cc3ccf6283402bebcda635ff46ffeb22a14dfed0b79240a036269d87b35"
+    },
+    "text.json": {
+      "source": "build/text-tests/results.json",
+      "bytes": 9435,
+      "sha256": "555528c5b80f6dfa06795432692023259aebc517a5c7bfa0a9852e3be0d2c37e"
+    },
+    "migration.json": {
+      "source": "build/migration-tests/results.json",
+      "bytes": 16805,
+      "sha256": "41f332b71f17ee124cee5bb2a8ee90f6d3b1362c915f53f50536553662c4c793"
+    },
+    "scheduler.json": {
+      "source": "build/scheduler-tests/results.json",
+      "bytes": 17618,
+      "sha256": "b78f0fe20864ea54f80ba99bf84bd4a13b060e4cdb376d1d07aca3a43d68e40c"
+    },
+    "preparations.json": {
+      "source": "build/preparation-tests/results.json",
+      "bytes": 9075,
+      "sha256": "91b81307a1e7ce6fdf4780d73c4aee4e59e27a18d1f3f4e81fed1eb3e5b43b27"
+    },
+    "assemblies.json": {
+      "source": "build/assembly-tests/results.json",
+      "bytes": 9177,
+      "sha256": "1407a29324b3755e560fd7f77907edb7c1d8acbd049d35fcaadfb01fe219d391"
+    },
+    "diffusion.json": {
+      "source": "build/diffusion-tests/results.json",
+      "bytes": 9952,
+      "sha256": "452263c743765fe6269d16390b62d9ba2a9e5760c482d3d7f7013f7002a65501"
+    },
+    "mnn.json": {
+      "source": "build/mnn-tests/results.json",
+      "bytes": 10720,
+      "sha256": "863dfedb3261ad9d9a88d4005855d08a00692bf2c3515d66b55cd78ed339f6b4"
+    },
+    "sana-sprint.json": {
+      "source": "build/sana-sprint-tests/results.json",
+      "bytes": 11179,
+      "sha256": "03f8f5bab1c725fe15deeab5da260408d7cfc473c81782ae9b38e6800bfc790d"
+    },
+    "mnn-android.json": {
+      "source": "build/mnn-build-info.json",
+      "bytes": 2272,
+      "sha256": "c326d3314d3b4bb42ec811eb0c87eb884ec67b4ae4882a2edcd4942ccc520e8a"
+    },
+    "hub.json": {
+      "source": "build/hub-tests/results.json",
+      "bytes": 20690,
+      "sha256": "505f92bc08c95b6e7ddacf664845dc6bd4d532e3c846f8c5b4604199e98b0255"
+    },
+    "recipe-suggestions.json": {
+      "source": "build/recipe-suggestion-tests/results.json",
+      "bytes": 16454,
+      "sha256": "ca684631f7bfad1a67a8854f29f6677dbd575c3be343aa11260599941bfacc14"
+    },
+    "speech-voices.json": {
+      "source": "build/speech-voice-tests/results.json",
+      "bytes": 10094,
+      "sha256": "f59a7b57e987c57e1dae4334dc9688ef72e8f0e7327c7dd56d0780e12e7b32aa"
+    },
+    "ui.json": {
+      "source": "build/ui-qa/results.json",
+      "bytes": 64645,
+      "sha256": "4159c3b25f7b32641fb82ed5bda3e11e112ec4c45435d3a5413e0e393af76c5e"
+    },
+    "lint.json": {
+      "source": "build/android-lint/results.json",
+      "bytes": 26389,
+      "sha256": "62af429af6f2fd6491831982bfd3f4edc43c338f799fa28f249dc12d265d3fad"
+    },
+    "ltx-official.json": {
+      "source": "build/ltx098-official-tests/results.json",
+      "bytes": 21875,
+      "sha256": "6633b29d57dde6673229bc38e9e345dc082f6d2181f080f12b46a39006093964"
+    },
+    "ltx-multiscale-app.json": {
+      "source": "build/ltx098-multiscale-app-tests/results.json",
+      "bytes": 123995,
+      "sha256": "0b634026118401cd72a52d1a9b36c0b9997cef07ccd0cf7a2f6fa1c3a4b055b8"
+    },
+    "ltx-single-scale-app.json": {
+      "source": "build/ltx098-app-tests/results.json",
+      "bytes": 92446,
+      "sha256": "53ed12a6433626640011c0d8756fbba5c1e2d0fe04d4766c8915b3357ed721fd"
+    },
+    "ltx-android.json": {
+      "source": "build/ltx098-app-build-info.json",
+      "bytes": 13687,
+      "sha256": "26e80ced409cc2620cae01244cad68f081dfbd2f385667bf6ac0289c43b6c024"
+    }
+  },
+  "historical_ui_media": {
+    "workbench": {
+      "path": "docs/media/development/workbench/manifest.json",
+      "bytes": 17234,
+      "sha256": "f9866346fcbe8955f0f23ec5a3875fd3716ae0f4675376f3806564905ee4aef7"
+    },
+    "preflight": {
+      "path": "docs/media/development/preflight/manifest.json",
+      "bytes": 17048,
+      "sha256": "0a215f64cd53dec4e29e0753f2a6b46d101e67d6c0362eac2d2ad3d8bdf8e6fe"
+    },
+    "recovery": {
+      "path": "docs/media/development/recovery/manifest.json",
+      "bytes": 17457,
+      "sha256": "c1dd79fe2197dbc6dfc8b0e9bdc8b1cb466ac391cf93ad79178de47de53095bf"
+    },
+    "lcm": {
+      "path": "docs/media/development/lcm/manifest.json",
+      "bytes": 17002,
+      "sha256": "8afc4962a81d3bf8c81485e269f58fda57f591aa3a5686aaf4556eb0601acbec"
+    },
+    "audio": {
+      "path": "docs/media/development/audio/manifest.json",
+      "bytes": 16842,
+      "sha256": "788d56623f639992b8ae7e78a6415b0212834d52c84617230aec457f475d82bd"
+    },
+    "ltx": {
+      "path": "docs/media/development/ltx/manifest.json",
+      "bytes": 17686,
+      "sha256": "466b7d9f7aa6bb85bd5e82651dd8155916c716f4c172a098c50ff802b002d6a7"
+    },
+    "resources": {
+      "path": "docs/media/development/resources/manifest.json",
+      "bytes": 16670,
+      "sha256": "66f09ba8d389c68b5a873f5e4bb50af48688c097f5283e3047e60e1c50d62b68"
+    },
+    "curated": {
+      "path": "docs/media/development/curated/manifest.json",
+      "bytes": 22727,
+      "sha256": "7434dcf36dd91c86ac0d8127ca33c67efd35988d2eeb577c03b3f4c2b4545015"
+    },
+    "speech": {
+      "path": "docs/media/development/speech/manifest.json",
+      "bytes": 18140,
+      "sha256": "44f20bb2b90bf75ce931c1857cd73a0c5357dd184d96cdf174f91eafb2abf006"
+    },
+    "components": {
+      "path": "docs/media/development/components/manifest.json",
+      "bytes": 17960,
+      "sha256": "a55d3b00b81dd93f5beb7817756f7a8feabedcbaaa899f251116f5b1f628be93"
+    },
+    "wan": {
+      "path": "docs/media/development/wan/manifest.json",
+      "bytes": 16898,
+      "sha256": "1c2a704dec3547ab79f7eaec65cf7ca13a127668d3a941e2f1366d3f20cd189e"
+    },
+    "openmoss": {
+      "path": "docs/media/development/openmoss/manifest.json",
+      "bytes": 20056,
+      "sha256": "c3218e57e6f0f9d5b5e648abf702403a3ec4058a10a361f02d19699db9620526"
+    },
+    "sana": {
+      "path": "docs/media/development/sana/manifest.json",
+      "bytes": 17818,
+      "sha256": "d0e6de2dd399d5b72efa2e58383210c37a8843f001d52a6fb852d831d576cc84"
+    },
+    "v030-ltx-official": {
+      "path": "docs/media/history/v0.3.0/ltx-official/manifest.json",
+      "bytes": 18189,
+      "sha256": "f8ee1a15a8da2659473806dd26563993239d7764683ad8ce7d9b59366c628567"
+    },
+    "v030-release-workbench": {
+      "path": "docs/media/history/v0.3.0/release-workbench/manifest.json",
+      "bytes": 17479,
+      "sha256": "0f9798eb120f40f7bd75c45109c442529d77d948603cd7d66a762dbc476c47d5"
+    }
+  },
+  "historical_media_comparison": "historical_identity_only; not current page or APK validation",
+  "current_ui_media": {
+    "community": {
+      "path": "docs/media/development/community/manifest.json",
+      "bytes": 22835,
+      "sha256": "25fca5b91838b061e14b5cf341674a3cbfc865eba16a99f77bb059f7d48a7d0d"
+    },
+    "release-workbench": {
+      "path": "docs/media/development/release-workbench/manifest.json",
+      "bytes": 22021,
+      "sha256": "fe785dfede92e7509dd541697054c8747a669bf333c77d7192b1b415f607b56c"
+    },
+    "expansion": {
+      "path": "docs/media/development/expansion/manifest.json",
+      "bytes": 23106,
+      "sha256": "87f226492c454e75991b1928d67b1f9d41dce453d24036ace15ad57eb47f9cb9"
+    },
+    "multiview": {
+      "path": "docs/media/development/multiview/manifest.json",
+      "bytes": 22355,
+      "sha256": "ab7f7651d5ac656e636a27bcbfdcf32187ffc8ccf72c1a2efbfc78696f71e30b"
+    }
+  },
+  "prior_checkpoint": {
+    "commit": "da179315377957a449d94817f0a2b7d2030aea44",
+    "version": "0.3.0-dev.45",
+    "path": "verification/history/dev45-program/status.json",
+    "bytes": 9703,
+    "sha256": "46e25339abf80bd51680fb0c3ddcd8c1de9920f6a9fc8fb3f2fba185a0775847"
+  },
+  "prior_release_archive": "verification/history/v0.3.0-program-archive.json",
+  "prior_additive_release_archive": "verification/history/v0.3.1-program-archive.json",
+  "prior_speech_release_archive": "verification/history/v0.3.2-program-archive.json",
+  "policy": "docs/proposals/program-validation-policy.json",
+  "release_ready": true,
+  "full_scope_implementation_complete": true,
+  "implementation_matrix": "catalogue/release-0.3.3-implementation.json",
+  "known_implementation_gaps": [],
+  "implementation_scope": "frozen F01-F12, existing text and selections 01-14/16/17; not every newly researched architecture",
+  "benchmark_portability_audit": "research/portability/audit-v0.3.3.json",
+  "all_benchmark_architectures_integrated": false,
+  "unported_benchmark_configurations": [
+    "D04",
+    "D05",
+    "D06",
+    "D07",
+    "D08",
+    "D09",
+    "D10",
+    "D11",
+    "D12"
+  ],
+  "selected_ids": [
+    "01",
+    "02",
+    "03",
+    "04",
+    "05",
+    "06",
+    "07",
+    "08",
+    "09",
+    "10",
+    "11",
+    "12",
+    "13",
+    "14",
+    "16",
+    "17"
+  ],
+  "physical_device_tests": 0,
+  "phone_inference_tested": false,
+  "model_inference_tested": false,
+  "all_selected_models_tested": false,
+  "model_quality_accepted": false,
+  "background_endurance_tested": false,
+  "historical_model_results_are_current_apk_validation": false,
+  "complete_model_downloads_for_validation": 0,
+  "complete_model_copies_for_validation": 0,
+  "small_program_metadata_fetched": true,
+  "metadata_audit": "research/community/metadata.json",
+  "sana_text_to_image_variant": "matched Sana-Sprint 0.6B MNN; program adapter, not device or image-quality evidence",
+  "model_weights_in_apk": false,
+  "automatic_model_asset_downloads": false,
+  "browser_closed": true,
+  "virtualization_used": false,
+  "input_fingerprint": {
+    "app/build.gradle": "ee91a501fdaf5216f57399cf0a50d90b9d4e733268f7a389556ffb0196a44d43",
+    "app/src/main/AndroidManifest.xml": "9b8308ece11957e5d248732e74a4b2396a6ec4b6ffcfa8cdeea93c7282521a2e",
+    "catalogue/release-0.3.3-implementation.json": "44d690d2d90a6ca55af71f4ba25820577274914d6fd2c9576f5ffafd9e31a981",
+    "docs/proposals/multimodal-release-scope.json": "03326504d2d1b52c315bef574325f2c05d43c6a65eafc9779cc33120b7801690",
+    "docs/proposals/program-validation-policy.json": "0810f0ae684b894d40c92a8bff08e05f46ed320e8290b85edd63530eb9eae4c0",
+    "tools/check_repository.py": "98bb609d8af8a083cf4dd403ba176639c0f3a2fc753af52960950ea3983fc65d",
+    "tools/package_delivery.py": "06da137539b85d2fc93926da09ecfe9a8f1e18a449d73ecb61309bce9ad8c538",
+    "tools/prepare_release.py": "970365f42c013be8ba448de7cee2fe635081f68b29b01fd181165d57716be7d0",
+    "tools/program_evidence.py": "2d11f200c3d0a601705d21360730891dc0e4d7e9a0664aea1911bf53874cabb0",
+    "tools/program_release.py": "43bfeaad22cf7143422b7e3490c518407bd7eb7812ca87c6f04b550b2e717394",
+    "research/portability/audit-v0.3.3.json": "bce044878a7d3f4b91b8120d963b4b28df46d2bd272e11c9f1e2b5a9bdb56d0b",
+    "tools/audit_portability.py": "fcc973288fdc776057152e8ff4afb530b92470331fecd236acae545408632cf4"
+  }
+}

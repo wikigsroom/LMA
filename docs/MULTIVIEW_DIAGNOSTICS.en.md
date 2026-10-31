@@ -1,5 +1,7 @@
 # Multiview 3D and local diagnostics · v0.3.3
 
+> 此页记录 v0.3.3 的历史范围。Current v0.3.4 adds matched TripoSG / PartCrafter shape subsets; see [当前实现 / current scope](IMPLEMENTATION_V034.md), [English](IMPLEMENTATION_V034.en.md).
+
 [中文](MULTIVIEW_DIAGNOSTICS.md) · [User guide](USER_GUIDE.en.md) · [Implementation](IMPLEMENTATION_V033.en.md) · [Release](releases/v0.3.3.md)
 
 This update adds a real Pixal3D MV runtime, four-view input and camera validation, optional component imports, and observations retained even when a job fails. Existing single-image TRELLIS.2 / Pixal3D, the four speech additions and the complete foundation remain. The APK carries no model assets, acquires none automatically, and executes every inference stage on the same Android phone.
@@ -128,6 +130,6 @@ The [pinned source audit](../research/portability/audit-v0.3.3.json) rechecks RE
 
 These are code gaps, **not requests to repeat expensive model acceptance**. Desktop Python/CUDA installation is not an Android runtime, nor proof of permanent impossibility. This release does not claim every benchmark architecture is integrated. The complete frozen F-01–F-12, existing text and selections 01–14/16/17 remain preserved.
 
-![Four-view local workflow; UI FIXTURE, not trained-model output](media/development/multiview/multiview-ui.gif)
+![Four-view local workflow; UI FIXTURE, not trained-model output](media/history/v0.3.3/multiview/multiview-ui.gif)
 
-[Choices](media/development/multiview/01-multiview-models.png) · [Import](media/development/multiview/02-import-plan.png) · [Four inputs](media/development/multiview/03-four-view-form.png) · [Queue](media/development/multiview/04-multiview-queue.png) · [Background states](media/development/multiview/05-background-observations.png) · [MP4](media/development/multiview/multiview-ui.mp4) · [Media identity](media/development/multiview/manifest.json)
+[Choices](media/history/v0.3.3/multiview/01-multiview-models.png) · [Import](media/history/v0.3.3/multiview/02-import-plan.png) · [Four inputs](media/history/v0.3.3/multiview/03-four-view-form.png) · [Queue](media/history/v0.3.3/multiview/04-multiview-queue.png) · [Background states](media/history/v0.3.3/multiview/05-background-observations.png) · [MP4](media/history/v0.3.3/multiview/multiview-ui.mp4) · [Media identity](media/history/v0.3.3/multiview/manifest.json)

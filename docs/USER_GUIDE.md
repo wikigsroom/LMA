@@ -135,3 +135,7 @@ Sana 用户可在“全部 / 搜索”选择 `Sana mobile · Qwen3 + MNN`，逐�
 ## 社区生图、生视频与内容筛选
 
 “模型 → 全部”新增可离线浏览的“已登记配方”和独立内容筛选；44 个新增 checkpoint 版本中有 28 个明确 NSFW 来源标记。下载前核对来源、许可与确切架构，仅下载所选模型和列出的依赖；“本地”保留已下载和未完成传输的标记。[完整指南](COMMUNITY_MODELS.md)。
+
+## v0.3.4 RF Shape / 部件几何
+
+TripoSG / PartCrafter object / scene are optional matched FP32 ONNX recipes. No public complete matching download package is verified; explicit local export/import and compatible HF component selection reuse existing model management. 用户自主转换 / 导入，模型仍平级；PNG → 本机 CPU → 独立部件 GLB，独立参数、草稿、预检、队列、取消与导出均复用基座。[中文完整操作](RF_SHAPE.md) · [English workflow](RF_SHAPE.en.md)。Full checkpoint conversion and phone quality remain untested.

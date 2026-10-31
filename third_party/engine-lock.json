@@ -555,6 +555,40 @@
         "sd-nlohmann-json-LICENSE.txt": "0e592e358cf7722906f417be85bc514f15bf6efd28cea98cb84e56ef7fddfc3e",
         "sd-NDK-LLVM-NOTICE.txt": "f96f763beb66a7ba7a667647fc64c0226ace875e590c831fdd9579ec1c1d91e1"
       }
+    },
+    {
+      "engine": "rf_shape_ort",
+      "file": "liblma-rf-shape.so",
+      "source_revision": "fc5c40990181e2a756c4e0b1c2f4d6b5202faf8c",
+      "abi": "arm64-v8a",
+      "backend": "cpu",
+      "ndk": "30.0.16248370",
+      "sha256": "8dc02aec200d4a9c1c94e8bdc6e98b918cf19a4db8eff7ab2581b7880c088f91",
+      "bytes": 582792,
+      "android_api_notes": [
+        28
+      ],
+      "dependencies": [
+        {
+          "file": "libonnxruntime.so",
+          "bytes": 22249560,
+          "sha256": "33847ad43bffe204699fd4a27f7f3603452a8cdaf2f9a44983a0bc31ffcf2da1",
+          "android_api_notes": [
+            27
+          ]
+        }
+      ],
+      "partcrafter_revision": "3d773bf02fad51c7ab31a5615573fec93b287b30",
+      "notices": {
+        "sd-nlohmann-json-LICENSE.txt": "0e592e358cf7722906f417be85bc514f15bf6efd28cea98cb84e56ef7fddfc3e",
+        "sd-NDK-LLVM-NOTICE.txt": "f96f763beb66a7ba7a667647fc64c0226ace875e590c831fdd9579ec1c1d91e1",
+        "expansion-shape-D11-LICENSE.txt": "0fc2acd0176b345d3da59f466861ad09b78698de4200739aeaa2ffc9ae7a6842",
+        "expansion-shape-D11-triposg-models-transformers-triposg_transformer.py-NOTICE.txt": "a664d931a849d6d61fda10319dc0dd24f2cd087fd2e979198cafca9b4cba138e",
+        "expansion-shape-D12-LICENSE.txt": "ae8c80719a5c916e5fd99fd3da99f8cf74be1589e9e4a11d5754898967a54e1f",
+        "expansion-shape-D12-src-models-transformers-partcrafter_transformer.py-NOTICE.txt": "29cd6873523d759efbb61a56584c020b1b022a8bcca617919b6c44adc8be1fcc",
+        "expansion-shape-ORT-LICENSE.txt": "2f07c72751aed99790b8a4869cf2311df85a860b22ded05fa22803587a48922c",
+        "expansion-shape-stb-NOTICE.txt": "323eac668c422203f3c54a24e077fd2e999ac6d79ac1872e619830cb3bcb34fe"
+      }
     }
   ],
   "preparations": [

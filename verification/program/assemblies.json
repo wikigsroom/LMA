@@ -54,6 +54,7 @@
     "app/src/main/java/com/lma/app/core/RecipeCatalogue.java": "a01f9c6b094e84b29a8bbb349350a53e68fe1fd5daf4d7fc81fbd2067e00b773",
     "app/src/main/java/com/lma/app/core/RecipeSuggestions.java": "57d9d7b5fc5f3c61a3ab3524af8789df58dbc8ce1923b2c09e139649057beda0",
     "app/src/main/java/com/lma/app/core/ResourceWatch.java": "6f6a4cb2159f7956d1ae8c202c61430be268d86d230245bccc952844f3816ec5",
+    "app/src/main/java/com/lma/app/core/RfShapeSpec.java": "d39752738567b32e8b7308e0d18854c10752a0cd62f1376619b7e959ab00cc6c",
     "app/src/main/java/com/lma/app/core/RuntimeDiagnostics.java": "e543ff733e86ccbf11746dee14f320b184a79c8336163a815c89ba840063c97d",
     "app/src/main/java/com/lma/app/core/SanaSprintSpec.java": "12190d684368b219f17e582d774830d0a946bf5b7e2d25146371325b6fc8b3d3",
     "app/src/main/java/com/lma/app/core/SdSpec.java": "e26906c0c338deff725d8b5c316beb8205eacbe26ea91cfb3ef0861bf94103b5",
@@ -76,8 +77,8 @@
     "tests/PreparationTest.java": "7f1439e961fd70607a88fc42ca9e3bd676e0fb1670b1015c1973154ad7ed99e0",
     "tools/test_assemblies.py": "c30c3d10399d445300066dfaa8bb7577dc9938f84004b7901830e22cebd993ff"
   },
-  "artifacts_directory": "build/assembly-tests/contracts-1793419765781051800",
-  "seconds": 0.9752268999873195,
+  "artifacts_directory": "build/assembly-tests/contracts-1793424637996663800",
+  "seconds": 0.5981676000228617,
   "automatic_downloads": false,
   "model_bytes_copied": 0,
   "release_ready": false,

@@ -1,8 +1,8 @@
-# Build and program verification · v0.3.3
+# Build and program verification · v0.3.4
 
 [中文](BUILD.md) · [Release workflow](RELEASING.md) · [Validation policy](PROGRAM_VALIDATION.en.md) · [Archived build notes](BUILD_HISTORY.en.md)
 
-Use a **full Git clone with history**, checked out at `v0.3.3` for reproduction. Historical evidence checks intentionally read earlier immutable Git blobs. The source ZIP is for code/docs/evidence review: its manifest lists exact files, while `.git`, native binaries, model data, build dependencies and signing material are excluded. It is not a self-contained binary SDK. No trained model is required to compile or program-check the APK.
+Use a **full Git clone with history**, checked out at `v0.3.4` for reproduction. Historical evidence checks intentionally read earlier immutable Git blobs. The source ZIP is for code/docs/evidence review: its manifest lists exact files, while `.git`, native binaries, model data, build dependencies and signing material are excluded. It is not a self-contained binary SDK. No trained model is required to compile or program-check the APK.
 
 ## Toolchain
 
@@ -15,7 +15,7 @@ UI checks use Playwright with Edge/Chromium; recordings additionally use FFmpeg/
 ```powershell
 git clone git@github.com:wikigsroom/LMA.git
 cd LMA
-git checkout v0.3.3
+git checkout v0.3.4
 python tools/bootstrap_runtime.py
 python tools/bootstrap_native.py
 python tools/fetch_native.py --transport ssh
@@ -52,14 +52,15 @@ python tools/run_program_checks.py
 python tools/test_foundation.py
 python tools/test_expansion.py
 python tools/test_multiview.py
+python tools/test_shape.py
 node tests/ui-smoke.cjs
 ```
 
 Without `--sdk`, use `ANDROID_SDK_ROOT` or the default LocalAppData SDK. SDK packages are not silently installed. `build.py` generates catalogue/templates, compiles resources/Java/DEX, validates native receipts, aligns/signs the APK and inspects its identity. Exact-byte fingerprints prevent stale passes; `.gitattributes` preserves line endings and raw header padding.
 
-The runner first compiles backend production classes consumed by HF/community checks, then runs three bounded groups. Sana/LTX defaults execute small synthetic graphs and process controls, never complete trained models. The other three Python commands and full UI complete the 26-suite set. Host tests use explicit Android ports, real files, sockets and children; they are not phone tests. Preserve current records and rerun only when inputs change or failures require it.
+The runner first compiles backend production classes consumed by HF/community checks, then runs three bounded groups. Sana/LTX defaults execute small synthetic graphs and process controls, never complete trained models. The other four Python commands and full UI complete the 27-suite set. Host tests use explicit Android ports, real files, sockets and children; they are not phone tests. Preserve current records and rerun only when inputs change or failures require it.
 
-Current package: `com.lma.app`, version0.3.3/code53, ARM64, API28+/target35, **38 native libraries**, 16 KiB ELF and APK alignment. The package gate independently verifies signatures, dependency closure, receipt identities, source/UI equality and absence of model assets. Lint currently has zero errors and 16 retained warnings.
+Current package: `com.lma.app`, version0.3.4/code54, ARM64, API28+/target35, **39 native libraries**, 16 KiB ELF and APK alignment. The package gate independently verifies signatures, dependency closure, receipt identities, source/UI equality and absence of model assets. Lint currently has zero errors and 16 retained warnings.
 
 ## Media, evidence and packaging
 
@@ -68,6 +69,7 @@ node tools/capture_workbench.cjs community
 node tools/capture_workbench.cjs release-workbench
 node tools/capture_workbench.cjs expansion
 node tools/capture_workbench.cjs multiview
+node tools/capture_workbench.cjs shape
 python tools/release_scope.py
 python tools/program_evidence.py --export
 python tools/package_delivery.py
@@ -75,12 +77,23 @@ python tools/check_repository.py
 python tools/prepare_release.py
 ```
 
-Four explicitly labelled desktop UI captures produce 20 screenshots, four GIFs and four MP4s. `verification/program/` contains current evidence; v0.3.2's 34 original records and three recordings are archived. The original frozen scope and the separate unported benchmark architectures are checked independently. No visual/phone/endurance claim is manufactured from program counts.
+Five explicitly labelled desktop UI captures produce 25 screenshots, five GIFs and five MP4s. `verification/program/` contains current evidence; v0.3.2's 34 original records and three recordings are archived. The original frozen scope and the separate unported benchmark architectures are checked independently. No visual/phone/endurance claim is manufactured from program counts.
 
-Outputs: `dist/LMA-0.3.3-arm64-v8a.apk`, build/validation/source manifests, source/verification/screenshots ZIPs and version-specific release assets. These are ignored by Git; publish attachments through the authorized release workflow. After source/doc changes, repackage before publishing. After publication, use `check_repository.py --published` to check the immutable tag/source archive; never overwrite old assets.
+Outputs: `dist/LMA-0.3.4-arm64-v8a.apk`, build/validation/source manifests, source/verification/screenshots ZIPs and version-specific release assets. These are ignored by Git; publish attachments through the authorized release workflow. After source/doc changes, repackage before publishing. After publication, use `check_repository.py --published` to check the immutable tag/source archive; never overwrite old assets.
 
 ## Signing and private files
 
 Preserve the existing project-local RSA3072 identity in ignored `signing/` for upgrades. A fresh clone creates a different identity unless you privately supply the original; it cannot overwrite the distributed installation with a different signer. Never commit/print keys or passwords. Model weights, voices, tokenizers, dictionaries, caches and personal browser profiles stay outside Git/source ZIP/APK.
 
-`license.js`, `foundation.js` and upstream `*.header.json` are protected hash/copy-only inputs; do not inspect, dump or stage them. Repository/archive checks hash them without content inspection. User models and settings are independent from foundation updates. See [contribution rules](../CONTRIBUTING.md) and [numbered current scope](IMPLEMENTATION_V033.en.md).
+`license.js`, `foundation.js` and upstream `*.header.json` are protected hash/copy-only inputs; do not inspect, dump or stage them. Repository/archive checks hash them without content inspection. User models and settings are independent from foundation updates. See [contribution rules](../CONTRIBUTING.md) and [numbered current scope](IMPLEMENTATION_V034.en.md).
+
+## RF Shape source / 本地形状源码
+
+```powershell
+python tools/fetch_shape_sources.py --fetch
+python tools/build_shape.py
+python tools/build_shape.py --android
+python tools/collect_expansion_notices.py
+```
+
+复用已经按 SoulX / sherpa 锁构建的 ORT 头、JSON、MV 的 stb 及 Android `libonnxruntime.so`；全部输入固定核对，API28 / 16 KiB / 禁网络进程接口检查。Host build uses MSVC; Android uses the pinned native NDK. All model conversion is a separate user asset operation; see [中文](RF_SHAPE.md) / [English](RF_SHAPE.en.md). Never invoke the exporter as a validation prerequisite with complete trained weights.

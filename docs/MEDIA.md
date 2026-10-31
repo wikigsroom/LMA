@@ -1,8 +1,8 @@
 # 截图与演示 / Screenshots and demonstrations
 
-## 当前 v0.3.3 / Current capture set
+## 当前 v0.3.4 / Current capture set
 
-四组当前生产页面均明确 UI FIXTURE：20 张截图、4 GIF、4 MP4；检查为社区 34 / 工作台 8 / 语音与 3D 32 / MV 19 项。No complete model downloads/runs or phone recording. Browser contexts close in finally. Manifests bind exact source and media bytes.
+五组当前生产页面均明确 UI FIXTURE：25 张截图、5 GIF、5 MP4；检查为社区 34 / 工作台 8 / 语音与 3D 32 / MV 19 / RF 17 项。No complete model downloads/runs or phone recording. Browser contexts close in finally. Manifests bind exact source and media bytes.
 
 | Group | GIF / MP4 / manifest |
 | --- | --- |
@@ -10,6 +10,9 @@
 | Workbench | [GIF](media/development/release-workbench/release-workbench-ui.gif) / [MP4](media/development/release-workbench/release-workbench-ui.mp4) / [Identity](media/development/release-workbench/manifest.json) |
 | Speech / single-image 3D | [GIF](media/development/expansion/expansion-ui.gif) / [MP4](media/development/expansion/expansion-ui.mp4) / [Identity](media/development/expansion/manifest.json) |
 | Multiview / observations | [GIF](media/development/multiview/multiview-ui.gif) / [MP4](media/development/multiview/multiview-ui.mp4) / [Identity](media/development/multiview/manifest.json) |
+| RF Shape / parts | [GIF](media/development/shape/shape-ui.gif) / [MP4](media/development/shape/shape-ui.mp4) / [Identity](media/development/shape/manifest.json) |
+
+原 v0.3.3 四组媒体按原 Git 字节位于 `media/history/v0.3.3/`，36 份原始证据见 [归档](../verification/history/v0.3.3-program-archive.json)。
 
 原 v0.3.2 三组媒体按 Git 原字节保存在 `media/history/v0.3.2/`；以下开发记录与原始媒体说明属于历史版本，不能作为当前 UI / 手机验收。v0.3.2 originals remain byte-identical historical records.
 

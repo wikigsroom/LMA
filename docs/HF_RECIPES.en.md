@@ -72,3 +72,7 @@ The 23rd template, `moss_delay_firstclass_cpu_v1`, requires a matching native fi
 The same engine adds separate TTS / v1.5 / TTSD / VoiceGenerator recipes with explicit 32/16-codebook and 8B/1.7B geometry checks. All output 24 kHz mono; TTSD maps paired speaker references and VoiceGenerator requires a voice instruction. Components do not interchange with other MOSS formats. See the [workflow, parameters and publisher evidence](OPENMOSS_ENGINE.en.md). Models remain peers with audio/TTS/multi-speaker or voice-design tags independent of their foundation dependencies.
 
 dev.20 adds metadata-only recipe 33: [Stable Audio Open Small](STABLE_AUDIO_ENGINE.en.md). TFLite files are selectable in HF file lists. Users explicitly download/import three matching graphs and the paired SentencePiece model. No community four-file distribution is marked verified runnable. Model terms are separate from App licensing; full-model acceptance remains open.
+
+## v0.3.4 RF Shape / 部件几何
+
+TripoSG / PartCrafter object / scene are optional matched FP32 ONNX recipes. No public complete matching download package is verified; explicit local export/import and compatible HF component selection reuse existing model management. 用户自主转换 / 导入，模型仍平级；PNG → 本机 CPU → 独立部件 GLB，独立参数、草稿、预检、队列、取消与导出均复用基座。[中文完整操作](RF_SHAPE.md) · [English workflow](RF_SHAPE.en.md)。Full checkpoint conversion and phone quality remain untested.
