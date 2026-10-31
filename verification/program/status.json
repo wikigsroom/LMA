@@ -292,10 +292,10 @@
     "catalogue/release-0.3.1-implementation.json": "862fa189750f5c1cae738f1529e469d320db836bf09a82fcab683053455e6229",
     "docs/proposals/multimodal-release-scope.json": "03326504d2d1b52c315bef574325f2c05d43c6a65eafc9779cc33120b7801690",
     "docs/proposals/program-validation-policy.json": "0810f0ae684b894d40c92a8bff08e05f46ed320e8290b85edd63530eb9eae4c0",
-    "tools/check_repository.py": "13b5167eceb070495d95d2117023400d28d76f6b147fb2f357bd2e844fc209ec",
+    "tools/check_repository.py": "1468a2d0818d224b87e7533221802788f7bc3b103e8905b8061e9fc69bae5cd1",
     "tools/package_delivery.py": "06da137539b85d2fc93926da09ecfe9a8f1e18a449d73ecb61309bce9ad8c538",
     "tools/prepare_release.py": "970365f42c013be8ba448de7cee2fe635081f68b29b01fd181165d57716be7d0",
     "tools/program_evidence.py": "8e24396e1929547c6d99896425efc33c907f3022b68f7a3550835abf88f10689",
-    "tools/program_release.py": "3a79eedc5e543781c5220df9e5a3499656ff1cf31d288accfd9a72445919978f"
+    "tools/program_release.py": "cd5d0cb9821ff61f36a46ceba871937627dc6f11c4400687cbd2b4d878d52818"
   }
 }

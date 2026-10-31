@@ -1,5 +1,12 @@
 # Changelog / 更新记录
 
+## Unreleased — README 完整性修复 / README completeness repair
+
+- 恢复中英 README 正文中的 18 个操作用例、4 组 API 示例、18 组历史案例与 24 组程序测试覆盖表；补回原图、WAV、GIF、MP4、失败对照、精选文本候选、Z20 起步配置及排错。Restore detailed scenarios, integration examples, generated artifacts and explicit test/failure evidence.
+- 修正过时的 23 套目录表述：现有 23＋社区 44＝67 套；模板、模型包、引擎计数分别说明。Distinguish current program records, historical host outputs and unperformed phone acceptance.
+- 修复程序发行版本的 `check_repository.py --published`：维护文档后按原发布标签逐文件核对源码 ZIP 的 Git blob、SHA256、大小及附件白名单，拒绝篡改或漏项，不覆盖已发布文件。Add 14 isolated audit regressions; no complete models, devices or browsers.
+- APK 仍为 v0.3.1/code51，已发布 16 项附件、标签与历史媒体原样保留；[本次双语维护说明](docs/releases/v0.3.1-readme.md)。Documentation/release-audit maintenance only; no new APK.
+
 ## 0.3.1 — 社区模型与内容标记 / Community models and content labels
 
 - 新增 14 系列 / 44 个可选 checkpoint（生图 30、视频 14），总登记 67 套；28 个明确 NSFW 来源标记、1 个 HF 敏感标记、15 个未标注。Video counts represent 14 versions of one Wan 1.3B series.

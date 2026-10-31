@@ -5,6 +5,8 @@
 
 ## v0.3.1 当前发布流程 / Current program-only release
 
+**已发布后的文档维护 / Documentation maintenance after publication:** APK 内容不变时保留 versionName / code 和全部发布附件。更新双语 README、CHANGELOG 与维护说明；只做相关文档 / 工具检查。若修改发布核查工具，运行 `python tools/test_published_source.py`，再用 `python tools/program_evidence.py --export` 更新工具指纹并用 `python tools/check_repository.py --published` 核对当前链接、原标签 Git blob 与原源码 ZIP / 附件。不运行 package/prepare 覆盖已发布文件；不以文档变动触发模型或手机验收。See [README repair](releases/v0.3.1-readme.md).
+
 按用户明确指令仅做程序验证；下文旧完整模型 / 真机运行门槛保留为历史，不能再次作为本版前置要求。完整冻结程序范围不缩减。See [validation policy](PROGRAM_VALIDATION.md), [implementation matrix](IMPLEMENTATION_V030.md) and [release notes](releases/v0.3.1.md).
 
 1. 完成受影响的生产代码、Java/原生合约、队列 / API / 生命周期与有界小图检查；不使用 `--trained`，不下载 / 复制完整模型，不调度 Docker / WSL / 模拟器。Run affected program checks only.

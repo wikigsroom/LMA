@@ -67,7 +67,7 @@ def main():
     if program_only_release():
         assert not args.development, 'v0.3.0 is the complete program release'
         from program_release import check
-        scoped = check()
+        scoped = check(prepared=args.published, published=args.published)
         result = dict(scoped, public_files=len(names), documents=len(documents), local_links=links)
         (ROOT/'build/repository-check.json').write_text(json.dumps(result, indent=2)+'\n', encoding='utf-8')
         print(json.dumps(result)); return

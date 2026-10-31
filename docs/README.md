@@ -3,6 +3,7 @@
 当前版本 **v0.3.1**：完整冻结范围的程序集成，按用户指令只做程序验证。Current release: complete frozen program scope; phone/model quality and endurance remain untested. [中文 README](../README.md) · [English README](../README.en.md) · [Release notes](releases/v0.3.1.md)
 
 - [社区生图 / 生视频与 NSFW 标记](COMMUNITY_MODELS.md) · [English](COMMUNITY_MODELS.en.md)：44 个新增版本、来源 / 许可 / 兼容边界、操作及截图。
+- README 已恢复详细正文：[18 个使用场景](../README.md#use-cases)、[4 组 API 示例](../README.md#api-examples)、[18 组案例与失败](../README.md#case-studies)、[24 组测试覆盖](../README.md#verification)；[English scenarios](../README.en.md#use-cases) / [cases](../README.en.md#case-studies)。[本次完整性修复 / Repair notes](releases/v0.3.1-readme.md)。
 
 ## 使用与基座 / Usage and foundation
 

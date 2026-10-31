@@ -54,21 +54,53 @@ def package():
  write(DIST/'source-archive-manifest.json',index)
  return check()
 
-def check(prepared=False):
+def check_source_archive(index,source,*,published=False):
+ """Verify current sources, or immutable Git blobs after documentation maintenance."""
+ assert sha(source)==index['sha256'],'Source archive hash mismatch'
+ tree={}
+ if published:
+  result=subprocess.run(['git','ls-tree','-r','-l','-z','v'+VERSION],cwd=ROOT,capture_output=True,check=True)
+  for entry in result.stdout.split(b'\0'):
+   if not entry:continue
+   metadata,name=entry.split(b'\t',1);mode,kind,blob,size=metadata.split()
+   assert kind==b'blob' and mode in {b'100644',b'100755'},'Unsupported published source entry'
+   tree[name.decode('utf-8')]=(blob.decode('ascii'),int(size))
+  assert tree and set(index['files'])==set(tree),'Source index differs from published tag'
+  algorithm=subprocess.run(['git','rev-parse','--show-object-format'],cwd=ROOT,capture_output=True,text=True,check=True).stdout.strip()
+  assert algorithm in {'sha1','sha256'},'Unknown Git object format'
+ else:
+  assert set(index['files'])==set(public_names()),'Repackage after source/document changes'
+ with zipfile.ZipFile(source) as archive:
+  members=archive.namelist()
+  assert len(members)==len(set(members)) and set(members)=={'LMA/'+n for n in index['files']},'Unexpected source archive entries'
+  for name,item in index['files'].items():
+   info=archive.getinfo('LMA/'+name)
+   assert info.file_size==item['bytes'],'Source size mismatch: '+name
+   if not published:assert item==dict(bytes=(ROOT/name).stat().st_size,sha256=sha(ROOT/name)),'Stale archive source: '+name
+   content_hash=hashlib.sha256()
+   if published:
+    assert tree[name][1]==info.file_size,'Source size differs from published tag: '+name
+    blob_hash=hashlib.new(algorithm);blob_hash.update(('blob '+str(info.file_size)+'\0').encode('ascii'))
+   # Hash bytes only; never inspect protected assets or upstream header contents.
+   with archive.open(info) as stream:
+    while chunk:=stream.read(1024*1024):
+     content_hash.update(chunk)
+     if published:blob_hash.update(chunk)
+   assert content_hash.hexdigest()==item['sha256'],'Source content hash mismatch: '+name
+   if published:assert blob_hash.hexdigest()==tree[name][0],'Source ZIP differs from published tag: '+name
+
+def check(prepared=False,published=False):
  assert version()==VERSION
  evidence=program_check();matrix=scope_check();build=read(DIST/'build-info.json');validation=read(DIST/'validation.json')
  assert build['version']==validation['version']==VERSION and build['sha256']==validation['sha256']
  assert validation['validation_mode']=='program_only' and validation['full_scope_program_implementation_complete']
  assert validation['program_assertions']==evidence['program_assertions'] and validation['program_suites']==evidence['program_suites']
  for flag in ['model_weights_included','automatic_model_downloads','complete_trained_model_runs','physical_device_tests','phone_inference_tested','model_quality_accepted','background_endurance_tested','virtualization_used']:assert not validation[flag],flag
- index=read(DIST/'source-archive-manifest.json');source=DIST/index['archive'];assert sha(source)==index['sha256']
- assert set(index['files'])==set(public_names()),'Repackage after source/document changes'
- assert (DIST/(source.name+'.sha256')).read_text(encoding='utf-8').split()[0]==index['sha256']
- with zipfile.ZipFile(source) as archive:
-  assert len(archive.namelist())==len(set(archive.namelist())) and set(archive.namelist())=={'LMA/'+n for n in index['files']}
-  for name,item in index['files'].items():
-   assert item==dict(bytes=(ROOT/name).stat().st_size,sha256=sha(ROOT/name)),'Stale archive source: '+name
-   with archive.open('LMA/'+name) as stream:assert hashlib.file_digest(stream,'sha256').hexdigest()==item['sha256']
+ source_directory=DIST/('releases/v'+VERSION) if published else DIST
+ index=read(source_directory/'source-archive-manifest.json');source=source_directory/index['archive']
+ assert index['version']==VERSION
+ check_source_archive(index,source,published=published)
+ assert (source_directory/(source.name+'.sha256')).read_text(encoding='utf-8').split()[0]==index['sha256']
  if prepared:
   directory=DIST/('releases/v'+VERSION);manifest=read(directory/'release-manifest.json')
   assert manifest['version']==VERSION and manifest['prerelease'] and manifest['validation_mode']=='program_only'
@@ -78,7 +110,8 @@ def check(prepared=False):
   assert set(p.name for p in directory.iterdir())==expected
   for item in manifest['assets']:
    path=directory/item['name'];assert path.stat().st_size==item['bytes'] and sha(path)==item['sha256']
- result=dict(evidence,source_files=len(index['files']),source_archive=source.name,source_sha256=index['sha256'],prepared=prepared)
+ result=dict(evidence,source_files=len(index['files']),source_archive=source.name,source_sha256=index['sha256'],prepared=prepared,
+  source_matches_published_tag=published,source_matches_current_public_files=not published)
  write(ROOT/'build/program-release-check.json',result)
  return result
 
