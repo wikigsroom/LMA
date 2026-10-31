@@ -1,0 +1,313 @@
+{
+  "passed": true,
+  "count": 60,
+  "checks": [
+    {
+      "target": "D06",
+      "case": "flow_3_3_False",
+      "maxAbsoluteError": 2.384185791015625e-07
+    },
+    {
+      "target": "D06",
+      "case": "flow_3_5_False",
+      "maxAbsoluteError": 2.980232238769531e-07
+    },
+    {
+      "target": "D06",
+      "case": "flow_3_9_False",
+      "maxAbsoluteError": 2.384185791015625e-07
+    },
+    {
+      "target": "D06",
+      "case": "flow_3_5_True",
+      "maxAbsoluteError": 2.980232238769531e-07
+    },
+    {
+      "target": "D06",
+      "case": "cache_3",
+      "maxAbsoluteError": 3.0547380447387695e-07
+    },
+    {
+      "target": "D06",
+      "case": "query_3_1",
+      "maxAbsoluteError": 1.1920928955078125e-07
+    },
+    {
+      "target": "D06",
+      "case": "query_3_13",
+      "maxAbsoluteError": 1.564621925354004e-07
+    },
+    {
+      "target": "D06",
+      "case": "query_3_53",
+      "maxAbsoluteError": 3.5762786865234375e-07
+    },
+    {
+      "target": "D06",
+      "case": "flow_7_3_False",
+      "maxAbsoluteError": 4.76837158203125e-07
+    },
+    {
+      "target": "D06",
+      "case": "flow_7_5_False",
+      "maxAbsoluteError": 3.8743019104003906e-07
+    },
+    {
+      "target": "D06",
+      "case": "flow_7_9_False",
+      "maxAbsoluteError": 2.980232238769531e-07
+    },
+    {
+      "target": "D06",
+      "case": "flow_7_5_True",
+      "maxAbsoluteError": 2.980232238769531e-07
+    },
+    {
+      "target": "D06",
+      "case": "cache_7",
+      "maxAbsoluteError": 2.682209014892578e-07
+    },
+    {
+      "target": "D06",
+      "case": "query_7_1",
+      "maxAbsoluteError": 1.1920928955078125e-07
+    },
+    {
+      "target": "D06",
+      "case": "query_7_13",
+      "maxAbsoluteError": 2.086162567138672e-07
+    },
+    {
+      "target": "D06",
+      "case": "query_7_53",
+      "maxAbsoluteError": 3.5762786865234375e-07
+    },
+    {
+      "target": "D06",
+      "case": "flow_19_3_False",
+      "maxAbsoluteError": 3.5762786865234375e-07
+    },
+    {
+      "target": "D06",
+      "case": "flow_19_5_False",
+      "maxAbsoluteError": 4.76837158203125e-07
+    },
+    {
+      "target": "D06",
+      "case": "flow_19_9_False",
+      "maxAbsoluteError": 3.5762786865234375e-07
+    },
+    {
+      "target": "D06",
+      "case": "flow_19_5_True",
+      "maxAbsoluteError": 4.172325134277344e-07
+    },
+    {
+      "target": "D06",
+      "case": "cache_19",
+      "maxAbsoluteError": 4.76837158203125e-07
+    },
+    {
+      "target": "D06",
+      "case": "query_19_1",
+      "maxAbsoluteError": 1.1920928955078125e-07
+    },
+    {
+      "target": "D06",
+      "case": "query_19_13",
+      "maxAbsoluteError": 2.5331974029541016e-07
+    },
+    {
+      "target": "D06",
+      "case": "query_19_53",
+      "maxAbsoluteError": 2.682209014892578e-07
+    },
+    {
+      "target": "D06",
+      "case": "schedule_1_1.0",
+      "maxAbsoluteError": 0.0
+    },
+    {
+      "target": "D06",
+      "case": "schedule_1_2.5",
+      "maxAbsoluteError": 0.0
+    },
+    {
+      "target": "D06",
+      "case": "schedule_2_1.0",
+      "maxAbsoluteError": 0.0
+    },
+    {
+      "target": "D06",
+      "case": "schedule_2_2.5",
+      "maxAbsoluteError": 0.0
+    },
+    {
+      "target": "D06",
+      "case": "schedule_7_1.0",
+      "maxAbsoluteError": 4.76837158203125e-07
+    },
+    {
+      "target": "D06",
+      "case": "schedule_7_2.5",
+      "maxAbsoluteError": 1.1920928955078125e-07
+    },
+    {
+      "target": "D07",
+      "case": "flow_3_3_False",
+      "maxAbsoluteError": 2.384185791015625e-07
+    },
+    {
+      "target": "D07",
+      "case": "flow_3_5_False",
+      "maxAbsoluteError": 4.172325134277344e-07
+    },
+    {
+      "target": "D07",
+      "case": "flow_3_9_False",
+      "maxAbsoluteError": 2.2351741790771484e-07
+    },
+    {
+      "target": "D07",
+      "case": "flow_3_5_True",
+      "maxAbsoluteError": 3.2782554626464844e-07
+    },
+    {
+      "target": "D07",
+      "case": "cache_3",
+      "maxAbsoluteError": 3.5762786865234375e-07
+    },
+    {
+      "target": "D07",
+      "case": "query_3_1",
+      "maxAbsoluteError": 5.960464477539063e-08
+    },
+    {
+      "target": "D07",
+      "case": "query_3_13",
+      "maxAbsoluteError": 2.682209014892578e-07
+    },
+    {
+      "target": "D07",
+      "case": "query_3_53",
+      "maxAbsoluteError": 4.76837158203125e-07
+    },
+    {
+      "target": "D07",
+      "case": "flow_7_3_False",
+      "maxAbsoluteError": 3.2782554626464844e-07
+    },
+    {
+      "target": "D07",
+      "case": "flow_7_5_False",
+      "maxAbsoluteError": 4.76837158203125e-07
+    },
+    {
+      "target": "D07",
+      "case": "flow_7_9_False",
+      "maxAbsoluteError": 3.5762786865234375e-07
+    },
+    {
+      "target": "D07",
+      "case": "flow_7_5_True",
+      "maxAbsoluteError": 2.980232238769531e-07
+    },
+    {
+      "target": "D07",
+      "case": "cache_7",
+      "maxAbsoluteError": 3.5762786865234375e-07
+    },
+    {
+      "target": "D07",
+      "case": "query_7_1",
+      "maxAbsoluteError": 1.1920928955078125e-07
+    },
+    {
+      "target": "D07",
+      "case": "query_7_13",
+      "maxAbsoluteError": 1.7881393432617188e-07
+    },
+    {
+      "target": "D07",
+      "case": "query_7_53",
+      "maxAbsoluteError": 2.384185791015625e-07
+    },
+    {
+      "target": "D07",
+      "case": "flow_19_3_False",
+      "maxAbsoluteError": 2.980232238769531e-07
+    },
+    {
+      "target": "D07",
+      "case": "flow_19_5_False",
+      "maxAbsoluteError": 2.980232238769531e-07
+    },
+    {
+      "target": "D07",
+      "case": "flow_19_9_False",
+      "maxAbsoluteError": 3.5762786865234375e-07
+    },
+    {
+      "target": "D07",
+      "case": "flow_19_5_True",
+      "maxAbsoluteError": 2.980232238769531e-07
+    },
+    {
+      "target": "D07",
+      "case": "cache_19",
+      "maxAbsoluteError": 5.364418029785156e-07
+    },
+    {
+      "target": "D07",
+      "case": "query_19_1",
+      "maxAbsoluteError": 2.086162567138672e-07
+    },
+    {
+      "target": "D07",
+      "case": "query_19_13",
+      "maxAbsoluteError": 2.384185791015625e-07
+    },
+    {
+      "target": "D07",
+      "case": "query_19_53",
+      "maxAbsoluteError": 2.384185791015625e-07
+    },
+    {
+      "target": "D07",
+      "case": "schedule_1_1.0",
+      "maxAbsoluteError": 0.0
+    },
+    {
+      "target": "D07",
+      "case": "schedule_1_2.5",
+      "maxAbsoluteError": 0.0
+    },
+    {
+      "target": "D07",
+      "case": "schedule_2_1.0",
+      "maxAbsoluteError": 0.0
+    },
+    {
+      "target": "D07",
+      "case": "schedule_2_2.5",
+      "maxAbsoluteError": 0.0
+    },
+    {
+      "target": "D07",
+      "case": "schedule_7_1.0",
+      "maxAbsoluteError": 2.384185791015625e-07
+    },
+    {
+      "target": "D07",
+      "case": "schedule_7_2.5",
+      "maxAbsoluteError": 1.1920928955078125e-07
+    }
+  ],
+  "trainedModels": 0,
+  "input_fingerprint": {
+    "third_party/spatial-shape-source-lock.json": "5492375fbf3934a15db37581a413a94e64038a486189b0ec51d37ed1ff55f69d",
+    "tools/spatial_reference.py": "d71d02cea9e0ddb4b5483561c9d04db76cd9904ce4c118112ed647060397a893",
+    "tools/spatial_shape_graphs.py": "ff71d941bb8824caa938285f9bb5e999ebc60c0e648467c8a011429e35e9fe04",
+    "tools/test_spatial_shape_graphs.py": "69c1fcc209acf7c0de7ad71e2d32291368f88f9004caebd323ecc3a242bd142f"
+  }
+}

@@ -1,5 +1,5 @@
 {
-  "version": "0.3.7",
+  "version": "0.3.8",
   "kind": "current production UI with an explicit simulated bridge",
   "android_device": false,
   "model_inference": false,
@@ -66,18 +66,18 @@
     },
     {
       "file": "release-workbench-ui.gif",
-      "bytes": 517044,
-      "sha256": "934d916c7ed8ab21bed17a73b4e85b67cf898aa85c7f2c13ff7a541a804b2b83"
+      "bytes": 578178,
+      "sha256": "3ae809b923db0b7888c2719f6149d86ae62efeef45045712c519268bdbe42bda"
     },
     {
       "file": "release-workbench-ui.mp4",
-      "bytes": 247885,
-      "sha256": "e012e4da4b319797c450f3677a8b65c5274f1af68660f841c84619fd9f366312"
+      "bytes": 264187,
+      "sha256": "0b4557299876ac93043b992506ac967c371ef31e81d343958bcc6d6293a434de"
     }
   ],
   "input_fingerprint": {
-    "app/src/main/assets/app.css": "41013f4e3d8c0462b50e52228a568ee58f4d2513b3e5cdd34aececbcf152651d",
-    "app/src/main/assets/app.js": "a1b71b39954ae838fc54d6dfbf369e000f887d75dc388c9803b60f9f3b870251",
+    "app/src/main/assets/app.css": "74d187b75c784487e190a6c9d5b78f0ac7dc9d84a7fd35316b4799fc70a433ab",
+    "app/src/main/assets/app.js": "5afc97df3f2277cbf32eebc80b4c0448b52d157dcf18cdf13904edc341636f10",
     "app/src/main/assets/architectures/ltx098-upscaler.onnx": "b7b3b8067dc247002b92fa228bf8bd1271d3b535f0ac8f70c7f7e5e94448e2d9",
     "app/src/main/assets/asset-preparations.json": "b0a7cbac1a633310b9fff84164439ee8fe20a1df137d1075eb9263f531ccfd3b",
     "app/src/main/assets/audio-preview.js": "33bb898969f37c1f78c6664052c46da844d148defdcef4a54d64bc5829037f44",
@@ -88,7 +88,7 @@
     "app/src/main/assets/foundation.css": "8bbd7a445a43d93f796be904e8f67b6e6120cf27547b93abb79cf41142078343",
     "app/src/main/assets/foundation.js": "a2bd9f0a92807a0d60a97884fb3dd123ddfc5cf42258b6577bff36b37f99cb14",
     "app/src/main/assets/glb-preview.js": "26554ae19c4dbeba87732dc0d220a628f40b598450a021e683737ded03db0f85",
-    "app/src/main/assets/index.html": "012f5e8f5e712ec7f325e81070137a0efd18ce4067e9d77a524fed9256626873",
+    "app/src/main/assets/index.html": "94f47bfbb7e0e621531202b1bd750b3bf5bf622b822652593e0b9128401ec66e",
     "app/src/main/assets/license.js": "838317c7653ca35291e9e18f2a7e2d98ed46a10880dfe144176f04ad994433d0",
     "app/src/main/assets/licenses/LLAMA_CPP_LICENSE": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
     "app/src/main/assets/licenses/LMA_LICENSE": "6ae3f5efa412d91cbf66e44f743e5ce41a8044309d05d893365206ab9bc35fc3",
@@ -290,11 +290,13 @@
     "app/src/main/assets/preparations/ltx098_vae_prepare/stage-08.onnx": "ff463e05293456c25aa5b1a14d82b1f732f1aee0f00da45f8e28419509ba8ac9",
     "app/src/main/assets/recipe-templates.json": "ed87f310d0a63251f765bbc4d8741b31806cc87145c0a96f762a110e097e6bd3",
     "app/src/main/assets/recipes.js": "b27e75ed85948a63476bf351cde94a59bec935a540f65e1a9fe798322bcd1b39",
+    "app/src/main/assets/recommendations.js": "608faca5d9c76c472992996ddeafe1aa428e73ed1009f9d503be6308209eb4d5",
+    "app/src/main/assets/recommendations.json": "8fa2c4c76526d63de81d37fac75af6d4664175df0f355b64c552274d67517ebf",
     "app/src/main/assets/versions.js": "2d629929a6db642c12a242ddcc62cd4f4090ab307e0cb669ceb98add031977e1",
     "app/src/main/assets/workbench.js": "367c6293b50bb1f4567da00eef20d795c7f775c2e5f6b5ec62b0e32989920e09",
     "tests/foundation-ui.cjs": "b8cc6e6dcd05054e8651c1ec908e8d1f8e1c65abe1cb6d81e77f52a7e9fea6ed",
     "tests/release-workbench-ui.cjs": "cced7e9f32cddc1054616056684c48c1a9e0690d082d440caf5e21ffc943ecda",
     "tests/workbench-ui.cjs": "8e95e45ba2991edaf254be296581525baab5490117c9b2850c73ab273738bb33",
-    "tools/capture_workbench.cjs": "62f2e31d11c39356b0b69b1967582c9b233575a70786fd4954d7a80bddbdcef2"
+    "tools/capture_workbench.cjs": "8173ade63ef547140cba8c219fd4304253ceb2afca2f67dc6c1b8ed4627edfc5"
   }
 }

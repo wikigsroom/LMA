@@ -29,7 +29,9 @@ def main():
     out = ROOT/'docs/media/device'/('v'+version())
     out.mkdir(parents=True, exist_ok=True)
     screenshots = ['01-recommended.png','02-all.png','03-local.png','04-chat.png',
-                   '04-tasks.png','04-server.png','04-settings.png']
+                   '04-tasks.png','04-server.png','04-settings.png',
+                   '02-recommended-image.png','02-recommended-video.png',
+                   '02-recommended-audio.png','02-recommended-3d.png']
     for name in screenshots:
         shutil.copyfile(source/name, out/name)
     original = source/'physical-walkthrough.mp4'

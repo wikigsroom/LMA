@@ -1,8 +1,18 @@
 # 截图与演示 / Screenshots and demonstrations
 
+## 当前 v0.3.8 / Current capture set
+
+**10 组桌面生产页面夹具：57 PNG / 10 GIF / 10 MP4；另有实际手机 11 PNG 与独立 MP4 / GIF。** Desktop captures are explicitly labelled UI FIXTURE, use no trained weights and close all owned browser resources; actual Android media remains separate. All manifests bind the current source/APK and media hashes.
+
+新增推荐演示：[GIF](media/development/recommendations/recommendations-ui.gif) / [MP4](media/development/recommendations/recommendations-ui.mp4) / [5 张图与 34 项交互](media/development/recommendations/manifest.json)。保留原有九组：community、release-workbench、expansion、multiview、shape、spatial、material、ultratex、adaptation，并绑定本版页面源码重新录制。No automatic model transfers; the explicit transfer in the new desktop flow is simulated.
+
+实际手机分类：[生图](media/device/v0.3.8/02-recommended-image.png) / [生视频](media/device/v0.3.8/02-recommended-video.png) / [生音频](media/device/v0.3.8/02-recommended-audio.png) / [生 3D](media/device/v0.3.8/02-recommended-3d.png) / [实际录屏](media/device/v0.3.8/physical-walkthrough.mp4) / [GIF](media/device/v0.3.8/physical-walkthrough.gif) / [身份清单](media/device/v0.3.8/manifest.json)。[23 项真机程序检查与范围](DEVICE_ACCEPTANCE.md) / [English](DEVICE_ACCEPTANCE.en.md). No model inference, generated content or sustained background claim.
+
+下方旧版本媒体说明按历史语境保留。Versioned descriptions below are historical; current inventory is the v0.3.8 set above.
+
 **v0.3.7 / code57:** [真机零模型启动修复与 19 项程序检查](DEVICE_ACCEPTANCE.md) / [Physical program acceptance](DEVICE_ACCEPTANCE.en.md). Includes short screen-off API health and separate real phone media; no complete model or endurance claim.
 
-## 当前 v0.3.6 / Current capture set
+## 历史 v0.3.6 / Historical capture set
 
 九组生产页面重新录制：**52 张截图、9 GIF、9 MP4**。包含原社区、工作台、语音 / 3D、四视图、RF、Spatial，以及 Paint、UltraTex 和完整适配选择。No weights downloaded, no trained-model inference, no Android-device recording. 每组均明确 UI FIXTURE，使用生产资源和模拟桥；browser pages/contexts and local services close in `finally`。清单绑定当前页面源码和媒体哈希。
 

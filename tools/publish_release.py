@@ -6,6 +6,7 @@ from pathlib import Path
 import shutil
 import subprocess
 import sys
+import time
 from evidence import version
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -75,7 +76,7 @@ def main():
         if endpoint == base + "/tags/" + tag:
             page = 1
             while True:
-                listing = json.loads(gh("api", base + "?per_page=100&page=" + str(page)).stdout)
+                listing = json.loads(gh("api", base + "?per_page=100&page=" + str(page), "--header", "Cache-Control: no-cache").stdout)
                 found = next((item for item in listing if item["tag_name"] == tag), None)
                 if found is not None:
                     return found
@@ -97,7 +98,14 @@ def main():
     if remote is None:
         gh("release", "create", tag, "--repo", repo, "--verify-tag", "--title", manifest["title"],
            "--notes-file", ROOT / manifest["notes"], "--draft", "--prerelease=" + str(prerelease).lower())
-        remote = api(base + "/tags/" + tag)
+        for attempt in range(6):
+            remote = api(base + "/tags/" + tag, optional=True)
+            if remote is not None:
+                break
+            if attempt < 5:
+                time.sleep(2)
+        if remote is None:
+            raise RuntimeError("Created draft is not yet visible; rerun to resume safely")
     assert remote["prerelease"] is prerelease, "Refuse to change an existing release channel"
     known = {asset["name"]: asset for asset in remote["assets"]}
     for asset in assets:
@@ -126,7 +134,11 @@ def main():
     assert not remote["draft"] and remote["prerelease"] is prerelease
     receipt = {"repository": repo, "tag": tag, "commit": head, "url": remote["html_url"], "id": remote["id"],
                "published_at": remote["published_at"], "prerelease": prerelease, "draft": False,
-               "assets": assets, "all_server_digests_verified": True, "physical_device_tested": False}
+               "assets": assets, "all_server_digests_verified": True,
+               "physical_device_tested": manifest.get("physical_device_tested", False),
+               "physical_device_tests": manifest.get("physical_device_tests", 0),
+               "background_program_tested": manifest.get("background_program_tested", False),
+               "phone_inference_tested": False, "background_endurance_tested": False}
     (directory / "publish-receipt.json").write_text(json.dumps(receipt, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(json.dumps({"url": receipt["url"], "assets": len(assets), "prerelease": prerelease, "published": True}))
 

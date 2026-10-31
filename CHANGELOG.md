@@ -1,5 +1,14 @@
 # Changelog / 更新记录
 
+## 0.3.8 — 多模态推荐 / Recommendations for every modality
+
+- 默认推荐共 14 项：保留生文 m08 → m06 → m01，新增生图 3 / 生视频 2 / 生音频 3 / 生 3D 3。Preserve the original text prefix; append eleven pinned optional bundles.
+- 功能按钮显示数量，卡片显示用途 / 资源条件；独立保留来源 NSFW 标签。Task counts, recommendation reasons and resource hints share existing equal-peer model cards.
+- 无自动下载，继续通过全部 / HF 搜索发现其他模型，通过本地管理文件、任务与逐模型参数。Explicit downloads only; no model weights in APK.
+- 新增 34 项页面检查，生产页面合计 782 项；真机程序合计 23 项及短时锁屏接口健康检查，不运行完整模型。Refresh bilingual guides, preserve C01–C48/H01–H18 and add C49–C54.
+- 重录 10 组桌面演示，另附 11 张实际手机截图和真实 MP4/GIF；修正 README 当前 APK 哈希 / 下载入口 / 附件数量。Fix publication draft visibility retry and truthful physical evidence receipts.
+- [推荐方案 / Choices](docs/RECOMMENDED_MODELS.md) / [English](docs/RECOMMENDED_MODELS.en.md) · [Release notes](docs/releases/v0.3.8.md).
+
 ## 0.3.7 — 真机启动与目录修复 / Physical startup and catalogue fix
 
 - 隔离未准备 LTX 的表单 / 准备状态错误；零模型安装仍返回完整模型、引擎及设备状态。Isolate per-entry metadata errors without weakening execution validation.

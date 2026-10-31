@@ -46,7 +46,7 @@
     return Math.round(value) + ' B';
   }
   function memory(value) { return value ? (value / 1073741824).toFixed(1) + ' GiB' : '—'; }
-  function models() { return state ? (state.models || []).concat(window.LMAFoundation.views()).map(function (m) { return window.LMACommunity.bind(m, state); }) : []; }
+  function models() { return state ? (state.models || []).concat(window.LMAFoundation.views()).map(function (m) { return window.LMARecommendations.bind(window.LMACommunity.bind(m, state), state); }) : []; }
   function modelById(id) { return models().filter(function (m) { return m.id === id || m.bundleId === id; })[0]; }
   function engine() { return state ? state.engine || {} : {}; }
   function textQueued() { return ['waiting', 'suspended'].indexOf(engine().state) >= 0; }
@@ -133,7 +133,7 @@
     $('installedCount').textContent = models().filter(function (x) { return x.installed; }).length;
   }
   function modelCard(m) {
-    if (m.isBundle) return window.LMACommunity.card(window.LMAFoundation.card(m), m);
+    if (m.isBundle) return window.LMARecommendations.card(window.LMACommunity.card(window.LMAFoundation.card(m), m), m);
     var d = m.download || {}, s = d.state || '', running = engine().modelId === m.id && ['ready', 'loading', 'recovering', 'waiting', 'suspended'].indexOf(engine().state) >= 0;
     var active = ['queued', 'downloading', 'verifying', 'pausing'].indexOf(s) >= 0, partial = m.partialBytes || d.received || 0;
     var total = d.total || m.bytes || 0, progress = total ? Math.min(100, Math.floor(partial * 100 / total)) : 0;
@@ -158,6 +158,7 @@
     return out + '</article>';
   }
   function renderModels() {
+    window.LMARecommendations.counts(models(), filter === 'recommended', !!(state && state.recommendations));
     $('communityControls').hidden = ['all', 'local'].indexOf(filter) < 0; $('catalogueSourceLabel').hidden = filter !== 'all'; $('hubControls').hidden = filter !== 'all' || $('catalogueSource').value === 'registered'; $('hubPagination').hidden = filter !== 'all' || $('catalogueSource').value === 'registered';
     $('modelSearch').placeholder = filter === 'local' ? '搜索本地模型' : '搜索 HF 模型、owner/model 或仓库链接';
     if (filter === 'all') { renderHub(); return; }
@@ -165,10 +166,11 @@
       var included = filter === 'recommended' && m.recommended || filter === 'light' && m.tier === 'light' || filter === 'quality' && (m.tier === 'quality' || m.tier === 'experimental') || filter === 'local' && (m.installed || m.hasPreparedAssets || m.partialBytes || m.download && m.download.state || m.hub || m.imported || m.tier === 'custom');
       return included && matchesTask(m) && (filter !== 'local' || window.LMACommunity.accepts(m, $('contentFilter').value, 'any')) && (filter === 'local' ? window.LMACommunity.search(m, query) : !query || [m.name, m.family, m.repository, m.description, (m.tags || []).join(' ')].join(' ').toLowerCase().indexOf(query.toLowerCase()) >= 0);
     });
+    if (filter === 'recommended') all.sort(window.LMARecommendations.compare);
     var signature = JSON.stringify([all, engine().state, engine().modelId, filter, query, taskFilter]);
     if (signature === modelSignature) return; modelSignature = signature;
     var focused = document.activeElement && document.activeElement.closest('#modelList button'), focusAction = focused && focused.dataset.action, focusId = focused && focused.dataset.id;
-    $('modelListTitle').textContent = query ? '本地搜索结果' : {recommended: '适合先试的模型', light: '先从轻量开始', quality: '更高容量的选择', local: '你的本地模型'}[filter];
+    $('modelListTitle').textContent = query ? '本地搜索结果' : {recommended: '按功能选择推荐模型', light: '先从轻量开始', quality: '更高容量的选择', local: '你的本地模型'}[filter];
     $('modelResultCount').textContent = filter === 'local' ? all.filter(function (m) { return m.installed; }).length + ' 已下载 · ' + all.filter(function (m) { return !m.installed && !m.hasPreparedAssets; }).length + ' 下载任务' + (all.some(function (m) { return !m.installed && m.hasPreparedAssets; }) ? ' · ' + all.filter(function (m) { return !m.installed && m.hasPreparedAssets; }).length + ' 仅运行资产' : '') : all.length + ' 个模型';
     $('modelList').innerHTML = all.length ? all.map(modelCard).join('') : '<div class="empty-list"><h3>' + (filter === 'local' && !query ? '还没有下载模型' : '没有匹配的模型') + '</h3><p>' + (filter === 'local' ? '下载、导入的模型和未完成的下载会出现在这里。' : '尝试其他关键词，或添加自己的 GGUF 文件。') + '</p><button class="button subtle" data-action="showAll">浏览全部模型</button></div>';
     if (focusId) $('modelList').querySelectorAll('button').forEach(function (b) { if (b.dataset.action === focusAction && b.dataset.id === focusId) b.focus({preventScroll: true}); });

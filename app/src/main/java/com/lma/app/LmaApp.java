@@ -23,9 +23,10 @@ import com.lma.app.core.InputUploads;
 import com.lma.app.core.PreparedAssets;
 
 public final class LmaApp extends Application {
-    public static final String VERSION = "0.3.7";
+    public static final String VERSION = "0.3.8";
     public static final String UPDATE = "com.lma.app.STATE_CHANGED";
     public Store store;
+    private JSONObject recommendations = new JSONObject();
     private final java.util.concurrent.atomic.AtomicBoolean migrationRunning = new java.util.concurrent.atomic.AtomicBoolean(), migrationPending = new java.util.concurrent.atomic.AtomicBoolean();
     private volatile JSONArray migrationResults = new JSONArray();
     public BundleStore bundles;
@@ -76,6 +77,9 @@ public final class LmaApp extends Application {
             prefs.edit().putString("apiKey", "lma_" + Protocol.hex(random)).apply();
         }
         store = new Store(this);
+        try (java.io.InputStream in = getAssets().open("recommendations.json")) {
+            recommendations = new JSONObject(Store.read(in, 128 * 1024));
+        } catch (Exception unavailable) { log("推荐目录暂不可用，已有模型仍可在全部 / 本地查看"); }
         try {
             bundles = new BundleStore(new java.io.File(getFilesDir(), "model-assets"));
             try (java.io.InputStream in = getAssets().open("model-bundles.json")) {
@@ -176,7 +180,7 @@ public final class LmaApp extends Application {
         JSONObject value = new JSONObject();
         try {
             value.put("app", "LMA"); value.put("version", VERSION); value.put("runtime", "llama.cpp v0.4.1 · CPU");
-            value.put("models", store.snapshot()); value.put("settings", settings()); value.put("hub", hub.snapshot());
+            value.put("models", store.snapshot()); value.put("recommendations", recommendations); value.put("settings", settings()); value.put("hub", hub.snapshot());
             JSONArray bundleRecords = bundles == null ? new JSONArray() : bundles.snapshot();
             if (localEngines != null) for (int i = 0; i < bundleRecords.length(); i++) {
                 JSONObject record = bundleRecords.getJSONObject(i);

@@ -1,0 +1,179 @@
+{
+  "schema": "lma.physical-screen-media/1",
+  "version": "0.3.8",
+  "android_device": true,
+  "desktop_fixture": false,
+  "model_inference": false,
+  "weights_downloaded": false,
+  "apk_sha256": "60c308838e768bdb089e9f9d8b6cbd726467f16e91b6db281e0417387699bab2",
+  "device": {
+    "model": "motorola edge plus",
+    "api": 31,
+    "abis": "arm64-v8a,armeabi-v7a,armeabi"
+  },
+  "reviewed_app_only": true,
+  "input_fingerprint": {
+    "app/src/main/AndroidManifest.xml": "cf6cadb5129e9216dff57bb4e51ea272124150cf1e4e9982382cf6b944e055da",
+    "app/src/main/java/com/lma/app/LmaApp.java": "321d57b0920186500c18389017026d91e77ba9b7a69e7f6665e5a73d68658b82",
+    "tests/android/AndroidManifest.xml": "301f93e455e37329bdf8e22a4ab4236ce0f8d93e757d18490d094899a8d50336",
+    "tests/android/com/lma/app/DeviceAcceptance.java": "762544762d847fb772bc91ef907d5baa1ff71564ff1c4ed9c606dd4219e577f3",
+    "tools/build_acceptance.py": "76288410f114d7b4b337b3cb8d98d481a42506fa0135313a32819df29bbf82b0",
+    "tools/device_check.py": "286ed47a4f1077632f606828eb13b7e64b1c56dd30c505839be96eadcb256e9b",
+    "tools/package_device_media.py": "cbfa7bb5daf0a37caef07d33c0c23c394277c6ecd2b45f95bfaca1c207663e33"
+  },
+  "source_recording": {
+    "bytes": 2496663,
+    "sha256": "095d3cb9462711edf8eeb3e763cdb4d5c376f5afd30d9262b74cb619d7aedaf2"
+  },
+  "trim_start_seconds": 24.0,
+  "trim_duration_seconds": 20.0,
+  "playback_speed": 1,
+  "screenshots": [
+    {
+      "file": "01-recommended.png",
+      "bytes": 202080,
+      "sha256": "ccb1505a9a97857e60496f4b36f52bf38c7ae95841ea195b24c58965d845b321"
+    },
+    {
+      "file": "02-all.png",
+      "bytes": 204965,
+      "sha256": "e6fe94268e7091cd7035e7171dc90ff38a20ec3997013d5409a85bd32e6b4777"
+    },
+    {
+      "file": "03-local.png",
+      "bytes": 185907,
+      "sha256": "2e679fbd701f092b6e6a03be8e84ac51e49543716cf5c09cc8a798c8cf20eb57"
+    },
+    {
+      "file": "04-chat.png",
+      "bytes": 151094,
+      "sha256": "292c63043c26e26b059d1a90aa107c069baf7e29d1e08cee1ba817672f7eee91"
+    },
+    {
+      "file": "04-tasks.png",
+      "bytes": 206977,
+      "sha256": "5da6a9906f7358d794eb9dcd6b5df2ff2f8f34fa18bcf09c5d8dba80a54c6571"
+    },
+    {
+      "file": "04-server.png",
+      "bytes": 172450,
+      "sha256": "ddbaf3b5fe437105fb9ab9763f99e1801d0a6c54cd25a35e5b71002d738c1396"
+    },
+    {
+      "file": "04-settings.png",
+      "bytes": 187444,
+      "sha256": "fede5f0e71bfdb9230700a12de70780f407530202517b55095ff372be1cb2164"
+    },
+    {
+      "file": "02-recommended-image.png",
+      "bytes": 203048,
+      "sha256": "e053f639f21d8611d5287bf0ff68965e2633acfbb88cca8b7c19d23d0f3d8ab3"
+    },
+    {
+      "file": "02-recommended-video.png",
+      "bytes": 205031,
+      "sha256": "d9ff76329f4553536365ed7910b62ff986e774c1439c49284807c5b5ac85ccfd"
+    },
+    {
+      "file": "02-recommended-audio.png",
+      "bytes": 200975,
+      "sha256": "84f24b5f8fb2997a3f33f7aa6fbc8a01865e08f7592676b0b9aaee66cb27dd00"
+    },
+    {
+      "file": "02-recommended-3d.png",
+      "bytes": 200176,
+      "sha256": "5fcb3805cc3ecdd36bc53254b1bb365e6dbfde05b31db65eeac9479710ce1e94"
+    }
+  ],
+  "files": [
+    {
+      "file": "01-recommended.png",
+      "bytes": 202080,
+      "sha256": "ccb1505a9a97857e60496f4b36f52bf38c7ae95841ea195b24c58965d845b321"
+    },
+    {
+      "file": "02-all.png",
+      "bytes": 204965,
+      "sha256": "e6fe94268e7091cd7035e7171dc90ff38a20ec3997013d5409a85bd32e6b4777"
+    },
+    {
+      "file": "03-local.png",
+      "bytes": 185907,
+      "sha256": "2e679fbd701f092b6e6a03be8e84ac51e49543716cf5c09cc8a798c8cf20eb57"
+    },
+    {
+      "file": "04-chat.png",
+      "bytes": 151094,
+      "sha256": "292c63043c26e26b059d1a90aa107c069baf7e29d1e08cee1ba817672f7eee91"
+    },
+    {
+      "file": "04-tasks.png",
+      "bytes": 206977,
+      "sha256": "5da6a9906f7358d794eb9dcd6b5df2ff2f8f34fa18bcf09c5d8dba80a54c6571"
+    },
+    {
+      "file": "04-server.png",
+      "bytes": 172450,
+      "sha256": "ddbaf3b5fe437105fb9ab9763f99e1801d0a6c54cd25a35e5b71002d738c1396"
+    },
+    {
+      "file": "04-settings.png",
+      "bytes": 187444,
+      "sha256": "fede5f0e71bfdb9230700a12de70780f407530202517b55095ff372be1cb2164"
+    },
+    {
+      "file": "02-recommended-image.png",
+      "bytes": 203048,
+      "sha256": "e053f639f21d8611d5287bf0ff68965e2633acfbb88cca8b7c19d23d0f3d8ab3"
+    },
+    {
+      "file": "02-recommended-video.png",
+      "bytes": 205031,
+      "sha256": "d9ff76329f4553536365ed7910b62ff986e774c1439c49284807c5b5ac85ccfd"
+    },
+    {
+      "file": "02-recommended-audio.png",
+      "bytes": 200975,
+      "sha256": "84f24b5f8fb2997a3f33f7aa6fbc8a01865e08f7592676b0b9aaee66cb27dd00"
+    },
+    {
+      "file": "02-recommended-3d.png",
+      "bytes": 200176,
+      "sha256": "5fcb3805cc3ecdd36bc53254b1bb365e6dbfde05b31db65eeac9479710ce1e94"
+    },
+    {
+      "file": "physical-walkthrough.mp4",
+      "bytes": 170323,
+      "sha256": "21b322837f2cc1592262fdefa3c8833955a6cff2bae656054b8cfb2d883b236a"
+    },
+    {
+      "file": "physical-walkthrough.gif",
+      "bytes": 353428,
+      "sha256": "383a3eeae45a16c252c6e0a8ce16a4994d8e5e6b1743f3b4741c82183335a1ca"
+    }
+  ],
+  "checks": [
+    "Complete zero-model catalogue and physical device state",
+    "Installed Android UI and native JavaScript bridge",
+    "Extracted native executable permissions",
+    "Android SQLite persistence and interrupted chat history",
+    "Real foreground service command acknowledgement",
+    "Fourteen recommendations preserve m08 / m06 / m01 prefix",
+    "Physical recommended category: image",
+    "Physical recommended category: video",
+    "Physical recommended category: audio",
+    "Physical recommended category: 3d",
+    "All registered models render on physical WebView",
+    "Local model management filter responds",
+    "Physical navigation: chat",
+    "Physical navigation: tasks",
+    "Physical navigation: server",
+    "Physical navigation: settings",
+    "Zero-model foreground API listener starts without downloading weights",
+    "API recovers after instrumentation detaches",
+    "Bearer key and browser-origin rejection on real phone",
+    "Zero installed models and complete extension engine registry",
+    "Jobs, artifacts, drafts and upload read APIs",
+    "Missing text weights rejected without automatic download"
+  ]
+}

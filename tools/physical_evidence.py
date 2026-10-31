@@ -42,7 +42,9 @@ def check(directory):
         assert not media['model_inference'] and not media['weights_downloaded']
         assert media['reviewed_app_only'] and media['playback_speed']==1
         current(media['input_fingerprint'])
-        assert len(media['screenshots'])==7 and len(media['files'])==9
+        assert len(media['screenshots'])==11 and len(media['files'])==13
+        assert {item['file'] for item in media['screenshots']} >= {
+            '02-recommended-'+task+'.png' for task in ('image','video','audio','3d')}
         for item in media['files']:
             path = media_path.parent/item['file']
             assert path.parent==media_path.parent and path.stat().st_size==item['bytes']

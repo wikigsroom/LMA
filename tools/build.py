@@ -58,6 +58,7 @@ def main():
     (BUILD / "build.log").write_text("", encoding="utf-8")
     run("Generate checked model catalogue", [sys.executable, ROOT / "tools/build_catalogue.py"])
     run("Generate data-only bundle catalogue", [sys.executable, ROOT / "tools/build_bundle_catalogue.py"])
+    run("Validate multimodal recommendations", [sys.executable, ROOT / "tools/recommendations.py"])
     run("Generate component recipes", [sys.executable, ROOT / "tools/build_recipe_templates.py"])
     engines = prepare_native()
     native = ROOT / "app/src/main/jniLibs/arm64-v8a"

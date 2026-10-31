@@ -1,0 +1,101 @@
+{
+  "schema": "lma.recommendations/1",
+  "checkedAt": "2026-11-01",
+  "preservedTextIds": [
+    "m08",
+    "m06",
+    "m01"
+  ],
+  "entries": [
+    {
+      "bundleId": "sd_turbo_q8_0_catalogue_v1",
+      "task": "image",
+      "reason": "少步数生图",
+      "hint": "512 像素起步，适合先熟悉生图流程",
+      "bytes": 2024269995,
+      "sourceUrl": "https://huggingface.co/Green-Sky/SD-Turbo-GGUF"
+    },
+    {
+      "bundleId": "community_realisticvision6b1_r9a857a6_c382fabb421",
+      "task": "image",
+      "reason": "写实风格",
+      "hint": "SD 1.5 写实模型；下载时包含配套 VAE",
+      "bytes": 2467793789,
+      "sourceUrl": "https://huggingface.co/SG161222/Realistic_Vision_V6.0_B1_noVAE"
+    },
+    {
+      "bundleId": "community_aom2nsfw_rec9df50_c720a9759ae",
+      "task": "image",
+      "reason": "插画风格",
+      "hint": "SD 1.5 插画模型；保留来源 NSFW 标记",
+      "bytes": 2133150690,
+      "sourceUrl": "https://huggingface.co/WarriorMama777/OrangeMixs"
+    },
+    {
+      "bundleId": "wan21_13b_q4_vulkan_catalogue_v1",
+      "task": "video",
+      "reason": "量化短视频",
+      "hint": "需要 Vulkan 和较大内存，先使用低分辨率短片",
+      "bytes": 4741874667,
+      "sourceUrl": "https://huggingface.co/off-grid-ai/Wan2.1-T2V-1.3B-GGUF"
+    },
+    {
+      "bundleId": "community_wan13b_exp14_r4d8db25_c49ade07b7b",
+      "task": "video",
+      "reason": "社区视频变体",
+      "hint": "需要 Vulkan 和较大内存；来源 NSFW，E14 变体",
+      "bytes": 6763890971,
+      "sourceUrl": "https://huggingface.co/NSFW-API/NSFW_Wan_1.3b"
+    },
+    {
+      "bundleId": "melo_zh_int8_a0d5c6a",
+      "task": "audio",
+      "reason": "轻量中文语音",
+      "hint": "中文 / 英文朗读，INT8 模型包约 61 MB",
+      "bytes": 60589996,
+      "sourceUrl": "https://huggingface.co/csukuangfj/vits-melo-tts-zh_en"
+    },
+    {
+      "bundleId": "kokoro82_int8_57adb37",
+      "task": "audio",
+      "reason": "轻量英文语音",
+      "hint": "英文多音色朗读，INT8 模型包约 149 MB",
+      "bytes": 148710413,
+      "sourceUrl": "https://huggingface.co/csukuangfj/kokoro-int8-multi-lang-v1_0"
+    },
+    {
+      "bundleId": "omnivoice_q8_874fcb4",
+      "task": "audio",
+      "reason": "多语言与音色设计",
+      "hint": "支持自动音色、参考音色和音色描述，CPU 运行",
+      "bytes": 1350296096,
+      "sourceUrl": "https://huggingface.co/audio-cpp/audio.cpp-gguf"
+    },
+    {
+      "bundleId": "trellis2_geometry512_cpu_v1",
+      "task": "3d",
+      "reason": "单图生成几何",
+      "hint": "单张图片生成无贴图 GLB；CPU 长任务，需较大内存",
+      "bytes": 2626483168,
+      "sourceUrl": "https://huggingface.co/ilintar/trellis2-gguf"
+    },
+    {
+      "bundleId": "trellis2_pbr512_cpu_v1",
+      "task": "3d",
+      "reason": "单图生成材质模型",
+      "hint": "生成带 PBR 材质的 GLB；CPU 长任务，需较大内存",
+      "bytes": 4202445664,
+      "sourceUrl": "https://huggingface.co/ilintar/trellis2-gguf"
+    },
+    {
+      "bundleId": "pixal3d_geometry512_cpu_v1",
+      "task": "3d",
+      "reason": "单图几何进阶",
+      "hint": "Pixal3D 几何生成；下载约 6.62 GB，需较大内存",
+      "bytes": 6623961632,
+      "sourceUrl": "https://huggingface.co/ilintar/trellis2-gguf"
+    }
+  ],
+  "automaticDownloads": false,
+  "phoneInferenceValidated": false
+}

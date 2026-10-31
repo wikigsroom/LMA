@@ -1,5 +1,5 @@
 {
-  "version": "0.3.7",
+  "version": "0.3.8",
   "kind": "current production UI with an explicit simulated bridge",
   "android_device": false,
   "model_inference": false,
@@ -65,8 +65,8 @@
     },
     {
       "file": "04-shape-queue.png",
-      "bytes": 47821,
-      "sha256": "139729507c868130acc03b5b601d25e161170e9b73c6554c1601da5203310ca6"
+      "bytes": 47877,
+      "sha256": "fc9c5ca856148afd38a2399396bd075317f7627112e57d5dc3b86a9f6037bdd8"
     },
     {
       "file": "05-triposg-form.png",
@@ -75,18 +75,18 @@
     },
     {
       "file": "shape-ui.gif",
-      "bytes": 517939,
-      "sha256": "c10922fe093c8d9b6befc7658948c511e34e386971722456fedbc0cd5276f8e7"
+      "bytes": 616825,
+      "sha256": "75787ecb52a2612d64d7b2f8e9bce9a7161b169e36eed270b3755d27c361e257"
     },
     {
       "file": "shape-ui.mp4",
-      "bytes": 206962,
-      "sha256": "5354af3f76c98b90c1f82c2da6fd5a0fbe5b8f5c4f63e765294d675add34f56b"
+      "bytes": 236845,
+      "sha256": "5106fdadabc395f934994ff9036c0324cce6d61aaeb38e049ae738555541cb91"
     }
   ],
   "input_fingerprint": {
-    "app/src/main/assets/app.css": "41013f4e3d8c0462b50e52228a568ee58f4d2513b3e5cdd34aececbcf152651d",
-    "app/src/main/assets/app.js": "a1b71b39954ae838fc54d6dfbf369e000f887d75dc388c9803b60f9f3b870251",
+    "app/src/main/assets/app.css": "74d187b75c784487e190a6c9d5b78f0ac7dc9d84a7fd35316b4799fc70a433ab",
+    "app/src/main/assets/app.js": "5afc97df3f2277cbf32eebc80b4c0448b52d157dcf18cdf13904edc341636f10",
     "app/src/main/assets/architectures/ltx098-upscaler.onnx": "b7b3b8067dc247002b92fa228bf8bd1271d3b535f0ac8f70c7f7e5e94448e2d9",
     "app/src/main/assets/asset-preparations.json": "b0a7cbac1a633310b9fff84164439ee8fe20a1df137d1075eb9263f531ccfd3b",
     "app/src/main/assets/audio-preview.js": "33bb898969f37c1f78c6664052c46da844d148defdcef4a54d64bc5829037f44",
@@ -97,7 +97,7 @@
     "app/src/main/assets/foundation.css": "8bbd7a445a43d93f796be904e8f67b6e6120cf27547b93abb79cf41142078343",
     "app/src/main/assets/foundation.js": "a2bd9f0a92807a0d60a97884fb3dd123ddfc5cf42258b6577bff36b37f99cb14",
     "app/src/main/assets/glb-preview.js": "26554ae19c4dbeba87732dc0d220a628f40b598450a021e683737ded03db0f85",
-    "app/src/main/assets/index.html": "012f5e8f5e712ec7f325e81070137a0efd18ce4067e9d77a524fed9256626873",
+    "app/src/main/assets/index.html": "94f47bfbb7e0e621531202b1bd750b3bf5bf622b822652593e0b9128401ec66e",
     "app/src/main/assets/license.js": "838317c7653ca35291e9e18f2a7e2d98ed46a10880dfe144176f04ad994433d0",
     "app/src/main/assets/licenses/LLAMA_CPP_LICENSE": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
     "app/src/main/assets/licenses/LMA_LICENSE": "6ae3f5efa412d91cbf66e44f743e5ce41a8044309d05d893365206ab9bc35fc3",
@@ -299,10 +299,12 @@
     "app/src/main/assets/preparations/ltx098_vae_prepare/stage-08.onnx": "ff463e05293456c25aa5b1a14d82b1f732f1aee0f00da45f8e28419509ba8ac9",
     "app/src/main/assets/recipe-templates.json": "ed87f310d0a63251f765bbc4d8741b31806cc87145c0a96f762a110e097e6bd3",
     "app/src/main/assets/recipes.js": "b27e75ed85948a63476bf351cde94a59bec935a540f65e1a9fe798322bcd1b39",
+    "app/src/main/assets/recommendations.js": "608faca5d9c76c472992996ddeafe1aa428e73ed1009f9d503be6308209eb4d5",
+    "app/src/main/assets/recommendations.json": "8fa2c4c76526d63de81d37fac75af6d4664175df0f355b64c552274d67517ebf",
     "app/src/main/assets/versions.js": "2d629929a6db642c12a242ddcc62cd4f4090ab307e0cb669ceb98add031977e1",
     "app/src/main/assets/workbench.js": "367c6293b50bb1f4567da00eef20d795c7f775c2e5f6b5ec62b0e32989920e09",
     "tests/foundation-ui.cjs": "b8cc6e6dcd05054e8651c1ec908e8d1f8e1c65abe1cb6d81e77f52a7e9fea6ed",
     "tests/shape-ui.cjs": "07ce37d951c8f4fef03d45facc3c13b317e0ebceeeb5ce3fb280b94b5dccd6ef",
-    "tools/capture_workbench.cjs": "62f2e31d11c39356b0b69b1967582c9b233575a70786fd4954d7a80bddbdcef2"
+    "tools/capture_workbench.cjs": "8173ade63ef547140cba8c219fd4304253ceb2afca2f67dc6c1b8ed4627edfc5"
   }
 }

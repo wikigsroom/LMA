@@ -1,5 +1,7 @@
 # LMA 使用手册
 
+**v0.3.8 / code58 · 当前 / Current:** [14 个推荐模型 / fourteen recommended choices](RECOMMENDED_MODELS.md)：text 3 / image 3 / video 2 / audio 3 / 3D 3. Default Recommended preserves the original text prefix, adds optional multimodal choices and never downloads automatically. [Release](releases/v0.3.8.md) · [当前实现 / implementation](IMPLEMENTATION_V038.md). Earlier version callouts below retain their historical context.
+
 **v0.3.7 / code57:** [真机零模型启动修复与 19 项程序检查](DEVICE_ACCEPTANCE.md) / [Physical program acceptance](DEVICE_ACCEPTANCE.en.md). Includes short screen-off API health and separate real phone media; no complete model or endurance claim.
 
 > 当前 v0.3.5：[Hunyuan 形状与 UltraShape 精修](SPATIAL_SHAPE.md)、[完整编号实现与待完成适配](IMPLEMENTATION_V035.md)。五个共用 CPU sparse 运算不代表 SAM / UniForge / SUPRA 完整适配，Paint 仍缺代码。原有能力保留；以下旧版本说明按历史理解。

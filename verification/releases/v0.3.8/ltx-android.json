@@ -1,0 +1,200 @@
+{
+  "file": "liblma-ltx098-app-tensors.so",
+  "bytes": 435024,
+  "sha256": "f9942e58192cdd41aeeeb685ef76daddeeff1fd4c243a0eb9306faa1ee3ebd07",
+  "android_api_notes": [
+    28
+  ],
+  "schema": "lma.native-build/1",
+  "engine": "ltx098_native",
+  "version": "0.9.8-lma-multiscale-v1",
+  "abi": "arm64-v8a",
+  "min_sdk": 28,
+  "backend": "vulkan",
+  "source_revision": "4b2d053057623ddd4d0a1d3e9cd28890e9ef487f",
+  "ggml_revision": "a5915eb0e47adef21c3f25b889a008925ea838c2",
+  "llama_revision": "b29c606e28a01b1bc8c1351026a0fa6e616bf6c4",
+  "ndk": "30.0.16248370",
+  "dependencies": [
+    {
+      "file": "liblma-ltx098-app-text.so",
+      "bytes": 697328,
+      "sha256": "1603dab8179b81fcd9e81afde0c281a39c87854abb34ef740b8af0245995c645",
+      "android_api_notes": [
+        28
+      ]
+    },
+    {
+      "file": "liblma-ltx098-app-sample.so",
+      "bytes": 35600576,
+      "sha256": "f2782968ba0e23e215cd38798b2d2533c5eef68df89d01f42e30faf8c1640772",
+      "android_api_notes": [
+        28
+      ]
+    },
+    {
+      "file": "liblma-ltx098-app-vae.so",
+      "bytes": 512704,
+      "sha256": "d27716743038506a33fbfd6b03fa6caa1291f5323705a9f894570d81c17d8af4",
+      "android_api_notes": [
+        28
+      ]
+    },
+    {
+      "file": "libonnxruntime.so",
+      "bytes": 22249560,
+      "sha256": "33847ad43bffe204699fd4a27f7f3603452a8cdaf2f9a44983a0bc31ffcf2da1",
+      "android_api_notes": [
+        27
+      ]
+    },
+    {
+      "file": "libllama.so",
+      "bytes": 3264464,
+      "sha256": "b93e6abb9088bfb50ca1986200654fddec722c0910dbf2a2000d3496e73a9449",
+      "android_api_notes": [
+        28
+      ]
+    },
+    {
+      "file": "libggml-cpu-android_armv8.0_1.so",
+      "bytes": 871048,
+      "sha256": "5eec51b25c2835bd6bd62a29d0b9ac07ce7fadcbeb679d00ecf184128a2cf8d4",
+      "android_api_notes": [
+        28
+      ]
+    },
+    {
+      "file": "libggml.so",
+      "bytes": 668680,
+      "sha256": "e858a7c58ce22a7cec4c1e18d0b1772680e52ef833ea7822a4500c659a0774b8",
+      "android_api_notes": [
+        28
+      ]
+    },
+    {
+      "file": "libggml-base.so",
+      "bytes": 1080864,
+      "sha256": "5e79542e713d0f4fa633cb987ad1a4a95bc1b64531e88305e3a41c6213aaf1a9",
+      "android_api_notes": [
+        28
+      ]
+    }
+  ],
+  "notices": {
+    "ltx098-Lightricks-Apache-2.0.txt": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+    "ltx098-App-NOTICE.txt": "38b34ced8ee2dc4d7a6e0232087059d1a4fab81580b209d1becce2638e25da38",
+    "ltx098-ggml-MIT.txt": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
+    "ltx098-Vulkan-Headers.txt": "95ad366d23fadf701d355bc45fb8b82ae2d700239471d35d41286ac3b08ff903",
+    "ltx098-Vulkan-MIT.txt": "1ca3502222d967f3be5751c55f6b7ee735b5383909c3b501495f54b216dbf227",
+    "ltx098-Vulkan-Apache-2.0.txt": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+    "ltx098-SPIRV-Headers-MIT.txt": "ea43b1de38a6f90c488800d66dec1ed671e68cda530266bc96951fb5b6307613",
+    "soulx-llama-MIT.txt": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
+    "moss-onnxruntime-LICENSE.txt": "c250d6278f0b47a6439fb7592b08b58a55eb9f535aa49a1db63211c3f982b674",
+    "moss-onnxruntime-ThirdPartyNotices.txt.txt": "fb0af774b4d7cffc5b9d046f2aaeade2f37df2f80abf8033c95dfffcc77a8866",
+    "sd-nlohmann-json-LICENSE.txt": "0e592e358cf7722906f417be85bc514f15bf6efd28cea98cb84e56ef7fddfc3e",
+    "sd-NDK-LLVM-NOTICE.txt": "f96f763beb66a7ba7a667647fc64c0226ace875e590c831fdd9579ec1c1d91e1",
+    "moss-sentencepiece-LICENSE.txt": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5",
+    "moss-sentencepiece-third_party-protobuf-lite-LICENSE.txt": "f4df8b2457697851385d9ebb93267832c1dfa24e0e61881952f6b0c452663dc9",
+    "moss-sentencepiece-third_party-darts_clone-LICENSE.txt": "ed8437dc7358a40ef10afd3635ac1cd43c88fbaaaf6cd27c414f8ada5d68f447",
+    "moss-sentencepiece-third_party-absl-LICENSE.txt": "7871ddb0d7635157a82afc21720d795660a024c59652b7a5b1ed812355320fdc"
+  },
+  "elf_load_alignment": [
+    16384
+  ],
+  "vocabularies": "external_user_selected_components",
+  "pipeline": "ltx098_single_scale_google_q5",
+  "stage_loading": "sequential_processes",
+  "text_backend": "cpu",
+  "vae_backend": "cpu",
+  "media_backend": "android_mediacodec_avc",
+  "model_inference_tested": false,
+  "deviceValidated": false,
+  "numerical_accepted": false,
+  "quality_accepted": false,
+  "model_data_embedded": false,
+  "pipelines": [
+    "ltx098_single_scale_google_q5",
+    "ltx098_pixart_multiscale_v1"
+  ],
+  "sentencepiece_revision": "31646a467d2051eb904e0b45de3a73e91fe1c1e3",
+  "source_inputs": {
+    "native/ltx098/CMakeLists.txt": "05bd2f7e2a96b679b0a1eaf9480e36d84b0d636310d95add37b8ce5ad4282d86",
+    "native/ltx098/multiscale.hpp": "5f6f54b44feeb5cbed8098f544522f2e68fd17e3766acef94baa18fe2a70e0f6",
+    "native/ltx098/parent_guard.cpp": "3c987bcf309a30b2502418d50086cec21073f93dffdee8a50da26f49e055a46d",
+    "native/ltx098/program_contract.cpp": "ed9fe175fc836f71f05ec733987795436ea8631fc07d10e95dd899344d36e940",
+    "native/ltx098/sample.cpp": "5315ee1d52f9430c5c487046340139827c1db508a521d5f2f604d2cbcf2bf158",
+    "native/moss_nano/onnx_external.hpp": "c1bb8f95ad2078472dbbf2ea0863493ac44f4aae7c4336cf5debb0db0d54fae5",
+    "research/ltx098/CMakeLists.txt": "cc86fb36397da930df9c30745c8a29a3748535a9dbd3e40b9f2a5f9c9886374f",
+    "research/ltx098/driver.cpp": "2c8b92b4826824d03ca7ec17e82b5f6ff6dba10b600013df6141d61c5df212f6",
+    "research/ltx098/licenses/ggml-MIT.txt": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
+    "research/ltx098/licenses/json-MIT.txt": "0e592e358cf7722906f417be85bc514f15bf6efd28cea98cb84e56ef7fddfc3e",
+    "research/ltx098/licenses/Lightricks-Apache-2.0.txt": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+    "research/ltx098/licenses/SPIRV-Headers-MIT.txt": "ea43b1de38a6f90c488800d66dec1ed671e68cda530266bc96951fb5b6307613",
+    "research/ltx098/licenses/Vulkan-Apache-2.0.txt": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+    "research/ltx098/licenses/Vulkan-Headers.txt": "95ad366d23fadf701d355bc45fb8b82ae2d700239471d35d41286ac3b08ff903",
+    "research/ltx098/licenses/Vulkan-MIT.txt": "1ca3502222d967f3be5751c55f6b7ee735b5383909c3b501495f54b216dbf227",
+    "research/ltx098/NOTICE": "bab99dbce59bed2470b85752c90464dcfac90c0c0d28577b9db1067ec1a5e872",
+    "research/ltx098/sampling.cpp": "b76d7b5b82814fbc2561eeeaca7308c5e34b58974defef9c318b712fae4e7c7c",
+    "research/ltx098/sampling.hpp": "a677b3375fb3201d1aac4c83ad9568e4ff6d44513f1670de79d2c6bf329622f2",
+    "research/ltx098/sampling_driver.cpp": "3a8af8bc1bfcc28127649374e4818a1d368b46ad2ef0c24c1c998e8d32d80fc1",
+    "research/ltx098/transformer.cpp": "22c6d7ec964c5d9e25c90ba9f32c3a93b3d6d4db3c8aafb064cb45f3e03581fa",
+    "research/ltx098/transformer.hpp": "6f5fd68cba7278abb210322af20d70d3a0acd05631118bdeabdae54f4cd5e1d5",
+    "research/ltx098_pipeline/CMakeLists.txt": "6115af1b7ee6798413e1c4617eca8a7b9076722237f922e0f133ef1ebd1c6acc",
+    "research/ltx098_pipeline/NOTICE": "9241c16fca4550e732057f10ac073002e72974b65684d0d3fdae56015ec4222c",
+    "research/ltx098_pipeline/tensors.cpp": "c58dca94dc600e29d19e00938c012f9973457617ea3cc656e15aa6d4c2eeb089",
+    "research/ltx098_text/CMakeLists.txt": "7aed8bbf3b4684b2e691291e08e5ff3751c17cf4d539d03fae4c87616cf2a61f",
+    "research/ltx098_text/driver.cpp": "02810c2f3dcd57c3751b1f218d353a64205e5df158ee2190533495695fb36923",
+    "research/ltx098_text/encoder.cpp": "7bc2d00219cb60b8451c73e1381aa266b616ed80f57a8335f50e7d46f8e71e4e",
+    "research/ltx098_text/encoder.hpp": "4f7987d40931fb90072a1e63d3cd5e327b22228c481a80de861dd7bb05a671cb",
+    "research/ltx098_text/graph.cpp": "be59a12411c7487a104b3e743824f638046ae8fb132533a4cc9bbbebbfd17475",
+    "research/ltx098_text/graph.hpp": "ae16035400caedb79f33db97497e6588f071901bd0935f7646e0e3b02bc7e36a",
+    "research/ltx098_text/licenses/llama-MIT.txt": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
+    "research/ltx098_text/NOTICE": "176bd96eed8972ba6a9c4bdebf9f19b166397c0eb50717be77547056ad974db4",
+    "research/ltx098_vae/CMakeLists.txt": "fcc7e89deb1b1bf4d1dc74c329225e4f6ceccd997a2370b8d06263293ec93b9f",
+    "research/ltx098_vae/driver.cpp": "da3f8b62b4da9db4577492d0df23ff07ac69832365b486a08bb76e2a79b61935",
+    "research/ltx098_vae/NOTICE": "b5bec20058b46269f031462291b56fea8f5620359ec71f64353e76a9c4f6bcd3",
+    "research/soulx/dsp.hpp": "ef6a28cae0d2e72d1b84890437286b0ed8a20690c0ac07b2ddf8162ee2d2fd58",
+    "research/soulx_ort/android_log.cpp": "216f630761ff67a00cfe47db941338f45560fc45486ebcbdff196cf36dac3d04",
+    "research/soulx_ort/LICENSE-ONNX-RUNTIME-MIT": "c250d6278f0b47a6439fb7592b08b58a55eb9f535aa49a1db63211c3f982b674",
+    "research/soulx_ort/NOTICE": "69487267d86f7998917bc9f7e9b6d2e30e168f41c92369f41a33e225c0bfceb6",
+    "research/soulx_ort/runtime.hpp": "0586ad63c3210ec42d1c3cc956beb05614e56e9cb803632d596e57935689b2c8",
+    "research/soulx_ort/types.hpp": "f0822ae37dd26996501f2b69e4e1bb9404ad53903dd267ff793ee60d96f42de4",
+    "third_party/ltx098-official/identity.json": "f428b4ee44210d5444d1211817d32171d1982bf62e525476d24fbb8be90af58a",
+    "third_party/ltx098-official/ltx-ltxv-spatial-upscaler-0.9.8.header.json": "bd1a5ac26beb28c82074098e4304c096c50e0857bc3690bec63502c9bf9610f4",
+    "third_party/ltx098-official/pixart-config.json": "9a2865cce66d6dbfdc0fd185faed2394344fc5f61b2cbf9579ca2e6dc882f927",
+    "third_party/ltx098-official/pixart-model-00001-of-00002.header.json": "5924a0d933a5f4c73cad26cc059952260e9484cf927307ce8907b2c9e17b8267",
+    "third_party/ltx098-official/pixart-model-00002-of-00002.header.json": "ba3f2010e6415bcccf119b73b5d03794783ee8aa1a39a539c5f8ca402afd80c9",
+    "third_party/ltx098-official/pixart-model.safetensors.index.json": "fb4665a1a122b7e5270f0e4494c653839c11a5a978e03b0df6dfa714258716e6",
+    "third_party/ltx098-official/pixart-special_tokens_map.json": "5c87151ef0f72a99d1f766a4c418bd2a1f90aaa30a8e22fe5eca9641daebb64f",
+    "third_party/ltx098-official/pixart-tokenizer_config.json": "71730771351a8f0463bd2e545fbfaadc9dc01a7a222306ff4795cc48dfe168c0",
+    "third_party/ltx098-pipeline-source-lock.json": "3fc857b18056ef284b17e656c4dfa2d79e320e8f5463277a40b054981190769b",
+    "third_party/ltx098-source-lock.json": "28acd99486f6ca76a06d038076175ac01ca55c7b1d8c3ba6dab9190291ac8779",
+    "third_party/ltx098-text-source-lock.json": "04b2f7892a4f047363fbaf3ba555682bf201c8320fa1cc7f4d5a68b2884512f4",
+    "third_party/ltx098-vae-source-lock.json": "201ac18ca78b381f810f0567ecd300a5bfda1b489893be56d28b30d6e6db2dcb",
+    "third_party/moss-nano-source-lock.json": "cce6bb6921d1f476fa50a7e483f13daca030a750b68ea47feba9214635170da3",
+    "third_party/soulx-acoustic-source-lock.json": "b39e10c415c5f30d4e4adb52327e1e04df371407131f47617622da913b268ac5",
+    "tools/build_ltx098.py": "bf39449e38190a666093f6954d133a76da36d519817ca636703f030100d4faf8",
+    "tools/build_ltx098_app.py": "f6350ba4a59e009e7b24020f2cd39ef871b481b901b73243054c6cd4382d6eab",
+    "tools/fetch_ltx098_text.py": "55782095a1b941dc809b33966f62aeffda1b2ca0c719033610432ec00599b577",
+    "tools/ltx098_official_profile.py": "dd58ce64cdb40fd4787b64e13f429302f69ba1d409a29a6348b8a5eb498b98dd",
+    "tools/sana_sprint_profile.py": "698f71b6afcc6d78ab269f949ac66edcc0f671ba5e098dd182095c23aa69e4fd",
+    "third_party/notices/ltx098-App-NOTICE.txt": "38b34ced8ee2dc4d7a6e0232087059d1a4fab81580b209d1becce2638e25da38",
+    "third_party/notices/ltx098-ggml-MIT.txt": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
+    "third_party/notices/ltx098-Lightricks-Apache-2.0.txt": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+    "third_party/notices/ltx098-SPIRV-Headers-MIT.txt": "ea43b1de38a6f90c488800d66dec1ed671e68cda530266bc96951fb5b6307613",
+    "third_party/notices/ltx098-Vulkan-Apache-2.0.txt": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+    "third_party/notices/ltx098-Vulkan-Headers.txt": "95ad366d23fadf701d355bc45fb8b82ae2d700239471d35d41286ac3b08ff903",
+    "third_party/notices/ltx098-Vulkan-MIT.txt": "1ca3502222d967f3be5751c55f6b7ee735b5383909c3b501495f54b216dbf227",
+    "third_party/notices/moss-onnxruntime-LICENSE.txt": "c250d6278f0b47a6439fb7592b08b58a55eb9f535aa49a1db63211c3f982b674",
+    "third_party/notices/moss-onnxruntime-ThirdPartyNotices.txt.txt": "fb0af774b4d7cffc5b9d046f2aaeade2f37df2f80abf8033c95dfffcc77a8866",
+    "third_party/notices/moss-sentencepiece-LICENSE.txt": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5",
+    "third_party/notices/moss-sentencepiece-third_party-absl-LICENSE.txt": "7871ddb0d7635157a82afc21720d795660a024c59652b7a5b1ed812355320fdc",
+    "third_party/notices/moss-sentencepiece-third_party-darts_clone-LICENSE.txt": "ed8437dc7358a40ef10afd3635ac1cd43c88fbaaaf6cd27c414f8ada5d68f447",
+    "third_party/notices/moss-sentencepiece-third_party-protobuf-lite-LICENSE.txt": "f4df8b2457697851385d9ebb93267832c1dfa24e0e61881952f6b0c452663dc9",
+    "third_party/notices/sd-NDK-LLVM-NOTICE.txt": "f96f763beb66a7ba7a667647fc64c0226ace875e590c831fdd9579ec1c1d91e1",
+    "third_party/notices/sd-nlohmann-json-LICENSE.txt": "0e592e358cf7722906f417be85bc514f15bf6efd28cea98cb84e56ef7fddfc3e",
+    "third_party/notices/soulx-llama-MIT.txt": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
+    "tools/package_ltx098_app.py": "05cfe0816172f8e64953f8205b13521b1d8a05c0576931c55ded4137df2f9e3a"
+  }
+}

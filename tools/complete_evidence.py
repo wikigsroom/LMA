@@ -13,7 +13,7 @@ from program_evidence import SOURCES as BASE_SOURCES, MINIMUM as BASE_MINIMUM, C
 from audit_adaptations import MODULES, required_records, require_complete
 
 OUT = ROOT / 'verification/releases' / ('v' + version())
-CURRENT_MEDIA = ['community', 'release-workbench', 'expansion', 'multiview', 'shape', 'spatial', 'material', 'ultratex', 'adaptation']
+CURRENT_MEDIA = ['community', 'release-workbench', 'expansion', 'multiview', 'shape', 'spatial', 'material', 'ultratex', 'adaptation', 'recommendations']
 EXTRA = {
     'material.json': 'build/material-tests/results.json',
     'vision-android.json': 'build/vision-build-info.json',
@@ -45,7 +45,7 @@ def identity(path):
 def inputs():
     return fingerprint('tools/complete_evidence.py', 'tools/program_evidence.py', 'tools/program_release.py',
         'tools/check_repository.py', 'tools/package_delivery.py', 'tools/prepare_release.py',
-        'tools/release_scope.py', 'tools/audit_adaptations.py', 'tools/physical_evidence.py',
+        'tools/release_scope.py', 'tools/audit_adaptations.py', 'tools/physical_evidence.py', 'tools/recommendations.py',
         'research/portability/adaptation-current.json', 'docs/proposals/program-validation-policy.json',
         'docs/proposals/multimodal-release-scope.json', 'catalogue/release-'+version()+'-implementation.json')
 
@@ -70,6 +70,8 @@ def historical_identity():
 
 def export():
     require_complete()
+    from recommendations import check as recommendations_check
+    recommendations_check()
     from release_scope import check as scope_check
     scope_check()
     OUT.mkdir(parents=True, exist_ok=True)

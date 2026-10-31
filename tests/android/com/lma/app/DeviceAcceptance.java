@@ -80,7 +80,16 @@ public final class DeviceAcceptance extends Instrumentation {
     private void navigation() throws Exception {
         String order = js("JSON.stringify(Array.from(document.querySelectorAll('#page-models .model-card[data-model]')).map(function(x){return x.dataset.model;}))");
         require(new JSONArray(new JSONTokener(order).nextValue().toString()).toString().equals("[\"m08\",\"m06\",\"m01\"]"), "Recommended model order changed: " + order);
-        pass("Recommended models preserve m08 / m06 / m01 order"); capture("01-recommended");
+        require("true".equals(js("document.querySelectorAll('#modelList .model-card').length===14")), "Expected fourteen optional recommendations");
+        pass("Fourteen recommendations preserve m08 / m06 / m01 prefix"); capture("01-recommended");
+        for (String task : new String[]{"image", "video", "audio", "3d"}) {
+            int expected = task.equals("video") ? 2 : 3;
+            js("document.querySelector('[data-task=\"" + task + "\"]').click();document.getElementById('page-models').scrollTop=0");
+            waitFor(() -> "true".equals(js("document.querySelectorAll('#modelList [data-recommended-task=\"" + task + "\"]').length===" + expected)), 5000, "recommendation category " + task);
+            require("true".equals(js("document.querySelector('[data-task=\"" + task + "\"] .recommendation-count').textContent==='" + expected + "'")), "Recommendation count differs for " + task);
+            pass("Physical recommended category: " + task); capture("02-recommended-" + task);
+        }
+        js("document.querySelector('[data-task=any]').click()");
         js("document.querySelector('[data-filter=all]').click();var s=document.getElementById('catalogueSource');s.value='registered';s.dispatchEvent(new Event('change',{bubbles:true}));");
         waitFor(() -> "true".equals(js("document.querySelectorAll('#page-models .model-card').length>3")), 15000, "all registered model cards");
         pass("All registered models render on physical WebView"); capture("02-all");
