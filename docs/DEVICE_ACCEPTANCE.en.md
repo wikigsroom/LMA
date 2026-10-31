@@ -1,49 +1,51 @@
-# Physical Android acceptance
+# Physical Android program acceptance · v0.3.7
 
-[中文](DEVICE_ACCEPTANCE.md) · [Documentation](README.md)
+[中文](DEVICE_ACCEPTANCE.md) · [Release notes](releases/v0.3.7.md) · [Evidence](../verification/releases/v0.3.7/physical-device.json)
 
-No physical Android device was available. The acceptance APK is compiled, not executed. The runner accepts only authorized ADB **physical ARM64 Android 9+ devices**, rejects emulators, and uses no ROOT, Docker, WSL, or virtual machine.
+Wireless ADB connected an actual phone, reporting **motorola edge plus / burton, Android 12 / API31, SM8250 and approximately 11.4 GiB system-visible RAM**. This is not an X30, Snapdragon 8 Gen 1 or Nubia Z20 acceptance result. The PC installs, controls and forwards requests; application services execute on the same Android phone without ROOT.
 
-## Build and preflight
+## 1. Problems fixed
+
+| ID | Observed problem | Result |
+| --- | --- | --- |
+| D01 | An unprepared legacy LTX entry triggered execution validation during v0.3.6 catalogue snapshot construction, aborting device and model-card state | Each entry retains `inputSchemaError`; the rest of the catalogue and device state render. Execution still requires real matching assets |
+| D02 | The acceptance APK compressed `resources.arsc`, which Android 12 rejected | Preserve its stored compression and alignment; independent instrumentation installs |
+| D03 | An older ADB failed to export media to an absolute path containing Chinese characters | Export relative to the repository working directory |
+
+The patch is **0.3.7 / code57**, signed with the original identity. It preserves application data and user-selected assets. Published v0.3.6 files and historical failures remain unchanged.
+
+## 2. Actual coverage
+
+**19 physical program checks** cover complete zero-model state and 82 bundles, real memory, native bridge/cards, recommended order `m08 → m06 → m01`, All/Local and four other pages, executable permissions, Android SQLite interruption recovery, service commands, zero-model API startup and recovery after instrumentation detaches, 401 authentication / 403 browser-origin rejection, engine and data endpoints, and 409 missing-weight rejection without downloading models.
+
+With instrumentation detached, the application survives approximately **60 seconds with the display off**, serving **seven authenticated health requests** while the real foreground service remains present. This is a short program survival check. It establishes no model inference, continuous token generation or endurance result.
+
+Keys remain in the trusted runner's memory and are removed before writing reports. Public records exclude serial numbers, network endpoints, pairing credentials and personal logs. No complete trained models were downloaded, copied or run.
+
+## 3. Reproduce
+
+Use native Windows SDK/JDK/Python, with an authorized, unlocked physical ARM64 Android 9+ device. No emulator, Docker, WSL or VM. Wireless pairing and connection use separate ports; consult the [official ADB documentation](https://developer.android.com/tools/adb#wireless-android11-command-line).
 
 ```powershell
-python tools/build.py
 python tools/build_acceptance.py
-python tools/device_check.py
+python tools/device_check.py --serial DEVICE_IP:CONNECT_PORT --install --run --program-api --minutes 1
+# Unlock manually after the screen-off check, then capture without locking again.
+python tools/device_check.py --serial DEVICE_IP:CONNECT_PORT --run --program-api --minutes 0 --capture-media
 ```
 
-`build/device-tests/LMA-acceptance.apk` is a separate same-signed instrumentation tool, unnecessary for ordinary users. Preserve local signing material for upgrades; private keys are never included in public sources. No authorized device records `awaiting_physical_device` and exits with code 2 rather than launching an emulator.
+Do not pass `--model`: that historical option downloads and runs trained weights and is outside this validation policy. Zero-model API acceptance stops if existing installed models are found and preserves those files. Installation upgrades in place; it never clears app data. Users enter their own lock-screen credentials.
 
-## Android framework checks
+## 4. Actual media
 
-Connect and authorize USB debugging, unlock the phone, and stop important active work before running:
+[Phone screenshot](media/device/v0.3.7/01-recommended.png) · [Screen recording](media/device/v0.3.7/physical-walkthrough.mp4) · [GIF](media/device/v0.3.7/physical-walkthrough.gif) · [Identity manifest](media/device/v0.3.7/manifest.json)
 
-```powershell
-python tools/device_check.py --install --run
-```
+Only LMA screen content is published. Personal launcher, lock screens, credentials and other applications are excluded. Physical media is separate from the labelled desktop **UI FIXTURE** recordings under `docs/media/development/`. Playback timing is not generation performance.
 
-The runner updates the app without clearing its data, installs acceptance instrumentation, and exercises the actual offline WebView/bridge, catalogue, native-executable permissions, SQLite interruption recovery, and foreground settings commands. Authorized ADB grants notification permission on Android 13+ for the test.
+## 5. Unmeasured scope
 
-SQLite checks create and remove a temporary session and restore the previous selection. Instrumentation restarts the target app; do not run it during important downloads or generation.
-
-## Full model and screen-off requests
-
-```powershell
-python tools/device_check.py --install --run --model m01 --minutes 15
-```
-
-This downloads the real approximately 398 MB Dolphin Qwen 0.5B weight on the phone, or reuses and rehashes an existing file, then loads the packaged ARM engine and generates/persists through actual ChatRunner. The test chat and downloaded model remain in the app.
-
-After instrumentation ends, the runner opens LMA normally, waits for model/API restoration, and uses a temporary ADB forward to test authentication and a wrong-key rejection. It then goes Home, turns the screen off, and sends real streaming requests from the host. Instrumentation is detached during this phase to avoid changing process priority. Each round requires nonempty output, successful completion, and a still-off screen.
-
-This verifies screen-off FGS/API behavior with ADB attached. USB power and ADB affect power policy, so it is not equivalent to unplugged battery/vendor extreme-saving operation; it also does not validate password-lock interaction. Authorized wireless ADB can provide another comparison. The tool does not enable wireless debugging by itself.
-
-Use `--model m06` for LFM 1.2B or `--model m08` for Qwen 1.7B. `--minutes 60` is an hour, with a maximum of 1440 minutes; the final request can extend wall-clock duration. `--minutes 0` skips endurance and never marks it as passed. Use `--serial` to select among authorized devices.
-
-The API key exists only in trusted process memory, not console/report files. Temporary forwarding is removed in `finally`. The model continues serving after the test according to app settings; stop it in LMA or the notification.
-
-## Results and additional scenarios
-
-Results go to `build/device-tests/device-results.json`. Framework execution, actual inference, and endurance have separate fields. Compilation never substitutes for execution.
-
-Manually verify actual WLAN from another device, SAF providers, notification Stop/wake-lock release, download network transitions, reboot restoration, all candidate models, and vendor power policy. Record power source, cooling, OS, weight SHA256, threads, context, temperature, duration, and failure rate. Update both validation languages and release notes when evidence changes.
+| ID | Not established | Treatment |
+| --- | --- | --- |
+| U01 | Full text/image/video/audio/3D inference, quality, tokens/s, peak memory or temperature | Omitted under the user's program-only policy |
+| U02 | Long screen-off inference, vendor power management, reboot/force-stop model recovery | Only short no-model API survival is recorded |
+| U03 | X30, Nubia Z20 or other devices | Evidence applies to this reported phone only |
+| U04 | Arbitrary HF architectures, every upstream CUDA workflow or verified complete public 3D exports | Preserve the bounded 62-recipe / 82-bundle / 18-extension-plus-text scope and acquisition limits |

@@ -1,0 +1,135 @@
+{
+  "schema": "lma.physical-screen-media/1",
+  "version": "0.3.7",
+  "android_device": true,
+  "desktop_fixture": false,
+  "model_inference": false,
+  "weights_downloaded": false,
+  "apk_sha256": "d189a79f95a3b308924579425fa774c5f69240fb09bbed3f20fb4e6dcee8570e",
+  "device": {
+    "model": "motorola edge plus",
+    "api": 31,
+    "abis": "arm64-v8a,armeabi-v7a,armeabi"
+  },
+  "reviewed_app_only": true,
+  "input_fingerprint": {
+    "app/src/main/AndroidManifest.xml": "b69b9404ce6bfa88809612ba10c077679bd8d5728ae3960d2cdd3146403a329f",
+    "app/src/main/java/com/lma/app/LmaApp.java": "8084d51b4094ac43290f7209c75bef883fcc37fc43c5324722ec6dae80f0d018",
+    "tests/android/AndroidManifest.xml": "301f93e455e37329bdf8e22a4ab4236ce0f8d93e757d18490d094899a8d50336",
+    "tests/android/com/lma/app/DeviceAcceptance.java": "dfaf74a9b1edd9f86e13e4ea13185bf731d30eac6e3f4575c2188abf1ce0107f",
+    "tools/build_acceptance.py": "76288410f114d7b4b337b3cb8d98d481a42506fa0135313a32819df29bbf82b0",
+    "tools/device_check.py": "286ed47a4f1077632f606828eb13b7e64b1c56dd30c505839be96eadcb256e9b",
+    "tools/package_device_media.py": "caf8eb6dcdfa2ea4538313a5bfe630708efd9f5571833a5e66d35e23b866afce"
+  },
+  "source_recording": {
+    "bytes": 2408959,
+    "sha256": "6e851f2a1aa692acf7b03b435f6dfe133568369829303b298761037aa7a065f9"
+  },
+  "trim_start_seconds": 28.0,
+  "trim_duration_seconds": 16.0,
+  "playback_speed": 1,
+  "screenshots": [
+    {
+      "file": "01-recommended.png",
+      "bytes": 195009,
+      "sha256": "6b583d5ad230188f0bc0769b072488ecf2568419c0b777516bd4a1f183b936b7"
+    },
+    {
+      "file": "02-all.png",
+      "bytes": 203303,
+      "sha256": "23336d648e3ee77a1120e3c3873cabef13845715dce4fba91dfe64b8689ed600"
+    },
+    {
+      "file": "03-local.png",
+      "bytes": 184230,
+      "sha256": "a0dfb4bdbd2994f040198ae4f24d4eba604884dc569853251cb065fa3ae97181"
+    },
+    {
+      "file": "04-chat.png",
+      "bytes": 150234,
+      "sha256": "ff3028ddd5d6e1585d3034d00eca47af2fd8137bb5b770267c98caa8e934af79"
+    },
+    {
+      "file": "04-tasks.png",
+      "bytes": 206093,
+      "sha256": "29b8863680a0c38f74e49445d4364c45716cdf1817c5c26b473a4a8f307beae7"
+    },
+    {
+      "file": "04-server.png",
+      "bytes": 171627,
+      "sha256": "4601b4b8436f5c7574dce3d70c1f7b66b7ed1156810770dc510d0db77e24a376"
+    },
+    {
+      "file": "04-settings.png",
+      "bytes": 186611,
+      "sha256": "f873b49975e604681e0965887a839657911737fc4c1522514b048745bfe80e8b"
+    }
+  ],
+  "files": [
+    {
+      "file": "01-recommended.png",
+      "bytes": 195009,
+      "sha256": "6b583d5ad230188f0bc0769b072488ecf2568419c0b777516bd4a1f183b936b7"
+    },
+    {
+      "file": "02-all.png",
+      "bytes": 203303,
+      "sha256": "23336d648e3ee77a1120e3c3873cabef13845715dce4fba91dfe64b8689ed600"
+    },
+    {
+      "file": "03-local.png",
+      "bytes": 184230,
+      "sha256": "a0dfb4bdbd2994f040198ae4f24d4eba604884dc569853251cb065fa3ae97181"
+    },
+    {
+      "file": "04-chat.png",
+      "bytes": 150234,
+      "sha256": "ff3028ddd5d6e1585d3034d00eca47af2fd8137bb5b770267c98caa8e934af79"
+    },
+    {
+      "file": "04-tasks.png",
+      "bytes": 206093,
+      "sha256": "29b8863680a0c38f74e49445d4364c45716cdf1817c5c26b473a4a8f307beae7"
+    },
+    {
+      "file": "04-server.png",
+      "bytes": 171627,
+      "sha256": "4601b4b8436f5c7574dce3d70c1f7b66b7ed1156810770dc510d0db77e24a376"
+    },
+    {
+      "file": "04-settings.png",
+      "bytes": 186611,
+      "sha256": "f873b49975e604681e0965887a839657911737fc4c1522514b048745bfe80e8b"
+    },
+    {
+      "file": "physical-walkthrough.mp4",
+      "bytes": 201599,
+      "sha256": "f243454c0a944cead7b1a65d74e89a76b1b440f425530289693af4a84b3b8df6"
+    },
+    {
+      "file": "physical-walkthrough.gif",
+      "bytes": 461964,
+      "sha256": "534cf175b4a457b573c38074de2f917d1456a56690f5b8b16ce346e3c8153496"
+    }
+  ],
+  "checks": [
+    "Complete zero-model catalogue and physical device state",
+    "Installed Android UI and native JavaScript bridge",
+    "Extracted native executable permissions",
+    "Android SQLite persistence and interrupted chat history",
+    "Real foreground service command acknowledgement",
+    "Recommended models preserve m08 / m06 / m01 order",
+    "All registered models render on physical WebView",
+    "Local model management filter responds",
+    "Physical navigation: chat",
+    "Physical navigation: tasks",
+    "Physical navigation: server",
+    "Physical navigation: settings",
+    "Zero-model foreground API listener starts without downloading weights",
+    "API recovers after instrumentation detaches",
+    "Bearer key and browser-origin rejection on real phone",
+    "Zero installed models and complete extension engine registry",
+    "Jobs, artifacts, drafts and upload read APIs",
+    "Missing text weights rejected without automatic download"
+  ]
+}

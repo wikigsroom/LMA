@@ -1,5 +1,7 @@
 # 发布流程 / Release workflow
 
+**v0.3.7 / code57:** [真机零模型启动修复与 19 项程序检查](DEVICE_ACCEPTANCE.md) / [Physical program acceptance](DEVICE_ACCEPTANCE.en.md). Includes short screen-off API health and separate real phone media; no complete model or endurance claim.
+
 **当前 v0.3.6 为完整适配正式 Release，按程序验证策略交付。** 旧版流程在下文保留历史语境；当前执行以下步骤。
 
 1. 根据 [完整实现与测试](IMPLEMENTATION_V036.md) / [English](IMPLEMENTATION_V036.en.md) 运行受影响程序检查，不下载或运行完整训练模型，不要求手机或虚拟环境。Source-only/tiny-network validation does not imply trained-model acceptance.

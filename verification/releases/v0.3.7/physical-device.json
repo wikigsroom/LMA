@@ -1,0 +1,70 @@
+{
+  "checked_at": "2026-10-31T19:08:15.731124+00:00",
+  "status": "passed",
+  "device": {
+    "model": "motorola edge plus",
+    "api": 31,
+    "abis": "arm64-v8a,armeabi-v7a,armeabi"
+  },
+  "apk_sha256": "d189a79f95a3b308924579425fa774c5f69240fb09bbed3f20fb4e6dcee8570e",
+  "input_fingerprint": {
+    "app/src/main/AndroidManifest.xml": "b69b9404ce6bfa88809612ba10c077679bd8d5728ae3960d2cdd3146403a329f",
+    "app/src/main/java/com/lma/app/LmaApp.java": "8084d51b4094ac43290f7209c75bef883fcc37fc43c5324722ec6dae80f0d018",
+    "tests/android/AndroidManifest.xml": "301f93e455e37329bdf8e22a4ab4236ce0f8d93e757d18490d094899a8d50336",
+    "tests/android/com/lma/app/DeviceAcceptance.java": "dfaf74a9b1edd9f86e13e4ea13185bf731d30eac6e3f4575c2188abf1ce0107f",
+    "tools/build_acceptance.py": "76288410f114d7b4b337b3cb8d98d481a42506fa0135313a32819df29bbf82b0",
+    "tools/device_check.py": "286ed47a4f1077632f606828eb13b7e64b1c56dd30c505839be96eadcb256e9b"
+  },
+  "instrumentation": {
+    "port": 8080,
+    "status": "passed",
+    "checks": [
+      "Complete zero-model catalogue and physical device state",
+      "Installed Android UI and native JavaScript bridge",
+      "Extracted native executable permissions",
+      "Android SQLite persistence and interrupted chat history",
+      "Real foreground service command acknowledgement",
+      "Recommended models preserve m08 / m06 / m01 order",
+      "All registered models render on physical WebView",
+      "Local model management filter responds",
+      "Physical navigation: chat",
+      "Physical navigation: tasks",
+      "Physical navigation: server",
+      "Physical navigation: settings",
+      "Zero-model foreground API listener starts without downloading weights"
+    ],
+    "physicalDevice": true,
+    "backgroundEnduranceTested": false
+  },
+  "physical_device_tests": 19,
+  "external_program_checks": [
+    "API recovers after instrumentation detaches",
+    "Bearer key and browser-origin rejection on real phone",
+    "Zero installed models and complete extension engine registry",
+    "Jobs, artifacts, drafts and upload read APIs",
+    "Missing text weights rejected without automatic download",
+    "Screen-off authenticated health and foreground service survival (program only)"
+  ],
+  "external_api_auth_tested": true,
+  "background_program_tested": true,
+  "screen_off_program_seconds": 60.312,
+  "screen_off_health_samples_seconds": [
+    0.223,
+    10.476,
+    20.876,
+    31.114,
+    41.598,
+    51.826,
+    60.312
+  ],
+  "phone_inference_tested": false,
+  "background_endurance_tested": false,
+  "emulator_used": false,
+  "schema": "lma.physical-program-acceptance/1",
+  "version": "0.3.7",
+  "validation_mode": "program_only",
+  "model_inference_tested": false,
+  "complete_model_downloads_for_validation": 0,
+  "virtualization_used": false,
+  "scope": "Real Android UI, SQLite, no-model API and short screen-off foreground service; no trained-model inference or endurance"
+}

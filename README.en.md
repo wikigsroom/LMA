@@ -1,8 +1,8 @@
 # LMA · Android local-model workbench
 
-[中文](README.md) · [Download v0.3.6](https://github.com/wikigsroom/LMA/releases/tag/v0.3.6) · [User guide](docs/USER_GUIDE.en.md) · [Documentation](docs/README.md) · [Scenarios](#use-cases) · [Cases and failures](#case-studies)
+[中文](README.md) · [Download v0.3.7](https://github.com/wikigsroom/LMA/releases/tag/v0.3.7) · [User guide](docs/USER_GUIDE.en.md) · [Documentation](docs/README.md) · [Scenarios](#use-cases) · [Cases and failures](#case-studies)
 
-**v0.3.6 / code56 completes program integration for P01–P06:** UltraTex FLUX.1/FLUX.2, UniForge3D, SAM/MV-SAM+DA3, SUPRA-Tex, local foreground/part recognition, point-cloud VAE, original Flash/octree extraction and optional material stages. It also delivers the official-compatible F5 Chinese frontend and Hunyuan Paint. There are **62 recipes, 82 catalogue bundles and 18 extension engines plus text**. [Full profiles and usage](docs/ADAPTER_PROFILES.en.md) · [Numbered completion and unmeasured limits](docs/REMAINING_ADAPTATION.en.md) · [Current evidence](verification/releases/v0.3.6/status.json).
+**v0.3.7 / code57 fixes zero-model startup on a real phone.** An unprepared LTX entry can no longer abort the entire catalogue/device snapshot. Per-entry errors remain visible and execution validation stays strict. This patch adds 19 actual motorola edge plus / Android 12 program checks, a 60-second screen-off health check and [physical acceptance documentation](docs/DEVICE_ACCEPTANCE.en.md). **All existing P01–P06 integrations are preserved:** UltraTex FLUX.1/FLUX.2, UniForge3D, SAM/MV-SAM+DA3, SUPRA-Tex, local foreground/part recognition, point-cloud VAE, original Flash/octree extraction and optional material stages. It also delivers the official-compatible F5 Chinese frontend and Hunyuan Paint. There are **62 recipes, 82 catalogue bundles and 18 extension engines plus text**. [Full profiles and usage](docs/ADAPTER_PROFILES.en.md) · [Numbered completion and unmeasured limits](docs/REMAINING_ADAPTATION.en.md) · [Current evidence](verification/releases/v0.3.7/status.json).
 
 LMA lets users select, download, manage and run local models on an Android phone, with chat, image/video/audio/3D jobs, artifacts and a local API. It is an independent community project, unaffiliated with LM Studio. The application UI is primarily Chinese; documentation is bilingual.
 
@@ -16,12 +16,14 @@ Validation is **program-only**, as requested: actual source classes/random tiny 
 
 LMA-authored code is MIT. The bundled DISO CPU surface component is **CC BY-NC 4.0, noncommercial**; other dependencies and model assets retain their terms. See [licenses](THIRD_PARTY_NOTICES.md).
 
+[Actual phone GIF](docs/media/device/v0.3.7/physical-walkthrough.gif) / [screen recording](docs/media/device/v0.3.7/physical-walkthrough.mp4) show zero-model application pages. Physical recordings and desktop fixtures are separate; no model-generation or endurance claim is made.
+
 Detailed scenarios **C01–C48**, historical generation/failure cases **H01–H18**, API examples and prior test records are preserved. New [adapter GIF](docs/media/development/adaptation/adaptation-ui.gif)/[MP4](docs/media/development/adaptation/adaptation-ui.mp4) and [UltraTex demo](docs/media/development/ultratex/ultratex-ui.gif) use production pages with explicit UI FIXTURE bridges, not fabricated model/device results. Published evidence remains in `verification/program/` and `verification/history/`.
 
 <a id="install"></a>
 ## Install and use
 
-1. Download `LMA-0.3.6-arm64-v8a.apk` from the Release and compare its hash with `SHA256SUMS`. Requires **64-bit Android 9 / API 28 or later**. The original signing identity is retained for upgrades and existing data.
+1. Download `LMA-0.3.7-arm64-v8a.apk` from the Release and compare its hash with `SHA256SUMS`. Requires **64-bit Android 9 / API 28 or later**. The original signing identity is retained for upgrades and existing data.
 2. Open LMA and allow notifications when prompted. For screen-off work, allow background activity and remove the relevant battery restrictions in Android settings. Installation and upgrades do not download models.
 3. Open Models → Recommended / All / Local. **Recommended retains m08 → m06 → m01.** All supports HF keywords, repository IDs/URLs, pagination and discovery of every format. Local manages downloaded/imported models and unfinished transfers.
 4. Filter by text, image, video, audio or 3D tags. Inspect architecture, recipe, backend, license, dependencies, pinned revision and size before explicitly downloading or importing with Android's document picker.
@@ -32,7 +34,7 @@ Detailed scenarios **C01–C48**, historical generation/failure cases **H01–H1
 HF discovery and executable support are separate. Compatible files enter their matching text engine or multi-component recipe; arbitrary safetensors, GGUF or Diffusers repositories are not universally executable. Custom components can be registered through recipes. Missing components fail locally without implicit downloads or off-device execution.
 
 <a id="models"></a>
-Current APK: **v0.3.6 / code56**, original signer retained. Compare the exact Release APK with `SHA256SUMS`; see the [release inventory and validation](docs/releases/v0.3.6.md).
+Current APK: **v0.3.7 / code57**, original signer retained. Compare the exact Release APK with `SHA256SUMS`; see the [release inventory and validation](docs/releases/v0.3.7.md).
 
 ## Model and foundation scope
 
@@ -53,7 +55,7 @@ Every model is a peer, classified by output task, capability, engine, format, co
 | 16 | Wan 2.1 T2V 1.3B Q4 | sd.cpp CPU/Vulkan with explicit components and video encoding |
 | 17 | LTX-Video 2B 0.9.8 distilled | Original PixArt T5 F32 with 7-step generation / spatial upsampling / 3-step refinement; Google T5 Q5 single-scale remains a separate variant |
 
-This release has **50 data-only recipe templates, 82 catalogue bundles (23 original + 44 community + 11 speech / single-image 3D + 4 MV imports), 17 extension engine families and the existing text engine**. These are program integration counts, not counts of models passing phone tests. See the [implementation matrix](docs/IMPLEMENTATION_V035.en.md).
+This release has **62 data-only recipe templates, 82 catalogue bundles (23 original + 44 community + 11 speech / single-image 3D + 4 MV imports), 18 extension engine families and the existing text engine**. These are program integration counts, not counts of models passing phone tests. See the [current implementation matrix](docs/IMPLEMENTATION_V037.en.md).
 
 ## Speech, single-image and multiview 3D
 
@@ -61,11 +63,11 @@ This release has **50 data-only recipe templates, 82 catalogue bundles (23 origi
 | --- | --- | --- |
 | S01 | Kokoro PyTorch family | Matched INT8 English ONNX; raw `.pth` is not directly executable; existing 54 voices remain |
 | S02 | MeloTTS Chinese | INT8 / FP32 ONNX, phones / tones lexicon and four normalization FSTs |
-| S03 | F5-TTS v1 | Original safetensors and Vocos through local C++; reference WAV / transcript required; experimental Chinese frontend |
+| S03 | F5-TTS v1 | Original safetensors and Vocos through local C++; reference WAV / transcript required; matched official-compatible Chinese frontend |
 | S04 | OmniVoice | Q8 GGUF or original assets; local C++, auto / clone / design controls, complete WAV |
 | D01–D02 | TRELLIS.2 / Pixal3D | Five single-image GGUF / CPU geometry / texture choices; local image → GLB → rotate / export |
 
-All **16 configurations** in the requested [3080 collection](https://benchmark.sidcloud.cn/collections/3080-3d) were assessed: 12 newer and four older cases. This APK integrates subsets of two single-image architectures and the actual four-view Pixal3D MV route. Matched-export TripoSG / PartCrafter, Hunyuan3D shape and UltraShape refinement subsets are integrated. Six other configurations / five groups still need native ports. The smaller Melo choice is about 61 MB; the Pixal texture bundle is about 13 GB, not uniformly lightweight or guaranteed Z20 options.
+All **16 configurations** in the requested [3080 collection](https://benchmark.sidcloud.cn/collections/3080-3d) were assessed: 12 newer and four older cases. This APK integrates subsets of two single-image architectures and the actual four-view Pixal3D MV route. Matched-export TripoSG / PartCrafter, Hunyuan3D shape and UltraShape refinement subsets are integrated. The current foundation includes the bounded CPU profiles for the remaining selected groups; see the current audit and adapter profiles. Full publisher CUDA workflows and model quality remain unmeasured. The smaller Melo choice is about 61 MB; the Pixal texture bundle is about 13 GB, not uniformly lightweight or guaranteed Z20 options.
 
 [Four speech families, 11 bundles, licenses, D01–D16 audit, workflows, API, tests and media](docs/SPEECH_3D_EXPANSION.en.md) · [source audit](research/expansion/benchmark-audit.json). Downloads remain user-selected; no NSFW label is inferred for new families.
 
@@ -79,15 +81,15 @@ The selected benchmark adapters now have bounded CPU program implementations, in
 
 ## Local RF Shape and part geometry
 
-Three equal custom recipes add TripoSG, PartCrafter objects and PartCrafter scenes through matched FP32 ONNX: native CPU image encoding → RF / part DiT → SDF VAE → an untextured, multipart GLB. **Matching local exports can be imported; no complete public matched download package is verified. Raw PyTorch is not directly executable.** The 82 catalogue bundles remain; templates increase to 50. Updating the App does not obtain model assets.
+Three equal custom recipes add TripoSG, PartCrafter objects and PartCrafter scenes through matched FP32 ONNX: native CPU image encoding → RF / part DiT → SDF VAE → an untextured, multipart GLB. **Matching local exports can be imported; no complete public matched download package is verified. Raw PyTorch is not directly executable.** The 82 catalogue bundles remain; templates now total 62. Updating the App does not obtain model assets.
 
-[Export, import, parameters, native design and limits](docs/RF_SHAPE.en.md) · [Numbered implementation and remaining work](docs/IMPLEMENTATION_V035.en.md). Complete checkpoint export, phone memory / speed / quality remain untested. Automatic segmentation, VLM part identification and texture generation are unimplemented extras. D04, D05, D07 Paint and D08–D10 remain actual native-port development in the [current audit](research/portability/audit-v0.3.5.json).
+[Export, import, parameters, native design and limits](docs/RF_SHAPE.en.md) · [Numbered implementation and remaining work](docs/IMPLEMENTATION_V035.en.md). Complete checkpoint export, phone memory / speed / quality remain untested. The earlier v0.3.5 gaps are historical: local segmentation, mtmd VLM part identification, Paint and the remaining P01–P06 CPU adapters are now integrated. See the [current audit](research/portability/adaptation-current.json) and [profiles](docs/ADAPTER_PROFILES.en.md).
 
 ## Hunyuan3D shape and UltraShape refinement
 
 Two equal optional recipes run `spatial_ort` on the phone CPU: reference PNG → Hunyuan3D geometry; PNG + coarse GLB → UltraShape refinement. They preserve source MoE routing, voxel RoPE / masking, VAE cache and SDF. Coarse input uses area + sharp-edge sampling and float16 positions. Matching local exports can be imported; a public complete ONNX package has not been verified.
 
-[Conversion, components, controls, API and limitations](docs/SPATIAL_SHAPE.en.md) · [Numbered implemented/pending work](docs/IMPLEMENTATION_V035.en.md). Five built-in sparse CPU operators are building blocks, not full SAM, UniForge or SUPRA adapters. Separate Hunyuan Paint is still missing. No weights or model-specific data are added to the APK.
+[Conversion, components, controls, API and limitations](docs/SPATIAL_SHAPE.en.md) · [Numbered implemented/pending work](docs/IMPLEMENTATION_V035.en.md). The earlier sparse-operator-only boundary is historical. Current explicit SAM, UniForge, SUPRA and Hunyuan Paint adapters are described in the [profiles](docs/ADAPTER_PROFILES.en.md). No weights or model-specific data are added to the APK.
 
 ## Architecture and asset lifecycle
 
@@ -105,17 +107,17 @@ A visible foreground service, stop notification and task-scoped wake locks suppo
 
 ## Screenshots and recordings
 
-These show **v0.3.6 production pages with an explicitly labelled desktop bridge fixture**, without weight downloads or generated model content. Owned browsers close after recording.
+These show **v0.3.7 production pages with an explicitly labelled desktop bridge fixture**, without weight downloads or generated model content. Owned browsers close after recording.
 
 ![Components, independent settings and video jobs](docs/media/development/community/community-ui.gif)
 
 [MP4](docs/media/development/community/community-ui.mp4) · [Components](docs/media/development/community/01-community-images.png) · [Settings](docs/media/development/community/02-image-source.png) · [Task form](docs/media/development/community/03-community-video.png) · [Queue](docs/media/development/community/05-community-local.png) · [Workbench recording](docs/media/development/release-workbench/release-workbench-ui.mp4)
 
-APK identity: **v0.3.6 / code56**, **71,033,353 bytes**, SHA256 `286711ae8e097ee40ed4e28b5016618743685343c334f93702ba0bcb5f6da697`. Certificate SHA256: `90444a717a55549e2094364d8d7d005cf8b7f4df24562da62cc1884a2f341c17`. The Release includes 30 assets: APK, source/evidence/screenshots ZIPs, nine GIFs, nine MP4s, notes, manifests and hashes.
+APK identity: **v0.3.7 / code57**, **71,033,353 bytes**, SHA256 `286711ae8e097ee40ed4e28b5016618743685343c334f93702ba0bcb5f6da697`. Certificate SHA256: `90444a717a55549e2094364d8d7d005cf8b7f4df24562da62cc1884a2f341c17`. The Release includes 30 assets: APK, source/evidence/screenshots ZIPs, nine GIFs, nine MP4s, notes, manifests and hashes.
 
 ## Validation, builds and documentation
 
-[Release notes](docs/releases/v0.3.6.md) list program checks, APK identity and deliverables. The [validation policy](docs/PROGRAM_VALIDATION.en.md) records the user's decision to omit complete-model runtime acceptance. Current evidence is in [verification/releases/v0.3.6](verification/releases/v0.3.6/status.json); historical failures and earlier records retain their identity and are not current-APK model results.
+[Release notes](docs/releases/v0.3.7.md) list program checks, APK identity and deliverables. The [validation policy](docs/PROGRAM_VALIDATION.en.md) records the user's decision to omit complete-model runtime acceptance. Current evidence is in [verification/releases/v0.3.7](verification/releases/v0.3.7/status.json); historical failures and earlier records retain their identity and are not current-APK model results.
 
 Native Windows builds use JDK, Android SDK/NDK and CMake, without Docker, WSL or emulators. Local `signing/` material is preserved for upgrades and excluded from Git and release assets. [Build](docs/BUILD.en.md) · [Release workflow](docs/RELEASING.md) · [Contributing](CONTRIBUTING.md).
 
@@ -397,7 +399,7 @@ These describe operations and expected behavior, not newly passed physical-devic
 - [107 flow checks and complete usage](docs/ADAPTER_PROFILES.en.md). No complete trained model was run and random-network outputs are not quality evidence.
 
 
-## v0.3.6 scenarios C37–C48
+## v0.3.7 scenarios C37–C48
 
 These cover program behavior and error handling, without claiming complete trained-model execution. See the [step-by-step adapter guide](docs/ADAPTER_PROFILES.en.md).
 
@@ -551,15 +553,26 @@ Missing assets, engines, resources or permission to try an unmeasured recipe fai
 <a id="ui-media"></a>
 ## Additional UI demonstrations and screenshots
 
-The nine current v0.3.6 flows have **34 community / 8 workbench / 32 speech and 3D / 19 MV / 17 RF Shape / 20 Spatial / 34 material / 38 UltraTex / 23 local-helper interactions**, with 52 screenshots, nine GIFs and nine MP4s. They use explicitly labelled desktop bridges, download no weights, and close owned browser resources afterward. [Complete media index](docs/MEDIA.md).
+### Actual Android pages · v0.3.7
+
+Physical motorola edge plus / Android 12, with no model weights installed. [Procedure, 19 program checks and limits](docs/DEVICE_ACCEPTANCE.en.md). These screens are separate from desktop fixtures below.
+
+| Recommended on phone | Local API on phone |
+| --- | --- |
+| ![Actual Android recommended page](docs/media/device/v0.3.7/01-recommended.png) | ![Actual Android API page](docs/media/device/v0.3.7/04-server.png) |
+
+[Actual screen recording](docs/media/device/v0.3.7/physical-walkthrough.mp4) · [GIF](docs/media/device/v0.3.7/physical-walkthrough.gif) · [Identity manifest](docs/media/device/v0.3.7/manifest.json). The 60-second screen-off check probes service health only; it contains no generated tokens.
+
+
+The nine current v0.3.7 flows have **34 community / 8 workbench / 32 speech and 3D / 19 MV / 17 RF Shape / 20 Spatial / 34 material / 38 UltraTex / 23 local-helper interactions**, with 52 screenshots, nine GIFs and nine MP4s. They use explicitly labelled desktop bridges, download no weights, and close owned browser resources afterward. [Complete media index](docs/MEDIA.md).
 
 | Current image catalogue | Source/license/component details |
 | --- | --- |
-| ![v0.3.6 production UI with a fixture](docs/media/development/community/01-community-images.png) | ![v0.3.6 source details with a fixture](docs/media/development/community/02-image-source.png) |
+| ![v0.3.7 production UI with a fixture](docs/media/development/community/01-community-images.png) | ![v0.3.7 source details with a fixture](docs/media/development/community/02-image-source.png) |
 
 [Video sources/limits](docs/media/development/community/04-video-source.png) · [community manifest](docs/media/development/community/manifest.json)
 
-![v0.3.6 shared workbench; UI FIXTURE, no model inference](docs/media/development/release-workbench/release-workbench-ui.gif)
+![v0.3.7 shared workbench; UI FIXTURE, no model inference](docs/media/development/release-workbench/release-workbench-ui.gif)
 
 [Workbench MP4](docs/media/development/release-workbench/release-workbench-ui.mp4) · [manifest](docs/media/development/release-workbench/manifest.json)
 
@@ -576,18 +589,18 @@ The following are **historical version-specific UI fixtures**, not current phone
 | Resource stops | [Resources](docs/media/development/resources/01-running.png), [stop reason](docs/media/development/resources/02-stopped-detail.png) | [Guide](docs/RUNTIME_RESOURCES.en.md) |
 | Original library/API/theme | [Library](docs/media/01-library.png), [API](docs/media/05-api.png), [dark](docs/media/07-dark.png) | [Media guide](docs/MEDIA.md) |
 
-![v0.3.6 speech and 3D; UI FIXTURE, synthetic cube](docs/media/development/expansion/expansion-ui.gif)
+![v0.3.7 speech and 3D; UI FIXTURE, synthetic cube](docs/media/development/expansion/expansion-ui.gif)
 
 [Speech choices](docs/media/development/expansion/01-speech-models.png) · [3D form](docs/media/development/expansion/03-3d-form.png) · [GLB preview](docs/media/development/expansion/05-glb-preview.png) · [MP4](docs/media/development/expansion/expansion-ui.mp4) · [32 page checks](docs/media/development/expansion/manifest.json)
 
-![v0.3.6 multiview and background states; UI FIXTURE, no trained generation](docs/media/development/multiview/multiview-ui.gif)
+![v0.3.7 multiview and background states; UI FIXTURE, no trained generation](docs/media/development/multiview/multiview-ui.gif)
 
 [Import choices](docs/media/development/multiview/01-multiview-models.png) · [Four-view form](docs/media/development/multiview/03-four-view-form.png) · [Background observations](docs/media/development/multiview/05-background-observations.png) · [MP4](docs/media/development/multiview/multiview-ui.mp4) · [19 UI checks](docs/media/development/multiview/manifest.json)
 
 
 ### Current RF Shape pages
 
-![v0.3.6 part settings; desktop UI FIXTURE, no trained output](docs/media/development/shape/03-part-settings.png)
+![v0.3.7 part settings; desktop UI FIXTURE, no trained output](docs/media/development/shape/03-part-settings.png)
 
 ![RF Shape workflow; UI FIXTURE, no trained inference](docs/media/development/shape/shape-ui.gif)
 
@@ -674,11 +687,11 @@ The following are **historical version-specific UI fixtures**, not current phone
 <a id="verification"></a>
 ## Current program coverage and reproduction entry points
 
-**v0.3.6: 59 program suites / 14,939 assertions, 72 records plus status; 748 full production UI checks.** The APK contains 41 ARM64 native libraries, supports Android 9+, retains its signer and passes 16 KiB alignment checks. Lint: zero errors / 16 existing warnings. Nine current UI flows provide 52 screenshots / nine GIFs / nine MP4s. All 815 historical evidence files retain their identities. No new complete-model or phone runtime acceptance is claimed.
+**v0.3.7: 59 program suites / 14,939 assertions, 72 records plus status; 748 full production UI checks.** The APK contains 41 ARM64 native libraries, supports Android 9+, retains its signer and passes 16 KiB alignment checks. Lint: zero errors / 16 existing warnings. Nine current UI flows provide 52 screenshots / nine GIFs / nine MP4s. All 815 historical evidence files retain their identities. No new complete-model run is claimed. Separate real Android evidence records 19 program checks and a 60-second screen-off API health check.
 
-[All 59 suites and 62 recipes](docs/IMPLEMENTATION_V036.en.md) · [Current records and source fingerprints](verification/releases/v0.3.6/status.json) · [Policy](docs/PROGRAM_VALIDATION.en.md)
+[All 59 suites and 62 recipes](docs/IMPLEMENTATION_V037.en.md) · [Current records and source fingerprints](verification/releases/v0.3.7/status.json) · [Policy](docs/PROGRAM_VALIDATION.en.md)
 
-The following **historical v0.3.5 30-suite / 5,820-assertion** table and original links remain for comparison. The v0.3.6 inventory above is the current result.
+The following **historical v0.3.5 30-suite / 5,820-assertion** table and original links remain for comparison. The v0.3.7 inventory above is the current result.
 
 | ID | Suite / assertions | Cases covered | Record |
 | --- | --- | --- | --- |
@@ -713,7 +726,7 @@ The following **historical v0.3.5 30-suite / 5,820-assertion** table and origina
 | P29 | spatial-graphs · 60 | Pinned Hunyuan/UltraShape graphs, dynamic tokens, MoE, cache/query/schedule | [JSON](verification/program/spatial-graphs.json) |
 | P30 | spatial-sparse · 109 | Five exported-ONNX CPU operations, source rules, dynamic support and malformed input | [JSON](verification/program/spatial-sparse.json) |
 
-That historical v0.3.5 package had 40 native libraries and six media groups; v0.3.6 has 41 libraries and nine groups. Both versions label desktop UI recordings explicitly; they are not model-generated videos.
+That historical v0.3.5 package had 40 native libraries and six media groups; v0.3.7 has 41 libraries and nine groups. Both versions label desktop UI recordings explicitly; they are not model-generated videos.
 
 The 29 v0.3.0 program files and media retain their [original Git identities](verification/history/v0.3.0-program-archive.json). Older failures remain historical. `release_ready` means program-policy compliance, not universal phone/checkpoint/quality acceptance.
 

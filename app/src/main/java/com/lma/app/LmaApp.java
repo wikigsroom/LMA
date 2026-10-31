@@ -23,7 +23,7 @@ import com.lma.app.core.InputUploads;
 import com.lma.app.core.PreparedAssets;
 
 public final class LmaApp extends Application {
-    public static final String VERSION = "0.3.6";
+    public static final String VERSION = "0.3.7";
     public static final String UPDATE = "com.lma.app.STATE_CHANGED";
     public Store store;
     private final java.util.concurrent.atomic.AtomicBoolean migrationRunning = new java.util.concurrent.atomic.AtomicBoolean(), migrationPending = new java.util.concurrent.atomic.AtomicBoolean();
@@ -178,9 +178,18 @@ public final class LmaApp extends Application {
             value.put("app", "LMA"); value.put("version", VERSION); value.put("runtime", "llama.cpp v0.4.1 · CPU");
             value.put("models", store.snapshot()); value.put("settings", settings()); value.put("hub", hub.snapshot());
             JSONArray bundleRecords = bundles == null ? new JSONArray() : bundles.snapshot();
-            if (localEngines != null) for (int i = 0; i < bundleRecords.length(); i++) { JSONObject record = bundleRecords.getJSONObject(i); record.put("inputSchemas", localEngines.inputSchemas(bundles.bundle(record.getString("id")))); }
+            if (localEngines != null) for (int i = 0; i < bundleRecords.length(); i++) {
+                JSONObject record = bundleRecords.getJSONObject(i);
+                try { record.put("inputSchemas", localEngines.inputSchemas(bundles.bundle(record.getString("id")))); }
+                catch (Exception unavailable) {
+                    record.put("inputSchemas", new JSONObject()).put("inputSchemaError", unavailable.getMessage() == null ? "当前配方尚不能提供任务输入" : unavailable.getMessage());
+                }
+            }
             if (preparations != null && prepared != null) for (int i = 0; i < bundleRecords.length(); i++) {
-                JSONObject record = bundleRecords.getJSONObject(i); record.put("preparationPlans", preparations.options(bundles.bundle(record.getString("id")))).put("preparedAssets", assemblies == null ? prepared.snapshot(record.getString("id")) : assemblies.snapshot(record.getString("id")));
+                JSONObject record = bundleRecords.getJSONObject(i); try { record.put("preparationPlans", preparations.options(bundles.bundle(record.getString("id")))).put("preparedAssets", assemblies == null ? prepared.snapshot(record.getString("id")) : assemblies.snapshot(record.getString("id"))); }
+                catch (Exception unavailable) {
+                    record.put("preparationPlans", new JSONArray()).put("preparedAssets", new JSONArray()).put("preparationError", unavailable.getMessage() == null ? "当前配方准备信息不可用" : unavailable.getMessage());
+                }
             }
             value.put("bundles", bundleRecords);
             value.put("jobs", jobs == null ? new JSONArray() : jobs.summaries());

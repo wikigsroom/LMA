@@ -1,5 +1,5 @@
 {
-  "version": "0.3.6",
+  "version": "0.3.7",
   "kind": "current production UI with an explicit simulated bridge",
   "android_device": false,
   "model_inference": false,
@@ -81,8 +81,8 @@
     },
     {
       "file": "03-material-settings.png",
-      "bytes": 50459,
-      "sha256": "d07c19f3e8efc36110d954de95753e5657083e58a7eab9e74ae7351000c9e850"
+      "bytes": 50454,
+      "sha256": "70770ddb2be059b69ca814e80792560943a894c8dc345406839b16270630791f"
     },
     {
       "file": "04-material-inputs.png",
@@ -91,8 +91,8 @@
     },
     {
       "file": "05-material-queue.png",
-      "bytes": 47247,
-      "sha256": "d419b1b826d4944b47fca0e0b3323c1fa489c1a14c02d8fcd4321d0bc3f93b5b"
+      "bytes": 47375,
+      "sha256": "5c2230246e8f9ac5ddb782c2da0f5ff4ebc3cab0255b3cb7db3f8ce471c6b125"
     },
     {
       "file": "06-material-preview.png",
@@ -101,13 +101,13 @@
     },
     {
       "file": "material-ui.gif",
-      "bytes": 556754,
-      "sha256": "5189c6d465a82ca2b9c458cdcc50f698189e4e4f284b77a4a89f71f1abf6eef8"
+      "bytes": 527851,
+      "sha256": "2c84b8a72db83d1175bce75e32bf51bac53699d913a4ac176b8e4f9750cae827"
     },
     {
       "file": "material-ui.mp4",
-      "bytes": 255827,
-      "sha256": "f181e4b72ffb2cb823937b5d1c9bd85fa7b81e00561e593577362d4e7dc9c639"
+      "bytes": 263903,
+      "sha256": "bf7c5ea424bd4f0a2119b342e2e3fa70996b231c6b8241a78df6e71eb785f842"
     }
   ],
   "input_fingerprint": {

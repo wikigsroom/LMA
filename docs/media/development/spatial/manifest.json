@@ -1,5 +1,5 @@
 {
-  "version": "0.3.6",
+  "version": "0.3.7",
   "kind": "current production UI with an explicit simulated bridge",
   "android_device": false,
   "model_inference": false,
@@ -73,18 +73,18 @@
     },
     {
       "file": "05-spatial-queue.png",
-      "bytes": 48602,
-      "sha256": "26e89bf78dfc7b44704c7accb69c997625f43b90941c1df0c1bb5bd0bd349849"
+      "bytes": 48726,
+      "sha256": "ab06dbe4af6b5a0a8c96cb95ce2fd0ef3756e9e2cf532166cab99a69b2c186d5"
     },
     {
       "file": "spatial-ui.gif",
-      "bytes": 539304,
-      "sha256": "13023b9c246fce72229a1e880add8aa4f8fb0cc699cd51b5a90b92b76962ea87"
+      "bytes": 491380,
+      "sha256": "fb2e686406b25caa635f999371619f438cc88e5b3ee1d8ef196c8f73e2a33416"
     },
     {
       "file": "spatial-ui.mp4",
-      "bytes": 236410,
-      "sha256": "ddbde431ae1299e38b6ac609832dc951a891c8b572f8d259ead4af695d166294"
+      "bytes": 207170,
+      "sha256": "6c49db8200e77ddb79232f2b8879ea212d8818237213a192e6066be600bab910"
     }
   ],
   "input_fingerprint": {

@@ -1,8 +1,8 @@
 # LMA · Android 本地模型工作台
 
-[English](README.en.md) · [下载 v0.3.6](https://github.com/wikigsroom/LMA/releases/tag/v0.3.6) · [使用手册](docs/USER_GUIDE.md) · [文档目录](docs/README.md) · [更新记录](CHANGELOG.md)
+[English](README.en.md) · [下载 v0.3.7](https://github.com/wikigsroom/LMA/releases/tag/v0.3.7) · [使用手册](docs/USER_GUIDE.md) · [文档目录](docs/README.md) · [更新记录](CHANGELOG.md)
 
-**v0.3.6 / code56：本地多模态与 3D 适配完整交付。** 本版补齐 P01–P06：UltraTex FLUX.1 / FLUX.2、UniForge3D、SAM / MV-SAM＋DA3、SUPRA-Tex，以及自动抠图、视觉部件识别、点云、原始 Flash / 八叉树和可选材质链。另含 F5 官方兼容中文前端与 Hunyuan Paint。共 **62 个配方、82 套目录模型包、18 个扩展引擎加文本**。[完整方案和操作](docs/ADAPTER_PROFILES.md) · [编号实现与未测边界](docs/REMAINING_ADAPTATION.md) · [当前程序证据](verification/releases/v0.3.6/status.json)。
+**v0.3.7 / code57：真机零模型启动修复。** 修复一个未准备资产的 LTX 条目导致整个模型目录和设备状态显示不完整的问题；逐条保留不可用原因，运行前校验继续生效。新增 motorola edge plus / Android 12 的页面、接口、SQLite、前台服务及短时锁屏程序检查和真实截图 / 录屏，详见[真机验证记录](docs/DEVICE_ACCEPTANCE.md)。**原有多模态与 3D 适配完整保留。** 本版补齐 P01–P06：UltraTex FLUX.1 / FLUX.2、UniForge3D、SAM / MV-SAM＋DA3、SUPRA-Tex，以及自动抠图、视觉部件识别、点云、原始 Flash / 八叉树和可选材质链。另含 F5 官方兼容中文前端与 Hunyuan Paint。共 **62 个配方、82 套目录模型包、18 个扩展引擎加文本**。[完整方案和操作](docs/ADAPTER_PROFILES.md) · [编号实现与未测边界](docs/REMAINING_ADAPTATION.md) · [当前程序证据](verification/releases/v0.3.7/status.json)。
 
 LMA（Local Model App）让用户在 Android 手机上选择、下载、管理和运行本地模型，提供聊天、生图、生视频、生音频、生 3D、任务队列、结果库与本机 API。它是独立社区项目，与 LM Studio 无隶属关系；界面主要为中文，文档提供中英双语。
 
@@ -16,6 +16,8 @@ LMA（Local Model App）让用户在 Android 手机上选择、下载、管理�
 
 **许可证说明：** 自有代码为 MIT；随包 DISO CPU 表面提取组件适用 CC BY-NC 4.0 非商业条款，其他依赖与模型保留各自许可。见[完整说明](THIRD_PARTY_NOTICES.md)。
 
+新增[真实手机页面 GIF](docs/media/device/v0.3.7/physical-walkthrough.gif) / [录屏 MP4](docs/media/device/v0.3.7/physical-walkthrough.mp4)：零模型页面与接口操作，另附锁屏 60 秒健康检查记录；不代表模型输出或长期耐久通过。桌面夹具与真实手机媒体分别标记。
+
 详细用例 **C01–C48**、历史生成 / 失败案例 **H01–H18**、API 示例和历史测试记录均保留。新增[本地适配页面 GIF](docs/media/development/adaptation/adaptation-ui.gif) / [MP4](docs/media/development/adaptation/adaptation-ui.mp4) 与 [UltraTex 演示](docs/media/development/ultratex/ultratex-ui.gif)；均明确标记 UI FIXTURE，展示生产页面操作，不冒充手机或训练模型结果。原发布证据留在 `verification/program/` 与 `verification/history/`。
 
 <a id="contents"></a>
@@ -24,7 +26,7 @@ LMA（Local Model App）让用户在 Android 手机上选择、下载、管理�
 | 想做什么 | 本页入口 | 详细文档 |
 | --- | --- | --- |
 | 安装、下载和第一次使用 | [安装](#install)、[C01–C05](#use-cases) | [使用手册](docs/USER_GUIDE.md)、[HF 与本地模型](docs/HF_MODELS.md) |
-| 选择生图、生视频或生音频方案 | [支持范围](#models)、[C06–C14](#use-cases) | [完整实现矩阵](docs/IMPLEMENTATION_V036.md)、[社区模型](docs/COMMUNITY_MODELS.md) |
+| 选择生图、生视频或生音频方案 | [支持范围](#models)、[C06–C14](#use-cases) | [完整实现矩阵](docs/IMPLEMENTATION_V037.md)、[社区模型](docs/COMMUNITY_MODELS.md) |
 | 管理模型、独立参数、任务和结果 | [C03–C04、C15–C18](#use-cases) | [模型参数](docs/MODEL_SETTINGS.md)、[任务工作台](docs/TASK_WORKBENCH.md) |
 | 在程序中调用手机模型 | [API 示例](#api-examples) | [API](docs/API.md)、[输入与上传](docs/LOCAL_INPUTS.md) |
 | 看页面、生成案例和失败对照 | [当前页面](#ui-media)、[历史案例 H01–H18](#case-studies) | [媒体说明](docs/MEDIA.md)、[历史完整 README](docs/history/README-dev45.zh.md) |
@@ -50,7 +52,7 @@ LMA（Local Model App）让用户在 Android 手机上选择、下载、管理�
 | 16 | Wan 2.1 T2V 1.3B Q4 | sd.cpp CPU／Vulkan、显式组件、本机视频编码 |
 | 17 | LTX-Video 2B 0.9.8 distilled | 原始 PixArt T5 F32＋7 步／空间放大／3 步；Google T5 Q5 单尺度保留独立身份 |
 
-当前基座有 **50 个数据型配方模板、17 类扩展引擎及原有文本引擎**；模型包为 **23 套原有＋44 套社区＋11 套语音 / 单图 3D＋4 套 MV 校验导入＝82 套**。模板、模型包、引擎和架构分别计数，不代表全部模型已在手机实测。[机器可读实现矩阵](catalogue/release-0.3.5-implementation.json)
+当前基座有 **62 个数据型配方模板、18 类扩展引擎及原有文本引擎**；模型包为 **23 套原有＋44 套社区＋11 套语音 / 单图 3D＋4 套 MV 校验导入＝82 套**。模板、模型包、引擎和架构分别计数，不代表全部模型已在手机实测。[机器可读实现矩阵](catalogue/release-0.3.7-implementation.json)
 
 ### 语音、单图与多视图生 3D
 
@@ -58,11 +60,11 @@ LMA（Local Model App）让用户在 Android 手机上选择、下载、管理�
 | --- | --- | --- |
 | S01 | Kokoro PyTorch 系列 | 新增匹配 INT8 ONNX 英文方案；原始 `.pth` 不直接执行，既有 54 音色保留 |
 | S02 | MeloTTS Chinese | 中文 ONNX INT8 / FP32、phones / tones 词典与四份 FST |
-| S03 | F5-TTS v1 | 原版 safetensors＋Vocos，本机 C++；参考 WAV / 文本必填，中文前端实验适配 |
+| S03 | F5-TTS v1 | 原版 safetensors＋Vocos，本机 C++；参考 WAV / 文本必填，配套官方兼容中文前端 |
 | S04 | OmniVoice | Q8 GGUF / 原版两种选择，本机 C++；自动 / 克隆 / 描述音色，完整 WAV |
 | D01–D02 | TRELLIS.2 / Pixal3D | 五个单图 GGUF / CPU 几何或贴图选择，本地图片 → GLB → 预览 / 导出 |
 
-已对指定 [3080 生 3D 测评](https://benchmark.sidcloud.cn/collections/3080-3d)的 16 条配置完成来源梳理；v0.3.6 补齐所选模型的有界 CPU 适配。完整模型效果和 GPU 原流程未复现，内存限制与导出匹配要求分别披露。最小 Melo 包约 61 MB、部分 3D 资产达到 GB 级，不统一称为轻量。
+已对指定 [3080 生 3D 测评](https://benchmark.sidcloud.cn/collections/3080-3d)的 16 条配置完成来源梳理；当前基座已补齐所选模型的有界 CPU 适配。完整模型效果和 GPU 原流程未复现，内存限制与导出匹配要求分别披露。最小 Melo 包约 61 MB、部分 3D 资产达到 GB 级，不统一称为轻量。
 
 [四类语音、11 套文件与许可、D01–D16 完整评估、操作 / API / 测试 / 截图](docs/SPEECH_3D_EXPANSION.md) · [来源审计](research/expansion/benchmark-audit.json)。下载由用户选择，新增模型没有推断 NSFW 标签。
 
@@ -76,9 +78,9 @@ Pixal3D MV 新增 F16 / Q8_0 的几何 / PBR 四个选择，四张已标定的 R
 
 ### 新增 RF 形状与部件几何
 
-TripoSG / PartCrafter 物体 / PartCrafter 场景新增三个平级自选配方，通过配套 FP32 ONNX 在手机 CPU 执行图片编码、RF / 部件 DiT、SDF VAE 与网格导出。输出无贴图 GLB，部件独立节点。**当前只支持用户匹配导出后导入；没有已核实公开整套下载包，不直接执行原始 PyTorch。** 82 个目录包数量保留，模板增加到 50；用户资产不随 App 更新自动取得。
+TripoSG / PartCrafter 物体 / PartCrafter 场景新增三个平级自选配方，通过配套 FP32 ONNX 在手机 CPU 执行图片编码、RF / 部件 DiT、SDF VAE 与网格导出。输出无贴图 GLB，部件独立节点。**当前只支持用户匹配导出后导入；没有已核实公开整套下载包，不直接执行原始 PyTorch。** 82 个目录包数量保留，当前模板总数为 62；用户资产不随 App 更新自动取得。
 
-[转换、导入、参数、原生实现、API 与限制](docs/RF_SHAPE.md) · [本轮编号实现与待办](docs/IMPLEMENTATION_V035.md)。完整训练权重转换、手机内存 / 速度 / 质量未测；自动抠图、VLM 部件识别和贴图没有实现。其余代码缺口为 D04、D05、D07 Paint、D08–D10，详见[当前审计](research/portability/audit-v0.3.5.json)。
+[转换、导入、参数、原生实现、API 与限制](docs/RF_SHAPE.md) · [本轮编号实现与待办](docs/IMPLEMENTATION_V035.md)。完整训练权重转换、手机内存 / 速度 / 质量未测。这些是 v0.3.5 的历史边界；后续已加入抠图、VLM 部件识别、Paint 及 P01–P06 有界适配，见[当前审计](research/portability/adaptation-current.json)。
 
 ### 新增 Hunyuan3D 形状与 UltraShape 精修
 
@@ -126,24 +128,24 @@ Uncensored／Abliterated 与 NSFW 分别标注，不互相替代。作者声明�
 <a id="install"></a>
 ## 安装与首次启动
 
-1. 从 [v0.3.5 Release](https://github.com/wikigsroom/LMA/releases/tag/v0.3.5) 下载 `LMA-0.3.6-arm64-v8a.apk`；需要 64 位 Android 9／API 28 或以上。
+1. 从 [v0.3.5 Release](https://github.com/wikigsroom/LMA/releases/tag/v0.3.5) 下载 `LMA-0.3.7-arm64-v8a.apk`；需要 64 位 Android 9／API 28 或以上。
 2. 对照同页 `SHA256SUMS` 核对安装包。Windows 示例：
 
    ```powershell
-   Get-FileHash .\LMA-0.3.6-arm64-v8a.apk -Algorithm SHA256
+   Get-FileHash .\LMA-0.3.7-arm64-v8a.apk -Algorithm SHA256
    ```
 
 3. 打开 App，按系统提示允许通知。若要退出界面或锁屏继续工作，在 Android 设置中允许后台活动并取消相关电池限制。
 4. App 初次启动可零模型使用管理界面和接口；选择、下载、导入或加载模型都是独立操作。
 5. 保持原签名升级安装，已有模型与设置继续保留。自行签名的 APK 不能直接覆盖另一签名的安装。
 
-| 安装包身份 | v0.3.6 / code56 |
+| 安装包身份 | v0.3.7 / code57 |
 | --- | --- |
 | 字节数 | `71033353` |
 | SHA256 | `286711ae8e097ee40ed4e28b5016618743685343c334f93702ba0bcb5f6da697` |
 | 签名证书 SHA256 | `90444a717a55549e2094364d8d7d005cf8b7f4df24562da62cc1884a2f341c17` |
 
-Release 附 APK、源码 ZIP、验证 ZIP、截图 ZIP、9 GIF / 9 MP4、构建与源码清单、说明和哈希，共 30 项附件。[版本说明](docs/releases/v0.3.6.md)
+Release 附 APK、源码 ZIP、验证 ZIP、截图 ZIP、9 GIF / 9 MP4、构建与源码清单、说明和哈希，共 30 项附件。[版本说明](docs/releases/v0.3.7.md)
 
 <a id="use-cases"></a>
 ## 48 个完整使用场景
@@ -386,7 +388,7 @@ Release 附 APK、源码 ZIP、验证 ZIP、截图 ZIP、9 GIF / 9 MP4、构建�
 - [107 项 flow 检查及完整应用方案](docs/ADAPTER_PROFILES.md)。仍未执行完整训练模型，不把随机网络的输出称为模型效果。
 
 
-## v0.3.6 新增操作与验证场景 C37–C48
+## v0.3.7 新增操作与验证场景 C37–C48
 
 这些是可执行的程序使用逻辑与错误处理场景；不声称已运行完整训练模型。完整逐步说明见[本地适配指南](docs/ADAPTER_PROFILES.md)。
 
@@ -540,9 +542,20 @@ $lmaAccepted
 <a id="ui-media"></a>
 ## 当前页面、截图与录屏
 
-当前 9 组为 **v0.3.6 生产页面＋明确标记的桌面交互夹具（UI FIXTURE）**，共 52 张截图 / 9 GIF / 9 MP4。社区 / 工作台 / 语音与 3D / MV / RF / Spatial / 材质 / UltraTex / 本地辅助分别检查 34 / 8 / 32 / 19 / 17 / 20 / 34 / 38 / 23 项交互。未下载权重、未产生模型输出；录制后关闭全部测试浏览器资源。[完整媒体索引](docs/MEDIA.md)
+### 真实 Android 页面 · v0.3.7
 
-![v0.3.6 社区筛选、来源与本地管理；UI FIXTURE](docs/media/development/community/community-ui.gif)
+实际 motorola edge plus / Android 12，已安装模型为 0。[复现、19 项程序检查与边界](docs/DEVICE_ACCEPTANCE.md)。以下是真机屏幕，与后文桌面夹具分开。
+
+| 手机推荐页 | 手机本地接口页 |
+| --- | --- |
+| ![实际 Android 推荐页](docs/media/device/v0.3.7/01-recommended.png) | ![实际 Android 接口页](docs/media/device/v0.3.7/04-server.png) |
+
+[实际录屏 MP4](docs/media/device/v0.3.7/physical-walkthrough.mp4) · [GIF](docs/media/device/v0.3.7/physical-walkthrough.gif) · [媒体身份](docs/media/device/v0.3.7/manifest.json)。60 秒锁屏检查针对接口健康与服务存活，没有生成 token。
+
+
+当前 9 组为 **v0.3.7 生产页面＋明确标记的桌面交互夹具（UI FIXTURE）**，共 52 张截图 / 9 GIF / 9 MP4。社区 / 工作台 / 语音与 3D / MV / RF / Spatial / 材质 / UltraTex / 本地辅助分别检查 34 / 8 / 32 / 19 / 17 / 20 / 34 / 38 / 23 项交互。未下载权重、未产生模型输出；录制后关闭全部测试浏览器资源。[完整媒体索引](docs/MEDIA.md)
+
+![v0.3.7 社区筛选、来源与本地管理；UI FIXTURE](docs/media/development/community/community-ui.gif)
 
 [社区 MP4](docs/media/development/community/community-ui.mp4) · [媒体与源码身份](docs/media/development/community/manifest.json)
 
@@ -552,7 +565,7 @@ $lmaAccepted
 
 [视频目录](docs/media/development/community/03-community-video.png) · [视频来源与限制](docs/media/development/community/04-video-source.png) · [本地管理](docs/media/development/community/05-community-local.png)
 
-![v0.3.6 共用工作台；UI FIXTURE，非模型推理](docs/media/development/release-workbench/release-workbench-ui.gif)
+![v0.3.7 共用工作台；UI FIXTURE，非模型推理](docs/media/development/release-workbench/release-workbench-ui.gif)
 
 [工作台 MP4](docs/media/development/release-workbench/release-workbench-ui.mp4) · [工作台媒体身份](docs/media/development/release-workbench/manifest.json)
 
@@ -569,18 +582,18 @@ $lmaAccepted
 | 运行资源与停止原因 | [资源](docs/media/development/resources/01-running.png)、[停止详情](docs/media/development/resources/02-stopped-detail.png) | [资源说明](docs/RUNTIME_RESOURCES.md) |
 | 原始文本模型库、接口和深色主题 | [模型库](docs/media/01-library.png)、[接口](docs/media/05-api.png)、[深色](docs/media/07-dark.png) | [原始演示](docs/MEDIA.md) |
 
-![v0.3.6 语音与单图生 3D；UI FIXTURE，合成立方体非模型输出](docs/media/development/expansion/expansion-ui.gif)
+![v0.3.7 语音与单图生 3D；UI FIXTURE，合成立方体非模型输出](docs/media/development/expansion/expansion-ui.gif)
 
 [语音选择](docs/media/development/expansion/01-speech-models.png) · [3D 表单](docs/media/development/expansion/03-3d-form.png) · [GLB 预览](docs/media/development/expansion/05-glb-preview.png) · [MP4](docs/media/development/expansion/expansion-ui.mp4) · [32 项页面检查](docs/media/development/expansion/manifest.json)
 
-![v0.3.6 四视图与后台状态；UI FIXTURE，未运行训练模型](docs/media/development/multiview/multiview-ui.gif)
+![v0.3.7 四视图与后台状态；UI FIXTURE，未运行训练模型](docs/media/development/multiview/multiview-ui.gif)
 
 [四个导入选择](docs/media/development/multiview/01-multiview-models.png) · [四图表单](docs/media/development/multiview/03-four-view-form.png) · [后台观察](docs/media/development/multiview/05-background-observations.png) · [MP4](docs/media/development/multiview/multiview-ui.mp4) · [19 项页面检查](docs/media/development/multiview/manifest.json)
 
 
 ### RF 形状当前页面
 
-![v0.3.6 部件设置；桌面 UI FIXTURE，非模型输出](docs/media/development/shape/03-part-settings.png)
+![v0.3.7 部件设置；桌面 UI FIXTURE，非模型输出](docs/media/development/shape/03-part-settings.png)
 
 ![RF 形状流程；UI FIXTURE，无训练推理](docs/media/development/shape/shape-ui.gif)
 
@@ -595,7 +608,7 @@ $lmaAccepted
 <a id="case-studies"></a>
 ## 历史案例测试与真实产物
 
-这些是已保存的开发阶段案例，**本次文档修复没有重新下载、复制或运行完整模型**。HOST 表示原生 Windows 主机，UI FIXTURE 表示模拟桥接的页面，PROGRAM 表示程序或有界小图检查；都不能替代 Android 真机验收。旧文档中的“尚未发布”属于当时语境，当前安装包以上方 v0.3.5 为准。
+这些是已保存的开发阶段案例，**本次文档修复没有重新下载、复制或运行完整模型**。HOST 表示原生 Windows 主机，UI FIXTURE 表示模拟桥接的页面，PROGRAM 表示程序或有界小图检查；都不能替代 Android 真机验收。旧文档中的“尚未发布”属于当时语境，当前安装包以上方 v0.3.7 为准。
 
 | 编号 | 案例及输入／操作 | 当时观察与明确边界 | 原始说明／证据 |
 | --- | --- | --- | --- |
@@ -667,11 +680,11 @@ $lmaAccepted
 <a id="verification"></a>
 ## 当前程序检查覆盖与复核入口
 
-**v0.3.6：59 组 / 14,939 项程序断言，72 份记录另附状态清单；完整生产页面 748 项。** APK 为 41 个 ARM64 原生库、Android 9+、16 KiB 对齐和原签名；Lint 0 错误 / 16 个原有警告。9 组当前 UI 录制包含 52 张截图 / 9 GIF / 9 MP4，815 个历史证据文件保留原身份。没有新增完整模型或手机运行验收。
+**v0.3.7：59 组 / 14,939 项程序断言，72 份记录另附状态清单；完整生产页面 748 项。** APK 为 41 个 ARM64 原生库、Android 9+、16 KiB 对齐和原签名；Lint 0 错误 / 16 个原有警告。9 组当前 UI 录制包含 52 张截图 / 9 GIF / 9 MP4，815 个历史证据文件保留原身份。没有新增完整训练模型运行；另有 19 项真实 Android 程序检查及约 60 秒锁屏接口记录，见[真机专项](docs/DEVICE_ACCEPTANCE.md)。
 
-[全部 59 组明细与 62 个配方](docs/IMPLEMENTATION_V036.md) · [本版记录与源码指纹](verification/releases/v0.3.6/status.json) · [验证策略](docs/PROGRAM_VALIDATION.md)
+[全部 59 组明细与 62 个配方](docs/IMPLEMENTATION_V037.md) · [本版记录与源码指纹](verification/releases/v0.3.7/status.json) · [验证策略](docs/PROGRAM_VALIDATION.md)
 
-下面保留 **v0.3.5 历史 30 组 / 5,820 项** 及其原记录入口，便于对照；本版数量以上面的 v0.3.6 清单为准。
+下面保留 **v0.3.5 历史 30 组 / 5,820 项** 及其原记录入口，便于对照；本版数量以上面的 v0.3.7 清单为准。
 
 | 编号 | 套件／断言 | 覆盖的案例 | 记录 |
 | --- | --- | --- | --- |

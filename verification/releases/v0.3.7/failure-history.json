@@ -1,0 +1,49 @@
+{
+  "schema": "lma.physical-failure-history/1",
+  "preserved_failures": [
+    {
+      "checked_at": "2026-10-31T18:46:38.649985+00:00",
+      "status": "failed",
+      "apk_sha256": "286711ae8e097ee40ed4e28b5016618743685343c334f93702ba0bcb5f6da697",
+      "error": "ADB command failed: All files should be loaded. Notifying the device.\nadb: failed to install E:\\dev\\sandbox\\无审查小模型\\app\\android\\build\\device-tests\\LMA-acceptance.apk: Failure [-124: Failed parse during installPackageLI: Targeting R+ (version 30 and above) requires the resources.arsc of installed APKs to be stored uncompressed and aligned on a 4-byte boundary]\n",
+      "stage": "acceptance_install"
+    },
+    {
+      "checked_at": "2026-10-31T18:55:11.738023+00:00",
+      "status": "failed",
+      "apk_sha256": "286711ae8e097ee40ed4e28b5016618743685343c334f93702ba0bcb5f6da697",
+      "error": "java.lang.AssertionError: Native UI state is incomplete",
+      "instrumentation": {
+        "status": "failed",
+        "error": "java.lang.AssertionError: Native UI state is incomplete",
+        "snapshotKeys": [
+          "app",
+          "version",
+          "runtime",
+          "models",
+          "settings",
+          "hub"
+        ],
+        "snapshotModelCount": 14,
+        "nativeLogTail": [
+          "状态读取失败：请选择已关联的旧 LTX Google T5 Q5 运行模型；源模型需先准备资产",
+          "状态读取失败：请选择已关联的旧 LTX Google T5 Q5 运行模型；源模型需先准备资产",
+          "状态读取失败：请选择已关联的旧 LTX Google T5 Q5 运行模型；源模型需先准备资产",
+          "状态读取失败：请选择已关联的旧 LTX Google T5 Q5 运行模型；源模型需先准备资产"
+        ]
+      },
+      "stage": "catalogue_snapshot"
+    },
+    {
+      "checked_at": "2026-10-31T19:03:29.189192+00:00",
+      "status": "failed",
+      "apk_sha256": "d189a79f95a3b308924579425fa774c5f69240fb09bbed3f20fb4e6dcee8570e",
+      "error": "ADB media export failed for a Chinese absolute destination path: Illegal byte sequence",
+      "instrumentation": {
+        "status": "passed"
+      },
+      "stage": "host_media_export"
+    }
+  ],
+  "subsequent_fix_version": "0.3.7"
+}

@@ -45,7 +45,7 @@ def identity(path):
 def inputs():
     return fingerprint('tools/complete_evidence.py', 'tools/program_evidence.py', 'tools/program_release.py',
         'tools/check_repository.py', 'tools/package_delivery.py', 'tools/prepare_release.py',
-        'tools/release_scope.py', 'tools/audit_adaptations.py',
+        'tools/release_scope.py', 'tools/audit_adaptations.py', 'tools/physical_evidence.py',
         'research/portability/adaptation-current.json', 'docs/proposals/program-validation-policy.json',
         'docs/proposals/multimodal-release-scope.json', 'catalogue/release-'+version()+'-implementation.json')
 
@@ -82,6 +82,9 @@ def export():
     for name in CURRENT_MEDIA:
         path = ROOT/'docs/media/development'/name/'manifest.json'
         media[name] = dict(path=path.relative_to(ROOT).as_posix(), **identity(path))
+    from physical_evidence import check as physical_check
+    physical = physical_check(OUT)
+    physical_identity = identity(OUT/'physical-device.json') if physical['physical_device_tested'] else None
     status = dict(schema='lma.complete-program-release/1', version=version(), validation_mode='program_only',
         sources=sources, current_ui_media=media, input_fingerprint=inputs(),
         previous_published_evidence='verification/program', previous_release='v0.3.5',
@@ -93,7 +96,7 @@ def export():
         implementation_matrix='catalogue/release-'+version()+'-implementation.json',
         benchmark_portability_audit='research/portability/adaptation-current.json',
         known_implementation_gaps=[], public_matched_complete_packages_verified=False,
-        physical_device_tests=0, phone_inference_tested=False, model_inference_tested=False,
+        **physical, physical_program_evidence=physical_identity, phone_inference_tested=False, model_inference_tested=False,
         complete_trained_model_runs=0, complete_model_downloads_for_validation=0,
         complete_model_copies_for_validation=0, model_quality_accepted=False,
         background_endurance_tested=False, all_selected_models_tested=False,
@@ -115,7 +118,12 @@ def check():
         assert status[key], key
     assert not status['known_implementation_gaps'] and not status['unported_benchmark_configurations']
     assert not status['partially_integrated_benchmark_configurations'] and not status['full_benchmark_workflows_reproduced']
-    for key in ('physical_device_tests', 'phone_inference_tested', 'model_inference_tested', 'complete_trained_model_runs',
+    from physical_evidence import check as physical_check
+    physical = physical_check(OUT)
+    for key, value in physical.items(): assert status[key] == value, key
+    if physical['physical_device_tested']: assert status['physical_program_evidence'] == identity(OUT/'physical-device.json')
+    else: assert status['physical_program_evidence'] is None
+    for key in ('phone_inference_tested', 'model_inference_tested', 'complete_trained_model_runs',
         'complete_model_downloads_for_validation', 'complete_model_copies_for_validation', 'model_quality_accepted',
         'background_endurance_tested', 'all_selected_models_tested', 'model_weights_in_apk',
         'automatic_model_asset_downloads', 'virtualization_used'):
@@ -180,7 +188,7 @@ def check():
         historical_files_preserved=status['historical_files_preserved'],historical_ui_manifests=15,current_ui_manifests=len(CURRENT_MEDIA),
         original_failure_preserved=True,native_libraries=41,lint_errors=0,lint_warnings=len(lint['warnings']),
         apk=build['apk'],apk_sha256=build['sha256'],release_ready=True,full_scope_implementation_complete=True,
-        model_inference_tested=False,phone_inference_tested=False,implementation_scope=status['implementation_scope'],
+        **physical,model_inference_tested=False,phone_inference_tested=False,implementation_scope=status['implementation_scope'],
         all_benchmark_architectures_integrated=True,all_requested_adaptations_complete=True,
         full_benchmark_workflows_reproduced=False,unported_benchmark_configurations=[],partially_integrated_benchmark_configurations=[])
     (ROOT/'build/program-evidence-check.json').write_text(json.dumps(result,indent=2)+'\n',encoding='utf-8')

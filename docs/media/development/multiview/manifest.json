@@ -1,5 +1,5 @@
 {
-  "version": "0.3.6",
+  "version": "0.3.7",
   "kind": "current production UI with an explicit simulated bridge",
   "android_device": false,
   "model_inference": false,
@@ -67,8 +67,8 @@
     },
     {
       "file": "04-multiview-queue.png",
-      "bytes": 49051,
-      "sha256": "64eabfe577f88e8d40301b094f81e98c3991ef3be869149d5bedc218aa4fe46f"
+      "bytes": 49142,
+      "sha256": "2cba54421704bb23b421350e493fbf3ca066bc1ee5a86fdcc421c25f8d64a2f8"
     },
     {
       "file": "05-background-observations.png",
@@ -77,13 +77,13 @@
     },
     {
       "file": "multiview-ui.gif",
-      "bytes": 540462,
-      "sha256": "d6ff3ae47e1fab249083640601f0e04a3226d57cbf25afa4c64635a921348719"
+      "bytes": 531721,
+      "sha256": "0f47b0b843851de53989a63cbec8458f5d0b24d07b2dc0d700c3f4bdd65466e1"
     },
     {
       "file": "multiview-ui.mp4",
-      "bytes": 231498,
-      "sha256": "17efae826f753959c09a02c71b1b346d0d4bbe45da8d8e3a324bdc9fa0beeea8"
+      "bytes": 213497,
+      "sha256": "afece816312eb1d134365170ac24d94515547e971e9458b64534e3b8eeca2fdc"
     }
   ],
   "input_fingerprint": {

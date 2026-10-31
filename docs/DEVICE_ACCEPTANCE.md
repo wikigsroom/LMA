@@ -1,51 +1,58 @@
-# 真实 Android 验收
+# Android 真机程序验证 · v0.3.7
 
-当前没有 Android 真机。这里的工具已编译，未在设备上执行。只接受已授权 ADB 的 ARM64 Android 9+ 真机；拒绝 Android 模拟器，不调用 ROOT、Docker 或 WSL。
+[English](DEVICE_ACCEPTANCE.en.md) · [版本说明](releases/v0.3.7.md) · [当前证据](../verification/releases/v0.3.7/physical-device.json)
 
-## 构建工具
+本轮使用已配对的无线 ADB，在真实手机安装和升级 LMA，无需 ROOT。设备实际报告 **motorola edge plus / burton、Android 12 / API31、SM8250、约 11.4 GiB 系统可见 RAM**。不能将这份记录写成 X30、骁龙 8 Gen 1 或努比亚 Z20 的测试。电脑只负责安装、操作和转发请求，接口与应用程序都在手机执行。
 
-在项目目录运行：
+## 1. 发现的问题与修复
+
+| 编号 | 实际问题 | 修复后的行为 |
+| --- | --- | --- |
+| D01 | v0.3.6 零模型启动时，未准备资产的旧 LTX 条目在读取输入表单时触发严格执行校验，状态只返回部分字段，整页模型卡片和内存信息无法显示 | 目录逐项记录 `inputSchemaError`；单个条目不影响其余目录、设备和界面状态。任务执行仍校验真实匹配资产 |
+| D02 | 验收工具把 `resources.arsc` 压缩，Android 12 拒绝安装测试 APK | 保持资源表不压缩并对齐；独立验收 APK 能安装 |
+| D03 | 旧 ADB 在含中文的绝对输出路径导出媒体时报错 | 使用仓库工作目录内的相对输出路径；截图与录屏可导出 |
+
+原 v0.3.6 标签和已发布附件不覆盖。修复 APK 为 **0.3.7 / code57**，保留原签名、应用数据和用户自主模型选择。历史失败另存证据，未改写为通过。
+
+## 2. 检查覆盖
+
+| 编号 | 实测内容 | 证据性质 |
+| --- | --- | --- |
+| A01 | 完整零模型状态、82 套目录包及实际内存；原生桥接和模型卡片 | 真机应用与 WebView |
+| A02 | 推荐 `m08 → m06 → m01`；全部注册条目、本地管理及聊天 / 任务 / 服务 / 设置导航 | 真机 DOM、页面截图 |
+| A03 | 提取的原生可执行文件权限、真实 SQLite 中断恢复、前台服务命令响应 | Android 框架 |
+| A04 | 无模型也可启动接口；测试退出后普通应用继续服务 | 真机前台服务 |
+| A05 | 鉴权错误返回 401、浏览器来源返回 403；模型 / 引擎 / 任务 / 结果 / 草稿 / 上传读取 | 实际手机 HTTP 服务，经 ADB 转发 |
+| A06 | 缺文本权重返回 409；不自动下载、不产生已安装模型 | 本机预检拒绝路径 |
+| A07 | 后台且屏幕关闭约 60 秒；7 次认证健康请求和前台服务状态检查 | 短时程序存活，非推理或耐久 |
+
+共 **19 个真机程序检查点**。接口密钥只在受信任的验收进程内存中传递，不进入日志、公开证据或媒体。公开记录不含设备序列号、Wi-Fi 地址或配对口令。应用未下载、复制或运行完整训练模型。
+
+## 3. 复现
+
+使用原生 Windows Android SDK / JDK / Python；不启动模拟器、Docker、WSL 或虚拟机。先在手机允许调试并解锁。无线调试的配对端口与连接端口不同；二维码配对成功后仍需连接设备公布的连接端口。标准流程见 [Android 官方 ADB 文档](https://developer.android.com/tools/adb#wireless-android11-command-line)。
 
 ```powershell
-python tools/build.py
 python tools/build_acceptance.py
-python tools/device_check.py
+# DEVICE_IP:CONNECT_PORT 由手机无线调试页面提供，不是配对端口。
+python tools/device_check.py --serial DEVICE_IP:CONNECT_PORT --install --run --program-api --minutes 1
+# 锁屏检查后手动解锁，再录制页面；不再主动锁屏。
+python tools/device_check.py --serial DEVICE_IP:CONNECT_PORT --run --program-api --minutes 0 --capture-media
 ```
 
-第一个 APK 为正常应用。build/device-tests/LMA-acceptance.apk 是独立验收工具，使用同一份本地签名，用户日常使用不需要安装它。签名私钥不会包含在交付源码 ZIP 内；从源码重新构建时，应保留原项目的 signing/ 才能覆盖升级现有安装。
+不要传 `--model`；该历史选项会下载和运行完整模型，不属于本轮程序验证。`--program-api` 只适用于没有已安装模型的验收设备，发现已有模型时保留文件并停止该专项。普通安装使用 `-r`，不清除应用数据。录屏前必须解锁；系统锁屏密码由用户本人输入。
 
-未发现已授权真机时，预检记录 awaiting_physical_device 并以 2 退出，不会启动模拟器。
+## 4. 页面与录屏
 
-## 基础 Android 检查
+[真机截图](media/device/v0.3.7/01-recommended.png) · [实际录屏 MP4](media/device/v0.3.7/physical-walkthrough.mp4) · [录屏 GIF](media/device/v0.3.7/physical-walkthrough.gif) · [媒体身份](media/device/v0.3.7/manifest.json)
 
-手机连接并授权 USB 调试后，先解锁屏幕，停止当前对话，再运行：
+媒体来自实际手机屏幕；仅保留 LMA 页面，不包含个人桌面、锁屏密码或其他应用。与 `docs/media/development/` 中带 **UI FIXTURE** 标记的桌面页面演示分别保存。录制展示操作，不表示生成速度或模型输出。
 
-```powershell
-python tools/device_check.py --install --run
-```
+## 5. 保留的未测边界
 
-它保留应用数据并覆盖安装当前 APK，安装验收 APK，在 Android 上实际执行离线 WebView / JavaScript 桥接、目录加载、原生可执行文件权限、SQLite 中断恢复和前台服务设置命令。Android 13+ 的测试会通过已授权 ADB 授予本应用通知权限。
-
-SQLite 测试创建并清理自己的临时会话，恢复此前所选会话。instrumentation 会重启目标应用，因此不要在正在下载或生成重要内容时运行。
-
-## 完整模型与锁屏请求
-
-```powershell
-python tools/device_check.py --install --run --model m01 --minutes 15
-```
-
-此命令会在手机实际下载约 398 MB 的 Dolphin Qwen 0.5B（已有文件则复用并重新计算 SHA256），加载 APK 自带 ARM 原生引擎，通过应用真实 ChatRunner 生成并持久化回复。测试对话会留在应用中，已下载模型保留。
-
-instrumentation 结束后，工具重新正常打开 LMA，等待模型和 API 恢复，通过临时 ADB 端口转发测试接口与错误密钥拒绝；随后退到桌面、关闭屏幕，从主机持续发出真实流式请求。此阶段没有附着 instrumentation，避免测试进程的优先级影响后台存活结论。每轮请求都要求真实输出、正常结束，并检查屏幕仍处于关闭状态。
-
-该阶段验证的是屏幕关闭时的 FGS / API 运行。USB 供电和 ADB 已连接会影响系统电源策略，不能等同脱线、电池供电和厂商极限省电环境。它也不验证密码锁的交互。可使用已授权无线 ADB 进一步比较；工具不自行开启无线调试。
-
---model m06 可选择 LFM 1.2B，--model m08 可选择 Qwen 1.7B。--minutes 60 为一小时，最大允许 1440；最后一条请求可能使实际时长超出目标。--minutes 0 跳过屏幕关闭持续请求，不会把耐久验证标记为通过。多设备时使用 --serial 已授权设备序列号。
-
-API 密钥只经受信任的测试进程传到主机内存，不输出到控制台，不写入验收报告。临时端口转发会在结束时移除。测试结束后模型服务继续按用户设置提供接口；可从 LMA 通知或界面停止。
-
-## 结果与待补充场景
-
-结果写入 build/device-tests/device-results.json。基础测试、真实推理和后台时长分别记录；不会用编译通过代替实测通过。
-
-仍需手动或另行扩展验证实际 WLAN 的另一台客户端、SAF 文件提供器、通知停止与唤醒锁、下载网络切换、重启恢复及各模型的完整兼容性。长时间运行应记录供电、散热、系统电池策略、模型 SHA256、线程、上下文、温度与失败率。
+| 编号 | 尚无结论 | 处理方式 |
+| --- | --- | --- |
+| U01 | 生文 / 生图 / 生视频 / 生音频 / 3D 的完整训练模型输出、质量、tokens/s、峰值 RAM 和温度 | 按用户要求不做完整模型运行，不阻塞程序补丁发行 |
+| U02 | 长时间锁屏推理、厂商省电、重启与异常强停后的完整模型恢复 | 本轮只记录 60 秒程序接口存活；不承诺长期持续 token |
+| U03 | X30、努比亚 Z20、其他 Android / SoC 的真机表现 | 本机记录仅适用于上述实际设备 |
+| U04 | 任意 HF 架构、全部上游 CUDA 工作流及大型公开完整 3D 导出包 | 保留 62 配方 / 82 包 / 18 扩展引擎加文本的有界支持范围与来源限制 |

@@ -66,6 +66,34 @@ public final class DeviceAcceptance extends Instrumentation {
         } finally { app.chats.removeSession(session); if (prior.isEmpty()) app.prefs.edit().remove("session").apply(); else app.chats.select(prior); }
         pass("Android SQLite persistence and interrupted chat history");
     }
+    private void capture(String name) throws Exception {
+        if (!options.getString("media", "").equals("true")) return;
+        Thread.sleep(700);
+        android.graphics.Bitmap image = getUiAutomation().takeScreenshot();
+        require(image != null, "Physical screen capture unavailable");
+        File directory = new File(getTargetContext().getExternalFilesDir(null), "acceptance-media");
+        require(directory.isDirectory() || directory.mkdirs(), "Cannot create acceptance media directory");
+        try (FileOutputStream output = new FileOutputStream(new File(directory, name + ".png"))) {
+            require(image.compress(android.graphics.Bitmap.CompressFormat.PNG, 100, output), "Physical screenshot failed");
+        } finally { image.recycle(); }
+    }
+    private void navigation() throws Exception {
+        String order = js("JSON.stringify(Array.from(document.querySelectorAll('#page-models .model-card[data-model]')).map(function(x){return x.dataset.model;}))");
+        require(new JSONArray(new JSONTokener(order).nextValue().toString()).toString().equals("[\"m08\",\"m06\",\"m01\"]"), "Recommended model order changed: " + order);
+        pass("Recommended models preserve m08 / m06 / m01 order"); capture("01-recommended");
+        js("document.querySelector('[data-filter=all]').click();var s=document.getElementById('catalogueSource');s.value='registered';s.dispatchEvent(new Event('change',{bubbles:true}));");
+        waitFor(() -> "true".equals(js("document.querySelectorAll('#page-models .model-card').length>3")), 15000, "all registered model cards");
+        pass("All registered models render on physical WebView"); capture("02-all");
+        js("document.querySelector('[data-filter=local]').click()");
+        waitFor(() -> "true".equals(js("document.querySelector('[data-filter=local]').getAttribute('aria-pressed')==='true'")), 5000, "local models filter");
+        pass("Local model management filter responds"); capture("03-local");
+        for (String page : new String[]{"chat", "tasks", "server", "settings"}) {
+            js("document.querySelector('.bottom-nav [data-tab=" + page + "]').click()");
+            waitFor(() -> "true".equals(js("!document.getElementById('page-" + page + "').hidden")), 5000, "navigation " + page);
+            pass("Physical navigation: " + page); capture("04-" + page);
+        }
+        js("document.querySelector('.bottom-nav [data-tab=models]').click();document.querySelector('[data-filter=recommended]').click()");
+    }
     private void model(String id, JSONObject result) throws Exception {
         JSONObject model = app.store.model(id); long started = System.currentTimeMillis();
         if (!app.store.modelFile(id).isFile()) {
@@ -104,7 +132,12 @@ public final class DeviceAcceptance extends Instrumentation {
             Activity activity = startActivitySync(new Intent(getTargetContext(), MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
             runOnMainSync(() -> web = findWeb(activity.getWindow().getDecorView()));
             require(web != null, "Main Activity has no WebView");
-            waitFor(() -> "true".equals(js("Boolean(window.LMA&&window.Android&&document.querySelectorAll('.model-card').length)")), 30000, "offline UI and native bridge");
+            waitFor(() -> "true".equals(js("Boolean(window.LMA&&window.Android)")), 15000, "offline scripts and native bridge");
+            JSONObject initialState = app.snapshot();
+            require(initialState.has("engine") && initialState.has("device"), "Native UI state is incomplete");
+            require(initialState.getJSONArray("bundles").length() >= 82 && initialState.getJSONObject("device").getLong("totalMemory") > 0, "Full catalogue or physical memory missing from native state");
+            pass("Complete zero-model catalogue and physical device state");
+            waitFor(() -> "true".equals(js("Boolean(document.querySelectorAll('.model-card').length)")), 30000, "offline model catalogue");
             require(app.snapshot().getJSONArray("models").length() >= 14, "Curated models missing"); pass("Installed Android UI and native JavaScript bridge");
             File binary = new File(app.getApplicationInfo().nativeLibraryDir, "libllama-server.so");
             require(binary.isFile() && binary.canExecute(), "Installed native executable unavailable"); pass("Extracted native executable permissions");
@@ -112,11 +145,35 @@ public final class DeviceAcceptance extends Instrumentation {
             String system = app.settings().getString("systemPrompt");
             command("saveSettings", new JSONObject().put("settings", new JSONObject().put("source", app.settings().getString("source"))));
             require(system.equals(app.settings().getString("systemPrompt")), "Partial settings update lost the system prompt"); pass("Real foreground service command acknowledgement");
+            navigation();
+            if (options.getString("programApi", "").equals("true")) {
+                command("startApi", new JSONObject());
+                require(app.apiHost != null && app.apiHost.ready(), "Foreground API did not start");
+                result.put("apiKey", app.prefs.getString("apiKey", "")).put("port", app.prefs.getInt("port", 8080));
+                pass("Zero-model foreground API listener starts without downloading weights");
+            }
             String selected = options.getString("model", ""); if (!selected.isEmpty()) model(selected, result);
             result.put("status", "passed").put("checks", checks).put("physicalDevice", true).put("backgroundEnduranceTested", false);
             code = Activity.RESULT_OK;
         } catch (Throwable error) {
-            try { result.put("status", "failed").put("checks", checks).put("error", String.valueOf(error)); } catch (JSONException ignored) {}
+            try {
+                result.put("status", "failed").put("checks", checks).put("error", String.valueOf(error));
+                if (app != null) {
+                    JSONObject snapshot = app.snapshot();
+                    result.put("snapshotKeys", snapshot.names()).put("snapshotModelCount", snapshot.optJSONArray("models") == null ? -1 : snapshot.getJSONArray("models").length());
+                    java.lang.reflect.Field field = LmaApp.class.getDeclaredField("logs");
+                    field.setAccessible(true);
+                    JSONArray tail = new JSONArray();
+                    synchronized (app) {
+                        JSONArray logs = (JSONArray) field.get(app);
+                        for (int i = Math.max(0, logs.length() - 5); i < logs.length(); i++) tail.put(logs.getJSONObject(i).optString("text"));
+                    }
+                    result.put("nativeLogTail", tail);
+                }
+                if (web != null) result.put("uiDiagnostics", js("(function(){return {ready:document.readyState,bridge:typeof window.Android,lma:typeof window.LMA,cards:document.querySelectorAll('.model-card').length,runtimeDetail:document.getElementById('runtimeDetail')&&document.getElementById('runtimeDetail').textContent};})()"));
+            } catch (Exception diagnosticError) {
+                try { result.put("diagnosticError", String.valueOf(diagnosticError)); } catch (JSONException ignored) {}
+            }
         } finally {
             output.putString("lma_result", result.toString()); finish(code, output);
         }

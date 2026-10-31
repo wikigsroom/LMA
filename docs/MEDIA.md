@@ -1,5 +1,7 @@
 # 截图与演示 / Screenshots and demonstrations
 
+**v0.3.7 / code57:** [真机零模型启动修复与 19 项程序检查](DEVICE_ACCEPTANCE.md) / [Physical program acceptance](DEVICE_ACCEPTANCE.en.md). Includes short screen-off API health and separate real phone media; no complete model or endurance claim.
+
 ## 当前 v0.3.6 / Current capture set
 
 九组生产页面重新录制：**52 张截图、9 GIF、9 MP4**。包含原社区、工作台、语音 / 3D、四视图、RF、Spatial，以及 Paint、UltraTex 和完整适配选择。No weights downloaded, no trained-model inference, no Android-device recording. 每组均明确 UI FIXTURE，使用生产资源和模拟桥；browser pages/contexts and local services close in `finally`。清单绑定当前页面源码和媒体哈希。

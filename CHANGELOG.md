@@ -1,5 +1,14 @@
 # Changelog / 更新记录
 
+## 0.3.7 — 真机启动与目录修复 / Physical startup and catalogue fix
+
+- 隔离未准备 LTX 的表单 / 准备状态错误；零模型安装仍返回完整模型、引擎及设备状态。Isolate per-entry metadata errors without weakening execution validation.
+- 修复验收 APK 的资源表压缩及中文路径媒体导出。Fix Android 12 instrumentation installation and Unicode-path media export.
+- motorola edge plus / Android 12 实测 19 项程序检查；约 60 秒锁屏、7 次接口健康检查；仪器测试结束后由普通前台服务运行。No trained models, inference or endurance claims.
+- 独立保存真机截图、录屏 / GIF、失败历史与精确 APK / 源码证据；更新双语文档，保留 C01–C48、H01–H18 和旧发布附件。
+- 保留 62 配方、82 模型包、18 扩展引擎加文本与全部 F01–F12 / 01–14、16、17 / P01–P06；原签名升级，模型仍由用户选择。
+- [Release notes](docs/releases/v0.3.7.md) · [真机记录](docs/DEVICE_ACCEPTANCE.md) / [English](docs/DEVICE_ACCEPTANCE.en.md).
+
 ## 0.3.6 — 本地多模态与完整 3D 适配 / Local multimodal and 3D adapters
 
 - P01–P06 完整程序集成：UltraTex FLUX.1 / FLUX.2、UniForge、SAM / MV-SAM＋DA3、SUPRA，独立导出 / 配方 / 参数 / 表单 / 工作器 / GLB。Complete bounded CPU adapters, not every publisher CUDA workflow.

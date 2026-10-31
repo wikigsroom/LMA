@@ -14,7 +14,7 @@ import sys
 import time
 import urllib.error
 import urllib.request
-from evidence import current
+from evidence import current, fingerprint
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "build/device-tests"
@@ -26,18 +26,24 @@ def main():
     parser.add_argument("--run", action="store_true", help="Install acceptance APK and exercise Android UI/SQLite/service")
     parser.add_argument("--install", action="store_true", help="Install/upgrade the main APK, retaining application data")
     parser.add_argument("--model", choices=["m01", "m08", "m06"], help="Actually download, hash, load and infer with this model")
+    parser.add_argument("--program-api", action="store_true", help="Test zero-model API auth and short screen-off service survival; no inference")
+    parser.add_argument("--capture-media", action="store_true", help="Capture actual Android pages and a bounded screen recording")
     parser.add_argument("--minutes", type=int, default=15, help="Screen-off endurance after instrumentation exits; 0 skips")
     args = parser.parse_args()
+    if args.program_api and (not args.run or args.model): parser.error("--program-api requires --run and excludes --model")
+    if args.capture_media and not args.run: parser.error("--capture-media requires --run")
     if args.model and not args.run: parser.error("--model requires --run")
     if not 0 <= args.minutes <= 1440: parser.error("--minutes must be 0..1440")
     sdk = Path(os.environ.get("ANDROID_SDK_ROOT", str(Path(os.environ["LOCALAPPDATA"]) / "Android/Sdk")))
     adb = str(sdk / "platform-tools/adb.exe")
     OUT.mkdir(parents=True, exist_ok=True)
     report = {"checked_at": datetime.now(timezone.utc).isoformat(), "physical_device_tests": 0, "phone_inference_tested": False, "background_endurance_tested": False, "emulator_used": False}
+    report["input_fingerprint"] = fingerprint("tools/device_check.py", "tools/build_acceptance.py", "tests/android", "app/src/main/AndroidManifest.xml", "app/src/main/java/com/lma/app/LmaApp.java")
     key, forwarding, serial = "", "", ""
+    recording = None
     def save(): (OUT / "device-results.json").write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     def command(*values, timeout=30):
-        r = subprocess.run([adb] + (["-s", serial] if serial else []) + list(values), capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=timeout)
+        r = subprocess.run([adb] + (["-s", serial] if serial else []) + list(values), cwd=ROOT, capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=timeout)
         if r.returncode: raise RuntimeError("ADB command failed: " + (r.stderr or r.stdout)[:1000])
         return r.stdout.strip()
     try:
@@ -65,6 +71,10 @@ def main():
         if api >= 33: command("shell", "pm", "grant", "com.lma.app", "android.permission.POST_NOTIFICATIONS")
         instrument = ["shell", "am", "instrument", "-w"]
         if args.model: instrument += ["-e", "model", args.model]
+        if args.program_api: instrument += ["-e", "programApi", "true"]
+        if args.capture_media:
+            instrument += ["-e", "media", "true"]
+            recording = subprocess.Popen([adb, "-s", serial, "shell", "screenrecord", "--time-limit", "45", "/sdcard/Download/LMA-acceptance.mp4"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
         raw = command(*(instrument + ["com.lma.app.acceptance/com.lma.app.DeviceAcceptance"]), timeout=2800)
         match = re.search(r"INSTRUMENTATION_RESULT: lma_result=(\{[^\r\n]+\})", raw)
         if not match: raise RuntimeError("Instrumentation did not return structured results")
@@ -73,6 +83,81 @@ def main():
         if result.get("status") != "passed": raise RuntimeError(result.get("error", "Android acceptance failed"))
         report["physical_device_tests"] = len(result["checks"])
         report["phone_inference_tested"] = bool(args.model)
+        if args.program_api:
+            command("shell", "am", "start", "-n", "com.lma.app/.MainActivity")
+            forwarding = command("forward", "tcp:0", "tcp:" + str(result["port"]))
+            origin = "http://127.0.0.1:" + forwarding
+            external = []
+            def program_request(path, data=None, api_key=None, expected=200, headers=None):
+                values = {"Authorization": "Bearer " + (key if api_key is None else api_key)}
+                values.update(headers or {})
+                if data is not None: values["Content-Type"] = "application/json"
+                payload = None if data is None else json.dumps(data).encode()
+                req = urllib.request.Request(origin + path, data=payload, headers=values)
+                try:
+                    with urllib.request.urlopen(req, timeout=12) as response:
+                        status, body = response.status, json.load(response)
+                except urllib.error.HTTPError as error:
+                    status, body = error.code, json.load(error)
+                if status != expected: raise RuntimeError("Program API unexpected status: " + path + " " + str(status))
+                return body
+            deadline = time.monotonic() + 30
+            while True:
+                try:
+                    health = program_request("/health")
+                    assert health["foundationReady"] and health["execution"] == "same_android_phone"
+                    break
+                except (OSError, urllib.error.URLError):
+                    if time.monotonic() >= deadline: raise
+                    time.sleep(1)
+            external.append("API recovers after instrumentation detaches")
+            program_request("/v1/models", api_key="incorrect", expected=401)
+            program_request("/v1/models", headers={"Origin": "https://example.invalid"}, expected=403)
+            external.append("Bearer key and browser-origin rejection on real phone")
+            models_before = program_request("/v1/models")["data"]
+            require_empty = not models_before
+            if not require_empty: raise RuntimeError("Zero-model acceptance requires no installed models; existing assets are preserved")
+            engines = program_request("/v1/engines")["data"]
+            if len(engines) < 18: raise RuntimeError("Extension engine registry incomplete")
+            external.append("Zero installed models and complete extension engine registry")
+            for path in ("/v1/jobs", "/v1/artifacts", "/v1/drafts", "/v1/uploads"):
+                if not isinstance(program_request(path)["data"], list): raise RuntimeError("Invalid data list: " + path)
+            external.append("Jobs, artifacts, drafts and upload read APIs")
+            program_request("/v1/chat/completions", {"model":"m01", "messages":[{"role":"user", "content":"program preflight only"}], "max_tokens":1}, expected=409)
+            if program_request("/v1/models")["data"] != models_before: raise RuntimeError("Program check changed model assets")
+            external.append("Missing text weights rejected without automatic download")
+            if args.minutes:
+                command("shell", "input", "keyevent", "3"); command("shell", "input", "keyevent", "223")
+                def screen_off():
+                    return bool(re.search(r"mWakefulness=(?:Asleep|Dozing)|Display Power: state=OFF", command("shell", "dumpsys", "power")))
+                if not screen_off(): raise RuntimeError("Could not confirm screen-off state")
+                started = time.monotonic(); samples = []
+                while True:
+                    if not screen_off(): raise RuntimeError("Phone woke during program background check")
+                    program_request("/health")
+                    service = command("shell", "dumpsys", "activity", "services", "com.lma.app")
+                    if "isForeground=true" not in service: raise RuntimeError("Foreground service disappeared")
+                    samples.append(round(time.monotonic() - started, 3))
+                    remaining = args.minutes * 60 - (time.monotonic() - started)
+                    if remaining <= 0: break
+                    time.sleep(min(10, remaining))
+                report["background_program_tested"] = True
+                report["screen_off_program_seconds"] = round(time.monotonic() - started, 3)
+                report["screen_off_health_samples_seconds"] = samples
+                external.append("Screen-off authenticated health and foreground service survival (program only)")
+                command("shell", "input", "keyevent", "224")
+                command("shell", "am", "start", "-n", "com.lma.app/.MainActivity")
+            report["external_program_checks"] = external
+            report["external_api_auth_tested"] = True
+            report["physical_device_tests"] += len(external)
+        if args.capture_media:
+            if recording is not None:
+                recording.wait(timeout=55)
+            media = OUT / "physical-media"; media.mkdir(exist_ok=True)
+            command("pull", "/sdcard/Android/data/com.lma.app/files/acceptance-media/.", media.relative_to(ROOT).as_posix(), timeout=40)
+            command("pull", "/sdcard/Download/LMA-acceptance.mp4", (media / "physical-walkthrough.mp4").relative_to(ROOT).as_posix(), timeout=40)
+            command("shell", "rm", "-f", "/sdcard/Download/LMA-acceptance.mp4")
+            report["actual_android_media"] = [str(p.relative_to(ROOT)).replace("\\", "/") for p in sorted(media.iterdir()) if p.is_file()]
         # The app runs normally after this launch; no attached instrumentation can
         # keep its process alive during the following background survival test.
         if args.model:
@@ -123,6 +208,7 @@ def main():
                     samples.append({"first_delta_seconds": first, "seconds": time.monotonic() - at, "characters": chars})
                     print(json.dumps({"completed_screen_off_requests": len(samples), "elapsed_seconds": round(time.monotonic() - started)}), flush=True)
                 report["background_endurance_tested"] = True; report["background_elapsed_seconds"] = time.monotonic() - started; report["screen_off_requests"] = samples
+        current(report["input_fingerprint"])
         report["status"] = "passed"; save(); print(json.dumps({k: v for k, v in report.items() if k != "screen_off_requests"}, ensure_ascii=True)); return 0
     except Exception as error:
         message = str(error).replace(key, "[hidden]") if key else str(error)

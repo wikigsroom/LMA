@@ -1,5 +1,5 @@
 {
-  "version": "0.3.6",
+  "version": "0.3.7",
   "kind": "current production UI with an explicit simulated bridge",
   "android_device": false,
   "model_inference": false,
@@ -80,8 +80,8 @@
     },
     {
       "file": "04-3d-queue.png",
-      "bytes": 49769,
-      "sha256": "2fbf511748c081808650ea49e6669435f959d6aef16757586805018d47bc7c0f"
+      "bytes": 49941,
+      "sha256": "790b2c251e64e9cb6468862f9d8aa97d8bc05da6cb6efe9f8dc80be28d3036a1"
     },
     {
       "file": "05-glb-preview.png",
@@ -90,13 +90,13 @@
     },
     {
       "file": "expansion-ui.gif",
-      "bytes": 792742,
-      "sha256": "63e24e96c42320f2025828d0710a22144d57cd0b5dab65079612d0490f588bc1"
+      "bytes": 618918,
+      "sha256": "d17ad65563578e9d322eea3437c267da1b20e2e361dbe3c0e5acfe718db53ea3"
     },
     {
       "file": "expansion-ui.mp4",
-      "bytes": 367556,
-      "sha256": "83e7578e65858b69a456fd16487a761043ce0022cd67afa320c4c0e277baf0de"
+      "bytes": 286213,
+      "sha256": "9ad95f4014a4b38819d0c4539efac09858c30e9487292b49cc8552b06ce01261"
     }
   ],
   "input_fingerprint": {

@@ -32,7 +32,10 @@ def main():
         for file in sorted((OUT / "classes").rglob("*.class")): archive.write(file, file.relative_to(OUT / "classes").as_posix())
     run("DEX physical-device instrumentation", [java, "-cp", sdk_tools / "lib/d8.jar", "com.android.tools.r8.D8", "--release", "--min-api", "28", "--lib", android, "--classpath", ROOT / "build/classes.jar", "--output", OUT / "dex", OUT / "classes.jar"])
     with zipfile.ZipFile(OUT / "resources.apk") as resources, zipfile.ZipFile(OUT / "unsigned.apk", "w", zipfile.ZIP_DEFLATED) as apk:
-        for item in resources.infolist(): apk.writestr(item.filename, resources.read(item))
+        for item in resources.infolist():
+            # Android 11+ rejects compressed resource tables for targetSdk >= 30.
+            compression = zipfile.ZIP_STORED if item.filename == "resources.arsc" else item.compress_type
+            apk.writestr(item.filename, resources.read(item), compress_type=compression)
         apk.write(OUT / "dex/classes.dex", "classes.dex")
     run("Align physical-device instrumentation", [sdk_tools / "zipalign.exe", "-f", "4", OUT / "unsigned.apk", OUT / "aligned.apk"])
     env = os.environ.copy(); env["LMA_SIGNING_PASSWORD"] = (ROOT / "signing/local-key-password.txt").read_text(encoding="utf-8").strip()

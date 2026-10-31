@@ -1,5 +1,7 @@
 # LMA user guide
 
+**v0.3.7 / code57:** [真机零模型启动修复与 19 项程序检查](DEVICE_ACCEPTANCE.md) / [Physical program acceptance](DEVICE_ACCEPTANCE.en.md). Includes short screen-off API health and separate real phone media; no complete model or endurance claim.
+
 > Current v0.3.5: [Hunyuan shape and UltraShape refinement](SPATIAL_SHAPE.en.md), [full numbered implementation and pending ports](IMPLEMENTATION_V035.en.md). Five CPU sparse operators do not complete SAM/UniForge/SUPRA; Paint remains missing. All prior routes remain. Versioned notes below are historical, not the current support matrix.
 
 > Current v0.3.3: [four calibrated views, verified MV imports, per-model settings, API and explicit diagnostics](MULTIVIEW_DIAGNOSTICS.en.md). All earlier capabilities remain. The historical checkpoint notes below keep their original scope. [Current implementation](IMPLEMENTATION_V033.en.md) / [program-only policy](PROGRAM_VALIDATION.en.md).

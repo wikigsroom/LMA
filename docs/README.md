@@ -1,16 +1,18 @@
 # LMA 文档 / Documentation
 
-**当前版本 v0.3.6 / Current release.** 完成 P01–P06 的有界 CPU 程序适配：UltraTex、UniForge、SAM / MV-SAM＋DA3、SUPRA、抠图 / VLM / 点云 / 原始提取与可选材质链。62 recipes / 82 bundles / 18 extension engines plus text。只更新基座，资产仍由用户选择；没有完整模型或手机效果验收。
+**v0.3.7 / code57:** [真机零模型启动修复与 19 项程序检查](DEVICE_ACCEPTANCE.md) / [Physical program acceptance](DEVICE_ACCEPTANCE.en.md). Includes short screen-off API health and separate real phone media; no complete model or endurance claim.
+
+**当前版本 v0.3.7 / Current release.** 完成 P01–P06 的有界 CPU 程序适配：UltraTex、UniForge、SAM / MV-SAM＋DA3、SUPRA、抠图 / VLM / 点云 / 原始提取与可选材质链。62 recipes / 82 bundles / 18 extension engines plus text。只更新基座，资产仍由用户选择；没有完整模型或手机效果验收。
 
 - [本版完整方案 / Full adapter profiles](ADAPTER_PROFILES.md) · [English](ADAPTER_PROFILES.en.md)：输入、离线转换、独立参数、同机可选阶段、相机 / 点云示例、CPU / 许可边界。
 - [编号收口 / Numbered completion](REMAINING_ADAPTATION.md) · [English](REMAINING_ADAPTATION.en.md)：P01–P06 已实现；公开整包端点未核实、完整模型和手机实测按要求不执行。
-- [当前程序证据 / Current evidence](../verification/releases/v0.3.6/status.json) · [v0.3.6 Release notes](releases/v0.3.6.md) · [依赖条款 / Component terms](../THIRD_PARTY_NOTICES.md)。
+- [当前程序证据 / Current evidence](../verification/releases/v0.3.7/status.json) · [v0.3.7 Release notes](releases/v0.3.7.md) · [依赖条款 / Component terms](../THIRD_PARTY_NOTICES.md)。
 - [F5 官方兼容前端](F5_FRONTEND.md) / [English](F5_FRONTEND.en.md)、[本机 Paint / PBR](LOCAL_MATERIALS.md) / [English](LOCAL_MATERIALS.en.md)、[UltraTex 网络工具详解](ULTRATEX_FLOW.md) / [English](ULTRATEX_FLOW.en.md)。
 
 - [Hunyuan3D 形状 / UltraShape 精修](SPATIAL_SHAPE.md) · [English](SPATIAL_SHAPE.en.md)：用户自选导出 / 导入，PNG＋可选粗 GLB，8 / 10 个独立参数，任务与 sparse CPU 基座。
 - [v0.3.5 全部已实现 / 待完成](IMPLEMENTATION_V035.md) · [English](IMPLEMENTATION_V035.en.md)：原冻结范围保留，六项测评配置仍缺完整代码；不把共用算子当作整个模型。
 
-历史版本 **v0.3.5**：原冻结范围的程序集成记录，保留原身份。Historical frozen-scope evidence; current v0.3.6 records are linked above. [中文 README](../README.md) · [English README](../README.en.md) · [Release notes](releases/v0.3.5.md)
+历史版本 **v0.3.5**：原冻结范围的程序集成记录，保留原身份。Historical frozen-scope evidence; current v0.3.7 records are linked above. [中文 README](../README.md) · [English README](../README.en.md) · [Release notes](releases/v0.3.5.md)
 
 - [社区生图 / 生视频与 NSFW 标记](COMMUNITY_MODELS.md) · [English](COMMUNITY_MODELS.en.md)：44 个新增版本、来源 / 许可 / 兼容边界、操作及截图。
 - README 已恢复详细正文：[48 个使用场景](../README.md#use-cases)、[4 组 API 示例](../README.md#api-examples)、[18 组案例与失败](../README.md#case-studies)、[当前及历史测试覆盖](../README.md#verification)；[English scenarios](../README.en.md#use-cases) / [cases](../README.en.md#case-studies)。[本次完整性修复 / Repair notes](releases/v0.3.1-readme.md)。
@@ -63,4 +65,4 @@
 
 - [RF 形状与部件几何](RF_SHAPE.md) · [English](RF_SHAPE.en.md)：三个自选导出配方、全部本机 CPU、完整导入 / 参数 / 任务 / GLB 流程、161 项专项、5 张新截图与 GIF / MP4；D04、D05、D07 Paint、D08–D10 仍待完整适配；D06 精修和 D07 形状见上方 Spatial 指南。
 
-完整配方与 59 组程序检查：[中文矩阵](IMPLEMENTATION_V036.md) / [English inventory](IMPLEMENTATION_V036.en.md)。原 [v0.3.5 矩阵](IMPLEMENTATION_V035.md) 保留历史范围。
+完整配方与 59 组程序检查：[中文矩阵](IMPLEMENTATION_V037.md) / [English inventory](IMPLEMENTATION_V037.en.md)。原 [v0.3.5 矩阵](IMPLEMENTATION_V035.md) 保留历史范围。
