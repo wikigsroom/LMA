@@ -1,0 +1,20 @@
+{
+  "schema": "lma.vision-source/1",
+  "repository": "xuebinqin/DIS",
+  "revision": "b6764e20381f6f42a70f83fa3324181529ed1403",
+  "directory": "build/vision-source-review/DIS",
+  "files": {
+    "IS-Net/models/isnet.py": {
+      "bytes": 17840,
+      "sha256": "83505426387792a3cb9357254a5e21547cd074710d120485960aa8cc9d0b39bb"
+    },
+    "IS-Net/Inference.py": {
+      "bytes": 2244,
+      "sha256": "e4d4c3b7e43f8a43fd5bcdff0ed59e5f8ebc458ebc60f22c3a64a7573fdbae82"
+    },
+    "LICENSE.md": {
+      "bytes": 11357,
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+    }
+  }
+}

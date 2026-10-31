@@ -1,0 +1,26 @@
+{
+  "schema": "lma.code-notices/1",
+  "sources": [
+    {
+      "repository": "microsoft/MoGe",
+      "revision": "74fbce054ebed49800de42d0ad0e83495065719a",
+      "path": "LICENSE",
+      "file": "third_party/notices/expansion-spatial-MoGe-LICENSE.txt",
+      "sha256": "ad7d951c80c5fc2b2bce035f2041bc0a0dbf9028c8ecc4c9a8e1fba8130b6b59"
+    },
+    {
+      "repository": "ByteDance-Seed/Depth-Anything-3",
+      "revision": "3d835ec1a5802d64a8b8b15f817a1ab54809bfe4",
+      "path": "LICENSE",
+      "file": "third_party/notices/expansion-spatial-DA3-LICENSE.txt",
+      "sha256": "78446e29c48900cda82620a8df183cca61f0a595e05a49d0401a5fd604dd1870"
+    },
+    {
+      "repository": "huggingface/pytorch-image-models",
+      "revision": "78c3724f4545c0067d0b4d2f7df6337196be01ce",
+      "path": "LICENSE",
+      "file": "third_party/notices/expansion-spatial-timm-LICENSE.txt",
+      "sha256": "71b111620fa32c17a80ccd6db2da759d31a591e497d8b5f382174f59d1b59d49"
+    }
+  ]
+}

@@ -251,3 +251,28 @@ Use the installed export's actual bundle ID and an authenticated imported PNG ar
 ```
 
 `parts:2` applies to PartCrafter; use 1 for TripoSG. Effective parameters still follow the installed model schema. 参数、清单、来源、执行观察和 GLB metadata 沿用共用记录；没有新增云端或 OpenAI 3D API 兼容声明。
+
+
+## v0.3.6：同机准备、点云和新 3D 适配
+
+[完整模型 / 组件 / 输入与上限](ADAPTER_PROFILES.md)。接口继续使用 `POST /v1/jobs`，不新增远程推理后端。使用 `/v1/models` 中实际已安装的包 ID；素材先由 App 或既有上传接口导入，再引用 artifact ID，不能传任意文件系统路径。
+
+下面是已经安装 PartCrafter 及三个可选辅助模型后的请求结构。ID 均为占位符，用户须明确替换和选择；`allowUnmeasured` 是显式尝试未测配方的决定。辅助模型默认 `none`，省略即不使用。
+
+```json
+{
+  "bundleId":"INSTALLED_PARTCRAFTER_ID",
+  "type":"mesh.generate",
+  "input":{"prompt":"Generate local 3D geometry from the selected image.","artifacts":[{"role":"reference_image","artifactId":"IMPORTED_PNG_ID"}]},
+  "parameters":{"foregroundModel":"INSTALLED_DIS_ID","partModel":"INSTALLED_VLM_ID","materialModel":"INSTALLED_PAINT_ID"},
+  "allowUnmeasured":true
+}
+```
+
+点云配方使用 `point_cloud` 角色和 `lma.pointcloud/1` JSON；请求 prompt 为 `Reconstruct local 3D geometry from the selected point cloud.`。如果同时选后续材质模型，还须选 `reference_image`。`posterior` 是 `mean|sample`；`extraction` 是 `uniform|publisher_octree|publisher_flash`；`denseDepth` 不高于 `octreeDepth`。
+
+SUPRA 使用 `reference_image`、`source_mesh`、`camera` 三个角色；相机为 `lma.camera/1`。UniForge 与 MV-SAM 使用 `reference_front` / `reference_right` / `reference_back` / `reference_left`。相机 / 点云导入后 MIME 为 `application/vnd.lma.data+json`，原始任意 JSON 不作为有效素材；角色检查继续核对具体 schema。标准 prompt 与参数边界由实际模型输入规格决定，App 表单会自动填写固定 prompt。
+
+独立 DIS 和 VLM 分别提交 `image.generate` / `text.generate`，均使用 `reference_image` 与固定 prompt `Prepare the selected local image.`。VLM 要求匹配 GGUF / mmproj，结果是 `application/vnd.lma.text+json` 的标准文本 envelope，其 `content` 为 `{"parts":[{"name":"..."}]}`。任务端点不转换成聊天 messages 接口。
+
+可选阶段顺序为前景 → 部件数 → 主几何 → 材质，阶段不跨设备。每阶段租约 / 哈希 / 生效参数写入执行来源，辅助设置在实际阶段读取。取消或任何阶段失败不提交最终半成品，选定辅助模型已被删除时预检明确报错；不会默默忽略或下载替代模型。最终 GLB 仍通过既有鉴权结果接口读取。

@@ -116,7 +116,7 @@ class Flux2Flow(nn.Module):
     whose reference attention and modulation differ from UltraTex training.
     """
     names = ['latents', 'latent_ids', 'normals', 'normal_ids', 'reference', 'reference_ids',
-             'text', 'text_ids', 'timestep', 'target_mask', 'normal_mask']
+             'text', 'text_ids', 'timestep', 'target_mask', 'normal_mask', 'reference_mask']
 
     def __init__(self, model):
         super().__init__()
@@ -124,11 +124,12 @@ class Flux2Flow(nn.Module):
         self.names = self.names + (['guidance'] if model.use_guidance_embed else [])
 
     def forward(self, latents, latent_ids, normals, normal_ids, reference, reference_ids,
-                text, text_ids, timestep, target_mask, normal_mask, guidance=None):
+                text, text_ids, timestep, target_mask, normal_mask, reference_mask, guidance=None):
         ti = target_mask.nonzero().reshape(-1)
         ni = normal_mask.nonzero().reshape(-1)
-        values = torch.cat((latents[:, ti], normals[:, ni], reference), dim=1)
-        ids = torch.cat((latent_ids[:, ti], normal_ids[:, ni], reference_ids), dim=1)
+        ri = reference_mask.nonzero().reshape(-1)
+        values = torch.cat((latents[:, ti], normals[:, ni], reference[:, ri]), dim=1)
+        ids = torch.cat((latent_ids[:, ti], normal_ids[:, ni], reference_ids[:, ri]), dim=1)
         prediction = self.model(values, ids, timestep, text, text_ids, guidance)
         return prediction[:, :ti.shape[0]], ti
 
@@ -145,6 +146,7 @@ def example(family, cfg, target=29, normals=29, reference=7, text=11, batch=1):
     else:
         args += [torch.full((batch,), .8)]
     args += [(torch.arange(target) % 3 != 0).to(torch.int64), (torch.arange(normals) % 4 != 0).to(torch.int64)]
+    if family == 'flux2': args += [torch.ones(reference, dtype=torch.int64)]
     if family == 'flux2' and cfg.get('use_guidance_embed', True):
         args += [torch.full((batch,), 4.)]
     return tuple(args)
@@ -152,10 +154,11 @@ def example(family, cfg, target=29, normals=29, reference=7, text=11, batch=1):
 
 def axes(names):
     result = {n: {0: 'batch', 1: 'target' if n in ('latents', 'latent_ids') else 'normals' if n in ('normals', 'normal_ids') else 'reference' if n in ('reference', 'reference_ids') else 'text'}
-              for n in names if n not in ('timestep', 'guidance', 'pooled_text', 'target_mask', 'normal_mask')}
+              for n in names if n not in ('timestep', 'guidance', 'pooled_text', 'target_mask', 'normal_mask', 'reference_mask')}
     for n in names:
         if n in ('timestep', 'guidance', 'pooled_text'): result[n] = {0: 'batch'}
     result.update(target_mask={0: 'target'}, normal_mask={0: 'normals'}, velocity={0: 'batch', 1: 'active'}, target_indices={0: 'active'})
+    if 'reference_mask' in names: result['reference_mask'] = {0: 'reference'}
     return result
 
 

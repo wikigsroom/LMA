@@ -116,6 +116,63 @@ class PackedAttention(torch.autograd.Function):
         return out
 
 
+class WindowAttention(torch.autograd.Function):
+    @staticmethod
+    def forward(ctx,q,k,v,coords,policy):
+        assert policy.shape==(6,) and torch.all(policy[:3]>0)
+        windows=torch.div(coords[:,1:]+policy[3:],policy[:3],rounding_mode='floor')
+        keys=torch.cat((coords[:,:1],windows),1)
+        result=torch.empty((q.shape[0],q.shape[1],v.shape[2]),dtype=q.dtype)
+        for group in torch.unique(keys,dim=0):
+            rows=torch.nonzero((keys==group).all(1),as_tuple=True)[0]
+            value=nn.functional.scaled_dot_product_attention(q[rows].transpose(0,1),k[rows].transpose(0,1),v[rows].transpose(0,1))
+            result[rows]=value.transpose(0,1)
+        return result
+
+    @staticmethod
+    def symbolic(g,q,k,v,coords,policy):
+        out=g.op('lma.spatial::WindowAttention',q,k,v,coords,policy)
+        return out.setType(q.type().with_sizes([q.type().varyingSizes()[0],q.type().varyingSizes()[1],v.type().varyingSizes()[2]]))
+
+
+class ExactJoin(torch.autograd.Function):
+    @staticmethod
+    def forward(ctx, full, observed):
+        rows = {tuple(c): i for i, c in enumerate(full.tolist())}
+        assert len(rows) == len(full), 'Duplicate complete coordinates'
+        selected = [tuple(c) for c in observed.tolist()]
+        assert len(set(selected)) == len(selected), 'Duplicate observation coordinates'
+        assert all(c in rows for c in selected), 'Observed coordinates must be an exact subset'
+        return torch.tensor([rows[c] for c in selected], dtype=torch.int64)
+
+    @staticmethod
+    def symbolic(g, full, observed):
+        out = g.op('lma.spatial::ExactCoordinateJoin', full, observed)
+        dtype = torch._C.TensorType.create_from_tensor(torch.empty(0, dtype=torch.int64))
+        return out.setType(dtype.with_sizes([observed.type().varyingSizes()[0]]))
+
+
+class RoutedViewAttention(torch.autograd.Function):
+    @staticmethod
+    def forward(ctx,q,k,v,selected):
+        assert q.ndim==3 and k.ndim==4 and v.ndim==4 and selected.shape==(q.shape[0],)
+        assert k.shape[:3]==v.shape[:3] and q.shape[1:]==k.shape[2:]
+        assert torch.all((selected>=0)&(selected<k.shape[0]))
+        # Reference per-query selection is deliberately independent of the
+        # grouped, stable CPU implementation used by the signed native op.
+        results=[]
+        for i,view in enumerate(selected.tolist()):
+            value=nn.functional.scaled_dot_product_attention(q[i:i+1].transpose(0,1),
+                 k[view].transpose(0,1),v[view].transpose(0,1))
+            results.append(value.transpose(0,1))
+        return torch.cat(results) if results else q.new_empty((0,q.shape[1],v.shape[-1]))
+
+    @staticmethod
+    def symbolic(g,q,k,v,selected):
+        out=g.op('lma.spatial::RoutedViewAttention',q,k,v,selected)
+        return out.setType(q.type().with_sizes([q.type().varyingSizes()[0],q.type().varyingSizes()[1],v.type().varyingSizes()[3]]))
+
+
 # Keep the dispatcher library alive. Opaque dispatcher calls avoid tracing a
 # particular coordinate map into the ONNX graph before symbolic replacement.
 _library = torch.library.Library('lma_sparse_export', 'DEF')
@@ -125,6 +182,9 @@ _signatures = {
     'subdivide': ('(Tensor features, Tensor coords, Tensor mask, Tensor order) -> (Tensor, Tensor, Tensor, Tensor)', Subdivide),
     'spatial_to_channel': ('(Tensor features, Tensor coords, Tensor factor) -> (Tensor, Tensor, Tensor, Tensor)', SpatialToChannel),
     'attention': ('(Tensor q, Tensor k, Tensor v, Tensor q_lengths, Tensor k_lengths) -> Tensor', PackedAttention),
+    'join': ('(Tensor full, Tensor observed) -> Tensor', ExactJoin),
+    'routed': ('(Tensor q, Tensor k, Tensor v, Tensor selected) -> Tensor', RoutedViewAttention),
+    'window_attention': ('(Tensor q, Tensor k, Tensor v, Tensor coords, Tensor policy) -> Tensor', WindowAttention),
 }
 for _name, (_signature, _operation) in _signatures.items():
     _library.define(_name + _signature)

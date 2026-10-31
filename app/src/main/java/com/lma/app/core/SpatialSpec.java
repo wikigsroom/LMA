@@ -17,8 +17,12 @@ public final class SpatialSpec {
     public static Map<String,String> layout() {
         Map<String,String> result=new LinkedHashMap<>(RfShapeSpec.layout());result.put("config","spatial-config.json");return Collections.unmodifiableMap(result);
     }
-    public static Map<String,String> layout(String pipeline) {return MaterialSpec.matches(pipeline)?MaterialSpec.layout():layout();}
+    public static Map<String,String> layout(String pipeline) throws IOException {if(SamSpec.matches(pipeline))return SamSpec.layout(pipeline);if(SupraSpec.matches(pipeline))return SupraSpec.layout();if(UniForgeSpec.matches(pipeline))return UniForgeSpec.layout();if(UltraTexSpec.matches(pipeline))return UltraTexSpec.layout(pipeline);return MaterialSpec.matches(pipeline)?MaterialSpec.layout():layout();}
     public static void validate(ModelBundle b,String type)throws Exception {
+        if(SamSpec.matches(b.pipeline)){SamSpec.validate(b,type);return;}
+        if(SupraSpec.matches(b.pipeline)){SupraSpec.validate(b,type);return;}
+        if(UniForgeSpec.matches(b.pipeline)){UniForgeSpec.validate(b,type);return;}
+        if(UltraTexSpec.matches(b.pipeline)){UltraTexSpec.validate(b,type);return;}
         if(MaterialSpec.matches(b.pipeline)){MaterialSpec.validate(b,type);return;}
         boolean u=ultra(b.pipeline);
         if(!b.engine.equals("spatial_ort")||!b.backend.equals("cpu")||!b.architecture.equals(u?"ultrashape_1":"hunyuan3d_21")||!type.equals("mesh.generate")||!b.tasks.equals(Collections.singleton("3d")))throw new IOException("需要匹配的本地 Spatial CPU 配方");
@@ -36,6 +40,10 @@ public final class SpatialSpec {
     }
     public static JSONObject schema(String pipeline)throws Exception {return schema(pipeline,null);}
     public static JSONObject schema(String pipeline,JSONObject config)throws Exception {
+        if(SamSpec.matches(pipeline))return SamSpec.schema(pipeline,config);
+        if(SupraSpec.matches(pipeline))return SupraSpec.schema(config);
+        if(UniForgeSpec.matches(pipeline))return UniForgeSpec.schema(config);
+        if(UltraTexSpec.matches(pipeline))return UltraTexSpec.schema(pipeline,config);
         if(MaterialSpec.matches(pipeline))return MaterialSpec.schema(config);
         boolean u=ultra(pipeline);int max=32768;
         if(config!=null){checkConfig(pipeline,config);max=Math.min(config.getInt("maxTokens"),(32000000/config.getInt("decoderWidth")/512)*512);}
@@ -55,6 +63,10 @@ public final class SpatialSpec {
         if(!(raw instanceof Number)||!Double.isFinite(value)||value!=n||n<lo||n>hi)throw new IOException("Spatial 导出尺寸无效："+key);return n;
     }
     public static void checkConfig(String pipeline,JSONObject c)throws Exception {
+        if(SamSpec.matches(pipeline)){SamSpec.checkConfig(pipeline,c);return;}
+        if(SupraSpec.matches(pipeline)){SupraSpec.checkConfig(c);return;}
+        if(UniForgeSpec.matches(pipeline)){UniForgeSpec.checkConfig(c);return;}
+        if(UltraTexSpec.matches(pipeline)){UltraTexSpec.checkConfig(pipeline,c);return;}
         if(MaterialSpec.matches(pipeline)){MaterialSpec.checkConfig(c);return;}
         boolean u=ultra(pipeline);JSONObject source=c.getJSONObject("source");
         if(!c.getString("schema").equals("lma.spatial-shape-export/1")||!c.getString("pipeline").equals(pipeline)||!c.getString("dtype").equals("float32")||c.getInt("opset")!=17||
@@ -75,6 +87,10 @@ public final class SpatialSpec {
         JSONObject m=GlbFile.inspect(file);if(m.getLong("triangles")<1||m.getLong("triangles")>1000000||m.getLong("vertices")>3000000)throw new IOException("粗网格超过一百万三角面或三百万顶点");
     }
     public static InputSpec inputs(String pipeline)throws Exception {
+        if(SamSpec.matches(pipeline))return SamSpec.inputs(pipeline);
+        if(SupraSpec.matches(pipeline))return SupraSpec.inputs();
+        if(UniForgeSpec.matches(pipeline))return UniForgeSpec.inputs();
+        if(UltraTexSpec.matches(pipeline))return UltraTexSpec.inputs();
         if(MaterialSpec.matches(pipeline))return MaterialSpec.inputs();
         boolean u=ultra(pipeline);JSONObject roles=new JSONObject().put("reference_image",new JSONObject().put("label","已去背景 / 白底物体 PNG").put("required",true)
             .put("mimes",new JSONArray().put("image/png")).put("maxBytes",16*1024*1024).put("maxPixels",4194304));

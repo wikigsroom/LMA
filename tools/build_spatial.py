@@ -11,7 +11,7 @@ from verify_package import elf_info,SYSTEM_LIBS
 ROOT=Path(__file__).resolve().parents[1]
 
 def source_inputs():
-    return fingerprint('native/spatial','native/rf_shape','tests/expansion-native/spatial.cpp','tests/expansion-native/sparse_graph.cpp','tests/expansion-native/material.cpp','native/worker_common.hpp','native/runtime_metrics.hpp','native/moss_nano/onnx_external.hpp','research/soulx_ort/android_log.cpp','tools/build_spatial.py','tools/spatial_reference.py','third_party/spatial-shape-source-lock.json','third_party/expansion-source-lock.json','third_party/soulx-acoustic-source-lock.json','build/native-src/onnxruntime-headers/include/onnxruntime/core/session','build/native-src/pixal3d-mv-cpp/thirdparty/stb/stb_image.h','build/native-src/pixal3d-mv-cpp/thirdparty/stb/stb_image_write.h','build/native-src/trellis-cpp/thirdparty/xatlas')
+    return fingerprint('native/spatial','native/rf_shape','third_party/moss-nano-source-lock.json','tools/sana_sprint_profile.py','build/native-src/sd-cpp/src/tokenizers','build/native-src/sd-cpp/src/core/regex.cpp','build/native-src/sd-cpp/src/core/regex.h','build/native-src/sd-cpp/thirdparty/oniguruma','build/native-src/sd-cpp/thirdparty/utf8proc','tests/expansion-native/spatial.cpp','tests/expansion-native/sparse_graph.cpp','tests/expansion-native/material.cpp','tests/expansion-native/text_tokens.cpp','tests/expansion-native/ultratex.cpp','tests/expansion-native/cascade.cpp','native/worker_common.hpp','native/runtime_metrics.hpp','native/moss_nano/onnx_external.hpp','research/soulx_ort/android_log.cpp','tools/build_spatial.py','tools/spatial_reference.py','third_party/spatial-shape-source-lock.json','third_party/expansion-source-lock.json','third_party/soulx-acoustic-source-lock.json','build/native-src/onnxruntime-headers/include/onnxruntime/core/session','build/native-src/pixal3d-mv-cpp/thirdparty/stb/stb_image.h','build/native-src/pixal3d-mv-cpp/thirdparty/stb/stb_image_write.h','build/native-src/trellis-cpp/thirdparty/xatlas')
 
 
 def build(android=False):
@@ -23,8 +23,13 @@ def build(android=False):
         if hashlib.sha256((ROOT/'build/native-src/onnxruntime-headers'/relative).read_bytes()).hexdigest()!=digest:raise RuntimeError('Changed pinned ORT source: '+relative)
     from fetch_expansion_sources import verify as verify_expansion
     verify_expansion()
+    from sana_sprint_profile import sources as sentencepiece_sources
+    sentencepiece_sources()
+    from prepare_fdg_cpu import prepare as prepare_fdg
+    prepare_fdg()
     inputs=source_inputs();name='spatial-worker-arm64' if android else 'spatial-worker-host';out=ROOT/'build'/name;out.mkdir(exist_ok=True);(out/'receipt.json').unlink(missing_ok=True)
     if android:(ROOT/'build/spatial-build-info.json').unlink(missing_ok=True)
+    inputs.update(fingerprint('tools/prepare_fdg_cpu.py','build/fdg-cpu-source','build/native-src/eigen-fdg/Eigen'))
     ort=ROOT/'app/src/main/jniLibs/arm64-v8a/libonnxruntime.so';runtime=acoustic['android_runtime'];deps=[]
     if android:
         for item in [dict(name=runtime['file'],size=runtime['bytes'],sha256=runtime['sha256'])]:
@@ -41,11 +46,13 @@ def build(android=False):
     try:
         alias=drive+'/';tool=alias+'build/toolchain/';cmake=tool+'cmake-3.31.6/bin/cmake.exe';directory=alias+'build/'+name
         options=dict(CMAKE_MAKE_PROGRAM=tool+'cmake-3.31.6/bin/ninja.exe',CMAKE_BUILD_TYPE='Release',LMA_JSON_SOURCE=alias+'build/native-src/sd-cpp/thirdparty',LMA_STB_SOURCE=alias+'build/native-src/pixal3d-mv-cpp/thirdparty/stb',LMA_ORT_HEADERS=alias+'build/native-src/onnxruntime-headers/include/onnxruntime/core/session')
+        options.update(LMA_SENTENCEPIECE_SOURCE=alias+'build/native-src/sentencepiece',LMA_TOKENIZER_SOURCE=alias+'build/native-src/sd-cpp')
         options['LMA_XATLAS_SOURCE']=alias+'build/native-src/trellis-cpp/thirdparty/xatlas'
+        options.update(LMA_FDG_SOURCE=alias+'build/fdg-cpu-source',LMA_EIGEN_SOURCE=alias+'build/native-src/eigen-fdg')
         if android:options.update(CMAKE_TOOLCHAIN_FILE=tool+'android-ndk-r30/build/cmake/android.toolchain.cmake',ANDROID_ABI='arm64-v8a',ANDROID_PLATFORM='android-28',ANDROID_STL='c++_static',LMA_ORT_LIBRARY=alias+'app/src/main/jniLibs/arm64-v8a/libonnxruntime.so')
         else:options.update(LMA_ORT_LIBRARY=directory+'/bin/onnxruntime.dll',LMA_ORT_IMPORT_LIBRARY=directory+'/onnxruntime.lib')
         commands=[[cmake,'--fresh','-S',alias+'native/spatial','-B',directory,'-G','Ninja']+['-D'+k+'='+v for k,v in options.items()],
-                  [cmake,'--build',directory,'--target','lma_spatial']+([] if android else ['lma_spatial_contract','lma_sparse_graph','lma_material_contract'])+['-j','4']]
+                  [cmake,'--build',directory,'--target','lma_spatial']+([] if android else ['lma_spatial_contract','lma_sparse_graph','lma_material_contract','lma_text_contract','lma_ultratex_contract','lma_cascade_contract'])+['-j','4']]
         if android:commands.append([tool+'android-ndk-r30/toolchains/llvm/prebuilt/windows-x86_64/bin/llvm-strip.exe','--strip-unneeded',directory+'/liblma-spatial.so'])
         for i,command in enumerate(commands):
             if android:result=subprocess.run(command,capture_output=True,timeout=900)
@@ -58,7 +65,7 @@ def build(android=False):
     finally:subprocess.run(['subst',drive,'/D'],check=True,capture_output=True)
     binary=out/('liblma-spatial.so' if android else 'bin/lma_spatial.exe');data=binary.read_bytes()
     receipt=dict(schema='lma.native-build/1',engine='spatial_ort',file='liblma-spatial.so',source_revision='82920d643c0dc2f7bfd7255f45f62d386edfe60c',source_revisions={e['id']:e['revision'] for e in verify()['sources']},backend='cpu',bytes=len(data),sha256=hashlib.sha256(data).hexdigest(),source_inputs=inputs,model_inference_tested=False,physical_device_tests=0,virtualization_used=False,
-        pipelines={'hunyuan3d_21_shape':{'requiredComponents':5},'ultrashape_1_refine':{'requiredComponents':5},'hunyuan3d_21_paint':{'requiredComponents':7}})
+        pipelines={'hunyuan3d_21_shape':{'requiredComponents':5},'ultrashape_1_refine':{'requiredComponents':5},'hunyuan3d_21_paint':{'requiredComponents':7},'ultratex_flux1':{'requiredComponents':10},'ultratex_flux2':{'requiredComponents':8},'uniforge3d':{'requiredComponents':15},'supratex':{'requiredComponents':11},'sam3d_objects':{'requiredComponents':8},'mv_sam3d_da3':{'requiredComponents':9}})
     if android:
         info=elf_info(data)
         if not info['16k_elf_aligned'] or info['android_api_notes']!=[28] or info['interpreter']!='/system/bin/linker64' or not info['entry_point'] or set(info['needed'])-SYSTEM_LIBS-{d['file'] for d in deps}:raise RuntimeError('Spatial shape ELF/dependency/API contract failed')

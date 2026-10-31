@@ -1,0 +1,1011 @@
+{
+  "passed": 106,
+  "checks": [
+    {
+      "case": "publisher_atlas_order"
+    },
+    {
+      "case": "publisher_chw_to_btd"
+    },
+    {
+      "case": "atlas_roundtrip"
+    },
+    {
+      "case": "distinct_height_width_position_offsets"
+    },
+    {
+      "case": "publisher_shifted_euler_(32, 1)"
+    },
+    {
+      "case": "publisher_shifted_euler_(32, 7)"
+    },
+    {
+      "case": "publisher_shifted_euler_(32, 25)"
+    },
+    {
+      "case": "publisher_shifted_euler_(128, 1)"
+    },
+    {
+      "case": "publisher_shifted_euler_(128, 7)"
+    },
+    {
+      "case": "publisher_shifted_euler_(128, 25)"
+    },
+    {
+      "case": "publisher_shifted_euler_(512, 1)"
+    },
+    {
+      "case": "publisher_shifted_euler_(512, 7)"
+    },
+    {
+      "case": "publisher_shifted_euler_(512, 25)"
+    },
+    {
+      "case": "pil_bilinear_aa_default_anchor_(2, 'empty')"
+    },
+    {
+      "case": "pil_bilinear_aa_default_anchor_(2, 'one_pixel')"
+    },
+    {
+      "case": "pil_bilinear_aa_default_anchor_(2, 'random')"
+    },
+    {
+      "case": "pil_bilinear_aa_default_anchor_(4, 'empty')"
+    },
+    {
+      "case": "pil_bilinear_aa_default_anchor_(4, 'one_pixel')"
+    },
+    {
+      "case": "pil_bilinear_aa_default_anchor_(4, 'random')"
+    },
+    {
+      "case": "pil_bilinear_aa_default_anchor_(8, 'empty')"
+    },
+    {
+      "case": "pil_bilinear_aa_default_anchor_(8, 'one_pixel')"
+    },
+    {
+      "case": "pil_bilinear_aa_default_anchor_(8, 'random')"
+    },
+    {
+      "case": "sentencepiece_''",
+      "got": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "expected": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "case": "sentencepiece_'blue object'",
+      "got": [
+        3,
+        10,
+        13,
+        7,
+        4,
+        3,
+        8,
+        10,
+        18,
+        4,
+        6,
+        5,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "expected": [
+        3,
+        10,
+        13,
+        7,
+        4,
+        3,
+        8,
+        10,
+        18,
+        4,
+        6,
+        5,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "case": "sentencepiece_'你好 世界'",
+      "got": [
+        3,
+        27,
+        29,
+        3,
+        26,
+        32,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "expected": [
+        3,
+        27,
+        29,
+        3,
+        26,
+        32,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "case": "sentencepiece_'  a\\nred\\tobject  '",
+      "got": [
+        3,
+        9,
+        2,
+        15,
+        20,
+        2,
+        8,
+        10,
+        18,
+        4,
+        6,
+        5,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "expected": [
+        3,
+        9,
+        2,
+        15,
+        20,
+        2,
+        8,
+        10,
+        18,
+        4,
+        6,
+        5,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "case": "sentencepiece_'<extra_id_0> blue <extra_id_99>'",
+      "got": [
+        133,
+        3,
+        10,
+        13,
+        7,
+        4,
+        34,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "expected": [
+        133,
+        3,
+        10,
+        13,
+        7,
+        4,
+        34,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "case": "sentencepiece_'a <extra_id_1>texture'",
+      "got": [
+        3,
+        9,
+        132,
+        3,
+        14,
+        25,
+        5,
+        7,
+        15,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "expected": [
+        3,
+        9,
+        132,
+        3,
+        14,
+        25,
+        5,
+        7,
+        15,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "case": "sentencepiece_'<extra_id_bad> blue <extra_id_2>'",
+      "got": [
+        3,
+        2,
+        4,
+        25,
+        5,
+        16,
+        9,
+        2,
+        12,
+        20,
+        2,
+        10,
+        9,
+        20,
+        2,
+        3,
+        10,
+        13,
+        7,
+        4,
+        131,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "expected": [
+        3,
+        2,
+        4,
+        25,
+        5,
+        16,
+        9,
+        2,
+        12,
+        20,
+        2,
+        10,
+        9,
+        20,
+        2,
+        3,
+        10,
+        13,
+        7,
+        4,
+        131,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "case": "sentencepiece_'<extra_id_01> <extra_id_3>'",
+      "got": [
+        3,
+        2,
+        4,
+        25,
+        5,
+        16,
+        9,
+        2,
+        12,
+        20,
+        2,
+        130,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "expected": [
+        3,
+        2,
+        4,
+        25,
+        5,
+        16,
+        9,
+        2,
+        12,
+        20,
+        2,
+        130,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "case": "sentencepiece_'blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue blue '",
+      "got": [
+        3,
+        10,
+        13,
+        7,
+        4,
+        3,
+        10,
+        13,
+        7,
+        4,
+        3,
+        10,
+        13,
+        7,
+        4,
+        3,
+        10,
+        13,
+        7,
+        4,
+        3,
+        10,
+        13,
+        7,
+        4,
+        3,
+        10,
+        13,
+        7,
+        4,
+        3,
+        1
+      ],
+      "expected": [
+        3,
+        10,
+        13,
+        7,
+        4,
+        3,
+        10,
+        13,
+        7,
+        4,
+        3,
+        10,
+        13,
+        7,
+        4,
+        3,
+        10,
+        13,
+        7,
+        4,
+        3,
+        10,
+        13,
+        7,
+        4,
+        3,
+        10,
+        13,
+        7,
+        4,
+        3,
+        1
+      ]
+    },
+    {
+      "case": "bpe_False_0"
+    },
+    {
+      "case": "bpe_False_11"
+    },
+    {
+      "case": "bpe_False_7"
+    },
+    {
+      "case": "bpe_False_900"
+    },
+    {
+      "case": "bpe_True_0"
+    },
+    {
+      "case": "bpe_True_11"
+    },
+    {
+      "case": "bpe_True_7"
+    },
+    {
+      "case": "bpe_True_900"
+    },
+    {
+      "case": "missing_model"
+    },
+    {
+      "case": "oversize_length"
+    },
+    {
+      "case": "vocab_mismatch"
+    },
+    {
+      "case": "flux1_vae_encoder",
+      "maximumError": 5.364418029785156e-07
+    },
+    {
+      "case": "flux1_albedo_decoder",
+      "maximumError": 3.516674041748047e-06
+    },
+    {
+      "case": "flux1_mr_decoder",
+      "maximumError": 3.516674041748047e-06
+    },
+    {
+      "case": "flux1_clip",
+      "maximumError": 1.1920928955078125e-07
+    },
+    {
+      "case": "flux1_text",
+      "maximumError": 9.879469871520996e-06
+    },
+    {
+      "case": "flux1_component_config"
+    },
+    {
+      "case": "flux1_component_tokenizer"
+    },
+    {
+      "case": "flux1_component_clip_tokenizer"
+    },
+    {
+      "case": "flux1_component_clip"
+    },
+    {
+      "case": "flux1_component_clip_data"
+    },
+    {
+      "case": "flux1_component_text"
+    },
+    {
+      "case": "flux1_component_text_data"
+    },
+    {
+      "case": "flux1_component_vae_encoder"
+    },
+    {
+      "case": "flux1_component_vae_encoder_data"
+    },
+    {
+      "case": "flux1_component_albedo_flow"
+    },
+    {
+      "case": "flux1_component_albedo_flow_data"
+    },
+    {
+      "case": "flux1_component_mr_flow"
+    },
+    {
+      "case": "flux1_component_mr_flow_data"
+    },
+    {
+      "case": "flux1_component_albedo_decoder"
+    },
+    {
+      "case": "flux1_component_albedo_decoder_data"
+    },
+    {
+      "case": "flux1_component_mr_decoder"
+    },
+    {
+      "case": "flux1_component_mr_decoder_data"
+    },
+    {
+      "case": "flux1_production_worker_True"
+    },
+    {
+      "case": "flux1_material_stages_True"
+    },
+    {
+      "case": "flux1_missing_decoder"
+    },
+    {
+      "case": "flux1_unknown_field"
+    },
+    {
+      "case": "flux1_missing_mesh"
+    },
+    {
+      "case": "flux1_actual_cli",
+      "tail": "g: Iterating over a tensor might cause the trace to be incorrect. Passing a tensor of different shape won't change the number of iterations executed (and might lead to errors or silently give incorrect results).\n  img_q, img_k, img_v = rearrange(img_qkv, \"B L (K H D) -> K B H L D\", K=3, H=attn.num_heads, D=attn.head_dim)\nE:\\dev\\sandbox\\无审查小模型\\app\\android\\build\\spatial-source-review\\repos\\D04\\ultratex\\backbones\\flux1\\modules\\layers.py:259: TracerWarning: Iterating over a tensor might cause the trace to be incorrect. Passing a tensor of different shape won't change the number of iterations executed (and might lead to errors or silently give incorrect results).\n  txt_q, txt_k, txt_v = rearrange(txt_qkv, \"B L (K H D) -> K B H L D\", K=3, H=attn.num_heads, D=attn.head_dim)\nE:\\dev\\sandbox\\无审查小模型\\app\\android\\build\\spatial-source-review\\repos\\D04\\ultratex\\backbones\\flux1\\modules\\layers.py:370: TracerWarning: Iterating over a tensor might cause the trace to be incorrect. Passing a tensor of different shape won't change the number of iterations executed (and might lead to errors or silently give incorrect results).\n  q, k, v = rearrange(qkv, \"B L (K H D) -> K B H L D\", K=3, H=attn.num_heads)\n"
+    },
+    {
+      "case": "flux1_actual_cli_production_worker"
+    },
+    {
+      "case": "flux1_cli_preserves_existing"
+    },
+    {
+      "case": "flux2_publisher_bn",
+      "maximumError": 1.1920928955078125e-07
+    },
+    {
+      "case": "flux2_vae_encoder",
+      "maximumError": 1.7285346984863281e-06
+    },
+    {
+      "case": "flux2_albedo_decoder",
+      "maximumError": 5.7220458984375e-06
+    },
+    {
+      "case": "flux2_mr_decoder",
+      "maximumError": 5.7220458984375e-06
+    },
+    {
+      "case": "qwen_publisher_mask_1"
+    },
+    {
+      "case": "qwen_publisher_mask_37"
+    },
+    {
+      "case": "qwen_publisher_mask_511"
+    },
+    {
+      "case": "qwen_publisher_mask_512"
+    },
+    {
+      "case": "flux2_text",
+      "maximumError": 7.152557373046875e-07
+    },
+    {
+      "case": "flux2_component_config"
+    },
+    {
+      "case": "flux2_component_tokenizer"
+    },
+    {
+      "case": "flux2_component_text"
+    },
+    {
+      "case": "flux2_component_text_data"
+    },
+    {
+      "case": "flux2_component_vae_encoder"
+    },
+    {
+      "case": "flux2_component_vae_encoder_data"
+    },
+    {
+      "case": "flux2_component_albedo_flow"
+    },
+    {
+      "case": "flux2_component_albedo_flow_data"
+    },
+    {
+      "case": "flux2_component_mr_flow"
+    },
+    {
+      "case": "flux2_component_mr_flow_data"
+    },
+    {
+      "case": "flux2_component_albedo_decoder"
+    },
+    {
+      "case": "flux2_component_albedo_decoder_data"
+    },
+    {
+      "case": "flux2_component_mr_decoder"
+    },
+    {
+      "case": "flux2_component_mr_decoder_data"
+    },
+    {
+      "case": "flux2_production_worker_True"
+    },
+    {
+      "case": "flux2_material_stages_True"
+    },
+    {
+      "case": "flux2_production_worker_False"
+    },
+    {
+      "case": "flux2_material_stages_False"
+    },
+    {
+      "case": "flux2_missing_decoder"
+    },
+    {
+      "case": "flux2_unknown_field"
+    },
+    {
+      "case": "flux2_missing_mesh"
+    },
+    {
+      "case": "flux2_actual_cli",
+      "tail": "\\ultratex\\backbones\\flux2\\model.py:652: TracerWarning: Iterating over a tensor might cause the trace to be incorrect. Passing a tensor of different shape won't change the number of iterations executed (and might lead to errors or silently give incorrect results).\n  img_q, img_k, img_v = rearrange(img_qkv, \"B L (K H D) -> K B H L D\", K=3, H=self.num_heads)\nE:\\dev\\sandbox\\无审查小模型\\app\\android\\build\\spatial-source-review\\repos\\D04\\ultratex\\backbones\\flux2\\model.py:660: TracerWarning: Iterating over a tensor might cause the trace to be incorrect. Passing a tensor of different shape won't change the number of iterations executed (and might lead to errors or silently give incorrect results).\n  txt_q, txt_k, txt_v = rearrange(txt_qkv, \"B L (K H D) -> K B H L D\", K=3, H=self.num_heads)\nE:\\dev\\sandbox\\无审查小模型\\app\\android\\build\\spatial-source-review\\repos\\D04\\ultratex\\backbones\\flux2\\model.py:547: TracerWarning: Iterating over a tensor might cause the trace to be incorrect. Passing a tensor of different shape won't change the number of iterations executed (and might lead to errors or silently give incorrect results).\n  q, k, v = rearrange(qkv, \"B L (K H D) -> K B H L D\", K=3, H=self.num_heads)\n"
+    },
+    {
+      "case": "flux2_actual_cli_production_worker"
+    },
+    {
+      "case": "flux2_cli_preserves_existing"
+    },
+    {
+      "case": "flux2_guidance_embedding_with_cfg"
+    }
+  ],
+  "input_fingerprint": {
+    "native/rf_shape/CMakeLists.txt": "7e1ad9fc7d22955215891267bf392920a2cc9eed1322f763c2835e9fd28c460b",
+    "native/rf_shape/geometry.hpp": "95cbdc3dcf71629dfd685ee7efcad354e66b07c6dc786ebe8451ac8c2b950192",
+    "native/rf_shape/image.hpp": "89261f9cd2f0a1adb2ec0fc42f9da951e4898349b8f54ee4daa31415e49d6e78",
+    "native/rf_shape/math.hpp": "2f345d08ae7abe58bf8d8b567325b425f9c5d21383e75ce60b13dd5573790c0d",
+    "native/rf_shape/ort.hpp": "2b6e5722b757a027213482bfc1289348fd9454e8e00d49cdb0d47d87896fac71",
+    "native/rf_shape/pointcloud.hpp": "6085dab45d0fd3156af785c835cdd3b4d393b9f3c7feb32c99e49401ed531070",
+    "native/rf_shape/surface.hpp": "031bba1c99ed950df3023c7dffa76fe60ef587048582f5219bd03f85cde058a5",
+    "native/rf_shape/worker.cpp": "bb941f96f2892c9272627d7fa28abcb9f1128e66c16050c10d7a972b6c7357b7",
+    "native/spatial/block_attention.hpp": "9d87fc393f51104f11f291dda84763744249aedaf1f57feab72d94c161b9503d",
+    "native/spatial/cascade.hpp": "3150c9eca11b60ddee68d894d38f4c147d84ae265bce49b29268fab48b135044",
+    "native/spatial/CMakeLists.txt": "ef47a91a5ba9b43032c5025e742731dccd08cd983d469e8771b899cf84eefa82",
+    "native/spatial/depth.hpp": "183de58c48d84e3fc5b2e1df7cc9a4395c27080230f76e0f5c9b70d8f24d0f6d",
+    "native/spatial/fdg.hpp": "675bbc80e7ee247c0202904a1ecac184aca8ab817438f97b7eb39157a6459994",
+    "native/spatial/fdg_mesh.hpp": "467a53e150789440b1793a7b67d1444f8f2bd5ecf5db26e4c159dbdf6ae4ba22",
+    "native/spatial/flexicubes.hpp": "e6d249b12b66f9630a4d5b57cc2d45073f537c6e4bf051f67d5064b44dc261ad",
+    "native/spatial/flexicubes_tables.hpp": "6ef60153625eaf15a10d144fd28fd5d63bb7175ca41561cf0f428857e5405737",
+    "native/spatial/image.hpp": "7f2b70863591a51e9bca407a7ae0677fda0680efa51b9c54e91a5a3c8f073909",
+    "native/spatial/linear_sampler.hpp": "96ff6befbb32480559c038b4fb33308a127fa41088bea73404866d322262166d",
+    "native/spatial/material.hpp": "0e1cb2b5a5c84c2bdef41e69b435e54d5d8218d01d9c25d64c9121fe527158c2",
+    "native/spatial/math.hpp": "abc3c2644fc02f864cec371053b3ad92c42ce89b9215beb86a3f731b861c7f45",
+    "native/spatial/mesh.hpp": "9d6c1af1780abf2ad83cd8d2aaa5e6e5f2f762c132d5006929a097c01fae6eaa",
+    "native/spatial/multiview_image.hpp": "f2f139eae47008bd6bdb881f9385dcb9f75e10a3b046c4a00e73d63a003c19c7",
+    "native/spatial/ort_graph.hpp": "d78b66a3b16ebad13410e045035d58d6dad5eab37346a6a697fdba095a1f8908",
+    "native/spatial/sam.hpp": "8f4363702f66c770547ed0258c63756dfe43e6d3e86d5942e3f157c4043b31c3",
+    "native/spatial/sam_geometry.hpp": "1936bbb2516ef189692cff86afa93f80e3d936c4b7ff0a20fc8fb5af4d0f9b43",
+    "native/spatial/sam_math.hpp": "4ce92644b9e0e56bc223cb5cc1556090007eeb97d48ad7e2299b57c2a0534c22",
+    "native/spatial/sam_pose.hpp": "d0fadb4bd735da8c66463a2b5ce5a53e2caccada9ccecaea4d7f6aaf85bdd775",
+    "native/spatial/sam_sampling.hpp": "4542bfb95f3d61a899937526999a3b692181f36e023513d9a17a7e8cd205c594",
+    "native/spatial/sparse.hpp": "118c821be7601439a166d800729feb9e77320b6ad355808edc1e802d99b07e67",
+    "native/spatial/sparse_ort.hpp": "1c66fc8d049550b753048ea70a22e45c06b0a08cff2869ce16ddf3d3a01eb12b",
+    "native/spatial/supra.hpp": "77e95b01735aa88c9631a248da8d0c401e8b254d8b26da770566f572e59e9b01",
+    "native/spatial/supra_observation.hpp": "4ad48f78450378ae9831bfccb53c784621971b98e9416dbb6450786a3e5b5b53",
+    "native/spatial/surface_sampling.hpp": "0aeb83fc1030f3114784b4dd0dbd7db5c5464ebc6ce5c85c3436bec6080cb709",
+    "native/spatial/text_tokens.hpp": "b74d4eec3f9e2aa2a7a76e8433518a1339345997a65c590aebc2489ef7f609ec",
+    "native/spatial/texture.hpp": "61fe254b9525a030b9d4ced52fd05c4f3b3435612b6c85357771d5ef9b0e2364",
+    "native/spatial/tokenizer_shim/core/util.h": "61d8074c170e601d509e558cb52951c8adfb330dd09c20d61fc4170157d2282c",
+    "native/spatial/typed_graph.hpp": "15cc4fb7fd425bf5cd62f552d9248536cfdf85ba2bd647626052de96370648b8",
+    "native/spatial/ultratex.hpp": "4c05ea59ea91bb5cf8653677c312cf305f6fbdae60b60c8bc65a826b9c7a158e",
+    "native/spatial/uniforge.hpp": "b1c1faac096a13dffd31e8dbf7ca93c055250f5c00280aaa51f4e335e929a22b",
+    "native/spatial/view_router.hpp": "7d13e662826932801c784c534c46998424b2ef3aa1e3b4a3afb89855dbe2500f",
+    "native/spatial/volume_material.hpp": "2bb45cba9b7705850c0e8b52dd2ba1141378d8f28e358ce855f49dc00d1b4080",
+    "native/spatial/worker.cpp": "b75cd1f4059704c82620ddcdfec74d00aa40d8ccc86a4985b6f1ff542339500b",
+    "tests/expansion-native/text_tokens.cpp": "4496eef321d236841ac53aab87267391d4043ca4902401d052ff00b56f322886",
+    "tests/expansion-native/ultratex.cpp": "52a9e0c702ef6bb6bd3ee3b8ea2e17d5ba1b5b7e74b5b9a5684d3c0ba09bf359",
+    "third_party/ultratex-flow-source-lock.json": "ea2b267fab7d2ed1c769bccdbfcad85060d3db0885013fc4741a4fa5d740ebf2",
+    "tools/export_ultratex.py": "9126641f8ab26995dfc62e603e8e018cebcc3247d71b5a4abf36b24775f288f2",
+    "tools/test_ultratex.py": "fa407e8b4958d826d3b0b01cb7fce720131db85c3bd7a0314ff4255e40b7e6c5",
+    "tools/ultratex_attention.py": "e8258a1d88b3da7428a2400f6ace8b1123855fcf07cd2fb10573b7a6cac0c373",
+    "tools/ultratex_catalogue.py": "f4e76b6fecb60f14fbaae121b9d7e2497bd3d76cc38e5e25358724d6a149c4ef",
+    "tools/ultratex_codecs.py": "40c6781ebedd57defbb62daee4465942fa04566a3eeb7db77f0549f6caac7bb5",
+    "tools/ultratex_flows.py": "5d716fe224e38b9e08994ddb48ee3d28d42941c95560dc88a9fc2202ff6f9b6d"
+  },
+  "completeModelsDownloaded": 0,
+  "completeModelsRun": 0,
+  "randomNeuralGraphs": true,
+  "actualNativeWorker": true,
+  "actualExportCli": true,
+  "pipelines": [
+    "ultratex_flux1",
+    "ultratex_flux2"
+  ],
+  "physicalDeviceTests": 0,
+  "virtualizationUsed": false
+}

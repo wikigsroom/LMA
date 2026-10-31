@@ -1,5 +1,7 @@
 # Local RF Shape and part geometry
 
+**v0.3.6 update:** the detailed routes below remain available. Versioned counts, earlier missing-adapter statements and prior evidence describe their original checkpoints; current completion, new optional stages and limits are in [adapter profiles](ADAPTER_PROFILES.en.md) and [numbered completion](REMAINING_ADAPTATION.en.md).
+
 > v0.3.5 retains these three RF routes and adds [Hunyuan/UltraShape](SPATIAL_SHAPE.en.md). Current totals: 50 templates / 82 bundles / 17 extensions plus text. Earlier per-version numbers below describe v0.3.4. See [current work and gaps](IMPLEMENTATION_V035.en.md).
 
 [中文](RF_SHAPE.md) · [v0.3.4](releases/v0.3.4.en.md) · [Complete scope](IMPLEMENTATION_V034.en.md)

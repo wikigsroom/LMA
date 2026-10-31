@@ -12,7 +12,7 @@ public final class MediaInspector implements ArtifactStore.Inspector {
     @Override public JSONObject inspect(File file) throws Exception {
         byte[] header = new byte[16]; int read;
         try (InputStream in = new FileInputStream(file)) { read = in.read(header); }
-        if (file.getName().endsWith(".json")) return com.lma.app.core.TextResult.inspect(file);
+        if (com.lma.app.core.StructuredInput.looksJson(file)) return com.lma.app.core.StructuredInput.inspectDocument(file);
         if (read < 12) throw new IOException("生成文件不完整");
         if (header[0]=='g' && header[1]=='l' && header[2]=='T' && header[3]=='F') return com.lma.app.core.GlbFile.inspect(file);
         if ((header[0] & 255) == 137 && header[1] == 'P' && header[2] == 'N' && header[3] == 'G' || (header[0] & 255) == 255 && (header[1] & 255) == 216) {

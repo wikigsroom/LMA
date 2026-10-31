@@ -9,6 +9,7 @@ import org.json.*;
 public final class RfShapeSpec {
     private RfShapeSpec() {}
     public static final String PROMPT="Generate local 3D geometry from the selected image.";
+    public static Map<String,String> layout(String pipeline) { return PointCloudSpec.matches(pipeline)?PointCloudSpec.layout():layout(); }
     public static Map<String,String> layout() {
         Map<String,String> f=new LinkedHashMap<>();f.put("config","shape-config.json");
         for(String role:new String[]{"image_encoder","flow","cache","query"}) {f.put(role,role+".onnx");f.put(role+"_data",role+".onnx.data");}
@@ -19,6 +20,7 @@ public final class RfShapeSpec {
         return !pipeline.equals("triposg");
     }
     public static void validate(ModelBundle b,String type)throws Exception {
+        if(PointCloudSpec.matches(b.pipeline)){PointCloudSpec.validate(b,type);return;}
         boolean p=parts(b.pipeline);
         if(!b.engine.equals("rf_shape_ort")||!b.backend.equals("cpu")||!b.architecture.equals(p?"partcrafter":"triposg")||!type.equals("mesh.generate")||!b.tasks.equals(Collections.singleton("3d")))
             throw new IOException("需要匹配的 RF Shape CPU 形状配方");
@@ -35,15 +37,16 @@ public final class RfShapeSpec {
         return new JSONObject().put("type",type).put("label",label).put("default",value).put("minimum",min).put("maximum",max).put("limitSource","application_guard");
     }
     public static JSONObject schema(String pipeline)throws Exception {
+        if(PointCloudSpec.matches(pipeline))return PointCloudSpec.schema();
         boolean p=parts(pipeline);
-        return new JSONObject().put("version",1).put("fields",new JSONObject()
+        return SurfaceSpec.extend(new JSONObject().put("version",1).put("fields",new JSONObject()
             .put("threads",f("integer","CPU 线程",2,1,16)).put("steps",f("integer","形状采样步数",30,1,100))
             .put("seed",f("integer","随机种子",1234,0,Integer.MAX_VALUE))
             .put("tokens",f("integer","每部件潜变量 token",pipeline.equals("partcrafter")?1024:2048,512,4096).put("multipleOf",512))
             .put("parts",f("integer","部件数量",p?3:1,1,p?16:1))
             .put("grid",f("integer","SDF 网格单轴格数",64,32,256).put("multipleOf",16))
             .put("queryChunk",f("integer","SDF 分块查询点数",512,128,4096))
-            .put("guidance",f("number","图像引导强度",7,0,15)).put("maxTriangles",f("integer","全部部件三角面保护上限",300000,1000,1000000)));
+            .put("guidance",f("number","图像引导强度",7,0,15)).put("maxTriangles",f("integer","全部部件三角面保护上限",300000,1000,1000000))));
     }
     public static JSONObject parameters(String pipeline,JSONObject requested)throws Exception {return new ParameterSchema(schema(pipeline)).normalize(new JSONObject(),requested);}
     public static void reference(File file)throws Exception {
@@ -54,6 +57,7 @@ public final class RfShapeSpec {
             if(w<1||h<1||w>4194304||h>4194304||w*h>4194304||depth!=8||(color!=2&&color!=6))throw new IOException("需要最多四百万像素的 8-bit RGB / RGBA PNG");
         }
     }
+    public static InputSpec inputs(String pipeline)throws Exception {return PointCloudSpec.matches(pipeline)?PointCloudSpec.inputs():inputs();}
     public static InputSpec inputs()throws Exception {
         return new InputSpec(new JSONObject().put("reference_image",new JSONObject().put("label","已去背景 / 白底物体 PNG").put("required",true)
             .put("mimes",new JSONArray().put("image/png")).put("maxBytes",16*1024*1024).put("maxPixels",4194304)),

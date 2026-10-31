@@ -782,8 +782,8 @@
       "source_revision": "fc5c40990181e2a756c4e0b1c2f4d6b5202faf8c",
       "partcrafter_revision": "3d773bf02fad51c7ab31a5615573fec93b287b30",
       "backend": "cpu",
-      "bytes": 582792,
-      "sha256": "8dc02aec200d4a9c1c94e8bdc6e98b918cf19a4db8eff7ab2581b7880c088f91",
+      "bytes": 703504,
+      "sha256": "3aea62fcbd4006e46cd3153b0c858ec6fb573c59cc49602a38cd525f35c76b0d",
       "model_inference_tested": false,
       "physical_device_tests": 0,
       "virtualization_used": false,
@@ -818,6 +818,10 @@
         "expansion-shape-D11-triposg-models-transformers-triposg_transformer.py-NOTICE.txt",
         "expansion-shape-D12-LICENSE.txt",
         "expansion-shape-D12-src-models-transformers-partcrafter_transformer.py-NOTICE.txt",
+        "expansion-shape-DISO-LICENSE.txt",
+        "expansion-shape-LEWINER-LICENSE.txt",
+        "expansion-shape-LEWINER_CPP-LICENSE.txt",
+        "expansion-shape-surface-ATTRIBUTION.txt",
         "expansion-shape-ORT-LICENSE.txt",
         "expansion-shape-stb-NOTICE.txt"
       ]
@@ -835,8 +839,8 @@
         "D04": "a726678f3f3631fe2c5e3d1fb4597114784c7a8b"
       },
       "backend": "cpu",
-      "bytes": 971760,
-      "sha256": "f0f7d26ec672a4a6847b8a1786d479ec29323b468eadfd6757bd3a0079d1436d",
+      "bytes": 3079744,
+      "sha256": "6d249a82dd8f1f3ad744f2a28ef2cd5497d05670dc8532ac0c0d1e996cbed135",
       "model_inference_tested": false,
       "physical_device_tests": 0,
       "virtualization_used": false,
@@ -849,6 +853,24 @@
         },
         "hunyuan3d_21_paint": {
           "requiredComponents": 7
+        },
+        "ultratex_flux1": {
+          "requiredComponents": 10
+        },
+        "ultratex_flux2": {
+          "requiredComponents": 8
+        },
+        "uniforge3d": {
+          "requiredComponents": 15
+        },
+        "supratex": {
+          "requiredComponents": 11
+        },
+        "sam3d_objects": {
+          "requiredComponents": 8
+        },
+        "mv_sam3d_da3": {
+          "requiredComponents": 9
         }
       },
       "abi": "arm64-v8a",
@@ -911,7 +933,74 @@
         "expansion-spatial-stb-NOTICE.txt",
         "expansion-spatial-stb-write-NOTICE.txt",
         "expansion-spatial-xatlas-NOTICE.txt",
+        "expansion-spatial-sentencepiece-LICENSE.txt",
+        "expansion-spatial-sentencepiece-third_party-protobuf-lite-LICENSE.txt",
+        "expansion-spatial-sentencepiece-third_party-darts_clone-LICENSE.txt",
+        "expansion-spatial-sentencepiece-third_party-esaxx-LICENSE.txt",
+        "expansion-spatial-sentencepiece-third_party-absl-LICENSE.txt",
+        "expansion-spatial-oniguruma-LICENSE.txt",
+        "expansion-spatial-utf8proc-LICENSE.txt",
+        "expansion-spatial-TRELLIS2-FDG-LICENSE.txt",
+        "expansion-spatial-FlexGEMM-LICENSE.txt",
+        "expansion-spatial-Eigen-COPYING.README.txt",
+        "expansion-spatial-Eigen-COPYING.MPL2.txt",
+        "expansion-spatial-Eigen-COPYING.BSD.txt",
+        "expansion-spatial-Eigen-COPYING.APACHE.txt",
+        "expansion-spatial-Eigen-COPYING.MINPACK.txt",
+        "expansion-spatial-MoGe-LICENSE.txt",
+        "expansion-spatial-DA3-LICENSE.txt",
+        "expansion-spatial-timm-LICENSE.txt",
         "expansion-spatial-BasicSR-LICENSE.txt"
+      ]
+    },
+    {
+      "schema": "lma.native-build/1",
+      "engine": "vision_cpu",
+      "file": "liblma-vision.so",
+      "source_revision": "b6764e20381f6f42a70f83fa3324181529ed1403",
+      "llama_revision": "b29c606e28a01b1bc8c1351026a0fa6e616bf6c4",
+      "backend": "cpu",
+      "bytes": 4939248,
+      "sha256": "28336c8458ec40225c6bb9be5498bed8e995c5685ee7112e86a15389ca926685",
+      "model_inference_tested": false,
+      "physical_device_tests": 0,
+      "virtualization_used": false,
+      "abi": "arm64-v8a",
+      "ndk": "30.0.16248370",
+      "min_sdk": 28,
+      "android_api_notes": [
+        28
+      ],
+      "elf_load_alignment": [
+        16384
+      ],
+      "dependencies": [
+        {
+          "file": "libonnxruntime.so",
+          "bytes": 22249560,
+          "sha256": "33847ad43bffe204699fd4a27f7f3603452a8cdaf2f9a44983a0bc31ffcf2da1",
+          "android_api_notes": [
+            27
+          ]
+        }
+      ],
+      "vocabularies": "external_user_selected_components",
+      "runtime_version": "ORT 1.28.2 API17 + static llama.cpp mtmd",
+      "required_model_components": "per_pipeline",
+      "deviceValidated": false,
+      "status": "compiled_not_device_tested",
+      "notices": [
+        "sd-nlohmann-json-LICENSE.txt",
+        "sd-NDK-LLVM-NOTICE.txt",
+        "expansion-vision-DIS-LICENSE.txt",
+        "expansion-vision-llama-LICENSE.txt",
+        "expansion-vision-llama-vendor-hash-xxhash-LICENSE.txt",
+        "expansion-vision-llama-vendor-hash-sha256-LICENSE.txt",
+        "expansion-vision-llama-vendor-hash-rotate-bits-LICENSE.md.txt",
+        "expansion-vision-miniaudio-NOTICE.txt",
+        "expansion-vision-stb-NOTICE.txt",
+        "expansion-vision-stb-write-NOTICE.txt",
+        "expansion-vision-ORT-LICENSE.txt"
       ]
     }
   ],

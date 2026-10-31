@@ -4,14 +4,17 @@
 #include "math.hpp"
 #include <random>
 #include <set>
+#include "pointcloud.hpp"
 using namespace lma_shape;
 static const std::map<std::string,std::string> layout={{"config","shape-config.json"},{"image_encoder","image_encoder.onnx"},{"flow","flow.onnx"},{"cache","cache.onnx"},{"query","query.onnx"},
  {"image_encoder_data","image_encoder.onnx.data"},{"flow_data","flow.onnx.data"},{"cache_data","cache.onnx.data"},{"query_data","query.onnx.data"}};
 static int bounded(const json& cfg,const char* key,int low,int high){require(cfg.at(key).is_number_integer(),"Export metadata must contain integer dimensions");auto v=cfg.at(key).get<int64_t>();require(v>=low&&v<=high,"Export dimension exceeds application bounds");return int(v);}
 static void generate(const json& command) {
+ if(command.at("pipeline")=="triposg_points"||command.at("pipeline")=="partcrafter_points"){point_generate(command);return;}
  require(command.at("type")=="mesh.generate","Shape runtime accepts mesh tasks only");std::string pipeline=command.at("pipeline");bool part=pipeline=="partcrafter"||pipeline=="partcrafter_scene";require(pipeline=="triposg"||part,"Unsupported shape architecture");
- auto p=command.at("parameters");std::set<std::string> keys={"threads","steps","seed","tokens","parts","grid","queryChunk","guidance","maxTriangles"};for(auto it=p.begin();it!=p.end();it++)require(keys.count(it.key())!=0,"Unknown shape parameter");
+ auto p=command.at("parameters");std::set<std::string> keys={"threads","steps","seed","tokens","parts","grid","queryChunk","guidance","maxTriangles","extraction","octreeDepth","denseDepth"};for(auto it=p.begin();it!=p.end();it++)require(keys.count(it.key())!=0,"Unknown shape parameter");
  int threads=integer(p,"threads",2,1,16),steps=integer(p,"steps",30,1,100),seed=integer(p,"seed",1234,0,INT32_MAX),tokens=integer(p,"tokens",part?1024:2048,512,4096),parts=integer(p,"parts",part?3:1,1,part?16:1),grid=integer(p,"grid",64,32,256),chunk=integer(p,"queryChunk",512,128,4096),triangles=integer(p,"maxTriangles",300000,1000,1000000);
+ std::string extraction=p.value("extraction",std::string("uniform"));require(extraction=="uniform"||extraction=="publisher_octree"||extraction=="publisher_flash","Unsupported extraction profile");int depth=integer(p,"octreeDepth",6,5,8),dense=integer(p,"denseDepth",5,3,8);require(dense<=depth,"Dense depth exceeds target depth");
  float guidance=number(p,"guidance",7,0,15);require(tokens%512==0&&grid%16==0&&uint64_t(tokens)*chunk<=16777216,"Shape token/grid/query alignment or memory budget exceeded");
  fs::path workspace=command.at("workspace").get<std::string>(),output=command.at("output").get<std::string>();require(workspace.is_absolute()&&fs::is_directory(workspace)&&output.is_absolute()&&!fs::exists(output),"Invalid private shape workspace/output");
  workspace=fs::canonical(workspace);std::set<std::string> found;
@@ -25,7 +28,7 @@ static void generate(const json& command) {
  require(tokens<=max_tokens&&parts<=max_parts&&image_size<=edge&&cfg.at("imageMean").size()==3&&cfg.at("imageStd").size()==3,"Selected export limits do not allow these parameters");
  float shift=cfg.at("scheduleShift");int training=bounded(cfg,"trainingTimesteps",1,100000);require(std::isfinite(shift)&&shift>0&&shift<=16,"Invalid RF schedule shift");
  std::string image=regular(command,"referenceImage");ort_init();Ort::Env env(ORT_LOGGING_LEVEL_FATAL,"lma_shape");Floats embeddings;
- event({{"event","execution"},{"details",{{"pipeline",pipeline},{"backend","cpu"},{"partCount",parts},{"effectiveParameters",p},{"graphResidency","one_session_at_a_time"},{"surfaceExtractor","uniform_grid_marching_tetrahedra"},{"imageMatte","explicit_alpha_over_white_no_segmentation"},{"sourceRevision",source.at("revision")}}}});
+ event({{"event","execution"},{"details",{{"pipeline",pipeline},{"backend","cpu"},{"partCount",parts},{"effectiveParameters",p},{"graphResidency","one_session_at_a_time"},{"surfaceExtractor",extraction},{"imageMatte","explicit_alpha_over_white_no_segmentation"},{"sourceRevision",source.at("revision")}}}});
  event({{"event","stage"},{"stage","encoding_image"}});
  {
   auto input=pixels(image,image_size,edge,cfg.at("imageMean"),cfg.at("imageStd"));Graph model(env,workspace,"image_encoder",threads,{{"pixel_values",{1,3,image_size,image_size}}},{"image_embeddings",{1,encoder_tokens,encoder_width}});
@@ -53,6 +56,11 @@ static void generate(const json& command) {
  {
   Graph model(env,workspace,"query",threads,{{"cache",{1,-1,width}},{"points",{1,-1,3}}},{"sdf",{1,-1,1}});
   for(int part_id=0;part_id<parts;part_id++){
+   if(extraction!="uniform"){
+    auto query=[&](const Floats& q){auto input=q;size_t count=q.size()/3;std::vector<Ort::Value> args;args.push_back(tensor(caches[size_t(part_id)],{1,tokens,width}));args.push_back(tensor(input,{1,int64_t(count),3}));auto r=model.run(args);return values(r,{1,int64_t(count),1});};
+    meshes.push_back(adaptive_surface(query,extraction,depth,dense,chunk,1.005f,remaining));remaining-=meshes.back().indices.size()/3;
+    event({{"event","progress"},{"step",part_id+1},{"steps",parts},{"stage","decoding_sdf"}});continue;
+   }
    Floats field(points);
    for(size_t start=0;start<points;start+=chunk){size_t count=std::min(size_t(chunk),points-start);Floats query(count*3);
     for(size_t j=0;j<count;j++){size_t id=start+j;query[j*3]=float(id/(n*n))*2.01f/grid-1.005f;query[j*3+1]=float((id/n)%n)*2.01f/grid-1.005f;query[j*3+2]=float(id%n)*2.01f/grid-1.005f;}
@@ -65,7 +73,7 @@ static void generate(const json& command) {
  event({{"event","stage"},{"stage","exporting_mesh"}});glb(output,meshes);event({{"event","complete"},{"output",output.string()}});
 }
 int main(int argc,char** argv){
- if(argc==2&&!std::strcmp(argv[1],"--info")){std::puts("{\"engine\":\"rf_shape_ort\",\"backend\":\"cpu\",\"pipelines\":[\"triposg\",\"partcrafter\",\"partcrafter_scene\"],\"modelInferenceTested\":false,\"modelDownloads\":false}");return 0;}
+ if(argc==2&&!std::strcmp(argv[1],"--info")){std::puts("{\"engine\":\"rf_shape_ort\",\"backend\":\"cpu\",\"pipelines\":[\"triposg\",\"partcrafter\",\"partcrafter_scene\",\"triposg_points\",\"partcrafter_points\"],\"modelInferenceTested\":false,\"modelDownloads\":false}");return 0;}
  try{initialize();require(argc==2,"Supply one private shape request");generate(request(argv[1]));return 0;}
  catch(const std::exception&){if(events)event({{"event","error"},{"message","Shape generation failed: check the matched FP32 ONNX export, selected image, model limits and available memory. No fallback was used."}});return 1;}
 }

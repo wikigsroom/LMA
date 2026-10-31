@@ -1,5 +1,7 @@
 # 本地 RF 形状与部件几何
 
+**v0.3.6 更新：** 下文原路线继续可用；旧版计数、当时缺口和证据保留原版本含义。当前完整适配、新增可选阶段和运行边界见[方案与操作](ADAPTER_PROFILES.md)及[编号收口](REMAINING_ADAPTATION.md)。
+
 > v0.3.5 保留以下三条 RF 路线，另增 [Hunyuan / UltraShape](SPATIAL_SHAPE.md)。当前合计 50 模板 / 82 目录包 / 17 扩展引擎加文本；下方版本数量按 v0.3.4 历史理解。[当前实现与缺口](IMPLEMENTATION_V035.md)。
 
 [English](RF_SHAPE.en.md) · [v0.3.4](releases/v0.3.4.md) · [完整范围](IMPLEMENTATION_V034.md)

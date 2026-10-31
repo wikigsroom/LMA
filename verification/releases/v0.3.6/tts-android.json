@@ -1,0 +1,57 @@
+{
+  "schema": "lma.native-build/1",
+  "engine": "sherpa_tts",
+  "file": "liblma-tts.so",
+  "source_revision": "af2d8d81dbfa61c4cea4c568da78f3982edca005",
+  "version": "2.0.1",
+  "abi": "arm64-v8a",
+  "backend": "cpu",
+  "ndk": "30.0.16248370",
+  "min_sdk": 28,
+  "bytes": 397800,
+  "sha256": "991c29e2c7f160d37bd086efcf1c8c25ef412931aea5c453a2208df9f4065c17",
+  "elf_load_alignment": [
+    16384
+  ],
+  "android_api_notes": [
+    28
+  ],
+  "dependencies": [
+    {
+      "file": "libsherpa-onnx-c-api.so",
+      "bytes": 4303136,
+      "sha256": "0eadae93c4d595a26584d7eebde7b397b9a36d01eee3ebc7262e0d34df2fce10",
+      "android_api_notes": [
+        21
+      ],
+      "provenance": "upstream_release_prebuilt"
+    },
+    {
+      "file": "libonnxruntime.so",
+      "bytes": 22249560,
+      "sha256": "33847ad43bffe204699fd4a27f7f3603452a8cdaf2f9a44983a0bc31ffcf2da1",
+      "android_api_notes": [
+        27
+      ],
+      "provenance": "upstream_release_prebuilt"
+    }
+  ],
+  "vocabularies": "external_user_selected_components",
+  "physical_device_tests": 0,
+  "model_inference_tested": false,
+  "virtualization_used": false,
+  "source_inputs": {
+    "native/tts/CMakeLists.txt": "051b3139fed335c1b30bc6ac2d8e1c95e878f0ee278adfc2b90a09e21a8f1876",
+    "native/tts/worker.cpp": "df5651017d8808070ed7d575501a6e5267f2ac9556aeeda715207d07a1caadbb",
+    "third_party/tts-source-lock.json": "05f26f4140344badd38ee7d754ba6750672480cbda9b1f75a721cac9baf51c75",
+    "tools/build_tts.py": "dc3913fdd2d808cd44bb1398066cc44ee80438c115f3d445b758c65082b4f080",
+    "tools/fetch_tts.py": "697e99d152036ef497aa1978cf9cbd00e0bf40e97b44023ba1ee2f6d482f4b46"
+  },
+  "third_party_diagnostics": "private_stdout_stderr_and_process_local_liblog_interposition",
+  "reviewed_log_imports": [
+    "__android_log_print",
+    "__android_log_vprint",
+    "__android_log_write"
+  ],
+  "android_log_binding_tested": false
+}

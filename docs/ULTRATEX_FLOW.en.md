@@ -2,7 +2,7 @@
 
 [中文](ULTRATEX_FLOW.md) · [Complete work list](REMAINING_ADAPTATION.en.md) · [Local materials](LOCAL_MATERIALS.en.md)
 
-**This is a network component converter. UltraTex is not yet a complete application recipe.** It implements the actual FLUX.1 dev / FLUX.2 flow exports, LoRA, foreground compaction and positional IDs. It registers neither a runnable model nor a download candidate. Local text encoding, matched VAE, UltraTex conditions, sampling and application orchestration remain required.
+**This page documents the standalone flow converter.** It still produces network components only. v0.3.6 separately includes `tools/export_ultratex.py` and the complete on-phone text/tile-VAE/BN/conditioning/sampling/PBR adapter. See [current usage](ADAPTER_PROFILES.en.md).
 
 | ID | Implemented | Boundary |
 | --- | --- | --- |
@@ -36,8 +36,8 @@ FLUX.1 position inputs are int64 in 0–8191; FLUX.2 retains float32 source posi
 
 ## Program evidence and remaining work
 
-101 checks execute actual random publisher double / single networks, dynamic ONNX and production native C++ ORT / BSA. Cases cover varying sequence lengths / batches, removal of background attention, original IDs / reference influence, FP32 / BF16, exact publisher rotary values, actual unmerged FLUX.1 processors, atomic invalid-factor rejection, both real conversion CLIs and preserving prior exports. Zero complete trained models, phones or virtualized environments were used.
+107 checks execute actual random publisher double / single networks, dynamic ONNX and production native C++ ORT / BSA. Cases cover varying sequence lengths / batches, removal of background attention, original IDs / reference influence, FP32 / BF16, exact publisher rotary values, actual unmerged FLUX.1 processors, atomic invalid-factor rejection, both real conversion CLIs and preserving prior exports. Zero complete trained models, phones or virtualized environments were used.
 
-[Records](../verification/adaptation/ultratex-flows.json) · [Test entrypoint](../tools/test_ultratex_flows.py)
+[Records](../verification/releases/v0.3.6/ultratex-flow-tests.json) · [Test entrypoint](../tools/test_ultratex_flows.py)
 
-A complete workflow still needs same-phone CLIP / T5 or Qwen3 tokenization and encoding, corresponding tile VAE / BN and material decoders, canonical geometry conditions / token packing, Euler / CFG and black-background restoration, separate albedo / MR passes and the application asset / parameter / child-process / PBR orchestration. All remain in the original delivery scope; a passing network export does not complete UltraTex.
+v0.3.6 completes local CLIP/T5 or Qwen3, tile VAE/BN/material decoding, conditioning/packing, Euler/CFG/background restoration, dual albedo/MR passes and application orchestration. The standalone flow converter is not a full bundle exporter; use `tools/export_ultratex.py` for the complete asset set.

@@ -1,5 +1,7 @@
 # Speech and local 3D in v0.3.2
 
+**v0.3.6 update:** the detailed routes below remain available. Versioned counts, earlier missing-adapter statements and prior evidence describe their original checkpoints; current completion, new optional stages and limits are in [adapter profiles](ADAPTER_PROFILES.en.md) and [numbered completion](REMAINING_ADAPTATION.en.md).
+
 > Development v0.3.6 implements the [official-compatible F5 segmentation / sandhi frontend](F5_FRONTEND.en.md) and separate [Hunyuan Paint / PBR](LOCAL_MATERIALS.en.md). See the [current numbered work list](REMAINING_ADAPTATION.en.md). Experimental frontend limitations and missing-port statements below belong to v0.3.2; they do not overwrite current implementations.
 
 > This page records v0.3.2. v0.3.3 additionally integrates the actual D03 Pixal3D MV subset; see [the current guide and remaining architecture work](MULTIVIEW_DIAGNOSTICS.en.md). Old counts/evidence below retain their release context.

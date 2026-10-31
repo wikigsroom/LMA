@@ -218,6 +218,12 @@ public final class BundleStore {
         JSONObject effective = parameters(id).normalize(entry(id).getJSONObject("settings"), changes);
         JSONObject next = DataFiles.copy(state); next.getJSONObject("bundles").getJSONObject(id).put("settings", DataFiles.copy(effective.getJSONObject("values"))); persist(next); return effective;
     }
+    /** Metadata only; avoids recursive parameter resolution while listing compatible helpers. */
+    public synchronized java.util.List<ModelBundle> installedModels() throws Exception {
+        java.util.List<ModelBundle> result=new java.util.ArrayList<>();JSONObject entries=state.getJSONObject("bundles");
+        for(java.util.Iterator<String> it=entries.keys();it.hasNext();){String id=it.next();ModelBundle b=bundle(id);if(entry(id).optBoolean("installed")&&complete(b,state))result.add(b);}
+        return java.util.Collections.unmodifiableList(result);
+    }
     public synchronized JSONArray snapshot() throws Exception {
         JSONArray result = new JSONArray(); JSONObject entries = state.getJSONObject("bundles");
         for (Iterator<String> it = entries.keys(); it.hasNext();) {

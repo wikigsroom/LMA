@@ -1,5 +1,7 @@
 # On-device PBR material foundation
 
+**v0.3.6 update:** the detailed routes below remain available. Versioned counts, earlier missing-adapter statements and prior evidence describe their original checkpoints; current completion, new optional stages and limits are in [adapter profiles](ADAPTER_PROFILES.en.md) and [numbered completion](REMAINING_ADAPTATION.en.md).
+
 [中文](LOCAL_MATERIALS.md) · [Shape/refinement](SPATIAL_SHAPE.en.md) · [F5 frontend](F5_FRONTEND.en.md) · [Remaining scope](REMAINING_ADAPTATION.en.md)
 
 Development adds the equal-peer `hunyuan3d_21_paint` recipe. A selected reference image and GLB produce a self-contained GLB with new UVs and embedded albedo / metallic-roughness PNGs. This code is unreleased; the downloadable v0.3.5 APK does not include Paint.

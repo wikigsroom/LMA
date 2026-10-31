@@ -96,6 +96,9 @@ def counted(name, value):
 
 
 def export():
+    if VERSION != '0.3.5':
+        from complete_evidence import export as complete_export
+        return complete_export()
     assert version() == VERSION
     if VERSION!='0.3.5':
         from audit_adaptations import require_complete
@@ -153,6 +156,9 @@ def export():
 
 
 def check():
+    if VERSION != '0.3.5':
+        from complete_evidence import check as complete_check
+        return complete_check()
     assert version() == VERSION
     status = record(OUT / 'status.json'); current(status['input_fingerprint'])
     assert status['version'] == VERSION and status['validation_mode'] == 'program_only'

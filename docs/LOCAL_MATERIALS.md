@@ -1,5 +1,7 @@
 # 本机 PBR 贴图基座
 
+**v0.3.6 更新：** 下文原路线继续可用；旧版计数、当时缺口和证据保留原版本含义。当前完整适配、新增可选阶段和运行边界见[方案与操作](ADAPTER_PROFILES.md)及[编号收口](REMAINING_ADAPTATION.md)。
+
 [English](LOCAL_MATERIALS.en.md) · [形状 / 精修](SPATIAL_SHAPE.md) · [F5 中文前端](F5_FRONTEND.md) · [完整待办](REMAINING_ADAPTATION.md)
 
 开发代码已接入 `hunyuan3d_21_paint`，与形状模型平级。它给用户选定的 GLB 制作参考图驱动的 PBR 贴图，输出含 albedo、metallic-roughness 两张 PNG 和新 UV 的自包含 GLB。此内容尚未发布为 APK；下载页的 v0.3.5 不包含这条 Paint 路线。

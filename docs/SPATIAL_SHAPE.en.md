@@ -1,5 +1,7 @@
 # Hunyuan3D shape and UltraShape refinement
 
+**v0.3.6 update:** the detailed routes below remain available. Versioned counts, earlier missing-adapter statements and prior evidence describe their original checkpoints; current completion, new optional stages and limits are in [adapter profiles](ADAPTER_PROFILES.en.md) and [numbered completion](REMAINING_ADAPTATION.en.md).
+
 Development v0.3.6 adds a separate [Paint / PBR route](LOCAL_MATERIALS.en.md) and [official-compatible F5 frontend](F5_FRONTEND.en.md). See the [current numbered work list](REMAINING_ADAPTATION.en.md). The v0.3.5 counts, old gaps and evidence below retain their historical identity; the shape / refinement recipes themselves still exclude Paint.
 
 [中文](SPATIAL_SHAPE.md) · [Numbered implementation and gaps](IMPLEMENTATION_V035.en.md) · [v0.3.5](releases/v0.3.5.md)

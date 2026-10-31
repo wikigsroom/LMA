@@ -1,0 +1,194 @@
+{
+  "passed": 25,
+  "checks": [
+    {
+      "case": "moge_source_finite",
+      "shape": [
+        1,
+        56,
+        56,
+        3
+      ]
+    },
+    {
+      "case": "moge_source_finite",
+      "shape": [
+        1,
+        56,
+        56
+      ]
+    },
+    {
+      "case": "moge_native_accept",
+      "reason": ""
+    },
+    {
+      "case": "moge_points",
+      "maxError": 3.241002559661865e-07
+    },
+    {
+      "case": "moge_mask",
+      "maxError": 3.725290298461914e-07
+    },
+    {
+      "case": "moge_closed_profile_matches_literal_forward"
+    },
+    {
+      "case": "da3_joint_source_finite",
+      "shape": [
+        1,
+        2,
+        56,
+        56
+      ]
+    },
+    {
+      "case": "da3_joint_source_finite",
+      "shape": [
+        1,
+        2,
+        56,
+        56
+      ]
+    },
+    {
+      "case": "da3_joint_source_finite",
+      "shape": [
+        1,
+        2,
+        56,
+        56
+      ]
+    },
+    {
+      "case": "da3_joint_source_finite",
+      "shape": [
+        1,
+        2,
+        9
+      ]
+    },
+    {
+      "case": "da3_joint_native_accept",
+      "reason": ""
+    },
+    {
+      "case": "da3_joint_depth",
+      "maxError": 5.960464477539063e-08
+    },
+    {
+      "case": "da3_joint_confidence",
+      "maxError": 2.384185791015625e-07
+    },
+    {
+      "case": "da3_joint_sky",
+      "maxError": 0.0
+    },
+    {
+      "case": "da3_joint_camera",
+      "maxError": 1.043081283569336e-07
+    },
+    {
+      "case": "da3_joint_view_coupling"
+    },
+    {
+      "case": "da3_changed_views_source_finite",
+      "shape": [
+        1,
+        2,
+        56,
+        56
+      ]
+    },
+    {
+      "case": "da3_changed_views_source_finite",
+      "shape": [
+        1,
+        2,
+        56,
+        56
+      ]
+    },
+    {
+      "case": "da3_changed_views_source_finite",
+      "shape": [
+        1,
+        2,
+        56,
+        56
+      ]
+    },
+    {
+      "case": "da3_changed_views_source_finite",
+      "shape": [
+        1,
+        2,
+        9
+      ]
+    },
+    {
+      "case": "da3_changed_views_native_accept",
+      "reason": ""
+    },
+    {
+      "case": "da3_changed_views_depth",
+      "maxError": 5.960464477539063e-08
+    },
+    {
+      "case": "da3_changed_views_confidence",
+      "maxError": 2.384185791015625e-07
+    },
+    {
+      "case": "da3_changed_views_sky",
+      "maxError": 0.0
+    },
+    {
+      "case": "da3_changed_views_camera",
+      "maxError": 5.21540641784668e-08
+    }
+  ],
+  "input_fingerprint": {
+    "native/spatial/block_attention.hpp": "9d87fc393f51104f11f291dda84763744249aedaf1f57feab72d94c161b9503d",
+    "native/spatial/cascade.hpp": "3150c9eca11b60ddee68d894d38f4c147d84ae265bce49b29268fab48b135044",
+    "native/spatial/CMakeLists.txt": "ef47a91a5ba9b43032c5025e742731dccd08cd983d469e8771b899cf84eefa82",
+    "native/spatial/depth.hpp": "183de58c48d84e3fc5b2e1df7cc9a4395c27080230f76e0f5c9b70d8f24d0f6d",
+    "native/spatial/fdg.hpp": "675bbc80e7ee247c0202904a1ecac184aca8ab817438f97b7eb39157a6459994",
+    "native/spatial/fdg_mesh.hpp": "467a53e150789440b1793a7b67d1444f8f2bd5ecf5db26e4c159dbdf6ae4ba22",
+    "native/spatial/flexicubes.hpp": "e6d249b12b66f9630a4d5b57cc2d45073f537c6e4bf051f67d5064b44dc261ad",
+    "native/spatial/flexicubes_tables.hpp": "6ef60153625eaf15a10d144fd28fd5d63bb7175ca41561cf0f428857e5405737",
+    "native/spatial/image.hpp": "7f2b70863591a51e9bca407a7ae0677fda0680efa51b9c54e91a5a3c8f073909",
+    "native/spatial/linear_sampler.hpp": "96ff6befbb32480559c038b4fb33308a127fa41088bea73404866d322262166d",
+    "native/spatial/material.hpp": "0e1cb2b5a5c84c2bdef41e69b435e54d5d8218d01d9c25d64c9121fe527158c2",
+    "native/spatial/math.hpp": "abc3c2644fc02f864cec371053b3ad92c42ce89b9215beb86a3f731b861c7f45",
+    "native/spatial/mesh.hpp": "9d6c1af1780abf2ad83cd8d2aaa5e6e5f2f762c132d5006929a097c01fae6eaa",
+    "native/spatial/multiview_image.hpp": "f2f139eae47008bd6bdb881f9385dcb9f75e10a3b046c4a00e73d63a003c19c7",
+    "native/spatial/ort_graph.hpp": "d78b66a3b16ebad13410e045035d58d6dad5eab37346a6a697fdba095a1f8908",
+    "native/spatial/sam.hpp": "8f4363702f66c770547ed0258c63756dfe43e6d3e86d5942e3f157c4043b31c3",
+    "native/spatial/sam_geometry.hpp": "1936bbb2516ef189692cff86afa93f80e3d936c4b7ff0a20fc8fb5af4d0f9b43",
+    "native/spatial/sam_math.hpp": "4ce92644b9e0e56bc223cb5cc1556090007eeb97d48ad7e2299b57c2a0534c22",
+    "native/spatial/sam_pose.hpp": "d0fadb4bd735da8c66463a2b5ce5a53e2caccada9ccecaea4d7f6aaf85bdd775",
+    "native/spatial/sam_sampling.hpp": "4542bfb95f3d61a899937526999a3b692181f36e023513d9a17a7e8cd205c594",
+    "native/spatial/sparse.hpp": "118c821be7601439a166d800729feb9e77320b6ad355808edc1e802d99b07e67",
+    "native/spatial/sparse_ort.hpp": "1c66fc8d049550b753048ea70a22e45c06b0a08cff2869ce16ddf3d3a01eb12b",
+    "native/spatial/supra.hpp": "77e95b01735aa88c9631a248da8d0c401e8b254d8b26da770566f572e59e9b01",
+    "native/spatial/supra_observation.hpp": "4ad48f78450378ae9831bfccb53c784621971b98e9416dbb6450786a3e5b5b53",
+    "native/spatial/surface_sampling.hpp": "0aeb83fc1030f3114784b4dd0dbd7db5c5464ebc6ce5c85c3436bec6080cb709",
+    "native/spatial/text_tokens.hpp": "b74d4eec3f9e2aa2a7a76e8433518a1339345997a65c590aebc2489ef7f609ec",
+    "native/spatial/texture.hpp": "61fe254b9525a030b9d4ced52fd05c4f3b3435612b6c85357771d5ef9b0e2364",
+    "native/spatial/tokenizer_shim/core/util.h": "61d8074c170e601d509e558cb52951c8adfb330dd09c20d61fc4170157d2282c",
+    "native/spatial/typed_graph.hpp": "15cc4fb7fd425bf5cd62f552d9248536cfdf85ba2bd647626052de96370648b8",
+    "native/spatial/ultratex.hpp": "4c05ea59ea91bb5cf8653677c312cf305f6fbdae60b60c8bc65a826b9c7a158e",
+    "native/spatial/uniforge.hpp": "b1c1faac096a13dffd31e8dbf7ca93c055250f5c00280aaa51f4e335e929a22b",
+    "native/spatial/view_router.hpp": "7d13e662826932801c784c534c46998424b2ef3aa1e3b4a3afb89855dbe2500f",
+    "native/spatial/volume_material.hpp": "2bb45cba9b7705850c0e8b52dd2ba1141378d8f28e358ce855f49dc00d1b4080",
+    "native/spatial/worker.cpp": "b75cd1f4059704c82620ddcdfec74d00aa40d8ccc86a4985b6f1ff542339500b",
+    "tests/expansion-native/sparse_graph.cpp": "cc7575992d2bec5da829809a1e1f1276005c7f85a9acdb430a2a84958489ae21",
+    "third_party/portable-sparse-source-lock.json": "fb0c9bfbb5efc502ed6f68b8ae92cebdad2775732725c22e3cdc4529e16932bf",
+    "tools/depth_components.py": "18be37e9e65aa3dcfaecad5d25b8250282c23437f71a96ff56f2b807996a0376",
+    "tools/local_definitions.py": "9f14ea96309a2f08839e241a0a8a6a9dc566947021c83a6d5fb697b9ba832105",
+    "tools/spatial_portable.py": "c66222b642d28237a7b9db0cddba76d92d2e54f5c2e8ffd98c52060f3b682414",
+    "tools/test_depth_components.py": "be87c00f3b68b1fb69467d0ac13db9046973c9617b6652056f9f0dc80aac9b4e"
+  },
+  "completeModelsRun": 0,
+  "phoneTests": 0
+}

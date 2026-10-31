@@ -1,5 +1,7 @@
 # 语音与本地生 3D：v0.3.2
 
+**v0.3.6 更新：** 下文原路线继续可用；旧版计数、当时缺口和证据保留原版本含义。当前完整适配、新增可选阶段和运行边界见[方案与操作](ADAPTER_PROFILES.md)及[编号收口](REMAINING_ADAPTATION.md)。
+
 > 当前开发 v0.3.6 已实现 [F5 官方兼容分词 / 变调前端](F5_FRONTEND.md) 与独立 [Hunyuan Paint / PBR](LOCAL_MATERIALS.md)；完整待办见[编号清单](REMAINING_ADAPTATION.md)。下文 F5 实验前端和各模型缺口属于 v0.3.2 历史，不覆盖当前已实现内容。
 
 > 本页记录 v0.3.2 的实现。v0.3.3 已另增 D03 Pixal3D MV 真实四视图子集，见[当前方案与剩余移植工作](MULTIVIEW_DIAGNOSTICS.md)。下方旧数量 / 证据按原版本理解。

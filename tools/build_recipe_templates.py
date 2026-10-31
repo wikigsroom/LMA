@@ -285,11 +285,23 @@ def build():
     from multiview_catalogue import recipes as multiview_recipes
     templates.extend(multiview_recipes())
     from shape_catalogue import recipes as shape_recipes
+    from pointcloud_catalogue import recipes as pointcloud_recipes
     templates.extend(shape_recipes())
+    templates.extend(pointcloud_recipes())
     from spatial_catalogue import recipes as spatial_recipes
     templates.extend(spatial_recipes())
     from paint_catalogue import recipes as paint_recipes
     templates.extend(paint_recipes())
+    from ultratex_catalogue import recipes as ultratex_recipes
+    templates.extend(ultratex_recipes())
+    from uniforge_catalogue import recipe as uniforge_recipe
+    templates.append(uniforge_recipe())
+    from supra_catalogue import recipe as supra_recipe
+    templates.append(supra_recipe())
+    from sam_catalogue import recipe as sam_recipe
+    templates.extend(sam_recipe(multi) for multi in (False,True))
+    from vision_catalogue import recipes as vision_recipes
+    templates.extend(vision_recipes())
     from recipe_file_hints import add_hints
     add_hints(templates)
     return {"schema": "lma.recipe-catalogue/1", "templates": templates}

@@ -1,6 +1,15 @@
 # Changelog / 更新记录
 
-## 未发布 / Unreleased — v0.3.6 开发中
+## 0.3.6 — 本地多模态与完整 3D 适配 / Local multimodal and 3D adapters
+
+- P01–P06 完整程序集成：UltraTex FLUX.1 / FLUX.2、UniForge、SAM / MV-SAM＋DA3、SUPRA，独立导出 / 配方 / 参数 / 表单 / 工作器 / GLB。Complete bounded CPU adapters, not every publisher CUDA workflow.
+- 新增独立 DIS / mtmd VLM、XYZ＋法线 VAE、原始 Flash / octree / Lewiner / DISO CPU；可选同机抠图 → 部件识别 → 几何 → Paint / UltraTex，所有资产由用户选择。
+- 修复相机 / 点云 JSON 的 Android 暂存文件识别、枚举选择框、依赖参数上限，以及已选辅助模型删除后的设置恢复和预检拒绝。
+- 62 配方 / 82 包 / 18 扩展引擎加文本；保留全部原范围、推荐、社区 NSFW 标记；不附模型或语言资产，无远端 / ROOT / 虚拟化。
+- 生产程序回归、41 ARM64 库 / API28 / 16 KiB、原签名、Lint、页面和发版保护统一核对；中英完整方案 / C01–C48 / 新录屏与 GIF。No full trained models or phone/endurance tests.
+- 当前证据独立存放，v0.3.5 证据和资产不覆盖。DISO CPU 组件含 CC BY-NC 4.0 非商业条款，完整许可随 APK。
+
+### 此前开发阶段记录 / Earlier development checkpoint
 
 - F5 官方兼容前端：固定 jieba DAG / HMM、pypinyin 多音字 / 变调及 F5 词元 / ID，2,222 文本 / 6,671 项真实 C++ 对照；新语言资产配方由用户明确选择，旧配方保留。No dictionaries or weights in APK.
 - Hunyuan3D Paint 本机完整程序路径：PNG＋GLB、六视图条件、DINO / VAE、双材质 / 多视图 UNet、UniPC、RealESRGAN、xatlas 与 PBR GLB；独立 CPU 光栅 / 最近可见纹理填充的差异明确披露。Offline five-graph conversion, real checksums and actual CLI checks use random architecture fixtures, not trained models.

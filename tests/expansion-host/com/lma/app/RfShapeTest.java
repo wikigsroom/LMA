@@ -28,7 +28,7 @@ final class RfShapeTest {
         File exe=new File(System.getProperty("java.home"),"bin/java.exe"),image=new File(run,"shape-reference.png");MultiViewTest.png(image,256,256,6);
         LmaApp app=new LmaApp(new File(run,"shape-app"));int families=0;
         for(int t=0;t<templates.length();t++){
-            JSONObject template=templates.getJSONObject(t);if(!template.getJSONObject("definition").optString("engine").equals("rf_shape_ort"))continue;families++;
+            JSONObject template=templates.getJSONObject(t);if(!template.getJSONObject("definition").optString("engine").equals("rf_shape_ort")||PointCloudSpec.matches(template.getJSONObject("definition").getString("pipeline")))continue;families++;
             JSONObject raw=DataFiles.copy(template.getJSONObject("definition")).put("schema","lma.model-bundle/2").put("id","fixture_shape_"+families).put("modelId","fixture_shape_"+families).put("name","SHAPE PROGRAM FIXTURE");
             JSONArray components=new JSONArray();Map<String,File> selected=new LinkedHashMap<>();int number=0;
             for(Map.Entry<String,String> item:RfShapeSpec.layout().entrySet()){

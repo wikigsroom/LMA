@@ -126,7 +126,7 @@ public final class ArtifactStore {
         check.run(); String digest = DataFiles.sha256(file, check);
         if (!expectedHash.isEmpty() && !digest.equals(expectedHash)) throw new IOException("Input SHA256 does not match; nothing was imported");
         JSONObject metadata = inspector.inspect(file); String mime = metadata.getString("mime");
-        if (!Arrays.asList("image/png", "image/jpeg", "audio/wav", "video/mp4", GlbFile.MIME).contains(mime)) throw new IOException("Import PNG/JPEG, PCM WAV, MP4 or self-contained GLB media");
+        if (!Arrays.asList("image/png", "image/jpeg", "audio/wav", "video/mp4", GlbFile.MIME, StructuredInput.MIME).contains(mime)) throw new IOException("Import PNG/JPEG, PCM WAV, MP4 self-contained GLB or typed camera/point-cloud JSON");
         JSONObject origin = new JSONObject().put("kind", "imported").put("channel", channel).put("importId", importId).put("name", name);
         synchronized (this) {
             existing = imported(importId); if (existing != null) return existing;
@@ -139,7 +139,7 @@ public final class ArtifactStore {
             case "image/png": extension = "png"; break; case "image/jpeg": extension = "jpg"; break;
             case "audio/wav": extension = "wav"; break; case "video/mp4": extension = "mp4"; break;
             case GlbFile.MIME: extension = "glb"; break;
-            case "text/plain": extension = "txt"; break; case TextResult.MIME: extension = "json"; break; default: throw new IOException("Unsupported output MIME type");
+            case "text/plain": extension = "txt"; break; case TextResult.MIME: case StructuredInput.MIME: extension = "json"; break; default: throw new IOException("Unsupported output MIME type");
         }
         check.run();
         {

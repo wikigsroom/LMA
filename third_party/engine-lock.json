@@ -567,8 +567,8 @@
       "abi": "arm64-v8a",
       "backend": "cpu",
       "ndk": "30.0.16248370",
-      "sha256": "8dc02aec200d4a9c1c94e8bdc6e98b918cf19a4db8eff7ab2581b7880c088f91",
-      "bytes": 582792,
+      "sha256": "3aea62fcbd4006e46cd3153b0c858ec6fb573c59cc49602a38cd525f35c76b0d",
+      "bytes": 703504,
       "android_api_notes": [
         28
       ],
@@ -590,6 +590,10 @@
         "expansion-shape-D11-triposg-models-transformers-triposg_transformer.py-NOTICE.txt": "a664d931a849d6d61fda10319dc0dd24f2cd087fd2e979198cafca9b4cba138e",
         "expansion-shape-D12-LICENSE.txt": "ae8c80719a5c916e5fd99fd3da99f8cf74be1589e9e4a11d5754898967a54e1f",
         "expansion-shape-D12-src-models-transformers-partcrafter_transformer.py-NOTICE.txt": "29cd6873523d759efbb61a56584c020b1b022a8bcca617919b6c44adc8be1fcc",
+        "expansion-shape-DISO-LICENSE.txt": "718e56c836cb997a2d3b31890582395ba800e73d3af2356a5389ad3a50f9c8d4",
+        "expansion-shape-LEWINER-LICENSE.txt": "611d3207504dcb4a808df209d2e7c9b4f2e89fe690f84735c0d548160966b527",
+        "expansion-shape-LEWINER_CPP-LICENSE.txt": "95abdb45f92aca821e9361ee9bcb3b745afad5bbba9e03acb2b5c50e702c7bbe",
+        "expansion-shape-surface-ATTRIBUTION.txt": "9b4c4f4f05a4bec7814e59557ff131485f33174b6aeac6d86afcd68328cb1fc0",
         "expansion-shape-ORT-LICENSE.txt": "2f07c72751aed99790b8a4869cf2311df85a860b22ded05fa22803587a48922c",
         "expansion-shape-stb-NOTICE.txt": "323eac668c422203f3c54a24e077fd2e999ac6d79ac1872e619830cb3bcb34fe"
       }
@@ -601,8 +605,8 @@
       "abi": "arm64-v8a",
       "backend": "cpu",
       "ndk": "30.0.16248370",
-      "sha256": "f0f7d26ec672a4a6847b8a1786d479ec29323b468eadfd6757bd3a0079d1436d",
-      "bytes": 971760,
+      "sha256": "6d249a82dd8f1f3ad744f2a28ef2cd5497d05670dc8532ac0c0d1e996cbed135",
+      "bytes": 3079744,
       "android_api_notes": [
         28
       ],
@@ -659,7 +663,61 @@
         "expansion-spatial-stb-NOTICE.txt": "323eac668c422203f3c54a24e077fd2e999ac6d79ac1872e619830cb3bcb34fe",
         "expansion-spatial-stb-write-NOTICE.txt": "323eac668c422203f3c54a24e077fd2e999ac6d79ac1872e619830cb3bcb34fe",
         "expansion-spatial-xatlas-NOTICE.txt": "3647c97f08c8a52ba8a5bef00d929bfdc328fc7476dd30288a5c460fc200b25e",
+        "expansion-spatial-sentencepiece-LICENSE.txt": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5",
+        "expansion-spatial-sentencepiece-third_party-protobuf-lite-LICENSE.txt": "f4df8b2457697851385d9ebb93267832c1dfa24e0e61881952f6b0c452663dc9",
+        "expansion-spatial-sentencepiece-third_party-darts_clone-LICENSE.txt": "ed8437dc7358a40ef10afd3635ac1cd43c88fbaaaf6cd27c414f8ada5d68f447",
+        "expansion-spatial-sentencepiece-third_party-esaxx-LICENSE.txt": "c32d2b3a60ed4b71616dd544f0865e171631ce26d3a3855c43428e61cbf89d67",
+        "expansion-spatial-sentencepiece-third_party-absl-LICENSE.txt": "7871ddb0d7635157a82afc21720d795660a024c59652b7a5b1ed812355320fdc",
+        "expansion-spatial-oniguruma-LICENSE.txt": "0dff717fb611b9c9bd9776a5df9c4e029030f8dbc023b77f3678cf495495b933",
+        "expansion-spatial-utf8proc-LICENSE.txt": "767edbcafb23016d7f203aaf2cbdef5690ad58bcede52ee241427dcb816cd644",
+        "expansion-spatial-TRELLIS2-FDG-LICENSE.txt": "d9a1b1e30d633d5732ea18e3cba9538d293ebc53e1a9e4e96ab739e0c5c4f1cb",
+        "expansion-spatial-FlexGEMM-LICENSE.txt": "d98159921cc2bfa41fff0cea296bd9876ed8fc7b64ae8ef314e5e47c787e705d",
+        "expansion-spatial-Eigen-COPYING.README.txt": "4db6561ac96c94942817f0c489282a219e5fd8ed374e2dfd58d85f48aff3ebf9",
+        "expansion-spatial-Eigen-COPYING.MPL2.txt": "cde215e5b42363eb28ca2462c4558ff4807b38f383c537624c31e44657ac58f4",
+        "expansion-spatial-Eigen-COPYING.BSD.txt": "ee73de74a1980f7f1667f874473393f13bc6a74c87fcee4cc9732bce96bc60cc",
+        "expansion-spatial-Eigen-COPYING.APACHE.txt": "a724e50ee0e1de4b62c0540d7877c3ef383aa176f55be806df61420aba9b3de6",
+        "expansion-spatial-Eigen-COPYING.MINPACK.txt": "37f2b8b54e7bbf107954865cc3cf567385930a1b7031b479909a09968d9db670",
+        "expansion-spatial-MoGe-LICENSE.txt": "ad7d951c80c5fc2b2bce035f2041bc0a0dbf9028c8ecc4c9a8e1fba8130b6b59",
+        "expansion-spatial-DA3-LICENSE.txt": "78446e29c48900cda82620a8df183cca61f0a595e05a49d0401a5fd604dd1870",
+        "expansion-spatial-timm-LICENSE.txt": "71b111620fa32c17a80ccd6db2da759d31a591e497d8b5f382174f59d1b59d49",
         "expansion-spatial-BasicSR-LICENSE.txt": "5447872f21ddc29dc0dc060d5c885513c01c904e9da9931bba69898a6fb4d415"
+      }
+    },
+    {
+      "engine": "vision_cpu",
+      "file": "liblma-vision.so",
+      "source_revision": "b6764e20381f6f42a70f83fa3324181529ed1403",
+      "abi": "arm64-v8a",
+      "backend": "cpu",
+      "ndk": "30.0.16248370",
+      "sha256": "28336c8458ec40225c6bb9be5498bed8e995c5685ee7112e86a15389ca926685",
+      "bytes": 4939248,
+      "android_api_notes": [
+        28
+      ],
+      "dependencies": [
+        {
+          "file": "libonnxruntime.so",
+          "bytes": 22249560,
+          "sha256": "33847ad43bffe204699fd4a27f7f3603452a8cdaf2f9a44983a0bc31ffcf2da1",
+          "android_api_notes": [
+            27
+          ]
+        }
+      ],
+      "llama_revision": "b29c606e28a01b1bc8c1351026a0fa6e616bf6c4",
+      "notices": {
+        "sd-nlohmann-json-LICENSE.txt": "0e592e358cf7722906f417be85bc514f15bf6efd28cea98cb84e56ef7fddfc3e",
+        "sd-NDK-LLVM-NOTICE.txt": "f96f763beb66a7ba7a667647fc64c0226ace875e590c831fdd9579ec1c1d91e1",
+        "expansion-vision-DIS-LICENSE.txt": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+        "expansion-vision-llama-LICENSE.txt": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
+        "expansion-vision-llama-vendor-hash-xxhash-LICENSE.txt": "a2973411d278045bde3c7161b911e0680d53e2d73d6457c77068d2e55d816d67",
+        "expansion-vision-llama-vendor-hash-sha256-LICENSE.txt": "24836bd0f33996623060eabeb765fb0b091bcbca47e6e6e9493385df8ce9e30a",
+        "expansion-vision-llama-vendor-hash-rotate-bits-LICENSE.md.txt": "6d1a68e8ae5085d15a5c4f8dc1363b7bf256756b3a49cbaf29fe7f7a49eae4e3",
+        "expansion-vision-miniaudio-NOTICE.txt": "8ee059f719506d610d0e11e15a36d5c6fd9a55801931b80215f9d26ed019e0d1",
+        "expansion-vision-stb-NOTICE.txt": "323eac668c422203f3c54a24e077fd2e999ac6d79ac1872e619830cb3bcb34fe",
+        "expansion-vision-stb-write-NOTICE.txt": "323eac668c422203f3c54a24e077fd2e999ac6d79ac1872e619830cb3bcb34fe",
+        "expansion-vision-ORT-LICENSE.txt": "2f07c72751aed99790b8a4869cf2311df85a860b22ded05fa22803587a48922c"
       }
     }
   ],

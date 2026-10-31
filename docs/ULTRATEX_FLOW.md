@@ -2,7 +2,7 @@
 
 [English](ULTRATEX_FLOW.en.md) · [完整待办](REMAINING_ADAPTATION.md) · [本地材质](LOCAL_MATERIALS.md)
 
-**当前是网络组件转换工具，UltraTex 尚不能作为完整 App 配方运行。** 它补齐实际 FLUX.1 dev / FLUX.2 网络、LoRA、前景压缩与位置编号的导出，未将模型登记成可下载或可运行项。文本编码、匹配 VAE、UltraTex 条件准备、采样与 App 编排仍需完成。
+**此页说明独立网络转换工具。** 它仍只生成 flow 组件；v0.3.6 另有 `tools/export_ultratex.py` 与完整本机 App 适配，含文本、tile VAE / BN、条件、采样及 PBR。完整操作见[当前方案](ADAPTER_PROFILES.md)。
 
 | 编号 | 已实现 | 边界 |
 | --- | --- | --- |
@@ -32,12 +32,12 @@ python tools/export_ultratex_flow.py --family flux1 `
 
 输出包含 `flow.onnx`、需要时的外部 tensor 数据及 `export-receipt.json`。回执明确 `complete_adapter=false`、`app_recipe_registered=false`，**不会生成冒充完整模型的 `lma-bundle.json`**。路径和本地文件名不写入回执；记录来源、角色、尺寸和哈希。
 
-FLUX.1 输入位置编号是 int64、0–8191，FLUX.2 为源码的 float32 位置。mask 是与批量共用的一维 int64 0/1，目标至少一个前景 token；输入必须为有限值。输出索引供未来同机采样恢复目标位置。单个 ONNX 文件不承担完整任务预检；这些范围是组件调用者必须满足的契约。BSA 工作量上限与同分数排序遵循已有实现和披露。
+FLUX.1 输入位置编号是 int64、0–8191，FLUX.2 为源码的 float32 位置。mask 是与批量共用的一维 int64 0/1，目标至少一个前景 token；输入必须为有限值。输出索引供同机采样恢复目标位置。单个 ONNX 文件不承担完整任务预检；这些范围是组件调用者必须满足的契约。BSA 工作量上限与同分数排序遵循已有实现和披露。
 
-## 程序证据与未完成部分
+## 网络组件程序证据与完整适配
 
-101 项检查实际执行固定源码的随机双流 / 单流网络、导出的动态 ONNX 和生产 C++ ORT / BSA：不同目标 / 法线 / 参考 / 文本长度、批量、无背景注意力、原位置影响、参考影响、FP32 / BF16、精确上游 RoPE、未合并上游 LoRA processor 对照、缺因子 / 非有限值的原子拒绝、两种真实转换 CLI 与不覆盖旧目录。没有下载或运行完整训练模型、没有手机或虚拟化运行。
+107 项检查实际执行固定源码的随机双流 / 单流网络、导出的动态 ONNX 和生产 C++ ORT / BSA：不同目标 / 法线 / 参考 / 文本长度、批量、无背景注意力、原位置影响、参考影响、FP32 / BF16、精确上游 RoPE、未合并上游 LoRA processor 对照、缺因子 / 非有限值的原子拒绝、两种真实转换 CLI 与不覆盖旧目录。没有下载或运行完整训练模型、没有手机或虚拟化运行。
 
-[检查记录](../verification/adaptation/ultratex-flows.json) · [测试入口](../tools/test_ultratex_flows.py)
+[检查记录](../verification/releases/v0.3.6/ultratex-flow-tests.json) · [测试入口](../tools/test_ultratex_flows.py)
 
-完整 UltraTex 仍缺同一手机上的 CLIP / T5 或 Qwen3 分词与编码、各自 tile VAE / BN 及材质解码器、规范几何条件 / token packing、Euler / CFG 与黑背景恢复、albedo / MR 两次流程、模型资产 / 参数 / 子进程 / PBR 烘焙编排。这些继续属于原完整交付范围，不能因网络图检查通过就标成已完成。
+v0.3.6 已补齐 CLIP / T5 或 Qwen3 分词与编码、tile VAE / BN 和材质解码、条件 / packing、Euler / CFG / 黑背景恢复、albedo / MR 与应用编排。独立 flow 工具不是完整包导出器；完整资产请使用 `tools/export_ultratex.py`。

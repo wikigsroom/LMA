@@ -1,3 +1,7 @@
+# Third-party source provenance and notices
+
+v0.3.6: 18 extension engines plus text, 41 packaged native libraries. [Full notices](../THIRD_PARTY_NOTICES.md) explain source pins and license boundaries, including the bundled DISO CPU component under **CC BY-NC 4.0 (noncommercial)**. Every model/tokenizer/voice/linguistic asset remains user-selected. Current adapters: [profiles](../docs/ADAPTER_PROFILES.en.md). Earlier component-specific notes follow as history.
+
 # MOSS Delay first-class CPU worker
 
 Spatial CPU v0.3.5: [per-file source lock](spatial-shape-source-lock.json), [中文方案](../docs/SPATIAL_SHAPE.md) / [English](../docs/SPATIAL_SHAPE.en.md). Hunyuan3D shape, UltraShape refinement and shared UniForge/SAM sparse rules retain source/per-file terms; model licenses are separate. ONNX Runtime and stb notices are packaged with the new worker. No trained weights, pinyin tables, vocabularies or voice data are embedded. Sparse operators are built into the APK, not downloaded plugins.

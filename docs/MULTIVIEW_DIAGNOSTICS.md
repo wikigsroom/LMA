@@ -1,5 +1,7 @@
 # 多视图 3D 与本机诊断 · v0.3.3
 
+**v0.3.6 更新：** 下文原路线继续可用；旧版计数、当时缺口和证据保留原版本含义。当前完整适配、新增可选阶段和运行边界见[方案与操作](ADAPTER_PROFILES.md)及[编号收口](REMAINING_ADAPTATION.md)。
+
 > 此页记录 v0.3.3 的历史范围。Current v0.3.4 adds matched TripoSG / PartCrafter shape subsets; see [当前实现 / current scope](IMPLEMENTATION_V034.md), [English](IMPLEMENTATION_V034.en.md).
 
 [English](MULTIVIEW_DIAGNOSTICS.en.md) · [使用手册](USER_GUIDE.md) · [实现](IMPLEMENTATION_V033.md) · [版本说明](releases/v0.3.3.md)

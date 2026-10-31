@@ -13,6 +13,10 @@ ROOT=Path(__file__).resolve().parents[1]
 DIST=ROOT/'dist'
 VERSION=version()
 MEDIA=['community','release-workbench','expansion','multiview','shape','spatial']
+COMPLETE=VERSION!='0.3.5'
+if COMPLETE:
+ from complete_evidence import CURRENT_MEDIA
+ MEDIA=CURRENT_MEDIA
 
 def sha(path):
  with path.open('rb') as stream:return hashlib.file_digest(stream,'sha256').hexdigest()
@@ -106,9 +110,9 @@ def check(prepared=False,published=False):
  assert (source_directory/(source.name+'.sha256')).read_text(encoding='utf-8').split()[0]==index['sha256']
  if prepared:
   directory=DIST/('releases/v'+VERSION);manifest=read(directory/'release-manifest.json')
-  assert manifest['version']==VERSION and manifest['prerelease'] and manifest['validation_mode']=='program_only'
+  assert manifest['version']==VERSION and manifest['prerelease']==(not COMPLETE) and manifest['validation_mode']=='program_only'
   assert manifest['full_scope_program_implementation_complete'] and manifest['apk_sha256']==build['sha256']
-  assert not manifest['all_benchmark_architectures_integrated'] and manifest['unported_benchmark_configurations']==evidence['unported_benchmark_configurations']
+  assert manifest['all_benchmark_architectures_integrated']==COMPLETE and manifest['unported_benchmark_configurations']==evidence['unported_benchmark_configurations']
   expected={x['name'] for x in manifest['assets']}|{'release-manifest.json'}
   if (directory/'publish-receipt.json').exists():expected.add('publish-receipt.json')
   assert set(p.name for p in directory.iterdir())==expected
@@ -131,7 +135,9 @@ def prepare():
  notes='RELEASE_NOTES.md';shutil.copy2(ROOT/('docs/releases/v'+VERSION+'.md'),directory/notes);names.append(notes)
  verification=f'LMA-{VERSION}-verification.zip'
  with zipfile.ZipFile(directory/verification,'w',zipfile.ZIP_DEFLATED) as archive:
-  for p in sorted((ROOT/'verification/program').glob('*.json')):archive.write(p,'verification/program/'+p.name)
+  evidence_dir=ROOT/'verification/releases'/('v'+VERSION) if COMPLETE else ROOT/'verification/program'
+  for p in sorted(evidence_dir.glob('*.json')):archive.write(p,p.relative_to(ROOT).as_posix())
+  if COMPLETE:archive.write(ROOT/'research/portability/adaptation-current.json','adaptation-current.json')
   for name in MEDIA:archive.write(ROOT/'docs/media/development'/name/'manifest.json','media/'+name+'/manifest.json')
   archive.write(ROOT/('catalogue/release-'+VERSION+'-implementation.json'),'implementation.json')
   archive.write(ROOT/'docs/proposals/program-validation-policy.json','validation-policy.json')
@@ -148,11 +154,11 @@ def prepare():
    target=f'LMA-{VERSION}-{name}.'+extension;shutil.copy2(original,directory/target);names.append(target)
  names.sort()
  (directory/'SHA256SUMS').write_text(''.join(sha(directory/n)+'  '+n+'\n' for n in names),encoding='utf-8');names.append('SHA256SUMS')
- manifest=dict(repository='wikigsroom/LMA',version=VERSION,tag='v'+VERSION,title='LMA v'+VERSION+' · Local shape refinement and sparse CPU foundation / 本地形状精修与稀疏运算基座',
-  prerelease=True,notes='docs/releases/v'+VERSION+'.md',validation_mode='program_only',full_scope_program_implementation_complete=True,
+ manifest=dict(repository='wikigsroom/LMA',version=VERSION,tag='v'+VERSION,title='LMA v'+VERSION+' · Local multimodal and 3D adapters / 本地多模态与 3D 完整适配',
+  prerelease=not COMPLETE,notes='docs/releases/v'+VERSION+'.md',validation_mode='program_only',full_scope_program_implementation_complete=True,
   apk_sha256=build['sha256'],physical_device_tested=False,phone_inference_tested=False,background_endurance_tested=False,
   model_quality_accepted=False,media_uses_simulated_native_state=True,signing_material_included=False,model_weights_included=False,
-  all_benchmark_architectures_integrated=False,unported_benchmark_configurations=evidence['unported_benchmark_configurations'],
+  all_benchmark_architectures_integrated=COMPLETE,all_requested_adaptations_complete=COMPLETE,full_benchmark_workflows_reproduced=False,unported_benchmark_configurations=evidence['unported_benchmark_configurations'],
   assets=[dict(name=n,bytes=(directory/n).stat().st_size,sha256=sha(directory/n)) for n in names])
  write(directory/'release-manifest.json',manifest)
  return check(prepared=True)

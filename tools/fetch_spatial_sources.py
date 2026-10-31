@@ -26,6 +26,10 @@ def fetch(entry):
     selected = []
     for item in tree['tree']:
         name = PurePosixPath(item['path'])
+        if name.name.endswith('.header.json'):
+            continue
+        if entry.get('paths') and item['path'] not in entry['paths'] and not any(item['path'].startswith(p) for p in entry.get('prefixes',[])):
+            continue
         if item['type'] != 'blob' or item.get('mode') not in ('100644', '100755'):
             continue
         if name.suffix not in ('.py', '.cpp', '.cc', '.c', '.cu', '.cuh', '.h', '.hpp', '.json', '.yaml', '.yml', '.md', '.txt', '.toml') and not name.name.upper().startswith(('LICENSE', 'NOTICE', 'COPYING')):

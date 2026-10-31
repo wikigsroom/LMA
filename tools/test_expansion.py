@@ -6,7 +6,7 @@ ROOT=Path(__file__).resolve().parents[1]
 
 def main():
     inputs=fingerprint('app/src/main/java/com/lma/app/core','app/src/main/java/com/lma/app/ExpansionEngine.java',
-        'app/src/main/java/com/lma/app/NativeWorker.java','native/speech_extra','native/worker_common.hpp','native/runtime_metrics.hpp',
+        'app/src/main/java/com/lma/app/NativeWorker.java','app/src/main/java/com/lma/app/VisionEngine.java','app/src/main/java/com/lma/app/PreparationEngine.java','app/src/main/java/com/lma/app/GgufMetadata.java','native/speech_extra','native/worker_common.hpp','native/runtime_metrics.hpp',
         'tests/expansion-host','tests/expansion-native','tools/test_expansion.py','tools/expansion_catalogue.py',
         'catalogue/expansion-bundles.json','catalogue/expansion-bundle-evidence.json','research/expansion',
         'catalogue/multiview-bundles.json','catalogue/multiview-bundle-evidence.json','tools/multiview_catalogue.py','research/multiview',
@@ -19,7 +19,7 @@ def main():
     assert hashlib.sha256(dep.read_bytes()).hexdigest()=='3ea61b2a06e31edf1c91134fe9106b0ebb16628be169f3db75bc7a2b06b45796'
     sources=list((ROOT/'app/src/main/java/com/lma/app/core').glob('*.java'))+list((ROOT/'tests/expansion-host').rglob('*.java'))
     sources += [ROOT/'tests/host/android/util/AtomicFile.java',ROOT/'tests/tts-host/com/lma/app/LmaApp.java']
-    sources += [ROOT/'app/src/main/java/com/lma/app'/(s+'.java') for s in ['LocalEngine','NativeWorker','ExpansionEngine']]
+    sources += [ROOT/'app/src/main/java/com/lma/app'/(s+'.java') for s in ['LocalEngine','NativeWorker','ExpansionEngine','VisionEngine','PreparationEngine','GgufMetadata']]
     rsp=out/'sources.rsp';rsp.write_text('\n'.join('"'+p.as_posix()+'"' for p in sources),encoding='utf-8')
     subprocess.run([shutil.which('javac'),'-encoding','UTF-8','--release','8','-Xlint:-options','-cp',str(dep),'-d',str(classes),'@'+str(rsp)],check=True)
     command=[shutil.which('java'),'-Dfile.encoding=UTF-8','-Dstdout.encoding=UTF-8','-Dstderr.encoding=UTF-8','-cp',str(classes)+os.pathsep+str(dep),'com.lma.app.ExpansionTest',str(ROOT),str(run)]

@@ -26,16 +26,22 @@ def sha(path):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--gh", default=shutil.which("gh"), help="Existing authenticated GitHub CLI executable")
-    parser.add_argument("--publish", action="store_true", help="Create/upload/publish the GitHub prerelease")
+    parser.add_argument("--publish", action="store_true", help="Create/upload/verify/publish the prepared GitHub release")
     args = parser.parse_args()
     release = version()
     if "-dev" in release:
-        raise RuntimeError("Do not publish an internal development build as completion of v0.3.0")
+        raise RuntimeError("Do not publish an internal development build as a completed release")
     directory = ROOT / "dist/releases" / ("v" + release)
     manifest_path = directory / "release-manifest.json"
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
     assert manifest["version"] == release and manifest["tag"] == "v" + release
-    assert manifest["repository"] == "wikigsroom/LMA" and manifest["prerelease"] is True
+    assert manifest["repository"] == "wikigsroom/LMA" and isinstance(manifest["prerelease"], bool)
+    prerelease = manifest["prerelease"]
+    if not prerelease:
+        from audit_adaptations import require_complete
+        require_complete()
+        assert manifest.get("all_requested_adaptations_complete") is True
+        assert manifest.get("full_scope_program_implementation_complete") is True
     assets = list(manifest["assets"])
     assets.append({"name": manifest_path.name, "bytes": manifest_path.stat().st_size, "sha256": sha(manifest_path)})
     for asset in assets:
@@ -44,7 +50,7 @@ def main():
         assert path.stat().st_size == asset["bytes"] and sha(path) == asset["sha256"]
     if not args.publish:
         print(json.dumps({"repository": manifest["repository"], "tag": manifest["tag"], "assets": len(assets),
-                          "prerelease": True, "action": "preview only; use --publish after commit/tag push"}))
+                          "prerelease": prerelease, "action": "preview only; use --publish after commit/tag push"}))
         return
     if not args.gh or not Path(args.gh).is_file():
         raise RuntimeError("Install/authenticate GitHub CLI, then provide --gh if not on PATH")
@@ -90,9 +96,9 @@ def main():
     remote = api(base + "/tags/" + tag, optional=True)
     if remote is None:
         gh("release", "create", tag, "--repo", repo, "--verify-tag", "--title", manifest["title"],
-           "--notes-file", ROOT / manifest["notes"], "--draft", "--prerelease")
+           "--notes-file", ROOT / manifest["notes"], "--draft", "--prerelease=" + str(prerelease).lower())
         remote = api(base + "/tags/" + tag)
-    assert remote["prerelease"] is True, "Refuse to repurpose an existing stable release"
+    assert remote["prerelease"] is prerelease, "Refuse to change an existing release channel"
     known = {asset["name"]: asset for asset in remote["assets"]}
     for asset in assets:
         present = known.get(asset["name"])
@@ -111,15 +117,18 @@ def main():
         assert actual["state"] == "uploaded" and actual["size"] == asset["bytes"]
         assert actual.get("digest") == "sha256:" + asset["sha256"], "Server digest mismatch: " + asset["name"]
     if remote["draft"]:
-        print("All uploaded hashes match; publishing prerelease", flush=True)
-        gh("release", "edit", tag, "--repo", repo, "--draft=false", "--prerelease")
+        print("All uploaded hashes match; publishing release", flush=True)
+        options = ["--draft=false", "--prerelease=" + str(prerelease).lower()]
+        if not prerelease:
+            options.append("--latest")
+        gh("release", "edit", tag, "--repo", repo, *options)
     remote = api(base + "/tags/" + tag)
-    assert not remote["draft"] and remote["prerelease"]
+    assert not remote["draft"] and remote["prerelease"] is prerelease
     receipt = {"repository": repo, "tag": tag, "commit": head, "url": remote["html_url"], "id": remote["id"],
-               "published_at": remote["published_at"], "prerelease": True, "draft": False,
+               "published_at": remote["published_at"], "prerelease": prerelease, "draft": False,
                "assets": assets, "all_server_digests_verified": True, "physical_device_tested": False}
     (directory / "publish-receipt.json").write_text(json.dumps(receipt, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print(json.dumps({"url": receipt["url"], "assets": len(assets), "prerelease": True, "published": True}))
+    print(json.dumps({"url": receipt["url"], "assets": len(assets), "prerelease": prerelease, "published": True}))
 
 
 if __name__ == "__main__":

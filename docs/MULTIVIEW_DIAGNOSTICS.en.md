@@ -1,5 +1,7 @@
 # Multiview 3D and local diagnostics · v0.3.3
 
+**v0.3.6 update:** the detailed routes below remain available. Versioned counts, earlier missing-adapter statements and prior evidence describe their original checkpoints; current completion, new optional stages and limits are in [adapter profiles](ADAPTER_PROFILES.en.md) and [numbered completion](REMAINING_ADAPTATION.en.md).
+
 > 此页记录 v0.3.3 的历史范围。Current v0.3.4 adds matched TripoSG / PartCrafter shape subsets; see [当前实现 / current scope](IMPLEMENTATION_V034.md), [English](IMPLEMENTATION_V034.en.md).
 
 [中文](MULTIVIEW_DIAGNOSTICS.md) · [User guide](USER_GUIDE.en.md) · [Implementation](IMPLEMENTATION_V033.en.md) · [Release](releases/v0.3.3.md)

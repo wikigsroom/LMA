@@ -1,0 +1,63 @@
+{
+  "schema": "lma.fdg-source-lock/1",
+  "trellis_revision": "75fbf0183001ed9876c8dbb35de6b68552ee08bd",
+  "eigen_revision": "3147391d946bb4b6c68edd901f2add6ac1f31f8c",
+  "eigen_repository": "eigen-mirror/eigen",
+  "eigen_policy": [
+    "EIGEN_MPL2_ONLY",
+    "EIGEN_DONT_PARALLELIZE"
+  ],
+  "sources": {
+    "fdg_python": {
+      "repository": "microsoft/TRELLIS.2",
+      "git_blob": "7cf1397e58e42b9d66b2230f5b3d55fee708514d",
+      "path": "build/spatial-source-review/blobs/7cf1397e58e42b9d66b2230f5b3d55fee708514d",
+      "bytes": 14939,
+      "sha256": "112bd474d580f279ac196129f7989df6fdafa7ed7e08c350f2b386553e73e17d"
+    },
+    "fdg_cpu": {
+      "repository": "microsoft/TRELLIS.2",
+      "git_blob": "ad89edc01d1efb9d2644f251560c60de243cb1dd",
+      "path": "build/spatial-source-review/blobs/ad89edc01d1efb9d2644f251560c60de243cb1dd",
+      "bytes": 33739,
+      "sha256": "95ebcdec3818539c52504cd4a89f409287afc51b051086b9092e11fc7308063f"
+    },
+    "fdg_license": {
+      "repository": "microsoft/TRELLIS.2",
+      "git_blob": "79656060de00aa4659ad2c276d5be8830664d544",
+      "path": "build/spatial-source-review/blobs/79656060de00aa4659ad2c276d5be8830664d544",
+      "bytes": 1140,
+      "sha256": "d9a1b1e30d633d5732ea18e3cba9538d293ebc53e1a9e4e96ab739e0c5c4f1cb"
+    },
+    "volume_cuda": {
+      "repository": "JeffreyXiang/FlexGEMM",
+      "git_blob": "165c09863c4db66137fc460c62008a08ff95c501",
+      "path": "build/spatial-source-review/blobs/165c09863c4db66137fc460c62008a08ff95c501",
+      "bytes": 10600,
+      "sha256": "701c0d93b85daf1a117849809fb9d8534f0d330ef48039196e78afa8b679fde2"
+    },
+    "volume_reference": {
+      "repository": "JeffreyXiang/FlexGEMM",
+      "git_blob": "225ca3e22980c53091f2e4b5878c7d1a910ff1fb",
+      "path": "build/spatial-source-review/blobs/225ca3e22980c53091f2e4b5878c7d1a910ff1fb",
+      "bytes": 6688,
+      "sha256": "8ceb447d3acd484d26edd459ba0abdc470c089d25ca4727a75a5e95aad528a43"
+    },
+    "volume_wrapper": {
+      "repository": "JeffreyXiang/FlexGEMM",
+      "git_blob": "41db3eeb103f3d8ba212ec958e041d297ccfb08b",
+      "path": "build/spatial-source-review/blobs/41db3eeb103f3d8ba212ec958e041d297ccfb08b",
+      "bytes": 7783,
+      "sha256": "665b41c9b3e908686d4d7f8f4152d342d59f7448f12d42d13c969e8b36499ea2"
+    },
+    "volume_license": {
+      "repository": "JeffreyXiang/FlexGEMM",
+      "git_blob": "d0f96cd8065cf767fabfd0b813933aa75f26cded",
+      "path": "build/spatial-source-review/blobs/d0f96cd8065cf767fabfd0b813933aa75f26cded",
+      "bytes": 1093,
+      "sha256": "d98159921cc2bfa41fff0cea296bd9876ed8fc7b64ae8ef314e5e47c787e705d"
+    }
+  },
+  "assets": "source_code_only",
+  "trained_models": false
+}

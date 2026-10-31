@@ -1,6 +1,6 @@
 # LMA 完成条件核对
 
-当前已发布版本为 **v0.3.5**，开发源码为 **v0.3.6（未发布）**。最新实现、完整冻结范围和剩余代码以[编号清单](REMAINING_ADAPTATION.md)、[English](REMAINING_ADAPTATION.en.md)及[开发程序证据](../verification/adaptation/status.json)为准。F5 官方兼容前端和 Hunyuan Paint 已接入；D04 / D05 / D08 / D09 / D10 仍缺完整模型流程，不能写成全部适配完成。
+**当前 v0.3.6 / code56 已完成 P01–P06 有界 CPU 程序适配。** [完整编号](REMAINING_ADAPTATION.md) / [English](REMAINING_ADAPTATION.en.md)、[全部配方与 59 组检查](IMPLEMENTATION_V036.md)、[本版证据](../verification/releases/v0.3.6/status.json)、[Release 说明](releases/v0.3.6.md)。62 配方 / 82 目录包 / 18 扩展引擎加文本；完整模型与手机实测按要求未执行。下文旧开发阶段、计数和验收门槛仅为历史，不代表当前缺口。Current scoped program implementation is complete; historical failures remain preserved.
 
 **2026-10-31 用户已明确只做程序验证，不再执行完整模型或手机验证。** 此政策覆盖下文旧验收门槛。无需提供真机，不重复 ADB 枚举、全模型下载 / 推理、ASR 或耐久测试；手机质量 / 性能继续记为未测。缺代码仍须开发，不能以用户免测当作完成依据。下文 dev.37 / 0.1.2 / 0.2.0 叙述全部是历史，不能据此把当前任务重新阻塞在真机上。
 

@@ -51,8 +51,44 @@
       "bytes": 61291,
       "git_blob": "3d769ff503966def5145d09d0da2c22bad8c6dd7",
       "sha256": "5c042967b7c2e8ae29a2999c1b29c1def935207189422d25b9c841f29baace3a"
+    },
+    {
+      "path": "ultratex/backbones/flux1/modules/autoencoder.py",
+      "bytes": 12348,
+      "git_blob": "a859e511ed7504d5ff1262b481ca3a42ab4c6f74",
+      "sha256": "c5dbabadd5fc9cd8510d117d68cf003e01ed3ec8b77f948456a3e6e16fe329b9"
+    },
+    {
+      "path": "ultratex/backbones/flux1/modules/conditioner.py",
+      "bytes": 2457,
+      "git_blob": "9bcffe5a2e2d39008bcfe4dfafb7fe9cccdd2fec",
+      "sha256": "7ba4ff9c8b7e695c87c1e41f8ef2c574431a985432f29517f49e30d272d33514"
+    },
+    {
+      "path": "ultratex/backbones/flux2/autoencoder.py",
+      "bytes": 11139,
+      "git_blob": "e287ecb1c14a9786aa66fc1cb80de9005900a87e",
+      "sha256": "bb578f78d097a88f6e7e8aa01032c10f55659729b85203ae2d5852a7889ac96a"
+    },
+    {
+      "path": "ultratex/backbones/flux2/text_encoder.py",
+      "bytes": 15211,
+      "git_blob": "4a1cf7fa732b30642c2973817cf9cad130927a08",
+      "sha256": "501109bbb17ad4b18067bb2655efda0706ea5ac16b3a3f61e174194941313d62"
+    },
+    {
+      "path": "ultratex/data/dataset.py",
+      "bytes": 23139,
+      "git_blob": "28397499dc8d9e19c1be30155eca452ff283c5e3",
+      "sha256": "214b1e5be02e4d787fe3807324bbf7cc436dc53e9cd909ba5770cafc7528a581"
+    },
+    {
+      "path": "inference_flux1.py",
+      "bytes": 17215,
+      "git_blob": "be32cf8752e001008c56beba472a7029cd99b1ee",
+      "sha256": "c6937e03385d312bab3f132d08a214bb5575ccd01b5e608d529257d16dcb184c"
     }
   ],
-  "scope": "Flow networks and LoRA conversion only; not a complete model workflow",
+  "scope": "Pinned UltraTex networks, VAE, text frontends, sampling and condition contracts; portable CPU camera/bake differences are disclosed",
   "trained_models_downloaded": 0
 }

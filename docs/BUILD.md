@@ -1,10 +1,10 @@
-# 构建与程序验证 · v0.3.5
+# 构建与程序验证 · v0.3.6
 
-**当前分支为 v0.3.6 开发源码，未发布完整适配 Release。** 下文 `v0.3.5` 命令用于重现已发布版本。当前开发先执行 `tools/fetch_f5_sources.py`、`tools/fetch_paint_sources.py`，再按 [F5](F5_FRONTEND.md) / [PBR](LOCAL_MATERIALS.md) 准备程序依赖和编译；不准备任何完整训练模型。新版本 APK 构建 / 验包 / Lint 入口不变，证据收口使用 `python tools/adaptation_evidence.py --export` 和 `python tools/check_repository.py --development`。完整适配发布由 `tools/audit_adaptations.py --require-complete` 单独约束；缺代码时不能沿用旧版“完整冻结范围”的完成标志。
+**当前为完整适配 v0.3.6 / code56。** 所有原生引擎均须准备，新增固定源码 / 视觉 / 表面提取步骤见本页末尾。程序证据使用 `tools/program_evidence.py --export`，完整门禁使用 `tools/audit_adaptations.py --require-complete`；`adaptation_evidence.py` 仅保留历史开发用途。模型资产由用户另行选择，不进入构建和验证。
 
 [English](BUILD.en.md) · [发布流程](RELEASING.md) · [验证策略](PROGRAM_VALIDATION.md) · [构建历史全文](BUILD_HISTORY.md)
 
-重建使用**带完整历史的 Git clone**，复现时切到 `v0.3.5`。历史证据身份检查会读取早期不可变 Git blob。Release 源码 ZIP 用于代码 / 文档 / 证据审阅，精确文件见源码清单；它排除 `.git`、原生二进制、模型、构建依赖与签名材料，不是自包含 SDK。编译和程序验证不需要完整训练模型。
+重建使用**带完整历史的 Git clone**，复现时切到 `v0.3.6`。历史证据身份检查会读取早期不可变 Git blob。Release 源码 ZIP 用于代码 / 文档 / 证据审阅，精确文件见源码清单；它排除 `.git`、原生二进制、模型、构建依赖与签名材料，不是自包含 SDK。编译和程序验证不需要完整训练模型。
 
 ## 工具链
 
@@ -17,7 +17,7 @@
 ```powershell
 git clone git@github.com:wikigsroom/LMA.git
 cd LMA
-git checkout v0.3.5
+git checkout v0.3.6
 python tools/bootstrap_runtime.py
 python tools/bootstrap_native.py
 python tools/fetch_native.py --transport ssh
@@ -72,6 +72,10 @@ node tools/capture_workbench.cjs release-workbench
 node tools/capture_workbench.cjs expansion
 node tools/capture_workbench.cjs multiview
 node tools/capture_workbench.cjs shape
+node tools/capture_workbench.cjs spatial
+node tools/capture_workbench.cjs material
+node tools/capture_workbench.cjs ultratex
+node tools/capture_workbench.cjs adaptation
 python tools/release_scope.py
 python tools/program_evidence.py --export
 python tools/package_delivery.py
@@ -105,7 +109,6 @@ python tools/collect_expansion_notices.py
 [中文方案](SPATIAL_SHAPE.md) · [English workflow](SPATIAL_SHAPE.en.md)
 
 ```powershell
-python tools/fetch_spatial_sources.py --fetch
 python tools/fetch_spatial_sources.py
 python tools/build_spatial.py
 python tools/build_spatial.py --android
@@ -115,4 +118,36 @@ python tools/test_spatial.py
 python tools/test_spatial_sparse.py
 ```
 
-Only pinned code/config/license files are fetched. These checks use tiny random or synthetic graphs, not trained models. Android links ORT API17 and built-in CPU custom operations; no downloaded native plugins. 仅获取源码，先构建 host / Android 并收集许可后打包；40 native libraries, 50 templates / 82 bundles / 17 extensions plus text. Source lock, sidecars, input budgets and process cleanup are checked. 六组当前页面录制：community / release-workbench / expansion / multiview / shape / spatial，全部 finally 关闭浏览器。
+Only pinned code/config/license files are fetched. These checks use tiny random or synthetic graphs, not trained models. Android links ORT API17 and built-in CPU custom operations; no downloaded native plugins. 仅获取源码，先构建 host / Android 并收集许可后打包；41 native libraries, 62 templates / 82 bundles / 18 extensions plus text. Source lock, sidecars, input budgets and process cleanup are checked. 九组当前页面录制：community / release-workbench / expansion / multiview / shape / spatial / material / ultratex / adaptation，全部 finally 关闭浏览器。
+
+## v0.3.6 adapters / 完整适配新增依赖
+
+Source-review helpers require an authenticated GitHub CLI at `build/github-cli/gh.exe`; install the official Windows CLI and copy its executable there if that cache is absent. 本地源码检查工具还需准备其文档声明的 PyTorch / ONNX / tokenizer 等程序依赖；只安装程序包，不取得完整模型。
+
+The baseline engine table above remains required. 下列仅为追加引擎，不是替代上方全部引擎的简化构建。These commands fetch pinned code/config/licenses only, never weights, tokenizers, voices or model tables. 按 [适配方案](ADAPTER_PROFILES.md) / [profiles](ADAPTER_PROFILES.en.md) 为导出工具单独准备其 Python 依赖；不运行完整权重验证。
+
+```powershell
+python tools/fetch_f5_sources.py
+python tools/fetch_paint_sources.py
+python tools/fetch_shape_sources.py --fetch
+python tools/fetch_spatial_sources.py
+python tools/fetch_surface_sources.py --fetch
+python tools/fetch_fdg_sources.py --fetch
+python tools/fetch_depth_sources.py
+python tools/fetch_vision_sources.py --fetch
+python tools/lock_portable_sources.py
+python tools/build_shape.py --android
+python tools/build_spatial.py --android
+python tools/build_vision.py --android
+python tools/collect_expansion_notices.py
+python tools/build_recipe_templates.py
+python tools/build.py --sdk C:/path/to/Android/Sdk
+python tools/verify_package.py
+python tools/test_android_lint.py
+```
+
+Source preparation is sequential; generated FDG / surface sources are prepared by the locked builders. 源码准备按顺序执行，必要的 FDG / surface 生成补丁由固定构建器处理。Host program tests additionally build the matching Windows workers (omit `--android` for shape/spatial/vision); they use the existing Windows C++ toolchain. Never use Docker, WSL, VMs or emulators.
+
+All 59 current suites, source receipts and native build records are linked in [v0.3.6 implementation](IMPLEMENTATION_V036.en.md#program-checks). 精确的测试输入与结果见 [当前状态](../verification/releases/v0.3.6/status.json)。先运行受影响套件，完成九组页面录制，再执行完整审计、证据导出和打包；不可仅运行旧基线测试就复用新版本通过状态。Original-signer upgrade builds require the existing private local key; fresh clones use their own signer and cannot replace an installation signed differently.
+
+The bundled DISO CPU component is **CC BY-NC 4.0**. [完整许可 / notices](../THIRD_PARTY_NOTICES.md). The source ZIP contains code, docs and program evidence, not the native binaries, toolchain or user model files.

@@ -11,11 +11,13 @@ from verify_package import elf_info,SYSTEM_LIBS
 ROOT=Path(__file__).resolve().parents[1]
 
 def source_inputs():
-    return fingerprint('native/rf_shape','tests/expansion-native/shape.cpp','native/worker_common.hpp','native/runtime_metrics.hpp','native/moss_nano/onnx_external.hpp','research/soulx_ort/android_log.cpp','tools/build_shape.py','tools/fetch_shape_sources.py','third_party/rf-shape-source-lock.json','third_party/soulx-acoustic-source-lock.json','build/native-src/onnxruntime-headers/include/onnxruntime/core/session','build/native-src/pixal3d-mv-cpp/thirdparty/stb/stb_image.h')
+    return fingerprint('native/rf_shape','tests/expansion-native/shape.cpp','tests/expansion-native/pointcloud.cpp','tests/expansion-native/surface.cpp','native/worker_common.hpp','native/runtime_metrics.hpp','native/moss_nano/onnx_external.hpp','research/soulx_ort/android_log.cpp','tools/build_shape.py','tools/fetch_shape_sources.py','third_party/rf-shape-source-lock.json','third_party/surface-source-lock.json','tools/fetch_surface_sources.py','tools/prepare_surface_cpu.py','build/surface-cpu','third_party/soulx-acoustic-source-lock.json','build/native-src/onnxruntime-headers/include/onnxruntime/core/session','build/native-src/pixal3d-mv-cpp/thirdparty/stb/stb_image.h')
 
 
 def build(android=False):
     if os.name!='nt':raise RuntimeError('Native Windows toolchains required')
+    from prepare_surface_cpu import prepare
+    prepare()
     acoustic=json.loads((ROOT/'third_party/soulx-acoustic-source-lock.json').read_text(encoding='utf-8'));verify()
     if hashlib.sha256((ROOT/'build/native-src/sd-cpp/thirdparty/json.hpp').read_bytes()).hexdigest()!=acoustic['json_header_sha256']:raise RuntimeError('Changed JSON header')
     headers=next(s for s in acoustic['sources'] if s['name']=='onnxruntime-headers')
@@ -38,11 +40,11 @@ def build(android=False):
     subprocess.run(['subst',drive,str(ROOT)],check=True,capture_output=True)
     try:
         alias=drive+'/';tool=alias+'build/toolchain/';cmake=tool+'cmake-3.31.6/bin/cmake.exe';directory=alias+'build/'+name
-        options=dict(CMAKE_MAKE_PROGRAM=tool+'cmake-3.31.6/bin/ninja.exe',CMAKE_BUILD_TYPE='Release',LMA_JSON_SOURCE=alias+'build/native-src/sd-cpp/thirdparty',LMA_STB_SOURCE=alias+'build/native-src/pixal3d-mv-cpp/thirdparty/stb',LMA_ORT_HEADERS=alias+'build/native-src/onnxruntime-headers/include/onnxruntime/core/session')
+        options=dict(LMA_SURFACE_SOURCE=alias+'build/surface-cpu',CMAKE_MAKE_PROGRAM=tool+'cmake-3.31.6/bin/ninja.exe',CMAKE_BUILD_TYPE='Release',LMA_JSON_SOURCE=alias+'build/native-src/sd-cpp/thirdparty',LMA_STB_SOURCE=alias+'build/native-src/pixal3d-mv-cpp/thirdparty/stb',LMA_ORT_HEADERS=alias+'build/native-src/onnxruntime-headers/include/onnxruntime/core/session')
         if android:options.update(CMAKE_TOOLCHAIN_FILE=tool+'android-ndk-r30/build/cmake/android.toolchain.cmake',ANDROID_ABI='arm64-v8a',ANDROID_PLATFORM='android-28',ANDROID_STL='c++_static',LMA_ORT_LIBRARY=alias+'app/src/main/jniLibs/arm64-v8a/libonnxruntime.so')
         else:options.update(LMA_ORT_LIBRARY=directory+'/bin/onnxruntime.dll',LMA_ORT_IMPORT_LIBRARY=directory+'/onnxruntime.lib')
         commands=[[cmake,'-S',alias+'native/rf_shape','-B',directory,'-G','Ninja']+['-D'+k+'='+v for k,v in options.items()],
-                  [cmake,'--build',directory,'--target','lma_rf_shape']+([] if android else ['lma_shape_contract'])+['-j','4']]
+                  [cmake,'--build',directory,'--target','lma_rf_shape']+([] if android else ['lma_shape_contract','lma_point_contract','lma_surface_contract'])+['-j','4']]
         if android:commands.append([tool+'android-ndk-r30/toolchains/llvm/prebuilt/windows-x86_64/bin/llvm-strip.exe','--strip-unneeded',directory+'/liblma-rf-shape.so'])
         for i,command in enumerate(commands):
             if android:result=subprocess.run(command,capture_output=True,timeout=900)

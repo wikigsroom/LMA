@@ -1,9 +1,10 @@
 """Optional, equal-peer shape recipes. No guessed download URLs or weights."""
 from expansion_catalogue import field
+from surface_catalogue import fields as surface_fields
 
 def parameters(pipeline):
     parts=pipeline!='triposg'
-    return dict(version=1,fields=dict(threads=field('integer','CPU 线程',2,1,16,presets=[1,2,4,8]),
+    return dict(version=1,fields=dict(**surface_fields(),threads=field('integer','CPU 线程',2,1,16,presets=[1,2,4,8]),
         steps=field('integer','形状采样步数',30,1,100,presets=[10,20,30,50]),seed=field('integer','随机种子',1234,0,2147483647),
         tokens=field('integer','每部件潜变量 token',2048 if pipeline in ['triposg','partcrafter_scene'] else 1024,512,4096,multipleOf=512,presets=[512,1024,2048,4096]),
         parts=field('integer','部件数量',3 if parts else 1,1,16 if parts else 1,presets=[1,2,3,4,8] if parts else [1]),

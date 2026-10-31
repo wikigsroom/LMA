@@ -64,7 +64,11 @@ struct Atlas {Mesh mesh;std::vector<std::array<float,2>> uv;int width=0,height=0
 inline Atlas unwrap(const Mesh& m,int requested){
  require(requested>=64&&requested<=4096&&m.indices.size()/3<=300000,"UV unwrap exceeds CPU mesh/atlas budget");
  xatlas::SetPrint(nullptr,false);std::unique_ptr<xatlas::Atlas,decltype(&xatlas::Destroy)> a(xatlas::Create(),xatlas::Destroy);require(bool(a),"Cannot allocate UV atlas");
- xatlas::MeshDecl d;d.vertexPositionData=m.vertices.data();d.vertexPositionStride=sizeof(Point);d.vertexCount=uint32_t(m.vertices.size());d.indexData=m.indices.data();d.indexCount=uint32_t(m.indices.size());d.indexFormat=xatlas::IndexFormat::UInt32;
+ // Normalize only xatlas's temporary positions. Small learned FDG surfaces
+ // otherwise fall below its geometric tolerances and collapse to zero-area UVs.
+ // Preserve the input vertex coordinates in the exported mesh below.
+ require(!m.vertices.empty(),"Empty UV geometry");Point lower=m.vertices[0],upper=lower;for(auto p:m.vertices)for(int c=0;c<3;c++){require(std::isfinite(p[c]),"Nonfinite UV geometry");lower[c]=std::min(lower[c],p[c]);upper[c]=std::max(upper[c],p[c]);}float extent=std::max({upper[0]-lower[0],upper[1]-lower[1],upper[2]-lower[2]});require(std::isfinite(extent)&&extent>1e-12f,"Degenerate UV geometry");Point center=scale(add(lower,upper),.5f);std::vector<Point> positions;positions.reserve(m.vertices.size());for(auto p:m.vertices)positions.push_back(scale(subtract(p,center),1/extent));
+ xatlas::MeshDecl d;d.vertexPositionData=positions.data();d.vertexPositionStride=sizeof(Point);d.vertexCount=uint32_t(m.vertices.size());d.indexData=m.indices.data();d.indexCount=uint32_t(m.indices.size());d.indexFormat=xatlas::IndexFormat::UInt32;
  require(xatlas::AddMesh(a.get(),d)==xatlas::AddMeshError::Success,"UV topology rejected");xatlas::PackOptions pack;pack.resolution=requested;pack.padding=4;pack.bilinear=true;xatlas::Generate(a.get(),{},pack);
  require(a->meshCount==1&&a->atlasCount==1&&a->width>0&&a->height>0&&a->width<=4096&&a->height<=4096,"UV requires multiple/oversized atlases");
  Atlas out;out.width=int(a->width);out.height=int(a->height);auto& result=a->meshes[0];require(result.vertexCount<=3000000&&result.indexCount==m.indices.size(),"UV output exceeds budget");

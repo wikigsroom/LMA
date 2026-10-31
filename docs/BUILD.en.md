@@ -1,10 +1,10 @@
-# Build and program verification · v0.3.5
+# Build and program verification · v0.3.6
 
-**The current branch contains v0.3.6 development; no complete adaptation Release is published.** The `v0.3.5` commands below reproduce the published version. For development, restore pinned program sources with `tools/fetch_f5_sources.py` and `tools/fetch_paint_sources.py`, then follow [F5](F5_FRONTEND.en.md) / [PBR](LOCAL_MATERIALS.en.md) for dependencies and native compilation; no complete trained models. APK build / verification / Lint entry points remain unchanged. Collect development evidence with `python tools/adaptation_evidence.py --export` and `python tools/check_repository.py --development`. `tools/audit_adaptations.py --require-complete` separately gates complete adaptation delivery; passing the earlier frozen scope cannot waive missing ports.
+**Current: complete adaptation v0.3.6 / code56.** Prepare every enabled engine, including the added locked-source / vision / surface steps at the end of this page. Use `tools/program_evidence.py --export` and `tools/audit_adaptations.py --require-complete`; `adaptation_evidence.py` remains historical development tooling. Model assets are user-selected and excluded from build/validation.
 
 [中文](BUILD.md) · [Release workflow](RELEASING.md) · [Validation policy](PROGRAM_VALIDATION.en.md) · [Archived build notes](BUILD_HISTORY.en.md)
 
-Use a **full Git clone with history**, checked out at `v0.3.5` for reproduction. Historical evidence checks intentionally read earlier immutable Git blobs. The source ZIP is for code/docs/evidence review: its manifest lists exact files, while `.git`, native binaries, model data, build dependencies and signing material are excluded. It is not a self-contained binary SDK. No trained model is required to compile or program-check the APK.
+Use a **full Git clone with history**, checked out at `v0.3.6` for reproduction. Historical evidence checks intentionally read earlier immutable Git blobs. The source ZIP is for code/docs/evidence review: its manifest lists exact files, while `.git`, native binaries, model data, build dependencies and signing material are excluded. It is not a self-contained binary SDK. No trained model is required to compile or program-check the APK.
 
 ## Toolchain
 
@@ -17,7 +17,7 @@ UI checks use Playwright with Edge/Chromium; recordings additionally use FFmpeg/
 ```powershell
 git clone git@github.com:wikigsroom/LMA.git
 cd LMA
-git checkout v0.3.5
+git checkout v0.3.6
 python tools/bootstrap_runtime.py
 python tools/bootstrap_native.py
 python tools/fetch_native.py --transport ssh
@@ -72,6 +72,10 @@ node tools/capture_workbench.cjs release-workbench
 node tools/capture_workbench.cjs expansion
 node tools/capture_workbench.cjs multiview
 node tools/capture_workbench.cjs shape
+node tools/capture_workbench.cjs spatial
+node tools/capture_workbench.cjs material
+node tools/capture_workbench.cjs ultratex
+node tools/capture_workbench.cjs adaptation
 python tools/release_scope.py
 python tools/program_evidence.py --export
 python tools/package_delivery.py
@@ -105,7 +109,6 @@ python tools/collect_expansion_notices.py
 [中文方案](SPATIAL_SHAPE.md) · [English workflow](SPATIAL_SHAPE.en.md)
 
 ```powershell
-python tools/fetch_spatial_sources.py --fetch
 python tools/fetch_spatial_sources.py
 python tools/build_spatial.py
 python tools/build_spatial.py --android
@@ -115,4 +118,36 @@ python tools/test_spatial.py
 python tools/test_spatial_sparse.py
 ```
 
-Only pinned code/config/license files are fetched. These checks use tiny random or synthetic graphs, not trained models. Android links ORT API17 and built-in CPU custom operations; no downloaded native plugins. 仅获取源码，先构建 host / Android 并收集许可后打包；40 native libraries, 50 templates / 82 bundles / 17 extensions plus text. Source lock, sidecars, input budgets and process cleanup are checked. 六组当前页面录制：community / release-workbench / expansion / multiview / shape / spatial，全部 finally 关闭浏览器。
+Only pinned code/config/license files are fetched. These checks use tiny random or synthetic graphs, not trained models. Android links ORT API17 and built-in CPU custom operations; no downloaded native plugins. 仅获取源码，先构建 host / Android 并收集许可后打包；41 native libraries, 62 templates / 82 bundles / 18 extensions plus text. Source lock, sidecars, input budgets and process cleanup are checked. 九组当前页面录制：community / release-workbench / expansion / multiview / shape / spatial / material / ultratex / adaptation，全部 finally 关闭浏览器。
+
+## v0.3.6 adapters / 完整适配新增依赖
+
+Source-review helpers require an authenticated GitHub CLI at `build/github-cli/gh.exe`; install the official Windows CLI and copy its executable there if that cache is absent. 本地源码检查工具还需准备其文档声明的 PyTorch / ONNX / tokenizer 等程序依赖；只安装程序包，不取得完整模型。
+
+The baseline engine table above remains required. 下列仅为追加引擎，不是替代上方全部引擎的简化构建。These commands fetch pinned code/config/licenses only, never weights, tokenizers, voices or model tables. 按 [适配方案](ADAPTER_PROFILES.md) / [profiles](ADAPTER_PROFILES.en.md) 为导出工具单独准备其 Python 依赖；不运行完整权重验证。
+
+```powershell
+python tools/fetch_f5_sources.py
+python tools/fetch_paint_sources.py
+python tools/fetch_shape_sources.py --fetch
+python tools/fetch_spatial_sources.py
+python tools/fetch_surface_sources.py --fetch
+python tools/fetch_fdg_sources.py --fetch
+python tools/fetch_depth_sources.py
+python tools/fetch_vision_sources.py --fetch
+python tools/lock_portable_sources.py
+python tools/build_shape.py --android
+python tools/build_spatial.py --android
+python tools/build_vision.py --android
+python tools/collect_expansion_notices.py
+python tools/build_recipe_templates.py
+python tools/build.py --sdk C:/path/to/Android/Sdk
+python tools/verify_package.py
+python tools/test_android_lint.py
+```
+
+Source preparation is sequential; generated FDG / surface sources are prepared by the locked builders. 源码准备按顺序执行，必要的 FDG / surface 生成补丁由固定构建器处理。Host program tests additionally build the matching Windows workers (omit `--android` for shape/spatial/vision); they use the existing Windows C++ toolchain. Never use Docker, WSL, VMs or emulators.
+
+All 59 current suites, source receipts and native build records are linked in [v0.3.6 implementation](IMPLEMENTATION_V036.en.md#program-checks). 精确的测试输入与结果见 [当前状态](../verification/releases/v0.3.6/status.json)。先运行受影响套件，完成九组页面录制，再执行完整审计、证据导出和打包；不可仅运行旧基线测试就复用新版本通过状态。Original-signer upgrade builds require the existing private local key; fresh clones use their own signer and cannot replace an installation signed differently.
+
+The bundled DISO CPU component is **CC BY-NC 4.0**. [完整许可 / notices](../THIRD_PARTY_NOTICES.md). The source ZIP contains code, docs and program evidence, not the native binaries, toolchain or user model files.

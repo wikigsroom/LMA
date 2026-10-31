@@ -1,0 +1,103 @@
+{
+  "passed": 25,
+  "checks": [
+    {
+      "case": "all_required_graphs_exported"
+    },
+    {
+      "case": "strict_condition_tokens"
+    },
+    {
+      "case": "geometry_sizes_derive_from_actual_models"
+    },
+    {
+      "case": "ss_conditioner_opset"
+    },
+    {
+      "case": "slat_conditioner_opset"
+    },
+    {
+      "case": "structure_flow_opset"
+    },
+    {
+      "case": "structure_decoder_opset"
+    },
+    {
+      "case": "slat_flow_opset"
+    },
+    {
+      "case": "mesh_decoder_opset"
+    },
+    {
+      "case": "depth_moge_opset"
+    },
+    {
+      "case": "no_network_or_phone_claim"
+    },
+    {
+      "case": "refuses_overwrite"
+    },
+    {
+      "case": "all_required_graphs_exported"
+    },
+    {
+      "case": "strict_condition_tokens"
+    },
+    {
+      "case": "geometry_sizes_derive_from_actual_models"
+    },
+    {
+      "case": "ss_conditioner_opset"
+    },
+    {
+      "case": "slat_conditioner_opset"
+    },
+    {
+      "case": "structure_flow_opset"
+    },
+    {
+      "case": "structure_decoder_opset"
+    },
+    {
+      "case": "slat_flow_opset"
+    },
+    {
+      "case": "mesh_decoder_opset"
+    },
+    {
+      "case": "depth_anyview_opset"
+    },
+    {
+      "case": "depth_metric_opset"
+    },
+    {
+      "case": "no_network_or_phone_claim"
+    },
+    {
+      "case": "refuses_overwrite"
+    }
+  ],
+  "input_fingerprint": {
+    "third_party/portable-sparse-source-lock.json": "fb0c9bfbb5efc502ed6f68b8ae92cebdad2775732725c22e3cdc4529e16932bf",
+    "tools/depth_components.py": "18be37e9e65aa3dcfaecad5d25b8250282c23437f71a96ff56f2b807996a0376",
+    "tools/export_sam.py": "8abeba9df5fd9e0d244b7887f4de65d0796a3638cd79f93218f866f3b03bffdb",
+    "tools/local_definitions.py": "9f14ea96309a2f08839e241a0a8a6a9dc566947021c83a6d5fb697b9ba832105",
+    "tools/sam_catalogue.py": "ffcbb807b93b73fd0b7ab7b4328e82f0b4a768f8704711e7c4b02695311066e3",
+    "tools/sam_components.py": "c9fc240c1b6242e7abf07d8c5e63a27805147f9d662a1ba12e85f4708277293e",
+    "tools/sam_conditioner.py": "458c15c36f47983d61f76d18f3a5756633778b89fc473aea9b5a3a521e3d6b9b",
+    "tools/sam_portable.py": "e808efb63071eca35d8803a55157f8ea4cd3cea1edcc0181aafc030246bce381",
+    "tools/spatial_portable.py": "c66222b642d28237a7b9db0cddba76d92d2e54f5c2e8ffd98c52060f3b682414",
+    "tools/spatial_sparse_graphs.py": "bdb2c5f38878df990e2c264f555003479be2b88dd0355e53683cd3d6c6c70f1b",
+    "tools/test_sam_export.py": "a0f22763e0389aa1c50a9e738482dc6b703937a81e512d90c2332b814728cc74"
+  },
+  "completeModelsRun": 0,
+  "phoneTests": 0,
+  "trainedWeights": false,
+  "sourceDefinitions": [
+    "D08",
+    "D09",
+    "MOGE",
+    "DA3",
+    "TIMM"
+  ]
+}

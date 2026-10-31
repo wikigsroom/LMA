@@ -251,3 +251,28 @@ Use the installed export's actual bundle ID and an authenticated imported PNG ar
 ```
 
 `parts:2` applies to PartCrafter; use 1 for TripoSG. Effective parameters still follow the installed model schema. 参数、清单、来源、执行观察和 GLB metadata 沿用共用记录；没有新增云端或 OpenAI 3D API 兼容声明。
+
+
+## v0.3.6: local stages, point clouds and additional 3D adapters
+
+See [profiles, assets, input roles and limits](ADAPTER_PROFILES.en.md). Requests still use `POST /v1/jobs`, with no remote inference backend. Use actual installed bundle IDs from `/v1/models`; import artifacts through the App or existing upload endpoints before referencing IDs. Arbitrary filesystem paths are not accepted.
+
+This structure assumes PartCrafter and all three explicitly selected helper models are installed. IDs are placeholders to replace. `allowUnmeasured` is the user's explicit choice; optional helpers default to `none` when omitted.
+
+```json
+{
+  "bundleId":"INSTALLED_PARTCRAFTER_ID",
+  "type":"mesh.generate",
+  "input":{"prompt":"Generate local 3D geometry from the selected image.","artifacts":[{"role":"reference_image","artifactId":"IMPORTED_PNG_ID"}]},
+  "parameters":{"foregroundModel":"INSTALLED_DIS_ID","partModel":"INSTALLED_VLM_ID","materialModel":"INSTALLED_PAINT_ID"},
+  "allowUnmeasured":true
+}
+```
+
+Point-cloud recipes use `point_cloud` with `lma.pointcloud/1` JSON and prompt `Reconstruct local 3D geometry from the selected point cloud.` A follow-up material model additionally requires `reference_image`. `posterior` is `mean|sample`; `extraction` is `uniform|publisher_octree|publisher_flash`; `denseDepth` cannot exceed `octreeDepth`.
+
+SUPRA requires `reference_image`, `source_mesh` and `camera` (`lma.camera/1`). UniForge and MV-SAM require `reference_front`, `reference_right`, `reference_back`, `reference_left`. Imported camera/point documents use `application/vnd.lma.data+json`; arbitrary JSON is not accepted, and each role verifies its specific schema. The actual model's input specification determines fixed prompts and limits; App forms fill fixed prompts automatically.
+
+Standalone DIS and VLM use `image.generate` and `text.generate`, respectively, with `reference_image` and fixed prompt `Prepare the selected local image.` VLM requires matched GGUF/mmproj and returns the standard `application/vnd.lma.text+json` envelope, whose `content` is `{"parts":[{"name":"..."}]}`. This is not a conversion to chat-message endpoints.
+
+Optional stages execute foreground → parts → geometry → materials on the same phone. Actual leases/hashes/effective settings are recorded; helper settings are read when the stage executes. Cancel/failure commits no partial final artifact. A removed helper fails preflight instead of being ignored or replaced/downloaded. Final GLB content uses the existing authenticated artifact endpoints.

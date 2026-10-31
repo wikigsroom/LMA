@@ -1,0 +1,61 @@
+{
+  "schema": "lma.surface-sources/1",
+  "sources": [
+    {
+      "id": "DISO",
+      "repository": "SarahWeiii/diso",
+      "revision": "9792ad928ccb09bdec938779651ee03e395758a6",
+      "directory": "build/surface-source-review/DISO",
+      "files": {
+        "LICENSE": "718e56c836cb997a2d3b31890582395ba800e73d3af2356a5389ad3a50f9c8d4",
+        "src/cudualmc.cu": "c62ef8b2d1ff53424fef19883f73c19c43b424472a873bb75b8aac6c8881f062",
+        "src/cudualmc.h": "74cf4ea715bba0121ddb39ccdcb9784b98ee95e14de583d4df57678c3223d7b2",
+        "src/cumc.cu": "24b2887f60c564ef24a9e56ded69da807e82763cd18435f0f284c3f93c8329ec",
+        "src/cumc.h": "c258649ed9a9fdee0ce43fbf5df11bfd77ab68effd5d8e16f6a156d31d380e16",
+        "diso/__init__.py": "ac52b41667e79294f93b9478dc97b7b609a57cfdcefd89416f684422de5ddbbe"
+      }
+    },
+    {
+      "id": "LEWINER",
+      "repository": "scikit-image/scikit-image",
+      "revision": "51b3367761a52ab9111bdbd9537272d7dd2eccde",
+      "directory": "build/surface-source-review/LEWINER",
+      "files": {
+        "LICENSE.txt": "611d3207504dcb4a808df209d2e7c9b4f2e89fe690f84735c0d548160966b527",
+        "tools/precompute/mc_meta/MarchingCubes.cpp": "83f7c8f8684bba3bce4232b1a4144918288db71c60ad0eb88c7568a8d1b32b6d",
+        "tools/precompute/mc_meta/LookUpTable.h": "55c5c203d8bfa3c26388e25ee1fca62cac5d44ba98d2c72f891f97b18bea587d",
+        "tools/precompute/mc_meta/README.md": "257b3a7b7e10c81980ccb1ed8c964585c0ea80031bba734e585c0b0abcb6b8c3"
+      }
+    },
+    {
+      "id": "LEWINER_CPP",
+      "repository": "neurolabusc/LewinerMarchingCubes",
+      "revision": "23642e6716c77ac15a2c2349b5125d605ac76234",
+      "directory": "build/surface-source-review/LEWINER_CPP",
+      "files": {
+        "LICENSE": "95abdb45f92aca821e9361ee9bcb3b745afad5bbba9e03acb2b5c50e702c7bbe",
+        "cpp/lookuptable.h": "55c5c203d8bfa3c26388e25ee1fca62cac5d44ba98d2c72f891f97b18bea587d",
+        "cpp/marchingcubes.cpp": "6ee991d5aedd96ba2d11c2e08fb00516c6e7262c05082ecc22db6a173c047972",
+        "cpp/marchingcubes.h": "b6aa35ee3c1c2e46f674dbc38d2fab3560023f06db6fbfa7250c29c30db1c225"
+      }
+    },
+    {
+      "id": "RF_TRIPO",
+      "repository": "VAST-AI-Research/TripoSG",
+      "revision": "fc5c40990181e2a756c4e0b1c2f4d6b5202faf8c",
+      "directory": "build/surface-source-review/RF_TRIPO",
+      "files": {
+        "triposg/inference_utils.py": "6ff6ed1fa064389913bf55b188f152ad8aae4f5bd15dfff6027ade7515dc8dca"
+      }
+    },
+    {
+      "id": "RF_PART",
+      "repository": "wgsxm/PartCrafter",
+      "revision": "3d773bf02fad51c7ab31a5615573fec93b287b30",
+      "directory": "build/surface-source-review/RF_PART",
+      "files": {
+        "src/utils/inference_utils.py": "81772ca84674f0928596ccbb537c23597b80c9f0e688579b9debc2f03ba2e165"
+      }
+    }
+  ]
+}

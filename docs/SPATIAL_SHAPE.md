@@ -1,5 +1,7 @@
 # Hunyuan3D 形状与 UltraShape 精修
 
+**v0.3.6 更新：** 下文原路线继续可用；旧版计数、当时缺口和证据保留原版本含义。当前完整适配、新增可选阶段和运行边界见[方案与操作](ADAPTER_PROFILES.md)及[编号收口](REMAINING_ADAPTATION.md)。
+
 开发源码 v0.3.6 已另增独立 [Paint / PBR 路线](LOCAL_MATERIALS.md) 和 [F5 官方兼容前端](F5_FRONTEND.md)；最新缺口见[完整编号清单](REMAINING_ADAPTATION.md)。下文 v0.3.5 数量、旧缺口与证据保留为当时记录，形状 / 精修配方本身仍不包含 Paint。
 
 [English](SPATIAL_SHAPE.en.md) · [编号实现与缺口](IMPLEMENTATION_V035.md) · [v0.3.5](releases/v0.3.5.md)

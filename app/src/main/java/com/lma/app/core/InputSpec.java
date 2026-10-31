@@ -19,8 +19,8 @@ public final class InputSpec {
             for (Iterator<String> names = rule.keys(); names.hasNext();) if (!fields.contains(names.next())) throw new IllegalArgumentException("Unknown input rule");
             if (!(rule.get("required") instanceof Boolean) || rule.getString("label").isEmpty() || rule.getString("label").length() > 80) throw new IllegalArgumentException("Invalid input role description");
             JSONArray mimes = rule.getJSONArray("mimes");
-            if (mimes.length() < 1 || mimes.length() > 6) throw new IllegalArgumentException("Input MIME types are required");
-            for (int i = 0; i < mimes.length(); i++) if (!Arrays.asList("image/png", "image/jpeg", "audio/wav", "video/mp4", GlbFile.MIME, TextResult.MIME).contains(mimes.getString(i))) throw new IllegalArgumentException("Unsupported input MIME type");
+            if (mimes.length() < 1 || mimes.length() > 7) throw new IllegalArgumentException("Input MIME types are required");
+            for (int i = 0; i < mimes.length(); i++) if (!Arrays.asList("image/png", "image/jpeg", "audio/wav", "video/mp4", GlbFile.MIME, TextResult.MIME, StructuredInput.MIME).contains(mimes.getString(i))) throw new IllegalArgumentException("Unsupported input MIME type");
             for (String limit : Arrays.asList("maxBytes", "minDurationMs", "maxDurationMs", "maxPixels")) if (rule.has(limit) && (!(rule.get(limit) instanceof Number) || !Double.isFinite(rule.getDouble(limit)) || rule.getDouble(limit) != rule.getLong(limit) || rule.getLong(limit) < 1)) throw new IllegalArgumentException("Invalid input limit");
             if (rule.has("minDurationMs") && rule.has("maxDurationMs") && rule.getLong("minDurationMs") > rule.getLong("maxDurationMs")) throw new IllegalArgumentException("Reversed input duration limits");
             if (!rule.has("maxBytes") || rule.getLong("maxBytes") > ArtifactStore.MAX_INPUT_BYTES) throw new IllegalArgumentException("Input byte limit is required");

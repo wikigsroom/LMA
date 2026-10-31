@@ -34,7 +34,7 @@ public final class ExpansionEngine implements LocalEngine {
         return new ParameterSchema(definition);
     }
     @Override public InputSpec inputs(ModelBundle bundle, String type) throws Exception {
-        return spatial()?SpatialSpec.inputs(bundle.pipeline):rfShape()?RfShapeSpec.inputs():multiView()?MultiViewSpec.inputs():mesh() ? MeshSpec.inputs() : AudioCppSpec.inputs(bundle.pipeline);
+        return spatial()?SpatialSpec.inputs(bundle.pipeline):rfShape()?RfShapeSpec.inputs(bundle.pipeline):multiView()?MultiViewSpec.inputs():mesh() ? MeshSpec.inputs() : AudioCppSpec.inputs(bundle.pipeline);
     }
     @Override public void validate(ModelBundle bundle, String type) throws Exception {
         if (!binary.isFile() || !binary.canExecute()) throw new IOException("当前 App 未安装匹配的原生引擎");
@@ -57,7 +57,7 @@ public final class ExpansionEngine implements LocalEngine {
             AudioCppSpec.parameters(lease.bundle.pipeline,request.getJSONObject("parameters"));
         if(normalized.getJSONArray("adjustments").length()!=0) throw new IOException("参数已超出当前基座范围，请重新提交任务");
         if (mesh()) meshAssets(lease.bundle,normalized.getJSONObject("values"));
-        Map<String,String> layout=spatial()?SpatialSpec.layout(lease.bundle.pipeline):rfShape()?RfShapeSpec.layout():multiView()?MultiViewSpec.layout():mesh()?MeshSpec.layout(lease.bundle.pipeline):
+        Map<String,String> layout=spatial()?SpatialSpec.layout(lease.bundle.pipeline):rfShape()?RfShapeSpec.layout(lease.bundle.pipeline):multiView()?MultiViewSpec.layout():mesh()?MeshSpec.layout(lease.bundle.pipeline):
             AudioCppSpec.layout(lease.bundle.pipeline,lease.bundle.component("model").format.equals("gguf"));
         EngineWorkspace workspace=new EngineWorkspace(new File(app.getFilesDir(),"engine-work"),context::check); final Process[] child={null};
         try {
@@ -72,18 +72,23 @@ public final class ExpansionEngine implements LocalEngine {
             JSONObject command=new JSONObject().put("schema","lma.engine-request/1").put("type",request.getString("type"))
                 .put("pipeline",lease.bundle.pipeline).put("input",request.getJSONObject("input")).put("parameters",normalized.getJSONObject("values"))
                 .put("components",components).put("workspace",new File(workspace.directory(),"models").getPath()).put("output",nativeOutput.getPath());
-            if(multiView()) {
+            if(spatial()&&UltraTexSpec.matches(lease.bundle.pipeline)) command.put("prompt",request.getJSONObject("input").getString("prompt"));
+            if(multiView()||spatial()&&(UniForgeSpec.matches(lease.bundle.pipeline)||SamSpec.multi(lease.bundle.pipeline))) {
+                if(spatial())SpatialSpec.readConfig(lease.bundle.pipeline,lease.file("config"));
                 for(int i=0;i<4;i++){
                     File view=context.input(MultiViewSpec.ROLES[i]);MultiViewSpec.reference(view);
                     workspace.link("views",MultiViewSpec.FILES[i],view);
                 }
                 command.put("viewsDirectory",new File(workspace.directory(),"views").getPath());
+            } else if(rfShape()&&PointCloudSpec.matches(lease.bundle.pipeline)) {
+                File points=context.input("point_cloud");PointCloudSpec.reference(points);command.put("pointCloud",workspace.link("inputs","points.txt",points).getPath());
             } else if(mesh()) {
                 File image=context.input("reference_image");if(rfShape()||spatial())RfShapeSpec.reference(image);
                 if(spatial()){
+                    if(SupraSpec.matches(lease.bundle.pipeline)){SupraSpec.reference(image);File camera=context.input("camera");SupraSpec.camera(camera);command.put("camera",workspace.link("inputs","camera.txt",camera).getPath());}
                     SpatialSpec.readConfig(lease.bundle.pipeline,lease.file("config"));
-                    if(MaterialSpec.matches(lease.bundle.pipeline)){File source=context.input("source_mesh");MaterialSpec.sourceMesh(source);command.put("sourceMesh",workspace.link("inputs","source.glb",source).getPath());}
-                    else if(SpatialSpec.ultra(lease.bundle.pipeline)){File mesh=context.input("coarse_mesh");SpatialSpec.coarse(mesh);command.put("coarseMesh",workspace.link("inputs","coarse.glb",mesh).getPath());}
+                    if(MaterialSpec.matches(lease.bundle.pipeline)||UltraTexSpec.matches(lease.bundle.pipeline)||SupraSpec.matches(lease.bundle.pipeline)){File source=context.input("source_mesh");MaterialSpec.sourceMesh(source);command.put("sourceMesh",workspace.link("inputs","source.glb",source).getPath());}
+                    else if(!SamSpec.matches(lease.bundle.pipeline)&&SpatialSpec.ultra(lease.bundle.pipeline)){File mesh=context.input("coarse_mesh");SpatialSpec.coarse(mesh);command.put("coarseMesh",workspace.link("inputs","coarse.glb",mesh).getPath());}
                 }
                 command.put("referenceImage",workspace.link("inputs","reference.png",image).getPath());
             }

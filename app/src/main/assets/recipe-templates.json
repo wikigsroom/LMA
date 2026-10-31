@@ -8491,6 +8491,35 @@
         "parameters": {
           "version": 1,
           "fields": {
+            "extraction": {
+              "type": "enum",
+              "label": "曲面提取",
+              "default": "uniform",
+              "values": [
+                "uniform",
+                "publisher_octree",
+                "publisher_flash"
+              ]
+            },
+            "octreeDepth": {
+              "type": "integer",
+              "label": "分层提取目标深度",
+              "default": 6,
+              "minimum": 5,
+              "maximum": 8,
+              "limitSource": "application_guard"
+            },
+            "denseDepth": {
+              "type": "integer",
+              "label": "初始稠密网格深度（octree）",
+              "default": 5,
+              "maximumFrom": {
+                "field": "octreeDepth"
+              },
+              "minimum": 3,
+              "maximum": 8,
+              "limitSource": "application_guard"
+            },
             "threads": {
               "type": "integer",
               "label": "CPU 线程",
@@ -8730,6 +8759,35 @@
         "parameters": {
           "version": 1,
           "fields": {
+            "extraction": {
+              "type": "enum",
+              "label": "曲面提取",
+              "default": "uniform",
+              "values": [
+                "uniform",
+                "publisher_octree",
+                "publisher_flash"
+              ]
+            },
+            "octreeDepth": {
+              "type": "integer",
+              "label": "分层提取目标深度",
+              "default": 6,
+              "minimum": 5,
+              "maximum": 8,
+              "limitSource": "application_guard"
+            },
+            "denseDepth": {
+              "type": "integer",
+              "label": "初始稠密网格深度（octree）",
+              "default": 5,
+              "maximumFrom": {
+                "field": "octreeDepth"
+              },
+              "minimum": 3,
+              "maximum": 8,
+              "limitSource": "application_guard"
+            },
             "threads": {
               "type": "integer",
               "label": "CPU 线程",
@@ -8973,6 +9031,35 @@
         "parameters": {
           "version": 1,
           "fields": {
+            "extraction": {
+              "type": "enum",
+              "label": "曲面提取",
+              "default": "uniform",
+              "values": [
+                "uniform",
+                "publisher_octree",
+                "publisher_flash"
+              ]
+            },
+            "octreeDepth": {
+              "type": "integer",
+              "label": "分层提取目标深度",
+              "default": 6,
+              "minimum": 5,
+              "maximum": 8,
+              "limitSource": "application_guard"
+            },
+            "denseDepth": {
+              "type": "integer",
+              "label": "初始稠密网格深度（octree）",
+              "default": 5,
+              "maximumFrom": {
+                "field": "octreeDepth"
+              },
+              "minimum": 3,
+              "maximum": 8,
+              "limitSource": "application_guard"
+            },
             "threads": {
               "type": "integer",
               "label": "CPU 线程",
@@ -9195,6 +9282,392 @@
       ],
       "fixedComponents": [],
       "help": "需要 LMA 离线转换工具生成的同一组 FP32 ONNX 图、外置 data 与 shape-config.json；原版 safetensors 不能直接运行。当前没有已核实的公开配套下载包，支持导入转换结果或从 HF 明确选择同格式文件。选择已去背景 / 白底 PNG；无自动抠图、贴图、外部 VLM 或云服务。全部手机 CPU，内存、速度与质量未测。"
+    },
+    {
+      "id": "triposg_points_onnx_cpu_v1",
+      "name": "triposg · 点云 VAE 重建",
+      "primaryRole": "encoder",
+      "definition": {
+        "engine": "rf_shape_ort",
+        "backend": "cpu",
+        "architecture": "triposg",
+        "pipeline": "triposg_points",
+        "tasks": [
+          "3d"
+        ],
+        "capabilities": [
+          "pointcloud_to_3d",
+          "vae_reconstruction",
+          "sdf_geometry"
+        ],
+        "parameters": {
+          "version": 1,
+          "fields": {
+            "extraction": {
+              "type": "enum",
+              "label": "曲面提取",
+              "default": "uniform",
+              "values": [
+                "uniform",
+                "publisher_octree",
+                "publisher_flash"
+              ]
+            },
+            "octreeDepth": {
+              "type": "integer",
+              "label": "分层提取目标深度",
+              "default": 6,
+              "minimum": 5,
+              "maximum": 8,
+              "limitSource": "application_guard"
+            },
+            "denseDepth": {
+              "type": "integer",
+              "label": "初始稠密网格深度（octree）",
+              "default": 5,
+              "maximumFrom": {
+                "field": "octreeDepth"
+              },
+              "minimum": 3,
+              "maximum": 8,
+              "limitSource": "application_guard"
+            },
+            "threads": {
+              "type": "integer",
+              "label": "CPU 线程",
+              "default": 2,
+              "minimum": 1,
+              "maximum": 16,
+              "limitSource": "application_guard"
+            },
+            "seed": {
+              "type": "integer",
+              "label": "随机种子",
+              "default": 1234,
+              "minimum": 0,
+              "maximum": 2147483647,
+              "limitSource": "application_guard"
+            },
+            "tokens": {
+              "type": "integer",
+              "label": "VAE 查询 token",
+              "default": 2048,
+              "multipleOf": 512,
+              "minimum": 512,
+              "maximum": 4096,
+              "limitSource": "application_guard"
+            },
+            "posterior": {
+              "type": "enum",
+              "label": "VAE 重建方式",
+              "default": "mean",
+              "values": [
+                "mean",
+                "sample"
+              ]
+            },
+            "grid": {
+              "type": "integer",
+              "label": "SDF 网格格数",
+              "default": 64,
+              "multipleOf": 16,
+              "minimum": 32,
+              "maximum": 256,
+              "limitSource": "application_guard"
+            },
+            "queryChunk": {
+              "type": "integer",
+              "label": "SDF 分块点数",
+              "default": 512,
+              "minimum": 128,
+              "maximum": 4096,
+              "limitSource": "application_guard"
+            },
+            "maxTriangles": {
+              "type": "integer",
+              "label": "三角面保护上限",
+              "default": 300000,
+              "minimum": 1000,
+              "maximum": 1000000,
+              "limitSource": "application_guard"
+            }
+          }
+        }
+      },
+      "requirements": [
+        {
+          "role": "config",
+          "label": "配套点云配置",
+          "formats": [
+            "json"
+          ],
+          "required": true,
+          "matchFiles": [
+            "shape-config.json"
+          ]
+        },
+        {
+          "role": "encoder",
+          "label": "encoder.onnx",
+          "formats": [
+            "onnx"
+          ],
+          "required": true,
+          "matchFiles": [
+            "encoder.onnx"
+          ]
+        },
+        {
+          "role": "encoder_data",
+          "label": "encoder.onnx.data（如有）",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": false,
+          "matchFiles": [
+            "encoder.onnx.data"
+          ]
+        },
+        {
+          "role": "cache",
+          "label": "cache.onnx",
+          "formats": [
+            "onnx"
+          ],
+          "required": true,
+          "matchFiles": [
+            "cache.onnx"
+          ]
+        },
+        {
+          "role": "cache_data",
+          "label": "cache.onnx.data（如有）",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": false,
+          "matchFiles": [
+            "cache.onnx.data"
+          ]
+        },
+        {
+          "role": "query",
+          "label": "query.onnx",
+          "formats": [
+            "onnx"
+          ],
+          "required": true,
+          "matchFiles": [
+            "query.onnx"
+          ]
+        },
+        {
+          "role": "query_data",
+          "label": "query.onnx.data（如有）",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": false,
+          "matchFiles": [
+            "query.onnx.data"
+          ]
+        }
+      ],
+      "fixedComponents": [],
+      "help": "选择本地配套 VAE 导出，输入 xyz＋法线 JSON 文本。坐标须已按发布者约定归一化；支持后验均值或采样，不是图片扩散。CPU FPS；初始四倍采样随机流与 NumPy 不同。无网络执行，不下载任何模型。"
+    },
+    {
+      "id": "partcrafter_points_onnx_cpu_v1",
+      "name": "partcrafter · 点云 VAE 重建",
+      "primaryRole": "encoder",
+      "definition": {
+        "engine": "rf_shape_ort",
+        "backend": "cpu",
+        "architecture": "partcrafter",
+        "pipeline": "partcrafter_points",
+        "tasks": [
+          "3d"
+        ],
+        "capabilities": [
+          "pointcloud_to_3d",
+          "vae_reconstruction",
+          "sdf_geometry"
+        ],
+        "parameters": {
+          "version": 1,
+          "fields": {
+            "extraction": {
+              "type": "enum",
+              "label": "曲面提取",
+              "default": "uniform",
+              "values": [
+                "uniform",
+                "publisher_octree",
+                "publisher_flash"
+              ]
+            },
+            "octreeDepth": {
+              "type": "integer",
+              "label": "分层提取目标深度",
+              "default": 6,
+              "minimum": 5,
+              "maximum": 8,
+              "limitSource": "application_guard"
+            },
+            "denseDepth": {
+              "type": "integer",
+              "label": "初始稠密网格深度（octree）",
+              "default": 5,
+              "maximumFrom": {
+                "field": "octreeDepth"
+              },
+              "minimum": 3,
+              "maximum": 8,
+              "limitSource": "application_guard"
+            },
+            "threads": {
+              "type": "integer",
+              "label": "CPU 线程",
+              "default": 2,
+              "minimum": 1,
+              "maximum": 16,
+              "limitSource": "application_guard"
+            },
+            "seed": {
+              "type": "integer",
+              "label": "随机种子",
+              "default": 1234,
+              "minimum": 0,
+              "maximum": 2147483647,
+              "limitSource": "application_guard"
+            },
+            "tokens": {
+              "type": "integer",
+              "label": "VAE 查询 token",
+              "default": 2048,
+              "multipleOf": 512,
+              "minimum": 512,
+              "maximum": 4096,
+              "limitSource": "application_guard"
+            },
+            "posterior": {
+              "type": "enum",
+              "label": "VAE 重建方式",
+              "default": "mean",
+              "values": [
+                "mean",
+                "sample"
+              ]
+            },
+            "grid": {
+              "type": "integer",
+              "label": "SDF 网格格数",
+              "default": 64,
+              "multipleOf": 16,
+              "minimum": 32,
+              "maximum": 256,
+              "limitSource": "application_guard"
+            },
+            "queryChunk": {
+              "type": "integer",
+              "label": "SDF 分块点数",
+              "default": 512,
+              "minimum": 128,
+              "maximum": 4096,
+              "limitSource": "application_guard"
+            },
+            "maxTriangles": {
+              "type": "integer",
+              "label": "三角面保护上限",
+              "default": 300000,
+              "minimum": 1000,
+              "maximum": 1000000,
+              "limitSource": "application_guard"
+            }
+          }
+        }
+      },
+      "requirements": [
+        {
+          "role": "config",
+          "label": "配套点云配置",
+          "formats": [
+            "json"
+          ],
+          "required": true,
+          "matchFiles": [
+            "shape-config.json"
+          ]
+        },
+        {
+          "role": "encoder",
+          "label": "encoder.onnx",
+          "formats": [
+            "onnx"
+          ],
+          "required": true,
+          "matchFiles": [
+            "encoder.onnx"
+          ]
+        },
+        {
+          "role": "encoder_data",
+          "label": "encoder.onnx.data（如有）",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": false,
+          "matchFiles": [
+            "encoder.onnx.data"
+          ]
+        },
+        {
+          "role": "cache",
+          "label": "cache.onnx",
+          "formats": [
+            "onnx"
+          ],
+          "required": true,
+          "matchFiles": [
+            "cache.onnx"
+          ]
+        },
+        {
+          "role": "cache_data",
+          "label": "cache.onnx.data（如有）",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": false,
+          "matchFiles": [
+            "cache.onnx.data"
+          ]
+        },
+        {
+          "role": "query",
+          "label": "query.onnx",
+          "formats": [
+            "onnx"
+          ],
+          "required": true,
+          "matchFiles": [
+            "query.onnx"
+          ]
+        },
+        {
+          "role": "query_data",
+          "label": "query.onnx.data（如有）",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": false,
+          "matchFiles": [
+            "query.onnx.data"
+          ]
+        }
+      ],
+      "fixedComponents": [],
+      "help": "选择本地配套 VAE 导出，输入 xyz＋法线 JSON 文本。坐标须已按发布者约定归一化；支持后验均值或采样，不是图片扩散。CPU FPS；初始四倍采样随机流与 NumPy 不同。无网络执行，不下载任何模型。"
     },
     {
       "id": "hunyuan3d_21_shape_onnx_cpu_v1",
@@ -9894,6 +10367,1899 @@
       ],
       "fixedComponents": [],
       "help": "选择同批离线转换的配置、UniPC 程序及五个 ONNX 图；选择参考 PNG 和待贴图 GLB。全部编码、采样、RealESRGAN、UV 和烘焙在手机 CPU。固定六视图、双材质；CPU 光栅和接缝填充存在数值差异。无已核实公开配套整包；不含模型或远程服务，真机与完整模型未测。"
+    },
+    {
+      "id": "ultratex_flux1_onnx_cpu_v1",
+      "name": "UltraTex · FLUX.1 dev · 本地 PBR",
+      "primaryRole": "albedo_flow",
+      "definition": {
+        "engine": "spatial_ort",
+        "architecture": "ultratex_flux1",
+        "pipeline": "ultratex_flux1",
+        "backend": "cpu",
+        "tasks": [
+          "3d"
+        ],
+        "capabilities": [
+          "mesh_texturing",
+          "text_conditioning",
+          "image_conditioning",
+          "pbr_material",
+          "uv_baking"
+        ],
+        "parameters": {
+          "version": 1,
+          "fields": {
+            "threads": {
+              "type": "integer",
+              "label": "CPU 线程",
+              "default": 2,
+              "presets": [
+                1,
+                2,
+                4,
+                8
+              ],
+              "minimum": 1,
+              "maximum": 16,
+              "limitSource": "application_guard"
+            },
+            "steps": {
+              "type": "integer",
+              "label": "每种材质采样步数",
+              "default": 25,
+              "presets": [
+                8,
+                15,
+                25,
+                40
+              ],
+              "minimum": 1,
+              "maximum": 100,
+              "limitSource": "application_guard"
+            },
+            "seed": {
+              "type": "integer",
+              "label": "随机种子",
+              "default": 0,
+              "minimum": 0,
+              "maximum": 2147483647,
+              "limitSource": "application_guard"
+            },
+            "guidance": {
+              "type": "number",
+              "label": "材质引导强度",
+              "default": 4,
+              "minimum": 0,
+              "maximum": 15,
+              "limitSource": "application_guard"
+            },
+            "atlas": {
+              "type": "integer",
+              "label": "UV 图集目标尺寸",
+              "default": 1024,
+              "multipleOf": 256,
+              "presets": [
+                512,
+                1024,
+                2048
+              ],
+              "minimum": 256,
+              "maximum": 4096,
+              "limitSource": "application_guard"
+            }
+          }
+        }
+      },
+      "requirements": [
+        {
+          "role": "config",
+          "label": "config · ultratex-config.json",
+          "formats": [
+            "json"
+          ],
+          "required": true,
+          "matchFiles": [
+            "ultratex-config.json"
+          ]
+        },
+        {
+          "role": "tokenizer",
+          "label": "tokenizer · t5.model",
+          "formats": [
+            "sentencepiece"
+          ],
+          "required": true,
+          "matchFiles": [
+            "t5.model"
+          ]
+        },
+        {
+          "role": "clip_tokenizer",
+          "label": "clip_tokenizer · clip-tokenizer.json",
+          "formats": [
+            "json"
+          ],
+          "required": true,
+          "matchFiles": [
+            "clip-tokenizer.json"
+          ]
+        },
+        {
+          "role": "clip",
+          "label": "clip · clip.onnx",
+          "formats": [
+            "onnx"
+          ],
+          "required": true,
+          "matchFiles": [
+            "clip.onnx"
+          ]
+        },
+        {
+          "role": "clip_data",
+          "label": "clip.onnx.data",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": false,
+          "matchFiles": [
+            "clip.onnx.data"
+          ]
+        },
+        {
+          "role": "text",
+          "label": "text · text.onnx",
+          "formats": [
+            "onnx"
+          ],
+          "required": true,
+          "matchFiles": [
+            "text.onnx"
+          ]
+        },
+        {
+          "role": "text_data",
+          "label": "text.onnx.data",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": false,
+          "matchFiles": [
+            "text.onnx.data"
+          ]
+        },
+        {
+          "role": "vae_encoder",
+          "label": "vae_encoder · vae_encoder.onnx",
+          "formats": [
+            "onnx"
+          ],
+          "required": true,
+          "matchFiles": [
+            "vae_encoder.onnx"
+          ]
+        },
+        {
+          "role": "vae_encoder_data",
+          "label": "vae_encoder.onnx.data",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": false,
+          "matchFiles": [
+            "vae_encoder.onnx.data"
+          ]
+        },
+        {
+          "role": "albedo_flow",
+          "label": "albedo_flow · albedo_flow.onnx",
+          "formats": [
+            "onnx"
+          ],
+          "required": true,
+          "matchFiles": [
+            "albedo_flow.onnx"
+          ]
+        },
+        {
+          "role": "albedo_flow_data",
+          "label": "albedo_flow.onnx.data",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": false,
+          "matchFiles": [
+            "albedo_flow.onnx.data"
+          ]
+        },
+        {
+          "role": "mr_flow",
+          "label": "mr_flow · mr_flow.onnx",
+          "formats": [
+            "onnx"
+          ],
+          "required": true,
+          "matchFiles": [
+            "mr_flow.onnx"
+          ]
+        },
+        {
+          "role": "mr_flow_data",
+          "label": "mr_flow.onnx.data",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": false,
+          "matchFiles": [
+            "mr_flow.onnx.data"
+          ]
+        },
+        {
+          "role": "albedo_decoder",
+          "label": "albedo_decoder · albedo_decoder.onnx",
+          "formats": [
+            "onnx"
+          ],
+          "required": true,
+          "matchFiles": [
+            "albedo_decoder.onnx"
+          ]
+        },
+        {
+          "role": "albedo_decoder_data",
+          "label": "albedo_decoder.onnx.data",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": false,
+          "matchFiles": [
+            "albedo_decoder.onnx.data"
+          ]
+        },
+        {
+          "role": "mr_decoder",
+          "label": "mr_decoder · mr_decoder.onnx",
+          "formats": [
+            "onnx"
+          ],
+          "required": true,
+          "matchFiles": [
+            "mr_decoder.onnx"
+          ]
+        },
+        {
+          "role": "mr_decoder_data",
+          "label": "mr_decoder.onnx.data",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": false,
+          "matchFiles": [
+            "mr_decoder.onnx.data"
+          ]
+        }
+      ],
+      "fixedComponents": [],
+      "help": "选择同批固定源码转换的文本、VAE、albedo / MR 网络和分词资产，再选择参考 PNG 与 GLB；输入材质描述。全部在手机 CPU，逐图释放。便携六视图相机、FP32 采样 / 随机流、UV 和填缝与训练环境有差异；未做完整模型或真机验收，无已核实公开整包。"
+    },
+    {
+      "id": "ultratex_flux2_onnx_cpu_v1",
+      "name": "UltraTex · FLUX.2 / Klein · 本地 PBR",
+      "primaryRole": "albedo_flow",
+      "definition": {
+        "engine": "spatial_ort",
+        "architecture": "ultratex_flux2",
+        "pipeline": "ultratex_flux2",
+        "backend": "cpu",
+        "tasks": [
+          "3d"
+        ],
+        "capabilities": [
+          "mesh_texturing",
+          "text_conditioning",
+          "image_conditioning",
+          "pbr_material",
+          "uv_baking"
+        ],
+        "parameters": {
+          "version": 1,
+          "fields": {
+            "threads": {
+              "type": "integer",
+              "label": "CPU 线程",
+              "default": 2,
+              "presets": [
+                1,
+                2,
+                4,
+                8
+              ],
+              "minimum": 1,
+              "maximum": 16,
+              "limitSource": "application_guard"
+            },
+            "steps": {
+              "type": "integer",
+              "label": "每种材质采样步数",
+              "default": 25,
+              "presets": [
+                8,
+                15,
+                25,
+                40
+              ],
+              "minimum": 1,
+              "maximum": 100,
+              "limitSource": "application_guard"
+            },
+            "seed": {
+              "type": "integer",
+              "label": "随机种子",
+              "default": 0,
+              "minimum": 0,
+              "maximum": 2147483647,
+              "limitSource": "application_guard"
+            },
+            "guidance": {
+              "type": "number",
+              "label": "材质引导强度",
+              "default": 3.5,
+              "minimum": 0,
+              "maximum": 15,
+              "limitSource": "application_guard"
+            },
+            "atlas": {
+              "type": "integer",
+              "label": "UV 图集目标尺寸",
+              "default": 1024,
+              "multipleOf": 256,
+              "presets": [
+                512,
+                1024,
+                2048
+              ],
+              "minimum": 256,
+              "maximum": 4096,
+              "limitSource": "application_guard"
+            },
+            "dropBackground": {
+              "type": "boolean",
+              "label": "省略背景 token",
+              "default": false
+            }
+          }
+        }
+      },
+      "requirements": [
+        {
+          "role": "config",
+          "label": "config · ultratex-config.json",
+          "formats": [
+            "json"
+          ],
+          "required": true,
+          "matchFiles": [
+            "ultratex-config.json"
+          ]
+        },
+        {
+          "role": "tokenizer",
+          "label": "tokenizer · qwen-tokenizer.json",
+          "formats": [
+            "json"
+          ],
+          "required": true,
+          "matchFiles": [
+            "qwen-tokenizer.json"
+          ]
+        },
+        {
+          "role": "text",
+          "label": "text · text.onnx",
+          "formats": [
+            "onnx"
+          ],
+          "required": true,
+          "matchFiles": [
+            "text.onnx"
+          ]
+        },
+        {
+          "role": "text_data",
+          "label": "text.onnx.data",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": false,
+          "matchFiles": [
+            "text.onnx.data"
+          ]
+        },
+        {
+          "role": "vae_encoder",
+          "label": "vae_encoder · vae_encoder.onnx",
+          "formats": [
+            "onnx"
+          ],
+          "required": true,
+          "matchFiles": [
+            "vae_encoder.onnx"
+          ]
+        },
+        {
+          "role": "vae_encoder_data",
+          "label": "vae_encoder.onnx.data",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": false,
+          "matchFiles": [
+            "vae_encoder.onnx.data"
+          ]
+        },
+        {
+          "role": "albedo_flow",
+          "label": "albedo_flow · albedo_flow.onnx",
+          "formats": [
+            "onnx"
+          ],
+          "required": true,
+          "matchFiles": [
+            "albedo_flow.onnx"
+          ]
+        },
+        {
+          "role": "albedo_flow_data",
+          "label": "albedo_flow.onnx.data",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": false,
+          "matchFiles": [
+            "albedo_flow.onnx.data"
+          ]
+        },
+        {
+          "role": "mr_flow",
+          "label": "mr_flow · mr_flow.onnx",
+          "formats": [
+            "onnx"
+          ],
+          "required": true,
+          "matchFiles": [
+            "mr_flow.onnx"
+          ]
+        },
+        {
+          "role": "mr_flow_data",
+          "label": "mr_flow.onnx.data",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": false,
+          "matchFiles": [
+            "mr_flow.onnx.data"
+          ]
+        },
+        {
+          "role": "albedo_decoder",
+          "label": "albedo_decoder · albedo_decoder.onnx",
+          "formats": [
+            "onnx"
+          ],
+          "required": true,
+          "matchFiles": [
+            "albedo_decoder.onnx"
+          ]
+        },
+        {
+          "role": "albedo_decoder_data",
+          "label": "albedo_decoder.onnx.data",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": false,
+          "matchFiles": [
+            "albedo_decoder.onnx.data"
+          ]
+        },
+        {
+          "role": "mr_decoder",
+          "label": "mr_decoder · mr_decoder.onnx",
+          "formats": [
+            "onnx"
+          ],
+          "required": true,
+          "matchFiles": [
+            "mr_decoder.onnx"
+          ]
+        },
+        {
+          "role": "mr_decoder_data",
+          "label": "mr_decoder.onnx.data",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": false,
+          "matchFiles": [
+            "mr_decoder.onnx.data"
+          ]
+        }
+      ],
+      "fixedComponents": [],
+      "help": "选择同批固定源码转换的文本、VAE、albedo / MR 网络和分词资产，再选择参考 PNG 与 GLB；输入材质描述。全部在手机 CPU，逐图释放。便携六视图相机、FP32 采样 / 随机流、UV 和填缝与训练环境有差异；未做完整模型或真机验收，无已核实公开整包。"
+    },
+    {
+      "id": "uniforge3d_onnx_cpu_v1",
+      "name": "UniForge3D · 四视图形状与 PBR",
+      "primaryRole": "structure_flow",
+      "definition": {
+        "engine": "spatial_ort",
+        "architecture": "uniforge3d",
+        "pipeline": "uniforge3d",
+        "backend": "cpu",
+        "tasks": [
+          "3d"
+        ],
+        "capabilities": [
+          "multiview_conditioning",
+          "sparse_structure",
+          "shape_cascade",
+          "pbr_material",
+          "uv_baking"
+        ],
+        "parameters": {
+          "version": 1,
+          "fields": {
+            "threads": {
+              "type": "integer",
+              "label": "CPU 线程",
+              "default": 2,
+              "minimum": 1,
+              "maximum": 16,
+              "limitSource": "application_guard"
+            },
+            "seed": {
+              "type": "integer",
+              "label": "随机种子",
+              "default": 42,
+              "minimum": 0,
+              "maximum": 2147483647,
+              "limitSource": "application_guard"
+            },
+            "structureSteps": {
+              "type": "integer",
+              "label": "结构采样步数",
+              "default": 12,
+              "minimum": 1,
+              "maximum": 100,
+              "limitSource": "application_guard"
+            },
+            "shapeSteps": {
+              "type": "integer",
+              "label": "每阶段形状采样步数",
+              "default": 20,
+              "minimum": 1,
+              "maximum": 100,
+              "limitSource": "application_guard"
+            },
+            "textureSteps": {
+              "type": "integer",
+              "label": "材质采样步数",
+              "default": 20,
+              "minimum": 1,
+              "maximum": 100,
+              "limitSource": "application_guard"
+            },
+            "maxRows": {
+              "type": "integer",
+              "label": "潜变量坐标保护上限",
+              "default": 16384,
+              "minimum": 64,
+              "maximum": 20000,
+              "limitSource": "application_guard"
+            },
+            "maxTriangles": {
+              "type": "integer",
+              "label": "三角面保护上限",
+              "default": 300000,
+              "minimum": 1000,
+              "maximum": 300000,
+              "limitSource": "application_guard"
+            },
+            "atlas": {
+              "type": "integer",
+              "label": "UV 图集目标尺寸",
+              "default": 1024,
+              "multipleOf": 256,
+              "minimum": 256,
+              "maximum": 4096,
+              "limitSource": "application_guard"
+            }
+          }
+        }
+      },
+      "requirements": [
+        {
+          "role": "config",
+          "label": "uniforge-config.json",
+          "formats": [
+            "json"
+          ],
+          "required": true,
+          "matchFiles": [
+            "uniforge-config.json"
+          ]
+        },
+        {
+          "role": "dino512",
+          "label": "dino512.onnx",
+          "formats": [
+            "onnx"
+          ],
+          "required": true,
+          "matchFiles": [
+            "dino512.onnx"
+          ]
+        },
+        {
+          "role": "dino512_data",
+          "label": "dino512.onnx.data",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": false,
+          "matchFiles": [
+            "dino512.onnx.data"
+          ]
+        },
+        {
+          "role": "dino1024",
+          "label": "dino1024.onnx",
+          "formats": [
+            "onnx"
+          ],
+          "required": true,
+          "matchFiles": [
+            "dino1024.onnx"
+          ]
+        },
+        {
+          "role": "dino1024_data",
+          "label": "dino1024.onnx.data",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": false,
+          "matchFiles": [
+            "dino1024.onnx.data"
+          ]
+        },
+        {
+          "role": "structure_flow",
+          "label": "structure_flow.onnx",
+          "formats": [
+            "onnx"
+          ],
+          "required": true,
+          "matchFiles": [
+            "structure_flow.onnx"
+          ]
+        },
+        {
+          "role": "structure_flow_data",
+          "label": "structure_flow.onnx.data",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": false,
+          "matchFiles": [
+            "structure_flow.onnx.data"
+          ]
+        },
+        {
+          "role": "structure_decoder",
+          "label": "structure_decoder.onnx",
+          "formats": [
+            "onnx"
+          ],
+          "required": true,
+          "matchFiles": [
+            "structure_decoder.onnx"
+          ]
+        },
+        {
+          "role": "structure_decoder_data",
+          "label": "structure_decoder.onnx.data",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": false,
+          "matchFiles": [
+            "structure_decoder.onnx.data"
+          ]
+        },
+        {
+          "role": "conditioner",
+          "label": "conditioner.onnx",
+          "formats": [
+            "onnx"
+          ],
+          "required": true,
+          "matchFiles": [
+            "conditioner.onnx"
+          ]
+        },
+        {
+          "role": "conditioner_data",
+          "label": "conditioner.onnx.data",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": false,
+          "matchFiles": [
+            "conditioner.onnx.data"
+          ]
+        },
+        {
+          "role": "shape512_adapter",
+          "label": "shape512_adapter.onnx",
+          "formats": [
+            "onnx"
+          ],
+          "required": true,
+          "matchFiles": [
+            "shape512_adapter.onnx"
+          ]
+        },
+        {
+          "role": "shape512_adapter_data",
+          "label": "shape512_adapter.onnx.data",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": false,
+          "matchFiles": [
+            "shape512_adapter.onnx.data"
+          ]
+        },
+        {
+          "role": "shape1024_adapter",
+          "label": "shape1024_adapter.onnx",
+          "formats": [
+            "onnx"
+          ],
+          "required": true,
+          "matchFiles": [
+            "shape1024_adapter.onnx"
+          ]
+        },
+        {
+          "role": "shape1024_adapter_data",
+          "label": "shape1024_adapter.onnx.data",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": false,
+          "matchFiles": [
+            "shape1024_adapter.onnx.data"
+          ]
+        },
+        {
+          "role": "texture_adapter",
+          "label": "texture_adapter.onnx",
+          "formats": [
+            "onnx"
+          ],
+          "required": true,
+          "matchFiles": [
+            "texture_adapter.onnx"
+          ]
+        },
+        {
+          "role": "texture_adapter_data",
+          "label": "texture_adapter.onnx.data",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": false,
+          "matchFiles": [
+            "texture_adapter.onnx.data"
+          ]
+        },
+        {
+          "role": "shape512_flow",
+          "label": "shape512_flow.onnx",
+          "formats": [
+            "onnx"
+          ],
+          "required": true,
+          "matchFiles": [
+            "shape512_flow.onnx"
+          ]
+        },
+        {
+          "role": "shape512_flow_data",
+          "label": "shape512_flow.onnx.data",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": false,
+          "matchFiles": [
+            "shape512_flow.onnx.data"
+          ]
+        },
+        {
+          "role": "shape1024_flow",
+          "label": "shape1024_flow.onnx",
+          "formats": [
+            "onnx"
+          ],
+          "required": true,
+          "matchFiles": [
+            "shape1024_flow.onnx"
+          ]
+        },
+        {
+          "role": "shape1024_flow_data",
+          "label": "shape1024_flow.onnx.data",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": false,
+          "matchFiles": [
+            "shape1024_flow.onnx.data"
+          ]
+        },
+        {
+          "role": "texture_flow",
+          "label": "texture_flow.onnx",
+          "formats": [
+            "onnx"
+          ],
+          "required": true,
+          "matchFiles": [
+            "texture_flow.onnx"
+          ]
+        },
+        {
+          "role": "texture_flow_data",
+          "label": "texture_flow.onnx.data",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": false,
+          "matchFiles": [
+            "texture_flow.onnx.data"
+          ]
+        },
+        {
+          "role": "shape512_decoder",
+          "label": "shape512_decoder.onnx",
+          "formats": [
+            "onnx"
+          ],
+          "required": true,
+          "matchFiles": [
+            "shape512_decoder.onnx"
+          ]
+        },
+        {
+          "role": "shape512_decoder_data",
+          "label": "shape512_decoder.onnx.data",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": false,
+          "matchFiles": [
+            "shape512_decoder.onnx.data"
+          ]
+        },
+        {
+          "role": "shape1024_decoder",
+          "label": "shape1024_decoder.onnx",
+          "formats": [
+            "onnx"
+          ],
+          "required": true,
+          "matchFiles": [
+            "shape1024_decoder.onnx"
+          ]
+        },
+        {
+          "role": "shape1024_decoder_data",
+          "label": "shape1024_decoder.onnx.data",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": false,
+          "matchFiles": [
+            "shape1024_decoder.onnx.data"
+          ]
+        },
+        {
+          "role": "texture_decoder",
+          "label": "texture_decoder.onnx",
+          "formats": [
+            "onnx"
+          ],
+          "required": true,
+          "matchFiles": [
+            "texture_decoder.onnx"
+          ]
+        },
+        {
+          "role": "texture_decoder_data",
+          "label": "texture_decoder.onnx.data",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": false,
+          "matchFiles": [
+            "texture_decoder.onnx.data"
+          ]
+        }
+      ],
+      "fixedComponents": [],
+      "help": "选择同批固定源码转换的 14 份网络和配置，输入正 / 右 / 后 / 左四张已去背景 RGBA PNG。手机依次完成结构、512 / 1024 形状、材质和 PBR GLB；无外部推理。保留原始 FDG 网格与 SAT 形状交接，未复制 CUDA 重网格、补洞和减面；超限报错。完整权重非常大，不代表努比亚 Z20 能容纳。未做完整模型或真机验收，无已核实公开整包。"
+    },
+    {
+      "id": "supratex_onnx_cpu_v1",
+      "name": "SUPRA-Tex · 本地 Qwen 与材质补全",
+      "primaryRole": "completion",
+      "definition": {
+        "engine": "spatial_ort",
+        "architecture": "supratex",
+        "pipeline": "supratex",
+        "backend": "cpu",
+        "tasks": [
+          "3d"
+        ],
+        "capabilities": [
+          "reference_image",
+          "existing_mesh",
+          "camera_conditioning",
+          "qwen_pbr",
+          "material_completion",
+          "pbr_material",
+          "uv_baking"
+        ],
+        "parameters": {
+          "version": 1,
+          "fields": {
+            "threads": {
+              "type": "integer",
+              "label": "CPU 线程",
+              "default": 2,
+              "minimum": 1,
+              "maximum": 16,
+              "limitSource": "application_guard"
+            },
+            "seed": {
+              "type": "integer",
+              "label": "补全随机种子",
+              "default": 42,
+              "minimum": 0,
+              "maximum": 2147483647,
+              "limitSource": "application_guard"
+            },
+            "steps": {
+              "type": "integer",
+              "label": "材质补全步数",
+              "default": 25,
+              "minimum": 1,
+              "maximum": 100,
+              "limitSource": "application_guard"
+            },
+            "atlas": {
+              "type": "integer",
+              "label": "UV 图集目标尺寸",
+              "default": 1024,
+              "multipleOf": 256,
+              "minimum": 256,
+              "maximum": 4096,
+              "limitSource": "application_guard"
+            },
+            "maxRows": {
+              "type": "integer",
+              "label": "潜变量坐标保护上限",
+              "default": 20000,
+              "minimum": 64,
+              "maximum": 20000,
+              "limitSource": "application_guard"
+            }
+          }
+        }
+      },
+      "requirements": [
+        {
+          "role": "config",
+          "label": "supra-config.json",
+          "formats": [
+            "json"
+          ],
+          "required": true,
+          "matchFiles": [
+            "supra-config.json"
+          ]
+        },
+        {
+          "role": "tokenizer",
+          "label": "qwen-tokenizer.json",
+          "formats": [
+            "json"
+          ],
+          "required": true,
+          "matchFiles": [
+            "qwen-tokenizer.json"
+          ]
+        },
+        {
+          "role": "qwen_text",
+          "label": "qwen_text.onnx",
+          "formats": [
+            "onnx"
+          ],
+          "required": true,
+          "matchFiles": [
+            "qwen_text.onnx"
+          ]
+        },
+        {
+          "role": "qwen_text_data",
+          "label": "qwen_text.onnx.data",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": false,
+          "matchFiles": [
+            "qwen_text.onnx.data"
+          ]
+        },
+        {
+          "role": "qwen_encode",
+          "label": "qwen_encode.onnx",
+          "formats": [
+            "onnx"
+          ],
+          "required": true,
+          "matchFiles": [
+            "qwen_encode.onnx"
+          ]
+        },
+        {
+          "role": "qwen_encode_data",
+          "label": "qwen_encode.onnx.data",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": false,
+          "matchFiles": [
+            "qwen_encode.onnx.data"
+          ]
+        },
+        {
+          "role": "qwen_decode",
+          "label": "qwen_decode.onnx",
+          "formats": [
+            "onnx"
+          ],
+          "required": true,
+          "matchFiles": [
+            "qwen_decode.onnx"
+          ]
+        },
+        {
+          "role": "qwen_decode_data",
+          "label": "qwen_decode.onnx.data",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": false,
+          "matchFiles": [
+            "qwen_decode.onnx.data"
+          ]
+        },
+        {
+          "role": "qwen_material",
+          "label": "qwen_material.onnx",
+          "formats": [
+            "onnx"
+          ],
+          "required": true,
+          "matchFiles": [
+            "qwen_material.onnx"
+          ]
+        },
+        {
+          "role": "qwen_material_data",
+          "label": "qwen_material.onnx.data",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": false,
+          "matchFiles": [
+            "qwen_material.onnx.data"
+          ]
+        },
+        {
+          "role": "shape_encoder",
+          "label": "shape_encoder.onnx",
+          "formats": [
+            "onnx"
+          ],
+          "required": true,
+          "matchFiles": [
+            "shape_encoder.onnx"
+          ]
+        },
+        {
+          "role": "shape_encoder_data",
+          "label": "shape_encoder.onnx.data",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": false,
+          "matchFiles": [
+            "shape_encoder.onnx.data"
+          ]
+        },
+        {
+          "role": "material_encoder",
+          "label": "material_encoder.onnx",
+          "formats": [
+            "onnx"
+          ],
+          "required": true,
+          "matchFiles": [
+            "material_encoder.onnx"
+          ]
+        },
+        {
+          "role": "material_encoder_data",
+          "label": "material_encoder.onnx.data",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": false,
+          "matchFiles": [
+            "material_encoder.onnx.data"
+          ]
+        },
+        {
+          "role": "shape_decoder",
+          "label": "shape_decoder.onnx",
+          "formats": [
+            "onnx"
+          ],
+          "required": true,
+          "matchFiles": [
+            "shape_decoder.onnx"
+          ]
+        },
+        {
+          "role": "shape_decoder_data",
+          "label": "shape_decoder.onnx.data",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": false,
+          "matchFiles": [
+            "shape_decoder.onnx.data"
+          ]
+        },
+        {
+          "role": "material_decoder",
+          "label": "material_decoder.onnx",
+          "formats": [
+            "onnx"
+          ],
+          "required": true,
+          "matchFiles": [
+            "material_decoder.onnx"
+          ]
+        },
+        {
+          "role": "material_decoder_data",
+          "label": "material_decoder.onnx.data",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": false,
+          "matchFiles": [
+            "material_decoder.onnx.data"
+          ]
+        },
+        {
+          "role": "completion",
+          "label": "completion.onnx",
+          "formats": [
+            "onnx"
+          ],
+          "required": true,
+          "matchFiles": [
+            "completion.onnx"
+          ]
+        },
+        {
+          "role": "completion_data",
+          "label": "completion.onnx.data",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": false,
+          "matchFiles": [
+            "completion.onnx.data"
+          ]
+        }
+      ],
+      "fixedComponents": [],
+      "help": "选择同批固定源码转换的九份网络、Qwen tokenizer 和配置。输入归一化 GLB、匹配相机 JSON 文本和 1024×1024 RGBA PNG。Qwen 视觉编码、双材质预测、SCVAE、交错补全及烘焙全部在手机；保留原始网格，不调用远端或 Pixal 几何推理。FP32 / 随机流与 CUDA 不同。完整权重很大，未做完整模型或手机资源验收，无已核实的公开匹配整包。"
+    },
+    {
+      "id": "sam3d_objects_onnx_cpu_v1",
+      "name": "SAM 3D Objects · 单图本地重建",
+      "primaryRole": "structure_flow",
+      "definition": {
+        "engine": "spatial_ort",
+        "architecture": "sam3d_objects",
+        "pipeline": "sam3d_objects",
+        "backend": "cpu",
+        "tasks": [
+          "3d"
+        ],
+        "capabilities": [
+          "reference_image",
+          "local_depth",
+          "sparse_structure",
+          "source_flexicubes",
+          "vertex_color",
+          "pose_metadata"
+        ],
+        "parameters": {
+          "version": 1,
+          "fields": {
+            "threads": {
+              "type": "integer",
+              "label": "CPU 线程",
+              "default": 2,
+              "minimum": 1,
+              "maximum": 16,
+              "limitSource": "application_guard"
+            },
+            "seed": {
+              "type": "integer",
+              "label": "随机种子",
+              "default": 42,
+              "minimum": 0,
+              "maximum": 2147483647,
+              "limitSource": "application_guard"
+            },
+            "structureSteps": {
+              "type": "integer",
+              "label": "结构采样步数",
+              "default": 25,
+              "minimum": 1,
+              "maximum": 100,
+              "limitSource": "application_guard"
+            },
+            "slatSteps": {
+              "type": "integer",
+              "label": "细节采样步数",
+              "default": 25,
+              "minimum": 1,
+              "maximum": 100,
+              "limitSource": "application_guard"
+            },
+            "maxRows": {
+              "type": "integer",
+              "label": "潜变量坐标保护上限",
+              "default": 4096,
+              "minimum": 64,
+              "maximum": 4096,
+              "limitSource": "application_guard"
+            },
+            "maxTriangles": {
+              "type": "integer",
+              "label": "三角面保护上限",
+              "default": 300000,
+              "minimum": 1000,
+              "maximum": 1000000,
+              "limitSource": "application_guard"
+            }
+          }
+        }
+      },
+      "requirements": [
+        {
+          "role": "config",
+          "label": "sam-config.json",
+          "formats": [
+            "json"
+          ],
+          "required": true,
+          "matchFiles": [
+            "sam-config.json"
+          ]
+        },
+        {
+          "role": "ss_conditioner",
+          "label": "ss_conditioner.onnx",
+          "formats": [
+            "onnx"
+          ],
+          "required": true,
+          "matchFiles": [
+            "ss_conditioner.onnx"
+          ]
+        },
+        {
+          "role": "ss_conditioner_data",
+          "label": "ss_conditioner.onnx.data",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": false,
+          "matchFiles": [
+            "ss_conditioner.onnx.data"
+          ]
+        },
+        {
+          "role": "slat_conditioner",
+          "label": "slat_conditioner.onnx",
+          "formats": [
+            "onnx"
+          ],
+          "required": true,
+          "matchFiles": [
+            "slat_conditioner.onnx"
+          ]
+        },
+        {
+          "role": "slat_conditioner_data",
+          "label": "slat_conditioner.onnx.data",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": false,
+          "matchFiles": [
+            "slat_conditioner.onnx.data"
+          ]
+        },
+        {
+          "role": "structure_flow",
+          "label": "structure_flow.onnx",
+          "formats": [
+            "onnx"
+          ],
+          "required": true,
+          "matchFiles": [
+            "structure_flow.onnx"
+          ]
+        },
+        {
+          "role": "structure_flow_data",
+          "label": "structure_flow.onnx.data",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": false,
+          "matchFiles": [
+            "structure_flow.onnx.data"
+          ]
+        },
+        {
+          "role": "structure_decoder",
+          "label": "structure_decoder.onnx",
+          "formats": [
+            "onnx"
+          ],
+          "required": true,
+          "matchFiles": [
+            "structure_decoder.onnx"
+          ]
+        },
+        {
+          "role": "structure_decoder_data",
+          "label": "structure_decoder.onnx.data",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": false,
+          "matchFiles": [
+            "structure_decoder.onnx.data"
+          ]
+        },
+        {
+          "role": "slat_flow",
+          "label": "slat_flow.onnx",
+          "formats": [
+            "onnx"
+          ],
+          "required": true,
+          "matchFiles": [
+            "slat_flow.onnx"
+          ]
+        },
+        {
+          "role": "slat_flow_data",
+          "label": "slat_flow.onnx.data",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": false,
+          "matchFiles": [
+            "slat_flow.onnx.data"
+          ]
+        },
+        {
+          "role": "mesh_decoder",
+          "label": "mesh_decoder.onnx",
+          "formats": [
+            "onnx"
+          ],
+          "required": true,
+          "matchFiles": [
+            "mesh_decoder.onnx"
+          ]
+        },
+        {
+          "role": "mesh_decoder_data",
+          "label": "mesh_decoder.onnx.data",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": false,
+          "matchFiles": [
+            "mesh_decoder.onnx.data"
+          ]
+        },
+        {
+          "role": "depth_moge",
+          "label": "depth_moge.onnx",
+          "formats": [
+            "onnx"
+          ],
+          "required": true,
+          "matchFiles": [
+            "depth_moge.onnx"
+          ]
+        },
+        {
+          "role": "depth_moge_data",
+          "label": "depth_moge.onnx.data",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": false,
+          "matchFiles": [
+            "depth_moge.onnx.data"
+          ]
+        }
+      ],
+      "fixedComponents": [],
+      "help": "用户导入同批固定源码转换的完整网络与配置。输入单张 RGBA 图；MoGe、条件编码、MoT / SLAT 采样与原始 FlexiCubes 均在手机。固定方形输入、APE / full 或 swin、FP32 与本地随机流；输出原始网格及学习到的顶点属性、姿态元数据。不包含训练高斯烘焙或上游 CUDA 减面。完整模型与真机资源未验收，内存超限本地报错，无已核实的公开匹配整包。"
+    },
+    {
+      "id": "mv_sam3d_da3_onnx_cpu_v1",
+      "name": "MV-SAM3D + DA3 · 四视图本地重建",
+      "primaryRole": "structure_flow",
+      "definition": {
+        "engine": "spatial_ort",
+        "architecture": "mv_sam3d_da3",
+        "pipeline": "mv_sam3d_da3",
+        "backend": "cpu",
+        "tasks": [
+          "3d"
+        ],
+        "capabilities": [
+          "reference_image",
+          "local_depth",
+          "sparse_structure",
+          "source_flexicubes",
+          "vertex_color",
+          "pose_metadata",
+          "multiview_conditioning",
+          "joint_da3_metric_depth",
+          "entropy_weighted_velocity_fusion"
+        ],
+        "parameters": {
+          "version": 1,
+          "fields": {
+            "threads": {
+              "type": "integer",
+              "label": "CPU 线程",
+              "default": 2,
+              "minimum": 1,
+              "maximum": 16,
+              "limitSource": "application_guard"
+            },
+            "seed": {
+              "type": "integer",
+              "label": "随机种子",
+              "default": 42,
+              "minimum": 0,
+              "maximum": 2147483647,
+              "limitSource": "application_guard"
+            },
+            "structureSteps": {
+              "type": "integer",
+              "label": "结构采样步数",
+              "default": 25,
+              "minimum": 1,
+              "maximum": 100,
+              "limitSource": "application_guard"
+            },
+            "slatSteps": {
+              "type": "integer",
+              "label": "细节采样步数",
+              "default": 25,
+              "minimum": 1,
+              "maximum": 100,
+              "limitSource": "application_guard"
+            },
+            "maxRows": {
+              "type": "integer",
+              "label": "潜变量坐标保护上限",
+              "default": 4096,
+              "minimum": 64,
+              "maximum": 4096,
+              "limitSource": "application_guard"
+            },
+            "maxTriangles": {
+              "type": "integer",
+              "label": "三角面保护上限",
+              "default": 300000,
+              "minimum": 1000,
+              "maximum": 1000000,
+              "limitSource": "application_guard"
+            }
+          }
+        }
+      },
+      "requirements": [
+        {
+          "role": "config",
+          "label": "sam-config.json",
+          "formats": [
+            "json"
+          ],
+          "required": true,
+          "matchFiles": [
+            "sam-config.json"
+          ]
+        },
+        {
+          "role": "ss_conditioner",
+          "label": "ss_conditioner.onnx",
+          "formats": [
+            "onnx"
+          ],
+          "required": true,
+          "matchFiles": [
+            "ss_conditioner.onnx"
+          ]
+        },
+        {
+          "role": "ss_conditioner_data",
+          "label": "ss_conditioner.onnx.data",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": false,
+          "matchFiles": [
+            "ss_conditioner.onnx.data"
+          ]
+        },
+        {
+          "role": "slat_conditioner",
+          "label": "slat_conditioner.onnx",
+          "formats": [
+            "onnx"
+          ],
+          "required": true,
+          "matchFiles": [
+            "slat_conditioner.onnx"
+          ]
+        },
+        {
+          "role": "slat_conditioner_data",
+          "label": "slat_conditioner.onnx.data",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": false,
+          "matchFiles": [
+            "slat_conditioner.onnx.data"
+          ]
+        },
+        {
+          "role": "structure_flow",
+          "label": "structure_flow.onnx",
+          "formats": [
+            "onnx"
+          ],
+          "required": true,
+          "matchFiles": [
+            "structure_flow.onnx"
+          ]
+        },
+        {
+          "role": "structure_flow_data",
+          "label": "structure_flow.onnx.data",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": false,
+          "matchFiles": [
+            "structure_flow.onnx.data"
+          ]
+        },
+        {
+          "role": "structure_decoder",
+          "label": "structure_decoder.onnx",
+          "formats": [
+            "onnx"
+          ],
+          "required": true,
+          "matchFiles": [
+            "structure_decoder.onnx"
+          ]
+        },
+        {
+          "role": "structure_decoder_data",
+          "label": "structure_decoder.onnx.data",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": false,
+          "matchFiles": [
+            "structure_decoder.onnx.data"
+          ]
+        },
+        {
+          "role": "slat_flow",
+          "label": "slat_flow.onnx",
+          "formats": [
+            "onnx"
+          ],
+          "required": true,
+          "matchFiles": [
+            "slat_flow.onnx"
+          ]
+        },
+        {
+          "role": "slat_flow_data",
+          "label": "slat_flow.onnx.data",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": false,
+          "matchFiles": [
+            "slat_flow.onnx.data"
+          ]
+        },
+        {
+          "role": "mesh_decoder",
+          "label": "mesh_decoder.onnx",
+          "formats": [
+            "onnx"
+          ],
+          "required": true,
+          "matchFiles": [
+            "mesh_decoder.onnx"
+          ]
+        },
+        {
+          "role": "mesh_decoder_data",
+          "label": "mesh_decoder.onnx.data",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": false,
+          "matchFiles": [
+            "mesh_decoder.onnx.data"
+          ]
+        },
+        {
+          "role": "depth_anyview",
+          "label": "depth_anyview.onnx",
+          "formats": [
+            "onnx"
+          ],
+          "required": true,
+          "matchFiles": [
+            "depth_anyview.onnx"
+          ]
+        },
+        {
+          "role": "depth_anyview_data",
+          "label": "depth_anyview.onnx.data",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": false,
+          "matchFiles": [
+            "depth_anyview.onnx.data"
+          ]
+        },
+        {
+          "role": "depth_metric",
+          "label": "depth_metric.onnx",
+          "formats": [
+            "onnx"
+          ],
+          "required": true,
+          "matchFiles": [
+            "depth_metric.onnx"
+          ]
+        },
+        {
+          "role": "depth_metric_data",
+          "label": "depth_metric.onnx.data",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": false,
+          "matchFiles": [
+            "depth_metric.onnx.data"
+          ]
+        }
+      ],
+      "fixedComponents": [],
+      "help": "用户导入同批固定源码转换的完整网络与配置。输入正 / 右 / 后 / 左四张 RGBA 图；联合 DA3 与度量分支、结构随机状态重放、细节暖身和逐潜变量熵加权融合均在手机。固定方形输入、APE / full 或 swin、FP32 与本地随机流；输出原始网格及学习到的顶点属性、姿态元数据。不包含训练高斯烘焙或上游 CUDA 减面。完整模型与真机资源未验收，内存超限本地报错，无已核实的公开匹配整包。"
+    },
+    {
+      "id": "isnet_dis_onnx_cpu_v1",
+      "name": "DIS · 本地自动前景",
+      "primaryRole": "foreground",
+      "definition": {
+        "engine": "vision_cpu",
+        "architecture": "isnet_dis",
+        "pipeline": "isnet_dis",
+        "backend": "cpu",
+        "tasks": [
+          "image"
+        ],
+        "capabilities": [
+          "image_segmentation",
+          "foreground_preparation"
+        ],
+        "parameters": {
+          "version": 1,
+          "fields": {
+            "threads": {
+              "type": "integer",
+              "label": "CPU 线程",
+              "default": 2,
+              "minimum": 1,
+              "maximum": 16,
+              "limitSource": "application_guard"
+            }
+          }
+        }
+      },
+      "requirements": [
+        {
+          "role": "config",
+          "label": "vision-config.json",
+          "formats": [
+            "json"
+          ],
+          "required": true,
+          "matchFiles": [
+            "vision-config.json"
+          ]
+        },
+        {
+          "role": "foreground",
+          "label": "配套 foreground.onnx",
+          "formats": [
+            "onnx"
+          ],
+          "required": true,
+          "matchFiles": [
+            "foreground.onnx"
+          ]
+        },
+        {
+          "role": "foreground_data",
+          "label": "foreground.onnx.data（如有）",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": false,
+          "matchFiles": [
+            "foreground.onnx.data"
+          ]
+        }
+      ],
+      "fixedComponents": [],
+      "help": "用户选择原版 DIS 对应的本地导出资产，手机 CPU 预测 alpha 并导出 RGBA PNG；支持作为 3D 图片准备步骤。没有预装权重，没有网络推理。"
+    },
+    {
+      "id": "vlm_parts_gguf_cpu_v1",
+      "name": "视觉模型 · 本地部件识别",
+      "primaryRole": "model",
+      "definition": {
+        "engine": "vision_cpu",
+        "architecture": "mtmd_vlm",
+        "pipeline": "vlm_parts",
+        "backend": "cpu",
+        "tasks": [
+          "text"
+        ],
+        "capabilities": [
+          "image_understanding",
+          "part_identification"
+        ],
+        "parameters": {
+          "version": 1,
+          "fields": {
+            "threads": {
+              "type": "integer",
+              "label": "CPU 线程",
+              "default": 2,
+              "minimum": 1,
+              "maximum": 16,
+              "limitSource": "application_guard"
+            },
+            "context": {
+              "type": "integer",
+              "label": "视觉模型上下文",
+              "default": 4096,
+              "minimum": 512,
+              "maximum": 16384,
+              "limitSource": "application_guard"
+            },
+            "maxTokens": {
+              "type": "integer",
+              "label": "部件识别输出上限",
+              "default": 512,
+              "minimum": 32,
+              "maximum": 2048,
+              "limitSource": "application_guard",
+              "maximumFrom": {
+                "field": "context",
+                "offset": -1
+              }
+            },
+            "imageTokens": {
+              "type": "integer",
+              "label": "图像 token 上限",
+              "default": 1024,
+              "minimum": 64,
+              "maximum": 4096,
+              "limitSource": "application_guard",
+              "maximumFrom": {
+                "field": "context",
+                "offset": -1
+              }
+            }
+          }
+        }
+      },
+      "requirements": [
+        {
+          "role": "model",
+          "label": "支持 mtmd 的视觉语言 GGUF 主模型",
+          "formats": [
+            "gguf"
+          ],
+          "required": true
+        },
+        {
+          "role": "mmproj",
+          "label": "同一模型配套视觉投影 GGUF",
+          "formats": [
+            "gguf"
+          ],
+          "required": true
+        }
+      ],
+      "fixedComponents": [],
+      "help": "用户明确选择支持 llama.cpp mtmd 的 GGUF 视觉语言模型及匹配 mmproj，例如匹配的 Qwen2/3-VL 导出。手机本地分词、图片编码和 JSON 约束生成，输出 1–16 个部件名称；可用于 PartCrafter 部件数。原版 safetensors 不能直接执行，不提供远端方案。"
     }
   ]
 }

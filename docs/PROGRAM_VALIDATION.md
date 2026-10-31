@@ -1,39 +1,29 @@
-# 仅程序验证策略
+# 仅程序验证策略 · v0.3.6
 
-[English](PROGRAM_VALIDATION.en.md) · [v0.3.5](releases/v0.3.5.md) · [策略 JSON](proposals/program-validation-policy.json)
+[English](PROGRAM_VALIDATION.en.md) · [版本说明](releases/v0.3.6.md) · [策略 JSON](proposals/program-validation-policy.json) · [实现与全部测试](IMPLEMENTATION_V036.md)
 
-用户于 2026-10-31 要求后续只做程序验证。完整训练模型下载 / 复制 / 推理、ASR、手机推理和长时耐久不再作为开发或发版前置项。缺失代码不因此豁免，原完整冻结范围不削减。
+用户于 2026-10-31 要求后续只做程序验证。完整训练模型下载 / 复制 / 推理、ASR、手机推理和长时耐久不作为开发或发版前置项；缺失代码仍须实现，原冻结范围不削减。
 
-v0.3.5 保留 F-01–F-12、生文、01–14 / 16 / 17、社区和语音 / 单图 3D，新增 Hunyuan3D 形状与 UltraShape 精修，保留 RF / 部件几何、真实四视图 CPU 与持久诊断。[当前实现](IMPLEMENTATION_V035.md) · [完整新方案](SPATIAL_SHAPE.md)。
+v0.3.6 完成原 F01–F12、生文、01–14 / 16 / 17，以及 P01–P06 追加适配。交付 62 个配方、82 个目录包、18 个扩展引擎加文本引擎。所有模型平级，安装或升级只更新基座；用户决定下载、导入和安装什么模型。
 
-| 检查 | 当前结果 |
-| --- | --- |
-| 程序覆盖 | **30 组 / 5,820 项**，当前源码指纹 |
-| 社区 / 共用扩展 / MV / RF | 818 / 533 / 63 / 161 项（社区 / 共用扩展 / MV / RF） |
-| 完整生产页面 | **653 项**，明确模拟桥 |
-| 六组当前录制 | 社区 34 / 工作台 8 / 语音与 3D 32 / MV 19 / RF 17 / Spatial 20 项 |
-| APK | ARM64、API28+、原签名、**40 个库**、依赖完整、16 KiB ELF / ZIP 对齐 |
-| Lint | 0 错误 / 16 个保留警告 |
-| 当前媒体 | **30 张截图 / 6 GIF / 6 MP4**，UI FIXTURE 标识 |
-| 完整训练模型下载 / 复制 / 运行 | 全部为 0 |
-| 手机 / 模型效果 / 锁屏耐久 | 未执行，不声称通过 |
+| 编号 | 检查 | 当前结果 |
+| --- | --- | --- |
+| V01 | 程序覆盖 | **59 组 / 14,939 项断言**，精确源码指纹 |
+| V02 | 基座 / 社区 / 共用扩展 | 1,226 / 818 / 884 项 |
+| V03 | 完整生产页面 | **748 项**，显式桌面模拟桥 |
+| V04 | 当前证据 | **72 份 JSON 记录另附 status.json**；815 个历史文件身份保留 |
+| V05 | APK | ARM64、API28+、原签名、**41 个原生库**、依赖完整、16 KiB ELF / ZIP 对齐 |
+| V06 | Lint | **0 错误 / 16 个原有警告** |
+| V07 | 当前媒体 | **9 组 / 52 张截图 / 9 GIF / 9 MP4**，UI FIXTURE 标记 |
+| V08 | 完整训练模型下载 / 复制 / 运行 | 均为 0 |
+| V09 | 手机推理 / 质量 / 速度 / 峰值 RAM / 锁屏耐久 | 未执行、未声称通过 |
 
-[41 份当前记录＋状态](../verification/program/status.json)绑定本版程序。[v0.3.2 归档](../verification/history/v0.3.2-program-archive.json)按提交 `3f59f2e9f61e72ea3400fe268f85f959c759fc3b` 原样保存 34 份 JSON；旧三组媒体位于 `docs/media/history/v0.3.2/`。先前版本和模型失败记录继续保留原身份。
+[当前记录及指纹](../verification/releases/v0.3.6/status.json)与[固定源码审计](../research/portability/adaptation-current.json)明确区分：`all_requested_adaptations_complete=true` / `all_benchmark_architectures_integrated=true` 限于版本化有界 CPU 适配；`full_benchmark_workflows_reproduced=false`。这不表示任意 HF 架构、上游所有 CUDA 配置、完整公开导出包或所有手机已经验证。
 
-原生 Windows 的 JVM / HTTP / 文件 / 子进程检查通过明确的 Android 适配替身调用生产逻辑。有界随机神经小图不等于训练生成。页面使用标记的模拟桥；真实 Android Service、SAF、MediaCodec、电源状态与进程 RSS 只有编译 / 包检查，没有设备执行。Windows worker RSS 明确不可用，不伪造 RAM 测量。
+原生 Windows 的 JVM / HTTP / 文件 / 子进程检查通过明确的 Android 框架适配替身调用生产逻辑。原始源码类、固定配置的 meta 构造、有界随机网络和 C++ / 上游数值对照验证结构与算法，不等于完整训练生成。页面使用标记的模拟桥；Android Service、SAF、MediaCodec、电源状态和 RSS 没有真机执行记录。Windows 无法提供的 worker RSS 不伪造成实测值。
 
-`release_ready` 指满足本程序发行策略。`full_scope_implementation_complete` 明确限于原 F-01–F-12、文本和所选编号，不是所有模型的通用支持声明：状态另列 **all_benchmark_architectures_integrated=false** 与 D04、D05、D07 Paint、D08–D10。[固定源码审计](../research/portability/audit-v0.3.5.json)列出实际架构移植缺口，补测不能代替运行器开发。
+按[构建指南](BUILD.md)恢复固定源码、编译所有启用的原生引擎；按[完整测试表](IMPLEMENTATION_V036.md#program-checks)运行相应入口。生产页面运行 `node tests/ui-smoke.cjs`，九组录制见[媒体索引](MEDIA.md)。APK、签名和 Lint 检查后，执行 `python tools/audit_adaptations.py --require-complete`、`python tools/program_evidence.py --export`、源码和发行打包。只在精确输入指纹仍一致时复用通过记录；改动相关源码必须重跑对应检查。
 
-运行 `tools/run_program_checks.py`（先后端，再三组有界检查）、`tools/test_foundation.py`、`tools/test_expansion.py`、`tools/test_multiview.py`、`tools/test_shape.py`、`node tests/ui-smoke.cjs`。当前 APK 构建后检查签名包与 Lint，刷新六组相关 `capture_workbench.cjs` 媒体，然后按[发版流程](RELEASING.md)导出打包。只有精确指纹仍一致时才复用已有通过记录。
+不得改写指纹制造通过、删除失败、把登记条目冒充运行器、恢复已取消的模型 / 真机门槛、调用 Docker / WSL / VM / 模拟器或静默取得模型。浏览器在 finally 关闭；保留签名材料、用户已有盘符、推荐 `m08 → m06 → m01` 和模型资产控制权。
 
-不得改写指纹制造通过、删除失败、把登记条目视作接入、恢复已取消的模型 / 真机门槛、调用 Docker / WSL / VM / 模拟器或静默取得模型。浏览器 finally 关闭；保留本机签名、用户原有盘符、推荐和模型资产控制权。
-
-当前 30 组 / 5,820 项含 Spatial 原生 188 项、图导出 60 项、稀疏算子 109 项、RF Shape 161 项和 UI 653 项。Android worker 已编译；完整训练权重导出和手机推理未做。原冻结范围继续保留。[方案](SPATIAL_SHAPE.md) · [English](SPATIAL_SHAPE.en.md)。
-
-v0.3.3 的 36 JSON 和四组媒体按[Git 原身份](../verification/history/v0.3.3-program-archive.json)保留，不与当前记录混淆。
-
-## v0.3.5 Spatial evidence / 形状精修证据
-
-Added 188 native/CLI/preprocessing checks, 60 pinned graph comparisons and 109 sparse CPU/ONNX checks. 新增项纳入 30 组 / 5820 项总数，不叠加重复统计。Complete UI: 653; shared expansion: 533; foundation: 995. [完整方案](SPATIAL_SHAPE.md) · [English](SPATIAL_SHAPE.en.md).
-
-`all_requested_adaptations_complete=false` explicitly preserves the missing D04/D05/D07 Paint/D08/D09/D10 ports and experimental F5 Chinese equivalence. 完整模型与真机验证按用户要求不做，不作为这些代码缺口的解释。v0.3.4 的 38 JSON 与 40 媒体文件按[不可变 Git blob](../verification/history/v0.3.4-program-archive.json)归档。
+`verification/program/`、`verification/history/` 与旧 Release 附件保留原身份，当前证据另存 `verification/releases/v0.3.6/`。旧 v0.3.5 的 30 组 / 5,820 项和此前缺适配审计仍是历史记录，不能覆盖成新数据；旧模型输出、误差和失败继续可查。

@@ -25,7 +25,8 @@ public final class LocalEngines {
                 File library = new File(app.getApplicationInfo().nativeLibraryDir, dependency.getString("file"));
                 if (!library.isFile() || !DataFiles.sha256(library).equals(dependency.getString("sha256"))) throw new IOException("引擎依赖与签名包清单不一致");
             }
-            if (id.equals("llama_text")) register(new TextEngine(app, binary, build));
+            if (id.equals("vision_cpu")) register(new VisionEngine(app, binary, build));
+            else if (id.equals("llama_text")) register(new TextEngine(app, binary, build));
             else if (id.equals("sd_cpp") || id.equals("wan_sd_cpp")) register(new SdEngine(app, binary, build));
             else if (id.equals("sherpa_tts")) register(new SherpaEngine(app, binary, build));
             else if (id.equals("moss_nano_ort")) register(new MossNanoEngine(app, binary, build));
@@ -37,7 +38,7 @@ public final class LocalEngines {
             else if (id.equals("stable_audio_litert")) register(new StableAudioEngine(app, binary, build));
             else if (id.equals("soulx_native")) register(new SoulxEngine(app, binary, build));
             else if (id.equals("ltx098_native")) register(new Ltx098Engine(app, binary, build));
-            else if (id.equals("audio_cpp") || id.equals("trellis_native") || id.equals("pixal_multiview") || id.equals("rf_shape_ort") || id.equals("spatial_ort")) register(new ExpansionEngine(app, binary, build));
+            else if (id.equals("audio_cpp") || id.equals("trellis_native") || id.equals("pixal_multiview") || id.equals("rf_shape_ort") || id.equals("spatial_ort")) register(id.equals("audio_cpp") ? new ExpansionEngine(app, binary, build) : new PreparationEngine(app, new ExpansionEngine(app, binary, build), this::require));
             else throw new IOException("未知的签名原生模块：" + id);
         }
     }
