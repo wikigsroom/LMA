@@ -1,8 +1,8 @@
-# Build and program verification · v0.3.4
+# Build and program verification · v0.3.5
 
 [中文](BUILD.md) · [Release workflow](RELEASING.md) · [Validation policy](PROGRAM_VALIDATION.en.md) · [Archived build notes](BUILD_HISTORY.en.md)
 
-Use a **full Git clone with history**, checked out at `v0.3.4` for reproduction. Historical evidence checks intentionally read earlier immutable Git blobs. The source ZIP is for code/docs/evidence review: its manifest lists exact files, while `.git`, native binaries, model data, build dependencies and signing material are excluded. It is not a self-contained binary SDK. No trained model is required to compile or program-check the APK.
+Use a **full Git clone with history**, checked out at `v0.3.5` for reproduction. Historical evidence checks intentionally read earlier immutable Git blobs. The source ZIP is for code/docs/evidence review: its manifest lists exact files, while `.git`, native binaries, model data, build dependencies and signing material are excluded. It is not a self-contained binary SDK. No trained model is required to compile or program-check the APK.
 
 ## Toolchain
 
@@ -15,7 +15,7 @@ UI checks use Playwright with Edge/Chromium; recordings additionally use FFmpeg/
 ```powershell
 git clone git@github.com:wikigsroom/LMA.git
 cd LMA
-git checkout v0.3.4
+git checkout v0.3.5
 python tools/bootstrap_runtime.py
 python tools/bootstrap_native.py
 python tools/fetch_native.py --transport ssh
@@ -77,7 +77,7 @@ python tools/check_repository.py
 python tools/prepare_release.py
 ```
 
-Five explicitly labelled desktop UI captures produce 25 screenshots, five GIFs and five MP4s. `verification/program/` contains current evidence; v0.3.2's 34 original records and three recordings are archived. The original frozen scope and the separate unported benchmark architectures are checked independently. No visual/phone/endurance claim is manufactured from program counts.
+Six explicitly labelled desktop UI captures produce 30 screenshots, six GIFs and six MP4s. `verification/program/` contains current evidence; v0.3.2's 34 original records and three recordings are archived. The original frozen scope and the separate unported benchmark architectures are checked independently. No visual/phone/endurance claim is manufactured from program counts.
 
 Outputs: `dist/LMA-0.3.4-arm64-v8a.apk`, build/validation/source manifests, source/verification/screenshots ZIPs and version-specific release assets. These are ignored by Git; publish attachments through the authorized release workflow. After source/doc changes, repackage before publishing. After publication, use `check_repository.py --published` to check the immutable tag/source archive; never overwrite old assets.
 
@@ -85,7 +85,7 @@ Outputs: `dist/LMA-0.3.4-arm64-v8a.apk`, build/validation/source manifests, sour
 
 Preserve the existing project-local RSA3072 identity in ignored `signing/` for upgrades. A fresh clone creates a different identity unless you privately supply the original; it cannot overwrite the distributed installation with a different signer. Never commit/print keys or passwords. Model weights, voices, tokenizers, dictionaries, caches and personal browser profiles stay outside Git/source ZIP/APK.
 
-`license.js`, `foundation.js` and upstream `*.header.json` are protected hash/copy-only inputs; do not inspect, dump or stage them. Repository/archive checks hash them without content inspection. User models and settings are independent from foundation updates. See [contribution rules](../CONTRIBUTING.md) and [numbered current scope](IMPLEMENTATION_V034.en.md).
+`license.js`, `foundation.js` and upstream `*.header.json` are protected hash/copy-only inputs; do not inspect, dump or stage them. Repository/archive checks hash them without content inspection. User models and settings are independent from foundation updates. See [contribution rules](../CONTRIBUTING.md) and [numbered current scope](IMPLEMENTATION_V035.en.md).
 
 ## RF Shape source / 本地形状源码
 
@@ -97,3 +97,20 @@ python tools/collect_expansion_notices.py
 ```
 
 复用已经按 SoulX / sherpa 锁构建的 ORT 头、JSON、MV 的 stb 及 Android `libonnxruntime.so`；全部输入固定核对，API28 / 16 KiB / 禁网络进程接口检查。Host build uses MSVC; Android uses the pinned native NDK. All model conversion is a separate user asset operation; see [中文](RF_SHAPE.md) / [English](RF_SHAPE.en.md). Never invoke the exporter as a validation prerequisite with complete trained weights.
+
+## Spatial CPU / Hunyuan shape / UltraShape
+
+[中文方案](SPATIAL_SHAPE.md) · [English workflow](SPATIAL_SHAPE.en.md)
+
+```powershell
+python tools/fetch_spatial_sources.py --fetch
+python tools/fetch_spatial_sources.py
+python tools/build_spatial.py
+python tools/build_spatial.py --android
+python tools/collect_expansion_notices.py
+python tools/test_spatial_shape_graphs.py
+python tools/test_spatial.py
+python tools/test_spatial_sparse.py
+```
+
+Only pinned code/config/license files are fetched. These checks use tiny random or synthetic graphs, not trained models. Android links ORT API17 and built-in CPU custom operations; no downloaded native plugins. 仅获取源码，先构建 host / Android 并收集许可后打包；40 native libraries, 50 templates / 82 bundles / 17 extensions plus text. Source lock, sidecars, input budgets and process cleanup are checked. 六组当前页面录制：community / release-workbench / expansion / multiview / shape / spatial，全部 finally 关闭浏览器。

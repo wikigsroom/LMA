@@ -1,5 +1,7 @@
 # 本地 RF 形状与部件几何
 
+> v0.3.5 保留以下三条 RF 路线，另增 [Hunyuan / UltraShape](SPATIAL_SHAPE.md)。当前合计 50 模板 / 82 目录包 / 17 扩展引擎加文本；下方版本数量按 v0.3.4 历史理解。[当前实现与缺口](IMPLEMENTATION_V035.md)。
+
 [English](RF_SHAPE.en.md) · [v0.3.4](releases/v0.3.4.md) · [完整范围](IMPLEMENTATION_V034.md)
 
 v0.3.4 新增 `rf_shape_ort` CPU 引擎，以及 TripoSG、PartCrafter 物体、PartCrafter 场景三个平级可选配方。输入一张明确选择的本地 PNG，生成无贴图的 GLB；PartCrafter 的部件各有独立 mesh / node，共用模型坐标系。APK 只提供程序，不含任何模型资产。

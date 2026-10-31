@@ -1,8 +1,8 @@
-# 构建与程序验证 · v0.3.4
+# 构建与程序验证 · v0.3.5
 
 [English](BUILD.en.md) · [发布流程](RELEASING.md) · [验证策略](PROGRAM_VALIDATION.md) · [构建历史全文](BUILD_HISTORY.md)
 
-重建使用**带完整历史的 Git clone**，复现时切到 `v0.3.4`。历史证据身份检查会读取早期不可变 Git blob。Release 源码 ZIP 用于代码 / 文档 / 证据审阅，精确文件见源码清单；它排除 `.git`、原生二进制、模型、构建依赖与签名材料，不是自包含 SDK。编译和程序验证不需要完整训练模型。
+重建使用**带完整历史的 Git clone**，复现时切到 `v0.3.5`。历史证据身份检查会读取早期不可变 Git blob。Release 源码 ZIP 用于代码 / 文档 / 证据审阅，精确文件见源码清单；它排除 `.git`、原生二进制、模型、构建依赖与签名材料，不是自包含 SDK。编译和程序验证不需要完整训练模型。
 
 ## 工具链
 
@@ -15,7 +15,7 @@
 ```powershell
 git clone git@github.com:wikigsroom/LMA.git
 cd LMA
-git checkout v0.3.4
+git checkout v0.3.5
 python tools/bootstrap_runtime.py
 python tools/bootstrap_native.py
 python tools/fetch_native.py --transport ssh
@@ -77,7 +77,7 @@ python tools/check_repository.py
 python tools/prepare_release.py
 ```
 
-五组明确标记的桌面生产页面产出 25 张截图、5 GIF、5 MP4。`verification/program/` 为当前记录；v0.3.2 的 34 份原始证据与三组媒体另行归档。原冻结完整范围与后续测评尚未移植架构分别核对，不用程序数量冒充画质 / 手机 / 耐久。
+六组明确标记的桌面生产页面产出 30 张截图、6 GIF、6 MP4。`verification/program/` 为当前记录；v0.3.2 的 34 份原始证据与三组媒体另行归档。原冻结完整范围与后续测评尚未移植架构分别核对，不用程序数量冒充画质 / 手机 / 耐久。
 
 产物包括 `dist/LMA-0.3.4-arm64-v8a.apk`、构建 / 验证 / 源码清单、源码 / 验证 / 截图 ZIP 与版本附件，均不提交 Git，按授权发布流程上传。源码或文档变化后重新打包再发布；已发布后用 `check_repository.py --published` 核对原标签 / 源码 ZIP，不覆盖旧附件。
 
@@ -85,7 +85,7 @@ python tools/prepare_release.py
 
 保留忽略目录 `signing/` 中的项目 RSA3072 身份以覆盖升级。新 clone 若未私下提供原密钥会创建不同签名，不能直接覆盖已发行安装。不得提交 / 打印密钥或口令。模型权重、音色、tokenizer、词典、缓存、个人浏览器资料不进 Git / 源码 ZIP / APK。
 
-`license.js`、`foundation.js` 和上游 `*.header.json` 限于哈希 / 复制，不读出、转储或暂存；仓库和归档工具只核对身份。App 基座与用户模型 / 参数独立更新。见[贡献约定](../CONTRIBUTING.md)与[当前编号范围](IMPLEMENTATION_V034.md)。
+`license.js`、`foundation.js` 和上游 `*.header.json` 限于哈希 / 复制，不读出、转储或暂存；仓库和归档工具只核对身份。App 基座与用户模型 / 参数独立更新。见[贡献约定](../CONTRIBUTING.md)与[当前编号范围](IMPLEMENTATION_V035.md)。
 
 ## RF Shape source / 本地形状源码
 
@@ -97,3 +97,20 @@ python tools/collect_expansion_notices.py
 ```
 
 复用已经按 SoulX / sherpa 锁构建的 ORT 头、JSON、MV 的 stb 及 Android `libonnxruntime.so`；全部输入固定核对，API28 / 16 KiB / 禁网络进程接口检查。Host build uses MSVC; Android uses the pinned native NDK. All model conversion is a separate user asset operation; see [中文](RF_SHAPE.md) / [English](RF_SHAPE.en.md). Never invoke the exporter as a validation prerequisite with complete trained weights.
+
+## Spatial CPU / Hunyuan shape / UltraShape
+
+[中文方案](SPATIAL_SHAPE.md) · [English workflow](SPATIAL_SHAPE.en.md)
+
+```powershell
+python tools/fetch_spatial_sources.py --fetch
+python tools/fetch_spatial_sources.py
+python tools/build_spatial.py
+python tools/build_spatial.py --android
+python tools/collect_expansion_notices.py
+python tools/test_spatial_shape_graphs.py
+python tools/test_spatial.py
+python tools/test_spatial_sparse.py
+```
+
+Only pinned code/config/license files are fetched. These checks use tiny random or synthetic graphs, not trained models. Android links ORT API17 and built-in CPU custom operations; no downloaded native plugins. 仅获取源码，先构建 host / Android 并收集许可后打包；40 native libraries, 50 templates / 82 bundles / 17 extensions plus text. Source lock, sidecars, input budgets and process cleanup are checked. 六组当前页面录制：community / release-workbench / expansion / multiview / shape / spatial，全部 finally 关闭浏览器。

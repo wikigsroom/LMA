@@ -8,7 +8,7 @@
   function button(action, label, primary) { return '<button type="button" class="button ' + (primary ? 'primary' : 'secondary') + '" data-action="' + action + '">' + label + '</button>'; }
   function choices(selected,mimes) {
     mimes = mimes || ['image/png','image/jpeg'];
-    return '<option value="">选择已导入的图片</option>' + (ui.state().artifacts || []).filter(function (a) { return a.available && a.metadata && mimes.indexOf(a.metadata.mime) >= 0; }).map(function (a) {
+    return '<option value="">选择已导入的素材</option>' + (ui.state().artifacts || []).filter(function (a) { return a.available && a.metadata && mimes.indexOf(a.metadata.mime) >= 0; }).map(function (a) {
       return '<option value="' + e(a.id) + '"' + (a.id === selected ? ' selected' : '') + '>' + e((a.origin || {}).name || a.id) + '</option>';
     }).join('');
   }
@@ -20,15 +20,15 @@
     return '<label class="form-field' + (rule.type === 'string' ? ' mesh-wide' : '') + '"><span>' + e(rule.label || key) + '</span>' + input + '</label>';
   }
   function use(id, request, revision) {
-    var b = find(id); if (!b || ['trellis_native','pixal_multiview','rf_shape_ort'].indexOf(b.manifest.engine) < 0) return false;
+    var b = find(id); if (!b || ['trellis_native','pixal_multiview','rf_shape_ort','spatial_ort'].indexOf(b.manifest.engine) < 0) return false;
     var values = Object.assign({}, (b.config || {}).values || {}, (request || {}).parameters || {}), fields = b.parameterSchema.fields;
     var inputSchema = (b.inputSchemas || {})['mesh.generate'] || {fixedPrompt:'Generate a 3D asset from the selected local image.',roles:{reference_image:{label:'参考图片（PNG / JPEG，最多 4 百万像素）',mimes:['image/png','image/jpeg'],required:true}}};
     var selected = (((request || {}).input || {}).artifacts || []), roles = Object.keys(inputSchema.roles || {});
     var multi = b.manifest.pipeline === 'pixal3d_mv';
-    var html = '<form id="meshTaskForm"><div class="model-tags"><span class="tag">生 3D</span><span class="tag">本机 CPU</span><span class="tag">实验配方</span></div><h3>' + e(b.manifest.name) + '</h3><p>' + (multi ? '按正面、右侧、背面、左侧选择同一物体的四张已去背景 RGBA PNG。视图必须符合相机标定；单图权重不能代替 MV 权重。' : '选择一张本地图片，生成可导出的 GLB 网格。建议使用主体清晰、透明背景的物体图。') + '</p>' + roles.map(function (role) {
+    var html = '<form id="meshTaskForm"><div class="model-tags"><span class="tag">生 3D</span><span class="tag">本机 CPU</span><span class="tag">实验配方</span></div><h3>' + e(b.manifest.name) + '</h3><p>' + e(inputSchema.promptHelp || (multi ? '按正面、右侧、背面、左侧选择同一物体的四张已去背景 RGBA PNG。视图必须符合相机标定；单图权重不能代替 MV 权重。' : '选择一张本地图片，生成可导出的 GLB 网格。建议使用主体清晰、透明背景的物体图。')) + '</p>' + roles.map(function (role) {
       var rule = inputSchema.roles[role], receipt = selected.find(function (v) { return v.role === role; });
       return '<label class="form-field"><span>' + e(rule.label || role) + '</span><select name="' + (role === 'reference_image' ? 'reference' : role) + '" data-mesh-role="' + e(role) + '"' + (rule.required ? ' required' : '') + '>' + choices(receipt && receipt.artifactId,rule.mimes) + '</select></label>';
-    }).join('') + '<div class="modal-actions">' + button('meshImport','从设备导入图片') + button('meshRefresh','刷新图片列表') + '</div><div class="form-grid">' + Object.keys(fields).map(function (key) { return field(key,fields[key],values[key] === undefined ? fields[key].default : values[key]); }).join('') + '</div><p class="form-help">' + e(inputSchema.promptHelp || (multi ? '标准转台：20° 水平视角、零仰角、距离 3.119204998。相机参数留空采用此约定，其他拍摄方式需要提供正确的四个相机变换；不是自动相机估计。' : '512 / 1024 是生成阶段分辨率。Pixal3D 的 512 模式只支持几何；贴图需选择 1024 并配齐对应组件。')) + ' 权重大小不代表运行内存。</p><label class="unmeasured-choice"><input type="checkbox" name="allowUnmeasured"><span>允许尝试尚无本机实测记录的配方</span></label><p id="meshHint" role="status">可先检查组件、图片、参数与当前资源。此检查不会运行模型。</p><div class="modal-actions">' + button('meshSaveSettings','保存为此模型的设置') + button('meshDraft','保存草稿') + button('meshPreflight','运行前检查') + button('meshSubmit','加入任务队列',true) + '</div></form>';
+    }).join('') + '<div class="modal-actions">' + button('meshImport','从设备导入素材') + button('meshRefresh','刷新素材列表') + '</div><div class="form-grid">' + Object.keys(fields).map(function (key) { return field(key,fields[key],values[key] === undefined ? fields[key].default : values[key]); }).join('') + '</div><p class="form-help">' + e(inputSchema.promptHelp || (multi ? '标准转台：20° 水平视角、零仰角、距离 3.119204998。相机参数留空采用此约定，其他拍摄方式需要提供正确的四个相机变换；不是自动相机估计。' : '512 / 1024 是生成阶段分辨率。Pixal3D 的 512 模式只支持几何；贴图需选择 1024 并配齐对应组件。')) + ' 权重大小不代表运行内存。</p><label class="unmeasured-choice"><input type="checkbox" name="allowUnmeasured"><span>允许尝试尚无本机实测记录的配方</span></label><p id="meshHint" role="status">可先检查组件、素材、参数与当前资源。此检查不会运行模型。</p><div class="modal-actions">' + button('meshSaveSettings','保存为此模型的设置') + button('meshDraft','保存草稿') + button('meshPreflight','运行前检查') + button('meshSubmit','加入任务队列',true) + '</div></form>';
     ui.openModal('本地生 3D',html,'mesh');
     editor = {id:id,inputSchema:inputSchema,revision:revision === undefined ? (((ui.state().taskDrafts || []).find(function (d) { return d.bundleId === id; }) || {}).revision || 0) : revision};
     var form = document.getElementById('meshTaskForm');

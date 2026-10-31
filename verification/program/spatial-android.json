@@ -1,0 +1,86 @@
+{
+  "schema": "lma.native-build/1",
+  "engine": "spatial_ort",
+  "file": "liblma-spatial.so",
+  "source_revision": "82920d643c0dc2f7bfd7255f45f62d386edfe60c",
+  "source_revisions": {
+    "D06": "5e8dcef05df101ab00ab6cd5fdd0ed0c74fbca66",
+    "D07": "82920d643c0dc2f7bfd7255f45f62d386edfe60c",
+    "D05": "8b6094780e202b8a6b1d239e0997552e18547026",
+    "D08": "f91db411c50efee93d8db7aeb323885650f6f722"
+  },
+  "backend": "cpu",
+  "bytes": 669848,
+  "sha256": "410ac537bcbababa124dcd6d602c089827195ad38958aac22f2e0691f0122797",
+  "source_inputs": {
+    "build/native-src/onnxruntime-headers/include/onnxruntime/core/session/environment.h": "78da6ffe1ea6aaea7b0c6e37cc420e0277b2faf818471ea1ee85ccee7eef8de1",
+    "build/native-src/onnxruntime-headers/include/onnxruntime/core/session/experimental_onnxruntime_cxx_api.h": "7a0f9c8f1a9d444dea6e138294c46eaf778180ba44106fabf4cebb8eec0de3bd",
+    "build/native-src/onnxruntime-headers/include/onnxruntime/core/session/experimental_onnxruntime_cxx_inline.h": "f154c98097c7457446085a892fc5209596252572c47a1dc08adf51248d882189",
+    "build/native-src/onnxruntime-headers/include/onnxruntime/core/session/onnxruntime_c_api.h": "e3a01cdb382b2ba52267bf8a1a40d60b1197a1bac4da55667fe4d84e244f589a",
+    "build/native-src/onnxruntime-headers/include/onnxruntime/core/session/onnxruntime_cxx_api.h": "0765fc56924999b06b4c01f665d8fbd368582fed7a856a22ce1ed686a73e8be2",
+    "build/native-src/onnxruntime-headers/include/onnxruntime/core/session/onnxruntime_cxx_inline.h": "e6c0478ab86467cfb4ac8694df3081ad1d42585c16f024d107638fb197e92f4a",
+    "build/native-src/onnxruntime-headers/include/onnxruntime/core/session/onnxruntime_env_config_keys.h": "e56d37fd1e6497e9c8e8e5bd81732cd5414b4dc0867f3e8badb60101502d0435",
+    "build/native-src/onnxruntime-headers/include/onnxruntime/core/session/onnxruntime_ep_c_api.h": "612dd6c3b5c7fa8f936fe07e1d8da4dc4727890011305b4f67279b132aa1c8e0",
+    "build/native-src/onnxruntime-headers/include/onnxruntime/core/session/onnxruntime_ep_device_ep_metadata_keys.h": "d2970b305076cefa0e5b740758ac9b67c2450f7cebc89e2f7db6813c735a85d2",
+    "build/native-src/onnxruntime-headers/include/onnxruntime/core/session/onnxruntime_error_code.h": "6690bf0df3f7a7a9c4f38597dc3232042e432b48ea166cb5672f72a49d32b742",
+    "build/native-src/onnxruntime-headers/include/onnxruntime/core/session/onnxruntime_experimental_c_api.h": "6639049e3ae65548c251bebfc53ccedc2f2f275ebc1c342cbe6180f35a4c84cc",
+    "build/native-src/onnxruntime-headers/include/onnxruntime/core/session/onnxruntime_experimental_c_api.inc": "c48203a7c2081054349d3318adccb8fdd8252e8a80ee828cbcf69bfc3ff409fa",
+    "build/native-src/onnxruntime-headers/include/onnxruntime/core/session/onnxruntime_experimental_cxx_api.h": "b998fbb7abd4ce0760a6b2fecc731c68bdf7932327fe9c1aa8edb0b53747e3aa",
+    "build/native-src/onnxruntime-headers/include/onnxruntime/core/session/onnxruntime_float16.h": "9b45e1bc0fe19d9d53f272b168f5cab616e26eb00136c3a1b78f394c9b1b6757",
+    "build/native-src/onnxruntime-headers/include/onnxruntime/core/session/onnxruntime_lite_custom_op.h": "d65413bf8ca63fb71efcb0f9e14f996736367cf72ea3421d18b3370def1e483b",
+    "build/native-src/onnxruntime-headers/include/onnxruntime/core/session/onnxruntime_run_options_config_keys.h": "38cfec5817e67990f242bbf7177db730a4d60f5ed256b4832f02ac38c3fd6d06",
+    "build/native-src/onnxruntime-headers/include/onnxruntime/core/session/onnxruntime_session_options_config_keys.h": "79d27ec166bfca980e2349ec7240b7b36e7a7501165c310ca04750cbba5edcd0",
+    "build/native-src/onnxruntime-headers/include/onnxruntime/core/session/snippets.dox": "c886c6a778135640603e503e819519e66fe3e59bdc9cb76ba6743020ddb56586",
+    "build/native-src/pixal3d-mv-cpp/thirdparty/stb/stb_image.h": "2d264ec3e6ce404fc2d0cfff4476c982eb3edf5a61122b03884fdef7bacd9deb",
+    "native/moss_nano/onnx_external.hpp": "c1bb8f95ad2078472dbbf2ea0863493ac44f4aae7c4336cf5debb0db0d54fae5",
+    "native/rf_shape/CMakeLists.txt": "48fd357aaf0e656dc65afc0d8442b9aa031426a5b7437c975c9871e90323be94",
+    "native/rf_shape/geometry.hpp": "95cbdc3dcf71629dfd685ee7efcad354e66b07c6dc786ebe8451ac8c2b950192",
+    "native/rf_shape/image.hpp": "89261f9cd2f0a1adb2ec0fc42f9da951e4898349b8f54ee4daa31415e49d6e78",
+    "native/rf_shape/math.hpp": "2f345d08ae7abe58bf8d8b567325b425f9c5d21383e75ce60b13dd5573790c0d",
+    "native/rf_shape/ort.hpp": "2b6e5722b757a027213482bfc1289348fd9454e8e00d49cdb0d47d87896fac71",
+    "native/rf_shape/worker.cpp": "bf18dba87ac45d9dc1100f8004b1ede16c8a100c9d8d560b0fc2f50c605bc819",
+    "native/runtime_metrics.hpp": "1fe93a5bd8426dbca3f8efaec6070c1cccc60e75006df40021141a69abec4a07",
+    "native/spatial/CMakeLists.txt": "00859da5dfaab52265439c88aad78dd76b42e222aaac1abe6a7dcee7f2c39568",
+    "native/spatial/image.hpp": "7f2b70863591a51e9bca407a7ae0677fda0680efa51b9c54e91a5a3c8f073909",
+    "native/spatial/math.hpp": "abc3c2644fc02f864cec371053b3ad92c42ce89b9215beb86a3f731b861c7f45",
+    "native/spatial/mesh.hpp": "9d6c1af1780abf2ad83cd8d2aaa5e6e5f2f762c132d5006929a097c01fae6eaa",
+    "native/spatial/ort_graph.hpp": "d78b66a3b16ebad13410e045035d58d6dad5eab37346a6a697fdba095a1f8908",
+    "native/spatial/sparse.hpp": "118c821be7601439a166d800729feb9e77320b6ad355808edc1e802d99b07e67",
+    "native/spatial/sparse_ort.hpp": "a1ff2b57d45346947ce7ae19439ef60e29a9c1fd88071b61f8a0509faf810934",
+    "native/spatial/surface_sampling.hpp": "0aeb83fc1030f3114784b4dd0dbd7db5c5464ebc6ce5c85c3436bec6080cb709",
+    "native/spatial/worker.cpp": "90006f3d6809e3e8e627bb72235fe3b2f4970fedc73be21c4ff9e1cbf15e6e7b",
+    "native/worker_common.hpp": "874ea65fb060c880b72484f771e2ea58dc5814480e76bfcb794ee8da87b5032c",
+    "research/soulx_ort/android_log.cpp": "216f630761ff67a00cfe47db941338f45560fc45486ebcbdff196cf36dac3d04",
+    "tests/expansion-native/sparse_graph.cpp": "4ea22cdfba0ccb1d9a9df6e7fe0209e0293a4e6c0d14689430cb9674e1aeea24",
+    "tests/expansion-native/spatial.cpp": "ee22d6b12d07a1aed631d71bfac694ed894332cd5b3fc661020331ded3d3b0dc",
+    "third_party/soulx-acoustic-source-lock.json": "b39e10c415c5f30d4e4adb52327e1e04df371407131f47617622da913b268ac5",
+    "third_party/spatial-shape-source-lock.json": "9b5b530e2e45e128c4f39e4a3b9866bc825a26e0e7a93df57344a41d302c8d1a",
+    "tools/build_spatial.py": "6e9a2e79e6d2b4232149ef4a129af7535ab32e600c5a0e4b8d7b751fc1500d3b",
+    "tools/spatial_reference.py": "28bc01723afab86d3a8cea20f8e3bd35e244929becb9450c99d415feed00c83d"
+  },
+  "model_inference_tested": false,
+  "physical_device_tests": 0,
+  "virtualization_used": false,
+  "abi": "arm64-v8a",
+  "ndk": "30.0.16248370",
+  "min_sdk": 28,
+  "android_api_notes": [
+    28
+  ],
+  "elf_load_alignment": [
+    16384
+  ],
+  "dependencies": [
+    {
+      "file": "libonnxruntime.so",
+      "bytes": 22249560,
+      "sha256": "33847ad43bffe204699fd4a27f7f3603452a8cdaf2f9a44983a0bc31ffcf2da1",
+      "android_api_notes": [
+        27
+      ]
+    }
+  ],
+  "vocabularies": "external_user_selected_components",
+  "runtime_version": "ORT 1.28.2 API17",
+  "required_model_components": 5
+}

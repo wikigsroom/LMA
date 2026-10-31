@@ -1,5 +1,7 @@
 # MOSS Delay first-class CPU worker
 
+Spatial CPU v0.3.5: [per-file source lock](spatial-shape-source-lock.json), [中文方案](../docs/SPATIAL_SHAPE.md) / [English](../docs/SPATIAL_SHAPE.en.md). Hunyuan3D shape, UltraShape refinement and shared UniForge/SAM sparse rules retain source/per-file terms; model licenses are separate. ONNX Runtime and stb notices are packaged with the new worker. No trained weights, pinyin tables, vocabularies or voice data are embedded. Sparse operators are built into the APK, not downloaded plugins.
+
 [Pinned source lock](moss-delay-source-lock.json) records the MIT OpenMOSS fork used by the same-phone 32-channel speech pipeline. Native source only; backbone/BPE/codec files remain explicit user assets. See [中文](../docs/MOSS_DELAY_ENGINE.md) / [English](../docs/MOSS_DELAY_ENGINE.en.md). No ordinary MOSS GGUF compatibility or complete-family/device acceptance is implied.
 
 # Native runtime provenance and notices

@@ -1,5 +1,14 @@
 # Changelog / 更新记录
 
+## 0.3.5 — 本地形状精修与稀疏运算基座 / Local shape refinement and sparse CPU foundation
+
+- 新增配套 ONNX CPU Hunyuan3D 2.1 形状与 UltraShape 1.0 精修；DINO、真实 MoE 路由、voxel RoPE / masked 条件、VAE cache / query、SDF / GLB 全部同一手机。UltraShape uses explicit PNG + coarse GLB, area/sharp-edge sampling and float16 positions. Paint is not implemented.
+- 离线 safetensors / weights-only PT 导出、真实文件 SHA256 清单、五个必需组件及 data；两条平级自选配方，无伪造公开整包下载。50 templates / 82 bundles / 17 extensions plus text; model assets remain explicit user choices.
+- 五个编译内置 sparse CPU / ONNX 运算，保留 UniForge / SAM 不同池化与细分规则。109 native comparisons; these are shared building blocks, not complete SAM/UniForge/SUPRA adapters.
+- 复用 Local、逐模型归位、PNG / GLB 角色、预检、草稿、幂等、队列、取消与原子结果；修正 App 快照遗留的旧版本号。原冻结 F01–F12、01–14/16/17、九个 MOSS、SD1.5/SDXL LoRA 与推荐保留。
+- 30 组 / 5820 程序项；专项188 / 图60 / sparse109、扩展533、UI653。原签名 code55、40库 / API28 / 16 KiB、Lint 0错误 / 16保留警告；zero complete trained models downloaded/copied/run, no phone inference/endurance claim.
+- 双语详细方案与30使用用例，保留H01–H18；30截图 / 6GIF / 6MP4。v0.3.4 的38 JSON / 40媒体文件按原Git blob归档。D04/D05/D07 Paint/D08/D09/D10与F5中文完整前端仍缺实际适配，完整待办不隐藏。
+
 ## 0.3.4 — 本地 RF 形状与部件几何 / Local RF Shape and part geometry
 
 - 新增 TripoSG / PartCrafter 物体 / 场景匹配 FP32 ONNX CPU：DINOv2、RF / 部件 DiT、SDF VAE cache / query、均匀网格提取与多部件 GLB，全部阶段同一手机。No remote fallback, texture or auto segmentation claim.

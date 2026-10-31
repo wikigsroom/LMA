@@ -1,0 +1,32 @@
+{
+  "schema": "lma.native-build/1",
+  "engine": "trellis_native",
+  "file": "liblma-mesh.so",
+  "source_revision": "11b87326b62665203b1bd5131eac3bdbb6af9afd",
+  "abi": "arm64-v8a",
+  "backend": "cpu",
+  "ndk": "30.0.16248370",
+  "min_sdk": 28,
+  "bytes": 3694184,
+  "sha256": "59411ee4ee4ef3292d7041acdb1d94ff6e50d512a2c6bd21952c977c158765a7",
+  "dependencies": [],
+  "source_inputs": {
+    "native/mesh/CMakeLists.txt": "9878cc2df3ff55f9b2295617097485983a2d1ff25ce93755e13862953057bf86",
+    "native/mesh/worker.cpp": "6ab8007b4abee679b5734bbd6c9f4180263f09cd2536d7cf8432b435685d280a",
+    "native/runtime_metrics.hpp": "1fe93a5bd8426dbca3f8efaec6070c1cccc60e75006df40021141a69abec4a07",
+    "native/worker_common.hpp": "874ea65fb060c880b72484f771e2ea58dc5814480e76bfcb794ee8da87b5032c",
+    "third_party/expansion-source-lock.json": "f3538e338964bc3ab91eddd52934fc1b28a6dd8851725d7b7a8b62efe1462129",
+    "tools/build_expansion.py": "900f1ff2f6c20b058ef2891bcaff005948a296090217494e0921dea2a0bcc92c",
+    "tools/fetch_expansion_sources.py": "78b4741039de355fc2524b9502a26b3722e9c2bfe33d35fb5e39b86c404df753"
+  },
+  "vocabularies": "external_user_selected_components",
+  "physical_device_tests": 0,
+  "model_inference_tested": false,
+  "virtualization_used": false,
+  "elf_load_alignment": [
+    16384
+  ],
+  "android_api_notes": [
+    28
+  ]
+}

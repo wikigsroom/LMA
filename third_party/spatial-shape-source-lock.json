@@ -1,0 +1,200 @@
+{
+  "schema": "lma.source-lock/1",
+  "sources": [
+    {
+      "id": "D06",
+      "repository": "PKU-YuanGroup/UltraShape-1.0",
+      "revision": "5e8dcef05df101ab00ab6cd5fdd0ed0c74fbca66",
+      "directory": "build/spatial-source-review/repos/D06",
+      "files": [
+        {
+          "path": "ultrashape/models/autoencoders/attention_processors.py",
+          "bytes": 4214,
+          "git_blob": "63d1559faae0ad1d6ebf2285b45da987f36c5591",
+          "sha256": "6b5af6ecce615a27cc2a649b3e319d7f290b83d5f02e4d25f16780aa35ca4248"
+        },
+        {
+          "path": "ultrashape/models/autoencoders/attention_blocks.py",
+          "bytes": 26683,
+          "git_blob": "cffc215eaa801eb7223b14b4fadfe851f384308f",
+          "sha256": "5878575e83f1ed353fcb96b918f26545f7a7faf6e5b7708695d14a65ab6567d2"
+        },
+        {
+          "path": "ultrashape/models/denoisers/moe_layers.py",
+          "bytes": 7833,
+          "git_blob": "dbcf210b0e43d6bf5ab957dd73c59e39561bab99",
+          "sha256": "a8d756a5fbe6941ad0dd68e4d1b0ea4fc6a84418f4c2e2b0a28cb4f2144ec240"
+        },
+        {
+          "path": "ultrashape/models/denoisers/dit_mask.py",
+          "bytes": 25967,
+          "git_blob": "8d14e96666c4244c69fce9095236aa1347b06ff7",
+          "sha256": "4cb94699a54b4410410972bdbfdb34e5103bd83f57b017a13e59eeac9dab68a1"
+        },
+        {
+          "path": "ultrashape/schedulers.py",
+          "bytes": 19141,
+          "git_blob": "a90156540fa16fcf5b29473621bce04e7fcbed98",
+          "sha256": "2b249ef54867588466de96cc410ac33b653aed06e4272308d69fd9d1bfbb7718"
+        },
+        {
+          "path": "ultrashape/preprocessors.py",
+          "bytes": 5992,
+          "git_blob": "8a9cb9ea1591363fb77f4e02351a0f945e3bc1ab",
+          "sha256": "284dc24fabbf974bd6793ebd58e95b7700550d90371cacb96ad0889ec558de1e"
+        },
+        {
+          "path": "ultrashape/utils/voxelize.py",
+          "bytes": 3123,
+          "git_blob": "99f4f690f0f813765b40882b3db399fe64801917",
+          "sha256": "5d14b42ffcfd364d84d9602c0fe394e247f48889fe4fe5840f14efe4b016088b"
+        },
+        {
+          "path": "configs/infer_dit_refine.yaml",
+          "bytes": 2022,
+          "git_blob": "65263267479c07f17afc7ffc180ebfb31eb7a43c",
+          "sha256": "1d5885dfb853eae9e70af509cc6d3ab9c2a78e28b45bb5e8bbece62d23f16bdf"
+        },
+        {
+          "path": "LICENSE",
+          "bytes": 15928,
+          "git_blob": "96313b341082fb9f72a00b7c77accd8196390af0",
+          "sha256": "e135813e2ce830c6b46c62bd24e9b6094105c46f825a75341ec6ceb1d915222f"
+        },
+        {
+          "path": "ultrashape/surface_loaders.py",
+          "bytes": 9403,
+          "git_blob": "59e0d624c45c4015becf54a1e18b8c6800f425dc",
+          "sha256": "f8f75d089b8c406d0b47b0c60eca79a18d3aa65667b5bb4b796955e9fe326122"
+        }
+      ]
+    },
+    {
+      "id": "D07",
+      "repository": "Tencent-Hunyuan/Hunyuan3D-2.1",
+      "revision": "82920d643c0dc2f7bfd7255f45f62d386edfe60c",
+      "directory": "build/spatial-source-review/repos/D07",
+      "files": [
+        {
+          "path": "hy3dshape/hy3dshape/models/autoencoders/attention_processors.py",
+          "bytes": 3913,
+          "git_blob": "f7b232eb0d16d67b9598a7e49f57d6616f2e5bed",
+          "sha256": "9a461ddde9a2bf5ca0cd3961c3c1b86f9c81772066fe5b815bc497e0b5a8f053"
+        },
+        {
+          "path": "hy3dshape/hy3dshape/models/autoencoders/attention_blocks.py",
+          "bytes": 27004,
+          "git_blob": "71ce880a0fa12416763e4e753b77e191d2e935ff",
+          "sha256": "1cbd34f21102a33eed2106e445ec6a96b896b80e187564f40e2029779bb2cba8"
+        },
+        {
+          "path": "hy3dshape/hy3dshape/models/denoisers/moe_layers.py",
+          "bytes": 7833,
+          "git_blob": "dbcf210b0e43d6bf5ab957dd73c59e39561bab99",
+          "sha256": "a8d756a5fbe6941ad0dd68e4d1b0ea4fc6a84418f4c2e2b0a28cb4f2144ec240"
+        },
+        {
+          "path": "hy3dshape/hy3dshape/models/denoisers/hunyuandit.py",
+          "bytes": 23996,
+          "git_blob": "05514c01012dd96c1eaec2966810e78575d1bcec",
+          "sha256": "cb4d9f3504dea0ed3eba94963a8efd7bf92221b26613a7c8bba58e4ef7b6cd25"
+        },
+        {
+          "path": "hy3dshape/hy3dshape/schedulers.py",
+          "bytes": 18997,
+          "git_blob": "13f0da86b278679d427498128392a7a1ad69b2e6",
+          "sha256": "d3b25b84dac26f0e862cfc866da08df2d6592f01a0aaeda965782ab0fc1d8bba"
+        },
+        {
+          "path": "hy3dshape/hy3dshape/preprocessors.py",
+          "bytes": 5992,
+          "git_blob": "8a9cb9ea1591363fb77f4e02351a0f945e3bc1ab",
+          "sha256": "284dc24fabbf974bd6793ebd58e95b7700550d90371cacb96ad0889ec558de1e"
+        },
+        {
+          "path": "LICENSE",
+          "bytes": 17914,
+          "git_blob": "40add23d41f73047640976aa7c8ac69b7b7776fb",
+          "sha256": "b79ac5e11ce063b6c6570dbe9686a45a03ba08bd248aa6aa82fb342a23a81c0c"
+        }
+      ]
+    },
+    {
+      "id": "D05",
+      "repository": "xibushu/UniForge3D",
+      "revision": "8b6094780e202b8a6b1d239e0997552e18547026",
+      "directory": "build/spatial-source-review/repos/D05",
+      "files": [
+        {
+          "path": "LICENSE",
+          "bytes": 1080,
+          "git_blob": "bb022b1e97241fe819ccc0de3836ca8fe66bf15b",
+          "sha256": "00f0f15c4f39b4b8d2b9cb07e6d911c5e55cffb01aaef0910cca73e0fb174e01"
+        },
+        {
+          "path": "uniforge3d/modules/sparse/spatial/basic.py",
+          "bytes": 3828,
+          "git_blob": "49d4764fae6d419a1bdfa1c70021d40dd8cde2ba",
+          "sha256": "5df6799d551ea0918845743efd89975794ee417a00d7f73253e499883496debf"
+        },
+        {
+          "path": "uniforge3d/modules/sparse/spatial/spatial2channel.py",
+          "bytes": 4112,
+          "git_blob": "1b37b24d0fb55f62c59d4300ea6d1bf3571df3f0",
+          "sha256": "40645fa24080648cf8bcd6faa42fc6b264c87eb5f393c1b12b43dc65e3f732d1"
+        },
+        {
+          "path": "uniforge3d/modules/sparse/conv/conv_flex_gemm.py",
+          "bytes": 2682,
+          "git_blob": "d88d777cad1691a9bc5994bf12f1efa6a54281b0",
+          "sha256": "996b5275db7d4fe87bede0a3b7def34c0cbd9c2d7e001a7c991eb20747053145"
+        },
+        {
+          "path": "uniforge3d/modules/sparse/attention/full_attn.py",
+          "bytes": 9646,
+          "git_blob": "4bf6d8203e4e595d4a90782567155dbd02b7ec7c",
+          "sha256": "80ca374ff58e25b5c323e0b30805ceccc9639161fce989559095b87b8f75462c"
+        }
+      ]
+    },
+    {
+      "id": "D08",
+      "repository": "facebookresearch/sam-3d-objects",
+      "revision": "f91db411c50efee93d8db7aeb323885650f6f722",
+      "directory": "build/spatial-source-review/repos/D08",
+      "files": [
+        {
+          "path": "LICENSE",
+          "bytes": 8204,
+          "git_blob": "e58d758cc3d92e6d1a57b52f7e4d203d02a67e98",
+          "sha256": "b3a5a0e2d973ab80e6610ccf1cffc40756050d0ace3cd4fec879b3ec290b2e9b"
+        },
+        {
+          "path": "sam3d_objects/model/backbone/tdfy_dit/modules/sparse/spatial.py",
+          "bytes": 4870,
+          "git_blob": "2c65d0f43b3fb8f0ee41fb2a31ee4a3ec6cc374d",
+          "sha256": "b8aa9da13101767ac42a4d5f2b0243a14b754b77f810ae1866f2a9abee0d400f"
+        },
+        {
+          "path": "sam3d_objects/model/backbone/tdfy_dit/modules/sparse/conv/conv_spconv.py",
+          "bytes": 4708,
+          "git_blob": "f54a6c4672a8c207fc825723cdb2bf52cf64c8be",
+          "sha256": "0a42a9e58609443183bc3693abe29f3de67ce0567ec952dae7fd7f5c73181d40"
+        },
+        {
+          "path": "sam3d_objects/model/backbone/tdfy_dit/modules/sparse/attention/full_attn.py",
+          "bytes": 10609,
+          "git_blob": "1149b1ec6c6742566ff9f4119d0ab2eb13e6feef",
+          "sha256": "d061e2f3047b28dd0e4623bc5c8e40ee123585635d7fd2edb3718fd512c2a1b7"
+        },
+        {
+          "path": "sam3d_objects/model/backbone/tdfy_dit/modules/sparse/attention/masked_sdpa.py",
+          "bytes": 2048,
+          "git_blob": "23489705e9a09ac6f57572afce3dfd7af572819a",
+          "sha256": "00c6c6ce9e0f07fa4f8339ff2d7bb9eb6e65f8556a640fc4df3270810079b262"
+        }
+      ]
+    }
+  ],
+  "trained_weights_included": false
+}

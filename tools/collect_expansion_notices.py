@@ -48,18 +48,33 @@ def main():
                 header.append(line)
             if any('copyright' in line.lower() or 'license' in line.lower() for line in header):
                 files['expansion-shape-'+source['id']+'-'+relative.replace('/','-')+'-NOTICE.txt']=('\n'.join(header)+'\n').encode('utf-8')
+    from spatial_reference import verify as verify_spatial
+    for source in verify_spatial()['sources']:
+        files['expansion-spatial-'+source['id']+'-LICENSE.txt']=(ROOT/source['directory']/'LICENSE').read_bytes()
+        for item in source['files']:
+            relative=item['path']
+            if not relative.endswith('.py'):continue
+            header=[]
+            for line in (ROOT/source['directory']/relative).read_text(encoding='utf-8').splitlines():
+                if line.strip() and not line.lstrip().startswith('#'):break
+                header.append(line)
+            if any('copyright' in line.lower() or 'license' in line.lower() for line in header):
+                files['expansion-spatial-'+source['id']+'-'+relative.replace('/','-')+'-NOTICE.txt']=('\n'.join(header)+'\n').encode('utf-8')
+    files['expansion-spatial-ORT-LICENSE.txt']=(ROOT/'third_party/notices/tts-onnxruntime-LICENSE.txt').read_bytes()
+    files['expansion-spatial-stb-NOTICE.txt']=files['expansion-multiview-stb_image.h-NOTICE.txt']
     files['expansion-shape-ORT-LICENSE.txt']=(ROOT/'third_party/notices/tts-onnxruntime-LICENSE.txt').read_bytes()
     files['expansion-shape-stb-NOTICE.txt']=files['expansion-multiview-stb_image.h-NOTICE.txt']
     for name,data in files.items(): (ROOT/'third_party/notices'/name).write_bytes(data)
     notice_data={name:data.decode('utf-8') for name,data in files.items()}
     (ROOT/'app/src/main/assets/expansion-notices.json').write_text(json.dumps(notice_data,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     lock_path=ROOT/'third_party/engine-lock.json'; lock=json.loads(lock_path.read_text(encoding='utf-8'))
-    for engine,receipt_name in [('audio_cpp','speech_extra'),('trellis_native','mesh'),('pixal_multiview','multiview'),('sherpa_tts','tts'),('rf_shape_ort','shape')]:
+    for engine,receipt_name in [('audio_cpp','speech_extra'),('trellis_native','mesh'),('pixal_multiview','multiview'),('sherpa_tts','tts'),('rf_shape_ort','shape'),('spatial_ort','spatial')]:
         receipt=json.loads((ROOT/('build/'+receipt_name+'-build-info.json')).read_text(encoding='utf-8'));current(receipt['source_inputs'])
         previous=next((e for e in lock['engines'] if e['engine']==engine),{})
         entry={k:receipt[k] for k in ('engine','file','source_revision','abi','backend','ndk','sha256','bytes','android_api_notes','dependencies')}
-        prefix={'audio_cpp':'speech','trellis_native':'mesh','pixal_multiview':'multiview','rf_shape_ort':'shape'}.get(engine)
+        prefix={'audio_cpp':'speech','trellis_native':'mesh','pixal_multiview':'multiview','rf_shape_ort':'shape','spatial_ort':'spatial'}.get(engine)
         if engine=='rf_shape_ort':entry['partcrafter_revision']=receipt['partcrafter_revision']
+        if engine=='spatial_ort':entry['source_revisions']=receipt['source_revisions']
         entry['notices']=previous['notices'] if engine=='sherpa_tts' else {name:hashlib.sha256(data).hexdigest() for name,data in files.items() if not name.startswith('expansion-') or name.startswith('expansion-'+prefix+'-')}
         if previous: lock['engines'][lock['engines'].index(previous)]=entry
         else: lock['engines'].append(entry)

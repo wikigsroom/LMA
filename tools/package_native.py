@@ -8,7 +8,7 @@ from native_payload import engine_files
 from package_preparations import prepare as prepare_preparations
 
 ROOT = Path(__file__).resolve().parents[1]
-RECEIPTS = {"sd_cpp": "native-build-info.json", "sherpa_tts": "tts-build-info.json", "moss_nano_ort": "moss-nano-build-info.json", "mnn_diffusion": "mnn-build-info.json", "qwen_tts_native": "qwen-tts-build-info.json", "moss_delay_native": "moss-delay-build-info.json", "openmoss_native": "openmoss-build-info.json", "moss_rq_native": "moss_rq-build-info.json", "stable_audio_litert": "stable-audio-build-info.json", "soulx_native": "soulx-build-info.json", "ltx098_native": "ltx098-app-build-info.json", "wan_sd_cpp": "wan-vulkan-build-info.json", "audio_cpp": "speech_extra-build-info.json", "trellis_native": "mesh-build-info.json", "pixal_multiview": "multiview-build-info.json", "rf_shape_ort": "shape-build-info.json"}
+RECEIPTS = {"sd_cpp": "native-build-info.json", "sherpa_tts": "tts-build-info.json", "moss_nano_ort": "moss-nano-build-info.json", "mnn_diffusion": "mnn-build-info.json", "qwen_tts_native": "qwen-tts-build-info.json", "moss_delay_native": "moss-delay-build-info.json", "openmoss_native": "openmoss-build-info.json", "moss_rq_native": "moss_rq-build-info.json", "stable_audio_litert": "stable-audio-build-info.json", "soulx_native": "soulx-build-info.json", "ltx098_native": "ltx098-app-build-info.json", "wan_sd_cpp": "wan-vulkan-build-info.json", "audio_cpp": "speech_extra-build-info.json", "trellis_native": "mesh-build-info.json", "pixal_multiview": "multiview-build-info.json", "rf_shape_ort": "shape-build-info.json", "spatial_ort": "spatial-build-info.json"}
 
 
 def text_runtime():
@@ -34,7 +34,7 @@ def prepare():
     for expected in lock["engines"]:
         receipt = json.loads((ROOT / "build" / RECEIPTS[expected["engine"]]).read_text(encoding="utf-8"))
         current(receipt["source_inputs"])
-        for key in ("engine", "file", "source_revision", "ggml_revision", "abi", "backend", "ndk", "sha256", "bytes", "dependencies"):
+        for key in ("engine", "file", "source_revision", "ggml_revision", "source_revisions", "abi", "backend", "ndk", "sha256", "bytes", "dependencies"):
             if receipt.get(key) != expected.get(key):
                 raise RuntimeError("Native build receipt differs from the reviewed lock: " + key)
         for item in [expected] + expected.get("dependencies", []):

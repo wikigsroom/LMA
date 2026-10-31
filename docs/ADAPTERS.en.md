@@ -1,5 +1,7 @@
 # Peer LoRA models and explicit pairing
 
+> Current v0.3.5: [Hunyuan shape and UltraShape refinement](SPATIAL_SHAPE.en.md), [full numbered implementation and pending ports](IMPLEMENTATION_V035.en.md). Five CPU sparse operators do not complete SAM/UniForge/SUPRA; Paint remains missing. All prior routes remain. Versioned notes below are historical, not the current support matrix.
+
 > v0.3.2 adds four speech families and single-image 3D. See the [expansion guide](SPEECH_3D_EXPANSION.en.md) for formats, components, workflows, API, builds and program checks. Existing capabilities remain; older checkpoints below retain their original context.
 
 [中文](ADAPTERS.md) · [Asset-control audit](ASSET_CONTROL_AUDIT.en.md) · [Development](DEVELOPMENT.en.md) · [Full scope](MULTIMODAL_RELEASE_PLAN.en.md)

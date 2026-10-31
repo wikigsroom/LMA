@@ -1,14 +1,14 @@
 # LMA · Android 本地模型工作台
 
-[English](README.en.md) · [下载 v0.3.4](https://github.com/wikigsroom/LMA/releases/tag/v0.3.4) · [使用手册](docs/USER_GUIDE.md) · [文档目录](docs/README.md) · [更新记录](CHANGELOG.md)
+[English](README.en.md) · [下载 v0.3.5](https://github.com/wikigsroom/LMA/releases/tag/v0.3.5) · [使用手册](docs/USER_GUIDE.md) · [文档目录](docs/README.md) · [更新记录](CHANGELOG.md)
 
 LMA（Local Model App）让用户在 Android 手机上选择、下载、管理和运行本地模型，提供聊天、生图、生视频、生音频、任务队列、结果库与本机 API。它是独立社区项目，与 LM Studio 无隶属关系；当前应用界面主要为中文，文档提供中英双语。
 
 **App 更新提供基座，模型由用户自行选择。** APK 不附模型权重，安装、升级和浏览目录不触发模型下载。所有推理、编码、解码与媒体合成都在同一手机完成，无需 ROOT、Termux、Docker、WSL、虚拟机、其他计算设备或云推理。
 
-**当前 APK：v0.3.4 / versionCode 54 / ARM64 / Android 9+。** 原有 F-01–F-12、生文、01–14／16／17 与 44 个社区配方保留；新增语音 / 单图 3D 11 包及四视图 3D 4 包，共 **82 套模型包**。按用户要求仅做程序验证，检查不能证明努比亚 Z20 上的速度、质量或后台耐久。
+**当前 APK：v0.3.5 / versionCode 55 / ARM64 / Android 9+。** 原有 F-01–F-12、生文、01–14／16／17 与 44 个社区配方保留；新增语音 / 单图 3D 11 包及四视图 3D 4 包，共 **82 套模型包**。按用户要求仅做程序验证，检查不能证明努比亚 Z20 上的速度、质量或后台耐久。
 
-**本页已恢复详细使用场景、调用示例、历史生成案例、失败记录和测试入口。** 当前生产页面、桌面历史模型输出与实际 Android 验收分别标注；历史图片或音频不作为 v0.3.4 的模型实跑结果。[本次文档修复说明](docs/releases/v0.3.1-readme.md)
+**本页已恢复详细使用场景、调用示例、历史生成案例、失败记录和测试入口。** 当前生产页面、桌面历史模型输出与实际 Android 验收分别标注；历史图片或音频不作为 v0.3.5 的模型实跑结果。[本次文档修复说明](docs/releases/v0.3.1-readme.md)
 
 <a id="contents"></a>
 ## 阅读路线
@@ -16,7 +16,7 @@ LMA（Local Model App）让用户在 Android 手机上选择、下载、管理�
 | 想做什么 | 本页入口 | 详细文档 |
 | --- | --- | --- |
 | 安装、下载和第一次使用 | [安装](#install)、[C01–C05](#use-cases) | [使用手册](docs/USER_GUIDE.md)、[HF 与本地模型](docs/HF_MODELS.md) |
-| 选择生图、生视频或生音频方案 | [支持范围](#models)、[C06–C14](#use-cases) | [完整实现矩阵](docs/IMPLEMENTATION_V034.md)、[社区模型](docs/COMMUNITY_MODELS.md) |
+| 选择生图、生视频或生音频方案 | [支持范围](#models)、[C06–C14](#use-cases) | [完整实现矩阵](docs/IMPLEMENTATION_V035.md)、[社区模型](docs/COMMUNITY_MODELS.md) |
 | 管理模型、独立参数、任务和结果 | [C03–C04、C15–C18](#use-cases) | [模型参数](docs/MODEL_SETTINGS.md)、[任务工作台](docs/TASK_WORKBENCH.md) |
 | 在程序中调用手机模型 | [API 示例](#api-examples) | [API](docs/API.md)、[输入与上传](docs/LOCAL_INPUTS.md) |
 | 看页面、生成案例和失败对照 | [当前页面](#ui-media)、[历史案例 H01–H18](#case-studies) | [媒体说明](docs/MEDIA.md)、[历史完整 README](docs/history/README-dev45.zh.md) |
@@ -42,7 +42,7 @@ LMA（Local Model App）让用户在 Android 手机上选择、下载、管理�
 | 16 | Wan 2.1 T2V 1.3B Q4 | sd.cpp CPU／Vulkan、显式组件、本机视频编码 |
 | 17 | LTX-Video 2B 0.9.8 distilled | 原始 PixArt T5 F32＋7 步／空间放大／3 步；Google T5 Q5 单尺度保留独立身份 |
 
-当前基座有 **48 个数据型配方模板、16 类扩展引擎及原有文本引擎**；模型包为 **23 套原有＋44 套社区＋11 套语音 / 单图 3D＋4 套 MV 校验导入＝82 套**。模板、模型包、引擎和架构分别计数，不代表全部模型已在手机实测。[机器可读实现矩阵](catalogue/release-0.3.4-implementation.json)
+当前基座有 **50 个数据型配方模板、17 类扩展引擎及原有文本引擎**；模型包为 **23 套原有＋44 套社区＋11 套语音 / 单图 3D＋4 套 MV 校验导入＝82 套**。模板、模型包、引擎和架构分别计数，不代表全部模型已在手机实测。[机器可读实现矩阵](catalogue/release-0.3.5-implementation.json)
 
 ### 语音、单图与多视图生 3D
 
@@ -54,7 +54,7 @@ LMA（Local Model App）让用户在 Android 手机上选择、下载、管理�
 | S04 | OmniVoice | Q8 GGUF / 原版两种选择，本机 C++；自动 / 克隆 / 描述音色，完整 WAV |
 | D01–D02 | TRELLIS.2 / Pixal3D | 五个单图 GGUF / CPU 几何或贴图选择，本地图片 → GLB → 预览 / 导出 |
 
-已检查指定 [3080 生 3D 测评](https://benchmark.sidcloud.cn/collections/3080-3d)的 **16 条配置**：12 条新轮次＋4 条旧轮次。本版接入两种单图架构子集及真正的 Pixal3D MV 四视图路线；另有匹配 ONNX 导出的 TripoSG / PartCrafter 形状子集；其余 7 条配置 / 6 组家族仍缺原生移植，不能以目录登记或补测冒充支持。最小 Melo 包约 61 MB，Pixal3D 贴图包约 13 GB，不能统称轻量或承诺 Z20 可运行。
+已检查指定 [3080 生 3D 测评](https://benchmark.sidcloud.cn/collections/3080-3d)的 **16 条配置**：12 条新轮次＋4 条旧轮次。本版保留单图 / 四视图与 RF / 部件路线，新增匹配 ONNX 的 Hunyuan3D 形状及 UltraShape 精修；其余 6 条配置 / 5 组家族仍缺原生移植，不能以目录登记或补测冒充支持。最小 Melo 包约 61 MB，Pixal3D 贴图包约 13 GB，不能统称轻量或承诺 Z20 可运行。
 
 [四类语音、11 套文件与许可、D01–D16 完整评估、操作 / API / 测试 / 截图](docs/SPEECH_3D_EXPANSION.md) · [来源审计](research/expansion/benchmark-audit.json)。下载由用户选择，新增模型没有推断 NSFW 标签。
 
@@ -64,13 +64,19 @@ Pixal3D MV 新增 F16 / Q8_0 的几何 / PBR 四个选择，四张已标定的 R
 
 新增阶段耗时与支持 worker 的进程峰值 RSS；任务失败后保留已收到的观察，后续测量不会抹掉后端身份。服务页显示省电、待机、后台与通知限制；主动导出的诊断对象使用字段白名单，不含提示词、参数、路径或密钥。它不表示已经验证模型质量或锁屏耐久。
 
-[四视图、相机约定、导入、API、诊断、63 项专项与剩余移植工作](docs/MULTIVIEW_DIAGNOSTICS.md) · [本次固定源码审计](research/portability/audit-v0.3.4.json)
+[四视图、相机约定、导入、API、诊断、63 项专项与剩余移植工作](docs/MULTIVIEW_DIAGNOSTICS.md) · [本次固定源码审计](research/portability/audit-v0.3.5.json)
 
 ### 新增 RF 形状与部件几何
 
-TripoSG / PartCrafter 物体 / PartCrafter 场景新增三个平级自选配方，通过配套 FP32 ONNX 在手机 CPU 执行图片编码、RF / 部件 DiT、SDF VAE 与网格导出。输出无贴图 GLB，部件独立节点。**当前只支持用户匹配导出后导入；没有已核实公开整套下载包，不直接执行原始 PyTorch。** 82 个目录包数量保留，模板增加到 48；用户资产不随 App 更新自动取得。
+TripoSG / PartCrafter 物体 / PartCrafter 场景新增三个平级自选配方，通过配套 FP32 ONNX 在手机 CPU 执行图片编码、RF / 部件 DiT、SDF VAE 与网格导出。输出无贴图 GLB，部件独立节点。**当前只支持用户匹配导出后导入；没有已核实公开整套下载包，不直接执行原始 PyTorch。** 82 个目录包数量保留，模板增加到 50；用户资产不随 App 更新自动取得。
 
-[转换、导入、参数、原生实现、API 与限制](docs/RF_SHAPE.md) · [本轮编号实现与待办](docs/IMPLEMENTATION_V034.md)。完整训练权重转换、手机内存 / 速度 / 质量未测；自动抠图、VLM 部件识别和贴图没有实现。其余未移植测评为 D04–D10，详见[当前审计](research/portability/audit-v0.3.4.json)。
+[转换、导入、参数、原生实现、API 与限制](docs/RF_SHAPE.md) · [本轮编号实现与待办](docs/IMPLEMENTATION_V035.md)。完整训练权重转换、手机内存 / 速度 / 质量未测；自动抠图、VLM 部件识别和贴图没有实现。其余代码缺口为 D04、D05、D07 Paint、D08–D10，详见[当前审计](research/portability/audit-v0.3.5.json)。
+
+### 新增 Hunyuan3D 形状与 UltraShape 精修
+
+两条平级自选配方在手机 CPU 运行：参考 PNG → Hunyuan3D 形状；PNG＋粗 GLB → UltraShape 精修。保留真实 MoE 路由、voxel RoPE / mask、VAE cache / SDF，粗网格采用面积＋锐边采样及 FP16 舍入。当前通过匹配导出 / 显式导入取得模型，没有核实公开完整 ONNX 下载包。
+
+[转换、组件、参数、API、操作与边界](docs/SPATIAL_SHAPE.md) · [编号实现与待办](docs/IMPLEMENTATION_V035.md)。五个共用 CPU sparse 运算已编译接入，但不代表 SAM、UniForge 或 SUPRA 完整适配；Hunyuan Paint 仍缺代码。App 不附带或自动下载模型。
 
 ### 社区生图／生视频与内容标签
 
@@ -112,27 +118,27 @@ Uncensored／Abliterated 与 NSFW 分别标注，不互相替代。作者声明�
 <a id="install"></a>
 ## 安装与首次启动
 
-1. 从 [v0.3.4 Release](https://github.com/wikigsroom/LMA/releases/tag/v0.3.4) 下载 `LMA-0.3.4-arm64-v8a.apk`；需要 64 位 Android 9／API 28 或以上。
+1. 从 [v0.3.5 Release](https://github.com/wikigsroom/LMA/releases/tag/v0.3.5) 下载 `LMA-0.3.5-arm64-v8a.apk`；需要 64 位 Android 9／API 28 或以上。
 2. 对照同页 `SHA256SUMS` 核对安装包。Windows 示例：
 
    ```powershell
-   Get-FileHash .\LMA-0.3.4-arm64-v8a.apk -Algorithm SHA256
+   Get-FileHash .\LMA-0.3.5-arm64-v8a.apk -Algorithm SHA256
    ```
 
 3. 打开 App，按系统提示允许通知。若要退出界面或锁屏继续工作，在 Android 设置中允许后台活动并取消相关电池限制。
 4. App 初次启动可零模型使用管理界面和接口；选择、下载、导入或加载模型都是独立操作。
 5. 保持原签名升级安装，已有模型与设置继续保留。自行签名的 APK 不能直接覆盖另一签名的安装。
 
-| 安装包身份 | v0.3.4 |
+| 安装包身份 | v0.3.5 |
 | --- | --- |
-| 字节数 | `67424948` |
-| SHA256 | `fdf2fbd72e7bf12d1f6eb4f7de71b566d1250489e5ab990c7b365c36c9cbc522` |
+| 字节数 | `67747539` |
+| SHA256 | `874ca36821f85a82f403b403bafa32116f55977607b79aa31414283ed628f4cf` |
 | 签名证书 SHA256 | `90444a717a55549e2094364d8d7d005cf8b7f4df24562da62cc1884a2f341c17` |
 
-Release 附 APK、源码 ZIP、验证 ZIP、截图 ZIP、GIF／MP4、构建与源码清单、说明和哈希，共 22 项附件。[版本说明](docs/releases/v0.3.4.md)
+Release 附 APK、源码 ZIP、验证 ZIP、截图 ZIP、GIF／MP4、构建与源码清单、说明和哈希，共 24 项附件。[版本说明](docs/releases/v0.3.5.md)
 
 <a id="use-cases"></a>
-## 27 个完整使用场景
+## 30 个完整使用场景
 
 以下是操作用例及应有行为，不是新增的真机测试通过清单。当前程序检查与历史实测证据分别见下文。
 
@@ -319,6 +325,24 @@ Release 附 APK、源码 ZIP、验证 ZIP、截图 ZIP、GIF／MP4、构建与�
 - 空曲面、三角面保护超限、图片不合规或内存不足时本机报错；可明确降低参数后重新提交，不发布部分结果、不外转推理。
 - [161 项专项](verification/program/shape.json)覆盖随机小图对照与 30 次实际 native 进程；不代表 Z20 内存 / 速度 / 模型质量通过。
 
+### C28 · 选择本地 Hunyuan3D 形状模型
+
+- 用户转换并导入同一批配置、四个 ONNX 图和实际 data；在“本地”选择模型并附参考 PNG。
+- tokens 按实际导出约束归位，设置只影响本模型；预检 / 草稿复用现有流程，明确尝试后进入本机队列。
+- 输出无贴图 GLB；独立 Paint 和自动抠图不在此配方内。[完整方案](docs/SPATIAL_SHAPE.md)
+
+### C29 · 用图片和粗 GLB 进行 UltraShape 精修
+
+- 导入自包含、连接正确且含锐边的粗 GLB，选择参考 PNG；缺任一角色不能提交。
+- 独立设置网格比例、采样数、步数和 grid。精修使用面积＋锐边 / voxel 条件；取消等待进程退出，不发布半成品。
+- [20 项页面检查与录制](docs/media/development/spatial/manifest.json) · [任务 API 示例](docs/SPATIAL_SHAPE.md#6-同一任务-api)。这些不是完整训练模型实跑。
+
+### C30 · 检查精修输入、导出身份与资源保护
+
+- source revision、尺寸、路径、缺组件、无锐边或空曲面不符时本机失败，不替换模型或外部执行。
+- CPU MoE 仍需全部专家权重；缩小查询块不能消除权重内存。没有当前设备观察时资源继续标为未测。
+- [188 项 native / CLI 检查](verification/program/spatial.json)与[109 项实际 ONNX sparse 对照](verification/program/spatial-sparse.json)分别记录；共用算子不等于完整模型适配。
+
 ## 基座如何工作
 
 模型／组件／配方描述固定 revision、文件路径、大小、SHA256、能力和依赖。版本化内部引擎适配器负责加载、阶段进度、取消、错误和卸载；新增同架构变体复用描述与调度，新架构需要实际适配，不能靠目录登记冒充可运行。
@@ -449,9 +473,9 @@ $lmaAccepted
 <a id="ui-media"></a>
 ## 当前页面、截图与录屏
 
-以下五条为 **v0.3.4 生产页面＋明确标记的桌面交互夹具（UI FIXTURE）**，未下载权重、未产生模型输出，不是手机录像。社区流程 34 项、工作台 8 项、语音 / 3D 32 项、多视图 19 项、RF 形状 17 项交互；录制结束关闭全部测试浏览器资源。
+以下五条为 **v0.3.5 生产页面＋明确标记的桌面交互夹具（UI FIXTURE）**，未下载权重、未产生模型输出，不是手机录像。社区流程 34 项、工作台 8 项、语音 / 3D 32 项、多视图 19 项、RF 形状 17 项交互；录制结束关闭全部测试浏览器资源。
 
-![v0.3.4 社区筛选、来源与本地管理；UI FIXTURE](docs/media/development/community/community-ui.gif)
+![v0.3.5 社区筛选、来源与本地管理；UI FIXTURE](docs/media/development/community/community-ui.gif)
 
 [社区 MP4](docs/media/development/community/community-ui.mp4) · [媒体与源码身份](docs/media/development/community/manifest.json)
 
@@ -461,7 +485,7 @@ $lmaAccepted
 
 [视频目录](docs/media/development/community/03-community-video.png) · [视频来源与限制](docs/media/development/community/04-video-source.png) · [本地管理](docs/media/development/community/05-community-local.png)
 
-![v0.3.4 共用工作台；UI FIXTURE，非模型推理](docs/media/development/release-workbench/release-workbench-ui.gif)
+![v0.3.5 共用工作台；UI FIXTURE，非模型推理](docs/media/development/release-workbench/release-workbench-ui.gif)
 
 [工作台 MP4](docs/media/development/release-workbench/release-workbench-ui.mp4) · [工作台媒体身份](docs/media/development/release-workbench/manifest.json)
 
@@ -478,27 +502,33 @@ $lmaAccepted
 | 运行资源与停止原因 | [资源](docs/media/development/resources/01-running.png)、[停止详情](docs/media/development/resources/02-stopped-detail.png) | [资源说明](docs/RUNTIME_RESOURCES.md) |
 | 原始文本模型库、接口和深色主题 | [模型库](docs/media/01-library.png)、[接口](docs/media/05-api.png)、[深色](docs/media/07-dark.png) | [原始演示](docs/MEDIA.md) |
 
-![v0.3.4 语音与单图生 3D；UI FIXTURE，合成立方体非模型输出](docs/media/development/expansion/expansion-ui.gif)
+![v0.3.5 语音与单图生 3D；UI FIXTURE，合成立方体非模型输出](docs/media/development/expansion/expansion-ui.gif)
 
 [语音选择](docs/media/development/expansion/01-speech-models.png) · [3D 表单](docs/media/development/expansion/03-3d-form.png) · [GLB 预览](docs/media/development/expansion/05-glb-preview.png) · [MP4](docs/media/development/expansion/expansion-ui.mp4) · [32 项页面检查](docs/media/development/expansion/manifest.json)
 
-![v0.3.4 四视图与后台状态；UI FIXTURE，未运行训练模型](docs/media/development/multiview/multiview-ui.gif)
+![v0.3.5 四视图与后台状态；UI FIXTURE，未运行训练模型](docs/media/development/multiview/multiview-ui.gif)
 
 [四个导入选择](docs/media/development/multiview/01-multiview-models.png) · [四图表单](docs/media/development/multiview/03-four-view-form.png) · [后台观察](docs/media/development/multiview/05-background-observations.png) · [MP4](docs/media/development/multiview/multiview-ui.mp4) · [19 项页面检查](docs/media/development/multiview/manifest.json)
 
 
 ### RF 形状当前页面
 
-![v0.3.4 部件设置；桌面 UI FIXTURE，非模型输出](docs/media/development/shape/03-part-settings.png)
+![v0.3.5 部件设置；桌面 UI FIXTURE，非模型输出](docs/media/development/shape/03-part-settings.png)
 
 ![RF 形状流程；UI FIXTURE，无训练推理](docs/media/development/shape/shape-ui.gif)
 
-[5 张截图 / 身份清单](docs/media/development/shape/manifest.json) · [MP4](docs/media/development/shape/shape-ui.mp4)。全部五组共 25 张截图 / 5 GIF / 5 MP4；旧版媒体和证据按原 Git 身份保留。
+[5 张截图 / 身份清单](docs/media/development/shape/manifest.json) · [MP4](docs/media/development/shape/shape-ui.mp4)。全部六组共 30 张截图 / 6 GIF / 6 MP4；旧版媒体和证据按原 Git 身份保留。
+
+### Hunyuan / UltraShape 页面流程
+
+![自选模型、PNG / 粗 GLB、独立设置与队列，UI FIXTURE](docs/media/development/spatial/spatial-ui.gif)
+
+[五张截图及哈希](docs/media/development/spatial/manifest.json) · [MP4](docs/media/development/spatial/spatial-ui.mp4)。v0.3.4 的 38 JSON 与 40 媒体文件按原 Git blob 保留于[历史归档](verification/history/v0.3.4-program-archive.json)；旧案例和失败不被当前记录覆盖。
 
 <a id="case-studies"></a>
 ## 历史案例测试与真实产物
 
-这些是已保存的开发阶段案例，**本次文档修复没有重新下载、复制或运行完整模型**。HOST 表示原生 Windows 主机，UI FIXTURE 表示模拟桥接的页面，PROGRAM 表示程序或有界小图检查；都不能替代 Android 真机验收。旧文档中的“尚未发布”属于当时语境，当前安装包以上方 v0.3.4 为准。
+这些是已保存的开发阶段案例，**本次文档修复没有重新下载、复制或运行完整模型**。HOST 表示原生 Windows 主机，UI FIXTURE 表示模拟桥接的页面，PROGRAM 表示程序或有界小图检查；都不能替代 Android 真机验收。旧文档中的“尚未发布”属于当时语境，当前安装包以上方 v0.3.5 为准。
 
 | 编号 | 案例及输入／操作 | 当时观察与明确边界 | 原始说明／证据 |
 | --- | --- | --- | --- |
@@ -570,12 +600,12 @@ $lmaAccepted
 <a id="verification"></a>
 ## 当前程序检查覆盖与复核入口
 
-**v0.3.4 保留前版 26 组覆盖，新增 P27 RF Shape 专项，重跑受影响检查。** 当前 **27 组 / 5,306 项**。具体数量与源码指纹见[当前证据](verification/program/status.json)；完整模型、手机质量与耐久未测试。[验证策略](docs/PROGRAM_VALIDATION.md)
+**v0.3.5 保留前版 27 组，新增 P28–P30 形状 / 图 / 稀疏运算专项，重跑受影响检查。** 当前 **30 组 / 5,820 项**。具体数量与源码指纹见[当前证据](verification/program/status.json)；完整模型、手机质量与耐久未测试。[验证策略](docs/PROGRAM_VALIDATION.md)
 
 | 编号 | 套件／断言 | 覆盖的案例 | 记录 |
 | --- | --- | --- | --- |
 | P01 | community · 818 | 44 配方、内容依据、固定身份、独立参数与生产任务规划 | [JSON](verification/program/community.json) |
-| P02 | foundation · 963 | 零模型启动、包管理、组件共享、下载／导入／删除与权限 | [JSON](verification/program/foundation.json) |
+| P02 | foundation · 995 | 零模型启动、包管理、组件共享、下载／导入／删除与权限 | [JSON](verification/program/foundation.json) |
 | P03 | backend · 138 | 文本引擎进程、代理、停止、错误与占用释放 | [JSON](verification/program/backend.json) |
 | P04 | bundle-pause · 22 | 阻塞读取中暂停、关闭、后续队列释放 | [JSON](verification/program/bundle-pause.json) |
 | P05 | document-input · 15 | 文档输入合约、取消、错误和资源关闭；不是手机 SAF 实跑 | [JSON](verification/program/document-input.json) |
@@ -594,15 +624,18 @@ $lmaAccepted
 | P18 | recipe-suggestions · 73 | 配套组件建议、人工确认和精确下载计划 | [JSON](verification/program/recipe-suggestions.json) |
 | P19 | speech-voices · 70 | 54 个 Kokoro 音色、模型专属参数和非法选择 | [JSON](verification/program/speech-voices.json) |
 | P20 | sana-sprint · 448 | 分词、采样数学、有界小图和匹配 Sprint 路线 | [JSON](verification/program/sana-sprint.json) |
-| P21 | ui · 633 | 生产页面、模型管理、组合筛选、设置、队列和结果 | [JSON](verification/program/ui.json) |
+| P21 | ui · 653 | 生产页面、模型管理、组合筛选、设置、队列和结果 | [JSON](verification/program/ui.json) |
 | P22 | ltx-official · 89 | 官方身份、原始 T5／分词与多尺度配置合约 | [JSON](verification/program/ltx-official.json) |
 | P23 | ltx-multiscale-app · 280 | 原始 PixArt 多尺度编排、有界阶段、取消与产物提交 | [JSON](verification/program/ltx-multiscale-app.json) |
 | P24 | ltx-single-scale-app · 127 | 独立单尺度路线、输入／参数／进程和取消恢复 | [JSON](verification/program/ltx-single-scale-app.json) |
-| P25 | expansion · 428 | 语音 / 单图 / MV 合约、真实主机子进程夹具、GLB、清理、诊断合并持久化与微型 F5 前端 | [JSON](verification/program/expansion.json) |
+| P25 | expansion · 533 | 语音 / 单图 / MV 合约、真实主机子进程夹具、GLB、清理、诊断合并持久化与微型 F5 前端 | [JSON](verification/program/expansion.json) |
 | P26 | multiview · 63 | 上游真实相机 / 投影、12 个 native 进程拒绝路径与运行观察 | [JSON](verification/program/multiview.json) |
 | P27 | shape · 161 | 固定源码随机小图 / RF 数学 / PNG 对照，30 次实际 native 形状流程与拒绝路径 | [JSON](verification/program/shape.json) |
+| P28 | spatial · 188 | PNG / GLB、锐边 / FP16、实际 native 成败与离线随机 safetensors 转换 | [JSON](verification/program/spatial.json) |
+| P29 | spatial-graphs · 60 | 固定 Hunyuan / UltraShape 小图、动态 tokens、MoE、cache / query / schedule | [JSON](verification/program/spatial-graphs.json) |
+| P30 | spatial-sparse · 109 | 五个实际 ONNX CPU 算子、源规则、动态支持与错误输入 | [JSON](verification/program/spatial-sparse.json) |
 
-另外核对 ARM64／API28、39 个原生库及依赖、16 KiB ELF／ZIP 对齐、原签名与 APK 身份；Android Lint **0 错误／16 个原有警告**。当前 25 张截图、5 GIF、5 MP4 来自五条明确标记的桌面页面流程，不是模型生视频产物。
+另外核对 ARM64／API28、40 个原生库及依赖、16 KiB ELF／ZIP 对齐、原签名与 APK 身份；Android Lint **0 错误／16 个原有警告**。当前 30 张截图、6 GIF、6 MP4 来自六条明确标记的桌面页面流程，不是模型生视频产物。
 
 v0.3.0 的 29 个程序文件与旧媒体[按原 Git 身份归档](verification/history/v0.3.0-program-archive.json)；更早模型失败和程序记录仍保留。`release_ready` 表示符合程序发行策略，不表示所有手机／权重／质量通过。
 
@@ -690,7 +723,7 @@ python tools/program_evidence.py
 
 [完整文档目录](docs/README.md) · [中文手册](docs/USER_GUIDE.md) · [English guide](docs/USER_GUIDE.en.md) · [模型参数](docs/MODEL_SETTINGS.md) · [共用任务](docs/TASK_WORKBENCH.md) · [输入](docs/LOCAL_INPUTS.md) · [API](docs/API.md) · [后台架构](docs/ARCHITECTURE.md)
 
-[多模态可行性研究](docs/MULTIMODAL.md) · [基座评估](docs/FOUNDATION.md) · [冻结需求](docs/MULTIMODAL_RELEASE_PLAN.md) · [用户资产核对](docs/ASSET_CONTROL_AUDIT.md) · [当前实现](docs/IMPLEMENTATION_V034.md) · [旧验证资料](docs/VALIDATION.md) · [设备验收工具（未执行）](docs/DEVICE_ACCEPTANCE.md)
+[多模态可行性研究](docs/MULTIMODAL.md) · [基座评估](docs/FOUNDATION.md) · [冻结需求](docs/MULTIMODAL_RELEASE_PLAN.md) · [用户资产核对](docs/ASSET_CONTROL_AUDIT.md) · [当前实现](docs/IMPLEMENTATION_V035.md) · [旧验证资料](docs/VALIDATION.md) · [设备验收工具（未执行）](docs/DEVICE_ACCEPTANCE.md)
 
 [完整历史中文 README](docs/history/README-dev45.zh.md) · [完整历史英文 README](docs/history/README-dev45.en.md) · [历史文档索引](docs/history/Documentation-dev45.md) · [本次文档修复](docs/releases/v0.3.1-readme.md)
 

@@ -10,7 +10,7 @@ def main():
         'tests/expansion-host','tests/expansion-native','tools/test_expansion.py','tools/expansion_catalogue.py',
         'catalogue/expansion-bundles.json','catalogue/expansion-bundle-evidence.json','research/expansion',
         'catalogue/multiview-bundles.json','catalogue/multiview-bundle-evidence.json','tools/multiview_catalogue.py','research/multiview',
-        'app/src/main/assets/recipe-templates.json','tools/shape_catalogue.py')
+        'app/src/main/assets/recipe-templates.json','tools/shape_catalogue.py','tools/spatial_catalogue.py')
     out=ROOT/'build/expansion-tests';out.mkdir(parents=True,exist_ok=True)
     run=out/'run'
     if run.exists():assert run.resolve().parent==out.resolve();shutil.rmtree(run)

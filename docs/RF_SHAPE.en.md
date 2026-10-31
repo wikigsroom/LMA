@@ -1,5 +1,7 @@
 # Local RF Shape and part geometry
 
+> v0.3.5 retains these three RF routes and adds [Hunyuan/UltraShape](SPATIAL_SHAPE.en.md). Current totals: 50 templates / 82 bundles / 17 extensions plus text. Earlier per-version numbers below describe v0.3.4. See [current work and gaps](IMPLEMENTATION_V035.en.md).
+
 [中文](RF_SHAPE.md) · [v0.3.4](releases/v0.3.4.en.md) · [Complete scope](IMPLEMENTATION_V034.en.md)
 
 v0.3.4 adds the native `rf_shape_ort` CPU engine and three equal optional recipes: TripoSG, PartCrafter objects and PartCrafter scenes. A selected local PNG becomes an untextured GLB. Parts have separate meshes / nodes in the model's shared coordinate system. The APK ships programs, never model assets.

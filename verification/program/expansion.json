@@ -1,12 +1,12 @@
 {
-  "passed": 428,
+  "passed": 533,
   "java": {
     "physical_device": false,
     "synthetic_glb": true,
     "complete_model_downloads": 0,
     "actual_host_child_processes": true,
     "model_inference": false,
-    "passed": 410
+    "passed": 515
   },
   "native": {
     "passed": 18,
@@ -16,9 +16,9 @@
   "complete_model_downloads": 0,
   "physical_device": false,
   "input_fingerprint": {
-    "app/src/main/assets/recipe-templates.json": "738166220d9f8973faf70124fb25dbdf11359186fc45ecc6ad6cabc020fafdf2",
+    "app/src/main/assets/recipe-templates.json": "aeb3d4bdce527c0267d80e01c2a6b8ca31a796cb1acf1ecd8e5a027a5e83ee9a",
     "app/src/main/java/com/lma/app/core/AdapterSpec.java": "aff8572d14ac8d616be0a1b0da395e52ed5bddcd5ae407a969c2657bf9257581",
-    "app/src/main/java/com/lma/app/core/ArtifactStore.java": "2943a05c29fe8fdd4f32e9f4575ddcc730e09b1b20c7ff40a7ac310b56551947",
+    "app/src/main/java/com/lma/app/core/ArtifactStore.java": "2669c7ec0ce3a1759056d3022786b8cdbab109758292a8e0c200a4c81332c27a",
     "app/src/main/java/com/lma/app/core/AssemblyPlan.java": "80e81dea2a831d3955aa5ae21323eb0432fb448f78994901633fbb6e85d77e7c",
     "app/src/main/java/com/lma/app/core/AudioCppSpec.java": "b2e3240334181040793cdb857dbb3b1702398842e7e3fbd7e75f8555e2b0e553",
     "app/src/main/java/com/lma/app/core/AudioPcm.java": "9bf3270c83f57b7fa4e23fc4518fa063e72ca214675f9c23d45bd1788842f7b2",
@@ -36,7 +36,7 @@
     "app/src/main/java/com/lma/app/core/GlbFile.java": "77d65f4d880a0fa56bd325750a6634289732e47d68c0816af2d8d3ebfa2e133a",
     "app/src/main/java/com/lma/app/core/InputHandle.java": "f3b4ef8cf58b1ff2eb1d9f3eae3f789cb1c7d9870786de9cc70e5be431489410",
     "app/src/main/java/com/lma/app/core/InputSelection.java": "963fe60973caab82b9dfedaa7c1661f236aed6ea158fcda8f4a86d02ba33d509",
-    "app/src/main/java/com/lma/app/core/InputSpec.java": "51eb954c2c973a92b6be4b59c3b7857d8749476e7446045627e59e06ee76a838",
+    "app/src/main/java/com/lma/app/core/InputSpec.java": "5d16088b0e4bad5cc7d3489aebdcb09cf70ae9fe3a434862501b25ae7631012e",
     "app/src/main/java/com/lma/app/core/InputUploads.java": "5debd68a73abc8bde8174c985dfec8f534c6bf8df58dda8810b0cc3541fe1d53",
     "app/src/main/java/com/lma/app/core/JobStore.java": "4cff95acbaf0f3a961606e52c4b9f496f70cea3a125e256a6f53b274680b7ddb",
     "app/src/main/java/com/lma/app/core/LcmCondition.java": "2177da94b69781263e36f3e379034619bf74c6856bc6a9108592d4f272e94b7a",
@@ -70,6 +70,7 @@
     "app/src/main/java/com/lma/app/core/SanaSprintSpec.java": "12190d684368b219f17e582d774830d0a946bf5b7e2d25146371325b6fc8b3d3",
     "app/src/main/java/com/lma/app/core/SdSpec.java": "e26906c0c338deff725d8b5c316beb8205eacbe26ea91cfb3ef0861bf94103b5",
     "app/src/main/java/com/lma/app/core/SoulxSpec.java": "a761d40965d041d38cc1f629418017103c9eefabf5904814fad9de6372b6bcc7",
+    "app/src/main/java/com/lma/app/core/SpatialSpec.java": "ed07e8cb3527e76a91babb900040c4b4a342b9d060c188626e481448f3e7ffe4",
     "app/src/main/java/com/lma/app/core/SpeechVoices.java": "b413549e7721d07c88fec135b01b26a18d9dc0cc686a37dd180309ee10900967",
     "app/src/main/java/com/lma/app/core/StableAudioSpec.java": "0cc04143a8c8c2afa4dc3d9726f4891779b352404d97c70d6fdc260fbe27ee6c",
     "app/src/main/java/com/lma/app/core/TaskDrafts.java": "1c97a99a274abb5f38542eb2cea6834121f46b5dfb0e7cbaeaa5df25222c7ead",
@@ -80,7 +81,7 @@
     "app/src/main/java/com/lma/app/core/TextSpec.java": "4521ce8e833d88276f6b98d446e0171c48602d67ce2cf4b372d425e56d6d149e",
     "app/src/main/java/com/lma/app/core/TtsSpec.java": "c72136f794c23f5c204b6281e3ef73097e065f8d58218ae727702a7260d8317c",
     "app/src/main/java/com/lma/app/core/WaveFile.java": "cf70b9bbafb6aa23cc25217d4883e769173b00f74571d1b115c50a8ad6b15361",
-    "app/src/main/java/com/lma/app/ExpansionEngine.java": "20197e74c2bedc66699b03937de0539aaafb18c3a0836ecf0f5c851ef409cd4c",
+    "app/src/main/java/com/lma/app/ExpansionEngine.java": "46453f96350af5c6426bf8059272ee5e1eef4342e700209d8f7e735269cc48c4",
     "app/src/main/java/com/lma/app/NativeWorker.java": "08090e4b6f169b2ffc6bd654b6eb4d64aaf62fdd16508efa39ecb2e9fa15b174",
     "catalogue/expansion-bundle-evidence.json": "e3a5a2a3035918bccd63e61c62cc7a5051c33def3c3b939b53e3eee51af18dac",
     "catalogue/expansion-bundles.json": "92339aaa996c5a361eb0c2a2cbda30de180d086859d1d150c5532e9af2d28d1e",
@@ -94,15 +95,19 @@
     "research/expansion/benchmark-audit.json": "5e1977323e766434055811dbb30b73616e91035590da60e9705af45371e114ff",
     "research/expansion/sources.json": "fd9eb1786ff9622d02885a8e9629d53d35d1eda73ea939476378314036dac2e9",
     "research/multiview/model-manifests.json": "67caf7e35ef2b83a2b51e736faaa80b0aaa30d4658087dddca3270d5d97a668a",
-    "tests/expansion-host/com/lma/app/ExpansionTest.java": "0b237bdd8997e5a2ef29568d013790f2a6c9cd7981806b28ad2fa236daacf8e6",
+    "tests/expansion-host/com/lma/app/ExpansionTest.java": "9bcccf1dd3fb7b6501a77396fcea382e9bdaf7bede66e57e51a368feac5d9960",
     "tests/expansion-host/com/lma/app/MultiViewTest.java": "4d299c81648fb8f10f7a2ab09d79169d81eb18c1d89bf454193f2b9ff7308ddb",
     "tests/expansion-host/com/lma/app/RfShapeTest.java": "0c8a2039eb9017a866b02e3d57f48187098eb4182d9908142d884b5e4f3a76dd",
+    "tests/expansion-host/com/lma/app/SpatialTest.java": "d64425de965832ed0d6dbebe7bee54e1e0b972381d3bf318e613979267ca1b11",
     "tests/expansion-native/frontend.cpp": "798524d1829187a3e9cd5d86c3fa13d89b24dc99ee293ab8766a4ad4fbe574aa",
     "tests/expansion-native/multiview.cpp": "72aac865e9973c4d6ed234f3bb5c6658664822de0aea458926f0d718f5cab609",
     "tests/expansion-native/shape.cpp": "c0e394cf9565400922ded71217258886e6cfece021aaf91bb37876947c82472b",
+    "tests/expansion-native/sparse_graph.cpp": "4ea22cdfba0ccb1d9a9df6e7fe0209e0293a4e6c0d14689430cb9674e1aeea24",
+    "tests/expansion-native/spatial.cpp": "ee22d6b12d07a1aed631d71bfac694ed894332cd5b3fc661020331ded3d3b0dc",
     "tools/expansion_catalogue.py": "8a8006ead4d11c86ba3e3d5d227f557ffd63691cd78ccddce242e5c52fb52f6e",
     "tools/multiview_catalogue.py": "0e9e3660277b2c212bf7466f4170fd4cdef6c7a69801976121843c9d6053ac08",
     "tools/shape_catalogue.py": "a0c4d9f357feaad938915cde934b9873277e4398d2d99830791ca37e8169b84d",
-    "tools/test_expansion.py": "b238b2051835154717a0713f6d6f4bdf69ac1bb86c512d8f1e95457720049361"
+    "tools/spatial_catalogue.py": "5dae311770fa269193318aea5d6eeb4220ee00f58e4b3419a873c4cdb13848ee",
+    "tools/test_expansion.py": "bc3fc6544089029d61f0c2e0cff3c52a226cc8a64377f7333812524af7e8b7dd"
   }
 }

@@ -1,5 +1,7 @@
 # LoRA 平级模型与显式配对
 
+> 当前 v0.3.5：[Hunyuan 形状与 UltraShape 精修](SPATIAL_SHAPE.md)、[完整编号实现与待完成适配](IMPLEMENTATION_V035.md)。五个共用 CPU sparse 运算不代表 SAM / UniForge / SUPRA 完整适配，Paint 仍缺代码。原有能力保留；以下旧版本说明按历史理解。
+
 > v0.3.2：新增四类语音与单图生 3D，完整格式 / 组件 / 操作 / API / 构建 / 程序检查见[扩展指南](SPEECH_3D_EXPANSION.md)；原有功能保留，以下开发检查点按原版本理解。
 
 [English](ADAPTERS.en.md) · [资产控制核对](ASSET_CONTROL_AUDIT.md) · [开发状态](DEVELOPMENT.md) · [完整需求](MULTIMODAL_RELEASE_PLAN.md)

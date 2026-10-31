@@ -1,0 +1,768 @@
+{
+  "schema": "lma.portability-audit/1",
+  "app_version": "0.3.5",
+  "checked_date": "2026-10-31",
+  "benchmark": "https://benchmark.sidcloud.cn/collections/3080-3d",
+  "prior_audit": "research/portability/audit-v0.3.4.json",
+  "integrated_architectures": [
+    "trellis2",
+    "pixal3d",
+    "pixal3d_mv",
+    "triposg",
+    "partcrafter",
+    "ultrashape_1_refine",
+    "hunyuan3d_21_shape"
+  ],
+  "all_benchmark_architectures_integrated": false,
+  "unported_configurations": [
+    {
+      "id": "D04",
+      "repository": "yiboz2001/UltraTex",
+      "revision": "a726678f3f3631fe2c5e3d1fb4597114784c7a8b",
+      "files": [
+        {
+          "path": "README.md",
+          "url": "https://raw.githubusercontent.com/yiboz2001/UltraTex/a726678f3f3631fe2c5e3d1fb4597114784c7a8b/README.md",
+          "git_blob": "851c7372071db769472946ba7c28a44730a8e3d9",
+          "bytes": 11005,
+          "sha256": "3ffec9b8846a82d97e548cda1b16ee2e36d2dab5c7c1396dbb5d88d3395c0931"
+        },
+        {
+          "path": "requirements.txt",
+          "url": "https://raw.githubusercontent.com/yiboz2001/UltraTex/a726678f3f3631fe2c5e3d1fb4597114784c7a8b/requirements.txt",
+          "git_blob": "f8ddd34d82c3284b7358171afa32fab74648df23",
+          "bytes": 742,
+          "sha256": "2cb904eff36a2c2a4f8401a592869bd3d0f97db60c4f07c7850404f41cf221e0"
+        }
+      ],
+      "program_integrated": false,
+      "integration_status": "native_architecture_port_required",
+      "remaining_implementation": [
+        "mesh input and G-buffer rasterizer",
+        "BTD/BSA sparse-attention kernels",
+        "matched diffusion/VAE weights and PBR baking"
+      ],
+      "phone_feasibility": "not_established",
+      "source_review_is_full_operator_audit": false
+    },
+    {
+      "id": "D05",
+      "repository": "xibushu/UniForge3D",
+      "revision": "8b6094780e202b8a6b1d239e0997552e18547026",
+      "files": [
+        {
+          "path": "README.md",
+          "url": "https://raw.githubusercontent.com/xibushu/UniForge3D/8b6094780e202b8a6b1d239e0997552e18547026/README.md",
+          "git_blob": "71fadff456433d023ba8f59d42b6fde2c896146b",
+          "bytes": 3058,
+          "sha256": "2ffd16eb1a7f872d9a19f409415978b453666d68602f4bb75980ecf9789d0bc9"
+        },
+        {
+          "path": "setup.sh",
+          "url": "https://raw.githubusercontent.com/xibushu/UniForge3D/8b6094780e202b8a6b1d239e0997552e18547026/setup.sh",
+          "git_blob": "2ac8d94d691ea9bc8ea57fe9f35cc795e5f334ad",
+          "bytes": 1689,
+          "sha256": "e7503f5aa3ff2c6a8793866752c8a7f3949011209b9f5be3ee8cd1b357c6c170"
+        }
+      ],
+      "program_integrated": false,
+      "integration_status": "native_architecture_port_required",
+      "remaining_implementation": [
+        "VGGT pose estimation",
+        "anchor-guided multiview fusion",
+        "sparse geometry decoder and matching weights"
+      ],
+      "phone_feasibility": "not_established",
+      "source_review_is_full_operator_audit": false,
+      "shared_cpu_building_blocks": [
+        "submanifold convolution",
+        "explicit pooling policy",
+        "explicit subdivision order",
+        "spatial/channel rearrangement",
+        "packed attention"
+      ],
+      "building_blocks_are_complete_model_adapter": false
+    },
+    {
+      "id": "D07",
+      "repository": "Tencent-Hunyuan/Hunyuan3D-2.1",
+      "revision": "82920d643c0dc2f7bfd7255f45f62d386edfe60c",
+      "files": [
+        {
+          "path": "README.md",
+          "url": "https://raw.githubusercontent.com/Tencent-Hunyuan/Hunyuan3D-2.1/82920d643c0dc2f7bfd7255f45f62d386edfe60c/README.md",
+          "git_blob": "e670cb0139d2cd35788043768249037e1aca6f68",
+          "bytes": 10203,
+          "sha256": "35479a9741c38cf6ebc7693bb0c58a6fa447659b3b9f1d60ba01e21098d0af20"
+        },
+        {
+          "path": "requirements.txt",
+          "url": "https://raw.githubusercontent.com/Tencent-Hunyuan/Hunyuan3D-2.1/82920d643c0dc2f7bfd7255f45f62d386edfe60c/requirements.txt",
+          "git_blob": "d9f1e4dd360c331340699efef53c98468b3eac6d",
+          "bytes": 1066,
+          "sha256": "ce8954023db68966a6fb2b80253b24c9da81ae48ee9d96f8f4a8d98b4cead289"
+        }
+      ],
+      "program_integrated": true,
+      "integration_status": "matched_onnx_cpu_geometry_subset",
+      "remaining_implementation": [
+        "separate Hunyuan3D Paint export, rasterizer, multiview diffusion and texture baking"
+      ],
+      "phone_feasibility": "not_established",
+      "source_review_is_full_operator_audit": false,
+      "source_files": [
+        {
+          "path": "hy3dshape/hy3dshape/models/autoencoders/attention_processors.py",
+          "bytes": 3913,
+          "git_blob": "f7b232eb0d16d67b9598a7e49f57d6616f2e5bed",
+          "sha256": "9a461ddde9a2bf5ca0cd3961c3c1b86f9c81772066fe5b815bc497e0b5a8f053"
+        },
+        {
+          "path": "hy3dshape/hy3dshape/models/autoencoders/attention_blocks.py",
+          "bytes": 27004,
+          "git_blob": "71ce880a0fa12416763e4e753b77e191d2e935ff",
+          "sha256": "1cbd34f21102a33eed2106e445ec6a96b896b80e187564f40e2029779bb2cba8"
+        },
+        {
+          "path": "hy3dshape/hy3dshape/models/denoisers/moe_layers.py",
+          "bytes": 7833,
+          "git_blob": "dbcf210b0e43d6bf5ab957dd73c59e39561bab99",
+          "sha256": "a8d756a5fbe6941ad0dd68e4d1b0ea4fc6a84418f4c2e2b0a28cb4f2144ec240"
+        },
+        {
+          "path": "hy3dshape/hy3dshape/models/denoisers/hunyuandit.py",
+          "bytes": 23996,
+          "git_blob": "05514c01012dd96c1eaec2966810e78575d1bcec",
+          "sha256": "cb4d9f3504dea0ed3eba94963a8efd7bf92221b26613a7c8bba58e4ef7b6cd25"
+        },
+        {
+          "path": "hy3dshape/hy3dshape/schedulers.py",
+          "bytes": 18997,
+          "git_blob": "13f0da86b278679d427498128392a7a1ad69b2e6",
+          "sha256": "d3b25b84dac26f0e862cfc866da08df2d6592f01a0aaeda965782ab0fc1d8bba"
+        },
+        {
+          "path": "hy3dshape/hy3dshape/preprocessors.py",
+          "bytes": 5992,
+          "git_blob": "8a9cb9ea1591363fb77f4e02351a0f945e3bc1ab",
+          "sha256": "284dc24fabbf974bd6793ebd58e95b7700550d90371cacb96ad0889ec558de1e"
+        },
+        {
+          "path": "LICENSE",
+          "bytes": 17914,
+          "git_blob": "40add23d41f73047640976aa7c8ac69b7b7776fb",
+          "sha256": "b79ac5e11ce063b6c6570dbe9686a45a03ba08bd248aa6aa82fb342a23a81c0c"
+        }
+      ],
+      "full_trained_export_tested": false,
+      "phone_inference_tested": false,
+      "quality_accepted": false,
+      "acquisition": "explicit user-selected local export/import; no verified public matched complete download package",
+      "program_scope": "reference PNG -> Dino -> HunYuanDiTPlain with source MoE routing -> cached shape VAE -> SDF query -> bounded surface -> GLB",
+      "exclusions": [
+        "Hunyuan3D Paint",
+        "Flash/octree extraction",
+        "automatic background removal"
+      ],
+      "partial_port": true
+    },
+    {
+      "id": "D08",
+      "repository": "facebookresearch/sam-3d-objects",
+      "revision": "f91db411c50efee93d8db7aeb323885650f6f722",
+      "files": [
+        {
+          "path": "README.md",
+          "url": "https://raw.githubusercontent.com/facebookresearch/sam-3d-objects/f91db411c50efee93d8db7aeb323885650f6f722/README.md",
+          "git_blob": "c0e9d2762b2127b7925cea340bec5285e4553627",
+          "bytes": 6666,
+          "sha256": "f41a81a034139b1b0da318a32da1758710d83f70976b43c16e262b8c5b04cca1"
+        },
+        {
+          "path": "requirements.txt",
+          "url": "https://raw.githubusercontent.com/facebookresearch/sam-3d-objects/f91db411c50efee93d8db7aeb323885650f6f722/requirements.txt",
+          "git_blob": "9b4d16d98b5ca3932e662f47cf1904db254dcc9d",
+          "bytes": 1594,
+          "sha256": "2423806fbad6e35c120163cdc098ed3fae3a3e1756d90dfd2743c9140b1bf8d7"
+        },
+        {
+          "path": "pyproject.toml",
+          "url": "https://raw.githubusercontent.com/facebookresearch/sam-3d-objects/f91db411c50efee93d8db7aeb323885650f6f722/pyproject.toml",
+          "git_blob": "f9421022fdf45615053f421a496dde0892a518cb",
+          "bytes": 843,
+          "sha256": "6bc017d0c33199e50c154a68e5747e7387c841d6eae9476a519258ebc9666dc1"
+        },
+        {
+          "path": "doc/setup.md",
+          "url": "https://raw.githubusercontent.com/facebookresearch/sam-3d-objects/f91db411c50efee93d8db7aeb323885650f6f722/doc/setup.md",
+          "git_blob": "1da6cd77a185dee7cde52ee3f8bed679028a963c",
+          "bytes": 2155,
+          "sha256": "b2c6d257baee99c5fc8c8ff3f8c6a2ccf7149984ec453453e72f7feb41625895"
+        }
+      ],
+      "program_integrated": false,
+      "integration_status": "native_architecture_port_required",
+      "remaining_implementation": [
+        "masked-image/depth conditioning",
+        "sparse generation and layout operators",
+        "matched geometry/appearance decoding"
+      ],
+      "phone_feasibility": "not_established",
+      "source_review_is_full_operator_audit": false,
+      "shared_cpu_building_blocks": [
+        "submanifold convolution",
+        "explicit pooling policy",
+        "explicit subdivision order",
+        "spatial/channel rearrangement",
+        "packed attention"
+      ],
+      "building_blocks_are_complete_model_adapter": false
+    },
+    {
+      "id": "D09",
+      "repository": "devinli123/MV-SAM3D",
+      "revision": "abb04b5e8af5bc33b0265bdf19937e76bbb6bcdd",
+      "files": [
+        {
+          "path": "README.md",
+          "url": "https://raw.githubusercontent.com/devinli123/MV-SAM3D/abb04b5e8af5bc33b0265bdf19937e76bbb6bcdd/README.md",
+          "git_blob": "b5d22fff519643aaf17107efb774debb92bd41c9",
+          "bytes": 5806,
+          "sha256": "23a7e834abcf693f31bf47bf4bdec2dbf6381d12d0a7d7456832fe0a51b5a209"
+        },
+        {
+          "path": "requirements.txt",
+          "url": "https://raw.githubusercontent.com/devinli123/MV-SAM3D/abb04b5e8af5bc33b0265bdf19937e76bbb6bcdd/requirements.txt",
+          "git_blob": "9b4d16d98b5ca3932e662f47cf1904db254dcc9d",
+          "bytes": 1594,
+          "sha256": "2423806fbad6e35c120163cdc098ed3fae3a3e1756d90dfd2743c9140b1bf8d7"
+        }
+      ],
+      "program_integrated": false,
+      "integration_status": "native_architecture_port_required",
+      "remaining_implementation": [
+        "SAM 3D Objects native port",
+        "Depth Anything 3 native port",
+        "mask/pose alignment and scene fusion"
+      ],
+      "phone_feasibility": "not_established",
+      "source_review_is_full_operator_audit": false,
+      "shared_cpu_building_blocks": [
+        "submanifold convolution",
+        "explicit pooling policy",
+        "explicit subdivision order",
+        "spatial/channel rearrangement",
+        "packed attention"
+      ],
+      "building_blocks_are_complete_model_adapter": false
+    },
+    {
+      "id": "D10",
+      "repository": "Supra-3D/SUPRA-Tex",
+      "revision": "cee4435652d0f23737bd28d5704e0fae9830b411",
+      "files": [
+        {
+          "path": "README.md",
+          "url": "https://raw.githubusercontent.com/Supra-3D/SUPRA-Tex/cee4435652d0f23737bd28d5704e0fae9830b411/README.md",
+          "git_blob": "3b3c3e3c42cd816a1afebf5e8b83ce0664a2ae6d",
+          "bytes": 17272,
+          "sha256": "160e7b295d2e8f17e15d867648d48ce0d021ebcf55572427838cac0f1bc510bf"
+        }
+      ],
+      "program_integrated": false,
+      "integration_status": "native_architecture_port_required",
+      "remaining_implementation": [
+        "local geometry and material predictor",
+        "interleaved completion model and sparse/raster kernels",
+        "local-only replacement for any optional external back-image stage"
+      ],
+      "phone_feasibility": "not_established",
+      "source_review_is_full_operator_audit": false,
+      "shared_cpu_building_blocks": [
+        "submanifold convolution",
+        "explicit pooling policy",
+        "explicit subdivision order",
+        "spatial/channel rearrangement",
+        "packed attention"
+      ],
+      "building_blocks_are_complete_model_adapter": false
+    }
+  ],
+  "cases": [
+    {
+      "number": 1,
+      "case_id": "3d-20261030-TRELLIS2",
+      "model": "TRELLIS.2",
+      "case_url": "https://benchmark.sidcloud.cn/archive/downloads/cases/3d-20261030-TRELLIS2.json",
+      "program_integrated": true,
+      "current_scope": "single_image_subset",
+      "exact_benchmark_workflow_reproduced": false
+    },
+    {
+      "number": 2,
+      "case_id": "3d-20261030-Pixal3D",
+      "model": "Pixal3D",
+      "case_url": "https://benchmark.sidcloud.cn/archive/downloads/cases/3d-20261030-Pixal3D.json",
+      "program_integrated": true,
+      "current_scope": "single_image_subset",
+      "exact_benchmark_workflow_reproduced": false
+    },
+    {
+      "number": 3,
+      "case_id": "3d-20261030-Pixal3D-MV",
+      "model": "Pixal3D Multiview",
+      "case_url": "https://benchmark.sidcloud.cn/archive/downloads/cases/3d-20261030-Pixal3D-MV.json",
+      "program_integrated": true,
+      "current_scope": "four_posed_rgba_views_1024_cpu_import_only",
+      "exact_benchmark_workflow_reproduced": false
+    },
+    {
+      "number": 4,
+      "case_id": "3d-20261030-UltraTex",
+      "model": "UltraTex",
+      "case_url": "https://benchmark.sidcloud.cn/archive/downloads/cases/3d-20261030-UltraTex.json",
+      "program_integrated": false,
+      "current_scope": "native_architecture_port_required",
+      "exact_benchmark_workflow_reproduced": false
+    },
+    {
+      "number": 5,
+      "case_id": "3d-20261030-UniForge3D",
+      "model": "UniForge3D",
+      "case_url": "https://benchmark.sidcloud.cn/archive/downloads/cases/3d-20261030-UniForge3D.json",
+      "program_integrated": false,
+      "current_scope": "native_architecture_port_required",
+      "exact_benchmark_workflow_reproduced": false
+    },
+    {
+      "number": 6,
+      "case_id": "3d-20261030-UltraShape1",
+      "model": "UltraShape 1.0",
+      "case_url": "https://benchmark.sidcloud.cn/archive/downloads/cases/3d-20261030-UltraShape1.json",
+      "program_integrated": true,
+      "current_scope": "matched UltraShape refinement subset; area and sharp-edge length weighted coarse mesh sampling; no complete benchmark reproduction",
+      "exact_benchmark_workflow_reproduced": false
+    },
+    {
+      "number": 7,
+      "case_id": "3d-20261030-Hunyuan3D21",
+      "model": "Hunyuan3D 2.1",
+      "case_url": "https://benchmark.sidcloud.cn/archive/downloads/cases/3d-20261030-Hunyuan3D21.json",
+      "program_integrated": true,
+      "current_scope": "matched Hunyuan3D shape subset only; separate Paint remains missing",
+      "exact_benchmark_workflow_reproduced": false
+    },
+    {
+      "number": 8,
+      "case_id": "3d-20261030-SAM3D",
+      "model": "SAM 3D Objects",
+      "case_url": "https://benchmark.sidcloud.cn/archive/downloads/cases/3d-20261030-SAM3D.json",
+      "program_integrated": false,
+      "current_scope": "native_architecture_port_required",
+      "exact_benchmark_workflow_reproduced": false
+    },
+    {
+      "number": 9,
+      "case_id": "3d-20261030-MV-SAM3D",
+      "model": "MV-SAM3D",
+      "case_url": "https://benchmark.sidcloud.cn/archive/downloads/cases/3d-20261030-MV-SAM3D.json",
+      "program_integrated": false,
+      "current_scope": "native_architecture_port_required",
+      "exact_benchmark_workflow_reproduced": false
+    },
+    {
+      "number": 10,
+      "case_id": "3d-20261030-SUPRA-Tex",
+      "model": "SUPRA-Tex",
+      "case_url": "https://benchmark.sidcloud.cn/archive/downloads/cases/3d-20261030-SUPRA-Tex.json",
+      "program_integrated": false,
+      "current_scope": "native_architecture_port_required",
+      "exact_benchmark_workflow_reproduced": false
+    },
+    {
+      "number": 11,
+      "case_id": "3d-20261030-TripoSG",
+      "model": "TripoSG",
+      "case_url": "https://benchmark.sidcloud.cn/archive/downloads/cases/3d-20261030-TripoSG.json",
+      "program_integrated": true,
+      "current_scope": "matched_onnx_cpu_shape_only_import; scene uses scene checkpoint; not exact benchmark reproduction",
+      "exact_benchmark_workflow_reproduced": false
+    },
+    {
+      "number": 12,
+      "case_id": "3d-20261030-PartCrafter",
+      "model": "PartCrafter",
+      "case_url": "https://benchmark.sidcloud.cn/archive/downloads/cases/3d-20261030-PartCrafter.json",
+      "program_integrated": true,
+      "current_scope": "matched_onnx_cpu_shape_only_import; scene uses scene checkpoint; not exact benchmark reproduction",
+      "exact_benchmark_workflow_reproduced": false
+    },
+    {
+      "number": 13,
+      "case_id": "3d-TRELLIS2",
+      "model": "TRELLIS.2",
+      "case_url": "https://benchmark.sidcloud.cn/archive/downloads/cases/3d-TRELLIS2.json",
+      "program_integrated": true,
+      "current_scope": "single_image_subset",
+      "exact_benchmark_workflow_reproduced": false
+    },
+    {
+      "number": 14,
+      "case_id": "3d-Pixal3D",
+      "model": "Pixal3D",
+      "case_url": "https://benchmark.sidcloud.cn/archive/downloads/cases/3d-Pixal3D.json",
+      "program_integrated": true,
+      "current_scope": "single_image_subset",
+      "exact_benchmark_workflow_reproduced": false
+    },
+    {
+      "number": 15,
+      "case_id": "3d-TripoSG",
+      "model": "TripoSG",
+      "case_url": "https://benchmark.sidcloud.cn/archive/downloads/cases/3d-TripoSG.json",
+      "program_integrated": true,
+      "current_scope": "matched_onnx_cpu_shape_only_import; scene uses scene checkpoint; not exact benchmark reproduction",
+      "exact_benchmark_workflow_reproduced": false
+    },
+    {
+      "number": 16,
+      "case_id": "3d-PartCrafter",
+      "model": "PartCrafter",
+      "case_url": "https://benchmark.sidcloud.cn/archive/downloads/cases/3d-PartCrafter.json",
+      "program_integrated": true,
+      "current_scope": "matched_onnx_cpu_shape_only_import; scene uses scene checkpoint; not exact benchmark reproduction",
+      "exact_benchmark_workflow_reproduced": false
+    }
+  ],
+  "trained_model_downloads": 0,
+  "trained_model_runs": 0,
+  "physical_android_tests": 0,
+  "virtualization_used": false,
+  "upstream_code_executed": true,
+  "conclusion": "UltraShape refinement and Hunyuan3D shape have matched CPU export/import program paths. Six configurations retain implementation gaps, including Hunyuan Paint. Shared sparse operations do not complete SAM, UniForge or SUPRA. No full trained exports or phone quality/performance tests.",
+  "ported_configurations": [
+    {
+      "id": "D11",
+      "repository": "VAST-AI-Research/TripoSG",
+      "revision": "fc5c40990181e2a756c4e0b1c2f4d6b5202faf8c",
+      "files": [
+        {
+          "path": "README.md",
+          "url": "https://raw.githubusercontent.com/VAST-AI-Research/TripoSG/fc5c40990181e2a756c4e0b1c2f4d6b5202faf8c/README.md",
+          "git_blob": "73e5e1d5502d87f419f056edf0773498cbc44895",
+          "bytes": 5719,
+          "sha256": "87024a832f6dc1e81ba3078485b282095fb31941898f81b1c6bfe02d5454288d"
+        },
+        {
+          "path": "requirements.txt",
+          "url": "https://raw.githubusercontent.com/VAST-AI-Research/TripoSG/fc5c40990181e2a756c4e0b1c2f4d6b5202faf8c/requirements.txt",
+          "git_blob": "aa8ab0b0a0f23e45ac60a5ad3d0ddb9707ad5c4e",
+          "bytes": 171,
+          "sha256": "6a6190c6ce15b7f9ca2a2e952d9c78037caa25701ca4a77caee8c67bc0007921"
+        }
+      ],
+      "program_integrated": true,
+      "integration_status": "matched_onnx_cpu_image_to_shape_subset",
+      "remaining_implementation": [],
+      "phone_feasibility": "not_established",
+      "source_review_is_full_operator_audit": false,
+      "source_files": {
+        "triposg/models/attention_processor.py": "ace9e1e66a14a8b10a6ccf6e25c848fd44bd26ba38f5d6a0b4905d45fafe5ed6",
+        "triposg/models/embeddings.py": "fd5ef3792bf1620b0f41a0001e229f39eb91f6d7ea3b4a25a828e5c9e004e343",
+        "triposg/models/autoencoders/autoencoder_kl_triposg.py": "ce038158925c87bd8f5b33919458d72a32299e031d2e43b99437e678edd03547",
+        "triposg/models/autoencoders/vae.py": "309195e744d71b349e0fd450b17a065172daac693afa43e22865231b25590dab",
+        "triposg/models/autoencoders/__init__.py": "9b698430cfcbe6389bc751d743578a87579cc97c8ac4effd5e062726e8e45087",
+        "triposg/models/transformers/modeling_outputs.py": "a73a4375f2341af4a3cbfddb67204bae81ebd53e6e8f4f951064879bbc68eee4",
+        "triposg/models/transformers/__init__.py": "0d6648bc1e3d115805f42ff5512b33f793429cc1c84155fb81af496b17de3b4c",
+        "triposg/models/transformers/triposg_transformer.py": "21d9ff8bea0067c7e03532f3dd91e71dfc5b915a2c0c4fd35ec0502ba6cb57ff",
+        "triposg/schedulers/scheduling_rectified_flow.py": "6edaa6f5bccbf99d11c2e5ab81fbf9c319dd0dc2f3b89235d3fd43a606a401f7",
+        "triposg/schedulers/__init__.py": "5559c9e43858b003dbfc86ac178ae0c84c2c2d834238c5af1f1843a2a64dbdcb",
+        "LICENSE": "0fc2acd0176b345d3da59f466861ad09b78698de4200739aeaa2ffc9ae7a6842",
+        "NOTICE": "b2a2b68a04f338d53fa7676c2033acb5dd165d0ce6324be0fa14894ee0bb0f39"
+      },
+      "program_scope": "DINOv2 -> RF/part DiT -> cached SDF VAE -> bounded uniform-grid marching tetrahedra -> internal multipart GLB",
+      "acquisition": "user_selected_local_export_import_only; no verified public matched download package",
+      "exclusions": [
+        "automatic image segmentation",
+        "point-cloud VAE encoder",
+        "part-count VLM",
+        "texture generation",
+        "Flash/octree mesh extraction",
+        "desktop stylization pipeline"
+      ],
+      "full_trained_export_tested": false,
+      "phone_inference_tested": false,
+      "quality_accepted": false,
+      "decoder_export_source_adaptation": "portable attention preserves publisher QKV packing"
+    },
+    {
+      "id": "D12",
+      "repository": "wgsxm/PartCrafter",
+      "revision": "3d773bf02fad51c7ab31a5615573fec93b287b30",
+      "files": [
+        {
+          "path": "README.md",
+          "url": "https://raw.githubusercontent.com/wgsxm/PartCrafter/3d773bf02fad51c7ab31a5615573fec93b287b30/README.md",
+          "git_blob": "2820186287baa0f23cf41e21794ff8f24e50c619",
+          "bytes": 11453,
+          "sha256": "e54541ac3bd7befaffb6892da572bdf57c970d594a89b23e856f2ab28b1dd132"
+        }
+      ],
+      "program_integrated": true,
+      "integration_status": "matched_onnx_cpu_image_to_shape_subset",
+      "remaining_implementation": [],
+      "phone_feasibility": "not_established",
+      "source_review_is_full_operator_audit": false,
+      "source_files": {
+        "src/models/attention_processor.py": "006cb82cc7fe025d0e7af5d8032e6198e03bc21ac5e381f027237c965e691912",
+        "src/models/embeddings.py": "fd5ef3792bf1620b0f41a0001e229f39eb91f6d7ea3b4a25a828e5c9e004e343",
+        "src/models/autoencoders/autoencoder_kl_triposg.py": "5b35dd51bedffbc1b31f522ccf0237408db24405789989fb6ed1d5de2fcb3c14",
+        "src/models/autoencoders/vae.py": "309195e744d71b349e0fd450b17a065172daac693afa43e22865231b25590dab",
+        "src/models/autoencoders/__init__.py": "9b698430cfcbe6389bc751d743578a87579cc97c8ac4effd5e062726e8e45087",
+        "src/models/transformers/modeling_outputs.py": "a73a4375f2341af4a3cbfddb67204bae81ebd53e6e8f4f951064879bbc68eee4",
+        "src/models/transformers/__init__.py": "f715bade59a252899e3f6305150c2df7e9a23f2b0fe943c8ac447cdf2cadc63a",
+        "src/models/transformers/partcrafter_transformer.py": "34f383d87380a32e5b7e4c54662ca307ae5950af1ed8f3dc6374b4ff8dc493c8",
+        "src/schedulers/scheduling_rectified_flow.py": "6edaa6f5bccbf99d11c2e5ab81fbf9c319dd0dc2f3b89235d3fd43a606a401f7",
+        "src/schedulers/__init__.py": "5559c9e43858b003dbfc86ac178ae0c84c2c2d834238c5af1f1843a2a64dbdcb",
+        "LICENSE": "ae8c80719a5c916e5fd99fd3da99f8cf74be1589e9e4a11d5754898967a54e1f"
+      },
+      "program_scope": "DINOv2 -> RF/part DiT -> cached SDF VAE -> bounded uniform-grid marching tetrahedra -> internal multipart GLB",
+      "acquisition": "user_selected_local_export_import_only; no verified public matched download package",
+      "exclusions": [
+        "automatic image segmentation",
+        "point-cloud VAE encoder",
+        "part-count VLM",
+        "texture generation",
+        "Flash/octree mesh extraction",
+        "desktop stylization pipeline"
+      ],
+      "full_trained_export_tested": false,
+      "phone_inference_tested": false,
+      "quality_accepted": false,
+      "decoder_export_source_adaptation": "PartCrafter torch_cluster.fps import becomes an explicit rejecting encoder guard; decoder instructions unchanged"
+    },
+    {
+      "id": "D06",
+      "repository": "PKU-YuanGroup/UltraShape-1.0",
+      "revision": "5e8dcef05df101ab00ab6cd5fdd0ed0c74fbca66",
+      "files": [
+        {
+          "path": "README.md",
+          "url": "https://raw.githubusercontent.com/PKU-YuanGroup/UltraShape-1.0/5e8dcef05df101ab00ab6cd5fdd0ed0c74fbca66/README.md",
+          "git_blob": "4be77da49933e330f6f8f40cb26cc2b225afc0ce",
+          "bytes": 6434,
+          "sha256": "4eb29a9ae2371246b13e3011389b8849577504e3ff8479c728902198905b1019"
+        },
+        {
+          "path": "requirements.txt",
+          "url": "https://raw.githubusercontent.com/PKU-YuanGroup/UltraShape-1.0/5e8dcef05df101ab00ab6cd5fdd0ed0c74fbca66/requirements.txt",
+          "git_blob": "e03ba8b41f96f6e1c7603ef1f7dbca43619b3240",
+          "bytes": 586,
+          "sha256": "b739455c5ca80925ee086ecfc67a5009aaeb1073501b58d7a8289f5c2e4719db"
+        }
+      ],
+      "program_integrated": true,
+      "integration_status": "matched_onnx_cpu_geometry_subset",
+      "remaining_implementation": [],
+      "phone_feasibility": "not_established",
+      "source_review_is_full_operator_audit": false,
+      "source_files": [
+        {
+          "path": "ultrashape/models/autoencoders/attention_processors.py",
+          "bytes": 4214,
+          "git_blob": "63d1559faae0ad1d6ebf2285b45da987f36c5591",
+          "sha256": "6b5af6ecce615a27cc2a649b3e319d7f290b83d5f02e4d25f16780aa35ca4248"
+        },
+        {
+          "path": "ultrashape/models/autoencoders/attention_blocks.py",
+          "bytes": 26683,
+          "git_blob": "cffc215eaa801eb7223b14b4fadfe851f384308f",
+          "sha256": "5878575e83f1ed353fcb96b918f26545f7a7faf6e5b7708695d14a65ab6567d2"
+        },
+        {
+          "path": "ultrashape/models/denoisers/moe_layers.py",
+          "bytes": 7833,
+          "git_blob": "dbcf210b0e43d6bf5ab957dd73c59e39561bab99",
+          "sha256": "a8d756a5fbe6941ad0dd68e4d1b0ea4fc6a84418f4c2e2b0a28cb4f2144ec240"
+        },
+        {
+          "path": "ultrashape/models/denoisers/dit_mask.py",
+          "bytes": 25967,
+          "git_blob": "8d14e96666c4244c69fce9095236aa1347b06ff7",
+          "sha256": "4cb94699a54b4410410972bdbfdb34e5103bd83f57b017a13e59eeac9dab68a1"
+        },
+        {
+          "path": "ultrashape/schedulers.py",
+          "bytes": 19141,
+          "git_blob": "a90156540fa16fcf5b29473621bce04e7fcbed98",
+          "sha256": "2b249ef54867588466de96cc410ac33b653aed06e4272308d69fd9d1bfbb7718"
+        },
+        {
+          "path": "ultrashape/preprocessors.py",
+          "bytes": 5992,
+          "git_blob": "8a9cb9ea1591363fb77f4e02351a0f945e3bc1ab",
+          "sha256": "284dc24fabbf974bd6793ebd58e95b7700550d90371cacb96ad0889ec558de1e"
+        },
+        {
+          "path": "ultrashape/utils/voxelize.py",
+          "bytes": 3123,
+          "git_blob": "99f4f690f0f813765b40882b3db399fe64801917",
+          "sha256": "5d14b42ffcfd364d84d9602c0fe394e247f48889fe4fe5840f14efe4b016088b"
+        },
+        {
+          "path": "configs/infer_dit_refine.yaml",
+          "bytes": 2022,
+          "git_blob": "65263267479c07f17afc7ffc180ebfb31eb7a43c",
+          "sha256": "1d5885dfb853eae9e70af509cc6d3ab9c2a78e28b45bb5e8bbece62d23f16bdf"
+        },
+        {
+          "path": "LICENSE",
+          "bytes": 15928,
+          "git_blob": "96313b341082fb9f72a00b7c77accd8196390af0",
+          "sha256": "e135813e2ce830c6b46c62bd24e9b6094105c46f825a75341ec6ceb1d915222f"
+        },
+        {
+          "path": "ultrashape/surface_loaders.py",
+          "bytes": 9403,
+          "git_blob": "59e0d624c45c4015becf54a1e18b8c6800f425dc",
+          "sha256": "f8f75d089b8c406d0b47b0c60eca79a18d3aa65667b5bb4b796955e9fe326122"
+        }
+      ],
+      "full_trained_export_tested": false,
+      "phone_inference_tested": false,
+      "quality_accepted": false,
+      "acquisition": "explicit user-selected local export/import; no verified public matched complete download package",
+      "program_scope": "reference RGBA PNG + static coarse GLB -> half-area/half-sharp-edge sampling -> float16 positions -> occupied voxel RoPE -> masked Dino -> RefineDiT/MoE -> cached VAE/SDF -> bounded mesh -> GLB",
+      "exclusions": [
+        "Flash/octree extraction",
+        "automatic background removal",
+        "automatic coarse-shape generation",
+        "texture"
+      ]
+    }
+  ],
+  "upstream_execution_scope": "randomly initialized tiny source-architecture graphs only; no trained model",
+  "evidence": [
+    "verification/program/spatial.json",
+    "verification/program/spatial-graphs.json",
+    "verification/program/spatial-sparse.json",
+    "verification/program/spatial-android.json",
+    "verification/program/expansion.json",
+    "verification/program/ui.json"
+  ],
+  "input_fingerprint": {
+    "app/src/main/java/com/lma/app/core/SpatialSpec.java": "ed07e8cb3527e76a91babb900040c4b4a342b9d060c188626e481448f3e7ffe4",
+    "native/spatial/CMakeLists.txt": "00859da5dfaab52265439c88aad78dd76b42e222aaac1abe6a7dcee7f2c39568",
+    "native/spatial/image.hpp": "7f2b70863591a51e9bca407a7ae0677fda0680efa51b9c54e91a5a3c8f073909",
+    "native/spatial/math.hpp": "abc3c2644fc02f864cec371053b3ad92c42ce89b9215beb86a3f731b861c7f45",
+    "native/spatial/mesh.hpp": "9d6c1af1780abf2ad83cd8d2aaa5e6e5f2f762c132d5006929a097c01fae6eaa",
+    "native/spatial/ort_graph.hpp": "d78b66a3b16ebad13410e045035d58d6dad5eab37346a6a697fdba095a1f8908",
+    "native/spatial/sparse.hpp": "118c821be7601439a166d800729feb9e77320b6ad355808edc1e802d99b07e67",
+    "native/spatial/sparse_ort.hpp": "a1ff2b57d45346947ce7ae19439ef60e29a9c1fd88071b61f8a0509faf810934",
+    "native/spatial/surface_sampling.hpp": "0aeb83fc1030f3114784b4dd0dbd7db5c5464ebc6ce5c85c3436bec6080cb709",
+    "native/spatial/worker.cpp": "90006f3d6809e3e8e627bb72235fe3b2f4970fedc73be21c4ff9e1cbf15e6e7b",
+    "research/portability/audit-v0.3.4.json": "68c454676e0149405d289e7c07fa18ddaef9d74454d542aea698cc3034ae8016",
+    "third_party/spatial-shape-source-lock.json": "9b5b530e2e45e128c4f39e4a3b9866bc825a26e0e7a93df57344a41d302c8d1a",
+    "tools/audit_spatial.py": "d449b300597b746d2853b3599fdf65d3eaa012bfd94d8dd31d49a16c42bf9148",
+    "tools/export_spatial.py": "eff38959f6809f907e3d7080293a27bc57c4fd9a1ed6515151567bc1624dc3d6",
+    "tools/spatial_reference.py": "28bc01723afab86d3a8cea20f8e3bd35e244929becb9450c99d415feed00c83d",
+    "tools/spatial_shape_graphs.py": "ff71d941bb8824caa938285f9bb5e999ebc60c0e648467c8a011429e35e9fe04",
+    "tools/spatial_sparse_graphs.py": "5c26d968e17470e0f91e56070494b17b467da5dc3b991580392118be2892bf76",
+    "tools/test_spatial.py": "e9d77405ceaa48e1f98ae5da0e9b20905b4ab711eec75fe34aaebfba18afd375",
+    "tools/test_spatial_shape_graphs.py": "69c1fcc209acf7c0de7ad71e2d32291368f88f9004caebd323ecc3a242bd142f",
+    "tools/test_spatial_sparse.py": "9d3ef44d3d4fe8d5084a39f8abf5539887e1b7b10f6514bdc88573610c8b8e32"
+  },
+  "partial_configurations": [
+    {
+      "id": "D07",
+      "repository": "Tencent-Hunyuan/Hunyuan3D-2.1",
+      "revision": "82920d643c0dc2f7bfd7255f45f62d386edfe60c",
+      "files": [
+        {
+          "path": "README.md",
+          "url": "https://raw.githubusercontent.com/Tencent-Hunyuan/Hunyuan3D-2.1/82920d643c0dc2f7bfd7255f45f62d386edfe60c/README.md",
+          "git_blob": "e670cb0139d2cd35788043768249037e1aca6f68",
+          "bytes": 10203,
+          "sha256": "35479a9741c38cf6ebc7693bb0c58a6fa447659b3b9f1d60ba01e21098d0af20"
+        },
+        {
+          "path": "requirements.txt",
+          "url": "https://raw.githubusercontent.com/Tencent-Hunyuan/Hunyuan3D-2.1/82920d643c0dc2f7bfd7255f45f62d386edfe60c/requirements.txt",
+          "git_blob": "d9f1e4dd360c331340699efef53c98468b3eac6d",
+          "bytes": 1066,
+          "sha256": "ce8954023db68966a6fb2b80253b24c9da81ae48ee9d96f8f4a8d98b4cead289"
+        }
+      ],
+      "program_integrated": true,
+      "integration_status": "matched_onnx_cpu_geometry_subset",
+      "remaining_implementation": [
+        "separate Hunyuan3D Paint export, rasterizer, multiview diffusion and texture baking"
+      ],
+      "phone_feasibility": "not_established",
+      "source_review_is_full_operator_audit": false,
+      "source_files": [
+        {
+          "path": "hy3dshape/hy3dshape/models/autoencoders/attention_processors.py",
+          "bytes": 3913,
+          "git_blob": "f7b232eb0d16d67b9598a7e49f57d6616f2e5bed",
+          "sha256": "9a461ddde9a2bf5ca0cd3961c3c1b86f9c81772066fe5b815bc497e0b5a8f053"
+        },
+        {
+          "path": "hy3dshape/hy3dshape/models/autoencoders/attention_blocks.py",
+          "bytes": 27004,
+          "git_blob": "71ce880a0fa12416763e4e753b77e191d2e935ff",
+          "sha256": "1cbd34f21102a33eed2106e445ec6a96b896b80e187564f40e2029779bb2cba8"
+        },
+        {
+          "path": "hy3dshape/hy3dshape/models/denoisers/moe_layers.py",
+          "bytes": 7833,
+          "git_blob": "dbcf210b0e43d6bf5ab957dd73c59e39561bab99",
+          "sha256": "a8d756a5fbe6941ad0dd68e4d1b0ea4fc6a84418f4c2e2b0a28cb4f2144ec240"
+        },
+        {
+          "path": "hy3dshape/hy3dshape/models/denoisers/hunyuandit.py",
+          "bytes": 23996,
+          "git_blob": "05514c01012dd96c1eaec2966810e78575d1bcec",
+          "sha256": "cb4d9f3504dea0ed3eba94963a8efd7bf92221b26613a7c8bba58e4ef7b6cd25"
+        },
+        {
+          "path": "hy3dshape/hy3dshape/schedulers.py",
+          "bytes": 18997,
+          "git_blob": "13f0da86b278679d427498128392a7a1ad69b2e6",
+          "sha256": "d3b25b84dac26f0e862cfc866da08df2d6592f01a0aaeda965782ab0fc1d8bba"
+        },
+        {
+          "path": "hy3dshape/hy3dshape/preprocessors.py",
+          "bytes": 5992,
+          "git_blob": "8a9cb9ea1591363fb77f4e02351a0f945e3bc1ab",
+          "sha256": "284dc24fabbf974bd6793ebd58e95b7700550d90371cacb96ad0889ec558de1e"
+        },
+        {
+          "path": "LICENSE",
+          "bytes": 17914,
+          "git_blob": "40add23d41f73047640976aa7c8ac69b7b7776fb",
+          "sha256": "b79ac5e11ce063b6c6570dbe9686a45a03ba08bd248aa6aa82fb342a23a81c0c"
+        }
+      ],
+      "full_trained_export_tested": false,
+      "phone_inference_tested": false,
+      "quality_accepted": false,
+      "acquisition": "explicit user-selected local export/import; no verified public matched complete download package",
+      "program_scope": "reference PNG -> Dino -> HunYuanDiTPlain with source MoE routing -> cached shape VAE -> SDF query -> bounded surface -> GLB",
+      "exclusions": [
+        "Hunyuan3D Paint",
+        "Flash/octree extraction",
+        "automatic background removal"
+      ],
+      "partial_port": true
+    }
+  ],
+  "full_benchmark_workflows_reproduced": false,
+  "shared_cpu_operators_integrated": true,
+  "shared_cpu_operator_only_targets": [
+    "D05",
+    "D08",
+    "D09",
+    "D10"
+  ]
+}

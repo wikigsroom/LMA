@@ -817,6 +817,75 @@
         "expansion-shape-ORT-LICENSE.txt",
         "expansion-shape-stb-NOTICE.txt"
       ]
+    },
+    {
+      "schema": "lma.native-build/1",
+      "engine": "spatial_ort",
+      "file": "liblma-spatial.so",
+      "source_revision": "82920d643c0dc2f7bfd7255f45f62d386edfe60c",
+      "source_revisions": {
+        "D06": "5e8dcef05df101ab00ab6cd5fdd0ed0c74fbca66",
+        "D07": "82920d643c0dc2f7bfd7255f45f62d386edfe60c",
+        "D05": "8b6094780e202b8a6b1d239e0997552e18547026",
+        "D08": "f91db411c50efee93d8db7aeb323885650f6f722"
+      },
+      "backend": "cpu",
+      "bytes": 669848,
+      "sha256": "410ac537bcbababa124dcd6d602c089827195ad38958aac22f2e0691f0122797",
+      "model_inference_tested": false,
+      "physical_device_tests": 0,
+      "virtualization_used": false,
+      "abi": "arm64-v8a",
+      "ndk": "30.0.16248370",
+      "min_sdk": 28,
+      "android_api_notes": [
+        28
+      ],
+      "elf_load_alignment": [
+        16384
+      ],
+      "dependencies": [
+        {
+          "file": "libonnxruntime.so",
+          "bytes": 22249560,
+          "sha256": "33847ad43bffe204699fd4a27f7f3603452a8cdaf2f9a44983a0bc31ffcf2da1",
+          "android_api_notes": [
+            27
+          ]
+        }
+      ],
+      "vocabularies": "external_user_selected_components",
+      "runtime_version": "ORT 1.28.2 API17",
+      "required_model_components": 5,
+      "deviceValidated": false,
+      "status": "compiled_not_device_tested",
+      "notices": [
+        "sd-nlohmann-json-LICENSE.txt",
+        "sd-NDK-LLVM-NOTICE.txt",
+        "expansion-spatial-D06-LICENSE.txt",
+        "expansion-spatial-D06-ultrashape-models-autoencoders-attention_processors.py-NOTICE.txt",
+        "expansion-spatial-D06-ultrashape-models-autoencoders-attention_blocks.py-NOTICE.txt",
+        "expansion-spatial-D06-ultrashape-models-denoisers-moe_layers.py-NOTICE.txt",
+        "expansion-spatial-D06-ultrashape-models-denoisers-dit_mask.py-NOTICE.txt",
+        "expansion-spatial-D06-ultrashape-schedulers.py-NOTICE.txt",
+        "expansion-spatial-D06-ultrashape-preprocessors.py-NOTICE.txt",
+        "expansion-spatial-D06-ultrashape-surface_loaders.py-NOTICE.txt",
+        "expansion-spatial-D07-LICENSE.txt",
+        "expansion-spatial-D07-hy3dshape-hy3dshape-models-autoencoders-attention_processors.py-NOTICE.txt",
+        "expansion-spatial-D07-hy3dshape-hy3dshape-models-autoencoders-attention_blocks.py-NOTICE.txt",
+        "expansion-spatial-D07-hy3dshape-hy3dshape-models-denoisers-moe_layers.py-NOTICE.txt",
+        "expansion-spatial-D07-hy3dshape-hy3dshape-models-denoisers-hunyuandit.py-NOTICE.txt",
+        "expansion-spatial-D07-hy3dshape-hy3dshape-schedulers.py-NOTICE.txt",
+        "expansion-spatial-D07-hy3dshape-hy3dshape-preprocessors.py-NOTICE.txt",
+        "expansion-spatial-D05-LICENSE.txt",
+        "expansion-spatial-D08-LICENSE.txt",
+        "expansion-spatial-D08-sam3d_objects-model-backbone-tdfy_dit-modules-sparse-spatial.py-NOTICE.txt",
+        "expansion-spatial-D08-sam3d_objects-model-backbone-tdfy_dit-modules-sparse-conv-conv_spconv.py-NOTICE.txt",
+        "expansion-spatial-D08-sam3d_objects-model-backbone-tdfy_dit-modules-sparse-attention-full_attn.py-NOTICE.txt",
+        "expansion-spatial-D08-sam3d_objects-model-backbone-tdfy_dit-modules-sparse-attention-masked_sdpa.py-NOTICE.txt",
+        "expansion-spatial-ORT-LICENSE.txt",
+        "expansion-spatial-stb-NOTICE.txt"
+      ]
     }
   ],
   "preparations": [

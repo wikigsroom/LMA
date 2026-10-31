@@ -1,5 +1,7 @@
 # LMA API integration
 
+> Current v0.3.5: [Hunyuan shape and UltraShape refinement](SPATIAL_SHAPE.en.md), [full numbered implementation and pending ports](IMPLEMENTATION_V035.en.md). Five CPU sparse operators do not complete SAM/UniForge/SUPRA; Paint remains missing. All prior routes remain. Versioned notes below are historical, not the current support matrix.
+
 > Current v0.3.3: [four calibrated views, verified MV imports, per-model settings, API and explicit diagnostics](MULTIVIEW_DIAGNOSTICS.en.md). All earlier capabilities remain. The historical checkpoint notes below keep their original scope. [Current implementation](IMPLEMENTATION_V033.en.md) / [program-only policy](PROGRAM_VALIDATION.en.md).
 
 > v0.3.2 adds four speech families and single-image 3D. See the [expansion guide](SPEECH_3D_EXPANSION.en.md) for formats, components, workflows, API, builds and program checks. Existing capabilities remain; older checkpoints below retain their original context.

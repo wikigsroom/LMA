@@ -1,0 +1,45 @@
+{
+  "schema": "lma.native-build/1",
+  "engine": "mnn_diffusion",
+  "file": "liblma-mnn.so",
+  "source_revision": "35a20ca0995bb7e4a549b7def42c4acb30559a94",
+  "abi": "arm64-v8a",
+  "backend": "cpu",
+  "ndk": "30.0.16248370",
+  "min_sdk": 28,
+  "bytes": 4477088,
+  "sha256": "c7786394b302b579b9512977b7fceba07de585599d16f4b5308669c92ea28af2",
+  "elf_load_alignment": [
+    16384
+  ],
+  "android_api_notes": [
+    28
+  ],
+  "source_inputs": {
+    "native/mnn/bootstrap.cmake": "976ba31a2d7d1b96a8a64fbe00636fbd6b3ee9d666ce0c9ee790dc47e90d3600",
+    "native/mnn/image.hpp": "1f66dfe180a818a38aaec1e9abb844d6d361b9f50f93970f8c3abbe39b0d71bb",
+    "native/mnn/policy.hpp": "54d94c5e2bf0bf9dbc38021d6e03eef4fd8fa5d65eb4ccc2c09a40b2afdc60d5",
+    "native/mnn/sprint.hpp": "bff95cb53ed1c20d5f58a90565d0a2c4731ec69c5423fdc5276a364f183ea43b",
+    "native/mnn/sprint_policy.hpp": "2d428f8953db7cab7f8e54cd764721b5966b26300e31dd452172ddc3650b0ec3",
+    "native/mnn/sprint_tokenizer.hpp": "713c01ba062faf3aa4d3286cf661577243f62483505d5aed4ab10263768f1cbf",
+    "native/mnn/worker.cpp": "df6fbb4b3bab8a34db4a25ce2523df61128d59af68bb9ebdf742a0d182f8661d",
+    "third_party/mnn-source-lock.json": "ca1c501e24b599e757cb8c26d5820b0b92ba456e1b913d94ad965888a93b69bd",
+    "third_party/moss-nano-source-lock.json": "cce6bb6921d1f476fa50a7e483f13daca030a750b68ea47feba9214635170da3",
+    "tools/build_mnn.py": "c0dee619f3fef147378d913bb0e2a806e3c40080cb714bc932e8140afeb83444",
+    "tools/fetch_mnn.py": "3eca07c0a174eeafedcfb68cde69f16523902082fbc9b86339d52dea03bdded7",
+    "tools/sana_sprint_profile.py": "698f71b6afcc6d78ab269f949ac66edcc0f671ba5e098dd182095c23aa69e4fd"
+  },
+  "generated_sources": {
+    "build/mnn-generated/lma_sana_llm.hpp": "8b2ad32220ec6394529389db579ce534b2bae187f46435695953b8cc04b9ea06",
+    "build/mnn-generated/sana_diffusion.cpp": "cd649676e0b3b3fcb46ce83e7e332f451a2bfe0049a81fed967cb8c6be77c514"
+  },
+  "vocabularies": "external_user_selected_components",
+  "model_inference_tested": false,
+  "physical_device_tests": 0,
+  "virtualization_used": false,
+  "http_resources_compiled": false,
+  "logcat_compiled": false,
+  "static_dependencies": {
+    "sentencepiece": "31646a467d2051eb904e0b45de3a73e91fe1c1e3"
+  }
+}

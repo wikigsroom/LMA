@@ -589,6 +589,62 @@
         "expansion-shape-ORT-LICENSE.txt": "2f07c72751aed99790b8a4869cf2311df85a860b22ded05fa22803587a48922c",
         "expansion-shape-stb-NOTICE.txt": "323eac668c422203f3c54a24e077fd2e999ac6d79ac1872e619830cb3bcb34fe"
       }
+    },
+    {
+      "engine": "spatial_ort",
+      "file": "liblma-spatial.so",
+      "source_revision": "82920d643c0dc2f7bfd7255f45f62d386edfe60c",
+      "abi": "arm64-v8a",
+      "backend": "cpu",
+      "ndk": "30.0.16248370",
+      "sha256": "410ac537bcbababa124dcd6d602c089827195ad38958aac22f2e0691f0122797",
+      "bytes": 669848,
+      "android_api_notes": [
+        28
+      ],
+      "dependencies": [
+        {
+          "file": "libonnxruntime.so",
+          "bytes": 22249560,
+          "sha256": "33847ad43bffe204699fd4a27f7f3603452a8cdaf2f9a44983a0bc31ffcf2da1",
+          "android_api_notes": [
+            27
+          ]
+        }
+      ],
+      "source_revisions": {
+        "D06": "5e8dcef05df101ab00ab6cd5fdd0ed0c74fbca66",
+        "D07": "82920d643c0dc2f7bfd7255f45f62d386edfe60c",
+        "D05": "8b6094780e202b8a6b1d239e0997552e18547026",
+        "D08": "f91db411c50efee93d8db7aeb323885650f6f722"
+      },
+      "notices": {
+        "sd-nlohmann-json-LICENSE.txt": "0e592e358cf7722906f417be85bc514f15bf6efd28cea98cb84e56ef7fddfc3e",
+        "sd-NDK-LLVM-NOTICE.txt": "f96f763beb66a7ba7a667647fc64c0226ace875e590c831fdd9579ec1c1d91e1",
+        "expansion-spatial-D06-LICENSE.txt": "e135813e2ce830c6b46c62bd24e9b6094105c46f825a75341ec6ceb1d915222f",
+        "expansion-spatial-D06-ultrashape-models-autoencoders-attention_processors.py-NOTICE.txt": "b9c045600507f285d14db0e99e061ac90f3b323060d2d846717e7c389d0ad34a",
+        "expansion-spatial-D06-ultrashape-models-autoencoders-attention_blocks.py-NOTICE.txt": "e356bf8222a7cd0876d40d573435cd2dcec7ba9b16b4f4c1f1baf3c44fd0a851",
+        "expansion-spatial-D06-ultrashape-models-denoisers-moe_layers.py-NOTICE.txt": "80e18010d0b2f23f75661338d7ff823dc82e4b7b7dd0083f8009e8eab4a15768",
+        "expansion-spatial-D06-ultrashape-models-denoisers-dit_mask.py-NOTICE.txt": "f14f0d7b2d3b9c434f4b5609afb86bf08a199cfb62c3dc848290a2af259d2f7c",
+        "expansion-spatial-D06-ultrashape-schedulers.py-NOTICE.txt": "87bee17f1db2b0a16bc30a4a174da3b082b3664120b74970747368575b04898e",
+        "expansion-spatial-D06-ultrashape-preprocessors.py-NOTICE.txt": "80e18010d0b2f23f75661338d7ff823dc82e4b7b7dd0083f8009e8eab4a15768",
+        "expansion-spatial-D06-ultrashape-surface_loaders.py-NOTICE.txt": "80e18010d0b2f23f75661338d7ff823dc82e4b7b7dd0083f8009e8eab4a15768",
+        "expansion-spatial-D07-LICENSE.txt": "b79ac5e11ce063b6c6570dbe9686a45a03ba08bd248aa6aa82fb342a23a81c0c",
+        "expansion-spatial-D07-hy3dshape-hy3dshape-models-autoencoders-attention_processors.py-NOTICE.txt": "80e18010d0b2f23f75661338d7ff823dc82e4b7b7dd0083f8009e8eab4a15768",
+        "expansion-spatial-D07-hy3dshape-hy3dshape-models-autoencoders-attention_blocks.py-NOTICE.txt": "abbfa59c1edcd9c7e98db8c9dcdd4bf11d62069ff5766daf0d76d953128f66dd",
+        "expansion-spatial-D07-hy3dshape-hy3dshape-models-denoisers-moe_layers.py-NOTICE.txt": "80e18010d0b2f23f75661338d7ff823dc82e4b7b7dd0083f8009e8eab4a15768",
+        "expansion-spatial-D07-hy3dshape-hy3dshape-models-denoisers-hunyuandit.py-NOTICE.txt": "84e291447b410ed1a02b1fc0a28c2a231100833d45aca7bf9c70ed4da4726b94",
+        "expansion-spatial-D07-hy3dshape-hy3dshape-schedulers.py-NOTICE.txt": "87bee17f1db2b0a16bc30a4a174da3b082b3664120b74970747368575b04898e",
+        "expansion-spatial-D07-hy3dshape-hy3dshape-preprocessors.py-NOTICE.txt": "80e18010d0b2f23f75661338d7ff823dc82e4b7b7dd0083f8009e8eab4a15768",
+        "expansion-spatial-D05-LICENSE.txt": "00f0f15c4f39b4b8d2b9cb07e6d911c5e55cffb01aaef0910cca73e0fb174e01",
+        "expansion-spatial-D08-LICENSE.txt": "b3a5a0e2d973ab80e6610ccf1cffc40756050d0ace3cd4fec879b3ec290b2e9b",
+        "expansion-spatial-D08-sam3d_objects-model-backbone-tdfy_dit-modules-sparse-spatial.py-NOTICE.txt": "abe836cd309d15d814afb3cf18e6eb7abd0726ea6ecc3091335bb82d7236c379",
+        "expansion-spatial-D08-sam3d_objects-model-backbone-tdfy_dit-modules-sparse-conv-conv_spconv.py-NOTICE.txt": "abe836cd309d15d814afb3cf18e6eb7abd0726ea6ecc3091335bb82d7236c379",
+        "expansion-spatial-D08-sam3d_objects-model-backbone-tdfy_dit-modules-sparse-attention-full_attn.py-NOTICE.txt": "abe836cd309d15d814afb3cf18e6eb7abd0726ea6ecc3091335bb82d7236c379",
+        "expansion-spatial-D08-sam3d_objects-model-backbone-tdfy_dit-modules-sparse-attention-masked_sdpa.py-NOTICE.txt": "abe836cd309d15d814afb3cf18e6eb7abd0726ea6ecc3091335bb82d7236c379",
+        "expansion-spatial-ORT-LICENSE.txt": "2f07c72751aed99790b8a4869cf2311df85a860b22ded05fa22803587a48922c",
+        "expansion-spatial-stb-NOTICE.txt": "323eac668c422203f3c54a24e077fd2e999ac6d79ac1872e619830cb3bcb34fe"
+      }
     }
   ],
   "preparations": [

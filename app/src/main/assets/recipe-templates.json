@@ -9045,6 +9045,481 @@
       ],
       "fixedComponents": [],
       "help": "需要 LMA 离线转换工具生成的同一组 FP32 ONNX 图、外置 data 与 shape-config.json；原版 safetensors 不能直接运行。当前没有已核实的公开配套下载包，支持导入转换结果或从 HF 明确选择同格式文件。选择已去背景 / 白底 PNG；无自动抠图、贴图、外部 VLM 或云服务。全部手机 CPU，内存、速度与质量未测。"
+    },
+    {
+      "id": "hunyuan3d_21_shape_onnx_cpu_v1",
+      "name": "Hunyuan3D 2.1 · 形状 · 配套 FP32 ONNX",
+      "primaryRole": "flow",
+      "definition": {
+        "engine": "spatial_ort",
+        "architecture": "hunyuan3d_21",
+        "pipeline": "hunyuan3d_21_shape",
+        "backend": "cpu",
+        "tasks": [
+          "3d"
+        ],
+        "capabilities": [
+          "image_conditioning",
+          "sdf_geometry",
+          "image_to_3d"
+        ],
+        "parameters": {
+          "version": 1,
+          "fields": {
+            "threads": {
+              "type": "integer",
+              "label": "CPU 线程",
+              "default": 2,
+              "presets": [
+                1,
+                2,
+                4,
+                8
+              ],
+              "minimum": 1,
+              "maximum": 16,
+              "limitSource": "application_guard"
+            },
+            "steps": {
+              "type": "integer",
+              "label": "形状采样步数",
+              "default": 30,
+              "presets": [
+                10,
+                20,
+                30,
+                50
+              ],
+              "minimum": 1,
+              "maximum": 100,
+              "limitSource": "application_guard"
+            },
+            "seed": {
+              "type": "integer",
+              "label": "随机种子",
+              "default": 1234,
+              "minimum": 0,
+              "maximum": 2147483647,
+              "limitSource": "application_guard"
+            },
+            "tokens": {
+              "type": "integer",
+              "label": "形状潜变量 token",
+              "default": 4096,
+              "multipleOf": 512,
+              "presets": [
+                512,
+                1024,
+                4096,
+                8192,
+                16384
+              ],
+              "minimum": 512,
+              "maximum": 32768,
+              "limitSource": "application_guard"
+            },
+            "grid": {
+              "type": "integer",
+              "label": "SDF 网格单轴格数",
+              "default": 64,
+              "multipleOf": 16,
+              "presets": [
+                32,
+                64,
+                96,
+                128
+              ],
+              "minimum": 32,
+              "maximum": 256,
+              "limitSource": "application_guard"
+            },
+            "queryChunk": {
+              "type": "integer",
+              "label": "SDF 分块查询点数",
+              "default": 512,
+              "presets": [
+                256,
+                512,
+                1024,
+                2048
+              ],
+              "minimum": 128,
+              "maximum": 4096,
+              "limitSource": "application_guard"
+            },
+            "guidance": {
+              "type": "number",
+              "label": "图像引导强度",
+              "default": 5,
+              "minimum": 0,
+              "maximum": 15,
+              "limitSource": "application_guard"
+            },
+            "maxTriangles": {
+              "type": "integer",
+              "label": "三角面保护上限",
+              "default": 300000,
+              "presets": [
+                100000,
+                300000,
+                600000
+              ],
+              "minimum": 1000,
+              "maximum": 1000000,
+              "limitSource": "application_guard"
+            }
+          }
+        }
+      },
+      "requirements": [
+        {
+          "role": "config",
+          "label": "配套 spatial-config.json",
+          "formats": [
+            "json"
+          ],
+          "required": true,
+          "matchFiles": [
+            "spatial-config.json"
+          ]
+        },
+        {
+          "role": "image_encoder",
+          "label": "image_encoder.onnx",
+          "formats": [
+            "onnx"
+          ],
+          "required": true,
+          "matchFiles": [
+            "image_encoder.onnx"
+          ]
+        },
+        {
+          "role": "image_encoder_data",
+          "label": "image_encoder.onnx.data（如导出包含）",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": false,
+          "matchFiles": [
+            "image_encoder.onnx.data"
+          ]
+        },
+        {
+          "role": "flow",
+          "label": "flow.onnx",
+          "formats": [
+            "onnx"
+          ],
+          "required": true,
+          "matchFiles": [
+            "flow.onnx"
+          ]
+        },
+        {
+          "role": "flow_data",
+          "label": "flow.onnx.data（如导出包含）",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": false,
+          "matchFiles": [
+            "flow.onnx.data"
+          ]
+        },
+        {
+          "role": "cache",
+          "label": "cache.onnx",
+          "formats": [
+            "onnx"
+          ],
+          "required": true,
+          "matchFiles": [
+            "cache.onnx"
+          ]
+        },
+        {
+          "role": "cache_data",
+          "label": "cache.onnx.data（如导出包含）",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": false,
+          "matchFiles": [
+            "cache.onnx.data"
+          ]
+        },
+        {
+          "role": "query",
+          "label": "query.onnx",
+          "formats": [
+            "onnx"
+          ],
+          "required": true,
+          "matchFiles": [
+            "query.onnx"
+          ]
+        },
+        {
+          "role": "query_data",
+          "label": "query.onnx.data（如导出包含）",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": false,
+          "matchFiles": [
+            "query.onnx.data"
+          ]
+        }
+      ],
+      "fixedComponents": [],
+      "help": "选择同一批离线转换的五组配置 / ONNX 组件；原始 safetensors / PT 需先在用户明确选择的本地资产上转换。无已核实的公开配套 ONNX 整包。需要参考 PNG；当前仅形状，不含 Hunyuan3D Paint。全部推理在手机 CPU；MoE 保留全部专家权重并依次计算，依次驻留阶段图。不附带权重，不自动抠图，无远程服务；完整权重、质量、内存、速度及真机未测。"
+    },
+    {
+      "id": "ultrashape_1_refine_onnx_cpu_v1",
+      "name": "UltraShape 1.0 · 粗网格精修 · 配套 FP32 ONNX",
+      "primaryRole": "flow",
+      "definition": {
+        "engine": "spatial_ort",
+        "architecture": "ultrashape_1",
+        "pipeline": "ultrashape_1_refine",
+        "backend": "cpu",
+        "tasks": [
+          "3d"
+        ],
+        "capabilities": [
+          "image_conditioning",
+          "sdf_geometry",
+          "mesh_refinement",
+          "coarse_mesh_conditioning"
+        ],
+        "parameters": {
+          "version": 1,
+          "fields": {
+            "threads": {
+              "type": "integer",
+              "label": "CPU 线程",
+              "default": 2,
+              "presets": [
+                1,
+                2,
+                4,
+                8
+              ],
+              "minimum": 1,
+              "maximum": 16,
+              "limitSource": "application_guard"
+            },
+            "steps": {
+              "type": "integer",
+              "label": "形状采样步数",
+              "default": 30,
+              "presets": [
+                10,
+                20,
+                30,
+                50
+              ],
+              "minimum": 1,
+              "maximum": 100,
+              "limitSource": "application_guard"
+            },
+            "seed": {
+              "type": "integer",
+              "label": "随机种子",
+              "default": 1234,
+              "minimum": 0,
+              "maximum": 2147483647,
+              "limitSource": "application_guard"
+            },
+            "tokens": {
+              "type": "integer",
+              "label": "形状潜变量 token",
+              "default": 8192,
+              "multipleOf": 512,
+              "presets": [
+                512,
+                1024,
+                4096,
+                8192,
+                16384
+              ],
+              "minimum": 512,
+              "maximum": 32768,
+              "limitSource": "application_guard"
+            },
+            "grid": {
+              "type": "integer",
+              "label": "SDF 网格单轴格数",
+              "default": 64,
+              "multipleOf": 16,
+              "presets": [
+                32,
+                64,
+                96,
+                128
+              ],
+              "minimum": 32,
+              "maximum": 256,
+              "limitSource": "application_guard"
+            },
+            "queryChunk": {
+              "type": "integer",
+              "label": "SDF 分块查询点数",
+              "default": 512,
+              "presets": [
+                256,
+                512,
+                1024,
+                2048
+              ],
+              "minimum": 128,
+              "maximum": 4096,
+              "limitSource": "application_guard"
+            },
+            "guidance": {
+              "type": "number",
+              "label": "图像引导强度",
+              "default": 5,
+              "minimum": 0,
+              "maximum": 15,
+              "limitSource": "application_guard"
+            },
+            "maxTriangles": {
+              "type": "integer",
+              "label": "三角面保护上限",
+              "default": 300000,
+              "presets": [
+                100000,
+                300000,
+                600000
+              ],
+              "minimum": 1000,
+              "maximum": 1000000,
+              "limitSource": "application_guard"
+            },
+            "meshScale": {
+              "type": "number",
+              "label": "粗网格归一化半边长",
+              "default": 0.99,
+              "minimum": 0.1,
+              "maximum": 1,
+              "limitSource": "application_guard"
+            },
+            "surfaceSamples": {
+              "type": "integer",
+              "label": "粗网格表面采样点",
+              "default": 65536,
+              "minimum": 1024,
+              "maximum": 409600,
+              "limitSource": "application_guard"
+            }
+          }
+        }
+      },
+      "requirements": [
+        {
+          "role": "config",
+          "label": "配套 spatial-config.json",
+          "formats": [
+            "json"
+          ],
+          "required": true,
+          "matchFiles": [
+            "spatial-config.json"
+          ]
+        },
+        {
+          "role": "image_encoder",
+          "label": "image_encoder.onnx",
+          "formats": [
+            "onnx"
+          ],
+          "required": true,
+          "matchFiles": [
+            "image_encoder.onnx"
+          ]
+        },
+        {
+          "role": "image_encoder_data",
+          "label": "image_encoder.onnx.data（如导出包含）",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": false,
+          "matchFiles": [
+            "image_encoder.onnx.data"
+          ]
+        },
+        {
+          "role": "flow",
+          "label": "flow.onnx",
+          "formats": [
+            "onnx"
+          ],
+          "required": true,
+          "matchFiles": [
+            "flow.onnx"
+          ]
+        },
+        {
+          "role": "flow_data",
+          "label": "flow.onnx.data（如导出包含）",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": false,
+          "matchFiles": [
+            "flow.onnx.data"
+          ]
+        },
+        {
+          "role": "cache",
+          "label": "cache.onnx",
+          "formats": [
+            "onnx"
+          ],
+          "required": true,
+          "matchFiles": [
+            "cache.onnx"
+          ]
+        },
+        {
+          "role": "cache_data",
+          "label": "cache.onnx.data（如导出包含）",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": false,
+          "matchFiles": [
+            "cache.onnx.data"
+          ]
+        },
+        {
+          "role": "query",
+          "label": "query.onnx",
+          "formats": [
+            "onnx"
+          ],
+          "required": true,
+          "matchFiles": [
+            "query.onnx"
+          ]
+        },
+        {
+          "role": "query_data",
+          "label": "query.onnx.data（如导出包含）",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": false,
+          "matchFiles": [
+            "query.onnx.data"
+          ]
+        }
+      ],
+      "fixedComponents": [],
+      "help": "选择同一批离线转换的五组配置 / ONNX 组件；原始 safetensors / PT 需先在用户明确选择的本地资产上转换。无已核实的公开配套 ONNX 整包。需要参考 PNG 和含可用锐边的粗 GLB；一半面积采样、一半锐边长度采样，先归一化再经 FP16 舍入。全部推理在手机 CPU；MoE 保留全部专家权重并依次计算，依次驻留阶段图。不附带权重，不自动抠图，无远程服务；完整权重、质量、内存、速度及真机未测。"
     }
   ]
 }

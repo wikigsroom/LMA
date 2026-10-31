@@ -21,7 +21,7 @@ TARGETS = {
 FEATURES = {
  'F-01': ['HubCatalog','HubClient','core/RecipeCatalogue','core/RecipeSuggestions'],
  'F-02': ['core/BundleStore','core/BundleTransfers','core/BundleUpdates','core/ComponentIntegrity'],
- 'F-03': ['core/ModelBundle','LocalEngines','core/TaskRequests','core/AudioCppSpec','core/MeshSpec','core/MultiViewSpec','core/RfShapeSpec'],
+ 'F-03': ['core/ModelBundle','LocalEngines','core/TaskRequests','core/AudioCppSpec','core/MeshSpec','core/MultiViewSpec','core/RfShapeSpec','core/SpatialSpec'],
  'F-04': ['NativeWorker','NativeStages','Ltx098Engine','MnnEngine','SdEngine','SherpaEngine','MossNanoEngine','QwenTtsEngine','MossDelayEngine','OpenMossEngine','MossRqEngine','SoulxEngine','StableAudioEngine','ExpansionEngine'],
  'F-05': ['ModelSettings','GgufMetadata','core/ParameterSchema','core/LtxPixArtSpec'],
  'F-06': ['LocalJobs','core/JobStore','core/ProcessControl'],
@@ -42,9 +42,10 @@ def export():
  from expansion_catalogue import recipes as expansion_recipes
  from multiview_catalogue import recipes as multiview_recipes
  from shape_catalogue import recipes as shape_recipes
- extra=[r['id'] for r in expansion_recipes()+multiview_recipes()+shape_recipes()]
+ from spatial_catalogue import recipes as spatial_recipes
+ extra=[r['id'] for r in expansion_recipes()+multiview_recipes()+shape_recipes()+spatial_recipes()]
  assert set(templates)==set(sum(TARGETS.values(),[])+['text_gguf_cpu_v1']+extra)
- assert list(TARGETS)==scope['selected_ids'] and len(templates)==48
+ assert list(TARGETS)==scope['selected_ids'] and len(templates)==50
  targets=[]
  for entry in scope['entries']:
   key=entry['selection_id']
@@ -62,7 +63,7 @@ def check():
  assert [x['selection_id'] for x in data['selections']]==list(TARGETS)
  assert [x['id'] for x in data['features']]==list(FEATURES)
  assert len(next(x for x in data['selections'] if x['selection_id']=='12')['frozen_subtargets'])==9
- assert data['recipe_templates']==48 and data['model_bundles']==23+len(read('catalogue/community-bundles.json')['bundles'])+len(read('catalogue/expansion-bundles.json')['bundles'])+len(read('catalogue/multiview-bundles.json')['bundles']) and data['extension_engine_families']==16
+ assert data['recipe_templates']==50 and data['model_bundles']==23+len(read('catalogue/community-bundles.json')['bundles'])+len(read('catalogue/expansion-bundles.json')['bundles'])+len(read('catalogue/multiview-bundles.json')['bundles']) and data['extension_engine_families']==17
  return data
 
 if __name__=='__main__':
