@@ -7328,6 +7328,156 @@
       "help": "原版 v1 safetensors + Vocos；选择 24 kHz 单声道 1–12 秒参考 WAV 及准确转写。原生拼音最长词匹配不等于 Python 前端逐字节复现，音质待验证。"
     },
     {
+      "id": "f5_v1_official_frontend_cpu_v1",
+      "name": "F5-TTS v1 · 官方兼容中文前端",
+      "primaryRole": "model",
+      "definition": {
+        "engine": "audio_cpp",
+        "architecture": "f5_tts_v1",
+        "pipeline": "f5_v1",
+        "backend": "cpu",
+        "tasks": [
+          "audio"
+        ],
+        "capabilities": [
+          "text_to_speech"
+        ],
+        "parameters": {
+          "version": 1,
+          "fields": {
+            "threads": {
+              "type": "integer",
+              "label": "CPU 线程",
+              "default": 2,
+              "presets": [
+                1,
+                2,
+                4,
+                8
+              ],
+              "minimum": 1,
+              "maximum": 16,
+              "limitSource": "application_guard"
+            },
+            "steps": {
+              "type": "integer",
+              "label": "采样步数",
+              "default": 32,
+              "presets": [
+                8,
+                16,
+                32
+              ],
+              "minimum": 1,
+              "maximum": 64,
+              "limitSource": "application_guard"
+            },
+            "speed": {
+              "type": "number",
+              "label": "语速",
+              "default": 1,
+              "minimum": 0.5,
+              "maximum": 2,
+              "limitSource": "application_guard"
+            },
+            "cfg": {
+              "type": "number",
+              "label": "引导强度",
+              "default": 2,
+              "minimum": 0,
+              "maximum": 10,
+              "limitSource": "application_guard"
+            },
+            "seed": {
+              "type": "integer",
+              "label": "随机种子",
+              "default": 1234,
+              "minimum": 0,
+              "maximum": 2147483647,
+              "limitSource": "application_guard"
+            },
+            "maxAudioSeconds": {
+              "type": "integer",
+              "label": "输出时长保护上限（秒）",
+              "default": 30,
+              "minimum": 1,
+              "maximum": 120,
+              "limitSource": "application_guard"
+            },
+            "frameBudget": {
+              "type": "integer",
+              "label": "单块 mel 帧预算",
+              "default": 2048,
+              "presets": [
+                512,
+                1024,
+                2048
+              ],
+              "minimum": 512,
+              "maximum": 4096,
+              "limitSource": "application_guard"
+            },
+            "sway": {
+              "type": "number",
+              "label": "Sway 系数",
+              "default": -1,
+              "minimum": -5,
+              "maximum": 5,
+              "limitSource": "application_guard"
+            }
+          }
+        }
+      },
+      "requirements": [
+        {
+          "role": "model",
+          "label": "model · model_1250000.safetensors",
+          "formats": [
+            "safetensors"
+          ],
+          "required": true,
+          "matchFiles": [
+            "model_1250000.safetensors"
+          ]
+        },
+        {
+          "role": "vocoder",
+          "label": "vocoder · pytorch_model.bin",
+          "formats": [
+            "bin"
+          ],
+          "required": true,
+          "matchFiles": [
+            "pytorch_model.bin"
+          ]
+        },
+        {
+          "role": "vocab",
+          "label": "vocab · vocab.txt",
+          "formats": [
+            "text"
+          ],
+          "required": true,
+          "matchFiles": [
+            "vocab.txt"
+          ]
+        },
+        {
+          "role": "frontend",
+          "label": "官方兼容分词 / 拼音词典",
+          "formats": [
+            "json"
+          ],
+          "required": true,
+          "matchFiles": [
+            "f5-frontend.json"
+          ]
+        }
+      ],
+      "fixedComponents": [],
+      "help": "明确选择原版 F5 v1、Vocos、vocab.txt 与独立 f5-frontend.json。词典由 export_f5_frontend.py 按固定版本生成；手机端执行 DAG/HMM、多音字与变调，不调用 Python 或网络。旧版字典配方继续保留。"
+    },
+    {
       "id": "omnivoice_gguf_cpu_expansion_v1",
       "name": "OmniVoice · 自选配套组件",
       "primaryRole": "model",
@@ -9520,6 +9670,230 @@
       ],
       "fixedComponents": [],
       "help": "选择同一批离线转换的五组配置 / ONNX 组件；原始 safetensors / PT 需先在用户明确选择的本地资产上转换。无已核实的公开配套 ONNX 整包。需要参考 PNG 和含可用锐边的粗 GLB；一半面积采样、一半锐边长度采样，先归一化再经 FP16 舍入。全部推理在手机 CPU；MoE 保留全部专家权重并依次计算，依次驻留阶段图。不附带权重，不自动抠图，无远程服务；完整权重、质量、内存、速度及真机未测。"
+    },
+    {
+      "id": "hunyuan3d_21_paint_onnx_cpu_v1",
+      "name": "Hunyuan3D 2.1 Paint · 本地 PBR 贴图",
+      "primaryRole": "flow",
+      "definition": {
+        "engine": "spatial_ort",
+        "architecture": "hunyuan3d_21_paint",
+        "pipeline": "hunyuan3d_21_paint",
+        "backend": "cpu",
+        "tasks": [
+          "3d"
+        ],
+        "capabilities": [
+          "mesh_texturing",
+          "image_conditioning",
+          "multi_view_material",
+          "pbr_material",
+          "uv_baking"
+        ],
+        "parameters": {
+          "version": 1,
+          "fields": {
+            "threads": {
+              "type": "integer",
+              "label": "CPU 线程",
+              "default": 2,
+              "presets": [
+                1,
+                2,
+                4,
+                8
+              ],
+              "minimum": 1,
+              "maximum": 16,
+              "limitSource": "application_guard"
+            },
+            "steps": {
+              "type": "integer",
+              "label": "贴图采样步数",
+              "default": 15,
+              "presets": [
+                8,
+                15,
+                30
+              ],
+              "minimum": 1,
+              "maximum": 100,
+              "limitSource": "application_guard"
+            },
+            "seed": {
+              "type": "integer",
+              "label": "随机种子",
+              "default": 0,
+              "minimum": 0,
+              "maximum": 2147483647,
+              "limitSource": "application_guard"
+            },
+            "guidance": {
+              "type": "number",
+              "label": "参考图引导强度",
+              "default": 3,
+              "minimum": 1,
+              "maximum": 15,
+              "limitSource": "application_guard"
+            },
+            "atlas": {
+              "type": "integer",
+              "label": "UV 图集目标尺寸",
+              "default": 1024,
+              "multipleOf": 256,
+              "presets": [
+                512,
+                1024,
+                2048
+              ],
+              "minimum": 256,
+              "maximum": 4096,
+              "limitSource": "application_guard"
+            },
+            "upscale": {
+              "type": "boolean",
+              "label": "使用配套本地 RealESRGAN 4× 图",
+              "default": true
+            }
+          }
+        }
+      },
+      "requirements": [
+        {
+          "role": "config",
+          "label": "config · material-config.json",
+          "formats": [
+            "json"
+          ],
+          "required": true,
+          "matchFiles": [
+            "material-config.json"
+          ]
+        },
+        {
+          "role": "sampler",
+          "label": "sampler · sampler.json",
+          "formats": [
+            "json"
+          ],
+          "required": true,
+          "matchFiles": [
+            "sampler.json"
+          ]
+        },
+        {
+          "role": "image_encoder",
+          "label": "image_encoder · image_encoder.onnx",
+          "formats": [
+            "onnx"
+          ],
+          "required": true,
+          "matchFiles": [
+            "image_encoder.onnx"
+          ]
+        },
+        {
+          "role": "vae_encoder",
+          "label": "vae_encoder · vae_encoder.onnx",
+          "formats": [
+            "onnx"
+          ],
+          "required": true,
+          "matchFiles": [
+            "vae_encoder.onnx"
+          ]
+        },
+        {
+          "role": "flow",
+          "label": "flow · flow.onnx",
+          "formats": [
+            "onnx"
+          ],
+          "required": true,
+          "matchFiles": [
+            "flow.onnx"
+          ]
+        },
+        {
+          "role": "vae_decoder",
+          "label": "vae_decoder · vae_decoder.onnx",
+          "formats": [
+            "onnx"
+          ],
+          "required": true,
+          "matchFiles": [
+            "vae_decoder.onnx"
+          ]
+        },
+        {
+          "role": "upscale",
+          "label": "upscale · upscale.onnx",
+          "formats": [
+            "onnx"
+          ],
+          "required": true,
+          "matchFiles": [
+            "upscale.onnx"
+          ]
+        },
+        {
+          "role": "image_encoder_data",
+          "label": "image_encoder.onnx.data",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": false,
+          "matchFiles": [
+            "image_encoder.onnx.data"
+          ]
+        },
+        {
+          "role": "vae_encoder_data",
+          "label": "vae_encoder.onnx.data",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": false,
+          "matchFiles": [
+            "vae_encoder.onnx.data"
+          ]
+        },
+        {
+          "role": "flow_data",
+          "label": "flow.onnx.data",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": false,
+          "matchFiles": [
+            "flow.onnx.data"
+          ]
+        },
+        {
+          "role": "vae_decoder_data",
+          "label": "vae_decoder.onnx.data",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": false,
+          "matchFiles": [
+            "vae_decoder.onnx.data"
+          ]
+        },
+        {
+          "role": "upscale_data",
+          "label": "upscale.onnx.data",
+          "formats": [
+            "onnx_data"
+          ],
+          "required": false,
+          "matchFiles": [
+            "upscale.onnx.data"
+          ]
+        }
+      ],
+      "fixedComponents": [],
+      "help": "选择同批离线转换的配置、UniPC 程序及五个 ONNX 图；选择参考 PNG 和待贴图 GLB。全部编码、采样、RealESRGAN、UV 和烘焙在手机 CPU。固定六视图、双材质；CPU 光栅和接缝填充存在数值差异。无已核实公开配套整包；不含模型或远程服务，真机与完整模型未测。"
     }
   ]
 }

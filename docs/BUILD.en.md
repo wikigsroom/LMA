@@ -1,5 +1,7 @@
 # Build and program verification · v0.3.5
 
+**The current branch contains v0.3.6 development; no complete adaptation Release is published.** The `v0.3.5` commands below reproduce the published version. For development, restore pinned program sources with `tools/fetch_f5_sources.py` and `tools/fetch_paint_sources.py`, then follow [F5](F5_FRONTEND.en.md) / [PBR](LOCAL_MATERIALS.en.md) for dependencies and native compilation; no complete trained models. APK build / verification / Lint entry points remain unchanged. Collect development evidence with `python tools/adaptation_evidence.py --export` and `python tools/check_repository.py --development`. `tools/audit_adaptations.py --require-complete` separately gates complete adaptation delivery; passing the earlier frozen scope cannot waive missing ports.
+
 [中文](BUILD.md) · [Release workflow](RELEASING.md) · [Validation policy](PROGRAM_VALIDATION.en.md) · [Archived build notes](BUILD_HISTORY.en.md)
 
 Use a **full Git clone with history**, checked out at `v0.3.5` for reproduction. Historical evidence checks intentionally read earlier immutable Git blobs. The source ZIP is for code/docs/evidence review: its manifest lists exact files, while `.git`, native binaries, model data, build dependencies and signing material are excluded. It is not a self-contained binary SDK. No trained model is required to compile or program-check the APK.

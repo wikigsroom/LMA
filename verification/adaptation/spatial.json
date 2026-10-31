@@ -1,0 +1,665 @@
+{
+  "passed": 188,
+  "checks": [
+    {
+      "case": "native_cv_area_(19, 23, 11, 9)",
+      "maximum8bitError": 0.0
+    },
+    {
+      "case": "native_cv_cubic_(19, 23, 11, 9)",
+      "maximum8bitError": 0.0
+    },
+    {
+      "case": "native_cv_nearest_(19, 23, 11, 9)",
+      "maximum8bitError": 0.0
+    },
+    {
+      "case": "native_torch_antialias_(19, 23, 11, 9)",
+      "maximumFloatError": 4.57763671875e-05
+    },
+    {
+      "case": "native_cv_area_(19, 23, 31, 35)",
+      "maximum8bitError": 1.0
+    },
+    {
+      "case": "native_cv_cubic_(19, 23, 31, 35)",
+      "maximum8bitError": 0.0
+    },
+    {
+      "case": "native_cv_nearest_(19, 23, 31, 35)",
+      "maximum8bitError": 0.0
+    },
+    {
+      "case": "native_torch_antialias_(19, 23, 31, 35)",
+      "maximumFloatError": 0.000335693359375
+    },
+    {
+      "case": "native_cv_area_(5, 7, 22, 20)",
+      "maximum8bitError": 1.0
+    },
+    {
+      "case": "native_cv_cubic_(5, 7, 22, 20)",
+      "maximum8bitError": 0.0
+    },
+    {
+      "case": "native_cv_nearest_(5, 7, 22, 20)",
+      "maximum8bitError": 0.0
+    },
+    {
+      "case": "native_torch_antialias_(5, 7, 22, 20)",
+      "maximumFloatError": 6.67572021484375e-05
+    },
+    {
+      "case": "native_cv_area_(32, 32, 28, 28)",
+      "maximum8bitError": 1.0
+    },
+    {
+      "case": "native_cv_cubic_(32, 32, 28, 28)",
+      "maximum8bitError": 0.0
+    },
+    {
+      "case": "native_cv_nearest_(32, 32, 28, 28)",
+      "maximum8bitError": 0.0
+    },
+    {
+      "case": "native_torch_antialias_(32, 32, 28, 28)",
+      "maximumFloatError": 0.00048828125
+    },
+    {
+      "case": "D06_preprocessing_rgb",
+      "maxNormalizedError": 0.012367546558380127,
+      "limit": "two_8bit_levels"
+    },
+    {
+      "case": "D06_mask_rgb"
+    },
+    {
+      "case": "D06_preprocessing_rgba",
+      "maxNormalizedError": 0.01667267084121704,
+      "limit": "two_8bit_levels"
+    },
+    {
+      "case": "D06_mask_rgba"
+    },
+    {
+      "case": "D06_preprocessing_alpha_gradient",
+      "maxNormalizedError": 0.017865538597106934,
+      "limit": "two_8bit_levels"
+    },
+    {
+      "case": "D06_mask_alpha_gradient"
+    },
+    {
+      "case": "D06_preprocessing_upsample",
+      "maxNormalizedError": 0.017020344734191895,
+      "limit": "two_8bit_levels"
+    },
+    {
+      "case": "D06_mask_upsample"
+    },
+    {
+      "case": "D06_preprocessing_downsample",
+      "maxNormalizedError": 0.0024509429931640625,
+      "limit": "two_8bit_levels"
+    },
+    {
+      "case": "D06_mask_downsample"
+    },
+    {
+      "case": "D06_empty_image_rejected"
+    },
+    {
+      "case": "D06_native_schedule_1_1.0"
+    },
+    {
+      "case": "D06_native_schedule_1_2.5"
+    },
+    {
+      "case": "D06_native_schedule_2_1.0"
+    },
+    {
+      "case": "D06_native_schedule_2_2.5"
+    },
+    {
+      "case": "D06_native_schedule_7_1.0"
+    },
+    {
+      "case": "D06_native_schedule_7_2.5"
+    },
+    {
+      "case": "D07_preprocessing_rgb",
+      "maxNormalizedError": 0.013818681240081787,
+      "limit": "two_8bit_levels"
+    },
+    {
+      "case": "D07_mask_rgb"
+    },
+    {
+      "case": "D07_preprocessing_rgba",
+      "maxNormalizedError": 0.016122405478199653,
+      "limit": "two_8bit_levels"
+    },
+    {
+      "case": "D07_mask_rgba"
+    },
+    {
+      "case": "D07_preprocessing_alpha_gradient",
+      "maxNormalizedError": 0.013820528984069824,
+      "limit": "two_8bit_levels"
+    },
+    {
+      "case": "D07_mask_alpha_gradient"
+    },
+    {
+      "case": "D07_preprocessing_upsample",
+      "maxNormalizedError": 0.02431509643793106,
+      "limit": "two_8bit_levels"
+    },
+    {
+      "case": "D07_mask_upsample"
+    },
+    {
+      "case": "D07_preprocessing_downsample",
+      "maxNormalizedError": 0.002408001571893692,
+      "limit": "two_8bit_levels"
+    },
+    {
+      "case": "D07_mask_downsample"
+    },
+    {
+      "case": "D07_empty_image_rejected"
+    },
+    {
+      "case": "D07_native_schedule_1_1.0"
+    },
+    {
+      "case": "D07_native_schedule_1_2.5"
+    },
+    {
+      "case": "D07_native_schedule_2_1.0"
+    },
+    {
+      "case": "D07_native_schedule_2_2.5"
+    },
+    {
+      "case": "D07_native_schedule_7_1.0"
+    },
+    {
+      "case": "D07_native_schedule_7_2.5"
+    },
+    {
+      "case": "mesh_normalization_extent"
+    },
+    {
+      "case": "area_samples_inside_triangle"
+    },
+    {
+      "case": "area_samples_centroid"
+    },
+    {
+      "case": "voxel_conditions_occupied"
+    },
+    {
+      "case": "glb_reflection_reverses_winding"
+    },
+    {
+      "case": "native_glb_reject_external_buffer"
+    },
+    {
+      "case": "native_glb_reject_cycle"
+    },
+    {
+      "case": "native_glb_reject_required_extension"
+    },
+    {
+      "case": "native_glb_reject_animation"
+    },
+    {
+      "case": "native_glb_reject_skin"
+    },
+    {
+      "case": "native_glb_reject_sparse"
+    },
+    {
+      "case": "native_glb_reject_declared_buffer_length"
+    },
+    {
+      "case": "native_glb_reject_nontriangles"
+    },
+    {
+      "case": "native_glb_reject_index_bounds"
+    },
+    {
+      "case": "native_glb_reject_bad_scene"
+    },
+    {
+      "case": "native_glb_reject_projective"
+    },
+    {
+      "case": "native_glb_reject_quaternion"
+    },
+    {
+      "case": "sharp_cube_angle_weighted_normals"
+    },
+    {
+      "case": "sharp_cube_publisher_edge_order_and_multiplicity"
+    },
+    {
+      "case": "sharp_cube_publisher_length_distribution"
+    },
+    {
+      "case": "sharp_cube_native_and_publisher_points_on_edges"
+    },
+    {
+      "case": "sharp_cube_sample_balance_and_float16"
+    },
+    {
+      "case": "sharp_cube_unbiased_edge_centroid"
+    },
+    {
+      "case": "sharp_tetra_angle_weighted_normals"
+    },
+    {
+      "case": "sharp_tetra_publisher_edge_order_and_multiplicity"
+    },
+    {
+      "case": "sharp_tetra_publisher_length_distribution"
+    },
+    {
+      "case": "sharp_tetra_native_and_publisher_points_on_edges"
+    },
+    {
+      "case": "sharp_tetra_sample_balance_and_float16"
+    },
+    {
+      "case": "sharp_tetra_unbiased_edge_centroid"
+    },
+    {
+      "case": "surface_float16_round_to_even_matches_numpy"
+    },
+    {
+      "case": "sharp_missing_edges_fails_without_uniform_substitution"
+    },
+    {
+      "case": "native_info_no_model_downloads"
+    },
+    {
+      "case": "hunyuan3d_21_shape_success",
+      "exitCode": 0
+    },
+    {
+      "case": "hunyuan3d_21_shape_success_measurement"
+    },
+    {
+      "case": "hunyuan3d_21_shape_actual_glb"
+    },
+    {
+      "case": "hunyuan3d_21_shape_custom_domain",
+      "exitCode": 0
+    },
+    {
+      "case": "hunyuan3d_21_shape_custom_domain_measurement"
+    },
+    {
+      "case": "hunyuan3d_21_shape_actual_glb"
+    },
+    {
+      "case": "hunyuan3d_21_shape_source_revision",
+      "exitCode": 1
+    },
+    {
+      "case": "hunyuan3d_21_shape_source_revision_measurement"
+    },
+    {
+      "case": "hunyuan3d_21_shape_source_revision_no_result"
+    },
+    {
+      "case": "hunyuan3d_21_shape_wrong_pipeline",
+      "exitCode": 1
+    },
+    {
+      "case": "hunyuan3d_21_shape_wrong_pipeline_measurement"
+    },
+    {
+      "case": "hunyuan3d_21_shape_wrong_pipeline_no_result"
+    },
+    {
+      "case": "hunyuan3d_21_shape_missing_role",
+      "exitCode": 1
+    },
+    {
+      "case": "hunyuan3d_21_shape_missing_role_measurement"
+    },
+    {
+      "case": "hunyuan3d_21_shape_missing_role_no_result"
+    },
+    {
+      "case": "hunyuan3d_21_shape_external_path",
+      "exitCode": 1
+    },
+    {
+      "case": "hunyuan3d_21_shape_external_path_measurement"
+    },
+    {
+      "case": "hunyuan3d_21_shape_external_path_no_result"
+    },
+    {
+      "case": "hunyuan3d_21_shape_bad_dimensions",
+      "exitCode": 1
+    },
+    {
+      "case": "hunyuan3d_21_shape_bad_dimensions_measurement"
+    },
+    {
+      "case": "hunyuan3d_21_shape_bad_dimensions_no_result"
+    },
+    {
+      "case": "hunyuan3d_21_shape_misaligned_grid",
+      "exitCode": 1
+    },
+    {
+      "case": "hunyuan3d_21_shape_misaligned_grid_measurement"
+    },
+    {
+      "case": "hunyuan3d_21_shape_misaligned_grid_no_result"
+    },
+    {
+      "case": "hunyuan3d_21_shape_token_limit",
+      "exitCode": 1
+    },
+    {
+      "case": "hunyuan3d_21_shape_token_limit_measurement"
+    },
+    {
+      "case": "hunyuan3d_21_shape_token_limit_no_result"
+    },
+    {
+      "case": "hunyuan3d_21_shape_missing_image",
+      "exitCode": 1
+    },
+    {
+      "case": "hunyuan3d_21_shape_missing_image_measurement"
+    },
+    {
+      "case": "hunyuan3d_21_shape_missing_image_no_result"
+    },
+    {
+      "case": "hunyuan3d_21_shape_empty_surface",
+      "exitCode": 1
+    },
+    {
+      "case": "hunyuan3d_21_shape_empty_surface_measurement"
+    },
+    {
+      "case": "hunyuan3d_21_shape_empty_surface_no_result"
+    },
+    {
+      "case": "hunyuan3d_21_shape_triangle_budget",
+      "exitCode": 1
+    },
+    {
+      "case": "hunyuan3d_21_shape_triangle_budget_measurement"
+    },
+    {
+      "case": "hunyuan3d_21_shape_triangle_budget_no_result"
+    },
+    {
+      "case": "hunyuan3d_21_shape_unknown_parameter",
+      "exitCode": 1
+    },
+    {
+      "case": "hunyuan3d_21_shape_unknown_parameter_measurement"
+    },
+    {
+      "case": "hunyuan3d_21_shape_unknown_parameter_no_result"
+    },
+    {
+      "case": "ultrashape_1_refine_success",
+      "exitCode": 0
+    },
+    {
+      "case": "ultrashape_1_refine_success_measurement"
+    },
+    {
+      "case": "ultrashape_1_refine_actual_glb"
+    },
+    {
+      "case": "ultrashape_1_refine_custom_domain",
+      "exitCode": 0
+    },
+    {
+      "case": "ultrashape_1_refine_custom_domain_measurement"
+    },
+    {
+      "case": "ultrashape_1_refine_actual_glb"
+    },
+    {
+      "case": "ultrashape_1_refine_source_revision",
+      "exitCode": 1
+    },
+    {
+      "case": "ultrashape_1_refine_source_revision_measurement"
+    },
+    {
+      "case": "ultrashape_1_refine_source_revision_no_result"
+    },
+    {
+      "case": "ultrashape_1_refine_wrong_pipeline",
+      "exitCode": 1
+    },
+    {
+      "case": "ultrashape_1_refine_wrong_pipeline_measurement"
+    },
+    {
+      "case": "ultrashape_1_refine_wrong_pipeline_no_result"
+    },
+    {
+      "case": "ultrashape_1_refine_missing_role",
+      "exitCode": 1
+    },
+    {
+      "case": "ultrashape_1_refine_missing_role_measurement"
+    },
+    {
+      "case": "ultrashape_1_refine_missing_role_no_result"
+    },
+    {
+      "case": "ultrashape_1_refine_external_path",
+      "exitCode": 1
+    },
+    {
+      "case": "ultrashape_1_refine_external_path_measurement"
+    },
+    {
+      "case": "ultrashape_1_refine_external_path_no_result"
+    },
+    {
+      "case": "ultrashape_1_refine_bad_dimensions",
+      "exitCode": 1
+    },
+    {
+      "case": "ultrashape_1_refine_bad_dimensions_measurement"
+    },
+    {
+      "case": "ultrashape_1_refine_bad_dimensions_no_result"
+    },
+    {
+      "case": "ultrashape_1_refine_misaligned_grid",
+      "exitCode": 1
+    },
+    {
+      "case": "ultrashape_1_refine_misaligned_grid_measurement"
+    },
+    {
+      "case": "ultrashape_1_refine_misaligned_grid_no_result"
+    },
+    {
+      "case": "ultrashape_1_refine_token_limit",
+      "exitCode": 1
+    },
+    {
+      "case": "ultrashape_1_refine_token_limit_measurement"
+    },
+    {
+      "case": "ultrashape_1_refine_token_limit_no_result"
+    },
+    {
+      "case": "ultrashape_1_refine_missing_image",
+      "exitCode": 1
+    },
+    {
+      "case": "ultrashape_1_refine_missing_image_measurement"
+    },
+    {
+      "case": "ultrashape_1_refine_missing_image_no_result"
+    },
+    {
+      "case": "ultrashape_1_refine_empty_surface",
+      "exitCode": 1
+    },
+    {
+      "case": "ultrashape_1_refine_empty_surface_measurement"
+    },
+    {
+      "case": "ultrashape_1_refine_empty_surface_no_result"
+    },
+    {
+      "case": "ultrashape_1_refine_triangle_budget",
+      "exitCode": 1
+    },
+    {
+      "case": "ultrashape_1_refine_triangle_budget_measurement"
+    },
+    {
+      "case": "ultrashape_1_refine_triangle_budget_no_result"
+    },
+    {
+      "case": "ultrashape_1_refine_unknown_parameter",
+      "exitCode": 1
+    },
+    {
+      "case": "ultrashape_1_refine_unknown_parameter_measurement"
+    },
+    {
+      "case": "ultrashape_1_refine_unknown_parameter_no_result"
+    },
+    {
+      "case": "ultrashape_1_refine_missing_coarse",
+      "exitCode": 1
+    },
+    {
+      "case": "ultrashape_1_refine_missing_coarse_measurement"
+    },
+    {
+      "case": "ultrashape_1_refine_missing_coarse_no_result"
+    },
+    {
+      "case": "ultrashape_1_refine_cyclic_coarse",
+      "exitCode": 1
+    },
+    {
+      "case": "ultrashape_1_refine_cyclic_coarse_measurement"
+    },
+    {
+      "case": "ultrashape_1_refine_cyclic_coarse_no_result"
+    },
+    {
+      "case": "ultrashape_1_refine_cli_bundle"
+    },
+    {
+      "case": "ultrashape_1_refine_cli_config"
+    },
+    {
+      "case": "ultrashape_1_refine_cli_image_encoder"
+    },
+    {
+      "case": "ultrashape_1_refine_cli_flow"
+    },
+    {
+      "case": "ultrashape_1_refine_cli_cache"
+    },
+    {
+      "case": "ultrashape_1_refine_cli_query"
+    },
+    {
+      "case": "ultrashape_1_refine_cli_image_encoder_data"
+    },
+    {
+      "case": "ultrashape_1_refine_cli_flow_data"
+    },
+    {
+      "case": "ultrashape_1_refine_cli_cache_data"
+    },
+    {
+      "case": "ultrashape_1_refine_cli_query_data"
+    },
+    {
+      "case": "ultrashape_1_refine_no_overwrite"
+    },
+    {
+      "case": "hunyuan3d_21_shape_cli_bundle"
+    },
+    {
+      "case": "hunyuan3d_21_shape_cli_config"
+    },
+    {
+      "case": "hunyuan3d_21_shape_cli_image_encoder"
+    },
+    {
+      "case": "hunyuan3d_21_shape_cli_flow"
+    },
+    {
+      "case": "hunyuan3d_21_shape_cli_cache"
+    },
+    {
+      "case": "hunyuan3d_21_shape_cli_query"
+    },
+    {
+      "case": "hunyuan3d_21_shape_cli_image_encoder_data"
+    },
+    {
+      "case": "hunyuan3d_21_shape_cli_flow_data"
+    },
+    {
+      "case": "hunyuan3d_21_shape_cli_cache_data"
+    },
+    {
+      "case": "hunyuan3d_21_shape_cli_query_data"
+    },
+    {
+      "case": "hunyuan3d_21_shape_no_overwrite"
+    }
+  ],
+  "input_fingerprint": {
+    "native/rf_shape/CMakeLists.txt": "48fd357aaf0e656dc65afc0d8442b9aa031426a5b7437c975c9871e90323be94",
+    "native/rf_shape/geometry.hpp": "95cbdc3dcf71629dfd685ee7efcad354e66b07c6dc786ebe8451ac8c2b950192",
+    "native/rf_shape/image.hpp": "89261f9cd2f0a1adb2ec0fc42f9da951e4898349b8f54ee4daa31415e49d6e78",
+    "native/rf_shape/math.hpp": "2f345d08ae7abe58bf8d8b567325b425f9c5d21383e75ce60b13dd5573790c0d",
+    "native/rf_shape/ort.hpp": "2b6e5722b757a027213482bfc1289348fd9454e8e00d49cdb0d47d87896fac71",
+    "native/rf_shape/worker.cpp": "bf18dba87ac45d9dc1100f8004b1ede16c8a100c9d8d560b0fc2f50c605bc819",
+    "native/spatial/block_attention.hpp": "9d87fc393f51104f11f291dda84763744249aedaf1f57feab72d94c161b9503d",
+    "native/spatial/CMakeLists.txt": "31f72529622fc7c9b8976868e6fbca0b8e886fb2bbbf54917ab2a619173d88c3",
+    "native/spatial/image.hpp": "7f2b70863591a51e9bca407a7ae0677fda0680efa51b9c54e91a5a3c8f073909",
+    "native/spatial/linear_sampler.hpp": "96ff6befbb32480559c038b4fb33308a127fa41088bea73404866d322262166d",
+    "native/spatial/material.hpp": "0e1cb2b5a5c84c2bdef41e69b435e54d5d8218d01d9c25d64c9121fe527158c2",
+    "native/spatial/math.hpp": "abc3c2644fc02f864cec371053b3ad92c42ce89b9215beb86a3f731b861c7f45",
+    "native/spatial/mesh.hpp": "9d6c1af1780abf2ad83cd8d2aaa5e6e5f2f762c132d5006929a097c01fae6eaa",
+    "native/spatial/ort_graph.hpp": "d78b66a3b16ebad13410e045035d58d6dad5eab37346a6a697fdba095a1f8908",
+    "native/spatial/sparse.hpp": "118c821be7601439a166d800729feb9e77320b6ad355808edc1e802d99b07e67",
+    "native/spatial/sparse_ort.hpp": "c1dca480849f96640dd7a0fca7cf84239d1519e586d4607d0e9b37d2132d53cd",
+    "native/spatial/surface_sampling.hpp": "0aeb83fc1030f3114784b4dd0dbd7db5c5464ebc6ce5c85c3436bec6080cb709",
+    "native/spatial/texture.hpp": "08e0edbaf02f514ba526c2bf5216236c782b4343de2b3d4c480046c0ffe0ff81",
+    "native/spatial/worker.cpp": "9b952fd8eb1b44df542ec99c507fb285774b4d5b1d8435e7c99b6404075a5f6e",
+    "tests/expansion-native/spatial.cpp": "ee22d6b12d07a1aed631d71bfac694ed894332cd5b3fc661020331ded3d3b0dc",
+    "third_party/spatial-shape-source-lock.json": "5492375fbf3934a15db37581a413a94e64038a486189b0ec51d37ed1ff55f69d",
+    "tools/export_spatial.py": "0673bc931b7645bba41e6267ef90d10f5b55d60b2a6dd360de392312a769d624",
+    "tools/spatial_catalogue.py": "5dae311770fa269193318aea5d6eeb4220ee00f58e4b3419a873c4cdb13848ee",
+    "tools/spatial_reference.py": "d71d02cea9e0ddb4b5483561c9d04db76cd9904ce4c118112ed647060397a893",
+    "tools/spatial_shape_graphs.py": "ff71d941bb8824caa938285f9bb5e999ebc60c0e648467c8a011429e35e9fe04",
+    "tools/test_spatial.py": "e9d77405ceaa48e1f98ae5da0e9b20905b4ab711eec75fe34aaebfba18afd375"
+  },
+  "completeModelsDownloaded": 0,
+  "completeModelsRun": 0,
+  "physicalDeviceTests": 0,
+  "virtualizationUsed": false
+}

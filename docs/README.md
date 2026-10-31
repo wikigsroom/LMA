@@ -1,5 +1,7 @@
 # LMA 文档 / Documentation
 
+**开发源码 v0.3.6，尚未发布新 Release / v0.3.6 development, no new Release.** 新增 [F5 官方兼容前端](F5_FRONTEND.md) / [English](F5_FRONTEND.en.md)、[本机 PBR 材质](LOCAL_MATERIALS.md) / [English](LOCAL_MATERIALS.en.md)、[完整编号实现和待办](REMAINING_ADAPTATION.md) / [English](REMAINING_ADAPTATION.en.md)、[当前开发证据](../verification/adaptation/status.json)。D04 / D05 / D08 / D09 / D10 仍缺完整流程；下面 v0.3.5 数字、媒体和矩阵保留为已发布记录。
+
 - [Hunyuan3D 形状 / UltraShape 精修](SPATIAL_SHAPE.md) · [English](SPATIAL_SHAPE.en.md)：用户自选导出 / 导入，PNG＋可选粗 GLB，8 / 10 个独立参数，任务与 sparse CPU 基座。
 - [v0.3.5 全部已实现 / 待完成](IMPLEMENTATION_V035.md) · [English](IMPLEMENTATION_V035.en.md)：原冻结范围保留，六项测评配置仍缺完整代码；不把共用算子当作整个模型。
 

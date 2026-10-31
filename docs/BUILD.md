@@ -1,5 +1,7 @@
 # 构建与程序验证 · v0.3.5
 
+**当前分支为 v0.3.6 开发源码，未发布完整适配 Release。** 下文 `v0.3.5` 命令用于重现已发布版本。当前开发先执行 `tools/fetch_f5_sources.py`、`tools/fetch_paint_sources.py`，再按 [F5](F5_FRONTEND.md) / [PBR](LOCAL_MATERIALS.md) 准备程序依赖和编译；不准备任何完整训练模型。新版本 APK 构建 / 验包 / Lint 入口不变，证据收口使用 `python tools/adaptation_evidence.py --export` 和 `python tools/check_repository.py --development`。完整适配发布由 `tools/audit_adaptations.py --require-complete` 单独约束；缺代码时不能沿用旧版“完整冻结范围”的完成标志。
+
 [English](BUILD.en.md) · [发布流程](RELEASING.md) · [验证策略](PROGRAM_VALIDATION.md) · [构建历史全文](BUILD_HISTORY.md)
 
 重建使用**带完整历史的 Git clone**，复现时切到 `v0.3.5`。历史证据身份检查会读取早期不可变 Git blob。Release 源码 ZIP 用于代码 / 文档 / 证据审阅，精确文件见源码清单；它排除 `.git`、原生二进制、模型、构建依赖与签名材料，不是自包含 SDK。编译和程序验证不需要完整训练模型。

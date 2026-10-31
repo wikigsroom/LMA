@@ -32,6 +32,9 @@ def public_names():
 
 def package():
  assert version()==VERSION
+ if VERSION!='0.3.5':
+  from audit_adaptations import require_complete
+  require_complete()
  evidence=program_check();matrix=scope_check();build=read(DIST/'build-info.json')
  notes=ROOT/('docs/releases/v'+VERSION+'.md')
  assert notes.exists() and VERSION in notes.read_text(encoding='utf-8')
@@ -117,6 +120,9 @@ def check(prepared=False,published=False):
  return result
 
 def prepare():
+ if VERSION!='0.3.5':
+  from audit_adaptations import require_complete
+  require_complete()
  evidence=check();directory=DIST/('releases/v'+VERSION);directory.mkdir(parents=True,exist_ok=True)
  build=read(DIST/'build-info.json');source=f'LMA-{VERSION}-source.zip'
  originals=[DIST/build['apk'],DIST/(build['apk']+'.sha256'),DIST/source,DIST/(source+'.sha256'),DIST/'validation.json',DIST/'build-info.json',DIST/'source-archive-manifest.json']

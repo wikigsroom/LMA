@@ -40,6 +40,7 @@ int main(int argc,char** argv) {
    regular(components,"vocab"); lma_f5::active=true; lma_f5::maximum_mel_frames=size_t(maximum)*24000/256;
    if(components.contains("pinyin_chars")) lma_f5::load(regular(components,"pinyin_chars"),false);
    if(components.contains("pinyin_phrases")) lma_f5::load(regular(components,"pinyin_phrases"),true);
+   if(components.contains("frontend")) lma_f5_official::load(regular(components,"frontend"));
    engine::models::f5_tts::F5SynthesisRequest value; value.text=prompt; value.ref_audio=std::move(ref.samples); value.ref_sample_rate=24000;
    value.ref_text=text(input.at("transcripts"),"reference_audio"); value.dialect="LMA_F5_V1";
    value.strip_diacritics=false; value.threads=threads; value.speed=speed; value.steps=steps; value.cfg_strength=cfg;

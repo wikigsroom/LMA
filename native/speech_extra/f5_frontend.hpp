@@ -1,5 +1,6 @@
 #pragma once
 #include "../worker_common.hpp"
+#include "f5_official.hpp"
 #include <unordered_map>
 #include <sstream>
 namespace lma_f5 {
@@ -60,6 +61,7 @@ inline void load(const std::string& path, bool phrases) {
     lma_worker::require(count>0, "Pinyin resource has no usable entries");
 }
 inline std::vector<int32_t> tokenize(const std::unordered_map<std::string,int32_t>& vocab, const std::string& value) {
+    if(lma_f5_official::selected)return lma_f5_official::selected->tokenize(vocab,value);
     std::vector<int32_t> result; auto letters=chars(value);
     auto emit=[&](const std::string& token) {
         auto item=vocab.find(token); lma_worker::require(item!=vocab.end(), "Text pronunciation is outside the selected F5 vocabulary");

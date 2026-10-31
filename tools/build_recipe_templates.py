@@ -288,6 +288,8 @@ def build():
     templates.extend(shape_recipes())
     from spatial_catalogue import recipes as spatial_recipes
     templates.extend(spatial_recipes())
+    from paint_catalogue import recipes as paint_recipes
+    templates.extend(paint_recipes())
     from recipe_file_hints import add_hints
     add_hints(templates)
     return {"schema": "lma.recipe-catalogue/1", "templates": templates}

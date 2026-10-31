@@ -97,6 +97,9 @@ def counted(name, value):
 
 def export():
     assert version() == VERSION
+    if VERSION!='0.3.5':
+        from audit_adaptations import require_complete
+        require_complete()
     OUT.mkdir(exist_ok=True)
     items = {}
     for name, original in SOURCES.items():

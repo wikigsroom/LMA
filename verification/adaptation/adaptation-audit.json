@@ -1,0 +1,45 @@
+{
+  "passed": 9,
+  "checks": [
+    {
+      "case": "evidence_rejects_missing_code"
+    },
+    {
+      "case": "evidence_lists_all_unported_ids"
+    },
+    {
+      "case": "evidence_preserves_published_files"
+    },
+    {
+      "case": "package_rejects_missing_code"
+    },
+    {
+      "case": "package_lists_all_unported_ids"
+    },
+    {
+      "case": "package_preserves_published_files"
+    },
+    {
+      "case": "prepare_rejects_missing_code"
+    },
+    {
+      "case": "prepare_lists_all_unported_ids"
+    },
+    {
+      "case": "prepare_preserves_published_files"
+    }
+  ],
+  "input_fingerprint": {
+    "research/portability/adaptation-current.json": "eea8654cef031c4215c49599b27813b2763e751b571c8427340674736fca9f67",
+    "tools/audit_adaptations.py": "5d12fdae9d50d7715ca072e2a8e357f9d66a41970101e063547e9522b2a32163",
+    "tools/program_evidence.py": "3a177f161d71ad351c46e5149b9bd9ee00bab804165c5cc1b833f8deae2649d7",
+    "tools/program_release.py": "5d4b11015ce0cb2e33cf28b819e2decb5a6a83df5cf2a462339db16e6cc7a799",
+    "tools/test_adaptation_audit.py": "29325149cc8b0418efa5470a079e6db401561d78aada552c4f3ca346be617297"
+  },
+  "immutable_files_checked": 67,
+  "actual_release_entrypoints_executed": 3,
+  "release_actions_rejected": true,
+  "github_writes": 0,
+  "completeModelsRun": 0,
+  "physicalDeviceTests": 0
+}

@@ -116,6 +116,42 @@
           "bytes": 17914,
           "git_blob": "40add23d41f73047640976aa7c8ac69b7b7776fb",
           "sha256": "b79ac5e11ce063b6c6570dbe9686a45a03ba08bd248aa6aa82fb342a23a81c0c"
+        },
+        {
+          "path": "hy3dpaint/hunyuanpaintpbr/unet/modules.py",
+          "bytes": 45181,
+          "git_blob": "55f0404a452ecd9d7bc20d84303c151c67d8bf8f",
+          "sha256": "664983290a63849503c64714948d97444400bd95f24ad67e3a5dc557ba5a7a68"
+        },
+        {
+          "path": "hy3dpaint/hunyuanpaintpbr/unet/attn_processor.py",
+          "bytes": 35104,
+          "git_blob": "37ebde0f6f30230351f757e050e3b86fd8a06402",
+          "sha256": "a41bf0f79864691bc831cc2de9714f6d25baf73463ad3fdcb224dc09fe2e6705"
+        },
+        {
+          "path": "hy3dpaint/utils/pipeline_utils.py",
+          "bytes": 6078,
+          "git_blob": "6bc53826956211739250bc32914ce11a72809ce2",
+          "sha256": "a479de70e3d90a6060cf2fd03731e9e29af988880f3adaa5fc4643dd3573bd08"
+        },
+        {
+          "path": "hy3dpaint/utils/multiview_utils.py",
+          "bytes": 5576,
+          "git_blob": "03f0557f89ec5d8389bce89fd9c5f2acb3c9945b",
+          "sha256": "ad90cf21adb8fc225b6cd77cb49fa76b12ded97d122566a74252e92208250f99"
+        },
+        {
+          "path": "hy3dpaint/DifferentiableRenderer/camera_utils.py",
+          "bytes": 3771,
+          "git_blob": "54369b557b23c7481ed0bbcff25840eb0802cfbf",
+          "sha256": "a192b81c6d938dfe50a40f0e248a10c174a9c37b311b41b908f35e5b7304512c"
+        },
+        {
+          "path": "hy3dpaint/DifferentiableRenderer/MeshRender.py",
+          "bytes": 56848,
+          "git_blob": "83c8cf8d9a74d29e2a96756673c9987f9c38fd02",
+          "sha256": "5f008d9149c0dcac2ac5ffa7d2e797657b21515878d9b5804f6bf95c08135cce"
         }
       ]
     },
@@ -192,6 +228,44 @@
           "bytes": 2048,
           "git_blob": "23489705e9a09ac6f57572afce3dfd7af572819a",
           "sha256": "00c6c6ce9e0f07fa4f8339ff2d7bb9eb6e65f8556a640fc4df3270810079b262"
+        }
+      ]
+    },
+    {
+      "id": "D04",
+      "repository": "yiboz2001/UltraTex",
+      "revision": "a726678f3f3631fe2c5e3d1fb4597114784c7a8b",
+      "directory": "build/spatial-source-review/repos/D04",
+      "files": [
+        {
+          "path": "LICENSE",
+          "bytes": 1067,
+          "git_blob": "739e7109b4d169ee9e6918265cdc8f49905ea52f",
+          "sha256": "1d0ddbb9d271e32eee95c487afb53e2d336bce67c2c0e601cda263ed13a1f419"
+        },
+        {
+          "path": "ultratex/sparse_attention/core.py",
+          "bytes": 3252,
+          "git_blob": "268135bedf0028f4da9c93596d4008d93bca0d39",
+          "sha256": "070586dd77d504d9ed35026e585cc3c48aefb141c694e8b797288b6143f3a8a0"
+        },
+        {
+          "path": "ultratex/sparse_attention/kernel.py",
+          "bytes": 11648,
+          "git_blob": "ad36825676c2a6bb10b28cf7aae8af3915e413a2",
+          "sha256": "4f18260ae3509e93bb2e86431d15472de17758766c11f14d5f89f8d89d3c4790"
+        },
+        {
+          "path": "ultratex/sparse_attention/utils.py",
+          "bytes": 2486,
+          "git_blob": "63517823bfc616a4f9f364ff2cb021d8421a0207",
+          "sha256": "6899709e8c6291f78b5e816183a2e2aa43b9a63f3313de0ae2dd86dcfc858009"
+        },
+        {
+          "path": "ultratex/sparse_attention/LICENSE.txt",
+          "bytes": 11368,
+          "git_blob": "5dd3c40513dd44ba55e78376d531c8c7624b5e65",
+          "sha256": "6f427d81a2ca1bb51f6b5a6e06e83e3fc71b57a7c60118f9d1b258e9512ed325"
         }
       ]
     }

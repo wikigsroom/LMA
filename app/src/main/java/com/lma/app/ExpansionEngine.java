@@ -57,7 +57,7 @@ public final class ExpansionEngine implements LocalEngine {
             AudioCppSpec.parameters(lease.bundle.pipeline,request.getJSONObject("parameters"));
         if(normalized.getJSONArray("adjustments").length()!=0) throw new IOException("参数已超出当前基座范围，请重新提交任务");
         if (mesh()) meshAssets(lease.bundle,normalized.getJSONObject("values"));
-        Map<String,String> layout=spatial()?SpatialSpec.layout():rfShape()?RfShapeSpec.layout():multiView()?MultiViewSpec.layout():mesh()?MeshSpec.layout(lease.bundle.pipeline):
+        Map<String,String> layout=spatial()?SpatialSpec.layout(lease.bundle.pipeline):rfShape()?RfShapeSpec.layout():multiView()?MultiViewSpec.layout():mesh()?MeshSpec.layout(lease.bundle.pipeline):
             AudioCppSpec.layout(lease.bundle.pipeline,lease.bundle.component("model").format.equals("gguf"));
         EngineWorkspace workspace=new EngineWorkspace(new File(app.getFilesDir(),"engine-work"),context::check); final Process[] child={null};
         try {
@@ -82,7 +82,8 @@ public final class ExpansionEngine implements LocalEngine {
                 File image=context.input("reference_image");if(rfShape()||spatial())RfShapeSpec.reference(image);
                 if(spatial()){
                     SpatialSpec.readConfig(lease.bundle.pipeline,lease.file("config"));
-                    if(SpatialSpec.ultra(lease.bundle.pipeline)){File mesh=context.input("coarse_mesh");SpatialSpec.coarse(mesh);command.put("coarseMesh",workspace.link("inputs","coarse.glb",mesh).getPath());}
+                    if(MaterialSpec.matches(lease.bundle.pipeline)){File source=context.input("source_mesh");MaterialSpec.sourceMesh(source);command.put("sourceMesh",workspace.link("inputs","source.glb",source).getPath());}
+                    else if(SpatialSpec.ultra(lease.bundle.pipeline)){File mesh=context.input("coarse_mesh");SpatialSpec.coarse(mesh);command.put("coarseMesh",workspace.link("inputs","coarse.glb",mesh).getPath());}
                 }
                 command.put("referenceImage",workspace.link("inputs","reference.png",image).getPath());
             }

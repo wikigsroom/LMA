@@ -21,7 +21,7 @@ TARGETS = {
 FEATURES = {
  'F-01': ['HubCatalog','HubClient','core/RecipeCatalogue','core/RecipeSuggestions'],
  'F-02': ['core/BundleStore','core/BundleTransfers','core/BundleUpdates','core/ComponentIntegrity'],
- 'F-03': ['core/ModelBundle','LocalEngines','core/TaskRequests','core/AudioCppSpec','core/MeshSpec','core/MultiViewSpec','core/RfShapeSpec','core/SpatialSpec'],
+ 'F-03': ['core/ModelBundle','LocalEngines','core/TaskRequests','core/AudioCppSpec','core/MeshSpec','core/MultiViewSpec','core/RfShapeSpec','core/SpatialSpec','core/MaterialSpec'],
  'F-04': ['NativeWorker','NativeStages','Ltx098Engine','MnnEngine','SdEngine','SherpaEngine','MossNanoEngine','QwenTtsEngine','MossDelayEngine','OpenMossEngine','MossRqEngine','SoulxEngine','StableAudioEngine','ExpansionEngine'],
  'F-05': ['ModelSettings','GgufMetadata','core/ParameterSchema','core/LtxPixArtSpec'],
  'F-06': ['LocalJobs','core/JobStore','core/ProcessControl'],
@@ -43,9 +43,10 @@ def export():
  from multiview_catalogue import recipes as multiview_recipes
  from shape_catalogue import recipes as shape_recipes
  from spatial_catalogue import recipes as spatial_recipes
- extra=[r['id'] for r in expansion_recipes()+multiview_recipes()+shape_recipes()+spatial_recipes()]
+ from paint_catalogue import recipes as paint_recipes
+ extra=[r['id'] for r in expansion_recipes()+multiview_recipes()+shape_recipes()+spatial_recipes()+paint_recipes()]
  assert set(templates)==set(sum(TARGETS.values(),[])+['text_gguf_cpu_v1']+extra)
- assert list(TARGETS)==scope['selected_ids'] and len(templates)==50
+ assert list(TARGETS)==scope['selected_ids'] and len(templates)==52
  targets=[]
  for entry in scope['entries']:
   key=entry['selection_id']
@@ -54,16 +55,20 @@ def export():
  for feature in features:
   for name in feature['source_files']:assert (ROOT/name).is_file(),name
  data=dict(schema='lma.release-implementation/1',version=version(),validation_mode='program_only',scope='docs/proposals/multimodal-release-scope.json',features=features,selections=targets,preserved_text_template='text_gguf_cpu_v1',additional_templates=extra,recipe_templates=len(templates),model_bundles=len(read('app/src/main/assets/model-bundles.json')['bundles']),extension_engine_families=len(read('third_party/engine-lock.json')['engines']),full_scope_program_implementation_complete=True,missing_required_program_targets=[],all_selected_models_tested=False,phone_inference_tested=False,quality_accepted=False,background_endurance_tested=False,input_fingerprint=inputs())
+ data.update(frozen_scope_program_implementation_complete=True,full_scope_program_implementation_complete=False,
+  all_requested_adaptations_complete=False,missing_required_program_targets=['D04','D05','D08','D09','D10'],
+  additional_required_scope='docs/REMAINING_ADAPTATION.md')
  OUT.write_text(json.dumps(data,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
  return check()
 
 def check():
  data=read(OUT.relative_to(ROOT));current(data['input_fingerprint']);assert data['input_fingerprint']==inputs()
- assert data['full_scope_program_implementation_complete'] and not data['missing_required_program_targets']
+ assert data['frozen_scope_program_implementation_complete'] and not data['full_scope_program_implementation_complete']
+ assert data['missing_required_program_targets']==['D04','D05','D08','D09','D10'] and not data['all_requested_adaptations_complete']
  assert [x['selection_id'] for x in data['selections']]==list(TARGETS)
  assert [x['id'] for x in data['features']]==list(FEATURES)
  assert len(next(x for x in data['selections'] if x['selection_id']=='12')['frozen_subtargets'])==9
- assert data['recipe_templates']==50 and data['model_bundles']==23+len(read('catalogue/community-bundles.json')['bundles'])+len(read('catalogue/expansion-bundles.json')['bundles'])+len(read('catalogue/multiview-bundles.json')['bundles']) and data['extension_engine_families']==17
+ assert data['recipe_templates']==52 and data['model_bundles']==23+len(read('catalogue/community-bundles.json')['bundles'])+len(read('catalogue/expansion-bundles.json')['bundles'])+len(read('catalogue/multiview-bundles.json')['bundles']) and data['extension_engine_families']==17
  return data
 
 if __name__=='__main__':

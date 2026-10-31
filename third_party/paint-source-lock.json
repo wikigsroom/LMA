@@ -1,0 +1,29 @@
+{
+  "schema": "lma.source-lock/1",
+  "repository": "XPixelGroup/BasicSR",
+  "revision": "651835a1b9d38dbbdaf45750f56906be2364f01a",
+  "directory": "build/native-src/basicsr-export",
+  "files": [
+    {
+      "path": "basicsr/archs/rrdbnet_arch.py",
+      "bytes": 4621,
+      "sha256": "6aa8eb3f77e918b90eeff4ebfaf8745abe0c40eb8fcc03abbc1928693d70ab58",
+      "gitBlob": "63d07080c2ec1305090c59b7bfbbda2b003b18e4",
+      "url": "https://api.github.com/repos/XPixelGroup/BasicSR/contents/basicsr/archs/rrdbnet_arch.py?ref=651835a1b9d38dbbdaf45750f56906be2364f01a"
+    },
+    {
+      "path": "basicsr/archs/arch_util.py",
+      "bytes": 11432,
+      "sha256": "45b322b874057c4bff382cc8f1b64554857b9aa4e0c47e73fe67e4afc0b28ac1",
+      "gitBlob": "11b82a74e84e0e76e5b6e6dec4cad692c972ff63",
+      "url": "https://api.github.com/repos/XPixelGroup/BasicSR/contents/basicsr/archs/arch_util.py?ref=651835a1b9d38dbbdaf45750f56906be2364f01a"
+    },
+    {
+      "path": "LICENSE.txt",
+      "bytes": 11350,
+      "sha256": "5447872f21ddc29dc0dc060d5c885513c01c904e9da9931bba69898a6fb4d415",
+      "gitBlob": "3245f3f9e4f476ee3a283f41dd0d9db65544c222",
+      "url": "https://api.github.com/repos/XPixelGroup/BasicSR/contents/LICENSE.txt?ref=651835a1b9d38dbbdaf45750f56906be2364f01a"
+    }
+  ]
+}

@@ -2,6 +2,8 @@
 
 [English](README.en.md) · [下载 v0.3.5](https://github.com/wikigsroom/LMA/releases/tag/v0.3.5) · [使用手册](docs/USER_GUIDE.md) · [文档目录](docs/README.md) · [更新记录](CHANGELOG.md)
 
+**开发中：v0.3.6 / code56，尚未发布 Release。** 本次补齐 [F5 官方兼容中文前端](docs/F5_FRONTEND.md)、[本机 Hunyuan3D Paint / PBR 闭环](docs/LOCAL_MATERIALS.md)，并加入 UltraTex 所需 BSA 原生算子；开发目录为 **52 个模板 / 82 个模型包 / 17 个扩展引擎加文本**。新增资产仍须用户主动选择，不附模型或语言表。D04 UltraTex、D05 UniForge、D08 SAM、D09 MV-SAM、D10 SUPRA 的完整流程仍缺代码，**全部适配尚未完成**。[编号实现与完整待办](docs/REMAINING_ADAPTATION.md) · [当前开发程序证据](verification/adaptation/status.json)。下文 v0.3.5 的案例和汇总保留为已发布版本记录，不冒充当前检查。
+
 LMA（Local Model App）让用户在 Android 手机上选择、下载、管理和运行本地模型，提供聊天、生图、生视频、生音频、任务队列、结果库与本机 API。它是独立社区项目，与 LM Studio 无隶属关系；当前应用界面主要为中文，文档提供中英双语。
 
 **App 更新提供基座，模型由用户自行选择。** APK 不附模型权重，安装、升级和浏览目录不触发模型下载。所有推理、编码、解码与媒体合成都在同一手机完成，无需 ROOT、Termux、Docker、WSL、虚拟机、其他计算设备或云推理。
@@ -9,6 +11,8 @@ LMA（Local Model App）让用户在 Android 手机上选择、下载、管理�
 **当前 APK：v0.3.5 / versionCode 55 / ARM64 / Android 9+。** 原有 F-01–F-12、生文、01–14／16／17 与 44 个社区配方保留；新增语音 / 单图 3D 11 包及四视图 3D 4 包，共 **82 套模型包**。按用户要求仅做程序验证，检查不能证明努比亚 Z20 上的速度、质量或后台耐久。
 
 **本页已恢复详细使用场景、调用示例、历史生成案例、失败记录和测试入口。** 当前生产页面、桌面历史模型输出与实际 Android 验收分别标注；历史图片或音频不作为 v0.3.5 的模型实跑结果。[本次文档修复说明](docs/releases/v0.3.1-readme.md)
+
+开发源码的当前程序检查为 **36 组 / 12,975 项**，其中 F5 前端 6,671、材质几何 61、Paint 网络 / 工作器 227、实际导出 CLI 17、BSA 47、应用扩展 592、全页面 687、缺代码发布保护 9；其余为共用基座回归。原签名开发 APK、包检查、ARM64 / API28 / 16 KiB 与 Lint **0 错误 / 16 条既有警告**已核对。没有运行完整训练模型或手机耐久测试。新增 [6 张页面图 / GIF / MP4](docs/MEDIA.md)，用例扩展到 **C01–C35**，历史生成案例 H01–H18 保留。
 
 <a id="contents"></a>
 ## 阅读路线
@@ -342,6 +346,34 @@ Release 附 APK、源码 ZIP、验证 ZIP、截图 ZIP、GIF／MP4、构建与�
 - source revision、尺寸、路径、缺组件、无锐边或空曲面不符时本机失败，不替换模型或外部执行。
 - CPU MoE 仍需全部专家权重；缩小查询块不能消除权重内存。没有当前设备观察时资源继续标为未测。
 - [188 项 native / CLI 检查](verification/program/spatial.json)与[109 项实际 ONNX sparse 对照](verification/program/spatial-sparse.json)分别记录；共用算子不等于完整模型适配。
+
+### C31 · 选择 F5 官方兼容中文前端（开发中）
+
+- 在新 F5 配方中明确选择用户准备的 `f5-frontend.json`，与该模型权重、vocab、vocoder 一起导入；旧拼音字典模型继续独立保留。
+- 完整分词、HMM、多音字、变调和 F5 混合文本规则在手机执行；未知词元遵循官方 ID 0。语言资产不会随 App 安装或浏览自动下载。
+- [6,671 项 / 2,222 组文本对照与操作](docs/F5_FRONTEND.md)。这证明前端程序一致性，不代表语音质量已验证。
+
+### C32 · 给已有 GLB 生成本地 PBR 贴图（开发中）
+
+- 明确导入同批 Paint 配置、采样程序、五个 ONNX 图及 data；在“本地”选择该模型，附参考 PNG 和已有 GLB。
+- 独立编辑采样步数、引导、UV 图集和增强开关。全流程在手机完成，输出内嵌 albedo / metallic-roughness 的 GLB；几何预览目前不显示贴图。
+- [完整方案、转换和边界](docs/LOCAL_MATERIALS.md) · [截图清单](docs/media/development/material/manifest.json) · [GIF](docs/media/development/material/material-ui.gif) · [MP4](docs/media/development/material/material-ui.mp4)。页面是明确标注的 UI FIXTURE。
+
+### C33 · 保存、恢复或取消材质任务（开发中）
+
+- 缺 PNG 或 GLB 时不入队。预检只检查输入，草稿保存明确的素材角色；恢复后重新确认未测资源，连续点击只创建一个任务。
+- 参数跟随模型保存，过大值归位；其他模型的设置不受影响。取消等待本地进程退出并回收私有目录，失败不发布半成品。
+- [Java 生产检查](verification/adaptation/expansion.json)、[页面检查](verification/adaptation/ui.json)与完整模型实跑分开记录。
+
+### C34 · 判断模型流程是否真正适配（开发中）
+
+- 通过[逐项机器清单](research/portability/adaptation-current.json)检查实际网络、输入、采样、解码和任务接口；“已有稀疏算子”不等于“已有整个模型”。
+- 现有开发构建可以验证新增程序，但发布工具会拒绝将五个缺代码方案计为完成。手机与完整模型实测按用户要求免做，不再作为源码收口的前置条件。
+
+### C35 · 在结果页检查 PBR 材质（开发中）
+
+- 结果页直接解码 GLB 内嵌基础色、金属 / 粗糙度贴图，按 UV 显示，支持拖动旋转和缩放；无需外部查看器或网络贴图。
+- 超出文件 / 贴图内存上限或不支持的 GLB 扩展会显示具体原因，仍可导出完整文件。关闭页面后释放预览资源。[实际页面夹具截图](docs/media/development/material/06-material-preview.png)不是模型生成结果。
 
 ## 基座如何工作
 

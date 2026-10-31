@@ -1,0 +1,131 @@
+{
+  "schema": "lma.f5-frontend-source-lock/1",
+  "versions": {
+    "rjieba": "0.2.2",
+    "jieba-rs": "0.11.0",
+    "pypinyin": "0.55.0"
+  },
+  "f5Source": {
+    "repository": "SWivid/F5-TTS",
+    "revision": "45868abaabd74aabf03cd673d6dd00cc9d9c01ae"
+  },
+  "archives": [
+    {
+      "name": "rjieba",
+      "url": "https://files.pythonhosted.org/packages/3f/01/242848ea7f0b464a715a1994a967b208cea5c29e536f94176c65790d44a5/rjieba-0.2.2.tar.gz",
+      "sha256": "b9a5a354bc54bf939ca61af76270dad83ae4bde2ed8721997210730181bf27e6"
+    },
+    {
+      "name": "pypinyin",
+      "url": "https://files.pythonhosted.org/packages/b4/a4/784cf98c09e0dc22776b0d7d8a4a5b761218bcae4608c2416ce1e167c8af/pypinyin-0.55.0.tar.gz",
+      "sha256": "b5711b3a0c6f76e67408ec6b2e3c4987a3a806b7c528076e7c7b86fcf0eaa66b"
+    },
+    {
+      "name": "jieba-rs",
+      "url": "https://static.crates.io/crates/jieba-rs/jieba-rs-0.11.0.crate",
+      "sha256": "0a3a7d02ea31e6fc6f2fe10495dc7c5efcf381e1f21d7172f58ba792efa1c2fd"
+    },
+    {
+      "name": "jieba-macros",
+      "url": "https://static.crates.io/crates/jieba-macros/jieba-macros-0.11.0.crate",
+      "sha256": "2987cf45b1bfdb4ff1f6a814b1aa2ad6361f4ff43bf353a9bd29f391a9568f70"
+    }
+  ],
+  "files": [
+    {
+      "cachePath": "build/frontend-reference/f5_utils.py",
+      "bytes": 7101,
+      "sha256": "37bf43bd5206cc0df0af28939bfdb6fe1d72fb222c88acef922f1da6e7dc8cd2"
+    },
+    {
+      "cachePath": "build/frontend-reference/src/lib.rs",
+      "bytes": 3171,
+      "sha256": "45a4c0ab19619154c41dfe3ab42c62ffec3115d815316cb1eb8741de59fbb990"
+    },
+    {
+      "cachePath": "build/frontend-reference/rjieba/__init__.py",
+      "bytes": 489,
+      "sha256": "07ecb5eac28e7530248fad4d91ba969fdabc57cbab0935472265417e27b10a4e"
+    },
+    {
+      "cachePath": "build/frontend-reference/jieba-rs/src/lib.rs",
+      "bytes": 78139,
+      "sha256": "abf5116ca1dbc807510c67716ad346579c468b4e75bf5e639e24cde064a18532"
+    },
+    {
+      "cachePath": "build/frontend-reference/jieba-rs/src/hmm.rs",
+      "bytes": 19648,
+      "sha256": "0ac01c893d89c651de85c9e7c6bba520a434f269e838c887bd81cf264b764146"
+    },
+    {
+      "cachePath": "build/frontend-reference/jieba-rs/src/trie.rs",
+      "bytes": 17143,
+      "sha256": "b9a3cf38d4e19ff2e0e79cecd580ebb1058710bb73e176125d63a341ec0e287b"
+    },
+    {
+      "cachePath": "build/frontend-reference/jieba-data/dict.txt",
+      "bytes": 5071843,
+      "sha256": "139519822fe8ab9e10d9d07e68ea0451045380aedaf54ecc51e2a28c6b42a13f"
+    },
+    {
+      "cachePath": "build/frontend-reference/jieba-macros/src/lib.rs",
+      "bytes": 3876,
+      "sha256": "2e11157269e5b02abe8f4d8985aa62d7f582d3ee9024d9215f8d10f8a31a8f6b"
+    },
+    {
+      "cachePath": "build/frontend-reference/jieba-macros/src/hmm.model",
+      "bytes": 519739,
+      "sha256": "f17790586ac86dd048c8adffed052c4bd2b28ed0682972c1275e59040c0589a7"
+    },
+    {
+      "cachePath": "build/frontend-reference/pypinyin-source/pypinyin/core.py",
+      "bytes": 16000,
+      "sha256": "1575e91eaabf14421447916c0a892acaa64fb86949d4e6494ea9cd3b4661a0e4"
+    },
+    {
+      "cachePath": "build/frontend-reference/pypinyin-source/pypinyin/converter.py",
+      "bytes": 15228,
+      "sha256": "1bbd6c9b63d033a1c05f929b94ac7002a0e4c6d226e48bdbe074250fa4a15e44"
+    },
+    {
+      "cachePath": "build/frontend-reference/pypinyin-source/pypinyin/seg/mmseg.py",
+      "bytes": 4567,
+      "sha256": "d6062526432a4bf199b7058cdc3cb95068624df93d1fb9982168f68b6322d56f"
+    },
+    {
+      "cachePath": "build/frontend-reference/pypinyin-source/pypinyin/seg/simpleseg.py",
+      "bytes": 1885,
+      "sha256": "875419d7ca6d8654cd185a3ef6ade1723ed667be3d98c30776fbed5789acedca"
+    },
+    {
+      "cachePath": "build/frontend-reference/pypinyin-source/pypinyin/contrib/tone_sandhi.py",
+      "bytes": 7077,
+      "sha256": "33bd5350484ff00b9c3f4e6d73942b53de8e99ab307ab9ebe678e839d6c717c2"
+    },
+    {
+      "cachePath": "build/frontend-reference/f5-LICENSE.txt",
+      "bytes": 1068,
+      "sha256": "c70811d1402134de900e811d3eaa349eb60f4d38a8f635b27b1e378c630facd2",
+      "url": "https://api.github.com/repos/SWivid/F5-TTS/contents/LICENSE?ref=45868abaabd74aabf03cd673d6dd00cc9d9c01ae"
+    },
+    {
+      "cachePath": "build/frontend-reference/jieba-rs-LICENSE.txt",
+      "bytes": 1101,
+      "sha256": "92257c8d1c7a059fa02720b34fce017574a990bed14cee8f565597f4fbfb1f13",
+      "url": "https://api.github.com/repos/messense/jieba-rs/contents/LICENSE?ref=3a0d75cf7455e2006330a5b4e94156da272cd7b9"
+    },
+    {
+      "cachePath": "build/frontend-reference/LICENSE",
+      "bytes": 1078,
+      "sha256": "5bbcc94547fc9a04c80f86c704763a98226e3f80b325b374f3e0d367c0393c32"
+    },
+    {
+      "cachePath": "build/frontend-reference/pypinyin-source/LICENSE.txt",
+      "bytes": 1105,
+      "sha256": "1e6c90014b4912815c296ee64bb6f6280af47e6d4c5d80e86232dfc5defe764c"
+    }
+  ],
+  "apkIncludesLinguisticTables": false,
+  "neuralModelWeightsIncluded": false,
+  "referenceScope": "rjieba cut with HMM and F5 convert_char_to_pinyin; Style.TONE3 tone_sandhi=True; default dictionary assets; no speech generation"
+}

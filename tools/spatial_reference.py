@@ -35,9 +35,21 @@ def read(target, relative):
     return path, data.decode('utf-8-sig')
 
 
-def definitions(target, relative, injections=None, omit_imports=()):
+def definitions(target, relative, injections=None, omit_imports=(), cpu_devices=False, static_shape_keys=False):
     path, source = read(target, relative)
     tree = ast.parse(source, str(path))
+    if cpu_devices or static_shape_keys:
+        class CpuExport(ast.NodeTransformer):
+            def visit_Constant(self,node):
+                if cpu_devices and isinstance(node.value,str) and node.value in ('cuda:0','cuda:1'):
+                    return ast.copy_location(ast.Constant('cpu'),node)
+                return node
+            def visit_Subscript(self,node):
+                self.generic_visit(node)
+                if static_shape_keys and ast.unparse(node)=='multivew_hidden_states.shape[1]':
+                    return ast.copy_location(ast.Call(ast.Name('int',ast.Load()),[node],[]),node)
+                return node
+        tree=ast.fix_missing_locations(CpuExport().visit(tree))
     omitted = []
     body = []
     for node in tree.body:

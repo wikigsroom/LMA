@@ -1,0 +1,205 @@
+{
+  "passed": 47,
+  "checks": [
+    {
+      "case": "signed_in_custom_domain"
+    },
+    {
+      "case": "publisher_selected_blocks_33"
+    },
+    {
+      "case": "native_accept",
+      "error": ""
+    },
+    {
+      "case": "online_softmax_(33, 0)",
+      "maximumError": 2.384185791015625e-07
+    },
+    {
+      "case": "native_accept",
+      "error": ""
+    },
+    {
+      "case": "online_softmax_(33, 1)",
+      "maximumError": 0.0
+    },
+    {
+      "case": "native_accept",
+      "error": ""
+    },
+    {
+      "case": "original_keys_not_pooled_keys_33"
+    },
+    {
+      "case": "publisher_selected_blocks_67"
+    },
+    {
+      "case": "native_accept",
+      "error": ""
+    },
+    {
+      "case": "online_softmax_(67, 0)",
+      "maximumError": 4.76837158203125e-07
+    },
+    {
+      "case": "native_accept",
+      "error": ""
+    },
+    {
+      "case": "online_softmax_(67, 1)",
+      "maximumError": 0.0
+    },
+    {
+      "case": "native_accept",
+      "error": ""
+    },
+    {
+      "case": "original_keys_not_pooled_keys_67"
+    },
+    {
+      "case": "publisher_selected_blocks_17"
+    },
+    {
+      "case": "native_accept",
+      "error": ""
+    },
+    {
+      "case": "online_softmax_(17, 0)",
+      "maximumError": 3.5762786865234375e-07
+    },
+    {
+      "case": "full_ratio_dense_attention"
+    },
+    {
+      "case": "native_accept",
+      "error": ""
+    },
+    {
+      "case": "online_softmax_(17, 1)",
+      "maximumError": 0.0
+    },
+    {
+      "case": "native_accept",
+      "error": ""
+    },
+    {
+      "case": "original_keys_not_pooled_keys_17"
+    },
+    {
+      "case": "publisher_selected_blocks_128"
+    },
+    {
+      "case": "native_accept",
+      "error": ""
+    },
+    {
+      "case": "online_softmax_(128, 0)",
+      "maximumError": 3.5762786865234375e-07
+    },
+    {
+      "case": "native_accept",
+      "error": ""
+    },
+    {
+      "case": "online_softmax_(128, 1)",
+      "maximumError": 0.0
+    },
+    {
+      "case": "native_accept",
+      "error": ""
+    },
+    {
+      "case": "original_keys_not_pooled_keys_128"
+    },
+    {
+      "case": "publisher_selected_blocks_19"
+    },
+    {
+      "case": "native_accept",
+      "error": ""
+    },
+    {
+      "case": "online_softmax_(19, 0)",
+      "maximumError": 3.5762786865234375e-07
+    },
+    {
+      "case": "native_accept",
+      "error": ""
+    },
+    {
+      "case": "online_softmax_(19, 1)",
+      "maximumError": 0.0
+    },
+    {
+      "case": "native_accept",
+      "error": ""
+    },
+    {
+      "case": "original_keys_not_pooled_keys_19"
+    },
+    {
+      "case": "native_reject",
+      "error": "Non-zero status code returned while running BlockSparseAttention node. Name:'/BlockSparseAttention' Status Message: Block attention requires bounded blocks, ratio and FP32/BF16 policy\n"
+    },
+    {
+      "case": "native_reject",
+      "error": "Non-zero status code returned while running BlockSparseAttention node. Name:'/BlockSparseAttention' Status Message: Block attention requires bounded blocks, ratio and FP32/BF16 policy\n"
+    },
+    {
+      "case": "native_reject",
+      "error": "Non-zero status code returned while running BlockSparseAttention node. Name:'/BlockSparseAttention' Status Message: Block attention requires bounded blocks, ratio and FP32/BF16 policy\n"
+    },
+    {
+      "case": "native_reject",
+      "error": "Non-zero status code returned while running BlockSparseAttention node. Name:'/BlockSparseAttention' Status Message: Block attention requires bounded blocks, ratio and FP32/BF16 policy\n"
+    },
+    {
+      "case": "native_reject",
+      "error": "Non-zero status code returned while running BlockSparseAttention node. Name:'/BlockSparseAttention' Status Message: Block attention requires bounded blocks, ratio and FP32/BF16 policy\n"
+    },
+    {
+      "case": "native_reject",
+      "error": "Non-zero status code returned while running BlockSparseAttention node. Name:'/BlockSparseAttention' Status Message: Block attention top-k has no keys for this support; select a compatible export\n"
+    },
+    {
+      "case": "native_reject",
+      "error": "Got invalid dimensions for input: policy for the following indices\n index: 0 Got: 3 Expected: 4\n Please fix either the inputs/outputs or the model.\n"
+    },
+    {
+      "case": "native_reject",
+      "error": "Non-zero status code returned while running BlockSparseAttention node. Name:'/BlockSparseAttention' Status Message: Block attention requires matching [B,H,L,D] and policy[4]\n"
+    },
+    {
+      "case": "native_accept",
+      "error": ""
+    },
+    {
+      "case": "deterministic_ties"
+    }
+  ],
+  "input_fingerprint": {
+    "native/spatial/block_attention.hpp": "9d87fc393f51104f11f291dda84763744249aedaf1f57feab72d94c161b9503d",
+    "native/spatial/CMakeLists.txt": "31f72529622fc7c9b8976868e6fbca0b8e886fb2bbbf54917ab2a619173d88c3",
+    "native/spatial/image.hpp": "7f2b70863591a51e9bca407a7ae0677fda0680efa51b9c54e91a5a3c8f073909",
+    "native/spatial/linear_sampler.hpp": "96ff6befbb32480559c038b4fb33308a127fa41088bea73404866d322262166d",
+    "native/spatial/material.hpp": "0e1cb2b5a5c84c2bdef41e69b435e54d5d8218d01d9c25d64c9121fe527158c2",
+    "native/spatial/math.hpp": "abc3c2644fc02f864cec371053b3ad92c42ce89b9215beb86a3f731b861c7f45",
+    "native/spatial/mesh.hpp": "9d6c1af1780abf2ad83cd8d2aaa5e6e5f2f762c132d5006929a097c01fae6eaa",
+    "native/spatial/ort_graph.hpp": "d78b66a3b16ebad13410e045035d58d6dad5eab37346a6a697fdba095a1f8908",
+    "native/spatial/sparse.hpp": "118c821be7601439a166d800729feb9e77320b6ad355808edc1e802d99b07e67",
+    "native/spatial/sparse_ort.hpp": "c1dca480849f96640dd7a0fca7cf84239d1519e586d4607d0e9b37d2132d53cd",
+    "native/spatial/surface_sampling.hpp": "0aeb83fc1030f3114784b4dd0dbd7db5c5464ebc6ce5c85c3436bec6080cb709",
+    "native/spatial/texture.hpp": "08e0edbaf02f514ba526c2bf5216236c782b4343de2b3d4c480046c0ffe0ff81",
+    "native/spatial/worker.cpp": "9b952fd8eb1b44df542ec99c507fb285774b4d5b1d8435e7c99b6404075a5f6e",
+    "tests/expansion-native/sparse_graph.cpp": "4ea22cdfba0ccb1d9a9df6e7fe0209e0293a4e6c0d14689430cb9674e1aeea24",
+    "third_party/spatial-shape-source-lock.json": "5492375fbf3934a15db37581a413a94e64038a486189b0ec51d37ed1ff55f69d",
+    "tools/spatial_reference.py": "d71d02cea9e0ddb4b5483561c9d04db76cd9904ce4c118112ed647060397a893",
+    "tools/test_ultratex_attention.py": "d23f43228df2337968dfdacaf1ad1f932eed5b9546f71efa171e38124a2d6092",
+    "tools/ultratex_attention.py": "e8258a1d88b3da7428a2400f6ace8b1123855fcf07cd2fb10573b7a6cac0c373"
+  },
+  "completeModelsDownloaded": 0,
+  "completeModelsRun": 0,
+  "physicalDeviceTests": 0,
+  "fullUltraTexAdapter": false,
+  "virtualizationUsed": false
+}

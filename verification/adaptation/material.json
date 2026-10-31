@@ -1,0 +1,208 @@
+{
+  "passed": 61,
+  "checks": [
+    {
+      "case": "transform_(0, 0)"
+    },
+    {
+      "case": "camera_(0, 0)"
+    },
+    {
+      "case": "ray_visibility_(0, 0)"
+    },
+    {
+      "case": "ray_depth_(0, 0)",
+      "maximumError": 1.2791332126838029e-07
+    },
+    {
+      "case": "normal_condition_(0, 0)"
+    },
+    {
+      "case": "position_condition_(0, 0)"
+    },
+    {
+      "case": "transform_(0, 90)"
+    },
+    {
+      "case": "camera_(0, 90)"
+    },
+    {
+      "case": "ray_visibility_(0, 90)"
+    },
+    {
+      "case": "ray_depth_(0, 90)",
+      "maximumError": 2.1696360463785425e-07
+    },
+    {
+      "case": "normal_condition_(0, 90)"
+    },
+    {
+      "case": "position_condition_(0, 90)"
+    },
+    {
+      "case": "transform_(0, 180)"
+    },
+    {
+      "case": "camera_(0, 180)"
+    },
+    {
+      "case": "ray_visibility_(0, 180)"
+    },
+    {
+      "case": "ray_depth_(0, 180)",
+      "maximumError": 1.2791332126838029e-07
+    },
+    {
+      "case": "normal_condition_(0, 180)"
+    },
+    {
+      "case": "position_condition_(0, 180)"
+    },
+    {
+      "case": "transform_(0, 270)"
+    },
+    {
+      "case": "camera_(0, 270)"
+    },
+    {
+      "case": "ray_visibility_(0, 270)"
+    },
+    {
+      "case": "ray_depth_(0, 270)",
+      "maximumError": 2.1696360463785425e-07
+    },
+    {
+      "case": "normal_condition_(0, 270)"
+    },
+    {
+      "case": "position_condition_(0, 270)"
+    },
+    {
+      "case": "transform_(90, 0)"
+    },
+    {
+      "case": "camera_(90, 0)"
+    },
+    {
+      "case": "ray_visibility_(90, 0)"
+    },
+    {
+      "case": "ray_depth_(90, 0)",
+      "maximumError": 1.531819138200774e-07
+    },
+    {
+      "case": "normal_condition_(90, 0)"
+    },
+    {
+      "case": "position_condition_(90, 0)"
+    },
+    {
+      "case": "transform_(-90, 180)"
+    },
+    {
+      "case": "camera_(-90, 180)"
+    },
+    {
+      "case": "ray_visibility_(-90, 180)"
+    },
+    {
+      "case": "ray_depth_(-90, 180)",
+      "maximumError": 1.531819138200774e-07
+    },
+    {
+      "case": "normal_condition_(-90, 180)"
+    },
+    {
+      "case": "position_condition_(-90, 180)"
+    },
+    {
+      "case": "transform_(21, 37)"
+    },
+    {
+      "case": "camera_(21, 37)"
+    },
+    {
+      "case": "ray_visibility_(21, 37)"
+    },
+    {
+      "case": "ray_depth_(21, 37)",
+      "maximumError": 2.0575571979541962e-07
+    },
+    {
+      "case": "normal_condition_(21, 37)"
+    },
+    {
+      "case": "position_condition_(21, 37)"
+    },
+    {
+      "case": "transform_(-17, 141)"
+    },
+    {
+      "case": "camera_(-17, 141)"
+    },
+    {
+      "case": "ray_visibility_(-17, 141)"
+    },
+    {
+      "case": "ray_depth_(-17, 141)",
+      "maximumError": 2.54078638128874e-07
+    },
+    {
+      "case": "normal_condition_(-17, 141)"
+    },
+    {
+      "case": "position_condition_(-17, 141)"
+    },
+    {
+      "case": "uv_seams_preserve_positions"
+    },
+    {
+      "case": "uv_triangle_count"
+    },
+    {
+      "case": "uv_finite_unit"
+    },
+    {
+      "case": "bake_has_surface"
+    },
+    {
+      "case": "glb_framing"
+    },
+    {
+      "case": "pbr_material_links"
+    },
+    {
+      "case": "embedded_png_0"
+    },
+    {
+      "case": "embedded_png_1"
+    },
+    {
+      "case": "zero_extent"
+    },
+    {
+      "case": "bad_index"
+    },
+    {
+      "case": "size_budget"
+    },
+    {
+      "case": "uv_budget"
+    },
+    {
+      "case": "existing_output_not_replaced"
+    }
+  ],
+  "input_fingerprint": {
+    "build/native-src/trellis-cpp/thirdparty/xatlas/xatlas.cpp": "94e73a73bf024b33529dc2927860fb287f817aa0e5f522e2c49e097b63b79cfd",
+    "build/native-src/trellis-cpp/thirdparty/xatlas/xatlas.h": "d31ab485ac826753aa404085122c2fa9522d51436d2ce76f59c24344e5129616",
+    "native/spatial/texture.hpp": "08e0edbaf02f514ba526c2bf5216236c782b4343de2b3d4c480046c0ffe0ff81",
+    "tests/expansion-native/material.cpp": "ff209e9336ee7746d8b8c2b1f2653eafcb063527de24ff90c2a1f4b0ae3a7a52",
+    "third_party/spatial-shape-source-lock.json": "5492375fbf3934a15db37581a413a94e64038a486189b0ec51d37ed1ff55f69d",
+    "tools/test_material.py": "0cf91eae9f70c579526f2c69040b0816b5da3d84d51b5616e6bbe3800de6041b"
+  },
+  "completeModelsDownloaded": 0,
+  "completeModelsRun": 0,
+  "physicalDeviceTests": 0,
+  "virtualizationUsed": false
+}

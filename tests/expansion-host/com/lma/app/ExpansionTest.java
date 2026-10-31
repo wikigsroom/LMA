@@ -35,6 +35,7 @@ public final class ExpansionTest {
             JSONObject c=read(new File(args[0])), paths=c.getJSONObject("components");
             for(Iterator<String> it=paths.keys();it.hasNext();)if(!new File(paths.getString(it.next())).isFile())throw new IOException("Missing linked component");
             if(c.getString("pipeline").equals("omnivoice") && paths.has("audio_codec") && !new File(c.getString("workspace"),"audio_tokenizer/model.safetensors").isFile())throw new IOException("Codec layout missing");
+            if(paths.has("frontend")&&!new File(c.getString("workspace"),"f5-frontend.json").isFile())throw new IOException("F5 frontend was not staged with its selected model");
             File output=new File(c.getString("output"));if(c.getString("type").equals("mesh.generate"))glb(output,geometry());else wav(output);
             System.out.println(new JSONObject().put("event","execution").put("details",new JSONObject().put("fixture",true).put("modelInference",false)));
             System.out.println(new JSONObject().put("event","complete").put("output",output.getPath()));
@@ -94,10 +95,18 @@ public final class ExpansionTest {
         JSONObject record=artifacts.commit(job,part,new JSONObject().put("execution","same_android_phone"),()->{});check(record.getString("filename").endsWith(".glb"));check(artifacts.get(record.getString("id")).getJSONObject("metadata").getInt("triangles")==1);
         check(new ArtifactStore(new File(run,"artifacts"),GlbFile::inspect).file(record.getString("id")).exists());
         JSONObject wave=AudioCppSpec.inputs("f5_v1").json();check(wave.getJSONObject("roles").getJSONObject("reference_audio").getBoolean("required"));check(!AudioCppSpec.inputs("omnivoice").json().getJSONObject("roles").getJSONObject("reference_audio").getBoolean("required"));
-        for(String variant:Arrays.asList("f5_v1","omnivoice","omnivoice_raw","trellis2","pixal3d")) {
-            String pipeline=variant.equals("omnivoice_raw")?"omnivoice":variant;
+        for(String variant:Arrays.asList("f5_v1","f5_official","omnivoice","omnivoice_raw","trellis2","pixal3d")) {
+            String pipeline=variant.equals("omnivoice_raw")?"omnivoice":variant.equals("f5_official")?"f5_v1":variant;
             JSONObject raw=null;for(int i=0;i<bundles.length();i++)if(bundles.getJSONObject(i).getString("pipeline").equals(pipeline) && (!variant.equals("omnivoice_raw") || bundles.getJSONObject(i).getJSONArray("components").length()>1)){raw=DataFiles.copy(bundles.getJSONObject(i));break;}
             raw.put("id","fixture_"+variant);Map<String,File> files=new LinkedHashMap<>();
+            if(variant.equals("f5_official")) {
+                raw.getJSONArray("components").put(new JSONObject().put("role","frontend").put("path","f5-frontend.json").put("format","json").put("bytes",1).put("sha256",String.join("",Collections.nCopies(64,"0"))));
+                AudioCppSpec.validate(new ModelBundle(raw),"speech.synthesize");check(true);
+                JSONObject excessive=DataFiles.copy(raw);JSONArray cs=excessive.getJSONArray("components");cs.getJSONObject(cs.length()-1).put("bytes",96L*1024*1024+1);
+                rejects(()->AudioCppSpec.validate(new ModelBundle(excessive),"speech.synthesize"));
+                JSONObject wrongFormat=DataFiles.copy(raw);JSONArray wf=wrongFormat.getJSONArray("components");wf.getJSONObject(wf.length()-1).put("format","text");
+                rejects(()->AudioCppSpec.validate(new ModelBundle(wrongFormat),"speech.synthesize"));
+            }
             for(int i=0;i<raw.getJSONArray("components").length();i++) {
                 JSONObject c=raw.getJSONArray("components").getJSONObject(i);File file=new File(run,"component-"+i);Files.write(file.toPath(),new byte[]{(byte)i});
                 c.remove("gitBlobSha1");c.remove("url");c.put("sha256",DataFiles.sha256(file)).put("bytes",1);files.put(c.getString("role"),file);
@@ -126,6 +135,7 @@ public final class ExpansionTest {
         MultiViewTest.run(root,run);
         RfShapeTest.run(root,run);
         SpatialTest.run(root,run);
+        MaterialTest.run(root,run);
         System.out.println(new JSONObject().put("passed",count).put("model_inference",false).put("physical_device",false).put("complete_model_downloads",0).put("synthetic_glb",true).put("actual_host_child_processes",true));
     }
 }

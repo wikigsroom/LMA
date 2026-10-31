@@ -1,0 +1,829 @@
+{
+  "passed": 227,
+  "checks": [
+    {
+      "case": "unipc_requested_steps_1"
+    },
+    {
+      "case": "native_unipc_1",
+      "maximumError": 3.814697265625e-06
+    },
+    {
+      "case": "unipc_requested_steps_2"
+    },
+    {
+      "case": "native_unipc_2",
+      "maximumError": 1.9073486328125e-06
+    },
+    {
+      "case": "unipc_requested_steps_3"
+    },
+    {
+      "case": "native_unipc_3",
+      "maximumError": 1.9073486328125e-06
+    },
+    {
+      "case": "unipc_requested_steps_4"
+    },
+    {
+      "case": "native_unipc_4",
+      "maximumError": 5.7220458984375e-06
+    },
+    {
+      "case": "unipc_requested_steps_5"
+    },
+    {
+      "case": "native_unipc_5",
+      "maximumError": 5.7220458984375e-06
+    },
+    {
+      "case": "unipc_requested_steps_6"
+    },
+    {
+      "case": "native_unipc_6",
+      "maximumError": 3.814697265625e-06
+    },
+    {
+      "case": "unipc_requested_steps_7"
+    },
+    {
+      "case": "native_unipc_7",
+      "maximumError": 4.76837158203125e-06
+    },
+    {
+      "case": "unipc_requested_steps_8"
+    },
+    {
+      "case": "native_unipc_8",
+      "maximumError": 3.814697265625e-06
+    },
+    {
+      "case": "unipc_requested_steps_9"
+    },
+    {
+      "case": "native_unipc_9",
+      "maximumError": 7.62939453125e-06
+    },
+    {
+      "case": "unipc_requested_steps_10"
+    },
+    {
+      "case": "native_unipc_10",
+      "maximumError": 7.62939453125e-06
+    },
+    {
+      "case": "unipc_requested_steps_11"
+    },
+    {
+      "case": "native_unipc_11",
+      "maximumError": 3.814697265625e-06
+    },
+    {
+      "case": "unipc_requested_steps_12"
+    },
+    {
+      "case": "native_unipc_12",
+      "maximumError": 7.62939453125e-06
+    },
+    {
+      "case": "unipc_requested_steps_13"
+    },
+    {
+      "case": "native_unipc_13",
+      "maximumError": 5.7220458984375e-06
+    },
+    {
+      "case": "unipc_requested_steps_14"
+    },
+    {
+      "case": "native_unipc_14",
+      "maximumError": 5.7220458984375e-06
+    },
+    {
+      "case": "unipc_requested_steps_15"
+    },
+    {
+      "case": "native_unipc_15",
+      "maximumError": 4.76837158203125e-06
+    },
+    {
+      "case": "unipc_requested_steps_16"
+    },
+    {
+      "case": "native_unipc_16",
+      "maximumError": 7.62939453125e-06
+    },
+    {
+      "case": "unipc_requested_steps_17"
+    },
+    {
+      "case": "native_unipc_17",
+      "maximumError": 8.58306884765625e-06
+    },
+    {
+      "case": "unipc_requested_steps_18"
+    },
+    {
+      "case": "native_unipc_18",
+      "maximumError": 7.62939453125e-06
+    },
+    {
+      "case": "unipc_requested_steps_19"
+    },
+    {
+      "case": "native_unipc_19",
+      "maximumError": 9.5367431640625e-06
+    },
+    {
+      "case": "unipc_requested_steps_20"
+    },
+    {
+      "case": "native_unipc_20",
+      "maximumError": 9.5367431640625e-06
+    },
+    {
+      "case": "unipc_requested_steps_21"
+    },
+    {
+      "case": "native_unipc_21",
+      "maximumError": 3.814697265625e-06
+    },
+    {
+      "case": "unipc_requested_steps_22"
+    },
+    {
+      "case": "native_unipc_22",
+      "maximumError": 1.52587890625e-05
+    },
+    {
+      "case": "unipc_requested_steps_23"
+    },
+    {
+      "case": "native_unipc_23",
+      "maximumError": 8.58306884765625e-06
+    },
+    {
+      "case": "unipc_requested_steps_24"
+    },
+    {
+      "case": "native_unipc_24",
+      "maximumError": 9.5367431640625e-06
+    },
+    {
+      "case": "unipc_requested_steps_25"
+    },
+    {
+      "case": "native_unipc_25",
+      "maximumError": 5.7220458984375e-06
+    },
+    {
+      "case": "unipc_requested_steps_26"
+    },
+    {
+      "case": "native_unipc_26",
+      "maximumError": 5.7220458984375e-06
+    },
+    {
+      "case": "unipc_requested_steps_27"
+    },
+    {
+      "case": "native_unipc_27",
+      "maximumError": 7.62939453125e-06
+    },
+    {
+      "case": "unipc_requested_steps_28"
+    },
+    {
+      "case": "native_unipc_28",
+      "maximumError": 5.7220458984375e-06
+    },
+    {
+      "case": "unipc_requested_steps_29"
+    },
+    {
+      "case": "native_unipc_29",
+      "maximumError": 9.5367431640625e-06
+    },
+    {
+      "case": "unipc_requested_steps_30"
+    },
+    {
+      "case": "native_unipc_30",
+      "maximumError": 1.1444091796875e-05
+    },
+    {
+      "case": "unipc_requested_steps_31"
+    },
+    {
+      "case": "native_unipc_31",
+      "maximumError": 4.76837158203125e-06
+    },
+    {
+      "case": "unipc_requested_steps_32"
+    },
+    {
+      "case": "native_unipc_32",
+      "maximumError": 9.5367431640625e-06
+    },
+    {
+      "case": "unipc_requested_steps_33"
+    },
+    {
+      "case": "native_unipc_33",
+      "maximumError": 1.33514404296875e-05
+    },
+    {
+      "case": "unipc_requested_steps_34"
+    },
+    {
+      "case": "native_unipc_34",
+      "maximumError": 1.1444091796875e-05
+    },
+    {
+      "case": "unipc_requested_steps_35"
+    },
+    {
+      "case": "native_unipc_35",
+      "maximumError": 6.67572021484375e-06
+    },
+    {
+      "case": "unipc_requested_steps_36"
+    },
+    {
+      "case": "native_unipc_36",
+      "maximumError": 4.76837158203125e-06
+    },
+    {
+      "case": "unipc_requested_steps_37"
+    },
+    {
+      "case": "native_unipc_37",
+      "maximumError": 9.5367431640625e-06
+    },
+    {
+      "case": "unipc_requested_steps_38"
+    },
+    {
+      "case": "native_unipc_38",
+      "maximumError": 1.1444091796875e-05
+    },
+    {
+      "case": "unipc_requested_steps_39"
+    },
+    {
+      "case": "native_unipc_39",
+      "maximumError": 1.71661376953125e-05
+    },
+    {
+      "case": "unipc_requested_steps_40"
+    },
+    {
+      "case": "native_unipc_40",
+      "maximumError": 1.430511474609375e-05
+    },
+    {
+      "case": "unipc_requested_steps_41"
+    },
+    {
+      "case": "native_unipc_41",
+      "maximumError": 2.288818359375e-05
+    },
+    {
+      "case": "unipc_requested_steps_42"
+    },
+    {
+      "case": "native_unipc_42",
+      "maximumError": 8.58306884765625e-06
+    },
+    {
+      "case": "unipc_requested_steps_43"
+    },
+    {
+      "case": "native_unipc_43",
+      "maximumError": 1.049041748046875e-05
+    },
+    {
+      "case": "unipc_requested_steps_44"
+    },
+    {
+      "case": "native_unipc_44",
+      "maximumError": 1.52587890625e-05
+    },
+    {
+      "case": "unipc_requested_steps_45"
+    },
+    {
+      "case": "native_unipc_45",
+      "maximumError": 1.1444091796875e-05
+    },
+    {
+      "case": "unipc_requested_steps_46"
+    },
+    {
+      "case": "native_unipc_46",
+      "maximumError": 3.814697265625e-06
+    },
+    {
+      "case": "unipc_requested_steps_47"
+    },
+    {
+      "case": "native_unipc_47",
+      "maximumError": 5.7220458984375e-06
+    },
+    {
+      "case": "unipc_requested_steps_48"
+    },
+    {
+      "case": "native_unipc_48",
+      "maximumError": 7.62939453125e-06
+    },
+    {
+      "case": "unipc_requested_steps_49"
+    },
+    {
+      "case": "native_unipc_49",
+      "maximumError": 1.52587890625e-05
+    },
+    {
+      "case": "unipc_requested_steps_50"
+    },
+    {
+      "case": "native_unipc_50",
+      "maximumError": 1.33514404296875e-05
+    },
+    {
+      "case": "unipc_requested_steps_51"
+    },
+    {
+      "case": "native_unipc_51",
+      "maximumError": 8.58306884765625e-06
+    },
+    {
+      "case": "unipc_requested_steps_52"
+    },
+    {
+      "case": "native_unipc_52",
+      "maximumError": 1.1444091796875e-05
+    },
+    {
+      "case": "unipc_requested_steps_53"
+    },
+    {
+      "case": "native_unipc_53",
+      "maximumError": 7.62939453125e-06
+    },
+    {
+      "case": "unipc_requested_steps_54"
+    },
+    {
+      "case": "native_unipc_54",
+      "maximumError": 4.76837158203125e-06
+    },
+    {
+      "case": "unipc_requested_steps_55"
+    },
+    {
+      "case": "native_unipc_55",
+      "maximumError": 1.239776611328125e-05
+    },
+    {
+      "case": "unipc_requested_steps_56"
+    },
+    {
+      "case": "native_unipc_56",
+      "maximumError": 2.6702880859375e-05
+    },
+    {
+      "case": "unipc_requested_steps_57"
+    },
+    {
+      "case": "native_unipc_57",
+      "maximumError": 1.52587890625e-05
+    },
+    {
+      "case": "unipc_requested_steps_58"
+    },
+    {
+      "case": "native_unipc_58",
+      "maximumError": 1.33514404296875e-05
+    },
+    {
+      "case": "unipc_requested_steps_59"
+    },
+    {
+      "case": "native_unipc_59",
+      "maximumError": 2.09808349609375e-05
+    },
+    {
+      "case": "unipc_requested_steps_60"
+    },
+    {
+      "case": "native_unipc_60",
+      "maximumError": 1.52587890625e-05
+    },
+    {
+      "case": "unipc_requested_steps_61"
+    },
+    {
+      "case": "native_unipc_61",
+      "maximumError": 1.33514404296875e-05
+    },
+    {
+      "case": "unipc_requested_steps_62"
+    },
+    {
+      "case": "native_unipc_62",
+      "maximumError": 5.7220458984375e-06
+    },
+    {
+      "case": "unipc_requested_steps_63"
+    },
+    {
+      "case": "native_unipc_63",
+      "maximumError": 1.71661376953125e-05
+    },
+    {
+      "case": "unipc_requested_steps_64"
+    },
+    {
+      "case": "native_unipc_64",
+      "maximumError": 2.47955322265625e-05
+    },
+    {
+      "case": "unipc_requested_steps_65"
+    },
+    {
+      "case": "native_unipc_65",
+      "maximumError": 1.33514404296875e-05
+    },
+    {
+      "case": "unipc_requested_steps_66"
+    },
+    {
+      "case": "native_unipc_66",
+      "maximumError": 1.33514404296875e-05
+    },
+    {
+      "case": "unipc_requested_steps_67"
+    },
+    {
+      "case": "native_unipc_67",
+      "maximumError": 7.62939453125e-06
+    },
+    {
+      "case": "unipc_requested_steps_68"
+    },
+    {
+      "case": "native_unipc_68",
+      "maximumError": 7.62939453125e-06
+    },
+    {
+      "case": "unipc_requested_steps_69"
+    },
+    {
+      "case": "native_unipc_69",
+      "maximumError": 1.1444091796875e-05
+    },
+    {
+      "case": "unipc_requested_steps_70"
+    },
+    {
+      "case": "native_unipc_70",
+      "maximumError": 1.33514404296875e-05
+    },
+    {
+      "case": "unipc_requested_steps_71"
+    },
+    {
+      "case": "native_unipc_71",
+      "maximumError": 1.1444091796875e-05
+    },
+    {
+      "case": "unipc_requested_steps_72"
+    },
+    {
+      "case": "native_unipc_72",
+      "maximumError": 7.62939453125e-06
+    },
+    {
+      "case": "unipc_requested_steps_73"
+    },
+    {
+      "case": "native_unipc_73",
+      "maximumError": 1.1444091796875e-05
+    },
+    {
+      "case": "unipc_requested_steps_74"
+    },
+    {
+      "case": "native_unipc_74",
+      "maximumError": 1.1444091796875e-05
+    },
+    {
+      "case": "unipc_requested_steps_75"
+    },
+    {
+      "case": "native_unipc_75",
+      "maximumError": 2.47955322265625e-05
+    },
+    {
+      "case": "unipc_requested_steps_76"
+    },
+    {
+      "case": "native_unipc_76",
+      "maximumError": 1.1444091796875e-05
+    },
+    {
+      "case": "unipc_requested_steps_77"
+    },
+    {
+      "case": "native_unipc_77",
+      "maximumError": 3.814697265625e-06
+    },
+    {
+      "case": "unipc_requested_steps_78"
+    },
+    {
+      "case": "native_unipc_78",
+      "maximumError": 2.6702880859375e-05
+    },
+    {
+      "case": "unipc_requested_steps_79"
+    },
+    {
+      "case": "native_unipc_79",
+      "maximumError": 3.0517578125e-05
+    },
+    {
+      "case": "unipc_requested_steps_80"
+    },
+    {
+      "case": "native_unipc_80",
+      "maximumError": 1.52587890625e-05
+    },
+    {
+      "case": "unipc_requested_steps_81"
+    },
+    {
+      "case": "native_unipc_81",
+      "maximumError": 1.33514404296875e-05
+    },
+    {
+      "case": "unipc_requested_steps_82"
+    },
+    {
+      "case": "native_unipc_82",
+      "maximumError": 1.1444091796875e-05
+    },
+    {
+      "case": "unipc_requested_steps_83"
+    },
+    {
+      "case": "native_unipc_83",
+      "maximumError": 7.62939453125e-06
+    },
+    {
+      "case": "unipc_requested_steps_84"
+    },
+    {
+      "case": "native_unipc_84",
+      "maximumError": 1.9073486328125e-05
+    },
+    {
+      "case": "unipc_requested_steps_85"
+    },
+    {
+      "case": "native_unipc_85",
+      "maximumError": 9.5367431640625e-06
+    },
+    {
+      "case": "unipc_requested_steps_86"
+    },
+    {
+      "case": "native_unipc_86",
+      "maximumError": 1.430511474609375e-05
+    },
+    {
+      "case": "unipc_requested_steps_87"
+    },
+    {
+      "case": "native_unipc_87",
+      "maximumError": 2.86102294921875e-05
+    },
+    {
+      "case": "unipc_requested_steps_88"
+    },
+    {
+      "case": "native_unipc_88",
+      "maximumError": 3.4332275390625e-05
+    },
+    {
+      "case": "unipc_requested_steps_89"
+    },
+    {
+      "case": "native_unipc_89",
+      "maximumError": 1.1444091796875e-05
+    },
+    {
+      "case": "unipc_requested_steps_90"
+    },
+    {
+      "case": "native_unipc_90",
+      "maximumError": 7.62939453125e-06
+    },
+    {
+      "case": "unipc_requested_steps_91"
+    },
+    {
+      "case": "native_unipc_91",
+      "maximumError": 2.86102294921875e-05
+    },
+    {
+      "case": "unipc_requested_steps_92"
+    },
+    {
+      "case": "native_unipc_92",
+      "maximumError": 1.239776611328125e-05
+    },
+    {
+      "case": "unipc_requested_steps_93"
+    },
+    {
+      "case": "native_unipc_93",
+      "maximumError": 2.288818359375e-05
+    },
+    {
+      "case": "unipc_requested_steps_94"
+    },
+    {
+      "case": "native_unipc_94",
+      "maximumError": 7.62939453125e-06
+    },
+    {
+      "case": "unipc_requested_steps_95"
+    },
+    {
+      "case": "native_unipc_95",
+      "maximumError": 1.1444091796875e-05
+    },
+    {
+      "case": "unipc_requested_steps_96"
+    },
+    {
+      "case": "native_unipc_96",
+      "maximumError": 1.33514404296875e-05
+    },
+    {
+      "case": "unipc_requested_steps_97"
+    },
+    {
+      "case": "native_unipc_97",
+      "maximumError": 2.6702880859375e-05
+    },
+    {
+      "case": "unipc_requested_steps_98"
+    },
+    {
+      "case": "native_unipc_98",
+      "maximumError": 3.0517578125e-05
+    },
+    {
+      "case": "unipc_requested_steps_99"
+    },
+    {
+      "case": "native_unipc_99",
+      "maximumError": 2.288818359375e-05
+    },
+    {
+      "case": "unipc_requested_steps_100"
+    },
+    {
+      "case": "native_unipc_100",
+      "maximumError": 3.814697265625e-06
+    },
+    {
+      "case": "flow_torch_onnx",
+      "maximumError": 1.6391277313232422e-06
+    },
+    {
+      "case": "position_port_matches_source",
+      "maximumError": 1.6391277313232422e-06
+    },
+    {
+      "case": "position_mask_and_resolutions"
+    },
+    {
+      "case": "image_encoder_torch_onnx",
+      "maximumError": 3.4570693969726562e-06
+    },
+    {
+      "case": "vae_encoder_torch_onnx",
+      "maximumError": 1.341104507446289e-06
+    },
+    {
+      "case": "vae_decoder_torch_onnx",
+      "maximumError": 5.4836273193359375e-06
+    },
+    {
+      "case": "upscale_torch_onnx",
+      "maximumError": 8.940696716308594e-08
+    },
+    {
+      "case": "manifest_config"
+    },
+    {
+      "case": "manifest_sampler"
+    },
+    {
+      "case": "manifest_image_encoder"
+    },
+    {
+      "case": "manifest_vae_encoder"
+    },
+    {
+      "case": "manifest_flow"
+    },
+    {
+      "case": "manifest_vae_decoder"
+    },
+    {
+      "case": "manifest_upscale"
+    },
+    {
+      "case": "manifest_image_encoder_data"
+    },
+    {
+      "case": "manifest_vae_encoder_data"
+    },
+    {
+      "case": "manifest_flow_data"
+    },
+    {
+      "case": "manifest_vae_decoder_data"
+    },
+    {
+      "case": "manifest_upscale_data"
+    },
+    {
+      "case": "worker_pbr_False"
+    },
+    {
+      "case": "worker_stages_False"
+    },
+    {
+      "case": "worker_pbr_True"
+    },
+    {
+      "case": "worker_stages_True"
+    },
+    {
+      "case": "missing_component"
+    },
+    {
+      "case": "missing_mesh"
+    },
+    {
+      "case": "invalid_steps_type"
+    },
+    {
+      "case": "invalid_field"
+    }
+  ],
+  "input_fingerprint": {
+    "native/rf_shape/CMakeLists.txt": "48fd357aaf0e656dc65afc0d8442b9aa031426a5b7437c975c9871e90323be94",
+    "native/rf_shape/geometry.hpp": "95cbdc3dcf71629dfd685ee7efcad354e66b07c6dc786ebe8451ac8c2b950192",
+    "native/rf_shape/image.hpp": "89261f9cd2f0a1adb2ec0fc42f9da951e4898349b8f54ee4daa31415e49d6e78",
+    "native/rf_shape/math.hpp": "2f345d08ae7abe58bf8d8b567325b425f9c5d21383e75ce60b13dd5573790c0d",
+    "native/rf_shape/ort.hpp": "2b6e5722b757a027213482bfc1289348fd9454e8e00d49cdb0d47d87896fac71",
+    "native/rf_shape/worker.cpp": "bf18dba87ac45d9dc1100f8004b1ede16c8a100c9d8d560b0fc2f50c605bc819",
+    "native/spatial/block_attention.hpp": "9d87fc393f51104f11f291dda84763744249aedaf1f57feab72d94c161b9503d",
+    "native/spatial/CMakeLists.txt": "31f72529622fc7c9b8976868e6fbca0b8e886fb2bbbf54917ab2a619173d88c3",
+    "native/spatial/image.hpp": "7f2b70863591a51e9bca407a7ae0677fda0680efa51b9c54e91a5a3c8f073909",
+    "native/spatial/linear_sampler.hpp": "96ff6befbb32480559c038b4fb33308a127fa41088bea73404866d322262166d",
+    "native/spatial/material.hpp": "0e1cb2b5a5c84c2bdef41e69b435e54d5d8218d01d9c25d64c9121fe527158c2",
+    "native/spatial/math.hpp": "abc3c2644fc02f864cec371053b3ad92c42ce89b9215beb86a3f731b861c7f45",
+    "native/spatial/mesh.hpp": "9d6c1af1780abf2ad83cd8d2aaa5e6e5f2f762c132d5006929a097c01fae6eaa",
+    "native/spatial/ort_graph.hpp": "d78b66a3b16ebad13410e045035d58d6dad5eab37346a6a697fdba095a1f8908",
+    "native/spatial/sparse.hpp": "118c821be7601439a166d800729feb9e77320b6ad355808edc1e802d99b07e67",
+    "native/spatial/sparse_ort.hpp": "c1dca480849f96640dd7a0fca7cf84239d1519e586d4607d0e9b37d2132d53cd",
+    "native/spatial/surface_sampling.hpp": "0aeb83fc1030f3114784b4dd0dbd7db5c5464ebc6ce5c85c3436bec6080cb709",
+    "native/spatial/texture.hpp": "08e0edbaf02f514ba526c2bf5216236c782b4343de2b3d4c480046c0ffe0ff81",
+    "native/spatial/worker.cpp": "9b952fd8eb1b44df542ec99c507fb285774b4d5b1d8435e7c99b6404075a5f6e",
+    "tests/expansion-native/material.cpp": "ff209e9336ee7746d8b8c2b1f2653eafcb063527de24ff90c2a1f4b0ae3a7a52",
+    "third_party/paint-source-lock.json": "8612c54850f92b825ece703ea421221394b69203bc3502f00d417017d3cf2934",
+    "third_party/spatial-shape-source-lock.json": "5492375fbf3934a15db37581a413a94e64038a486189b0ec51d37ed1ff55f69d",
+    "tools/export_paint.py": "737fff662368ec3b7d7ffd92ff2de6666db924d37fb720588a4a44dfdb593baa",
+    "tools/export_spatial.py": "0673bc931b7645bba41e6267ef90d10f5b55d60b2a6dd360de392312a769d624",
+    "tools/paint_catalogue.py": "05d8b306541c5ad955921c68629b8d087de17cd5c328cb01eaf46af28b3d02ef",
+    "tools/paint_graphs.py": "08013c78f80af928fe96c3211185801d783c1d57c29f9ce1a6a2d9190367787d",
+    "tools/paint_reference.py": "f6a2b4a002e6d2b1e2725ac5c3bd4daa8d3b2cb82af2b34d3ff3a1a9d6a47f5d",
+    "tools/paint_sampler.py": "7aec4f54b07d498209f8d81f2720965849bb9d1ab6dbcd1cdcd5551d363baafe",
+    "tools/spatial_reference.py": "d71d02cea9e0ddb4b5483561c9d04db76cd9904ce4c118112ed647060397a893",
+    "tools/test_paint.py": "dadd3268826084c2f634eddf3be86a29738261eef947e4ad0ff194fea2bb0d3d"
+  },
+  "completeModelsDownloaded": 0,
+  "completeModelsRun": 0,
+  "randomNeuralGraphs": true,
+  "physicalDeviceTests": 0,
+  "virtualizationUsed": false
+}

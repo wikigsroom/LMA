@@ -1,5 +1,7 @@
 # Hunyuan3D shape and UltraShape refinement
 
+Development v0.3.6 adds a separate [Paint / PBR route](LOCAL_MATERIALS.en.md) and [official-compatible F5 frontend](F5_FRONTEND.en.md). See the [current numbered work list](REMAINING_ADAPTATION.en.md). The v0.3.5 counts, old gaps and evidence below retain their historical identity; the shape / refinement recipes themselves still exclude Paint.
+
 [中文](SPATIAL_SHAPE.md) · [Numbered implementation and gaps](IMPLEMENTATION_V035.en.md) · [v0.3.5](releases/v0.3.5.md)
 
 LMA v0.3.5 adds two equal, optional phone-local CPU routes: Hunyuan3D 2.1 image-conditioned geometry and UltraShape 1.0 refinement of an existing coarse mesh. Both use `spatial_ort` with matched FP32 ONNX exports and produce untextured GLB. App updates deliver code; users select every model and input asset.

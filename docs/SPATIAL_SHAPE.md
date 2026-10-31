@@ -1,5 +1,7 @@
 # Hunyuan3D 形状与 UltraShape 精修
 
+开发源码 v0.3.6 已另增独立 [Paint / PBR 路线](LOCAL_MATERIALS.md) 和 [F5 官方兼容前端](F5_FRONTEND.md)；最新缺口见[完整编号清单](REMAINING_ADAPTATION.md)。下文 v0.3.5 数量、旧缺口与证据保留为当时记录，形状 / 精修配方本身仍不包含 Paint。
+
 [English](SPATIAL_SHAPE.en.md) · [编号实现与缺口](IMPLEMENTATION_V035.md) · [v0.3.5](releases/v0.3.5.md)
 
 LMA v0.3.5 新增两条平级、可选的本机 CPU 路线：Hunyuan3D 2.1 从参考图片生成几何，UltraShape 1.0 用参考图片精修已有粗网格。两者复用 `spatial_ort`，通过配套 FP32 ONNX 执行，输出无贴图 GLB。App 更新只提供程序；模型、词表、图片和网格均由用户选择。

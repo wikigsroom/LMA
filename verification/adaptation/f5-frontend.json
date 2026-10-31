@@ -1,0 +1,41 @@
+{
+  "passed": 6671,
+  "textCases": 2222,
+  "publisherFunctionCompared": true,
+  "nativeProductionFrontend": true,
+  "exactSegmentation": true,
+  "exactPinyinTokens": true,
+  "exactVocabularyIds": true,
+  "malformedAssetsRejected": true,
+  "linguisticAsset": {
+    "schema": "lma.f5-frontend-receipt/1",
+    "file": "f5-frontend.json",
+    "bytes": 8021227,
+    "sha256": "f766c95ae9f81762d184e49e8118ec02475d88d7f0c66433d5584b41fcd10f0b",
+    "rjiebaVersion": "0.2.2",
+    "jiebaRsVersion": "0.11.0",
+    "pypinyinVersion": "0.55.0",
+    "words": 349045,
+    "pinyinEntries": 89034,
+    "hmmEmissionCharacters": 14632,
+    "network": false,
+    "neuralWeightsLoaded": false,
+    "modelInferenceTested": false,
+    "physicalDeviceTests": 0
+  },
+  "completeModelDownloads": 0,
+  "completeModelRuns": 0,
+  "neuralWeightsLoaded": false,
+  "physicalDeviceTests": 0,
+  "virtualizationUsed": false,
+  "input_fingerprint": {
+    "native/runtime_metrics.hpp": "1fe93a5bd8426dbca3f8efaec6070c1cccc60e75006df40021141a69abec4a07",
+    "native/speech_extra/f5_frontend.hpp": "d698d7ef31ec06d9447658224704c27519436198e03054faa232b71c1dcc211a",
+    "native/speech_extra/f5_official.hpp": "81bba8f9280018b0b3a592cec7fd2c00993cb0a1f349d2de354be10b75e10730",
+    "native/worker_common.hpp": "874ea65fb060c880b72484f771e2ea58dc5814480e76bfcb794ee8da87b5032c",
+    "tests/expansion-native/f5_official.cpp": "6de684df78f9e407547a13b891695c37dcd8107180453566a8e298a3afe22655",
+    "third_party/f5-frontend-source-lock.json": "558081417a8d48035573f327ae1e69e94ef0dbaf72be7c9c0540487e61e322c8",
+    "tools/export_f5_frontend.py": "9d0027b98658436284d0a4d84cf17cc709ee86ba7d6b488039ecee7ae1da6608",
+    "tools/test_f5_frontend.py": "1331809f2dce09350292e6ea6a4d751898f9a518eb193332c65e32aa102cdc78"
+  }
+}

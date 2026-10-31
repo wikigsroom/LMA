@@ -666,8 +666,8 @@
       "backend": "cpu",
       "ndk": "30.0.16248370",
       "min_sdk": 28,
-      "bytes": 7262752,
-      "sha256": "c9c6ed09d32c21ef4c60eb4303bb2c68688822fe5eedaad66d4f77aedb0f89d4",
+      "bytes": 7317632,
+      "sha256": "ac81a419239387b1f1a7c988cec98235712429dae87ae110e097abca45475bc5",
       "dependencies": [],
       "vocabularies": "external_user_selected_components",
       "physical_device_tests": 0,
@@ -693,7 +693,11 @@
         "expansion-speech-external-sentencepiece-third_party-absl-LICENSE.txt",
         "expansion-speech-external-libyaml-License.txt",
         "sd-nlohmann-json-LICENSE.txt",
-        "sd-NDK-LLVM-NOTICE.txt"
+        "sd-NDK-LLVM-NOTICE.txt",
+        "expansion-speech-f5-LICENSE.txt",
+        "expansion-speech-rjieba-LICENSE.txt",
+        "expansion-speech-jieba-rs-LICENSE.txt",
+        "expansion-speech-pypinyin-LICENSE.txt"
       ]
     },
     {
@@ -827,14 +831,26 @@
         "D06": "5e8dcef05df101ab00ab6cd5fdd0ed0c74fbca66",
         "D07": "82920d643c0dc2f7bfd7255f45f62d386edfe60c",
         "D05": "8b6094780e202b8a6b1d239e0997552e18547026",
-        "D08": "f91db411c50efee93d8db7aeb323885650f6f722"
+        "D08": "f91db411c50efee93d8db7aeb323885650f6f722",
+        "D04": "a726678f3f3631fe2c5e3d1fb4597114784c7a8b"
       },
       "backend": "cpu",
-      "bytes": 669848,
-      "sha256": "410ac537bcbababa124dcd6d602c089827195ad38958aac22f2e0691f0122797",
+      "bytes": 971760,
+      "sha256": "f0f7d26ec672a4a6847b8a1786d479ec29323b468eadfd6757bd3a0079d1436d",
       "model_inference_tested": false,
       "physical_device_tests": 0,
       "virtualization_used": false,
+      "pipelines": {
+        "hunyuan3d_21_shape": {
+          "requiredComponents": 5
+        },
+        "ultrashape_1_refine": {
+          "requiredComponents": 5
+        },
+        "hunyuan3d_21_paint": {
+          "requiredComponents": 7
+        }
+      },
       "abi": "arm64-v8a",
       "ndk": "30.0.16248370",
       "min_sdk": 28,
@@ -877,14 +893,25 @@
         "expansion-spatial-D07-hy3dshape-hy3dshape-models-denoisers-hunyuandit.py-NOTICE.txt",
         "expansion-spatial-D07-hy3dshape-hy3dshape-schedulers.py-NOTICE.txt",
         "expansion-spatial-D07-hy3dshape-hy3dshape-preprocessors.py-NOTICE.txt",
+        "expansion-spatial-D07-hy3dpaint-hunyuanpaintpbr-unet-modules.py-NOTICE.txt",
+        "expansion-spatial-D07-hy3dpaint-hunyuanpaintpbr-unet-attn_processor.py-NOTICE.txt",
+        "expansion-spatial-D07-hy3dpaint-utils-pipeline_utils.py-NOTICE.txt",
+        "expansion-spatial-D07-hy3dpaint-utils-multiview_utils.py-NOTICE.txt",
+        "expansion-spatial-D07-hy3dpaint-DifferentiableRenderer-camera_utils.py-NOTICE.txt",
+        "expansion-spatial-D07-hy3dpaint-DifferentiableRenderer-MeshRender.py-NOTICE.txt",
         "expansion-spatial-D05-LICENSE.txt",
         "expansion-spatial-D08-LICENSE.txt",
         "expansion-spatial-D08-sam3d_objects-model-backbone-tdfy_dit-modules-sparse-spatial.py-NOTICE.txt",
         "expansion-spatial-D08-sam3d_objects-model-backbone-tdfy_dit-modules-sparse-conv-conv_spconv.py-NOTICE.txt",
         "expansion-spatial-D08-sam3d_objects-model-backbone-tdfy_dit-modules-sparse-attention-full_attn.py-NOTICE.txt",
         "expansion-spatial-D08-sam3d_objects-model-backbone-tdfy_dit-modules-sparse-attention-masked_sdpa.py-NOTICE.txt",
+        "expansion-spatial-D04-LICENSE.txt",
+        "expansion-spatial-UltraTex-SLA-LICENSE.txt",
         "expansion-spatial-ORT-LICENSE.txt",
-        "expansion-spatial-stb-NOTICE.txt"
+        "expansion-spatial-stb-NOTICE.txt",
+        "expansion-spatial-stb-write-NOTICE.txt",
+        "expansion-spatial-xatlas-NOTICE.txt",
+        "expansion-spatial-BasicSR-LICENSE.txt"
       ]
     }
   ],

@@ -51,6 +51,7 @@ def main():
     from spatial_reference import verify as verify_spatial
     for source in verify_spatial()['sources']:
         files['expansion-spatial-'+source['id']+'-LICENSE.txt']=(ROOT/source['directory']/'LICENSE').read_bytes()
+        if source['id']=='D04':files['expansion-spatial-UltraTex-SLA-LICENSE.txt']=(ROOT/source['directory']/'ultratex/sparse_attention/LICENSE.txt').read_bytes()
         for item in source['files']:
             relative=item['path']
             if not relative.endswith('.py'):continue
@@ -62,6 +63,15 @@ def main():
                 files['expansion-spatial-'+source['id']+'-'+relative.replace('/','-')+'-NOTICE.txt']=('\n'.join(header)+'\n').encode('utf-8')
     files['expansion-spatial-ORT-LICENSE.txt']=(ROOT/'third_party/notices/tts-onnxruntime-LICENSE.txt').read_bytes()
     files['expansion-spatial-stb-NOTICE.txt']=files['expansion-multiview-stb_image.h-NOTICE.txt']
+    files['expansion-spatial-stb-write-NOTICE.txt']=files['expansion-multiview-stb_image_write.h-NOTICE.txt']
+    files['expansion-spatial-xatlas-NOTICE.txt']=files['expansion-mesh-xatlas-NOTICE.txt']
+    from fetch_f5_sources import verify as verify_f5
+    verify_f5()
+    for name,path in [('f5','f5-LICENSE.txt'),('rjieba','LICENSE'),('jieba-rs','jieba-rs-LICENSE.txt'),('pypinyin','pypinyin-source/LICENSE.txt')]:
+        files['expansion-speech-'+name+'-LICENSE.txt']=(ROOT/'build/frontend-reference'/path).read_bytes()
+    from paint_reference import verify as verify_paint
+    paint=verify_paint()
+    files['expansion-spatial-BasicSR-LICENSE.txt']=(ROOT/paint['directory']/'LICENSE.txt').read_bytes()
     files['expansion-shape-ORT-LICENSE.txt']=(ROOT/'third_party/notices/tts-onnxruntime-LICENSE.txt').read_bytes()
     files['expansion-shape-stb-NOTICE.txt']=files['expansion-multiview-stb_image.h-NOTICE.txt']
     for name,data in files.items(): (ROOT/'third_party/notices'/name).write_bytes(data)

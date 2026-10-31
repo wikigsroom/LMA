@@ -44,7 +44,7 @@ final class SpatialTest {
         check(imported.getJSONObject("origin").getString("kind").equals("imported"));
         int families=0;
         for(int i=0;i<templates.length();i++){
-            JSONObject t=templates.getJSONObject(i);if(!t.getJSONObject("definition").getString("engine").equals("spatial_ort"))continue;families++;
+            JSONObject t=templates.getJSONObject(i);if(!t.getJSONObject("definition").getString("engine").equals("spatial_ort")||MaterialSpec.matches(t.getJSONObject("definition").getString("pipeline")))continue;families++;
             JSONObject raw=DataFiles.copy(t.getJSONObject("definition")).put("schema","lma.model-bundle/2").put("id","fixture_spatial_"+families)
                 .put("modelId","fixture_spatial_"+families).put("recipeId",t.getString("id")).put("name","SPATIAL PROGRAM FIXTURE");
             String pipeline=raw.getString("pipeline");boolean ultra=SpatialSpec.ultra(pipeline);JSONObject cfg=config(pipeline);

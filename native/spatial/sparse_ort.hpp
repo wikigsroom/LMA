@@ -1,8 +1,9 @@
 #pragma once
 #include "../rf_shape/ort.hpp"
 #include "sparse.hpp"
+#include "block_attention.hpp"
 namespace lma_sparse {
-enum class Operation {Conv,Pool,Subdivide,SpatialToChannel,Attention};
+enum class Operation {Conv,Pool,Subdivide,SpatialToChannel,Attention,BlockAttention};
 struct Kernel {
  const OrtApi& api;Operation operation;
  Kernel(const OrtApi& a,Operation kind):api(a),operation(kind){}
@@ -16,6 +17,11 @@ struct Kernel {
  static void packed(Ort::KernelContext& ctx,const Packed& p,bool child){output(ctx,0,p.feats,{int64_t(p.coords.size()),int64_t(p.channels)});std::vector<int64_t> c;c.reserve(p.coords.size()*4);for(auto row:p.coords)c.insert(c.end(),row.begin(),row.end());output(ctx,1,c,{int64_t(p.coords.size()),4});output(ctx,2,p.inverse,{int64_t(p.inverse.size())});if(child)output(ctx,3,p.child,{int64_t(p.child.size())});}
  void compute(OrtKernelContext* raw){
   Ort::KernelContext ctx(raw);std::vector<int64_t> fs;auto f=data<float>(ctx.GetInput(0),ONNX_TENSOR_ELEMENT_DATA_TYPE_FLOAT,&fs);
+  if(operation==Operation::BlockAttention){
+   std::vector<int64_t> ks,vs,ps;auto k=data<float>(ctx.GetInput(1),ONNX_TENSOR_ELEMENT_DATA_TYPE_FLOAT,&ks),v=data<float>(ctx.GetInput(2),ONNX_TENSOR_ELEMENT_DATA_TYPE_FLOAT,&vs);auto policy=data<int64_t>(ctx.GetInput(3),ONNX_TENSOR_ELEMENT_DATA_TYPE_INT64,&ps);
+   require(fs.size()==4&&ks==fs&&vs==fs&&ps==std::vector<int64_t>{4}&&fs[0]>0&&fs[1]>0&&fs[2]>0&&fs[3]>0,"Block attention requires matching [B,H,L,D] and policy[4]");
+   output(ctx,0,block_attention(f,k,v,size_t(fs[0]),size_t(fs[1]),size_t(fs[2]),size_t(fs[3]),policy),fs);return;
+  }
   if(operation==Operation::Attention){
    std::vector<int64_t> ks,vs;auto k=data<float>(ctx.GetInput(1),ONNX_TENSOR_ELEMENT_DATA_TYPE_FLOAT,&ks),v=data<float>(ctx.GetInput(2),ONNX_TENSOR_ELEMENT_DATA_TYPE_FLOAT,&vs);
    require(fs.size()==3&&ks.size()==3&&vs.size()==3&&fs[1]==ks[1]&&ks[1]==vs[1]&&fs[2]==ks[2]&&ks[0]==vs[0]&&fs[0]>=0&&ks[0]>=0&&vs[2]>0,"Packed attention requires [T,H,D]");
@@ -34,21 +40,22 @@ struct Kernel {
 struct Op:Ort::CustomOpBase<Op,Kernel,true>{
  Operation operation;const char* name;Op(Operation kind,const char* id):operation(kind),name(id){version=17;start_ver_=end_ver_=1;}
  const char* GetName()const{return name;}
- size_t GetInputTypeCount()const{return operation==Operation::Conv||operation==Operation::Attention?5:operation==Operation::Subdivide?4:3;}
+ size_t GetInputTypeCount()const{return operation==Operation::Conv||operation==Operation::Attention?5:operation==Operation::Subdivide||operation==Operation::BlockAttention?4:3;}
  ONNXTensorElementDataType GetInputType(size_t i)const{
   if(operation==Operation::Conv)return i==0||i==2||i==3?ONNX_TENSOR_ELEMENT_DATA_TYPE_FLOAT:ONNX_TENSOR_ELEMENT_DATA_TYPE_INT64;
-  if(operation==Operation::Attention)return i<3?ONNX_TENSOR_ELEMENT_DATA_TYPE_FLOAT:ONNX_TENSOR_ELEMENT_DATA_TYPE_INT64;
+  if(operation==Operation::Attention||operation==Operation::BlockAttention)return i<3?ONNX_TENSOR_ELEMENT_DATA_TYPE_FLOAT:ONNX_TENSOR_ELEMENT_DATA_TYPE_INT64;
   return i==0?ONNX_TENSOR_ELEMENT_DATA_TYPE_FLOAT:ONNX_TENSOR_ELEMENT_DATA_TYPE_INT64;
  }
- size_t GetOutputTypeCount()const{return operation==Operation::Conv||operation==Operation::Attention?1:operation==Operation::Pool?3:4;}
+ size_t GetOutputTypeCount()const{return operation==Operation::Conv||operation==Operation::Attention||operation==Operation::BlockAttention?1:operation==Operation::Pool?3:4;}
  ONNXTensorElementDataType GetOutputType(size_t i)const{return i==0?ONNX_TENSOR_ELEMENT_DATA_TYPE_FLOAT:ONNX_TENSOR_ELEMENT_DATA_TYPE_INT64;}
  OrtStatusPtr CreateKernelV2(const OrtApi& api,const OrtKernelInfo*,void** out)const noexcept{try{*out=new Kernel(api,operation);return nullptr;}catch(...){return api.CreateStatus(ORT_RUNTIME_EXCEPTION,"Cannot allocate sparse CPU operation");}}
 };
 // Domain and op objects must outlive every session that refers to them.
 struct Domain {
  Op conv{Operation::Conv,"SubmanifoldConv3D"},pool{Operation::Pool,"Pool3D"},subdivide{Operation::Subdivide,"Subdivide3D"},channel{Operation::SpatialToChannel,"SpatialToChannel3D"},attention{Operation::Attention,"PackedAttention"};
+ Op block{Operation::BlockAttention,"BlockSparseAttention"};
  Ort::CustomOpDomain domain{"lma.spatial"};
- Domain(){domain.Add(&conv);domain.Add(&pool);domain.Add(&subdivide);domain.Add(&channel);domain.Add(&attention);}
+ Domain(){domain.Add(&conv);domain.Add(&pool);domain.Add(&subdivide);domain.Add(&channel);domain.Add(&attention);domain.Add(&block);}
  void add(Ort::SessionOptions& options){options.Add(domain);}
 };
 }

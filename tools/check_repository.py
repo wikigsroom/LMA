@@ -64,6 +64,13 @@ def main():
             assert resolved.is_relative_to(ROOT.resolve()) and resolved.exists(), "Broken local link: " + str(document.relative_to(ROOT)) + " -> " + target
             links += 1
     release = version()
+    if args.development and release == '0.3.6':
+        assert not args.published
+        from adaptation_evidence import check
+        scoped=check()
+        result=dict(scoped,public_files=len(names),documents=len(documents),local_links=links)
+        (ROOT/'build/repository-check-development.json').write_text(json.dumps(result,indent=2)+'\n',encoding='utf-8')
+        print(json.dumps(result));return
     if program_only_release():
         assert not args.development, 'v0.3.0 is the complete program release'
         from program_release import check

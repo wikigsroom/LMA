@@ -1,7 +1,7 @@
 /* Production pages with labelled bridge fixtures. No trained output or phone. */
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
 const {installFixture}=require('./foundation-ui.cjs');
-const templates=JSON.parse(fs.readFileSync(path.join(__dirname,'../app/src/main/assets/recipe-templates.json'),'utf8')).templates.filter(t=>t.definition.engine==='spatial_ort');
+const templates=JSON.parse(fs.readFileSync(path.join(__dirname,'../app/src/main/assets/recipe-templates.json'),'utf8')).templates.filter(t=>['hunyuan3d_21_shape','ultrashape_1_refine'].includes(t.definition.pipeline));
 const legacy=JSON.parse(fs.readFileSync(path.join(__dirname,'../app/src/main/assets/models.json'),'utf8')).models;
 function install({templates,legacy}){
  const f=window.__fixture;f.models=legacy.map(m=>({...m,installed:false,download:{},partialBytes:0}));

@@ -12,6 +12,7 @@ public final class AudioCppSpec {
         if (pipeline.equals("f5_v1")) {
             files.put("model", "model.safetensors"); files.put("vocoder", "vocos.safetensors");
             files.put("vocab", "vocab.txt"); files.put("pinyin_chars", "pinyin.txt"); files.put("pinyin_phrases", "phrases.txt");
+            files.put("frontend", "f5-frontend.json");
         } else if (pipeline.equals("omnivoice")) {
             files.put("model", gguf ? "omnivoice.gguf" : "model.safetensors");
             if (!gguf) {
@@ -29,13 +30,14 @@ public final class AudioCppSpec {
         if (!bundle.architecture.equals(f5 ? "f5_tts_v1" : "omnivoice")) throw new IOException("语音模型架构与配方不一致");
         Map<String,String> files = layout(bundle.pipeline, gguf);
         Set<String> required = new HashSet<>(files.keySet());
-        if (f5) { required.remove("pinyin_chars"); required.remove("pinyin_phrases"); if (gguf) throw new IOException("F5 v1 使用原版 safetensors 权重，不能套用 Habibi GGUF"); }
+        if (f5) { required.remove("pinyin_chars"); required.remove("pinyin_phrases"); required.remove("frontend"); if (gguf) throw new IOException("F5 v1 使用原版 safetensors 权重，不能套用 Habibi GGUF"); }
         for (ModelBundle.Component c : bundle.components) {
             if (!files.containsKey(c.role)) throw new IOException("此语音配方不接受组件：" + c.role);
             String expected = c.role.equals("model") ? gguf ? "gguf" : "safetensors" :
                 c.role.equals("vocoder") || c.role.equals("audio_codec") ? "safetensors" :
                 c.role.equals("vocab") || c.role.startsWith("pinyin_") ? "text" : "json";
             if (!c.format.equals(expected) && !(c.role.equals("vocoder") && c.format.equals("bin"))) throw new IOException("语音组件格式不匹配：" + c.role);
+            if(c.role.equals("frontend")&&c.bytes>96L*1024*1024)throw new IOException("F5 前端资产超过 96 MiB 的基座上限");
             required.remove(c.role);
         }
         if (!required.isEmpty()) throw new IOException("语音配方缺少必需组件：" + required);
@@ -69,7 +71,7 @@ public final class AudioCppSpec {
             .put("minDurationMs",1000).put("maxDurationMs",f5?12000:30000)
             .put("transcript",new JSONObject().put("label","与参考音频准确对应的文本").put("maxLength",4000));
         return new InputSpec(new JSONObject().put("reference_audio",rule),
-            f5 ? "输入要朗读的中英文。中文需配齐拼音资源；生僻字或缺少发音会明确报错。"
+            f5 ? "输入要朗读的中英文。可为此模型选择官方兼容前端资产：固定版本分词、多音字与变调；未知词元按官方规则映射为 0。旧版拼音字典配方继续使用原匹配规则。"
                : "输入要朗读的文本；音色模式和描述在此模型的本地参数中设置。600+ 语言为上游声明，未逐语言验证。").withNegativePrompt(false);
     }
     public static void reference(File file, String pipeline) throws Exception {

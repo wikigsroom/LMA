@@ -2,6 +2,7 @@
 #include "image.hpp"
 #include "surface_sampling.hpp"
 #include "math.hpp"
+#include "material.hpp"
 #include <random>
 #include <set>
 using namespace lma_spatial;
@@ -9,6 +10,7 @@ static const std::map<std::string,std::string> layout={{"config","spatial-config
  {"image_encoder_data","image_encoder.onnx.data"},{"flow_data","flow.onnx.data"},{"cache_data","cache.onnx.data"},{"query_data","query.onnx.data"}};
 static int dimension(const json& c,const char* key,int lo,int hi){require(c.at(key).is_number_integer(),"Export dimension is not an integer");int64_t v=c.at(key);require(v>=lo&&v<=hi,"Export dimension outside application bounds");return int(v);}
 static void generate(const json& command){
+ if(command.at("pipeline")=="hunyuan3d_21_paint"){material_generate(command);return;}
  require(command.at("type")=="mesh.generate","Spatial runtime accepts mesh tasks only");std::string pipeline=command.at("pipeline");bool ultra=pipeline=="ultrashape_1_refine";require(ultra||pipeline=="hunyuan3d_21_shape","Unknown spatial architecture");
  auto p=command.at("parameters");std::set<std::string> allowed={"threads","steps","seed","tokens","grid","queryChunk","guidance","maxTriangles","meshScale","surfaceSamples"};if(!ultra){allowed.erase("meshScale");allowed.erase("surfaceSamples");}for(auto i=p.begin();i!=p.end();i++)require(allowed.count(i.key()),"Unknown spatial parameter");
  int threads=integer(p,"threads",2,1,16),steps=integer(p,"steps",30,1,100),seed=integer(p,"seed",1234,0,INT32_MAX),tokens=integer(p,"tokens",ultra?8192:4096,512,32768),grid=integer(p,"grid",64,32,256),chunk=integer(p,"queryChunk",512,128,4096),maxtri=integer(p,"maxTriangles",300000,1000,1000000),samples=integer(p,"surfaceSamples",65536,1024,409600);
@@ -36,4 +38,4 @@ static void generate(const json& command){
  {SpatialGraph graph(env,workspace,"query",threads,{{"cache",{1,-1,width}},{"points",{1,-1,3}}},{"sdf",{1,-1,1}});for(size_t start=0;start<count;start+=chunk){size_t size=std::min(size_t(chunk),count-start);Floats q(size*3);for(size_t j=0;j<size;j++){size_t id=start+j;q[j*3]=float(id/(n*n))*2*box/grid-box;q[j*3+1]=float((id/n)%n)*2*box/grid-box;q[j*3+2]=float(id%n)*2*box/grid-box;}std::vector<Ort::Value> args;args.push_back(tensor(cache,{1,tokens,width}));args.push_back(tensor(q,{1,int64_t(size),3}));auto r=graph.run(args);auto v=values(r,{1,int64_t(size),1});std::copy(v.begin(),v.end(),field.begin()+start);}}
  auto mesh=surface(field,grid,size_t(maxtri));for(auto& p:mesh.vertices)for(float& v:p)v*=box/1.005f;event({{"event","stage"},{"stage","exporting_mesh"}});glb(output,{mesh});event({{"event","complete"},{"output",output.string()}});
 }
-int main(int argc,char** argv){if(argc==2&&!std::strcmp(argv[1],"--info")){std::puts("{\"engine\":\"spatial_ort\",\"backend\":\"cpu\",\"pipelines\":[\"hunyuan3d_21_shape\",\"ultrashape_1_refine\"],\"modelInferenceTested\":false,\"modelDownloads\":false}");return 0;}try{initialize();require(argc==2,"Supply one private spatial request");generate(request(argv[1]));return 0;}catch(const std::exception&){if(events)event({{"event","error"},{"message","Spatial generation failed: check the matched export, PNG/GLB inputs, selected limits and free memory. No fallback was used."}});return 1;}}
+int main(int argc,char** argv){if(argc==2&&!std::strcmp(argv[1],"--info")){std::puts("{\"engine\":\"spatial_ort\",\"backend\":\"cpu\",\"pipelines\":[\"hunyuan3d_21_shape\",\"ultrashape_1_refine\",\"hunyuan3d_21_paint\"],\"modelInferenceTested\":false,\"modelDownloads\":false}");return 0;}try{initialize();require(argc==2,"Supply one private spatial request");generate(request(argv[1]));return 0;}catch(const std::exception&){if(events)event({{"event","error"},{"message","Spatial generation failed: check the matched export, PNG/GLB inputs, selected limits and free memory. No fallback was used."}});return 1;}}

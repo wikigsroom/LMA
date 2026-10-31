@@ -1,5 +1,7 @@
 # v0.3.0 开发状态与复查
 
+> 最新开发为 **v0.3.6 / code56，未发布完整适配 Release**；已发布版本仍为 v0.3.5。[当前编号清单](REMAINING_ADAPTATION.md) / [English](REMAINING_ADAPTATION.en.md)、[开发程序证据](../verification/adaptation/status.json)、[更新说明](releases/v0.3.6-development.md)。F5 官方兼容前端和本机 Paint 已接入，五条完整模型流程仍缺代码。用户已免去完整模型和手机实测。以下 v0.3.0 / dev 历史不作为当前工作入口或验收阻塞。
+
 > 当前 / Current: **v0.3.0**. [完整程序集成 / implementation](IMPLEMENTATION_V030.md). [仅程序验证策略 / validation](PROGRAM_VALIDATION.md) 优先于下文历史完整模型 / 手机运行门槛；旧检查点与失败记录保留为历史。Original PixArt multiscale LTX is now integrated; quality/device acceptance remains untested. [Release](releases/v0.3.0.md).
 
 

@@ -24,7 +24,7 @@ class Weights:
             from safetensors import safe_open
             self.file = safe_open(str(path), framework='pt', device='cpu')
             self.keys = set(self.file.keys())
-        elif path.suffix in ('.pt', '.ckpt'):
+        elif path.suffix in ('.pt', '.ckpt', '.bin', '.pth'):
             data = torch.load(path, map_location='cpu', weights_only=True)
             assert isinstance(data, dict), 'Expected a tensor state dictionary'
             flat = {}
@@ -39,7 +39,7 @@ class Weights:
                     flat[k] = v
             self.mapping, self.keys = flat, set(flat)
         else:
-            raise ValueError('Choose .safetensors or a weights-only .pt/.ckpt')
+            raise ValueError('Choose .safetensors or a weights-only .pt/.ckpt/.bin/.pth')
 
     def load(self, module, prefix, exact=False):
         wanted = set(module.state_dict())

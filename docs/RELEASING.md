@@ -1,5 +1,9 @@
 # 更新、同步与发布 / Updating and releasing
 
+当前 v0.3.6 是**未完成完整适配的开发构建**。先核对 [完整编号清单](REMAINING_ADAPTATION.md) / [English](REMAINING_ADAPTATION.en.md)，使用 `python tools/adaptation_evidence.py --export` 和 `python tools/check_repository.py --development` 留存当前程序证据。`python tools/audit_adaptations.py --require-complete` 在 D04 / D05 / D08 / D09 / D10 等真实代码缺口关闭前必须拒绝“完整适配 Release”；不以旧冻结范围已通过冒充全部追加适配完成。已发布 v0.3.5 的附件、标签与 `verification/program/` 原证据保留，不覆盖成新构建。
+
+v0.3.6 is an unfinished adaptation development build. Preserve the numbered work list, export current development checks, and use the explicit development repository check. Complete-adaptation release preparation must reject remaining implementation gaps. Existing v0.3.5 tags, assets and program evidence stay immutable; do not reuse their filenames or counts for new bytes.
+
 上游 safetensors 的 `*.header.json` 按原始字节保留（含 JSON 填充）；`.gitattributes` 仅为这些原始头保留行末填充，大小 / SHA256 核对继续生效。Publisher headers retain exact padding; identity checks remain mandatory.
 
 

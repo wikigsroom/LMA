@@ -1,0 +1,213 @@
+{
+  "passed": 63,
+  "projection": {
+    "passed": 38,
+    "trained_model": false
+  },
+  "cases": [
+    {
+      "case": "missing_weights",
+      "exit": 1,
+      "expected_rejection": true,
+      "observations": {
+        "elapsedMs": 17,
+        "memoryScope": "worker_process_peak_rss_not_model_peak_or_whole_app",
+        "memorySource": "unavailable_on_this_platform",
+        "peakResidentBytes": null,
+        "platform": "windows_host",
+        "qualityAssessed": false,
+        "schema": "lma.worker-observations/1",
+        "stages": [
+          {
+            "elapsedMs": 1,
+            "stage": "loading_views"
+          }
+        ]
+      }
+    },
+    {
+      "case": "rgb_input",
+      "exit": 1,
+      "expected_rejection": true,
+      "observations": {
+        "elapsedMs": 6,
+        "memoryScope": "worker_process_peak_rss_not_model_peak_or_whole_app",
+        "memorySource": "unavailable_on_this_platform",
+        "peakResidentBytes": null,
+        "platform": "windows_host",
+        "qualityAssessed": false,
+        "schema": "lma.worker-observations/1",
+        "stages": []
+      }
+    },
+    {
+      "case": "oversized_pixels",
+      "exit": 1,
+      "expected_rejection": true,
+      "observations": {
+        "elapsedMs": 7,
+        "memoryScope": "worker_process_peak_rss_not_model_peak_or_whole_app",
+        "memorySource": "unavailable_on_this_platform",
+        "peakResidentBytes": null,
+        "platform": "windows_host",
+        "qualityAssessed": false,
+        "schema": "lma.worker-observations/1",
+        "stages": []
+      }
+    },
+    {
+      "case": "truncated_input",
+      "exit": 1,
+      "expected_rejection": true,
+      "observations": {
+        "elapsedMs": 1,
+        "memoryScope": "worker_process_peak_rss_not_model_peak_or_whole_app",
+        "memorySource": "unavailable_on_this_platform",
+        "peakResidentBytes": null,
+        "platform": "windows_host",
+        "qualityAssessed": false,
+        "schema": "lma.worker-observations/1",
+        "stages": []
+      }
+    },
+    {
+      "case": "missing_view",
+      "exit": 1,
+      "expected_rejection": true,
+      "observations": {
+        "elapsedMs": 1,
+        "memoryScope": "worker_process_peak_rss_not_model_peak_or_whole_app",
+        "memorySource": "unavailable_on_this_platform",
+        "peakResidentBytes": null,
+        "platform": "windows_host",
+        "qualityAssessed": false,
+        "schema": "lma.worker-observations/1",
+        "stages": []
+      }
+    },
+    {
+      "case": "camera_count",
+      "exit": 1,
+      "expected_rejection": true,
+      "observations": {
+        "elapsedMs": 12,
+        "memoryScope": "worker_process_peak_rss_not_model_peak_or_whole_app",
+        "memorySource": "unavailable_on_this_platform",
+        "peakResidentBytes": null,
+        "platform": "windows_host",
+        "qualityAssessed": false,
+        "schema": "lma.worker-observations/1",
+        "stages": []
+      }
+    },
+    {
+      "case": "camera_url",
+      "exit": 1,
+      "expected_rejection": true,
+      "observations": {
+        "elapsedMs": 10,
+        "memoryScope": "worker_process_peak_rss_not_model_peak_or_whole_app",
+        "memorySource": "unavailable_on_this_platform",
+        "peakResidentBytes": null,
+        "platform": "windows_host",
+        "qualityAssessed": false,
+        "schema": "lma.worker-observations/1",
+        "stages": []
+      }
+    },
+    {
+      "case": "camera_fov",
+      "exit": 1,
+      "expected_rejection": true,
+      "observations": {
+        "elapsedMs": 10,
+        "memoryScope": "worker_process_peak_rss_not_model_peak_or_whole_app",
+        "memorySource": "unavailable_on_this_platform",
+        "peakResidentBytes": null,
+        "platform": "windows_host",
+        "qualityAssessed": false,
+        "schema": "lma.worker-observations/1",
+        "stages": []
+      }
+    },
+    {
+      "case": "camera_scale",
+      "exit": 1,
+      "expected_rejection": true,
+      "observations": {
+        "elapsedMs": 12,
+        "memoryScope": "worker_process_peak_rss_not_model_peak_or_whole_app",
+        "memorySource": "unavailable_on_this_platform",
+        "peakResidentBytes": null,
+        "platform": "windows_host",
+        "qualityAssessed": false,
+        "schema": "lma.worker-observations/1",
+        "stages": []
+      }
+    },
+    {
+      "case": "camera_reflection",
+      "exit": 1,
+      "expected_rejection": true,
+      "observations": {
+        "elapsedMs": 9,
+        "memoryScope": "worker_process_peak_rss_not_model_peak_or_whole_app",
+        "memorySource": "unavailable_on_this_platform",
+        "peakResidentBytes": null,
+        "platform": "windows_host",
+        "qualityAssessed": false,
+        "schema": "lma.worker-observations/1",
+        "stages": []
+      }
+    },
+    {
+      "case": "camera_origin",
+      "exit": 1,
+      "expected_rejection": true,
+      "observations": {
+        "elapsedMs": 9,
+        "memoryScope": "worker_process_peak_rss_not_model_peak_or_whole_app",
+        "memorySource": "unavailable_on_this_platform",
+        "peakResidentBytes": null,
+        "platform": "windows_host",
+        "qualityAssessed": false,
+        "schema": "lma.worker-observations/1",
+        "stages": []
+      }
+    },
+    {
+      "case": "wrong_task",
+      "exit": 1,
+      "expected_rejection": true,
+      "observations": {
+        "elapsedMs": 7,
+        "memoryScope": "worker_process_peak_rss_not_model_peak_or_whole_app",
+        "memorySource": "unavailable_on_this_platform",
+        "peakResidentBytes": null,
+        "platform": "windows_host",
+        "qualityAssessed": false,
+        "schema": "lma.worker-observations/1",
+        "stages": []
+      }
+    }
+  ],
+  "actual_native_worker_processes": 12,
+  "trained_model": false,
+  "complete_model_downloads": 0,
+  "physical_android": false,
+  "virtualization_used": false,
+  "input_fingerprint": {
+    "catalogue/multiview-bundles.json": "bab5108c15e168fe36aa27896042aa26fc4f1705006c06e9aaa56243d8d6060a",
+    "native/multiview/CMakeLists.txt": "9adc013c8d43e44e32fd4c3575d37724f3b786ee666fccb0ab6f509912298505",
+    "native/multiview/worker.cpp": "c7c82aeb593c5299b4d7046dedbb899db4ca84c0735401eec43d0bb60477447a",
+    "native/runtime_metrics.hpp": "1fe93a5bd8426dbca3f8efaec6070c1cccc60e75006df40021141a69abec4a07",
+    "native/worker_common.hpp": "874ea65fb060c880b72484f771e2ea58dc5814480e76bfcb794ee8da87b5032c",
+    "research/multiview/model-manifests.json": "67caf7e35ef2b83a2b51e736faaa80b0aaa30d4658087dddca3270d5d97a668a",
+    "tests/expansion-native/multiview.cpp": "72aac865e9973c4d6ed234f3bb5c6658664822de0aea458926f0d718f5cab609",
+    "third_party/multiview-source-lock.json": "eded839ea0d68ce26bef710f8ac011fc6c2e3a2adba0a03e7c0d55cd13fff2a8",
+    "tools/build_multiview.py": "ed3763d52f9dffa5aaea81eab2db9bdcd08b2de6c2314f295b968328365f5a5f",
+    "tools/fetch_multiview_sources.py": "b52bc751e89d085bc74ffcbb2005c55e0e1e24f44f2e7e9c6d1f63a688823877",
+    "tools/multiview_catalogue.py": "0e9e3660277b2c212bf7466f4170fd4cdef6c7a69801976121843c9d6053ac08",
+    "tools/test_multiview.py": "103657ef792e480edc4621f8c2bb3be1c7eeb30447684596f6658c74a888043e"
+  }
+}

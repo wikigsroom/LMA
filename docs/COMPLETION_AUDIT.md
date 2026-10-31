@@ -1,6 +1,8 @@
 # LMA 完成条件核对
 
-当前 v0.3.0 开发证据以 [dev.37 完整交付与 P01–P09 待办](releases/v0.3.0-dev.37.md)、[开发状态](DEVELOPMENT.md)和[原始报告](../verification/development/status.json)为准。完整正式版尚未通过全部数值、质量与物理手机门槛；下文为 0.1.2 / 0.2.0 历史，不能替代当前验收。
+当前已发布版本为 **v0.3.5**，开发源码为 **v0.3.6（未发布）**。最新实现、完整冻结范围和剩余代码以[编号清单](REMAINING_ADAPTATION.md)、[English](REMAINING_ADAPTATION.en.md)及[开发程序证据](../verification/adaptation/status.json)为准。F5 官方兼容前端和 Hunyuan Paint 已接入；D04 / D05 / D08 / D09 / D10 仍缺完整模型流程，不能写成全部适配完成。
+
+**2026-10-31 用户已明确只做程序验证，不再执行完整模型或手机验证。** 此政策覆盖下文旧验收门槛。无需提供真机，不重复 ADB 枚举、全模型下载 / 推理、ASR 或耐久测试；手机质量 / 性能继续记为未测。缺代码仍须开发，不能以用户免测当作完成依据。下文 dev.37 / 0.1.2 / 0.2.0 叙述全部是历史，不能据此把当前任务重新阻塞在真机上。
 
 > 历史记录：下文保留 0.1.2 在 2026-10-26 的验收边界及原始计数。当前 0.2.0 已完成推荐保留、HF 发现 / 文件选择和本地管理，详见 [HF_MODELS.md](HF_MODELS.md)、[VALIDATION.md](VALIDATION.md) 与 [v0.2.0](releases/v0.2.0.md)。当前仍无 Android 真机，手机推理与后台耐久状态继续为未验证。
 

@@ -6,7 +6,7 @@ const crypto = require('node:crypto');
 const cp = require('node:child_process');
 const assert = require('node:assert/strict');
 const {chromium} = require(process.env.LMA_PLAYWRIGHT || 'playwright');
-const mode=process.argv[2] || 'workbench'; assert(['workbench','preflight','recovery','lcm','audio','ltx','resources','curated','speech','components','wan','openmoss','sana','ltx-official','release-workbench','community','expansion','multiview','shape','spatial'].includes(mode));
+const mode=process.argv[2] || 'workbench'; assert(['workbench','preflight','recovery','lcm','audio','ltx','resources','curated','speech','components','wan','openmoss','sana','ltx-official','release-workbench','community','expansion','multiview','shape','spatial','material'].includes(mode));
 const checkScreen=require('../tests/'+mode+'-ui.cjs');
 const root = path.resolve(__dirname, '..'), assets = path.join(root, 'app/src/main/assets');
 const out = path.join(root, 'docs/media/development',mode), work = path.join(root, 'build',mode+'-media');
@@ -17,6 +17,7 @@ const fingerprint = () => Object.fromEntries(sourceFiles.sort().map(file=>[path.
 if(mode==='release-workbench')sourceFiles.push(path.join(root,'tests/workbench-ui.cjs'));
 if(mode==='speech')sourceFiles.push(path.join(root,'tests/fixtures/speech-voices.json'));
 if(mode==='components')sourceFiles.push(path.join(root,'tests/recipes-ui.cjs'));
+if(mode==='material')sourceFiles.push(path.join(root,'tests/glb-preview-ui.cjs'));
 if(mode==='wan')sourceFiles.push(path.join(root,'research/wan_trained/catalogue-bundle.json'));
 const inputs = fingerprint(), checks=[], screenshots=[]; let context, server;
 const version = fs.readFileSync(path.join(root,'app/src/main/AndroidManifest.xml'),'utf8').match(/versionName="([^"]+)"/)[1];

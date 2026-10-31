@@ -119,6 +119,13 @@ def recipes():
             definition['parameters']=parameters(pipeline,texture=False)
         result.append(dict(id=pipeline+'_'+model_format+'_cpu_expansion_v1',name=b['name'].split(' · ')[0]+' · 自选配套组件',primaryRole='image_encoder' if pipeline in ('trellis2','pixal3d') else 'model',
             definition=definition,requirements=req,fixedComponents=[],help=b['description']))
+        if pipeline=='f5_v1':
+            official=copy.deepcopy(result[-1])
+            official.update(id='f5_v1_official_frontend_cpu_v1',name='F5-TTS v1 · 官方兼容中文前端',
+                help='明确选择原版 F5 v1、Vocos、vocab.txt 与独立 f5-frontend.json。词典由 export_f5_frontend.py 按固定版本生成；手机端执行 DAG/HMM、多音字与变调，不调用 Python 或网络。旧版字典配方继续保留。')
+            official['requirements']=[r for r in official['requirements'] if r['role'] not in ('pinyin_chars','pinyin_phrases')]
+            official['requirements'].append(dict(role='frontend',label='官方兼容分词 / 拼音词典',formats=['json'],required=True,matchFiles=['f5-frontend.json']))
+            result.append(official)
     return result
 
 

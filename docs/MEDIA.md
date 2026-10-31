@@ -1,5 +1,11 @@
 # 截图与演示 / Screenshots and demonstrations
 
+## 当前开发 v0.3.6 / Current development
+
+新增本机材质的真实生产页面，使用明确标记的模拟桥：平级模型、七个组件、本地 / 逐模型参数、PNG＋GLB输入、预检 / 草稿和共用队列。**6 张截图、1 GIF、1 MP4，34 项界面检查；未运行 Android 或训练模型。** 浏览器 context / 页面和本地服务均在 `finally` 关闭。
+
+[清单 / Hashes and captions](media/development/material/manifest.json) · [GIF](media/development/material/material-ui.gif) · [MP4](media/development/material/material-ui.mp4) · [首屏](media/development/material/01-material-models.png) · [参数](media/development/material/03-material-settings.png) · [PBR 预览](media/development/material/06-material-preview.png) · [完整方案 / Workflow](LOCAL_MATERIALS.md) / [English](LOCAL_MATERIALS.en.md)。下方 v0.3.5 媒体继续保留原发布身份，不更新文件内容冒充新录制。
+
 ## 当前 v0.3.5 / Current capture set
 
 六组当前生产页面均明确 UI FIXTURE：30 张截图、6 GIF、6 MP4；检查为社区 34 / 工作台 8 / 语音与 3D 32 / MV 19 / RF 17 / Spatial 20 项。No complete model downloads/runs or phone recording. Browser contexts close in finally. Manifests bind exact source and media bytes.

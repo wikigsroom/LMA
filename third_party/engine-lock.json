@@ -482,8 +482,8 @@
       "abi": "arm64-v8a",
       "backend": "cpu",
       "ndk": "30.0.16248370",
-      "sha256": "c9c6ed09d32c21ef4c60eb4303bb2c68688822fe5eedaad66d4f77aedb0f89d4",
-      "bytes": 7262752,
+      "sha256": "ac81a419239387b1f1a7c988cec98235712429dae87ae110e097abca45475bc5",
+      "bytes": 7317632,
       "android_api_notes": [
         28
       ],
@@ -500,7 +500,11 @@
         "expansion-speech-external-sentencepiece-third_party-absl-LICENSE.txt": "7871ddb0d7635157a82afc21720d795660a024c59652b7a5b1ed812355320fdc",
         "expansion-speech-external-libyaml-License.txt": "c40112449f254b9753045925248313e9270efa36d226b22d82d4cc6c43c57f29",
         "sd-nlohmann-json-LICENSE.txt": "0e592e358cf7722906f417be85bc514f15bf6efd28cea98cb84e56ef7fddfc3e",
-        "sd-NDK-LLVM-NOTICE.txt": "f96f763beb66a7ba7a667647fc64c0226ace875e590c831fdd9579ec1c1d91e1"
+        "sd-NDK-LLVM-NOTICE.txt": "f96f763beb66a7ba7a667647fc64c0226ace875e590c831fdd9579ec1c1d91e1",
+        "expansion-speech-f5-LICENSE.txt": "c70811d1402134de900e811d3eaa349eb60f4d38a8f635b27b1e378c630facd2",
+        "expansion-speech-rjieba-LICENSE.txt": "5bbcc94547fc9a04c80f86c704763a98226e3f80b325b374f3e0d367c0393c32",
+        "expansion-speech-jieba-rs-LICENSE.txt": "92257c8d1c7a059fa02720b34fce017574a990bed14cee8f565597f4fbfb1f13",
+        "expansion-speech-pypinyin-LICENSE.txt": "1e6c90014b4912815c296ee64bb6f6280af47e6d4c5d80e86232dfc5defe764c"
       }
     },
     {
@@ -597,8 +601,8 @@
       "abi": "arm64-v8a",
       "backend": "cpu",
       "ndk": "30.0.16248370",
-      "sha256": "410ac537bcbababa124dcd6d602c089827195ad38958aac22f2e0691f0122797",
-      "bytes": 669848,
+      "sha256": "f0f7d26ec672a4a6847b8a1786d479ec29323b468eadfd6757bd3a0079d1436d",
+      "bytes": 971760,
       "android_api_notes": [
         28
       ],
@@ -616,7 +620,8 @@
         "D06": "5e8dcef05df101ab00ab6cd5fdd0ed0c74fbca66",
         "D07": "82920d643c0dc2f7bfd7255f45f62d386edfe60c",
         "D05": "8b6094780e202b8a6b1d239e0997552e18547026",
-        "D08": "f91db411c50efee93d8db7aeb323885650f6f722"
+        "D08": "f91db411c50efee93d8db7aeb323885650f6f722",
+        "D04": "a726678f3f3631fe2c5e3d1fb4597114784c7a8b"
       },
       "notices": {
         "sd-nlohmann-json-LICENSE.txt": "0e592e358cf7722906f417be85bc514f15bf6efd28cea98cb84e56ef7fddfc3e",
@@ -636,14 +641,25 @@
         "expansion-spatial-D07-hy3dshape-hy3dshape-models-denoisers-hunyuandit.py-NOTICE.txt": "84e291447b410ed1a02b1fc0a28c2a231100833d45aca7bf9c70ed4da4726b94",
         "expansion-spatial-D07-hy3dshape-hy3dshape-schedulers.py-NOTICE.txt": "87bee17f1db2b0a16bc30a4a174da3b082b3664120b74970747368575b04898e",
         "expansion-spatial-D07-hy3dshape-hy3dshape-preprocessors.py-NOTICE.txt": "80e18010d0b2f23f75661338d7ff823dc82e4b7b7dd0083f8009e8eab4a15768",
+        "expansion-spatial-D07-hy3dpaint-hunyuanpaintpbr-unet-modules.py-NOTICE.txt": "80e18010d0b2f23f75661338d7ff823dc82e4b7b7dd0083f8009e8eab4a15768",
+        "expansion-spatial-D07-hy3dpaint-hunyuanpaintpbr-unet-attn_processor.py-NOTICE.txt": "80e18010d0b2f23f75661338d7ff823dc82e4b7b7dd0083f8009e8eab4a15768",
+        "expansion-spatial-D07-hy3dpaint-utils-pipeline_utils.py-NOTICE.txt": "80e18010d0b2f23f75661338d7ff823dc82e4b7b7dd0083f8009e8eab4a15768",
+        "expansion-spatial-D07-hy3dpaint-utils-multiview_utils.py-NOTICE.txt": "80e18010d0b2f23f75661338d7ff823dc82e4b7b7dd0083f8009e8eab4a15768",
+        "expansion-spatial-D07-hy3dpaint-DifferentiableRenderer-camera_utils.py-NOTICE.txt": "80e18010d0b2f23f75661338d7ff823dc82e4b7b7dd0083f8009e8eab4a15768",
+        "expansion-spatial-D07-hy3dpaint-DifferentiableRenderer-MeshRender.py-NOTICE.txt": "80e18010d0b2f23f75661338d7ff823dc82e4b7b7dd0083f8009e8eab4a15768",
         "expansion-spatial-D05-LICENSE.txt": "00f0f15c4f39b4b8d2b9cb07e6d911c5e55cffb01aaef0910cca73e0fb174e01",
         "expansion-spatial-D08-LICENSE.txt": "b3a5a0e2d973ab80e6610ccf1cffc40756050d0ace3cd4fec879b3ec290b2e9b",
         "expansion-spatial-D08-sam3d_objects-model-backbone-tdfy_dit-modules-sparse-spatial.py-NOTICE.txt": "abe836cd309d15d814afb3cf18e6eb7abd0726ea6ecc3091335bb82d7236c379",
         "expansion-spatial-D08-sam3d_objects-model-backbone-tdfy_dit-modules-sparse-conv-conv_spconv.py-NOTICE.txt": "abe836cd309d15d814afb3cf18e6eb7abd0726ea6ecc3091335bb82d7236c379",
         "expansion-spatial-D08-sam3d_objects-model-backbone-tdfy_dit-modules-sparse-attention-full_attn.py-NOTICE.txt": "abe836cd309d15d814afb3cf18e6eb7abd0726ea6ecc3091335bb82d7236c379",
         "expansion-spatial-D08-sam3d_objects-model-backbone-tdfy_dit-modules-sparse-attention-masked_sdpa.py-NOTICE.txt": "abe836cd309d15d814afb3cf18e6eb7abd0726ea6ecc3091335bb82d7236c379",
+        "expansion-spatial-D04-LICENSE.txt": "1d0ddbb9d271e32eee95c487afb53e2d336bce67c2c0e601cda263ed13a1f419",
+        "expansion-spatial-UltraTex-SLA-LICENSE.txt": "6f427d81a2ca1bb51f6b5a6e06e83e3fc71b57a7c60118f9d1b258e9512ed325",
         "expansion-spatial-ORT-LICENSE.txt": "2f07c72751aed99790b8a4869cf2311df85a860b22ded05fa22803587a48922c",
-        "expansion-spatial-stb-NOTICE.txt": "323eac668c422203f3c54a24e077fd2e999ac6d79ac1872e619830cb3bcb34fe"
+        "expansion-spatial-stb-NOTICE.txt": "323eac668c422203f3c54a24e077fd2e999ac6d79ac1872e619830cb3bcb34fe",
+        "expansion-spatial-stb-write-NOTICE.txt": "323eac668c422203f3c54a24e077fd2e999ac6d79ac1872e619830cb3bcb34fe",
+        "expansion-spatial-xatlas-NOTICE.txt": "3647c97f08c8a52ba8a5bef00d929bfdc328fc7476dd30288a5c460fc200b25e",
+        "expansion-spatial-BasicSR-LICENSE.txt": "5447872f21ddc29dc0dc060d5c885513c01c904e9da9931bba69898a6fb4d415"
       }
     }
   ],
