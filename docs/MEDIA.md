@@ -1,5 +1,18 @@
 # 截图与演示 / Screenshots and demonstrations
 
+## 当前 v0.3.3 / Current capture set
+
+四组当前生产页面均明确 UI FIXTURE：20 张截图、4 GIF、4 MP4；检查为社区 34 / 工作台 8 / 语音与 3D 32 / MV 19 项。No complete model downloads/runs or phone recording. Browser contexts close in finally. Manifests bind exact source and media bytes.
+
+| Group | GIF / MP4 / manifest |
+| --- | --- |
+| Community | [GIF](media/development/community/community-ui.gif) / [MP4](media/development/community/community-ui.mp4) / [Identity](media/development/community/manifest.json) |
+| Workbench | [GIF](media/development/release-workbench/release-workbench-ui.gif) / [MP4](media/development/release-workbench/release-workbench-ui.mp4) / [Identity](media/development/release-workbench/manifest.json) |
+| Speech / single-image 3D | [GIF](media/development/expansion/expansion-ui.gif) / [MP4](media/development/expansion/expansion-ui.mp4) / [Identity](media/development/expansion/manifest.json) |
+| Multiview / observations | [GIF](media/development/multiview/multiview-ui.gif) / [MP4](media/development/multiview/multiview-ui.mp4) / [Identity](media/development/multiview/manifest.json) |
+
+原 v0.3.2 三组媒体按 Git 原字节保存在 `media/history/v0.3.2/`；以下开发记录与原始媒体说明属于历史版本，不能作为当前 UI / 手机验收。v0.3.2 originals remain byte-identical historical records.
+
 > 当前 v0.3.2 有三组重新录制的 UI FIXTURE：community 34 项、release-workbench 8 项、expansion 32 项，共 15 张截图及三组 GIF / MP4；均非模型 / 真机推理。[新增媒体](SPEECH_3D_EXPANSION.md#6-页面录屏与剩余范围)。Current recordings use production pages with simulated bridges; older media below keeps its historical scope.
 
 dev.28 新增 [LCM 准备 / 关联 / 依赖 / 生成四张截图与 MP4 / GIF](LCM_APP_FLOW.md)，并刷新工作台 / 预检 / 恢复媒体。运行 `node tools/capture_workbench.cjs lcm`；所有界面媒体带 UI FIXTURE 标记，浏览器在 finally 中关闭。Current production pages with simulated native data, not Android inference recordings.

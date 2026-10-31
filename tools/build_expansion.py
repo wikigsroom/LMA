@@ -17,7 +17,7 @@ CONFIG = {
 
 
 def inputs(engine):
-    return fingerprint('native/' + engine, 'native/worker_common.hpp', 'tools/build_expansion.py', 'tools/fetch_expansion_sources.py',
+    return fingerprint('native/' + engine, 'native/worker_common.hpp', 'native/runtime_metrics.hpp', 'tools/build_expansion.py', 'tools/fetch_expansion_sources.py',
                        'third_party/expansion-source-lock.json')
 
 

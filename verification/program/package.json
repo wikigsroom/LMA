@@ -1,7 +1,7 @@
 {
-  "apk": "LMA-0.3.2-arm64-v8a.apk",
-  "sha256": "bed58cb59324e8ec1a786026378a55767d28c5a76ba9fa56544506c10145d140",
-  "native_libraries_verified": 37,
+  "apk": "LMA-0.3.3-arm64-v8a.apk",
+  "sha256": "bf9c3a6feb03dc632df5cd0b58a0840c95d03bc18e3044925ed12c2add994cc5",
+  "native_libraries_verified": 38,
   "all_native_dependencies_resolved": true,
   "all_elf_load_segments_16k_aligned": true,
   "final_apk_zip_alignment_verified": true,
@@ -616,7 +616,7 @@
         16384
       ],
       "interpreter": "/system/bin/linker64",
-      "entry_point": 3127808,
+      "entry_point": 3135184,
       "android_api_notes": [
         28
       ],
@@ -633,7 +633,24 @@
         16384
       ],
       "interpreter": "/system/bin/linker64",
-      "entry_point": 1012512,
+      "entry_point": 1021392,
+      "android_api_notes": [
+        28
+      ],
+      "16k_elf_aligned": true
+    },
+    "liblma-multiview.so": {
+      "machine": "aarch64",
+      "needed": [
+        "libm.so",
+        "libdl.so",
+        "libc.so"
+      ],
+      "load_segment_alignment": [
+        16384
+      ],
+      "interpreter": "/system/bin/linker64",
+      "entry_point": 401328,
       "android_api_notes": [
         28
       ],

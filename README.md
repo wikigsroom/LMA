@@ -1,14 +1,14 @@
 # LMA · Android 本地模型工作台
 
-[English](README.en.md) · [下载 v0.3.2](https://github.com/wikigsroom/LMA/releases/tag/v0.3.2) · [使用手册](docs/USER_GUIDE.md) · [文档目录](docs/README.md) · [更新记录](CHANGELOG.md)
+[English](README.en.md) · [下载 v0.3.3](https://github.com/wikigsroom/LMA/releases/tag/v0.3.3) · [使用手册](docs/USER_GUIDE.md) · [文档目录](docs/README.md) · [更新记录](CHANGELOG.md)
 
 LMA（Local Model App）让用户在 Android 手机上选择、下载、管理和运行本地模型，提供聊天、生图、生视频、生音频、任务队列、结果库与本机 API。它是独立社区项目，与 LM Studio 无隶属关系；当前应用界面主要为中文，文档提供中英双语。
 
 **App 更新提供基座，模型由用户自行选择。** APK 不附模型权重，安装、升级和浏览目录不触发模型下载。所有推理、编码、解码与媒体合成都在同一手机完成，无需 ROOT、Termux、Docker、WSL、虚拟机、其他计算设备或云推理。
 
-**当前 APK：v0.3.2 / versionCode 52 / ARM64 / Android 9+。** 原有 F-01–F-12、生文、01–14／16／17 与 44 个社区配方保留；新增 11 个语音 / 3D 可选包，共 **78 套模型包**。按用户要求仅做程序验证，检查不能证明努比亚 Z20 上的速度、质量或后台耐久。
+**当前 APK：v0.3.3 / versionCode 53 / ARM64 / Android 9+。** 原有 F-01–F-12、生文、01–14／16／17 与 44 个社区配方保留；新增语音 / 单图 3D 11 包及四视图 3D 4 包，共 **82 套模型包**。按用户要求仅做程序验证，检查不能证明努比亚 Z20 上的速度、质量或后台耐久。
 
-**本页已恢复详细使用场景、调用示例、历史生成案例、失败记录和测试入口。** 当前生产页面、桌面历史模型输出与实际 Android 验收分别标注；历史图片或音频不作为 v0.3.2 的模型实跑结果。[本次文档修复说明](docs/releases/v0.3.1-readme.md)
+**本页已恢复详细使用场景、调用示例、历史生成案例、失败记录和测试入口。** 当前生产页面、桌面历史模型输出与实际 Android 验收分别标注；历史图片或音频不作为 v0.3.3 的模型实跑结果。[本次文档修复说明](docs/releases/v0.3.1-readme.md)
 
 <a id="contents"></a>
 ## 阅读路线
@@ -16,7 +16,7 @@ LMA（Local Model App）让用户在 Android 手机上选择、下载、管理�
 | 想做什么 | 本页入口 | 详细文档 |
 | --- | --- | --- |
 | 安装、下载和第一次使用 | [安装](#install)、[C01–C05](#use-cases) | [使用手册](docs/USER_GUIDE.md)、[HF 与本地模型](docs/HF_MODELS.md) |
-| 选择生图、生视频或生音频方案 | [支持范围](#models)、[C06–C14](#use-cases) | [完整实现矩阵](docs/IMPLEMENTATION_V032.md)、[社区模型](docs/COMMUNITY_MODELS.md) |
+| 选择生图、生视频或生音频方案 | [支持范围](#models)、[C06–C14](#use-cases) | [完整实现矩阵](docs/IMPLEMENTATION_V033.md)、[社区模型](docs/COMMUNITY_MODELS.md) |
 | 管理模型、独立参数、任务和结果 | [C03–C04、C15–C18](#use-cases) | [模型参数](docs/MODEL_SETTINGS.md)、[任务工作台](docs/TASK_WORKBENCH.md) |
 | 在程序中调用手机模型 | [API 示例](#api-examples) | [API](docs/API.md)、[输入与上传](docs/LOCAL_INPUTS.md) |
 | 看页面、生成案例和失败对照 | [当前页面](#ui-media)、[历史案例 H01–H18](#case-studies) | [媒体说明](docs/MEDIA.md)、[历史完整 README](docs/history/README-dev45.zh.md) |
@@ -42,9 +42,9 @@ LMA（Local Model App）让用户在 Android 手机上选择、下载、管理�
 | 16 | Wan 2.1 T2V 1.3B Q4 | sd.cpp CPU／Vulkan、显式组件、本机视频编码 |
 | 17 | LTX-Video 2B 0.9.8 distilled | 原始 PixArt T5 F32＋7 步／空间放大／3 步；Google T5 Q5 单尺度保留独立身份 |
 
-当前基座有 **44 个数据型配方模板、14 类扩展引擎及原有文本引擎**；模型包为 **23 套原有＋44 套社区＋11 套新增语音 / 3D＝78 套**。模板、模型包、引擎和架构分别计数，不代表全部模型已在手机实测。[机器可读实现矩阵](catalogue/release-0.3.2-implementation.json)
+当前基座有 **45 个数据型配方模板、15 类扩展引擎及原有文本引擎**；模型包为 **23 套原有＋44 套社区＋11 套语音 / 单图 3D＋4 套 MV 校验导入＝82 套**。模板、模型包、引擎和架构分别计数，不代表全部模型已在手机实测。[机器可读实现矩阵](catalogue/release-0.3.3-implementation.json)
 
-### 本轮语音与单图生 3D
+### 语音、单图与多视图生 3D
 
 | 编号 | 选择 | 当前接入与边界 |
 | --- | --- | --- |
@@ -54,9 +54,17 @@ LMA（Local Model App）让用户在 Android 手机上选择、下载、管理�
 | S04 | OmniVoice | Q8 GGUF / 原版两种选择，本机 C++；自动 / 克隆 / 描述音色，完整 WAV |
 | D01–D02 | TRELLIS.2 / Pixal3D | 五个单图 GGUF / CPU 几何或贴图选择，本地图片 → GLB → 预览 / 导出 |
 
-已检查指定 [3080 生 3D 测评](https://benchmark.sidcloud.cn/collections/3080-3d)的 **16 条配置**：12 条新轮次＋4 条旧轮次。本版接入两种单图架构的子集；多视图、其余模型、独立贴图 / 精修与多部件路线尚未集成。最小 Melo 包约 61 MB，Pixal3D 贴图包约 13 GB，不能统称轻量或承诺 Z20 可运行。
+已检查指定 [3080 生 3D 测评](https://benchmark.sidcloud.cn/collections/3080-3d)的 **16 条配置**：12 条新轮次＋4 条旧轮次。本版接入两种单图架构子集及真正的 Pixal3D MV 四视图路线；其余 9 条配置 / 8 组家族仍缺原生移植，不能以目录登记或补测冒充支持。最小 Melo 包约 61 MB，Pixal3D 贴图包约 13 GB，不能统称轻量或承诺 Z20 可运行。
 
 [四类语音、11 套文件与许可、D01–D16 完整评估、操作 / API / 测试 / 截图](docs/SPEECH_3D_EXPANSION.md) · [来源审计](research/expansion/benchmark-audit.json)。下载由用户选择，新增模型没有推断 NSFW 标签。
+
+### 新增多视图与可导出诊断
+
+Pixal3D MV 新增 F16 / Q8_0 的几何 / PBR 四个选择，四张已标定的 RGBA PNG → 同一本机 CPU 多视图融合 → GLB。**当前仅提供精确哈希校验导入，尚无已核实的公开权重下载端点**；已有匹配文件可导入，其他 HF 来源可使用自选 MV 配方。不能用单图 flow 代替，也不自动下载组件。
+
+新增阶段耗时与支持 worker 的进程峰值 RSS；任务失败后保留已收到的观察，后续测量不会抹掉后端身份。服务页显示省电、待机、后台与通知限制；主动导出的诊断对象使用字段白名单，不含提示词、参数、路径或密钥。它不表示已经验证模型质量或锁屏耐久。
+
+[四视图、相机约定、导入、API、诊断、63 项专项与剩余移植工作](docs/MULTIVIEW_DIAGNOSTICS.md) · [本次固定源码审计](research/portability/audit-v0.3.3.json)
 
 ### 社区生图／生视频与内容标签
 
@@ -98,27 +106,27 @@ Uncensored／Abliterated 与 NSFW 分别标注，不互相替代。作者声明�
 <a id="install"></a>
 ## 安装与首次启动
 
-1. 从 [v0.3.1 Release](https://github.com/wikigsroom/LMA/releases/tag/v0.3.2) 下载 `LMA-0.3.2-arm64-v8a.apk`；需要 64 位 Android 9／API 28 或以上。
+1. 从 [v0.3.3 Release](https://github.com/wikigsroom/LMA/releases/tag/v0.3.3) 下载 `LMA-0.3.3-arm64-v8a.apk`；需要 64 位 Android 9／API 28 或以上。
 2. 对照同页 `SHA256SUMS` 核对安装包。Windows 示例：
 
    ```powershell
-   Get-FileHash .\LMA-0.3.2-arm64-v8a.apk -Algorithm SHA256
+   Get-FileHash .\LMA-0.3.3-arm64-v8a.apk -Algorithm SHA256
    ```
 
 3. 打开 App，按系统提示允许通知。若要退出界面或锁屏继续工作，在 Android 设置中允许后台活动并取消相关电池限制。
 4. App 初次启动可零模型使用管理界面和接口；选择、下载、导入或加载模型都是独立操作。
 5. 保持原签名升级安装，已有模型与设置继续保留。自行签名的 APK 不能直接覆盖另一签名的安装。
 
-| 安装包身份 | v0.3.2 |
+| 安装包身份 | v0.3.3 |
 | --- | --- |
-| 字节数 | `66100175` |
-| SHA256 | `bed58cb59324e8ec1a786026378a55767d28c5a76ba9fa56544506c10145d140` |
+| 字节数 | `67157973` |
+| SHA256 | `bf9c3a6feb03dc632df5cd0b58a0840c95d03bc18e3044925ed12c2add994cc5` |
 | 签名证书 SHA256 | `90444a717a55549e2094364d8d7d005cf8b7f4df24562da62cc1884a2f341c17` |
 
-Release 附 APK、源码 ZIP、验证 ZIP、截图 ZIP、GIF／MP4、构建与源码清单、说明和哈希，共 18 项附件。[版本说明](docs/releases/v0.3.2.md)
+Release 附 APK、源码 ZIP、验证 ZIP、截图 ZIP、GIF／MP4、构建与源码清单、说明和哈希，共 20 项附件。[版本说明](docs/releases/v0.3.3.md)
 
 <a id="use-cases"></a>
-## 22 个完整使用场景
+## 24 个完整使用场景
 
 以下是操作用例及应有行为，不是新增的真机测试通过清单。当前程序检查与历史实测证据分别见下文。
 
@@ -273,6 +281,20 @@ Release 附 APK、源码 ZIP、验证 ZIP、截图 ZIP、GIF／MP4、构建与�
 - 拖动旋转、缩放，导出 GLB 与生成记录，或恢复输入后重新提交。演示立方体是合成程序夹具。[操作与 16 项评估](docs/SPEECH_3D_EXPANSION.md)
 
 <a id="foundation"></a>
+### C23 · 四张标定视图生成 3D
+
+- 选择 MV 的四个校验导入方案之一，检查并导入全部匹配组件；没有核实下载端点时不能点击一键下载。
+- 在“本地 → 使用”分别选择正面 / 右侧 / 背面 / 左侧 RGBA PNG，确认标准转台或填写真实相机参数；编辑独立设置后预检、保存草稿或明确入队。
+- 结果沿用 GLB 预览 / 导出；取消和失败清理私有侧文件。四次单图任务不等于多视图融合。
+- 对照：[多视图完整方案](docs/MULTIVIEW_DIAGNOSTICS.md)、[原生专项](verification/program/multiview.json)。
+
+### C24 · 观察后台限制与导出诊断
+
+- 在“服务”查看当前省电、待机、后台活动和通知状态；状态不代表已完成锁屏耐久测试。
+- 主动导出日志时，新增最近 64 条任务的诊断对象。支持的 worker 记录阶段耗时 / 进程 RSS，失败后已收到的信息仍持久化。
+- 诊断字段白名单不含提示词 / 参数 / 路径 / 密钥；原有日志仍需自行脱敏，不会自动上传。
+- 对照：[观察范围与隐私](docs/MULTIVIEW_DIAGNOSTICS.md#5-观察与诊断)、[程序检查](verification/program/expansion.json)。
+
 ## 基座如何工作
 
 模型／组件／配方描述固定 revision、文件路径、大小、SHA256、能力和依赖。版本化内部引擎适配器负责加载、阶段进度、取消、错误和卸载；新增同架构变体复用描述与调度，新架构需要实际适配，不能靠目录登记冒充可运行。
@@ -403,9 +425,9 @@ $lmaAccepted
 <a id="ui-media"></a>
 ## 当前页面、截图与录屏
 
-以下三条为 **v0.3.2 生产页面＋明确标记的桌面交互夹具（UI FIXTURE）**，未下载权重、未产生模型输出，不是手机录像。社区流程 34 项、工作台 8 项、语音 / 3D 32 项交互；录制结束关闭全部测试浏览器资源。
+以下四条为 **v0.3.3 生产页面＋明确标记的桌面交互夹具（UI FIXTURE）**，未下载权重、未产生模型输出，不是手机录像。社区流程 34 项、工作台 8 项、语音 / 3D 32 项、多视图 19 项交互；录制结束关闭全部测试浏览器资源。
 
-![v0.3.2 社区筛选、来源与本地管理；UI FIXTURE](docs/media/development/community/community-ui.gif)
+![v0.3.3 社区筛选、来源与本地管理；UI FIXTURE](docs/media/development/community/community-ui.gif)
 
 [社区 MP4](docs/media/development/community/community-ui.mp4) · [媒体与源码身份](docs/media/development/community/manifest.json)
 
@@ -415,7 +437,7 @@ $lmaAccepted
 
 [视频目录](docs/media/development/community/03-community-video.png) · [视频来源与限制](docs/media/development/community/04-video-source.png) · [本地管理](docs/media/development/community/05-community-local.png)
 
-![v0.3.2 共用工作台；UI FIXTURE，非模型推理](docs/media/development/release-workbench/release-workbench-ui.gif)
+![v0.3.3 共用工作台；UI FIXTURE，非模型推理](docs/media/development/release-workbench/release-workbench-ui.gif)
 
 [工作台 MP4](docs/media/development/release-workbench/release-workbench-ui.mp4) · [工作台媒体身份](docs/media/development/release-workbench/manifest.json)
 
@@ -432,14 +454,18 @@ $lmaAccepted
 | 运行资源与停止原因 | [资源](docs/media/development/resources/01-running.png)、[停止详情](docs/media/development/resources/02-stopped-detail.png) | [资源说明](docs/RUNTIME_RESOURCES.md) |
 | 原始文本模型库、接口和深色主题 | [模型库](docs/media/01-library.png)、[接口](docs/media/05-api.png)、[深色](docs/media/07-dark.png) | [原始演示](docs/MEDIA.md) |
 
-![v0.3.2 语音与单图生 3D；UI FIXTURE，合成立方体非模型输出](docs/media/development/expansion/expansion-ui.gif)
+![v0.3.3 语音与单图生 3D；UI FIXTURE，合成立方体非模型输出](docs/media/development/expansion/expansion-ui.gif)
 
 [语音选择](docs/media/development/expansion/01-speech-models.png) · [3D 表单](docs/media/development/expansion/03-3d-form.png) · [GLB 预览](docs/media/development/expansion/05-glb-preview.png) · [MP4](docs/media/development/expansion/expansion-ui.mp4) · [32 项页面检查](docs/media/development/expansion/manifest.json)
+
+![v0.3.3 四视图与后台状态；UI FIXTURE，未运行训练模型](docs/media/development/multiview/multiview-ui.gif)
+
+[四个导入选择](docs/media/development/multiview/01-multiview-models.png) · [四图表单](docs/media/development/multiview/03-four-view-form.png) · [后台观察](docs/media/development/multiview/05-background-observations.png) · [MP4](docs/media/development/multiview/multiview-ui.mp4) · [19 项页面检查](docs/media/development/multiview/manifest.json)
 
 <a id="case-studies"></a>
 ## 历史案例测试与真实产物
 
-这些是已保存的开发阶段案例，**本次文档修复没有重新下载、复制或运行完整模型**。HOST 表示原生 Windows 主机，UI FIXTURE 表示模拟桥接的页面，PROGRAM 表示程序或有界小图检查；都不能替代 Android 真机验收。旧文档中的“尚未发布”属于当时语境，当前安装包以上方 v0.3.2 为准。
+这些是已保存的开发阶段案例，**本次文档修复没有重新下载、复制或运行完整模型**。HOST 表示原生 Windows 主机，UI FIXTURE 表示模拟桥接的页面，PROGRAM 表示程序或有界小图检查；都不能替代 Android 真机验收。旧文档中的“尚未发布”属于当时语境，当前安装包以上方 v0.3.3 为准。
 
 | 编号 | 案例及输入／操作 | 当时观察与明确边界 | 原始说明／证据 |
 | --- | --- | --- | --- |
@@ -511,12 +537,12 @@ $lmaAccepted
 <a id="verification"></a>
 ## 当前程序检查覆盖与复核入口
 
-**v0.3.2 保留原有 24 组覆盖，增加 P25 语音 / 3D 程序专项，重跑受影响检查。** 当前 **25 组 / 4,727 项**。具体数量与源码指纹见[当前证据](verification/program/status.json)；完整模型、手机质量与耐久未测试。[验证策略](docs/PROGRAM_VALIDATION.md)
+**v0.3.3 保留前版 25 组覆盖，新增 P26 多视图原生专项，重跑受影响检查。** 当前 **26 组 / 4,940 项**。具体数量与源码指纹见[当前证据](verification/program/status.json)；完整模型、手机质量与耐久未测试。[验证策略](docs/PROGRAM_VALIDATION.md)
 
 | 编号 | 套件／断言 | 覆盖的案例 | 记录 |
 | --- | --- | --- | --- |
 | P01 | community · 818 | 44 配方、内容依据、固定身份、独立参数与生产任务规划 | [JSON](verification/program/community.json) |
-| P02 | foundation · 899 | 零模型启动、包管理、组件共享、下载／导入／删除与权限 | [JSON](verification/program/foundation.json) |
+| P02 | foundation · 915 | 零模型启动、包管理、组件共享、下载／导入／删除与权限 | [JSON](verification/program/foundation.json) |
 | P03 | backend · 138 | 文本引擎进程、代理、停止、错误与占用释放 | [JSON](verification/program/backend.json) |
 | P04 | bundle-pause · 22 | 阻塞读取中暂停、关闭、后续队列释放 | [JSON](verification/program/bundle-pause.json) |
 | P05 | document-input · 15 | 文档输入合约、取消、错误和资源关闭；不是手机 SAF 实跑 | [JSON](verification/program/document-input.json) |
@@ -535,11 +561,12 @@ $lmaAccepted
 | P18 | recipe-suggestions · 73 | 配套组件建议、人工确认和精确下载计划 | [JSON](verification/program/recipe-suggestions.json) |
 | P19 | speech-voices · 70 | 54 个 Kokoro 音色、模型专属参数和非法选择 | [JSON](verification/program/speech-voices.json) |
 | P20 | sana-sprint · 448 | 分词、采样数学、有界小图和匹配 Sprint 路线 | [JSON](verification/program/sana-sprint.json) |
-| P21 | ui · 597 | 生产页面、模型管理、组合筛选、设置、队列和结果 | [JSON](verification/program/ui.json) |
+| P21 | ui · 616 | 生产页面、模型管理、组合筛选、设置、队列和结果 | [JSON](verification/program/ui.json) |
 | P22 | ltx-official · 89 | 官方身份、原始 T5／分词与多尺度配置合约 | [JSON](verification/program/ltx-official.json) |
 | P23 | ltx-multiscale-app · 280 | 原始 PixArt 多尺度编排、有界阶段、取消与产物提交 | [JSON](verification/program/ltx-multiscale-app.json) |
 | P24 | ltx-single-scale-app · 127 | 独立单尺度路线、输入／参数／进程和取消恢复 | [JSON](verification/program/ltx-single-scale-app.json) |
-| P25 | expansion · 173 | 新语音 / 3D 合约、五种真实主机子进程夹具、GLB 发布与拒绝、F5 前端微型夹具 | [JSON](verification/program/expansion.json) |
+| P25 | expansion · 288 | 语音 / 单图 / MV 合约、真实主机子进程夹具、GLB、清理、诊断合并持久化与微型 F5 前端 | [JSON](verification/program/expansion.json) |
+| P26 | multiview · 63 | 上游真实相机 / 投影、12 个 native 进程拒绝路径与运行观察 | [JSON](verification/program/multiview.json) |
 
 另外核对 ARM64／API28、35 个原生库及依赖、16 KiB ELF／ZIP 对齐、原签名与 APK 身份；Android Lint **0 错误／16 个原有警告**。当前 10 张截图、2 GIF、2 MP4 来自两条明确标记的桌面页面流程，不是模型生视频产物。
 
@@ -628,7 +655,7 @@ python tools/program_evidence.py
 
 [完整文档目录](docs/README.md) · [中文手册](docs/USER_GUIDE.md) · [English guide](docs/USER_GUIDE.en.md) · [模型参数](docs/MODEL_SETTINGS.md) · [共用任务](docs/TASK_WORKBENCH.md) · [输入](docs/LOCAL_INPUTS.md) · [API](docs/API.md) · [后台架构](docs/ARCHITECTURE.md)
 
-[多模态可行性研究](docs/MULTIMODAL.md) · [基座评估](docs/FOUNDATION.md) · [冻结需求](docs/MULTIMODAL_RELEASE_PLAN.md) · [用户资产核对](docs/ASSET_CONTROL_AUDIT.md) · [当前实现](docs/IMPLEMENTATION_V032.md) · [旧验证资料](docs/VALIDATION.md) · [设备验收工具（未执行）](docs/DEVICE_ACCEPTANCE.md)
+[多模态可行性研究](docs/MULTIMODAL.md) · [基座评估](docs/FOUNDATION.md) · [冻结需求](docs/MULTIMODAL_RELEASE_PLAN.md) · [用户资产核对](docs/ASSET_CONTROL_AUDIT.md) · [当前实现](docs/IMPLEMENTATION_V033.md) · [旧验证资料](docs/VALIDATION.md) · [设备验收工具（未执行）](docs/DEVICE_ACCEPTANCE.md)
 
 [完整历史中文 README](docs/history/README-dev45.zh.md) · [完整历史英文 README](docs/history/README-dev45.en.md) · [历史文档索引](docs/history/Documentation-dev45.md) · [本次文档修复](docs/releases/v0.3.1-readme.md)
 

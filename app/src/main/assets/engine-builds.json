@@ -666,8 +666,8 @@
       "backend": "cpu",
       "ndk": "30.0.16248370",
       "min_sdk": 28,
-      "bytes": 7246688,
-      "sha256": "27e578d5bdd85c097eb2123fbe89b77992141e56c382fbb86ea22cc0543df7e1",
+      "bytes": 7262752,
+      "sha256": "c9c6ed09d32c21ef4c60eb4303bb2c68688822fe5eedaad66d4f77aedb0f89d4",
       "dependencies": [],
       "vocabularies": "external_user_selected_components",
       "physical_device_tests": 0,
@@ -705,8 +705,8 @@
       "backend": "cpu",
       "ndk": "30.0.16248370",
       "min_sdk": 28,
-      "bytes": 3675344,
-      "sha256": "3ff98c7b1c15198abe11a30cbac63348fe3f060ba0a8b37ecaabfa2f78c12a99",
+      "bytes": 3694184,
+      "sha256": "59411ee4ee4ef3292d7041acdb1d94ff6e50d512a2c6bd21952c977c158765a7",
       "dependencies": [],
       "vocabularies": "external_user_selected_components",
       "physical_device_tests": 0,
@@ -729,6 +729,44 @@
         "expansion-mesh-stb_image.h-NOTICE.txt",
         "expansion-mesh-stb_image_write.h-NOTICE.txt",
         "expansion-mesh-stb_image_resize.h-NOTICE.txt",
+        "sd-nlohmann-json-LICENSE.txt",
+        "sd-NDK-LLVM-NOTICE.txt"
+      ]
+    },
+    {
+      "schema": "lma.native-build/1",
+      "engine": "pixal_multiview",
+      "file": "liblma-multiview.so",
+      "source_revision": "d1b4926452f9e09702b891db5f05acc845e153ed",
+      "abi": "arm64-v8a",
+      "backend": "cpu",
+      "ndk": "30.0.16248370",
+      "min_sdk": 28,
+      "bytes": 2238728,
+      "sha256": "7265f951bf31bfba239e01cfecb0a2ecce3b5de7d2251dc2974b11d3ce78c59d",
+      "dependencies": [],
+      "vocabularies": "external_user_selected_components",
+      "physical_device_tests": 0,
+      "model_inference_tested": false,
+      "virtualization_used": false,
+      "elf_load_alignment": [
+        16384
+      ],
+      "android_api_notes": [
+        28
+      ],
+      "deviceValidated": false,
+      "status": "compiled_not_device_tested",
+      "notices": [
+        "expansion-multiview-LICENSE.txt",
+        "expansion-multiview-NOTICE.txt",
+        "expansion-multiview-thirdparty-ggml-LICENSE.txt",
+        "expansion-multiview-thirdparty-meshoptimizer-LICENSE.md.txt",
+        "expansion-multiview-thirdparty-fqms-LICENSE.md.txt",
+        "expansion-multiview-xatlas-NOTICE.txt",
+        "expansion-multiview-stb_image.h-NOTICE.txt",
+        "expansion-multiview-stb_image_write.h-NOTICE.txt",
+        "expansion-multiview-stb_image_resize.h-NOTICE.txt",
         "sd-nlohmann-json-LICENSE.txt",
         "sd-NDK-LLVM-NOTICE.txt"
       ]

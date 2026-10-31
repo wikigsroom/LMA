@@ -1,0 +1,9 @@
+{
+  "schema": "lma.multiview-sources/1",
+  "sources": [
+    {"id":"multiview","repository":"https://github.com/raven38/pixal3d.cpp","clone":"git@github.com:raven38/pixal3d.cpp.git","revision":"d1b4926452f9e09702b891db5f05acc845e153ed","directory":"build/native-src/pixal3d-mv-cpp","license":"MIT"},
+    {"id":"multiview_ggml","repository":"https://github.com/pwilkin/ggml","clone":"git@github.com:pwilkin/ggml.git","revision":"737e88f25d4f62254f3b7a726fd9663036cc94da","directory":"build/native-src/pixal3d-mv-cpp/thirdparty/ggml","license":"MIT"}
+  ],
+  "excluded":["trained weights","demos","installers","server","remote inference"],
+  "validation":"source and program checks only"
+}

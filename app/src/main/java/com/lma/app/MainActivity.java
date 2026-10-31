@@ -270,6 +270,7 @@ public final class MainActivity extends Activity {
             new Thread(() -> {
                 try (java.io.OutputStream out = getContentResolver().openOutputStream(uri)) {
                     JSONObject log = new JSONObject(); JSONObject state = app.snapshot(); log.put("app", "LMA " + LmaApp.VERSION).put("device", state.optJSONObject("device")).put("engine", state.optJSONObject("engine")).put("logs", state.optJSONArray("logs"));
+                    log.put("runtimeDiagnostics",com.lma.app.core.RuntimeDiagnostics.report(state,LmaApp.VERSION));
                     if (out == null) throw new java.io.IOException("无法写入文件"); out.write(log.toString(2).getBytes(StandardCharsets.UTF_8));
                     main.post(() -> Toast.makeText(this, "日志已导出", Toast.LENGTH_SHORT).show());
                 } catch (Exception error) { app.error("导出失败：" + error.getMessage()); }

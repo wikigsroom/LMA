@@ -1,5 +1,7 @@
 # 语音与本地生 3D：v0.3.2
 
+> 本页记录 v0.3.2 的实现。v0.3.3 已另增 D03 Pixal3D MV 真实四视图子集，见[当前方案与剩余移植工作](MULTIVIEW_DIAGNOSTICS.md)。下方旧数量 / 证据按原版本理解。
+
 [English](SPEECH_3D_EXPANSION.en.md) · [使用手册](USER_GUIDE.md) · [API](API.md) · [发布说明](releases/v0.3.2.md)
 
 本版在原有完整基座上增加四类语音模型的可选方案，以及 TRELLIS.2 / Pixal3D 单图生 3D 路线。全部编码、推理、解码、网格处理和导出都在同一 Android 手机执行。APK 只增加程序，不携带或自动下载权重、音色、词表、分词器和发音词典。

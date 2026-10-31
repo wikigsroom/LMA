@@ -1,5 +1,6 @@
 #pragma once
 #include "json.hpp"
+#include "runtime_metrics.hpp"
 #include <algorithm>
 #include <cmath>
 #include <csignal>
@@ -29,7 +30,16 @@ namespace lma_worker {
 using json = nlohmann::json;
 inline FILE* events = nullptr;
 inline void require(bool value, const char* message) { if (!value) throw std::runtime_error(message); }
-inline void event(const json& value) { require(events != nullptr, "Event channel unavailable"); std::string line = value.dump(); std::fprintf(events, "%s\n", line.c_str()); std::fflush(events); }
+inline void event(const json& value) {
+    require(events != nullptr, "Event channel unavailable");
+    const auto kind=value.value("event",std::string());
+    if(kind=="stage")lma_metrics::stage(value.value("stage",std::string("generating")));
+    if(kind=="complete"||kind=="error"){
+        const auto measured=json{{"event","execution"},{"details",{{"runtimeMeasurements",lma_metrics::finish()}}}}.dump();
+        std::fprintf(events,"%s\n",measured.c_str());
+    }
+    std::string line = value.dump(); std::fprintf(events, "%s\n", line.c_str()); std::fflush(events);
+}
 inline void initialize() {
 #ifndef _WIN32
     prctl(PR_SET_PDEATHSIG, SIGKILL);

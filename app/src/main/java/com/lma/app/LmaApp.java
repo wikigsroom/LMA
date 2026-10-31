@@ -205,9 +205,13 @@ public final class LmaApp extends Application {
     }
     public JSONObject device() throws Exception {
         ActivityManager.MemoryInfo memory = new ActivityManager.MemoryInfo(); ((ActivityManager) getSystemService(ACTIVITY_SERVICE)).getMemoryInfo(memory);
+        PowerManager power=(PowerManager)getSystemService(POWER_SERVICE);
         return new JSONObject().put("name", android.os.Build.MODEL).put("android", android.os.Build.VERSION.RELEASE).put("sdk", android.os.Build.VERSION.SDK_INT)
                 .put("totalMemory", memory.totalMem).put("availableMemory", memory.availMem).put("freeStorage", new StatFs(getFilesDir().getPath()).getAvailableBytes())
-                .put("batteryExempt", ((PowerManager) getSystemService(POWER_SERVICE)).isIgnoringBatteryOptimizations(getPackageName()));
+                .put("batteryExempt", power.isIgnoringBatteryOptimizations(getPackageName()))
+                .put("powerSaveMode",power.isPowerSaveMode()).put("deviceIdle",power.isDeviceIdleMode()).put("interactive",power.isInteractive())
+                .put("backgroundRestricted",((ActivityManager)getSystemService(ACTIVITY_SERVICE)).isBackgroundRestricted())
+                .put("notificationsEnabled",((android.app.NotificationManager)getSystemService(NOTIFICATION_SERVICE)).areNotificationsEnabled());
     }
     private JSONArray addresses() {
         JSONArray result = new JSONArray();

@@ -1,5 +1,14 @@
 # Changelog / 更新记录
 
+## 0.3.3 — 本地多视图 3D 与诊断 / Local multiview 3D and diagnostics
+
+- 新增真正 Pixal3D MV CPU / ARM64、四张 RGBA PNG、标准转台 / 自定义相机、独立参数、草稿、预检、共用队列与 GLB。Actual feature projection/fusion, not repeated single-image generation; all stages remain on the same phone.
+- 四个 F16 / Q8_0 几何 / PBR 平级包，按发布者固定清单校验导入；尚无已核实公开权重下载端点，不伪造一键下载。Generic HF MV recipe supports explicit compatible component selection. 82 bundles / 45 templates / 15 extensions plus text; original recommendations and frozen scope remain.
+- 新增支持 worker 的阶段耗时 / 进程 RSS、失败后执行观察持久化与合并身份保护；主动导出的最近 64 条任务诊断采用字段白名单。Power/background/notification states are visible; no automatic upload or endurance claim.
+- 完整程序 26 组 / 4,940 项、页面 616 项、38 原生库 / 16 KiB / 原签名，Lint 0 错误 / 16 警告。Zero complete trained-model downloads/copies/runs, no phone, emulator or virtualization.
+- README 中英正文保留历史案例并扩展至 24 个用例 / 26 组检查；修正过时构建与验证说明，20 当前截图 / 4 GIF / 4 MP4；v0.3.2 原始证据与三组媒体按 Git 原字节归档。
+- 固定源码复核其余测评 9 条配置 / 8 组家族，明确记录实际原生移植缺口，不把登记或补测视为支持。[编号实现 / 待办与附件 / Numbered delivery](docs/releases/v0.3.3.md)。
+
 ## 0.3.2 — 语音与本地生 3D / Speech and local 3D
 
 - 新增 Kokoro INT8、MeloTTS Chinese INT8 / FP32、F5-TTS v1、OmniVoice Q8 / 原版六个可选语音包；匹配 ONNX、原版 safetensors 或 GGUF，不直接执行任意 PyTorch `.pth`。Add matched local workers and external frontend resources; all downloads remain explicit.

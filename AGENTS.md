@@ -1,6 +1,6 @@
 # LMA repository instructions / 仓库工作约定
 
-- Current additive release is v0.3.2: retain completed v0.3.0 scope and v0.3.1 community support; add speech / single-image 3D routes described in docs/SPEECH_3D_EXPANSION.md. The older “next v0.3.0” requirement below records the complete original scope, not a request to reset versions. All new models remain optional peers; raw PyTorch, unported 3D families and phone performance must not be inferred from catalogue labels.
+- Current additive release is v0.3.3: retain the completed original scope, community, speech and single-image 3D; add the true four-view runtime and diagnostics described in docs/MULTIVIEW_DIAGNOSTICS.md. Matching MV weights are import-only until a download endpoint is verified. D04–D12 remain native-port implementation work, explicitly separate from frozen-scope completion. The older “next v0.3.0” requirement below records the complete original scope, not a request to reset versions. All new models remain optional peers; raw PyTorch, unported 3D families and phone performance must not be inferred from catalogue labels.
 
 - Work inside this repository and the user's designated `无审查小模型/` directory. Do not invoke Docker, WSL, virtual machines, or Android emulators. 使用原生工具，不调度任何虚拟化环境。
 - Close all browser pages, contexts, and browser processes created for a task in `finally` blocks. 浏览器调用结束必须关闭不用的页面并释放内存。

@@ -8083,6 +8083,244 @@
       ],
       "fixedComponents": [],
       "help": "实验性单图 → GLB；同机 CPU 完成编码、采样、网格与可选 PBR。无多视图、MoGe 自动相机、重拓扑插件。512 / 1024 为生成阶段分辨率；图集上限 2048。权重体积不代表运行内存，未证明 Z20 可完成。"
+    },
+    {
+      "id": "pixal3d_mv_gguf_cpu_v1",
+      "name": "Pixal3D MV · 四视图自选配套组件",
+      "primaryRole": "image_encoder",
+      "definition": {
+        "engine": "pixal_multiview",
+        "architecture": "pixal3d_mv",
+        "pipeline": "pixal3d_mv",
+        "backend": "cpu",
+        "tasks": [
+          "3d"
+        ],
+        "capabilities": [
+          "multi_view_to_3d",
+          "posed_rgba_inputs",
+          "pbr_materials"
+        ],
+        "parameters": {
+          "version": 1,
+          "fields": {
+            "threads": {
+              "type": "integer",
+              "label": "CPU 线程",
+              "default": 2,
+              "presets": [
+                1,
+                2,
+                4,
+                8
+              ],
+              "minimum": 1,
+              "maximum": 16,
+              "limitSource": "application_guard"
+            },
+            "resolution": {
+              "type": "integer",
+              "label": "3D 生成分辨率",
+              "default": 1024,
+              "minimum": 1024,
+              "maximum": 1024,
+              "limitSource": "application_guard"
+            },
+            "steps": {
+              "type": "integer",
+              "label": "每阶段采样步数",
+              "default": 12,
+              "presets": [
+                4,
+                8,
+                12,
+                20
+              ],
+              "minimum": 1,
+              "maximum": 50,
+              "limitSource": "application_guard"
+            },
+            "seed": {
+              "type": "integer",
+              "label": "随机种子",
+              "default": 1234,
+              "minimum": 1,
+              "maximum": 2147483647,
+              "limitSource": "application_guard"
+            },
+            "faces": {
+              "type": "integer",
+              "label": "输出网格面数目标",
+              "default": 30000,
+              "presets": [
+                10000,
+                30000,
+                60000
+              ],
+              "minimum": 1000,
+              "maximum": 150000,
+              "limitSource": "application_guard"
+            },
+            "atlas": {
+              "type": "integer",
+              "label": "贴图图集尺寸",
+              "default": 1024,
+              "multipleOf": 256,
+              "presets": [
+                512,
+                1024,
+                2048
+              ],
+              "minimum": 256,
+              "maximum": 2048,
+              "limitSource": "application_guard"
+            },
+            "guidance": {
+              "type": "number",
+              "label": "引导强度",
+              "default": 7.5,
+              "minimum": 0,
+              "maximum": 15,
+              "limitSource": "application_guard"
+            },
+            "maxTokens": {
+              "type": "integer",
+              "label": "稀疏 token 保护上限",
+              "default": 8192,
+              "presets": [
+                4096,
+                8192,
+                16384
+              ],
+              "minimum": 1024,
+              "maximum": 49152,
+              "limitSource": "application_guard"
+            },
+            "meshScale": {
+              "type": "number",
+              "label": "相机对应的网格尺度",
+              "default": 1,
+              "minimum": 0.1,
+              "maximum": 10,
+              "limitSource": "application_guard"
+            },
+            "texture": {
+              "type": "boolean",
+              "label": "生成贴图",
+              "default": false
+            },
+            "cameraPoses": {
+              "type": "string",
+              "label": "四视图相机参数（留空使用标准转台）",
+              "default": "",
+              "maxLength": 16000
+            }
+          }
+        }
+      },
+      "requirements": [
+        {
+          "role": "image_encoder",
+          "label": "image_encoder · dinov3.gguf",
+          "formats": [
+            "gguf"
+          ],
+          "required": true,
+          "matchFiles": [
+            "dinov3.gguf"
+          ]
+        },
+        {
+          "role": "naf",
+          "label": "naf · pixal3d_naf.gguf",
+          "formats": [
+            "gguf"
+          ],
+          "required": true,
+          "matchFiles": [
+            "pixal3d_naf.gguf"
+          ]
+        },
+        {
+          "role": "ss_flow",
+          "label": "ss_flow · pixal3d_ss_flow_mv.gguf",
+          "formats": [
+            "gguf"
+          ],
+          "required": true,
+          "matchFiles": [
+            "pixal3d_ss_flow_mv.gguf"
+          ]
+        },
+        {
+          "role": "ss_decoder",
+          "label": "ss_decoder · ss_dec.gguf",
+          "formats": [
+            "gguf"
+          ],
+          "required": true,
+          "matchFiles": [
+            "ss_dec.gguf"
+          ]
+        },
+        {
+          "role": "shape_flow",
+          "label": "shape_flow · pixal3d_shape_flow_512_mv.gguf",
+          "formats": [
+            "gguf"
+          ],
+          "required": true,
+          "matchFiles": [
+            "pixal3d_shape_flow_512_mv.gguf"
+          ]
+        },
+        {
+          "role": "shape_decoder",
+          "label": "shape_decoder · shape_dec.gguf",
+          "formats": [
+            "gguf"
+          ],
+          "required": true,
+          "matchFiles": [
+            "shape_dec.gguf"
+          ]
+        },
+        {
+          "role": "shape_flow_hr",
+          "label": "shape_flow_hr · pixal3d_shape_flow_1024_mv.gguf",
+          "formats": [
+            "gguf"
+          ],
+          "required": true,
+          "matchFiles": [
+            "pixal3d_shape_flow_1024_mv.gguf"
+          ]
+        },
+        {
+          "role": "texture_flow_hr",
+          "label": "texture_flow_hr · pixal3d_tex_flow_1024_mv.gguf",
+          "formats": [
+            "gguf"
+          ],
+          "required": false,
+          "matchFiles": [
+            "pixal3d_tex_flow_1024_mv.gguf"
+          ]
+        },
+        {
+          "role": "texture_decoder",
+          "label": "texture_decoder · tex_dec.gguf",
+          "formats": [
+            "gguf"
+          ],
+          "required": false,
+          "matchFiles": [
+            "tex_dec.gguf"
+          ]
+        }
+      ],
+      "fixedComponents": [],
+      "help": "从 HF 选择同一 MV 导出族配套组件，声明后自行确认下载或导入。四张 RGBA PNG 必须与相机参数一致；默认标准转台 20° 水平视角、零仰角、距离 3.119204998。允许填写四个 camera-to-world 矩阵与弧度制视角；不自动从任意照片恢复相机。1024、CPU，手机内存与效果未测。"
     }
   ]
 }

@@ -1,15 +1,15 @@
 # LMA 文档 / Documentation
 
-当前版本 **v0.3.2**：完整冻结范围的程序集成，按用户指令只做程序验证。Current release: complete frozen program scope; phone/model quality and endurance remain untested. [中文 README](../README.md) · [English README](../README.en.md) · [Release notes](releases/v0.3.2.md)
+当前版本 **v0.3.3**：完整冻结范围的程序集成，按用户指令只做程序验证。Current release: complete frozen program scope; phone/model quality and endurance remain untested. [中文 README](../README.md) · [English README](../README.en.md) · [Release notes](releases/v0.3.3.md)
 
 - [社区生图 / 生视频与 NSFW 标记](COMMUNITY_MODELS.md) · [English](COMMUNITY_MODELS.en.md)：44 个新增版本、来源 / 许可 / 兼容边界、操作及截图。
-- README 已恢复详细正文：[22 个使用场景](../README.md#use-cases)、[4 组 API 示例](../README.md#api-examples)、[18 组案例与失败](../README.md#case-studies)、[25 组测试覆盖](../README.md#verification)；[English scenarios](../README.en.md#use-cases) / [cases](../README.en.md#case-studies)。[本次完整性修复 / Repair notes](releases/v0.3.1-readme.md)。
+- README 已恢复详细正文：[24 个使用场景](../README.md#use-cases)、[4 组 API 示例](../README.md#api-examples)、[18 组案例与失败](../README.md#case-studies)、[26 组测试覆盖](../README.md#verification)；[English scenarios](../README.en.md#use-cases) / [cases](../README.en.md#case-studies)。[本次完整性修复 / Repair notes](releases/v0.3.1-readme.md)。
 
 ## 使用与基座 / Usage and foundation
 
 | 主题 / Topic | 中文 | English |
 | --- | --- | --- |
-| 完整实现与范围 / Implementation | [实现矩阵](IMPLEMENTATION_V032.md) | [Matrix](IMPLEMENTATION_V032.en.md) |
+| 完整实现与范围 / Implementation | [实现矩阵](IMPLEMENTATION_V033.md) | [Matrix](IMPLEMENTATION_V033.en.md) |
 | 安装、模型和使用 / User guide | [使用手册](USER_GUIDE.md) | [Guide](USER_GUIDE.en.md) |
 | HF 全部 / 本地 / Discovery | [HF 模型](HF_MODELS.md) | [HF models](HF_MODELS.en.md) |
 | 模型包与共享组件 / Bundles | [模型包](MODEL_TRANSFERS.md) | [Bundles](MODEL_TRANSFERS.en.md) |
@@ -22,6 +22,8 @@
 | 预检、资源与恢复 / Preflight | [预检](TASK_PREFLIGHT.md)、[资源](RUNTIME_RESOURCES.md)、[恢复](TASK_RECOVERY.md) | [Preflight](TASK_PREFLIGHT.en.md), [resources](RUNTIME_RESOURCES.en.md), [recovery](TASK_RECOVERY.en.md) |
 | 本机接口 / API | [API](API.md) | [API](API.en.md) |
 | 内部适配器 / Adapters | [架构](ARCHITECTURE.md)、[适配器](ADAPTERS.md) | [Architecture](ARCHITECTURE.en.md), [adapters](ADAPTERS.en.md) |
+
+- [四视图 3D 与诊断](MULTIVIEW_DIAGNOSTICS.md) · [English](MULTIVIEW_DIAGNOSTICS.en.md)：4 个校验导入包、相机 / API / 观察隐私 / 63 项原生专项与 9 条未移植配置。
 
 ## 模型路线 / Model routes
 

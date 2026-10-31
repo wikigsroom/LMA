@@ -289,6 +289,12 @@
     var exempt = state.device && state.device.batteryExempt;
     $('batteryTitle').textContent = exempt ? '已允许不受电池优化限制' : '允许锁屏后继续服务';
     $('batteryDescription').textContent = exempt ? '部分手机还需要在系统管家中允许后台运行和自启动。' : '首次使用时，允许 LMA 不受电池优化限制。';
+    var power = state.device || {}, constraints = [];
+    if (power.backgroundRestricted === true) constraints.push('系统限制后台活动');
+    if (power.powerSaveMode === true) constraints.push('省电模式已开启');
+    if (power.deviceIdle === true) constraints.push('设备处于待机状态');
+    if (power.notificationsEnabled === false) constraints.push('服务通知未开启');
+    if (constraints.length) $('batteryDescription').textContent += ' 当前：' + constraints.join('；') + '。';
     $('apiExample').textContent = example(false);
     var logBox = $('runtimeLogs'), nearBottom = logBox.scrollHeight - logBox.scrollTop - logBox.clientHeight < 70;
     var logs = (state.logs || []).slice(-65).map(function (line) { var d = new Date(line.time); return d.toLocaleTimeString('zh-CN', {hour12: false}) + '  ' + line.text; }).join('\n');

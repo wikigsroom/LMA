@@ -172,6 +172,19 @@ public final class JobStore {
             if (token.isEmpty() || !token.equals(job.optString("token")) || !Arrays.asList("loading", "running").contains(status)) throw new IOException("Task cancelled, interrupted or superseded");
         } catch (IOException error) { throw error; } catch (Exception error) { throw new IOException(error); }
     }
+    /** Keep signed worker observations on failed/interrupted attempts as well as artifacts. */
+    public synchronized JSONObject recordExecution(String id,String token,JSONObject details)throws Exception {
+        check(id,token);
+        if(details.toString().length()>16000)throw new IOException("Engine execution metadata exceeds limits");
+        JSONObject next=DataFiles.copy(state),job=find(next,id);
+        JSONObject merged=job.optJSONObject("engineExecution");
+        if(merged==null)merged=new JSONObject();
+        java.util.Iterator<String> keys=details.keys();
+        while(keys.hasNext()){String key=keys.next();merged.put(key,details.get(key));}
+        if(merged.toString().length()>16000)throw new IOException("Engine execution metadata exceeds limits");
+        job.put("engineExecution",DataFiles.copy(merged));event(next,job,"execution");persist(next);
+        return DataFiles.copy(merged);
+    }
     public synchronized void progress(String id, String token, String stage, Double fraction) throws Exception {
         check(id, token);
         if (stage == null || stage.isEmpty() || stage.length() > 120 || fraction != null && (!Double.isFinite(fraction) || fraction < 0 || fraction > 1)) throw new IllegalArgumentException("Invalid task progress");

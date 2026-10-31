@@ -45,6 +45,11 @@ def main():
     assert expansion['schema']==catalogue['schema'] and expansion_evidence['schema']==evidence['schema']
     assert not expansion_evidence['model_inference_tested'] and not expansion_evidence['model_weights_downloaded'] and expansion_evidence['physical_device_tests']==0
     catalogue['bundles']+=expansion['bundles']; evidence['bundles']+=expansion_evidence['bundles']
+    multiview=json.loads((ROOT/'catalogue/multiview-bundles.json').read_text(encoding='utf-8'))
+    multiview_evidence=json.loads((ROOT/'catalogue/multiview-bundle-evidence.json').read_text(encoding='utf-8'))
+    assert multiview['schema']==catalogue['schema'] and multiview_evidence['schema']==evidence['schema']
+    assert not multiview_evidence['model_inference_tested'] and not multiview_evidence['model_weights_downloaded'] and multiview_evidence['physical_device_tests']==0
+    catalogue['bundles']+=multiview['bundles'];evidence['bundles']+=multiview_evidence['bundles']
     newline = "\r\n" if b"\r\n" in data else "\n"
     data = (json.dumps(catalogue, ensure_ascii=False, indent=2) + "\n").replace("\n", newline).encode("utf-8")
     assert catalogue["schema"] == "lma.bundle-catalogue/1" and not evidence["model_inference_tested"]
@@ -68,6 +73,11 @@ def main():
             if checked["kind"] in ("hf_lfs", "downloaded_small_data", "hf_git_blob"):
                 assert re.fullmatch("[0-9a-f]{40,64}", c["revision"])
                 assert c["url"] == "https://huggingface.co/" + c["repository"] + "/resolve/" + c["revision"] + "/" + c["path"]
+            elif checked['kind']=='pinned_source_manifest':
+                from multiview_catalogue import build as multiview_build
+                declared=next(b for b in multiview_build()[1] if b['bundleId']==bundle['id'])
+                assert checked==next(p for p in declared['components'] if p['role']==c['role'])
+                assert not c['url'] and bundle['evidence']['acquisition']=='import_only'
             elif checked['kind']=='pinned_pronunciation_dictionary':
                 from expansion_catalogue import SOURCE
                 source=json.loads(SOURCE.read_text(encoding='utf-8'))

@@ -1,5 +1,7 @@
 # Speech and local 3D in v0.3.2
 
+> This page records v0.3.2. v0.3.3 additionally integrates the actual D03 Pixal3D MV subset; see [the current guide and remaining architecture work](MULTIVIEW_DIAGNOSTICS.en.md). Old counts/evidence below retain their release context.
+
 [中文](SPEECH_3D_EXPANSION.md) · [User guide](USER_GUIDE.en.md) · [API](API.en.md) · [Release notes](releases/v0.3.2.md)
 
 This release extends the existing foundation with four speech families and single-image TRELLIS.2 / Pixal3D routes. Encoding, inference, decoding, mesh processing and export execute on the same Android phone. The APK supplies code; weights, voices, vocabularies, tokenizers and pronunciation dictionaries remain explicit user downloads or imports.

@@ -7,6 +7,7 @@ const http = require('node:http');
 const {hubFixture, installHubBridge} = require('./hub-fixture.cjs');
 const checkCommunity = require('./community-ui.cjs');
 const checkExpansion = require('./expansion-ui.cjs');
+const checkMultiview = require('./multiview-ui.cjs');
 const checkFoundation = require('./foundation-ui.cjs');
 const checkRecipes = require('./recipes-ui.cjs');
 const checkVersions = require('./versions-ui.cjs');
@@ -43,7 +44,7 @@ fs.mkdirSync(output, {recursive: true});
 if (fs.existsSync(path.join(output, 'results.json'))) fs.unlinkSync(path.join(output, 'results.json'));
 function inputFingerprint() {
   const files = fs.readdirSync(assets, {recursive: true}).map(name => path.join(assets, name)).filter(file => fs.statSync(file).isFile()).concat(__filename, path.join(root, 'tests/hub-fixture.cjs'), path.join(root, 'tests/foundation-ui.cjs'), path.join(root, 'tests/recipes-ui.cjs'), path.join(root, 'tests/versions-ui.cjs'), path.join(root, 'tests/text-ui.cjs'), path.join(root, 'tests/migration-ui.cjs'), path.join(root, 'tests/scheduler-ui.cjs'), path.join(root, 'tests/inputs-ui.cjs'), path.join(root, 'tests/diffusion-ui.cjs'), path.join(root, 'tests/qwen-ui.cjs'), path.join(root, 'tests/moss-delay-ui.cjs'), path.join(root, 'tests/openmoss-ui.cjs'), path.join(root, 'tests/stable-audio-ui.cjs'), path.join(root, 'tests/soulx-ui.cjs'), path.join(root, 'tests/preparations-ui.cjs'), path.join(root, 'tests/assemblies-ui.cjs'), path.join(root, 'tests/workbench-ui.cjs'), path.join(root, 'tests/preflight-ui.cjs'), path.join(root, 'tests/recovery-ui.cjs'), path.join(root, 'tests/lcm-ui.cjs'), path.join(root, 'tests/audio-ui.cjs'), path.join(root, 'tests/ltx-ui.cjs'), path.join(root, 'tests/resources-ui.cjs'), path.join(root, 'tests/curated-ui.cjs'), path.join(root, 'tests/speech-ui.cjs'), path.join(root, 'tests/components-ui.cjs'), path.join(root, 'tests/fixtures/speech-voices.json'), path.join(root, 'catalogue/model-bundles.json'), path.join(root, 'catalogue/model-assemblies.json'), path.join(root, 'catalogue/asset-preparations.json'));
-  files.push(path.join(root,'tests/expansion-ui.cjs'),path.join(root,'catalogue/expansion-bundles.json'),path.join(root,'tests/community-ui.cjs'),path.join(root,'tests/ltx-official-ui.cjs'),path.join(root,'tests/sana-ui.cjs'),path.join(root,'tests/wan-ui.cjs'),path.join(root,'research/wan_trained/catalogue-bundle.json'));
+  files.push(path.join(root,'tests/multiview-ui.cjs'),path.join(root,'catalogue/multiview-bundles.json'),path.join(root,'tests/expansion-ui.cjs'),path.join(root,'catalogue/expansion-bundles.json'),path.join(root,'tests/community-ui.cjs'),path.join(root,'tests/ltx-official-ui.cjs'),path.join(root,'tests/sana-ui.cjs'),path.join(root,'tests/wan-ui.cjs'),path.join(root,'research/wan_trained/catalogue-bundle.json'));
   return Object.fromEntries(files.sort().map(file => [path.relative(root, file).split(path.sep).join('/'), crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex')]));
 }
 const verifiedInputs = inputFingerprint();
@@ -329,6 +330,7 @@ async function main() {
   await checkLtxOfficial(page, checked, checkOverflow, output);
   await checkCommunity(page, checked, checkOverflow, output);
   await checkExpansion(page, checked, checkOverflow, output);
+  await checkMultiview(page, checked, checkOverflow, output);
   await page.locator('.nav-item[data-tab="models"]').click();
   await page.locator('[data-task="any"]').click();
   await page.setViewportSize({width: 1024, height: 768}); await checkOverflow(page, 'Tablet library layout');

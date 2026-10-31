@@ -12,7 +12,7 @@ from release_scope import check as scope_check
 ROOT=Path(__file__).resolve().parents[1]
 DIST=ROOT/'dist'
 VERSION=version()
-MEDIA=['community','release-workbench','expansion']
+MEDIA=['community','release-workbench','expansion','multiview']
 
 def sha(path):
  with path.open('rb') as stream:return hashlib.file_digest(stream,'sha256').hexdigest()
@@ -105,6 +105,7 @@ def check(prepared=False,published=False):
   directory=DIST/('releases/v'+VERSION);manifest=read(directory/'release-manifest.json')
   assert manifest['version']==VERSION and manifest['prerelease'] and manifest['validation_mode']=='program_only'
   assert manifest['full_scope_program_implementation_complete'] and manifest['apk_sha256']==build['sha256']
+  assert not manifest['all_benchmark_architectures_integrated'] and manifest['unported_benchmark_configurations']==evidence['unported_benchmark_configurations']
   expected={x['name'] for x in manifest['assets']}|{'release-manifest.json'}
   if (directory/'publish-receipt.json').exists():expected.add('publish-receipt.json')
   assert set(p.name for p in directory.iterdir())==expected
@@ -116,7 +117,7 @@ def check(prepared=False,published=False):
  return result
 
 def prepare():
- check();directory=DIST/('releases/v'+VERSION);directory.mkdir(parents=True,exist_ok=True)
+ evidence=check();directory=DIST/('releases/v'+VERSION);directory.mkdir(parents=True,exist_ok=True)
  build=read(DIST/'build-info.json');source=f'LMA-{VERSION}-source.zip'
  originals=[DIST/build['apk'],DIST/(build['apk']+'.sha256'),DIST/source,DIST/(source+'.sha256'),DIST/'validation.json',DIST/'build-info.json',DIST/'source-archive-manifest.json']
  names=[]
@@ -141,10 +142,11 @@ def prepare():
    target=f'LMA-{VERSION}-{name}.'+extension;shutil.copy2(original,directory/target);names.append(target)
  names.sort()
  (directory/'SHA256SUMS').write_text(''.join(sha(directory/n)+'  '+n+'\n' for n in names),encoding='utf-8');names.append('SHA256SUMS')
- manifest=dict(repository='wikigsroom/LMA',version=VERSION,tag='v'+VERSION,title='LMA v'+VERSION+' · Speech and local 3D foundation / 语音与本地生 3D 基座',
+ manifest=dict(repository='wikigsroom/LMA',version=VERSION,tag='v'+VERSION,title='LMA v'+VERSION+' · Local multiview 3D and diagnostics / 本地多视图 3D 与诊断',
   prerelease=True,notes='docs/releases/v'+VERSION+'.md',validation_mode='program_only',full_scope_program_implementation_complete=True,
   apk_sha256=build['sha256'],physical_device_tested=False,phone_inference_tested=False,background_endurance_tested=False,
   model_quality_accepted=False,media_uses_simulated_native_state=True,signing_material_included=False,model_weights_included=False,
+  all_benchmark_architectures_integrated=False,unported_benchmark_configurations=evidence['unported_benchmark_configurations'],
   assets=[dict(name=n,bytes=(directory/n).stat().st_size,sha256=sha(directory/n)) for n in names])
  write(directory/'release-manifest.json',manifest)
  return check(prepared=True)

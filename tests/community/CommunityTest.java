@@ -17,7 +17,7 @@ public final class CommunityTest {
         Path root = Paths.get(args[0]);
         JSONArray all = read(root.resolve("app/src/main/assets/model-bundles.json")).getJSONArray("bundles");
         JSONArray extra = read(root.resolve("catalogue/community-bundles.json")).getJSONArray("bundles");
-        check(all.length() == 78); check(extra.length() == 44);
+        check(all.length() == 82); check(extra.length() == 44);
         Set<String> ids = new HashSet<>(), families = new HashSet<>(); int images = 0, videos = 0, adult = 0;
         for (int i = 0; i < extra.length(); i++) {
             ModelBundle b = new ModelBundle(extra.getJSONObject(i));

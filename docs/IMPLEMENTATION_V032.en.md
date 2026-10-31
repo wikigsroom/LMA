@@ -1,5 +1,7 @@
 # v0.3.2 program implementation and expansion
 
+> This page records v0.3.2. v0.3.3 additionally integrates the actual D03 Pixal3D MV subset; see [the current guide and remaining architecture work](MULTIVIEW_DIAGNOSTICS.en.md). Old counts/evidence below retain their release context.
+
 [中文](IMPLEMENTATION_V032.md) · [Full expansion guide](SPEECH_3D_EXPANSION.en.md) · [Machine matrix](../catalogue/release-0.3.2-implementation.json)
 
 F-01–F-12, existing text, selections 01–14 / 16 / 17 and all nine MOSS subtargets remain. No prior required implementation is moved to a later version. The original [foundation](IMPLEMENTATION_V030.en.md) and [community additions](IMPLEMENTATION_V031.en.md) remain; this release extends them.

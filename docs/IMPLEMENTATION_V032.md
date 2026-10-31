@@ -1,5 +1,7 @@
 # v0.3.2 程序实现与扩展
 
+> 本页记录 v0.3.2 的实现。v0.3.3 已另增 D03 Pixal3D MV 真实四视图子集，见[当前方案与剩余移植工作](MULTIVIEW_DIAGNOSTICS.md)。下方旧数量 / 证据按原版本理解。
+
 [English](IMPLEMENTATION_V032.en.md) · [完整新方案](SPEECH_3D_EXPANSION.md) · [机器矩阵](../catalogue/release-0.3.2-implementation.json)
 
 保留 F-01–F-12、既有文本、01–14 / 16 / 17 与九个 MOSS 子目标，不把原有工作拆至后续版本。原[基座范围](IMPLEMENTATION_V030.md)和[社区模型](IMPLEMENTATION_V031.md)继续有效；本版增加能力，不缩减既有支持。

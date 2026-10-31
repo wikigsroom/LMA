@@ -12,5 +12,9 @@ int main() {
  check(lma_f5::tokenize(words,"重a")==std::vector<int32_t>({0,3,5}));
  bool rejected=false;try{lma_f5::tokenize(words,"未知");}catch(const std::exception&){rejected=true;}check(rejected);
  check(lma_worker::integer(lma_worker::json{{"steps",999}},"steps",32,1,64)==64);
+ lma_metrics::stage("loading");lma_metrics::stage("sampling");auto measured=lma_metrics::finish();
+ check(measured["stages"].size()==2);check(measured["elapsedMs"].get<long long>()>=0);
+ check(measured["memoryScope"]=="worker_process_peak_rss_not_model_peak_or_whole_app");check(measured["qualityAssessed"]==false);
+ check(lma_metrics::finish()["stages"].size()==2);
  std::cout << "{\"passed\":" << count << ",\"model_inference\":false}\n";
 }

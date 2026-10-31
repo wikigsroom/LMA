@@ -16207,6 +16207,968 @@
           "url": "https://huggingface.co/csukuangfj/kokoro-multi-lang-v1_0/resolve/f7b96bb6bef5c5da4d3aa4f4e0498fbbf62dc78b/voices.bin"
         }
       ]
+    },
+    {
+      "schema": "lma.model-bundle/2",
+      "id": "pixal3d_mv_f16_geometry_v1",
+      "modelId": "pixal3d_mv_f16_geometry_v1",
+      "recipeId": "pixal3d_mv_gguf_cpu_v1",
+      "name": "Pixal3D MV · F16 · Geometry",
+      "description": "四张已标定、已去背景的 RGBA PNG → GLB；匹配 MV 全套权重，不接受单图 flow。仅校验导入：尚无已核实的公开权重下载地址。也可用自选配方从 HF 选择匹配组件。CPU / 1024 分辨率，未证明 Z20 内存足够；标准转台与自定义相机均需真实对应输入。",
+      "catalogue": true,
+      "engine": "pixal_multiview",
+      "architecture": "pixal3d_mv",
+      "pipeline": "pixal3d_mv",
+      "backend": "cpu",
+      "tasks": [
+        "3d"
+      ],
+      "capabilities": [
+        "multi_view_to_3d",
+        "posed_rgba_inputs"
+      ],
+      "parameters": {
+        "version": 1,
+        "fields": {
+          "threads": {
+            "type": "integer",
+            "label": "CPU 线程",
+            "default": 2,
+            "presets": [
+              1,
+              2,
+              4,
+              8
+            ],
+            "minimum": 1,
+            "maximum": 16,
+            "limitSource": "application_guard"
+          },
+          "resolution": {
+            "type": "integer",
+            "label": "3D 生成分辨率",
+            "default": 1024,
+            "minimum": 1024,
+            "maximum": 1024,
+            "limitSource": "application_guard"
+          },
+          "steps": {
+            "type": "integer",
+            "label": "每阶段采样步数",
+            "default": 12,
+            "presets": [
+              4,
+              8,
+              12,
+              20
+            ],
+            "minimum": 1,
+            "maximum": 50,
+            "limitSource": "application_guard"
+          },
+          "seed": {
+            "type": "integer",
+            "label": "随机种子",
+            "default": 1234,
+            "minimum": 1,
+            "maximum": 2147483647,
+            "limitSource": "application_guard"
+          },
+          "faces": {
+            "type": "integer",
+            "label": "输出网格面数目标",
+            "default": 30000,
+            "presets": [
+              10000,
+              30000,
+              60000
+            ],
+            "minimum": 1000,
+            "maximum": 150000,
+            "limitSource": "application_guard"
+          },
+          "atlas": {
+            "type": "integer",
+            "label": "贴图图集尺寸",
+            "default": 1024,
+            "multipleOf": 256,
+            "presets": [
+              512,
+              1024,
+              2048
+            ],
+            "minimum": 256,
+            "maximum": 2048,
+            "limitSource": "application_guard"
+          },
+          "guidance": {
+            "type": "number",
+            "label": "引导强度",
+            "default": 7.5,
+            "minimum": 0,
+            "maximum": 15,
+            "limitSource": "application_guard"
+          },
+          "maxTokens": {
+            "type": "integer",
+            "label": "稀疏 token 保护上限",
+            "default": 8192,
+            "presets": [
+              4096,
+              8192,
+              16384
+            ],
+            "minimum": 1024,
+            "maximum": 49152,
+            "limitSource": "application_guard"
+          },
+          "meshScale": {
+            "type": "number",
+            "label": "相机对应的网格尺度",
+            "default": 1,
+            "minimum": 0.1,
+            "maximum": 10,
+            "limitSource": "application_guard"
+          },
+          "texture": {
+            "type": "boolean",
+            "label": "生成贴图",
+            "default": false
+          },
+          "cameraPoses": {
+            "type": "string",
+            "label": "四视图相机参数（留空使用标准转台）",
+            "default": "",
+            "maxLength": 16000
+          }
+        }
+      },
+      "components": [
+        {
+          "role": "image_encoder",
+          "format": "gguf",
+          "path": "dinov3.gguf",
+          "bytes": 606773440,
+          "sha256": "b2e84087aebeb06440da4f5970413153f7f27f71ede7bab993e82accd839d936",
+          "repository": "raven38/pixal3d.cpp",
+          "revision": "d1b4926452f9e09702b891db5f05acc845e153ed",
+          "url": ""
+        },
+        {
+          "role": "naf",
+          "format": "gguf",
+          "path": "pixal3d_naf.gguf",
+          "bytes": 1334656,
+          "sha256": "c4f6cd80e94c8d120360ba50a3633322e6ecce0163966e3b7650b24f99c18569",
+          "repository": "raven38/pixal3d.cpp",
+          "revision": "d1b4926452f9e09702b891db5f05acc845e153ed",
+          "url": ""
+        },
+        {
+          "role": "ss_flow",
+          "format": "gguf",
+          "path": "pixal3d_ss_flow_mv.gguf",
+          "bytes": 2681053184,
+          "sha256": "102cb5c95499b3adda0edb4a3a24fa09962107d9c23cd42d0d664f61fa817e78",
+          "repository": "raven38/pixal3d.cpp",
+          "revision": "d1b4926452f9e09702b891db5f05acc845e153ed",
+          "url": ""
+        },
+        {
+          "role": "ss_decoder",
+          "format": "gguf",
+          "path": "ss_dec.gguf",
+          "bytes": 147379392,
+          "sha256": "2790b5eecb261cc877d9bf175ce2bd6dd48cd65be8c042c5f5bc023dfca01cf7",
+          "repository": "raven38/pixal3d.cpp",
+          "revision": "d1b4926452f9e09702b891db5f05acc845e153ed",
+          "url": ""
+        },
+        {
+          "role": "shape_flow",
+          "format": "gguf",
+          "path": "pixal3d_shape_flow_512_mv.gguf",
+          "bytes": 2775572640,
+          "sha256": "8c73dcc8ed05f7cb4b4aa0f933f5945bfa19ee51de863ceded5dbbdbd9d4648f",
+          "repository": "raven38/pixal3d.cpp",
+          "revision": "d1b4926452f9e09702b891db5f05acc845e153ed",
+          "url": ""
+        },
+        {
+          "role": "shape_decoder",
+          "format": "gguf",
+          "path": "shape_dec.gguf",
+          "bytes": 948745344,
+          "sha256": "d3230b649031b55728da2d8818f092eab9ad6f1e72fd01f6cbff6bfada5d7d47",
+          "repository": "raven38/pixal3d.cpp",
+          "revision": "d1b4926452f9e09702b891db5f05acc845e153ed",
+          "url": ""
+        },
+        {
+          "role": "shape_flow_hr",
+          "format": "gguf",
+          "path": "pixal3d_shape_flow_1024_mv.gguf",
+          "bytes": 2775572640,
+          "sha256": "d2a500aacb82948978346d901c94acf9fcc69e71cd9c6195da8939c3830246fc",
+          "repository": "raven38/pixal3d.cpp",
+          "revision": "d1b4926452f9e09702b891db5f05acc845e153ed",
+          "url": ""
+        }
+      ],
+      "resources": {
+        "source": "unmeasured",
+        "estimatedPeakRamBytes": 0
+      },
+      "content": {
+        "classification": "unclassified",
+        "basis": "none",
+        "summary": "未获得明确内容声明；不推定为 NSFW 或无审查。"
+      },
+      "license": {
+        "name": "Model/component terms apply; source runtime MIT",
+        "url": "https://github.com/raven38/pixal3d.cpp",
+        "status": "component_terms_apply"
+      },
+      "evidence": {
+        "status": "compiled_program_only_not_model_or_device_tested",
+        "physicalDeviceTests": 0,
+        "modelInferenceTested": false,
+        "sourceUrl": "https://github.com/raven38/pixal3d.cpp/blob/d1b4926452f9e09702b891db5f05acc845e153ed/models/pixal3d-f16-v1/pixal3d-models.json",
+        "acquisition": "import_only",
+        "hashBasis": "publisher_manifest_not_measured_weights"
+      }
+    },
+    {
+      "schema": "lma.model-bundle/2",
+      "id": "pixal3d_mv_f16_pbr_v1",
+      "modelId": "pixal3d_mv_f16_pbr_v1",
+      "recipeId": "pixal3d_mv_gguf_cpu_v1",
+      "name": "Pixal3D MV · F16 · PBR",
+      "description": "四张已标定、已去背景的 RGBA PNG → GLB；匹配 MV 全套权重，不接受单图 flow。仅校验导入：尚无已核实的公开权重下载地址。也可用自选配方从 HF 选择匹配组件。CPU / 1024 分辨率，未证明 Z20 内存足够；标准转台与自定义相机均需真实对应输入。",
+      "catalogue": true,
+      "engine": "pixal_multiview",
+      "architecture": "pixal3d_mv",
+      "pipeline": "pixal3d_mv",
+      "backend": "cpu",
+      "tasks": [
+        "3d"
+      ],
+      "capabilities": [
+        "multi_view_to_3d",
+        "posed_rgba_inputs",
+        "pbr_materials"
+      ],
+      "parameters": {
+        "version": 1,
+        "fields": {
+          "threads": {
+            "type": "integer",
+            "label": "CPU 线程",
+            "default": 2,
+            "presets": [
+              1,
+              2,
+              4,
+              8
+            ],
+            "minimum": 1,
+            "maximum": 16,
+            "limitSource": "application_guard"
+          },
+          "resolution": {
+            "type": "integer",
+            "label": "3D 生成分辨率",
+            "default": 1024,
+            "minimum": 1024,
+            "maximum": 1024,
+            "limitSource": "application_guard"
+          },
+          "steps": {
+            "type": "integer",
+            "label": "每阶段采样步数",
+            "default": 12,
+            "presets": [
+              4,
+              8,
+              12,
+              20
+            ],
+            "minimum": 1,
+            "maximum": 50,
+            "limitSource": "application_guard"
+          },
+          "seed": {
+            "type": "integer",
+            "label": "随机种子",
+            "default": 1234,
+            "minimum": 1,
+            "maximum": 2147483647,
+            "limitSource": "application_guard"
+          },
+          "faces": {
+            "type": "integer",
+            "label": "输出网格面数目标",
+            "default": 30000,
+            "presets": [
+              10000,
+              30000,
+              60000
+            ],
+            "minimum": 1000,
+            "maximum": 150000,
+            "limitSource": "application_guard"
+          },
+          "atlas": {
+            "type": "integer",
+            "label": "贴图图集尺寸",
+            "default": 1024,
+            "multipleOf": 256,
+            "presets": [
+              512,
+              1024,
+              2048
+            ],
+            "minimum": 256,
+            "maximum": 2048,
+            "limitSource": "application_guard"
+          },
+          "guidance": {
+            "type": "number",
+            "label": "引导强度",
+            "default": 7.5,
+            "minimum": 0,
+            "maximum": 15,
+            "limitSource": "application_guard"
+          },
+          "maxTokens": {
+            "type": "integer",
+            "label": "稀疏 token 保护上限",
+            "default": 8192,
+            "presets": [
+              4096,
+              8192,
+              16384
+            ],
+            "minimum": 1024,
+            "maximum": 49152,
+            "limitSource": "application_guard"
+          },
+          "meshScale": {
+            "type": "number",
+            "label": "相机对应的网格尺度",
+            "default": 1,
+            "minimum": 0.1,
+            "maximum": 10,
+            "limitSource": "application_guard"
+          },
+          "texture": {
+            "type": "boolean",
+            "label": "生成贴图",
+            "default": true
+          },
+          "cameraPoses": {
+            "type": "string",
+            "label": "四视图相机参数（留空使用标准转台）",
+            "default": "",
+            "maxLength": 16000
+          }
+        }
+      },
+      "components": [
+        {
+          "role": "image_encoder",
+          "format": "gguf",
+          "path": "dinov3.gguf",
+          "bytes": 606773440,
+          "sha256": "b2e84087aebeb06440da4f5970413153f7f27f71ede7bab993e82accd839d936",
+          "repository": "raven38/pixal3d.cpp",
+          "revision": "d1b4926452f9e09702b891db5f05acc845e153ed",
+          "url": ""
+        },
+        {
+          "role": "naf",
+          "format": "gguf",
+          "path": "pixal3d_naf.gguf",
+          "bytes": 1334656,
+          "sha256": "c4f6cd80e94c8d120360ba50a3633322e6ecce0163966e3b7650b24f99c18569",
+          "repository": "raven38/pixal3d.cpp",
+          "revision": "d1b4926452f9e09702b891db5f05acc845e153ed",
+          "url": ""
+        },
+        {
+          "role": "ss_flow",
+          "format": "gguf",
+          "path": "pixal3d_ss_flow_mv.gguf",
+          "bytes": 2681053184,
+          "sha256": "102cb5c95499b3adda0edb4a3a24fa09962107d9c23cd42d0d664f61fa817e78",
+          "repository": "raven38/pixal3d.cpp",
+          "revision": "d1b4926452f9e09702b891db5f05acc845e153ed",
+          "url": ""
+        },
+        {
+          "role": "ss_decoder",
+          "format": "gguf",
+          "path": "ss_dec.gguf",
+          "bytes": 147379392,
+          "sha256": "2790b5eecb261cc877d9bf175ce2bd6dd48cd65be8c042c5f5bc023dfca01cf7",
+          "repository": "raven38/pixal3d.cpp",
+          "revision": "d1b4926452f9e09702b891db5f05acc845e153ed",
+          "url": ""
+        },
+        {
+          "role": "shape_flow",
+          "format": "gguf",
+          "path": "pixal3d_shape_flow_512_mv.gguf",
+          "bytes": 2775572640,
+          "sha256": "8c73dcc8ed05f7cb4b4aa0f933f5945bfa19ee51de863ceded5dbbdbd9d4648f",
+          "repository": "raven38/pixal3d.cpp",
+          "revision": "d1b4926452f9e09702b891db5f05acc845e153ed",
+          "url": ""
+        },
+        {
+          "role": "shape_decoder",
+          "format": "gguf",
+          "path": "shape_dec.gguf",
+          "bytes": 948745344,
+          "sha256": "d3230b649031b55728da2d8818f092eab9ad6f1e72fd01f6cbff6bfada5d7d47",
+          "repository": "raven38/pixal3d.cpp",
+          "revision": "d1b4926452f9e09702b891db5f05acc845e153ed",
+          "url": ""
+        },
+        {
+          "role": "shape_flow_hr",
+          "format": "gguf",
+          "path": "pixal3d_shape_flow_1024_mv.gguf",
+          "bytes": 2775572640,
+          "sha256": "d2a500aacb82948978346d901c94acf9fcc69e71cd9c6195da8939c3830246fc",
+          "repository": "raven38/pixal3d.cpp",
+          "revision": "d1b4926452f9e09702b891db5f05acc845e153ed",
+          "url": ""
+        },
+        {
+          "role": "texture_flow_hr",
+          "format": "gguf",
+          "path": "pixal3d_tex_flow_1024_mv.gguf",
+          "bytes": 2775670944,
+          "sha256": "ffd8255188fc738c02fffc77a215c11ef717915866287c1a8954f2b9fb9a47f2",
+          "repository": "raven38/pixal3d.cpp",
+          "revision": "d1b4926452f9e09702b891db5f05acc845e153ed",
+          "url": ""
+        },
+        {
+          "role": "texture_decoder",
+          "format": "gguf",
+          "path": "tex_dec.gguf",
+          "bytes": 948713888,
+          "sha256": "858d1e0079254e1d1f0596d7fa3a747d21bfe80f83d810e735a1e0b9db550322",
+          "repository": "raven38/pixal3d.cpp",
+          "revision": "d1b4926452f9e09702b891db5f05acc845e153ed",
+          "url": ""
+        }
+      ],
+      "resources": {
+        "source": "unmeasured",
+        "estimatedPeakRamBytes": 0
+      },
+      "content": {
+        "classification": "unclassified",
+        "basis": "none",
+        "summary": "未获得明确内容声明；不推定为 NSFW 或无审查。"
+      },
+      "license": {
+        "name": "Model/component terms apply; source runtime MIT",
+        "url": "https://github.com/raven38/pixal3d.cpp",
+        "status": "component_terms_apply"
+      },
+      "evidence": {
+        "status": "compiled_program_only_not_model_or_device_tested",
+        "physicalDeviceTests": 0,
+        "modelInferenceTested": false,
+        "sourceUrl": "https://github.com/raven38/pixal3d.cpp/blob/d1b4926452f9e09702b891db5f05acc845e153ed/models/pixal3d-f16-v1/pixal3d-models.json",
+        "acquisition": "import_only",
+        "hashBasis": "publisher_manifest_not_measured_weights"
+      }
+    },
+    {
+      "schema": "lma.model-bundle/2",
+      "id": "pixal3d_mv_q8_0_geometry_v1",
+      "modelId": "pixal3d_mv_q8_0_geometry_v1",
+      "recipeId": "pixal3d_mv_gguf_cpu_v1",
+      "name": "Pixal3D MV · Q8_0 · Geometry",
+      "description": "四张已标定、已去背景的 RGBA PNG → GLB；匹配 MV 全套权重，不接受单图 flow。仅校验导入：尚无已核实的公开权重下载地址。也可用自选配方从 HF 选择匹配组件。CPU / 1024 分辨率，未证明 Z20 内存足够；标准转台与自定义相机均需真实对应输入。",
+      "catalogue": true,
+      "engine": "pixal_multiview",
+      "architecture": "pixal3d_mv",
+      "pipeline": "pixal3d_mv",
+      "backend": "cpu",
+      "tasks": [
+        "3d"
+      ],
+      "capabilities": [
+        "multi_view_to_3d",
+        "posed_rgba_inputs"
+      ],
+      "parameters": {
+        "version": 1,
+        "fields": {
+          "threads": {
+            "type": "integer",
+            "label": "CPU 线程",
+            "default": 2,
+            "presets": [
+              1,
+              2,
+              4,
+              8
+            ],
+            "minimum": 1,
+            "maximum": 16,
+            "limitSource": "application_guard"
+          },
+          "resolution": {
+            "type": "integer",
+            "label": "3D 生成分辨率",
+            "default": 1024,
+            "minimum": 1024,
+            "maximum": 1024,
+            "limitSource": "application_guard"
+          },
+          "steps": {
+            "type": "integer",
+            "label": "每阶段采样步数",
+            "default": 12,
+            "presets": [
+              4,
+              8,
+              12,
+              20
+            ],
+            "minimum": 1,
+            "maximum": 50,
+            "limitSource": "application_guard"
+          },
+          "seed": {
+            "type": "integer",
+            "label": "随机种子",
+            "default": 1234,
+            "minimum": 1,
+            "maximum": 2147483647,
+            "limitSource": "application_guard"
+          },
+          "faces": {
+            "type": "integer",
+            "label": "输出网格面数目标",
+            "default": 30000,
+            "presets": [
+              10000,
+              30000,
+              60000
+            ],
+            "minimum": 1000,
+            "maximum": 150000,
+            "limitSource": "application_guard"
+          },
+          "atlas": {
+            "type": "integer",
+            "label": "贴图图集尺寸",
+            "default": 1024,
+            "multipleOf": 256,
+            "presets": [
+              512,
+              1024,
+              2048
+            ],
+            "minimum": 256,
+            "maximum": 2048,
+            "limitSource": "application_guard"
+          },
+          "guidance": {
+            "type": "number",
+            "label": "引导强度",
+            "default": 7.5,
+            "minimum": 0,
+            "maximum": 15,
+            "limitSource": "application_guard"
+          },
+          "maxTokens": {
+            "type": "integer",
+            "label": "稀疏 token 保护上限",
+            "default": 8192,
+            "presets": [
+              4096,
+              8192,
+              16384
+            ],
+            "minimum": 1024,
+            "maximum": 49152,
+            "limitSource": "application_guard"
+          },
+          "meshScale": {
+            "type": "number",
+            "label": "相机对应的网格尺度",
+            "default": 1,
+            "minimum": 0.1,
+            "maximum": 10,
+            "limitSource": "application_guard"
+          },
+          "texture": {
+            "type": "boolean",
+            "label": "生成贴图",
+            "default": false
+          },
+          "cameraPoses": {
+            "type": "string",
+            "label": "四视图相机参数（留空使用标准转台）",
+            "default": "",
+            "maxLength": 16000
+          }
+        }
+      },
+      "components": [
+        {
+          "role": "image_encoder",
+          "format": "gguf",
+          "path": "dinov3.gguf",
+          "bytes": 323657920,
+          "sha256": "0dd4ffd4b46a248f5b7d49c35275d68461fbf73f57ddb4c1fa8afb4f7bb45a0d",
+          "repository": "raven38/pixal3d.cpp",
+          "revision": "d1b4926452f9e09702b891db5f05acc845e153ed",
+          "url": ""
+        },
+        {
+          "role": "naf",
+          "format": "gguf",
+          "path": "pixal3d_naf.gguf",
+          "bytes": 1334656,
+          "sha256": "c4f6cd80e94c8d120360ba50a3633322e6ecce0163966e3b7650b24f99c18569",
+          "repository": "raven38/pixal3d.cpp",
+          "revision": "d1b4926452f9e09702b891db5f05acc845e153ed",
+          "url": ""
+        },
+        {
+          "role": "ss_flow",
+          "format": "gguf",
+          "path": "pixal3d_ss_flow_mv.gguf",
+          "bytes": 1426559744,
+          "sha256": "5211bb54a3f9ec77ab9451cb37031543f516bbb3cf592026210b69a2468adf4c",
+          "repository": "raven38/pixal3d.cpp",
+          "revision": "d1b4926452f9e09702b891db5f05acc845e153ed",
+          "url": ""
+        },
+        {
+          "role": "ss_decoder",
+          "format": "gguf",
+          "path": "ss_dec.gguf",
+          "bytes": 147379392,
+          "sha256": "2790b5eecb261cc877d9bf175ce2bd6dd48cd65be8c042c5f5bc023dfca01cf7",
+          "repository": "raven38/pixal3d.cpp",
+          "revision": "d1b4926452f9e09702b891db5f05acc845e153ed",
+          "url": ""
+        },
+        {
+          "role": "shape_flow",
+          "format": "gguf",
+          "path": "pixal3d_shape_flow_512_mv.gguf",
+          "bytes": 1476761760,
+          "sha256": "79a8ff77d0da194a8d6fc348914549aa0442d07a32de7a10f065f35d50116152",
+          "repository": "raven38/pixal3d.cpp",
+          "revision": "d1b4926452f9e09702b891db5f05acc845e153ed",
+          "url": ""
+        },
+        {
+          "role": "shape_decoder",
+          "format": "gguf",
+          "path": "shape_dec.gguf",
+          "bytes": 881361568,
+          "sha256": "0de7c7a675022dd8696d526a9279e5a50b2a35c8a79452f434a72dc53d40f169",
+          "repository": "raven38/pixal3d.cpp",
+          "revision": "d1b4926452f9e09702b891db5f05acc845e153ed",
+          "url": ""
+        },
+        {
+          "role": "shape_flow_hr",
+          "format": "gguf",
+          "path": "pixal3d_shape_flow_1024_mv.gguf",
+          "bytes": 1476761760,
+          "sha256": "50cd892247d73d4750b720d5612cef03cc0c02ec806b9e37d0d54d7ec579a94b",
+          "repository": "raven38/pixal3d.cpp",
+          "revision": "d1b4926452f9e09702b891db5f05acc845e153ed",
+          "url": ""
+        }
+      ],
+      "resources": {
+        "source": "unmeasured",
+        "estimatedPeakRamBytes": 0
+      },
+      "content": {
+        "classification": "unclassified",
+        "basis": "none",
+        "summary": "未获得明确内容声明；不推定为 NSFW 或无审查。"
+      },
+      "license": {
+        "name": "Model/component terms apply; source runtime MIT",
+        "url": "https://github.com/raven38/pixal3d.cpp",
+        "status": "component_terms_apply"
+      },
+      "evidence": {
+        "status": "compiled_program_only_not_model_or_device_tested",
+        "physicalDeviceTests": 0,
+        "modelInferenceTested": false,
+        "sourceUrl": "https://github.com/raven38/pixal3d.cpp/blob/d1b4926452f9e09702b891db5f05acc845e153ed/models/pixal3d-q8_0-v1/pixal3d-models.json",
+        "acquisition": "import_only",
+        "hashBasis": "publisher_manifest_not_measured_weights"
+      }
+    },
+    {
+      "schema": "lma.model-bundle/2",
+      "id": "pixal3d_mv_q8_0_pbr_v1",
+      "modelId": "pixal3d_mv_q8_0_pbr_v1",
+      "recipeId": "pixal3d_mv_gguf_cpu_v1",
+      "name": "Pixal3D MV · Q8_0 · PBR",
+      "description": "四张已标定、已去背景的 RGBA PNG → GLB；匹配 MV 全套权重，不接受单图 flow。仅校验导入：尚无已核实的公开权重下载地址。也可用自选配方从 HF 选择匹配组件。CPU / 1024 分辨率，未证明 Z20 内存足够；标准转台与自定义相机均需真实对应输入。",
+      "catalogue": true,
+      "engine": "pixal_multiview",
+      "architecture": "pixal3d_mv",
+      "pipeline": "pixal3d_mv",
+      "backend": "cpu",
+      "tasks": [
+        "3d"
+      ],
+      "capabilities": [
+        "multi_view_to_3d",
+        "posed_rgba_inputs",
+        "pbr_materials"
+      ],
+      "parameters": {
+        "version": 1,
+        "fields": {
+          "threads": {
+            "type": "integer",
+            "label": "CPU 线程",
+            "default": 2,
+            "presets": [
+              1,
+              2,
+              4,
+              8
+            ],
+            "minimum": 1,
+            "maximum": 16,
+            "limitSource": "application_guard"
+          },
+          "resolution": {
+            "type": "integer",
+            "label": "3D 生成分辨率",
+            "default": 1024,
+            "minimum": 1024,
+            "maximum": 1024,
+            "limitSource": "application_guard"
+          },
+          "steps": {
+            "type": "integer",
+            "label": "每阶段采样步数",
+            "default": 12,
+            "presets": [
+              4,
+              8,
+              12,
+              20
+            ],
+            "minimum": 1,
+            "maximum": 50,
+            "limitSource": "application_guard"
+          },
+          "seed": {
+            "type": "integer",
+            "label": "随机种子",
+            "default": 1234,
+            "minimum": 1,
+            "maximum": 2147483647,
+            "limitSource": "application_guard"
+          },
+          "faces": {
+            "type": "integer",
+            "label": "输出网格面数目标",
+            "default": 30000,
+            "presets": [
+              10000,
+              30000,
+              60000
+            ],
+            "minimum": 1000,
+            "maximum": 150000,
+            "limitSource": "application_guard"
+          },
+          "atlas": {
+            "type": "integer",
+            "label": "贴图图集尺寸",
+            "default": 1024,
+            "multipleOf": 256,
+            "presets": [
+              512,
+              1024,
+              2048
+            ],
+            "minimum": 256,
+            "maximum": 2048,
+            "limitSource": "application_guard"
+          },
+          "guidance": {
+            "type": "number",
+            "label": "引导强度",
+            "default": 7.5,
+            "minimum": 0,
+            "maximum": 15,
+            "limitSource": "application_guard"
+          },
+          "maxTokens": {
+            "type": "integer",
+            "label": "稀疏 token 保护上限",
+            "default": 8192,
+            "presets": [
+              4096,
+              8192,
+              16384
+            ],
+            "minimum": 1024,
+            "maximum": 49152,
+            "limitSource": "application_guard"
+          },
+          "meshScale": {
+            "type": "number",
+            "label": "相机对应的网格尺度",
+            "default": 1,
+            "minimum": 0.1,
+            "maximum": 10,
+            "limitSource": "application_guard"
+          },
+          "texture": {
+            "type": "boolean",
+            "label": "生成贴图",
+            "default": true
+          },
+          "cameraPoses": {
+            "type": "string",
+            "label": "四视图相机参数（留空使用标准转台）",
+            "default": "",
+            "maxLength": 16000
+          }
+        }
+      },
+      "components": [
+        {
+          "role": "image_encoder",
+          "format": "gguf",
+          "path": "dinov3.gguf",
+          "bytes": 323657920,
+          "sha256": "0dd4ffd4b46a248f5b7d49c35275d68461fbf73f57ddb4c1fa8afb4f7bb45a0d",
+          "repository": "raven38/pixal3d.cpp",
+          "revision": "d1b4926452f9e09702b891db5f05acc845e153ed",
+          "url": ""
+        },
+        {
+          "role": "naf",
+          "format": "gguf",
+          "path": "pixal3d_naf.gguf",
+          "bytes": 1334656,
+          "sha256": "c4f6cd80e94c8d120360ba50a3633322e6ecce0163966e3b7650b24f99c18569",
+          "repository": "raven38/pixal3d.cpp",
+          "revision": "d1b4926452f9e09702b891db5f05acc845e153ed",
+          "url": ""
+        },
+        {
+          "role": "ss_flow",
+          "format": "gguf",
+          "path": "pixal3d_ss_flow_mv.gguf",
+          "bytes": 1426559744,
+          "sha256": "5211bb54a3f9ec77ab9451cb37031543f516bbb3cf592026210b69a2468adf4c",
+          "repository": "raven38/pixal3d.cpp",
+          "revision": "d1b4926452f9e09702b891db5f05acc845e153ed",
+          "url": ""
+        },
+        {
+          "role": "ss_decoder",
+          "format": "gguf",
+          "path": "ss_dec.gguf",
+          "bytes": 147379392,
+          "sha256": "2790b5eecb261cc877d9bf175ce2bd6dd48cd65be8c042c5f5bc023dfca01cf7",
+          "repository": "raven38/pixal3d.cpp",
+          "revision": "d1b4926452f9e09702b891db5f05acc845e153ed",
+          "url": ""
+        },
+        {
+          "role": "shape_flow",
+          "format": "gguf",
+          "path": "pixal3d_shape_flow_512_mv.gguf",
+          "bytes": 1476761760,
+          "sha256": "79a8ff77d0da194a8d6fc348914549aa0442d07a32de7a10f065f35d50116152",
+          "repository": "raven38/pixal3d.cpp",
+          "revision": "d1b4926452f9e09702b891db5f05acc845e153ed",
+          "url": ""
+        },
+        {
+          "role": "shape_decoder",
+          "format": "gguf",
+          "path": "shape_dec.gguf",
+          "bytes": 881361568,
+          "sha256": "0de7c7a675022dd8696d526a9279e5a50b2a35c8a79452f434a72dc53d40f169",
+          "repository": "raven38/pixal3d.cpp",
+          "revision": "d1b4926452f9e09702b891db5f05acc845e153ed",
+          "url": ""
+        },
+        {
+          "role": "shape_flow_hr",
+          "format": "gguf",
+          "path": "pixal3d_shape_flow_1024_mv.gguf",
+          "bytes": 1476761760,
+          "sha256": "50cd892247d73d4750b720d5612cef03cc0c02ec806b9e37d0d54d7ec579a94b",
+          "repository": "raven38/pixal3d.cpp",
+          "revision": "d1b4926452f9e09702b891db5f05acc845e153ed",
+          "url": ""
+        },
+        {
+          "role": "texture_flow_hr",
+          "format": "gguf",
+          "path": "pixal3d_tex_flow_1024_mv.gguf",
+          "bytes": 1476813984,
+          "sha256": "e14a590dc6c77211bd591582159252ec473165b9401c4813df6e4f1a6bf69456",
+          "repository": "raven38/pixal3d.cpp",
+          "revision": "d1b4926452f9e09702b891db5f05acc845e153ed",
+          "url": ""
+        },
+        {
+          "role": "texture_decoder",
+          "format": "gguf",
+          "path": "tex_dec.gguf",
+          "bytes": 881344576,
+          "sha256": "88b4fced46455e02f316664d5c43584a311921dd9a1cdc1b7b7d981cca9214d4",
+          "repository": "raven38/pixal3d.cpp",
+          "revision": "d1b4926452f9e09702b891db5f05acc845e153ed",
+          "url": ""
+        }
+      ],
+      "resources": {
+        "source": "unmeasured",
+        "estimatedPeakRamBytes": 0
+      },
+      "content": {
+        "classification": "unclassified",
+        "basis": "none",
+        "summary": "未获得明确内容声明；不推定为 NSFW 或无审查。"
+      },
+      "license": {
+        "name": "Model/component terms apply; source runtime MIT",
+        "url": "https://github.com/raven38/pixal3d.cpp",
+        "status": "component_terms_apply"
+      },
+      "evidence": {
+        "status": "compiled_program_only_not_model_or_device_tested",
+        "physicalDeviceTests": 0,
+        "modelInferenceTested": false,
+        "sourceUrl": "https://github.com/raven38/pixal3d.cpp/blob/d1b4926452f9e09702b891db5f05acc845e153ed/models/pixal3d-q8_0-v1/pixal3d-models.json",
+        "acquisition": "import_only",
+        "hashBasis": "publisher_manifest_not_measured_weights"
+      }
     }
   ]
 }

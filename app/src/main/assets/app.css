@@ -28,3 +28,8 @@ html[data-theme=dark]{color-scheme:dark;--bg:#121a29;--panel:#1a2537;--ink:#e5ed
 
 .glb-preview { width:100%; aspect-ratio:4/3; height:auto; display:block; border-radius:12px; background:#10171c; touch-action:none; }
 .task-3d { color:var(--accent); }
+
+/* Multiview camera data stays readable; boolean controls retain touch-sized labels. */
+#meshTaskForm .mesh-wide { grid-column: 1 / -1; }
+#meshTaskForm textarea { width: 100%; box-sizing: border-box; }
+#meshTaskForm input[type="checkbox"] { width: 20px; height: 20px; min-height: 20px; }

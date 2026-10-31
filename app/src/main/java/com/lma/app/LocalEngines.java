@@ -37,7 +37,7 @@ public final class LocalEngines {
             else if (id.equals("stable_audio_litert")) register(new StableAudioEngine(app, binary, build));
             else if (id.equals("soulx_native")) register(new SoulxEngine(app, binary, build));
             else if (id.equals("ltx098_native")) register(new Ltx098Engine(app, binary, build));
-            else if (id.equals("audio_cpp") || id.equals("trellis_native")) register(new ExpansionEngine(app, binary, build));
+            else if (id.equals("audio_cpp") || id.equals("trellis_native") || id.equals("pixal_multiview")) register(new ExpansionEngine(app, binary, build));
             else throw new IOException("未知的签名原生模块：" + id);
         }
     }

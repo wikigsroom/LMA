@@ -22,6 +22,11 @@
     if (!tags) { tags = document.createElement('div'); tags.className = 'model-tags'; root.appendChild(tags); }
     if ((m.taskTags || []).indexOf('3d') >= 0) { tags.querySelectorAll('.tag').forEach(function (t) { if (t.textContent === 'undefined') t.remove(); }); tags.insertAdjacentHTML('beforeend', '<span class="tag task-tag task-3d">生 3D</span>'); }
     tags.insertAdjacentHTML('beforeend', badge(m));
+    if (((m.manifest || {}).evidence || {}).acquisition === 'import_only') {
+      tags.insertAdjacentHTML('beforeend','<span class="tag acquisition-import">校验导入</span>');
+      root.querySelectorAll('.button[data-action="bundleInfo"]').forEach(function (b) { b.textContent = '查看并导入'; });
+      root.querySelectorAll('[data-action="downloadBundle"]').forEach(function (b) { b.disabled = true; b.textContent = '请在详情中导入组件'; });
+    }
     if (m.community) {
       tags.insertAdjacentHTML('beforeend', '<span class="tag">社区配方</span>');
       var action = document.createElement('button'); action.type = 'button'; action.className = 'text-button community-info';
@@ -50,7 +55,15 @@
   }
   function annotateModal(m) {
     var content = document.getElementById('modalContent');
-    if (!m || !m.community || !content || content.querySelector('.community-modal-note')) return;
+    if (!m || !content || content.querySelector('.community-modal-note')) return;
+    if (((m.manifest || {}).evidence || {}).acquisition === 'import_only') {
+      var acquisition = document.createElement('p'); acquisition.className = 'community-modal-note form-help';
+      acquisition.textContent = '此固定配方仅支持校验导入，尚无已核实的权重下载来源。请导入与清单哈希一致的组件，或使用 HF 自选配方选择匹配文件。';
+      content.insertBefore(acquisition,content.firstChild);
+      content.querySelectorAll('[data-action="downloadBundle"]').forEach(function (b) { b.disabled = true; b.textContent = '请先导入匹配组件'; });
+      return;
+    }
+    if (!m.community) return;
     var note = document.createElement('div'); note.className = 'community-modal-note';
     note.innerHTML = '<div class="model-tags">' + badge(m) + '</div><button type="button" class="text-button" data-action="communityInfo" data-id="' + e(m.bundleId || m.id) + '">来源、内容标记与兼容说明</button>';
     content.insertBefore(note, content.firstChild);

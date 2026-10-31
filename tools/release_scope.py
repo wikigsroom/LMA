@@ -21,11 +21,11 @@ TARGETS = {
 FEATURES = {
  'F-01': ['HubCatalog','HubClient','core/RecipeCatalogue','core/RecipeSuggestions'],
  'F-02': ['core/BundleStore','core/BundleTransfers','core/BundleUpdates','core/ComponentIntegrity'],
- 'F-03': ['core/ModelBundle','LocalEngines','core/TaskRequests','core/AudioCppSpec','core/MeshSpec'],
+ 'F-03': ['core/ModelBundle','LocalEngines','core/TaskRequests','core/AudioCppSpec','core/MeshSpec','core/MultiViewSpec'],
  'F-04': ['NativeWorker','NativeStages','Ltx098Engine','MnnEngine','SdEngine','SherpaEngine','MossNanoEngine','QwenTtsEngine','MossDelayEngine','OpenMossEngine','MossRqEngine','SoulxEngine','StableAudioEngine','ExpansionEngine'],
  'F-05': ['ModelSettings','GgufMetadata','core/ParameterSchema','core/LtxPixArtSpec'],
  'F-06': ['LocalJobs','core/JobStore','core/ProcessControl'],
- 'F-07': ['DeviceResourceProbe','core/ExecutionGate','core/ResourceWatch'],
+ 'F-07': ['DeviceResourceProbe','core/ExecutionGate','core/ResourceWatch','core/RuntimeDiagnostics'],
  'F-08': ['LmaService','BootReceiver','core/JobStore','core/ArtifactStore'],
  'F-09': ['core/ArtifactStore','VideoEncoder','core/TaskDrafts','core/GlbFile'],
  'F-10': ['ApiHost','core/LocalApi','core/InputUploads','core/AudioStreams'],
@@ -40,9 +40,10 @@ def export():
  scope=read('docs/proposals/multimodal-release-scope.json')
  templates={x['id']:x for x in read('app/src/main/assets/recipe-templates.json')['templates']}
  from expansion_catalogue import recipes as expansion_recipes
- extra=[r['id'] for r in expansion_recipes()]
+ from multiview_catalogue import recipes as multiview_recipes
+ extra=[r['id'] for r in expansion_recipes()+multiview_recipes()]
  assert set(templates)==set(sum(TARGETS.values(),[])+['text_gguf_cpu_v1']+extra)
- assert list(TARGETS)==scope['selected_ids'] and len(templates)==44
+ assert list(TARGETS)==scope['selected_ids'] and len(templates)==45
  targets=[]
  for entry in scope['entries']:
   key=entry['selection_id']
@@ -60,7 +61,7 @@ def check():
  assert [x['selection_id'] for x in data['selections']]==list(TARGETS)
  assert [x['id'] for x in data['features']]==list(FEATURES)
  assert len(next(x for x in data['selections'] if x['selection_id']=='12')['frozen_subtargets'])==9
- assert data['recipe_templates']==44 and data['model_bundles']==23+len(read('catalogue/community-bundles.json')['bundles'])+len(read('catalogue/expansion-bundles.json')['bundles']) and data['extension_engine_families']==14
+ assert data['recipe_templates']==45 and data['model_bundles']==23+len(read('catalogue/community-bundles.json')['bundles'])+len(read('catalogue/expansion-bundles.json')['bundles'])+len(read('catalogue/multiview-bundles.json')['bundles']) and data['extension_engine_families']==15
  return data
 
 if __name__=='__main__':

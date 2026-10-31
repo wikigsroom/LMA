@@ -282,6 +282,8 @@ def build():
     templates.append(wan_vulkan)
     from expansion_catalogue import recipes as expansion_recipes
     templates.extend(expansion_recipes())
+    from multiview_catalogue import recipes as multiview_recipes
+    templates.extend(multiview_recipes())
     from recipe_file_hints import add_hints
     add_hints(templates)
     return {"schema": "lma.recipe-catalogue/1", "templates": templates}

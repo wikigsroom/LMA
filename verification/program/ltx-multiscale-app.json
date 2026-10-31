@@ -42,8 +42,8 @@
         }
       },
       "artifact": {
-        "jobId": "job_537e3264b44b46ee8070c7a58316c03b",
-        "createdAt": 1793415097539,
+        "jobId": "job_3437fa03700e4f5b9f2cf2096cd28090",
+        "createdAt": 1793419841279,
         "metadata": {
           "frameCount": 9,
           "hostFfprobe": true,
@@ -51,14 +51,14 @@
           "width": 256,
           "height": 224
         },
-        "filename": "artifact_4b3d9d4425e14ae795cd02838f322c2a.mp4",
+        "filename": "artifact_e1911b63baae41709669a99079700f2f.mp4",
         "provenance": {
           "runtimeResources": {
             "stopCode": "",
             "thermalStopAt": 3,
             "minimumAvailableStorageBytes": null,
             "lastSampleAt": 0,
-            "startedAt": 1793415088676,
+            "startedAt": 1793419836340,
             "probeErrors": 0,
             "message": "",
             "enabled": false,
@@ -66,7 +66,7 @@
             "storageFloorBytes": 67108864,
             "minimumAvailableRamBytes": null,
             "maximumThermalStatus": -1,
-            "endedAt": 1793415096888,
+            "endedAt": 1793419841154,
             "sampleIntervalMs": 2000,
             "scope": "shared_system_availability_not_model_peak_memory",
             "thermalKnown": false,
@@ -142,10 +142,10 @@
             "phase": "execution",
             "estimatedPeakRamBytes": 0,
             "thermalStatus": 0,
-            "availableStorageBytes": 515077771264,
+            "availableStorageBytes": 513821171712,
             "estimateKnown": false,
             "adapterExtraRamGuardBytes": 0,
-            "checkedAt": 1793415088702,
+            "checkedAt": 1793419836417,
             "deviceValidated": false,
             "budgetRamBytes": 5368709120,
             "currentlyLowMemory": false,
@@ -738,52 +738,52 @@
               "firstHeight": 128,
               "stages": [
                 {
-                  "seconds": 0.7842554,
+                  "seconds": 0.724478501,
                   "stage": "video_noise",
                   "bytes": 20480
                 },
                 {
-                  "seconds": 0.131851901,
+                  "seconds": 0.2380819,
                   "stage": "video_text_encoding",
                   "bytes": 16384
                 },
                 {
-                  "seconds": 0.16066,
+                  "seconds": 0.4036459,
                   "stage": "video_sampling",
                   "bytes": 20480
                 },
                 {
-                  "seconds": 0.391815,
+                  "seconds": 0.417528299,
                   "stage": "video_latent_layout",
                   "bytes": 20480
                 },
                 {
-                  "seconds": 0.174950301,
+                  "seconds": 0.213725499,
                   "stage": "video_spatial_upscaling",
                   "bytes": 81920
                 },
                 {
-                  "seconds": 0.4204588,
+                  "seconds": 0.4277994,
                   "stage": "video_refinement_noise",
                   "bytes": 81920
                 },
                 {
-                  "seconds": 0.1540732,
+                  "seconds": 0.2034315,
                   "stage": "video_refinement_sampling",
                   "bytes": 81920
                 },
                 {
-                  "seconds": 0.4519865,
+                  "seconds": 0.469373599,
                   "stage": "video_refined_latent_layout",
                   "bytes": 81920
                 },
                 {
-                  "seconds": 0.245804199,
+                  "seconds": 0.276088099,
                   "stage": "video_decoding",
                   "bytes": 8847360
                 },
                 {
-                  "seconds": 1.230299399,
+                  "seconds": 0.561704,
                   "stage": "video_frames",
                   "bytes": 1548316
                 }
@@ -810,7 +810,7 @@
         "origin": {
           "kind": "generated"
         },
-        "id": "artifact_4b3d9d4425e14ae795cd02838f322c2a"
+        "id": "artifact_e1911b63baae41709669a99079700f2f"
       },
       "videoSha256": "4daf1d35c22cc2ce0f0337997732c99ea9f5232e98ffdd2cd4b22523860f6d27",
       "videoBytes": 6822,
@@ -881,15 +881,130 @@
           }
         },
         "idempotencyKey": "ltx_succeeded",
-        "startedAt": 1793415088663,
+        "startedAt": 1793419836319,
         "error": "",
-        "finishedAt": 1793415097553,
+        "engineExecution": {
+          "effectiveParameters": {
+            "frames": 9,
+            "seed": 42,
+            "width": 256,
+            "fps": 24,
+            "threads": 4,
+            "steps": 10,
+            "height": 224
+          },
+          "encodedVideoBytes": 6822,
+          "firstWidth": 160,
+          "adain": true,
+          "decodeTimestep": 0.05,
+          "secondHeight": 256,
+          "promptEnhancement": false,
+          "textVariant": "pixart_original_f32",
+          "secondTimesteps": [
+            0.9094,
+            0.725,
+            0.4219
+          ],
+          "textBackend": "cpu",
+          "firstTimesteps": [
+            1,
+            0.9937,
+            0.9875,
+            0.9812,
+            0.975,
+            0.9094,
+            0.725
+          ],
+          "matchesPytorchSeed": false,
+          "qualityAccepted": false,
+          "guidanceScale": 1,
+          "profile": "ltx098_pixart_7_plus_3_v1",
+          "numericalAccepted": false,
+          "mediaBackend": "android_mediacodec_avc",
+          "pipelineKind": "multi_scale",
+          "rng": "lma_splitmix64_box_muller_f32_v1",
+          "textTokens": 1,
+          "downscaleFactor": 0.6666666,
+          "samplerBackend": "vulkan",
+          "secondWidth": 320,
+          "promptTruncated": false,
+          "decodeNoiseScale": 0.025,
+          "stageLoading": "sequential_processes",
+          "firstHeight": 128,
+          "stages": [
+            {
+              "seconds": 0.724478501,
+              "stage": "video_noise",
+              "bytes": 20480
+            },
+            {
+              "seconds": 0.2380819,
+              "stage": "video_text_encoding",
+              "bytes": 16384
+            },
+            {
+              "seconds": 0.4036459,
+              "stage": "video_sampling",
+              "bytes": 20480
+            },
+            {
+              "seconds": 0.417528299,
+              "stage": "video_latent_layout",
+              "bytes": 20480
+            },
+            {
+              "seconds": 0.213725499,
+              "stage": "video_spatial_upscaling",
+              "bytes": 81920
+            },
+            {
+              "seconds": 0.4277994,
+              "stage": "video_refinement_noise",
+              "bytes": 81920
+            },
+            {
+              "seconds": 0.2034315,
+              "stage": "video_refinement_sampling",
+              "bytes": 81920
+            },
+            {
+              "seconds": 0.469373599,
+              "stage": "video_refined_latent_layout",
+              "bytes": 81920
+            },
+            {
+              "seconds": 0.276088099,
+              "stage": "video_decoding",
+              "bytes": 8847360
+            },
+            {
+              "seconds": 0.561704,
+              "stage": "video_frames",
+              "bytes": 1548316
+            }
+          ],
+          "stgScale": 0,
+          "resize": "bilinear_align_corners_false",
+          "completeGeneratedFrames": true,
+          "parameters": {
+            "frames": 9,
+            "seed": 42,
+            "width": 256,
+            "fps": 24,
+            "threads": 4,
+            "steps": 10,
+            "height": 224
+          },
+          "spatialUpscaler": "ltxv-spatial-upscaler-0.9.8",
+          "vaeBackend": "cpu"
+        },
+        "finishedAt": 1793419841292,
         "runtimeResources": {
           "stopCode": "",
           "thermalStopAt": 3,
           "minimumAvailableStorageBytes": null,
           "lastSampleAt": 0,
-          "startedAt": 1793415088676,
+          "startedAt": 1793419836340,
           "probeErrors": 0,
           "message": "",
           "enabled": false,
@@ -897,19 +1012,19 @@
           "storageFloorBytes": 67108864,
           "minimumAvailableRamBytes": null,
           "maximumThermalStatus": -1,
-          "endedAt": 1793415096888,
+          "endedAt": 1793419841154,
           "sampleIntervalMs": 2000,
           "scope": "shared_system_availability_not_model_peak_memory",
           "thermalKnown": false,
           "status": "ended"
         },
-        "createdAt": 1793415088658,
+        "createdAt": 1793419836308,
         "stage": "encoding",
         "progress": null,
-        "id": "job_537e3264b44b46ee8070c7a58316c03b",
+        "id": "job_3437fa03700e4f5b9f2cf2096cd28090",
         "state": "succeeded",
         "artifacts": [
-          "artifact_4b3d9d4425e14ae795cd02838f322c2a"
+          "artifact_e1911b63baae41709669a99079700f2f"
         ]
       },
       "actualChildren": 10,
@@ -984,15 +1099,81 @@
           }
         },
         "idempotencyKey": "ltx_bad_text",
-        "startedAt": 1793415099932,
+        "startedAt": 1793419842699,
         "error": "旧 LTX T5 桥接格式不匹配",
-        "finishedAt": 1793415100725,
+        "engineExecution": {
+          "effectiveParameters": {
+            "frames": 9,
+            "seed": 42,
+            "width": 256,
+            "fps": 24,
+            "threads": 4,
+            "steps": 10,
+            "height": 224
+          },
+          "firstWidth": 160,
+          "adain": true,
+          "decodeTimestep": 0.05,
+          "secondHeight": 256,
+          "promptEnhancement": false,
+          "textVariant": "pixart_original_f32",
+          "secondTimesteps": [
+            0.9094,
+            0.725,
+            0.4219
+          ],
+          "textBackend": "cpu",
+          "firstTimesteps": [
+            1,
+            0.9937,
+            0.9875,
+            0.9812,
+            0.975,
+            0.9094,
+            0.725
+          ],
+          "matchesPytorchSeed": false,
+          "qualityAccepted": false,
+          "guidanceScale": 1,
+          "profile": "ltx098_pixart_7_plus_3_v1",
+          "numericalAccepted": false,
+          "mediaBackend": "android_mediacodec_avc",
+          "pipelineKind": "multi_scale",
+          "rng": "lma_splitmix64_box_muller_f32_v1",
+          "downscaleFactor": 0.6666666,
+          "samplerBackend": "vulkan",
+          "secondWidth": 320,
+          "decodeNoiseScale": 0.025,
+          "stageLoading": "sequential_processes",
+          "firstHeight": 128,
+          "stages": [
+            {
+              "seconds": 0.4385691,
+              "stage": "video_noise",
+              "bytes": 20480
+            }
+          ],
+          "stgScale": 0,
+          "resize": "bilinear_align_corners_false",
+          "parameters": {
+            "frames": 9,
+            "seed": 42,
+            "width": 256,
+            "fps": 24,
+            "threads": 4,
+            "steps": 10,
+            "height": 224
+          },
+          "spatialUpscaler": "ltxv-spatial-upscaler-0.9.8",
+          "vaeBackend": "cpu"
+        },
+        "finishedAt": 1793419843524,
         "runtimeResources": {
           "stopCode": "",
           "thermalStopAt": 3,
           "minimumAvailableStorageBytes": null,
           "lastSampleAt": 0,
-          "startedAt": 1793415099943,
+          "startedAt": 1793419842710,
           "probeErrors": 0,
           "message": "",
           "enabled": false,
@@ -1000,16 +1181,16 @@
           "storageFloorBytes": 67108864,
           "minimumAvailableRamBytes": null,
           "maximumThermalStatus": -1,
-          "endedAt": 1793415100725,
+          "endedAt": 1793419843523,
           "sampleIntervalMs": 2000,
           "scope": "shared_system_availability_not_model_peak_memory",
           "thermalKnown": false,
           "status": "ended"
         },
-        "createdAt": 1793415099922,
+        "createdAt": 1793419842693,
         "stage": "video_text_encoding",
         "progress": null,
-        "id": "job_38dce7f0a0394875b2da998e1de5f532",
+        "id": "job_7b7091d253f84500801b6cd25bda2b37",
         "state": "failed",
         "artifacts": []
       },
@@ -1085,15 +1266,88 @@
           }
         },
         "idempotencyKey": "ltx_bad_sample",
-        "startedAt": 1793415102778,
+        "startedAt": 1793419844811,
         "error": "旧 LTX 采样阶段未完整执行",
-        "finishedAt": 1793415103502,
+        "engineExecution": {
+          "effectiveParameters": {
+            "frames": 9,
+            "seed": 42,
+            "width": 256,
+            "fps": 24,
+            "threads": 4,
+            "steps": 10,
+            "height": 224
+          },
+          "firstWidth": 160,
+          "adain": true,
+          "decodeTimestep": 0.05,
+          "secondHeight": 256,
+          "promptEnhancement": false,
+          "textVariant": "pixart_original_f32",
+          "secondTimesteps": [
+            0.9094,
+            0.725,
+            0.4219
+          ],
+          "textBackend": "cpu",
+          "firstTimesteps": [
+            1,
+            0.9937,
+            0.9875,
+            0.9812,
+            0.975,
+            0.9094,
+            0.725
+          ],
+          "matchesPytorchSeed": false,
+          "qualityAccepted": false,
+          "guidanceScale": 1,
+          "profile": "ltx098_pixart_7_plus_3_v1",
+          "numericalAccepted": false,
+          "mediaBackend": "android_mediacodec_avc",
+          "pipelineKind": "multi_scale",
+          "rng": "lma_splitmix64_box_muller_f32_v1",
+          "textTokens": 1,
+          "downscaleFactor": 0.6666666,
+          "samplerBackend": "vulkan",
+          "secondWidth": 320,
+          "promptTruncated": false,
+          "decodeNoiseScale": 0.025,
+          "stageLoading": "sequential_processes",
+          "firstHeight": 128,
+          "stages": [
+            {
+              "seconds": 0.3749809,
+              "stage": "video_noise",
+              "bytes": 20480
+            },
+            {
+              "seconds": 0.1669713,
+              "stage": "video_text_encoding",
+              "bytes": 16384
+            }
+          ],
+          "stgScale": 0,
+          "resize": "bilinear_align_corners_false",
+          "parameters": {
+            "frames": 9,
+            "seed": 42,
+            "width": 256,
+            "fps": 24,
+            "threads": 4,
+            "steps": 10,
+            "height": 224
+          },
+          "spatialUpscaler": "ltxv-spatial-upscaler-0.9.8",
+          "vaeBackend": "cpu"
+        },
+        "finishedAt": 1793419845745,
         "runtimeResources": {
           "stopCode": "",
           "thermalStopAt": 3,
           "minimumAvailableStorageBytes": null,
           "lastSampleAt": 0,
-          "startedAt": 1793415102787,
+          "startedAt": 1793419844820,
           "probeErrors": 0,
           "message": "",
           "enabled": false,
@@ -1101,16 +1355,16 @@
           "storageFloorBytes": 67108864,
           "minimumAvailableRamBytes": null,
           "maximumThermalStatus": -1,
-          "endedAt": 1793415103502,
+          "endedAt": 1793419845744,
           "sampleIntervalMs": 2000,
           "scope": "shared_system_availability_not_model_peak_memory",
           "thermalKnown": false,
           "status": "ended"
         },
-        "createdAt": 1793415102769,
+        "createdAt": 1793419844805,
         "stage": "video_sampling",
         "progress": null,
-        "id": "job_9e43c4e7caba4d8e918332266f5acb0d",
+        "id": "job_76536d3c8b3143d398e038a8ba698662",
         "state": "failed",
         "artifacts": []
       },
@@ -1186,15 +1440,93 @@
           }
         },
         "idempotencyKey": "ltx_bad_upscaler",
-        "startedAt": 1793415104355,
+        "startedAt": 1793419847107,
         "error": "空间放大或 AdaIN 阶段未完整执行",
-        "finishedAt": 1793415105449,
+        "engineExecution": {
+          "effectiveParameters": {
+            "frames": 9,
+            "seed": 42,
+            "width": 256,
+            "fps": 24,
+            "threads": 4,
+            "steps": 10,
+            "height": 224
+          },
+          "firstWidth": 160,
+          "adain": true,
+          "decodeTimestep": 0.05,
+          "secondHeight": 256,
+          "promptEnhancement": false,
+          "textVariant": "pixart_original_f32",
+          "secondTimesteps": [
+            0.9094,
+            0.725,
+            0.4219
+          ],
+          "textBackend": "cpu",
+          "firstTimesteps": [
+            1,
+            0.9937,
+            0.9875,
+            0.9812,
+            0.975,
+            0.9094,
+            0.725
+          ],
+          "matchesPytorchSeed": false,
+          "qualityAccepted": false,
+          "guidanceScale": 1,
+          "profile": "ltx098_pixart_7_plus_3_v1",
+          "numericalAccepted": false,
+          "mediaBackend": "android_mediacodec_avc",
+          "pipelineKind": "multi_scale",
+          "rng": "lma_splitmix64_box_muller_f32_v1",
+          "textTokens": 1,
+          "downscaleFactor": 0.6666666,
+          "samplerBackend": "vulkan",
+          "secondWidth": 320,
+          "promptTruncated": false,
+          "decodeNoiseScale": 0.025,
+          "stageLoading": "sequential_processes",
+          "firstHeight": 128,
+          "stages": [
+            {
+              "seconds": 0.392113101,
+              "stage": "video_noise",
+              "bytes": 20480
+            },
+            {
+              "seconds": 0.1479334,
+              "stage": "video_text_encoding",
+              "bytes": 16384
+            },
+            {
+              "seconds": 0.1526802,
+              "stage": "video_sampling",
+              "bytes": 20480
+            }
+          ],
+          "stgScale": 0,
+          "resize": "bilinear_align_corners_false",
+          "parameters": {
+            "frames": 9,
+            "seed": 42,
+            "width": 256,
+            "fps": 24,
+            "threads": 4,
+            "steps": 10,
+            "height": 224
+          },
+          "spatialUpscaler": "ltxv-spatial-upscaler-0.9.8",
+          "vaeBackend": "cpu"
+        },
+        "finishedAt": 1793419848985,
         "runtimeResources": {
           "stopCode": "",
           "thermalStopAt": 3,
           "minimumAvailableStorageBytes": null,
           "lastSampleAt": 0,
-          "startedAt": 1793415104370,
+          "startedAt": 1793419847131,
           "probeErrors": 0,
           "message": "",
           "enabled": false,
@@ -1202,16 +1534,16 @@
           "storageFloorBytes": 67108864,
           "minimumAvailableRamBytes": null,
           "maximumThermalStatus": -1,
-          "endedAt": 1793415105449,
+          "endedAt": 1793419848984,
           "sampleIntervalMs": 2000,
           "scope": "shared_system_availability_not_model_peak_memory",
           "thermalKnown": false,
           "status": "ended"
         },
-        "createdAt": 1793415104351,
+        "createdAt": 1793419847094,
         "stage": "video_spatial_upscaling",
         "progress": null,
-        "id": "job_ff1de23bed5548c4ba4feb023852f805",
+        "id": "job_9a9c185dd1334ebd89f53ff921fd5352",
         "state": "failed",
         "artifacts": []
       },
@@ -1287,15 +1619,93 @@
           }
         },
         "idempotencyKey": "ltx_bad_refinement",
-        "startedAt": 1793415106272,
+        "startedAt": 1793419851649,
         "error": "旧 LTX 采样阶段未完整执行",
-        "finishedAt": 1793415107926,
+        "engineExecution": {
+          "effectiveParameters": {
+            "frames": 9,
+            "seed": 42,
+            "width": 256,
+            "fps": 24,
+            "threads": 4,
+            "steps": 10,
+            "height": 224
+          },
+          "firstWidth": 160,
+          "adain": true,
+          "decodeTimestep": 0.05,
+          "secondHeight": 256,
+          "promptEnhancement": false,
+          "textVariant": "pixart_original_f32",
+          "secondTimesteps": [
+            0.9094,
+            0.725,
+            0.4219
+          ],
+          "textBackend": "cpu",
+          "firstTimesteps": [
+            1,
+            0.9937,
+            0.9875,
+            0.9812,
+            0.975,
+            0.9094,
+            0.725
+          ],
+          "matchesPytorchSeed": false,
+          "qualityAccepted": false,
+          "guidanceScale": 1,
+          "profile": "ltx098_pixart_7_plus_3_v1",
+          "numericalAccepted": false,
+          "mediaBackend": "android_mediacodec_avc",
+          "pipelineKind": "multi_scale",
+          "rng": "lma_splitmix64_box_muller_f32_v1",
+          "textTokens": 1,
+          "downscaleFactor": 0.6666666,
+          "samplerBackend": "vulkan",
+          "secondWidth": 320,
+          "promptTruncated": false,
+          "decodeNoiseScale": 0.025,
+          "stageLoading": "sequential_processes",
+          "firstHeight": 128,
+          "stages": [
+            {
+              "seconds": 0.4310252,
+              "stage": "video_noise",
+              "bytes": 20480
+            },
+            {
+              "seconds": 0.236439099,
+              "stage": "video_text_encoding",
+              "bytes": 16384
+            },
+            {
+              "seconds": 0.2480346,
+              "stage": "video_sampling",
+              "bytes": 20480
+            }
+          ],
+          "stgScale": 0,
+          "resize": "bilinear_align_corners_false",
+          "parameters": {
+            "frames": 9,
+            "seed": 42,
+            "width": 256,
+            "fps": 24,
+            "threads": 4,
+            "steps": 10,
+            "height": 224
+          },
+          "spatialUpscaler": "ltxv-spatial-upscaler-0.9.8",
+          "vaeBackend": "cpu"
+        },
+        "finishedAt": 1793419854605,
         "runtimeResources": {
           "stopCode": "",
           "thermalStopAt": 3,
           "minimumAvailableStorageBytes": null,
           "lastSampleAt": 0,
-          "startedAt": 1793415106279,
+          "startedAt": 1793419851661,
           "probeErrors": 0,
           "message": "",
           "enabled": false,
@@ -1303,16 +1713,16 @@
           "storageFloorBytes": 67108864,
           "minimumAvailableRamBytes": null,
           "maximumThermalStatus": -1,
-          "endedAt": 1793415107925,
+          "endedAt": 1793419854604,
           "sampleIntervalMs": 2000,
           "scope": "shared_system_availability_not_model_peak_memory",
           "thermalKnown": false,
           "status": "ended"
         },
-        "createdAt": 1793415106256,
+        "createdAt": 1793419851639,
         "stage": "video_refinement_sampling",
         "progress": null,
-        "id": "job_bba5df5ca65b4849afb045d14b4b4f96",
+        "id": "job_16f44acfb66d494da8bc3355ce3f6d30",
         "state": "failed",
         "artifacts": []
       },
@@ -1388,15 +1798,118 @@
           }
         },
         "idempotencyKey": "ltx_bad_vae",
-        "startedAt": 1793415108777,
+        "startedAt": 1793419856175,
         "error": "旧 LTX VAE 阶段或会话释放不完整",
-        "finishedAt": 1793415110849,
+        "engineExecution": {
+          "effectiveParameters": {
+            "frames": 9,
+            "seed": 42,
+            "width": 256,
+            "fps": 24,
+            "threads": 4,
+            "steps": 10,
+            "height": 224
+          },
+          "firstWidth": 160,
+          "adain": true,
+          "decodeTimestep": 0.05,
+          "secondHeight": 256,
+          "promptEnhancement": false,
+          "textVariant": "pixart_original_f32",
+          "secondTimesteps": [
+            0.9094,
+            0.725,
+            0.4219
+          ],
+          "textBackend": "cpu",
+          "firstTimesteps": [
+            1,
+            0.9937,
+            0.9875,
+            0.9812,
+            0.975,
+            0.9094,
+            0.725
+          ],
+          "matchesPytorchSeed": false,
+          "qualityAccepted": false,
+          "guidanceScale": 1,
+          "profile": "ltx098_pixart_7_plus_3_v1",
+          "numericalAccepted": false,
+          "mediaBackend": "android_mediacodec_avc",
+          "pipelineKind": "multi_scale",
+          "rng": "lma_splitmix64_box_muller_f32_v1",
+          "textTokens": 1,
+          "downscaleFactor": 0.6666666,
+          "samplerBackend": "vulkan",
+          "secondWidth": 320,
+          "promptTruncated": false,
+          "decodeNoiseScale": 0.025,
+          "stageLoading": "sequential_processes",
+          "firstHeight": 128,
+          "stages": [
+            {
+              "seconds": 0.518364799,
+              "stage": "video_noise",
+              "bytes": 20480
+            },
+            {
+              "seconds": 0.2340574,
+              "stage": "video_text_encoding",
+              "bytes": 16384
+            },
+            {
+              "seconds": 0.147436,
+              "stage": "video_sampling",
+              "bytes": 20480
+            },
+            {
+              "seconds": 0.4662614,
+              "stage": "video_latent_layout",
+              "bytes": 20480
+            },
+            {
+              "seconds": 0.1514316,
+              "stage": "video_spatial_upscaling",
+              "bytes": 81920
+            },
+            {
+              "seconds": 0.515708401,
+              "stage": "video_refinement_noise",
+              "bytes": 81920
+            },
+            {
+              "seconds": 0.2182312,
+              "stage": "video_refinement_sampling",
+              "bytes": 81920
+            },
+            {
+              "seconds": 0.332405499,
+              "stage": "video_refined_latent_layout",
+              "bytes": 81920
+            }
+          ],
+          "stgScale": 0,
+          "resize": "bilinear_align_corners_false",
+          "parameters": {
+            "frames": 9,
+            "seed": 42,
+            "width": 256,
+            "fps": 24,
+            "threads": 4,
+            "steps": 10,
+            "height": 224
+          },
+          "spatialUpscaler": "ltxv-spatial-upscaler-0.9.8",
+          "vaeBackend": "cpu"
+        },
+        "finishedAt": 1793419859458,
         "runtimeResources": {
           "stopCode": "",
           "thermalStopAt": 3,
           "minimumAvailableStorageBytes": null,
           "lastSampleAt": 0,
-          "startedAt": 1793415108786,
+          "startedAt": 1793419856187,
           "probeErrors": 0,
           "message": "",
           "enabled": false,
@@ -1404,16 +1917,16 @@
           "storageFloorBytes": 67108864,
           "minimumAvailableRamBytes": null,
           "maximumThermalStatus": -1,
-          "endedAt": 1793415110848,
+          "endedAt": 1793419859457,
           "sampleIntervalMs": 2000,
           "scope": "shared_system_availability_not_model_peak_memory",
           "thermalKnown": false,
           "status": "ended"
         },
-        "createdAt": 1793415108771,
+        "createdAt": 1793419856169,
         "stage": "video_decoding",
         "progress": null,
-        "id": "job_fe577042cbfc42248cd6f2a894c96580",
+        "id": "job_b9bf63d125be4197afda20e0fc3e8f2f",
         "state": "failed",
         "artifacts": []
       },
@@ -1489,15 +2002,81 @@
           }
         },
         "idempotencyKey": "ltx_missing_receipt",
-        "startedAt": 1793415111669,
+        "startedAt": 1793419860590,
         "error": "本地阶段未完整完成：video_text_encoding",
-        "finishedAt": 1793415112196,
+        "engineExecution": {
+          "effectiveParameters": {
+            "frames": 9,
+            "seed": 42,
+            "width": 256,
+            "fps": 24,
+            "threads": 4,
+            "steps": 10,
+            "height": 224
+          },
+          "firstWidth": 160,
+          "adain": true,
+          "decodeTimestep": 0.05,
+          "secondHeight": 256,
+          "promptEnhancement": false,
+          "textVariant": "pixart_original_f32",
+          "secondTimesteps": [
+            0.9094,
+            0.725,
+            0.4219
+          ],
+          "textBackend": "cpu",
+          "firstTimesteps": [
+            1,
+            0.9937,
+            0.9875,
+            0.9812,
+            0.975,
+            0.9094,
+            0.725
+          ],
+          "matchesPytorchSeed": false,
+          "qualityAccepted": false,
+          "guidanceScale": 1,
+          "profile": "ltx098_pixart_7_plus_3_v1",
+          "numericalAccepted": false,
+          "mediaBackend": "android_mediacodec_avc",
+          "pipelineKind": "multi_scale",
+          "rng": "lma_splitmix64_box_muller_f32_v1",
+          "downscaleFactor": 0.6666666,
+          "samplerBackend": "vulkan",
+          "secondWidth": 320,
+          "decodeNoiseScale": 0.025,
+          "stageLoading": "sequential_processes",
+          "firstHeight": 128,
+          "stages": [
+            {
+              "seconds": 0.576422001,
+              "stage": "video_noise",
+              "bytes": 20480
+            }
+          ],
+          "stgScale": 0,
+          "resize": "bilinear_align_corners_false",
+          "parameters": {
+            "frames": 9,
+            "seed": 42,
+            "width": 256,
+            "fps": 24,
+            "threads": 4,
+            "steps": 10,
+            "height": 224
+          },
+          "spatialUpscaler": "ltxv-spatial-upscaler-0.9.8",
+          "vaeBackend": "cpu"
+        },
+        "finishedAt": 1793419861503,
         "runtimeResources": {
           "stopCode": "",
           "thermalStopAt": 3,
           "minimumAvailableStorageBytes": null,
           "lastSampleAt": 0,
-          "startedAt": 1793415111676,
+          "startedAt": 1793419860603,
           "probeErrors": 0,
           "message": "",
           "enabled": false,
@@ -1505,16 +2084,16 @@
           "storageFloorBytes": 67108864,
           "minimumAvailableRamBytes": null,
           "maximumThermalStatus": -1,
-          "endedAt": 1793415112195,
+          "endedAt": 1793419861501,
           "sampleIntervalMs": 2000,
           "scope": "shared_system_availability_not_model_peak_memory",
           "thermalKnown": false,
           "status": "ended"
         },
-        "createdAt": 1793415111645,
+        "createdAt": 1793419860545,
         "stage": "video_text_encoding",
         "progress": null,
-        "id": "job_cb29cc13ad234cd6971b284e06a94bcd",
+        "id": "job_5aca8a3f247846679032260e42229b69",
         "state": "failed",
         "artifacts": []
       },
@@ -1590,15 +2169,81 @@
           }
         },
         "idempotencyKey": "ltx_duplicate_receipt",
-        "startedAt": 1793415113146,
+        "startedAt": 1793419862692,
         "error": "本地阶段重复或迟到的完成记录",
-        "finishedAt": 1793415113817,
+        "engineExecution": {
+          "effectiveParameters": {
+            "frames": 9,
+            "seed": 42,
+            "width": 256,
+            "fps": 24,
+            "threads": 4,
+            "steps": 10,
+            "height": 224
+          },
+          "firstWidth": 160,
+          "adain": true,
+          "decodeTimestep": 0.05,
+          "secondHeight": 256,
+          "promptEnhancement": false,
+          "textVariant": "pixart_original_f32",
+          "secondTimesteps": [
+            0.9094,
+            0.725,
+            0.4219
+          ],
+          "textBackend": "cpu",
+          "firstTimesteps": [
+            1,
+            0.9937,
+            0.9875,
+            0.9812,
+            0.975,
+            0.9094,
+            0.725
+          ],
+          "matchesPytorchSeed": false,
+          "qualityAccepted": false,
+          "guidanceScale": 1,
+          "profile": "ltx098_pixart_7_plus_3_v1",
+          "numericalAccepted": false,
+          "mediaBackend": "android_mediacodec_avc",
+          "pipelineKind": "multi_scale",
+          "rng": "lma_splitmix64_box_muller_f32_v1",
+          "downscaleFactor": 0.6666666,
+          "samplerBackend": "vulkan",
+          "secondWidth": 320,
+          "decodeNoiseScale": 0.025,
+          "stageLoading": "sequential_processes",
+          "firstHeight": 128,
+          "stages": [
+            {
+              "seconds": 0.4727382,
+              "stage": "video_noise",
+              "bytes": 20480
+            }
+          ],
+          "stgScale": 0,
+          "resize": "bilinear_align_corners_false",
+          "parameters": {
+            "frames": 9,
+            "seed": 42,
+            "width": 256,
+            "fps": 24,
+            "threads": 4,
+            "steps": 10,
+            "height": 224
+          },
+          "spatialUpscaler": "ltxv-spatial-upscaler-0.9.8",
+          "vaeBackend": "cpu"
+        },
+        "finishedAt": 1793419863718,
         "runtimeResources": {
           "stopCode": "",
           "thermalStopAt": 3,
           "minimumAvailableStorageBytes": null,
           "lastSampleAt": 0,
-          "startedAt": 1793415113153,
+          "startedAt": 1793419862703,
           "probeErrors": 0,
           "message": "",
           "enabled": false,
@@ -1606,16 +2251,16 @@
           "storageFloorBytes": 67108864,
           "minimumAvailableRamBytes": null,
           "maximumThermalStatus": -1,
-          "endedAt": 1793415113816,
+          "endedAt": 1793419863716,
           "sampleIntervalMs": 2000,
           "scope": "shared_system_availability_not_model_peak_memory",
           "thermalKnown": false,
           "status": "ended"
         },
-        "createdAt": 1793415113134,
+        "createdAt": 1793419862670,
         "stage": "video_text_encoding",
         "progress": null,
-        "id": "job_1ed1597d9d1e45799fdb76c20449e2cc",
+        "id": "job_89d9d935f82d4334a23319cec51245ff",
         "state": "failed",
         "artifacts": []
       },
@@ -1691,15 +2336,128 @@
           }
         },
         "idempotencyKey": "ltx_bad_encoder",
-        "startedAt": 1793415115078,
+        "startedAt": 1793419865158,
         "error": "Explicit failing host encoder port",
-        "finishedAt": 1793415117991,
+        "engineExecution": {
+          "effectiveParameters": {
+            "frames": 9,
+            "seed": 42,
+            "width": 256,
+            "fps": 24,
+            "threads": 4,
+            "steps": 10,
+            "height": 224
+          },
+          "firstWidth": 160,
+          "adain": true,
+          "decodeTimestep": 0.05,
+          "secondHeight": 256,
+          "promptEnhancement": false,
+          "textVariant": "pixart_original_f32",
+          "secondTimesteps": [
+            0.9094,
+            0.725,
+            0.4219
+          ],
+          "textBackend": "cpu",
+          "firstTimesteps": [
+            1,
+            0.9937,
+            0.9875,
+            0.9812,
+            0.975,
+            0.9094,
+            0.725
+          ],
+          "matchesPytorchSeed": false,
+          "qualityAccepted": false,
+          "guidanceScale": 1,
+          "profile": "ltx098_pixart_7_plus_3_v1",
+          "numericalAccepted": false,
+          "mediaBackend": "android_mediacodec_avc",
+          "pipelineKind": "multi_scale",
+          "rng": "lma_splitmix64_box_muller_f32_v1",
+          "textTokens": 1,
+          "downscaleFactor": 0.6666666,
+          "samplerBackend": "vulkan",
+          "secondWidth": 320,
+          "promptTruncated": false,
+          "decodeNoiseScale": 0.025,
+          "stageLoading": "sequential_processes",
+          "firstHeight": 128,
+          "stages": [
+            {
+              "seconds": 0.349948699,
+              "stage": "video_noise",
+              "bytes": 20480
+            },
+            {
+              "seconds": 0.139956799,
+              "stage": "video_text_encoding",
+              "bytes": 16384
+            },
+            {
+              "seconds": 0.1416076,
+              "stage": "video_sampling",
+              "bytes": 20480
+            },
+            {
+              "seconds": 0.4160762,
+              "stage": "video_latent_layout",
+              "bytes": 20480
+            },
+            {
+              "seconds": 0.185598799,
+              "stage": "video_spatial_upscaling",
+              "bytes": 81920
+            },
+            {
+              "seconds": 0.6426281,
+              "stage": "video_refinement_noise",
+              "bytes": 81920
+            },
+            {
+              "seconds": 0.173382899,
+              "stage": "video_refinement_sampling",
+              "bytes": 81920
+            },
+            {
+              "seconds": 0.352955601,
+              "stage": "video_refined_latent_layout",
+              "bytes": 81920
+            },
+            {
+              "seconds": 0.2594179,
+              "stage": "video_decoding",
+              "bytes": 8847360
+            },
+            {
+              "seconds": 0.5026555,
+              "stage": "video_frames",
+              "bytes": 1548316
+            }
+          ],
+          "stgScale": 0,
+          "resize": "bilinear_align_corners_false",
+          "parameters": {
+            "frames": 9,
+            "seed": 42,
+            "width": 256,
+            "fps": 24,
+            "threads": 4,
+            "steps": 10,
+            "height": 224
+          },
+          "spatialUpscaler": "ltxv-spatial-upscaler-0.9.8",
+          "vaeBackend": "cpu"
+        },
+        "finishedAt": 1793419868718,
         "runtimeResources": {
           "stopCode": "",
           "thermalStopAt": 3,
           "minimumAvailableStorageBytes": null,
           "lastSampleAt": 0,
-          "startedAt": 1793415115089,
+          "startedAt": 1793419865172,
           "probeErrors": 0,
           "message": "",
           "enabled": false,
@@ -1707,16 +2465,16 @@
           "storageFloorBytes": 67108864,
           "minimumAvailableRamBytes": null,
           "maximumThermalStatus": -1,
-          "endedAt": 1793415117990,
+          "endedAt": 1793419868716,
           "sampleIntervalMs": 2000,
           "scope": "shared_system_availability_not_model_peak_memory",
           "thermalKnown": false,
           "status": "ended"
         },
-        "createdAt": 1793415115058,
+        "createdAt": 1793419865149,
         "stage": "encoding",
         "progress": null,
-        "id": "job_5d2841c3ae1a4555890be9b495848a40",
+        "id": "job_f44b1c4a46a94d1fb4fe848aa6284727",
         "state": "failed",
         "artifacts": []
       },
@@ -1792,15 +2550,81 @@
           }
         },
         "idempotencyKey": "ltx_cancelled",
-        "startedAt": 1793415118957,
+        "startedAt": 1793419869973,
         "error": "",
-        "finishedAt": 1793415119581,
+        "engineExecution": {
+          "effectiveParameters": {
+            "frames": 9,
+            "seed": 42,
+            "width": 256,
+            "fps": 24,
+            "threads": 4,
+            "steps": 10,
+            "height": 224
+          },
+          "firstWidth": 160,
+          "adain": true,
+          "decodeTimestep": 0.05,
+          "secondHeight": 256,
+          "promptEnhancement": false,
+          "textVariant": "pixart_original_f32",
+          "secondTimesteps": [
+            0.9094,
+            0.725,
+            0.4219
+          ],
+          "textBackend": "cpu",
+          "firstTimesteps": [
+            1,
+            0.9937,
+            0.9875,
+            0.9812,
+            0.975,
+            0.9094,
+            0.725
+          ],
+          "matchesPytorchSeed": false,
+          "qualityAccepted": false,
+          "guidanceScale": 1,
+          "profile": "ltx098_pixart_7_plus_3_v1",
+          "numericalAccepted": false,
+          "mediaBackend": "android_mediacodec_avc",
+          "pipelineKind": "multi_scale",
+          "rng": "lma_splitmix64_box_muller_f32_v1",
+          "downscaleFactor": 0.6666666,
+          "samplerBackend": "vulkan",
+          "secondWidth": 320,
+          "decodeNoiseScale": 0.025,
+          "stageLoading": "sequential_processes",
+          "firstHeight": 128,
+          "stages": [
+            {
+              "seconds": 0.3618367,
+              "stage": "video_noise",
+              "bytes": 20480
+            }
+          ],
+          "stgScale": 0,
+          "resize": "bilinear_align_corners_false",
+          "parameters": {
+            "frames": 9,
+            "seed": 42,
+            "width": 256,
+            "fps": 24,
+            "threads": 4,
+            "steps": 10,
+            "height": 224
+          },
+          "spatialUpscaler": "ltxv-spatial-upscaler-0.9.8",
+          "vaeBackend": "cpu"
+        },
+        "finishedAt": 1793419870646,
         "runtimeResources": {
           "stopCode": "",
           "thermalStopAt": 3,
           "minimumAvailableStorageBytes": null,
           "lastSampleAt": 0,
-          "startedAt": 1793415118984,
+          "startedAt": 1793419869994,
           "probeErrors": 0,
           "message": "",
           "enabled": false,
@@ -1808,16 +2632,16 @@
           "storageFloorBytes": 67108864,
           "minimumAvailableRamBytes": null,
           "maximumThermalStatus": -1,
-          "endedAt": 1793415119580,
+          "endedAt": 1793419870644,
           "sampleIntervalMs": 2000,
           "scope": "shared_system_availability_not_model_peak_memory",
           "thermalKnown": false,
           "status": "ended"
         },
-        "createdAt": 1793415118929,
+        "createdAt": 1793419869964,
         "stage": "video_text_encoding",
         "progress": null,
-        "id": "job_6abd669ee1e54dc8b4ad21ae4ff9367d",
+        "id": "job_84a5e7fe3c8b49b0ab718a4969e65c99",
         "state": "cancelled",
         "artifacts": []
       },
@@ -1893,15 +2717,81 @@
           }
         },
         "idempotencyKey": "ltx_interrupted",
-        "startedAt": 1793415120880,
+        "startedAt": 1793419871894,
         "error": "服务结束；此引擎没有可续步 checkpoint，可明确重试新任务",
-        "finishedAt": 1793415121407,
+        "engineExecution": {
+          "effectiveParameters": {
+            "frames": 9,
+            "seed": 42,
+            "width": 256,
+            "fps": 24,
+            "threads": 4,
+            "steps": 10,
+            "height": 224
+          },
+          "firstWidth": 160,
+          "adain": true,
+          "decodeTimestep": 0.05,
+          "secondHeight": 256,
+          "promptEnhancement": false,
+          "textVariant": "pixart_original_f32",
+          "secondTimesteps": [
+            0.9094,
+            0.725,
+            0.4219
+          ],
+          "textBackend": "cpu",
+          "firstTimesteps": [
+            1,
+            0.9937,
+            0.9875,
+            0.9812,
+            0.975,
+            0.9094,
+            0.725
+          ],
+          "matchesPytorchSeed": false,
+          "qualityAccepted": false,
+          "guidanceScale": 1,
+          "profile": "ltx098_pixart_7_plus_3_v1",
+          "numericalAccepted": false,
+          "mediaBackend": "android_mediacodec_avc",
+          "pipelineKind": "multi_scale",
+          "rng": "lma_splitmix64_box_muller_f32_v1",
+          "downscaleFactor": 0.6666666,
+          "samplerBackend": "vulkan",
+          "secondWidth": 320,
+          "decodeNoiseScale": 0.025,
+          "stageLoading": "sequential_processes",
+          "firstHeight": 128,
+          "stages": [
+            {
+              "seconds": 0.3898425,
+              "stage": "video_noise",
+              "bytes": 20480
+            }
+          ],
+          "stgScale": 0,
+          "resize": "bilinear_align_corners_false",
+          "parameters": {
+            "frames": 9,
+            "seed": 42,
+            "width": 256,
+            "fps": 24,
+            "threads": 4,
+            "steps": 10,
+            "height": 224
+          },
+          "spatialUpscaler": "ltxv-spatial-upscaler-0.9.8",
+          "vaeBackend": "cpu"
+        },
+        "finishedAt": 1793419872489,
         "runtimeResources": {
           "stopCode": "",
           "thermalStopAt": 3,
           "minimumAvailableStorageBytes": null,
           "lastSampleAt": 0,
-          "startedAt": 1793415120903,
+          "startedAt": 1793419871909,
           "probeErrors": 0,
           "message": "",
           "enabled": false,
@@ -1909,16 +2799,16 @@
           "storageFloorBytes": 67108864,
           "minimumAvailableRamBytes": null,
           "maximumThermalStatus": -1,
-          "endedAt": 1793415121406,
+          "endedAt": 1793419872487,
           "sampleIntervalMs": 2000,
           "scope": "shared_system_availability_not_model_peak_memory",
           "thermalKnown": false,
           "status": "ended"
         },
-        "createdAt": 1793415120863,
+        "createdAt": 1793419871885,
         "stage": "video_text_encoding",
         "progress": null,
-        "id": "job_742fc59b64424589af8c32601e2175d0",
+        "id": "job_f7aa46715f6440a8a8835b6eeaab9997",
         "state": "interrupted",
         "artifacts": []
       },
@@ -2039,7 +2929,7 @@
     "ffmpeg": "d1e2a156261ecc675081943197a85f08f2868784a0af499171ede89353edad31",
     "ffprobe": "70872c3ffbc43d0b2c570f9837f54d6e9a832f4ca25463e9735b6a3ec0621478"
   },
-  "capture": "build/ltx098-multiscale-app-tests/run-1793415081203509700",
+  "capture": "build/ltx098-multiscale-app-tests/run-1793419828847059400",
   "passed": true,
   "input_fingerprint": {
     "native/ltx098/CMakeLists.txt": "05bd2f7e2a96b679b0a1eaf9480e36d84b0d636310d95add37b8ce5ad4282d86",
@@ -2103,7 +2993,7 @@
     "tools/ltx098_official_profile.py": "dd58ce64cdb40fd4787b64e13f429302f69ba1d409a29a6348b8a5eb498b98dd",
     "tools/sana_sprint_profile.py": "698f71b6afcc6d78ab269f949ac66edcc0f671ba5e098dd182095c23aa69e4fd",
     "app/src/main/assets/models.json": "c3e884b4e5fb06f20c036deebc78e6f953ac420e76fca72bab5a25fd59927156",
-    "app/src/main/assets/recipe-templates.json": "52c47a577f1460376f115fff1dc8b3204d8dae0638b36cfa19bb05365074715c",
+    "app/src/main/assets/recipe-templates.json": "df43feae1977c7005d1f9a3edabdedc5102d7c3ce2141d611017578d5f3b024a",
     "app/src/main/java/com/lma/app/ApiHost.java": "288e80c8ef2328c1808920060848b3e12ebc4872d7919f2863f0c827eb0c3afc",
     "app/src/main/java/com/lma/app/ChatRunner.java": "bf3f18528dad358ee1f7e13778bba458fc13cfd7caa0281e0d72058c52617586",
     "app/src/main/java/com/lma/app/core/AdapterSpec.java": "aff8572d14ac8d616be0a1b0da395e52ed5bddcd5ae407a969c2657bf9257581",
@@ -2127,7 +3017,7 @@
     "app/src/main/java/com/lma/app/core/InputSelection.java": "963fe60973caab82b9dfedaa7c1661f236aed6ea158fcda8f4a86d02ba33d509",
     "app/src/main/java/com/lma/app/core/InputSpec.java": "51eb954c2c973a92b6be4b59c3b7857d8749476e7446045627e59e06ee76a838",
     "app/src/main/java/com/lma/app/core/InputUploads.java": "5debd68a73abc8bde8174c985dfec8f534c6bf8df58dda8810b0cc3541fe1d53",
-    "app/src/main/java/com/lma/app/core/JobStore.java": "0a366a0e6be34b25215c1694abffcf5b61eec9135cd13cf6205b899a96b6da26",
+    "app/src/main/java/com/lma/app/core/JobStore.java": "4cff95acbaf0f3a961606e52c4b9f496f70cea3a125e256a6f53b274680b7ddb",
     "app/src/main/java/com/lma/app/core/LcmCondition.java": "2177da94b69781263e36f3e379034619bf74c6856bc6a9108592d4f272e94b7a",
     "app/src/main/java/com/lma/app/core/LocalApi.java": "c9e1674f98ef12c7312ff42c50ba38a10c08d5cf1d3e173a8093ecd7fa67e5fc",
     "app/src/main/java/com/lma/app/core/LocalHttp.java": "6f74e8acfe7072606c23e775f87fa5aa8d5ee094ffe20e96788f161674a947aa",
@@ -2140,6 +3030,7 @@
     "app/src/main/java/com/lma/app/core/MossDelaySpec.java": "2f680d68cf78517f234c336c77e0b584bf40300fd6294514b7cd457149d41bd0",
     "app/src/main/java/com/lma/app/core/MossNanoSpec.java": "4b784a773fb85550eba8f169a62cab9a274a332519ec700b595694378e9e39ed",
     "app/src/main/java/com/lma/app/core/MossRqSpec.java": "0713659ade3c172887527a9e961bbde4add5ed00bd2a564256bc11f9b4796b5e",
+    "app/src/main/java/com/lma/app/core/MultiViewSpec.java": "8f91363e5d5b2a9d9b823954562180628438c279ab9616ebdfa34a70046d1b1c",
     "app/src/main/java/com/lma/app/core/NativePreparation.java": "cb8ee985ef2c6cba3e0d6bb924c940bcb197bd3f576ca7d6e1fa24442d44e1dd",
     "app/src/main/java/com/lma/app/core/OnnxMetadata.java": "51db38a424032ac21a8a4185745a272db9034a94d2e8b2d0671c11289e9719e3",
     "app/src/main/java/com/lma/app/core/OpenMossSpec.java": "4a9af3c92d87be65c4f617677eaed31576f9160a3355518fff7cb874192a5258",
@@ -2153,6 +3044,7 @@
     "app/src/main/java/com/lma/app/core/RecipeCatalogue.java": "a01f9c6b094e84b29a8bbb349350a53e68fe1fd5daf4d7fc81fbd2067e00b773",
     "app/src/main/java/com/lma/app/core/RecipeSuggestions.java": "57d9d7b5fc5f3c61a3ab3524af8789df58dbc8ce1923b2c09e139649057beda0",
     "app/src/main/java/com/lma/app/core/ResourceWatch.java": "6f6a4cb2159f7956d1ae8c202c61430be268d86d230245bccc952844f3816ec5",
+    "app/src/main/java/com/lma/app/core/RuntimeDiagnostics.java": "e543ff733e86ccbf11746dee14f320b184a79c8336163a815c89ba840063c97d",
     "app/src/main/java/com/lma/app/core/SanaSprintSpec.java": "12190d684368b219f17e582d774830d0a946bf5b7e2d25146371325b6fc8b3d3",
     "app/src/main/java/com/lma/app/core/SdSpec.java": "e26906c0c338deff725d8b5c316beb8205eacbe26ea91cfb3ef0861bf94103b5",
     "app/src/main/java/com/lma/app/core/SoulxSpec.java": "a761d40965d041d38cc1f629418017103c9eefabf5904814fad9de6372b6bcc7",
@@ -2173,7 +3065,7 @@
     "app/src/main/java/com/lma/app/HubClient.java": "3bc06665ad34b73937235362144605ed28c47b616654e6a31b2b3fa3125e7c0a",
     "app/src/main/java/com/lma/app/InputImports.java": "f59c48493faab98edcc1462842fbabb9814ab5afca9fb583d5b6c310b4846fbc",
     "app/src/main/java/com/lma/app/LocalEngine.java": "c06198df33cf290dff58d5d7d7f2b44b3d84d552c1a3c0f1cf35c30c6d5b7c19",
-    "app/src/main/java/com/lma/app/LocalJobs.java": "7a1579e13c0bef48a8d5b4ef02c041949c623fab0cd287f11f2b7c4c99977961",
+    "app/src/main/java/com/lma/app/LocalJobs.java": "7f0b0b448cc7d6adb4cbb28b7e9f75b72dd295e34b1035e5f409e0307cac7d5e",
     "app/src/main/java/com/lma/app/Ltx098Engine.java": "6e7643d54d506ba9f8a63599a9efe8d513d1eebb1a9ac53adc9ee6281a7bc36c",
     "app/src/main/java/com/lma/app/ModelSettings.java": "1ce0dfb9de2f57c39d8e536f1492bdacdcce587329f0a891e34ba9abb0c31c1c",
     "app/src/main/java/com/lma/app/NativeStages.java": "f731ffe3f9d72f8c5b6596c360cbf7e492aa24c98f814a11def393f5ded1ed68",
@@ -2193,7 +3085,7 @@
     "tests/host/com/lma/app/DocumentInput.java": "3816275bf2db26275db83938c26c445db02bfbfa9669767e31bba6f0215c41c2",
     "tests/host/com/lma/app/HostServer.java": "430c8b3716ae293aaea8c6237fda0010af978c857ef8c711c0739d2d2b1765c6",
     "tests/host/com/lma/app/HubLiveTest.java": "308f69328ac67a2a59f525d6cbe35a7a6177bb4c7cdb1dc4e9df801f3c9da20e",
-    "tests/host/com/lma/app/HubRecipeTest.java": "d36c3d12f5b65b931f7b66362bf08cd240b207e68bb368c69911b6cf6e32abc1",
+    "tests/host/com/lma/app/HubRecipeTest.java": "183747ea818379a1d8d31192495e2e28fc39b9563aa8ff336926d8df4b37d5e4",
     "tests/host/com/lma/app/HubTest.java": "004adc962fd03fae21d0b2c2c85d8cd23d3073f2e15f9b5a4cc94d696c6060dd",
     "tests/host/com/lma/app/ImportCancellationTest.java": "5a1231a258b9d7c4b0f2fbe9d525453202664181a8d4ef12f5799f56bb915839",
     "tests/host/com/lma/app/LmaApp.java": "ddc709d46a373e83c70bd43e1c7f0641d18cdf7333cd4d32ee10d0ebd4d6e876",

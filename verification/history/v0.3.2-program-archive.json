@@ -1,0 +1,178 @@
+{
+  "version": "0.3.2",
+  "commit": "3f59f2e9f61e72ea3400fe268f85f959c759fc3b",
+  "source": "immutable v0.3.2 tag",
+  "directory": "verification/history/v0.3.2-program",
+  "files": {
+    "api.json": {
+      "bytes": 12463,
+      "sha256": "3f8373c32f4b694d5e37fdd53134020e0310b549681e8d39242523f0b65b4c86",
+      "gitBlob": "01808b4205ac36ec0a5cefbc1ba6fb04f5614f00"
+    },
+    "assemblies.json": {
+      "bytes": 8911,
+      "sha256": "090c5317f158b012faeeaf45b25acaef3cdf3848b6c593d43dec32eee9492ab3",
+      "gitBlob": "b099c92bdc4412b45d1cb87b177b391f100c8135"
+    },
+    "backend.json": {
+      "bytes": 24979,
+      "sha256": "55371f5938b0d94de93b6782f0383b11763ce0e015cdd5909bd947662cba9bee",
+      "gitBlob": "a711709e81fbb7ed0485d41251cfcc2de2d1cb74"
+    },
+    "build.json": {
+      "bytes": 101055,
+      "sha256": "d47918efe41b9587a15e9a330bd3f945ec0bd34024363b8bbdafb47b733c8700",
+      "gitBlob": "ece74901374e23ba14d6bd84412069c0f60c17ba"
+    },
+    "bundle-pause.json": {
+      "bytes": 8486,
+      "sha256": "1fe7988332827fc8c82d5670ce87bc8d065a4ee768d584c00cb1a5c49c423902",
+      "gitBlob": "4c732cb343278bd6b7815a0186c5dbd281b67656"
+    },
+    "community.json": {
+      "bytes": 14074,
+      "sha256": "5acd66eaa3a961043ae3510e785cdcba388a8da567f152d30f449cb123934aa5",
+      "gitBlob": "16eb785f5d7471ca15e26e3a67c931aa342ad08e"
+    },
+    "diffusion.json": {
+      "bytes": 9687,
+      "sha256": "4c733fc0dd0f770f84041230dec17506ca44070258be4784610e3bde61f739cb",
+      "gitBlob": "658b8dd5baf9e1fdc28c1e4ee06214be8ba7b686"
+    },
+    "document-input.json": {
+      "bytes": 8877,
+      "sha256": "8f03a2bd0be151557b2ae7c4b2e3128c2cfa42c0992caa4b318ac5ee664786ae",
+      "gitBlob": "b9d4aeb196d1dfa4c49d2a4fc20717d884bb7992"
+    },
+    "expansion.json": {
+      "bytes": 9719,
+      "sha256": "03becb5735f38eae98bb7797142efb82878b109cf065c5101c3a129c12531e22",
+      "gitBlob": "cc1db08fedaac45f5c6bfd211845c3aa6b880887"
+    },
+    "foundation.json": {
+      "bytes": 9911,
+      "sha256": "bfd1549d249de71ff5813095f7bdc4426c955bd540bc5cfdd9ed52481656a23f",
+      "gitBlob": "9ab62c9594d5c56c23f8fe661deafd5c4028f891"
+    },
+    "hub.json": {
+      "bytes": 20425,
+      "sha256": "f347ec1df52f8b1270c0dd25d472376481ec37b51a11d470f6397e40920990ae",
+      "gitBlob": "d3659b4cb17f6bb02ef5a660d3b8039b2a6f1588"
+    },
+    "inputs.json": {
+      "bytes": 12687,
+      "sha256": "24fffda5ab1809bb83cc1b697452558e08ada6ecbf6e2c82329dcaa9c110a51a",
+      "gitBlob": "2d71b2c8e2b2ed3ce4cf31aae8c2a0f9068e53f8"
+    },
+    "lint.json": {
+      "bytes": 26124,
+      "sha256": "08fb253670aa12a77f66d39224479ab1fdadfa02670f0319a2facd26797e9b2a",
+      "gitBlob": "ac7912166c436438d734710eb295daeed56e91b8"
+    },
+    "ltx-android.json": {
+      "bytes": 13687,
+      "sha256": "26e80ced409cc2620cae01244cad68f081dfbd2f385667bf6ac0289c43b6c024",
+      "gitBlob": "bf10053dd475d7d4f80e6bfb124138f215315fc9"
+    },
+    "ltx-multiscale-app.json": {
+      "bytes": 97358,
+      "sha256": "ebdfefad22c65f4c2e17c29fab67128e326f9869867144d94fd9a978b2907e4b",
+      "gitBlob": "240184767b0b05c7bc00769a33a682b436dee69c"
+    },
+    "ltx-official.json": {
+      "bytes": 21875,
+      "sha256": "12b6a792ac05ddb057a6004172d9b8b02d7cb368f5345cd471ad292b7ce15e68",
+      "gitBlob": "d1deea0aafefcaa6355a16358f2ba5407479be6d"
+    },
+    "ltx-single-scale-app.json": {
+      "bytes": 78515,
+      "sha256": "6ee2ecf45a258691e9caeed421752440baa8c47ec1424cb6c63b87d40cab932e",
+      "gitBlob": "00c1c3a7311b9d679c9991ecd2dfea5a1e65e9e6"
+    },
+    "mesh-android.json": {
+      "bytes": 1275,
+      "sha256": "327767d92f68082be88954222f35a6e1d97af7fe267c79c27a880e676beecf23",
+      "gitBlob": "0e84d4002d4c2093b0b44ad21b33b2a65dd7dda3"
+    },
+    "migration.json": {
+      "bytes": 16540,
+      "sha256": "f4f26928b4ddf0889b39bba563523cf8a2f84dacac69d6497ad49b85a223686f",
+      "gitBlob": "cc5e0a2bff33c6bb89ebf55191f1416e92f8638e"
+    },
+    "mnn-android.json": {
+      "bytes": 2272,
+      "sha256": "c326d3314d3b4bb42ec811eb0c87eb884ec67b4ae4882a2edcd4942ccc520e8a",
+      "gitBlob": "d0a71948f72f90c08f28e344120f8356147df924"
+    },
+    "mnn.json": {
+      "bytes": 10455,
+      "sha256": "c1c5f442c03fee11d8dd2191da82911afd3e23be22f67f0774346c92cbe8198a",
+      "gitBlob": "b5a4571dbe3594942b4ad3da62fa6283690a12ab"
+    },
+    "package.json": {
+      "bytes": 19856,
+      "sha256": "381988a5478afee8986508142fa9b195c1029a1ccb69dcbb234872bbe6305bdb",
+      "gitBlob": "18c66f39abcce069b84933ed3dfcd9ed568a5bb5"
+    },
+    "preparations.json": {
+      "bytes": 8811,
+      "sha256": "8d89d10f13af22499dc3e5eb3077383ed6bb9a69d9e14271af2d43b055b4b465",
+      "gitBlob": "bb020712a1bf9d1430ca844740f280a0ae1670bc"
+    },
+    "recipe-suggestions.json": {
+      "bytes": 16189,
+      "sha256": "42cc248c92e441d0ff1a6f953fa1d8ad2c54daf8dbd732839245544d863a0f46",
+      "gitBlob": "319a9055b953cd62ff2422c8348b1ef97771e897"
+    },
+    "recovery.json": {
+      "bytes": 12011,
+      "sha256": "539a48223ee8650b7a2450594148ee1a8b138d97680e2c229d3b6630456b862d",
+      "gitBlob": "1dad926d2589f6590d007f830f4d9129f570de9f"
+    },
+    "sana-sprint.json": {
+      "bytes": 10914,
+      "sha256": "47edff753e6eae58de56477a05f67fb9f51d52d58051ab8e9e7a69cf1d9e2560",
+      "gitBlob": "1354c0a1b6affd0551bb60ac438bf1c5aa75872e"
+    },
+    "scheduler.json": {
+      "bytes": 17353,
+      "sha256": "55fed75dee935949ab5a05da6ca1220182960d4fe61fe5ac2c9f44671119c490",
+      "gitBlob": "f6fe5e7c496200aca48322218f32bd7845e3c60e"
+    },
+    "speech-extra-android.json": {
+      "bytes": 1406,
+      "sha256": "66420073885a6cf0307f6f145bf4148eb13c33c4eba9275696d811f045a67687",
+      "gitBlob": "8e7521b44d0dff5a8cdf1b43ded45288338cafe7"
+    },
+    "speech-voices.json": {
+      "bytes": 9829,
+      "sha256": "bc3e792d8090ba119b377d39d128bf04a7efec1556ddf2dc0ba430b6aca314e4",
+      "gitBlob": "98f4b4eefa5b8977bf76eafbb8ef9bf9d0b81b84"
+    },
+    "status.json": {
+      "bytes": 13022,
+      "sha256": "6f6e5bd4a82f626b44ebdded2725a4d953fcdd996b760394f40ffa07c78e3fcb",
+      "gitBlob": "d017be926eb6866414bc349eeecf069f6a25db4c"
+    },
+    "text.json": {
+      "bytes": 9170,
+      "sha256": "3dac65f1a4aeb93db40b6a3edccef277de83178094c473a984660f3414a293cb",
+      "gitBlob": "da2f50256d1d6b1e0569e0f064d8f03016e109a5"
+    },
+    "tts-android.json": {
+      "bytes": 1950,
+      "sha256": "b312e1d5d0af6da739698f8003703462fc265434810e3a4bf964e01d8b911c96",
+      "gitBlob": "d845295d26b37f5dd43a3c311e7ffd2a9f5e97e2"
+    },
+    "ui.json": {
+      "bytes": 61980,
+      "sha256": "5b8ceb76ffed0c3aa8afadaa3ed9842fa85f43f4e830581840a2b924173b9c7d",
+      "gitBlob": "0151bede0aa3f6945b3c196604fb5277cdb391f1"
+    },
+    "workbench.json": {
+      "bytes": 10966,
+      "sha256": "a8aa96ca535689dabf208d8fa6cdec76d44190bc67d6fefaaeaa4a0e0d02bf00",
+      "gitBlob": "3088435a7d15451345929509c10cd927366a25ed"
+    }
+  }
+}
