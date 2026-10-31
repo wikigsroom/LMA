@@ -1,0 +1,83 @@
+/* Exact shipped community manifests; simulated bridge, no weights or generated media. */
+const assert=require('node:assert/strict');
+const fs=require('node:fs');
+const path=require('node:path');
+const {installFixture}=require('./foundation-ui.cjs');
+const manifests=JSON.parse(fs.readFileSync(path.join(__dirname,'../app/src/main/assets/model-bundles.json'),'utf8')).bundles;
+const legacy=JSON.parse(fs.readFileSync(path.join(__dirname,'../app/src/main/assets/models.json'),'utf8')).models;
+function install(data) {
+  const f=window.__fixture;
+  f.models=data.legacy.map(m=>({...m,installed:false,download:{},partialBytes:0}));
+  f.bundles=data.manifests.map(manifest=>({id:manifest.id,manifest,installed:false,config:{values:Object.fromEntries(Object.entries((manifest.parameters||{}).fields||{}).map(([k,v])=>[k,v.default]))},plan:{totalBytes:manifest.components.reduce((n,c)=>n+c.bytes,0),reusableBytes:0,remainingBytes:manifest.components.reduce((n,c)=>n+c.bytes,0),components:manifest.components.map(c=>({...c,reusable:false,downloadable:!!c.url}))}}));
+  f.localEngines=[{engine:'sd_cpp',available:true,deviceValidated:false},{engine:'wan_sd_cpp',available:true,deviceValidated:false}];
+  window.LMA.receive(f);
+}
+module.exports=async function(page,checked,overflow,output,capture=async()=>{}) {
+  const original=await page.evaluate(()=>{window.__communityPreviousHandler=window.__handleFoundation;return JSON.parse(JSON.stringify(window.__fixture));});
+  await page.keyboard.press('Escape');await page.evaluate(installFixture);await page.evaluate(install,{manifests,legacy});
+  const extra=manifests.filter(m=>m.community), id=model=>extra.find(model).id;
+  const image=id(m=>m.modelId==='community_realvisxl50'), video=id(m=>m.modelId==='community_wan13b_exp14'), pony=id(m=>m.modelId==='community_pony6xl');
+  const commands=()=>page.evaluate(()=>window.__commands.filter(c=>c.action==='downloadBundle'));
+  try {
+    await page.locator('[data-tab="models"]').first().click();await page.locator('[data-task="any"]').click();await page.locator('[data-filter="recommended"]').click();
+    assert.deepEqual(await page.locator('.model-card').evaluateAll(ns=>ns.map(n=>n.dataset.model)),['m08','m06','m01']);checked('Community expansion preserves Recommended order and metadata');
+    assert(await page.locator('#communityControls').isHidden());checked('Content filters do not redefine Recommended');
+    const start=(await commands()).length;
+    await page.locator('[data-filter="all"]').click();await page.selectOption('#catalogueSource','registered');
+    assert.equal(await page.locator('[data-bundle]').count(),67);checked('All exposes 67 optional registered peers');
+    assert(await page.locator('#hubPagination').isHidden());checked('Offline registered catalogue has no misleading HF pagination');
+    await page.selectOption('#contentFilter','nsfw');
+    assert.equal(await page.locator('[data-bundle]').count(),28);checked('28 sourced NSFW variants are filterable independently');
+    await page.locator('[data-task="image"]').click();
+    assert.equal(await page.locator('[data-bundle]').count(),14);checked('14 NSFW image variants use current image routes');
+    assert.equal(await page.locator('#modelList .content-nsfw').count(),14);checked('Each matching card displays its evidence basis');
+    assert.equal((await commands()).length,start);checked('Browsing and filtering never downloads model weights');
+    assert(await page.locator('#hubControls').isHidden());checked('Registered recipes hide unrelated HF format controls');
+    await page.locator('#modelList [data-bundle]').first().scrollIntoViewIfNeeded();
+    await overflow(page,'NSFW image catalogue');await capture('01-community-images.png');
+    await page.locator('[data-action="communityInfo"][data-id="'+image+'"]').click();
+    let text=await page.locator('#modal').innerText();assert(text.includes('NSFW · 来源声明')&&text.includes('SDXL')&&text.includes('未运行完整权重'));checked('Image details separate declared content from program and device evidence');
+    assert(text.includes('openrail++')&&text.includes('固定版本'));checked('Image details show pinned source identity and license');
+    await overflow(page,'Community source detail');await capture('02-image-source.png');
+    await page.locator('#modal [data-action="bundleInfo"]').click();
+    assert.equal(await page.locator('.community-modal-note').count(),1);checked('Existing model manager retains community content annotations');
+    assert((await page.locator('#modal').innerText()).includes('clip_merges'));checked('Download review discloses required tokenizer data');
+    await page.locator('#modal [data-action="downloadBundle"]').click();
+    assert.equal((await commands()).length,start+1);assert.equal((await commands()).at(-1).id,image);checked('Explicit download selects exactly the reviewed image bundle');
+    await page.waitForSelector('[data-filter="local"].active');checked('Completed download request returns to Local before further browsing');
+    await page.keyboard.press('Escape');await page.locator('[data-filter="all"]').click();await page.locator('[data-task="video"]').click();
+    assert.equal(await page.locator('[data-bundle]').count(),14);checked('14 video entries are Wan 1.3B experiment versions');
+    assert.equal((await commands()).length,start+1);checked('Switching to video starts no implicit transfer');
+    await page.locator('#modelList [data-bundle]').first().scrollIntoViewIfNeeded();
+    await overflow(page,'Video variant catalogue');await capture('03-community-video.png');
+    await page.locator('[data-action="communityInfo"][data-id="'+video+'"]').click();
+    text=await page.locator('#modal').innerText();assert(text.includes('14 个训练版本')&&text.includes('作者建议 E14'));checked('Video detail explains version count and publisher E14 preference');
+    assert(text.includes('Wan 14B')&&text.includes('视频 LoRA')&&text.includes('LTX 2.x'));checked('Unsupported video families are not advertised as running on the current route');
+    assert(text.includes('UMT5')&&text.includes('Vulkan'));checked('Video foundation and text encoder dependencies are visible');
+    await page.locator('#modal details').click();assert.equal(await page.locator('.community-detail details dd').count(),4);checked('Video review lists diffusion, encoder, VAE and tokenizer');
+    await overflow(page,'Video source detail');await capture('04-video-source.png');
+    await page.keyboard.press('Escape');await page.locator('[data-task="image"]').click();
+    await page.locator('[data-action="communityInfo"][data-id="'+pony+'"]').click();
+    text=await page.locator('#modal').innerText();assert(text.includes('镜像声明')&&text.includes('许可')&&text.includes('冲突'));checked('Pony mirror attribution and conflicting license metadata remain explicit');
+    await page.keyboard.press('Escape');await page.selectOption('#contentFilter','sensitive');
+    assert.equal(await page.locator('[data-bundle]').count(),1);assert.equal(await page.locator('#modelList .content-nsfw').count(),0);checked('Not-for-all-audiences alone is sensitive metadata, not a verified NSFW claim');
+    await page.selectOption('#contentFilter','unclassified');
+    assert.equal(await page.locator('#modelList .content-nsfw').count(),0);checked('Unknown community models are not relabelled NSFW from their architecture');
+    await page.selectOption('#contentFilter','any');await page.locator('#modelSearch').fill('nsfw');
+    await page.waitForTimeout(400);assert.equal(await page.locator('[data-bundle]').count(),14);checked('NSFW keyword search does not match negative or unknown declarations');
+    await page.locator('#modelSearch').fill('');await page.waitForTimeout(400);
+    await page.evaluate(({image,video})=>{const f=window.__fixture;f.bundles.find(b=>b.id===video).installed=true;f.bundles.find(b=>b.id===image).transfer.state='paused';window.LMA.receive(f);},{image,video});
+    await page.locator('[data-filter="local"]').click();await page.locator('[data-task="any"]').click();await page.selectOption('#contentFilter','nsfw');
+    assert.equal(await page.locator('[data-bundle]').count(),2);checked('Local keeps downloaded and paused community versions with content labels');
+    assert.equal(await page.locator('#modelList .content-nsfw').count(),2);checked('Content markers persist through local-management state changes');
+    assert.equal((await commands()).length,start+1);checked('Local content management does not auto-download a different model');
+    await page.locator('#modelList [data-bundle]').first().scrollIntoViewIfNeeded();
+    await overflow(page,'Local community models');await capture('05-community-local.png');
+    await page.setViewportSize({width:320,height:720});await overflow(page,'320px content filters and cards');
+    await page.setViewportSize({width:375,height:812});
+  } finally {
+    await page.keyboard.press('Escape');await page.evaluate(()=>{document.getElementById('contentFilter').value='any';document.getElementById('catalogueSource').value='any';});await page.locator('#modelSearch').fill('');await page.locator('[data-task="any"]').click();
+    await page.evaluate(f=>{window.__fixture=f;window.__handleFoundation=window.__communityPreviousHandler;delete window.__communityPreviousHandler;window.LMA.receive(f);},original);
+    await page.locator('[data-filter="recommended"]').click();
+  }
+};

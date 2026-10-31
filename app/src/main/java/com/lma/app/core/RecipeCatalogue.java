@@ -59,6 +59,8 @@ public final class RecipeCatalogue {
         JSONObject identityTemplate=DataFiles.copy(template);JSONArray identityRules=identityTemplate.getJSONArray("requirements");
         for(int i=0;i<identityRules.length();i++){identityRules.getJSONObject(i).remove("matchFiles");identityRules.getJSONObject(i).remove("matchSibling");}
         JSONObject identity = new JSONObject().put("template", identityTemplate).put("components", components);
+        JSONObject content = primary.optJSONObject("content");
+        if (content != null) { ContentMetadata.validate(content); identity.put("content", content); }
         String digest = Protocol.hex(MessageDigest.getInstance("SHA-256").digest(DataFiles.canonical(identity).getBytes(StandardCharsets.UTF_8)));
         String bundleId = "hfb_" + digest.substring(0, 40), repository = primary.getString("repository");
         String display = repository.substring(repository.indexOf('/') + 1) + " · " + template.getString("name");
@@ -69,6 +71,7 @@ public final class RecipeCatalogue {
                 .put("license", new JSONObject().put("name", "请分别核对模型与各组件许可").put("url", "https://huggingface.co/" + repository))
                 .put("evidence", new JSONObject().put("status", "user_selected_hf_components_not_device_tested").put("physicalDeviceTests", 0).put("architectureVerified", false));
         JSONObject hint = primary.optJSONObject("uncensored");
+        if (content != null) manifest.put("content", DataFiles.copy(content));
         manifest.put("uncensored", new JSONObject().put("declared", false).put("detected", hint != null && hint.optBoolean("detected")).put("basis", "repository-metadata").put("refusalRateTested", false));
         return new ModelBundle(manifest);
     }

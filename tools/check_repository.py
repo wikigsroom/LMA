@@ -9,7 +9,7 @@ import subprocess
 import tarfile
 from urllib.parse import unquote, urlsplit
 import zipfile
-from evidence import version, current
+from evidence import program_only_release, version, current
 from preparation_build_inputs import build_inputs
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -64,7 +64,7 @@ def main():
             assert resolved.is_relative_to(ROOT.resolve()) and resolved.exists(), "Broken local link: " + str(document.relative_to(ROOT)) + " -> " + target
             links += 1
     release = version()
-    if release == '0.3.0':
+    if program_only_release():
         assert not args.development, 'v0.3.0 is the complete program release'
         from program_release import check
         scoped = check()

@@ -79,7 +79,7 @@ public final class LmaApp extends Application {
         try {
             bundles = new BundleStore(new java.io.File(getFilesDir(), "model-assets"));
             try (java.io.InputStream in = getAssets().open("model-bundles.json")) {
-                JSONArray metadata = new JSONObject(Store.read(in, 512 * 1024)).getJSONArray("bundles");
+                JSONArray metadata = new JSONObject(Store.read(in, 4 * 1024 * 1024)).getJSONArray("bundles");
                 for (int i = 0; i < metadata.length(); i++) bundles.declare(new com.lma.app.core.ModelBundle(metadata.getJSONObject(i)));
             }
             jobs = new JobStore(new java.io.File(getFilesDir(), "jobs"));

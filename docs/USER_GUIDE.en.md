@@ -127,3 +127,7 @@ On development dev.21, open an installed SoulX model's local task, choose contig
 ## dev.23: associate runtime assets and choose remaining dependencies
 
 After preparation, use Local → Runtime assets → Review association, check the target and missing components, then explicitly start the shared job. Twenty verified existing files are reused without another copy/download. Missing T5 remains paused and uninstalled until you choose download or folder import in the runtime model details. Prepared and runtime records have independent deletion; settings survive and generation-engine availability is separate. See the [complete workflow](MODEL_ASSEMBLY.en.md) and [numbered implemented/pending handoff](releases/v0.3.0-dev.23.md). Android, six old-LTX numerical failures and complete Release gates remain open.
+
+## Community image and video models
+
+Models → All now includes an offline Registered recipes source and independent content filters. The 44 additional checkpoint variants include 28 sourced NSFW entries. Source, license and exact supported architecture are shown before downloading; only the selected model and disclosed dependencies are obtained. Local retains the same labels for downloads and unfinished transfers. [Full guide](COMMUNITY_MODELS.en.md).

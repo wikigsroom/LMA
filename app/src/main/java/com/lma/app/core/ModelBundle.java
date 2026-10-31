@@ -83,6 +83,7 @@ public final class ModelBundle {
         }
         components = Collections.unmodifiableList(checked);
         source = DataFiles.copy(value);
+        ContentMetadata.validate(source.optJSONObject("content"));
         // Validate the schema before a recipe can be installed, even if settings are never opened.
         new ParameterSchema(source.optJSONObject("parameters") == null ? new JSONObject() : source.getJSONObject("parameters"));
         AdapterSpec.validate(this);
@@ -107,7 +108,8 @@ public final class ModelBundle {
             if (!found) capability.put("image_adapter");
         }
         return new JSONObject().put("task", task).put("engine", "engine:" + engine).put("pipeline", "pipeline:" + pipeline).put("backend", "backend:" + backend)
-                .put("dependency", dependency).put("format", formats).put("capability", capability).put("architecture", "architecture:" + architecture).put("kind", AdapterSpec.isAdapter(this) ? "kind:adapter" : "kind:model");
+                .put("dependency", dependency).put("format", formats).put("capability", capability).put("architecture", "architecture:" + architecture).put("kind", AdapterSpec.isAdapter(this) ? "kind:adapter" : "kind:model")
+                .put("content", source.has("content") ? new JSONArray().put("content:" + source.getJSONObject("content").getString("classification")).put("content_basis:" + source.getJSONObject("content").getString("basis")) : new JSONArray());
     }
     public static String key(String value) { return Protocol.safeId(value); }
 }

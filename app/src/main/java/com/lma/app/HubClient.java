@@ -1,6 +1,7 @@
 package com.lma.app;
 
 import com.lma.app.core.Protocol;
+import com.lma.app.core.ContentMetadata;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -93,7 +94,7 @@ public final class HubClient {
                 .put("library", data.optString("library_name"))
                 .put("gated", data.has("gated") && !"false".equals(String.valueOf(data.opt("gated"))) && !data.isNull("gated"))
                 .put("revision", data.optString("sha")).put("license", card == null ? "" : card.optString("license"))
-                .put("uncensored", uncensored(id, tags)).put("sourceUrl", ORIGIN + "/" + id);
+                .put("uncensored", uncensored(id, tags)).put("content", ContentMetadata.repository(id, tags)).put("sourceUrl", ORIGIN + "/" + id);
     }
     public static JSONArray outputTasks(String task) {
         JSONArray tags = new JSONArray();
@@ -214,6 +215,7 @@ public final class HubClient {
         JSONObject result = new JSONObject().put("path", path).put("repository", id).put("revision", revision).put("format", format).put("bytes", bytes)
                 .put("url", ORIGIN + "/" + id + "/resolve/" + revision + "/" + encoded).put("blocked", blocked);
         result.put("uncensored", repository.getJSONObject("uncensored"));
+        result.put("content", repository.optJSONObject("content"));
         if (!sha.isEmpty()) result.put("sha256", sha); if (!git.isEmpty()) result.put("gitBlobSha1", git);
         return result;
     }
@@ -226,7 +228,7 @@ public final class HubClient {
                 .put("repository", repo).put("revision", revision).put("filename", path).put("url", file.getString("url"))
                 .put("bytes", file.getLong("bytes")).put("sha256", file.optString("sha256")).put("quant", file.getString("quant"))
                 .put("sourceUrl", ORIGIN + "/" + repo).put("family", "Hugging Face").put("tier", "hub").put("recommended", false)
-                .put("hub", true).put("deviceTested", false).put("uncensored", repository.getJSONObject("uncensored"))
+                .put("hub", true).put("deviceTested", false).put("uncensored", repository.getJSONObject("uncensored")).put("content", repository.optJSONObject("content"))
                 .put("tags", new JSONArray().put("HF")).put("description", "HF 仓库的固定版本 GGUF；架构与运行内存需加载时检查");
     }
 }

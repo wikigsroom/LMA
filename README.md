@@ -1,14 +1,16 @@
 # LMA · Android 本地模型工作台
 
-[English](README.en.md) · [下载 v0.3.0](https://github.com/wikigsroom/LMA/releases/tag/v0.3.0) · [使用手册](docs/USER_GUIDE.md) · [文档目录](docs/README.md)
+[English](README.en.md) · [下载 v0.3.1](https://github.com/wikigsroom/LMA/releases/tag/v0.3.1) · [使用手册](docs/USER_GUIDE.md) · [文档目录](docs/README.md)
 
 LMA 在 Android 手机上选择、下载、管理和运行本地模型，提供聊天、多模态任务、结果库与本机接口。App 更新提供基座，模型及其依赖始终由用户主动选择。安装包不带模型权重，不需要 ROOT、Termux、容器或其他计算设备。
 
-**v0.3.0 已实现完整冻结范围的程序集成：F-01–F-12、既有文本及编号 01–14、16、17。按用户要求，本版仅做程序验证。** 编译、安装包、原生协议、生产任务流程、接口和页面检查与手机推理、画质、音质、速度和锁屏续航是不同结论；后几项未验证。大模型出现在目录中，不代表努比亚 Z20 能承载。
+**v0.3.1 已实现完整冻结范围的程序集成：F-01–F-12、既有文本及编号 01–14、16、17。按用户要求，本版仅做程序验证。** 编译、安装包、原生协议、生产任务流程、接口和页面检查与手机推理、画质、音质、速度和锁屏续航是不同结论；后几项未验证。大模型出现在目录中，不代表努比亚 Z20 能承载。
+
+**v0.3.1 新增 14 个系列、44 个社区 checkpoint 配方（生图 30 / 生视频 14），其中 28 个有明确 NSFW 来源标记。** 区分来源声明、分级词表、文件标记、镜像声明和未核对的 HF 提示；登记目录增至 67 套配方。14 个 Wan 视频条目属于同一 1.3B 系列的训练版本。[完整来源、许可、兼容边界和操作说明](docs/COMMUNITY_MODELS.md)。
 
 ## 安装与使用顺序
 
-1. 从 Release 下载 `LMA-0.3.0-arm64-v8a.apk`，核对同页 `SHA256SUMS`；需要 **64 位 Android 9 / API 28 或以上**。保留原签名，升级安装可继续使用已有模型和设置。
+1. 从 Release 下载 `LMA-0.3.1-arm64-v8a.apk`，核对同页 `SHA256SUMS`；需要 **64 位 Android 9 / API 28 或以上**。保留原签名，升级安装可继续使用已有模型和设置。
 2. 打开 App，按系统提示允许通知；若要锁屏工作，可在系统中允许后台活动并取消电池限制。首次启动和升级不下载模型。
 3. 在“模型”选择“推荐 / 全部 / 本地”。**推荐保留 m08 → m06 → m01**；“全部”支持 HF 关键词、仓库名、仓库链接、分页和全部格式发现；“本地”集中管理已下载、导入和未完成的传输。
 4. 用“生文 / 生图 / 生视频 / 生音频”等标签筛选。打开详情核对架构、配方、后端、许可、依赖、固定版本和容量，再明确点击下载或从系统文件选择器导入。
@@ -37,7 +39,7 @@ HF 全格式**发现**与运行适配分开。兼容文件才可进入对应文�
 | 16 | Wan 2.1 T2V 1.3B Q4 | sd.cpp CPU / Vulkan；显式模型组件与视频编码 |
 | 17 | LTX-Video 2B 0.9.8 distilled | 原始 PixArt T5 F32 + 7 步 / 空间放大 / 3 步；Google T5 Q5 单尺度为独立变体 |
 
-本版有 **38 个数据型配方模板、23 个目录模型包、12 类扩展引擎及原有文本引擎**。这些数量是程序集成范围，不是“所有模型真机通过”数量。完整可追溯映射见[版本实现矩阵](docs/IMPLEMENTATION_V030.md)。
+本版有 **38 个数据型配方模板、23 个目录模型包、12 类扩展引擎及原有文本引擎**。这些数量是程序集成范围，不是“所有模型真机通过”数量。完整可追溯映射见[版本实现矩阵](docs/IMPLEMENTATION_V031.md)。
 
 ## 基座如何工作
 
@@ -55,15 +57,15 @@ LTX 原始多尺度方案顺序执行 CPU T5 → Vulkan 初次采样 → CPU 学
 
 ## 截图与录屏
 
-以下为 **v0.3.0 生产页面＋明确标记的桌面交互夹具**，没有下载权重或生成模型内容；浏览器在录制后关闭。
+以下为 **v0.3.1 生产页面＋明确标记的桌面交互夹具**，没有下载权重或生成模型内容；浏览器在录制后关闭。
 
-![模型组件、独立参数与视频任务](docs/media/development/ltx-official/ltx-official-ui.gif)
+![社区模型筛选、来源与本地管理](docs/media/development/community/community-ui.gif)
 
-[MP4 录屏](docs/media/development/ltx-official/ltx-official-ui.mp4) · [组件截图](docs/media/development/ltx-official/01-ltx-official-components.png) · [参数截图](docs/media/development/ltx-official/02-ltx-official-settings.png) · [任务截图](docs/media/development/ltx-official/03-ltx-official-task.png) · [队列截图](docs/media/development/ltx-official/04-ltx-official-queue.png) · [工作台录屏](docs/media/development/release-workbench/release-workbench-ui.mp4)
+[MP4 录屏](docs/media/development/community/community-ui.mp4) · [生图目录](docs/media/development/community/01-community-images.png) · [来源详情](docs/media/development/community/02-image-source.png) · [视频目录](docs/media/development/community/03-community-video.png) · [本地管理](docs/media/development/community/05-community-local.png) · [工作台录屏](docs/media/development/release-workbench/release-workbench-ui.mp4)
 
 ## 验证、构建与文档
 
-[本版 Release 说明](docs/releases/v0.3.0.md)列出程序检查数量、安装包身份和交付清单；[验证策略](docs/PROGRAM_VALIDATION.md)记录用户明确取消完整模型运行验收的要求。当前证据在 [verification/program](verification/program/status.json)，旧失败和旧版本记录保留在历史目录，不能被解释为本 APK 的模型测试结果。
+[本版 Release 说明](docs/releases/v0.3.1.md)列出程序检查数量、安装包身份和交付清单；[验证策略](docs/PROGRAM_VALIDATION.md)记录用户明确取消完整模型运行验收的要求。当前证据在 [verification/program](verification/program/status.json)，旧失败和旧版本记录保留在历史目录，不能被解释为本 APK 的模型测试结果。
 
 原生 Windows 构建使用 JDK、Android SDK / NDK 和 CMake，不使用 Docker、WSL 或模拟器。签名材料仅保存在本地 `signing/`，不进入 Git 或发行附件。[构建](docs/BUILD.md) · [发布](docs/RELEASING.md) · [贡献约定](CONTRIBUTING.md)。
 

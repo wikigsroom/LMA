@@ -1,12 +1,14 @@
 # LMA 文档 / Documentation
 
-当前版本 **v0.3.0**：完整冻结范围的程序集成，按用户指令只做程序验证。Current release: complete frozen program scope; phone/model quality and endurance remain untested. [中文 README](../README.md) · [English README](../README.en.md) · [Release notes](releases/v0.3.0.md)
+当前版本 **v0.3.1**：完整冻结范围的程序集成，按用户指令只做程序验证。Current release: complete frozen program scope; phone/model quality and endurance remain untested. [中文 README](../README.md) · [English README](../README.en.md) · [Release notes](releases/v0.3.1.md)
+
+- [社区生图 / 生视频与 NSFW 标记](COMMUNITY_MODELS.md) · [English](COMMUNITY_MODELS.en.md)：44 个新增版本、来源 / 许可 / 兼容边界、操作及截图。
 
 ## 使用与基座 / Usage and foundation
 
 | 主题 / Topic | 中文 | English |
 | --- | --- | --- |
-| 完整实现与范围 / Implementation | [实现矩阵](IMPLEMENTATION_V030.md) | [Matrix](IMPLEMENTATION_V030.en.md) |
+| 完整实现与范围 / Implementation | [实现矩阵](IMPLEMENTATION_V031.md) | [Matrix](IMPLEMENTATION_V031.en.md) |
 | 安装、模型和使用 / User guide | [使用手册](USER_GUIDE.md) | [Guide](USER_GUIDE.en.md) |
 | HF 全部 / 本地 / Discovery | [HF 模型](HF_MODELS.md) | [HF models](HF_MODELS.en.md) |
 | 模型包与共享组件 / Bundles | [模型包](MODEL_TRANSFERS.md) | [Bundles](MODEL_TRANSFERS.en.md) |

@@ -4,7 +4,7 @@ import json
 from pathlib import Path
 import shutil
 import zipfile
-from evidence import version, current
+from evidence import program_only_release, version, current
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -14,7 +14,7 @@ def sha(path):
 
 
 def main():
-    if version() == '0.3.0':
+    if program_only_release():
         from program_release import prepare
         print(json.dumps(prepare())); return
     release = version()

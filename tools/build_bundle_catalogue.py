@@ -32,6 +32,16 @@ def main():
     path = ROOT / "catalogue/model-bundles.json"
     data = path.read_bytes(); catalogue = json.loads(data)
     evidence = json.loads((ROOT / "catalogue/bundle-evidence.json").read_text(encoding="utf-8"))
+    # Extra community weights use the same optional, user-managed component store.
+    # Preserve every original immutable bundle instead of editing its identity.
+    extra = json.loads((ROOT / "catalogue/community-bundles.json").read_text(encoding="utf-8"))
+    extra_evidence = json.loads((ROOT / "catalogue/community-bundle-evidence.json").read_text(encoding="utf-8"))
+    assert extra["schema"] == catalogue["schema"] and extra_evidence["schema"] == evidence["schema"]
+    assert not extra_evidence["model_inference_tested"] and not extra_evidence["model_weights_downloaded"] and extra_evidence["physical_device_tests"] == 0
+    catalogue["bundles"] += extra["bundles"]
+    evidence["bundles"] += extra_evidence["bundles"]
+    newline = "\r\n" if b"\r\n" in data else "\n"
+    data = (json.dumps(catalogue, ensure_ascii=False, indent=2) + "\n").replace("\n", newline).encode("utf-8")
     assert catalogue["schema"] == "lma.bundle-catalogue/1" and not evidence["model_inference_tested"]
     assert evidence["physical_device_tests"] == 0 and not evidence["model_weights_downloaded"]
     assert evidence["schema"] == "lma.bundle-metadata-evidence/2"

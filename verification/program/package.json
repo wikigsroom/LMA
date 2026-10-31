@@ -1,6 +1,6 @@
 {
-  "apk": "LMA-0.3.0-arm64-v8a.apk",
-  "sha256": "e61c90aa2f08586cb3577f79074c59d14437eb8157e1f923f994227c90fbeffd",
+  "apk": "LMA-0.3.1-arm64-v8a.apk",
+  "sha256": "1e4b08927751c71aef7f5014a2dc1c889f141c449058c907a68b4f895ac27776",
   "native_libraries_verified": 35,
   "all_native_dependencies_resolved": true,
   "all_elf_load_segments_16k_aligned": true,
@@ -738,6 +738,6 @@
     "third_party/ltx098-official/pixart-special_tokens_map.json": "5c87151ef0f72a99d1f766a4c418bd2a1f90aaa30a8e22fe5eca9641daebb64f",
     "third_party/ltx098-official/pixart-tokenizer_config.json": "71730771351a8f0463bd2e545fbfaadc9dc01a7a222306ff4795cc48dfe168c0",
     "tools/ltx098_official_profile.py": "dd58ce64cdb40fd4787b64e13f429302f69ba1d409a29a6348b8a5eb498b98dd",
-    "tools/verify_package.py": "ec5b79af733a291c5b2387fd272274302b3a11c51fcec40f1ce538f3873d0170"
+    "tools/verify_package.py": "e3b6e23420f27851e6c12f16f37d950714d2e13c4af3d6a1dfbf226127cea529"
   }
 }

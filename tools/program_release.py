@@ -11,8 +11,8 @@ from release_scope import check as scope_check
 
 ROOT=Path(__file__).resolve().parents[1]
 DIST=ROOT/'dist'
-VERSION='0.3.0'
-MEDIA=['ltx-official','release-workbench']
+VERSION=version()
+MEDIA=['community','release-workbench']
 
 def sha(path):
  with path.open('rb') as stream:return hashlib.file_digest(stream,'sha256').hexdigest()
@@ -33,7 +33,7 @@ def public_names():
 def package():
  assert version()==VERSION
  evidence=program_check();matrix=scope_check();build=read(DIST/'build-info.json')
- notes=ROOT/'docs/releases/v0.3.0.md'
+ notes=ROOT/('docs/releases/v'+VERSION+'.md')
  assert notes.exists() and VERSION in notes.read_text(encoding='utf-8')
  validation=dict(evidence,app='LMA',sha256=build['sha256'],bytes=build['bytes'],validation_mode='program_only',
   full_scope_program_implementation_complete=matrix['full_scope_program_implementation_complete'],
@@ -70,7 +70,7 @@ def check(prepared=False):
    assert item==dict(bytes=(ROOT/name).stat().st_size,sha256=sha(ROOT/name)),'Stale archive source: '+name
    with archive.open('LMA/'+name) as stream:assert hashlib.file_digest(stream,'sha256').hexdigest()==item['sha256']
  if prepared:
-  directory=DIST/'releases/v0.3.0';manifest=read(directory/'release-manifest.json')
+  directory=DIST/('releases/v'+VERSION);manifest=read(directory/'release-manifest.json')
   assert manifest['version']==VERSION and manifest['prerelease'] and manifest['validation_mode']=='program_only'
   assert manifest['full_scope_program_implementation_complete'] and manifest['apk_sha256']==build['sha256']
   expected={x['name'] for x in manifest['assets']}|{'release-manifest.json'}
@@ -83,17 +83,17 @@ def check(prepared=False):
  return result
 
 def prepare():
- check();directory=DIST/'releases/v0.3.0';directory.mkdir(parents=True,exist_ok=True)
+ check();directory=DIST/('releases/v'+VERSION);directory.mkdir(parents=True,exist_ok=True)
  build=read(DIST/'build-info.json');source=f'LMA-{VERSION}-source.zip'
  originals=[DIST/build['apk'],DIST/(build['apk']+'.sha256'),DIST/source,DIST/(source+'.sha256'),DIST/'validation.json',DIST/'build-info.json',DIST/'source-archive-manifest.json']
  names=[]
  for original in originals:shutil.copy2(original,directory/original.name);names.append(original.name)
- notes='RELEASE_NOTES.md';shutil.copy2(ROOT/'docs/releases/v0.3.0.md',directory/notes);names.append(notes)
+ notes='RELEASE_NOTES.md';shutil.copy2(ROOT/('docs/releases/v'+VERSION+'.md'),directory/notes);names.append(notes)
  verification=f'LMA-{VERSION}-verification.zip'
  with zipfile.ZipFile(directory/verification,'w',zipfile.ZIP_DEFLATED) as archive:
   for p in sorted((ROOT/'verification/program').glob('*.json')):archive.write(p,'verification/program/'+p.name)
   for name in MEDIA:archive.write(ROOT/'docs/media/development'/name/'manifest.json','media/'+name+'/manifest.json')
-  archive.write(ROOT/'catalogue/release-0.3.0-implementation.json','implementation.json')
+  archive.write(ROOT/('catalogue/release-'+VERSION+'-implementation.json'),'implementation.json')
   archive.write(ROOT/'docs/proposals/program-validation-policy.json','validation-policy.json')
  names.append(verification)
  screenshots=f'LMA-{VERSION}-screenshots.zip'
@@ -108,8 +108,8 @@ def prepare():
    target=f'LMA-{VERSION}-{name}.'+extension;shutil.copy2(original,directory/target);names.append(target)
  names.sort()
  (directory/'SHA256SUMS').write_text(''.join(sha(directory/n)+'  '+n+'\n' for n in names),encoding='utf-8');names.append('SHA256SUMS')
- manifest=dict(repository='wikigsroom/LMA',version=VERSION,tag='v'+VERSION,title='LMA v0.3.0 · Local multimodal foundation / 本地多模态基座',
-  prerelease=True,notes='docs/releases/v0.3.0.md',validation_mode='program_only',full_scope_program_implementation_complete=True,
+ manifest=dict(repository='wikigsroom/LMA',version=VERSION,tag='v'+VERSION,title='LMA v'+VERSION+' · Community models and content labels / 社区模型与内容标记',
+  prerelease=True,notes='docs/releases/v'+VERSION+'.md',validation_mode='program_only',full_scope_program_implementation_complete=True,
   apk_sha256=build['sha256'],physical_device_tested=False,phone_inference_tested=False,background_endurance_tested=False,
   model_quality_accepted=False,media_uses_simulated_native_state=True,signing_material_included=False,model_weights_included=False,
   assets=[dict(name=n,bytes=(directory/n).stat().st_size,sha256=sha(directory/n)) for n in names])

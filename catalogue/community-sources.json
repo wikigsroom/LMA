@@ -1,0 +1,727 @@
+{
+  "schema": "lma.community-sources/1",
+  "repositories": [
+    {
+      "repository": "stabilityai/sd-vae-ft-mse",
+      "architecture": "sd15_vae",
+      "family": "SD VAE",
+      "sourceRole": "publisher",
+      "cardMarkers": [],
+      "content": {
+        "classification": "unclassified",
+        "basis": "none",
+        "summary": "来源未提供足够明确的 NSFW 声明；不自动继承基础模型的内容属性。"
+      },
+      "licenseName": "mit · 以来源条款为准",
+      "description": "SD VAE 社区配方。来源未提供足够明确的 NSFW 声明；不自动继承基础模型的内容属性。",
+      "compatibilityNote": "SD15_VAE 完整 checkpoint；同机 CPU，文件头核对不代表真机或模型质量验收。",
+      "variants": [
+        {
+          "file": "diffusion_pytorch_model.safetensors",
+          "id": "sd15_vae_mse",
+          "name": "SD VAE MSE"
+        }
+      ],
+      "dependencyOnly": true
+    },
+    {
+      "repository": "Lykon/DreamShaper",
+      "architecture": "sd15",
+      "family": "DreamShaper",
+      "sourceRole": "publisher",
+      "cardMarkers": [],
+      "content": {
+        "classification": "unclassified",
+        "basis": "none",
+        "summary": "来源未提供足够明确的 NSFW 声明；不自动继承基础模型的内容属性。"
+      },
+      "licenseName": "other · 以来源条款为准",
+      "description": "DreamShaper 社区配方。来源未提供足够明确的 NSFW 声明；不自动继承基础模型的内容属性。",
+      "compatibilityNote": "SD15 完整 checkpoint；同机 CPU，文件头核对不代表真机或模型质量验收。",
+      "variants": [
+        {
+          "file": "DreamShaper_8_pruned.safetensors",
+          "id": "community_dreamshaper8",
+          "name": "DreamShaper 8"
+        }
+      ]
+    },
+    {
+      "repository": "SG161222/Realistic_Vision_V6.0_B1_noVAE",
+      "architecture": "sd15",
+      "family": "Realistic Vision",
+      "sourceRole": "publisher",
+      "cardMarkers": [
+        "improved sfw and nsfw"
+      ],
+      "content": {
+        "classification": "nsfw",
+        "basis": "publisher_card",
+        "summary": "来源声明或文件命名包含 NSFW；标签不代表生成效果已经实测。"
+      },
+      "licenseName": "creativeml-openrail-m · 以来源条款为准",
+      "description": "Realistic Vision 社区配方。来源声明或文件命名包含 NSFW；标签不代表生成效果已经实测。",
+      "compatibilityNote": "SD15 完整 checkpoint；同机 CPU，文件头核对不代表真机或模型质量验收。",
+      "variants": [
+        {
+          "file": "Realistic_Vision_V6.0_NV_B1_fp16.safetensors",
+          "id": "community_realisticvision6b1",
+          "name": "Realistic Vision 6.0 B1 FP16"
+        }
+      ],
+      "extraDependencies": [
+        {
+          "repository": "stabilityai/sd-vae-ft-mse",
+          "file": "diffusion_pytorch_model.safetensors",
+          "role": "vae"
+        }
+      ]
+    },
+    {
+      "repository": "SG161222/Realistic_Vision_V5.1_noVAE",
+      "architecture": "sd15",
+      "family": "Realistic Vision",
+      "sourceRole": "publisher",
+      "cardMarkers": [],
+      "content": {
+        "classification": "unclassified",
+        "basis": "none",
+        "summary": "来源未提供足够明确的 NSFW 声明；不自动继承基础模型的内容属性。"
+      },
+      "licenseName": "creativeml-openrail-m · 以来源条款为准",
+      "description": "Realistic Vision 社区配方。来源未提供足够明确的 NSFW 声明；不自动继承基础模型的内容属性。",
+      "compatibilityNote": "SD15 完整 checkpoint；同机 CPU，文件头核对不代表真机或模型质量验收。",
+      "variants": [
+        {
+          "file": "Realistic_Vision_V5.1_fp16-no-ema.safetensors",
+          "id": "community_realisticvision51",
+          "name": "Realistic Vision 5.1 FP16"
+        }
+      ],
+      "extraDependencies": [
+        {
+          "repository": "stabilityai/sd-vae-ft-mse",
+          "file": "diffusion_pytorch_model.safetensors",
+          "role": "vae"
+        }
+      ]
+    },
+    {
+      "repository": "SG161222/RealVisXL_V3.0",
+      "architecture": "sdxl",
+      "family": "RealVisXL",
+      "sourceRole": "publisher",
+      "cardMarkers": [
+        "Can produce sfw and nsfw"
+      ],
+      "content": {
+        "classification": "nsfw",
+        "basis": "publisher_card",
+        "summary": "来源声明或文件命名包含 NSFW；标签不代表生成效果已经实测。"
+      },
+      "licenseName": "openrail++ · 以来源条款为准",
+      "description": "RealVisXL 社区配方。来源声明或文件命名包含 NSFW；标签不代表生成效果已经实测。",
+      "compatibilityNote": "SDXL 完整 checkpoint；同机 CPU，文件头核对不代表真机或模型质量验收。",
+      "variants": [
+        {
+          "file": "RealVisXL_V3.0.safetensors",
+          "id": "community_realvisxl30",
+          "name": "RealVisXL 3.0"
+        }
+      ]
+    },
+    {
+      "repository": "SG161222/RealVisXL_V4.0",
+      "architecture": "sdxl",
+      "family": "RealVisXL",
+      "sourceRole": "publisher",
+      "cardMarkers": [
+        "Can produce sfw and nsfw"
+      ],
+      "content": {
+        "classification": "nsfw",
+        "basis": "publisher_card",
+        "summary": "来源声明或文件命名包含 NSFW；标签不代表生成效果已经实测。"
+      },
+      "licenseName": "openrail++ · 以来源条款为准",
+      "description": "RealVisXL 社区配方。来源声明或文件命名包含 NSFW；标签不代表生成效果已经实测。",
+      "compatibilityNote": "SDXL 完整 checkpoint；同机 CPU，文件头核对不代表真机或模型质量验收。",
+      "variants": [
+        {
+          "file": "RealVisXL_V4.0.safetensors",
+          "id": "community_realvisxl40",
+          "name": "RealVisXL 4.0"
+        }
+      ]
+    },
+    {
+      "repository": "SG161222/RealVisXL_V5.0",
+      "architecture": "sdxl",
+      "family": "RealVisXL",
+      "sourceRole": "publisher",
+      "cardMarkers": [
+        "Can produce sfw and nsfw"
+      ],
+      "content": {
+        "classification": "nsfw",
+        "basis": "publisher_card",
+        "summary": "来源声明或文件命名包含 NSFW；标签不代表生成效果已经实测。"
+      },
+      "licenseName": "openrail++ · 以来源条款为准",
+      "description": "RealVisXL 社区配方。来源声明或文件命名包含 NSFW；标签不代表生成效果已经实测。",
+      "compatibilityNote": "SDXL 完整 checkpoint；同机 CPU，文件头核对不代表真机或模型质量验收。",
+      "variants": [
+        {
+          "file": "RealVisXL_V5.0_fp16.safetensors",
+          "id": "community_realvisxl50",
+          "name": "RealVisXL 5.0"
+        }
+      ]
+    },
+    {
+      "repository": "RunDiffusion/Juggernaut-XL-v9",
+      "architecture": "sdxl",
+      "family": "Juggernaut",
+      "sourceRole": "publisher",
+      "cardMarkers": [],
+      "content": {
+        "classification": "unclassified",
+        "basis": "none",
+        "summary": "来源未提供足够明确的 NSFW 声明；不自动继承基础模型的内容属性。"
+      },
+      "licenseName": "creativeml-openrail-m · 以来源条款为准",
+      "description": "Juggernaut 社区配方。来源未提供足够明确的 NSFW 声明；不自动继承基础模型的内容属性。",
+      "compatibilityNote": "SDXL 完整 checkpoint；同机 CPU，文件头核对不代表真机或模型质量验收。",
+      "variants": [
+        {
+          "file": "Juggernaut-XL_v9_RunDiffusionPhoto_v2.safetensors",
+          "id": "community_juggernaut9",
+          "name": "Juggernaut 9"
+        }
+      ]
+    },
+    {
+      "repository": "RunDiffusion/Juggernaut-X-v10",
+      "architecture": "sdxl",
+      "family": "Juggernaut",
+      "sourceRole": "publisher",
+      "cardMarkers": [],
+      "content": {
+        "classification": "nsfw",
+        "basis": "publisher_filename",
+        "summary": "来源声明或文件命名包含 NSFW；标签不代表生成效果已经实测。"
+      },
+      "licenseName": "creativeml-openrail-m · 以来源条款为准",
+      "description": "Juggernaut 社区配方。来源声明或文件命名包含 NSFW；标签不代表生成效果已经实测。",
+      "compatibilityNote": "SDXL 完整 checkpoint；同机 CPU，文件头核对不代表真机或模型质量验收。",
+      "variants": [
+        {
+          "file": "Juggernaut-X-RunDiffusion-NSFW.safetensors",
+          "id": "community_juggernautx",
+          "name": "Juggernaut X"
+        }
+      ]
+    },
+    {
+      "repository": "RunDiffusion/Juggernaut-XI-v11",
+      "architecture": "sdxl",
+      "family": "Juggernaut",
+      "sourceRole": "publisher",
+      "cardMarkers": [],
+      "content": {
+        "classification": "unclassified",
+        "basis": "none",
+        "summary": "来源未提供足够明确的 NSFW 声明；不自动继承基础模型的内容属性。"
+      },
+      "licenseName": "cc-by-nc-nd-4.0 · 以来源条款为准",
+      "description": "Juggernaut 社区配方。来源未提供足够明确的 NSFW 声明；不自动继承基础模型的内容属性。",
+      "compatibilityNote": "SDXL 完整 checkpoint；同机 CPU，文件头核对不代表真机或模型质量验收。",
+      "variants": [
+        {
+          "file": "Juggernaut-XI-byRunDiffusion.safetensors",
+          "id": "community_juggernautxi",
+          "name": "Juggernaut XI"
+        }
+      ]
+    },
+    {
+      "repository": "Laxhar/noobai-XL-1.1",
+      "architecture": "sdxl",
+      "family": "NoobAI",
+      "sourceRole": "publisher",
+      "cardMarkers": [
+        "not-for-all-audiences"
+      ],
+      "content": {
+        "classification": "sensitive",
+        "basis": "hf_sensitive_tag",
+        "summary": "HF 标记不适合所有受众；该标记本身不等于已确认 NSFW 能力。"
+      },
+      "licenseName": "other · 以来源条款为准",
+      "description": "NoobAI 社区配方。HF 标记不适合所有受众；该标记本身不等于已确认 NSFW 能力。",
+      "compatibilityNote": "SDXL 完整 checkpoint；同机 CPU，文件头核对不代表真机或模型质量验收。",
+      "variants": [
+        {
+          "file": "NoobAI-XL-v1.1.safetensors",
+          "id": "community_noobai11",
+          "name": "NoobAI XL 1.1"
+        }
+      ]
+    },
+    {
+      "repository": "OnomaAIResearch/Illustrious-xl-early-release-v0",
+      "architecture": "sdxl",
+      "family": "Illustrious",
+      "sourceRole": "publisher",
+      "cardMarkers": [],
+      "content": {
+        "classification": "unclassified",
+        "basis": "none",
+        "summary": "来源未提供足够明确的 NSFW 声明；不自动继承基础模型的内容属性。"
+      },
+      "licenseName": "other · 以来源条款为准",
+      "description": "Illustrious 社区配方。来源未提供足够明确的 NSFW 声明；不自动继承基础模型的内容属性。",
+      "compatibilityNote": "SDXL 完整 checkpoint；同机 CPU，文件头核对不代表真机或模型质量验收。",
+      "variants": [
+        {
+          "file": "Illustrious-XL-v0.1.safetensors",
+          "id": "community_illustrious01",
+          "name": "Illustrious XL 0.1"
+        }
+      ]
+    },
+    {
+      "repository": "OnomaAIResearch/Illustrious-XL-v1.0",
+      "architecture": "sdxl",
+      "family": "Illustrious",
+      "sourceRole": "publisher",
+      "cardMarkers": [],
+      "content": {
+        "classification": "unclassified",
+        "basis": "none",
+        "summary": "来源未提供足够明确的 NSFW 声明；不自动继承基础模型的内容属性。"
+      },
+      "licenseName": "other · 以来源条款为准",
+      "description": "Illustrious 社区配方。来源未提供足够明确的 NSFW 声明；不自动继承基础模型的内容属性。",
+      "compatibilityNote": "SDXL 完整 checkpoint；同机 CPU，文件头核对不代表真机或模型质量验收。",
+      "variants": [
+        {
+          "file": "Illustrious-XL-v1.0.safetensors",
+          "id": "community_illustrious10",
+          "name": "Illustrious XL 1.0"
+        }
+      ]
+    },
+    {
+      "repository": "OnomaAIResearch/Illustrious-XL-v1.1",
+      "architecture": "sdxl",
+      "family": "Illustrious",
+      "sourceRole": "publisher",
+      "cardMarkers": [],
+      "content": {
+        "classification": "unclassified",
+        "basis": "none",
+        "summary": "来源未提供足够明确的 NSFW 声明；不自动继承基础模型的内容属性。"
+      },
+      "licenseName": "other · 以来源条款为准",
+      "description": "Illustrious 社区配方。来源未提供足够明确的 NSFW 声明；不自动继承基础模型的内容属性。",
+      "compatibilityNote": "SDXL 完整 checkpoint；同机 CPU，文件头核对不代表真机或模型质量验收。",
+      "variants": [
+        {
+          "file": "Illustrious-XL-v1.1.safetensors",
+          "id": "community_illustrious11",
+          "name": "Illustrious XL 1.1"
+        }
+      ]
+    },
+    {
+      "repository": "OnomaAIResearch/Illustrious-XL-v2.0",
+      "architecture": "sdxl",
+      "family": "Illustrious",
+      "sourceRole": "publisher",
+      "cardMarkers": [],
+      "content": {
+        "classification": "unclassified",
+        "basis": "none",
+        "summary": "来源未提供足够明确的 NSFW 声明；不自动继承基础模型的内容属性。"
+      },
+      "licenseName": "creativeml-openrail-m · 以来源条款为准",
+      "description": "Illustrious 社区配方。来源未提供足够明确的 NSFW 声明；不自动继承基础模型的内容属性。",
+      "compatibilityNote": "SDXL 完整 checkpoint；同机 CPU，文件头核对不代表真机或模型质量验收。",
+      "variants": [
+        {
+          "file": "Illustrious-XL-v2.0.safetensors",
+          "id": "community_illustrious20",
+          "name": "Illustrious XL 2.0"
+        }
+      ]
+    },
+    {
+      "repository": "cagliostrolab/animagine-xl-3.1",
+      "architecture": "sdxl",
+      "family": "Animagine",
+      "sourceRole": "publisher",
+      "cardMarkers": [],
+      "content": {
+        "classification": "unclassified",
+        "basis": "none",
+        "summary": "来源未提供足够明确的 NSFW 声明；不自动继承基础模型的内容属性。"
+      },
+      "licenseName": "openrail++ · 以来源条款为准",
+      "description": "Animagine 社区配方。来源未提供足够明确的 NSFW 声明；不自动继承基础模型的内容属性。",
+      "compatibilityNote": "SDXL 完整 checkpoint；同机 CPU，文件头核对不代表真机或模型质量验收。",
+      "variants": [
+        {
+          "file": "animagine-xl-3.1.safetensors",
+          "id": "community_animagine31",
+          "name": "Animagine XL 3.1"
+        }
+      ]
+    },
+    {
+      "repository": "cagliostrolab/animagine-xl-4.0",
+      "architecture": "sdxl",
+      "family": "Animagine",
+      "sourceRole": "publisher",
+      "cardMarkers": [
+        "Supported ratings:",
+        "`nsfw`"
+      ],
+      "content": {
+        "classification": "nsfw",
+        "basis": "publisher_rating",
+        "summary": "来源声明或文件命名包含 NSFW；标签不代表生成效果已经实测。"
+      },
+      "licenseName": "openrail++ · 以来源条款为准",
+      "description": "Animagine 社区配方。来源声明或文件命名包含 NSFW；标签不代表生成效果已经实测。",
+      "compatibilityNote": "SDXL 完整 checkpoint；同机 CPU，文件头核对不代表真机或模型质量验收。",
+      "variants": [
+        {
+          "file": "animagine-xl-4.0.safetensors",
+          "id": "community_animagine40",
+          "name": "Animagine XL 4.0"
+        },
+        {
+          "file": "animagine-xl-4.0-opt.safetensors",
+          "id": "community_animagine40opt",
+          "name": "Animagine XL 4.0 OPT"
+        }
+      ]
+    },
+    {
+      "repository": "cyberdelia/CyberRealistic",
+      "architecture": "sd15",
+      "family": "CyberRealistic",
+      "sourceRole": "publisher",
+      "cardMarkers": [],
+      "content": {
+        "classification": "unclassified",
+        "basis": "none",
+        "summary": "来源未提供足够明确的 NSFW 声明；不自动继承基础模型的内容属性。"
+      },
+      "licenseName": "creativeml-openrail-m · 以来源条款为准",
+      "description": "CyberRealistic 社区配方。来源未提供足够明确的 NSFW 声明；不自动继承基础模型的内容属性。",
+      "compatibilityNote": "SD15 完整 checkpoint；同机 CPU，文件头核对不代表真机或模型质量验收。",
+      "variants": [
+        {
+          "file": "CyberRealistic_V9_FP16.safetensors",
+          "id": "community_cyberrealistic9",
+          "name": "CyberRealistic 9 FP16"
+        }
+      ]
+    },
+    {
+      "repository": "cyberdelia/CyberRealisticXL",
+      "architecture": "sdxl",
+      "family": "CyberRealistic",
+      "sourceRole": "publisher",
+      "cardMarkers": [],
+      "content": {
+        "classification": "unclassified",
+        "basis": "none",
+        "summary": "来源未提供足够明确的 NSFW 声明；不自动继承基础模型的内容属性。"
+      },
+      "licenseName": "creativeml-openrail-m · 以来源条款为准",
+      "description": "CyberRealistic 社区配方。来源未提供足够明确的 NSFW 声明；不自动继承基础模型的内容属性。",
+      "compatibilityNote": "SDXL 完整 checkpoint；同机 CPU，文件头核对不代表真机或模型质量验收。",
+      "variants": [
+        {
+          "file": "CyberRealisticXLPlay_V10.0_FP16.safetensors",
+          "id": "community_cyberrealisticxl10",
+          "name": "CyberRealistic XL 10 FP16"
+        }
+      ]
+    },
+    {
+      "repository": "cyberdelia/CyberRealisticPony",
+      "architecture": "sdxl",
+      "family": "CyberRealistic",
+      "sourceRole": "publisher",
+      "cardMarkers": [],
+      "content": {
+        "classification": "unclassified",
+        "basis": "none",
+        "summary": "来源未提供足够明确的 NSFW 声明；不自动继承基础模型的内容属性。"
+      },
+      "licenseName": "creativeml-openrail-m · 以来源条款为准",
+      "description": "CyberRealistic 社区配方。来源未提供足够明确的 NSFW 声明；不自动继承基础模型的内容属性。",
+      "compatibilityNote": "SDXL 完整 checkpoint；同机 CPU，文件头核对不代表真机或模型质量验收。",
+      "variants": [
+        {
+          "file": "CyberRealisticPony_V18.0_F16.safetensors",
+          "id": "community_cyberpony18",
+          "name": "CyberRealistic Pony 18 F16"
+        }
+      ]
+    },
+    {
+      "repository": "cyberdelia/CyberIllustrious",
+      "architecture": "sdxl",
+      "family": "CyberIllustrious",
+      "sourceRole": "publisher",
+      "cardMarkers": [],
+      "content": {
+        "classification": "unclassified",
+        "basis": "none",
+        "summary": "来源未提供足够明确的 NSFW 声明；不自动继承基础模型的内容属性。"
+      },
+      "licenseName": "creativeml-openrail-m · 以来源条款为准",
+      "description": "CyberIllustrious 社区配方。来源未提供足够明确的 NSFW 声明；不自动继承基础模型的内容属性。",
+      "compatibilityNote": "SDXL 完整 checkpoint；同机 CPU，文件头核对不代表真机或模型质量验收。",
+      "variants": [
+        {
+          "file": "CyberIllustrious_V10_FP16.safetensors",
+          "id": "community_cyberillustrious10",
+          "name": "CyberIllustrious 10 FP16"
+        }
+      ]
+    },
+    {
+      "repository": "LyliaEngine/Pony_Diffusion_V6_XL",
+      "architecture": "sdxl",
+      "family": "Pony Diffusion",
+      "sourceRole": "mirror",
+      "cardMarkers": [
+        "SFW and NSFW"
+      ],
+      "content": {
+        "classification": "nsfw",
+        "basis": "mirror_card",
+        "summary": "来源声明或文件命名包含 NSFW；标签不代表生成效果已经实测。"
+      },
+      "licenseName": "修改版 Fair AI Public License 1.0-SD · HF 元数据冲突",
+      "description": "Pony Diffusion 社区配方。来源声明或文件命名包含 NSFW；标签不代表生成效果已经实测。",
+      "compatibilityNote": "SDXL 完整 checkpoint；HF 镜像，原作者 PurpleSmartAI。HF 许可字段与模型卡修改版 Fair AI 条款冲突，按原作者条款核对；不认定商用授权。",
+      "variants": [
+        {
+          "file": "ponyDiffusionV6XL_v6StartWithThisOne.safetensors",
+          "id": "community_pony6xl",
+          "name": "Pony Diffusion V6 XL"
+        }
+      ],
+      "publisherUrl": "https://civitai.com/models/257749"
+    },
+    {
+      "repository": "KBlueLeaf/Kohaku-XL-Zeta",
+      "architecture": "sdxl",
+      "family": "Kohaku",
+      "sourceRole": "publisher",
+      "cardMarkers": [
+        "Rating tags: safe, sensitive, nsfw, explicit"
+      ],
+      "content": {
+        "classification": "nsfw",
+        "basis": "publisher_rating",
+        "summary": "来源声明或文件命名包含 NSFW；标签不代表生成效果已经实测。"
+      },
+      "licenseName": "other · 以来源条款为准",
+      "description": "Kohaku 社区配方。来源声明或文件命名包含 NSFW；标签不代表生成效果已经实测。",
+      "compatibilityNote": "SDXL 完整 checkpoint；同机 CPU，文件头核对不代表真机或模型质量验收。",
+      "variants": [
+        {
+          "file": "kohaku-xl-zeta.safetensors",
+          "id": "community_kohakuzeta",
+          "name": "Kohaku XL Zeta"
+        }
+      ]
+    },
+    {
+      "repository": "KBlueLeaf/Kohaku-XL-Epsilon-rev3",
+      "architecture": "sdxl",
+      "family": "Kohaku",
+      "sourceRole": "publisher",
+      "cardMarkers": [],
+      "content": {
+        "classification": "unclassified",
+        "basis": "none",
+        "summary": "来源未提供足够明确的 NSFW 声明；不自动继承基础模型的内容属性。"
+      },
+      "licenseName": "other · 以来源条款为准",
+      "description": "Kohaku 社区配方。来源未提供足够明确的 NSFW 声明；不自动继承基础模型的内容属性。",
+      "compatibilityNote": "SDXL 完整 checkpoint；同机 CPU，文件头核对不代表真机或模型质量验收。",
+      "variants": [
+        {
+          "file": "kohaku-xl-epsilon-rev3.safetensors",
+          "id": "community_kohakuepsilon3",
+          "name": "Kohaku XL Epsilon rev3"
+        }
+      ]
+    },
+    {
+      "repository": "WarriorMama777/OrangeMixs",
+      "architecture": "sd15",
+      "family": "OrangeMix",
+      "sourceRole": "publisher",
+      "cardMarkers": [
+        "VividOrangeMix_NSFW",
+        "AOM3 was merged with the NSFW model"
+      ],
+      "content": {
+        "classification": "nsfw",
+        "basis": "publisher_card",
+        "summary": "来源声明或文件命名包含 NSFW；标签不代表生成效果已经实测。"
+      },
+      "licenseName": "creativeml-openrail-m · 以来源条款为准",
+      "description": "OrangeMix 社区配方。来源声明或文件命名包含 NSFW；标签不代表生成效果已经实测。",
+      "compatibilityNote": "SD15 完整 checkpoint；同机 CPU，文件头核对不代表真机或模型质量验收。",
+      "variants": [
+        {
+          "file": "Models/AbyssOrangeMix2/Pruned/AbyssOrangeMix2_nsfw_pruned_fp16_with_VAE.safetensors",
+          "id": "community_aom2nsfw",
+          "name": "AbyssOrangeMix 2 NSFW FP16"
+        },
+        {
+          "file": "Models/AbyssOrangeMix3/AOM3A1B_orangemixs.safetensors",
+          "id": "community_aom3a1b",
+          "name": "AbyssOrangeMix 3 A1B"
+        },
+        {
+          "file": "Models/AbyssOrangeMix3/AOM3A1_orangemixs.safetensors",
+          "id": "community_aom3a1",
+          "name": "AbyssOrangeMix 3 A1"
+        },
+        {
+          "file": "Models/AbyssOrangeMix3/AOM3A3_orangemixs.safetensors",
+          "id": "community_aom3a3",
+          "name": "AbyssOrangeMix 3 A3"
+        },
+        {
+          "file": "Models/VividOrangeMix/VividOrengeMix_NSFW.safetensors",
+          "id": "community_vividorange",
+          "name": "VividOrangeMix NSFW"
+        }
+      ]
+    },
+    {
+      "repository": "gsdf/Counterfeit-V3.0",
+      "architecture": "sd15",
+      "family": "Counterfeit",
+      "sourceRole": "publisher",
+      "cardMarkers": [],
+      "content": {
+        "classification": "unclassified",
+        "basis": "none",
+        "summary": "来源未提供足够明确的 NSFW 声明；不自动继承基础模型的内容属性。"
+      },
+      "licenseName": "creativeml-openrail-m · 以来源条款为准",
+      "description": "Counterfeit 社区配方。来源未提供足够明确的 NSFW 声明；不自动继承基础模型的内容属性。",
+      "compatibilityNote": "SD15 完整 checkpoint；同机 CPU，文件头核对不代表真机或模型质量验收。",
+      "variants": [
+        {
+          "file": "Counterfeit-V3.0_fp16.safetensors",
+          "id": "community_counterfeit3",
+          "name": "Counterfeit 3 FP16"
+        }
+      ]
+    },
+    {
+      "repository": "NSFW-API/NSFW_Wan_1.3b",
+      "architecture": "wan21",
+      "family": "NSFW Wan 1.3B",
+      "sourceRole": "publisher",
+      "cardMarkers": [
+        "Specialization:** NSFW Content Generation"
+      ],
+      "content": {
+        "classification": "nsfw",
+        "basis": "publisher_card",
+        "summary": "来源声明或文件命名包含 NSFW；标签不代表生成效果已经实测。"
+      },
+      "licenseName": "creativeml-openrail-m · 以来源条款为准",
+      "description": "Wan 2.1 T2V 1.3B 社区实验权重；EXP E01–E14 为同一系列的 14 个训练版本，不是 14 种独立架构。来源推荐 E14；LMA 未验证效果。旧版 E4–E20 有作者报告的质量问题，本目录不预登记。",
+      "compatibilityNote": "Wan 2.1 T2V 1.3B；同机 Vulkan，需 UMT5、词表与 VAE。非 14B / I2V / Wan 2.2。",
+      "variants": [
+        {
+          "file": "wan_1.3B_exp_e1.safetensors",
+          "id": "community_wan13b_exp1",
+          "name": "NSFW Wan 1.3B · EXP E01"
+        },
+        {
+          "file": "wan_1.3B_exp_e2.safetensors",
+          "id": "community_wan13b_exp2",
+          "name": "NSFW Wan 1.3B · EXP E02"
+        },
+        {
+          "file": "wan_1.3B_exp_e3.safetensors",
+          "id": "community_wan13b_exp3",
+          "name": "NSFW Wan 1.3B · EXP E03"
+        },
+        {
+          "file": "wan_1.3B_exp_e4.safetensors",
+          "id": "community_wan13b_exp4",
+          "name": "NSFW Wan 1.3B · EXP E04"
+        },
+        {
+          "file": "wan_1.3B_exp_e5.safetensors",
+          "id": "community_wan13b_exp5",
+          "name": "NSFW Wan 1.3B · EXP E05"
+        },
+        {
+          "file": "wan_1.3B_exp_e6.safetensors",
+          "id": "community_wan13b_exp6",
+          "name": "NSFW Wan 1.3B · EXP E06"
+        },
+        {
+          "file": "wan_1.3B_exp_e7.safetensors",
+          "id": "community_wan13b_exp7",
+          "name": "NSFW Wan 1.3B · EXP E07"
+        },
+        {
+          "file": "wan_1.3B_exp_e8.safetensors",
+          "id": "community_wan13b_exp8",
+          "name": "NSFW Wan 1.3B · EXP E08"
+        },
+        {
+          "file": "wan_1.3B_exp_e9.safetensors",
+          "id": "community_wan13b_exp9",
+          "name": "NSFW Wan 1.3B · EXP E09"
+        },
+        {
+          "file": "wan_1.3B_exp_e10.safetensors",
+          "id": "community_wan13b_exp10",
+          "name": "NSFW Wan 1.3B · EXP E10"
+        },
+        {
+          "file": "wan_1.3B_exp_e11.safetensors",
+          "id": "community_wan13b_exp11",
+          "name": "NSFW Wan 1.3B · EXP E11"
+        },
+        {
+          "file": "wan_1.3B_exp_e12.safetensors",
+          "id": "community_wan13b_exp12",
+          "name": "NSFW Wan 1.3B · EXP E12"
+        },
+        {
+          "file": "wan_1.3B_exp_e13.safetensors",
+          "id": "community_wan13b_exp13",
+          "name": "NSFW Wan 1.3B · EXP E13"
+        },
+        {
+          "file": "wan_1.3B_exp_e14.safetensors",
+          "id": "community_wan13b_exp14",
+          "name": "NSFW Wan 1.3B · EXP E14"
+        }
+      ]
+    }
+  ]
+}

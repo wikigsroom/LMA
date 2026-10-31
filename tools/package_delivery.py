@@ -3,7 +3,7 @@ import hashlib
 import json
 from pathlib import Path
 import zipfile
-from evidence import current, version
+from evidence import program_only_release, current, version
 from preparation_build_inputs import build_inputs
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -11,7 +11,7 @@ DIST = ROOT / "dist"
 
 
 def main():
-    if version() == '0.3.0':
+    if program_only_release():
         from program_release import package
         print(json.dumps(package())); return
     if "-dev" in version():

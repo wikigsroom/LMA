@@ -1,0 +1,40 @@
+{
+  "checkedAt": "2026-10-31",
+  "models": [
+    {
+      "repository": "NSFW-API/NSFW_Wan_1.3b_motion_helper",
+      "revision": "9a43ce2ecc58435e4158a2ddc5b6e5a91f7e3ff0",
+      "sourceUrl": "https://huggingface.co/NSFW-API/NSFW_Wan_1.3b_motion_helper",
+      "architecture": "wan21_13b_lora",
+      "status": "not_integrated",
+      "reason": "Current adapter manager supports SD15/SDXL image LoRA only; the current EXP checkpoints do not require this old helper.",
+      "licenseMetadata": "",
+      "accessedVia": "https://hf-mirror.com",
+      "metadataOnly": true
+    },
+    {
+      "repository": "wangkanai/wan21-fp8-loras-nsfw",
+      "revision": "8faf70ee44a50ca6ddccbd9a583ef81a36351615",
+      "sourceUrl": "https://huggingface.co/wangkanai/wan21-fp8-loras-nsfw",
+      "architecture": "wan21_i2v_14b_lora",
+      "status": "not_integrated",
+      "reason": "Targets I2V 14B, not the integrated T2V 1.3B route.",
+      "licenseMetadata": "other",
+      "accessedVia": "https://hf-mirror.com",
+      "metadataOnly": true
+    },
+    {
+      "repository": "vantagewithai/LTX2.3-10Eros-GGUF",
+      "revision": "177b526189aedc6710cc5c270bd744ae16a655bd",
+      "sourceUrl": "https://huggingface.co/vantagewithai/LTX2.3-10Eros-GGUF",
+      "architecture": "ltx23",
+      "status": "not_integrated",
+      "reason": "LTX 2.3 cannot use the older integrated LTX 0.9.8 adapter.",
+      "licenseMetadata": "",
+      "accessedVia": "https://hf-mirror.com",
+      "metadataOnly": true
+    }
+  ],
+  "modelWeightsDownloaded": false,
+  "modelInferenceTested": false
+}

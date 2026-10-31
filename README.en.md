@@ -1,14 +1,16 @@
 # LMA · Local model workbench for Android
 
-[中文](README.md) · [Download v0.3.0](https://github.com/wikigsroom/LMA/releases/tag/v0.3.0) · [User guide](docs/USER_GUIDE.en.md) · [Documentation](docs/README.md)
+[中文](README.md) · [Download v0.3.1](https://github.com/wikigsroom/LMA/releases/tag/v0.3.1) · [User guide](docs/USER_GUIDE.en.md) · [Documentation](docs/README.md)
 
 LMA lets users select, download, manage and run local models on an Android phone, with chat, multimodal jobs, artifacts and a local API. App updates deliver the foundation. Users explicitly choose every model and dependency. The APK contains no model weights and requires no ROOT, Termux, containers or other computing devices.
 
-**v0.3.0 implements the frozen program scope: F-01–F-12, existing text and selections 01–14, 16 and 17. Validation is program-only, as requested by the user.** Builds, packages, native contracts, production job logic, APIs and UI checks do not establish phone inference, image/audio quality, speed or screen-off endurance. Those remain untested. A catalogue entry does not establish that a Nubia Z20 can run it.
+**v0.3.1 implements the frozen program scope: F-01–F-12, existing text and selections 01–14, 16 and 17. Validation is program-only, as requested by the user.** Builds, packages, native contracts, production job logic, APIs and UI checks do not establish phone inference, image/audio quality, speed or screen-off endurance. Those remain untested. A catalogue entry does not establish that a Nubia Z20 can run it.
+
+**v0.3.1 adds 44 optional community checkpoint recipes (30 image / 14 video) across 14 families. Of these, 28 have sourced NSFW labels.** Content labels distinguish publisher declarations, rating vocabularies, file markers, mirrors and unverified HF hints. The registered catalogue grows to 67 recipes; the 14 Wan video entries are training versions of one 1.3B family. See the [complete source, license, compatibility and usage guide](docs/COMMUNITY_MODELS.en.md).
 
 ## Install and use
 
-1. Download `LMA-0.3.0-arm64-v8a.apk` from the Release and compare its hash with `SHA256SUMS`. Requires **64-bit Android 9 / API 28 or later**. The original signing identity is retained for upgrades and existing data.
+1. Download `LMA-0.3.1-arm64-v8a.apk` from the Release and compare its hash with `SHA256SUMS`. Requires **64-bit Android 9 / API 28 or later**. The original signing identity is retained for upgrades and existing data.
 2. Open LMA and allow notifications when prompted. For screen-off work, allow background activity and remove the relevant battery restrictions in Android settings. Installation and upgrades do not download models.
 3. Open Models → Recommended / All / Local. **Recommended retains m08 → m06 → m01.** All supports HF keywords, repository IDs/URLs, pagination and discovery of every format. Local manages downloaded/imported models and unfinished transfers.
 4. Filter by text, image, video or audio tags. Inspect architecture, recipe, backend, license, dependencies, pinned revision and size before explicitly downloading or importing with Android's document picker.
@@ -37,7 +39,7 @@ Every model is a peer, classified by output task, capability, engine, format, co
 | 16 | Wan 2.1 T2V 1.3B Q4 | sd.cpp CPU/Vulkan with explicit components and video encoding |
 | 17 | LTX-Video 2B 0.9.8 distilled | Original PixArt T5 F32 with 7-step generation / spatial upsampling / 3-step refinement; Google T5 Q5 single-scale remains a separate variant |
 
-This release has **38 data-only recipe templates, 23 catalogue bundles, 12 extension engine families and the existing text engine**. These are program integration counts, not counts of models passing phone tests. See the [implementation matrix](docs/IMPLEMENTATION_V030.en.md).
+This release has **38 data-only recipe templates, 23 catalogue bundles, 12 extension engine families and the existing text engine**. These are program integration counts, not counts of models passing phone tests. See the [implementation matrix](docs/IMPLEMENTATION_V031.en.md).
 
 ## Architecture and asset lifecycle
 
@@ -55,15 +57,15 @@ A visible foreground service, stop notification and task-scoped wake locks suppo
 
 ## Screenshots and recordings
 
-These show **v0.3.0 production pages with an explicitly labelled desktop bridge fixture**, without weight downloads or generated model content. Owned browsers close after recording.
+These show **v0.3.1 production pages with an explicitly labelled desktop bridge fixture**, without weight downloads or generated model content. Owned browsers close after recording.
 
-![Components, independent settings and video jobs](docs/media/development/ltx-official/ltx-official-ui.gif)
+![Components, independent settings and video jobs](docs/media/development/community/community-ui.gif)
 
-[MP4](docs/media/development/ltx-official/ltx-official-ui.mp4) · [Components](docs/media/development/ltx-official/01-ltx-official-components.png) · [Settings](docs/media/development/ltx-official/02-ltx-official-settings.png) · [Task form](docs/media/development/ltx-official/03-ltx-official-task.png) · [Queue](docs/media/development/ltx-official/04-ltx-official-queue.png) · [Workbench recording](docs/media/development/release-workbench/release-workbench-ui.mp4)
+[MP4](docs/media/development/community/community-ui.mp4) · [Components](docs/media/development/community/01-community-images.png) · [Settings](docs/media/development/community/02-image-source.png) · [Task form](docs/media/development/community/03-community-video.png) · [Queue](docs/media/development/community/05-community-local.png) · [Workbench recording](docs/media/development/release-workbench/release-workbench-ui.mp4)
 
 ## Validation, builds and documentation
 
-[Release notes](docs/releases/v0.3.0.md) list program checks, APK identity and deliverables. The [validation policy](docs/PROGRAM_VALIDATION.en.md) records the user's decision to omit complete-model runtime acceptance. Current evidence is in [verification/program](verification/program/status.json); historical failures and earlier records retain their identity and are not current-APK model results.
+[Release notes](docs/releases/v0.3.1.md) list program checks, APK identity and deliverables. The [validation policy](docs/PROGRAM_VALIDATION.en.md) records the user's decision to omit complete-model runtime acceptance. Current evidence is in [verification/program](verification/program/status.json); historical failures and earlier records retain their identity and are not current-APK model results.
 
 Native Windows builds use JDK, Android SDK/NDK and CMake, without Docker, WSL or emulators. Local `signing/` material is preserved for upgrades and excluded from Git and release assets. [Build](docs/BUILD.en.md) · [Release workflow](docs/RELEASING.md) · [Contributing](CONTRIBUTING.md).
 

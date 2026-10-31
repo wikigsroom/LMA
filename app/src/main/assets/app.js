@@ -46,8 +46,8 @@
     return Math.round(value) + ' B';
   }
   function memory(value) { return value ? (value / 1073741824).toFixed(1) + ' GiB' : '—'; }
-  function models() { return state ? (state.models || []).concat(window.LMAFoundation.views()) : []; }
-  function modelById(id) { return models().filter(function (m) { return m.id === id; })[0]; }
+  function models() { return state ? (state.models || []).concat(window.LMAFoundation.views()).map(function (m) { return window.LMACommunity.bind(m, state); }) : []; }
+  function modelById(id) { return models().filter(function (m) { return m.id === id || m.bundleId === id; })[0]; }
   function engine() { return state ? state.engine || {} : {}; }
   function textQueued() { return ['waiting', 'suspended'].indexOf(engine().state) >= 0; }
   function textAvailable() { return engine().state === 'ready' || textQueued(); }
@@ -133,7 +133,7 @@
     $('installedCount').textContent = models().filter(function (x) { return x.installed; }).length;
   }
   function modelCard(m) {
-    if (m.isBundle) return window.LMAFoundation.card(m);
+    if (m.isBundle) return window.LMACommunity.card(window.LMAFoundation.card(m), m);
     var d = m.download || {}, s = d.state || '', running = engine().modelId === m.id && ['ready', 'loading', 'recovering', 'waiting', 'suspended'].indexOf(engine().state) >= 0;
     var active = ['queued', 'downloading', 'verifying', 'pausing'].indexOf(s) >= 0, partial = m.partialBytes || d.received || 0;
     var total = d.total || m.bytes || 0, progress = total ? Math.min(100, Math.floor(partial * 100 / total)) : 0;
@@ -141,7 +141,7 @@
     var label = m.installed ? (running ? engine().state === 'ready' ? '运行中' : textQueued() ? '等待执行' : '加载中' : '加载模型') : active ? s === 'pausing' ? '暂停中' : s === 'verifying' ? '校验中' : '暂停' : partial || s === 'paused' || s === 'error' ? '继续下载' : '下载';
     var glyph = m.family === 'LFM' ? 'L' : m.family === 'Gemma' ? 'G' : m.family === 'Llama' ? 'L' : m.family === '自定义' ? '+' : 'Q';
     var tags = (m.tags || []).slice(0, 4).map(function (tag) { return '<span class="tag' + (tag === '推荐' ? ' recommended' : m.tier === 'experimental' ? ' experimental' : '') + '">' + esc(tag) + '</span>'; }).join('');
-    tags = taskBadges(m, false) + uncensoredTag(m.uncensored) + tags;
+    tags = taskBadges(m, false) + uncensoredTag(m.uncensored) + window.LMACommunity.badge(m) + tags;
     if (m.recommended && (m.tags || []).indexOf('推荐') < 0) tags = '<span class="tag recommended">推荐</span>' + tags;
     var size = m.installed ? m.installedBytes : total;
     var out = '<article class="model-card' + (running ? ' is-running' : '') + '" data-model="' + esc(m.id) + '"><div class="model-top"><span class="model-symbol" data-family="' + esc(m.family) + '">' + glyph + '</span><div class="model-top-copy"><button class="model-name" data-action="modelInfo" data-id="' + esc(m.id) + '"><strong>' + esc(m.name) + '</strong><span class="model-caption">' + esc(m.family) + ' <span aria-hidden="true"> / </span> ' + esc(m.quant || 'GGUF') + '</span></button></div></div>';
@@ -158,12 +158,12 @@
     return out + '</article>';
   }
   function renderModels() {
-    $('hubControls').hidden = filter !== 'all'; $('hubPagination').hidden = filter !== 'all';
+    $('communityControls').hidden = ['all', 'local'].indexOf(filter) < 0; $('catalogueSourceLabel').hidden = filter !== 'all'; $('hubControls').hidden = filter !== 'all' || $('catalogueSource').value === 'registered'; $('hubPagination').hidden = filter !== 'all' || $('catalogueSource').value === 'registered';
     $('modelSearch').placeholder = filter === 'local' ? '搜索本地模型' : '搜索 HF 模型、owner/model 或仓库链接';
     if (filter === 'all') { renderHub(); return; }
     var all = models().filter(function (m) {
       var included = filter === 'recommended' && m.recommended || filter === 'light' && m.tier === 'light' || filter === 'quality' && (m.tier === 'quality' || m.tier === 'experimental') || filter === 'local' && (m.installed || m.hasPreparedAssets || m.partialBytes || m.download && m.download.state || m.hub || m.imported || m.tier === 'custom');
-      return included && matchesTask(m) && (!query || [m.name, m.family, m.repository, m.description, (m.tags || []).join(' ')].join(' ').toLowerCase().indexOf(query.toLowerCase()) >= 0);
+      return included && matchesTask(m) && (filter !== 'local' || window.LMACommunity.accepts(m, $('contentFilter').value, 'any')) && (filter === 'local' ? window.LMACommunity.search(m, query) : !query || [m.name, m.family, m.repository, m.description, (m.tags || []).join(' ')].join(' ').toLowerCase().indexOf(query.toLowerCase()) >= 0);
     });
     var signature = JSON.stringify([all, engine().state, engine().modelId, filter, query, taskFilter]);
     if (signature === modelSignature) return; modelSignature = signature;
@@ -191,14 +191,19 @@
     return '<button class="button secondary" data-action="' + action + '" data-direction="previous"' + (!previous || loading ? ' disabled' : '') + '>上一页</button><span>第 ' + esc(page || 1) + ' 页</span><button class="button secondary" data-action="' + action + '" data-direction="next"' + (!next || loading ? ' disabled' : '') + '>下一页</button>';
   }
   function renderHub() {
-    var h = hub(), items = (h.items || []).filter(matchesTask), bundles = models().filter(function (m) { return m.isBundle && matchesTask(m) && (!query || [m.name, m.family, m.repository, m.description].join(' ').toLowerCase().indexOf(query.toLowerCase()) >= 0); }), signature = JSON.stringify(['hub', h, models(), taskFilter, query]);
+    var h = hub(), content = $('contentFilter').value, source = $('catalogueSource').value, items = (h.items || []).filter(function (m) { return matchesTask(m) && window.LMACommunity.accepts(m, content, source); }), bundles = models().filter(function (m) { return m.isBundle && matchesTask(m) && window.LMACommunity.accepts(m, content, source) && window.LMACommunity.search(m, query); }), signature = JSON.stringify(['hub', h, models(), taskFilter, query, content, source]);
     if (signature === modelSignature) return; modelSignature = signature;
     $('modelListTitle').textContent = query ? 'Hugging Face 搜索结果' : '探索 Hugging Face';
     $('modelResultCount').textContent = (h.searching ? '正在连接…' : '本页 ' + items.length + ' 个仓库') + (bundles.length ? ' · ' + bundles.length + ' 套已登记配方' : '');
     $('modelList').innerHTML = h.searching ? '<div class="empty-list" role="status"><h3>正在获取 HF 模型…</h3><p>推荐和本地模型可随时离线浏览。</p></div>' : h.error ? '<div class="empty-list"><h3>暂时无法获取列表</h3><p>' + esc(h.error) + '</p><button class="button primary" data-action="hubRetry">重试</button></div>' : items.length ? items.map(function (m) {
-      return '<article class="model-card hub-card" data-repository="' + esc(m.id) + '"><span class="eyebrow">HUGGING FACE</span><h3 class="hub-repository">' + esc(m.id) + '</h3><div class="model-tags">' + taskBadges(m, true) + uncensoredTag(m.uncensored) + (m.gated ? '<span class="tag">需 HF 授权</span>' : '') + '<span class="tag">' + esc(m.task || '任务待核对') + '</span></div><p class="model-description">' + Number(m.downloads || 0).toLocaleString() + ' 次下载 · ' + Number(m.likes || 0).toLocaleString() + ' 喜欢' + (m.license ? ' · ' + esc(m.license) : '') + '</p><div class="hub-actions"><button class="button primary" data-action="hubFiles" data-repository="' + esc(m.id) + '">' + icon('download') + '选择文件</button><button class="text-button" data-action="hubSource" data-repository="' + esc(m.id) + '">仓库 ↗</button></div></article>';
+      return '<article class="model-card hub-card" data-repository="' + esc(m.id) + '"><span class="eyebrow">HUGGING FACE</span><h3 class="hub-repository">' + esc(m.id) + '</h3><div class="model-tags">' + taskBadges(m, true) + uncensoredTag(m.uncensored) + window.LMACommunity.badge(m) + (m.gated ? '<span class="tag">需 HF 授权</span>' : '') + '<span class="tag">' + esc(m.task || '任务待核对') + '</span></div><p class="model-description">' + Number(m.downloads || 0).toLocaleString() + ' 次下载 · ' + Number(m.likes || 0).toLocaleString() + ' 喜欢' + (m.license ? ' · ' + esc(m.license) : '') + '</p><div class="hub-actions"><button class="button primary" data-action="hubFiles" data-repository="' + esc(m.id) + '">' + icon('download') + '选择文件</button><button class="text-button" data-action="hubSource" data-repository="' + esc(m.id) + '">仓库 ↗</button></div></article>';
     }).join('') : '<div class="empty-list"><h3>' + (h.initialized ? '没有匹配的仓库' : '浏览完整 HF 模型库') + '</h3><p>尝试关键词、owner/model 或 HF 仓库链接。其他格式可切换“HF 全部格式”查看。</p><button class="button subtle" data-action="hubRefresh">获取列表</button></div>';
+    if (source === 'registered') {
+      $('modelList').innerHTML = bundles.length ? '' : '<div class="empty-list"><h3>没有匹配的已登记配方</h3><p>可调整内容或生成类型筛选，或切换 HF 仓库搜索。</p></div>';
+      $('modelResultCount').textContent = bundles.length + ' 套已登记配方 · 离线目录';
+    }
     if (bundles.length) $('modelList').innerHTML = bundles.map(modelCard).join('') + $('modelList').innerHTML;
+    $('hubPagination').hidden = source === 'registered';
     $('hubPagination').innerHTML = pagination(h.previous, h.next, h.page, 'hubPage', h.searching);
   }
   function renderHubFiles() {
@@ -401,7 +406,12 @@
   }
   function handleAction(action, el) {
     var id = el.dataset.id, m;
-    if (window.LMAFoundation.handle(action, el) || window.LMARecipes.handle(action, el)) return;
+    if (action === 'communityInfo') { m = modelById(id); if (m) window.LMACommunity.info(m); return; }
+    if (action === 'communitySource') { if (window.Android && /^https:\/\/(huggingface\.co|civitai\.com)\//.test(el.dataset.url || '')) window.Android.openLink(el.dataset.url); return; }
+    if (window.LMAFoundation.handle(action, el) || window.LMARecipes.handle(action, el)) {
+      if (action === 'bundleInfo') window.LMACommunity.annotateModal(modelById(id));
+      return;
+    }
     switch (action) {
       case 'tab': route(el.dataset.tab); break;
       case 'showAll': selectFilter('all'); break;
@@ -553,10 +563,11 @@
       }
     } else if (event.key === '/' && !/INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName)) { event.preventDefault(); route('models'); $('modelSearch').focus(); }
   });
+  ['contentFilter', 'catalogueSource'].forEach(function (id) { $(id).addEventListener('change', function () { modelSignature = ''; renderModels(); }); });
   var themeMedia = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)');
   if (themeMedia) { if (themeMedia.addEventListener) themeMedia.addEventListener('change', applyTheme); else if (themeMedia.addListener) themeMedia.addListener(applyTheme); }
   var bridge = {state: function () { return state || {}; }, esc: esc, copy: copy, bytes: bytes, icon: icon, dispatch: nativeAction, result: commandResult, openModal: openModal, closeModal: closeModal, toast: toast, route: route, selectLocal: function () { route('models'); selectFilter('local'); }, confirm: confirmAction};
-  window.LMAFoundation.init(bridge); window.LMARecipes.init(bridge);
+  window.LMACommunity.init(bridge); window.LMAFoundation.init(bridge); window.LMARecipes.init(bridge);
   window.LMA = {receive: receive, back: function () { if (!$('modalBackdrop').hidden) { closeModal(); return true; } if (tab !== 'models') { route('models'); return true; } return false; }};
   hydrateIcons(document); updateFilters();
   if (window.Android) { try { receive(window.Android.getSnapshot()); } catch (e) { $('runtimeDetail').textContent = '等待原生服务连接…'; } }

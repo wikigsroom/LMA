@@ -1,10 +1,10 @@
 """Trace the complete frozen v0.3.0 scope to shipped recipes and production code."""
 import json
 from pathlib import Path
-from evidence import current, fingerprint, version
+from evidence import current, fingerprint, version, program_only_release
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / 'catalogue/release-0.3.0-implementation.json'
+OUT = ROOT / ('catalogue/release-' + version() + '-implementation.json')
 TARGETS = {
  '01': ['sd15_checkpoint_cpu_v1','sd15_split_cpu_v1'],
  '02': ['sd15_lora_cpu_v1','sdxl_lora_cpu_v1'],
@@ -33,10 +33,10 @@ FEATURES = {
  'F-12': ['core/ModelBundle','core/TaskRequests']}
 
 def read(p):return json.loads((ROOT/p).read_text(encoding='utf-8'))
-def inputs():return fingerprint('tools/release_scope.py','docs/proposals/multimodal-release-scope.json','docs/proposals/program-validation-policy.json','app/src/main/java','app/src/main/assets/recipe-templates.json','app/src/main/assets/model-bundles.json','app/src/main/assets/model-assemblies.json','third_party/engine-lock.json')
+def inputs():return fingerprint('tools/release_scope.py','docs/proposals/multimodal-release-scope.json','docs/proposals/program-validation-policy.json','app/src/main/java','app/src/main/assets/recipe-templates.json','app/src/main/assets/model-bundles.json','app/src/main/assets/model-assemblies.json','third_party/engine-lock.json','catalogue/community-sources.json','catalogue/community-bundles.json','research/community')
 
 def export():
- assert version()=='0.3.0'
+ assert program_only_release()
  scope=read('docs/proposals/multimodal-release-scope.json')
  templates={x['id']:x for x in read('app/src/main/assets/recipe-templates.json')['templates']}
  assert set(templates)==set(sum(TARGETS.values(),[])+['text_gguf_cpu_v1'])
@@ -58,7 +58,7 @@ def check():
  assert [x['selection_id'] for x in data['selections']]==list(TARGETS)
  assert [x['id'] for x in data['features']]==list(FEATURES)
  assert len(next(x for x in data['selections'] if x['selection_id']=='12')['frozen_subtargets'])==9
- assert data['recipe_templates']==38 and data['model_bundles']==23 and data['extension_engine_families']==12
+ assert data['recipe_templates']==38 and data['model_bundles']==23+len(read('catalogue/community-bundles.json')['bundles']) and data['extension_engine_families']==12
  return data
 
 if __name__=='__main__':

@@ -92,7 +92,7 @@ def main():
             assert name in members, "Missing APK entry: " + name
         assert archive.read("classes.dex").startswith(b"dex\n"), "DEX header missing"
         source = ROOT / "app/src/main"
-        ui_assets = ("index.html", "app.css", "app.js", "foundation.css", "foundation.js", "audio-preview.js", "workbench.js", "recipes.js", "versions.js", "recipe-templates.json", "asset-preparations.json", "model-assemblies.json", "license.js", "models.json", "model-bundles.json", "engine-builds.json")
+        ui_assets = ("index.html", "app.css", "app.js", "foundation.css", "foundation.js", "audio-preview.js", "workbench.js", "recipes.js", "versions.js", "community.js", "recipe-templates.json", "asset-preparations.json", "model-assemblies.json", "license.js", "models.json", "model-bundles.json", "engine-builds.json")
         architecture_assets = {}
         # Rebuild this architecture from pinned tensor headers only. The 72
         # learned tensors must all reference the separately selected user file.

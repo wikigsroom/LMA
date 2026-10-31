@@ -1,0 +1,1064 @@
+{
+  "schema": "lma.community-source-evidence/1",
+  "checkedAt": "2026-10-31",
+  "metadataOnly": true,
+  "modelWeightsDownloaded": false,
+  "modelInferenceTested": false,
+  "physicalDeviceTests": 0,
+  "sourceSpecSha256": "d5ffe19d5ae3c6d7fc495e1bef2cfe152cded4b135f5c0b3df5d6734bb830952",
+  "repositories": {
+    "stabilityai/sd-vae-ft-mse": {
+      "repository": "stabilityai/sd-vae-ft-mse",
+      "revision": "31f26fdeee1355a5c34592e401dd41e45d25a493",
+      "accessedVia": "https://hf-mirror.com",
+      "apiSha256": "bbaa7b5dfc53855e49243ae9b4910531bdc6c74d47b618844fd1b243201a1fdb",
+      "cardSha256": "8ac69483c18a45d0fee531e08b6ede97ee9b4c79e875659c1b0e6a5903ca3400",
+      "cardBytes": 6844,
+      "cardMarkers": [],
+      "licenseMetadata": "mit",
+      "contentTags": [],
+      "files": {
+        "diffusion_pytorch_model.safetensors": {
+          "bytes": 334643276,
+          "sha256": "a1d993488569e928462932c8c38a0760b874d166399b14414135bd9c42df5815",
+          "header": {
+            "sha256": "0ae4cfe9fb8955e682a25767b787bddf0ae404155f5d0c7ab2452d586b8f6daf",
+            "bytes": 27816,
+            "tensorCount": 248,
+            "architecture": "sd15_vae",
+            "checkpoint": false,
+            "textEncoderPresent": false,
+            "vaePresent": false,
+            "trainedWeightBytesFetched": 0,
+            "inferenceTested": false
+          }
+        }
+      }
+    },
+    "Lykon/DreamShaper": {
+      "repository": "Lykon/DreamShaper",
+      "revision": "228d79cb20811466f5c5710aa91f05dabd0b8a14",
+      "accessedVia": "https://hf-mirror.com",
+      "apiSha256": "1bf2af6303a05edf1732ed9c1ab6eb45f9d1222f485fe9f38a6e25cc21a6fb97",
+      "cardSha256": "f5c22e0633a94e47b88b54537615936a811809df28cdb40a373b83edbe1bd5c6",
+      "cardBytes": 602,
+      "cardMarkers": [],
+      "licenseMetadata": "other",
+      "contentTags": [],
+      "files": {
+        "DreamShaper_8_pruned.safetensors": {
+          "bytes": 2132625894,
+          "sha256": "879db523c30d3b9017143d56705015e15a2cb5628762c11d086fed9538abd7fd",
+          "header": {
+            "sha256": "eefed0839252c477c28ef4260570b349bc5e20df439636a1356f27b0b3a525a1",
+            "bytes": 154656,
+            "tensorCount": 1131,
+            "architecture": "sd15",
+            "checkpoint": true,
+            "textEncoderPresent": true,
+            "vaePresent": true,
+            "trainedWeightBytesFetched": 0,
+            "inferenceTested": false
+          }
+        }
+      }
+    },
+    "SG161222/Realistic_Vision_V6.0_B1_noVAE": {
+      "repository": "SG161222/Realistic_Vision_V6.0_B1_noVAE",
+      "revision": "9a857a696b9aabbf509073e0aa55ec8200b6ef7d",
+      "accessedVia": "https://hf-mirror.com",
+      "apiSha256": "b99e8b88a8587946a383cf2379bd8e94ffca488ba38a04626c0fca7bd2974b9d",
+      "cardSha256": "a51ba5985056d91937a6f5f2ea2dda16766369279ed03d8723f3f8707a7cbdf0",
+      "cardBytes": 4231,
+      "cardMarkers": [
+        "improved sfw and nsfw"
+      ],
+      "licenseMetadata": "creativeml-openrail-m",
+      "contentTags": [],
+      "files": {
+        "Realistic_Vision_V6.0_NV_B1_fp16.safetensors": {
+          "bytes": 2132625894,
+          "sha256": "c48bfd159cd7a6507b128685e963c398fa72399cefafaf603781df50ce836cc7",
+          "header": {
+            "sha256": "eefed0839252c477c28ef4260570b349bc5e20df439636a1356f27b0b3a525a1",
+            "bytes": 154656,
+            "tensorCount": 1131,
+            "architecture": "sd15",
+            "checkpoint": true,
+            "textEncoderPresent": true,
+            "vaePresent": true,
+            "trainedWeightBytesFetched": 0,
+            "inferenceTested": false
+          }
+        }
+      }
+    },
+    "SG161222/Realistic_Vision_V5.1_noVAE": {
+      "repository": "SG161222/Realistic_Vision_V5.1_noVAE",
+      "revision": "1e9f017a7b1eaefb63a1900ea6c5953d2739fd21",
+      "accessedVia": "https://hf-mirror.com",
+      "apiSha256": "fbee9b17458a1a34d58703bd2c1664d77ea707cde5d3e0bda40d194e552ade58",
+      "cardSha256": "8570fe3da7bdc73bbd98b3ed7e6e9cb207cc4c6a5d50c73faa004fbbd2ed012c",
+      "cardBytes": 2831,
+      "cardMarkers": [],
+      "licenseMetadata": "creativeml-openrail-m",
+      "contentTags": [],
+      "files": {
+        "Realistic_Vision_V5.1_fp16-no-ema.safetensors": {
+          "bytes": 2132625894,
+          "sha256": "99a75a901f4fec732056930a89fa34cf360f6f72d75ce5bf333ddf82adf8dd2a",
+          "header": {
+            "sha256": "eefed0839252c477c28ef4260570b349bc5e20df439636a1356f27b0b3a525a1",
+            "bytes": 154656,
+            "tensorCount": 1131,
+            "architecture": "sd15",
+            "checkpoint": true,
+            "textEncoderPresent": true,
+            "vaePresent": true,
+            "trainedWeightBytesFetched": 0,
+            "inferenceTested": false
+          }
+        }
+      }
+    },
+    "SG161222/RealVisXL_V3.0": {
+      "repository": "SG161222/RealVisXL_V3.0",
+      "revision": "5dd66d6fe796ff7b5a31595e5d0ac2f6a39e7ad9",
+      "accessedVia": "https://hf-mirror.com",
+      "apiSha256": "66ae424e277f37173be39d7dde36ebb23a3b02dacb1621e65922b48a3e2a580c",
+      "cardSha256": "4f017018dce3f4cfb1e914271d624eaf9acdb5c0ea8bbaf77da7217bad9211a2",
+      "cardBytes": 2322,
+      "cardMarkers": [
+        "Can produce sfw and nsfw"
+      ],
+      "licenseMetadata": "openrail++",
+      "contentTags": [],
+      "files": {
+        "RealVisXL_V3.0.safetensors": {
+          "bytes": 6938040706,
+          "sha256": "364cecf63090d881f0ed364ae99854575b06168e49d79262d604e7612b1e8ce1",
+          "header": {
+            "sha256": "734ac71c46ddb7c5a04b4628fa52a5ee1dd12dcaf222312040c7d5ee625a0d18",
+            "bytes": 364808,
+            "tensorCount": 2515,
+            "architecture": "sdxl",
+            "checkpoint": true,
+            "textEncoderPresent": true,
+            "vaePresent": true,
+            "trainedWeightBytesFetched": 0,
+            "inferenceTested": false
+          }
+        }
+      }
+    },
+    "SG161222/RealVisXL_V4.0": {
+      "repository": "SG161222/RealVisXL_V4.0",
+      "revision": "26dfe44930964cd70d0a817b6d1cc945c130e38d",
+      "accessedVia": "https://hf-mirror.com",
+      "apiSha256": "7852c5043126613167564ece3413b22f6962f11823a74aa23d17286a5d023dc6",
+      "cardSha256": "9fe43bf79c8b6255f85e5cd846085dd00f40bc9f00c62a5d6396db7d8971f4f0",
+      "cardBytes": 2288,
+      "cardMarkers": [
+        "Can produce sfw and nsfw"
+      ],
+      "licenseMetadata": "openrail++",
+      "contentTags": [],
+      "files": {
+        "RealVisXL_V4.0.safetensors": {
+          "bytes": 6938040706,
+          "sha256": "912c9dc74f5855175c31a7993f863a043ac8dcc31732b324cd05d75cd7e16844",
+          "header": {
+            "sha256": "734ac71c46ddb7c5a04b4628fa52a5ee1dd12dcaf222312040c7d5ee625a0d18",
+            "bytes": 364808,
+            "tensorCount": 2515,
+            "architecture": "sdxl",
+            "checkpoint": true,
+            "textEncoderPresent": true,
+            "vaePresent": true,
+            "trainedWeightBytesFetched": 0,
+            "inferenceTested": false
+          }
+        }
+      }
+    },
+    "SG161222/RealVisXL_V5.0": {
+      "repository": "SG161222/RealVisXL_V5.0",
+      "revision": "ac93e0dda1f6d448cae19bbfab8c5e720a5e48bc",
+      "accessedVia": "https://hf-mirror.com",
+      "apiSha256": "c00a5abd29885fa870aa920ce040c57b773f532b30a09a06a7f8730db16a0d60",
+      "cardSha256": "ef3633a283f9f0902b2cc71162c238fc6df1dc1f06b360c2ec55c88a304f7acb",
+      "cardBytes": 2287,
+      "cardMarkers": [
+        "Can produce sfw and nsfw"
+      ],
+      "licenseMetadata": "openrail++",
+      "contentTags": [],
+      "files": {
+        "RealVisXL_V5.0_fp16.safetensors": {
+          "bytes": 6938065488,
+          "sha256": "6a35a7855770ae9820a3c931d4964c3817b6d9e3c6f9c4dabb5b3a94e5643b80",
+          "header": {
+            "sha256": "650ec8fc64326b34fbca7889f8885f88b240b112e061f52823dc5cbaec025031",
+            "bytes": 365744,
+            "tensorCount": 2526,
+            "architecture": "sdxl",
+            "checkpoint": true,
+            "textEncoderPresent": true,
+            "vaePresent": true,
+            "trainedWeightBytesFetched": 0,
+            "inferenceTested": false
+          }
+        }
+      }
+    },
+    "RunDiffusion/Juggernaut-XL-v9": {
+      "repository": "RunDiffusion/Juggernaut-XL-v9",
+      "revision": "cf419233522daa0b9ea36c3aff98fa2cab1fb0fb",
+      "accessedVia": "https://hf-mirror.com",
+      "apiSha256": "d64e76cc90affcdd64c98d0e04dd1d66b14178d272423d36510e5eba3ef0112d",
+      "cardSha256": "4c6b45288fcc4b08739d7a2eb12e930e1d91ad1ed485c841007c98b83d01c803",
+      "cardBytes": 10536,
+      "cardMarkers": [],
+      "licenseMetadata": "creativeml-openrail-m",
+      "contentTags": [],
+      "files": {
+        "Juggernaut-XL_v9_RunDiffusionPhoto_v2.safetensors": {
+          "bytes": 7105348188,
+          "sha256": "c9e3e68f89b8e38689e1097d4be4573cf308de4e3fd044c64ca697bdb4aa8bca",
+          "header": {
+            "sha256": "faf91310ba677b5dd6623a50117af20c3eba9e4ffc489b796ee9169b06500d04",
+            "bytes": 364720,
+            "tensorCount": 2513,
+            "architecture": "sdxl",
+            "checkpoint": true,
+            "textEncoderPresent": true,
+            "vaePresent": true,
+            "trainedWeightBytesFetched": 0,
+            "inferenceTested": false
+          }
+        }
+      }
+    },
+    "RunDiffusion/Juggernaut-X-v10": {
+      "repository": "RunDiffusion/Juggernaut-X-v10",
+      "revision": "35e4f3ccbe745c3e1221715d04a452aaa1ee5761",
+      "accessedVia": "https://hf-mirror.com",
+      "apiSha256": "a58ac78a157c67c4ec98bb6e96c148bd691b9e82471946fc8f70ece36fcde7d6",
+      "cardSha256": "72c395debad9113e30ae82e6167c3ac91b072be7c5b9d4b78590960ccada38c2",
+      "cardBytes": 9140,
+      "cardMarkers": [],
+      "licenseMetadata": "creativeml-openrail-m",
+      "contentTags": [],
+      "files": {
+        "Juggernaut-X-RunDiffusion-NSFW.safetensors": {
+          "bytes": 7105348672,
+          "sha256": "d91d35736d8f2be038f760a9b0009a771ecf0a417e9b38c244a84ea4cb9c0c45",
+          "header": {
+            "sha256": "2925e9dad8f560b6568956170a57935da7d984301aa1d2be2ef8607229e33330",
+            "bytes": 365048,
+            "tensorCount": 2515,
+            "architecture": "sdxl",
+            "checkpoint": true,
+            "textEncoderPresent": true,
+            "vaePresent": true,
+            "trainedWeightBytesFetched": 0,
+            "inferenceTested": false
+          }
+        }
+      }
+    },
+    "RunDiffusion/Juggernaut-XI-v11": {
+      "repository": "RunDiffusion/Juggernaut-XI-v11",
+      "revision": "f836518c7a75f47a9e26bc661ff9509ef2ceb7c0",
+      "accessedVia": "https://hf-mirror.com",
+      "apiSha256": "ad83c9a70b57e30f3defdab152e16a351e9dc4e2aeffe4ae71e08d7e40fff2cc",
+      "cardSha256": "2c6fc4e9e4b4c9c72073465bb2dd02bb9ffa0cfd1e2b248818ba242b1926a5b5",
+      "cardBytes": 9621,
+      "cardMarkers": [],
+      "licenseMetadata": "cc-by-nc-nd-4.0",
+      "contentTags": [],
+      "files": {
+        "Juggernaut-XI-byRunDiffusion.safetensors": {
+          "bytes": 7105350536,
+          "sha256": "33e58e86686f6b386c526682b5da9228ead4f91d994abd4b053442dc5b42719e",
+          "header": {
+            "sha256": "d4ed33b2b878836cac2591d1b0980e8a1421ce1e3b51149ddad040b993d6d5e4",
+            "bytes": 366912,
+            "tensorCount": 2515,
+            "architecture": "sdxl",
+            "checkpoint": true,
+            "textEncoderPresent": true,
+            "vaePresent": true,
+            "trainedWeightBytesFetched": 0,
+            "inferenceTested": false
+          }
+        }
+      }
+    },
+    "Laxhar/noobai-XL-1.1": {
+      "repository": "Laxhar/noobai-XL-1.1",
+      "revision": "814a274af2b8097c0828819d561ec74c7d0c6cea",
+      "accessedVia": "https://hf-mirror.com",
+      "apiSha256": "3bec3f0d1a0ba0fc01bbb082fc279aa979576ca3187c4ddc0716413b8cff6ef0",
+      "cardSha256": "cf21e79ff853c46efa1dcfd809940caf7d21db0c45eefc05d67ddb8a891a9635",
+      "cardBytes": 6702,
+      "cardMarkers": [
+        "not-for-all-audiences"
+      ],
+      "licenseMetadata": "other",
+      "contentTags": [
+        "not-for-all-audiences"
+      ],
+      "files": {
+        "NoobAI-XL-v1.1.safetensors": {
+          "bytes": 7105349958,
+          "sha256": "6681e8e4b134c81f16533acedb0d406d7e5e366e1624b4105178c64d00b05d51",
+          "header": {
+            "sha256": "70f3308da00d351ff2ec44dfe81c6cb008ede7e176986c461e6d7292db68f0ca",
+            "bytes": 366488,
+            "tensorCount": 2514,
+            "architecture": "sdxl",
+            "checkpoint": true,
+            "textEncoderPresent": true,
+            "vaePresent": true,
+            "trainedWeightBytesFetched": 0,
+            "inferenceTested": false
+          }
+        }
+      }
+    },
+    "OnomaAIResearch/Illustrious-xl-early-release-v0": {
+      "repository": "OnomaAIResearch/Illustrious-xl-early-release-v0",
+      "revision": "dca0dac303e6dc4b0c31d8001bc685b89b5d0204",
+      "accessedVia": "https://hf-mirror.com",
+      "apiSha256": "815bc850431bd9592d74b38afcffdeafccdfd028e4396915a2f7e515c777b6bd",
+      "cardSha256": "0205e7c1d93c5c4fd6a2045ebf9ae3cd333684074385130d5b9e5aef3e051b45",
+      "cardBytes": 16918,
+      "cardMarkers": [],
+      "licenseMetadata": "other",
+      "contentTags": [],
+      "files": {
+        "Illustrious-XL-v0.1.safetensors": {
+          "bytes": 6938040760,
+          "sha256": "3e15ba00387db678ab4a099f75771c4f5ac67fda9e7100a01d263eaf30145aa9",
+          "header": {
+            "sha256": "8a8ac7641853c5417190b4ffd44344a0c0047e9af8970cfe92c9513ace9e4d7c",
+            "bytes": 365016,
+            "tensorCount": 2514,
+            "architecture": "sdxl",
+            "checkpoint": true,
+            "textEncoderPresent": true,
+            "vaePresent": true,
+            "trainedWeightBytesFetched": 0,
+            "inferenceTested": false
+          }
+        }
+      }
+    },
+    "OnomaAIResearch/Illustrious-XL-v1.0": {
+      "repository": "OnomaAIResearch/Illustrious-XL-v1.0",
+      "revision": "89d625482edf06d545b740265482f5c8fb2cadb0",
+      "accessedVia": "https://hf-mirror.com",
+      "apiSha256": "7fe44ae46488e6e48a671836e66749a8d1e463d0ad54cdfe72a823201aad1bfb",
+      "cardSha256": "65bae523e04ea25d08f9a06beda888b5376eedd9915ac8600b97307ebe1db8b6",
+      "cardBytes": 3897,
+      "cardMarkers": [],
+      "licenseMetadata": "other",
+      "contentTags": [],
+      "files": {
+        "Illustrious-XL-v1.0.safetensors": {
+          "bytes": 6938040736,
+          "sha256": "735cf3fefcbdc4f7817f53247e38b836ffd27c7641af6d8daa21d245242cb4bd",
+          "header": {
+            "sha256": "186982003f51e0710bb97b92461d6362ad8593cfc837abeee9eaaae52400f667",
+            "bytes": 364992,
+            "tensorCount": 2514,
+            "architecture": "sdxl",
+            "checkpoint": true,
+            "textEncoderPresent": true,
+            "vaePresent": true,
+            "trainedWeightBytesFetched": 0,
+            "inferenceTested": false
+          }
+        }
+      }
+    },
+    "OnomaAIResearch/Illustrious-XL-v1.1": {
+      "repository": "OnomaAIResearch/Illustrious-XL-v1.1",
+      "revision": "8d966ec810874502d56a22ec9130dab6ef74c5ff",
+      "accessedVia": "https://hf-mirror.com",
+      "apiSha256": "a82f825b05eb673d1958549766b680875aa6e34c5c172d00a5e857a1332eff9d",
+      "cardSha256": "b8d0d8958039adb4ed081739919c647b28785de279d5fe6fbe6aa0b7cb4b6944",
+      "cardBytes": 1664,
+      "cardMarkers": [],
+      "licenseMetadata": "other",
+      "contentTags": [],
+      "files": {
+        "Illustrious-XL-v1.1.safetensors": {
+          "bytes": 6938040728,
+          "sha256": "536863e9f0c13b0ce834e2f8a19ada425ee4f722c0ad3d0051ec7e6adaa8156c",
+          "header": {
+            "sha256": "437c557a5d8a72340ac65a9a9c15a2762cb68154ec72973dde79dca7df855208",
+            "bytes": 364984,
+            "tensorCount": 2514,
+            "architecture": "sdxl",
+            "checkpoint": true,
+            "textEncoderPresent": true,
+            "vaePresent": true,
+            "trainedWeightBytesFetched": 0,
+            "inferenceTested": false
+          }
+        }
+      }
+    },
+    "OnomaAIResearch/Illustrious-XL-v2.0": {
+      "repository": "OnomaAIResearch/Illustrious-XL-v2.0",
+      "revision": "69459c1fe6f46db41ab31e6114f05acc0e06bcaa",
+      "accessedVia": "https://hf-mirror.com",
+      "apiSha256": "276ff78720581cd2a05a7c7322fa167a251e5a62fbe7987989011b03d399f5ea",
+      "cardSha256": "f06d16269c0f09e5d8cca9ff406f48c0ac484d0884f458e37f73f0fc9995092f",
+      "cardBytes": 1404,
+      "cardMarkers": [],
+      "licenseMetadata": "creativeml-openrail-m",
+      "contentTags": [],
+      "files": {
+        "Illustrious-XL-v2.0.safetensors": {
+          "bytes": 6938040674,
+          "sha256": "c2a1a3eaa13d4c107dc7e00c3fe830cab427aa026362740ea094745b3422a331",
+          "header": {
+            "sha256": "9a06935eee06aeaa4a10e730aa56b37948de7d8f62eeada1490f39e9def9179a",
+            "bytes": 364312,
+            "tensorCount": 2515,
+            "architecture": "sdxl",
+            "checkpoint": true,
+            "textEncoderPresent": true,
+            "vaePresent": true,
+            "trainedWeightBytesFetched": 0,
+            "inferenceTested": false
+          }
+        }
+      }
+    },
+    "cagliostrolab/animagine-xl-3.1": {
+      "repository": "cagliostrolab/animagine-xl-3.1",
+      "revision": "483f0c322568ed13697ed01dd0be07204746d12b",
+      "accessedVia": "https://hf-mirror.com",
+      "apiSha256": "a192f8c94dbe8eb0845d98a6aaf0e21bf8f7065375a9c33d84f2884a553c6390",
+      "cardSha256": "67dce7c2f0fb0503be0e79faf1008ebed30f853d654c53e637610e908fbee088",
+      "cardBytes": 19929,
+      "cardMarkers": [],
+      "licenseMetadata": "openrail++",
+      "contentTags": [],
+      "files": {
+        "animagine-xl-3.1.safetensors": {
+          "bytes": 6938325776,
+          "sha256": "e3c47aedb06418c6c331443cd89f2b3b3b34b7ed2102a3d4c4408a8d35aad6b0",
+          "header": {
+            "sha256": "0c75000c71b897d9cd65e12752e536e963d9e011d5926b9515412bdd83c938b8",
+            "bytes": 650032,
+            "tensorCount": 2514,
+            "architecture": "sdxl",
+            "checkpoint": true,
+            "textEncoderPresent": true,
+            "vaePresent": true,
+            "trainedWeightBytesFetched": 0,
+            "inferenceTested": false
+          }
+        }
+      }
+    },
+    "cagliostrolab/animagine-xl-4.0": {
+      "repository": "cagliostrolab/animagine-xl-4.0",
+      "revision": "2b7c1b397761bf5bd3cc42e5b39ec99314a75a96",
+      "accessedVia": "https://hf-mirror.com",
+      "apiSha256": "ed2c7871dc4a13896969397e1c7232b270cde0d7cdc9156fa5fe5fbc9ad8aee3",
+      "cardSha256": "33c0532ffd945653223eea317756976a9af52faa2d6122b860dc56fe62e4cdc9",
+      "cardBytes": 15494,
+      "cardMarkers": [
+        "Supported ratings:",
+        "`nsfw`"
+      ],
+      "licenseMetadata": "openrail++",
+      "contentTags": [],
+      "files": {
+        "animagine-xl-4.0.safetensors": {
+          "bytes": 6938434056,
+          "sha256": "1d5b43ff75b6ab598502d4c779d2fbfa3dceca51c60c3b609640a60772333916",
+          "header": {
+            "sha256": "97868177cdfb4d223aef59cd20fc326b49827ffaf9591d4b374b013fbfcfaf74",
+            "bytes": 758312,
+            "tensorCount": 2514,
+            "architecture": "sdxl",
+            "checkpoint": true,
+            "textEncoderPresent": true,
+            "vaePresent": true,
+            "trainedWeightBytesFetched": 0,
+            "inferenceTested": false
+          }
+        },
+        "animagine-xl-4.0-opt.safetensors": {
+          "bytes": 6938350040,
+          "sha256": "6327eca98bfb6538dd7a4edce22484a1bbc57a8cff6b11d075d40da1afb847ac",
+          "header": {
+            "sha256": "aa226c884e7261c4af7b11901f888d541bb2291156197325df7ad17998133a91",
+            "bytes": 674296,
+            "tensorCount": 2514,
+            "architecture": "sdxl",
+            "checkpoint": true,
+            "textEncoderPresent": true,
+            "vaePresent": true,
+            "trainedWeightBytesFetched": 0,
+            "inferenceTested": false
+          }
+        }
+      }
+    },
+    "cyberdelia/CyberRealistic": {
+      "repository": "cyberdelia/CyberRealistic",
+      "revision": "99827f96edd717dacb28c68560680c201c55df05",
+      "accessedVia": "https://hf-mirror.com",
+      "apiSha256": "803cbaaf820e6cbc19ceadd9ecc9934ed884c7c5e5584af4f65cee4eaa7c831c",
+      "cardSha256": "d72272da0f1c27604d0fd4c5ef974a080c0c3122d1e3453cec3301916cf53d3c",
+      "cardBytes": 3257,
+      "cardMarkers": [],
+      "licenseMetadata": "creativeml-openrail-m",
+      "contentTags": [],
+      "files": {
+        "CyberRealistic_V9_FP16.safetensors": {
+          "bytes": 2132651162,
+          "sha256": "22c789604729ed346f745497b99eb62df116e7b50f671e4edf4058d382b0a235",
+          "header": {
+            "sha256": "324f229703ff3f8f4b4c8eec6310d76bac800d94e3e6ff2890bc0325f7dfa118",
+            "bytes": 155920,
+            "tensorCount": 1145,
+            "architecture": "sd15",
+            "checkpoint": true,
+            "textEncoderPresent": true,
+            "vaePresent": true,
+            "trainedWeightBytesFetched": 0,
+            "inferenceTested": false
+          }
+        }
+      }
+    },
+    "cyberdelia/CyberRealisticXL": {
+      "repository": "cyberdelia/CyberRealisticXL",
+      "revision": "c04ae13b465d19763561a834d625a3d504a4f315",
+      "accessedVia": "https://hf-mirror.com",
+      "apiSha256": "74cbabf2287318fe3f6c3a287e996aeb705b3d2b4c4b84e7efcd098d4f604910",
+      "cardSha256": "f88a92a1ee4cd12b8d8f5b4ab297c2e2ae7d99071d37fc7f383b5dabb23849c9",
+      "cardBytes": 2287,
+      "cardMarkers": [],
+      "licenseMetadata": "creativeml-openrail-m",
+      "contentTags": [],
+      "files": {
+        "CyberRealisticXLPlay_V10.0_FP16.safetensors": {
+          "bytes": 6938041288,
+          "sha256": "fd5e870b5bbce4bddeb64f4bb8e49c57f84ab793c0262a503f0123be435e667d",
+          "header": {
+            "sha256": "835ceac844f26f8efb0e365ef398f8f3904d16a558b5cb8f4eb93c0c27ac076d",
+            "bytes": 364928,
+            "tensorCount": 2515,
+            "architecture": "sdxl",
+            "checkpoint": true,
+            "textEncoderPresent": true,
+            "vaePresent": true,
+            "trainedWeightBytesFetched": 0,
+            "inferenceTested": false
+          }
+        }
+      }
+    },
+    "cyberdelia/CyberRealisticPony": {
+      "repository": "cyberdelia/CyberRealisticPony",
+      "revision": "bf85880a58614199d0391c93151211be2832bb8c",
+      "accessedVia": "https://hf-mirror.com",
+      "apiSha256": "7d15fbd55070c8579c341fb7a0f4ea108feadab9be8aa293e5a43b03f601aa10",
+      "cardSha256": "b44ed7a19aca3a24129c0ae065619b133897a5e3795b22aa91157240fe6230ff",
+      "cardBytes": 2310,
+      "cardMarkers": [],
+      "licenseMetadata": "creativeml-openrail-m",
+      "contentTags": [],
+      "files": {
+        "CyberRealisticPony_V18.0_F16.safetensors": {
+          "bytes": 6938041288,
+          "sha256": "1d580c1c3f3612fa4db88af65372255582d5509ca0b28f85387273368301941b",
+          "header": {
+            "sha256": "fab66fae861e6f953858fcc4928255c4570b6a57388ce709463808b875217bd9",
+            "bytes": 364928,
+            "tensorCount": 2515,
+            "architecture": "sdxl",
+            "checkpoint": true,
+            "textEncoderPresent": true,
+            "vaePresent": true,
+            "trainedWeightBytesFetched": 0,
+            "inferenceTested": false
+          }
+        }
+      }
+    },
+    "cyberdelia/CyberIllustrious": {
+      "repository": "cyberdelia/CyberIllustrious",
+      "revision": "8a6f01bba289d7e76f3123c01f0a16ef742fd771",
+      "accessedVia": "https://hf-mirror.com",
+      "apiSha256": "b43588017e099d0eeec7574abe820fe9ad00e64733750894c2a70ab3aa7121ed",
+      "cardSha256": "1debc13005959282b2032aac0a6e3c091b2d3f0b0049eef12f319d9f909c908d",
+      "cardBytes": 2407,
+      "cardMarkers": [],
+      "licenseMetadata": "creativeml-openrail-m",
+      "contentTags": [],
+      "files": {
+        "CyberIllustrious_V10_FP16.safetensors": {
+          "bytes": 6938041144,
+          "sha256": "dee725b46ff5602f0b14da5aa5a4500836c64b035fb4a7482c724b4d55be8b87",
+          "header": {
+            "sha256": "69dd97c6ee8059f199551c291020290106393fbdf5a5db61ce6a85423971f3cd",
+            "bytes": 364784,
+            "tensorCount": 2515,
+            "architecture": "sdxl",
+            "checkpoint": true,
+            "textEncoderPresent": true,
+            "vaePresent": true,
+            "trainedWeightBytesFetched": 0,
+            "inferenceTested": false
+          }
+        }
+      }
+    },
+    "LyliaEngine/Pony_Diffusion_V6_XL": {
+      "repository": "LyliaEngine/Pony_Diffusion_V6_XL",
+      "revision": "14885f1c01d7723bcbf676773def286c1fd733bc",
+      "accessedVia": "https://hf-mirror.com",
+      "apiSha256": "c36bfa1bcba19f5d1d4a605fb71ebee0770ae8aee23c28403dfc1a817bf3c683",
+      "cardSha256": "83e1352e0ee76a7060282f43fa4fbdb0744f64d5d8ee6f37775d81b168090e89",
+      "cardBytes": 5408,
+      "cardMarkers": [
+        "SFW and NSFW"
+      ],
+      "licenseMetadata": "cdla-permissive-2.0",
+      "contentTags": [],
+      "files": {
+        "ponyDiffusionV6XL_v6StartWithThisOne.safetensors": {
+          "bytes": 6938041050,
+          "sha256": "67ab2fd8ec439a89b3fedb15cc65f54336af163c7eb5e4f2acc98f090a29b0b3",
+          "header": {
+            "sha256": "00dadb522a876c80c4ed797cc1bac44bf0bda182775fbcbd7f354393b1df0d14",
+            "bytes": 365152,
+            "tensorCount": 2515,
+            "architecture": "sdxl",
+            "checkpoint": true,
+            "textEncoderPresent": true,
+            "vaePresent": true,
+            "trainedWeightBytesFetched": 0,
+            "inferenceTested": false
+          }
+        }
+      }
+    },
+    "KBlueLeaf/Kohaku-XL-Zeta": {
+      "repository": "KBlueLeaf/Kohaku-XL-Zeta",
+      "revision": "c14affd9483ac7603cfff3f06b05da22a06deaa6",
+      "accessedVia": "https://hf-mirror.com",
+      "apiSha256": "7cf44e9dec0f0061d6a09f73005448ffabbc96859c5ad3b06a319be22ac0e95a",
+      "cardSha256": "920f79387f0cadd01ab883c8979cfb1f142da912bb7fceade8b4bdec315759dc",
+      "cardBytes": 9185,
+      "cardMarkers": [
+        "Rating tags: safe, sensitive, nsfw, explicit"
+      ],
+      "licenseMetadata": "other",
+      "contentTags": [],
+      "files": {
+        "kohaku-xl-zeta.safetensors": {
+          "bytes": 6938040286,
+          "sha256": "083cecef5b99c7eff9d6c572c6055abe978b645d78eb5cdb34e8661320651c12",
+          "header": {
+            "sha256": "bb8065ffd32618bb689fb301a2903573c405b294597a5595a92c423538af3eb2",
+            "bytes": 364544,
+            "tensorCount": 2513,
+            "architecture": "sdxl",
+            "checkpoint": true,
+            "textEncoderPresent": true,
+            "vaePresent": true,
+            "trainedWeightBytesFetched": 0,
+            "inferenceTested": false
+          }
+        }
+      }
+    },
+    "KBlueLeaf/Kohaku-XL-Epsilon-rev3": {
+      "repository": "KBlueLeaf/Kohaku-XL-Epsilon-rev3",
+      "revision": "680841c3ca6283b7795db608315c4472304648d4",
+      "accessedVia": "https://hf-mirror.com",
+      "apiSha256": "ad05c84a7f005eac183fec600e2230528e6b56dc86d9014a7579cd59100099d7",
+      "cardSha256": "df669fdc178016726d6787cc90b3e8bbfd44324e5dd4755abb8cad7b5ebfcde5",
+      "cardBytes": 127,
+      "cardMarkers": [],
+      "licenseMetadata": "other",
+      "contentTags": [],
+      "files": {
+        "kohaku-xl-epsilon-rev3.safetensors": {
+          "bytes": 6938040286,
+          "sha256": "2b4973298adb2bb82956f2ac05e0a949feb15c65cb68444fc1d38f77709e6909",
+          "header": {
+            "sha256": "bb8065ffd32618bb689fb301a2903573c405b294597a5595a92c423538af3eb2",
+            "bytes": 364544,
+            "tensorCount": 2513,
+            "architecture": "sdxl",
+            "checkpoint": true,
+            "textEncoderPresent": true,
+            "vaePresent": true,
+            "trainedWeightBytesFetched": 0,
+            "inferenceTested": false
+          }
+        }
+      }
+    },
+    "WarriorMama777/OrangeMixs": {
+      "repository": "WarriorMama777/OrangeMixs",
+      "revision": "ec9df50045e9687fd7ea8116db84c4ad5c4a4358",
+      "accessedVia": "https://hf-mirror.com",
+      "apiSha256": "7c67cebc99c0eb827105550ada790482c045e40f68fcb6e012012c16c26db596",
+      "cardSha256": "4b6a25110a8d96329932a38b64fab29cc49e0d6e308308c693c224f552c1ac2c",
+      "cardBytes": 69836,
+      "cardMarkers": [
+        "VividOrangeMix_NSFW",
+        "AOM3 was merged with the NSFW model"
+      ],
+      "licenseMetadata": "creativeml-openrail-m",
+      "contentTags": [],
+      "files": {
+        "Models/AbyssOrangeMix2/Pruned/AbyssOrangeMix2_nsfw_pruned_fp16_with_VAE.safetensors": {
+          "bytes": 2132626071,
+          "sha256": "e892703c61bf5b95b3962825b67d03a18298ac6c3d0757c77858e5717fdae6b5",
+          "header": {
+            "sha256": "823f6e8f8248f3dea22a004e524facf90d9e71303c3468aca72ae4e9b163ef10",
+            "bytes": 154829,
+            "tensorCount": 1133,
+            "architecture": "sd15",
+            "checkpoint": true,
+            "textEncoderPresent": true,
+            "vaePresent": true,
+            "trainedWeightBytesFetched": 0,
+            "inferenceTested": false
+          }
+        },
+        "Models/AbyssOrangeMix3/AOM3A1B_orangemixs.safetensors": {
+          "bytes": 2132626071,
+          "sha256": "5493a0ec491f5961dbdc1c861404088a6ae9bd4007f6a3a7c5dee8789cdc1361",
+          "header": {
+            "sha256": "823f6e8f8248f3dea22a004e524facf90d9e71303c3468aca72ae4e9b163ef10",
+            "bytes": 154829,
+            "tensorCount": 1133,
+            "architecture": "sd15",
+            "checkpoint": true,
+            "textEncoderPresent": true,
+            "vaePresent": true,
+            "trainedWeightBytesFetched": 0,
+            "inferenceTested": false
+          }
+        },
+        "Models/AbyssOrangeMix3/AOM3A1_orangemixs.safetensors": {
+          "bytes": 2132626071,
+          "sha256": "f303d108122ddd43a34c160bd46dbb08cb0e088e979acda0bf168a7a1f5820e0",
+          "header": {
+            "sha256": "823f6e8f8248f3dea22a004e524facf90d9e71303c3468aca72ae4e9b163ef10",
+            "bytes": 154829,
+            "tensorCount": 1133,
+            "architecture": "sd15",
+            "checkpoint": true,
+            "textEncoderPresent": true,
+            "vaePresent": true,
+            "trainedWeightBytesFetched": 0,
+            "inferenceTested": false
+          }
+        },
+        "Models/AbyssOrangeMix3/AOM3A3_orangemixs.safetensors": {
+          "bytes": 2132626071,
+          "sha256": "eb4099ba9cd5e69ab526fca22a2e967f286f8512d9509b735c892fa6468767cf",
+          "header": {
+            "sha256": "823f6e8f8248f3dea22a004e524facf90d9e71303c3468aca72ae4e9b163ef10",
+            "bytes": 154829,
+            "tensorCount": 1133,
+            "architecture": "sd15",
+            "checkpoint": true,
+            "textEncoderPresent": true,
+            "vaePresent": true,
+            "trainedWeightBytesFetched": 0,
+            "inferenceTested": false
+          }
+        },
+        "Models/VividOrangeMix/VividOrengeMix_NSFW.safetensors": {
+          "bytes": 2132627474,
+          "sha256": "730dd31df757c612f88be3a67d6687407445e940844892d762d42d8a0156387a",
+          "header": {
+            "sha256": "1887f33c6b934d7ad993f6467f0b344c42a4bb38f8c350b3f31160ad62789399",
+            "bytes": 156232,
+            "tensorCount": 1133,
+            "architecture": "sd15",
+            "checkpoint": true,
+            "textEncoderPresent": true,
+            "vaePresent": true,
+            "trainedWeightBytesFetched": 0,
+            "inferenceTested": false
+          }
+        }
+      }
+    },
+    "gsdf/Counterfeit-V3.0": {
+      "repository": "gsdf/Counterfeit-V3.0",
+      "revision": "d8ce63b3eb8e9102e54b3fcc07f9cb7a28ef30fc",
+      "accessedVia": "https://hf-mirror.com",
+      "apiSha256": "680072d2290aee75257946e244e2089d365e6e7c885dfd0b9aaab8ddb0a2e3c9",
+      "cardSha256": "ab9fff26630cee92c5c5f5427ad7d3f3bc814716c896e60bb9cd2da25482eed8",
+      "cardBytes": 1026,
+      "cardMarkers": [],
+      "licenseMetadata": "creativeml-openrail-m",
+      "contentTags": [],
+      "files": {
+        "Counterfeit-V3.0_fp16.safetensors": {
+          "bytes": 4244124028,
+          "sha256": "cbfba64e662370f59d4aa2aa69bf16749fce93846ccce20506aee5df01169859",
+          "header": {
+            "sha256": "469f9b450fc2bee585cc2897fe8948accc55aee6533ffc49f931cdb76c497350",
+            "bytes": 157170,
+            "tensorCount": 1145,
+            "architecture": "sd15",
+            "checkpoint": true,
+            "textEncoderPresent": true,
+            "vaePresent": true,
+            "trainedWeightBytesFetched": 0,
+            "inferenceTested": false
+          }
+        }
+      }
+    },
+    "NSFW-API/NSFW_Wan_1.3b": {
+      "repository": "NSFW-API/NSFW_Wan_1.3b",
+      "revision": "4d8db25317335b4a0cfbefad9877b893f08dbc67",
+      "accessedVia": "https://hf-mirror.com",
+      "apiSha256": "a9ca5640ded89f3b8724202579b4319509c92b3a2888db82009402e7e3dadc18",
+      "cardSha256": "0d3e39e532cad7338b8fa71b6c775c2b1dcad11b75da6da8d1266648cff28f8f",
+      "cardBytes": 10937,
+      "cardMarkers": [
+        "Specialization:** NSFW Content Generation"
+      ],
+      "licenseMetadata": "creativeml-openrail-m",
+      "contentTags": [
+        "nsfw",
+        "not-for-all-audiences"
+      ],
+      "files": {
+        "wan_1.3B_exp_e1.safetensors": {
+          "bytes": 2838077328,
+          "sha256": "ece75688bea36504fe17a2657bfb99199e90b384c99c4ac31146894617dd23c7",
+          "header": {
+            "sha256": "d5a360e9c25b60aed365c034f662272d41ae43fb2b5e8f3e6b961cbee498430b",
+            "bytes": 83720,
+            "tensorCount": 825,
+            "architecture": "wan21",
+            "checkpoint": false,
+            "textEncoderPresent": false,
+            "vaePresent": false,
+            "trainedWeightBytesFetched": 0,
+            "inferenceTested": false
+          }
+        },
+        "wan_1.3B_exp_e2.safetensors": {
+          "bytes": 2838077328,
+          "sha256": "9d8e403d04e8d2d1cc4f91f431d5e3160d060b9dd1b6e173cfc1bec619914fa8",
+          "header": {
+            "sha256": "d5a360e9c25b60aed365c034f662272d41ae43fb2b5e8f3e6b961cbee498430b",
+            "bytes": 83720,
+            "tensorCount": 825,
+            "architecture": "wan21",
+            "checkpoint": false,
+            "textEncoderPresent": false,
+            "vaePresent": false,
+            "trainedWeightBytesFetched": 0,
+            "inferenceTested": false
+          }
+        },
+        "wan_1.3B_exp_e3.safetensors": {
+          "bytes": 2838077328,
+          "sha256": "1b2caa3d824001ebb50b7ac2fa7cad679ba8480a48c7a16c00a6fcc23641232e",
+          "header": {
+            "sha256": "d5a360e9c25b60aed365c034f662272d41ae43fb2b5e8f3e6b961cbee498430b",
+            "bytes": 83720,
+            "tensorCount": 825,
+            "architecture": "wan21",
+            "checkpoint": false,
+            "textEncoderPresent": false,
+            "vaePresent": false,
+            "trainedWeightBytesFetched": 0,
+            "inferenceTested": false
+          }
+        },
+        "wan_1.3B_exp_e4.safetensors": {
+          "bytes": 2838077328,
+          "sha256": "206b6c361feeea78a05bdbfcd3432941186a85fbee1df9f9d550e0507bffe1a3",
+          "header": {
+            "sha256": "d5a360e9c25b60aed365c034f662272d41ae43fb2b5e8f3e6b961cbee498430b",
+            "bytes": 83720,
+            "tensorCount": 825,
+            "architecture": "wan21",
+            "checkpoint": false,
+            "textEncoderPresent": false,
+            "vaePresent": false,
+            "trainedWeightBytesFetched": 0,
+            "inferenceTested": false
+          }
+        },
+        "wan_1.3B_exp_e5.safetensors": {
+          "bytes": 2838077328,
+          "sha256": "486915227647df9cf669d76d43763ba644ac7a0dd0781fdcb74a738a1f63e254",
+          "header": {
+            "sha256": "d5a360e9c25b60aed365c034f662272d41ae43fb2b5e8f3e6b961cbee498430b",
+            "bytes": 83720,
+            "tensorCount": 825,
+            "architecture": "wan21",
+            "checkpoint": false,
+            "textEncoderPresent": false,
+            "vaePresent": false,
+            "trainedWeightBytesFetched": 0,
+            "inferenceTested": false
+          }
+        },
+        "wan_1.3B_exp_e6.safetensors": {
+          "bytes": 2838077328,
+          "sha256": "55f92574931f1ec158b466dbb38071e83f5ee8603f0a9b062cb9f9c96e13d15a",
+          "header": {
+            "sha256": "d5a360e9c25b60aed365c034f662272d41ae43fb2b5e8f3e6b961cbee498430b",
+            "bytes": 83720,
+            "tensorCount": 825,
+            "architecture": "wan21",
+            "checkpoint": false,
+            "textEncoderPresent": false,
+            "vaePresent": false,
+            "trainedWeightBytesFetched": 0,
+            "inferenceTested": false
+          }
+        },
+        "wan_1.3B_exp_e7.safetensors": {
+          "bytes": 2838077328,
+          "sha256": "a869f028e28a3c8e19fbc1beb7372384c0dab51b837a09b689df2d126a2639bf",
+          "header": {
+            "sha256": "d5a360e9c25b60aed365c034f662272d41ae43fb2b5e8f3e6b961cbee498430b",
+            "bytes": 83720,
+            "tensorCount": 825,
+            "architecture": "wan21",
+            "checkpoint": false,
+            "textEncoderPresent": false,
+            "vaePresent": false,
+            "trainedWeightBytesFetched": 0,
+            "inferenceTested": false
+          }
+        },
+        "wan_1.3B_exp_e8.safetensors": {
+          "bytes": 2838077328,
+          "sha256": "f6e4b1d0f39c23db55039e71fdfc3a29d8f3d140f8eb81c7d19400b89334aa26",
+          "header": {
+            "sha256": "d5a360e9c25b60aed365c034f662272d41ae43fb2b5e8f3e6b961cbee498430b",
+            "bytes": 83720,
+            "tensorCount": 825,
+            "architecture": "wan21",
+            "checkpoint": false,
+            "textEncoderPresent": false,
+            "vaePresent": false,
+            "trainedWeightBytesFetched": 0,
+            "inferenceTested": false
+          }
+        },
+        "wan_1.3B_exp_e9.safetensors": {
+          "bytes": 2838077328,
+          "sha256": "dc1b29fb71096e0524b6a204306c0075cf53451dd420471f18dad211a8c4a901",
+          "header": {
+            "sha256": "d5a360e9c25b60aed365c034f662272d41ae43fb2b5e8f3e6b961cbee498430b",
+            "bytes": 83720,
+            "tensorCount": 825,
+            "architecture": "wan21",
+            "checkpoint": false,
+            "textEncoderPresent": false,
+            "vaePresent": false,
+            "trainedWeightBytesFetched": 0,
+            "inferenceTested": false
+          }
+        },
+        "wan_1.3B_exp_e10.safetensors": {
+          "bytes": 2838077328,
+          "sha256": "638780112aed9af718a1da33991f78d74b5545a699a7bf9c57aea175ac53ef2d",
+          "header": {
+            "sha256": "d5a360e9c25b60aed365c034f662272d41ae43fb2b5e8f3e6b961cbee498430b",
+            "bytes": 83720,
+            "tensorCount": 825,
+            "architecture": "wan21",
+            "checkpoint": false,
+            "textEncoderPresent": false,
+            "vaePresent": false,
+            "trainedWeightBytesFetched": 0,
+            "inferenceTested": false
+          }
+        },
+        "wan_1.3B_exp_e11.safetensors": {
+          "bytes": 2838077328,
+          "sha256": "5938c5988cdb5f10fabda1da6350894c71e43b99c555f1b4f7f2c248dd3d7b48",
+          "header": {
+            "sha256": "d5a360e9c25b60aed365c034f662272d41ae43fb2b5e8f3e6b961cbee498430b",
+            "bytes": 83720,
+            "tensorCount": 825,
+            "architecture": "wan21",
+            "checkpoint": false,
+            "textEncoderPresent": false,
+            "vaePresent": false,
+            "trainedWeightBytesFetched": 0,
+            "inferenceTested": false
+          }
+        },
+        "wan_1.3B_exp_e12.safetensors": {
+          "bytes": 2838077328,
+          "sha256": "a921246c4edf44d986458e8e2e2977ec920972649b4603be41f7297dddd7b815",
+          "header": {
+            "sha256": "d5a360e9c25b60aed365c034f662272d41ae43fb2b5e8f3e6b961cbee498430b",
+            "bytes": 83720,
+            "tensorCount": 825,
+            "architecture": "wan21",
+            "checkpoint": false,
+            "textEncoderPresent": false,
+            "vaePresent": false,
+            "trainedWeightBytesFetched": 0,
+            "inferenceTested": false
+          }
+        },
+        "wan_1.3B_exp_e13.safetensors": {
+          "bytes": 2838077328,
+          "sha256": "71b28326ec6ca0eb4863afa65d93fd07170dbc491b9273734fd6e7a28591f64f",
+          "header": {
+            "sha256": "d5a360e9c25b60aed365c034f662272d41ae43fb2b5e8f3e6b961cbee498430b",
+            "bytes": 83720,
+            "tensorCount": 825,
+            "architecture": "wan21",
+            "checkpoint": false,
+            "textEncoderPresent": false,
+            "vaePresent": false,
+            "trainedWeightBytesFetched": 0,
+            "inferenceTested": false
+          }
+        },
+        "wan_1.3B_exp_e14.safetensors": {
+          "bytes": 2838077328,
+          "sha256": "86daed5f43a68d7be2ca1f0e85d2ac51f3ba7fb735c76fd9574323e18fe40c6c",
+          "header": {
+            "sha256": "d5a360e9c25b60aed365c034f662272d41ae43fb2b5e8f3e6b961cbee498430b",
+            "bytes": 83720,
+            "tensorCount": 825,
+            "architecture": "wan21",
+            "checkpoint": false,
+            "textEncoderPresent": false,
+            "vaePresent": false,
+            "trainedWeightBytesFetched": 0,
+            "inferenceTested": false
+          }
+        }
+      }
+    }
+  }
+}

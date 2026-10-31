@@ -1,4 +1,4 @@
-"""Export/check complete v0.3.0 program evidence without running trained models.
+"""Export/check the current complete program release without running trained models.
 
 Historical model records retain their original identity. Required program
 implementation is traced separately; phone and model quality remain untested.
@@ -13,10 +13,11 @@ from preparation_build_inputs import build_inputs
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / 'verification/program'
-VERSION = '0.3.0'
+VERSION = version()
 PRIOR_COMMIT = 'da179315377957a449d94817f0a2b7d2030aea44'
 CERTIFICATE = '90444a717a55549e2094364d8d7d005cf8b7f4df24562da62cc1884a2f341c17'
 SOURCES = {
+    'community.json': 'build/community-tests/results.json',
     'build.json': 'dist/build-info.json',
     'package.json': 'build/package-verification.json',
     'foundation.json': 'build/foundation-tests/results.json',
@@ -46,15 +47,15 @@ SOURCES = {
     'ltx-single-scale-app.json': 'build/ltx098-app-tests/results.json',
     'ltx-android.json': 'build/ltx098-app-build-info.json',
 }
-MINIMUM = dict(foundation=820, backend=138, **{'bundle-pause':22, 'document-input':15},
+MINIMUM = dict(community=700, foundation=820, backend=138, **{'bundle-pause':22, 'document-input':15},
     api=68, workbench=44, recovery=47, inputs=64, text=66, migration=69, scheduler=151,
     preparations=44, assemblies=47, diffusion=197, mnn=101, hub=80,
     **{'recipe-suggestions':73, 'speech-voices':70, 'sana-sprint':448}, ui=530, **{'ltx-official':89, 'ltx-multiscale-app':280, 'ltx-single-scale-app':127})
 MEDIA = ['workbench', 'preflight', 'recovery', 'lcm', 'audio', 'ltx', 'resources',
-         'curated', 'speech', 'components', 'wan', 'openmoss', 'sana']
+         'curated', 'speech', 'components', 'wan', 'openmoss', 'sana', 'v030-ltx-official', 'v030-release-workbench']
 UI_LOGIC = ['app/src/main/assets/' + name for name in (
     'index.html', 'app.css', 'app.js', 'foundation.css', 'foundation.js',
-    'audio-preview.js', 'workbench.js', 'recipes.js', 'versions.js')]
+    'audio-preview.js', 'workbench.js', 'recipes.js', 'versions.js', 'community.js')]
 
 
 def sha(path):
@@ -93,9 +94,9 @@ def export():
     assert record(historical)['version'] == '0.3.0-dev.45'
     media = {}
     for name in MEDIA:
-        path = ROOT / 'docs/media/development' / name / 'manifest.json'
+        path = (ROOT / 'docs/media/history/v0.3.0' / name[5:] if name.startswith('v030-') else ROOT / 'docs/media/development' / name) / 'manifest.json'
         media[name] = dict(path=path.relative_to(ROOT).as_posix(), **identity(path))
-    fresh_media = {name:ROOT/'docs/media/development'/name/'manifest.json' for name in ['ltx-official','release-workbench']}
+    fresh_media = {name:ROOT/'docs/media/development'/name/'manifest.json' for name in ['community','release-workbench']}
     from release_scope import check as check_scope
     check_scope()
     status = dict(schema='lma.program-release/1', version=VERSION,
@@ -104,21 +105,22 @@ def export():
         current_ui_media={name:dict(path=path.relative_to(ROOT).as_posix(), **identity(path)) for name,path in fresh_media.items()},
         prior_checkpoint=dict(commit=PRIOR_COMMIT, version='0.3.0-dev.45',
             path=historical.relative_to(ROOT).as_posix(), **identity(historical)),
+        prior_release_archive='verification/history/v0.3.0-program-archive.json',
         policy='docs/proposals/program-validation-policy.json',
         release_ready=True, full_scope_implementation_complete=True,
-        implementation_matrix='catalogue/release-0.3.0-implementation.json', known_implementation_gaps=[],
+        implementation_matrix='catalogue/release-'+VERSION+'-implementation.json', known_implementation_gaps=[],
         selected_ids=record(ROOT / 'docs/proposals/multimodal-release-scope.json')['selected_ids'],
         physical_device_tests=0, phone_inference_tested=False, model_inference_tested=False,
         all_selected_models_tested=False, model_quality_accepted=False, background_endurance_tested=False,
         historical_model_results_are_current_apk_validation=False,
         complete_model_downloads_for_validation=0, complete_model_copies_for_validation=0,
-        small_program_metadata_fetched=True, metadata_audit='catalogue/sana-sprint-evidence.json',
+        small_program_metadata_fetched=True, metadata_audit='research/community/metadata.json',
         sana_text_to_image_variant='matched Sana-Sprint 0.6B MNN; program adapter, not device or image-quality evidence',
         model_weights_in_apk=False, automatic_model_asset_downloads=False,
         browser_closed=True, virtualization_used=False,
         input_fingerprint=fingerprint('tools/program_evidence.py', 'tools/check_repository.py',
             'docs/proposals/program-validation-policy.json', 'docs/proposals/multimodal-release-scope.json',
-            'app/build.gradle', 'app/src/main/AndroidManifest.xml', 'catalogue/release-0.3.0-implementation.json',
+            'app/build.gradle', 'app/src/main/AndroidManifest.xml', 'catalogue/release-'+VERSION+'-implementation.json',
             'tools/program_release.py', 'tools/package_delivery.py', 'tools/prepare_release.py'))
     (OUT / 'status.json').write_text(json.dumps(status, ensure_ascii=False, indent=2)+'\n', encoding='utf-8')
     return check()
@@ -184,18 +186,18 @@ def check():
     for item in status['historical_ui_media'].values():
         path = ROOT / item['path']; assert identity(path) == {k:item[k] for k in ['bytes','sha256']}
         media = record(path)
-        assert media['version'] == ('0.3.0-dev.45' if path.parent.name=='sana' else '0.3.0-dev.42') and media['browser_closed'] and not media['browser_errors']
+        assert media['version'] == ('0.3.0' if 'history/v0.3.0/' in path.as_posix() else '0.3.0-dev.45' if path.parent.name=='sana' else '0.3.0-dev.42') and media['browser_closed'] and not media['browser_errors']
         assert not media['android_device'] and not media['model_inference']
         for file in media['files']:
             assert identity(path.parent / file['file']) == {k:file[k] for k in ['bytes','sha256']}
-    assert set(status['current_ui_media']) == {'ltx-official','release-workbench'}
+    assert set(status['current_ui_media']) == {'community','release-workbench'}
     for item in status['current_ui_media'].values():
         path=ROOT/item['path']; assert identity(path)=={k:item[k] for k in ['bytes','sha256']}
         media=record(path); current(media['input_fingerprint'])
         assert media['version']==VERSION and media['browser_closed'] and not media['browser_errors']
         assert not media['android_device'] and not media['model_inference'] and not media['weights_downloaded']
-        assert len(media['screenshots'])==(4 if path.parent.name=='ltx-official' else 5)
-        assert len(media['checks']) >= (21 if path.parent.name=='ltx-official' else 8)
+        assert len(media['screenshots'])==5
+        assert len(media['checks']) >= (25 if path.parent.name=='community' else 8)
         for file in media['files']: assert identity(path.parent/file['file'])=={k:file[k] for k in ['bytes','sha256']}
     prior = status['prior_checkpoint']; assert prior['commit'] == PRIOR_COMMIT and prior['version'] == '0.3.0-dev.45'
     assert identity(ROOT / prior['path']) == {k:prior[k] for k in ['bytes','sha256']}
@@ -209,6 +211,17 @@ def check():
         data = (archived / name).read_bytes()
         assert hashlib.sha1(('blob '+str(len(data))+'\0').encode()+data).hexdigest() == blob, 'Changed historical evidence: '+name
     # Preserve the first reproduced failure without evaluating old model acceptance gates.
+    archived_release = record(ROOT / status['prior_release_archive'])
+    assert archived_release['version'] == '0.3.0' and archived_release['commit'] == 'd659da11e3b3d81fedbfbd1ba54344612c5bf6da'
+    archive_root = ROOT / archived_release['archivePath']
+    assert set(archived_release['files']) == {p.name for p in archive_root.iterdir() if p.is_file()}
+    for name, item in archived_release['files'].items():
+        assert Path(name).name == name
+        body = (archive_root / name).read_bytes()
+        assert identity(archive_root / name) == {k:item[k] for k in ['bytes', 'sha256']}
+        assert hashlib.sha1(('blob '+str(len(body))+'\0').encode()+body).hexdigest() == item['gitBlob']
+        frozen_blob = subprocess.check_output(['git', 'rev-parse', archived_release['commit']+':verification/program/'+name], cwd=ROOT).decode('ascii').strip()
+        assert frozen_blob == item['gitBlob'], 'Archived release identity changed: '+name
     issue = ROOT / 'verification/research/input-opening-issue'
     capture = record(issue / 'capture.json'); assert not capture['host_contract_passed']
     for name, item in capture['files'].items():

@@ -1,21 +1,29 @@
 # Program-only validation policy
 
-[中文](PROGRAM_VALIDATION.md) · [v0.3.0](releases/v0.3.0.md) · [policy JSON](proposals/program-validation-policy.json)
+[中文](PROGRAM_VALIDATION.md) · [v0.3.1](releases/v0.3.1.md) · [policy JSON](proposals/program-validation-policy.json)
 
-The user explicitly requested on 2026-10-31: “请你后续内容只做程序验证，不需要走完完整的模型运行验证，太耗费时间了。” This supersedes older release requirements for complete trained-model execution, ASR scoring, phone inference and prolonged endurance. Missing program functionality is not waived, and the frozen scope is not split into later releases.
+The user explicitly requested program validation only on 2026-10-31. Do not repeat complete trained-model execution, ASR scoring, physical-phone inference or endurance gates from older documents. Missing program implementation is still required; the frozen scope is not split or deferred.
 
-v0.3.0 closes the original PixArt T5/multiscale LTX program gap and includes the previously integrated Sana-Sprint route. The full F-01–F-12/text/01–14/16/17 program mapping is in the [implementation matrix](IMPLEMENTATION_V030.en.md).
+v0.3.1 retains the complete F-01–F-12 foundation, text and selections 01–14 / 16 / 17, adding 44 optional community checkpoint recipes and independent content provenance. See the [current implementation](IMPLEMENTATION_V031.en.md), [community guide](COMMUNITY_MODELS.en.md) and [current matrix](../catalogue/release-0.3.1-implementation.json).
 
-| Validation / 验证 | Current result / 当前结果 |
+| Check | Current result |
 | --- | --- |
-| Program suites / 程序回归 | 23 suites, 3,590 assertions; source fingerprints checked |
-| Android package / 安装包 | ARM64, API28, 35 native libraries, resolved dependencies, 16 KiB ELF/ZIP alignment, original signing certificate |
-| Android Lint | 0 errors, 16 retained warnings |
-| Current UI / 当前界面 | 530 regression checks; 9 screenshots, 2 GIFs and 2 MP4 recordings across two flows |
-| Bounded neural fixtures / 有界神经夹具 | Small random T5/upsampler/MNN graphs and reference math; not complete trained models |
-| Complete weights / 完整模型 | 0 complete downloads, copies or executions for this validation |
-| Phone / quality / endurance | Not tested; not required by updated policy; no quality or phone suitability claims |
+| Program suites | 24 suites / **4,438 assertions**, with current source fingerprints |
+| Community metadata / production Java | 814 checks across all 44 optional recipes, labels, independent settings and request planning |
+| Full UI | **564 checks**; separate current captures exercise 34 community and 8 workbench interactions |
+| Android package | ARM64, API28, 35 native libraries, resolved dependencies, 16 KiB ELF/ZIP alignment, original signer |
+| Android Lint | 0 errors / 16 existing warnings |
+| Current media | 10 screenshots, 2 GIFs, 2 MP4s, visibly labelled UI FIXTURE |
+| Research inputs | 27 source repositories and 45 bounded file headers plus API/card metadata; no complete checkpoints |
+| Complete model downloads / copies / executions | Zero |
+| Phone / output quality / endurance | Not executed under the user’s policy; no acceptance claim |
 
-Current evidence: [28 records](../verification/program/status.json). Prior dev.45 program records are archived byte-for-byte in [history](../verification/history/dev45-program/status.json); dev.44/dev.42 and complete-model failures retain their identities. A stale model-quality failure is never relabelled as a pass. `release_ready` means readiness under this program-only policy, not verified phone usability.
+[29 current records](../verification/program/status.json) bind this source and APK. All 29 v0.3.0 program files are [archived byte-for-byte](../verification/history/v0.3.0-program-archive.json) and checked against their original Git blobs; its two recordings are preserved under `docs/media/history/v0.3.0/`. Earlier dev.45/dev.44/dev.42 records and complete-model failures retain their original identities.
 
-Tests exercise production validators, stores, scheduling and process ownership using explicit host Android/media/neural ports. Android Service/SAF/MediaCodec execution is compiled and inspected, not physically exercised. UI recordings visibly identify fixture data; browsers close in finally blocks. No Docker, WSL, virtual machine or emulator is used. App updates contain code and metadata only; users retain explicit model acquisition and management.
+Explicit desktop Android/media/neural-stage ports exercise production validation, settings, storage, scheduling, process management, downloads and APIs. Actual Android Service, SAF and MediaCodec behavior is covered by compilation/package checks, without a physical-device run. Small bounded random neural fixtures test structure, not trained generation.
+
+`release_ready` means the program-delivery policy passes. It does not establish that a checkpoint runs on Nubia Z20 or any other phone. Header layout checks cannot prove output quality, peak RAM, prediction semantics or driver behavior; source annotations retain these limits.
+
+Principal entry points are `tools/test_backend.py` → `tools/test_community.py`, `node tests/ui-smoke.cjs`, `tools/build.py` → `tools/verify_package.py` → `tools/test_android_lint.py`, and `capture_workbench.cjs community / release-workbench`. Other affected retained suites must also have current evidence; the status record lists their exact sources/fingerprints. Finish with `tools/release_scope.py`, `tools/program_evidence.py --export`, `tools/package_delivery.py`, `tools/check_repository.py` and `tools/prepare_release.py`.
+
+Never manufacture passes by rewriting fingerprints, weakening gates, deleting historical failures or calling unsupported registrations integrated. Do not use `--trained`, obtain complete trained weights, or invoke Docker, WSL, virtual machines or emulators. Close owned browsers in finally. APKs contain no weights or personal credentials; users explicitly select model assets and updates.

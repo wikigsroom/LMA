@@ -1,5 +1,13 @@
 # Changelog / 更新记录
 
+## 0.3.1 — 社区模型与内容标记 / Community models and content labels
+
+- 新增 14 系列 / 44 个可选 checkpoint（生图 30、视频 14），总登记 67 套；28 个明确 NSFW 来源标记、1 个 HF 敏感标记、15 个未标注。Video counts represent 14 versions of one Wan 1.3B series.
+- 独立内容依据、HF 提示与自选配方标签保留；全部 / 搜索 / 本地组合筛选、离线登记目录、来源 / 许可 / 组件详情。Preserve Recommended m08 → m06 → m01 and explicit user-controlled downloads/settings.
+- 精确 Range 文件头与固定 API / 模型卡身份，Pony 镜像许可冲突和不适配视频架构明确标记。Reuse local SD1.5/SDXL CPU and Wan 2.1 T2V 1.3B Vulkan routes; no implicit weight downloads or remote inference.
+- 24 组 / 4,438 项程序检查，564 项页面回归；原签名 code51、35 原生库、API28 / 16KiB、Lint 0 错误。No complete trained models or physical phones used.
+- 双语指南、44 文件列表、10 当前截图、2 GIF / 2 MP4；v0.3.0 程序 / 媒体原样归档；[完整更新说明](docs/releases/v0.3.1.md)。
+
 ## 0.3.0 — 本地多模态基座 / Local multimodal foundation
 
 - 完整同版程序集成 F-01–F-12、既有文本、01–14/16/17、MOSS 九子目标及 SD1.5/SDXL LoRA；38 配方、23 模型包、12 扩展引擎。Complete frozen program scope in one release.
