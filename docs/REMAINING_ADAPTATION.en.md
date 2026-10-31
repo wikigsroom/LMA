@@ -29,6 +29,7 @@ This page tracks development after v0.3.5. The published v0.3.5 APK does not con
 | B06 | Application workflow | Seven required components, independent settings / typed inputs, Local, preflight, drafts, idempotent submission, shared child process, cancellation / failure cleanup, atomic artifacts and embedded PNG / UV / PBR preview with GPU cleanup |
 | B07 | BSA building block for UltraTex | Pinned SLA block means, smooth-K selection, top-k and online softmax, FP32 / BF16 bounded CPU / ONNX bridge; still not a complete UltraTex adapter |
 | B08 | Documentation and media | Bilingual asset / conversion / usage / limits, numbered status and production UI fixture screenshots / GIF / MP4; previous README scenarios, API examples and historical cases retained |
+| B09 | Actual UltraTex network conversion components | Pinned FLUX.1 dev / FLUX.2, dynamic foreground / original IDs, exact rotary tables, strict LoRA merge and both offline CLIs; 101 actual network / native ORT checks; [usage and gaps](ULTRATEX_FLOW.en.md); no app recipe registered |
 
 CPU materials disclose differences from upstream CUDA raster, erosion / repair and random streams. BSA uses deterministic index ordering for ties; Torch / CUDA `topk(sorted=False)` does not guarantee identical ordering across devices. These checks establish neither trained-model quality nor phone resource acceptance.
 
@@ -36,7 +37,7 @@ CPU materials disclose differences from upstream CUDA raster, erosion / repair a
 
 | ID | Benchmark | Required production path | Existing but insufficient foundation |
 | --- | --- | --- | --- |
-| P01 | D04 UltraTex | Matched FLUX.1 / FLUX.2 assets, LoRA, conditions, BTD mask compaction / position IDs, VAE / text encoders, diffusion and PBR baking, parameters and manifests | Shared raster / UV / baking and BSA; do not label UltraTex integrated |
+| P01 | D04 UltraTex | Same-phone text encoders, tile VAE / BN / material decoders, canonical conditions / packing, Euler / CFG / black-background restoration, albedo / MR and complete app orchestration | Actual flow conversion / LoRA / foreground / IDs, shared raster / UV / baking and BSA; still not integrated UltraTex |
 | P02 | D05 UniForge3D | Joint VGGT / DiT, DINOv3, multiview anchors / features, sparse structure / SLAT sampling, FDG / material decoders and GLB | Sparse convolution, pooling / subdivision and packed attention; TRELLIS or ordinary four-view inference cannot replace the joint network |
 | P03 | D08 SAM 3D Objects | Mask, MoGe pointmap, MoT structure / layout / pose, SLAT / FlexiCubes and selected geometry / appearance output | Five sparse operation families; preserve SAM pooling denominator and coordinate ordering |
 | P04 | D09 MV-SAM3D | D08 plus Depth Anything 3, camera alignment, weighted MultiDiffusion and first-step warmup / reset / replay | Existing four-view generation or repeated single-image inference cannot substitute for this architecture |

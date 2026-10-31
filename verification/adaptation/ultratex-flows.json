@@ -1,0 +1,373 @@
+{
+  "passed": 101,
+  "checks": [
+    {
+      "case": "pinned_LICENSE"
+    },
+    {
+      "case": "pinned_ultratex/backbones/flux1/math.py"
+    },
+    {
+      "case": "pinned_ultratex/backbones/flux1/model.py"
+    },
+    {
+      "case": "pinned_ultratex/backbones/flux1/modules/layers.py"
+    },
+    {
+      "case": "pinned_ultratex/backbones/flux1/sampling.py"
+    },
+    {
+      "case": "pinned_ultratex/backbones/flux2/model.py"
+    },
+    {
+      "case": "pinned_ultratex/backbones/flux2/sampling.py"
+    },
+    {
+      "case": "pinned_train_flux2.py"
+    },
+    {
+      "case": "exact_publisher_rotary_torch.float32"
+    },
+    {
+      "case": "exact_publisher_rotary_torch.int64"
+    },
+    {
+      "case": "unsupported_flux1_schnell"
+    },
+    {
+      "case": "source_network_with_bsa_flux1True"
+    },
+    {
+      "case": "names_preserved_flux1True"
+    },
+    {
+      "case": "no_constant_foreground_flux1True"
+    },
+    {
+      "case": "native_accept",
+      "error": ""
+    },
+    {
+      "case": "dynamic_publisher_network_('flux1', True, 29, 1)",
+      "maximumError": 2.980232238769531e-07
+    },
+    {
+      "case": "original_target_indices_('flux1', True, 29)"
+    },
+    {
+      "case": "native_accept",
+      "error": ""
+    },
+    {
+      "case": "dynamic_publisher_network_('flux1', True, 37, 2)",
+      "maximumError": 5.960464477539062e-07
+    },
+    {
+      "case": "original_target_indices_('flux1', True, 37)"
+    },
+    {
+      "case": "native_accept",
+      "error": ""
+    },
+    {
+      "case": "dynamic_publisher_network_('flux1', True, 1, 1)",
+      "maximumError": 2.384185791015625e-07
+    },
+    {
+      "case": "original_target_indices_('flux1', True, 1)"
+    },
+    {
+      "case": "native_accept",
+      "error": ""
+    },
+    {
+      "case": "dynamic_publisher_network_('flux1', True, 11, 1)",
+      "maximumError": 2.980232238769531e-07
+    },
+    {
+      "case": "original_target_indices_('flux1', True, 11)"
+    },
+    {
+      "case": "removed_background_never_attends_flux1True"
+    },
+    {
+      "case": "original_position_ids_matter_flux1True"
+    },
+    {
+      "case": "single_reference_not_discarded_flux1True"
+    },
+    {
+      "case": "source_network_with_bsa_flux2True"
+    },
+    {
+      "case": "names_preserved_flux2True"
+    },
+    {
+      "case": "no_constant_foreground_flux2True"
+    },
+    {
+      "case": "native_accept",
+      "error": ""
+    },
+    {
+      "case": "dynamic_publisher_network_('flux2', True, 29, 1)",
+      "maximumError": 4.76837158203125e-07
+    },
+    {
+      "case": "original_target_indices_('flux2', True, 29)"
+    },
+    {
+      "case": "native_accept",
+      "error": ""
+    },
+    {
+      "case": "dynamic_publisher_network_('flux2', True, 37, 2)",
+      "maximumError": 7.152557373046875e-07
+    },
+    {
+      "case": "original_target_indices_('flux2', True, 37)"
+    },
+    {
+      "case": "native_accept",
+      "error": ""
+    },
+    {
+      "case": "dynamic_publisher_network_('flux2', True, 1, 1)",
+      "maximumError": 1.1920928955078125e-07
+    },
+    {
+      "case": "original_target_indices_('flux2', True, 1)"
+    },
+    {
+      "case": "native_accept",
+      "error": ""
+    },
+    {
+      "case": "dynamic_publisher_network_('flux2', True, 11, 1)",
+      "maximumError": 8.344650268554688e-07
+    },
+    {
+      "case": "original_target_indices_('flux2', True, 11)"
+    },
+    {
+      "case": "removed_background_never_attends_flux2True"
+    },
+    {
+      "case": "original_position_ids_matter_flux2True"
+    },
+    {
+      "case": "single_reference_not_discarded_flux2True"
+    },
+    {
+      "case": "source_network_with_bsa_flux2False"
+    },
+    {
+      "case": "names_preserved_flux2False"
+    },
+    {
+      "case": "no_constant_foreground_flux2False"
+    },
+    {
+      "case": "native_accept",
+      "error": ""
+    },
+    {
+      "case": "dynamic_publisher_network_('flux2', False, 29, 1)",
+      "maximumError": 3.5762786865234375e-07
+    },
+    {
+      "case": "original_target_indices_('flux2', False, 29)"
+    },
+    {
+      "case": "native_accept",
+      "error": ""
+    },
+    {
+      "case": "dynamic_publisher_network_('flux2', False, 37, 2)",
+      "maximumError": 4.76837158203125e-07
+    },
+    {
+      "case": "original_target_indices_('flux2', False, 37)"
+    },
+    {
+      "case": "native_accept",
+      "error": ""
+    },
+    {
+      "case": "dynamic_publisher_network_('flux2', False, 1, 1)",
+      "maximumError": 2.086162567138672e-07
+    },
+    {
+      "case": "original_target_indices_('flux2', False, 1)"
+    },
+    {
+      "case": "native_accept",
+      "error": ""
+    },
+    {
+      "case": "dynamic_publisher_network_('flux2', False, 11, 1)",
+      "maximumError": 3.5762786865234375e-07
+    },
+    {
+      "case": "original_target_indices_('flux2', False, 11)"
+    },
+    {
+      "case": "removed_background_never_attends_flux2False"
+    },
+    {
+      "case": "original_position_ids_matter_flux2False"
+    },
+    {
+      "case": "single_reference_not_discarded_flux2False"
+    },
+    {
+      "case": "native_accept",
+      "error": ""
+    },
+    {
+      "case": "source_network_bfloat16_attention_flux1",
+      "maximumError": 4.76837158203125e-07
+    },
+    {
+      "case": "native_accept",
+      "error": ""
+    },
+    {
+      "case": "source_network_bfloat16_attention_flux2",
+      "maximumError": 2.562999725341797e-05
+    },
+    {
+      "case": "flux1_lora_publisher_processors",
+      "maximumError": 1.7881393432617188e-07
+    },
+    {
+      "case": "missing_flux1_down"
+    },
+    {
+      "case": "missing_flux1_down_atomic"
+    },
+    {
+      "case": "missing_flux1_up"
+    },
+    {
+      "case": "missing_flux1_up_atomic"
+    },
+    {
+      "case": "unknown_flux1_key"
+    },
+    {
+      "case": "unknown_flux1_key_atomic"
+    },
+    {
+      "case": "nonfinite_lora"
+    },
+    {
+      "case": "nonfinite_lora_atomic"
+    },
+    {
+      "case": "mismatched_lora_dimension"
+    },
+    {
+      "case": "mismatched_lora_dimension_atomic"
+    },
+    {
+      "case": "invalid_lora_scale"
+    },
+    {
+      "case": "invalid_lora_scale_atomic"
+    },
+    {
+      "case": "flux2_lora_unmerged_layers",
+      "maximumError": 1.1920928955078125e-07
+    },
+    {
+      "case": "unsupported_flux2_target"
+    },
+    {
+      "case": "unsupported_flux2_target_atomic"
+    },
+    {
+      "case": "actual_cli_flux1",
+      "error": "E:\\dev\\sandbox\\\u65e0\u5ba1\u67e5\u5c0f\u6a21\u578b\\app\\android\\build\\spatial-source-review\\repos\\D04\\ultratex\\backbones\\flux1\\modules\\layers.py:252: TracerWarning: Iterating over a tensor might cause the trace to be incorrect. Passing a tensor of different shape won't change the number of iterations executed (and might lead to errors or silently give incorrect results).\n  img_q, img_k, img_v = rearrange(img_qkv, \"B L (K H D) -> K B H L D\", K=3, H=attn.num_heads, D=attn.head_dim)\nE:\\dev\\sandbox\\\u65e0\u5ba1\u67e5\u5c0f\u6a21\u578b\\app\\android\\build\\spatial-source-review\\repos\\D04\\ultratex\\backbones\\flux1\\modules\\layers.py:259: TracerWarning: Iterating over a tensor might cause the trace to be incorrect. Passing a tensor of different shape won't change the number of iterations executed (and might lead to errors or silently give incorrect results).\n  txt_q, txt_k, txt_v = rearrange(txt_qkv, \"B L (K H D) -> K B H L D\", K=3, H=attn.num_heads, D=attn.head_dim)\nE:\\dev\\sandbox\\\u65e0\u5ba1\u67e5\u5c0f\u6a21\u578b\\app\\android\\build\\spatial-source-review\\repos\\D04\\ultratex\\backbones\\flux1\\modules\\layers.py:370: TracerWarning: Iterating over a tensor might cause the trace to be incorrect. Passing a tensor of different shape won't change the number of iterations executed (and might lead to errors or silently give incorrect results).\n  q, k, v = rearrange(qkv, \"B L (K H D) -> K B H L D\", K=3, H=attn.num_heads)\n"
+    },
+    {
+      "case": "component_not_complete_adapter_flux1"
+    },
+    {
+      "case": "export_hash_flux1"
+    },
+    {
+      "case": "native_accept",
+      "error": ""
+    },
+    {
+      "case": "actual_cli_native_equivalence_flux1",
+      "maximumError": 4.76837158203125e-07
+    },
+    {
+      "case": "actual_cli_native_target_indices_flux1"
+    },
+    {
+      "case": "cli_existing_output_refused_flux1"
+    },
+    {
+      "case": "prior_export_unchanged_flux1"
+    },
+    {
+      "case": "actual_cli_flux2",
+      "error": "E:\\dev\\sandbox\\\u65e0\u5ba1\u67e5\u5c0f\u6a21\u578b\\app\\android\\build\\spatial-source-review\\repos\\D04\\ultratex\\backbones\\flux2\\model.py:652: TracerWarning: Iterating over a tensor might cause the trace to be incorrect. Passing a tensor of different shape won't change the number of iterations executed (and might lead to errors or silently give incorrect results).\n  img_q, img_k, img_v = rearrange(img_qkv, \"B L (K H D) -> K B H L D\", K=3, H=self.num_heads)\nE:\\dev\\sandbox\\\u65e0\u5ba1\u67e5\u5c0f\u6a21\u578b\\app\\android\\build\\spatial-source-review\\repos\\D04\\ultratex\\backbones\\flux2\\model.py:660: TracerWarning: Iterating over a tensor might cause the trace to be incorrect. Passing a tensor of different shape won't change the number of iterations executed (and might lead to errors or silently give incorrect results).\n  txt_q, txt_k, txt_v = rearrange(txt_qkv, \"B L (K H D) -> K B H L D\", K=3, H=self.num_heads)\nE:\\dev\\sandbox\\\u65e0\u5ba1\u67e5\u5c0f\u6a21\u578b\\app\\android\\build\\spatial-source-review\\repos\\D04\\ultratex\\backbones\\flux2\\model.py:547: TracerWarning: Iterating over a tensor might cause the trace to be incorrect. Passing a tensor of different shape won't change the number of iterations executed (and might lead to errors or silently give incorrect results).\n  q, k, v = rearrange(qkv, \"B L (K H D) -> K B H L D\", K=3, H=self.num_heads)\n"
+    },
+    {
+      "case": "component_not_complete_adapter_flux2"
+    },
+    {
+      "case": "export_hash_flux2"
+    },
+    {
+      "case": "native_accept",
+      "error": ""
+    },
+    {
+      "case": "actual_cli_native_equivalence_flux2",
+      "maximumError": 5.960464477539062e-07
+    },
+    {
+      "case": "actual_cli_native_target_indices_flux2"
+    },
+    {
+      "case": "cli_existing_output_refused_flux2"
+    },
+    {
+      "case": "prior_export_unchanged_flux2"
+    }
+  ],
+  "input_fingerprint": {
+    "native/spatial/block_attention.hpp": "9d87fc393f51104f11f291dda84763744249aedaf1f57feab72d94c161b9503d",
+    "native/spatial/CMakeLists.txt": "31f72529622fc7c9b8976868e6fbca0b8e886fb2bbbf54917ab2a619173d88c3",
+    "native/spatial/image.hpp": "7f2b70863591a51e9bca407a7ae0677fda0680efa51b9c54e91a5a3c8f073909",
+    "native/spatial/linear_sampler.hpp": "96ff6befbb32480559c038b4fb33308a127fa41088bea73404866d322262166d",
+    "native/spatial/material.hpp": "0e1cb2b5a5c84c2bdef41e69b435e54d5d8218d01d9c25d64c9121fe527158c2",
+    "native/spatial/math.hpp": "abc3c2644fc02f864cec371053b3ad92c42ce89b9215beb86a3f731b861c7f45",
+    "native/spatial/mesh.hpp": "9d6c1af1780abf2ad83cd8d2aaa5e6e5f2f762c132d5006929a097c01fae6eaa",
+    "native/spatial/ort_graph.hpp": "d78b66a3b16ebad13410e045035d58d6dad5eab37346a6a697fdba095a1f8908",
+    "native/spatial/sparse.hpp": "118c821be7601439a166d800729feb9e77320b6ad355808edc1e802d99b07e67",
+    "native/spatial/sparse_ort.hpp": "c1dca480849f96640dd7a0fca7cf84239d1519e586d4607d0e9b37d2132d53cd",
+    "native/spatial/surface_sampling.hpp": "0aeb83fc1030f3114784b4dd0dbd7db5c5464ebc6ce5c85c3436bec6080cb709",
+    "native/spatial/texture.hpp": "08e0edbaf02f514ba526c2bf5216236c782b4343de2b3d4c480046c0ffe0ff81",
+    "native/spatial/worker.cpp": "9b952fd8eb1b44df542ec99c507fb285774b4d5b1d8435e7c99b6404075a5f6e",
+    "tests/expansion-native/sparse_graph.cpp": "4ea22cdfba0ccb1d9a9df6e7fe0209e0293a4e6c0d14689430cb9674e1aeea24",
+    "third_party/ultratex-flow-source-lock.json": "a1eb829914ee7beee50aae1c175710019e1547e8837630372be9171f0476288a",
+    "tools/export_ultratex_flow.py": "06035f2534f8172cc69244f7c74a357e3d1bfc806f84df477709b48286fb3cec",
+    "tools/test_ultratex_flows.py": "efbfd8513018f4549dac94fcbf515712c83e363d8810ad40a2b9d3d87f7010d3",
+    "tools/ultratex_attention.py": "e8258a1d88b3da7428a2400f6ace8b1123855fcf07cd2fb10573b7a6cac0c373",
+    "tools/ultratex_flows.py": "9d07348cd8e53c6f2f50c0fb3f9bd3a0a5b318fdfd905f725f7a060e3db1a203"
+  },
+  "actual_native_ort": true,
+  "publisher_random_networks": true,
+  "complete_adapter": false,
+  "app_recipe_registered": false,
+  "complete_models_downloaded": 0,
+  "complete_models_run": 0,
+  "physical_device_tests": 0,
+  "virtualization_used": false
+}

@@ -13,14 +13,24 @@ def export():
     assert [x['id'] for x in remaining]==PENDING
     for row in remaining:
         row.update(program_integrated=False,building_blocks_are_complete_model_adapter=False)
-        if row['id']=='D04':row['shared_cpu_building_blocks']=['CPU raster / UV / PBR bake','block sparse attention / smooth-key selection / online softmax']
+        if row['id']=='D04':
+            row['shared_cpu_building_blocks']=['CPU raster / UV / PBR bake','block sparse attention / smooth-key selection / online softmax',
+                'pinned FLUX1 / FLUX2 flow export, dynamic foreground positions and strict publisher LoRA merge']
+            row['integration_status']='partial_network_export_not_app_workflow'
+            row['remaining_implementation']=['same-phone CLIP/T5 or Qwen3 tokenization and text encoding',
+                'matched tilewise VAE, stochastic FLUX1 or FLUX2 BN transforms and material decoder',
+                'UltraTex canonical geometry conditions, masks, token packing and positional offsets',
+                'Euler/CFG sampling, black-background restoration and distinct albedo/MR passes',
+                'complete app asset/recipe/parameter/child-process and PBR orchestration']
     templates=json.loads((ROOT/'app/src/main/assets/recipe-templates.json').read_text('utf-8'))['templates']
     ids={t['id'] for t in templates}
     assert {'hunyuan3d_21_paint_onnx_cpu_v1','f5_v1_official_frontend_cpu_v1'}<=ids
     implemented={
         'f5_official_frontend':dict(source=['native/speech_extra/f5_official.hpp','tools/export_f5_frontend.py','app/src/main/java/com/lma/app/core/AudioCppSpec.java'],scope='Pinned segmentation, pronunciation, tone sandhi, F5 text formatting / vocabulary IDs; explicit linguistic asset'),
         'hunyuan3d_21_paint':dict(source=['native/spatial/material.hpp','native/spatial/texture.hpp','tools/paint_graphs.py','tools/export_paint.py','app/src/main/java/com/lma/app/core/MaterialSpec.java','app/src/main/java/com/lma/app/ExpansionEngine.java'],scope='Reference PNG + GLB -> six local material views -> PBR GLB; independent CPU raster / seam fill; disclosed differences from publisher CUDA postprocessing'),
-        'ultratex_bsa_operator':dict(source=['native/spatial/block_attention.hpp','native/spatial/sparse_ort.hpp','tools/ultratex_attention.py'],scope='Shared CPU operator only, not a complete UltraTex adapter')}
+        'ultratex_bsa_operator':dict(source=['native/spatial/block_attention.hpp','native/spatial/sparse_ort.hpp','tools/ultratex_attention.py'],scope='Shared CPU operator only, not a complete UltraTex adapter'),
+        'ultratex_flow_components':dict(source=['tools/ultratex_flows.py','tools/export_ultratex_flow.py','third_party/ultratex-flow-source-lock.json'],
+            scope='Pinned FLUX1 dev / FLUX2 guidance and Klein no-guidance networks, dynamic foreground compaction / IDs, exact integer rotary tables and strict LoRA conversion; not an app workflow')}
     for entry in implemented.values():
         for file in entry['source']:assert (ROOT/file).is_file(),file
         entry.update(complete_trained_model_tested=False,phone_inference_tested=False)
@@ -33,6 +43,7 @@ def export():
         public_matched_complete_packages_verified=False,complete_models_run=0,phone_tests=0,validation_mode='program_only',
         input_fingerprint=fingerprint('tools/audit_adaptations.py','research/portability/audit-v0.3.5.json','native/spatial','native/speech_extra',
             'tools/paint_catalogue.py','tools/paint_graphs.py','tools/export_paint.py','tools/export_f5_frontend.py','tools/ultratex_attention.py',
+            'tools/ultratex_flows.py','tools/export_ultratex_flow.py','third_party/ultratex-flow-source-lock.json',
             'app/src/main/java/com/lma/app/core/MaterialSpec.java','app/src/main/java/com/lma/app/core/AudioCppSpec.java','app/src/main/java/com/lma/app/ExpansionEngine.java',
             'docs/proposals/multimodal-release-scope.json','app/src/main/assets/recipe-templates.json'))
     current(data['input_fingerprint']);OUT.write_text(json.dumps(data,ensure_ascii=False,indent=2)+'\n','utf-8');return check()

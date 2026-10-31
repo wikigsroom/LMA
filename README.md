@@ -2,7 +2,7 @@
 
 [English](README.en.md) · [下载 v0.3.5](https://github.com/wikigsroom/LMA/releases/tag/v0.3.5) · [使用手册](docs/USER_GUIDE.md) · [文档目录](docs/README.md) · [更新记录](CHANGELOG.md)
 
-**开发中：v0.3.6 / code56，尚未发布 Release。** 本次补齐 [F5 官方兼容中文前端](docs/F5_FRONTEND.md)、[本机 Hunyuan3D Paint / PBR 闭环](docs/LOCAL_MATERIALS.md)，并加入 UltraTex 所需 BSA 原生算子；开发目录为 **52 个模板 / 82 个模型包 / 17 个扩展引擎加文本**。新增资产仍须用户主动选择，不附模型或语言表。D04 UltraTex、D05 UniForge、D08 SAM、D09 MV-SAM、D10 SUPRA 的完整流程仍缺代码，**全部适配尚未完成**。[编号实现与完整待办](docs/REMAINING_ADAPTATION.md) · [当前开发程序证据](verification/adaptation/status.json)。下文 v0.3.5 的案例和汇总保留为已发布版本记录，不冒充当前检查。
+**开发中：v0.3.6 / code56，尚未发布 Release。** 本次补齐 [F5 官方兼容中文前端](docs/F5_FRONTEND.md)、[本机 Hunyuan3D Paint / PBR 闭环](docs/LOCAL_MATERIALS.md)，并加入 UltraTex 所需 BSA 原生算子及[固定网络 / LoRA 转换组件](docs/ULTRATEX_FLOW.md)；开发目录为 **52 个模板 / 82 个模型包 / 17 个扩展引擎加文本**。新增资产仍须用户主动选择，不附模型或语言表。D04 UltraTex、D05 UniForge、D08 SAM、D09 MV-SAM、D10 SUPRA 的完整流程仍缺代码，**全部适配尚未完成**。[编号实现与完整待办](docs/REMAINING_ADAPTATION.md) · [当前开发程序证据](verification/adaptation/status.json)。下文 v0.3.5 的案例和汇总保留为已发布版本记录，不冒充当前检查。
 
 LMA（Local Model App）让用户在 Android 手机上选择、下载、管理和运行本地模型，提供聊天、生图、生视频、生音频、任务队列、结果库与本机 API。它是独立社区项目，与 LM Studio 无隶属关系；当前应用界面主要为中文，文档提供中英双语。
 
@@ -12,7 +12,7 @@ LMA（Local Model App）让用户在 Android 手机上选择、下载、管理�
 
 **本页已恢复详细使用场景、调用示例、历史生成案例、失败记录和测试入口。** 当前生产页面、桌面历史模型输出与实际 Android 验收分别标注；历史图片或音频不作为 v0.3.5 的模型实跑结果。[本次文档修复说明](docs/releases/v0.3.1-readme.md)
 
-开发源码的当前程序检查为 **36 组 / 12,975 项**，其中 F5 前端 6,671、材质几何 61、Paint 网络 / 工作器 227、实际导出 CLI 17、BSA 47、应用扩展 592、全页面 687、缺代码发布保护 9；其余为共用基座回归。原签名开发 APK、包检查、ARM64 / API28 / 16 KiB 与 Lint **0 错误 / 16 条既有警告**已核对。没有运行完整训练模型或手机耐久测试。新增 [6 张页面图 / GIF / MP4](docs/MEDIA.md)，用例扩展到 **C01–C35**，历史生成案例 H01–H18 保留。
+开发源码的当前程序检查为 **37 组 / 13,076 项**，其中 F5 前端 6,671、材质几何 61、Paint 网络 / 工作器 227、实际导出 CLI 17、BSA 47、UltraTex 网络组件 101、应用扩展 592、全页面 687、缺代码发布保护 9；其余为共用基座回归。原签名开发 APK、包检查、ARM64 / API28 / 16 KiB 与 Lint **0 错误 / 16 条既有警告**已核对。没有运行完整训练模型或手机耐久测试。新增 [6 张页面图 / GIF / MP4](docs/MEDIA.md)，用例扩展到 **C01–C36**，历史生成案例 H01–H18 保留。
 
 <a id="contents"></a>
 ## 阅读路线
@@ -374,6 +374,11 @@ Release 附 APK、源码 ZIP、验证 ZIP、截图 ZIP、GIF／MP4、构建与�
 
 - 结果页直接解码 GLB 内嵌基础色、金属 / 粗糙度贴图，按 UV 显示，支持拖动旋转和缩放；无需外部查看器或网络贴图。
 - 超出文件 / 贴图内存上限或不支持的 GLB 扩展会显示具体原因，仍可导出完整文件。关闭页面后释放预览资源。[实际页面夹具截图](docs/media/development/material/06-material-preview.png)不是模型生成结果。
+
+### C36 · 显式转换 UltraTex 网络组件（开发中）
+
+- 开发者选择本地 FLUX.1 dev / FLUX.2 基础权重和 LoRA，离线导出保留动态前景、原位置编号和 BSA 的实际网络。既有目录拒绝覆盖；每个文件记录来源和哈希。
+- [101 项原源码 / 实际 C++ ORT / 两种 CLI 检查](docs/ULTRATEX_FLOW.md)。当前只交付网络组件，完整手机文本 / VAE / 采样 / 材质编排仍缺代码，未登记成可运行模型。
 
 ## 基座如何工作
 

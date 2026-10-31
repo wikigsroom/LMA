@@ -9,8 +9,8 @@ ROOT=Path(__file__).resolve().parents[1]
 OUT=ROOT/'verification/adaptation'
 RECORDS={**SOURCES,'f5-frontend.json':'build/f5-frontend-tests/results.json','material.json':'build/material-tests/results.json',
     'paint.json':'build/paint-tests/results.json','paint-export.json':'build/paint-export-tests/results.json','ultratex-attention.json':'build/ultratex-attention-tests/results.json',
-    'adaptation-audit.json':'build/adaptation-audit-tests/results.json'}
-LIMITS={**MINIMUM,'expansion':592,'ui':687,'f5-frontend':6671,'material':61,'paint':227,'paint-export':17,'ultratex-attention':47,'adaptation-audit':9}
+    'adaptation-audit.json':'build/adaptation-audit-tests/results.json','ultratex-flows.json':'build/ultratex-flow-tests/results.json'}
+LIMITS={**MINIMUM,'expansion':592,'ui':687,'f5-frontend':6671,'material':61,'paint':227,'paint-export':17,'ultratex-attention':47,'adaptation-audit':9,'ultratex-flows':101}
 
 
 def read(p):return json.loads(p.read_text('utf-8'))
@@ -64,6 +64,8 @@ def check():
         n=records[name];assert n['abi']=='arm64-v8a' and n['android_api_notes']==[28] and not n['model_inference_tested'] and not n['physical_device_tests']
     assert records['f5-frontend.json']['exactSegmentation'] and records['f5-frontend.json']['exactPinyinTokens'] and records['f5-frontend.json']['exactVocabularyIds']
     assert not records['ultratex-attention.json']['fullUltraTexAdapter']
+    f=records['ultratex-flows.json'];assert f['actual_native_ort'] and f['publisher_random_networks']
+    assert not any(f[k] for k in ('complete_adapter','app_recipe_registered','complete_models_downloaded','complete_models_run','physical_device_tests','virtualization_used'))
     assert records['adaptation-audit.json']['release_actions_rejected'] and not records['adaptation-audit.json']['github_writes']
     for name in ('paint.json','paint-export.json','material.json','ultratex-attention.json'):
         assert records[name]['completeModelsRun']==0

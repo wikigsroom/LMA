@@ -29,6 +29,7 @@
 | B06 | Paint 应用闭环 | 七个必需组件、独立参数及输入角色、本地管理、预检 / 草稿 / 防重复提交、共用子进程、取消 / 失败清理、原子结果、内嵌 PNG / UV / PBR 预览与 GPU 资源释放 |
 | B07 | UltraTex 所需 BSA 基础算子 | 固定 SLA block means / smooth-K / top-k / online softmax，FP32 / BF16 与有界 CPU / ONNX bridge；它仍不是完整 UltraTex 适配 |
 | B08 | 文档和演示 | 双语操作 / 资产 / 转换 / 范围说明、当前编号清单、生产页面 fixture 截图 / GIF / MP4；原 README 用例、API 示例、历史案例不删除 |
+| B09 | UltraTex 实际网络转换组件 | 固定 FLUX.1 dev / FLUX.2、动态前景及原位置、精确 RoPE 表、严格 LoRA 合并、两种离线 CLI；101 项实际网络 / 原生 ORT 检查；[操作与缺口](ULTRATEX_FLOW.md)，未注册 App 配方 |
 
 CPU 材质实现明确披露与上游 CUDA 光栅、腐蚀 / 修补和随机流的差异。BSA 对同分数采用固定索引顺序；Torch / CUDA 的 `topk(sorted=False)` 不保证跨设备同序。这些检查不构成完整训练模型、论文质量或手机资源验收。
 
@@ -36,7 +37,7 @@ CPU 材质实现明确披露与上游 CUDA 光栅、腐蚀 / 修补和随机流�
 
 | 编号 | 测评项 | 必须补齐的生产路径 | 已有但不足的基础 |
 | --- | --- | --- | --- |
-| P01 | D04 UltraTex | FLUX.1 / FLUX.2 对应资产、LoRA、条件图、BTD mask 压缩与位置编号、匹配 VAE / 文本编码、扩散和 PBR 烘焙；用户参数与模型清单 | 通用光栅 / UV / 烘焙、BSA 算子；不能登记为已运行 UltraTex |
+| P01 | D04 UltraTex | 同机文本编码、tile VAE / BN / 材质解码、规范条件 / packing、Euler / CFG / 黑背景恢复、albedo / MR 与 App 完整编排 | 已有实际网络转换 / LoRA / 前景压缩及原位置、通用光栅 / UV / 烘焙和 BSA；仍不能登记为已运行 UltraTex |
 | P02 | D05 UniForge3D | 联合 VGGT / DiT、DINOv3、多视图 anchor 与联合特征、稀疏结构 / SLAT 采样、FDG / 材质解码及 GLB | 卷积、池化 / 细分、packed attention；不以 TRELLIS 或普通四图替代联合网络 |
 | P03 | D08 SAM 3D Objects | mask、MoGe 点图、MoT 结构与布局 / pose、SLAT 与 FlexiCubes、选定输出的几何 / 外观及 GLB | 五类稀疏 CPU 算子；必须保留 SAM 的池化分母和坐标顺序 |
 | P04 | D09 MV-SAM3D | D08 基础、Depth Anything 3、多相机对齐、权重融合与 MultiDiffusion、首步预热 / 回退重放 | 既有四图方案不能代替该模型；不以单图重复执行冒充多视图 |

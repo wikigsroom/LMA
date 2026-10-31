@@ -5,9 +5,10 @@
 - F5 官方兼容前端：固定 jieba DAG / HMM、pypinyin 多音字 / 变调及 F5 词元 / ID，2,222 文本 / 6,671 项真实 C++ 对照；新语言资产配方由用户明确选择，旧配方保留。No dictionaries or weights in APK.
 - Hunyuan3D Paint 本机完整程序路径：PNG＋GLB、六视图条件、DINO / VAE、双材质 / 多视图 UNet、UniPC、RealESRGAN、xatlas 与 PBR GLB；独立 CPU 光栅 / 最近可见纹理填充的差异明确披露。Offline five-graph conversion, real checksums and actual CLI checks use random architecture fixtures, not trained models.
 - UltraTex 所需 BSA 加入签名内置 CPU / ONNX：smooth-K 分块选择、FP32 / BF16、在线 softmax、有界资源和原源码选择对照；47 项检查。This is a shared operator, not a complete UltraTex adapter.
+- UltraTex 补齐固定 FLUX.1 dev / FLUX.2 网络转换、动态前景 / 原位置、双精度来源的精确 RoPE 表和严格 LoRA 合并；101 项检查覆盖实际源码网络、生产 C++ ORT、两种真实转换 CLI 和旧导出不覆盖。Flow components only; complete on-phone text/VAE/sampling/application orchestration remains missing.
 - 开发范围52模板 / 82包 / 17扩展引擎加文本；原推荐与全部冻结范围保留。独立参数 / 归位、输入角色、导入、预检、草稿、幂等、子进程取消 / 清理和队列复用；新增34页面检查和6截图 / GIF / MP4；PBR预览验证实际像素、UV、金属 / 粗糙度、旋转和资源回收。
-- 中英 README 保留原有案例，新增 C31–C35；详细前端 / 材质指南、完整编号待办、当前开发证据与原发布证据分开。Correct stale completion guidance: program-only validation no longer requires a phone or full-model runs.
-- 当前程序验证36组 / 12,975项，UI687；三个实际发布入口在缺代码时拒绝操作，9项回归确认67个原发布文件未改。原签名APK、独立包检查与Lint0错误 / 16既有警告同步。No trained-model runs, virtual machines or device claims.
+- 中英 README 保留原有案例，新增 C31–C36；详细前端 / 材质指南、完整编号待办、当前开发证据与原发布证据分开。Correct stale completion guidance: program-only validation no longer requires a phone or full-model runs.
+- 当前程序验证37组 / 13,076项，UI687；三个实际发布入口在缺代码时拒绝操作，9项回归确认67个原发布文件未改。原签名APK、独立包检查与Lint0错误 / 16既有警告同步。No trained-model runs, virtual machines or device claims.
 - **D04 / D05 / D08 / D09 / D10 与已披露子集之外仍缺实际实现；没有发布“全部适配完成”Release。** New APK identity is code56 / 0.3.6; preserve original signer and immutable v0.3.5 assets. Release preparation rejects these missing-code gaps. See [开发交付 / Development notes](docs/releases/v0.3.6-development.md).
 
 ## 0.3.5 — 本地形状精修与稀疏运算基座 / Local shape refinement and sparse CPU foundation

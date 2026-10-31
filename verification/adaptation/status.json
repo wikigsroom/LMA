@@ -245,7 +245,12 @@
     "adaptation-audit.json": {
       "source": "build/adaptation-audit-tests/results.json",
       "bytes": 1374,
-      "sha256": "9b54e9d589e7df8c4438d20cfae297b677df8fc058e3dd0f8c3229d196fdfc3b"
+      "sha256": "6320e5c839c28128d1388f1dc31a711626564898f3da7233f204ebde0df46b42"
+    },
+    "ultratex-flows.json": {
+      "source": "build/ultratex-flow-tests/results.json",
+      "bytes": 12934,
+      "sha256": "cacb1cc1c3677774bf7d01a475f1b55564db79659c9db833f98c55b6d28b5a48"
     }
   },
   "scope": "catalogue/release-0.3.6-implementation.json",
@@ -261,9 +266,9 @@
   "input_fingerprint": {
     "catalogue/release-0.3.6-implementation.json": "82878498cb0d7af336b6b4af3d1b5ece4c43c0a8be9f351cc9abf3b589df460b",
     "docs/proposals/program-validation-policy.json": "0810f0ae684b894d40c92a8bff08e05f46ed320e8290b85edd63530eb9eae4c0",
-    "research/portability/adaptation-current.json": "eea8654cef031c4215c49599b27813b2763e751b571c8427340674736fca9f67",
-    "tools/adaptation_evidence.py": "6926db6d299e6eb969c50f9a12093ac49bbebffbbd75df72a5b2e97592a15fe2",
-    "tools/audit_adaptations.py": "5d12fdae9d50d7715ca072e2a8e357f9d66a41970101e063547e9522b2a32163",
+    "research/portability/adaptation-current.json": "8281a29204c1c6fcd24b8a3400fc4da43b1b6c0651d209d49f8d056f2ea6572f",
+    "tools/adaptation_evidence.py": "4bf6381a72167e930980675914ae6194f2cbeab4d2f497c4480d810a7ee92f4c",
+    "tools/audit_adaptations.py": "0350eb955932ce51605ac6fbf607ed31cc9bbdb071fa219993cf6849b52d0306",
     "tools/check_repository.py": "a929e851640b1b5d1a7d07310958d1cae8e1bbf6fbfb9320d0bef41a33c682a2",
     "tools/program_evidence.py": "3a177f161d71ad351c46e5149b9bd9ee00bab804165c5cc1b833f8deae2649d7",
     "tools/program_release.py": "5d4b11015ce0cb2e33cf28b819e2decb5a6a83df5cf2a462339db16e6cc7a799",

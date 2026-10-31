@@ -1,0 +1,58 @@
+{
+  "schema": "lma.ultratex-flow-source-lock/1",
+  "repository": "yiboz2001/UltraTex",
+  "revision": "a726678f3f3631fe2c5e3d1fb4597114784c7a8b",
+  "directory": "build/spatial-source-review/repos/D04",
+  "files": [
+    {
+      "path": "LICENSE",
+      "bytes": 1067,
+      "git_blob": "739e7109b4d169ee9e6918265cdc8f49905ea52f",
+      "sha256": "1d0ddbb9d271e32eee95c487afb53e2d336bce67c2c0e601cda263ed13a1f419"
+    },
+    {
+      "path": "ultratex/backbones/flux1/math.py",
+      "bytes": 8002,
+      "git_blob": "cf6a7473228187084d21e8c33887ee81766c0e36",
+      "sha256": "377a977e7f4c594c92c3058bdac0d18cb67f4dd78090e345c9f4f2e6fa5f4f2e"
+    },
+    {
+      "path": "ultratex/backbones/flux1/model.py",
+      "bytes": 10494,
+      "git_blob": "d790293ae8804d97e06ebb0a086781c5d667ff2d",
+      "sha256": "f6c30bdd3f60379b572cda99d544e106bda73bd3e75d965439aa0f3d8d09a905"
+    },
+    {
+      "path": "ultratex/backbones/flux1/modules/layers.py",
+      "bytes": 18155,
+      "git_blob": "defbc3b6a1ba299a2a8569152726c4215bff715d",
+      "sha256": "38c85436ee2c89edf93acdc3f1dffb618dc42f7c99e0cca64816add4adad2a25"
+    },
+    {
+      "path": "ultratex/backbones/flux1/sampling.py",
+      "bytes": 12711,
+      "git_blob": "4fd18d8fc206dc03375fd2e50acd25e6cb7ae885",
+      "sha256": "3c7b6bc97908cbec8b1f630f879f6a4568dd1e3f5bc02726f3d632b5d7449f60"
+    },
+    {
+      "path": "ultratex/backbones/flux2/model.py",
+      "bytes": 31325,
+      "git_blob": "d803b222440e8678132444a768bb768411332419",
+      "sha256": "324a7b9d4f9250aae39db4ec5a9d2afeb8157177d6cc9762bdb2f3ca03a279ec"
+    },
+    {
+      "path": "ultratex/backbones/flux2/sampling.py",
+      "bytes": 14916,
+      "git_blob": "617f7c6fa871415034aee7af6fd94cef10d1f809",
+      "sha256": "05e0a212e48268bcac26dbb17eb2fc064f0fed54f0ecbc03d764499cb048d743"
+    },
+    {
+      "path": "train_flux2.py",
+      "bytes": 61291,
+      "git_blob": "3d769ff503966def5145d09d0da2c22bad8c6dd7",
+      "sha256": "5c042967b7c2e8ae29a2999c1b29c1def935207189422d25b9c841f29baace3a"
+    }
+  ],
+  "scope": "Flow networks and LoRA conversion only; not a complete model workflow",
+  "trained_models_downloaded": 0
+}

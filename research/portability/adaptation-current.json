@@ -36,6 +36,16 @@
       "scope": "Shared CPU operator only, not a complete UltraTex adapter",
       "complete_trained_model_tested": false,
       "phone_inference_tested": false
+    },
+    "ultratex_flow_components": {
+      "source": [
+        "tools/ultratex_flows.py",
+        "tools/export_ultratex_flow.py",
+        "third_party/ultratex-flow-source-lock.json"
+      ],
+      "scope": "Pinned FLUX1 dev / FLUX2 guidance and Klein no-guidance networks, dynamic foreground compaction / IDs, exact integer rotary tables and strict LoRA conversion; not an app workflow",
+      "complete_trained_model_tested": false,
+      "phone_inference_tested": false
     }
   },
   "unported_configurations": [
@@ -60,18 +70,21 @@
         }
       ],
       "program_integrated": false,
-      "integration_status": "native_architecture_port_required",
+      "integration_status": "partial_network_export_not_app_workflow",
       "remaining_implementation": [
-        "mesh input and G-buffer rasterizer",
-        "BTD/BSA sparse-attention kernels",
-        "matched diffusion/VAE weights and PBR baking"
+        "same-phone CLIP/T5 or Qwen3 tokenization and text encoding",
+        "matched tilewise VAE, stochastic FLUX1 or FLUX2 BN transforms and material decoder",
+        "UltraTex canonical geometry conditions, masks, token packing and positional offsets",
+        "Euler/CFG sampling, black-background restoration and distinct albedo/MR passes",
+        "complete app asset/recipe/parameter/child-process and PBR orchestration"
       ],
       "phone_feasibility": "not_established",
       "source_review_is_full_operator_audit": false,
       "building_blocks_are_complete_model_adapter": false,
       "shared_cpu_building_blocks": [
         "CPU raster / UV / PBR bake",
-        "block sparse attention / smooth-key selection / online softmax"
+        "block sparse attention / smooth-key selection / online softmax",
+        "pinned FLUX1 / FLUX2 flow export, dynamic foreground positions and strict publisher LoRA merge"
       ]
     },
     {
@@ -325,11 +338,14 @@
     "native/speech_extra/f5_official.hpp": "81bba8f9280018b0b3a592cec7fd2c00993cb0a1f349d2de354be10b75e10730",
     "native/speech_extra/worker.cpp": "7f017136d321bfc8c13073d0fd531a4073f141c13b83415c5e4c7645d117b365",
     "research/portability/audit-v0.3.5.json": "8f231bbe005ba5d0271aef9b774b3a19226aef8d066170f0d252e92a59765e05",
-    "tools/audit_adaptations.py": "5d12fdae9d50d7715ca072e2a8e357f9d66a41970101e063547e9522b2a32163",
+    "third_party/ultratex-flow-source-lock.json": "a1eb829914ee7beee50aae1c175710019e1547e8837630372be9171f0476288a",
+    "tools/audit_adaptations.py": "0350eb955932ce51605ac6fbf607ed31cc9bbdb071fa219993cf6849b52d0306",
     "tools/export_f5_frontend.py": "9d0027b98658436284d0a4d84cf17cc709ee86ba7d6b488039ecee7ae1da6608",
     "tools/export_paint.py": "737fff662368ec3b7d7ffd92ff2de6666db924d37fb720588a4a44dfdb593baa",
+    "tools/export_ultratex_flow.py": "06035f2534f8172cc69244f7c74a357e3d1bfc806f84df477709b48286fb3cec",
     "tools/paint_catalogue.py": "05d8b306541c5ad955921c68629b8d087de17cd5c328cb01eaf46af28b3d02ef",
     "tools/paint_graphs.py": "08013c78f80af928fe96c3211185801d783c1d57c29f9ce1a6a2d9190367787d",
-    "tools/ultratex_attention.py": "e8258a1d88b3da7428a2400f6ace8b1123855fcf07cd2fb10573b7a6cac0c373"
+    "tools/ultratex_attention.py": "e8258a1d88b3da7428a2400f6ace8b1123855fcf07cd2fb10573b7a6cac0c373",
+    "tools/ultratex_flows.py": "9d07348cd8e53c6f2f50c0fb3f9bd3a0a5b318fdfd905f725f7a060e3db1a203"
   }
 }

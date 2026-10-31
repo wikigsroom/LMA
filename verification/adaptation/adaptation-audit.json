@@ -30,8 +30,8 @@
     }
   ],
   "input_fingerprint": {
-    "research/portability/adaptation-current.json": "eea8654cef031c4215c49599b27813b2763e751b571c8427340674736fca9f67",
-    "tools/audit_adaptations.py": "5d12fdae9d50d7715ca072e2a8e357f9d66a41970101e063547e9522b2a32163",
+    "research/portability/adaptation-current.json": "8281a29204c1c6fcd24b8a3400fc4da43b1b6c0651d209d49f8d056f2ea6572f",
+    "tools/audit_adaptations.py": "0350eb955932ce51605ac6fbf607ed31cc9bbdb071fa219993cf6849b52d0306",
     "tools/program_evidence.py": "3a177f161d71ad351c46e5149b9bd9ee00bab804165c5cc1b833f8deae2649d7",
     "tools/program_release.py": "5d4b11015ce0cb2e33cf28b819e2decb5a6a83df5cf2a462339db16e6cc7a799",
     "tools/test_adaptation_audit.py": "29325149cc8b0418efa5470a079e6db401561d78aada552c4f3ca346be617297"

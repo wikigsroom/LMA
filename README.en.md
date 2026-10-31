@@ -2,7 +2,7 @@
 
 [中文](README.md) · [Download v0.3.5](https://github.com/wikigsroom/LMA/releases/tag/v0.3.5) · [User guide](docs/USER_GUIDE.en.md) · [Documentation](docs/README.md) · [Detailed scenarios](#use-cases) · [Cases and failures](#case-studies)
 
-**In development: v0.3.6 / code56; no new Release published.** This work adds the [official-compatible F5 Chinese frontend](docs/F5_FRONTEND.en.md), [on-phone Hunyuan3D Paint / PBR workflow](docs/LOCAL_MATERIALS.en.md) and a native BSA operator needed by UltraTex. Development has **52 templates / 82 bundles / 17 extension engines plus text**. Every model and linguistic asset remains an explicit user choice. Complete D04 UltraTex, D05 UniForge, D08 SAM, D09 MV-SAM and D10 SUPRA workflows still need implementation: **all adaptations are not complete**. [Numbered status and full work list](docs/REMAINING_ADAPTATION.en.md) · [Current development evidence](verification/adaptation/status.json). The v0.3.5 cases and totals below remain published-version records, not current-source validation.
+**In development: v0.3.6 / code56; no new Release published.** This work adds the [official-compatible F5 Chinese frontend](docs/F5_FRONTEND.en.md), [on-phone Hunyuan3D Paint / PBR workflow](docs/LOCAL_MATERIALS.en.md) and a native BSA operator and [pinned flow / LoRA conversion components](docs/ULTRATEX_FLOW.en.md) needed by UltraTex. Development has **52 templates / 82 bundles / 17 extension engines plus text**. Every model and linguistic asset remains an explicit user choice. Complete D04 UltraTex, D05 UniForge, D08 SAM, D09 MV-SAM and D10 SUPRA workflows still need implementation: **all adaptations are not complete**. [Numbered status and full work list](docs/REMAINING_ADAPTATION.en.md) · [Current development evidence](verification/adaptation/status.json). The v0.3.5 cases and totals below remain published-version records, not current-source validation.
 
 LMA lets users select, download, manage and run local models on an Android phone, with chat, multimodal jobs, artifacts and a local API. App updates deliver the foundation. Users explicitly choose every model and dependency. The APK contains no model weights and requires no ROOT, Termux, containers or other computing devices.
 
@@ -10,7 +10,7 @@ LMA lets users select, download, manage and run local models on an Android phone
 
 **v0.3.1 adds 44 optional community checkpoint recipes (30 image / 14 video) across 14 families. Of these, 28 have sourced NSFW labels.** Content labels distinguish publisher declarations, rating vocabularies, file markers, mirrors and unverified HF hints. These 44 community choices remain in v0.3.5; the 14 Wan video entries are training versions of one 1.3B family. See the [complete source, license, compatibility and usage guide](docs/COMMUNITY_MODELS.en.md).
 
-Current development program checks: **36 suites / 12,975 assertions**, including F5 frontend 6,671, material geometry 61, Paint networks/worker 227, actual export CLI 17, BSA 47, application expansion 592, all UI 687 and missing-code release protection 9, plus shared-foundation regressions. The original-signature development APK, package, ARM64/API28/16 KiB and Lint **0 errors / 16 existing warnings** are checked. No complete trained model or phone endurance test ran. [Six new screenshots / GIF / MP4](docs/MEDIA.md) accompany **C01–C35**; historical cases H01–H18 are retained.
+Current development program checks: **37 suites / 13,076 assertions**, including F5 frontend 6,671, material geometry 61, Paint networks/worker 227, actual export CLI 17, BSA 47, UltraTex flow components 101, application expansion 592, all UI 687 and missing-code release protection 9, plus shared-foundation regressions. The original-signature development APK, package, ARM64/API28/16 KiB and Lint **0 errors / 16 existing warnings** are checked. No complete trained model or phone endurance test ran. [Six new screenshots / GIF / MP4](docs/MEDIA.md) accompany **C01–C36**; historical cases H01–H18 are retained.
 
 <a id="install"></a>
 ## Install and use
@@ -363,7 +363,7 @@ These describe operations and expected behavior, not newly passed physical-devic
 ### C32 · Generate local PBR textures for an existing GLB (development)
 
 - Import a matched Paint config, sampler, five ONNX graphs and data files. Select the model in Local, then explicitly attach a reference PNG and an existing GLB.
-- Independently edit steps, guidance, UV atlas and enhancement. All stages execute on the phone and produce GLB with embedded albedo / metallic-roughness; the current in-app preview displays geometry.
+- Independently edit steps, guidance, UV atlas and enhancement. All stages execute on the phone and produce GLB with embedded albedo / metallic-roughness; the current in-app preview displays embedded PBR materials.
 - [Complete workflow, conversion and limits](docs/LOCAL_MATERIALS.en.md) · [Screenshots](docs/media/development/material/manifest.json) · [GIF](docs/media/development/material/material-ui.gif) · [MP4](docs/media/development/material/material-ui.mp4). Media uses labelled UI FIXTURE pages.
 
 ### C33 · Save, restore or cancel a material job (development)
@@ -381,6 +381,11 @@ These describe operations and expected behavior, not newly passed physical-devic
 
 - Decode embedded base-color and metallic/roughness PNGs, display their UVs and drag/zoom locally, without external texture requests or another viewer.
 - File/pixel limits and unsupported GLB extensions produce an explanation; full export remains available. Closing the page releases preview resources. The [actual production UI fixture](docs/media/development/material/06-material-preview.png) is not a model-generated result.
+
+### C36 · Explicitly convert UltraTex flow components (development)
+
+- Developers select local FLUX.1 dev / FLUX.2 base weights and LoRA for offline export of actual networks with dynamic foreground, original positions and BSA. Existing destinations are preserved; source identity and hashes accompany each file.
+- [101 publisher / actual native ORT / two-CLI checks](docs/ULTRATEX_FLOW.en.md). These are network components only: complete same-phone text / VAE / sampling / material orchestration still needs implementation and no runnable model is registered.
 
 ## Foundation stages in practice
 
