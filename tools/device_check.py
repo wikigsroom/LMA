@@ -115,8 +115,10 @@ def main():
             program_request("/v1/models", headers={"Origin": "https://example.invalid"}, expected=403)
             external.append("Bearer key and browser-origin rejection on real phone")
             models_before = program_request("/v1/models")["data"]
-            require_empty = not models_before
-            if not require_empty: raise RuntimeError("Zero-model acceptance requires no installed models; existing assets are preserved")
+            if not isinstance(models_before, list) or any(not isinstance(row.get("installed"), bool) for row in models_before): raise RuntimeError("Invalid local model installation flags")
+            if any(row["installed"] for row in models_before): raise RuntimeError("Zero-model acceptance requires no installed models; existing assets are preserved")
+            # The API also lists user-owned partial/prepared entries. They are not installed weights.
+            report["uninstalled_local_model_records"] = len(models_before)
             engines = program_request("/v1/engines")["data"]
             if len(engines) < 18: raise RuntimeError("Extension engine registry incomplete")
             external.append("Zero installed models and complete extension engine registry")

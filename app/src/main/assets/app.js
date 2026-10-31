@@ -4,7 +4,7 @@
   var modelSignature = '', chatSignature = '', settingsDirty = false, settingsFilled = false;
   var pendingSettings = null, pendingDraft = null, modalKind = '', returnFocus = null, toastTimer, requestSequence = 0;
   var searchTimer, hubStarted = false, hubFileSignature = '', pendingHubToken = null;
-  var modelEditor = null;
+  var modelEditor = null, modelViews = null, appliedTheme = '', serverSignature = '', runtimeSignature = '';
   var $ = function (id) { return document.getElementById(id); };
   var paths = {
     plus: '<path d="M12 5v14M5 12h14"/>',
@@ -46,7 +46,7 @@
     return Math.round(value) + ' B';
   }
   function memory(value) { return value ? (value / 1073741824).toFixed(1) + ' GiB' : '—'; }
-  function models() { return state ? (state.models || []).concat(window.LMAFoundation.views()).map(function (m) { return window.LMARecommendations.bind(window.LMACommunity.bind(m, state), state); }) : []; }
+  function models() { if (!state) return []; if (!modelViews) modelViews = (state.models || []).concat(window.LMAFoundation.views()).map(function (m) { return window.LMARecommendations.bind(window.LMACommunity.bind(m, state), state); }); return modelViews; }
   function modelById(id) { return models().filter(function (m) { return m.id === id || m.bundleId === id; })[0]; }
   function engine() { return state ? state.engine || {} : {}; }
   function textQueued() { return ['waiting', 'suspended'].indexOf(engine().state) >= 0; }
@@ -79,20 +79,25 @@
     document.querySelectorAll('.page').forEach(function (el) { el.hidden = el.id !== 'page-' + next; el.classList.toggle('active', !el.hidden); });
     document.querySelectorAll('.nav-item').forEach(function (el) { var active = el.dataset.tab === next; el.classList.toggle('active', active); if (active) el.setAttribute('aria-current', 'page'); else el.removeAttribute('aria-current'); });
     if (next === 'settings' && !settingsDirty) fillSettings();
+    if (next === 'models') renderModels();
+    if (next === 'server' && state) renderServer();
     if (next === 'chat') { renderChat(); resizeInput(); requestAnimationFrame(function () { $('messages').scrollTop = $('messages').scrollHeight; }); }
   }
   function applyTheme() {
     var preference = state && state.settings ? state.settings.theme : 'system';
     var dark = preference === 'dark' || (preference === 'system' && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
-    document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+    var effective = dark ? 'dark' : 'light'; if (appliedTheme === effective) return; appliedTheme = effective;
+    document.documentElement.dataset.theme = effective;
     if (window.Android && window.Android.theme) window.Android.theme(dark);
   }
   function receive(raw) {
     try {
       state = typeof raw === 'string' ? JSON.parse(raw) : raw;
       if (!state || !Array.isArray(state.models) || !state.settings || !state.engine) throw new Error('状态数据不完整');
-      applyTheme(); renderRuntime(); renderModels(); renderChat(); renderServer(); renderHubFiles(); window.LMAFoundation.receive(); window.LMARecipes.receive(); window.LMAExpansion.receive();
-      $('hfTokenStatus').textContent = state.settings.hfTokenSet ? '已设置令牌' : '未设置令牌';
+      modelViews = null;
+      applyTheme(); renderRuntime(); if (tab === 'models') renderModels(); if (tab === 'chat') renderChat(); if (tab === 'server') renderServer(); renderHubFiles(); window.LMAFoundation.receive(); window.LMARecipes.receive(); window.LMAExpansion.receive();
+      var tokenStatus = state.settings.hfTokenSet ? '已设置令牌' : '未设置令牌';
+      if ($('hfTokenStatus').textContent !== tokenStatus) $('hfTokenStatus').textContent = tokenStatus;
       if (pendingHubToken) {
         var tokenResult = commandResult(pendingHubToken);
         if (tokenResult) { pendingHubToken = null; $('hfTokenHint').textContent = tokenResult.ok ? (state.settings.hfTokenSet ? '令牌已保存，后续 HF 请求使用官方源' : '令牌已清除') : tokenResult.error; }
@@ -114,7 +119,8 @@
         }
       }
       receiveModelSettings();
-      $('errorBanner').hidden = !state.error; $('errorText').textContent = state.error || '';
+      if ($('errorBanner').hidden !== !state.error) $('errorBanner').hidden = !state.error;
+      if ($('errorText').textContent !== (state.error || '')) $('errorText').textContent = state.error || '';
     } catch (e) { $('runtimeDetail').textContent = '状态读取失败：' + e.message; }
   }
   function commandResult(requestId) {
@@ -122,6 +128,8 @@
     return results.filter(function (result) { return result.requestId === requestId; })[0];
   }
   function renderRuntime() {
+    var signature = JSON.stringify([engine(), state.device && [state.device.name, state.device.totalMemory, state.device.freeStorage], models().filter(function (m) { return m.installed; }).map(function (m) { return m.id; }), state.foundation && state.foundation.execution]);
+    if (signature === runtimeSignature) return; runtimeSignature = signature;
     var e = engine(), m = modelById(e.modelId), loading = e.state === 'loading' || e.state === 'recovering' || textQueued();
     $('runtimeDot').className = 'runtime-dot' + (e.state === 'ready' ? ' ready' : loading ? ' loading' : e.state === 'error' ? ' error' : '');
     $('runtimeName').textContent = m && e.state !== 'stopped' ? m.name : e.state === 'error' ? '模型加载失败' : '尚未加载模型';
@@ -277,6 +285,8 @@
     return 'curl ' + endpoint() + '/chat/completions \\\n  -H "Authorization: Bearer ' + key + '" \\\n  -H "Content-Type: application/json" \\\n  -d \'{"model":"' + (engine().modelId || 'MODEL_ID') + '","messages":[{"role":"user","content":"你好"}],"stream":true}\'';
   }
   function renderServer() {
+    var signature = JSON.stringify([state.api, state.engine, state.settings, state.device, state.logs, keyVisible, models().filter(function (m) { return m.id === engine().modelId; })]);
+    if (signature === serverSignature) return; serverSignature = signature;
     var e = engine(), api = state.api || {state: 'stopped'}, ready = api.state === 'ready', active = ready, m = modelById(e.modelId);
     $('serverStateLabel').textContent = ready ? '本地模型接口运行中' : api.state === 'error' ? '接口启动失败' : '接口尚未启动';
     $('serverStatePill').textContent = ready ? '运行中' : api.state === 'error' ? '启动失败' : '未启动';
@@ -580,6 +590,6 @@
   window.LMAExpansion.init(bridge); window.LMACommunity.init(bridge); window.LMAFoundation.init(bridge); window.LMARecipes.init(bridge);
   window.LMA = {receive: receive, back: function () { if (!$('modalBackdrop').hidden) { closeModal(); return true; } if (tab !== 'models') { route('models'); return true; } return false; }};
   hydrateIcons(document); updateFilters();
-  if (window.Android) { try { receive(window.Android.getSnapshot()); } catch (e) { $('runtimeDetail').textContent = '等待原生服务连接…'; } }
+  if (window.Android) { try { if (window.Android.requestSnapshot) window.Android.requestSnapshot(); else receive(window.Android.getSnapshot()); } catch (e) { $('runtimeDetail').textContent = '等待原生服务连接…'; } }
   else { $('runtimeDetail').textContent = '界面预览 · 下载和推理请使用 Android 应用'; renderModels(); renderChat(); }
 }());

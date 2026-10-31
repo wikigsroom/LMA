@@ -41,7 +41,31 @@ public final class MainActivity extends Activity {
     private final Handler main = new Handler(Looper.getMainLooper());
     private boolean registered, loaded;
     private Object backCallback;
-    private final Runnable render = () -> { if (loaded && web != null) web.evaluateJavascript("window.LMA&&window.LMA.receive(" + JSONObject.quote(app.snapshot().toString()) + ")", null); };
+    private final java.util.concurrent.ExecutorService snapshots = java.util.concurrent.Executors.newSingleThreadExecutor();
+    private boolean snapshotRunning, snapshotPending;
+    private volatile boolean destroyed;
+    private long viewGeneration;
+    private Boolean nativeDark;
+    private final Runnable render = this::renderSnapshot;
+    // At most one snapshot is built at once. Bursts request one further fresh snapshot.
+    private void renderSnapshot() {
+        if (!registered || !loaded || web == null || destroyed) return;
+        if (snapshotRunning) { snapshotPending = true; return; }
+        snapshotRunning = true; final long generation = viewGeneration;
+        snapshots.execute(() -> {
+            String script = null;
+            try { script = "window.LMA&&window.LMA.receive(" + JSONObject.quote(app.snapshot().toString()) + ")"; }
+            catch (Exception error) { app.log("界面状态整理失败：" + error.getClass().getSimpleName()); }
+            final String ready = script;
+            if (destroyed) return;
+            main.post(() -> {
+                snapshotRunning = false;
+                if (!destroyed && registered && loaded && web != null && generation == viewGeneration && ready != null) web.evaluateJavascript(ready, null);
+                boolean again = snapshotPending || generation != viewGeneration; snapshotPending = false;
+                if (again && !destroyed && registered) scheduleRender();
+            });
+        });
+    }
     private final BroadcastReceiver receiver = new BroadcastReceiver() { @Override public void onReceive(Context context, Intent intent) { scheduleRender(); } };
 
     @Override public void onCreate(Bundle saved) {
@@ -117,7 +141,7 @@ public final class MainActivity extends Activity {
         } catch (Exception error) { return response(404, "Audio preview expired or not started"); }
     }
     private WebResourceResponse response(int status, String message) { return new WebResourceResponse("text/plain", "UTF-8", status, message, null, new ByteArrayInputStream(message.getBytes(StandardCharsets.UTF_8))); }
-    private void scheduleRender() { main.removeCallbacks(render); main.postDelayed(render, 60); }
+    private void scheduleRender() { if (destroyed) return; main.removeCallbacks(render); main.postDelayed(render, 60); }
     @Override public void onStart() {
         super.onStart(); IntentFilter filter = new IntentFilter(LmaApp.UPDATE);
         if (Build.VERSION.SDK_INT >= 33) registerReceiver(receiver, filter, Context.RECEIVER_NOT_EXPORTED); else registerLegacyReceiver(filter);
@@ -128,8 +152,8 @@ public final class MainActivity extends Activity {
     private void registerLegacyReceiver(IntentFilter filter) { registerReceiver(receiver, filter); }
     @Override public void onResume() { super.onResume(); if (web != null) web.onResume(); scheduleRender(); }
     @Override public void onPause() { if (web != null) web.onPause(); super.onPause(); }
-    @Override public void onStop() { if (registered) { unregisterReceiver(receiver); registered = false; } main.removeCallbacks(render); super.onStop(); }
-    @Override public void onDestroy() { main.removeCallbacksAndMessages(null); if (Build.VERSION.SDK_INT >= 33 && backCallback != null) Api33Back.unregister(this, backCallback); if (web != null) { web.removeJavascriptInterface("Android"); web.destroy(); web = null; } super.onDestroy(); }
+    @Override public void onStop() { if (registered) { unregisterReceiver(receiver); registered = false; } viewGeneration++; snapshotPending = false; main.removeCallbacks(render); super.onStop(); }
+    @Override public void onDestroy() { destroyed = true; snapshots.shutdownNow(); main.removeCallbacksAndMessages(null); if (Build.VERSION.SDK_INT >= 33 && backCallback != null) Api33Back.unregister(this, backCallback); if (web != null) { web.removeJavascriptInterface("Android"); web.destroy(); web = null; } super.onDestroy(); }
     @Override public void onBackPressed() { handleBack(); }
     private void handleBack() { if (web != null) web.evaluateJavascript("window.LMA?window.LMA.back():false", handled -> { if (!"true".equals(handled)) moveTaskToBack(true); }); }
     // Isolate API 33 class references from the Android 9 Activity's field types.
@@ -155,6 +179,8 @@ public final class MainActivity extends Activity {
     public final class Bridge {
         @JavascriptInterface public void theme(boolean dark) {
             main.post(() -> {
+                if (destroyed || nativeDark != null && nativeDark == dark) return;
+                nativeDark = dark;
                 int color = dark ? Color.rgb(18, 26, 41) : Color.rgb(245, 247, 250);
                 getWindow().setStatusBarColor(color); getWindow().setNavigationBarColor(color);
                 int flags = getWindow().getDecorView().getSystemUiVisibility();
@@ -163,6 +189,7 @@ public final class MainActivity extends Activity {
                 if (web != null) web.setBackgroundColor(color);
             });
         }
+        @JavascriptInterface public void requestSnapshot() { main.post(MainActivity.this::scheduleRender); }
         @JavascriptInterface public String getSnapshot() { return app.snapshot().toString(); }
         @JavascriptInterface public void dispatch(String raw) {
             JSONObject command = new JSONObject();

@@ -1,5 +1,5 @@
 {
-  "version": "0.3.8",
+  "version": "0.3.9",
   "kind": "current production UI with an explicit simulated bridge",
   "android_device": false,
   "model_inference": false,
@@ -117,18 +117,18 @@
     },
     {
       "file": "adaptation-ui.gif",
-      "bytes": 1354858,
-      "sha256": "bd857e4807643b0121849c6831534c134ca41158ced8a15c697619023809f22c"
+      "bytes": 1313040,
+      "sha256": "ee025ce0666e867861d2f97a611b975a31e6bcc2d6aa114c09c4cbed4b63ce40"
     },
     {
       "file": "adaptation-ui.mp4",
-      "bytes": 541259,
-      "sha256": "7aa804103f98c11ee248e27be7bb18b7d068a6978f7e1fd82c80721078bb1e71"
+      "bytes": 555206,
+      "sha256": "5f5bc62ad30ed29132ad50a55dd49a3e5f11e2cfb8653dbf19ff868aeba8138e"
     }
   ],
   "input_fingerprint": {
     "app/src/main/assets/app.css": "74d187b75c784487e190a6c9d5b78f0ac7dc9d84a7fd35316b4799fc70a433ab",
-    "app/src/main/assets/app.js": "5afc97df3f2277cbf32eebc80b4c0448b52d157dcf18cdf13904edc341636f10",
+    "app/src/main/assets/app.js": "f0be4f1bf14487032939a5ea7b8f85be8190000501123bcd6914c66e83a958c1",
     "app/src/main/assets/architectures/ltx098-upscaler.onnx": "b7b3b8067dc247002b92fa228bf8bd1271d3b535f0ac8f70c7f7e5e94448e2d9",
     "app/src/main/assets/asset-preparations.json": "b0a7cbac1a633310b9fff84164439ee8fe20a1df137d1075eb9263f531ccfd3b",
     "app/src/main/assets/audio-preview.js": "33bb898969f37c1f78c6664052c46da844d148defdcef4a54d64bc5829037f44",
@@ -341,7 +341,7 @@
     "app/src/main/assets/preparations/ltx098_vae_prepare/stage-08.onnx": "ff463e05293456c25aa5b1a14d82b1f732f1aee0f00da45f8e28419509ba8ac9",
     "app/src/main/assets/recipe-templates.json": "ed87f310d0a63251f765bbc4d8741b31806cc87145c0a96f762a110e097e6bd3",
     "app/src/main/assets/recipes.js": "b27e75ed85948a63476bf351cde94a59bec935a540f65e1a9fe798322bcd1b39",
-    "app/src/main/assets/recommendations.js": "608faca5d9c76c472992996ddeafe1aa428e73ed1009f9d503be6308209eb4d5",
+    "app/src/main/assets/recommendations.js": "13f0f41840a3a28a5b70d021f77c7700050f6007086228179cd794b331263215",
     "app/src/main/assets/recommendations.json": "8fa2c4c76526d63de81d37fac75af6d4664175df0f355b64c552274d67517ebf",
     "app/src/main/assets/versions.js": "2d629929a6db642c12a242ddcc62cd4f4090ab307e0cb669ceb98add031977e1",
     "app/src/main/assets/workbench.js": "367c6293b50bb1f4567da00eef20d795c7f775c2e5f6b5ec62b0e32989920e09",

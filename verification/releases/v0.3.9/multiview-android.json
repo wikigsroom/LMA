@@ -1,0 +1,32 @@
+{
+  "schema": "lma.native-build/1",
+  "engine": "pixal_multiview",
+  "file": "liblma-multiview.so",
+  "source_revision": "d1b4926452f9e09702b891db5f05acc845e153ed",
+  "abi": "arm64-v8a",
+  "backend": "cpu",
+  "ndk": "30.0.16248370",
+  "min_sdk": 28,
+  "bytes": 2238728,
+  "sha256": "7265f951bf31bfba239e01cfecb0a2ecce3b5de7d2251dc2974b11d3ce78c59d",
+  "dependencies": [],
+  "source_inputs": {
+    "native/multiview/CMakeLists.txt": "9adc013c8d43e44e32fd4c3575d37724f3b786ee666fccb0ab6f509912298505",
+    "native/multiview/worker.cpp": "c7c82aeb593c5299b4d7046dedbb899db4ca84c0735401eec43d0bb60477447a",
+    "native/runtime_metrics.hpp": "1fe93a5bd8426dbca3f8efaec6070c1cccc60e75006df40021141a69abec4a07",
+    "native/worker_common.hpp": "874ea65fb060c880b72484f771e2ea58dc5814480e76bfcb794ee8da87b5032c",
+    "third_party/multiview-source-lock.json": "eded839ea0d68ce26bef710f8ac011fc6c2e3a2adba0a03e7c0d55cd13fff2a8",
+    "tools/build_multiview.py": "ed3763d52f9dffa5aaea81eab2db9bdcd08b2de6c2314f295b968328365f5a5f",
+    "tools/fetch_multiview_sources.py": "b52bc751e89d085bc74ffcbb2005c55e0e1e24f44f2e7e9c6d1f63a688823877"
+  },
+  "vocabularies": "external_user_selected_components",
+  "physical_device_tests": 0,
+  "model_inference_tested": false,
+  "virtualization_used": false,
+  "elf_load_alignment": [
+    16384
+  ],
+  "android_api_notes": [
+    28
+  ]
+}

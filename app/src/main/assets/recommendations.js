@@ -37,6 +37,8 @@
       });
       document.querySelectorAll('[data-task]').forEach(function (button) {
         var task = button.dataset.task; if (!(task in labels)) return;
+        var signature = labels[task] + ':' + (active && enabled ? counts[task] : 'off');
+        if (button.dataset.recommendationCount === signature) return; button.dataset.recommendationCount = signature;
         button.textContent = labels[task]; button.removeAttribute('aria-label');
         if (!active || !enabled) return;
         var count = document.createElement('span'); count.className = 'recommendation-count'; count.textContent = String(counts[task]);

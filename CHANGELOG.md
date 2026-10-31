@@ -1,5 +1,13 @@
 # Changelog / 更新记录
 
+## v0.3.9 · 2026-11-01
+
+- 修复零模型界面卡顿：完整状态整理 / JSON 编码移到单一后台线程并合并更新；复用不可变模型描述，每包快照只解析一次 schema。Move catalogue serialization off the main thread, coalesce updates and reuse validated immutable definitions.
+- 复用每次接收的模型视图，减少隐藏页和未变化计数 / 主题 / 运行提示刷新；独立签名依赖每次启动只读取一次 hash，校验仍完整。Reuse shared views and unchanged UI; hash each distinct signed file once per constructor.
+- 同一真机、相同诊断：暖态状态 p50 4061 → 230 ms，主线程最大间隔 4228 → 24 ms；23 项真机程序检查、短时锁屏、UI 与缓存隔离回归。Same-phone warm program measurements; no FPS, inference or endurance claim.
+- 原推荐、多模态完整范围、用户下载 / 本地管理 / 独立参数保留。双语原因说明、完整 README、媒体和正式 Release 同步。[Release](docs/releases/v0.3.9.md) · [中文](docs/PERFORMANCE.md) / [English](docs/PERFORMANCE.en.md).
+
+
 ## 0.3.8 — 多模态推荐 / Recommendations for every modality
 
 - 默认推荐共 14 项：保留生文 m08 → m06 → m01，新增生图 3 / 生视频 2 / 生音频 3 / 生 3D 3。Preserve the original text prefix; append eleven pinned optional bundles.

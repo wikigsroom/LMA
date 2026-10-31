@@ -15,15 +15,16 @@ public final class LocalEngines {
         catch (FileNotFoundException absent) { return; }
         JSONArray engines = new JSONArray(manifest.getJSONArray("engines").toString());
         if (manifest.has("textRuntime")) engines.put(manifest.getJSONObject("textRuntime"));
+        Map<File, String> checked = new HashMap<>();
         for (int i = 0; i < engines.length(); i++) {
             JSONObject build = engines.getJSONObject(i); String id = build.getString("engine");
             File binary = new File(app.getApplicationInfo().nativeLibraryDir, build.getString("file"));
-            if (!binary.isFile() || !DataFiles.sha256(binary).equals(build.getString("sha256"))) throw new IOException("原生引擎文件与签名包清单不一致");
+            if (!binary.isFile() || !digest(binary, checked).equals(build.getString("sha256"))) throw new IOException("原生引擎文件与签名包清单不一致");
             JSONArray dependencies = build.optJSONArray("dependencies");
             if (dependencies != null) for (int d = 0; d < dependencies.length(); d++) {
                 JSONObject dependency = dependencies.getJSONObject(d);
                 File library = new File(app.getApplicationInfo().nativeLibraryDir, dependency.getString("file"));
-                if (!library.isFile() || !DataFiles.sha256(library).equals(dependency.getString("sha256"))) throw new IOException("引擎依赖与签名包清单不一致");
+                if (!library.isFile() || !digest(library, checked).equals(dependency.getString("sha256"))) throw new IOException("引擎依赖与签名包清单不一致");
             }
             if (id.equals("vision_cpu")) register(new VisionEngine(app, binary, build));
             else if (id.equals("llama_text")) register(new TextEngine(app, binary, build));
@@ -41,6 +42,11 @@ public final class LocalEngines {
             else if (id.equals("audio_cpp") || id.equals("trellis_native") || id.equals("pixal_multiview") || id.equals("rf_shape_ort") || id.equals("spatial_ort")) register(id.equals("audio_cpp") ? new ExpansionEngine(app, binary, build) : new PreparationEngine(app, new ExpansionEngine(app, binary, build), this::require));
             else throw new IOException("未知的签名原生模块：" + id);
         }
+    }
+    private static String digest(File file, Map<File, String> checked) throws Exception {
+        String value = checked.get(file);
+        if (value == null) { value = DataFiles.sha256(file); checked.put(file, value); }
+        return value;
     }
     private void register(LocalEngine engine) { if (modules.put(engine.id(), engine) != null) throw new IllegalStateException("Duplicate internal engine module"); }
     public LocalEngine require(ModelBundle bundle, String type) throws Exception {

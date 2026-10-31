@@ -1,0 +1,75 @@
+{
+  "checked_at": "2026-10-31T20:26:43.580015+00:00",
+  "status": "passed",
+  "device": {
+    "model": "motorola edge plus",
+    "api": 31,
+    "abis": "arm64-v8a,armeabi-v7a,armeabi"
+  },
+  "apk_sha256": "7cccb506d0f23ce9ac627645fb20d7b43da93951730b7bd29a7afe3891a8bc20",
+  "input_fingerprint": {
+    "app/src/main/AndroidManifest.xml": "afa3feff0830e5808d5c9535f9f76c07865cd5bc6d3d9f742779ba64d975a54b",
+    "app/src/main/java/com/lma/app/LmaApp.java": "4750c5bb97f2a3b29e77db54f4d07b24d25ef9341b24f6ccf803fac3cd26ccb9",
+    "tests/android/AndroidManifest.xml": "b465c80b2c3d4b79f013f2f0479bca8d3ff3595c98c1d6233b34fe4f8750c10e",
+    "tests/android/com/lma/app/DeviceAcceptance.java": "762544762d847fb772bc91ef907d5baa1ff71564ff1c4ed9c606dd4219e577f3",
+    "tests/android/com/lma/app/DevicePerformance.java": "e92dc8c868675167cecd8bc66a262eef3e65a411c51b116a560728a2aab0476f",
+    "tools/build_acceptance.py": "76288410f114d7b4b337b3cb8d98d481a42506fa0135313a32819df29bbf82b0",
+    "tools/device_check.py": "5747b70de7ea98483b4fc49c3450a6d8548a5dff371007135c4700ba27b78813"
+  },
+  "instrumentation": {
+    "port": 8080,
+    "status": "passed",
+    "checks": [
+      "Complete zero-model catalogue and physical device state",
+      "Installed Android UI and native JavaScript bridge",
+      "Extracted native executable permissions",
+      "Android SQLite persistence and interrupted chat history",
+      "Real foreground service command acknowledgement",
+      "Fourteen recommendations preserve m08 / m06 / m01 prefix",
+      "Physical recommended category: image",
+      "Physical recommended category: video",
+      "Physical recommended category: audio",
+      "Physical recommended category: 3d",
+      "All registered models render on physical WebView",
+      "Local model management filter responds",
+      "Physical navigation: chat",
+      "Physical navigation: tasks",
+      "Physical navigation: server",
+      "Physical navigation: settings",
+      "Zero-model foreground API listener starts without downloading weights"
+    ],
+    "physicalDevice": true,
+    "backgroundEnduranceTested": false
+  },
+  "physical_device_tests": 23,
+  "external_program_checks": [
+    "API recovers after instrumentation detaches",
+    "Bearer key and browser-origin rejection on real phone",
+    "Zero installed models and complete extension engine registry",
+    "Jobs, artifacts, drafts and upload read APIs",
+    "Missing text weights rejected without automatic download",
+    "Screen-off authenticated health and foreground service survival (program only)"
+  ],
+  "external_api_auth_tested": true,
+  "background_program_tested": true,
+  "screen_off_program_seconds": 60.354,
+  "screen_off_health_samples_seconds": [
+    0.339,
+    10.678,
+    21.027,
+    31.355,
+    41.766,
+    52.085,
+    60.354
+  ],
+  "phone_inference_tested": false,
+  "background_endurance_tested": false,
+  "emulator_used": false,
+  "schema": "lma.physical-program-acceptance/1",
+  "version": "0.3.9",
+  "validation_mode": "program_only",
+  "model_inference_tested": false,
+  "complete_model_downloads_for_validation": 0,
+  "virtualization_used": false,
+  "scope": "Real Android UI, SQLite, no-model API and short screen-off foreground service; no trained-model inference or endurance"
+}

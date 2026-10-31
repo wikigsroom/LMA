@@ -1,5 +1,5 @@
 {
-  "version": "0.3.8",
+  "version": "0.3.9",
   "kind": "current production UI with an explicit simulated bridge",
   "android_device": false,
   "model_inference": false,
@@ -34,6 +34,9 @@
     "3d recommendations retain model details and download-management entry points",
     "3d recommended choices at 375px",
     "Opening all recommendation categories starts no downloads, model loads or generation",
+    "Twelve receives build shared model views once each",
+    "Unchanged recommendation counts retain their existing DOM nodes",
+    "Hidden server page is not rebuilt during catalogue updates",
     "Recommendation details disclose required components before download",
     "Viewing recommendation details still requires explicit download consent",
     "One explicit download selects only the chosen recommendation (simulated bridge)",
@@ -92,18 +95,18 @@
     },
     {
       "file": "recommendations-ui.gif",
-      "bytes": 202311,
-      "sha256": "b33c3f79f0e101900b94e74d96f97ccd551b25d3bfa5cf93ad2eff20637a8c9d"
+      "bytes": 268273,
+      "sha256": "a5ddb33ace4afefdde02dfd7145821a2204fba9898b3502958dbf02c569c99a8"
     },
     {
       "file": "recommendations-ui.mp4",
-      "bytes": 80875,
-      "sha256": "707ff76b50b36415e3b208b77fcf59200bf9f7a376e991967e63f0b3d230c821"
+      "bytes": 106192,
+      "sha256": "8330d1a9aec5e045e77b4e8a4b0a4cee5a1f167e3fb1e27a2eca8627b13acc97"
     }
   ],
   "input_fingerprint": {
     "app/src/main/assets/app.css": "74d187b75c784487e190a6c9d5b78f0ac7dc9d84a7fd35316b4799fc70a433ab",
-    "app/src/main/assets/app.js": "5afc97df3f2277cbf32eebc80b4c0448b52d157dcf18cdf13904edc341636f10",
+    "app/src/main/assets/app.js": "f0be4f1bf14487032939a5ea7b8f85be8190000501123bcd6914c66e83a958c1",
     "app/src/main/assets/architectures/ltx098-upscaler.onnx": "b7b3b8067dc247002b92fa228bf8bd1271d3b535f0ac8f70c7f7e5e94448e2d9",
     "app/src/main/assets/asset-preparations.json": "b0a7cbac1a633310b9fff84164439ee8fe20a1df137d1075eb9263f531ccfd3b",
     "app/src/main/assets/audio-preview.js": "33bb898969f37c1f78c6664052c46da844d148defdcef4a54d64bc5829037f44",
@@ -316,12 +319,12 @@
     "app/src/main/assets/preparations/ltx098_vae_prepare/stage-08.onnx": "ff463e05293456c25aa5b1a14d82b1f732f1aee0f00da45f8e28419509ba8ac9",
     "app/src/main/assets/recipe-templates.json": "ed87f310d0a63251f765bbc4d8741b31806cc87145c0a96f762a110e097e6bd3",
     "app/src/main/assets/recipes.js": "b27e75ed85948a63476bf351cde94a59bec935a540f65e1a9fe798322bcd1b39",
-    "app/src/main/assets/recommendations.js": "608faca5d9c76c472992996ddeafe1aa428e73ed1009f9d503be6308209eb4d5",
+    "app/src/main/assets/recommendations.js": "13f0f41840a3a28a5b70d021f77c7700050f6007086228179cd794b331263215",
     "app/src/main/assets/recommendations.json": "8fa2c4c76526d63de81d37fac75af6d4664175df0f355b64c552274d67517ebf",
     "app/src/main/assets/versions.js": "2d629929a6db642c12a242ddcc62cd4f4090ab307e0cb669ceb98add031977e1",
     "app/src/main/assets/workbench.js": "367c6293b50bb1f4567da00eef20d795c7f775c2e5f6b5ec62b0e32989920e09",
     "tests/foundation-ui.cjs": "b8cc6e6dcd05054e8651c1ec908e8d1f8e1c65abe1cb6d81e77f52a7e9fea6ed",
-    "tests/recommendations-ui.cjs": "0b32d85e68295ed3fe49f230305952052f92bffdf519cb86a4d548202a45d006",
+    "tests/recommendations-ui.cjs": "11cd110062decf2660ac565b3e62db72af71c30031f9a8d9bfdea217fcfebae5",
     "tools/capture_workbench.cjs": "8173ade63ef547140cba8c219fd4304253ceb2afca2f67dc6c1b8ed4627edfc5"
   }
 }

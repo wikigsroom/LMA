@@ -1,10 +1,12 @@
 # LMA 文档 / Documentation
 
-**v0.3.8 / code58 · 当前 / Current:** [14 个推荐模型 / fourteen recommended choices](RECOMMENDED_MODELS.md)：text 3 / image 3 / video 2 / audio 3 / 3D 3. Default Recommended preserves the original text prefix, adds optional multimodal choices and never downloads automatically. [Release](releases/v0.3.8.md) · [当前实现 / implementation](IMPLEMENTATION_V038.md). Earlier version callouts below retain their historical context.
+[空闲卡顿原因与真机对比](PERFORMANCE.md) / [Idle UI performance and measurements](PERFORMANCE.en.md) · [v0.3.9](releases/v0.3.9.md)。
+
+**v0.3.9 / code58 · 当前 / Current:** [14 个推荐模型 / fourteen recommended choices](RECOMMENDED_MODELS.md)：text 3 / image 3 / video 2 / audio 3 / 3D 3. Default Recommended preserves the original text prefix, adds optional multimodal choices and never downloads automatically. [Release](releases/v0.3.9.md) · [当前实现 / implementation](IMPLEMENTATION_V039.md). Earlier version callouts below retain their historical context.
 
 **v0.3.7 / code57:** [真机零模型启动修复与 19 项程序检查](DEVICE_ACCEPTANCE.md) / [Physical program acceptance](DEVICE_ACCEPTANCE.en.md). Includes short screen-off API health and separate real phone media; no complete model or endurance claim.
 
-**当前版本 v0.3.7 / Current release.** 完成 P01–P06 的有界 CPU 程序适配：UltraTex、UniForge、SAM / MV-SAM＋DA3、SUPRA、抠图 / VLM / 点云 / 原始提取与可选材质链。62 recipes / 82 bundles / 18 extension engines plus text。只更新基座，资产仍由用户选择；没有完整模型或手机效果验收。
+**v0.3.7 历史适配检查点 / Historical adaptation checkpoint.** 完成 P01–P06 的有界 CPU 程序适配：UltraTex、UniForge、SAM / MV-SAM＋DA3、SUPRA、抠图 / VLM / 点云 / 原始提取与可选材质链。62 recipes / 82 bundles / 18 extension engines plus text。只更新基座，资产仍由用户选择；没有完整模型或手机效果验收。
 
 - [本版完整方案 / Full adapter profiles](ADAPTER_PROFILES.md) · [English](ADAPTER_PROFILES.en.md)：输入、离线转换、独立参数、同机可选阶段、相机 / 点云示例、CPU / 许可边界。
 - [编号收口 / Numbered completion](REMAINING_ADAPTATION.md) · [English](REMAINING_ADAPTATION.en.md)：P01–P06 已实现；公开整包端点未核实、完整模型和手机实测按要求不执行。

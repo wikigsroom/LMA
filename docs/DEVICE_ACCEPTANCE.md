@@ -1,6 +1,6 @@
-# Android 真机程序验证 · v0.3.8
+# Android 真机程序验证 · v0.3.9
 
-[English](DEVICE_ACCEPTANCE.en.md) · [版本说明](releases/v0.3.8.md) · [当前证据](../verification/releases/v0.3.8/physical-device.json)
+[English](DEVICE_ACCEPTANCE.en.md) · [版本说明](releases/v0.3.9.md) · [当前证据](../verification/releases/v0.3.9/physical-device.json)
 
 本轮使用已配对的无线 ADB，在真实手机安装和升级 LMA，无需 ROOT。设备实际报告 **motorola edge plus / burton、Android 12 / API31、SM8250、约 11.4 GiB 系统可见 RAM**。不能将这份记录写成 X30、骁龙 8 Gen 1 或努比亚 Z20 的测试。电脑只负责安装、操作和转发请求，接口与应用程序都在手机执行。
 
@@ -12,7 +12,7 @@
 | D02 | 验收工具把 `resources.arsc` 压缩，Android 12 拒绝安装测试 APK | 保持资源表不压缩并对齐；独立验收 APK 能安装 |
 | D03 | 旧 ADB 在含中文的绝对输出路径导出媒体时报错 | 使用仓库工作目录内的相对输出路径；截图与录屏可导出 |
 
-原 v0.3.6 标签和已发布附件不覆盖。当前 APK 为 **0.3.8 / code58**，保留原签名、应用数据和用户自主模型选择。历史失败另存证据，未改写为通过。
+原 v0.3.6 标签和已发布附件不覆盖。当前 APK 为 **0.3.9 / code59**，保留原签名、应用数据和用户自主模型选择。历史失败另存证据，未改写为通过。
 
 ## 2. 检查覆盖
 
@@ -44,7 +44,7 @@ python tools/device_check.py --serial DEVICE_IP:CONNECT_PORT --run --program-api
 
 ## 4. 页面与录屏
 
-[真机截图](media/device/v0.3.8/01-recommended.png) · [实际录屏 MP4](media/device/v0.3.8/physical-walkthrough.mp4) · [录屏 GIF](media/device/v0.3.8/physical-walkthrough.gif) · [媒体身份](media/device/v0.3.8/manifest.json)
+[真机截图](media/device/v0.3.9/01-recommended.png) · [实际录屏 MP4](media/device/v0.3.9/physical-walkthrough.mp4) · [录屏 GIF](media/device/v0.3.9/physical-walkthrough.gif) · [媒体身份](media/device/v0.3.9/manifest.json)
 
 媒体来自实际手机屏幕；仅保留 LMA 页面，不包含个人桌面、锁屏密码或其他应用。与 `docs/media/development/` 中带 **UI FIXTURE** 标记的桌面页面演示分别保存。录制展示操作，不表示生成速度或模型输出。
 
@@ -57,6 +57,10 @@ python tools/device_check.py --serial DEVICE_IP:CONNECT_PORT --run --program-api
 | U03 | X30、努比亚 Z20、其他 Android / SoC 的真机表现 | 本机记录仅适用于上述实际设备 |
 | U04 | 任意 HF 架构、全部上游 CUDA 工作流及大型公开完整 3D 导出包 | 保留 62 配方 / 82 包 / 18 扩展引擎加文本的有界支持范围与来源限制 |
 
-## 6. v0.3.8 分类媒体
+## 6. v0.3.9 分类媒体
 
-新增四项真机检查：生图 3 / 生视频 2 / 生音频 3 / 生 3D 3。11 张 PNG 与实际 MP4 / GIF 绑定当前 APK 和测试源码。[生图](media/device/v0.3.8/02-recommended-image.png) · [生视频](media/device/v0.3.8/02-recommended-video.png) · [生音频](media/device/v0.3.8/02-recommended-audio.png) · [生 3D](media/device/v0.3.8/02-recommended-3d.png)。未下载或运行模型。
+新增四项真机检查：生图 3 / 生视频 2 / 生音频 3 / 生 3D 3。11 张 PNG 与实际 MP4 / GIF 绑定当前 APK 和测试源码。[生图](media/device/v0.3.9/02-recommended-image.png) · [生视频](media/device/v0.3.9/02-recommended-video.png) · [生音频](media/device/v0.3.9/02-recommended-audio.png) · [生 3D](media/device/v0.3.9/02-recommended-3d.png)。未下载或运行模型。
+
+## v0.3.9 performance / 性能专项
+
+[Same-phone measured comparison / 同机对比](PERFORMANCE.md) · [English](PERFORMANCE.en.md) · [JSON](../verification/releases/v0.3.9/ui-performance.json). This additional warm program diagnostic uses the untouched v0.3.8 baseline, not trained models. A local API record with `installed=false` is a partial/prepared entry; acceptance checks installation flags and preserves existing assets.

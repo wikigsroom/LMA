@@ -1,6 +1,6 @@
-# Recommended models and first use · v0.3.8
+# Recommended models and first use · v0.3.9
 
-[中文](RECOMMENDED_MODELS.md) · [User guide](USER_GUIDE.en.md) · [Release notes](releases/v0.3.8.md)
+[中文](RECOMMENDED_MODELS.md) · [User guide](USER_GUIDE.en.md) · [Release notes](releases/v0.3.9.md)
 
 Models opens on Recommended with **14 choices**: three text, three image, two video, three audio and three 3D. The original text prefix `m08 → m06 → m01`, labels and provenance stay first. Eleven additions select existing entries from the 82-bundle catalogue. No weights enter the APK; Recommended, All and Local share identities and management.
 
@@ -44,7 +44,7 @@ Checks cover original order, category counts, bundle identity, content tags, no 
 
 ## 4. Media and reproduction
 
-[Desktop category GIF](media/development/recommendations/recommendations-ui.gif) · [MP4](media/development/recommendations/recommendations-ui.mp4) · [Identity](media/development/recommendations/manifest.json) · [Actual phone image page](media/device/v0.3.8/02-recommended-image.png) · [Phone acceptance](DEVICE_ACCEPTANCE.en.md)
+[Desktop category GIF](media/development/recommendations/recommendations-ui.gif) · [MP4](media/development/recommendations/recommendations-ui.mp4) · [Identity](media/development/recommendations/manifest.json) · [Actual phone image page](media/device/v0.3.9/02-recommended-image.png) · [Phone acceptance](DEVICE_ACCEPTANCE.en.md)
 
 ```powershell
 python tools/recommendations.py

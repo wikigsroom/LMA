@@ -13,6 +13,8 @@ public final class BundleStore {
     private final File root, objects, partials;
     private final AtomicFile file;
     private JSONObject state;
+    // Versioned IDs have immutable, validated manifests. Never cache mutable receipts or file checks.
+    private final Map<String, ModelBundle> definitions = new HashMap<>();
     public interface ParameterResolver { ParameterSchema resolve(ModelBundle bundle) throws Exception; }
     private ParameterResolver parameterResolver = ModelBundle::parameters;
     public synchronized void setParameterResolver(ParameterResolver resolver) { parameterResolver = Objects.requireNonNull(resolver); }
@@ -46,16 +48,18 @@ public final class BundleStore {
         if (value == null) throw new IllegalArgumentException("Unknown model bundle"); return value;
     }
     public synchronized JSONObject record(String id) throws Exception { return DataFiles.copy(entry(id)); }
-    public synchronized ModelBundle bundle(String id) throws Exception { return new ModelBundle(entry(id).getJSONObject("manifest")); }
+    public synchronized ModelBundle bundle(String id) throws Exception { ModelBundle value = definitions.get(id);
+        if (value == null) { value = new ModelBundle(entry(id).getJSONObject("manifest")); definitions.put(id, value); }
+        return value; }
     public synchronized void declare(ModelBundle bundle) throws Exception {
         JSONObject existing = state.getJSONObject("bundles").optJSONObject(bundle.id);
         if (existing != null) {
             if (!DataFiles.canonical(existing.getJSONObject("manifest")).equals(DataFiles.canonical(bundle.json()))) throw new IllegalArgumentException("Bundle IDs are immutable; choose a new versioned bundle ID");
-            return;
+            definitions.put(bundle.id, bundle); return;
         }
         JSONObject next = DataFiles.copy(state);
         next.getJSONObject("bundles").put(bundle.id, new JSONObject().put("manifest", bundle.json()).put("installed", false).put("settings", new JSONObject()));
-        persist(next);
+        persist(next); definitions.put(bundle.id, bundle);
     }
     public synchronized JSONObject plan(String id) throws Exception {
         ModelBundle b = bundle(id); long total = 0, reusable = 0, remaining = 0; Set<String> seen = new HashSet<>(); JSONArray files = new JSONArray();
@@ -227,8 +231,8 @@ public final class BundleStore {
     public synchronized JSONArray snapshot() throws Exception {
         JSONArray result = new JSONArray(); JSONObject entries = state.getJSONObject("bundles");
         for (Iterator<String> it = entries.keys(); it.hasNext();) {
-            String id = it.next(); JSONObject e = DataFiles.copy(entries.getJSONObject(id)); ModelBundle b = new ModelBundle(e.getJSONObject("manifest"));
-            try { e.put("config", settings(id)).put("parameterSchema", parameters(id).json()); }
+            String id = it.next(); JSONObject e = DataFiles.copy(entries.getJSONObject(id)); ModelBundle b = bundle(id);
+            try { ParameterSchema schema = parameters(id); e.put("config", schema.normalize(e.getJSONObject("settings"), new JSONObject())).put("parameterSchema", schema.json()); }
             catch (Exception unavailable) { e.put("config", b.parameters().normalize(e.getJSONObject("settings"), new JSONObject())).put("parameterSchema", b.parameters().json()).put("parameterError", unavailable.getMessage() == null ? "当前引擎无法解析此配方参数" : unavailable.getMessage()); }
             e.put("id", id).put("tags", b.tags()).put("plan", plan(id)).put("installed", e.optBoolean("installed") && complete(b, state)).put("inUse", leases.containsKey(id)).put("version", versionInfo(id)); result.put(e);
         }
@@ -398,7 +402,7 @@ public final class BundleStore {
             boolean active = t != null;
             if (other.optBoolean("installed") || active) for (ModelBundle.Component c : new ModelBundle(other.getJSONObject("manifest")).components) keep.add(c.objectId);
         }
-        ModelBundle b = new ModelBundle(e.getJSONObject("manifest"));
+        ModelBundle b = bundle(id);
         for (ModelBundle.Component c : b.components) if (!keep.contains(c.objectId)) {
             ReentrantLock lock = componentLock(c.objectId);
             if (lock.tryLock()) { try { object(c.objectId).delete(); partial(c.objectId).delete(); } finally { lock.unlock(); } }

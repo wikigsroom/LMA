@@ -1,6 +1,6 @@
-# Physical Android program acceptance · v0.3.8
+# Physical Android program acceptance · v0.3.9
 
-[中文](DEVICE_ACCEPTANCE.md) · [Release notes](releases/v0.3.8.md) · [Evidence](../verification/releases/v0.3.8/physical-device.json)
+[中文](DEVICE_ACCEPTANCE.md) · [Release notes](releases/v0.3.9.md) · [Evidence](../verification/releases/v0.3.9/physical-device.json)
 
 Wireless ADB connected an actual phone, reporting **motorola edge plus / burton, Android 12 / API31, SM8250 and approximately 11.4 GiB system-visible RAM**. This is not an X30, Snapdragon 8 Gen 1 or Nubia Z20 acceptance result. The PC installs, controls and forwards requests; application services execute on the same Android phone without ROOT.
 
@@ -12,7 +12,7 @@ Wireless ADB connected an actual phone, reporting **motorola edge plus / burton,
 | D02 | The acceptance APK compressed `resources.arsc`, which Android 12 rejected | Preserve its stored compression and alignment; independent instrumentation installs |
 | D03 | An older ADB failed to export media to an absolute path containing Chinese characters | Export relative to the repository working directory |
 
-The current patch is **0.3.8 / code58**, signed with the original identity. It preserves application data and user-selected assets. Published v0.3.6 files and historical failures remain unchanged.
+The current patch is **0.3.9 / code59**, signed with the original identity. It preserves application data and user-selected assets. Published v0.3.6 files and historical failures remain unchanged.
 
 ## 2. Actual coverage
 
@@ -37,7 +37,7 @@ Do not pass `--model`: that historical option downloads and runs trained weights
 
 ## 4. Actual media
 
-[Phone screenshot](media/device/v0.3.8/01-recommended.png) · [Screen recording](media/device/v0.3.8/physical-walkthrough.mp4) · [GIF](media/device/v0.3.8/physical-walkthrough.gif) · [Identity manifest](media/device/v0.3.8/manifest.json)
+[Phone screenshot](media/device/v0.3.9/01-recommended.png) · [Screen recording](media/device/v0.3.9/physical-walkthrough.mp4) · [GIF](media/device/v0.3.9/physical-walkthrough.gif) · [Identity manifest](media/device/v0.3.9/manifest.json)
 
 Only LMA screen content is published. Personal launcher, lock screens, credentials and other applications are excluded. Physical media is separate from the labelled desktop **UI FIXTURE** recordings under `docs/media/development/`. Playback timing is not generation performance.
 
@@ -50,6 +50,10 @@ Only LMA screen content is published. Personal launcher, lock screens, credentia
 | U03 | X30, Nubia Z20 or other devices | Evidence applies to this reported phone only |
 | U04 | Arbitrary HF architectures, every upstream CUDA workflow or verified complete public 3D exports | Preserve the bounded 62-recipe / 82-bundle / 18-extension-plus-text scope and acquisition limits |
 
-## 6. v0.3.8 category media
+## 6. v0.3.9 category media
 
-Four category checks verify image 3 / video 2 / audio 3 / 3D 3. Eleven PNGs and actual MP4/GIF are bound to the current APK and test sources. [Image](media/device/v0.3.8/02-recommended-image.png) · [Video](media/device/v0.3.8/02-recommended-video.png) · [Audio](media/device/v0.3.8/02-recommended-audio.png) · [3D](media/device/v0.3.8/02-recommended-3d.png). No downloads or inference.
+Four category checks verify image 3 / video 2 / audio 3 / 3D 3. Eleven PNGs and actual MP4/GIF are bound to the current APK and test sources. [Image](media/device/v0.3.9/02-recommended-image.png) · [Video](media/device/v0.3.9/02-recommended-video.png) · [Audio](media/device/v0.3.9/02-recommended-audio.png) · [3D](media/device/v0.3.9/02-recommended-3d.png). No downloads or inference.
+
+## v0.3.9 performance / 性能专项
+
+[Same-phone measured comparison / 同机对比](PERFORMANCE.md) · [English](PERFORMANCE.en.md) · [JSON](../verification/releases/v0.3.9/ui-performance.json). This additional warm program diagnostic uses the untouched v0.3.8 baseline, not trained models. A local API record with `installed=false` is a partial/prepared entry; acceptance checks installation flags and preserves existing assets.

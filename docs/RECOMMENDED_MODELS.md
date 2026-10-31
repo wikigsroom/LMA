@@ -1,6 +1,6 @@
-# 推荐模型与首次使用 · v0.3.8
+# 推荐模型与首次使用 · v0.3.9
 
-[English](RECOMMENDED_MODELS.en.md) · [使用手册](USER_GUIDE.md) · [发布说明](releases/v0.3.8.md)
+[English](RECOMMENDED_MODELS.en.md) · [使用手册](USER_GUIDE.md) · [发布说明](releases/v0.3.9.md)
 
 模型页默认进入“推荐”，共有 **14 个条目**：生文 3、生图 3、生视频 2、生音频 3、生 3D 3。原有生文 `m08 → m06 → m01` 的顺序、标签和来源保持在前；新增 11 个是现有 82 套已登记目录包的精选子集，没有增加权重到 APK。推荐与“全部”“本地”使用相同模型身份和管理流程。
 
@@ -44,7 +44,7 @@
 
 ## 4. 页面与复现
 
-[桌面分类 GIF](media/development/recommendations/recommendations-ui.gif) · [MP4](media/development/recommendations/recommendations-ui.mp4) · [媒体身份](media/development/recommendations/manifest.json) · [实际手机生图页](media/device/v0.3.8/02-recommended-image.png) · [真机记录](DEVICE_ACCEPTANCE.md)
+[桌面分类 GIF](media/development/recommendations/recommendations-ui.gif) · [MP4](media/development/recommendations/recommendations-ui.mp4) · [媒体身份](media/development/recommendations/manifest.json) · [实际手机生图页](media/device/v0.3.9/02-recommended-image.png) · [真机记录](DEVICE_ACCEPTANCE.md)
 
 ```powershell
 python tools/recommendations.py

@@ -15,6 +15,7 @@ from audit_adaptations import MODULES, required_records, require_complete
 OUT = ROOT / 'verification/releases' / ('v' + version())
 CURRENT_MEDIA = ['community', 'release-workbench', 'expansion', 'multiview', 'shape', 'spatial', 'material', 'ultratex', 'adaptation', 'recommendations']
 EXTRA = {
+    'ui-performance.json': 'build/device-tests/ui-performance.json',
     'material.json': 'build/material-tests/results.json',
     'vision-android.json': 'build/vision-build-info.json',
     'adaptation-audit-checks.json': 'build/adaptation-audit-tests/results.json',
@@ -26,7 +27,7 @@ for item in required_records():
     if item not in BASE_SOURCES.values():
         EXTRA[Path(item).parent.name + '.json' if item.endswith('/results.json') else Path(item).name] = item
 SOURCES = BASE_SOURCES | EXTRA
-MINIMUM = BASE_MINIMUM | {'expansion': 875, 'portable-sparse-models': 97, 'cascade': 95, 'ultratex-attention': 47, 'material': 61}
+MINIMUM = BASE_MINIMUM | {'ui-performance': 8, 'expansion': 875, 'portable-sparse-models': 97, 'cascade': 95, 'ultratex-attention': 47, 'material': 61}
 for module in MODULES.values():
     for name, minimum in module['tests'].items():
         if name != 'expansion-tests':
@@ -153,6 +154,10 @@ def check():
         assert counts[name]>=minimum, name
     assert counted('adaptation-audit-checks',records['adaptation-audit-checks.json'])>=15
     counts['adaptation-audit-checks']=counted('adaptation-audit-checks',records['adaptation-audit-checks.json'])
+    performance = records['ui-performance.json']
+    assert performance['version'] == version() and performance['passed'] == 8
+    assert performance['apk_sha256'] == records['build.json']['sha256']
+    assert performance['optimized']['mainThread']['gapsOver100Ms'] == 0
     build, package, lint=(records[n+'.json'] for n in ('build','package','lint'))
     assert build['version']==version() and build['input_fingerprint']==build_inputs()
     apk=ROOT/'dist'/build['apk']

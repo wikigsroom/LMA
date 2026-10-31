@@ -57,6 +57,14 @@ public final class FoundationTest {
         BundleStore store = new BundleStore(new File(root, "assets"));
         check(store.snapshot().length() == 0, "Fresh installation works with no model assets");
         ModelBundle bundle = new ModelBundle(first); store.declare(bundle);
+        JSONObject detached = store.bundle("one").json(); detached.put("name", "tampered");
+        detached.getJSONArray("components").getJSONObject(0).put("bytes", 1);
+        check(!store.bundle("one").name.equals("tampered") && store.bundle("one").component("backbone").bytes == a.length, "Cached manifest data cannot be changed through detached JSON");
+        JSONObject detachedView = store.snapshot().getJSONObject(0); detachedView.getJSONObject("manifest").put("name", "tampered view");
+        check(!store.snapshot().getJSONObject(0).getJSONObject("manifest").getString("name").equals("tampered view"), "Snapshot edits cannot poison later snapshots");
+        final int[] resolves = {0}; store.setParameterResolver(model -> { resolves[0]++; return model.parameters(); });
+        store.snapshot(); check(resolves[0] == 1, "A snapshot resolves each bundle schema only once");
+        store.setParameterResolver(ModelBundle::parameters);
         rejects(() -> bundle.tasks.add("video"), "A declared bundle cannot mutate its checked output capabilities");
         JSONObject unicode = DataFiles.copy(first); String revision = String.join("", Collections.nCopies(40, "a"));
         unicode.getJSONArray("components").getJSONObject(0).put("path", "音色/voice 1.bin").put("repository", "fixture/voice").put("revision", revision).put("url", "https://huggingface.co/fixture/voice/resolve/" + revision + "/%E9%9F%B3%E8%89%B2/voice%201.bin");

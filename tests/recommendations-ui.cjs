@@ -46,6 +46,10 @@ module.exports=async function(page,checked,overflow,output,capture=async()=>{}) 
       await capture('0'+(index+2)+'-recommended-'+task+'.png','UI FIXTURE · Optional '+task+' choices; no model download or inference');
     }
     assert.equal((await commands()).length,start);checked('Opening all recommendation categories starts no downloads, model loads or generation');
+    const idle=await page.evaluate(()=>{const f=window.LMAFoundation,original=f.views;let views=0;f.views=function(){views++;return original.apply(this,arguments);};const buttons=Array.from(document.querySelectorAll('[data-task]'));const nodes=buttons.map(b=>b.lastChild);const observer=new MutationObserver(()=>{});observer.observe(document.getElementById('page-server'),{subtree:true,childList:true,attributes:true,characterData:true});try{for(let i=0;i<12;i++)window.LMA.receive(window.__fixture);return {views,sameCounters:buttons.every((b,i)=>b.lastChild===nodes[i]),hiddenServerMutations:observer.takeRecords().length};}finally{f.views=original;observer.disconnect();}});
+    assert.equal(idle.views,12);checked('Twelve receives build shared model views once each');
+    assert(idle.sameCounters);checked('Unchanged recommendation counts retain their existing DOM nodes');
+    assert.equal(idle.hiddenServerMutations,0);checked('Hidden server page is not rebuilt during catalogue updates');
     const selected=policy.entries.find(e=>e.task==='audio').bundleId;
     await page.locator('[data-task="audio"]').click();await page.locator('[data-bundle="'+selected+'"] [data-action="bundleInfo"]').first().click();
     assert(await page.locator('.bundle-components details').count()>0);checked('Recommendation details disclose required components before download');
