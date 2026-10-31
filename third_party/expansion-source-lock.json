@@ -1,0 +1,10 @@
+{
+  "schema": "lma.expansion-sources/1",
+  "sources": [
+    {"id": "audio", "repository": "https://github.com/0xShug0/audio.cpp", "clone": "git@github.com:0xShug0/audio.cpp.git", "revision": "4f5afb6bb59b329c10553540fc3e63d814cfa01a", "directory": "build/native-src/audio-cpp-ssh", "license": "Apache-2.0"},
+    {"id": "trellis", "repository": "https://github.com/pwilkin/trellis.cpp", "clone": "git@github.com:pwilkin/trellis.cpp.git", "revision": "11b87326b62665203b1bd5131eac3bdbb6af9afd", "directory": "build/native-src/trellis-cpp", "license": "MIT"},
+    {"id": "trellis_ggml", "repository": "https://github.com/pwilkin/ggml", "clone": "git@github.com:pwilkin/ggml.git", "revision": "f8697b33795db2ee6a2569b40853ca6aaa69f9b9", "directory": "build/native-src/trellis-cpp/thirdparty/ggml", "license": "MIT"}
+  ],
+  "excluded": ["trained weights", "model vocabularies", "reference voices", "server demos", "HTTP model manager", "remote inference"],
+  "validation": "source and program only; no complete trained model runs"
+}

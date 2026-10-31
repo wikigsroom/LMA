@@ -280,6 +280,8 @@ def build():
     wan_vulkan["definition"].update(engine="wan_sd_cpp", backend="vulkan")
     wan_vulkan["help"] = "本地 GPU 生成视频，CPU 处理文字编码和画面解码。配齐四组件后手动运行；手机兼容性与资源需求尚待实测。GPU 不可用时显示明确错误。"
     templates.append(wan_vulkan)
+    from expansion_catalogue import recipes as expansion_recipes
+    templates.extend(expansion_recipes())
     from recipe_file_hints import add_hints
     add_hints(templates)
     return {"schema": "lma.recipe-catalogue/1", "templates": templates}

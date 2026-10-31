@@ -21,13 +21,13 @@ TARGETS = {
 FEATURES = {
  'F-01': ['HubCatalog','HubClient','core/RecipeCatalogue','core/RecipeSuggestions'],
  'F-02': ['core/BundleStore','core/BundleTransfers','core/BundleUpdates','core/ComponentIntegrity'],
- 'F-03': ['core/ModelBundle','LocalEngines','core/TaskRequests'],
- 'F-04': ['NativeWorker','NativeStages','Ltx098Engine','MnnEngine','SdEngine','SherpaEngine','MossNanoEngine','QwenTtsEngine','MossDelayEngine','OpenMossEngine','MossRqEngine','SoulxEngine','StableAudioEngine'],
+ 'F-03': ['core/ModelBundle','LocalEngines','core/TaskRequests','core/AudioCppSpec','core/MeshSpec'],
+ 'F-04': ['NativeWorker','NativeStages','Ltx098Engine','MnnEngine','SdEngine','SherpaEngine','MossNanoEngine','QwenTtsEngine','MossDelayEngine','OpenMossEngine','MossRqEngine','SoulxEngine','StableAudioEngine','ExpansionEngine'],
  'F-05': ['ModelSettings','GgufMetadata','core/ParameterSchema','core/LtxPixArtSpec'],
  'F-06': ['LocalJobs','core/JobStore','core/ProcessControl'],
  'F-07': ['DeviceResourceProbe','core/ExecutionGate','core/ResourceWatch'],
  'F-08': ['LmaService','BootReceiver','core/JobStore','core/ArtifactStore'],
- 'F-09': ['core/ArtifactStore','VideoEncoder','core/TaskDrafts'],
+ 'F-09': ['core/ArtifactStore','VideoEncoder','core/TaskDrafts','core/GlbFile'],
  'F-10': ['ApiHost','core/LocalApi','core/InputUploads','core/AudioStreams'],
  'F-11': ['Store','core/BundleStore','ModelSettings'],
  'F-12': ['core/ModelBundle','core/TaskRequests']}
@@ -39,8 +39,10 @@ def export():
  assert program_only_release()
  scope=read('docs/proposals/multimodal-release-scope.json')
  templates={x['id']:x for x in read('app/src/main/assets/recipe-templates.json')['templates']}
- assert set(templates)==set(sum(TARGETS.values(),[])+['text_gguf_cpu_v1'])
- assert list(TARGETS)==scope['selected_ids'] and len(templates)==38
+ from expansion_catalogue import recipes as expansion_recipes
+ extra=[r['id'] for r in expansion_recipes()]
+ assert set(templates)==set(sum(TARGETS.values(),[])+['text_gguf_cpu_v1']+extra)
+ assert list(TARGETS)==scope['selected_ids'] and len(templates)==44
  targets=[]
  for entry in scope['entries']:
   key=entry['selection_id']
@@ -48,7 +50,7 @@ def export():
  features=[dict(id=k,source_files=['app/src/main/java/com/lma/app/'+v+'.java' for v in values],program_implementation=True) for k,values in FEATURES.items()]
  for feature in features:
   for name in feature['source_files']:assert (ROOT/name).is_file(),name
- data=dict(schema='lma.release-implementation/1',version=version(),validation_mode='program_only',scope='docs/proposals/multimodal-release-scope.json',features=features,selections=targets,preserved_text_template='text_gguf_cpu_v1',recipe_templates=len(templates),model_bundles=len(read('app/src/main/assets/model-bundles.json')['bundles']),extension_engine_families=len(read('third_party/engine-lock.json')['engines']),full_scope_program_implementation_complete=True,missing_required_program_targets=[],all_selected_models_tested=False,phone_inference_tested=False,quality_accepted=False,background_endurance_tested=False,input_fingerprint=inputs())
+ data=dict(schema='lma.release-implementation/1',version=version(),validation_mode='program_only',scope='docs/proposals/multimodal-release-scope.json',features=features,selections=targets,preserved_text_template='text_gguf_cpu_v1',additional_templates=extra,recipe_templates=len(templates),model_bundles=len(read('app/src/main/assets/model-bundles.json')['bundles']),extension_engine_families=len(read('third_party/engine-lock.json')['engines']),full_scope_program_implementation_complete=True,missing_required_program_targets=[],all_selected_models_tested=False,phone_inference_tested=False,quality_accepted=False,background_endurance_tested=False,input_fingerprint=inputs())
  OUT.write_text(json.dumps(data,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
  return check()
 
@@ -58,7 +60,7 @@ def check():
  assert [x['selection_id'] for x in data['selections']]==list(TARGETS)
  assert [x['id'] for x in data['features']]==list(FEATURES)
  assert len(next(x for x in data['selections'] if x['selection_id']=='12')['frozen_subtargets'])==9
- assert data['recipe_templates']==38 and data['model_bundles']==23+len(read('catalogue/community-bundles.json')['bundles']) and data['extension_engine_families']==12
+ assert data['recipe_templates']==44 and data['model_bundles']==23+len(read('catalogue/community-bundles.json')['bundles'])+len(read('catalogue/expansion-bundles.json')['bundles']) and data['extension_engine_families']==14
  return data
 
 if __name__=='__main__':

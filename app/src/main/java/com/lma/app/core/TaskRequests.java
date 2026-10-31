@@ -7,7 +7,7 @@ import java.util.Arrays;
 public final class TaskRequests {
     private TaskRequests() {}
     public static boolean generation(String type) {
-        return Arrays.asList("text.generate", "image.generate", "video.generate", "speech.synthesize", "audio.generate").contains(type);
+        return Arrays.asList("text.generate", "image.generate", "video.generate", "speech.synthesize", "audio.generate", "mesh.generate").contains(type);
     }
     public static JSONObject replay(JSONObject frozen) throws Exception {
         String type = frozen.getString("type");

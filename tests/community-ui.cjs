@@ -24,7 +24,7 @@ module.exports=async function(page,checked,overflow,output,capture=async()=>{}) 
     assert(await page.locator('#communityControls').isHidden());checked('Content filters do not redefine Recommended');
     const start=(await commands()).length;
     await page.locator('[data-filter="all"]').click();await page.selectOption('#catalogueSource','registered');
-    assert.equal(await page.locator('[data-bundle]').count(),67);checked('All exposes 67 optional registered peers');
+    assert.equal(await page.locator('[data-bundle]').count(),78);checked('All exposes 78 optional registered peers');
     assert(await page.locator('#hubPagination').isHidden());checked('Offline registered catalogue has no misleading HF pagination');
     await page.selectOption('#contentFilter','nsfw');
     assert.equal(await page.locator('[data-bundle]').count(),28);checked('28 sourced NSFW variants are filterable independently');

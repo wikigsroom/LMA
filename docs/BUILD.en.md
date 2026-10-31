@@ -1,5 +1,7 @@
 # Build and verification
 
+> v0.3.2 adds four speech families and single-image 3D. See the [expansion guide](SPEECH_3D_EXPANSION.en.md) for formats, components, workflows, API, builds and program checks. Existing capabilities remain; older checkpoints below retain their original context.
+
 ## Current v0.3.0 source and build boundary
 
 Rebuild from a **full Git clone checked out at `v0.3.0`**, retaining history: historical asset identity checks deliberately read immutable earlier commits. The release source ZIP contains the 2,497 public source/document/evidence files for review; it excludes `.git`, native binaries, caches and signing material. It is not a self-contained binary SDK. Fetch pinned upstream code/libraries and run the relevant native builders before `tools/build.py`. APK compilation does not require trained models. The current program-only package path in [RELEASING](RELEASING.md) replaces earlier ZIP/device-gate descriptions below.

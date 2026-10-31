@@ -60,7 +60,7 @@ public final class HubRecipeTest {
         Path disk = root.resolve("build/hub-tests/recipes-" + UUID.randomUUID());
         LmaApp app = new LmaApp(disk.toFile(), root.resolve("app/src/main/assets").toFile(), root.resolve("build/test-libraries").toFile());
         try (HubCatalog catalog = new HubCatalog(app, () -> client)) {
-            check(catalog.snapshot().getJSONArray("recipeTemplates").length() == 38, "HF controller loads signed data-only recipes including distinct Sana-Sprint, Wan Vulkan and original PixArt multiscale routes");
+            check(catalog.snapshot().getJSONArray("recipeTemplates").length() == 44, "HF controller retains existing recipes and loads added speech and single-image 3D templates");
             files(catalog, "fixture/model"); check(catalog.snapshot().getJSONObject("files").getJSONArray("assets").length() == 3, "HF file pages expose ONNX, binary and text component metadata");
             catalog.dispatch(command("hubRecipeStart").put("repository", "fixture/model")); String initial = draft(catalog);
             catalog.dispatch(command("hubRecipeTemplate").put("draftId", initial).put("templateId", "kokoro_en_cpu_v1"));

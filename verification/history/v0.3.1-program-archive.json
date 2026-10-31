@@ -1,0 +1,158 @@
+{
+  "version": "0.3.1",
+  "commit": "6fc5fb8e175ea2ef634099a6fa81cbcc59dbea6b",
+  "source": "immutable v0.3.1 tag",
+  "directory": "verification/history/v0.3.1-program",
+  "files": {
+    "api.json": {
+      "bytes": 12085,
+      "sha256": "29b03ff29bde7d79e43ba8afef2419c220084d179f8a4fa384a417d5dcb62f01",
+      "gitBlob": "38a1ae1731dc60b2e7b4d290a0e9b53c4a593ed4"
+    },
+    "assemblies.json": {
+      "bytes": 8533,
+      "sha256": "cbd11c25d2f59468f2c3e60446b4aa4518c3dbd7a751f6d34e0c6646d64ead7a",
+      "gitBlob": "300d3b1c15bf92e3d4c3763e43109e45fd237c1a"
+    },
+    "backend.json": {
+      "bytes": 24474,
+      "sha256": "228ac2ae74b44cdac33f6335516b1e67424a41045bd3f73c59ea4449dffcc733",
+      "gitBlob": "dc8927b2d2a3d97d5d0b748911ba4424636506a7"
+    },
+    "build.json": {
+      "bytes": 90037,
+      "sha256": "07dbe2ab141edcbdbac5ab0e227b83c9bae80651de212237ed0580d9939b799e",
+      "gitBlob": "327e96c978d3e6d5ccf58ce407ea053e59e74786"
+    },
+    "bundle-pause.json": {
+      "bytes": 8108,
+      "sha256": "41f010f9c414656711674a1fde273766a4dd60e881d5c1d313304892dd0c17ee",
+      "gitBlob": "4aca73171289468f8b1b3b5c93a8729bed818a50"
+    },
+    "community.json": {
+      "bytes": 13573,
+      "sha256": "a4235671a7f1d7bdceedb786f97d87c7bbad8c2a778a6d164c90c4a636b341e9",
+      "gitBlob": "5f01a1cc367e993c1610f6249fea76003b9c3842"
+    },
+    "diffusion.json": {
+      "bytes": 9309,
+      "sha256": "c05f7b744ad6b24aeb93c5b350d38efa8924367c9e35b8948639e78f3b454792",
+      "gitBlob": "cdfd1cb148711fa89a7a66b1c59d4a60a669c53a"
+    },
+    "document-input.json": {
+      "bytes": 8499,
+      "sha256": "8c87f478052f6258dc32a3c011f387573366fc0abde1f02eb5f86d7e4fd6890a",
+      "gitBlob": "d029f7180daba573cc892ffa05c7069a36b8c5f5"
+    },
+    "foundation.json": {
+      "bytes": 9533,
+      "sha256": "b88903cab3e5ca6b4ca786443c88cc0f02807f5c9f9b7463adacdee8beb5ec1a",
+      "gitBlob": "2ca06a52ff3e606a3844972d48f14612f2f07a9a"
+    },
+    "hub.json": {
+      "bytes": 19954,
+      "sha256": "544166793bd37897fb9bf0153a0d2ba58649912c0f7a3b764882fcc4ec12e4e9",
+      "gitBlob": "6b236f8962220085c3707cdb64a2c6c90f864d0e"
+    },
+    "inputs.json": {
+      "bytes": 12309,
+      "sha256": "b5865b48700f84bc4f65fe47c5fcb07ea81d4a7b7cc49ee7ac516d135cca52ed",
+      "gitBlob": "b4096c95297eb0916cb2d33c1b1923db602144bc"
+    },
+    "lint.json": {
+      "bytes": 25618,
+      "sha256": "7c4684600be6eecbad92eb14bec166147179abaf5636a6745efc4cb760733da2",
+      "gitBlob": "aeb425c5051be7f01df02d3081e5d2d481e7b0a8"
+    },
+    "ltx-android.json": {
+      "bytes": 13687,
+      "sha256": "26e80ced409cc2620cae01244cad68f081dfbd2f385667bf6ac0289c43b6c024",
+      "gitBlob": "bf10053dd475d7d4f80e6bfb124138f215315fc9"
+    },
+    "ltx-multiscale-app.json": {
+      "bytes": 96974,
+      "sha256": "592cadbef1be67c5e88459cc5853d7c392cef23c49bf995879308a91bf79954f",
+      "gitBlob": "3c19bcb24e880e6891bd1806a143538e9a217ba2"
+    },
+    "ltx-official.json": {
+      "bytes": 21875,
+      "sha256": "12b6a792ac05ddb057a6004172d9b8b02d7cb368f5345cd471ad292b7ce15e68",
+      "gitBlob": "d1deea0aafefcaa6355a16358f2ba5407479be6d"
+    },
+    "ltx-single-scale-app.json": {
+      "bytes": 78132,
+      "sha256": "e9774247e42b063ec908c28ded6a240274e7e04fab4f60d2bc5b3eea258ebb2b",
+      "gitBlob": "c8b0b5a547694a727d1758ee12507e44f5d19291"
+    },
+    "migration.json": {
+      "bytes": 16162,
+      "sha256": "e11de5fd900698b913d638b5560c0db1be511e4a67fb92a47612ecf4f0972633",
+      "gitBlob": "bc7d7e5001d0b0fda0e6aa3c37b74c9a6bd4b66f"
+    },
+    "mnn-android.json": {
+      "bytes": 2272,
+      "sha256": "c326d3314d3b4bb42ec811eb0c87eb884ec67b4ae4882a2edcd4942ccc520e8a",
+      "gitBlob": "d0a71948f72f90c08f28e344120f8356147df924"
+    },
+    "mnn.json": {
+      "bytes": 10077,
+      "sha256": "c5987c8f2381257d7243632aa712a41a01059a3f35e41fd57bb082230d4db426",
+      "gitBlob": "1e7ed38942b931f51c6e1f6f2c0aa935fd35dd9c"
+    },
+    "package.json": {
+      "bytes": 19106,
+      "sha256": "81773db7f82446c4dd23069bb8b1cb913bde59d06c30eb627d1eb7bd02da69ad",
+      "gitBlob": "d8d7fbc4ecbb6bf3294e49bb73e3429f45682a70"
+    },
+    "preparations.json": {
+      "bytes": 8432,
+      "sha256": "a98dbab3c3708ebf2710da2fb66b2b788b11221cb6841be9a4d7d931e6ab5265",
+      "gitBlob": "836cd02443663959fe418fce00b4cfef6dac90bd"
+    },
+    "recipe-suggestions.json": {
+      "bytes": 15684,
+      "sha256": "b5b65887cfe443445def38f6869b032e7281b2b12f0a89b2aa04a5453d138891",
+      "gitBlob": "d788d35efc80e3a1a8a63486f754d80d2ef14a0e"
+    },
+    "recovery.json": {
+      "bytes": 11635,
+      "sha256": "9691adb15049d35ec60b0873945018d7ee754d5ed74f061219b7c199e03d3797",
+      "gitBlob": "1e430c5ce4aeaa591d4c38cb6fbfff7d9ee38d7b"
+    },
+    "sana-sprint.json": {
+      "bytes": 10536,
+      "sha256": "0425ba2b5cdf5b921417addb0aaaebeb348225bb12b0e909e19131ad3aeaf3a6",
+      "gitBlob": "d3b4ddb9c608e317a49674b10ad07548ac5aef02"
+    },
+    "scheduler.json": {
+      "bytes": 16975,
+      "sha256": "e4260c6a364bb0b8d249a0635053cc33c7346fe6684fb99b1d81d124f642eaff",
+      "gitBlob": "d62c6a916b59e91e47134e06e1c56f58e3ae0776"
+    },
+    "speech-voices.json": {
+      "bytes": 9451,
+      "sha256": "7b731b6b99cd957dc53e6f1be5da5bd46ad3de690ff3ad3696c4e468b92e2df7",
+      "gitBlob": "feb78eb10e449fc4e20f8c5586689efd499f6c5c"
+    },
+    "status.json": {
+      "bytes": 11957,
+      "sha256": "b4b785adf7ef66e2ea0172c4cace1c6fc39e794d3dc214e2f22ce6c015301371",
+      "gitBlob": "9a5280edcfd6c8e3c1c0d403830b4115e90458e3"
+    },
+    "text.json": {
+      "bytes": 8792,
+      "sha256": "070c6b09febd86e805a6f093823fffc8ddaf9dec8a81fbe572b55dda62a3e596",
+      "gitBlob": "d6944944326b87453e335a1c33cb90966ab31f14"
+    },
+    "ui.json": {
+      "bytes": 56605,
+      "sha256": "39b8a21571458fd33f19e7d0ad12b7ce2d9ccf7ec72ea323eb9ab4500f912839",
+      "gitBlob": "d39d251755a37edd1caf4fb6b17f69cc1445a52c"
+    },
+    "workbench.json": {
+      "bytes": 10588,
+      "sha256": "2e1d5af1e3a0d76528a8cc2a15280cd2b831dfc6ef47e7275a59e1e7af74d9f5",
+      "gitBlob": "4a7f2b3277dc831eda77d7e7c05201d70d8f4cf4"
+    }
+  }
+}

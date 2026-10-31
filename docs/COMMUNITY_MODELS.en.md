@@ -1,5 +1,7 @@
 # Community image/video models and content labels
 
+> v0.3.2 retains these 44 community bundles and adds 11 speech / 3D choices, bringing the catalogue to 78. Current page media was recaptured with v0.3.2; original v0.3.1 assets and tag remain. [Expansion](SPEECH_3D_EXPANSION.en.md).
+
 [中文](COMMUNITY_MODELS.md) · [README](../README.en.md) · [Release v0.3.1](releases/v0.3.1.md)
 
 v0.3.1 adds **44 optional checkpoint recipes across 14 families: 30 image variants and 14 video variants**. Of these, **28 carry sourced NSFW labels: 14 image variants and 14 video variants across 8 families**. One entry has only an HF sensitive-audience flag; 15 have insufficient content declarations. The complete registered catalogue contains 67 recipes. Counts describe selected checkpoint variants, not independent architectures.

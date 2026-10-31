@@ -50,8 +50,8 @@
       "backend": "cpu",
       "ndk": "30.0.16248370",
       "min_sdk": 28,
-      "bytes": 395896,
-      "sha256": "810f742e634c88e6aed39dce9a9e095a6f7d701e8f3e88686c955b0fb018b1a7",
+      "bytes": 397800,
+      "sha256": "991c29e2c7f160d37bd086efcf1c8c25ef412931aea5c453a2208df9f4065c17",
       "elf_load_alignment": [
         16384
       ],
@@ -653,6 +653,82 @@
         "moss-sentencepiece-third_party-protobuf-lite-LICENSE.txt",
         "moss-sentencepiece-third_party-darts_clone-LICENSE.txt",
         "moss-sentencepiece-third_party-absl-LICENSE.txt",
+        "sd-nlohmann-json-LICENSE.txt",
+        "sd-NDK-LLVM-NOTICE.txt"
+      ]
+    },
+    {
+      "schema": "lma.native-build/1",
+      "engine": "audio_cpp",
+      "file": "liblma-speech-extra.so",
+      "source_revision": "4f5afb6bb59b329c10553540fc3e63d814cfa01a",
+      "abi": "arm64-v8a",
+      "backend": "cpu",
+      "ndk": "30.0.16248370",
+      "min_sdk": 28,
+      "bytes": 7246688,
+      "sha256": "27e578d5bdd85c097eb2123fbe89b77992141e56c382fbb86ea22cc0543df7e1",
+      "dependencies": [],
+      "vocabularies": "external_user_selected_components",
+      "physical_device_tests": 0,
+      "model_inference_tested": false,
+      "virtualization_used": false,
+      "elf_load_alignment": [
+        16384
+      ],
+      "android_api_notes": [
+        28
+      ],
+      "deviceValidated": false,
+      "status": "compiled_not_device_tested",
+      "notices": [
+        "expansion-speech-LICENSE.txt",
+        "expansion-speech-external-ggml-LICENSE.txt",
+        "expansion-speech-external-cJSON-LICENSE.txt",
+        "expansion-speech-external-utf8proc-LICENSE.md.txt",
+        "expansion-speech-external-sentencepiece-LICENSE.txt",
+        "expansion-speech-external-sentencepiece-third_party-protobuf-lite-LICENSE.txt",
+        "expansion-speech-external-sentencepiece-third_party-darts_clone-LICENSE.txt",
+        "expansion-speech-external-sentencepiece-third_party-esaxx-LICENSE.txt",
+        "expansion-speech-external-sentencepiece-third_party-absl-LICENSE.txt",
+        "expansion-speech-external-libyaml-License.txt",
+        "sd-nlohmann-json-LICENSE.txt",
+        "sd-NDK-LLVM-NOTICE.txt"
+      ]
+    },
+    {
+      "schema": "lma.native-build/1",
+      "engine": "trellis_native",
+      "file": "liblma-mesh.so",
+      "source_revision": "11b87326b62665203b1bd5131eac3bdbb6af9afd",
+      "abi": "arm64-v8a",
+      "backend": "cpu",
+      "ndk": "30.0.16248370",
+      "min_sdk": 28,
+      "bytes": 3675344,
+      "sha256": "3ff98c7b1c15198abe11a30cbac63348fe3f060ba0a8b37ecaabfa2f78c12a99",
+      "dependencies": [],
+      "vocabularies": "external_user_selected_components",
+      "physical_device_tests": 0,
+      "model_inference_tested": false,
+      "virtualization_used": false,
+      "elf_load_alignment": [
+        16384
+      ],
+      "android_api_notes": [
+        28
+      ],
+      "deviceValidated": false,
+      "status": "compiled_not_device_tested",
+      "notices": [
+        "expansion-mesh-LICENSE.txt",
+        "expansion-mesh-thirdparty-ggml-LICENSE.txt",
+        "expansion-mesh-thirdparty-meshoptimizer-LICENSE.md.txt",
+        "expansion-mesh-thirdparty-fqms-LICENSE.md.txt",
+        "expansion-mesh-xatlas-NOTICE.txt",
+        "expansion-mesh-stb_image.h-NOTICE.txt",
+        "expansion-mesh-stb_image_write.h-NOTICE.txt",
+        "expansion-mesh-stb_image_resize.h-NOTICE.txt",
         "sd-nlohmann-json-LICENSE.txt",
         "sd-NDK-LLVM-NOTICE.txt"
       ]

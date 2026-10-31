@@ -1,5 +1,7 @@
 # LoRA 平级模型与显式配对
 
+> v0.3.2：新增四类语音与单图生 3D，完整格式 / 组件 / 操作 / API / 构建 / 程序检查见[扩展指南](SPEECH_3D_EXPANSION.md)；原有功能保留，以下开发检查点按原版本理解。
+
 [English](ADAPTERS.en.md) · [资产控制核对](ASSET_CONTROL_AUDIT.md) · [开发状态](DEVELOPMENT.md) · [完整需求](MULTIMODAL_RELEASE_PLAN.md)
 
 [LCM 原生准备专项](LCM_LOCAL_PREPARATION.md)：新程序仅生成来源 / 基础绑定的小型条件组件，尚未注册为 App 模块；不得将底层双文件试验描述为生产配方支持。 新 C++ 候选像素门槛仍失败（8 > 5），未提升为产品支持。

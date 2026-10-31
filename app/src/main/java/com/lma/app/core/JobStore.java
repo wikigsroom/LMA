@@ -137,7 +137,7 @@ public final class JobStore {
         validateKey(idempotencyKey);
         if (request.toString().length() > 32000) throw new IllegalArgumentException("Task request is too large");
         String type = request.getString("type");
-        if (!Arrays.asList("text.generate", "image.generate", "video.generate", "speech.synthesize", "audio.generate", "model.prepare", "model.assemble").contains(type)) throw new IllegalArgumentException("Unknown local task type");
+        if (!Arrays.asList("text.generate", "image.generate", "video.generate", "speech.synthesize", "audio.generate", "mesh.generate", "model.prepare", "model.assemble").contains(type)) throw new IllegalArgumentException("Unknown local task type");
         ModelBundle.key(request.getString("bundleId"));
         JSONArray jobs = state.getJSONArray("jobs");
         for (int i = 0; i < jobs.length(); i++) {

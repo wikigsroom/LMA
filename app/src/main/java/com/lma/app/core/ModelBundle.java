@@ -67,7 +67,7 @@ public final class ModelBundle {
         Set<String> checkedTasks = new LinkedHashSet<>(); JSONArray tags = value.getJSONArray("tasks");
         for (int i = 0; i < tags.length(); i++) {
             String tag = tags.getString(i);
-            if (!Arrays.asList("text", "image", "video", "audio").contains(tag)) throw new IllegalArgumentException("Unknown output task");
+            if (!Arrays.asList("text", "image", "video", "audio", "3d").contains(tag)) throw new IllegalArgumentException("Unknown output task");
             checkedTasks.add(tag);
         }
         if (checkedTasks.isEmpty()) throw new IllegalArgumentException("Missing output task");

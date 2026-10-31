@@ -40,6 +40,11 @@ def main():
     assert not extra_evidence["model_inference_tested"] and not extra_evidence["model_weights_downloaded"] and extra_evidence["physical_device_tests"] == 0
     catalogue["bundles"] += extra["bundles"]
     evidence["bundles"] += extra_evidence["bundles"]
+    expansion=json.loads((ROOT/'catalogue/expansion-bundles.json').read_text(encoding='utf-8'))
+    expansion_evidence=json.loads((ROOT/'catalogue/expansion-bundle-evidence.json').read_text(encoding='utf-8'))
+    assert expansion['schema']==catalogue['schema'] and expansion_evidence['schema']==evidence['schema']
+    assert not expansion_evidence['model_inference_tested'] and not expansion_evidence['model_weights_downloaded'] and expansion_evidence['physical_device_tests']==0
+    catalogue['bundles']+=expansion['bundles']; evidence['bundles']+=expansion_evidence['bundles']
     newline = "\r\n" if b"\r\n" in data else "\n"
     data = (json.dumps(catalogue, ensure_ascii=False, indent=2) + "\n").replace("\n", newline).encode("utf-8")
     assert catalogue["schema"] == "lma.bundle-catalogue/1" and not evidence["model_inference_tested"]
@@ -52,17 +57,21 @@ def main():
         assert bundle["id"] not in ids and bundle["schema"] in ("lma.model-bundle/1", "lma.model-bundle/2")
         ids.add(bundle["id"])
         assert bundle["catalogue"] and bundle["evidence"]["physicalDeviceTests"] == 0
-        assert bundle["tasks"] and all(task in ("text", "image", "video", "audio") for task in bundle["tasks"])
+        assert bundle["tasks"] and all(task in ("text", "image", "video", "audio", "3d") for task in bundle["tasks"])
         proof = proofs[bundle["id"]]
         components = {c["role"]: c for c in proof["components"]}
         assert len(components) == len(proof["components"]) == len(bundle["components"])
         for c in bundle["components"]:
-            assert re.fullmatch("[0-9a-f]{64}", c["sha256"]) and c["bytes"] > 0
+            assert (bool(re.fullmatch('[0-9a-f]{64}',c.get('sha256',''))) != bool(re.fullmatch('[0-9a-f]{40}',c.get('gitBlobSha1','')))) and c['bytes']>0
             checked = components[c["role"]]
-            assert all(c.get(key, "") == checked.get(key, "") for key in ("path", "bytes", "sha256", "repository", "revision"))
-            if checked["kind"] in ("hf_lfs", "downloaded_small_data"):
+            assert all(c.get(key, "") == checked.get(key, "") for key in ("path", "bytes", "sha256", "gitBlobSha1", "repository", "revision"))
+            if checked["kind"] in ("hf_lfs", "downloaded_small_data", "hf_git_blob"):
                 assert re.fullmatch("[0-9a-f]{40,64}", c["revision"])
                 assert c["url"] == "https://huggingface.co/" + c["repository"] + "/resolve/" + c["revision"] + "/" + c["path"]
+            elif checked['kind']=='pinned_pronunciation_dictionary':
+                from expansion_catalogue import SOURCE
+                source=json.loads(SOURCE.read_text(encoding='utf-8'))
+                assert any(all(c.get(k)==p.get(k) for k in ('path','repository','revision','url','bytes','sha256')) for p in source['pronunciationDictionaries'])
             elif checked["kind"] == "pinned_asset_history":
                 # Historical asset identities are not fresh HF availability or current inference evidence.
                 assert checked["source"] in ("research/sd_variants_trained/assets.json", "research/sd_distilled_trained/assets.json", "research/moss_nano_trained/assets.json")

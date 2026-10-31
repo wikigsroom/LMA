@@ -7,7 +7,7 @@
   function bind(m, state) {
     if (!m.isBundle) return m;
     var b = (state.bundles || []).find(function (b) { return b.id === (m.bundleId || m.id); });
-    if (b) { m.manifest = b.manifest; m.content = b.manifest.content; m.community = b.manifest.community; }
+    if (b) { m.manifest = b.manifest; m.taskTags = b.manifest.tasks; m.content = b.manifest.content; m.community = b.manifest.community; }
     return m;
   }
   function badge(m) {
@@ -20,6 +20,7 @@
     if (!root) return html;
     var tags = root.querySelector('.model-tags');
     if (!tags) { tags = document.createElement('div'); tags.className = 'model-tags'; root.appendChild(tags); }
+    if ((m.taskTags || []).indexOf('3d') >= 0) { tags.querySelectorAll('.tag').forEach(function (t) { if (t.textContent === 'undefined') t.remove(); }); tags.insertAdjacentHTML('beforeend', '<span class="tag task-tag task-3d">生 3D</span>'); }
     tags.insertAdjacentHTML('beforeend', badge(m));
     if (m.community) {
       tags.insertAdjacentHTML('beforeend', '<span class="tag">社区配方</span>');

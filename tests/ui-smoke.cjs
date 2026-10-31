@@ -6,6 +6,7 @@ const path = require('node:path');
 const http = require('node:http');
 const {hubFixture, installHubBridge} = require('./hub-fixture.cjs');
 const checkCommunity = require('./community-ui.cjs');
+const checkExpansion = require('./expansion-ui.cjs');
 const checkFoundation = require('./foundation-ui.cjs');
 const checkRecipes = require('./recipes-ui.cjs');
 const checkVersions = require('./versions-ui.cjs');
@@ -42,7 +43,7 @@ fs.mkdirSync(output, {recursive: true});
 if (fs.existsSync(path.join(output, 'results.json'))) fs.unlinkSync(path.join(output, 'results.json'));
 function inputFingerprint() {
   const files = fs.readdirSync(assets, {recursive: true}).map(name => path.join(assets, name)).filter(file => fs.statSync(file).isFile()).concat(__filename, path.join(root, 'tests/hub-fixture.cjs'), path.join(root, 'tests/foundation-ui.cjs'), path.join(root, 'tests/recipes-ui.cjs'), path.join(root, 'tests/versions-ui.cjs'), path.join(root, 'tests/text-ui.cjs'), path.join(root, 'tests/migration-ui.cjs'), path.join(root, 'tests/scheduler-ui.cjs'), path.join(root, 'tests/inputs-ui.cjs'), path.join(root, 'tests/diffusion-ui.cjs'), path.join(root, 'tests/qwen-ui.cjs'), path.join(root, 'tests/moss-delay-ui.cjs'), path.join(root, 'tests/openmoss-ui.cjs'), path.join(root, 'tests/stable-audio-ui.cjs'), path.join(root, 'tests/soulx-ui.cjs'), path.join(root, 'tests/preparations-ui.cjs'), path.join(root, 'tests/assemblies-ui.cjs'), path.join(root, 'tests/workbench-ui.cjs'), path.join(root, 'tests/preflight-ui.cjs'), path.join(root, 'tests/recovery-ui.cjs'), path.join(root, 'tests/lcm-ui.cjs'), path.join(root, 'tests/audio-ui.cjs'), path.join(root, 'tests/ltx-ui.cjs'), path.join(root, 'tests/resources-ui.cjs'), path.join(root, 'tests/curated-ui.cjs'), path.join(root, 'tests/speech-ui.cjs'), path.join(root, 'tests/components-ui.cjs'), path.join(root, 'tests/fixtures/speech-voices.json'), path.join(root, 'catalogue/model-bundles.json'), path.join(root, 'catalogue/model-assemblies.json'), path.join(root, 'catalogue/asset-preparations.json'));
-  files.push(path.join(root,'tests/community-ui.cjs'),path.join(root,'tests/ltx-official-ui.cjs'),path.join(root,'tests/sana-ui.cjs'),path.join(root,'tests/wan-ui.cjs'),path.join(root,'research/wan_trained/catalogue-bundle.json'));
+  files.push(path.join(root,'tests/expansion-ui.cjs'),path.join(root,'catalogue/expansion-bundles.json'),path.join(root,'tests/community-ui.cjs'),path.join(root,'tests/ltx-official-ui.cjs'),path.join(root,'tests/sana-ui.cjs'),path.join(root,'tests/wan-ui.cjs'),path.join(root,'research/wan_trained/catalogue-bundle.json'));
   return Object.fromEntries(files.sort().map(file => [path.relative(root, file).split(path.sep).join('/'), crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex')]));
 }
 const verifiedInputs = inputFingerprint();
@@ -268,7 +269,14 @@ async function main() {
   await page.setViewportSize({width:375,height:812}); await page.keyboard.press('Escape');
   await page.locator('.nav-item[data-tab="settings"]').click();
   await page.locator('[data-action="about"]').click(); await page.locator('[data-action="notices"]').click();
-  assert.equal(await page.locator('.license-notice').count(), fs.readdirSync(path.join(assets, 'licenses')).filter(name => name.endsWith('.txt')).length + 1); assert((await page.locator('#modalContent').textContent()).includes('tts-onnxruntime-ThirdPartyNotices.txt.txt')); assert((await page.locator('#modalContent').textContent()).includes('mnn-LICENSE.txt')); assert((await page.locator('#modalContent').textContent()).includes('qwen-tts-LICENSE.txt')); assert((await page.locator('#modalContent').textContent()).includes('moss-delay-LICENSE.txt')); await page.keyboard.press('Escape'); checked('Bundled third-party license reader includes the compiled MNN dependencies');
+  assert.equal(await page.locator('.license-notice').count(), fs.readdirSync(path.join(assets, 'licenses')).filter(name => name.endsWith('.txt') && !name.startsWith('expansion-')).length + 1); assert((await page.locator('#modalContent').textContent()).includes('tts-onnxruntime-ThirdPartyNotices.txt.txt')); assert((await page.locator('#modalContent').textContent()).includes('mnn-LICENSE.txt')); assert((await page.locator('#modalContent').textContent()).includes('qwen-tts-LICENSE.txt')); assert((await page.locator('#modalContent').textContent()).includes('moss-delay-LICENSE.txt')); await page.keyboard.press('Escape'); checked('Bundled third-party license reader includes the compiled MNN dependencies');
+  await page.locator('[data-action="expansionNotices"]').click();
+  await page.waitForFunction(()=>document.getElementById('modalTitle').textContent==='新增原生引擎开源说明');
+  const expansionNotices=JSON.parse(fs.readFileSync(path.join(assets,'expansion-notices.json'),'utf8'));
+  assert.equal(await page.locator('#modalContent details').count(),Object.keys(expansionNotices).length);
+  for(const name of Object.keys(expansionNotices)) assert((await page.locator('#modalContent').textContent()).includes(name));
+  assert((await page.locator('#modalContent').textContent()).includes('stb_image_resize.h'));
+  await page.keyboard.press('Escape'); checked('Speech and 3D notice reader exposes every added compiled dependency without rewriting original notices');
   await page.locator('.nav-item[data-tab="server"]').click(); await page.evaluate(() => { document.getElementById('page-server').scrollTop = 0; document.getElementById('toast').hidden = true; }); await page.screenshot({path: path.join(output, '04-server-dark.png')});
   await page.locator('.nav-item[data-tab="models"]').click(); await page.locator('#addModelButton').click();
   await page.locator('[data-action="addUrl"]').click();
@@ -320,6 +328,7 @@ async function main() {
   await checkSana(page, checked, checkOverflow, output);
   await checkLtxOfficial(page, checked, checkOverflow, output);
   await checkCommunity(page, checked, checkOverflow, output);
+  await checkExpansion(page, checked, checkOverflow, output);
   await page.locator('.nav-item[data-tab="models"]').click();
   await page.locator('[data-task="any"]').click();
   await page.setViewportSize({width: 1024, height: 768}); await checkOverflow(page, 'Tablet library layout');

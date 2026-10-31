@@ -1,6 +1,14 @@
 # Changelog / 更新记录
 
-## Unreleased — README 完整性修复 / README completeness repair
+## 0.3.2 — 语音与本地生 3D / Speech and local 3D
+
+- 新增 Kokoro INT8、MeloTTS Chinese INT8 / FP32、F5-TTS v1、OmniVoice Q8 / 原版六个可选语音包；匹配 ONNX、原版 safetensors 或 GGUF，不直接执行任意 PyTorch `.pth`。Add matched local workers and external frontend resources; all downloads remain explicit.
+- 新增 TRELLIS.2 / Pixal3D 单图 CPU 后端与五个可选包，接通图片、独立参数、预检、草稿、队列、取消、GLB 校验 / 预览 / 导出。Assess all 16 benchmark cases; multiview and other unported pipelines remain explicit limitations.
+- 保留原推荐和完整既有范围；44 模板、78 包、14 扩展引擎＋文本。No model weights, voices, tokenizers or dictionaries are bundled; no remote inference or virtualization.
+- 新增 173 项专项程序检查与 32 项页面交互；更新原有回归、原生 ARM64、原签名 APK 与全部媒体指纹。No complete-model runs or phone acceptance; F5 Chinese and large 3D resource limits remain documented.
+- 保留完整中英 README 并扩展到 22 个场景 / 25 组测试入口；新增双语方案、逐项测评来源、截图 / GIF / MP4、原版 v0.3.1 证据归档及[本轮编号交付 / 待办](docs/releases/v0.3.2.md)。
+
+## v0.3.1 文档维护 — README 完整性修复 / README completeness repair
 
 - 恢复中英 README 正文中的 18 个操作用例、4 组 API 示例、18 组历史案例与 24 组程序测试覆盖表；补回原图、WAV、GIF、MP4、失败对照、精选文本候选、Z20 起步配置及排错。Restore detailed scenarios, integration examples, generated artifacts and explicit test/failure evidence.
 - 修正过时的 23 套目录表述：现有 23＋社区 44＝67 套；模板、模型包、引擎计数分别说明。Distinguish current program records, historical host outputs and unperformed phone acceptance.

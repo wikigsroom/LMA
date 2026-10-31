@@ -67,7 +67,7 @@ public final class ArtifactStore {
             DataFiles.child(staging, file.getName()); long bytes = file.length();
             if (file.delete()) { removedStaging++; reclaimed = Math.addExact(reclaimed, bytes); } else cleanupFailures++;
         }
-        for (File file : outputs) if (file.getName().matches("artifact_[a-f0-9]{32}\\.(?:png|jpg|wav|mp4|txt|json)") && !committed.contains(file.getName()) && java.nio.file.Files.isRegularFile(file.toPath(), java.nio.file.LinkOption.NOFOLLOW_LINKS)) {
+        for (File file : outputs) if (file.getName().matches("artifact_[a-f0-9]{32}\\.(?:png|jpg|wav|mp4|glb|txt|json)") && !committed.contains(file.getName()) && java.nio.file.Files.isRegularFile(file.toPath(), java.nio.file.LinkOption.NOFOLLOW_LINKS)) {
             DataFiles.child(media, file.getName()); long bytes = file.length();
             if (file.delete()) { removedOrphans++; reclaimed = Math.addExact(reclaimed, bytes); } else cleanupFailures++;
         }
@@ -138,6 +138,7 @@ public final class ArtifactStore {
         switch (mime) {
             case "image/png": extension = "png"; break; case "image/jpeg": extension = "jpg"; break;
             case "audio/wav": extension = "wav"; break; case "video/mp4": extension = "mp4"; break;
+            case GlbFile.MIME: extension = "glb"; break;
             case "text/plain": extension = "txt"; break; case TextResult.MIME: extension = "json"; break; default: throw new IOException("Unsupported output MIME type");
         }
         check.run();

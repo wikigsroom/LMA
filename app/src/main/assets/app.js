@@ -52,10 +52,10 @@
   function textQueued() { return ['waiting', 'suspended'].indexOf(engine().state) >= 0; }
   function textAvailable() { return engine().state === 'ready' || textQueued(); }
   function replyWaiting() { var s = state && state.foundation && state.foundation.execution || {}, a = s.active || {}; return !!engine().generating && ['chat', 'api'].indexOf(a.kind) < 0 && textQueued(); }
-  var taskNames = {text: '生文', image: '生图', video: '生视频', audio: '生音频'};
+  var taskNames = {text: '生文', image: '生图', video: '生视频', audio: '生音频', '3d': '生 3D'};
   function outputTags(m) {
     if (Array.isArray(m.taskTags)) return m.taskTags;
-    return m.task ? { 'text-generation': ['text'], 'text2text-generation': ['text'], 'image-text-to-text': ['text'], conversational: ['text'], 'text-to-image': ['image'], 'image-to-image': ['image'], 'text-to-video': ['video'], 'image-to-video': ['video'], 'video-to-video': ['video'], 'text-to-speech': ['audio'], 'text-to-audio': ['audio'], 'audio-to-audio': ['audio'] }[m.task] || [] : m.hub === undefined && m.family ? ['text'] : [];
+    return m.task ? { 'text-generation': ['text'], 'text2text-generation': ['text'], 'image-text-to-text': ['text'], conversational: ['text'], 'text-to-image': ['image'], 'image-to-image': ['image'], 'image-to-3d': ['3d'], 'text-to-3d': ['3d'], 'text-to-video': ['video'], 'image-to-video': ['video'], 'video-to-video': ['video'], 'text-to-speech': ['audio'], 'text-to-audio': ['audio'], 'audio-to-audio': ['audio'] }[m.task] || [] : m.hub === undefined && m.family ? ['text'] : [];
   }
   function taskBadges(m, metadata) {
     return outputTags(m).filter(function (task) { return taskNames[task]; }).map(function (task) { return '<span class="tag task-tag task-' + task + '"' + (metadata ? ' title="来自 HF 任务元数据，尚未验证本机运行能力"' : '') + '>' + taskNames[task] + (metadata ? ' · 元数据' : '') + '</span>'; }).join('');
@@ -91,7 +91,7 @@
     try {
       state = typeof raw === 'string' ? JSON.parse(raw) : raw;
       if (!state || !Array.isArray(state.models) || !state.settings || !state.engine) throw new Error('状态数据不完整');
-      applyTheme(); renderRuntime(); renderModels(); renderChat(); renderServer(); renderHubFiles(); window.LMAFoundation.receive(); window.LMARecipes.receive();
+      applyTheme(); renderRuntime(); renderModels(); renderChat(); renderServer(); renderHubFiles(); window.LMAFoundation.receive(); window.LMARecipes.receive(); window.LMAExpansion.receive();
       $('hfTokenStatus').textContent = state.settings.hfTokenSet ? '已设置令牌' : '未设置令牌';
       if (pendingHubToken) {
         var tokenResult = commandResult(pendingHubToken);
@@ -306,6 +306,7 @@
     settingsFilled = true;
   }
   function openModal(title, content, kind) {
+    if (window.LMAExpansion) window.LMAExpansion.close();
     if ($('modalBackdrop').hidden) returnFocus = document.activeElement;
     modalKind = kind || ''; $('modalTitle').textContent = title; $('modalContent').innerHTML = content; $('modalBackdrop').hidden = false;
     $('modal').scrollTop = 0; $('modal').focus();
@@ -381,7 +382,7 @@
   }
   function closeModal() {
     if ($('modalBackdrop').hidden) return;
-    window.LMAFoundation.close(); window.LMARecipes.close(); $('modalBackdrop').hidden = true; modalKind = ''; modelEditor = null;
+    window.LMAExpansion.close(); window.LMAFoundation.close(); window.LMARecipes.close(); $('modalBackdrop').hidden = true; modalKind = ''; modelEditor = null;
     document.querySelector('.app-shell').removeAttribute('aria-hidden');
     if (returnFocus && document.contains(returnFocus)) returnFocus.focus({preventScroll: true}); returnFocus = null;
   }
@@ -406,6 +407,7 @@
   }
   function handleAction(action, el) {
     var id = el.dataset.id, m;
+    if (window.LMAExpansion.handle(action, el)) return;
     if (action === 'communityInfo') { m = modelById(id); if (m) window.LMACommunity.info(m); return; }
     if (action === 'communitySource') { if (window.Android && /^https:\/\/(huggingface\.co|civitai\.com)\//.test(el.dataset.url || '')) window.Android.openLink(el.dataset.url); return; }
     if (window.LMAFoundation.handle(action, el) || window.LMARecipes.handle(action, el)) {
@@ -567,7 +569,7 @@
   var themeMedia = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)');
   if (themeMedia) { if (themeMedia.addEventListener) themeMedia.addEventListener('change', applyTheme); else if (themeMedia.addListener) themeMedia.addListener(applyTheme); }
   var bridge = {state: function () { return state || {}; }, esc: esc, copy: copy, bytes: bytes, icon: icon, dispatch: nativeAction, result: commandResult, openModal: openModal, closeModal: closeModal, toast: toast, route: route, selectLocal: function () { route('models'); selectFilter('local'); }, confirm: confirmAction};
-  window.LMACommunity.init(bridge); window.LMAFoundation.init(bridge); window.LMARecipes.init(bridge);
+  window.LMAExpansion.init(bridge); window.LMACommunity.init(bridge); window.LMAFoundation.init(bridge); window.LMARecipes.init(bridge);
   window.LMA = {receive: receive, back: function () { if (!$('modalBackdrop').hidden) { closeModal(); return true; } if (tab !== 'models') { route('models'); return true; } return false; }};
   hydrateIcons(document); updateFilters();
   if (window.Android) { try { receive(window.Android.getSnapshot()); } catch (e) { $('runtimeDetail').textContent = '等待原生服务连接…'; } }

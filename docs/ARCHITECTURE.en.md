@@ -1,5 +1,7 @@
 # LMA 0.2.0 architecture
 
+> v0.3.2 adds four speech families and single-image 3D. See the [expansion guide](SPEECH_3D_EXPANSION.en.md) for formats, components, workflows, API, builds and program checks. Existing capabilities remain; older checkpoints below retain their original context.
+
 > 当前 / Current: **v0.3.0**. [完整程序集成 / implementation](IMPLEMENTATION_V030.en.md). [仅程序验证策略 / validation](PROGRAM_VALIDATION.md) 优先于下文历史完整模型 / 手机运行门槛；旧检查点与失败记录保留为历史。Original PixArt multiscale LTX is now integrated; quality/device acceptance remains untested. [Release](releases/v0.3.0.md).
 
 

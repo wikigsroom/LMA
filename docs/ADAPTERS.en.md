@@ -1,5 +1,7 @@
 # Peer LoRA models and explicit pairing
 
+> v0.3.2 adds four speech families and single-image 3D. See the [expansion guide](SPEECH_3D_EXPANSION.en.md) for formats, components, workflows, API, builds and program checks. Existing capabilities remain; older checkpoints below retain their original context.
+
 [中文](ADAPTERS.md) · [Asset-control audit](ASSET_CONTROL_AUDIT.en.md) · [Development](DEVELOPMENT.en.md) · [Full scope](MULTIMODAL_RELEASE_PLAN.en.md)
 
 [Native LCM preparation follow-up](LCM_LOCAL_PREPARATION.en.md): the new program derives a source/base-bound component but is not an App module yet; direct two-file host experiments do not establish product recipe support. The new C++ candidate fails its preset pixel maximum (8 > 5) and remains rejected.

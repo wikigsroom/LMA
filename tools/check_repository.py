@@ -37,8 +37,8 @@ def main():
         assert not set(p.parts) & protected_parts, "Private/generated path staged: " + name
         assert p.suffix not in protected_suffixes and not p.name.startswith(".env"), "Private artifact: " + name
         assert p.parts[:2] != ("third_party", "cache") and "jniLibs" not in p.parts, "Re-fetchable native bytes staged: " + name
-        if name in {"app/src/main/assets/license.js", "app/src/main/assets/foundation.js"}:
-            # Existing protected assets are authorized for hashing only.
+        if name.endswith(".header.json") or name in {"app/src/main/assets/license.js", "app/src/main/assets/foundation.js"}:
+            # Protected assets and raw upstream headers are authorized for hashing only.
             assert (ROOT / p).stat().st_size < 25 * 1024 * 1024
             with (ROOT / p).open("rb") as stream: hashlib.file_digest(stream, "sha256")
             continue

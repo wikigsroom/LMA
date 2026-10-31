@@ -17,7 +17,7 @@ public final class CommunityTest {
         Path root = Paths.get(args[0]);
         JSONArray all = read(root.resolve("app/src/main/assets/model-bundles.json")).getJSONArray("bundles");
         JSONArray extra = read(root.resolve("catalogue/community-bundles.json")).getJSONArray("bundles");
-        check(all.length() == 67); check(extra.length() == 44);
+        check(all.length() == 78); check(extra.length() == 44);
         Set<String> ids = new HashSet<>(), families = new HashSet<>(); int images = 0, videos = 0, adult = 0;
         for (int i = 0; i < extra.length(); i++) {
             ModelBundle b = new ModelBundle(extra.getJSONObject(i));
@@ -61,6 +61,11 @@ public final class CommunityTest {
         rejects(() -> ContentMetadata.validate(new JSONObject(unknown.toString()).put("basis", "publisher_card")));
         JSONObject hf = HubClient.model(new JSONObject().put("id", "publisher/model").put("tags", new JSONArray().put("nsfw")).put("pipeline_tag", "text-to-video"));
         check(hf.getJSONArray("taskTags").getString(0).equals("video")); check(hf.getJSONObject("content").getString("basis").equals("hf_nsfw_tag"));
+        for (String task : Arrays.asList("image-to-3d", "text-to-3d")) {
+            JSONObject mesh = HubClient.model(new JSONObject().put("id", "publisher/mesh").put("pipeline_tag", task));
+            check(mesh.getJSONArray("taskTags").getString(0).equals("3d"));
+            check(mesh.getJSONObject("content").getString("classification").equals("unclassified"));
+        }
         RecipeCatalogue recipes = new RecipeCatalogue(read(root.resolve("app/src/main/assets/recipe-templates.json")));
         ModelBundle sample = new ModelBundle(extra.getJSONObject(0));
         JSONObject primary = new JSONObject(sample.component("model").repository.isEmpty() ? "{}" : extra.getJSONObject(0).getJSONArray("components").getJSONObject(0).toString());

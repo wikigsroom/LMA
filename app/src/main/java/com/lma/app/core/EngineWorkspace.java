@@ -40,16 +40,23 @@ public final class EngineWorkspace implements AutoCloseable {
         return value;
     }
     public File link(String group, String name, File source) throws Exception {
-        if (closed) throw new IOException("Engine workspace is closed"); check.run();
         if (group == null || !group.matches("[a-z][a-z0-9_]{0,31}")) throw new IOException("Invalid component group");
-        filename(name);
-        String identity = (group + "/" + name).toLowerCase(Locale.ROOT);
+        return linkRelative(group + "/" + filename(name), source);
+    }
+    /** Signed adapters choose these bounded paths; manifests never supply execution paths. */
+    public File linkRelative(String relative, File source) throws Exception {
+        if (closed) throw new IOException("Engine workspace is closed"); check.run();
+        if (relative == null) throw new IOException("Missing execution filename");
+        String[] parts = relative.split("/", -1);
+        if (parts.length < 1 || parts.length > 4) throw new IOException("Execution filename nesting exceeds bounds");
+        for (String part : parts) filename(part);
+        String identity = relative.toLowerCase(Locale.ROOT);
         if (names.contains(identity)) throw new IOException("Duplicate component execution filename");
         Path original = source.toPath();
         if (!Files.isRegularFile(original, LinkOption.NOFOLLOW_LINKS) || Files.isSymbolicLink(original)) throw new IOException("Selected asset is not a regular file");
-        Path folder = directory.resolve(group);
+        Path destination = directory.resolve(relative);
+        Path folder = destination.getParent();
         Files.createDirectories(folder);
-        Path destination = folder.resolve(name);
         // BundleStore holds the lease until the worker has exited and these links have been removed.
         // A hardlink failure must not silently duplicate a multi-gigabyte model.
         Files.createLink(destination, original);

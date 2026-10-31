@@ -1,11 +1,11 @@
 (function () {
   'use strict';
   var ui, host, signature = '', historyPlan = null, historyPending = null;
-  var names = {'text.generate': '生文', 'image.generate': '生图', 'video.generate': '生视频', 'speech.synthesize': '语音合成', 'audio.generate': '生音频', 'model.prepare': '准备运行资产', 'model.assemble': '关联运行模型'};
+  var names = {'text.generate': '生文', 'image.generate': '生图', 'video.generate': '生视频', 'speech.synthesize': '语音合成', 'audio.generate': '生音频', 'mesh.generate': '生 3D', 'model.prepare': '准备运行资产', 'model.assemble': '关联运行模型'};
   function e(v) { return ui.esc(v); }
   function button(action, id, label, style, disabled) { return host.button(action, id, label, style, disabled); }
   function draft(id) { return (ui.state().taskDrafts || []).find(function (d) { return d.bundleId === id; }); }
-  function generation(type) { return ['text.generate', 'image.generate', 'video.generate', 'speech.synthesize', 'audio.generate'].indexOf(type) >= 0; }
+  function generation(type) { return ['text.generate', 'image.generate', 'video.generate', 'speech.synthesize', 'audio.generate', 'mesh.generate'].indexOf(type) >= 0; }
   function artifact(id) { return (ui.state().artifacts || []).find(function (a) { return a.id === id; }); }
   // Engine-owned input rules apply equally to any model using this capability.
   function applyInputConstraints(id) {
@@ -25,13 +25,14 @@
     }
     apply(); form.addEventListener('change', apply);
   }
-  function use(id, adapter, request, revision) { host.use(id, adapter, request, revision); applyInputConstraints(id); }
+  function use(id, adapter, request, revision) { if (window.LMAExpansion.use(id, request, revision)) return; host.use(id, adapter, request, revision); applyInputConstraints(id); }
   var limitMessage = '本次输出已达到所选上限，内容可能不完整。可调整此模型的输出上限后再次生成。';
   function limitedOutput(data) {
     var details = ((((data || {}).provenance || {}).engineExecution || {}).details || {});
     return details.truncated === true || details.stopReason === 'max_new_tokens';
   }
   function showOutputArtifact(id, data) {
+    if (window.LMAExpansion.showArtifact(id, data)) return;
     host.showArtifact(id, data);
     var content = document.getElementById('modalContent');
     if (!content || !limitedOutput(data)) return;

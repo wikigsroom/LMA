@@ -1,20 +1,20 @@
 # LMA · Local model workbench for Android
 
-[中文](README.md) · [Download v0.3.1](https://github.com/wikigsroom/LMA/releases/tag/v0.3.1) · [User guide](docs/USER_GUIDE.en.md) · [Documentation](docs/README.md) · [Detailed scenarios](#use-cases) · [Cases and failures](#case-studies)
+[中文](README.md) · [Download v0.3.2](https://github.com/wikigsroom/LMA/releases/tag/v0.3.2) · [User guide](docs/USER_GUIDE.en.md) · [Documentation](docs/README.md) · [Detailed scenarios](#use-cases) · [Cases and failures](#case-studies)
 
 LMA lets users select, download, manage and run local models on an Android phone, with chat, multimodal jobs, artifacts and a local API. App updates deliver the foundation. Users explicitly choose every model and dependency. The APK contains no model weights and requires no ROOT, Termux, containers or other computing devices.
 
-**v0.3.1 implements the frozen program scope: F-01–F-12, existing text and selections 01–14, 16 and 17. Validation is program-only, as requested by the user.** Builds, packages, native contracts, production job logic, APIs and UI checks do not establish phone inference, image/audio quality, speed or screen-off endurance. Those remain untested. A catalogue entry does not establish that a Nubia Z20 can run it.
+**v0.3.2 preserves the frozen program scope: F-01–F-12, existing text and selections 01–14, 16 and 17. Validation is program-only, as requested by the user.** Builds, packages, native contracts, production job logic, APIs and UI checks do not establish phone inference, image/audio quality, speed or screen-off endurance. Those remain untested. A catalogue entry does not establish that a Nubia Z20 can run it.
 
-**v0.3.1 adds 44 optional community checkpoint recipes (30 image / 14 video) across 14 families. Of these, 28 have sourced NSFW labels.** Content labels distinguish publisher declarations, rating vocabularies, file markers, mirrors and unverified HF hints. The registered catalogue grows to 67 recipes; the 14 Wan video entries are training versions of one 1.3B family. See the [complete source, license, compatibility and usage guide](docs/COMMUNITY_MODELS.en.md).
+**v0.3.1 adds 44 optional community checkpoint recipes (30 image / 14 video) across 14 families. Of these, 28 have sourced NSFW labels.** Content labels distinguish publisher declarations, rating vocabularies, file markers, mirrors and unverified HF hints. These 44 community choices remain in v0.3.2; the 14 Wan video entries are training versions of one 1.3B family. See the [complete source, license, compatibility and usage guide](docs/COMMUNITY_MODELS.en.md).
 
 <a id="install"></a>
 ## Install and use
 
-1. Download `LMA-0.3.1-arm64-v8a.apk` from the Release and compare its hash with `SHA256SUMS`. Requires **64-bit Android 9 / API 28 or later**. The original signing identity is retained for upgrades and existing data.
+1. Download `LMA-0.3.2-arm64-v8a.apk` from the Release and compare its hash with `SHA256SUMS`. Requires **64-bit Android 9 / API 28 or later**. The original signing identity is retained for upgrades and existing data.
 2. Open LMA and allow notifications when prompted. For screen-off work, allow background activity and remove the relevant battery restrictions in Android settings. Installation and upgrades do not download models.
 3. Open Models → Recommended / All / Local. **Recommended retains m08 → m06 → m01.** All supports HF keywords, repository IDs/URLs, pagination and discovery of every format. Local manages downloaded/imported models and unfinished transfers.
-4. Filter by text, image, video or audio tags. Inspect architecture, recipe, backend, license, dependencies, pinned revision and size before explicitly downloading or importing with Android's document picker.
+4. Filter by text, image, video, audio or 3D tags. Inspect architecture, recipe, backend, license, dependencies, pinned revision and size before explicitly downloading or importing with Android's document picker.
 5. Open a model's settings in Local. Editable preset inputs save independently per model; excessive values clamp to the applicable model, recipe or application bound. Temporary job overrides preserve saved defaults.
 6. Load a text model for chat or copy the local API address. For other models, choose Use, fill the capability-specific form, attach compatible references, review preflight and submit to the shared queue.
 7. Inspect progress, cancel or explicitly retry from Tasks. Preview/export artifacts with parameters, seed, provenance and hashes, or restore them as a new editable request. Drafts are stored independently.
@@ -22,6 +22,8 @@ LMA lets users select, download, manage and run local models on an Android phone
 HF discovery and executable support are separate. Compatible files enter their matching text engine or multi-component recipe; arbitrary safetensors, GGUF or Diffusers repositories are not universally executable. Custom components can be registered through recipes. Missing components fail locally without implicit downloads or off-device execution.
 
 <a id="models"></a>
+Current APK: **v0.3.2 / code 52 / 66,100,175 bytes**, original signing identity retained. SHA256: `bed58cb59324e8ec1a786026378a55767d28c5a76ba9fa56544506c10145d140`. [Release inventory and validation](docs/releases/v0.3.2.md).
+
 ## Model and foundation scope
 
 Every model is a peer, classified by output task, capability, engine, format, component, backend, license and installation tags. Uncensored / Abliterated is an independent label. Checked publisher declarations and unverified metadata hints are distinguished; neither implies measured refusal rates.
@@ -41,7 +43,21 @@ Every model is a peer, classified by output task, capability, engine, format, co
 | 16 | Wan 2.1 T2V 1.3B Q4 | sd.cpp CPU/Vulkan with explicit components and video encoding |
 | 17 | LTX-Video 2B 0.9.8 distilled | Original PixArt T5 F32 with 7-step generation / spatial upsampling / 3-step refinement; Google T5 Q5 single-scale remains a separate variant |
 
-This release has **38 data-only recipe templates, 67 catalogue bundles (23 original + 44 community), 12 extension engine families and the existing text engine**. These are program integration counts, not counts of models passing phone tests. See the [implementation matrix](docs/IMPLEMENTATION_V031.en.md).
+This release has **44 data-only recipe templates, 78 catalogue bundles (23 original + 44 community + 11 speech / 3D), 14 extension engine families and the existing text engine**. These are program integration counts, not counts of models passing phone tests. See the [implementation matrix](docs/IMPLEMENTATION_V032.en.md).
+
+## Added speech and single-image 3D
+
+| Number | Choice | Current route and boundary |
+| --- | --- | --- |
+| S01 | Kokoro PyTorch family | Matched INT8 English ONNX; raw `.pth` is not directly executable; existing 54 voices remain |
+| S02 | MeloTTS Chinese | INT8 / FP32 ONNX, phones / tones lexicon and four normalization FSTs |
+| S03 | F5-TTS v1 | Original safetensors and Vocos through local C++; reference WAV / transcript required; experimental Chinese frontend |
+| S04 | OmniVoice | Q8 GGUF or original assets; local C++, auto / clone / design controls, complete WAV |
+| D01–D02 | TRELLIS.2 / Pixal3D | Five single-image GGUF / CPU geometry / texture choices; local image → GLB → rotate / export |
+
+All **16 configurations** in the requested [3080 collection](https://benchmark.sidcloud.cn/collections/3080-3d) were assessed: 12 newer and four older cases. This APK integrates subsets of two single-image architectures. Multiview, other families, texture-only / refinement and multipart routes remain unported. The smaller Melo choice is about 61 MB; the Pixal texture bundle is about 13 GB, not uniformly lightweight or guaranteed Z20 options.
+
+[Four speech families, 11 bundles, licenses, D01–D16 audit, workflows, API, tests and media](docs/SPEECH_3D_EXPANSION.en.md) · [source audit](research/expansion/benchmark-audit.json). Downloads remain user-selected; no NSFW label is inferred for new families.
 
 ## Architecture and asset lifecycle
 
@@ -59,7 +75,7 @@ A visible foreground service, stop notification and task-scoped wake locks suppo
 
 ## Screenshots and recordings
 
-These show **v0.3.1 production pages with an explicitly labelled desktop bridge fixture**, without weight downloads or generated model content. Owned browsers close after recording.
+These show **v0.3.2 production pages with an explicitly labelled desktop bridge fixture**, without weight downloads or generated model content. Owned browsers close after recording.
 
 ![Components, independent settings and video jobs](docs/media/development/community/community-ui.gif)
 
@@ -67,7 +83,7 @@ These show **v0.3.1 production pages with an explicitly labelled desktop bridge 
 
 ## Validation, builds and documentation
 
-[Release notes](docs/releases/v0.3.1.md) list program checks, APK identity and deliverables. The [validation policy](docs/PROGRAM_VALIDATION.en.md) records the user's decision to omit complete-model runtime acceptance. Current evidence is in [verification/program](verification/program/status.json); historical failures and earlier records retain their identity and are not current-APK model results.
+[Release notes](docs/releases/v0.3.2.md) list program checks, APK identity and deliverables. The [validation policy](docs/PROGRAM_VALIDATION.en.md) records the user's decision to omit complete-model runtime acceptance. Current evidence is in [verification/program](verification/program/status.json); historical failures and earlier records retain their identity and are not current-APK model results.
 
 Native Windows builds use JDK, Android SDK/NDK and CMake, without Docker, WSL or emulators. Local `signing/` material is preserved for upgrades and excluded from Git and release assets. [Build](docs/BUILD.en.md) · [Release workflow](docs/RELEASING.md) · [Contributing](CONTRIBUTING.md).
 
@@ -76,14 +92,14 @@ The [documentation index](docs/README.md) links model management, settings, task
 <a id="contents"></a>
 ## Detailed usage and evidence routes
 
-The following restores the detailed scenarios, API examples, generated artifacts and test cases that were lost when the README was shortened. This is documentation maintenance for v0.3.1, not a new APK or a new complete-model test run. LMA is independent of LM Studio; the current app UI is primarily Chinese and the documentation is bilingual.
+The following restores the detailed scenarios, API examples, generated artifacts and test cases that were lost when the README was shortened. v0.3.2 retains these detailed sections and adds speech / 3D scenarios; no new complete-model run is claimed. LMA is independent of LM Studio; the current app UI is primarily Chinese and the documentation is bilingual.
 
 | Goal | Entry point |
 | --- | --- |
 | Operate the app | [18 scenarios C01–C18](#use-cases) |
 | Integrate the phone API | [Four examples A01–A04](#api-examples) |
 | Compare historical outputs and failures | [18 cases H01–H18](#case-studies) |
-| Inspect current program coverage | [24 suites P01–P24](#verification) |
+| Inspect current program coverage | [25 suites P01–P25](#verification) |
 | Rebuild and diagnose | [Build](#build), [Z20/background limits](#z20), [troubleshooting](#troubleshooting) |
 | Read the original development narrative | [Historical English README](docs/history/README-dev45.en.md), [repair notes](docs/releases/v0.3.1-readme.md) |
 
@@ -109,7 +125,7 @@ These candidates do not restrict HF discovery. Download size is not runtime RAM.
 | `m15` | Qwen 3.5 · 4B Uncensored · HauhauCS Aggressive | 2.71 GB | New architecture, experimental |
 
 <a id="use-cases"></a>
-## 18 complete usage scenarios
+## 22 complete usage scenarios
 
 These describe operations and expected behavior, not newly passed physical-device tests. Current program checks and historical model evidence are listed separately below.
 
@@ -238,6 +254,30 @@ These describe operations and expected behavior, not newly passed physical-devic
 - For supported architectures, choose weights/companions, review suggestions and register a recipe; suggestions do not imply installation.
 - Switching active versions is separate from download. Old jobs retain identities and references; custom recipes do not become checked candidates.
 - [Updates](docs/MODEL_UPDATES.en.md) · [HF recipes](docs/HF_RECIPES.en.md) · [suggestions](docs/COMPONENT_SUGGESTIONS.en.md)
+
+### C19 · Chinese MeloTTS and Kokoro INT8
+
+- Search MeloTTS Chinese in All, select INT8 or FP32, review model, tokens, tone lexicon and four FSTs, then explicitly download.
+- Save speed, silence, threads and duration protection only for that model. Kokoro INT8 retains speaker choices; its frontend is English.
+- Enter text, preflight and submit; listen / export a successful WAV. [Formats, terms and steps](docs/SPEECH_3D_EXPANSION.en.md)
+
+### C20 · F5-TTS v1 reference voice
+
+- Download original v1, Vocos and vocabulary; Chinese additionally needs the external pronunciation resources, none bundled in the APK.
+- Import a 24 kHz mono WAV, 1–12 seconds, and supply its accurate transcript and new text; edit this model's steps / duration guard before submission.
+- Missing pronunciation fails explicitly; Python segmentation / tone-sandhi parity is untested. [Inputs and limits](docs/SPEECH_3D_EXPANSION.en.md#12-inputs-frontends-and-licenses)
+
+### C21 · OmniVoice assets and voice modes
+
+- Select integrated Q8 GGUF or original model plus tokenizer / codec; component identities stay separate.
+- Save auto / clone / design, language, description and target duration under this model; target duration clamps against the output guard.
+- Clone needs WAV / transcript; design needs a description. Output is a complete WAV. [Workflow](docs/SPEECH_3D_EXPANSION.en.md)
+
+### C22 · Image to GLB, preview and regeneration
+
+- Select local TRELLIS.2 / Pixal3D, import one PNG / JPEG, and edit resolution, steps, face target and textures.
+- Save defaults or a draft, preflight, then enqueue. Pixal 512 switches textures off; missing HR / texture files fail without downloads.
+- Rotate / zoom, export GLB and provenance, or restore editable inputs. The demo cube is a synthetic program fixture. [Workflow and 16-case audit](docs/SPEECH_3D_EXPANSION.en.md)
 
 <a id="foundation"></a>
 ## Foundation stages in practice
@@ -370,15 +410,15 @@ Missing assets, engines, resources or permission to try an unmeasured recipe fai
 <a id="ui-media"></a>
 ## Additional UI demonstrations and screenshots
 
-The two current v0.3.1 flows above have **34 community interactions and eight workbench interactions**, ten screenshots, two GIFs and two MP4s. They use explicitly labelled desktop bridges, download no weights, and close owned browser resources afterward.
+The three current v0.3.2 flows have **34 community, eight workbench and 32 speech / 3D interactions**, fifteen screenshots, three GIFs and three MP4s. They use explicitly labelled desktop bridges, download no weights, and close owned browser resources afterward.
 
 | Current image catalogue | Source/license/component details |
 | --- | --- |
-| ![v0.3.1 production UI with a fixture](docs/media/development/community/01-community-images.png) | ![v0.3.1 source details with a fixture](docs/media/development/community/02-image-source.png) |
+| ![v0.3.2 production UI with a fixture](docs/media/development/community/01-community-images.png) | ![v0.3.2 source details with a fixture](docs/media/development/community/02-image-source.png) |
 
 [Video sources/limits](docs/media/development/community/04-video-source.png) · [community manifest](docs/media/development/community/manifest.json)
 
-![v0.3.1 shared workbench; UI FIXTURE, no model inference](docs/media/development/release-workbench/release-workbench-ui.gif)
+![v0.3.2 shared workbench; UI FIXTURE, no model inference](docs/media/development/release-workbench/release-workbench-ui.gif)
 
 [Workbench MP4](docs/media/development/release-workbench/release-workbench-ui.mp4) · [manifest](docs/media/development/release-workbench/manifest.json)
 
@@ -395,10 +435,14 @@ The following are **historical version-specific UI fixtures**, not current phone
 | Resource stops | [Resources](docs/media/development/resources/01-running.png), [stop reason](docs/media/development/resources/02-stopped-detail.png) | [Guide](docs/RUNTIME_RESOURCES.en.md) |
 | Original library/API/theme | [Library](docs/media/01-library.png), [API](docs/media/05-api.png), [dark](docs/media/07-dark.png) | [Media guide](docs/MEDIA.md) |
 
+![v0.3.2 speech and 3D; UI FIXTURE, synthetic cube](docs/media/development/expansion/expansion-ui.gif)
+
+[Speech choices](docs/media/development/expansion/01-speech-models.png) · [3D form](docs/media/development/expansion/03-3d-form.png) · [GLB preview](docs/media/development/expansion/05-glb-preview.png) · [MP4](docs/media/development/expansion/expansion-ui.mp4) · [32 page checks](docs/media/development/expansion/manifest.json)
+
 <a id="case-studies"></a>
 ## Historical test cases and actual artifacts
 
-**No complete models are downloaded, copied or run for this documentation repair.** HOST means native Windows inference; UI FIXTURE means a simulated page bridge; PROGRAM means program/bounded-graph checks. None is Android acceptance. Older “not released” statements describe their own checkpoint; the current APK is v0.3.1.
+**No complete models are downloaded, copied or run for this documentation repair.** HOST means native Windows inference; UI FIXTURE means a simulated page bridge; PROGRAM means program/bounded-graph checks. None is Android acceptance. Older “not released” statements describe their own checkpoint; the current APK is v0.3.2.
 
 | ID | Case/input | Historical result and boundary | Original records |
 | --- | --- | --- | --- |
@@ -470,12 +514,12 @@ The following are **historical version-specific UI fixtures**, not current phone
 <a id="verification"></a>
 ## Current program coverage and reproduction entry points
 
-**v0.3.1 has 24 suites / 4,438 program assertions.** These are existing release records, not new trained-model runs for this maintenance. [Index](verification/program/status.json) · [policy/limits](docs/PROGRAM_VALIDATION.en.md)
+**v0.3.2 retains the original 24 suites and adds P25 speech / 3D, rerunning affected program checks.** Current total: **25 suites / 4,727 assertions**. Trained models, phone quality and endurance are untested. [Current counts and source fingerprints](verification/program/status.json) · [policy](docs/PROGRAM_VALIDATION.en.md)
 
 | ID | Suite / assertions | Cases covered | Record |
 | --- | --- | --- | --- |
-| P01 | community · 814 | 44 recipes, content bases, identities, settings and production planning | [JSON](verification/program/community.json) |
-| P02 | foundation · 820 | Zero-model startup, shared assets, transfers/import/delete, permissions | [JSON](verification/program/foundation.json) |
+| P01 | community · 818 | 44 recipes, content bases, identities, settings and production planning | [JSON](verification/program/community.json) |
+| P02 | foundation · 899 | Zero-model startup, shared assets, transfers/import/delete, permissions | [JSON](verification/program/foundation.json) |
 | P03 | backend · 138 | Text processes, proxy, stop, errors and ownership release | [JSON](verification/program/backend.json) |
 | P04 | bundle-pause · 22 | Blocking-read pause/close and subsequent transfer release | [JSON](verification/program/bundle-pause.json) |
 | P05 | document-input · 15 | Contracts/cancel/errors/close, not device SAF execution | [JSON](verification/program/document-input.json) |
@@ -494,10 +538,11 @@ The following are **historical version-specific UI fixtures**, not current phone
 | P18 | recipe-suggestions · 73 | Component hints, review and precise download plans | [JSON](verification/program/recipe-suggestions.json) |
 | P19 | speech-voices · 70 | 54 Kokoro voices, model-specific values and invalid input | [JSON](verification/program/speech-voices.json) |
 | P20 | sana-sprint · 448 | Tokenization, sampling math, bounded graphs and Sprint route | [JSON](verification/program/sana-sprint.json) |
-| P21 | ui · 564 | Production pages, management, filters, settings, queue and results | [JSON](verification/program/ui.json) |
+| P21 | ui · 597 | Production pages, management, filters, settings, queue and results | [JSON](verification/program/ui.json) |
 | P22 | ltx-official · 89 | Official identities, original T5/tokenizer and multiscale contracts | [JSON](verification/program/ltx-official.json) |
 | P23 | ltx-multiscale-app · 280 | Original PixArt orchestration, bounded stages, cancel and commit | [JSON](verification/program/ltx-multiscale-app.json) |
 | P24 | ltx-single-scale-app · 127 | Independent single-scale inputs/settings/processes/recovery | [JSON](verification/program/ltx-single-scale-app.json) |
+| P25 | expansion · 173 | Speech / 3D contracts, five real host fixture children, GLB publishing / rejection and tiny F5 frontend fixtures | [JSON](verification/program/expansion.json) |
 
 Additional records cover ARM64/API28, 35 native libraries/dependencies, 16 KiB ELF/ZIP alignment, original signing and APK identity. Android Lint: **zero errors / 16 existing warnings**. Current UI media contain no model-generated video.
 
@@ -534,6 +579,7 @@ Run only checks relevant to a change. These require no complete trained models:
 ```powershell
 python tools/test_backend.py
 python tools/test_community.py
+python tools/test_expansion.py
 python tools/test_text.py
 python tools/test_scheduler.py
 python tools/test_recovery.py
@@ -585,7 +631,7 @@ Reports need device/Android, app version, model ID/hash, effective settings, rep
 
 [User guide](docs/USER_GUIDE.en.md) · [settings](docs/MODEL_SETTINGS.en.md) · [workbench](docs/TASK_WORKBENCH.en.md) · [inputs](docs/LOCAL_INPUTS.en.md) · [API](docs/API.en.md) · [architecture](docs/ARCHITECTURE.en.md)
 
-[Feasibility](docs/MULTIMODAL.en.md) · [foundation](docs/FOUNDATION.en.md) · [frozen plan](docs/MULTIMODAL_RELEASE_PLAN.en.md) · [asset audit](docs/ASSET_CONTROL_AUDIT.en.md) · [current implementation](docs/IMPLEMENTATION_V031.en.md) · [older validation](docs/VALIDATION.en.md) · [device tools, not executed](docs/DEVICE_ACCEPTANCE.en.md)
+[Feasibility](docs/MULTIMODAL.en.md) · [foundation](docs/FOUNDATION.en.md) · [frozen plan](docs/MULTIMODAL_RELEASE_PLAN.en.md) · [asset audit](docs/ASSET_CONTROL_AUDIT.en.md) · [current implementation](docs/IMPLEMENTATION_V032.en.md) · [older validation](docs/VALIDATION.en.md) · [device tools, not executed](docs/DEVICE_ACCEPTANCE.en.md)
 
 [Original English README](docs/history/README-dev45.en.md) · [original Chinese README](docs/history/README-dev45.zh.md) · [historical index](docs/history/Documentation-dev45.md) · [repair notes](docs/releases/v0.3.1-readme.md)
 

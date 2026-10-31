@@ -92,7 +92,7 @@ int main(int argc, char** argv) {
         if (pipeline == "kokoro") {
             cfg.model.kokoro.model = path("model"); cfg.model.kokoro.voices = path("voices");
             cfg.model.kokoro.tokens = path("tokens"); cfg.model.kokoro.lexicon = lexicons.c_str(); cfg.model.kokoro.length_scale = 1;
-        } else if (pipeline == "piper_vits") {
+        } else if (pipeline == "piper_vits" || pipeline == "melo_zh") {
             cfg.model.vits.model = path("model"); cfg.model.vits.tokens = path("tokens"); cfg.model.vits.lexicon = lexicons.c_str();
             cfg.model.vits.length_scale = 1; cfg.model.vits.noise_scale = number(params, "noiseScale", 0.667f, 0, 2);
             cfg.model.vits.noise_scale_w = number(params, "noiseScaleW", 0.8f, 0, 2);
@@ -102,7 +102,13 @@ int main(int argc, char** argv) {
             cfg.model.matcha.noise_scale = number(params, "noiseScale", 0.667f, 0, 2);
         } else throw std::runtime_error("Unsupported TTS pipeline");
         // Language normalization assets are optional, explicit user components, never bundled data.
-        if (paths.count("rule_fst")) cfg.rule_fsts = path("rule_fst");
+        std::string ruleFsts;
+        if (paths.count("rule_fst")) ruleFsts = path("rule_fst");
+        for (int i = 2; i <= 4; ++i) {
+            std::string role = "rule_fst_" + std::to_string(i);
+            if (paths.count(role)) { if (!ruleFsts.empty()) ruleFsts += ","; ruleFsts += path(role.c_str()); }
+        }
+        if (!ruleFsts.empty()) cfg.rule_fsts = ruleFsts.c_str();
         if (paths.count("rule_far")) cfg.rule_fars = path("rule_far");
         event({{"event", "stage"}, {"stage", "loading"}});
         std::unique_ptr<const SherpaOnnxOfflineTts, decltype(&SherpaOnnxDestroyOfflineTts)> tts(SherpaOnnxCreateOfflineTts(&cfg), SherpaOnnxDestroyOfflineTts);

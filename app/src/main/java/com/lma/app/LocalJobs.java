@@ -67,7 +67,7 @@ public final class LocalJobs implements AutoCloseable {
             next("models");
             String id = input.getString("bundleId"), type = input.getString("type"); ModelBundle bundle = app.bundles.bundle(id);
             report.put("bundleId", id).put("type", type);
-            String tag = type.equals("image.generate") ? "image" : type.equals("video.generate") ? "video" : type.equals("text.generate") ? "text" : "audio";
+            String tag = type.equals("image.generate") ? "image" : type.equals("video.generate") ? "video" : type.equals("text.generate") ? "text" : type.equals("mesh.generate") ? "3d" : "audio";
             if (!bundle.tasks.contains(tag)) throw new IllegalArgumentException("所选模型没有对应的输出能力");
             if (AdapterSpec.isAdapter(bundle)) throw new IllegalArgumentException("LoRA 需要先选择兼容的基础模型，不能单独生成");
             next("engine"); LocalEngine selectedEngine = app.localEngines.require(bundle, type);

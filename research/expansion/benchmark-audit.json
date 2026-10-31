@@ -1,0 +1,294 @@
+{
+  "schema": "lma.benchmark-expansion-audit/1",
+  "checked_date": "2026-10-31",
+  "collection_url": "https://benchmark.sidcloud.cn/collections/3080-3d",
+  "site_bundle_url": "https://benchmark.sidcloud.cn/assets/index-CAF3hr1_.js",
+  "source_identities": {
+    "collection.html": {
+      "bytes": 1125,
+      "sha256": "51b620efb050c87646b21e0a3e11bb87db4cd3c8a82b54663548cb6441f33b12"
+    },
+    "site.js": {
+      "bytes": 4450091,
+      "sha256": "d7cef79023b39a321329ad236c3fe9bbf610c1accc67dea4c49893ec50b8bd1d"
+    },
+    "r3080-3d-all-20261030.json": {
+      "bytes": 1100,
+      "sha256": "375a45b0b1ef44c7b1a1df2a42ca24b5ecce9fcc5fb88e294875420a7f4050de"
+    },
+    "r3080-3d.json": {
+      "bytes": 607,
+      "sha256": "534de7f3df69b1d57f7b4189dad8c01c8e10a54dac925501174219342c7d7288"
+    }
+  },
+  "cases": [
+    {
+      "number": 1,
+      "case_id": "3d-20261030-TRELLIS2",
+      "model": "TRELLIS.2",
+      "round": "r3080-3d-all-20261030",
+      "benchmark_status": "limited",
+      "benchmark_mode": "单图 → 网格、UV/PBR、法线、AO",
+      "lma_status": "integrated_single_image_subset",
+      "case_url": "https://benchmark.sidcloud.cn/archive/downloads/cases/3d-20261030-TRELLIS2.json",
+      "benchmark_is_android_evidence": false
+    },
+    {
+      "number": 2,
+      "case_id": "3d-20261030-Pixal3D",
+      "model": "Pixal3D",
+      "round": "r3080-3d-all-20261030",
+      "benchmark_status": "limited",
+      "benchmark_mode": "单图 → 网格、UV/PBR、法线、AO",
+      "lma_status": "integrated_single_image_subset",
+      "case_url": "https://benchmark.sidcloud.cn/archive/downloads/cases/3d-20261030-Pixal3D.json",
+      "benchmark_is_android_evidence": false
+    },
+    {
+      "number": 3,
+      "case_id": "3d-20261030-Pixal3D-MV",
+      "model": "Pixal3D Multiview",
+      "round": "r3080-3d-all-20261030",
+      "benchmark_status": "limited",
+      "benchmark_mode": "四视图 → 网格、UV/PBR、法线、AO",
+      "lma_status": "not_integrated_multiview",
+      "case_url": "https://benchmark.sidcloud.cn/archive/downloads/cases/3d-20261030-Pixal3D-MV.json",
+      "benchmark_is_android_evidence": false
+    },
+    {
+      "number": 4,
+      "case_id": "3d-20261030-UltraTex",
+      "model": "UltraTex",
+      "round": "r3080-3d-all-20261030",
+      "benchmark_status": "limited",
+      "benchmark_mode": "已有网格＋参考图 → PBR 贴图；不是几何生成",
+      "lma_status": "not_integrated_texture_only",
+      "case_url": "https://benchmark.sidcloud.cn/archive/downloads/cases/3d-20261030-UltraTex.json",
+      "benchmark_is_android_evidence": false
+    },
+    {
+      "number": 5,
+      "case_id": "3d-20261030-UniForge3D",
+      "model": "UniForge3D",
+      "round": "r3080-3d-all-20261030",
+      "benchmark_status": "limited",
+      "benchmark_mode": "四视图 → 512 几何；BF16 低显存适配",
+      "lma_status": "not_integrated_multiview_geometry",
+      "case_url": "https://benchmark.sidcloud.cn/archive/downloads/cases/3d-20261030-UniForge3D.json",
+      "benchmark_is_android_evidence": false
+    },
+    {
+      "number": 6,
+      "case_id": "3d-20261030-UltraShape1",
+      "model": "UltraShape 1.0",
+      "round": "r3080-3d-all-20261030",
+      "benchmark_status": "limited",
+      "benchmark_mode": "参考图＋已有粗网格 → 几何精修",
+      "lma_status": "not_integrated_geometry_refinement",
+      "case_url": "https://benchmark.sidcloud.cn/archive/downloads/cases/3d-20261030-UltraShape1.json",
+      "benchmark_is_android_evidence": false
+    },
+    {
+      "number": 7,
+      "case_id": "3d-20261030-Hunyuan3D21",
+      "model": "Hunyuan3D 2.1",
+      "round": "r3080-3d-all-20261030",
+      "benchmark_status": "limited",
+      "benchmark_mode": "单图 → 几何；尚未验证 Paint 纹理",
+      "lma_status": "not_integrated_geometry",
+      "case_url": "https://benchmark.sidcloud.cn/archive/downloads/cases/3d-20261030-Hunyuan3D21.json",
+      "benchmark_is_android_evidence": false
+    },
+    {
+      "number": 8,
+      "case_id": "3d-20261030-SAM3D",
+      "model": "SAM 3D Objects",
+      "round": "r3080-3d-all-20261030",
+      "benchmark_status": "limited",
+      "benchmark_mode": "单图＋前景掩膜＋深度 → 原始彩色网格",
+      "lma_status": "not_integrated_vertex_colour",
+      "case_url": "https://benchmark.sidcloud.cn/archive/downloads/cases/3d-20261030-SAM3D.json",
+      "benchmark_is_android_evidence": false
+    },
+    {
+      "number": 9,
+      "case_id": "3d-20261030-MV-SAM3D",
+      "model": "MV-SAM3D",
+      "round": "r3080-3d-all-20261030",
+      "benchmark_status": "limited",
+      "benchmark_mode": "四视图＋掩膜 → 多视图融合；复用 SAM 权重",
+      "lma_status": "not_integrated_multiview",
+      "case_url": "https://benchmark.sidcloud.cn/archive/downloads/cases/3d-20261030-MV-SAM3D.json",
+      "benchmark_is_android_evidence": false
+    },
+    {
+      "number": 10,
+      "case_id": "3d-20261030-SUPRA-Tex",
+      "model": "SUPRA-Tex",
+      "round": "r3080-3d-all-20261030",
+      "benchmark_status": "failed",
+      "benchmark_mode": "单图 → 几何/PBR 或已有网格纹理；本次仅运行栈检查",
+      "lma_status": "not_integrated_benchmark_environment_failed",
+      "case_url": "https://benchmark.sidcloud.cn/archive/downloads/cases/3d-20261030-SUPRA-Tex.json",
+      "benchmark_is_android_evidence": false
+    },
+    {
+      "number": 11,
+      "case_id": "3d-20261030-TripoSG",
+      "model": "TripoSG",
+      "round": "r3080-3d-all-20261030",
+      "benchmark_status": "limited",
+      "benchmark_mode": "单图 → 几何；不含 PBR 贴图",
+      "lma_status": "not_integrated_geometry",
+      "case_url": "https://benchmark.sidcloud.cn/archive/downloads/cases/3d-20261030-TripoSG.json",
+      "benchmark_is_android_evidence": false
+    },
+    {
+      "number": 12,
+      "case_id": "3d-20261030-PartCrafter",
+      "model": "PartCrafter",
+      "round": "r3080-3d-all-20261030",
+      "benchmark_status": "limited",
+      "benchmark_mode": "单图 → 3 个独立部件；不含 PBR 贴图",
+      "lma_status": "not_integrated_parts",
+      "case_url": "https://benchmark.sidcloud.cn/archive/downloads/cases/3d-20261030-PartCrafter.json",
+      "benchmark_is_android_evidence": false
+    },
+    {
+      "number": 13,
+      "case_id": "3d-TRELLIS2",
+      "model": "TRELLIS.2",
+      "round": "r3080-3d",
+      "benchmark_status": "passed",
+      "benchmark_mode": "单图 → 带顶点颜色的完整网格",
+      "lma_status": "integrated_single_image_subset",
+      "case_url": "https://benchmark.sidcloud.cn/archive/downloads/cases/3d-TRELLIS2.json",
+      "benchmark_is_android_evidence": false
+    },
+    {
+      "number": 14,
+      "case_id": "3d-Pixal3D",
+      "model": "Pixal3D",
+      "round": "r3080-3d",
+      "benchmark_status": "passed",
+      "benchmark_mode": "单图 → 带顶点颜色的完整网格",
+      "lma_status": "integrated_single_image_subset",
+      "case_url": "https://benchmark.sidcloud.cn/archive/downloads/cases/3d-Pixal3D.json",
+      "benchmark_is_android_evidence": false
+    },
+    {
+      "number": 15,
+      "case_id": "3d-TripoSG",
+      "model": "TripoSG",
+      "round": "r3080-3d",
+      "benchmark_status": "passed",
+      "benchmark_mode": "单图 → 无纹理单体网格",
+      "lma_status": "not_integrated_geometry",
+      "case_url": "https://benchmark.sidcloud.cn/archive/downloads/cases/3d-TripoSG.json",
+      "benchmark_is_android_evidence": false
+    },
+    {
+      "number": 16,
+      "case_id": "3d-PartCrafter",
+      "model": "PartCrafter",
+      "round": "r3080-3d",
+      "benchmark_status": "limited",
+      "benchmark_mode": "单图 → 3 个可独立编辑的网格部件",
+      "lma_status": "not_integrated_parts",
+      "case_url": "https://benchmark.sidcloud.cn/archive/downloads/cases/3d-PartCrafter.json",
+      "benchmark_is_android_evidence": false
+    }
+  ],
+  "project_readme_identities": [
+    {
+      "repository": "microsoft/TRELLIS.2",
+      "readmeBlob": "1c0ad06b5dcb3f0ed57ec83bda599c7b00559325",
+      "readme_sha256": "adc985d5a71fda0a5cb7287f58b6baa7de8db1568c4483ac210f3447b786552b",
+      "readme_url": "https://github.com/microsoft/TRELLIS.2/blob/HEAD/README.md"
+    },
+    {
+      "repository": "TencentARC/Pixal3D",
+      "readmeBlob": "7611c7caa3078f1c8fbd2133c74cdc4cb4dc102f",
+      "readme_sha256": "b8ac05e534d2cc8d39dfa91f65ba808957f9ed789696a44a458f56dc88ea2a7f",
+      "readme_url": "https://github.com/TencentARC/Pixal3D/blob/HEAD/README.md"
+    },
+    {
+      "repository": "yiboz2001/UltraTex",
+      "readmeBlob": "851c7372071db769472946ba7c28a44730a8e3d9",
+      "readme_sha256": "3ffec9b8846a82d97e548cda1b16ee2e36d2dab5c7c1396dbb5d88d3395c0931",
+      "readme_url": "https://github.com/yiboz2001/UltraTex/blob/HEAD/README.md"
+    },
+    {
+      "repository": "xibushu/UniForge3D",
+      "readmeBlob": "71fadff456433d023ba8f59d42b6fde2c896146b",
+      "readme_sha256": "2ffd16eb1a7f872d9a19f409415978b453666d68602f4bb75980ecf9789d0bc9",
+      "readme_url": "https://github.com/xibushu/UniForge3D/blob/HEAD/README.md"
+    },
+    {
+      "repository": "PKU-YuanGroup/UltraShape-1.0",
+      "readmeBlob": "4be77da49933e330f6f8f40cb26cc2b225afc0ce",
+      "readme_sha256": "4eb29a9ae2371246b13e3011389b8849577504e3ff8479c728902198905b1019",
+      "readme_url": "https://github.com/PKU-YuanGroup/UltraShape-1.0/blob/HEAD/README.md"
+    },
+    {
+      "repository": "Tencent-Hunyuan/Hunyuan3D-2.1",
+      "readmeBlob": "e670cb0139d2cd35788043768249037e1aca6f68",
+      "readme_sha256": "35479a9741c38cf6ebc7693bb0c58a6fa447659b3b9f1d60ba01e21098d0af20",
+      "readme_url": "https://github.com/Tencent-Hunyuan/Hunyuan3D-2.1/blob/HEAD/README.md"
+    },
+    {
+      "repository": "facebookresearch/sam-3d-objects",
+      "readmeBlob": "c0e9d2762b2127b7925cea340bec5285e4553627",
+      "readme_sha256": "f41a81a034139b1b0da318a32da1758710d83f70976b43c16e262b8c5b04cca1",
+      "readme_url": "https://github.com/facebookresearch/sam-3d-objects/blob/HEAD/README.md"
+    },
+    {
+      "repository": "devinli123/MV-SAM3D",
+      "readmeBlob": "b5d22fff519643aaf17107efb774debb92bd41c9",
+      "readme_sha256": "23a7e834abcf693f31bf47bf4bdec2dbf6381d12d0a7d7456832fe0a51b5a209",
+      "readme_url": "https://github.com/devinli123/MV-SAM3D/blob/HEAD/README.md"
+    },
+    {
+      "repository": "Supra-3D/SUPRA-Tex",
+      "readmeBlob": "3b3c3e3c42cd816a1afebf5e8b83ce0664a2ae6d",
+      "readme_sha256": "160e7b295d2e8f17e15d867648d48ce0d021ebcf55572427838cac0f1bc510bf",
+      "readme_url": "https://github.com/Supra-3D/SUPRA-Tex/blob/HEAD/README.md"
+    },
+    {
+      "repository": "VAST-AI-Research/TripoSG",
+      "readmeBlob": "73e5e1d5502d87f419f056edf0773498cbc44895",
+      "readme_sha256": "87024a832f6dc1e81ba3078485b282095fb31941898f81b1c6bfe02d5454288d",
+      "readme_url": "https://github.com/VAST-AI-Research/TripoSG/blob/HEAD/README.md"
+    },
+    {
+      "repository": "VAST-AI-Research/PartCrafter",
+      "error": "HTTPError"
+    },
+    {
+      "repository": "wgsxm/PartCrafter",
+      "readmeBlob": "2820186287baa0f23cf41e21794ff8f24e50c619",
+      "readme_sha256": "e54541ac3bd7befaffb6892da572bdf57c970d594a89b23e856f2ab28b1dd132",
+      "readme_url": "https://github.com/wgsxm/PartCrafter/blob/HEAD/README.md",
+      "note": "Benchmark repository URL returned 404; paper/project links point here."
+    }
+  ],
+  "project_link_correction": {
+    "benchmark": "https://github.com/VAST-AI-Research/PartCrafter",
+    "http_status": 404,
+    "canonical": "https://github.com/wgsxm/PartCrafter",
+    "paper": "https://arxiv.org/abs/2506.05573"
+  },
+  "case_count": 16,
+  "new_round_cases": 12,
+  "older_round_cases": 4,
+  "integrated_architectures": [
+    "trellis2",
+    "pixal3d"
+  ],
+  "exact_benchmark_workflow_port": false,
+  "readme_audit_is_full_operator_audit": false,
+  "complete_model_downloads": 0,
+  "model_inference": false,
+  "physical_android": false,
+  "virtualization": false
+}

@@ -6995,6 +6995,1094 @@
       ],
       "fixedComponents": [],
       "help": "本地 GPU 生成视频，CPU 处理文字编码和画面解码。配齐四组件后手动运行；手机兼容性与资源需求尚待实测。GPU 不可用时显示明确错误。"
+    },
+    {
+      "id": "melo_zh_onnx_cpu_expansion_v1",
+      "name": "MeloTTS Chinese · 自选配套组件",
+      "primaryRole": "model",
+      "definition": {
+        "engine": "sherpa_tts",
+        "architecture": "melo_vits",
+        "pipeline": "melo_zh",
+        "backend": "cpu",
+        "tasks": [
+          "audio"
+        ],
+        "capabilities": [
+          "text_to_speech"
+        ],
+        "parameters": {
+          "version": 1,
+          "fields": {
+            "threads": {
+              "type": "integer",
+              "label": "CPU 线程",
+              "default": 2,
+              "presets": [
+                1,
+                2,
+                4,
+                8
+              ],
+              "minimum": 1,
+              "maximum": 16,
+              "limitSource": "application_guard"
+            },
+            "speaker": {
+              "type": "integer",
+              "label": "音色 ID",
+              "default": 0,
+              "minimum": 0,
+              "maximum": 0,
+              "limitSource": "application_guard"
+            },
+            "speed": {
+              "type": "number",
+              "label": "语速",
+              "default": 1,
+              "presets": [
+                0.75,
+                1,
+                1.25
+              ],
+              "minimum": 0.25,
+              "maximum": 3,
+              "limitSource": "application_guard"
+            },
+            "silenceScale": {
+              "type": "number",
+              "label": "句间停顿比例",
+              "default": 1,
+              "minimum": 0,
+              "maximum": 3,
+              "limitSource": "application_guard"
+            },
+            "maxAudioSeconds": {
+              "type": "integer",
+              "label": "输出时长保护上限（秒）",
+              "default": 180,
+              "minimum": 1,
+              "maximum": 600,
+              "limitSource": "application_guard"
+            },
+            "noiseScale": {
+              "type": "number",
+              "label": "音色变化",
+              "default": 0.667,
+              "minimum": 0,
+              "maximum": 2,
+              "limitSource": "application_guard"
+            },
+            "noiseScaleW": {
+              "type": "number",
+              "label": "时长变化",
+              "default": 0.8,
+              "minimum": 0,
+              "maximum": 2,
+              "limitSource": "application_guard"
+            }
+          }
+        }
+      },
+      "requirements": [
+        {
+          "role": "model",
+          "label": "model · model.int8.onnx",
+          "formats": [
+            "onnx"
+          ],
+          "required": true,
+          "matchFiles": [
+            "model.int8.onnx"
+          ]
+        },
+        {
+          "role": "tokens",
+          "label": "tokens · tokens.txt",
+          "formats": [
+            "text"
+          ],
+          "required": true,
+          "matchFiles": [
+            "tokens.txt"
+          ]
+        },
+        {
+          "role": "lexicon",
+          "label": "lexicon · lexicon.txt",
+          "formats": [
+            "text"
+          ],
+          "required": true,
+          "matchFiles": [
+            "lexicon.txt"
+          ]
+        },
+        {
+          "role": "rule_fst",
+          "label": "rule_fst · date.fst",
+          "formats": [
+            "fst"
+          ],
+          "required": true,
+          "matchFiles": [
+            "date.fst"
+          ]
+        },
+        {
+          "role": "rule_fst_2",
+          "label": "rule_fst_2 · number.fst",
+          "formats": [
+            "fst"
+          ],
+          "required": true,
+          "matchFiles": [
+            "number.fst"
+          ]
+        },
+        {
+          "role": "rule_fst_3",
+          "label": "rule_fst_3 · phone.fst",
+          "formats": [
+            "fst"
+          ],
+          "required": true,
+          "matchFiles": [
+            "phone.fst"
+          ]
+        },
+        {
+          "role": "rule_fst_4",
+          "label": "rule_fst_4 · new_heteronym.fst",
+          "formats": [
+            "fst"
+          ],
+          "required": true,
+          "matchFiles": [
+            "new_heteronym.fst"
+          ]
+        }
+      ],
+      "fixedComponents": [],
+      "help": "匹配中文 / 英文 ONNX 导出、带声调词典与文字规范化规则；单音色。当前运行库以最长词匹配读取词典，无需旧版 Jieba 目录。未验证手机音质或性能。"
+    },
+    {
+      "id": "f5_v1_safetensors_cpu_expansion_v1",
+      "name": "F5-TTS v1 Base · 自选配套组件",
+      "primaryRole": "model",
+      "definition": {
+        "engine": "audio_cpp",
+        "architecture": "f5_tts_v1",
+        "pipeline": "f5_v1",
+        "backend": "cpu",
+        "tasks": [
+          "audio"
+        ],
+        "capabilities": [
+          "text_to_speech"
+        ],
+        "parameters": {
+          "version": 1,
+          "fields": {
+            "threads": {
+              "type": "integer",
+              "label": "CPU 线程",
+              "default": 2,
+              "presets": [
+                1,
+                2,
+                4,
+                8
+              ],
+              "minimum": 1,
+              "maximum": 16,
+              "limitSource": "application_guard"
+            },
+            "steps": {
+              "type": "integer",
+              "label": "采样步数",
+              "default": 32,
+              "presets": [
+                8,
+                16,
+                32
+              ],
+              "minimum": 1,
+              "maximum": 64,
+              "limitSource": "application_guard"
+            },
+            "speed": {
+              "type": "number",
+              "label": "语速",
+              "default": 1,
+              "minimum": 0.5,
+              "maximum": 2,
+              "limitSource": "application_guard"
+            },
+            "cfg": {
+              "type": "number",
+              "label": "引导强度",
+              "default": 2,
+              "minimum": 0,
+              "maximum": 10,
+              "limitSource": "application_guard"
+            },
+            "seed": {
+              "type": "integer",
+              "label": "随机种子",
+              "default": 1234,
+              "minimum": 0,
+              "maximum": 2147483647,
+              "limitSource": "application_guard"
+            },
+            "maxAudioSeconds": {
+              "type": "integer",
+              "label": "输出时长保护上限（秒）",
+              "default": 30,
+              "minimum": 1,
+              "maximum": 120,
+              "limitSource": "application_guard"
+            },
+            "frameBudget": {
+              "type": "integer",
+              "label": "单块 mel 帧预算",
+              "default": 2048,
+              "presets": [
+                512,
+                1024,
+                2048
+              ],
+              "minimum": 512,
+              "maximum": 4096,
+              "limitSource": "application_guard"
+            },
+            "sway": {
+              "type": "number",
+              "label": "Sway 系数",
+              "default": -1,
+              "minimum": -5,
+              "maximum": 5,
+              "limitSource": "application_guard"
+            }
+          }
+        }
+      },
+      "requirements": [
+        {
+          "role": "model",
+          "label": "model · model_1250000.safetensors",
+          "formats": [
+            "safetensors"
+          ],
+          "required": true,
+          "matchFiles": [
+            "model_1250000.safetensors"
+          ]
+        },
+        {
+          "role": "vocoder",
+          "label": "vocoder · pytorch_model.bin",
+          "formats": [
+            "bin"
+          ],
+          "required": true,
+          "matchFiles": [
+            "pytorch_model.bin"
+          ]
+        },
+        {
+          "role": "vocab",
+          "label": "vocab · vocab.txt",
+          "formats": [
+            "text"
+          ],
+          "required": true,
+          "matchFiles": [
+            "vocab.txt"
+          ]
+        },
+        {
+          "role": "pinyin_chars",
+          "label": "pinyin_chars · pinyin.txt",
+          "formats": [
+            "text"
+          ],
+          "required": true,
+          "matchFiles": [
+            "pinyin.txt"
+          ]
+        },
+        {
+          "role": "pinyin_phrases",
+          "label": "pinyin_phrases · large_pinyin.txt",
+          "formats": [
+            "text"
+          ],
+          "required": true,
+          "matchFiles": [
+            "large_pinyin.txt"
+          ]
+        }
+      ],
+      "fixedComponents": [],
+      "help": "原版 v1 safetensors + Vocos；选择 24 kHz 单声道 1–12 秒参考 WAV 及准确转写。原生拼音最长词匹配不等于 Python 前端逐字节复现，音质待验证。"
+    },
+    {
+      "id": "omnivoice_gguf_cpu_expansion_v1",
+      "name": "OmniVoice · 自选配套组件",
+      "primaryRole": "model",
+      "definition": {
+        "engine": "audio_cpp",
+        "architecture": "omnivoice",
+        "pipeline": "omnivoice",
+        "backend": "cpu",
+        "tasks": [
+          "audio"
+        ],
+        "capabilities": [
+          "text_to_speech"
+        ],
+        "parameters": {
+          "version": 1,
+          "fields": {
+            "threads": {
+              "type": "integer",
+              "label": "CPU 线程",
+              "default": 2,
+              "presets": [
+                1,
+                2,
+                4,
+                8
+              ],
+              "minimum": 1,
+              "maximum": 16,
+              "limitSource": "application_guard"
+            },
+            "steps": {
+              "type": "integer",
+              "label": "采样步数",
+              "default": 32,
+              "presets": [
+                8,
+                16,
+                32
+              ],
+              "minimum": 1,
+              "maximum": 64,
+              "limitSource": "application_guard"
+            },
+            "speed": {
+              "type": "number",
+              "label": "语速",
+              "default": 1,
+              "minimum": 0.5,
+              "maximum": 2,
+              "limitSource": "application_guard"
+            },
+            "cfg": {
+              "type": "number",
+              "label": "引导强度",
+              "default": 2,
+              "minimum": 0,
+              "maximum": 10,
+              "limitSource": "application_guard"
+            },
+            "seed": {
+              "type": "integer",
+              "label": "随机种子",
+              "default": 1234,
+              "minimum": 0,
+              "maximum": 2147483647,
+              "limitSource": "application_guard"
+            },
+            "maxAudioSeconds": {
+              "type": "integer",
+              "label": "输出时长保护上限（秒）",
+              "default": 30,
+              "minimum": 1,
+              "maximum": 120,
+              "limitSource": "application_guard"
+            },
+            "durationSeconds": {
+              "type": "number",
+              "label": "目标时长（秒）",
+              "default": 4,
+              "maximumFrom": {
+                "field": "maxAudioSeconds"
+              },
+              "minimum": 1,
+              "maximum": 30,
+              "limitSource": "application_guard"
+            },
+            "language": {
+              "type": "string",
+              "label": "语言（auto 自动）",
+              "default": "auto",
+              "maxLength": 80
+            },
+            "voiceMode": {
+              "type": "enum",
+              "label": "音色模式",
+              "default": "auto",
+              "values": [
+                "auto",
+                "clone",
+                "design"
+              ]
+            },
+            "voiceInstruction": {
+              "type": "string",
+              "label": "音色描述",
+              "default": "",
+              "maxLength": 1000
+            }
+          }
+        }
+      },
+      "requirements": [
+        {
+          "role": "model",
+          "label": "model · omnivoice-q8_0.gguf",
+          "formats": [
+            "gguf"
+          ],
+          "required": true,
+          "matchFiles": [
+            "omnivoice-q8_0.gguf"
+          ]
+        }
+      ],
+      "fixedComponents": [],
+      "help": "同机 CPU 多语言语音；GGUF 集成模型、codec 与分词资源。支持文本、参考音色、音色描述模式；输出完整 WAV，不宣称逐块流式。上游 600+ 语言未逐项验证。"
+    },
+    {
+      "id": "omnivoice_safetensors_cpu_expansion_v1",
+      "name": "OmniVoice · 自选配套组件",
+      "primaryRole": "model",
+      "definition": {
+        "engine": "audio_cpp",
+        "architecture": "omnivoice",
+        "pipeline": "omnivoice",
+        "backend": "cpu",
+        "tasks": [
+          "audio"
+        ],
+        "capabilities": [
+          "text_to_speech"
+        ],
+        "parameters": {
+          "version": 1,
+          "fields": {
+            "threads": {
+              "type": "integer",
+              "label": "CPU 线程",
+              "default": 2,
+              "presets": [
+                1,
+                2,
+                4,
+                8
+              ],
+              "minimum": 1,
+              "maximum": 16,
+              "limitSource": "application_guard"
+            },
+            "steps": {
+              "type": "integer",
+              "label": "采样步数",
+              "default": 32,
+              "presets": [
+                8,
+                16,
+                32
+              ],
+              "minimum": 1,
+              "maximum": 64,
+              "limitSource": "application_guard"
+            },
+            "speed": {
+              "type": "number",
+              "label": "语速",
+              "default": 1,
+              "minimum": 0.5,
+              "maximum": 2,
+              "limitSource": "application_guard"
+            },
+            "cfg": {
+              "type": "number",
+              "label": "引导强度",
+              "default": 2,
+              "minimum": 0,
+              "maximum": 10,
+              "limitSource": "application_guard"
+            },
+            "seed": {
+              "type": "integer",
+              "label": "随机种子",
+              "default": 1234,
+              "minimum": 0,
+              "maximum": 2147483647,
+              "limitSource": "application_guard"
+            },
+            "maxAudioSeconds": {
+              "type": "integer",
+              "label": "输出时长保护上限（秒）",
+              "default": 30,
+              "minimum": 1,
+              "maximum": 120,
+              "limitSource": "application_guard"
+            },
+            "durationSeconds": {
+              "type": "number",
+              "label": "目标时长（秒）",
+              "default": 4,
+              "maximumFrom": {
+                "field": "maxAudioSeconds"
+              },
+              "minimum": 1,
+              "maximum": 30,
+              "limitSource": "application_guard"
+            },
+            "language": {
+              "type": "string",
+              "label": "语言（auto 自动）",
+              "default": "auto",
+              "maxLength": 80
+            },
+            "voiceMode": {
+              "type": "enum",
+              "label": "音色模式",
+              "default": "auto",
+              "values": [
+                "auto",
+                "clone",
+                "design"
+              ]
+            },
+            "voiceInstruction": {
+              "type": "string",
+              "label": "音色描述",
+              "default": "",
+              "maxLength": 1000
+            }
+          }
+        }
+      },
+      "requirements": [
+        {
+          "role": "model",
+          "label": "model · model.safetensors",
+          "formats": [
+            "safetensors"
+          ],
+          "required": true,
+          "matchFiles": [
+            "model.safetensors"
+          ]
+        },
+        {
+          "role": "config",
+          "label": "config · config.json",
+          "formats": [
+            "json"
+          ],
+          "required": true,
+          "matchFiles": [
+            "config.json"
+          ]
+        },
+        {
+          "role": "text_tokenizer",
+          "label": "text_tokenizer · tokenizer.json",
+          "formats": [
+            "json"
+          ],
+          "required": true,
+          "matchFiles": [
+            "tokenizer.json"
+          ]
+        },
+        {
+          "role": "tokenizer_config",
+          "label": "tokenizer_config · tokenizer_config.json",
+          "formats": [
+            "json"
+          ],
+          "required": true,
+          "matchFiles": [
+            "tokenizer_config.json"
+          ]
+        },
+        {
+          "role": "codec_config",
+          "label": "codec_config · config.json",
+          "formats": [
+            "json"
+          ],
+          "required": true,
+          "matchFiles": [
+            "config.json"
+          ]
+        },
+        {
+          "role": "codec_preprocessor",
+          "label": "codec_preprocessor · preprocessor_config.json",
+          "formats": [
+            "json"
+          ],
+          "required": true,
+          "matchFiles": [
+            "preprocessor_config.json"
+          ]
+        },
+        {
+          "role": "audio_codec",
+          "label": "audio_codec · model.safetensors",
+          "formats": [
+            "safetensors"
+          ],
+          "required": true,
+          "matchFiles": [
+            "model.safetensors"
+          ]
+        }
+      ],
+      "fixedComponents": [],
+      "help": "原版模型与配套 codec / 分词文件均由用户选择下载。CPU 原生执行，权重较大，内存与音质未测；不安装 Python。"
+    },
+    {
+      "id": "trellis2_gguf_cpu_expansion_v1",
+      "name": "TRELLIS.2 · 自选配套组件",
+      "primaryRole": "image_encoder",
+      "definition": {
+        "engine": "trellis_native",
+        "architecture": "trellis2",
+        "pipeline": "trellis2",
+        "backend": "cpu",
+        "tasks": [
+          "3d"
+        ],
+        "capabilities": [
+          "image_to_3d"
+        ],
+        "parameters": {
+          "version": 1,
+          "fields": {
+            "threads": {
+              "type": "integer",
+              "label": "CPU 线程",
+              "default": 2,
+              "presets": [
+                1,
+                2,
+                4,
+                8
+              ],
+              "minimum": 1,
+              "maximum": 16,
+              "limitSource": "application_guard"
+            },
+            "resolution": {
+              "type": "integer",
+              "label": "3D 生成分辨率",
+              "default": 512,
+              "multipleOf": 512,
+              "presets": [
+                512,
+                1024
+              ],
+              "minimum": 512,
+              "maximum": 1024,
+              "limitSource": "application_guard"
+            },
+            "steps": {
+              "type": "integer",
+              "label": "每阶段采样步数",
+              "default": 12,
+              "presets": [
+                4,
+                8,
+                12,
+                20
+              ],
+              "minimum": 1,
+              "maximum": 50,
+              "limitSource": "application_guard"
+            },
+            "seed": {
+              "type": "integer",
+              "label": "随机种子",
+              "default": 1234,
+              "minimum": 0,
+              "maximum": 2147483647,
+              "limitSource": "application_guard"
+            },
+            "faces": {
+              "type": "integer",
+              "label": "输出网格面数目标",
+              "default": 30000,
+              "presets": [
+                10000,
+                30000,
+                60000
+              ],
+              "minimum": 1000,
+              "maximum": 150000,
+              "limitSource": "application_guard"
+            },
+            "atlas": {
+              "type": "integer",
+              "label": "贴图图集尺寸",
+              "default": 1024,
+              "multipleOf": 256,
+              "presets": [
+                512,
+                1024,
+                2048
+              ],
+              "minimum": 256,
+              "maximum": 2048,
+              "limitSource": "application_guard"
+            },
+            "guidance": {
+              "type": "number",
+              "label": "引导强度",
+              "default": 7.5,
+              "minimum": 0,
+              "maximum": 15,
+              "limitSource": "application_guard"
+            },
+            "fov": {
+              "type": "number",
+              "label": "相机水平视角（Pixal3D）",
+              "default": 49.13,
+              "minimum": 10,
+              "maximum": 120,
+              "limitSource": "application_guard"
+            },
+            "texture": {
+              "type": "boolean",
+              "label": "生成贴图",
+              "default": false
+            }
+          }
+        }
+      },
+      "requirements": [
+        {
+          "role": "image_encoder",
+          "label": "image_encoder · dinov3.gguf",
+          "formats": [
+            "gguf"
+          ],
+          "required": true,
+          "matchFiles": [
+            "dinov3.gguf"
+          ]
+        },
+        {
+          "role": "ss_decoder",
+          "label": "ss_decoder · ss_dec.gguf",
+          "formats": [
+            "gguf"
+          ],
+          "required": true,
+          "matchFiles": [
+            "ss_dec.gguf"
+          ]
+        },
+        {
+          "role": "shape_decoder",
+          "label": "shape_decoder · shape_dec.gguf",
+          "formats": [
+            "gguf"
+          ],
+          "required": true,
+          "matchFiles": [
+            "shape_dec.gguf"
+          ]
+        },
+        {
+          "role": "ss_flow",
+          "label": "ss_flow · ss_flow.gguf",
+          "formats": [
+            "gguf"
+          ],
+          "required": true,
+          "matchFiles": [
+            "ss_flow.gguf"
+          ]
+        },
+        {
+          "role": "shape_flow",
+          "label": "shape_flow · shape_flow_512.gguf",
+          "formats": [
+            "gguf"
+          ],
+          "required": true,
+          "matchFiles": [
+            "shape_flow_512.gguf"
+          ]
+        },
+        {
+          "role": "shape_flow_hr",
+          "label": "shape_flow_hr · shape_flow_1024.gguf",
+          "formats": [
+            "gguf"
+          ],
+          "required": false,
+          "matchFiles": [
+            "shape_flow_1024.gguf"
+          ]
+        },
+        {
+          "role": "texture_flow_hr",
+          "label": "texture_flow_hr · tex_flow_1024.gguf",
+          "formats": [
+            "gguf"
+          ],
+          "required": false,
+          "matchFiles": [
+            "tex_flow_1024.gguf"
+          ]
+        },
+        {
+          "role": "texture_decoder",
+          "label": "texture_decoder · tex_dec.gguf",
+          "formats": [
+            "gguf"
+          ],
+          "required": false,
+          "matchFiles": [
+            "tex_dec.gguf"
+          ]
+        }
+      ],
+      "fixedComponents": [],
+      "help": "实验性单图 → GLB；同机 CPU 完成编码、采样、网格与可选 PBR。无多视图、MoGe 自动相机、重拓扑插件。512 / 1024 为生成阶段分辨率；图集上限 2048。权重体积不代表运行内存，未证明 Z20 可完成。"
+    },
+    {
+      "id": "pixal3d_gguf_cpu_expansion_v1",
+      "name": "Pixal3D · 自选配套组件",
+      "primaryRole": "image_encoder",
+      "definition": {
+        "engine": "trellis_native",
+        "architecture": "pixal3d",
+        "pipeline": "pixal3d",
+        "backend": "cpu",
+        "tasks": [
+          "3d"
+        ],
+        "capabilities": [
+          "image_to_3d"
+        ],
+        "parameters": {
+          "version": 1,
+          "fields": {
+            "threads": {
+              "type": "integer",
+              "label": "CPU 线程",
+              "default": 2,
+              "presets": [
+                1,
+                2,
+                4,
+                8
+              ],
+              "minimum": 1,
+              "maximum": 16,
+              "limitSource": "application_guard"
+            },
+            "resolution": {
+              "type": "integer",
+              "label": "3D 生成分辨率",
+              "default": 512,
+              "multipleOf": 512,
+              "presets": [
+                512,
+                1024
+              ],
+              "minimum": 512,
+              "maximum": 1024,
+              "limitSource": "application_guard"
+            },
+            "steps": {
+              "type": "integer",
+              "label": "每阶段采样步数",
+              "default": 12,
+              "presets": [
+                4,
+                8,
+                12,
+                20
+              ],
+              "minimum": 1,
+              "maximum": 50,
+              "limitSource": "application_guard"
+            },
+            "seed": {
+              "type": "integer",
+              "label": "随机种子",
+              "default": 1234,
+              "minimum": 0,
+              "maximum": 2147483647,
+              "limitSource": "application_guard"
+            },
+            "faces": {
+              "type": "integer",
+              "label": "输出网格面数目标",
+              "default": 30000,
+              "presets": [
+                10000,
+                30000,
+                60000
+              ],
+              "minimum": 1000,
+              "maximum": 150000,
+              "limitSource": "application_guard"
+            },
+            "atlas": {
+              "type": "integer",
+              "label": "贴图图集尺寸",
+              "default": 1024,
+              "multipleOf": 256,
+              "presets": [
+                512,
+                1024,
+                2048
+              ],
+              "minimum": 256,
+              "maximum": 2048,
+              "limitSource": "application_guard"
+            },
+            "guidance": {
+              "type": "number",
+              "label": "引导强度",
+              "default": 7.5,
+              "minimum": 0,
+              "maximum": 15,
+              "limitSource": "application_guard"
+            },
+            "fov": {
+              "type": "number",
+              "label": "相机水平视角（Pixal3D）",
+              "default": 49.13,
+              "minimum": 10,
+              "maximum": 120,
+              "limitSource": "application_guard"
+            },
+            "texture": {
+              "type": "boolean",
+              "label": "生成贴图",
+              "default": false
+            }
+          }
+        }
+      },
+      "requirements": [
+        {
+          "role": "image_encoder",
+          "label": "image_encoder · dinov3.gguf",
+          "formats": [
+            "gguf"
+          ],
+          "required": true,
+          "matchFiles": [
+            "dinov3.gguf"
+          ]
+        },
+        {
+          "role": "ss_decoder",
+          "label": "ss_decoder · ss_dec.gguf",
+          "formats": [
+            "gguf"
+          ],
+          "required": true,
+          "matchFiles": [
+            "ss_dec.gguf"
+          ]
+        },
+        {
+          "role": "shape_decoder",
+          "label": "shape_decoder · shape_dec.gguf",
+          "formats": [
+            "gguf"
+          ],
+          "required": true,
+          "matchFiles": [
+            "shape_dec.gguf"
+          ]
+        },
+        {
+          "role": "ss_flow",
+          "label": "ss_flow · pixal3d_ss_flow.gguf",
+          "formats": [
+            "gguf"
+          ],
+          "required": true,
+          "matchFiles": [
+            "pixal3d_ss_flow.gguf"
+          ]
+        },
+        {
+          "role": "shape_flow",
+          "label": "shape_flow · pixal3d_shape_flow_512.gguf",
+          "formats": [
+            "gguf"
+          ],
+          "required": true,
+          "matchFiles": [
+            "pixal3d_shape_flow_512.gguf"
+          ]
+        },
+        {
+          "role": "naf",
+          "label": "naf · pixal3d_naf.gguf",
+          "formats": [
+            "gguf"
+          ],
+          "required": true,
+          "matchFiles": [
+            "pixal3d_naf.gguf"
+          ]
+        },
+        {
+          "role": "shape_flow_hr",
+          "label": "shape_flow_hr · pixal3d_shape_flow_1024.gguf",
+          "formats": [
+            "gguf"
+          ],
+          "required": false,
+          "matchFiles": [
+            "pixal3d_shape_flow_1024.gguf"
+          ]
+        },
+        {
+          "role": "texture_flow_hr",
+          "label": "texture_flow_hr · pixal3d_tex_flow_1024.gguf",
+          "formats": [
+            "gguf"
+          ],
+          "required": false,
+          "matchFiles": [
+            "pixal3d_tex_flow_1024.gguf"
+          ]
+        },
+        {
+          "role": "texture_decoder",
+          "label": "texture_decoder · tex_dec.gguf",
+          "formats": [
+            "gguf"
+          ],
+          "required": false,
+          "matchFiles": [
+            "tex_dec.gguf"
+          ]
+        }
+      ],
+      "fixedComponents": [],
+      "help": "实验性单图 → GLB；同机 CPU 完成编码、采样、网格与可选 PBR。无多视图、MoGe 自动相机、重拓扑插件。512 / 1024 为生成阶段分辨率；图集上限 2048。权重体积不代表运行内存，未证明 Z20 可完成。"
     }
   ]
 }

@@ -1,0 +1,790 @@
+{
+  "schema": "lma.bundle-metadata-evidence/2",
+  "model_inference_tested": false,
+  "model_weights_downloaded": false,
+  "physical_device_tests": 0,
+  "bundles": [
+    {
+      "bundleId": "melo_zh_int8_a0d5c6a",
+      "components": [
+        {
+          "path": "model.int8.onnx",
+          "bytes": 53517430,
+          "sha256": "f085f5079e05f039b800aeb542f5253c26a303211b0c6465d0d9387977855a63",
+          "role": "model",
+          "format": "onnx",
+          "repository": "csukuangfj/vits-melo-tts-zh_en",
+          "revision": "a0d5c6a264c0ef92d70d8661d8cc502d79627cd6",
+          "url": "https://huggingface.co/csukuangfj/vits-melo-tts-zh_en/resolve/a0d5c6a264c0ef92d70d8661d8cc502d79627cd6/model.int8.onnx",
+          "kind": "hf_lfs"
+        },
+        {
+          "path": "tokens.txt",
+          "bytes": 655,
+          "gitBlobSha1": "78ed7abf73cfa7955577a2894388dcd8f5a317c3",
+          "role": "tokens",
+          "format": "text",
+          "repository": "csukuangfj/vits-melo-tts-zh_en",
+          "revision": "a0d5c6a264c0ef92d70d8661d8cc502d79627cd6",
+          "url": "https://huggingface.co/csukuangfj/vits-melo-tts-zh_en/resolve/a0d5c6a264c0ef92d70d8661d8cc502d79627cd6/tokens.txt",
+          "kind": "hf_git_blob"
+        },
+        {
+          "path": "lexicon.txt",
+          "bytes": 6837671,
+          "gitBlobSha1": "1a1119efceca0c2dae243f84061e70e4e3d99710",
+          "role": "lexicon",
+          "format": "text",
+          "repository": "csukuangfj/vits-melo-tts-zh_en",
+          "revision": "a0d5c6a264c0ef92d70d8661d8cc502d79627cd6",
+          "url": "https://huggingface.co/csukuangfj/vits-melo-tts-zh_en/resolve/a0d5c6a264c0ef92d70d8661d8cc502d79627cd6/lexicon.txt",
+          "kind": "hf_git_blob"
+        },
+        {
+          "path": "date.fst",
+          "bytes": 59154,
+          "gitBlobSha1": "20ec7f4c077f9ec85ca9d01c4b4f4581f6e552ee",
+          "role": "rule_fst",
+          "format": "fst",
+          "repository": "csukuangfj/vits-melo-tts-zh_en",
+          "revision": "a0d5c6a264c0ef92d70d8661d8cc502d79627cd6",
+          "url": "https://huggingface.co/csukuangfj/vits-melo-tts-zh_en/resolve/a0d5c6a264c0ef92d70d8661d8cc502d79627cd6/date.fst",
+          "kind": "hf_git_blob"
+        },
+        {
+          "path": "number.fst",
+          "bytes": 64482,
+          "gitBlobSha1": "66c0bd468903fc98d212cd6c3c5b2793ce8eb2c3",
+          "role": "rule_fst_2",
+          "format": "fst",
+          "repository": "csukuangfj/vits-melo-tts-zh_en",
+          "revision": "a0d5c6a264c0ef92d70d8661d8cc502d79627cd6",
+          "url": "https://huggingface.co/csukuangfj/vits-melo-tts-zh_en/resolve/a0d5c6a264c0ef92d70d8661d8cc502d79627cd6/number.fst",
+          "kind": "hf_git_blob"
+        },
+        {
+          "path": "phone.fst",
+          "bytes": 88630,
+          "gitBlobSha1": "2eba908c27ec0767281cad25d322008b16869c5b",
+          "role": "rule_fst_3",
+          "format": "fst",
+          "repository": "csukuangfj/vits-melo-tts-zh_en",
+          "revision": "a0d5c6a264c0ef92d70d8661d8cc502d79627cd6",
+          "url": "https://huggingface.co/csukuangfj/vits-melo-tts-zh_en/resolve/a0d5c6a264c0ef92d70d8661d8cc502d79627cd6/phone.fst",
+          "kind": "hf_git_blob"
+        },
+        {
+          "path": "new_heteronym.fst",
+          "bytes": 21974,
+          "gitBlobSha1": "478a809252067229211f7f414414f34f98314d9d",
+          "role": "rule_fst_4",
+          "format": "fst",
+          "repository": "csukuangfj/vits-melo-tts-zh_en",
+          "revision": "a0d5c6a264c0ef92d70d8661d8cc502d79627cd6",
+          "url": "https://huggingface.co/csukuangfj/vits-melo-tts-zh_en/resolve/a0d5c6a264c0ef92d70d8661d8cc502d79627cd6/new_heteronym.fst",
+          "kind": "hf_git_blob"
+        }
+      ]
+    },
+    {
+      "bundleId": "melo_zh_fp32_a0d5c6a",
+      "components": [
+        {
+          "path": "model.onnx",
+          "bytes": 170429550,
+          "sha256": "bf30582eb1b012250a35b1a4a80e7dfbcf8485e7bb9de0d95efbbeef0e4ad86d",
+          "role": "model",
+          "format": "onnx",
+          "repository": "csukuangfj/vits-melo-tts-zh_en",
+          "revision": "a0d5c6a264c0ef92d70d8661d8cc502d79627cd6",
+          "url": "https://huggingface.co/csukuangfj/vits-melo-tts-zh_en/resolve/a0d5c6a264c0ef92d70d8661d8cc502d79627cd6/model.onnx",
+          "kind": "hf_lfs"
+        },
+        {
+          "path": "tokens.txt",
+          "bytes": 655,
+          "gitBlobSha1": "78ed7abf73cfa7955577a2894388dcd8f5a317c3",
+          "role": "tokens",
+          "format": "text",
+          "repository": "csukuangfj/vits-melo-tts-zh_en",
+          "revision": "a0d5c6a264c0ef92d70d8661d8cc502d79627cd6",
+          "url": "https://huggingface.co/csukuangfj/vits-melo-tts-zh_en/resolve/a0d5c6a264c0ef92d70d8661d8cc502d79627cd6/tokens.txt",
+          "kind": "hf_git_blob"
+        },
+        {
+          "path": "lexicon.txt",
+          "bytes": 6837671,
+          "gitBlobSha1": "1a1119efceca0c2dae243f84061e70e4e3d99710",
+          "role": "lexicon",
+          "format": "text",
+          "repository": "csukuangfj/vits-melo-tts-zh_en",
+          "revision": "a0d5c6a264c0ef92d70d8661d8cc502d79627cd6",
+          "url": "https://huggingface.co/csukuangfj/vits-melo-tts-zh_en/resolve/a0d5c6a264c0ef92d70d8661d8cc502d79627cd6/lexicon.txt",
+          "kind": "hf_git_blob"
+        },
+        {
+          "path": "date.fst",
+          "bytes": 59154,
+          "gitBlobSha1": "20ec7f4c077f9ec85ca9d01c4b4f4581f6e552ee",
+          "role": "rule_fst",
+          "format": "fst",
+          "repository": "csukuangfj/vits-melo-tts-zh_en",
+          "revision": "a0d5c6a264c0ef92d70d8661d8cc502d79627cd6",
+          "url": "https://huggingface.co/csukuangfj/vits-melo-tts-zh_en/resolve/a0d5c6a264c0ef92d70d8661d8cc502d79627cd6/date.fst",
+          "kind": "hf_git_blob"
+        },
+        {
+          "path": "number.fst",
+          "bytes": 64482,
+          "gitBlobSha1": "66c0bd468903fc98d212cd6c3c5b2793ce8eb2c3",
+          "role": "rule_fst_2",
+          "format": "fst",
+          "repository": "csukuangfj/vits-melo-tts-zh_en",
+          "revision": "a0d5c6a264c0ef92d70d8661d8cc502d79627cd6",
+          "url": "https://huggingface.co/csukuangfj/vits-melo-tts-zh_en/resolve/a0d5c6a264c0ef92d70d8661d8cc502d79627cd6/number.fst",
+          "kind": "hf_git_blob"
+        },
+        {
+          "path": "phone.fst",
+          "bytes": 88630,
+          "gitBlobSha1": "2eba908c27ec0767281cad25d322008b16869c5b",
+          "role": "rule_fst_3",
+          "format": "fst",
+          "repository": "csukuangfj/vits-melo-tts-zh_en",
+          "revision": "a0d5c6a264c0ef92d70d8661d8cc502d79627cd6",
+          "url": "https://huggingface.co/csukuangfj/vits-melo-tts-zh_en/resolve/a0d5c6a264c0ef92d70d8661d8cc502d79627cd6/phone.fst",
+          "kind": "hf_git_blob"
+        },
+        {
+          "path": "new_heteronym.fst",
+          "bytes": 21974,
+          "gitBlobSha1": "478a809252067229211f7f414414f34f98314d9d",
+          "role": "rule_fst_4",
+          "format": "fst",
+          "repository": "csukuangfj/vits-melo-tts-zh_en",
+          "revision": "a0d5c6a264c0ef92d70d8661d8cc502d79627cd6",
+          "url": "https://huggingface.co/csukuangfj/vits-melo-tts-zh_en/resolve/a0d5c6a264c0ef92d70d8661d8cc502d79627cd6/new_heteronym.fst",
+          "kind": "hf_git_blob"
+        }
+      ]
+    },
+    {
+      "bundleId": "f5_tts_v1_base_84e5a41",
+      "components": [
+        {
+          "path": "F5TTS_v1_Base/model_1250000.safetensors",
+          "bytes": 1348435761,
+          "sha256": "670900fd14e6c458b95da6e9ed317cdb20dbaf7a1c02ac06a05475a9d32b6a38",
+          "role": "model",
+          "format": "safetensors",
+          "repository": "SWivid/F5-TTS",
+          "revision": "84e5a410d9cead4de2f847e7c9369a6440bdfaca",
+          "url": "https://huggingface.co/SWivid/F5-TTS/resolve/84e5a410d9cead4de2f847e7c9369a6440bdfaca/F5TTS_v1_Base/model_1250000.safetensors",
+          "kind": "hf_lfs"
+        },
+        {
+          "path": "pytorch_model.bin",
+          "bytes": 54365991,
+          "sha256": "97ec976ad1fd67a33ab2682d29c0ac7df85234fae875aefcc5fb215681a91b2a",
+          "role": "vocoder",
+          "format": "bin",
+          "repository": "charactr/vocos-mel-24khz",
+          "revision": "0feb3fdd929bcd6649e0e7c5a688cf7dd012ef21",
+          "url": "https://huggingface.co/charactr/vocos-mel-24khz/resolve/0feb3fdd929bcd6649e0e7c5a688cf7dd012ef21/pytorch_model.bin",
+          "kind": "hf_lfs"
+        },
+        {
+          "path": "F5TTS_v1_Base/vocab.txt",
+          "bytes": 13800,
+          "gitBlobSha1": "cd934390e8f4b3ce98eb319ae618c084d01504b5",
+          "role": "vocab",
+          "format": "text",
+          "repository": "SWivid/F5-TTS",
+          "revision": "84e5a410d9cead4de2f847e7c9369a6440bdfaca",
+          "url": "https://huggingface.co/SWivid/F5-TTS/resolve/84e5a410d9cead4de2f847e7c9369a6440bdfaca/F5TTS_v1_Base/vocab.txt",
+          "kind": "hf_git_blob"
+        },
+        {
+          "repository": "mozillazg/pinyin-data",
+          "revision": "9d05c9e29cb6a7e5c79f2f5279f5c1014246a19a",
+          "path": "pinyin.txt",
+          "url": "https://raw.githubusercontent.com/mozillazg/pinyin-data/9d05c9e29cb6a7e5c79f2f5279f5c1014246a19a/pinyin.txt",
+          "bytes": 1030001,
+          "sha256": "be925afe1bd1ff5141a03ec14fa9aa9f211cce7ccc60bc30c57d54adb1da8b6e",
+          "license": "MIT",
+          "role": "pinyin_chars",
+          "format": "text",
+          "kind": "pinned_pronunciation_dictionary"
+        },
+        {
+          "repository": "mozillazg/phrase-pinyin-data",
+          "revision": "7aac0bf2af6d448815d69399e56eca1302fd2326",
+          "path": "large_pinyin.txt",
+          "url": "https://raw.githubusercontent.com/mozillazg/phrase-pinyin-data/7aac0bf2af6d448815d69399e56eca1302fd2326/large_pinyin.txt",
+          "bytes": 9553169,
+          "sha256": "23b0739bb173d5dc6e270788799e3431c396691f5ba7f62a2d3b31bd1f0b5e67",
+          "license": "MIT",
+          "role": "pinyin_phrases",
+          "format": "text",
+          "kind": "pinned_pronunciation_dictionary"
+        }
+      ]
+    },
+    {
+      "bundleId": "omnivoice_q8_874fcb4",
+      "components": [
+        {
+          "path": "OmniVoice-GGUF/omnivoice-q8_0.gguf",
+          "bytes": 1350296096,
+          "sha256": "0e5a721edd1b08d9067ef66f40ded609a6b14f5a8445c703f9869736cabd350a",
+          "role": "model",
+          "format": "gguf",
+          "repository": "audio-cpp/audio.cpp-gguf",
+          "revision": "874fcb41ececda20bcbc0782d6b4ea7f7d069ea8",
+          "url": "https://huggingface.co/audio-cpp/audio.cpp-gguf/resolve/874fcb41ececda20bcbc0782d6b4ea7f7d069ea8/OmniVoice-GGUF/omnivoice-q8_0.gguf",
+          "kind": "hf_lfs"
+        }
+      ]
+    },
+    {
+      "bundleId": "omnivoice_original_c5fdb5c",
+      "components": [
+        {
+          "path": "model.safetensors",
+          "bytes": 2450344112,
+          "sha256": "730839316de585f4c8298ec0e1712efc10fb19c6fa4e36eb741cb8d51ebcf6aa",
+          "role": "model",
+          "format": "safetensors",
+          "repository": "k2-fsa/OmniVoice",
+          "revision": "c5fdb5ccb189668d56333f77ba2629f4cd7535f4",
+          "url": "https://huggingface.co/k2-fsa/OmniVoice/resolve/c5fdb5ccb189668d56333f77ba2629f4cd7535f4/model.safetensors",
+          "kind": "hf_lfs"
+        },
+        {
+          "path": "config.json",
+          "bytes": 2238,
+          "gitBlobSha1": "dd518e816a5c4c8eba90820bb7efa49ceafbe223",
+          "role": "config",
+          "format": "json",
+          "repository": "k2-fsa/OmniVoice",
+          "revision": "c5fdb5ccb189668d56333f77ba2629f4cd7535f4",
+          "url": "https://huggingface.co/k2-fsa/OmniVoice/resolve/c5fdb5ccb189668d56333f77ba2629f4cd7535f4/config.json",
+          "kind": "hf_git_blob"
+        },
+        {
+          "path": "tokenizer.json",
+          "bytes": 11423986,
+          "sha256": "408f669b7e2b045fdf54201d815bd364e6667dbd845115da81239c40bc6dcfd1",
+          "role": "text_tokenizer",
+          "format": "json",
+          "repository": "k2-fsa/OmniVoice",
+          "revision": "c5fdb5ccb189668d56333f77ba2629f4cd7535f4",
+          "url": "https://huggingface.co/k2-fsa/OmniVoice/resolve/c5fdb5ccb189668d56333f77ba2629f4cd7535f4/tokenizer.json",
+          "kind": "hf_lfs"
+        },
+        {
+          "path": "tokenizer_config.json",
+          "bytes": 533,
+          "gitBlobSha1": "a7fb6f8558cce2a23d4cbb186a4a740bd2d9d481",
+          "role": "tokenizer_config",
+          "format": "json",
+          "repository": "k2-fsa/OmniVoice",
+          "revision": "c5fdb5ccb189668d56333f77ba2629f4cd7535f4",
+          "url": "https://huggingface.co/k2-fsa/OmniVoice/resolve/c5fdb5ccb189668d56333f77ba2629f4cd7535f4/tokenizer_config.json",
+          "kind": "hf_git_blob"
+        },
+        {
+          "path": "audio_tokenizer/config.json",
+          "bytes": 2531,
+          "gitBlobSha1": "3f9e5ee43d2134dfdc1e38055fbcb24a18af1635",
+          "role": "codec_config",
+          "format": "json",
+          "repository": "k2-fsa/OmniVoice",
+          "revision": "c5fdb5ccb189668d56333f77ba2629f4cd7535f4",
+          "url": "https://huggingface.co/k2-fsa/OmniVoice/resolve/c5fdb5ccb189668d56333f77ba2629f4cd7535f4/audio_tokenizer/config.json",
+          "kind": "hf_git_blob"
+        },
+        {
+          "path": "audio_tokenizer/preprocessor_config.json",
+          "bytes": 206,
+          "gitBlobSha1": "aa7431e986f9e13157c60e04be8f52501b718254",
+          "role": "codec_preprocessor",
+          "format": "json",
+          "repository": "k2-fsa/OmniVoice",
+          "revision": "c5fdb5ccb189668d56333f77ba2629f4cd7535f4",
+          "url": "https://huggingface.co/k2-fsa/OmniVoice/resolve/c5fdb5ccb189668d56333f77ba2629f4cd7535f4/audio_tokenizer/preprocessor_config.json",
+          "kind": "hf_git_blob"
+        },
+        {
+          "path": "audio_tokenizer/model.safetensors",
+          "bytes": 805665628,
+          "sha256": "fe7c5e8785e0a05833e1bfc3e002ec7f55af21e306b2e7154a448c1f54ccfb0d",
+          "role": "audio_codec",
+          "format": "safetensors",
+          "repository": "k2-fsa/OmniVoice",
+          "revision": "c5fdb5ccb189668d56333f77ba2629f4cd7535f4",
+          "url": "https://huggingface.co/k2-fsa/OmniVoice/resolve/c5fdb5ccb189668d56333f77ba2629f4cd7535f4/audio_tokenizer/model.safetensors",
+          "kind": "hf_lfs"
+        }
+      ]
+    },
+    {
+      "bundleId": "trellis2_geometry512_cpu_v1",
+      "components": [
+        {
+          "path": "q4/dinov3.gguf",
+          "bytes": 172662976,
+          "sha256": "6473cf96fd275bf84f5cc0556975a2abaa10b641e4a07101dcad561df1917ef2",
+          "role": "image_encoder",
+          "format": "gguf",
+          "repository": "ilintar/trellis2-gguf",
+          "revision": "a57397bd3d351599d9729fc144b3f87c3f87d65b",
+          "url": "https://huggingface.co/ilintar/trellis2-gguf/resolve/a57397bd3d351599d9729fc144b3f87c3f87d65b/q4/dinov3.gguf",
+          "kind": "hf_lfs"
+        },
+        {
+          "path": "q4/ss_dec.gguf",
+          "bytes": 147379392,
+          "sha256": "2790b5eecb261cc877d9bf175ce2bd6dd48cd65be8c042c5f5bc023dfca01cf7",
+          "role": "ss_decoder",
+          "format": "gguf",
+          "repository": "ilintar/trellis2-gguf",
+          "revision": "a57397bd3d351599d9729fc144b3f87c3f87d65b",
+          "url": "https://huggingface.co/ilintar/trellis2-gguf/resolve/a57397bd3d351599d9729fc144b3f87c3f87d65b/q4/ss_dec.gguf",
+          "kind": "hf_lfs"
+        },
+        {
+          "path": "q4/shape_dec.gguf",
+          "bytes": 845423552,
+          "sha256": "79a52ddfed3454f724683940c11cfbfcf76c427ab3b7fdeb4c3cfc6d26647de4",
+          "role": "shape_decoder",
+          "format": "gguf",
+          "repository": "ilintar/trellis2-gguf",
+          "revision": "a57397bd3d351599d9729fc144b3f87c3f87d65b",
+          "url": "https://huggingface.co/ilintar/trellis2-gguf/resolve/a57397bd3d351599d9729fc144b3f87c3f87d65b/q4/shape_dec.gguf",
+          "kind": "hf_lfs"
+        },
+        {
+          "path": "q4/ss_flow.gguf",
+          "bytes": 730496672,
+          "sha256": "a43c6393ee4a763a03e382de750d4f62752bacf969940442fd856230e62b88c2",
+          "role": "ss_flow",
+          "format": "gguf",
+          "repository": "ilintar/trellis2-gguf",
+          "revision": "a57397bd3d351599d9729fc144b3f87c3f87d65b",
+          "url": "https://huggingface.co/ilintar/trellis2-gguf/resolve/a57397bd3d351599d9729fc144b3f87c3f87d65b/q4/ss_flow.gguf",
+          "kind": "hf_lfs"
+        },
+        {
+          "path": "q4/shape_flow_512.gguf",
+          "bytes": 730520576,
+          "sha256": "de7b87a92280035258c94314258e3b8314de39e5f001eac1ada0b4087785fb63",
+          "role": "shape_flow",
+          "format": "gguf",
+          "repository": "ilintar/trellis2-gguf",
+          "revision": "a57397bd3d351599d9729fc144b3f87c3f87d65b",
+          "url": "https://huggingface.co/ilintar/trellis2-gguf/resolve/a57397bd3d351599d9729fc144b3f87c3f87d65b/q4/shape_flow_512.gguf",
+          "kind": "hf_lfs"
+        }
+      ]
+    },
+    {
+      "bundleId": "trellis2_pbr1024_cpu_v1",
+      "components": [
+        {
+          "path": "q4/dinov3.gguf",
+          "bytes": 172662976,
+          "sha256": "6473cf96fd275bf84f5cc0556975a2abaa10b641e4a07101dcad561df1917ef2",
+          "role": "image_encoder",
+          "format": "gguf",
+          "repository": "ilintar/trellis2-gguf",
+          "revision": "a57397bd3d351599d9729fc144b3f87c3f87d65b",
+          "url": "https://huggingface.co/ilintar/trellis2-gguf/resolve/a57397bd3d351599d9729fc144b3f87c3f87d65b/q4/dinov3.gguf",
+          "kind": "hf_lfs"
+        },
+        {
+          "path": "q4/ss_dec.gguf",
+          "bytes": 147379392,
+          "sha256": "2790b5eecb261cc877d9bf175ce2bd6dd48cd65be8c042c5f5bc023dfca01cf7",
+          "role": "ss_decoder",
+          "format": "gguf",
+          "repository": "ilintar/trellis2-gguf",
+          "revision": "a57397bd3d351599d9729fc144b3f87c3f87d65b",
+          "url": "https://huggingface.co/ilintar/trellis2-gguf/resolve/a57397bd3d351599d9729fc144b3f87c3f87d65b/q4/ss_dec.gguf",
+          "kind": "hf_lfs"
+        },
+        {
+          "path": "q4/shape_dec.gguf",
+          "bytes": 845423552,
+          "sha256": "79a52ddfed3454f724683940c11cfbfcf76c427ab3b7fdeb4c3cfc6d26647de4",
+          "role": "shape_decoder",
+          "format": "gguf",
+          "repository": "ilintar/trellis2-gguf",
+          "revision": "a57397bd3d351599d9729fc144b3f87c3f87d65b",
+          "url": "https://huggingface.co/ilintar/trellis2-gguf/resolve/a57397bd3d351599d9729fc144b3f87c3f87d65b/q4/shape_dec.gguf",
+          "kind": "hf_lfs"
+        },
+        {
+          "path": "q4/ss_flow.gguf",
+          "bytes": 730496672,
+          "sha256": "a43c6393ee4a763a03e382de750d4f62752bacf969940442fd856230e62b88c2",
+          "role": "ss_flow",
+          "format": "gguf",
+          "repository": "ilintar/trellis2-gguf",
+          "revision": "a57397bd3d351599d9729fc144b3f87c3f87d65b",
+          "url": "https://huggingface.co/ilintar/trellis2-gguf/resolve/a57397bd3d351599d9729fc144b3f87c3f87d65b/q4/ss_flow.gguf",
+          "kind": "hf_lfs"
+        },
+        {
+          "path": "q4/shape_flow_512.gguf",
+          "bytes": 730520576,
+          "sha256": "de7b87a92280035258c94314258e3b8314de39e5f001eac1ada0b4087785fb63",
+          "role": "shape_flow",
+          "format": "gguf",
+          "repository": "ilintar/trellis2-gguf",
+          "revision": "a57397bd3d351599d9729fc144b3f87c3f87d65b",
+          "url": "https://huggingface.co/ilintar/trellis2-gguf/resolve/a57397bd3d351599d9729fc144b3f87c3f87d65b/q4/shape_flow_512.gguf",
+          "kind": "hf_lfs"
+        },
+        {
+          "path": "q4/shape_flow_1024.gguf",
+          "bytes": 730520576,
+          "sha256": "54e49e3408b9f77bdc85c3f5a400a58a1d9fc091e111986eda7caeaea621b305",
+          "role": "shape_flow_hr",
+          "format": "gguf",
+          "repository": "ilintar/trellis2-gguf",
+          "revision": "a57397bd3d351599d9729fc144b3f87c3f87d65b",
+          "url": "https://huggingface.co/ilintar/trellis2-gguf/resolve/a57397bd3d351599d9729fc144b3f87c3f87d65b/q4/shape_flow_1024.gguf",
+          "kind": "hf_lfs"
+        },
+        {
+          "path": "q4/tex_flow_1024.gguf",
+          "bytes": 730548224,
+          "sha256": "028d3be82075f8a4d8b4bd08985e1215ac3783ed332dbf7e8fd6535fcdd3d5a8",
+          "role": "texture_flow_hr",
+          "format": "gguf",
+          "repository": "ilintar/trellis2-gguf",
+          "revision": "a57397bd3d351599d9729fc144b3f87c3f87d65b",
+          "url": "https://huggingface.co/ilintar/trellis2-gguf/resolve/a57397bd3d351599d9729fc144b3f87c3f87d65b/q4/tex_flow_1024.gguf",
+          "kind": "hf_lfs"
+        },
+        {
+          "path": "q4/tex_dec.gguf",
+          "bytes": 845414272,
+          "sha256": "20b208e402db907c6800dd4ad486a0d6e927e4511a6ff87fb51049794988927b",
+          "role": "texture_decoder",
+          "format": "gguf",
+          "repository": "ilintar/trellis2-gguf",
+          "revision": "a57397bd3d351599d9729fc144b3f87c3f87d65b",
+          "url": "https://huggingface.co/ilintar/trellis2-gguf/resolve/a57397bd3d351599d9729fc144b3f87c3f87d65b/q4/tex_dec.gguf",
+          "kind": "hf_lfs"
+        }
+      ]
+    },
+    {
+      "bundleId": "trellis2_pbr512_cpu_v1",
+      "components": [
+        {
+          "path": "q4/dinov3.gguf",
+          "bytes": 172662976,
+          "sha256": "6473cf96fd275bf84f5cc0556975a2abaa10b641e4a07101dcad561df1917ef2",
+          "role": "image_encoder",
+          "format": "gguf",
+          "repository": "ilintar/trellis2-gguf",
+          "revision": "a57397bd3d351599d9729fc144b3f87c3f87d65b",
+          "url": "https://huggingface.co/ilintar/trellis2-gguf/resolve/a57397bd3d351599d9729fc144b3f87c3f87d65b/q4/dinov3.gguf",
+          "kind": "hf_lfs"
+        },
+        {
+          "path": "q4/ss_dec.gguf",
+          "bytes": 147379392,
+          "sha256": "2790b5eecb261cc877d9bf175ce2bd6dd48cd65be8c042c5f5bc023dfca01cf7",
+          "role": "ss_decoder",
+          "format": "gguf",
+          "repository": "ilintar/trellis2-gguf",
+          "revision": "a57397bd3d351599d9729fc144b3f87c3f87d65b",
+          "url": "https://huggingface.co/ilintar/trellis2-gguf/resolve/a57397bd3d351599d9729fc144b3f87c3f87d65b/q4/ss_dec.gguf",
+          "kind": "hf_lfs"
+        },
+        {
+          "path": "q4/shape_dec.gguf",
+          "bytes": 845423552,
+          "sha256": "79a52ddfed3454f724683940c11cfbfcf76c427ab3b7fdeb4c3cfc6d26647de4",
+          "role": "shape_decoder",
+          "format": "gguf",
+          "repository": "ilintar/trellis2-gguf",
+          "revision": "a57397bd3d351599d9729fc144b3f87c3f87d65b",
+          "url": "https://huggingface.co/ilintar/trellis2-gguf/resolve/a57397bd3d351599d9729fc144b3f87c3f87d65b/q4/shape_dec.gguf",
+          "kind": "hf_lfs"
+        },
+        {
+          "path": "q4/ss_flow.gguf",
+          "bytes": 730496672,
+          "sha256": "a43c6393ee4a763a03e382de750d4f62752bacf969940442fd856230e62b88c2",
+          "role": "ss_flow",
+          "format": "gguf",
+          "repository": "ilintar/trellis2-gguf",
+          "revision": "a57397bd3d351599d9729fc144b3f87c3f87d65b",
+          "url": "https://huggingface.co/ilintar/trellis2-gguf/resolve/a57397bd3d351599d9729fc144b3f87c3f87d65b/q4/ss_flow.gguf",
+          "kind": "hf_lfs"
+        },
+        {
+          "path": "q4/shape_flow_512.gguf",
+          "bytes": 730520576,
+          "sha256": "de7b87a92280035258c94314258e3b8314de39e5f001eac1ada0b4087785fb63",
+          "role": "shape_flow",
+          "format": "gguf",
+          "repository": "ilintar/trellis2-gguf",
+          "revision": "a57397bd3d351599d9729fc144b3f87c3f87d65b",
+          "url": "https://huggingface.co/ilintar/trellis2-gguf/resolve/a57397bd3d351599d9729fc144b3f87c3f87d65b/q4/shape_flow_512.gguf",
+          "kind": "hf_lfs"
+        },
+        {
+          "path": "q4/tex_flow_512.gguf",
+          "bytes": 730548224,
+          "sha256": "fff7bca6418ad607b8b9ff24034ff63f591d0a9b72f308960bffd6f5cd17390b",
+          "role": "texture_flow",
+          "format": "gguf",
+          "repository": "ilintar/trellis2-gguf",
+          "revision": "a57397bd3d351599d9729fc144b3f87c3f87d65b",
+          "url": "https://huggingface.co/ilintar/trellis2-gguf/resolve/a57397bd3d351599d9729fc144b3f87c3f87d65b/q4/tex_flow_512.gguf",
+          "kind": "hf_lfs"
+        },
+        {
+          "path": "q4/tex_dec.gguf",
+          "bytes": 845414272,
+          "sha256": "20b208e402db907c6800dd4ad486a0d6e927e4511a6ff87fb51049794988927b",
+          "role": "texture_decoder",
+          "format": "gguf",
+          "repository": "ilintar/trellis2-gguf",
+          "revision": "a57397bd3d351599d9729fc144b3f87c3f87d65b",
+          "url": "https://huggingface.co/ilintar/trellis2-gguf/resolve/a57397bd3d351599d9729fc144b3f87c3f87d65b/q4/tex_dec.gguf",
+          "kind": "hf_lfs"
+        }
+      ]
+    },
+    {
+      "bundleId": "pixal3d_geometry512_cpu_v1",
+      "components": [
+        {
+          "path": "q4/dinov3.gguf",
+          "bytes": 172662976,
+          "sha256": "6473cf96fd275bf84f5cc0556975a2abaa10b641e4a07101dcad561df1917ef2",
+          "role": "image_encoder",
+          "format": "gguf",
+          "repository": "ilintar/trellis2-gguf",
+          "revision": "a57397bd3d351599d9729fc144b3f87c3f87d65b",
+          "url": "https://huggingface.co/ilintar/trellis2-gguf/resolve/a57397bd3d351599d9729fc144b3f87c3f87d65b/q4/dinov3.gguf",
+          "kind": "hf_lfs"
+        },
+        {
+          "path": "q4/ss_dec.gguf",
+          "bytes": 147379392,
+          "sha256": "2790b5eecb261cc877d9bf175ce2bd6dd48cd65be8c042c5f5bc023dfca01cf7",
+          "role": "ss_decoder",
+          "format": "gguf",
+          "repository": "ilintar/trellis2-gguf",
+          "revision": "a57397bd3d351599d9729fc144b3f87c3f87d65b",
+          "url": "https://huggingface.co/ilintar/trellis2-gguf/resolve/a57397bd3d351599d9729fc144b3f87c3f87d65b/q4/ss_dec.gguf",
+          "kind": "hf_lfs"
+        },
+        {
+          "path": "q4/shape_dec.gguf",
+          "bytes": 845423552,
+          "sha256": "79a52ddfed3454f724683940c11cfbfcf76c427ab3b7fdeb4c3cfc6d26647de4",
+          "role": "shape_decoder",
+          "format": "gguf",
+          "repository": "ilintar/trellis2-gguf",
+          "revision": "a57397bd3d351599d9729fc144b3f87c3f87d65b",
+          "url": "https://huggingface.co/ilintar/trellis2-gguf/resolve/a57397bd3d351599d9729fc144b3f87c3f87d65b/q4/shape_dec.gguf",
+          "kind": "hf_lfs"
+        },
+        {
+          "path": "pixal3d_ss_flow.gguf",
+          "bytes": 2681588992,
+          "sha256": "113e00d1548d512e625eb76437cafd7fa2d79101efb4438fdb8b174ec21e559c",
+          "role": "ss_flow",
+          "format": "gguf",
+          "repository": "vegax87/Pixal3D",
+          "revision": "51de7d1764f4b735c4e3aaea40e5ba60c18ca707",
+          "url": "https://huggingface.co/vegax87/Pixal3D/resolve/51de7d1764f4b735c4e3aaea40e5ba60c18ca707/pixal3d_ss_flow.gguf",
+          "kind": "hf_lfs"
+        },
+        {
+          "path": "pixal3d_shape_flow_512.gguf",
+          "bytes": 2775572064,
+          "sha256": "a4a99ba71e6065fa67b72fa903fbe7a7c1049eb6aee3c85df435d8795b846185",
+          "role": "shape_flow",
+          "format": "gguf",
+          "repository": "vegax87/Pixal3D",
+          "revision": "51de7d1764f4b735c4e3aaea40e5ba60c18ca707",
+          "url": "https://huggingface.co/vegax87/Pixal3D/resolve/51de7d1764f4b735c4e3aaea40e5ba60c18ca707/pixal3d_shape_flow_512.gguf",
+          "kind": "hf_lfs"
+        },
+        {
+          "path": "pixal3d_naf.gguf",
+          "bytes": 1334656,
+          "sha256": "f316aad461679060726df016e31f12a386c69785fc7d7da22278485f63541aa2",
+          "role": "naf",
+          "format": "gguf",
+          "repository": "vegax87/Pixal3D",
+          "revision": "51de7d1764f4b735c4e3aaea40e5ba60c18ca707",
+          "url": "https://huggingface.co/vegax87/Pixal3D/resolve/51de7d1764f4b735c4e3aaea40e5ba60c18ca707/pixal3d_naf.gguf",
+          "kind": "hf_lfs"
+        }
+      ]
+    },
+    {
+      "bundleId": "pixal3d_pbr1024_cpu_v1",
+      "components": [
+        {
+          "path": "q4/dinov3.gguf",
+          "bytes": 172662976,
+          "sha256": "6473cf96fd275bf84f5cc0556975a2abaa10b641e4a07101dcad561df1917ef2",
+          "role": "image_encoder",
+          "format": "gguf",
+          "repository": "ilintar/trellis2-gguf",
+          "revision": "a57397bd3d351599d9729fc144b3f87c3f87d65b",
+          "url": "https://huggingface.co/ilintar/trellis2-gguf/resolve/a57397bd3d351599d9729fc144b3f87c3f87d65b/q4/dinov3.gguf",
+          "kind": "hf_lfs"
+        },
+        {
+          "path": "q4/ss_dec.gguf",
+          "bytes": 147379392,
+          "sha256": "2790b5eecb261cc877d9bf175ce2bd6dd48cd65be8c042c5f5bc023dfca01cf7",
+          "role": "ss_decoder",
+          "format": "gguf",
+          "repository": "ilintar/trellis2-gguf",
+          "revision": "a57397bd3d351599d9729fc144b3f87c3f87d65b",
+          "url": "https://huggingface.co/ilintar/trellis2-gguf/resolve/a57397bd3d351599d9729fc144b3f87c3f87d65b/q4/ss_dec.gguf",
+          "kind": "hf_lfs"
+        },
+        {
+          "path": "q4/shape_dec.gguf",
+          "bytes": 845423552,
+          "sha256": "79a52ddfed3454f724683940c11cfbfcf76c427ab3b7fdeb4c3cfc6d26647de4",
+          "role": "shape_decoder",
+          "format": "gguf",
+          "repository": "ilintar/trellis2-gguf",
+          "revision": "a57397bd3d351599d9729fc144b3f87c3f87d65b",
+          "url": "https://huggingface.co/ilintar/trellis2-gguf/resolve/a57397bd3d351599d9729fc144b3f87c3f87d65b/q4/shape_dec.gguf",
+          "kind": "hf_lfs"
+        },
+        {
+          "path": "pixal3d_ss_flow.gguf",
+          "bytes": 2681588992,
+          "sha256": "113e00d1548d512e625eb76437cafd7fa2d79101efb4438fdb8b174ec21e559c",
+          "role": "ss_flow",
+          "format": "gguf",
+          "repository": "vegax87/Pixal3D",
+          "revision": "51de7d1764f4b735c4e3aaea40e5ba60c18ca707",
+          "url": "https://huggingface.co/vegax87/Pixal3D/resolve/51de7d1764f4b735c4e3aaea40e5ba60c18ca707/pixal3d_ss_flow.gguf",
+          "kind": "hf_lfs"
+        },
+        {
+          "path": "pixal3d_shape_flow_512.gguf",
+          "bytes": 2775572064,
+          "sha256": "a4a99ba71e6065fa67b72fa903fbe7a7c1049eb6aee3c85df435d8795b846185",
+          "role": "shape_flow",
+          "format": "gguf",
+          "repository": "vegax87/Pixal3D",
+          "revision": "51de7d1764f4b735c4e3aaea40e5ba60c18ca707",
+          "url": "https://huggingface.co/vegax87/Pixal3D/resolve/51de7d1764f4b735c4e3aaea40e5ba60c18ca707/pixal3d_shape_flow_512.gguf",
+          "kind": "hf_lfs"
+        },
+        {
+          "path": "pixal3d_naf.gguf",
+          "bytes": 1334656,
+          "sha256": "f316aad461679060726df016e31f12a386c69785fc7d7da22278485f63541aa2",
+          "role": "naf",
+          "format": "gguf",
+          "repository": "vegax87/Pixal3D",
+          "revision": "51de7d1764f4b735c4e3aaea40e5ba60c18ca707",
+          "url": "https://huggingface.co/vegax87/Pixal3D/resolve/51de7d1764f4b735c4e3aaea40e5ba60c18ca707/pixal3d_naf.gguf",
+          "kind": "hf_lfs"
+        },
+        {
+          "path": "pixal3d_shape_flow_1024.gguf",
+          "bytes": 2775572064,
+          "sha256": "346ff60a28cc265cb38a6a9b8078ad214334ebe9848003028afe1c0b36468ede",
+          "role": "shape_flow_hr",
+          "format": "gguf",
+          "repository": "vegax87/Pixal3D",
+          "revision": "51de7d1764f4b735c4e3aaea40e5ba60c18ca707",
+          "url": "https://huggingface.co/vegax87/Pixal3D/resolve/51de7d1764f4b735c4e3aaea40e5ba60c18ca707/pixal3d_shape_flow_1024.gguf",
+          "kind": "hf_lfs"
+        },
+        {
+          "path": "pixal3d_tex_flow_1024.gguf",
+          "bytes": 2775670368,
+          "sha256": "f5e844e7627f93b0b1408cb498605cfccbe64a64cfb47f05d5a6d3dbbbb4f168",
+          "role": "texture_flow_hr",
+          "format": "gguf",
+          "repository": "vegax87/Pixal3D",
+          "revision": "51de7d1764f4b735c4e3aaea40e5ba60c18ca707",
+          "url": "https://huggingface.co/vegax87/Pixal3D/resolve/51de7d1764f4b735c4e3aaea40e5ba60c18ca707/pixal3d_tex_flow_1024.gguf",
+          "kind": "hf_lfs"
+        },
+        {
+          "path": "q4/tex_dec.gguf",
+          "bytes": 845414272,
+          "sha256": "20b208e402db907c6800dd4ad486a0d6e927e4511a6ff87fb51049794988927b",
+          "role": "texture_decoder",
+          "format": "gguf",
+          "repository": "ilintar/trellis2-gguf",
+          "revision": "a57397bd3d351599d9729fc144b3f87c3f87d65b",
+          "url": "https://huggingface.co/ilintar/trellis2-gguf/resolve/a57397bd3d351599d9729fc144b3f87c3f87d65b/q4/tex_dec.gguf",
+          "kind": "hf_lfs"
+        }
+      ]
+    },
+    {
+      "bundleId": "kokoro82_int8_57adb37",
+      "components": [
+        {
+          "path": "model.int8.onnx",
+          "bytes": 114202993,
+          "sha256": "75635ea3b85a32d00094dcdd61a258aba87c160f7c264c304a7b3ae9d734195e",
+          "role": "model",
+          "format": "onnx",
+          "repository": "csukuangfj/kokoro-int8-multi-lang-v1_0",
+          "revision": "57adb37fc0e8d4bd430cfc1b8f8c2294945b9af2",
+          "url": "https://huggingface.co/csukuangfj/kokoro-int8-multi-lang-v1_0/resolve/57adb37fc0e8d4bd430cfc1b8f8c2294945b9af2/model.int8.onnx",
+          "kind": "hf_lfs"
+        },
+        {
+          "role": "tokens",
+          "path": "tokens.txt",
+          "bytes": 687,
+          "sha256": "6ebb6bb288f20f3ae8d004d3c2ca27697da27c037d75e81a60e2a6a663f95425",
+          "repository": "csukuangfj/kokoro-multi-lang-v1_0",
+          "revision": "f7b96bb6bef5c5da4d3aa4f4e0498fbbf62dc78b",
+          "kind": "downloaded_small_data",
+          "source": "https://huggingface.co/api/models/csukuangfj/kokoro-multi-lang-v1_0/f7b96bb6bef5c5da4d3aa4f4e0498fbbf62dc78b?blobs=true"
+        },
+        {
+          "role": "lexicon",
+          "path": "lexicon-en-us.txt",
+          "bytes": 6305773,
+          "sha256": "8b67ae549a465eee78f92ecb74644ad90c3c58ce65f19c68baf85878a10ef73a",
+          "repository": "k2-fsa/sherpa-onnx",
+          "revision": "github_asset_636425290",
+          "kind": "github_release_asset",
+          "assetId": 636425290,
+          "source": "https://api.github.com/repos/k2-fsa/sherpa-onnx/releases/tags/tts-models",
+          "publisherDigest": "sha256:8b67ae549a465eee78f92ecb74644ad90c3c58ce65f19c68baf85878a10ef73a"
+        },
+        {
+          "role": "voices",
+          "path": "voices.bin",
+          "bytes": 28200960,
+          "sha256": "1c5a5b983d3d50d8586d437a51f3faa2da7919ce76a013c081e65671a3447c29",
+          "repository": "csukuangfj/kokoro-multi-lang-v1_0",
+          "revision": "f7b96bb6bef5c5da4d3aa4f4e0498fbbf62dc78b",
+          "kind": "hf_lfs",
+          "source": "https://huggingface.co/api/models/csukuangfj/kokoro-multi-lang-v1_0/f7b96bb6bef5c5da4d3aa4f4e0498fbbf62dc78b?blobs=true"
+        }
+      ]
+    }
+  ]
+}

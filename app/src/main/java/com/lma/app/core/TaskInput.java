@@ -22,7 +22,7 @@ public final class TaskInput {
         }
         for (Iterator<String> it = source.keys(); it.hasNext();) if (!Arrays.asList("bundleId", "type", "input", "parameters", "allowUnmeasured", "adapters").contains(it.next())) throw new IllegalArgumentException("Unknown task request field");
         ModelBundle.key(source.getString("bundleId"));
-        if (!Arrays.asList("text.generate", "image.generate", "video.generate", "speech.synthesize", "audio.generate").contains(source.getString("type"))) throw new IllegalArgumentException("Unknown local task type");
+        if (!Arrays.asList("text.generate", "image.generate", "video.generate", "speech.synthesize", "audio.generate", "mesh.generate").contains(source.getString("type"))) throw new IllegalArgumentException("Unknown local task type");
         if (source.has("allowUnmeasured") && !(source.get("allowUnmeasured") instanceof Boolean)) throw new IllegalArgumentException("allowUnmeasured must be an explicit boolean");
         if (source.has("parameters") && !(source.get("parameters") instanceof JSONObject)) throw new IllegalArgumentException("parameters must be a JSON object");
         if (source.has("adapters")) {

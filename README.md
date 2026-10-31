@@ -1,14 +1,14 @@
 # LMA · Android 本地模型工作台
 
-[English](README.en.md) · [下载 v0.3.1](https://github.com/wikigsroom/LMA/releases/tag/v0.3.1) · [使用手册](docs/USER_GUIDE.md) · [文档目录](docs/README.md) · [更新记录](CHANGELOG.md)
+[English](README.en.md) · [下载 v0.3.2](https://github.com/wikigsroom/LMA/releases/tag/v0.3.2) · [使用手册](docs/USER_GUIDE.md) · [文档目录](docs/README.md) · [更新记录](CHANGELOG.md)
 
 LMA（Local Model App）让用户在 Android 手机上选择、下载、管理和运行本地模型，提供聊天、生图、生视频、生音频、任务队列、结果库与本机 API。它是独立社区项目，与 LM Studio 无隶属关系；当前应用界面主要为中文，文档提供中英双语。
 
 **App 更新提供基座，模型由用户自行选择。** APK 不附模型权重，安装、升级和浏览目录不触发模型下载。所有推理、编码、解码与媒体合成都在同一手机完成，无需 ROOT、Termux、Docker、WSL、虚拟机、其他计算设备或云推理。
 
-**当前 APK：v0.3.1 / versionCode 51 / ARM64 / Android 9+。** 原有 F-01–F-12、生文、01–14／16／17 的程序集成保留；新增 44 个社区配方后，登记目录共 **67 套模型包**。按用户要求，仅做程序验证；当前 24 组／4,438 项程序检查不能证明具体模型在努比亚 Z20 上的速度、画质、音质或后台耐久。
+**当前 APK：v0.3.2 / versionCode 52 / ARM64 / Android 9+。** 原有 F-01–F-12、生文、01–14／16／17 与 44 个社区配方保留；新增 11 个语音 / 3D 可选包，共 **78 套模型包**。按用户要求仅做程序验证，检查不能证明努比亚 Z20 上的速度、质量或后台耐久。
 
-**本页已恢复详细使用场景、调用示例、历史生成案例、失败记录和测试入口。** 当前生产页面、桌面历史模型输出与实际 Android 验收分别标注；历史图片或音频不作为 v0.3.1 的模型实跑结果。[本次文档修复说明](docs/releases/v0.3.1-readme.md)
+**本页已恢复详细使用场景、调用示例、历史生成案例、失败记录和测试入口。** 当前生产页面、桌面历史模型输出与实际 Android 验收分别标注；历史图片或音频不作为 v0.3.2 的模型实跑结果。[本次文档修复说明](docs/releases/v0.3.1-readme.md)
 
 <a id="contents"></a>
 ## 阅读路线
@@ -16,7 +16,7 @@ LMA（Local Model App）让用户在 Android 手机上选择、下载、管理�
 | 想做什么 | 本页入口 | 详细文档 |
 | --- | --- | --- |
 | 安装、下载和第一次使用 | [安装](#install)、[C01–C05](#use-cases) | [使用手册](docs/USER_GUIDE.md)、[HF 与本地模型](docs/HF_MODELS.md) |
-| 选择生图、生视频或生音频方案 | [支持范围](#models)、[C06–C14](#use-cases) | [完整实现矩阵](docs/IMPLEMENTATION_V031.md)、[社区模型](docs/COMMUNITY_MODELS.md) |
+| 选择生图、生视频或生音频方案 | [支持范围](#models)、[C06–C14](#use-cases) | [完整实现矩阵](docs/IMPLEMENTATION_V032.md)、[社区模型](docs/COMMUNITY_MODELS.md) |
 | 管理模型、独立参数、任务和结果 | [C03–C04、C15–C18](#use-cases) | [模型参数](docs/MODEL_SETTINGS.md)、[任务工作台](docs/TASK_WORKBENCH.md) |
 | 在程序中调用手机模型 | [API 示例](#api-examples) | [API](docs/API.md)、[输入与上传](docs/LOCAL_INPUTS.md) |
 | 看页面、生成案例和失败对照 | [当前页面](#ui-media)、[历史案例 H01–H18](#case-studies) | [媒体说明](docs/MEDIA.md)、[历史完整 README](docs/history/README-dev45.zh.md) |
@@ -25,7 +25,7 @@ LMA（Local Model App）让用户在 Android 手机上选择、下载、管理�
 <a id="models"></a>
 ## 模型范围与选择逻辑
 
-所有模型平级。**生文／生图／生视频／生音频**、能力、引擎、格式、组件、后端、许可、内容标记和安装状态是独立维度。HF 全格式发现不等于所有格式可运行；架构、配套组件与手机资源都必须满足所选路线。
+所有模型平级。**生文／生图／生视频／生音频／生 3D**、能力、引擎、格式、组件、后端、许可、内容标记和安装状态是独立维度。HF 全格式发现不等于所有格式可运行；架构、配套组件与手机资源都必须满足所选路线。
 
 | 编号 | 模型／方案 | 本机程序路线与边界 |
 | --- | --- | --- |
@@ -42,7 +42,21 @@ LMA（Local Model App）让用户在 Android 手机上选择、下载、管理�
 | 16 | Wan 2.1 T2V 1.3B Q4 | sd.cpp CPU／Vulkan、显式组件、本机视频编码 |
 | 17 | LTX-Video 2B 0.9.8 distilled | 原始 PixArt T5 F32＋7 步／空间放大／3 步；Google T5 Q5 单尺度保留独立身份 |
 
-当前基座有 **38 个数据型配方模板、12 类扩展引擎及原有文本引擎**；模型包为原有 **23 套＋社区 44 套＝67 套**。模板、模型包、引擎和架构不是同一计数，不代表 67 个模型都已在手机实测。[机器可读实现矩阵](catalogue/release-0.3.1-implementation.json)
+当前基座有 **44 个数据型配方模板、14 类扩展引擎及原有文本引擎**；模型包为 **23 套原有＋44 套社区＋11 套新增语音 / 3D＝78 套**。模板、模型包、引擎和架构分别计数，不代表全部模型已在手机实测。[机器可读实现矩阵](catalogue/release-0.3.2-implementation.json)
+
+### 本轮语音与单图生 3D
+
+| 编号 | 选择 | 当前接入与边界 |
+| --- | --- | --- |
+| S01 | Kokoro PyTorch 系列 | 新增匹配 INT8 ONNX 英文方案；原始 `.pth` 不直接执行，既有 54 音色保留 |
+| S02 | MeloTTS Chinese | 中文 ONNX INT8 / FP32、phones / tones 词典与四份 FST |
+| S03 | F5-TTS v1 | 原版 safetensors＋Vocos，本机 C++；参考 WAV / 文本必填，中文前端实验适配 |
+| S04 | OmniVoice | Q8 GGUF / 原版两种选择，本机 C++；自动 / 克隆 / 描述音色，完整 WAV |
+| D01–D02 | TRELLIS.2 / Pixal3D | 五个单图 GGUF / CPU 几何或贴图选择，本地图片 → GLB → 预览 / 导出 |
+
+已检查指定 [3080 生 3D 测评](https://benchmark.sidcloud.cn/collections/3080-3d)的 **16 条配置**：12 条新轮次＋4 条旧轮次。本版接入两种单图架构的子集；多视图、其余模型、独立贴图 / 精修与多部件路线尚未集成。最小 Melo 包约 61 MB，Pixal3D 贴图包约 13 GB，不能统称轻量或承诺 Z20 可运行。
+
+[四类语音、11 套文件与许可、D01–D16 完整评估、操作 / API / 测试 / 截图](docs/SPEECH_3D_EXPANSION.md) · [来源审计](research/expansion/benchmark-audit.json)。下载由用户选择，新增模型没有推断 NSFW 标签。
 
 ### 社区生图／生视频与内容标签
 
@@ -84,27 +98,27 @@ Uncensored／Abliterated 与 NSFW 分别标注，不互相替代。作者声明�
 <a id="install"></a>
 ## 安装与首次启动
 
-1. 从 [v0.3.1 Release](https://github.com/wikigsroom/LMA/releases/tag/v0.3.1) 下载 `LMA-0.3.1-arm64-v8a.apk`；需要 64 位 Android 9／API 28 或以上。
+1. 从 [v0.3.1 Release](https://github.com/wikigsroom/LMA/releases/tag/v0.3.2) 下载 `LMA-0.3.2-arm64-v8a.apk`；需要 64 位 Android 9／API 28 或以上。
 2. 对照同页 `SHA256SUMS` 核对安装包。Windows 示例：
 
    ```powershell
-   Get-FileHash .\LMA-0.3.1-arm64-v8a.apk -Algorithm SHA256
+   Get-FileHash .\LMA-0.3.2-arm64-v8a.apk -Algorithm SHA256
    ```
 
 3. 打开 App，按系统提示允许通知。若要退出界面或锁屏继续工作，在 Android 设置中允许后台活动并取消相关电池限制。
 4. App 初次启动可零模型使用管理界面和接口；选择、下载、导入或加载模型都是独立操作。
 5. 保持原签名升级安装，已有模型与设置继续保留。自行签名的 APK 不能直接覆盖另一签名的安装。
 
-| 安装包身份 | v0.3.1 |
+| 安装包身份 | v0.3.2 |
 | --- | --- |
-| 字节数 | `61760162` |
-| SHA256 | `1e4b08927751c71aef7f5014a2dc1c889f141c449058c907a68b4f895ac27776` |
+| 字节数 | `66100175` |
+| SHA256 | `bed58cb59324e8ec1a786026378a55767d28c5a76ba9fa56544506c10145d140` |
 | 签名证书 SHA256 | `90444a717a55549e2094364d8d7d005cf8b7f4df24562da62cc1884a2f341c17` |
 
-Release 附 APK、源码 ZIP、验证 ZIP、截图 ZIP、GIF／MP4、构建与源码清单、说明和哈希，共 16 项附件。[版本说明](docs/releases/v0.3.1.md)
+Release 附 APK、源码 ZIP、验证 ZIP、截图 ZIP、GIF／MP4、构建与源码清单、说明和哈希，共 18 项附件。[版本说明](docs/releases/v0.3.2.md)
 
 <a id="use-cases"></a>
-## 18 个完整使用场景
+## 22 个完整使用场景
 
 以下是操作用例及应有行为，不是新增的真机测试通过清单。当前程序检查与历史实测证据分别见下文。
 
@@ -233,6 +247,30 @@ Release 附 APK、源码 ZIP、验证 ZIP、截图 ZIP、GIF／MP4、构建与�
 - 对支持的 HF 架构，可逐项选择主权重与配套组件、审阅建议，再登记自选配方；建议不表示已安装。
 - 切换当前版本与下载是独立动作；旧任务仍引用旧身份，删除受引用保护。自选配方不冒充已核对候选。
 - 对照：[模型更新](docs/MODEL_UPDATES.md)、[HF 配方](docs/HF_RECIPES.md)、[配套建议](docs/COMPONENT_SUGGESTIONS.md)。
+
+### C19 · 中文 MeloTTS 与 Kokoro INT8
+
+- 在“全部”搜索 MeloTTS Chinese，选择 INT8 或 FP32，核对主模型、tokens、声调词典与四份 FST 后主动下载。
+- 在“本地”编辑语速、停顿、线程和时长保护，只影响此模型。Kokoro INT8 复用既有音色选择，当前包限英文前端。
+- 输入文本、预检并提交；成功后试听 / 导出 WAV。[格式、许可与步骤](docs/SPEECH_3D_EXPANSION.md)
+
+### C20 · F5-TTS v1 参考音色
+
+- 下载原版 v1、Vocos 与词表；中文还需所列拼音字典，App 不内置这些资源。
+- 导入 24 kHz 单声道、1–12 秒 WAV，填写准确参考文本和新朗读文本，编辑本模型的步数与时长保护后提交。
+- 缺发音明确报错；中文分词 / 变调未验证与官方 Python 完全一致。[输入与边界](docs/SPEECH_3D_EXPANSION.md#12-输入前端与许可)
+
+### C21 · OmniVoice 资产与音色模式
+
+- 选择 Q8 集成 GGUF，或原版模型＋分词器 / codec，组件身份独立。
+- 在此模型设置选择 auto / clone / design，编辑语言、描述和目标时长；时长随保护上限归位。
+- clone 提供匹配 WAV / 文本；design 填写音色描述。本版返回完整 WAV。[完整操作](docs/SPEECH_3D_EXPANSION.md)
+
+### C22 · 单图生 GLB、预览与再次生成
+
+- 在“本地 → 生 3D”选择 TRELLIS.2 或 Pixal3D，导入单张 PNG / JPEG，编辑分辨率、步数、面数与贴图。
+- 保存设置或草稿，预检后主动入队。512 Pixal 自动关闭贴图；缺高分辨率 / 纹理组件会报错，不补下载。
+- 拖动旋转、缩放，导出 GLB 与生成记录，或恢复输入后重新提交。演示立方体是合成程序夹具。[操作与 16 项评估](docs/SPEECH_3D_EXPANSION.md)
 
 <a id="foundation"></a>
 ## 基座如何工作
@@ -365,9 +403,9 @@ $lmaAccepted
 <a id="ui-media"></a>
 ## 当前页面、截图与录屏
 
-以下两条为 **v0.3.1 生产页面＋明确标记的桌面交互夹具（UI FIXTURE）**，未下载权重、未产生模型输出，不是手机录像。社区流程 34 项交互、工作台 8 项；录制结束关闭全部测试浏览器资源。
+以下三条为 **v0.3.2 生产页面＋明确标记的桌面交互夹具（UI FIXTURE）**，未下载权重、未产生模型输出，不是手机录像。社区流程 34 项、工作台 8 项、语音 / 3D 32 项交互；录制结束关闭全部测试浏览器资源。
 
-![v0.3.1 社区筛选、来源与本地管理；UI FIXTURE](docs/media/development/community/community-ui.gif)
+![v0.3.2 社区筛选、来源与本地管理；UI FIXTURE](docs/media/development/community/community-ui.gif)
 
 [社区 MP4](docs/media/development/community/community-ui.mp4) · [媒体与源码身份](docs/media/development/community/manifest.json)
 
@@ -377,7 +415,7 @@ $lmaAccepted
 
 [视频目录](docs/media/development/community/03-community-video.png) · [视频来源与限制](docs/media/development/community/04-video-source.png) · [本地管理](docs/media/development/community/05-community-local.png)
 
-![v0.3.1 共用工作台；UI FIXTURE，非模型推理](docs/media/development/release-workbench/release-workbench-ui.gif)
+![v0.3.2 共用工作台；UI FIXTURE，非模型推理](docs/media/development/release-workbench/release-workbench-ui.gif)
 
 [工作台 MP4](docs/media/development/release-workbench/release-workbench-ui.mp4) · [工作台媒体身份](docs/media/development/release-workbench/manifest.json)
 
@@ -394,10 +432,14 @@ $lmaAccepted
 | 运行资源与停止原因 | [资源](docs/media/development/resources/01-running.png)、[停止详情](docs/media/development/resources/02-stopped-detail.png) | [资源说明](docs/RUNTIME_RESOURCES.md) |
 | 原始文本模型库、接口和深色主题 | [模型库](docs/media/01-library.png)、[接口](docs/media/05-api.png)、[深色](docs/media/07-dark.png) | [原始演示](docs/MEDIA.md) |
 
+![v0.3.2 语音与单图生 3D；UI FIXTURE，合成立方体非模型输出](docs/media/development/expansion/expansion-ui.gif)
+
+[语音选择](docs/media/development/expansion/01-speech-models.png) · [3D 表单](docs/media/development/expansion/03-3d-form.png) · [GLB 预览](docs/media/development/expansion/05-glb-preview.png) · [MP4](docs/media/development/expansion/expansion-ui.mp4) · [32 项页面检查](docs/media/development/expansion/manifest.json)
+
 <a id="case-studies"></a>
 ## 历史案例测试与真实产物
 
-这些是已保存的开发阶段案例，**本次文档修复没有重新下载、复制或运行完整模型**。HOST 表示原生 Windows 主机，UI FIXTURE 表示模拟桥接的页面，PROGRAM 表示程序或有界小图检查；都不能替代 Android 真机验收。旧文档中的“尚未发布”属于当时语境，当前安装包仍以上方 v0.3.1 为准。
+这些是已保存的开发阶段案例，**本次文档修复没有重新下载、复制或运行完整模型**。HOST 表示原生 Windows 主机，UI FIXTURE 表示模拟桥接的页面，PROGRAM 表示程序或有界小图检查；都不能替代 Android 真机验收。旧文档中的“尚未发布”属于当时语境，当前安装包以上方 v0.3.2 为准。
 
 | 编号 | 案例及输入／操作 | 当时观察与明确边界 | 原始说明／证据 |
 | --- | --- | --- | --- |
@@ -469,12 +511,12 @@ $lmaAccepted
 <a id="verification"></a>
 ## 当前程序检查覆盖与复核入口
 
-**v0.3.1 发布时为 24 组／4,438 项程序断言。** 下表按当前可追溯记录列出具体案例；本次只修文档与相关发布后核查，不将这些已存在记录说成新跑的模型测试。[当前索引](verification/program/status.json) · [策略与边界](docs/PROGRAM_VALIDATION.md)
+**v0.3.2 保留原有 24 组覆盖，增加 P25 语音 / 3D 程序专项，重跑受影响检查。** 当前 **25 组 / 4,727 项**。具体数量与源码指纹见[当前证据](verification/program/status.json)；完整模型、手机质量与耐久未测试。[验证策略](docs/PROGRAM_VALIDATION.md)
 
 | 编号 | 套件／断言 | 覆盖的案例 | 记录 |
 | --- | --- | --- | --- |
-| P01 | community · 814 | 44 配方、内容依据、固定身份、独立参数与生产任务规划 | [JSON](verification/program/community.json) |
-| P02 | foundation · 820 | 零模型启动、包管理、组件共享、下载／导入／删除与权限 | [JSON](verification/program/foundation.json) |
+| P01 | community · 818 | 44 配方、内容依据、固定身份、独立参数与生产任务规划 | [JSON](verification/program/community.json) |
+| P02 | foundation · 899 | 零模型启动、包管理、组件共享、下载／导入／删除与权限 | [JSON](verification/program/foundation.json) |
 | P03 | backend · 138 | 文本引擎进程、代理、停止、错误与占用释放 | [JSON](verification/program/backend.json) |
 | P04 | bundle-pause · 22 | 阻塞读取中暂停、关闭、后续队列释放 | [JSON](verification/program/bundle-pause.json) |
 | P05 | document-input · 15 | 文档输入合约、取消、错误和资源关闭；不是手机 SAF 实跑 | [JSON](verification/program/document-input.json) |
@@ -493,10 +535,11 @@ $lmaAccepted
 | P18 | recipe-suggestions · 73 | 配套组件建议、人工确认和精确下载计划 | [JSON](verification/program/recipe-suggestions.json) |
 | P19 | speech-voices · 70 | 54 个 Kokoro 音色、模型专属参数和非法选择 | [JSON](verification/program/speech-voices.json) |
 | P20 | sana-sprint · 448 | 分词、采样数学、有界小图和匹配 Sprint 路线 | [JSON](verification/program/sana-sprint.json) |
-| P21 | ui · 564 | 生产页面、模型管理、组合筛选、设置、队列和结果 | [JSON](verification/program/ui.json) |
+| P21 | ui · 597 | 生产页面、模型管理、组合筛选、设置、队列和结果 | [JSON](verification/program/ui.json) |
 | P22 | ltx-official · 89 | 官方身份、原始 T5／分词与多尺度配置合约 | [JSON](verification/program/ltx-official.json) |
 | P23 | ltx-multiscale-app · 280 | 原始 PixArt 多尺度编排、有界阶段、取消与产物提交 | [JSON](verification/program/ltx-multiscale-app.json) |
 | P24 | ltx-single-scale-app · 127 | 独立单尺度路线、输入／参数／进程和取消恢复 | [JSON](verification/program/ltx-single-scale-app.json) |
+| P25 | expansion · 173 | 新语音 / 3D 合约、五种真实主机子进程夹具、GLB 发布与拒绝、F5 前端微型夹具 | [JSON](verification/program/expansion.json) |
 
 另外核对 ARM64／API28、35 个原生库及依赖、16 KiB ELF／ZIP 对齐、原签名与 APK 身份；Android Lint **0 错误／16 个原有警告**。当前 10 张截图、2 GIF、2 MP4 来自两条明确标记的桌面页面流程，不是模型生视频产物。
 
@@ -533,6 +576,7 @@ python tools/test_android_lint.py
 ```powershell
 python tools/test_backend.py
 python tools/test_community.py
+python tools/test_expansion.py
 python tools/test_text.py
 python tools/test_scheduler.py
 python tools/test_recovery.py
@@ -584,7 +628,7 @@ python tools/program_evidence.py
 
 [完整文档目录](docs/README.md) · [中文手册](docs/USER_GUIDE.md) · [English guide](docs/USER_GUIDE.en.md) · [模型参数](docs/MODEL_SETTINGS.md) · [共用任务](docs/TASK_WORKBENCH.md) · [输入](docs/LOCAL_INPUTS.md) · [API](docs/API.md) · [后台架构](docs/ARCHITECTURE.md)
 
-[多模态可行性研究](docs/MULTIMODAL.md) · [基座评估](docs/FOUNDATION.md) · [冻结需求](docs/MULTIMODAL_RELEASE_PLAN.md) · [用户资产核对](docs/ASSET_CONTROL_AUDIT.md) · [当前实现](docs/IMPLEMENTATION_V031.md) · [旧验证资料](docs/VALIDATION.md) · [设备验收工具（未执行）](docs/DEVICE_ACCEPTANCE.md)
+[多模态可行性研究](docs/MULTIMODAL.md) · [基座评估](docs/FOUNDATION.md) · [冻结需求](docs/MULTIMODAL_RELEASE_PLAN.md) · [用户资产核对](docs/ASSET_CONTROL_AUDIT.md) · [当前实现](docs/IMPLEMENTATION_V032.md) · [旧验证资料](docs/VALIDATION.md) · [设备验收工具（未执行）](docs/DEVICE_ACCEPTANCE.md)
 
 [完整历史中文 README](docs/history/README-dev45.zh.md) · [完整历史英文 README](docs/history/README-dev45.en.md) · [历史文档索引](docs/history/Documentation-dev45.md) · [本次文档修复](docs/releases/v0.3.1-readme.md)
 

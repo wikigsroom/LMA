@@ -63,7 +63,7 @@ def main():
     native = ROOT / "app/src/main/jniLibs/arm64-v8a"
     if not (native / "libllama-server.so").exists(): raise RuntimeError("Run python tools/bootstrap_runtime.py first")
     source = ROOT / "app/src/main"
-    for name in ("index.html", "app.css", "app.js", "foundation.css", "foundation.js", "audio-preview.js", "workbench.js", "recipes.js", "versions.js", "community.js", "recipe-templates.json", "asset-preparations.json", "model-assemblies.json", "license.js", "models.json", "model-bundles.json", "engine-builds.json"):
+    for name in ("index.html", "app.css", "app.js", "foundation.css", "foundation.js", "audio-preview.js", "workbench.js", "recipes.js", "versions.js", "community.js", "expansion.js", "glb-preview.js", "expansion-notices.json", "recipe-templates.json", "asset-preparations.json", "model-assemblies.json", "license.js", "models.json", "model-bundles.json", "engine-builds.json"):
         if not (source / "assets" / name).is_file(): raise RuntimeError("Missing application UI asset: " + name)
     license_text = (ROOT / "third_party/LLAMA_CPP_LICENSE").read_text(encoding="utf-8")
     (source / "assets/licenses").mkdir(exist_ok=True)
@@ -76,7 +76,10 @@ def main():
         (source / "assets/licenses" / notice.name).write_bytes(notice.read_bytes())
         notices[notice.name] = text
     (source / "assets/licenses/LMA_LICENSE").write_text(notices["LMA MIT License"], encoding="utf-8")
-    (source / "assets/license.js").write_text("window.LMA_LICENSE = " + json.dumps(license_text, ensure_ascii=True) + ";\nwindow.LMA_NOTICES = " + json.dumps(notices, ensure_ascii=True) + ";\n", encoding="utf-8")
+    # Preserve the reviewed legacy notices byte-for-byte. New notices are data,
+    # served separately by the expansion UI instead of rewriting this asset.
+    if hashlib.sha256((source / "assets/license.js").read_bytes()).hexdigest() != "838317c7653ca35291e9e18f2a7e2d98ed46a10880dfe144176f04ad994433d0":
+        raise RuntimeError("Reviewed legacy notice asset changed")
     lock = json.loads((ROOT / "third_party/runtime-lock.json").read_text(encoding="utf-8"))
     for record in lock["files"]:
         path = native / record["name"]

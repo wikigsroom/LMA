@@ -37,6 +37,7 @@ public final class LocalEngines {
             else if (id.equals("stable_audio_litert")) register(new StableAudioEngine(app, binary, build));
             else if (id.equals("soulx_native")) register(new SoulxEngine(app, binary, build));
             else if (id.equals("ltx098_native")) register(new Ltx098Engine(app, binary, build));
+            else if (id.equals("audio_cpp") || id.equals("trellis_native")) register(new ExpansionEngine(app, binary, build));
             else throw new IOException("未知的签名原生模块：" + id);
         }
     }
@@ -53,7 +54,7 @@ public final class LocalEngines {
     public JSONObject inputSchemas(ModelBundle bundle) throws Exception {
         JSONObject result = new JSONObject(); LocalEngine engine = modules.get(bundle.engine); if (engine == null) return result;
         for (String tag : bundle.tasks) {
-            String type = tag.equals("text") ? "text.generate" : tag.equals("image") ? "image.generate" : tag.equals("video") ? "video.generate" : bundle.json().optJSONArray("capabilities") != null && bundle.json().getJSONArray("capabilities").toString().contains("text_to_speech") ? "speech.synthesize" : "audio.generate";
+            String type = tag.equals("text") ? "text.generate" : tag.equals("image") ? "image.generate" : tag.equals("video") ? "video.generate" : tag.equals("3d") ? "mesh.generate" : bundle.json().optJSONArray("capabilities") != null && bundle.json().getJSONArray("capabilities").toString().contains("text_to_speech") ? "speech.synthesize" : "audio.generate";
             result.put(type, engine.inputs(bundle, type).json());
         }
         return result;

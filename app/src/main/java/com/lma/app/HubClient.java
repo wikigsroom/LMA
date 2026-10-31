@@ -101,6 +101,7 @@ public final class HubClient {
         switch (task) {
             case "text-generation": case "text2text-generation": case "image-text-to-text": case "conversational": tags.put("text"); break;
             case "text-to-image": case "image-to-image": tags.put("image"); break;
+            case "image-to-3d": case "text-to-3d": tags.put("3d"); break;
             case "text-to-video": case "image-to-video": case "video-to-video": tags.put("video"); break;
             case "text-to-audio": case "text-to-speech": case "audio-to-audio": tags.put("audio"); break;
             default: break;

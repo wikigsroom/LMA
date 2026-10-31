@@ -1,5 +1,7 @@
 # LMA repository instructions / 仓库工作约定
 
+- Current additive release is v0.3.2: retain completed v0.3.0 scope and v0.3.1 community support; add speech / single-image 3D routes described in docs/SPEECH_3D_EXPANSION.md. The older “next v0.3.0” requirement below records the complete original scope, not a request to reset versions. All new models remain optional peers; raw PyTorch, unported 3D families and phone performance must not be inferred from catalogue labels.
+
 - Work inside this repository and the user's designated `无审查小模型/` directory. Do not invoke Docker, WSL, virtual machines, or Android emulators. 使用原生工具，不调度任何虚拟化环境。
 - Close all browser pages, contexts, and browser processes created for a task in `finally` blocks. 浏览器调用结束必须关闭不用的页面并释放内存。
 - **Validation policy updated by the user on 2026-10-31: program validation only.** Do not run/download/copy complete trained models, ASR scoring, long inference or model-by-model endurance checks for subsequent development. Use compilation, package/signature checks, production program contracts, bounded fixtures, API/model-management/parameter/queue/cancel/recovery and UI checks. Prior complete-model failures remain historical facts, not fresh passes. This overrides older full-model/device validation gates; it does not waive missing implementation or permit claims of phone/model quality verification. See [current validation policy](docs/PROGRAM_VALIDATION.md). 用户明确后续只做程序验证，免去耗时完整模型运行；不得因旧文档继续重复模型验收，也不得把未适配代码视作完成。

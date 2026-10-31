@@ -18,6 +18,10 @@ PRIOR_COMMIT = 'da179315377957a449d94817f0a2b7d2030aea44'
 CERTIFICATE = '90444a717a55549e2094364d8d7d005cf8b7f4df24562da62cc1884a2f341c17'
 SOURCES = {
     'community.json': 'build/community-tests/results.json',
+    'expansion.json': 'build/expansion-tests/results.json',
+    'speech-extra-android.json': 'build/speech_extra-build-info.json',
+    'mesh-android.json': 'build/mesh-build-info.json',
+    'tts-android.json': 'build/tts-build-info.json',
     'build.json': 'dist/build-info.json',
     'package.json': 'build/package-verification.json',
     'foundation.json': 'build/foundation-tests/results.json',
@@ -47,15 +51,15 @@ SOURCES = {
     'ltx-single-scale-app.json': 'build/ltx098-app-tests/results.json',
     'ltx-android.json': 'build/ltx098-app-build-info.json',
 }
-MINIMUM = dict(community=700, foundation=820, backend=138, **{'bundle-pause':22, 'document-input':15},
+MINIMUM = dict(expansion=173, community=818, foundation=899, backend=138, **{'bundle-pause':22, 'document-input':15},
     api=68, workbench=44, recovery=47, inputs=64, text=66, migration=69, scheduler=151,
     preparations=44, assemblies=47, diffusion=197, mnn=101, hub=80,
-    **{'recipe-suggestions':73, 'speech-voices':70, 'sana-sprint':448}, ui=530, **{'ltx-official':89, 'ltx-multiscale-app':280, 'ltx-single-scale-app':127})
+    **{'recipe-suggestions':73, 'speech-voices':70, 'sana-sprint':448}, ui=597, **{'ltx-official':89, 'ltx-multiscale-app':280, 'ltx-single-scale-app':127})
 MEDIA = ['workbench', 'preflight', 'recovery', 'lcm', 'audio', 'ltx', 'resources',
          'curated', 'speech', 'components', 'wan', 'openmoss', 'sana', 'v030-ltx-official', 'v030-release-workbench']
 UI_LOGIC = ['app/src/main/assets/' + name for name in (
     'index.html', 'app.css', 'app.js', 'foundation.css', 'foundation.js',
-    'audio-preview.js', 'workbench.js', 'recipes.js', 'versions.js', 'community.js')]
+    'audio-preview.js', 'workbench.js', 'recipes.js', 'versions.js', 'community.js', 'expansion.js', 'glb-preview.js')]
 
 
 def sha(path):
@@ -96,7 +100,7 @@ def export():
     for name in MEDIA:
         path = (ROOT / 'docs/media/history/v0.3.0' / name[5:] if name.startswith('v030-') else ROOT / 'docs/media/development' / name) / 'manifest.json'
         media[name] = dict(path=path.relative_to(ROOT).as_posix(), **identity(path))
-    fresh_media = {name:ROOT/'docs/media/development'/name/'manifest.json' for name in ['community','release-workbench']}
+    fresh_media = {name:ROOT/'docs/media/development'/name/'manifest.json' for name in ['community','release-workbench','expansion']}
     from release_scope import check as check_scope
     check_scope()
     status = dict(schema='lma.program-release/1', version=VERSION,
@@ -106,6 +110,7 @@ def export():
         prior_checkpoint=dict(commit=PRIOR_COMMIT, version='0.3.0-dev.45',
             path=historical.relative_to(ROOT).as_posix(), **identity(historical)),
         prior_release_archive='verification/history/v0.3.0-program-archive.json',
+        prior_additive_release_archive='verification/history/v0.3.1-program-archive.json',
         policy='docs/proposals/program-validation-policy.json',
         release_ready=True, full_scope_implementation_complete=True,
         implementation_matrix='catalogue/release-'+VERSION+'-implementation.json', known_implementation_gaps=[],
@@ -149,7 +154,7 @@ def check():
     records = {}
     for name, item in status['sources'].items():
         assert item['source'] == SOURCES[name] and identity(OUT / name) == {k:item[k] for k in ['bytes','sha256']}
-        value = record(OUT / name); current(value['source_inputs'] if name in ['mnn-android.json','ltx-android.json'] else value['input_fingerprint']); records[name] = value
+        value = record(OUT / name); current(value['source_inputs'] if name in ['mnn-android.json','ltx-android.json','speech-extra-android.json','mesh-android.json','tts-android.json'] else value['input_fingerprint']); records[name] = value
         for key in ['model_inference', 'model_inference_tested', 'modelInference']:
             assert not value.get(key, False), 'Unexpected neural execution in program evidence: ' + name
     counts = {name:counted(name, records[name+'.json']) for name in MINIMUM}
@@ -160,7 +165,7 @@ def check():
     assert sha(apk) == build['sha256'] == package['sha256'] == lint['applicationApkSha256']
     assert apk.stat().st_size == build['bytes'] and build['signatures_verified']
     assert package['signing_certificate_sha256'] == CERTIFICATE
-    assert package['native_libraries_verified'] == 35 and package['all_native_dependencies_resolved']
+    assert package['native_libraries_verified'] == 37 and package['all_native_dependencies_resolved']
     assert package['all_elf_load_segments_16k_aligned'] and package['final_apk_zip_alignment_verified']
     assert package['packaged_ui_matches_source'] and package['apk_signatures_independently_verified']
     assert lint['errors'] == 0 and lint['java_source_files'] == len(list((ROOT/'app/src/main/java').rglob('*.java')))
@@ -171,6 +176,11 @@ def check():
     assert arm['abi'] == 'arm64-v8a' and arm['min_sdk'] == 28 and arm['android_api_notes'] == [28]
     assert arm['static_dependencies']['sentencepiece'] == '31646a467d2051eb904e0b45de3a73e91fe1c1e3'
     assert not arm['http_resources_compiled'] and not arm['logcat_compiled'] and not arm['virtualization_used']
+    for name in ['speech-extra-android.json','mesh-android.json','tts-android.json']:
+        arm_extra=records[name]
+        assert arm_extra['abi']=='arm64-v8a' and arm_extra['android_api_notes']==[28]
+        assert not arm_extra.get('model_data_embedded',False) and not arm_extra.get('deviceValidated',False)
+    assert records['expansion.json']['java']['actual_host_child_processes'] and not records['expansion.json']['model_inference']
     ltx, official = records['ltx-android.json'], records['ltx-official.json']
     assert ltx['abi'] == 'arm64-v8a' and ltx['min_sdk'] == 28 and ltx['android_api_notes'] == [28]
     assert 'ltx098_pixart_multiscale_v1' in ltx['pipelines']
@@ -190,14 +200,14 @@ def check():
         assert not media['android_device'] and not media['model_inference']
         for file in media['files']:
             assert identity(path.parent / file['file']) == {k:file[k] for k in ['bytes','sha256']}
-    assert set(status['current_ui_media']) == {'community','release-workbench'}
+    assert set(status['current_ui_media']) == {'community','release-workbench','expansion'}
     for item in status['current_ui_media'].values():
         path=ROOT/item['path']; assert identity(path)=={k:item[k] for k in ['bytes','sha256']}
         media=record(path); current(media['input_fingerprint'])
         assert media['version']==VERSION and media['browser_closed'] and not media['browser_errors']
         assert not media['android_device'] and not media['model_inference'] and not media['weights_downloaded']
         assert len(media['screenshots'])==5
-        assert len(media['checks']) >= (25 if path.parent.name=='community' else 8)
+        assert len(media['checks']) >= ({'community':25,'release-workbench':8,'expansion':32}[path.parent.name])
         for file in media['files']: assert identity(path.parent/file['file'])=={k:file[k] for k in ['bytes','sha256']}
     prior = status['prior_checkpoint']; assert prior['commit'] == PRIOR_COMMIT and prior['version'] == '0.3.0-dev.45'
     assert identity(ROOT / prior['path']) == {k:prior[k] for k in ['bytes','sha256']}
@@ -222,6 +232,15 @@ def check():
         assert hashlib.sha1(('blob '+str(len(body))+'\0').encode()+body).hexdigest() == item['gitBlob']
         frozen_blob = subprocess.check_output(['git', 'rev-parse', archived_release['commit']+':verification/program/'+name], cwd=ROOT).decode('ascii').strip()
         assert frozen_blob == item['gitBlob'], 'Archived release identity changed: '+name
+    previous=record(ROOT/status['prior_additive_release_archive'])
+    assert previous['version']=='0.3.1'
+    for name,item in previous['files'].items():
+        path=ROOT/previous['directory']/name
+        assert identity(path)=={k:item[k] for k in ['bytes','sha256']}
+        data=path.read_bytes()
+        assert hashlib.sha1(('blob '+str(len(data))+'\0').encode()+data).hexdigest()==item['gitBlob']
+        frozen=subprocess.check_output(['git','rev-parse',previous['commit']+':verification/program/'+name],cwd=ROOT).decode('ascii').strip()
+        assert frozen==item['gitBlob'],'Changed v0.3.1 evidence: '+name
     issue = ROOT / 'verification/research/input-opening-issue'
     capture = record(issue / 'capture.json'); assert not capture['host_contract_passed']
     for name, item in capture['files'].items():
@@ -232,8 +251,8 @@ def check():
         assert sha(ROOT/'app/src/main/assets'/name) == expected
     result = dict(passed=True, version=VERSION, validation_mode='program_only',
         current_records=len(records), program_suites=len(counts), program_assertions=sum(counts.values()),
-        checks=counts, historical_ui_manifests=len(MEDIA), current_ui_manifests=2, original_failure_preserved=True,
-        native_libraries=35, lint_errors=0, lint_warnings=len(lint['warnings']),
+        checks=counts, historical_ui_manifests=len(MEDIA), current_ui_manifests=3, original_failure_preserved=True,
+        native_libraries=37, lint_errors=0, lint_warnings=len(lint['warnings']),
         apk=build['apk'], apk_sha256=build['sha256'], release_ready=True, full_scope_implementation_complete=True,
         model_inference_tested=False, phone_inference_tested=False)
     (ROOT/'build/program-evidence-check.json').write_text(json.dumps(result, indent=2)+'\n', encoding='utf-8')

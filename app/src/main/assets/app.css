@@ -25,3 +25,6 @@ html[data-theme=dark]{color-scheme:dark;--bg:#121a29;--panel:#1a2537;--ink:#e5ed
 .community-revision, .community-detail dd { overflow-wrap: anywhere; }
 [data-theme="dark"] .tag.content-nsfw { background: #402d40; color: #ebc8e9; }
 [data-theme="dark"] .tag.content-sensitive { background: #403824; color: #efdda4; }
+
+.glb-preview { width:100%; aspect-ratio:4/3; height:auto; display:block; border-radius:12px; background:#10171c; touch-action:none; }
+.task-3d { color:var(--accent); }

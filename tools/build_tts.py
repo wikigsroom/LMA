@@ -33,7 +33,7 @@ def main():
         log_imports.update(line.split()[-1] for line in symbols.splitlines() if "__android_log_" in line)
     if log_imports != {"__android_log_print", "__android_log_vprint", "__android_log_write"}: raise RuntimeError("Review new upstream liblog imports before packaging")
     inputs = fingerprint("native/tts", "tools/build_tts.py", "tools/fetch_tts.py", "third_party/tts-source-lock.json")
-    drive = next((c + ":" for c in "RSTUVWXYZ" if not Path(c + ":/").exists()), None)
+    drive = next((c + ":" for c in "TRUVWXYZ" if not Path(c + ":/").exists()), None)
     if not drive: raise RuntimeError("No unused temporary build path alias")
     subprocess.run(["subst", drive, str(ROOT)], check=True, capture_output=True)
     try:

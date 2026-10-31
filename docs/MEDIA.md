@@ -1,5 +1,7 @@
 # 截图与演示 / Screenshots and demonstrations
 
+> 当前 v0.3.2 有三组重新录制的 UI FIXTURE：community 34 项、release-workbench 8 项、expansion 32 项，共 15 张截图及三组 GIF / MP4；均非模型 / 真机推理。[新增媒体](SPEECH_3D_EXPANSION.md#6-页面录屏与剩余范围)。Current recordings use production pages with simulated bridges; older media below keeps its historical scope.
+
 dev.28 新增 [LCM 准备 / 关联 / 依赖 / 生成四张截图与 MP4 / GIF](LCM_APP_FLOW.md)，并刷新工作台 / 预检 / 恢复媒体。运行 `node tools/capture_workbench.cjs lcm`；所有界面媒体带 UI FIXTURE 标记，浏览器在 finally 中关闭。Current production pages with simulated native data, not Android inference recordings.
 
 dev.27 新增 [4 张任务恢复 / 筛选 / 范围确认 / 冲突截图、MP4 与 GIF](TASK_RECOVERY.md)，并刷新工作台和运行前检查媒体。运行 `node tools/capture_workbench.cjs recovery`（另有 `workbench` / `preflight`）；使用真实页面及标记的模拟桥，浏览器 `finally` 关闭。Production UI and labelled simulated native data; no Android/model execution. 每组媒体清单记录当前源码、文件哈希与范围。
