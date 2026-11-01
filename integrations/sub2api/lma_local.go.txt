@@ -1,0 +1,29 @@
+package routes
+
+import (
+ "fmt"
+ "net/http"
+
+ localgateway "github.com/Wei-Shaw/sub2api/internal/pkg/lmalocal"
+ "github.com/Wei-Shaw/sub2api/internal/server/middleware"
+ "github.com/gin-gonic/gin"
+)
+
+// Opt-in dedicated LMA groups retain the existing Sub2API authentication,
+// subscription eligibility and model allowlist. Other groups keep their routes.
+func lmaLocalGatewayMiddleware() gin.HandlerFunc {
+ gateway, err := localgateway.FromEnvironment()
+ if err != nil { panic("Invalid explicit LMA gateway configuration") }
+ return func(c *gin.Context) {
+  key, ok := middleware.GetAPIKeyFromContext(c)
+  if gateway == nil || !ok || key == nil || key.GroupID == nil || !gateway.Configured(*key.GroupID) { c.Next(); return }
+  principal := localgateway.Principal{Owner:fmt.Sprintf("%d:%d:%d",key.UserID,key.ID,*key.GroupID),GroupID:*key.GroupID,
+   Allows:func(model string)bool{return key.Group==nil || !key.Group.ModelAllowlistEnabled() || key.Group.ModelAllowlist.Allows(model)}}
+  gateway.ServeHTTP(c.Writer,c.Request,principal)
+  c.Abort()
+ }
+}
+
+func lmaLocalUnavailable(c *gin.Context) {
+ c.AbortWithStatusJSON(http.StatusNotFound,gin.H{"error":gin.H{"type":"not_found_error","code":"lma_group_unavailable","message":"This endpoint requires an explicitly configured LMA group"}})
+}

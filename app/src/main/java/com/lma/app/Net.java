@@ -12,7 +12,7 @@ public final class Net {
     public static HttpURLConnection local(LmaApp app, String path) throws IOException {
         int port = app.prefs.getInt("port", 8080);
         HttpURLConnection connection = (HttpURLConnection) new URL("http://127.0.0.1:" + port + path).openConnection();
-        connection.setConnectTimeout(3000); connection.setReadTimeout(300000); connection.setInstanceFollowRedirects(false);
+        connection.setConnectTimeout(3000); connection.setReadTimeout(0); connection.setInstanceFollowRedirects(false);
         connection.setRequestProperty("Authorization", "Bearer " + app.prefs.getString("apiKey", ""));
         connection.setRequestProperty("Accept", "application/json"); return connection;
     }
@@ -20,7 +20,7 @@ public final class Net {
         int port = app.nativePort; String key = app.nativeApiKey;
         if (port < 1 || key.isEmpty() || !path.startsWith("/") || path.startsWith("//")) throw new IOException("本机文本引擎未启动");
         HttpURLConnection connection = (HttpURLConnection) new URL("http://127.0.0.1:" + port + path).openConnection();
-        connection.setConnectTimeout(3000); connection.setReadTimeout(300000); connection.setInstanceFollowRedirects(false);
+        connection.setConnectTimeout(3000); connection.setReadTimeout(0); connection.setInstanceFollowRedirects(false);
         connection.setRequestProperty("Authorization", "Bearer " + key);
         connection.setRequestProperty("Accept", "application/json"); return connection;
     }

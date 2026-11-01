@@ -1,6 +1,8 @@
 # LMA user guide
 
-**Current v0.3.11 / code61:** [Explicit CPU selection, 3D repair and physical results](ON_DEVICE_MODEL_REPAIR.en.md). Models → Local → model settings → cpu; reuse existing weights without automatic switching or downloading. Earlier notes below are historical.
+**Current v0.3.12 / code62:** [Local multimodal API, SDK examples and Sub2API integration](LOCAL_API_V0312.en.md). Download/configure models in Local, start Service, then discover installed peers with `/v1/models`. Generation has no fixed deadline; HTTP waits do not stop async jobs. [Actual device measurements](DEVICE_BENCHMARK_V0312.en.md). Earlier version callouts below are historical.
+
+**Historical v0.3.11 / code61:** [Explicit CPU selection, 3D repair and physical results](ON_DEVICE_MODEL_REPAIR.en.md). Models → Local → model settings → cpu; reuse existing weights without automatic switching or downloading. Earlier notes below are historical.
 
 **v0.3.10 / code60:** [逐条任务失败、清理与修复](TASK_FAILURES.md) / [Task diagnosis and repair](TASK_FAILURES.en.md). Denied 3D workspace links are repaired; unsupported Wan GPU is rejected before enqueue. Five failed records archived/removed, existing successes/models/artifacts retained. No complete model reruns.
 

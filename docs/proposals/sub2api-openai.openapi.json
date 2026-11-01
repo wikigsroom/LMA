@@ -1,9 +1,9 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "LMA–Sub2API proposed OpenAI subset and multimodal extensions",
-    "version": "0.2.0-design",
-    "description": "DESIGN ONLY. Not implemented by LMA v0.3.11 or the audited Sub2API deployment. Automatic discovery of downloaded/configured local models, standard models/chat/image/speech subset and explicitly namespaced LMA async extensions. All inference remains on one Android phone. Responses, historical Videos and Realtime are not advertised."
+    "title": "LMA / Sub2API OpenAI subset and local multimodal extensions",
+    "version": "0.3.12",
+    "description": "Implemented Android subset and opt-in native Sub2API source extension. Image generation: single PNG b64_json. Speech: explicit WAV. Image edits, Responses, Videos and Realtime are not advertised. All inference remains on one phone. See version-bound program and physical evidence; no live production DB/billing or all-model quality claim."
   },
   "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
   "servers": [
@@ -17,7 +17,7 @@
       "bearerAuth": []
     }
   ],
-  "x-lma-status": "design-only",
+  "x-lma-status": "implemented-subset",
   "x-lma-runtime-version": "0.3.11",
   "x-sub2api-audited-source": {
     "version": "v0.2.19",
@@ -53,7 +53,7 @@
       "get": {
         "operationId": "listModels",
         "description": "Automatically publish eligible downloaded/configured local text/image/video/speech/music/mesh models, including unloaded entries. Read cached metadata only. No default provider catalogue fallback.",
-        "x-lma-status": "design-only",
+        "x-lma-status": "implemented-subset",
         "responses": {
           "200": {
             "description": "Model list",
@@ -141,7 +141,7 @@
       "get": {
         "operationId": "retrieveModel",
         "description": "Published model detail with actual capability and readiness.",
-        "x-lma-status": "design-only",
+        "x-lma-status": "implemented-subset",
         "responses": {
           "200": {
             "description": "Model",
@@ -239,7 +239,7 @@
       "post": {
         "operationId": "createChatCompletion",
         "description": "Declared plain-text subset. Use direct Chat routing; unsupported tools/media/Responses are rejected.",
-        "x-lma-status": "design-only",
+        "x-lma-status": "implemented-subset",
         "responses": {
           "200": {
             "description": "Text completion or token SSE ending with [DONE].",
@@ -304,7 +304,7 @@
       "post": {
         "operationId": "generateImage",
         "description": "Bounded synchronous facade, n=1, PNG Base64. Never return a 202 job as successful image JSON.",
-        "x-lma-status": "design-only",
+        "x-lma-status": "implemented-subset",
         "responses": {
           "200": {
             "description": "Completed image only",
@@ -375,19 +375,9 @@
     "/v1/images/edits": {
       "post": {
         "operationId": "editImage",
-        "description": "Bounded on-disk multipart input; only models with true editing/mask capabilities.",
-        "x-lma-status": "design-only",
+        "description": "OpenAI multipart editing is not advertised by current adapters; use declared local input roles with /v1/lma/uploads and /v1/lma/jobs.",
+        "x-lma-status": "unsupported-explicit-error",
         "responses": {
-          "200": {
-            "description": "Completed image only",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ImageResponse"
-                }
-              }
-            }
-          },
           "400": {
             "$ref": "#/components/responses/Error"
           },
@@ -448,7 +438,7 @@
       "post": {
         "operationId": "createSpeech",
         "description": "WAV subset initially; unsupported MP3 default is an explicit error. Whole-file HTTP consumption does not imply incremental inference.",
-        "x-lma-status": "design-only",
+        "x-lma-status": "implemented-subset",
         "responses": {
           "200": {
             "description": "WAV bytes; not a job JSON.",
@@ -521,7 +511,7 @@
       "get": {
         "operationId": "getCapabilities",
         "description": "LMA extension: models, immutable phone instance identity and honest capability/evidence limits.",
-        "x-lma-status": "design-only",
+        "x-lma-status": "implemented-subset",
         "responses": {
           "200": {
             "description": "Capabilities",
@@ -610,7 +600,7 @@
       "post": {
         "operationId": "preflightJob",
         "description": "Resolve the same request as submit without generation or automatic asset transfer.",
-        "x-lma-status": "design-only",
+        "x-lma-status": "implemented-subset",
         "responses": {
           "200": {
             "description": "Preflight report; inspect canEnqueue",
@@ -670,7 +660,7 @@
       "post": {
         "operationId": "createJob",
         "description": "Resolve public model, owner-bound artifact/adapter IDs and frozen same-phone destination. Translate model to bundleId.",
-        "x-lma-status": "design-only",
+        "x-lma-status": "implemented-subset",
         "responses": {
           "202": {
             "description": "Durably accepted task",
@@ -741,7 +731,7 @@
       "get": {
         "operationId": "listJobs",
         "description": "List only this caller's external tasks; never return the raw shared phone history.",
-        "x-lma-status": "design-only",
+        "x-lma-status": "implemented-subset",
         "responses": {
           "200": {
             "description": "Owner-filtered jobs",
@@ -791,7 +781,7 @@
       "get": {
         "operationId": "retrieveJob",
         "description": "Use the persisted same-instance binding; do not reschedule lookup.",
-        "x-lma-status": "design-only",
+        "x-lma-status": "implemented-subset",
         "responses": {
           "200": {
             "description": "Job snapshot",
@@ -851,7 +841,7 @@
       "delete": {
         "operationId": "deleteJob",
         "description": "Owner-scoped terminal record deletion; preserve idempotency tombstones.",
-        "x-lma-status": "design-only",
+        "x-lma-status": "implemented-subset",
         "responses": {
           "200": {
             "description": "Deleted record",
@@ -913,7 +903,7 @@
       "post": {
         "operationId": "cancelJob",
         "description": "Explicit cancel on the bound instance. Retry creates a new task and preserves the original.",
-        "x-lma-status": "design-only",
+        "x-lma-status": "implemented-subset",
         "responses": {
           "200": {
             "description": "Job",
@@ -975,7 +965,7 @@
       "post": {
         "operationId": "retryJob",
         "description": "Explicit retry on the bound instance. Retry creates a new task and preserves the original.",
-        "x-lma-status": "design-only",
+        "x-lma-status": "implemented-subset",
         "responses": {
           "202": {
             "description": "Job",
@@ -1048,7 +1038,7 @@
       "get": {
         "operationId": "getJobEvents",
         "description": "SSE resume or JSON polling. Native 120-second connection bound; reset requires a fresh snapshot. Stage events are not output tokens/media.",
-        "x-lma-status": "design-only",
+        "x-lma-status": "implemented-subset",
         "responses": {
           "200": {
             "description": "Events",
@@ -1131,7 +1121,7 @@
       "get": {
         "operationId": "listAudioChunks",
         "description": "Only a genuinely incremental engine; bounded ephemeral PCM previews, separate from final WAV.",
-        "x-lma-status": "design-only",
+        "x-lma-status": "implemented-subset",
         "responses": {
           "200": {
             "description": "PCM chunk metadata",
@@ -1201,7 +1191,7 @@
       "get": {
         "operationId": "getAudioChunk",
         "description": "Owner-bound native PCM16 preview only; not a Realtime or standard Speech compatibility claim.",
-        "x-lma-status": "design-only",
+        "x-lma-status": "implemented-subset",
         "responses": {
           "200": {
             "description": "PCM bytes",
@@ -1273,7 +1263,7 @@
       "post": {
         "operationId": "createUpload",
         "description": "Bind the upload to the selected model's instance before sending bytes. Native creation takes name, bytes, sha256 only.",
-        "x-lma-status": "design-only",
+        "x-lma-status": "implemented-subset",
         "responses": {
           "202": {
             "description": "Upload session",
@@ -1331,7 +1321,7 @@
       "get": {
         "operationId": "listUploads",
         "description": "Only this owner's registered upload sessions.",
-        "x-lma-status": "design-only",
+        "x-lma-status": "implemented-subset",
         "responses": {
           "200": {
             "description": "Uploads",
@@ -1381,7 +1371,7 @@
       "get": {
         "operationId": "retrieveUpload",
         "description": "Lookup via owner and instance binding.",
-        "x-lma-status": "design-only",
+        "x-lma-status": "implemented-subset",
         "responses": {
           "200": {
             "description": "Upload",
@@ -1441,7 +1431,7 @@
       "put": {
         "operationId": "appendUpload",
         "description": "Application-level chunk, at most 256 KiB; use the declared offset and a known Content-Length.",
-        "x-lma-status": "design-only",
+        "x-lma-status": "implemented-subset",
         "responses": {
           "200": {
             "description": "Upload progress",
@@ -1522,7 +1512,7 @@
       "delete": {
         "operationId": "deleteUpload",
         "description": "Remove only the bound caller upload session.",
-        "x-lma-status": "design-only",
+        "x-lma-status": "implemented-subset",
         "responses": {
           "200": {
             "description": "Deleted upload",
@@ -1584,7 +1574,7 @@
       "post": {
         "operationId": "completeUpload",
         "description": "Check full SHA256 and create an external owner-bound input artifact.",
-        "x-lma-status": "design-only",
+        "x-lma-status": "implemented-subset",
         "responses": {
           "200": {
             "description": "Input artifact",
@@ -1646,7 +1636,7 @@
       "get": {
         "operationId": "listArtifacts",
         "description": "Only this caller's mapped input/output artifacts.",
-        "x-lma-status": "design-only",
+        "x-lma-status": "implemented-subset",
         "responses": {
           "200": {
             "description": "Artifacts",
@@ -1696,7 +1686,7 @@
       "get": {
         "operationId": "retrieveArtifact",
         "description": "Return external metadata, not raw phone file paths.",
-        "x-lma-status": "design-only",
+        "x-lma-status": "implemented-subset",
         "responses": {
           "200": {
             "description": "Artifact",
@@ -1756,7 +1746,7 @@
       "delete": {
         "operationId": "deleteArtifact",
         "description": "Owner-scoped deletion after validating active leases and job references.",
-        "x-lma-status": "design-only",
+        "x-lma-status": "implemented-subset",
         "responses": {
           "200": {
             "description": "Deleted artifact",
@@ -1818,7 +1808,7 @@
       "get": {
         "operationId": "downloadArtifactContent",
         "description": "Preserve authenticated 200/206/416, SHA ETag and real range semantics; If-Range requires a native implementation first.",
-        "x-lma-status": "design-only",
+        "x-lma-status": "implemented-subset",
         "responses": {
           "200": {
             "description": "Full artifact",
@@ -2014,7 +2004,7 @@
       "head": {
         "operationId": "inspectArtifactContent",
         "description": "Preserve authenticated 200/206/416, SHA ETag and real range semantics; If-Range requires a native implementation first.",
-        "x-lma-status": "design-only",
+        "x-lma-status": "implemented-subset",
         "responses": {
           "200": {
             "description": "Full artifact",
@@ -2625,7 +2615,7 @@
             "$ref": "#/components/schemas/ModelCapabilities"
           }
         },
-        "additionalProperties": false,
+        "additionalProperties": true,
         "required": [
           "id",
           "object",

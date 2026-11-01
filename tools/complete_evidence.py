@@ -15,6 +15,8 @@ from audit_adaptations import MODULES, required_records, require_complete
 OUT = ROOT / 'verification/releases' / ('v' + version())
 CURRENT_MEDIA = ['community', 'release-workbench', 'expansion', 'multiview', 'shape', 'spatial', 'material', 'ultratex', 'adaptation', 'recommendations']
 EXTRA = {
+    'api-publication.json': 'build/api-publication-tests/results.json',
+    'sub2api-gateway.json': 'build/sub2api-gateway-tests/results.json',
     'ui-performance.json': 'build/device-tests/ui-performance.json',
     'material.json': 'build/material-tests/results.json',
     'vision-android.json': 'build/vision-build-info.json',
@@ -27,7 +29,7 @@ for item in required_records():
     if item not in BASE_SOURCES.values():
         EXTRA[Path(item).parent.name + '.json' if item.endswith('/results.json') else Path(item).name] = item
 SOURCES = BASE_SOURCES | EXTRA
-MINIMUM = BASE_MINIMUM | {'ui-performance': 8, 'expansion': 875, 'portable-sparse-models': 97, 'cascade': 95, 'ultratex-attention': 47, 'material': 61}
+MINIMUM = BASE_MINIMUM | {'api-publication': 34, 'sub2api-gateway': 12, 'ui-performance': 8, 'expansion': 875, 'portable-sparse-models': 97, 'cascade': 95, 'ultratex-attention': 47, 'material': 61}
 for module in MODULES.values():
     for name, minimum in module['tests'].items():
         if name != 'expansion-tests':
@@ -48,7 +50,7 @@ def declared_deviation():
     path=ROOT/relative
     if version()=='0.3.10': assert path.exists(), 'Preserve the declared legacy-run deviation'
     if not path.exists():
-        return dict(validation_run_scope='Program gate records; optional authorized phone model probes reported separately',validation_deviation=None,
+        return dict(validation_run_scope=('Program gates counted separately from required physical API/model benchmarks' if version()=='0.3.12' else 'Program gate records; optional authorized phone model probes reported separately'),validation_deviation=None,
             accidental_legacy_host_model_execution=False)
     data=read(path)
     assert data['version']==version() and data['excluded_from_program_suite_counts']
@@ -61,11 +63,13 @@ def declared_deviation():
 
 def inputs():
     return fingerprint('tools/complete_evidence.py', 'tools/program_evidence.py', 'tools/program_release.py',
-        'tools/physical_model_evidence.py', 'tools/device_model_probe.py', 'tools/check_repository.py', 'tools/package_delivery.py', 'tools/prepare_release.py', 'tools/publish_release.py',
+        'tools/physical_model_evidence.py', 'tools/physical_api_evidence.py', 'tools/device_model_probe.py', 'tools/check_repository.py', 'tools/package_delivery.py', 'tools/prepare_release.py', 'tools/publish_release.py',
         'tools/release_scope.py', 'tools/audit_adaptations.py', 'tools/physical_evidence.py', 'tools/recommendations.py', 'tools/task_diagnostics_evidence.py',
         *([declared_deviation()['validation_deviation']] if declared_deviation()['validation_deviation'] else []),
         *(['verification/releases/v'+version()+'/physical-models.json'] if (OUT/'physical-models.json').exists() else []),
         *(['docs/media/models/v'+version()+'/manifest.json'] if (ROOT/'docs/media/models'/('v'+version())/'manifest.json').exists() else []),
+        *(['verification/releases/v'+version()+'/physical-api.json'] if (OUT/'physical-api.json').exists() else []),
+        *(['docs/media/benchmarks/v'+version()+'/manifest.json'] if (ROOT/'docs/media/benchmarks'/('v'+version())/'manifest.json').exists() else []),
         'research/portability/adaptation-current.json', 'docs/proposals/program-validation-policy.json',
         'docs/proposals/multimodal-release-scope.json', 'catalogue/release-'+version()+'-implementation.json')
 
@@ -88,6 +92,12 @@ def historical_identity():
     return count
 
 
+def physical_models_and_api(directory):
+    from physical_model_evidence import check as legacy
+    from physical_api_evidence import check as api
+    return legacy(directory) | api(directory)
+
+
 def export():
     require_complete()
     from recommendations import check as recommendations_check
@@ -108,7 +118,7 @@ def export():
     physical = physical_check(OUT)
     from task_diagnostics_evidence import check as task_diagnostics_check
     diagnostics = task_diagnostics_check(OUT)
-    from physical_model_evidence import check as model_probe_check
+    model_probe_check = physical_models_and_api
     model_probes = model_probe_check(OUT)
     physical_identity = identity(OUT/'physical-device.json') if physical['physical_device_tested'] else None
     status = dict(schema='lma.complete-program-release/1', version=version(), validation_mode='program_only',
@@ -152,8 +162,11 @@ def check():
     for key, value in task_diagnostics_check(OUT).items(): assert status[key] == value, key
     if physical['physical_device_tested']: assert status['physical_program_evidence'] == identity(OUT/'physical-device.json')
     else: assert status['physical_program_evidence'] is None
-    from physical_model_evidence import check as model_probe_check
+    model_probe_check = physical_models_and_api
     for key,value in model_probe_check(OUT).items(): assert status[key]==value,key
+    if version() == '0.3.12':
+        assert status['physical_device_tested'] and status['physical_api_integration_tested']
+        assert status['physical_api_checks'] >= 28 and status['final_video_over_five_seconds']
     for key in ('complete_model_downloads_for_validation', 'complete_model_copies_for_validation', 'model_quality_accepted',
         'background_endurance_tested', 'all_selected_models_tested', 'model_weights_in_apk',
         'automatic_model_asset_downloads', 'virtualization_used'):
@@ -186,6 +199,9 @@ def check():
     assert performance['apk_sha256'] == records['build.json']['sha256']
     if performance['schema'] == 'lma.physical-ui-performance-comparison/1':
         assert performance['optimized']['mainThread']['gapsOver100Ms'] == 0
+    elif performance['schema'] == 'lma.physical-installed-ui-performance/1':
+        assert performance['measurement']['existingModelsPreserved'] and performance['measurement']['generationIdle']
+        assert performance['measurement']['mainThread']['gapsOver100Ms'] == 0
     else:
         assert performance['schema'] == 'lma.historical-ui-performance-preservation/1'
         assert performance['measured_version'] == '0.3.9' and not performance['current_physical_performance_measured']

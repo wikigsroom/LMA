@@ -1,5 +1,7 @@
 # Contributing / 贡献与更新约定
 
+**2026-11-02 本轮交付要求：** 完成真机 API 联调与测评，生成的视频实际时长大于5秒，取消模型生成固定耗时上限。本轮要求覆盖下方历史程序验证限制；程序门禁、实际模型输出、画质与长期后台能力分别记录。v0.3.12 的白名单实测证据为 `physical-api.json`，保留早期候选 APK 身份。Current delivery requires physical integration/benchmarking, video longer than five seconds and uncapped generation; retain separate evidence scopes.
+
 **2026-11-01 授权补充：** 用户允许开发者自行选择部分真机与模型验证。使用已安装模型、有界自有夹具和精确 APK 身份，单独公开 `physical-models.json`；不恢复全部模型质量或耐久门槛。Selected phone probes are explicitly authorized; their counts and outcomes stay separate from regular program gates.
 
 **2026-10-31 用户更新：后续只做程序验证。** [中文规则](docs/PROGRAM_VALIDATION.md) / [English policy](docs/PROGRAM_VALIDATION.en.md) 覆盖下方历史条目中重跑完整模型、ASR 和手机耐久作为开发 / 发版前置项的要求。不得因此忽略缺少的适配代码或改写旧失败；v0.3.3 当前程序证据使用 `python tools/program_evidence.py --export`，随后按 [RELEASING](docs/RELEASING.md) 打包 / 核查；旧 development 命令仅对应历史检查点。不会运行旧模型检查。

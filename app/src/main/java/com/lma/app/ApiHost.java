@@ -56,33 +56,33 @@ public final class ApiHost implements LocalApi.Runtime, AutoCloseable {
                 .put("scheduler", app.execution.snapshot()).put("textState", app.engineState).put("textRequestActive", app.textRequestBusy).put("jobActive", app.jobHost == null ? "" : app.jobHost.activeId())
                 .put("foundationReady", app.jobs != null && app.artifacts != null && app.localEngines != null).put("modelInferenceTested", false);
     }
-    @Override public JSONArray models() throws Exception {
-        JSONArray result = new JSONArray(), text = app.store.snapshot(); java.util.Set<String> aliases = new java.util.HashSet<>();
-        for (int i = 0; i < text.length(); i++) {
-            JSONObject model = text.getJSONObject(i); if (!model.optBoolean("installed")) continue;
-            String id = model.getString("id"); if (!model.optString("bundleId").isEmpty()) aliases.add(model.getString("bundleId"));
-            result.put(new JSONObject().put("id", id).put("object", "model").put("owned_by", "local").put("name", model.getString("name"))
-                    .put("task_tags", new JSONArray().put("text")).put("foundation_tags", model.getJSONArray("baseSupportTags"))
-                    .put("uncensored", model.optJSONObject("uncensored") == null ? new JSONObject().put("status", "unknown") : model.getJSONObject("uncensored"))
-                    .put("engine", "llama_text").put("bundle_id", model.optString("bundleId")).put("installed", true)
-                    .put("loaded", id.equals(app.engineModel) && owner.engine.ready()).put("parameters", model.getJSONObject("config")));
-        }
-        if (app.bundles != null) {
-            JSONArray bundles = app.bundles.snapshot();
-            for (int i = 0; i < bundles.length(); i++) {
-                JSONObject record = bundles.getJSONObject(i);
-                JSONArray derived = app.prepared == null ? new JSONArray() : app.assemblies == null ? app.prepared.snapshot(record.getString("id")) : app.assemblies.snapshot(record.getString("id"));
-                if (!record.optBoolean("installed") && derived.length() == 0 && (!record.has("transfer") || record.getJSONObject("plan").optLong("reusableBytes") == 0)) continue;
-                ModelBundle bundle = app.bundles.bundle(record.getString("id")); if (aliases.contains(bundle.id)) continue;
-                result.put(new JSONObject().put("id", bundle.id).put("model_id", bundle.modelId).put("object", "model").put("owned_by", "local").put("name", bundle.name)
-                        .put("task_tags", new JSONArray(bundle.tasks)).put("tags", bundle.tags()).put("uncensored", new JSONObject().put("status", "unknown"))
-                        .put("input_schemas", app.localEngines.inputSchemas(bundle)).put("engine", bundle.engine).put("recipe", bundle.recipeId).put("backend", bundle.backend)
-                        .put("preparation_plans", app.preparations == null ? new JSONArray() : app.preparations.options(bundle)).put("prepared_assets", derived)
-                        .put("installed", record.optBoolean("installed")).put("reusable_bytes", record.getJSONObject("plan").optLong("reusableBytes")).put("remaining_bytes", record.getJSONObject("plan").optLong("remainingBytes"))
-                        .put("loaded", record.optBoolean("inUse")).put("parameters", record.getJSONObject("config")).put("parameter_error", record.optString("parameterError")).put("version", record.getJSONObject("version")).put("deviceValidated", false));
-            }
-        }
-        return result;
+    private ApiCatalogue catalogue;
+    private ApiSubmissions submissionJournal;
+    private synchronized ApiCatalogue catalogueStore() throws Exception {
+        if (catalogue == null) catalogue = new ApiCatalogue(new File(app.getFilesDir(), "api"), new ModelPublication(app, owner.engine));
+        return catalogue;
+    }
+    @Override public JSONArray models() throws Exception { return catalogue().getJSONArray("data"); }
+    @Override public JSONObject catalogue() throws Exception { return catalogueStore().snapshot(); }
+    @Override public JSONObject model(String id) throws Exception { return catalogueStore().model(id); }
+    public void invalidateCatalogue() { synchronized (this) { if (catalogue != null) catalogue.invalidate(); } }
+    @Override public JSONObject capabilities() throws Exception {
+        JSONObject snapshot = catalogue(), metadata = snapshot.getJSONObject("x_lma");
+        JSONObject limits = new JSONObject().put("json_body_bytes", LocalHttp.MAX_BODY).put("image_n_max", 1).put("image_formats", new JSONArray().put("png"))
+                .put("speech_formats", new JSONArray().put("wav")).put("sse_lifetime_seconds", 120).put("sse_connections", 2).put("heavy_execution_slots", 1)
+                .put("upload_chunk_bytes", LocalHttp.MAX_BODY).put("input_file_bytes_max", 536870912).put("sync_wait_seconds", 120).put("generation_wall_time_seconds", JSONObject.NULL).put("catalogue_idle_reads", "cached_metadata_only");
+        return new JSONObject().put("schema", "lma.capabilities/1").put("instance_id", metadata.getString("instance_id")).put("catalogue", metadata)
+                .put("models", snapshot.getJSONArray("data")).put("limits", limits).put("profiles", new JSONArray().put("openai_subset").put("lma_extension")).put("execution", "same_android_phone");
+    }
+    @Override public synchronized ApiSubmissions submissions() throws Exception {
+        if (submissionJournal == null) submissionJournal = new ApiSubmissions(new File(app.getFilesDir(), "api"));
+        return submissionJournal;
+    }
+    @Override public JSONObject freezePublic(JSONObject request) throws Exception { return LocalJobs.freezePublic(app, request); }
+    @Override public String adapter(String id) throws Exception {
+        ModelBundle bundle = app.bundles.bundle(ModelBundle.key(id));
+        if (!AdapterSpec.isAdapter(bundle) || !app.bundles.plan(id).getBoolean("installed")) throw new LocalHttp.Failure(404, "lma_adapter_unavailable", "Select a complete installed LoRA component");
+        return bundle.id;
     }
     @Override public JSONArray engines() throws Exception { return app.localEngines == null ? new JSONArray() : app.localEngines.snapshot(); }
     @Override public void draftsChanged() { app.emit(); }
@@ -100,15 +100,15 @@ public final class ApiHost implements LocalApi.Runtime, AutoCloseable {
         JSONObject request; ExecutionGate.Ticket slot; long ticket = cancellation.get();
         synchronized (app.requestGate) {
             if (closed || server == null) throw new IOException("模型接口正在停止");
-            if (!owner.engine.wanted()) throw new IllegalStateException("请先在 App 中选择并加载已安装的文本模型");
             if (app.generating || app.textRequestBusy) throw new IllegalStateException("本机推理槽正忙，请等待当前任务完成");
-            request = TextRequest.normalize(path, input, app.engineModel, app.settings(app.engineModel));
-            slot = app.execution.enqueue("api", app.engineModel); textSlot = slot; app.textRequestBusy = true;
+            String selected = input.optString("model", app.engineModel); OpenAiRequests.model(this, selected, "text.generate");
+            request = TextRequest.normalize(path, input, selected, app.settings(selected));
+            slot = app.execution.enqueue("api", selected); textSlot = slot; app.textRequestBusy = true;
         }
         owner.activityChanged(); HttpURLConnection connection = null;
         try {
             ExecutionGate.Check check = () -> { if (closed || server == null || cancellation.get() != ticket || Thread.currentThread().isInterrupted()) throw new InterruptedIOException("文本请求已取消"); };
-            slot.await(check); owner.engine.ensureReady(slot, request.getString("model"), check); check.run();
+            slot.await(check); owner.engine.selectForApi(slot, request.getString("model"), check); owner.engine.ensureReady(slot, request.getString("model"), check); check.run();
             connection = Net.engine(app, path); textConnection = connection;
             if (closed || server == null || ticket != cancellation.get()) throw new IOException("文本请求已取消");
             connection.setRequestMethod("POST"); connection.setDoOutput(true); connection.setRequestProperty("Content-Type", "application/json; charset=utf-8");

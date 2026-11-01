@@ -10,7 +10,7 @@ import time
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / 'build/program-check-run'
 GROUPS = [
-    ['community', 'bundle_pause', 'document_input', 'api', 'workbench', 'recovery'],
+    ['community', 'bundle_pause', 'document_input', 'api', 'api_publication', 'workbench', 'recovery'],
     ['inputs', 'text', 'migration', 'scheduler', 'preparations', 'assemblies', 'diffusion', 'mnn'],
     ['hub', 'recipe_suggestions', 'speech_voices', 'sana_sprint', 'ltx098_official', 'ltx098_app', 'ltx098_app --multiscale'],
 ]

@@ -37,3 +37,5 @@ html[data-theme=dark]{color-scheme:dark;--bg:#121a29;--panel:#1a2537;--ink:#e5ed
 .recommendation-note { padding: 0 20px 16px; }
 .recommendation-note p { margin: 8px 0 0; color: var(--muted, #64748b); font-size: 12px; line-height: 1.6; overflow-wrap: anywhere; }
 .recommendation-count { margin-left: 6px; font-size: 11px; opacity: .75; font-variant-numeric: tabular-nums; }
+
+.published-model{padding:14px 0;border-top:1px solid var(--border,#30343b)}.published-model>div{margin:7px 0;font-size:12px}.published-model code{display:block;overflow-wrap:anywhere;font-size:11px;opacity:.7}

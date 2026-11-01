@@ -285,7 +285,7 @@
     return 'curl ' + endpoint() + '/chat/completions \\\n  -H "Authorization: Bearer ' + key + '" \\\n  -H "Content-Type: application/json" \\\n  -d \'{"model":"' + (engine().modelId || 'MODEL_ID') + '","messages":[{"role":"user","content":"你好"}],"stream":true}\'';
   }
   function renderServer() {
-    var signature = JSON.stringify([state.api, state.engine, state.settings, state.device, state.logs, keyVisible, models().filter(function (m) { return m.id === engine().modelId; })]);
+    var signature = JSON.stringify([state.api, state.apiCatalogue, state.engine, state.settings, state.device, state.logs, keyVisible, models().filter(function (m) { return m.id === engine().modelId; })]);
     if (signature === serverSignature) return; serverSignature = signature;
     var e = engine(), api = state.api || {state: 'stopped'}, ready = api.state === 'ready', active = ready, m = modelById(e.modelId);
     $('serverStateLabel').textContent = ready ? '本地模型接口运行中' : api.state === 'error' ? '接口启动失败' : '接口尚未启动';
@@ -293,6 +293,12 @@
     $('serverStatePill').className = 'status-pill' + (ready ? ' ready' : active ? ' loading' : '');
     $('serverModelName').textContent = m && textAvailable() ? '文本：' + m.name + (textQueued() ? ' · 队列等待' : '') : '加载或管理文本模型';
     $('apiUrl').textContent = endpoint();
+    var published = state.apiCatalogue && state.apiCatalogue.data || [], labels = {'text.generate':'生文','image.generate':'生图','video.generate':'生视频','speech.synthesize':'语音','audio.generate':'音乐 / 音效','mesh.generate':'生3D'};
+    $('publishedModelCount').textContent = published.length + ' 个本地模型';
+    $('publishedModelList').innerHTML = published.map(function (entry) {
+      var caps = entry.x_lma || {}, readiness = caps.ready || {}, operations = caps.operations || [], status = readiness.status === 'busy' ? '排队可用' : readiness.loaded ? '已加载' : '按需加载';
+      return '<div class="published-model"><strong>' + esc(entry.name || entry.id) + '</strong><div>' + operations.map(function (op) {return '<span class="badge">' + esc(labels[op] || op) + '</span>';}).join(' ') + ' <span>' + esc(readiness.available === false ? '暂不可用' : status) + '</span></div><code>' + esc(entry.id) + '</code></div>';
+    }).join('') || '<p class="empty-text">完整下载并配置模型后会自动出现在这里。无需提前加载。</p>';
     $('serverToggle').innerHTML = icon(active ? 'stop' : 'play') + '<span>' + (active ? '关闭接口' : '启动接口') + '</span>';
     $('serverToggle').className = 'button ' + (active ? 'danger' : 'primary');
     $('lanToggle').checked = !!state.settings.lan;

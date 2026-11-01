@@ -1,12 +1,12 @@
 {
-  "schema": "lma.sub2api-openai-design/1",
-  "status": "design_only_not_runtime_support",
-  "checked_at": "2026-11-01",
+  "schema": "lma.sub2api-openai-profile/1",
+  "status": "implemented_subset_with_scoped_evidence",
+  "checked_at": "2026-11-02",
   "design_updated_at": "2026-11-02",
-  "lma_version": "0.3.11",
-  "runtime_changed": false,
+  "lma_version": "0.3.12",
+  "runtime_changed": true,
   "deployed_gateway_changed": false,
-  "model_execution_performed": false,
+  "model_execution_performed": true,
   "paid_api_calls_performed": false,
   "upstream": {
     "repository": "Wei-Shaw/sub2api",
@@ -128,23 +128,23 @@
   "lma_source_identity": [
     {
       "path": "app/src/main/java/com/lma/app/ApiHost.java",
-      "sha256": "288e80c8ef2328c1808920060848b3e12ebc4872d7919f2863f0c827eb0c3afc"
+      "sha256": "893530cd16c5eeadff7200ecd55f76b1af826b8cc175f69bfe4c485dca5eba14"
     },
     {
       "path": "app/src/main/java/com/lma/app/LocalJobs.java",
-      "sha256": "9c18ea92bcb86a2f5ce4b2c62171b8f5a88d6e33ed9b1d1154d82ee103e0472a"
+      "sha256": "cb4eab20a8c28dd9a299a01e834f58c5b8df97185467b1b3b915b9c809a7561b"
     },
     {
       "path": "app/src/main/java/com/lma/app/core/LocalApi.java",
-      "sha256": "c9e1674f98ef12c7312ff42c50ba38a10c08d5cf1d3e173a8093ecd7fa67e5fc"
+      "sha256": "667835b217a948fb352d75b5aabf91404d3b15b04f541971ed366cf642bb314c"
     },
     {
       "path": "app/src/main/java/com/lma/app/core/LocalHttp.java",
-      "sha256": "6f74e8acfe7072606c23e775f87fa5aa8d5ee094ffe20e96788f161674a947aa"
+      "sha256": "261538f8e2f73c157e6942f913f1f70108a67cda7ae0916a8530a41d07928608"
     },
     {
       "path": "app/src/main/java/com/lma/app/core/TaskInput.java",
-      "sha256": "81e0f5e1a4b68204453323a34596e51b905a9750f065aa20044485a7c5fd68a1"
+      "sha256": "102eff3f9d9823a288104d359b16cdcda69a800195238535743dac290c387693"
     },
     {
       "path": "app/src/main/java/com/lma/app/core/TextRequest.java",
@@ -152,7 +152,27 @@
     },
     {
       "path": "app/src/main/java/com/lma/app/core/JobStore.java",
-      "sha256": "4cff95acbaf0f3a961606e52c4b9f496f70cea3a125e256a6f53b274680b7ddb"
+      "sha256": "40e1c50d5d0e666241b05a2c79df30bd0165cbbd8cd972eeec31f0ec0d8eef2a"
+    },
+    {
+      "path": "app/src/main/java/com/lma/app/ModelPublication.java",
+      "sha256": "793660eab4344cd3647fb41738449b9ca7df874c6cb439c21f150c260bdd2d48"
+    },
+    {
+      "path": "app/src/main/java/com/lma/app/core/ApiCatalogue.java",
+      "sha256": "9814b8723da094a9f31fe17fceb66c6f52dd593280351ba9e396cc796c83f6c0"
+    },
+    {
+      "path": "app/src/main/java/com/lma/app/core/ApiSubmissions.java",
+      "sha256": "62ed86b7cf45b061b2c1bd254453187d899382d624f60565bea35835d0be91f3"
+    },
+    {
+      "path": "app/src/main/java/com/lma/app/core/OpenAiFacade.java",
+      "sha256": "3e6998a472d337786611fa2b899e511f5d065ac9f2e1b73ed6ba42185ab54905"
+    },
+    {
+      "path": "app/src/main/java/com/lma/app/core/OpenAiRequests.java",
+      "sha256": "c592c16dc8c89239656a59aeb3f093c69133f2625894b0d5937fdb3f0ddceb69"
     }
   ],
   "official_contracts": [
@@ -203,9 +223,11 @@
         "/v1/models/{model}"
       ],
       "profile": "openai_subset",
-      "current_lma": "native_list_exists_detail_missing",
-      "current_sub2api": "configured_model_list_not_live_inventory",
-      "fully_integrated": false
+      "fully_integrated": true,
+      "baseline_lma": "native_list_exists_detail_missing",
+      "baseline_sub2api": "configured_model_list_not_live_inventory",
+      "current_lma": "implemented_declared_subset",
+      "current_sub2api_extension": "opt_in_source_kit_not_deployed"
     },
     {
       "id": "P02",
@@ -214,9 +236,11 @@
         "/v1/chat/completions"
       ],
       "profile": "openai_subset",
-      "current_lma": "selected_plain_text_model_only",
-      "current_sub2api": "force_chat_completions_required",
-      "fully_integrated": false
+      "fully_integrated": true,
+      "baseline_lma": "selected_plain_text_model_only",
+      "baseline_sub2api": "force_chat_completions_required",
+      "current_lma": "implemented_declared_subset",
+      "current_sub2api_extension": "opt_in_source_kit_not_deployed"
     },
     {
       "id": "P03",
@@ -225,9 +249,11 @@
         "/v1/images/generations"
       ],
       "profile": "openai_subset",
-      "current_lma": "facade_missing",
-      "current_sub2api": "model_family_validation_blocks_local_names",
-      "fully_integrated": false
+      "fully_integrated": true,
+      "baseline_lma": "facade_missing",
+      "baseline_sub2api": "model_family_validation_blocks_local_names",
+      "current_lma": "implemented_declared_subset",
+      "current_sub2api_extension": "opt_in_source_kit_not_deployed"
     },
     {
       "id": "P04",
@@ -236,9 +262,11 @@
         "/v1/images/edits"
       ],
       "profile": "openai_subset",
-      "current_lma": "facade_and_multipart_missing",
-      "current_sub2api": "model_family_validation_blocks_local_names",
-      "fully_integrated": false
+      "fully_integrated": false,
+      "baseline_lma": "facade_and_multipart_missing",
+      "baseline_sub2api": "model_family_validation_blocks_local_names",
+      "current_lma": "explicitly_not_advertised",
+      "current_sub2api_extension": "reject_unsupported_mode"
     },
     {
       "id": "P05",
@@ -247,9 +275,11 @@
         "/v1/audio/speech"
       ],
       "profile": "openai_subset",
-      "current_lma": "facade_missing",
-      "current_sub2api": "generic_route_missing",
-      "fully_integrated": false
+      "fully_integrated": true,
+      "baseline_lma": "facade_missing",
+      "baseline_sub2api": "generic_route_missing",
+      "current_lma": "implemented_declared_subset",
+      "current_sub2api_extension": "opt_in_source_kit_not_deployed"
     },
     {
       "id": "P06",
@@ -258,9 +288,11 @@
         "/v1/lma/capabilities"
       ],
       "profile": "lma_extension",
-      "current_lma": "endpoint_missing",
-      "current_sub2api": "extension_missing",
-      "fully_integrated": false
+      "fully_integrated": true,
+      "baseline_lma": "endpoint_missing",
+      "baseline_sub2api": "extension_missing",
+      "current_lma": "implemented_declared_subset",
+      "current_sub2api_extension": "opt_in_source_kit_not_deployed"
     },
     {
       "id": "P07",
@@ -270,9 +302,11 @@
         "/v1/lma/jobs/preflight"
       ],
       "profile": "lma_extension",
-      "current_lma": "native_jobs_exist_without_gateway_alias_ownership",
-      "current_sub2api": "extension_missing",
-      "fully_integrated": false
+      "fully_integrated": true,
+      "baseline_lma": "native_jobs_exist_without_gateway_alias_ownership",
+      "baseline_sub2api": "extension_missing",
+      "current_lma": "implemented_declared_subset",
+      "current_sub2api_extension": "opt_in_source_kit_not_deployed"
     },
     {
       "id": "P08",
@@ -281,9 +315,11 @@
         "/v1/lma/uploads"
       ],
       "profile": "lma_extension",
-      "current_lma": "native_uploads_exist_without_gateway_ownership",
-      "current_sub2api": "extension_missing",
-      "fully_integrated": false
+      "fully_integrated": true,
+      "baseline_lma": "native_uploads_exist_without_gateway_ownership",
+      "baseline_sub2api": "extension_missing",
+      "current_lma": "implemented_declared_subset",
+      "current_sub2api_extension": "opt_in_source_kit_not_deployed"
     },
     {
       "id": "P09",
@@ -292,9 +328,11 @@
         "/v1/lma/artifacts"
       ],
       "profile": "lma_extension",
-      "current_lma": "native_artifacts_exist_without_gateway_ownership",
-      "current_sub2api": "extension_missing",
-      "fully_integrated": false
+      "fully_integrated": true,
+      "baseline_lma": "native_artifacts_exist_without_gateway_ownership",
+      "baseline_sub2api": "extension_missing",
+      "current_lma": "implemented_declared_subset",
+      "current_sub2api_extension": "opt_in_source_kit_not_deployed"
     },
     {
       "id": "P10",
@@ -305,9 +343,11 @@
         "/v1/realtime"
       ],
       "profile": "not_advertised",
-      "current_lma": "not_implemented",
-      "current_sub2api": "responses_conversion_and_provider_specific_media_not_lma_support",
-      "fully_integrated": false
+      "fully_integrated": false,
+      "baseline_lma": "not_implemented",
+      "baseline_sub2api": "responses_conversion_and_provider_specific_media_not_lma_support",
+      "current_lma": "explicitly_not_advertised",
+      "current_sub2api_extension": "reject_unsupported_mode"
     }
   ],
   "findings": [
@@ -361,7 +401,7 @@
     "mesh.generate"
   ],
   "local_model_publication": {
-    "status": "design_only_not_runtime_support",
+    "status": "implemented_cached_publication",
     "trigger": "existing_api_service_enabled_no_second_per_modality_registration",
     "operations": [
       "text.generate",
@@ -416,9 +456,9 @@
     ],
     "revision_policy": "persist_increment_only_on_substantive_change_request_overrides_do_not_change_defaults_or_revision",
     "synchronization": {
-      "gateway_implementation_required": true,
+      "gateway_implementation_required": false,
       "source": "authenticated_phone_capabilities_snapshot",
-      "destination": "atomic_account_registry_mapping_and_permission_filtered_model_list",
+      "destination": "extension_private_atomic_registry_and_permission_filtered_model_list_no_database_account_overwrite",
       "preserve_user_aliases_and_access_controls": true,
       "default_provider_catalogue_fallback": false,
       "interval_seconds": 30,
@@ -461,7 +501,7 @@
       ],
       "default_request_format": "mp3",
       "unsupported_default_must_error": true,
-      "incremental_pcm": "per_engine_only_not_implemented_by_this_design"
+      "incremental_pcm": "not_advertised_generic_capability_false"
     },
     "native_json_body_bytes": 262144,
     "native_task_characters": 32000,
@@ -471,8 +511,10 @@
     "native_sse_concurrency_max": 2,
     "native_artifact_readers_max": 3,
     "native_http_workers": 12,
-    "multipart_policy": "new_bounded_disk_spool_required_not_existing_json_limit_increase",
-    "synchronous_wait": "bounded_advertised_budget_with_reserved_control_capacity"
+    "multipart_policy": "not_advertised_openai_edits_reject_400_use_bounded_lma_uploads",
+    "synchronous_wait": "bounded_advertised_budget_with_reserved_control_capacity",
+    "generation_wall_time_seconds": null,
+    "text_load_wall_time_seconds": null
   },
   "ownership_binding": [
     "principal",
@@ -504,7 +546,7 @@
     "unknown_acceptance": "replay_original_body_same_key_same_instance_only",
     "conflicting_body": 409,
     "automatic_cross_instance_retry": false,
-    "independent_tombstones": "required_new_implementation_with_published_retention",
+    "independent_tombstones": "implemented_phone_atomic_journal_and_native_history_independent_tombstones",
     "minimum_terminal_retention_seconds": 86400,
     "active_or_unknown_acceptance": "retain_until_resolved_then_apply_terminal_retention",
     "native_reconciliation": {
@@ -515,9 +557,10 @@
       "body_fields": [
         "key"
       ],
-      "not_seen_is_not_proof_of_rejection_while_submit_is_inflight": true
+      "not_seen_is_not_proof_of_rejection_while_submit_is_inflight": true,
+      "alternative": "Implemented same body/key replay to the same bound phone; lookup endpoint is not advertised."
     },
-    "unknown_job_cancel": "persist_cancel_pending_confirm_then_cancel_never_claim_cancelled_early"
+    "unknown_job_cancel": "confirm_unknown_acceptance_by_original_key_then_explicit_cancel_no_false_cancelled_state"
   },
   "header_contract": {
     "request_endpoint_scoped": [
@@ -539,7 +582,7 @@
       "ETag",
       "Cache-Control"
     ],
-    "native_if_range_currently_supported": false,
+    "native_if_range_currently_supported": true,
     "request_authorization": "replace_with_upstream_account_key_never_forward_caller_key"
   },
   "requirement_ids": [
@@ -567,14 +610,6 @@
     "R22",
     "R23",
     "R24"
-  ],
-  "pending_implementation_ids": [
-    "D01",
-    "D02",
-    "D03",
-    "D04",
-    "D05",
-    "D06"
   ],
   "acceptance_ids": [
     "A01",
@@ -606,12 +641,63 @@
     "A27",
     "A28"
   ],
-  "acceptance_executed": false,
+  "acceptance_executed": true,
   "existing_release_assertions_changed": false,
   "evidence_boundaries": [
     "program_contract",
     "phone_real_output",
     "accepted_quality",
     "background_endurance"
-  ]
+  ],
+  "implementation_ids": [
+    "D01",
+    "D02",
+    "D03",
+    "D04",
+    "D05",
+    "D06"
+  ],
+  "pending_implementation_ids": [],
+  "completed_implementation_ids": [
+    "D01",
+    "D02",
+    "D03",
+    "D04",
+    "D05",
+    "D06"
+  ],
+  "acceptance_scope": "Program contracts and authorized physical phone checks are distinct; no claim that every A-case has live production or all-model acceptance.",
+  "baseline_lma_source_identity": [
+    {
+      "path": "app/src/main/java/com/lma/app/ApiHost.java",
+      "sha256": "288e80c8ef2328c1808920060848b3e12ebc4872d7919f2863f0c827eb0c3afc"
+    },
+    {
+      "path": "app/src/main/java/com/lma/app/LocalJobs.java",
+      "sha256": "9c18ea92bcb86a2f5ce4b2c62171b8f5a88d6e33ed9b1d1154d82ee103e0472a"
+    },
+    {
+      "path": "app/src/main/java/com/lma/app/core/LocalApi.java",
+      "sha256": "c9e1674f98ef12c7312ff42c50ba38a10c08d5cf1d3e173a8093ecd7fa67e5fc"
+    },
+    {
+      "path": "app/src/main/java/com/lma/app/core/LocalHttp.java",
+      "sha256": "6f74e8acfe7072606c23e775f87fa5aa8d5ee094ffe20e96788f161674a947aa"
+    },
+    {
+      "path": "app/src/main/java/com/lma/app/core/TaskInput.java",
+      "sha256": "81e0f5e1a4b68204453323a34596e51b905a9750f065aa20044485a7c5fd68a1"
+    },
+    {
+      "path": "app/src/main/java/com/lma/app/core/TextRequest.java",
+      "sha256": "bfdb23db96512f00f362b49951c1fee4162ca2d441482eb6ebf180a8d3574d5f"
+    },
+    {
+      "path": "app/src/main/java/com/lma/app/core/JobStore.java",
+      "sha256": "4cff95acbaf0f3a961606e52c4b9f496f70cea3a125e256a6f53b274680b7ddb"
+    }
+  ],
+  "implementation_guide": "docs/LOCAL_API_V0312.md",
+  "phone_benchmark": "docs/DEVICE_BENCHMARK_V0312.md",
+  "live_production_sub2api_tested": false
 }

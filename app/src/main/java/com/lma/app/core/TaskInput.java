@@ -39,7 +39,8 @@ public final class TaskInput {
         }
         JSONObject input = source.getJSONObject("input");
         for (Iterator<String> it = input.keys(); it.hasNext();) if (!Arrays.asList("prompt", "negativePrompt", "artifacts", "transcripts").contains(it.next())) throw new IllegalArgumentException("Unsupported input field; use prompt text and explicit local artifact references");
-        if (!(input.get("prompt") instanceof String) || input.getString("prompt").trim().isEmpty() || input.getString("prompt").length() > 16000) throw new IllegalArgumentException("Use a nonempty prompt of at most 16000 characters");
+        if (!input.has("prompt") && input.optJSONArray("artifacts") != null && input.getJSONArray("artifacts").length() > 0) input.put("prompt", "");
+        if (!(input.get("prompt") instanceof String) || (input.getString("prompt").trim().isEmpty() && (input.optJSONArray("artifacts") == null || input.getJSONArray("artifacts").length() == 0)) || input.getString("prompt").length() > 16000) throw new IllegalArgumentException("Use a prompt of at most 16000 characters, or media inputs for a declared fixed-prompt recipe");
         if (input.has("negativePrompt") && (!(input.get("negativePrompt") instanceof String) || input.getString("negativePrompt").length() > 16000)) throw new IllegalArgumentException("negativePrompt must be text of at most 16000 characters");
         if (input.has("transcripts")) {
             JSONObject transcripts = input.getJSONObject("transcripts");

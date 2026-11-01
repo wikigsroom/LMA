@@ -1,3 +1,7 @@
+# v0.3.12 installed-model idle measurement
+
+Final APK: snapshot p50 **275.88 ms**, p95 **286.75 ms**; maximum observed main-thread gap **27 ms**, **zero gaps over 100 ms**. Eight program/performance checks passed with all five existing models preserved and no active generation. Model discovery uses a cached lightweight publication snapshot; it does not scan/load weights on each request. [Current evidence](../verification/releases/v0.3.12/ui-performance.json) · [Device report and limits](DEVICE_BENCHMARK_V0312.en.md). These measurements are not FPS, peak native-worker RAM or thermal endurance. The historical before/after analysis follows.
+
 # Idle UI performance and fixes · v0.3.9
 
 [中文](PERFORMANCE.md) · [Release](releases/v0.3.9.md) · [Numbers and identities](../verification/releases/v0.3.9/ui-performance.json)

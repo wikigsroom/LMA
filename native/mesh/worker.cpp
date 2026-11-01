@@ -8,7 +8,19 @@ int main(int argc, char** argv) {
    return 0;
  }
  try {
-  initialize(); require(argc==2,"Supply one private request"); auto value=request(argv[1]);
+  // Keep the private stderr pipe for NativeWorker's bounded diagnostics.
+#ifdef _WIN32
+  int diagnostic_fd = _dup(2);
+#else
+  int diagnostic_fd = dup(STDERR_FILENO);
+#endif
+  initialize();
+#ifdef _WIN32
+  if (diagnostic_fd >= 0) { _dup2(diagnostic_fd, 2); _close(diagnostic_fd); }
+#else
+  if (diagnostic_fd >= 0) { dup2(diagnostic_fd, STDERR_FILENO); close(diagnostic_fd); }
+#endif
+  require(argc==2,"Supply one private request"); auto value=request(argv[1]);
   require(value.at("type")=="mesh.generate","Unsupported 3D task"); std::string pipeline=value.at("pipeline");
   require(pipeline=="trellis2"||pipeline=="pixal3d","Unsupported 3D pipeline");
   for(auto it=value.at("components").begin();it!=value.at("components").end();++it) component(value,it.key().c_str());
@@ -31,6 +43,13 @@ int main(int argc, char** argv) {
   event({{"event","stage"},{"stage","generating_mesh"}});
   require(trellis_run(p)==0 && std::filesystem::is_regular_file(p.output),"3D engine did not finish");
   event({{"event","complete"},{"output",p.output}}); return 0;
- } catch(const std::exception&) { if(events)event({{"event","error"},{"message","3D generation failed: check model components, image and available memory."}}); }
+ } catch(const std::bad_alloc&) { if(events)event({{"event","error"},{"code","allocation_failed"},{"message","3D memory allocation failed."}}); std::fprintf(stderr,"std::bad_alloc\n"); }
+ catch(const std::exception& error) {
+  // Private stderr is classified into bounded public codes by NativeWorker.
+  std::fprintf(stderr,"[lma-mesh] %s\n",error.what());
+  // Private owner diagnostics remain outside the public OpenAI job projection.
+  if(events)event({{"event","execution"},{"details",{{"workerFailureDetail",std::string(error.what()).substr(0,2048)}}}});
+  if(events)event({{"event","error"},{"message","3D generation failed: check model components, image and available memory."}});
+ }
  return 1;
 }

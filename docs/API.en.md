@@ -1,8 +1,8 @@
 # LMA API integration
 
-**Sub2API design:** [Forwarding/scheduling contract](SUB2API_OPENAI.en.md) · [中文](SUB2API_OPENAI.md) · [OpenAPI draft](proposals/sub2api-openai.openapi.json). Standard image/speech facades and gateway async extensions are not implemented. The native `/v1/jobs` below remains the current multimodal interface; changing `base_url` alone does not establish all-modality forwarding.
+**v0.3.12 current endpoints:** [Local API and actual SDK examples](LOCAL_API_V0312.en.md), [OpenAPI](proposals/sub2api-openai.openapi.json), [physical results](DEVICE_BENCHMARK_V0312.en.md). Complete/configured local peers are automatically published; image PNG, explicit speech WAV and `/v1/lma/jobs/uploads/artifacts` are implemented. The source gateway is opt-in, without a production deployment change. Older version callouts below retain their baseline context.
 
-**Model publication addition (design):** [R17–R24](SUB2API_OPENAI.en.md#41-automatically-publish-existing-local-models) require downloaded, valid image/video/speech/music/3D models alongside text in standard discovery. Unloaded is eligible; incomplete assets/dependencies or invalid configuration are not. Sub2API inventory synchronization and catalogue `ETag/304` remain unimplemented. The [example JSON](proposals/sub2api-local-models.example.json) is not measured phone inventory.
+**No generation wall-time limit:** explicit cancellation and actual resource errors remain. Synchronous facade wait is 120 seconds, followed by job lookup; this does not cancel the job. Responses/Realtime/OpenAI multipart edits are not advertised.
 
 **v0.3.11:** Wan request parameters accept explicit `executionBackend: "cpu"` under the same installed model ID. Registered-adapter and actual-worker identities are distinct. [Request and limits](ON_DEVICE_MODEL_REPAIR.en.md#2-same-phone-api).
 

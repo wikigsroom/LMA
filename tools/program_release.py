@@ -150,6 +150,8 @@ def prepare():
   if physical_manifest.exists():archive.write(physical_manifest,'media/physical-device/manifest.json')
   model_manifest=ROOT/'docs/media/models'/('v'+VERSION)/'manifest.json'
   if model_manifest.exists():archive.write(model_manifest,'media/physical-model/manifest.json')
+  benchmark_manifest=ROOT/'docs/media/benchmarks'/('v'+VERSION)/'manifest.json'
+  if benchmark_manifest.exists():archive.write(benchmark_manifest,'media/physical-benchmark/manifest.json')
   archive.write(ROOT/('catalogue/release-'+VERSION+'-implementation.json'),'implementation.json')
   archive.write(ROOT/'docs/proposals/program-validation-policy.json','validation-policy.json')
  names.append(verification)
@@ -180,14 +182,22 @@ def prepare():
    original=model_media/item['file']
    if original.suffix not in ('.mp4','.gif'):continue
    target=f'LMA-{VERSION}-'+original.name;shutil.copy2(original,directory/target);names.append(target)
+ benchmark_media=ROOT/'docs/media/benchmarks'/('v'+VERSION)
+ if benchmark_media.exists():
+  for item in read(benchmark_media/'manifest.json')['files']:
+   original=benchmark_media/item['file'];target=f'LMA-{VERSION}-'+original.name
+   shutil.copy2(original,directory/target);names.append(target)
  names.sort()
  (directory/'SHA256SUMS').write_text(''.join(sha(directory/n)+'  '+n+'\n' for n in names),encoding='utf-8');names.append('SHA256SUMS')
- manifest=dict(repository='wikigsroom/LMA',version=VERSION,tag='v'+VERSION,title='LMA v'+VERSION+' · On-device CPU video and verified model staging / 本机 CPU 视频与模型适配',
+ manifest=dict(repository='wikigsroom/LMA',version=VERSION,tag='v'+VERSION,title='LMA v'+VERSION+' · Local multimodal API and uncapped generation / 本地多模态接口与生成时限取消',
   prerelease=not COMPLETE,notes='docs/releases/v'+VERSION+'.md',validation_mode='program_only',full_scope_program_implementation_complete=True,
   apk_sha256=build['sha256'],physical_device_tested=evidence.get('physical_device_tested',False),
   physical_device_tests=evidence.get('physical_device_tests',0),background_program_tested=evidence.get('background_program_tested',False),
-  physical_media_included=physical_media.exists(),actual_model_media_included=model_media.exists(),phone_inference_tested=evidence.get('phone_inference_tested',False),
+  physical_media_included=physical_media.exists(),actual_model_media_included=model_media.exists() or benchmark_media.exists(),phone_inference_tested=evidence.get('phone_inference_tested',False),
   authorized_phone_model_attempts=evidence.get('authorized_phone_model_attempts',0),
+  physical_api_integration_tested=evidence.get('physical_api_integration_tested',False),
+  physical_api_checks=evidence.get('physical_api_checks',0),
+  final_video_over_five_seconds=evidence.get('final_video_over_five_seconds',False),
   authorized_phone_model_successes=evidence.get('authorized_phone_model_successes',0),background_endurance_tested=False,
   model_quality_accepted=False,media_uses_simulated_native_state=True,signing_material_included=False,model_weights_included=False,
   all_benchmark_architectures_integrated=COMPLETE,all_requested_adaptations_complete=COMPLETE,full_benchmark_workflows_reproduced=False,unported_benchmark_configurations=evidence['unported_benchmark_configurations'],

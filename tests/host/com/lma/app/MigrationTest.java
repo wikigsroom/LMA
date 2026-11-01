@@ -67,6 +67,13 @@ public final class MigrationTest {
         Store reopened = new Store(app);
         check(reopened.bundleId(id).equals(bound) && reopened.installed(id), "Atomic binding survives Store reconstruction");
         check(reopened.config(id).getJSONObject("values").getInt("maxTokens") == 77, "Restart preserves the shared model profile");
+        ModelBundle direct = new ModelBundle(app.bundles.bundle(bound).json().put("id", "direct_text_api"));
+        app.bundles.adoptLocal(direct, Collections.singletonMap("text_gguf", app.store.modelFile(id)), app.store.config(id).getJSONObject("values"), () -> {});
+        check(app.store.bundleId(direct.id).equals(direct.id) && app.store.installed(direct.id), "A directly imported text bundle is addressable without a legacy alias");
+        check(Files.isSameFile(app.store.modelFile(direct.id).toPath(), app.store.modelFile(id).toPath()), "Direct text API uses the existing object without copying model weights");
+        check(app.store.inspectModel(direct.id).getJSONObject("values").getInt("maxTokens") == 77, "Direct text API reads its bundle's saved per-model settings");
+        app.store.saveConfig(direct.id, new JSONObject().put("maxTokens", 13));
+        check(app.bundles.settings(direct.id).getJSONObject("values").getInt("maxTokens") == 13 && app.store.config(id).getJSONObject("values").getInt("maxTokens") == 77, "Direct bundle API settings remain independent of another alias");
         ApiHost api = new ApiHost(new LmaService(), app);
         JSONArray listed = api.models(); int oldId = 0, duplicate = 0;
         for (int i = 0; i < listed.length(); i++) { JSONObject m = listed.getJSONObject(i); if (m.getString("id").equals(id)) { oldId++; check(m.getString("bundle_id").equals(bound), "API exposes immutable job bundle ID beside legacy alias"); } if (m.getString("id").equals(bound)) duplicate++; }

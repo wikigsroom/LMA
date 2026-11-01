@@ -28,7 +28,26 @@ public final class JobStore {
         }
         persist(next);
     }
-    private void persist(JSONObject next) throws IOException { DataFiles.write(file, next); state = next; }
+    /** Idempotency tombstones share the queue's atomic commit and outlive removable history. */
+    private void persist(JSONObject next) throws IOException {
+        try {
+            JSONObject retained = next.optJSONObject("idempotency"); if (retained == null) { retained = new JSONObject(); next.put("idempotency", retained); }
+            JSONArray jobs = next.getJSONArray("jobs"); long now = System.currentTimeMillis();
+            for (int i = 0; i < jobs.length(); i++) {
+                JSONObject job = jobs.getJSONObject(i); String key = job.optString("idempotencyKey"); if (key.isEmpty()) continue;
+                JSONObject request = job.getJSONObject("request");
+                retained.put(key, new JSONObject().put("id", job.getString("id")).put("state", job.getString("state")).put("createdAt", job.getLong("createdAt"))
+                        .put("finishedAt", job.optLong("finishedAt")).put("requestHash", ApiCatalogue.hash(request))
+                        .put("request", new JSONObject().put("type", request.getString("type")).put("bundleId", request.getString("bundleId")).put("submissionHash", request.optString("submissionHash"))).put("historyRemoved", true));
+            }
+            List<String> expired = new ArrayList<>();
+            for (Iterator<String> it = retained.keys(); it.hasNext();) { String key = it.next(); JSONObject record = retained.getJSONObject(key); if (TERMINAL.contains(record.getString("state")) && record.optLong("finishedAt") > 0 && now - record.getLong("finishedAt") >= 86400000L) expired.add(key); }
+            for (String key : expired) retained.remove(key);
+            if (retained.length() > 4096) throw new IOException("Idempotency retention is full; recent or active tasks cannot be evicted");
+            DataFiles.write(file, next); state = next;
+        } catch (org.json.JSONException invalid) { throw new IOException("Invalid queue idempotency state", invalid); }
+        catch (Exception invalid) { if (invalid instanceof IOException) throw (IOException) invalid; throw new IOException("Cannot commit queue idempotency state", invalid); }
+    }
     private static JSONObject find(JSONObject source, String id) throws Exception {
         ModelBundle.key(id); JSONArray jobs = source.getJSONArray("jobs");
         for (int i = 0; i < jobs.length(); i++) if (jobs.getJSONObject(i).getString("id").equals(id)) return jobs.getJSONObject(i);
@@ -73,7 +92,8 @@ public final class JobStore {
         validateKey(idempotencyKey); if (idempotencyKey.isEmpty()) return null;
         JSONArray jobs = state.getJSONArray("jobs");
         for (int i = 0; i < jobs.length(); i++) if (jobs.getJSONObject(i).optString("idempotencyKey").equals(idempotencyKey)) return publicJob(jobs.getJSONObject(i));
-        return null;
+        JSONObject retained = state.optJSONObject("idempotency");
+        return retained == null || !retained.has(idempotencyKey) ? null : DataFiles.copy(retained.getJSONObject(idempotencyKey));
     }
     private static void validateKey(String key) { if (key == null || key.length() > 160 || key.chars().anyMatch(c -> c < 32 || c == 127)) throw new IllegalArgumentException("Invalid idempotency key"); }
     public synchronized JSONObject capacity() throws Exception {
@@ -146,6 +166,11 @@ public final class JobStore {
                 if (!DataFiles.canonical(previous.getJSONObject("request")).equals(DataFiles.canonical(request))) throw new IllegalStateException("Idempotency key already belongs to a different request");
                 return publicJob(previous);
             }
+        }
+        JSONObject retained = lookup(idempotencyKey);
+        if (retained != null) {
+            if (!ApiCatalogue.hash(request).equals(retained.optString("requestHash"))) throw new IllegalStateException("Idempotency key already belongs to a different request");
+            throw new LocalHttp.Failure(410, "lma_job_history_removed", "The accepted task history was removed; it will not be generated again");
         }
         requireCapacity();
         String id = "job_" + UUID.randomUUID().toString().replace("-", "");

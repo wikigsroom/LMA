@@ -68,6 +68,19 @@ public final class EngineHost {
             } catch (Exception error) { fail(request, error, false); }
         }
     }
+    /** An authenticated request explicitly selects a complete local model after owning the shared slot. */
+    public void selectForApi(ExecutionGate.Ticket slot, String id, ExecutionGate.Check check) throws Exception {
+        slot.checkOwner(); check.run();
+        synchronized (this) {
+            if (closed) throw new IOException("Text service is stopping");
+            app.store.model(id); if (!app.store.installed(id)) throw new IOException("The selected local text model is incomplete");
+            if (desired && id.equals(app.engineModel)) return;
+            if (warmTicket != null) { warmTicket.close(); warmTicket = null; }
+            generation.incrementAndGet(); destroyProcess(); desired = true; failures = 0;
+            app.engineModel = id; app.engineState = "waiting";
+            app.prefs.edit().putString("selectedModel", id).putBoolean("desiredRunning", true).apply();
+        }
+    }
     /** Called by a chat/API ticket after earlier jobs finish, with the frozen requested alias. */
     public void ensureReady(ExecutionGate.Ticket slot, String id, ExecutionGate.Check check) throws Exception {
         slot.checkOwner(); check.run(); long request;
@@ -191,8 +204,7 @@ public final class EngineHost {
                 }
             }
             app.log("启动模型：" + app.store.model(id).optString("name") + " · CPU / " + settings.getInt("threads") + " 线程");
-            long deadline = System.nanoTime() + TimeUnit.MINUTES.toNanos(5);
-            while (current(request) && process == active && active.isAlive() && System.nanoTime() < deadline) {
+            while (current(request) && process == active && active.isAlive()) {
                 check.run(); slot.checkOwner(); HttpURLConnection health = null;
                 try {
                     health = Net.engine(app, "/health"); health.setConnectTimeout(1000); health.setReadTimeout(1000);
@@ -209,7 +221,7 @@ public final class EngineHost {
             // The registered exit watcher owns bounded recovery, including exits before readiness.
             slot.checkOwner(); if (!active.isAlive() && current(request)) return;
             check.run();
-            if (current(request)) throw new IOException("模型加载超时，请尝试更小模型或降低上下文");
+            if (current(request)) throw new IOException("模型加载未完成，请核对架构与本机资源");
             throw new InterruptedIOException("文本模型已停止或更改");
         } finally { if (lease != null) lease.close(); }
     }

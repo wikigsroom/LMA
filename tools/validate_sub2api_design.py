@@ -1,4 +1,4 @@
-"""Validate proposed protocol files and examples; never exercise runtime endpoints or models."""
+"""Validate versioned protocol files and illustrative examples; never exercise runtime endpoints or models."""
 import argparse
 import copy
 import hashlib
@@ -29,7 +29,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--meta-schema", type=Path, required=True, help="Saved official OpenAPI 3.1 schema, 2022-10-07 revision")
     parser.add_argument("--upstream-cache", type=Path, help="Optional saved pinned public Sub2API files and source-records.json")
-    parser.add_argument("--export", action="store_true", help="Write the public design-only validation record")
+    parser.add_argument("--export", action="store_true", help="Write the public schema-only validation record")
     args = parser.parse_args()
     assert sha256(args.meta_schema) == META_SHA256, "Unexpected official meta-schema identity"
     spec = read_json(PROPOSALS / "sub2api-openai.openapi.json")
@@ -66,13 +66,15 @@ def main():
             operations.append(operation["operationId"])
             declared = {p["name"] for p in operation.get("parameters", []) if p["in"] == "path"}
             assert declared == set(re.findall(r"\{([^}]+)\}", path)), path
-            assert operation["x-lma-status"] == "design-only"
+            assert operation["x-lma-status"] in {"implemented-subset", "unsupported-explicit-error"}
     assert len(operations) == len(set(operations))
-    assert profile["status"] == "design_only_not_runtime_support" and not profile["runtime_changed"]
-    assert not profile["acceptance_executed"] and spec["x-lma-status"] == "design-only"
+    assert profile["status"] == "implemented_subset_with_scoped_evidence" and profile["runtime_changed"]
+    assert profile["acceptance_executed"] and spec["x-lma-status"] == "implemented-subset"
+    assert not profile["live_production_sub2api_tested"]
+    assert not profile["pending_implementation_ids"] and profile["completed_implementation_ids"] == profile["implementation_ids"]
     for name in ["SUB2API_OPENAI.md", "SUB2API_OPENAI.en.md"]:
         text = (ROOT / "docs" / name).read_text(encoding="utf-8")
-        for prefix, key in [("R", "requirement_ids"), ("D", "pending_implementation_ids"), ("A", "acceptance_ids")]:
+        for prefix, key in [("R", "requirement_ids"), ("D", "implementation_ids"), ("A", "acceptance_ids")]:
             ids = re.findall(r"^\| (" + prefix + r"\d{2}) \|", text, re.M)
             assert len(ids) == len(set(ids)) and set(ids) == set(profile[key]), (name, prefix)
 
@@ -160,8 +162,6 @@ def main():
     for source in profile["lma_source_identity"]:
         data = (ROOT / source["path"]).read_bytes()
         assert hashlib.sha256(data).hexdigest() == source["sha256"]
-        previous = subprocess.run(["git", "show", "HEAD:" + source["path"]], cwd=ROOT, capture_output=True, check=True).stdout
-        assert data == previous, "Runtime changed: " + source["path"]
     upstream_verified = 0
     if args.upstream_cache:
         records = read_json(args.upstream_cache / "source-records.json")
@@ -174,12 +174,12 @@ def main():
             upstream_verified += 1
     inputs = ["docs/proposals/sub2api-openai.openapi.json", "docs/proposals/sub2api-openai-profile.json", "docs/proposals/sub2api-local-models.example.json", "docs/SUB2API_OPENAI.md", "docs/SUB2API_OPENAI.en.md", "tools/validate_sub2api_design.py"]
     report = {
-        "scope": "design_schema_and_traceability_only_not_endpoint_or_model_acceptance",
+        "scope": "schema_and_traceability_only_not_endpoint_or_model_acceptance",
         "official_openapi_3_1_schema_valid": True, "component_schemas_valid": len(schemas),
         "resolved_internal_refs": len(refs), "unique_operations": len(operations), "paths": len(spec["paths"]),
         "positive_negative_schema_examples": len(cases), "catalogue_example_models": 6,
         "upstream_blobs_verified": upstream_verified, "bilingual_ids_aligned": True,
-        "native_sources_unchanged": True, "new_runtime_endpoints_tested": False,
+        "native_sources_match_declared_identity": True, "new_runtime_endpoints_tested": False,
         "checked_at": "2026-11-02", "validator": "jsonschema " + version("jsonschema"),
         "official_meta_schema": {"url": "https://spec.openapis.org/oas/3.1/schema/2022-10-07", "sha256": META_SHA256},
         "inputs": [{"path": path, "sha256": sha256(ROOT / path)} for path in inputs], "cases": cases,

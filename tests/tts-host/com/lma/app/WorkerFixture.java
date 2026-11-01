@@ -8,6 +8,7 @@ public final class WorkerFixture {
         JSONObject request = new JSONObject(new String(Files.readAllBytes(Paths.get(args[0])), "UTF-8"));
         String mode = request.getString("fixture"), output = request.getString("output");
         if (mode.equals("wait")) { System.out.println("{\"event\":\"stage\",\"stage\":\"fixture_wait\"}"); System.out.flush(); Thread.sleep(30000); return; }
+        if (mode.equals("empty_structure")) { System.err.println("no voxels produced"); System.out.println("{\"event\":\"error\",\"message\":\"3D generation failed\"}"); System.exit(1); }
         if (mode.equals("long")) { char[] data = new char[66000]; java.util.Arrays.fill(data, 'x'); System.out.println(data); return; }
         System.out.println("{\"event\":\"stage\",\"stage\":\"fixture_stage\"}");
         System.out.println("{\"event\":\"execution\",\"details\":{\"effectiveParameters\":{\"speaker\":0}}}");

@@ -1,6 +1,10 @@
 # LMA repository instructions / 仓库工作约定
 
-- Current version is v0.3.11/code61: explicit per-model CPU/Vulkan choice for existing Wan assets; small physical CPU video succeeds. Canonical leased inputs and bound component/view staging repair shared native paths; TRELLIS/Pixal report real stages and bounded incomplete results. Preserve all 62 recipes, 82 bundles, 18 extension engines plus text and 14 recommendations; no model downloads/copies or silent backend switch. Current evidence is verification/releases/v0.3.11/. Published earlier evidence/assets remain immutable.
+- 2026-11-02 latest user requirement: physical generated videos must exceed 5 seconds; disable model-generation wall-clock limits, preserve explicit cancellation and real resource/error handling. HTTP response/connection limits must not terminate an admitted async generation job. Diagnose and repair observed failures without fabricated success.
+
+- 2026-11-02: user requires a new stable release with full physical API integration and phone benchmarking. This supersedes earlier program-only/selected-probe limits for this delivery; distinguish actual device/API results, model quality and bounded background duration. Keep user models/settings, private data and original signing identity; no virtualization. v0.3.12/code62 is the current delivery; publication is verified separately by the GitHub release receipt.
+
+- Historical v0.3.11/code61: explicit per-model CPU/Vulkan choice for existing Wan assets; small physical CPU video succeeds. Canonical leased inputs and bound component/view staging repair shared native paths; TRELLIS/Pixal report real stages and bounded incomplete results. Preserve all 62 recipes, 82 bundles, 18 extension engines plus text and 14 recommendations; no model downloads/copies or silent backend switch. Current evidence is verification/releases/v0.3.11/. Published earlier evidence/assets remain immutable.
 
 - Work inside this repository and the user's designated `无审查小模型/` directory. Do not invoke Docker, WSL, virtual machines, or Android emulators. 使用原生工具，不调度任何虚拟化环境。
 - Close all browser pages, contexts, and browser processes created for a task in `finally` blocks. 浏览器调用结束必须关闭不用的页面并释放内存。

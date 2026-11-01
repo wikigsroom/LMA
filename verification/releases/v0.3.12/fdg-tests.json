@@ -1,0 +1,262 @@
+{
+  "passed": 72,
+  "checks": [
+    {
+      "case": "native_accept",
+      "reason": ""
+    },
+    {
+      "case": "source_vertices_(2, 'ties')"
+    },
+    {
+      "case": "source_faces_(2, 'ties')"
+    },
+    {
+      "case": "native_accept",
+      "reason": ""
+    },
+    {
+      "case": "source_vertices_(2, '02')"
+    },
+    {
+      "case": "source_faces_(2, '02')"
+    },
+    {
+      "case": "native_accept",
+      "reason": ""
+    },
+    {
+      "case": "source_vertices_(2, '13')"
+    },
+    {
+      "case": "source_faces_(2, '13')"
+    },
+    {
+      "case": "native_accept",
+      "reason": ""
+    },
+    {
+      "case": "source_vertices_(2, 'mixed')"
+    },
+    {
+      "case": "source_faces_(2, 'mixed')"
+    },
+    {
+      "case": "native_accept",
+      "reason": ""
+    },
+    {
+      "case": "source_vertices_(2, 'near_tie')"
+    },
+    {
+      "case": "source_faces_(2, 'near_tie')"
+    },
+    {
+      "case": "native_accept",
+      "reason": ""
+    },
+    {
+      "case": "source_vertices_(2, 'missing_neighbors')"
+    },
+    {
+      "case": "source_faces_(2, 'missing_neighbors')"
+    },
+    {
+      "case": "native_accept",
+      "reason": ""
+    },
+    {
+      "case": "source_vertices_(16, 'ties')"
+    },
+    {
+      "case": "source_faces_(16, 'ties')"
+    },
+    {
+      "case": "native_accept",
+      "reason": ""
+    },
+    {
+      "case": "source_vertices_(16, '02')"
+    },
+    {
+      "case": "source_faces_(16, '02')"
+    },
+    {
+      "case": "native_accept",
+      "reason": ""
+    },
+    {
+      "case": "source_vertices_(16, '13')"
+    },
+    {
+      "case": "source_faces_(16, '13')"
+    },
+    {
+      "case": "native_accept",
+      "reason": ""
+    },
+    {
+      "case": "source_vertices_(16, 'mixed')"
+    },
+    {
+      "case": "source_faces_(16, 'mixed')"
+    },
+    {
+      "case": "native_accept",
+      "reason": ""
+    },
+    {
+      "case": "source_vertices_(16, 'near_tie')"
+    },
+    {
+      "case": "source_faces_(16, 'near_tie')"
+    },
+    {
+      "case": "native_accept",
+      "reason": ""
+    },
+    {
+      "case": "source_vertices_(16, 'missing_neighbors')"
+    },
+    {
+      "case": "source_faces_(16, 'missing_neighbors')"
+    },
+    {
+      "case": "native_accept",
+      "reason": ""
+    },
+    {
+      "case": "source_vertices_(1024, 'ties')"
+    },
+    {
+      "case": "source_faces_(1024, 'ties')"
+    },
+    {
+      "case": "native_accept",
+      "reason": ""
+    },
+    {
+      "case": "source_vertices_(1024, '02')"
+    },
+    {
+      "case": "source_faces_(1024, '02')"
+    },
+    {
+      "case": "native_accept",
+      "reason": ""
+    },
+    {
+      "case": "source_vertices_(1024, '13')"
+    },
+    {
+      "case": "source_faces_(1024, '13')"
+    },
+    {
+      "case": "native_accept",
+      "reason": ""
+    },
+    {
+      "case": "source_vertices_(1024, 'mixed')"
+    },
+    {
+      "case": "source_faces_(1024, 'mixed')"
+    },
+    {
+      "case": "native_accept",
+      "reason": ""
+    },
+    {
+      "case": "source_vertices_(1024, 'near_tie')"
+    },
+    {
+      "case": "source_faces_(1024, 'near_tie')"
+    },
+    {
+      "case": "native_accept",
+      "reason": ""
+    },
+    {
+      "case": "source_vertices_(1024, 'missing_neighbors')"
+    },
+    {
+      "case": "source_faces_(1024, 'missing_neighbors')"
+    },
+    {
+      "case": "native_reject",
+      "reason": "Duplicate sparse coordinate\n"
+    },
+    {
+      "case": "duplicate"
+    },
+    {
+      "case": "native_reject",
+      "reason": "Dual grid requires one batch and positive diagonal weights\n"
+    },
+    {
+      "case": "batch"
+    },
+    {
+      "case": "native_reject",
+      "reason": "Invalid dual-grid coordinate/offset/edge\n"
+    },
+    {
+      "case": "outside_grid"
+    },
+    {
+      "case": "native_reject",
+      "reason": "Invalid sparse coordinate\n"
+    },
+    {
+      "case": "negative_coord"
+    },
+    {
+      "case": "native_reject",
+      "reason": "[json.exception.parse_error.101] parse error at line 1, column 151: syntax error while parsing value - invalid literal; last read: '\"vertices\": [N'\n"
+    },
+    {
+      "case": "nonfinite"
+    },
+    {
+      "case": "native_reject",
+      "reason": "Dual grid requires one batch and positive diagonal weights\n"
+    },
+    {
+      "case": "nonpositive"
+    },
+    {
+      "case": "native_reject",
+      "reason": "Invalid dual-grid coordinate/offset/edge\n"
+    },
+    {
+      "case": "bad_flag"
+    },
+    {
+      "case": "native_reject",
+      "reason": "Dual-grid decoder produced no connected surface\n"
+    },
+    {
+      "case": "disconnected"
+    },
+    {
+      "case": "native_reject",
+      "reason": "Dual-grid mesh exceeds the selected triangle limit\n"
+    },
+    {
+      "case": "triangle_budget"
+    }
+  ],
+  "input_fingerprint": {
+    "native/spatial/fdg.hpp": "675bbc80e7ee247c0202904a1ecac184aca8ab817438f97b7eb39157a6459994",
+    "native/spatial/sparse.hpp": "118c821be7601439a166d800729feb9e77320b6ad355808edc1e802d99b07e67",
+    "tests/expansion-native/sparse_graph.cpp": "cc7575992d2bec5da829809a1e1f1276005c7f85a9acdb430a2a84958489ae21",
+    "tools/fdg_reference.py": "dab7d6d57bfda6b22369ada6aa9c162f3573ea36d216b6d73552578939ce0b61",
+    "tools/test_fdg.py": "965cbc67f5b8d67fa9798078a180baa634af16354b55ab0b56067b716883b0de"
+  },
+  "referenceRevision": "75fbf0183001ed9876c8dbb35de6b68552ee08bd",
+  "referenceSha256": "112bd474d580f279ac196129f7989df6fdafa7ed7e08c350f2b386553e73e17d",
+  "literalSourceFunction": true,
+  "cudaHashReplacedOnly": true,
+  "completeModelsRun": 0,
+  "physicalDeviceTests": 0,
+  "virtualizationUsed": false
+}

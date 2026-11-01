@@ -16,6 +16,7 @@ import java.util.concurrent.*;
 
 /** Bounded real-device zero-model measurements. Reports numbers only, never snapshot contents. */
 public final class DevicePerformance extends Instrumentation {
+    private boolean allowExisting;
     private LmaApp app;
     private WebView web;
     private interface Task { Object run() throws Exception; }
@@ -44,7 +45,7 @@ public final class DevicePerformance extends Instrumentation {
         main.post(()->{active[0]=false;main.removeCallbacks(tick);done.countDown();});if(!done.await(40,TimeUnit.SECONDS))throw new IllegalStateException("Main-thread sampling timed out");
         return new JSONObject().put("durationMs",SystemClock.elapsedRealtime()-begin).put("callbacks",callbacks[0]).put("maximumGapMs",max[0]).put("gapsOver100Ms",over[0]).put("broadcasts",8);
     }
-    @Override public void onCreate(Bundle args){super.onCreate(args);start();}
+    @Override public void onCreate(Bundle args){super.onCreate(args);allowExisting="true".equals(args.getString("allow_existing_models"));start();}
     @Override public void onStart(){
         JSONObject result=new JSONObject();
         try{
@@ -55,9 +56,10 @@ public final class DevicePerformance extends Instrumentation {
             long deadline=SystemClock.elapsedRealtime()+40000;
             while(!Boolean.TRUE.equals(js("Boolean(window.LMA&&document.querySelectorAll('#modelList .model-card').length)"))){if(SystemClock.elapsedRealtime()>deadline)throw new IllegalStateException("Catalogue not ready");Thread.sleep(100);}
             JSONObject snapshot=app.snapshot();JSONArray models=snapshot.getJSONArray("models"),bundles=snapshot.getJSONArray("bundles");
-            for(int i=0;i<models.length();i++)if(models.getJSONObject(i).optBoolean("installed"))throw new IllegalStateException("Zero-model measurement requires no installed weights");
-            for(int i=0;i<bundles.length();i++)if(bundles.getJSONObject(i).optBoolean("installed"))throw new IllegalStateException("Zero-model measurement requires no installed bundles");
-            if(app.generating||app.textRequestBusy)throw new IllegalStateException("Generation is active");
+            for(int i=0;i<models.length();i++)if(!allowExisting&&models.getJSONObject(i).optBoolean("installed"))throw new IllegalStateException("Zero-model measurement requires no installed weights");
+            for(int i=0;i<bundles.length();i++)if(!allowExisting&&bundles.getJSONObject(i).optBoolean("installed"))throw new IllegalStateException("Zero-model measurement requires no installed bundles");
+            if(app.generating||app.textRequestBusy||app.jobHost!=null&&app.jobHost.busy())throw new IllegalStateException("Generation is active");
+            result.put("existingModelsPreserved",allowExisting).put("generationIdle",true);
             result.put("version",snapshot.getString("version")).put("physicalDevice",true).put("modelInference",false).put("completeWeightsDownloaded",false)
                 .put("device",new JSONObject().put("model",android.os.Build.MODEL).put("api",android.os.Build.VERSION.SDK_INT).put("soc",android.os.Build.SOC_MODEL))
                 .put("bundleCount",bundles.length()).put("snapshotBytes",snapshot.toString().getBytes(java.nio.charset.StandardCharsets.UTF_8).length);

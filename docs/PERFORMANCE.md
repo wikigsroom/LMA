@@ -1,3 +1,7 @@
+# v0.3.12 已安装模型的空闲测量
+
+最终 APK：状态快照 p50 **275.88 毫秒**、p95 **286.75 毫秒**；主线程最大间隔 **27 毫秒**，**没有超过 100 毫秒的停顿**。8 项程序／性能检查通过，保留手机原有 5 个模型且无生成任务。模型发现使用轻量发布缓存，不在每次请求时扫描或加载权重。[当前证据](../verification/releases/v0.3.12/ui-performance.json) · [实机测评与范围](DEVICE_BENCHMARK_V0312.md)。这不是帧率、原生引擎峰值内存或热稳定性结论。以下保留历史对照分析。
+
 # 空闲界面性能与修复 · v0.3.9
 
 [English](PERFORMANCE.en.md) · [Release](releases/v0.3.9.md) · [原始数字与身份](../verification/releases/v0.3.9/ui-performance.json)

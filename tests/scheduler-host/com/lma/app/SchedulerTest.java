@@ -283,7 +283,7 @@ public final class SchedulerTest {
             JSONObject completed = app.jobs.get(retry.getString("id")); check(completed.has("assembly") && completed.getJSONArray("artifacts").length() == 0, "Production runner publishes an association receipt without media");
             check(!app.bundles.plan(target.id).getBoolean("installed") && app.bundles.record(target.id).getJSONObject("transfer").getString("state").equals("paused"), "Production runner keeps missing dependencies paused");
             JSONArray models = api.models(); JSONObject visible = null; for (int i = 0; i < models.length(); i++) if (models.getJSONObject(i).getString("id").equals(target.id)) visible = models.getJSONObject(i);
-            check(visible != null && !visible.getBoolean("installed") && visible.getLong("remaining_bytes") == 1, "API discovery shows partially associated models without claiming installation");
+            check(visible == null && !app.bundles.plan(target.id).getBoolean("installed"), "Generation API discovery excludes incomplete associations while Local management retains them");
             check(app.execution.snapshot().isNull("active") && !app.prefs.getBoolean("desiredJobs", false), "Association completion releases the shared execution slot and idle preference");
         } finally { hold.close(); jobs.close(); api.close(); engine.close(); app.prepared.close(); }
     }

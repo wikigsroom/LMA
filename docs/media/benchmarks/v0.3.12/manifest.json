@@ -1,0 +1,66 @@
+{
+  "schema": "lma.physical-benchmark-media/1",
+  "version": "0.3.12",
+  "apk_sha256": "67b20c2a548f7b253db18f938156f44e817fe20fc58332f8912314f40f756140",
+  "same_android_phone": true,
+  "model_inference": true,
+  "quality_accepted": false,
+  "reviewed_owned_inputs_only": true,
+  "original_video_sha256": "66165d831f6f36eaf0d86082e718a7c7dd2bb0c13fae05cbd03d67f37ff27677",
+  "video": {
+    "duration_seconds": 6.125,
+    "frames": 49,
+    "fps": 8,
+    "width": 128,
+    "height": 128,
+    "elapsed_seconds": 732.17,
+    "interpolated": false,
+    "repeated_clip": false,
+    "retimed": false
+  },
+  "files": [
+    {
+      "file": "sdk-image.png",
+      "bytes": 27116,
+      "sha256": "2c88fabf1b3956acabf1ddd9be6099acb3a574dab70065dca56712d948dfb213"
+    },
+    {
+      "file": "sdk-speech.wav",
+      "bytes": 267308,
+      "sha256": "1be09b1d2b6ab033abbb6787ba4ab69437b6181d822a33f3e4ddd2d30a8eae8e"
+    },
+    {
+      "file": "wan-cpu-6s.gif",
+      "bytes": 1952531,
+      "sha256": "615c2c9b1b97240e2a8031c116bd11687406623aa92efe153d6fa3dceefd0f01"
+    },
+    {
+      "file": "wan-cpu-6s.mp4",
+      "bytes": 200149,
+      "sha256": "66165d831f6f36eaf0d86082e718a7c7dd2bb0c13fae05cbd03d67f37ff27677"
+    },
+    {
+      "file": "wan-cpu-6s.png",
+      "bytes": 20370,
+      "sha256": "cf6dd452176a6b3b61ffcad9d10acc13a7bb541ee15ca9b25e21ebbc50e77352"
+    }
+  ],
+  "visual_review": "Final-APK SDK PNG and generated video frames at 0/2/4/6 seconds reviewed: blurry abstract colours, image/video quality unaccepted. Only owned cube prompts/inputs, no personal media.",
+  "ffprobe": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "codec_name": "h264",
+        "width": 128,
+        "height": 128,
+        "avg_frame_rate": "8/1",
+        "duration": "6.125000",
+        "nb_frames": "49"
+      }
+    ],
+    "format": {
+      "duration": "6.125000"
+    }
+  }
+}

@@ -81,19 +81,28 @@ def phone_api(serial):
     if not key: raise RuntimeError('Cannot read API key from authorized UI')
     forwarding = command('forward', 'tcp:0', 'tcp:8080').strip()
     opener = urllib.request.build_opener(urllib.request.ProxyHandler({}))
-    def request(method, path, data=None, mime='application/json', extra=None, raw=False):
+    def request(method, path, data=None, mime='application/json', extra=None, raw=False, timeout=25, detailed=False):
         headers = {'Authorization': 'Bearer '+key, 'Content-Type': mime}
         headers.update(extra or {})
         payload = json.dumps(data).encode() if isinstance(data, dict) else data
         req = urllib.request.Request('http://127.0.0.1:'+forwarding+path, data=payload, method=method, headers=headers)
         try:
-            with opener.open(req, timeout=25) as r: return r.read() if raw else json.load(r)
+            with opener.open(req, timeout=timeout) as r:
+                content = r.read()
+                if detailed: return (r.status, dict(r.headers), content)
+                return content if raw else json.loads(content)
         except urllib.error.HTTPError as error:
+            if detailed: return (error.code, dict(error.headers), error.read())
             body = json.load(error)
             raise RuntimeError('Phone API '+str(error.code)+': '+json.dumps(body, ensure_ascii=False)) from None
+    # Explicit in-memory handoff for SDK/forwarding checks. Never serialize these.
+    request.origin = 'http://127.0.0.1:'+forwarding
+    request.api_key = key
     try: yield request, command
     finally:
         command('forward', '--remove', 'tcp:'+forwarding)
+        request.api_key = ''
+        request.origin = ''
         key = ''
 
 

@@ -53,7 +53,7 @@ public final class TextEngine implements LocalEngine {
     private static HttpURLConnection connection(int port, String key, String path) throws IOException {
         if (port < 1 || port > 65535 || key.isEmpty() || !Arrays.asList("/health", "/v1/models", "/v1/chat/completions").contains(path)) throw new IOException("无效本机引擎端点");
         HttpURLConnection result = (HttpURLConnection) new URL("http://127.0.0.1:" + port + path).openConnection();
-        result.setInstanceFollowRedirects(false); result.setConnectTimeout(1000); result.setReadTimeout(path.equals("/v1/chat/completions") ? 300000 : 1500);
+        result.setInstanceFollowRedirects(false); result.setConnectTimeout(1000); result.setReadTimeout(path.equals("/v1/chat/completions") ? 0 : 1500);
         result.setRequestProperty("Authorization", "Bearer " + key); result.setRequestProperty("Accept", path.equals("/v1/chat/completions") ? "text/event-stream" : "application/json"); return result;
     }
     private static JSONObject json(HttpURLConnection connection) throws Exception {
@@ -65,8 +65,7 @@ public final class TextEngine implements LocalEngine {
         }
     }
     private static void ready(Process child, int port, String key, String alias, Context context) throws Exception {
-        long until = System.nanoTime() + TimeUnit.MINUTES.toNanos(5);
-        while (System.nanoTime() < until) {
+        while (true) {
             context.check(); if (!child.isAlive()) throw new IOException("本机文本引擎在载入期间退出；请核对模型架构与资源");
             HttpURLConnection health = connection(port, key, "/health"); boolean healthy = false;
             try { healthy = json(health).optString("status").equals("ok"); } catch (IOException notReady) {} finally { health.disconnect(); }
@@ -80,7 +79,6 @@ public final class TextEngine implements LocalEngine {
             }
             Thread.sleep(100);
         }
-        throw new IOException("文本模型载入超过五分钟保护时限");
     }
     private static void stop(Process process) throws IOException {
         if (process == null) return;

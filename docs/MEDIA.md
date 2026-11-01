@@ -1,8 +1,21 @@
 # 截图与演示 / Screenshots and demonstrations
 
-**v0.3.11 当前：** 十组桌面生产页面已按当前源码重录，新增社区 Wan CPU 参数截图。另有[真实手机 Wan 视频 / GIF](ON_DEVICE_MODEL_REPAIR.md)，1 步 GIF / MP4 与独立 4 步 MP4 均为近空白诊断，不作为画质样例。历史 v0.3.9 真机界面录像及旧版媒体描述保留原身份。
 
-## 当前 v0.3.11 / Current capture set
+## v0.3.12 当前素材 / Current media
+
+| 编号 / ID | 类型 / Type | 内容与证据 / Content and evidence |
+|---|---|---|
+| M01 | 真实手机截图 / Physical screenshots | [5张截图清单](media/device/v0.3.12/manifest.json)：推荐、本地与服务模型公布页面；实际最终APK，不是桌面夹具，无密钥／个人历史 |
+| M02 | 真实手机操作 / Physical walkthrough | [58秒MP4](media/device/v0.3.12/physical-walkthrough.mp4) / [GIF](media/device/v0.3.12/physical-walkthrough.gif)，原速，不涉及模型推理；已人工检查页面隐私 |
+| M03 | 真实手机视频输出 / Generated video | [原始MP4](media/benchmarks/v0.3.12/wan-cpu-6s.mp4) / [GIF](media/benchmarks/v0.3.12/wan-cpu-6s.gif) / [截图](media/benchmarks/v0.3.12/wan-cpu-6s.png)：Wan CPU49帧、8fps、**6.125秒**；没有插帧、循环拼接或慢放，画质未通过 |
+| M04 | 真实SDK输出 / SDK outputs | [PNG](media/benchmarks/v0.3.12/sdk-image.png)与[WAV](media/benchmarks/v0.3.12/sdk-speech.wav)，最终APK与真实OpenAI SDK；归属、参数、耗时和SHA见[测评](DEVICE_BENCHMARK_V0312.md) |
+| M05 | 桌面生产界面夹具 / Desktop UI fixtures | 下列十组流程已按v0.3.12重录，保留58张页面截图、十组GIF／MP4；显式模拟桥接状态，不冒充Android或完整模型执行 |
+
+[模型输出身份与FFprobe](media/benchmarks/v0.3.12/manifest.json)绑定最终APK和原始视频SHA；程序检查、真实推理、画质与耐久分别记录。All owned browser pages/contexts/processes are closed after capture. Historical media below retain their original identities.
+
+**历史 v0.3.11：** 十组桌面生产页面已按当前源码重录，新增社区 Wan CPU 参数截图。另有[真实手机 Wan 视频 / GIF](ON_DEVICE_MODEL_REPAIR.md)，1 步 GIF / MP4 与独立 4 步 MP4 均为近空白诊断，不作为画质样例。历史 v0.3.9 真机界面录像及旧版媒体描述保留原身份。
+
+## 历史 v0.3.11 / Historical capture set
 
 **本版重新录制 10 组桌面生产页面夹具：58 PNG / 10 GIF / 10 MP4。实际手机 11 PNG 与独立 MP4 / GIF 保留 v0.3.9 历史身份。** Desktop captures are explicitly labelled UI FIXTURE, use no trained weights and close all owned browser resources; actual Android media remains separate. Desktop manifests bind current UI sources and media hashes; historical phone media remains bound to its original APK. Private task inputs and personal media are not published.
 
@@ -10,7 +23,7 @@
 
 实际手机分类：[生图](media/device/v0.3.9/02-recommended-image.png) / [生视频](media/device/v0.3.9/02-recommended-video.png) / [生音频](media/device/v0.3.9/02-recommended-audio.png) / [生 3D](media/device/v0.3.9/02-recommended-3d.png) / [实际录屏](media/device/v0.3.9/physical-walkthrough.mp4) / [GIF](media/device/v0.3.9/physical-walkthrough.gif) / [身份清单](media/device/v0.3.9/manifest.json)。[23 项真机程序检查与范围](DEVICE_ACCEPTANCE.md) / [English](DEVICE_ACCEPTANCE.en.md). These historical UI recordings contain no model inference. The separately labelled v0.3.11 phone-model output is linked above; sustained background inference remains unaccepted.
 
-下方旧版本媒体说明按历史语境保留。Versioned descriptions below are historical; current desktop inventory is the v0.3.11 set above; phone recordings are historical v0.3.9.
+下方旧版本媒体说明按历史语境保留。Versioned descriptions below are historical; the v0.3.11 inventory is historical; current media is the v0.3.12 set above; phone recordings are historical v0.3.9.
 
 **v0.3.7 / code57:** [真机零模型启动修复与 19 项程序检查](DEVICE_ACCEPTANCE.md) / [Physical program acceptance](DEVICE_ACCEPTANCE.en.md). Includes short screen-off API health and separate real phone media; no complete model or endurance claim.
 

@@ -61,5 +61,14 @@
     "user_instruction": "允许你做部分真机和模型验证。自行决定。",
     "scope": "Selected existing downloaded models, bounded physical-phone generation, no new model downloads; separate evidence from program gate records",
     "required_for_all_models": false
+  },
+  "delivery_override_v0312": {
+    "authority": "latest_explicit_user_instruction_2026_11_02",
+    "full_physical_api_integration_required": true,
+    "physical_benchmark_required": true,
+    "minimum_physical_video_seconds_exclusive": 5,
+    "generation_wall_time_limit_seconds": null,
+    "model_quality_claim_requires_separate_evidence": true,
+    "regular_program_counts_exclude_real_model_execution": true
   }
 }

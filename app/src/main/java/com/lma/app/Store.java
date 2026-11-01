@@ -14,6 +14,8 @@ import java.util.UUID;
 /** Catalogue and durable download state. Model filenames are never supplied by a URL. */
 public final class Store {
     private final LmaApp app;
+    private volatile long publicationRevision;
+    public long publicationRevision() { return publicationRevision; }
     private final File directory;
     private final JSONArray catalogue;
     private JSONArray custom;
@@ -62,7 +64,18 @@ public final class Store {
         }
     }
     private File legacyFile(String id) { return new File(directory, Protocol.safeId(id) + ".gguf"); }
-    public synchronized String bundleId(String id) { return bindings.optString(Protocol.safeId(id)); }
+    private com.lma.app.core.ModelBundle directTextBundle(String id) {
+        if (app.bundles == null) return null;
+        try {
+            com.lma.app.core.ModelBundle bundle = app.bundles.bundle(Protocol.safeId(id));
+            if (bundle.engine.equals("llama_text") && bundle.backend.equals("cpu")) { bundle.component("text_gguf"); return bundle; }
+        } catch (Exception absent) { /* Ordinary catalogue IDs need not be bundle IDs. */ }
+        return null;
+    }
+    public synchronized String bundleId(String id) {
+        String bound = bindings.optString(Protocol.safeId(id));
+        return !bound.isEmpty() ? bound : directTextBundle(id) == null ? "" : id;
+    }
     public synchronized String legacyId(String bundleId) {
         for (java.util.Iterator<String> it = bindings.keys(); it.hasNext();) { String id = it.next(); if (bindings.optString(id).equals(bundleId)) return id; }
         return "";
@@ -87,6 +100,8 @@ public final class Store {
         Protocol.safeId(id);
         for (int i = 0; i < catalogue.length(); i++) if (catalogue.getJSONObject(i).getString("id").equals(id)) return new JSONObject(catalogue.getJSONObject(i).toString());
         for (int i = 0; i < custom.length(); i++) if (custom.getJSONObject(i).getString("id").equals(id)) return new JSONObject(custom.getJSONObject(i).toString());
+        com.lma.app.core.ModelBundle direct = directTextBundle(id);
+        if (direct != null) return new JSONObject().put("id", id).put("name", direct.name).put("family", "Local GGUF").put("quant", "GGUF").put("recommended", false);
         throw new IllegalArgumentException("找不到这个模型");
     }
     public synchronized JSONObject download(String id) {
@@ -96,6 +111,15 @@ public final class Store {
     public synchronized void updateDownload(String id, JSONObject record, boolean persist) {
         try { model(id); downloads.put(Protocol.safeId(id), new JSONObject(record.toString())); if (persist) save(); }
         catch (Exception error) { app.log("下载记录写入失败：" + error.getMessage()); }
+    }
+    public synchronized JSONArray publicationSnapshot() throws Exception {
+        JSONArray result = new JSONArray();
+        for (JSONArray source : new JSONArray[]{catalogue, custom}) for (int i = 0; i < source.length(); i++) {
+            JSONObject model = new JSONObject(source.getJSONObject(i).toString()); String id = model.getString("id");
+            try { if (installed(id)) result.put(model.put("bundleId", bundleId(id)).put("config", config(id))); }
+            catch (Exception unavailable) { /* One invalid import must not break discovery for other models. */ }
+        }
+        return result;
     }
     public synchronized JSONArray snapshot() throws Exception {
         JSONArray result = new JSONArray();
@@ -281,7 +305,7 @@ public final class Store {
     private void save() throws Exception {
         JSONObject state = new JSONObject(); state.put("custom", custom); state.put("downloads", downloads); state.put("profiles", profiles); state.put("metadata", metadata); state.put("bindings", bindings);
         FileOutputStream stream = null;
-        try { stream = stateFile.startWrite(); stream.write(state.toString().getBytes(java.nio.charset.StandardCharsets.UTF_8)); stateFile.finishWrite(stream); }
+        try { stream = stateFile.startWrite(); stream.write(state.toString().getBytes(java.nio.charset.StandardCharsets.UTF_8)); stateFile.finishWrite(stream); publicationRevision++; }
         catch (Exception error) { if (stream != null) stateFile.failWrite(stream); throw error; }
     }
     public static String read(InputStream source, int maxBytes) throws Exception {

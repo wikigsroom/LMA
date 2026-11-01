@@ -18,6 +18,8 @@ public final class PreparedAssets implements AutoCloseable {
     private final FileLock ownership;
     private final Map<String,Integer> leases = new HashMap<>();
     private JSONObject state;
+    private volatile long publicationRevision;
+    public long publicationRevision() { return publicationRevision; }
     private boolean closed;
     public PreparedAssets(File directory) throws Exception {
         root = privateDirectory(directory); work = privateDirectory(new File(root, "work")); assets = privateDirectory(new File(root, "assets"));
@@ -49,7 +51,7 @@ public final class PreparedAssets implements AutoCloseable {
     private static boolean isOwned(String id) { return id != null && id.matches("prep_[a-f0-9]{32}"); }
     private static String ownedId(String id) throws IOException { if (!isOwned(id)) throw new IOException("Invalid prepared asset ID"); return id; }
     private void checkOpen() throws IOException { if (closed) throw new IOException("Prepared asset storage is closed"); }
-    private void persist(JSONObject next) throws IOException { DataFiles.write(index, next); state = next; }
+    private void persist(JSONObject next) throws IOException { DataFiles.write(index, next); state = next; publicationRevision++; }
     public synchronized Session begin(String jobId) throws Exception {
         checkOpen(); ModelBundle.key(jobId); String id = "prep_" + UUID.randomUUID().toString().replace("-", "");
         File folder = new File(work, id); Files.createDirectory(folder.toPath()); return new Session(id, jobId, folder);

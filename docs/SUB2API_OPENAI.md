@@ -2,7 +2,9 @@
 
 [English](SUB2API_OPENAI.en.md) · [当前 API](API.md) · [机器可读方案](proposals/sub2api-openai-profile.json) · [OpenAPI 3.1 草案](proposals/sub2api-openai.openapi.json) · [草案校验记录](proposals/sub2api-openai-validation.json) · [维护记录](releases/v0.3.11-sub2api-design.md)
 
-**状态：设计规范，2026-11-02。不是已实现接口清单。** 当前 APK 仍是 v0.3.11/code61；本次不修改 Android 程序、Sub2API 部署、账号、分组、计费、发布标签或附件。标准生图／语音兼容层与网关多模态扩展尚未实现；不能把下面的示例直接用于当前 APK。当前可用的多模态入口仍是 `POST /v1/jobs`。
+**v0.3.12/code62 已实现声明的接口子集，并附带可选择启用的 Sub2API 源码扩展。** 请以[当前用法与边界](LOCAL_API_V0312.md)和[实机测评](DEVICE_BENCHMARK_V0312.md)为运行依据。本次没有修改生产 Sub2API 部署、数据库或计费。下文保留 v0.3.11 初始设计及原版上游审计；其中“设计／缺失／当前未实现”描述针对历史基线，不是本 APK 的状态。multipart 编辑、Responses、Videos、Realtime 继续明确排除。
+
+## 历史基线与合同要求
 
 ## 1. 接入方向与范围
 
@@ -234,7 +236,7 @@ with client.audio.speech.with_streaming_response.create(
 | D03 | Sub2API 通用模态路由、名称校验和本地目录原子同步 | 列表反映手机已有模型及权限；真实名称可用，不回退默认 OpenAI 名单，无 Responses 隐式转换 |
 | D04 | 网关有限扩展、持久归属和同实例绑定 | 视频／音乐／3D、输入、取消、重试和下载可闭环 |
 | D05 | 幂等墓碑、超时恢复、目录 ETag、进度续读与媒体头 | 连接丢失不重复生成；目录刷新／离线及长任务／Range 行为可验证 |
-| D06 | 服务页、双语例子与程序合同验收 | 展示真实能力；使用协议替身验证，不下载／实跑完整模型 |
+| D06 | 服务页、双语例子与分层验收 | 程序合同与本轮授权实机测评分开记录；不宣称全模型质量或长期后台通过 |
 
 ## 10. 编号验收场景
 

@@ -1,15 +1,15 @@
 {
-  "scope": "design_schema_and_traceability_only_not_endpoint_or_model_acceptance",
+  "scope": "schema_and_traceability_only_not_endpoint_or_model_acceptance",
   "official_openapi_3_1_schema_valid": true,
   "component_schemas_valid": 30,
-  "resolved_internal_refs": 331,
+  "resolved_internal_refs": 330,
   "unique_operations": 28,
   "paths": 21,
   "positive_negative_schema_examples": 55,
   "catalogue_example_models": 6,
   "upstream_blobs_verified": 15,
   "bilingual_ids_aligned": true,
-  "native_sources_unchanged": true,
+  "native_sources_match_declared_identity": true,
   "new_runtime_endpoints_tested": false,
   "checked_at": "2026-11-02",
   "validator": "jsonschema 4.26.0",
@@ -20,11 +20,11 @@
   "inputs": [
     {
       "path": "docs/proposals/sub2api-openai.openapi.json",
-      "sha256": "bc9ee2c6864a0c7ac9c7acad6deec396862f44128ac600e427c550864971b7e7"
+      "sha256": "37604f1fd17c097f85dd92f03c3209986d595c32e7646b37cacafe41bdb5046c"
     },
     {
       "path": "docs/proposals/sub2api-openai-profile.json",
-      "sha256": "05e26152f93256621b3a9009758e614d744530cb5a4b2c89c2de40dcdfde239a"
+      "sha256": "a3b32df7f17b5a38f459312ea8f8cf50fc24e348f7740e75e8e685b29481deaa"
     },
     {
       "path": "docs/proposals/sub2api-local-models.example.json",
@@ -32,15 +32,15 @@
     },
     {
       "path": "docs/SUB2API_OPENAI.md",
-      "sha256": "bfe3c9cf2516a0f1ae8777acbb8abd28f6fc2bb3d315f4540214f5e2e984f917"
+      "sha256": "9396e4aa5f0f4204e5146c5c6c494d91f46295c7d228dd31cbce1f60fa9c5c53"
     },
     {
       "path": "docs/SUB2API_OPENAI.en.md",
-      "sha256": "f633de8009991b459827e814d38fc1e15555c9c1c23dc25165c3e38b2e7dbe0c"
+      "sha256": "d79410867f0f074e549f605d7caf741265a9206afb5c55131fefa41dccef2bae"
     },
     {
       "path": "tools/validate_sub2api_design.py",
-      "sha256": "5ee215d5072f0677fd04804ad3413e05b7e24febe6938e529566d072bc1cd9c4"
+      "sha256": "134efef5b886a36ccb6d28c28fe7b5a4d1511cb7447bb5ca35ac0ea6982f0a3a"
     }
   ],
   "cases": [

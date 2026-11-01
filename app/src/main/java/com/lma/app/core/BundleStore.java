@@ -13,11 +13,14 @@ public final class BundleStore {
     private final File root, objects, partials;
     private final AtomicFile file;
     private JSONObject state;
+    private volatile long publicationRevision;
+    public long publicationRevision() { return publicationRevision; }
+    public synchronized boolean inUse(String id) { return leases.containsKey(id); }
     // Versioned IDs have immutable, validated manifests. Never cache mutable receipts or file checks.
     private final Map<String, ModelBundle> definitions = new HashMap<>();
     public interface ParameterResolver { ParameterSchema resolve(ModelBundle bundle) throws Exception; }
     private ParameterResolver parameterResolver = ModelBundle::parameters;
-    public synchronized void setParameterResolver(ParameterResolver resolver) { parameterResolver = Objects.requireNonNull(resolver); }
+    public synchronized void setParameterResolver(ParameterResolver resolver) { parameterResolver = Objects.requireNonNull(resolver); publicationRevision++; }
     public synchronized ParameterSchema parameters(String id) throws Exception { return parameterResolver.resolve(bundle(id)); }
     private final Map<String, Integer> leases = new HashMap<>();
     private final ConcurrentHashMap<String, ReentrantLock> componentLocks = new ConcurrentHashMap<>();
@@ -42,7 +45,7 @@ public final class BundleStore {
         }
         persist(next);
     }
-    private void persist(JSONObject next) throws IOException { DataFiles.write(file, next, 8 * 1024 * 1024); state = next; }
+    private void persist(JSONObject next) throws IOException { DataFiles.write(file, next, 8 * 1024 * 1024); state = next; publicationRevision++; }
     private JSONObject entry(String id) throws Exception {
         JSONObject value = state.getJSONObject("bundles").optJSONObject(ModelBundle.key(id));
         if (value == null) throw new IllegalArgumentException("Unknown model bundle"); return value;
@@ -227,6 +230,20 @@ public final class BundleStore {
         java.util.List<ModelBundle> result=new java.util.ArrayList<>();JSONObject entries=state.getJSONObject("bundles");
         for(java.util.Iterator<String> it=entries.keys();it.hasNext();){String id=it.next();ModelBundle b=bundle(id);if(entry(id).optBoolean("installed")&&complete(b,state))result.add(b);}
         return java.util.Collections.unmodifiableList(result);
+    }
+    /** Complete, valid records only; called by the event-versioned catalogue, never per HTTP read. */
+    public synchronized JSONArray publicationSnapshot() throws Exception {
+        JSONArray result = new JSONArray(); JSONObject entries = state.getJSONObject("bundles");
+        for (Iterator<String> it = entries.keys(); it.hasNext();) {
+            String id = it.next(); JSONObject entry = entries.getJSONObject(id);
+            if (!entry.optBoolean("installed")) continue;
+            try {
+                ModelBundle bundle = bundle(id); if (!complete(bundle, state)) continue;
+                ParameterSchema schema = parameters(id); JSONObject config = schema.normalize(entry.getJSONObject("settings"), new JSONObject());
+                result.put(new JSONObject().put("id", id).put("config", config).put("parameterSchema", schema.json()).put("version", versionInfo(id)));
+            } catch (Exception unavailable) { /* Management retains incompatible records; discovery must not publish them. */ }
+        }
+        return result;
     }
     public synchronized JSONArray snapshot() throws Exception {
         JSONArray result = new JSONArray(); JSONObject entries = state.getJSONObject("bundles");

@@ -1,3 +1,7 @@
+# v0.3.12 validation: program gates and authorized physical integration
+
+The latest user instruction requires full physical API integration and a phone benchmark for this delivery, with an actual generated video longer than five seconds and no generation wall-clock limit. Existing regular program counts remain program-only; real model calls, failures, quality and background duration are separate evidence. See the [current benchmark](DEVICE_BENCHMARK_V0312.en.md). Older policy and numbers below retain their original historical scope.
+
 # Program-only validation policy · v0.3.11
 Current gate coverage: **60 suites / 15,063 assertions, 73 records, 794 UI checks**. Separate physical program acceptance: **23 checks / 60.239 seconds screen-off API health**. Authorized installed-model probes retain exact tested APKs and success/incomplete outcomes in [their own record](../verification/releases/v0.3.11/physical-models.json). Gate counts remain model-free; the optional real-model records are not described as zero inference. [Current inventory](IMPLEMENTATION_V0311.en.md).
 

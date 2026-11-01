@@ -1,0 +1,42 @@
+package routes
+
+import (
+ "fmt"
+ "net/http"
+ "net/http/httptest"
+ "os"
+ "path/filepath"
+ "strings"
+ "testing"
+ "time"
+
+ "github.com/Wei-Shaw/sub2api/internal/server/middleware"
+ "github.com/Wei-Shaw/sub2api/internal/service"
+ "github.com/gin-gonic/gin"
+)
+
+// Explicit auth-context fixture: production group middleware and route adapter;
+// not a test of database credentials, subscriptions, billing or a live deployment.
+func TestLMAOptInGroupRouting(t *testing.T) {
+ phone:=httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter,r *http.Request){
+  if r.Header.Get("Authorization")!="Bearer fixture-phone-key" {w.WriteHeader(401);return}
+  w.Header().Set("Content-Type","application/json")
+  if r.URL.Path=="/v1/models" {fmt.Fprint(w,`{"object":"list","data":[{"id":"real-local-image","object":"model","x_lma":{"publication":{"eligible":true},"operations":["image.generate"],"saved_parameters":{"steps":4},"ready":{"loaded":false,"available":true}}}],"x_lma":{"schema":"lma.catalogue/1","instance_id":"lma_fixture"}}`);return}
+  if r.URL.Path=="/v1/images/generations" {fmt.Fprint(w,`{"created":1,"data":[{"b64_json":"Zml4dHVyZQ=="}],"x_lma":{"job_id":"job_fixture"}}`);return}
+  w.WriteHeader(404)
+ }));defer phone.Close()
+ directory:=t.TempDir();config:=filepath.Join(directory,"config.json")
+ contents:=fmt.Sprintf(`{"state_file":%q,"accounts":[{"account_id":1,"group_id":2,"base_url":%q,"key_env":"LMA_GIN_FIXTURE_KEY"}]}`,filepath.Join(directory,"state.json"),phone.URL)
+ if err:=os.WriteFile(config,[]byte(contents),0600);err!=nil {t.Fatal(err)}
+ t.Setenv("LMA_GIN_FIXTURE_KEY","fixture-phone-key");t.Setenv("SUB2API_LMA_CONFIG",config)
+ router:=gin.New();group:=router.Group("/v1")
+ group.Use(func(c *gin.Context){if c.GetHeader("Authorization")!="Bearer gin-fixture-client" {c.AbortWithStatus(401);return};gid:=int64(2);key:=&service.APIKey{ID:7,UserID:9,GroupID:&gid,Group:&service.Group{}};c.Set(string(middleware.ContextKeyAPIKey),key);c.Next()})
+ group.Use(middleware.GroupModelAllowlist());group.Use(lmaLocalGatewayMiddleware())
+ group.GET("/models",lmaLocalUnavailable);group.POST("/images/generations",lmaLocalUnavailable);group.Any("/lma/*lmaPath",lmaLocalUnavailable)
+ request:=func(method,path,body string,authorized bool)*httptest.ResponseRecorder{r:=httptest.NewRequest(method,path,strings.NewReader(body));r.Header.Set("Content-Type","application/json");r.Header.Set("Idempotency-Key","gin-fixture-generation");if authorized{r.Header.Set("Authorization","Bearer gin-fixture-client")};w:=httptest.NewRecorder();router.ServeHTTP(w,r);return w}
+ if request("GET","/v1/models","",false).Code!=401 {t.Fatal("existing auth chain is retained")}
+ deadline:=time.Now().Add(5*time.Second)
+ for {w:=request("GET","/v1/models","",true);if w.Code==200 {if !strings.Contains(w.Body.String(),"real-local-image"){t.Fatal("must list phone models")};break};if time.Now().After(deadline){t.Fatal("phone catalogue did not synchronize")};time.Sleep(20*time.Millisecond)}
+ w:=request("POST","/v1/images/generations",`{"model":"real-local-image","prompt":"fixture"}`,true)
+ if w.Code!=200||!strings.Contains(w.Body.String(),"b64_json")||strings.Contains(w.Body.String(),"job_fixture"){t.Fatal("real local model names route before OpenAI family gates and output ownership is rewritten")}
+}

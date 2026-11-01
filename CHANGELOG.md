@@ -1,5 +1,16 @@
 # Changelog / 更新记录
 
+
+## v0.3.12 · 2026-11-02 · 本地多模态 API / Local multimodal API
+
+- 下载完整且已配置的模型自动公布到 `/v1/models`，生文／图片／视频／语音／音乐／3D 平级；服务页展示可调用列表。保留 62 配方、82 包、18 扩展引擎加文本、14 推荐与独立 NSFW 标签，不自动下载权重。
+- 新增标准图片 PNG、语音 WAV 兼容子集和 `/v1/lma` 任务／输入上传／产物扩展；显式逐模型加载、默认参数冻结、原子幂等日志、历史墓碑、ETag／HEAD、Range／If-Range，慢请求返回任务 ID 后继续执行。Unsupported edits/Responses/Videos/Realtime modes fail explicitly.
+- 增加可选择启用的 Sub2API 原生 Go 源码扩展，固定官方 v0.2.19 提交；保留分组鉴权和白名单，隔离调用者资源，绑定手机实例，共用有界事件缓存，禁止跨手机重试与云推理。未改动生产部署、数据库或计费。
+- 移除队列两小时、文本加载五分钟和文本生成读取的固定时限；保留主动取消、真实资源保护、模型输出约束与独立网络预算。视频实机验收改为 **>5 秒**。No fixed generation deadline; an HTTP wait timeout does not cancel admitted work.
+- 原生 3D 工作器新增空稀疏结构、分配失败与模型族不匹配的分类诊断；真实失败不改写为成功，不自动更换模型或参数。
+- 完成真实 SDK／网关→手机联调、最终安装包程序与空闲性能检查，新增安全真机截图／录屏／GIF；真实模型文件输出、旧候选 APK 尝试、画质和耐久分开披露。详见[中英测评](docs/DEVICE_BENCHMARK_V0312.md)、[API 使用](docs/LOCAL_API_V0312.md)和[正式发版说明](docs/releases/v0.3.12.md)。
+
+
 ## 2026-11-02 · 本地多模态模型广播补充 / Local catalogue design addition
 
 - 将已下载、已配置的生图／生视频／语音／音乐／3D 与生文一起自动加入 API 模型目录，补充 R17–R24 和 A21–A28。未加载仍公布；部分资产、无效配置和独立依赖组件不伪装为可调用模型。Downloaded/configured models are peers; publication and runtime readiness remain separate.

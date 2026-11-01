@@ -222,6 +222,12 @@ public final class BackendTest {
         waitFor(() -> !app.textRequestBusy, 4000, "External text lease release"); check(!app.textRequestBusy, "Cancelling the proxy releases native connection ownership");
         gateway.stop(); check(!gateway.ready() && !app.prefs.getBoolean("desiredApi", true) && host.ready(), "Stopping the public API preserves the independent loaded engine and clears only API restoration");
         gateway.start(); check(gateway.ready() && host.ready(), "Restarting the API does not reload or replace model assets");
+        host.stop(); check(!host.wanted(), "An unloaded installed text model remains discoverable for explicit API selection");
+        HttpURLConnection onDemand = Net.local(app, "/v1/chat/completions"); onDemand.setRequestMethod("POST"); onDemand.setDoOutput(true); onDemand.setRequestProperty("Content-Type", "application/json");
+        byte[] selectedBody = new JSONObject().put("model", "m01").put("messages", new JSONArray().put(new JSONObject().put("role", "user").put("content", "normal"))).put("max_tokens", 2).toString().getBytes(StandardCharsets.UTF_8);
+        onDemand.setFixedLengthStreamingMode(selectedBody.length); try (OutputStream out = onDemand.getOutputStream()) { out.write(selectedBody); }
+        try { check(onDemand.getResponseCode() == 200 && host.ready() && app.engineModel.equals("m01"), "An authenticated request loads its installed alias under the shared execution slot without an App load action"); Store.read(onDemand.getInputStream(), 65536); } finally { onDemand.disconnect(); }
+        waitFor(() -> !app.textRequestBusy, 4000, "On-demand API lease release");
         host.load("m01"); waitFor(() -> host.ready() && app.engineModel.equals("m01"), 10000, "Model switch"); check(launches.get() == 2, "Model switch retires old child and loads selected alias");
         argv = new JSONArray(new String(Files.readAllBytes(work.resolve("last-engine-argv.json")), StandardCharsets.UTF_8)).toList();
         check(argv.get(argv.indexOf("-c") + 1).equals("777") && argv.get(argv.indexOf("--reasoning") + 1).equals("auto"), "Switching model replaces load parameters with that model's saved profile");

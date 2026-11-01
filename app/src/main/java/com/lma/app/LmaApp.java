@@ -23,7 +23,7 @@ import com.lma.app.core.InputUploads;
 import com.lma.app.core.PreparedAssets;
 
 public final class LmaApp extends Application {
-    public static final String VERSION = "0.3.11";
+    public static final String VERSION = "0.3.12";
     public static final String UPDATE = "com.lma.app.STATE_CHANGED";
     public Store store;
     private JSONObject recommendations = new JSONObject();
@@ -206,6 +206,8 @@ public final class LmaApp extends Application {
             value.put("localEngines", localEngines == null ? new JSONArray() : localEngines.snapshot());
             value.put("foundation", new JSONObject().put("status", "development").put("bundleSchema", "lma.model-bundle/1").put("bundleSchemas", new JSONArray().put("lma.model-bundle/1").put("lma.model-bundle/2")).put("error", bundleStoreError).put("bundledWeights", false).put("execution", execution.snapshot()).put("legacyMigration", new JSONObject().put("running", migrationRunning.get()).put("results", new JSONArray(migrationResults.toString()))));
             value.put("api", new JSONObject().put("state", apiState).put("detail", apiDetail).put("textRequestActive", textRequestBusy));
+            ApiHost publishing = apiHost;
+            if (publishing != null) try { value.put("apiCatalogue", publishing.catalogue()); } catch (Exception unavailable) { value.put("apiCatalogue", new JSONObject().put("object", "list").put("data", new JSONArray()).put("unavailable", true)); }
             JSONObject engine = new JSONObject(); engine.put("state", engineState); engine.put("detail", engineDetail);
             engine.put("modelId", engineModel); engine.put("startedAt", engineStarted); engine.put("generating", generating || textRequestBusy); engine.put("externalGenerating", textRequestBusy);
             engine.put("localUrl", "http://127.0.0.1:" + prefs.getInt("port", 8080) + "/v1");

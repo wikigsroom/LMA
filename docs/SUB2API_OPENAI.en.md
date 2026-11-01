@@ -2,7 +2,9 @@
 
 [中文](SUB2API_OPENAI.md) · [Current API](API.en.md) · [Machine-readable profile](proposals/sub2api-openai-profile.json) · [OpenAPI 3.1 draft](proposals/sub2api-openai.openapi.json) · [Draft validation](proposals/sub2api-openai-validation.json) · [Maintenance record](releases/v0.3.11-sub2api-design.md)
 
-**Design only, updated 2026-11-02. This is not an implemented endpoint list.** The APK remains v0.3.11/code61. This change does not modify Android runtime code, the deployed Sub2API service, accounts, groups, billing, tags or release assets. The image/speech compatibility facade and gateway multimodal extensions remain unimplemented. The current working multimodal submission route is `POST /v1/jobs`; the proposed examples below require future implementation.
+**v0.3.12/code62 implements the declared subset and ships the opt-in Sub2API source extension.** See the [current usage/limits](LOCAL_API_V0312.en.md) and [physical benchmark](DEVICE_BENCHMARK_V0312.en.md). No live production Sub2API deployment, database or billing change was performed. The initial v0.3.11 design and original-upstream audit below are preserved as historical requirements; earlier “design-only/missing” descriptions refer to that baseline, not this APK. Unsupported multipart edits/Responses/Videos/Realtime remain explicitly excluded.
+
+## Historical baseline and contract requirements
 
 ## 1. Direction and execution boundary
 

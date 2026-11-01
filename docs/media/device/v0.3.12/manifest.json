@@ -1,0 +1,86 @@
+{
+  "schema": "lma.physical-api-media/1",
+  "version": "0.3.12",
+  "apk_sha256": "67b20c2a548f7b253db18f938156f44e817fe20fc58332f8912314f40f756140",
+  "android_device": true,
+  "desktop_fixture": false,
+  "model_inference": false,
+  "weights_downloaded": false,
+  "reviewed_app_only": true,
+  "playback_speed": 1,
+  "screenshots": [
+    {
+      "file": "01-recommended.png",
+      "bytes": 220272,
+      "sha256": "04b9f778694bbfaf4c24cad617a564c02643177d50a44764866c7dd0d83f6d11"
+    },
+    {
+      "file": "02-multimodal-recommendations.png",
+      "bytes": 229632,
+      "sha256": "e40c57e6c8baf535b1e78c63d020a2904d269d2b1d48907d11f9a88f7b60fce5"
+    },
+    {
+      "file": "03-local-models.png",
+      "bytes": 203133,
+      "sha256": "972cbd677a1ba1633c5369ce10318032cdee2f67881c41f906696fc611856df1"
+    },
+    {
+      "file": "04-api-overview.png",
+      "bytes": 189972,
+      "sha256": "f02b4400255f41565c605f48658c5bcd24d3861adcddad5b36a26fe8f0d8d548"
+    },
+    {
+      "file": "05-published-models.png",
+      "bytes": 221625,
+      "sha256": "0dd36a0e02b74a3900154fd2dbaef25ce6e0636bb60b9e06abf386c2f5ee645f"
+    }
+  ],
+  "files": [
+    {
+      "file": "01-recommended.png",
+      "bytes": 220272,
+      "sha256": "04b9f778694bbfaf4c24cad617a564c02643177d50a44764866c7dd0d83f6d11"
+    },
+    {
+      "file": "02-multimodal-recommendations.png",
+      "bytes": 229632,
+      "sha256": "e40c57e6c8baf535b1e78c63d020a2904d269d2b1d48907d11f9a88f7b60fce5"
+    },
+    {
+      "file": "03-local-models.png",
+      "bytes": 203133,
+      "sha256": "972cbd677a1ba1633c5369ce10318032cdee2f67881c41f906696fc611856df1"
+    },
+    {
+      "file": "04-api-overview.png",
+      "bytes": 189972,
+      "sha256": "f02b4400255f41565c605f48658c5bcd24d3861adcddad5b36a26fe8f0d8d548"
+    },
+    {
+      "file": "05-published-models.png",
+      "bytes": 221625,
+      "sha256": "0dd36a0e02b74a3900154fd2dbaef25ce6e0636bb60b9e06abf386c2f5ee645f"
+    },
+    {
+      "file": "physical-walkthrough.gif",
+      "bytes": 1385079,
+      "sha256": "aa261d1ba59b1a53fe992255c88dcd03f170475ce935456550b5a4abb64055f4"
+    },
+    {
+      "file": "physical-walkthrough.mp4",
+      "bytes": 1539018,
+      "sha256": "01c0a846f2b73d099815ac5a81512fa327e8eaad0e30cc1b566169cac0d7db99"
+    }
+  ],
+  "input_fingerprint": {
+    "app/src/main/assets/app.css": "1c1bdc0a0f90c2b1dbe170853a9897e8acc2664e157fee22af5b996ad4e14846",
+    "app/src/main/assets/app.js": "e9210eb93eed1ddc27da673aa9d9088fbbb92842bebf80e18e1d0bfe3d5840bb",
+    "app/src/main/assets/index.html": "f6803ac0d4b8ce6f96167659dd9b8999e1e0cbffddc46d3c35a5a930a523ced1",
+    "tools/capture_device_api.py": "310700d8524a59b5019ce2c974f38d3f2f0373dcf35ef6d16999e0c2728d42c5"
+  },
+  "privacy_scope": "Only Recommended, Local and Service pages; no personal chat, task history or logs. API key hidden before each capture.",
+  "browser_used": false,
+  "browser_closed": true,
+  "video_duration_seconds": 58.095825,
+  "visual_review": "Five screenshots and frames at 0/15/30/45 seconds reviewed: LMA pages only, API key hidden, no personal history."
+}

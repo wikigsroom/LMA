@@ -48,7 +48,7 @@ final class PreflightChecks {
         check(consent.has("resources") && consent.has("effectiveParameters"), "Consent failure still gives parameter and resource diagnostics");
         JSONObject unknown = copy(request).put("bundleId", "missing_model_fixture"); issue(app, unknown, "models");
         issue(app, copy(request).put("type", "video.generate"), "models");
-        JSONObject empty = copy(request); empty.getJSONObject("input").put("prompt", "   "); issue(app, empty, "request");
+        JSONObject empty = copy(request); empty.getJSONObject("input").put("prompt", "   "); issue(app, empty, "parameters"); // Engine schema decides whether media-only requests have fixed conditioning.
         JSONObject parameter = copy(request).put("parameters", new JSONObject().put("steps", "wrong")); issue(app, parameter, "parameters");
         JSONObject missingInput = copy(request); missingInput.getJSONObject("input").put("artifacts", new JSONArray().put(new JSONObject().put("role", "reference_image").put("artifactId", "absent_artifact"))); issue(app, missingInput, "inputs");
         JSONObject wrongRole = copy(request); wrongRole.getJSONObject("input").getJSONArray("artifacts").getJSONObject(0).put("role", "unknown_role"); issue(app, wrongRole, "inputs");

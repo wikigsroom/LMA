@@ -1,8 +1,8 @@
 # LMA API 接入
 
-**Sub2API 接入设计：** [转发与调度规范](SUB2API_OPENAI.md) · [English](SUB2API_OPENAI.en.md) · [OpenAPI 草案](proposals/sub2api-openai.openapi.json)。标准图片／语音兼容层和网关异步扩展尚未实现；本页现有 `/v1/jobs` 仍是当前多模态入口。不能仅改 `base_url` 就宣称 Sub2API 可转发全部模态。
+**v0.3.12 当前接口：** [本地 API 与实际 SDK 案例](LOCAL_API_V0312.md) · [OpenAPI](proposals/sub2api-openai.openapi.json) · [实机测评](DEVICE_BENCHMARK_V0312.md)。已下载完整且配置有效的所有本地模态自动公布；图片 PNG、显式语音 WAV 和 `/v1/lma/jobs/uploads/artifacts` 已实现。Sub2API 源码扩展需明确启用，本次未修改生产部署。下文旧版提示保留对应历史语境。
 
-**模型广播补充（设计）：** [R17–R24 自动公布规则](SUB2API_OPENAI.md#41-本地模型自动加入广播目录)要求将已下载且配置有效的生图／生视频／语音／音乐／3D 与生文一起列入标准模型目录。未加载不影响发布；部分下载、缺依赖、无效配置不当作可调用模型。Sub2API 目录自动同步与 `ETag/304` 仍待实现；[示例 JSON](proposals/sub2api-local-models.example.json)不是本机实测响应。
+**生成无固定耗时上限：** 保留主动取消和真实资源故障处理；同步兼容层等待 120 秒后可继续查询原任务，不取消生成。当前不开放 Responses／Realtime／OpenAI multipart 编辑。
 
 **v0.3.11：** Wan 请求参数可显式填写 `executionBackend: "cpu"`，复用已安装模型 ID。注册后端与实际工作器身份分别记录。[完整请求与边界](ON_DEVICE_MODEL_REPAIR.md#2-调用本机接口)。
 

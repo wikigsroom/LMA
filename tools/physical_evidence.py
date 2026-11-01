@@ -42,9 +42,15 @@ def check(directory):
         assert not media['model_inference'] and not media['weights_downloaded']
         assert media['reviewed_app_only'] and media['playback_speed']==1
         current(media['input_fingerprint'])
-        assert len(media['screenshots'])==11 and len(media['files'])==13
-        assert {item['file'] for item in media['screenshots']} >= {
-            '02-recommended-'+task+'.png' for task in ('image','video','audio','3d')}
+        if media.get('schema') == 'lma.physical-api-media/1':
+            assert len(media['screenshots'])==5 and len(media['files'])==7
+            assert {item['file'] for item in media['screenshots']} == {
+                '01-recommended.png', '02-multimodal-recommendations.png',
+                '03-local-models.png', '04-api-overview.png', '05-published-models.png'}
+        else:
+            assert len(media['screenshots'])==11 and len(media['files'])==13
+            assert {item['file'] for item in media['screenshots']} >= {
+                '02-recommended-'+task+'.png' for task in ('image','video','audio','3d')}
         for item in media['files']:
             path = media_path.parent/item['file']
             assert path.parent==media_path.parent and path.stat().st_size==item['bytes']

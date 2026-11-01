@@ -78,6 +78,13 @@ public final class TtsTest {
             check(app.nativeProcess==null && context.child!=null && !context.child.isAlive(),"Worker process ownership released");
             check(Arrays.stream(context.folder.listFiles()).noneMatch(f -> f.getName().endsWith(".json")),"Private input removed on every completion path");
         }
+        Context emptyStructure=new Context(new File(root,"empty_structure")); File emptyOutput=emptyStructure.output("fixture");
+        try {
+            NativeWorker.run(app,new File(root,"owned-worker"),emptyStructure,new JSONObject().put("fixture","empty_structure").put("output",emptyOutput.getPath()),emptyOutput,Collections.emptyMap(),launcher);
+            throw new AssertionError("Empty sparse structure became success");
+        } catch(IOException expected) {
+            check(expected.getMessage().contains("稀疏结构为空") && emptyStructure.execution.optString("workerDiagnosticCode").equals("empty_structure"),"Native stderr classifies empty 3D geometry and gives a parameter recovery reason without publishing raw paths");
+        }
         Context cancelled=new Context(new File(root,"cancel")); File output=cancelled.output("fixture"); ExecutorService thread=Executors.newSingleThreadExecutor();
         Future<?> active=thread.submit(() -> { try { NativeWorker.run(app,new File(root,"owned-worker"),cancelled,new JSONObject().put("fixture","wait").put("output",output.getPath()),output,Collections.emptyMap(),launcher); throw new AssertionError("Cancellation became success"); } catch (IOException expected) {} catch(Exception e) { throw new RuntimeException(e); } });
         try { check(cancelled.started.await(10,TimeUnit.SECONDS),"Owned fixture process starts"); cancelled.cancelled.set(true); cancelled.child.destroy(); active.get(10,TimeUnit.SECONDS); check(app.nativeProcess==null && !cancelled.child.isAlive(),"Cancellation releases owned child before next job"); }

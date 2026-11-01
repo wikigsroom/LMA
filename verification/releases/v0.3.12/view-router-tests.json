@@ -1,0 +1,263 @@
+{
+  "passed": 48,
+  "checks": [
+    {
+      "case": "native_(32, 'empty')",
+      "stderr": ""
+    },
+    {
+      "case": "literal_source_(32, 'empty')",
+      "expected": [
+        0
+      ]
+    },
+    {
+      "case": "native_(32, 'real_view')",
+      "stderr": ""
+    },
+    {
+      "case": "literal_source_(32, 'real_view')",
+      "expected": [
+        2
+      ]
+    },
+    {
+      "case": "native_(32, 'support_before_anchor')",
+      "stderr": ""
+    },
+    {
+      "case": "literal_source_(32, 'support_before_anchor')",
+      "expected": [
+        1
+      ]
+    },
+    {
+      "case": "native_(32, 'anchor_before_confidence')",
+      "stderr": ""
+    },
+    {
+      "case": "literal_source_(32, 'anchor_before_confidence')",
+      "expected": [
+        0
+      ]
+    },
+    {
+      "case": "native_(32, 'mean_nonanchor')",
+      "stderr": ""
+    },
+    {
+      "case": "literal_source_(32, 'mean_nonanchor')",
+      "expected": [
+        2
+      ]
+    },
+    {
+      "case": "native_(32, 'lowest_real_view')",
+      "stderr": ""
+    },
+    {
+      "case": "literal_source_(32, 'lowest_real_view')",
+      "expected": [
+        1
+      ]
+    },
+    {
+      "case": "native_(32, 'single_hop')",
+      "stderr": ""
+    },
+    {
+      "case": "literal_source_(32, 'single_hop')",
+      "expected": [
+        1,
+        0,
+        1
+      ]
+    },
+    {
+      "case": "native_(32, 'one_hop_anchor_priority')",
+      "stderr": ""
+    },
+    {
+      "case": "literal_source_(32, 'one_hop_anchor_priority')",
+      "expected": [
+        0
+      ]
+    },
+    {
+      "case": "native_(32, 'disconnected_patch_support')",
+      "stderr": ""
+    },
+    {
+      "case": "literal_source_(32, 'disconnected_patch_support')",
+      "expected": [
+        0
+      ]
+    },
+    {
+      "case": "native_(32, 'eight_connected_patches')",
+      "stderr": ""
+    },
+    {
+      "case": "literal_source_(32, 'eight_connected_patches')",
+      "expected": [
+        1
+      ]
+    },
+    {
+      "case": "native_(32, 'mask_reject')",
+      "stderr": ""
+    },
+    {
+      "case": "literal_source_(32, 'mask_reject')",
+      "expected": [
+        0
+      ]
+    },
+    {
+      "case": "native_(32, 'stable_top95')",
+      "stderr": ""
+    },
+    {
+      "case": "literal_source_(32, 'stable_top95')",
+      "expected": [
+        0,
+        1
+      ]
+    },
+    {
+      "case": "native_(64, 'empty')",
+      "stderr": ""
+    },
+    {
+      "case": "literal_source_(64, 'empty')",
+      "expected": [
+        0
+      ]
+    },
+    {
+      "case": "native_(64, 'real_view')",
+      "stderr": ""
+    },
+    {
+      "case": "literal_source_(64, 'real_view')",
+      "expected": [
+        2
+      ]
+    },
+    {
+      "case": "native_(64, 'support_before_anchor')",
+      "stderr": ""
+    },
+    {
+      "case": "literal_source_(64, 'support_before_anchor')",
+      "expected": [
+        1
+      ]
+    },
+    {
+      "case": "native_(64, 'anchor_before_confidence')",
+      "stderr": ""
+    },
+    {
+      "case": "literal_source_(64, 'anchor_before_confidence')",
+      "expected": [
+        0
+      ]
+    },
+    {
+      "case": "native_(64, 'mean_nonanchor')",
+      "stderr": ""
+    },
+    {
+      "case": "literal_source_(64, 'mean_nonanchor')",
+      "expected": [
+        2
+      ]
+    },
+    {
+      "case": "native_(64, 'lowest_real_view')",
+      "stderr": ""
+    },
+    {
+      "case": "literal_source_(64, 'lowest_real_view')",
+      "expected": [
+        1
+      ]
+    },
+    {
+      "case": "native_(64, 'single_hop')",
+      "stderr": ""
+    },
+    {
+      "case": "literal_source_(64, 'single_hop')",
+      "expected": [
+        1,
+        0,
+        1
+      ]
+    },
+    {
+      "case": "native_(64, 'one_hop_anchor_priority')",
+      "stderr": ""
+    },
+    {
+      "case": "literal_source_(64, 'one_hop_anchor_priority')",
+      "expected": [
+        0
+      ]
+    },
+    {
+      "case": "native_(64, 'disconnected_patch_support')",
+      "stderr": ""
+    },
+    {
+      "case": "literal_source_(64, 'disconnected_patch_support')",
+      "expected": [
+        0
+      ]
+    },
+    {
+      "case": "native_(64, 'eight_connected_patches')",
+      "stderr": ""
+    },
+    {
+      "case": "literal_source_(64, 'eight_connected_patches')",
+      "expected": [
+        0
+      ]
+    },
+    {
+      "case": "native_(64, 'mask_reject')",
+      "stderr": ""
+    },
+    {
+      "case": "literal_source_(64, 'mask_reject')",
+      "expected": [
+        0
+      ]
+    },
+    {
+      "case": "native_(64, 'stable_top95')",
+      "stderr": ""
+    },
+    {
+      "case": "literal_source_(64, 'stable_top95')",
+      "expected": [
+        0,
+        1
+      ]
+    }
+  ],
+  "input_fingerprint": {
+    "native/spatial/sparse.hpp": "118c821be7601439a166d800729feb9e77320b6ad355808edc1e802d99b07e67",
+    "native/spatial/view_router.hpp": "7d13e662826932801c784c534c46998424b2ef3aa1e3b4a3afb89855dbe2500f",
+    "tests/expansion-native/sparse_graph.cpp": "cc7575992d2bec5da829809a1e1f1276005c7f85a9acdb430a2a84958489ae21",
+    "third_party/portable-sparse-source-lock.json": "fb0c9bfbb5efc502ed6f68b8ae92cebdad2775732725c22e3cdc4529e16932bf",
+    "tools/spatial_portable.py": "c66222b642d28237a7b9db0cddba76d92d2e54f5c2e8ffd98c52060f3b682414",
+    "tools/test_view_router.py": "32112e7cf6ca7c1cbb3386462f3a7f315d714884e0aaff9dbef1bd162e416a04"
+  },
+  "literalSource": true,
+  "completeModelsRun": 0,
+  "phoneTests": 0,
+  "virtualizationUsed": false
+}

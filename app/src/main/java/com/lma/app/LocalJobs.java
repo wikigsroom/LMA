@@ -16,7 +16,7 @@ public final class LocalJobs implements AutoCloseable {
     private final EngineHost resident;
     private final Runnable changed;
     private final ExecutorService worker = Executors.newSingleThreadExecutor(r -> new Thread(r, "LMA-local-jobs"));
-    private final ScheduledExecutorService timer = Executors.newSingleThreadScheduledExecutor(r -> new Thread(r, "LMA-engine-timeout"));
+    private final ScheduledExecutorService timer = Executors.newSingleThreadScheduledExecutor(r -> new Thread(r, "LMA-job-recovery"));
     private final AtomicBoolean pumping = new AtomicBoolean();
     private volatile boolean closed;
     private volatile String activeId = "";
@@ -32,9 +32,12 @@ public final class LocalJobs implements AutoCloseable {
         if (input.getString("type").equals("model.assemble")) return submitAssembly(input, idempotencyKey);
         String submissionHash = TaskInput.fingerprint(input);
         JSONObject previous = app.jobs.lookup(idempotencyKey);
-        if (previous != null) { if (!submissionHash.equals(previous.getJSONObject("request").optString("submissionHash"))) throw new IllegalStateException("此幂等键已经用于另一个任务请求"); return previous; }
+        if (previous != null) { if (previous.optBoolean("historyRemoved")) throw new LocalHttp.Failure(410, "lma_job_history_removed", "This request was accepted previously; its history was removed"); if (!submissionHash.equals(previous.getJSONObject("request").optString("submissionHash"))) throw new IllegalStateException("此幂等键已经用于另一个任务请求"); return previous; }
         JSONObject request = new GenerationPlan(app).resolve(input);
         JSONObject job = app.jobs.submit(request, idempotencyKey); app.prefs.edit().putBoolean("desiredJobs", true).apply(); wake(); changed.run(); return job;
+    }
+    public static JSONObject freezePublic(LmaApp app, JSONObject input) throws Exception {
+        synchronized (app.bundles) { synchronized (app.artifacts) { return TaskRequests.replay(new GenerationPlan(app).resolve(input)); } }
     }
     /** Same resolver as submit, with no queue, preference, transfer, API change or model inference; bounded capability queries may start. */
     public static JSONObject preflight(LmaApp app, JSONObject input) throws Exception {
@@ -74,6 +77,7 @@ public final class LocalJobs implements AutoCloseable {
             InputSpec spec = selectedEngine.inputs(bundle, type); report.put("inputSchema", spec.json());
             next("parameters");
             JSONObject in = input.getJSONObject("input"); String prompt = in.optString("prompt");
+            if (prompt.trim().isEmpty() && spec.json().has("fixedPrompt")) { prompt = spec.json().getString("fixedPrompt"); in.put("prompt", prompt); }
             if (prompt.trim().isEmpty() || prompt.length() > 16000 || in.optString("negativePrompt").length() > 16000) throw new IllegalArgumentException("请填写不超过 16000 字符的提示词");
             JSONObject effective = app.bundles.parameters(id).normalize(app.bundles.settings(id).getJSONObject("values"), input.optJSONObject("parameters") == null ? new JSONObject() : input.getJSONObject("parameters"));
             JSONObject request = new JSONObject().put("bundleId", id).put("type", type).put("input", DataFiles.copy(in)).put("parameters", effective.getJSONObject("values"))
@@ -182,8 +186,8 @@ public final class LocalJobs implements AutoCloseable {
         });
     }
     private void run(JSONObject job) throws Exception {
-        String id = job.getString("id"), token = job.getString("token"); activeId = id; AtomicBoolean timedOut = new AtomicBoolean(); JSONObject request = job.getJSONObject("request");
-        ScheduledFuture<?> timeout = null; String artifactId = "", preparedId = "";
+        String id = job.getString("id"), token = job.getString("token"); activeId = id; JSONObject request = job.getJSONObject("request");
+        String artifactId = "", preparedId = "";
         PreparedAssets.Session preparationSession = null;
         ExecutionGate.Ticket slot = null; boolean acquired = false, parked = false;
         BundleStore.Selection selection = null; InputSelection.Selection inputs = null;
@@ -192,11 +196,10 @@ public final class LocalJobs implements AutoCloseable {
             app.jobs.progress(id, token, "waiting_engine", null); changed.run();
             ExecutionGate.Check check = () -> { if (closed) throw new IOException("任务服务已结束"); app.jobs.check(id, token); };
             owned.await(check); acquired = true; check.run(); parked = true; resident.park(owned); check.run();
-            timeout = timer.schedule(() -> { timedOut.set(true); signalStop(activeProcess); }, 2, TimeUnit.HOURS);
             if (request.getString("type").equals("model.assemble")) {
                 final AssemblyPlan plan = app.assemblies.require(request); app.assemblies.admission();
                 PreparedModelAssembly.Context context = new PreparedModelAssembly.Context() {
-                    @Override public void check() throws IOException { owned.checkOwner(); if (closed || timedOut.get()) throw new IOException("运行模型关联已停止或超时，已校验的本地文件保留"); app.jobs.check(id, token); }
+                    @Override public void check() throws IOException { owned.checkOwner(); if (closed) throw new IOException("运行模型关联已停止，已校验的本地文件保留"); app.jobs.check(id, token); }
                     @Override public void progress(String stage) throws Exception { check(); app.jobs.progress(id, token, stage, null); changed.run(); }
                 };
                 JSONObject result = PreparedModelAssembly.run(plan, app.prepared, app.bundles, request, id, context);
@@ -208,7 +211,7 @@ public final class LocalJobs implements AutoCloseable {
                 final PreparationPlan plan = app.preparations.require(request, model.bundle); app.preparations.admission(plan);
                 preparationSession = app.prepared.begin(id);
                 NativePreparation.Context preparationContext = new NativePreparation.Context() {
-                    @Override public void check() throws IOException { owned.checkOwner(); if (closed || timedOut.get()) throw new IOException("模型资产准备已停止或超时，源文件保留"); app.jobs.check(id, token); }
+                    @Override public void check() throws IOException { owned.checkOwner(); if (closed) throw new IOException("模型资产准备已停止，源文件保留"); app.jobs.check(id, token); }
                     @Override public void progress(String stage, Double fraction) throws Exception { check(); app.jobs.progress(id, token, stage, fraction); changed.run(); }
                     @Override public File graphs(PreparationPlan.Stage stage) throws Exception { check(); return app.preparations.graphs(plan, stage); }
                     @Override public Process start(ProcessBuilder builder) throws Exception {
@@ -228,7 +231,7 @@ public final class LocalJobs implements AutoCloseable {
             java.util.List<BundleStore.Lease> adapters = selection.models.subList(1, selection.models.size());
             JSONObject executionDetails = new JSONObject();
             JSONObject resourcePlan = admission(model.bundle, request, true); app.jobs.progress(id, token, "loading", null); changed.run(); LocalEngine engine = app.localEngines.require(model.bundle, request.getString("type"));
-            inputs = InputSelection.acquire(app.artifacts, engine.inputs(model.bundle, request.getString("type")), request, () -> { if (closed || timedOut.get()) throw new IOException("Input validation was stopped"); app.jobs.check(id, token); });
+            inputs = InputSelection.acquire(app.artifacts, engine.inputs(model.bundle, request.getString("type")), request, () -> { if (closed) throw new IOException("Input validation was stopped"); app.jobs.check(id, token); });
             final InputSelection.Selection selectedInputs = inputs;
             File output = engine.generate(new LocalEngine.Context() {
                 @Override public BundleStore.Lease model() { return model; }
@@ -236,7 +239,7 @@ public final class LocalJobs implements AutoCloseable {
                 @Override public File input(String role) throws Exception { return selectedInputs.file(role); }
                 @Override public JSONObject request() { return DataFiles.copy(request); }
                 @Override public File output(String suffix) throws Exception { return app.artifacts.staging(id, suffix); }
-                @Override public void check() throws Exception { owned.checkOwner(); if (closed) throw new IOException("任务服务已结束"); if (timedOut.get()) throw new IOException("本地执行超过应用的两小时单任务保护时限"); app.jobs.check(id, token); }
+                @Override public void check() throws Exception { owned.checkOwner(); if (closed) throw new IOException("任务服务已结束"); app.jobs.check(id, token); }
                 @Override public void progress(String stage, Double fraction) throws Exception { check(); app.jobs.progress(id, token, stage, fraction); changed.run(); }
                 @Override public void process(Process process) throws Exception { activeProcess = process; try { owned.watchProcess(process); check(); } catch (Exception error) { destroy(process); throw error; } }
                 @Override public void execution(JSONObject details) throws Exception { check(); executionDetails.put("details", app.jobs.recordExecution(id,token,details)); }
@@ -245,11 +248,11 @@ public final class LocalJobs implements AutoCloseable {
                 @Override public void audioChunk(AudioPcm.Chunk chunk) throws Exception { check(); app.audioStreams.append(id, chunk); if (chunk.sequence == 0 || chunk.sequence % 6 == 0) changed.run(); }
             });
             owned.finishResourceMonitoring();
-            if (timedOut.get()) throw new IOException("本地执行超过应用的两小时单任务保护时限");
+           
             JSONArray adapterManifests = new JSONArray(), adapterReceipts = new JSONArray(); for (BundleStore.Lease adapter : adapters) { adapterManifests.put(adapter.bundle.json()); adapterReceipts.put(new JSONObject().put("bundleId", adapter.bundle.id).put("components", adapter.integrity())); }
             JSONObject provenance = new JSONObject().put("adapters", adapterManifests).put("componentReceipts", model.integrity()).put("adapterComponentReceipts", adapterReceipts).put("request", request).put("bundle", model.bundle.json()).put("engine", engine.describe()).put("resourcePlan", resourcePlan).put("device", app.device()).put("execution", "same_android_phone").put("engineExecution", executionDetails);
             provenance.put("runtimeResources", owned.runtimeResources());
-            JSONObject artifact = app.artifacts.commit(id, output, provenance, () -> { if (closed || timedOut.get()) throw new IOException("任务已停止，结果不会记作成功"); app.jobs.check(id, token); }); artifactId = artifact.getString("id");
+            JSONObject artifact = app.artifacts.commit(id, output, provenance, () -> { if (closed) throw new IOException("任务已停止，结果不会记作成功"); app.jobs.check(id, token); }); artifactId = artifact.getString("id");
             app.jobs.finish(id, token, new JSONArray().put(artifactId), "", owned.runtimeResources());
             if (!app.jobs.get(id).getString("state").equals("succeeded")) { app.artifacts.remove(artifactId); artifactId = ""; }
         } catch (Exception error) {
@@ -257,10 +260,9 @@ public final class LocalJobs implements AutoCloseable {
             if (!artifactId.isEmpty()) try { app.artifacts.remove(artifactId); } catch (Exception cleanup) { app.log("结果清理待重试：" + cleanup.getMessage()); }
             JSONObject resources = slot == null ? null : slot.endResourceMonitoring();
             if (closed) app.jobs.interrupt(id, token, "服务结束；此引擎没有可续步 checkpoint，可明确重试新任务", resources);
-            else app.jobs.finish(id, token, new JSONArray(), slot != null && !slot.resourceFailure().isEmpty() ? slot.resourceFailure() : timedOut.get() ? "本地执行超过应用的两小时单任务保护时限" : error.getMessage() == null ? error.toString() : error.getMessage(), resources);
+            else app.jobs.finish(id, token, new JSONArray(), slot != null && !slot.resourceFailure().isEmpty() ? slot.resourceFailure() : error.getMessage() == null ? error.toString() : error.getMessage(), resources);
         } finally {
             if (app.audioStreams != null) try { JSONObject terminal = app.jobs.get(id); String state = terminal.getString("state"); if (!java.util.Arrays.asList("succeeded", "failed", "cancelled", "interrupted").contains(state)) state = "interrupted"; app.audioStreams.finish(id, state, artifactId); } catch (Exception error) { app.log("音频试听状态清理失败：" + error.getMessage()); }
-            if (timeout != null) timeout.cancel(false);
             Process child = activeProcess;
             try { ProcessControl.stop(child); } catch (IOException error) { app.log(error.getMessage()); }
             final BundleStore.Selection held = selection; final InputSelection.Selection heldInputs = inputs;

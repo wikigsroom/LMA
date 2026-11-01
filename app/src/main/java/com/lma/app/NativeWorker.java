@@ -22,7 +22,10 @@ final class NativeWorker {
                 byte[] buffer = new byte[4096]; String tail = ""; int count;
                 while ((count = in.read(buffer)) != -1) {
                     String part = tail + new String(buffer, 0, count, StandardCharsets.UTF_8);
-                    if (part.contains("Vulkan 1.2 required")) code = "vulkan_1_2_required";
+                    if (part.contains("no voxels produced")) code = "empty_structure";
+                    else if (part.contains("std::bad_alloc")) code = "allocation_failed";
+                    else if (part.contains("checkpoint has no cross_attn") || part.contains("these are Pixal3D weights")) code = "model_family_mismatch";
+                    else if (part.contains("Vulkan 1.2 required")) code = "vulkan_1_2_required";
                     else if (code.isEmpty() && part.contains("CANNOT LINK EXECUTABLE")) code = "native_loader_error";
                     else if (code.isEmpty() && (part.toLowerCase(Locale.ROOT).contains("out of memory") || part.contains("failed to allocate"))) code = "allocation_failed";
                     tail = part.substring(Math.max(0, part.length() - 128));
@@ -127,7 +130,10 @@ final class NativeWorker {
             execution.put("workerExitCode", exit).put("workerCompleteEvent", complete).put("workerDiagnosticCode", diagnostics.code);
             context.execution(DataFiles.copy(execution));
             if (!ended || exit != 0 || !complete || !failure.isEmpty() || !output.isFile() || output.length() == 0) {
-                if (failure.isEmpty()) failure = diagnostics.code.equals("vulkan_1_2_required") ? "当前手机未提供此引擎要求的 Vulkan 1.2 GPU；请使用兼容设备或明确选择 CPU 配方"
+                if (diagnostics.code.equals("empty_structure")) failure = "3D 稀疏结构为空，尚未生成网格；请提高采样步数（建议 12 步）、使用模型推荐引导强度并重试，或更换种子与清晰主体图片";
+                else if (diagnostics.code.equals("allocation_failed")) failure = "本机引擎内存分配失败；请关闭其他应用、降低模型支持的分辨率或选择更轻量的模型后重试";
+                else if (diagnostics.code.equals("model_family_mismatch")) failure = "3D 权重与所选模型架构不匹配；请在本地模型中重新核对组件及配方";
+                else if (failure.isEmpty()) failure = diagnostics.code.equals("vulkan_1_2_required") ? "当前手机未提供此引擎要求的 Vulkan 1.2 GPU；请使用兼容设备或明确选择 CPU 配方"
                     : "本地引擎未完成输出（退出码 " + exit + "，诊断 " + (diagnostics.code.isEmpty() ? "无结构化错误" : diagnostics.code) + "）；可在任务详情查看退出信息";
                 throw new IOException(failure);
             }

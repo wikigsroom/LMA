@@ -1,10 +1,25 @@
 # 发布流程 / Release workflow
 
+
+## v0.3.12 当前交付 / Current delivery
+
+本次用户要求真实手机联调和实机测评，视频必须超过 5 秒，模型生成不得设置固定执行超时。程序门禁仍独立计数，不将真实模型结果塞入零模型字段。No Docker, WSL, emulator, model downloads or off-device inference. Preserve the signer and installed assets.
+
+1. 编译、包与 lint 检查后安装最终 APK；完成 `device_check.py`、`profile_device.py` 和 `installed_performance_evidence.py`。记录最终 APK SHA，版本候选包结果保持其原身份。
+2. `device_sdk_integration.py` 使用真实 OpenAI SDK 与原生 Go 转发器验证图片、语音、上传、归属、重试、事件和媒体。`device_api_benchmark.py --run-existing-models --only video` 默认无执行时限，49 帧 / 8 fps；核对实际 MP4 时长 **>5 秒**。错误、取消、画质和耐久分别披露。
+3. `capture_device_api.py` 只录推荐／本地／服务页面，人工检查截图和录像后标记隐私复核。`physical_evidence.py` 与 `physical_api_evidence.py --sdk REPORT --benchmark REPORT` 白名单导出，禁止提交原始私有报告、网关状态、密钥或个人历史。
+4. 更新中英 README、指南、测评、更新记录与版本说明；刷新适配审计、版本矩阵与程序证据，生成源码包和签名 APK。
+5. `prepare_release.py` 检查 **prerelease=false**；普通提交与新标签 `v0.3.12` 推送后，`publish_release.py --publish` 校验全部附件再发布正式 Release。保留所有已发布旧附件。
+
+Sub2API source-kit tests use the exact pinned upstream source and explicit authentication fixtures; they are not production DB, subscription, pricing or billing acceptance. Actual phone inference and unresolved 3D/quality limits belong in the release notes.
+
+## v0.3.11 历史流程 / Historical workflow
+
 授权实跑使用 `device_model_probe.py`，以 `physical_model_evidence.py --report` 单独导出白名单记录；APK 哈希、真实输出和失败 / 超时均保留。只处理自有夹具，禁止发布个人任务和密钥。
 
 **v0.3.11 / code61:** [任务失败逐条诊断、真机程序检查与独立授权模型实跑](DEVICE_ACCEPTANCE.md) / [Physical program acceptance](DEVICE_ACCEPTANCE.en.md). Includes short screen-off API health and separate real phone media; selected authorized model probes are separate from program gates; no all-model or endurance claim.
 
-**当前 v0.3.11 为完整适配正式 Release，按程序验证策略交付。** 旧版流程在下文保留历史语境；当前执行以下步骤。
+**历史 v0.3.11 为完整适配正式 Release，按程序验证策略交付。** 旧版流程在下文保留历史语境；当前执行以下步骤。
 
 1. 根据 [完整实现与测试](IMPLEMENTATION_V0311.md) / [English](IMPLEMENTATION_V0311.en.md) 运行受影响程序检查，常规门禁不下载或运行完整训练模型；另获授权的部分手机检查独立记录，不恢复全部模型验收要求。Source-only/tiny-network validation does not imply trained-model acceptance.
 2. 修改原生运行器时重建其 host / Android 产物与许可；运行 `python tools/build.py`、`python tools/verify_package.py`、`python tools/test_android_lint.py`。Preserve the existing private signer and upgrade identity.

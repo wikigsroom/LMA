@@ -98,7 +98,7 @@ public final class LocalHttp implements AutoCloseable {
         watchdog = Executors.newSingleThreadScheduledExecutor(runnable -> { Thread thread = new Thread(runnable, "LMA-api-timeouts"); thread.setDaemon(true); return thread; });
         watchdog.scheduleWithFixedDelay(() -> {
             long now = System.nanoTime();
-            for (Client client : clients) if (!client.parsed && now - client.started > TimeUnit.SECONDS.toNanos(15) || now - client.started > TimeUnit.HOURS.toNanos(2) || client.writing != 0 && now - client.writing > TimeUnit.SECONDS.toNanos(30)) client.close();
+            for (Client client : clients) if (!client.parsed && now - client.started > TimeUnit.SECONDS.toNanos(15) || client.writing != 0 && now - client.writing > TimeUnit.SECONDS.toNanos(30)) client.close();
         }, 1, 1, TimeUnit.SECONDS);
         acceptor = new Thread(this::accept, "LMA-api-listener"); acceptor.setDaemon(true); acceptor.start();
     }
@@ -140,7 +140,7 @@ public final class LocalHttp implements AutoCloseable {
                 @Override public void write(int value) throws IOException { client.writing = System.nanoTime(); try { raw.write(value); } finally { client.writing = 0; } }
                 @Override public void write(byte[] value, int offset, int length) throws IOException { client.writing = System.nanoTime(); try { raw.write(value, offset, length); } finally { client.writing = 0; } }
             };
-            StringBuilder head = new StringBuilder("HTTP/1.1 ").append(response.status).append(' ').append(reason(response.status)).append("\r\nConnection: close\r\nCache-Control: no-store\r\nX-Content-Type-Options: nosniff\r\nContent-Type: ").append(response.mime).append("\r\n");
+            StringBuilder head = new StringBuilder("HTTP/1.1 ").append(response.status).append(' ').append(reason(response.status)).append("\r\nConnection: close\r\n").append(response.headers.keySet().stream().anyMatch(k -> k.equalsIgnoreCase("Cache-Control")) ? "" : "Cache-Control: no-store\r\n").append("X-Content-Type-Options: nosniff\r\nContent-Type: ").append(response.mime).append("\r\n");
             if (response.length >= 0) head.append("Content-Length: ").append(response.length).append("\r\n");
             for (Map.Entry<String, String> entry : response.headers.entrySet()) head.append(entry.getKey()).append(": ").append(entry.getValue()).append("\r\n");
             head.append("\r\n"); out.write(head.toString().getBytes(StandardCharsets.US_ASCII)); out.flush();
@@ -213,7 +213,7 @@ public final class LocalHttp implements AutoCloseable {
     }
     private static String reason(int status) {
         switch (status) {
-            case 200: return "OK"; case 202: return "Accepted"; case 204: return "No Content"; case 206: return "Partial Content";
+            case 304: return "Not Modified"; case 410: return "Gone"; case 504: return "Gateway Timeout"; case 200: return "OK"; case 202: return "Accepted"; case 204: return "No Content"; case 206: return "Partial Content";
             case 400: return "Bad Request"; case 401: return "Unauthorized"; case 404: return "Not Found"; case 405: return "Method Not Allowed";
             case 408: return "Request Timeout"; case 409: return "Conflict"; case 411: return "Length Required"; case 413: return "Content Too Large";
             case 416: return "Range Not Satisfiable"; case 417: return "Expectation Failed"; case 431: return "Request Header Fields Too Large";

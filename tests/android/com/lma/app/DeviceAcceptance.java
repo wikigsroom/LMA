@@ -66,6 +66,23 @@ public final class DeviceAcceptance extends Instrumentation {
         } finally { app.chats.removeSession(session); if (prior.isEmpty()) app.prefs.edit().remove("session").apply(); else app.chats.select(prior); }
         pass("Android SQLite persistence and interrupted chat history");
     }
+    private void meshDiagnosticChannel() throws Exception {
+        File input = File.createTempFile("lma-mesh-protocol-", ".json", app.getCacheDir()); Process child = null;
+        try {
+            try (FileOutputStream out = new FileOutputStream(input)) { out.write("{\"schema\":\"invalid-fixture\"}".getBytes("UTF-8")); }
+            File binary = new File(app.getApplicationInfo().nativeLibraryDir, "liblma-mesh.so");
+            ProcessBuilder builder = new ProcessBuilder(binary.getPath(), input.getPath()).directory(app.getCacheDir());
+            builder.environment().put("LD_LIBRARY_PATH", binary.getParent()); child = builder.start();
+            require(child.waitFor(10, TimeUnit.SECONDS) && child.exitValue() != 0, "Malformed protocol must fail before model execution");
+            ByteArrayOutputStream diagnostics = new ByteArrayOutputStream(); byte[] buffer = new byte[2048]; int n;
+            while ((n = child.getErrorStream().read(buffer)) != -1) { require(diagnostics.size()+n<=32768,"Unbounded diagnostic fixture"); diagnostics.write(buffer,0,n); }
+            require(diagnostics.toString("UTF-8").contains("Unsupported worker protocol"), "Signed mesh worker discarded its private diagnostic channel");
+            BufferedReader events = new BufferedReader(new InputStreamReader(child.getInputStream(), "UTF-8")); boolean failed = false, detailed = false; String line;
+            while ((line=events.readLine())!=null) { JSONObject event=new JSONObject(line); failed|=event.optString("event").equals("error"); JSONObject detail=event.optJSONObject("details"); detailed|=detail!=null && detail.optString("workerFailureDetail").contains("Unsupported worker protocol"); }
+            require(failed && detailed,"Private diagnostics must remain available without corrupting JSON worker framing");
+            pass("Signed 3D worker retains private error diagnostics without model inference");
+        } finally { if (child!=null) child.destroy(); input.delete(); }
+    }
     private void capture(String name) throws Exception {
         if (!options.getString("media", "").equals("true")) return;
         Thread.sleep(700);
@@ -150,6 +167,7 @@ public final class DeviceAcceptance extends Instrumentation {
             require(app.snapshot().getJSONArray("models").length() >= 14, "Curated models missing"); pass("Installed Android UI and native JavaScript bridge");
             File binary = new File(app.getApplicationInfo().nativeLibraryDir, "libllama-server.so");
             require(binary.isFile() && binary.canExecute(), "Installed native executable unavailable"); pass("Extracted native executable permissions");
+            meshDiagnosticChannel();
             sqlite();
             String system = app.settings().getString("systemPrompt");
             command("saveSettings", new JSONObject().put("settings", new JSONObject().put("source", app.settings().getString("source"))));

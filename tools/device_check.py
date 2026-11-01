@@ -119,7 +119,7 @@ def main():
             models_before = program_request("/v1/models")["data"]
             if not isinstance(models_before, list) or any(not isinstance(row.get("installed"), bool) for row in models_before): raise RuntimeError("Invalid local model installation flags")
             if not args.existing_models and any(row["installed"] for row in models_before): raise RuntimeError("Zero-model acceptance requires no installed models; existing assets are preserved")
-            # The API also lists user-owned partial/prepared entries. They are not installed weights.
+            # Publication excludes incomplete assets; local management retains them.
             report["uninstalled_local_model_records"] = sum(not row["installed"] for row in models_before)
             report["installed_models_preserved"] = sum(row["installed"] for row in models_before)
             report["existing_model_management_only"] = args.existing_models
@@ -129,7 +129,7 @@ def main():
             for path in ("/v1/jobs", "/v1/artifacts", "/v1/drafts", "/v1/uploads"):
                 if not isinstance(program_request(path)["data"], list): raise RuntimeError("Invalid data list: " + path)
             external.append("Jobs, artifacts, drafts and upload read APIs")
-            program_request("/v1/chat/completions", {"model":"m01", "messages":[{"role":"user", "content":"program preflight only"}], "max_tokens":1}, expected=409)
+            program_request("/v1/chat/completions", {"model":"m01", "messages":[{"role":"user", "content":"program preflight only"}], "max_tokens":1}, expected=404)
             if program_request("/v1/models")["data"] != models_before: raise RuntimeError("Program check changed model assets")
             external.append("Missing text weights rejected without automatic download")
             if args.minutes:

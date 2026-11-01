@@ -1,10 +1,15 @@
 # LMA · Android local-model workbench
 
-[中文](README.md) · [Download v0.3.11](https://github.com/wikigsroom/LMA/releases/tag/v0.3.11) · [User guide](docs/USER_GUIDE.en.md) · [Documentation](docs/README.md) · [Scenarios](#use-cases) · [Cases and failures](#case-studies)
+[中文](README.md) · [Download v0.3.12](https://github.com/wikigsroom/LMA/releases/tag/v0.3.12) · [User guide](docs/USER_GUIDE.en.md) · [Documentation](docs/README.md) · [Scenarios](#use-cases) · [Cases and failures](#case-studies)
 
-**Sub2API/OpenAI forwarding contract — design, not implemented:** [English](docs/SUB2API_OPENAI.en.md) · [中文](docs/SUB2API_OPENAI.md) · [OpenAPI draft](docs/proposals/sub2api-openai.openapi.json). The v0.2.19 source review covers chat conversion, image-name restrictions, provider-specific media routes and long-job retries. Standard image/speech facades and video/music/mesh gateway extensions remain pending; all inference stays on the phone. This documentation change replaces neither the APK nor live configuration. [Maintenance record](docs/releases/v0.3.11-sub2api-design.md)
+**v0.3.12/code62 · Stable local multimodal API.** Automatically discover complete/configured local text, image, video, speech, music and 3D models. Standard image PNG / speech WAV facades, per-model parameters, durable jobs/uploads/artifacts and an opt-in native Sub2API source kit are included. [Usage and SDK examples](docs/LOCAL_API_V0312.en.md) · [Physical integration/benchmark](docs/DEVICE_BENCHMARK_V0312.en.md) · [Release notes](docs/releases/v0.3.12.md).
 
-**Local model publication — added design requirement:** Enabling the API automatically publishes complete, valid downloaded text/image/video/speech/music/3D models in `/v1/models`, including unloaded entries with separate readiness. Sub2API must synchronize phone inventory after installation/configuration/removal, without downloads or inference. [Publication rules](docs/SUB2API_OPENAI.en.md#41-automatically-publish-existing-local-models) · [Six-modality example](docs/proposals/sub2api-local-models.example.json). This is a contract proposal; automatic synchronization is not implemented in the current APK/gateway.
+Final-APK phone results:**24 program checks+8 idle-performance checks+28 actual SDK checks passed**. Wan CPU produced a **6.125-second/49-frame video** in732seconds;quality remains unaccepted. Actual pages:[GIF](docs/media/device/v0.3.12/physical-walkthrough.gif)/[recording](docs/media/device/v0.3.12/physical-walkthrough.mp4);[original generated video](docs/media/benchmarks/v0.3.12/wan-cpu-6s.mp4). The benchmark report separates3D failures and candidate-APK attempts.
+
+<img src="docs/media/device/v0.3.12/05-published-models.png" alt="Published local models on the final APK" width="300">
+
+
+**Generation has no fixed wall-clock deadline.** User cancellation, real resource failures and output/model constraints remain distinct. The 120-second synchronous HTTP wait does not cancel an asynchronous generation job. Physical video acceptance requires an actual duration greater than five seconds. Original models, settings and signing identity are preserved. Published results separate working file formats, semantic quality, API checks and endurance.
 
 **v0.3.11 / code61: choose CPU for existing Wan weights; actual video generated on the connected phone.** Native inputs now resolve to their leased regular sources, fixed-name components/views have verified identity bindings, and 3D reports real stages. The small Wan CPU pipeline completes; its one-step picture is nearly blank and quality is unaccepted; TRELLIS/Pixal stages, bounded cancellation and incomplete GLB output are reported separately. [Operation, API and results](docs/ON_DEVICE_MODEL_REPAIR.en.md) · [Physical model probes](verification/releases/v0.3.11/physical-models.json) · [Full inventory](docs/IMPLEMENTATION_V0311.en.md). All **62 recipes / 82 bundles / 18 extension engines plus text and 14 recommendations** remain.
 
@@ -16,7 +21,7 @@ LMA lets users select, download, manage and run local models on an Android phone
 
 New 3D/vision models accept explicitly selected matched local exports. **Complete public export download endpoints remain unverified**; none are invented. HF discovery does not make every architecture or format executable. Raw PyTorch weights are not Android runtime bundles.
 
-Program gates retain bounded/random fixtures and no model downloads. Under the later explicit authorization, selected already installed models also receive bounded physical-phone tests. [Program gates](verification/releases/v0.3.11/status.json) and [authorized phone results](verification/releases/v0.3.11/physical-models.json) have separate counts. Wan small-output success does not establish quality, all-model feasibility, Z20 capacity or sustained background inference.
+Regular program gates use bounded fixtures and no model downloads. This delivery additionally includes actual phone/API integration and benchmarks on existing assets, with no generation deadline. [Current program gates](verification/releases/v0.3.12/status.json) and [physical SDK/model results](verification/releases/v0.3.12/physical-api.json) are separately counted. File output does not establish model quality, all-model feasibility, Z20 capacity or endurance.
 
 LMA-authored code is MIT. The bundled DISO CPU surface component is **CC BY-NC 4.0, noncommercial**; other dependencies and model assets retain their terms. See [licenses](THIRD_PARTY_NOTICES.md).
 
@@ -561,7 +566,7 @@ Missing assets, engines, resources or permission to try an unmeasured recipe fai
 
 ### Historical actual Android pages · v0.3.9
 
-Physical motorola edge plus / Android 12, with no model weights installed. [Procedure, 23 program checks and limits](docs/DEVICE_ACCEPTANCE.en.md). These screens are separate from desktop fixtures below.
+Physical motorola edge plus / Android 12, with no model weights installed. [Procedure, 24 program checks and limits](docs/DEVICE_ACCEPTANCE.en.md). These screens are separate from desktop fixtures below.
 
 | Recommended on phone | Local API on phone |
 | --- | --- |
@@ -675,7 +680,7 @@ Upgrade retains the original signer, model choices and files. Recommended is met
 <a id="case-studies"></a>
 ## Historical test cases and actual artifacts
 
-These preserved development cases were not rerun as new passes this round. HOST means native Windows inference; UI FIXTURE means a simulated page bridge; PROGRAM means program/bounded-graph checks. Original records are not Android acceptance. Newly authorized phone probes appear separately in C61–C65. Earlier “not released” statements describe their own checkpoint; the current APK is v0.3.11.
+These preserved development cases were not rerun as new passes this round. HOST means native Windows inference; UI FIXTURE means a simulated page bridge; PROGRAM means program/bounded-graph checks. Original records are not Android acceptance. Newly authorized phone probes appear separately in C61–C65. Earlier “not released” statements describe their own checkpoint; the current APK is v0.3.12.
 
 | ID | Case/input | Historical result and boundary | Original records |
 | --- | --- | --- | --- |
@@ -747,11 +752,13 @@ These preserved development cases were not rerun as new passes this round. HOST 
 <a id="verification"></a>
 ## Current program coverage and reproduction entry points
 
-**v0.3.11: 60 program suites / 15,063 assertions, 73 gate records plus status; 794 production UI checks, including 37 recommendation checks.** The APK retains 41 ARM64 libraries, Android 9+, the original signer and 16 KiB alignment. Lint: zero errors / 16 existing warnings. Ten desktop flows provide 58 PNG / ten GIF / ten MP4; all 815 historical evidence identities remain. Eight preservation checks are not a fresh latency benchmark. Separate phone evidence covers 23 program checks and 60.239 seconds of screen-off API health. Authorized model successes and bounded incomplete results have separate counts. The [ten v0.3.10 failure probes](verification/releases/v0.3.10/task-diagnostics.json) and original five-failure report remain historical.
+**v0.3.12:62 program suites /15,115 assertions,75 program/build records and794 production UI checks.** The final signed APK passed24 physical program,8 idle-performance and28 actual SDK checks. Idle snapshot p50/p95:275.88/286.75ms; maximum main-thread gap27ms. See the [benchmark](docs/DEVICE_BENCHMARK_V0312.en.md) for actual inference, quality, candidate identities and background limits. The41 ARM64 libraries, original signer,16KiB alignment, Lint0errors/16existing warnings and ten desktop demonstrations are checked.
 
-[All 60 suites and 62 recipes](docs/IMPLEMENTATION_V0311.en.md) · [Current records and source fingerprints](verification/releases/v0.3.11/status.json) · [Policy](docs/PROGRAM_VALIDATION.en.md)
+**Historical v0.3.11: 60 program suites / 15,063 assertions, 73 gate records plus status; 794 production UI checks, including 37 recommendation checks.** The APK retains 41 ARM64 libraries, Android 9+, the original signer and 16 KiB alignment. Lint: zero errors / 16 existing warnings. Ten desktop flows provide 58 PNG / ten GIF / ten MP4; all 815 historical evidence identities remain. Eight preservation checks are not a fresh latency benchmark. Separate phone evidence covers 23 program checks and 60.239 seconds of screen-off API health. Authorized model successes and bounded incomplete results have separate counts. The [ten v0.3.10 failure probes](verification/releases/v0.3.10/task-diagnostics.json) and original five-failure report remain historical.
 
-The following **historical v0.3.5 30-suite / 5,820-assertion** table and original links remain for comparison. The v0.3.11 inventory above is the current result.
+[Current program suites and 62 recipes](docs/IMPLEMENTATION_V0312.en.md) · [Current records and source fingerprints](verification/releases/v0.3.12/status.json) · [Policy](docs/PROGRAM_VALIDATION.en.md)
+
+The following **historical v0.3.5 30-suite / 5,820-assertion** table and original links remain for comparison. The v0.3.12 inventory above is the current result.
 
 | ID | Suite / assertions | Cases covered | Record |
 | --- | --- | --- | --- |
@@ -879,3 +886,21 @@ Reports need device/Android, app version, model ID/hash, effective settings, rep
 [Original English README](docs/history/README-dev45.en.md) · [original Chinese README](docs/history/README-dev45.zh.md) · [historical index](docs/history/Documentation-dev45.md) · [repair notes](docs/releases/v0.3.1-readme.md)
 
 Authorized updates synchronize code, both languages, relevant media and changelogs with normal pushes. Documentation maintenance preserves APK/release assets; actual UI changes require refreshed recordings. Code is [MIT](LICENSE); engines and models retain their own licenses. [Third-party terms](third_party/README.md)
+
+
+## v0.3.12 API scenarios / 接口用例
+
+| ID | 场景 / Scenario | 操作与结果 / Action and expected result |
+| --- | --- | --- |
+| C66 | 自动发现 / Discovery | Download/configure an eligible local model; `/v1/models` and Service list it without loading. |
+| C67 | 模型状态 / State | Unloaded/busy entries remain discoverable; incomplete or unsupported assets stay in Local management. |
+| C68 | SDK 生图 / Images | `images.generate(n=1,response_format="b64_json")` returns genuine PNG or a real error, never a job JSON disguised as success. |
+| C69 | SDK 语音 / Speech | Explicit WAV binary output; missing MP3 or unknown voice fails before generation. |
+| C70 | 长视频任务 / Video | Async `video.generate`, same-phone codec and artifact retrieval; physical duration must exceed 5 seconds. |
+| C71 | 图生 3D / Image-to-mesh | Upload owned media, select declared role, preflight and enqueue without invented text; inspect real failure causes. |
+| C72 | 超时与重试 / Retry | A 504 preserves the job; original key/body reuses it, changed body conflicts, defaults remain frozen. |
+| C73 | 多人归属 / Ownership | The source gateway binds caller/job/upload/artifact/phone identity; other callers receive 404. |
+| C74 | 断点下载 / Media | Range, stale If-Range and ETag return actual bytes/statuses; content stays authenticated. |
+| C75 | 不限时与取消 / No deadline | Generation has no elapsed-time cutoff; explicit cancel stops only the selected task and releases its slot. |
+
+[Detailed current examples / 本版完整示例](docs/LOCAL_API_V0312.md) · [English](docs/LOCAL_API_V0312.en.md). Earlier C01–C48 and H01–H18 remain above with their historical evidence identities.

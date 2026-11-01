@@ -1,5 +1,7 @@
 # LMA 使用手册
 
+**当前 v0.3.12 / code62：** [本地多模态 API、SDK 案例和 Sub2API 接入](LOCAL_API_V0312.md)。在“本地”下载／配置模型，启动“服务”后用 `/v1/models` 发现可调用模型。生成不设固定耗时上限；HTTP 等待结束不停止异步任务。[真实手机测评](DEVICE_BENCHMARK_V0312.md)。下文旧版提示保留历史语境。
+
 **v0.3.11 / code61 · 当前：** [已下载 Wan 的 CPU 选择、3D 修复与真实结果](ON_DEVICE_MODEL_REPAIR.md)。在模型库 → 本地 → 模型参数选择 cpu；复用权重，未自动切换或下载。后续旧版说明保留历史语境。
 
 **v0.3.10 / code60:** [逐条任务失败、清理与修复](TASK_FAILURES.md) / [Task diagnosis and repair](TASK_FAILURES.en.md). Denied 3D workspace links are repaired; unsupported Wan GPU is rejected before enqueue. Five failed records archived/removed, existing successes/models/artifacts retained. No complete model reruns.

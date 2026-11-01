@@ -15,6 +15,17 @@ public final class LocalApi implements LocalHttp.Handler {
         String apiKey();
         JSONObject health() throws Exception;
         JSONArray models() throws Exception;
+        default JSONObject catalogue() throws Exception { return new JSONObject().put("object", "list").put("data", models()); }
+        default JSONObject model(String id) throws Exception {
+            ModelBundle.key(id); JSONArray models = models();
+            for (int i = 0; i < models.length(); i++) if (models.getJSONObject(i).getString("id").equals(id)) return models.getJSONObject(i);
+            throw new LocalHttp.Failure(404, "lma_model_unavailable", "Unknown published local model");
+        }
+        default JSONObject capabilities() throws Exception { throw new LocalHttp.Failure(503, "lma_capabilities_unavailable", "Local capabilities are not ready"); }
+
+        default ApiSubmissions submissions() throws Exception { throw new IOException("API submission storage is unavailable"); }
+        default JSONObject freezePublic(JSONObject request) throws Exception { return TaskInput.validate(request); }
+        default String adapter(String id) throws Exception { throw new LocalHttp.Failure(404, "lma_adapter_unavailable", "Unknown installed local adapter"); }
         JSONArray engines() throws Exception;
         JobStore jobs() throws Exception;
         ArtifactStore artifacts() throws Exception;
@@ -29,12 +40,13 @@ public final class LocalApi implements LocalHttp.Handler {
         LocalHttp.Response text(String path, JSONObject request) throws Exception;
     }
     private final Runtime runtime;
+    private final OpenAiFacade facade;
     private final Semaphore events = new Semaphore(2), media = new Semaphore(3);
     private final long eventLifetimeMillis;
     public LocalApi(Runtime runtime) { this(runtime, 120000); }
     public LocalApi(Runtime runtime, long eventLifetimeMillis) {
         if (eventLifetimeMillis < 1 || eventLifetimeMillis > 120000) throw new IllegalArgumentException("Invalid event stream lifetime");
-        this.runtime = runtime; this.eventLifetimeMillis = eventLifetimeMillis;
+        this.runtime = runtime; this.eventLifetimeMillis = eventLifetimeMillis; this.facade = new OpenAiFacade(runtime, media);
     }
     @Override public LocalHttp.Response handle(LocalHttp.Request request) throws Exception {
         try {
@@ -53,7 +65,13 @@ public final class LocalApi implements LocalHttp.Handler {
     private LocalHttp.Response route(LocalHttp.Request r) throws Exception {
         String path = r.path;
         if (path.equals("/health")) { method(r, "GET", "HEAD"); noBody(r); return json(200, runtime.health()); }
-        if (path.equals("/v1/models")) { method(r, "GET", "HEAD"); noBody(r); return list(runtime.models()); }
+        if (path.equals("/v1/models")) { method(r, "GET", "HEAD"); noBody(r); return cached(r, runtime.catalogue()); }
+        if (path.startsWith("/v1/models/")) { method(r, "GET", "HEAD"); noBody(r); return cached(r, runtime.model(id(path.substring("/v1/models/".length())))); }
+        if (path.equals("/v1/capabilities") || path.equals("/v1/lma/capabilities")) { method(r, "GET", "HEAD"); noBody(r); return cached(r, runtime.capabilities()); }
+        if (path.equals("/v1/idempotency/lookup")) { method(r, "POST"); JSONObject input = body(r); if (input.length() != 1) throw new IllegalArgumentException("Only the key field is accepted"); JSONObject found = runtime.jobs().lookup(input.getString("key")); return json(200, new JSONObject().put("found", found != null).put("job", found == null ? JSONObject.NULL : found)); }
+        if (path.equals("/v1/images/generations") || path.equals("/v1/audio/speech")) { method(r, "POST"); return facade.generate(path, body(r), r.header("idempotency-key")); }
+        if (path.equals("/v1/images/edits")) throw new LocalHttp.Failure(400, "lma_image_edit_unavailable", "No installed adapter advertises the OpenAI multipart image-edit profile; use declared local input roles with /v1/lma/jobs");
+        if (path.startsWith("/v1/lma/")) return facade.route(r, this);
         if (path.equals("/v1/engines")) { method(r, "GET", "HEAD"); noBody(r); return list(runtime.engines()); }
         if (path.equals("/v1/chat/completions") || path.equals("/v1/completions")) { method(r, "POST"); return runtime.text(path, body(r)); }
         if (path.equals("/v1/drafts")) {
@@ -143,6 +161,11 @@ public final class LocalApi implements LocalHttp.Handler {
         }
         throw new LocalHttp.Failure(404, "unknown_endpoint", "Unknown local API endpoint");
     }
+    private static LocalHttp.Response cached(LocalHttp.Request request, JSONObject value) throws Exception {
+        String etag = "\"" + ApiCatalogue.hash(value) + "\"", condition = request.header("if-none-match"); boolean match = false;
+        for (String candidate : condition.split(",")) { candidate = candidate.trim(); if (candidate.startsWith("W/")) candidate = candidate.substring(2); if (candidate.equals("*") || candidate.equals(etag)) match = true; }
+        return (match ? LocalHttp.Response.bytes(304, "application/json", new byte[0]) : json(200, value)).header("ETag", etag).header("Cache-Control", "private, no-cache");
+    }
     private JSONObject job(String id) throws Exception {
         try { return runtime.jobs().get(id); }
         catch (IllegalArgumentException missing) { throw new LocalHttp.Failure(404, "job_not_found", "Unknown task ID"); }
@@ -151,9 +174,13 @@ public final class LocalApi implements LocalHttp.Handler {
         try { return runtime.artifacts().get(id); }
         catch (IllegalArgumentException missing) { throw new LocalHttp.Failure(404, "artifact_not_found", "Unknown artifact ID"); }
     }
-    private LocalHttp.Response content(LocalHttp.Request request, JSONObject artifact) throws Exception {
+    LocalHttp.Response content(LocalHttp.Request request, JSONObject artifact) throws Exception {
         long bytes = artifact.getLong("bytes"); ByteRange range;
-        try { range = ByteRange.parse(request.header("range"), bytes); }
+        String etag = "\"" + artifact.getString("sha256") + "\"";
+        if (request.header("if-none-match").equals(etag)) return LocalHttp.Response.bytes(304, artifact.getJSONObject("metadata").getString("mime"), new byte[0]).header("ETag", etag);
+        String requestedRange = request.header("range"), ifRange = request.header("if-range");
+        if (!ifRange.isEmpty() && !ifRange.equals(etag)) requestedRange = "";
+        try { range = ByteRange.parse(requestedRange, bytes); }
         catch (IOException error) { return error(416, "invalid_range", "Request one satisfiable byte range").header("Content-Range", "bytes */" + bytes); }
         String id = artifact.getString("id");
         if (!media.tryAcquire()) throw new LocalHttp.Failure(503, "too_many_artifact_readers", "At most three concurrent artifact transfers are allowed");
@@ -167,7 +194,7 @@ public final class LocalApi implements LocalHttp.Handler {
         if (range.partial) response.header("Content-Range", range.contentRange(bytes));
         return response;
     }
-    private LocalHttp.Response eventResponse(LocalHttp.Request request, String jobId) throws Exception {
+    LocalHttp.Response eventResponse(LocalHttp.Request request, String jobId) throws Exception {
         if (!jobId.isEmpty()) job(jobId);
         String query = request.query("after"), header = request.header("last-event-id");
         long after = cursor(query.isEmpty() ? header : query);
@@ -199,12 +226,12 @@ public final class LocalApi implements LocalHttp.Handler {
         if (value.isEmpty()) return 0;
         if (!value.matches("[0-9]{1,18}")) throw new IllegalArgumentException("Invalid event cursor"); return Long.parseLong(value);
     }
-    private static String id(String id) { ModelBundle.key(id); return id; }
-    private static void method(LocalHttp.Request r, String... methods) throws LocalHttp.Failure {
+    static String id(String id) { ModelBundle.key(id); return id; }
+    static void method(LocalHttp.Request r, String... methods) throws LocalHttp.Failure {
         if (!Arrays.asList(methods).contains(r.method)) throw new LocalHttp.Failure(405, "method_not_allowed", "This endpoint does not accept " + r.method);
     }
-    private static void noBody(LocalHttp.Request request) throws LocalHttp.Failure { if (request.body.length != 0) throw new LocalHttp.Failure(400, "unexpected_body", "This request must have an empty body"); }
-    private static void emptyOrObject(LocalHttp.Request request) throws Exception { if (request.body.length > 0 && body(request).length() != 0) throw new IllegalArgumentException("This action only accepts an empty JSON object"); }
+    static void noBody(LocalHttp.Request request) throws LocalHttp.Failure { if (request.body.length != 0) throw new LocalHttp.Failure(400, "unexpected_body", "This request must have an empty body"); }
+    static void emptyOrObject(LocalHttp.Request request) throws Exception { if (request.body.length > 0 && body(request).length() != 0) throw new IllegalArgumentException("This action only accepts an empty JSON object"); }
     public static JSONObject body(LocalHttp.Request request) throws Exception {
         if (!request.header("content-type").toLowerCase(Locale.ROOT).matches("application/json(?:\\s*;\\s*charset=utf-8)?")) throw new LocalHttp.Failure(415, "json_required", "Use Content-Type: application/json; charset=utf-8");
         String text = request.utf8(); int depth = 0; boolean quoted = false, escape = false;
@@ -222,6 +249,6 @@ public final class LocalApi implements LocalHttp.Handler {
     }
     private static LocalHttp.Response list(JSONArray data) throws org.json.JSONException { return json(200, new JSONObject().put("object", "list").put("data", data)); }
     public static LocalHttp.Response json(int status, JSONObject data) { return LocalHttp.Response.bytes(status, "application/json; charset=utf-8", data.toString().getBytes(StandardCharsets.UTF_8)); }
-    public static LocalHttp.Response error(int status, String code, String message) throws org.json.JSONException { return json(status, new JSONObject().put("error", new JSONObject().put("code", code).put("message", message).put("type", "lma_local_error"))); }
-    private static String safe(Exception error) { String message = error.getMessage(); return message == null ? "Invalid local operation" : message.length() > 500 ? message.substring(0, 500) : message; }
+    public static LocalHttp.Response error(int status, String code, String message) throws org.json.JSONException { return json(status, new JSONObject().put("error", new JSONObject().put("code", code).put("message", message).put("param", JSONObject.NULL).put("type", "lma_local_error"))); }
+    private static String safe(Exception error) { String message = error.getMessage(); return message == null ? "Invalid local operation" : OpenAiFacade.safe(message); }
 }
