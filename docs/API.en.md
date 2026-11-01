@@ -2,6 +2,8 @@
 
 **Sub2API design:** [Forwarding/scheduling contract](SUB2API_OPENAI.en.md) · [中文](SUB2API_OPENAI.md) · [OpenAPI draft](proposals/sub2api-openai.openapi.json). Standard image/speech facades and gateway async extensions are not implemented. The native `/v1/jobs` below remains the current multimodal interface; changing `base_url` alone does not establish all-modality forwarding.
 
+**Model publication addition (design):** [R17–R24](SUB2API_OPENAI.en.md#41-automatically-publish-existing-local-models) require downloaded, valid image/video/speech/music/3D models alongside text in standard discovery. Unloaded is eligible; incomplete assets/dependencies or invalid configuration are not. Sub2API inventory synchronization and catalogue `ETag/304` remain unimplemented. The [example JSON](proposals/sub2api-local-models.example.json) is not measured phone inventory.
+
 **v0.3.11:** Wan request parameters accept explicit `executionBackend: "cpu"` under the same installed model ID. Registered-adapter and actual-worker identities are distinct. [Request and limits](ON_DEVICE_MODEL_REPAIR.en.md#2-same-phone-api).
 
 > Current v0.3.5: [Hunyuan shape and UltraShape refinement](SPATIAL_SHAPE.en.md), [full numbered implementation and pending ports](IMPLEMENTATION_V035.en.md). Five CPU sparse operators do not complete SAM/UniForge/SUPRA; Paint remains missing. All prior routes remain. Versioned notes below are historical, not the current support matrix.
@@ -41,8 +43,8 @@ The existing text examples below describe public **v0.2.0**. The final section d
 - Default local Base URL: `http://127.0.0.1:8080/v1`.
 - For another device, enable LAN on Server and use the phone's displayed IP. Both devices need network reachability.
 - Send `Authorization: Bearer YOUR_LMA_API_KEY`. Copy the key from the phone; it is not a cloud OpenAI key.
-- `GET /v1/models` returns the loaded alias, such as `m08`. HF downloads use stable `hf_...` IDs, while manual imports use `custom_...`; do not infer IDs from filenames. An HF access token is separate from the inference API key.
-- The model must be loaded and ready, not merely downloaded. One model and one inference slot do not promise parallel throughput.
+- `GET /v1/models` returns locally registered aliases, such as `m08`. HF downloads use stable `hf_...` IDs, while manual imports use `custom_...`; do not infer IDs from filenames. An HF access token is separate from the inference API key.
+- Current chat requires the text model selected and loaded in the App. Discovery also contains unloaded/multimodal entries: do not send the first entry to chat blindly. One phone heavy-execution slot does not promise parallel throughput.
 
 The documented compatibility surface is models, chat completions, and SSE. Responses, audio, images, embeddings, tool calling, and all vendor parameters are not promised.
 
@@ -73,7 +75,12 @@ base = os.environ.get("LMA_BASE_URL", "http://127.0.0.1:8080/v1").rstrip("/")
 headers = {"Authorization": "Bearer " + os.environ["LMA_API_KEY"]}
 request = urllib.request.Request(base + "/models", headers=headers)
 with urllib.request.urlopen(request, timeout=30) as response:
-    model_id = json.load(response)["data"][0]["id"]
+    models = json.load(response)["data"]
+model_id = next((m["id"] for m in models if m.get("loaded")
+                 and m.get("engine") == "llama_text"
+                 and "text" in m.get("task_tags", [])), None)
+if model_id is None:
+    raise RuntimeError('Select and load a text model in LMA first.')
 
 payload = {"model": model_id, "messages": [{"role": "user", "content": "Hello"}],
            "stream": True, "max_tokens": 256}
@@ -103,8 +110,12 @@ This example prints content only. Models may emit reasoning through `reasoning_c
 $lmaBase = 'http://PHONE_IP:8080/v1'
 $lmaHeaders = @{ Authorization = "Bearer $env:LMA_API_KEY" }
 $lmaModels = Invoke-RestMethod "$lmaBase/models" -Headers $lmaHeaders
+$lmaModel = $lmaModels.data | Where-Object {
+    $_.loaded -and ($_.engine -eq 'llama_text') -and ($_.task_tags -contains 'text')
+} | Select-Object -First 1
+if ($null -eq $lmaModel) { throw 'Select and load a text model in LMA first.' }
 $lmaBody = @{
-    model = $lmaModels.data[0].id
+    model = $lmaModel.id
     messages = @(@{ role='user'; content='Hello' })
     max_tokens = 128
     stream = $false
@@ -140,7 +151,7 @@ Every endpoint below requires `Authorization: Bearer YOUR_LMA_API_KEY`, includin
 | Method/path | Behavior |
 | --- | --- |
 | `GET /health` | Gateway/text/current-job status, including an empty library |
-| `GET /v1/models` | User-installed models with `task_tags`, engine, recipe/parameters and `loaded`; catalogue metadata is not installation or device validation |
+| `GET /v1/models` | Local model/bundle records, currently including some partial transfers/derived assets; inspect `installed`, `parameter_error`, `task_tags`, engine, parameters and `loaded`. Unified callable-publication filtering remains proposed; listing is not device acceptance |
 | `GET /v1/engines` | Actual registered engine build metadata, without empty providers |
 | `POST /v1/chat/completions`, `POST /v1/completions` | Plain text with the already loaded model and original SSE; no implicit model switch/download |
 | `POST /v1/jobs` | Validate and durably queue; `202`/job ID acknowledges submission, not generated output |

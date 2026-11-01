@@ -2,6 +2,8 @@
 
 **Sub2API 接入设计：** [转发与调度规范](SUB2API_OPENAI.md) · [English](SUB2API_OPENAI.en.md) · [OpenAPI 草案](proposals/sub2api-openai.openapi.json)。标准图片／语音兼容层和网关异步扩展尚未实现；本页现有 `/v1/jobs` 仍是当前多模态入口。不能仅改 `base_url` 就宣称 Sub2API 可转发全部模态。
 
+**模型广播补充（设计）：** [R17–R24 自动公布规则](SUB2API_OPENAI.md#41-本地模型自动加入广播目录)要求将已下载且配置有效的生图／生视频／语音／音乐／3D 与生文一起列入标准模型目录。未加载不影响发布；部分下载、缺依赖、无效配置不当作可调用模型。Sub2API 目录自动同步与 `ETag/304` 仍待实现；[示例 JSON](proposals/sub2api-local-models.example.json)不是本机实测响应。
+
 **v0.3.11：** Wan 请求参数可显式填写 `executionBackend: "cpu"`，复用已安装模型 ID。注册后端与实际工作器身份分别记录。[完整请求与边界](ON_DEVICE_MODEL_REPAIR.md#2-调用本机接口)。
 
 > 当前 v0.3.5：[Hunyuan 形状与 UltraShape 精修](SPATIAL_SHAPE.md)、[完整编号实现与待完成适配](IMPLEMENTATION_V035.md)。五个共用 CPU sparse 运算不代表 SAM / UniForge / SUPRA 完整适配，Paint 仍缺代码。原有能力保留；以下旧版本说明按历史理解。
@@ -41,8 +43,8 @@ dev.28 的 LCM 准备 / 关联复用本页的 `model.prepare` / `model.assemble`
 - 本机默认 Base URL：`http://127.0.0.1:8080/v1`。
 - 外部设备：先在“服务”开启局域网，改用界面显示的手机 IP；客户端与手机需要网络可达。
 - 请求头：`Authorization: Bearer YOUR_LMA_API_KEY`。密钥从手机界面复制，不是云端 OpenAI 密钥。
-- `GET /v1/models` 返回当前加载模型的别名，例如 `m08`。HF 下载模型使用稳定的 `hf_...`，手动添加使用 `custom_...`，不要从文件名猜测 ID。HF 令牌只用于仓库访问，不能代替推理 API 密钥。
-- 模型必须已加载且就绪；仅下载文件不足以提供接口。单模型、单推理槽不保证并行吞吐。
+- `GET /v1/models` 返回本地登记模型的别名，例如 `m08`。HF 下载模型使用稳定的 `hf_...`，手动添加使用 `custom_...`，不要从文件名猜测 ID。HF 令牌只用于仓库访问，不能代替推理 API 密钥。
+- 当前聊天入口仍要求在 App 选择并加载文本模型；模型列表也含其他未加载／多模态条目，不能直接拿第一项聊天。单手机重型执行槽不保证并行吞吐。
 
 这里只承诺所述 OpenAI 兼容 models / chat-completions / SSE 表面，不承诺 Responses、语音、图像、嵌入、工具调用或所有供应商参数。
 
@@ -73,7 +75,12 @@ base = os.environ.get("LMA_BASE_URL", "http://127.0.0.1:8080/v1").rstrip("/")
 headers = {"Authorization": "Bearer " + os.environ["LMA_API_KEY"]}
 request = urllib.request.Request(base + "/models", headers=headers)
 with urllib.request.urlopen(request, timeout=30) as response:
-    model_id = json.load(response)["data"][0]["id"]
+    models = json.load(response)["data"]
+model_id = next((m["id"] for m in models if m.get("loaded")
+                 and m.get("engine") == "llama_text"
+                 and "text" in m.get("task_tags", [])), None)
+if model_id is None:
+    raise RuntimeError('请先在 LMA 选择并加载一个文本模型。')
 
 payload = {"model": model_id, "messages": [{"role": "user", "content": "你好"}],
            "stream": True, "max_tokens": 256}
@@ -103,8 +110,12 @@ print()
 $lmaBase = 'http://PHONE_IP:8080/v1'
 $lmaHeaders = @{ Authorization = "Bearer $env:LMA_API_KEY" }
 $lmaModels = Invoke-RestMethod "$lmaBase/models" -Headers $lmaHeaders
+$lmaModel = $lmaModels.data | Where-Object {
+    $_.loaded -and ($_.engine -eq 'llama_text') -and ($_.task_tags -contains 'text')
+} | Select-Object -First 1
+if ($null -eq $lmaModel) { throw '请先在 LMA 选择并加载一个文本模型。' }
 $lmaBody = @{
-    model = $lmaModels.data[0].id
+    model = $lmaModel.id
     messages = @(@{ role='user'; content='Hello' })
     max_tokens = 128
     stream = $false
@@ -140,7 +151,7 @@ Invoke-RestMethod "$lmaBase/chat/completions" -Method Post -Headers $lmaHeaders 
 | 方法与路径 | 行为 |
 | --- | --- |
 | `GET /health` | 接口状态、文本状态、当前任务；零模型也可运行 |
-| `GET /v1/models` | 仅列用户已安装的模型，包含 `task_tags`、引擎、配方 / 参数、`loaded`；目录条目不等于安装，安装也不等于设备验证 |
+| `GET /v1/models` | 本地登记模型／bundle，当前也含部分下载与派生资产条目；检查 `installed`、`parameter_error`、`task_tags`、引擎、参数和 `loaded`。统一可调用发布筛选仍是新增设计，列表不等于设备验证 |
 | `GET /v1/engines` | 实际注册的引擎构建元数据；不创建空引擎 |
 | `POST /v1/chat/completions`、`POST /v1/completions` | 当前已加载文本模型的纯文本请求，支持原始 SSE；不自动切换 / 下载其他模型 |
 | `POST /v1/jobs` | 校验后持久入队，返回 `202` 和任务 ID；不代表已生成成功 |

@@ -4,6 +4,8 @@
 
 **Sub2API／OpenAI 转发规范（设计，尚未实现）：** [中文方案](docs/SUB2API_OPENAI.md) · [English](docs/SUB2API_OPENAI.en.md) · [OpenAPI 草案](docs/proposals/sub2api-openai.openapi.json)。已核对 Sub2API v0.2.19 的聊天转换、图片模型名称限制、Grok 专用视频／语音路由与长任务重试；标准图片／语音兼容层和视频／音乐／3D 异步网关仍待开发。全部推理仍在手机；本次不更换 APK 或在线配置。[维护说明](docs/releases/v0.3.11-sub2api-design.md)
 
+**本地模型广播（新增设计要求）：** 开启 API 后，自动在 `/v1/models` 公布已下载完整、配置有效的生文／生图／生视频／语音／音乐／3D 模型；未加载仍可发现，运行状态单独标注。Sub2API 需同步手机目录，安装／修改／删除后更新，不触发模型下载或推理。[自动公布规则](docs/SUB2API_OPENAI.md#41-本地模型自动加入广播目录) · [六类目录示例](docs/proposals/sub2api-local-models.example.json)。这是协议设计，当前 APK／网关尚未完成自动同步。
+
 **v0.3.11 / code61：已有 Wan 权重可直接选择 CPU，并已在当前手机产出视频。** 修复原生工作器仍拒绝 Android 软链接输入的问题，为固定名称的模型组件 / 四视图增加来源身份校验，并加入 3D 分阶段进度。Wan CPU 小尺寸计算 / 编码已贯通，一步画面近空白，未达可用画质；TRELLIS.2 / Pixal3D 的阶段、限时取消与未完成输出单独披露，不冒充全部模型成功。[操作、API 与真实结果](docs/ON_DEVICE_MODEL_REPAIR.md) · [真机模型记录](verification/releases/v0.3.11/physical-models.json) · [完整矩阵](docs/IMPLEMENTATION_V0311.md)。全部 **62 配方 / 82 包 / 18 扩展引擎加文本、14 项推荐**保留。
 
 LMA（Local Model App）让用户在 Android 手机上选择、下载、管理和运行本地模型，提供聊天、生图、生视频、生音频、生 3D、任务队列、结果库与本机 API。它是独立社区项目，与 LM Studio 无隶属关系；界面主要为中文，文档提供中英双语。

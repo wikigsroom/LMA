@@ -2,8 +2,8 @@
   "openapi": "3.1.0",
   "info": {
     "title": "LMA–Sub2API proposed OpenAI subset and multimodal extensions",
-    "version": "0.1.0-design",
-    "description": "DESIGN ONLY. Not implemented by LMA v0.3.11 or the audited Sub2API deployment. Standard models/chat/image/speech subset plus explicitly namespaced LMA async extensions. All inference remains on one Android phone. Responses, historical Videos and Realtime are not advertised."
+    "version": "0.2.0-design",
+    "description": "DESIGN ONLY. Not implemented by LMA v0.3.11 or the audited Sub2API deployment. Automatic discovery of downloaded/configured local models, standard models/chat/image/speech subset and explicitly namespaced LMA async extensions. All inference remains on one Android phone. Responses, historical Videos and Realtime are not advertised."
   },
   "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
   "servers": [
@@ -52,7 +52,7 @@
     "/v1/models": {
       "get": {
         "operationId": "listModels",
-        "description": "Published explicit local models; no default provider catalogue fallback.",
+        "description": "Automatically publish eligible downloaded/configured local text/image/video/speech/music/mesh models, including unloaded entries. Read cached metadata only. No default provider catalogue fallback.",
         "x-lma-status": "design-only",
         "responses": {
           "200": {
@@ -62,6 +62,19 @@
                 "schema": {
                   "$ref": "#/components/schemas/ModelList"
                 }
+              }
+            },
+            "headers": {
+              "ETag": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "Cache-Control": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "private, no-cache: authenticated cached views must revalidate."
               }
             }
           },
@@ -94,8 +107,34 @@
           },
           "504": {
             "$ref": "#/components/responses/Error"
+          },
+          "304": {
+            "description": "Unchanged authorized representation; no response body. A 304 can renew gateway confirmation without changing catalogue revision.",
+            "headers": {
+              "ETag": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "Cache-Control": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "private, no-cache: authenticated cached views must revalidate."
+              }
+            }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "If-None-Match",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Scoped representation ETag; gateway filters by caller permissions before computing its own ETag."
+          }
+        ]
       }
     },
     "/v1/models/{model}": {
@@ -112,6 +151,19 @@
                   "$ref": "#/components/schemas/Model"
                 }
               }
+            },
+            "headers": {
+              "ETag": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "Cache-Control": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "private, no-cache: authenticated cached views must revalidate."
+              }
             }
           },
           "400": {
@@ -143,6 +195,22 @@
           },
           "504": {
             "$ref": "#/components/responses/Error"
+          },
+          "304": {
+            "description": "Unchanged authorized representation; no response body. A 304 can renew gateway confirmation without changing catalogue revision.",
+            "headers": {
+              "ETag": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "Cache-Control": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "private, no-cache: authenticated cached views must revalidate."
+              }
+            }
           }
         },
         "parameters": [
@@ -155,6 +223,14 @@
               "minLength": 1,
               "maxLength": 160
             }
+          },
+          {
+            "name": "If-None-Match",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Scoped representation ETag; gateway filters by caller permissions before computing its own ETag."
           }
         ]
       }
@@ -455,6 +531,19 @@
                   "$ref": "#/components/schemas/Capabilities"
                 }
               }
+            },
+            "headers": {
+              "ETag": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "Cache-Control": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "private, no-cache: authenticated cached views must revalidate."
+              }
             }
           },
           "400": {
@@ -486,9 +575,35 @@
           },
           "504": {
             "$ref": "#/components/responses/Error"
+          },
+          "304": {
+            "description": "Unchanged authorized representation; no response body. A 304 can renew gateway confirmation without changing catalogue revision.",
+            "headers": {
+              "ETag": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "Cache-Control": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "private, no-cache: authenticated cached views must revalidate."
+              }
+            }
           }
         },
-        "x-lma-native-route": "/v1/capabilities (new)"
+        "x-lma-native-route": "/v1/capabilities (new)",
+        "parameters": [
+          {
+            "name": "If-None-Match",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Scoped representation ETag; gateway filters by caller permissions before computing its own ETag."
+          }
+        ]
       }
     },
     "/v1/lma/jobs/preflight": {
@@ -2149,6 +2264,196 @@
           "background_endurance_verified"
         ]
       },
+      "ModelPublication": {
+        "type": "object",
+        "properties": {
+          "source": {
+            "const": "user_local_assets"
+          },
+          "eligible": {
+            "const": true
+          },
+          "bundle_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "model_revision": {
+            "type": "string",
+            "minLength": 1
+          },
+          "recipe_revision": {
+            "type": "string",
+            "minLength": 1
+          },
+          "config_revision": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "complete_variant": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "source",
+          "eligible",
+          "bundle_id",
+          "model_revision",
+          "recipe_revision",
+          "config_revision",
+          "complete_variant"
+        ]
+      },
+      "ModelReadiness": {
+        "type": "object",
+        "properties": {
+          "assets_complete": {
+            "const": true
+          },
+          "runner_available": {
+            "const": true
+          },
+          "configuration_valid": {
+            "const": true
+          },
+          "loaded": {
+            "type": "boolean"
+          },
+          "available": {
+            "type": "boolean",
+            "description": "Can accept new work subject to final preflight and actual queue capacity; separate from loaded state and output quality."
+          },
+          "status": {
+            "enum": [
+              "unloaded",
+              "loaded",
+              "busy",
+              "resource_limited",
+              "offline",
+              "stale"
+            ]
+          },
+          "reason_codes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "preflight_required": {
+            "const": true
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "assets_complete",
+          "runner_available",
+          "configuration_valid",
+          "loaded",
+          "available",
+          "status",
+          "reason_codes",
+          "preflight_required"
+        ],
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "status": {
+                  "enum": [
+                    "resource_limited",
+                    "offline",
+                    "stale"
+                  ]
+                }
+              },
+              "required": [
+                "status"
+              ]
+            },
+            "then": {
+              "properties": {
+                "available": {
+                  "const": false
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "status": {
+                  "const": "unloaded"
+                }
+              },
+              "required": [
+                "status"
+              ]
+            },
+            "then": {
+              "properties": {
+                "loaded": {
+                  "const": false
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "status": {
+                  "const": "loaded"
+                }
+              },
+              "required": [
+                "status"
+              ]
+            },
+            "then": {
+              "properties": {
+                "loaded": {
+                  "const": true
+                }
+              }
+            }
+          }
+        ]
+      },
+      "CatalogueSnapshot": {
+        "type": "object",
+        "properties": {
+          "schema": {
+            "const": "lma.catalogue/1"
+          },
+          "instance_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "revision": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "updated_at": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Unix seconds; unchanged when catalogue contents do not change."
+          },
+          "state": {
+            "enum": [
+              "current",
+              "stale",
+              "offline"
+            ]
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "schema",
+          "instance_id",
+          "revision",
+          "updated_at",
+          "state"
+        ]
+      },
       "ModelCapabilities": {
         "type": "object",
         "properties": {
@@ -2227,35 +2532,10 @@
             ]
           },
           "ready": {
-            "type": "object",
-            "properties": {
-              "assets_complete": {
-                "type": "boolean"
-              },
-              "runner_available": {
-                "type": "boolean"
-              },
-              "available": {
-                "type": "boolean"
-              },
-              "reason_codes": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "preflight_required": {
-                "const": true
-              }
-            },
-            "additionalProperties": false,
-            "required": [
-              "assets_complete",
-              "runner_available",
-              "available",
-              "reason_codes",
-              "preflight_required"
-            ]
+            "$ref": "#/components/schemas/ModelReadiness"
+          },
+          "publication": {
+            "$ref": "#/components/schemas/ModelPublication"
           },
           "input_schemas": {
             "type": "object",
@@ -2314,6 +2594,7 @@
           "operations",
           "tags",
           "ready",
+          "publication",
           "input_schemas",
           "parameter_schema",
           "saved_parameters",
@@ -2364,12 +2645,16 @@
             "items": {
               "$ref": "#/components/schemas/Model"
             }
+          },
+          "x_lma": {
+            "$ref": "#/components/schemas/CatalogueSnapshot"
           }
         },
         "additionalProperties": false,
         "required": [
           "object",
-          "data"
+          "data",
+          "x_lma"
         ]
       },
       "ImageRequest": {
@@ -3044,6 +3329,9 @@
             "type": "string",
             "minLength": 1
           },
+          "catalogue": {
+            "$ref": "#/components/schemas/CatalogueSnapshot"
+          },
           "models": {
             "type": "array",
             "items": {
@@ -3067,6 +3355,7 @@
         "required": [
           "schema",
           "instance_id",
+          "catalogue",
           "models",
           "limits",
           "profiles",

@@ -2,6 +2,7 @@
   "schema": "lma.sub2api-openai-design/1",
   "status": "design_only_not_runtime_support",
   "checked_at": "2026-11-01",
+  "design_updated_at": "2026-11-02",
   "lma_version": "0.3.11",
   "runtime_changed": false,
   "deployed_gateway_changed": false,
@@ -345,6 +346,10 @@
     {
       "id": "F09",
       "code": "existing_async_image_wrapper_not_full_lma_job_affinity"
+    },
+    {
+      "id": "F10",
+      "code": "native_model_inventory_includes_partial_assets_without_unified_publication_eligibility"
     }
   ],
   "operations": [
@@ -355,6 +360,90 @@
     "audio.generate",
     "mesh.generate"
   ],
+  "local_model_publication": {
+    "status": "design_only_not_runtime_support",
+    "trigger": "existing_api_service_enabled_no_second_per_modality_registration",
+    "operations": [
+      "text.generate",
+      "image.generate",
+      "video.generate",
+      "speech.synthesize",
+      "audio.generate",
+      "mesh.generate"
+    ],
+    "eligibility": [
+      "registered_download_or_import",
+      "complete_recipe_assets_and_required_preparations",
+      "valid_saved_parameters_or_defaults",
+      "integrated_selected_android_backend_and_runner"
+    ],
+    "loaded_required": false,
+    "phone_quality_or_endurance_test_required": false,
+    "runtime_state_independent_of_publication": true,
+    "exclude": [
+      "hf_search_only",
+      "partial_or_paused_incomplete_download",
+      "missing_components",
+      "unfinished_required_preparation_or_assembly",
+      "invalid_configuration",
+      "unsupported_backend",
+      "unregistered_files",
+      "standalone_dependency_components"
+    ],
+    "standalone_lora": "separate_registered_adapter_alias_not_generation_model",
+    "complete_user_saved_base_lora_variant": "eligible_with_own_stable_model_id",
+    "stable_identity": [
+      "instance_id",
+      "bundle_id",
+      "user_saved_complete_variant_id"
+    ],
+    "metadata": [
+      "operations",
+      "tags",
+      "ready",
+      "publication",
+      "input_schemas",
+      "parameter_schema",
+      "saved_parameters",
+      "evidence"
+    ],
+    "change_events": [
+      "download_or_import_complete",
+      "required_preparation_or_assembly_complete",
+      "saved_config_or_backend_change",
+      "deletion_or_invalidation",
+      "service_restart"
+    ],
+    "revision_policy": "persist_increment_only_on_substantive_change_request_overrides_do_not_change_defaults_or_revision",
+    "synchronization": {
+      "gateway_implementation_required": true,
+      "source": "authenticated_phone_capabilities_snapshot",
+      "destination": "atomic_account_registry_mapping_and_permission_filtered_model_list",
+      "preserve_user_aliases_and_access_controls": true,
+      "default_provider_catalogue_fallback": false,
+      "interval_seconds": 30,
+      "jitter_fraction": 0.2,
+      "failure_backoff_max_seconds": 300,
+      "connect_timeout_seconds": 3,
+      "read_timeout_seconds": 5,
+      "stale_after_seconds": 90,
+      "conditional_request": "If-None-Match",
+      "response_validator": "ETag",
+      "unchanged_status": 304,
+      "offline_or_stale": "last_known_entries_may_remain_visible_no_new_job_dispatch",
+      "first_fetch_failure_without_snapshot": 503,
+      "instance_change_or_malformed_response": "reject_without_partial_overwrite_or_automatic_rebind",
+      "client_etag": "hash_of_permission_filtered_visible_representation_not_raw_upstream_etag"
+    },
+    "idle_reads": "cached_metadata_only_no_weight_scan_engine_probe_or_model_load",
+    "secret_fields_never_exported": [
+      "credentials",
+      "absolute_local_paths",
+      "historical_prompts",
+      "reference_media_content"
+    ],
+    "example": "docs/proposals/sub2api-local-models.example.json"
+  },
   "initial_facade_limits": {
     "images": {
       "n_max": 1,
@@ -436,7 +525,8 @@
       "Last-Event-ID",
       "Range",
       "If-Range",
-      "Upload-Offset"
+      "Upload-Offset",
+      "If-None-Match"
     ],
     "response_endpoint_scoped": [
       "X-Request-ID",
@@ -446,7 +536,8 @@
       "Content-Length",
       "Content-Range",
       "Accept-Ranges",
-      "ETag"
+      "ETag",
+      "Cache-Control"
     ],
     "native_if_range_currently_supported": false,
     "request_authorization": "replace_with_upstream_account_key_never_forward_caller_key"
@@ -467,7 +558,15 @@
     "R13",
     "R14",
     "R15",
-    "R16"
+    "R16",
+    "R17",
+    "R18",
+    "R19",
+    "R20",
+    "R21",
+    "R22",
+    "R23",
+    "R24"
   ],
   "pending_implementation_ids": [
     "D01",
@@ -497,7 +596,15 @@
     "A17",
     "A18",
     "A19",
-    "A20"
+    "A20",
+    "A21",
+    "A22",
+    "A23",
+    "A24",
+    "A25",
+    "A26",
+    "A27",
+    "A28"
   ],
   "acceptance_executed": false,
   "existing_release_assertions_changed": false,

@@ -2,7 +2,7 @@
 
 [中文](SUB2API_OPENAI.md) · [Current API](API.en.md) · [Machine-readable profile](proposals/sub2api-openai-profile.json) · [OpenAPI 3.1 draft](proposals/sub2api-openai.openapi.json) · [Draft validation](proposals/sub2api-openai-validation.json) · [Maintenance record](releases/v0.3.11-sub2api-design.md)
 
-**Design only, checked 2026-11-01. This is not an implemented endpoint list.** The APK remains v0.3.11/code61. This change does not modify Android runtime code, the deployed Sub2API service, accounts, groups, billing, tags or release assets. The image/speech compatibility facade and gateway multimodal extensions remain unimplemented. The current working multimodal submission route is `POST /v1/jobs`; the proposed examples below require future implementation.
+**Design only, updated 2026-11-02. This is not an implemented endpoint list.** The APK remains v0.3.11/code61. This change does not modify Android runtime code, the deployed Sub2API service, accounts, groups, billing, tags or release assets. The image/speech compatibility facade and gateway multimodal extensions remain unimplemented. The current working multimodal submission route is `POST /v1/jobs`; the proposed examples below require future implementation.
 
 ## 1. Direction and execution boundary
 
@@ -22,7 +22,7 @@ Forwarding requires an already reachable phone. `127.0.0.1:8080` belongs to the 
 
 ## 2. Source audit
 
-The local deployment reference identifies Sub2API **v0.2.19**, published 2026-10-28. GitHub's latest-release query returned the same version during this review. The audited source is pinned to **`dece26153621959ccd7635814f4b2d08304e681a`**; all 15 downloaded source blobs matched its tree. Only public source and sanitized deployment metadata were reviewed. No deployment private directory, paid generation or live configuration change was needed. [Profile JSON](proposals/sub2api-openai-profile.json) records source identities and LMA file hashes. A deployment reference is not a fresh production-service acceptance test.
+The local deployment reference identifies Sub2API **v0.2.19**, published 2026-10-28. The 2026-11-01 GitHub latest-release query returned the same version. The audited source is pinned to **`dece26153621959ccd7635814f4b2d08304e681a`**; all 15 downloaded source blobs matched its tree. Only public source and sanitized deployment metadata were reviewed. No deployment private directory, paid generation or live configuration change was needed. [Profile JSON](proposals/sub2api-openai-profile.json) records source identities and LMA file hashes. A deployment reference is not a fresh production-service acceptance test.
 
 | ID | Source finding | Integration consequence |
 | --- | --- | --- |
@@ -32,9 +32,10 @@ The local deployment reference identifies Sub2API **v0.2.19**, published 2026-10
 | F04 | No generic `/v1/audio/speech` route; voice routes such as `/tts` are Grok-specific | Add API Key speech forwarding and binary responses |
 | F05 | Video create/status/content paths dispatch to Grok handlers | Ordinary OpenAI accounts cannot forward phone Wan/LTX; do not masquerade as Grok |
 | F06 | No LMA jobs/uploads/artifacts or music/mesh extension | Add bounded routes and owner mappings, not an arbitrary-target proxy |
-| F07 | `/v1/models` is built from account/group mappings and configuration | Not a live phone inventory; explicitly publish ready models and avoid default OpenAI names |
+| F07 | `/v1/models` is built from account/group mappings and configuration | Not a live phone inventory; implement automatic downloaded/configured catalogue sync without default OpenAI names |
 | F08 | Inspected request-header allowlist omits idempotency, event-resume and range headers | Define endpoint-specific header forwarding before claiming those behaviors survive the gateway |
 | F09 | An asynchronous image wrapper and failure reselection already exist | Some infrastructure is reusable; this does not establish durable LMA bindings, cancellation or recovery for all modalities |
+| F10 | Native LMA discovery includes text/multimodal bundles and some partial/prepared assets | Add unified publication eligibility, valid configuration and catalogue revisions; existing entries do not imply gateway sync |
 
 Pinned sources: [routes](https://github.com/Wei-Shaw/sub2api/blob/dece26153621959ccd7635814f4b2d08304e681a/backend/internal/server/routes/gateway.go), [image parsing/forwarding](https://github.com/Wei-Shaw/sub2api/blob/dece26153621959ccd7635814f4b2d08304e681a/backend/internal/service/openai_images.go), [Responses routing](https://github.com/Wei-Shaw/sub2api/blob/dece26153621959ccd7635814f4b2d08304e681a/backend/internal/pkg/openai_compat/upstream_capability.go), [model listing](https://github.com/Wei-Shaw/sub2api/blob/dece26153621959ccd7635814f4b2d08304e681a/backend/internal/handler/gateway_handler.go), [header allowlist](https://github.com/Wei-Shaw/sub2api/blob/dece26153621959ccd7635814f4b2d08304e681a/backend/internal/service/openai_gateway_service.go).
 
@@ -44,7 +45,7 @@ Compatibility is tested per declared endpoint, field, status code, content type 
 
 | ID | Client-facing gateway route | Phone route/execution | Contract and status |
 | --- | --- | --- | --- |
-| P01 | `GET /v1/models`, `GET /v1/models/{model}` | Model registration; new detail/capability information | Standard model objects; improve publishing and readiness checks |
+| P01 | `GET /v1/models`, `GET /v1/models/{model}` | Downloaded, valid local models; new detail/capability information | All-modality discovery; implement automatic publication, synchronization and independent readiness |
 | P02 | `POST /v1/chat/completions` | Same path and shared execution gate | Existing text subset; currently requires the App-selected text model; alias selection remains pending |
 | P03 | `POST /v1/images/generations` | New facade→`image.generate` | Proposed: synchronous `200`, `created` and `data[].b64_json` |
 | P04 | `POST /v1/images/edits` | New bounded input adapter→`image.generate` | Proposed: only models with actual editing support; bounded multipart required |
@@ -63,7 +64,7 @@ P03–P09 are design targets, **not new live routes**. They belong to one integr
 | --- | --- |
 | R01 | Model objects expose stable `id/object/created/owned_by`; `x_lma` contains task/foundation/format/content-source tags, installation state, input roles, parameter schema and stream capabilities. OpenAI-shaped timestamps use Unix seconds, not native milliseconds. |
 | R02 | Register `public_model → instance_id → bundle_id → operation`, with model/recipe versions and digests. Instance identity survives phone restart and changes after replacement/reset. An unchanged address is not an unchanged instance. Do not infer operations from names or dispatch by NSFW classification. |
-| R03 | Preserve Recommended, All/HF search and Local management, with equal-peer models. Publish only explicitly shared models with complete assets and a registered runner. Discovery, installation, preflight, real output and accepted quality remain separate. |
+| R03 | Preserve Recommended, All/HF search and Local management, with equal-peer models. Enabling the API authorizes automatic publication under R17–R24, without adding each modality again. Require complete assets, valid configuration and a registered runner. Discovery, installation, preflight, real output and quality remain separate. |
 | R04 | Current text requests require the App-selected model. Future selection by `model` must load the selected installed model inside the shared gate; never forward an unselected ID as if it already worked or trigger downloads. |
 | R05 | Merge each model's saved defaults with request overrides, normalize to its limits, disclose adjustments and freeze the result/schema version. Requests do not change saved settings. Preflight and submission share one resolver. |
 | R06 | Accept quality, voice, speed and related fields only when the adapter can implement them. Disclose size/step corrections; reject unsupported tools, masks, transparency, voices and streams instead of silently ignoring them. |
@@ -90,11 +91,40 @@ Image LoRA selection uses public `model` aliases in facade `lma.adapters` or asy
 
 Cache capability metadata by model/configuration revision and use lightweight job snapshots. Idle discovery must not repeatedly scan weights, load models or start a probe per candidate. Perform actual resource checks during explicit preflight and execution so the new API does not recreate idle UI stalls.
 
+Current [ApiHost.models()](../app/src/main/java/com/lma/app/ApiHost.java) already lists local text and multimodal bundles, but also includes some unfinished entries with reusable assets and lacks unified configuration filtering, standard `created`, catalogue revisions and Sub2API auto-sync. The rules below specify these remaining changes.
+
+### 4.1 Automatically publish existing local models
+
+“Broadcast” means authenticated discovery through **`GET /v1/models`**. **Downloaded, configured image, video, audio (speech/music) and 3D generation models must appear alongside text**, without first loading each in the App. The phone publishes its catalogue; Sub2API synchronizes it and exposes permitted aliases to each caller's group. This is an added integration requirement; the current APK and unmodified Sub2API do not complete this flow.
+
+| ID | Automatic publication requirement |
+| --- | --- |
+| R17 | Enabling the existing API automatically registers eligible local models for `text.generate / image.generate / video.generate / speech.synthesize / audio.generate / mesh.generate`. All modalities share one `data[]`, distinguished by task tags, beyond text or Recommended. No second per-modality registration is required. Stopping the service stops discovery. Never enable LAN/public listening or unsolicited network broadcasts automatically. |
+| R18 | Eligibility requires existing download/import registration, complete recipe-required weights/components/preparation outputs, valid saved parameters and an integrated selected Android backend/runner. Valid defaults count: users need not edit parameters, load or generate first. HF search results, partial/paused downloads, missing components, unfinished preparation/assembly and invalid configurations stay outside discovery, with reasons retained in Local management. |
+| R19 | Separate publication eligibility from runtime state. Unloaded models stay visible and load inside the shared queue on request. Busy or temporarily resource-limited entries stay visible with honest `ready.status / available / reason_codes` for queuing/rejection. Offline/stale phones are not ready. Missing phone-output/quality/endurance evidence alone does not block discovery, but flags remain false and callers explicitly supply `allow_unmeasured`. Final preflight checks actual files, resources and inputs; discovery does not guarantee request success. |
+| R20 | A phone instance/model/user-saved complete variant has a stable public ID; changes to context, dimensions, steps or voice do not rename it. `publication` identifies bundle/model/configuration revisions. Export only public parameter defaults/schema, never absolute local paths, historical prompts, reference-audio content or credentials. Request overrides neither modify defaults nor advance catalogue revisions; existing jobs retain frozen settings. Resolve alias collisions explicitly without merging different phones/models into a randomly scheduled endpoint. |
+| R21 | Completed download/import/preparation/assembly, saved configuration/backend changes, deletion/invalidation and service restart trigger lightweight snapshot rebuilding. Persist and increment `revision` only on substantive changes. Restart restores registered models without downloads. Removal hides future discovery entries while retaining original-instance job/idempotency/artifact bindings and history. If external file changes bypass registration events, pre-execution checks still reject missing files. |
+| R22 | Add a bounded Sub2API catalogue synchronizer using the upstream phone credential. Verify instance identity and the complete response before atomically updating that account's registry/mapping/group-visible list. Preserve user aliases and permissions; synchronization cannot widen access. Standard discovery and extension capabilities share one snapshot. Interrupted/malformed responses or changed instances cannot partially replace/erase records or fall back to a default OpenAI catalogue. Existing account mapping does not implement this automatically; gateway changes are required. |
+| R23 | Phone snapshots follow registration/configuration events; reads neither probe engines nor scan weights. Enabled gateway accounts synchronize every 30 seconds by default with ±20% jitter, failure backoff capped at 300 seconds and 3/5-second connect/read timeouts. Use `If-None-Match / ETag` and a bodyless 304; unchanged `revision / updated_at` stay stable. Mark stale after 90 seconds without confirmation and offline on confirmed connection failure. Last-known entries may remain visible, but new jobs are unavailable. First fetch without a snapshot fails with 503. Existing jobs only retry the original instance. Client ETags reflect the permission-filtered view and invalidate on access changes; never expose the upstream key. |
+| R24 | Preserve task/foundation/format and sourced NSFW/Uncensored tags without implying runtime/quality acceptance. Standalone LoRA/VAE/encoders are components, not generation entries; `adapters` can resolve a registered public LoRA alias through its separate component registry. A complete user-configured base-plus-compatible-LoRA variant may have its own model ID. Discovery never creates variants or downloads dependencies. Image-to-video, reference TTS and image-to-3D remain discoverable with required media in `input_schemas`. |
+
+| Local state | Listed in `/v1/models` | Request behavior |
+| --- | --- | --- |
+| Complete image/video/speech/music/mesh model, valid defaults, unloaded | Yes | Load inside the shared queue; check inputs/resources |
+| Valid configuration, busy or temporarily resource-limited | Yes, with busy/resource_limited state | Queue within actual capacity or reject explicitly |
+| Valid configuration without phone-output/quality acceptance | Yes, evidence stays false | Never silently enable `allow_unmeasured` |
+| Incomplete download/preparation, invalid config, unsupported backend, unregistered files | No | Explain in Local; no automatic download/conversion |
+| Standalone LoRA/VAE/encoder | No, dependency component | Full models may reference registered LoRA adapters |
+| Removed/invalidated model | No; gateway updates on next successful sync | Preserve old jobs/artifacts; reject new generation |
+| Gateway cannot currently reach the phone | Last-known entries may remain offline/stale | Reject new jobs; no off-device fallback |
+
+The [example catalogue JSON](proposals/sub2api-local-models.example.json) contains six peer text/image/video/speech/music/3D entries with saved parameters and unloaded state. **It is a proposed contract example, not installed-phone inventory or a measured response.** Illustrative aliases do not modify recommendations. Standard clients read `id/object/created/owned_by`; capability-aware clients use `x_lma.operations / tags / ready / publication`. Discovery, detail and capability responses must agree on parameters/state.
+
 ## 5. Image and speech examples
 
 These examples target the **future facade**. Names are illustrative aliases, not new catalogue/recommendation entries. `lma` is an extension transported through SDK `extra_body`. Explicit caller consent is required for `allow_unmeasured`; the gateway must not inject true automatically.
 
-This profile requires Idempotency-Key for non-idempotent generation, an explicit gateway requirement above the OpenAI subset, usable through SDK `extra_headers`. Do not promise universal SDK compatibility by changing only the address: actual parsing, parameter subsets and retries require A01–A20 acceptance.
+This profile requires Idempotency-Key for non-idempotent generation, an explicit gateway requirement above the OpenAI subset, usable through SDK `extra_headers`. Do not promise universal SDK compatibility by changing only the address: actual parsing, parameter subsets and retries require A01–A28 acceptance.
 
 ```python
 import os
@@ -199,11 +229,11 @@ Retryability depends on acceptance certainty, not status alone. Measure queue/lo
 
 | ID | Pending work | Acceptance |
 | --- | --- | --- |
-| D01 | LMA model details/capabilities/alias selection | Accurate readiness, schemas/tags and independent settings |
+| D01 | LMA capabilities, all-modality local publication, details and alias selection | Valid downloaded/configured entries appear unloaded; exclude incomplete models; consistent revisions, schemas/tags and independent settings |
 | D02 | Image/speech facade and edit inputs | Correct status/body/MIME; explicit unsupported fields/formats |
-| D03 | Generic Sub2API modality routes and model admission | Real local names accepted without GPT/Grok impersonation or Responses conversion |
+| D03 | Generic Sub2API modality routes, admission and atomic catalogue sync | Phone inventory/permissions determine discovery; real names work without default OpenAI fallback or implicit Responses conversion |
 | D04 | Bounded extensions and persistent instance/owner bindings | Video/music/mesh/input/cancel/retry/download close the loop |
-| D05 | Idempotency tombstones, timeout recovery, event resume and media headers | Lost connections do not duplicate work; range/long-job behavior is verifiable |
+| D05 | Idempotency tombstones, timeout recovery, catalogue ETags, event resume and media headers | No duplicate work; verifiable refresh/offline, range and long-job behavior |
 | D06 | Service UI, bilingual examples and program contracts | Accurate capability display and bounded protocol fixtures without full-model execution |
 
 ## 10. Numbered acceptance scenarios
@@ -230,5 +260,21 @@ Retryability depends on acceptance certainty, not status alone. Measure queue/lo
 | A18 | Stage events/HTTP audio consumption/genuine PCM | Distinct behaviors, no false token or Realtime claim |
 | A19 | Memory pressure/cancel/interruption/retry | Real failure retained; no off-device fallback or fictitious checkpoint resume |
 | A20 | SDK objects/gateway reselection/accounting | Real response parsing, no duplicate dispatch or invented usage |
+| A21 | Downloaded/configured image/video/speech/music/mesh plus text | All six operations share standard `data[]`; tags, IDs, defaults and details agree beyond Recommended |
+| A22 | Unloaded/busy/resource-limited models and missing quality evidence | Keep entries; separate readiness/evidence; load/queue honestly without invented availability |
+| A23 | Partial download, missing component, invalid config, unfinished preparation, standalone LoRA | Exclude generation entries; resolve adapters separately; no inference/download side effects |
+| A24 | Settings/overrides/install/preparation/removal/restart | Revise on substantive changes with stable IDs; preserve defaults and old jobs/artifacts |
+| A25 | Catalogue sync, interrupted/malformed response, alias/instance conflict | Atomic account/mapping/group changes; no widened access, partial replacement or default cloud models |
+| A26 | 30-second sync, 304, over 90 seconds, offline/reconnect | Conditional fetch and honest stale/offline states; new jobs respect availability, recover only the same instance |
+| A27 | Two caller scopes, private config, ETags and filtering | Only authorized models; ETags follow visible scope; no keys, paths, prompts/reference media exposed |
+| A28 | Repeated discovery/capability reads on an unchanged idle phone | Cached reads; no model load, weight scans, probes or downloads; preserve idle responsiveness |
 
 These scenarios are **pending implementation acceptance**, not fresh additions to the existing 68 API checks. This turn covers source review, contracts and file consistency only. Preserve the [v0.3.11](releases/v0.3.11.md) Wan quality limits, incomplete TRELLIS/Pixal results and unverified sustained background inference.
+
+## 11. Reproduce design validation
+
+The [design validator](../tools/validate_sub2api_design.py) checks schemas, examples, bilingual IDs and source identity without calling a phone, gateway or model. Save the [official OpenAPI 3.1 meta-schema](https://spec.openapis.org/oas/3.1/schema/2022-10-07) at the cache path below; the environment requires `jsonschema`. Optional `--upstream-cache` verifies previously saved public source files only.
+
+```powershell
+python tools/validate_sub2api_design.py --meta-schema build/research/openapi-3.1-schema-2022-10-07.json
+```

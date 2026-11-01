@@ -1,5 +1,14 @@
 # Changelog / 更新记录
 
+## 2026-11-02 · 本地多模态模型广播补充 / Local catalogue design addition
+
+- 将已下载、已配置的生图／生视频／语音／音乐／3D 与生文一起自动加入 API 模型目录，补充 R17–R24 和 A21–A28。未加载仍公布；部分资产、无效配置和独立依赖组件不伪装为可调用模型。Downloaded/configured models are peers; publication and runtime readiness remain separate.
+- 定义 Sub2API 目录原子同步、稳定别名与模型配置修订、安装／删除刷新、权限过滤、ETag/304、过期／离线处理和无空闲推理／扫描要求。无自动下载、模型试跑或跨设备回退。新增[六类示例](docs/proposals/sub2api-local-models.example.json)和[可复核校验工具](tools/validate_sub2api_design.py)。
+- 通过官方 OpenAPI 3.1 元 schema、30 组结构、55 个正反例与 15 个固定上游 blob 身份复核。[校验记录](docs/proposals/sub2api-openai-validation.json)仅是协议设计验证，不是新端点、Sub2API 联调或手机模型验收。
+- 同步双语 README、API／设计文档和[版本维护说明](docs/releases/v0.3.11-sub2api-design.md)。本轮不修改 APK／在线网关，不新增运行功能或覆盖现有正式 Release 附件。Implementation remains D01–D06; full acceptance is A01–A28.
+
+- 修正中英文 API 示例：Python／PowerShell 明确选择已加载的文本模型，避免把目录第一项的图片／视频模型发给聊天入口；仅完成示例语法检查，没有发起模型请求。Current chat examples select loaded text explicitly; syntax checks do not execute inference.
+
 ## 2026-11-01 · Sub2API / OpenAI 协议设计维护 / Protocol design only
 
 - 核对 Sub2API v0.2.19 固定提交及 15 个公开源码文件，记录聊天→Responses、图片名称家族校验、语音／视频专用路由、模型发现与头部转发限制。Pinned-source review; no live account, group, billing or gateway changes.

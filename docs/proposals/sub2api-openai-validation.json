@@ -1,16 +1,17 @@
 {
   "scope": "design_schema_and_traceability_only_not_endpoint_or_model_acceptance",
   "official_openapi_3_1_schema_valid": true,
-  "component_schemas_valid": 27,
-  "resolved_internal_refs": 327,
+  "component_schemas_valid": 30,
+  "resolved_internal_refs": 331,
   "unique_operations": 28,
   "paths": 21,
-  "positive_negative_schema_examples": 23,
+  "positive_negative_schema_examples": 55,
+  "catalogue_example_models": 6,
   "upstream_blobs_verified": 15,
   "bilingual_ids_aligned": true,
   "native_sources_unchanged": true,
   "new_runtime_endpoints_tested": false,
-  "checked_at": "2026-11-01",
+  "checked_at": "2026-11-02",
   "validator": "jsonschema 4.26.0",
   "official_meta_schema": {
     "url": "https://spec.openapis.org/oas/3.1/schema/2022-10-07",
@@ -19,19 +20,304 @@
   "inputs": [
     {
       "path": "docs/proposals/sub2api-openai.openapi.json",
-      "sha256": "e25952b111be7cd9fd00e301527a367efee7b4d3022a0dab8bc3c93f978ee8f0"
+      "sha256": "bc9ee2c6864a0c7ac9c7acad6deec396862f44128ac600e427c550864971b7e7"
     },
     {
       "path": "docs/proposals/sub2api-openai-profile.json",
-      "sha256": "bb159e9fd97db67510485ef33ce85f3f1f9a97a370eb3a178c8b8ddba41caf18"
+      "sha256": "05e26152f93256621b3a9009758e614d744530cb5a4b2c89c2de40dcdfde239a"
+    },
+    {
+      "path": "docs/proposals/sub2api-local-models.example.json",
+      "sha256": "8a9e09b0c7f0fa602dda8f4b447e4da488157c971b9745bda5b4fd7dd17dade9"
     },
     {
       "path": "docs/SUB2API_OPENAI.md",
-      "sha256": "36bd0516651bef4415ce5586f09d4d128707cf2c5f0fc5bd94c6b0d08883f208"
+      "sha256": "bfe3c9cf2516a0f1ae8777acbb8abd28f6fc2bb3d315f4540214f5e2e984f917"
     },
     {
       "path": "docs/SUB2API_OPENAI.en.md",
-      "sha256": "390d693a85b794116986e97f334813571912a3a6fd736766e1c3b0a2ba8aaa22"
+      "sha256": "f633de8009991b459827e814d38fc1e15555c9c1c23dc25165c3e38b2e7dbe0c"
+    },
+    {
+      "path": "tools/validate_sub2api_design.py",
+      "sha256": "5ee215d5072f0677fd04804ad3413e05b7e24febe6938e529566d072bc1cd9c4"
+    }
+  ],
+  "cases": [
+    {
+      "case": "catalogue.six_unloaded_peers",
+      "expected": "valid",
+      "passed": true
+    },
+    {
+      "case": "catalogue.text.generate",
+      "expected": "valid",
+      "passed": true
+    },
+    {
+      "case": "catalogue.image.generate",
+      "expected": "valid",
+      "passed": true
+    },
+    {
+      "case": "catalogue.video.generate",
+      "expected": "valid",
+      "passed": true
+    },
+    {
+      "case": "catalogue.speech.synthesize",
+      "expected": "valid",
+      "passed": true
+    },
+    {
+      "case": "catalogue.audio.generate",
+      "expected": "valid",
+      "passed": true
+    },
+    {
+      "case": "catalogue.mesh.generate",
+      "expected": "valid",
+      "passed": true
+    },
+    {
+      "case": "catalogue.state_loaded_true",
+      "expected": "valid",
+      "passed": true
+    },
+    {
+      "case": "catalogue.state_busy_true",
+      "expected": "valid",
+      "passed": true
+    },
+    {
+      "case": "catalogue.state_busy_false",
+      "expected": "valid",
+      "passed": true
+    },
+    {
+      "case": "catalogue.state_resource_limited_false",
+      "expected": "valid",
+      "passed": true
+    },
+    {
+      "case": "catalogue.state_offline_false",
+      "expected": "valid",
+      "passed": true
+    },
+    {
+      "case": "catalogue.state_stale_false",
+      "expected": "valid",
+      "passed": true
+    },
+    {
+      "case": "catalogue.exclude_assets_complete",
+      "expected": "invalid",
+      "passed": true
+    },
+    {
+      "case": "catalogue.exclude_runner_available",
+      "expected": "invalid",
+      "passed": true
+    },
+    {
+      "case": "catalogue.exclude_configuration_valid",
+      "expected": "invalid",
+      "passed": true
+    },
+    {
+      "case": "catalogue.exclude_ineligible",
+      "expected": "invalid",
+      "passed": true
+    },
+    {
+      "case": "catalogue.exclude_unregistered",
+      "expected": "invalid",
+      "passed": true
+    },
+    {
+      "case": "catalogue.reject_false_availability_offline",
+      "expected": "invalid",
+      "passed": true
+    },
+    {
+      "case": "catalogue.reject_false_availability_stale",
+      "expected": "invalid",
+      "passed": true
+    },
+    {
+      "case": "catalogue.reject_false_availability_resource_limited",
+      "expected": "invalid",
+      "passed": true
+    },
+    {
+      "case": "catalogue.reject_loaded_contradiction_unloaded",
+      "expected": "invalid",
+      "passed": true
+    },
+    {
+      "case": "catalogue.reject_loaded_contradiction_loaded",
+      "expected": "invalid",
+      "passed": true
+    },
+    {
+      "case": "catalogue.reject_standalone_lora_generation",
+      "expected": "invalid",
+      "passed": true
+    },
+    {
+      "case": "catalogue.require_snapshot_identity",
+      "expected": "invalid",
+      "passed": true
+    },
+    {
+      "case": "capabilities.six_models_same_snapshot",
+      "expected": "valid",
+      "passed": true
+    },
+    {
+      "case": "image.request",
+      "expected": "valid",
+      "passed": true
+    },
+    {
+      "case": "image.unsupported_n",
+      "expected": "invalid",
+      "passed": true
+    },
+    {
+      "case": "image.unsupported_stream",
+      "expected": "invalid",
+      "passed": true
+    },
+    {
+      "case": "image.unsupported_output_format",
+      "expected": "invalid",
+      "passed": true
+    },
+    {
+      "case": "image.response",
+      "expected": "valid",
+      "passed": true
+    },
+    {
+      "case": "image.no_job_as_response",
+      "expected": "invalid",
+      "passed": true
+    },
+    {
+      "case": "speech.wav_shape",
+      "expected": "valid",
+      "passed": true
+    },
+    {
+      "case": "speech.default_mp3_shape_not_runtime_support",
+      "expected": "valid",
+      "passed": true
+    },
+    {
+      "case": "speech.missing_input",
+      "expected": "invalid",
+      "passed": true
+    },
+    {
+      "case": "job.text.generate",
+      "expected": "valid",
+      "passed": true
+    },
+    {
+      "case": "job.image.generate",
+      "expected": "valid",
+      "passed": true
+    },
+    {
+      "case": "job.video.generate",
+      "expected": "valid",
+      "passed": true
+    },
+    {
+      "case": "job.speech.synthesize",
+      "expected": "valid",
+      "passed": true
+    },
+    {
+      "case": "job.audio.generate",
+      "expected": "valid",
+      "passed": true
+    },
+    {
+      "case": "job.mesh.generate",
+      "expected": "valid",
+      "passed": true
+    },
+    {
+      "case": "job.image_only_mesh_no_dummy_prompt",
+      "expected": "valid",
+      "passed": true
+    },
+    {
+      "case": "job.reject_internal_bundle_id",
+      "expected": "invalid",
+      "passed": true
+    },
+    {
+      "case": "job.reject_unknown_operation",
+      "expected": "invalid",
+      "passed": true
+    },
+    {
+      "case": "upload.with_destination",
+      "expected": "valid",
+      "passed": true
+    },
+    {
+      "case": "upload.require_destination",
+      "expected": "invalid",
+      "passed": true
+    },
+    {
+      "case": "upload.limit",
+      "expected": "invalid",
+      "passed": true
+    },
+    {
+      "case": "error.envelope",
+      "expected": "valid",
+      "passed": true
+    },
+    {
+      "case": "error.detail",
+      "expected": "valid",
+      "passed": true
+    },
+    {
+      "case": "error.no_bare_detail",
+      "expected": "invalid",
+      "passed": true
+    },
+    {
+      "case": "job.state_submitting",
+      "expected": "valid",
+      "passed": true
+    },
+    {
+      "case": "job.state_acceptance_unknown",
+      "expected": "valid",
+      "passed": true
+    },
+    {
+      "case": "job.state_cancel_pending",
+      "expected": "valid",
+      "passed": true
+    },
+    {
+      "case": "job.state_running",
+      "expected": "valid",
+      "passed": true
+    },
+    {
+      "case": "job.state_failed",
+      "expected": "valid",
+      "passed": true
     }
   ]
 }

@@ -1,6 +1,6 @@
 # LMA 文档 / Documentation
 
-**Sub2API／OpenAI 转发设计，尚未实现 / Design, not implemented:** [中文规范](SUB2API_OPENAI.md) · [English contract](SUB2API_OPENAI.en.md) · [Profile JSON](proposals/sub2api-openai-profile.json) · [OpenAPI 3.1](proposals/sub2api-openai.openapi.json) · [维护记录 / Maintenance](releases/v0.3.11-sub2api-design.md)。同手机执行、标准图片／语音与多模态异步扩展、模型能力、归属绑定、幂等与 20 项待验收场景。
+**Sub2API／OpenAI 转发设计，尚未实现 / Design, not implemented:** [中文规范](SUB2API_OPENAI.md) · [English contract](SUB2API_OPENAI.en.md) · [Profile JSON](proposals/sub2api-openai-profile.json) · [OpenAPI 3.1](proposals/sub2api-openai.openapi.json) · [维护记录 / Maintenance](releases/v0.3.11-sub2api-design.md)。同手机执行、标准图片／语音与多模态异步扩展、模型能力、归属绑定、幂等与 28 项待验收场景。
 
 **v0.3.11 / code61：** [手机模型修复与真实输出](ON_DEVICE_MODEL_REPAIR.md) / [English](ON_DEVICE_MODEL_REPAIR.en.md) · [完整实现](IMPLEMENTATION_V0311.md) / [English](IMPLEMENTATION_V0311.en.md) · [Release](releases/v0.3.11.md)。
 
@@ -24,6 +24,8 @@
 
 - [社区生图 / 生视频与 NSFW 标记](COMMUNITY_MODELS.md) · [English](COMMUNITY_MODELS.en.md)：44 个新增版本、来源 / 许可 / 兼容边界、操作及截图。
 - README 已恢复详细正文：[48 个使用场景](../README.md#use-cases)、[4 组 API 示例](../README.md#api-examples)、[18 组案例与失败](../README.md#case-studies)、[当前及历史测试覆盖](../README.md#verification)；[English scenarios](../README.en.md#use-cases) / [cases](../README.en.md#case-studies)。[本次完整性修复 / Repair notes](releases/v0.3.1-readme.md)。
+
+**本地目录自动发布 / Automatic local publication (design):** [R17–R24](SUB2API_OPENAI.md#41-本地模型自动加入广播目录) · [English](SUB2API_OPENAI.en.md#41-automatically-publish-existing-local-models) · [六类模型示例 / Six-modality example](proposals/sub2api-local-models.example.json)。已下载、有效配置、未加载可见；手机与 Sub2API 同步仍待开发。
 
 ## 使用与基座 / Usage and foundation
 
