@@ -73,6 +73,17 @@ module.exports=async function(page,checked,overflow,output,capture=async()=>{}) 
     assert.equal((await commands()).length,start+1);checked('Local content management does not auto-download a different model');
     await page.locator('#modelList [data-bundle]').first().scrollIntoViewIfNeeded();
     await overflow(page,'Local community models');await capture('05-community-local.png');
+    const otherSettings=await page.evaluate(video=>JSON.stringify(window.__fixture.bundles.filter(b=>b.id!==video).map(b=>b.config)),video);
+    await page.evaluate(({video,field})=>{const b=window.__fixture.bundles.find(b=>b.id===video);b.parameterSchema=JSON.parse(JSON.stringify(b.manifest.parameters));b.parameterSchema.fields.executionBackend=field;b.config.values.executionBackend='vulkan';window.LMA.receive(window.__fixture);},{video,field:{type:'enum',label:'运行后端（CPU 兼容 / Vulkan 加速）',default:'vulkan',values:['cpu','vulkan']}});
+    await page.locator('[data-action="bundleInfo"][data-id="'+video+'"]').click();await page.locator('#modal [data-action="bundleSettings"]').click();
+    await page.selectOption('[data-bundle-field="executionBackend"]',{label:'cpu'});
+    await page.locator('#bundleSettingsForm [type="submit"]').click();await page.waitForFunction(()=>document.getElementById('modalBackdrop').hidden);
+    assert.equal(await page.evaluate(video=>window.__fixture.bundles.find(b=>b.id===video).config.values.executionBackend,video),'cpu');checked('Community Wan variants reuse the same per-model CPU selector');
+    assert.equal(await page.evaluate(video=>JSON.stringify(window.__fixture.bundles.filter(b=>b.id!==video).map(b=>b.config)),video),otherSettings);checked('Backend selection leaves every other model setting untouched');
+    assert.equal((await commands()).length,start+1);checked('CPU backend selection neither duplicates the bundle nor downloads weights');
+    await page.locator('[data-action="bundleInfo"][data-id="'+video+'"]').click();await page.locator('#modal [data-action="bundleSettings"]').click();
+    await page.locator('[data-bundle-field="executionBackend"]').scrollIntoViewIfNeeded();
+    await overflow(page,'Local video CPU compatibility selector');await capture('06-video-cpu-settings.png');await page.keyboard.press('Escape');
     await page.setViewportSize({width:320,height:720});await overflow(page,'320px content filters and cards');
     await page.setViewportSize({width:375,height:812});
   } finally {

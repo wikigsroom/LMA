@@ -1,6 +1,7 @@
 #include "../worker_common.hpp"
 #include "trellis_run.h"
 using namespace lma_worker;
+void lma_mesh_stage(const char* stage){event({{"event","stage"},{"stage",stage}});}
 int main(int argc, char** argv) {
  if(argc == 2 && !std::strcmp(argv[1], "--info")) {
    std::puts("{\"engine\":\"trellis_native\",\"backend\":\"cpu\",\"pipelines\":[\"trellis2\",\"pixal3d\"],\"modelInferenceTested\":false,\"modelDownloads\":false}");
@@ -10,6 +11,7 @@ int main(int argc, char** argv) {
   initialize(); require(argc==2,"Supply one private request"); auto value=request(argv[1]);
   require(value.at("type")=="mesh.generate","Unsupported 3D task"); std::string pipeline=value.at("pipeline");
   require(pipeline=="trellis2"||pipeline=="pixal3d","Unsupported 3D pipeline");
+  for(auto it=value.at("components").begin();it!=value.at("components").end();++it) component(value,it.key().c_str());
   auto params=value.at("parameters"); trellis::TrellisParams p; p.image=regular(value,"referenceImage");
   p.models=value.at("workspace"); p.output=value.at("output");
   require(std::filesystem::path(p.models).is_absolute() && std::filesystem::is_directory(p.models) &&

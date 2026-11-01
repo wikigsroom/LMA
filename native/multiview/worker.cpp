@@ -15,6 +15,7 @@ int main(int argc,char**argv) {
  try {
   initialize();require(argc==2,"Supply a private request");auto v=request(argv[1]);
   require(v.at("type")=="mesh.generate" && v.at("pipeline")=="pixal3d_mv","Unsupported multiview task");
+  for(auto it=v.at("components").begin();it!=v.at("components").end();++it) component(v,it.key().c_str());
   auto params=v.at("parameters");trellis::TrellisParams p;
   p.models=v.at("workspace");p.output=v.at("output");p.views=v.at("viewsDirectory");
   require(std::filesystem::path(p.models).is_absolute()&&std::filesystem::is_directory(p.models),"Invalid model workspace");
@@ -26,8 +27,8 @@ int main(int argc,char**argv) {
   p.seed=uint32_t(integer(params,"seed",1234,1,2147483647));p.gss=p.gsh=number(params,"guidance",7.5f,0,15);
   selected_steps=integer(params,"steps",12,1,50);selected_faces=integer(params,"faces",30000,1000,150000);
   const std::vector<std::string> names={"00_front.png","01_right.png","02_back.png","03_left.png"};
-  for(const auto& name:names) {auto f=std::filesystem::path(p.views)/name;
-    require(std::filesystem::is_regular_file(f)&&!std::filesystem::is_symlink(f)&&std::filesystem::file_size(f)<=16*1024*1024,"Missing or oversized view");
+  for(const auto& name:names) {auto f=std::filesystem::path(view(v,name.c_str()));
+    require(std::filesystem::is_regular_file(f)&&std::filesystem::file_size(f)<=16*1024*1024,"Missing or oversized view");
     std::ifstream input(f,std::ios::binary);unsigned char h[29]{};input.read(reinterpret_cast<char*>(h),29);
     const unsigned char signature[]={137,80,78,71,13,10,26,10};
     require(input.gcount()==29&&std::memcmp(h,signature,8)==0&&h[8]==0&&h[9]==0&&h[10]==0&&h[11]==13&&std::memcmp(h+12,"IHDR",4)==0,"Each view must be a PNG");

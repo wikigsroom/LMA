@@ -1,5 +1,7 @@
 # Per-model settings
 
+**v0.3.11:** Installed Wan 1.3B GPU bundles expose per-model `executionBackend`: choose `cpu` or `vulkan` in Local settings. Defaults remain Vulkan; saved choices and frozen requests are independent and CPU reuses the same assets. [Details and phone results](ON_DEVICE_MODEL_REPAIR.en.md).
+
 dev.33 adds named numeric suggestions. Voice names/counts come from the exact local file; users can select a name or edit the ID, with actual/recipe clamping. Tasks/API remain numeric; unknown metadata has a disclosed recipe fallback. See [speech parameter design](SPEECH_SELECTION.en.md).
 
 [中文](MODEL_SETTINGS.md) · [User guide](USER_GUIDE.en.md) · [Documentation](README.md)

@@ -1,0 +1,487 @@
+{
+  "schema": "lma.complete-program-release/1",
+  "version": "0.3.11",
+  "validation_mode": "program_only",
+  "sources": {
+    "community.json": {
+      "source": "build/community-tests/results.json",
+      "bytes": 15988,
+      "sha256": "0b1793279d802b7883aecc69ea86df43778e67ebfcb53f77359de84bf90dbc5a"
+    },
+    "expansion.json": {
+      "source": "build/expansion-tests/results.json",
+      "bytes": 15279,
+      "sha256": "5bd2bebafc793082b4021e7ab7366e3015f9c39b71c077450458f768c1d6a851"
+    },
+    "spatial.json": {
+      "source": "build/spatial-tests/results.json",
+      "bytes": 20037,
+      "sha256": "ef1a58e9fe62fca337c6b2c4bdfab0f1c85674a8fb4c0fba5ec1410d363e8c1a"
+    },
+    "spatial-graphs.json": {
+      "source": "build/spatial-shape-tests/graph-results.json",
+      "bytes": 7574,
+      "sha256": "6a787cabde847d0a1724b248cc337aae3eb28e1c977dc4b7a653dc87a2981624"
+    },
+    "spatial-sparse.json": {
+      "source": "build/spatial-sparse-tests/results.json",
+      "bytes": 14909,
+      "sha256": "f7cccb2ed3facfafa06b7ceab2166e87315be65131b356ff0481063823d1d19f"
+    },
+    "spatial-android.json": {
+      "source": "build/spatial-build-info.json",
+      "bytes": 67297,
+      "sha256": "a26c5c008b163d091662d9b5609947b63ad4791a962ddb3b4cfac75c291d1608"
+    },
+    "shape.json": {
+      "source": "build/shape-tests/results.json",
+      "bytes": 13450,
+      "sha256": "83c2fcd99bb34b5ab89aa62a6313bcee2295ba2a80c1f05f090e563ccb02e3f1"
+    },
+    "shape-android.json": {
+      "source": "build/shape-build-info.json",
+      "bytes": 7180,
+      "sha256": "f567aad17de92af49172b96f484ebfe1c3fcb918378071a3a4c0066a6a5148e7"
+    },
+    "multiview.json": {
+      "source": "build/multiview-tests/results.json",
+      "bytes": 7374,
+      "sha256": "c18c32c3a24424dfe946396d5b27673d2b0f72221eca38557ca205b52be2cc8a"
+    },
+    "multiview-android.json": {
+      "source": "build/multiview-build-info.json",
+      "bytes": 1394,
+      "sha256": "ce71c2403739b6e1a5e06d01f21977a381bee8a675f4dcc76627bcd6cdcb1e22"
+    },
+    "speech-extra-android.json": {
+      "source": "build/speech_extra-build-info.json",
+      "bytes": 1621,
+      "sha256": "0367304c7cdd0f5859e77c7b81e0c7ae10aece4de1c841680e1c73d77088095d"
+    },
+    "mesh-android.json": {
+      "source": "build/mesh-build-info.json",
+      "bytes": 1378,
+      "sha256": "67d60507251428016d30af6416d75368ca9568801cc04bb71b90c61c841b9d36"
+    },
+    "tts-android.json": {
+      "source": "build/tts-build-info.json",
+      "bytes": 1950,
+      "sha256": "b312e1d5d0af6da739698f8003703462fc265434810e3a4bf964e01d8b911c96"
+    },
+    "build.json": {
+      "source": "dist/build-info.json",
+      "bytes": 148909,
+      "sha256": "df6f78d2d012c001344fe04e9c48fd7b4a31142a8410df2480e6d499bc6d9f58"
+    },
+    "package.json": {
+      "source": "build/package-verification.json",
+      "bytes": 21443,
+      "sha256": "0c3bf80f1195c068e137899d75d736d69daa795185a1bc13e359a49cbe11c4cf"
+    },
+    "foundation.json": {
+      "source": "build/foundation-tests/results.json",
+      "bytes": 11588,
+      "sha256": "d478ca6960564ac66023ab6e34ce802ca8ee6b8f3dbc113511725089c2171751"
+    },
+    "backend.json": {
+      "source": "build/backend-tests/results.json",
+      "bytes": 26908,
+      "sha256": "153e2ff516f4d729c8756a84161f7238a6abe2d2394b21cbca45e7afc3453170"
+    },
+    "bundle-pause.json": {
+      "source": "build/bundle-pause-tests/results.json",
+      "bytes": 10162,
+      "sha256": "8b33ac233b27cf83e3fa0ffc9c28fc0e79ae9770a5edd5be95c23b86095e8558"
+    },
+    "document-input.json": {
+      "source": "build/document-input-tests/results.json",
+      "bytes": 10553,
+      "sha256": "3e1a570e988d540ffff787c8da3c0bfc5afb0bb54258cd5b85bf1bcfac9a3153"
+    },
+    "api.json": {
+      "source": "build/api-tests/results.json",
+      "bytes": 14139,
+      "sha256": "c8cb99361ce6e6e81674eddffc3135eb5ec88a7f0c38566e2d99bf789c395cb6"
+    },
+    "workbench.json": {
+      "source": "build/workbench-tests/results.json",
+      "bytes": 12642,
+      "sha256": "5b19591d4d973717b1f4505025c37e6b02275d4aa258f8336bec5ac1f0ab1d0d"
+    },
+    "recovery.json": {
+      "source": "build/recovery-tests/results.json",
+      "bytes": 13690,
+      "sha256": "55eab64ab77d312836e6b86f592edc98b629872b7ee60662953ea829b94c3df5"
+    },
+    "inputs.json": {
+      "source": "build/input-tests/results.json",
+      "bytes": 14363,
+      "sha256": "c032bbdd78554910a5df1d0038b01f0e5434a2aafbac9c7b9c22238a948064cd"
+    },
+    "text.json": {
+      "source": "build/text-tests/results.json",
+      "bytes": 10846,
+      "sha256": "ce563526fd51bab439ec65551ddacf0b0ea620a7da9d75257c897e2a70d1587d"
+    },
+    "migration.json": {
+      "source": "build/migration-tests/results.json",
+      "bytes": 18216,
+      "sha256": "d282c51e1513e105de3bb29a5134d2b230dfce9c6605b8904a0c48d5704e3315"
+    },
+    "scheduler.json": {
+      "source": "build/scheduler-tests/results.json",
+      "bytes": 19029,
+      "sha256": "ea569dba030082d35e8206a43a00b586fbeff371524158dbcd4c1f6d91e08c4d"
+    },
+    "preparations.json": {
+      "source": "build/preparation-tests/results.json",
+      "bytes": 10486,
+      "sha256": "302a69e2e75cfc953cd918513d3f4b818495c59647b9f0286dee307b5607f220"
+    },
+    "assemblies.json": {
+      "source": "build/assembly-tests/results.json",
+      "bytes": 10588,
+      "sha256": "f9c7bacd34d2e5e749b9f2f3f4403f458254ade64f931dd220e62aa2293a6fda"
+    },
+    "diffusion.json": {
+      "source": "build/diffusion-tests/results.json",
+      "bytes": 11596,
+      "sha256": "4724cefebb10e02cc7e1eb33886d742bd2cdaee7e06a5774854bc46949da2dfb"
+    },
+    "mnn.json": {
+      "source": "build/mnn-tests/results.json",
+      "bytes": 12131,
+      "sha256": "065f8f81a7ba05a8155548adab390f496e8e308c496f6cf7482a5e238e80a910"
+    },
+    "sana-sprint.json": {
+      "source": "build/sana-sprint-tests/results.json",
+      "bytes": 12590,
+      "sha256": "36f1c7b32df66f1f5a65eaa952e8855438b06a9c9b7c52ad1bcba913b919f0e4"
+    },
+    "mnn-android.json": {
+      "source": "build/mnn-build-info.json",
+      "bytes": 2272,
+      "sha256": "c326d3314d3b4bb42ec811eb0c87eb884ec67b4ae4882a2edcd4942ccc520e8a"
+    },
+    "hub.json": {
+      "source": "build/hub-tests/results.json",
+      "bytes": 22353,
+      "sha256": "00426b1ba86896fcfe88d09f7ac839e01350e72234ed0cb00e1cb6199cda5df1"
+    },
+    "recipe-suggestions.json": {
+      "source": "build/recipe-suggestion-tests/results.json",
+      "bytes": 18118,
+      "sha256": "9093864b91d97b394e5247a69caf2966b74173258983e40c6177f7915dc2d406"
+    },
+    "speech-voices.json": {
+      "source": "build/speech-voice-tests/results.json",
+      "bytes": 11505,
+      "sha256": "654e2b31619716e4805b52544836a6b1df77ad9d43389a16fcdee6486aa94cf5"
+    },
+    "ui.json": {
+      "source": "build/ui-qa/results.json",
+      "bytes": 88809,
+      "sha256": "5b9a862eb96b186d6a711fc7bf93869a3bbbc46eacfd09b810e39768b384d1f9"
+    },
+    "lint.json": {
+      "source": "build/android-lint/results.json",
+      "bytes": 28053,
+      "sha256": "69c18127ce891fe1fe209ea60349deb72773eab4b7389e524c476d5fbed3884f"
+    },
+    "ltx-official.json": {
+      "source": "build/ltx098-official-tests/results.json",
+      "bytes": 21875,
+      "sha256": "d0a9cf3b6654968e22b0dbd0fd6b9b56f073172f8947a8369476a52b0b407369"
+    },
+    "ltx-multiscale-app.json": {
+      "source": "build/ltx098-multiscale-app-tests/results.json",
+      "bytes": 125359,
+      "sha256": "92ed3c9845dbe7ad9652eacbb0aff45330433dfee33035bf1011f4d35b6511a2"
+    },
+    "ltx-single-scale-app.json": {
+      "source": "build/ltx098-app-tests/results.json",
+      "bytes": 93836,
+      "sha256": "fac388e6f967fc7d501959b8519f4066f1023c7381d198a4db7c1066f2c26d2a"
+    },
+    "ltx-android.json": {
+      "source": "build/ltx098-app-build-info.json",
+      "bytes": 13687,
+      "sha256": "26e80ced409cc2620cae01244cad68f081dfbd2f385667bf6ac0289c43b6c024"
+    },
+    "ui-performance.json": {
+      "source": "build/device-tests/ui-performance.json",
+      "bytes": 2263,
+      "sha256": "80d6bfb3fc5276cd5c6edc5ac42faf22a0d898d02d2999208535e2a04bf616bf"
+    },
+    "material.json": {
+      "source": "build/material-tests/results.json",
+      "bytes": 4486,
+      "sha256": "8f5907a36793dc8aede282e296b56f66ff92beea2d9cea6fc1d4be07359d7b6b"
+    },
+    "vision-android.json": {
+      "source": "build/vision-build-info.json",
+      "bytes": 6167,
+      "sha256": "3a9ec8af4611ba1a39b81bfce5405829a2a0795006acf5fe766ad393fe53a765"
+    },
+    "adaptation-audit-checks.json": {
+      "source": "build/adaptation-audit-tests/results.json",
+      "bytes": 1817,
+      "sha256": "bb81392d70e685e6f5f984fb6f97c0c347040d365f912c58c69c07e822fee9e6"
+    },
+    "portable-sparse-models.json": {
+      "source": "build/portable-sparse-model-tests/results.json",
+      "bytes": 14887,
+      "sha256": "1c0ffa416688dc8a1b6c964cf1a7d0bb816b07718c1968a25c4050dee58e8f94"
+    },
+    "cascade.json": {
+      "source": "build/cascade-tests/results.json",
+      "bytes": 10844,
+      "sha256": "63c08466cb25e1346c0e540e04031be69c0f7c13219ffc1a2683ad7cc818786b"
+    },
+    "ultratex-attention.json": {
+      "source": "build/ultratex-attention-tests/results.json",
+      "bytes": 9126,
+      "sha256": "147a7474321cf714f243999f83d05f2007803a38abbc15fa5346fcda9da54c74"
+    },
+    "depth-component-tests.json": {
+      "source": "build/depth-component-tests/results.json",
+      "bytes": 6936,
+      "sha256": "8a431a81982cea30de547f1427d711e3162a3a20efde79ce699829f4573e0ad9"
+    },
+    "depth-postprocess-tests.json": {
+      "source": "build/depth-postprocess-tests/results.json",
+      "bytes": 6786,
+      "sha256": "aa1c15495a807f42aef7e40f8425f727d132e3293265ebf8c1e6b85315b35189"
+    },
+    "f5-frontend-tests.json": {
+      "source": "build/f5-frontend-tests/results.json",
+      "bytes": 1821,
+      "sha256": "3151ea0d055271c8c1c95d656a8fb0e7061d6d1e7c1220bc69cd60ce0457aaa2"
+    },
+    "fdg-mesh-tests.json": {
+      "source": "build/fdg-mesh-tests/results.json",
+      "bytes": 6154,
+      "sha256": "dff4b4996772b484ee81fd0fba6208969b2406c4b71798d30cc54094fc817842"
+    },
+    "fdg-tests.json": {
+      "source": "build/fdg-tests/results.json",
+      "bytes": 5847,
+      "sha256": "789d59a5895a1d4148aad0298d5f9ad432325ac0f599bf63d7379b9fb1601d9a"
+    },
+    "flexicubes-tests.json": {
+      "source": "build/flexicubes-tests/results.json",
+      "bytes": 15030,
+      "sha256": "98dfafe5208304022c98f2e2b278db16b3f51323cd6d131367cba1e7e6802d1d"
+    },
+    "paint-export-tests.json": {
+      "source": "build/paint-export-tests/results.json",
+      "bytes": 1784,
+      "sha256": "94e0ecb7940647626a385a0629e098e3e6b227464a9907e327d51b17ca4d5b1b"
+    },
+    "paint-tests.json": {
+      "source": "build/paint-tests/results.json",
+      "bytes": 22346,
+      "sha256": "bf90402f624227c5269fa2e721de092180af7e32fcef955b314b6da2bf9ac92b"
+    },
+    "pointcloud-tests.json": {
+      "source": "build/pointcloud-tests/results.json",
+      "bytes": 3367,
+      "sha256": "6ecf276f2934e5b83e426520f271d86b7712957f665e2d7f1a39f6e817a966d9"
+    },
+    "sam-component-tests.json": {
+      "source": "build/sam-component-tests/results.json",
+      "bytes": 12121,
+      "sha256": "806160e2cdc1216984ad1d342381d91c2cbea0b1e838a6971f751f358b648434"
+    },
+    "sam-conditioner-tests.json": {
+      "source": "build/sam-conditioner-tests/results.json",
+      "bytes": 7788,
+      "sha256": "bdc069f8a1c69178c90636b26834d423cc483230da7d7e8da3072a07a54c5311"
+    },
+    "sam-export-tests.json": {
+      "source": "build/sam-export-tests/results.json",
+      "bytes": 2751,
+      "sha256": "329deca32e724e2a4b870a814e2a164351bff9e06ccb689e98e5a112dba67c95"
+    },
+    "sam-math-tests.json": {
+      "source": "build/sam-math-tests/results.json",
+      "bytes": 5854,
+      "sha256": "50e8ee070cc616b923ea4027d8dd3cfae99db140d48d08c1931f63a85bc8e512"
+    },
+    "sam-pose-tests.json": {
+      "source": "build/sam-pose-tests/results.json",
+      "bytes": 2150,
+      "sha256": "33fc17d005b06d00d14dbb843f8c03d894c9b161ed897d6eb1c542c16807c367"
+    },
+    "sam-tests.json": {
+      "source": "build/sam-tests/results.json",
+      "bytes": 12847,
+      "sha256": "d0f79fca2628f3e00e848aec2c7a35c850d16c119be433bcc05b7ef96752cc0e"
+    },
+    "supra-component-tests.json": {
+      "source": "build/supra-component-tests/results.json",
+      "bytes": 10524,
+      "sha256": "08d4a2d61545ed077a1f1d24698196baf349249b526cafbe51b04ca10bee3b9a"
+    },
+    "supra-tests.json": {
+      "source": "build/supra-tests/results.json",
+      "bytes": 7192,
+      "sha256": "1cdde81637a2f3f23f21ff6cb3c3db4d4e51aa0bde3bf17012e07f96556a9470"
+    },
+    "surface-tests.json": {
+      "source": "build/surface-tests/results.json",
+      "bytes": 2908,
+      "sha256": "fe63935b3f0b61ff75f76795b64a1f9a0babf8bff8526d0af4dd61049d837272"
+    },
+    "ultratex-flow-tests.json": {
+      "source": "build/ultratex-flow-tests/results.json",
+      "bytes": 15621,
+      "sha256": "a78e8ee10dc940bbcff35326d61c2b0beb4610a452b3329ef7b50c08c69fbb06"
+    },
+    "ultratex-tests.json": {
+      "source": "build/ultratex-tests/results.json",
+      "bytes": 25092,
+      "sha256": "2f40edae0e43bfc7eb3288c3d9bda3cf16d69318bee7ab73d236733480d12a12"
+    },
+    "uniforge-component-tests.json": {
+      "source": "build/uniforge-component-tests/results.json",
+      "bytes": 12073,
+      "sha256": "615b14e977c76b8a6b71773a56d6b7e6df34f25a143514e7ba42353b62799459"
+    },
+    "uniforge-tests.json": {
+      "source": "build/uniforge-tests/results.json",
+      "bytes": 10177,
+      "sha256": "6849698ee1cac1a857ea1ec78dfcd704b86a89688642055df95819f7c4297463"
+    },
+    "view-router-tests.json": {
+      "source": "build/view-router-tests/results.json",
+      "bytes": 5684,
+      "sha256": "6f9955bae84e27123cdae9cad52b87c7b1b9722fd6374a08d8245bc3828fd74f"
+    },
+    "vision-build-info.json": {
+      "source": "build/vision-build-info.json",
+      "bytes": 6167,
+      "sha256": "3a9ec8af4611ba1a39b81bfce5405829a2a0795006acf5fe766ad393fe53a765"
+    },
+    "vision-tests.json": {
+      "source": "build/vision-tests/results.json",
+      "bytes": 2375,
+      "sha256": "b0efce7a7398aa2da8bc423f3e10d12ce2e2a7721f6b2095aa85216fe687350b"
+    }
+  },
+  "current_ui_media": {
+    "community": {
+      "path": "docs/media/development/community/manifest.json",
+      "bytes": 35252,
+      "sha256": "aca345e56c92ccf56568d82d5bf4beb5260188d036905e1a1ea9629633720fe0"
+    },
+    "release-workbench": {
+      "path": "docs/media/development/release-workbench/manifest.json",
+      "bytes": 33959,
+      "sha256": "05ced1cdaced7cade569bc00f09486440a0b096c5f2a935630a13b7a1187f833"
+    },
+    "expansion": {
+      "path": "docs/media/development/expansion/manifest.json",
+      "bytes": 35043,
+      "sha256": "98f0222c4718e75a0aa765b88f2291a595fe384c3b32d3925318fad7083d3793"
+    },
+    "multiview": {
+      "path": "docs/media/development/multiview/manifest.json",
+      "bytes": 34293,
+      "sha256": "3a1895a35d133b3a3ea4663063d92e5c952fc502888fd2f0bc4b0216f09fed12"
+    },
+    "shape": {
+      "path": "docs/media/development/shape/manifest.json",
+      "bytes": 34114,
+      "sha256": "50bb7949326a1b6b808e235258057239bf49db4b32bff7f1d0d370789bc7930e"
+    },
+    "spatial": {
+      "path": "docs/media/development/spatial/manifest.json",
+      "bytes": 34315,
+      "sha256": "331438927e3a8de53daefdf028a8da00a6ca59ceed9d690ebe5d5aa00c7026e5"
+    },
+    "material": {
+      "path": "docs/media/development/material/manifest.json",
+      "bytes": 35876,
+      "sha256": "159aff9a58db516eec7705ffc88225ba16b1a3ffd38029ad617c0e135dd2abff"
+    },
+    "ultratex": {
+      "path": "docs/media/development/ultratex/manifest.json",
+      "bytes": 36387,
+      "sha256": "05ea9289b28ed0590653869f8ecdc8d03666bc1584bc2e9ad893263d62b945db"
+    },
+    "adaptation": {
+      "path": "docs/media/development/adaptation/manifest.json",
+      "bytes": 35571,
+      "sha256": "04df37de6d3ace67767eb7871504b309ed2cfed696635b393951ea2b8b67f70b"
+    },
+    "recommendations": {
+      "path": "docs/media/development/recommendations/manifest.json",
+      "bytes": 35857,
+      "sha256": "ec199506e18a7c127b428c9ec505dcfe2ec03657f900422782679a9815d87b5d"
+    }
+  },
+  "input_fingerprint": {
+    "catalogue/release-0.3.11-implementation.json": "974d4e401498698bc39f6c0813cd17a34abfbe872fc5fae1c817439e7f07715c",
+    "docs/media/models/v0.3.11/manifest.json": "588e2cd576b9d896fdc63086aba30463f7a1707a115470e84c9cff65a7c4a05c",
+    "docs/proposals/multimodal-release-scope.json": "03326504d2d1b52c315bef574325f2c05d43c6a65eafc9779cc33120b7801690",
+    "docs/proposals/program-validation-policy.json": "c6f4dd3001044a4c7583797bb7eae66268f5f56e3c126281830d16e0d177f1bc",
+    "research/portability/adaptation-current.json": "f8654cec82ba3f6023700a2cab212060237bcad308ff99b865bc5c25080a4a6e",
+    "tools/audit_adaptations.py": "f4d60abe227f14476bb6710c368d9d1f816131d3dc589ecc1d5147515d46fc03",
+    "tools/check_repository.py": "c349e8a33a0adc9dfb9192bb48f2863ffe017bf1e45c7d231afd350bba25ba04",
+    "tools/complete_evidence.py": "d8753bed017afbf1088e0e00295d0249da8108f03b5d2c9433742d9e4c571b2d",
+    "tools/device_model_probe.py": "f03c3de0900d76c201b0a0424813817c5afe450050b082f295d42fb0403ad44e",
+    "tools/package_delivery.py": "06da137539b85d2fc93926da09ecfe9a8f1e18a449d73ecb61309bce9ad8c538",
+    "tools/physical_evidence.py": "130a354befa248d2d1c90725b6b74711c752e43b9105e01528d5c3b080ffa7fd",
+    "tools/physical_model_evidence.py": "88aec868fdcf5b1efd25c62bf5a124782f0a4b276f080c0e64ec8026c8a7f3d8",
+    "tools/prepare_release.py": "970365f42c013be8ba448de7cee2fe635081f68b29b01fd181165d57716be7d0",
+    "tools/program_evidence.py": "d7f8002a16bae00a7024b12659bc563fc2545ebb08b0af460d7c6e75a6cc81e9",
+    "tools/program_release.py": "d93e5759bc01cdd193fc8010ab9732c2d962b9d5f0bccab3c04770f179de426a",
+    "tools/publish_release.py": "af4af8df15014e5839b932b0c3ed6c63e3fba036d4253315f9afedc691d5ef92",
+    "tools/recommendations.py": "d66e2306620a491a435bb13c15a44f003c01ee14da1a0cb2286a5db9dc6921a3",
+    "tools/release_scope.py": "9bbca433f9fc9c4e07dd94ec92a90151b722e0928aaa8c07a70ec913868a06b7",
+    "tools/task_diagnostics_evidence.py": "2367240b137db5b894428edc633869520294cdcbab49a8ee72ae74822c383908",
+    "verification/releases/v0.3.11/physical-models.json": "c97085ce70c820efe0e3ca77f823fc66050d06a0f13367d7b2105df47af0c90b"
+  },
+  "previous_published_evidence": "verification/program",
+  "previous_release": "v0.3.5",
+  "historical_files_preserved": 815,
+  "release_ready": true,
+  "full_scope_implementation_complete": true,
+  "all_requested_adaptations_complete": true,
+  "all_benchmark_architectures_integrated": true,
+  "full_benchmark_workflows_reproduced": false,
+  "unported_benchmark_configurations": [],
+  "partially_integrated_benchmark_configurations": [],
+  "implementation_scope": "Frozen F01-F12 / selections 01-14,16,17, text and P01-P06; bounded versioned CPU adapters, not arbitrary HF architectures",
+  "implementation_matrix": "catalogue/release-0.3.11-implementation.json",
+  "benchmark_portability_audit": "research/portability/adaptation-current.json",
+  "known_implementation_gaps": [],
+  "public_matched_complete_packages_verified": false,
+  "physical_device_tests": 23,
+  "physical_device_tested": true,
+  "background_program_tested": true,
+  "screen_off_program_seconds": 60.239,
+  "physical_task_diagnostic_checks": 0,
+  "physical_program_evidence": {
+    "bytes": 3576,
+    "sha256": "136156974091350a5f0fda5f4ab10e983db1b8e93343296584d691e9784adeed"
+  },
+  "phone_inference_tested": true,
+  "model_inference_tested": true,
+  "authorized_phone_model_attempts": 4,
+  "authorized_phone_model_successes": 2,
+  "complete_trained_model_runs": 2,
+  "complete_model_downloads_for_validation": 0,
+  "complete_model_copies_for_validation": 0,
+  "model_quality_accepted": false,
+  "validation_run_scope": "Program gate records; optional authorized phone model probes reported separately",
+  "validation_deviation": null,
+  "accidental_legacy_host_model_execution": false,
+  "background_endurance_tested": false,
+  "all_selected_models_tested": false,
+  "model_weights_in_apk": false,
+  "automatic_model_asset_downloads": false,
+  "browser_closed": true,
+  "virtualization_used": false
+}

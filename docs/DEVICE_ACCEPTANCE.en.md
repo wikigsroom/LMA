@@ -1,4 +1,13 @@
-# Physical Android program acceptance · v0.3.10
+# Physical Android program acceptance · v0.3.11
+## Current v0.3.11
+
+The final original-signer APK passed **23 physical program checks** and **60.239 seconds of screen-off API health**. Five installed models and per-model settings remain. Authorized bounded inference is separately recorded; one-step Wan produced a decodable but nearly blank MP4, while both 3D probes were incomplete. No normal-size quality or sustained background inference is accepted.
+
+[Current operation and limits](ON_DEVICE_MODEL_REPAIR.en.md) · [Stable release](releases/v0.3.11.md)
+
+## Historical v0.3.10 investigation
+
+**Current v0.3.11:** [Management/API acceptance](../verification/releases/v0.3.11/physical-device.json) and [authorized model probes](../verification/releases/v0.3.11/physical-models.json) have separate counts. Wan CPU video succeeds; bounded 3D results do not establish complete GLB generation. The v0.3.10 investigation below is historical.
 
 [中文](DEVICE_ACCEPTANCE.md) · [Release](releases/v0.3.10.md) · [23 program checks](../verification/releases/v0.3.10/physical-device.json) · [10 failure probes](../verification/releases/v0.3.10/task-diagnostics.json)
 

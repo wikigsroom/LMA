@@ -1,5 +1,5 @@
 {
-  "version": "0.3.10",
+  "version": "0.3.11",
   "kind": "current production UI with an explicit simulated bridge",
   "android_device": false,
   "model_inference": false,
@@ -73,18 +73,18 @@
     },
     {
       "file": "05-spatial-queue.png",
-      "bytes": 48754,
-      "sha256": "a0accb3442e6678eb99aabf3307307f707cf4da2c1c09ca32d16de4136f1373f"
+      "bytes": 48759,
+      "sha256": "ba37d6d80fef83fd032d724a0faf1cdb214630a6f421619ec8f9faa262d2a733"
     },
     {
       "file": "spatial-ui.gif",
-      "bytes": 606932,
-      "sha256": "512436132ee11e4a48cdcfa9c23bd581a819f09a6bd6d9bee2fa943045edfdfc"
+      "bytes": 508210,
+      "sha256": "e944bdfcf868101d524b6d5ce03bbf70435a9c79528631136fdcfdf81249c39e"
     },
     {
       "file": "spatial-ui.mp4",
-      "bytes": 279561,
-      "sha256": "5cef589f97398fc3f04d463aacd75a990c0fe20746184908b7ed2c0f655af38a"
+      "bytes": 239273,
+      "sha256": "64b97f357ecc27ff824803ebb2a7ed8b5a295f8fa628d86ca4a312b35e260aae"
     }
   ],
   "input_fingerprint": {
@@ -94,7 +94,7 @@
     "app/src/main/assets/asset-preparations.json": "b0a7cbac1a633310b9fff84164439ee8fe20a1df137d1075eb9263f531ccfd3b",
     "app/src/main/assets/audio-preview.js": "33bb898969f37c1f78c6664052c46da844d148defdcef4a54d64bc5829037f44",
     "app/src/main/assets/community.js": "9ea2f6adf3da95122bf4bca96e9a03971d1da2759a86d5f5e1f0c46c2ba8272a",
-    "app/src/main/assets/engine-builds.json": "1b4610b1f5e0e8e4f17113f89a1f9ffbd92245199d6a6542182a4651ce13b396",
+    "app/src/main/assets/engine-builds.json": "0bd627d7e8f9f7b0dfc11da2d639c63eb4add3fec18d245a92a9e9913370ee0d",
     "app/src/main/assets/expansion-notices.json": "e5bc41234e37c91400636473491b61644bb7cdf5ba4c73c20c2e5eaffc769055",
     "app/src/main/assets/expansion.js": "e968fea1d2013d6fa3c812dc8af5aeadf32ac11cb15aa3490de713c840c4f98c",
     "app/src/main/assets/foundation.css": "8bbd7a445a43d93f796be904e8f67b6e6120cf27547b93abb79cf41142078343",

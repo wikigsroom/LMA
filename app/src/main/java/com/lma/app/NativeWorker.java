@@ -48,8 +48,8 @@ final class NativeWorker {
                 } catch (Exception ignored) { }
             }
             if (process.exitValue() != 0 || !available) throw new IOException(errors.code.equals("vulkan_1_2_required")
-                ? "当前手机未提供此引擎要求的 Vulkan 1.2 GPU；不能运行所选 GPU 视频配方。可手动导入 Wan CPU 配方；重试或降低分辨率不能补齐 GPU 能力。"
-                : "当前签名引擎未发现可用 Vulkan GPU；未提交生成任务。可检查驱动兼容性或手动选择 CPU 配方。");
+                ? "当前手机未提供此引擎要求的 Vulkan 1.2 GPU；请在模型 → 本地 → 该模型参数中将运行后端选择为 cpu，再提交任务。现有权重可直接复用，无需重新下载。"
+                : "当前签名引擎未发现可用 Vulkan GPU；请在本地模型参数中明确选择 cpu 后重试。未自动切换后端或下载模型。");
         } finally {
             com.lma.app.core.ProcessControl.stop(process); reader.join(3000); errors.finish();
         }

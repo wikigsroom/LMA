@@ -1,4 +1,9 @@
-# 仅程序验证策略 · v0.3.7
+# 仅程序验证策略 · v0.3.11
+当前门禁 **60 组 / 15,063 项、73 份记录、794 项页面检查**；独立真机程序 **23 项 / 60.239 秒锁屏 API 健康检查**。另获授权的已安装模型检查保留精确 APK、成功与未完成结果，见[独立模型记录](../verification/releases/v0.3.11/physical-models.json)。门禁仍不运行完整模型，另行授权的实跑不改写成“零推理”。[当前完整清单](IMPLEMENTATION_V0311.md)。
+
+## 历史 v0.3.7 策略与数字
+
+**v0.3.11 授权补充（2026-11-01）：** 用户允许部分真机和模型验证，由开发者选择。仅对已下载模型做限时检查，结果另存 `physical-models.json`；常规门禁仍为程序验证，不恢复全部模型质量或耐久前置要求。下面 v0.3.7 数字为历史记录。
 
 [English](PROGRAM_VALIDATION.en.md) · [版本说明](releases/v0.3.7.md) · [策略 JSON](proposals/program-validation-policy.json) · [实现与全部测试](IMPLEMENTATION_V037.md)
 

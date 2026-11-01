@@ -1,5 +1,7 @@
 # LMA 使用手册
 
+**v0.3.11 / code61 · 当前：** [已下载 Wan 的 CPU 选择、3D 修复与真实结果](ON_DEVICE_MODEL_REPAIR.md)。在模型库 → 本地 → 模型参数选择 cpu；复用权重，未自动切换或下载。后续旧版说明保留历史语境。
+
 **v0.3.10 / code60:** [逐条任务失败、清理与修复](TASK_FAILURES.md) / [Task diagnosis and repair](TASK_FAILURES.en.md). Denied 3D workspace links are repaired; unsupported Wan GPU is rejected before enqueue. Five failed records archived/removed, existing successes/models/artifacts retained. No complete model reruns.
 
 **v0.3.10 / code60 · 当前 / Current:** [14 个推荐模型 / fourteen recommended choices](RECOMMENDED_MODELS.md)：text 3 / image 3 / video 2 / audio 3 / 3D 3. Default Recommended preserves the original text prefix, adds optional multimodal choices and never downloads automatically. [Release](releases/v0.3.10.md) · [当前实现 / implementation](IMPLEMENTATION_V0310.md). Earlier version callouts below retain their historical context.

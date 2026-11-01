@@ -1,5 +1,5 @@
 {
-  "version": "0.3.10",
+  "version": "0.3.11",
   "kind": "current production UI with an explicit simulated bridge",
   "android_device": false,
   "model_inference": false,
@@ -67,8 +67,8 @@
     },
     {
       "file": "04-multiview-queue.png",
-      "bytes": 49089,
-      "sha256": "db3a1ca6bb28567db556070037460d94bd467675db3e1f4612851fdcf01a7fad"
+      "bytes": 49078,
+      "sha256": "807de6fc99f88e19f4a7bbf35fd144139d77a19f86401e8e3099c625a8af173b"
     },
     {
       "file": "05-background-observations.png",
@@ -77,13 +77,13 @@
     },
     {
       "file": "multiview-ui.gif",
-      "bytes": 536410,
-      "sha256": "fdf5cec3885989f412bb7d56acbe3b8e41794b54542a4fb991eaade0c459896e"
+      "bytes": 500044,
+      "sha256": "db0fb82c793745a91985c44f9d29d6f4541a90b827a9a901ea43eef68be91250"
     },
     {
       "file": "multiview-ui.mp4",
-      "bytes": 217954,
-      "sha256": "24e1b9139f90e2d5130d0f8ad6ea42593063bedafe08f4751ec121a450737392"
+      "bytes": 206103,
+      "sha256": "eead45895f893f9d04c795f854ea4565ae17c14577e186a699308c230864a318"
     }
   ],
   "input_fingerprint": {
@@ -93,7 +93,7 @@
     "app/src/main/assets/asset-preparations.json": "b0a7cbac1a633310b9fff84164439ee8fe20a1df137d1075eb9263f531ccfd3b",
     "app/src/main/assets/audio-preview.js": "33bb898969f37c1f78c6664052c46da844d148defdcef4a54d64bc5829037f44",
     "app/src/main/assets/community.js": "9ea2f6adf3da95122bf4bca96e9a03971d1da2759a86d5f5e1f0c46c2ba8272a",
-    "app/src/main/assets/engine-builds.json": "1b4610b1f5e0e8e4f17113f89a1f9ffbd92245199d6a6542182a4651ce13b396",
+    "app/src/main/assets/engine-builds.json": "0bd627d7e8f9f7b0dfc11da2d639c63eb4add3fec18d245a92a9e9913370ee0d",
     "app/src/main/assets/expansion-notices.json": "e5bc41234e37c91400636473491b61644bb7cdf5ba4c73c20c2e5eaffc769055",
     "app/src/main/assets/expansion.js": "e968fea1d2013d6fa3c812dc8af5aeadf32ac11cb15aa3490de713c840c4f98c",
     "app/src/main/assets/foundation.css": "8bbd7a445a43d93f796be904e8f67b6e6120cf27547b93abb79cf41142078343",

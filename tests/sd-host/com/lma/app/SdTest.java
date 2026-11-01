@@ -175,6 +175,36 @@ public final class SdTest {
         SdEngine unavailableGpu = new SdEngine(app, java, new JSONObject().put("engine", "wan_sd_cpp"), builder -> { builder.command().set(1, "--cpu-devices"); return launch(java, builder); });
         try { unavailableGpu.prepare(wanGpu, request(wanGpu)); throw new AssertionError("Unsupported GPU passed"); }
         catch (IOException expected) { check(expected.getMessage().contains("Vulkan 1.2"), "Actual child capability query rejects CPU-only devices before generation"); }
+        String originalGpuManifest = DataFiles.canonical(wanGpu.json());
+        check(SdSpec.schema(wanGpu).json().getJSONObject("fields").getJSONObject("executionBackend").getString("default").equals("vulkan"), "Existing GPU models do not switch backend without a choice");
+        check(SdSpec.executionBackend(wanGpu, request(wanGpu).getJSONObject("parameters")).equals("vulkan"), "Legacy frozen GPU jobs retain their backend");
+        rejects(() -> SdSpec.executionBackend(wanGpu, new JSONObject().put("executionBackend", "remote")), "Only signed local backends may be chosen");
+        rejects(() -> SdSpec.executionBackend(sd15, new JSONObject().put("executionBackend", "vulkan")), "An unrelated CPU recipe cannot claim the Wan GPU route");
+        app.bundles.setParameterResolver(SdSpec::schema);
+        app.bundles.saveSettings(wanGpu.id, new JSONObject().put("executionBackend", "cpu"));
+        BundleStore reopened = new BundleStore(new File(root, "assets")); reopened.setParameterResolver(SdSpec::schema);
+        check(reopened.settings(wanGpu.id).getJSONObject("values").getString("executionBackend").equals("cpu"), "Explicit backend choice persists under the same installed model ID");
+        check(!reopened.settings(sd15.id).getJSONObject("values").has("executionBackend"), "Backend choice is isolated to the selected model");
+        check(DataFiles.canonical(reopened.bundle(wanGpu.id).json()).equals(originalGpuManifest), "Backend settings never rewrite the model manifest or its component identities");
+        AtomicInteger cpuQueries = new AtomicInteger(), cpuRuns = new AtomicInteger();
+        SdEngine compatibleEngine = new SdEngine(app, java, java, new JSONObject().put("engine", "wan_sd_cpp"), builder -> {
+            if (builder.command().get(1).equals("--devices")) cpuQueries.incrementAndGet(); else cpuRuns.incrementAndGet();
+            return launch(java, builder);
+        });
+        JSONObject cpuRequest = request(wanGpu); cpuRequest.getJSONObject("parameters").put("executionBackend", "cpu");
+        try (BundleStore.Selection leases = app.bundles.acquireAll(Collections.singletonList(wanGpu.id))) {
+            TestContext cpuContext = new TestContext(root, leases, compatibleEngine.prepare(wanGpu, cpuRequest));
+            rejects(() -> compatibleEngine.generate(cpuContext), "Host CPU route stops only at the explicit Android codec boundary");
+            JSONObject packet = new JSONObject(new String(Files.readAllBytes(cpuContext.output("rgb").toPath()), "UTF-8"));
+            check(packet.getString("backend").equals("cpu"), "The existing GPU bundle's explicitly chosen CPU backend reaches the actual worker protocol");
+            check(cpuContext.details.getString("selectedBackend").equals("cpu") && cpuContext.details.getString("workerEngine").equals("sd_cpp"), "Execution provenance records the actual signed CPU worker");
+            check(cpuContext.details.getString("workerSha256").equals(DataFiles.sha256(java)) && cpuContext.details.getLong("workerBytes")==java.length(), "Execution hashes identify the selected CPU worker rather than the registered GPU adapter");
+            check(packet.getJSONObject("components").getString("diffusion").equals(leases.models.get(0).file("diffusion").getPath()), "CPU execution reuses the exact leased weight object");
+        }
+        check(cpuQueries.get() == 0 && cpuRuns.get() == 1, "CPU selection never initializes Vulkan or launches an extra model worker");
+        SdEngine missingCpu = new SdEngine(app, java, new File(root,"missing-cpu-worker"), new JSONObject().put("engine", "wan_sd_cpp"), builder -> launch(java,builder));
+        rejects(() -> missingCpu.prepare(wanGpu,cpuRequest), "Missing signed CPU binary fails rather than using an arbitrary executable");
+        app.bundles.saveSettings(wanGpu.id, new JSONObject().put("executionBackend", "vulkan"));
         for (String scenario : Arrays.asList("fixture-stderr-error", "fixture-exit")) try (BundleStore.Selection leases = app.bundles.acquireAll(Collections.singletonList(sd15.id))) {
             JSONObject raw = request(sd15); raw.getJSONObject("input").put("prompt", scenario);
             TestContext ctx = new TestContext(root, leases, engine.prepare(sd15, raw));

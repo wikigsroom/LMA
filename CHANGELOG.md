@@ -1,5 +1,18 @@
 # Changelog / 更新记录
 
+## v0.3.11 · 2026-11-01 · Stable / 正式版
+
+- 已安装 Wan 1.3B 增加逐模型 CPU / Vulkan 选择，复用原模型 ID 与四组件；任务冻结真实选择、记录实际签名工作器身份。Explicit backend choice; no silent fallback, duplicate download or weight copy.
+- 修复 v0.3.10 软链接仍被原生普通文件检查拒绝的问题；租约源路径、固定文件名组件 / 视图绑定、工作目录和文件身份校验覆盖共用 3D / 语音 / 视觉入口，重建六个 Android 工作器。
+- TRELLIS / Pixal 加入真实计算阶段。Phone probes reached sparse-structure computation but produced no complete GLB within their 600 / 180-second budgets; cancelled processes exited.
+- 最终 APK 一步 Wan CPU 流程约 176 秒生成可解码 128×128 / 5 帧 MP4；画面近空白，未达可用画质。Authorized model probes and actual media remain separate from program gates; exact tested APKs are retained.
+- 同一最终 APK 的 4 步 / CFG3 复测约 347.04 秒完成，画面仍近空白；两次流程成功、两次 3D 限时取消分别记录。Four owned failed/cancelled test jobs and four owned inputs cleaned; original two successes, five artifacts, five models and original parameters preserved.
+- 60 组 / 15,063 项程序断言，794 UI；23 项真机程序检查及 60.239 秒锁屏 API 健康检查；41 ARM64 库 / 原签名 / 16 KiB / Lint 0 错误、16 原警告。No fresh performance benchmark or inference-endurance claim.
+- 完整双语 README 保留 C01–C60 / H01–H18，新增 C61–C65；十组页面重录，58 PNG / 10 GIF / 10 MP4，另附真实手机模型输出和来源清单。Private user data stays out of Git and Release.
+- 全部 62 配方 / 82 默认包 / 18 扩展引擎加文本、14 推荐、功能 / 基座 / NSFW 与 Uncensored 标签保留；用户继续自主选择资产。Publish a stable release, preserving all earlier tags, assets and evidence.
+- 发布回执同步真实手机推理与所选检查数量，保留画质 / 耐久未通过的边界。Publication receipts reflect authorized inference instead of retaining an obsolete false flag.
+- [操作与限制](docs/ON_DEVICE_MODEL_REPAIR.md) / [English](docs/ON_DEVICE_MODEL_REPAIR.en.md) · [Release notes](docs/releases/v0.3.11.md).
+
 ## v0.3.10 · 2026-11-01 · Stable / 正式版
 
 - 真机诊断并备份 / 清理 5 条失败，保留 2 条成功、5 项素材和 5 个已安装模型及参数。Five failed records removed without deleting owned assets.

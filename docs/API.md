@@ -1,5 +1,7 @@
 # LMA API 接入
 
+**v0.3.11：** Wan 请求参数可显式填写 `executionBackend: "cpu"`，复用已安装模型 ID。注册后端与实际工作器身份分别记录。[完整请求与边界](ON_DEVICE_MODEL_REPAIR.md#2-调用本机接口)。
+
 > 当前 v0.3.5：[Hunyuan 形状与 UltraShape 精修](SPATIAL_SHAPE.md)、[完整编号实现与待完成适配](IMPLEMENTATION_V035.md)。五个共用 CPU sparse 运算不代表 SAM / UniForge / SUPRA 完整适配，Paint 仍缺代码。原有能力保留；以下旧版本说明按历史理解。
 
 > 当前 v0.3.3：[四图标定、MV 校验导入、独立参数、API 与主动诊断](MULTIVIEW_DIAGNOSTICS.md)。原有能力保留，下方旧开发检查点按原版本理解。[当前实现](IMPLEMENTATION_V033.md) / [仅程序验证](PROGRAM_VALIDATION.md)。

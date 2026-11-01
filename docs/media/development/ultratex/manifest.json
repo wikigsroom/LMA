@@ -1,5 +1,5 @@
 {
-  "version": "0.3.10",
+  "version": "0.3.11",
   "kind": "current production UI with an explicit simulated bridge",
   "android_device": false,
   "model_inference": false,
@@ -99,8 +99,8 @@
     },
     {
       "file": "05-ultratex-queue.png",
-      "bytes": 46732,
-      "sha256": "ae6f080914740f89dea34c96438aabb40d314a4da8045f601ce0326285d52a9b"
+      "bytes": 46654,
+      "sha256": "fefe1aabcf4cf616276a83d5783ffd8eecb71acd91782becb530f62480680e0a"
     },
     {
       "file": "06-ultratex-flux2.png",
@@ -114,13 +114,13 @@
     },
     {
       "file": "ultratex-ui.gif",
-      "bytes": 643833,
-      "sha256": "9ea23b20d422b2a7ce60ec4a1ebf896d97751a62f23ec9b3a51b076bbdc0e442"
+      "bytes": 550653,
+      "sha256": "d7edff30ab5ca55f4d8f4ec88ca1a90fe56c6307133b80c8af528ced5b237aad"
     },
     {
       "file": "ultratex-ui.mp4",
-      "bytes": 300848,
-      "sha256": "8c03dccfb715ee3ac7adcee3b793c049b671ddee012e88a3cc6d131ee32c7594"
+      "bytes": 292313,
+      "sha256": "65721c6c1458776617839f014ce8d1181f02a94a26e10240711d88d13519fc95"
     }
   ],
   "input_fingerprint": {
@@ -130,7 +130,7 @@
     "app/src/main/assets/asset-preparations.json": "b0a7cbac1a633310b9fff84164439ee8fe20a1df137d1075eb9263f531ccfd3b",
     "app/src/main/assets/audio-preview.js": "33bb898969f37c1f78c6664052c46da844d148defdcef4a54d64bc5829037f44",
     "app/src/main/assets/community.js": "9ea2f6adf3da95122bf4bca96e9a03971d1da2759a86d5f5e1f0c46c2ba8272a",
-    "app/src/main/assets/engine-builds.json": "1b4610b1f5e0e8e4f17113f89a1f9ffbd92245199d6a6542182a4651ce13b396",
+    "app/src/main/assets/engine-builds.json": "0bd627d7e8f9f7b0dfc11da2d639c63eb4add3fec18d245a92a9e9913370ee0d",
     "app/src/main/assets/expansion-notices.json": "e5bc41234e37c91400636473491b61644bb7cdf5ba4c73c20c2e5eaffc769055",
     "app/src/main/assets/expansion.js": "e968fea1d2013d6fa3c812dc8af5aeadf32ac11cb15aa3490de713c840c4f98c",
     "app/src/main/assets/foundation.css": "8bbd7a445a43d93f796be904e8f67b6e6120cf27547b93abb79cf41142078343",

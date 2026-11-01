@@ -1,5 +1,7 @@
 # 每个模型的参数
 
+**v0.3.11：** Wan 1.3B 的已安装 GPU 目录包新增 `executionBackend`，在本地模型参数下拉选择 `cpu` 或 `vulkan`；默认保留 Vulkan，独立保存，任务冻结本次选择，CPU 复用全部已有组件。[详情与实跑](ON_DEVICE_MODEL_REPAIR.md)。
+
 dev.33 新增数字参数的命名建议项；音色名称与数量从具体本地文件读取，可选择完整名称或继续输入编号，超限按实际文件 / 配方上限回填。任务与 API 继续保存数字，未知元数据使用明确标注的配方范围。详见[语音参数与实现](SPEECH_SELECTION.md)。
 
 [English](MODEL_SETTINGS.en.md) · [使用手册](USER_GUIDE.md) · [文档目录](README.md)

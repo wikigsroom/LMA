@@ -1,8 +1,8 @@
 # LMA · Android 本地模型工作台
 
-[English](README.en.md) · [下载 v0.3.10](https://github.com/wikigsroom/LMA/releases/tag/v0.3.10) · [使用手册](docs/USER_GUIDE.md) · [文档目录](docs/README.md) · [更新记录](CHANGELOG.md)
+[English](README.en.md) · [下载 v0.3.11](https://github.com/wikigsroom/LMA/releases/tag/v0.3.11) · [使用手册](docs/USER_GUIDE.md) · [文档目录](docs/README.md) · [更新记录](CHANGELOG.md)
 
-**v0.3.10 / code60：真机任务逐条诊断与兼容修复。** 已备份并移除 5 条失败记录，保留 2 条成功任务、5 项素材 / 结果及 5 个已安装模型和独立参数。修复 3D 工作目录硬链接被拒绝；Wan GPU 在提交前检查 Vulkan 能力，保留原生错误与退出信息。另提供用户自行选择的 CPU 导入描述，未静默切换或下载。[五条原因、处理与剩余边界](docs/TASK_FAILURES.md) · [23 项真机程序检查](docs/DEVICE_ACCEPTANCE.md) · [10 项故障专项检查](verification/releases/v0.3.10/task-diagnostics.json) · [完整实现](docs/IMPLEMENTATION_V0310.md)。全部 **62 配方 / 82 包 / 18 扩展引擎加文本、14 项推荐**保持。
+**v0.3.11 / code61：已有 Wan 权重可直接选择 CPU，并已在当前手机产出视频。** 修复原生工作器仍拒绝 Android 软链接输入的问题，为固定名称的模型组件 / 四视图增加来源身份校验，并加入 3D 分阶段进度。Wan CPU 小尺寸计算 / 编码已贯通，一步画面近空白，未达可用画质；TRELLIS.2 / Pixal3D 的阶段、限时取消与未完成输出单独披露，不冒充全部模型成功。[操作、API 与真实结果](docs/ON_DEVICE_MODEL_REPAIR.md) · [真机模型记录](verification/releases/v0.3.11/physical-models.json) · [完整矩阵](docs/IMPLEMENTATION_V0311.md)。全部 **62 配方 / 82 包 / 18 扩展引擎加文本、14 项推荐**保留。
 
 LMA（Local Model App）让用户在 Android 手机上选择、下载、管理和运行本地模型，提供聊天、生图、生视频、生音频、生 3D、任务队列、结果库与本机 API。它是独立社区项目，与 LM Studio 无隶属关系；界面主要为中文，文档提供中英双语。
 
@@ -12,15 +12,15 @@ LMA（Local Model App）让用户在 Android 手机上选择、下载、管理�
 
 新增 3D / 视觉模型支持用户选择匹配的本地导出再导入，**尚未核实完整公开导出包下载地址**，不提供占位链接。HF 可发现不等于任意格式均可执行；原始 PyTorch 不能直接作为 Android 运行包。
 
-本版按你的要求**只做程序验证**：实际源码类 / 随机小网络、生产工作器、导出、任务 / 取消 / 回收、页面、APK、签名与 Lint；没有下载或运行完整训练模型，也没有手机推理、质量、速度、峰值内存或锁屏耐久结论。CPU 有界方案及与上游 CUDA / 随机流的差异见[适配边界](docs/ADAPTER_PROFILES.md#5-资源数值与许可证边界)。努比亚 Z20 满足程序架构条件不代表能装下大型模型。
+常规门禁仍使用有界 / 随机夹具，不下载完整模型；按照后续明确授权，本轮另对手机已下载模型做限时实跑。[程序门禁](verification/releases/v0.3.11/status.json)与[授权真机结果](verification/releases/v0.3.11/physical-models.json)分别计数。Wan 小尺寸输出成功不等于画质、全部模型、Z20 资源或长线后台已验收。
 
 **许可证说明：** 自有代码为 MIT；随包 DISO CPU 表面提取组件适用 CC BY-NC 4.0 非商业条款，其他依赖与模型保留各自许可。见[完整说明](THIRD_PARTY_NOTICES.md)。
 
 保留 v0.3.9 [真实手机页面 GIF](docs/media/device/v0.3.9/physical-walkthrough.gif) / [录屏 MP4](docs/media/device/v0.3.9/physical-walkthrough.mp4)：零模型页面与接口操作，另附锁屏 60 秒健康检查记录；不代表模型输出或长期耐久通过。桌面夹具与真实手机媒体分别标记。
 
-详细用例 **C01–C48**、历史生成 / 失败案例 **H01–H18**、API 示例和历史测试记录均保留。新增[本地适配页面 GIF](docs/media/development/adaptation/adaptation-ui.gif) / [MP4](docs/media/development/adaptation/adaptation-ui.mp4) 与 [UltraTex 演示](docs/media/development/ultratex/ultratex-ui.gif)；均明确标记 UI FIXTURE，展示生产页面操作，不冒充手机或训练模型结果。原发布证据留在 `verification/program/` 与 `verification/history/`。
+详细用例 **C01–C65**、历史生成 / 失败案例 **H01–H18**、API 示例和历史测试记录均保留。新增[本地适配页面 GIF](docs/media/development/adaptation/adaptation-ui.gif) / [MP4](docs/media/development/adaptation/adaptation-ui.mp4) 与 [UltraTex 演示](docs/media/development/ultratex/ultratex-ui.gif)；均明确标记 UI FIXTURE，展示生产页面操作，不冒充手机或训练模型结果。原发布证据留在 `verification/program/` 与 `verification/history/`。
 
-验证范围补充：曾误选旧 Nano 主机模型检查，已单独[如实记录](verification/releases/v0.3.10/validation-deviation.json)，不计入程序断言或真机通过；下文“零完整模型运行”仅指程序门禁。旧 Qwen 检查在模型运行前因证据指纹过期退出。手机完整模型没有重跑。
+历史 v0.3.10 的[旧主机检查偏差](verification/releases/v0.3.10/validation-deviation.json)原样保留，不计入本版程序或手机通过。本轮部分手机模型实跑已另获明确授权并单独记录。
 
 <a id="contents"></a>
 ## 阅读路线
@@ -28,7 +28,7 @@ LMA（Local Model App）让用户在 Android 手机上选择、下载、管理�
 | 想做什么 | 本页入口 | 详细文档 |
 | --- | --- | --- |
 | 安装、下载和第一次使用 | [安装](#install)、[C01–C05](#use-cases) | [使用手册](docs/USER_GUIDE.md)、[HF 与本地模型](docs/HF_MODELS.md) |
-| 选择生图、生视频或生音频方案 | [支持范围](#models)、[C06–C14](#use-cases) | [完整实现矩阵](docs/IMPLEMENTATION_V0310.md)、[社区模型](docs/COMMUNITY_MODELS.md) |
+| 选择生图、生视频或生音频方案 | [支持范围](#models)、[C06–C14](#use-cases) | [完整实现矩阵](docs/IMPLEMENTATION_V0311.md)、[社区模型](docs/COMMUNITY_MODELS.md) |
 | 管理模型、独立参数、任务和结果 | [C03–C04、C15–C18](#use-cases) | [模型参数](docs/MODEL_SETTINGS.md)、[任务工作台](docs/TASK_WORKBENCH.md) |
 | 在程序中调用手机模型 | [API 示例](#api-examples) | [API](docs/API.md)、[输入与上传](docs/LOCAL_INPUTS.md) |
 | 看页面、生成案例和失败对照 | [当前页面](#ui-media)、[历史案例 H01–H18](#case-studies) | [媒体说明](docs/MEDIA.md)、[历史完整 README](docs/history/README-dev45.zh.md) |
@@ -54,7 +54,7 @@ LMA（Local Model App）让用户在 Android 手机上选择、下载、管理�
 | 16 | Wan 2.1 T2V 1.3B Q4 | sd.cpp CPU／Vulkan、显式组件、本机视频编码 |
 | 17 | LTX-Video 2B 0.9.8 distilled | 原始 PixArt T5 F32＋7 步／空间放大／3 步；Google T5 Q5 单尺度保留独立身份 |
 
-当前基座有 **62 个数据型配方模板、18 类扩展引擎及原有文本引擎**；模型包为 **23 套原有＋44 套社区＋11 套语音 / 单图 3D＋4 套 MV 校验导入＝82 套**。模板、模型包、引擎和架构分别计数，不代表全部模型已在手机实测。[机器可读实现矩阵](catalogue/release-0.3.10-implementation.json)
+当前基座有 **62 个数据型配方模板、18 类扩展引擎及原有文本引擎**；模型包为 **23 套原有＋44 套社区＋11 套语音 / 单图 3D＋4 套 MV 校验导入＝82 套**。模板、模型包、引擎和架构分别计数，不代表全部模型已在手机实测。[机器可读实现矩阵](catalogue/release-0.3.11-implementation.json)
 
 ### 语音、单图与多视图生 3D
 
@@ -130,27 +130,27 @@ Uncensored／Abliterated 与 NSFW 分别标注，不互相替代。作者声明�
 <a id="install"></a>
 ## 安装与首次启动
 
-1. 从 [v0.3.10 Release](https://github.com/wikigsroom/LMA/releases/tag/v0.3.10) 下载 `LMA-0.3.10-arm64-v8a.apk`；需要 64 位 Android 9／API 28 或以上。
+1. 从 [v0.3.11 Release](https://github.com/wikigsroom/LMA/releases/tag/v0.3.11) 下载 `LMA-0.3.11-arm64-v8a.apk`；需要 64 位 Android 9／API 28 或以上。
 2. 对照同页 `SHA256SUMS` 核对安装包。Windows 示例：
 
    ```powershell
-   Get-FileHash .\LMA-0.3.10-arm64-v8a.apk -Algorithm SHA256
+   Get-FileHash .\LMA-0.3.11-arm64-v8a.apk -Algorithm SHA256
    ```
 
 3. 打开 App，按系统提示允许通知。若要退出界面或锁屏继续工作，在 Android 设置中允许后台活动并取消相关电池限制。
 4. App 初次启动可零模型使用管理界面和接口；选择、下载、导入或加载模型都是独立操作。
 5. 保持原签名升级安装，已有模型与设置继续保留。自行签名的 APK 不能直接覆盖另一签名的安装。
 
-| 安装包身份 | v0.3.10 / code60 |
+| 安装包身份 | v0.3.11 / code61 |
 | --- | --- |
-| 字节数 | `71037593` |
-| SHA256 | `0543d725263294e1f14b48a2bd0fde5c1cc42fb3a4ba3043107fce3d47a05b56` |
+| 字节数 | `71062169` |
+| SHA256 | `0184a42bbb5dca34888f45be71ef365c8f7e2082db02af31d10310f8763b10a1` |
 | 签名证书 SHA256 | `90444a717a55549e2094364d8d7d005cf8b7f4df24562da62cc1884a2f341c17` |
 
-Release 附 APK、源码 ZIP、验证 ZIP、截图 ZIP、10 GIF / 10 MP4、构建与源码清单、说明和哈希。历史真机媒体保留原版本；本版故障诊断不公开用户任务提示词或素材。[版本说明](docs/releases/v0.3.10.md)
+Release 附 APK、源码 ZIP、验证 ZIP、截图 ZIP、10 组桌面 GIF / MP4、另附真实手机模型 GIF / MP4、构建与源码清单、说明和哈希。历史真机媒体保留原版本；本版故障诊断不公开用户任务提示词或素材。[版本说明](docs/releases/v0.3.11.md)
 
 <a id="use-cases"></a>
-## 48 个完整使用场景
+## 完整使用场景 C01–C65
 
 以下是操作用例及应有行为，不是新增的真机测试通过清单。当前程序检查与历史实测证据分别见下文。
 
@@ -555,9 +555,9 @@ $lmaAccepted
 [实际录屏 MP4](docs/media/device/v0.3.9/physical-walkthrough.mp4) · [GIF](docs/media/device/v0.3.9/physical-walkthrough.gif) · [媒体身份](docs/media/device/v0.3.9/manifest.json)。60 秒锁屏检查针对接口健康与服务存活，没有生成 token。
 
 
-当前 10 组为 **v0.3.10 生产页面＋明确标记的桌面交互夹具（UI FIXTURE）**，共 57 张截图 / 10 GIF / 10 MP4。社区 / 工作台 / 语音与 3D / MV / RF / Spatial / 材质 / UltraTex / 本地辅助 / 推荐分类分别检查 34 / 8 / 32 / 19 / 17 / 20 / 34 / 38 / 23 / 37 项交互（最后一组为多模态推荐）。未下载权重、未产生模型输出；录制后关闭全部测试浏览器资源。[完整媒体索引](docs/MEDIA.md)
+当前 10 组为 **v0.3.11 生产页面＋明确标记的桌面交互夹具（UI FIXTURE）**，共 58 张截图 / 10 GIF / 10 MP4。社区 / 工作台 / 语音与 3D / MV / RF / Spatial / 材质 / UltraTex / 本地辅助 / 推荐分类分别检查 38 / 8 / 32 / 19 / 17 / 20 / 34 / 38 / 23 / 37 项交互（最后一组为多模态推荐）。未下载权重、未产生模型输出；录制后关闭全部测试浏览器资源。[完整媒体索引](docs/MEDIA.md)
 
-![v0.3.10 社区筛选、来源与本地管理；UI FIXTURE](docs/media/development/community/community-ui.gif)
+![v0.3.11 社区筛选、来源与本地管理；UI FIXTURE](docs/media/development/community/community-ui.gif)
 
 [社区 MP4](docs/media/development/community/community-ui.mp4) · [媒体与源码身份](docs/media/development/community/manifest.json)
 
@@ -567,7 +567,7 @@ $lmaAccepted
 
 [视频目录](docs/media/development/community/03-community-video.png) · [视频来源与限制](docs/media/development/community/04-video-source.png) · [本地管理](docs/media/development/community/05-community-local.png)
 
-![v0.3.10 共用工作台；UI FIXTURE，非模型推理](docs/media/development/release-workbench/release-workbench-ui.gif)
+![v0.3.11 共用工作台；UI FIXTURE，非模型推理](docs/media/development/release-workbench/release-workbench-ui.gif)
 
 [工作台 MP4](docs/media/development/release-workbench/release-workbench-ui.mp4) · [工作台媒体身份](docs/media/development/release-workbench/manifest.json)
 
@@ -584,22 +584,22 @@ $lmaAccepted
 | 运行资源与停止原因 | [资源](docs/media/development/resources/01-running.png)、[停止详情](docs/media/development/resources/02-stopped-detail.png) | [资源说明](docs/RUNTIME_RESOURCES.md) |
 | 原始文本模型库、接口和深色主题 | [模型库](docs/media/01-library.png)、[接口](docs/media/05-api.png)、[深色](docs/media/07-dark.png) | [原始演示](docs/MEDIA.md) |
 
-![v0.3.10 语音与单图生 3D；UI FIXTURE，合成立方体非模型输出](docs/media/development/expansion/expansion-ui.gif)
+![v0.3.11 语音与单图生 3D；UI FIXTURE，合成立方体非模型输出](docs/media/development/expansion/expansion-ui.gif)
 
 [语音选择](docs/media/development/expansion/01-speech-models.png) · [3D 表单](docs/media/development/expansion/03-3d-form.png) · [GLB 预览](docs/media/development/expansion/05-glb-preview.png) · [MP4](docs/media/development/expansion/expansion-ui.mp4) · [32 项页面检查](docs/media/development/expansion/manifest.json)
 
-![v0.3.10 四视图与后台状态；UI FIXTURE，未运行训练模型](docs/media/development/multiview/multiview-ui.gif)
+![v0.3.11 四视图与后台状态；UI FIXTURE，未运行训练模型](docs/media/development/multiview/multiview-ui.gif)
 
 [四个导入选择](docs/media/development/multiview/01-multiview-models.png) · [四图表单](docs/media/development/multiview/03-four-view-form.png) · [后台观察](docs/media/development/multiview/05-background-observations.png) · [MP4](docs/media/development/multiview/multiview-ui.mp4) · [19 项页面检查](docs/media/development/multiview/manifest.json)
 
 
 ### RF 形状当前页面
 
-![v0.3.10 部件设置；桌面 UI FIXTURE，非模型输出](docs/media/development/shape/03-part-settings.png)
+![v0.3.11 部件设置；桌面 UI FIXTURE，非模型输出](docs/media/development/shape/03-part-settings.png)
 
 ![RF 形状流程；UI FIXTURE，无训练推理](docs/media/development/shape/shape-ui.gif)
 
-[5 张截图 / 身份清单](docs/media/development/shape/manifest.json) · [MP4](docs/media/development/shape/shape-ui.mp4)。这六组保留原有场景，另有材质 / UltraTex / 本地辅助三组；本版合计 57 张截图 / 10 GIF / 10 MP4。旧版媒体和证据按原 Git 身份保留。
+[5 张截图 / 身份清单](docs/media/development/shape/manifest.json) · [MP4](docs/media/development/shape/shape-ui.mp4)。这六组保留原有场景，另有材质 / UltraTex / 本地辅助三组；本版合计 58 张截图 / 10 GIF / 10 MP4。旧版媒体和证据按原 Git 身份保留。
 
 ### Hunyuan / UltraShape 页面流程
 
@@ -649,10 +649,22 @@ Melo INT8 用于中文 / 英文，Kokoro INT8 使用已适配英文音色，Omni
 
 [逐条报告与修复](docs/TASK_FAILURES.md) · [故障证据](verification/releases/v0.3.10/task-diagnostics.json)。
 
+## v0.3.11 真机模型场景 C61–C65
+
+| 编号 | 操作 | 预期 / 本轮观察 |
+| --- | --- | --- |
+| C61 | 在本地 Wan 参数中选择 CPU | 同一模型 ID / 权重，独立保存，不新增下载 |
+| C62 | 提交 CPU 128×128 / 5 帧 / 1 步与 4 步 | 176 / 347.04 秒均产生真机 MP4；画面近空白，未达可用画质，APK / 文件哈希分别记录 |
+| C63 | 使用自有方块图运行 TRELLIS / Pixal | 接受租约内普通输入，真实阶段区分计算与早期路径故障 |
+| C64 | 到达预算后取消 | 仅取消本次任务 / 进程，不以占位 GLB 冒充完成 |
+| C65 | 暂存文件与来源不匹配或父目录越界 | 原生身份 / 文件名 / 目录约束拒绝，其他模型设置保持独立 |
+
+[完整复核与边界](docs/ON_DEVICE_MODEL_REPAIR.md) · [一步手机视频](docs/media/models/v0.3.11/wan-cpu-128.mp4) · [四步手机视频](docs/media/models/v0.3.11/wan-cpu-128-four-steps.mp4) · [一步诊断 GIF](docs/media/models/v0.3.11/wan-cpu-128.gif)。
+
 <a id="case-studies"></a>
 ## 历史案例测试与真实产物
 
-这些是已保存的开发阶段案例，**本次文档修复没有重新下载、复制或运行完整模型**。HOST 表示原生 Windows 主机，UI FIXTURE 表示模拟桥接的页面，PROGRAM 表示程序或有界小图检查；都不能替代 Android 真机验收。旧文档中的“尚未发布”属于当时语境，当前安装包以上方 v0.3.10 为准。
+这些是已保存的开发阶段案例，未在本轮重跑为新的通过。HOST 表示原生 Windows 主机，UI FIXTURE 表示模拟桥接页面，PROGRAM 表示程序或有界小图检查；原始记录不能替代 Android 验收。本轮另获授权的手机模型检查见 C61–C65；当前安装包以上方 v0.3.11 为准。
 
 | 编号 | 案例及输入／操作 | 当时观察与明确边界 | 原始说明／证据 |
 | --- | --- | --- | --- |
@@ -724,11 +736,11 @@ Melo INT8 用于中文 / 英文，Kokoro INT8 使用已适配英文音色，Omni
 <a id="verification"></a>
 ## 当前程序检查覆盖与复核入口
 
-**v0.3.10：60 组 / 15,032 项程序断言，73 份记录另附状态清单；完整生产页面 785 项；其中推荐分类 37 项，8 项为历史界面性能保留核对，不是本版延迟实测。** APK 为 41 个 ARM64 原生库、Android 9+、16 KiB 对齐和原签名；Lint 0 错误 / 16 个原有警告。10 组当前 UI 录制包含 57 张截图 / 10 GIF / 10 MP4，815 个历史证据文件保留原身份。没有新增完整训练模型运行；另有 23 项真实 Android 程序检查及约 60 秒锁屏接口记录，见[真机专项](docs/DEVICE_ACCEPTANCE.md)。 另有 [10 项真机故障专项](verification/releases/v0.3.10/task-diagnostics.json)，与上述断言分别计数；5 条失败均已备份后清理。
+**v0.3.11：60 组 / 15,063 项程序断言，73 份门禁记录另附状态清单；完整生产页面 794 项，其中推荐分类 37 项。** 41 个 ARM64 原生库、Android 9+、16 KiB 对齐、原签名和 Lint 0 错误 / 16 个原有警告通过。10 组桌面 UI 为 58 PNG / 10 GIF / 10 MP4，815 个历史证据文件保持身份；8 项性能保留核对不属于本版延迟实测。另有 23 项真机程序检查及 60.239 秒锁屏 API 健康检查；授权手机模型成功与限时未完成结果单独记录，不加入上述门禁数量。历史 [v0.3.10 的 10 项故障检查](verification/releases/v0.3.10/task-diagnostics.json)及原五条失败报告保留。
 
-[全部 60 组明细与 62 个配方](docs/IMPLEMENTATION_V0310.md) · [本版记录与源码指纹](verification/releases/v0.3.10/status.json) · [验证策略](docs/PROGRAM_VALIDATION.md)
+[全部 60 组明细与 62 个配方](docs/IMPLEMENTATION_V0311.md) · [本版记录与源码指纹](verification/releases/v0.3.11/status.json) · [验证策略](docs/PROGRAM_VALIDATION.md)
 
-下面保留 **v0.3.5 历史 30 组 / 5,820 项** 及其原记录入口，便于对照；本版数量以上面的 v0.3.10 清单为准。
+下面保留 **v0.3.5 历史 30 组 / 5,820 项** 及其原记录入口，便于对照；本版数量以上面的 v0.3.11 清单为准。
 
 | 编号 | 套件／断言 | 覆盖的案例 | 记录 |
 | --- | --- | --- | --- |

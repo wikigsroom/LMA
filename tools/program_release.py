@@ -45,10 +45,12 @@ def package():
  validation=dict(evidence,app='LMA',sha256=build['sha256'],bytes=build['bytes'],validation_mode='program_only',
   full_scope_program_implementation_complete=matrix['full_scope_program_implementation_complete'],
   selected_ids=[x['selection_id'] for x in matrix['selections']],model_weights_included=False,
-  automatic_model_downloads=False,complete_trained_model_runs=0,physical_device_tests=evidence.get("physical_device_tests",0),
+  automatic_model_downloads=False,complete_trained_model_runs=evidence.get('complete_trained_model_runs',0),physical_device_tests=evidence.get("physical_device_tests",0),
   physical_device_tested=evidence.get("physical_device_tested",False),background_program_tested=evidence.get("background_program_tested",False),
   screen_off_program_seconds=evidence.get("screen_off_program_seconds",0),
-  phone_inference_tested=False,model_quality_accepted=False,background_endurance_tested=False,
+  phone_inference_tested=evidence.get('phone_inference_tested',False),
+  authorized_phone_model_attempts=evidence.get('authorized_phone_model_attempts',0),
+  authorized_phone_model_successes=evidence.get('authorized_phone_model_successes',0),model_quality_accepted=False,background_endurance_tested=False,
   ui_uses_simulated_bridge=True,original_signing_identity=True,virtualization_used=False)
  write(DIST/'validation.json',validation)
  source=DIST/f'LMA-{VERSION}-source.zip'
@@ -104,8 +106,8 @@ def check(prepared=False,published=False):
  assert build['version']==validation['version']==VERSION and build['sha256']==validation['sha256']
  assert validation['validation_mode']=='program_only' and validation['full_scope_program_implementation_complete']
  assert validation['program_assertions']==evidence['program_assertions'] and validation['program_suites']==evidence['program_suites']
- for field in ('physical_device_tests','physical_device_tested','background_program_tested','screen_off_program_seconds'):assert validation[field]==evidence.get(field,0 if field in ('physical_device_tests','screen_off_program_seconds') else False),field
- for flag in ['model_weights_included','automatic_model_downloads','complete_trained_model_runs','phone_inference_tested','model_quality_accepted','background_endurance_tested','virtualization_used']:assert not validation[flag],flag
+ for field in ('physical_device_tests','physical_device_tested','background_program_tested','screen_off_program_seconds','phone_inference_tested','authorized_phone_model_attempts','authorized_phone_model_successes','complete_trained_model_runs'):assert validation[field]==evidence.get(field,0 if field in ('physical_device_tests','screen_off_program_seconds') else False),field
+ for flag in ['model_weights_included','automatic_model_downloads','model_quality_accepted','background_endurance_tested','virtualization_used']:assert not validation[flag],flag
  source_directory=DIST/('releases/v'+VERSION) if published else DIST
  index=read(source_directory/'source-archive-manifest.json');source=source_directory/index['archive']
  assert index['version']==VERSION
@@ -115,8 +117,8 @@ def check(prepared=False,published=False):
   directory=DIST/('releases/v'+VERSION);manifest=read(directory/'release-manifest.json')
   assert manifest['version']==VERSION and manifest['prerelease']==(not COMPLETE) and manifest['validation_mode']=='program_only'
   assert manifest['full_scope_program_implementation_complete'] and manifest['apk_sha256']==build['sha256']
-  for field in ('physical_device_tests','physical_device_tested','background_program_tested'):assert manifest[field]==evidence.get(field,0 if field=='physical_device_tests' else False),field
-  for field in ('phone_inference_tested','background_endurance_tested','model_quality_accepted'):assert not manifest[field],field
+  for field in ('physical_device_tests','physical_device_tested','background_program_tested','phone_inference_tested','authorized_phone_model_attempts','authorized_phone_model_successes'):assert manifest[field]==evidence.get(field,0 if field=='physical_device_tests' else False),field
+  for field in ('background_endurance_tested','model_quality_accepted'):assert not manifest[field],field
   assert manifest['all_benchmark_architectures_integrated']==COMPLETE and manifest['unported_benchmark_configurations']==evidence['unported_benchmark_configurations']
   expected={x['name'] for x in manifest['assets']}|{'release-manifest.json'}
   if (directory/'publish-receipt.json').exists():expected.add('publish-receipt.json')
@@ -146,6 +148,8 @@ def prepare():
   for name in MEDIA:archive.write(ROOT/'docs/media/development'/name/'manifest.json','media/'+name+'/manifest.json')
   physical_manifest=ROOT/'docs/media/device'/('v'+VERSION)/'manifest.json'
   if physical_manifest.exists():archive.write(physical_manifest,'media/physical-device/manifest.json')
+  model_manifest=ROOT/'docs/media/models'/('v'+VERSION)/'manifest.json'
+  if model_manifest.exists():archive.write(model_manifest,'media/physical-model/manifest.json')
   archive.write(ROOT/('catalogue/release-'+VERSION+'-implementation.json'),'implementation.json')
   archive.write(ROOT/'docs/proposals/program-validation-policy.json','validation-policy.json')
  names.append(verification)
@@ -157,6 +161,9 @@ def prepare():
   physical_media=ROOT/'docs/media/device'/('v'+VERSION)
   if physical_media.exists():
    for p in sorted(physical_media.glob('*.png')):archive.write(p,'physical-device/'+p.name)
+  model_media=ROOT/'docs/media/models'/('v'+VERSION)
+  if model_media.exists():
+   for p in sorted(model_media.glob('*.png')):archive.write(p,'physical-model/'+p.name)
  names.append(screenshots)
  physical_media=ROOT/'docs/media/device'/('v'+VERSION)
  if physical_media.exists():
@@ -167,13 +174,21 @@ def prepare():
   for extension in ['mp4','gif']:
    original=ROOT/'docs/media/development'/name/(name+'-ui.'+extension)
    target=f'LMA-{VERSION}-{name}.'+extension;shutil.copy2(original,directory/target);names.append(target)
+ model_media=ROOT/'docs/media/models'/('v'+VERSION)
+ if model_media.exists():
+  for item in read(model_media/'manifest.json')['files']:
+   original=model_media/item['file']
+   if original.suffix not in ('.mp4','.gif'):continue
+   target=f'LMA-{VERSION}-'+original.name;shutil.copy2(original,directory/target);names.append(target)
  names.sort()
  (directory/'SHA256SUMS').write_text(''.join(sha(directory/n)+'  '+n+'\n' for n in names),encoding='utf-8');names.append('SHA256SUMS')
- manifest=dict(repository='wikigsroom/LMA',version=VERSION,tag='v'+VERSION,title='LMA v'+VERSION+' · Android task diagnostics and compatibility fix / 真机任务诊断与兼容修复',
+ manifest=dict(repository='wikigsroom/LMA',version=VERSION,tag='v'+VERSION,title='LMA v'+VERSION+' · On-device CPU video and verified model staging / 本机 CPU 视频与模型适配',
   prerelease=not COMPLETE,notes='docs/releases/v'+VERSION+'.md',validation_mode='program_only',full_scope_program_implementation_complete=True,
   apk_sha256=build['sha256'],physical_device_tested=evidence.get('physical_device_tested',False),
   physical_device_tests=evidence.get('physical_device_tests',0),background_program_tested=evidence.get('background_program_tested',False),
-  physical_media_included=physical_media.exists(),phone_inference_tested=False,background_endurance_tested=False,
+  physical_media_included=physical_media.exists(),actual_model_media_included=model_media.exists(),phone_inference_tested=evidence.get('phone_inference_tested',False),
+  authorized_phone_model_attempts=evidence.get('authorized_phone_model_attempts',0),
+  authorized_phone_model_successes=evidence.get('authorized_phone_model_successes',0),background_endurance_tested=False,
   model_quality_accepted=False,media_uses_simulated_native_state=True,signing_material_included=False,model_weights_included=False,
   all_benchmark_architectures_integrated=COMPLETE,all_requested_adaptations_complete=COMPLETE,full_benchmark_workflows_reproduced=False,unported_benchmark_configurations=evidence['unported_benchmark_configurations'],
   assets=[dict(name=n,bytes=(directory/n).stat().st_size,sha256=sha(directory/n)) for n in names])

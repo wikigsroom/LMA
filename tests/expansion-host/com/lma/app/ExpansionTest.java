@@ -33,7 +33,8 @@ public final class ExpansionTest {
     public static final class Worker {
         public static void main(String[] args)throws Exception {
             JSONObject c=read(new File(args[0])), paths=c.getJSONObject("components");
-            for(Iterator<String> it=paths.keys();it.hasNext();)if(!new File(paths.getString(it.next())).isFile())throw new IOException("Missing linked component");
+            for(Iterator<String> it=paths.keys();it.hasNext();){String role=it.next();File linked=new File(paths.getString(role)),source=new File(c.getJSONObject("componentSources").getString(role));if(!linked.isFile()||!source.isFile()||!Files.isSameFile(linked.toPath(),source.toPath()))throw new IOException("Selected component binding missing");}
+            for(String key:Arrays.asList("referenceImage","referenceAudio","pointCloud","camera","sourceMesh","coarseMesh"))if(c.has(key)){File input=new File(c.getString(key));if(!input.getPath().equals(input.getCanonicalPath())||Files.isSymbolicLink(input.toPath()))throw new IOException("Input must resolve to the leased regular source");}
             if(c.getString("pipeline").equals("omnivoice") && paths.has("audio_codec") && !new File(c.getString("workspace"),"audio_tokenizer/model.safetensors").isFile())throw new IOException("Codec layout missing");
             if(paths.has("frontend")&&!new File(c.getString("workspace"),"f5-frontend.json").isFile())throw new IOException("F5 frontend was not staged with its selected model");
             File output=new File(c.getString("output"));if(c.getString("type").equals("mesh.generate"))glb(output,geometry());else wav(output);

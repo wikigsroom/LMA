@@ -36,11 +36,11 @@ int main(int argc,char** argv) {
   event({{"event","execution"},{"details",{{"pipeline",pipeline},{"backend","cpu"},{"effectiveParameters",params},{"audioStreaming",false}}}});
   event({{"event","stage"},{"stage","loading"}});
   if(pipeline=="f5_v1") {
-   auto components=command.at("components"); auto model=regular(components,"model"), vocoder=regular(components,"vocoder");
-   regular(components,"vocab"); lma_f5::active=true; lma_f5::maximum_mel_frames=size_t(maximum)*24000/256;
-   if(components.contains("pinyin_chars")) lma_f5::load(regular(components,"pinyin_chars"),false);
-   if(components.contains("pinyin_phrases")) lma_f5::load(regular(components,"pinyin_phrases"),true);
-   if(components.contains("frontend")) lma_f5_official::load(regular(components,"frontend"));
+   auto components=command.at("components"); auto model=component(command,"model"), vocoder=component(command,"vocoder");
+   component(command,"vocab"); lma_f5::active=true; lma_f5::maximum_mel_frames=size_t(maximum)*24000/256;
+   if(components.contains("pinyin_chars")) lma_f5::load(component(command,"pinyin_chars"),false);
+   if(components.contains("pinyin_phrases")) lma_f5::load(component(command,"pinyin_phrases"),true);
+   if(components.contains("frontend")) lma_f5_official::load(component(command,"frontend"));
    engine::models::f5_tts::F5SynthesisRequest value; value.text=prompt; value.ref_audio=std::move(ref.samples); value.ref_sample_rate=24000;
    value.ref_text=text(input.at("transcripts"),"reference_audio"); value.dialect="LMA_F5_V1";
    value.strip_diacritics=false; value.threads=threads; value.speed=speed; value.steps=steps; value.cfg_strength=cfg;
@@ -54,7 +54,7 @@ int main(int argc,char** argv) {
    auto audio=engine::models::f5_tts::f5_synthesize(model,vocoder,value);
    wave(output,audio.audio.data(),audio.audio.size(),int(audio.sample_rate),1,maximum);
   } else {
-   std::string model=regular(command.at("components"),"model"); Handles h;
+   std::string model=component(command,"model"); Handles h;
    ok(audiocpp_registry_create(nullptr,&h.registry)); audiocpp_model_config config{"omnivoice",nullptr,nullptr,nullptr};
    std::string loadPath=std::filesystem::path(model).extension()==".gguf"?model:std::filesystem::path(model).parent_path().string();
    ok(audiocpp_model_load(h.registry,loadPath.c_str(),&config,nullptr,&h.model));

@@ -482,8 +482,8 @@
       "abi": "arm64-v8a",
       "backend": "cpu",
       "ndk": "30.0.16248370",
-      "sha256": "ac81a419239387b1f1a7c988cec98235712429dae87ae110e097abca45475bc5",
-      "bytes": 7317632,
+      "sha256": "e3035726c391c8090d1cdbdbc96a1467aefd46eb86823edef435d48892455195",
+      "bytes": 7324672,
       "android_api_notes": [
         28
       ],
@@ -514,8 +514,8 @@
       "abi": "arm64-v8a",
       "backend": "cpu",
       "ndk": "30.0.16248370",
-      "sha256": "59411ee4ee4ef3292d7041acdb1d94ff6e50d512a2c6bd21952c977c158765a7",
-      "bytes": 3694184,
+      "sha256": "bcb0ad33a32d402aea5f29f8aa1917c9caf3fc06fc2226341a613aebc8c307e0",
+      "bytes": 3699352,
       "android_api_notes": [
         28
       ],
@@ -540,8 +540,8 @@
       "abi": "arm64-v8a",
       "backend": "cpu",
       "ndk": "30.0.16248370",
-      "sha256": "7265f951bf31bfba239e01cfecb0a2ecce3b5de7d2251dc2974b11d3ce78c59d",
-      "bytes": 2238728,
+      "sha256": "4fff165e5946da21693ec86cc51630d754d7136511282b606908721afc3009e1",
+      "bytes": 2257536,
       "android_api_notes": [
         28
       ],
@@ -567,8 +567,8 @@
       "abi": "arm64-v8a",
       "backend": "cpu",
       "ndk": "30.0.16248370",
-      "sha256": "3aea62fcbd4006e46cd3153b0c858ec6fb573c59cc49602a38cd525f35c76b0d",
-      "bytes": 703504,
+      "sha256": "a7f9308d1473eac67f6ca574b2db7af093775c7d3355667807719644c5c29e8c",
+      "bytes": 712416,
       "android_api_notes": [
         28
       ],
@@ -605,8 +605,8 @@
       "abi": "arm64-v8a",
       "backend": "cpu",
       "ndk": "30.0.16248370",
-      "sha256": "6d249a82dd8f1f3ad744f2a28ef2cd5497d05670dc8532ac0c0d1e996cbed135",
-      "bytes": 3079744,
+      "sha256": "13838350b356cd39fedd47c83175c6d20bdd3dd8bbcb9ca591cab56709a5e327",
+      "bytes": 3088912,
       "android_api_notes": [
         28
       ],
@@ -690,8 +690,8 @@
       "abi": "arm64-v8a",
       "backend": "cpu",
       "ndk": "30.0.16248370",
-      "sha256": "28336c8458ec40225c6bb9be5498bed8e995c5685ee7112e86a15389ca926685",
-      "bytes": 4939248,
+      "sha256": "d803d856f9762c22580a15b35565d60f5a92016056cc3011885fc66d97af9dbb",
+      "bytes": 4948192,
       "android_api_notes": [
         28
       ],

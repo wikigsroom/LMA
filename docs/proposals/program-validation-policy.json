@@ -14,8 +14,28 @@
   "historical_failures_preserved": true,
   "historical_model_results_are_current_apk_validation": false,
   "frozen_functional_scope": "multimodal-release-scope.json",
-  "selected_ids": ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "16", "17"],
-  "lora_required_base_families": ["sd15", "sdxl"],
+  "selected_ids": [
+    "01",
+    "02",
+    "03",
+    "04",
+    "05",
+    "06",
+    "07",
+    "08",
+    "09",
+    "10",
+    "11",
+    "12",
+    "13",
+    "14",
+    "16",
+    "17"
+  ],
+  "lora_required_base_families": [
+    "sd15",
+    "sdxl"
+  ],
   "split_versions": false,
   "app_contains_model_weights": false,
   "automatic_model_asset_download": false,
@@ -23,6 +43,23 @@
   "off_device_inference": false,
   "root_required": false,
   "virtualization_allowed": false,
-  "validation_categories": ["android_build_package_signature", "model_lifecycle", "per_model_parameters", "queue_api_artifacts_recovery", "bounded_engine_contracts", "ui_documentation_source_audit"],
-  "untested_claims_must_remain_false": ["all_selected_models_tested", "phone_inference_tested", "background_endurance_tested", "model_quality_accepted"]
+  "validation_categories": [
+    "android_build_package_signature",
+    "model_lifecycle",
+    "per_model_parameters",
+    "queue_api_artifacts_recovery",
+    "bounded_engine_contracts",
+    "ui_documentation_source_audit"
+  ],
+  "untested_claims_must_remain_false": [
+    "all_selected_models_tested",
+    "background_endurance_tested",
+    "model_quality_accepted"
+  ],
+  "optional_authorized_phone_model_validation": {
+    "effective_on": "2026-11-01",
+    "user_instruction": "允许你做部分真机和模型验证。自行决定。",
+    "scope": "Selected existing downloaded models, bounded physical-phone generation, no new model downloads; separate evidence from program gate records",
+    "required_for_all_models": false
+  }
 }

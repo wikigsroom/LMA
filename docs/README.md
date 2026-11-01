@@ -1,5 +1,7 @@
 # LMA 文档 / Documentation
 
+**v0.3.11 / code61：** [手机模型修复与真实输出](ON_DEVICE_MODEL_REPAIR.md) / [English](ON_DEVICE_MODEL_REPAIR.en.md) · [完整实现](IMPLEMENTATION_V0311.md) / [English](IMPLEMENTATION_V0311.en.md) · [Release](releases/v0.3.11.md)。
+
 [空闲卡顿原因与真机对比](PERFORMANCE.md) / [Idle UI performance and measurements](PERFORMANCE.en.md) · [v0.3.9](releases/v0.3.9.md)。
 
 **v0.3.10 / code60 · 当前 / Current:** [14 个推荐模型 / fourteen recommended choices](RECOMMENDED_MODELS.md)：text 3 / image 3 / video 2 / audio 3 / 3D 3. Default Recommended preserves the original text prefix, adds optional multimodal choices and never downloads automatically. [Release](releases/v0.3.10.md) · [当前实现 / implementation](IMPLEMENTATION_V0310.md). Earlier version callouts below retain their historical context.

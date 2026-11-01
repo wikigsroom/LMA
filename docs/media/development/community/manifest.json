@@ -1,5 +1,5 @@
 {
-  "version": "0.3.10",
+  "version": "0.3.11",
   "kind": "current production UI with an explicit simulated bridge",
   "android_device": false,
   "model_inference": false,
@@ -40,6 +40,10 @@
     "Content markers persist through local-management state changes",
     "Local content management does not auto-download a different model",
     "Local community models",
+    "Community Wan variants reuse the same per-model CPU selector",
+    "Backend selection leaves every other model setting untouched",
+    "CPU backend selection neither duplicates the bundle nor downloads weights",
+    "Local video CPU compatibility selector",
     "320px content filters and cards"
   ],
   "screenshots": [
@@ -57,6 +61,9 @@
     },
     {
       "file": "05-community-local.png"
+    },
+    {
+      "file": "06-video-cpu-settings.png"
     }
   ],
   "files": [
@@ -86,14 +93,19 @@
       "sha256": "56bacc0959e0e7e186e9d79115d0bc6ce5df863c40383ed8e28bfc6fed27e95d"
     },
     {
+      "file": "06-video-cpu-settings.png",
+      "bytes": 43452,
+      "sha256": "d266819e45bf9e26f731052656e82af5863c566540be2d933ce1370cb237e185"
+    },
+    {
       "file": "community-ui.gif",
-      "bytes": 774192,
-      "sha256": "16815eec3e36f67bd325187d42736b49a9657ee6d31d13b9cf7ee6ea0cf84649"
+      "bytes": 737069,
+      "sha256": "141424ceabc8d0a2f4f2fe134c72d215c00ccaf9d7b03518586ceff50c80daa8"
     },
     {
       "file": "community-ui.mp4",
-      "bytes": 325356,
-      "sha256": "d8d6ca9b54ae09028bdb10640fe2a044ac2d23b040b361494e83664054bf1c54"
+      "bytes": 331349,
+      "sha256": "50fe908dc5e52c2de0ba5140b9e280872dc85971acb9a1742f502972490a8b18"
     }
   ],
   "input_fingerprint": {
@@ -103,7 +115,7 @@
     "app/src/main/assets/asset-preparations.json": "b0a7cbac1a633310b9fff84164439ee8fe20a1df137d1075eb9263f531ccfd3b",
     "app/src/main/assets/audio-preview.js": "33bb898969f37c1f78c6664052c46da844d148defdcef4a54d64bc5829037f44",
     "app/src/main/assets/community.js": "9ea2f6adf3da95122bf4bca96e9a03971d1da2759a86d5f5e1f0c46c2ba8272a",
-    "app/src/main/assets/engine-builds.json": "1b4610b1f5e0e8e4f17113f89a1f9ffbd92245199d6a6542182a4651ce13b396",
+    "app/src/main/assets/engine-builds.json": "0bd627d7e8f9f7b0dfc11da2d639c63eb4add3fec18d245a92a9e9913370ee0d",
     "app/src/main/assets/expansion-notices.json": "e5bc41234e37c91400636473491b61644bb7cdf5ba4c73c20c2e5eaffc769055",
     "app/src/main/assets/expansion.js": "e968fea1d2013d6fa3c812dc8af5aeadf32ac11cb15aa3490de713c840c4f98c",
     "app/src/main/assets/foundation.css": "8bbd7a445a43d93f796be904e8f67b6e6120cf27547b93abb79cf41142078343",
@@ -315,7 +327,7 @@
     "app/src/main/assets/recommendations.json": "8fa2c4c76526d63de81d37fac75af6d4664175df0f355b64c552274d67517ebf",
     "app/src/main/assets/versions.js": "2d629929a6db642c12a242ddcc62cd4f4090ab307e0cb669ceb98add031977e1",
     "app/src/main/assets/workbench.js": "367c6293b50bb1f4567da00eef20d795c7f775c2e5f6b5ec62b0e32989920e09",
-    "tests/community-ui.cjs": "0c33015c1520839e3c0fe2ed1e13aff4253e0754d3cb120874d7fef5ec7c7017",
+    "tests/community-ui.cjs": "47c8fc0d14678acb054dc94515d7b91e9c6f32e1af53a7656868b4d4cfc36511",
     "tests/foundation-ui.cjs": "b8cc6e6dcd05054e8651c1ec908e8d1f8e1c65abe1cb6d81e77f52a7e9fea6ed",
     "tools/capture_workbench.cjs": "8173ade63ef547140cba8c219fd4304253ceb2afca2f67dc6c1b8ed4627edfc5"
   }

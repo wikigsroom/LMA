@@ -11,6 +11,9 @@ public final class SdSpec {
         JSONObject schema = bundle.parameters().json();
         if (bundle.pipeline.equals("wan21_13b")) {
             JSONObject fields = schema.getJSONObject("fields");
+            if (bundle.engine.equals("wan_sd_cpp")) fields.put("executionBackend", new JSONObject()
+                .put("type", "enum").put("label", "运行后端（CPU 兼容 / Vulkan 加速）")
+                .put("default", "vulkan").put("values", new JSONArray(Arrays.asList("cpu", "vulkan"))));
             if (!fields.has("vaeTileSize")) fields.put("vaeTileSize", new JSONObject()
                 .put("type", "integer").put("label", "VAE 空间分块大小（像素）").put("default", 128)
                 .put("minimum", 128).put("maximum", 1024).put("multipleOf", 64)
@@ -21,6 +24,14 @@ public final class SdSpec {
         return new ParameterSchema(schema);
     }
     private SdSpec() {}
+    /** A model's explicit saved/request choice; legacy requests retain their original backend. */
+    public static String executionBackend(ModelBundle bundle, JSONObject parameters) {
+        String selected = parameters.optString("executionBackend", bundle.backend);
+        if (bundle.engine.equals("wan_sd_cpp") && bundle.pipeline.equals("wan21_13b")) {
+            if (!selected.equals("cpu") && !selected.equals("vulkan")) throw new IllegalArgumentException("请选择 CPU 或 Vulkan 运行后端");
+        } else if (!selected.equals(bundle.backend)) throw new IllegalArgumentException("此模型没有对应的运行后端");
+        return selected;
+    }
     private static final Set<String> PIPELINES = new HashSet<>(Arrays.asList("sd15", "sd21_turbo", "sd15_lcm", "sdxl", "sdxl_lcm", "z_image_turbo", "flux2_klein_4b", "qwen_image_21", "wan21_13b"));
     public static void validate(ModelBundle bundle, String type) throws Exception {
         if (AdapterSpec.isAdapter(bundle)) throw new IllegalArgumentException("LoRA 需要与兼容的基础模型配对使用");
@@ -65,6 +76,7 @@ public final class SdSpec {
     }
     public static JSONObject prepare(ModelBundle base, List<ModelBundle> adapters, JSONObject request) throws Exception {
         validate(base, request.getString("type"));
+        executionBackend(base, request.getJSONObject("parameters"));
         if (!base.id.equals(request.getString("bundleId"))) throw new IllegalArgumentException("扩散任务与模型快照不匹配");
         JSONArray selected = request.optJSONArray("adapters");
         if ((selected == null ? 0 : selected.length()) != adapters.size()) throw new IllegalArgumentException("扩散适配器快照不完整");

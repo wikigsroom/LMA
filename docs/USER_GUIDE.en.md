@@ -1,5 +1,7 @@
 # LMA user guide
 
+**Current v0.3.11 / code61:** [Explicit CPU selection, 3D repair and physical results](ON_DEVICE_MODEL_REPAIR.en.md). Models → Local → model settings → cpu; reuse existing weights without automatic switching or downloading. Earlier notes below are historical.
+
 **v0.3.10 / code60:** [逐条任务失败、清理与修复](TASK_FAILURES.md) / [Task diagnosis and repair](TASK_FAILURES.en.md). Denied 3D workspace links are repaired; unsupported Wan GPU is rejected before enqueue. Five failed records archived/removed, existing successes/models/artifacts retained. No complete model reruns.
 
 **v0.3.10 / code60 · 当前 / Current:** [14 个推荐模型 / fourteen recommended choices](RECOMMENDED_MODELS.en.md)：text 3 / image 3 / video 2 / audio 3 / 3D 3. Default Recommended preserves the original text prefix, adds optional multimodal choices and never downloads automatically. [Release](releases/v0.3.10.md) · [当前实现 / implementation](IMPLEMENTATION_V0310.md). Earlier version callouts below retain their historical context.

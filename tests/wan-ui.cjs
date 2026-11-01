@@ -7,7 +7,8 @@ function installWan(model) {
   const f=window.__fixture;
   const components=model.components.map(c=>({...c,reusable:false,downloadable:true}));
   const total=components.reduce((n,c)=>n+c.bytes,0);
-  f.bundles=[{id:model.id,manifest:model,installed:false,config:{values:Object.fromEntries(Object.entries(model.parameters.fields).map(([k,v])=>[k,v.default]))},plan:{totalBytes:total,reusableBytes:0,remainingBytes:total,components}}];
+  const schema=JSON.parse(JSON.stringify(model.parameters));schema.fields.executionBackend={type:'enum',label:'运行后端（CPU 兼容 / Vulkan 加速）',default:'vulkan',values:['cpu','vulkan']};
+  f.bundles=[{id:model.id,manifest:model,installed:false,parameterSchema:schema,config:{values:Object.fromEntries(Object.entries(schema.fields).map(([k,v])=>[k,v.default]))},plan:{totalBytes:total,reusableBytes:0,remainingBytes:total,components}}];
   f.localEngines.push({engine:'wan_sd_cpp',available:true,deviceValidated:false});
   window.LMA.receive(f);
 }
@@ -24,6 +25,13 @@ module.exports=async function(page,checked,overflow,output,capture=async()=>{}) 
   assert.deepEqual(await downloads(),before.concat(id));checked('Explicit download selects only the chosen video model');
   await page.evaluate(id=>{const b=window.__fixture.bundles.find(b=>b.id===id);b.installed=true;delete b.transfer;window.LMA.receive(window.__fixture);},id);
   await page.locator('[data-filter="local"]').click();await page.locator('[data-action="bundleInfo"][data-id="'+id+'"]').first().click();await page.locator('#modal [data-action="bundleSettings"]').click();
+  assert.equal(await page.locator('[data-bundle-field="executionBackend"]').inputValue(),'1');checked('Existing video backend stays Vulkan until explicitly changed');
+  await page.selectOption('[data-bundle-field="executionBackend"]',{label:'cpu'});
+  await page.locator('#bundleSettingsForm [type="submit"]').click();await page.waitForFunction(()=>document.getElementById('modalBackdrop').hidden);
+  assert.equal(await page.evaluate(id=>window.__fixture.bundles.find(b=>b.id===id).config.values.executionBackend,id),'cpu');checked('CPU choice persists under the same downloaded video model ID');
+  assert.deepEqual(await downloads(),before.concat(id));checked('Selecting CPU reuses the existing assets without another download');
+  await page.locator('[data-action="bundleInfo"][data-id="'+id+'"]').first().click();await page.locator('#modal [data-action="bundleSettings"]').click();
+  assert.equal(await page.locator('[data-bundle-field="executionBackend"]').inputValue(),'0');checked('Reopening per-model settings retains the explicit local backend');
   for(const [field,value] of [['steps','200'],['frames','129'],['fps','60'],['vaeTileSize','960']]) {
     await page.locator('#bundleSettingsForm [data-bundle-field="'+field+'"]').fill('999');await page.locator('#bundleSettingsForm [data-bundle-field="'+field+'"]').blur();
     assert.equal(await page.locator('#bundleSettingsForm [data-bundle-field="'+field+'"]').inputValue(),value);
@@ -45,6 +53,7 @@ module.exports=async function(page,checked,overflow,output,capture=async()=>{}) 
   assert.equal(request.type,'video.generate');assert.equal(request.bundleId,id);
   assert.equal(request.parameters.steps,20);assert.equal(request.parameters.frames,17);assert.equal(request.parameters.fps,8);assert.equal(request.parameters.flowShift,3);
   assert.equal(request.parameters.vaeTileSize,128);assert.equal(request.parameters.vaeTemporalTiling,false);
+  assert.equal(request.parameters.executionBackend,'cpu');checked('Queued video snapshots freeze the selected CPU backend');
   checked('Shared task queue retains selected model identity and exact video parameters');
   assert.deepEqual(await downloads(),before.concat(id));checked('Settings, Local management and task submission issue no implicit second download');
   await capture('04-queued.png','Shared persistent video queue / simulated bridge, not execution evidence');

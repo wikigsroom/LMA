@@ -1,0 +1,366 @@
+{
+  "schema": "lma.authorized-physical-model-probes/1",
+  "version": "0.3.11",
+  "user_authorized_partial_model_validation": true,
+  "authority": "User: 允许你做部分真机和模型验证。自行决定。",
+  "scope": "Selected installed models with owned benign fixtures and a time budget; separate from program gate counts",
+  "input_fingerprint": {
+    "tools/device_model_probe.py": "f03c3de0900d76c201b0a0424813817c5afe450050b082f295d42fb0403ad44e",
+    "tools/physical_model_evidence.py": "88aec868fdcf5b1efd25c62bf5a124782f0a4b276f080c0e64ec8026c8a7f3d8"
+  },
+  "attempts": [
+    {
+      "bundle_id": "trellis2_pbr512_cpu_v1",
+      "device": {
+        "model": "motorola edge plus",
+        "manufacturer": "motorola",
+        "android": "12",
+        "api": "31"
+      },
+      "apk_sha256": "3393550a13ad7af23ddf22acbfed54ac16c5cb7e51e73b5aea2cd17cdd98f1d5",
+      "state": "cancelled",
+      "outcome": "bounded_timeout_cancel_requested",
+      "budget_seconds": 600,
+      "elapsed_seconds": 600.06,
+      "same_android_phone": true,
+      "parameters": {
+        "threads": 4,
+        "resolution": 512,
+        "steps": 1,
+        "seed": 1234,
+        "faces": 1000,
+        "atlas": 256,
+        "guidance": 1,
+        "fov": 49.13,
+        "texture": false,
+        "foregroundModel": "none",
+        "materialModel": "none",
+        "materialPrompt": "Realistic materials matching the selected reference image."
+      },
+      "stages": [
+        {
+          "state": "loading",
+          "stage": "loading",
+          "elapsed_seconds": 0.01
+        },
+        {
+          "state": "running",
+          "stage": "encoding_image",
+          "elapsed_seconds": 3.01
+        },
+        {
+          "state": "running",
+          "stage": "sampling_structure",
+          "elapsed_seconds": 15.05
+        }
+      ],
+      "engine_execution": {
+        "pipeline": "trellis2",
+        "backend": "cpu"
+      },
+      "outputs": [],
+      "resource_observations": {
+        "enabled": true,
+        "status": "ended",
+        "startedAt": 1793515746997,
+        "lastSampleAt": 1793516346678,
+        "endedAt": 1793516347255,
+        "samples": 300,
+        "probeErrors": 0,
+        "sampleIntervalMs": 2000,
+        "storageFloorBytes": 67108864,
+        "thermalStopAt": 3,
+        "minimumAvailableRamBytes": 4935749632,
+        "minimumAvailableStorageBytes": 69793345536,
+        "maximumThermalStatus": 0,
+        "thermalKnown": true,
+        "stopCode": "",
+        "message": "",
+        "scope": "shared_system_availability_not_model_peak_memory"
+      }
+    },
+    {
+      "bundle_id": "pixal3d_geometry512_cpu_v1",
+      "device": {
+        "model": "motorola edge plus",
+        "manufacturer": "motorola",
+        "android": "12",
+        "api": "31"
+      },
+      "apk_sha256": "0184a42bbb5dca34888f45be71ef365c8f7e2082db02af31d10310f8763b10a1",
+      "state": "cancelled",
+      "outcome": "bounded_timeout_cancel_requested",
+      "budget_seconds": 180,
+      "elapsed_seconds": 180.92,
+      "same_android_phone": true,
+      "parameters": {
+        "threads": 4,
+        "resolution": 512,
+        "steps": 1,
+        "seed": 1234,
+        "faces": 1000,
+        "atlas": 256,
+        "guidance": 1,
+        "fov": 49.13,
+        "texture": false,
+        "foregroundModel": "none",
+        "materialModel": "none",
+        "materialPrompt": "Realistic materials matching the selected reference image."
+      },
+      "stages": [
+        {
+          "state": "running",
+          "stage": "waiting_engine",
+          "elapsed_seconds": 0.01
+        },
+        {
+          "state": "running",
+          "stage": "encoding_image",
+          "elapsed_seconds": 3.04
+        },
+        {
+          "state": "running",
+          "stage": "sampling_structure",
+          "elapsed_seconds": 15.1
+        }
+      ],
+      "engine_execution": {
+        "pipeline": "pixal3d",
+        "backend": "cpu"
+      },
+      "outputs": [],
+      "resource_observations": {
+        "enabled": true,
+        "status": "ended",
+        "startedAt": 1793516798899,
+        "lastSampleAt": 1793516978874,
+        "endedAt": 1793516980616,
+        "samples": 90,
+        "probeErrors": 0,
+        "sampleIntervalMs": 2000,
+        "storageFloorBytes": 67108864,
+        "thermalStopAt": 3,
+        "minimumAvailableRamBytes": 3014594560,
+        "minimumAvailableStorageBytes": 69536681984,
+        "maximumThermalStatus": 0,
+        "thermalKnown": true,
+        "stopCode": "",
+        "message": "",
+        "scope": "shared_system_availability_not_model_peak_memory"
+      }
+    },
+    {
+      "bundle_id": "wan21_13b_q4_vulkan_catalogue_v1",
+      "device": {
+        "model": "motorola edge plus",
+        "manufacturer": "motorola",
+        "android": "12",
+        "api": "31"
+      },
+      "apk_sha256": "0184a42bbb5dca34888f45be71ef365c8f7e2082db02af31d10310f8763b10a1",
+      "state": "succeeded",
+      "outcome": "succeeded",
+      "budget_seconds": 300,
+      "elapsed_seconds": 176.0,
+      "same_android_phone": true,
+      "parameters": {
+        "width": 128,
+        "height": 128,
+        "steps": 1,
+        "threads": 4,
+        "seed": -1,
+        "cfg": 1,
+        "sampler": "euler",
+        "vaeTiling": true,
+        "scheduler": "discrete",
+        "flowShift": 3,
+        "frames": 5,
+        "fps": 8,
+        "vaeTileSize": 128,
+        "vaeTemporalTiling": false,
+        "executionBackend": "cpu"
+      },
+      "stages": [
+        {
+          "state": "loading",
+          "stage": "loading",
+          "elapsed_seconds": 0.01
+        },
+        {
+          "state": "running",
+          "stage": "generating",
+          "elapsed_seconds": 3.02
+        },
+        {
+          "state": "succeeded",
+          "stage": "encoding",
+          "elapsed_seconds": 176.0
+        }
+      ],
+      "engine_execution": {
+        "pipeline": "wan21_13b",
+        "selectedBackend": "cpu",
+        "workerEngine": "sd_cpp",
+        "workerFile": "liblma-sd.so",
+        "workerSha256": "ac4b158744f6e92692ff66d1f1eb580db3a654a0ce7205eebe3896c87b9c99ff",
+        "workerBytes": 8869712,
+        "diffusionBackend": "cpu",
+        "runtimeBackend": "cpu",
+        "textBackend": "cpu",
+        "vaeBackend": "cpu",
+        "vulkanGraphObserved": false,
+        "workerExitCode": 0,
+        "workerCompleteEvent": true,
+        "workerDiagnosticCode": ""
+      },
+      "outputs": [
+        {
+          "bytes": 9173,
+          "sha256": "15ec3bb0e2530968c00d0d47150ee55ff7085f16eaef9f195b3a42a1c63d45c2",
+          "metadata": {
+            "mime": "video/mp4",
+            "codec": "video/avc",
+            "width": 128,
+            "height": 128,
+            "frames": 5,
+            "fps": 8,
+            "durationMs": 625
+          }
+        }
+      ],
+      "resource_observations": {
+        "enabled": true,
+        "status": "ended",
+        "startedAt": 1793517029863,
+        "lastSampleAt": 1793517203052,
+        "endedAt": 1793517203306,
+        "samples": 87,
+        "probeErrors": 0,
+        "sampleIntervalMs": 2000,
+        "storageFloorBytes": 67108864,
+        "thermalStopAt": 3,
+        "minimumAvailableRamBytes": 5504372736,
+        "minimumAvailableStorageBytes": 69536595968,
+        "maximumThermalStatus": 0,
+        "thermalKnown": true,
+        "stopCode": "",
+        "message": "",
+        "scope": "shared_system_availability_not_model_peak_memory"
+      }
+    },
+    {
+      "bundle_id": "wan21_13b_q4_vulkan_catalogue_v1",
+      "device": {
+        "model": "motorola edge plus",
+        "manufacturer": "motorola",
+        "android": "12",
+        "api": "31"
+      },
+      "apk_sha256": "0184a42bbb5dca34888f45be71ef365c8f7e2082db02af31d10310f8763b10a1",
+      "state": "succeeded",
+      "outcome": "succeeded",
+      "budget_seconds": 600,
+      "elapsed_seconds": 347.04,
+      "same_android_phone": true,
+      "parameters": {
+        "width": 128,
+        "height": 128,
+        "steps": 4,
+        "threads": 4,
+        "seed": -1,
+        "cfg": 3,
+        "sampler": "euler",
+        "vaeTiling": true,
+        "scheduler": "discrete",
+        "flowShift": 3,
+        "frames": 5,
+        "fps": 8,
+        "vaeTileSize": 128,
+        "vaeTemporalTiling": false,
+        "executionBackend": "cpu"
+      },
+      "stages": [
+        {
+          "state": "loading",
+          "stage": "loading",
+          "elapsed_seconds": 0.01
+        },
+        {
+          "state": "running",
+          "stage": "generating",
+          "elapsed_seconds": 3.01
+        },
+        {
+          "state": "succeeded",
+          "stage": "encoding",
+          "elapsed_seconds": 347.04
+        }
+      ],
+      "engine_execution": {
+        "pipeline": "wan21_13b",
+        "selectedBackend": "cpu",
+        "workerEngine": "sd_cpp",
+        "workerFile": "liblma-sd.so",
+        "workerSha256": "ac4b158744f6e92692ff66d1f1eb580db3a654a0ce7205eebe3896c87b9c99ff",
+        "workerBytes": 8869712,
+        "diffusionBackend": "cpu",
+        "runtimeBackend": "cpu",
+        "textBackend": "cpu",
+        "vaeBackend": "cpu",
+        "vulkanGraphObserved": false,
+        "workerExitCode": 0,
+        "workerCompleteEvent": true,
+        "workerDiagnosticCode": ""
+      },
+      "outputs": [
+        {
+          "bytes": 4885,
+          "sha256": "c41fa7a77a12f35d32250b0e4ad13d2c406a1ebe7f056889ba5bfcbd576bccd1",
+          "metadata": {
+            "mime": "video/mp4",
+            "codec": "video/avc",
+            "width": 128,
+            "height": 128,
+            "frames": 5,
+            "fps": 8,
+            "durationMs": 625
+          }
+        }
+      ],
+      "resource_observations": {
+        "enabled": true,
+        "status": "ended",
+        "startedAt": 1793517649395,
+        "lastSampleAt": 1793517995291,
+        "endedAt": 1793517996005,
+        "samples": 173,
+        "probeErrors": 0,
+        "sampleIntervalMs": 2000,
+        "storageFloorBytes": 67108864,
+        "thermalStopAt": 3,
+        "minimumAvailableRamBytes": 5533437952,
+        "minimumAvailableStorageBytes": 69287432192,
+        "maximumThermalStatus": 0,
+        "thermalKnown": true,
+        "stopCode": "",
+        "message": "",
+        "scope": "shared_system_availability_not_model_peak_memory"
+      }
+    }
+  ],
+  "successful_generations": 2,
+  "quality_accepted": false,
+  "all_models_tested": false,
+  "background_endurance_tested": false,
+  "new_model_downloads": false,
+  "model_weights_copied": false,
+  "remote_inference": false,
+  "owned_test_cleanup": {
+    "removed_owned_terminal_jobs": 4,
+    "removed_owned_inputs": 4,
+    "original_successes_preserved": 2,
+    "original_artifacts_preserved": 5,
+    "original_installed_models_preserved": 5,
+    "original_parameter_values_preserved": true
+  }
+}

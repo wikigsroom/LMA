@@ -138,7 +138,11 @@ def main():
                "physical_device_tested": manifest.get("physical_device_tested", False),
                "physical_device_tests": manifest.get("physical_device_tests", 0),
                "background_program_tested": manifest.get("background_program_tested", False),
-               "phone_inference_tested": False, "background_endurance_tested": False}
+               "phone_inference_tested": manifest.get("phone_inference_tested", False),
+               "authorized_phone_model_attempts": manifest.get("authorized_phone_model_attempts", 0),
+               "authorized_phone_model_successes": manifest.get("authorized_phone_model_successes", 0),
+               "actual_model_media_included": manifest.get("actual_model_media_included", False),
+               "model_quality_accepted": False, "background_endurance_tested": False}
     (directory / "publish-receipt.json").write_text(json.dumps(receipt, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(json.dumps({"url": receipt["url"], "assets": len(assets), "prerelease": prerelease, "published": True}))
 

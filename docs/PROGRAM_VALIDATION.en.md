@@ -1,4 +1,9 @@
-# Program-only validation policy · v0.3.7
+# Program-only validation policy · v0.3.11
+Current gate coverage: **60 suites / 15,063 assertions, 73 records, 794 UI checks**. Separate physical program acceptance: **23 checks / 60.239 seconds screen-off API health**. Authorized installed-model probes retain exact tested APKs and success/incomplete outcomes in [their own record](../verification/releases/v0.3.11/physical-models.json). Gate counts remain model-free; the optional real-model records are not described as zero inference. [Current inventory](IMPLEMENTATION_V0311.en.md).
+
+## Historical v0.3.7 policy and measurements
+
+**v0.3.11 authorization update, 2026-11-01:** The user permits selected bounded phone/model checks at developer discretion. Use installed models and separate `physical-models.json` evidence; regular gates remain program checks. Full-model quality/endurance is not reinstated as a prerequisite. v0.3.7 figures below are historical.
 
 [中文](PROGRAM_VALIDATION.md) · [Release notes](releases/v0.3.7.md) · [Policy JSON](proposals/program-validation-policy.json) · [Implementation and all suites](IMPLEMENTATION_V037.en.md)
 

@@ -1,5 +1,7 @@
 # Physical task-failure diagnosis · v0.3.10
 
+**Follow-up v0.3.11:** [Explicit CPU video now generates on the phone; shared native 3D path repair](ON_DEVICE_MODEL_REPAIR.en.md). The five-case cleanup and diagnostics below are the preserved v0.3.10 investigation.
+
 [中文](TASK_FAILURES.md) · [User guide](USER_GUIDE.en.md) · [Release notes](releases/v0.3.10.md) · [Public diagnostic record](../verification/releases/v0.3.10/task-diagnostics.json)
 
 The connected phone identifies as **motorola edge plus / burton, Android 12 / API31, SM8250**. Its history contained seven jobs: five failed and two successful, with none active. Diagnosis used original timestamps, installation receipts, tiny owned files and native startup queries under the actual application identity. No complete trained model was rerun. Times below are 2026-11-01, UTC+8.

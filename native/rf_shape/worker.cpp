@@ -19,7 +19,7 @@ static void generate(const json& command) {
  fs::path workspace=command.at("workspace").get<std::string>(),output=command.at("output").get<std::string>();require(workspace.is_absolute()&&fs::is_directory(workspace)&&output.is_absolute()&&!fs::exists(output),"Invalid private shape workspace/output");
  workspace=fs::canonical(workspace);std::set<std::string> found;
  for(auto it=command.at("components").begin();it!=command.at("components").end();it++){
-  auto role=layout.find(it.key());require(role!=layout.end(),"Unknown shape component role");fs::path file=regular(command.at("components"),it.key().c_str());require(fs::canonical(file).parent_path()==workspace&&file.filename()==role->second,"Shape component outside its selected workspace");found.insert(it.key());
+  auto role=layout.find(it.key());require(role!=layout.end(),"Unknown shape component role");fs::path file=component(command,it.key().c_str());require(fs::canonical(file.parent_path())==workspace&&file.filename()==role->second,"Shape component outside its selected workspace");found.insert(it.key());
  }
  for(const char* role:{"config","image_encoder","flow","cache","query"})require(found.count(role)!=0,"Missing shape component");
  json cfg=json::parse(bytes(workspace/"shape-config.json",65536));require(cfg.at("schema")=="lma.rf-shape-export/1"&&cfg.at("pipeline")==pipeline&&cfg.at("dtype")=="float32"&&cfg.at("opset")==17,"Unmatched shape export contract");

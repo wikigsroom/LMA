@@ -1,5 +1,6 @@
 #include "../../native/speech_extra/f5_frontend.hpp"
 #include <iostream>
+#include <chrono>
 int main() {
  int count=0; auto check=[&](bool value){ if(!value)throw std::runtime_error("Frontend contract failed"); ++count; };
  check(lma_f5::tone3("nǚ")=="nv3"); check(lma_f5::tone3("lǜ")=="lv4"); check(lma_f5::tone3("ma")=="ma");
@@ -16,5 +17,26 @@ int main() {
  check(measured["stages"].size()==2);check(measured["elapsedMs"].get<long long>()>=0);
  check(measured["memoryScope"]=="worker_process_peak_rss_not_model_peak_or_whole_app");check(measured["qualityAssessed"]==false);
  check(lma_metrics::finish()["stages"].size()==2);
- std::cout << "{\"passed\":" << count << ",\"model_inference\":false}\n";
+ namespace fs=std::filesystem;
+ auto temp=fs::temp_directory_path()/(std::string("lma-selected-staging-")+std::to_string(std::chrono::steady_clock::now().time_since_epoch().count()));
+ check(fs::create_directory(temp));auto models=temp/"models",views=temp/"views";fs::create_directory(models);fs::create_directory(views);
+ auto source=temp/"selected.bin",other=temp/"other.bin",file=models/"model.gguf";
+ {std::ofstream(source)<<"selected";std::ofstream(other)<<"other";}fs::create_hard_link(source,file);
+ auto expect_rejected=[&](auto action){bool invalid=false;try{action();}catch(const std::exception&){invalid=true;}check(invalid);};
+ lma_worker::json command={{"workspace",models.string()},{"components",{{"model",file.string()}}},{"componentSources",{{"model",source.string()}}}};
+ check(lma_worker::component(command,"model")==file.string());
+ auto legacy=command;legacy.erase("componentSources");check(lma_worker::component(legacy,"model")==file.string());
+ auto wrong=command;wrong["componentSources"]["model"]=other.string();expect_rejected([&]{lma_worker::component(wrong,"model");});
+ auto escaped=command;escaped["components"]["model"]=source.string();expect_rejected([&]{lma_worker::component(escaped,"model");});
+ auto missing=command;missing["componentSources"]["model"]=(temp/"missing").string();expect_rejected([&]{lma_worker::component(missing,"model");});
+ auto view_file=views/"00_front.png";fs::create_hard_link(source,view_file);
+ lma_worker::json view_command={{"viewsDirectory",views.string()},{"viewSources",{{"00_front.png",source.string()}}}};
+ check(lma_worker::view(view_command,"00_front.png")==view_file.string());
+ auto wrong_view=view_command;wrong_view["viewSources"]["00_front.png"]=other.string();expect_rejected([&]{lma_worker::view(wrong_view,"00_front.png");});
+ std::error_code symlink_error;auto link=models/"linked.gguf";fs::create_symlink(source,link,symlink_error);
+ bool symbolic_link_checked=!symlink_error;
+ if(symbolic_link_checked){auto linked=command;linked["components"]["model"]=link.string();check(lma_worker::component(linked,"model")==link.string());
+  linked.erase("componentSources");expect_rejected([&]{lma_worker::component(linked,"model");});fs::remove(link);}
+ fs::remove(view_file);fs::remove(file);fs::remove(source);fs::remove(other);fs::remove(models);fs::remove(views);fs::remove(temp);
+ std::cout << "{\"passed\":" << count << ",\"symbolic_link_checked\":" << (symbolic_link_checked?"true":"false") << ",\"model_inference\":false}\n";
 }

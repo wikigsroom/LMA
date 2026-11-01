@@ -1,5 +1,7 @@
 # 真机任务失败逐项诊断 · v0.3.10
 
+**后续 v0.3.11：** [已实现逐模型 CPU 视频并真机输出，3D 原生路径冲突继续修复](ON_DEVICE_MODEL_REPAIR.md)。下文五条清理与故障数据属于 v0.3.10 原始调查，保持不变。
+
 [English](TASK_FAILURES.en.md) · [使用手册](USER_GUIDE.md) · [版本说明](releases/v0.3.10.md) · [程序诊断证据](../verification/releases/v0.3.10/task-diagnostics.json)
 
 实际连接的设备报告为 **motorola edge plus / burton、Android 12 / API31、SM8250**。检查时任务共 7 条：5 条失败、2 条成功，没有正在执行的任务。以下依据原任务时间、安装记录，以及同一 App 身份下的小文件与原生启动探针定位；没有重新执行完整训练模型。时间为 2026-11-01，UTC+8。

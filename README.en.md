@@ -1,8 +1,8 @@
 # LMA · Android local-model workbench
 
-[中文](README.md) · [Download v0.3.10](https://github.com/wikigsroom/LMA/releases/tag/v0.3.10) · [User guide](docs/USER_GUIDE.en.md) · [Documentation](docs/README.md) · [Scenarios](#use-cases) · [Cases and failures](#case-studies)
+[中文](README.md) · [Download v0.3.11](https://github.com/wikigsroom/LMA/releases/tag/v0.3.11) · [User guide](docs/USER_GUIDE.en.md) · [Documentation](docs/README.md) · [Scenarios](#use-cases) · [Cases and failures](#case-studies)
 
-**v0.3.10 / code60: physical task diagnosis and compatibility repair.** Five failed jobs were privately archived and removed; two successes, five artifacts and five installed models/settings remain. Repairs cover denied 3D workspace hardlinks, Wan Vulkan preflight, structured native errors and exit metadata. An explicit optional CPU descriptor is available without an automatic switch or download. [Five-case diagnosis and limits](docs/TASK_FAILURES.en.md) · [23 physical program checks](docs/DEVICE_ACCEPTANCE.en.md) · [10 failure-specific checks](verification/releases/v0.3.10/task-diagnostics.json) · [Full inventory](docs/IMPLEMENTATION_V0310.en.md). All **62 recipes / 82 bundles / 18 extension engines plus text, fourteen recommendations** remain.
+**v0.3.11 / code61: choose CPU for existing Wan weights; actual video generated on the connected phone.** Native inputs now resolve to their leased regular sources, fixed-name components/views have verified identity bindings, and 3D reports real stages. The small Wan CPU pipeline completes; its one-step picture is nearly blank and quality is unaccepted; TRELLIS/Pixal stages, bounded cancellation and incomplete GLB output are reported separately. [Operation, API and results](docs/ON_DEVICE_MODEL_REPAIR.en.md) · [Physical model probes](verification/releases/v0.3.11/physical-models.json) · [Full inventory](docs/IMPLEMENTATION_V0311.en.md). All **62 recipes / 82 bundles / 18 extension engines plus text and 14 recommendations** remain.
 
 LMA lets users select, download, manage and run local models on an Android phone, with chat, image/video/audio/3D jobs, artifacts and a local API. It is an independent community project, unaffiliated with LM Studio. The application UI is primarily Chinese; documentation is bilingual.
 
@@ -12,7 +12,7 @@ LMA lets users select, download, manage and run local models on an Android phone
 
 New 3D/vision models accept explicitly selected matched local exports. **Complete public export download endpoints remain unverified**; none are invented. HF discovery does not make every architecture or format executable. Raw PyTorch weights are not Android runtime bundles.
 
-Validation is **program-only**, as requested: actual source classes/random tiny networks, production workers, exporters, jobs/cancel/cleanup, UI, APK/signature and Lint. No complete trained models were downloaded/run; phone inference, quality, speed, peak memory and screen-off endurance remain unmeasured. Bounded CPU profiles and publisher CUDA/random-stream differences are [explicitly documented](docs/ADAPTER_PROFILES.en.md#5-resources-numerical-profiles-and-licenses). Nubia Z20 application compatibility does not establish that large models fit.
+Program gates retain bounded/random fixtures and no model downloads. Under the later explicit authorization, selected already installed models also receive bounded physical-phone tests. [Program gates](verification/releases/v0.3.11/status.json) and [authorized phone results](verification/releases/v0.3.11/physical-models.json) have separate counts. Wan small-output success does not establish quality, all-model feasibility, Z20 capacity or sustained background inference.
 
 LMA-authored code is MIT. The bundled DISO CPU surface component is **CC BY-NC 4.0, noncommercial**; other dependencies and model assets retain their terms. See [licenses](THIRD_PARTY_NOTICES.md).
 
@@ -20,12 +20,12 @@ LMA-authored code is MIT. The bundled DISO CPU surface component is **CC BY-NC 4
 
 Detailed scenarios **C01–C48**, historical generation/failure cases **H01–H18**, API examples and prior test records are preserved. New [adapter GIF](docs/media/development/adaptation/adaptation-ui.gif)/[MP4](docs/media/development/adaptation/adaptation-ui.mp4) and [UltraTex demo](docs/media/development/ultratex/ultratex-ui.gif) use production pages with explicit UI FIXTURE bridges, not fabricated model/device results. Published evidence remains in `verification/program/` and `verification/history/`.
 
-Validation deviation: one legacy Nano trained-host test was selected accidentally and is [declared separately](verification/releases/v0.3.10/validation-deviation.json). It is excluded from program counts and phone acceptance. Zero-complete-model fields below describe the program gates. The legacy Qwen check exited on stale evidence before inference; no complete model was rerun on the phone.
+Historical v0.3.10 [legacy-host deviation](verification/releases/v0.3.10/validation-deviation.json) remains unchanged and excluded from current gate/phone counts. Current selected physical-model execution is explicitly authorized and recorded separately.
 
 <a id="install"></a>
 ## Install and use
 
-1. Download `LMA-0.3.10-arm64-v8a.apk` from the Release and compare its hash with `SHA256SUMS`. Requires **64-bit Android 9 / API 28 or later**. The original signing identity is retained for upgrades and existing data.
+1. Download `LMA-0.3.11-arm64-v8a.apk` from the Release and compare its hash with `SHA256SUMS`. Requires **64-bit Android 9 / API 28 or later**. The original signing identity is retained for upgrades and existing data.
 2. Open LMA and allow notifications when prompted. For screen-off work, allow background activity and remove the relevant battery restrictions in Android settings. Installation and upgrades do not download models.
 3. Open Models → Recommended / All / Local. **Recommended retains the text prefix m08 → m06 → m01 and adds eleven multimodal choices.** All supports HF keywords, repository IDs/URLs, pagination and discovery of every format. Local manages downloaded/imported models and unfinished transfers.
 4. Filter by text, image, video, audio or 3D tags. Inspect architecture, recipe, backend, license, dependencies, pinned revision and size before explicitly downloading or importing with Android's document picker.
@@ -36,7 +36,7 @@ Validation deviation: one legacy Nano trained-host test was selected accidentall
 HF discovery and executable support are separate. Compatible files enter their matching text engine or multi-component recipe; arbitrary safetensors, GGUF or Diffusers repositories are not universally executable. Custom components can be registered through recipes. Missing components fail locally without implicit downloads or off-device execution.
 
 <a id="models"></a>
-Current APK: **v0.3.10 / code60**, original signer retained. Compare the exact Release APK with `SHA256SUMS`; see the [release inventory and validation](docs/releases/v0.3.10.md).
+Current APK: **v0.3.11 / code61**, original signer retained. Compare the exact Release APK with `SHA256SUMS`; see the [release inventory and validation](docs/releases/v0.3.11.md).
 
 ## Model and foundation scope
 
@@ -57,7 +57,7 @@ Every model is a peer, classified by output task, capability, engine, format, co
 | 16 | Wan 2.1 T2V 1.3B Q4 | sd.cpp CPU/Vulkan with explicit components and video encoding |
 | 17 | LTX-Video 2B 0.9.8 distilled | Original PixArt T5 F32 with 7-step generation / spatial upsampling / 3-step refinement; Google T5 Q5 single-scale remains a separate variant |
 
-This release has **62 data-only recipe templates, 82 catalogue bundles (23 original + 44 community + 11 speech / single-image 3D + 4 MV imports), 18 extension engine families and the existing text engine**. These are program integration counts, not counts of models passing phone tests. See the [current implementation matrix](docs/IMPLEMENTATION_V0310.en.md).
+This release has **62 data-only recipe templates, 82 catalogue bundles (23 original + 44 community + 11 speech / single-image 3D + 4 MV imports), 18 extension engine families and the existing text engine**. These are program integration counts, not counts of models passing phone tests. See the [current implementation matrix](docs/IMPLEMENTATION_V0311.en.md).
 
 ## Speech, single-image and multiview 3D
 
@@ -109,17 +109,17 @@ A visible foreground service, stop notification and task-scoped wake locks suppo
 
 ## Screenshots and recordings
 
-These show **v0.3.10 production pages with an explicitly labelled desktop bridge fixture**, without weight downloads or generated model content. Owned browsers close after recording.
+These show **v0.3.11 production pages with an explicitly labelled desktop bridge fixture**, without weight downloads or generated model content. Owned browsers close after recording.
 
 ![Components, independent settings and video jobs](docs/media/development/community/community-ui.gif)
 
 [MP4](docs/media/development/community/community-ui.mp4) · [Components](docs/media/development/community/01-community-images.png) · [Settings](docs/media/development/community/02-image-source.png) · [Task form](docs/media/development/community/03-community-video.png) · [Queue](docs/media/development/community/05-community-local.png) · [Workbench recording](docs/media/development/release-workbench/release-workbench-ui.mp4)
 
-APK identity: **v0.3.10 / code60**, **71,037,593 bytes**, SHA256 `0543d725263294e1f14b48a2bd0fde5c1cc42fb3a4ba3043107fce3d47a05b56`. Certificate SHA256: `90444a717a55549e2094364d8d7d005cf8b7f4df24562da62cc1884a2f341c17`. The Release includes APK, source/evidence/screenshots ZIPs, ten desktop GIFs, ten desktop MP4s, notes, manifests and hashes. Actual-phone recordings retain their historical v0.3.9 identity; private task inputs and personal media are not published.
+APK identity: **v0.3.11 / code61**, **71,062,169 bytes**, SHA256 `0184a42bbb5dca34888f45be71ef365c8f7e2082db02af31d10310f8763b10a1`. Certificate SHA256: `90444a717a55549e2094364d8d7d005cf8b7f4df24562da62cc1884a2f341c17`. The Release includes APK, source/evidence/screenshots ZIPs, ten desktop GIFs, ten desktop MP4s, a separate real phone-model GIF/MP4 pair, notes, manifests and hashes. Actual-phone recordings retain their historical v0.3.9 identity; private task inputs and personal media are not published.
 
 ## Validation, builds and documentation
 
-[Release notes](docs/releases/v0.3.10.md) list program checks, APK identity and deliverables. The [validation policy](docs/PROGRAM_VALIDATION.en.md) records the user's decision to omit complete-model runtime acceptance. Current evidence is in [verification/releases/v0.3.10](verification/releases/v0.3.10/status.json); historical failures and earlier records retain their identity and are not current-APK model results.
+[Release notes](docs/releases/v0.3.11.md) list program checks, APK identity and deliverables. The [validation policy](docs/PROGRAM_VALIDATION.en.md) records the user's decision to omit complete-model runtime acceptance. Current evidence is in [verification/releases/v0.3.11](verification/releases/v0.3.11/status.json); historical failures and earlier records retain their identity and are not current-APK model results.
 
 Native Windows builds use JDK, Android SDK/NDK and CMake, without Docker, WSL or emulators. Local `signing/` material is preserved for upgrades and excluded from Git and release assets. [Build](docs/BUILD.en.md) · [Release workflow](docs/RELEASING.md) · [Contributing](CONTRIBUTING.md).
 
@@ -566,15 +566,15 @@ Physical motorola edge plus / Android 12, with no model weights installed. [Proc
 [Actual screen recording](docs/media/device/v0.3.9/physical-walkthrough.mp4) · [GIF](docs/media/device/v0.3.9/physical-walkthrough.gif) · [Identity manifest](docs/media/device/v0.3.9/manifest.json). The 60-second screen-off check probes service health only; it contains no generated tokens.
 
 
-The ten current v0.3.10 flows have **34 community / 8 workbench / 32 speech and 3D / 19 MV / 17 RF Shape / 20 Spatial / 34 material / 38 UltraTex / 23 local-helper / 34 recommendation interactions**, with 57 screenshots, ten GIFs and ten MP4s. They use explicitly labelled desktop bridges, download no weights, and close owned browser resources afterward. [Complete media index](docs/MEDIA.md).
+The ten current v0.3.11 flows have **38 community / 8 workbench / 32 speech and 3D / 19 MV / 17 RF Shape / 20 Spatial / 34 material / 38 UltraTex / 23 local-helper / 37 recommendation interactions**, with 58 screenshots, ten GIFs and ten MP4s. They use explicitly labelled desktop bridges, download no weights, and close owned browser resources afterward. [Complete media index](docs/MEDIA.md).
 
 | Current image catalogue | Source/license/component details |
 | --- | --- |
-| ![v0.3.10 production UI with a fixture](docs/media/development/community/01-community-images.png) | ![v0.3.10 source details with a fixture](docs/media/development/community/02-image-source.png) |
+| ![v0.3.11 production UI with a fixture](docs/media/development/community/01-community-images.png) | ![v0.3.11 source details with a fixture](docs/media/development/community/02-image-source.png) |
 
 [Video sources/limits](docs/media/development/community/04-video-source.png) · [community manifest](docs/media/development/community/manifest.json)
 
-![v0.3.10 shared workbench; UI FIXTURE, no model inference](docs/media/development/release-workbench/release-workbench-ui.gif)
+![v0.3.11 shared workbench; UI FIXTURE, no model inference](docs/media/development/release-workbench/release-workbench-ui.gif)
 
 [Workbench MP4](docs/media/development/release-workbench/release-workbench-ui.mp4) · [manifest](docs/media/development/release-workbench/manifest.json)
 
@@ -591,18 +591,18 @@ The following are **historical version-specific UI fixtures**, not current phone
 | Resource stops | [Resources](docs/media/development/resources/01-running.png), [stop reason](docs/media/development/resources/02-stopped-detail.png) | [Guide](docs/RUNTIME_RESOURCES.en.md) |
 | Original library/API/theme | [Library](docs/media/01-library.png), [API](docs/media/05-api.png), [dark](docs/media/07-dark.png) | [Media guide](docs/MEDIA.md) |
 
-![v0.3.10 speech and 3D; UI FIXTURE, synthetic cube](docs/media/development/expansion/expansion-ui.gif)
+![v0.3.11 speech and 3D; UI FIXTURE, synthetic cube](docs/media/development/expansion/expansion-ui.gif)
 
 [Speech choices](docs/media/development/expansion/01-speech-models.png) · [3D form](docs/media/development/expansion/03-3d-form.png) · [GLB preview](docs/media/development/expansion/05-glb-preview.png) · [MP4](docs/media/development/expansion/expansion-ui.mp4) · [32 page checks](docs/media/development/expansion/manifest.json)
 
-![v0.3.10 multiview and background states; UI FIXTURE, no trained generation](docs/media/development/multiview/multiview-ui.gif)
+![v0.3.11 multiview and background states; UI FIXTURE, no trained generation](docs/media/development/multiview/multiview-ui.gif)
 
 [Import choices](docs/media/development/multiview/01-multiview-models.png) · [Four-view form](docs/media/development/multiview/03-four-view-form.png) · [Background observations](docs/media/development/multiview/05-background-observations.png) · [MP4](docs/media/development/multiview/multiview-ui.mp4) · [19 UI checks](docs/media/development/multiview/manifest.json)
 
 
 ### Current RF Shape pages
 
-![v0.3.10 part settings; desktop UI FIXTURE, no trained output](docs/media/development/shape/03-part-settings.png)
+![v0.3.11 part settings; desktop UI FIXTURE, no trained output](docs/media/development/shape/03-part-settings.png)
 
 ![RF Shape workflow; UI FIXTURE, no trained inference](docs/media/development/shape/shape-ui.gif)
 
@@ -656,10 +656,22 @@ Upgrade retains the original signer, model choices and files. Recommended is met
 
 [Every failure and repair](docs/TASK_FAILURES.en.md) · [Diagnostic evidence](verification/releases/v0.3.10/task-diagnostics.json).
 
+## v0.3.11 scenarios C61–C65
+
+| ID | Action | Expected / observed result |
+| --- | --- | --- |
+| C61 | Choose CPU in an installed Wan model's Local settings | Same model ID and weights; isolated saved setting, no second download |
+| C62 | Submit CPU 128×128 / 5 frames / one and four steps | Actual MP4s at 176 / 347.04 seconds, both near blank; quality unaccepted, exact APK and artifact hashes retained |
+| C63 | Start TRELLIS/Pixal from an owned local cube image | Canonical leased input accepted; real stages distinguish computation from early path failure |
+| C64 | Reach the selected time budget and cancel | Only the test's task/process is cancelled; no placeholder GLB is published |
+| C65 | Present a mismatched staged source or escaping parent | Native identity/filename/boundary guards reject it; other model settings remain unchanged |
+
+[Reproduction and limits](docs/ON_DEVICE_MODEL_REPAIR.en.md) · [One-step phone MP4](docs/media/models/v0.3.11/wan-cpu-128.mp4) · [Four-step phone MP4](docs/media/models/v0.3.11/wan-cpu-128-four-steps.mp4) · [One-step diagnostic GIF](docs/media/models/v0.3.11/wan-cpu-128.gif).
+
 <a id="case-studies"></a>
 ## Historical test cases and actual artifacts
 
-**No complete models are downloaded, copied or run for this documentation repair.** HOST means native Windows inference; UI FIXTURE means a simulated page bridge; PROGRAM means program/bounded-graph checks. None is Android acceptance. Older “not released” statements describe their own checkpoint; the current APK is v0.3.5.
+These preserved development cases were not rerun as new passes this round. HOST means native Windows inference; UI FIXTURE means a simulated page bridge; PROGRAM means program/bounded-graph checks. Original records are not Android acceptance. Newly authorized phone probes appear separately in C61–C65. Earlier “not released” statements describe their own checkpoint; the current APK is v0.3.11.
 
 | ID | Case/input | Historical result and boundary | Original records |
 | --- | --- | --- | --- |
@@ -731,11 +743,11 @@ Upgrade retains the original signer, model choices and files. Recommended is met
 <a id="verification"></a>
 ## Current program coverage and reproduction entry points
 
-**v0.3.10: 60 program suites / 15,032 assertions, 73 records plus status; 785 full production UI checks.** The APK contains 41 ARM64 native libraries, supports Android 9+, retains its signer and passes 16 KiB alignment checks. Lint: zero errors / 16 existing warnings. Ten current UI flows provide 57 screenshots / ten GIFs / ten MP4s. All 815 historical evidence files retain their identities. No new complete-model run is claimed. Separate real Android evidence records 23 program checks and a 60-second screen-off API health check, plus ten failure-specific probes. Eight of the program assertions preserve historical UI performance sources/results; they are not fresh latency measurements.
+**v0.3.11: 60 program suites / 15,063 assertions, 73 gate records plus status; 794 production UI checks, including 37 recommendation checks.** The APK retains 41 ARM64 libraries, Android 9+, the original signer and 16 KiB alignment. Lint: zero errors / 16 existing warnings. Ten desktop flows provide 58 PNG / ten GIF / ten MP4; all 815 historical evidence identities remain. Eight preservation checks are not a fresh latency benchmark. Separate phone evidence covers 23 program checks and 60.239 seconds of screen-off API health. Authorized model successes and bounded incomplete results have separate counts. The [ten v0.3.10 failure probes](verification/releases/v0.3.10/task-diagnostics.json) and original five-failure report remain historical.
 
-[All 60 suites and 62 recipes](docs/IMPLEMENTATION_V0310.en.md) · [Current records and source fingerprints](verification/releases/v0.3.10/status.json) · [Policy](docs/PROGRAM_VALIDATION.en.md)
+[All 60 suites and 62 recipes](docs/IMPLEMENTATION_V0311.en.md) · [Current records and source fingerprints](verification/releases/v0.3.11/status.json) · [Policy](docs/PROGRAM_VALIDATION.en.md)
 
-The following **historical v0.3.5 30-suite / 5,820-assertion** table and original links remain for comparison. The v0.3.10 inventory above is the current result.
+The following **historical v0.3.5 30-suite / 5,820-assertion** table and original links remain for comparison. The v0.3.11 inventory above is the current result.
 
 | ID | Suite / assertions | Cases covered | Record |
 | --- | --- | --- | --- |
@@ -770,7 +782,7 @@ The following **historical v0.3.5 30-suite / 5,820-assertion** table and origina
 | P29 | spatial-graphs · 60 | Pinned Hunyuan/UltraShape graphs, dynamic tokens, MoE, cache/query/schedule | [JSON](verification/program/spatial-graphs.json) |
 | P30 | spatial-sparse · 109 | Five exported-ONNX CPU operations, source rules, dynamic support and malformed input | [JSON](verification/program/spatial-sparse.json) |
 
-That historical v0.3.5 package had 40 native libraries and six media groups; v0.3.10 has 41 libraries and ten groups. Both versions label desktop UI recordings explicitly; they are not model-generated videos.
+That historical v0.3.5 package had 40 native libraries and six media groups; v0.3.11 has 41 libraries and ten groups. Both versions label desktop UI recordings explicitly; they are not model-generated videos.
 
 The 29 v0.3.0 program files and media retain their [original Git identities](verification/history/v0.3.0-program-archive.json). Older failures remain historical. `release_ready` means program-policy compliance, not universal phone/checkpoint/quality acceptance.
 

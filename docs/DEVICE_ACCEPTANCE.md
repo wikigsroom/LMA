@@ -1,4 +1,13 @@
-# Android 真机程序验证 · v0.3.10
+# Android 真机程序验证 · v0.3.11
+## 当前 v0.3.11
+
+最终原签名 APK 通过 **23 项真机程序检查**与 **60.239 秒锁屏接口健康检查**，保留 5 个已安装模型及逐模型设置。授权的限时模型实跑另行记录；一步 Wan 生成可解码但接近空白的 MP4，两种 3D 均未完成 GLB。不声称常用尺寸画质或长线后台推理通过。
+
+[当前操作与边界](ON_DEVICE_MODEL_REPAIR.md) · [正式版说明](releases/v0.3.11.md)
+
+## 历史 v0.3.10 调查
+
+**v0.3.11 当前：** [真机管理 / API 程序检查](../verification/releases/v0.3.11/physical-device.json)与[授权模型实跑](../verification/releases/v0.3.11/physical-models.json)分别计数。Wan CPU 已输出视频，3D 限时结果不等于完整 GLB 成功。下文 v0.3.10 调查与数字属于历史记录。
 
 [English](DEVICE_ACCEPTANCE.en.md) · [版本说明](releases/v0.3.10.md) · [23 项程序检查](../verification/releases/v0.3.10/physical-device.json) · [10 项故障检查](../verification/releases/v0.3.10/task-diagnostics.json)
 

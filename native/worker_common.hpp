@@ -82,6 +82,31 @@ inline std::string regular(const json& value, const char* key) {
             std::filesystem::is_regular_file(path) && !std::filesystem::is_symlink(path), "Selected component must be a local regular file");
     return path;
 }
+// Keep runtime-required filenames while proving each staged link selects the leased file.
+inline std::string staged(const std::string& path, const std::string& directory,
+                          const json& sources, const std::string& role) {
+    namespace fs = std::filesystem;
+    fs::path file(path), root(directory);
+    require(path.find('\0') == std::string::npos && directory.find('\0') == std::string::npos &&
+            file.is_absolute() && root.is_absolute() && fs::is_directory(root), "Invalid selected workspace");
+    auto relative = fs::canonical(file.parent_path()).lexically_relative(fs::canonical(root));
+    require(!relative.empty() && !relative.is_absolute() && *relative.begin() != "..",
+            "Selected file escaped its private workspace");
+    if (!sources.is_object() || !sources.contains(role)) return regular(json{{role,path}},role.c_str());
+    auto source = regular(sources,role.c_str());
+    require(fs::is_regular_file(file) && fs::equivalent(file,fs::path(source)),
+            "Staged file differs from the selected leased source");
+    return path;
+}
+inline std::string component(const json& command, const char* role) {
+    return staged(command.at("components").at(role).get<std::string>(),command.at("workspace").get<std::string>(),
+                  command.value("componentSources",json::object()),role);
+}
+inline std::string view(const json& command, const char* name) {
+    auto directory = command.at("viewsDirectory").get<std::string>();
+    return staged((std::filesystem::path(directory)/name).string(),directory,
+                  command.value("viewSources",json::object()),name);
+}
 inline std::string text(const json& value, const char* key, size_t maximum = 4000) {
     std::string result = value.at(key).get<std::string>();
     require(!result.empty() && result.size() <= maximum * 4 && result.find('\0') == std::string::npos, "Invalid synthesis text"); return result;

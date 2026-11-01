@@ -1,0 +1,34 @@
+{
+  "schema": "lma.historical-ui-performance-preservation/1",
+  "version": "0.3.11",
+  "passed": 8,
+  "apk_sha256": "0184a42bbb5dca34888f45be71ef365c8f7e2082db02af31d10310f8763b10a1",
+  "current_physical_performance_measured": false,
+  "measured_version": "0.3.9",
+  "measured_apk_sha256": "7cccb506d0f23ce9ac627645fb20d7b43da93951730b7bd29a7afe3891a8bc20",
+  "historical_evidence": "verification/releases/v0.3.9/ui-performance.json",
+  "historical_evidence_sha256": "1b617219e66ec2537690fc44df95206ad6740bfc0afb577b222951d60fe4d8a7",
+  "checked_source_paths": [
+    "app/src/main/java/com/lma/app/MainActivity.java",
+    "app/src/main/java/com/lma/app/core/BundleStore.java",
+    "app/src/main/java/com/lma/app/LocalEngines.java",
+    "app/src/main/assets/app.js",
+    "app/src/main/assets/recommendations.js",
+    "tests/android/com/lma/app/DevicePerformance.java",
+    "app/src/main/java/com/lma/app/LmaApp.java"
+  ],
+  "model_inference": false,
+  "complete_trained_model_runs": 0,
+  "input_fingerprint": {
+    "app/src/main/assets/app.js": "f0be4f1bf14487032939a5ea7b8f85be8190000501123bcd6914c66e83a958c1",
+    "app/src/main/assets/recommendations.js": "13f0f41840a3a28a5b70d021f77c7700050f6007086228179cd794b331263215",
+    "app/src/main/java/com/lma/app/core/BundleStore.java": "e2cb5ed5f610825710cec7a40cc5c7438466b640e5eb8ec5a21ac282e21822a9",
+    "app/src/main/java/com/lma/app/LmaApp.java": "f26930ea2878d004fde5f2b135c1b18f596e77de97c9f199b5641a95b8822b14",
+    "app/src/main/java/com/lma/app/LocalEngines.java": "149f613e0bd25911cea08b14a8eb615ff7f0b208210cfebc26811546b2a3504d",
+    "app/src/main/java/com/lma/app/MainActivity.java": "add28011124e7622c9debdefb2562ba0cba30751f082bb8fc1c3b81cad0408b0",
+    "tests/android/com/lma/app/DevicePerformance.java": "e92dc8c868675167cecd8bc66a262eef3e65a411c51b116a560728a2aab0476f",
+    "tools/performance_evidence.py": "17458e89486646e04a0333b8fb47a7c086dae303063441968c9a3640f26502b3",
+    "verification/releases/v0.3.9/ui-performance.json": "1b617219e66ec2537690fc44df95206ad6740bfc0afb577b222951d60fe4d8a7"
+  },
+  "measurement_scope": "Eight preservation checks: seven relevant source paths and the immutable historical result; no current-version latency benchmark"
+}

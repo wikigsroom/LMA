@@ -1,0 +1,116 @@
+{
+  "schema": "lma.physical-model-media/1",
+  "version": "0.3.11",
+  "apk_sha256": "0184a42bbb5dca34888f45be71ef365c8f7e2082db02af31d10310f8763b10a1",
+  "device": {
+    "model": "motorola edge plus",
+    "manufacturer": "motorola",
+    "android": "12",
+    "api": "31"
+  },
+  "same_android_phone": true,
+  "desktop_fixture": false,
+  "owned_benign_input": true,
+  "model_inference": true,
+  "quality_accepted": false,
+  "remote_inference": false,
+  "bundle_id": "wan21_13b_q4_vulkan_catalogue_v1",
+  "elapsed_seconds": 176.0,
+  "parameters": {
+    "width": 128,
+    "height": 128,
+    "steps": 1,
+    "threads": 4,
+    "seed": -1,
+    "cfg": 1,
+    "sampler": "euler",
+    "vaeTiling": true,
+    "scheduler": "discrete",
+    "flowShift": 3,
+    "frames": 5,
+    "fps": 8,
+    "vaeTileSize": 128,
+    "vaeTemporalTiling": false,
+    "executionBackend": "cpu"
+  },
+  "video": {
+    "mime": "video/mp4",
+    "codec": "video/avc",
+    "width": 128,
+    "height": 128,
+    "frames": 5,
+    "fps": 8,
+    "durationMs": 625
+  },
+  "original_video_sha256": "15ec3bb0e2530968c00d0d47150ee55ff7085f16eaef9f195b3a42a1c63d45c2",
+  "original_video_bytes": 9173,
+  "gif_is_resized_presentation": true,
+  "gif_duration_ms": 630,
+  "files": [
+    {
+      "file": "wan-cpu-128-four-steps.mp4",
+      "bytes": 4885,
+      "sha256": "c41fa7a77a12f35d32250b0e4ad13d2c406a1ebe7f056889ba5bfcbd576bccd1"
+    },
+    {
+      "file": "wan-cpu-128.gif",
+      "bytes": 133054,
+      "sha256": "e3f99cdfc057245a7b7c07c6450f72596f9ca5b6c59c1b370e6ce45d62e8f642"
+    },
+    {
+      "file": "wan-cpu-128.mp4",
+      "bytes": 9173,
+      "sha256": "15ec3bb0e2530968c00d0d47150ee55ff7085f16eaef9f195b3a42a1c63d45c2"
+    },
+    {
+      "file": "wan-cpu-128.png",
+      "bytes": 39687,
+      "sha256": "a8210a1ee403d70b02a2e24c6a3001155133fa3113a2436248f50bdc5ea994d9"
+    }
+  ],
+  "video_comparisons": [
+    {
+      "file": "wan-cpu-128-four-steps.mp4",
+      "bytes": 4885,
+      "sha256": "c41fa7a77a12f35d32250b0e4ad13d2c406a1ebe7f056889ba5bfcbd576bccd1",
+      "apk_sha256": "0184a42bbb5dca34888f45be71ef365c8f7e2082db02af31d10310f8763b10a1",
+      "device": {
+        "model": "motorola edge plus",
+        "manufacturer": "motorola",
+        "android": "12",
+        "api": "31"
+      },
+      "bundle_id": "wan21_13b_q4_vulkan_catalogue_v1",
+      "parameters": {
+        "width": 128,
+        "height": 128,
+        "steps": 4,
+        "threads": 4,
+        "seed": -1,
+        "cfg": 3,
+        "sampler": "euler",
+        "vaeTiling": true,
+        "scheduler": "discrete",
+        "flowShift": 3,
+        "frames": 5,
+        "fps": 8,
+        "vaeTileSize": 128,
+        "vaeTemporalTiling": false,
+        "executionBackend": "cpu"
+      },
+      "elapsed_seconds": 347.04,
+      "video": {
+        "mime": "video/mp4",
+        "codec": "video/avc",
+        "width": 128,
+        "height": 128,
+        "frames": 5,
+        "fps": 8,
+        "durationMs": 625
+      },
+      "quality_accepted": false,
+      "review": "near_blank_not_quality_accepted"
+    }
+  ],
+  "review": "near_blank_not_quality_accepted"
+}

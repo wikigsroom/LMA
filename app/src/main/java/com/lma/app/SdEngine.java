@@ -9,14 +9,23 @@ import java.util.*;
 public final class SdEngine implements LocalEngine {
     private final LmaApp app;
     private final File binary;
+    private final File cpuBinary;
     private final JSONObject build;
     private final NativeWorker.Launcher launcher;
     private volatile boolean gpuReady;
-    private synchronized void requireBackend() throws Exception {
-        if (id().equals("wan_sd_cpp") && !gpuReady) { NativeWorker.requireVulkan(app, binary, launcher); gpuReady = true; }
+    private synchronized File requireBackend(String backend) throws Exception {
+        File selected = id().equals("wan_sd_cpp") && backend.equals("cpu") ? cpuBinary : binary;
+        if (!selected.isFile() || !selected.canExecute()) throw new IOException("当前签名 App 缺少所选后端的本地运行器");
+        if (backend.equals("vulkan") && !gpuReady) { NativeWorker.requireVulkan(app, selected, launcher); gpuReady = true; }
+        return selected;
     }
     public SdEngine(LmaApp app, File binary, JSONObject build) { this(app, binary, build, ProcessBuilder::start); }
-    SdEngine(LmaApp app, File binary, JSONObject build, NativeWorker.Launcher launcher) { this.app = app; this.binary = binary; this.build = DataFiles.copy(build); this.launcher = launcher; }
+    SdEngine(LmaApp app, File binary, JSONObject build, NativeWorker.Launcher launcher) {
+        this(app, binary, new File(binary.getParentFile(), "liblma-sd.so"), build, launcher);
+    }
+    SdEngine(LmaApp app, File binary, File cpuBinary, JSONObject build, NativeWorker.Launcher launcher) {
+        this.app = app; this.binary = binary; this.cpuBinary = cpuBinary; this.build = DataFiles.copy(build); this.launcher = launcher;
+    }
     @Override public String id() { return build.optString("engine", "sd_cpp"); }
     @Override public ParameterSchema schema(ModelBundle bundle) throws Exception { return SdSpec.schema(bundle); }
     @Override public JSONObject describe() throws Exception { return DataFiles.copy(build).put("available", binary.isFile() && binary.canExecute()).put("deviceValidated", false); }
@@ -26,7 +35,7 @@ public final class SdEngine implements LocalEngine {
         SdSpec.validate(bundle, type);
     }
     @Override public JSONObject prepare(ModelBundle bundle, JSONObject request) throws Exception {
-        requireBackend();
+        requireBackend(SdSpec.executionBackend(bundle, request.getJSONObject("parameters")));
         try (BundleStore.Selection selected = app.bundles.acquireAll(ModelSelection.ids(request))) {
             List<ModelBundle> adapters = new ArrayList<>(); for (int i = 1; i < selected.models.size(); i++) adapters.add(selected.models.get(i).bundle);
             return SdSpec.prepare(bundle, adapters, request);
@@ -34,26 +43,30 @@ public final class SdEngine implements LocalEngine {
     }
     @Override public File generate(Context context) throws Exception {
         JSONObject request = context.request(), components = new JSONObject(); BundleStore.Lease lease = context.model();
-        validate(lease.bundle, request.getString("type")); context.check(); requireBackend();
+        validate(lease.bundle, request.getString("type")); context.check();
+        String backend = SdSpec.executionBackend(lease.bundle, request.getJSONObject("parameters"));
+        File worker = requireBackend(backend);
         boolean video = request.getString("type").equals("video.generate"); File generated = context.output(video ? "rgb" : "png");
         List<ModelBundle> adapters = new ArrayList<>(); for (BundleStore.Lease adapter : context.adapters()) adapters.add(adapter.bundle);
         JSONObject planned = SdSpec.prepare(lease.bundle, adapters, request).getJSONObject("diffusionPlan");
         if (!request.has("diffusionPlan") || !DataFiles.canonical(planned).equals(DataFiles.canonical(request.getJSONObject("diffusionPlan")))) throw new IOException("扩散采样快照不匹配，请明确重试任务");
         JSONObject parameters = DataFiles.copy(planned.getJSONObject("parameters"));
         if (parameters.optLong("seed", -1) == -1) parameters.put("seed", new java.security.SecureRandom().nextInt(Integer.MAX_VALUE));
-        JSONObject execution = new JSONObject().put("effectiveParameters", parameters).put("pipeline", lease.bundle.pipeline).put("samplingProfile", planned.getString("profile")).put("samplingAdjustments", planned.getJSONArray("adjustments"));
+        JSONObject execution = new JSONObject().put("effectiveParameters", parameters).put("pipeline", lease.bundle.pipeline).put("samplingProfile", planned.getString("profile")).put("samplingAdjustments", planned.getJSONArray("adjustments"))
+            .put("selectedBackend", backend).put("workerEngine", backend.equals("cpu") ? "sd_cpp" : "wan_sd_cpp")
+            .put("workerFile",worker.getName()).put("workerSha256",DataFiles.sha256(worker)).put("workerBytes",worker.length());
         context.execution(DataFiles.copy(execution));
         for (ModelBundle.Component c : lease.bundle.components) components.put(c.role, lease.file(c.role).getPath());
         JSONObject condition = LcmCondition.descriptor(lease.bundle);
         if (condition != null) condition = LcmCondition.verify(lease.bundle, lease.file(LcmCondition.ROLE));
         JSONObject command = new JSONObject().put("schema", "lma.engine-request/1").put("type", request.getString("type")).put("input", request.getJSONObject("input"))
-                .put("parameters", parameters).put("backend", lease.bundle.backend).put("pipeline", lease.bundle.pipeline).put("architecture", lease.bundle.architecture).put("samplingProfile", planned.getString("profile"))
+                .put("parameters", parameters).put("backend", backend).put("pipeline", lease.bundle.pipeline).put("architecture", lease.bundle.architecture).put("samplingProfile", planned.getString("profile"))
                 .put("components", components).put("output", generated.getPath()).put("loras", ModelSelection.nativeLoras(lease, context.adapters(), request));
         if (condition != null) command.put("conditionBias", condition);
         Map<String, String> environment = new HashMap<>();
         String[][] vocab = {{"clip_merges", "CLIP_MERGES"}, {"qwen_merges", "QWEN_MERGES"}, {"mistral_merges", "MISTRAL_MERGES"}, {"mistral_vocab", "MISTRAL_JSON"}, {"t5_tokenizer", "T5_JSON"}, {"umt5_tokenizer", "UMT5_JSON"}, {"gemma_merges", "GEMMA_MERGES"}, {"gemma_vocab", "GEMMA_JSON"}};
         for (String[] item : vocab) if (components.has(item[0])) environment.put("LMA_VOCAB_" + item[1], components.getString(item[0]));
-        NativeWorker.run(app, binary, context, command, generated, environment, execution, launcher);
+        NativeWorker.run(app, worker, context, command, generated, environment, execution, launcher);
         if (video) {
             context.progress("encoding", null); File encoded = context.output("mp4");
             VideoEncoder.encode(generated, encoded, () -> { try { context.check(); } catch (Exception error) { throw new IOException(error); } });

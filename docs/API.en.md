@@ -1,5 +1,7 @@
 # LMA API integration
 
+**v0.3.11:** Wan request parameters accept explicit `executionBackend: "cpu"` under the same installed model ID. Registered-adapter and actual-worker identities are distinct. [Request and limits](ON_DEVICE_MODEL_REPAIR.en.md#2-same-phone-api).
+
 > Current v0.3.5: [Hunyuan shape and UltraShape refinement](SPATIAL_SHAPE.en.md), [full numbered implementation and pending ports](IMPLEMENTATION_V035.en.md). Five CPU sparse operators do not complete SAM/UniForge/SUPRA; Paint remains missing. All prior routes remain. Versioned notes below are historical, not the current support matrix.
 
 > Current v0.3.3: [four calibrated views, verified MV imports, per-model settings, API and explicit diagnostics](MULTIVIEW_DIAGNOSTICS.en.md). All earlier capabilities remain. The historical checkpoint notes below keep their original scope. [Current implementation](IMPLEMENTATION_V033.en.md) / [program-only policy](PROGRAM_VALIDATION.en.md).

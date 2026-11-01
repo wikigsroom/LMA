@@ -48,7 +48,7 @@ def declared_deviation():
     path=ROOT/relative
     if version()=='0.3.10': assert path.exists(), 'Preserve the declared legacy-run deviation'
     if not path.exists():
-        return dict(validation_run_scope='Program gate records only',validation_deviation=None,
+        return dict(validation_run_scope='Program gate records; optional authorized phone model probes reported separately',validation_deviation=None,
             accidental_legacy_host_model_execution=False)
     data=read(path)
     assert data['version']==version() and data['excluded_from_program_suite_counts']
@@ -61,9 +61,11 @@ def declared_deviation():
 
 def inputs():
     return fingerprint('tools/complete_evidence.py', 'tools/program_evidence.py', 'tools/program_release.py',
-        'tools/check_repository.py', 'tools/package_delivery.py', 'tools/prepare_release.py',
+        'tools/physical_model_evidence.py', 'tools/device_model_probe.py', 'tools/check_repository.py', 'tools/package_delivery.py', 'tools/prepare_release.py', 'tools/publish_release.py',
         'tools/release_scope.py', 'tools/audit_adaptations.py', 'tools/physical_evidence.py', 'tools/recommendations.py', 'tools/task_diagnostics_evidence.py',
         *([declared_deviation()['validation_deviation']] if declared_deviation()['validation_deviation'] else []),
+        *(['verification/releases/v'+version()+'/physical-models.json'] if (OUT/'physical-models.json').exists() else []),
+        *(['docs/media/models/v'+version()+'/manifest.json'] if (ROOT/'docs/media/models'/('v'+version())/'manifest.json').exists() else []),
         'research/portability/adaptation-current.json', 'docs/proposals/program-validation-policy.json',
         'docs/proposals/multimodal-release-scope.json', 'catalogue/release-'+version()+'-implementation.json')
 
@@ -106,6 +108,8 @@ def export():
     physical = physical_check(OUT)
     from task_diagnostics_evidence import check as task_diagnostics_check
     diagnostics = task_diagnostics_check(OUT)
+    from physical_model_evidence import check as model_probe_check
+    model_probes = model_probe_check(OUT)
     physical_identity = identity(OUT/'physical-device.json') if physical['physical_device_tested'] else None
     status = dict(schema='lma.complete-program-release/1', version=version(), validation_mode='program_only',
         sources=sources, current_ui_media=media, input_fingerprint=inputs(),
@@ -118,8 +122,7 @@ def export():
         implementation_matrix='catalogue/release-'+version()+'-implementation.json',
         benchmark_portability_audit='research/portability/adaptation-current.json',
         known_implementation_gaps=[], public_matched_complete_packages_verified=False,
-        **physical, **diagnostics, physical_program_evidence=physical_identity, phone_inference_tested=False, model_inference_tested=False,
-        complete_trained_model_runs=0, complete_model_downloads_for_validation=0,
+        **physical, **diagnostics, physical_program_evidence=physical_identity, **model_probes, complete_model_downloads_for_validation=0,
         complete_model_copies_for_validation=0, model_quality_accepted=False,
         **declared_deviation(),
         background_endurance_tested=False, all_selected_models_tested=False,
@@ -149,8 +152,9 @@ def check():
     for key, value in task_diagnostics_check(OUT).items(): assert status[key] == value, key
     if physical['physical_device_tested']: assert status['physical_program_evidence'] == identity(OUT/'physical-device.json')
     else: assert status['physical_program_evidence'] is None
-    for key in ('phone_inference_tested', 'model_inference_tested', 'complete_trained_model_runs',
-        'complete_model_downloads_for_validation', 'complete_model_copies_for_validation', 'model_quality_accepted',
+    from physical_model_evidence import check as model_probe_check
+    for key,value in model_probe_check(OUT).items(): assert status[key]==value,key
+    for key in ('complete_model_downloads_for_validation', 'complete_model_copies_for_validation', 'model_quality_accepted',
         'background_endurance_tested', 'all_selected_models_tested', 'model_weights_in_apk',
         'automatic_model_asset_downloads', 'virtualization_used'):
         assert not status[key], key
@@ -223,7 +227,7 @@ def check():
         historical_files_preserved=status['historical_files_preserved'],historical_ui_manifests=15,current_ui_manifests=len(CURRENT_MEDIA),
         original_failure_preserved=True,native_libraries=41,lint_errors=0,lint_warnings=len(lint['warnings']),
         apk=build['apk'],apk_sha256=build['sha256'],release_ready=True,full_scope_implementation_complete=True,
-        **physical,**task_diagnostics_check(OUT),model_inference_tested=False,phone_inference_tested=False,implementation_scope=status['implementation_scope'],
+        **physical,**task_diagnostics_check(OUT),**model_probe_check(OUT),implementation_scope=status['implementation_scope'],
         **declared_deviation(),
         all_benchmark_architectures_integrated=True,all_requested_adaptations_complete=True,
         full_benchmark_workflows_reproduced=False,unported_benchmark_configurations=[],partially_integrated_benchmark_configurations=[])
