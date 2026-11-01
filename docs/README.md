@@ -1,5 +1,7 @@
 # LMA 文档 / Documentation
 
+**Sub2API／OpenAI 转发设计，尚未实现 / Design, not implemented:** [中文规范](SUB2API_OPENAI.md) · [English contract](SUB2API_OPENAI.en.md) · [Profile JSON](proposals/sub2api-openai-profile.json) · [OpenAPI 3.1](proposals/sub2api-openai.openapi.json) · [维护记录 / Maintenance](releases/v0.3.11-sub2api-design.md)。同手机执行、标准图片／语音与多模态异步扩展、模型能力、归属绑定、幂等与 20 项待验收场景。
+
 **v0.3.11 / code61：** [手机模型修复与真实输出](ON_DEVICE_MODEL_REPAIR.md) / [English](ON_DEVICE_MODEL_REPAIR.en.md) · [完整实现](IMPLEMENTATION_V0311.md) / [English](IMPLEMENTATION_V0311.en.md) · [Release](releases/v0.3.11.md)。
 
 [空闲卡顿原因与真机对比](PERFORMANCE.md) / [Idle UI performance and measurements](PERFORMANCE.en.md) · [v0.3.9](releases/v0.3.9.md)。

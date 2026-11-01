@@ -1,5 +1,7 @@
 # LMA API integration
 
+**Sub2API design:** [Forwarding/scheduling contract](SUB2API_OPENAI.en.md) · [中文](SUB2API_OPENAI.md) · [OpenAPI draft](proposals/sub2api-openai.openapi.json). Standard image/speech facades and gateway async extensions are not implemented. The native `/v1/jobs` below remains the current multimodal interface; changing `base_url` alone does not establish all-modality forwarding.
+
 **v0.3.11:** Wan request parameters accept explicit `executionBackend: "cpu"` under the same installed model ID. Registered-adapter and actual-worker identities are distinct. [Request and limits](ON_DEVICE_MODEL_REPAIR.en.md#2-same-phone-api).
 
 > Current v0.3.5: [Hunyuan shape and UltraShape refinement](SPATIAL_SHAPE.en.md), [full numbered implementation and pending ports](IMPLEMENTATION_V035.en.md). Five CPU sparse operators do not complete SAM/UniForge/SUPRA; Paint remains missing. All prior routes remain. Versioned notes below are historical, not the current support matrix.

@@ -1,5 +1,12 @@
 # Changelog / 更新记录
 
+## 2026-11-01 · Sub2API / OpenAI 协议设计维护 / Protocol design only
+
+- 核对 Sub2API v0.2.19 固定提交及 15 个公开源码文件，记录聊天→Responses、图片名称家族校验、语音／视频专用路由、模型发现与头部转发限制。Pinned-source review; no live account, group, billing or gateway changes.
+- 新增[双语转发调度规范](docs/SUB2API_OPENAI.md)、[English](docs/SUB2API_OPENAI.en.md)、[机器可读方案](docs/proposals/sub2api-openai-profile.json)与 [OpenAPI 3.1 设计](docs/proposals/sub2api-openai.openapi.json)。定义标准接口子集、同机任务扩展、持久归属／实例绑定、幂等、超时、进度与媒体结果契约，列出 D01–D06 和 A01–A20 待实现／验收项。
+- 官方 OpenAPI 3.1 schema、27 组数据结构和 23 个设计正反例通过，[独立校验记录](docs/proposals/sub2api-openai-validation.json)不计入 APK 原有 68 项 API 门禁。Published-maintenance repository audit passes against the original tag/source archive; no endpoint or SDK integration pass is claimed.
+- 明确全部新兼容层仍为设计，保持当前原生 `/v1/jobs` 使用方式、v0.3.11/code61、APK、签名、标签及已发布附件；无完整模型实跑、收费 API 调用或新 UI 媒体。[维护说明](docs/releases/v0.3.11-sub2api-design.md)。No new runtime-support or model-quality claim.
+
 ## v0.3.11 · 2026-11-01 · Stable / 正式版
 
 - 已安装 Wan 1.3B 增加逐模型 CPU / Vulkan 选择，复用原模型 ID 与四组件；任务冻结真实选择、记录实际签名工作器身份。Explicit backend choice; no silent fallback, duplicate download or weight copy.

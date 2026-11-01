@@ -1,5 +1,7 @@
 # LMA API 接入
 
+**Sub2API 接入设计：** [转发与调度规范](SUB2API_OPENAI.md) · [English](SUB2API_OPENAI.en.md) · [OpenAPI 草案](proposals/sub2api-openai.openapi.json)。标准图片／语音兼容层和网关异步扩展尚未实现；本页现有 `/v1/jobs` 仍是当前多模态入口。不能仅改 `base_url` 就宣称 Sub2API 可转发全部模态。
+
 **v0.3.11：** Wan 请求参数可显式填写 `executionBackend: "cpu"`，复用已安装模型 ID。注册后端与实际工作器身份分别记录。[完整请求与边界](ON_DEVICE_MODEL_REPAIR.md#2-调用本机接口)。
 
 > 当前 v0.3.5：[Hunyuan 形状与 UltraShape 精修](SPATIAL_SHAPE.md)、[完整编号实现与待完成适配](IMPLEMENTATION_V035.md)。五个共用 CPU sparse 运算不代表 SAM / UniForge / SUPRA 完整适配，Paint 仍缺代码。原有能力保留；以下旧版本说明按历史理解。

@@ -1,0 +1,510 @@
+{
+  "schema": "lma.sub2api-openai-design/1",
+  "status": "design_only_not_runtime_support",
+  "checked_at": "2026-11-01",
+  "lma_version": "0.3.11",
+  "runtime_changed": false,
+  "deployed_gateway_changed": false,
+  "model_execution_performed": false,
+  "paid_api_calls_performed": false,
+  "upstream": {
+    "repository": "Wei-Shaw/sub2api",
+    "tag": "v0.2.19",
+    "commit": "dece26153621959ccd7635814f4b2d08304e681a",
+    "observed_latest": "v0.2.19",
+    "release_published_at": "2026-10-28T10:16:00Z",
+    "review": "pinned_public_source_not_live_deployment_acceptance",
+    "blob_identity_verified": true,
+    "files_checked": 15,
+    "sources": [
+      {
+        "path": "backend/internal/server/routes/gateway.go",
+        "bytes": 31276,
+        "sha256": "8fd2ebf61aeb2e6b7b79976b0d44ab1b46178e803b225139f3401af123021be4",
+        "blob_sha": "3f09ebf4053c3af6375f0961959720687ea5a00f",
+        "url": "https://github.com/Wei-Shaw/sub2api/blob/dece26153621959ccd7635814f4b2d08304e681a/backend/internal/server/routes/gateway.go"
+      },
+      {
+        "path": "backend/internal/handler/openai_images.go",
+        "bytes": 17828,
+        "sha256": "a1747e2a4f5da8e63c7447b2da2a0c56a14d43ab81b3610e291cb0e1697dca3d",
+        "blob_sha": "beda748cff2475d29cf056fbbba36c740545d9c8",
+        "url": "https://github.com/Wei-Shaw/sub2api/blob/dece26153621959ccd7635814f4b2d08304e681a/backend/internal/handler/openai_images.go"
+      },
+      {
+        "path": "backend/internal/handler/openai_gateway_handler.go",
+        "bytes": 178238,
+        "sha256": "3771bd42a673b562809b86df6848c9e1e14846e8fe388ea21f4e922de9f0879b",
+        "blob_sha": "3518463f4fe04cca0772e1405b461ad790e0f1b0",
+        "url": "https://github.com/Wei-Shaw/sub2api/blob/dece26153621959ccd7635814f4b2d08304e681a/backend/internal/handler/openai_gateway_handler.go"
+      },
+      {
+        "path": "backend/internal/pkg/openai_compat/upstream_capability.go",
+        "bytes": 4953,
+        "sha256": "12ce8c0da5f78d979101d26f5bbf394abe72e188f064d21ed3f6a2bd65e17c1a",
+        "blob_sha": "154a01fb8196cf546461b41c6201072bf0e58ebc",
+        "url": "https://github.com/Wei-Shaw/sub2api/blob/dece26153621959ccd7635814f4b2d08304e681a/backend/internal/pkg/openai_compat/upstream_capability.go"
+      },
+      {
+        "path": "backend/internal/service/account.go",
+        "bytes": 100929,
+        "sha256": "65c641236f9358b36dfe7a29b8b7c985441be7ad87e8dc8ad51c9e1f0f602687",
+        "blob_sha": "8899c2d70d3a093ddd782bfd8f758f960aa09d28",
+        "url": "https://github.com/Wei-Shaw/sub2api/blob/dece26153621959ccd7635814f4b2d08304e681a/backend/internal/service/account.go"
+      },
+      {
+        "path": "backend/internal/service/openai_gateway_service.go",
+        "bytes": 46670,
+        "sha256": "768e4b2b88b77d888985e554d0b2df76cd196138c53bc881b67fe22771da42f5",
+        "blob_sha": "1084c824a262b1898a8fd86048801ff7608c28ca",
+        "url": "https://github.com/Wei-Shaw/sub2api/blob/dece26153621959ccd7635814f4b2d08304e681a/backend/internal/service/openai_gateway_service.go"
+      },
+      {
+        "path": "backend/internal/service/openai_images.go",
+        "bytes": 55971,
+        "sha256": "46a38524d2ace65b779b43728741bffa0dd22a6a5f33c599c676bb73f1a14c34",
+        "blob_sha": "12042b0e584a77f0de8dea7ed90700e95c49003a",
+        "url": "https://github.com/Wei-Shaw/sub2api/blob/dece26153621959ccd7635814f4b2d08304e681a/backend/internal/service/openai_images.go"
+      },
+      {
+        "path": "backend/internal/service/openai_images_direct.go",
+        "bytes": 9201,
+        "sha256": "e37e5259a132a154882203c46d37f21d70cba6c2286c70fb914d181ce210eaed",
+        "blob_sha": "3ed7a0f07ae1194df4f610eb8c2867c94bb7f548",
+        "url": "https://github.com/Wei-Shaw/sub2api/blob/dece26153621959ccd7635814f4b2d08304e681a/backend/internal/service/openai_images_direct.go"
+      },
+      {
+        "path": "backend/internal/service/openai_gateway_chat_completions_raw.go",
+        "bytes": 23671,
+        "sha256": "a6b14708fa2de6d8e0cae5e897ae9252a79b6bd5dc9be14083d386d0c8ca8134",
+        "blob_sha": "6943f519e6156f800f2632d1e3da8dd60f8e8b54",
+        "url": "https://github.com/Wei-Shaw/sub2api/blob/dece26153621959ccd7635814f4b2d08304e681a/backend/internal/service/openai_gateway_chat_completions_raw.go"
+      },
+      {
+        "path": "backend/internal/service/openai_images_b64_backfill.go",
+        "bytes": 6186,
+        "sha256": "80998560018bc937afb0ccdf2ae14265a1f1cec4920e251c6a880f99f7ed81a0",
+        "blob_sha": "3210c0fcbe717b77f69c3e7b6473a13cf1243fa1",
+        "url": "https://github.com/Wei-Shaw/sub2api/blob/dece26153621959ccd7635814f4b2d08304e681a/backend/internal/service/openai_images_b64_backfill.go"
+      },
+      {
+        "path": "backend/internal/service/openai_account_scheduler.go",
+        "bytes": 112385,
+        "sha256": "c51e6888d69dee39561e779b54890be4f1ee36c0dd3dbf4b191afaa6a8b4d402",
+        "blob_sha": "2cbf1211f54dcb8d79525002b4d8d4b4542ad136",
+        "url": "https://github.com/Wei-Shaw/sub2api/blob/dece26153621959ccd7635814f4b2d08304e681a/backend/internal/service/openai_account_scheduler.go"
+      },
+      {
+        "path": "backend/internal/handler/gateway_handler.go",
+        "bytes": 102723,
+        "sha256": "7de1be81ff0e817951a779f21db9571acd9135bc37141d6baeac6bb1b01649e4",
+        "blob_sha": "be7cc0a1b0cb51bd1db463be6f066d8896a6de8d",
+        "url": "https://github.com/Wei-Shaw/sub2api/blob/dece26153621959ccd7635814f4b2d08304e681a/backend/internal/handler/gateway_handler.go"
+      },
+      {
+        "path": "backend/internal/handler/image_task_handler.go",
+        "bytes": 11636,
+        "sha256": "7138e1953441f1b0eaf0f7ce318bfb247ffd8f27d20e654747af9dc966a93053",
+        "blob_sha": "f9b28668aefd077a7eb40b58f6190db2e6bff51f",
+        "url": "https://github.com/Wei-Shaw/sub2api/blob/dece26153621959ccd7635814f4b2d08304e681a/backend/internal/handler/image_task_handler.go"
+      },
+      {
+        "path": "backend/internal/service/image_task.go",
+        "bytes": 9656,
+        "sha256": "991330803dfa9c7b6524213be4d08435fef12df519436a5a28d9cd6d4799790e",
+        "blob_sha": "58ccfabc75f88c053aae5f675aea591b48cf327e",
+        "url": "https://github.com/Wei-Shaw/sub2api/blob/dece26153621959ccd7635814f4b2d08304e681a/backend/internal/service/image_task.go"
+      },
+      {
+        "path": "backend/internal/service/openai_endpoint_url.go",
+        "bytes": 2102,
+        "sha256": "c06f1388683c50dac8e4c806bb37af2e412985a57bbfbd97f70626dcc9a46531",
+        "blob_sha": "5b0bf68b43df6b68430702ccd8f92f1b0f93d3fe",
+        "url": "https://github.com/Wei-Shaw/sub2api/blob/dece26153621959ccd7635814f4b2d08304e681a/backend/internal/service/openai_endpoint_url.go"
+      }
+    ]
+  },
+  "lma_source_identity": [
+    {
+      "path": "app/src/main/java/com/lma/app/ApiHost.java",
+      "sha256": "288e80c8ef2328c1808920060848b3e12ebc4872d7919f2863f0c827eb0c3afc"
+    },
+    {
+      "path": "app/src/main/java/com/lma/app/LocalJobs.java",
+      "sha256": "9c18ea92bcb86a2f5ce4b2c62171b8f5a88d6e33ed9b1d1154d82ee103e0472a"
+    },
+    {
+      "path": "app/src/main/java/com/lma/app/core/LocalApi.java",
+      "sha256": "c9e1674f98ef12c7312ff42c50ba38a10c08d5cf1d3e173a8093ecd7fa67e5fc"
+    },
+    {
+      "path": "app/src/main/java/com/lma/app/core/LocalHttp.java",
+      "sha256": "6f74e8acfe7072606c23e775f87fa5aa8d5ee094ffe20e96788f161674a947aa"
+    },
+    {
+      "path": "app/src/main/java/com/lma/app/core/TaskInput.java",
+      "sha256": "81e0f5e1a4b68204453323a34596e51b905a9750f065aa20044485a7c5fd68a1"
+    },
+    {
+      "path": "app/src/main/java/com/lma/app/core/TextRequest.java",
+      "sha256": "bfdb23db96512f00f362b49951c1fee4162ca2d441482eb6ebf180a8d3574d5f"
+    },
+    {
+      "path": "app/src/main/java/com/lma/app/core/JobStore.java",
+      "sha256": "4cff95acbaf0f3a961606e52c4b9f496f70cea3a125e256a6f53b274680b7ddb"
+    }
+  ],
+  "official_contracts": [
+    {
+      "topic": "images",
+      "url": "https://developers.openai.com/api/reference/resources/images/methods/generate"
+    },
+    {
+      "topic": "speech",
+      "url": "https://developers.openai.com/api/reference/resources/audio/subresources/speech/methods/create"
+    },
+    {
+      "topic": "historical_video_not_current_standard",
+      "shutdown": "2026-09-24",
+      "url": "https://developers.openai.com/api/docs/deprecations"
+    }
+  ],
+  "execution": {
+    "direction": "client_to_sub2api_to_same_android_phone",
+    "inference_location": "same_android_phone",
+    "off_device_fallback": false,
+    "automatic_asset_download": false,
+    "user_nodes_or_comfy_graph": false,
+    "virtualization": false,
+    "heavy_execution_concurrency": 1
+  },
+  "upstream_account_fields": {
+    "platform": "openai",
+    "type": "apikey",
+    "concurrency": 1,
+    "extra": {
+      "openai_responses_mode": "force_chat_completions"
+    },
+    "credentials_names_only": [
+      "base_url",
+      "api_key",
+      "model_mapping"
+    ],
+    "group_policy": "only_registered_phone_no_cloud_accounts_no_unknown_model_passthrough",
+    "private_destination": "explicit_exact_target_and_reachability_required"
+  },
+  "routes": [
+    {
+      "id": "P01",
+      "capability": "models",
+      "client_paths": [
+        "/v1/models",
+        "/v1/models/{model}"
+      ],
+      "profile": "openai_subset",
+      "current_lma": "native_list_exists_detail_missing",
+      "current_sub2api": "configured_model_list_not_live_inventory",
+      "fully_integrated": false
+    },
+    {
+      "id": "P02",
+      "capability": "chat",
+      "client_paths": [
+        "/v1/chat/completions"
+      ],
+      "profile": "openai_subset",
+      "current_lma": "selected_plain_text_model_only",
+      "current_sub2api": "force_chat_completions_required",
+      "fully_integrated": false
+    },
+    {
+      "id": "P03",
+      "capability": "images",
+      "client_paths": [
+        "/v1/images/generations"
+      ],
+      "profile": "openai_subset",
+      "current_lma": "facade_missing",
+      "current_sub2api": "model_family_validation_blocks_local_names",
+      "fully_integrated": false
+    },
+    {
+      "id": "P04",
+      "capability": "image_edits",
+      "client_paths": [
+        "/v1/images/edits"
+      ],
+      "profile": "openai_subset",
+      "current_lma": "facade_and_multipart_missing",
+      "current_sub2api": "model_family_validation_blocks_local_names",
+      "fully_integrated": false
+    },
+    {
+      "id": "P05",
+      "capability": "speech",
+      "client_paths": [
+        "/v1/audio/speech"
+      ],
+      "profile": "openai_subset",
+      "current_lma": "facade_missing",
+      "current_sub2api": "generic_route_missing",
+      "fully_integrated": false
+    },
+    {
+      "id": "P06",
+      "capability": "capabilities",
+      "client_paths": [
+        "/v1/lma/capabilities"
+      ],
+      "profile": "lma_extension",
+      "current_lma": "endpoint_missing",
+      "current_sub2api": "extension_missing",
+      "fully_integrated": false
+    },
+    {
+      "id": "P07",
+      "capability": "jobs",
+      "client_paths": [
+        "/v1/lma/jobs",
+        "/v1/lma/jobs/preflight"
+      ],
+      "profile": "lma_extension",
+      "current_lma": "native_jobs_exist_without_gateway_alias_ownership",
+      "current_sub2api": "extension_missing",
+      "fully_integrated": false
+    },
+    {
+      "id": "P08",
+      "capability": "uploads",
+      "client_paths": [
+        "/v1/lma/uploads"
+      ],
+      "profile": "lma_extension",
+      "current_lma": "native_uploads_exist_without_gateway_ownership",
+      "current_sub2api": "extension_missing",
+      "fully_integrated": false
+    },
+    {
+      "id": "P09",
+      "capability": "artifacts",
+      "client_paths": [
+        "/v1/lma/artifacts"
+      ],
+      "profile": "lma_extension",
+      "current_lma": "native_artifacts_exist_without_gateway_ownership",
+      "current_sub2api": "extension_missing",
+      "fully_integrated": false
+    },
+    {
+      "id": "P10",
+      "capability": "excluded",
+      "client_paths": [
+        "/v1/responses",
+        "/v1/videos",
+        "/v1/realtime"
+      ],
+      "profile": "not_advertised",
+      "current_lma": "not_implemented",
+      "current_sub2api": "responses_conversion_and_provider_specific_media_not_lma_support",
+      "fully_integrated": false
+    }
+  ],
+  "findings": [
+    {
+      "id": "F01",
+      "code": "custom_apikey_base_and_model_mapping_exist"
+    },
+    {
+      "id": "F02",
+      "code": "unknown_responses_capability_can_convert_chat"
+    },
+    {
+      "id": "F03",
+      "code": "image_model_family_validation_rejects_local_names_at_multiple_stages"
+    },
+    {
+      "id": "F04",
+      "code": "generic_speech_route_missing"
+    },
+    {
+      "id": "F05",
+      "code": "video_handlers_are_grok_specific"
+    },
+    {
+      "id": "F06",
+      "code": "lma_jobs_uploads_artifacts_extensions_missing"
+    },
+    {
+      "id": "F07",
+      "code": "gateway_model_list_is_not_live_phone_inventory"
+    },
+    {
+      "id": "F08",
+      "code": "inspected_allowlist_omits_idempotency_cursor_and_range_headers"
+    },
+    {
+      "id": "F09",
+      "code": "existing_async_image_wrapper_not_full_lma_job_affinity"
+    }
+  ],
+  "operations": [
+    "text.generate",
+    "image.generate",
+    "video.generate",
+    "speech.synthesize",
+    "audio.generate",
+    "mesh.generate"
+  ],
+  "initial_facade_limits": {
+    "images": {
+      "n_max": 1,
+      "formats": [
+        "png"
+      ],
+      "response_formats": [
+        "b64_json"
+      ],
+      "incremental_images": false
+    },
+    "speech": {
+      "whole_file_formats": [
+        "wav"
+      ],
+      "default_request_format": "mp3",
+      "unsupported_default_must_error": true,
+      "incremental_pcm": "per_engine_only_not_implemented_by_this_design"
+    },
+    "native_json_body_bytes": 262144,
+    "native_task_characters": 32000,
+    "native_upload_chunk_bytes": 262144,
+    "native_input_file_bytes_max": 536870912,
+    "native_sse_connection_seconds_max": 120,
+    "native_sse_concurrency_max": 2,
+    "native_artifact_readers_max": 3,
+    "native_http_workers": 12,
+    "multipart_policy": "new_bounded_disk_spool_required_not_existing_json_limit_increase",
+    "synchronous_wait": "bounded_advertised_budget_with_reserved_control_capacity"
+  },
+  "ownership_binding": [
+    "principal",
+    "api_key_id",
+    "external_job_id",
+    "account_id",
+    "instance_id",
+    "upstream_job_id",
+    "model",
+    "bundle_id",
+    "request_hash"
+  ],
+  "idempotency": {
+    "caller_key": "Idempotency-Key",
+    "native_key_characters_max": 160,
+    "lookup_namespace": [
+      "principal",
+      "endpoint",
+      "caller_idempotency_key"
+    ],
+    "immutable_binding": [
+      "public_model",
+      "original_request_hash",
+      "instance_id",
+      "frozen_effective_request"
+    ],
+    "persist_before_send": true,
+    "freeze_effective_request": true,
+    "unknown_acceptance": "replay_original_body_same_key_same_instance_only",
+    "conflicting_body": 409,
+    "automatic_cross_instance_retry": false,
+    "independent_tombstones": "required_new_implementation_with_published_retention",
+    "minimum_terminal_retention_seconds": 86400,
+    "active_or_unknown_acceptance": "retain_until_resolved_then_apply_terminal_retention",
+    "native_reconciliation": {
+      "method": "POST",
+      "path": "/v1/idempotency/lookup",
+      "implemented": false,
+      "read_only": true,
+      "body_fields": [
+        "key"
+      ],
+      "not_seen_is_not_proof_of_rejection_while_submit_is_inflight": true
+    },
+    "unknown_job_cancel": "persist_cancel_pending_confirm_then_cancel_never_claim_cancelled_early"
+  },
+  "header_contract": {
+    "request_endpoint_scoped": [
+      "Idempotency-Key",
+      "Last-Event-ID",
+      "Range",
+      "If-Range",
+      "Upload-Offset"
+    ],
+    "response_endpoint_scoped": [
+      "X-Request-ID",
+      "X-LMA-Job-ID",
+      "Retry-After",
+      "Content-Type",
+      "Content-Length",
+      "Content-Range",
+      "Accept-Ranges",
+      "ETag"
+    ],
+    "native_if_range_currently_supported": false,
+    "request_authorization": "replace_with_upstream_account_key_never_forward_caller_key"
+  },
+  "requirement_ids": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16"
+  ],
+  "pending_implementation_ids": [
+    "D01",
+    "D02",
+    "D03",
+    "D04",
+    "D05",
+    "D06"
+  ],
+  "acceptance_ids": [
+    "A01",
+    "A02",
+    "A03",
+    "A04",
+    "A05",
+    "A06",
+    "A07",
+    "A08",
+    "A09",
+    "A10",
+    "A11",
+    "A12",
+    "A13",
+    "A14",
+    "A15",
+    "A16",
+    "A17",
+    "A18",
+    "A19",
+    "A20"
+  ],
+  "acceptance_executed": false,
+  "existing_release_assertions_changed": false,
+  "evidence_boundaries": [
+    "program_contract",
+    "phone_real_output",
+    "accepted_quality",
+    "background_endurance"
+  ]
+}
