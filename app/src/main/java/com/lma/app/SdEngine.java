@@ -11,6 +11,10 @@ public final class SdEngine implements LocalEngine {
     private final File binary;
     private final JSONObject build;
     private final NativeWorker.Launcher launcher;
+    private volatile boolean gpuReady;
+    private synchronized void requireBackend() throws Exception {
+        if (id().equals("wan_sd_cpp") && !gpuReady) { NativeWorker.requireVulkan(app, binary, launcher); gpuReady = true; }
+    }
     public SdEngine(LmaApp app, File binary, JSONObject build) { this(app, binary, build, ProcessBuilder::start); }
     SdEngine(LmaApp app, File binary, JSONObject build, NativeWorker.Launcher launcher) { this.app = app; this.binary = binary; this.build = DataFiles.copy(build); this.launcher = launcher; }
     @Override public String id() { return build.optString("engine", "sd_cpp"); }
@@ -22,6 +26,7 @@ public final class SdEngine implements LocalEngine {
         SdSpec.validate(bundle, type);
     }
     @Override public JSONObject prepare(ModelBundle bundle, JSONObject request) throws Exception {
+        requireBackend();
         try (BundleStore.Selection selected = app.bundles.acquireAll(ModelSelection.ids(request))) {
             List<ModelBundle> adapters = new ArrayList<>(); for (int i = 1; i < selected.models.size(); i++) adapters.add(selected.models.get(i).bundle);
             return SdSpec.prepare(bundle, adapters, request);
@@ -29,7 +34,7 @@ public final class SdEngine implements LocalEngine {
     }
     @Override public File generate(Context context) throws Exception {
         JSONObject request = context.request(), components = new JSONObject(); BundleStore.Lease lease = context.model();
-        validate(lease.bundle, request.getString("type")); context.check();
+        validate(lease.bundle, request.getString("type")); context.check(); requireBackend();
         boolean video = request.getString("type").equals("video.generate"); File generated = context.output(video ? "rgb" : "png");
         List<ModelBundle> adapters = new ArrayList<>(); for (BundleStore.Lease adapter : context.adapters()) adapters.add(adapter.bundle);
         JSONObject planned = SdSpec.prepare(lease.bundle, adapters, request).getJSONObject("diffusionPlan");

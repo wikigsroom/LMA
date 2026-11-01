@@ -36,7 +36,7 @@ public final class LocalJobs implements AutoCloseable {
         JSONObject request = new GenerationPlan(app).resolve(input);
         JSONObject job = app.jobs.submit(request, idempotencyKey); app.prefs.edit().putBoolean("desiredJobs", true).apply(); wake(); changed.run(); return job;
     }
-    /** Same resolver as submit, with no queue, preference, transfer, API or engine launch. */
+    /** Same resolver as submit, with no queue, preference, transfer, API change or model inference; bounded capability queries may start. */
     public static JSONObject preflight(LmaApp app, JSONObject input) throws Exception {
         if (app.bundles == null || app.artifacts == null || app.localEngines == null) throw new IOException("本地任务模块不可用");
         synchronized (app.bundles) { synchronized (app.artifacts) {

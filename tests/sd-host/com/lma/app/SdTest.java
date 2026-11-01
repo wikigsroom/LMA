@@ -38,9 +38,13 @@ public final class SdTest {
     }
     private static JSONObject plan(ModelBundle b, JSONObject request, ModelBundle... adapters) throws Exception { return SdSpec.prepare(b, Arrays.asList(adapters), request).getJSONObject("diffusionPlan"); }
     private static void child(String name) throws Exception {
+        if (name.equals("--devices")) { System.out.println(new JSONObject().put("devices", "CPU\tCPU\nVulkan0\tfixture GPU\n")); return; }
+        if (name.equals("--cpu-devices")) { System.err.print("ggml_vulkan: Error: Vulkan 1.2 required."); System.out.println(new JSONObject().put("devices", "CPU\tCPU\n")); return; }
         JSONObject command = new JSONObject(new String(Files.readAllBytes(Paths.get(name)), "UTF-8"));
         if (!command.getString("schema").equals("lma.engine-request/1")) throw new IOException("Invalid child protocol");
         if (command.getJSONObject("input").getString("prompt").equals("fixture-error")) { System.out.println(new JSONObject().put("event", "error").put("message", "literal child failure")); System.exit(2); }
+        if (command.getJSONObject("input").getString("prompt").equals("fixture-stderr-error")) { System.err.print("ggml_vulkan: Error: Vulkan 1.2 required."); System.out.println(new JSONObject().put("event", "error").put("message", "precise structured failure")); System.exit(3); }
+        if (command.getJSONObject("input").getString("prompt").equals("fixture-exit")) { System.err.print("unstructured fixture failure"); System.exit(7); }
         JSONObject components = command.getJSONObject("components");
         for (Iterator<String> it = components.keys(); it.hasNext();) if (!new File(components.getString(it.next())).isFile()) throw new IOException("Missing leased fixture bytes");
         for (String[] mapping : new String[][]{{"clip_merges", "CLIP_MERGES"}, {"qwen_merges", "QWEN_MERGES"}, {"umt5_tokenizer", "UMT5_JSON"}})
@@ -57,6 +61,15 @@ public final class SdTest {
     public static void main(String[] args) throws Exception {
         if (args.length == 2 && args[0].equals("child")) { child(args[1]); return; }
         File root = new File(args[0]); root.mkdirs(); templates = new RecipeCatalogue(new JSONObject(new String(Files.readAllBytes(Paths.get(args[1])), "UTF-8")));
+        ModelBundle cpuImport = new ModelBundle(new JSONObject(new String(Files.readAllBytes(Paths.get(args[2])), "UTF-8")));
+        SdSpec.validate(cpuImport, "video.generate");
+        check(cpuImport.engine.equals("sd_cpp") && cpuImport.backend.equals("cpu"), "Manual CPU import selects the signed CPU worker explicitly");
+        check(cpuImport.recipeId.equals("wan21_13b_split_cpu_v1") && !cpuImport.id.equals("wan21_13b_q4_vulkan_catalogue_v1"), "CPU import has a distinct immutable ID and existing CPU recipe");
+        JSONArray shipped = new JSONObject(new String(Files.readAllBytes(new File(new File(args[1]).getParentFile(), "model-bundles.json").toPath()), "UTF-8")).getJSONArray("bundles");
+        ModelBundle gpuSource = null;
+        for (int j=0;j<shipped.length();j++) if (shipped.getJSONObject(j).getString("id").equals("wan21_13b_q4_vulkan_catalogue_v1")) gpuSource = new ModelBundle(shipped.getJSONObject(j));
+        check(gpuSource != null && gpuSource.components.size() == cpuImport.components.size(), "Manual import retains the complete selected component set");
+        for (ModelBundle.Component c : cpuImport.components) check(c.objectId.equals(gpuSource.component(c.role).objectId) && c.bytes == gpuSource.component(c.role).bytes, "Manual CPU metadata reuses identical managed objects without model copies");
         ModelBundle sd15 = bundle("sd15_checkpoint_cpu_v1"), xl = bundle("sdxl_checkpoint_cpu_v1"), turbo = bundle("sd21_turbo_checkpoint_cpu_v1"), lc = bundle("sd15_lcm_checkpoint_cpu_v1"), lcx = bundle("sdxl_lcm_checkpoint_cpu_v1");
         ModelBundle a = bundle("sd15_lcm_lora_cpu_v1"), ax = bundle("sdxl_lcm_lora_cpu_v1"), style = bundle("sd15_lora_cpu_v1");
         ModelBundle wanGpu = bundle("wan21_13b_split_vulkan_v1");
@@ -159,12 +172,26 @@ public final class SdTest {
             JSONObject packet = new JSONObject(new String(Files.readAllBytes(gpuContext.output("rgb").toPath()), "UTF-8"));
             check(packet.getString("backend").equals("vulkan") && packet.getString("pipeline").equals("wan21_13b") && packet.getString("samplingProfile").equals("standard"), "Explicit backend and immutable video plan reach the shared worker binding");
         }
+        SdEngine unavailableGpu = new SdEngine(app, java, new JSONObject().put("engine", "wan_sd_cpp"), builder -> { builder.command().set(1, "--cpu-devices"); return launch(java, builder); });
+        try { unavailableGpu.prepare(wanGpu, request(wanGpu)); throw new AssertionError("Unsupported GPU passed"); }
+        catch (IOException expected) { check(expected.getMessage().contains("Vulkan 1.2"), "Actual child capability query rejects CPU-only devices before generation"); }
+        for (String scenario : Arrays.asList("fixture-stderr-error", "fixture-exit")) try (BundleStore.Selection leases = app.bundles.acquireAll(Collections.singletonList(sd15.id))) {
+            JSONObject raw = request(sd15); raw.getJSONObject("input").put("prompt", scenario);
+            TestContext ctx = new TestContext(root, leases, engine.prepare(sd15, raw));
+            try { engine.generate(ctx); throw new AssertionError("Failed child passed"); }
+            catch (IOException expected) {
+                check(expected.getMessage().contains(scenario.equals("fixture-stderr-error") ? "precise structured failure" : "7"), "Stderr without a newline cannot corrupt the structured error or hide exit code");
+                check(ctx.details.getInt("workerExitCode") == (scenario.equals("fixture-stderr-error") ? 3 : 7), "Worker exit code persists in execution metadata");
+                check(!ctx.json.exists(), "Failed worker removes its private request");
+            }
+        }
+        int launchesBeforeFrozen = launched.get();
         JSONObject frozen = engine.prepare(sd15, ModelSelection.prepare(app.bundles, sd15, paired));
         check(frozen.getJSONObject("parameters").getInt("steps") == 20 && frozen.getJSONObject("diffusionPlan").getJSONObject("parameters").getInt("steps") == 8, "Requested and effective sampling are separately reviewable");
         check(app.bundles.settings(sd15.id).getJSONObject("values").getInt("steps") == 20, "Preparing LCM does not save over ordinary base settings");
         try (BundleStore.Selection leases = app.bundles.acquireAll(ModelSelection.ids(frozen))) {
             TestContext context = new TestContext(root, leases, frozen); File output = engine.generate(context); JSONObject packet = new JSONObject(new String(Files.readAllBytes(output.toPath()), "UTF-8"));
-            check(launched.get() == 1 && packet.getString("samplingProfile").equals("lcm"), "Actual binding launches a host protocol child with the frozen profile");
+            check(launched.get() == launchesBeforeFrozen + 1 && packet.getString("samplingProfile").equals("lcm"), "Actual binding launches a host protocol child with the frozen profile");
             check(context.progress.contains("fast_fixture:0.25"), "Fast native sampling retains the first completed step despite progress throttling");
             check(context.progress.contains("fast_fixture:1.0"), "Fast native sampling always forwards completion");
             check(context.progress.contains("next_fixture:0.1"), "A new native stage is visible without waiting for the prior throttle interval");
@@ -174,7 +201,7 @@ public final class SdTest {
             check(context.details.getString("runtimeBackend").equals("cpu") && context.details.getJSONObject("effectiveParameters").getLong("seed") == packet.getJSONObject("parameters").getLong("seed"), "Worker backend observations merge with effective parameters without losing provenance");
             JSONObject bad = DataFiles.copy(frozen); bad.getJSONObject("diffusionPlan").getJSONObject("parameters").put("cfg", 7);
             rejects(() -> engine.generate(new TestContext(root, leases, bad)), "Tampered queued sampling plan fails before launching");
-            check(launched.get() == 1 && app.nativeProcess == null, "Rejected plans cannot leave a child running");
+            check(launched.get() == launchesBeforeFrozen + 1 && app.nativeProcess == null, "Rejected plans cannot leave a child running");
             check(!context.json.exists(), "Private native request file is removed after completion");
         }
         for (ModelBundle b : Arrays.asList(turbo, lc, xl)) try (BundleStore.Selection leases = app.bundles.acquireAll(Collections.singletonList(b.id))) {
@@ -195,7 +222,7 @@ public final class SdTest {
         System.out.println(new JSONObject().put("passed", passed).put("production_sd_binding", true).put("actual_host_children", true).put("model_inference", false).put("physical_android", false).put("image_outputs", false));
     }
     private static Process launch(File java, ProcessBuilder original) throws IOException {
-        ProcessBuilder b = new ProcessBuilder(java.getPath(), "-Dfile.encoding=UTF-8", "-Dstdout.encoding=UTF-8", "-Dstderr.encoding=UTF-8", "-cp", System.getProperty("java.class.path"), SdTest.class.getName(), "child", original.command().get(1)).directory(original.directory()).redirectErrorStream(true);
+        ProcessBuilder b = new ProcessBuilder(java.getPath(), "-Dfile.encoding=UTF-8", "-Dstdout.encoding=UTF-8", "-Dstderr.encoding=UTF-8", "-cp", System.getProperty("java.class.path"), SdTest.class.getName(), "child", original.command().get(1)).directory(original.directory()).redirectErrorStream(original.redirectErrorStream());
         b.environment().putAll(original.environment()); return b.start();
     }
     private static final class TestContext implements LocalEngine.Context {

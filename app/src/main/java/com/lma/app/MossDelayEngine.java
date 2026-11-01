@@ -25,7 +25,8 @@ public final class MossDelayEngine implements LocalEngine {
         if(!context.adapters().isEmpty())throw new IOException("MOSS Delay 不接受图像适配器");
         JSONObject normalized=MossDelaySpec.parameters(request.getJSONObject("parameters"));if(normalized.getJSONArray("adjustments").length()!=0)throw new IOException("MOSS 参数快照超出基座约束，请明确重试任务");
         JSONObject parameters=normalized.getJSONObject("values");if(parameters.getLong("seed")==-1)parameters.put("seed",new java.security.SecureRandom().nextInt(Integer.MAX_VALUE));
-        context.execution(new JSONObject().put("effectiveParameters",parameters).put("pipeline",lease.bundle.pipeline).put("backend","cpu"));
+        JSONObject execution = new JSONObject().put("effectiveParameters",parameters).put("pipeline",lease.bundle.pipeline).put("backend","cpu");
+        context.execution(DataFiles.copy(execution));
         EngineWorkspace workspace=new EngineWorkspace(new File(app.getFilesDir(),"engine-work"),context::check);final Process[] child={null};
         try {
             workspace.link("models","moss-delay.gguf",lease.file("backbone"));workspace.link("models","moss-decoder.gguf",lease.file("audio_decoder"));
@@ -35,7 +36,7 @@ public final class MossDelayEngine implements LocalEngine {
                 if(!MossDelaySpec.hasEncoder(lease.bundle) || !refs.getJSONObject(i).getString("role").equals("reference_audio") || command.has("referenceAudio"))throw new IOException("参考音频需要用户已选择的匹配编码器，且只接受一个参考 WAV");
                 File reference=context.input("reference_audio");MossDelaySpec.reference(reference);command.put("referenceAudio",workspace.link("inputs","reference.wav",reference).getPath());
             }
-            NativeWorker.run(app,binary,context,command,output,Collections.emptyMap(),builder->{Process process=launcher.start(builder);child[0]=process;return process;});
+            NativeWorker.run(app,binary,context,command,output,Collections.emptyMap(),execution,builder->{Process process=launcher.start(builder);child[0]=process;return process;});
             JSONObject audio=WaveFile.inspect(output);if(audio.getInt("sampleRate")!=24000 || audio.getInt("channels")!=1 || audio.getInt("formatCode")!=1 || audio.getInt("bitsPerSample")!=16)throw new IOException("MOSS 引擎未生成有效的 24 kHz 单声道 PCM16 音频");return output;
         }finally{workspace.closeAfter(child[0]);}
     }

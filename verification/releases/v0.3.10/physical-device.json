@@ -1,0 +1,78 @@
+{
+  "checked_at": "2026-11-01T05:59:54.106515+00:00",
+  "status": "passed",
+  "device": {
+    "model": "motorola edge plus",
+    "api": 31,
+    "abis": "arm64-v8a,armeabi-v7a,armeabi"
+  },
+  "apk_sha256": "0543d725263294e1f14b48a2bd0fde5c1cc42fb3a4ba3043107fce3d47a05b56",
+  "input_fingerprint": {
+    "app/src/main/AndroidManifest.xml": "28aea84b414122f4e9188796480b8e5e07396d59db3bf00d945fa402d9994510",
+    "app/src/main/java/com/lma/app/LmaApp.java": "b3a13870b6c06cf45f8885a01f8b173828f9a247500fcc646441d38d16f6e091",
+    "tests/android/AndroidManifest.xml": "a86862ad6a74bbeb504da7c61fc18d9207a8ff80fd405314c0c56b8767fb86c9",
+    "tests/android/com/lma/app/DeviceAcceptance.java": "892b39cc5fc6bda18b9643df929f5ad8b7fefb2e42a05a48feb8f5535e448bbe",
+    "tests/android/com/lma/app/DevicePerformance.java": "e92dc8c868675167cecd8bc66a262eef3e65a411c51b116a560728a2aab0476f",
+    "tests/android/com/lma/app/DeviceTaskDiagnostics.java": "5ba3d0246a6dd89e8a6dbde91d6e0a556e508ea82837f8dc368a52788a82d037",
+    "tools/build_acceptance.py": "76288410f114d7b4b337b3cb8d98d481a42506fa0135313a32819df29bbf82b0",
+    "tools/device_check.py": "e3d101aa1ece922494dc0c6a00208d87c4c1372246691c36914327fd82800eae"
+  },
+  "instrumentation": {
+    "port": 8080,
+    "status": "passed",
+    "checks": [
+      "Complete catalogue and physical device state",
+      "Installed Android UI and native JavaScript bridge",
+      "Extracted native executable permissions",
+      "Android SQLite persistence and interrupted chat history",
+      "Real foreground service command acknowledgement",
+      "Fourteen recommendations preserve m08 / m06 / m01 prefix",
+      "Physical recommended category: image",
+      "Physical recommended category: video",
+      "Physical recommended category: audio",
+      "Physical recommended category: 3d",
+      "All registered models render on physical WebView",
+      "Local model management filter responds",
+      "Physical navigation: chat",
+      "Physical navigation: tasks",
+      "Physical navigation: server",
+      "Physical navigation: settings",
+      "Zero-model foreground API listener starts without downloading weights"
+    ],
+    "physicalDevice": true,
+    "backgroundEnduranceTested": false
+  },
+  "physical_device_tests": 23,
+  "external_program_checks": [
+    "API recovers after instrumentation detaches",
+    "Bearer key and browser-origin rejection on real phone",
+    "Existing installed models and complete extension engine registry preserved",
+    "Jobs, artifacts, drafts and upload read APIs",
+    "Missing text weights rejected without automatic download",
+    "Screen-off authenticated health and foreground service survival (program only)"
+  ],
+  "external_api_auth_tested": true,
+  "background_program_tested": true,
+  "screen_off_program_seconds": 60.29,
+  "screen_off_health_samples_seconds": [
+    0.175,
+    10.509,
+    20.851,
+    31.096,
+    41.363,
+    51.665,
+    60.29
+  ],
+  "phone_inference_tested": false,
+  "background_endurance_tested": false,
+  "emulator_used": false,
+  "existing_model_management_only": true,
+  "installed_models_preserved": 5,
+  "schema": "lma.physical-program-acceptance/1",
+  "version": "0.3.10",
+  "validation_mode": "program_only",
+  "model_inference_tested": false,
+  "complete_model_downloads_for_validation": 0,
+  "virtualization_used": false,
+  "scope": "Real Android UI, SQLite, management/API and short screen-off foreground service; installed assets preserved, no trained-model inference or endurance"
+}

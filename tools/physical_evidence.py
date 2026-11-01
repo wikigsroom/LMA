@@ -64,10 +64,12 @@ def export(directory):
         'phone_inference_tested', 'background_endurance_tested', 'emulator_used')
     data = {key: original[key] for key in allowed}
     assert 'apiKey' not in data['instrumentation']
+    data['existing_model_management_only'] = original.get('existing_model_management_only', False)
+    data['installed_models_preserved'] = original.get('installed_models_preserved', 0)
     data.update(schema='lma.physical-program-acceptance/1', version=version(),
         validation_mode='program_only', model_inference_tested=False,
         complete_model_downloads_for_validation=0, virtualization_used=False,
-        scope='Real Android UI, SQLite, no-model API and short screen-off foreground service; no trained-model inference or endurance')
+        scope='Real Android UI, SQLite, management/API and short screen-off foreground service; installed assets preserved, no trained-model inference or endurance')
     directory = Path(directory)
     directory.mkdir(parents=True, exist_ok=True)
     (directory / 'physical-device.json').write_text(json.dumps(data, ensure_ascii=False, indent=2)+'\n', encoding='utf-8')

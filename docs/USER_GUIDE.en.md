@@ -1,8 +1,8 @@
 # LMA user guide
 
-**v0.3.9 性能修复 / UI performance:** 状态整理改为后台合并，模型目录 / 页面复用；无需清除模型或重设参数。[原因与数字](PERFORMANCE.md) / [English](PERFORMANCE.en.md)。
+**v0.3.10 / code60:** [逐条任务失败、清理与修复](TASK_FAILURES.md) / [Task diagnosis and repair](TASK_FAILURES.en.md). Denied 3D workspace links are repaired; unsupported Wan GPU is rejected before enqueue. Five failed records archived/removed, existing successes/models/artifacts retained. No complete model reruns.
 
-**v0.3.9 / code58 · 当前 / Current:** [14 个推荐模型 / fourteen recommended choices](RECOMMENDED_MODELS.en.md)：text 3 / image 3 / video 2 / audio 3 / 3D 3. Default Recommended preserves the original text prefix, adds optional multimodal choices and never downloads automatically. [Release](releases/v0.3.9.md) · [当前实现 / implementation](IMPLEMENTATION_V039.md). Earlier version callouts below retain their historical context.
+**v0.3.10 / code60 · 当前 / Current:** [14 个推荐模型 / fourteen recommended choices](RECOMMENDED_MODELS.en.md)：text 3 / image 3 / video 2 / audio 3 / 3D 3. Default Recommended preserves the original text prefix, adds optional multimodal choices and never downloads automatically. [Release](releases/v0.3.10.md) · [当前实现 / implementation](IMPLEMENTATION_V0310.md). Earlier version callouts below retain their historical context.
 
 **v0.3.7 / code57:** [真机零模型启动修复与 19 项程序检查](DEVICE_ACCEPTANCE.md) / [Physical program acceptance](DEVICE_ACCEPTANCE.en.md). Includes short screen-off API health and separate real phone media; no complete model or endurance claim.
 

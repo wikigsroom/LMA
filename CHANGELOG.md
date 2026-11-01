@@ -1,5 +1,14 @@
 # Changelog / 更新记录
 
+## v0.3.10 · 2026-11-01 · Stable / 正式版
+
+- 真机诊断并备份 / 清理 5 条失败，保留 2 条成功、5 项素材和 5 个已安装模型及参数。Five failed records removed without deleting owned assets.
+- 修复 TRELLIS.2 / Pixal3D 工作目录硬链接 EACCES，加入经校验的私有软链接回退。Native stderr/JSON separated; errors, exit metadata and effective parameters retained.
+- Wan GPU 不兼容时预检拒绝、不排队；提供用户自行导入的 CPU JSON，无自动切换或下载。Optional explicit CPU route.
+- 23 项真机程序检查 + 10 项故障探针；60 组 / 15,032 项门禁断言，785 UI，41 ARM64 库与原签名，Lint 0/16；10 组媒体重录。Historical performance remains v0.3.9.
+- 单独声明误选的旧 Nano 主机模型检查，不计门禁或手机通过；手机完整 3D / 视频未重跑。Private user backups excluded.
+- [逐条原因与修复](docs/TASK_FAILURES.md) / [English](docs/TASK_FAILURES.en.md) · [Release](docs/releases/v0.3.10.md)。保留全 62 配方 / 82 默认包 / 18 扩展引擎加文本、14 推荐与许可。
+
 ## v0.3.9 · 2026-11-01
 
 - 修复零模型界面卡顿：完整状态整理 / JSON 编码移到单一后台线程并合并更新；复用不可变模型描述，每包快照只解析一次 schema。Move catalogue serialization off the main thread, coalesce updates and reuse validated immutable definitions.

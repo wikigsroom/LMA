@@ -102,7 +102,7 @@ public final class MnnTest {
             File output = engine.generate(context); JSONObject result = new JSONObject(new String(Files.readAllBytes(output.toPath()), "UTF-8"));
             check(result.getString("fixture").equals("JSON_NOT_AN_IMAGE"), "Actual host child tests the production protocol without claiming image generation");
             check(result.getJSONObject("config").getInt("thread_num") == 4 && !result.getJSONObject("config").has("base_dir"), "Bounded CPU configuration reaches actual child");
-            check(execution.getJSONObject("details").getJSONObject("effectiveParameters").getLong("seed") >= 0, "Actual random seed is recorded before launch");
+            check(execution.getJSONObject("details").getJSONObject("effectiveParameters").getLong("seed") >= 0 && execution.getJSONObject("details").getInt("workerExitCode") == 0, "Actual seed and worker exit metadata remain available together");
             check(progress.get() > 0 && app.nativeProcess == null, "Native progress and process ownership complete");
             check(new File(app.getFilesDir(), "engine-work").list().length == 0, "Private hardlink workspace is removed after child exit");
             check(DataFiles.sha256(lease.file("llm_config")).equals(bundle.component("llm_config").sha256), "Sanitizing config never overwrites installed metadata");

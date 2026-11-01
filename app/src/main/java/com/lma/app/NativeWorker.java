@@ -12,6 +12,48 @@ import java.util.concurrent.TimeUnit;
 final class NativeWorker {
     private NativeWorker() {}
     interface Launcher { Process start(ProcessBuilder builder) throws IOException; }
+    /** Drain stderr independently: native libraries must never corrupt JSON event framing. */
+    private static final class DiagnosticDrain extends Thread {
+        private final InputStream stream;
+        private volatile String code = "";
+        DiagnosticDrain(InputStream stream) { super("LMA-native-stderr"); this.stream = stream; setDaemon(true); start(); }
+        @Override public void run() {
+            try (InputStream in = stream) {
+                byte[] buffer = new byte[4096]; String tail = ""; int count;
+                while ((count = in.read(buffer)) != -1) {
+                    String part = tail + new String(buffer, 0, count, StandardCharsets.UTF_8);
+                    if (part.contains("Vulkan 1.2 required")) code = "vulkan_1_2_required";
+                    else if (code.isEmpty() && part.contains("CANNOT LINK EXECUTABLE")) code = "native_loader_error";
+                    else if (code.isEmpty() && (part.toLowerCase(Locale.ROOT).contains("out of memory") || part.contains("failed to allocate"))) code = "allocation_failed";
+                    tail = part.substring(Math.max(0, part.length() - 128));
+                }
+            } catch (IOException ignored) { }
+        }
+        void finish() { try { join(3000); } catch (InterruptedException stopped) { Thread.currentThread().interrupt(); } }
+    }
+    static void requireVulkan(LmaApp app, File binary, Launcher launcher) throws Exception {
+        ProcessBuilder builder = new ProcessBuilder(binary.getPath(), "--devices").directory(app.getFilesDir()).redirectErrorStream(false);
+        builder.environment().put("LD_LIBRARY_PATH", binary.getParent());
+        Process process = launcher.start(builder); DiagnosticDrain errors = new DiagnosticDrain(process.getErrorStream());
+        ByteArrayOutputStream stdout = new ByteArrayOutputStream();
+        Thread reader = new Thread(() -> { try (InputStream in = process.getInputStream()) { byte[] b = new byte[2048]; int n; while ((n = in.read(b)) != -1) synchronized (stdout) { if (stdout.size() + n <= 65536) stdout.write(b, 0, n); } } catch (IOException ignored) { } }, "LMA-device-query");
+        reader.setDaemon(true); reader.start();
+        try {
+            if (!process.waitFor(15, TimeUnit.SECONDS)) throw new IOException("GPU 能力检查超时；未提交生成任务，请稍后重新打开 App 检查");
+            reader.join(3000); errors.finish(); boolean available = false;
+            synchronized (stdout) {
+                for (String line : stdout.toString("UTF-8").split("\\r?\\n")) try {
+                    JSONObject item = new JSONObject(line);
+                    available |= java.util.regex.Pattern.compile("(?im)^vulkan0\\t").matcher(item.optString("devices")).find();
+                } catch (Exception ignored) { }
+            }
+            if (process.exitValue() != 0 || !available) throw new IOException(errors.code.equals("vulkan_1_2_required")
+                ? "当前手机未提供此引擎要求的 Vulkan 1.2 GPU；不能运行所选 GPU 视频配方。可手动导入 Wan CPU 配方；重试或降低分辨率不能补齐 GPU 能力。"
+                : "当前签名引擎未发现可用 Vulkan GPU；未提交生成任务。可检查驱动兼容性或手动选择 CPU 配方。");
+        } finally {
+            com.lma.app.core.ProcessControl.stop(process); reader.join(3000); errors.finish();
+        }
+    }
     static void run(LmaApp app, File binary, LocalEngine.Context context, JSONObject command, File output, Map<String, String> environment) throws Exception {
         run(app, binary, context, command, output, environment, ProcessBuilder::start);
     }
@@ -19,7 +61,7 @@ final class NativeWorker {
         run(app, binary, context, command, output, environment, new JSONObject(), launcher);
     }
     static void run(LmaApp app, File binary, LocalEngine.Context context, JSONObject command, File output, Map<String, String> environment, JSONObject initialExecution, Launcher launcher) throws Exception {
-        File input = context.output("json"); Process process = null;
+        File input = context.output("json"); Process process = null; DiagnosticDrain diagnostics = null;
         try {
             AudioPcm.Sequence audio = null;
             if (command.has("audioStream")) {
@@ -28,13 +70,14 @@ final class NativeWorker {
                 audio = new AudioPcm.Sequence(format); context.check(); context.audioStart(format);
             }
             try (FileOutputStream file = new FileOutputStream(input)) { file.write(command.toString().getBytes(StandardCharsets.UTF_8)); file.getFD().sync(); }
-            ProcessBuilder builder = new ProcessBuilder(binary.getPath(), input.getPath()).directory(app.getFilesDir()).redirectErrorStream(true);
+            ProcessBuilder builder = new ProcessBuilder(binary.getPath(), input.getPath()).directory(app.getFilesDir()).redirectErrorStream(false);
             builder.environment().put("LD_LIBRARY_PATH", binary.getParent()); builder.environment().putAll(environment);
             synchronized (app.nativeProcessLock) {
                 context.check();
                 if (app.nativeProcess != null && app.nativeProcess.isAlive()) throw new IOException("另一个本地引擎仍在运行，请先停止它");
                 process = launcher.start(builder); app.nativeProcess = process; context.process(process);
             }
+            diagnostics = new DiagnosticDrain(process.getErrorStream());
             boolean complete = false; String failure = ""; long last = 0;
             String lastProgressStage = ""; int lastProgressSteps = -1; double lastProgressFraction = Double.NaN;
             JSONObject execution = DataFiles.copy(initialExecution);
@@ -79,7 +122,15 @@ final class NativeWorker {
                 }
             }
             context.check();
-            if (!process.waitFor(10, TimeUnit.SECONDS) || process.exitValue() != 0 || !complete || !failure.isEmpty() || !output.isFile() || output.length() == 0) throw new IOException(failure.isEmpty() ? "本地引擎未完成输出；请检查组件、资源和设备兼容性" : failure);
+            boolean ended = process.waitFor(10, TimeUnit.SECONDS); diagnostics.finish();
+            int exit = ended ? process.exitValue() : -999;
+            execution.put("workerExitCode", exit).put("workerCompleteEvent", complete).put("workerDiagnosticCode", diagnostics.code);
+            context.execution(DataFiles.copy(execution));
+            if (!ended || exit != 0 || !complete || !failure.isEmpty() || !output.isFile() || output.length() == 0) {
+                if (failure.isEmpty()) failure = diagnostics.code.equals("vulkan_1_2_required") ? "当前手机未提供此引擎要求的 Vulkan 1.2 GPU；请使用兼容设备或明确选择 CPU 配方"
+                    : "本地引擎未完成输出（退出码 " + exit + "，诊断 " + (diagnostics.code.isEmpty() ? "无结构化错误" : diagnostics.code) + "）；可在任务详情查看退出信息";
+                throw new IOException(failure);
+            }
             if (audio != null) { context.check(); audio.verify(output); context.check(); }
         } finally {
             if (process != null) {
@@ -87,6 +138,7 @@ final class NativeWorker {
                 try { if (!process.waitFor(3, TimeUnit.SECONDS)) { process.destroyForcibly(); process.waitFor(3, TimeUnit.SECONDS); } }
                 finally { synchronized (app.nativeProcessLock) { if (app.nativeProcess == process && !process.isAlive()) app.nativeProcess = null; } }
             }
+            if (diagnostics != null) diagnostics.finish();
             input.delete();
         }
     }

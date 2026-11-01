@@ -1,0 +1,24 @@
+{
+  "schema": "lma.declared-validation-deviation/1",
+  "version": "0.3.10",
+  "status": "declared",
+  "cause": "Legacy trained-host runner was selected by mistake instead of the program-only contract runner",
+  "legacy_nano_runner": "tools/test_moss_nano_app_host.py",
+  "legacy_nano_host_children": 3,
+  "legacy_nano_output_records": 2,
+  "model_assets": "pre-existing host assets imported by the legacy test",
+  "new_model_downloads": false,
+  "physical_model_execution": false,
+  "legacy_qwen_runner": "tools/test_qwen_tts_app_host.py",
+  "legacy_qwen_model_execution": false,
+  "legacy_qwen_exit": "stale direct-evidence fingerprint before model import or generation",
+  "excluded_from_program_suite_counts": true,
+  "excluded_from_phone_acceptance": true,
+  "raw_outputs_published": false,
+  "correct_program_only_runners": [
+    "tools/test_moss_nano.py",
+    "tools/test_moss_delay.py",
+    "tools/test_qwen_tts.py"
+  ],
+  "scope": "Program-gate zero-model fields describe those gate records; they are not a claim that no legacy host inference occurred anywhere during this session"
+}

@@ -1,59 +1,63 @@
-# Physical Android program acceptance · v0.3.9
+# Physical Android program acceptance · v0.3.10
 
-[中文](DEVICE_ACCEPTANCE.md) · [Release notes](releases/v0.3.9.md) · [Evidence](../verification/releases/v0.3.9/physical-device.json)
+[中文](DEVICE_ACCEPTANCE.md) · [Release](releases/v0.3.10.md) · [23 program checks](../verification/releases/v0.3.10/physical-device.json) · [10 failure probes](../verification/releases/v0.3.10/task-diagnostics.json)
 
-Wireless ADB connected an actual phone, reporting **motorola edge plus / burton, Android 12 / API31, SM8250 and approximately 11.4 GiB system-visible RAM**. This is not an X30, Snapdragon 8 Gen 1 or Nubia Z20 acceptance result. The PC installs, controls and forwards requests; application services execute on the same Android phone without ROOT.
+The authorized USB device identifies as **motorola edge plus / burton, Android 12 / API31, SM8250, approximately 11.4 GiB visible RAM**. This is not an X30, Snapdragon 8 Gen 1 or Nubia Z20 result. The computer installs the APK and forwards management requests; the application, API and probes run on the phone, without ROOT or virtualization.
 
-## 1. Preserved v0.3.7 fixes and current category checks
+## 1. Current result
 
-| ID | Observed problem | Result |
+The original-signer in-place update is **0.3.10 / code60**. Five failed jobs were privately archived and removed. Both successful jobs, five artifacts/results, five installed models and their settings remain. [Every failure, repair and optional CPU route](TASK_FAILURES.en.md).
+
+| Item | Physical checks | Scope/result |
 | --- | --- | --- |
-| D01 | An unprepared legacy LTX entry triggered execution validation during v0.3.6 catalogue snapshot construction, aborting device and model-card state | Each entry retains `inputSchemaError`; the rest of the catalogue and device state render. Execution still requires real matching assets |
-| D02 | The acceptance APK compressed `resources.arsc`, which Android 12 rejected | Preserve its stored compression and alignment; independent instrumentation installs |
-| D03 | An older ADB failed to export media to an absolute path containing Chinese characters | Export relative to the repository working directory |
+| A01 | Complete 82-bundle catalogue, device state, native bridge and WebView | Existing installed assets retained |
+| A02 | Fourteen recommendations, original text prefix, image 3/video 2/audio 3/3D 3; All/Local and navigation | Actual DOM operations; no private user media recorded |
+| A03 | Extracted executable permissions, SQLite interruption recovery, service commands | Android framework passes |
+| A04 | API continues after instrumentation detaches | Normal foreground service recovers |
+| A05 | Incorrect key 401, browser origin 403, management list APIs | HTTP requests reach the phone via ADB |
+| A06 | Missing text weights 409 and unchanged model list | No automatic model download |
+| A07 | 60.29 seconds screen-off, seven authenticated health/service samples | Short program survival only |
 
-The current patch is **0.3.9 / code59**, signed with the original identity. It preserves application data and user-selected assets. Published v0.3.6 files and historical failures remain unchanged.
+These are **23 program checks**, separate from **ten failure-specific probes**. The latter use a four-byte owned source, seventeen component receipts/sizes and signed `--info`/`--devices` queries. Workspace staging now succeeds; production Wan preflight rejects the unsupported GPU without adding a job. No complete image/video/audio/3D model is executed on the phone.
 
-## 2. Actual coverage
+The key exists only in test-process memory. Public records exclude credentials, serial numbers, Wi-Fi endpoints, personal prompts and media. Raw backups remain in a local ignored directory.
 
-**23 physical program checks** cover complete zero-model state and 82 bundles, real memory, native bridge/cards, 14 recommendations with text prefix `m08 → m06 → m01`, image/video/audio/3D filters and counts, All/Local and four other pages, executable permissions, Android SQLite interruption recovery, service commands, zero-model API startup and recovery after instrumentation detaches, 401 authentication / 403 browser-origin rejection, engine and data endpoints, and 409 missing-weight rejection without downloading models.
+## 2. Reproduction
 
-With instrumentation detached, the application survives approximately **60 seconds with the display off**, serving **seven authenticated health requests** while the real foreground service remains present. This is a short program survival check. It establishes no model inference, continuous token generation or endurance result.
-
-Keys remain in the trusted runner's memory and are removed before writing reports. Public records exclude serial numbers, network endpoints, pairing credentials and personal logs. No complete trained models were downloaded, copied or run.
-
-## 3. Reproduce
-
-Use native Windows SDK/JDK/Python, with an authorized, unlocked physical ARM64 Android 9+ device. No emulator, Docker, WSL or VM. Wireless pairing and connection use separate ports; consult the [official ADB documentation](https://developer.android.com/tools/adb#wireless-android11-command-line).
+Use native Windows Android SDK/JDK/Python and an authorized, unlocked phone. Confirm that no job is active because instrumentation installation may restart the target. `SERIAL` is an authorized entry from `adb devices`; wireless pairing still requires connection to the advertised connect port.
 
 ```powershell
+python tools/build.py
 python tools/build_acceptance.py
-python tools/device_check.py --serial DEVICE_IP:CONNECT_PORT --install --run --program-api --minutes 1
-# Unlock manually after the screen-off check, then capture without locking again.
-python tools/device_check.py --serial DEVICE_IP:CONNECT_PORT --run --program-api --minutes 0 --capture-media
+python tools/device_check.py --serial SERIAL --install --run --program-api --existing-models --minutes 1
 ```
 
-Do not pass `--model`: that historical option downloads and runs trained weights and is outside this validation policy. Zero-model API acceptance stops if existing installed models are found and preserves those files. Installation upgrades in place; it never clears app data. Users enter their own lock-screen credentials.
+`--existing-models` preserves installed assets while checking management/API operations; omitting it retains strict zero-install acceptance. **Do not pass `--model`**, the historical full-download/inference option. No alternative CPU bundle is imported or executed.
 
-## 4. Actual media
+The separate `com.lma.app.acceptance/com.lma.app.DeviceTaskDiagnostics` instrumentation requires the already installed affected bundles. Missing bundles are unmet prerequisites, not a reason to download full models. It checks metadata, tiny file links and weight-free native queries only. Remove the acceptance APK afterwards; keep the normal app and its data.
 
-[Phone screenshot](media/device/v0.3.9/01-recommended.png) · [Screen recording](media/device/v0.3.9/physical-walkthrough.mp4) · [GIF](media/device/v0.3.9/physical-walkthrough.gif) · [Identity manifest](media/device/v0.3.9/manifest.json)
+## 3. Media and retained repairs
 
-Only LMA screen content is published. Personal launcher, lock screens, credentials and other applications are excluded. Physical media is separate from the labelled desktop **UI FIXTURE** recordings under `docs/media/development/`. Playback timing is not generation performance.
+Ten current desktop production-page flows were recaptured: **57 PNG / ten GIF / ten MP4**. Each is labelled UI FIXTURE; owned browser resources close after recording. [Media index](MEDIA.md).
 
-## 5. Unmeasured scope
+Actual-phone recordings retain their **v0.3.9 identity**: [recommendations](media/device/v0.3.9/01-recommended.png), [video category](media/device/v0.3.9/02-recommended-video.png), [MP4](media/device/v0.3.9/physical-walkthrough.mp4), [GIF](media/device/v0.3.9/physical-walkthrough.gif), [manifest](media/device/v0.3.9/manifest.json). The current phone contains private tasks/media, which are not copied into public recordings. Historical media is not rebound to this APK.
 
-| ID | Not established | Treatment |
+| Item | Retained repair |
+| --- | --- |
+| D01 | An unprepared legacy LTX form reports its own error without truncating global state |
+| D02 | Acceptance resources remain uncompressed/aligned for Android 12 |
+| D03 | Relative ADB media paths avoid the earlier non-ASCII absolute-output issue |
+| D04 | v0.3.9 moves snapshot assembly to one background worker and reuses definitions/views |
+
+The 4061 → 230 ms snapshot and 4228 → 24 ms main-thread warm measurements belong to **v0.3.9**. Eight current checks preserve relevant sources and immutable evidence; there is no new latency benchmark. [Methodology](PERFORMANCE.en.md). Published artifacts remain unchanged.
+
+## 4. Open boundaries and declared deviation
+
+| Item | Not established | Treatment |
 | --- | --- | --- |
-| U01 | Full text/image/video/audio/3D inference, quality, tokens/s, peak memory or temperature | Omitted under the user's program-only policy |
-| U02 | Long screen-off inference, vendor power management, reboot/force-stop model recovery | Only short no-model API survival is recorded |
-| U03 | X30, Nubia Z20 or other devices | Evidence applies to this reported phone only |
-| U04 | Arbitrary HF architectures, every upstream CUDA workflow or verified complete public 3D exports | Preserve the bounded 62-recipe / 82-bundle / 18-extension-plus-text scope and acquisition limits |
+| U01 | Repaired complete 3D/Wan CPU output, quality, speed or peak RAM | No complete model reruns on the phone under the requested program-only policy |
+| U02 | This phone's Wan GPU driver compatibility | Explicit rejection; requires a compatible driver/device or an explicit user-selected CPU route |
+| U03 | Long screen-off inference, thermals, power management or restart recovery | A short health check does not establish endurance |
+| U04 | Other devices, arbitrary HF architectures or full publisher workflows | Preserve bounded 62 recipes / 82 bundles / 18 extension engines plus text |
 
-## 6. v0.3.9 category media
-
-Four category checks verify image 3 / video 2 / audio 3 / 3D 3. Eleven PNGs and actual MP4/GIF are bound to the current APK and test sources. [Image](media/device/v0.3.9/02-recommended-image.png) · [Video](media/device/v0.3.9/02-recommended-video.png) · [Audio](media/device/v0.3.9/02-recommended-audio.png) · [3D](media/device/v0.3.9/02-recommended-3d.png). No downloads or inference.
-
-## v0.3.9 performance / 性能专项
-
-[Same-phone measured comparison / 同机对比](PERFORMANCE.md) · [English](PERFORMANCE.en.md) · [JSON](../verification/releases/v0.3.9/ui-performance.json). This additional warm program diagnostic uses the untouched v0.3.8 baseline, not trained models. A local API record with `installed=false` is a partial/prepared entry; acceptance checks installation flags and preserves existing assets.
+**Declared validation deviation:** a legacy Nano trained-host runner was selected accidentally, using pre-existing host assets, launching three children and producing two output records. The old Qwen runner exited on stale evidence before generation. Neither contributes to program counts or phone acceptance; no complete model was rerun on the phone. Correct bounded fixture tests were completed separately. [Deviation record](../verification/releases/v0.3.10/validation-deviation.json).

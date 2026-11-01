@@ -5,7 +5,7 @@ import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.*;
 
-/** Private, disposable filename-preserving hardlinks to leased verified assets. Never copies weights. */
+/** Private, disposable filename-preserving links to leased verified assets. Never copies weights. */
 public final class EngineWorkspace implements AutoCloseable {
     public interface Check { void run() throws Exception; }
     private final Path directory;
@@ -58,8 +58,21 @@ public final class EngineWorkspace implements AutoCloseable {
         Path folder = destination.getParent();
         Files.createDirectories(folder);
         // BundleStore holds the lease until the worker has exited and these links have been removed.
-        // A hardlink failure must not silently duplicate a multi-gigabyte model.
-        Files.createLink(destination, original);
+        // Android SELinux may deny hardlinks even within the app sandbox (EACCES).
+        // A symlink to the same leased, regular source preserves filenames without copying weights.
+        try { Files.createLink(destination, original); }
+        catch (FileAlreadyExistsException conflict) { throw conflict; }
+        catch (IOException | UnsupportedOperationException denied) {
+            if (Files.exists(destination, LinkOption.NOFOLLOW_LINKS)) throw denied;
+            if (!Files.isRegularFile(original, LinkOption.NOFOLLOW_LINKS) || Files.isSymbolicLink(original)) throw new IOException("Selected asset changed before staging", denied);
+            try { Files.createSymbolicLink(destination, original.toAbsolutePath()); }
+            catch (IOException | UnsupportedOperationException unavailable) {
+                IOException error = new IOException("系统禁止模型文件链接；源文件已保留，未复制权重", unavailable); error.addSuppressed(denied); throw error;
+            }
+            if (!Files.isSymbolicLink(destination) || !Files.isSameFile(destination, original)) {
+                Files.deleteIfExists(destination); throw new IOException("Staged model link differs from its leased source");
+            }
+        }
         names.add(identity);
         check.run(); return destination.toFile();
     }

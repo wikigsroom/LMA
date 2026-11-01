@@ -145,7 +145,7 @@ public final class DeviceAcceptance extends Instrumentation {
             JSONObject initialState = app.snapshot();
             require(initialState.has("engine") && initialState.has("device"), "Native UI state is incomplete");
             require(initialState.getJSONArray("bundles").length() >= 82 && initialState.getJSONObject("device").getLong("totalMemory") > 0, "Full catalogue or physical memory missing from native state");
-            pass("Complete zero-model catalogue and physical device state");
+            pass("Complete catalogue and physical device state");
             waitFor(() -> "true".equals(js("Boolean(document.querySelectorAll('.model-card').length)")), 30000, "offline model catalogue");
             require(app.snapshot().getJSONArray("models").length() >= 14, "Curated models missing"); pass("Installed Android UI and native JavaScript bridge");
             File binary = new File(app.getApplicationInfo().nativeLibraryDir, "libllama-server.so");

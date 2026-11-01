@@ -1,0 +1,390 @@
+{
+  "passed": 95,
+  "checks": [
+    {
+      "case": "formal_source_constructor_conditioner",
+      "parameters": 974500644
+    },
+    {
+      "case": "formal_source_constructor_joint",
+      "parameters": 2394861356
+    },
+    {
+      "case": "formal_source_constructor_shape512",
+      "parameters": 1355218464
+    },
+    {
+      "case": "native_resize",
+      "error": ""
+    },
+    {
+      "case": "pillow_lanczos_(1, 16)",
+      "maxError": 0
+    },
+    {
+      "case": "native_resize",
+      "error": ""
+    },
+    {
+      "case": "pillow_lanczos_(7, 32)",
+      "maxError": 0
+    },
+    {
+      "case": "native_resize",
+      "error": ""
+    },
+    {
+      "case": "pillow_lanczos_(17, 9)",
+      "maxError": 0
+    },
+    {
+      "case": "native_resize",
+      "error": ""
+    },
+    {
+      "case": "pillow_lanczos_(33, 16)",
+      "maxError": 0
+    },
+    {
+      "case": "native_resize",
+      "error": ""
+    },
+    {
+      "case": "pillow_lanczos_(32, 32)",
+      "maxError": 0
+    },
+    {
+      "case": "native_resize",
+      "error": ""
+    },
+    {
+      "case": "pillow_lanczos_(64, 19)",
+      "maxError": 0
+    },
+    {
+      "case": "native_handoff",
+      "error": ""
+    },
+    {
+      "case": "source_exact_SAT_(8, 0)"
+    },
+    {
+      "case": "native_handoff",
+      "error": ""
+    },
+    {
+      "case": "source_exact_SAT_(8, 1)"
+    },
+    {
+      "case": "native_handoff",
+      "error": ""
+    },
+    {
+      "case": "source_exact_SAT_(8, 2)"
+    },
+    {
+      "case": "native_handoff",
+      "error": ""
+    },
+    {
+      "case": "source_exact_SAT_(16, 0)"
+    },
+    {
+      "case": "native_handoff",
+      "error": ""
+    },
+    {
+      "case": "source_exact_SAT_(16, 1)"
+    },
+    {
+      "case": "native_handoff",
+      "error": ""
+    },
+    {
+      "case": "source_exact_SAT_(16, 2)"
+    },
+    {
+      "case": "native_handoff",
+      "error": ""
+    },
+    {
+      "case": "source_exact_SAT_(32, 0)"
+    },
+    {
+      "case": "native_handoff",
+      "error": ""
+    },
+    {
+      "case": "source_exact_SAT_(32, 1)"
+    },
+    {
+      "case": "native_handoff",
+      "error": ""
+    },
+    {
+      "case": "source_exact_SAT_(32, 2)"
+    },
+    {
+      "case": "native_handoff",
+      "error": ""
+    },
+    {
+      "case": "source_exact_SAT_(64, 0)"
+    },
+    {
+      "case": "native_handoff",
+      "error": ""
+    },
+    {
+      "case": "source_exact_SAT_(64, 1)"
+    },
+    {
+      "case": "native_handoff",
+      "error": ""
+    },
+    {
+      "case": "source_exact_SAT_(64, 2)"
+    },
+    {
+      "case": "native_guidance",
+      "error": ""
+    },
+    {
+      "case": "source_guidance_(True, 0.0, 0.0)"
+    },
+    {
+      "case": "native_guidance",
+      "error": ""
+    },
+    {
+      "case": "source_guidance_(True, 0.0, 0.3)"
+    },
+    {
+      "case": "native_guidance",
+      "error": ""
+    },
+    {
+      "case": "source_guidance_(True, 0.0, 0.7)"
+    },
+    {
+      "case": "native_guidance",
+      "error": ""
+    },
+    {
+      "case": "source_guidance_(True, 1.0, 0.0)"
+    },
+    {
+      "case": "native_guidance",
+      "error": ""
+    },
+    {
+      "case": "source_guidance_(True, 1.0, 0.3)"
+    },
+    {
+      "case": "native_guidance",
+      "error": ""
+    },
+    {
+      "case": "source_guidance_(True, 1.0, 0.7)"
+    },
+    {
+      "case": "native_guidance",
+      "error": ""
+    },
+    {
+      "case": "source_guidance_(True, 3.0, 0.0)"
+    },
+    {
+      "case": "native_guidance",
+      "error": ""
+    },
+    {
+      "case": "source_guidance_(True, 3.0, 0.3)"
+    },
+    {
+      "case": "native_guidance",
+      "error": ""
+    },
+    {
+      "case": "source_guidance_(True, 3.0, 0.7)"
+    },
+    {
+      "case": "native_guidance",
+      "error": ""
+    },
+    {
+      "case": "source_guidance_(True, 7.5, 0.0)"
+    },
+    {
+      "case": "native_guidance",
+      "error": ""
+    },
+    {
+      "case": "source_guidance_(True, 7.5, 0.3)"
+    },
+    {
+      "case": "native_guidance",
+      "error": ""
+    },
+    {
+      "case": "source_guidance_(True, 7.5, 0.7)"
+    },
+    {
+      "case": "native_guidance",
+      "error": ""
+    },
+    {
+      "case": "source_guidance_(False, 0.0, 0.0)"
+    },
+    {
+      "case": "native_guidance",
+      "error": ""
+    },
+    {
+      "case": "source_guidance_(False, 0.0, 0.3)"
+    },
+    {
+      "case": "native_guidance",
+      "error": ""
+    },
+    {
+      "case": "source_guidance_(False, 0.0, 0.7)"
+    },
+    {
+      "case": "native_guidance",
+      "error": ""
+    },
+    {
+      "case": "source_guidance_(False, 1.0, 0.0)"
+    },
+    {
+      "case": "native_guidance",
+      "error": ""
+    },
+    {
+      "case": "source_guidance_(False, 1.0, 0.3)"
+    },
+    {
+      "case": "native_guidance",
+      "error": ""
+    },
+    {
+      "case": "source_guidance_(False, 1.0, 0.7)"
+    },
+    {
+      "case": "native_guidance",
+      "error": ""
+    },
+    {
+      "case": "source_guidance_(False, 3.0, 0.0)"
+    },
+    {
+      "case": "native_guidance",
+      "error": ""
+    },
+    {
+      "case": "source_guidance_(False, 3.0, 0.3)"
+    },
+    {
+      "case": "native_guidance",
+      "error": ""
+    },
+    {
+      "case": "source_guidance_(False, 3.0, 0.7)"
+    },
+    {
+      "case": "native_guidance",
+      "error": ""
+    },
+    {
+      "case": "source_guidance_(False, 7.5, 0.0)"
+    },
+    {
+      "case": "native_guidance",
+      "error": ""
+    },
+    {
+      "case": "source_guidance_(False, 7.5, 0.3)"
+    },
+    {
+      "case": "native_guidance",
+      "error": ""
+    },
+    {
+      "case": "source_guidance_(False, 7.5, 0.7)"
+    },
+    {
+      "case": "native_volume",
+      "error": ""
+    },
+    {
+      "case": "fixed_cuda_trilinear_map_False"
+    },
+    {
+      "case": "native_volume",
+      "error": ""
+    },
+    {
+      "case": "fixed_cuda_trilinear_map_True"
+    },
+    {
+      "case": "strict_stats_match"
+    },
+    {
+      "case": "wrong_normalization_rejected"
+    },
+    {
+      "case": "bundle_all_roles"
+    },
+    {
+      "case": "bundle_no_automatic_download"
+    }
+  ],
+  "input_fingerprint": {
+    "native/spatial/block_attention.hpp": "9d87fc393f51104f11f291dda84763744249aedaf1f57feab72d94c161b9503d",
+    "native/spatial/cascade.hpp": "3150c9eca11b60ddee68d894d38f4c147d84ae265bce49b29268fab48b135044",
+    "native/spatial/CMakeLists.txt": "ef47a91a5ba9b43032c5025e742731dccd08cd983d469e8771b899cf84eefa82",
+    "native/spatial/depth.hpp": "183de58c48d84e3fc5b2e1df7cc9a4395c27080230f76e0f5c9b70d8f24d0f6d",
+    "native/spatial/fdg.hpp": "675bbc80e7ee247c0202904a1ecac184aca8ab817438f97b7eb39157a6459994",
+    "native/spatial/fdg_mesh.hpp": "467a53e150789440b1793a7b67d1444f8f2bd5ecf5db26e4c159dbdf6ae4ba22",
+    "native/spatial/flexicubes.hpp": "e6d249b12b66f9630a4d5b57cc2d45073f537c6e4bf051f67d5064b44dc261ad",
+    "native/spatial/flexicubes_tables.hpp": "6ef60153625eaf15a10d144fd28fd5d63bb7175ca41561cf0f428857e5405737",
+    "native/spatial/image.hpp": "7f2b70863591a51e9bca407a7ae0677fda0680efa51b9c54e91a5a3c8f073909",
+    "native/spatial/linear_sampler.hpp": "96ff6befbb32480559c038b4fb33308a127fa41088bea73404866d322262166d",
+    "native/spatial/material.hpp": "0e1cb2b5a5c84c2bdef41e69b435e54d5d8218d01d9c25d64c9121fe527158c2",
+    "native/spatial/math.hpp": "abc3c2644fc02f864cec371053b3ad92c42ce89b9215beb86a3f731b861c7f45",
+    "native/spatial/mesh.hpp": "9d6c1af1780abf2ad83cd8d2aaa5e6e5f2f762c132d5006929a097c01fae6eaa",
+    "native/spatial/multiview_image.hpp": "f2f139eae47008bd6bdb881f9385dcb9f75e10a3b046c4a00e73d63a003c19c7",
+    "native/spatial/ort_graph.hpp": "d78b66a3b16ebad13410e045035d58d6dad5eab37346a6a697fdba095a1f8908",
+    "native/spatial/sam.hpp": "8f4363702f66c770547ed0258c63756dfe43e6d3e86d5942e3f157c4043b31c3",
+    "native/spatial/sam_geometry.hpp": "1936bbb2516ef189692cff86afa93f80e3d936c4b7ff0a20fc8fb5af4d0f9b43",
+    "native/spatial/sam_math.hpp": "4ce92644b9e0e56bc223cb5cc1556090007eeb97d48ad7e2299b57c2a0534c22",
+    "native/spatial/sam_pose.hpp": "d0fadb4bd735da8c66463a2b5ce5a53e2caccada9ccecaea4d7f6aaf85bdd775",
+    "native/spatial/sam_sampling.hpp": "4542bfb95f3d61a899937526999a3b692181f36e023513d9a17a7e8cd205c594",
+    "native/spatial/sparse.hpp": "118c821be7601439a166d800729feb9e77320b6ad355808edc1e802d99b07e67",
+    "native/spatial/sparse_ort.hpp": "1c66fc8d049550b753048ea70a22e45c06b0a08cff2869ce16ddf3d3a01eb12b",
+    "native/spatial/supra.hpp": "77e95b01735aa88c9631a248da8d0c401e8b254d8b26da770566f572e59e9b01",
+    "native/spatial/supra_observation.hpp": "4ad48f78450378ae9831bfccb53c784621971b98e9416dbb6450786a3e5b5b53",
+    "native/spatial/surface_sampling.hpp": "0aeb83fc1030f3114784b4dd0dbd7db5c5464ebc6ce5c85c3436bec6080cb709",
+    "native/spatial/text_tokens.hpp": "b74d4eec3f9e2aa2a7a76e8433518a1339345997a65c590aebc2489ef7f609ec",
+    "native/spatial/texture.hpp": "61fe254b9525a030b9d4ced52fd05c4f3b3435612b6c85357771d5ef9b0e2364",
+    "native/spatial/tokenizer_shim/core/util.h": "61d8074c170e601d509e558cb52951c8adfb330dd09c20d61fc4170157d2282c",
+    "native/spatial/typed_graph.hpp": "15cc4fb7fd425bf5cd62f552d9248536cfdf85ba2bd647626052de96370648b8",
+    "native/spatial/ultratex.hpp": "4c05ea59ea91bb5cf8653677c312cf305f6fbdae60b60c8bc65a826b9c7a158e",
+    "native/spatial/uniforge.hpp": "b1c1faac096a13dffd31e8dbf7ca93c055250f5c00280aaa51f4e335e929a22b",
+    "native/spatial/view_router.hpp": "7d13e662826932801c784c534c46998424b2ef3aa1e3b4a3afb89855dbe2500f",
+    "native/spatial/volume_material.hpp": "2bb45cba9b7705850c0e8b52dd2ba1141378d8f28e358ce855f49dc00d1b4080",
+    "native/spatial/worker.cpp": "b75cd1f4059704c82620ddcdfec74d00aa40d8ccc86a4985b6f1ff542339500b",
+    "tests/expansion-native/cascade.cpp": "a5ef9ca021087d7fb5d7701ad359be9e2f1da3ba6f4a90b6d4197c008bd27b3a",
+    "third_party/portable-sparse-source-lock.json": "fb0c9bfbb5efc502ed6f68b8ae92cebdad2775732725c22e3cdc4529e16932bf",
+    "tools/export_uniforge.py": "952be7a851580a31e2414a859ab2c4cc71003e7e0e65415e73b8d7ac71386132",
+    "tools/spatial_portable.py": "c66222b642d28237a7b9db0cddba76d92d2e54f5c2e8ffd98c52060f3b682414",
+    "tools/test_cascade.py": "f2a80d93e68ab6eb365836384e2fc7edf9b4cfe384ad79c8bd03314ec0c49216",
+    "tools/uniforge_catalogue.py": "6239ce3c19b000ca875cc832bd3b483453fa2b70bd3a2f475c7057628adb58dd",
+    "tools/uniforge_components.py": "b2a86df410c087689283f09aae2f083f4914d25a52bc1f92c67a6131a7c5ae79"
+  },
+  "actualNativeCpu": true,
+  "completeModelsRun": 0,
+  "phoneTests": 0,
+  "virtualizationUsed": false
+}

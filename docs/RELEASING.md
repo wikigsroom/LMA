@@ -1,20 +1,22 @@
 # 发布流程 / Release workflow
 
-**v0.3.8 / code58:** [多模态推荐与 23 项真机程序检查](DEVICE_ACCEPTANCE.md) / [Physical program acceptance](DEVICE_ACCEPTANCE.en.md). Includes short screen-off API health and separate real phone media; no complete model or endurance claim.
+**v0.3.10 / code60:** [任务失败逐条诊断、23 项真机程序检查与 10 项故障检查](DEVICE_ACCEPTANCE.md) / [Physical program acceptance](DEVICE_ACCEPTANCE.en.md). Includes short screen-off API health and separate real phone media; no complete model or endurance claim.
 
-**当前 v0.3.8 为完整适配正式 Release，按程序验证策略交付。** 旧版流程在下文保留历史语境；当前执行以下步骤。
+**当前 v0.3.10 为完整适配正式 Release，按程序验证策略交付。** 旧版流程在下文保留历史语境；当前执行以下步骤。
 
-1. 根据 [完整实现与测试](IMPLEMENTATION_V038.md) / [English](IMPLEMENTATION_V038.en.md) 运行受影响程序检查，不下载或运行完整训练模型，不要求手机或虚拟环境。Source-only/tiny-network validation does not imply trained-model acceptance.
+1. 根据 [完整实现与测试](IMPLEMENTATION_V0310.md) / [English](IMPLEMENTATION_V0310.en.md) 运行受影响程序检查，不下载或运行完整训练模型，不要求手机或虚拟环境。Source-only/tiny-network validation does not imply trained-model acceptance.
 2. 修改原生运行器时重建其 host / Android 产物与许可；运行 `python tools/build.py`、`python tools/verify_package.py`、`python tools/test_android_lint.py`。Preserve the existing private signer and upgrade identity.
 3. 运行 `node tests/ui-smoke.cjs`；用 `capture_workbench.cjs` 录制 community、release-workbench、expansion、multiview、shape、spatial、material、ultratex、adaptation、recommendations 十组生产页面。Use explicit UI FIXTURE bridges; close all owned browser resources in finally.
-4. 更新双语 README、指南、CHANGELOG、[本版说明](releases/v0.3.8.md) 和媒体身份。运行 `python tools/audit_adaptations.py --require-complete`、`python tools/release_scope.py`、`python tools/program_evidence.py --export`。Current evidence is under `verification/releases/v0.3.8/`; preserve prior records byte-for-byte.
-5. 运行 `python tools/package_delivery.py`、`python tools/prepare_release.py`、`python tools/check_repository.py`。本版准备 34 项同版附件，核对所有哈希。Any source/doc change after packaging requires repackaging; affected source changes require matching checks.
-6. 精确暂存代码、文档和证据，排除受保护文件、签名和模型材料；提交，创建未存在的 `v0.3.8` 标签，将 main 与标签推送到原仓库。不 force、不覆盖旧标签。Run `python tools/check_repository.py --published` to compare the source ZIP against exact tag blobs.
-7. 执行 `python tools/publish_release.py --gh PATH_TO_AUTHENTICATED_GH` 预览；加 `--publish` 发布。工具要求干净提交和远端一致标签，先上传草稿，逐项验证 GitHub SHA256 和附件集合后公开。Release channel comes from the reviewed manifest: v0.3.8 is stable (`prerelease=false`), while historical prerelease behavior is preserved. Published assets and release channels cannot be repurposed.
+4. 更新双语 README、指南、CHANGELOG、[本版说明](releases/v0.3.10.md) 和媒体身份。运行 `python tools/audit_adaptations.py --require-complete`、`python tools/release_scope.py`、`python tools/program_evidence.py --export`。Current evidence is under `verification/releases/v0.3.10/`; preserve prior records byte-for-byte.
+5. 运行 `python tools/package_delivery.py`、`python tools/prepare_release.py`、`python tools/check_repository.py`。核对本版附件集合与所有哈希；历史真机录像保留原身份，不公开私人任务媒体。Any source/doc change after packaging requires repackaging; affected source changes require matching checks.
+6. 精确暂存代码、文档和证据，排除受保护文件、签名和模型材料；提交，创建未存在的 `v0.3.10` 标签，将 main 与标签推送到原仓库。不 force、不覆盖旧标签。Run `python tools/check_repository.py --published` to compare the source ZIP against exact tag blobs.
+7. 执行 `python tools/publish_release.py --gh PATH_TO_AUTHENTICATED_GH` 预览；加 `--publish` 发布。工具要求干净提交和远端一致标签，先上传草稿，逐项验证 GitHub SHA256 和附件集合后公开。Release channel comes from the reviewed manifest: v0.3.10 is stable (`prerelease=false`), while historical prerelease behavior is preserved. Published assets and release channels cannot be repurposed.
 
-发布回执只写入忽略的 `dist/releases/v0.3.8/publish-receipt.json`。后续更新同步文档、说明、检查、提交和推送；使用新版本发布，不重写已发布附件。Program release readiness does not assert phone/trained-model/endurance acceptance. The DISO component's noncommercial license remains explicit in the README, source and APK.
+发布回执只写入忽略的 `dist/releases/v0.3.10/publish-receipt.json`。后续更新同步文档、说明、检查、提交和推送；使用新版本发布，不重写已发布附件。Program release readiness does not assert phone/trained-model/endurance acceptance. The DISO component's noncommercial license remains explicit in the README, source and APK.
 
 推荐元数据维护：`python tools/recommendations.py` 检查包身份、组件 HTTPS 来源、任务和完整下载量。Preserve the original text prefix and require explicit transfers. Optional real-phone evidence is version-bound and does not reinstate trained-model acceptance.
+
+故障专项：[中文](TASK_FAILURES.md) / [English](TASK_FAILURES.en.md)。公开故障 JSON 仅允许白名单字段，原任务 / 模型设置 / 用户素材不进入公开附件。保留 [验证偏差](../verification/releases/v0.3.10/validation-deviation.json)；程序门禁的零完整模型字段仅描述门禁记录，不隐瞒误选的旧主机检查。
 
 ## 历史流程 / Historical guidance
 

@@ -1,5 +1,7 @@
 # Wan 本地视频
 
+**v0.3.10:** [真机 Vulkan 诊断与显式 CPU 导入 / Physical Vulkan diagnosis and explicit CPU import](TASK_FAILURES.md). GPU preflight rejects unsupported drivers before enqueue; the optional CPU JSON is metadata only and is never installed automatically. Historical trained-model results below retain their original identity.
+
 dev.40 新增按模型解码控制：128–1024像素空间分块与实验性时间分段；既有模型和旧任务兼容，默认128 / 时间分段关。五组完整几何实验与原版 CPU VAE 对照仍复现末帧伪影，不能作为质量通过。[完整设置、资源和画质诊断](WAN_DECODER.md)。
 
 [English](WAN_VIDEO.en.md) · [中文首页](../README.md) · [完整同版范围](MULTIMODAL_RELEASE_PLAN.md)

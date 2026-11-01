@@ -11,7 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def main():
-    inputs = fingerprint("app/src/main/java/com/lma/app/core", "app/src/main/java/com/lma/app/SdEngine.java", "app/src/main/java/com/lma/app/LocalEngine.java", "app/src/main/java/com/lma/app/NativeWorker.java", "native/sd_policy.hpp", "native/sd_worker.cpp", "native/lcm_condition.hpp", "tests/sd-host", "tests/native/sd_policy_test.cpp", "tests/tts-host/com/lma/app/LmaApp.java", "tests/host/android/util/AtomicFile.java", "app/src/main/assets/recipe-templates.json", "tools/test_diffusion.py")
+    inputs = fingerprint("app/src/main/java/com/lma/app/core", "app/src/main/java/com/lma/app/SdEngine.java", "app/src/main/java/com/lma/app/LocalEngine.java", "app/src/main/java/com/lma/app/NativeWorker.java", "native/sd_policy.hpp", "native/sd_worker.cpp", "native/lcm_condition.hpp", "tests/sd-host", "tests/native/sd_policy_test.cpp", "tests/tts-host/com/lma/app/LmaApp.java", "tests/host/android/util/AtomicFile.java", "app/src/main/assets/recipe-templates.json", "tools/test_diffusion.py", "docs/examples/wan21_13b_q4_cpu_phone.json", "app/src/main/assets/model-bundles.json")
     out = ROOT / "build/diffusion-tests"; out.mkdir(parents=True, exist_ok=True)
     (out / "results.json").unlink(missing_ok=True)
     run = out / "run"
@@ -27,7 +27,7 @@ def main():
     sources += [ROOT / "tests/tts-host/com/lma/app/LmaApp.java", ROOT / "tests/host/android/util/AtomicFile.java"]
     rsp = out / "sources.rsp"; rsp.write_text("\n".join('"' + p.as_posix() + '"' for p in sources), encoding="utf-8")
     subprocess.run([shutil.which("javac"), "-J-Duser.language=en", "-encoding", "UTF-8", "-Xlint:-options", "--release", "8", "-cp", str(dep), "-d", str(classes), "@" + str(rsp)], cwd=ROOT, check=True)
-    result = subprocess.run([shutil.which("java"), "-Dfile.encoding=UTF-8", "-Dstdout.encoding=UTF-8", "-Dstderr.encoding=UTF-8", "-cp", str(classes) + os.pathsep + str(dep), "com.lma.app.SdTest", str(run), str(ROOT / "app/src/main/assets/recipe-templates.json")], cwd=ROOT, capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=90)
+    result = subprocess.run([shutil.which("java"), "-Dfile.encoding=UTF-8", "-Dstdout.encoding=UTF-8", "-Dstderr.encoding=UTF-8", "-cp", str(classes) + os.pathsep + str(dep), "com.lma.app.SdTest", str(run), str(ROOT / "app/src/main/assets/recipe-templates.json"), str(ROOT / "docs/examples/wan21_13b_q4_cpu_phone.json")], cwd=ROOT, capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=90)
     (out / "java-output.txt").write_text(result.stdout + result.stderr, encoding="utf-8")
     if result.returncode: raise RuntimeError(result.stdout + result.stderr)
     java = json.loads(result.stdout.strip().splitlines()[-1])

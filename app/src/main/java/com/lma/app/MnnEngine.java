@@ -45,7 +45,8 @@ public final class MnnEngine implements LocalEngine {
         JSONObject parameters = DataFiles.copy(plan.getJSONObject("parameters"));
         if (parameters.getLong("seed") == -1) parameters.put("seed", new java.security.SecureRandom().nextInt(Integer.MAX_VALUE));
         JSONObject metadata = MnnSpec.metadata(lease.file("llm_config"), lease.file("llm_data").length());
-        context.execution(new JSONObject().put("effectiveParameters", parameters).put("pipeline", lease.bundle.pipeline).put("samplingProfile", "sana_edit_mnn").put("samplingAdjustments", plan.getJSONArray("adjustments")));
+        JSONObject execution = new JSONObject().put("effectiveParameters", parameters).put("pipeline", lease.bundle.pipeline).put("samplingProfile", "sana_edit_mnn").put("samplingAdjustments", plan.getJSONArray("adjustments"));
+        context.execution(DataFiles.copy(execution));
         EngineWorkspace workspace = new EngineWorkspace(new File(app.getFilesDir(), "engine-work"), context::check); final Process[] child = {null};
         try {
             for (ModelBundle.Component component : lease.bundle.components) if (!component.role.equals("llm_config")) workspace.link(MnnSpec.group(component.role), MnnSpec.filename(component.role), lease.file(component.role));
@@ -54,7 +55,7 @@ public final class MnnEngine implements LocalEngine {
             if (!image.isFile() || image.length() < 8 || image.length() > 16L * 1024 * 1024) throw new IOException("请选择已验证且不超过 16 MiB 的本地 PNG / JPEG");
             File output = context.output("png"); JSONObject command = new JSONObject().put("schema", "lma.engine-request/1").put("type", "image.generate").put("pipeline", lease.bundle.pipeline)
                 .put("input", new JSONObject().put("prompt", MnnSpec.EDIT_PROMPT).put("negativePrompt", "").put("imagePath", image.getCanonicalPath())).put("parameters", parameters).put("workspace", workspace.directory().getPath()).put("output", output.getPath());
-            NativeWorker.run(app, binary, context, command, output, Collections.emptyMap(), builder -> { Process process = launcher.start(builder); child[0] = process; return process; });
+            NativeWorker.run(app, binary, context, command, output, Collections.emptyMap(), execution, builder -> { Process process = launcher.start(builder); child[0] = process; return process; });
             return output;
         } finally { workspace.closeAfter(child[0]); }
     }
@@ -66,7 +67,8 @@ public final class MnnEngine implements LocalEngine {
         SanaSprintSpec.metadata(lease.file("encoder_config"));
         JSONObject parameters = DataFiles.copy(plan.getJSONObject("parameters"));
         if (parameters.getInt("seed") == -1) parameters.put("seed", new java.security.SecureRandom().nextInt(Integer.MAX_VALUE));
-        context.execution(new JSONObject().put("effectiveParameters", parameters).put("pipeline", lease.bundle.pipeline).put("samplingProfile", SanaSprintSpec.PROFILE).put("samplingAdjustments", plan.getJSONArray("adjustments")));
+        JSONObject execution = new JSONObject().put("effectiveParameters", parameters).put("pipeline", lease.bundle.pipeline).put("samplingProfile", SanaSprintSpec.PROFILE).put("samplingAdjustments", plan.getJSONArray("adjustments"));
+        context.execution(DataFiles.copy(execution));
         EngineWorkspace workspace = new EngineWorkspace(new File(app.getFilesDir(), "engine-work"), context::check); final Process[] child = {null};
         try {
             for (ModelBundle.Component component : lease.bundle.components) workspace.link("sprint", SanaSprintSpec.filename(component.role), lease.file(component.role));
@@ -75,7 +77,7 @@ public final class MnnEngine implements LocalEngine {
             File output = context.output("png"); JSONObject command = new JSONObject().put("schema", "lma.engine-request/1").put("type", "image.generate").put("pipeline", SanaSprintSpec.PIPELINE)
                 .put("input", new JSONObject().put("prompt", prompt).put("negativePrompt", "")).put("parameters", parameters)
                 .put("workspace", new File(workspace.directory(), "sprint").getPath()).put("output", output.getPath());
-            NativeWorker.run(app, binary, context, command, output, Collections.emptyMap(), builder -> { Process process = launcher.start(builder); child[0] = process; return process; });
+            NativeWorker.run(app, binary, context, command, output, Collections.emptyMap(), execution, builder -> { Process process = launcher.start(builder); child[0] = process; return process; });
             return output;
         } finally { workspace.closeAfter(child[0]); }
     }

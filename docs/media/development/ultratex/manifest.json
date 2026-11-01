@@ -1,5 +1,5 @@
 {
-  "version": "0.3.9",
+  "version": "0.3.10",
   "kind": "current production UI with an explicit simulated bridge",
   "android_device": false,
   "model_inference": false,
@@ -99,8 +99,8 @@
     },
     {
       "file": "05-ultratex-queue.png",
-      "bytes": 46740,
-      "sha256": "34f5ad3b8963e71d817b18067af05beda9314d5440c78fd2c67839cd12977ec7"
+      "bytes": 46732,
+      "sha256": "ae6f080914740f89dea34c96438aabb40d314a4da8045f601ce0326285d52a9b"
     },
     {
       "file": "06-ultratex-flux2.png",
@@ -114,13 +114,13 @@
     },
     {
       "file": "ultratex-ui.gif",
-      "bytes": 887040,
-      "sha256": "7c90bbcac9aa5de01130f8b14900a9f1cbb1d48e67ba97dbc923b7e7e359f161"
+      "bytes": 643833,
+      "sha256": "9ea23b20d422b2a7ce60ec4a1ebf896d97751a62f23ec9b3a51b076bbdc0e442"
     },
     {
       "file": "ultratex-ui.mp4",
-      "bytes": 369840,
-      "sha256": "3e40b51a9ce595e9ecd3919bce4abfde8112154cf82cd30f28d3251aa36cdadc"
+      "bytes": 300848,
+      "sha256": "8c03dccfb715ee3ac7adcee3b793c049b671ddee012e88a3cc6d131ee32c7594"
     }
   ],
   "input_fingerprint": {

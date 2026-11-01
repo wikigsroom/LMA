@@ -27,7 +27,8 @@ public final class QwenTtsEngine implements LocalEngine {
         JSONObject normalized=QwenTtsSpec.parameters(request.getJSONObject("parameters"));
         if(normalized.getJSONArray("adjustments").length()!=0) throw new IOException("语音参数快照已超出当前基座约束，请明确重试任务");
         JSONObject parameters=normalized.getJSONObject("values"); if(parameters.getLong("seed")==-1) parameters.put("seed",new java.security.SecureRandom().nextInt(Integer.MAX_VALUE));
-        context.execution(new JSONObject().put("effectiveParameters",parameters).put("pipeline",lease.bundle.pipeline).put("backend","cpu"));
+        JSONObject execution = new JSONObject().put("effectiveParameters",parameters).put("pipeline",lease.bundle.pipeline).put("backend","cpu");
+        context.execution(DataFiles.copy(execution));
         EngineWorkspace workspace=new EngineWorkspace(new File(app.getFilesDir(),"engine-work"),context::check); final Process[] child={null};
         try {
             workspace.link("models","qwen-talker-0.6b-base.gguf",lease.file("talker")); workspace.link("models","qwen-tokenizer-12hz.gguf",lease.file("audio_codec"));
@@ -36,7 +37,7 @@ public final class QwenTtsEngine implements LocalEngine {
                 if(!refs.getJSONObject(i).getString("role").equals("reference_audio") || command.has("referenceAudio")) throw new IOException("只接受一个明确选择的参考 WAV");
                 File reference=context.input("reference_audio"); QwenTtsSpec.reference(reference); command.put("referenceAudio",workspace.link("inputs","reference.wav",reference).getPath());
             }
-            NativeWorker.run(app,binary,context,command,output,Collections.emptyMap(),builder->{Process process=launcher.start(builder);child[0]=process;return process;});
+            NativeWorker.run(app,binary,context,command,output,Collections.emptyMap(),execution,builder->{Process process=launcher.start(builder);child[0]=process;return process;});
             JSONObject audio=WaveFile.inspect(output); if(audio.getInt("sampleRate")!=24000 || audio.getInt("channels")!=1 || audio.getInt("bitsPerSample")!=16) throw new IOException("Qwen 引擎未产生有效的 24 kHz 单声道音频");
             return output;
         } finally { workspace.closeAfter(child[0]); }

@@ -1,5 +1,5 @@
 {
-  "version": "0.3.9",
+  "version": "0.3.10",
   "kind": "current production UI with an explicit simulated bridge",
   "android_device": false,
   "model_inference": false,
@@ -65,8 +65,8 @@
     },
     {
       "file": "04-shape-queue.png",
-      "bytes": 47807,
-      "sha256": "53d7f5f254584e816fd156be2dd8c4f9940a07bd08689ebde4f2ef1cd0f0867c"
+      "bytes": 47718,
+      "sha256": "9434ec84aa48afdeea06628826188e63aaa37db7c6059b97865e16304da3c972"
     },
     {
       "file": "05-triposg-form.png",
@@ -75,13 +75,13 @@
     },
     {
       "file": "shape-ui.gif",
-      "bytes": 605883,
-      "sha256": "b0787eea5eced675264e66c8e462345702aa74a63de71bca2bb7caaf51920e43"
+      "bytes": 471644,
+      "sha256": "d02d0093acec4815e4d8ad7e61d0eab6389a7ee9d548ed76570d2bf3b5261a8f"
     },
     {
       "file": "shape-ui.mp4",
-      "bytes": 211428,
-      "sha256": "0be95f2e916d302d999f197950d7f1d7b0af9ddd7f72777384f7005cd63ba6c6"
+      "bytes": 191292,
+      "sha256": "b46f08fc2aafc142c439c2bca8ecb2696d75a8355bdc203db9d0a5e737075527"
     }
   ],
   "input_fingerprint": {

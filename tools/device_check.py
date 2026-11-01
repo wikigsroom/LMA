@@ -26,12 +26,14 @@ def main():
     parser.add_argument("--run", action="store_true", help="Install acceptance APK and exercise Android UI/SQLite/service")
     parser.add_argument("--install", action="store_true", help="Install/upgrade the main APK, retaining application data")
     parser.add_argument("--model", choices=["m01", "m08", "m06"], help="Actually download, hash, load and infer with this model")
+    parser.add_argument("--existing-models", action="store_true", help="Preserve installed model assets while running management/API checks; no inference")
     parser.add_argument("--program-api", action="store_true", help="Test zero-model API auth and short screen-off service survival; no inference")
     parser.add_argument("--capture-media", action="store_true", help="Capture actual Android pages and a bounded screen recording")
     parser.add_argument("--minutes", type=int, default=15, help="Screen-off endurance after instrumentation exits; 0 skips")
     args = parser.parse_args()
     if args.program_api and (not args.run or args.model): parser.error("--program-api requires --run and excludes --model")
     if args.capture_media and not args.run: parser.error("--capture-media requires --run")
+    if args.existing_models and not args.program_api: parser.error("--existing-models requires --program-api")
     if args.model and not args.run: parser.error("--model requires --run")
     if not 0 <= args.minutes <= 1440: parser.error("--minutes must be 0..1440")
     sdk = Path(os.environ.get("ANDROID_SDK_ROOT", str(Path(os.environ["LOCALAPPDATA"]) / "Android/Sdk")))
@@ -116,12 +118,14 @@ def main():
             external.append("Bearer key and browser-origin rejection on real phone")
             models_before = program_request("/v1/models")["data"]
             if not isinstance(models_before, list) or any(not isinstance(row.get("installed"), bool) for row in models_before): raise RuntimeError("Invalid local model installation flags")
-            if any(row["installed"] for row in models_before): raise RuntimeError("Zero-model acceptance requires no installed models; existing assets are preserved")
+            if not args.existing_models and any(row["installed"] for row in models_before): raise RuntimeError("Zero-model acceptance requires no installed models; existing assets are preserved")
             # The API also lists user-owned partial/prepared entries. They are not installed weights.
-            report["uninstalled_local_model_records"] = len(models_before)
+            report["uninstalled_local_model_records"] = sum(not row["installed"] for row in models_before)
+            report["installed_models_preserved"] = sum(row["installed"] for row in models_before)
+            report["existing_model_management_only"] = args.existing_models
             engines = program_request("/v1/engines")["data"]
             if len(engines) < 18: raise RuntimeError("Extension engine registry incomplete")
-            external.append("Zero installed models and complete extension engine registry")
+            external.append("Existing installed models and complete extension engine registry preserved" if args.existing_models else "Zero installed models and complete extension engine registry")
             for path in ("/v1/jobs", "/v1/artifacts", "/v1/drafts", "/v1/uploads"):
                 if not isinstance(program_request(path)["data"], list): raise RuntimeError("Invalid data list: " + path)
             external.append("Jobs, artifacts, drafts and upload read APIs")
