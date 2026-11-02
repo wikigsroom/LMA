@@ -1,5 +1,11 @@
 # Changelog / 更新记录
 
+## 2026-11-02 · Slogan 04 与 README 横幅 / Bilingual brand banner
+
+- 用户选定第二组 04 号标语：「把无审查 AI，装进口袋。」 / “Uncensored AI, right in your pocket.”；与已定稿的 21 号钴蓝软胶 Logo 配套使用，记录到 AGENTS.md 与品牌说明。
+- 新增 1600×720 双语横幅，突出本地 AI、Android 与自主选模；复用原定稿图，通过本地排版生成，保留原图字节和配色。
+- 更新中英文 README 顶部横幅、可复制／朗读的双语标语、文档目录及维护记录；原有全部用例和测试说明保留。Canonical banner, copy and provenance are recorded with a local renderer; app/APK and published release assets are unchanged.
+
 ## 2026-11-02 · Logo 21 定稿 / Cobalt Vinyl finalized
 
 - 用户明确选定 21 号「钴蓝软胶」作为最终 Logo，记录到 AGENTS.md、[品牌说明](docs/BRANDING.md)及第三批清单；17 号保留为结构蓝本。

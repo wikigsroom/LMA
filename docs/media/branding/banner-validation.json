@@ -1,0 +1,41 @@
+{
+  "schema": "lma.brand-banner-validation/1",
+  "date": "2026-11-02",
+  "passed": true,
+  "checksPassed": 18,
+  "checks": [
+    "Exact user-selected bilingual slogan 04",
+    "Final logo 21 retained",
+    "Native selected artwork identity preserved",
+    "Canonical square logo preserved",
+    "Banner hash matches provenance",
+    "Banner format and dimensions",
+    "Banner byte size recorded",
+    "Shared banner in README.md",
+    "Both exact slogans remain accessible as text in README.md",
+    "Original detailed body preserved in README.md",
+    "Shared banner in README.en.md",
+    "Both exact slogans remain accessible as text in README.en.md",
+    "Original detailed body preserved in README.en.md",
+    "Slogan persisted in repository instructions",
+    "Brand guide records the final slogan",
+    "Composition provenance records existing artwork",
+    "App and released evidence unchanged",
+    "No APK or release change implied"
+  ],
+  "logoId": "21",
+  "sloganId": "04",
+  "bannerSha256": "e32595a9119c1e674cd917a8924bfef3aff821c9a2cacb17d4391098ee8bb764",
+  "rendererSha256": "b6ff9c6a794191ee6f740a700633803b076593133296a061ae07db2609f7ed75",
+  "visualReview": {
+    "native1600x720": true,
+    "static390pxWidePreview": true,
+    "textAndCharacterInspected": true,
+    "browserOrPhoneAcceptance": false
+  },
+  "scope": "Existing-artwork composition, exact selected text, file identity, README preservation and local resource checks.",
+  "newAiGeneration": false,
+  "modelOrDeviceExecution": false,
+  "browserOrVirtualizationUsed": false,
+  "publishedApkChanged": false
+}

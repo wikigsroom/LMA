@@ -1,6 +1,12 @@
 # LMA · Android 本地模型工作台
 
-<p><img src="docs/media/branding/lma-logo.png" alt="LMA 定稿 Logo：21 号钴蓝软胶" width="192" height="192"></p>
+![LMA · 把无审查 AI，装进口袋。 / Uncensored AI, right in your pocket.](docs/media/branding/lma-banner.png)
+
+**把无审查 AI，装进口袋。**
+
+*Uncensored AI, right in your pocket.*
+
+Android 本地 AI 工作台，模型由你选择，无审查模型独立标记。[品牌定稿：Logo 21 ＋ Slogan 04](docs/BRANDING.md)。
 
 **Logo 已定稿：21 号「钴蓝软胶」。** 采用鲸鱼套装小安卓结构，钴蓝鲸鱼服、青柠脸部与双天线、奶油色帽沿和腹部；17 号是结构蓝本。后续品牌形象使用该稿。[定稿记录与素材说明](docs/BRANDING.md) · [原始 PNG](output/imagegen/lma-logo-selection-20261102-batch3-whale17/21-cobalt-vinyl.png)。以下三批记录保留为选型历史。
 

@@ -1,0 +1,44 @@
+{
+  "schema": "lma.brand-banner/1",
+  "decisionDate": "2026-11-02",
+  "logo": {
+    "selectedId": "21",
+    "title": "Cobalt Vinyl / 钴蓝软胶",
+    "source": "output/imagegen/lma-logo-selection-20261102-batch3-whale17/21-cobalt-vinyl.png",
+    "sha256": "f224b6e0fb1030fa894557bf6961d5d3e5d3b00430c5a0077bf9b85f3831282f",
+    "nativeArtworkPreserved": true
+  },
+  "slogan": {
+    "selectedId": "04",
+    "selectedBy": "user",
+    "zh": "把无审查 AI，装进口袋。",
+    "en": "Uncensored AI, right in your pocket.",
+    "collection": "Local AI and uncensored models"
+  },
+  "banner": {
+    "file": "lma-banner.png",
+    "dimensions": [
+      1600,
+      720
+    ],
+    "sha256": "e32595a9119c1e674cd917a8924bfef3aff821c9a2cacb17d4391098ee8bb764",
+    "bytes": 353897,
+    "palette": {
+      "navy": "#0E1726",
+      "cream": "#F3F3E6",
+      "cobalt": "#327AF4",
+      "lime": "#A8E83B",
+      "muted": "#B2BFD0",
+      "line": "#26456F"
+    },
+    "displayFont": "bahnschrift.ttf",
+    "chineseFont": "msyhbd.ttc"
+  },
+  "composition": {
+    "method": "Existing approved artwork and local typography, composed with Pillow",
+    "derivedAlphaForBannerOnly": true,
+    "newAiImageGeneration": false,
+    "productionTransparentLogoMaster": false
+  },
+  "appOrPublishedReleaseChanged": false
+}

@@ -1,6 +1,12 @@
 # LMA · Android local-model workbench
 
-<p><img src="docs/media/branding/lma-logo.png" alt="LMA final logo: option 21, Cobalt Vinyl" width="192" height="192"></p>
+![LMA · Uncensored AI, right in your pocket. / 把无审查 AI，装进口袋。](docs/media/branding/lma-banner.png)
+
+**Uncensored AI, right in your pocket.**
+
+*把无审查 AI，装进口袋。*
+
+Local AI for Android. Choose your models, with uncensored variants clearly tagged. [Final branding: logo 21 + slogan 04](docs/BRANDING.md).
 
 **Final logo: option 21, Cobalt Vinyl.** The whale-costume Android uses a cobalt-blue suit, lime face and antennae, and cream hood rim and belly. Option 17 is its structural blueprint; subsequent LMA branding follows 21. [Decision and asset details](docs/BRANDING.md) · [Native PNG](output/imagegen/lma-logo-selection-20261102-batch3-whale17/21-cobalt-vinyl.png). The three batches below are retained as design-selection history.
 
