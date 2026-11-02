@@ -1,5 +1,12 @@
 # Changelog / 更新记录
 
+## 2026-11-03 · 十套首页 UI 风格 / Ten homepage visual directions
+
+- 检查 v0.4.0 模型库首页，保留暗色、Logo 21／Slogan 04、推荐前缀与功能入口；通过用户指定的 sub2-image-gen／gpt-image-2.5 路线，参考现有品牌与历史首页，独立生成 01–10 十套首页设计概念稿。
+- 新增原图、提示词与来源、预览／总览、离线多选对比和两组原图包；中英设计说明、README 阅读入口和维护说明同步。文档与选型材料更新，不修改已发布 APK 或把概念稿当作实机／性能结果。
+- Ten independently generated dark directions cover Material, Neo Flat, Neumorphism, Frosted/Liquid Glass, Neo Brutalism, Clay, industrial skeuomorphism, minimal typography and Fluent-inspired surfaces. Includes provenance, originals, selection materials and bilingual guidance. User style selection and application-wide implementation remain pending.
+
+
 ## 2026-11-03 · README 阅读顺序 / README reading order
 
 - 中英文 README 的阅读路线提前到验证范围之前；新版功能摘要、旧版更新和 Logo 选型记录统一移至文末。

@@ -1,5 +1,7 @@
 # LMA 文档 / Documentation
 
+**20261103 首页 UI 选型 / Home UI selection:** [十套设计稿与说明](UI_HOME_SELECTION_20261103.md) / [English](UI_HOME_SELECTION_20261103.en.md) · [离线选型与对比](../output/imagegen/lma-home-ui-selection-20261103/index.html) · [总览](../output/imagegen/lma-home-ui-selection-20261103/overview.jpg)。Material、新扁平、新拟物、毛玻璃、液态玻璃、新粗野、软胶、工业拟物、极简与 Fluent 分区；均为 AI 生成概念稿，待用户选择后实施，不替代程序／手机验收。
+
 **v0.4.0 / code64 · 当前 / Current:** [统一对话、本地创作、模板与 API](CONVERSATION_V040.md) / [English](CONVERSATION_V040.en.md) · [正式版说明](releases/v0.4.0.md) · [逐项实施](../catalogue/conversation-20261102-implementation.json)。Logo 21 已接入软件；默认暗色，程序验证与真机结果分开。
 
 **品牌定稿 / Final branding：** [Logo 21 ＋ Slogan 04](BRANDING.md) · [双语横幅 / Bilingual banner](media/branding/lma-banner.png)。把无审查 AI，装进口袋。 / Uncensored AI, right in your pocket. 用户已确认，原图及选型历史保留。

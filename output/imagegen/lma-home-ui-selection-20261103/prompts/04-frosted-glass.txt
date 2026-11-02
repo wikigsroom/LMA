@@ -1,0 +1,21 @@
+Create ONE finished, high-fidelity portrait mobile-app home screen design, 1024x1536 pixels. This is an Android local AI model workbench called LMA. Use the FIRST supplied image as the exact approved logo identity (cobalt-blue whale-costume Android, lime face and twin antennae, cream rim/belly). Keep that mascot as a small header logo only, preserve its identity and palette. The SECOND supplied image is an older real home-screen content reference, NOT a style target. Redesign its visual hierarchy and density using the style direction below. The current product remains a local model library; do not turn it into a dashboard, chat screen, landing page or image gallery.
+
+COMPOSITION: straight-on full-bleed app UI artboard filling the entire image, no phone hardware, perspective, hands, surrounding room, separate palette board, style title, watermarks or marketing poster. Dark mode. A tidy narrow Android status bar with 9:41 at the top, compact brand/header, compact runtime strip, compact title and three resource readouts, search, two filter rows, recommended model list, and the existing five-item bottom navigation fully visible. Efficient vertical spacing: show at least TWO complete model cards and a THIRD visible card/row. Do not repeat the original screenshot's oversized empty vertical gaps. Body typography must look touch-friendly and readable. Strong contrast, coherent alignment, considered iconography, production-quality spacing.
+
+CONTENT AND INTERACTION HIERARCHY, identical across all ten directions:
+Header: small approved mascot + 'LMA', Chinese slogan exactly '把无审查 AI，装进口袋。' and English slogan exactly 'Uncensored AI, right in your pocket.' set smaller. Do not invent a different slogan.
+Runtime strip: small neutral status dot, '尚未加载模型', and right-side '管理'. It is an idle screen, not an active inference benchmark.
+Main title exactly '选择你的本地模型', a compact '+' action for adding a model. One very short secondary line '从推荐开始，探索 Hugging Face'.
+Three compact resource values are illustrative UI data, not benchmark results: '设备内存' '8 GB'; '可用存储' '64 GB'; '已下载模型' '0'.
+Search input with magnifying glass and placeholder '搜索 HF 模型'.
+First segmented row, in this order: '推荐' selected, '本地', '轻量', '进阶', '全部'.
+Second row: '所有功能' selected, '生文', '生图', '生视频', '生音频', '生 3D'. All must remain represented; no remote provider selector.
+List header '推荐模型', compact trailing '14 个'.
+Preserve the recommendation order exactly. First model 'Qwen 3 · 1.7B Abliterated', metadata 'Q4_K_M · 1.11 GB', separate small tags '生文' and '无审查', plus a clear '下载' action. Second 'LFM 2.5 · 1.2B Uncensored', metadata 'Q4_K_M · 731 MB', same separate tags and '下载'. Third 'Dolphin 3 · Qwen 0.5B', metadata 'Q4_K_M · 398 MB', same tags and action when space allows. Do not replace these with fictional image/video models. No claims of running, loaded, tok/s, NSFW output imagery or generated artwork thumbnails.
+Bottom navigation in exact order: '模型库' active, '对话', '任务', '服务', '设置', each paired with a clear compact line icon. Make the current tab unmistakable.
+
+All Chinese copy should be correctly typeset Simplified Chinese, not garbled glyphs. English model names and short numbers stay crisp. This is a visual direction proposal, not an implementation screenshot. Use all the available pixel resolution for the actual interface. The style's material treatment, geometry and typography must be immediately distinguishable from other directions, not merely a hue swap.
+
+STYLE DIRECTION: Glassmorphism / 毛玻璃 / Frosted Glass.
+Elegant frosted-glass mobile UI over a restrained deep-blue atmospheric gradient. Thick smoke-blue translucent frosted panels with strong diffusion, delicate white hairline borders and matte blurred silhouettes behind them. Quiet cyan and lavender accents, legible white text. Signature: one broad frosted resource/status plate, smaller glass model cards. Frosted matte diffusion is essential. No transparent liquid lenses, no rainbow iridescence, no chrome.
+Palette: #0B1424, #1B3550, #79D8EE, #AAA1FF, #EDF7FF.

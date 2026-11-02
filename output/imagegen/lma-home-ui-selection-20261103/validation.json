@@ -1,0 +1,64 @@
+{
+  "schema": "lma.home-ui-artifact-check/1",
+  "date": "2026-11-03",
+  "originalImages": 10,
+  "uniqueOriginalHashes": 10,
+  "dimensions": [
+    1024,
+    1536
+  ],
+  "previewImages": 10,
+  "comparisonBoards": 3,
+  "archives": [
+    {
+      "file": "LMA-home-ui-01-05.zip",
+      "bytes": 7178111,
+      "sha256": "6004af9ab2927dac113f1dd6f4247a2a94b843e81a8477bd64585550e143f7e5"
+    },
+    {
+      "file": "LMA-home-ui-06-10.zip",
+      "bytes": 7933206,
+      "sha256": "565e98ca363edc7533acd59fd09f67fa4086330149e94e5eb8e61779c2334075"
+    }
+  ],
+  "checkScope": "Image decoding, uniqueness, dimensions and package identity only; selection JS syntax checked separately. No browser, Android, inference, usability or performance acceptance.",
+  "imageReview": "Inspect each raw image separately before publication; AI text/material fidelity is a visual-review concern.",
+  "browserUsed": false,
+  "virtualizationUsed": false,
+  "appChanged": false,
+  "existingReleaseChanged": false,
+  "visualReview": {
+    "reviewedIds": [
+      "01",
+      "02",
+      "03",
+      "04",
+      "05",
+      "06",
+      "07",
+      "08",
+      "09",
+      "10"
+    ],
+    "method": "Assistant visual inspection of every original image",
+    "scope": "Distinct visual direction, visible main controls, dark theme, brand-reference resemblance and readable model rows",
+    "limitations": "AI rendering is not a pixel-accurate interface; production typography, asset reuse and narrow-screen layout remain pending."
+  },
+  "offlineHtml": {
+    "cards": 10,
+    "localReferencesChecked": 30,
+    "allExist": true,
+    "externalResources": 0,
+    "browserRuntimeChecked": false
+  },
+  "scriptSyntax": {
+    "runtime": "native Node.js",
+    "files": [
+      "selection.js",
+      "directions.js"
+    ],
+    "passed": true
+  },
+  "originalHashesAndArchiveBytesMatch": true,
+  "inspectedAppSourceHashesUnchanged": true
+}
