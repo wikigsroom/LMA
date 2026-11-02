@@ -1,5 +1,11 @@
 # Changelog / 更新记录
 
+## 2026-11-02 · Logo 21 定稿 / Cobalt Vinyl finalized
+
+- 用户明确选定 21 号「钴蓝软胶」作为最终 Logo，记录到 AGENTS.md、[品牌说明](docs/BRANDING.md)及第三批清单；17 号保留为结构蓝本。
+- 中英文 README 展示统一的 512px 定稿素材，保留原始 1254px PNG、全部选型历史与详细用例；同步文档目录、选型页和维护说明。
+- Finalized design and documentation only: the Android launcher/adaptive icon is a pending integration task; app version, original signing identity and published Release assets are preserved.
+
 ## 2026-11-02 · 17 号结构变体 / Whale Hood styles and palettes
 
 - 按用户选定的 17 号鲸帽小安卓结构重新生成 21–30：钴蓝软胶、薄荷扁平、杏桃软陶、曜石鎏金、冰晶琉璃、薰衣草毛绒、樱粉水彩、霓虹像素、森绿剪纸及珊瑚珐琅。

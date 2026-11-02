@@ -1,5 +1,7 @@
 # LMA repository instructions / 仓库工作约定
 
+- **2026-11-02 confirmed logo: the user finalized option 21, Cobalt Vinyl / 钴蓝软胶.** Use its existing whale-costume Android shape and cobalt-blue / lime / cream palette for subsequent LMA branding. Option 17 is the structural blueprint; other logo directions are archived. Canonical README image: `docs/media/branding/lma-logo.png`; original artwork and exact SHA256 are recorded in [branding](docs/BRANDING.md) and the batch-3 manifest. The finalized design is selected; Android launcher/adaptive-icon integration remains a separate implementation task. 用户已明确 21 号定稿，后续品牌素材沿用该稿。
+
 - 2026-11-02 current port update: v0.3.13/code63 uses public API default 52187. Migrate former default 8080 once, preserve valid custom ports and all user assets/settings/credentials. Validate exact signed upgrade and direct physical LAN HTTP; retain v0.3.12 video/3D evidence under its original APK identity. Publish a new stable Release without changing older tags/assets.
 
 - 2026-11-02 latest user requirement: physical generated videos must exceed 5 seconds; disable model-generation wall-clock limits, preserve explicit cancellation and real resource/error handling. HTTP response/connection limits must not terminate an admitted async generation job. Diagnose and repair observed failures without fabricated success.

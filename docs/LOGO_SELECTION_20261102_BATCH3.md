@@ -1,5 +1,7 @@
 # LMA · 17 号结构蓝本：十套新风格 / Whale Hood: ten style variations
 
+**定稿更新 / Final decision · 2026-11-02：用户已确定使用 21 号「钴蓝软胶 / Cobalt Vinyl」。** [品牌与素材记录 / Branding record](BRANDING.md)。17 号是结构蓝本，其余方案归档保留；下方保留生成过程。
+
 2026-11-02 · [离线选型页 / Offline selector](../output/imagegen/lma-logo-selection-20261102-batch3-whale17/index.html) · [总览 / Overview](../output/imagegen/lma-logo-selection-20261102-batch3-whale17/overview.jpg) · [小尺寸 / Small sizes](../output/imagegen/lma-logo-selection-20261102-batch3-whale17/small-size-review.jpg) · [上一批 / Previous batch](LOGO_SELECTION_20261102_BATCH2.md)
 
 用户已指定 **17 号“鲸帽小安卓”作为结构性蓝本**。本轮重新生成 **21–30** 共十套，统一大鲸鱼帽、帽内安卓脸、双天线、短鳍手臂、短脚、腹部与右侧翘尾，主要改变风格、表面材质及套装／脸部／腹部色调。
@@ -35,7 +37,7 @@ The original was visually inspected and transcribed into shared structural text 
 
 - 保留每套原图的实际尺寸、字节与 SHA256；另存六种尺寸预览，共 60 份。Native bytes, dimensions and hashes are retained; six derived sizes per direction provide 60 previews.
 - `reference/` 原样保留 17 号图像，来源与哈希见[清单](../output/imagegen/lma-logo-selection-20261102-batch3-whale17/manifest.json)。The manifest records the preserved blueprint and generation provenance.
-- 总览、小尺寸板只做排版与缩放。候选为深色底 PNG，正式透明／单色／矢量／Android adaptive 图标仍需选型后制作。Boards arrange/rescale artwork; these opaque raster candidates still need production adaptation.
+- 总览、小尺寸板只做排版与缩放。候选为深色底 PNG，正式透明／单色／矢量／Android adaptive 图标按 21 号定稿实施。Boards arrange/rescale artwork; these opaque raster candidates still need production adaptation.
 - [素材检查](../output/imagegen/lma-logo-selection-20261102-batch3-whale17/validation.json) 覆盖原图／预览、参考图身份、离线资源、脚本语法和归档；不计作手机、完整模型或浏览器验收。Checks cover image integrity, reference identity, local resources, JavaScript syntax and archive contents, without claiming phone/model/browser acceptance.
 - 公开文件不含网关配置、密钥或请求头；没有调用浏览器、Docker、WSL 或模拟器。Public artifacts exclude gateway configuration and credentials; no browser or virtualization was launched.
 
@@ -44,10 +46,10 @@ The original was visually inspected and transcribed into shared structural text 
 | C01 | 21–30 十套实际生成 / Ten new directions | Same structural brief, distinct style/palette treatments |
 | C02 | 总览、60 预览、小尺寸与离线页 / Selection materials | Includes the preserved 17 blueprint |
 | C03 | 提示词、清单、双语文档和维护说明 / Documentation | Earlier batches and detailed use cases retained |
+| C04 | 用户确定 21 号定稿 / User finalized 21 | Canonical image is displayed in both READMEs |
 
 | 编号 / ID | 待处理 / Pending | 说明 / Scope |
 | --- | --- | --- |
-| P01 | 新稿选型与细节精修 / Select and refine | Choose preferred IDs, material and palette |
 | P02 | 生产图标与配套形象接入 / Production adaptation | Transparent/monochrome/vector/adaptive assets and app integration |
 | P03 | D01–D12 及原冻结模型范围 / Functional plan | Remains pending; artwork does not implement the plan |
 

@@ -8,7 +8,7 @@
   "containsGatewayConfiguration": false,
   "containsApiKeys": false,
   "rasterOutputs": true,
-  "productionIconSelected": false,
+  "productionIconSelected": true,
   "appVersionUnchanged": true,
   "structuralReference": {
     "sourceId": "17",
@@ -70,7 +70,8 @@
         "96": "previews/21-96.png",
         "48": "previews/21-48.png",
         "32": "previews/21-32.png"
-      }
+      },
+      "selectionStatus": "final"
     },
     {
       "id": "22",
@@ -110,7 +111,8 @@
         "96": "previews/22-96.png",
         "48": "previews/22-48.png",
         "32": "previews/22-32.png"
-      }
+      },
+      "selectionStatus": "archived_candidate"
     },
     {
       "id": "23",
@@ -150,7 +152,8 @@
         "96": "previews/23-96.png",
         "48": "previews/23-48.png",
         "32": "previews/23-32.png"
-      }
+      },
+      "selectionStatus": "archived_candidate"
     },
     {
       "id": "24",
@@ -190,7 +193,8 @@
         "96": "previews/24-96.png",
         "48": "previews/24-48.png",
         "32": "previews/24-32.png"
-      }
+      },
+      "selectionStatus": "archived_candidate"
     },
     {
       "id": "25",
@@ -246,7 +250,8 @@
         "96": "previews/25-96.png",
         "48": "previews/25-48.png",
         "32": "previews/25-32.png"
-      }
+      },
+      "selectionStatus": "archived_candidate"
     },
     {
       "id": "26",
@@ -286,7 +291,8 @@
         "96": "previews/26-96.png",
         "48": "previews/26-48.png",
         "32": "previews/26-32.png"
-      }
+      },
+      "selectionStatus": "archived_candidate"
     },
     {
       "id": "27",
@@ -326,7 +332,8 @@
         "96": "previews/27-96.png",
         "48": "previews/27-48.png",
         "32": "previews/27-32.png"
-      }
+      },
+      "selectionStatus": "archived_candidate"
     },
     {
       "id": "28",
@@ -366,7 +373,8 @@
         "96": "previews/28-96.png",
         "48": "previews/28-48.png",
         "32": "previews/28-32.png"
-      }
+      },
+      "selectionStatus": "archived_candidate"
     },
     {
       "id": "29",
@@ -406,7 +414,8 @@
         "96": "previews/29-96.png",
         "48": "previews/29-48.png",
         "32": "previews/29-32.png"
-      }
+      },
+      "selectionStatus": "archived_candidate"
     },
     {
       "id": "30",
@@ -446,7 +455,8 @@
         "96": "previews/30-96.png",
         "48": "previews/30-48.png",
         "32": "previews/30-32.png"
-      }
+      },
+      "selectionStatus": "archived_candidate"
     }
   ],
   "presentation": {
@@ -503,7 +513,27 @@
       "29": "Forest-green layered-paper treatment with an earthy belly.",
       "30": "Coral/turquoise enamel and gold dividers create a distinct warm/cool palette."
     },
-    "productionDirectionSelected": false,
+    "productionDirectionSelected": true,
     "originalBytesModified": false
+  },
+  "selection": {
+    "status": "final",
+    "selectedId": "21",
+    "selectedBy": "user",
+    "selectedOn": "2026-11-02",
+    "title": {
+      "zh": "钴蓝软胶",
+      "en": "Cobalt Vinyl"
+    },
+    "originalSha256": "f224b6e0fb1030fa894557bf6961d5d3e5d3b00430c5a0077bf9b85f3831282f",
+    "canonicalReadmeAsset": {
+      "repoPath": "docs/media/branding/lma-logo.png",
+      "sha256": "3155c4601396c8623c20879b903e317747a94a7b840be307bcc93fde988c8bea",
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    "androidLauncherIconApplied": false
   }
 }

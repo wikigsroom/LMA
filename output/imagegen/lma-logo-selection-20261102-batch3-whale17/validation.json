@@ -3,7 +3,7 @@
   "date": "2026-11-02",
   "batch": 3,
   "passed": true,
-  "checkedAssertions": 277,
+  "checkedAssertions": 296,
   "scope": "Generated-artifact integrity, preview dimensions, local HTML resources, JavaScript syntax and preservation of existing documentation. No browser or Android/model execution.",
   "originals": 10,
   "previews": 60,
@@ -92,7 +92,7 @@
       ]
     }
   ],
-  "archiveContentVerification": "Passed: CRC and every archived entry checked byte-for-byte against the final public files.",
+  "archiveContentVerification": "Passed: CRC and every final archive entry checked byte-for-byte against disk.",
   "browserLaunched": false,
   "virtualizationUsed": false,
   "appSourceChanged": false,
@@ -100,6 +100,35 @@
   "phoneOrModelValidation": false,
   "javascriptSyntax": "passed",
   "existingDetailedReadmesPreserved": true,
-  "visualReview": "All ten native generated images, the overview and small-size board inspected against option 17.",
+  "finalization": {
+    "selectedId": "21",
+    "status": "final",
+    "selectedBy": "user",
+    "canonicalReadmeAsset": "docs/media/branding/lma-logo.png",
+    "checksPassed": 19,
+    "checks": [
+      "Final status recorded",
+      "User-selected ID 21",
+      "Only 21 finalized",
+      "Other candidates archived",
+      "Original generation hashes retained",
+      "Final original identity",
+      "Canonical image matches selected preview bytes",
+      "Canonical image recorded hash",
+      "Canonical PNG dimensions",
+      "Brand image and guide in README.md",
+      "Existing full content preserved in README.md",
+      "Brand image and guide in README.en.md",
+      "Existing full content preserved in README.en.md",
+      "Decision persisted for future work",
+      "Bilingual branding guide",
+      "Latest guide no longer lists logo selection as pending",
+      "Gallery marks 21 as final",
+      "APK integration boundary explicit",
+      "App and release evidence preserved"
+    ],
+    "androidLauncherIconApplied": false
+  },
+  "visualReview": "Previously inspected artwork retained without changing native image bytes; final selected asset identity verified.",
   "archiveEntries": 87
 }

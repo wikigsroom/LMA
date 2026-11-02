@@ -1,5 +1,9 @@
 # LMA · Android 本地模型工作台
 
+<p><img src="docs/media/branding/lma-logo.png" alt="LMA 定稿 Logo：21 号钴蓝软胶" width="192" height="192"></p>
+
+**Logo 已定稿：21 号「钴蓝软胶」。** 采用鲸鱼套装小安卓结构，钴蓝鲸鱼服、青柠脸部与双天线、奶油色帽沿和腹部；17 号是结构蓝本。后续品牌形象使用该稿。[定稿记录与素材说明](docs/BRANDING.md) · [原始 PNG](output/imagegen/lma-logo-selection-20261102-batch3-whale17/21-cobalt-vinyl.png)。以下三批记录保留为选型历史。
+
 **20261102 Logo 第三批：** [以 17 号鲸帽小安卓为结构蓝本的 21–30 十套新风格与配色](docs/LOGO_SELECTION_20261102_BATCH3.md) · [离线选型页](output/imagegen/lma-logo-selection-20261102-batch3-whale17/index.html)。保留鲸鱼帽、安卓双天线、帽内脸与右侧翘尾，提供原图和小尺寸对比。
 
 **20261102 第二批 Logo 选型：** [11–20 安卓＋AI／安卓＋鲸鱼](docs/LOGO_SELECTION_20261102_BATCH2.md) · [离线选型页](output/imagegen/lma-logo-selection-20261102-batch2/index.html)。按新方向独立生成十套，保留第一批归档；含原图、小尺寸和配套形象。

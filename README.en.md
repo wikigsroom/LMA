@@ -1,5 +1,9 @@
 # LMA · Android local-model workbench
 
+<p><img src="docs/media/branding/lma-logo.png" alt="LMA final logo: option 21, Cobalt Vinyl" width="192" height="192"></p>
+
+**Final logo: option 21, Cobalt Vinyl.** The whale-costume Android uses a cobalt-blue suit, lime face and antennae, and cream hood rim and belly. Option 17 is its structural blueprint; subsequent LMA branding follows 21. [Decision and asset details](docs/BRANDING.md) · [Native PNG](output/imagegen/lma-logo-selection-20261102-batch3-whale17/21-cobalt-vinyl.png). The three batches below are retained as design-selection history.
+
 **20261102 logo selection, batch 3:** [21–30: ten styles and palettes based on Whale Hood 17](docs/LOGO_SELECTION_20261102_BATCH3.md) · [Offline selector](output/imagegen/lma-logo-selection-20261102-batch3-whale17/index.html). Preserves the whale hood, twin Android antennae, face opening and raised right-side tail, with native originals and small previews.
 
 **20261102 logo selection, batch 2:** [11–20: Android + AI / Android + whale](docs/LOGO_SELECTION_20261102_BATCH2.md) · [Offline selector](output/imagegen/lma-logo-selection-20261102-batch2/index.html). Ten new generated directions, preserved native images, small previews and companion mascots; batch 1 remains archived.

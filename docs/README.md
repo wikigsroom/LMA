@@ -1,5 +1,7 @@
 # LMA 文档 / Documentation
 
+**Logo 定稿 / Final logo：** [21 号钴蓝软胶 / Cobalt Vinyl](BRANDING.md)。用户已确认；README 使用统一素材，17 号保留为结构蓝本，全部候选归档保留。
+
 **20261102 Logo 第三批 / Batch 3:** [17 号结构蓝本：21–30 十套风格与配色](LOGO_SELECTION_20261102_BATCH3.md) · [Offline selector](../output/imagegen/lma-logo-selection-20261102-batch3-whale17/index.html)。鲸帽安卓结构系列；含参考图、原图与小尺寸对比。
 
 **20261102 第二批 Logo / Batch 2:** [11–20 安卓＋AI／安卓＋鲸鱼](LOGO_SELECTION_20261102_BATCH2.md) · [Offline selector](../output/imagegen/lma-logo-selection-20261102-batch2/index.html)。十套新候选与小尺寸对比；第一批保留。

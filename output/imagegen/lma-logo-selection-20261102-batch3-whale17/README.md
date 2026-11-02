@@ -1,5 +1,7 @@
 # LMA · 17 号结构变体 / Whale Hood style variations
 
+**定稿 / Final decision · 2026-11-02：21 号「钴蓝软胶 / Cobalt Vinyl」。** 用户已选定这一稿；17 号是结构蓝本，其他方向归档保留。[定稿原图 / Selected original](21-cobalt-vinyl.png)。README 已采用统一素材，Android 生产图标接入另行实施。The user finalized 21; remaining directions are retained for design history.
+
 2026-11-02 · [离线选型页 / Offline selector](index.html) · [总览 / Overview](overview.jpg) · [小尺寸 / Small sizes](small-size-review.jpg) · [17 号结构参考 / Blueprint](reference/17-structural-blueprint.png)
 
 按用户选定的 **17 号鲸帽小安卓结构**，独立生成 21–30 共十套风格与色调。保留大鲸鱼帽、帽内安卓脸、双天线、短鳍手臂、短脚、椭圆腹部及右侧翘尾；变化集中在材质、绘制方式与配色。
