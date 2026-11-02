@@ -6,6 +6,8 @@
 
 Final-APK phone results:**24 program checks+8 idle-performance checks+28 actual SDK checks passed**. Wan CPU produced a **6.125-second/49-frame video** in732seconds;quality remains unaccepted. Actual pages:[GIF](docs/media/device/v0.3.12/physical-walkthrough.gif)/[recording](docs/media/device/v0.3.12/physical-walkthrough.mp4);[original generated video](docs/media/benchmarks/v0.3.12/wan-cpu-6s.mp4). The benchmark report separates3D failures and candidate-APK attempts.
 
+**2026-11-02 direct LAN HTTP supplement: 57 checks passed across 128 requests.** A physical PC adapter connects directly to phone Wi-Fi, producing a new PNG and two WAVs and testing jobs, cancellation, upload, SSE and resumable downloads. The existing 6.125-second video is transferred again separately. Catalogue median: 39.44 ms; screen off: 111.959 seconds; no ADB forwarding or proxy. [Report and local HTTP examples](docs/LAN_HTTP_TEST.en.md) · [57-check evidence](verification/supplemental/v0.3.12/lan-http.json). Released assets retain their original identity.
+
 <img src="docs/media/device/v0.3.12/05-published-models.png" alt="Published local models on the final APK" width="300">
 
 

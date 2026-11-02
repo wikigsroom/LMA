@@ -1,5 +1,7 @@
 # v0.3.12 实机联调与测评
 
+**2026-11-02后续补充：** [独立内网HTTP实测](LAN_HTTP_TEST.md)新增57项检查、128次PC到手机Wi-Fi请求；不改写本页原Release测量、APK身份或既有附件。
+
 [English](DEVICE_BENCHMARK_V0312.en.md) · [API 用法](LOCAL_API_V0312.md) · [版本说明](releases/v0.3.12.md)
 
 ## 设备与测量范围

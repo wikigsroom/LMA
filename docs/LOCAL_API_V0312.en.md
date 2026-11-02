@@ -151,3 +151,7 @@ python tools/device_sdk_integration.py --serial SERIAL
 ```
 
 The last three require an authorized phone. SDK checks use installed speech/image models and owned fixtures/tasks. See the [physical benchmark](DEVICE_BENCHMARK_V0312.en.md) for exact APK identities, settings, durations, failures and temperature. Valid media files do not establish acceptable quality, all-model coverage or long background endurance.
+
+## Direct LAN HTTP supplement
+
+Enable LAN in Service and use the phone Wi-Fi address. Native PC HTTP can access models and jobs directly. See the [57-check / 128-request LAN guide](LAN_HTTP_TEST.en.md) for measured results, environment variables and curl examples. ADB operates the UI only; the data path uses neither port forwarding nor a proxy.

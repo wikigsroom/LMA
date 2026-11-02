@@ -1,5 +1,10 @@
 # 截图与演示 / Screenshots and demonstrations
 
+## 2026-11-02 内网测试补充 / LAN supplement
+
+[已开启LAN的脱敏实机截图](media/tests/lan-http-v0312/lan-enabled-redacted.png)、[本轮新PNG](media/tests/lan-http-v0312/lan-image.png)、[异步WAV](media/tests/lan-http-v0312/lan-speech.wav)、[标准WAV](media/tests/lan-http-v0312/lan-standard-speech.wav)与[身份清单](media/tests/lan-http-v0312/manifest.json)对应已发布v0.3.12 APK；截图隐藏地址/状态栏且未显示密钥。57项/128次直连HTTP的[中文报告](LAN_HTTP_TEST.md) / [English](LAN_HTTP_TEST.en.md)单独说明已有视频仅复测下载。No new video or GLB is claimed; earlier Release media remain immutable.
+
+
 
 ## v0.3.12 当前素材 / Current media
 

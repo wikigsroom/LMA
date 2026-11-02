@@ -1,5 +1,7 @@
 # v0.3.12 physical API integration and benchmarks
 
+**2026-11-02 follow-up:** [Separate direct LAN HTTP evidence](LAN_HTTP_TEST.en.md) adds 57 checks / 128 native PC-to-phone Wi-Fi requests. Original Release measurements, APK identities and published attachments below retain their original meaning.
+
 [中文](DEVICE_BENCHMARK_V0312.md) · [API usage](LOCAL_API_V0312.en.md) · [Release](releases/v0.3.12.md)
 
 ## Device and scope

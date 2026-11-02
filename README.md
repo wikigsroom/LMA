@@ -8,6 +8,8 @@
 
 本版最终APK实机：**24项程序检查＋8项空闲性能＋28项真实SDK联调**通过；Wan CPU实际输出 **6.125秒／49帧**视频，耗时732秒，画质尚未通过。真实页面[GIF](docs/media/device/v0.3.12/physical-walkthrough.gif)／[录屏](docs/media/device/v0.3.12/physical-walkthrough.mp4)，原始[模型视频](docs/media/benchmarks/v0.3.12/wan-cpu-6s.mp4)。3D失败与候选包结果在测评中逐项披露。
 
+**2026-11-02 内网 HTTP 补充验证：57项通过、128次真实请求。** PC物理网卡直接连接手机Wi-Fi，完成新图片、两段语音、任务/取消/上传/SSE与断点下载；已有6.125秒视频单独复测传输。模型目录中位延迟39.44ms，锁屏111.959秒；无ADB转发或代理。[完整报告与本地HTTP用例](docs/LAN_HTTP_TEST.md) · [57项证据](verification/supplemental/v0.3.12/lan-http.json)。原Release附件身份保留。
+
 <img src="docs/media/device/v0.3.12/05-published-models.png" alt="最终APK服务公布的本地模型" width="300">
 
 

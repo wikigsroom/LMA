@@ -1,5 +1,13 @@
 # Changelog / 更新记录
 
+## 2026-11-02 · v0.3.12 内网 HTTP 验证补充 / Direct LAN HTTP supplement
+
+- 新增 `device_lan_http.py` 与白名单导出器，PC物理网卡直连手机wlan0；57项检查、128次HTTP通过，无ADB转发、代理、虚拟化或远端推理。Native PC-to-phone HTTP: 57 checks / 128 requests, verified physical TCP endpoints.
+- 新生成两段WAV与一张PNG，核对手机产物SHA；验证幂等、取消、上传、SSE、Range/If-Range与锁屏111.959秒。已有6.125秒视频仅重新下载/核验，并非本轮新生成；3D仅做图片输入预检。
+- 修正新测试脚本对WebView开关状态与底部导航遮挡的判断；首轮UI准备失败不算App网络故障或模型执行。Only the owned cancelled fixture is removed; existing models/settings/history remain.
+- 新增中英文[报告](docs/LAN_HTTP_TEST.md) / [English](docs/LAN_HTTP_TEST.en.md)、脱敏实机截图与独立补充证据；原APK、v0.3.12标签及已发布附件不替换。Released assets stay immutable; quality/all-model/endurance limits remain explicit.
+
+
 
 ## v0.3.12 · 2026-11-02 · 本地多模态 API / Local multimodal API
 

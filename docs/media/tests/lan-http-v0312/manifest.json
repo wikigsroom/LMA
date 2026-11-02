@@ -1,0 +1,41 @@
+{
+  "schema": "lma.physical-lan-http-media/1",
+  "version": "0.3.12",
+  "apk_sha256": "67b20c2a548f7b253db18f938156f44e817fe20fc58332f8912314f40f756140",
+  "media_kind": "Physical screenshot and new phone-generated PNG/WAV; existing video is linked, not regenerated",
+  "privacy_reviewed": true,
+  "private_endpoints_published": false,
+  "api_keys_published": false,
+  "screenshot": {
+    "file": "lan-enabled-redacted.png",
+    "bytes": 154119,
+    "sha256": "6255ab38d1198cbdbb21751f8ba424d560fa4a4e535f3fff50f38689077323c8",
+    "physical_screenshot": true,
+    "private_address_masks": 1,
+    "api_key_visible": false,
+    "status_bar_masked": true
+  },
+  "quality_accepted": false,
+  "files": [
+    {
+      "file": "lan-speech.wav",
+      "bytes": 244780,
+      "sha256": "24b57fcd94b235aefec8a44df4190cd5a0a11bb5d409f56b3f9132b99c9fb047"
+    },
+    {
+      "file": "lan-standard-speech.wav",
+      "bytes": 270380,
+      "sha256": "b7d0adefd9e636a336bab5f91bde601a47c40da5d5d40763c1175b7bf9ceb652"
+    },
+    {
+      "file": "lan-image.png",
+      "bytes": 27116,
+      "sha256": "2c88fabf1b3956acabf1ddd9be6099acb3a574dab70065dca56712d948dfb213"
+    },
+    {
+      "file": "lan-enabled-redacted.png",
+      "bytes": 154119,
+      "sha256": "6255ab38d1198cbdbb21751f8ba424d560fa4a4e535f3fff50f38689077323c8"
+    }
+  ]
+}
