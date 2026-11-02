@@ -62,9 +62,9 @@ let context, server;
 function checked(name) { checks.push(name); console.log('PASS ' + name); }
 const fixture = {
   app: 'LMA', version: fs.readFileSync(path.join(root, 'app/src/main/AndroidManifest.xml'), 'utf8').match(/versionName="([^"]+)"/)[1], models: catalogue.models.map(m => ({...m, installed: false, installedBytes: 0, partialBytes: 0, download: {}})),
-  settings: {lan: false, port: 8080, threads: 4, context: 2048, maxTokens: 512, temperature: 0.7, source: 'auto', boot: false, autoLoad: true, reasoning: 'off', theme: 'light', systemPrompt: '你是一个有帮助的本地助手。', apiKey: 'lma_TEST_ONLY_NOT_A_REAL_KEY'},
+  settings: {lan: false, port: 52187, threads: 4, context: 2048, maxTokens: 512, temperature: 0.7, source: 'auto', boot: false, autoLoad: true, reasoning: 'off', theme: 'light', systemPrompt: '你是一个有帮助的本地助手。', apiKey: 'lma_TEST_ONLY_NOT_A_REAL_KEY'},
   api: {state: 'stopped', detail: '接口尚未启动', textRequestActive: false},
-  engine: {state: 'stopped', detail: '选择并下载一个模型，开始本地运行', modelId: '', generating: false, startedAt: 0, localUrl: 'http://127.0.0.1:8080/v1', addresses: ['http://192.168.1.20:8080/v1']},
+  engine: {state: 'stopped', detail: '选择并下载一个模型，开始本地运行', modelId: '', generating: false, startedAt: 0, localUrl: 'http://127.0.0.1:52187/v1', addresses: ['http://192.168.1.20:52187/v1']},
   device: {name: 'nubia Z20 · UI 测试数据', android: '9', totalMemory: 8 * 1073741824, availableMemory: 4.3 * 1073741824, freeStorage: 51.2 * 1e9, batteryExempt: false},
   chat: {sessionId: '', sessions: [], messages: []}, logs: [], error: '', commandResults: [], hub: hubFixture
 };
@@ -154,7 +154,9 @@ async function main() {
   await page.screenshot({path: path.join(output, '01-models-phone.png')});
   assert.deepEqual(await page.locator('.model-card').evaluateAll(cards => cards.map(c=>c.dataset.model)), ['m08','m06','m01']); checked('Recommendation order and IDs remain unchanged');
   assert.equal(await page.locator('.model-tags .tag').filter({hasText: /^无审查$/}).count(), 3); checked('Verified uncensored labels remain on recommendations');
-  await page.locator('.nav-item[data-tab="server"]').click(); await page.locator('#serverToggle').click();
+  await page.locator('.nav-item[data-tab="server"]').click();
+  assert.equal(await page.locator('#apiUrl').textContent(), 'http://127.0.0.1:52187/v1'); checked('Zero-model API shows the high default before startup');
+  await page.locator('#serverToggle').click();
   await page.waitForFunction(() => document.getElementById('serverStatePill').textContent === '运行中');
   assert.equal(await page.evaluate(() => window.__fixture.models.filter(x => x.installed).length), 0);
   assert.equal(await page.locator('#modalBackdrop').isHidden(), true); checked('A zero-model library starts the API without loading or downloading any model');
@@ -217,6 +219,7 @@ async function main() {
   await page.locator('#serverToggle').click(); await page.waitForFunction(() => document.getElementById('serverStatePill').textContent === '运行中');
   await page.locator('#lanToggle').check(); await page.waitForFunction(() => document.getElementById('apiUrl').textContent.includes('192.168.1.20'));
   await page.locator('[data-action="copyExample"]').click();
+  assert((await page.locator('#apiUrl').textContent()).includes(':52187/v1')); checked('LAN URL retains the configured high port');
   const curl = await page.evaluate(() => window.__copied); assert(curl.includes('/v1/chat/completions') && curl.includes('Bearer lma_TEST_ONLY')); checked('LAN endpoint and authenticated API example');
   await checkOverflow(page, '375px server layout'); await page.screenshot({path: path.join(output, '03-server-phone.png')});
   await page.locator('.nav-item[data-tab="settings"]').click();

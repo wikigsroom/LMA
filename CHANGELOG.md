@@ -1,5 +1,12 @@
 # Changelog / 更新记录
 
+## v0.3.13 — 2026-11-02
+
+- 默认公开 API 端口由 8080 改为五位高端口 **52187**；新安装、升级迁移、回环／内网地址、页面与示例保持一致。
+- One-time migration moves the former default; valid custom ports, API credentials, model settings and history are preserved. Later explicit port edits remain valid.
+- 真机原签名覆盖升级、旧端口关闭、新端口内网 HTTP、图片／语音及程序回归分开记录；保留既有 6.125 秒视频原始版本身份。
+- [端口方案 / Migration and validation](docs/API_PORT.md) · [版本说明 / Release notes](docs/releases/v0.3.13.md)。Stable release; original v0.3.12 assets remain unchanged.
+
 ## 2026-11-02 · v0.3.12 内网 HTTP 验证补充 / Direct LAN HTTP supplement
 
 - 新增 `device_lan_http.py` 与白名单导出器，PC物理网卡直连手机wlan0；57项检查、128次HTTP通过，无ADB转发、代理、虚拟化或远端推理。Native PC-to-phone HTTP: 57 checks / 128 requests, verified physical TCP endpoints.

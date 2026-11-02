@@ -77,7 +77,7 @@ public final class HostServer {
         for (byte b : bytes) out.write(b); out.flush();
     }
     public static void main(String[] args) throws Exception {
-        int port = 8080; String alias = "model";
+        int port = 52187; String alias = "model";
         for (int i = 0; i < args.length - 1; i++) {
             if (args[i].equals("--port")) port = Integer.parseInt(args[i + 1]);
             if (args[i].equals("--alias")) alias = args[i + 1];

@@ -7,11 +7,11 @@ from pathlib import Path
 import shutil
 import subprocess
 
-from evidence import ROOT, current, fingerprint
+from evidence import ROOT, current, fingerprint, version
 
 
-PUBLIC = ROOT/'verification/supplemental/v0.3.12/lan-http.json'
-MEDIA = ROOT/'docs/media/tests/lan-http-v0312'
+PUBLIC = ROOT/'verification/supplemental'/('v'+version())/'lan-http.json'
+MEDIA = ROOT/'docs/media/tests'/('lan-http-v'+version().replace('.',''))
 
 
 def read(path):
@@ -26,7 +26,7 @@ def digest(path):
 def check():
     data=json.loads(read(PUBLIC))
     assert data['schema']=='lma.physical-lan-http/1' and data['status']=='passed'
-    assert data['version']=='0.3.12' and data['passed']==len(data['checks'])>=50
+    assert data['version']==version() and data['passed']==len(data['checks'])>=50
     assert all(c['passed'] for c in data['checks']) and data['http_requests']>100
     current(data['input_fingerprint']);current(data['exporter_input_fingerprint'])
     assert data['apk_sha256']==json.loads(read(ROOT/'dist/build-info.json'))['sha256']
@@ -36,6 +36,10 @@ def check():
     for flag in ('proxy_used','adb_port_forward_used','virtualization_used','model_downloads',
                  'remote_inference','new_video_generated','quality_accepted','background_endurance_tested'):
         assert not data[flag]
+    if version()=='0.3.13':
+        assert data['api_port']==52187 and data['previous_default_port']==8080 and data['upgrade_verified']
+    else:
+        assert 1024<=data['api_port']<=65535
     assert data['generation_deadline_seconds'] is None and len(data['outputs'])==3
     assert sum(o['operation']=='speech.synthesize' for o in data['outputs'])==2
     assert sum(o['operation']=='image.generate' for o in data['outputs'])==1
@@ -80,12 +84,12 @@ def export(path):
           'transport','generation_deadline_seconds','proxy_used','adb_port_forward_used',
           'virtualization_used','model_downloads','remote_inference','new_video_generated',
           'existing_video','quality_accepted','background_endurance_tested','lan_left_enabled',
-          'user_history_preserved','model_settings_preserved','lan_enabled_by_test')
-    data={k:raw[k] for k in keys}
+          'user_history_preserved','model_settings_preserved','lan_enabled_by_test','api_port','upgrade_verified','previous_default_port')
+    data={k:raw[k] for k in keys if k in raw}
     data['physical_pc_adapter_verified']=True
     data['exporter_input_fingerprint']=fingerprint('tools/export_lan_http_evidence.py')
     data['private_tcp_proof_sha256']=digest(proof)
-    data['app_release_tag']='v0.3.12'
+    data['app_release_tag']='v'+version()
     data['scope']='Supplementary direct LAN HTTP; three new phone-local PNG/WAV outputs; existing video transfer only. No production gateway, all-model quality or endurance acceptance.'
     MEDIA.mkdir(parents=True,exist_ok=True);files=[]
     for item in [*raw['outputs'],raw['media']]:

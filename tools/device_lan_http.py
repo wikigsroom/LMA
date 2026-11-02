@@ -17,6 +17,7 @@ import os
 from pathlib import Path
 import re
 import statistics
+import socket
 import subprocess
 import time
 import uuid
@@ -186,6 +187,7 @@ class LanHTTP:
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--serial', required=True)
+    parser.add_argument('--upgrade-baseline', help='Private pre-upgrade model/settings/port receipt; credentials excluded')
     parser.add_argument('--source-address', required=True, help='IPv4 of the physical PC network adapter')
     parser.add_argument('--enable-lan', action='store_true', help='Explicitly enable LAN in the phone UI and leave it enabled')
     parser.add_argument('--run-existing-models', action='store_true', help='Run installed image/speech models; no downloads')
@@ -233,6 +235,16 @@ def main():
         urls=[ui.text(n) for n in ui.dump().iter('node') if re.fullmatch(r'http://[0-9.]+:[0-9]+/v1',ui.text(n))]
         assert len(urls)==1
         displayed=urlsplit(urls[0]);port=displayed.port
+        report["api_port"]=port
+        if json.loads((ROOT/"dist/build-info.json").read_text(encoding="utf8"))["version"] == "0.3.13":
+            check("Upgraded service advertises the five-digit default 52187",port==52187)
+            refused = False
+            try:
+                with socket.create_connection((str(network.ip),8080),timeout=3,source_address=(str(source),0)):
+                    pass
+            except ConnectionRefusedError:
+                refused = True
+            check("Former default 8080 no longer accepts LAN connections",refused)
         # This WebView exposes checked=false even for the enabled custom switch.
         # Its rendered base URL follows the persisted LAN preference reliably.
         report['lan_ui_initially_enabled'] = not ipaddress.IPv4Address(displayed.hostname).is_loopback
@@ -271,6 +283,14 @@ def main():
         before=client.json('GET','/v1/jobs')['data'];assert all(j['state'] in TERMINAL for j in before),'Preserve existing active work'
         before_ids={j['id'] for j in before}
         models_before={m['id']:m['parameters'] for m in models}
+        if args.upgrade_baseline:
+            baseline=json.loads(Path(args.upgrade_baseline).read_text(encoding='utf8'))
+            check("Signed upgrade migrated the former 8080 default",baseline['pre_upgrade_port']==8080 and port==52187)
+            check("Upgrade preserves every installed model and its configured parameters",baseline['models']==models_before)
+            check("Upgrade preserves existing user task history",set(baseline['history_ids'])<=before_ids)
+            check("Upgrade preserves the existing API credential",baseline['key_identity']==hashlib.sha256(client.key.encode()).hexdigest())
+            report['upgrade_verified']=True
+            report['previous_default_port']=baseline['pre_upgrade_port']
         speech=next(m['id'] for m in models if 'speech.synthesize' in m['x_lma']['operations'])
         image=next(m['id'] for m in models if 'image.generate' in m['x_lma']['operations'])
         mesh=next(m['id'] for m in models if 'mesh.generate' in m['x_lma']['operations'])

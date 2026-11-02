@@ -59,9 +59,9 @@ async function main() {
   await page.addInitScript(({catalogue, version}) => {
     window.__fixture = {
       app: 'LMA', version, models: catalogue.models.map(m => ({...m, installed: false, download: {}})),
-      settings: {lan: false, port: 8080, source: 'auto', boot: false, autoLoad: true, theme: 'light', hfTokenSet: false, apiKey: 'lma_UI_FIXTURE_ONLY'},
+      settings: {lan: false, port: 52187, source: 'auto', boot: false, autoLoad: true, theme: 'light', hfTokenSet: false, apiKey: 'lma_UI_FIXTURE_ONLY'},
       api: {state: 'stopped', detail: '接口尚未启动', textRequestActive: false},
-      engine: {state: 'stopped', modelId: '', detail: '开发界面演示 · 未运行模型', generating: false, localUrl: 'http://127.0.0.1:8080/v1'},
+      engine: {state: 'stopped', modelId: '', detail: '开发界面演示 · 未运行模型', generating: false, localUrl: 'http://127.0.0.1:52187/v1'},
       device: {name: '界面测试数据 · 非真机', totalMemory: 8 * 1073741824, freeStorage: 30e9, batteryExempt: false},
       chat: {sessionId: '', sessions: [], messages: []}, commandResults: [], logs: [], error: ''
     };

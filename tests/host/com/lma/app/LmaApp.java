@@ -63,7 +63,7 @@ public final class LmaApp {
     public final List<JSONObject> commands = Collections.synchronizedList(new ArrayList<>());
     public LmaApp(File files, File assets, File libraries) {
         this.files = files; this.assets = assets; this.libraries = libraries; files.mkdirs();
-        prefs.edit().putString("apiKey", "lma_HOST_TEST_KEY").putInt("port", 8080).putInt("threads", 4).putInt("context", 2048)
+        prefs.edit().putString("apiKey", "lma_HOST_TEST_KEY").putInt("port", 52187).putInt("threads", 4).putInt("context", 2048)
             .putInt("maxTokens", 512).putFloat("temperature", 0.7f).putString("reasoning", "off").putString("systemPrompt", "Test system prompt").apply();
         store = new Store(this); chats = new Chats(this);
         try { bundles = new com.lma.app.core.BundleStore(new File(files, "bundles")); jobs = new com.lma.app.core.JobStore(new File(files, "jobs")); artifacts = new com.lma.app.core.ArtifactStore(new File(files, "artifacts"), file -> { throw new IOException("No host model outputs"); }); }
@@ -90,7 +90,7 @@ public final class LmaApp {
     public JSONObject settings() throws Exception { return settings(engineModel); }
     public JSONObject settings(String modelId) throws Exception {
         JSONObject value = modelId.isEmpty() ? ModelSettings.defaults() : store.config(modelId).getJSONObject("values");
-        return value.put("apiKey", prefs.getString("apiKey", "")).put("lan", prefs.getBoolean("lan", false)).put("port", prefs.getInt("port", 8080));
+        return value.put("apiKey", prefs.getString("apiKey", "")).put("lan", prefs.getBoolean("lan", false)).put("port", prefs.getInt("port", 52187));
     }
     public static final class Preferences {
         private final Map<String, Object> values = new ConcurrentHashMap<>();

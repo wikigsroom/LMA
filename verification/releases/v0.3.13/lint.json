@@ -1,0 +1,465 @@
+{
+  "tool": "lint 8.9.0 [13114758] ",
+  "default_checks": true,
+  "offline": true,
+  "java_source_files": 122,
+  "resource_files": 3,
+  "min_sdk": 28,
+  "compile_sdk": 35,
+  "errors": 0,
+  "warnings": [
+    {
+      "id": "OldTargetApi",
+      "severity": "Warning",
+      "message": "Not targeting the latest versions of Android; compatibility modes apply. Consider testing and updating this version. Consult the `android.os.Build.VERSION_CODES` javadoc for details.",
+      "location": {
+        "file": "src\\main\\AndroidManifest.xml",
+        "line": "3",
+        "column": "42"
+      }
+    },
+    {
+      "id": "BatteryLife",
+      "severity": "Warning",
+      "message": "Use of `REQUEST_IGNORE_BATTERY_OPTIMIZATIONS` violates the Play Store Content Policy regarding acceptable use cases, as described in https://developer.android.com/training/monitoring-device-state/doze-standby.html",
+      "location": {
+        "file": "src\\main\\java\\com\\lma\\app\\MainActivity.java",
+        "line": "231",
+        "column": "95"
+      }
+    },
+    {
+      "id": "UseRequiresApi",
+      "severity": "Warning",
+      "message": "Use `@RequiresApi(33) instead of `@TargetApi` to propagate the requirement to users of `Api33Back`",
+      "location": {
+        "file": "src\\main\\java\\com\\lma\\app\\MainActivity.java",
+        "line": "160",
+        "column": "5"
+      }
+    },
+    {
+      "id": "SetJavaScriptEnabled",
+      "severity": "Warning",
+      "message": "Using `setJavaScriptEnabled` can introduce XSS vulnerabilities into your application, review carefully",
+      "location": {
+        "file": "src\\main\\java\\com\\lma\\app\\MainActivity.java",
+        "line": "80",
+        "column": "9"
+      }
+    },
+    {
+      "id": "DataExtractionRules",
+      "severity": "Warning",
+      "message": "The attribute `android:allowBackup` is deprecated from Android 12 and higher and may be removed in future versions. Consider adding the attribute `android:dataExtractionRules` specifying an `@xml` resource which configures cloud backups and device transfers on Android 12 and higher.",
+      "location": {
+        "file": "src\\main\\AndroidManifest.xml",
+        "line": "16",
+        "column": "30"
+      }
+    },
+    {
+      "id": "WakelockTimeout",
+      "severity": "Warning",
+      "message": "Provide a timeout when requesting a wakelock with `PowerManager.Wakelock.acquire(long timeout)`. This will ensure the OS will cleanup any wakelocks that last longer than you intend, and will save your user's battery.",
+      "location": {
+        "file": "src\\main\\java\\com\\lma\\app\\LmaService.java",
+        "line": "50",
+        "column": "125"
+      }
+    },
+    {
+      "id": "UsableSpace",
+      "severity": "Warning",
+      "message": "Consider also using `StorageManager#getAllocatableBytes` and `allocateBytes` which will consider clearable cached data",
+      "location": {
+        "file": "src\\main\\java\\com\\lma\\app\\core\\ArtifactStore.java",
+        "line": "107",
+        "column": "33"
+      }
+    },
+    {
+      "id": "UsableSpace",
+      "severity": "Warning",
+      "message": "Consider also using `StorageManager#getAllocatableBytes` and `allocateBytes` which will consider clearable cached data",
+      "location": {
+        "file": "src\\main\\java\\com\\lma\\app\\core\\BundleStore.java",
+        "line": "75",
+        "column": "45"
+      }
+    },
+    {
+      "id": "UsableSpace",
+      "severity": "Warning",
+      "message": "Consider also using `StorageManager#getAllocatableBytes` and `allocateBytes` which will consider clearable cached data",
+      "location": {
+        "file": "src\\main\\java\\com\\lma\\app\\core\\BundleTransfers.java",
+        "line": "132",
+        "column": "45"
+      }
+    },
+    {
+      "id": "UsableSpace",
+      "severity": "Warning",
+      "message": "Consider also using `StorageManager#getAllocatableBytes` and `allocateBytes` which will consider clearable cached data",
+      "location": {
+        "file": "src\\main\\java\\com\\lma\\app\\DeviceResourceProbe.java",
+        "line": "16",
+        "column": "76"
+      }
+    },
+    {
+      "id": "UsableSpace",
+      "severity": "Warning",
+      "message": "Consider also using `StorageManager#getAllocatableBytes` and `allocateBytes` which will consider clearable cached data",
+      "location": {
+        "file": "src\\main\\java\\com\\lma\\app\\core\\InputUploads.java",
+        "line": "61",
+        "column": "34"
+      }
+    },
+    {
+      "id": "UsableSpace",
+      "severity": "Warning",
+      "message": "Consider also using `StorageManager#getAllocatableBytes` and `allocateBytes` which will consider clearable cached data",
+      "location": {
+        "file": "src\\main\\java\\com\\lma\\app\\core\\InputUploads.java",
+        "line": "83",
+        "column": "18"
+      }
+    },
+    {
+      "id": "UsableSpace",
+      "severity": "Warning",
+      "message": "Consider also using `StorageManager#getAllocatableBytes` and `allocateBytes` which will consider clearable cached data",
+      "location": {
+        "file": "src\\main\\java\\com\\lma\\app\\LocalJobs.java",
+        "line": "163",
+        "column": "224"
+      }
+    },
+    {
+      "id": "UsableSpace",
+      "severity": "Warning",
+      "message": "Consider also using `StorageManager#getAllocatableBytes` and `allocateBytes` which will consider clearable cached data",
+      "location": {
+        "file": "src\\main\\java\\com\\lma\\app\\ModelAssemblies.java",
+        "line": "66",
+        "column": "31"
+      }
+    },
+    {
+      "id": "UsableSpace",
+      "severity": "Warning",
+      "message": "Consider also using `StorageManager#getAllocatableBytes` and `allocateBytes` which will consider clearable cached data",
+      "location": {
+        "file": "src\\main\\java\\com\\lma\\app\\ModelPreparations.java",
+        "line": "49",
+        "column": "31"
+      }
+    },
+    {
+      "id": "UsableSpace",
+      "severity": "Warning",
+      "message": "Consider also using `StorageManager#getAllocatableBytes` and `allocateBytes` which will consider clearable cached data",
+      "location": {
+        "file": "src\\main\\java\\com\\lma\\app\\ModelPreparations.java",
+        "line": "53",
+        "column": "121"
+      }
+    }
+  ],
+  "issues": [
+    {
+      "id": "OldTargetApi",
+      "severity": "Warning",
+      "message": "Not targeting the latest versions of Android; compatibility modes apply. Consider testing and updating this version. Consult the `android.os.Build.VERSION_CODES` javadoc for details.",
+      "location": {
+        "file": "src\\main\\AndroidManifest.xml",
+        "line": "3",
+        "column": "42"
+      }
+    },
+    {
+      "id": "BatteryLife",
+      "severity": "Warning",
+      "message": "Use of `REQUEST_IGNORE_BATTERY_OPTIMIZATIONS` violates the Play Store Content Policy regarding acceptable use cases, as described in https://developer.android.com/training/monitoring-device-state/doze-standby.html",
+      "location": {
+        "file": "src\\main\\java\\com\\lma\\app\\MainActivity.java",
+        "line": "231",
+        "column": "95"
+      }
+    },
+    {
+      "id": "UseRequiresApi",
+      "severity": "Warning",
+      "message": "Use `@RequiresApi(33) instead of `@TargetApi` to propagate the requirement to users of `Api33Back`",
+      "location": {
+        "file": "src\\main\\java\\com\\lma\\app\\MainActivity.java",
+        "line": "160",
+        "column": "5"
+      }
+    },
+    {
+      "id": "SetJavaScriptEnabled",
+      "severity": "Warning",
+      "message": "Using `setJavaScriptEnabled` can introduce XSS vulnerabilities into your application, review carefully",
+      "location": {
+        "file": "src\\main\\java\\com\\lma\\app\\MainActivity.java",
+        "line": "80",
+        "column": "9"
+      }
+    },
+    {
+      "id": "DataExtractionRules",
+      "severity": "Warning",
+      "message": "The attribute `android:allowBackup` is deprecated from Android 12 and higher and may be removed in future versions. Consider adding the attribute `android:dataExtractionRules` specifying an `@xml` resource which configures cloud backups and device transfers on Android 12 and higher.",
+      "location": {
+        "file": "src\\main\\AndroidManifest.xml",
+        "line": "16",
+        "column": "30"
+      }
+    },
+    {
+      "id": "WakelockTimeout",
+      "severity": "Warning",
+      "message": "Provide a timeout when requesting a wakelock with `PowerManager.Wakelock.acquire(long timeout)`. This will ensure the OS will cleanup any wakelocks that last longer than you intend, and will save your user's battery.",
+      "location": {
+        "file": "src\\main\\java\\com\\lma\\app\\LmaService.java",
+        "line": "50",
+        "column": "125"
+      }
+    },
+    {
+      "id": "UsableSpace",
+      "severity": "Warning",
+      "message": "Consider also using `StorageManager#getAllocatableBytes` and `allocateBytes` which will consider clearable cached data",
+      "location": {
+        "file": "src\\main\\java\\com\\lma\\app\\core\\ArtifactStore.java",
+        "line": "107",
+        "column": "33"
+      }
+    },
+    {
+      "id": "UsableSpace",
+      "severity": "Warning",
+      "message": "Consider also using `StorageManager#getAllocatableBytes` and `allocateBytes` which will consider clearable cached data",
+      "location": {
+        "file": "src\\main\\java\\com\\lma\\app\\core\\BundleStore.java",
+        "line": "75",
+        "column": "45"
+      }
+    },
+    {
+      "id": "UsableSpace",
+      "severity": "Warning",
+      "message": "Consider also using `StorageManager#getAllocatableBytes` and `allocateBytes` which will consider clearable cached data",
+      "location": {
+        "file": "src\\main\\java\\com\\lma\\app\\core\\BundleTransfers.java",
+        "line": "132",
+        "column": "45"
+      }
+    },
+    {
+      "id": "UsableSpace",
+      "severity": "Warning",
+      "message": "Consider also using `StorageManager#getAllocatableBytes` and `allocateBytes` which will consider clearable cached data",
+      "location": {
+        "file": "src\\main\\java\\com\\lma\\app\\DeviceResourceProbe.java",
+        "line": "16",
+        "column": "76"
+      }
+    },
+    {
+      "id": "UsableSpace",
+      "severity": "Warning",
+      "message": "Consider also using `StorageManager#getAllocatableBytes` and `allocateBytes` which will consider clearable cached data",
+      "location": {
+        "file": "src\\main\\java\\com\\lma\\app\\core\\InputUploads.java",
+        "line": "61",
+        "column": "34"
+      }
+    },
+    {
+      "id": "UsableSpace",
+      "severity": "Warning",
+      "message": "Consider also using `StorageManager#getAllocatableBytes` and `allocateBytes` which will consider clearable cached data",
+      "location": {
+        "file": "src\\main\\java\\com\\lma\\app\\core\\InputUploads.java",
+        "line": "83",
+        "column": "18"
+      }
+    },
+    {
+      "id": "UsableSpace",
+      "severity": "Warning",
+      "message": "Consider also using `StorageManager#getAllocatableBytes` and `allocateBytes` which will consider clearable cached data",
+      "location": {
+        "file": "src\\main\\java\\com\\lma\\app\\LocalJobs.java",
+        "line": "163",
+        "column": "224"
+      }
+    },
+    {
+      "id": "UsableSpace",
+      "severity": "Warning",
+      "message": "Consider also using `StorageManager#getAllocatableBytes` and `allocateBytes` which will consider clearable cached data",
+      "location": {
+        "file": "src\\main\\java\\com\\lma\\app\\ModelAssemblies.java",
+        "line": "66",
+        "column": "31"
+      }
+    },
+    {
+      "id": "UsableSpace",
+      "severity": "Warning",
+      "message": "Consider also using `StorageManager#getAllocatableBytes` and `allocateBytes` which will consider clearable cached data",
+      "location": {
+        "file": "src\\main\\java\\com\\lma\\app\\ModelPreparations.java",
+        "line": "49",
+        "column": "31"
+      }
+    },
+    {
+      "id": "UsableSpace",
+      "severity": "Warning",
+      "message": "Consider also using `StorageManager#getAllocatableBytes` and `allocateBytes` which will consider clearable cached data",
+      "location": {
+        "file": "src\\main\\java\\com\\lma\\app\\ModelPreparations.java",
+        "line": "53",
+        "column": "121"
+      }
+    }
+  ],
+  "android_execution_tested": false,
+  "applicationApkSha256": "ed89eda6b88cf005cd839eb67e4b5219a8a191f58af0d2aeea1e401e39106158",
+  "input_fingerprint": {
+    "app/src/main/AndroidManifest.xml": "71cbb4a2b53493b5a0585ac4a14c479c000a9eeee7c2fec96592b84370a52c7a",
+    "app/src/main/java/com/lma/app/ApiHost.java": "16458fb3ec63fc3a8203b7319136f95a04f4e80e7986faaf98263f4007a1de14",
+    "app/src/main/java/com/lma/app/BootReceiver.java": "2c1f72871ca122f8e9562edfc163105bd56ed1df81d3bcf60108a267b837dcee",
+    "app/src/main/java/com/lma/app/BundleDocuments.java": "5b7039fae074adf35e117155e0337792e7ac7f08fa3630803fb1c9ac3b188d3a",
+    "app/src/main/java/com/lma/app/ChatRunner.java": "bf3f18528dad358ee1f7e13778bba458fc13cfd7caa0281e0d72058c52617586",
+    "app/src/main/java/com/lma/app/Chats.java": "ee21aea9b437716d6233b0fae7f04a9ecc1cc31c0e37e8fbe69484c2e0148434",
+    "app/src/main/java/com/lma/app/core/AdapterSpec.java": "aff8572d14ac8d616be0a1b0da395e52ed5bddcd5ae407a969c2657bf9257581",
+    "app/src/main/java/com/lma/app/core/ApiCatalogue.java": "9814b8723da094a9f31fe17fceb66c6f52dd593280351ba9e396cc796c83f6c0",
+    "app/src/main/java/com/lma/app/core/ApiPort.java": "a32d1fb64863178095fafbdba82dfd76e57c93eb559f4cedd5e021e345cb5e64",
+    "app/src/main/java/com/lma/app/core/ApiSubmissions.java": "62ed86b7cf45b061b2c1bd254453187d899382d624f60565bea35835d0be91f3",
+    "app/src/main/java/com/lma/app/core/ArtifactStore.java": "1c30c2d18ee8a66626b53be53e35cb46ddd29d61e6df25debfd201d24d5f469b",
+    "app/src/main/java/com/lma/app/core/AssemblyPlan.java": "80e81dea2a831d3955aa5ae21323eb0432fb448f78994901633fbb6e85d77e7c",
+    "app/src/main/java/com/lma/app/core/AudioCppSpec.java": "df33f5deec46df0a4ba1941b867b6a12840fab66fdc0bc3517fe56b580c52377",
+    "app/src/main/java/com/lma/app/core/AudioPcm.java": "9bf3270c83f57b7fa4e23fc4518fa063e72ca214675f9c23d45bd1788842f7b2",
+    "app/src/main/java/com/lma/app/core/AudioStreams.java": "de8a2cdd98d083b62515b067865182d9065bb00f14b8c70cacafba21de8407f1",
+    "app/src/main/java/com/lma/app/core/BundleStore.java": "75e7a623d2dbdea707afd3314541692561ff929365e942be7064e0cc74316a1c",
+    "app/src/main/java/com/lma/app/core/BundleTransfers.java": "45fb6ed71e85efc4ff409a5808fa9320fcf087e83df12ba26ab94fa8abf88f73",
+    "app/src/main/java/com/lma/app/core/BundleUpdates.java": "f31a65d0e172aa75f6131deace828875534ccc756ed93fac83bb09d5a4162fe1",
+    "app/src/main/java/com/lma/app/core/ByteRange.java": "31723bf112e630de6c2a1cd8d525be7bbd4706e151fa5a297a5e641f59b5c752",
+    "app/src/main/java/com/lma/app/core/ChatHistory.java": "3046a52c3f611b83b46cfed94afe0f4b31667f77986b7ca1737169ec8c4ce951",
+    "app/src/main/java/com/lma/app/core/ComponentIntegrity.java": "7a5977c607f624f8763a782b1b081c4e485c8c05c2caae15986ad2f2388f5bce",
+    "app/src/main/java/com/lma/app/core/ContentMetadata.java": "387276235714449eba861d5e24120be8666be6b863b9b8157f215c74a18dd101",
+    "app/src/main/java/com/lma/app/core/DataFiles.java": "02d3212885376e7073a785801dbb81073b13cc87c5fc0e85ac4373fd346696bc",
+    "app/src/main/java/com/lma/app/core/EngineWorkspace.java": "7ceff936b9507130953098a9ffe4f6bf32d5baad6bee3ca320d99db2db9f2d00",
+    "app/src/main/java/com/lma/app/core/ExecutionGate.java": "143b6d145036c56ad0937316e87af5f4c44507ef89cf16affdc5bef0ad8e2126",
+    "app/src/main/java/com/lma/app/core/GlbFile.java": "77d65f4d880a0fa56bd325750a6634289732e47d68c0816af2d8d3ebfa2e133a",
+    "app/src/main/java/com/lma/app/core/InputHandle.java": "f3b4ef8cf58b1ff2eb1d9f3eae3f789cb1c7d9870786de9cc70e5be431489410",
+    "app/src/main/java/com/lma/app/core/InputSelection.java": "963fe60973caab82b9dfedaa7c1661f236aed6ea158fcda8f4a86d02ba33d509",
+    "app/src/main/java/com/lma/app/core/InputSpec.java": "771cfcd4ec6df96f262fafdfc98aa92ccd72e4439ca25b7275c2dce3fe60a6e2",
+    "app/src/main/java/com/lma/app/core/InputUploads.java": "5debd68a73abc8bde8174c985dfec8f534c6bf8df58dda8810b0cc3541fe1d53",
+    "app/src/main/java/com/lma/app/core/JobStore.java": "40e1c50d5d0e666241b05a2c79df30bd0165cbbd8cd972eeec31f0ec0d8eef2a",
+    "app/src/main/java/com/lma/app/core/LcmCondition.java": "2177da94b69781263e36f3e379034619bf74c6856bc6a9108592d4f272e94b7a",
+    "app/src/main/java/com/lma/app/core/LocalApi.java": "667835b217a948fb352d75b5aabf91404d3b15b04f541971ed366cf642bb314c",
+    "app/src/main/java/com/lma/app/core/LocalHttp.java": "261538f8e2f73c157e6942f913f1f70108a67cda7ae0916a8530a41d07928608",
+    "app/src/main/java/com/lma/app/core/Ltx098Spec.java": "8333ea906bc31ea9e014ce4840d15fc6253c91eda1f3688de4f8645738819abf",
+    "app/src/main/java/com/lma/app/core/LtxPixArtSpec.java": "3eb0cb14c75c0e190d611ee7ac259878a5a644e0bce0a4ee6003a1084668e00b",
+    "app/src/main/java/com/lma/app/core/MaterialSpec.java": "6bab5ad2da64484a52ec486c63b7ac2a071e9c93bb4cf3d1caea025491a54982",
+    "app/src/main/java/com/lma/app/core/MeshSpec.java": "96229421ce042c27623e2eab9dc918c9ea8e66e1bcde043ed6e82e32bb2a16a0",
+    "app/src/main/java/com/lma/app/core/MnnSpec.java": "055cc06962da0fc34c1abdc57100ac52fca47a9d66ffea6621155c53046d5f1a",
+    "app/src/main/java/com/lma/app/core/ModelBundle.java": "82622341be8fdf0b71e7160d62af6a81ef6a524ca74dc6c85aa87009eddbcd14",
+    "app/src/main/java/com/lma/app/core/ModelSelection.java": "965c9f22f16fc822f792ebef6e0de0a0c67f5a6882d5e7ef77be05b83ea1aeb2",
+    "app/src/main/java/com/lma/app/core/MossDelaySpec.java": "2f680d68cf78517f234c336c77e0b584bf40300fd6294514b7cd457149d41bd0",
+    "app/src/main/java/com/lma/app/core/MossNanoSpec.java": "4b784a773fb85550eba8f169a62cab9a274a332519ec700b595694378e9e39ed",
+    "app/src/main/java/com/lma/app/core/MossRqSpec.java": "0713659ade3c172887527a9e961bbde4add5ed00bd2a564256bc11f9b4796b5e",
+    "app/src/main/java/com/lma/app/core/MultiViewSpec.java": "8f91363e5d5b2a9d9b823954562180628438c279ab9616ebdfa34a70046d1b1c",
+    "app/src/main/java/com/lma/app/core/NativePreparation.java": "cb8ee985ef2c6cba3e0d6bb924c940bcb197bd3f576ca7d6e1fa24442d44e1dd",
+    "app/src/main/java/com/lma/app/core/OnnxMetadata.java": "51db38a424032ac21a8a4185745a272db9034a94d2e8b2d0671c11289e9719e3",
+    "app/src/main/java/com/lma/app/core/OpenAiFacade.java": "3e6998a472d337786611fa2b899e511f5d065ac9f2e1b73ed6ba42185ab54905",
+    "app/src/main/java/com/lma/app/core/OpenAiRequests.java": "c592c16dc8c89239656a59aeb3f093c69133f2625894b0d5937fdb3f0ddceb69",
+    "app/src/main/java/com/lma/app/core/OpenMossSpec.java": "4a9af3c92d87be65c4f617677eaed31576f9160a3355518fff7cb874192a5258",
+    "app/src/main/java/com/lma/app/core/ParameterSchema.java": "a566c6d452461ee14333caf7e732a33f8d94b12b33cbabc851f5f3fcc6bdb019",
+    "app/src/main/java/com/lma/app/core/PointCloudSpec.java": "3b04fb3b76d3a76d3d85c9e03b1cda9856fd28af0c01b6c7ba27dd3d288290ec",
+    "app/src/main/java/com/lma/app/core/PreparationPlan.java": "dfee63b84035c6ca18b0647aecb947070b983b6b2f1de08247129dddfa64a0bf",
+    "app/src/main/java/com/lma/app/core/PreparedAssets.java": "6e71f790d67db5a741d044b9867c021ec1629694bc43615336d92eb3d6591070",
+    "app/src/main/java/com/lma/app/core/PreparedModelAssembly.java": "eef243d48c9b2b7d3d9b08b2ddf8129ff3884bbdd6c00ecd28a83c0f4bbfa384",
+    "app/src/main/java/com/lma/app/core/ProcessControl.java": "a1950624951d41c040b0b9f44cd8ef5faff16ed22dae880d626e4619d77c155d",
+    "app/src/main/java/com/lma/app/core/Protocol.java": "d49f47884aec0cb03347023119c2808330fa9970689dcd9d33c30ca653d03b85",
+    "app/src/main/java/com/lma/app/core/QwenTtsSpec.java": "e94d96d7ce7c499b2d4bafbd35740c690b32169a142a9a55aae7a8b03364125b",
+    "app/src/main/java/com/lma/app/core/RecipeCatalogue.java": "a01f9c6b094e84b29a8bbb349350a53e68fe1fd5daf4d7fc81fbd2067e00b773",
+    "app/src/main/java/com/lma/app/core/RecipeSuggestions.java": "57d9d7b5fc5f3c61a3ab3524af8789df58dbc8ce1923b2c09e139649057beda0",
+    "app/src/main/java/com/lma/app/core/ResourceWatch.java": "6f6a4cb2159f7956d1ae8c202c61430be268d86d230245bccc952844f3816ec5",
+    "app/src/main/java/com/lma/app/core/RfShapeSpec.java": "c78a8a378b92af7c9be77c1d1bd87149cc34e9a72d1c2dd7bca98e0b10467e1a",
+    "app/src/main/java/com/lma/app/core/RuntimeDiagnostics.java": "e543ff733e86ccbf11746dee14f320b184a79c8336163a815c89ba840063c97d",
+    "app/src/main/java/com/lma/app/core/SamSpec.java": "e3decd70218bbe22f0583daf2435c8757289e41d3930c2db5dc518787fae725b",
+    "app/src/main/java/com/lma/app/core/SanaSprintSpec.java": "12190d684368b219f17e582d774830d0a946bf5b7e2d25146371325b6fc8b3d3",
+    "app/src/main/java/com/lma/app/core/SdSpec.java": "eb0628197ba3e7bbeaffcb60afd24cee9548b25eff0eb7645f06d2fa348841a7",
+    "app/src/main/java/com/lma/app/core/SoulxSpec.java": "a761d40965d041d38cc1f629418017103c9eefabf5904814fad9de6372b6bcc7",
+    "app/src/main/java/com/lma/app/core/SpatialSpec.java": "f4914d45670ba78e55e134220cc30b690712576943aadf4561a80157f8529a4f",
+    "app/src/main/java/com/lma/app/core/SpeechVoices.java": "b413549e7721d07c88fec135b01b26a18d9dc0cc686a37dd180309ee10900967",
+    "app/src/main/java/com/lma/app/core/StableAudioSpec.java": "0cc04143a8c8c2afa4dc3d9726f4891779b352404d97c70d6fdc260fbe27ee6c",
+    "app/src/main/java/com/lma/app/core/StructuredInput.java": "cd5bd1d3075de672af7c1fd8a3215a3d895a8295eeb6f6ec05d0381d85953ddb",
+    "app/src/main/java/com/lma/app/core/SupraSpec.java": "2edb7029b0f15ad000eb05a7092b4a9adb7298d5d39ca3eb93b245db175f29c9",
+    "app/src/main/java/com/lma/app/core/SurfaceSpec.java": "fb8bd31e992eac452b3da2af66300b0e155f8563a92f9c703f9ddcc2a215c2e3",
+    "app/src/main/java/com/lma/app/core/TaskDrafts.java": "1c97a99a274abb5f38542eb2cea6834121f46b5dfb0e7cbaeaa5df25222c7ead",
+    "app/src/main/java/com/lma/app/core/TaskInput.java": "102eff3f9d9823a288104d359b16cdcda69a800195238535743dac290c387693",
+    "app/src/main/java/com/lma/app/core/TaskRequests.java": "1eaa708bdff47e3812faa07ddd07eed435330d41531e2f92fc5c54e8bcc6ddda",
+    "app/src/main/java/com/lma/app/core/TextRequest.java": "bfdb23db96512f00f362b49951c1fee4162ca2d441482eb6ebf180a8d3574d5f",
+    "app/src/main/java/com/lma/app/core/TextResult.java": "2dd7968a40cc917fab5b8bc412ef00d21348abec1d844b140b843b1bba57c6ab",
+    "app/src/main/java/com/lma/app/core/TextSpec.java": "4521ce8e833d88276f6b98d446e0171c48602d67ce2cf4b372d425e56d6d149e",
+    "app/src/main/java/com/lma/app/core/TtsSpec.java": "c72136f794c23f5c204b6281e3ef73097e065f8d58218ae727702a7260d8317c",
+    "app/src/main/java/com/lma/app/core/UltraTexSpec.java": "8f8ee7ff9e3617ec3faa08ba1385d4a76e2851ee68a43aa6b502560ce992be66",
+    "app/src/main/java/com/lma/app/core/UniForgeSpec.java": "a3011bf95e6fe150dc693344ba13fc9e70fe772ee8565397113fa2b20458e58d",
+    "app/src/main/java/com/lma/app/core/VisionSpec.java": "30fcf52778540794cebac38b3f4e31cd221ceeca3ba48e96800a3d65e59b10c6",
+    "app/src/main/java/com/lma/app/core/WaveFile.java": "cf70b9bbafb6aa23cc25217d4883e769173b00f74571d1b115c50a8ad6b15361",
+    "app/src/main/java/com/lma/app/DeviceResourceProbe.java": "5957025a376f740d8d91f6afd414f5fa4e4e6a84c1c0604104b25d05226a56e7",
+    "app/src/main/java/com/lma/app/DocumentInput.java": "a1b2395a3ca7344cfe298283f3d456bbd207c516c173f9775b492a2c5d128154",
+    "app/src/main/java/com/lma/app/Downloads.java": "ffb61b84f025775d05f5bf1933e054d7bfb975af195c1d7adb24b4c6ba8089ed",
+    "app/src/main/java/com/lma/app/EngineHost.java": "4d747d41206495e6c8d49b7b17092689d8f5b3f77861ef7d05cbd83455aa7d76",
+    "app/src/main/java/com/lma/app/ExpansionEngine.java": "9d02c895eb6fbf1790ddc4538e2cbfa701e154ba9bfc0e7e8fb3a6e214a6a8f4",
+    "app/src/main/java/com/lma/app/GgufMetadata.java": "704b05cb1de90340a3c8b37f1af9d2577418aeb95b5b06e88ea7903df6770e78",
+    "app/src/main/java/com/lma/app/HubCatalog.java": "2a5e513d896a4ba804a75ac35d8be15421757edf3f009bdb59fdb4228caae777",
+    "app/src/main/java/com/lma/app/HubClient.java": "3bc06665ad34b73937235362144605ed28c47b616654e6a31b2b3fa3125e7c0a",
+    "app/src/main/java/com/lma/app/InputImports.java": "f59c48493faab98edcc1462842fbabb9814ab5afca9fb583d5b6c310b4846fbc",
+    "app/src/main/java/com/lma/app/LmaApp.java": "270460bec85431e842ce814912fdd78743e33c8dea4fd53f4cb8e5babb93ac04",
+    "app/src/main/java/com/lma/app/LmaService.java": "a0dd4e1159c72c347d8868321c694871a64e6d56dfc8d62422df0d4c453d05d4",
+    "app/src/main/java/com/lma/app/LocalEngine.java": "c06198df33cf290dff58d5d7d7f2b44b3d84d552c1a3c0f1cf35c30c6d5b7c19",
+    "app/src/main/java/com/lma/app/LocalEngines.java": "149f613e0bd25911cea08b14a8eb615ff7f0b208210cfebc26811546b2a3504d",
+    "app/src/main/java/com/lma/app/LocalJobs.java": "cb4eab20a8c28dd9a299a01e834f58c5b8df97185467b1b3b915b9c809a7561b",
+    "app/src/main/java/com/lma/app/Ltx098Engine.java": "6e7643d54d506ba9f8a63599a9efe8d513d1eebb1a9ac53adc9ee6281a7bc36c",
+    "app/src/main/java/com/lma/app/MainActivity.java": "add28011124e7622c9debdefb2562ba0cba30751f082bb8fc1c3b81cad0408b0",
+    "app/src/main/java/com/lma/app/MediaInspector.java": "a1baa42ca0ace536cd21599ebbb57cf1a61a381148141c40ac69c6398f81a1f0",
+    "app/src/main/java/com/lma/app/MnnEngine.java": "3117ce4829d887605daba3abafa219d8b15d03781d4e2159d44eebdf8214b029",
+    "app/src/main/java/com/lma/app/ModelAssemblies.java": "41b0ed3e84a9a58b97f539d342a11aad3e65ff567f8366ed6fe39a240aca7ebd",
+    "app/src/main/java/com/lma/app/ModelPreparations.java": "7e732e0e2d3b263da63d75a5f1cbb417c6700eee0cf36a0f6c6942c083be56fa",
+    "app/src/main/java/com/lma/app/ModelPublication.java": "793660eab4344cd3647fb41738449b9ca7df874c6cb439c21f150c260bdd2d48",
+    "app/src/main/java/com/lma/app/ModelSettings.java": "1ce0dfb9de2f57c39d8e536f1492bdacdcce587329f0a891e34ba9abb0c31c1c",
+    "app/src/main/java/com/lma/app/MossDelayEngine.java": "85bc0636ac764860967d9f597490a9b03ff7695f74a2ad1e6d779e986b995995",
+    "app/src/main/java/com/lma/app/MossNanoEngine.java": "0f3bf376d81fe5404e8c76c8765618177726b7504b7c25eb2d770f81dd598f36",
+    "app/src/main/java/com/lma/app/MossRqEngine.java": "a6b38bbc2670250fb6432649654e0cfa04da998c66d4821b8a60e448339427c3",
+    "app/src/main/java/com/lma/app/NativeStages.java": "f731ffe3f9d72f8c5b6596c360cbf7e492aa24c98f814a11def393f5ded1ed68",
+    "app/src/main/java/com/lma/app/NativeWorker.java": "626ec1767124b88662a1d0c1ad77c3a7f238bac9be1591e5ed164c648662ac2a",
+    "app/src/main/java/com/lma/app/Net.java": "b7f52a6c5e16f9d58e87feea4e27690dde31804cb571f11d875edbb95926855d",
+    "app/src/main/java/com/lma/app/OpenMossEngine.java": "4344ccb2f537fd7d8aa3a244a42013e364e54ce24932d17a72d0bd48ec54e326",
+    "app/src/main/java/com/lma/app/PreparationEngine.java": "27fe90366e8e38da7f34735c8c2e89f206f556a0bff59baa849db600d37106da",
+    "app/src/main/java/com/lma/app/QwenTtsEngine.java": "b51ede9bafb8fb76018fe9361e7f577648d18a34454a9629165d59a6bbe420f9",
+    "app/src/main/java/com/lma/app/SdEngine.java": "6e23ca12ca06848a5a44afd8752dd29e1c030ded1ce426fe3feb23b97a706ac8",
+    "app/src/main/java/com/lma/app/SherpaEngine.java": "453c9ec255524f736b0a8e9a8ae1b7f759d81fa8013a92139bbf92793d0d1582",
+    "app/src/main/java/com/lma/app/SoulxEngine.java": "927774e89855629defcf74224d7c8ff5778b668033b820b5841a53adea8047bb",
+    "app/src/main/java/com/lma/app/StableAudioEngine.java": "9f1e2a49e58e2ee9aa8868c2cc9221c277a6f6a2c5e9ff89cc907d55f91094e6",
+    "app/src/main/java/com/lma/app/Store.java": "e0c6499a4a9e79f54dfe484ab6ea050e100ad5630512e61d50c361216b925290",
+    "app/src/main/java/com/lma/app/TextEngine.java": "f979ce6598e9d9ff48d878e364ff2fa5bcc7e98588b180803ada6ae16505c410",
+    "app/src/main/java/com/lma/app/VideoEncoder.java": "21688100a1d92797a94a8f452f6b5906f26a11963b835478849f53a9c47f9b3d",
+    "app/src/main/java/com/lma/app/VisionEngine.java": "31bcfd79e67e29a4351f1eb4c370bb2118f37d37b76c9ed64a3bb7b43079f027",
+    "app/src/main/res/drawable/ic_notification.xml": "156cead26295ef8f3822029f3ce8afa19bcef9a626925ec802271db88a1de26b",
+    "app/src/main/res/mipmap-anydpi/ic_launcher.xml": "7790159025ce15539c0cd2dc541129e3767abfa293517cdc40587880ae2c37c2",
+    "app/src/main/res/values/styles.xml": "6415204118d5d06db0b46cbf2f4d2c62b1c32e7c89fbe6bcfb8f26900a743b9f",
+    "tools/test_android_lint.py": "f17d15adfa5e0b164a664d877a658f694d378fc2db62ae6873bd67dec6819d4c"
+  }
+}

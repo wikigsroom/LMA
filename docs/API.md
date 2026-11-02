@@ -40,7 +40,7 @@ dev.28 的 LCM 准备 / 关联复用本页的 `model.prepare` / `model.assemble`
 
 ## 地址、鉴权和模型
 
-- 本机默认 Base URL：`http://127.0.0.1:8080/v1`。
+- 本机默认 Base URL：`http://127.0.0.1:52187/v1`。
 - 外部设备：先在“服务”开启局域网，改用界面显示的手机 IP；客户端与手机需要网络可达。
 - 请求头：`Authorization: Bearer YOUR_LMA_API_KEY`。密钥从手机界面复制，不是云端 OpenAI 密钥。
 - `GET /v1/models` 返回本地登记模型的别名，例如 `m08`。HF 下载模型使用稳定的 `hf_...`，手动添加使用 `custom_...`，不要从文件名猜测 ID。HF 令牌只用于仓库访问，不能代替推理 API 密钥。
@@ -51,10 +51,10 @@ dev.28 的 LCM 准备 / 关联复用本页的 `model.prepare` / `model.assemble`
 ## curl
 
 ```bash
-curl http://PHONE_IP:8080/v1/models \
+curl http://PHONE_IP:52187/v1/models \
   -H "Authorization: Bearer YOUR_LMA_API_KEY"
 
-curl -N http://PHONE_IP:8080/v1/chat/completions \
+curl -N http://PHONE_IP:52187/v1/chat/completions \
   -H "Authorization: Bearer YOUR_LMA_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{"model":"m08","messages":[{"role":"system","content":"请清楚简洁地回答。"},{"role":"user","content":"你好"}],"temperature":0.7,"max_tokens":256,"stream":true}'
@@ -71,7 +71,7 @@ import json
 import os
 import urllib.request
 
-base = os.environ.get("LMA_BASE_URL", "http://127.0.0.1:8080/v1").rstrip("/")
+base = os.environ.get("LMA_BASE_URL", "http://127.0.0.1:52187/v1").rstrip("/")
 headers = {"Authorization": "Bearer " + os.environ["LMA_API_KEY"]}
 request = urllib.request.Request(base + "/models", headers=headers)
 with urllib.request.urlopen(request, timeout=30) as response:
@@ -107,7 +107,7 @@ print()
 ## PowerShell 非流式示例
 
 ```powershell
-$lmaBase = 'http://PHONE_IP:8080/v1'
+$lmaBase = 'http://PHONE_IP:52187/v1'
 $lmaHeaders = @{ Authorization = "Bearer $env:LMA_API_KEY" }
 $lmaModels = Invoke-RestMethod "$lmaBase/models" -Headers $lmaHeaders
 $lmaModel = $lmaModels.data | Where-Object {
@@ -166,7 +166,7 @@ Invoke-RestMethod "$lmaBase/chat/completions" -Method Post -Headers $lmaHeaders 
 从已安装的模型包记录（具有 `recipe` 字段）选择对应 `id` 作为 `bundleId`，不要从名称猜测。既有文本记录保留聊天 / completions，并可使用其不可变 `bundle_id` 提交异步 `text.generate`。示例只表示调用结构，所选包、实际引擎与任务能力必须匹配；当前目录中未实测的 SD1.5 候选不能据此称为已支持。只有用户明确同意尝试未测配方时才发送 `allowUnmeasured: true`。
 
 ```bash
-curl http://PHONE_IP:8080/v1/jobs \
+curl http://PHONE_IP:52187/v1/jobs \
   -H "Authorization: Bearer YOUR_LMA_API_KEY" \
   -H "Content-Type: application/json" \
   -H "Idempotency-Key: my-image-request-1" \

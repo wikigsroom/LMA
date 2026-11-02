@@ -120,6 +120,8 @@ def check(prepared=False,published=False):
   for field in ('physical_device_tests','physical_device_tested','background_program_tested','phone_inference_tested','authorized_phone_model_attempts','authorized_phone_model_successes'):assert manifest[field]==evidence.get(field,0 if field=='physical_device_tests' else False),field
   for field in ('background_endurance_tested','model_quality_accepted'):assert not manifest[field],field
   assert manifest['all_benchmark_architectures_integrated']==COMPLETE and manifest['unported_benchmark_configurations']==evidence['unported_benchmark_configurations']
+  if evidence.get('port_upgrade_verified'):
+   assert manifest['api_port']==evidence['api_port'] and manifest['port_upgrade_verified'] and manifest['physical_direct_lan_tested']
   expected={x['name'] for x in manifest['assets']}|{'release-manifest.json'}
   if (directory/'publish-receipt.json').exists():expected.add('publish-receipt.json')
   assert set(p.name for p in directory.iterdir())==expected
@@ -140,11 +142,16 @@ def prepare():
  names=[]
  for original in originals:shutil.copy2(original,directory/original.name);names.append(original.name)
  notes='RELEASE_NOTES.md';shutil.copy2(ROOT/('docs/releases/v'+VERSION+'.md'),directory/notes);names.append(notes)
+ lan_media=ROOT/'docs/media/tests'/('lan-http-v'+VERSION.replace('.',''))
+ lan_evidence=ROOT/'verification/supplemental'/('v'+VERSION)/'lan-http.json'
  verification=f'LMA-{VERSION}-verification.zip'
  with zipfile.ZipFile(directory/verification,'w',zipfile.ZIP_DEFLATED) as archive:
   evidence_dir=ROOT/'verification/releases'/('v'+VERSION) if COMPLETE else ROOT/'verification/program'
   for p in sorted(evidence_dir.glob('*.json')):archive.write(p,p.relative_to(ROOT).as_posix())
   if COMPLETE:archive.write(ROOT/'research/portability/adaptation-current.json','adaptation-current.json')
+  if lan_evidence.exists():
+   archive.write(lan_evidence,lan_evidence.relative_to(ROOT).as_posix())
+   archive.write(lan_media/'manifest.json','media/physical-lan-http/manifest.json')
   for name in MEDIA:archive.write(ROOT/'docs/media/development'/name/'manifest.json','media/'+name+'/manifest.json')
   physical_manifest=ROOT/'docs/media/device'/('v'+VERSION)/'manifest.json'
   if physical_manifest.exists():archive.write(physical_manifest,'media/physical-device/manifest.json')
@@ -166,7 +173,17 @@ def prepare():
   model_media=ROOT/'docs/media/models'/('v'+VERSION)
   if model_media.exists():
    for p in sorted(model_media.glob('*.png')):archive.write(p,'physical-model/'+p.name)
+  if lan_evidence.exists():
+   for item in read(lan_media/'manifest.json')['files']:
+    if Path(item['file']).suffix=='.png':archive.write(lan_media/item['file'],'physical-lan-http/'+item['file'])
  names.append(screenshots)
+ if lan_evidence.exists():
+  lan_archive=f'LMA-{VERSION}-lan-http-results.zip'
+  with zipfile.ZipFile(directory/lan_archive,'w',zipfile.ZIP_DEFLATED) as archive:
+   archive.write(lan_evidence,'lan-http.json')
+   archive.write(lan_media/'manifest.json','manifest.json')
+   for item in read(lan_media/'manifest.json')['files']:archive.write(lan_media/item['file'],item['file'])
+  names.append(lan_archive)
  physical_media=ROOT/'docs/media/device'/('v'+VERSION)
  if physical_media.exists():
   for extension in ['mp4','gif']:
@@ -189,14 +206,16 @@ def prepare():
    shutil.copy2(original,directory/target);names.append(target)
  names.sort()
  (directory/'SHA256SUMS').write_text(''.join(sha(directory/n)+'  '+n+'\n' for n in names),encoding='utf-8');names.append('SHA256SUMS')
- manifest=dict(repository='wikigsroom/LMA',version=VERSION,tag='v'+VERSION,title='LMA v'+VERSION+' · Local multimodal API and uncapped generation / 本地多模态接口与生成时限取消',
+ manifest=dict(repository='wikigsroom/LMA',version=VERSION,tag='v'+VERSION,title='LMA v'+VERSION+(' · Default API port 52187 / 默认接口端口 52187' if VERSION=='0.3.13' else ' · Local multimodal API and uncapped generation / 本地多模态接口与生成时限取消'),
   prerelease=not COMPLETE,notes='docs/releases/v'+VERSION+'.md',validation_mode='program_only',full_scope_program_implementation_complete=True,
   apk_sha256=build['sha256'],physical_device_tested=evidence.get('physical_device_tested',False),
   physical_device_tests=evidence.get('physical_device_tests',0),background_program_tested=evidence.get('background_program_tested',False),
-  physical_media_included=physical_media.exists(),actual_model_media_included=model_media.exists() or benchmark_media.exists(),phone_inference_tested=evidence.get('phone_inference_tested',False),
+  physical_media_included=physical_media.exists(),actual_model_media_included=model_media.exists() or benchmark_media.exists() or lan_evidence.exists(),phone_inference_tested=evidence.get('phone_inference_tested',False),
   authorized_phone_model_attempts=evidence.get('authorized_phone_model_attempts',0),
   physical_api_integration_tested=evidence.get('physical_api_integration_tested',False),
   physical_api_checks=evidence.get('physical_api_checks',0),
+  physical_direct_lan_tested=evidence.get('physical_direct_lan_tested',False),
+  api_port=evidence.get('api_port'),port_upgrade_verified=evidence.get('port_upgrade_verified',False),
   final_video_over_five_seconds=evidence.get('final_video_over_five_seconds',False),
   authorized_phone_model_successes=evidence.get('authorized_phone_model_successes',0),background_endurance_tested=False,
   model_quality_accepted=False,media_uses_simulated_native_state=True,signing_material_included=False,model_weights_included=False,

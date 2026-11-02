@@ -1,5 +1,7 @@
 # v0.3.12 supplementary physical LAN HTTP test
 
+Historical v0.3.12 results and examples retain port 8080. **Current v0.3.13 defaults to 52187**; see [migration and current validation](API_PORT.en.md).
+
 [中文](LAN_HTTP_TEST.md) · [Original benchmark](DEVICE_BENCHMARK_V0312.en.md) · [API usage](LOCAL_API_V0312.en.md) · [57-check JSON](../verification/supplemental/v0.3.12/lan-http.json)
 
 On 2026-11-02, the released **v0.3.12/code62** passed a new direct LAN test: enable “允许局域网访问” in the phone's Service page, then issue native HTTP requests from the Windows PC's physical Ethernet interface to the phone's Wi-Fi IPv4. **All 57 checks passed across 128 HTTP requests.** LAN access remains enabled.

@@ -149,7 +149,7 @@ public final class DeviceAcceptance extends Instrumentation {
         result.put("replyTokens", reply.optInt("tokens")).put("replyElapsedMs", reply.optLong("elapsed"));
         pass("Actual model reply persisted through production ChatRunner");
         // Secret exists only in the trusted host runner's captured output/memory.
-        result.put("apiKey", app.prefs.getString("apiKey", "")).put("port", app.prefs.getInt("port", 8080));
+        result.put("apiKey", app.prefs.getString("apiKey", "")).put("port", app.prefs.getInt("port", 52187));
     }
     @Override public void onStart() {
         JSONObject result = new JSONObject(); Bundle output = new Bundle(); int code = Activity.RESULT_CANCELED;
@@ -176,7 +176,7 @@ public final class DeviceAcceptance extends Instrumentation {
             if (options.getString("programApi", "").equals("true")) {
                 command("startApi", new JSONObject());
                 require(app.apiHost != null && app.apiHost.ready(), "Foreground API did not start");
-                result.put("apiKey", app.prefs.getString("apiKey", "")).put("port", app.prefs.getInt("port", 8080));
+                result.put("apiKey", app.prefs.getString("apiKey", "")).put("port", app.prefs.getInt("port", 52187));
                 pass("Zero-model foreground API listener starts without downloading weights");
             }
             String selected = options.getString("model", ""); if (!selected.isEmpty()) model(selected, result);

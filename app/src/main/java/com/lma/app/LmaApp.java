@@ -23,7 +23,7 @@ import com.lma.app.core.InputUploads;
 import com.lma.app.core.PreparedAssets;
 
 public final class LmaApp extends Application {
-    public static final String VERSION = "0.3.12";
+    public static final String VERSION = "0.3.13";
     public static final String UPDATE = "com.lma.app.STATE_CHANGED";
     public Store store;
     private JSONObject recommendations = new JSONObject();
@@ -70,6 +70,10 @@ public final class LmaApp extends Application {
     @Override public void onCreate() {
         super.onCreate();
         prefs = getSharedPreferences("lma", MODE_PRIVATE);
+        if (prefs.getInt("apiPortDefaultsVersion", 0) < com.lma.app.core.ApiPort.DEFAULTS_VERSION) {
+            int migratedPort = com.lma.app.core.ApiPort.afterUpgrade(prefs.getInt("port", -1), prefs.getInt("apiPortDefaultsVersion", 0));
+            prefs.edit().putInt("port", migratedPort).putInt("apiPortDefaultsVersion", com.lma.app.core.ApiPort.DEFAULTS_VERSION).apply();
+        }
         if (!prefs.contains("desiredApi")) prefs.edit().putBoolean("desiredApi", prefs.getBoolean("desiredRunning", false)).apply();
         engineModel = prefs.getString("selectedModel", "");
         if (prefs.getString("apiKey", "").isEmpty()) {
@@ -164,7 +168,7 @@ public final class LmaApp extends Application {
     public JSONObject settings(String modelId) throws Exception {
         JSONObject value = new JSONObject();
         value.put("lan", prefs.getBoolean("lan", false));
-        value.put("port", prefs.getInt("port", 8080));
+        value.put("port", prefs.getInt("port", com.lma.app.core.ApiPort.DEFAULT));
         JSONObject inference = ModelSettings.defaults();
         if (!modelId.isEmpty()) inference = store.config(modelId).getJSONObject("values");
         for (String key : ModelSettings.KEYS) value.put(key, inference.get(key));
@@ -210,7 +214,7 @@ public final class LmaApp extends Application {
             if (publishing != null) try { value.put("apiCatalogue", publishing.catalogue()); } catch (Exception unavailable) { value.put("apiCatalogue", new JSONObject().put("object", "list").put("data", new JSONArray()).put("unavailable", true)); }
             JSONObject engine = new JSONObject(); engine.put("state", engineState); engine.put("detail", engineDetail);
             engine.put("modelId", engineModel); engine.put("startedAt", engineStarted); engine.put("generating", generating || textRequestBusy); engine.put("externalGenerating", textRequestBusy);
-            engine.put("localUrl", "http://127.0.0.1:" + prefs.getInt("port", 8080) + "/v1");
+            engine.put("localUrl", "http://127.0.0.1:" + prefs.getInt("port", com.lma.app.core.ApiPort.DEFAULT) + "/v1");
             engine.put("addresses", addresses()); value.put("engine", engine);
             value.put("device", device()); value.put("chat", chats.snapshot()); value.put("error", lastError);
             value.put("commandResult", commandResult); value.put("errorSequence", errorSequence);
@@ -235,7 +239,7 @@ public final class LmaApp extends Application {
                 if (!network.isUp() || network.isLoopback()) continue;
                 for (InetAddress address : Collections.list(network.getInetAddresses())) {
                     if (address instanceof Inet4Address && !address.isLoopbackAddress() && address.isSiteLocalAddress())
-                        result.put("http://" + address.getHostAddress() + ":" + prefs.getInt("port", 8080) + "/v1");
+                        result.put("http://" + address.getHostAddress() + ":" + prefs.getInt("port", com.lma.app.core.ApiPort.DEFAULT) + "/v1");
                 }
             }
         } catch (Exception ignored) {}

@@ -22,7 +22,7 @@ public final class ApiHost implements LocalApi.Runtime, AutoCloseable {
     public synchronized boolean ready() { return !closed && server != null; }
     public boolean wanted() { return app.prefs.getBoolean("desiredApi", false); }
     public synchronized void start() throws Exception {
-        configure(app.prefs.getInt("port", 8080), app.prefs.getBoolean("lan", false));
+        configure(app.prefs.getInt("port", com.lma.app.core.ApiPort.DEFAULT), app.prefs.getBoolean("lan", false));
         app.prefs.edit().putBoolean("desiredApi", true).apply(); owner.activityChanged();
     }
     public synchronized void configure(int nextPort, boolean nextLan) throws Exception {

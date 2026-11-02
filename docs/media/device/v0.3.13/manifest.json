@@ -1,0 +1,84 @@
+{
+  "schema": "lma.physical-api-media/1",
+  "version": "0.3.13",
+  "apk_sha256": "ed89eda6b88cf005cd839eb67e4b5219a8a191f58af0d2aeea1e401e39106158",
+  "android_device": true,
+  "desktop_fixture": false,
+  "model_inference": false,
+  "weights_downloaded": false,
+  "reviewed_app_only": true,
+  "playback_speed": 1,
+  "screenshots": [
+    {
+      "file": "01-recommended.png",
+      "bytes": 220811,
+      "sha256": "a3536870f6f3f173ed3e33655432c5ed7541b642c912db78c775a38027c2a0b6"
+    },
+    {
+      "file": "02-multimodal-recommendations.png",
+      "bytes": 229898,
+      "sha256": "da786de17a8d2a7b883aa017405e2944bae2264e6390cf1804be19eb8a3ffecb"
+    },
+    {
+      "file": "03-local-models.png",
+      "bytes": 203660,
+      "sha256": "f6fc6fdd2e2f219f421f8d5735ac8e4e3959c83028d41b735eac6e2ea187b192"
+    },
+    {
+      "file": "04-api-overview.png",
+      "bytes": 189909,
+      "sha256": "973a0b24d8f21fb07ea85209c5e25f3334d147ce4d58edee482c65d3565cc676"
+    },
+    {
+      "file": "05-published-models.png",
+      "bytes": 221980,
+      "sha256": "e636aae0adc0bd76016568a4da9fbd99402552690626a999544835352c837e92"
+    }
+  ],
+  "files": [
+    {
+      "file": "01-recommended.png",
+      "bytes": 220811,
+      "sha256": "a3536870f6f3f173ed3e33655432c5ed7541b642c912db78c775a38027c2a0b6"
+    },
+    {
+      "file": "02-multimodal-recommendations.png",
+      "bytes": 229898,
+      "sha256": "da786de17a8d2a7b883aa017405e2944bae2264e6390cf1804be19eb8a3ffecb"
+    },
+    {
+      "file": "03-local-models.png",
+      "bytes": 203660,
+      "sha256": "f6fc6fdd2e2f219f421f8d5735ac8e4e3959c83028d41b735eac6e2ea187b192"
+    },
+    {
+      "file": "04-api-overview.png",
+      "bytes": 189909,
+      "sha256": "973a0b24d8f21fb07ea85209c5e25f3334d147ce4d58edee482c65d3565cc676"
+    },
+    {
+      "file": "05-published-models.png",
+      "bytes": 221980,
+      "sha256": "e636aae0adc0bd76016568a4da9fbd99402552690626a999544835352c837e92"
+    },
+    {
+      "file": "physical-walkthrough.gif",
+      "bytes": 1377481,
+      "sha256": "369ae17f1c7ee6c83018b613eda73d02863b677f5bd6552e2420610b7ec274c2"
+    },
+    {
+      "file": "physical-walkthrough.mp4",
+      "bytes": 1515876,
+      "sha256": "ca2cd3fdba7bd0573384b2015f14c91e53fba35529a760d5b2fb7e6dc046a724"
+    }
+  ],
+  "input_fingerprint": {
+    "app/src/main/assets/app.css": "1c1bdc0a0f90c2b1dbe170853a9897e8acc2664e157fee22af5b996ad4e14846",
+    "app/src/main/assets/app.js": "0cf09382fdffc747700849c5f2c57262416b1924a1ced74b63cbda1c22140b44",
+    "app/src/main/assets/index.html": "84380c28856f46938c5d0efe508da8b89ebb2d9aeee23cd243d5f7255ca4f875",
+    "tools/capture_device_api.py": "310700d8524a59b5019ce2c974f38d3f2f0373dcf35ef6d16999e0c2728d42c5"
+  },
+  "privacy_scope": "Only Recommended, Local and Service pages; no personal chat, task history or logs. API key hidden before each capture.",
+  "browser_used": false,
+  "browser_closed": true
+}

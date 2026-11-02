@@ -224,14 +224,14 @@ public final class LmaService extends Service {
     }
     private void saveSettings(JSONObject value) throws Exception {
         for (String key : ModelSettings.KEYS) if (value.has(key)) throw new IllegalArgumentException("模型参数已移至本地模型的独立设置");
-        int port = value.optInt("port", app.prefs.getInt("port", 8080));
+        int port = value.optInt("port", app.prefs.getInt("port", com.lma.app.core.ApiPort.DEFAULT));
         String source = value.optString("source", app.prefs.getString("source", "auto"));
         String theme = value.optString("theme", app.prefs.getString("theme", "system"));
         boolean lan = value.optBoolean("lan", app.prefs.getBoolean("lan", false));
         if (port < 1024 || port > 65535) throw new IllegalArgumentException("服务端口需要 1024–65535");
         if (!source.equals("auto") && !source.equals("huggingface") && !source.equals("mirror")) throw new IllegalArgumentException("未知下载源");
         if (!theme.equals("system") && !theme.equals("light") && !theme.equals("dark")) throw new IllegalArgumentException("未知主题");
-        boolean reload = port != app.prefs.getInt("port", 8080) || lan != app.prefs.getBoolean("lan", false);
+        boolean reload = port != app.prefs.getInt("port", com.lma.app.core.ApiPort.DEFAULT) || lan != app.prefs.getBoolean("lan", false);
         if (reload && (app.generating || app.textRequestBusy)) throw new IllegalStateException("请先停止生成，再修改服务监听参数");
         if (reload && api.ready()) api.configure(port, lan);
         SharedPreferences.Editor edit = app.prefs.edit().putInt("port", port).putString("source", source).putString("theme", theme).putBoolean("lan", lan);

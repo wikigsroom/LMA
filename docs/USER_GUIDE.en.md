@@ -81,7 +81,7 @@ History uses at most 16 recent messages, selected as complete user/assistant pai
 
 ## Local and LAN serving
 
-A loaded model exposes `http://127.0.0.1:8080/v1` by default. Loopback is for clients on the same phone. Enable **允许局域网访问 / Allow LAN** to listen on all interfaces. Another device must use the phone's displayed IP, not that client's own `127.0.0.1`.
+A loaded model exposes `http://127.0.0.1:52187/v1` by default. Loopback is for clients on the same phone. Enable **允许局域网访问 / Allow LAN** to listen on all interfaces. Another device must use the phone's displayed IP, not that client's own `127.0.0.1`.
 
 Copy the API key or connection example. Each installation creates a random key; switching models does not rotate it. LAN uses HTTP, without built-in TLS, public tunneling, or multiple-user permissions. See [API integration](API.en.md).
 
@@ -107,7 +107,7 @@ Context, threads and reasoning changes reload the running model; stop an active 
 | Context | 2048 | Larger contexts generally require more RAM |
 | Output limit | 512 | In-app default; external clients set their own |
 | Temperature | 0.7 | Sampling randomness |
-| Port | 8080 | 1024–65535; must be available |
+| Port | 52187 | 1024–65535; must be available |
 | Reasoning | off | Passed to the engine; some models may ignore it |
 | First-download auto-load | on | Only when no model was previously selected |
 | Boot restore | off | Optional and subject to Android restrictions |

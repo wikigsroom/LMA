@@ -1,5 +1,7 @@
 # v0.3.12 内网 HTTP 实机补充测试
 
+本页 v0.3.12 历史结果与用例保留原端口 8080。**当前 v0.3.13 默认端口为 52187**，请参阅[迁移与本版验证](API_PORT.md)。
+
 [English](LAN_HTTP_TEST.en.md) · [原版完整测评](DEVICE_BENCHMARK_V0312.md) · [API 使用](LOCAL_API_V0312.md) · [57 项检查 JSON](../verification/supplemental/v0.3.12/lan-http.json)
 
 2026-11-02，在已发布的 **v0.3.12/code62** 上新增一轮真实局域网测试：在手机“服务”开启“允许局域网访问”，由 Windows PC 的物理以太网接口直接请求手机 Wi-Fi IPv4 地址。**57 项检查通过，128 次 HTTP 请求**。手机继续保持内网访问开启。

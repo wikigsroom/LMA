@@ -1,5 +1,7 @@
 # 本地多模态 API 与 Sub2API 接入
 
+本页 v0.3.12 历史结果与用例保留原端口 8080。**当前 v0.3.13 默认端口为 52187**，请参阅[迁移与本版验证](API_PORT.md)。
+
 [English](LOCAL_API_V0312.en.md) · [实机测评](DEVICE_BENCHMARK_V0312.md) · [完整协议](SUB2API_OPENAI.md) · [OpenAPI](proposals/sub2api-openai.openapi.json)
 
 v0.3.12/code62 为本机模型增加标准模型发现、图片和语音兼容层，以及视频、音乐、3D 的统一任务扩展。App 升级只安装基座；模型、依赖与逐模型参数仍由用户在“模型 → 本地”管理。原有 14 项推荐和标签保留，HF 全部／搜索入口不受推荐范围限制。

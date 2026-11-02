@@ -1,5 +1,5 @@
 {
-  "version": "0.3.12",
+  "version": "0.3.13",
   "kind": "current production UI with an explicit simulated bridge",
   "android_device": false,
   "model_inference": false,
@@ -67,28 +67,28 @@
     },
     {
       "file": "04-multiview-queue.png",
-      "bytes": 49291,
-      "sha256": "46e7abdf4a835591eea864862e6a8d35c9c6c1e53f1f7d4378ed0c457a647854"
+      "bytes": 49174,
+      "sha256": "4f005b1d1d268bbe84695d7161b6fa032fc0e6f6cad2642044f8c2d585bf38ca"
     },
     {
       "file": "05-background-observations.png",
-      "bytes": 48615,
-      "sha256": "fa910317e21ba543e72b7fc9fd81b00af7adb31d9e1451cbe320bfbe9447930e"
+      "bytes": 48705,
+      "sha256": "05ef4c562e094600a139a52b865c33d97f171c7bcab6812040abec9048b26b4a"
     },
     {
       "file": "multiview-ui.gif",
-      "bytes": 582218,
-      "sha256": "db270bcfb406963fecf6a252d07e4095e9cfc6952f4ee56736a5bce603815ccb"
+      "bytes": 943517,
+      "sha256": "eddb5e201a6bf887a585faf18552825a3d0a0280d46c1e6d8b4c1d8f4d9e3af6"
     },
     {
       "file": "multiview-ui.mp4",
-      "bytes": 250523,
-      "sha256": "1c90ba19a69fddfdf5b5f0ecb32f38981b73c1af3fd857a141cfad253a93b2c9"
+      "bytes": 334416,
+      "sha256": "c0140a8c277657eae34e47ac9d22c767c12deb2e598a474b1359c1619d4fc7ca"
     }
   ],
   "input_fingerprint": {
     "app/src/main/assets/app.css": "1c1bdc0a0f90c2b1dbe170853a9897e8acc2664e157fee22af5b996ad4e14846",
-    "app/src/main/assets/app.js": "e9210eb93eed1ddc27da673aa9d9088fbbb92842bebf80e18e1d0bfe3d5840bb",
+    "app/src/main/assets/app.js": "0cf09382fdffc747700849c5f2c57262416b1924a1ced74b63cbda1c22140b44",
     "app/src/main/assets/architectures/ltx098-upscaler.onnx": "b7b3b8067dc247002b92fa228bf8bd1271d3b535f0ac8f70c7f7e5e94448e2d9",
     "app/src/main/assets/asset-preparations.json": "b0a7cbac1a633310b9fff84164439ee8fe20a1df137d1075eb9263f531ccfd3b",
     "app/src/main/assets/audio-preview.js": "33bb898969f37c1f78c6664052c46da844d148defdcef4a54d64bc5829037f44",
@@ -99,7 +99,7 @@
     "app/src/main/assets/foundation.css": "8bbd7a445a43d93f796be904e8f67b6e6120cf27547b93abb79cf41142078343",
     "app/src/main/assets/foundation.js": "a2bd9f0a92807a0d60a97884fb3dd123ddfc5cf42258b6577bff36b37f99cb14",
     "app/src/main/assets/glb-preview.js": "26554ae19c4dbeba87732dc0d220a628f40b598450a021e683737ded03db0f85",
-    "app/src/main/assets/index.html": "f6803ac0d4b8ce6f96167659dd9b8999e1e0cbffddc46d3c35a5a930a523ced1",
+    "app/src/main/assets/index.html": "84380c28856f46938c5d0efe508da8b89ebb2d9aeee23cd243d5f7255ca4f875",
     "app/src/main/assets/license.js": "838317c7653ca35291e9e18f2a7e2d98ed46a10880dfe144176f04ad994433d0",
     "app/src/main/assets/licenses/LLAMA_CPP_LICENSE": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
     "app/src/main/assets/licenses/LMA_LICENSE": "6ae3f5efa412d91cbf66e44f743e5ce41a8044309d05d893365206ab9bc35fc3",
@@ -307,6 +307,6 @@
     "app/src/main/assets/workbench.js": "367c6293b50bb1f4567da00eef20d795c7f775c2e5f6b5ec62b0e32989920e09",
     "tests/foundation-ui.cjs": "b8cc6e6dcd05054e8651c1ec908e8d1f8e1c65abe1cb6d81e77f52a7e9fea6ed",
     "tests/multiview-ui.cjs": "0303a404cc62e51074fcd4cf2d10db66011ca851867de5d489658854af6ec103",
-    "tools/capture_workbench.cjs": "8173ade63ef547140cba8c219fd4304253ceb2afca2f67dc6c1b8ed4627edfc5"
+    "tools/capture_workbench.cjs": "d1cdc87a960869fa24ab34c46c321d32da22c5349c30c654d2d3cc6d8f83b5cb"
   }
 }

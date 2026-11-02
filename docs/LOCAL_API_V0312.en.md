@@ -1,5 +1,7 @@
 # Local multimodal API and Sub2API integration
 
+Historical v0.3.12 results and examples retain port 8080. **Current v0.3.13 defaults to 52187**; see [migration and current validation](API_PORT.en.md).
+
 [中文](LOCAL_API_V0312.md) · [Physical benchmark](DEVICE_BENCHMARK_V0312.en.md) · [Full contract](SUB2API_OPENAI.en.md) · [OpenAPI](proposals/sub2api-openai.openapi.json)
 
 v0.3.12/code62 adds standard discovery, image/speech facades and a shared asynchronous extension for video, music and 3D. APK upgrades deliver the foundation. Users choose, download/import and configure model assets in Models → Local. All 14 recommendations, content labels and unrestricted HF discovery remain available.

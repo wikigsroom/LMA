@@ -14,6 +14,7 @@ import subprocess
 import time
 import urllib.error
 import urllib.request
+from urllib.parse import urlsplit
 import xml.etree.ElementTree as ET
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -62,13 +63,18 @@ def phone_api(serial):
     # Restore the page top after earlier UI tests; otherwise the key can be above
     # the current scroll position and scrolling downward would never find it.
     for _ in range(2): command('shell', 'input', 'swipe', '950', '650', '950', '1850', '300')
+    endpoints = [n.get("text") or n.get("content-desc") or "" for n in ui().iter("node")]
+    endpoints = [urlsplit(x) for x in endpoints if re.fullmatch(r"http://[0-9.]+:[0-9]+/v1", x)]
+    if len(endpoints) != 1 or not 1024 <= endpoints[0].port <= 65535:
+        raise RuntimeError("Cannot determine the configured API port from the authorized UI")
+    api_port = endpoints[0].port
     toggle = None
     for _ in range(5):
         document = ui()
         nodes = [n for n in document.iter('node') if (n.get('text') or n.get('content-desc')) == '显示或隐藏密钥']
         if nodes:
             toggle = center(nodes[0])
-            if toggle[1] < 2050: break
+            if list(map(int, re.findall(r'\d+', nodes[0].get('bounds', ''))))[3] < 2030: break
         command('shell', 'input', 'swipe', '1000', '1750', '1000', '950', '300')
     if toggle is None: raise RuntimeError('Cannot locate the app API-key toggle; no credentials logged')
     key = ''
@@ -79,7 +85,7 @@ def phone_api(serial):
             if re.fullmatch(r'lma_[A-Za-z0-9]+', text): key = text
     finally: tap(toggle)
     if not key: raise RuntimeError('Cannot read API key from authorized UI')
-    forwarding = command('forward', 'tcp:0', 'tcp:8080').strip()
+    forwarding = command('forward', 'tcp:0', 'tcp:'+str(api_port)).strip()
     opener = urllib.request.build_opener(urllib.request.ProxyHandler({}))
     def request(method, path, data=None, mime='application/json', extra=None, raw=False, timeout=25, detailed=False):
         headers = {'Authorization': 'Bearer '+key, 'Content-Type': mime}

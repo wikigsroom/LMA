@@ -1,5 +1,5 @@
 {
-  "version": "0.3.12",
+  "version": "0.3.13",
   "kind": "current production UI with an explicit simulated bridge",
   "android_device": false,
   "model_inference": false,
@@ -91,8 +91,8 @@
     },
     {
       "file": "05-material-queue.png",
-      "bytes": 47413,
-      "sha256": "460cb38ad3e7a20adb2869403d43fd098aba7ff65ba52bfcdb115f3c4918d6d3"
+      "bytes": 47338,
+      "sha256": "e5517436c8ba6964ccac4c63f34744c3f47578097b75fec918e81e9522849953"
     },
     {
       "file": "06-material-preview.png",
@@ -101,18 +101,18 @@
     },
     {
       "file": "material-ui.gif",
-      "bytes": 600116,
-      "sha256": "a1daa513bee0299e3a7d016f7580385ef78d5981399b5a0074351ada17467369"
+      "bytes": 878571,
+      "sha256": "cf56de3aaceeb0fcf916099a3b15d5b0d7413dcb98536483b85f60d64198f285"
     },
     {
       "file": "material-ui.mp4",
-      "bytes": 256701,
-      "sha256": "84a720145856bf825f1a73813e8ca26769551ab9f0ce0a1e31f49806446de363"
+      "bytes": 366168,
+      "sha256": "c347da37b70af3abc0d9e340b7069ee87e90aefa481215b05e667c9b558dea04"
     }
   ],
   "input_fingerprint": {
     "app/src/main/assets/app.css": "1c1bdc0a0f90c2b1dbe170853a9897e8acc2664e157fee22af5b996ad4e14846",
-    "app/src/main/assets/app.js": "e9210eb93eed1ddc27da673aa9d9088fbbb92842bebf80e18e1d0bfe3d5840bb",
+    "app/src/main/assets/app.js": "0cf09382fdffc747700849c5f2c57262416b1924a1ced74b63cbda1c22140b44",
     "app/src/main/assets/architectures/ltx098-upscaler.onnx": "b7b3b8067dc247002b92fa228bf8bd1271d3b535f0ac8f70c7f7e5e94448e2d9",
     "app/src/main/assets/asset-preparations.json": "b0a7cbac1a633310b9fff84164439ee8fe20a1df137d1075eb9263f531ccfd3b",
     "app/src/main/assets/audio-preview.js": "33bb898969f37c1f78c6664052c46da844d148defdcef4a54d64bc5829037f44",
@@ -123,7 +123,7 @@
     "app/src/main/assets/foundation.css": "8bbd7a445a43d93f796be904e8f67b6e6120cf27547b93abb79cf41142078343",
     "app/src/main/assets/foundation.js": "a2bd9f0a92807a0d60a97884fb3dd123ddfc5cf42258b6577bff36b37f99cb14",
     "app/src/main/assets/glb-preview.js": "26554ae19c4dbeba87732dc0d220a628f40b598450a021e683737ded03db0f85",
-    "app/src/main/assets/index.html": "f6803ac0d4b8ce6f96167659dd9b8999e1e0cbffddc46d3c35a5a930a523ced1",
+    "app/src/main/assets/index.html": "84380c28856f46938c5d0efe508da8b89ebb2d9aeee23cd243d5f7255ca4f875",
     "app/src/main/assets/license.js": "838317c7653ca35291e9e18f2a7e2d98ed46a10880dfe144176f04ad994433d0",
     "app/src/main/assets/licenses/LLAMA_CPP_LICENSE": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
     "app/src/main/assets/licenses/LMA_LICENSE": "6ae3f5efa412d91cbf66e44f743e5ce41a8044309d05d893365206ab9bc35fc3",
@@ -332,6 +332,6 @@
     "tests/foundation-ui.cjs": "b8cc6e6dcd05054e8651c1ec908e8d1f8e1c65abe1cb6d81e77f52a7e9fea6ed",
     "tests/glb-preview-ui.cjs": "ba8dc2fd9a1f263e2e3cf7ad6f68c04cff582f1971052c6dc2ffb7c429b5ab9a",
     "tests/material-ui.cjs": "242de67b1776a1994b184f31d82930e5934350db7ab20e38976923c13912ea96",
-    "tools/capture_workbench.cjs": "8173ade63ef547140cba8c219fd4304253ceb2afca2f67dc6c1b8ed4627edfc5"
+    "tools/capture_workbench.cjs": "d1cdc87a960869fa24ab34c46c321d32da22c5349c30c654d2d3cc6d8f83b5cb"
   }
 }

@@ -282,10 +282,18 @@ public final class BackendTest {
         check(ChatHistory.select(input, 3, 16).isEmpty(), "History never includes a turn beyond its character budget");
         check(ChatHistory.select(input, 100, 1).isEmpty(), "History never cuts a conversational pair in half");
     }
+    private static void testPortUpgrade() throws Exception {
+        check(ApiPort.afterUpgrade(-1, 0) == ApiPort.DEFAULT, "Fresh installation uses the high API port");
+        check(ApiPort.afterUpgrade(8080, 0) == ApiPort.DEFAULT, "Upgrade migrates the former default API port");
+        check(ApiPort.afterUpgrade(49199, 0) == 49199 && ApiPort.afterUpgrade(1024, 0) == 1024 && ApiPort.afterUpgrade(65535, 0) == 65535, "Upgrade preserves valid customized API ports including bounds");
+        check(ApiPort.afterUpgrade(8080, 1) == 8080 && ApiPort.afterUpgrade(49199, 1) == 49199, "Default migration is one-time and later explicit port edits survive");
+        check(ApiPort.afterUpgrade(0, 0) == ApiPort.DEFAULT && ApiPort.afterUpgrade(65536, 0) == ApiPort.DEFAULT, "Invalid saved API ports recover to the high default");
+    }
     public static void main(String[] args) throws Exception {
         root = Paths.get(args[0]).toAbsolutePath(); work = root.resolve("build/backend-tests/run"); Files.createDirectories(work);
         assets = root.resolve("app/src/main/assets"); libraries = root.resolve("app/src/main/jniLibs/arm64-v8a");
         try {
+            testPortUpgrade();
             httpsServer(root.resolve("build/backend-tests/loopback.p12")); passed.addAll(ModelSettingsTest.run(work, assets, libraries)); testHistory(); testDownloads();
             passed.addAll(ImportCancellationTest.run(app("import-cancellation"), payload, work.resolve("import-cancellation-artifacts").toFile())); testProcessesAndChat();
             JSONObject result = new JSONObject().put("passed", passed.size()).put("checks", new JSONArray(passed)).put("real_https_sockets", true).put("real_child_processes", true)

@@ -10,7 +10,7 @@ public final class Net {
     private Net() {}
     public interface ConnectionObserver { void opened(HttpURLConnection connection) throws IOException; }
     public static HttpURLConnection local(LmaApp app, String path) throws IOException {
-        int port = app.prefs.getInt("port", 8080);
+        int port = app.prefs.getInt("port", com.lma.app.core.ApiPort.DEFAULT);
         HttpURLConnection connection = (HttpURLConnection) new URL("http://127.0.0.1:" + port + path).openConnection();
         connection.setConnectTimeout(3000); connection.setReadTimeout(0); connection.setInstanceFollowRedirects(false);
         connection.setRequestProperty("Authorization", "Bearer " + app.prefs.getString("apiKey", ""));

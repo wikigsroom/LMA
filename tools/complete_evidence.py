@@ -70,6 +70,8 @@ def inputs():
         *(['docs/media/models/v'+version()+'/manifest.json'] if (ROOT/'docs/media/models'/('v'+version())/'manifest.json').exists() else []),
         *(['verification/releases/v'+version()+'/physical-api.json'] if (OUT/'physical-api.json').exists() else []),
         *(['docs/media/benchmarks/v'+version()+'/manifest.json'] if (ROOT/'docs/media/benchmarks'/('v'+version())/'manifest.json').exists() else []),
+        *(['tools/port_update_evidence.py', 'tools/device_lan_http.py', 'tools/export_lan_http_evidence.py',
+           'verification/supplemental/v0.3.13/lan-http.json', 'docs/media/tests/lan-http-v0313/manifest.json'] if version() == '0.3.13' else []),
         'research/portability/adaptation-current.json', 'docs/proposals/program-validation-policy.json',
         'docs/proposals/multimodal-release-scope.json', 'catalogue/release-'+version()+'-implementation.json')
 
@@ -95,7 +97,11 @@ def historical_identity():
 def physical_models_and_api(directory):
     from physical_model_evidence import check as legacy
     from physical_api_evidence import check as api
-    return legacy(directory) | api(directory)
+    result = legacy(directory) | api(directory)
+    if version() == '0.3.13':
+        from port_update_evidence import check as port_check
+        result |= port_check()
+    return result
 
 
 def export():
@@ -167,6 +173,11 @@ def check():
     if version() == '0.3.12':
         assert status['physical_device_tested'] and status['physical_api_integration_tested']
         assert status['physical_api_checks'] >= 28 and status['final_video_over_five_seconds']
+    if version() == '0.3.13':
+        assert status['physical_device_tested'] and status['physical_api_integration_tested']
+        assert status['port_upgrade_verified'] and status['api_port'] == 52187
+        assert status['physical_direct_lan_tested'] and status['physical_api_checks'] >= 63
+        assert status['direct_lan_http_requests'] > 100 and not status['existing_video_generated_by_this_apk']
     for key in ('complete_model_downloads_for_validation', 'complete_model_copies_for_validation', 'model_quality_accepted',
         'background_endurance_tested', 'all_selected_models_tested', 'model_weights_in_apk',
         'automatic_model_asset_downloads', 'virtualization_used'):

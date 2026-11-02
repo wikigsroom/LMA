@@ -20,7 +20,7 @@ flowchart LR
     F --> G
 ```
 
-Forwarding requires an already reachable phone. `127.0.0.1:8080` belongs to the phone itself; another machine needs the existing explicitly enabled LAN listener and an allowed destination. A publicly hosted gateway does not automatically gain access to the phone. This contract does not open public ports, create tunnels or install external execution nodes.
+Forwarding requires an already reachable phone. `127.0.0.1:52187` belongs to the phone itself; another machine needs the existing explicitly enabled LAN listener and an allowed destination. A publicly hosted gateway does not automatically gain access to the phone. This contract does not open public ports, create tunnels or install external execution nodes.
 
 ## 2. Source audit
 
@@ -79,7 +79,7 @@ Use `platform=openai`, `type=apikey`, the phone destination and an independent u
   "type": "apikey",
   "concurrency": 1,
   "credentials": {
-    "base_url": "http://PHONE_ADDRESS:8080",
+    "base_url": "http://PHONE_ADDRESS:52187",
     "api_key": "<LMA_UPSTREAM_KEY>",
     "model_mapping": { "lma-image-selected": "lma-image-selected" }
   },

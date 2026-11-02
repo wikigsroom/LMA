@@ -1,5 +1,7 @@
 # LMA repository instructions / 仓库工作约定
 
+- 2026-11-02 current port update: v0.3.13/code63 uses public API default 52187. Migrate former default 8080 once, preserve valid custom ports and all user assets/settings/credentials. Validate exact signed upgrade and direct physical LAN HTTP; retain v0.3.12 video/3D evidence under its original APK identity. Publish a new stable Release without changing older tags/assets.
+
 - 2026-11-02 latest user requirement: physical generated videos must exceed 5 seconds; disable model-generation wall-clock limits, preserve explicit cancellation and real resource/error handling. HTTP response/connection limits must not terminate an admitted async generation job. Diagnose and repair observed failures without fabricated success.
 
 - 2026-11-02: user requires a new stable release with full physical API integration and phone benchmarking. This supersedes earlier program-only/selected-probe limits for this delivery; distinguish actual device/API results, model quality and bounded background duration. Keep user models/settings, private data and original signing identity; no virtualization. v0.3.12/code62 is the current delivery; publication is verified separately by the GitHub release receipt.

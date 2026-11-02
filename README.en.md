@@ -1,8 +1,18 @@
 # LMA · Android local-model workbench
 
-[中文](README.md) · [Download v0.3.12](https://github.com/wikigsroom/LMA/releases/tag/v0.3.12) · [User guide](docs/USER_GUIDE.en.md) · [Documentation](docs/README.md) · [Scenarios](#use-cases) · [Cases and failures](#case-studies)
+[中文](README.md) · [Download v0.3.13](https://github.com/wikigsroom/LMA/releases/tag/v0.3.13) · [User guide](docs/USER_GUIDE.en.md) · [Documentation](docs/README.md) · [Scenarios](#use-cases) · [Cases and failures](#case-studies)
 
-**v0.3.12/code62 · Stable local multimodal API.** Automatically discover complete/configured local text, image, video, speech, music and 3D models. Standard image PNG / speech WAV facades, per-model parameters, durable jobs/uploads/artifacts and an opt-in native Sub2API source kit are included. [Usage and SDK examples](docs/LOCAL_API_V0312.en.md) · [Physical integration/benchmark](docs/DEVICE_BENCHMARK_V0312.en.md) · [Release notes](docs/releases/v0.3.12.md).
+**v0.3.13 / code63 · Default API port 52187.** New installations and upgrades using the former default 8080 use `http://127.0.0.1:52187/v1`; LAN clients use `http://PHONE_IP:52187/v1` after enabling LAN access. Existing valid custom ports survive; the migration runs once, so later explicit edits remain yours. Update the base URL in connected clients. [Port migration and validation](docs/API_PORT.en.md) · [Release notes](docs/releases/v0.3.13.md) · [Current program evidence](verification/releases/v0.3.13/status.json).
+
+This version: **62 program suites / 15,122 assertions, 796 production UI checks, 24 physical program checks and 8 idle-performance checks**. [Phone recording](docs/media/device/v0.3.13/physical-walkthrough.mp4) · [GIF](docs/media/device/v0.3.13/physical-walkthrough.gif).
+
+**Current direct LAN validation: 63 checks / 128 HTTP requests passed**, including 8080→52187 migration, preserved settings and new PNG/two WAV files; 111.600 seconds screen-off. [Current evidence](verification/supplemental/v0.3.13/lan-http.json).
+
+<img src="docs/media/device/v0.3.13/04-api-overview.png" alt="LMA v0.3.13 API port 52187" width="300">
+
+The following v0.3.12 SDK, video and LAN results retain their original APK identity. This port update adds its own upgrade and direct LAN HTTP checks; it does not repeat the earlier long video/3D benchmark.
+
+**Previous v0.3.12/code62 · Stable local multimodal API.** Automatically discover complete/configured local text, image, video, speech, music and 3D models. Standard image PNG / speech WAV facades, per-model parameters, durable jobs/uploads/artifacts and an opt-in native Sub2API source kit are included. [Usage and SDK examples](docs/LOCAL_API_V0312.en.md) · [Physical integration/benchmark](docs/DEVICE_BENCHMARK_V0312.en.md) · [Release notes](docs/releases/v0.3.12.md).
 
 Final-APK phone results:**24 program checks+8 idle-performance checks+28 actual SDK checks passed**. Wan CPU produced a **6.125-second/49-frame video** in732seconds;quality remains unaccepted. Actual pages:[GIF](docs/media/device/v0.3.12/physical-walkthrough.gif)/[recording](docs/media/device/v0.3.12/physical-walkthrough.mp4);[original generated video](docs/media/benchmarks/v0.3.12/wan-cpu-6s.mp4). The benchmark report separates3D failures and candidate-APK attempts.
 
@@ -114,7 +124,7 @@ Original LTX multiscale runs CPU T5 → initial Vulkan sampling → CPU learned 
 
 ## Local API and background operation
 
-Default base URL: `http://127.0.0.1:8080/v1`, authenticated with the local API key shown in LMA. Existing `/models`, `/chat/completions` and SSE remain available. Multimodal work uses asynchronous `/jobs`, preflight, events, cancellation and authenticated artifact endpoints. UI and API share scheduling and validation. See the [API guide](docs/API.en.md). Optional LAN exposure still performs computation on this phone; LMA has no external inference provider.
+Default base URL: `http://127.0.0.1:52187/v1`, authenticated with the local API key shown in LMA. Existing `/models`, `/chat/completions` and SSE remain available. Multimodal work uses asynchronous `/jobs`, preflight, events, cancellation and authenticated artifact endpoints. UI and API share scheduling and validation. See the [API guide](docs/API.en.md). Optional LAN exposure still performs computation on this phone; LMA has no external inference provider.
 
 A visible foreground service, stop notification and task-scoped wake locks support continued work after leaving the UI. Force-stop, vendor battery management, thermal pressure and memory limits can still terminate work. Recovery code is not evidence of prolonged screen-off operation on a Z20. Model licenses, storage requirements and runtime memory budgets are separate; LMA does not silently substitute a model.
 
@@ -455,15 +465,15 @@ No ComfyUI wiring, infinite canvas, public nodes, plugin marketplace or graph im
 <a id="api-examples"></a>
 ## Local API: four copyable examples
 
-The default listener is `http://127.0.0.1:8080`; model endpoints are under `/v1`. All public endpoints, including `/health`, events and artifact reads, require the current Bearer key. Never publish the actual key.
+The default listener is `http://127.0.0.1:52187`; model endpoints are under `/v1`. All public endpoints, including `/health`, events and artifact reads, require the current Bearer key. Never publish the actual key.
 
-These PowerShell examples assume an **already connected phone**. Optional USB ADB forwarding transports requests only; computation stays on the phone. It is not an app prerequisite or evidence of a device test. On-phone HTTP clients use `127.0.0.1:8080` directly. An explicitly enabled LAN listener can use the phone IP without changing execution location.
+These PowerShell examples assume an **already connected phone**. Optional USB ADB forwarding transports requests only; computation stays on the phone. It is not an app prerequisite or evidence of a device test. On-phone HTTP clients use `127.0.0.1:52187` directly. An explicitly enabled LAN listener can use the phone IP without changing execution location.
 
 ### A01 · Zero-model health and installed models
 
 ```powershell
 # Optional: already connected phone with authorized USB debugging
-adb forward tcp:18080 tcp:8080
+adb forward tcp:18080 tcp:52187
 $lmaBase = 'http://127.0.0.1:18080'
 # Set LMA_API_KEY in this terminal to the key displayed in Service
 $lmaHeaders = @{ Authorization = "Bearer $env:LMA_API_KEY" }
@@ -496,7 +506,7 @@ Clients supply their own messages and sampling values; the app's system prompt i
 ```python
 import json, os, urllib.request
 
-base = "http://127.0.0.1:18080"  # USB forwarding above; on-phone listener uses :8080
+base = "http://127.0.0.1:18080"  # USB forwarding above; on-phone listener uses :52187
 headers = {"Authorization": "Bearer " + os.environ["LMA_API_KEY"]}
 request = urllib.request.Request(base + "/v1/models", headers=headers)
 with urllib.request.urlopen(request, timeout=30) as response:

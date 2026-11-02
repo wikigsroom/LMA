@@ -1,8 +1,18 @@
 # LMA · Android 本地模型工作台
 
-[English](README.en.md) · [下载 v0.3.12](https://github.com/wikigsroom/LMA/releases/tag/v0.3.12) · [使用手册](docs/USER_GUIDE.md) · [文档目录](docs/README.md) · [更新记录](CHANGELOG.md)
+[English](README.en.md) · [下载 v0.3.13](https://github.com/wikigsroom/LMA/releases/tag/v0.3.13) · [使用手册](docs/USER_GUIDE.md) · [文档目录](docs/README.md) · [更新记录](CHANGELOG.md)
 
-**v0.3.12/code62 · 正式本地多模态 API。** 自动公布已下载完整、配置有效的生文／生图／视频／语音／音乐／3D 模型；新增标准图片 PNG、语音 WAV 兼容层，复用逐模型参数、持久任务／上传／产物和可选择启用的原生 Sub2API 源码扩展。[用法与 SDK 案例](docs/LOCAL_API_V0312.md) · [完整实机联调与测评](docs/DEVICE_BENCHMARK_V0312.md) · [版本说明](docs/releases/v0.3.12.md)。
+**v0.3.13 / code63 · 默认接口端口改为 52187。** 新安装及旧版使用默认 8080 的安装，升级后使用 `http://127.0.0.1:52187/v1`；开启内网访问后，电脑连接 `http://手机IP:52187/v1`。已有其他有效自定义端口保留；迁移仅执行一次，之后用户主动编辑的端口仍会保留。请同步修改客户端的接口地址。[端口迁移与验证](docs/API_PORT.md) · [本版说明](docs/releases/v0.3.13.md) · [本版程序证据](verification/releases/v0.3.13/status.json)。
+
+本版：**62 套程序检查／15,122 项断言、796 项生产界面检查、24 项真机程序检查和 8 项空闲性能检查**。[真机录屏](docs/media/device/v0.3.13/physical-walkthrough.mp4) · [GIF](docs/media/device/v0.3.13/physical-walkthrough.gif)。
+
+**本版内网实测：63 项检查／128 次 HTTP 请求通过**，核对 8080→52187 升级、配置保留及新 PNG／两段 WAV；锁屏 111.600 秒。[本版证据](verification/supplemental/v0.3.13/lan-http.json)。
+
+<img src="docs/media/device/v0.3.13/04-api-overview.png" alt="LMA v0.3.13 API port 52187" width="300">
+
+下面保留 v0.3.12 的 SDK、视频和内网测评及其原始 APK 身份。本次端口更新另做升级和内网 HTTP 验证，不将旧版长时间视频／3D 测评记为新版实跑。
+
+**历史 v0.3.12/code62 · 正式本地多模态 API。** 自动公布已下载完整、配置有效的生文／生图／视频／语音／音乐／3D 模型；新增标准图片 PNG、语音 WAV 兼容层，复用逐模型参数、持久任务／上传／产物和可选择启用的原生 Sub2API 源码扩展。[用法与 SDK 案例](docs/LOCAL_API_V0312.md) · [完整实机联调与测评](docs/DEVICE_BENCHMARK_V0312.md) · [版本说明](docs/releases/v0.3.12.md)。
 
 **生成任务不再设置固定耗时上限。** 用户主动停止、真实资源故障和输出／模型约束分别处理；120 秒同步 HTTP 等待不会终止后台生成。实机视频验收要求真实时长大于 5 秒。升级保留模型、设置和原签名；测评区分文件输出、生成质量、接口检查与后台耐久。
 
@@ -444,15 +454,15 @@ Release 附 APK、源码 ZIP、验证 ZIP、截图 ZIP、10 组桌面 GIF / MP4�
 <a id="api-examples"></a>
 ## 本机 API：可复制的调用示例
 
-默认服务为 `http://127.0.0.1:8080`，模型接口位于 `/v1`；所有公开接口包括 `/health`、事件和产物读取都需要 Bearer 密钥。App“服务”页提供当前密钥与连接示例，勿把真实密钥放进截图或提交。
+默认服务为 `http://127.0.0.1:52187`，模型接口位于 `/v1`；所有公开接口包括 `/health`、事件和产物读取都需要 Bearer 密钥。App“服务”页提供当前密钥与连接示例，勿把真实密钥放进截图或提交。
 
-以下 PowerShell 例子面向**已连接手机的客户端**。可选 USB ADB 转发只转发请求，推理仍在手机；它不是 App 用户的必装条件，也不是本项目的真机测试记录。手机上的 HTTP 客户端直接使用 `127.0.0.1:8080`。若主动开启 LAN，可改为手机地址，计算位置不变。
+以下 PowerShell 例子面向**已连接手机的客户端**。可选 USB ADB 转发只转发请求，推理仍在手机；它不是 App 用户的必装条件，也不是本项目的真机测试记录。手机上的 HTTP 客户端直接使用 `127.0.0.1:52187`。若主动开启 LAN，可改为手机地址，计算位置不变。
 
 ### A01 · 零模型健康检查和已安装模型列表
 
 ```powershell
 # 可选：已连接、已授权 USB 调试的手机
-adb forward tcp:18080 tcp:8080
+adb forward tcp:18080 tcp:52187
 $lmaBase = 'http://127.0.0.1:18080'
 # 先在当前终端设置 LMA_API_KEY 为“服务”页的密钥
 $lmaHeaders = @{ Authorization = "Bearer $env:LMA_API_KEY" }
@@ -485,7 +495,7 @@ Invoke-RestMethod "$lmaBase/v1/chat/completions" -Method Post -Headers $lmaHeade
 ```python
 import json, os, urllib.request
 
-base = "http://127.0.0.1:18080"  # 上面的 USB 转发；手机本机为 :8080
+base = "http://127.0.0.1:18080"  # 上面的 USB 转发；手机本机为 :52187
 headers = {"Authorization": "Bearer " + os.environ["LMA_API_KEY"]}
 request = urllib.request.Request(base + "/v1/models", headers=headers)
 with urllib.request.urlopen(request, timeout=30) as response:

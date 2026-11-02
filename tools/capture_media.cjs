@@ -15,8 +15,8 @@ fs.mkdirSync(temporary, {recursive:true});
 const catalogue = JSON.parse(fs.readFileSync(path.join(assets, 'models.json'), 'utf8'));
 const fixture = {
   app:'LMA', version:'0.2.0', models:catalogue.models.map(m => ({...m, installed:false, installedBytes:0, partialBytes:0, download:{}})),
-  settings:{lan:false,port:8080,threads:4,context:2048,maxTokens:512,temperature:0.7,source:'auto',boot:false,autoLoad:true,reasoning:'off',theme:'light',systemPrompt:'你是一个有帮助的本地助手。请优先使用用户的语言，准确、清楚地回答。',apiKey:'lma_DEMO_NOT_A_REAL_API_KEY'},
-  engine:{state:'stopped',detail:'选择并下载一个模型，开始本地运行',modelId:'',generating:false,startedAt:0,localUrl:'http://127.0.0.1:8080/v1',addresses:['http://192.0.2.20:8080/v1']},
+  settings:{lan:false,port:52187,threads:4,context:2048,maxTokens:512,temperature:0.7,source:'auto',boot:false,autoLoad:true,reasoning:'off',theme:'light',systemPrompt:'你是一个有帮助的本地助手。请优先使用用户的语言，准确、清楚地回答。',apiKey:'lma_DEMO_NOT_A_REAL_API_KEY'},
+  engine:{state:'stopped',detail:'选择并下载一个模型，开始本地运行',modelId:'',generating:false,startedAt:0,localUrl:'http://127.0.0.1:52187/v1',addresses:['http://192.0.2.20:52187/v1']},
   device:{name:'UI 演示 · 非真机',android:'9',totalMemory:8*1073741824,availableMemory:4.3*1073741824,freeStorage:51.2e9,batteryExempt:false},
   chat:{sessionId:'',sessions:[],messages:[]},logs:[],error:'',commandResults:[],hub:hubFixture
 };
@@ -88,7 +88,7 @@ async function main() {
             f.chat.messages.push({id:'demo-user',role:'user',content:command.text,reasoning:'',status:'done',elapsed:0,tokens:0});
             const answer={id:'demo-answer',role:'assistant',content:'',reasoning:'',status:'generating',elapsed:0,tokens:0};
             f.chat.messages.push(answer);
-            const text='【界面演示文本，非模型输出】\n\n1. 下载并加载一个本地模型。\n2. 在“服务”页复制接口地址和 API 密钥。\n3. 通过 OpenAI 兼容客户端连接。\n\n```python\nbase_url = "http://PHONE_IP:8080/v1"\n```';
+            const text='【界面演示文本，非模型输出】\n\n1. 下载并加载一个本地模型。\n2. 在“服务”页复制接口地址和 API 密钥。\n3. 通过 OpenAI 兼容客户端连接。\n\n```python\nbase_url = "http://PHONE_IP:52187/v1"\n```';
             let index=0;
             const timer=setInterval(() => {
               index+=5;answer.content=text.slice(0,index);emit();

@@ -40,7 +40,7 @@ The existing text examples below describe public **v0.2.0**. The final section d
 
 ## Endpoint, authentication, and model ID
 
-- Default local Base URL: `http://127.0.0.1:8080/v1`.
+- Default local Base URL: `http://127.0.0.1:52187/v1`.
 - For another device, enable LAN on Server and use the phone's displayed IP. Both devices need network reachability.
 - Send `Authorization: Bearer YOUR_LMA_API_KEY`. Copy the key from the phone; it is not a cloud OpenAI key.
 - `GET /v1/models` returns locally registered aliases, such as `m08`. HF downloads use stable `hf_...` IDs, while manual imports use `custom_...`; do not infer IDs from filenames. An HF access token is separate from the inference API key.
@@ -51,10 +51,10 @@ The documented compatibility surface is models, chat completions, and SSE. Respo
 ## curl
 
 ```bash
-curl http://PHONE_IP:8080/v1/models \
+curl http://PHONE_IP:52187/v1/models \
   -H "Authorization: Bearer YOUR_LMA_API_KEY"
 
-curl -N http://PHONE_IP:8080/v1/chat/completions \
+curl -N http://PHONE_IP:52187/v1/chat/completions \
   -H "Authorization: Bearer YOUR_LMA_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{"model":"m08","messages":[{"role":"system","content":"Answer clearly and briefly."},{"role":"user","content":"Hello"}],"temperature":0.7,"max_tokens":256,"stream":true}'
@@ -71,7 +71,7 @@ import json
 import os
 import urllib.request
 
-base = os.environ.get("LMA_BASE_URL", "http://127.0.0.1:8080/v1").rstrip("/")
+base = os.environ.get("LMA_BASE_URL", "http://127.0.0.1:52187/v1").rstrip("/")
 headers = {"Authorization": "Bearer " + os.environ["LMA_API_KEY"]}
 request = urllib.request.Request(base + "/models", headers=headers)
 with urllib.request.urlopen(request, timeout=30) as response:
@@ -107,7 +107,7 @@ This example prints content only. Models may emit reasoning through `reasoning_c
 ## PowerShell, non-streaming
 
 ```powershell
-$lmaBase = 'http://PHONE_IP:8080/v1'
+$lmaBase = 'http://PHONE_IP:52187/v1'
 $lmaHeaders = @{ Authorization = "Bearer $env:LMA_API_KEY" }
 $lmaModels = Invoke-RestMethod "$lmaBase/models" -Headers $lmaHeaders
 $lmaModel = $lmaModels.data | Where-Object {
@@ -166,7 +166,7 @@ Every endpoint below requires `Authorization: Bearer YOUR_LMA_API_KEY`, includin
 Select an installed bundle record's `id` as `bundleId` (it has a `recipe` field). Legacy text records retain chat/completions and can submit async text.generate through their immutable bundle_id. This example only shows the request structure: the selected bundle, engine and task must match. The unmeasured SD1.5 catalogue candidate is not accepted model support. Send `allowUnmeasured: true` only after explicitly choosing to attempt an unmeasured recipe.
 
 ```bash
-curl http://PHONE_IP:8080/v1/jobs \
+curl http://PHONE_IP:52187/v1/jobs \
   -H "Authorization: Bearer YOUR_LMA_API_KEY" \
   -H "Content-Type: application/json" \
   -H "Idempotency-Key: my-image-request-1" \

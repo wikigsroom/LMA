@@ -1,5 +1,8 @@
 # LMA 文档 / Documentation
 
+[v0.3.13 默认端口 52187 / Default port and migration](API_PORT.md) · [Release notes](releases/v0.3.13.md)
+[完整实现与检查 / Implementation and checks](IMPLEMENTATION_V0313.md) · [English](IMPLEMENTATION_V0313.en.md)
+
 **2026-11-02 内网 HTTP 补充：** [57项实机检查与本机HTTP用例](LAN_HTTP_TEST.md) / [English](LAN_HTTP_TEST.en.md) · [JSON证据](../verification/supplemental/v0.3.12/lan-http.json)。PC物理网络直连手机Wi-Fi，共128次请求；原Release附件保持身份。
 
 **v0.3.12 / code62 · 当前 / Current:** [本地多模态 API](LOCAL_API_V0312.md) / [English](LOCAL_API_V0312.en.md) · [实机测评](DEVICE_BENCHMARK_V0312.md) / [Benchmark](DEVICE_BENCHMARK_V0312.en.md) · [协议](SUB2API_OPENAI.md) / [Contract](SUB2API_OPENAI.en.md) · [Release](releases/v0.3.12.md)。自动模型列表、标准图片／语音、统一异步任务与 Sub2API 源码扩展；生成无固定时间上限，视频实机验收大于 5 秒。旧版记录保留原身份。

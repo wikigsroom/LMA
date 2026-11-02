@@ -279,7 +279,7 @@
     }).join('');
     if (nearBottom || oldScroll === 0) box.scrollTop = box.scrollHeight; else box.scrollTop = oldScroll;
   }
-  function endpoint() { var e = engine(); return state && state.settings.lan && (e.addresses || []).length ? e.addresses[0] : e.localUrl || 'http://127.0.0.1:8080/v1'; }
+  function endpoint() { var e = engine(); return state && state.settings.lan && (e.addresses || []).length ? e.addresses[0] : e.localUrl || 'http://127.0.0.1:52187/v1'; }
   function example(includeKey) {
     var key = includeKey && state ? state.settings.apiKey : 'YOUR_LMA_API_KEY';
     return 'curl ' + endpoint() + '/chat/completions \\\n  -H "Authorization: Bearer ' + key + '" \\\n  -H "Content-Type: application/json" \\\n  -d \'{"model":"' + (engine().modelId || 'MODEL_ID') + '","messages":[{"role":"user","content":"你好"}],"stream":true}\'';

@@ -20,7 +20,7 @@ flowchart LR
     F --> G
 ```
 
-Sub2API 只在已能访问手机的部署位置转发。默认手机地址 `127.0.0.1:8080` 仅对手机自身有效；其他设备需用户明确启用现有局域网监听，并限定可访问地址。部署在公网的网关不会因此自动连通手机，本规范不自动开公网端口、创建隧道或安装其他执行节点。
+Sub2API 只在已能访问手机的部署位置转发。默认手机地址 `127.0.0.1:52187` 仅对手机自身有效；其他设备需用户明确启用现有局域网监听，并限定可访问地址。部署在公网的网关不会因此自动连通手机，本规范不自动开公网端口、创建隧道或安装其他执行节点。
 
 ## 2. 实际核对依据
 
@@ -79,7 +79,7 @@ Sub2API 账号使用 `platform=openai`、`type=apikey`、实际手机入口和�
   "type": "apikey",
   "concurrency": 1,
   "credentials": {
-    "base_url": "http://PHONE_ADDRESS:8080",
+    "base_url": "http://PHONE_ADDRESS:52187",
     "api_key": "<LMA_UPSTREAM_KEY>",
     "model_mapping": { "lma-image-selected": "lma-image-selected" }
   },
@@ -133,7 +133,7 @@ import os
 from openai import OpenAI
 
 client = OpenAI(
-    base_url=os.environ["LMA_GATEWAY_BASE_URL"],  # e.g. http://gateway:8080/v1
+    base_url=os.environ["LMA_GATEWAY_BASE_URL"],  # e.g. http://gateway:52187/v1
     api_key=os.environ["LMA_GATEWAY_KEY"],
     max_retries=0,  # re-enable only after gateway idempotency is verified
     timeout=180.0,

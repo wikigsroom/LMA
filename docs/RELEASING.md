@@ -1,5 +1,15 @@
 # 发布流程 / Release workflow
 
+## v0.3.13 当前端口更新 / Current port update
+
+本版默认端口 52187，一次迁移旧默认 8080，保留有效自定义端口和全部用户资产。Current port-only maintenance release; preserve original signer and prior release identities.
+
+1. `build.py`、`verify_package.py`、`test_android_lint.py` 与受影响程序检查；新装／迁移／自定义端口边界／重复启动覆盖。
+2. 使用原签名覆盖安装；`device_check.py --run --install --existing-models --program-api --minutes 1`、`profile_device.py --existing-models`、`installed_performance_evidence.py`。
+3. `device_lan_http.py --upgrade-baseline PRIVATE_BASELINE --enable-lan --run-existing-models` 验证 52187、旧端口拒绝连接、数据保留和真实 PNG/WAV。基线与密钥仅在私有构建目录／内存，不进入提交。
+4. 人工复核截图／录屏／GIF后，`export_lan_http_evidence.py` 白名单导出本版补充证据；`port_update_evidence.py` 为本版正式发布门禁。Old v0.3.12 generation/video/3D records remain immutable; retained video transfer is not regeneration.
+5. 刷新适配审计、版本矩阵、程序证据、双语说明与媒体；打包、校验、准备正式 Release。普通提交与新标签 `v0.3.13` 推送后，`publish_release.py --publish` 校验附件并公开 **draft=false / prerelease=false**。
+
 
 ## v0.3.12 当前交付 / Current delivery
 

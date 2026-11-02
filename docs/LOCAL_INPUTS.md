@@ -49,7 +49,7 @@ JobStore 的非终态请求保护排队输入，进程重启后排队引用仍�
 ```python
 import hashlib, json, os, urllib.request
 
-base = "http://127.0.0.1:8080"
+base = "http://127.0.0.1:52187"
 key = os.environ["LMA_API_KEY"]
 filename = "reference.wav"
 
