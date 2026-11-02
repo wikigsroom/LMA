@@ -1,5 +1,7 @@
 # LMA · Android 本地模型工作台
 
+**20261102 第二批 Logo 选型：** [11–20 安卓＋AI／安卓＋鲸鱼](docs/LOGO_SELECTION_20261102_BATCH2.md) · [离线选型页](output/imagegen/lma-logo-selection-20261102-batch2/index.html)。按新方向独立生成十套，保留第一批归档；含原图、小尺寸和配套形象。
+
 **20261102 Logo 选型：** [10 套风格与编号总览](docs/LOGO_SELECTION_20261102.md) · [离线交互选型页](output/imagegen/lma-logo-selection-20261102/index.html)。使用用户指定的 sub2-image-gen／gpt-image-2.5 实际生成；支持多选、原图与小尺寸对比，尚未替换 App 图标。
 
 **20261102 更新方向方案（规划，非当前 APK 功能）：** [完整方案](docs/UPDATE_DIRECTION_20261102.md) · [English](docs/UPDATE_DIRECTION_20261102.en.md) · [14 个语言模型的能力标签清单](docs/proposals/update-direction-20261102.json)。统一对话输入、四类媒体任务卡、可选本地工具调度、素材引用／任务链与同机合成；默认采用暗色调并保留用户已选主题；新增图片／视频／音频理解、原生输出、工具能力、组件与验证状态的独立选型标签。D01–D12 同一次功能交付，A01–A33 逐项验收；本文档更新不改变现有 APK，也不把候选标签当作已支持。

@@ -1,0 +1,118 @@
+{
+  "schema": "lma.logo-artifact-validation/1",
+  "date": "2026-11-02",
+  "batch": 2,
+  "passed": true,
+  "checkedAssertions": 271,
+  "scope": "Generated-artifact integrity, preview dimensions, local HTML resources, JavaScript syntax and preservation of existing documentation. No browser or Android/model execution.",
+  "originals": 10,
+  "previews": 60,
+  "directionGroups": {
+    "Android + AI": [
+      "11",
+      "12",
+      "13",
+      "14",
+      "15"
+    ],
+    "Android + whale": [
+      "16",
+      "17",
+      "18",
+      "19",
+      "20"
+    ]
+  },
+  "originalSha256": [
+    {
+      "id": "11",
+      "sha256": "a9fd514415d31709346b59464b2ba7cdd476a502f58289c221d249f994ac5226",
+      "dimensions": [
+        1254,
+        1254
+      ]
+    },
+    {
+      "id": "12",
+      "sha256": "6e355ab7e8b2a0e59c099207216b64dd0d31098cbd9815cdd79f589d74a14eee",
+      "dimensions": [
+        1254,
+        1254
+      ]
+    },
+    {
+      "id": "13",
+      "sha256": "1e420a5656ab110511c3302c3071ddff993247ef4c502baa8f3a903d51a0b215",
+      "dimensions": [
+        1254,
+        1254
+      ]
+    },
+    {
+      "id": "14",
+      "sha256": "4cd853ca8bc042bbb4653da94f1ceb3f6919d7ba31c5507ecf6e856297c43cd3",
+      "dimensions": [
+        1254,
+        1254
+      ]
+    },
+    {
+      "id": "15",
+      "sha256": "ace613b8337e49bbc52fa59134b2bbe2f5bccb7fd9a327dde46b486edc5628fc",
+      "dimensions": [
+        1254,
+        1254
+      ]
+    },
+    {
+      "id": "16",
+      "sha256": "2f4b14d22adf198cc953810e819e70cc4b2ef870dc23c77628f6a2f24302a671",
+      "dimensions": [
+        1254,
+        1254
+      ]
+    },
+    {
+      "id": "17",
+      "sha256": "6f48994bd26b6aa283d0d56a1f0b1328e14d3c631604b9a4a8efdb3fcfbaee07",
+      "dimensions": [
+        1254,
+        1254
+      ]
+    },
+    {
+      "id": "18",
+      "sha256": "a4a701469786195e59c81e33273545d2373f079bc6e7a0e96ef40c2405670ba8",
+      "dimensions": [
+        1254,
+        1254
+      ]
+    },
+    {
+      "id": "19",
+      "sha256": "cab7d567b9c42eb266809f603310f23f8059a3d00bf79bf8cae3c0a255a810ee",
+      "dimensions": [
+        1254,
+        1254
+      ]
+    },
+    {
+      "id": "20",
+      "sha256": "e374c0ce2ea7cf87073e1ab1871f050d15b11deb0cdc4ec9a962e5597b877558",
+      "dimensions": [
+        1254,
+        1254
+      ]
+    }
+  ],
+  "archiveContentVerification": "Passed: CRC and every archived entry checked byte-for-byte against the final public files.",
+  "browserLaunched": false,
+  "virtualizationUsed": false,
+  "appSourceChanged": false,
+  "apkOrProductionIconChanged": false,
+  "phoneOrModelValidation": false,
+  "javascriptSyntax": "passed",
+  "existingDetailedReadmesPreserved": true,
+  "visualReview": "All ten directions inspected on the overview and small-size board.",
+  "archiveEntries": 86
+}

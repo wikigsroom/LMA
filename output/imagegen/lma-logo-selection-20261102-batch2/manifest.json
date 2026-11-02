@@ -1,0 +1,459 @@
+{
+  "schema": "lma.logo-selection/1",
+  "date": "2026-11-02",
+  "batch": 2,
+  "project": "LMA",
+  "purpose": "Second batch: five Android + AI directions and five Android + DeepSeek-style whale directions, for user selection.",
+  "generatorSkill": "sub2-image-gen",
+  "containsGatewayConfiguration": false,
+  "containsApiKeys": false,
+  "rasterOutputs": true,
+  "productionIconSelected": false,
+  "appVersionUnchanged": true,
+  "options": [
+    {
+      "id": "11",
+      "slug": "android-ai-core",
+      "title": {
+        "zh": "智核安卓",
+        "en": "Android AI Core"
+      },
+      "group": "安卓＋AI",
+      "style": "极简平面 / Flat mascot",
+      "element": "安卓头部＋AI 智核",
+      "palette": "安卓绿 / 冰蓝",
+      "prompt": "prompts/11-android-ai-core.txt",
+      "original": "11-android-ai-core.png",
+      "status": "generated",
+      "generation": {
+        "model": "gpt-image-2.5",
+        "size": "1024x1024",
+        "quality": "high",
+        "background": "opaque",
+        "format": "png",
+        "n": 1
+      },
+      "elapsedSeconds": 71.5,
+      "bytes": 1223691,
+      "sha256": "a9fd514415d31709346b59464b2ba7cdd476a502f58289c221d249f994ac5226",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "requestedSizeMatched": false,
+      "previews": {
+        "1024": "previews/11-1024.png",
+        "512": "previews/11-512.png",
+        "192": "previews/11-192.png",
+        "96": "previews/11-96.png",
+        "48": "previews/11-48.png",
+        "32": "previews/11-32.png"
+      }
+    },
+    {
+      "id": "12",
+      "slug": "android-chip-buddy",
+      "title": {
+        "zh": "芯片小安卓",
+        "en": "Chip Buddy"
+      },
+      "group": "安卓＋AI",
+      "style": "像素玩具 / Pixel toy",
+      "element": "安卓全身＋胸前芯片",
+      "palette": "青柠绿 / 奶油 / 电蓝",
+      "prompt": "prompts/12-android-chip-buddy.txt",
+      "original": "12-android-chip-buddy.png",
+      "status": "generated",
+      "generation": {
+        "model": "gpt-image-2.5",
+        "size": "1024x1024",
+        "quality": "high",
+        "background": "opaque",
+        "format": "png",
+        "n": 1
+      },
+      "elapsedSeconds": 71.4,
+      "bytes": 1214847,
+      "sha256": "6e355ab7e8b2a0e59c099207216b64dd0d31098cbd9815cdd79f589d74a14eee",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "requestedSizeMatched": false,
+      "previews": {
+        "1024": "previews/12-1024.png",
+        "512": "previews/12-512.png",
+        "192": "previews/12-192.png",
+        "96": "previews/12-96.png",
+        "48": "previews/12-48.png",
+        "32": "previews/12-32.png"
+      }
+    },
+    {
+      "id": "13",
+      "slug": "android-glass-mind",
+      "title": {
+        "zh": "玻璃智脑",
+        "en": "Glass Mind"
+      },
+      "group": "安卓＋AI",
+      "style": "磨砂玻璃 / Frosted glass",
+      "element": "安卓头部＋神经节点",
+      "palette": "翡翠绿 / 青蓝",
+      "prompt": "prompts/13-android-glass-mind.txt",
+      "original": "13-android-glass-mind.png",
+      "status": "generated",
+      "generation": {
+        "model": "gpt-image-2.5",
+        "size": "1024x1024",
+        "quality": "high",
+        "background": "opaque",
+        "format": "png",
+        "n": 1
+      },
+      "elapsedSeconds": 71.45,
+      "bytes": 1500626,
+      "sha256": "1e420a5656ab110511c3302c3071ddff993247ef4c502baa8f3a903d51a0b215",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "requestedSizeMatched": false,
+      "previews": {
+        "1024": "previews/13-1024.png",
+        "512": "previews/13-512.png",
+        "192": "previews/13-192.png",
+        "96": "previews/13-96.png",
+        "48": "previews/13-48.png",
+        "32": "previews/13-32.png"
+      }
+    },
+    {
+      "id": "14",
+      "slug": "android-paper-assistant",
+      "title": {
+        "zh": "纸片助手",
+        "en": "Paper Assistant"
+      },
+      "group": "安卓＋AI",
+      "style": "折纸形象 / Origami mascot",
+      "element": "安卓机器人＋对话卡片",
+      "palette": "薄荷绿 / 米白 / 亮橙",
+      "prompt": "prompts/14-android-paper-assistant.txt",
+      "original": "14-android-paper-assistant.png",
+      "status": "generated",
+      "generation": {
+        "model": "gpt-image-2.5",
+        "size": "1024x1024",
+        "quality": "high",
+        "background": "opaque",
+        "format": "png",
+        "n": 1
+      },
+      "elapsedSeconds": 44.12,
+      "bytes": 1612900,
+      "sha256": "4cd853ca8bc042bbb4653da94f1ceb3f6919d7ba31c5507ecf6e856297c43cd3",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "requestedSizeMatched": false,
+      "previews": {
+        "1024": "previews/14-1024.png",
+        "512": "previews/14-512.png",
+        "192": "previews/14-192.png",
+        "96": "previews/14-96.png",
+        "48": "previews/14-48.png",
+        "32": "previews/14-32.png"
+      }
+    },
+    {
+      "id": "15",
+      "slug": "android-space-ai",
+      "title": {
+        "zh": "星航安卓",
+        "en": "Cosmic Android"
+      },
+      "group": "安卓＋AI",
+      "style": "软胶公仔 / Vinyl character",
+      "element": "安卓宇航员＋AI 核心",
+      "palette": "安卓绿 / 深蓝 / 奶油",
+      "prompt": "prompts/15-android-space-ai.txt",
+      "original": "15-android-space-ai.png",
+      "status": "generated",
+      "generation": {
+        "model": "gpt-image-2.5",
+        "size": "1024x1024",
+        "quality": "high",
+        "background": "opaque",
+        "format": "png",
+        "n": 1
+      },
+      "elapsedSeconds": 49.44,
+      "bytes": 1663980,
+      "sha256": "ace613b8337e49bbc52fa59134b2bbe2f5bccb7fd9a327dde46b486edc5628fc",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "requestedSizeMatched": false,
+      "previews": {
+        "1024": "previews/15-1024.png",
+        "512": "previews/15-512.png",
+        "192": "previews/15-192.png",
+        "96": "previews/15-96.png",
+        "48": "previews/15-48.png",
+        "32": "previews/15-32.png"
+      }
+    },
+    {
+      "id": "16",
+      "slug": "android-whale-fusion",
+      "title": {
+        "zh": "鲸化安卓",
+        "en": "Droid Whale"
+      },
+      "group": "安卓＋鲸鱼",
+      "style": "极简融合 / Flat fusion",
+      "element": "蓝鲸轮廓＋安卓天线",
+      "palette": "DeepSeek 感蓝 / 安卓绿",
+      "prompt": "prompts/16-android-whale-fusion.txt",
+      "original": "16-android-whale-fusion.png",
+      "status": "generated",
+      "generation": {
+        "model": "gpt-image-2.5",
+        "size": "1024x1024",
+        "quality": "high",
+        "background": "opaque",
+        "format": "png",
+        "n": 1
+      },
+      "elapsedSeconds": 44.29,
+      "bytes": 1242825,
+      "sha256": "2f4b14d22adf198cc953810e819e70cc4b2ef870dc23c77628f6a2f24302a671",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "requestedSizeMatched": false,
+      "previews": {
+        "1024": "previews/16-1024.png",
+        "512": "previews/16-512.png",
+        "192": "previews/16-192.png",
+        "96": "previews/16-96.png",
+        "48": "previews/16-48.png",
+        "32": "previews/16-32.png"
+      }
+    },
+    {
+      "id": "17",
+      "slug": "android-whale-hood",
+      "title": {
+        "zh": "鲸帽小安卓",
+        "en": "Whale Hood"
+      },
+      "group": "安卓＋鲸鱼",
+      "style": "软陶吉祥物 / Clay mascot",
+      "element": "安卓脸＋蓝鲸连帽套装",
+      "palette": "鲸鱼蓝 / 安卓绿 / 奶油",
+      "prompt": "prompts/17-android-whale-hood.txt",
+      "original": "17-android-whale-hood.png",
+      "status": "generated",
+      "generation": {
+        "model": "gpt-image-2.5",
+        "size": "1024x1024",
+        "quality": "high",
+        "background": "opaque",
+        "format": "png",
+        "n": 1
+      },
+      "elapsedSeconds": 34.53,
+      "bytes": 1681404,
+      "sha256": "6f48994bd26b6aa283d0d56a1f0b1328e14d3c631604b9a4a8efdb3fcfbaee07",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "requestedSizeMatched": false,
+      "previews": {
+        "1024": "previews/17-1024.png",
+        "512": "previews/17-512.png",
+        "192": "previews/17-192.png",
+        "96": "previews/17-96.png",
+        "48": "previews/17-48.png",
+        "32": "previews/17-32.png"
+      }
+    },
+    {
+      "id": "18",
+      "slug": "android-whale-partners",
+      "title": {
+        "zh": "安卓鲸伴",
+        "en": "Droid & Whale"
+      },
+      "group": "安卓＋鲸鱼",
+      "style": "扁平伙伴 / Flat character duo",
+      "element": "安卓机器人拥抱蓝鲸",
+      "palette": "安卓绿 / 鲸鱼蓝",
+      "prompt": "prompts/18-android-whale-partners.txt",
+      "original": "18-android-whale-partners.png",
+      "status": "generated",
+      "generation": {
+        "model": "gpt-image-2.5",
+        "size": "1024x1024",
+        "quality": "high",
+        "background": "opaque",
+        "format": "png",
+        "n": 1
+      },
+      "elapsedSeconds": 32.33,
+      "bytes": 1280148,
+      "sha256": "a4a701469786195e59c81e33273545d2373f079bc6e7a0e96ef40c2405670ba8",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "requestedSizeMatched": false,
+      "previews": {
+        "1024": "previews/18-1024.png",
+        "512": "previews/18-512.png",
+        "192": "previews/18-192.png",
+        "96": "previews/18-96.png",
+        "48": "previews/18-48.png",
+        "32": "previews/18-32.png"
+      }
+    },
+    {
+      "id": "19",
+      "slug": "android-mecha-whale",
+      "title": {
+        "zh": "机械蓝鲸",
+        "en": "Mecha Whale"
+      },
+      "group": "安卓＋鲸鱼",
+      "style": "等距机甲 / Isometric mecha",
+      "element": "机器人面板＋机械鲸身",
+      "palette": "钴蓝 / 青绿 / 亮青",
+      "prompt": "prompts/19-android-mecha-whale.txt",
+      "original": "19-android-mecha-whale.png",
+      "status": "generated",
+      "generation": {
+        "model": "gpt-image-2.5",
+        "size": "1024x1024",
+        "quality": "high",
+        "background": "opaque",
+        "format": "png",
+        "n": 1
+      },
+      "elapsedSeconds": 33.48,
+      "bytes": 1305357,
+      "sha256": "cab7d567b9c42eb266809f603310f23f8059a3d00bf79bf8cae3c0a255a810ee",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "requestedSizeMatched": false,
+      "previews": {
+        "1024": "previews/19-1024.png",
+        "512": "previews/19-512.png",
+        "192": "previews/19-192.png",
+        "96": "previews/19-96.png",
+        "48": "previews/19-48.png",
+        "32": "previews/19-32.png"
+      }
+    },
+    {
+      "id": "20",
+      "slug": "android-whale-embrace",
+      "title": {
+        "zh": "鲸尾智环",
+        "en": "Whale Embrace"
+      },
+      "group": "安卓＋鲸鱼",
+      "style": "双色图形 / Two-tone emblem",
+      "element": "安卓头部＋环抱鲸尾",
+      "palette": "安卓绿 / 鲸鱼蓝",
+      "prompt": "prompts/20-android-whale-embrace.txt",
+      "original": "20-android-whale-embrace.png",
+      "status": "generated",
+      "generation": {
+        "model": "gpt-image-2.5",
+        "size": "1024x1024",
+        "quality": "high",
+        "background": "opaque",
+        "format": "png",
+        "n": 1
+      },
+      "elapsedSeconds": 51.61,
+      "bytes": 1252279,
+      "sha256": "e374c0ce2ea7cf87073e1ab1871f050d15b11deb0cdc4ec9a962e5597b877558",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "requestedSizeMatched": false,
+      "previews": {
+        "1024": "previews/20-1024.png",
+        "512": "previews/20-512.png",
+        "192": "previews/20-192.png",
+        "96": "previews/20-96.png",
+        "48": "previews/20-48.png",
+        "32": "previews/20-32.png"
+      }
+    }
+  ],
+  "presentation": {
+    "selector": "index.html",
+    "overview": "overview.jpg",
+    "smallSizes": "small-size-review.jpg",
+    "guide": "README.md",
+    "previewSizes": [
+      1024,
+      512,
+      192,
+      96,
+      48,
+      32
+    ],
+    "originalsPreserved": true,
+    "background": "opaque dark navy",
+    "transparentOrVectorMaster": false,
+    "androidAdaptiveIconApplied": false
+  },
+  "visualReview": {
+    "completed": true,
+    "method": "Visual inspection of all ten generated originals on the overview and 128/96/48/32px comparison; native files additionally inspected for 11, 12, 16 and 18.",
+    "reviewedIds": [
+      "11",
+      "12",
+      "13",
+      "14",
+      "15",
+      "16",
+      "17",
+      "18",
+      "19",
+      "20"
+    ],
+    "suggestedAppIconIds": [
+      "20",
+      "16",
+      "11"
+    ],
+    "suggestedCompanionMascotIds": [
+      "17",
+      "18",
+      "15"
+    ],
+    "observations": {
+      "11": "Simple Android head and broad eyes retain recognition at small sizes.",
+      "13": "Returned glass is translucent and glossy, with bright neural nodes.",
+      "16": "Android antennae and whale tail remain separate recognizable shapes.",
+      "17": "Whale-costume mascot is suitable for larger companion artwork; costume details reduce at 32px.",
+      "18": "Hugging duo reads as a friendly companion; two-character details become dense at 32px.",
+      "20": "Compact stacked Android/whale silhouette retains both themes at 32px."
+    },
+    "productionDirectionSelected": false,
+    "originalBytesModified": false
+  }
+}

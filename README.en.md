@@ -1,5 +1,7 @@
 # LMA · Android local-model workbench
 
+**20261102 logo selection, batch 2:** [11–20: Android + AI / Android + whale](docs/LOGO_SELECTION_20261102_BATCH2.md) · [Offline selector](output/imagegen/lma-logo-selection-20261102-batch2/index.html). Ten new generated directions, preserved native images, small previews and companion mascots; batch 1 remains archived.
+
 **20261102 logo selection:** [Ten numbered directions](docs/LOGO_SELECTION_20261102.md) · [Offline selector](output/imagegen/lma-logo-selection-20261102/index.html). Generated through the requested sub2-image-gen/gpt-image-2.5 route, with original images, small previews and multi-selection. The production app icon is unchanged.
 
 **20261102 update direction (proposal, not current APK functionality):** [Full plan](docs/UPDATE_DIRECTION_20261102.en.md) · [中文](docs/UPDATE_DIRECTION_20261102.md) · [Capability-tag inventory for all 14 language models](docs/proposals/update-direction-20261102.json). One composer, media job cards, optional local tool planning, artifact context/chains and phone composition; dark by default while preserving saved theme choices; independently label image/video/audio understanding, native outputs, tools, dependencies and evidence. D01–D12 form one functional delivery with A01–A33 acceptance. This documentation update does not change the APK or turn candidate labels into runtime support.

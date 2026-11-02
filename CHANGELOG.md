@@ -1,5 +1,11 @@
 # Changelog / 更新记录
 
+## 2026-11-02 · 第二批安卓／鲸鱼 Logo / Android and whale directions
+
+- 按用户新方向生成 11–20：五套安卓＋AI、五套安卓＋DeepSeek 风格蓝鲸，涵盖极简、像素、玻璃、折纸、软胶、软陶、伙伴、机甲和双色图形；保留第一批及全部原图。
+- 新增 60 个标准尺寸预览、编号总览、小尺寸板和离线选型页。原始字节、真实尺寸与 SHA256 分别记录；公开内容不含网关配置或密钥。
+- 同步[第二批双语说明](docs/LOGO_SELECTION_20261102_BATCH2.md)、README／目录和[维护记录](docs/releases/v0.3.13-logo-selection.md)。Ten new independent directions, no APK/version or production-icon change; existing detailed cases and D01–D12 scope retained.
+
 ## 2026-11-02 · LMA 十套 Logo 选型 / Ten logo directions
 
 - 按用户指定 sub2-image-gen 技能与 gpt-image-2.5 实际生成 10 套不同风格、核心元素的 Logo，保留原图、提示词、真实尺寸与 SHA256，不包含网关配置或密钥。

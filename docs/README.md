@@ -1,5 +1,7 @@
 # LMA 文档 / Documentation
 
+**20261102 第二批 Logo / Batch 2:** [11–20 安卓＋AI／安卓＋鲸鱼](LOGO_SELECTION_20261102_BATCH2.md) · [Offline selector](../output/imagegen/lma-logo-selection-20261102-batch2/index.html)。十套新候选与小尺寸对比；第一批保留。
+
 **20261102 Logo 选型 / Branding directions：** [十套风格、元素与原图](LOGO_SELECTION_20261102.md) · [Offline selector](../output/imagegen/lma-logo-selection-20261102/index.html) · [维护说明](releases/v0.3.13-logo-selection.md)。实际生成的候选稿，未替换 App 图标。
 
 **20261102 内容更新方向（规划／Proposal）：** [中文完整方案](UPDATE_DIRECTION_20261102.md) · [English](UPDATE_DIRECTION_20261102.en.md) · [语言模型多模态标签／Structured tags](proposals/update-direction-20261102.json) · [本次文档维护说明](releases/v0.3.13-20261102-direction.md)。以对话统一本地创作，默认暗色并保留用户已选主题；包含 D01–D12 和 A01–A33；当前 APK 仍为 v0.3.13，标签的 App 展示与新对话能力待开发。
