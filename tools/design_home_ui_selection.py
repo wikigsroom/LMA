@@ -15,6 +15,9 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT = ROOT / "output/imagegen/lma-home-ui-selection-20261103"
+DOCUMENT_STEM = "UI_HOME_SELECTION_20261103"
+PREVIOUS_SELECTION = None
+SELECTION_EXAMPLE = "采用 03 的卡片质感，配 01 的颜色，底部导航参考 09。"
 
 STYLES = [
     dict(id="01", slug="material-expressive", zh="灵动质感", en="Material Expressive", language="Material 3 / Android 原生", palette=["#101827", "#1E2D47", "#3A7BFA", "#AEEC57", "#ECF1FF"],
@@ -113,11 +116,15 @@ def build() -> None:
     def font(size, heavy=False):
         return ImageFont.truetype(str(bold if heavy else face), size)
 
+    assert len(STYLES) == 10
+    ids = [style["id"] for style in STYLES]
+    full_range = ids[0] + "—" + ids[-1]
+    groups = [(0, ids[0] + "-" + ids[4]), (5, ids[5] + "-" + ids[-1])]
     manifest = dict(schema="lma.home-ui-selection/1", date="2026-11-03", appVersion="0.4.0", status="awaiting_user_selection",
                     generator=dict(skill="sub2-image-gen", modelRequested="gpt-image-2.5", command="edit", endpoint="/v1/images/edits", sizeRequested="1024x1536", quality="high", format="png", imageReferences=["reference/logo-21.png", "reference/home-v0.3.13.png"]),
                     scope="AI-generated visual directions, not an implemented UI or physical-device screenshot; no performance benchmark", approvedLogo="21", approvedSlogan="04", defaultTheme="dark",
                     postprocessing="Original PNG bytes preserved; only previews and comparison boards are resized/composed. No program recoloring or logo replacement.",
-                    sourceContext="source-context.json", directions=[])
+                    sourceContext="source-context.json", selectionIds=ids, previousSelection=PREVIOUS_SELECTION, directions=[])
     sizes = set()
     for style in STYLES:
         item = dict(style)
@@ -152,11 +159,11 @@ def build() -> None:
             d.text((x, y + image_h + 48), item["en"], font=font(17), fill="#ACBDD9")
         canvas.save(OUTPUT / file, quality=94, optimize=True)
 
-    board(manifest["directions"], "overview.jpg", "LMA / 首页 UI 风格选型 / 01—10", 5)
-    board(manifest["directions"][:5], "overview-01-05.jpg", "LMA / 首页 UI 风格选型 / 01—05", 5)
-    board(manifest["directions"][5:], "overview-06-10.jpg", "LMA / 首页 UI 风格选型 / 06—10", 5)
+    board(manifest["directions"], "overview.jpg", "LMA / 首页 UI 风格选型 / " + full_range, 5)
+    for start, label in groups:
+        board(manifest["directions"][start:start + 5], "overview-" + label + ".jpg", "LMA / 首页 UI 风格选型 / " + label.replace("-", "—"), 5)
     write_json(OUTPUT / "manifest.json", manifest)
-    (OUTPUT / "directions.js").write_text("window.LMA_DESIGN_DIRECTIONS = " + json.dumps(manifest["directions"], ensure_ascii=False, indent=2) + ";\n", encoding="utf-8")
+    (OUTPUT / "directions.js").write_text("window.LMA_DESIGN_STORAGE_KEY = " + json.dumps(OUTPUT.name) + ";\nwindow.LMA_DESIGN_DIRECTIONS = " + json.dumps(manifest["directions"], ensure_ascii=False, indent=2) + ";\n", encoding="utf-8")
     cards = []
     for item in manifest["directions"]:
         cards.append(f'''<article class="design-card" id="style-{item['id']}">
@@ -174,13 +181,19 @@ def build() -> None:
 <aside class="selection-bar" aria-label="选择操作"><span id="selectionSummary" aria-live="polite">尚未选择</span><div><button id="clearSelection" class="quiet">清空</button><button id="copySelection" class="outline">复制选择</button><button id="compareSelection" class="primary">并排对比</button></div></aside>
 <p id="notice" role="status"></p><dialog id="viewer" aria-labelledby="viewerTitle"><header class="viewer-header"><h2 id="viewerTitle">设计稿</h2><button id="closeViewer" aria-label="关闭大图">关闭 ×</button></header><div id="viewerBody"></div></dialog>
 </body></html>'''
+    page = page.replace("UI_HOME_SELECTION_20261103", DOCUMENT_STEM).replace("01—10", full_range)
+    for old, (_, label) in zip(["01-05", "06-10"], groups):
+        page = page.replace(old, label).replace(old.replace("-", "—"), label.replace("-", "—"))
+    page = page.replace("采用 03 的卡片质感，配 01 的颜色，底部导航参考 09。", SELECTION_EXAMPLE)
+    if PREVIOUS_SELECTION:
+        page = page.replace('<section class="notes">', '<section class="notes"><p><a href="' + escape(PREVIOUS_SELECTION, quote=True) + '">返回第一批 01—10 ↗</a></p>')
     (OUTPUT / "index.html").write_text(page.replace("__CARDS__", "\n".join(cards)), encoding="utf-8")
     # Copy selection assets from the source templates, so the offline result is self-contained.
     for name in ["selection.css", "selection.js"]:
         shutil.copyfile(ROOT / "tools/home_ui_selection" / name, OUTPUT / name)
-    (OUTPUT / "README.txt").write_text("LMA 首页设计选型 / Home UI selection — 2026-11-03\n\nOpen index.html locally. Original PNGs are independent AI-generated concepts produced through sub2-image-gen / gpt-image-2.5, high, 1024x1536, with the approved Logo 21 and a historical v0.3.13 homepage as image references. Current v0.4.0 sources were inspected; the historical screenshot is not current physical evidence.\n\nThese are proposals, not deployed screens, model output or performance measurements. All original PNG bytes are preserved. JPEG previews and boards only resize/arrange those images. The ten directions retain dark mode, five navigation destinations, separate task/content tags and the m08/m06/m01 recommendation prefix.\n\nFull Chinese/English briefs: docs/UI_HOME_SELECTION_20261103.md and .en.md in the repository. The two ZIPs contain originals and prompts, not the entire offline selector.\n", encoding="utf-8")
+    (OUTPUT / "README.txt").write_text(("LMA 首页设计选型 / Home UI selection — 2026-11-03 / " + full_range + "\n\nOpen index.html locally. Original PNGs are independent AI-generated concepts produced through sub2-image-gen / gpt-image-2.5, high, 1024x1536, with the approved Logo 21 and a historical v0.3.13 homepage as image references. Current v0.4.0 sources were inspected; the historical screenshot is not current physical evidence.\n\nThese are proposals, not deployed screens, model output or performance measurements. All original PNG bytes are preserved. JPEG previews and boards only resize/arrange those images. The ten directions retain dark mode, five navigation destinations, separate task/content tags and the m08/m06/m01 recommendation prefix.\n\nFull Chinese/English briefs: docs/UI_HOME_SELECTION_20261103.md and .en.md in the repository. The two ZIPs contain originals and prompts, not the entire offline selector.\n").replace("UI_HOME_SELECTION_20261103", DOCUMENT_STEM), encoding="utf-8")
     archives = []
-    for start, label in [(0, "01-05"), (5, "06-10")]:
+    for start, label in groups:
         archive = OUTPUT / ("LMA-home-ui-" + label + ".zip")
         names = ["README.txt", "manifest.json", "source-context.json"]
         for item in manifest["directions"][start:start + 5]:

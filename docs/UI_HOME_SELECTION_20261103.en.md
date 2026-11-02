@@ -1,5 +1,7 @@
 # LMA home-screen visual selection · 20261103
 
+**Batch 2 adds 11–20:** [Ten more directions and a separate selector](UI_HOME_SELECTION_20261103_BATCH2.en.md). This page and the first batch retain their original artwork.
+
 [中文](UI_HOME_SELECTION_20261103.md) · [Offline selector](../output/imagegen/lma-home-ui-selection-20261103/index.html) · [All ten](../output/imagegen/lma-home-ui-selection-20261103/overview.jpg) · [01–05](../output/imagegen/lma-home-ui-selection-20261103/overview-01-05.jpg) · [06–10](../output/imagegen/lma-home-ui-selection-20261103/overview-06-10.jpg)
 
 Ten independently generated **dark-mode homepage concepts** explore visual languages for the existing Model Library → Recommended screen. They compare hierarchy, density, typography, geometry and materials. No UI style has been selected yet; the application, APK, v0.4.0 tag and published Release assets retain their original identity.

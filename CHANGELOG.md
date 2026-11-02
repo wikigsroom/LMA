@@ -1,5 +1,12 @@
 # Changelog / 更新记录
 
+## 2026-11-03 · 第二批首页 UI 设计 11–20 / Ten more homepage directions
+
+- 按用户要求新增 11–20 十套独立生成的暗色首页稿，累计 20 套；采用曜黑、瑞士网格、Metro、终端、赛博机能、像素、侘寂、Art Deco、孟菲斯与幻彩钛银，不通过程序换色增加数量。
+- 沿用 sub2-image-gen／gpt-image-2.5、正式 Logo 和历史首页参考；提供原图、提示词、来源、总览、两组原图 ZIP 及独立保存选择的离线对比页。中英 README、设计说明和维护说明同步，第一批素材不覆盖。
+- Ten new concepts extend selection to 01–20; the shared packager supports new ID ranges, document links and isolated choices. Static artwork/document checks only; app/APK, published Release assets and existing physical/model-evidence limits remain unchanged.
+
+
 ## 2026-11-03 · 十套首页 UI 风格 / Ten homepage visual directions
 
 - 检查 v0.4.0 模型库首页，保留暗色、Logo 21／Slogan 04、推荐前缀与功能入口；通过用户指定的 sub2-image-gen／gpt-image-2.5 路线，参考现有品牌与历史首页，独立生成 01–10 十套首页设计概念稿。

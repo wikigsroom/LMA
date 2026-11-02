@@ -1,6 +1,6 @@
 (function () {
   'use strict';
-  var data = window.LMA_DESIGN_DIRECTIONS || [], selected = [], storageKey = 'lma-home-ui-selection-20261103';
+  var data = window.LMA_DESIGN_DIRECTIONS || [], selected = [], storageKey = window.LMA_DESIGN_STORAGE_KEY || 'lma-home-ui-selection-20261103';
   var dialog = document.getElementById('viewer'), body = document.getElementById('viewerBody'), title = document.getElementById('viewerTitle');
   var noticeTimer;
   try { var saved = JSON.parse(localStorage.getItem(storageKey) || '[]'); if (Array.isArray(saved)) selected = saved.filter(function (id, index) { return data.some(function (d) { return d.id === id; }) && saved.indexOf(id) === index; }).slice(0, 3); } catch (_) {}

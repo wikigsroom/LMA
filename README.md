@@ -20,7 +20,7 @@ Android 本地 AI 工作台，模型由你选择，无审查模型独立标记�
 | 管理模型、独立参数、任务和结果 | [C03–C04、C15–C18](#use-cases) | [模型参数](docs/MODEL_SETTINGS.md)、[任务工作台](docs/TASK_WORKBENCH.md) |
 | 在程序中调用手机模型 | [API 示例](#api-examples) | [API](docs/API.md)、[输入与上传](docs/LOCAL_INPUTS.md) |
 | 看页面、生成案例和失败对照 | [当前页面](#ui-media)、[历史案例 H01–H18](#case-studies) | [媒体说明](docs/MEDIA.md)、[历史完整 README](docs/history/README-dev45.zh.md) |
-| 选择首页 UI 风格 | [01–10 设计稿与说明](docs/UI_HOME_SELECTION_20261103.md) | [离线放大／并排对比](output/imagegen/lma-home-ui-selection-20261103/index.html)、[十套总览](output/imagegen/lma-home-ui-selection-20261103/overview.jpg) |
+| 选择首页 UI 风格 | [第一批 01–10](docs/UI_HOME_SELECTION_20261103.md)、[第二批 11–20](docs/UI_HOME_SELECTION_20261103_BATCH2.md) | [01–10 离线对比](output/imagegen/lma-home-ui-selection-20261103/index.html)、[11–20 离线对比](output/imagegen/lma-home-ui-selection-20261103-batch2/index.html) |
 | 查证测试范围、重建和排错 | [程序检查](#verification)、[构建](#build)、[排错](#troubleshooting) | [程序验证策略](docs/PROGRAM_VALIDATION.md)、[构建指南](docs/BUILD.md) |
 
 **验证范围：程序验证。** 本版没有可用 ADB 真机，不重新下载或完整运行模型。视觉预处理／Android 编解码输出、本版手机性能与后台耐久尚待实机检查；m15 有固定视觉组件预设，m03／m09／m16 的配对身份仍待核对。公共 OpenAI 对话明确为文本子集，App 看图桥与通用公共多模态 API 不混同。原 3D 与视频质量问题继续保留。详见 [逐项实施与限制](docs/CONVERSATION_V040.md) 和 [本版证据](verification/releases/v0.4.0/status.json)。下方旧版真机截图与案例保留其原版本身份。

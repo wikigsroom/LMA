@@ -18,7 +18,7 @@ The following restores the detailed scenarios, API examples, generated artifacts
 | Goal | Entry point |
 | --- | --- |
 | Operate the app | [30 scenarios C01–C30](#use-cases) |
-| Choose a home-screen visual style | [Ten design directions](docs/UI_HOME_SELECTION_20261103.en.md), [offline selector](output/imagegen/lma-home-ui-selection-20261103/index.html), [overview](output/imagegen/lma-home-ui-selection-20261103/overview.jpg) |
+| Choose a home-screen visual style | [01–10](docs/UI_HOME_SELECTION_20261103.en.md) / [11–20](docs/UI_HOME_SELECTION_20261103_BATCH2.en.md), [first selector](output/imagegen/lma-home-ui-selection-20261103/index.html) / [second selector](output/imagegen/lma-home-ui-selection-20261103-batch2/index.html) |
 | Integrate the phone API | [Four examples A01–A04](#api-examples) |
 | Compare historical outputs and failures | [18 cases H01–H18](#case-studies) |
 | Inspect current program coverage | [60 current suites](#verification) |

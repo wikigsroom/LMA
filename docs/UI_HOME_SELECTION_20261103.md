@@ -1,5 +1,7 @@
 # LMA 首页 UI 风格选型 · 20261103
 
+**第二批已增加 11–20：** [查看十套新设计与独立对比页](UI_HOME_SELECTION_20261103_BATCH2.md)。本页保留第一批及其原始素材。
+
 [English](UI_HOME_SELECTION_20261103.en.md) · [离线选型页](../output/imagegen/lma-home-ui-selection-20261103/index.html) · [十套总览](../output/imagegen/lma-home-ui-selection-20261103/overview.jpg) · [01–05](../output/imagegen/lma-home-ui-selection-20261103/overview-01-05.jpg) · [06–10](../output/imagegen/lma-home-ui-selection-20261103/overview-06-10.jpg)
 
 本轮以当前默认的“模型库 → 推荐”首页为蓝本，提供 **01–10 十套独立生成的暗色设计概念稿**。用于比较设计语言、信息层级、布局密度和控件材质。用户尚未选择 UI 风格；App、APK、v0.4.0 标签和已有 Release 附件保持原身份。

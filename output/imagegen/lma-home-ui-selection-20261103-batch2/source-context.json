@@ -1,0 +1,49 @@
+{
+  "version": "0.4.0",
+  "date": "2026-11-03",
+  "inspected": [
+    {
+      "file": "app/src/main/assets/index.html",
+      "sha256": "71a0491e1a894274328a96fa395c4871569e0770b2c678b9c4a4e6bc12bcd88f"
+    },
+    {
+      "file": "app/src/main/assets/app.css",
+      "sha256": "1c1bdc0a0f90c2b1dbe170853a9897e8acc2664e157fee22af5b996ad4e14846"
+    },
+    {
+      "file": "app/src/main/assets/app.js",
+      "sha256": "a2c6910e41edddf050f00fa3f91cf223e8fde36358937ae339ab35db32572d5d"
+    },
+    {
+      "file": "catalogue/verified-models.json",
+      "sha256": "845022c2d1c5e0a298466c1912aa8d86450f613909944d2fd2d0c580669fae48"
+    }
+  ],
+  "initialTab": "models",
+  "initialFilter": "recommended",
+  "recommendedPrefix": [
+    "m08",
+    "m06",
+    "m01"
+  ],
+  "observations": [
+    "Title, resource data and two filter groups consume much of the initial viewport.",
+    "Keep five navigation destinations, user-owned model downloads and independent task/content tags.",
+    "Use compact grouping to expose more model choices without hiding controls."
+  ],
+  "mockData": "8 GB / 64 GB / 0 are illustrative design values, not physical-device measurements.",
+  "references": [
+    {
+      "source": "docs/media/branding/lma-logo.png",
+      "file": "reference/logo-21.png",
+      "sha256": "3155c4601396c8623c20879b903e317747a94a7b840be307bcc93fde988c8bea",
+      "note": "Approved Logo 21; preserve identity, not an alternative design"
+    },
+    {
+      "source": "docs/media/device/v0.3.13/01-recommended.png",
+      "file": "reference/home-v0.3.13.png",
+      "sha256": "a3536870f6f3f173ed3e33655432c5ed7541b642c912db78c775a38027c2a0b6",
+      "note": "Historical physical v0.3.13 content reference; not current v0.4.0 UI evidence"
+    }
+  ]
+}
