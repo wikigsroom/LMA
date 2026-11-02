@@ -1,5 +1,11 @@
 # Changelog / 更新记录
 
+## 2026-11-02 · 17 号结构变体 / Whale Hood styles and palettes
+
+- 按用户选定的 17 号鲸帽小安卓结构重新生成 21–30：钴蓝软胶、薄荷扁平、杏桃软陶、曜石鎏金、冰晶琉璃、薰衣草毛绒、樱粉水彩、霓虹像素、森绿剪纸及珊瑚珐琅。
+- 观察原图并转录为共享结构约束，通过指定 sub2-image-gen / gpt-image-2.5 独立生成；如实标记文字生成方式，没有将原图上传为图生图输入。保留 17 号参考字节与哈希，全部旧批次归档保留。
+- 提供 10 原图、60 预览、总览、小尺寸板、带参考图的离线页，以及[双语说明](docs/LOGO_SELECTION_20261102_BATCH3.md)和[维护记录](docs/releases/v0.3.13-logo-selection.md)。Ten independently generated style/palette variants; no production icon or APK change, and no gateway secrets in public files.
+
 ## 2026-11-02 · 第二批安卓／鲸鱼 Logo / Android and whale directions
 
 - 按用户新方向生成 11–20：五套安卓＋AI、五套安卓＋DeepSeek 风格蓝鲸，涵盖极简、像素、玻璃、折纸、软胶、软陶、伙伴、机甲和双色图形；保留第一批及全部原图。

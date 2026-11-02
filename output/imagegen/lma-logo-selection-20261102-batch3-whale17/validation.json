@@ -1,0 +1,105 @@
+{
+  "schema": "lma.logo-artifact-validation/1",
+  "date": "2026-11-02",
+  "batch": 3,
+  "passed": true,
+  "checkedAssertions": 277,
+  "scope": "Generated-artifact integrity, preview dimensions, local HTML resources, JavaScript syntax and preservation of existing documentation. No browser or Android/model execution.",
+  "originals": 10,
+  "previews": 60,
+  "structuralBlueprint": "17, visually inspected and transcribed into text constraints; not an uploaded image-edit input",
+  "referenceIdentityPreserved": true,
+  "distinctStyleAndPaletteBriefs": 10,
+  "originalSha256": [
+    {
+      "id": "21",
+      "sha256": "f224b6e0fb1030fa894557bf6961d5d3e5d3b00430c5a0077bf9b85f3831282f",
+      "dimensions": [
+        1254,
+        1254
+      ]
+    },
+    {
+      "id": "22",
+      "sha256": "0b203f62484b024c2b3b617152ca1f128208646b2913010bf2a5ff92f04472be",
+      "dimensions": [
+        1254,
+        1254
+      ]
+    },
+    {
+      "id": "23",
+      "sha256": "d94f2f44a180194e63f80030df6e7db91c83e931a9bdc86809b22bf92d3130c7",
+      "dimensions": [
+        1254,
+        1254
+      ]
+    },
+    {
+      "id": "24",
+      "sha256": "05aaad711ed244671569543b0aa343fbe7df0d540a77bc75c9a8b15a4fecfedf",
+      "dimensions": [
+        1254,
+        1254
+      ]
+    },
+    {
+      "id": "25",
+      "sha256": "2708f1c0305f2f128f36c953fa97d32e2247ea994709470ac231aadacdef8139",
+      "dimensions": [
+        1254,
+        1254
+      ]
+    },
+    {
+      "id": "26",
+      "sha256": "6fa01ff2e80f576d740e382aa0a7f7c314c04ae86d9ee9b6a2c26bbd1929499a",
+      "dimensions": [
+        1254,
+        1254
+      ]
+    },
+    {
+      "id": "27",
+      "sha256": "73306c2f83c34e383cc6edbd3cc9b220875bfef409d0b468968e87a481c0e5f5",
+      "dimensions": [
+        1254,
+        1254
+      ]
+    },
+    {
+      "id": "28",
+      "sha256": "bc0c8cc14edd196f2a62ffbb081aa560bb25a8133854872d384cfd724397cc9b",
+      "dimensions": [
+        1254,
+        1254
+      ]
+    },
+    {
+      "id": "29",
+      "sha256": "d082c3ec53fb3cfe2d92336d9e7efed19d7a04e7556729bb2ad4547db78c39c4",
+      "dimensions": [
+        1254,
+        1254
+      ]
+    },
+    {
+      "id": "30",
+      "sha256": "2333b869fc5242317e18f02b221244be5b5bf31a199f2ec63e443679cf925828",
+      "dimensions": [
+        1254,
+        1254
+      ]
+    }
+  ],
+  "archiveContentVerification": "Passed: CRC and every archived entry checked byte-for-byte against the final public files.",
+  "browserLaunched": false,
+  "virtualizationUsed": false,
+  "appSourceChanged": false,
+  "apkOrProductionIconChanged": false,
+  "phoneOrModelValidation": false,
+  "javascriptSyntax": "passed",
+  "existingDetailedReadmesPreserved": true,
+  "visualReview": "All ten native generated images, the overview and small-size board inspected against option 17.",
+  "archiveEntries": 87
+}

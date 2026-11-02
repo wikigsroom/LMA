@@ -1,5 +1,7 @@
 # LMA · Android local-model workbench
 
+**20261102 logo selection, batch 3:** [21–30: ten styles and palettes based on Whale Hood 17](docs/LOGO_SELECTION_20261102_BATCH3.md) · [Offline selector](output/imagegen/lma-logo-selection-20261102-batch3-whale17/index.html). Preserves the whale hood, twin Android antennae, face opening and raised right-side tail, with native originals and small previews.
+
 **20261102 logo selection, batch 2:** [11–20: Android + AI / Android + whale](docs/LOGO_SELECTION_20261102_BATCH2.md) · [Offline selector](output/imagegen/lma-logo-selection-20261102-batch2/index.html). Ten new generated directions, preserved native images, small previews and companion mascots; batch 1 remains archived.
 
 **20261102 logo selection:** [Ten numbered directions](docs/LOGO_SELECTION_20261102.md) · [Offline selector](output/imagegen/lma-logo-selection-20261102/index.html). Generated through the requested sub2-image-gen/gpt-image-2.5 route, with original images, small previews and multi-selection. The production app icon is unchanged.
