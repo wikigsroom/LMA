@@ -1,6 +1,6 @@
 # LMA 文档 / Documentation
 
-**20261102 内容更新方向（规划／Proposal）：** [中文完整方案](UPDATE_DIRECTION_20261102.md) · [English](UPDATE_DIRECTION_20261102.en.md) · [语言模型多模态标签／Structured tags](proposals/update-direction-20261102.json) · [本次文档维护说明](releases/v0.3.13-20261102-direction.md)。以对话统一本地创作，包含 D01–D12 和 A01–A32；当前 APK 仍为 v0.3.13，标签的 App 展示与新对话能力待开发。
+**20261102 内容更新方向（规划／Proposal）：** [中文完整方案](UPDATE_DIRECTION_20261102.md) · [English](UPDATE_DIRECTION_20261102.en.md) · [语言模型多模态标签／Structured tags](proposals/update-direction-20261102.json) · [本次文档维护说明](releases/v0.3.13-20261102-direction.md)。以对话统一本地创作，默认暗色并保留用户已选主题；包含 D01–D12 和 A01–A33；当前 APK 仍为 v0.3.13，标签的 App 展示与新对话能力待开发。
 
 [v0.3.13 默认端口 52187 / Default port and migration](API_PORT.md) · [Release notes](releases/v0.3.13.md)
 [完整实现与检查 / Implementation and checks](IMPLEMENTATION_V0313.md) · [English](IMPLEMENTATION_V0313.en.md)

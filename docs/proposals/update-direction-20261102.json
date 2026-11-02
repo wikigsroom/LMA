@@ -19,7 +19,8 @@
     "documentedModelTags": 14,
     "completeTrainedModelsDownloadedThisTurn": 0,
     "modelInferenceThisTurn": false,
-    "newUiMediaRequiredForDocumentationOnly": false
+    "newUiMediaRequiredForDocumentationOnly": false,
+    "runtimeThemeChangedThisTurn": false
   },
   "constraints": {
     "execution": "same_android_phone",
@@ -58,7 +59,8 @@
       "16",
       "17"
     ],
-    "frozenSubtargetsAndSd15SdxlLoraPreserved": true
+    "frozenSubtargetsAndSd15SdxlLoraPreserved": true,
+    "defaultTheme": "dark"
   },
   "interaction": {
     "requiredChoices": [
@@ -1449,6 +1451,10 @@
     {
       "id": "R10",
       "requirement": "常规验证优先程序合同和有界夹具；必要的已授权真机检查单独记录。代码通过、真实模型输出、质量和后台耐久分别验收。"
+    },
+    {
+      "id": "R11",
+      "requirement": "软件默认采用暗色调。首次安装及无主题记录的升级使用暗色，不受系统浅色模式影响；已有有效的暗色／浅色／跟随系统选择保留，主题属于应用级偏好。"
     }
   ],
   "workPackages": [
@@ -1567,10 +1573,15 @@
       "status": "not_implemented_by_this_plan",
       "requiredInSameFunctionalDelivery": true,
       "title": {
-        "zh": "性能与状态",
-        "en": "Performance and state"
+        "zh": "默认暗色、性能与状态",
+        "en": "Default dark appearance, performance and state"
       },
-      "dependsOn": []
+      "dependsOn": [],
+      "acceptance": [
+        "A25",
+        "A26",
+        "A33"
+      ]
     },
     {
       "id": "D11",
@@ -1736,6 +1747,10 @@
     {
       "id": "A32",
       "requirement": "同步完整中英文档、用例、失败案例、真实／夹具媒体和版本说明；普通推送并发布新的正式 Release，不替换旧附件。"
+    },
+    {
+      "id": "A33",
+      "requirement": "新安装与无主题记录的升级默认暗色，即使系统为浅色；已有有效主题保留，三种主题切换可持久化。启动／原生栏／WebView／页面／弹窗一致且不闪白，文字／标签可读、媒体原色不变；切换不影响模型、参数、任务和 API。"
     }
   ],
   "sources": [
@@ -1901,5 +1916,53 @@
   "documents": {
     "zh": "docs/UPDATE_DIRECTION_20261102.md",
     "en": "docs/UPDATE_DIRECTION_20261102.en.md"
+  },
+  "appearance": {
+    "status": "planned_not_implemented",
+    "requirement": "R11",
+    "workPackage": "D10",
+    "acceptance": "A33",
+    "defaultTheme": "dark",
+    "firstInstall": "dark",
+    "missingPreferenceOnUpgrade": "dark",
+    "preserveValidSavedPreference": true,
+    "ambiguousHistoricalPreference": "preserve_existing_valid_value",
+    "choices": [
+      "dark",
+      "light",
+      "system"
+    ],
+    "scope": "app",
+    "persistUserChoice": true,
+    "defaultIndependentOfSystemTheme": true,
+    "applyBeforeFirstFrame": true,
+    "preventWhiteLaunchFlash": true,
+    "surfaces": [
+      "launch_background",
+      "native_window",
+      "status_bar",
+      "navigation_bar",
+      "webview_first_frame",
+      "models",
+      "chat",
+      "jobs",
+      "artifacts",
+      "service",
+      "settings",
+      "dialogs",
+      "loading",
+      "errors",
+      "empty_states"
+    ],
+    "retainReadableLabelsAndControls": true,
+    "preserveOriginalMediaColors": true,
+    "doesNotChange": [
+      "model_assets",
+      "model_parameters",
+      "jobs",
+      "artifacts",
+      "api"
+    ],
+    "singleFunctionalDelivery": true
   }
 }

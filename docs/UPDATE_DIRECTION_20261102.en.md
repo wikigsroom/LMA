@@ -33,6 +33,7 @@ Preserve the entire existing scope: **F01–F12, text, selections 01–14/16/17,
 | R08 | Preserve port **52187**, existing migration, signing identity, model IDs, settings and history. Keep released tags/assets immutable. |
 | R09 | No ComfyUI wiring, infinite canvas, public user nodes or plugin ecosystem. Internal versioned adapters and dependent task execution remain appropriate. |
 | R10 | Regular validation uses program contracts and bounded fixtures. Record necessary authorized phone checks separately from source checks, actual output, quality and endurance. |
+| R11 | Default to a dark appearance. Fresh installs and upgrades without a stored theme use dark even when the system is light. Preserve valid dark/light/system preferences; appearance is an app-level setting. |
 
 ## 03 · Existing code and missing integration
 
@@ -116,6 +117,14 @@ The composer provides **Auto / Chat / Image / Video / Audio / 3D** and local att
 | U08 | Edit a previous prompt/settings or retry | Create a related revision/job; preserve old inputs, errors and results. Only an explicit “save model defaults” action persists defaults |
 
 Auto does not promise that every LLM can plan. Missing planners, incompatible tool formats or invalid outputs retain an editable draft and the manual path. When “this image/previous audio” has multiple candidates, users explicitly select the intended asset.
+
+### Default dark appearance and saved preferences
+
+**Added requirement: dark is the default theme.** A fresh installation opens with dark gray/near-black surfaces, distinguishable cards and readable text, even when Android uses light mode. Keep Dark / Light / System choices and persist the user's selection without resetting it on launch or upgrade.
+
+Only upgrades without a saved theme adopt the dark default. Preserve every valid stored value; when historical records cannot establish whether a value was explicitly selected, retain it. Appearance belongs to app settings rather than individual models and must not change model parameters, downloads, jobs, artifacts or API behavior.
+
+Cover launch backgrounds, native windows/status/navigation bars, the first WebView frame, model/chat/job/artifact/service/settings screens, dialogs, loading, error and empty states. Native and web surfaces apply the same choice without a white flash. Labels, inputs, disabled controls and focus remain readable. Preserve original image/video/3D material colors and exported/model-generated content. Include this work in **D10**, validate through **A33**, and deliver it with the same functional update.
 
 ## 06 · Shared architecture and data
 
@@ -233,7 +242,7 @@ All **D01–D12 belong to one functional update**. Implementation/check ordering
 | D07 | Asset context, lineage and reference cleanup | Extend existing leases | Deterministic references and no accidental shared-file deletion |
 | D08 | Dependent steps and reusable templates | Reuse one execution slot | Block/cancel/retry correctly, freeze settings and explicitly reuse outputs |
 | D09 | Local audio/video composition | New operation, synchronization/encoding | Validate real inputs/output, cancellation, errors and duration rules |
-| D10 | Rendering, media memory and scoped state | Preserve existing idle fixes | Pagination, incremental updates, lazy decoding, cleanup and comparable baselines |
+| D10 | Default dark appearance, rendering, media memory and scoped state | Reuse theme choices and preserve idle fixes | Dark defaults, preference retention and first-frame consistency; pagination, incremental updates, lazy decoding, cleanup and comparable baselines |
 | D11 | API/publication/Sub2API consistency | Preserve existing contracts | Real operations, ownership, auth/idempotency/events regressions |
 | D12 | Entire frozen-scope regression, docs/media and stable release | Preserve historical quality/3D limits | Relevant program checks, necessary phone integration, bilingual scenarios/failures/screens/GIF/video and a new stable release |
 
@@ -277,6 +286,7 @@ These are **future acceptance conditions, not passes from this maintenance turn*
 | A30 | Regress all 62 recipes/82 bundles/18 extension engines plus text, 14 recommendations and every frozen target. |
 | A31 | Separate program/selected phone/output/quality/endurance evidence with exact versions/APKs; no restored all-model long-run prerequisite. |
 | A32 | Synchronize complete bilingual docs/scenarios/failures, labeled real/fixture media and release notes; push normally and publish a new stable release. |
+| A33 | Fresh installs and upgrades without a saved theme default to dark even on a light system. Preserve valid preferences and persist Dark/Light/System changes. Launch/native bars/WebView/screens/dialogs agree without white flashes; labels remain readable and media colors intact. Theme changes do not affect model assets/parameters/jobs/API. |
 
 ## 14 · Delivered and outstanding
 
@@ -284,7 +294,8 @@ These are **future acceptance conditions, not passes from this maintenance turn*
 | --- | --- | --- |
 | C01 | Dated bilingual plan, tag vocabulary and all 14 selection records | Documentation/catalogue proposal, not an app feature |
 | C02 | Unified chat/vision/jobs/artifacts/tools/composition/performance/API work packages | D01–D12, one functional delivery |
-| C03 | Numbered acceptance, sources and preserved real-failure boundaries | A01–A32 are future conditions; no inference this turn |
+| C03 | Numbered acceptance, sources and preserved real-failure boundaries | A01–A33 are future conditions; no inference this turn |
+| C04 | Default dark requirement, preference retention and first-frame/surface rules | R11/D10/A33; current APK appearance behavior is unchanged |
 
 | ID | Outstanding | Meaning |
 | --- | --- | --- |
