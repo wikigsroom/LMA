@@ -1,0 +1,1905 @@
+{
+  "schema": "lma.update-direction/1",
+  "date": "2026-11-02",
+  "timezone": "Asia/Taipei",
+  "status": "proposal_not_runtime",
+  "baseline": {
+    "appVersion": "0.3.13",
+    "versionCode": 63,
+    "commit": "6957f30d7ced8a68e33446424740b9b7bf4eae89",
+    "apiDefaultPort": 52187,
+    "modelCatalogueSha256": "c3e884b4e5fb06f20c036deebc78e6f953ac420e76fca72bab5a25fd59927156"
+  },
+  "delivery": {
+    "singleFunctionalDelivery": true,
+    "futureVersion": null,
+    "apkChangedThisTurn": false,
+    "newReleasePublishedThisTurn": false,
+    "runtimeTagsChangedThisTurn": false,
+    "documentedModelTags": 14,
+    "completeTrainedModelsDownloadedThisTurn": 0,
+    "modelInferenceThisTurn": false,
+    "newUiMediaRequiredForDocumentationOnly": false
+  },
+  "constraints": {
+    "execution": "same_android_phone",
+    "rootRequired": false,
+    "remoteInference": false,
+    "virtualization": false,
+    "implicitAssetDownloads": false,
+    "fixedGenerationDeadlineSeconds": null,
+    "newVideoDurationSecondsExclusiveMinimum": 5,
+    "comfyUiCanvasOrUserPlugins": false,
+    "preservedRecommendations": [
+      "m08",
+      "m06",
+      "m01"
+    ],
+    "recipes": 62,
+    "bundles": 82,
+    "extensionEngines": 18,
+    "textEngineAdditional": true,
+    "recommendations": 14,
+    "originalSelections": [
+      "01",
+      "02",
+      "03",
+      "04",
+      "05",
+      "06",
+      "07",
+      "08",
+      "09",
+      "10",
+      "11",
+      "12",
+      "13",
+      "14",
+      "16",
+      "17"
+    ],
+    "frozenSubtargetsAndSd15SdxlLoraPreserved": true
+  },
+  "interaction": {
+    "requiredChoices": [
+      1,
+      2,
+      3
+    ],
+    "fullyAutonomousAgentRequired": false,
+    "composerModes": [
+      "auto",
+      "chat",
+      "image",
+      "video",
+      "audio",
+      "3d"
+    ],
+    "manualGenerationRequiresTextModel": false,
+    "automaticStepLimit": 8,
+    "automaticModelRepairLimit": 1,
+    "stepLimitsAreNotGenerationDeadlines": true
+  },
+  "capabilityStatusValues": {
+    "publisher_declared": "Explicit publisher capability statement, not runtime validation.",
+    "publisher_metadata": "Publisher task/configuration metadata; exact export unverified.",
+    "family_candidate": "Upstream family capability only; selected derivative/export unverified.",
+    "not_supported": "The identified upstream variant is text-only for this input; no inheritance from other family variants.",
+    "unknown": "Insufficient reviewed evidence; not an unsupported or supported verdict."
+  },
+  "tagDimensions": [
+    {
+      "id": "T01",
+      "name": "native_input"
+    },
+    {
+      "id": "T02",
+      "name": "native_output"
+    },
+    {
+      "id": "T03",
+      "name": "understanding_task"
+    },
+    {
+      "id": "T04",
+      "name": "tools_and_structure"
+    },
+    {
+      "id": "T05",
+      "name": "composed_capabilities"
+    },
+    {
+      "id": "T06",
+      "name": "foundation_dependencies"
+    },
+    {
+      "id": "T07",
+      "name": "lma_integration"
+    },
+    {
+      "id": "T08",
+      "name": "asset_and_device_readiness"
+    },
+    {
+      "id": "T09",
+      "name": "evidence"
+    },
+    {
+      "id": "T10",
+      "name": "content"
+    }
+  ],
+  "tagVocabulary": [
+    {
+      "id": "input:text",
+      "zh": "文字输入",
+      "en": "Text input",
+      "kind": "native_input"
+    },
+    {
+      "id": "input:image",
+      "zh": "图片理解",
+      "en": "Image understanding",
+      "kind": "native_input"
+    },
+    {
+      "id": "input:video",
+      "zh": "视频理解",
+      "en": "Video understanding",
+      "kind": "native_input"
+    },
+    {
+      "id": "input:audio",
+      "zh": "音频理解",
+      "en": "Audio understanding",
+      "kind": "native_input"
+    },
+    {
+      "id": "output:text",
+      "zh": "生文",
+      "en": "Text output",
+      "kind": "native_output"
+    },
+    {
+      "id": "output:image",
+      "zh": "生图",
+      "en": "Image generation",
+      "kind": "native_output"
+    },
+    {
+      "id": "output:video",
+      "zh": "生视频",
+      "en": "Video generation",
+      "kind": "native_output"
+    },
+    {
+      "id": "output:audio",
+      "zh": "生音频",
+      "en": "Audio generation",
+      "kind": "native_output"
+    },
+    {
+      "id": "output:3d",
+      "zh": "生3D",
+      "en": "3D generation",
+      "kind": "native_output"
+    },
+    {
+      "id": "tool:calling",
+      "zh": "工具调用",
+      "en": "Tool calling",
+      "kind": "tool_support"
+    },
+    {
+      "id": "output:json",
+      "zh": "结构化JSON",
+      "en": "Structured JSON",
+      "kind": "structured_output"
+    },
+    {
+      "id": "understanding:ocr",
+      "zh": "OCR",
+      "en": "OCR",
+      "kind": "understanding_task"
+    },
+    {
+      "id": "understanding:transcription",
+      "zh": "语音转写",
+      "en": "Speech transcription",
+      "kind": "understanding_task"
+    },
+    {
+      "id": "understanding:mesh",
+      "zh": "3D理解",
+      "en": "3D understanding",
+      "kind": "understanding_task"
+    },
+    {
+      "id": "composed:voice_chat",
+      "zh": "组合语音对话",
+      "en": "Composed voice conversation",
+      "kind": "composed"
+    },
+    {
+      "id": "composed:sampled_video",
+      "zh": "抽帧理解",
+      "en": "Sampled-frame understanding",
+      "kind": "composed"
+    }
+  ],
+  "languageModels": [
+    {
+      "modelId": "m08",
+      "name": "Qwen 3 · 1.7B Abliterated",
+      "selectedArtifact": {
+        "repository": "mradermacher/Qwen3-1.7B-abliterated-GGUF",
+        "revision": "b87b1df5ecc209db872fed3e8a3ca5e1fd76c02a",
+        "path": "Qwen3-1.7B-abliterated.Q4_K_M.gguf"
+      },
+      "existingTagsPreserved": [
+        "中文",
+        "推荐",
+        "1.7B"
+      ],
+      "recommended": true,
+      "existingContentEvidence": "app/src/main/assets/models.json#m08.uncensored",
+      "capabilities": [
+        {
+          "tag": "input:text",
+          "support": "publisher_metadata",
+          "evidence": [
+            "qwen3_17"
+          ]
+        },
+        {
+          "tag": "output:text",
+          "support": "publisher_metadata",
+          "evidence": [
+            "qwen3_17"
+          ]
+        },
+        {
+          "tag": "input:image",
+          "support": "not_supported",
+          "evidence": [
+            "qwen3_17"
+          ]
+        },
+        {
+          "tag": "input:video",
+          "support": "not_supported",
+          "evidence": [
+            "qwen3_17"
+          ]
+        },
+        {
+          "tag": "input:audio",
+          "support": "unknown",
+          "evidence": []
+        },
+        {
+          "tag": "tool:calling",
+          "support": "unknown",
+          "evidence": []
+        },
+        {
+          "tag": "output:json",
+          "support": "unknown",
+          "evidence": []
+        }
+      ],
+      "selectionLabels": {
+        "zh": [
+          "文字输入",
+          "生文"
+        ],
+        "en": [
+          "Text input",
+          "Text output"
+        ]
+      },
+      "lma": {
+        "baselineEngine": "llama_text",
+        "baselineEntry": "text_only",
+        "multimodalIntegration": "not_applicable",
+        "toolOrchestration": "not_integrated",
+        "phoneInferenceThisReview": false
+      },
+      "visualAssets": null,
+      "nativeMediaGenerationClaimed": false,
+      "evidenceBoundary": "Public upstream/publisher page review; does not verify the selected quantization, LMA integration or phone behavior."
+    },
+    {
+      "modelId": "m06",
+      "name": "LFM 2.5 · 1.2B Uncensored",
+      "selectedArtifact": {
+        "repository": "zaakirio/LFM2.5-1.2B-Instruct-Uncensored-GGUF",
+        "revision": "9524013e4acd8e382dff76e5605b6c2376198237",
+        "path": "LFM2.5-1.2B-Instruct-Uncensored-Q4_K_M.gguf"
+      },
+      "existingTagsPreserved": [
+        "中文",
+        "高效",
+        "1.2B"
+      ],
+      "recommended": true,
+      "existingContentEvidence": "app/src/main/assets/models.json#m06.uncensored",
+      "capabilities": [
+        {
+          "tag": "input:text",
+          "support": "publisher_metadata",
+          "evidence": [
+            "lfm25_12"
+          ]
+        },
+        {
+          "tag": "output:text",
+          "support": "publisher_metadata",
+          "evidence": [
+            "lfm25_12"
+          ]
+        },
+        {
+          "tag": "input:image",
+          "support": "not_supported",
+          "evidence": [
+            "lfm25_12"
+          ]
+        },
+        {
+          "tag": "input:video",
+          "support": "not_supported",
+          "evidence": [
+            "lfm25_12"
+          ]
+        },
+        {
+          "tag": "input:audio",
+          "support": "unknown",
+          "evidence": []
+        },
+        {
+          "tag": "tool:calling",
+          "support": "unknown",
+          "evidence": []
+        },
+        {
+          "tag": "output:json",
+          "support": "unknown",
+          "evidence": []
+        }
+      ],
+      "selectionLabels": {
+        "zh": [
+          "文字输入",
+          "生文"
+        ],
+        "en": [
+          "Text input",
+          "Text output"
+        ]
+      },
+      "lma": {
+        "baselineEngine": "llama_text",
+        "baselineEntry": "text_only",
+        "multimodalIntegration": "not_applicable",
+        "toolOrchestration": "not_integrated",
+        "phoneInferenceThisReview": false
+      },
+      "visualAssets": null,
+      "nativeMediaGenerationClaimed": false,
+      "evidenceBoundary": "Public upstream/publisher page review; does not verify the selected quantization, LMA integration or phone behavior."
+    },
+    {
+      "modelId": "m01",
+      "name": "Dolphin 3 · Qwen 0.5B Uncensored",
+      "selectedArtifact": {
+        "repository": "bartowski/Dolphin3.0-Qwen2.5-0.5B-GGUF",
+        "revision": "2a4428efa5a7377c4404d0b9ff16ce41e52047b8",
+        "path": "Dolphin3.0-Qwen2.5-0.5B-Q4_K_M.gguf"
+      },
+      "existingTagsPreserved": [
+        "轻量",
+        "中英",
+        "0.5B"
+      ],
+      "recommended": true,
+      "existingContentEvidence": "app/src/main/assets/models.json#m01.uncensored",
+      "capabilities": [
+        {
+          "tag": "input:text",
+          "support": "publisher_metadata",
+          "evidence": [
+            "qwen25_05"
+          ]
+        },
+        {
+          "tag": "output:text",
+          "support": "publisher_metadata",
+          "evidence": [
+            "qwen25_05"
+          ]
+        },
+        {
+          "tag": "input:image",
+          "support": "not_supported",
+          "evidence": [
+            "qwen25_05"
+          ]
+        },
+        {
+          "tag": "input:video",
+          "support": "not_supported",
+          "evidence": [
+            "qwen25_05"
+          ]
+        },
+        {
+          "tag": "input:audio",
+          "support": "unknown",
+          "evidence": []
+        },
+        {
+          "tag": "tool:calling",
+          "support": "unknown",
+          "evidence": []
+        },
+        {
+          "tag": "output:json",
+          "support": "unknown",
+          "evidence": []
+        }
+      ],
+      "selectionLabels": {
+        "zh": [
+          "文字输入",
+          "生文"
+        ],
+        "en": [
+          "Text input",
+          "Text output"
+        ]
+      },
+      "lma": {
+        "baselineEngine": "llama_text",
+        "baselineEntry": "text_only",
+        "multimodalIntegration": "not_applicable",
+        "toolOrchestration": "not_integrated",
+        "phoneInferenceThisReview": false
+      },
+      "visualAssets": null,
+      "nativeMediaGenerationClaimed": false,
+      "evidenceBoundary": "Public upstream/publisher page review; does not verify the selected quantization, LMA integration or phone behavior."
+    },
+    {
+      "modelId": "m05",
+      "name": "Gemma 3 · 1B Abliterated",
+      "selectedArtifact": {
+        "repository": "mlabonne/gemma-3-1b-it-abliterated-GGUF",
+        "revision": "3a0369ab47e95d84587250ffa9fbefab6ef01432",
+        "path": "gemma-3-1b-it-abliterated.q4_k_m.gguf"
+      },
+      "existingTagsPreserved": [
+        "多语言",
+        "轻量",
+        "1B"
+      ],
+      "recommended": false,
+      "existingContentEvidence": "app/src/main/assets/models.json#m05.uncensored",
+      "capabilities": [
+        {
+          "tag": "input:text",
+          "support": "publisher_metadata",
+          "evidence": [
+            "gemma3_1"
+          ]
+        },
+        {
+          "tag": "output:text",
+          "support": "publisher_metadata",
+          "evidence": [
+            "gemma3_1"
+          ]
+        },
+        {
+          "tag": "input:image",
+          "support": "not_supported",
+          "evidence": [
+            "gemma3_1"
+          ]
+        },
+        {
+          "tag": "input:video",
+          "support": "not_supported",
+          "evidence": [
+            "gemma3_1"
+          ]
+        },
+        {
+          "tag": "input:audio",
+          "support": "unknown",
+          "evidence": []
+        },
+        {
+          "tag": "tool:calling",
+          "support": "unknown",
+          "evidence": []
+        },
+        {
+          "tag": "output:json",
+          "support": "unknown",
+          "evidence": []
+        }
+      ],
+      "selectionLabels": {
+        "zh": [
+          "文字输入",
+          "生文"
+        ],
+        "en": [
+          "Text input",
+          "Text output"
+        ]
+      },
+      "lma": {
+        "baselineEngine": "llama_text",
+        "baselineEntry": "text_only",
+        "multimodalIntegration": "not_applicable",
+        "toolOrchestration": "not_integrated",
+        "phoneInferenceThisReview": false
+      },
+      "visualAssets": null,
+      "nativeMediaGenerationClaimed": false,
+      "evidenceBoundary": "Public upstream/publisher page review; does not verify the selected quantization, LMA integration or phone behavior."
+    },
+    {
+      "modelId": "m04",
+      "name": "Dolphin 3 · Llama 1B Uncensored",
+      "selectedArtifact": {
+        "repository": "bartowski/Dolphin3.0-Llama3.2-1B-GGUF",
+        "revision": "617f94be9dfb802a3fa0ec64b12d7d085482a308",
+        "path": "Dolphin3.0-Llama3.2-1B-Q4_K_M.gguf"
+      },
+      "existingTagsPreserved": [
+        "英文",
+        "轻量",
+        "1B"
+      ],
+      "recommended": false,
+      "existingContentEvidence": "app/src/main/assets/models.json#m04.uncensored",
+      "capabilities": [
+        {
+          "tag": "input:text",
+          "support": "publisher_metadata",
+          "evidence": [
+            "llama32_1"
+          ]
+        },
+        {
+          "tag": "output:text",
+          "support": "publisher_metadata",
+          "evidence": [
+            "llama32_1"
+          ]
+        },
+        {
+          "tag": "input:image",
+          "support": "not_supported",
+          "evidence": [
+            "llama32_1"
+          ]
+        },
+        {
+          "tag": "input:video",
+          "support": "not_supported",
+          "evidence": [
+            "llama32_1"
+          ]
+        },
+        {
+          "tag": "input:audio",
+          "support": "unknown",
+          "evidence": []
+        },
+        {
+          "tag": "tool:calling",
+          "support": "unknown",
+          "evidence": []
+        },
+        {
+          "tag": "output:json",
+          "support": "unknown",
+          "evidence": []
+        }
+      ],
+      "selectionLabels": {
+        "zh": [
+          "文字输入",
+          "生文"
+        ],
+        "en": [
+          "Text input",
+          "Text output"
+        ]
+      },
+      "lma": {
+        "baselineEngine": "llama_text",
+        "baselineEntry": "text_only",
+        "multimodalIntegration": "not_applicable",
+        "toolOrchestration": "not_integrated",
+        "phoneInferenceThisReview": false
+      },
+      "visualAssets": null,
+      "nativeMediaGenerationClaimed": false,
+      "evidenceBoundary": "Public upstream/publisher page review; does not verify the selected quantization, LMA integration or phone behavior."
+    },
+    {
+      "modelId": "m03",
+      "name": "Qwen 3.5 · 0.8B Abliterated",
+      "selectedArtifact": {
+        "repository": "mradermacher/Huihui-Qwen3.5-0.8B-abliterated-i1-GGUF",
+        "revision": "4fade25176da43736bf43f5f81433f1aff0e741f",
+        "path": "Huihui-Qwen3.5-0.8B-abliterated.i1-Q4_K_M.gguf"
+      },
+      "existingTagsPreserved": [
+        "中文",
+        "新架构",
+        "0.8B"
+      ],
+      "recommended": false,
+      "existingContentEvidence": "app/src/main/assets/models.json#m03.uncensored",
+      "capabilities": [
+        {
+          "tag": "input:text",
+          "support": "publisher_metadata",
+          "evidence": [
+            "qwen35_08"
+          ]
+        },
+        {
+          "tag": "output:text",
+          "support": "publisher_metadata",
+          "evidence": [
+            "qwen35_08"
+          ]
+        },
+        {
+          "tag": "input:image",
+          "support": "publisher_metadata",
+          "evidence": [
+            "huihui_08"
+          ]
+        },
+        {
+          "tag": "input:video",
+          "support": "family_candidate",
+          "evidence": [
+            "qwen35_08"
+          ]
+        },
+        {
+          "tag": "input:audio",
+          "support": "unknown",
+          "evidence": []
+        },
+        {
+          "tag": "tool:calling",
+          "support": "unknown",
+          "evidence": []
+        },
+        {
+          "tag": "output:json",
+          "support": "unknown",
+          "evidence": []
+        }
+      ],
+      "selectionLabels": {
+        "zh": [
+          "文字输入",
+          "生文",
+          "图片理解·发布者元数据",
+          "LMA视觉待接入",
+          "视频理解·家族候选"
+        ],
+        "en": [
+          "Text input",
+          "Text output",
+          "Image understanding · publisher metadata",
+          "LMA vision pending",
+          "Video understanding · family candidate"
+        ]
+      },
+      "lma": {
+        "baselineEngine": "llama_text",
+        "baselineEntry": "text_only",
+        "multimodalIntegration": "not_integrated",
+        "toolOrchestration": "not_integrated",
+        "phoneInferenceThisReview": false
+      },
+      "visualAssets": {
+        "selectedExportPairing": "unverified",
+        "requiredRoles": [
+          "vision_encoder_or_projector",
+          "matching_processor_template"
+        ],
+        "localInstallation": "not_inspected",
+        "pinnedProjectorSha256": null
+      },
+      "nativeMediaGenerationClaimed": false,
+      "evidenceBoundary": "Public upstream/publisher page review; does not verify the selected quantization, LMA integration or phone behavior."
+    },
+    {
+      "modelId": "m09",
+      "name": "Qwen 3.5 · 2B Abliterated",
+      "selectedArtifact": {
+        "repository": "mradermacher/Huihui-Qwen3.5-2B-abliterated-GGUF",
+        "revision": "7f5aee7d2dc4df18bd67eab85ea81e0bc2e98a2c",
+        "path": "Huihui-Qwen3.5-2B-abliterated.Q4_K_M.gguf"
+      },
+      "existingTagsPreserved": [
+        "中文",
+        "新架构",
+        "2B"
+      ],
+      "recommended": false,
+      "existingContentEvidence": "app/src/main/assets/models.json#m09.uncensored",
+      "capabilities": [
+        {
+          "tag": "input:text",
+          "support": "publisher_metadata",
+          "evidence": [
+            "qwen35_2"
+          ]
+        },
+        {
+          "tag": "output:text",
+          "support": "publisher_metadata",
+          "evidence": [
+            "qwen35_2"
+          ]
+        },
+        {
+          "tag": "input:image",
+          "support": "publisher_metadata",
+          "evidence": [
+            "huihui_2"
+          ]
+        },
+        {
+          "tag": "input:video",
+          "support": "family_candidate",
+          "evidence": [
+            "qwen35_2"
+          ]
+        },
+        {
+          "tag": "input:audio",
+          "support": "unknown",
+          "evidence": []
+        },
+        {
+          "tag": "tool:calling",
+          "support": "unknown",
+          "evidence": []
+        },
+        {
+          "tag": "output:json",
+          "support": "unknown",
+          "evidence": []
+        }
+      ],
+      "selectionLabels": {
+        "zh": [
+          "文字输入",
+          "生文",
+          "图片理解·发布者元数据",
+          "LMA视觉待接入",
+          "视频理解·家族候选"
+        ],
+        "en": [
+          "Text input",
+          "Text output",
+          "Image understanding · publisher metadata",
+          "LMA vision pending",
+          "Video understanding · family candidate"
+        ]
+      },
+      "lma": {
+        "baselineEngine": "llama_text",
+        "baselineEntry": "text_only",
+        "multimodalIntegration": "not_integrated",
+        "toolOrchestration": "not_integrated",
+        "phoneInferenceThisReview": false
+      },
+      "visualAssets": {
+        "selectedExportPairing": "unverified",
+        "requiredRoles": [
+          "vision_encoder_or_projector",
+          "matching_processor_template"
+        ],
+        "localInstallation": "not_inspected",
+        "pinnedProjectorSha256": null
+      },
+      "nativeMediaGenerationClaimed": false,
+      "evidenceBoundary": "Public upstream/publisher page review; does not verify the selected quantization, LMA integration or phone behavior."
+    },
+    {
+      "modelId": "m11",
+      "name": "Dolphin 3 · Qwen 3B Uncensored",
+      "selectedArtifact": {
+        "repository": "bartowski/Dolphin3.0-Qwen2.5-3b-GGUF",
+        "revision": "4f84a9b5b7ecc4c49367838cf226677008f37c1e",
+        "path": "Dolphin3.0-Qwen2.5-3b-Q4_K_M.gguf"
+      },
+      "existingTagsPreserved": [
+        "中文",
+        "3B"
+      ],
+      "recommended": false,
+      "existingContentEvidence": "app/src/main/assets/models.json#m11.uncensored",
+      "capabilities": [
+        {
+          "tag": "input:text",
+          "support": "publisher_metadata",
+          "evidence": [
+            "qwen25_3"
+          ]
+        },
+        {
+          "tag": "output:text",
+          "support": "publisher_metadata",
+          "evidence": [
+            "qwen25_3"
+          ]
+        },
+        {
+          "tag": "input:image",
+          "support": "not_supported",
+          "evidence": [
+            "qwen25_3"
+          ]
+        },
+        {
+          "tag": "input:video",
+          "support": "not_supported",
+          "evidence": [
+            "qwen25_3"
+          ]
+        },
+        {
+          "tag": "input:audio",
+          "support": "unknown",
+          "evidence": []
+        },
+        {
+          "tag": "tool:calling",
+          "support": "unknown",
+          "evidence": []
+        },
+        {
+          "tag": "output:json",
+          "support": "unknown",
+          "evidence": []
+        }
+      ],
+      "selectionLabels": {
+        "zh": [
+          "文字输入",
+          "生文"
+        ],
+        "en": [
+          "Text input",
+          "Text output"
+        ]
+      },
+      "lma": {
+        "baselineEngine": "llama_text",
+        "baselineEntry": "text_only",
+        "multimodalIntegration": "not_applicable",
+        "toolOrchestration": "not_integrated",
+        "phoneInferenceThisReview": false
+      },
+      "visualAssets": null,
+      "nativeMediaGenerationClaimed": false,
+      "evidenceBoundary": "Public upstream/publisher page review; does not verify the selected quantization, LMA integration or phone behavior."
+    },
+    {
+      "modelId": "m12",
+      "name": "Dolphin 3 · Llama 3B Uncensored",
+      "selectedArtifact": {
+        "repository": "bartowski/Dolphin3.0-Llama3.2-3B-GGUF",
+        "revision": "ac6b1ee98e3864ebd5998216f800a07d74b166b5",
+        "path": "Dolphin3.0-Llama3.2-3B-Q4_K_M.gguf"
+      },
+      "existingTagsPreserved": [
+        "英文",
+        "3B"
+      ],
+      "recommended": false,
+      "existingContentEvidence": "app/src/main/assets/models.json#m12.uncensored",
+      "capabilities": [
+        {
+          "tag": "input:text",
+          "support": "publisher_metadata",
+          "evidence": [
+            "llama32_3"
+          ]
+        },
+        {
+          "tag": "output:text",
+          "support": "publisher_metadata",
+          "evidence": [
+            "llama32_3"
+          ]
+        },
+        {
+          "tag": "input:image",
+          "support": "not_supported",
+          "evidence": [
+            "llama32_3"
+          ]
+        },
+        {
+          "tag": "input:video",
+          "support": "not_supported",
+          "evidence": [
+            "llama32_3"
+          ]
+        },
+        {
+          "tag": "input:audio",
+          "support": "unknown",
+          "evidence": []
+        },
+        {
+          "tag": "tool:calling",
+          "support": "unknown",
+          "evidence": []
+        },
+        {
+          "tag": "output:json",
+          "support": "unknown",
+          "evidence": []
+        }
+      ],
+      "selectionLabels": {
+        "zh": [
+          "文字输入",
+          "生文"
+        ],
+        "en": [
+          "Text input",
+          "Text output"
+        ]
+      },
+      "lma": {
+        "baselineEngine": "llama_text",
+        "baselineEntry": "text_only",
+        "multimodalIntegration": "not_applicable",
+        "toolOrchestration": "not_integrated",
+        "phoneInferenceThisReview": false
+      },
+      "visualAssets": null,
+      "nativeMediaGenerationClaimed": false,
+      "evidenceBoundary": "Public upstream/publisher page review; does not verify the selected quantization, LMA integration or phone behavior."
+    },
+    {
+      "modelId": "m13",
+      "name": "Llama 3.2 · 3B Uncensored",
+      "selectedArtifact": {
+        "repository": "bartowski/Llama-3.2-3B-Instruct-uncensored-GGUF",
+        "revision": "db993eb152fc89f32e061f3575d1b8111648900f",
+        "path": "Llama-3.2-3B-Instruct-uncensored-Q4_K_M.gguf"
+      },
+      "existingTagsPreserved": [
+        "英文",
+        "3B"
+      ],
+      "recommended": false,
+      "existingContentEvidence": "app/src/main/assets/models.json#m13.uncensored",
+      "capabilities": [
+        {
+          "tag": "input:text",
+          "support": "publisher_metadata",
+          "evidence": [
+            "llama32_3"
+          ]
+        },
+        {
+          "tag": "output:text",
+          "support": "publisher_metadata",
+          "evidence": [
+            "llama32_3"
+          ]
+        },
+        {
+          "tag": "input:image",
+          "support": "not_supported",
+          "evidence": [
+            "llama32_3"
+          ]
+        },
+        {
+          "tag": "input:video",
+          "support": "not_supported",
+          "evidence": [
+            "llama32_3"
+          ]
+        },
+        {
+          "tag": "input:audio",
+          "support": "unknown",
+          "evidence": []
+        },
+        {
+          "tag": "tool:calling",
+          "support": "unknown",
+          "evidence": []
+        },
+        {
+          "tag": "output:json",
+          "support": "unknown",
+          "evidence": []
+        }
+      ],
+      "selectionLabels": {
+        "zh": [
+          "文字输入",
+          "生文"
+        ],
+        "en": [
+          "Text input",
+          "Text output"
+        ]
+      },
+      "lma": {
+        "baselineEngine": "llama_text",
+        "baselineEntry": "text_only",
+        "multimodalIntegration": "not_applicable",
+        "toolOrchestration": "not_integrated",
+        "phoneInferenceThisReview": false
+      },
+      "visualAssets": null,
+      "nativeMediaGenerationClaimed": false,
+      "evidenceBoundary": "Public upstream/publisher page review; does not verify the selected quantization, LMA integration or phone behavior."
+    },
+    {
+      "modelId": "m14",
+      "name": "Qwen 3 · 4B Instruct 2507 Abliterated",
+      "selectedArtifact": {
+        "repository": "mradermacher/Huihui-Qwen3-4B-Instruct-2507-abliterated-GGUF",
+        "revision": "c9e90669eeb205d5af35c28a3e9983fc9293c2ec",
+        "path": "Huihui-Qwen3-4B-Instruct-2507-abliterated.Q4_K_M.gguf"
+      },
+      "existingTagsPreserved": [
+        "中文",
+        "4B"
+      ],
+      "recommended": false,
+      "existingContentEvidence": "app/src/main/assets/models.json#m14.uncensored",
+      "capabilities": [
+        {
+          "tag": "input:text",
+          "support": "publisher_metadata",
+          "evidence": [
+            "qwen3_4"
+          ]
+        },
+        {
+          "tag": "output:text",
+          "support": "publisher_metadata",
+          "evidence": [
+            "qwen3_4"
+          ]
+        },
+        {
+          "tag": "input:image",
+          "support": "not_supported",
+          "evidence": [
+            "qwen3_4"
+          ]
+        },
+        {
+          "tag": "input:video",
+          "support": "not_supported",
+          "evidence": [
+            "qwen3_4"
+          ]
+        },
+        {
+          "tag": "input:audio",
+          "support": "unknown",
+          "evidence": []
+        },
+        {
+          "tag": "tool:calling",
+          "support": "unknown",
+          "evidence": []
+        },
+        {
+          "tag": "output:json",
+          "support": "unknown",
+          "evidence": []
+        }
+      ],
+      "selectionLabels": {
+        "zh": [
+          "文字输入",
+          "生文"
+        ],
+        "en": [
+          "Text input",
+          "Text output"
+        ]
+      },
+      "lma": {
+        "baselineEngine": "llama_text",
+        "baselineEntry": "text_only",
+        "multimodalIntegration": "not_applicable",
+        "toolOrchestration": "not_integrated",
+        "phoneInferenceThisReview": false
+      },
+      "visualAssets": null,
+      "nativeMediaGenerationClaimed": false,
+      "evidenceBoundary": "Public upstream/publisher page review; does not verify the selected quantization, LMA integration or phone behavior."
+    },
+    {
+      "modelId": "m16",
+      "name": "Gemma 3 · 4B Abliterated v2",
+      "selectedArtifact": {
+        "repository": "mlabonne/gemma-3-4b-it-abliterated-v2-GGUF",
+        "revision": "63e82692eb4361788cdfdf01491bdbda28858737",
+        "path": "gemma-3-4b-it-abliterated-v2.q4_k_m.gguf"
+      },
+      "existingTagsPreserved": [
+        "多语言",
+        "4B"
+      ],
+      "recommended": false,
+      "existingContentEvidence": "app/src/main/assets/models.json#m16.uncensored",
+      "capabilities": [
+        {
+          "tag": "input:text",
+          "support": "publisher_metadata",
+          "evidence": [
+            "gemma3_4"
+          ]
+        },
+        {
+          "tag": "output:text",
+          "support": "publisher_metadata",
+          "evidence": [
+            "gemma3_4"
+          ]
+        },
+        {
+          "tag": "input:image",
+          "support": "publisher_metadata",
+          "evidence": [
+            "gemma4_export"
+          ]
+        },
+        {
+          "tag": "input:video",
+          "support": "unknown",
+          "evidence": []
+        },
+        {
+          "tag": "input:audio",
+          "support": "unknown",
+          "evidence": []
+        },
+        {
+          "tag": "tool:calling",
+          "support": "unknown",
+          "evidence": []
+        },
+        {
+          "tag": "output:json",
+          "support": "unknown",
+          "evidence": []
+        }
+      ],
+      "selectionLabels": {
+        "zh": [
+          "文字输入",
+          "生文",
+          "图片理解·发布者元数据",
+          "LMA视觉待接入"
+        ],
+        "en": [
+          "Text input",
+          "Text output",
+          "Image understanding · publisher metadata",
+          "LMA vision pending"
+        ]
+      },
+      "lma": {
+        "baselineEngine": "llama_text",
+        "baselineEntry": "text_only",
+        "multimodalIntegration": "not_integrated",
+        "toolOrchestration": "not_integrated",
+        "phoneInferenceThisReview": false
+      },
+      "visualAssets": {
+        "selectedExportPairing": "unverified",
+        "requiredRoles": [
+          "vision_encoder_or_projector",
+          "matching_processor_template"
+        ],
+        "localInstallation": "not_inspected",
+        "pinnedProjectorSha256": null
+      },
+      "nativeMediaGenerationClaimed": false,
+      "evidenceBoundary": "Public upstream/publisher page review; does not verify the selected quantization, LMA integration or phone behavior."
+    },
+    {
+      "modelId": "m10",
+      "name": "LFM 2.5 · 2.6B Uncensored",
+      "selectedArtifact": {
+        "repository": "SC117/LFM2.5-2.6B-Uncensored-GGUF",
+        "revision": "0244f12071fe554849514aef361c584f45a5d565",
+        "path": "LFM2.5-2.6B-Uncensored-Q4_K_M.gguf"
+      },
+      "existingTagsPreserved": [
+        "思考模型",
+        "2.6B"
+      ],
+      "recommended": false,
+      "existingContentEvidence": "app/src/main/assets/models.json#m10.uncensored",
+      "capabilities": [
+        {
+          "tag": "input:text",
+          "support": "publisher_metadata",
+          "evidence": [
+            "lfm25_26"
+          ]
+        },
+        {
+          "tag": "output:text",
+          "support": "publisher_metadata",
+          "evidence": [
+            "lfm25_26"
+          ]
+        },
+        {
+          "tag": "input:image",
+          "support": "not_supported",
+          "evidence": [
+            "lfm25_26"
+          ]
+        },
+        {
+          "tag": "input:video",
+          "support": "not_supported",
+          "evidence": [
+            "lfm25_26"
+          ]
+        },
+        {
+          "tag": "input:audio",
+          "support": "unknown",
+          "evidence": []
+        },
+        {
+          "tag": "tool:calling",
+          "support": "unknown",
+          "evidence": []
+        },
+        {
+          "tag": "output:json",
+          "support": "unknown",
+          "evidence": []
+        }
+      ],
+      "selectionLabels": {
+        "zh": [
+          "文字输入",
+          "生文"
+        ],
+        "en": [
+          "Text input",
+          "Text output"
+        ]
+      },
+      "lma": {
+        "baselineEngine": "llama_text",
+        "baselineEntry": "text_only",
+        "multimodalIntegration": "not_applicable",
+        "toolOrchestration": "not_integrated",
+        "phoneInferenceThisReview": false
+      },
+      "visualAssets": null,
+      "nativeMediaGenerationClaimed": false,
+      "evidenceBoundary": "Public upstream/publisher page review; does not verify the selected quantization, LMA integration or phone behavior."
+    },
+    {
+      "modelId": "m15",
+      "name": "Qwen 3.5 · 4B Uncensored",
+      "selectedArtifact": {
+        "repository": "HauhauCS/Qwen3.5-4B-Uncensored-HauhauCS-Aggressive",
+        "revision": "c09cdbcdb1fefad6d335809d445621b5f5ba0c6e",
+        "path": "Qwen3.5-4B-Uncensored-HauhauCS-Aggressive-Q4_K_M.gguf"
+      },
+      "existingTagsPreserved": [
+        "中文",
+        "新架构",
+        "4B"
+      ],
+      "recommended": false,
+      "existingContentEvidence": "app/src/main/assets/models.json#m15.uncensored",
+      "capabilities": [
+        {
+          "tag": "input:text",
+          "support": "publisher_metadata",
+          "evidence": [
+            "qwen35_4"
+          ]
+        },
+        {
+          "tag": "output:text",
+          "support": "publisher_metadata",
+          "evidence": [
+            "qwen35_4"
+          ]
+        },
+        {
+          "tag": "input:image",
+          "support": "publisher_declared",
+          "evidence": [
+            "hauhau_4"
+          ]
+        },
+        {
+          "tag": "input:video",
+          "support": "publisher_declared",
+          "evidence": [
+            "hauhau_4"
+          ]
+        },
+        {
+          "tag": "input:audio",
+          "support": "unknown",
+          "evidence": []
+        },
+        {
+          "tag": "tool:calling",
+          "support": "unknown",
+          "evidence": []
+        },
+        {
+          "tag": "output:json",
+          "support": "unknown",
+          "evidence": []
+        }
+      ],
+      "selectionLabels": {
+        "zh": [
+          "文字输入",
+          "生文",
+          "图片理解·发布者声明",
+          "LMA视觉待接入",
+          "视频理解·发布者声明"
+        ],
+        "en": [
+          "Text input",
+          "Text output",
+          "Image understanding · publisher declared",
+          "LMA vision pending",
+          "Video understanding · publisher declared"
+        ]
+      },
+      "lma": {
+        "baselineEngine": "llama_text",
+        "baselineEntry": "text_only",
+        "multimodalIntegration": "not_integrated",
+        "toolOrchestration": "not_integrated",
+        "phoneInferenceThisReview": false
+      },
+      "visualAssets": {
+        "selectedExportPairing": "unverified",
+        "requiredRoles": [
+          "vision_encoder_or_projector",
+          "matching_processor_template"
+        ],
+        "localInstallation": "not_inspected",
+        "pinnedProjectorSha256": null
+      },
+      "nativeMediaGenerationClaimed": false,
+      "evidenceBoundary": "Public upstream/publisher page review; does not verify the selected quantization, LMA integration or phone behavior."
+    }
+  ],
+  "requirements": [
+    {
+      "id": "R01",
+      "requirement": "APK 更新只提供基座与目录元数据；模型、视觉编码器、projector、tokenizer、codec、音色等由用户明确选择后下载或导入。安装、升级、浏览、自动规划不触发下载。"
+    },
+    {
+      "id": "R02",
+      "requirement": "分词、预处理、规划、推理、解码、合成均在同一 Android 手机完成。内网 API 只是手机的调用入口；不接入远程推理或异机回退。无需 ROOT。"
+    },
+    {
+      "id": "R03",
+      "requirement": "模型全部平级。生成、理解、依赖、格式、内容、安装状态、设备适配和验证状态分别描述。"
+    },
+    {
+      "id": "R04",
+      "requirement": "保留推荐前缀 `m08 → m06 → m01`、现有标签及其余 11 项推荐；全部／HF 搜索允许其他模型，本地页统一管理用户资产。"
+    },
+    {
+      "id": "R05",
+      "requirement": "上下文、输出上限、采样、后端等跟随模型保存。编辑框允许手填，原生和界面共同检查上限并回填；任务临时覆盖不自动改写模型默认值。"
+    },
+    {
+      "id": "R06",
+      "requirement": "单次生成不设固定耗时上限。HTTP 等待、连接预算与任务生命周期分开；主动取消、内存保护和真实错误继续有效。"
+    },
+    {
+      "id": "R07",
+      "requirement": "新生成视频的真实媒体时长必须 **>5 秒**；不重复帧、变速或循环补足时长。模型配置无法满足时说明限制。输入视频不受这个生成验收条件限制。"
+    },
+    {
+      "id": "R08",
+      "requirement": "保留默认端口 **52187**、已有迁移、签名、模型 ID、参数和用户历史；旧标签／Release 附件保持原身份。"
+    },
+    {
+      "id": "R09",
+      "requirement": "不建设 ComfyUI 连线、无限画布、公共用户节点或插件生态；内部版本化适配器和有依赖的任务调度继续使用。"
+    },
+    {
+      "id": "R10",
+      "requirement": "常规验证优先程序合同和有界夹具；必要的已授权真机检查单独记录。代码通过、真实模型输出、质量和后台耐久分别验收。"
+    }
+  ],
+  "workPackages": [
+    {
+      "id": "D01",
+      "status": "not_implemented_by_this_plan",
+      "requiredInSameFunctionalDelivery": true,
+      "title": {
+        "zh": "能力与标签同源",
+        "en": "Shared capabilities and tags"
+      },
+      "dependsOn": []
+    },
+    {
+      "id": "D02",
+      "status": "not_implemented_by_this_plan",
+      "requiredInSameFunctionalDelivery": true,
+      "title": {
+        "zh": "本地视觉桥与组件",
+        "en": "Local vision bridge and assets"
+      },
+      "dependsOn": [
+        "D01"
+      ]
+    },
+    {
+      "id": "D03",
+      "status": "not_implemented_by_this_plan",
+      "requiredInSameFunctionalDelivery": true,
+      "title": {
+        "zh": "消息与迁移",
+        "en": "Messages and migration"
+      },
+      "dependsOn": []
+    },
+    {
+      "id": "D04",
+      "status": "not_implemented_by_this_plan",
+      "requiredInSameFunctionalDelivery": true,
+      "title": {
+        "zh": "统一输入与手动创作",
+        "en": "Composer and direct creation"
+      },
+      "dependsOn": [
+        "D01",
+        "D03"
+      ]
+    },
+    {
+      "id": "D05",
+      "status": "not_implemented_by_this_plan",
+      "requiredInSameFunctionalDelivery": true,
+      "title": {
+        "zh": "任务卡与关联",
+        "en": "Job cards and links"
+      },
+      "dependsOn": [
+        "D03",
+        "D04"
+      ]
+    },
+    {
+      "id": "D06",
+      "status": "not_implemented_by_this_plan",
+      "requiredInSameFunctionalDelivery": true,
+      "title": {
+        "zh": "工具与续写",
+        "en": "Tools and continuation"
+      },
+      "dependsOn": [
+        "D01",
+        "D05"
+      ]
+    },
+    {
+      "id": "D07",
+      "status": "not_implemented_by_this_plan",
+      "requiredInSameFunctionalDelivery": true,
+      "title": {
+        "zh": "素材上下文与引用",
+        "en": "Asset context and references"
+      },
+      "dependsOn": [
+        "D03",
+        "D05"
+      ]
+    },
+    {
+      "id": "D08",
+      "status": "not_implemented_by_this_plan",
+      "requiredInSameFunctionalDelivery": true,
+      "title": {
+        "zh": "依赖任务与模板",
+        "en": "Dependent jobs and templates"
+      },
+      "dependsOn": [
+        "D05",
+        "D06",
+        "D07"
+      ]
+    },
+    {
+      "id": "D09",
+      "status": "not_implemented_by_this_plan",
+      "requiredInSameFunctionalDelivery": true,
+      "title": {
+        "zh": "本地媒体合成",
+        "en": "Local media composition"
+      },
+      "dependsOn": [
+        "D08"
+      ]
+    },
+    {
+      "id": "D10",
+      "status": "not_implemented_by_this_plan",
+      "requiredInSameFunctionalDelivery": true,
+      "title": {
+        "zh": "性能与状态",
+        "en": "Performance and state"
+      },
+      "dependsOn": []
+    },
+    {
+      "id": "D11",
+      "status": "not_implemented_by_this_plan",
+      "requiredInSameFunctionalDelivery": true,
+      "title": {
+        "zh": "API能力一致性",
+        "en": "API capability consistency"
+      },
+      "dependsOn": [
+        "D01",
+        "D05"
+      ]
+    },
+    {
+      "id": "D12",
+      "status": "not_implemented_by_this_plan",
+      "requiredInSameFunctionalDelivery": true,
+      "title": {
+        "zh": "回归与正式交付",
+        "en": "Regression and stable delivery"
+      },
+      "dependsOn": [
+        "D01",
+        "D02",
+        "D03",
+        "D04",
+        "D05",
+        "D06",
+        "D07",
+        "D08",
+        "D09",
+        "D10",
+        "D11"
+      ]
+    }
+  ],
+  "acceptance": [
+    {
+      "id": "A01",
+      "requirement": "安装／升级／浏览／规划均零隐式模型下载；保留用户文件、设置、签名和端口。"
+    },
+    {
+      "id": "A02",
+      "requirement": "14 个语言模型全部有输入／输出／工具／LMA 状态／证据字段；保留原推荐与 Uncensored 标签。"
+    },
+    {
+      "id": "A03",
+      "requirement": "Gemma 1B 不标视觉，Qwen2.5 不套 VL，Llama 1B／3B 不套 Vision；Qwen3.5 候选不冒充 LMA 已接入。"
+    },
+    {
+      "id": "A04",
+      "requirement": "缺声明为未知，家族／发布者元数据／固定导出／程序／真机／质量证据不混为一项。"
+    },
+    {
+      "id": "A05",
+      "requirement": "多标签组合筛选、离线缓存和本地可用状态在四个入口一致。"
+    },
+    {
+      "id": "A06",
+      "requirement": "主 GGUF 与 projector 的固定身份、许可和兼容配对可追踪；组件独立下载／导入并有共享删除保护。"
+    },
+    {
+      "id": "A07",
+      "requirement": "已适配的图文输入正确传给视觉桥；只有文本的模型不丢弃附件假装回答。"
+    },
+    {
+      "id": "A08",
+      "requirement": "原生视频理解与抽帧组合区分；时间／帧数／视觉 token 预算和取消均有效。"
+    },
+    {
+      "id": "A09",
+      "requirement": "未接入的原生音频、转写、OCR 或 3D 理解保持明确状态，不因通用多模态标签开放。"
+    },
+    {
+      "id": "A10",
+      "requirement": "旧数据库升级与失败回滚保留全部会话 ID、文本、思考、错误和次序；历史可分页完整访问。"
+    },
+    {
+      "id": "A11",
+      "requirement": "无文本模型时，手动入口可接纳图片／视频／音频／3D 的合法任务。"
+    },
+    {
+      "id": "A12",
+      "requirement": "每个任务卡对应一个原任务；崩溃发生在跨存储提交前后均不重复接纳。"
+    },
+    {
+      "id": "A13",
+      "requirement": "流式工具片段、调用 ID、参数、错误和结果正确关联，普通文本不被当命令执行。"
+    },
+    {
+      "id": "A14",
+      "requirement": "超步数、无效工具、错误模型、无效参数或重复调用被阻止，草稿仍可编辑。"
+    },
+    {
+      "id": "A15",
+      "requirement": "参数按模型隔离、手填超限回填；临时覆盖不改写默认值，素材／参数冻结可复核。"
+    },
+    {
+      "id": "A16",
+      "requirement": "“这张图／上一段音频”引用确定素材；歧义有选择入口。"
+    },
+    {
+      "id": "A17",
+      "requirement": "活跃租约／任务／会话引用阻止误删；删除会话不级联删除其他地方使用的素材。"
+    },
+    {
+      "id": "A18",
+      "requirement": "图片→视频只调支持相应输入的模型；视频真实输出时长 >5 秒，无补帧循环伪造。"
+    },
+    {
+      "id": "A19",
+      "requirement": "文字→TTS、音乐／音效、图像→几何／材质分别依据输入合同路由。"
+    },
+    {
+      "id": "A20",
+      "requirement": "本地合成操作验证声轨、长度、音量、取消、损坏输入和文件有效性，保留原件。"
+    },
+    {
+      "id": "A21",
+      "requirement": "任务链依赖失败阻断、父级取消和步骤重试正确；成功步骤不被隐式重算。"
+    },
+    {
+      "id": "A22",
+      "requirement": "对话、工具、工作台、API 共用单重计算执行槽；规划器释放和文本恢复不争抢媒体内存。"
+    },
+    {
+      "id": "A23",
+      "requirement": "连接超时／SSE 断开不取消已接纳生成；没有固定生成耗时上限。"
+    },
+    {
+      "id": "A24",
+      "requirement": "系统中断与恢复状态真实，不支持 checkpoint 的后端不声称续算。"
+    },
+    {
+      "id": "A25",
+      "requirement": "长历史夹具的流更新只修改目标块；不可见媒体不解码，离页释放播放器／GLB。"
+    },
+    {
+      "id": "A26",
+      "requirement": "空闲无模型页面不扫描权重／推理，定向快照保留原性能优化且无明显回退。"
+    },
+    {
+      "id": "A27",
+      "requirement": "会话、任务列表和 API 的任务 ID、状态、取消、产物和幂等一致。"
+    },
+    {
+      "id": "A28",
+      "requirement": "广播只包含合格本地模型；标签不能扩大真实 API operation，鉴权／缓存／隐私合同保留。"
+    },
+    {
+      "id": "A29",
+      "requirement": "OOM、哈希不符、unsupported、empty_structure、损坏媒体等失败有分类及可操作下一步，旧失败不改写。"
+    },
+    {
+      "id": "A30",
+      "requirement": "原 62 配方／82 包／18 扩展引擎加文本、14 推荐及全部冻结目标回归，不缩减必需范围。"
+    },
+    {
+      "id": "A31",
+      "requirement": "程序检查、选定真机／模型运行、质量和耐久分别给出精确版本／APK 与结果；不恢复逐个完整模型长跑作为常规门槛。"
+    },
+    {
+      "id": "A32",
+      "requirement": "同步完整中英文档、用例、失败案例、真实／夹具媒体和版本说明；普通推送并发布新的正式 Release，不替换旧附件。"
+    }
+  ],
+  "sources": [
+    {
+      "id": "qwen3_17",
+      "url": "https://huggingface.co/Qwen/Qwen3-1.7B",
+      "checkedAt": "2026-11-02",
+      "method": "public_web_page",
+      "binding": "live_page_not_pinned_selected_export"
+    },
+    {
+      "id": "qwen3_4",
+      "url": "https://huggingface.co/Qwen/Qwen3-4B-Instruct-2507",
+      "checkedAt": "2026-11-02",
+      "method": "public_web_page",
+      "binding": "live_page_not_pinned_selected_export"
+    },
+    {
+      "id": "qwen25_05",
+      "url": "https://huggingface.co/Qwen/Qwen2.5-0.5B-Instruct",
+      "checkedAt": "2026-11-02",
+      "method": "public_web_page",
+      "binding": "live_page_not_pinned_selected_export"
+    },
+    {
+      "id": "qwen25_3",
+      "url": "https://huggingface.co/Qwen/Qwen2.5-3B-Instruct",
+      "checkedAt": "2026-11-02",
+      "method": "public_web_page",
+      "binding": "live_page_not_pinned_selected_export"
+    },
+    {
+      "id": "llama32_1",
+      "url": "https://huggingface.co/meta-llama/Llama-3.2-1B-Instruct",
+      "checkedAt": "2026-11-02",
+      "method": "public_web_page",
+      "binding": "live_page_not_pinned_selected_export"
+    },
+    {
+      "id": "llama32_3",
+      "url": "https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct",
+      "checkedAt": "2026-11-02",
+      "method": "public_web_page",
+      "binding": "live_page_not_pinned_selected_export"
+    },
+    {
+      "id": "lfm25_12",
+      "url": "https://huggingface.co/LiquidAI/LFM2.5-1.2B-Instruct",
+      "checkedAt": "2026-11-02",
+      "method": "public_web_page",
+      "binding": "live_page_not_pinned_selected_export"
+    },
+    {
+      "id": "lfm25_26",
+      "url": "https://huggingface.co/LiquidAI/LFM2.5-2.6B",
+      "checkedAt": "2026-11-02",
+      "method": "public_web_page",
+      "binding": "live_page_not_pinned_selected_export"
+    },
+    {
+      "id": "gemma3_1",
+      "url": "https://huggingface.co/google/gemma-3-1b-it",
+      "checkedAt": "2026-11-02",
+      "method": "public_web_page",
+      "binding": "live_page_not_pinned_selected_export"
+    },
+    {
+      "id": "gemma3_4",
+      "url": "https://huggingface.co/google/gemma-3-4b-it",
+      "checkedAt": "2026-11-02",
+      "method": "public_web_page",
+      "binding": "live_page_not_pinned_selected_export"
+    },
+    {
+      "id": "qwen35_08",
+      "url": "https://huggingface.co/Qwen/Qwen3.5-0.8B",
+      "checkedAt": "2026-11-02",
+      "method": "public_web_page",
+      "binding": "live_page_not_pinned_selected_export"
+    },
+    {
+      "id": "qwen35_2",
+      "url": "https://huggingface.co/Qwen/Qwen3.5-2B",
+      "checkedAt": "2026-11-02",
+      "method": "public_web_page",
+      "binding": "live_page_not_pinned_selected_export"
+    },
+    {
+      "id": "qwen35_4",
+      "url": "https://huggingface.co/Qwen/Qwen3.5-4B",
+      "checkedAt": "2026-11-02",
+      "method": "public_web_page",
+      "binding": "live_page_not_pinned_selected_export"
+    },
+    {
+      "id": "huihui_08",
+      "url": "https://huggingface.co/huihui-ai/Huihui-Qwen3.5-0.8B-abliterated",
+      "checkedAt": "2026-11-02",
+      "method": "public_web_page",
+      "binding": "live_page_not_pinned_selected_export"
+    },
+    {
+      "id": "huihui_2",
+      "url": "https://huggingface.co/huihui-ai/Huihui-Qwen3.5-2B-abliterated",
+      "checkedAt": "2026-11-02",
+      "method": "public_web_page",
+      "binding": "live_page_not_pinned_selected_export"
+    },
+    {
+      "id": "hauhau_4",
+      "url": "https://huggingface.co/HauhauCS/Qwen3.5-4B-Uncensored-HauhauCS-Aggressive",
+      "checkedAt": "2026-11-02",
+      "method": "public_web_page",
+      "binding": "live_page_not_pinned_selected_export"
+    },
+    {
+      "id": "gemma4_export",
+      "url": "https://huggingface.co/mlabonne/gemma-3-4b-it-abliterated-v2-GGUF",
+      "checkedAt": "2026-11-02",
+      "method": "public_web_page",
+      "binding": "live_page_not_pinned_selected_export"
+    },
+    {
+      "id": "llama_mm",
+      "url": "https://github.com/ggml-org/llama.cpp/blob/master/docs/multimodal.md",
+      "checkedAt": "2026-11-02",
+      "method": "public_web_page",
+      "binding": "live_page_not_pinned_selected_export"
+    },
+    {
+      "id": "llama_tools",
+      "url": "https://github.com/ggml-org/llama.cpp/blob/master/docs/function-calling.md",
+      "checkedAt": "2026-11-02",
+      "method": "public_web_page",
+      "binding": "live_page_not_pinned_selected_export"
+    },
+    {
+      "id": "hf_mm",
+      "url": "https://huggingface.co/docs/transformers/chat_templating_multimodal",
+      "checkedAt": "2026-11-02",
+      "method": "public_web_page",
+      "binding": "live_page_not_pinned_selected_export"
+    }
+  ],
+  "metadataLimit": {
+    "fixedRevisionNativeRequests": "timed_out",
+    "models": [
+      "m03",
+      "m09",
+      "m16",
+      "m15"
+    ],
+    "weightFilesReadOrDownloaded": false,
+    "projectorHashesVerified": false,
+    "networkFailureDoesNotMeanUnsupported": true
+  },
+  "openEvidence": [
+    "Pinned visual export/projector pairing and Android bridge",
+    "Existing 3D empty_structure",
+    "Image/video quality",
+    "Comparable device performance and background endurance"
+  ],
+  "documents": {
+    "zh": "docs/UPDATE_DIRECTION_20261102.md",
+    "en": "docs/UPDATE_DIRECTION_20261102.en.md"
+  }
+}

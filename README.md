@@ -1,5 +1,7 @@
 # LMA · Android 本地模型工作台
 
+**20261102 更新方向方案（规划，非当前 APK 功能）：** [完整方案](docs/UPDATE_DIRECTION_20261102.md) · [English](docs/UPDATE_DIRECTION_20261102.en.md) · [14 个语言模型的能力标签清单](docs/proposals/update-direction-20261102.json)。统一对话输入、四类媒体任务卡、可选本地工具调度、素材引用／任务链与同机合成；新增图片／视频／音频理解、原生输出、工具能力、组件与验证状态的独立选型标签。D01–D12 同一次功能交付，A01–A32 逐项验收；本文档更新不改变现有 APK，也不把候选标签当作已支持。
+
 [English](README.en.md) · [下载 v0.3.13](https://github.com/wikigsroom/LMA/releases/tag/v0.3.13) · [使用手册](docs/USER_GUIDE.md) · [文档目录](docs/README.md) · [更新记录](CHANGELOG.md)
 
 **v0.3.13 / code63 · 默认接口端口改为 52187。** 新安装及旧版使用默认 8080 的安装，升级后使用 `http://127.0.0.1:52187/v1`；开启内网访问后，电脑连接 `http://手机IP:52187/v1`。已有其他有效自定义端口保留；迁移仅执行一次，之后用户主动编辑的端口仍会保留。请同步修改客户端的接口地址。[端口迁移与验证](docs/API_PORT.md) · [本版说明](docs/releases/v0.3.13.md) · [本版程序证据](verification/releases/v0.3.13/status.json)。

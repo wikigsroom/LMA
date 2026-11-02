@@ -1,5 +1,7 @@
 # HF discovery and local models
 
+**20261102 selection-tag proposal:** [Language-model capabilities and all 14 records](UPDATE_DIRECTION_20261102.en.md#04--language-model-selection-tags) distinguish native input/output, tools, compositions, LMA integration, assets and evidence. Image understanding is not image generation; family candidates do not establish selected-GGUF or phone support. This is next-update design; existing discovery behavior below remains current.
+
 dev.34: [Companion review](COMPONENT_SUGGESTIONS.en.md) reduces repetitive file selection. Multiple matches, overlaps and incomplete directories do not produce guessed choices. Filename suggestions do not verify architecture, quality or Android compatibility.
 
 dev.33 adds the optional complete eleven-file Nano 100M profile to All → Audio. No files are bundled or silently downloaded. Existing imports, Recommended and broad HF discovery remain; discovery is not Android compatibility. See [speech selection](SPEECH_SELECTION.en.md).

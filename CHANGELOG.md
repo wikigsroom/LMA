@@ -1,5 +1,12 @@
 # Changelog / 更新记录
 
+## 2026-11-02 · 20261102 内容方向与能力标签方案 / Conversation and capability plan
+
+- 新增完整中英[方向方案](docs/UPDATE_DIRECTION_20261102.md)／[English](docs/UPDATE_DIRECTION_20261102.en.md)：对话入口、本地视觉理解、四类媒体任务卡、可选工具调度、素材来源／任务链、同手机合成、性能与 API 一致性。D01–D12 统一交付，不拆分版本路线。
+- 为现有 14 个语言模型整理可追踪的[标签清单](docs/proposals/update-direction-20261102.json)，保留来源 revision、原推荐与内容标签，分别描述原生输入／输出、工具、LMA 接入与证据；4 个视觉候选不冒充已适配。
+- 定义 A01–A32 待验收条件；保留全部冻结范围、用户自主资产、生成无固定时限、视频 >5 秒、端口 52187 与既有真实失败／质量边界。
+- Documentation/catalogue proposal only: no APK, runtime UI/tag changes, model downloads/inference or new Release. Existing examples/media and immutable v0.3.13 assets are preserved. [维护说明 / Maintenance scope](docs/releases/v0.3.13-20261102-direction.md).
+
 ## v0.3.13 — 2026-11-02
 
 - 默认公开 API 端口由 8080 改为五位高端口 **52187**；新安装、升级迁移、回环／内网地址、页面与示例保持一致。
