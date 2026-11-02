@@ -7,7 +7,7 @@ import java.util.Arrays;
 public final class TaskRequests {
     private TaskRequests() {}
     public static boolean generation(String type) {
-        return Arrays.asList("text.generate", "image.generate", "video.generate", "speech.synthesize", "audio.generate", "mesh.generate").contains(type);
+        return Arrays.asList("text.generate", "image.generate", "video.generate", "speech.synthesize", "audio.generate", "mesh.generate", "media.compose").contains(type);
     }
     public static JSONObject replay(JSONObject frozen) throws Exception {
         String type = frozen.getString("type");
@@ -22,7 +22,7 @@ public final class TaskRequests {
     }
     public static JSONObject editable(JSONObject frozen) throws Exception {
         if (!generation(frozen.optString("type"))) throw new IllegalArgumentException("Only generation tasks can be opened in the editor");
-        return replay(frozen).put("allowUnmeasured", false);
+        JSONObject result=replay(frozen);if(!result.getString("type").equals("media.compose"))result.put("allowUnmeasured",false);return result;
     }
     public static JSONObject fromArtifact(JSONObject artifact) throws Exception {
         if ("imported".equals(artifact.optJSONObject("origin") == null ? "" : artifact.getJSONObject("origin").optString("kind")))
@@ -45,6 +45,7 @@ public final class TaskRequests {
         request = TaskInput.validate(request);
         if (empty) request.getJSONObject("input").put("prompt", prompt);
         if (request.toString().length() > 32000) throw new IllegalArgumentException("Draft request is too large");
-        return request.put("allowUnmeasured", false);
+        if(!request.getString("type").equals("media.compose"))request.put("allowUnmeasured",false);
+        return request;
     }
 }

@@ -1,5 +1,11 @@
 # Changelog / 更新记录
 
+## v0.4.0 · 2026-11-03
+
+20261102 D01–D12 对话与本地创作：精确能力标签、受控视觉组件桥、SQLite 内容块与 outbox、统一手动媒体输入、原任务卡、严格工具草稿、素材来源、W01–W06 顺序模板、本机音视频合成、默认暗色和定向渲染、认证任务链接口、Logo 21 启动与应用内接入。保留全部冻结目录和历史证据。
+
+Conversations and local creation: exact capabilities, paired visual bridge, durable message/outbox storage, manual media without an LLM, original job cards, strict reviewed tools, artifact lineage, sequential templates, local composition, dark incremental UI, chain API and Logo 21. Program-checked; no fresh phone, codec/model output, quality or endurance claims. [完整更新 / Full notes](docs/releases/v0.4.0.md).
+
 ## 2026-11-02 · Slogan 04 与 README 横幅 / Bilingual brand banner
 
 - 用户选定第二组 04 号标语：「把无审查 AI，装进口袋。」 / “Uncensored AI, right in your pocket.”；与已定稿的 21 号钴蓝软胶 Logo 配套使用，记录到 AGENTS.md 与品牌说明。

@@ -1,6 +1,8 @@
 # LMA API integration
 
-**v0.3.12 current endpoints:** [Local API and actual SDK examples](LOCAL_API_V0312.en.md), [OpenAPI](proposals/sub2api-openai.openapi.json), [physical results](DEVICE_BENCHMARK_V0312.en.md). Complete/configured local peers are automatically published; image PNG, explicit speech WAV and `/v1/lma/jobs/uploads/artifacts` are implemented. The source gateway is opt-in, without a production deployment change. Older version callouts below retain their baseline context.
+**Current v0.4.0:** [Conversations, media, visual bridge and chain API](CONVERSATION_V040.en.md). Authenticated `/v1/lma/chains` and separate `media.compose` are available. Native tags do not expand executable operations; public OpenAI chat remains text-only. Earlier physical examples retain their original APK identity; this version has no fresh phone integration result.
+
+**v0.3.12 historical endpoints:** [Local API and actual SDK examples](LOCAL_API_V0312.en.md), [OpenAPI](proposals/sub2api-openai.openapi.json), [physical results](DEVICE_BENCHMARK_V0312.en.md). Complete/configured local peers are automatically published; image PNG, explicit speech WAV and `/v1/lma/jobs/uploads/artifacts` are implemented. The source gateway is opt-in, without a production deployment change. Older version callouts below retain their baseline context.
 
 **No generation wall-time limit:** explicit cancellation and actual resource errors remain. Synchronous facade wait is 120 seconds, followed by job lookup; this does not cancel the job. Responses/Realtime/OpenAI multipart edits are not advertised.
 

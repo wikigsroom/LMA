@@ -64,8 +64,25 @@ final class OpenAiFacade {
             }).header("X-LMA-Job-ID", id);
         } finally { waits.release(); }
     }
+    private JSONObject publicChain(JSONObject source)throws Exception{
+        JSONObject chain=DataFiles.copy(source);chain.remove("session");chain.remove("draftHash");JSONArray steps=chain.getJSONArray("steps");for(int i=0;i<steps.length();i++){JSONObject step=steps.getJSONObject(i),request=step.getJSONObject("request"),parameters=request.optJSONObject("parameters");if(parameters!=null)request.put("parameters",ApiCatalogue.publicParameters(parameters));request.put("model",modelFor(request.getString("bundleId"))).remove("bundleId");if(step.has("resolvedRequest")){JSONObject resolved=step.getJSONObject("resolvedRequest");if(resolved.has("parameters"))resolved.put("parameters",ApiCatalogue.publicParameters(resolved.getJSONObject("parameters")));resolved.put("model",modelFor(resolved.getString("bundleId"))).remove("bundleId");}if(step.has("error"))step.put("error",safe(step.getString("error")));JSONArray attempts=step.optJSONArray("attempts");if(attempts!=null)for(int a=0;a<attempts.length();a++){JSONObject attempt=attempts.getJSONObject(a);if(attempt.has("error"))attempt.put("error",safe(attempt.getString("error")));}}return chain;
+    }
     LocalHttp.Response route(LocalHttp.Request r, LocalApi api) throws Exception {
         String path = r.path.substring("/v1/lma".length());
+        if(path.equals("/chains")){
+            LocalApi.method(r,"GET","HEAD","POST");
+            if(r.method.equals("POST")){String key=r.header("idempotency-key");if(key.isEmpty()||key.length()>512)throw new IllegalArgumentException("A stable Idempotency-Key is required");JSONObject draft=LocalApi.body(r);OpenAiRequests.fields(draft,"template","steps");JSONArray steps=draft.getJSONArray("steps");if(steps.length()<1||steps.length()>8)throw new IllegalArgumentException("Use 1–8 internal steps");
+                for(int i=0;i<steps.length();i++){JSONObject step=steps.getJSONObject(i);OpenAiRequests.fields(step,"request","dependsOn","bindings");JSONObject original=step.getJSONObject("request"),probe=DataFiles.copy(step),nativeProbe=DataFiles.copy(original);nativeProbe.remove("model");nativeProbe.put("bundleId",original.getString("model"));probe.put("request",nativeProbe);JSONObject shaped=WorkflowStore.draftRequest(probe);shaped.remove("bundleId");shaped.put("model",original.getString("model"));JSONArray selected=original.getJSONObject("input").optJSONArray("artifacts"),bound=step.optJSONArray("bindings");if(bound!=null){JSONArray refs=selected==null?new JSONArray():new JSONArray(selected.toString());for(int k=0;k<bound.length();k++){String role=bound.getJSONObject(k).getString("role");if(!role.equals("prompt"))refs.put(new JSONObject().put("role",role).put("artifactId","binding_placeholder_"+k));}if(refs.length()>0)shaped.getJSONObject("input").put("artifacts",refs);}JSONObject mapped=OpenAiRequests.nativeTask(shaped,runtime);if(selected==null)mapped.getJSONObject("input").remove("artifacts");else mapped.getJSONObject("input").put("artifacts",selected);if(original.has("allowUnmeasured"))mapped.put("allowUnmeasured",original.get("allowUnmeasured"));step.put("request",mapped);}
+                JSONObject chain=runtime.createChain(draft,"api_chain_"+TaskInput.fingerprint(new JSONObject().put("key",key)).substring(0,32));return LocalApi.json(202,publicChain(chain));}
+            LocalApi.noBody(r);JSONArray source=runtime.workflows().snapshot(),result=new JSONArray();for(int i=0;i<source.length();i++){JSONObject chain=source.getJSONObject(i);result.put(publicChain(chain));}return list(result);
+        }
+        if(path.startsWith("/chains/")){
+            String[] parts=path.substring(8).split("/",-1);String id=ModelBundle.key(parts[0]);
+            if(parts.length==1){LocalApi.method(r,"GET","HEAD");LocalApi.noBody(r);JSONObject c=runtime.workflows().get(id);return LocalApi.json(200,publicChain(c));}
+            if(parts.length==2&&parts[1].equals("cancel")){LocalApi.method(r,"POST");LocalApi.emptyOrObject(r);runtime.workflows().cancel(id);runtime.workflowsChanged();JSONObject c=runtime.workflows().get(id);return LocalApi.json(200,publicChain(c));}
+            if(parts.length==2&&parts[1].equals("retry")){LocalApi.method(r,"POST");JSONObject input=LocalApi.body(r);OpenAiRequests.fields(input,"step");runtime.workflows().retry(id,input.getInt("step"));runtime.workflowsChanged();JSONObject c=runtime.workflows().get(id);return LocalApi.json(202,publicChain(c));}
+            throw new LocalHttp.Failure(404,"unknown_chain_endpoint","Unknown task-chain operation");
+        }
         if (path.equals("/jobs/preflight")) {
             LocalApi.method(r, "POST"); JSONObject input = OpenAiRequests.nativeTask(LocalApi.body(r), runtime);
             JSONObject report = runtime.preflight(input); report.put("model", modelFor(input.getString("bundleId")));

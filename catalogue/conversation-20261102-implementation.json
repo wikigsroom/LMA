@@ -1,0 +1,504 @@
+{
+  "schema": "lma.conversation-implementation/1",
+  "version": "0.4.0",
+  "planDate": "20261102",
+  "deliveryDate": "2026-11-03",
+  "validationMode": "program_only",
+  "plan": "docs/proposals/update-direction-20261102.json",
+  "guide": "docs/CONVERSATION_V040.md",
+  "releaseNotes": "docs/releases/v0.4.0.md",
+  "status": "implemented_program_scope",
+  "newModelDownloads": 0,
+  "remoteInference": false,
+  "virtualizationUsed": false,
+  "physicalDeviceTested": false,
+  "qualityAccepted": false,
+  "backgroundEnduranceTested": false,
+  "knownLimits": [
+    "No fresh Android visual/codec/inference/latency/endurance evidence for this APK.",
+    "m03/m09/m16 projector provenance remains unresolved; no fabricated compatible preset.",
+    "Public OpenAI chat accepts text only; App visual bridge is a separate path.",
+    "Native audio/3D understanding and arbitrary HF execution are not inferred from catalogue tags.",
+    "Historical 3D empty_structure and weak video quality remain recorded."
+  ],
+  "workPackages": [
+    {
+      "id": "D01",
+      "title": {
+        "zh": "能力与标签同源",
+        "en": "Shared capabilities and tags"
+      },
+      "status": "implemented_program_scope",
+      "java": [
+        "app/src/main/java/com/lma/app/ModelCapabilities.java",
+        "app/src/main/java/com/lma/app/core/LocalApi.java"
+      ],
+      "ui": [
+        "app/src/main/assets/capabilities.js",
+        "app/src/main/assets/capabilities.json"
+      ],
+      "evidenceRecords": [
+        "conversation-integration",
+        "hub",
+        "ui"
+      ]
+    },
+    {
+      "id": "D02",
+      "title": {
+        "zh": "本地视觉桥与组件",
+        "en": "Local vision bridge and assets"
+      },
+      "status": "implemented_program_scope",
+      "java": [
+        "app/src/main/java/com/lma/app/VisionPairs.java",
+        "app/src/main/java/com/lma/app/VisionInputs.java",
+        "app/src/main/java/com/lma/app/EngineHost.java",
+        "app/src/main/java/com/lma/app/ChatRunner.java"
+      ],
+      "ui": [
+        "app/src/main/assets/vision-presets.json"
+      ],
+      "evidenceRecords": [
+        "conversation-integration",
+        "package"
+      ]
+    },
+    {
+      "id": "D03",
+      "title": {
+        "zh": "消息与迁移",
+        "en": "Messages and migration"
+      },
+      "status": "implemented_program_scope",
+      "java": [
+        "app/src/main/java/com/lma/app/Chats.java",
+        "app/src/main/java/com/lma/app/ConversationController.java"
+      ],
+      "ui": [],
+      "evidenceRecords": [
+        "conversation-core",
+        "migration",
+        "sqlite"
+      ]
+    },
+    {
+      "id": "D04",
+      "title": {
+        "zh": "统一输入与手动创作",
+        "en": "Composer and direct creation"
+      },
+      "status": "implemented_program_scope",
+      "java": [
+        "app/src/main/java/com/lma/app/ConversationController.java",
+        "app/src/main/java/com/lma/app/ChatRunner.java"
+      ],
+      "ui": [
+        "app/src/main/assets/conversation.js"
+      ],
+      "evidenceRecords": [
+        "conversation-ui",
+        "inputs"
+      ]
+    },
+    {
+      "id": "D05",
+      "title": {
+        "zh": "任务卡与关联",
+        "en": "Job cards and links"
+      },
+      "status": "implemented_program_scope",
+      "java": [
+        "app/src/main/java/com/lma/app/Chats.java",
+        "app/src/main/java/com/lma/app/ConversationController.java",
+        "app/src/main/java/com/lma/app/LocalJobs.java"
+      ],
+      "ui": [
+        "app/src/main/assets/conversation.js"
+      ],
+      "evidenceRecords": [
+        "conversation-core",
+        "conversation-ui",
+        "recovery"
+      ]
+    },
+    {
+      "id": "D06",
+      "title": {
+        "zh": "工具与续写",
+        "en": "Tools and continuation"
+      },
+      "status": "implemented_program_scope",
+      "java": [
+        "app/src/main/java/com/lma/app/ChatRunner.java",
+        "app/src/main/java/com/lma/app/core/ToolCalls.java",
+        "app/src/main/java/com/lma/app/core/StrictJson.java"
+      ],
+      "ui": [
+        "app/src/main/assets/conversation.js"
+      ],
+      "evidenceRecords": [
+        "conversation-core",
+        "backend"
+      ]
+    },
+    {
+      "id": "D07",
+      "title": {
+        "zh": "素材上下文与引用",
+        "en": "Asset context and references"
+      },
+      "status": "implemented_program_scope",
+      "java": [
+        "app/src/main/java/com/lma/app/Chats.java",
+        "app/src/main/java/com/lma/app/core/ArtifactStore.java",
+        "app/src/main/java/com/lma/app/core/BundleStore.java"
+      ],
+      "ui": [
+        "app/src/main/assets/conversation.js"
+      ],
+      "evidenceRecords": [
+        "conversation-core",
+        "inputs",
+        "workbench"
+      ]
+    },
+    {
+      "id": "D08",
+      "title": {
+        "zh": "依赖任务与模板",
+        "en": "Dependent jobs and templates"
+      },
+      "status": "implemented_program_scope",
+      "java": [
+        "app/src/main/java/com/lma/app/ConversationController.java",
+        "app/src/main/java/com/lma/app/core/WorkflowRunner.java",
+        "app/src/main/java/com/lma/app/core/WorkflowStore.java"
+      ],
+      "ui": [
+        "app/src/main/assets/conversation.js"
+      ],
+      "evidenceRecords": [
+        "conversation-core",
+        "conversation-integration"
+      ]
+    },
+    {
+      "id": "D09",
+      "title": {
+        "zh": "本地媒体合成",
+        "en": "Local media composition"
+      },
+      "status": "implemented_program_scope",
+      "java": [
+        "app/src/main/java/com/lma/app/MediaComposer.java",
+        "app/src/main/java/com/lma/app/VideoEncoder.java",
+        "app/src/main/java/com/lma/app/core/CompositionSpec.java",
+        "app/src/main/java/com/lma/app/core/PcmMixer.java"
+      ],
+      "ui": [
+        "app/src/main/assets/conversation.js"
+      ],
+      "evidenceRecords": [
+        "conversation-core",
+        "package",
+        "lint"
+      ]
+    },
+    {
+      "id": "D10",
+      "title": {
+        "zh": "默认暗色、性能与状态",
+        "en": "Default dark appearance, performance and state"
+      },
+      "status": "implemented_program_scope",
+      "java": [
+        "app/src/main/java/com/lma/app/MainActivity.java",
+        "app/src/main/java/com/lma/app/LmaApp.java"
+      ],
+      "ui": [
+        "app/src/main/assets/theme-boot.js",
+        "app/src/main/assets/conversation.js",
+        "app/src/main/assets/conversation.css",
+        "app/src/main/assets/app.js"
+      ],
+      "evidenceRecords": [
+        "conversation-ui",
+        "ui",
+        "ui-performance"
+      ]
+    },
+    {
+      "id": "D11",
+      "title": {
+        "zh": "API能力一致性",
+        "en": "API capability consistency"
+      },
+      "status": "implemented_program_scope",
+      "java": [
+        "app/src/main/java/com/lma/app/ApiHost.java",
+        "app/src/main/java/com/lma/app/ModelPublication.java",
+        "app/src/main/java/com/lma/app/core/OpenAiFacade.java",
+        "app/src/main/java/com/lma/app/core/OpenAiRequests.java"
+      ],
+      "ui": [],
+      "evidenceRecords": [
+        "conversation-integration",
+        "api-publication",
+        "api",
+        "sub2api-gateway"
+      ]
+    },
+    {
+      "id": "D12",
+      "title": {
+        "zh": "回归与正式交付",
+        "en": "Regression and stable delivery"
+      },
+      "status": "implemented_program_scope",
+      "java": [],
+      "ui": [],
+      "evidenceRecords": [
+        "ui",
+        "conversation-ui",
+        "build",
+        "package",
+        "lint",
+        "adaptation-audit-checks"
+      ]
+    }
+  ],
+  "acceptance": [
+    {
+      "id": "A01",
+      "requirement": "安装／升级／浏览／规划均零隐式模型下载；保留用户文件、设置、签名和端口。",
+      "workPackage": "D12",
+      "assessment": "program_checked; new phone upgrade not run",
+      "evidence": "verification/releases/v0.4.0/status.json"
+    },
+    {
+      "id": "A02",
+      "requirement": "14 个语言模型全部有输入／输出／工具／LMA 状态／证据字段；保留原推荐与 Uncensored 标签。",
+      "workPackage": "D01",
+      "assessment": "program_checked",
+      "evidence": "verification/releases/v0.4.0/status.json"
+    },
+    {
+      "id": "A03",
+      "requirement": "Gemma 1B 不标视觉，Qwen2.5 不套 VL，Llama 1B／3B 不套 Vision；Qwen3.5 候选不冒充 LMA 已接入。",
+      "workPackage": "D01",
+      "assessment": "program_checked",
+      "evidence": "verification/releases/v0.4.0/status.json"
+    },
+    {
+      "id": "A04",
+      "requirement": "缺声明为未知，家族／发布者元数据／固定导出／程序／真机／质量证据不混为一项。",
+      "workPackage": "D01",
+      "assessment": "program_checked",
+      "evidence": "verification/releases/v0.4.0/status.json"
+    },
+    {
+      "id": "A05",
+      "requirement": "多标签组合筛选、离线缓存和本地可用状态在四个入口一致。",
+      "workPackage": "D01",
+      "assessment": "program_checked; offline metadata is cached, not proof of arbitrary HF executability",
+      "evidence": "verification/releases/v0.4.0/status.json"
+    },
+    {
+      "id": "A06",
+      "requirement": "主 GGUF 与 projector 的固定身份、许可和兼容配对可追踪；组件独立下载／导入并有共享删除保护。",
+      "workPackage": "D02",
+      "assessment": "program_checked; m15 pinned preset; m03/m09/m16 unresolved metadata",
+      "evidence": "verification/releases/v0.4.0/status.json"
+    },
+    {
+      "id": "A07",
+      "requirement": "已适配的图文输入正确传给视觉桥；只有文本的模型不丢弃附件假装回答。",
+      "workPackage": "D02",
+      "assessment": "bridge implemented; no fresh phone/model visual output measured",
+      "evidence": "verification/releases/v0.4.0/status.json"
+    },
+    {
+      "id": "A08",
+      "requirement": "原生视频理解与抽帧组合区分；时间／帧数／视觉 token 预算和取消均有效。",
+      "workPackage": "D02",
+      "assessment": "bounded preprocessing implemented; Android frame decoding not run this round",
+      "evidence": "verification/releases/v0.4.0/status.json"
+    },
+    {
+      "id": "A09",
+      "requirement": "未接入的原生音频、转写、OCR 或 3D 理解保持明确状态，不因通用多模态标签开放。",
+      "workPackage": "D01",
+      "assessment": "program_checked; unsupported native audio/OCR/3D not opened",
+      "evidence": "verification/releases/v0.4.0/status.json"
+    },
+    {
+      "id": "A10",
+      "requirement": "旧数据库升级与失败回滚保留全部会话 ID、文本、思考、错误和次序；历史可分页完整访问。",
+      "workPackage": "D03",
+      "assessment": "real SQLite migration/rollback/paging checked; Android framework not run",
+      "evidence": "verification/releases/v0.4.0/status.json"
+    },
+    {
+      "id": "A11",
+      "requirement": "无文本模型时，手动入口可接纳图片／视频／音频／3D 的合法任务。",
+      "workPackage": "D04",
+      "assessment": "program_checked with explicit fixtures; no new trained output claim",
+      "evidence": "verification/releases/v0.4.0/status.json"
+    },
+    {
+      "id": "A12",
+      "requirement": "每个任务卡对应一个原任务；崩溃发生在跨存储提交前后均不重复接纳。",
+      "workPackage": "D05",
+      "assessment": "program_checked: production runner crash window and stable-key reconciliation",
+      "evidence": "verification/releases/v0.4.0/status.json"
+    },
+    {
+      "id": "A13",
+      "requirement": "流式工具片段、调用 ID、参数、错误和结果正确关联，普通文本不被当命令执行。",
+      "workPackage": "D06",
+      "assessment": "program_checked: production parser fragments/strict JSON/IDs",
+      "evidence": "verification/releases/v0.4.0/status.json"
+    },
+    {
+      "id": "A14",
+      "requirement": "超步数、无效工具、错误模型、无效参数或重复调用被阻止，草稿仍可编辑。",
+      "workPackage": "D06",
+      "assessment": "program_checked: whitelist, eight steps, one explicit repair; model reliability unknown",
+      "evidence": "verification/releases/v0.4.0/status.json"
+    },
+    {
+      "id": "A15",
+      "requirement": "参数按模型隔离、手填超限回填；临时覆盖不改写默认值，素材／参数冻结可复核。",
+      "workPackage": "D04",
+      "assessment": "program_checked: model-specific defaults, temporary overrides and clamps",
+      "evidence": "verification/releases/v0.4.0/status.json"
+    },
+    {
+      "id": "A16",
+      "requirement": "“这张图／上一段音频”引用确定素材；歧义有选择入口。",
+      "workPackage": "D07",
+      "assessment": "program_checked: explicit asset IDs and required role selections",
+      "evidence": "verification/releases/v0.4.0/status.json"
+    },
+    {
+      "id": "A17",
+      "requirement": "活跃租约／任务／会话引用阻止误删；删除会话不级联删除其他地方使用的素材。",
+      "workPackage": "D07",
+      "assessment": "program_checked: persistent refs and leases; deleting a chat keeps files",
+      "evidence": "verification/releases/v0.4.0/status.json"
+    },
+    {
+      "id": "A18",
+      "requirement": "图片→视频只调支持相应输入的模型；视频真实输出时长 >5 秒，无补帧循环伪造。",
+      "workPackage": "D08",
+      "assessment": "routing and duration contracts checked; no new phone motion-quality claim",
+      "evidence": "verification/releases/v0.4.0/status.json"
+    },
+    {
+      "id": "A19",
+      "requirement": "文字→TTS、音乐／音效、图像→几何／材质分别依据输入合同路由。",
+      "workPackage": "D08",
+      "assessment": "schema routing checked; preserved backend programs are synthetic/bounded tests",
+      "evidence": "verification/releases/v0.4.0/status.json"
+    },
+    {
+      "id": "A20",
+      "requirement": "本地合成操作验证声轨、长度、音量、取消、损坏输入和文件有效性，保留原件。",
+      "workPackage": "D09",
+      "assessment": "real PCM mixing checked; Android AAC/MP4 compiled/linted, device codec output not measured",
+      "evidence": "verification/releases/v0.4.0/status.json"
+    },
+    {
+      "id": "A21",
+      "requirement": "任务链依赖失败阻断、父级取消和步骤重试正确；成功步骤不被隐式重算。",
+      "workPackage": "D08",
+      "assessment": "program_checked: failure blocking/cancel/retry/success reuse/crash reconciliation",
+      "evidence": "verification/releases/v0.4.0/status.json"
+    },
+    {
+      "id": "A22",
+      "requirement": "对话、工具、工作台、API 共用单重计算执行槽；规划器释放和文本恢复不争抢媒体内存。",
+      "workPackage": "D05",
+      "assessment": "existing shared execution gate retained and scheduler regression checked",
+      "evidence": "verification/releases/v0.4.0/status.json"
+    },
+    {
+      "id": "A23",
+      "requirement": "连接超时／SSE 断开不取消已接纳生成；没有固定生成耗时上限。",
+      "workPackage": "D11",
+      "assessment": "program_checked; no generation deadline; network wait and codec no-progress checks differ",
+      "evidence": "verification/releases/v0.4.0/status.json"
+    },
+    {
+      "id": "A24",
+      "requirement": "系统中断与恢复状态真实，不支持 checkpoint 的后端不声称续算。",
+      "workPackage": "D05",
+      "assessment": "program_checked; interrupted states and checkpoint=false remain explicit",
+      "evidence": "verification/releases/v0.4.0/status.json"
+    },
+    {
+      "id": "A25",
+      "requirement": "长历史夹具的流更新只修改目标块；不可见媒体不解码，离页释放播放器／GLB。",
+      "workPackage": "D10",
+      "assessment": "program_checked: 100 sessions/1000 messages/100 assets, 60 mounted, target-only mutation",
+      "evidence": "verification/releases/v0.4.0/status.json"
+    },
+    {
+      "id": "A26",
+      "requirement": "空闲无模型页面不扫描权重／推理，定向快照保留原性能优化且无明显回退。",
+      "workPackage": "D10",
+      "assessment": "program_checked; no new phone performance comparison available",
+      "evidence": "verification/releases/v0.4.0/status.json"
+    },
+    {
+      "id": "A27",
+      "requirement": "会话、任务列表和 API 的任务 ID、状态、取消、产物和幂等一致。",
+      "workPackage": "D11",
+      "assessment": "program_checked: same LocalJobs IDs and authenticated/idempotent chain API",
+      "evidence": "verification/releases/v0.4.0/status.json"
+    },
+    {
+      "id": "A28",
+      "requirement": "广播只包含合格本地模型；标签不能扩大真实 API operation，鉴权／缓存／隐私合同保留。",
+      "workPackage": "D11",
+      "assessment": "program_checked: installed/configured publication; native tags do not expand API operations",
+      "evidence": "verification/releases/v0.4.0/status.json"
+    },
+    {
+      "id": "A29",
+      "requirement": "OOM、哈希不符、unsupported、empty_structure、损坏媒体等失败有分类及可操作下一步，旧失败不改写。",
+      "workPackage": "D05",
+      "assessment": "program_checked: structured new failures; historical failures remain byte-identical",
+      "evidence": "verification/releases/v0.4.0/status.json"
+    },
+    {
+      "id": "A30",
+      "requirement": "原 62 配方／82 包／18 扩展引擎加文本、14 推荐及全部冻结目标回归，不缩减必需范围。",
+      "workPackage": "D12",
+      "assessment": "program regression; frozen 62 recipes/82 bundles/18 extension engines + text/14 recommendations retained",
+      "evidence": "verification/releases/v0.4.0/status.json"
+    },
+    {
+      "id": "A31",
+      "requirement": "程序检查、选定真机／模型运行、质量和耐久分别给出精确版本／APK 与结果；不恢复逐个完整模型长跑作为常规门槛。",
+      "workPackage": "D12",
+      "assessment": "version/APK-bound program evidence; fresh physical, quality and endurance checks not run",
+      "evidence": "verification/releases/v0.4.0/status.json"
+    },
+    {
+      "id": "A32",
+      "requirement": "同步完整中英文档、用例、失败案例、真实／夹具媒体和版本说明；普通推送并发布新的正式 Release，不替换旧附件。",
+      "workPackage": "D12",
+      "assessment": "bilingual docs/examples/fixture media/source/APK/evidence delivered; release receipt verifies publication",
+      "evidence": "verification/releases/v0.4.0/status.json"
+    },
+    {
+      "id": "A33",
+      "requirement": "新安装与无主题记录的升级默认暗色，即使系统为浅色；已有有效主题保留，三种主题切换可持久化。启动／原生栏／WebView／页面／弹窗一致且不闪白，文字／标签可读、媒体原色不变；切换不影响模型、参数、任务和 API。",
+      "workPackage": "D10",
+      "assessment": "program_checked: default dark and valid light/dark/system preferences; no fresh phone first-frame measure",
+      "evidence": "verification/releases/v0.4.0/status.json"
+    }
+  ]
+}

@@ -1,0 +1,1140 @@
+{
+  "schema": "lma.capabilities/1",
+  "reviewedAt": "2026-11-02",
+  "models": {
+    "m08": {
+      "native": [
+        {
+          "tag": "input:text",
+          "support": "publisher_metadata",
+          "evidence": [
+            "qwen3_17"
+          ]
+        },
+        {
+          "tag": "output:text",
+          "support": "publisher_metadata",
+          "evidence": [
+            "qwen3_17"
+          ]
+        },
+        {
+          "tag": "input:image",
+          "support": "not_supported",
+          "evidence": [
+            "qwen3_17"
+          ]
+        },
+        {
+          "tag": "input:video",
+          "support": "not_supported",
+          "evidence": [
+            "qwen3_17"
+          ]
+        },
+        {
+          "tag": "input:audio",
+          "support": "unknown",
+          "evidence": []
+        },
+        {
+          "tag": "tool:calling",
+          "support": "unknown",
+          "evidence": []
+        },
+        {
+          "tag": "output:json",
+          "support": "unknown",
+          "evidence": []
+        }
+      ],
+      "artifact": {
+        "repository": "mradermacher/Qwen3-1.7B-abliterated-GGUF",
+        "revision": "b87b1df5ecc209db872fed3e8a3ca5e1fd76c02a",
+        "path": "Qwen3-1.7B-abliterated.Q4_K_M.gguf"
+      },
+      "lma": {
+        "operations": [
+          "text.generate"
+        ],
+        "visionBridge": "not_declared",
+        "toolParser": "implemented",
+        "modelToolReliability": "unknown",
+        "phoneVerified": false
+      },
+      "composed": [
+        "tool:media-generation"
+      ],
+      "evidence": {
+        "declared": true,
+        "pinnedExportPair": false,
+        "programBridge": true,
+        "phoneOutput": false,
+        "quality": false
+      }
+    },
+    "m06": {
+      "native": [
+        {
+          "tag": "input:text",
+          "support": "publisher_metadata",
+          "evidence": [
+            "lfm25_12"
+          ]
+        },
+        {
+          "tag": "output:text",
+          "support": "publisher_metadata",
+          "evidence": [
+            "lfm25_12"
+          ]
+        },
+        {
+          "tag": "input:image",
+          "support": "not_supported",
+          "evidence": [
+            "lfm25_12"
+          ]
+        },
+        {
+          "tag": "input:video",
+          "support": "not_supported",
+          "evidence": [
+            "lfm25_12"
+          ]
+        },
+        {
+          "tag": "input:audio",
+          "support": "unknown",
+          "evidence": []
+        },
+        {
+          "tag": "tool:calling",
+          "support": "unknown",
+          "evidence": []
+        },
+        {
+          "tag": "output:json",
+          "support": "unknown",
+          "evidence": []
+        }
+      ],
+      "artifact": {
+        "repository": "zaakirio/LFM2.5-1.2B-Instruct-Uncensored-GGUF",
+        "revision": "9524013e4acd8e382dff76e5605b6c2376198237",
+        "path": "LFM2.5-1.2B-Instruct-Uncensored-Q4_K_M.gguf"
+      },
+      "lma": {
+        "operations": [
+          "text.generate"
+        ],
+        "visionBridge": "not_declared",
+        "toolParser": "implemented",
+        "modelToolReliability": "unknown",
+        "phoneVerified": false
+      },
+      "composed": [
+        "tool:media-generation"
+      ],
+      "evidence": {
+        "declared": true,
+        "pinnedExportPair": false,
+        "programBridge": true,
+        "phoneOutput": false,
+        "quality": false
+      }
+    },
+    "m01": {
+      "native": [
+        {
+          "tag": "input:text",
+          "support": "publisher_metadata",
+          "evidence": [
+            "qwen25_05"
+          ]
+        },
+        {
+          "tag": "output:text",
+          "support": "publisher_metadata",
+          "evidence": [
+            "qwen25_05"
+          ]
+        },
+        {
+          "tag": "input:image",
+          "support": "not_supported",
+          "evidence": [
+            "qwen25_05"
+          ]
+        },
+        {
+          "tag": "input:video",
+          "support": "not_supported",
+          "evidence": [
+            "qwen25_05"
+          ]
+        },
+        {
+          "tag": "input:audio",
+          "support": "unknown",
+          "evidence": []
+        },
+        {
+          "tag": "tool:calling",
+          "support": "unknown",
+          "evidence": []
+        },
+        {
+          "tag": "output:json",
+          "support": "unknown",
+          "evidence": []
+        }
+      ],
+      "artifact": {
+        "repository": "bartowski/Dolphin3.0-Qwen2.5-0.5B-GGUF",
+        "revision": "2a4428efa5a7377c4404d0b9ff16ce41e52047b8",
+        "path": "Dolphin3.0-Qwen2.5-0.5B-Q4_K_M.gguf"
+      },
+      "lma": {
+        "operations": [
+          "text.generate"
+        ],
+        "visionBridge": "not_declared",
+        "toolParser": "implemented",
+        "modelToolReliability": "unknown",
+        "phoneVerified": false
+      },
+      "composed": [
+        "tool:media-generation"
+      ],
+      "evidence": {
+        "declared": true,
+        "pinnedExportPair": false,
+        "programBridge": true,
+        "phoneOutput": false,
+        "quality": false
+      }
+    },
+    "m05": {
+      "native": [
+        {
+          "tag": "input:text",
+          "support": "publisher_metadata",
+          "evidence": [
+            "gemma3_1"
+          ]
+        },
+        {
+          "tag": "output:text",
+          "support": "publisher_metadata",
+          "evidence": [
+            "gemma3_1"
+          ]
+        },
+        {
+          "tag": "input:image",
+          "support": "not_supported",
+          "evidence": [
+            "gemma3_1"
+          ]
+        },
+        {
+          "tag": "input:video",
+          "support": "not_supported",
+          "evidence": [
+            "gemma3_1"
+          ]
+        },
+        {
+          "tag": "input:audio",
+          "support": "unknown",
+          "evidence": []
+        },
+        {
+          "tag": "tool:calling",
+          "support": "unknown",
+          "evidence": []
+        },
+        {
+          "tag": "output:json",
+          "support": "unknown",
+          "evidence": []
+        }
+      ],
+      "artifact": {
+        "repository": "mlabonne/gemma-3-1b-it-abliterated-GGUF",
+        "revision": "3a0369ab47e95d84587250ffa9fbefab6ef01432",
+        "path": "gemma-3-1b-it-abliterated.q4_k_m.gguf"
+      },
+      "lma": {
+        "operations": [
+          "text.generate"
+        ],
+        "visionBridge": "not_declared",
+        "toolParser": "implemented",
+        "modelToolReliability": "unknown",
+        "phoneVerified": false
+      },
+      "composed": [
+        "tool:media-generation"
+      ],
+      "evidence": {
+        "declared": true,
+        "pinnedExportPair": false,
+        "programBridge": true,
+        "phoneOutput": false,
+        "quality": false
+      }
+    },
+    "m04": {
+      "native": [
+        {
+          "tag": "input:text",
+          "support": "publisher_metadata",
+          "evidence": [
+            "llama32_1"
+          ]
+        },
+        {
+          "tag": "output:text",
+          "support": "publisher_metadata",
+          "evidence": [
+            "llama32_1"
+          ]
+        },
+        {
+          "tag": "input:image",
+          "support": "not_supported",
+          "evidence": [
+            "llama32_1"
+          ]
+        },
+        {
+          "tag": "input:video",
+          "support": "not_supported",
+          "evidence": [
+            "llama32_1"
+          ]
+        },
+        {
+          "tag": "input:audio",
+          "support": "unknown",
+          "evidence": []
+        },
+        {
+          "tag": "tool:calling",
+          "support": "unknown",
+          "evidence": []
+        },
+        {
+          "tag": "output:json",
+          "support": "unknown",
+          "evidence": []
+        }
+      ],
+      "artifact": {
+        "repository": "bartowski/Dolphin3.0-Llama3.2-1B-GGUF",
+        "revision": "617f94be9dfb802a3fa0ec64b12d7d085482a308",
+        "path": "Dolphin3.0-Llama3.2-1B-Q4_K_M.gguf"
+      },
+      "lma": {
+        "operations": [
+          "text.generate"
+        ],
+        "visionBridge": "not_declared",
+        "toolParser": "implemented",
+        "modelToolReliability": "unknown",
+        "phoneVerified": false
+      },
+      "composed": [
+        "tool:media-generation"
+      ],
+      "evidence": {
+        "declared": true,
+        "pinnedExportPair": false,
+        "programBridge": true,
+        "phoneOutput": false,
+        "quality": false
+      }
+    },
+    "m03": {
+      "native": [
+        {
+          "tag": "input:text",
+          "support": "publisher_metadata",
+          "evidence": [
+            "qwen35_08"
+          ]
+        },
+        {
+          "tag": "output:text",
+          "support": "publisher_metadata",
+          "evidence": [
+            "qwen35_08"
+          ]
+        },
+        {
+          "tag": "input:image",
+          "support": "publisher_metadata",
+          "evidence": [
+            "huihui_08"
+          ]
+        },
+        {
+          "tag": "input:video",
+          "support": "family_candidate",
+          "evidence": [
+            "qwen35_08"
+          ]
+        },
+        {
+          "tag": "input:audio",
+          "support": "unknown",
+          "evidence": []
+        },
+        {
+          "tag": "tool:calling",
+          "support": "unknown",
+          "evidence": []
+        },
+        {
+          "tag": "output:json",
+          "support": "unknown",
+          "evidence": []
+        }
+      ],
+      "artifact": {
+        "repository": "mradermacher/Huihui-Qwen3.5-0.8B-abliterated-i1-GGUF",
+        "revision": "4fade25176da43736bf43f5f81433f1aff0e741f",
+        "path": "Huihui-Qwen3.5-0.8B-abliterated.i1-Q4_K_M.gguf"
+      },
+      "lma": {
+        "operations": [
+          "text.generate"
+        ],
+        "visionBridge": "component_pair_required",
+        "toolParser": "implemented",
+        "modelToolReliability": "unknown",
+        "phoneVerified": false
+      },
+      "composed": [
+        "tool:media-generation"
+      ],
+      "evidence": {
+        "declared": true,
+        "pinnedExportPair": false,
+        "programBridge": true,
+        "phoneOutput": false,
+        "quality": false
+      }
+    },
+    "m09": {
+      "native": [
+        {
+          "tag": "input:text",
+          "support": "publisher_metadata",
+          "evidence": [
+            "qwen35_2"
+          ]
+        },
+        {
+          "tag": "output:text",
+          "support": "publisher_metadata",
+          "evidence": [
+            "qwen35_2"
+          ]
+        },
+        {
+          "tag": "input:image",
+          "support": "publisher_metadata",
+          "evidence": [
+            "huihui_2"
+          ]
+        },
+        {
+          "tag": "input:video",
+          "support": "family_candidate",
+          "evidence": [
+            "qwen35_2"
+          ]
+        },
+        {
+          "tag": "input:audio",
+          "support": "unknown",
+          "evidence": []
+        },
+        {
+          "tag": "tool:calling",
+          "support": "unknown",
+          "evidence": []
+        },
+        {
+          "tag": "output:json",
+          "support": "unknown",
+          "evidence": []
+        }
+      ],
+      "artifact": {
+        "repository": "mradermacher/Huihui-Qwen3.5-2B-abliterated-GGUF",
+        "revision": "7f5aee7d2dc4df18bd67eab85ea81e0bc2e98a2c",
+        "path": "Huihui-Qwen3.5-2B-abliterated.Q4_K_M.gguf"
+      },
+      "lma": {
+        "operations": [
+          "text.generate"
+        ],
+        "visionBridge": "component_pair_required",
+        "toolParser": "implemented",
+        "modelToolReliability": "unknown",
+        "phoneVerified": false
+      },
+      "composed": [
+        "tool:media-generation"
+      ],
+      "evidence": {
+        "declared": true,
+        "pinnedExportPair": false,
+        "programBridge": true,
+        "phoneOutput": false,
+        "quality": false
+      }
+    },
+    "m11": {
+      "native": [
+        {
+          "tag": "input:text",
+          "support": "publisher_metadata",
+          "evidence": [
+            "qwen25_3"
+          ]
+        },
+        {
+          "tag": "output:text",
+          "support": "publisher_metadata",
+          "evidence": [
+            "qwen25_3"
+          ]
+        },
+        {
+          "tag": "input:image",
+          "support": "not_supported",
+          "evidence": [
+            "qwen25_3"
+          ]
+        },
+        {
+          "tag": "input:video",
+          "support": "not_supported",
+          "evidence": [
+            "qwen25_3"
+          ]
+        },
+        {
+          "tag": "input:audio",
+          "support": "unknown",
+          "evidence": []
+        },
+        {
+          "tag": "tool:calling",
+          "support": "unknown",
+          "evidence": []
+        },
+        {
+          "tag": "output:json",
+          "support": "unknown",
+          "evidence": []
+        }
+      ],
+      "artifact": {
+        "repository": "bartowski/Dolphin3.0-Qwen2.5-3b-GGUF",
+        "revision": "4f84a9b5b7ecc4c49367838cf226677008f37c1e",
+        "path": "Dolphin3.0-Qwen2.5-3b-Q4_K_M.gguf"
+      },
+      "lma": {
+        "operations": [
+          "text.generate"
+        ],
+        "visionBridge": "not_declared",
+        "toolParser": "implemented",
+        "modelToolReliability": "unknown",
+        "phoneVerified": false
+      },
+      "composed": [
+        "tool:media-generation"
+      ],
+      "evidence": {
+        "declared": true,
+        "pinnedExportPair": false,
+        "programBridge": true,
+        "phoneOutput": false,
+        "quality": false
+      }
+    },
+    "m12": {
+      "native": [
+        {
+          "tag": "input:text",
+          "support": "publisher_metadata",
+          "evidence": [
+            "llama32_3"
+          ]
+        },
+        {
+          "tag": "output:text",
+          "support": "publisher_metadata",
+          "evidence": [
+            "llama32_3"
+          ]
+        },
+        {
+          "tag": "input:image",
+          "support": "not_supported",
+          "evidence": [
+            "llama32_3"
+          ]
+        },
+        {
+          "tag": "input:video",
+          "support": "not_supported",
+          "evidence": [
+            "llama32_3"
+          ]
+        },
+        {
+          "tag": "input:audio",
+          "support": "unknown",
+          "evidence": []
+        },
+        {
+          "tag": "tool:calling",
+          "support": "unknown",
+          "evidence": []
+        },
+        {
+          "tag": "output:json",
+          "support": "unknown",
+          "evidence": []
+        }
+      ],
+      "artifact": {
+        "repository": "bartowski/Dolphin3.0-Llama3.2-3B-GGUF",
+        "revision": "ac6b1ee98e3864ebd5998216f800a07d74b166b5",
+        "path": "Dolphin3.0-Llama3.2-3B-Q4_K_M.gguf"
+      },
+      "lma": {
+        "operations": [
+          "text.generate"
+        ],
+        "visionBridge": "not_declared",
+        "toolParser": "implemented",
+        "modelToolReliability": "unknown",
+        "phoneVerified": false
+      },
+      "composed": [
+        "tool:media-generation"
+      ],
+      "evidence": {
+        "declared": true,
+        "pinnedExportPair": false,
+        "programBridge": true,
+        "phoneOutput": false,
+        "quality": false
+      }
+    },
+    "m13": {
+      "native": [
+        {
+          "tag": "input:text",
+          "support": "publisher_metadata",
+          "evidence": [
+            "llama32_3"
+          ]
+        },
+        {
+          "tag": "output:text",
+          "support": "publisher_metadata",
+          "evidence": [
+            "llama32_3"
+          ]
+        },
+        {
+          "tag": "input:image",
+          "support": "not_supported",
+          "evidence": [
+            "llama32_3"
+          ]
+        },
+        {
+          "tag": "input:video",
+          "support": "not_supported",
+          "evidence": [
+            "llama32_3"
+          ]
+        },
+        {
+          "tag": "input:audio",
+          "support": "unknown",
+          "evidence": []
+        },
+        {
+          "tag": "tool:calling",
+          "support": "unknown",
+          "evidence": []
+        },
+        {
+          "tag": "output:json",
+          "support": "unknown",
+          "evidence": []
+        }
+      ],
+      "artifact": {
+        "repository": "bartowski/Llama-3.2-3B-Instruct-uncensored-GGUF",
+        "revision": "db993eb152fc89f32e061f3575d1b8111648900f",
+        "path": "Llama-3.2-3B-Instruct-uncensored-Q4_K_M.gguf"
+      },
+      "lma": {
+        "operations": [
+          "text.generate"
+        ],
+        "visionBridge": "not_declared",
+        "toolParser": "implemented",
+        "modelToolReliability": "unknown",
+        "phoneVerified": false
+      },
+      "composed": [
+        "tool:media-generation"
+      ],
+      "evidence": {
+        "declared": true,
+        "pinnedExportPair": false,
+        "programBridge": true,
+        "phoneOutput": false,
+        "quality": false
+      }
+    },
+    "m14": {
+      "native": [
+        {
+          "tag": "input:text",
+          "support": "publisher_metadata",
+          "evidence": [
+            "qwen3_4"
+          ]
+        },
+        {
+          "tag": "output:text",
+          "support": "publisher_metadata",
+          "evidence": [
+            "qwen3_4"
+          ]
+        },
+        {
+          "tag": "input:image",
+          "support": "not_supported",
+          "evidence": [
+            "qwen3_4"
+          ]
+        },
+        {
+          "tag": "input:video",
+          "support": "not_supported",
+          "evidence": [
+            "qwen3_4"
+          ]
+        },
+        {
+          "tag": "input:audio",
+          "support": "unknown",
+          "evidence": []
+        },
+        {
+          "tag": "tool:calling",
+          "support": "unknown",
+          "evidence": []
+        },
+        {
+          "tag": "output:json",
+          "support": "unknown",
+          "evidence": []
+        }
+      ],
+      "artifact": {
+        "repository": "mradermacher/Huihui-Qwen3-4B-Instruct-2507-abliterated-GGUF",
+        "revision": "c9e90669eeb205d5af35c28a3e9983fc9293c2ec",
+        "path": "Huihui-Qwen3-4B-Instruct-2507-abliterated.Q4_K_M.gguf"
+      },
+      "lma": {
+        "operations": [
+          "text.generate"
+        ],
+        "visionBridge": "not_declared",
+        "toolParser": "implemented",
+        "modelToolReliability": "unknown",
+        "phoneVerified": false
+      },
+      "composed": [
+        "tool:media-generation"
+      ],
+      "evidence": {
+        "declared": true,
+        "pinnedExportPair": false,
+        "programBridge": true,
+        "phoneOutput": false,
+        "quality": false
+      }
+    },
+    "m16": {
+      "native": [
+        {
+          "tag": "input:text",
+          "support": "publisher_metadata",
+          "evidence": [
+            "gemma3_4"
+          ]
+        },
+        {
+          "tag": "output:text",
+          "support": "publisher_metadata",
+          "evidence": [
+            "gemma3_4"
+          ]
+        },
+        {
+          "tag": "input:image",
+          "support": "publisher_metadata",
+          "evidence": [
+            "gemma4_export"
+          ]
+        },
+        {
+          "tag": "input:video",
+          "support": "unknown",
+          "evidence": []
+        },
+        {
+          "tag": "input:audio",
+          "support": "unknown",
+          "evidence": []
+        },
+        {
+          "tag": "tool:calling",
+          "support": "unknown",
+          "evidence": []
+        },
+        {
+          "tag": "output:json",
+          "support": "unknown",
+          "evidence": []
+        }
+      ],
+      "artifact": {
+        "repository": "mlabonne/gemma-3-4b-it-abliterated-v2-GGUF",
+        "revision": "63e82692eb4361788cdfdf01491bdbda28858737",
+        "path": "gemma-3-4b-it-abliterated-v2.q4_k_m.gguf"
+      },
+      "lma": {
+        "operations": [
+          "text.generate"
+        ],
+        "visionBridge": "component_pair_required",
+        "toolParser": "implemented",
+        "modelToolReliability": "unknown",
+        "phoneVerified": false
+      },
+      "composed": [
+        "tool:media-generation"
+      ],
+      "evidence": {
+        "declared": true,
+        "pinnedExportPair": false,
+        "programBridge": true,
+        "phoneOutput": false,
+        "quality": false
+      }
+    },
+    "m10": {
+      "native": [
+        {
+          "tag": "input:text",
+          "support": "publisher_metadata",
+          "evidence": [
+            "lfm25_26"
+          ]
+        },
+        {
+          "tag": "output:text",
+          "support": "publisher_metadata",
+          "evidence": [
+            "lfm25_26"
+          ]
+        },
+        {
+          "tag": "input:image",
+          "support": "not_supported",
+          "evidence": [
+            "lfm25_26"
+          ]
+        },
+        {
+          "tag": "input:video",
+          "support": "not_supported",
+          "evidence": [
+            "lfm25_26"
+          ]
+        },
+        {
+          "tag": "input:audio",
+          "support": "unknown",
+          "evidence": []
+        },
+        {
+          "tag": "tool:calling",
+          "support": "unknown",
+          "evidence": []
+        },
+        {
+          "tag": "output:json",
+          "support": "unknown",
+          "evidence": []
+        }
+      ],
+      "artifact": {
+        "repository": "SC117/LFM2.5-2.6B-Uncensored-GGUF",
+        "revision": "0244f12071fe554849514aef361c584f45a5d565",
+        "path": "LFM2.5-2.6B-Uncensored-Q4_K_M.gguf"
+      },
+      "lma": {
+        "operations": [
+          "text.generate"
+        ],
+        "visionBridge": "not_declared",
+        "toolParser": "implemented",
+        "modelToolReliability": "unknown",
+        "phoneVerified": false
+      },
+      "composed": [
+        "tool:media-generation"
+      ],
+      "evidence": {
+        "declared": true,
+        "pinnedExportPair": false,
+        "programBridge": true,
+        "phoneOutput": false,
+        "quality": false
+      }
+    },
+    "m15": {
+      "native": [
+        {
+          "tag": "input:text",
+          "support": "publisher_metadata",
+          "evidence": [
+            "qwen35_4"
+          ]
+        },
+        {
+          "tag": "output:text",
+          "support": "publisher_metadata",
+          "evidence": [
+            "qwen35_4"
+          ]
+        },
+        {
+          "tag": "input:image",
+          "support": "publisher_declared",
+          "evidence": [
+            "hauhau_4"
+          ]
+        },
+        {
+          "tag": "input:video",
+          "support": "publisher_declared",
+          "evidence": [
+            "hauhau_4"
+          ]
+        },
+        {
+          "tag": "input:audio",
+          "support": "unknown",
+          "evidence": []
+        },
+        {
+          "tag": "tool:calling",
+          "support": "unknown",
+          "evidence": []
+        },
+        {
+          "tag": "output:json",
+          "support": "unknown",
+          "evidence": []
+        }
+      ],
+      "artifact": {
+        "repository": "HauhauCS/Qwen3.5-4B-Uncensored-HauhauCS-Aggressive",
+        "revision": "c09cdbcdb1fefad6d335809d445621b5f5ba0c6e",
+        "path": "Qwen3.5-4B-Uncensored-HauhauCS-Aggressive-Q4_K_M.gguf"
+      },
+      "lma": {
+        "operations": [
+          "text.generate"
+        ],
+        "visionBridge": "component_pair_required",
+        "toolParser": "implemented",
+        "modelToolReliability": "unknown",
+        "phoneVerified": false
+      },
+      "composed": [
+        "tool:media-generation"
+      ],
+      "evidence": {
+        "declared": true,
+        "pinnedExportPair": false,
+        "programBridge": true,
+        "phoneOutput": false,
+        "quality": false
+      }
+    }
+  },
+  "sources": [
+    {
+      "id": "qwen3_17",
+      "url": "https://huggingface.co/Qwen/Qwen3-1.7B",
+      "checkedAt": "2026-11-02",
+      "method": "public_web_page",
+      "binding": "live_page_not_pinned_selected_export"
+    },
+    {
+      "id": "qwen3_4",
+      "url": "https://huggingface.co/Qwen/Qwen3-4B-Instruct-2507",
+      "checkedAt": "2026-11-02",
+      "method": "public_web_page",
+      "binding": "live_page_not_pinned_selected_export"
+    },
+    {
+      "id": "qwen25_05",
+      "url": "https://huggingface.co/Qwen/Qwen2.5-0.5B-Instruct",
+      "checkedAt": "2026-11-02",
+      "method": "public_web_page",
+      "binding": "live_page_not_pinned_selected_export"
+    },
+    {
+      "id": "qwen25_3",
+      "url": "https://huggingface.co/Qwen/Qwen2.5-3B-Instruct",
+      "checkedAt": "2026-11-02",
+      "method": "public_web_page",
+      "binding": "live_page_not_pinned_selected_export"
+    },
+    {
+      "id": "llama32_1",
+      "url": "https://huggingface.co/meta-llama/Llama-3.2-1B-Instruct",
+      "checkedAt": "2026-11-02",
+      "method": "public_web_page",
+      "binding": "live_page_not_pinned_selected_export"
+    },
+    {
+      "id": "llama32_3",
+      "url": "https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct",
+      "checkedAt": "2026-11-02",
+      "method": "public_web_page",
+      "binding": "live_page_not_pinned_selected_export"
+    },
+    {
+      "id": "lfm25_12",
+      "url": "https://huggingface.co/LiquidAI/LFM2.5-1.2B-Instruct",
+      "checkedAt": "2026-11-02",
+      "method": "public_web_page",
+      "binding": "live_page_not_pinned_selected_export"
+    },
+    {
+      "id": "lfm25_26",
+      "url": "https://huggingface.co/LiquidAI/LFM2.5-2.6B",
+      "checkedAt": "2026-11-02",
+      "method": "public_web_page",
+      "binding": "live_page_not_pinned_selected_export"
+    },
+    {
+      "id": "gemma3_1",
+      "url": "https://huggingface.co/google/gemma-3-1b-it",
+      "checkedAt": "2026-11-02",
+      "method": "public_web_page",
+      "binding": "live_page_not_pinned_selected_export"
+    },
+    {
+      "id": "gemma3_4",
+      "url": "https://huggingface.co/google/gemma-3-4b-it",
+      "checkedAt": "2026-11-02",
+      "method": "public_web_page",
+      "binding": "live_page_not_pinned_selected_export"
+    },
+    {
+      "id": "qwen35_08",
+      "url": "https://huggingface.co/Qwen/Qwen3.5-0.8B",
+      "checkedAt": "2026-11-02",
+      "method": "public_web_page",
+      "binding": "live_page_not_pinned_selected_export"
+    },
+    {
+      "id": "qwen35_2",
+      "url": "https://huggingface.co/Qwen/Qwen3.5-2B",
+      "checkedAt": "2026-11-02",
+      "method": "public_web_page",
+      "binding": "live_page_not_pinned_selected_export"
+    },
+    {
+      "id": "qwen35_4",
+      "url": "https://huggingface.co/Qwen/Qwen3.5-4B",
+      "checkedAt": "2026-11-02",
+      "method": "public_web_page",
+      "binding": "live_page_not_pinned_selected_export"
+    },
+    {
+      "id": "huihui_08",
+      "url": "https://huggingface.co/huihui-ai/Huihui-Qwen3.5-0.8B-abliterated",
+      "checkedAt": "2026-11-02",
+      "method": "public_web_page",
+      "binding": "live_page_not_pinned_selected_export"
+    },
+    {
+      "id": "huihui_2",
+      "url": "https://huggingface.co/huihui-ai/Huihui-Qwen3.5-2B-abliterated",
+      "checkedAt": "2026-11-02",
+      "method": "public_web_page",
+      "binding": "live_page_not_pinned_selected_export"
+    },
+    {
+      "id": "hauhau_4",
+      "url": "https://huggingface.co/HauhauCS/Qwen3.5-4B-Uncensored-HauhauCS-Aggressive",
+      "checkedAt": "2026-11-02",
+      "method": "public_web_page",
+      "binding": "live_page_not_pinned_selected_export"
+    },
+    {
+      "id": "gemma4_export",
+      "url": "https://huggingface.co/mlabonne/gemma-3-4b-it-abliterated-v2-GGUF",
+      "checkedAt": "2026-11-02",
+      "method": "public_web_page",
+      "binding": "live_page_not_pinned_selected_export"
+    },
+    {
+      "id": "llama_mm",
+      "url": "https://github.com/ggml-org/llama.cpp/blob/master/docs/multimodal.md",
+      "checkedAt": "2026-11-02",
+      "method": "public_web_page",
+      "binding": "live_page_not_pinned_selected_export"
+    },
+    {
+      "id": "llama_tools",
+      "url": "https://github.com/ggml-org/llama.cpp/blob/master/docs/function-calling.md",
+      "checkedAt": "2026-11-02",
+      "method": "public_web_page",
+      "binding": "live_page_not_pinned_selected_export"
+    },
+    {
+      "id": "hf_mm",
+      "url": "https://huggingface.co/docs/transformers/chat_templating_multimodal",
+      "checkedAt": "2026-11-02",
+      "method": "public_web_page",
+      "binding": "live_page_not_pinned_selected_export"
+    }
+  ]
+}

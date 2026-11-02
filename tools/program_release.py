@@ -160,10 +160,16 @@ def prepare():
   benchmark_manifest=ROOT/'docs/media/benchmarks'/('v'+VERSION)/'manifest.json'
   if benchmark_manifest.exists():archive.write(benchmark_manifest,'media/physical-benchmark/manifest.json')
   archive.write(ROOT/('catalogue/release-'+VERSION+'-implementation.json'),'implementation.json')
+  if VERSION=='0.4.0':
+   archive.write(ROOT/'catalogue/conversation-20261102-implementation.json','conversation-implementation.json')
+   archive.write(ROOT/'docs/media/conversation-v040/manifest.json','media/conversation/manifest.json')
   archive.write(ROOT/'docs/proposals/program-validation-policy.json','validation-policy.json')
  names.append(verification)
  screenshots=f'LMA-{VERSION}-screenshots.zip'
  with zipfile.ZipFile(directory/screenshots,'w',zipfile.ZIP_DEFLATED) as archive:
+  if VERSION=='0.4.0':
+   for item in read(ROOT/'docs/media/conversation-v040/manifest.json')['screenshots']:
+    archive.write(ROOT/'docs/media/conversation-v040'/item['file'],'conversation/'+item['file'])
   for name in MEDIA:
    base=ROOT/'docs/media/development'/name
    for item in read(base/'manifest.json')['screenshots']:archive.write(base/item['file'],name+'/'+item['file'])
@@ -177,6 +183,10 @@ def prepare():
    for item in read(lan_media/'manifest.json')['files']:
     if Path(item['file']).suffix=='.png':archive.write(lan_media/item['file'],'physical-lan-http/'+item['file'])
  names.append(screenshots)
+ if VERSION=='0.4.0':
+  for extension in ['mp4','gif']:
+   original=ROOT/'docs/media/conversation-v040'/('walkthrough.'+extension)
+   target=f'LMA-{VERSION}-conversation.'+extension;shutil.copy2(original,directory/target);names.append(target)
  if lan_evidence.exists():
   lan_archive=f'LMA-{VERSION}-lan-http-results.zip'
   with zipfile.ZipFile(directory/lan_archive,'w',zipfile.ZIP_DEFLATED) as archive:
@@ -206,7 +216,7 @@ def prepare():
    shutil.copy2(original,directory/target);names.append(target)
  names.sort()
  (directory/'SHA256SUMS').write_text(''.join(sha(directory/n)+'  '+n+'\n' for n in names),encoding='utf-8');names.append('SHA256SUMS')
- manifest=dict(repository='wikigsroom/LMA',version=VERSION,tag='v'+VERSION,title='LMA v'+VERSION+(' · Default API port 52187 / 默认接口端口 52187' if VERSION=='0.3.13' else ' · Local multimodal API and uncapped generation / 本地多模态接口与生成时限取消'),
+ manifest=dict(repository='wikigsroom/LMA',version=VERSION,tag='v'+VERSION,title='LMA v'+VERSION+(' · Conversations and local creation / 对话与本地创作' if VERSION=='0.4.0' else ' · Default API port 52187 / 默认接口端口 52187' if VERSION=='0.3.13' else ' · Local multimodal API and uncapped generation / 本地多模态接口与生成时限取消'),
   prerelease=not COMPLETE,notes='docs/releases/v'+VERSION+'.md',validation_mode='program_only',full_scope_program_implementation_complete=True,
   apk_sha256=build['sha256'],physical_device_tested=evidence.get('physical_device_tested',False),
   physical_device_tests=evidence.get('physical_device_tests',0),background_program_tested=evidence.get('background_program_tested',False),

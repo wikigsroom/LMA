@@ -49,6 +49,7 @@ public final class DataFiles {
     }
     public static String sha256(File file) throws IOException { return sha256(file, () -> {}); }
     public interface Check { void run() throws IOException; }
+    public static Check checked(ExecutionGate.Check check) {return ()->{try{check.run();}catch(IOException e){throw e;}catch(Exception e){throw new IOException(e.getMessage(),e);}};}
     public static String sha256(File file, Check check) throws IOException {
         try (InputStream in = new FileInputStream(file)) {
             MessageDigest hash = MessageDigest.getInstance("SHA-256"); byte[] bytes = new byte[256 * 1024]; int count;

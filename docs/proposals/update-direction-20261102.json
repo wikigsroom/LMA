@@ -2,7 +2,7 @@
   "schema": "lma.update-direction/1",
   "date": "2026-11-02",
   "timezone": "Asia/Taipei",
-  "status": "proposal_not_runtime",
+  "status": "program_implementation_delivery",
   "baseline": {
     "appVersion": "0.3.13",
     "versionCode": 63,
@@ -1460,17 +1460,19 @@
   "workPackages": [
     {
       "id": "D01",
-      "status": "not_implemented_by_this_plan",
+      "status": "implemented_program_scope",
       "requiredInSameFunctionalDelivery": true,
       "title": {
         "zh": "能力与标签同源",
         "en": "Shared capabilities and tags"
       },
-      "dependsOn": []
+      "dependsOn": [],
+      "baselineStatus": "not_implemented_by_this_plan",
+      "implementationMatrix": "catalogue/conversation-20261102-implementation.json#D01"
     },
     {
       "id": "D02",
-      "status": "not_implemented_by_this_plan",
+      "status": "implemented_program_scope",
       "requiredInSameFunctionalDelivery": true,
       "title": {
         "zh": "本地视觉桥与组件",
@@ -1478,21 +1480,25 @@
       },
       "dependsOn": [
         "D01"
-      ]
+      ],
+      "baselineStatus": "not_implemented_by_this_plan",
+      "implementationMatrix": "catalogue/conversation-20261102-implementation.json#D02"
     },
     {
       "id": "D03",
-      "status": "not_implemented_by_this_plan",
+      "status": "implemented_program_scope",
       "requiredInSameFunctionalDelivery": true,
       "title": {
         "zh": "消息与迁移",
         "en": "Messages and migration"
       },
-      "dependsOn": []
+      "dependsOn": [],
+      "baselineStatus": "not_implemented_by_this_plan",
+      "implementationMatrix": "catalogue/conversation-20261102-implementation.json#D03"
     },
     {
       "id": "D04",
-      "status": "not_implemented_by_this_plan",
+      "status": "implemented_program_scope",
       "requiredInSameFunctionalDelivery": true,
       "title": {
         "zh": "统一输入与手动创作",
@@ -1501,11 +1507,13 @@
       "dependsOn": [
         "D01",
         "D03"
-      ]
+      ],
+      "baselineStatus": "not_implemented_by_this_plan",
+      "implementationMatrix": "catalogue/conversation-20261102-implementation.json#D04"
     },
     {
       "id": "D05",
-      "status": "not_implemented_by_this_plan",
+      "status": "implemented_program_scope",
       "requiredInSameFunctionalDelivery": true,
       "title": {
         "zh": "任务卡与关联",
@@ -1514,11 +1522,13 @@
       "dependsOn": [
         "D03",
         "D04"
-      ]
+      ],
+      "baselineStatus": "not_implemented_by_this_plan",
+      "implementationMatrix": "catalogue/conversation-20261102-implementation.json#D05"
     },
     {
       "id": "D06",
-      "status": "not_implemented_by_this_plan",
+      "status": "implemented_program_scope",
       "requiredInSameFunctionalDelivery": true,
       "title": {
         "zh": "工具与续写",
@@ -1527,11 +1537,13 @@
       "dependsOn": [
         "D01",
         "D05"
-      ]
+      ],
+      "baselineStatus": "not_implemented_by_this_plan",
+      "implementationMatrix": "catalogue/conversation-20261102-implementation.json#D06"
     },
     {
       "id": "D07",
-      "status": "not_implemented_by_this_plan",
+      "status": "implemented_program_scope",
       "requiredInSameFunctionalDelivery": true,
       "title": {
         "zh": "素材上下文与引用",
@@ -1540,11 +1552,13 @@
       "dependsOn": [
         "D03",
         "D05"
-      ]
+      ],
+      "baselineStatus": "not_implemented_by_this_plan",
+      "implementationMatrix": "catalogue/conversation-20261102-implementation.json#D07"
     },
     {
       "id": "D08",
-      "status": "not_implemented_by_this_plan",
+      "status": "implemented_program_scope",
       "requiredInSameFunctionalDelivery": true,
       "title": {
         "zh": "依赖任务与模板",
@@ -1554,11 +1568,13 @@
         "D05",
         "D06",
         "D07"
-      ]
+      ],
+      "baselineStatus": "not_implemented_by_this_plan",
+      "implementationMatrix": "catalogue/conversation-20261102-implementation.json#D08"
     },
     {
       "id": "D09",
-      "status": "not_implemented_by_this_plan",
+      "status": "implemented_program_scope",
       "requiredInSameFunctionalDelivery": true,
       "title": {
         "zh": "本地媒体合成",
@@ -1566,11 +1582,13 @@
       },
       "dependsOn": [
         "D08"
-      ]
+      ],
+      "baselineStatus": "not_implemented_by_this_plan",
+      "implementationMatrix": "catalogue/conversation-20261102-implementation.json#D09"
     },
     {
       "id": "D10",
-      "status": "not_implemented_by_this_plan",
+      "status": "implemented_program_scope",
       "requiredInSameFunctionalDelivery": true,
       "title": {
         "zh": "默认暗色、性能与状态",
@@ -1581,11 +1599,13 @@
         "A25",
         "A26",
         "A33"
-      ]
+      ],
+      "baselineStatus": "not_implemented_by_this_plan",
+      "implementationMatrix": "catalogue/conversation-20261102-implementation.json#D10"
     },
     {
       "id": "D11",
-      "status": "not_implemented_by_this_plan",
+      "status": "implemented_program_scope",
       "requiredInSameFunctionalDelivery": true,
       "title": {
         "zh": "API能力一致性",
@@ -1594,11 +1614,13 @@
       "dependsOn": [
         "D01",
         "D05"
-      ]
+      ],
+      "baselineStatus": "not_implemented_by_this_plan",
+      "implementationMatrix": "catalogue/conversation-20261102-implementation.json#D11"
     },
     {
       "id": "D12",
-      "status": "not_implemented_by_this_plan",
+      "status": "implemented_program_scope",
       "requiredInSameFunctionalDelivery": true,
       "title": {
         "zh": "回归与正式交付",
@@ -1616,7 +1638,9 @@
         "D09",
         "D10",
         "D11"
-      ]
+      ],
+      "baselineStatus": "not_implemented_by_this_plan",
+      "implementationMatrix": "catalogue/conversation-20261102-implementation.json#D12"
     }
   ],
   "acceptance": [
@@ -1918,7 +1942,7 @@
     "en": "docs/UPDATE_DIRECTION_20261102.en.md"
   },
   "appearance": {
-    "status": "planned_not_implemented",
+    "status": "implemented_program_scope",
     "requirement": "R11",
     "workPackage": "D10",
     "acceptance": "A33",
@@ -1963,6 +1987,26 @@
       "artifacts",
       "api"
     ],
-    "singleFunctionalDelivery": true
+    "singleFunctionalDelivery": true,
+    "baselineStatus": "planned_not_implemented"
+  },
+  "implementation": {
+    "version": "0.4.0",
+    "guide": "docs/CONVERSATION_V040.md",
+    "matrix": "catalogue/conversation-20261102-implementation.json",
+    "verificationMode": "program_only",
+    "physicalChecks": "not_run_no_device",
+    "pairingPresets": [
+      "m15"
+    ],
+    "pairingMetadataUnresolved": [
+      "m03",
+      "m09",
+      "m16"
+    ],
+    "publicChatInputs": [
+      "text"
+    ],
+    "originalBaselinePreserved": true
   }
 }

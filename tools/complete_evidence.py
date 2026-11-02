@@ -15,6 +15,9 @@ from audit_adaptations import MODULES, required_records, require_complete
 OUT = ROOT / 'verification/releases' / ('v' + version())
 CURRENT_MEDIA = ['community', 'release-workbench', 'expansion', 'multiview', 'shape', 'spatial', 'material', 'ultratex', 'adaptation', 'recommendations']
 EXTRA = {
+    'conversation-core.json': 'build/conversation-tests/results.json',
+    'conversation-integration.json': 'build/conversation-integration/results.json',
+    'conversation-ui.json': 'build/conversation-ui/results.json',
     'api-publication.json': 'build/api-publication-tests/results.json',
     'sub2api-gateway.json': 'build/sub2api-gateway-tests/results.json',
     'ui-performance.json': 'build/device-tests/ui-performance.json',
@@ -29,7 +32,7 @@ for item in required_records():
     if item not in BASE_SOURCES.values():
         EXTRA[Path(item).parent.name + '.json' if item.endswith('/results.json') else Path(item).name] = item
 SOURCES = BASE_SOURCES | EXTRA
-MINIMUM = BASE_MINIMUM | {'api-publication': 34, 'sub2api-gateway': 12, 'ui-performance': 8, 'expansion': 875, 'portable-sparse-models': 97, 'cascade': 95, 'ultratex-attention': 47, 'material': 61}
+MINIMUM = BASE_MINIMUM | {'conversation-core':71,'conversation-integration':48,'conversation-ui':30,'api-publication': 34, 'sub2api-gateway': 12, 'ui-performance': 8, 'expansion': 875, 'portable-sparse-models': 97, 'cascade': 95, 'ultratex-attention': 47, 'material': 61}
 for module in MODULES.values():
     for name, minimum in module['tests'].items():
         if name != 'expansion-tests':
@@ -63,6 +66,7 @@ def declared_deviation():
 
 def inputs():
     return fingerprint('tools/complete_evidence.py', 'tools/program_evidence.py', 'tools/program_release.py',
+        'tools/conversation_evidence.py','catalogue/conversation-20261102-implementation.json','docs/media/conversation-v040/manifest.json',
         'tools/physical_model_evidence.py', 'tools/physical_api_evidence.py', 'tools/device_model_probe.py', 'tools/check_repository.py', 'tools/package_delivery.py', 'tools/prepare_release.py', 'tools/publish_release.py',
         'tools/release_scope.py', 'tools/audit_adaptations.py', 'tools/physical_evidence.py', 'tools/recommendations.py', 'tools/task_diagnostics_evidence.py',
         *([declared_deviation()['validation_deviation']] if declared_deviation()['validation_deviation'] else []),
@@ -127,7 +131,10 @@ def export():
     model_probe_check = physical_models_and_api
     model_probes = model_probe_check(OUT)
     physical_identity = identity(OUT/'physical-device.json') if physical['physical_device_tested'] else None
+    conversation=read(ROOT/'catalogue/conversation-20261102-implementation.json')
+    assert conversation['version']==version() and len(conversation['workPackages'])==12 and len(conversation['acceptance'])==33
     status = dict(schema='lma.complete-program-release/1', version=version(), validation_mode='program_only',
+        conversation_implementation='catalogue/conversation-20261102-implementation.json',conversation_known_limits=conversation['knownLimits'],
         sources=sources, current_ui_media=media, input_fingerprint=inputs(),
         previous_published_evidence='verification/program', previous_release='v0.3.5',
         historical_files_preserved=historical_identity(), release_ready=True,
@@ -213,6 +220,10 @@ def check():
     elif performance['schema'] == 'lma.physical-installed-ui-performance/1':
         assert performance['measurement']['existingModelsPreserved'] and performance['measurement']['generationIdle']
         assert performance['measurement']['mainThread']['gapsOver100Ms'] == 0
+    elif performance['schema'] == 'lma.program-ui-regression/1':
+        assert not performance['current_physical_performance_measured'] and performance['ui_uses_simulated_bridge']
+        assert performance['fixture']==dict(sessions=100,messages=1000,artifacts=100,mounted=60)
+        assert set(performance['checks']) <= set(records['conversation-ui.json']['checks'])
     else:
         assert performance['schema'] == 'lma.historical-ui-performance-preservation/1'
         assert performance['measured_version'] == '0.3.9' and not performance['current_physical_performance_measured']

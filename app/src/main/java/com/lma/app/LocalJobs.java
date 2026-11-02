@@ -28,6 +28,12 @@ public final class LocalJobs implements AutoCloseable {
     private JSONObject submitLocked(JSONObject input, String idempotencyKey) throws Exception {
         if (closed) throw new IllegalStateException("任务服务正在停止");
         input = TaskInput.validate(input);
+        if (input.getString("type").equals("media.compose")) {
+            String hash=TaskInput.fingerprint(input); JSONObject previous=app.jobs.lookup(idempotencyKey);
+            if(previous!=null) { if(!hash.equals(previous.getJSONObject("request").optString("submissionHash"))) throw new IllegalArgumentException("幂等编号已用于不同请求"); return previous; }
+            app.jobs.requireCapacity();app.artifacts.requireCapacity();
+            JSONObject job=app.jobs.submit(MediaComposer.freeze(app,input).put("submissionHash",hash),idempotencyKey);app.prefs.edit().putBoolean("desiredJobs",true).apply();wake();changed.run();return job;
+        }
         if (input.getString("type").equals("model.prepare")) return submitPreparation(input, idempotencyKey);
         if (input.getString("type").equals("model.assemble")) return submitAssembly(input, idempotencyKey);
         String submissionHash = TaskInput.fingerprint(input);
@@ -37,10 +43,15 @@ public final class LocalJobs implements AutoCloseable {
         JSONObject job = app.jobs.submit(request, idempotencyKey); app.prefs.edit().putBoolean("desiredJobs", true).apply(); wake(); changed.run(); return job;
     }
     public static JSONObject freezePublic(LmaApp app, JSONObject input) throws Exception {
+        if(input.optString("type").equals("media.compose"))return TaskRequests.replay(MediaComposer.freeze(app,input));
         synchronized (app.bundles) { synchronized (app.artifacts) { return TaskRequests.replay(new GenerationPlan(app).resolve(input)); } }
     }
     /** Same resolver as submit, with no queue, preference, transfer, API change or model inference; bounded capability queries may start. */
     public static JSONObject preflight(LmaApp app, JSONObject input) throws Exception {
+        if(input.optString("type").equals("media.compose")){
+            JSONObject report=new JSONObject().put("schema","lma.task-preflight/1").put("canEnqueue",false).put("checkedStages",new JSONArray().put("inputs").put("parameters")).put("issues",new JSONArray()).put("warnings",new JSONArray()).put("deviceValidated",false).put("modelInferenceTested",false);
+            try{JSONObject frozen=MediaComposer.freeze(app,input);app.jobs.requireCapacity();app.artifacts.requireCapacity();report.put("canEnqueue",true).put("effectiveParameters",frozen.getJSONObject("parameters")).put("adjustments",new JSONArray());}catch(Exception error){report.getJSONArray("issues").put(new JSONObject().put("code","composition_input").put("message",error.getMessage()).put("action","manage_inputs"));}return report;
+        }
         if (app.bundles == null || app.artifacts == null || app.localEngines == null) throw new IOException("本地任务模块不可用");
         synchronized (app.bundles) { synchronized (app.artifacts) {
             GenerationPlan plan = new GenerationPlan(app);
@@ -110,7 +121,7 @@ public final class LocalJobs implements AutoCloseable {
         JSONObject old = app.jobs.get(id);
         if (!java.util.Arrays.asList("failed", "interrupted", "cancelled").contains(old.getString("state"))) throw new IllegalStateException("仅已失败、中断或取消的任务可以重试");
         JSONObject request = TaskRequests.replay(old.getJSONObject("request"));
-        return submit(request, key);
+        JSONObject child=submit(request,key);return app.jobs.relate(child.getString("id"),id);
     }
     private JSONObject submitPreparation(JSONObject input, String key) throws Exception {
         if (app.preparations == null || app.prepared == null) throw new IOException("此基座的模型资产准备模块不可用");
@@ -196,6 +207,12 @@ public final class LocalJobs implements AutoCloseable {
             app.jobs.progress(id, token, "waiting_engine", null); changed.run();
             ExecutionGate.Check check = () -> { if (closed) throw new IOException("任务服务已结束"); app.jobs.check(id, token); };
             owned.await(check); acquired = true; check.run(); parked = true; resident.park(owned); check.run();
+            if (request.getString("type").equals("media.compose")) {
+                app.jobs.progress(id,token,"composing",null);changed.run();
+                File output=MediaComposer.generate(app,request,id,DataFiles.checked(()->{owned.checkOwner();check.run();}));
+                JSONObject provenance=new JSONObject().put("execution","same_android_phone").put("request",request).put("operation","media.compose").put("bundle",new JSONObject().put("id",CompositionSpec.ID).put("name","本机媒体合成")).put("sourceArtifacts",request.getJSONObject("input").getJSONArray("artifacts"));
+                JSONObject artifact=app.artifacts.commit(id,output,provenance,DataFiles.checked(check));artifactId=artifact.getString("id");owned.finishResourceMonitoring();app.jobs.finish(id,token,new JSONArray().put(artifactId),"",owned.runtimeResources());if(!app.jobs.get(id).getString("state").equals("succeeded")){app.artifacts.remove(artifactId);artifactId="";}return;
+            }
             if (request.getString("type").equals("model.assemble")) {
                 final AssemblyPlan plan = app.assemblies.require(request); app.assemblies.admission();
                 PreparedModelAssembly.Context context = new PreparedModelAssembly.Context() {

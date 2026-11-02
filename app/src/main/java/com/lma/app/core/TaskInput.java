@@ -8,6 +8,7 @@ import java.util.*;
 public final class TaskInput {
     private TaskInput() {}
     public static JSONObject validate(JSONObject source) throws Exception {
+        if ("media.compose".equals(source.optString("type"))) return CompositionSpec.validate(source);
         if ("model.assemble".equals(source.optString("type"))) {
             for (Iterator<String> it = source.keys(); it.hasNext();) if (!Arrays.asList("bundleId", "type", "preparedAssetsId", "assemblyId", "assemblyFingerprint").contains(it.next())) throw new IllegalArgumentException("Assembly accepts selected asset IDs and a signed plan, never paths or downloads");
             ModelBundle.key(source.getString("bundleId")); ModelBundle.key(source.getString("assemblyId"));

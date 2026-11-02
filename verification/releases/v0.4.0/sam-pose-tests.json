@@ -1,0 +1,51 @@
+{
+  "passed": 32,
+  "checks": [
+    "ScaleShiftInvariant_quaternion_1",
+    "ScaleShiftInvariant_quaternion_2",
+    "ScaleShiftInvariant_6drotation_1",
+    "ScaleShiftInvariant_6drotation_2",
+    "ScaleShiftInvariant_6drotation_normalized_1",
+    "ScaleShiftInvariant_6drotation_normalized_2",
+    "ZeroPredictionScaleShiftInvariant_quaternion_1",
+    "ZeroPredictionScaleShiftInvariant_quaternion_2",
+    "ZeroPredictionScaleShiftInvariant_6drotation_1",
+    "ZeroPredictionScaleShiftInvariant_6drotation_2",
+    "ZeroPredictionScaleShiftInvariant_6drotation_normalized_1",
+    "ZeroPredictionScaleShiftInvariant_6drotation_normalized_2",
+    "ApparentSize_quaternion_1",
+    "ApparentSize_quaternion_2",
+    "ApparentSize_6drotation_1",
+    "ApparentSize_6drotation_2",
+    "ApparentSize_6drotation_normalized_1",
+    "ApparentSize_6drotation_normalized_2",
+    "DisparitySpace_quaternion_1",
+    "DisparitySpace_quaternion_2",
+    "DisparitySpace_6drotation_1",
+    "DisparitySpace_6drotation_2",
+    "DisparitySpace_6drotation_normalized_1",
+    "DisparitySpace_6drotation_normalized_2",
+    "invalid_pose_factor_rejects",
+    "degenerate_rotation_rejects",
+    "proven_shared_alias_reconstructed",
+    "strict_weights_missing_nonalias_rejects",
+    "strict_weights_conflicting_alias_rejects",
+    "strict_weights_wrong_shape_rejects",
+    "strict_weights_nonfinite_rejects",
+    "strict_weights_unknown_key_rejects"
+  ],
+  "input_fingerprint": {
+    "native/spatial/sam_pose.hpp": "d0fadb4bd735da8c66463a2b5ce5a53e2caccada9ccecaea4d7f6aaf85bdd775",
+    "third_party/portable-sparse-source-lock.json": "fb0c9bfbb5efc502ed6f68b8ae92cebdad2775732725c22e3cdc4529e16932bf",
+    "tools/spatial_portable.py": "c66222b642d28237a7b9db0cddba76d92d2e54f5c2e8ffd98c52060f3b682414",
+    "tools/test_sam_pose.py": "928601f70026bed4a1ab74de7c3b43e3979098a111651d6a75858a41d8532724"
+  },
+  "completeModelsRun": 0,
+  "phoneTests": 0,
+  "sourcePoseMethods": [
+    "DisparitySpace",
+    "InvariantPoseTarget"
+  ],
+  "rotationOracle": "scipy_rotation_matrix",
+  "ssiOracle": "uniform_scale_translation_contract"
+}

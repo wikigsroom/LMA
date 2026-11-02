@@ -23,6 +23,7 @@ public final class LmaApp {
     public com.lma.app.core.AudioStreams audioStreams;
     public com.lma.app.core.InputUploads uploads;
     public LocalJobs jobHost;
+    public ModelCapabilities capabilities;public VisionPairs visionPairs;public com.lma.app.core.WorkflowStore workflows;public ConversationController conversations;
     public LocalEngines localEngines = new LocalEngines();
     public com.lma.app.core.PreparedAssets prepared;
     public PreparationOptions preparations;
@@ -80,6 +81,7 @@ public final class LmaApp {
     public Resolver getContentResolver() { return new Resolver(); }
     public static final class Resolver { public InputStream openInputStream(Uri uri) throws Exception { return new FileInputStream(new File(new URI(uri.toString()))); } }
     public void emit() {}
+    public void emitChat() {}
     public void log(String message) { logs.add(message); }
     public void error(String message) { lastError = message; log(message); }
     public void finishCommand(JSONObject command, Exception error) { finishCommand(command, error, true); }

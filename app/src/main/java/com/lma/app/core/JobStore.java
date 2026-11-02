@@ -53,6 +53,7 @@ public final class JobStore {
         for (int i = 0; i < jobs.length(); i++) if (jobs.getJSONObject(i).getString("id").equals(id)) return jobs.getJSONObject(i);
         throw new IllegalArgumentException("Unknown task");
     }
+    public synchronized JSONObject relate(String child,String parent)throws Exception{if(parent.isEmpty())return get(child);if(child.equals(parent))throw new IllegalArgumentException("任务不能修订自身");find(state,parent);JSONObject next=DataFiles.copy(state),job=find(next,child);if(job.has("parentJobId")&&!job.getString("parentJobId").equals(parent))throw new IllegalArgumentException("任务修订来源冲突");job.put("parentJobId",parent);persist(next);return publicJob(job);}
     public synchronized JSONObject get(String id) throws Exception { return publicJob(find(state, id)); }
     public synchronized boolean referencesBundle(String id) throws Exception {
         ModelBundle.key(id); JSONArray jobs = state.getJSONArray("jobs");
@@ -157,7 +158,7 @@ public final class JobStore {
         validateKey(idempotencyKey);
         if (request.toString().length() > 32000) throw new IllegalArgumentException("Task request is too large");
         String type = request.getString("type");
-        if (!Arrays.asList("text.generate", "image.generate", "video.generate", "speech.synthesize", "audio.generate", "mesh.generate", "model.prepare", "model.assemble").contains(type)) throw new IllegalArgumentException("Unknown local task type");
+        if (!Arrays.asList("text.generate", "image.generate", "video.generate", "speech.synthesize", "audio.generate", "mesh.generate", "media.compose", "model.prepare", "model.assemble").contains(type)) throw new IllegalArgumentException("Unknown local task type");
         ModelBundle.key(request.getString("bundleId"));
         JSONArray jobs = state.getJSONArray("jobs");
         for (int i = 0; i < jobs.length(); i++) {
@@ -257,7 +258,7 @@ public final class JobStore {
         runtimeResources(job, resources);
         boolean cancelled = job.getString("state").equals("cancelling");
         if (cancelled) { job.put("state", "cancelled").put("artifacts", new JSONArray()).put("error", ""); }
-        else if (error != null && !error.isEmpty()) { job.put("state", "failed").put("error", error.length() > 2000 ? error.substring(0, 2000) : error); }
+        else if (error != null && !error.isEmpty()) { job.put("state", "failed").put("error", error.length() > 2000 ? error.substring(0, 2000) : error).put("failure",TaskFailures.describe(error)); }
         else {
             if (job.getJSONObject("request").getString("type").equals("model.prepare")) {
                 if (prepared == null || !prepared.getString("jobId").equals(id) || !prepared.getString("bundleId").equals(job.getJSONObject("request").getString("bundleId"))) throw new IllegalArgumentException("Preparation requires committed derived model assets");

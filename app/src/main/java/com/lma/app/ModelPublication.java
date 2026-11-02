@@ -28,6 +28,7 @@ final class ModelPublication implements ApiCatalogue.Source {
             JSONObject model = base(id, record.getString("name"), "llama_text", bound.isEmpty() ? id : bound, "legacy_gguf", "cpu", new JSONArray().put("text"), inputs, schema, values,
                     ApiCatalogue.hash(new JSONObject(record.toString()).put("config", JSONObject.NULL).put("download", JSONObject.NULL)));
             JSONObject uncensored = record.optJSONObject("uncensored"); if (uncensored != null) model.put("uncensored", uncensored);
+            if(app.capabilities!=null)model.getJSONObject("x_lma").put("native_capabilities",app.capabilities.describe(record));
             model.getJSONObject("x_lma").getJSONObject("tags").put("foundation", new JSONArray().put("engine:llama_text").put("pipeline:llama_text").put("backend:cpu")).put("format", new JSONArray().put("gguf"));
             if (uncensored != null && !uncensored.optString("status", "unknown").equals("unknown")) model.getJSONObject("x_lma").getJSONObject("tags").getJSONArray("content").put(new JSONObject().put("label", "Uncensored").put("status", "metadata_hint").put("source", JSONObject.NULL));
             result.put(model);

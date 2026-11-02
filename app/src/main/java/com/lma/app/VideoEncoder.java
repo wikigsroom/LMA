@@ -15,6 +15,9 @@ public final class VideoEncoder {
     private VideoEncoder() {}
     private static int integer(DataInputStream in) throws IOException { return Integer.reverseBytes(in.readInt()); }
     public static void encode(File frames, File output, DataFiles.Check check) throws Exception {
+        encode(frames, output, check, true);
+    }
+    public static void encode(File frames, File output, DataFiles.Check check, boolean requireMotion) throws Exception {
         MediaCodec codec = null; MediaMuxer muxer = null; boolean muxing = false;
         try (DataInputStream in = new DataInputStream(new BufferedInputStream(new FileInputStream(frames)))) {
             byte[] magic = new byte[8]; in.readFully(magic);
@@ -57,7 +60,7 @@ public final class VideoEncoder {
                 }
                 if (System.nanoTime() - activity > 30_000_000_000L) throw new IOException("本机视频编码器长时间没有进展");
             }
-            if (!moving) throw new IOException("生成结果只有重复静态帧，未作为运动视频完成任务");
+            if (requireMotion && !moving) throw new IOException("生成结果只有重复静态帧，未作为运动视频完成任务");
             check.run(); muxer.stop(); muxing = false;
         } finally {
             if (codec != null) { try { codec.stop(); } catch (Exception ignored) {} codec.release(); }

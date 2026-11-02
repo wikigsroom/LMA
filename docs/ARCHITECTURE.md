@@ -1,5 +1,7 @@
 # LMA 0.2.0 架构
 
+**v0.4.0 扩展架构：** [D01–D12 实现与边界](CONVERSATION_V040.md)。SQLite v2 消息块与持久 outbox 关联原 LocalJobs；WorkflowRunner 受控调度同一执行槽；视觉组件与内置合成有独立合同。没有远程推理、节点画布或插件执行。下文保留原架构历史。
+
 > 当前 v0.3.5：[Hunyuan 形状与 UltraShape 精修](SPATIAL_SHAPE.md)、[完整编号实现与待完成适配](IMPLEMENTATION_V035.md)。五个共用 CPU sparse 运算不代表 SAM / UniForge / SUPRA 完整适配，Paint 仍缺代码。原有能力保留；以下旧版本说明按历史理解。
 
 > v0.3.2：新增四类语音与单图生 3D，完整格式 / 组件 / 操作 / API / 构建 / 程序检查见[扩展指南](SPEECH_3D_EXPANSION.md)；原有功能保留，以下开发检查点按原版本理解。

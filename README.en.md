@@ -2,6 +2,26 @@
 
 ![LMA · Uncensored AI, right in your pocket. / 把无审查 AI，装进口袋。](docs/media/branding/lma-banner.png)
 
+
+**Current stable version: v0.4.0 / code64 — conversations and local creation.** [Download](https://github.com/wikigsroom/LMA/releases/tag/v0.4.0) · [Full operation, API and limits](docs/CONVERSATION_V040.en.md) · [Release notes](docs/releases/v0.4.0.md). D01–D12 from the 20261102 plan land together. Final Logo 21 is now the launcher icon, application header, empty-chat identity and About artwork. Dark is the default; valid saved themes survive.
+
+| ID | Change | Operation |
+| --- | --- | --- |
+| 01 | Unified conversation/composer | Auto, text, image, video, speech, music, 3D and local composition; manual media needs no language model. |
+| 02 | Exact capability declarations | Fourteen variants have independent native/LMA/evidence tags. NSFW/Uncensored labels remain separate. |
+| 03 | Original job cards and managed assets | One queue, durable outbox recovery, explicit input roles, lineage and shared deletion protection. |
+| 04 | Optional local planner | Strict streamed tool calls, editable drafts and approval; at most eight steps and one explicit format repair. |
+| 05 | Controlled sequences and editing | W01–W06, dependency blocking, successful-step reuse, explicit retry; WAV mixing and on-phone MP4 composition. |
+| 06 | Dark startup and incremental rendering | Bounded sixty-message view, lazy media and scoped token updates; port remains 52187. |
+
+**Validation scope: program checks.** No ADB phone is currently available and no complete model download/run is required this round. Android visual/codec output, current phone performance and screen-off endurance remain untested. The m15 projector preset has pinned provenance; m03/m09/m16 still require reviewed component identities. Public OpenAI chat remains a text subset; the App visual bridge does not imply unrestricted public multimodal input. Historical 3D/video-quality failures are preserved. [Implementation and limits](docs/CONVERSATION_V040.en.md) · [Version-bound evidence](verification/releases/v0.4.0/status.json). Earlier physical examples below retain their original version/APK identity.
+
+程序验收 / Program verification: **65 suites / 15271 assertions**, Android Lint **0 errors / 17 warnings**, **41** verified arm64 native libraries. APK SHA256: `77a5988a6eef20ad5a25b5a5af7b9e5aa28d213d29908926379c8a643c60c493`.
+
+<img src="docs/media/conversation-v040/03-explicit-composition.png" alt="Explicit visual and audio roles; program UI fixture, not a phone" width="300"> <img src="docs/media/conversation-v040/04-sequential-template.png" alt="Ordered templates; program UI fixture, not model output" width="300">
+
+[Recorded UI](docs/media/conversation-v040/walkthrough.mp4) · [GIF](docs/media/conversation-v040/walkthrough.gif) · [Complete guide](docs/CONVERSATION_V040.en.md). Existing examples, detailed guides and real model evidence are retained.
+
 **Uncensored AI, right in your pocket.**
 
 *把无审查 AI，装进口袋。*
@@ -14,13 +34,13 @@ Local AI for Android. Choose your models, with uncensored variants clearly tagge
 
 **20261102 logo selection, batch 2:** [11–20: Android + AI / Android + whale](docs/LOGO_SELECTION_20261102_BATCH2.md) · [Offline selector](output/imagegen/lma-logo-selection-20261102-batch2/index.html). Ten new generated directions, preserved native images, small previews and companion mascots; batch 1 remains archived.
 
-**20261102 logo selection:** [Ten numbered directions](docs/LOGO_SELECTION_20261102.md) · [Offline selector](output/imagegen/lma-logo-selection-20261102/index.html). Generated through the requested sub2-image-gen/gpt-image-2.5 route, with original images, small previews and multi-selection. The production app icon is unchanged.
+**20261102 logo selection:** [Ten numbered directions](docs/LOGO_SELECTION_20261102.md) · [Offline selector](output/imagegen/lma-logo-selection-20261102/index.html). Generated through the requested sub2-image-gen/gpt-image-2.5 route, with original images, small previews and multi-selection. The original selection round preserved the then-current app icon; v0.4.0 now integrates the finalized option 21.
 
-**20261102 update direction (proposal, not current APK functionality):** [Full plan](docs/UPDATE_DIRECTION_20261102.en.md) · [中文](docs/UPDATE_DIRECTION_20261102.md) · [Capability-tag inventory for all 14 language models](docs/proposals/update-direction-20261102.json). One composer, media job cards, optional local tool planning, artifact context/chains and phone composition; dark by default while preserving saved theme choices; independently label image/video/audio understanding, native outputs, tools, dependencies and evidence. D01–D12 form one functional delivery with A01–A33 acceptance. This documentation update does not change the APK or turn candidate labels into runtime support.
+**20261102 update direction (frozen plan, implemented in v0.4.0):** [Full plan](docs/UPDATE_DIRECTION_20261102.en.md) · [中文](docs/UPDATE_DIRECTION_20261102.md) · [Capability-tag inventory for all 14 language models](docs/proposals/update-direction-20261102.json). One composer, media job cards, optional local tool planning, artifact context/chains and phone composition; dark by default while preserving saved theme choices; independently label image/video/audio understanding, native outputs, tools, dependencies and evidence. D01–D12 form one functional delivery with A01–A33 acceptance. [Current implementation and verification limits](docs/CONVERSATION_V040.en.md) supersede the frozen baseline; candidate labels do not prove model execution.
 
-[中文](README.md) · [Download v0.3.13](https://github.com/wikigsroom/LMA/releases/tag/v0.3.13) · [User guide](docs/USER_GUIDE.en.md) · [Documentation](docs/README.md) · [Scenarios](#use-cases) · [Cases and failures](#case-studies)
+[中文](README.md) · [Download v0.4.0](https://github.com/wikigsroom/LMA/releases/tag/v0.4.0) · [User guide](docs/USER_GUIDE.en.md) · [Documentation](docs/README.md) · [Scenarios](#use-cases) · [Cases and failures](#case-studies)
 
-**v0.3.13 / code63 · Default API port 52187.** New installations and upgrades using the former default 8080 use `http://127.0.0.1:52187/v1`; LAN clients use `http://PHONE_IP:52187/v1` after enabling LAN access. Existing valid custom ports survive; the migration runs once, so later explicit edits remain yours. Update the base URL in connected clients. [Port migration and validation](docs/API_PORT.en.md) · [Release notes](docs/releases/v0.3.13.md) · [Current program evidence](verification/releases/v0.3.13/status.json).
+**Historical v0.3.13 / code63 · Default API port 52187.** New installations and upgrades using the former default 8080 use `http://127.0.0.1:52187/v1`; LAN clients use `http://PHONE_IP:52187/v1` after enabling LAN access. Existing valid custom ports survive; the migration runs once, so later explicit edits remain yours. Update the base URL in connected clients. [Port migration and validation](docs/API_PORT.en.md) · [Release notes](docs/releases/v0.3.13.md) · [Current program evidence](verification/releases/v0.3.13/status.json).
 
 This version: **62 program suites / 15,122 assertions, 796 production UI checks, 24 physical program checks and 8 idle-performance checks**. [Phone recording](docs/media/device/v0.3.13/physical-walkthrough.mp4) · [GIF](docs/media/device/v0.3.13/physical-walkthrough.gif).
 

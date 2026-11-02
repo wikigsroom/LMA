@@ -22,7 +22,7 @@ public final class LmaService extends Service {
     private static final String CHANNEL = "lma_runtime";
     private static final int NOTIFICATION = 41;
     public EngineHost engine;
-    private ChatRunner chat;
+    ChatRunner chat;
     private Downloads downloads;
     private BundleTransfers bundleTransfers;
     private LocalJobs localJobs;
@@ -67,6 +67,7 @@ public final class LmaService extends Service {
         if (app.jobs != null && app.artifacts != null && app.localEngines != null) { localJobs = new LocalJobs(app, engine, this::activityChanged); app.jobHost = localJobs; }
         if (app.artifacts != null) { inputImports = new InputImports(app, this::activityChanged); app.inputHost = inputImports; }
         api = new ApiHost(this, app); app.apiHost = api;
+        if(localJobs!=null) app.conversations=new ConversationController(app,this);
     }
     @Override public int onStartCommand(Intent intent, int flags, int startId) {
         if (intent != null && "STOP_ALL".equals(intent.getAction())) { stopAll(); return START_NOT_STICKY; }
@@ -85,6 +86,16 @@ public final class LmaService extends Service {
             }
             if (!action.equals("stopApi") && !action.equals("stopAll") && api.wanted()) api.start();
             switch (action) {
+                case "bindVision": if(engine.wanted())throw new IllegalArgumentException("请先停止文本模型，再更改视觉配对");command.put("result",app.visionPairs.bind(command.getJSONObject("manifest")));break;
+                case "unbindVision": if(engine.wanted())throw new IllegalArgumentException("请先停止文本模型，再解除视觉配对");app.visionPairs.unbind(command.getString("id"));break;
+                case "chatSubmit": if(app.conversations==null)throw new IllegalStateException("会话任务服务不可用");command.put("result",app.conversations.submit(command));break;
+                case "workflowCreate": if(app.conversations==null||app.workflows==null)throw new IllegalStateException("计划存储不可用");command.put("result",app.conversations.chain(command));break;
+                case "workflowCancel": app.workflows.cancel(command.getString("id"));app.conversations.wake();break;
+                case "workflowRetry": app.workflows.retry(command.getString("id"),command.getInt("step"));app.conversations.wake();break;
+                case "workflowRemove": app.workflows.remove(command.getString("id"));break;
+                case "approveTools": chat.editTools(command.getString("id"),command.optJSONArray("arguments"));chat.approveTools(command.getString("id"),command.optBoolean("allowUnmeasured"));break;
+                case "repairTools": chat.repairTools(command.getString("id")); break;
+                case "continueTools": chat.continueTools(command.getString("id"));break;
                 case "startApi": api.start(); break;
                 case "stopApi": api.stop(); break;
                 case "declareBundle": { requireBundles(); ModelBundle bundle = new ModelBundle(command.getJSONObject("manifest")); app.bundles.declare(bundle); command.put("result", app.bundles.plan(bundle.id)); break; }
@@ -147,7 +158,7 @@ public final class LmaService extends Service {
                 case "load": api.start(); engine.load(command.getString("id")); break;
                 case "stopEngine": chat.cancel(); api.cancelText(); engine.stop(); break;
                 case "stopAll": app.finishCommand(command, null); stopAll(); return START_NOT_STICKY;
-                case "send": chat.send(command.getString("text")); break;
+                case "send": chat.send(command); break;
                 case "cancelChat": chat.cancel(); api.cancelText(); break;
                 case "deleteModel": {
                     String id = command.getString("id");
@@ -226,7 +237,7 @@ public final class LmaService extends Service {
         for (String key : ModelSettings.KEYS) if (value.has(key)) throw new IllegalArgumentException("模型参数已移至本地模型的独立设置");
         int port = value.optInt("port", app.prefs.getInt("port", com.lma.app.core.ApiPort.DEFAULT));
         String source = value.optString("source", app.prefs.getString("source", "auto"));
-        String theme = value.optString("theme", app.prefs.getString("theme", "system"));
+        String theme = value.optString("theme", app.prefs.getString("theme", "dark"));
         boolean lan = value.optBoolean("lan", app.prefs.getBoolean("lan", false));
         if (port < 1024 || port > 65535) throw new IllegalArgumentException("服务端口需要 1024–65535");
         if (!source.equals("auto") && !source.equals("huggingface") && !source.equals("mirror")) throw new IllegalArgumentException("未知下载源");
@@ -249,6 +260,7 @@ public final class LmaService extends Service {
         api.stop(); chat.cancel(); downloads.pauseAll(); if (bundleTransfers != null) bundleTransfers.close(); engine.stop(); stopSelf();
     }
     @Override public void onDestroy() {
+        if(app.conversations!=null){app.conversations.close();app.conversations=null;}
         app.execution.stopResourceMonitor();
         stopping = true; main.removeCallbacksAndMessages(null);
         if (api != null) { api.close(); if (app.apiHost == api) app.apiHost = null; }

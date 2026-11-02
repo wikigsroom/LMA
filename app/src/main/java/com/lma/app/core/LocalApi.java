@@ -22,6 +22,10 @@ public final class LocalApi implements LocalHttp.Handler {
             throw new LocalHttp.Failure(404, "lma_model_unavailable", "Unknown published local model");
         }
         default JSONObject capabilities() throws Exception { throw new LocalHttp.Failure(503, "lma_capabilities_unavailable", "Local capabilities are not ready"); }
+        default boolean localComposition(){return false;}
+        default WorkflowStore workflows()throws Exception{throw new LocalHttp.Failure(503,"lma_chains_unavailable","Local task chains are unavailable");}
+        default JSONObject createChain(JSONObject draft,String key)throws Exception{throw new LocalHttp.Failure(503,"lma_chains_unavailable","Local task chains are unavailable");}
+        default void workflowsChanged(){}
 
         default ApiSubmissions submissions() throws Exception { throw new IOException("API submission storage is unavailable"); }
         default JSONObject freezePublic(JSONObject request) throws Exception { return TaskInput.validate(request); }

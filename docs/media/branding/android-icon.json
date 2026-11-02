@@ -1,0 +1,15 @@
+{
+  "schema": "lma.android-branding/1",
+  "logo": 21,
+  "sourceSha256": "f224b6e0fb1030fa894557bf6961d5d3e5d3b00430c5a0077bf9b85f3831282f",
+  "sloganZh": "把无审查 AI，装进口袋。",
+  "sloganEn": "Uncensored AI, right in your pocket.",
+  "foregroundSafeFraction": 0.58,
+  "assets": {
+    "app/src/main/res/mipmap-mdpi/ic_launcher_foreground.png": "06d497d90ea6ea43a0251002f3c05dce3b665666f9fcf2a41e36e59da8b29bcc",
+    "app/src/main/res/mipmap-hdpi/ic_launcher_foreground.png": "b74eff71e315075b3f7cc24975d610c6a35c463331c42c973b6c69ef3bf67089",
+    "app/src/main/res/mipmap-xhdpi/ic_launcher_foreground.png": "f50176b39a402d888e9029c16efdfe5a76c6ddcd8af39774c5f07b346814182c",
+    "app/src/main/res/mipmap-xxhdpi/ic_launcher_foreground.png": "e496e11a080dedf9cedb21553cd31f1fd8ec5d437a868be410f0f19928ac33f4",
+    "app/src/main/res/mipmap-xxxhdpi/ic_launcher_foreground.png": "d499d52b1922bcaaa4e5d55348a5c3ebf1dfb1f7d93dc3963d130ddeed5a3653"
+  }
+}

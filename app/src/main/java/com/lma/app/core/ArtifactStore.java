@@ -148,6 +148,9 @@ public final class ArtifactStore {
             File target = DataFiles.child(media, filename);
             JSONObject record = new JSONObject().put("id", id).put("jobId", jobId).put("filename", filename).put("metadata", DataFiles.copy(metadata))
                     .put("sha256", digest).put("bytes", candidate.length()).put("createdAt", System.currentTimeMillis()).put("provenance", DataFiles.copy(provenance)).put("origin", DataFiles.copy(origin));
+            JSONArray parents=new JSONArray(),parentJobs=new JSONArray();JSONObject request=provenance.optJSONObject("request");
+            if(request!=null)for(String parent:InputSelection.ids(request)){JSONObject source=state.getJSONObject("artifacts").optJSONObject(parent);JSONObject ref=new JSONObject().put("artifactId",parent).put("availableAtCommit",source!=null);if(source!=null){ref.put("sha256",source.getString("sha256"));if(!source.optString("jobId").isEmpty())parentJobs.put(source.getString("jobId"));}parents.put(ref);}
+            record.put("lineage",new JSONObject().put("parentArtifacts",parents).put("parentJobs",parentJobs));
             check.run(); DataFiles.move(candidate, target); JSONObject next = DataFiles.copy(state); next.getJSONObject("artifacts").put(id, record);
             try { DataFiles.write(index, next); }
             catch (Exception error) { try { DataFiles.move(target, candidate); } catch (Exception restore) { error.addSuppressed(restore); } throw error; }

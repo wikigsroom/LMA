@@ -72,13 +72,17 @@ public final class ApiHost implements LocalApi.Runtime, AutoCloseable {
                 .put("speech_formats", new JSONArray().put("wav")).put("sse_lifetime_seconds", 120).put("sse_connections", 2).put("heavy_execution_slots", 1)
                 .put("upload_chunk_bytes", LocalHttp.MAX_BODY).put("input_file_bytes_max", 536870912).put("sync_wait_seconds", 120).put("generation_wall_time_seconds", JSONObject.NULL).put("catalogue_idle_reads", "cached_metadata_only");
         return new JSONObject().put("schema", "lma.capabilities/1").put("instance_id", metadata.getString("instance_id")).put("catalogue", metadata)
-                .put("models", snapshot.getJSONArray("data")).put("limits", limits).put("profiles", new JSONArray().put("openai_subset").put("lma_extension")).put("execution", "same_android_phone");
+                .put("models", snapshot.getJSONArray("data")).put("chat_input_types",new JSONArray().put("text")).put("app_visual_bridge",new JSONObject().put("input_types",new JSONArray().put("image").put("sampled_video_frames")).put("requires_reviewed_component_pair",true)).put("tools",new JSONArray().put(new JSONObject().put("id",CompositionSpec.ID).put("type","media.compose").put("input_schema",CompositionSpec.inputs().json()).put("parameters",new JSONObject().put("durationSeconds","5.1–60").put("voiceGain","0–2").put("musicGain","0–2")))).put("task_chains",new JSONObject().put("endpoint","/v1/lma/chains").put("max_steps",8).put("requires_idempotency_key",true)).put("limits", limits).put("profiles", new JSONArray().put("openai_subset").put("lma_extension")).put("execution", "same_android_phone");
     }
     @Override public synchronized ApiSubmissions submissions() throws Exception {
         if (submissionJournal == null) submissionJournal = new ApiSubmissions(new File(app.getFilesDir(), "api"));
         return submissionJournal;
     }
     @Override public JSONObject freezePublic(JSONObject request) throws Exception { return LocalJobs.freezePublic(app, request); }
+    @Override public boolean localComposition(){return true;}
+    @Override public com.lma.app.core.WorkflowStore workflows()throws Exception{if(app.workflows==null)throw new IOException("计划存储不可用");return app.workflows;}
+    @Override public JSONObject createChain(JSONObject draft,String key)throws Exception{if(app.conversations==null)throw new IOException("计划服务不可用");return app.conversations.chain(new JSONObject().put("draft",draft).put("idempotencyKey",key));}
+    @Override public void workflowsChanged(){if(app.conversations!=null)app.conversations.wake();app.emit();}
     @Override public String adapter(String id) throws Exception {
         ModelBundle bundle = app.bundles.bundle(ModelBundle.key(id));
         if (!AdapterSpec.isAdapter(bundle) || !app.bundles.plan(id).getBoolean("installed")) throw new LocalHttp.Failure(404, "lma_adapter_unavailable", "Select a complete installed LoRA component");

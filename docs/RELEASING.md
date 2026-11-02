@@ -1,6 +1,19 @@
 # 发布流程 / Release workflow
 
-## v0.3.13 当前端口更新 / Current port update
+
+## v0.4.0 对话与本地创作 / Conversations and local creation
+
+1. 原生 Windows 构建；不得启动 Docker、WSL、虚拟机或模拟器。`build.py` 重建能力声明和 Logo 21，原签名继续使用。
+2. `run_program_checks.py --resume` 只复用指纹完全一致的通过记录；`test_conversation.py`、`test_conversation_integration.py`、`tests/conversation-ui.cjs` 分别覆盖生产核心、真实 HTTP/配对存储、标记的界面夹具。先通过最新 backend，再运行依赖集成检查。
+3. `verify_package.py`、`test_android_lint.py`；`capture_workbench.cjs MODE` 刷新当前界面材料，每个浏览器和所有标签在 finally 关闭。`conversation-ui.cjs` 输出本版截图、MP4、GIF。
+4. `conversation_evidence.py` 记录八项界面程序回归，**不生成本版真机延迟数字**。无 ADB 时明确保留 device_not_run；不把 v0.3.9–v0.3.13 的实机结果归到新版。
+5. `audit_adaptations.py --require-complete`、`test_adaptation_audit.py`、`release_scope.py --export`、`program_evidence.py --export`；保留全部冻结范围、质量失败及历史 Release。
+6. `package_delivery.py`、`prepare_release.py`、`check_repository.py`；提交并推送 main 和新标签 v0.4.0。源代码归档必须与该标签一致，不能包含签名私钥、权重或个人设备资料。
+7. 预览并执行 `publish_release.py --gh PATH_TO_AUTHENTICATED_GH --publish`，校验 GitHub 附件 SHA256 后发布 **stable / prerelease=false**。此版本包含对话截图归档、独立录屏/GIF、源代码、APK 和程序证据。
+
+Native Windows only. Reuse positive checks only with current fingerprints. Verify the exact signed APK, keep program/physical/model/quality/endurance scopes separate, close owned browsers, preserve previous Releases, and publish v0.4.0 as a normal stable release after remote attachment verification. [版本说明 / Release notes](releases/v0.4.0.md).
+
+## v0.3.13 历史端口更新 / Historical port update
 
 本版默认端口 52187，一次迁移旧默认 8080，保留有效自定义端口和全部用户资产。Current port-only maintenance release; preserve original signer and prior release identities.
 

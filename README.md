@@ -8,23 +8,43 @@
 
 Android 本地 AI 工作台，模型由你选择，无审查模型独立标记。[品牌定稿：Logo 21 ＋ Slogan 04](docs/BRANDING.md)。
 
+
+**当前正式版：v0.4.0 / code64 · 对话与本地创作。** [下载 APK](https://github.com/wikigsroom/LMA/releases/tag/v0.4.0) · [完整用法、API 与限制](docs/CONVERSATION_V040.md) · [English](docs/CONVERSATION_V040.en.md) · [版本说明](docs/releases/v0.4.0.md)。20261102 方案 D01–D12 同批接入；Logo 21 已用于软件启动图标、应用顶栏、对话空态与关于页。默认暗色，保留用户有效主题。
+
+| 编号 | 本版功能 | 使用逻辑 |
+| --- | --- | --- |
+| 01 | 统一对话与创作输入 | 自动／对话／生图／视频／配音／音乐／3D／本机合成；手动媒体任务不需要语言模型。 |
+| 02 | 精确能力标签与组件配对 | 14 个文本目录变体分开记录原生输入、输出、工具、LMA 接入和证据；NSFW／Uncensored 标签独立。 |
+| 03 | 原任务卡与素材引用 | 聊天、工作台和 API 使用同一任务；持久 outbox 恢复、不重复生成、显式附件用途、来源链与引用删除保护。 |
+| 04 | 可选本地规划器 | 严格流式工具协议，先显示可编辑草稿再确认；最多 8 步和一次明确格式修正，无下载／shell 等隐含工具。 |
+| 05 | 顺序模板与合成 | W01–W06、依赖阻断、单步重试／成功复用；同机 WAV 混音、裁剪／静音补齐和 MP4 合成。 |
+| 06 | 暗色与性能 | 首帧主题一致、60 条消息窗口、按需媒体与 token 定向更新；默认端口仍为 52187。 |
+
+**验证范围：程序验证。** 本版没有可用 ADB 真机，不重新下载或完整运行模型。视觉预处理／Android 编解码输出、本版手机性能与后台耐久尚待实机检查；m15 有固定视觉组件预设，m03／m09／m16 的配对身份仍待核对。公共 OpenAI 对话明确为文本子集，App 看图桥与通用公共多模态 API 不混同。原 3D 与视频质量问题继续保留。详见 [逐项实施与限制](docs/CONVERSATION_V040.md) 和 [本版证据](verification/releases/v0.4.0/status.json)。下方旧版真机截图与案例保留其原版本身份。
+
+程序验收 / Program verification: **65 suites / 15271 assertions**, Android Lint **0 errors / 17 warnings**, **41** verified arm64 native libraries. APK SHA256: `77a5988a6eef20ad5a25b5a5af7b9e5aa28d213d29908926379c8a643c60c493`.
+
+<img src="docs/media/conversation-v040/03-explicit-composition.png" alt="v0.4.0 明确选择画面和声轨；程序界面夹具，非真机" width="300"> <img src="docs/media/conversation-v040/04-sequential-template.png" alt="v0.4.0 顺序模板；程序界面夹具，非模型输出" width="300">
+
+[程序界面录屏](docs/media/conversation-v040/walkthrough.mp4) · [GIF](docs/media/conversation-v040/walkthrough.gif) · [完整说明](docs/CONVERSATION_V040.md)。历史功能文档、用例和真实模型结果继续保留。
+
 **Logo 已定稿：21 号「钴蓝软胶」。** 采用鲸鱼套装小安卓结构，钴蓝鲸鱼服、青柠脸部与双天线、奶油色帽沿和腹部；17 号是结构蓝本。后续品牌形象使用该稿。[定稿记录与素材说明](docs/BRANDING.md) · [原始 PNG](output/imagegen/lma-logo-selection-20261102-batch3-whale17/21-cobalt-vinyl.png)。以下三批记录保留为选型历史。
 
 **20261102 Logo 第三批：** [以 17 号鲸帽小安卓为结构蓝本的 21–30 十套新风格与配色](docs/LOGO_SELECTION_20261102_BATCH3.md) · [离线选型页](output/imagegen/lma-logo-selection-20261102-batch3-whale17/index.html)。保留鲸鱼帽、安卓双天线、帽内脸与右侧翘尾，提供原图和小尺寸对比。
 
 **20261102 第二批 Logo 选型：** [11–20 安卓＋AI／安卓＋鲸鱼](docs/LOGO_SELECTION_20261102_BATCH2.md) · [离线选型页](output/imagegen/lma-logo-selection-20261102-batch2/index.html)。按新方向独立生成十套，保留第一批归档；含原图、小尺寸和配套形象。
 
-**20261102 Logo 选型：** [10 套风格与编号总览](docs/LOGO_SELECTION_20261102.md) · [离线交互选型页](output/imagegen/lma-logo-selection-20261102/index.html)。使用用户指定的 sub2-image-gen／gpt-image-2.5 实际生成；支持多选、原图与小尺寸对比，尚未替换 App 图标。
+**20261102 Logo 选型：** [10 套风格与编号总览](docs/LOGO_SELECTION_20261102.md) · [离线交互选型页](output/imagegen/lma-logo-selection-20261102/index.html)。使用用户指定的 sub2-image-gen／gpt-image-2.5 实际生成；支持多选、原图与小尺寸对比，该历史选型阶段未替换图标；v0.4.0 已接入定稿 21。
 
-**20261102 更新方向方案（规划，非当前 APK 功能）：** [完整方案](docs/UPDATE_DIRECTION_20261102.md) · [English](docs/UPDATE_DIRECTION_20261102.en.md) · [14 个语言模型的能力标签清单](docs/proposals/update-direction-20261102.json)。统一对话输入、四类媒体任务卡、可选本地工具调度、素材引用／任务链与同机合成；默认采用暗色调并保留用户已选主题；新增图片／视频／音频理解、原生输出、工具能力、组件与验证状态的独立选型标签。D01–D12 同一次功能交付，A01–A33 逐项验收；本文档更新不改变现有 APK，也不把候选标签当作已支持。
+**20261102 原始更新方向方案（v0.4.0 程序实现见上）：** [完整方案](docs/UPDATE_DIRECTION_20261102.md) · [English](docs/UPDATE_DIRECTION_20261102.en.md) · [14 个语言模型的能力标签清单](docs/proposals/update-direction-20261102.json)。统一对话输入、四类媒体任务卡、可选本地工具调度、素材引用／任务链与同机合成；默认采用暗色调并保留用户已选主题；新增图片／视频／音频理解、原生输出、工具能力、组件与验证状态的独立选型标签。D01–D12 同一次功能交付，A01–A33 逐项验收；原方案与标签依据保留；实施状态以 v0.4.0 说明为准，不把候选标签当作真机已通过。
 
-[English](README.en.md) · [下载 v0.3.13](https://github.com/wikigsroom/LMA/releases/tag/v0.3.13) · [使用手册](docs/USER_GUIDE.md) · [文档目录](docs/README.md) · [更新记录](CHANGELOG.md)
+[English](README.en.md) · [下载 v0.4.0](https://github.com/wikigsroom/LMA/releases/tag/v0.4.0) · [使用手册](docs/USER_GUIDE.md) · [文档目录](docs/README.md) · [更新记录](CHANGELOG.md)
 
-**v0.3.13 / code63 · 默认接口端口改为 52187。** 新安装及旧版使用默认 8080 的安装，升级后使用 `http://127.0.0.1:52187/v1`；开启内网访问后，电脑连接 `http://手机IP:52187/v1`。已有其他有效自定义端口保留；迁移仅执行一次，之后用户主动编辑的端口仍会保留。请同步修改客户端的接口地址。[端口迁移与验证](docs/API_PORT.md) · [本版说明](docs/releases/v0.3.13.md) · [本版程序证据](verification/releases/v0.3.13/status.json)。
+**历史 v0.3.13 / code63 · 默认接口端口改为 52187。** 新安装及旧版使用默认 8080 的安装，升级后使用 `http://127.0.0.1:52187/v1`；开启内网访问后，电脑连接 `http://手机IP:52187/v1`。已有其他有效自定义端口保留；迁移仅执行一次，之后用户主动编辑的端口仍会保留。请同步修改客户端的接口地址。[端口迁移与验证](docs/API_PORT.md) · [本版说明](docs/releases/v0.3.13.md) · [本版程序证据](verification/releases/v0.3.13/status.json)。
 
-本版：**62 套程序检查／15,122 项断言、796 项生产界面检查、24 项真机程序检查和 8 项空闲性能检查**。[真机录屏](docs/media/device/v0.3.13/physical-walkthrough.mp4) · [GIF](docs/media/device/v0.3.13/physical-walkthrough.gif)。
+v0.3.13：**62 套程序检查／15,122 项断言、796 项生产界面检查、24 项真机程序检查和 8 项空闲性能检查**。[真机录屏](docs/media/device/v0.3.13/physical-walkthrough.mp4) · [GIF](docs/media/device/v0.3.13/physical-walkthrough.gif)。
 
-**本版内网实测：63 项检查／128 次 HTTP 请求通过**，核对 8080→52187 升级、配置保留及新 PNG／两段 WAV；锁屏 111.600 秒。[本版证据](verification/supplemental/v0.3.13/lan-http.json)。
+**v0.3.13 内网实测：63 项检查／128 次 HTTP 请求通过**，核对 8080→52187 升级、配置保留及新 PNG／两段 WAV；锁屏 111.600 秒。[本版证据](verification/supplemental/v0.3.13/lan-http.json)。
 
 <img src="docs/media/device/v0.3.13/04-api-overview.png" alt="LMA v0.3.13 API port 52187" width="300">
 
@@ -34,7 +54,7 @@ Android 本地 AI 工作台，模型由你选择，无审查模型独立标记�
 
 **生成任务不再设置固定耗时上限。** 用户主动停止、真实资源故障和输出／模型约束分别处理；120 秒同步 HTTP 等待不会终止后台生成。实机视频验收要求真实时长大于 5 秒。升级保留模型、设置和原签名；测评区分文件输出、生成质量、接口检查与后台耐久。
 
-本版最终APK实机：**24项程序检查＋8项空闲性能＋28项真实SDK联调**通过；Wan CPU实际输出 **6.125秒／49帧**视频，耗时732秒，画质尚未通过。真实页面[GIF](docs/media/device/v0.3.12/physical-walkthrough.gif)／[录屏](docs/media/device/v0.3.12/physical-walkthrough.mp4)，原始[模型视频](docs/media/benchmarks/v0.3.12/wan-cpu-6s.mp4)。3D失败与候选包结果在测评中逐项披露。
+v0.3.12 最终 APK 实机：**24项程序检查＋8项空闲性能＋28项真实SDK联调**通过；Wan CPU实际输出 **6.125秒／49帧**视频，耗时732秒，画质尚未通过。真实页面[GIF](docs/media/device/v0.3.12/physical-walkthrough.gif)／[录屏](docs/media/device/v0.3.12/physical-walkthrough.mp4)，原始[模型视频](docs/media/benchmarks/v0.3.12/wan-cpu-6s.mp4)。3D失败与候选包结果在测评中逐项披露。
 
 **2026-11-02 内网 HTTP 补充验证：57项通过、128次真实请求。** PC物理网卡直接连接手机Wi-Fi，完成新图片、两段语音、任务/取消/上传/SSE与断点下载；已有6.125秒视频单独复测传输。模型目录中位延迟39.44ms，锁屏111.959秒；无ADB转发或代理。[完整报告与本地HTTP用例](docs/LAN_HTTP_TEST.md) · [57项证据](verification/supplemental/v0.3.12/lan-http.json)。原Release附件身份保留。
 

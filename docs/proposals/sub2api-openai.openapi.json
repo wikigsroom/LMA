@@ -2,8 +2,8 @@
   "openapi": "3.1.0",
   "info": {
     "title": "LMA / Sub2API OpenAI subset and local multimodal extensions",
-    "version": "0.3.12",
-    "description": "Implemented Android subset and opt-in native Sub2API source extension. Image generation: single PNG b64_json. Speech: explicit WAV. Image edits, Responses, Videos and Realtime are not advertised. All inference remains on one phone. See version-bound program and physical evidence; no live production DB/billing or all-model quality claim."
+    "version": "0.4.0",
+    "description": "Implemented Android subset and opt-in native Sub2API source extension. Image generation: single PNG b64_json. Speech: explicit WAV. Image edits, Responses, Videos and Realtime are not advertised. All inference remains on one phone. See version-bound program and physical evidence; no live production DB/billing or all-model quality claim. Version 0.4.0 adds phone-native local composition and sequential chains. Chains/composition are direct-phone LMA operations; the opt-in Sub2API source gateway retains its previous supported routes and does not expose these tools. Current version uses program evidence only, without fresh phone output or quality acceptance."
   },
   "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
   "servers": [
@@ -18,7 +18,7 @@
     }
   ],
   "x-lma-status": "implemented-subset",
-  "x-lma-runtime-version": "0.3.11",
+  "x-lma-runtime-version": "0.4.0",
   "x-sub2api-audited-source": {
     "version": "v0.2.19",
     "commit": "dece26153621959ccd7635814f4b2d08304e681a"
@@ -2126,6 +2126,311 @@
         ],
         "x-lma-native-route": "/v1/artifacts/{id}/content"
       }
+    },
+    "/v1/lma/chains": {
+      "get": {
+        "operationId": "listLocalChains",
+        "description": "List phone-native chains using the phone service bearer credential.",
+        "x-lma-status": "implemented-native-extension",
+        "x-sub2api-status": "not-forwarded-by-current-source-gateway",
+        "responses": {
+          "200": {
+            "description": "Phone-native chain state",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChainList"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error"
+          }
+        }
+      },
+      "post": {
+        "operationId": "createLocalChain",
+        "description": "Create one controlled sequence on this phone; stable key and identical draft reuse the original chain. No implicit download or successful-step recomputation.",
+        "x-lma-status": "implemented-native-extension",
+        "x-sub2api-status": "not-forwarded-by-current-source-gateway",
+        "responses": {
+          "202": {
+            "description": "Phone-native chain state",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Chain"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 512
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChainRequest"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/lma/chains/{chain_id}": {
+      "parameters": [
+        {
+          "name": "chain_id",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      ],
+      "get": {
+        "operationId": "getLocalChain",
+        "description": "Read original chain state; does not resubmit jobs.",
+        "x-lma-status": "implemented-native-extension",
+        "x-sub2api-status": "not-forwarded-by-current-source-gateway",
+        "responses": {
+          "200": {
+            "description": "Phone-native chain state",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Chain"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error"
+          }
+        }
+      }
+    },
+    "/v1/lma/chains/{chain_id}/cancel": {
+      "parameters": [
+        {
+          "name": "chain_id",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      ],
+      "post": {
+        "operationId": "cancelLocalChain",
+        "description": "Cancel the parent and active steps; retain successful outputs.",
+        "x-lma-status": "implemented-native-extension",
+        "x-sub2api-status": "not-forwarded-by-current-source-gateway",
+        "responses": {
+          "200": {
+            "description": "Phone-native chain state",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Chain"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/lma/chains/{chain_id}/retry": {
+      "parameters": [
+        {
+          "name": "chain_id",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      ],
+      "post": {
+        "operationId": "retryLocalChainStep",
+        "description": "Retry one terminal failed/interrupted/cancelled/rejected step; reuse successful predecessors and retain prior attempt identities.",
+        "x-lma-status": "implemented-native-extension",
+        "x-sub2api-status": "not-forwarded-by-current-source-gateway",
+        "responses": {
+          "202": {
+            "description": "Phone-native chain state",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Chain"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "step": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 7
+                  }
+                },
+                "required": [
+                  "step"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -2577,6 +2882,34 @@
           },
           "evidence": {
             "$ref": "#/components/schemas/Evidence"
+          },
+          "native_capabilities": {
+            "type": "object",
+            "description": "Exact native declaration plus independent LMA/pair/evidence state; does not expand operations. Only present on text models.",
+            "properties": {
+              "native": {
+                "type": "array",
+                "items": {
+                  "type": "object"
+                }
+              },
+              "artifact": {
+                "type": "object"
+              },
+              "lma": {
+                "type": "object"
+              },
+              "composed": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "evidence": {
+                "type": "object"
+              }
+            },
+            "additionalProperties": false
           }
         },
         "additionalProperties": false,
@@ -3073,7 +3406,8 @@
               "video.generate",
               "speech.synthesize",
               "audio.generate",
-              "mesh.generate"
+              "mesh.generate",
+              "media.compose"
             ]
           },
           "input": {
@@ -3099,6 +3433,87 @@
           "model",
           "type",
           "input"
+        ],
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "type": {
+                  "const": "media.compose"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "model": {
+                  "const": "builtin_media"
+                },
+                "allowUnmeasured": false,
+                "adapters": false,
+                "input": {
+                  "type": "object",
+                  "properties": {
+                    "prompt": {
+                      "type": "string",
+                      "maxLength": 16000
+                    },
+                    "artifacts": {
+                      "type": "array",
+                      "minItems": 2,
+                      "maxItems": 3,
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "role": {
+                            "enum": [
+                              "visual",
+                              "voice",
+                              "music"
+                            ]
+                          },
+                          "artifactId": {
+                            "type": "string",
+                            "minLength": 1
+                          }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                          "role",
+                          "artifactId"
+                        ]
+                      }
+                    }
+                  },
+                  "additionalProperties": false,
+                  "required": [
+                    "artifacts"
+                  ]
+                },
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "durationSeconds": {
+                      "type": "number",
+                      "minimum": 5.1,
+                      "maximum": 60
+                    },
+                    "voiceGain": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 2
+                    },
+                    "musicGain": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 2
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              },
+              "description": "Direct phone only. Exactly one visual (PNG/JPEG/MP4) and at least one WAV track in voice/music roles; no duplicate role. Requires actual media validation. Still-image presentation <=15s; source video is trimmed, never looped or slowed."
+            }
+          }
         ]
       },
       "Artifact": {
@@ -3339,6 +3754,53 @@
           },
           "execution": {
             "const": "same_android_phone"
+          },
+          "chat_input_types": {
+            "type": "array",
+            "items": {
+              "const": "text"
+            },
+            "description": "Public OpenAI chat inputs; the App-only visual path is distinct."
+          },
+          "app_visual_bridge": {
+            "type": "object",
+            "properties": {
+              "input_types": {
+                "type": "array",
+                "items": {
+                  "enum": [
+                    "image",
+                    "sampled_video_frames"
+                  ]
+                }
+              },
+              "requires_reviewed_component_pair": {
+                "const": true
+              }
+            },
+            "additionalProperties": false
+          },
+          "tools": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            },
+            "description": "Phone-native tools, separate from AI model publication; not automatically routed by the source gateway."
+          },
+          "task_chains": {
+            "type": "object",
+            "properties": {
+              "endpoint": {
+                "const": "/v1/lma/chains"
+              },
+              "max_steps": {
+                "const": 8
+              },
+              "requires_idempotency_key": {
+                "const": true
+              }
+            },
+            "additionalProperties": false
           }
         },
         "additionalProperties": false,
@@ -3455,6 +3917,166 @@
         "required": [
           "id",
           "deleted"
+        ]
+      },
+      "ChainStep": {
+        "type": "object",
+        "properties": {
+          "request": {
+            "type": "object",
+            "properties": {
+              "model": {
+                "type": "string",
+                "minLength": 1
+              },
+              "type": {
+                "enum": [
+                  "text.generate",
+                  "image.generate",
+                  "video.generate",
+                  "speech.synthesize",
+                  "audio.generate",
+                  "mesh.generate",
+                  "media.compose"
+                ]
+              },
+              "input": {
+                "$ref": "#/components/schemas/JobInput"
+              },
+              "parameters": {
+                "type": "object"
+              },
+              "allowUnmeasured": {
+                "type": "boolean",
+                "default": false
+              },
+              "adapters": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Adapter"
+                },
+                "maxItems": 8
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "model",
+              "type",
+              "input"
+            ],
+            "description": "Native job request shape; required input roles may be supplied by preceding-step bindings. Production preflight validates the resolved request before admission."
+          },
+          "dependsOn": {
+            "type": "array",
+            "maxItems": 7,
+            "uniqueItems": true,
+            "items": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 7
+            }
+          },
+          "bindings": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "step": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 7
+                },
+                "output": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 7,
+                  "default": 0
+                },
+                "role": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "required": [
+                "step",
+                "role"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "request"
+        ],
+        "additionalProperties": false,
+        "description": "Dependencies must refer only to earlier steps. Bindings must name an explicit dependency; prompt bindings read managed text outputs under leases."
+      },
+      "ChainRequest": {
+        "type": "object",
+        "properties": {
+          "template": {
+            "type": "string"
+          },
+          "steps": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 8,
+            "items": {
+              "$ref": "#/components/schemas/ChainStep"
+            }
+          }
+        },
+        "required": [
+          "steps"
+        ],
+        "additionalProperties": false
+      },
+      "Chain": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "template": {
+            "type": "string"
+          },
+          "state": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "integer"
+          },
+          "steps": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          }
+        },
+        "required": [
+          "id",
+          "state",
+          "steps"
+        ],
+        "additionalProperties": true,
+        "description": "Native chain state and original job/artifact IDs. Private session ID, raw draft hash, private model defaults and path-bearing errors are removed."
+      },
+      "ChainList": {
+        "type": "object",
+        "properties": {
+          "object": {
+            "const": "list"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Chain"
+            }
+          }
+        },
+        "required": [
+          "object",
+          "data"
         ]
       }
     }

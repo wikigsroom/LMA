@@ -23,7 +23,7 @@ import com.lma.app.core.InputUploads;
 import com.lma.app.core.PreparedAssets;
 
 public final class LmaApp extends Application {
-    public static final String VERSION = "0.3.13";
+    public static final String VERSION = "0.4.0";
     public static final String UPDATE = "com.lma.app.STATE_CHANGED";
     public Store store;
     private JSONObject recommendations = new JSONObject();
@@ -51,6 +51,11 @@ public final class LmaApp extends Application {
     public final com.lma.app.core.ExecutionGate execution = new com.lma.app.core.ExecutionGate();
     public String bundleStoreError = "";
     public Chats chats;
+    public ModelCapabilities capabilities;
+    public JSONArray visionPresets=new JSONArray();
+    public VisionPairs visionPairs;
+    public com.lma.app.core.WorkflowStore workflows;
+    public volatile ConversationController conversations;
     public HubCatalog hub;
     public SharedPreferences prefs;
     private final JSONArray logs = new JSONArray();
@@ -70,6 +75,8 @@ public final class LmaApp extends Application {
     @Override public void onCreate() {
         super.onCreate();
         prefs = getSharedPreferences("lma", MODE_PRIVATE);
+        if (!java.util.Arrays.asList("dark", "light", "system").contains(prefs.getString("theme", "")))
+            prefs.edit().putString("theme", "dark").apply();
         if (prefs.getInt("apiPortDefaultsVersion", 0) < com.lma.app.core.ApiPort.DEFAULTS_VERSION) {
             int migratedPort = com.lma.app.core.ApiPort.afterUpgrade(prefs.getInt("port", -1), prefs.getInt("apiPortDefaultsVersion", 0));
             prefs.edit().putInt("port", migratedPort).putInt("apiPortDefaultsVersion", com.lma.app.core.ApiPort.DEFAULTS_VERSION).apply();
@@ -81,6 +88,7 @@ public final class LmaApp extends Application {
             prefs.edit().putString("apiKey", "lma_" + Protocol.hex(random)).apply();
         }
         store = new Store(this);
+        try { capabilities=new ModelCapabilities(this); } catch(Exception error) { log("能力声明暂不可用："+error.getMessage()); }
         try (java.io.InputStream in = getAssets().open("recommendations.json")) {
             recommendations = new JSONObject(Store.read(in, 128 * 1024));
         } catch (Exception unavailable) { log("推荐目录暂不可用，已有模型仍可在全部 / 本地查看"); }
@@ -109,6 +117,10 @@ public final class LmaApp extends Application {
         try { taskDrafts = new com.lma.app.core.TaskDrafts(new java.io.File(getFilesDir(), "task-drafts")); }
         catch (Exception error) { log("草稿存储不可用，原始数据已保留：" + error.getMessage()); }
         chats = new Chats(this);
+        try(java.io.InputStream in=getAssets().open("vision-presets.json")){visionPresets=new JSONObject(Store.read(in,65536)).getJSONArray("presets");}catch(Exception error){log("视觉预设不可用，仍可显式填写配对清单");}
+        try{visionPairs=new VisionPairs(this);if(bundles!=null)bundles.removalGuard(id->visionPairs.referencesBundle(id));}catch(Exception error){log("视觉配对存储不可用，原文件保留："+error.getMessage());}
+        try { workflows=new com.lma.app.core.WorkflowStore(new java.io.File(getFilesDir(),"workflows")); } catch(Exception error) { log("计划存储不可用，原记录保留："+error.getMessage()); }
+        if(artifacts!=null) artifacts.references(id -> jobs.referencesArtifact(id) || chats.referencesArtifact(id) || workflows!=null&&workflows.referencesArtifact(id));
         hub = new HubCatalog(this);
         migrateTextModels();
     }
@@ -133,6 +145,8 @@ public final class LmaApp extends Application {
     public void emit() {
         sendBroadcast(new Intent(UPDATE).setPackage(getPackageName()));
     }
+    public void emitChat(){sendBroadcast(new Intent(UPDATE).setPackage(getPackageName()).putExtra("scope","chat"));}
+    public JSONObject chatSnapshot() throws Exception {return new JSONObject().put("chat",chats.snapshot()).put("engine",new JSONObject().put("generating",generating||textRequestBusy).put("externalGenerating",textRequestBusy)).put("error",lastError);}
     public void error(String message) { lastError = message == null ? "操作失败" : message; errorSequence++; log(lastError); emit(); }
     public synchronized void finishCommand(JSONObject command, Exception error) {
         finishCommand(command, error, true);
@@ -176,7 +190,7 @@ public final class LmaApp extends Application {
         value.put("hfTokenSet", !prefs.getString("hfToken", "").isEmpty());
         value.put("boot", prefs.getBoolean("boot", false));
         value.put("autoLoad", prefs.getBoolean("autoLoad", true));
-        value.put("theme", prefs.getString("theme", "system"));
+        value.put("theme", prefs.getString("theme", "dark"));
         value.put("apiKey", prefs.getString("apiKey", ""));
         return value;
     }
@@ -184,7 +198,11 @@ public final class LmaApp extends Application {
         JSONObject value = new JSONObject();
         try {
             value.put("app", "LMA"); value.put("version", VERSION); value.put("runtime", "llama.cpp v0.4.1 · CPU");
-            value.put("models", store.snapshot()); value.put("recommendations", recommendations); value.put("settings", settings()); value.put("hub", hub.snapshot());
+            JSONArray textModels=store.snapshot();if(capabilities!=null)capabilities.enrich(textModels);
+            value.put("models", textModels); value.put("recommendations", recommendations); value.put("settings", settings()); value.put("hub", hub.snapshot());
+            value.put("workflows",workflows==null?new JSONArray():workflows.snapshot());
+            value.put("visionPresets",visionPresets);
+            value.put("visionPairs",visionPairs==null?new JSONArray():visionPairs.snapshot());
             JSONArray bundleRecords = bundles == null ? new JSONArray() : bundles.snapshot();
             if (localEngines != null) for (int i = 0; i < bundleRecords.length(); i++) {
                 JSONObject record = bundleRecords.getJSONObject(i);

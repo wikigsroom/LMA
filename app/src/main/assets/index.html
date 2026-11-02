@@ -1,13 +1,15 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-theme="dark">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self'; connect-src 'self'; base-uri 'none'; form-action 'none'">
   <meta name="color-scheme" content="light dark">
   <title>LMA · 本地模型工作台</title>
+  <script src="theme-boot.js"></script>
   <link rel="stylesheet" href="app.css">
   <link rel="stylesheet" href="foundation.css">
+  <link rel="stylesheet" href="conversation.css">
   <script src="license.js" defer></script>
   <script src="versions.js" defer></script>
   <script src="audio-preview.js" defer></script>
@@ -18,12 +20,14 @@
   <script src="glb-preview.js" defer></script>
   <script src="expansion.js" defer></script>
   <script src="recommendations.js" defer></script>
+  <script src="capabilities.js" defer></script>
+  <script src="conversation.js" defer></script>
   <script src="app.js" defer></script>
 </head>
 <body>
   <div class="app-shell">
     <header class="topbar">
-      <a class="brand" href="#models" aria-label="LMA 模型库"><span class="brand-mark" aria-hidden="true">L<span>M</span>A</span><span class="brand-caption">LOCAL MODEL APP</span></a>
+      <a class="brand" href="#models" aria-label="LMA 模型库"><img class="brand-logo" src="lma-logo.png" alt="LMA"><span class="brand-caption">把无审查 AI，装进口袋。<br>Uncensored AI, right in your pocket.</span></a>
       <div class="device-badge"><span class="device-led" aria-hidden="true"></span><span id="deviceName">本地模型工作台</span></div>
     </header>
     <aside class="runtime-strip" aria-label="模型运行状态">
@@ -81,7 +85,7 @@
           <div class="panel"><div class="section-heading"><h2>模型参数</h2><span class="icon" data-icon="cube"></span></div><p class="form-help">上下文、输出上限、线程、温度、思考模式与系统提示词，随每个已下载模型独立保存。选择预设或手动输入，超出上限自动调整。</p><button class="button secondary" type="button" data-action="showLocal">前往本地模型设置<span class="icon" data-icon="arrow"></span></button></div>
           <button type="submit" class="button primary save-settings"><span class="icon" data-icon="check"></span>保存设置</button><p class="save-hint" id="settingsHint" role="status"></p>
         </form>
-        <div class="about"><span class="brand-mark">L<span>M</span>A</span><div><strong>LMA <span class="mono">0.3.4</span></strong><p>本地模型工作台 · Android 9+ · ARM64</p><button class="text-button" data-action="about">开源组件与说明 ↗</button><button class="text-button" data-action="expansionNotices">语音 / 3D 新增组件说明 ↗</button></div></div>
+        <div class="about"><img class="brand-logo" src="lma-logo.png" alt="LMA"><div><strong>LMA <span class="mono">0.4.0</span></strong><p>本地模型工作台 · Android 9+ · ARM64</p><button class="text-button" data-action="about">开源组件与说明 ↗</button><button class="text-button" data-action="expansionNotices">语音 / 3D 新增组件说明 ↗</button></div></div>
       </section>
     </main>
     <nav class="bottom-nav" aria-label="主要导航"><button class="nav-item active" data-action="tab" data-tab="models" aria-current="page"><span class="icon" data-icon="grid"></span><span>模型库</span></button><button class="nav-item" data-action="tab" data-tab="chat"><span class="icon" data-icon="chat"></span><span>对话</span></button><button class="nav-item" data-action="tab" data-tab="tasks"><span class="icon" data-icon="spark"></span><span>任务</span></button><button class="nav-item" data-action="tab" data-tab="server"><span class="icon" data-icon="server"></span><span>服务</span></button><button class="nav-item" data-action="tab" data-tab="settings"><span class="icon" data-icon="sliders"></span><span>设置</span></button></nav>

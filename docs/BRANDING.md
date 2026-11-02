@@ -37,19 +37,20 @@ Key features: oversized whale hood around the Android face, twin top antennae, s
 
 `3155c4601396c8623c20879b903e317747a94a7b840be307bcc93fde988c8bea`
 
-当前定稿图为带深色底的栅格 PNG；README 横幅复用原始 21 号图像并进行背景与文字排版。Android launcher/adaptive icon、正式透明／单色／矢量素材与应用内形象接入仍待实现；原始定稿图与已发布 APK／附件保留。
+当前定稿图为带深色底的栅格 PNG；README 横幅复用原始 21 号图像并进行背景与文字排版。v0.4.0 已将 Logo 21 接入 Android 启动图标、adaptive icon、页头、会话空态和关于页面。五种密度的透明前景保留完整鲸鱼套装轮廓；深蓝底色匹配品牌。原始图和历史 APK 保留。正式矢量／单色母版不属于此栅格素材交付。
 
-The finalized artwork is an opaque dark-background raster PNG. The README banner reuses the original 21 artwork with derived background composition and exact bilingual text. Its alpha mask is a banner-only layout aid. Production transparent/monochrome/vector/adaptive assets and in-app branding remain integration work; native artwork and published APK assets are preserved.
+The finalized artwork is an opaque dark-background raster PNG. The README banner reuses the original 21 artwork with derived background composition and exact bilingual text. Version 0.4.0 integrates Logo 21 into the Android launcher/adaptive icon, header, empty conversation and About view. Transparent foregrounds at five densities preserve the complete silhouette over a navy background. Native artwork and historical APKs remain intact; vector/monochrome masters are not claimed.
 
 | 编号 / ID | 已完成 / Completed |
 | --- | --- |
 | C01 | 用户定稿 21，并写入仓库工作约定 / Final selection persisted in repository instructions |
 | C02 | 中英 README、统一素材、清单与更新说明 / Bilingual READMEs, canonical asset, metadata and notes |
+| C03 | v0.4.0 启动图标、adaptive icon 和应用内形象；[派生记录](media/branding/android-icon.json) / Launcher, adaptive and in-app assets |
 
 | 编号 / ID | 待处理 / Pending |
 | --- | --- |
-| P01 | 按 21 号实施正式 Android 图标及配套形象接入 / Production icon and in-app integration |
-| P02 | 原 D01–D12 及冻结模型范围 / Existing functional plan and frozen model scope |
+| P01 | 当前 APK 的真机启动图标与首帧观测尚未执行 / Physical launcher and first-frame observation remains unrun |
+| P02 | [D01–D12 实施与验证边界](CONVERSATION_V040.md)；不是模型质量验收 / Implementation and validation limits, not quality acceptance |
 
 ## 横幅与标语 / Banner and slogan
 
@@ -68,3 +69,5 @@ The local renderer composes existing artwork and local typography without new AI
 | C03 | 04 号双语标语及定稿记录 / Exact slogan and persisted choice |
 | C04 | 21 号 Logo 配套双语横幅与中英文 README / Banner and READMEs |
 | C05 | 本地重建工具、来源及素材检查 / Renderer, provenance and scoped checks |
+
+Android 资源重建 / Rebuild Android assets: `python tools/apply_branding.py`. [派生记录 / Provenance](media/branding/android-icon.json) 固定原图、五档密度、前景安全区和 SHA256；未重新生成 Logo。

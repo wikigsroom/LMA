@@ -1,6 +1,8 @@
 # LMA API 接入
 
-**v0.3.12 当前接口：** [本地 API 与实际 SDK 案例](LOCAL_API_V0312.md) · [OpenAPI](proposals/sub2api-openai.openapi.json) · [实机测评](DEVICE_BENCHMARK_V0312.md)。已下载完整且配置有效的所有本地模态自动公布；图片 PNG、显式语音 WAV 和 `/v1/lma/jobs/uploads/artifacts` 已实现。Sub2API 源码扩展需明确启用，本次未修改生产部署。下文旧版提示保留对应历史语境。
+**当前 v0.4.0：** [会话、手动媒体、视觉桥与顺序链 API](CONVERSATION_V040.md)。新增认证的 `/v1/lma/chains` 和独立 `media.compose` 工具；原生能力标签不扩大可执行 API。公开 OpenAI chat 仍为文本子集。旧版实机案例保留原 APK 身份，本版尚无新的实机联调结果。
+
+**v0.3.12 历史接口：** [本地 API 与实际 SDK 案例](LOCAL_API_V0312.md) · [OpenAPI](proposals/sub2api-openai.openapi.json) · [实机测评](DEVICE_BENCHMARK_V0312.md)。已下载完整且配置有效的所有本地模态自动公布；图片 PNG、显式语音 WAV 和 `/v1/lma/jobs/uploads/artifacts` 已实现。Sub2API 源码扩展需明确启用，本次未修改生产部署。下文旧版提示保留对应历史语境。
 
 **生成无固定耗时上限：** 保留主动取消和真实资源故障处理；同步兼容层等待 120 秒后可继续查询原任务，不取消生成。当前不开放 Responses／Realtime／OpenAI multipart 编辑。
 

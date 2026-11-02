@@ -1,4 +1,6 @@
 """Run the bounded program suite. Never select trained-model or device tests."""
+import argparse
+from evidence import current
 import concurrent.futures
 import json
 import os
@@ -9,6 +11,13 @@ import time
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / 'build/program-check-run'
+RESUME = False
+RECORD_NAMES={'inputs':'input','recipe_suggestions':'recipe-suggestion','speech_voices':'speech-voice','preparations':'preparation','assemblies':'assembly','ltx098_app --multiscale':'ltx098-multiscale-app'}
+def reusable(name):
+    path=ROOT/'build'/((RECORD_NAMES.get(name,name.replace('_','-')))+'-tests')/'results.json'
+    try:
+        record=json.loads(path.read_text(encoding='utf-8'));current(record.get('source_inputs',record.get('input_fingerprint',{})));return bool(record.get('passed',record.get('count',False)))
+    except (OSError,ValueError,AssertionError):return False
 GROUPS = [
     ['community', 'bundle_pause', 'document_input', 'api', 'api_publication', 'workbench', 'recovery'],
     ['inputs', 'text', 'migration', 'scheduler', 'preparations', 'assemblies', 'diffusion', 'mnn'],
@@ -19,6 +28,8 @@ GROUPS = [
 def group(names):
     results = []
     for name in names:
+        if RESUME and reusable(name):
+            results.append(dict(suite=name,exit=0,reused_current_fingerprinted_record=True));print(json.dumps(results[-1]),flush=True);continue
         parts = name.split()
         label = name.replace(' --', '-')
         started = time.monotonic()
@@ -35,6 +46,8 @@ def group(names):
 
 
 def main():
+    global RESUME
+    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument("--resume",action="store_true",help="Reuse only positive records whose source fingerprints are still exact");RESUME=parser.parse_args().resume
     OUT.mkdir(parents=True, exist_ok=True)
     # HF and community suites consume backend's freshly compiled production classes.
     results = group(['backend'])

@@ -1,5 +1,7 @@
 # LMA 文档 / Documentation
 
+**v0.4.0 / code64 · 当前 / Current:** [统一对话、本地创作、模板与 API](CONVERSATION_V040.md) / [English](CONVERSATION_V040.en.md) · [正式版说明](releases/v0.4.0.md) · [逐项实施](../catalogue/conversation-20261102-implementation.json)。Logo 21 已接入软件；默认暗色，程序验证与真机结果分开。
+
 **品牌定稿 / Final branding：** [Logo 21 ＋ Slogan 04](BRANDING.md) · [双语横幅 / Bilingual banner](media/branding/lma-banner.png)。把无审查 AI，装进口袋。 / Uncensored AI, right in your pocket. 用户已确认，原图及选型历史保留。
 
 **20261102 Logo 第三批 / Batch 3:** [17 号结构蓝本：21–30 十套风格与配色](LOGO_SELECTION_20261102_BATCH3.md) · [Offline selector](../output/imagegen/lma-logo-selection-20261102-batch3-whale17/index.html)。鲸帽安卓结构系列；含参考图、原图与小尺寸对比。
@@ -8,20 +10,20 @@
 
 **20261102 Logo 选型 / Branding directions：** [十套风格、元素与原图](LOGO_SELECTION_20261102.md) · [Offline selector](../output/imagegen/lma-logo-selection-20261102/index.html) · [维护说明](releases/v0.3.13-logo-selection.md)。实际生成的候选稿，未替换 App 图标。
 
-**20261102 内容更新方向（规划／Proposal）：** [中文完整方案](UPDATE_DIRECTION_20261102.md) · [English](UPDATE_DIRECTION_20261102.en.md) · [语言模型多模态标签／Structured tags](proposals/update-direction-20261102.json) · [本次文档维护说明](releases/v0.3.13-20261102-direction.md)。以对话统一本地创作，默认暗色并保留用户已选主题；包含 D01–D12 和 A01–A33；当前 APK 仍为 v0.3.13，标签的 App 展示与新对话能力待开发。
+**20261102 原始内容方向／Original plan：** [中文完整方案](UPDATE_DIRECTION_20261102.md) · [English](UPDATE_DIRECTION_20261102.en.md) · [语言模型多模态标签／Structured tags](proposals/update-direction-20261102.json) · [本次文档维护说明](releases/v0.3.13-20261102-direction.md)。以对话统一本地创作，默认暗色并保留用户已选主题；包含 D01–D12 和 A01–A33；D01–D12 程序实现见 v0.4.0，具体证据与未实跑项分开记录。
 
 [v0.3.13 默认端口 52187 / Default port and migration](API_PORT.md) · [Release notes](releases/v0.3.13.md)
 [完整实现与检查 / Implementation and checks](IMPLEMENTATION_V0313.md) · [English](IMPLEMENTATION_V0313.en.md)
 
 **2026-11-02 内网 HTTP 补充：** [57项实机检查与本机HTTP用例](LAN_HTTP_TEST.md) / [English](LAN_HTTP_TEST.en.md) · [JSON证据](../verification/supplemental/v0.3.12/lan-http.json)。PC物理网络直连手机Wi-Fi，共128次请求；原Release附件保持身份。
 
-**v0.3.12 / code62 · 当前 / Current:** [本地多模态 API](LOCAL_API_V0312.md) / [English](LOCAL_API_V0312.en.md) · [实机测评](DEVICE_BENCHMARK_V0312.md) / [Benchmark](DEVICE_BENCHMARK_V0312.en.md) · [协议](SUB2API_OPENAI.md) / [Contract](SUB2API_OPENAI.en.md) · [Release](releases/v0.3.12.md)。自动模型列表、标准图片／语音、统一异步任务与 Sub2API 源码扩展；生成无固定时间上限，视频实机验收大于 5 秒。旧版记录保留原身份。
+**历史 v0.3.12 / code62:** [本地多模态 API](LOCAL_API_V0312.md) / [English](LOCAL_API_V0312.en.md) · [实机测评](DEVICE_BENCHMARK_V0312.md) / [Benchmark](DEVICE_BENCHMARK_V0312.en.md) · [协议](SUB2API_OPENAI.md) / [Contract](SUB2API_OPENAI.en.md) · [Release](releases/v0.3.12.md)。自动模型列表、标准图片／语音、统一异步任务与 Sub2API 源码扩展；生成无固定时间上限，视频实机验收大于 5 秒。旧版记录保留原身份。
 
 **v0.3.11 / code61：** [手机模型修复与真实输出](ON_DEVICE_MODEL_REPAIR.md) / [English](ON_DEVICE_MODEL_REPAIR.en.md) · [完整实现](IMPLEMENTATION_V0311.md) / [English](IMPLEMENTATION_V0311.en.md) · [Release](releases/v0.3.11.md)。
 
 [空闲卡顿原因与真机对比](PERFORMANCE.md) / [Idle UI performance and measurements](PERFORMANCE.en.md) · [v0.3.9](releases/v0.3.9.md)。
 
-**v0.3.10 / code60 · 当前 / Current:** [14 个推荐模型 / fourteen recommended choices](RECOMMENDED_MODELS.md)：text 3 / image 3 / video 2 / audio 3 / 3D 3. Default Recommended preserves the original text prefix, adds optional multimodal choices and never downloads automatically. [Release](releases/v0.3.10.md) · [当前实现 / implementation](IMPLEMENTATION_V0310.md). Earlier version callouts below retain their historical context.
+**历史 v0.3.10 / code60:** [14 个推荐模型 / fourteen recommended choices](RECOMMENDED_MODELS.md)：text 3 / image 3 / video 2 / audio 3 / 3D 3. Default Recommended preserves the original text prefix, adds optional multimodal choices and never downloads automatically. [Release](releases/v0.3.10.md) · [当前实现 / implementation](IMPLEMENTATION_V0310.md). Earlier version callouts below retain their historical context.
 
 **v0.3.7 / code57:** [真机零模型启动修复与 19 项程序检查](DEVICE_ACCEPTANCE.md) / [Physical program acceptance](DEVICE_ACCEPTANCE.en.md). Includes short screen-off API health and separate real phone media; no complete model or endurance claim.
 

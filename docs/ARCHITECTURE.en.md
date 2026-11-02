@@ -1,5 +1,7 @@
 # LMA 0.2.0 architecture
 
+**v0.4.0 extension architecture:** [D01–D12 implementation and limits](CONVERSATION_V040.en.md). SQLite v2 message blocks and a durable outbox refer to original LocalJobs; controlled WorkflowRunner sequences share the execution gate. Paired vision components and built-in composition have explicit contracts. No remote inference or node/plugin execution is introduced. Older architecture below is historical.
+
 > Current v0.3.5: [Hunyuan shape and UltraShape refinement](SPATIAL_SHAPE.en.md), [full numbered implementation and pending ports](IMPLEMENTATION_V035.en.md). Five CPU sparse operators do not complete SAM/UniForge/SUPRA; Paint remains missing. All prior routes remain. Versioned notes below are historical, not the current support matrix.
 
 > v0.3.2 adds four speech families and single-image 3D. See the [expansion guide](SPEECH_3D_EXPANSION.en.md) for formats, components, workflows, API, builds and program checks. Existing capabilities remain; older checkpoints below retain their original context.

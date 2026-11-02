@@ -1,5 +1,7 @@
 # LMA · 20261102 update direction
 
+**Implementation: v0.4.0 integrates the D01–D12 program features.** This document preserves the original v0.3.13 baseline and acceptance requirements. See the [implementation guide](CONVERSATION_V040.en.md) for current behavior, evidence and unexecuted physical checks; original pending/current-APK wording describes the frozen baseline.
+
 [中文](UPDATE_DIRECTION_20261102.md) · [Documentation](README.md) · [Structured plan and language-model tags](proposals/update-direction-20261102.json)
 
 Date: 2026-11-02, Asia/Taipei. Baseline: stable **v0.3.13 / code63**, commit `6957f30d7ced8a68e33446424740b9b7bf4eae89`. This document specifies the next functional update. **Proposed features are not implemented by this documentation change.** No future app version is assigned and published attachments remain immutable. This maintenance delivers the plan, a per-model selection-tag inventory and evidence rules; app filters, attachment conversations and generation cards remain implementation work.

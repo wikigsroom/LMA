@@ -1,5 +1,5 @@
 {
-  "version": "0.3.13",
+  "version": "0.4.0",
   "kind": "current production UI with an explicit simulated bridge",
   "android_device": false,
   "model_inference": false,
@@ -53,54 +53,58 @@
   "files": [
     {
       "file": "01-spatial-models.png",
-      "bytes": 46977,
-      "sha256": "125686b634c2da1176c1908e40c3f5a6b2109146273c109b35e74d25a6acc0a2"
+      "bytes": 47940,
+      "sha256": "b8dbac96d52f175bf64fb8fe3c9573120b57246457492f01a376846737ea3db7"
     },
     {
       "file": "02-spatial-assets.png",
-      "bytes": 50883,
-      "sha256": "a124d28b15dc391cc8836f47d92a7788aeeabc699c3237f8f835d09aaa795b30"
+      "bytes": 51721,
+      "sha256": "37767f5de1199d0a158baeeb16d7359a9b7c2072b237e151c305c02cb743a922"
     },
     {
       "file": "03-hunyuan-settings.png",
-      "bytes": 50497,
-      "sha256": "3cbcb76caf334eb2786e6e2b019aeaef20c51807aaf3ca5172da5f16ff714367"
+      "bytes": 51335,
+      "sha256": "7a4ef8a46126eb8cc027e75428d4e2a0d68f9ea706455934ef3a3909029da980"
     },
     {
       "file": "04-ultrashape-inputs.png",
-      "bytes": 51497,
-      "sha256": "e63d47680b92ad5091fbc9f6badc1bac29360c09deeae654ef58d7643c6aaee4"
+      "bytes": 52456,
+      "sha256": "fc723105fbbdef0ff6dbc15ce55e5a719a7a3523105211d77972c24de625806d"
     },
     {
       "file": "05-spatial-queue.png",
-      "bytes": 48806,
-      "sha256": "45980b09c523926f53154ad42da0fd11597a41b3d714e12d3e33a14d0e89d5ca"
+      "bytes": 49761,
+      "sha256": "19be53af146ec77fdcdb1716c07795a73958dde64aae60bc5946ef8795bb322b"
     },
     {
       "file": "spatial-ui.gif",
-      "bytes": 937628,
-      "sha256": "cc4b87dae08f7fe893478e3ab085cfcf68370574b2a8b3cc5aaa8d57fad5ac1f"
+      "bytes": 700089,
+      "sha256": "8729f9e685c4a43ef3bf29d5b5d6f3d43fea0c7634fab5c83204cfd30e7db6b4"
     },
     {
       "file": "spatial-ui.mp4",
-      "bytes": 324649,
-      "sha256": "49685cc0e7607fd3ace214ba16256a11527b81d33c1df43f832578d58acf43ef"
+      "bytes": 319788,
+      "sha256": "721196011b640f9cdfff0dd52a2bef10766af12c4093bf9139ec8adbc6d26667"
     }
   ],
   "input_fingerprint": {
     "app/src/main/assets/app.css": "1c1bdc0a0f90c2b1dbe170853a9897e8acc2664e157fee22af5b996ad4e14846",
-    "app/src/main/assets/app.js": "0cf09382fdffc747700849c5f2c57262416b1924a1ced74b63cbda1c22140b44",
+    "app/src/main/assets/app.js": "a2c6910e41edddf050f00fa3f91cf223e8fde36358937ae339ab35db32572d5d",
     "app/src/main/assets/architectures/ltx098-upscaler.onnx": "b7b3b8067dc247002b92fa228bf8bd1271d3b535f0ac8f70c7f7e5e94448e2d9",
     "app/src/main/assets/asset-preparations.json": "b0a7cbac1a633310b9fff84164439ee8fe20a1df137d1075eb9263f531ccfd3b",
     "app/src/main/assets/audio-preview.js": "33bb898969f37c1f78c6664052c46da844d148defdcef4a54d64bc5829037f44",
+    "app/src/main/assets/capabilities.js": "ce9fc72a05d288c9b8ee3fc2593af190187aecac68f36f33ce8143d6aa01c812",
+    "app/src/main/assets/capabilities.json": "f964a205d341bcbf627fd438d8cb78b359be4f8c83dc572f34ad7b964e252a4c",
     "app/src/main/assets/community.js": "9ea2f6adf3da95122bf4bca96e9a03971d1da2759a86d5f5e1f0c46c2ba8272a",
+    "app/src/main/assets/conversation.css": "5d29c47ba810774c502eb68c369d1d355644b1da542389a38c6b0dd3ec5516dc",
+    "app/src/main/assets/conversation.js": "aa479c571e0705eb68e8e66d782ecc7989c5d29689c62311afe891f263e3ef8e",
     "app/src/main/assets/engine-builds.json": "ea15c61490a261eb664201b50a62de899b2858785d095bc3e80ff3e42dd13493",
     "app/src/main/assets/expansion-notices.json": "e5bc41234e37c91400636473491b61644bb7cdf5ba4c73c20c2e5eaffc769055",
     "app/src/main/assets/expansion.js": "e968fea1d2013d6fa3c812dc8af5aeadf32ac11cb15aa3490de713c840c4f98c",
     "app/src/main/assets/foundation.css": "8bbd7a445a43d93f796be904e8f67b6e6120cf27547b93abb79cf41142078343",
     "app/src/main/assets/foundation.js": "a2bd9f0a92807a0d60a97884fb3dd123ddfc5cf42258b6577bff36b37f99cb14",
     "app/src/main/assets/glb-preview.js": "26554ae19c4dbeba87732dc0d220a628f40b598450a021e683737ded03db0f85",
-    "app/src/main/assets/index.html": "84380c28856f46938c5d0efe508da8b89ebb2d9aeee23cd243d5f7255ca4f875",
+    "app/src/main/assets/index.html": "71a0491e1a894274328a96fa395c4871569e0770b2c678b9c4a4e6bc12bcd88f",
     "app/src/main/assets/license.js": "838317c7653ca35291e9e18f2a7e2d98ed46a10880dfe144176f04ad994433d0",
     "app/src/main/assets/licenses/LLAMA_CPP_LICENSE": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
     "app/src/main/assets/licenses/LMA_LICENSE": "6ae3f5efa412d91cbf66e44f743e5ce41a8044309d05d893365206ab9bc35fc3",
@@ -288,6 +292,7 @@
     "app/src/main/assets/licenses/tts-simple-sentencepiece-LICENSE.txt": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
     "app/src/main/assets/licenses/tts-utf8proc-LICENSE.md.txt": "3b510150d34f248a221bb88e1d811238d6c6c18b51231822c42974c39bb07256",
     "app/src/main/assets/licenses/xxhash-LICENSE.txt": "a2973411d278045bde3c7161b911e0680d53e2d73d6457c77068d2e55d816d67",
+    "app/src/main/assets/lma-logo.png": "3155c4601396c8623c20879b903e317747a94a7b840be307bcc93fde988c8bea",
     "app/src/main/assets/model-assemblies.json": "bda37b1411a28e8f396a03f0ccf8176b07469d402a858b5b8561410d13d8d572",
     "app/src/main/assets/model-bundles.json": "74c1f12e82b76e3030d7835f5b42c5ad680b055b8c80ae69a1cfca4a3153f229",
     "app/src/main/assets/models.json": "c3e884b4e5fb06f20c036deebc78e6f953ac420e76fca72bab5a25fd59927156",
@@ -304,7 +309,9 @@
     "app/src/main/assets/recipes.js": "b27e75ed85948a63476bf351cde94a59bec935a540f65e1a9fe798322bcd1b39",
     "app/src/main/assets/recommendations.js": "13f0f41840a3a28a5b70d021f77c7700050f6007086228179cd794b331263215",
     "app/src/main/assets/recommendations.json": "8fa2c4c76526d63de81d37fac75af6d4664175df0f355b64c552274d67517ebf",
+    "app/src/main/assets/theme-boot.js": "a3fbc18812f04dabec1408a6317cd656ede27ca4ce5897955c62849261d51ee7",
     "app/src/main/assets/versions.js": "2d629929a6db642c12a242ddcc62cd4f4090ab307e0cb669ceb98add031977e1",
+    "app/src/main/assets/vision-presets.json": "f6ec64acd1f2ae1b29534ff71e2a60efc44ed802c2161af8a55ad110729287c5",
     "app/src/main/assets/workbench.js": "367c6293b50bb1f4567da00eef20d795c7f775c2e5f6b5ec62b0e32989920e09",
     "tests/foundation-ui.cjs": "b8cc6e6dcd05054e8651c1ec908e8d1f8e1c65abe1cb6d81e77f52a7e9fea6ed",
     "tests/spatial-ui.cjs": "42ec604c2ea56d28810114780b3431dd55b472d681a3d9094ab77400a9cadd49",

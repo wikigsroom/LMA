@@ -10,6 +10,9 @@ import java.util.concurrent.locks.ReentrantLock;
 
 /** Shared immutable components and an atomic installed-bundle index, owned by Application. */
 public final class BundleStore {
+    public interface RemovalGuard { boolean contains(String id); }
+    private volatile RemovalGuard externalGuard=id->false;
+    public void removalGuard(RemovalGuard guard) {externalGuard=java.util.Objects.requireNonNull(guard);}
     private final File root, objects, partials;
     private final AtomicFile file;
     private JSONObject state;
@@ -405,6 +408,7 @@ public final class BundleStore {
         remove(id, removeSettings);
     }
     public synchronized void remove(String id, boolean removeSettings) throws Exception {
+        if(externalGuard.contains(id))throw new IllegalStateException("此组件仍与视觉模型配对，请先在本地模型中解除对应配对；其他共享文件保留");
         JSONObject e = entry(id);
         if (leases.containsKey(id)) throw new IllegalStateException("Model is used by a running task");
         JSONObject transfer = e.optJSONObject("transfer");

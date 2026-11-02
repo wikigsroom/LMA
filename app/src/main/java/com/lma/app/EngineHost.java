@@ -19,6 +19,13 @@ public final class EngineHost {
     private final ExecutorService workers = Executors.newCachedThreadPool();
     private volatile Process process;
     private volatile BundleStore.Lease currentLease;
+    private volatile JSONObject loadOverride;
+    public boolean ensureTemporary(ExecutionGate.Ticket slot,String id,ExecutionGate.Check check,JSONObject values)throws Exception{
+        if(values==null){ensureReady(slot,id,check);return false;}
+        boolean reload=ModelSettings.reload(app.settings(id),values);
+        if(!reload){ensureReady(slot,id,check);return false;}
+        park(slot);loadOverride=new JSONObject(values.toString());try{ensureReady(slot,id,check);}finally{loadOverride=null;}return true;
+    }
     private volatile boolean desired, closed;
     private volatile int failures;
     private ExecutionGate.Ticket warmTicket;
@@ -167,19 +174,20 @@ public final class EngineHost {
         app.emit(); owner.activityChanged();
     }
     private void launch(String id, long request, ExecutionGate.Ticket slot, ExecutionGate.Check check) throws Exception {
-        BundleStore.Lease lease = null;
+        BundleStore.Lease lease = null, visualLease=null;
         try {
             check.run(); if (!current(request)) throw new InterruptedIOException("文本模型已停止或更改"); slot.checkOwner();
             synchronized (this) { if (!current(request)) return; app.engineState = "loading"; app.engineDetail = "正在加载用户选择的本地模型"; }
             app.emit(); owner.activityChanged();
             File nativeDir = new File(app.getApplicationInfo().nativeLibraryDir), binary = new File(nativeDir, "libllama-server.so");
             if (!binary.isFile() || !binary.canExecute()) throw new IOException("推理组件未正确安装，请重新安装 LMA APK");
-            lease = app.store.acquireBundle(id); app.store.inspectModel(id); JSONObject settings = app.settings(id);
+            lease = app.store.acquireBundle(id); app.store.inspectModel(id); JSONObject settings = loadOverride==null?app.settings(id):new JSONObject(loadOverride.toString());
             int privatePort;
             try (java.net.ServerSocket reserved = new java.net.ServerSocket(0, 1, java.net.InetAddress.getByName("127.0.0.1"))) { privatePort = reserved.getLocalPort(); }
             byte[] randomKey = new byte[24]; new java.security.SecureRandom().nextBytes(randomKey);
             String privateKey = com.lma.app.core.Protocol.hex(randomKey); List<String> command = new ArrayList<>();
             command.add(binary.getAbsolutePath()); add(command, "-m", app.store.modelFile(id).getAbsolutePath()); add(command, "--alias", id);
+            if(app.visionPairs!=null){visualLease=app.visionPairs.acquire(id,com.lma.app.core.DataFiles.checked(check));if(visualLease!=null){add(command,"--mmproj",visualLease.file("projector").getAbsolutePath());command.add("--no-mmproj-offload");}}
             add(command, "--host", "127.0.0.1"); add(command, "--port", String.valueOf(privatePort));
             add(command, "-t", String.valueOf(settings.getInt("threads"))); add(command, "-c", String.valueOf(settings.getInt("context")));
             add(command, "-b", "64"); add(command, "-ub", "64"); add(command, "-np", "1"); add(command, "-ngl", "0"); add(command, "--device", "none");
@@ -198,8 +206,10 @@ public final class EngineHost {
                     active = launcher.start(builder); process = active; currentLease = lease;
                     app.nativeProcess = active; app.nativePort = privatePort; app.nativeApiKey = privateKey;
                     final BundleStore.Lease ownedLease = lease;
+                    final BundleStore.Lease ownedVisual=visualLease;
+                    if(ownedVisual!=null)workers.execute(()->{try{active.waitFor();}catch(InterruptedException e){Thread.currentThread().interrupt();}finally{if(!active.isAlive())ownedVisual.close();}});
                     workers.execute(() -> watchExit(active, id, request, ownedLease));
-                    workers.execute(() -> drain(active)); lease = null;
+                    workers.execute(() -> drain(active)); lease = null;visualLease=null;
                     watchResources(slot, active, request);
                 }
             }
@@ -223,7 +233,7 @@ public final class EngineHost {
             check.run();
             if (current(request)) throw new IOException("模型加载未完成，请核对架构与本机资源");
             throw new InterruptedIOException("文本模型已停止或更改");
-        } finally { if (lease != null) lease.close(); }
+        } finally { if (lease != null) lease.close();if(visualLease!=null)visualLease.close(); }
     }
     private void watchExit(Process active, String id, long request, BundleStore.Lease held) {
         try {

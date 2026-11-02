@@ -1,0 +1,30 @@
+{
+  "schema": "lma.vision-presets/1",
+  "presets": [
+    {
+      "schema": "lma.vision-pair/1",
+      "modelId": "m15",
+      "mainSha256": "79e28ecacf84e75b6056cf4059636d435aa9eb67795780f7b7dbc7d32a962741",
+      "architecture": "qwen35",
+      "projector": {
+        "role": "projector",
+        "path": "mmproj-Qwen3.5-4B-Uncensored-HauhauCS-Aggressive-BF16.gguf",
+        "format": "gguf",
+        "repository": "HauhauCS/Qwen3.5-4B-Uncensored-HauhauCS-Aggressive",
+        "revision": "c09cdbcdb1fefad6d335809d445621b5f5ba0c6e",
+        "sha256": "a1e32e86ea99aa7a56f3dcfe7e63c1d0be9439d31fd07087099f15bc0fda0f22",
+        "bytes": 675568768,
+        "url": "https://huggingface.co/HauhauCS/Qwen3.5-4B-Uncensored-HauhauCS-Aggressive/resolve/c09cdbcdb1fefad6d335809d445621b5f5ba0c6e/mmproj-Qwen3.5-4B-Uncensored-HauhauCS-Aggressive-BF16.gguf",
+        "license": "apache-2.0"
+      },
+      "source": "https://huggingface.co/HauhauCS/Qwen3.5-4B-Uncensored-HauhauCS-Aggressive/raw/c09cdbcdb1fefad6d335809d445621b5f5ba0c6e/mmproj-Qwen3.5-4B-Uncensored-HauhauCS-Aggressive-BF16.gguf",
+      "reviewedAt": "2026-11-02",
+      "compatibilityEvidence": "same publisher, main and projector listed at the same pinned revision; not phone inference"
+    }
+  ],
+  "unresolved": [
+    "m03",
+    "m09",
+    "m16"
+  ]
+}

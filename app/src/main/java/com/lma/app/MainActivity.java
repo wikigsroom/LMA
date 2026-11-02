@@ -43,6 +43,7 @@ public final class MainActivity extends Activity {
     private Object backCallback;
     private final java.util.concurrent.ExecutorService snapshots = java.util.concurrent.Executors.newSingleThreadExecutor();
     private boolean snapshotRunning, snapshotPending;
+    private boolean fullSnapshotNeeded=true,fullStateDelivered;
     private volatile boolean destroyed;
     private long viewGeneration;
     private Boolean nativeDark;
@@ -52,21 +53,22 @@ public final class MainActivity extends Activity {
         if (!registered || !loaded || web == null || destroyed) return;
         if (snapshotRunning) { snapshotPending = true; return; }
         snapshotRunning = true; final long generation = viewGeneration;
+        final boolean full=fullSnapshotNeeded||!fullStateDelivered;fullSnapshotNeeded=false;
         snapshots.execute(() -> {
             String script = null;
-            try { script = "window.LMA&&window.LMA.receive(" + JSONObject.quote(app.snapshot().toString()) + ")"; }
+            try { script = "window.LMA&&window.LMA."+(full?"receive":"receiveDelta")+"(" + JSONObject.quote((full?app.snapshot():app.chatSnapshot()).toString()) + ")"; }
             catch (Exception error) { app.log("界面状态整理失败：" + error.getClass().getSimpleName()); }
             final String ready = script;
             if (destroyed) return;
             main.post(() -> {
                 snapshotRunning = false;
-                if (!destroyed && registered && loaded && web != null && generation == viewGeneration && ready != null) web.evaluateJavascript(ready, null);
+                if (!destroyed && registered && loaded && web != null && generation == viewGeneration && ready != null) {web.evaluateJavascript(ready, null);if(full)fullStateDelivered=true;}
                 boolean again = snapshotPending || generation != viewGeneration; snapshotPending = false;
                 if (again && !destroyed && registered) scheduleRender();
             });
         });
     }
-    private final BroadcastReceiver receiver = new BroadcastReceiver() { @Override public void onReceive(Context context, Intent intent) { scheduleRender(); } };
+    private final BroadcastReceiver receiver = new BroadcastReceiver() { @Override public void onReceive(Context context, Intent intent) { if("chat".equals(intent.getStringExtra("scope"))){main.removeCallbacks(render);main.postDelayed(render,60);}else scheduleRender(); } };
 
     @Override public void onCreate(Bundle saved) {
         super.onCreate(saved); app = (LmaApp) getApplication();
@@ -74,9 +76,15 @@ public final class MainActivity extends Activity {
         if (Build.VERSION.SDK_INT >= 33) {
             backCallback = Api33Back.register(this, this::handleBack);
         }
-        getWindow().setStatusBarColor(Color.rgb(245, 247, 250)); getWindow().setNavigationBarColor(Color.rgb(245, 247, 250));
+        String themeChoice = app.prefs.getString("theme", "dark");
+        boolean darkStart = themeChoice.equals("dark") || themeChoice.equals("system") && (getResources().getConfiguration().uiMode & android.content.res.Configuration.UI_MODE_NIGHT_MASK) == android.content.res.Configuration.UI_MODE_NIGHT_YES;
+        int startColor = darkStart ? Color.rgb(18, 26, 41) : Color.rgb(245, 247, 250);
+        getWindow().setStatusBarColor(startColor); getWindow().setNavigationBarColor(startColor);
+        getWindow().setBackgroundDrawable(new android.graphics.drawable.ColorDrawable(startColor));
+        getWindow().getDecorView().setSystemUiVisibility(darkStart ? 0 : android.view.View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR | android.view.View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
         FrameLayout root = new FrameLayout(this);
-        web = new WebView(this); web.setBackgroundColor(Color.rgb(245, 247, 250));
+        root.setBackgroundColor(startColor);
+        web = new WebView(this); web.setBackgroundColor(startColor);
         web.getSettings().setJavaScriptEnabled(true); web.getSettings().setDomStorageEnabled(false);
         web.getSettings().setAllowFileAccess(false); web.getSettings().setAllowContentAccess(false);
         web.getSettings().setJavaScriptCanOpenWindowsAutomatically(false); web.getSettings().setSupportMultipleWindows(false);
@@ -141,7 +149,7 @@ public final class MainActivity extends Activity {
         } catch (Exception error) { return response(404, "Audio preview expired or not started"); }
     }
     private WebResourceResponse response(int status, String message) { return new WebResourceResponse("text/plain", "UTF-8", status, message, null, new ByteArrayInputStream(message.getBytes(StandardCharsets.UTF_8))); }
-    private void scheduleRender() { if (destroyed) return; main.removeCallbacks(render); main.postDelayed(render, 60); }
+    private void scheduleRender() { if (destroyed) return;fullSnapshotNeeded=true; main.removeCallbacks(render); main.postDelayed(render, 60); }
     @Override public void onStart() {
         super.onStart(); IntentFilter filter = new IntentFilter(LmaApp.UPDATE);
         if (Build.VERSION.SDK_INT >= 33) registerReceiver(receiver, filter, Context.RECEIVER_NOT_EXPORTED); else registerLegacyReceiver(filter);
@@ -177,6 +185,7 @@ public final class MainActivity extends Activity {
         });
     }
     public final class Bridge {
+        @JavascriptInterface public String themePreference() { return app.prefs.getString("theme", "dark"); }
         @JavascriptInterface public void theme(boolean dark) {
             main.post(() -> {
                 if (destroyed || nativeDark != null && nativeDark == dark) return;
@@ -197,6 +206,10 @@ public final class MainActivity extends Activity {
                 if (raw.length() > 70000) throw new IllegalArgumentException("操作数据过长");
                 command = new JSONObject(raw); String action = command.getString("action");
                 switch (action) {
+                    case "inspectChatIntent": command.put("result",app.chats.findIntent(command.getString("id")));break;
+                    case "inspectTools": command.put("result",app.chats.tools(command.getString("id")));break;
+                    case "chatPage": command.put("result",app.chats.page(command.getString("session"),command.optLong("before",Long.MAX_VALUE),60));break;
+                    case "chatSessions": command.put("result",app.chats.sessionPage(command.optLong("before",Long.MAX_VALUE),40));break;
                     case "inspectModel": app.store.inspectModel(command.getString("id")); app.emit(); break;
                     case "saveTaskDraft": if (app.taskDrafts == null) throw new IllegalStateException("草稿存储不可用"); command.put("result", app.taskDrafts.save(command.getJSONObject("request"), com.lma.app.core.TaskDrafts.revision(command))); app.emit(); break;
                     case "deleteTaskDraft": if (app.taskDrafts == null) throw new IllegalStateException("草稿存储不可用"); app.taskDrafts.remove(command.getString("id"), com.lma.app.core.TaskDrafts.revision(command)); app.emit(); break;

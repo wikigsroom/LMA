@@ -23,7 +23,10 @@ def main():
     rsp=out/'sources.rsp';rsp.write_text('\n'.join('"'+p.as_posix()+'"' for p in sources),encoding='utf-8')
     subprocess.run([shutil.which('javac'),'-encoding','UTF-8','--release','8','-Xlint:-options','-cp',str(dep),'-d',str(classes),'@'+str(rsp)],check=True)
     command=[shutil.which('java'),'-Dfile.encoding=UTF-8','-Dstdout.encoding=UTF-8','-Dstderr.encoding=UTF-8','-cp',str(classes)+os.pathsep+str(dep),'com.lma.app.ExpansionTest',str(ROOT),str(run)]
-    result=subprocess.run(command,capture_output=True,text=True,encoding='utf-8',errors='replace',timeout=90)
+    # This suite starts all preserved adapter workers sequentially, including
+    # cancellation fixtures. Keep the harness bounded without truncating the
+    # last families on a busy Windows host; this is not a model generation cap.
+    result=subprocess.run(command,capture_output=True,text=True,encoding='utf-8',errors='replace',timeout=240)
     if result.returncode:raise RuntimeError(result.stdout+result.stderr)
     java=json.loads(result.stdout.strip().splitlines()[-1])
     # MSVC native host, no emulator. This tiny executable contains no model or learned tensors.

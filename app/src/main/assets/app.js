@@ -58,9 +58,9 @@
     return m.task ? { 'text-generation': ['text'], 'text2text-generation': ['text'], 'image-text-to-text': ['text'], conversational: ['text'], 'text-to-image': ['image'], 'image-to-image': ['image'], 'image-to-3d': ['3d'], 'text-to-3d': ['3d'], 'text-to-video': ['video'], 'image-to-video': ['video'], 'video-to-video': ['video'], 'text-to-speech': ['audio'], 'text-to-audio': ['audio'], 'audio-to-audio': ['audio'] }[m.task] || [] : m.hub === undefined && m.family ? ['text'] : [];
   }
   function taskBadges(m, metadata) {
-    return outputTags(m).filter(function (task) { return taskNames[task]; }).map(function (task) { return '<span class="tag task-tag task-' + task + '"' + (metadata ? ' title="来自 HF 任务元数据，尚未验证本机运行能力"' : '') + '>' + taskNames[task] + (metadata ? ' · 元数据' : '') + '</span>'; }).join('');
+    return outputTags(m).filter(function (task) { return taskNames[task]; }).map(function (task) { return '<span class="tag task-tag task-' + task + '"' + (metadata ? ' title="来自 HF 任务元数据，尚未验证本机运行能力"' : '') + '>' + taskNames[task] + (metadata ? ' · 元数据' : '') + '</span>'; }).join('') + window.LMACapabilities.badges(m);
   }
-  function matchesTask(m) { return taskFilter === 'any' || outputTags(m).indexOf(taskFilter) >= 0; }
+  function matchesTask(m) { return (taskFilter === 'any' || outputTags(m).indexOf(taskFilter) >= 0) && window.LMACapabilities.matches(m); }
   function nativeAction(action, values) {
     if (!window.Android) { toast('请在 Android 应用中使用此功能'); return false; }
     var requestId = Date.now().toString(36) + '-' + (++requestSequence);
@@ -75,6 +75,7 @@
   function toast(message) { clearTimeout(toastTimer); $('toast').textContent = message; $('toast').hidden = false; toastTimer = setTimeout(function () { $('toast').hidden = true; }, 3200); }
   function route(next) {
     if (['models', 'chat', 'tasks', 'server', 'settings'].indexOf(next) < 0) return;
+    if(tab==='chat'&&next!=='chat')window.LMAConversation.release();
     closeModal(); tab = next;
     document.querySelectorAll('.page').forEach(function (el) { el.hidden = el.id !== 'page-' + next; el.classList.toggle('active', !el.hidden); });
     document.querySelectorAll('.nav-item').forEach(function (el) { var active = el.dataset.tab === next; el.classList.toggle('active', active); if (active) el.setAttribute('aria-current', 'page'); else el.removeAttribute('aria-current'); });
@@ -84,7 +85,7 @@
     if (next === 'chat') { renderChat(); resizeInput(); requestAnimationFrame(function () { $('messages').scrollTop = $('messages').scrollHeight; }); }
   }
   function applyTheme() {
-    var preference = state && state.settings ? state.settings.theme : 'system';
+    var preference = state && state.settings ? state.settings.theme : 'dark';
     var dark = preference === 'dark' || (preference === 'system' && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
     var effective = dark ? 'dark' : 'light'; if (appliedTheme === effective) return; appliedTheme = effective;
     document.documentElement.dataset.theme = effective;
@@ -95,6 +96,7 @@
       state = typeof raw === 'string' ? JSON.parse(raw) : raw;
       if (!state || !Array.isArray(state.models) || !state.settings || !state.engine) throw new Error('状态数据不完整');
       modelViews = null;
+      window.LMAConversation.receive();
       applyTheme(); renderRuntime(); if (tab === 'models') renderModels(); if (tab === 'chat') renderChat(); if (tab === 'server') renderServer(); renderHubFiles(); window.LMAFoundation.receive(); window.LMARecipes.receive(); window.LMAExpansion.receive();
       var tokenStatus = state.settings.hfTokenSet ? '已设置令牌' : '未设置令牌';
       if ($('hfTokenStatus').textContent !== tokenStatus) $('hfTokenStatus').textContent = tokenStatus;
@@ -201,7 +203,7 @@
     return '<button class="button secondary" data-action="' + action + '" data-direction="previous"' + (!previous || loading ? ' disabled' : '') + '>上一页</button><span>第 ' + esc(page || 1) + ' 页</span><button class="button secondary" data-action="' + action + '" data-direction="next"' + (!next || loading ? ' disabled' : '') + '>下一页</button>';
   }
   function renderHub() {
-    var h = hub(), content = $('contentFilter').value, source = $('catalogueSource').value, items = (h.items || []).filter(function (m) { return matchesTask(m) && window.LMACommunity.accepts(m, content, source); }), bundles = models().filter(function (m) { return m.isBundle && matchesTask(m) && window.LMACommunity.accepts(m, content, source) && window.LMACommunity.search(m, query); }), signature = JSON.stringify(['hub', h, models(), taskFilter, query, content, source]);
+    var h = hub(), content = $('contentFilter').value, source = $('catalogueSource').value, items = (h.items || []).filter(function (m) { return matchesTask(m) && window.LMACommunity.accepts(m, content, source); }), bundles = models().filter(function (m) { return m.isBundle && matchesTask(m) && window.LMACommunity.accepts(m, content, source) && window.LMACommunity.search(m, query); }), signature = JSON.stringify(['hub', h, models(), taskFilter, query, content, source, window.LMACapabilities.signature()]);
     if (signature === modelSignature) return; modelSignature = signature;
     $('modelListTitle').textContent = query ? 'Hugging Face 搜索结果' : '探索 Hugging Face';
     $('modelResultCount').textContent = (h.searching ? '正在连接…' : '本页 ' + items.length + ' 个仓库') + (bundles.length ? ' · ' + bundles.length + ' 套已登记配方' : '');
@@ -250,6 +252,7 @@
     }).join('');
   }
   function renderChat() {
+    if(window.LMAConversation.render())return;
     var e = engine(), m = modelById(e.modelId), chat = state && state.chat || {messages: []};
     $('chatModelName').textContent = m ? m.name : '选择模型';
     $('composerHint').textContent = replyWaiting() ? '回复已排队 · 点击方块取消' : e.generating ? '后台继续生成 · 点击方块停止' : textQueued() ? '发送后排队，轮到此回复时自动加载原模型' : e.state === 'ready' ? '回复在当前手机生成' : e.state === 'loading' || e.state === 'recovering' ? '模型正在加载，请稍候…' : '先加载一个模型，再开始对话';
@@ -414,8 +417,8 @@
     openModal(title, '<p>' + esc(message) + '</p><div class="modal-actions"><button class="button secondary" data-action="closeModal">取消</button><button class="button danger" data-action="confirmed" data-command="' + esc(action) + '" data-id="' + esc(id) + '">' + esc(button || '确认删除') + '</button></div>', 'confirm');
   }
   function pickModel() {
-    var installed = models().filter(function (m) { return m.installed && !m.isBundle; });
-    openModal('选择本地模型', installed.length ? '<p>加载后开启本机接口。文本回复与生成任务共用队列，自动切换引擎；队列空闲后恢复已选文本模型。</p>' + (['ready', 'loading', 'recovering', 'waiting', 'suspended'].indexOf(engine().state) >= 0 ? '<button class="button danger" data-action="stopTextModel">停止文本模型</button>' : '') + '<div class="modal-list">' + installed.map(function (m) { return '<div class="modal-list-item"><button data-action="load" data-id="' + esc(m.id) + '"><strong>' + esc(m.name) + '</strong><small>' + esc(m.quant) + ' · ' + bytes(m.installedBytes) + '</small></button>' + icon('arrow') + '</div>'; }).join('') + '</div>' : '<p>先下载一个模型，或从设备导入 GGUF 文件。</p><button class="button primary" data-action="tab" data-tab="models">前往模型库</button>', 'pickModel');
+    var installed = models().filter(function (m) { return m.installed && !m.isBundle && window.LMACapabilities.matches(m); });
+    openModal('选择本地模型', installed.length ? '<p>加载后开启本机接口。文本回复与生成任务共用队列，自动切换引擎；队列空闲后恢复已选文本模型。</p>' + (['ready', 'loading', 'recovering', 'waiting', 'suspended'].indexOf(engine().state) >= 0 ? '<button class="button danger" data-action="stopTextModel">停止文本模型</button>' : '') + '<div class="modal-list">' + installed.map(function (m) { return '<div class="modal-list-item"><button data-action="load" data-id="' + esc(m.id) + '"><strong>' + esc(m.name) + '</strong><small>' + esc(m.quant) + ' · ' + bytes(m.installedBytes) + window.LMACapabilities.badges(m) + '</small></button>' + icon('arrow') + '</div>'; }).join('') + '</div>' : '<p>先下载一个模型，或从设备导入 GGUF 文件。</p><button class="button primary" data-action="tab" data-tab="models">前往模型库</button>', 'pickModel');
   }
   function modelInfo(id) {
     var m = modelById(id); if (!m) return; var d = m.download || {}, u = m.uncensored || {};
@@ -438,6 +441,7 @@
       if (action === 'bundleInfo') window.LMACommunity.annotateModal(modelById(id));
       return;
     }
+    if (window.LMAConversation.handle(action,el)) return;
     switch (action) {
       case 'tab': route(el.dataset.tab); break;
       case 'showAll': selectFilter('all'); break;
@@ -460,7 +464,7 @@
       case 'load': if (nativeAction(action, {id: id})) { closeModal(); toast('正在加载模型'); } break;
       case 'deleteModel': m = modelById(id); if (m) confirmAction('删除模型文件', '删除“' + m.name + '”的本地文件和下载记录。需要时可以重新下载。', action, id); break;
       case 'confirmed': nativeAction(el.dataset.command, {id: id}); closeModal(); break;
-      case 'modelInfo': modelInfo(id); break;
+      case 'modelInfo': modelInfo(id); if(modelById(id)) $('modalContent').insertAdjacentHTML('beforeend',window.LMACapabilities.details(modelById(id))); break;
       case 'modelSettings': openModelSettings(id); break;
       case 'configPresets': showConfigPresets(el.dataset.field); break;
       case 'configValue': {
@@ -488,7 +492,7 @@
       case 'browseHub': closeModal(); selectFilter('all'); break;
       case 'addUrl': openModal('添加 GGUF 下载链接', '<form id="customModelForm"><label class="form-field"><span>模型名称</span><input name="name" required maxlength="160" placeholder="例如：我的 Qwen 1.7B"></label><label class="form-field"><span>HTTPS 下载链接</span><input name="url" type="url" required placeholder="https://huggingface.co/…/resolve/main/….gguf" autocapitalize="off" spellcheck="false"></label><label class="form-field"><span>SHA256（可选）</span><input name="sha256" pattern="[a-fA-F0-9]{64}" maxlength="64" placeholder="发布者提供的 64 位哈希" autocapitalize="off" spellcheck="false"></label><p class="modal-help">请确认模型使用当前推理组件支持的架构，且适合手机的内存容量。</p><button type="submit" class="button primary">添加并下载</button></form>', 'addUrl'); break;
       case 'importPicker': nativeAction(action); closeModal(); break;
-      case 'about': openModal('关于 LMA', '<p>LMA 0.3.0-dev.13 是本地模型工作台，由 Android 前台服务持有本机接口、任务和原生引擎。无需 ROOT；模型由你选择下载或导入。</p><p>界面、对话记录和推理在设备本地运行。模型下载会连接你选择的仓库；开启局域网后，持有 API 密钥的同网设备可以请求推理。</p><p>前台通知、唤醒锁与电池设置可帮助后台运行。系统强行停止、内存不足、厂商省电策略、发热或重启仍会影响服务。模型输出和速度尚需目标手机实测。</p><p>推理引擎：llama.cpp（MIT），由 ServLlama v1.2.2 分发的 Android ARM64 预编译组件。扩散 worker 使用 sd.cpp（MIT）和 MNN（Apache-2.0，仅匹配的 Sana 移动管线）；语音基座包含 sherpa-onnx（Apache-2.0）、MOSS Nano / SentencePiece（Apache-2.0）和 ONNX Runtime（MIT）。当前开发构建尚未完成真机验收。各模型按其来源仓库许可使用。</p><div class="modal-list"><div class="modal-list-item"><button data-action="engineLicense"><strong>llama.cpp MIT 许可证</strong><small>查看随应用附带的许可全文</small></button>' + icon('arrow') + '</div><div class="modal-list-item"><button data-action="notices"><strong>LMA 与其他依赖许可</strong><small>查看第三方许可全文</small></button>' + icon('arrow') + '</div></div>', 'about'); break;
+      case 'about': openModal('关于 LMA', '<img class="conversation-hero-logo" src="lma-logo.png" alt="LMA 21 号 Logo"><h3>把无审查 AI，装进口袋。</h3><p>Uncensored AI, right in your pocket.</p><p>LMA ' + esc(state&&state.version||'0.4.0') + ' · Android 本地模型工作台。模型、推理、任务链与媒体合成均在当前手机；模型由你选择下载或导入。</p><p>原生服务持有后台任务和接口。系统强行停止、内存、温控与厂商省电策略仍会影响执行；程序检查与实际模型质量分别记录。</p><p>Logo：21 号 Cobalt Vinyl / 钴蓝软胶。模型与开源组件遵循各自许可。</p><button class="button secondary" data-action="notices">查看开源许可</button><button class="button secondary" data-action="expansionNotices">语音 / 3D 组件许可</button>', 'about'); break;
       case 'engineLicense': openModal('llama.cpp · MIT License', '<div class="license-text">' + esc(window.LMA_LICENSE || 'MIT License\n\nCopyright (c) 2023-2026 The ggml authors\n\n完整许可证随 APK 的 licenses/LLAMA_CPP_LICENSE 一同分发，也位于项目 third_party/LLAMA_CPP_LICENSE。') + '</div>', 'license'); break;
       case 'notices': openModal('LMA 与第三方许可', Object.keys(window.LMA_NOTICES || {}).map(function (name) { return '<details class="license-notice"><summary>' + esc(name) + '</summary><div class="license-text">' + esc(window.LMA_NOTICES[name]) + '</div></details>'; }).join(''), 'license'); break;
     }
@@ -521,6 +525,7 @@
   $('chatInput').addEventListener('input', function () { resizeInput(); renderChat(); });
   $('chatInput').addEventListener('keydown', function (event) { if (event.key === 'Enter' && !event.shiftKey && !event.isComposing && event.keyCode !== 229) { event.preventDefault(); send(); } });
   function send() {
+    if(window.LMAConversation.send())return;
     if (engine().generating) { nativeAction('cancelChat'); return; }
     if (pendingDraft) return;
     var text = $('chatInput').value.trim();
@@ -593,8 +598,10 @@
   var themeMedia = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)');
   if (themeMedia) { if (themeMedia.addEventListener) themeMedia.addEventListener('change', applyTheme); else if (themeMedia.addListener) themeMedia.addListener(applyTheme); }
   var bridge = {state: function () { return state || {}; }, esc: esc, copy: copy, bytes: bytes, icon: icon, dispatch: nativeAction, result: commandResult, openModal: openModal, closeModal: closeModal, toast: toast, route: route, selectLocal: function () { route('models'); selectFilter('local'); }, confirm: confirmAction};
+  window.LMACapabilities.init(bridge,function(){modelSignature='';renderModels();});
+  window.LMAConversation.init(bridge,{richText:richText,textAvailable:textAvailable,resizeInput:resizeInput});
   window.LMAExpansion.init(bridge); window.LMACommunity.init(bridge); window.LMAFoundation.init(bridge); window.LMARecipes.init(bridge);
-  window.LMA = {receive: receive, back: function () { if (!$('modalBackdrop').hidden) { closeModal(); return true; } if (tab !== 'models') { route('models'); return true; } return false; }};
+  window.LMA = {receive: receive, receiveDelta:function(raw){if(!state)return;var delta=typeof raw==='string'?JSON.parse(raw):raw;if(delta.chat)state.chat=delta.chat;if(delta.engine)Object.assign(state.engine,delta.engine);if(delta.error!==undefined)state.error=delta.error;if(tab==='chat')renderChat();renderRuntime();}, back: function () { if (!$('modalBackdrop').hidden) { closeModal(); return true; } if (tab !== 'models') { route('models'); return true; } return false; }};
   hydrateIcons(document); updateFilters();
   if (window.Android) { try { if (window.Android.requestSnapshot) window.Android.requestSnapshot(); else receive(window.Android.getSnapshot()); } catch (e) { $('runtimeDetail').textContent = '等待原生服务连接…'; } }
   else { $('runtimeDetail').textContent = '界面预览 · 下载和推理请使用 Android 应用'; renderModels(); renderChat(); }

@@ -73,6 +73,10 @@ public final class OpenAiRequests {
     private static boolean contains(JSONArray values, String value) throws Exception { if (values != null) for (int i = 0; i < values.length(); i++) if (values.getString(i).equals(value)) return true; return false; }
     public static JSONObject nativeTask(JSONObject raw, LocalApi.Runtime runtime) throws Exception {
         fields(raw, "model", "type", "input", "parameters", "allowUnmeasured", "adapters");
+        if(raw.optString("type").equals("media.compose")){
+            if(!runtime.localComposition()||!raw.getString("model").equals(CompositionSpec.ID))throw invalid("model","Select the published built-in composition tool, not an AI model");
+            JSONObject result=DataFiles.copy(raw);result.remove("model");result.put("bundleId",CompositionSpec.ID);return CompositionSpec.validate(result);
+        }
         JSONObject model = model(runtime, raw.getString("model"), raw.getString("type"));
         JSONObject result = DataFiles.copy(raw); result.remove("model"); result.put("bundleId", model.getString("bundle_id"));
         if (result.has("adapters")) {
