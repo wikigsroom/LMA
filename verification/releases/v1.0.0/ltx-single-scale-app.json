@@ -1,0 +1,2174 @@
+{
+  "syntheticDescriptorPort": false,
+  "qualityAccepted": false,
+  "hostMediaPort": "ffmpeg_libx264_not_android",
+  "syntheticNeuralStages": true,
+  "hostFrameworkPort": true,
+  "numericalAccepted": false,
+  "productionEngineAndQueue": true,
+  "modelInference": false,
+  "assertions": 127,
+  "multiscale": false,
+  "runs": [
+    {
+      "bridgeFiles": {
+        "decode-noise.f32": {
+          "sha256": "0dc2961f4d6319666101caa214114c28d4eb1ad53cec86dc5d31bd3690351cd0",
+          "bytes": 4096
+        },
+        "frames.lma": {
+          "sha256": "d029637686b4a622818050128826931e3364bf3f0f99ae86c53f40819f13ac7e",
+          "bytes": 110620
+        },
+        "initial-tokens.f32": {
+          "sha256": "d3bf13dd44c59024bb58a1fdc076d642f82ce0ae7de11decb13ccee74676f19c",
+          "bytes": 4096
+        },
+        "caption.f32": {
+          "sha256": "82d3e319511d3c336b834a27578edfa7a097c3e0373e3238937d9a934e618bb7",
+          "bytes": 16384
+        },
+        "denoised-ncthw.f32": {
+          "sha256": "40867e0b9178b0645a19e6b5ba704c0e0d71609f14d52203a1b1168d15601a68",
+          "bytes": 4096
+        },
+        "decoded-ncthw.f32": {
+          "sha256": "ddfe340a808a763579a26071b28fbdc71693a91af0d54873062404c0a8a93e52",
+          "bytes": 442368
+        },
+        "denoised-tokens.f32": {
+          "sha256": "6f245a01bee2efded5bd62dc08dd28b7a7e3291501d34ee232b97b030f039152",
+          "bytes": 4096
+        }
+      },
+      "artifact": {
+        "lineage": {
+          "parentArtifacts": [],
+          "parentJobs": []
+        },
+        "jobId": "job_94689133dde14ef787ce3b4c6d0d56c6",
+        "createdAt": 1793636499171,
+        "metadata": {
+          "frameCount": 9,
+          "hostFfprobe": true,
+          "mime": "video/mp4",
+          "width": 64,
+          "height": 64
+        },
+        "filename": "artifact_e8080e1305f14415a7f8f7d41bd3cf75.mp4",
+        "provenance": {
+          "runtimeResources": {
+            "stopCode": "",
+            "thermalStopAt": 3,
+            "minimumAvailableStorageBytes": null,
+            "lastSampleAt": 0,
+            "startedAt": 1793636476834,
+            "probeErrors": 0,
+            "message": "",
+            "enabled": false,
+            "samples": 0,
+            "storageFloorBytes": 67108864,
+            "minimumAvailableRamBytes": null,
+            "maximumThermalStatus": -1,
+            "endedAt": 1793636499067,
+            "sampleIntervalMs": 2000,
+            "scope": "shared_system_availability_not_model_peak_memory",
+            "thermalKnown": false,
+            "status": "ended"
+          },
+          "request": {
+            "input": {
+              "prompt": "Explicit synthetic protocol fixture"
+            },
+            "adjustments": [],
+            "parameterSchemaVersion": 1,
+            "bundleId": "ltx_explicit_synthetic_fixture",
+            "allowUnmeasured": true,
+            "submissionHash": "3b65281d0e5bde0b5a9f3c5523c34a977620acf7349595f5d8521f07364f1a06",
+            "type": "video.generate",
+            "parameters": {
+              "frames": 9,
+              "seed": 42,
+              "width": 64,
+              "fps": 24,
+              "threads": 4,
+              "steps": 8,
+              "height": 64
+            },
+            "ltx098Plan": {
+              "decodeTimestep": 0.05,
+              "qualityAccepted": false,
+              "decodeNoiseScale": 0.025,
+              "promptEnhancement": false,
+              "textVariant": "google_community_t5_q5",
+              "guidanceScale": 1,
+              "profile": "ltx098_google_q5_linear_quadratic_8_v1",
+              "numericalAccepted": false,
+              "stgScale": 0,
+              "pipelineKind": "single_scale",
+              "parameters": {
+                "frames": 9,
+                "seed": 42,
+                "width": 64,
+                "fps": 24,
+                "threads": 4,
+                "steps": 8,
+                "height": 64
+              }
+            }
+          },
+          "execution": "same_android_phone",
+          "resourcePlan": {
+            "phase": "execution",
+            "estimatedPeakRamBytes": 0,
+            "thermalStatus": 0,
+            "availableStorageBytes": 466271944704,
+            "estimateKnown": false,
+            "adapterExtraRamGuardBytes": 0,
+            "checkedAt": 1793636476858,
+            "deviceValidated": false,
+            "budgetRamBytes": 5368709120,
+            "currentlyLowMemory": false,
+            "availableRamBytes": 6442450944,
+            "reservedRamBytes": 1073741824,
+            "outputReserveBytes": 134365184
+          },
+          "adapters": [],
+          "componentReceipts": {
+            "vae_data_0": {
+              "sha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+              "bytes": 4,
+              "expectedGitBlobSha1": "",
+              "expectedSha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+              "algorithm": "sha256"
+            },
+            "vae_data_1": {
+              "sha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+              "bytes": 4,
+              "expectedGitBlobSha1": "",
+              "expectedSha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+              "algorithm": "sha256"
+            },
+            "vae_graph_8": {
+              "sha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+              "bytes": 4,
+              "expectedGitBlobSha1": "",
+              "expectedSha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+              "algorithm": "sha256"
+            },
+            "vae_data_2": {
+              "sha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+              "bytes": 4,
+              "expectedGitBlobSha1": "",
+              "expectedSha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+              "algorithm": "sha256"
+            },
+            "vae_graph_7": {
+              "sha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+              "bytes": 4,
+              "expectedGitBlobSha1": "",
+              "expectedSha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+              "algorithm": "sha256"
+            },
+            "vae_data_3": {
+              "sha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+              "bytes": 4,
+              "expectedGitBlobSha1": "",
+              "expectedSha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+              "algorithm": "sha256"
+            },
+            "vae_graph_6": {
+              "sha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+              "bytes": 4,
+              "expectedGitBlobSha1": "",
+              "expectedSha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+              "algorithm": "sha256"
+            },
+            "text_encoder": {
+              "sha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+              "bytes": 4,
+              "expectedGitBlobSha1": "",
+              "expectedSha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+              "algorithm": "sha256"
+            },
+            "vae_data_4": {
+              "sha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+              "bytes": 4,
+              "expectedGitBlobSha1": "",
+              "expectedSha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+              "algorithm": "sha256"
+            },
+            "vae_data_5": {
+              "sha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+              "bytes": 4,
+              "expectedGitBlobSha1": "",
+              "expectedSha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+              "algorithm": "sha256"
+            },
+            "vae_manifest": {
+              "sha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+              "bytes": 4,
+              "expectedGitBlobSha1": "",
+              "expectedSha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+              "algorithm": "sha256"
+            },
+            "vae_data_6": {
+              "sha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+              "bytes": 4,
+              "expectedGitBlobSha1": "",
+              "expectedSha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+              "algorithm": "sha256"
+            },
+            "vae_data_7": {
+              "sha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+              "bytes": 4,
+              "expectedGitBlobSha1": "",
+              "expectedSha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+              "algorithm": "sha256"
+            },
+            "vae_data_8": {
+              "sha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+              "bytes": 4,
+              "expectedGitBlobSha1": "",
+              "expectedSha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+              "algorithm": "sha256"
+            },
+            "diffusion_model": {
+              "sha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+              "bytes": 4,
+              "expectedGitBlobSha1": "",
+              "expectedSha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+              "algorithm": "sha256"
+            },
+            "tokenizer_config": {
+              "sha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+              "bytes": 4,
+              "expectedGitBlobSha1": "",
+              "expectedSha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+              "algorithm": "sha256"
+            },
+            "vae_graph_1": {
+              "sha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+              "bytes": 4,
+              "expectedGitBlobSha1": "",
+              "expectedSha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+              "algorithm": "sha256"
+            },
+            "vae_graph_0": {
+              "sha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+              "bytes": 4,
+              "expectedGitBlobSha1": "",
+              "expectedSha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+              "algorithm": "sha256"
+            },
+            "vae_graph_5": {
+              "sha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+              "bytes": 4,
+              "expectedGitBlobSha1": "",
+              "expectedSha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+              "algorithm": "sha256"
+            },
+            "vae_graph_4": {
+              "sha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+              "bytes": 4,
+              "expectedGitBlobSha1": "",
+              "expectedSha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+              "algorithm": "sha256"
+            },
+            "vae_graph_3": {
+              "sha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+              "bytes": 4,
+              "expectedGitBlobSha1": "",
+              "expectedSha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+              "algorithm": "sha256"
+            },
+            "vae_graph_2": {
+              "sha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+              "bytes": 4,
+              "expectedGitBlobSha1": "",
+              "expectedSha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+              "algorithm": "sha256"
+            }
+          },
+          "engine": {
+            "qualityAccepted": false,
+            "requiredModelCapability": "text_to_video",
+            "engine": "ltx098_native",
+            "deviceValidated": false,
+            "available": true,
+            "numericalAccepted": false
+          },
+          "adapterComponentReceipts": [],
+          "bundle": {
+            "schema": "lma.model-bundle/1",
+            "components": [
+              {
+                "path": "ltx098-dit.gguf",
+                "role": "diffusion_model",
+                "sha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+                "bytes": 4,
+                "format": "gguf"
+              },
+              {
+                "path": "stage-00.onnx",
+                "role": "vae_graph_0",
+                "sha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+                "bytes": 4,
+                "format": "onnx"
+              },
+              {
+                "path": "stage-00.onnx.data",
+                "role": "vae_data_0",
+                "sha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+                "bytes": 4,
+                "format": "onnx_data"
+              },
+              {
+                "path": "stage-01.onnx",
+                "role": "vae_graph_1",
+                "sha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+                "bytes": 4,
+                "format": "onnx"
+              },
+              {
+                "path": "stage-01.onnx.data",
+                "role": "vae_data_1",
+                "sha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+                "bytes": 4,
+                "format": "onnx_data"
+              },
+              {
+                "path": "stage-02.onnx",
+                "role": "vae_graph_2",
+                "sha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+                "bytes": 4,
+                "format": "onnx"
+              },
+              {
+                "path": "stage-02.onnx.data",
+                "role": "vae_data_2",
+                "sha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+                "bytes": 4,
+                "format": "onnx_data"
+              },
+              {
+                "path": "stage-03.onnx",
+                "role": "vae_graph_3",
+                "sha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+                "bytes": 4,
+                "format": "onnx"
+              },
+              {
+                "path": "stage-03.onnx.data",
+                "role": "vae_data_3",
+                "sha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+                "bytes": 4,
+                "format": "onnx_data"
+              },
+              {
+                "path": "stage-04.onnx",
+                "role": "vae_graph_4",
+                "sha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+                "bytes": 4,
+                "format": "onnx"
+              },
+              {
+                "path": "stage-04.onnx.data",
+                "role": "vae_data_4",
+                "sha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+                "bytes": 4,
+                "format": "onnx_data"
+              },
+              {
+                "path": "stage-05.onnx",
+                "role": "vae_graph_5",
+                "sha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+                "bytes": 4,
+                "format": "onnx"
+              },
+              {
+                "path": "stage-05.onnx.data",
+                "role": "vae_data_5",
+                "sha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+                "bytes": 4,
+                "format": "onnx_data"
+              },
+              {
+                "path": "stage-06.onnx",
+                "role": "vae_graph_6",
+                "sha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+                "bytes": 4,
+                "format": "onnx"
+              },
+              {
+                "path": "stage-06.onnx.data",
+                "role": "vae_data_6",
+                "sha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+                "bytes": 4,
+                "format": "onnx_data"
+              },
+              {
+                "path": "stage-07.onnx",
+                "role": "vae_graph_7",
+                "sha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+                "bytes": 4,
+                "format": "onnx"
+              },
+              {
+                "path": "stage-07.onnx.data",
+                "role": "vae_data_7",
+                "sha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+                "bytes": 4,
+                "format": "onnx_data"
+              },
+              {
+                "path": "stage-08.onnx",
+                "role": "vae_graph_8",
+                "sha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+                "bytes": 4,
+                "format": "onnx"
+              },
+              {
+                "path": "stage-08.onnx.data",
+                "role": "vae_data_8",
+                "sha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+                "bytes": 4,
+                "format": "onnx_data"
+              },
+              {
+                "path": "ltx098-vae.json",
+                "role": "vae_manifest",
+                "sha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+                "bytes": 4,
+                "format": "json"
+              },
+              {
+                "path": "t5-v1_1-xxl-encoder-Q5_K_M.gguf",
+                "license": "Apache-2.0",
+                "role": "text_encoder",
+                "sha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+                "bytes": 4,
+                "format": "gguf"
+              },
+              {
+                "path": "tokenizer_config.json",
+                "license": "Apache-2.0",
+                "role": "tokenizer_config",
+                "sha256": "9f64a747e1b97f131fabb6b447296c9b6f0201e79fb3c5356e6c77e89b6a806a",
+                "bytes": 4,
+                "format": "json"
+              }
+            ],
+            "capabilities": [
+              "text_to_video",
+              "runtime_assets",
+              "derived_assets",
+              "community_google_t5_q5",
+              "single_scale",
+              "experimental_numerical_gates_open"
+            ],
+            "evidence": {
+              "qualityAccepted": false,
+              "numericalAccepted": false,
+              "sourceReviewed": true,
+              "physicalDeviceTests": 0,
+              "status": "experimental_adapter_numerical_gates_open"
+            },
+            "modelId": "ltx_video_2b_098_distilled_google_q5",
+            "description": "先在源模型中准备并显式关联 DiT / 九段 VAE，再自行下载或导入 T5 与分词配置；复用已有组件。CPU T5 → Vulkan 八步采样 → CPU VAE → 手机 AVC 编码。Google/community T5 Q5 单尺度变体，非官方 PixArt / 多尺度默认；数值与画质尚未通过验收。",
+            "resources": {
+              "known": false,
+              "estimatedPeakRamBytes": 0
+            },
+            "recipeId": "ltx098_single_scale_google_q5_v1",
+            "catalogue": true,
+            "pipeline": "ltx098_single_scale_google_q5",
+            "license": {
+              "name": "LTX-Video Open Weights 0.x; Google/community T5 Apache-2.0",
+              "url": "https://huggingface.co/Lightricks/LTX-Video/tree/8984fa25007f376c1a299016d0957a37a2f797bb"
+            },
+            "engine": "ltx098_native",
+            "name": "旧 LTX 0.9.8 · 本机视频实验配方",
+            "backend": "vulkan",
+            "id": "ltx_explicit_synthetic_fixture",
+            "parameters": {
+              "fields": {
+                "frames": {
+                  "multipleOf": 8,
+                  "default": 33,
+                  "presets": [
+                    9,
+                    17,
+                    25,
+                    33
+                  ],
+                  "limitSource": "explicit_old_ltx_profile",
+                  "maximum": 33,
+                  "alignmentOrigin": 1,
+                  "label": "视频帧数",
+                  "type": "integer",
+                  "minimum": 9
+                },
+                "seed": {
+                  "default": -1,
+                  "presets": [
+                    -1,
+                    42
+                  ],
+                  "limitSource": "explicit_old_ltx_profile",
+                  "maximum": 2147483647,
+                  "label": "种子（-1 自动）",
+                  "type": "integer",
+                  "minimum": -1
+                },
+                "width": {
+                  "multipleOf": 32,
+                  "default": 256,
+                  "presets": [
+                    128,
+                    192,
+                    256
+                  ],
+                  "limitSource": "explicit_old_ltx_profile",
+                  "maximum": 256,
+                  "label": "宽度",
+                  "type": "integer",
+                  "minimum": 64
+                },
+                "fps": {
+                  "default": 24,
+                  "presets": [
+                    8,
+                    16,
+                    24
+                  ],
+                  "limitSource": "explicit_old_ltx_profile",
+                  "maximum": 60,
+                  "label": "帧率",
+                  "type": "integer",
+                  "minimum": 1
+                },
+                "threads": {
+                  "default": 4,
+                  "presets": [
+                    2,
+                    4,
+                    8
+                  ],
+                  "limitSource": "explicit_old_ltx_profile",
+                  "maximum": 8,
+                  "label": "CPU 线程",
+                  "type": "integer",
+                  "minimum": 1
+                },
+                "steps": {
+                  "help": "此蒸馏配方固定八步；单尺度、CFG=1、STG=0，数值与画质尚未验收。",
+                  "default": 8,
+                  "presets": [
+                    8
+                  ],
+                  "limitSource": "explicit_old_ltx_profile",
+                  "maximum": 8,
+                  "label": "固定蒸馏步数",
+                  "type": "integer",
+                  "minimum": 8
+                },
+                "height": {
+                  "multipleOf": 32,
+                  "default": 256,
+                  "presets": [
+                    128,
+                    192,
+                    256
+                  ],
+                  "limitSource": "explicit_old_ltx_profile",
+                  "maximum": 256,
+                  "label": "高度",
+                  "type": "integer",
+                  "minimum": 64
+                }
+              },
+              "version": 1
+            },
+            "tasks": [
+              "video"
+            ],
+            "architecture": "ltx098"
+          },
+          "device": {
+            "hostFrameworkPort": true,
+            "physicalAndroid": false
+          },
+          "engineExecution": {
+            "details": {
+              "effectiveParameters": {
+                "frames": 9,
+                "seed": 42,
+                "width": 64,
+                "fps": 24,
+                "threads": 4,
+                "steps": 8,
+                "height": 64
+              },
+              "encodedVideoBytes": 3036,
+              "qualityAccepted": false,
+              "guidanceScale": 1,
+              "profile": "ltx098_google_q5_linear_quadratic_8_v1",
+              "numericalAccepted": false,
+              "mediaBackend": "android_mediacodec_avc",
+              "pipelineKind": "single_scale",
+              "textTokens": 1,
+              "samplerBackend": "vulkan",
+              "promptTruncated": false,
+              "decodeTimestep": 0.05,
+              "decodeNoiseScale": 0.025,
+              "promptEnhancement": false,
+              "textVariant": "google_community_t5_q5",
+              "stageLoading": "sequential_processes",
+              "stages": [
+                {
+                  "seconds": 1.7567592,
+                  "stage": "video_noise",
+                  "bytes": 4096
+                },
+                {
+                  "seconds": 0.1625862,
+                  "stage": "video_text_encoding",
+                  "bytes": 16384
+                },
+                {
+                  "seconds": 0.1317913,
+                  "stage": "video_sampling",
+                  "bytes": 4096
+                },
+                {
+                  "seconds": 0.917674,
+                  "stage": "video_latent_layout",
+                  "bytes": 4096
+                },
+                {
+                  "seconds": 0.1554189,
+                  "stage": "video_decoding",
+                  "bytes": 442368
+                },
+                {
+                  "seconds": 1.5705689,
+                  "stage": "video_frames",
+                  "bytes": 110620
+                }
+              ],
+              "stgScale": 0,
+              "textBackend": "cpu",
+              "completeGeneratedFrames": true,
+              "parameters": {
+                "frames": 9,
+                "seed": 42,
+                "width": 64,
+                "fps": 24,
+                "threads": 4,
+                "steps": 8,
+                "height": 64
+              },
+              "vaeBackend": "cpu"
+            }
+          }
+        },
+        "sha256": "b0fff475ad542cf6cf133cc60c0ad0c1251cf6bc1a04c7be83f5846b8eb020eb",
+        "bytes": 3036,
+        "origin": {
+          "kind": "generated"
+        },
+        "id": "artifact_e8080e1305f14415a7f8f7d41bd3cf75"
+      },
+      "videoSha256": "b0fff475ad542cf6cf133cc60c0ad0c1251cf6bc1a04c7be83f5846b8eb020eb",
+      "videoBytes": 3036,
+      "job": {
+        "request": {
+          "input": {
+            "prompt": "Explicit synthetic protocol fixture"
+          },
+          "adjustments": [],
+          "parameterSchemaVersion": 1,
+          "bundleId": "ltx_explicit_synthetic_fixture",
+          "allowUnmeasured": true,
+          "submissionHash": "3b65281d0e5bde0b5a9f3c5523c34a977620acf7349595f5d8521f07364f1a06",
+          "type": "video.generate",
+          "parameters": {
+            "frames": 9,
+            "seed": 42,
+            "width": 64,
+            "fps": 24,
+            "threads": 4,
+            "steps": 8,
+            "height": 64
+          },
+          "ltx098Plan": {
+            "decodeTimestep": 0.05,
+            "qualityAccepted": false,
+            "decodeNoiseScale": 0.025,
+            "promptEnhancement": false,
+            "textVariant": "google_community_t5_q5",
+            "guidanceScale": 1,
+            "profile": "ltx098_google_q5_linear_quadratic_8_v1",
+            "numericalAccepted": false,
+            "stgScale": 0,
+            "pipelineKind": "single_scale",
+            "parameters": {
+              "frames": 9,
+              "seed": 42,
+              "width": 64,
+              "fps": 24,
+              "threads": 4,
+              "steps": 8,
+              "height": 64
+            }
+          }
+        },
+        "idempotencyKey": "ltx_succeeded",
+        "startedAt": 1793636475544,
+        "error": "",
+        "engineExecution": {
+          "effectiveParameters": {
+            "frames": 9,
+            "seed": 42,
+            "width": 64,
+            "fps": 24,
+            "threads": 4,
+            "steps": 8,
+            "height": 64
+          },
+          "encodedVideoBytes": 3036,
+          "qualityAccepted": false,
+          "guidanceScale": 1,
+          "profile": "ltx098_google_q5_linear_quadratic_8_v1",
+          "numericalAccepted": false,
+          "mediaBackend": "android_mediacodec_avc",
+          "pipelineKind": "single_scale",
+          "textTokens": 1,
+          "samplerBackend": "vulkan",
+          "promptTruncated": false,
+          "decodeTimestep": 0.05,
+          "decodeNoiseScale": 0.025,
+          "promptEnhancement": false,
+          "textVariant": "google_community_t5_q5",
+          "stageLoading": "sequential_processes",
+          "stages": [
+            {
+              "seconds": 1.7567592,
+              "stage": "video_noise",
+              "bytes": 4096
+            },
+            {
+              "seconds": 0.1625862,
+              "stage": "video_text_encoding",
+              "bytes": 16384
+            },
+            {
+              "seconds": 0.1317913,
+              "stage": "video_sampling",
+              "bytes": 4096
+            },
+            {
+              "seconds": 0.917674,
+              "stage": "video_latent_layout",
+              "bytes": 4096
+            },
+            {
+              "seconds": 0.1554189,
+              "stage": "video_decoding",
+              "bytes": 442368
+            },
+            {
+              "seconds": 1.5705689,
+              "stage": "video_frames",
+              "bytes": 110620
+            }
+          ],
+          "stgScale": 0,
+          "textBackend": "cpu",
+          "completeGeneratedFrames": true,
+          "parameters": {
+            "frames": 9,
+            "seed": 42,
+            "width": 64,
+            "fps": 24,
+            "threads": 4,
+            "steps": 8,
+            "height": 64
+          },
+          "vaeBackend": "cpu"
+        },
+        "finishedAt": 1793636499826,
+        "runtimeResources": {
+          "stopCode": "",
+          "thermalStopAt": 3,
+          "minimumAvailableStorageBytes": null,
+          "lastSampleAt": 0,
+          "startedAt": 1793636476834,
+          "probeErrors": 0,
+          "message": "",
+          "enabled": false,
+          "samples": 0,
+          "storageFloorBytes": 67108864,
+          "minimumAvailableRamBytes": null,
+          "maximumThermalStatus": -1,
+          "endedAt": 1793636499067,
+          "sampleIntervalMs": 2000,
+          "scope": "shared_system_availability_not_model_peak_memory",
+          "thermalKnown": false,
+          "status": "ended"
+        },
+        "createdAt": 1793636474788,
+        "stage": "encoding",
+        "progress": null,
+        "id": "job_94689133dde14ef787ce3b4c6d0d56c6",
+        "state": "succeeded",
+        "artifacts": [
+          "artifact_e8080e1305f14415a7f8f7d41bd3cf75"
+        ]
+      },
+      "actualChildren": 6,
+      "case": "succeeded"
+    },
+    {
+      "bridgeFiles": {},
+      "job": {
+        "request": {
+          "input": {
+            "prompt": "Explicit synthetic protocol fixture"
+          },
+          "adjustments": [],
+          "parameterSchemaVersion": 1,
+          "bundleId": "ltx_explicit_synthetic_fixture",
+          "allowUnmeasured": true,
+          "submissionHash": "3b65281d0e5bde0b5a9f3c5523c34a977620acf7349595f5d8521f07364f1a06",
+          "type": "video.generate",
+          "parameters": {
+            "frames": 9,
+            "seed": 42,
+            "width": 64,
+            "fps": 24,
+            "threads": 4,
+            "steps": 8,
+            "height": 64
+          },
+          "ltx098Plan": {
+            "decodeTimestep": 0.05,
+            "qualityAccepted": false,
+            "decodeNoiseScale": 0.025,
+            "promptEnhancement": false,
+            "textVariant": "google_community_t5_q5",
+            "guidanceScale": 1,
+            "profile": "ltx098_google_q5_linear_quadratic_8_v1",
+            "numericalAccepted": false,
+            "stgScale": 0,
+            "pipelineKind": "single_scale",
+            "parameters": {
+              "frames": 9,
+              "seed": 42,
+              "width": 64,
+              "fps": 24,
+              "threads": 4,
+              "steps": 8,
+              "height": 64
+            }
+          }
+        },
+        "idempotencyKey": "ltx_bad_text",
+        "startedAt": 1793636502546,
+        "error": "旧 LTX T5 桥接格式不匹配",
+        "engineExecution": {
+          "effectiveParameters": {
+            "frames": 9,
+            "seed": 42,
+            "width": 64,
+            "fps": 24,
+            "threads": 4,
+            "steps": 8,
+            "height": 64
+          },
+          "qualityAccepted": false,
+          "guidanceScale": 1,
+          "profile": "ltx098_google_q5_linear_quadratic_8_v1",
+          "numericalAccepted": false,
+          "mediaBackend": "android_mediacodec_avc",
+          "pipelineKind": "single_scale",
+          "samplerBackend": "vulkan",
+          "decodeTimestep": 0.05,
+          "decodeNoiseScale": 0.025,
+          "promptEnhancement": false,
+          "textVariant": "google_community_t5_q5",
+          "stageLoading": "sequential_processes",
+          "stages": [
+            {
+              "seconds": 1.887789,
+              "stage": "video_noise",
+              "bytes": 4096
+            }
+          ],
+          "stgScale": 0,
+          "textBackend": "cpu",
+          "parameters": {
+            "frames": 9,
+            "seed": 42,
+            "width": 64,
+            "fps": 24,
+            "threads": 4,
+            "steps": 8,
+            "height": 64
+          },
+          "vaeBackend": "cpu"
+        },
+        "finishedAt": 1793636512308,
+        "runtimeResources": {
+          "stopCode": "",
+          "thermalStopAt": 3,
+          "minimumAvailableStorageBytes": null,
+          "lastSampleAt": 0,
+          "startedAt": 1793636504244,
+          "probeErrors": 0,
+          "message": "",
+          "enabled": false,
+          "samples": 0,
+          "storageFloorBytes": 67108864,
+          "minimumAvailableRamBytes": null,
+          "maximumThermalStatus": -1,
+          "endedAt": 1793636512306,
+          "sampleIntervalMs": 2000,
+          "scope": "shared_system_availability_not_model_peak_memory",
+          "thermalKnown": false,
+          "status": "ended"
+        },
+        "createdAt": 1793636501792,
+        "stage": "video_text_encoding",
+        "failure": {
+          "code": "local_execution_error",
+          "checkpointResumable": false,
+          "nextAction": "查看原始阶段和错误，编辑参数后创建新尝试；保留本次记录"
+        },
+        "progress": null,
+        "id": "job_2e56b139ed364f249a8a8c944b25b683",
+        "state": "failed",
+        "artifacts": []
+      },
+      "actualChildren": 2,
+      "case": "bad_text"
+    },
+    {
+      "bridgeFiles": {},
+      "job": {
+        "request": {
+          "input": {
+            "prompt": "Explicit synthetic protocol fixture"
+          },
+          "adjustments": [],
+          "parameterSchemaVersion": 1,
+          "bundleId": "ltx_explicit_synthetic_fixture",
+          "allowUnmeasured": true,
+          "submissionHash": "3b65281d0e5bde0b5a9f3c5523c34a977620acf7349595f5d8521f07364f1a06",
+          "type": "video.generate",
+          "parameters": {
+            "frames": 9,
+            "seed": 42,
+            "width": 64,
+            "fps": 24,
+            "threads": 4,
+            "steps": 8,
+            "height": 64
+          },
+          "ltx098Plan": {
+            "decodeTimestep": 0.05,
+            "qualityAccepted": false,
+            "decodeNoiseScale": 0.025,
+            "promptEnhancement": false,
+            "textVariant": "google_community_t5_q5",
+            "guidanceScale": 1,
+            "profile": "ltx098_google_q5_linear_quadratic_8_v1",
+            "numericalAccepted": false,
+            "stgScale": 0,
+            "pipelineKind": "single_scale",
+            "parameters": {
+              "frames": 9,
+              "seed": 42,
+              "width": 64,
+              "fps": 24,
+              "threads": 4,
+              "steps": 8,
+              "height": 64
+            }
+          }
+        },
+        "idempotencyKey": "ltx_bad_sample",
+        "startedAt": 1793636514420,
+        "error": "旧 LTX 采样阶段未完整执行",
+        "engineExecution": {
+          "effectiveParameters": {
+            "frames": 9,
+            "seed": 42,
+            "width": 64,
+            "fps": 24,
+            "threads": 4,
+            "steps": 8,
+            "height": 64
+          },
+          "qualityAccepted": false,
+          "guidanceScale": 1,
+          "profile": "ltx098_google_q5_linear_quadratic_8_v1",
+          "numericalAccepted": false,
+          "mediaBackend": "android_mediacodec_avc",
+          "pipelineKind": "single_scale",
+          "textTokens": 1,
+          "samplerBackend": "vulkan",
+          "promptTruncated": false,
+          "decodeTimestep": 0.05,
+          "decodeNoiseScale": 0.025,
+          "promptEnhancement": false,
+          "textVariant": "google_community_t5_q5",
+          "stageLoading": "sequential_processes",
+          "stages": [
+            {
+              "seconds": 3.0580362,
+              "stage": "video_noise",
+              "bytes": 4096
+            },
+            {
+              "seconds": 0.1457029,
+              "stage": "video_text_encoding",
+              "bytes": 16384
+            }
+          ],
+          "stgScale": 0,
+          "textBackend": "cpu",
+          "parameters": {
+            "frames": 9,
+            "seed": 42,
+            "width": 64,
+            "fps": 24,
+            "threads": 4,
+            "steps": 8,
+            "height": 64
+          },
+          "vaeBackend": "cpu"
+        },
+        "finishedAt": 1793636531032,
+        "runtimeResources": {
+          "stopCode": "",
+          "thermalStopAt": 3,
+          "minimumAvailableStorageBytes": null,
+          "lastSampleAt": 0,
+          "startedAt": 1793636515537,
+          "probeErrors": 0,
+          "message": "",
+          "enabled": false,
+          "samples": 0,
+          "storageFloorBytes": 67108864,
+          "minimumAvailableRamBytes": null,
+          "maximumThermalStatus": -1,
+          "endedAt": 1793636531032,
+          "sampleIntervalMs": 2000,
+          "scope": "shared_system_availability_not_model_peak_memory",
+          "thermalKnown": false,
+          "status": "ended"
+        },
+        "createdAt": 1793636513882,
+        "stage": "video_sampling",
+        "failure": {
+          "code": "local_execution_error",
+          "checkpointResumable": false,
+          "nextAction": "查看原始阶段和错误，编辑参数后创建新尝试；保留本次记录"
+        },
+        "progress": null,
+        "id": "job_8b9d1c1eb38f434cbaf986eec2165180",
+        "state": "failed",
+        "artifacts": []
+      },
+      "actualChildren": 3,
+      "case": "bad_sample"
+    },
+    {
+      "bridgeFiles": {},
+      "job": {
+        "request": {
+          "input": {
+            "prompt": "Explicit synthetic protocol fixture"
+          },
+          "adjustments": [],
+          "parameterSchemaVersion": 1,
+          "bundleId": "ltx_explicit_synthetic_fixture",
+          "allowUnmeasured": true,
+          "submissionHash": "3b65281d0e5bde0b5a9f3c5523c34a977620acf7349595f5d8521f07364f1a06",
+          "type": "video.generate",
+          "parameters": {
+            "frames": 9,
+            "seed": 42,
+            "width": 64,
+            "fps": 24,
+            "threads": 4,
+            "steps": 8,
+            "height": 64
+          },
+          "ltx098Plan": {
+            "decodeTimestep": 0.05,
+            "qualityAccepted": false,
+            "decodeNoiseScale": 0.025,
+            "promptEnhancement": false,
+            "textVariant": "google_community_t5_q5",
+            "guidanceScale": 1,
+            "profile": "ltx098_google_q5_linear_quadratic_8_v1",
+            "numericalAccepted": false,
+            "stgScale": 0,
+            "pipelineKind": "single_scale",
+            "parameters": {
+              "frames": 9,
+              "seed": 42,
+              "width": 64,
+              "fps": 24,
+              "threads": 4,
+              "steps": 8,
+              "height": 64
+            }
+          }
+        },
+        "idempotencyKey": "ltx_bad_vae",
+        "startedAt": 1793636534093,
+        "error": "旧 LTX VAE 阶段或会话释放不完整",
+        "engineExecution": {
+          "effectiveParameters": {
+            "frames": 9,
+            "seed": 42,
+            "width": 64,
+            "fps": 24,
+            "threads": 4,
+            "steps": 8,
+            "height": 64
+          },
+          "qualityAccepted": false,
+          "guidanceScale": 1,
+          "profile": "ltx098_google_q5_linear_quadratic_8_v1",
+          "numericalAccepted": false,
+          "mediaBackend": "android_mediacodec_avc",
+          "pipelineKind": "single_scale",
+          "textTokens": 1,
+          "samplerBackend": "vulkan",
+          "promptTruncated": false,
+          "decodeTimestep": 0.05,
+          "decodeNoiseScale": 0.025,
+          "promptEnhancement": false,
+          "textVariant": "google_community_t5_q5",
+          "stageLoading": "sequential_processes",
+          "stages": [
+            {
+              "seconds": 1.5607002,
+              "stage": "video_noise",
+              "bytes": 4096
+            },
+            {
+              "seconds": 0.1216459,
+              "stage": "video_text_encoding",
+              "bytes": 16384
+            },
+            {
+              "seconds": 0.1446394,
+              "stage": "video_sampling",
+              "bytes": 4096
+            }
+          ],
+          "stgScale": 0,
+          "textBackend": "cpu",
+          "parameters": {
+            "frames": 9,
+            "seed": 42,
+            "width": 64,
+            "fps": 24,
+            "threads": 4,
+            "steps": 8,
+            "height": 64
+          },
+          "vaeBackend": "cpu"
+        },
+        "finishedAt": 1793636549116,
+        "runtimeResources": {
+          "stopCode": "",
+          "thermalStopAt": 3,
+          "minimumAvailableStorageBytes": null,
+          "lastSampleAt": 0,
+          "startedAt": 1793636535723,
+          "probeErrors": 0,
+          "message": "",
+          "enabled": false,
+          "samples": 0,
+          "storageFloorBytes": 67108864,
+          "minimumAvailableRamBytes": null,
+          "maximumThermalStatus": -1,
+          "endedAt": 1793636549114,
+          "sampleIntervalMs": 2000,
+          "scope": "shared_system_availability_not_model_peak_memory",
+          "thermalKnown": false,
+          "status": "ended"
+        },
+        "createdAt": 1793636533423,
+        "stage": "video_decoding",
+        "failure": {
+          "code": "local_execution_error",
+          "checkpointResumable": false,
+          "nextAction": "查看原始阶段和错误，编辑参数后创建新尝试；保留本次记录"
+        },
+        "progress": null,
+        "id": "job_d24163d5a2cd493da597d87355920c57",
+        "state": "failed",
+        "artifacts": []
+      },
+      "actualChildren": 5,
+      "case": "bad_vae"
+    },
+    {
+      "bridgeFiles": {},
+      "job": {
+        "request": {
+          "input": {
+            "prompt": "Explicit synthetic protocol fixture"
+          },
+          "adjustments": [],
+          "parameterSchemaVersion": 1,
+          "bundleId": "ltx_explicit_synthetic_fixture",
+          "allowUnmeasured": true,
+          "submissionHash": "3b65281d0e5bde0b5a9f3c5523c34a977620acf7349595f5d8521f07364f1a06",
+          "type": "video.generate",
+          "parameters": {
+            "frames": 9,
+            "seed": 42,
+            "width": 64,
+            "fps": 24,
+            "threads": 4,
+            "steps": 8,
+            "height": 64
+          },
+          "ltx098Plan": {
+            "decodeTimestep": 0.05,
+            "qualityAccepted": false,
+            "decodeNoiseScale": 0.025,
+            "promptEnhancement": false,
+            "textVariant": "google_community_t5_q5",
+            "guidanceScale": 1,
+            "profile": "ltx098_google_q5_linear_quadratic_8_v1",
+            "numericalAccepted": false,
+            "stgScale": 0,
+            "pipelineKind": "single_scale",
+            "parameters": {
+              "frames": 9,
+              "seed": 42,
+              "width": 64,
+              "fps": 24,
+              "threads": 4,
+              "steps": 8,
+              "height": 64
+            }
+          }
+        },
+        "idempotencyKey": "ltx_missing_receipt",
+        "startedAt": 1793636552059,
+        "error": "本地阶段未完整完成：video_text_encoding",
+        "engineExecution": {
+          "effectiveParameters": {
+            "frames": 9,
+            "seed": 42,
+            "width": 64,
+            "fps": 24,
+            "threads": 4,
+            "steps": 8,
+            "height": 64
+          },
+          "qualityAccepted": false,
+          "guidanceScale": 1,
+          "profile": "ltx098_google_q5_linear_quadratic_8_v1",
+          "numericalAccepted": false,
+          "mediaBackend": "android_mediacodec_avc",
+          "pipelineKind": "single_scale",
+          "samplerBackend": "vulkan",
+          "decodeTimestep": 0.05,
+          "decodeNoiseScale": 0.025,
+          "promptEnhancement": false,
+          "textVariant": "google_community_t5_q5",
+          "stageLoading": "sequential_processes",
+          "stages": [
+            {
+              "seconds": 2.1408351,
+              "stage": "video_noise",
+              "bytes": 4096
+            }
+          ],
+          "stgScale": 0,
+          "textBackend": "cpu",
+          "parameters": {
+            "frames": 9,
+            "seed": 42,
+            "width": 64,
+            "fps": 24,
+            "threads": 4,
+            "steps": 8,
+            "height": 64
+          },
+          "vaeBackend": "cpu"
+        },
+        "finishedAt": 1793636565267,
+        "runtimeResources": {
+          "stopCode": "",
+          "thermalStopAt": 3,
+          "minimumAvailableStorageBytes": null,
+          "lastSampleAt": 0,
+          "startedAt": 1793636553340,
+          "probeErrors": 0,
+          "message": "",
+          "enabled": false,
+          "samples": 0,
+          "storageFloorBytes": 67108864,
+          "minimumAvailableRamBytes": null,
+          "maximumThermalStatus": -1,
+          "endedAt": 1793636565266,
+          "sampleIntervalMs": 2000,
+          "scope": "shared_system_availability_not_model_peak_memory",
+          "thermalKnown": false,
+          "status": "ended"
+        },
+        "createdAt": 1793636551384,
+        "stage": "video_text_encoding",
+        "failure": {
+          "code": "local_execution_error",
+          "checkpointResumable": false,
+          "nextAction": "查看原始阶段和错误，编辑参数后创建新尝试；保留本次记录"
+        },
+        "progress": null,
+        "id": "job_aec9eda787c4465580581636e144fff3",
+        "state": "failed",
+        "artifacts": []
+      },
+      "actualChildren": 2,
+      "case": "missing_receipt"
+    },
+    {
+      "bridgeFiles": {},
+      "job": {
+        "request": {
+          "input": {
+            "prompt": "Explicit synthetic protocol fixture"
+          },
+          "adjustments": [],
+          "parameterSchemaVersion": 1,
+          "bundleId": "ltx_explicit_synthetic_fixture",
+          "allowUnmeasured": true,
+          "submissionHash": "3b65281d0e5bde0b5a9f3c5523c34a977620acf7349595f5d8521f07364f1a06",
+          "type": "video.generate",
+          "parameters": {
+            "frames": 9,
+            "seed": 42,
+            "width": 64,
+            "fps": 24,
+            "threads": 4,
+            "steps": 8,
+            "height": 64
+          },
+          "ltx098Plan": {
+            "decodeTimestep": 0.05,
+            "qualityAccepted": false,
+            "decodeNoiseScale": 0.025,
+            "promptEnhancement": false,
+            "textVariant": "google_community_t5_q5",
+            "guidanceScale": 1,
+            "profile": "ltx098_google_q5_linear_quadratic_8_v1",
+            "numericalAccepted": false,
+            "stgScale": 0,
+            "pipelineKind": "single_scale",
+            "parameters": {
+              "frames": 9,
+              "seed": 42,
+              "width": 64,
+              "fps": 24,
+              "threads": 4,
+              "steps": 8,
+              "height": 64
+            }
+          }
+        },
+        "idempotencyKey": "ltx_duplicate_receipt",
+        "startedAt": 1793636568242,
+        "error": "本地阶段重复或迟到的完成记录",
+        "engineExecution": {
+          "effectiveParameters": {
+            "frames": 9,
+            "seed": 42,
+            "width": 64,
+            "fps": 24,
+            "threads": 4,
+            "steps": 8,
+            "height": 64
+          },
+          "qualityAccepted": false,
+          "guidanceScale": 1,
+          "profile": "ltx098_google_q5_linear_quadratic_8_v1",
+          "numericalAccepted": false,
+          "mediaBackend": "android_mediacodec_avc",
+          "pipelineKind": "single_scale",
+          "samplerBackend": "vulkan",
+          "decodeTimestep": 0.05,
+          "decodeNoiseScale": 0.025,
+          "promptEnhancement": false,
+          "textVariant": "google_community_t5_q5",
+          "stageLoading": "sequential_processes",
+          "stages": [
+            {
+              "seconds": 1.8572829,
+              "stage": "video_noise",
+              "bytes": 4096
+            }
+          ],
+          "stgScale": 0,
+          "textBackend": "cpu",
+          "parameters": {
+            "frames": 9,
+            "seed": 42,
+            "width": 64,
+            "fps": 24,
+            "threads": 4,
+            "steps": 8,
+            "height": 64
+          },
+          "vaeBackend": "cpu"
+        },
+        "finishedAt": 1793636581387,
+        "runtimeResources": {
+          "stopCode": "",
+          "thermalStopAt": 3,
+          "minimumAvailableStorageBytes": null,
+          "lastSampleAt": 0,
+          "startedAt": 1793636569947,
+          "probeErrors": 0,
+          "message": "",
+          "enabled": false,
+          "samples": 0,
+          "storageFloorBytes": 67108864,
+          "minimumAvailableRamBytes": null,
+          "maximumThermalStatus": -1,
+          "endedAt": 1793636581386,
+          "sampleIntervalMs": 2000,
+          "scope": "shared_system_availability_not_model_peak_memory",
+          "thermalKnown": false,
+          "status": "ended"
+        },
+        "createdAt": 1793636567436,
+        "stage": "video_text_encoding",
+        "failure": {
+          "code": "local_execution_error",
+          "checkpointResumable": false,
+          "nextAction": "查看原始阶段和错误，编辑参数后创建新尝试；保留本次记录"
+        },
+        "progress": null,
+        "id": "job_b74ec5b80a1544d789e1c0b4a8aaf247",
+        "state": "failed",
+        "artifacts": []
+      },
+      "actualChildren": 2,
+      "case": "duplicate_receipt"
+    },
+    {
+      "bridgeFiles": {},
+      "job": {
+        "request": {
+          "input": {
+            "prompt": "Explicit synthetic protocol fixture"
+          },
+          "adjustments": [],
+          "parameterSchemaVersion": 1,
+          "bundleId": "ltx_explicit_synthetic_fixture",
+          "allowUnmeasured": true,
+          "submissionHash": "3b65281d0e5bde0b5a9f3c5523c34a977620acf7349595f5d8521f07364f1a06",
+          "type": "video.generate",
+          "parameters": {
+            "frames": 9,
+            "seed": 42,
+            "width": 64,
+            "fps": 24,
+            "threads": 4,
+            "steps": 8,
+            "height": 64
+          },
+          "ltx098Plan": {
+            "decodeTimestep": 0.05,
+            "qualityAccepted": false,
+            "decodeNoiseScale": 0.025,
+            "promptEnhancement": false,
+            "textVariant": "google_community_t5_q5",
+            "guidanceScale": 1,
+            "profile": "ltx098_google_q5_linear_quadratic_8_v1",
+            "numericalAccepted": false,
+            "stgScale": 0,
+            "pipelineKind": "single_scale",
+            "parameters": {
+              "frames": 9,
+              "seed": 42,
+              "width": 64,
+              "fps": 24,
+              "threads": 4,
+              "steps": 8,
+              "height": 64
+            }
+          }
+        },
+        "idempotencyKey": "ltx_bad_encoder",
+        "startedAt": 1793636584508,
+        "error": "Explicit failing host encoder port",
+        "engineExecution": {
+          "effectiveParameters": {
+            "frames": 9,
+            "seed": 42,
+            "width": 64,
+            "fps": 24,
+            "threads": 4,
+            "steps": 8,
+            "height": 64
+          },
+          "qualityAccepted": false,
+          "guidanceScale": 1,
+          "profile": "ltx098_google_q5_linear_quadratic_8_v1",
+          "numericalAccepted": false,
+          "mediaBackend": "android_mediacodec_avc",
+          "pipelineKind": "single_scale",
+          "textTokens": 1,
+          "samplerBackend": "vulkan",
+          "promptTruncated": false,
+          "decodeTimestep": 0.05,
+          "decodeNoiseScale": 0.025,
+          "promptEnhancement": false,
+          "textVariant": "google_community_t5_q5",
+          "stageLoading": "sequential_processes",
+          "stages": [
+            {
+              "seconds": 1.5036006,
+              "stage": "video_noise",
+              "bytes": 4096
+            },
+            {
+              "seconds": 0.3057845,
+              "stage": "video_text_encoding",
+              "bytes": 16384
+            },
+            {
+              "seconds": 0.570738,
+              "stage": "video_sampling",
+              "bytes": 4096
+            },
+            {
+              "seconds": 1.0253705,
+              "stage": "video_latent_layout",
+              "bytes": 4096
+            },
+            {
+              "seconds": 0.1245732,
+              "stage": "video_decoding",
+              "bytes": 442368
+            },
+            {
+              "seconds": 1.2624532,
+              "stage": "video_frames",
+              "bytes": 110620
+            }
+          ],
+          "stgScale": 0,
+          "textBackend": "cpu",
+          "parameters": {
+            "frames": 9,
+            "seed": 42,
+            "width": 64,
+            "fps": 24,
+            "threads": 4,
+            "steps": 8,
+            "height": 64
+          },
+          "vaeBackend": "cpu"
+        },
+        "finishedAt": 1793636613502,
+        "runtimeResources": {
+          "stopCode": "",
+          "thermalStopAt": 3,
+          "minimumAvailableStorageBytes": null,
+          "lastSampleAt": 0,
+          "startedAt": 1793636586659,
+          "probeErrors": 0,
+          "message": "",
+          "enabled": false,
+          "samples": 0,
+          "storageFloorBytes": 67108864,
+          "minimumAvailableRamBytes": null,
+          "maximumThermalStatus": -1,
+          "endedAt": 1793636613500,
+          "sampleIntervalMs": 2000,
+          "scope": "shared_system_availability_not_model_peak_memory",
+          "thermalKnown": false,
+          "status": "ended"
+        },
+        "createdAt": 1793636583605,
+        "stage": "encoding",
+        "failure": {
+          "code": "local_execution_error",
+          "checkpointResumable": false,
+          "nextAction": "查看原始阶段和错误，编辑参数后创建新尝试；保留本次记录"
+        },
+        "progress": null,
+        "id": "job_e30cec7051b44fbd83afd721536f588f",
+        "state": "failed",
+        "artifacts": []
+      },
+      "actualChildren": 6,
+      "case": "bad_encoder"
+    },
+    {
+      "bridgeFiles": {},
+      "job": {
+        "request": {
+          "input": {
+            "prompt": "Explicit synthetic protocol fixture"
+          },
+          "adjustments": [],
+          "parameterSchemaVersion": 1,
+          "bundleId": "ltx_explicit_synthetic_fixture",
+          "allowUnmeasured": true,
+          "submissionHash": "3b65281d0e5bde0b5a9f3c5523c34a977620acf7349595f5d8521f07364f1a06",
+          "type": "video.generate",
+          "parameters": {
+            "frames": 9,
+            "seed": 42,
+            "width": 64,
+            "fps": 24,
+            "threads": 4,
+            "steps": 8,
+            "height": 64
+          },
+          "ltx098Plan": {
+            "decodeTimestep": 0.05,
+            "qualityAccepted": false,
+            "decodeNoiseScale": 0.025,
+            "promptEnhancement": false,
+            "textVariant": "google_community_t5_q5",
+            "guidanceScale": 1,
+            "profile": "ltx098_google_q5_linear_quadratic_8_v1",
+            "numericalAccepted": false,
+            "stgScale": 0,
+            "pipelineKind": "single_scale",
+            "parameters": {
+              "frames": 9,
+              "seed": 42,
+              "width": 64,
+              "fps": 24,
+              "threads": 4,
+              "steps": 8,
+              "height": 64
+            }
+          }
+        },
+        "idempotencyKey": "ltx_cancelled",
+        "startedAt": 1793636615815,
+        "error": "",
+        "engineExecution": {
+          "effectiveParameters": {
+            "frames": 9,
+            "seed": 42,
+            "width": 64,
+            "fps": 24,
+            "threads": 4,
+            "steps": 8,
+            "height": 64
+          },
+          "qualityAccepted": false,
+          "guidanceScale": 1,
+          "profile": "ltx098_google_q5_linear_quadratic_8_v1",
+          "numericalAccepted": false,
+          "mediaBackend": "android_mediacodec_avc",
+          "pipelineKind": "single_scale",
+          "samplerBackend": "vulkan",
+          "decodeTimestep": 0.05,
+          "decodeNoiseScale": 0.025,
+          "promptEnhancement": false,
+          "textVariant": "google_community_t5_q5",
+          "stageLoading": "sequential_processes",
+          "stages": [
+            {
+              "seconds": 1.5925502,
+              "stage": "video_noise",
+              "bytes": 4096
+            }
+          ],
+          "stgScale": 0,
+          "textBackend": "cpu",
+          "parameters": {
+            "frames": 9,
+            "seed": 42,
+            "width": 64,
+            "fps": 24,
+            "threads": 4,
+            "steps": 8,
+            "height": 64
+          },
+          "vaeBackend": "cpu"
+        },
+        "finishedAt": 1793636625444,
+        "runtimeResources": {
+          "stopCode": "",
+          "thermalStopAt": 3,
+          "minimumAvailableStorageBytes": null,
+          "lastSampleAt": 0,
+          "startedAt": 1793636617459,
+          "probeErrors": 0,
+          "message": "",
+          "enabled": false,
+          "samples": 0,
+          "storageFloorBytes": 67108864,
+          "minimumAvailableRamBytes": null,
+          "maximumThermalStatus": -1,
+          "endedAt": 1793636625442,
+          "sampleIntervalMs": 2000,
+          "scope": "shared_system_availability_not_model_peak_memory",
+          "thermalKnown": false,
+          "status": "ended"
+        },
+        "createdAt": 1793636614992,
+        "stage": "video_text_encoding",
+        "progress": null,
+        "id": "job_91cd4322dc2d4f95bd0ab55c3834072a",
+        "state": "cancelled",
+        "artifacts": []
+      },
+      "actualChildren": 2,
+      "case": "cancelled"
+    },
+    {
+      "bridgeFiles": {},
+      "job": {
+        "request": {
+          "input": {
+            "prompt": "Explicit synthetic protocol fixture"
+          },
+          "adjustments": [],
+          "parameterSchemaVersion": 1,
+          "bundleId": "ltx_explicit_synthetic_fixture",
+          "allowUnmeasured": true,
+          "submissionHash": "3b65281d0e5bde0b5a9f3c5523c34a977620acf7349595f5d8521f07364f1a06",
+          "type": "video.generate",
+          "parameters": {
+            "frames": 9,
+            "seed": 42,
+            "width": 64,
+            "fps": 24,
+            "threads": 4,
+            "steps": 8,
+            "height": 64
+          },
+          "ltx098Plan": {
+            "decodeTimestep": 0.05,
+            "qualityAccepted": false,
+            "decodeNoiseScale": 0.025,
+            "promptEnhancement": false,
+            "textVariant": "google_community_t5_q5",
+            "guidanceScale": 1,
+            "profile": "ltx098_google_q5_linear_quadratic_8_v1",
+            "numericalAccepted": false,
+            "stgScale": 0,
+            "pipelineKind": "single_scale",
+            "parameters": {
+              "frames": 9,
+              "seed": 42,
+              "width": 64,
+              "fps": 24,
+              "threads": 4,
+              "steps": 8,
+              "height": 64
+            }
+          }
+        },
+        "idempotencyKey": "ltx_interrupted",
+        "startedAt": 1793636627210,
+        "error": "服务结束；此引擎没有可续步 checkpoint，可明确重试新任务",
+        "engineExecution": {
+          "effectiveParameters": {
+            "frames": 9,
+            "seed": 42,
+            "width": 64,
+            "fps": 24,
+            "threads": 4,
+            "steps": 8,
+            "height": 64
+          },
+          "qualityAccepted": false,
+          "guidanceScale": 1,
+          "profile": "ltx098_google_q5_linear_quadratic_8_v1",
+          "numericalAccepted": false,
+          "mediaBackend": "android_mediacodec_avc",
+          "pipelineKind": "single_scale",
+          "samplerBackend": "vulkan",
+          "decodeTimestep": 0.05,
+          "decodeNoiseScale": 0.025,
+          "promptEnhancement": false,
+          "textVariant": "google_community_t5_q5",
+          "stageLoading": "sequential_processes",
+          "stages": [
+            {
+              "seconds": 1.1057283,
+              "stage": "video_noise",
+              "bytes": 4096
+            }
+          ],
+          "stgScale": 0,
+          "textBackend": "cpu",
+          "parameters": {
+            "frames": 9,
+            "seed": 42,
+            "width": 64,
+            "fps": 24,
+            "threads": 4,
+            "steps": 8,
+            "height": 64
+          },
+          "vaeBackend": "cpu"
+        },
+        "finishedAt": 1793636632858,
+        "runtimeResources": {
+          "stopCode": "",
+          "thermalStopAt": 3,
+          "minimumAvailableStorageBytes": null,
+          "lastSampleAt": 0,
+          "startedAt": 1793636627988,
+          "probeErrors": 0,
+          "message": "",
+          "enabled": false,
+          "samples": 0,
+          "storageFloorBytes": 67108864,
+          "minimumAvailableRamBytes": null,
+          "maximumThermalStatus": -1,
+          "endedAt": 1793636632856,
+          "sampleIntervalMs": 2000,
+          "scope": "shared_system_availability_not_model_peak_memory",
+          "thermalKnown": false,
+          "status": "ended"
+        },
+        "createdAt": 1793636626810,
+        "stage": "video_text_encoding",
+        "progress": null,
+        "id": "job_f63a1661825840b8a0824f947eaee5d6",
+        "state": "interrupted",
+        "artifacts": []
+      },
+      "actualChildren": 2,
+      "case": "interrupted"
+    }
+  ],
+  "physicalAndroid": false,
+  "native_build": {
+    "schema": "lma.ltx098-app-build/1",
+    "android_arm64_compiled": false,
+    "min_sdk": null,
+    "stages": [
+      {
+        "stage": "tensors",
+        "file": "lma-ltx098-app-tensors.exe",
+        "bytes": 168448,
+        "sha256": "efa476815100ac57c0d1cc8eee7d762dbc660e37765a71910cb4f6427f1a086a",
+        "path": "build/ltx098-app-host/tensors/bin/lma-ltx098-app-tensors.exe"
+      },
+      {
+        "stage": "text",
+        "file": "lma-ltx098-app-text.exe",
+        "bytes": 3807232,
+        "sha256": "a8a9e585ff485afec6f2f862c8c5638eec07ff4265f98187cb790ad9d2be4cb6",
+        "path": "build/ltx098-app-host/text/bin/lma-ltx098-app-text.exe"
+      },
+      {
+        "stage": "sample",
+        "file": "lma-ltx098-app-sample.exe",
+        "bytes": 43138048,
+        "sha256": "94ebfc2dcf666fc561e06f674b3d82761697675a46b45562c348af4ccb6bac60",
+        "path": "build/ltx098-app-host/sample/bin/lma-ltx098-app-sample.exe"
+      },
+      {
+        "stage": "vae",
+        "file": "lma-ltx098-app-vae.exe",
+        "bytes": 228352,
+        "sha256": "4c93b8238fdbf056b065b2d7da2de1357e5b6366002963f3ddfd5ed741071a2d",
+        "path": "build/ltx098-app-host/vae/bin/lma-ltx098-app-vae.exe"
+      }
+    ],
+    "source_revision": "4b2d053057623ddd4d0a1d3e9cd28890e9ef487f",
+    "ggml_revision": "a5915eb0e47adef21c3f25b889a008925ea838c2",
+    "llama_revision": "b29c606e28a01b1bc8c1351026a0fa6e616bf6c4",
+    "sentencepiece_revision": "31646a467d2051eb904e0b45de3a73e91fe1c1e3",
+    "ndk": null,
+    "model_inference": false,
+    "physical_android": false,
+    "quality_accepted": false,
+    "numerical_accepted": false,
+    "no_automatic_model_download": true,
+    "virtualization_used": false,
+    "input_fingerprint": {
+      "native/ltx098/CMakeLists.txt": "05bd2f7e2a96b679b0a1eaf9480e36d84b0d636310d95add37b8ce5ad4282d86",
+      "native/ltx098/multiscale.hpp": "5f6f54b44feeb5cbed8098f544522f2e68fd17e3766acef94baa18fe2a70e0f6",
+      "native/ltx098/parent_guard.cpp": "3c987bcf309a30b2502418d50086cec21073f93dffdee8a50da26f49e055a46d",
+      "native/ltx098/program_contract.cpp": "ed9fe175fc836f71f05ec733987795436ea8631fc07d10e95dd899344d36e940",
+      "native/ltx098/sample.cpp": "5315ee1d52f9430c5c487046340139827c1db508a521d5f2f604d2cbcf2bf158",
+      "native/moss_nano/onnx_external.hpp": "c1bb8f95ad2078472dbbf2ea0863493ac44f4aae7c4336cf5debb0db0d54fae5",
+      "research/ltx098/CMakeLists.txt": "cc86fb36397da930df9c30745c8a29a3748535a9dbd3e40b9f2a5f9c9886374f",
+      "research/ltx098/driver.cpp": "2c8b92b4826824d03ca7ec17e82b5f6ff6dba10b600013df6141d61c5df212f6",
+      "research/ltx098/licenses/ggml-MIT.txt": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
+      "research/ltx098/licenses/json-MIT.txt": "0e592e358cf7722906f417be85bc514f15bf6efd28cea98cb84e56ef7fddfc3e",
+      "research/ltx098/licenses/Lightricks-Apache-2.0.txt": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "research/ltx098/licenses/SPIRV-Headers-MIT.txt": "ea43b1de38a6f90c488800d66dec1ed671e68cda530266bc96951fb5b6307613",
+      "research/ltx098/licenses/Vulkan-Apache-2.0.txt": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "research/ltx098/licenses/Vulkan-Headers.txt": "95ad366d23fadf701d355bc45fb8b82ae2d700239471d35d41286ac3b08ff903",
+      "research/ltx098/licenses/Vulkan-MIT.txt": "1ca3502222d967f3be5751c55f6b7ee735b5383909c3b501495f54b216dbf227",
+      "research/ltx098/NOTICE": "bab99dbce59bed2470b85752c90464dcfac90c0c0d28577b9db1067ec1a5e872",
+      "research/ltx098/sampling.cpp": "b76d7b5b82814fbc2561eeeaca7308c5e34b58974defef9c318b712fae4e7c7c",
+      "research/ltx098/sampling.hpp": "a677b3375fb3201d1aac4c83ad9568e4ff6d44513f1670de79d2c6bf329622f2",
+      "research/ltx098/sampling_driver.cpp": "3a8af8bc1bfcc28127649374e4818a1d368b46ad2ef0c24c1c998e8d32d80fc1",
+      "research/ltx098/transformer.cpp": "22c6d7ec964c5d9e25c90ba9f32c3a93b3d6d4db3c8aafb064cb45f3e03581fa",
+      "research/ltx098/transformer.hpp": "6f5fd68cba7278abb210322af20d70d3a0acd05631118bdeabdae54f4cd5e1d5",
+      "research/ltx098_pipeline/CMakeLists.txt": "6115af1b7ee6798413e1c4617eca8a7b9076722237f922e0f133ef1ebd1c6acc",
+      "research/ltx098_pipeline/NOTICE": "9241c16fca4550e732057f10ac073002e72974b65684d0d3fdae56015ec4222c",
+      "research/ltx098_pipeline/tensors.cpp": "c58dca94dc600e29d19e00938c012f9973457617ea3cc656e15aa6d4c2eeb089",
+      "research/ltx098_text/CMakeLists.txt": "7aed8bbf3b4684b2e691291e08e5ff3751c17cf4d539d03fae4c87616cf2a61f",
+      "research/ltx098_text/driver.cpp": "02810c2f3dcd57c3751b1f218d353a64205e5df158ee2190533495695fb36923",
+      "research/ltx098_text/encoder.cpp": "7bc2d00219cb60b8451c73e1381aa266b616ed80f57a8335f50e7d46f8e71e4e",
+      "research/ltx098_text/encoder.hpp": "4f7987d40931fb90072a1e63d3cd5e327b22228c481a80de861dd7bb05a671cb",
+      "research/ltx098_text/graph.cpp": "be59a12411c7487a104b3e743824f638046ae8fb132533a4cc9bbbebbfd17475",
+      "research/ltx098_text/graph.hpp": "ae16035400caedb79f33db97497e6588f071901bd0935f7646e0e3b02bc7e36a",
+      "research/ltx098_text/licenses/llama-MIT.txt": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
+      "research/ltx098_text/NOTICE": "176bd96eed8972ba6a9c4bdebf9f19b166397c0eb50717be77547056ad974db4",
+      "research/ltx098_vae/CMakeLists.txt": "fcc7e89deb1b1bf4d1dc74c329225e4f6ceccd997a2370b8d06263293ec93b9f",
+      "research/ltx098_vae/driver.cpp": "da3f8b62b4da9db4577492d0df23ff07ac69832365b486a08bb76e2a79b61935",
+      "research/ltx098_vae/NOTICE": "b5bec20058b46269f031462291b56fea8f5620359ec71f64353e76a9c4f6bcd3",
+      "research/soulx/dsp.hpp": "ef6a28cae0d2e72d1b84890437286b0ed8a20690c0ac07b2ddf8162ee2d2fd58",
+      "research/soulx_ort/android_log.cpp": "216f630761ff67a00cfe47db941338f45560fc45486ebcbdff196cf36dac3d04",
+      "research/soulx_ort/LICENSE-ONNX-RUNTIME-MIT": "c250d6278f0b47a6439fb7592b08b58a55eb9f535aa49a1db63211c3f982b674",
+      "research/soulx_ort/NOTICE": "69487267d86f7998917bc9f7e9b6d2e30e168f41c92369f41a33e225c0bfceb6",
+      "research/soulx_ort/runtime.hpp": "0586ad63c3210ec42d1c3cc956beb05614e56e9cb803632d596e57935689b2c8",
+      "research/soulx_ort/types.hpp": "f0822ae37dd26996501f2b69e4e1bb9404ad53903dd267ff793ee60d96f42de4",
+      "third_party/ltx098-official/identity.json": "f428b4ee44210d5444d1211817d32171d1982bf62e525476d24fbb8be90af58a",
+      "third_party/ltx098-official/ltx-ltxv-spatial-upscaler-0.9.8.header.json": "bd1a5ac26beb28c82074098e4304c096c50e0857bc3690bec63502c9bf9610f4",
+      "third_party/ltx098-official/pixart-config.json": "9a2865cce66d6dbfdc0fd185faed2394344fc5f61b2cbf9579ca2e6dc882f927",
+      "third_party/ltx098-official/pixart-model-00001-of-00002.header.json": "5924a0d933a5f4c73cad26cc059952260e9484cf927307ce8907b2c9e17b8267",
+      "third_party/ltx098-official/pixart-model-00002-of-00002.header.json": "ba3f2010e6415bcccf119b73b5d03794783ee8aa1a39a539c5f8ca402afd80c9",
+      "third_party/ltx098-official/pixart-model.safetensors.index.json": "fb4665a1a122b7e5270f0e4494c653839c11a5a978e03b0df6dfa714258716e6",
+      "third_party/ltx098-official/pixart-special_tokens_map.json": "5c87151ef0f72a99d1f766a4c418bd2a1f90aaa30a8e22fe5eca9641daebb64f",
+      "third_party/ltx098-official/pixart-tokenizer_config.json": "71730771351a8f0463bd2e545fbfaadc9dc01a7a222306ff4795cc48dfe168c0",
+      "third_party/ltx098-pipeline-source-lock.json": "3fc857b18056ef284b17e656c4dfa2d79e320e8f5463277a40b054981190769b",
+      "third_party/ltx098-source-lock.json": "28acd99486f6ca76a06d038076175ac01ca55c7b1d8c3ba6dab9190291ac8779",
+      "third_party/ltx098-text-source-lock.json": "04b2f7892a4f047363fbaf3ba555682bf201c8320fa1cc7f4d5a68b2884512f4",
+      "third_party/ltx098-vae-source-lock.json": "201ac18ca78b381f810f0567ecd300a5bfda1b489893be56d28b30d6e6db2dcb",
+      "third_party/moss-nano-source-lock.json": "cce6bb6921d1f476fa50a7e483f13daca030a750b68ea47feba9214635170da3",
+      "third_party/soulx-acoustic-source-lock.json": "b39e10c415c5f30d4e4adb52327e1e04df371407131f47617622da913b268ac5",
+      "tools/build_ltx098.py": "bf39449e38190a666093f6954d133a76da36d519817ca636703f030100d4faf8",
+      "tools/build_ltx098_app.py": "f6350ba4a59e009e7b24020f2cd39ef871b481b901b73243054c6cd4382d6eab",
+      "tools/fetch_ltx098_text.py": "55782095a1b941dc809b33966f62aeffda1b2ca0c719033610432ec00599b577",
+      "tools/ltx098_official_profile.py": "dd58ce64cdb40fd4787b64e13f429302f69ba1d409a29a6348b8a5eb498b98dd",
+      "tools/sana_sprint_profile.py": "698f71b6afcc6d78ab269f949ac66edcc0f671ba5e098dd182095c23aa69e4fd"
+    }
+  },
+  "host_media_tools": {
+    "ffmpeg": "d1e2a156261ecc675081943197a85f08f2868784a0af499171ede89353edad31",
+    "ffprobe": "70872c3ffbc43d0b2c570f9837f54d6e9a832f4ca25463e9735b6a3ec0621478"
+  },
+  "capture": "build/ltx098-app-tests/run-1793636456518943400",
+  "passed": true,
+  "input_fingerprint": {
+    "native/ltx098/CMakeLists.txt": "05bd2f7e2a96b679b0a1eaf9480e36d84b0d636310d95add37b8ce5ad4282d86",
+    "native/ltx098/multiscale.hpp": "5f6f54b44feeb5cbed8098f544522f2e68fd17e3766acef94baa18fe2a70e0f6",
+    "native/ltx098/parent_guard.cpp": "3c987bcf309a30b2502418d50086cec21073f93dffdee8a50da26f49e055a46d",
+    "native/ltx098/program_contract.cpp": "ed9fe175fc836f71f05ec733987795436ea8631fc07d10e95dd899344d36e940",
+    "native/ltx098/sample.cpp": "5315ee1d52f9430c5c487046340139827c1db508a521d5f2f604d2cbcf2bf158",
+    "native/moss_nano/onnx_external.hpp": "c1bb8f95ad2078472dbbf2ea0863493ac44f4aae7c4336cf5debb0db0d54fae5",
+    "research/ltx098/CMakeLists.txt": "cc86fb36397da930df9c30745c8a29a3748535a9dbd3e40b9f2a5f9c9886374f",
+    "research/ltx098/driver.cpp": "2c8b92b4826824d03ca7ec17e82b5f6ff6dba10b600013df6141d61c5df212f6",
+    "research/ltx098/licenses/ggml-MIT.txt": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
+    "research/ltx098/licenses/json-MIT.txt": "0e592e358cf7722906f417be85bc514f15bf6efd28cea98cb84e56ef7fddfc3e",
+    "research/ltx098/licenses/Lightricks-Apache-2.0.txt": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+    "research/ltx098/licenses/SPIRV-Headers-MIT.txt": "ea43b1de38a6f90c488800d66dec1ed671e68cda530266bc96951fb5b6307613",
+    "research/ltx098/licenses/Vulkan-Apache-2.0.txt": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+    "research/ltx098/licenses/Vulkan-Headers.txt": "95ad366d23fadf701d355bc45fb8b82ae2d700239471d35d41286ac3b08ff903",
+    "research/ltx098/licenses/Vulkan-MIT.txt": "1ca3502222d967f3be5751c55f6b7ee735b5383909c3b501495f54b216dbf227",
+    "research/ltx098/NOTICE": "bab99dbce59bed2470b85752c90464dcfac90c0c0d28577b9db1067ec1a5e872",
+    "research/ltx098/sampling.cpp": "b76d7b5b82814fbc2561eeeaca7308c5e34b58974defef9c318b712fae4e7c7c",
+    "research/ltx098/sampling.hpp": "a677b3375fb3201d1aac4c83ad9568e4ff6d44513f1670de79d2c6bf329622f2",
+    "research/ltx098/sampling_driver.cpp": "3a8af8bc1bfcc28127649374e4818a1d368b46ad2ef0c24c1c998e8d32d80fc1",
+    "research/ltx098/transformer.cpp": "22c6d7ec964c5d9e25c90ba9f32c3a93b3d6d4db3c8aafb064cb45f3e03581fa",
+    "research/ltx098/transformer.hpp": "6f5fd68cba7278abb210322af20d70d3a0acd05631118bdeabdae54f4cd5e1d5",
+    "research/ltx098_pipeline/CMakeLists.txt": "6115af1b7ee6798413e1c4617eca8a7b9076722237f922e0f133ef1ebd1c6acc",
+    "research/ltx098_pipeline/NOTICE": "9241c16fca4550e732057f10ac073002e72974b65684d0d3fdae56015ec4222c",
+    "research/ltx098_pipeline/tensors.cpp": "c58dca94dc600e29d19e00938c012f9973457617ea3cc656e15aa6d4c2eeb089",
+    "research/ltx098_text/CMakeLists.txt": "7aed8bbf3b4684b2e691291e08e5ff3751c17cf4d539d03fae4c87616cf2a61f",
+    "research/ltx098_text/driver.cpp": "02810c2f3dcd57c3751b1f218d353a64205e5df158ee2190533495695fb36923",
+    "research/ltx098_text/encoder.cpp": "7bc2d00219cb60b8451c73e1381aa266b616ed80f57a8335f50e7d46f8e71e4e",
+    "research/ltx098_text/encoder.hpp": "4f7987d40931fb90072a1e63d3cd5e327b22228c481a80de861dd7bb05a671cb",
+    "research/ltx098_text/graph.cpp": "be59a12411c7487a104b3e743824f638046ae8fb132533a4cc9bbbebbfd17475",
+    "research/ltx098_text/graph.hpp": "ae16035400caedb79f33db97497e6588f071901bd0935f7646e0e3b02bc7e36a",
+    "research/ltx098_text/licenses/llama-MIT.txt": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
+    "research/ltx098_text/NOTICE": "176bd96eed8972ba6a9c4bdebf9f19b166397c0eb50717be77547056ad974db4",
+    "research/ltx098_vae/CMakeLists.txt": "fcc7e89deb1b1bf4d1dc74c329225e4f6ceccd997a2370b8d06263293ec93b9f",
+    "research/ltx098_vae/driver.cpp": "da3f8b62b4da9db4577492d0df23ff07ac69832365b486a08bb76e2a79b61935",
+    "research/ltx098_vae/NOTICE": "b5bec20058b46269f031462291b56fea8f5620359ec71f64353e76a9c4f6bcd3",
+    "research/soulx/dsp.hpp": "ef6a28cae0d2e72d1b84890437286b0ed8a20690c0ac07b2ddf8162ee2d2fd58",
+    "research/soulx_ort/android_log.cpp": "216f630761ff67a00cfe47db941338f45560fc45486ebcbdff196cf36dac3d04",
+    "research/soulx_ort/LICENSE-ONNX-RUNTIME-MIT": "c250d6278f0b47a6439fb7592b08b58a55eb9f535aa49a1db63211c3f982b674",
+    "research/soulx_ort/NOTICE": "69487267d86f7998917bc9f7e9b6d2e30e168f41c92369f41a33e225c0bfceb6",
+    "research/soulx_ort/runtime.hpp": "0586ad63c3210ec42d1c3cc956beb05614e56e9cb803632d596e57935689b2c8",
+    "research/soulx_ort/types.hpp": "f0822ae37dd26996501f2b69e4e1bb9404ad53903dd267ff793ee60d96f42de4",
+    "third_party/ltx098-official/identity.json": "f428b4ee44210d5444d1211817d32171d1982bf62e525476d24fbb8be90af58a",
+    "third_party/ltx098-official/ltx-ltxv-spatial-upscaler-0.9.8.header.json": "bd1a5ac26beb28c82074098e4304c096c50e0857bc3690bec63502c9bf9610f4",
+    "third_party/ltx098-official/pixart-config.json": "9a2865cce66d6dbfdc0fd185faed2394344fc5f61b2cbf9579ca2e6dc882f927",
+    "third_party/ltx098-official/pixart-model-00001-of-00002.header.json": "5924a0d933a5f4c73cad26cc059952260e9484cf927307ce8907b2c9e17b8267",
+    "third_party/ltx098-official/pixart-model-00002-of-00002.header.json": "ba3f2010e6415bcccf119b73b5d03794783ee8aa1a39a539c5f8ca402afd80c9",
+    "third_party/ltx098-official/pixart-model.safetensors.index.json": "fb4665a1a122b7e5270f0e4494c653839c11a5a978e03b0df6dfa714258716e6",
+    "third_party/ltx098-official/pixart-special_tokens_map.json": "5c87151ef0f72a99d1f766a4c418bd2a1f90aaa30a8e22fe5eca9641daebb64f",
+    "third_party/ltx098-official/pixart-tokenizer_config.json": "71730771351a8f0463bd2e545fbfaadc9dc01a7a222306ff4795cc48dfe168c0",
+    "third_party/ltx098-pipeline-source-lock.json": "3fc857b18056ef284b17e656c4dfa2d79e320e8f5463277a40b054981190769b",
+    "third_party/ltx098-source-lock.json": "28acd99486f6ca76a06d038076175ac01ca55c7b1d8c3ba6dab9190291ac8779",
+    "third_party/ltx098-text-source-lock.json": "04b2f7892a4f047363fbaf3ba555682bf201c8320fa1cc7f4d5a68b2884512f4",
+    "third_party/ltx098-vae-source-lock.json": "201ac18ca78b381f810f0567ecd300a5bfda1b489893be56d28b30d6e6db2dcb",
+    "third_party/moss-nano-source-lock.json": "cce6bb6921d1f476fa50a7e483f13daca030a750b68ea47feba9214635170da3",
+    "third_party/soulx-acoustic-source-lock.json": "b39e10c415c5f30d4e4adb52327e1e04df371407131f47617622da913b268ac5",
+    "tools/build_ltx098.py": "bf39449e38190a666093f6954d133a76da36d519817ca636703f030100d4faf8",
+    "tools/build_ltx098_app.py": "f6350ba4a59e009e7b24020f2cd39ef871b481b901b73243054c6cd4382d6eab",
+    "tools/fetch_ltx098_text.py": "55782095a1b941dc809b33966f62aeffda1b2ca0c719033610432ec00599b577",
+    "tools/ltx098_official_profile.py": "dd58ce64cdb40fd4787b64e13f429302f69ba1d409a29a6348b8a5eb498b98dd",
+    "tools/sana_sprint_profile.py": "698f71b6afcc6d78ab269f949ac66edcc0f671ba5e098dd182095c23aa69e4fd",
+    "app/src/main/assets/models.json": "c3e884b4e5fb06f20c036deebc78e6f953ac420e76fca72bab5a25fd59927156",
+    "app/src/main/assets/recipe-templates.json": "ed87f310d0a63251f765bbc4d8741b31806cc87145c0a96f762a110e097e6bd3",
+    "app/src/main/java/com/lma/app/ApiHost.java": "ae43e460e519dc1642b5834c2fa724821e34db9f1fe714ea461f75d7cc4e84f9",
+    "app/src/main/java/com/lma/app/ChatRunner.java": "b4915479cfe77b4f3c2afc8a1fc32f60b50a63f9769fc27689f06a3d12e75bdb",
+    "app/src/main/java/com/lma/app/ConversationController.java": "5bd70fcefa138bea6036c59774ca61dca8df7fc58eb167b1c951e5415f1a25b8",
+    "app/src/main/java/com/lma/app/core/AdapterSpec.java": "aff8572d14ac8d616be0a1b0da395e52ed5bddcd5ae407a969c2657bf9257581",
+    "app/src/main/java/com/lma/app/core/ApiCatalogue.java": "9814b8723da094a9f31fe17fceb66c6f52dd593280351ba9e396cc796c83f6c0",
+    "app/src/main/java/com/lma/app/core/ApiPort.java": "a32d1fb64863178095fafbdba82dfd76e57c93eb559f4cedd5e021e345cb5e64",
+    "app/src/main/java/com/lma/app/core/ApiSubmissions.java": "62ed86b7cf45b061b2c1bd254453187d899382d624f60565bea35835d0be91f3",
+    "app/src/main/java/com/lma/app/core/ArtifactStore.java": "7ea2f68d6b481c8e90e9266bd8637f862bdc08f0e00d2a16c4e7c5ed9fbf730b",
+    "app/src/main/java/com/lma/app/core/AssemblyPlan.java": "80e81dea2a831d3955aa5ae21323eb0432fb448f78994901633fbb6e85d77e7c",
+    "app/src/main/java/com/lma/app/core/AudioCppSpec.java": "df33f5deec46df0a4ba1941b867b6a12840fab66fdc0bc3517fe56b580c52377",
+    "app/src/main/java/com/lma/app/core/AudioPcm.java": "9bf3270c83f57b7fa4e23fc4518fa063e72ca214675f9c23d45bd1788842f7b2",
+    "app/src/main/java/com/lma/app/core/AudioStreams.java": "de8a2cdd98d083b62515b067865182d9065bb00f14b8c70cacafba21de8407f1",
+    "app/src/main/java/com/lma/app/core/BundleStore.java": "73f58d6a25e8662aaf505acf126ea3ed2866108f34ee7ad04b38071bdeed092c",
+    "app/src/main/java/com/lma/app/core/BundleTransfers.java": "45fb6ed71e85efc4ff409a5808fa9320fcf087e83df12ba26ab94fa8abf88f73",
+    "app/src/main/java/com/lma/app/core/BundleUpdates.java": "f31a65d0e172aa75f6131deace828875534ccc756ed93fac83bb09d5a4162fe1",
+    "app/src/main/java/com/lma/app/core/ByteRange.java": "31723bf112e630de6c2a1cd8d525be7bbd4706e151fa5a297a5e641f59b5c752",
+    "app/src/main/java/com/lma/app/core/ChatHistory.java": "3046a52c3f611b83b46cfed94afe0f4b31667f77986b7ca1737169ec8c4ce951",
+    "app/src/main/java/com/lma/app/core/ComponentIntegrity.java": "7a5977c607f624f8763a782b1b081c4e485c8c05c2caae15986ad2f2388f5bce",
+    "app/src/main/java/com/lma/app/core/CompositionSpec.java": "1089027037272c83c74b0010476ee8b723fb42bb29fecc4b745272e31db6dea8",
+    "app/src/main/java/com/lma/app/core/ContentMetadata.java": "387276235714449eba861d5e24120be8666be6b863b9b8157f215c74a18dd101",
+    "app/src/main/java/com/lma/app/core/DataFiles.java": "29883f9ae70e6966a85ccfb6022a03d72f623779e4ce7f1fc206fbb027422805",
+    "app/src/main/java/com/lma/app/core/EngineWorkspace.java": "7ceff936b9507130953098a9ffe4f6bf32d5baad6bee3ca320d99db2db9f2d00",
+    "app/src/main/java/com/lma/app/core/ExecutionGate.java": "143b6d145036c56ad0937316e87af5f4c44507ef89cf16affdc5bef0ad8e2126",
+    "app/src/main/java/com/lma/app/core/GlbFile.java": "77d65f4d880a0fa56bd325750a6634289732e47d68c0816af2d8d3ebfa2e133a",
+    "app/src/main/java/com/lma/app/core/InputHandle.java": "f3b4ef8cf58b1ff2eb1d9f3eae3f789cb1c7d9870786de9cc70e5be431489410",
+    "app/src/main/java/com/lma/app/core/InputSelection.java": "963fe60973caab82b9dfedaa7c1661f236aed6ea158fcda8f4a86d02ba33d509",
+    "app/src/main/java/com/lma/app/core/InputSpec.java": "771cfcd4ec6df96f262fafdfc98aa92ccd72e4439ca25b7275c2dce3fe60a6e2",
+    "app/src/main/java/com/lma/app/core/InputUploads.java": "5debd68a73abc8bde8174c985dfec8f534c6bf8df58dda8810b0cc3541fe1d53",
+    "app/src/main/java/com/lma/app/core/JobStore.java": "7410d2e5a9b8fb8eed17f1adc5dd064be3a9a14e0b24c590122db671c6376511",
+    "app/src/main/java/com/lma/app/core/LcmCondition.java": "2177da94b69781263e36f3e379034619bf74c6856bc6a9108592d4f272e94b7a",
+    "app/src/main/java/com/lma/app/core/LocalApi.java": "1f391b1550b62262fe3dc7d154cda655547619c8d58cf085286a52c672e9f5f0",
+    "app/src/main/java/com/lma/app/core/LocalHttp.java": "261538f8e2f73c157e6942f913f1f70108a67cda7ae0916a8530a41d07928608",
+    "app/src/main/java/com/lma/app/core/Ltx098Spec.java": "8333ea906bc31ea9e014ce4840d15fc6253c91eda1f3688de4f8645738819abf",
+    "app/src/main/java/com/lma/app/core/LtxPixArtSpec.java": "3eb0cb14c75c0e190d611ee7ac259878a5a644e0bce0a4ee6003a1084668e00b",
+    "app/src/main/java/com/lma/app/core/MaterialSpec.java": "6bab5ad2da64484a52ec486c63b7ac2a071e9c93bb4cf3d1caea025491a54982",
+    "app/src/main/java/com/lma/app/core/MeshSpec.java": "96229421ce042c27623e2eab9dc918c9ea8e66e1bcde043ed6e82e32bb2a16a0",
+    "app/src/main/java/com/lma/app/core/MnnSpec.java": "055cc06962da0fc34c1abdc57100ac52fca47a9d66ffea6621155c53046d5f1a",
+    "app/src/main/java/com/lma/app/core/ModelBundle.java": "82622341be8fdf0b71e7160d62af6a81ef6a524ca74dc6c85aa87009eddbcd14",
+    "app/src/main/java/com/lma/app/core/ModelSelection.java": "965c9f22f16fc822f792ebef6e0de0a0c67f5a6882d5e7ef77be05b83ea1aeb2",
+    "app/src/main/java/com/lma/app/core/MossDelaySpec.java": "2f680d68cf78517f234c336c77e0b584bf40300fd6294514b7cd457149d41bd0",
+    "app/src/main/java/com/lma/app/core/MossNanoSpec.java": "4b784a773fb85550eba8f169a62cab9a274a332519ec700b595694378e9e39ed",
+    "app/src/main/java/com/lma/app/core/MossRqSpec.java": "0713659ade3c172887527a9e961bbde4add5ed00bd2a564256bc11f9b4796b5e",
+    "app/src/main/java/com/lma/app/core/MultiViewSpec.java": "8f91363e5d5b2a9d9b823954562180628438c279ab9616ebdfa34a70046d1b1c",
+    "app/src/main/java/com/lma/app/core/NativePreparation.java": "cb8ee985ef2c6cba3e0d6bb924c940bcb197bd3f576ca7d6e1fa24442d44e1dd",
+    "app/src/main/java/com/lma/app/core/OnnxMetadata.java": "51db38a424032ac21a8a4185745a272db9034a94d2e8b2d0671c11289e9719e3",
+    "app/src/main/java/com/lma/app/core/OpenAiFacade.java": "ff09c980d15d3f77318967dc3e685565744291cdfeaa3a37c358853cd80fc05b",
+    "app/src/main/java/com/lma/app/core/OpenAiRequests.java": "3c05f1fe506b3c5ba7607c8f9c75a639f0ae32efa731585062025923144ef051",
+    "app/src/main/java/com/lma/app/core/OpenMossSpec.java": "4a9af3c92d87be65c4f617677eaed31576f9160a3355518fff7cb874192a5258",
+    "app/src/main/java/com/lma/app/core/ParameterSchema.java": "a566c6d452461ee14333caf7e732a33f8d94b12b33cbabc851f5f3fcc6bdb019",
+    "app/src/main/java/com/lma/app/core/PcmMixer.java": "220afb3442af1dd2443a28f2d26b42f47c92373eca261a07374d163dcc5e0d68",
+    "app/src/main/java/com/lma/app/core/PointCloudSpec.java": "3b04fb3b76d3a76d3d85c9e03b1cda9856fd28af0c01b6c7ba27dd3d288290ec",
+    "app/src/main/java/com/lma/app/core/PreparationPlan.java": "dfee63b84035c6ca18b0647aecb947070b983b6b2f1de08247129dddfa64a0bf",
+    "app/src/main/java/com/lma/app/core/PreparedAssets.java": "6e71f790d67db5a741d044b9867c021ec1629694bc43615336d92eb3d6591070",
+    "app/src/main/java/com/lma/app/core/PreparedModelAssembly.java": "eef243d48c9b2b7d3d9b08b2ddf8129ff3884bbdd6c00ecd28a83c0f4bbfa384",
+    "app/src/main/java/com/lma/app/core/ProcessControl.java": "a1950624951d41c040b0b9f44cd8ef5faff16ed22dae880d626e4619d77c155d",
+    "app/src/main/java/com/lma/app/core/Protocol.java": "d49f47884aec0cb03347023119c2808330fa9970689dcd9d33c30ca653d03b85",
+    "app/src/main/java/com/lma/app/core/QwenTtsSpec.java": "e94d96d7ce7c499b2d4bafbd35740c690b32169a142a9a55aae7a8b03364125b",
+    "app/src/main/java/com/lma/app/core/RecipeCatalogue.java": "a01f9c6b094e84b29a8bbb349350a53e68fe1fd5daf4d7fc81fbd2067e00b773",
+    "app/src/main/java/com/lma/app/core/RecipeSuggestions.java": "57d9d7b5fc5f3c61a3ab3524af8789df58dbc8ce1923b2c09e139649057beda0",
+    "app/src/main/java/com/lma/app/core/ResourceWatch.java": "6f6a4cb2159f7956d1ae8c202c61430be268d86d230245bccc952844f3816ec5",
+    "app/src/main/java/com/lma/app/core/RfShapeSpec.java": "c78a8a378b92af7c9be77c1d1bd87149cc34e9a72d1c2dd7bca98e0b10467e1a",
+    "app/src/main/java/com/lma/app/core/RuntimeDiagnostics.java": "e543ff733e86ccbf11746dee14f320b184a79c8336163a815c89ba840063c97d",
+    "app/src/main/java/com/lma/app/core/SamSpec.java": "e3decd70218bbe22f0583daf2435c8757289e41d3930c2db5dc518787fae725b",
+    "app/src/main/java/com/lma/app/core/SanaSprintSpec.java": "12190d684368b219f17e582d774830d0a946bf5b7e2d25146371325b6fc8b3d3",
+    "app/src/main/java/com/lma/app/core/SdSpec.java": "eb0628197ba3e7bbeaffcb60afd24cee9548b25eff0eb7645f06d2fa348841a7",
+    "app/src/main/java/com/lma/app/core/SoulxSpec.java": "a761d40965d041d38cc1f629418017103c9eefabf5904814fad9de6372b6bcc7",
+    "app/src/main/java/com/lma/app/core/SpatialSpec.java": "f4914d45670ba78e55e134220cc30b690712576943aadf4561a80157f8529a4f",
+    "app/src/main/java/com/lma/app/core/SpeechVoices.java": "b413549e7721d07c88fec135b01b26a18d9dc0cc686a37dd180309ee10900967",
+    "app/src/main/java/com/lma/app/core/StableAudioSpec.java": "0cc04143a8c8c2afa4dc3d9726f4891779b352404d97c70d6fdc260fbe27ee6c",
+    "app/src/main/java/com/lma/app/core/StrictJson.java": "f41dc9ff233490e4082c60394d914356b4f13129cbe563ce3f3653173eb865f9",
+    "app/src/main/java/com/lma/app/core/StructuredInput.java": "cd5bd1d3075de672af7c1fd8a3215a3d895a8295eeb6f6ec05d0381d85953ddb",
+    "app/src/main/java/com/lma/app/core/SupraSpec.java": "2edb7029b0f15ad000eb05a7092b4a9adb7298d5d39ca3eb93b245db175f29c9",
+    "app/src/main/java/com/lma/app/core/SurfaceSpec.java": "fb8bd31e992eac452b3da2af66300b0e155f8563a92f9c703f9ddcc2a215c2e3",
+    "app/src/main/java/com/lma/app/core/TaskDrafts.java": "1c97a99a274abb5f38542eb2cea6834121f46b5dfb0e7cbaeaa5df25222c7ead",
+    "app/src/main/java/com/lma/app/core/TaskFailures.java": "15ba29ab4573eaf456d2fd1c4bfa03b17cedd6f7077c7959716608efa198c1cf",
+    "app/src/main/java/com/lma/app/core/TaskInput.java": "9e503f00e09650015b4a81c44bd95204cab83896541466fb4ea0d2b99bfc8ae0",
+    "app/src/main/java/com/lma/app/core/TaskRequests.java": "1da700768f6cc5d0541e51bbe6c991cebfbcc45ec606b2bce87e40b8a64f6762",
+    "app/src/main/java/com/lma/app/core/TextRequest.java": "bfdb23db96512f00f362b49951c1fee4162ca2d441482eb6ebf180a8d3574d5f",
+    "app/src/main/java/com/lma/app/core/TextResult.java": "2dd7968a40cc917fab5b8bc412ef00d21348abec1d844b140b843b1bba57c6ab",
+    "app/src/main/java/com/lma/app/core/TextSpec.java": "4521ce8e833d88276f6b98d446e0171c48602d67ce2cf4b372d425e56d6d149e",
+    "app/src/main/java/com/lma/app/core/ToolCalls.java": "a6bc11d0a1578049280b64a058020c76e82ac7ec626decd7137af92571ef02f1",
+    "app/src/main/java/com/lma/app/core/TtsSpec.java": "c72136f794c23f5c204b6281e3ef73097e065f8d58218ae727702a7260d8317c",
+    "app/src/main/java/com/lma/app/core/UltraTexSpec.java": "8f8ee7ff9e3617ec3faa08ba1385d4a76e2851ee68a43aa6b502560ce992be66",
+    "app/src/main/java/com/lma/app/core/UniForgeSpec.java": "a3011bf95e6fe150dc693344ba13fc9e70fe772ee8565397113fa2b20458e58d",
+    "app/src/main/java/com/lma/app/core/VisionSpec.java": "30fcf52778540794cebac38b3f4e31cd221ceeca3ba48e96800a3d65e59b10c6",
+    "app/src/main/java/com/lma/app/core/WaveFile.java": "cf70b9bbafb6aa23cc25217d4883e769173b00f74571d1b115c50a8ad6b15361",
+    "app/src/main/java/com/lma/app/core/WorkflowRunner.java": "2ec3b9d34eb4c1c9bd804ce778ca3abee9646ac85e326bbb59eeb6d6249dc03c",
+    "app/src/main/java/com/lma/app/core/WorkflowStore.java": "c930f0843c18e298fb758257ad01f2b2c4c9c333c1752f197e586386425cbc46",
+    "app/src/main/java/com/lma/app/Downloads.java": "ffb61b84f025775d05f5bf1933e054d7bfb975af195c1d7adb24b4c6ba8089ed",
+    "app/src/main/java/com/lma/app/EngineHost.java": "bf2c7adce5607516d6e9114a6fe6737e9f7c97edb9b961bac6d993c8d871b590",
+    "app/src/main/java/com/lma/app/GgufMetadata.java": "704b05cb1de90340a3c8b37f1af9d2577418aeb95b5b06e88ea7903df6770e78",
+    "app/src/main/java/com/lma/app/HubCatalog.java": "2a5e513d896a4ba804a75ac35d8be15421757edf3f009bdb59fdb4228caae777",
+    "app/src/main/java/com/lma/app/HubClient.java": "3bc06665ad34b73937235362144605ed28c47b616654e6a31b2b3fa3125e7c0a",
+    "app/src/main/java/com/lma/app/InputImports.java": "f59c48493faab98edcc1462842fbabb9814ab5afca9fb583d5b6c310b4846fbc",
+    "app/src/main/java/com/lma/app/LocalEngine.java": "c06198df33cf290dff58d5d7d7f2b44b3d84d552c1a3c0f1cf35c30c6d5b7c19",
+    "app/src/main/java/com/lma/app/LocalJobs.java": "fb0b91a8b966f8640c63c4c851e55313b270875d03626d1f70cd60c93fb481fa",
+    "app/src/main/java/com/lma/app/Ltx098Engine.java": "6e7643d54d506ba9f8a63599a9efe8d513d1eebb1a9ac53adc9ee6281a7bc36c",
+    "app/src/main/java/com/lma/app/ModelCapabilities.java": "c0fe48822f4915bf238c65bba5d305d2ffdae85a7a79dd52aaa1388331dd4f13",
+    "app/src/main/java/com/lma/app/ModelPublication.java": "31d476940b62cbbfacac4c1f7680974695661afb19d6b189effe229c4f8a1264",
+    "app/src/main/java/com/lma/app/ModelSettings.java": "1ce0dfb9de2f57c39d8e536f1492bdacdcce587329f0a891e34ba9abb0c31c1c",
+    "app/src/main/java/com/lma/app/NativeStages.java": "f731ffe3f9d72f8c5b6596c360cbf7e492aa24c98f814a11def393f5ded1ed68",
+    "app/src/main/java/com/lma/app/NativeWorker.java": "626ec1767124b88662a1d0c1ad77c3a7f238bac9be1591e5ed164c648662ac2a",
+    "app/src/main/java/com/lma/app/Net.java": "b7f52a6c5e16f9d58e87feea4e27690dde31804cb571f11d875edbb95926855d",
+    "app/src/main/java/com/lma/app/Store.java": "e0c6499a4a9e79f54dfe484ab6ea050e100ad5630512e61d50c361216b925290",
+    "app/src/main/java/com/lma/app/VisionPairs.java": "6c6f95b367191139709a27ef0687776f10e0b23c0a0371acbe8ffefe49dca9c0",
+    "catalogue/model-assemblies.json": "bda37b1411a28e8f396a03f0ccf8176b07469d402a858b5b8561410d13d8d572",
+    "catalogue/model-bundles.json": "cde60f64056788426517b98ea2fe7f6a74ecaf33bb5d68cb061d2b7f6ec59cba",
+    "tests/host/android/app/ActivityManager.java": "cbb20e9153d8adf50b6194b9ac409b2c0fb4c340e66ff283d47390d7e2f13731",
+    "tests/host/android/net/Uri.java": "22d46127e9db9b6c6c25da06917e2cc405850d4ccbd05d0d8e2e8dc88777d165",
+    "tests/host/android/os/Build.java": "9319739bdb4653b1ee357ae9d531f02414bfe2947c6664096a5483bf0d0feb5a",
+    "tests/host/android/os/PowerManager.java": "4060378684f115fde0bd224ce2b5c44e735feee954cf2652c999407d1c2b1876",
+    "tests/host/android/os/StatFs.java": "18ed47953e1bc92bfd23beda8df64c5f51cb712756fc4f148e28dc449d72968b",
+    "tests/host/android/util/AtomicFile.java": "a05b9c6ef4fa0f0f40aaa49b235faccc98d2d7d5aa1ea4bb8d2f535b8bad2796",
+    "tests/host/com/lma/app/BackendTest.java": "b137cc99a6dd3e7c3fd5c6d96b5132927ecade1bed228e358148587b107b7747",
+    "tests/host/com/lma/app/Chats.java": "a371fa6773acaf5a28cd5f2e4265fe45542beb6b08d638f6712f17200acab944",
+    "tests/host/com/lma/app/DocumentInput.java": "3816275bf2db26275db83938c26c445db02bfbfa9669767e31bba6f0215c41c2",
+    "tests/host/com/lma/app/HostServer.java": "720853e6c1f16c056cc5ba2e33076f21f0b02ae7c3335ace7e35c1efd13d2295",
+    "tests/host/com/lma/app/HubLiveTest.java": "308f69328ac67a2a59f525d6cbe35a7a6177bb4c7cdb1dc4e9df801f3c9da20e",
+    "tests/host/com/lma/app/HubRecipeTest.java": "47494293333e9628e5eefdc8442427824410388d773e1657963770e1b7c2ee18",
+    "tests/host/com/lma/app/HubTest.java": "004adc962fd03fae21d0b2c2c85d8cd23d3073f2e15f9b5a4cc94d696c6060dd",
+    "tests/host/com/lma/app/ImportCancellationTest.java": "5a1231a258b9d7c4b0f2fbe9d525453202664181a8d4ef12f5799f56bb915839",
+    "tests/host/com/lma/app/LmaApp.java": "82492684e6c88744e51b105fded3b0cc07e834d027322478f741a64cd813ae57",
+    "tests/host/com/lma/app/LmaService.java": "ed314f3dc43fec8b3f5e5c9e8c16b70ba164b6aa3b00e7297e62b6da58553c7f",
+    "tests/host/com/lma/app/LocalEngines.java": "4cda8d9f46326a54c03482c808b446d0229573aae9e6274bbe0368701d96f0b2",
+    "tests/host/com/lma/app/LocalJobs.java": "7f4b2fc8936f8a6fb1631f8d3ad14ec622ff47947b7d06466802f2309c058be8",
+    "tests/host/com/lma/app/MediaComposer.java": "313401c46740cdf713e6c3eebefdfab3e338af331fa8c8db61718ead1f837109",
+    "tests/host/com/lma/app/MigrationTest.java": "2778ee56bb08904036c1e1498524913b318ab8c7fe88fba764df568691f2e4ca",
+    "tests/host/com/lma/app/ModelSettingsTest.java": "5be5534e97ed09d40b5a3f9f849ed26b9d69520cec1409fadda5bbf3d353d7f6",
+    "tests/host/com/lma/app/RecipeSuggestionsTest.java": "3a9a9164eb4eb9b753ea803e7a44f7f73b4d596138696475e3ffc469e3d7fa81",
+    "tests/host/com/lma/app/VisionInputs.java": "080d576acde8bcc2e338b2b31ed595e3e13e28f0901d8aede40e00d64ac37082",
+    "tests/ltx-app/com/lma/app/LtxAppTest.java": "d72722884532e5a8fa409c99166f7b7bbce98c98bc1f3705ee04ca39fdd233d9",
+    "tests/sd-host/com/lma/app/VideoEncoder.java": "96e480bec46860cd05e40d55b7e21710069f71f1f54c4cc543f26d6505efa146",
+    "tools/test_ltx098_app.py": "b463d82b2cc41420de6d1f2e9c72e30e578d903ca8d43992b12558bf3bdcd8c5"
+  }
+}

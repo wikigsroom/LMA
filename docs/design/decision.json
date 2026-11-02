@@ -24,8 +24,8 @@
   "status": {
     "style": "accepted",
     "specification": "defined",
-    "runtimeIntegration": "pending",
-    "physicalAcceptance": "pending"
+    "runtimeIntegration": "implemented_v1.0.0",
+    "physicalAcceptance": "scoped_single_phone_pass"
   },
   "defaultTheme": "dark",
   "requiredThemes": [
@@ -48,7 +48,8 @@
   ],
   "originalConceptArtifactsPreserved": true,
   "sourceReferenceCommit": "d414dffb897a24b7e0a734efe55b0d0407a60cf3",
-  "publishedApkVersion": "0.4.0",
-  "publishedApkCode": 64,
-  "otherStyles": "archived_not_combined"
+  "publishedApkVersion": "1.0.0",
+  "publishedApkCode": 65,
+  "otherStyles": "archived_not_combined",
+  "runtimeEvidence": "docs/design/runtime-v1.0.0.json"
 }

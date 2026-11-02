@@ -1,0 +1,4229 @@
+{
+  "schema": "lma.mica-ui/1",
+  "version": "1.0.0",
+  "passed": 20,
+  "checks": [
+    "Default is dark before first interaction",
+    "Recommended prefix remains m08, m06, m01",
+    "Both themes and three text scales pass 17 viewports across all five pages",
+    "130 percent text passes all five pages in both themes",
+    "Width boundaries include minimum usable window and have no missing layout band",
+    "Phone Enter creates a newline without submitting",
+    "Newline does not trigger generation",
+    "Theme change preserves the composer draft",
+    "Native IME removes covered navigation from focus and hit testing",
+    "Closing the IME restores the five destinations",
+    "Modal background is inert",
+    "Keyboard focus remains inside the modal",
+    "Closing restores background interactivity",
+    "An existing page alert cannot intercept modal controls",
+    "Search has an accessible clear action",
+    "Phone navigation retains 48px hit targets",
+    "Production surfaces use the approved theme",
+    "Reduced motion disables nonessential transitions",
+    "Theme and layout checks never download, delete or load user models",
+    "No production-page JavaScript errors"
+  ],
+  "matrix": [
+    {
+      "theme": "dark",
+      "width": 320,
+      "height": 480,
+      "textScale": 1,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 320,
+      "height": 480,
+      "textScale": 1,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 320,
+      "height": 480,
+      "textScale": 1,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 320,
+      "height": 480,
+      "textScale": 1,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 320,
+      "height": 480,
+      "textScale": 1,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 320,
+      "height": 480,
+      "textScale": 1.5,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 320,
+      "height": 480,
+      "textScale": 1.5,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 320,
+      "height": 480,
+      "textScale": 1.5,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 320,
+      "height": 480,
+      "textScale": 1.5,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 320,
+      "height": 480,
+      "textScale": 1.5,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 320,
+      "height": 480,
+      "textScale": 2,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 320,
+      "height": 480,
+      "textScale": 2,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 320,
+      "height": 480,
+      "textScale": 2,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 320,
+      "height": 480,
+      "textScale": 2,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 320,
+      "height": 480,
+      "textScale": 2,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 320,
+      "height": 568,
+      "textScale": 1,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 320,
+      "height": 568,
+      "textScale": 1,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 320,
+      "height": 568,
+      "textScale": 1,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 320,
+      "height": 568,
+      "textScale": 1,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 320,
+      "height": 568,
+      "textScale": 1,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 320,
+      "height": 568,
+      "textScale": 1.5,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 320,
+      "height": 568,
+      "textScale": 1.5,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 320,
+      "height": 568,
+      "textScale": 1.5,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 320,
+      "height": 568,
+      "textScale": 1.5,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 320,
+      "height": 568,
+      "textScale": 1.5,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 320,
+      "height": 568,
+      "textScale": 2,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 320,
+      "height": 568,
+      "textScale": 2,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 320,
+      "height": 568,
+      "textScale": 2,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 320,
+      "height": 568,
+      "textScale": 2,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 320,
+      "height": 568,
+      "textScale": 2,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 360,
+      "height": 640,
+      "textScale": 1,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 360,
+      "height": 640,
+      "textScale": 1,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 360,
+      "height": 640,
+      "textScale": 1,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 360,
+      "height": 640,
+      "textScale": 1,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 360,
+      "height": 640,
+      "textScale": 1,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 360,
+      "height": 640,
+      "textScale": 1.5,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 360,
+      "height": 640,
+      "textScale": 1.5,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 360,
+      "height": 640,
+      "textScale": 1.5,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 360,
+      "height": 640,
+      "textScale": 1.5,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 360,
+      "height": 640,
+      "textScale": 1.5,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 360,
+      "height": 640,
+      "textScale": 2,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 360,
+      "height": 640,
+      "textScale": 2,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 360,
+      "height": 640,
+      "textScale": 2,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 360,
+      "height": 640,
+      "textScale": 2,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 360,
+      "height": 640,
+      "textScale": 2,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 360,
+      "height": 740,
+      "textScale": 1,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 360,
+      "height": 740,
+      "textScale": 1,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 360,
+      "height": 740,
+      "textScale": 1,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 360,
+      "height": 740,
+      "textScale": 1,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 360,
+      "height": 740,
+      "textScale": 1,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 360,
+      "height": 740,
+      "textScale": 1.5,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 360,
+      "height": 740,
+      "textScale": 1.5,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 360,
+      "height": 740,
+      "textScale": 1.5,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 360,
+      "height": 740,
+      "textScale": 1.5,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 360,
+      "height": 740,
+      "textScale": 1.5,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 360,
+      "height": 740,
+      "textScale": 2,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 360,
+      "height": 740,
+      "textScale": 2,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 360,
+      "height": 740,
+      "textScale": 2,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 360,
+      "height": 740,
+      "textScale": 2,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 360,
+      "height": 740,
+      "textScale": 2,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 375,
+      "height": 667,
+      "textScale": 1,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 375,
+      "height": 667,
+      "textScale": 1,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 375,
+      "height": 667,
+      "textScale": 1,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 375,
+      "height": 667,
+      "textScale": 1,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 375,
+      "height": 667,
+      "textScale": 1,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 375,
+      "height": 667,
+      "textScale": 1.5,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 375,
+      "height": 667,
+      "textScale": 1.5,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 375,
+      "height": 667,
+      "textScale": 1.5,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 375,
+      "height": 667,
+      "textScale": 1.5,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 375,
+      "height": 667,
+      "textScale": 1.5,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 375,
+      "height": 667,
+      "textScale": 2,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 375,
+      "height": 667,
+      "textScale": 2,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 375,
+      "height": 667,
+      "textScale": 2,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 375,
+      "height": 667,
+      "textScale": 2,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 375,
+      "height": 667,
+      "textScale": 2,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 390,
+      "height": 844,
+      "textScale": 1,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 390,
+      "height": 844,
+      "textScale": 1,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 390,
+      "height": 844,
+      "textScale": 1,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 390,
+      "height": 844,
+      "textScale": 1,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 390,
+      "height": 844,
+      "textScale": 1,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 390,
+      "height": 844,
+      "textScale": 1.5,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 390,
+      "height": 844,
+      "textScale": 1.5,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 390,
+      "height": 844,
+      "textScale": 1.5,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 390,
+      "height": 844,
+      "textScale": 1.5,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 390,
+      "height": 844,
+      "textScale": 1.5,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 390,
+      "height": 844,
+      "textScale": 2,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 390,
+      "height": 844,
+      "textScale": 2,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 390,
+      "height": 844,
+      "textScale": 2,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 390,
+      "height": 844,
+      "textScale": 2,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 390,
+      "height": 844,
+      "textScale": 2,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 393,
+      "height": 873,
+      "textScale": 1,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 393,
+      "height": 873,
+      "textScale": 1,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 393,
+      "height": 873,
+      "textScale": 1,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 393,
+      "height": 873,
+      "textScale": 1,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 393,
+      "height": 873,
+      "textScale": 1,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 393,
+      "height": 873,
+      "textScale": 1.5,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 393,
+      "height": 873,
+      "textScale": 1.5,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 393,
+      "height": 873,
+      "textScale": 1.5,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 393,
+      "height": 873,
+      "textScale": 1.5,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 393,
+      "height": 873,
+      "textScale": 1.5,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 393,
+      "height": 873,
+      "textScale": 2,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 393,
+      "height": 873,
+      "textScale": 2,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 393,
+      "height": 873,
+      "textScale": 2,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 393,
+      "height": 873,
+      "textScale": 2,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 393,
+      "height": 873,
+      "textScale": 2,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 412,
+      "height": 915,
+      "textScale": 1,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 412,
+      "height": 915,
+      "textScale": 1,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 412,
+      "height": 915,
+      "textScale": 1,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 412,
+      "height": 915,
+      "textScale": 1,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 412,
+      "height": 915,
+      "textScale": 1,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 412,
+      "height": 915,
+      "textScale": 1.5,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 412,
+      "height": 915,
+      "textScale": 1.5,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 412,
+      "height": 915,
+      "textScale": 1.5,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 412,
+      "height": 915,
+      "textScale": 1.5,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 412,
+      "height": 915,
+      "textScale": 1.5,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 412,
+      "height": 915,
+      "textScale": 2,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 412,
+      "height": 915,
+      "textScale": 2,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 412,
+      "height": 915,
+      "textScale": 2,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 412,
+      "height": 915,
+      "textScale": 2,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 412,
+      "height": 915,
+      "textScale": 2,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 430,
+      "height": 932,
+      "textScale": 1,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 430,
+      "height": 932,
+      "textScale": 1,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 430,
+      "height": 932,
+      "textScale": 1,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 430,
+      "height": 932,
+      "textScale": 1,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 430,
+      "height": 932,
+      "textScale": 1,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 430,
+      "height": 932,
+      "textScale": 1.5,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 430,
+      "height": 932,
+      "textScale": 1.5,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 430,
+      "height": 932,
+      "textScale": 1.5,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 430,
+      "height": 932,
+      "textScale": 1.5,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 430,
+      "height": 932,
+      "textScale": 1.5,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 430,
+      "height": 932,
+      "textScale": 2,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 430,
+      "height": 932,
+      "textScale": 2,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 430,
+      "height": 932,
+      "textScale": 2,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 430,
+      "height": 932,
+      "textScale": 2,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 430,
+      "height": 932,
+      "textScale": 2,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 480,
+      "height": 960,
+      "textScale": 1,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 480,
+      "height": 960,
+      "textScale": 1,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 480,
+      "height": 960,
+      "textScale": 1,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 480,
+      "height": 960,
+      "textScale": 1,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 480,
+      "height": 960,
+      "textScale": 1,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 480,
+      "height": 960,
+      "textScale": 1.5,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 480,
+      "height": 960,
+      "textScale": 1.5,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 480,
+      "height": 960,
+      "textScale": 1.5,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 480,
+      "height": 960,
+      "textScale": 1.5,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 480,
+      "height": 960,
+      "textScale": 1.5,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 480,
+      "height": 960,
+      "textScale": 2,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 480,
+      "height": 960,
+      "textScale": 2,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 480,
+      "height": 960,
+      "textScale": 2,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 480,
+      "height": 960,
+      "textScale": 2,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 480,
+      "height": 960,
+      "textScale": 2,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 568,
+      "height": 320,
+      "textScale": 1,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 568,
+      "height": 320,
+      "textScale": 1,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 568,
+      "height": 320,
+      "textScale": 1,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 568,
+      "height": 320,
+      "textScale": 1,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 568,
+      "height": 320,
+      "textScale": 1,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 568,
+      "height": 320,
+      "textScale": 1.5,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 568,
+      "height": 320,
+      "textScale": 1.5,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 568,
+      "height": 320,
+      "textScale": 1.5,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 568,
+      "height": 320,
+      "textScale": 1.5,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 568,
+      "height": 320,
+      "textScale": 1.5,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 568,
+      "height": 320,
+      "textScale": 2,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 568,
+      "height": 320,
+      "textScale": 2,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 568,
+      "height": 320,
+      "textScale": 2,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 568,
+      "height": 320,
+      "textScale": 2,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 568,
+      "height": 320,
+      "textScale": 2,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 640,
+      "height": 360,
+      "textScale": 1,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 640,
+      "height": 360,
+      "textScale": 1,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 640,
+      "height": 360,
+      "textScale": 1,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 640,
+      "height": 360,
+      "textScale": 1,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 640,
+      "height": 360,
+      "textScale": 1,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 640,
+      "height": 360,
+      "textScale": 1.5,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 640,
+      "height": 360,
+      "textScale": 1.5,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 640,
+      "height": 360,
+      "textScale": 1.5,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 640,
+      "height": 360,
+      "textScale": 1.5,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 640,
+      "height": 360,
+      "textScale": 1.5,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 640,
+      "height": 360,
+      "textScale": 2,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 640,
+      "height": 360,
+      "textScale": 2,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 640,
+      "height": 360,
+      "textScale": 2,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 640,
+      "height": 360,
+      "textScale": 2,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 640,
+      "height": 360,
+      "textScale": 2,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 800,
+      "height": 360,
+      "textScale": 1,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 800,
+      "height": 360,
+      "textScale": 1,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 800,
+      "height": 360,
+      "textScale": 1,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 800,
+      "height": 360,
+      "textScale": 1,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 800,
+      "height": 360,
+      "textScale": 1,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 800,
+      "height": 360,
+      "textScale": 1.5,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 800,
+      "height": 360,
+      "textScale": 1.5,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 800,
+      "height": 360,
+      "textScale": 1.5,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 800,
+      "height": 360,
+      "textScale": 1.5,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 800,
+      "height": 360,
+      "textScale": 1.5,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 800,
+      "height": 360,
+      "textScale": 2,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 800,
+      "height": 360,
+      "textScale": 2,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 800,
+      "height": 360,
+      "textScale": 2,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 800,
+      "height": 360,
+      "textScale": 2,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 800,
+      "height": 360,
+      "textScale": 2,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 600,
+      "height": 960,
+      "textScale": 1,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 600,
+      "height": 960,
+      "textScale": 1,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 600,
+      "height": 960,
+      "textScale": 1,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 600,
+      "height": 960,
+      "textScale": 1,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 600,
+      "height": 960,
+      "textScale": 1,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 600,
+      "height": 960,
+      "textScale": 1.5,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 600,
+      "height": 960,
+      "textScale": 1.5,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 600,
+      "height": 960,
+      "textScale": 1.5,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 600,
+      "height": 960,
+      "textScale": 1.5,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 600,
+      "height": 960,
+      "textScale": 1.5,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 600,
+      "height": 960,
+      "textScale": 2,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 600,
+      "height": 960,
+      "textScale": 2,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 600,
+      "height": 960,
+      "textScale": 2,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 600,
+      "height": 960,
+      "textScale": 2,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 600,
+      "height": 960,
+      "textScale": 2,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 840,
+      "height": 1180,
+      "textScale": 1,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 840,
+      "height": 1180,
+      "textScale": 1,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 840,
+      "height": 1180,
+      "textScale": 1,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 840,
+      "height": 1180,
+      "textScale": 1,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 840,
+      "height": 1180,
+      "textScale": 1,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 840,
+      "height": 1180,
+      "textScale": 1.5,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 840,
+      "height": 1180,
+      "textScale": 1.5,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 840,
+      "height": 1180,
+      "textScale": 1.5,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 840,
+      "height": 1180,
+      "textScale": 1.5,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 840,
+      "height": 1180,
+      "textScale": 1.5,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 840,
+      "height": 1180,
+      "textScale": 2,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 840,
+      "height": 1180,
+      "textScale": 2,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 840,
+      "height": 1180,
+      "textScale": 2,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 840,
+      "height": 1180,
+      "textScale": 2,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 840,
+      "height": 1180,
+      "textScale": 2,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 1024,
+      "height": 768,
+      "textScale": 1,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 1024,
+      "height": 768,
+      "textScale": 1,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 1024,
+      "height": 768,
+      "textScale": 1,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 1024,
+      "height": 768,
+      "textScale": 1,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 1024,
+      "height": 768,
+      "textScale": 1,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 1024,
+      "height": 768,
+      "textScale": 1.5,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 1024,
+      "height": 768,
+      "textScale": 1.5,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 1024,
+      "height": 768,
+      "textScale": 1.5,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 1024,
+      "height": 768,
+      "textScale": 1.5,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 1024,
+      "height": 768,
+      "textScale": 1.5,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 1024,
+      "height": 768,
+      "textScale": 2,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 1024,
+      "height": 768,
+      "textScale": 2,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 1024,
+      "height": 768,
+      "textScale": 2,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 1024,
+      "height": 768,
+      "textScale": 2,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 1024,
+      "height": 768,
+      "textScale": 2,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 1280,
+      "height": 800,
+      "textScale": 1,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 1280,
+      "height": 800,
+      "textScale": 1,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 1280,
+      "height": 800,
+      "textScale": 1,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 1280,
+      "height": 800,
+      "textScale": 1,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 1280,
+      "height": 800,
+      "textScale": 1,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 1280,
+      "height": 800,
+      "textScale": 1.5,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 1280,
+      "height": 800,
+      "textScale": 1.5,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 1280,
+      "height": 800,
+      "textScale": 1.5,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 1280,
+      "height": 800,
+      "textScale": 1.5,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 1280,
+      "height": 800,
+      "textScale": 1.5,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 1280,
+      "height": 800,
+      "textScale": 2,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 1280,
+      "height": 800,
+      "textScale": 2,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 1280,
+      "height": 800,
+      "textScale": 2,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 1280,
+      "height": 800,
+      "textScale": 2,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 1280,
+      "height": 800,
+      "textScale": 2,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 320,
+      "height": 480,
+      "textScale": 1,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 320,
+      "height": 480,
+      "textScale": 1,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 320,
+      "height": 480,
+      "textScale": 1,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 320,
+      "height": 480,
+      "textScale": 1,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 320,
+      "height": 480,
+      "textScale": 1,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 320,
+      "height": 480,
+      "textScale": 1.5,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 320,
+      "height": 480,
+      "textScale": 1.5,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 320,
+      "height": 480,
+      "textScale": 1.5,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 320,
+      "height": 480,
+      "textScale": 1.5,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 320,
+      "height": 480,
+      "textScale": 1.5,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 320,
+      "height": 480,
+      "textScale": 2,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 320,
+      "height": 480,
+      "textScale": 2,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 320,
+      "height": 480,
+      "textScale": 2,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 320,
+      "height": 480,
+      "textScale": 2,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 320,
+      "height": 480,
+      "textScale": 2,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 320,
+      "height": 568,
+      "textScale": 1,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 320,
+      "height": 568,
+      "textScale": 1,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 320,
+      "height": 568,
+      "textScale": 1,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 320,
+      "height": 568,
+      "textScale": 1,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 320,
+      "height": 568,
+      "textScale": 1,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 320,
+      "height": 568,
+      "textScale": 1.5,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 320,
+      "height": 568,
+      "textScale": 1.5,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 320,
+      "height": 568,
+      "textScale": 1.5,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 320,
+      "height": 568,
+      "textScale": 1.5,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 320,
+      "height": 568,
+      "textScale": 1.5,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 320,
+      "height": 568,
+      "textScale": 2,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 320,
+      "height": 568,
+      "textScale": 2,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 320,
+      "height": 568,
+      "textScale": 2,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 320,
+      "height": 568,
+      "textScale": 2,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 320,
+      "height": 568,
+      "textScale": 2,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 360,
+      "height": 640,
+      "textScale": 1,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 360,
+      "height": 640,
+      "textScale": 1,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 360,
+      "height": 640,
+      "textScale": 1,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 360,
+      "height": 640,
+      "textScale": 1,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 360,
+      "height": 640,
+      "textScale": 1,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 360,
+      "height": 640,
+      "textScale": 1.5,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 360,
+      "height": 640,
+      "textScale": 1.5,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 360,
+      "height": 640,
+      "textScale": 1.5,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 360,
+      "height": 640,
+      "textScale": 1.5,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 360,
+      "height": 640,
+      "textScale": 1.5,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 360,
+      "height": 640,
+      "textScale": 2,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 360,
+      "height": 640,
+      "textScale": 2,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 360,
+      "height": 640,
+      "textScale": 2,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 360,
+      "height": 640,
+      "textScale": 2,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 360,
+      "height": 640,
+      "textScale": 2,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 360,
+      "height": 740,
+      "textScale": 1,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 360,
+      "height": 740,
+      "textScale": 1,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 360,
+      "height": 740,
+      "textScale": 1,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 360,
+      "height": 740,
+      "textScale": 1,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 360,
+      "height": 740,
+      "textScale": 1,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 360,
+      "height": 740,
+      "textScale": 1.5,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 360,
+      "height": 740,
+      "textScale": 1.5,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 360,
+      "height": 740,
+      "textScale": 1.5,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 360,
+      "height": 740,
+      "textScale": 1.5,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 360,
+      "height": 740,
+      "textScale": 1.5,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 360,
+      "height": 740,
+      "textScale": 2,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 360,
+      "height": 740,
+      "textScale": 2,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 360,
+      "height": 740,
+      "textScale": 2,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 360,
+      "height": 740,
+      "textScale": 2,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 360,
+      "height": 740,
+      "textScale": 2,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 375,
+      "height": 667,
+      "textScale": 1,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 375,
+      "height": 667,
+      "textScale": 1,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 375,
+      "height": 667,
+      "textScale": 1,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 375,
+      "height": 667,
+      "textScale": 1,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 375,
+      "height": 667,
+      "textScale": 1,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 375,
+      "height": 667,
+      "textScale": 1.5,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 375,
+      "height": 667,
+      "textScale": 1.5,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 375,
+      "height": 667,
+      "textScale": 1.5,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 375,
+      "height": 667,
+      "textScale": 1.5,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 375,
+      "height": 667,
+      "textScale": 1.5,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 375,
+      "height": 667,
+      "textScale": 2,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 375,
+      "height": 667,
+      "textScale": 2,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 375,
+      "height": 667,
+      "textScale": 2,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 375,
+      "height": 667,
+      "textScale": 2,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 375,
+      "height": 667,
+      "textScale": 2,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 390,
+      "height": 844,
+      "textScale": 1,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 390,
+      "height": 844,
+      "textScale": 1,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 390,
+      "height": 844,
+      "textScale": 1,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 390,
+      "height": 844,
+      "textScale": 1,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 390,
+      "height": 844,
+      "textScale": 1,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 390,
+      "height": 844,
+      "textScale": 1.5,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 390,
+      "height": 844,
+      "textScale": 1.5,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 390,
+      "height": 844,
+      "textScale": 1.5,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 390,
+      "height": 844,
+      "textScale": 1.5,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 390,
+      "height": 844,
+      "textScale": 1.5,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 390,
+      "height": 844,
+      "textScale": 2,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 390,
+      "height": 844,
+      "textScale": 2,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 390,
+      "height": 844,
+      "textScale": 2,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 390,
+      "height": 844,
+      "textScale": 2,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 390,
+      "height": 844,
+      "textScale": 2,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 393,
+      "height": 873,
+      "textScale": 1,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 393,
+      "height": 873,
+      "textScale": 1,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 393,
+      "height": 873,
+      "textScale": 1,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 393,
+      "height": 873,
+      "textScale": 1,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 393,
+      "height": 873,
+      "textScale": 1,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 393,
+      "height": 873,
+      "textScale": 1.5,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 393,
+      "height": 873,
+      "textScale": 1.5,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 393,
+      "height": 873,
+      "textScale": 1.5,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 393,
+      "height": 873,
+      "textScale": 1.5,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 393,
+      "height": 873,
+      "textScale": 1.5,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 393,
+      "height": 873,
+      "textScale": 2,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 393,
+      "height": 873,
+      "textScale": 2,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 393,
+      "height": 873,
+      "textScale": 2,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 393,
+      "height": 873,
+      "textScale": 2,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 393,
+      "height": 873,
+      "textScale": 2,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 412,
+      "height": 915,
+      "textScale": 1,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 412,
+      "height": 915,
+      "textScale": 1,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 412,
+      "height": 915,
+      "textScale": 1,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 412,
+      "height": 915,
+      "textScale": 1,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 412,
+      "height": 915,
+      "textScale": 1,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 412,
+      "height": 915,
+      "textScale": 1.5,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 412,
+      "height": 915,
+      "textScale": 1.5,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 412,
+      "height": 915,
+      "textScale": 1.5,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 412,
+      "height": 915,
+      "textScale": 1.5,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 412,
+      "height": 915,
+      "textScale": 1.5,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 412,
+      "height": 915,
+      "textScale": 2,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 412,
+      "height": 915,
+      "textScale": 2,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 412,
+      "height": 915,
+      "textScale": 2,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 412,
+      "height": 915,
+      "textScale": 2,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 412,
+      "height": 915,
+      "textScale": 2,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 430,
+      "height": 932,
+      "textScale": 1,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 430,
+      "height": 932,
+      "textScale": 1,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 430,
+      "height": 932,
+      "textScale": 1,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 430,
+      "height": 932,
+      "textScale": 1,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 430,
+      "height": 932,
+      "textScale": 1,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 430,
+      "height": 932,
+      "textScale": 1.5,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 430,
+      "height": 932,
+      "textScale": 1.5,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 430,
+      "height": 932,
+      "textScale": 1.5,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 430,
+      "height": 932,
+      "textScale": 1.5,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 430,
+      "height": 932,
+      "textScale": 1.5,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 430,
+      "height": 932,
+      "textScale": 2,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 430,
+      "height": 932,
+      "textScale": 2,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 430,
+      "height": 932,
+      "textScale": 2,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 430,
+      "height": 932,
+      "textScale": 2,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 430,
+      "height": 932,
+      "textScale": 2,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 480,
+      "height": 960,
+      "textScale": 1,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 480,
+      "height": 960,
+      "textScale": 1,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 480,
+      "height": 960,
+      "textScale": 1,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 480,
+      "height": 960,
+      "textScale": 1,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 480,
+      "height": 960,
+      "textScale": 1,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 480,
+      "height": 960,
+      "textScale": 1.5,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 480,
+      "height": 960,
+      "textScale": 1.5,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 480,
+      "height": 960,
+      "textScale": 1.5,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 480,
+      "height": 960,
+      "textScale": 1.5,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 480,
+      "height": 960,
+      "textScale": 1.5,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 480,
+      "height": 960,
+      "textScale": 2,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 480,
+      "height": 960,
+      "textScale": 2,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 480,
+      "height": 960,
+      "textScale": 2,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 480,
+      "height": 960,
+      "textScale": 2,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 480,
+      "height": 960,
+      "textScale": 2,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 568,
+      "height": 320,
+      "textScale": 1,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 568,
+      "height": 320,
+      "textScale": 1,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 568,
+      "height": 320,
+      "textScale": 1,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 568,
+      "height": 320,
+      "textScale": 1,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 568,
+      "height": 320,
+      "textScale": 1,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 568,
+      "height": 320,
+      "textScale": 1.5,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 568,
+      "height": 320,
+      "textScale": 1.5,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 568,
+      "height": 320,
+      "textScale": 1.5,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 568,
+      "height": 320,
+      "textScale": 1.5,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 568,
+      "height": 320,
+      "textScale": 1.5,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 568,
+      "height": 320,
+      "textScale": 2,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 568,
+      "height": 320,
+      "textScale": 2,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 568,
+      "height": 320,
+      "textScale": 2,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 568,
+      "height": 320,
+      "textScale": 2,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 568,
+      "height": 320,
+      "textScale": 2,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 640,
+      "height": 360,
+      "textScale": 1,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 640,
+      "height": 360,
+      "textScale": 1,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 640,
+      "height": 360,
+      "textScale": 1,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 640,
+      "height": 360,
+      "textScale": 1,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 640,
+      "height": 360,
+      "textScale": 1,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 640,
+      "height": 360,
+      "textScale": 1.5,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 640,
+      "height": 360,
+      "textScale": 1.5,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 640,
+      "height": 360,
+      "textScale": 1.5,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 640,
+      "height": 360,
+      "textScale": 1.5,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 640,
+      "height": 360,
+      "textScale": 1.5,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 640,
+      "height": 360,
+      "textScale": 2,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 640,
+      "height": 360,
+      "textScale": 2,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 640,
+      "height": 360,
+      "textScale": 2,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 640,
+      "height": 360,
+      "textScale": 2,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 640,
+      "height": 360,
+      "textScale": 2,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 800,
+      "height": 360,
+      "textScale": 1,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 800,
+      "height": 360,
+      "textScale": 1,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 800,
+      "height": 360,
+      "textScale": 1,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 800,
+      "height": 360,
+      "textScale": 1,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 800,
+      "height": 360,
+      "textScale": 1,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 800,
+      "height": 360,
+      "textScale": 1.5,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 800,
+      "height": 360,
+      "textScale": 1.5,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 800,
+      "height": 360,
+      "textScale": 1.5,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 800,
+      "height": 360,
+      "textScale": 1.5,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 800,
+      "height": 360,
+      "textScale": 1.5,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 800,
+      "height": 360,
+      "textScale": 2,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 800,
+      "height": 360,
+      "textScale": 2,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 800,
+      "height": 360,
+      "textScale": 2,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 800,
+      "height": 360,
+      "textScale": 2,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 800,
+      "height": 360,
+      "textScale": 2,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 600,
+      "height": 960,
+      "textScale": 1,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 600,
+      "height": 960,
+      "textScale": 1,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 600,
+      "height": 960,
+      "textScale": 1,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 600,
+      "height": 960,
+      "textScale": 1,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 600,
+      "height": 960,
+      "textScale": 1,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 600,
+      "height": 960,
+      "textScale": 1.5,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 600,
+      "height": 960,
+      "textScale": 1.5,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 600,
+      "height": 960,
+      "textScale": 1.5,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 600,
+      "height": 960,
+      "textScale": 1.5,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 600,
+      "height": 960,
+      "textScale": 1.5,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 600,
+      "height": 960,
+      "textScale": 2,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 600,
+      "height": 960,
+      "textScale": 2,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 600,
+      "height": 960,
+      "textScale": 2,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 600,
+      "height": 960,
+      "textScale": 2,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 600,
+      "height": 960,
+      "textScale": 2,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 840,
+      "height": 1180,
+      "textScale": 1,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 840,
+      "height": 1180,
+      "textScale": 1,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 840,
+      "height": 1180,
+      "textScale": 1,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 840,
+      "height": 1180,
+      "textScale": 1,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 840,
+      "height": 1180,
+      "textScale": 1,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 840,
+      "height": 1180,
+      "textScale": 1.5,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 840,
+      "height": 1180,
+      "textScale": 1.5,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 840,
+      "height": 1180,
+      "textScale": 1.5,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 840,
+      "height": 1180,
+      "textScale": 1.5,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 840,
+      "height": 1180,
+      "textScale": 1.5,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 840,
+      "height": 1180,
+      "textScale": 2,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 840,
+      "height": 1180,
+      "textScale": 2,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 840,
+      "height": 1180,
+      "textScale": 2,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 840,
+      "height": 1180,
+      "textScale": 2,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 840,
+      "height": 1180,
+      "textScale": 2,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 1024,
+      "height": 768,
+      "textScale": 1,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 1024,
+      "height": 768,
+      "textScale": 1,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 1024,
+      "height": 768,
+      "textScale": 1,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 1024,
+      "height": 768,
+      "textScale": 1,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 1024,
+      "height": 768,
+      "textScale": 1,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 1024,
+      "height": 768,
+      "textScale": 1.5,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 1024,
+      "height": 768,
+      "textScale": 1.5,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 1024,
+      "height": 768,
+      "textScale": 1.5,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 1024,
+      "height": 768,
+      "textScale": 1.5,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 1024,
+      "height": 768,
+      "textScale": 1.5,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 1024,
+      "height": 768,
+      "textScale": 2,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 1024,
+      "height": 768,
+      "textScale": 2,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 1024,
+      "height": 768,
+      "textScale": 2,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 1024,
+      "height": 768,
+      "textScale": 2,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 1024,
+      "height": 768,
+      "textScale": 2,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 1280,
+      "height": 800,
+      "textScale": 1,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 1280,
+      "height": 800,
+      "textScale": 1,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 1280,
+      "height": 800,
+      "textScale": 1,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 1280,
+      "height": 800,
+      "textScale": 1,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 1280,
+      "height": 800,
+      "textScale": 1,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 1280,
+      "height": 800,
+      "textScale": 1.5,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 1280,
+      "height": 800,
+      "textScale": 1.5,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 1280,
+      "height": 800,
+      "textScale": 1.5,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 1280,
+      "height": 800,
+      "textScale": 1.5,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 1280,
+      "height": 800,
+      "textScale": 1.5,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 1280,
+      "height": 800,
+      "textScale": 2,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 1280,
+      "height": 800,
+      "textScale": 2,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 1280,
+      "height": 800,
+      "textScale": 2,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 1280,
+      "height": 800,
+      "textScale": 2,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 1280,
+      "height": 800,
+      "textScale": 2,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 393,
+      "height": 873,
+      "textScale": 1.3,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 393,
+      "height": 873,
+      "textScale": 1.3,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 393,
+      "height": 873,
+      "textScale": 1.3,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 393,
+      "height": 873,
+      "textScale": 1.3,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 393,
+      "height": 873,
+      "textScale": 1.3,
+      "page": "settings",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 393,
+      "height": 873,
+      "textScale": 1.3,
+      "page": "models",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 393,
+      "height": 873,
+      "textScale": 1.3,
+      "page": "chat",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 393,
+      "height": 873,
+      "textScale": 1.3,
+      "page": "tasks",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 393,
+      "height": 873,
+      "textScale": 1.3,
+      "page": "server",
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 393,
+      "height": 873,
+      "textScale": 1.3,
+      "page": "settings",
+      "passed": true
+    }
+  ],
+  "browser_closed": true,
+  "physicalDevice": false,
+  "ui_uses_simulated_bridge": true,
+  "complete_trained_model_runs": 0,
+  "input_fingerprint": {
+    "app/src/main/assets/app.css": "1c1bdc0a0f90c2b1dbe170853a9897e8acc2664e157fee22af5b996ad4e14846",
+    "app/src/main/assets/app.js": "5fb7f32747adf5e12babe078aaccb6ebf32580022f47b05e806d4ebcc0b5fbd7",
+    "app/src/main/assets/asset-preparations.json": "b0a7cbac1a633310b9fff84164439ee8fe20a1df137d1075eb9263f531ccfd3b",
+    "app/src/main/assets/audio-preview.js": "33bb898969f37c1f78c6664052c46da844d148defdcef4a54d64bc5829037f44",
+    "app/src/main/assets/capabilities.js": "ce9fc72a05d288c9b8ee3fc2593af190187aecac68f36f33ce8143d6aa01c812",
+    "app/src/main/assets/capabilities.json": "f964a205d341bcbf627fd438d8cb78b359be4f8c83dc572f34ad7b964e252a4c",
+    "app/src/main/assets/community.js": "9ea2f6adf3da95122bf4bca96e9a03971d1da2759a86d5f5e1f0c46c2ba8272a",
+    "app/src/main/assets/conversation.css": "5d29c47ba810774c502eb68c369d1d355644b1da542389a38c6b0dd3ec5516dc",
+    "app/src/main/assets/conversation.js": "aa479c571e0705eb68e8e66d782ecc7989c5d29689c62311afe891f263e3ef8e",
+    "app/src/main/assets/engine-builds.json": "ea15c61490a261eb664201b50a62de899b2858785d095bc3e80ff3e42dd13493",
+    "app/src/main/assets/expansion-notices.json": "e5bc41234e37c91400636473491b61644bb7cdf5ba4c73c20c2e5eaffc769055",
+    "app/src/main/assets/expansion.js": "e968fea1d2013d6fa3c812dc8af5aeadf32ac11cb15aa3490de713c840c4f98c",
+    "app/src/main/assets/foundation.css": "8bbd7a445a43d93f796be904e8f67b6e6120cf27547b93abb79cf41142078343",
+    "app/src/main/assets/glb-preview.js": "26554ae19c4dbeba87732dc0d220a628f40b598450a021e683737ded03db0f85",
+    "app/src/main/assets/index.html": "114f70a528839e09a99e9289ae62c995c4ef59b1a1347854542d76258b767f18",
+    "app/src/main/assets/lma-logo.png": "3155c4601396c8623c20879b903e317747a94a7b840be307bcc93fde988c8bea",
+    "app/src/main/assets/mica-design.json": "5b838a1a01cb1b42c557b5bf3c661dbfdf6075ebbf812d6e3b72d0ab58d1c2b8",
+    "app/src/main/assets/mica-tokens.css": "509995c97fd339d6608f7ae829f24af2b547b8cd0011bf1bf768ea17c375af6a",
+    "app/src/main/assets/mica.css": "1089ee347211cd1d9f93e5704a04804440f8efac967a3965580c545c30c5ed90",
+    "app/src/main/assets/mica.js": "b42616f0889dc262c68ae62cfe804aad64ca93a38e4f186351eb2c7eda52ed74",
+    "app/src/main/assets/model-assemblies.json": "bda37b1411a28e8f396a03f0ccf8176b07469d402a858b5b8561410d13d8d572",
+    "app/src/main/assets/model-bundles.json": "74c1f12e82b76e3030d7835f5b42c5ad680b055b8c80ae69a1cfca4a3153f229",
+    "app/src/main/assets/models.json": "c3e884b4e5fb06f20c036deebc78e6f953ac420e76fca72bab5a25fd59927156",
+    "app/src/main/assets/recipe-templates.json": "ed87f310d0a63251f765bbc4d8741b31806cc87145c0a96f762a110e097e6bd3",
+    "app/src/main/assets/recipes.js": "b27e75ed85948a63476bf351cde94a59bec935a540f65e1a9fe798322bcd1b39",
+    "app/src/main/assets/recommendations.js": "13f0f41840a3a28a5b70d021f77c7700050f6007086228179cd794b331263215",
+    "app/src/main/assets/recommendations.json": "8fa2c4c76526d63de81d37fac75af6d4664175df0f355b64c552274d67517ebf",
+    "app/src/main/assets/theme-boot.js": "5855497410fc6847d1bf952bc0db1ddc04ccf0d989536df21a7797def93b2982",
+    "app/src/main/assets/versions.js": "2d629929a6db642c12a242ddcc62cd4f4090ab307e0cb669ceb98add031977e1",
+    "app/src/main/assets/vision-presets.json": "f6ec64acd1f2ae1b29534ff71e2a60efc44ed802c2161af8a55ad110729287c5",
+    "app/src/main/assets/workbench.js": "367c6293b50bb1f4567da00eef20d795c7f775c2e5f6b5ec62b0e32989920e09",
+    "app/src/main/java/com/lma/app/MainActivity.java": "f2a98438d24980a10668c6d51caa1f825241ecb83f3b89afbbed901bb58450bb",
+    "docs/design/tokens.json": "3fef071e5d4014887ccbbe53143dde2fae82a075fd564e4805e94fb972089f74",
+    "tests/mica-ui.cjs": "011ae64ad081b4a450b3f63d69ba2efc7eeb5ce2f0469af9255ad6decdec61ed"
+  }
+}

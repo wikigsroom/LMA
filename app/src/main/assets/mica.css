@@ -1,0 +1,296 @@
+/* UI10 Mica Bento. Shared components, both themes and adaptive window layouts. */
+:root.lma-mica {
+  --bg:var(--lma-canvas);--panel:var(--lma-surface);--ink:var(--lma-text);
+  --muted:var(--lma-secondary);--line:var(--lma-separator);
+  --primary:var(--lma-primary);--primary-soft:var(--lma-primary-soft);--on-primary:var(--lma-on-primary);
+  --green:var(--lma-mint);--green-soft:var(--lma-mint-soft);--amber:var(--lma-warning);--amber-soft:var(--lma-warning-soft);
+  --danger:var(--lma-danger);--danger-soft:var(--lma-danger-soft);--input:var(--lma-inset);--code:var(--lma-inset);
+  --nav:var(--lma-surface);--shadow:var(--lma-shadow);--radius:10px;
+  --font:system-ui,Roboto,"Noto Sans CJK SC","Microsoft YaHei",sans-serif;
+  --mono:ui-monospace,Consolas,monospace;
+  --gutter:16px;--section-gap:12px;--model-floor:320px;--model-min:320px;
+  --safe-top:env(safe-area-inset-top,0px);--safe-bottom:env(safe-area-inset-bottom,0px);
+  --safe-left:env(safe-area-inset-left,0px);--safe-right:env(safe-area-inset-right,0px);
+  --visible-height:100%;
+  background:var(--bg);color:var(--ink);
+}
+.lma-mica[data-native-insets="true"] {--safe-top:0px;--safe-bottom:0px;--safe-left:0px;--safe-right:0px}
+.lma-mica body {font:1rem/1.5 var(--font);background:var(--bg);color:var(--ink)}
+.lma-mica button,.lma-mica input,.lma-mica select,.lma-mica textarea {font:inherit;max-width:100%}
+.lma-mica button {min-width:48px;min-height:48px;touch-action:manipulation}
+.lma-mica button:disabled {opacity:1;color:var(--lma-muted);background:var(--lma-raised);cursor:default}
+.lma-mica button:not(:disabled):active {opacity:1;box-shadow:inset 0 0 0 2px var(--lma-control-border)}
+.lma-mica :is(button,a,input,textarea,select,summary,[tabindex]):focus-visible {outline:2px solid var(--lma-focus);outline-offset:2px}
+.lma-mica :is(input,textarea,select)::placeholder {color:var(--lma-muted);opacity:1}
+.lma-mica :is(h1,h2,h3,h4,p,small,span,strong,label,dd,code) {overflow-wrap:anywhere}
+.lma-mica h1 {font-size:1.625rem;line-height:1.25;letter-spacing:0;font-weight:650;margin:0 0 8px}
+.lma-mica h2 {font-size:1.25rem;line-height:1.35;font-weight:650}
+.lma-mica h3 {font-size:1.125rem;line-height:1.4}
+.lma-mica .heading-dot {display:none}
+.lma-mica .eyebrow {font:500 .75rem/1.5 var(--mono);letter-spacing:.06em;margin-bottom:8px;display:block;color:var(--lma-muted)}
+.lma-mica .muted {color:var(--lma-secondary)}
+.lma-mica .app-shell {max-width:none;width:100%;height:100%;height:var(--visible-height);margin:0;display:flex;flex-direction:column;padding:var(--safe-top) var(--safe-right) var(--safe-bottom) var(--safe-left);gap:0}
+@supports(height:100dvh) {.lma-mica {--visible-height:100dvh}}
+.lma-mica .topbar {display:flex;grid-area:auto;align-items:center;justify-content:space-between;gap:12px;height:auto;min-height:64px;padding:12px var(--gutter);background:var(--bg);flex-shrink:0}
+.lma-mica .brand {min-width:0;max-width:100%;flex:1;gap:8px;flex-wrap:nowrap}
+.lma-mica .brand-logo {width:40px;height:40px;border-radius:8px;margin:0;flex-shrink:0;object-fit:contain}
+.lma-mica .brand-name {font-size:1.25rem;font-weight:750;letter-spacing:.03em;white-space:nowrap}
+.lma-mica .brand-caption {display:none;font-size:.875rem;letter-spacing:0;font-weight:400;line-height:1.5;border:0;padding:0;margin:0 0 0 16px;max-width:320px;min-width:0;color:var(--muted)}
+.lma-mica .device-badge {font-size:.875rem;min-width:0;text-align:end;max-width:45%}
+.lma-mica .device-led {background:var(--primary);flex-shrink:0}
+.lma-mica .runtime-strip {grid-area:auto;margin:0 var(--gutter) 4px;padding:8px 12px;border:1px solid var(--line);border-radius:8px;min-height:56px;gap:8px;flex-shrink:0;display:flex;background:var(--panel)}
+.lma-mica .runtime-dot {margin:0 4px 0 0;background:var(--lma-muted)}
+.lma-mica .runtime-dot.ready {background:var(--lma-success);box-shadow:none}
+.lma-mica .runtime-dot.loading {background:var(--lma-warning)}
+.lma-mica .runtime-dot.error {background:var(--lma-danger)}
+.lma-mica .runtime-copy {min-width:0;gap:2px}
+.lma-mica .runtime-copy strong {font-size:.875rem;white-space:normal;overflow:visible;line-height:1.4}
+.lma-mica .runtime-copy>span {font-size:.75rem;white-space:normal;overflow:visible;line-height:1.5;margin:0;color:var(--lma-muted)}
+.lma-mica .text-button {font-size:.875rem;line-height:1.5;padding:8px;white-space:normal;color:var(--primary)}
+.lma-mica #main {grid-area:auto;display:flex;min-height:0;min-width:0;flex:1;width:100%;max-width:1264px;margin:0 auto}
+.lma-mica .page {padding:20px var(--gutter) 24px;min-width:0;overflow:auto;scroll-behavior:auto;scroll-padding:16px}
+.lma-mica .page-heading {gap:12px;align-items:flex-start;margin-bottom:20px;flex-wrap:wrap}
+.lma-mica .page-heading>div {flex:1;min-width:min(100%,200px)}
+.lma-mica .page-heading>.button {margin:0;flex-shrink:0}
+.lma-mica .page-heading p {font-size:.875rem;line-height:1.6;color:var(--muted)}
+.lma-mica .resource-ribbon {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;border:0;padding:0;margin:0 0 20px}
+.lma-mica .resource-ribbon>div {border:1px solid var(--line);border-radius:12px;background:var(--lma-raised);padding:12px;min-width:0;gap:4px;position:relative}
+.lma-mica .resource-ribbon>div:last-child {grid-column:1 / -1;background:var(--lma-primary-soft)}
+.lma-mica .resource-ribbon>div:first-child {border:1px solid var(--line);padding:12px}
+.lma-mica .resource-ribbon span {font-size:.875rem;color:var(--muted);margin:0}
+.lma-mica .resource-ribbon strong {font:650 1.375rem/1.35 var(--font);font-variant-numeric:tabular-nums;letter-spacing:0;color:var(--ink)}
+.lma-mica .search-label {display:block;font-size:.875rem;font-weight:500;color:var(--muted);margin-bottom:8px}
+.lma-mica .search-field {min-width:0;gap:8px;padding:0 12px;border:1px solid var(--lma-control-border);border-radius:8px;background:var(--input)}
+.lma-mica .search-field input {font-size:1rem;line-height:1.5;min-height:48px;padding:10px 0;min-width:0}
+.lma-mica .search-field:focus-within {outline:2px solid var(--lma-focus);outline-offset:2px}
+.lma-mica .search-field kbd {display:none}
+.lma-mica .search-clear {flex-shrink:0;color:var(--muted);margin-inline-end:-8px}
+.lma-mica .filter-row,.lma-mica .task-filter-row {display:flex;flex-wrap:wrap;gap:8px;overflow:visible;white-space:normal;padding:0;margin:16px 0}
+.lma-mica :is(.filter,.task-filter) {font-size:.875rem;line-height:1.4;min-height:48px;min-width:48px;padding:10px 12px;border-radius:8px;color:var(--muted);white-space:normal;border:1px solid transparent}
+.lma-mica :is(.filter,.task-filter).active {background:var(--lma-primary-soft);color:var(--lma-on-primary-soft);border-color:var(--primary);font-weight:650;box-shadow:inset 0 -2px 0 var(--primary)}
+.lma-mica .list-heading {margin:24px 0 12px;gap:8px;flex-wrap:wrap}
+.lma-mica .list-heading .muted {font-size:.875rem}
+.lma-mica .model-grid {grid-template-columns:minmax(0,1fr);gap:16px;align-items:start}
+.lma-mica .model-card {padding:16px;border-radius:10px;border:1px solid var(--line);box-shadow:none;min-width:0;background:var(--panel)}
+.lma-mica .model-card.is-running {border-color:var(--lma-success)}
+.lma-mica .model-top {gap:12px}
+.lma-mica .model-symbol {margin:0;width:40px;height:40px;border-radius:8px;background:var(--lma-primary-soft);color:var(--lma-on-primary-soft);font-size:1.25rem}
+.lma-mica .model-symbol[data-family=LFM] {background:var(--lma-mint-soft);color:var(--lma-on-mint-soft)}
+.lma-mica .model-symbol[data-family=Gemma] {background:var(--lma-content-soft);color:var(--lma-content)}
+.lma-mica .model-symbol[data-family=Llama] {background:var(--lma-warning-soft);color:var(--lma-warning)}
+.lma-mica .model-name {font-size:1.125rem;line-height:1.4;min-height:48px;text-align:start;width:100%;padding:0;color:var(--ink)}
+.lma-mica .model-name strong {font-weight:650;display:block;white-space:normal}
+.lma-mica .model-caption {font-size:.875rem;display:block;letter-spacing:0;color:var(--muted)}
+.lma-mica .model-card.is-running .model-top-copy {padding:0}
+.lma-mica .model-card .running-mark {position:static;display:inline-block;padding:4px 8px;margin-top:8px;border-radius:6px;font-size:.875rem;background:var(--lma-success-soft);color:var(--lma-success)}
+.lma-mica .model-description {font-size:.875rem;line-height:1.6;min-height:0;margin:12px 0;color:var(--muted)}
+.lma-mica .model-tags {gap:6px;margin-bottom:12px;align-items:flex-start}
+.lma-mica .tag,.lma-mica .badge {font-size:.875rem;line-height:1.4;padding:4px 8px;margin:0;border:1px solid var(--line);border-radius:6px;color:var(--muted);background:var(--lma-raised);max-width:100%;white-space:normal}
+.lma-mica .tag.recommended,.lma-mica .badge,.lma-mica .task-text {color:var(--lma-on-primary-soft);background:var(--lma-primary-soft);border-color:transparent}
+.lma-mica .task-image {color:var(--lma-on-mint-soft);background:var(--lma-mint-soft);border-color:transparent}
+.lma-mica .task-video {color:var(--lma-info);background:var(--lma-info-soft);border-color:transparent}
+.lma-mica .task-audio {color:var(--lma-content);background:var(--lma-content-soft);border-color:transparent}
+.lma-mica .task-3d {color:var(--lma-secondary);background:var(--lma-raised);border-color:transparent}
+.lma-mica .tag.uncensored,.lma-mica .tag.content-nsfw,.lma-mica .tag.content-sensitive {color:var(--lma-content);background:var(--lma-content-soft);border-color:transparent}
+.lma-mica .tag.experimental {color:var(--lma-warning);background:var(--lma-warning-soft);border-color:transparent}
+.lma-mica .model-footer {gap:12px;flex-wrap:wrap;padding-top:12px;border-top:1px solid var(--line);align-items:center}
+.lma-mica .model-size {font:600 1.125rem/1.4 var(--font);font-variant-numeric:tabular-nums;min-width:0;flex:1}
+.lma-mica .model-size small,.lma-mica .bundle-card .model-size small {font-size:.875rem;line-height:1.5;margin:4px 0 0;max-width:none}
+.lma-mica .model-footer-actions {display:flex;gap:8px;flex-wrap:wrap;min-width:0;max-width:100%;align-items:center}
+.lma-mica .button,.lma-mica .model-footer .button,.lma-mica .job-actions .button,.lma-mica .conversation-controls .button {font-size:1rem;line-height:1.4;min-height:48px;max-width:100%;padding:12px 16px;border-radius:8px;white-space:normal;gap:0;transition:background-color .1s ease,border-color .1s ease}
+.lma-mica .button.primary,.lma-mica .send-button {background:var(--primary);color:var(--on-primary)}
+.lma-mica .button.primary:not(:disabled):active,.lma-mica .send-button:not(:disabled):active {background:var(--lma-primary-pressed);box-shadow:none}
+.lma-mica .button.secondary {background:var(--panel);border:1px solid var(--lma-control-border);color:var(--ink)}
+.lma-mica .button.subtle {background:var(--lma-primary-soft);color:var(--lma-on-primary-soft)}
+.lma-mica .button.danger {background:var(--danger-soft);color:var(--danger)}
+.lma-mica .model-footer [data-action=download],.lma-mica .model-footer [data-action=resumeDownload],.lma-mica .model-footer [data-action=bundleDownload] {background:var(--lma-mint);color:var(--lma-on-mint)}
+.lma-mica .icon-button,.lma-mica .model-footer-actions .icon-button {width:48px;min-width:48px;min-height:48px;height:auto;padding:12px;margin:0;border-radius:8px;color:var(--muted)}
+.lma-mica .icon {width:20px;height:20px}
+.lma-mica .icon.small {width:20px;height:20px}
+.lma-mica .download-meta,.lma-mica .download-error {font-size:.875rem;line-height:1.5;gap:8px;flex-wrap:wrap}
+.lma-mica .progress-track {background:var(--input);height:6px}
+.lma-mica .progress-track>span {background:var(--primary);transition:none}
+.lma-mica .library-footnote {font-size:.875rem;line-height:1.6;margin:24px 0 0}
+.lma-mica .bottom-nav {grid-area:auto;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));padding:4px 8px;gap:4px;min-height:64px;background:var(--nav);border-top:1px solid var(--line);flex-shrink:0}
+.lma-mica .nav-item {min-height:56px;min-width:0;padding:8px 2px;gap:4px;font-size:.75rem;line-height:1.3;border-radius:8px;color:var(--muted);white-space:normal}
+.lma-mica .nav-item .icon {width:24px;height:24px;margin:0}
+.lma-mica .nav-item.active {background:var(--lma-primary-soft);color:var(--lma-on-primary-soft);font-weight:650;box-shadow:inset 0 -2px var(--primary)}
+.lma-mica .nav-item.active:before {display:none}
+.lma-mica .panel,.lma-mica .server-card {padding:16px;border:1px solid var(--line);border-radius:10px;background:var(--panel);margin-bottom:16px;min-width:0;box-shadow:none}
+.lma-mica .server-card h2 {font-size:1.375rem;letter-spacing:0}
+.lma-mica :is(.server-card p,.panel p,.form-help,.empty-text,.callout p,.about p) {font-size:.875rem;line-height:1.6;color:var(--muted)}
+.lma-mica .section-heading {flex-wrap:wrap;gap:8px;min-width:0}
+.lma-mica .server-state-pill,.lma-mica .status-pill {font-size:.875rem;white-space:normal}
+.lma-mica .published-model {padding:12px 0;font-size:.875rem;min-width:0}
+.lma-mica .published-model>div {display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}
+.lma-mica .published-model code {font-size:.875rem;overflow-wrap:anywhere}
+.lma-mica :is(.api-address,.api-key,.endpoint,.key-row) {min-width:0;max-width:100%;flex-wrap:wrap;gap:8px}
+.lma-mica #apiUrl,.lma-mica #apiKeyDisplay {font: .875rem/1.6 var(--mono);min-width:0;overflow-wrap:anywhere;white-space:normal}
+.lma-mica :is(pre,.code-panel,code.block,.provenance) {font-size:.875rem;line-height:1.6;max-width:100%;overflow:auto;background:var(--input);border-radius:8px}
+.lma-mica #runtimeLogs {max-height:320px;white-space:pre-wrap;padding:12px}
+.lma-mica .form-field {min-width:0;max-width:100%;margin-bottom:16px}
+.lma-mica .form-field>span,.lma-mica .config-field>label {font-size:.875rem;line-height:1.5;font-weight:500;margin-bottom:8px}
+.lma-mica .form-field :is(input:not([type=checkbox]):not([type=radio]),select,textarea),.lma-mica .config-field input,.lma-mica .workflow-step :is(input,select,textarea) {font-size:1rem;line-height:1.5;min-height:48px;padding:10px 12px;min-width:0;width:100%;border:1px solid var(--lma-control-border);border-radius:8px;color:var(--ink);background:var(--input)}
+.lma-mica .form-field small,.lma-mica .config-field small {font-size:.875rem;line-height:1.5;color:var(--muted);display:block;margin-top:6px}
+.lma-mica .form-grid,.lma-mica .bundle-fields {display:grid;grid-template-columns:minmax(0,1fr);gap:12px;min-width:0}
+.lma-mica .toggle-line {min-height:56px;align-items:center;gap:12px;padding:12px 0;min-width:0}
+.lma-mica .toggle-line>div {min-width:0;flex:1}
+.lma-mica .toggle-line strong {font-size:1rem}
+.lma-mica .toggle-line p {font-size:.875rem;line-height:1.5;margin:4px 0 0}
+.lma-mica .switch {min-width:48px;width:48px;height:48px}
+.lma-mica .switch>span {width:44px;height:24px;background:var(--input);border:1px solid var(--lma-control-border)}
+.lma-mica .switch>span:after {background:var(--muted);top:2px;left:3px}
+.lma-mica .switch input:checked+span {background:var(--primary);border-color:var(--primary)}
+.lma-mica .switch input:checked+span:after {background:var(--on-primary)}
+.lma-mica .editable-combo {border:1px solid var(--lma-control-border);border-radius:8px;background:var(--input);min-width:0}
+.lma-mica .editable-combo>input {border:0;background:none}
+.lma-mica .editable-combo>button {min-width:48px;min-height:48px;padding:8px}
+.lma-mica .config-options,.lma-mica .preset-options {max-width:100%;max-height:200px;overflow:auto;z-index:4;background:var(--panel);border:1px solid var(--lma-control-border);border-radius:8px}
+.lma-mica [role=option] {min-height:48px;font-size:1rem;padding:10px 12px;white-space:normal}
+.lma-mica [role=option].focused,.lma-mica [role=option][aria-selected=true] {background:var(--lma-primary-soft);color:var(--lma-on-primary-soft)}
+.lma-mica .config-model h3 {font-size:1.125rem}
+.lma-mica .config-model p,.lma-mica .save-hint,.lma-mica .config-fieldset legend {font-size:.875rem}
+.lma-mica .modal-backdrop {inset:0;padding:12px;align-items:center;background:rgb(5 9 20 / .64)}
+.lma-mica[data-theme=light] .modal-backdrop {background:rgb(25 36 58 / .4)}
+.lma-mica .modal {width:100%;max-width:640px;max-height:calc(100% - 24px);padding:16px;border-radius:16px;border:1px solid var(--lma-control-border);box-shadow:var(--shadow);overscroll-behavior:contain;min-width:0;background:var(--panel)}
+.lma-mica .modal-heading {gap:12px;align-items:flex-start;margin-bottom:16px}
+.lma-mica .modal-heading h2 {font-size:1.25rem;min-width:0;flex:1;line-height:1.4}
+.lma-mica .modal-heading .icon-button {margin:0;flex-shrink:0}
+.lma-mica .modal p {font-size:.875rem;line-height:1.6}
+.lma-mica .modal-list-item {min-width:0;min-height:56px;gap:8px;flex-wrap:wrap}
+.lma-mica .modal-list-item strong {font-size:1rem;white-space:normal;overflow:visible}
+.lma-mica .modal-list-item small {font-size:.875rem;white-space:normal}
+.lma-mica .modal-actions {gap:8px;flex-wrap:wrap;justify-content:flex-end;margin-top:16px;position:static}
+.lma-mica .modal-actions>.button {margin:0;max-width:100%}
+.lma-mica :is(.model-info dl,.task-value-list,.task-preflight dl,.capability-details dl) {grid-template-columns:minmax(0,1fr);font-size:.875rem;gap:8px;margin:16px 0}
+.lma-mica :is(.model-info dd,.task-value-list dd,.task-preflight dd) {font-size:.875rem;margin:0 0 8px;min-width:0;overflow-wrap:anywhere}
+.lma-mica .job-card,.lma-mica .artifact-card,.lma-mica .workflow-step,.lma-mica .conversation-part {border:1px solid var(--line);border-radius:10px;background:var(--panel);padding:16px;min-width:0}
+.lma-mica .job-list,.lma-mica .artifact-grid {grid-template-columns:minmax(0,1fr);gap:16px}
+.lma-mica .job-actions {display:flex;flex-wrap:wrap;gap:8px}
+.lma-mica .job-prompt,.lma-mica .task-prompt-text {font-size:.875rem;line-height:1.5;max-height:none}
+.lma-mica .job-tools .button,.lma-mica .job-tools small,.lma-mica .job-card small,.lma-mica .artifact-info>p {font-size:.875rem}
+.lma-mica .artifact-card {padding:0;overflow:hidden}
+.lma-mica .artifact-info>strong {font-size:1rem}
+.lma-mica .artifact-thumb {max-width:100%;height:auto;max-height:240px;object-fit:contain;background:var(--input)}
+.lma-mica .artifact-preview,.lma-mica .modal :is(audio,video),.lma-mica .glb-preview {max-width:100%;width:100%;max-height:60vh;background:var(--input)}
+.lma-mica :is(.bundle-components,.task-parameters,.task-preflight,.task-adapters,.restore-notice,.recommendation-note,.capability-filters,.callout) {border-radius:8px;min-width:0;padding:12px;background:var(--lma-raised);color:var(--ink);border-color:var(--line);font-size:.875rem}
+.lma-mica :is(.bundle-components,.task-parameters,.capability-filters,.capability-details) summary {min-height:48px;display:flex;align-items:center;gap:8px;font-size:.875rem;line-height:1.5}
+.lma-mica :is(.bundle-components p,.bundle-components code,.hub-file details code,.hub-file details summary,.community-info,.recommendation-note p,.provenance,.preparation-section small) {font-size:.875rem;line-height:1.5;overflow-wrap:anywhere}
+.lma-mica .preflight-ready {color:var(--lma-success);background:var(--lma-success-soft)}
+.lma-mica .preflight-blocked,.lma-mica .output-limit-notice {color:var(--lma-warning);background:var(--lma-warning-soft)}
+.lma-mica :is(.adapter-choice,.unmeasured-choice,.capability-options label,.conversation-options label) {min-height:48px;align-items:center;font-size:.875rem;gap:8px}
+.lma-mica input[type=checkbox],.lma-mica input[type=radio] {accent-color:var(--primary);flex-shrink:0}
+.lma-mica .task-adapter {grid-template-columns:minmax(0,1fr);gap:8px}
+.lma-mica .chat-page.active {padding:12px var(--gutter);display:flex;flex-direction:column;overflow:hidden}
+.lma-mica .chat-toolbar {gap:8px;flex-wrap:wrap;align-items:center}
+.lma-mica .chat-toolbar .model-picker {flex:1;min-width:0;max-width:100%;font-size:1rem;gap:8px}
+.lma-mica .model-picker>span:nth-child(2) {white-space:normal;overflow:visible;max-width:none;min-width:0}
+.lma-mica .toolbar-actions {gap:4px}
+.lma-mica .messages {padding:16px 0;scroll-behavior:auto;min-height:0;flex:1}
+.lma-mica .message {max-width:760px;margin:0 auto 24px;font-size:1rem;line-height:1.5}
+.lma-mica .message-content {font-size:1rem;line-height:1.5}
+.lma-mica .message-heading,.lma-mica .message-heading strong {font-size:.875rem;line-height:1.5;letter-spacing:0;gap:8px;flex-wrap:wrap}
+.lma-mica .message-heading .icon-button {min-height:48px;height:48px}
+.lma-mica .message.user {border-radius:10px;background:var(--panel);border-color:var(--line)}
+.lma-mica .chat-empty {min-height:180px;height:auto;padding:20px 8px}
+.lma-mica .chat-empty h2 {font-size:1.5rem;letter-spacing:0}
+.lma-mica .chat-empty p {font-size:1rem;line-height:1.5;max-width:440px}
+.lma-mica .suggestion {font-size:.875rem;line-height:1.5;white-space:normal;border-radius:8px;border-color:var(--lma-control-border);padding:12px}
+.lma-mica .composer {padding:12px;border-radius:10px;background:var(--panel);border:1px solid var(--lma-control-border);margin:0 auto;max-width:900px;width:100%;min-width:0;flex-shrink:0}
+.lma-mica #chatInput {font-size:1rem;line-height:1.5;min-height:48px;max-height:30vh;border:0;outline-offset:0;padding:10px 4px;color:var(--ink);background:transparent}
+.lma-mica .composer-bottom {gap:8px;min-width:0}
+.lma-mica #composerHint {font-size:.75rem;line-height:1.5;min-width:0;white-space:normal;color:var(--muted)}
+.lma-mica .send-button {width:48px;min-width:48px;min-height:48px;height:auto;border-radius:8px;flex-shrink:0}
+.lma-mica .conversation-controls {gap:8px;margin:0 0 8px;min-width:0}
+.lma-mica .conversation-controls select {font-size:1rem;line-height:1.5;max-width:100%;min-height:48px;border:1px solid var(--lma-control-border);border-radius:8px;padding:10px;flex:1;min-width:0}
+.lma-mica .conversation-controls #conversationModel {max-width:100%;flex-basis:100%}
+.lma-mica .conversation-options {font-size:.875rem;gap:8px;line-height:1.5;min-width:0}
+.lma-mica .conversation-attachments {gap:8px;max-height:120px}
+.lma-mica .conversation-attachments button {font-size:.875rem;min-height:48px;white-space:normal}
+.lma-mica .conversation-part strong {font-size:1rem}
+.lma-mica .conversation-part pre {font-size:.875rem}
+.lma-mica .conversation-model-status {font-size:.875rem;line-height:1.5;margin:4px 0 8px}
+.lma-mica .conversation-hero-logo {border-radius:12px}
+.lma-mica .capability-options {gap:8px}
+.lma-mica .capability-filters select {font-size:1rem;min-height:48px;max-width:100%;margin:4px 0;border-color:var(--lma-control-border)}
+.lma-mica .workflow-step label {font-size:.875rem;line-height:1.5}
+.lma-mica .about {gap:16px;min-width:0;flex-wrap:wrap;padding:20px 0}
+.lma-mica .about .brand-logo {width:64px;height:64px}
+.lma-mica .about strong {font-size:1rem}
+.lma-mica .toast {border-radius:8px;background:var(--lma-raised);color:var(--ink);border:1px solid var(--lma-control-border);font-size:.875rem;line-height:1.5;max-width:calc(100% - 24px);bottom:84px;padding:12px 16px;z-index:50}
+.lma-mica .error-banner {background:var(--danger-soft);color:var(--danger);font-size:.875rem;line-height:1.5;border-radius:8px;max-width:calc(100% - 24px);gap:8px;align-items:center;z-index:45}
+.lma-mica .window-recovery {display:none}
+@media(hover:hover) {.lma-mica .button.primary:not(:disabled):hover {background:var(--lma-primary-hover)}.lma-mica .icon-button:hover {background:var(--lma-raised)}}
+@media(max-width:359px) {
+  :root.lma-mica {--gutter:12px}
+  .lma-mica .brand-logo {width:36px;height:36px}
+  .lma-mica .device-badge {display:none}
+  .lma-mica h1 {font-size:1.5rem}
+  .lma-mica .resource-ribbon {grid-template-columns:minmax(0,1fr)}
+  .lma-mica .model-footer-actions {width:100%}
+  .lma-mica .model-footer-actions>.button {flex:1}
+  .lma-mica .model-card,.lma-mica .panel,.lma-mica .job-card {padding:12px}
+  .lma-mica .runtime-strip {flex-wrap:wrap}
+  .lma-mica .runtime-copy {flex-basis:calc(100% - 28px)}
+}
+@media(max-width:319px) {
+  :root.lma-mica {--gutter:8px;--section-gap:8px}
+  .lma-mica .bottom-nav {grid-template-columns:repeat(auto-fit,minmax(64px,1fr))}
+}
+@media(max-width:239px) {
+  .lma-mica .app-shell {display:none}
+  .lma-mica .window-recovery {display:block;padding:16px;font-size:1rem;color:var(--ink)}
+}
+@media(min-width:480px) {:root.lma-mica {--gutter:20px;--section-gap:16px}}
+@media(min-width:600px) {
+  :root.lma-mica {--gutter:24px}
+  .lma-mica .resource-ribbon {grid-template-columns:repeat(3,minmax(0,1fr))}
+  .lma-mica .resource-ribbon>div:last-child {grid-column:auto}
+  .lma-mica .form-grid,.lma-mica .bundle-fields {grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr))}
+  .lma-mica .task-adapter {grid-template-columns:minmax(0,1fr) 100px}
+  .lma-mica .brand-caption {display:block}
+  .lma-mica .topbar {min-height:72px}
+}
+@media(min-width:840px) {
+  :root.lma-mica {--model-min:max(var(--model-floor),calc((100% - 16px)/2))}
+  .lma-mica .app-shell {display:grid;grid-template-columns:80px minmax(0,1fr);grid-template-rows:auto auto minmax(0,1fr)}
+  .lma-mica .topbar {grid-column:2;grid-row:1;min-width:0;width:100%;max-width:1264px;margin:auto}
+  .lma-mica .runtime-strip {grid-column:2;grid-row:2;min-width:0}
+  .lma-mica #main {grid-column:2;grid-row:3}
+  .lma-mica .bottom-nav {grid-column:1;grid-row:1 / 4;grid-template-columns:minmax(0,1fr);grid-auto-rows:minmax(64px,max-content);display:grid;align-content:start;min-height:0;overflow:auto;padding:12px 6px;border-top:0;border-right:1px solid var(--line)}
+  .lma-mica .nav-item {min-height:64px;gap:8px}
+  .lma-mica .model-grid,.lma-mica .job-list,.lma-mica .artifact-grid {grid-template-columns:repeat(auto-fit,minmax(min(var(--model-min),100%),1fr))}
+  .lma-mica .runtime-copy>span {display:block}
+}
+@media(min-width:1200px) {:root.lma-mica {--gutter:32px;--model-min:max(var(--model-floor),calc((100% - 32px)/3))}}
+@media(max-height:480px) {
+  .lma-mica .app-shell {display:flex;overflow:auto}
+  .lma-mica .topbar {min-height:56px;padding-top:8px;padding-bottom:8px}
+  .lma-mica .brand-caption,.lma-mica .device-badge {display:none}
+  .lma-mica .runtime-strip {display:flex;min-height:56px}
+  .lma-mica #main {flex:none;min-height:160px}
+  .lma-mica .page {overflow:visible;flex:none}
+  .lma-mica .bottom-nav {display:grid;grid-template-columns:repeat(5,minmax(0,1fr));position:relative;grid-auto-rows:auto;border-top:1px solid var(--line);border-right:0;padding:4px 8px;overflow:visible}
+  .lma-mica .chat-page.active {overflow:visible}
+  .lma-mica .messages {flex:none;max-height:none;overflow:visible}
+  .lma-mica .composer {position:static}
+  .lma-mica .modal {max-height:calc(100% - 8px)}
+}
+.lma-mica[data-ime="true"] .bottom-nav {display:none}
+.lma-mica[data-ime="true"] .toast {bottom:16px}
+.lma-mica[data-large-text="true"] {--model-floor:560px}
+.lma-mica[data-large-text="true"] :is(.resource-ribbon,.form-grid,.bundle-fields,.capability-details dl,.task-adapter) {grid-template-columns:minmax(0,1fr)}
+.lma-mica[data-large-text="true"] .resource-ribbon>div {grid-column:auto}
+.lma-mica[data-large-text="true"] .model-footer-actions {width:100%}
+.lma-mica[data-large-text="true"] .model-name strong {display:block;-webkit-line-clamp:unset;max-height:none}
+.lma-mica[data-large-text="true"] :is(.nav-item,.tag,.badge) {height:auto;white-space:normal;overflow:visible}
+.lma-mica[data-large-text="true"] .chat-page.active {overflow:auto;display:block}
+.lma-mica[data-large-text="true"] .messages {overflow:visible;max-height:none}
+.lma-mica[data-large-text="true"] .composer {margin-top:16px}
+@media(prefers-reduced-motion:reduce) {.lma-mica *, .lma-mica *:before,.lma-mica *:after {animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+.lma-mica[data-large-text="true"] .brand-caption {display:none}
+
+/* Modal controls must remain reachable when a previous page has an alert. */
+.lma-mica .modal-backdrop {z-index:60}
+.lma-mica .toast {z-index:70}

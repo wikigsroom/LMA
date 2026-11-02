@@ -5,5 +5,6 @@
     <application android:label="LMA device acceptance" android:allowBackup="false" />
     <instrumentation android:name="com.lma.app.DeviceAcceptance" android:targetPackage="com.lma.app" android:label="Physical-device checks" />
     <instrumentation android:name="com.lma.app.DevicePerformance" android:targetPackage="com.lma.app" android:label="Zero-model performance checks" />
+    <instrumentation android:name="com.lma.app.DeviceUiProbe" android:targetPackage="com.lma.app" android:label="Mica physical UI checks" />
     <instrumentation android:name="com.lma.app.DeviceTaskDiagnostics" android:targetPackage="com.lma.app" android:label="Owned-file and native startup diagnostics" />
 </manifest>

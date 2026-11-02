@@ -1,0 +1,14 @@
+{
+  "schema": "lma.mica-design/1",
+  "version": "1.0.0",
+  "style": 10,
+  "design_version": "1.0.0",
+  "source": "docs/design/tokens.json",
+  "source_sha256": "3fef071e5d4014887ccbbe53143dde2fae82a075fd564e4805e94fb972089f74",
+  "themes": [
+    "dark",
+    "light"
+  ],
+  "logo": 21,
+  "slogan": "04"
+}

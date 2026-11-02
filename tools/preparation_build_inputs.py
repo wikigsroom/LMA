@@ -4,6 +4,7 @@ from evidence import build_inputs as foundation_inputs, fingerprint
 
 def build_inputs():
     return foundation_inputs() | fingerprint(
+        "tools/build_mica.py", "docs/design/tokens.json",
         "tools/build_capabilities.py", "tools/apply_branding.py", "docs/proposals/update-direction-20261102.json",
         "docs/media/branding/lma-logo.png", "output/imagegen/lma-logo-selection-20261102-batch3-whale17/21-cobalt-vinyl.png",
         "tools/preparation_build_inputs.py", "tools/recommendations.py", "tools/package_preparations.py",

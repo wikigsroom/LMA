@@ -1,7 +1,7 @@
 /* Program UI fixtures only. All pages, contexts and the owned browser close in finally. */
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),http=require('node:http'),crypto=require('node:crypto');
 const {chromium}=require(process.env.LMA_PLAYWRIGHT||'playwright');
-const root=path.resolve(__dirname,'..'),assets=path.join(root,'app/src/main/assets'),out=path.join(root,'build/conversation-ui'),media=path.join(root,'docs/media/conversation-v040');
+const root=path.resolve(__dirname,'..'),assets=path.join(root,'app/src/main/assets'),out=path.join(root,'build/conversation-ui'),media=path.join(root,'docs/media/conversation-v'+fs.readFileSync(path.join(root,'app/src/main/AndroidManifest.xml'),'utf8').match(/versionName="([^"]+)"/)[1]);
 fs.mkdirSync(out,{recursive:true});fs.mkdirSync(media,{recursive:true});fs.rmSync(path.join(out,'results.json'),{force:true});
 const files=['tests/conversation-ui.cjs','app/src/main/java/com/lma/app/MainActivity.java','app/src/main/java/com/lma/app/LmaApp.java',...fs.readdirSync(assets).filter(n=>!['foundation.js','license.js'].includes(n)&&!n.endsWith('.header.json')).map(n=>'app/src/main/assets/'+n)].filter(n=>fs.statSync(path.join(root,n)).isFile());
 const fingerprint=Object.fromEntries(files.sort().map(n=>[n,crypto.createHash('sha256').update(fs.readFileSync(path.join(root,n))).digest('hex')]));

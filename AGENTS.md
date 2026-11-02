@@ -34,3 +34,5 @@
 - End every development turn with numbered tables of the concrete work implemented this turn and the remaining work. Distinguish source implementation, scoped checks, physical-device acceptance and complete Release readiness; preserve the full frozen scope in the pending table. 用户要求每轮开发结束用编号表格列出本轮实现事项及待处理 / 待完成事项。
 
 - Program-only runner selection: inspect the runner before using it. `test_moss_nano.py`, `test_moss_delay.py` and `test_qwen_tts.py` are bounded contract tests; historical `test_moss_nano_app_host.py` / `test_qwen_tts_app_host.py` import and execute full trained models and are excluded under the user policy. Preserve the v0.3.10 declared accidental-host-run record; do not recast it as a program-only pass.
+
+- Current UI: v1.0.0 / code65 uses UI10 Mica Bento. Preserve Logo21/Slogan04, canonical docs/design/tokens.json, generated mica tokens, both themes, per-model parameters, inset ownership and user assets. Refresh tests/mica-ui.cjs, versioned phone/program media and bilingual MICA_V100 guides for affected UI changes. Physical hinge/TalkBack and model-quality limits remain separately scoped.

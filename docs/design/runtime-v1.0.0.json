@@ -1,0 +1,24 @@
+{
+  "schema": "lma.mica-runtime-status/1",
+  "version": "1.0.0",
+  "apk_sha256": "d727926511d89085c0399b2f13bca6d373b02c8360d9d1342b71061b57f89862",
+  "implemented": true,
+  "program": {
+    "checks": 20,
+    "layouts": 520,
+    "source": "verification/releases/v1.0.0/mica-ui.json",
+    "fixture": true
+  },
+  "physical": {
+    "checks": 36,
+    "source": "verification/releases/v1.0.0/mica-physical-ui.json",
+    "fonts": "verification/releases/v1.0.0/mica-fonts.json"
+  },
+  "media": "docs/media/device/v1.0.0/manifest.json",
+  "historical_static_only": "docs/design/validation.json",
+  "limits": [
+    "Single physical slab phone; no physical hinge or tablet",
+    "No full TalkBack listening pass",
+    "No new trained-model, codec quality or endurance acceptance"
+  ]
+}

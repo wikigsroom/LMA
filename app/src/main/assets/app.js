@@ -4,7 +4,7 @@
   var modelSignature = '', chatSignature = '', settingsDirty = false, settingsFilled = false;
   var pendingSettings = null, pendingDraft = null, modalKind = '', returnFocus = null, toastTimer, requestSequence = 0;
   var searchTimer, hubStarted = false, hubFileSignature = '', pendingHubToken = null;
-  var modelEditor = null, modelViews = null, appliedTheme = '', serverSignature = '', runtimeSignature = '';
+  var themePreview = '', modelEditor = null, modelViews = null, appliedTheme = '', serverSignature = '', runtimeSignature = '';
   var $ = function (id) { return document.getElementById(id); };
   var paths = {
     plus: '<path d="M12 5v14M5 12h14"/>',
@@ -77,6 +77,8 @@
     if (['models', 'chat', 'tasks', 'server', 'settings'].indexOf(next) < 0) return;
     if(tab==='chat'&&next!=='chat')window.LMAConversation.release();
     closeModal(); tab = next;
+    if(next !== 'settings' && themePreview){themePreview='';applyTheme();}
+    if(window.LMAMica)window.LMAMica.pageChanged(next);
     document.querySelectorAll('.page').forEach(function (el) { el.hidden = el.id !== 'page-' + next; el.classList.toggle('active', !el.hidden); });
     document.querySelectorAll('.nav-item').forEach(function (el) { var active = el.dataset.tab === next; el.classList.toggle('active', active); if (active) el.setAttribute('aria-current', 'page'); else el.removeAttribute('aria-current'); });
     if (next === 'settings' && !settingsDirty) fillSettings();
@@ -85,10 +87,13 @@
     if (next === 'chat') { renderChat(); resizeInput(); requestAnimationFrame(function () { $('messages').scrollTop = $('messages').scrollHeight; }); }
   }
   function applyTheme() {
-    var preference = state && state.settings ? state.settings.theme : 'dark';
+    var preference = themePreview || (state && state.settings ? state.settings.theme : 'dark');
     var dark = preference === 'dark' || (preference === 'system' && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
     var effective = dark ? 'dark' : 'light'; if (appliedTheme === effective) return; appliedTheme = effective;
     document.documentElement.dataset.theme = effective;
+    document.documentElement.dataset.themePreference = preference;
+    document.documentElement.style.background = dark ? '#151A2B' : '#F3F5FA';
+    document.documentElement.style.colorScheme = effective;
     if (window.Android && window.Android.theme) window.Android.theme(dark);
   }
   function receive(raw) {
@@ -109,7 +114,7 @@
         var settingsResult = commandResult(pendingSettings.requestId);
         if (settingsResult) {
           pendingSettings = null;
-          if (settingsResult.ok) { settingsDirty = false; fillSettings(); $('settingsHint').textContent = '设置已保存'; toast('设置已保存'); }
+          if (settingsResult.ok) { themePreview=''; settingsDirty = false; fillSettings(); $('settingsHint').textContent = '设置已保存'; toast('设置已保存'); }
           else $('settingsHint').textContent = '保存失败：' + settingsResult.error;
         }
       }
@@ -338,6 +343,7 @@
     modalKind = kind || ''; $('modalTitle').textContent = title; $('modalContent').innerHTML = content; $('modalBackdrop').hidden = false;
     $('modal').scrollTop = 0; $('modal').focus();
     document.querySelector('.app-shell').setAttribute('aria-hidden', 'true');
+    document.querySelector('.app-shell').inert = true;
   }
   var configPresets = {threads: [1, 2, 3, 4, 6, 8, 12, 16, 32], context: [512, 1024, 2048, 4096, 8192, 16384, 32768, 65536, 131072], maxTokens: [128, 256, 512, 1024, 2048, 4096, 8192], temperature: [0, 0.3, 0.5, 0.7, 1, 1.5, 2]};
   var configLabels = {threads: 'CPU 线程', context: '上下文长度', maxTokens: '单次输出上限', temperature: '温度'};
@@ -411,6 +417,7 @@
     if ($('modalBackdrop').hidden) return;
     window.LMAExpansion.close(); window.LMAFoundation.close(); window.LMARecipes.close(); $('modalBackdrop').hidden = true; modalKind = ''; modelEditor = null;
     document.querySelector('.app-shell').removeAttribute('aria-hidden');
+    document.querySelector('.app-shell').inert = false;
     if (returnFocus && document.contains(returnFocus)) returnFocus.focus({preventScroll: true}); returnFocus = null;
   }
   function confirmAction(title, message, action, id, button) {
@@ -492,13 +499,14 @@
       case 'browseHub': closeModal(); selectFilter('all'); break;
       case 'addUrl': openModal('添加 GGUF 下载链接', '<form id="customModelForm"><label class="form-field"><span>模型名称</span><input name="name" required maxlength="160" placeholder="例如：我的 Qwen 1.7B"></label><label class="form-field"><span>HTTPS 下载链接</span><input name="url" type="url" required placeholder="https://huggingface.co/…/resolve/main/….gguf" autocapitalize="off" spellcheck="false"></label><label class="form-field"><span>SHA256（可选）</span><input name="sha256" pattern="[a-fA-F0-9]{64}" maxlength="64" placeholder="发布者提供的 64 位哈希" autocapitalize="off" spellcheck="false"></label><p class="modal-help">请确认模型使用当前推理组件支持的架构，且适合手机的内存容量。</p><button type="submit" class="button primary">添加并下载</button></form>', 'addUrl'); break;
       case 'importPicker': nativeAction(action); closeModal(); break;
-      case 'about': openModal('关于 LMA', '<img class="conversation-hero-logo" src="lma-logo.png" alt="LMA 21 号 Logo"><h3>把无审查 AI，装进口袋。</h3><p>Uncensored AI, right in your pocket.</p><p>LMA ' + esc(state&&state.version||'0.4.0') + ' · Android 本地模型工作台。模型、推理、任务链与媒体合成均在当前手机；模型由你选择下载或导入。</p><p>原生服务持有后台任务和接口。系统强行停止、内存、温控与厂商省电策略仍会影响执行；程序检查与实际模型质量分别记录。</p><p>Logo：21 号 Cobalt Vinyl / 钴蓝软胶。模型与开源组件遵循各自许可。</p><button class="button secondary" data-action="notices">查看开源许可</button><button class="button secondary" data-action="expansionNotices">语音 / 3D 组件许可</button>', 'about'); break;
+      case 'clearSearch': $('modelSearch').value='';query='';modelSignature='';renderModels();$('modelSearch').focus();break;
+      case 'about': openModal('关于 LMA', '<img class="conversation-hero-logo" src="lma-logo.png" alt="LMA 21 号 Logo"><h3>把无审查 AI，装进口袋。</h3><p>Uncensored AI, right in your pocket.</p><p>LMA ' + esc(state&&state.version||'1.0.0') + ' · Android 本地模型工作台。模型、推理、任务链与媒体合成均在当前手机；模型由你选择下载或导入。</p><p>原生服务持有后台任务和接口。系统强行停止、内存、温控与厂商省电策略仍会影响执行；程序检查与实际模型质量分别记录。</p><p>Logo：21 号 Cobalt Vinyl / 钴蓝软胶。模型与开源组件遵循各自许可。</p><button class="button secondary" data-action="notices">查看开源许可</button><button class="button secondary" data-action="expansionNotices">语音 / 3D 组件许可</button>', 'about'); break;
       case 'engineLicense': openModal('llama.cpp · MIT License', '<div class="license-text">' + esc(window.LMA_LICENSE || 'MIT License\n\nCopyright (c) 2023-2026 The ggml authors\n\n完整许可证随 APK 的 licenses/LLAMA_CPP_LICENSE 一同分发，也位于项目 third_party/LLAMA_CPP_LICENSE。') + '</div>', 'license'); break;
       case 'notices': openModal('LMA 与第三方许可', Object.keys(window.LMA_NOTICES || {}).map(function (name) { return '<details class="license-notice"><summary>' + esc(name) + '</summary><div class="license-text">' + esc(window.LMA_NOTICES[name]) + '</div></details>'; }).join(''), 'license'); break;
     }
   }
   function updateFilters() { document.querySelectorAll('[data-filter]').forEach(function (b) { var active = b.dataset.filter === filter; b.classList.toggle('active', active); b.setAttribute('aria-pressed', active ? 'true' : 'false'); }); }
-  function resizeInput() { var input = $('chatInput'); input.style.height = 'auto'; input.style.height = Math.min(150, Math.max(30, input.scrollHeight)) + 'px'; }
+  function resizeInput() { var input = $('chatInput'); input.style.height = 'auto'; input.style.height = Math.min(Math.max(96, window.innerHeight * .3), Math.max(48, input.scrollHeight)) + 'px'; }
   document.addEventListener('click', function (event) {
     if (!event.target.closest('.editable-combo')) closeConfigPresets();
     var el = event.target.closest('[data-action]');
@@ -523,7 +531,7 @@
     if (pendingHubToken) { $('hfTokenInput').value = ''; $('hfTokenHint').textContent = '正在保存…'; }
   });
   $('chatInput').addEventListener('input', function () { resizeInput(); renderChat(); });
-  $('chatInput').addEventListener('keydown', function (event) { if (event.key === 'Enter' && !event.shiftKey && !event.isComposing && event.keyCode !== 229) { event.preventDefault(); send(); } });
+  $('chatInput').addEventListener('keydown', function (event) { if (event.key === 'Enter' && (event.ctrlKey || event.metaKey) && !event.isComposing && event.keyCode !== 229) { event.preventDefault(); send(); } });
   function send() {
     if(window.LMAConversation.send())return;
     if (engine().generating) { nativeAction('cancelChat'); return; }
@@ -535,6 +543,7 @@
   }
   $('chatForm').addEventListener('submit', function (event) { event.preventDefault(); send(); });
   $('lanToggle').addEventListener('change', function () { if (!nativeAction('saveSettings', {settings: {lan: this.checked}})) this.checked = !this.checked; });
+  $('settingsForm').elements.namedItem('theme').addEventListener('change',function(){themePreview=this.value;applyTheme();$('settingsHint').textContent='主题已预览，保存后保留';});
   $('settingsForm').addEventListener('input', function () { settingsDirty = true; $('settingsHint').textContent = '有尚未保存的修改'; });
   $('settingsForm').addEventListener('change', function () { settingsDirty = true; $('settingsHint').textContent = '有尚未保存的修改'; });
   $('settingsForm').addEventListener('submit', function (event) {
@@ -601,7 +610,7 @@
   window.LMACapabilities.init(bridge,function(){modelSignature='';renderModels();});
   window.LMAConversation.init(bridge,{richText:richText,textAvailable:textAvailable,resizeInput:resizeInput});
   window.LMAExpansion.init(bridge); window.LMACommunity.init(bridge); window.LMAFoundation.init(bridge); window.LMARecipes.init(bridge);
-  window.LMA = {receive: receive, receiveDelta:function(raw){if(!state)return;var delta=typeof raw==='string'?JSON.parse(raw):raw;if(delta.chat)state.chat=delta.chat;if(delta.engine)Object.assign(state.engine,delta.engine);if(delta.error!==undefined)state.error=delta.error;if(tab==='chat')renderChat();renderRuntime();}, back: function () { if (!$('modalBackdrop').hidden) { closeModal(); return true; } if (tab !== 'models') { route('models'); return true; } return false; }};
+  window.LMA = {refreshTheme:applyTheme,receive: receive, receiveDelta:function(raw){if(!state)return;var delta=typeof raw==='string'?JSON.parse(raw):raw;if(delta.chat)state.chat=delta.chat;if(delta.engine)Object.assign(state.engine,delta.engine);if(delta.error!==undefined)state.error=delta.error;if(tab==='chat')renderChat();renderRuntime();}, back: function () { if (!$('modalBackdrop').hidden) { closeModal(); return true; } if (tab !== 'models') { route('models'); return true; } return false; }};
   hydrateIcons(document); updateFilters();
   if (window.Android) { try { if (window.Android.requestSnapshot) window.Android.requestSnapshot(); else receive(window.Android.getSnapshot()); } catch (e) { $('runtimeDetail').textContent = '等待原生服务连接…'; } }
   else { $('runtimeDetail').textContent = '界面预览 · 下载和推理请使用 Android 应用'; renderModels(); renderChat(); }

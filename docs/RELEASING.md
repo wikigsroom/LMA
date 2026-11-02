@@ -1,7 +1,19 @@
 # 发布流程 / Release workflow
 
+## v1.0.0 云母分区 / Mica Bento
 
-## v0.4.0 对话与本地创作 / Conversations and local creation
+1. 原生 Windows 构建、原签名、41个库；先生成 Mica tokens，再构建与核对 APK / lint。
+2. 运行受影响程序检查、ui-smoke、mica-ui（520布局）和版本化 conversation-ui；浏览器上下文与标签全部 finally 关闭。十组当前工作台素材另标程序夹具。
+3. 已授权 USB 手机先解锁并保留私有升级基线；原签名覆盖升级。capture_mica_device 只拍实际 App、临时回环地址、空白对话和筛选／滚动后的任务区；人工复核 17PNG、MP4、GIF后标 reviewed。
+4. probe_mica_fonts 完成1.3／1.5／2.0真机字体，finally恢复；profile_device／installed_performance_evidence 导出真实空闲测量。device_check 完成管理/API和至少60秒锁屏健康。恢复临时屏幕配置，不收集个人日志或发布私有标识。
+5. 在 conversation_evidence 之后再次 installed_performance_evidence，避免用程序回归记录覆盖真实测量。physical_evidence、mica_evidence 分别核验最终 APK 与当前指纹。
+6. 刷新审计、冻结范围、program_evidence、双语文档、CHANGELOG及 v1.0.0说明；package_delivery、prepare_release、check_repository 后，提交并推送 main 与新标签。
+7. publish_release --gh PATH --publish 校验远端附件再发布 **stable / prerelease=false**；随后读回 Release 状态与 SHA。不得覆盖旧标签或附件。
+
+Native Windows only. Preserve original signing and user assets. Separate program fixtures, physical UI, model outputs and endurance. [Current release notes](releases/v1.0.0.md).
+
+
+## v0.4.0 历史对话与本地创作 / Conversations and local creation
 
 1. 原生 Windows 构建；不得启动 Docker、WSL、虚拟机或模拟器。`build.py` 重建能力声明和 Logo 21，原签名继续使用。
 2. `run_program_checks.py --resume` 只复用指纹完全一致的通过记录；`test_conversation.py`、`test_conversation_integration.py`、`tests/conversation-ui.cjs` 分别覆盖生产核心、真实 HTTP/配对存储、标记的界面夹具。先通过最新 backend，再运行依赖集成检查。

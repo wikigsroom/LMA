@@ -2,7 +2,8 @@
 
 [中文](COMPONENTS.md) · [Design specification](MICA_BENTO.en.md) · [Adaptation and acceptance](RESPONSIVE.en.md) · [Tokens](tokens.json)
 
-**Status: implementation specification, not integrated UI.** Every component must work in dark and light themes. These contracts are requirements rather than a completed-feature list. Keep C identifiers stable for implementation and review.
+**Implemented in v1.0.0.** [Scoped program and physical checks](../MICA_V100.en.md) are separate from these component contracts. Earlier pending wording describes the original specification stage.
+**Status: implemented in v1.0.0, with scoped program and phone validation.** Every component must work in dark and light themes. These contracts remain implementation requirements; runtime evidence records actual coverage. Keep C identifiers stable for implementation and review.
 
 ## 0. Shared contract
 

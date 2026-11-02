@@ -8,7 +8,7 @@
 
 Android 本地 AI 工作台，模型由你选择，无审查模型独立标记。[品牌定稿：Logo 21 ＋ Slogan 04](docs/BRANDING.md)。
 
-[English](README.en.md) · [下载 v0.4.0](https://github.com/wikigsroom/LMA/releases/tag/v0.4.0) · [使用手册](docs/USER_GUIDE.md) · [文档目录](docs/README.md) · [更新记录](CHANGELOG.md)
+[English](README.en.md) · [下载 v1.0.0](https://github.com/wikigsroom/LMA/releases/tag/v1.0.0) · [使用手册](docs/USER_GUIDE.md) · [文档目录](docs/README.md) · [更新记录](CHANGELOG.md)
 
 <a id="contents"></a>
 ## 阅读路线
@@ -20,16 +20,18 @@ Android 本地 AI 工作台，模型由你选择，无审查模型独立标记�
 | 管理模型、独立参数、任务和结果 | [C03–C04、C15–C18](#use-cases) | [模型参数](docs/MODEL_SETTINGS.md)、[任务工作台](docs/TASK_WORKBENCH.md) |
 | 在程序中调用手机模型 | [API 示例](#api-examples) | [API](docs/API.md)、[输入与上传](docs/LOCAL_INPUTS.md) |
 | 看页面、生成案例和失败对照 | [当前页面](#ui-media)、[历史案例 H01–H18](#case-studies) | [媒体说明](docs/MEDIA.md)、[历史完整 README](docs/history/README-dev45.zh.md) |
-| 查看已定稿 UI10 云母分区规范 | [设计系统](docs/design/README.md)、[完整风格与明暗主题](docs/design/MICA_BENTO.md) | [30 类组件](docs/design/COMPONENTS.md)、[宽窄机型／键盘／大字适配](docs/design/RESPONSIVE.md)；[01–10](docs/UI_HOME_SELECTION_20261103.md)／[11–20](docs/UI_HOME_SELECTION_20261103_BATCH2.md) 保留为选型档案。规范已定，App 改造待实施 |
+| 查看已定稿 UI10 云母分区规范 | [设计系统](docs/design/README.md)、[完整风格与明暗主题](docs/design/MICA_BENTO.md) | [30 类组件](docs/design/COMPONENTS.md)、[宽窄机型／键盘／大字适配](docs/design/RESPONSIVE.md)；[01–10](docs/UI_HOME_SELECTION_20261103.md)／[11–20](docs/UI_HOME_SELECTION_20261103_BATCH2.md) 保留为选型档案。v1.0.0 已接入全应用；实机演示见下文 |
 | 查证测试范围、重建和排错 | [程序检查](#verification)、[构建](#build)、[排错](#troubleshooting) | [程序验证策略](docs/PROGRAM_VALIDATION.md)、[构建指南](docs/BUILD.md) |
 
-**验证范围：程序验证。** 本版没有可用 ADB 真机，不重新下载或完整运行模型。视觉预处理／Android 编解码输出、本版手机性能与后台耐久尚待实机检查；m15 有固定视觉组件预设，m03／m09／m16 的配对身份仍待核对。公共 OpenAI 对话明确为文本子集，App 看图桥与通用公共多模态 API 不混同。原 3D 与视频质量问题继续保留。详见 [逐项实施与限制](docs/CONVERSATION_V040.md) 和 [本版证据](verification/releases/v0.4.0/status.json)。下方旧版真机截图与案例保留其原版本身份。
+**验证范围：程序验证。** v1.0.0 完成云母分区全应用改造，并增加本版真实手机双主题、字体、键盘、旋转、升级保留、短锁屏 API 和空闲 UI 检查；没有下载或完整运行模型。旧视觉组件身份、完整编解码、视频／3D 画质与长期后台边界继续保留。[本版使用与实现](docs/MICA_V100.md) · [版本证据](verification/releases/v1.0.0/status.json)。历史案例仍保留原版本身份。
 
-程序验收 / Program verification: **65 suites / 15271 assertions**, Android Lint **0 errors / 17 warnings**, **41** verified arm64 native libraries. APK SHA256: `77a5988a6eef20ad5a25b5a5af7b9e5aa28d213d29908926379c8a643c60c493`.
+程序验收：**66 suites / 15291 assertions**，含 **520** 个专项布局场景；Lint **0 errors / 17 warnings**；**41** 个 ARM64 库。APK SHA256: `d727926511d89085c0399b2f13bca6d373b02c8360d9d1342b71061b57f89862`.
 
-<img src="docs/media/conversation-v040/03-explicit-composition.png" alt="v0.4.0 明确选择画面和声轨；程序界面夹具，非真机" width="300"> <img src="docs/media/conversation-v040/04-sequential-template.png" alt="v0.4.0 顺序模板；程序界面夹具，非模型输出" width="300">
+<img src="docs/media/device/v1.0.0/dark-model-cards.png" alt="v1.0.0 真机暗色模型卡" width="280"> <img src="docs/media/device/v1.0.0/light-model-cards.png" alt="v1.0.0 真机明亮模型卡" width="280">
 
-[程序界面录屏](docs/media/conversation-v040/walkthrough.mp4) · [GIF](docs/media/conversation-v040/walkthrough.gif) · [完整说明](docs/CONVERSATION_V040.md)。历史功能文档、用例和真实模型结果继续保留。
+![v1.0.0 真机操作 GIF，非模型生成演示](docs/media/device/v1.0.0/physical-walkthrough.gif)
+
+[真机录屏 MP4](docs/media/device/v1.0.0/physical-walkthrough.mp4) · [17 张本版真机截图与来源](docs/media/device/v1.0.0/manifest.json) · [本版对话程序演示](docs/media/conversation-v1.0.0/walkthrough.mp4)。原速画面，已避开个人历史与局域网地址。
 
 LMA（Local Model App）让用户在 Android 手机上选择、下载、管理和运行本地模型，提供聊天、生图、生视频、生音频、生 3D、任务队列、结果库与本机 API。它是独立社区项目，与 LM Studio 无隶属关系；界面主要为中文，文档提供中英双语。
 
@@ -743,7 +745,7 @@ Melo INT8 用于中文 / 英文，Kokoro INT8 使用已适配英文音色，Omni
 <a id="verification"></a>
 ## 当前程序检查覆盖与复核入口
 
-**v0.3.12：62 组／15,115 项程序断言，75 份门禁与构建记录；794 项生产页面检查。** 最终签名 APK 完成 24 项真机程序、8 项空闲性能和28项真实 SDK 联调；空闲快照 p50／p95为275.88／286.75ms，主线程最大间隔27ms。实际推理、画质、候选包与长期后台边界见[测评](docs/DEVICE_BENCHMARK_V0312.md)。41个ARM64库、原签名、16KiB对齐、Lint0错误／16个既有警告以及十组桌面演示均已核验。
+**历史 v0.3.12：62 组／15,115 项程序断言，75 份门禁与构建记录；794 项生产页面检查。** 最终签名 APK 完成 24 项真机程序、8 项空闲性能和28项真实 SDK 联调；空闲快照 p50／p95为275.88／286.75ms，主线程最大间隔27ms。实际推理、画质、候选包与长期后台边界见[测评](docs/DEVICE_BENCHMARK_V0312.md)。41个ARM64库、原签名、16KiB对齐、Lint0错误／16个既有警告以及十组桌面演示均已核验。
 
 **历史 v0.3.11：60 组 / 15,063 项程序断言，73 份门禁记录另附状态清单；完整生产页面 794 项，其中推荐分类 37 项。** 41 个 ARM64 原生库、Android 9+、16 KiB 对齐、原签名和 Lint 0 错误 / 16 个原有警告通过。10 组桌面 UI 为 58 PNG / 10 GIF / 10 MP4，815 个历史证据文件保持身份；8 项性能保留核对不属于本版延迟实测。另有 23 项真机程序检查及 60.239 秒锁屏 API 健康检查；授权手机模型成功与限时未完成结果单独记录，不加入上述门禁数量。历史 [v0.3.10 的 10 项故障检查](verification/releases/v0.3.10/task-diagnostics.json)及原五条失败报告保留。
 
@@ -900,7 +902,7 @@ python tools/program_evidence.py
 
 [完整更新记录](CHANGELOG.md)
 
-**当前正式版：v0.4.0 / code64 · 对话与本地创作。** [下载 APK](https://github.com/wikigsroom/LMA/releases/tag/v0.4.0) · [完整用法、API 与限制](docs/CONVERSATION_V040.md) · [English](docs/CONVERSATION_V040.en.md) · [版本说明](docs/releases/v0.4.0.md)。20261102 方案 D01–D12 同批接入；Logo 21 已用于软件启动图标、应用顶栏、对话空态与关于页。默认暗色，保留用户有效主题。
+**当前正式版：v0.4.0 / code64 · 对话与本地创作。** [下载 APK](https://github.com/wikigsroom/LMA/releases/tag/v1.0.0) · [完整用法、API 与限制](docs/CONVERSATION_V040.md) · [English](docs/CONVERSATION_V040.en.md) · [版本说明](docs/releases/v0.4.0.md)。20261102 方案 D01–D12 同批接入；Logo 21 已用于软件启动图标、应用顶栏、对话空态与关于页。默认暗色，保留用户有效主题。
 
 | 编号 | 本版功能 | 使用逻辑 |
 | --- | --- | --- |
@@ -944,7 +946,7 @@ v0.3.12 最终 APK 实机：**24项程序检查＋8项空闲性能＋28项真实
 
 **历史 v0.3.11 / code61：已有 Wan 权重可直接选择 CPU，并已在当前手机产出视频。** 修复原生工作器仍拒绝 Android 软链接输入的问题，为固定名称的模型组件 / 四视图增加来源身份校验，并加入 3D 分阶段进度。Wan CPU 小尺寸计算 / 编码已贯通，一步画面近空白，未达可用画质；TRELLIS.2 / Pixal3D 的阶段、限时取消与未完成输出单独披露，不冒充全部模型成功。[操作、API 与真实结果](docs/ON_DEVICE_MODEL_REPAIR.md) · [真机模型记录](verification/releases/v0.3.11/physical-models.json) · [完整矩阵](docs/IMPLEMENTATION_V0311.md)。全部 **62 配方 / 82 包 / 18 扩展引擎加文本、14 项推荐**保留。
 
-常规程序门禁使用有界夹具且不下载模型。本版另外完成已安装资产的真实手机 API 联调与测评，生成不设固定执行时限。[当前程序门禁](verification/releases/v0.3.12/status.json)与[实机 SDK／模型结果](verification/releases/v0.3.12/physical-api.json)分别计数；文件生成不等于画质、全模型、Z20 资源或长期后台验收。
+常规程序门禁使用有界夹具且不下载模型。历史 v0.3.12 另外完成已安装资产的真实手机 API 联调与测评，生成不设固定执行时限。[当前程序门禁](verification/releases/v0.3.12/status.json)与[实机 SDK／模型结果](verification/releases/v0.3.12/physical-api.json)分别计数；文件生成不等于画质、全模型、Z20 资源或长期后台验收。
 
 保留 v0.3.9 [真实手机页面 GIF](docs/media/device/v0.3.9/physical-walkthrough.gif) / [录屏 MP4](docs/media/device/v0.3.9/physical-walkthrough.mp4)：零模型页面与接口操作，另附锁屏 60 秒健康检查记录；不代表模型输出或长期耐久通过。桌面夹具与真实手机媒体分别标记。
 
@@ -953,3 +955,5 @@ v0.3.12 最终 APK 实机：**24项程序检查＋8项空闲性能＋28项真实
 历史 v0.3.10 的[旧主机检查偏差](verification/releases/v0.3.10/validation-deviation.json)原样保留，不计入本版程序或手机通过。本轮部分手机模型实跑已另获明确授权并单独记录。
 
 **2026-11-03 UI10 云母分区已定稿。** [完整双语设计规范](docs/design/README.md)覆盖明暗主题、30 类组件、7 档宽度、18 组视口、大字、输入法和安全区。Tokens 与静态检查已交付，App 全页改造和运行时适配验收待完成。[维护说明](docs/releases/v0.4.0-mica-bento-design.md)。
+
+**v1.0.0 / code65 · 云母分区 UI 大版本。** 五页面与弹层、双主题、宽窄屏及原生键盘／字体处理已实施。66组／15,291项程序断言；36项真机UI、三档实机字体、24项管理/API、60.269秒锁屏健康、8项空闲性能检查。[使用和本版实机素材](docs/MICA_V100.md) · [正式 Release](https://github.com/wikigsroom/LMA/releases/tag/v1.0.0)。没有完整模型实跑。

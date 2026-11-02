@@ -232,7 +232,7 @@ async function main() {
   await page.evaluate(() => window.LMA.receive(window.__fixture)); assert.equal(await page.locator('select[name="source"]').inputValue(), 'mirror'); checked('Unsaved global preferences survive native updates');
   await page.locator('select[name="theme"]').selectOption('dark');
   await page.locator('#settingsForm button[type="submit"]').click();
-  await page.waitForFunction(() => document.documentElement.dataset.theme === 'dark');
+  await page.waitForFunction(() => document.documentElement.dataset.theme === 'dark' && document.getElementById('settingsHint').textContent === '设置已保存');
   assert.equal(await page.locator('#settingsHint').textContent(), '设置已保存'); checked('Persist settings and dark theme');
   await page.locator('select[name="source"]').selectOption('huggingface');
   await page.evaluate(() => { window.__rejectNextAction = 'saveSettings'; });

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "designVersion": "1.0.0",
-  "status": "pending_runtime_integration_and_acceptance",
+  "status": "implemented_with_scoped_program_and_phone_validation",
   "isDeviceEvidence": false,
   "minimumUsableCssWidth": 240,
   "themes": [
@@ -40,144 +40,180 @@
       "viewport": "320 × 480",
       "purposeZh": "窄且短、全部操作可达",
       "purposeEn": "Narrow and short; all actions reachable",
-      "status": "pending",
-      "evidence": []
+      "status": "program_pass",
+      "evidence": [
+        "verification/releases/v1.0.0/mica-ui.json"
+      ]
     },
     {
       "id": "V02",
       "viewport": "320 × 568",
       "purposeZh": "窄屏主流程、5 栏目换行",
       "purposeEn": "Five catalogue choices wrap",
-      "status": "pending",
-      "evidence": []
+      "status": "program_pass",
+      "evidence": [
+        "verification/releases/v1.0.0/mica-ui.json"
+      ]
     },
     {
       "id": "V03",
       "viewport": "360 × 640",
       "purposeZh": "常规紧凑手机",
       "purposeEn": "Compact ordinary phone",
-      "status": "pending",
-      "evidence": []
+      "status": "program_pass",
+      "evidence": [
+        "verification/releases/v1.0.0/mica-ui.json"
+      ]
     },
     {
       "id": "V04",
       "viewport": "360 × 740",
       "purposeZh": "窄长手机",
       "purposeEn": "Tall narrow phone",
-      "status": "pending",
-      "evidence": []
+      "status": "program_pass",
+      "evidence": [
+        "verification/releases/v1.0.0/mica-ui.json"
+      ]
     },
     {
       "id": "V05",
       "viewport": "375 × 667",
       "purposeZh": "中短视口、长名称",
       "purposeEn": "Short-middle window, long names",
-      "status": "pending",
-      "evidence": []
+      "status": "program_pass",
+      "evidence": [
+        "verification/releases/v1.0.0/mica-ui.json"
+      ]
     },
     {
       "id": "V06",
       "viewport": "390 × 844",
       "purposeZh": "常见中宽窗口",
       "purposeEn": "Common middle-width window",
-      "status": "pending",
-      "evidence": []
+      "status": "program_pass",
+      "evidence": [
+        "verification/releases/v1.0.0/mica-ui.json"
+      ]
     },
     {
       "id": "V07",
       "viewport": "393 × 873",
       "purposeZh": "非整齐宽度、分数缩放边界",
       "purposeEn": "Irregular width/fractional scaling",
-      "status": "pending",
-      "evidence": []
+      "status": "program_pass",
+      "evidence": [
+        "verification/releases/v1.0.0/mica-ui.json"
+      ]
     },
     {
       "id": "V08",
       "viewport": "412 × 915",
       "purposeZh": "宽手机、各功能标签",
       "purposeEn": "Wide phone, all task labels",
-      "status": "pending",
-      "evidence": []
+      "status": "program_pass",
+      "evidence": [
+        "verification/releases/v1.0.0/mica-ui.json"
+      ]
     },
     {
       "id": "V09",
       "viewport": "430 × 932",
       "purposeZh": "更宽手机，仍为单列模型",
       "purposeEn": "Wider phone; still one model column",
-      "status": "pending",
-      "evidence": []
+      "status": "program_pass",
+      "evidence": [
+        "verification/releases/v1.0.0/mica-ui.json"
+      ]
     },
     {
       "id": "V10",
       "viewport": "480 × 960",
       "purposeZh": "R03 起点、布局边界",
       "purposeEn": "R03 boundary",
-      "status": "pending",
-      "evidence": []
+      "status": "program_pass",
+      "evidence": [
+        "verification/releases/v1.0.0/mica-ui.json"
+      ]
     },
     {
       "id": "V11",
       "viewport": "568 × 320",
       "purposeZh": "极短横屏、输入／确认",
       "purposeEn": "Very short landscape, input/confirmation",
-      "status": "pending",
-      "evidence": []
+      "status": "program_pass",
+      "evidence": [
+        "verification/releases/v1.0.0/mica-ui.json"
+      ]
     },
     {
       "id": "V12",
       "viewport": "640 × 360",
       "purposeZh": "横屏、IME、左右安全区",
       "purposeEn": "Landscape, IME and lateral insets",
-      "status": "pending",
-      "evidence": []
+      "status": "program_pass",
+      "evidence": [
+        "verification/releases/v1.0.0/mica-ui.json"
+      ]
     },
     {
       "id": "V13",
       "viewport": "800 × 360",
       "purposeZh": "宽但短，避免盲目双区",
       "purposeEn": "Wide but short; avoid forced panes",
-      "status": "pending",
-      "evidence": []
+      "status": "program_pass",
+      "evidence": [
+        "verification/releases/v1.0.0/mica-ui.json"
+      ]
     },
     {
       "id": "V14",
       "viewport": "600 × 960",
       "purposeZh": "R04、局部双列表单",
       "purposeEn": "R04, paired fields",
-      "status": "pending",
-      "evidence": []
+      "status": "program_pass",
+      "evidence": [
+        "verification/releases/v1.0.0/mica-ui.json"
+      ]
     },
     {
       "id": "V15",
       "viewport": "840 × 1180",
       "purposeZh": "R05、导航侧轨切换",
       "purposeEn": "R05, navigation rail transition",
-      "status": "pending",
-      "evidence": []
+      "status": "program_pass",
+      "evidence": [
+        "verification/releases/v1.0.0/mica-ui.json"
+      ]
     },
     {
       "id": "V16",
       "viewport": "1024 × 768",
       "purposeZh": "宽窗口、双列模型／弹层",
       "purposeEn": "Wide cards/dialogs",
-      "status": "pending",
-      "evidence": []
+      "status": "program_pass",
+      "evidence": [
+        "verification/releases/v1.0.0/mica-ui.json"
+      ]
     },
     {
       "id": "V17",
       "viewport": "1280 × 800",
       "purposeZh": "最大内容宽／三列上限",
       "purposeEn": "Content maximum/three-column ceiling",
-      "status": "pending",
-      "evidence": []
+      "status": "program_pass",
+      "evidence": [
+        "verification/releases/v1.0.0/mica-ui.json"
+      ]
     },
     {
       "id": "V18",
       "viewport": "实际连续折叠区／分屏宽",
       "purposeZh": "遮挡／重排、进程内状态不丢",
       "purposeEn": "Occlusion, reflow, persistent state",
-      "status": "pending",
-      "evidence": []
+      "status": "continuous_window_and_rotation_pass_physical_hinge_not_run",
+      "evidence": [
+        "verification/releases/v1.0.0/mica-ui.json"
+      ]
     }
   ],
   "criteria": [
@@ -187,8 +223,12 @@
       "conditionEn": "UI10 with approved Logo21/Slogan04, consistent across all pages",
       "evidenceRequiredZh": "页面与弹层对照截图",
       "evidenceRequiredEn": "Page/overlay comparison captures",
-      "status": "pending",
-      "evidence": []
+      "status": "implemented_scoped_pass",
+      "evidence": [
+        "docs/MICA_V100.md",
+        "verification/releases/v1.0.0/mica-ui.json",
+        "verification/releases/v1.0.0/mica-physical-ui.json"
+      ]
     },
     {
       "id": "A02",
@@ -196,8 +236,12 @@
       "conditionEn": "Complete semantic tokens in both themes, no isolated hardcoded palette",
       "evidenceRequiredZh": "源码／token 对照及组合检查",
       "evidenceRequiredEn": "Source/token review",
-      "status": "pending",
-      "evidence": []
+      "status": "implemented_scoped_pass",
+      "evidence": [
+        "docs/MICA_V100.md",
+        "verification/releases/v1.0.0/mica-ui.json",
+        "verification/releases/v1.0.0/mica-physical-ui.json"
+      ]
     },
     {
       "id": "A03",
@@ -205,8 +249,12 @@
       "conditionEn": "Body ≥4.5:1, meaningful nontext ≥3:1 in actual composites",
       "evidenceRequiredZh": "最终颜色检查；图上／材质区域单独核对",
       "evidenceRequiredEn": "Final colors; image/tint regions checked separately",
-      "status": "pending",
-      "evidence": []
+      "status": "implemented_scoped_pass",
+      "evidence": [
+        "docs/MICA_V100.md",
+        "verification/releases/v1.0.0/mica-ui.json",
+        "verification/releases/v1.0.0/mica-physical-ui.json"
+      ]
     },
     {
       "id": "A04",
@@ -214,8 +262,12 @@
       "conditionEn": "Default dark, stored preference retained, System resolved, no flash",
       "evidenceRequiredZh": "冷启动／切换录像，设置恢复检查",
       "evidenceRequiredEn": "Cold-launch/switch recordings and restored settings",
-      "status": "pending",
-      "evidence": []
+      "status": "implemented_scoped_pass",
+      "evidence": [
+        "docs/MICA_V100.md",
+        "verification/releases/v1.0.0/mica-ui.json",
+        "verification/releases/v1.0.0/mica-physical-ui.json"
+      ]
     },
     {
       "id": "A05",
@@ -223,8 +275,12 @@
       "conditionEn": "R00–R06 and boundaries have no whole-page overflow/lost actions",
       "evidenceRequiredZh": "矩阵、边界视口与长内容截图",
       "evidenceRequiredEn": "Matrix/boundary/long-content captures",
-      "status": "pending",
-      "evidence": []
+      "status": "implemented_scoped_pass",
+      "evidence": [
+        "docs/MICA_V100.md",
+        "verification/releases/v1.0.0/mica-ui.json",
+        "verification/releases/v1.0.0/mica-physical-ui.json"
+      ]
     },
     {
       "id": "A06",
@@ -232,8 +288,12 @@
       "conditionEn": "Main flows remain usable at 200% without critical clipping",
       "evidenceRequiredZh": "字体矩阵、模型参数与任务操作录像",
       "evidenceRequiredEn": "Text matrix and parameter/job interactions",
-      "status": "pending",
-      "evidence": []
+      "status": "implemented_scoped_pass",
+      "evidence": [
+        "docs/MICA_V100.md",
+        "verification/releases/v1.0.0/mica-ui.json",
+        "verification/releases/v1.0.0/mica-physical-ui.json"
+      ]
     },
     {
       "id": "A07",
@@ -241,8 +301,12 @@
       "conditionEn": "48px/48dp targets, focus, names and group semantics",
       "evidenceRequiredZh": "命中区测量、键盘及 TalkBack 检查",
       "evidenceRequiredEn": "Measurements, keyboard and TalkBack",
-      "status": "pending",
-      "evidence": []
+      "status": "program_and_phone_pass_full_talkback_listening_not_run",
+      "evidence": [
+        "docs/MICA_V100.md",
+        "verification/releases/v1.0.0/mica-ui.json",
+        "verification/releases/v1.0.0/mica-physical-ui.json"
+      ]
     },
     {
       "id": "A08",
@@ -250,8 +314,12 @@
       "conditionEn": "Stable five-destination order and reachable bottom/rail/large-text labels",
       "evidenceRequiredZh": "840 边界、侧轨短屏／键盘检查",
       "evidenceRequiredEn": "840 boundary, short rail and keyboard",
-      "status": "pending",
-      "evidence": []
+      "status": "implemented_scoped_pass",
+      "evidence": [
+        "docs/MICA_V100.md",
+        "verification/releases/v1.0.0/mica-ui.json",
+        "verification/releases/v1.0.0/mica-physical-ui.json"
+      ]
     },
     {
       "id": "A09",
@@ -259,8 +327,12 @@
       "conditionEn": "IME does not hide field, error, Send or Save",
       "evidenceRequiredZh": "对话／搜索／参数／生成表单检查",
       "evidenceRequiredEn": "Chat/search/preset/generation checks",
-      "status": "pending",
-      "evidence": []
+      "status": "implemented_scoped_pass",
+      "evidence": [
+        "docs/MICA_V100.md",
+        "verification/releases/v1.0.0/mica-ui.json",
+        "verification/releases/v1.0.0/mica-physical-ui.json"
+      ]
     },
     {
       "id": "A10",
@@ -268,8 +340,12 @@
       "conditionEn": "Correct cutouts, gestures, three-button/landscape insets, no double padding",
       "evidenceRequiredZh": "系统栏在内的真机截图",
       "evidenceRequiredEn": "Device captures including system bars",
-      "status": "pending",
-      "evidence": []
+      "status": "implemented_scoped_pass",
+      "evidence": [
+        "docs/MICA_V100.md",
+        "verification/releases/v1.0.0/mica-ui.json",
+        "verification/releases/v1.0.0/mica-physical-ui.json"
+      ]
     },
     {
       "id": "A11",
@@ -277,8 +353,12 @@
       "conditionEn": "Dialog scrolling, closing, focus management/restoration",
       "evidenceRequiredZh": "短屏／键盘／返回键交互",
       "evidenceRequiredEn": "Short-window/IME/Back interaction",
-      "status": "pending",
-      "evidence": []
+      "status": "implemented_scoped_pass",
+      "evidence": [
+        "docs/MICA_V100.md",
+        "verification/releases/v1.0.0/mica-ui.json",
+        "verification/releases/v1.0.0/mica-physical-ui.json"
+      ]
     },
     {
       "id": "A12",
@@ -286,8 +366,12 @@
       "conditionEn": "Accurate readable filters, full identities, quantization and independent labels",
       "evidenceRequiredZh": "长名、全部任务、多维标签数据集",
       "evidenceRequiredEn": "Long-name/all-task/multidimensional fixtures",
-      "status": "pending",
-      "evidence": []
+      "status": "implemented_scoped_pass",
+      "evidence": [
+        "docs/MICA_V100.md",
+        "verification/releases/v1.0.0/mica-ui.json",
+        "verification/releases/v1.0.0/mica-physical-ui.json"
+      ]
     },
     {
       "id": "A13",
@@ -295,8 +379,12 @@
       "conditionEn": "Streaming preserves draft/selection/scroll without whole-thread redraw",
       "evidenceRequiredZh": "程序场景与 WebView 观察",
       "evidenceRequiredEn": "Program scenarios and WebView observation",
-      "status": "pending",
-      "evidence": []
+      "status": "implemented_scoped_pass",
+      "evidence": [
+        "docs/MICA_V100.md",
+        "verification/releases/v1.0.0/mica-ui.json",
+        "verification/releases/v1.0.0/mica-physical-ui.json"
+      ]
     },
     {
       "id": "A14",
@@ -304,8 +392,12 @@
       "conditionEn": "Lazy media, no autoplay, inactive viewers released",
       "evidenceRequiredZh": "媒体列表与资源生命周期记录",
       "evidenceRequiredEn": "Preview lifecycle records",
-      "status": "pending",
-      "evidence": []
+      "status": "implemented_scoped_pass",
+      "evidence": [
+        "docs/MICA_V100.md",
+        "verification/releases/v1.0.0/mica-ui.json",
+        "verification/releases/v1.0.0/mica-physical-ui.json"
+      ]
     },
     {
       "id": "A15",
@@ -313,8 +405,12 @@
       "conditionEn": "Empty/error/unknown-progress/cancel never imply success",
       "evidenceRequiredZh": "失败／取消／离线固定场景",
       "evidenceRequiredEn": "Failure/cancel/offline fixtures",
-      "status": "pending",
-      "evidence": []
+      "status": "implemented_scoped_pass",
+      "evidence": [
+        "docs/MICA_V100.md",
+        "verification/releases/v1.0.0/mica-ui.json",
+        "verification/releases/v1.0.0/mica-physical-ui.json"
+      ]
     },
     {
       "id": "A16",
@@ -322,8 +418,12 @@
       "conditionEn": "No live blur/decorative loops or idle/scroll regression",
       "evidenceRequiredZh": "同设备同数据前后资源与延迟记录",
       "evidenceRequiredEn": "Same-device/data resource and latency comparison",
-      "status": "pending",
-      "evidence": []
+      "status": "implemented_scoped_pass",
+      "evidence": [
+        "docs/MICA_V100.md",
+        "verification/releases/v1.0.0/mica-ui.json",
+        "verification/releases/v1.0.0/mica-physical-ui.json"
+      ]
     },
     {
       "id": "A17",
@@ -331,8 +431,12 @@
       "conditionEn": "Theme changes preserve models/jobs/API/configuration",
       "evidenceRequiredZh": "切换前后 ID、草稿、服务状态",
       "evidenceRequiredEn": "IDs, drafts and service states before/after",
-      "status": "pending",
-      "evidence": []
+      "status": "implemented_scoped_pass",
+      "evidence": [
+        "docs/MICA_V100.md",
+        "verification/releases/v1.0.0/mica-ui.json",
+        "verification/releases/v1.0.0/mica-physical-ui.json"
+      ]
     },
     {
       "id": "A18",
@@ -340,8 +444,12 @@
       "conditionEn": "Fold/split/rotation preserve state and avoid occlusions",
       "evidenceRequiredZh": "真实窗口变化／连续区域证据",
       "evidenceRequiredEn": "Actual window/continuous-region evidence",
-      "status": "pending",
-      "evidence": []
+      "status": "continuous_layout_and_rotation_pass_physical_hinge_not_run",
+      "evidence": [
+        "docs/MICA_V100.md",
+        "verification/releases/v1.0.0/mica-ui.json",
+        "verification/releases/v1.0.0/mica-physical-ui.json"
+      ]
     },
     {
       "id": "A19",
@@ -349,8 +457,12 @@
       "conditionEn": "Frozen behavior retained: local inference, explicit downloads, recommendations, model-scoped settings, HF/Local, precise output/input tags, queue/API/templates",
       "evidenceRequiredZh": "对照 B01–B08、[冻结范围](../MULTIMODAL_RELEASE_PLAN.md) 与 [v0.4.0 实施](../CONVERSATION_V040.md)",
       "evidenceRequiredEn": "B01–B08, [frozen scope](../MULTIMODAL_RELEASE_PLAN.md), [v0.4.0](../CONVERSATION_V040.en.md)",
-      "status": "pending",
-      "evidence": []
+      "status": "implemented_scoped_pass",
+      "evidence": [
+        "docs/MICA_V100.md",
+        "verification/releases/v1.0.0/mica-ui.json",
+        "verification/releases/v1.0.0/mica-physical-ui.json"
+      ]
     },
     {
       "id": "A20",
@@ -358,8 +470,12 @@
       "conditionEn": "Bilingual docs/media/notes match implementation and preserve older evidence identities",
       "evidenceRequiredZh": "文档检查、发布身份与未完成项清单",
       "evidenceRequiredEn": "Documentation/release identity and outstanding-work list",
-      "status": "pending",
-      "evidence": []
+      "status": "implemented_scoped_pass",
+      "evidence": [
+        "docs/MICA_V100.md",
+        "verification/releases/v1.0.0/mica-ui.json",
+        "verification/releases/v1.0.0/mica-physical-ui.json"
+      ]
     }
   ],
   "additionalConditions": [
@@ -392,5 +508,12 @@
     "noCompleteModelRunsRequiredForUiFixtures": true,
     "noRuntimePassInferredFromStaticChecks": true,
     "preserveExistingReleaseEvidence": true
-  }
+  },
+  "runtimeEvidence": "docs/design/runtime-v1.0.0.json",
+  "physicalCoverageLimits": [
+    "One motorola edge plus / Android 12",
+    "No physical tablet or foldable hinge",
+    "No complete TalkBack listening pass",
+    "No new complete model or long endurance checks"
+  ]
 }

@@ -89,7 +89,7 @@ Default to a complete page in one safe continuous region. Cross-hinge dual pages
 
 ## 9. Viewport and state matrix
 
-These are **18 pending acceptance targets**, not emulator results. Virtualization is prohibited. Subsequent checks use allowed native tools/WebViews/physical devices, not Android emulators, Docker or WSL.
+These **18 acceptance targets** now have scoped status in acceptance.json; numeric browser layouts and real phone rotation are distinguished from untested physical hinges. Virtualization is prohibited. Subsequent checks use allowed native tools/WebViews/physical devices, not Android emulators, Docker or WSL.
 
 | Target | Example CSS viewport | Purpose |
 | --- | --- | --- |
@@ -141,4 +141,4 @@ Name screenshots by page/theme/viewport/text/state and APK/commit identity, sepa
 | A19 | Frozen behavior retained: local inference, explicit downloads, recommendations, model-scoped settings, HF/Local, precise output/input tags, queue/API/templates | B01–B08, [frozen scope](../MULTIMODAL_RELEASE_PLAN.md), [v0.4.0](../CONVERSATION_V040.en.md) |
 | A20 | Bilingual docs/media/notes match implementation and preserve older evidence identities | Documentation/release identity and outstanding-work list |
 
-This round defines specifications/tokens and checks static documentation/colors/provenance. All runtime entries in [acceptance.json](acceptance.json) remain pending implementation/acceptance. [validation.json](validation.json) records only checks actually performed. Existing model-quality and device-endurance gaps stay open.
+v1.0.0 implements the design with 520 program layout scenarios and physical theme/font/IME/rotation checks. [acceptance.json](acceptance.json) and [runtime evidence](runtime-v1.0.0.json) record actual scope. [validation.json](validation.json) preserves the historical static-only design checks. Existing model-quality and device-endurance gaps stay open.

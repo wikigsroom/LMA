@@ -1,5 +1,5 @@
 {
-  "version": "0.4.0",
+  "version": "1.0.0",
   "kind": "current production UI with an explicit simulated bridge",
   "android_device": false,
   "model_inference": false,
@@ -71,48 +71,48 @@
   "files": [
     {
       "file": "01-material-models.png",
-      "bytes": 47940,
-      "sha256": "b8dbac96d52f175bf64fb8fe3c9573120b57246457492f01a376846737ea3db7"
+      "bytes": 39396,
+      "sha256": "74cf5aac69e85ff16357b14d0eff3a98578cafb9401693b39a1ccaabd6818c1b"
     },
     {
       "file": "02-material-components.png",
-      "bytes": 48622,
-      "sha256": "1c2b61428c91c7eaff6d258409d2fd10bea39cded1e569b9321c5173e8180bbc"
+      "bytes": 38281,
+      "sha256": "7d85dc99654e8f953c2189e37db8a14ac3c30d68462b8da027c1b6bc9b80a5d2"
     },
     {
       "file": "03-material-settings.png",
-      "bytes": 51304,
-      "sha256": "16ec3de421011176026f8d351610748e998f63da480cca0fdf2d33a326debc80"
+      "bytes": 39704,
+      "sha256": "e129261b0d4d8de4445d84f9e91acd3c4ae984d472ab3a2ff4ab293ff0c3c1e4"
     },
     {
       "file": "04-material-inputs.png",
-      "bytes": 51501,
-      "sha256": "34a2bd940828b769084a7567a2133fb9c9ec7c3239efb21d0d87e7391d7e13b9"
+      "bytes": 38902,
+      "sha256": "80b23c23ee7182cfb6d156c1b744be72ea187523008101ef2613f8868a20048c"
     },
     {
       "file": "05-material-queue.png",
-      "bytes": 48370,
-      "sha256": "9b54181bed644e4486988e9c4b875b42126ced087bbe33c6a49b1ef784a4ca31"
+      "bytes": 47907,
+      "sha256": "46d5a64f76b87f6f5a825f6c9564fa0d254f455e4aa5a9b9e3cd7df1562f1c13"
     },
     {
       "file": "06-material-preview.png",
-      "bytes": 38673,
-      "sha256": "98c359a4cb6706a87264f80b69960559d507bf21700aab47c460f444329600e2"
+      "bytes": 35363,
+      "sha256": "cdf97b449838a44d435f22f1ac4ff7a2653ff654795eb3655793fc6093423d13"
     },
     {
       "file": "material-ui.gif",
-      "bytes": 1016170,
-      "sha256": "59ea1866767aef8259c3e0732621c97e791d041523d995f68e3ffe1044ce90fd"
+      "bytes": 593586,
+      "sha256": "4ca6cf51c936020a4404100134651d5f1d5dffd691d3415dadd6c9e3b761fe81"
     },
     {
       "file": "material-ui.mp4",
-      "bytes": 375087,
-      "sha256": "3e92a780fabf92b41277892496327f39016cba04f237d649f9a57bc4def9b371"
+      "bytes": 273451,
+      "sha256": "ced76b820f3a0930d90cb7c0ecd5412f9f9b04101b49346d8f9d5a03edb8a589"
     }
   ],
   "input_fingerprint": {
     "app/src/main/assets/app.css": "1c1bdc0a0f90c2b1dbe170853a9897e8acc2664e157fee22af5b996ad4e14846",
-    "app/src/main/assets/app.js": "a2c6910e41edddf050f00fa3f91cf223e8fde36358937ae339ab35db32572d5d",
+    "app/src/main/assets/app.js": "5fb7f32747adf5e12babe078aaccb6ebf32580022f47b05e806d4ebcc0b5fbd7",
     "app/src/main/assets/architectures/ltx098-upscaler.onnx": "b7b3b8067dc247002b92fa228bf8bd1271d3b535f0ac8f70c7f7e5e94448e2d9",
     "app/src/main/assets/asset-preparations.json": "b0a7cbac1a633310b9fff84164439ee8fe20a1df137d1075eb9263f531ccfd3b",
     "app/src/main/assets/audio-preview.js": "33bb898969f37c1f78c6664052c46da844d148defdcef4a54d64bc5829037f44",
@@ -127,7 +127,7 @@
     "app/src/main/assets/foundation.css": "8bbd7a445a43d93f796be904e8f67b6e6120cf27547b93abb79cf41142078343",
     "app/src/main/assets/foundation.js": "a2bd9f0a92807a0d60a97884fb3dd123ddfc5cf42258b6577bff36b37f99cb14",
     "app/src/main/assets/glb-preview.js": "26554ae19c4dbeba87732dc0d220a628f40b598450a021e683737ded03db0f85",
-    "app/src/main/assets/index.html": "71a0491e1a894274328a96fa395c4871569e0770b2c678b9c4a4e6bc12bcd88f",
+    "app/src/main/assets/index.html": "114f70a528839e09a99e9289ae62c995c4ef59b1a1347854542d76258b767f18",
     "app/src/main/assets/license.js": "838317c7653ca35291e9e18f2a7e2d98ed46a10880dfe144176f04ad994433d0",
     "app/src/main/assets/licenses/LLAMA_CPP_LICENSE": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
     "app/src/main/assets/licenses/LMA_LICENSE": "6ae3f5efa412d91cbf66e44f743e5ce41a8044309d05d893365206ab9bc35fc3",
@@ -316,6 +316,10 @@
     "app/src/main/assets/licenses/tts-utf8proc-LICENSE.md.txt": "3b510150d34f248a221bb88e1d811238d6c6c18b51231822c42974c39bb07256",
     "app/src/main/assets/licenses/xxhash-LICENSE.txt": "a2973411d278045bde3c7161b911e0680d53e2d73d6457c77068d2e55d816d67",
     "app/src/main/assets/lma-logo.png": "3155c4601396c8623c20879b903e317747a94a7b840be307bcc93fde988c8bea",
+    "app/src/main/assets/mica-design.json": "5b838a1a01cb1b42c557b5bf3c661dbfdf6075ebbf812d6e3b72d0ab58d1c2b8",
+    "app/src/main/assets/mica-tokens.css": "509995c97fd339d6608f7ae829f24af2b547b8cd0011bf1bf768ea17c375af6a",
+    "app/src/main/assets/mica.css": "1089ee347211cd1d9f93e5704a04804440f8efac967a3965580c545c30c5ed90",
+    "app/src/main/assets/mica.js": "b42616f0889dc262c68ae62cfe804aad64ca93a38e4f186351eb2c7eda52ed74",
     "app/src/main/assets/model-assemblies.json": "bda37b1411a28e8f396a03f0ccf8176b07469d402a858b5b8561410d13d8d572",
     "app/src/main/assets/model-bundles.json": "74c1f12e82b76e3030d7835f5b42c5ad680b055b8c80ae69a1cfca4a3153f229",
     "app/src/main/assets/models.json": "c3e884b4e5fb06f20c036deebc78e6f953ac420e76fca72bab5a25fd59927156",
@@ -332,7 +336,7 @@
     "app/src/main/assets/recipes.js": "b27e75ed85948a63476bf351cde94a59bec935a540f65e1a9fe798322bcd1b39",
     "app/src/main/assets/recommendations.js": "13f0f41840a3a28a5b70d021f77c7700050f6007086228179cd794b331263215",
     "app/src/main/assets/recommendations.json": "8fa2c4c76526d63de81d37fac75af6d4664175df0f355b64c552274d67517ebf",
-    "app/src/main/assets/theme-boot.js": "a3fbc18812f04dabec1408a6317cd656ede27ca4ce5897955c62849261d51ee7",
+    "app/src/main/assets/theme-boot.js": "5855497410fc6847d1bf952bc0db1ddc04ccf0d989536df21a7797def93b2982",
     "app/src/main/assets/versions.js": "2d629929a6db642c12a242ddcc62cd4f4090ab307e0cb669ceb98add031977e1",
     "app/src/main/assets/vision-presets.json": "f6ec64acd1f2ae1b29534ff71e2a60efc44ed802c2161af8a55ad110729287c5",
     "app/src/main/assets/workbench.js": "367c6293b50bb1f4567da00eef20d795c7f775c2e5f6b5ec62b0e32989920e09",

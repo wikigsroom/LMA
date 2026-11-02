@@ -8,7 +8,7 @@
 
 Local AI for Android. Choose your models, with uncensored variants clearly tagged. [Final branding: logo 21 + slogan 04](docs/BRANDING.md).
 
-[中文](README.md) · [Download v0.4.0](https://github.com/wikigsroom/LMA/releases/tag/v0.4.0) · [User guide](docs/USER_GUIDE.en.md) · [Documentation](docs/README.md) · [Scenarios](#use-cases) · [Cases and failures](#case-studies)
+[中文](README.md) · [Download v1.0.0](https://github.com/wikigsroom/LMA/releases/tag/v1.0.0) · [User guide](docs/USER_GUIDE.en.md) · [Documentation](docs/README.md) · [Scenarios](#use-cases) · [Cases and failures](#case-studies)
 
 <a id="contents"></a>
 ## Detailed usage and evidence routes
@@ -21,17 +21,19 @@ The following restores the detailed scenarios, API examples, generated artifacts
 | Read the accepted UI10 Mica Bento specification | [Design system](docs/design/README.md), [themes and style](docs/design/MICA_BENTO.en.md), [30 components](docs/design/COMPONENTS.en.md), [adaptive windows / IME / large text](docs/design/RESPONSIVE.en.md). [01–10](docs/UI_HOME_SELECTION_20261103.en.md) / [11–20](docs/UI_HOME_SELECTION_20261103_BATCH2.en.md) remain archives. App integration is pending |
 | Integrate the phone API | [Four examples A01–A04](#api-examples) |
 | Compare historical outputs and failures | [18 cases H01–H18](#case-studies) |
-| Inspect current program coverage | [65 current suites](#verification) |
+| Inspect current program coverage | [66 current suites](#verification) |
 | Rebuild and diagnose | [Build](#build), [Z20/background limits](#z20), [troubleshooting](#troubleshooting) |
 | Read the original development narrative | [Historical English README](docs/history/README-dev45.en.md), [repair notes](docs/releases/v0.3.1-readme.md) |
 
-**Validation scope: program checks.** No ADB phone is currently available and no complete model download/run is required this round. Android visual/codec output, current phone performance and screen-off endurance remain untested. The m15 projector preset has pinned provenance; m03/m09/m16 still require reviewed component identities. Public OpenAI chat remains a text subset; the App visual bridge does not imply unrestricted public multimodal input. Historical 3D/video-quality failures are preserved. [Implementation and limits](docs/CONVERSATION_V040.en.md) · [Version-bound evidence](verification/releases/v0.4.0/status.json). Earlier physical examples below retain their original version/APK identity.
+**Validation scope: program checks.** v1.0.0 implements Mica Bento throughout the App, with current physical-phone checks for themes, fonts, IME, rotation, asset preservation, short screen-off API health and idle UI. No model download or complete trained-model run. Existing projector identities, complete codec output, video/3D quality and endurance limits remain. [Implementation and usage](docs/MICA_V100.en.md) · [Version evidence](verification/releases/v1.0.0/status.json). Historical cases retain their original identities.
 
-程序验收 / Program verification: **65 suites / 15271 assertions**, Android Lint **0 errors / 17 warnings**, **41** verified arm64 native libraries. APK SHA256: `77a5988a6eef20ad5a25b5a5af7b9e5aa28d213d29908926379c8a643c60c493`.
+Program verification: **66 suites / 15291 assertions**, including **520** dedicated layout scenarios; Lint **0 errors / 17 warnings**; **41** ARM64 libraries. APK SHA256: `d727926511d89085c0399b2f13bca6d373b02c8360d9d1342b71061b57f89862`.
 
-<img src="docs/media/conversation-v040/03-explicit-composition.png" alt="Explicit visual and audio roles; program UI fixture, not a phone" width="300"> <img src="docs/media/conversation-v040/04-sequential-template.png" alt="Ordered templates; program UI fixture, not model output" width="300">
+<img src="docs/media/device/v1.0.0/dark-model-cards.png" alt="Actual v1.0.0 dark model cards" width="280"> <img src="docs/media/device/v1.0.0/light-model-cards.png" alt="Actual v1.0.0 light model cards" width="280">
 
-[Recorded UI](docs/media/conversation-v040/walkthrough.mp4) · [GIF](docs/media/conversation-v040/walkthrough.gif) · [Complete guide](docs/CONVERSATION_V040.en.md). Existing examples, detailed guides and real model evidence are retained.
+![Actual v1.0.0 phone walkthrough, not model generation](docs/media/device/v1.0.0/physical-walkthrough.gif)
+
+[Actual MP4](docs/media/device/v1.0.0/physical-walkthrough.mp4) · [17 actual screenshots and provenance](docs/media/device/v1.0.0/manifest.json) · [Versioned conversation program demo](docs/media/conversation-v1.0.0/walkthrough.mp4). Original speed; personal history and LAN addresses excluded.
 
 LMA lets users select, download, manage and run local models on an Android phone, with chat, image/video/audio/3D jobs, artifacts and a local API. It is an independent community project, unaffiliated with LM Studio. The application UI is primarily Chinese; documentation is bilingual.
 
@@ -46,7 +48,7 @@ LMA-authored code is MIT. The bundled DISO CPU surface component is **CC BY-NC 4
 <a id="install"></a>
 ## Install and use
 
-1. Download `LMA-0.3.11-arm64-v8a.apk` from the Release and compare its hash with `SHA256SUMS`. Requires **64-bit Android 9 / API 28 or later**. The original signing identity is retained for upgrades and existing data.
+1. Download `LMA-1.0.0-arm64-v8a.apk` from the Release and compare its hash with `SHA256SUMS`. Requires **64-bit Android 9 / API 28 or later**. The original signing identity is retained for upgrades and existing data.
 2. Open LMA and allow notifications when prompted. For screen-off work, allow background activity and remove the relevant battery restrictions in Android settings. Installation and upgrades do not download models.
 3. Open Models → Recommended / All / Local. **Recommended retains the text prefix m08 → m06 → m01 and adds eleven multimodal choices.** All supports HF keywords, repository IDs/URLs, pagination and discovery of every format. Local manages downloaded/imported models and unfinished transfers.
 4. Filter by text, image, video, audio or 3D tags. Inspect architecture, recipe, backend, license, dependencies, pinned revision and size before explicitly downloading or importing with Android's document picker.
@@ -57,7 +59,7 @@ LMA-authored code is MIT. The bundled DISO CPU surface component is **CC BY-NC 4
 HF discovery and executable support are separate. Compatible files enter their matching text engine or multi-component recipe; arbitrary safetensors, GGUF or Diffusers repositories are not universally executable. Custom components can be registered through recipes. Missing components fail locally without implicit downloads or off-device execution.
 
 <a id="models"></a>
-Current APK: **v0.3.11 / code61**, original signer retained. Compare the exact Release APK with `SHA256SUMS`; see the [release inventory and validation](docs/releases/v0.3.11.md).
+Current APK: **v1.0.0 / code65**, original signer retained. Compare the exact Release APK with `SHA256SUMS`; see the [release inventory and validation](docs/releases/v1.0.0.md).
 
 ## Model and foundation scope
 
@@ -750,7 +752,7 @@ These preserved development cases were not rerun as new passes this round. HOST 
 <a id="verification"></a>
 ## Current program coverage and reproduction entry points
 
-**v0.3.12:62 program suites /15,115 assertions,75 program/build records and794 production UI checks.** The final signed APK passed24 physical program,8 idle-performance and28 actual SDK checks. Idle snapshot p50/p95:275.88/286.75ms; maximum main-thread gap27ms. See the [benchmark](docs/DEVICE_BENCHMARK_V0312.en.md) for actual inference, quality, candidate identities and background limits. The41 ARM64 libraries, original signer,16KiB alignment, Lint0errors/16existing warnings and ten desktop demonstrations are checked.
+**Historical v0.3.12:62 program suites /15,115 assertions,75 program/build records and794 production UI checks.** The final signed APK passed24 physical program,8 idle-performance and28 actual SDK checks. Idle snapshot p50/p95:275.88/286.75ms; maximum main-thread gap27ms. See the [benchmark](docs/DEVICE_BENCHMARK_V0312.en.md) for actual inference, quality, candidate identities and background limits. The41 ARM64 libraries, original signer,16KiB alignment, Lint0errors/16existing warnings and ten desktop demonstrations are checked.
 
 **Historical v0.3.11: 60 program suites / 15,063 assertions, 73 gate records plus status; 794 production UI checks, including 37 recommendation checks.** The APK retains 41 ARM64 libraries, Android 9+, the original signer and 16 KiB alignment. Lint: zero errors / 16 existing warnings. Ten desktop flows provide 58 PNG / ten GIF / ten MP4; all 815 historical evidence identities remain. Eight preservation checks are not a fresh latency benchmark. Separate phone evidence covers 23 program checks and 60.239 seconds of screen-off API health. Authorized model successes and bounded incomplete results have separate counts. The [ten v0.3.10 failure probes](verification/releases/v0.3.10/task-diagnostics.json) and original five-failure report remain historical.
 
@@ -907,7 +909,7 @@ Authorized updates synchronize code, both languages, relevant media and changelo
 
 [Full changelog](CHANGELOG.md)
 
-**Current stable version: v0.4.0 / code64 — conversations and local creation.** [Download](https://github.com/wikigsroom/LMA/releases/tag/v0.4.0) · [Full operation, API and limits](docs/CONVERSATION_V040.en.md) · [Release notes](docs/releases/v0.4.0.md). D01–D12 from the 20261102 plan land together. Final Logo 21 is now the launcher icon, application header, empty-chat identity and About artwork. Dark is the default; valid saved themes survive.
+**Current stable version: v0.4.0 / code64 — conversations and local creation.** [Download](https://github.com/wikigsroom/LMA/releases/tag/v1.0.0) · [Full operation, API and limits](docs/CONVERSATION_V040.en.md) · [Release notes](docs/releases/v0.4.0.md). D01–D12 from the 20261102 plan land together. Final Logo 21 is now the launcher icon, application header, empty-chat identity and About artwork. Dark is the default; valid saved themes survive.
 
 | ID | Change | Operation |
 | --- | --- | --- |
@@ -951,7 +953,7 @@ Final-APK phone results:**24 program checks+8 idle-performance checks+28 actual 
 
 **v0.3.11 / code61: choose CPU for existing Wan weights; actual video generated on the connected phone.** Native inputs now resolve to their leased regular sources, fixed-name components/views have verified identity bindings, and 3D reports real stages. The small Wan CPU pipeline completes; its one-step picture is nearly blank and quality is unaccepted; TRELLIS/Pixal stages, bounded cancellation and incomplete GLB output are reported separately. [Operation, API and results](docs/ON_DEVICE_MODEL_REPAIR.en.md) · [Physical model probes](verification/releases/v0.3.11/physical-models.json) · [Full inventory](docs/IMPLEMENTATION_V0311.en.md). All **62 recipes / 82 bundles / 18 extension engines plus text and 14 recommendations** remain.
 
-Regular program gates use bounded fixtures and no model downloads. This delivery additionally includes actual phone/API integration and benchmarks on existing assets, with no generation deadline. [Current program gates](verification/releases/v0.3.12/status.json) and [physical SDK/model results](verification/releases/v0.3.12/physical-api.json) are separately counted. File output does not establish model quality, all-model feasibility, Z20 capacity or endurance.
+Regular program gates use bounded fixtures and no model downloads. Historical v0.3.12 additionally included actual phone/API integration and benchmarks on existing assets, with no generation deadline. [Current program gates](verification/releases/v0.3.12/status.json) and [physical SDK/model results](verification/releases/v0.3.12/physical-api.json) are separately counted. File output does not establish model quality, all-model feasibility, Z20 capacity or endurance.
 
 [Historical v0.3.9 phone GIF](docs/media/device/v0.3.9/physical-walkthrough.gif) / [screen recording](docs/media/device/v0.3.9/physical-walkthrough.mp4) show zero-model application pages. Physical recordings and desktop fixtures are separate; no model-generation or endurance claim is made.
 
@@ -959,4 +961,6 @@ Detailed scenarios **C01–C48**, historical generation/failure cases **H01–H1
 
 Historical v0.3.10 [legacy-host deviation](verification/releases/v0.3.10/validation-deviation.json) remains unchanged and excluded from current gate/phone counts. Current selected physical-model execution is explicitly authorized and recorded separately.
 
-**2026-11-03 UI10 Mica Bento accepted.** [Bilingual design system](docs/design/README.md) specifies dark/light themes, 30 components, seven width bands, 18 viewport targets, large text, IME and insets. Reference tokens and static checks are delivered; app-wide UI integration and runtime acceptance remain pending. [Maintenance note](docs/releases/v0.4.0-mica-bento-design.md).
+**2026-11-03 UI10 Mica Bento accepted.** [Bilingual design system](docs/design/README.md) specifies dark/light themes, 30 components, seven width bands, 18 viewport targets, large text, IME and insets. This historical entry describes the specification stage; app-wide integration is delivered in v1.0.0 below. [Maintenance note](docs/releases/v0.4.0-mica-bento-design.md).
+
+**v1.0.0 / code65 · Mica Bento major release.** All five pages and overlays, two themes, adaptive layouts and native IME/font handling are implemented. 66 suites / 15,291 assertions; 36 actual UI checks, three physical font scales, 24 management/API checks, 60.269 seconds screen-off health and eight idle-performance checks. [Guide and current phone media](docs/MICA_V100.en.md) · [Stable Release](https://github.com/wikigsroom/LMA/releases/tag/v1.0.0). No full-model reruns.

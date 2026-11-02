@@ -56,6 +56,7 @@ def main():
         assert folder.parent == BUILD.resolve()
         shutil.rmtree(folder); folder.mkdir()
     (BUILD / "build.log").write_text("", encoding="utf-8")
+    run("Compile approved UI10 design tokens", [sys.executable, ROOT / "tools/build_mica.py"])
     run("Generate reviewed capability declarations", [sys.executable, ROOT / "tools/build_capabilities.py"])
     run("Apply approved Logo 21 Android assets", [sys.executable, ROOT / "tools/apply_branding.py"])
     run("Generate checked model catalogue", [sys.executable, ROOT / "tools/build_catalogue.py"])

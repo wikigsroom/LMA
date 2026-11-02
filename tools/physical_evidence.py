@@ -42,7 +42,10 @@ def check(directory):
         assert not media['model_inference'] and not media['weights_downloaded']
         assert media['reviewed_app_only'] and media['playback_speed']==1
         current(media['input_fingerprint'])
-        if media.get('schema') == 'lma.physical-api-media/1':
+        if media.get('schema') == 'lma.physical-mica-media/1':
+            assert len(media['screenshots']) >= 10 and len(media['files']) == len(media['screenshots']) + 2
+            assert {t+'-'+p+'.png' for t in ('dark','light') for p in ('models','chat','tasks','server','settings')} <= {item['file'] for item in media['screenshots']}
+        elif media.get('schema') == 'lma.physical-api-media/1':
             assert len(media['screenshots'])==5 and len(media['files'])==7
             assert {item['file'] for item in media['screenshots']} == {
                 '01-recommended.png', '02-multimodal-recommendations.png',

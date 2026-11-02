@@ -4,7 +4,7 @@
 
 ## 1. Accepted direction and authority
 
-**UI 10, Mica Bento, is accepted. Dark is the default; light receives a complete specification.** The user selected this direction on 2026-11-03 and explicitly required light/dark differences and narrow/wide phone adaptation. Logo 21 and slogan 04 remain separate approved decisions. The published app is still v0.4.0; this specification does not claim the new design is integrated.
+**UI 10, Mica Bento, is accepted. Dark is the default; light receives a complete specification.** The user selected this direction on 2026-11-03 and explicitly required light/dark differences and narrow/wide phone adaptation. Logo 21 and slogan 04 remain separate approved decisions. v1.0.0 integrates this design; see the [implementation and scoped checks](../MICA_V100.en.md).
 
 The [original concept](../../output/imagegen/lma-home-ui-selection-20261103/10-fluent-bento.png) and [decision record](decision.json) establish provenance. Use opaque blue-gray planes, resource tiles, cobalt selection, mint actions, fine outline icons and restrained corners. Mica describes visual layering, not a dependency on Windows Mica APIs, wallpaper sampling or live blur. Do not mix in neon, raised/recessed skeuomorphic controls, inflated clay, pixels, terminals or liquid glass from other proposals.
 

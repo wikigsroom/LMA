@@ -13,6 +13,6 @@ Use opaque blue-gray sections, cobalt selection and mint actions. Default to dar
 | 窄屏、宽屏、横屏、键盘、折叠与大字 / Adaptive layout | [适配及验收](design/RESPONSIVE.md) | [Adaptation and acceptance](design/RESPONSIVE.en.md) |
 | 机器可读值与决策 / Values and decision | [tokens.json](design/tokens.json) | [decision.json](design/decision.json) |
 
-本轮只定义约束，尚未将新 UI 接入 App；参考 CSS 不随运行入口加载。原始 20 套方案、包和已发布 APK 保留身份。历史浅色／四入口说明已迁至[旧设计档案](history/DESIGN-initial.md)，不得继续按其过时导航和默认主题实施。
+v1.0.0 已接入新 UI；参考 CSS 不直接加载，运行资产由 tokens 编译。[实现和真机演示](MICA_V100.md)／[English](MICA_V100.en.md)。原始 20 套方案、包和已发布 APK 保留身份。历史浅色／四入口说明已迁至[旧设计档案](history/DESIGN-initial.md)，不得继续按其过时导航和默认主题实施。
 
-This round defines the specification, with app integration pending. Reference CSS is not loaded at runtime. Original concepts, archives and the published APK retain their identity. The superseded light/four-destination brief is preserved in the [historical archive](history/DESIGN-initial.md).
+v1.0.0 implements this specification. [Current implementation and phone media](MICA_V100.en.md). Reference CSS is not directly loaded; runtime tokens are generated. Original concepts, archives and the published APK retain their identity. The superseded light/four-destination brief is preserved in the [historical archive](history/DESIGN-initial.md).

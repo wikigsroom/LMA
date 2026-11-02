@@ -47,6 +47,10 @@ public final class MainActivity extends Activity {
     private volatile boolean destroyed;
     private long viewGeneration;
     private Boolean nativeDark;
+    private FrameLayout contentRoot;
+    private volatile boolean keyboardVisible;
+    private volatile float layoutFontScale = 1f;
+    private String deliveredLayout = "";
     private final Runnable render = this::renderSnapshot;
     // At most one snapshot is built at once. Bursts request one further fresh snapshot.
     private void renderSnapshot() {
@@ -78,16 +82,18 @@ public final class MainActivity extends Activity {
         }
         String themeChoice = app.prefs.getString("theme", "dark");
         boolean darkStart = themeChoice.equals("dark") || themeChoice.equals("system") && (getResources().getConfiguration().uiMode & android.content.res.Configuration.UI_MODE_NIGHT_MASK) == android.content.res.Configuration.UI_MODE_NIGHT_YES;
-        int startColor = darkStart ? Color.rgb(18, 26, 41) : Color.rgb(245, 247, 250);
+        int startColor = darkStart ? Color.rgb(21, 26, 43) : Color.rgb(243, 245, 250);
         getWindow().setStatusBarColor(startColor); getWindow().setNavigationBarColor(startColor);
         getWindow().setBackgroundDrawable(new android.graphics.drawable.ColorDrawable(startColor));
         getWindow().getDecorView().setSystemUiVisibility(darkStart ? 0 : android.view.View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR | android.view.View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
-        FrameLayout root = new FrameLayout(this);
+        FrameLayout root = new FrameLayout(this); contentRoot = root;
+        layoutFontScale = getResources().getConfiguration().fontScale;
         root.setBackgroundColor(startColor);
         web = new WebView(this); web.setBackgroundColor(startColor);
         web.getSettings().setJavaScriptEnabled(true); web.getSettings().setDomStorageEnabled(false);
         web.getSettings().setAllowFileAccess(false); web.getSettings().setAllowContentAccess(false);
         web.getSettings().setJavaScriptCanOpenWindowsAutomatically(false); web.getSettings().setSupportMultipleWindows(false);
+        if (Build.VERSION.SDK_INT >= 29) web.getSettings().setForceDark(android.webkit.WebSettings.FORCE_DARK_OFF);
         web.getSettings().setTextZoom(Math.round(getResources().getConfiguration().fontScale * 100));
         web.addJavascriptInterface(new Bridge(), "Android");
         web.setWebViewClient(new WebViewClient() {
@@ -101,11 +107,11 @@ public final class MainActivity extends Activity {
                 if (path == null || !path.startsWith("/assets/") || path.contains("..")) return response(404, "Not found");
                 String asset = path.substring(8);
                 try {
-                    String mime = asset.endsWith(".js") ? "application/javascript" : asset.endsWith(".css") ? "text/css" : asset.endsWith(".svg") ? "image/svg+xml" : asset.endsWith(".json") ? "application/json" : "text/html";
+                    String mime = asset.endsWith(".png") ? "image/png" : asset.endsWith(".jpg") ? "image/jpeg" : asset.endsWith(".js") ? "application/javascript" : asset.endsWith(".css") ? "text/css" : asset.endsWith(".svg") ? "image/svg+xml" : asset.endsWith(".json") ? "application/json" : "text/html";
                     return new WebResourceResponse(mime, "UTF-8", 200, "OK", java.util.Collections.singletonMap("Cache-Control", "no-cache"), getAssets().open(asset));
                 } catch (Exception error) { return response(404, "Not found"); }
             }
-            @Override public void onPageFinished(WebView view, String url) { loaded = true; scheduleRender(); }
+            @Override public void onPageFinished(WebView view, String url) { loaded = true; deliveredLayout = ""; deliverLayout(); scheduleRender(); }
         });
         root.addView(web, new FrameLayout.LayoutParams(-1, -1)); setContentView(root);
         if (Build.VERSION.SDK_INT >= 30) {
@@ -113,11 +119,32 @@ public final class MainActivity extends Activity {
             root.setOnApplyWindowInsetsListener((view, insets) -> {
                 android.graphics.Insets bars = insets.getInsets(android.view.WindowInsets.Type.systemBars() | android.view.WindowInsets.Type.displayCutout());
                 android.graphics.Insets keyboard = insets.getInsets(android.view.WindowInsets.Type.ime());
-                view.setPadding(bars.left, bars.top, bars.right, Math.max(bars.bottom, keyboard.bottom)); return insets;
+                view.setPadding(bars.left, bars.top, bars.right, Math.max(bars.bottom, keyboard.bottom));
+                keyboardVisible = insets.isVisible(android.view.WindowInsets.Type.ime()); deliverLayout(); return insets;
             });
         }
+        if (Build.VERSION.SDK_INT < 30) root.getViewTreeObserver().addOnGlobalLayoutListener(() -> {
+            android.graphics.Rect visible = new android.graphics.Rect(); root.getWindowVisibleDisplayFrame(visible);
+            keyboardVisible = root.getRootView().getHeight() - visible.height() > 160 * getResources().getDisplayMetrics().density; deliverLayout();
+        });
         web.loadUrl(ORIGIN + "/assets/index.html");
         if (app.prefs.getBoolean("desiredRunning", false) || app.prefs.getBoolean("desiredJobs", false) || app.prefs.getBoolean("desiredApi", false)) service(new JSONObject());
+    }
+    private void deliverLayout() {
+        if (destroyed || !loaded || web == null) return;
+        String payload = "{\"nativeInsets\":true,\"ime\":" + keyboardVisible + ",\"textScale\":" + layoutFontScale + "}";
+        if (payload.equals(deliveredLayout)) return;
+        deliveredLayout = payload;
+        web.evaluateJavascript("window.LMAMica&&window.LMAMica.receiveNative(" + payload + ")", null);
+    }
+    @Override public void onConfigurationChanged(android.content.res.Configuration configuration) {
+        super.onConfigurationChanged(configuration);
+        layoutFontScale = configuration.fontScale;
+        if (web != null) {
+            web.getSettings().setTextZoom(Math.round(layoutFontScale * 100));
+            deliverLayout();
+            web.evaluateJavascript("window.LMA&&window.LMA.refreshTheme&&window.LMA.refreshTheme();window.dispatchEvent(new Event('resize'))", null);
+        }
     }
     @Override public void onSaveInstanceState(Bundle saved) {
         saved.putString("exportArtifactId", exportArtifactId); saved.putString("folderBundleId", folderBundleId); saved.putBoolean("exportMetadata", exportMetadata); super.onSaveInstanceState(saved);
@@ -185,17 +212,20 @@ public final class MainActivity extends Activity {
         });
     }
     public final class Bridge {
+        @JavascriptInterface public String layoutInfo() { return "{\"nativeInsets\":true,\"ime\":" + keyboardVisible + ",\"textScale\":" + layoutFontScale + "}"; }
         @JavascriptInterface public String themePreference() { return app.prefs.getString("theme", "dark"); }
         @JavascriptInterface public void theme(boolean dark) {
             main.post(() -> {
                 if (destroyed || nativeDark != null && nativeDark == dark) return;
                 nativeDark = dark;
-                int color = dark ? Color.rgb(18, 26, 41) : Color.rgb(245, 247, 250);
+                int color = dark ? Color.rgb(21, 26, 43) : Color.rgb(243, 245, 250);
                 getWindow().setStatusBarColor(color); getWindow().setNavigationBarColor(color);
                 int flags = getWindow().getDecorView().getSystemUiVisibility();
                 int light = android.view.View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR | android.view.View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR;
                 getWindow().getDecorView().setSystemUiVisibility(dark ? flags & ~light : flags | light);
                 if (web != null) web.setBackgroundColor(color);
+                if (contentRoot != null) contentRoot.setBackgroundColor(color);
+                getWindow().setBackgroundDrawable(new android.graphics.drawable.ColorDrawable(color));
             });
         }
         @JavascriptInterface public void requestSnapshot() { main.post(MainActivity.this::scheduleRender); }

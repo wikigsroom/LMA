@@ -26,8 +26,8 @@ The concept establishes visual direction. Its generated text, demonstration stat
 | --- | --- | --- |
 | C01 | UI 10 定稿、双语设计／组件／适配规范、主题 tokens / Decision and bilingual specifications | 已定义 / Defined |
 | C02 | 原图来源、对比度及文档完整性检查 / Provenance, contrast and documentation checks | [检查记录 / Report](validation.json) |
-| P01 | 按规范改造模型库、对话、任务、服务、设置及弹层 / Integrate all five pages and overlays | 待实施 / Pending implementation |
-| P02 | 真实 WebView 的双主题、各种窗口／字体／键盘及性能验收 / WebView themes, adaptive layouts, accessibility, performance | 待验收；规范中的矩阵是目标 / Pending; matrix entries are targets |
+| P01 | 按规范改造模型库、对话、任务、服务、设置及弹层 / Integrate all five pages and overlays | v1.0.0 已实施 / Implemented |
+| P02 | 真实 WebView 的双主题、各种窗口／字体／键盘及性能验收 / WebView themes, adaptive layouts, accessibility, performance | 520 程序布局＋本版真机检查；硬件边界单列 / Scoped program and phone checks |
 | P03 | v0.4.0 既有真机编解码、后台、视觉配对和视频／3D 质量问题 / Existing device, codec, endurance, projector and quality gaps | 保留 [原版本限制](../CONVERSATION_V040.md) / [Original limits](../CONVERSATION_V040.en.md) |
 
-本轮交付设计约束，没有应用新主题 CSS、重建 APK 或覆盖既有 Release。[维护说明 / Maintenance note](../releases/v0.4.0-mica-bento-design.md)。
+v1.0.0 已完成应用接入、原签名构建和新版实机演示；[实现与使用 / Implementation](../MICA_V100.md)、[English](../MICA_V100.en.md)、[运行时状态 / Runtime status](runtime-v1.0.0.json)。原设计阶段记录保留为历史：[维护说明 / Maintenance note](../releases/v0.4.0-mica-bento-design.md)。

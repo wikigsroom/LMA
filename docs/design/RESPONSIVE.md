@@ -141,4 +141,4 @@
 | A19 | 所有业务冻结范围保留：本机推理、用户下载、原推荐、模型独立设置、HF／本地、精确输出／输入标签与队列／API／模板 | 对照 B01–B08、[冻结范围](../MULTIMODAL_RELEASE_PLAN.md) 与 [v0.4.0 实施](../CONVERSATION_V040.md) |
 | A20 | 双语文档与本版截图／更新说明对应实际实现，旧证据身份保留 | 文档检查、发布身份与未完成项清单 |
 
-本轮仅完成规范、token 和静态文档／颜色／原图身份检查。[acceptance.json](acceptance.json) 所有运行时验收仍为待实施／待验收；[validation.json](validation.json) 只记录确实执行的静态检查。原有完整模型质量／手机续航等欠项不因这次设计交付被关闭。
+v1.0.0 已实施并检查 520 个程序布局场景及本版真机双主题／字体／键盘／旋转。[acceptance.json](acceptance.json) 标记实际覆盖与未覆盖硬件；[runtime-v1.0.0.json](runtime-v1.0.0.json) 指向本版证据。[validation.json](validation.json) 保留设计定稿时的历史静态检查。原有完整模型质量／手机续航等欠项不因这次设计交付被关闭。

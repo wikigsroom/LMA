@@ -6,6 +6,7 @@ import shutil
 import subprocess
 import zipfile
 from evidence import version
+from conversation_evidence import MEDIA as CONVERSATION_MEDIA
 from program_evidence import check as program_check
 from release_scope import check as scope_check
 
@@ -160,16 +161,16 @@ def prepare():
   benchmark_manifest=ROOT/'docs/media/benchmarks'/('v'+VERSION)/'manifest.json'
   if benchmark_manifest.exists():archive.write(benchmark_manifest,'media/physical-benchmark/manifest.json')
   archive.write(ROOT/('catalogue/release-'+VERSION+'-implementation.json'),'implementation.json')
-  if VERSION=='0.4.0':
+  if tuple(map(int,VERSION.split('.'))) >= (0,4,0):
    archive.write(ROOT/'catalogue/conversation-20261102-implementation.json','conversation-implementation.json')
-   archive.write(ROOT/'docs/media/conversation-v040/manifest.json','media/conversation/manifest.json')
+   archive.write(ROOT/(CONVERSATION_MEDIA+'/manifest.json'),'media/conversation/manifest.json')
   archive.write(ROOT/'docs/proposals/program-validation-policy.json','validation-policy.json')
  names.append(verification)
  screenshots=f'LMA-{VERSION}-screenshots.zip'
  with zipfile.ZipFile(directory/screenshots,'w',zipfile.ZIP_DEFLATED) as archive:
-  if VERSION=='0.4.0':
-   for item in read(ROOT/'docs/media/conversation-v040/manifest.json')['screenshots']:
-    archive.write(ROOT/'docs/media/conversation-v040'/item['file'],'conversation/'+item['file'])
+  if tuple(map(int,VERSION.split('.'))) >= (0,4,0):
+   for item in read(ROOT/(CONVERSATION_MEDIA+'/manifest.json'))['screenshots']:
+    archive.write(ROOT/CONVERSATION_MEDIA/item['file'],'conversation/'+item['file'])
   for name in MEDIA:
    base=ROOT/'docs/media/development'/name
    for item in read(base/'manifest.json')['screenshots']:archive.write(base/item['file'],name+'/'+item['file'])
@@ -183,9 +184,9 @@ def prepare():
    for item in read(lan_media/'manifest.json')['files']:
     if Path(item['file']).suffix=='.png':archive.write(lan_media/item['file'],'physical-lan-http/'+item['file'])
  names.append(screenshots)
- if VERSION=='0.4.0':
+ if tuple(map(int,VERSION.split('.'))) >= (0,4,0):
   for extension in ['mp4','gif']:
-   original=ROOT/'docs/media/conversation-v040'/('walkthrough.'+extension)
+   original=ROOT/CONVERSATION_MEDIA/('walkthrough.'+extension)
    target=f'LMA-{VERSION}-conversation.'+extension;shutil.copy2(original,directory/target);names.append(target)
  if lan_evidence.exists():
   lan_archive=f'LMA-{VERSION}-lan-http-results.zip'
@@ -216,7 +217,7 @@ def prepare():
    shutil.copy2(original,directory/target);names.append(target)
  names.sort()
  (directory/'SHA256SUMS').write_text(''.join(sha(directory/n)+'  '+n+'\n' for n in names),encoding='utf-8');names.append('SHA256SUMS')
- manifest=dict(repository='wikigsroom/LMA',version=VERSION,tag='v'+VERSION,title='LMA v'+VERSION+(' · Conversations and local creation / 对话与本地创作' if VERSION=='0.4.0' else ' · Default API port 52187 / 默认接口端口 52187' if VERSION=='0.3.13' else ' · Local multimodal API and uncapped generation / 本地多模态接口与生成时限取消'),
+ manifest=dict(repository='wikigsroom/LMA',version=VERSION,tag='v'+VERSION,title='LMA v'+VERSION+(' · Mica Bento / 云母分区 UI 大版本' if VERSION=='1.0.0' else ' · Conversations and local creation / 对话与本地创作' if VERSION=='0.4.0' else ' · Default API port 52187 / 默认接口端口 52187' if VERSION=='0.3.13' else ' · Local multimodal API and uncapped generation / 本地多模态接口与生成时限取消'),
   prerelease=not COMPLETE,notes='docs/releases/v'+VERSION+'.md',validation_mode='program_only',full_scope_program_implementation_complete=True,
   apk_sha256=build['sha256'],physical_device_tested=evidence.get('physical_device_tested',False),
   physical_device_tests=evidence.get('physical_device_tests',0),background_program_tested=evidence.get('background_program_tested',False),

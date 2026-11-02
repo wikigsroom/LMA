@@ -1,5 +1,6 @@
 # LMA 文档 / Documentation
 
+**当前 v1.0.0 / code65：** [云母分区 UI、明暗主题、宽窄屏、实机演示与验证](MICA_V100.md) · [English](MICA_V100.en.md)。原有模型、参数、任务、工作流和 API 保留；以下旧版说明按历史理解。
 **20261103 UI 已定稿 / Accepted design:** **10 云母分区 / Mica Bento**。 [设计总规范](design/MICA_BENTO.md) / [English](design/MICA_BENTO.en.md) · [30 类组件](design/COMPONENTS.md) / [English](design/COMPONENTS.en.md) · [明暗与宽窄机型适配](design/RESPONSIVE.md) / [English](design/RESPONSIVE.en.md) · [Tokens 与决策](design/README.md)。新装暗色、完整明亮主题、7 档宽度、键盘／安全区／折叠／200% 文字规范；App 实施及真机适配验收待完成。下方概念稿仅作为档案。
 
 **20261103 首页 UI 第二批 / Batch 2:** [11–20 十套新设计](UI_HOME_SELECTION_20261103_BATCH2.md) / [English](UI_HOME_SELECTION_20261103_BATCH2.en.md) · [第二批选型页](../output/imagegen/lma-home-ui-selection-20261103-batch2/index.html) · [总览](../output/imagegen/lma-home-ui-selection-20261103-batch2/overview.jpg)。曜黑、瑞士网格、Metro、终端、赛博、像素、侘寂、Art Deco、孟菲斯与幻彩钛银；累计 20 套 AI 概念稿；现已选定第一批 10 号，其余归档。

@@ -1,5 +1,13 @@
 # Changelog / 更新记录
 
+## v1.0.0 · 2026-11-03 · 云母分区 UI 大版本 / Mica Bento major release
+
+- UI10 覆盖五页面、模型／任务／API／媒体、表单和弹层；默认暗色、完整明亮／系统跟随，Logo21／Slogan04 和原签名保留。
+- 双主题 tokens、R00–R06、侧轨／多列、大字重排、原生安全区与真实键盘通知；修复错误提示遮挡弹层操作，回车换行、搜索清空和离页媒体释放。
+- 66 组／15,291 项程序断言，520 个专项布局场景；36 项本版真机 UI、三档字体各19项、24项程序/API、60.269秒锁屏健康、8项空闲性能检查。保留5个已装模型包及偏好。
+- 17 张实机截图、20 秒原速录屏／GIF、版本化对话程序素材、双语 README／使用指南／设计状态；未下载或完整运行模型，原质量和耐久限制不改写。
+- Full UI10 implementation, two complete themes, adaptive layout and actual phone media. Stable / prerelease=false. [中文](docs/MICA_V100.md) · [English](docs/MICA_V100.en.md) · [Release](docs/releases/v1.0.0.md).
+
 ## 2026-11-03 · UI10 云母分区定稿 / Mica Bento design system
 
 - 用户选择 10 号云母分区，保持 Logo21／Slogan04；新增完整中英风格、明暗主题、30 类组件和宽窄机型适配规范，统一 tokens 与参考 CSS。

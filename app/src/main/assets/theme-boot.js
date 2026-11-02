@@ -5,5 +5,6 @@
   if (['dark', 'light', 'system'].indexOf(choice) < 0) choice = 'dark';
   var dark = choice === 'dark' || (choice === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
   document.documentElement.dataset.theme = dark ? 'dark' : 'light';
-  document.documentElement.style.background = dark ? '#121a29' : '#f5f7fa';
+  document.documentElement.dataset.themePreference = choice;
+  document.documentElement.style.background = dark ? '#151A2B' : '#F3F5FA';
 }());
