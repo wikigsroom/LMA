@@ -1,5 +1,10 @@
 # Changelog / 更新记录
 
+## 2026-11-03 · README 阅读顺序 / README reading order
+
+- 中英文 README 的阅读路线提前到验证范围之前；新版功能摘要、旧版更新和 Logo 选型记录统一移至文末。
+- Move reading routes above validation scope in both READMEs and place release summaries and branding history at the end. Preserve all scenarios, media, evidence and limitations; this documentation update keeps the existing APK, tag and Release assets intact.
+
 ## v0.4.0 · 2026-11-03
 
 20261102 D01–D12 对话与本地创作：精确能力标签、受控视觉组件桥、SQLite 内容块与 outbox、统一手动媒体输入、原任务卡、严格工具草稿、素材来源、W01–W06 顺序模板、本机音视频合成、默认暗色和定向渲染、认证任务链接口、Logo 21 启动与应用内接入。保留全部冻结目录和历史证据。

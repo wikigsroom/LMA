@@ -2,17 +2,27 @@
 
 ![LMA · Uncensored AI, right in your pocket. / 把无审查 AI，装进口袋。](docs/media/branding/lma-banner.png)
 
+**Uncensored AI, right in your pocket.**
 
-**Current stable version: v0.4.0 / code64 — conversations and local creation.** [Download](https://github.com/wikigsroom/LMA/releases/tag/v0.4.0) · [Full operation, API and limits](docs/CONVERSATION_V040.en.md) · [Release notes](docs/releases/v0.4.0.md). D01–D12 from the 20261102 plan land together. Final Logo 21 is now the launcher icon, application header, empty-chat identity and About artwork. Dark is the default; valid saved themes survive.
+*把无审查 AI，装进口袋。*
 
-| ID | Change | Operation |
-| --- | --- | --- |
-| 01 | Unified conversation/composer | Auto, text, image, video, speech, music, 3D and local composition; manual media needs no language model. |
-| 02 | Exact capability declarations | Fourteen variants have independent native/LMA/evidence tags. NSFW/Uncensored labels remain separate. |
-| 03 | Original job cards and managed assets | One queue, durable outbox recovery, explicit input roles, lineage and shared deletion protection. |
-| 04 | Optional local planner | Strict streamed tool calls, editable drafts and approval; at most eight steps and one explicit format repair. |
-| 05 | Controlled sequences and editing | W01–W06, dependency blocking, successful-step reuse, explicit retry; WAV mixing and on-phone MP4 composition. |
-| 06 | Dark startup and incremental rendering | Bounded sixty-message view, lazy media and scoped token updates; port remains 52187. |
+Local AI for Android. Choose your models, with uncensored variants clearly tagged. [Final branding: logo 21 + slogan 04](docs/BRANDING.md).
+
+[中文](README.md) · [Download v0.4.0](https://github.com/wikigsroom/LMA/releases/tag/v0.4.0) · [User guide](docs/USER_GUIDE.en.md) · [Documentation](docs/README.md) · [Scenarios](#use-cases) · [Cases and failures](#case-studies)
+
+<a id="contents"></a>
+## Detailed usage and evidence routes
+
+The following restores the detailed scenarios, API examples, generated artifacts and test cases that were lost when the README was shortened. v0.3.5 retains these detailed sections and adds speech / 3D scenarios; no new complete-model run is claimed. LMA is independent of LM Studio; the current app UI is primarily Chinese and the documentation is bilingual.
+
+| Goal | Entry point |
+| --- | --- |
+| Operate the app | [30 scenarios C01–C30](#use-cases) |
+| Integrate the phone API | [Four examples A01–A04](#api-examples) |
+| Compare historical outputs and failures | [18 cases H01–H18](#case-studies) |
+| Inspect current program coverage | [60 current suites](#verification) |
+| Rebuild and diagnose | [Build](#build), [Z20/background limits](#z20), [troubleshooting](#troubleshooting) |
+| Read the original development narrative | [Historical English README](docs/history/README-dev45.en.md), [repair notes](docs/releases/v0.3.1-readme.md) |
 
 **Validation scope: program checks.** No ADB phone is currently available and no complete model download/run is required this round. Android visual/codec output, current phone performance and screen-off endurance remain untested. The m15 projector preset has pinned provenance; m03/m09/m16 still require reviewed component identities. Public OpenAI chat remains a text subset; the App visual bridge does not imply unrestricted public multimodal input. Historical 3D/video-quality failures are preserved. [Implementation and limits](docs/CONVERSATION_V040.en.md) · [Version-bound evidence](verification/releases/v0.4.0/status.json). Earlier physical examples below retain their original version/APK identity.
 
@@ -22,47 +32,6 @@
 
 [Recorded UI](docs/media/conversation-v040/walkthrough.mp4) · [GIF](docs/media/conversation-v040/walkthrough.gif) · [Complete guide](docs/CONVERSATION_V040.en.md). Existing examples, detailed guides and real model evidence are retained.
 
-**Uncensored AI, right in your pocket.**
-
-*把无审查 AI，装进口袋。*
-
-Local AI for Android. Choose your models, with uncensored variants clearly tagged. [Final branding: logo 21 + slogan 04](docs/BRANDING.md).
-
-**Final logo: option 21, Cobalt Vinyl.** The whale-costume Android uses a cobalt-blue suit, lime face and antennae, and cream hood rim and belly. Option 17 is its structural blueprint; subsequent LMA branding follows 21. [Decision and asset details](docs/BRANDING.md) · [Native PNG](output/imagegen/lma-logo-selection-20261102-batch3-whale17/21-cobalt-vinyl.png). The three batches below are retained as design-selection history.
-
-**20261102 logo selection, batch 3:** [21–30: ten styles and palettes based on Whale Hood 17](docs/LOGO_SELECTION_20261102_BATCH3.md) · [Offline selector](output/imagegen/lma-logo-selection-20261102-batch3-whale17/index.html). Preserves the whale hood, twin Android antennae, face opening and raised right-side tail, with native originals and small previews.
-
-**20261102 logo selection, batch 2:** [11–20: Android + AI / Android + whale](docs/LOGO_SELECTION_20261102_BATCH2.md) · [Offline selector](output/imagegen/lma-logo-selection-20261102-batch2/index.html). Ten new generated directions, preserved native images, small previews and companion mascots; batch 1 remains archived.
-
-**20261102 logo selection:** [Ten numbered directions](docs/LOGO_SELECTION_20261102.md) · [Offline selector](output/imagegen/lma-logo-selection-20261102/index.html). Generated through the requested sub2-image-gen/gpt-image-2.5 route, with original images, small previews and multi-selection. The original selection round preserved the then-current app icon; v0.4.0 now integrates the finalized option 21.
-
-**20261102 update direction (frozen plan, implemented in v0.4.0):** [Full plan](docs/UPDATE_DIRECTION_20261102.en.md) · [中文](docs/UPDATE_DIRECTION_20261102.md) · [Capability-tag inventory for all 14 language models](docs/proposals/update-direction-20261102.json). One composer, media job cards, optional local tool planning, artifact context/chains and phone composition; dark by default while preserving saved theme choices; independently label image/video/audio understanding, native outputs, tools, dependencies and evidence. D01–D12 form one functional delivery with A01–A33 acceptance. [Current implementation and verification limits](docs/CONVERSATION_V040.en.md) supersede the frozen baseline; candidate labels do not prove model execution.
-
-[中文](README.md) · [Download v0.4.0](https://github.com/wikigsroom/LMA/releases/tag/v0.4.0) · [User guide](docs/USER_GUIDE.en.md) · [Documentation](docs/README.md) · [Scenarios](#use-cases) · [Cases and failures](#case-studies)
-
-**Historical v0.3.13 / code63 · Default API port 52187.** New installations and upgrades using the former default 8080 use `http://127.0.0.1:52187/v1`; LAN clients use `http://PHONE_IP:52187/v1` after enabling LAN access. Existing valid custom ports survive; the migration runs once, so later explicit edits remain yours. Update the base URL in connected clients. [Port migration and validation](docs/API_PORT.en.md) · [Release notes](docs/releases/v0.3.13.md) · [Current program evidence](verification/releases/v0.3.13/status.json).
-
-This version: **62 program suites / 15,122 assertions, 796 production UI checks, 24 physical program checks and 8 idle-performance checks**. [Phone recording](docs/media/device/v0.3.13/physical-walkthrough.mp4) · [GIF](docs/media/device/v0.3.13/physical-walkthrough.gif).
-
-**Current direct LAN validation: 63 checks / 128 HTTP requests passed**, including 8080→52187 migration, preserved settings and new PNG/two WAV files; 111.600 seconds screen-off. [Current evidence](verification/supplemental/v0.3.13/lan-http.json).
-
-<img src="docs/media/device/v0.3.13/04-api-overview.png" alt="LMA v0.3.13 API port 52187" width="300">
-
-The following v0.3.12 SDK, video and LAN results retain their original APK identity. This port update adds its own upgrade and direct LAN HTTP checks; it does not repeat the earlier long video/3D benchmark.
-
-**Previous v0.3.12/code62 · Stable local multimodal API.** Automatically discover complete/configured local text, image, video, speech, music and 3D models. Standard image PNG / speech WAV facades, per-model parameters, durable jobs/uploads/artifacts and an opt-in native Sub2API source kit are included. [Usage and SDK examples](docs/LOCAL_API_V0312.en.md) · [Physical integration/benchmark](docs/DEVICE_BENCHMARK_V0312.en.md) · [Release notes](docs/releases/v0.3.12.md).
-
-Final-APK phone results:**24 program checks+8 idle-performance checks+28 actual SDK checks passed**. Wan CPU produced a **6.125-second/49-frame video** in732seconds;quality remains unaccepted. Actual pages:[GIF](docs/media/device/v0.3.12/physical-walkthrough.gif)/[recording](docs/media/device/v0.3.12/physical-walkthrough.mp4);[original generated video](docs/media/benchmarks/v0.3.12/wan-cpu-6s.mp4). The benchmark report separates3D failures and candidate-APK attempts.
-
-**2026-11-02 direct LAN HTTP supplement: 57 checks passed across 128 requests.** A physical PC adapter connects directly to phone Wi-Fi, producing a new PNG and two WAVs and testing jobs, cancellation, upload, SSE and resumable downloads. The existing 6.125-second video is transferred again separately. Catalogue median: 39.44 ms; screen off: 111.959 seconds; no ADB forwarding or proxy. [Report and local HTTP examples](docs/LAN_HTTP_TEST.en.md) · [57-check evidence](verification/supplemental/v0.3.12/lan-http.json). Released assets retain their original identity.
-
-<img src="docs/media/device/v0.3.12/05-published-models.png" alt="Published local models on the final APK" width="300">
-
-
-**Generation has no fixed wall-clock deadline.** User cancellation, real resource failures and output/model constraints remain distinct. The 120-second synchronous HTTP wait does not cancel an asynchronous generation job. Physical video acceptance requires an actual duration greater than five seconds. Original models, settings and signing identity are preserved. Published results separate working file formats, semantic quality, API checks and endurance.
-
-**v0.3.11 / code61: choose CPU for existing Wan weights; actual video generated on the connected phone.** Native inputs now resolve to their leased regular sources, fixed-name components/views have verified identity bindings, and 3D reports real stages. The small Wan CPU pipeline completes; its one-step picture is nearly blank and quality is unaccepted; TRELLIS/Pixal stages, bounded cancellation and incomplete GLB output are reported separately. [Operation, API and results](docs/ON_DEVICE_MODEL_REPAIR.en.md) · [Physical model probes](verification/releases/v0.3.11/physical-models.json) · [Full inventory](docs/IMPLEMENTATION_V0311.en.md). All **62 recipes / 82 bundles / 18 extension engines plus text and 14 recommendations** remain.
-
 LMA lets users select, download, manage and run local models on an Android phone, with chat, image/video/audio/3D jobs, artifacts and a local API. It is an independent community project, unaffiliated with LM Studio. The application UI is primarily Chinese; documentation is bilingual.
 
 **App updates deliver the foundation; users choose every model.** The APK contains no model weights, tokenizers, voices or linguistic tables. Installation, upgrades and catalogue browsing trigger no model downloads. Tokenization, inference, encoding/decoding, rasterization and composition stay on the same phone, without ROOT, Termux, virtualization, cloud/LAN inference or another computing device.
@@ -71,15 +40,7 @@ LMA lets users select, download, manage and run local models on an Android phone
 
 New 3D/vision models accept explicitly selected matched local exports. **Complete public export download endpoints remain unverified**; none are invented. HF discovery does not make every architecture or format executable. Raw PyTorch weights are not Android runtime bundles.
 
-Regular program gates use bounded fixtures and no model downloads. This delivery additionally includes actual phone/API integration and benchmarks on existing assets, with no generation deadline. [Current program gates](verification/releases/v0.3.12/status.json) and [physical SDK/model results](verification/releases/v0.3.12/physical-api.json) are separately counted. File output does not establish model quality, all-model feasibility, Z20 capacity or endurance.
-
 LMA-authored code is MIT. The bundled DISO CPU surface component is **CC BY-NC 4.0, noncommercial**; other dependencies and model assets retain their terms. See [licenses](THIRD_PARTY_NOTICES.md).
-
-[Historical v0.3.9 phone GIF](docs/media/device/v0.3.9/physical-walkthrough.gif) / [screen recording](docs/media/device/v0.3.9/physical-walkthrough.mp4) show zero-model application pages. Physical recordings and desktop fixtures are separate; no model-generation or endurance claim is made.
-
-Detailed scenarios **C01–C48**, historical generation/failure cases **H01–H18**, API examples and prior test records are preserved. New [adapter GIF](docs/media/development/adaptation/adaptation-ui.gif)/[MP4](docs/media/development/adaptation/adaptation-ui.mp4) and [UltraTex demo](docs/media/development/ultratex/ultratex-ui.gif) use production pages with explicit UI FIXTURE bridges, not fabricated model/device results. Published evidence remains in `verification/program/` and `verification/history/`.
-
-Historical v0.3.10 [legacy-host deviation](verification/releases/v0.3.10/validation-deviation.json) remains unchanged and excluded from current gate/phone counts. Current selected physical-model execution is explicitly authorized and recorded separately.
 
 <a id="install"></a>
 ## Install and use
@@ -183,20 +144,6 @@ APK identity: **v0.3.11 / code61**, **71,062,169 bytes**, SHA256 `0184a42bbb5dca
 Native Windows builds use JDK, Android SDK/NDK and CMake, without Docker, WSL or emulators. Local `signing/` material is preserved for upgrades and excluded from Git and release assets. [Build](docs/BUILD.en.md) · [Release workflow](docs/RELEASING.md) · [Contributing](CONTRIBUTING.md).
 
 The [documentation index](docs/README.md) links model management, settings, tasks, background recovery, API, architecture details and historical research. LMA-authored code is MIT; engines and user models retain their own terms. The bundled DISO surface component is CC BY-NC 4.0, noncommercial. See [third-party notices](THIRD_PARTY_NOTICES.md).
-
-<a id="contents"></a>
-## Detailed usage and evidence routes
-
-The following restores the detailed scenarios, API examples, generated artifacts and test cases that were lost when the README was shortened. v0.3.5 retains these detailed sections and adds speech / 3D scenarios; no new complete-model run is claimed. LMA is independent of LM Studio; the current app UI is primarily Chinese and the documentation is bilingual.
-
-| Goal | Entry point |
-| --- | --- |
-| Operate the app | [30 scenarios C01–C30](#use-cases) |
-| Integrate the phone API | [Four examples A01–A04](#api-examples) |
-| Compare historical outputs and failures | [18 cases H01–H18](#case-studies) |
-| Inspect current program coverage | [60 current suites](#verification) |
-| Rebuild and diagnose | [Build](#build), [Z20/background limits](#z20), [troubleshooting](#troubleshooting) |
-| Read the original development narrative | [Historical English README](docs/history/README-dev45.en.md), [repair notes](docs/releases/v0.3.1-readme.md) |
 
 ### Preserved curated text candidates
 
@@ -954,3 +901,59 @@ Authorized updates synchronize code, both languages, relevant media and changelo
 | C75 | 不限时与取消 / No deadline | Generation has no elapsed-time cutoff; explicit cancel stops only the selected task and releases its slot. |
 
 [Detailed current examples / 本版完整示例](docs/LOCAL_API_V0312.md) · [English](docs/LOCAL_API_V0312.en.md). Earlier C01–C48 and H01–H18 remain above with their historical evidence identities.
+
+## Update summaries and history
+
+[Full changelog](CHANGELOG.md)
+
+**Current stable version: v0.4.0 / code64 — conversations and local creation.** [Download](https://github.com/wikigsroom/LMA/releases/tag/v0.4.0) · [Full operation, API and limits](docs/CONVERSATION_V040.en.md) · [Release notes](docs/releases/v0.4.0.md). D01–D12 from the 20261102 plan land together. Final Logo 21 is now the launcher icon, application header, empty-chat identity and About artwork. Dark is the default; valid saved themes survive.
+
+| ID | Change | Operation |
+| --- | --- | --- |
+| 01 | Unified conversation/composer | Auto, text, image, video, speech, music, 3D and local composition; manual media needs no language model. |
+| 02 | Exact capability declarations | Fourteen variants have independent native/LMA/evidence tags. NSFW/Uncensored labels remain separate. |
+| 03 | Original job cards and managed assets | One queue, durable outbox recovery, explicit input roles, lineage and shared deletion protection. |
+| 04 | Optional local planner | Strict streamed tool calls, editable drafts and approval; at most eight steps and one explicit format repair. |
+| 05 | Controlled sequences and editing | W01–W06, dependency blocking, successful-step reuse, explicit retry; WAV mixing and on-phone MP4 composition. |
+| 06 | Dark startup and incremental rendering | Bounded sixty-message view, lazy media and scoped token updates; port remains 52187. |
+
+**Final logo: option 21, Cobalt Vinyl.** The whale-costume Android uses a cobalt-blue suit, lime face and antennae, and cream hood rim and belly. Option 17 is its structural blueprint; subsequent LMA branding follows 21. [Decision and asset details](docs/BRANDING.md) · [Native PNG](output/imagegen/lma-logo-selection-20261102-batch3-whale17/21-cobalt-vinyl.png). The three batches below are retained as design-selection history.
+
+**20261102 logo selection, batch 3:** [21–30: ten styles and palettes based on Whale Hood 17](docs/LOGO_SELECTION_20261102_BATCH3.md) · [Offline selector](output/imagegen/lma-logo-selection-20261102-batch3-whale17/index.html). Preserves the whale hood, twin Android antennae, face opening and raised right-side tail, with native originals and small previews.
+
+**20261102 logo selection, batch 2:** [11–20: Android + AI / Android + whale](docs/LOGO_SELECTION_20261102_BATCH2.md) · [Offline selector](output/imagegen/lma-logo-selection-20261102-batch2/index.html). Ten new generated directions, preserved native images, small previews and companion mascots; batch 1 remains archived.
+
+**20261102 logo selection:** [Ten numbered directions](docs/LOGO_SELECTION_20261102.md) · [Offline selector](output/imagegen/lma-logo-selection-20261102/index.html). Generated through the requested sub2-image-gen/gpt-image-2.5 route, with original images, small previews and multi-selection. The original selection round preserved the then-current app icon; v0.4.0 now integrates the finalized option 21.
+
+**20261102 update direction (frozen plan, implemented in v0.4.0):** [Full plan](docs/UPDATE_DIRECTION_20261102.en.md) · [中文](docs/UPDATE_DIRECTION_20261102.md) · [Capability-tag inventory for all 14 language models](docs/proposals/update-direction-20261102.json). One composer, media job cards, optional local tool planning, artifact context/chains and phone composition; dark by default while preserving saved theme choices; independently label image/video/audio understanding, native outputs, tools, dependencies and evidence. D01–D12 form one functional delivery with A01–A33 acceptance. [Current implementation and verification limits](docs/CONVERSATION_V040.en.md) supersede the frozen baseline; candidate labels do not prove model execution.
+
+**Historical v0.3.13 / code63 · Default API port 52187.** New installations and upgrades using the former default 8080 use `http://127.0.0.1:52187/v1`; LAN clients use `http://PHONE_IP:52187/v1` after enabling LAN access. Existing valid custom ports survive; the migration runs once, so later explicit edits remain yours. Update the base URL in connected clients. [Port migration and validation](docs/API_PORT.en.md) · [Release notes](docs/releases/v0.3.13.md) · [Current program evidence](verification/releases/v0.3.13/status.json).
+
+This version: **62 program suites / 15,122 assertions, 796 production UI checks, 24 physical program checks and 8 idle-performance checks**. [Phone recording](docs/media/device/v0.3.13/physical-walkthrough.mp4) · [GIF](docs/media/device/v0.3.13/physical-walkthrough.gif).
+
+**Current direct LAN validation: 63 checks / 128 HTTP requests passed**, including 8080→52187 migration, preserved settings and new PNG/two WAV files; 111.600 seconds screen-off. [Current evidence](verification/supplemental/v0.3.13/lan-http.json).
+
+<img src="docs/media/device/v0.3.13/04-api-overview.png" alt="LMA v0.3.13 API port 52187" width="300">
+
+The following v0.3.12 SDK, video and LAN results retain their original APK identity. This port update adds its own upgrade and direct LAN HTTP checks; it does not repeat the earlier long video/3D benchmark.
+
+**Previous v0.3.12/code62 · Stable local multimodal API.** Automatically discover complete/configured local text, image, video, speech, music and 3D models. Standard image PNG / speech WAV facades, per-model parameters, durable jobs/uploads/artifacts and an opt-in native Sub2API source kit are included. [Usage and SDK examples](docs/LOCAL_API_V0312.en.md) · [Physical integration/benchmark](docs/DEVICE_BENCHMARK_V0312.en.md) · [Release notes](docs/releases/v0.3.12.md).
+
+Final-APK phone results:**24 program checks+8 idle-performance checks+28 actual SDK checks passed**. Wan CPU produced a **6.125-second/49-frame video** in732seconds;quality remains unaccepted. Actual pages:[GIF](docs/media/device/v0.3.12/physical-walkthrough.gif)/[recording](docs/media/device/v0.3.12/physical-walkthrough.mp4);[original generated video](docs/media/benchmarks/v0.3.12/wan-cpu-6s.mp4). The benchmark report separates3D failures and candidate-APK attempts.
+
+**2026-11-02 direct LAN HTTP supplement: 57 checks passed across 128 requests.** A physical PC adapter connects directly to phone Wi-Fi, producing a new PNG and two WAVs and testing jobs, cancellation, upload, SSE and resumable downloads. The existing 6.125-second video is transferred again separately. Catalogue median: 39.44 ms; screen off: 111.959 seconds; no ADB forwarding or proxy. [Report and local HTTP examples](docs/LAN_HTTP_TEST.en.md) · [57-check evidence](verification/supplemental/v0.3.12/lan-http.json). Released assets retain their original identity.
+
+<img src="docs/media/device/v0.3.12/05-published-models.png" alt="Published local models on the final APK" width="300">
+
+
+**Generation has no fixed wall-clock deadline.** User cancellation, real resource failures and output/model constraints remain distinct. The 120-second synchronous HTTP wait does not cancel an asynchronous generation job. Physical video acceptance requires an actual duration greater than five seconds. Original models, settings and signing identity are preserved. Published results separate working file formats, semantic quality, API checks and endurance.
+
+**v0.3.11 / code61: choose CPU for existing Wan weights; actual video generated on the connected phone.** Native inputs now resolve to their leased regular sources, fixed-name components/views have verified identity bindings, and 3D reports real stages. The small Wan CPU pipeline completes; its one-step picture is nearly blank and quality is unaccepted; TRELLIS/Pixal stages, bounded cancellation and incomplete GLB output are reported separately. [Operation, API and results](docs/ON_DEVICE_MODEL_REPAIR.en.md) · [Physical model probes](verification/releases/v0.3.11/physical-models.json) · [Full inventory](docs/IMPLEMENTATION_V0311.en.md). All **62 recipes / 82 bundles / 18 extension engines plus text and 14 recommendations** remain.
+
+Regular program gates use bounded fixtures and no model downloads. This delivery additionally includes actual phone/API integration and benchmarks on existing assets, with no generation deadline. [Current program gates](verification/releases/v0.3.12/status.json) and [physical SDK/model results](verification/releases/v0.3.12/physical-api.json) are separately counted. File output does not establish model quality, all-model feasibility, Z20 capacity or endurance.
+
+[Historical v0.3.9 phone GIF](docs/media/device/v0.3.9/physical-walkthrough.gif) / [screen recording](docs/media/device/v0.3.9/physical-walkthrough.mp4) show zero-model application pages. Physical recordings and desktop fixtures are separate; no model-generation or endurance claim is made.
+
+Detailed scenarios **C01–C48**, historical generation/failure cases **H01–H18**, API examples and prior test records are preserved. New [adapter GIF](docs/media/development/adaptation/adaptation-ui.gif)/[MP4](docs/media/development/adaptation/adaptation-ui.mp4) and [UltraTex demo](docs/media/development/ultratex/ultratex-ui.gif) use production pages with explicit UI FIXTURE bridges, not fabricated model/device results. Published evidence remains in `verification/program/` and `verification/history/`.
+
+Historical v0.3.10 [legacy-host deviation](verification/releases/v0.3.10/validation-deviation.json) remains unchanged and excluded from current gate/phone counts. Current selected physical-model execution is explicitly authorized and recorded separately.

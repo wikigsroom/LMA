@@ -8,78 +8,7 @@
 
 Android 本地 AI 工作台，模型由你选择，无审查模型独立标记。[品牌定稿：Logo 21 ＋ Slogan 04](docs/BRANDING.md)。
 
-
-**当前正式版：v0.4.0 / code64 · 对话与本地创作。** [下载 APK](https://github.com/wikigsroom/LMA/releases/tag/v0.4.0) · [完整用法、API 与限制](docs/CONVERSATION_V040.md) · [English](docs/CONVERSATION_V040.en.md) · [版本说明](docs/releases/v0.4.0.md)。20261102 方案 D01–D12 同批接入；Logo 21 已用于软件启动图标、应用顶栏、对话空态与关于页。默认暗色，保留用户有效主题。
-
-| 编号 | 本版功能 | 使用逻辑 |
-| --- | --- | --- |
-| 01 | 统一对话与创作输入 | 自动／对话／生图／视频／配音／音乐／3D／本机合成；手动媒体任务不需要语言模型。 |
-| 02 | 精确能力标签与组件配对 | 14 个文本目录变体分开记录原生输入、输出、工具、LMA 接入和证据；NSFW／Uncensored 标签独立。 |
-| 03 | 原任务卡与素材引用 | 聊天、工作台和 API 使用同一任务；持久 outbox 恢复、不重复生成、显式附件用途、来源链与引用删除保护。 |
-| 04 | 可选本地规划器 | 严格流式工具协议，先显示可编辑草稿再确认；最多 8 步和一次明确格式修正，无下载／shell 等隐含工具。 |
-| 05 | 顺序模板与合成 | W01–W06、依赖阻断、单步重试／成功复用；同机 WAV 混音、裁剪／静音补齐和 MP4 合成。 |
-| 06 | 暗色与性能 | 首帧主题一致、60 条消息窗口、按需媒体与 token 定向更新；默认端口仍为 52187。 |
-
-**验证范围：程序验证。** 本版没有可用 ADB 真机，不重新下载或完整运行模型。视觉预处理／Android 编解码输出、本版手机性能与后台耐久尚待实机检查；m15 有固定视觉组件预设，m03／m09／m16 的配对身份仍待核对。公共 OpenAI 对话明确为文本子集，App 看图桥与通用公共多模态 API 不混同。原 3D 与视频质量问题继续保留。详见 [逐项实施与限制](docs/CONVERSATION_V040.md) 和 [本版证据](verification/releases/v0.4.0/status.json)。下方旧版真机截图与案例保留其原版本身份。
-
-程序验收 / Program verification: **65 suites / 15271 assertions**, Android Lint **0 errors / 17 warnings**, **41** verified arm64 native libraries. APK SHA256: `77a5988a6eef20ad5a25b5a5af7b9e5aa28d213d29908926379c8a643c60c493`.
-
-<img src="docs/media/conversation-v040/03-explicit-composition.png" alt="v0.4.0 明确选择画面和声轨；程序界面夹具，非真机" width="300"> <img src="docs/media/conversation-v040/04-sequential-template.png" alt="v0.4.0 顺序模板；程序界面夹具，非模型输出" width="300">
-
-[程序界面录屏](docs/media/conversation-v040/walkthrough.mp4) · [GIF](docs/media/conversation-v040/walkthrough.gif) · [完整说明](docs/CONVERSATION_V040.md)。历史功能文档、用例和真实模型结果继续保留。
-
-**Logo 已定稿：21 号「钴蓝软胶」。** 采用鲸鱼套装小安卓结构，钴蓝鲸鱼服、青柠脸部与双天线、奶油色帽沿和腹部；17 号是结构蓝本。后续品牌形象使用该稿。[定稿记录与素材说明](docs/BRANDING.md) · [原始 PNG](output/imagegen/lma-logo-selection-20261102-batch3-whale17/21-cobalt-vinyl.png)。以下三批记录保留为选型历史。
-
-**20261102 Logo 第三批：** [以 17 号鲸帽小安卓为结构蓝本的 21–30 十套新风格与配色](docs/LOGO_SELECTION_20261102_BATCH3.md) · [离线选型页](output/imagegen/lma-logo-selection-20261102-batch3-whale17/index.html)。保留鲸鱼帽、安卓双天线、帽内脸与右侧翘尾，提供原图和小尺寸对比。
-
-**20261102 第二批 Logo 选型：** [11–20 安卓＋AI／安卓＋鲸鱼](docs/LOGO_SELECTION_20261102_BATCH2.md) · [离线选型页](output/imagegen/lma-logo-selection-20261102-batch2/index.html)。按新方向独立生成十套，保留第一批归档；含原图、小尺寸和配套形象。
-
-**20261102 Logo 选型：** [10 套风格与编号总览](docs/LOGO_SELECTION_20261102.md) · [离线交互选型页](output/imagegen/lma-logo-selection-20261102/index.html)。使用用户指定的 sub2-image-gen／gpt-image-2.5 实际生成；支持多选、原图与小尺寸对比，该历史选型阶段未替换图标；v0.4.0 已接入定稿 21。
-
-**20261102 原始更新方向方案（v0.4.0 程序实现见上）：** [完整方案](docs/UPDATE_DIRECTION_20261102.md) · [English](docs/UPDATE_DIRECTION_20261102.en.md) · [14 个语言模型的能力标签清单](docs/proposals/update-direction-20261102.json)。统一对话输入、四类媒体任务卡、可选本地工具调度、素材引用／任务链与同机合成；默认采用暗色调并保留用户已选主题；新增图片／视频／音频理解、原生输出、工具能力、组件与验证状态的独立选型标签。D01–D12 同一次功能交付，A01–A33 逐项验收；原方案与标签依据保留；实施状态以 v0.4.0 说明为准，不把候选标签当作真机已通过。
-
 [English](README.en.md) · [下载 v0.4.0](https://github.com/wikigsroom/LMA/releases/tag/v0.4.0) · [使用手册](docs/USER_GUIDE.md) · [文档目录](docs/README.md) · [更新记录](CHANGELOG.md)
-
-**历史 v0.3.13 / code63 · 默认接口端口改为 52187。** 新安装及旧版使用默认 8080 的安装，升级后使用 `http://127.0.0.1:52187/v1`；开启内网访问后，电脑连接 `http://手机IP:52187/v1`。已有其他有效自定义端口保留；迁移仅执行一次，之后用户主动编辑的端口仍会保留。请同步修改客户端的接口地址。[端口迁移与验证](docs/API_PORT.md) · [本版说明](docs/releases/v0.3.13.md) · [本版程序证据](verification/releases/v0.3.13/status.json)。
-
-v0.3.13：**62 套程序检查／15,122 项断言、796 项生产界面检查、24 项真机程序检查和 8 项空闲性能检查**。[真机录屏](docs/media/device/v0.3.13/physical-walkthrough.mp4) · [GIF](docs/media/device/v0.3.13/physical-walkthrough.gif)。
-
-**v0.3.13 内网实测：63 项检查／128 次 HTTP 请求通过**，核对 8080→52187 升级、配置保留及新 PNG／两段 WAV；锁屏 111.600 秒。[本版证据](verification/supplemental/v0.3.13/lan-http.json)。
-
-<img src="docs/media/device/v0.3.13/04-api-overview.png" alt="LMA v0.3.13 API port 52187" width="300">
-
-下面保留 v0.3.12 的 SDK、视频和内网测评及其原始 APK 身份。本次端口更新另做升级和内网 HTTP 验证，不将旧版长时间视频／3D 测评记为新版实跑。
-
-**历史 v0.3.12/code62 · 正式本地多模态 API。** 自动公布已下载完整、配置有效的生文／生图／视频／语音／音乐／3D 模型；新增标准图片 PNG、语音 WAV 兼容层，复用逐模型参数、持久任务／上传／产物和可选择启用的原生 Sub2API 源码扩展。[用法与 SDK 案例](docs/LOCAL_API_V0312.md) · [完整实机联调与测评](docs/DEVICE_BENCHMARK_V0312.md) · [版本说明](docs/releases/v0.3.12.md)。
-
-**生成任务不再设置固定耗时上限。** 用户主动停止、真实资源故障和输出／模型约束分别处理；120 秒同步 HTTP 等待不会终止后台生成。实机视频验收要求真实时长大于 5 秒。升级保留模型、设置和原签名；测评区分文件输出、生成质量、接口检查与后台耐久。
-
-v0.3.12 最终 APK 实机：**24项程序检查＋8项空闲性能＋28项真实SDK联调**通过；Wan CPU实际输出 **6.125秒／49帧**视频，耗时732秒，画质尚未通过。真实页面[GIF](docs/media/device/v0.3.12/physical-walkthrough.gif)／[录屏](docs/media/device/v0.3.12/physical-walkthrough.mp4)，原始[模型视频](docs/media/benchmarks/v0.3.12/wan-cpu-6s.mp4)。3D失败与候选包结果在测评中逐项披露。
-
-**2026-11-02 内网 HTTP 补充验证：57项通过、128次真实请求。** PC物理网卡直接连接手机Wi-Fi，完成新图片、两段语音、任务/取消/上传/SSE与断点下载；已有6.125秒视频单独复测传输。模型目录中位延迟39.44ms，锁屏111.959秒；无ADB转发或代理。[完整报告与本地HTTP用例](docs/LAN_HTTP_TEST.md) · [57项证据](verification/supplemental/v0.3.12/lan-http.json)。原Release附件身份保留。
-
-<img src="docs/media/device/v0.3.12/05-published-models.png" alt="最终APK服务公布的本地模型" width="300">
-
-
-**历史 v0.3.11 / code61：已有 Wan 权重可直接选择 CPU，并已在当前手机产出视频。** 修复原生工作器仍拒绝 Android 软链接输入的问题，为固定名称的模型组件 / 四视图增加来源身份校验，并加入 3D 分阶段进度。Wan CPU 小尺寸计算 / 编码已贯通，一步画面近空白，未达可用画质；TRELLIS.2 / Pixal3D 的阶段、限时取消与未完成输出单独披露，不冒充全部模型成功。[操作、API 与真实结果](docs/ON_DEVICE_MODEL_REPAIR.md) · [真机模型记录](verification/releases/v0.3.11/physical-models.json) · [完整矩阵](docs/IMPLEMENTATION_V0311.md)。全部 **62 配方 / 82 包 / 18 扩展引擎加文本、14 项推荐**保留。
-
-LMA（Local Model App）让用户在 Android 手机上选择、下载、管理和运行本地模型，提供聊天、生图、生视频、生音频、生 3D、任务队列、结果库与本机 API。它是独立社区项目，与 LM Studio 无隶属关系；界面主要为中文，文档提供中英双语。
-
-**App 更新提供基座，模型由用户自行选择。** APK 不附模型权重、tokenizer、音色或语言表；安装、升级和浏览目录不触发模型下载。所有分词、推理、编码、解码、光栅与合成都在同一手机完成，无需 ROOT、Termux、Docker、WSL、虚拟机、其他计算设备或云推理。
-
-**ARM64 / Android 9+，保留原签名升级。** 原有 F-01–F-12、生文、01–14／16／17、九个 MOSS 子目标、SD1.5 / SDXL LoRA 和 44 个社区配方完整保留。推荐保留生文前缀 `m08 → m06 → m01`，另加 11 个多模态条目；全部 / HF 搜索允许发现其他模型，本地管理已选资产。所有模型平级，以功能、基座、格式、内容和安装状态独立标签区分；NSFW / Uncensored 单独标注，不限制 HF 发现范围。
-
-新增 3D / 视觉模型支持用户选择匹配的本地导出再导入，**尚未核实完整公开导出包下载地址**，不提供占位链接。HF 可发现不等于任意格式均可执行；原始 PyTorch 不能直接作为 Android 运行包。
-
-常规程序门禁使用有界夹具且不下载模型。本版另外完成已安装资产的真实手机 API 联调与测评，生成不设固定执行时限。[当前程序门禁](verification/releases/v0.3.12/status.json)与[实机 SDK／模型结果](verification/releases/v0.3.12/physical-api.json)分别计数；文件生成不等于画质、全模型、Z20 资源或长期后台验收。
-
-**许可证说明：** 自有代码为 MIT；随包 DISO CPU 表面提取组件适用 CC BY-NC 4.0 非商业条款，其他依赖与模型保留各自许可。见[完整说明](THIRD_PARTY_NOTICES.md)。
-
-保留 v0.3.9 [真实手机页面 GIF](docs/media/device/v0.3.9/physical-walkthrough.gif) / [录屏 MP4](docs/media/device/v0.3.9/physical-walkthrough.mp4)：零模型页面与接口操作，另附锁屏 60 秒健康检查记录；不代表模型输出或长期耐久通过。桌面夹具与真实手机媒体分别标记。
-
-详细用例 **C01–C75**、历史生成 / 失败案例 **H01–H18**、API 示例和历史测试记录均保留。新增[本地适配页面 GIF](docs/media/development/adaptation/adaptation-ui.gif) / [MP4](docs/media/development/adaptation/adaptation-ui.mp4) 与 [UltraTex 演示](docs/media/development/ultratex/ultratex-ui.gif)；均明确标记 UI FIXTURE，展示生产页面操作，不冒充手机或训练模型结果。原发布证据留在 `verification/program/` 与 `verification/history/`。
-
-历史 v0.3.10 的[旧主机检查偏差](verification/releases/v0.3.10/validation-deviation.json)原样保留，不计入本版程序或手机通过。本轮部分手机模型实跑已另获明确授权并单独记录。
 
 <a id="contents"></a>
 ## 阅读路线
@@ -92,6 +21,24 @@ LMA（Local Model App）让用户在 Android 手机上选择、下载、管理�
 | 在程序中调用手机模型 | [API 示例](#api-examples) | [API](docs/API.md)、[输入与上传](docs/LOCAL_INPUTS.md) |
 | 看页面、生成案例和失败对照 | [当前页面](#ui-media)、[历史案例 H01–H18](#case-studies) | [媒体说明](docs/MEDIA.md)、[历史完整 README](docs/history/README-dev45.zh.md) |
 | 查证测试范围、重建和排错 | [程序检查](#verification)、[构建](#build)、[排错](#troubleshooting) | [程序验证策略](docs/PROGRAM_VALIDATION.md)、[构建指南](docs/BUILD.md) |
+
+**验证范围：程序验证。** 本版没有可用 ADB 真机，不重新下载或完整运行模型。视觉预处理／Android 编解码输出、本版手机性能与后台耐久尚待实机检查；m15 有固定视觉组件预设，m03／m09／m16 的配对身份仍待核对。公共 OpenAI 对话明确为文本子集，App 看图桥与通用公共多模态 API 不混同。原 3D 与视频质量问题继续保留。详见 [逐项实施与限制](docs/CONVERSATION_V040.md) 和 [本版证据](verification/releases/v0.4.0/status.json)。下方旧版真机截图与案例保留其原版本身份。
+
+程序验收 / Program verification: **65 suites / 15271 assertions**, Android Lint **0 errors / 17 warnings**, **41** verified arm64 native libraries. APK SHA256: `77a5988a6eef20ad5a25b5a5af7b9e5aa28d213d29908926379c8a643c60c493`.
+
+<img src="docs/media/conversation-v040/03-explicit-composition.png" alt="v0.4.0 明确选择画面和声轨；程序界面夹具，非真机" width="300"> <img src="docs/media/conversation-v040/04-sequential-template.png" alt="v0.4.0 顺序模板；程序界面夹具，非模型输出" width="300">
+
+[程序界面录屏](docs/media/conversation-v040/walkthrough.mp4) · [GIF](docs/media/conversation-v040/walkthrough.gif) · [完整说明](docs/CONVERSATION_V040.md)。历史功能文档、用例和真实模型结果继续保留。
+
+LMA（Local Model App）让用户在 Android 手机上选择、下载、管理和运行本地模型，提供聊天、生图、生视频、生音频、生 3D、任务队列、结果库与本机 API。它是独立社区项目，与 LM Studio 无隶属关系；界面主要为中文，文档提供中英双语。
+
+**App 更新提供基座，模型由用户自行选择。** APK 不附模型权重、tokenizer、音色或语言表；安装、升级和浏览目录不触发模型下载。所有分词、推理、编码、解码、光栅与合成都在同一手机完成，无需 ROOT、Termux、Docker、WSL、虚拟机、其他计算设备或云推理。
+
+**ARM64 / Android 9+，保留原签名升级。** 原有 F-01–F-12、生文、01–14／16／17、九个 MOSS 子目标、SD1.5 / SDXL LoRA 和 44 个社区配方完整保留。推荐保留生文前缀 `m08 → m06 → m01`，另加 11 个多模态条目；全部 / HF 搜索允许发现其他模型，本地管理已选资产。所有模型平级，以功能、基座、格式、内容和安装状态独立标签区分；NSFW / Uncensored 单独标注，不限制 HF 发现范围。
+
+新增 3D / 视觉模型支持用户选择匹配的本地导出再导入，**尚未核实完整公开导出包下载地址**，不提供占位链接。HF 可发现不等于任意格式均可执行；原始 PyTorch 不能直接作为 Android 运行包。
+
+**许可证说明：** 自有代码为 MIT；随包 DISO CPU 表面提取组件适用 CC BY-NC 4.0 非商业条款，其他依赖与模型保留各自许可。见[完整说明](THIRD_PARTY_NOTICES.md)。
 
 <a id="models"></a>
 ## 模型范围与选择逻辑
@@ -947,3 +894,59 @@ python tools/program_evidence.py
 | C75 | 不限时与取消 / No deadline | Generation has no elapsed-time cutoff; explicit cancel stops only the selected task and releases its slot. |
 
 [Detailed current examples / 本版完整示例](docs/LOCAL_API_V0312.md) · [English](docs/LOCAL_API_V0312.en.md). Earlier C01–C48 and H01–H18 remain above with their historical evidence identities.
+
+## 更新摘要与历史
+
+[完整更新记录](CHANGELOG.md)
+
+**当前正式版：v0.4.0 / code64 · 对话与本地创作。** [下载 APK](https://github.com/wikigsroom/LMA/releases/tag/v0.4.0) · [完整用法、API 与限制](docs/CONVERSATION_V040.md) · [English](docs/CONVERSATION_V040.en.md) · [版本说明](docs/releases/v0.4.0.md)。20261102 方案 D01–D12 同批接入；Logo 21 已用于软件启动图标、应用顶栏、对话空态与关于页。默认暗色，保留用户有效主题。
+
+| 编号 | 本版功能 | 使用逻辑 |
+| --- | --- | --- |
+| 01 | 统一对话与创作输入 | 自动／对话／生图／视频／配音／音乐／3D／本机合成；手动媒体任务不需要语言模型。 |
+| 02 | 精确能力标签与组件配对 | 14 个文本目录变体分开记录原生输入、输出、工具、LMA 接入和证据；NSFW／Uncensored 标签独立。 |
+| 03 | 原任务卡与素材引用 | 聊天、工作台和 API 使用同一任务；持久 outbox 恢复、不重复生成、显式附件用途、来源链与引用删除保护。 |
+| 04 | 可选本地规划器 | 严格流式工具协议，先显示可编辑草稿再确认；最多 8 步和一次明确格式修正，无下载／shell 等隐含工具。 |
+| 05 | 顺序模板与合成 | W01–W06、依赖阻断、单步重试／成功复用；同机 WAV 混音、裁剪／静音补齐和 MP4 合成。 |
+| 06 | 暗色与性能 | 首帧主题一致、60 条消息窗口、按需媒体与 token 定向更新；默认端口仍为 52187。 |
+
+**Logo 已定稿：21 号「钴蓝软胶」。** 采用鲸鱼套装小安卓结构，钴蓝鲸鱼服、青柠脸部与双天线、奶油色帽沿和腹部；17 号是结构蓝本。后续品牌形象使用该稿。[定稿记录与素材说明](docs/BRANDING.md) · [原始 PNG](output/imagegen/lma-logo-selection-20261102-batch3-whale17/21-cobalt-vinyl.png)。以下三批记录保留为选型历史。
+
+**20261102 Logo 第三批：** [以 17 号鲸帽小安卓为结构蓝本的 21–30 十套新风格与配色](docs/LOGO_SELECTION_20261102_BATCH3.md) · [离线选型页](output/imagegen/lma-logo-selection-20261102-batch3-whale17/index.html)。保留鲸鱼帽、安卓双天线、帽内脸与右侧翘尾，提供原图和小尺寸对比。
+
+**20261102 第二批 Logo 选型：** [11–20 安卓＋AI／安卓＋鲸鱼](docs/LOGO_SELECTION_20261102_BATCH2.md) · [离线选型页](output/imagegen/lma-logo-selection-20261102-batch2/index.html)。按新方向独立生成十套，保留第一批归档；含原图、小尺寸和配套形象。
+
+**20261102 Logo 选型：** [10 套风格与编号总览](docs/LOGO_SELECTION_20261102.md) · [离线交互选型页](output/imagegen/lma-logo-selection-20261102/index.html)。使用用户指定的 sub2-image-gen／gpt-image-2.5 实际生成；支持多选、原图与小尺寸对比，该历史选型阶段未替换图标；v0.4.0 已接入定稿 21。
+
+**20261102 原始更新方向方案（v0.4.0 程序实现见上）：** [完整方案](docs/UPDATE_DIRECTION_20261102.md) · [English](docs/UPDATE_DIRECTION_20261102.en.md) · [14 个语言模型的能力标签清单](docs/proposals/update-direction-20261102.json)。统一对话输入、四类媒体任务卡、可选本地工具调度、素材引用／任务链与同机合成；默认采用暗色调并保留用户已选主题；新增图片／视频／音频理解、原生输出、工具能力、组件与验证状态的独立选型标签。D01–D12 同一次功能交付，A01–A33 逐项验收；原方案与标签依据保留；实施状态以 v0.4.0 说明为准，不把候选标签当作真机已通过。
+
+**历史 v0.3.13 / code63 · 默认接口端口改为 52187。** 新安装及旧版使用默认 8080 的安装，升级后使用 `http://127.0.0.1:52187/v1`；开启内网访问后，电脑连接 `http://手机IP:52187/v1`。已有其他有效自定义端口保留；迁移仅执行一次，之后用户主动编辑的端口仍会保留。请同步修改客户端的接口地址。[端口迁移与验证](docs/API_PORT.md) · [本版说明](docs/releases/v0.3.13.md) · [本版程序证据](verification/releases/v0.3.13/status.json)。
+
+v0.3.13：**62 套程序检查／15,122 项断言、796 项生产界面检查、24 项真机程序检查和 8 项空闲性能检查**。[真机录屏](docs/media/device/v0.3.13/physical-walkthrough.mp4) · [GIF](docs/media/device/v0.3.13/physical-walkthrough.gif)。
+
+**v0.3.13 内网实测：63 项检查／128 次 HTTP 请求通过**，核对 8080→52187 升级、配置保留及新 PNG／两段 WAV；锁屏 111.600 秒。[本版证据](verification/supplemental/v0.3.13/lan-http.json)。
+
+<img src="docs/media/device/v0.3.13/04-api-overview.png" alt="LMA v0.3.13 API port 52187" width="300">
+
+下面保留 v0.3.12 的 SDK、视频和内网测评及其原始 APK 身份。本次端口更新另做升级和内网 HTTP 验证，不将旧版长时间视频／3D 测评记为新版实跑。
+
+**历史 v0.3.12/code62 · 正式本地多模态 API。** 自动公布已下载完整、配置有效的生文／生图／视频／语音／音乐／3D 模型；新增标准图片 PNG、语音 WAV 兼容层，复用逐模型参数、持久任务／上传／产物和可选择启用的原生 Sub2API 源码扩展。[用法与 SDK 案例](docs/LOCAL_API_V0312.md) · [完整实机联调与测评](docs/DEVICE_BENCHMARK_V0312.md) · [版本说明](docs/releases/v0.3.12.md)。
+
+**生成任务不再设置固定耗时上限。** 用户主动停止、真实资源故障和输出／模型约束分别处理；120 秒同步 HTTP 等待不会终止后台生成。实机视频验收要求真实时长大于 5 秒。升级保留模型、设置和原签名；测评区分文件输出、生成质量、接口检查与后台耐久。
+
+v0.3.12 最终 APK 实机：**24项程序检查＋8项空闲性能＋28项真实SDK联调**通过；Wan CPU实际输出 **6.125秒／49帧**视频，耗时732秒，画质尚未通过。真实页面[GIF](docs/media/device/v0.3.12/physical-walkthrough.gif)／[录屏](docs/media/device/v0.3.12/physical-walkthrough.mp4)，原始[模型视频](docs/media/benchmarks/v0.3.12/wan-cpu-6s.mp4)。3D失败与候选包结果在测评中逐项披露。
+
+**2026-11-02 内网 HTTP 补充验证：57项通过、128次真实请求。** PC物理网卡直接连接手机Wi-Fi，完成新图片、两段语音、任务/取消/上传/SSE与断点下载；已有6.125秒视频单独复测传输。模型目录中位延迟39.44ms，锁屏111.959秒；无ADB转发或代理。[完整报告与本地HTTP用例](docs/LAN_HTTP_TEST.md) · [57项证据](verification/supplemental/v0.3.12/lan-http.json)。原Release附件身份保留。
+
+<img src="docs/media/device/v0.3.12/05-published-models.png" alt="最终APK服务公布的本地模型" width="300">
+
+
+**历史 v0.3.11 / code61：已有 Wan 权重可直接选择 CPU，并已在当前手机产出视频。** 修复原生工作器仍拒绝 Android 软链接输入的问题，为固定名称的模型组件 / 四视图增加来源身份校验，并加入 3D 分阶段进度。Wan CPU 小尺寸计算 / 编码已贯通，一步画面近空白，未达可用画质；TRELLIS.2 / Pixal3D 的阶段、限时取消与未完成输出单独披露，不冒充全部模型成功。[操作、API 与真实结果](docs/ON_DEVICE_MODEL_REPAIR.md) · [真机模型记录](verification/releases/v0.3.11/physical-models.json) · [完整矩阵](docs/IMPLEMENTATION_V0311.md)。全部 **62 配方 / 82 包 / 18 扩展引擎加文本、14 项推荐**保留。
+
+常规程序门禁使用有界夹具且不下载模型。本版另外完成已安装资产的真实手机 API 联调与测评，生成不设固定执行时限。[当前程序门禁](verification/releases/v0.3.12/status.json)与[实机 SDK／模型结果](verification/releases/v0.3.12/physical-api.json)分别计数；文件生成不等于画质、全模型、Z20 资源或长期后台验收。
+
+保留 v0.3.9 [真实手机页面 GIF](docs/media/device/v0.3.9/physical-walkthrough.gif) / [录屏 MP4](docs/media/device/v0.3.9/physical-walkthrough.mp4)：零模型页面与接口操作，另附锁屏 60 秒健康检查记录；不代表模型输出或长期耐久通过。桌面夹具与真实手机媒体分别标记。
+
+详细用例 **C01–C75**、历史生成 / 失败案例 **H01–H18**、API 示例和历史测试记录均保留。新增[本地适配页面 GIF](docs/media/development/adaptation/adaptation-ui.gif) / [MP4](docs/media/development/adaptation/adaptation-ui.mp4) 与 [UltraTex 演示](docs/media/development/ultratex/ultratex-ui.gif)；均明确标记 UI FIXTURE，展示生产页面操作，不冒充手机或训练模型结果。原发布证据留在 `verification/program/` 与 `verification/history/`。
+
+历史 v0.3.10 的[旧主机检查偏差](verification/releases/v0.3.10/validation-deviation.json)原样保留，不计入本版程序或手机通过。本轮部分手机模型实跑已另获明确授权并单独记录。
