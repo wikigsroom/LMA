@@ -1,0 +1,435 @@
+{
+  "schema": "lma.logo-selection/1",
+  "date": "2026-11-02",
+  "project": "LMA",
+  "purpose": "Ten distinct generated logo directions for user selection; not applied to the APK.",
+  "generatorSkill": "sub2-image-gen",
+  "containsGatewayConfiguration": false,
+  "containsApiKeys": false,
+  "rasterOutputs": true,
+  "productionIconSelected": false,
+  "appVersionUnchanged": true,
+  "options": [
+    {
+      "id": "01",
+      "slug": "folded-monogram",
+      "title": {
+        "zh": "折叠字标",
+        "en": "Folded Monogram"
+      },
+      "style": "极简几何 / Swiss geometric",
+      "element": "LMA 字母与折叠结构",
+      "palette": "薄荷绿 / 象牙白",
+      "prompt": "prompts/01-folded-monogram.txt",
+      "original": "01-folded-monogram.png",
+      "status": "generated",
+      "generation": {
+        "model": "gpt-image-2.5",
+        "size": "1024x1024",
+        "quality": "high",
+        "background": "opaque",
+        "format": "png",
+        "n": 1
+      },
+      "bytes": 1185415,
+      "sha256": "0d4752b90bd2ad0e757de709dd0f206a9e95484f9c0114d6c1f229a1f2fb7bbc",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "requestedSizeMatched": false,
+      "recoveredAfterDimensionCheck": true,
+      "previews": {
+        "1024": "previews/01-1024.png",
+        "512": "previews/01-512.png",
+        "192": "previews/01-192.png",
+        "96": "previews/01-96.png",
+        "48": "previews/01-48.png",
+        "32": "previews/01-32.png"
+      }
+    },
+    {
+      "id": "02",
+      "slug": "prism-portal",
+      "title": {
+        "zh": "棱镜入口",
+        "en": "Prism Portal"
+      },
+      "style": "光学玻璃 / Optical glass",
+      "element": "三片棱镜与创作入口",
+      "palette": "冰蓝 / 紫晶 / 桃粉",
+      "prompt": "prompts/02-prism-portal.txt",
+      "original": "02-prism-portal.png",
+      "status": "generated",
+      "generation": {
+        "model": "gpt-image-2.5",
+        "size": "1024x1024",
+        "quality": "high",
+        "background": "opaque",
+        "format": "png",
+        "n": 1
+      },
+      "bytes": 1325172,
+      "sha256": "a6c0fdbb58b3f9ecf5968550d52a9342e66e2734e9bed2b69c6a431bac820262",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "requestedSizeMatched": false,
+      "recoveredAfterDimensionCheck": true,
+      "previews": {
+        "1024": "previews/02-1024.png",
+        "512": "previews/02-512.png",
+        "192": "previews/02-192.png",
+        "96": "previews/02-96.png",
+        "48": "previews/02-48.png",
+        "32": "previews/02-32.png"
+      }
+    },
+    {
+      "id": "03",
+      "slug": "orbit-lens",
+      "title": {
+        "zh": "轨道镜头",
+        "en": "Orbit Lens"
+      },
+      "style": "精密线形 / Technical contour",
+      "element": "镜头与偏心轨道",
+      "palette": "青蓝 / 荧光黄绿",
+      "prompt": "prompts/03-orbit-lens.txt",
+      "original": "03-orbit-lens.png",
+      "status": "generated",
+      "generation": {
+        "model": "gpt-image-2.5",
+        "size": "1024x1024",
+        "quality": "high",
+        "background": "opaque",
+        "format": "png",
+        "n": 1
+      },
+      "bytes": 1254854,
+      "sha256": "a463951bb9a9ddf93da86d9b0174e545306f88823328fd9e4cdec592315cf684",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "requestedSizeMatched": false,
+      "recoveredAfterDimensionCheck": true,
+      "previews": {
+        "1024": "previews/03-1024.png",
+        "512": "previews/03-512.png",
+        "192": "previews/03-192.png",
+        "96": "previews/03-96.png",
+        "48": "previews/03-48.png",
+        "32": "previews/03-32.png"
+      }
+    },
+    {
+      "id": "04",
+      "slug": "signal-bloom",
+      "title": {
+        "zh": "声纹花",
+        "en": "Signal Bloom"
+      },
+      "style": "平面剪纸 / Flat cut-paper",
+      "element": "声波花瓣与创作绽放",
+      "palette": "朱橙 / 珊瑚 / 奶油",
+      "prompt": "prompts/04-signal-bloom.txt",
+      "original": "04-signal-bloom.png",
+      "status": "generated",
+      "generation": {
+        "model": "gpt-image-2.5",
+        "size": "1024x1024",
+        "quality": "high",
+        "background": "opaque",
+        "format": "png",
+        "n": 1
+      },
+      "bytes": 1196112,
+      "sha256": "d68cf91ec1a6f1ffdcfa4c1b5728d3550de100212d5fef15329c389f8e48ce46",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "requestedSizeMatched": false,
+      "recoveredAfterDimensionCheck": true,
+      "previews": {
+        "1024": "previews/04-1024.png",
+        "512": "previews/04-512.png",
+        "192": "previews/04-192.png",
+        "96": "previews/04-96.png",
+        "48": "previews/04-48.png",
+        "32": "previews/04-32.png"
+      }
+    },
+    {
+      "id": "05",
+      "slug": "pixel-loom",
+      "title": {
+        "zh": "像素织机",
+        "en": "Pixel Loom"
+      },
+      "style": "复古像素 / Pixel graphic",
+      "element": "像素拼接与模块编织",
+      "palette": "紫罗兰 / 青柠",
+      "prompt": "prompts/05-pixel-loom.txt",
+      "original": "05-pixel-loom.png",
+      "status": "generated",
+      "generation": {
+        "model": "gpt-image-2.5",
+        "size": "1024x1024",
+        "quality": "high",
+        "background": "opaque",
+        "format": "png",
+        "n": 1
+      },
+      "elapsedSeconds": 35.36,
+      "bytes": 1157227,
+      "sha256": "ac632c9b82f2905e6eb0ce2515b4af7e2e5ec48629f8dd2f2ee7ee6dfeac06aa",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "requestedSizeMatched": false,
+      "previews": {
+        "1024": "previews/05-1024.png",
+        "512": "previews/05-512.png",
+        "192": "previews/05-192.png",
+        "96": "previews/05-96.png",
+        "48": "previews/05-48.png",
+        "32": "previews/05-32.png"
+      }
+    },
+    {
+      "id": "06",
+      "slug": "clay-companion",
+      "title": {
+        "zh": "软陶伙伴",
+        "en": "Clay Companion"
+      },
+      "style": "软陶吉祥物 / Clay mascot",
+      "element": "口袋机器人与陪伴",
+      "palette": "奶油 / 淡紫 / 青柠",
+      "prompt": "prompts/06-clay-companion.txt",
+      "original": "06-clay-companion.png",
+      "status": "generated",
+      "generation": {
+        "model": "gpt-image-2.5",
+        "size": "1024x1024",
+        "quality": "high",
+        "background": "opaque",
+        "format": "png",
+        "n": 1
+      },
+      "elapsedSeconds": 37.47,
+      "bytes": 1481326,
+      "sha256": "4783d8a5e4a3f2d90c817ce90b0de1049396b61b2cf543e60baeabf40b7c7443",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "requestedSizeMatched": false,
+      "previews": {
+        "1024": "previews/06-1024.png",
+        "512": "previews/06-512.png",
+        "192": "previews/06-192.png",
+        "96": "previews/06-96.png",
+        "48": "previews/06-48.png",
+        "32": "previews/06-32.png"
+      }
+    },
+    {
+      "id": "07",
+      "slug": "copper-doorway",
+      "title": {
+        "zh": "铜线门廊",
+        "en": "Copper Doorway"
+      },
+      "style": "装饰艺术 / Art Deco",
+      "element": "门廊与本地芯片",
+      "palette": "黄铜金 / 铜橙",
+      "prompt": "prompts/07-copper-doorway.txt",
+      "original": "07-copper-doorway.png",
+      "status": "generated",
+      "generation": {
+        "model": "gpt-image-2.5",
+        "size": "1024x1024",
+        "quality": "high",
+        "background": "opaque",
+        "format": "png",
+        "n": 1
+      },
+      "elapsedSeconds": 40.68,
+      "bytes": 1385492,
+      "sha256": "22a467bbfd02c3d8eaabb6a18fcf052a78600b56088b3058297f74ce9de89d11",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "requestedSizeMatched": false,
+      "previews": {
+        "1024": "previews/07-1024.png",
+        "512": "previews/07-512.png",
+        "192": "previews/07-192.png",
+        "96": "previews/07-96.png",
+        "48": "previews/07-48.png",
+        "32": "previews/07-32.png"
+      }
+    },
+    {
+      "id": "08",
+      "slug": "ink-mountain",
+      "title": {
+        "zh": "墨山印记",
+        "en": "Ink Mountain"
+      },
+      "style": "东方水墨 / Modern ink",
+      "element": "山形笔势与朱红太阳",
+      "palette": "象牙墨白 / 朱红",
+      "prompt": "prompts/08-ink-mountain.txt",
+      "original": "08-ink-mountain.png",
+      "status": "generated",
+      "generation": {
+        "model": "gpt-image-2.5",
+        "size": "1024x1024",
+        "quality": "high",
+        "background": "opaque",
+        "format": "png",
+        "n": 1
+      },
+      "elapsedSeconds": 36.26,
+      "bytes": 1219074,
+      "sha256": "02e872504e8f06f304f06eb572bde7196378f86d1d728f2bba657a63cfc5ce69",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "requestedSizeMatched": false,
+      "previews": {
+        "1024": "previews/08-1024.png",
+        "512": "previews/08-512.png",
+        "192": "previews/08-192.png",
+        "96": "previews/08-96.png",
+        "48": "previews/08-48.png",
+        "32": "previews/08-32.png"
+      }
+    },
+    {
+      "id": "09",
+      "slug": "flux-dialogue",
+      "title": {
+        "zh": "流体对话",
+        "en": "Flux Dialogue"
+      },
+      "style": "流体动势 / Fluid gradient",
+      "element": "对话轮廓与流动丝带",
+      "palette": "洋红 / 热橙",
+      "prompt": "prompts/09-flux-dialogue.txt",
+      "original": "09-flux-dialogue.png",
+      "status": "generated",
+      "generation": {
+        "model": "gpt-image-2.5",
+        "size": "1024x1024",
+        "quality": "high",
+        "background": "opaque",
+        "format": "png",
+        "n": 1
+      },
+      "elapsedSeconds": 34.15,
+      "bytes": 1251747,
+      "sha256": "438c46ee0985f8db623782dd4dda1f903387e1f6f856af31f00e2e5ee200f2d2",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "requestedSizeMatched": false,
+      "previews": {
+        "1024": "previews/09-1024.png",
+        "512": "previews/09-512.png",
+        "192": "previews/09-192.png",
+        "96": "previews/09-96.png",
+        "48": "previews/09-48.png",
+        "32": "previews/09-32.png"
+      }
+    },
+    {
+      "id": "10",
+      "slug": "modular-forge",
+      "title": {
+        "zh": "等距模块",
+        "en": "Modular Forge"
+      },
+      "style": "等距构造 / Isometric architecture",
+      "element": "三面模块与创作基座",
+      "palette": "钴蓝 / 青绿 / 暖黄",
+      "prompt": "prompts/10-modular-forge.txt",
+      "original": "10-modular-forge.png",
+      "status": "generated",
+      "generation": {
+        "model": "gpt-image-2.5",
+        "size": "1024x1024",
+        "quality": "high",
+        "background": "opaque",
+        "format": "png",
+        "n": 1
+      },
+      "elapsedSeconds": 30.97,
+      "bytes": 1183274,
+      "sha256": "75d1e9de2471139fe27dbf7882a6a1d94d77386f3b89532d3b8108acb6597d0b",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "requestedSizeMatched": false,
+      "previews": {
+        "1024": "previews/10-1024.png",
+        "512": "previews/10-512.png",
+        "192": "previews/10-192.png",
+        "96": "previews/10-96.png",
+        "48": "previews/10-48.png",
+        "32": "previews/10-32.png"
+      }
+    }
+  ],
+  "presentation": {
+    "selector": "index.html",
+    "overview": "overview.jpg",
+    "smallSizes": "small-size-review.jpg",
+    "guide": "README.md",
+    "previewSizes": [
+      1024,
+      512,
+      192,
+      96,
+      48,
+      32
+    ],
+    "originalsPreserved": true,
+    "background": "opaque dark navy",
+    "transparentOrVectorMaster": false,
+    "androidAdaptiveIconApplied": false
+  },
+  "visualReview": {
+    "status": "reviewed",
+    "date": "2026-11-02",
+    "options": [
+      "01",
+      "02",
+      "03",
+      "04",
+      "05",
+      "06",
+      "07",
+      "08",
+      "09",
+      "10"
+    ],
+    "views": [
+      "overview.jpg",
+      "small-size-review.jpg"
+    ],
+    "originalBytesPreserved": true,
+    "reviewScope": "Visual direction and small-size comparison; user selection and production refinement remain pending."
+  },
+  "validation": "validation.json"
+}

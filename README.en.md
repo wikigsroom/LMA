@@ -1,5 +1,7 @@
 # LMA · Android local-model workbench
 
+**20261102 logo selection:** [Ten numbered directions](docs/LOGO_SELECTION_20261102.md) · [Offline selector](output/imagegen/lma-logo-selection-20261102/index.html). Generated through the requested sub2-image-gen/gpt-image-2.5 route, with original images, small previews and multi-selection. The production app icon is unchanged.
+
 **20261102 update direction (proposal, not current APK functionality):** [Full plan](docs/UPDATE_DIRECTION_20261102.en.md) · [中文](docs/UPDATE_DIRECTION_20261102.md) · [Capability-tag inventory for all 14 language models](docs/proposals/update-direction-20261102.json). One composer, media job cards, optional local tool planning, artifact context/chains and phone composition; dark by default while preserving saved theme choices; independently label image/video/audio understanding, native outputs, tools, dependencies and evidence. D01–D12 form one functional delivery with A01–A33 acceptance. This documentation update does not change the APK or turn candidate labels into runtime support.
 
 [中文](README.md) · [Download v0.3.13](https://github.com/wikigsroom/LMA/releases/tag/v0.3.13) · [User guide](docs/USER_GUIDE.en.md) · [Documentation](docs/README.md) · [Scenarios](#use-cases) · [Cases and failures](#case-studies)

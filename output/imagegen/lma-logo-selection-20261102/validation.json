@@ -1,0 +1,30 @@
+{
+  "scope": "logo_artifacts_and_offline_selector_structure_only",
+  "options": 10,
+  "previews": 60,
+  "checksPassed": 255,
+  "browserStarted": false,
+  "phoneOrAppTests": false,
+  "gatewayModelRequested": "gpt-image-2.5",
+  "actualOriginalSizes": [
+    [
+      1254,
+      1254
+    ]
+  ],
+  "originalSha256": {
+    "01": "0d4752b90bd2ad0e757de709dd0f206a9e95484f9c0114d6c1f229a1f2fb7bbc",
+    "02": "a6c0fdbb58b3f9ecf5968550d52a9342e66e2734e9bed2b69c6a431bac820262",
+    "03": "a463951bb9a9ddf93da86d9b0174e545306f88823328fd9e4cdec592315cf684",
+    "04": "d68cf91ec1a6f1ffdcfa4c1b5728d3550de100212d5fef15329c389f8e48ce46",
+    "05": "ac632c9b82f2905e6eb0ce2515b4af7e2e5ec48629f8dd2f2ee7ee6dfeac06aa",
+    "06": "4783d8a5e4a3f2d90c817ce90b0de1049396b61b2cf543e60baeabf40b7c7443",
+    "07": "22a467bbfd02c3d8eaabb6a18fcf052a78600b56088b3058297f74ce9de89d11",
+    "08": "02e872504e8f06f304f06eb572bde7196378f86d1d728f2bba657a63cfc5ce69",
+    "09": "438c46ee0985f8db623782dd4dda1f903387e1f6f856af31f00e2e5ee200f2d2",
+    "10": "75d1e9de2471139fe27dbf7882a6a1d94d77386f3b89532d3b8108acb6597d0b"
+  },
+  "originalBytesPreserved": true,
+  "visualReviewCompleted": true,
+  "productionIconApplied": false
+}

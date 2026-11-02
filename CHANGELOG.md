@@ -1,5 +1,11 @@
 # Changelog / 更新记录
 
+## 2026-11-02 · LMA 十套 Logo 选型 / Ten logo directions
+
+- 按用户指定 sub2-image-gen 技能与 gpt-image-2.5 实际生成 10 套不同风格、核心元素的 Logo，保留原图、提示词、真实尺寸与 SHA256，不包含网关配置或密钥。
+- 新增 60 份标准尺寸预览、编号总览、小尺寸对比和完全离线的多选页面；深浅衬底切换不冒充透明底版本。
+- 同步[双语选型说明](docs/LOGO_SELECTION_20261102.md)、README／文档入口和[维护记录](docs/releases/v0.3.13-logo-selection.md)。Selection artwork only: no production icon, app version or released attachment changed; D01–D12 and the full frozen model scope remain outstanding.
+
 ## 2026-11-02 · 20261102 内容方向与能力标签方案 / Conversation and capability plan
 
 - 新增完整中英[方向方案](docs/UPDATE_DIRECTION_20261102.md)／[English](docs/UPDATE_DIRECTION_20261102.en.md)：对话入口、本地视觉理解、四类媒体任务卡、可选工具调度、素材来源／任务链、同手机合成、性能与 API 一致性。D01–D12 统一交付，不拆分版本路线。
