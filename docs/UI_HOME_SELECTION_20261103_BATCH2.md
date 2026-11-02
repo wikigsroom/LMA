@@ -1,5 +1,7 @@
 # LMA 首页 UI 第二批选型 · 11–20
 
+**2026-11-03 已定稿：10 号「云母分区」。** 后续以[完整设计规范](design/MICA_BENTO.md)、[组件](design/COMPONENTS.md)和[明暗／宽窄机型适配](design/RESPONSIVE.md)实施。Logo 21 与标语 04 保留；本页原稿作为档案，App 改造待完成。
+
 [English](UI_HOME_SELECTION_20261103_BATCH2.en.md) · [第二批离线选型页](../output/imagegen/lma-home-ui-selection-20261103-batch2/index.html) · [总览](../output/imagegen/lma-home-ui-selection-20261103-batch2/overview.jpg) · [第一批 01–10](UI_HOME_SELECTION_20261103.md)
 
 按用户“再出 10 种”的要求，新增 **11–20 十套独立生成的首页设计稿**，与第一批合计 20 套。继续以“模型库 → 推荐”为页面内容，保留暗色、Logo 21／Slogan 04、HF 搜索、两组独立筛选、推荐前缀 `m08 → m06 → m01`、逐模型下载以及五项底部导航。十套主要改变版式、字级、几何与材质，不通过换色或滤镜扩充数量。
@@ -25,7 +27,7 @@
 
 ## 2. 选择与文件
 
-在[第二批选型页](../output/imagegen/lma-home-ui-selection-20261103-batch2/index.html)可查看原图，勾选最多三套并排比较并复制编号；页面提供返回第一批的链接。第二批的本机选择记录与第一批隔离。也可直接说“选 14”，或指定“14 的列表＋18 的配色”。
+在[第二批选型页](../output/imagegen/lma-home-ui-selection-20261103-batch2/index.html)可查看原图，勾选最多三套并排比较并复制编号；页面提供返回第一批的链接。第二批的本机选择记录与第一批隔离。当前已选择第一批 10 号，本页仅保留历史比较能力，不构成新的待选任务。
 
 - 分组总览：[11–15](../output/imagegen/lma-home-ui-selection-20261103-batch2/overview-11-15.jpg)／[16–20](../output/imagegen/lma-home-ui-selection-20261103-batch2/overview-16-20.jpg)。
 - 原图与提示词包：[11–15 ZIP](../output/imagegen/lma-home-ui-selection-20261103-batch2/LMA-home-ui-11-15.zip)／[16–20 ZIP](../output/imagegen/lma-home-ui-selection-20261103-batch2/LMA-home-ui-16-20.zip)。ZIP 为原图包；完整离线页面位于仓库输出目录。
@@ -45,6 +47,6 @@
 | --- | --- | --- |
 | C01 | 11–20 十种新方向、原图、预览、三份总览及两组原图包。 | 已交付。 |
 | C02 | 独立选择记录的离线对比页、提示词、来源、双语文档和更新说明。 | 已交付；页面检查为静态程序范围。 |
-| P01 | 从 01–20 选择整体风格或组合偏好。 | 待用户选择。 |
-| P02 | 将所选风格统一应用到各页面并验证布局、交互与性能。 | 待定稿后实施。 |
+| P01 | 从 01–20 选择整体风格。 | 已完成：第一批 10 号；第二批保留档案。 |
+| P02 | 将定稿风格应用到各页面并验证明暗、适配、交互与性能。 | 待实施；已有完整约束规范。 |
 | P03 | 既有 v0.4.0 真机、视觉编解码、后台耐久、三组视觉组件身份和历史视频／3D 质量补证。 | 保留版本文档中的原状态，不由设计稿代替。 |

@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "kind": "locally_drawn_specification_reference_not_runtime_screenshot",
+  "file": "mica-theme-reference.png",
+  "width": 1600,
+  "height": 1220,
+  "sha256": "ab83a0e0e6c1811288c4ccea5a29df02c663212ad47801e4a4fd459845ba78e1",
+  "sourceTokens": "../../design/tokens.json",
+  "sourceTokensSha256": "3fef071e5d4014887ccbbe53143dde2fae82a075fd564e4805e94fb972089f74",
+  "selectedUi": 10,
+  "runtimeAcceptance": false,
+  "colorValues": "literal_srgb_tokens_without_recoloring_original_artwork",
+  "originalConceptModified": false
+}

@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "designVersion": "1.0.0",
+  "date": "2026-11-03",
+  "decisionSource": "explicit_user_message",
+  "selectedStyle": {
+    "id": 10,
+    "nameZh": "云母分区",
+    "nameEn": "Mica Bento",
+    "file": "output/imagegen/lma-home-ui-selection-20261103/10-fluent-bento.png",
+    "sha256": "7944322b7aa9af6e1f25c5b302157058223e99fd07b065280889f18b4cbf70f2",
+    "width": 1024,
+    "height": 1536,
+    "kind": "AI_generated_concept_not_device_screenshot"
+  },
+  "brand": {
+    "logoOption": 21,
+    "sloganOption": "04",
+    "sloganZh": "把无审查 AI，装进口袋。",
+    "sloganEn": "Uncensored AI, right in your pocket.",
+    "logoFile": "docs/media/branding/lma-logo.png",
+    "logoSha256": "3155c4601396c8623c20879b903e317747a94a7b840be307bcc93fde988c8bea"
+  },
+  "status": {
+    "style": "accepted",
+    "specification": "defined",
+    "runtimeIntegration": "pending",
+    "physicalAcceptance": "pending"
+  },
+  "defaultTheme": "dark",
+  "requiredThemes": [
+    "dark",
+    "light"
+  ],
+  "requiredTextScales": [
+    1,
+    1.3,
+    1.5,
+    2
+  ],
+  "specifications": [
+    "docs/design/MICA_BENTO.md",
+    "docs/design/MICA_BENTO.en.md",
+    "docs/design/COMPONENTS.md",
+    "docs/design/COMPONENTS.en.md",
+    "docs/design/RESPONSIVE.md",
+    "docs/design/RESPONSIVE.en.md"
+  ],
+  "originalConceptArtifactsPreserved": true,
+  "sourceReferenceCommit": "d414dffb897a24b7e0a734efe55b0d0407a60cf3",
+  "publishedApkVersion": "0.4.0",
+  "publishedApkCode": 64,
+  "otherStyles": "archived_not_combined"
+}

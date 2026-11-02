@@ -1,15 +1,18 @@
-# LMA 界面与交互
+# LMA 界面与交互 / Interface and interaction
 
-LMA 是手机上的本地模型工作台：浏览与下载模型、在本机对话、向其他客户端提供接口。主要用户在 Android 手机上完成模型选择，无需终端命令。
+**当前规范：UI10 云母分区 / Current specification: UI10 Mica Bento (2026-11-03).**
 
-采用轻色工作台：纸面灰 #F5F7FA、卡片白 #FFFFFF、墨蓝 #162238、主操作蓝 #2854D9、就绪青 #16836D、分隔线 #DCE3EC。使用系统 Sans 展示中文正文，LMA 字标加重并缩紧，等宽字体只用于 API 地址和数字。
+以不透明蓝灰分区、钴蓝选中和薄荷操作构建 Android 本地模型工作台。默认暗色，完整支持明亮与系统跟随；保留 Logo21、标语04、模型平级、本机推理、用户主动下载和每模型参数。五个入口为模型库、对话、任务、服务、设置。
 
-四个底部入口：模型库、对话、服务、设置。模型卡直接呈现下载体积、语言与用途；下载百分比和暂停/继续与模型同卡。区分已下载、校验中、加载中、运行中，错误提供可执行的下一步。标志性元素是一条常驻的模型运行状态带，在不同页面保持相同含义。
+Use opaque blue-gray sections, cobalt selection and mint actions. Default to dark, fully specify light/System, and preserve Logo21/Slogan04, equal model peers, same-phone inference, explicit downloads and per-model settings. The five destinations are Models, Chat, Tasks, Server and Settings.
 
-模型库内的栏目为“推荐 / 本地 / 轻量 / 进阶 / 全部”。推荐固定保留 `m08 → m06 → m01` 及原标签；全部是 HF 仓库发现与量化文件选择，本地统一管理所有来源的已下载模型和下载任务。仅“本地”中的搜索保持离线，其他搜索进入 HF。无审查为独立标签，明确区分作者已核对与元数据提示。普通模型不显示该标签；下载资格由格式、任务、大小及运行兼容性决定。
+| 内容 / Topic | 中文 | English |
+| --- | --- | --- |
+| 风格、明暗配色、字体、材质与性能 / Style and themes | [设计总规范](design/MICA_BENTO.md) | [Design](design/MICA_BENTO.en.md) |
+| 模型卡、参数、对话、任务、媒体、API 与弹层 / Components | [30 类组件](design/COMPONENTS.md) | [Component contracts](design/COMPONENTS.en.md) |
+| 窄屏、宽屏、横屏、键盘、折叠与大字 / Adaptive layout | [适配及验收](design/RESPONSIVE.md) | [Adaptation and acceptance](design/RESPONSIVE.en.md) |
+| 机器可读值与决策 / Values and decision | [tokens.json](design/tokens.json) | [decision.json](design/decision.json) |
 
-每个已下载模型提供设置图标，参数随该模型独立保存。上下文、输出、线程、温度使用可编辑预设框，支持下拉、键盘导航及直接输入；失焦和保存时按 GGUF / 设备 / 应用约束自动归位并说明上限来源。应用设置页仅承载全局偏好和通往本地模型的入口。
+本轮只定义约束，尚未将新 UI 接入 App；参考 CSS 不随运行入口加载。原始 20 套方案、包和已发布 APK 保留身份。历史浅色／四入口说明已迁至[旧设计档案](history/DESIGN-initial.md)，不得继续按其过时导航和默认主题实施。
 
-触控目标至少 48dp，状态使用文字与颜色共同表达，表单有可见标签，支持系统字体放大与浅深主题，尊重减少动画设置。窄屏对话输入和底部导航保留各自空间，横屏及平板切换为侧边导航。
-
-使用 frontend-design 与 ui-ux-pro-max 的通用移动应用规则；设计库中的落地页结构不适用于此工具，页面信息架构按模型管理工作流制定。界面资源随 APK 离线交付，不依赖远程字体或脚本。
+This round defines the specification, with app integration pending. Reference CSS is not loaded at runtime. Original concepts, archives and the published APK retain their identity. The superseded light/four-destination brief is preserved in the [historical archive](history/DESIGN-initial.md).

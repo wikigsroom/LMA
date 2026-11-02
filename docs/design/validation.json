@@ -1,0 +1,593 @@
+{
+  "schemaVersion": 1,
+  "designVersion": "1.0.0",
+  "checkedAtUtc": "2026-11-02T18:03:01+00:00",
+  "scope": "static_design_reference_only",
+  "result": "pass",
+  "sourceReferenceCommit": "d414dffb897a24b7e0a734efe55b0d0407a60cf3",
+  "checks": {
+    "themes": 2,
+    "semanticColorsPerTheme": 31,
+    "specifiedContrastPairs": 62,
+    "contrastFailures": 0,
+    "cssTokenParity": true,
+    "bilingualComponentIds": 30,
+    "bilingualBusinessInvariantIds": 8,
+    "bilingualAcceptanceIds": 20,
+    "contiguousWidthBands": 7,
+    "viewportTargetsDefinedNotExecuted": 18,
+    "runtimeCriteriaPending": 20,
+    "newDocumentLocalLinksChecked": 92,
+    "originalConceptImagesPreserved": 20,
+    "preservedFilesByRoot": {
+      "app/src/main": 411,
+      "output/imagegen/lma-home-ui-selection-20261103": 46,
+      "output/imagegen/lma-home-ui-selection-20261103-batch2": 46
+    },
+    "appSourceChanged": false,
+    "referenceCssLoadedIntoApp": false,
+    "originalLogoIdentityPreserved": true,
+    "themeReferenceImageDecodedAndVisuallyInspected": true,
+    "readmeReadingRoutesBeforeValidation": true
+  },
+  "minimumContrastByTheme": {
+    "dark": {
+      "bodyText": 5.915851,
+      "meaningfulNonText": 3.509073
+    },
+    "light": {
+      "bodyText": 4.592434,
+      "meaningfulNonText": 3.34968
+    }
+  },
+  "contrastMethod": "WCAG sRGB relative luminance; unrounded pass comparison; specified flat pairs only, not final device composites",
+  "contrastResults": [
+    {
+      "theme": "dark",
+      "foreground": "text",
+      "background": "canvas",
+      "minimum": 4.5,
+      "ratio": 15.717495,
+      "pass": true
+    },
+    {
+      "theme": "dark",
+      "foreground": "text",
+      "background": "surface",
+      "minimum": 4.5,
+      "ratio": 13.678197,
+      "pass": true
+    },
+    {
+      "theme": "dark",
+      "foreground": "text",
+      "background": "raised",
+      "minimum": 4.5,
+      "ratio": 12.384774,
+      "pass": true
+    },
+    {
+      "theme": "dark",
+      "foreground": "text",
+      "background": "inset",
+      "minimum": 4.5,
+      "ratio": 16.398739,
+      "pass": true
+    },
+    {
+      "theme": "dark",
+      "foreground": "secondary",
+      "background": "canvas",
+      "minimum": 4.5,
+      "ratio": 10.447142,
+      "pass": true
+    },
+    {
+      "theme": "dark",
+      "foreground": "secondary",
+      "background": "surface",
+      "minimum": 4.5,
+      "ratio": 9.091657,
+      "pass": true
+    },
+    {
+      "theme": "dark",
+      "foreground": "secondary",
+      "background": "raised",
+      "minimum": 4.5,
+      "ratio": 8.231941,
+      "pass": true
+    },
+    {
+      "theme": "dark",
+      "foreground": "secondary",
+      "background": "inset",
+      "minimum": 4.5,
+      "ratio": 10.899953,
+      "pass": true
+    },
+    {
+      "theme": "dark",
+      "foreground": "muted",
+      "background": "canvas",
+      "minimum": 4.5,
+      "ratio": 7.507796,
+      "pass": true
+    },
+    {
+      "theme": "dark",
+      "foreground": "muted",
+      "background": "surface",
+      "minimum": 4.5,
+      "ratio": 6.533682,
+      "pass": true
+    },
+    {
+      "theme": "dark",
+      "foreground": "muted",
+      "background": "raised",
+      "minimum": 4.5,
+      "ratio": 5.915851,
+      "pass": true
+    },
+    {
+      "theme": "dark",
+      "foreground": "muted",
+      "background": "inset",
+      "minimum": 4.5,
+      "ratio": 7.833207,
+      "pass": true
+    },
+    {
+      "theme": "dark",
+      "foreground": "onPrimary",
+      "background": "primary",
+      "minimum": 4.5,
+      "ratio": 7.73417,
+      "pass": true
+    },
+    {
+      "theme": "dark",
+      "foreground": "onPrimary",
+      "background": "primaryHover",
+      "minimum": 4.5,
+      "ratio": 9.489508,
+      "pass": true
+    },
+    {
+      "theme": "dark",
+      "foreground": "onPrimary",
+      "background": "primaryPressed",
+      "minimum": 4.5,
+      "ratio": 6.062825,
+      "pass": true
+    },
+    {
+      "theme": "dark",
+      "foreground": "onPrimarySoft",
+      "background": "primarySoft",
+      "minimum": 4.5,
+      "ratio": 6.725141,
+      "pass": true
+    },
+    {
+      "theme": "dark",
+      "foreground": "onMint",
+      "background": "mint",
+      "minimum": 4.5,
+      "ratio": 9.443641,
+      "pass": true
+    },
+    {
+      "theme": "dark",
+      "foreground": "onMintSoft",
+      "background": "mintSoft",
+      "minimum": 4.5,
+      "ratio": 7.933839,
+      "pass": true
+    },
+    {
+      "theme": "dark",
+      "foreground": "danger",
+      "background": "dangerSoft",
+      "minimum": 4.5,
+      "ratio": 7.374579,
+      "pass": true
+    },
+    {
+      "theme": "dark",
+      "foreground": "warning",
+      "background": "warningSoft",
+      "minimum": 4.5,
+      "ratio": 7.729675,
+      "pass": true
+    },
+    {
+      "theme": "dark",
+      "foreground": "success",
+      "background": "successSoft",
+      "minimum": 4.5,
+      "ratio": 7.550137,
+      "pass": true
+    },
+    {
+      "theme": "dark",
+      "foreground": "info",
+      "background": "infoSoft",
+      "minimum": 4.5,
+      "ratio": 6.491379,
+      "pass": true
+    },
+    {
+      "theme": "dark",
+      "foreground": "content",
+      "background": "contentSoft",
+      "minimum": 4.5,
+      "ratio": 7.377908,
+      "pass": true
+    },
+    {
+      "theme": "dark",
+      "foreground": "controlBorder",
+      "background": "canvas",
+      "minimum": 3.0,
+      "ratio": 4.453358,
+      "pass": true
+    },
+    {
+      "theme": "dark",
+      "foreground": "controlBorder",
+      "background": "surface",
+      "minimum": 3.0,
+      "ratio": 3.875549,
+      "pass": true
+    },
+    {
+      "theme": "dark",
+      "foreground": "controlBorder",
+      "background": "raised",
+      "minimum": 3.0,
+      "ratio": 3.509073,
+      "pass": true
+    },
+    {
+      "theme": "dark",
+      "foreground": "controlBorder",
+      "background": "inset",
+      "minimum": 3.0,
+      "ratio": 4.64638,
+      "pass": true
+    },
+    {
+      "theme": "dark",
+      "foreground": "focus",
+      "background": "canvas",
+      "minimum": 3.0,
+      "ratio": 8.239526,
+      "pass": true
+    },
+    {
+      "theme": "dark",
+      "foreground": "focus",
+      "background": "surface",
+      "minimum": 3.0,
+      "ratio": 7.170473,
+      "pass": true
+    },
+    {
+      "theme": "dark",
+      "foreground": "focus",
+      "background": "raised",
+      "minimum": 3.0,
+      "ratio": 6.492426,
+      "pass": true
+    },
+    {
+      "theme": "dark",
+      "foreground": "focus",
+      "background": "inset",
+      "minimum": 3.0,
+      "ratio": 8.596652,
+      "pass": true
+    },
+    {
+      "theme": "light",
+      "foreground": "text",
+      "background": "canvas",
+      "minimum": 4.5,
+      "ratio": 14.210636,
+      "pass": true
+    },
+    {
+      "theme": "light",
+      "foreground": "text",
+      "background": "surface",
+      "minimum": 4.5,
+      "ratio": 15.50064,
+      "pass": true
+    },
+    {
+      "theme": "light",
+      "foreground": "text",
+      "background": "raised",
+      "minimum": 4.5,
+      "ratio": 13.520974,
+      "pass": true
+    },
+    {
+      "theme": "light",
+      "foreground": "text",
+      "background": "inset",
+      "minimum": 4.5,
+      "ratio": 12.932896,
+      "pass": true
+    },
+    {
+      "theme": "light",
+      "foreground": "secondary",
+      "background": "canvas",
+      "minimum": 4.5,
+      "ratio": 7.028767,
+      "pass": true
+    },
+    {
+      "theme": "light",
+      "foreground": "secondary",
+      "background": "surface",
+      "minimum": 4.5,
+      "ratio": 7.666819,
+      "pass": true
+    },
+    {
+      "theme": "light",
+      "foreground": "secondary",
+      "background": "raised",
+      "minimum": 4.5,
+      "ratio": 6.68765,
+      "pass": true
+    },
+    {
+      "theme": "light",
+      "foreground": "secondary",
+      "background": "inset",
+      "minimum": 4.5,
+      "ratio": 6.39678,
+      "pass": true
+    },
+    {
+      "theme": "light",
+      "foreground": "muted",
+      "background": "canvas",
+      "minimum": 4.5,
+      "ratio": 5.046156,
+      "pass": true
+    },
+    {
+      "theme": "light",
+      "foreground": "muted",
+      "background": "surface",
+      "minimum": 4.5,
+      "ratio": 5.504232,
+      "pass": true
+    },
+    {
+      "theme": "light",
+      "foreground": "muted",
+      "background": "raised",
+      "minimum": 4.5,
+      "ratio": 4.801258,
+      "pass": true
+    },
+    {
+      "theme": "light",
+      "foreground": "muted",
+      "background": "inset",
+      "minimum": 4.5,
+      "ratio": 4.592434,
+      "pass": true
+    },
+    {
+      "theme": "light",
+      "foreground": "onPrimary",
+      "background": "primary",
+      "minimum": 4.5,
+      "ratio": 6.729172,
+      "pass": true
+    },
+    {
+      "theme": "light",
+      "foreground": "onPrimary",
+      "background": "primaryHover",
+      "minimum": 4.5,
+      "ratio": 8.319341,
+      "pass": true
+    },
+    {
+      "theme": "light",
+      "foreground": "onPrimary",
+      "background": "primaryPressed",
+      "minimum": 4.5,
+      "ratio": 10.004435,
+      "pass": true
+    },
+    {
+      "theme": "light",
+      "foreground": "onPrimarySoft",
+      "background": "primarySoft",
+      "minimum": 4.5,
+      "ratio": 6.596479,
+      "pass": true
+    },
+    {
+      "theme": "light",
+      "foreground": "onMint",
+      "background": "mint",
+      "minimum": 4.5,
+      "ratio": 6.395928,
+      "pass": true
+    },
+    {
+      "theme": "light",
+      "foreground": "onMintSoft",
+      "background": "mintSoft",
+      "minimum": 4.5,
+      "ratio": 6.844208,
+      "pass": true
+    },
+    {
+      "theme": "light",
+      "foreground": "danger",
+      "background": "dangerSoft",
+      "minimum": 4.5,
+      "ratio": 6.675302,
+      "pass": true
+    },
+    {
+      "theme": "light",
+      "foreground": "warning",
+      "background": "warningSoft",
+      "minimum": 4.5,
+      "ratio": 6.136772,
+      "pass": true
+    },
+    {
+      "theme": "light",
+      "foreground": "success",
+      "background": "successSoft",
+      "minimum": 4.5,
+      "ratio": 6.535003,
+      "pass": true
+    },
+    {
+      "theme": "light",
+      "foreground": "info",
+      "background": "infoSoft",
+      "minimum": 4.5,
+      "ratio": 6.335662,
+      "pass": true
+    },
+    {
+      "theme": "light",
+      "foreground": "content",
+      "background": "contentSoft",
+      "minimum": 4.5,
+      "ratio": 6.334714,
+      "pass": true
+    },
+    {
+      "theme": "light",
+      "foreground": "controlBorder",
+      "background": "canvas",
+      "minimum": 3.0,
+      "ratio": 3.680621,
+      "pass": true
+    },
+    {
+      "theme": "light",
+      "foreground": "controlBorder",
+      "background": "surface",
+      "minimum": 3.0,
+      "ratio": 4.014738,
+      "pass": true
+    },
+    {
+      "theme": "light",
+      "foreground": "controlBorder",
+      "background": "raised",
+      "minimum": 3.0,
+      "ratio": 3.501995,
+      "pass": true
+    },
+    {
+      "theme": "light",
+      "foreground": "controlBorder",
+      "background": "inset",
+      "minimum": 3.0,
+      "ratio": 3.34968,
+      "pass": true
+    },
+    {
+      "theme": "light",
+      "foreground": "focus",
+      "background": "canvas",
+      "minimum": 3.0,
+      "ratio": 6.169153,
+      "pass": true
+    },
+    {
+      "theme": "light",
+      "foreground": "focus",
+      "background": "surface",
+      "minimum": 3.0,
+      "ratio": 6.729172,
+      "pass": true
+    },
+    {
+      "theme": "light",
+      "foreground": "focus",
+      "background": "raised",
+      "minimum": 3.0,
+      "ratio": 5.869755,
+      "pass": true
+    },
+    {
+      "theme": "light",
+      "foreground": "focus",
+      "background": "inset",
+      "minimum": 3.0,
+      "ratio": 5.614458,
+      "pass": true
+    }
+  ],
+  "limitations": [
+    "No app UI integration or APK build in this round.",
+    "No browser, WebView or physical-device layout/theme/accessibility/performance run.",
+    "Viewport and runtime acceptance registers remain pending.",
+    "Reference board is locally drawn documentation, not an app screenshot.",
+    "Static contrast checks do not establish final compositing or full WCAG conformance.",
+    "Frozen model scope and existing physical/codec/projector/video/3D evidence gaps remain unchanged."
+  ],
+  "environmentConstraints": {
+    "dockerWslVirtualizationUsed": false,
+    "localBrowserCreated": false,
+    "weightsDownloaded": false,
+    "completeModelsExecuted": false,
+    "protectedFiles": "hash_only_no_content_inspection"
+  },
+  "references": [
+    "https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html",
+    "https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast.html",
+    "https://www.w3.org/WAI/WCAG22/Understanding/reflow.html",
+    "https://www.w3.org/WAI/WCAG22/Understanding/resize-text.html",
+    "https://developer.android.com/develop/ui/views/layout/use-window-size-classes",
+    "https://developer.android.com/develop/ui/views/layout/edge-to-edge"
+  ],
+  "artifacts": {
+    "docs/design/acceptance.json": "1a8445ee4faec3e386f5be2e375ac4372b1770da0342115d5c8973a0a520627e",
+    "docs/design/COMPONENTS.en.md": "552b612cb3c93c1f4571b0adb791e3314578a04572e5f52ab1b9d37f84b298be",
+    "docs/design/COMPONENTS.md": "c0524492702b19e2f12d57633345188c0c2d53028d9e5e08e8a79cd4cfcdf999",
+    "docs/design/decision.json": "673615fd68cc833a9c08bfa260e9617b79423f7cce1847fa23e573fd3812ec65",
+    "docs/design/MICA_BENTO.en.md": "07fae806f4725bfb407e2a7526670cd3242088fa80b8db51eb25ef02b86bd6ea",
+    "docs/design/MICA_BENTO.md": "3bd77392c3efa55bc706ecf401c58fc3987e86ac0f0586b5f0aac7a87a76619e",
+    "docs/design/README.md": "fa2616dfb30acc7dad1c4b652ad57b5f479dd50f482a2c7eb5b662d48155e37e",
+    "docs/design/RESPONSIVE.en.md": "03a08789efb000a7a3ed895368d4ea113b36e8a5754f739d2e5e2ae178485c52",
+    "docs/design/RESPONSIVE.md": "d87efe4a19e157ba7e01856fc34dc9451b160eef6cab62788a57ad7b204aed66",
+    "docs/design/tokens.css": "92dfeb535f3c0f583c3c1ea3cfeabf5cf8368911699a33970ee400f21be43041",
+    "docs/design/tokens.json": "3fef071e5d4014887ccbbe53143dde2fae82a075fd564e4805e94fb972089f74",
+    "docs/media/design/mica-theme-reference.json": "01855055db4f6324b03908846aa5fc624600e9777331a27c583abb0cd26f7161",
+    "docs/media/design/mica-theme-reference.png": "ab83a0e0e6c1811288c4ccea5a29df02c663212ad47801e4a4fd459845ba78e1"
+  },
+  "repositoryAudit": {
+    "passed": true,
+    "mode": "published",
+    "command": "python tools/check_repository.py --published",
+    "checkedAtUtc": "2026-11-02T18:04:29+00:00",
+    "documents": 357,
+    "localLinks": 7896,
+    "publicFiles": 4733,
+    "sourceArchiveMatchesOriginalPublishedTag": true,
+    "originalApkSha256": "77a5988a6eef20ad5a25b5a5af7b9e5aa28d213d29908926379c8a643c60c493",
+    "existingProgramSuitesRerun": false,
+    "scope": "Repository links, identities and existing evidence records; no fresh Android or model run"
+  }
+}

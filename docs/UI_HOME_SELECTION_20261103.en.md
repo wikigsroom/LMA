@@ -1,10 +1,12 @@
 # LMA home-screen visual selection · 20261103
 
+**Selection finalized on 2026-11-03: UI 10, Mica Bento.** [Accepted specification](design/MICA_BENTO.en.md), [components](design/COMPONENTS.en.md) and [light/dark adaptive layouts](design/RESPONSIVE.en.md) govern implementation. Logo 21 and slogan 04 remain approved. This page retains the original proposals; application integration is pending.
+
 **Batch 2 adds 11–20:** [Ten more directions and a separate selector](UI_HOME_SELECTION_20261103_BATCH2.en.md). This page and the first batch retain their original artwork.
 
 [中文](UI_HOME_SELECTION_20261103.md) · [Offline selector](../output/imagegen/lma-home-ui-selection-20261103/index.html) · [All ten](../output/imagegen/lma-home-ui-selection-20261103/overview.jpg) · [01–05](../output/imagegen/lma-home-ui-selection-20261103/overview-01-05.jpg) · [06–10](../output/imagegen/lma-home-ui-selection-20261103/overview-06-10.jpg)
 
-Ten independently generated **dark-mode homepage concepts** explore visual languages for the existing Model Library → Recommended screen. They compare hierarchy, density, typography, geometry and materials. No UI style has been selected yet; the application, APK, v0.4.0 tag and published Release assets retain their original identity.
+Ten independently generated **dark-mode homepage concepts** explore visual languages for the existing Model Library → Recommended screen. They compare hierarchy, density, typography, geometry and materials. UI 10 is now selected; this documentation decision leaves the application, APK, v0.4.0 tag and published Release assets at their original identity.
 
 ![Ten home-screen directions](../output/imagegen/lma-home-ui-selection-20261103/overview.jpg)
 
@@ -43,7 +45,7 @@ These are design/implementation judgments, not phone benchmark rankings. A commo
 
 Open the [selector](../output/imagegen/lma-home-ui-selection-20261103/index.html), enlarge any original and select up to three for side-by-side comparison. Copy the IDs; choices persist locally when browser storage is available. The page has no external scripts, fonts, analytics or network requests and can open offline. It received static program checks, without launching a browser this round.
 
-Choose a whole direction, such as “03,” or describe a combination: “03 cards, 01 palette, 09 navigation.” After selection, apply one coherent rule set to the model library, conversations, jobs, service, settings and dialogs, then verify copy, controls, accessibility, narrow layouts and performance.
+UI10 is now accepted. The selector remains a historical comparison tool. Implement the canonical Mica Bento rules across the model library, conversations, jobs, service, settings and dialogs, then verify both themes, controls, accessibility, adaptive layouts and performance.
 
 Original bundles: [01–05 ZIP](../output/imagegen/lma-home-ui-selection-20261103/LMA-home-ui-01-05.zip) / [06–10 ZIP](../output/imagegen/lma-home-ui-selection-20261103/LMA-home-ui-06-10.zip). Each contains that group's native PNGs and prompts; the complete offline selector resides in the repository output directory.
 
@@ -61,6 +63,6 @@ Original bundles: [01–05 ZIP](../output/imagegen/lma-home-ui-selection-2026110
 | --- | --- | --- |
 | C01 | Existing homepage review and ten visual directions. | Delivered with originals and provenance. |
 | C02 | Previews, three boards, offline selector, bilingual guidance and original bundles. | Delivered; selector validation is static only. |
-| P01 | User selects a direction or combination. | Pending. |
-| P02 | Implement the chosen system across app pages and validate behavior/performance. | After selection; no app changes this round. |
+| P01 | Select a direction. | Complete: UI10 Mica Bento; see the accepted design system. |
+| P02 | Implement the accepted system across app pages and validate themes, adaptation and performance. | Pending implementation; specification defined, no app changes in this documentation round. |
 | P03 | Existing v0.4.0 phone/codec/endurance evidence, three visual-component identities, historical video/3D quality gaps. | Retain their original pending state; concept artwork does not close them. |

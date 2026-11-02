@@ -18,10 +18,10 @@ The following restores the detailed scenarios, API examples, generated artifacts
 | Goal | Entry point |
 | --- | --- |
 | Operate the app | [30 scenarios C01–C30](#use-cases) |
-| Choose a home-screen visual style | [01–10](docs/UI_HOME_SELECTION_20261103.en.md) / [11–20](docs/UI_HOME_SELECTION_20261103_BATCH2.en.md), [first selector](output/imagegen/lma-home-ui-selection-20261103/index.html) / [second selector](output/imagegen/lma-home-ui-selection-20261103-batch2/index.html) |
+| Read the accepted UI10 Mica Bento specification | [Design system](docs/design/README.md), [themes and style](docs/design/MICA_BENTO.en.md), [30 components](docs/design/COMPONENTS.en.md), [adaptive windows / IME / large text](docs/design/RESPONSIVE.en.md). [01–10](docs/UI_HOME_SELECTION_20261103.en.md) / [11–20](docs/UI_HOME_SELECTION_20261103_BATCH2.en.md) remain archives. App integration is pending |
 | Integrate the phone API | [Four examples A01–A04](#api-examples) |
 | Compare historical outputs and failures | [18 cases H01–H18](#case-studies) |
-| Inspect current program coverage | [60 current suites](#verification) |
+| Inspect current program coverage | [65 current suites](#verification) |
 | Rebuild and diagnose | [Build](#build), [Z20/background limits](#z20), [troubleshooting](#troubleshooting) |
 | Read the original development narrative | [Historical English README](docs/history/README-dev45.en.md), [repair notes](docs/releases/v0.3.1-readme.md) |
 
@@ -958,3 +958,5 @@ Regular program gates use bounded fixtures and no model downloads. This delivery
 Detailed scenarios **C01–C48**, historical generation/failure cases **H01–H18**, API examples and prior test records are preserved. New [adapter GIF](docs/media/development/adaptation/adaptation-ui.gif)/[MP4](docs/media/development/adaptation/adaptation-ui.mp4) and [UltraTex demo](docs/media/development/ultratex/ultratex-ui.gif) use production pages with explicit UI FIXTURE bridges, not fabricated model/device results. Published evidence remains in `verification/program/` and `verification/history/`.
 
 Historical v0.3.10 [legacy-host deviation](verification/releases/v0.3.10/validation-deviation.json) remains unchanged and excluded from current gate/phone counts. Current selected physical-model execution is explicitly authorized and recorded separately.
+
+**2026-11-03 UI10 Mica Bento accepted.** [Bilingual design system](docs/design/README.md) specifies dark/light themes, 30 components, seven width bands, 18 viewport targets, large text, IME and insets. Reference tokens and static checks are delivered; app-wide UI integration and runtime acceptance remain pending. [Maintenance note](docs/releases/v0.4.0-mica-bento-design.md).

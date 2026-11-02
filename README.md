@@ -20,7 +20,7 @@ Android 本地 AI 工作台，模型由你选择，无审查模型独立标记�
 | 管理模型、独立参数、任务和结果 | [C03–C04、C15–C18](#use-cases) | [模型参数](docs/MODEL_SETTINGS.md)、[任务工作台](docs/TASK_WORKBENCH.md) |
 | 在程序中调用手机模型 | [API 示例](#api-examples) | [API](docs/API.md)、[输入与上传](docs/LOCAL_INPUTS.md) |
 | 看页面、生成案例和失败对照 | [当前页面](#ui-media)、[历史案例 H01–H18](#case-studies) | [媒体说明](docs/MEDIA.md)、[历史完整 README](docs/history/README-dev45.zh.md) |
-| 选择首页 UI 风格 | [第一批 01–10](docs/UI_HOME_SELECTION_20261103.md)、[第二批 11–20](docs/UI_HOME_SELECTION_20261103_BATCH2.md) | [01–10 离线对比](output/imagegen/lma-home-ui-selection-20261103/index.html)、[11–20 离线对比](output/imagegen/lma-home-ui-selection-20261103-batch2/index.html) |
+| 查看已定稿 UI10 云母分区规范 | [设计系统](docs/design/README.md)、[完整风格与明暗主题](docs/design/MICA_BENTO.md) | [30 类组件](docs/design/COMPONENTS.md)、[宽窄机型／键盘／大字适配](docs/design/RESPONSIVE.md)；[01–10](docs/UI_HOME_SELECTION_20261103.md)／[11–20](docs/UI_HOME_SELECTION_20261103_BATCH2.md) 保留为选型档案。规范已定，App 改造待实施 |
 | 查证测试范围、重建和排错 | [程序检查](#verification)、[构建](#build)、[排错](#troubleshooting) | [程序验证策略](docs/PROGRAM_VALIDATION.md)、[构建指南](docs/BUILD.md) |
 
 **验证范围：程序验证。** 本版没有可用 ADB 真机，不重新下载或完整运行模型。视觉预处理／Android 编解码输出、本版手机性能与后台耐久尚待实机检查；m15 有固定视觉组件预设，m03／m09／m16 的配对身份仍待核对。公共 OpenAI 对话明确为文本子集，App 看图桥与通用公共多模态 API 不混同。原 3D 与视频质量问题继续保留。详见 [逐项实施与限制](docs/CONVERSATION_V040.md) 和 [本版证据](verification/releases/v0.4.0/status.json)。下方旧版真机截图与案例保留其原版本身份。
@@ -951,3 +951,5 @@ v0.3.12 最终 APK 实机：**24项程序检查＋8项空闲性能＋28项真实
 详细用例 **C01–C75**、历史生成 / 失败案例 **H01–H18**、API 示例和历史测试记录均保留。新增[本地适配页面 GIF](docs/media/development/adaptation/adaptation-ui.gif) / [MP4](docs/media/development/adaptation/adaptation-ui.mp4) 与 [UltraTex 演示](docs/media/development/ultratex/ultratex-ui.gif)；均明确标记 UI FIXTURE，展示生产页面操作，不冒充手机或训练模型结果。原发布证据留在 `verification/program/` 与 `verification/history/`。
 
 历史 v0.3.10 的[旧主机检查偏差](verification/releases/v0.3.10/validation-deviation.json)原样保留，不计入本版程序或手机通过。本轮部分手机模型实跑已另获明确授权并单独记录。
+
+**2026-11-03 UI10 云母分区已定稿。** [完整双语设计规范](docs/design/README.md)覆盖明暗主题、30 类组件、7 档宽度、18 组视口、大字、输入法和安全区。Tokens 与静态检查已交付，App 全页改造和运行时适配验收待完成。[维护说明](docs/releases/v0.4.0-mica-bento-design.md)。

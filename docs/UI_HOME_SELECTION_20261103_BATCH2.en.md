@@ -1,5 +1,7 @@
 # LMA homepage visual selection, batch 2 · 11–20
 
+**Selection finalized on 2026-11-03: UI 10, Mica Bento.** [Accepted specification](design/MICA_BENTO.en.md), [components](design/COMPONENTS.en.md) and [light/dark adaptive layouts](design/RESPONSIVE.en.md) govern implementation. Logo 21 and slogan 04 remain approved. This page retains the original proposals; application integration is pending.
+
 [中文](UI_HOME_SELECTION_20261103_BATCH2.md) · [Offline selector](../output/imagegen/lma-home-ui-selection-20261103-batch2/index.html) · [Overview](../output/imagegen/lma-home-ui-selection-20261103-batch2/overview.jpg) · [First batch 01–10](UI_HOME_SELECTION_20261103.en.md)
 
 The user requested ten more directions. **11–20 are ten independently generated homepage concepts**, bringing the total to twenty. All retain dark mode, Logo 21/Slogan 04, HF search, separate catalogue/task filters, the `m08 → m06 → m01` prefix, explicit downloads and five navigation destinations. Layout, typography, geometry and materials vary; no filter or program recolor creates the alternatives.
@@ -45,6 +47,6 @@ Batch 1 images, packages and selector retain their bytes. The shared design-mate
 | --- | --- | --- |
 | C01 | Ten additional originals, previews, three boards and two bundles. | Delivered. |
 | C02 | Offline comparison, separate stored choices, prompts, provenance and bilingual documentation. | Delivered; static checks only. |
-| P01 | User chooses a direction or combination from 01–20. | Pending. |
-| P02 | Apply the chosen language throughout the app and verify interaction/layout/performance. | After selection. |
+| P01 | Choose from 01–20. | Complete: UI10 from batch 1; batch 2 retained as archive. |
+| P02 | Apply the accepted design throughout the app and verify themes/adaptation/performance. | Pending implementation; canonical specification is defined. |
 | P03 | Existing v0.4.0 device/codec/endurance evidence, three projector identities and historical video/3D quality gaps. | Retain their original pending state. |

@@ -1,5 +1,7 @@
 # LMA 品牌与 Logo 定稿 / Final logo
 
+**2026-11-03 界面风格已选择 UI10「云母分区」／UI10 Mica Bento is accepted.** 这不是 Logo 编号变更；继续使用 Logo21／Slogan04。[双主题、组件和自适应规范 / Themes, components and adaptive rules](design/README.md)。两种主题均保留 Logo 原色和轮廓，界面不得对其反相／重绘。
+
 **标语已定稿 / Final slogan：04 号（本地 AI／无审查组）。**
 
 **把无审查 AI，装进口袋。**

@@ -1,0 +1,100 @@
+/* LMA Mica Bento 1.0.0: documentation reference only; generated from tokens.json. */
+/* Not imported by the Android app. Structure, states and responsive rules remain in the specs. */
+.lma-mica[data-theme="dark"] {
+  color-scheme: dark;
+  --lma-canvas: #151A2B;
+  --lma-surface: #1E263B;
+  --lma-raised: #242D47;
+  --lma-inset: #111624;
+  --lma-text: #F0F4FF;
+  --lma-secondary: #BDCAE0;
+  --lma-muted: #9AACC9;
+  --lma-separator: #3E4E6E;
+  --lma-control-border: #6D82A8;
+  --lma-primary: #8CB3FF;
+  --lma-on-primary: #10203C;
+  --lma-primary-hover: #A8C7FF;
+  --lma-primary-pressed: #729DF4;
+  --lma-primary-soft: #293F66;
+  --lma-on-primary-soft: #B5D0FF;
+  --lma-mint: #7ADCC3;
+  --lma-on-mint: #0D2925;
+  --lma-mint-soft: #1D403D;
+  --lma-on-mint-soft: #8CE9D2;
+  --lma-danger: #FFB4B5;
+  --lma-danger-soft: #492B39;
+  --lma-warning: #F2CD83;
+  --lma-warning-soft: #403724;
+  --lma-success: #8CE1AF;
+  --lma-success-soft: #1E3E31;
+  --lma-info: #9CC6FF;
+  --lma-info-soft: #253B56;
+  --lma-content: #D8C4F4;
+  --lma-content-soft: #3C334F;
+  --lma-focus: #8CB3FF;
+  --lma-scrim: #050914;
+  --lma-shadow: 0 2px 8px rgb(0 0 0 / 0.16);
+}
+.lma-mica[data-theme="light"] {
+  color-scheme: light;
+  --lma-canvas: #F3F5FA;
+  --lma-surface: #FFFFFF;
+  --lma-raised: #EAF0F8;
+  --lma-inset: #E5EBF4;
+  --lma-text: #19243A;
+  --lma-secondary: #44546E;
+  --lma-muted: #586A85;
+  --lma-separator: #CED8E6;
+  --lma-control-border: #6E809C;
+  --lma-primary: #2857B5;
+  --lma-on-primary: #FFFFFF;
+  --lma-primary-hover: #214A9C;
+  --lma-primary-pressed: #1C3F85;
+  --lma-primary-soft: #DFE9FF;
+  --lma-on-primary-soft: #214CA1;
+  --lma-mint: #126B5C;
+  --lma-on-mint: #FFFFFF;
+  --lma-mint-soft: #DDF3ED;
+  --lma-on-mint-soft: #155B51;
+  --lma-danger: #9B2434;
+  --lma-danger-soft: #FFE8EB;
+  --lma-warning: #795210;
+  --lma-warning-soft: #FFF0CB;
+  --lma-success: #16603D;
+  --lma-success-soft: #E0F3E6;
+  --lma-info: #21559A;
+  --lma-info-soft: #E4EEFC;
+  --lma-content: #61458E;
+  --lma-content-soft: #EEE7F8;
+  --lma-focus: #2857B5;
+  --lma-scrim: #19243A;
+  --lma-shadow: 0 2px 8px rgb(25 36 58 / 0.08);
+}
+.lma-mica {
+  --lma-font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans CJK SC", "Microsoft YaHei", sans-serif;
+  --lma-font-mono: ui-monospace, "Cascadia Mono", Consolas, monospace;
+  --lma-radius-tag: 6px;
+  --lma-radius-control: 8px;
+  --lma-radius-selectedSegment: 8px;
+  --lma-radius-card: 10px;
+  --lma-radius-resource: 12px;
+  --lma-radius-dialog: 16px;
+  --lma-space-4: 4px;
+  --lma-space-8: 8px;
+  --lma-space-12: 12px;
+  --lma-space-16: 16px;
+  --lma-space-24: 24px;
+  --lma-space-32: 32px;
+  --lma-space-48: 48px;
+  --lma-motion-press: 100ms;
+  --lma-motion-state: 160ms;
+  --lma-motion-overlay: 200ms;
+  --lma-motion-maximum-non-essential: 240ms;
+  --lma-motion-reduced: 0ms;
+  --lma-touch-min: 48px;
+  --lma-focus-width: 2px;
+  --lma-focus-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .lma-mica { --lma-motion-press: 0ms; --lma-motion-state: 0ms; --lma-motion-overlay: 0ms; --lma-motion-maximum-non-essential: 0ms; }
+}

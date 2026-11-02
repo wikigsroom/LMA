@@ -1,5 +1,11 @@
 # Changelog / 更新记录
 
+## 2026-11-03 · UI10 云母分区定稿 / Mica Bento design system
+
+- 用户选择 10 号云母分区，保持 Logo21／Slogan04；新增完整中英风格、明暗主题、30 类组件和宽窄机型适配规范，统一 tokens 与参考 CSS。
+- 定义默认暗色／用户主题保留、7 档宽度、18 组视口目标、200% 文字、键盘／安全区／折叠、可访问状态和材质性能边界；A01–A20 运行时验收仍待实施。
+- Accepted UI10 Mica Bento. Bilingual specifications define two themes, 30 components, seven width bands and 18 viewport targets, with provenance and static contrast checks. Update README routes and decision status; archive the superseded initial brief. App integration/device acceptance remain pending. Existing APK, release assets and original concept packages retain their identity. [Specification / 规范](docs/design/README.md) · [Maintenance / 维护](docs/releases/v0.4.0-mica-bento-design.md).
+
 ## 2026-11-03 · 第二批首页 UI 设计 11–20 / Ten more homepage directions
 
 - 按用户要求新增 11–20 十套独立生成的暗色首页稿，累计 20 套；采用曜黑、瑞士网格、Metro、终端、赛博机能、像素、侘寂、Art Deco、孟菲斯与幻彩钛银，不通过程序换色增加数量。
