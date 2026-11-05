@@ -1,5 +1,11 @@
 # Changelog / 更新记录
 
+## v1.0.2 · 2026-11-06 · 模型删除入口外置 / Outer model-card deletion
+
+- 生图、生视频、生音频、生3D与LoRA模型包在卡片底部直接显示“垃圾桶＋删除”，无需进入详情；文字GGUF同步使用具名按钮。
+- 复用原确认／取消与原生资产保护，并在确认窗口明确显示模型名称；下载忙碌时显示“暂停后删除”，不再让入口消失。程序夹具验证确认删除，真机只验证打开／取消并保留用户模型。
+- Synchronize bilingual operation guides, README, versioned actual-phone media and release evidence. Original signing, per-model settings and existing assets are preserved. [中文](docs/MODEL_DELETE.md) · [English](docs/MODEL_DELETE.en.md) · [Release](docs/releases/v1.0.2.md).
+
 ## v1.0.1 · 2026-11-06 · 对话页面复原 / Restored chat
 
 - 按用户反馈恢复顶部模型／历史／新建、中间消息及底部紧凑输入；还原起始问题和助手复制。现有生图／视频／音频／3D、附件、参数、模板、视觉配对移入“＋”面板，普通聊天不常驻创作表单。

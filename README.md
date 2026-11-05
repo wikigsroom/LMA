@@ -8,7 +8,7 @@
 
 Android 本地 AI 工作台，模型由你选择，无审查模型独立标记。[品牌定稿：Logo 21 ＋ Slogan 04](docs/BRANDING.md)。
 
-[English](README.en.md) · [下载 v1.0.1](https://github.com/wikigsroom/LMA/releases/tag/v1.0.1) · [使用手册](docs/USER_GUIDE.md) · [文档目录](docs/README.md) · [更新记录](CHANGELOG.md)
+[English](README.en.md) · [下载 v1.0.2](https://github.com/wikigsroom/LMA/releases/tag/v1.0.2) · [使用手册](docs/USER_GUIDE.md) · [文档目录](docs/README.md) · [更新记录](CHANGELOG.md)
 
 <a id="contents"></a>
 ## 阅读路线
@@ -24,17 +24,17 @@ Android 本地 AI 工作台，模型由你选择，无审查模型独立标记�
 | 复原后的对话页与生成能力融合 | [当前聊天操作](docs/CHAT_RESTORE_20261106.md) | [F01–F08 编号方案与可行性](docs/CHAT_RESTORE_20261106.md#4-推荐的完整融合结构)，本轮实现与建议分开 |
 | 查证测试范围、重建和排错 | [程序检查](#verification)、[构建](#build)、[排错](#troubleshooting) | [程序验证策略](docs/PROGRAM_VALIDATION.md)、[构建指南](docs/BUILD.md) |
 
-**验证范围：程序验证。** 当前 **v1.0.1 / code66** 恢复“顶部选模型—中间消息—底部输入”的原聊天布局，现有生图／视频／音频／3D、附件、参数与模板从“＋”按需打开。修复初始模式错位、顶部模型名称及切换同步、助手复制和分页历史入口。[完整操作与融合评估](docs/CHAT_RESTORE_20261106.md) · [版本证据](verification/releases/v1.0.1/status.json)。
+**验证范围：程序验证。** 当前 **v1.0.2 / code67** 将文字、生图、生视频、生音频、生3D及LoRA的“垃圾桶＋删除”统一放在模型卡片底部，从“模型 → 本地”即可操作。核对名称后确认，取消不提交删除；传输忙碌时显示“暂停后删除”。[完整操作与保护](docs/MODEL_DELETE.md) · [版本证据](verification/releases/v1.0.2/status.json)。原聊天布局和“＋”按需创作入口保持，进一步融合方案见[F01–F08](docs/CHAT_RESTORE_20261106.md)。
 
-程序验收 **66 suites / 15,304 assertions**，其中全页面796项、对话43项、云母布局520场景；真机UI48项，三档字体各29项。Lint 0错误／17警告，41个ARM64库。APK SHA256：`0a25fed1e230cec51a37c07a713d6bf8e9fae19b48897b4a1b67de9fc89b16cb`。
+程序验收 **66 suites / 15,311 assertions**，其中全页面803项、对话43项、云母布局520场景；真机UI56项，三档字体各35项。Lint 0错误／17警告，41个ARM64库。APK SHA256：`90498c3b3b3e1281ad0576e7d4908f8466457124a303fdc6b9e7a9a7da349358`。
 
 程序、真机界面、短锁屏 API 和模型实跑分别记录；本轮不下载或完整运行模型，旧视觉组件、codec、视频／3D 质量和长期后台边界保留。安装包保留原签名和已有模型资产；[v1.0.0 大版本与历史证据](docs/MICA_V100.md) 不改写。
 
-<img src="docs/media/device/v1.0.1/dark-chat.png" alt="v1.0.1 真机恢复后的暗色聊天页" width="280"> <img src="docs/media/device/v1.0.1/light-chat.png" alt="v1.0.1 真机恢复后的明亮聊天页" width="280">
+<img src="docs/media/device/v1.0.2/dark-local.png" alt="v1.0.2 真机暗色本地模型删除入口" width="280"> <img src="docs/media/device/v1.0.2/light-local.png" alt="v1.0.2 真机明亮本地模型删除入口" width="280">
 
-![v1.0.1 真机页面操作，非模型生成](docs/media/device/v1.0.1/physical-walkthrough.gif)
+![v1.0.2 真机页面操作，非模型生成](docs/media/device/v1.0.2/physical-walkthrough.gif)
 
-[真机录屏 MP4](docs/media/device/v1.0.1/physical-walkthrough.mp4) · [19 张本版真机截图与来源](docs/media/device/v1.0.1/manifest.json) · [43 项对话程序检查及媒体](docs/media/conversation-v1.0.1/manifest.json)。所有浏览器页面与上下文执行后关闭，未使用虚拟化。
+[真机录屏 MP4](docs/media/device/v1.0.2/physical-walkthrough.mp4) · [21 张本版真机截图与来源](docs/media/device/v1.0.2/manifest.json) · [43 项对话程序检查及媒体](docs/media/conversation-v1.0.2/manifest.json)。所有浏览器页面与上下文执行后关闭，未使用虚拟化。
 
 LMA（Local Model App）让用户在 Android 手机上选择、下载、管理和运行本地模型，提供聊天、生图、生视频、生音频、生 3D、任务队列、结果库与本机 API。它是独立社区项目，与 LM Studio 无隶属关系；界面主要为中文，文档提供中英双语。
 
@@ -962,3 +962,5 @@ v0.3.12 最终 APK 实机：**24项程序检查＋8项空闲性能＋28项真实
 **v1.0.0 / code65 · 云母分区 UI 大版本。** 五页面与弹层、双主题、宽窄屏及原生键盘／字体处理已实施。66组／15,291项程序断言；36项真机UI、三档实机字体、24项管理/API、60.269秒锁屏健康、8项空闲性能检查。[使用和本版实机素材](docs/MICA_V100.md) · [正式 Release](https://github.com/wikigsroom/LMA/releases/tag/v1.0.0)。没有完整模型实跑。
 
 **v1.0.1 / code66 · 对话复原。** 默认恢复原聊天布局，现有创作从“＋”展开；66组／15,304项程序断言，48项真机UI，19张实机截图。[用法与F01–F08融合评估](docs/CHAT_RESTORE_20261106.md) · [正式Release](https://github.com/wikigsroom/LMA/releases/tag/v1.0.1)。完整待办及质量／后台边界见评估文档。
+
+**v1.0.2 / code67 · 模型卡片直接删除。** 文字与多媒体模型在卡片外层显示“删除”，传输忙碌时明确提示，保留确认、取消与原生资产保护。[操作与验证](docs/MODEL_DELETE.md) · [正式 Release](https://github.com/wikigsroom/LMA/releases/tag/v1.0.2)。

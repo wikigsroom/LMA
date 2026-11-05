@@ -1,6 +1,6 @@
 {
   "schema": "lma.conversation-implementation/1",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "planDate": "20261102",
   "deliveryDate": "2026-11-03",
   "validationMode": "program_only",
@@ -15,7 +15,7 @@
   "qualityAccepted": false,
   "backgroundEnduranceTested": false,
   "knownLimits": [
-    "No fresh Android visual/codec/inference/latency/endurance evidence for this APK.",
+    "Full trained-model, visual/codec quality and endurance remain unverified; actual v1.0.2 UI/API/idle checks are recorded separately in version-specific evidence.",
     "m03/m09/m16 projector provenance remains unresolved; no fabricated compatible preset.",
     "Public OpenAI chat accepts text only; App visual bridge is a separate path.",
     "Native audio/3D understanding and arbitrary HF execution are not inferred from catalogue tags.",

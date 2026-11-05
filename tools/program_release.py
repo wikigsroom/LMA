@@ -217,7 +217,7 @@ def prepare():
    shutil.copy2(original,directory/target);names.append(target)
  names.sort()
  (directory/'SHA256SUMS').write_text(''.join(sha(directory/n)+'  '+n+'\n' for n in names),encoding='utf-8');names.append('SHA256SUMS')
- manifest=dict(repository='wikigsroom/LMA',version=VERSION,tag='v'+VERSION,title='LMA v'+VERSION+(' · Mica Bento / 云母分区 UI 大版本' if VERSION=='1.0.0' else ' · Restored chat / 对话页面复原' if VERSION=='1.0.1' else ' · Conversations and local creation / 对话与本地创作' if VERSION=='0.4.0' else ' · Default API port 52187 / 默认接口端口 52187' if VERSION=='0.3.13' else ' · Local multimodal API and uncapped generation / 本地多模态接口与生成时限取消'),
+ manifest=dict(repository='wikigsroom/LMA',version=VERSION,tag='v'+VERSION,title='LMA v'+VERSION+(' · Mica Bento / 云母分区 UI 大版本' if VERSION=='1.0.0' else ' · Restored chat / 对话页面复原' if VERSION=='1.0.1' else ' · Direct model deletion / 模型卡片直接删除' if VERSION=='1.0.2' else ' · Conversations and local creation / 对话与本地创作' if VERSION=='0.4.0' else ' · Default API port 52187 / 默认接口端口 52187' if VERSION=='0.3.13' else ' · Local multimodal API and uncapped generation / 本地多模态接口与生成时限取消'),
   prerelease=not COMPLETE,notes='docs/releases/v'+VERSION+'.md',validation_mode='program_only',full_scope_program_implementation_complete=True,
   apk_sha256=build['sha256'],physical_device_tested=evidence.get('physical_device_tested',False),
   physical_device_tests=evidence.get('physical_device_tests',0),background_program_tested=evidence.get('background_program_tested',False),

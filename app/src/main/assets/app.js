@@ -163,7 +163,7 @@
     if (running) out += '<span class="running-mark">' + (engine().state === 'ready' ? '已加载' : textQueued() ? '等待执行' : '加载中') + '</span>';
     out += '<p class="model-description">' + esc(m.description) + '</p><div class="model-tags">' + tags + '</div><div class="model-footer"><div class="model-size">' + bytes(size) + '<small>' + (m.installed ? '已下载到设备' : m.sizeIsApproximate && !d.total ? '预估下载体积' : 'GGUF 模型文件') + '</small></div><div class="model-footer-actions"><button class="button ' + (m.installed || active ? 'subtle' : 'primary') + '" data-action="' + action + '" data-id="' + esc(m.id) + '"' + (!action ? ' disabled' : '') + '>' + icon(m.installed ? running ? 'check' : 'play' : active ? 'pause' : 'download') + '<span>' + label + '</span></button>';
     if (m.installed) out += '<button class="icon-button" data-action="modelSettings" data-id="' + esc(m.id) + '" aria-label="设置 ' + esc(m.name) + '" title="模型设置">' + icon('sliders') + '</button>';
-    if ((m.installed || partial || m.id.indexOf('custom_') === 0 || m.hub || s === 'error') && !active) out += '<button class="icon-button" data-action="deleteModel" data-id="' + esc(m.id) + '" aria-label="删除 ' + esc(m.name) + '">' + icon('trash') + '</button>';
+    if (m.installed || partial || m.id.indexOf('custom_') === 0 || m.hub || s === 'error' || active) out += '<button type="button" class="button danger model-delete" data-action="deleteModel" data-id="' + esc(m.id) + '" aria-label="删除 ' + esc(m.name) + '"' + (active ? ' disabled title="请先暂停下载，等待传输结束后删除"' : '') + '>' + icon('trash') + '<span>' + (active ? '暂停后删除' : '删除') + '</span></button>';
     out += '</div></div>';
     if (!m.installed && (active || partial || s === 'paused')) {
       var status = s === 'queued' ? '等待下载' : s === 'verifying' ? '校验 SHA256…' : s === 'paused' ? '已暂停' : s === 'error' ? '下载中断' : d.speed ? bytes(d.speed) + '/s' : '正在连接…';
@@ -423,7 +423,8 @@
     if (returnFocus && document.contains(returnFocus)) returnFocus.focus({preventScroll: true}); returnFocus = null;
   }
   function confirmAction(title, message, action, id, button) {
-    openModal(title, '<p>' + esc(message) + '</p><div class="modal-actions"><button class="button secondary" data-action="closeModal">取消</button><button class="button danger" data-action="confirmed" data-command="' + esc(action) + '" data-id="' + esc(id) + '">' + esc(button || '确认删除') + '</button></div>', 'confirm');
+    var target = action === 'deleteBundle' ? modelById(id) : null;
+    openModal(title, (target ? '<p class="delete-target"><strong>' + esc(target.name) + '</strong></p>' : '') + '<p>' + esc(message) + '</p><div class="modal-actions"><button class="button secondary" data-action="closeModal">取消</button><button class="button danger" data-action="confirmed" data-command="' + esc(action) + '" data-id="' + esc(id) + '">' + esc(button || '确认删除') + '</button></div>', 'confirm');
   }
   function pickModel() {
     var installed = models().filter(function (m) { return m.installed && !m.isBundle; });

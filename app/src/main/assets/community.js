@@ -32,6 +32,15 @@
       var action = document.createElement('button'); action.type = 'button'; action.className = 'text-button community-info';
       action.dataset.action = 'communityInfo'; action.dataset.id = m.bundleId || m.id; action.textContent = '来源、内容标记与兼容说明'; root.appendChild(action);
     }
+    var bundle = (ui.state().bundles || []).find(function (b) { return b.id === (m.bundleId || m.id); });
+    var transfer = bundle && bundle.transfer, busy = transfer && ['queued', 'downloading', 'verifying', 'pausing', 'importing', 'installing'].indexOf(transfer.state) >= 0;
+    if (m.installed || bundle && bundle.installed || transfer) {
+      var footer = root.querySelector('.model-footer-actions');
+      if (!footer) { footer = root.querySelector('.model-footer') || root; }
+      if (!root.querySelector('[data-action="bundleRemove"]')) {
+        footer.insertAdjacentHTML('beforeend', '<button type="button" class="button danger model-delete" data-action="bundleRemove" data-id="' + e(m.bundleId || m.id) + '" aria-label="删除 ' + e(m.name) + '"' + (busy ? ' disabled title="请先暂停下载，等待传输结束后删除"' : '') + '>' + ui.icon('trash') + '<span>' + (busy ? '暂停后删除' : '删除') + '</span></button>');
+      }
+    }
     return fragment.innerHTML;
   }
   function accepts(m, content, source) {

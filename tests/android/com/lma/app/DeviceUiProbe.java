@@ -114,7 +114,19 @@ public final class DeviceUiProbe extends Instrumentation {
                             js("document.querySelector('#page-models').scrollTop=0");
                         }
                     }
-                    page("models");js("document.querySelector('[data-filter=local]').click()");capture(t+"-local");
+                    page("models");js("document.querySelector('[data-filter=local]').click()");
+                    check(t+" local cards expose delete without opening details","Array.from(document.querySelectorAll('#modelList .bundle-card')).every(function(c){return !!c.querySelector('.model-footer [data-action=bundleRemove]')})");
+                    boolean canDelete=Boolean.TRUE.equals(js("!!document.querySelector('#modelList .bundle-card [data-action=bundleRemove]:not(:disabled)')"));
+                    if(canDelete)js("document.querySelector('#modelList .bundle-card [data-action=bundleRemove]:not(:disabled)').scrollIntoView({block:'center'})");
+                    capture(t+"-local");
+                    if(canDelete){
+                        js("(function(){var b=document.querySelector('#modelList .bundle-card [data-action=bundleRemove]:not(:disabled)');window.__lmaDeleteProbeId=b.dataset.id;b.click()})()");
+                        check(t+" outer delete confirms the selected model","document.querySelector('#modal [data-command=deleteBundle]').dataset.id===window.__lmaDeleteProbeId&&document.querySelector('.app-shell').inert&&document.querySelector('#modal .delete-target').textContent===JSON.parse(Android.getSnapshot()).bundles.find(function(b){return b.id===window.__lmaDeleteProbeId}).manifest.name");
+                        capture(t+"-delete-confirm");
+                        js("document.querySelector('#modal .modal-actions [data-action=closeModal]').click()");
+                        check(t+" cancelled deletion preserves installed model","document.querySelector('#modalBackdrop').hidden&&JSON.parse(Android.getSnapshot()).bundles.some(function(b){return b.id===window.__lmaDeleteProbeId&&b.installed})");
+                        js("delete window.__lmaDeleteProbeId");
+                    }
                     Object has=js("Boolean(document.querySelector('[data-action=modelSettings]'))");
                     if(Boolean.TRUE.equals(has)){
                         js("document.querySelector('[data-action=modelSettings]').click()");waitFor("document.querySelector('#modelSettingsForm')");

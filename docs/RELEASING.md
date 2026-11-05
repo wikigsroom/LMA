@@ -1,5 +1,11 @@
 # 发布流程 / Release workflow
 
+## v1.0.2 模型删除外置 / Outer model-card deletion
+
+沿用 UI10 原签名／程序／真机流程，版号1.0.2/code67。额外运行 model-delete-ui（并入全页面检查），使用明确程序夹具确认删除与正确目标；真机仅打开确认并取消，核对五个已安装模型包和偏好不变。DeviceUiProbe 的明暗、大字与录屏包含外层按钮和取消流程。模型不下载、不完整运行。同步中英 MODEL_DELETE、README、组件约束、当前截图/GIF与发布说明后正常推送，发布 stable / prerelease=false。
+
+Confirmed deletion is fixture-only. Physical checks use the exact signed APK and cancel confirmation without removing user assets. Refresh version-bound evidence and media, preserve earlier releases, then publish the new stable patch.
+
 ## v1.0.1 对话复原 / Chat restoration
 
 沿用下方 UI10 流程；版号1.0.1/code66，原签名升级。运行更新后的 conversation-ui（43项）、全页面UI和520布局，使用当前APK重建实机验收包。先记录私有升级基线，再 capture_mica_device；19PNG及录屏/GIF人工复核后才标 reviewed。probe_mica_fonts 现含聊天面板回归，三档各29项；device_check 的短锁屏检查后先按既有授权解锁，再运行空闲 profile，避免把锁屏启动失败误作性能值。保持全部旧证据，program_evidence、package、prepare、repository门禁后正常推送并发布 stable / prerelease=false。

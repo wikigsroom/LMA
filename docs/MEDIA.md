@@ -1,5 +1,7 @@
 # 截图与演示 / Screenshots and demonstrations
 
+**v1.0.2 当前实机素材 / Current phone media:** [21张截图与来源 / screenshots and provenance](media/device/v1.0.2/manifest.json) · [MP4](media/device/v1.0.2/physical-walkthrough.mp4) · [GIF](media/device/v1.0.2/physical-walkthrough.gif)。模型卡片直接删除、具名确认后取消；实际确认删除只在程序夹具中进行，未删除用户模型。[中文](MODEL_DELETE.md) / [English](MODEL_DELETE.en.md)。
+
 **v1.0.0 当前素材：** [17张真实手机截图／20秒原速MP4／GIF及来源](media/device/v1.0.0/manifest.json)，[中文说明](MICA_V100.md)／[English](MICA_V100.en.md)。双主题、空白对话、队列搜索／滚动、回环地址；不展示个人历史，不代表模型生成。版本化[对话程序演示](media/conversation-v1.0.0/manifest.json)和十组 current development 素材明确为桥接夹具。旧版真实输出保留原身份。
 [v0.3.13 默认端口 52187 / Default port and migration](API_PORT.md) · [Release notes](releases/v0.3.13.md)
 [完整实现与检查 / Implementation and checks](IMPLEMENTATION_V0313.md) · [English](IMPLEMENTATION_V0313.en.md)

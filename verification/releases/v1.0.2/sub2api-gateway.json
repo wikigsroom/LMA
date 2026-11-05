@@ -1,0 +1,41 @@
+{
+  "schema": "lma.sub2api-program-tests/1",
+  "passed": 12,
+  "checks": [
+    "TestCataloguePermissionsAndStaleness",
+    "TestDurableRetriesOwnershipAndArtifacts",
+    "TestUploadsAndBoundInputs",
+    "TestOpenAIImageAndSpeech",
+    "TestUnavailableFirstFetchAndInstanceChange",
+    "TestLimitsAndRoutes",
+    "TestPrivateOriginValidation",
+    "TestNoLeakedParentCredential",
+    "TestAtomicAliasConflicts",
+    "TestSharedEventsBoundedAndPrivate",
+    "TestTextPrefillOutlivesOrdinaryHeaderBudget",
+    "TestLMAOptInGroupRouting"
+  ],
+  "input_fingerprint": {
+    "integrations/sub2api/lma_local.go.txt": "d8c8ff9459e15348b8d57d1d8c82bc56d77d7e8e68f00125fdde563011133212",
+    "integrations/sub2api/lma_local_test.go.txt": "66900d8997da75390647a4ae19526d7616ccbc3d12e7a90c5fb6c7eae1ce9da0",
+    "integrations/sub2api/localgateway/atomic_unix.go": "a3d0e955ccf1ef5f6d561df43b903404491562e3728501f32a440d95bb3e3b0e",
+    "integrations/sub2api/localgateway/atomic_windows.go": "89f3ecd8b82f8cfa058323731d66eb98308df1513b86a5b564a37415897dba18",
+    "integrations/sub2api/localgateway/cmd/probe/main.go": "444895738517fb75f19f97564a2a68aa453a3e1733aa41643cd62cf9f3648327",
+    "integrations/sub2api/localgateway/events.go": "2f333b52eb47eca0f894586bdaccada52f42f8aa4041b18537406cc63810f6a4",
+    "integrations/sub2api/localgateway/gateway.go": "9bb44d54eb9c2ee34854bf5382d2e3a5846773a928caccc160b4cd5f58055f03",
+    "integrations/sub2api/localgateway/gateway_test.go": "18ddedb169109974b91559927f9be3fb7ff1ffb40c221be49488a22eea3f1241",
+    "integrations/sub2api/localgateway/go.mod": "94e9bf8f7fd138a59a142ecf5f11480d3ed72dd0fc675675605a94430dc7bcbc",
+    "integrations/sub2api/README.md": "9c158d0ced6a3b70aeac3c9dd771f6861323f9c527c124be1b9571e46dd4a956",
+    "tools/apply_sub2api.py": "5534d6b9d06a84946920085a301828de412b22b6137cf10fd2a5cff68ef298ea",
+    "tools/test_sub2api_gateway.py": "98d649f369dcade2295cba22fe5c2f0e2ff02d9edf37adbb62d7a55715df84b2"
+  },
+  "native_go": true,
+  "actual_http_fixtures": true,
+  "pinned_sub2api_route_adapter_tested": true,
+  "upstream_commit": "dece26153621959ccd7635814f4b2d08304e681a",
+  "authentication_scope": "Existing Sub2API auth chain retained; Gin route test uses an explicit auth-context fixture. Not live DB/subscription/billing acceptance.",
+  "production_deployment_changed": false,
+  "model_inference": false,
+  "physical_device": false,
+  "virtualization_used": false
+}

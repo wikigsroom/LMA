@@ -1,5 +1,7 @@
 # LMA user guide
 
+**v1.0.2 deletion:** Open Models → Local and use the labelled trash/Delete action on the outer card for text, image, video, audio, 3D and LoRA. Review and confirm, or cancel. Busy transfers show “Pause before deleting”. [Details](MODEL_DELETE.en.md).
+
 **Current v1.0.1 / code66:** [Restored chat and operation guide](CHAT_RESTORE_20261106.en.md). Use the header model picker and compact composer; open “+” for image/video/audio/3D, inputs, parameters and templates. Manual creation needs no LLM; close the sheet to send. Model defaults remain independent.
 
 

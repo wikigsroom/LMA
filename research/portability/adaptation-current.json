@@ -1,6 +1,6 @@
 {
   "schema": "lma.adaptation-audit/2",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "previous_release": "0.3.5",
   "previous_audit": "research/portability/audit-v0.3.5.json",
   "implemented_modules": {
@@ -433,7 +433,7 @@
     "app/src/main/java/com/lma/app/HubCatalog.java": "2a5e513d896a4ba804a75ac35d8be15421757edf3f009bdb59fdb4228caae777",
     "app/src/main/java/com/lma/app/HubClient.java": "3bc06665ad34b73937235362144605ed28c47b616654e6a31b2b3fa3125e7c0a",
     "app/src/main/java/com/lma/app/InputImports.java": "f59c48493faab98edcc1462842fbabb9814ab5afca9fb583d5b6c310b4846fbc",
-    "app/src/main/java/com/lma/app/LmaApp.java": "14a5e77132dc7203b663eac66188bfc47d35e9e17422f9595866c0b3bdab6d46",
+    "app/src/main/java/com/lma/app/LmaApp.java": "ca9fa5e50f11a800f7a193cdae5e90fc391191054b2e37f3d342adbe1756aa7e",
     "app/src/main/java/com/lma/app/LmaService.java": "ac09dc58cee7c1e23f2efb5f38fa7441021d96e001c9e723a9d365d47023c8fe",
     "app/src/main/java/com/lma/app/LocalEngine.java": "c06198df33cf290dff58d5d7d7f2b44b3d84d552c1a3c0f1cf35c30c6d5b7c19",
     "app/src/main/java/com/lma/app/LocalEngines.java": "149f613e0bd25911cea08b14a8eb615ff7f0b208210cfebc26811546b2a3504d",

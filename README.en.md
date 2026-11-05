@@ -8,7 +8,7 @@
 
 Local AI for Android. Choose your models, with uncensored variants clearly tagged. [Final branding: logo 21 + slogan 04](docs/BRANDING.md).
 
-[中文](README.md) · [Download v1.0.1](https://github.com/wikigsroom/LMA/releases/tag/v1.0.1) · [User guide](docs/USER_GUIDE.en.md) · [Documentation](docs/README.md) · [Scenarios](#use-cases) · [Cases and failures](#case-studies)
+[中文](README.md) · [Download v1.0.2](https://github.com/wikigsroom/LMA/releases/tag/v1.0.2) · [User guide](docs/USER_GUIDE.en.md) · [Documentation](docs/README.md) · [Scenarios](#use-cases) · [Cases and failures](#case-studies)
 
 <a id="contents"></a>
 ## Detailed usage and evidence routes
@@ -26,17 +26,17 @@ The following restores the detailed scenarios, API examples, generated artifacts
 | Rebuild and diagnose | [Build](#build), [Z20/background limits](#z20), [troubleshooting](#troubleshooting) |
 | Read the original development narrative | [Historical English README](docs/history/README-dev45.en.md), [repair notes](docs/releases/v0.3.1-readme.md) |
 
-**Validation scope: program checks.** Current **v1.0.1 / code66** restores the original model toolbar → messages → compact composer layout. Existing image/video/audio/3D, attachments, parameters and templates open through “+”. Initial mode, model title/synchronization, assistant copy and paged history are repaired. [Usage and integration evaluation](docs/CHAT_RESTORE_20261106.en.md) · [Version evidence](verification/releases/v1.0.1/status.json).
+**Validation scope: program checks.** Current **v1.0.2 / code67** exposes labelled trash/Delete controls on outer text, image, video, audio, 3D and LoRA model cards. Open Models → Local, review the name and confirm or cancel. Busy transfers retain a visible “Pause before deleting” entry. [Operation and guards](docs/MODEL_DELETE.en.md) · [Version evidence](verification/releases/v1.0.2/status.json). The restored chat and optional “+” controls remain; further integration is assessed in [F01–F08](docs/CHAT_RESTORE_20261106.en.md).
 
-Program evidence: **66 suites / 15,304 assertions**, with 796 page checks, 43 conversation checks and 520 layout scenarios. Physical UI: 48 checks, plus 29 at each of three font scales. Lint: 0 errors / 17 warnings; 41 ARM64 libraries. APK SHA256: `0a25fed1e230cec51a37c07a713d6bf8e9fae19b48897b4a1b67de9fc89b16cb`.
+Program evidence: **66 suites / 15,311 assertions**, with 803 page checks, 43 conversation checks and 520 layout scenarios. Physical UI: 56 checks, plus 35 at each of three font scales. Lint: 0 errors / 17 warnings; 41 ARM64 libraries. APK SHA256: `90498c3b3b3e1281ad0576e7d4908f8466457124a303fdc6b9e7a9a7da349358`.
 
 Program checks, physical UI, short screen-off API health and model inference remain separate. No model downloads or complete trained-model runs this round. Original signing, assets and preferences are preserved; previous projector/codec, video/3D quality and endurance limits remain. [v1.0.0 major-release evidence](docs/MICA_V100.en.md) retains its original identity.
 
-<img src="docs/media/device/v1.0.1/dark-chat.png" alt="Actual v1.0.1 restored dark chat" width="280"> <img src="docs/media/device/v1.0.1/light-chat.png" alt="Actual v1.0.1 restored light chat" width="280">
+<img src="docs/media/device/v1.0.2/dark-local.png" alt="Actual v1.0.2 dark Local model deletion controls" width="280"> <img src="docs/media/device/v1.0.2/light-local.png" alt="Actual v1.0.2 light Local model deletion controls" width="280">
 
-![Actual v1.0.1 phone UI walkthrough, not model generation](docs/media/device/v1.0.1/physical-walkthrough.gif)
+![Actual v1.0.2 phone UI walkthrough, not model generation](docs/media/device/v1.0.2/physical-walkthrough.gif)
 
-[Actual MP4](docs/media/device/v1.0.1/physical-walkthrough.mp4) · [19 screenshots and provenance](docs/media/device/v1.0.1/manifest.json) · [43 conversation-program checks and media](docs/media/conversation-v1.0.1/manifest.json). All owned browser resources close after execution; no virtualization.
+[Actual MP4](docs/media/device/v1.0.2/physical-walkthrough.mp4) · [21 screenshots and provenance](docs/media/device/v1.0.2/manifest.json) · [43 conversation-program checks and media](docs/media/conversation-v1.0.2/manifest.json). All owned browser resources close after execution; no virtualization.
 
 LMA lets users select, download, manage and run local models on an Android phone, with chat, image/video/audio/3D jobs, artifacts and a local API. It is an independent community project, unaffiliated with LM Studio. The application UI is primarily Chinese; documentation is bilingual.
 
@@ -51,7 +51,7 @@ LMA-authored code is MIT. The bundled DISO CPU surface component is **CC BY-NC 4
 <a id="install"></a>
 ## Install and use
 
-1. Download `LMA-1.0.1-arm64-v8a.apk` from the Release and compare its hash with `SHA256SUMS`. Requires **64-bit Android 9 / API 28 or later**. The original signing identity is retained for upgrades and existing data.
+1. Download `LMA-1.0.2-arm64-v8a.apk` from the Release and compare its hash with `SHA256SUMS`. Requires **64-bit Android 9 / API 28 or later**. The original signing identity is retained for upgrades and existing data.
 2. Open LMA and allow notifications when prompted. For screen-off work, allow background activity and remove the relevant battery restrictions in Android settings. Installation and upgrades do not download models.
 3. Open Models → Recommended / All / Local. **Recommended retains the text prefix m08 → m06 → m01 and adds eleven multimodal choices.** All supports HF keywords, repository IDs/URLs, pagination and discovery of every format. Local manages downloaded/imported models and unfinished transfers.
 4. Filter by text, image, video, audio or 3D tags. Inspect architecture, recipe, backend, license, dependencies, pinned revision and size before explicitly downloading or importing with Android's document picker.
@@ -62,7 +62,7 @@ LMA-authored code is MIT. The bundled DISO CPU surface component is **CC BY-NC 4
 HF discovery and executable support are separate. Compatible files enter their matching text engine or multi-component recipe; arbitrary safetensors, GGUF or Diffusers repositories are not universally executable. Custom components can be registered through recipes. Missing components fail locally without implicit downloads or off-device execution.
 
 <a id="models"></a>
-Current APK: **v1.0.1 / code66**, original signer retained. Compare the exact Release APK with `SHA256SUMS`; see the [release inventory and validation](docs/releases/v1.0.1.md).
+Current APK: **v1.0.2 / code67**, original signer retained. Compare the exact Release APK with `SHA256SUMS`; see the [release inventory and validation](docs/releases/v1.0.2.md).
 
 ## Model and foundation scope
 
@@ -969,3 +969,5 @@ Historical v0.3.10 [legacy-host deviation](verification/releases/v0.3.10/validat
 **v1.0.0 / code65 · Mica Bento major release.** All five pages and overlays, two themes, adaptive layouts and native IME/font handling are implemented. 66 suites / 15,291 assertions; 36 actual UI checks, three physical font scales, 24 management/API checks, 60.269 seconds screen-off health and eight idle-performance checks. [Guide and current phone media](docs/MICA_V100.en.md) · [Stable Release](https://github.com/wikigsroom/LMA/releases/tag/v1.0.0). No full-model reruns.
 
 **v1.0.1 / code66 · Restored chat.** Original chat layout with optional “+” creation controls; 66 suites / 15,304 assertions, 48 physical UI checks and 19 actual screenshots. [Usage and F01–F08 integration evaluation](docs/CHAT_RESTORE_20261106.en.md) · [Stable Release](https://github.com/wikigsroom/LMA/releases/tag/v1.0.1). Proposed interactions and quality/background limits remain explicit.
+
+**v1.0.2 / code67 · Direct model-card deletion.** Text and media cards expose labelled Delete controls with an explained busy state, existing confirmation/cancel and native asset guards. [Operation and verification](docs/MODEL_DELETE.en.md) · [Stable Release](https://github.com/wikigsroom/LMA/releases/tag/v1.0.2).
