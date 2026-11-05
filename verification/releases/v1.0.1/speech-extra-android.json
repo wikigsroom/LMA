@@ -1,0 +1,34 @@
+{
+  "schema": "lma.native-build/1",
+  "engine": "audio_cpp",
+  "file": "liblma-speech-extra.so",
+  "source_revision": "4f5afb6bb59b329c10553540fc3e63d814cfa01a",
+  "abi": "arm64-v8a",
+  "backend": "cpu",
+  "ndk": "30.0.16248370",
+  "min_sdk": 28,
+  "bytes": 7324672,
+  "sha256": "e3035726c391c8090d1cdbdbc96a1467aefd46eb86823edef435d48892455195",
+  "dependencies": [],
+  "source_inputs": {
+    "native/runtime_metrics.hpp": "1fe93a5bd8426dbca3f8efaec6070c1cccc60e75006df40021141a69abec4a07",
+    "native/speech_extra/CMakeLists.txt": "9d21c5a66a3b6bec9df47c56598eb09695e6742ffc05052e963f814878773006",
+    "native/speech_extra/f5_frontend.hpp": "d698d7ef31ec06d9447658224704c27519436198e03054faa232b71c1dcc211a",
+    "native/speech_extra/f5_official.hpp": "81bba8f9280018b0b3a592cec7fd2c00993cb0a1f349d2de354be10b75e10730",
+    "native/speech_extra/worker.cpp": "b704be00433012c11a28225baf6dd159a8875d22e9145252bca8fec8c9fc4a98",
+    "native/worker_common.hpp": "7e90a19a44f309fdd1ac066783c8dc1d8d3d8e67660fea5486366f5b70b792b9",
+    "third_party/expansion-source-lock.json": "f3538e338964bc3ab91eddd52934fc1b28a6dd8851725d7b7a8b62efe1462129",
+    "tools/build_expansion.py": "900f1ff2f6c20b058ef2891bcaff005948a296090217494e0921dea2a0bcc92c",
+    "tools/fetch_expansion_sources.py": "78b4741039de355fc2524b9502a26b3722e9c2bfe33d35fb5e39b86c404df753"
+  },
+  "vocabularies": "external_user_selected_components",
+  "physical_device_tests": 0,
+  "model_inference_tested": false,
+  "virtualization_used": false,
+  "elf_load_alignment": [
+    16384
+  ],
+  "android_api_notes": [
+    28
+  ]
+}

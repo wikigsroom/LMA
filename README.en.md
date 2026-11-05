@@ -8,7 +8,7 @@
 
 Local AI for Android. Choose your models, with uncensored variants clearly tagged. [Final branding: logo 21 + slogan 04](docs/BRANDING.md).
 
-[中文](README.md) · [Download v1.0.0](https://github.com/wikigsroom/LMA/releases/tag/v1.0.0) · [User guide](docs/USER_GUIDE.en.md) · [Documentation](docs/README.md) · [Scenarios](#use-cases) · [Cases and failures](#case-studies)
+[中文](README.md) · [Download v1.0.1](https://github.com/wikigsroom/LMA/releases/tag/v1.0.1) · [User guide](docs/USER_GUIDE.en.md) · [Documentation](docs/README.md) · [Scenarios](#use-cases) · [Cases and failures](#case-studies)
 
 <a id="contents"></a>
 ## Detailed usage and evidence routes
@@ -18,22 +18,25 @@ The following restores the detailed scenarios, API examples, generated artifacts
 | Goal | Entry point |
 | --- | --- |
 | Operate the app | [30 scenarios C01–C30](#use-cases) |
-| Read the accepted UI10 Mica Bento specification | [Design system](docs/design/README.md), [themes and style](docs/design/MICA_BENTO.en.md), [30 components](docs/design/COMPONENTS.en.md), [adaptive windows / IME / large text](docs/design/RESPONSIVE.en.md). [01–10](docs/UI_HOME_SELECTION_20261103.en.md) / [11–20](docs/UI_HOME_SELECTION_20261103_BATCH2.en.md) remain archives. App integration is pending |
+| Read the accepted UI10 Mica Bento specification | [Design system](docs/design/README.md), [themes and style](docs/design/MICA_BENTO.en.md), [30 components](docs/design/COMPONENTS.en.md), [adaptive windows / IME / large text](docs/design/RESPONSIVE.en.md). [01–10](docs/UI_HOME_SELECTION_20261103.en.md) / [11–20](docs/UI_HOME_SELECTION_20261103_BATCH2.en.md) remain archives. App-wide integration shipped in v1.0.0; the v1.0.1 chat restoration follows the latest user correction |
+| Use restored chat and evaluate generation integration | [Current operation and F01–F08 proposal](docs/CHAT_RESTORE_20261106.en.md); implemented controls and proposed additions are distinguished |
 | Integrate the phone API | [Four examples A01–A04](#api-examples) |
 | Compare historical outputs and failures | [18 cases H01–H18](#case-studies) |
 | Inspect current program coverage | [66 current suites](#verification) |
 | Rebuild and diagnose | [Build](#build), [Z20/background limits](#z20), [troubleshooting](#troubleshooting) |
 | Read the original development narrative | [Historical English README](docs/history/README-dev45.en.md), [repair notes](docs/releases/v0.3.1-readme.md) |
 
-**Validation scope: program checks.** v1.0.0 implements Mica Bento throughout the App, with current physical-phone checks for themes, fonts, IME, rotation, asset preservation, short screen-off API health and idle UI. No model download or complete trained-model run. Existing projector identities, complete codec output, video/3D quality and endurance limits remain. [Implementation and usage](docs/MICA_V100.en.md) · [Version evidence](verification/releases/v1.0.0/status.json). Historical cases retain their original identities.
+**Validation scope: program checks.** Current **v1.0.1 / code66** restores the original model toolbar → messages → compact composer layout. Existing image/video/audio/3D, attachments, parameters and templates open through “+”. Initial mode, model title/synchronization, assistant copy and paged history are repaired. [Usage and integration evaluation](docs/CHAT_RESTORE_20261106.en.md) · [Version evidence](verification/releases/v1.0.1/status.json).
 
-Program verification: **66 suites / 15291 assertions**, including **520** dedicated layout scenarios; Lint **0 errors / 17 warnings**; **41** ARM64 libraries. APK SHA256: `d727926511d89085c0399b2f13bca6d373b02c8360d9d1342b71061b57f89862`.
+Program evidence: **66 suites / 15,304 assertions**, with 796 page checks, 43 conversation checks and 520 layout scenarios. Physical UI: 48 checks, plus 29 at each of three font scales. Lint: 0 errors / 17 warnings; 41 ARM64 libraries. APK SHA256: `0a25fed1e230cec51a37c07a713d6bf8e9fae19b48897b4a1b67de9fc89b16cb`.
 
-<img src="docs/media/device/v1.0.0/dark-model-cards.png" alt="Actual v1.0.0 dark model cards" width="280"> <img src="docs/media/device/v1.0.0/light-model-cards.png" alt="Actual v1.0.0 light model cards" width="280">
+Program checks, physical UI, short screen-off API health and model inference remain separate. No model downloads or complete trained-model runs this round. Original signing, assets and preferences are preserved; previous projector/codec, video/3D quality and endurance limits remain. [v1.0.0 major-release evidence](docs/MICA_V100.en.md) retains its original identity.
 
-![Actual v1.0.0 phone walkthrough, not model generation](docs/media/device/v1.0.0/physical-walkthrough.gif)
+<img src="docs/media/device/v1.0.1/dark-chat.png" alt="Actual v1.0.1 restored dark chat" width="280"> <img src="docs/media/device/v1.0.1/light-chat.png" alt="Actual v1.0.1 restored light chat" width="280">
 
-[Actual MP4](docs/media/device/v1.0.0/physical-walkthrough.mp4) · [17 actual screenshots and provenance](docs/media/device/v1.0.0/manifest.json) · [Versioned conversation program demo](docs/media/conversation-v1.0.0/walkthrough.mp4). Original speed; personal history and LAN addresses excluded.
+![Actual v1.0.1 phone UI walkthrough, not model generation](docs/media/device/v1.0.1/physical-walkthrough.gif)
+
+[Actual MP4](docs/media/device/v1.0.1/physical-walkthrough.mp4) · [19 screenshots and provenance](docs/media/device/v1.0.1/manifest.json) · [43 conversation-program checks and media](docs/media/conversation-v1.0.1/manifest.json). All owned browser resources close after execution; no virtualization.
 
 LMA lets users select, download, manage and run local models on an Android phone, with chat, image/video/audio/3D jobs, artifacts and a local API. It is an independent community project, unaffiliated with LM Studio. The application UI is primarily Chinese; documentation is bilingual.
 
@@ -48,7 +51,7 @@ LMA-authored code is MIT. The bundled DISO CPU surface component is **CC BY-NC 4
 <a id="install"></a>
 ## Install and use
 
-1. Download `LMA-1.0.0-arm64-v8a.apk` from the Release and compare its hash with `SHA256SUMS`. Requires **64-bit Android 9 / API 28 or later**. The original signing identity is retained for upgrades and existing data.
+1. Download `LMA-1.0.1-arm64-v8a.apk` from the Release and compare its hash with `SHA256SUMS`. Requires **64-bit Android 9 / API 28 or later**. The original signing identity is retained for upgrades and existing data.
 2. Open LMA and allow notifications when prompted. For screen-off work, allow background activity and remove the relevant battery restrictions in Android settings. Installation and upgrades do not download models.
 3. Open Models → Recommended / All / Local. **Recommended retains the text prefix m08 → m06 → m01 and adds eleven multimodal choices.** All supports HF keywords, repository IDs/URLs, pagination and discovery of every format. Local manages downloaded/imported models and unfinished transfers.
 4. Filter by text, image, video, audio or 3D tags. Inspect architecture, recipe, backend, license, dependencies, pinned revision and size before explicitly downloading or importing with Android's document picker.
@@ -59,7 +62,7 @@ LMA-authored code is MIT. The bundled DISO CPU surface component is **CC BY-NC 4
 HF discovery and executable support are separate. Compatible files enter their matching text engine or multi-component recipe; arbitrary safetensors, GGUF or Diffusers repositories are not universally executable. Custom components can be registered through recipes. Missing components fail locally without implicit downloads or off-device execution.
 
 <a id="models"></a>
-Current APK: **v1.0.0 / code65**, original signer retained. Compare the exact Release APK with `SHA256SUMS`; see the [release inventory and validation](docs/releases/v1.0.0.md).
+Current APK: **v1.0.1 / code66**, original signer retained. Compare the exact Release APK with `SHA256SUMS`; see the [release inventory and validation](docs/releases/v1.0.1.md).
 
 ## Model and foundation scope
 
@@ -909,7 +912,7 @@ Authorized updates synchronize code, both languages, relevant media and changelo
 
 [Full changelog](CHANGELOG.md)
 
-**Current stable version: v0.4.0 / code64 — conversations and local creation.** [Download](https://github.com/wikigsroom/LMA/releases/tag/v1.0.0) · [Full operation, API and limits](docs/CONVERSATION_V040.en.md) · [Release notes](docs/releases/v0.4.0.md). D01–D12 from the 20261102 plan land together. Final Logo 21 is now the launcher icon, application header, empty-chat identity and About artwork. Dark is the default; valid saved themes survive.
+**Historical stable version: v0.4.0 / code64 — conversations and local creation.** [Download](https://github.com/wikigsroom/LMA/releases/tag/v1.0.0) · [Full operation, API and limits](docs/CONVERSATION_V040.en.md) · [Release notes](docs/releases/v0.4.0.md). D01–D12 from the 20261102 plan land together. Final Logo 21 is now the launcher icon, application header, empty-chat identity and About artwork. Dark is the default; valid saved themes survive.
 
 | ID | Change | Operation |
 | --- | --- | --- |
@@ -964,3 +967,5 @@ Historical v0.3.10 [legacy-host deviation](verification/releases/v0.3.10/validat
 **2026-11-03 UI10 Mica Bento accepted.** [Bilingual design system](docs/design/README.md) specifies dark/light themes, 30 components, seven width bands, 18 viewport targets, large text, IME and insets. This historical entry describes the specification stage; app-wide integration is delivered in v1.0.0 below. [Maintenance note](docs/releases/v0.4.0-mica-bento-design.md).
 
 **v1.0.0 / code65 · Mica Bento major release.** All five pages and overlays, two themes, adaptive layouts and native IME/font handling are implemented. 66 suites / 15,291 assertions; 36 actual UI checks, three physical font scales, 24 management/API checks, 60.269 seconds screen-off health and eight idle-performance checks. [Guide and current phone media](docs/MICA_V100.en.md) · [Stable Release](https://github.com/wikigsroom/LMA/releases/tag/v1.0.0). No full-model reruns.
+
+**v1.0.1 / code66 · Restored chat.** Original chat layout with optional “+” creation controls; 66 suites / 15,304 assertions, 48 physical UI checks and 19 actual screenshots. [Usage and F01–F08 integration evaluation](docs/CHAT_RESTORE_20261106.en.md) · [Stable Release](https://github.com/wikigsroom/LMA/releases/tag/v1.0.1). Proposed interactions and quality/background limits remain explicit.

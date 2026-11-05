@@ -5,19 +5,19 @@ from evidence import ROOT, current, version
 
 
 def check():
-    if version()!='1.0.0':return {}
+    if tuple(map(int,version().split('.')))<(1,0,0):return {}
     program=json.loads((ROOT/'build/mica-ui/results.json').read_text('utf8'))
     current(program['input_fingerprint'])
     assert program['version']==version() and program['passed']>=20 and len(program['matrix'])==520
     assert program['browser_closed'] and not program['physicalDevice']
-    physical=json.loads((ROOT/'verification/releases/v1.0.0/mica-physical-ui.json').read_text('utf8'))
+    physical=json.loads((ROOT/('verification/releases/v'+version()+'/mica-physical-ui.json')).read_text('utf8'))
     current(physical['input_fingerprint'])
     build=json.loads((ROOT/'dist/build-info.json').read_text('utf8'))
     assert physical['version']==version() and physical['apk_sha256']==build['sha256']
     assert physical['status']=='passed' and physical['physicalDevice'] and physical['passed']>=34
     assert not physical['modelInference'] and not physical['weightsDownloaded']
     for key in ('installed_assets_preserved','user_preferences_preserved','history_preserved'):assert physical[key],key
-    fonts=json.loads((ROOT/'verification/releases/v1.0.0/mica-fonts.json').read_text('utf8'))
+    fonts=json.loads((ROOT/('verification/releases/v'+version()+'/mica-fonts.json')).read_text('utf8'))
     current(fonts['input_fingerprint'])
     assert fonts['apk_sha256']==build['sha256'] and fonts['restored']
     assert {r['font_scale'] for r in fonts['runs']}=={1.3,1.5,2.0}

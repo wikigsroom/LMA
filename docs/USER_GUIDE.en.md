@@ -1,6 +1,9 @@
 # LMA user guide
 
-**v1.0.0 / code65:** [Mica Bento UI, themes, adaptive layouts and actual phone demonstration](MICA_V100.en.md). Existing per-model settings, assets, workflows and API remain. Earlier notes are historical.
+**Current v1.0.1 / code66:** [Restored chat and operation guide](CHAT_RESTORE_20261106.en.md). Use the header model picker and compact composer; open “+” for image/video/audio/3D, inputs, parameters and templates. Manual creation needs no LLM; close the sheet to send. Model defaults remain independent.
+
+
+**Historical v1.0.0 / code65:** [Mica Bento UI, themes, adaptive layouts and actual phone demonstration](MICA_V100.en.md). Existing per-model settings, assets, workflows and API remain. Earlier notes are historical.
 **Historical v0.4.0 / code64:** [Complete conversation and local-creation guide](CONVERSATION_V040.en.md). Image, video, speech, music, 3D and composition share the conversation; manual media needs no LLM. Model-specific parameters, reviewed tool drafts, explicit asset roles and W01–W06 sequences are supported. Dark defaults preserve valid choices; Logo 21 is integrated. Older examples below retain their historical scope.
 
 **Historical v0.3.12 / code62:** [Local multimodal API, SDK examples and Sub2API integration](LOCAL_API_V0312.en.md). Download/configure models in Local, start Service, then discover installed peers with `/v1/models`. Generation has no fixed deadline; HTTP waits do not stop async jobs. [Actual device measurements](DEVICE_BENCHMARK_V0312.en.md). Earlier version callouts below are historical.

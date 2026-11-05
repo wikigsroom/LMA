@@ -1,5 +1,8 @@
 # v1.0.0 云母分区 UI 大版本
 
+**后续 v1.0.1 修正：** 用户要求恢复原对话结构，常驻创作表单已移入“＋”面板；云母主题与其他页面保留。见[当前操作、截图与融合评估](CHAT_RESTORE_20261106.md)。本页 v1.0.0 数字和媒体保持原身份。
+
+
 [English](MICA_V100.en.md) · [正式 Release](https://github.com/wikigsroom/LMA/releases/tag/v1.0.0) · [完整设计规范](design/README.md)
 
 本版把 UI10「云母分区」接入整个 App：默认暗色，完整支持明亮主题和系统跟随，保留 Logo21、Slogan04、原签名及用户模型。五个业务入口和原有生成／任务／API 能力继续共用本地基座。

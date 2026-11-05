@@ -1,5 +1,8 @@
 # v0.4.0 · Conversations and local creation
 
+**v1.0.1 layout update:** [The original chat hierarchy is restored](CHAT_RESTORE_20261106.en.md). Modes, inputs, temporary parameters, templates and visual pairing below open through “+”, instead of a permanent form above the prompt. Existing business/API contracts remain; v0.4.0 counts/media are historical.
+
+
 [中文](CONVERSATION_V040.md) · [Frozen 20261102 plan](UPDATE_DIRECTION_20261102.en.md) · [Release notes](releases/v0.4.0.md)
 
 D01–D12 ship as one program delivery. LMA remains a foundation: users choose, download or import every model; inference, preprocessing and composition run on the same Android phone. The original recommendation order, 62 recipes, 82 bundles, 18 extension engines plus text, port 52187, signing identity and existing assets remain.

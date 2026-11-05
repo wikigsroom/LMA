@@ -1,5 +1,13 @@
 # Changelog / 更新记录
 
+## v1.0.1 · 2026-11-06 · 对话页面复原 / Restored chat
+
+- 按用户反馈恢复顶部模型／历史／新建、中间消息及底部紧凑输入；还原起始问题和助手复制。现有生图／视频／音频／3D、附件、参数、模板、视觉配对移入“＋”面板，普通聊天不常驻创作表单。
+- 修复默认模式显示、顶部模型名与实际引擎同步、发现页筛选误伤聊天选项、分页历史入口；单实例面板和嵌套窗口保留草稿／选择。
+- 66组／15,304项程序断言；796项全页面、43项对话、520布局；48项真机UI，三档字体各29项，24项管理/API与60.237秒锁屏健康。无模型下载或完整模型实跑。
+- 19张实机截图、原速MP4／GIF、中英README和F01–F08完整融合评估同步；后续任务网格、统一模型面板和结果继续创作等交互明确列为建议，不冒充实现。
+- Stable / prerelease=false, original-signed code66, user assets/preferences/history preserved. [中文](docs/CHAT_RESTORE_20261106.md) · [English](docs/CHAT_RESTORE_20261106.en.md) · [Release](docs/releases/v1.0.1.md).
+
 ## v1.0.0 · 2026-11-03 · 云母分区 UI 大版本 / Mica Bento major release
 
 - UI10 覆盖五页面、模型／任务／API／媒体、表单和弹层；默认暗色、完整明亮／系统跟随，Logo21／Slogan04 和原签名保留。

@@ -1,0 +1,39 @@
+{
+  "passed": 17,
+  "checks": [
+    "real_cli_manifest",
+    "actual_bytes_config",
+    "actual_bytes_sampler",
+    "actual_bytes_image_encoder",
+    "actual_bytes_vae_encoder",
+    "actual_bytes_flow",
+    "actual_bytes_vae_decoder",
+    "actual_bytes_upscale",
+    "actual_bytes_image_encoder_data",
+    "actual_bytes_vae_encoder_data",
+    "actual_bytes_flow_data",
+    "actual_bytes_vae_decoder_data",
+    "actual_bytes_upscale_data",
+    "real_config",
+    "all_sampler_profiles",
+    "receipt_scope",
+    "existing_assets_preserved"
+  ],
+  "input_fingerprint": {
+    "third_party/paint-source-lock.json": "8612c54850f92b825ece703ea421221394b69203bc3502f00d417017d3cf2934",
+    "third_party/spatial-shape-source-lock.json": "5492375fbf3934a15db37581a413a94e64038a486189b0ec51d37ed1ff55f69d",
+    "tools/export_paint.py": "737fff662368ec3b7d7ffd92ff2de6666db924d37fb720588a4a44dfdb593baa",
+    "tools/export_spatial.py": "0673bc931b7645bba41e6267ef90d10f5b55d60b2a6dd360de392312a769d624",
+    "tools/paint_catalogue.py": "05d8b306541c5ad955921c68629b8d087de17cd5c328cb01eaf46af28b3d02ef",
+    "tools/paint_graphs.py": "08013c78f80af928fe96c3211185801d783c1d57c29f9ce1a6a2d9190367787d",
+    "tools/paint_reference.py": "f6a2b4a002e6d2b1e2725ac5c3bd4daa8d3b2cb82af2b34d3ff3a1a9d6a47f5d",
+    "tools/paint_sampler.py": "7aec4f54b07d498209f8d81f2720965849bb9d1ab6dbcd1cdcd5551d363baafe",
+    "tools/spatial_reference.py": "d71d02cea9e0ddb4b5483561c9d04db76cd9904ce4c118112ed647060397a893",
+    "tools/test_paint_export.py": "596b5177fa69265e82a3e1c6a4d8018aad90ca975d25f7c9c7838caaf49f7c08"
+  },
+  "completeModelsDownloaded": 0,
+  "completeModelsRun": 0,
+  "randomNeuralGraphs": true,
+  "physicalDeviceTests": 0,
+  "virtualizationUsed": false
+}

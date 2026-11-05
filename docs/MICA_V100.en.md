@@ -1,5 +1,8 @@
 # v1.0.0 Mica Bento UI major release
 
+**v1.0.1 follow-up:** The user requested the original chat hierarchy; creation controls now open through “+”. Mica themes and other pages remain. See [current usage, media and integration evaluation](CHAT_RESTORE_20261106.en.md). Counts/media below retain their v1.0.0 identity.
+
+
 [中文](MICA_V100.md) · [Stable Release](https://github.com/wikigsroom/LMA/releases/tag/v1.0.0) · [Design contracts](design/README.md)
 
 UI10 Mica Bento now covers LMA. Opaque blue-gray planes, cobalt selection and mint downloads span all five destinations, overlays, forms and media. Dark is the installation default; Light and System are complete preferences. Logo21, slogan04, the original signer and existing user assets are retained.

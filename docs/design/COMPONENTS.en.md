@@ -132,7 +132,7 @@ Streaming updates the active text node while preserving selection, scroll and fo
 
 ## C19 · Composer, attachments and manual modes
 
-Order: model/mode, selected attachments and roles, multiline input, Send/Cancel. Input minimum 48px, grows to about one-third of visible space before internal scrolling. Send has a separate 48px target and may move below the field when narrow. Preserve drafts and never submit Enter during CJK composition.
+2026-11-06 user correction: restore the top model toolbar, message stream and compact composer. Modes, inputs, temporary parameters, templates and visual pairing open through “+”; never keep two selectors and a button grid above every prompt. Non-default tasks add one operation summary and a return-to-chat action; selected inputs/roles appear when present. [Restoration and integration proposal](../CHAT_RESTORE_20261106.en.md). Input minimum 48px grows to about one-third of visible space before internal scrolling. Send has a separate 48px target. Preserve drafts and never submit Enter during CJK composition.
 
 Phone Enter inserts a newline; the Send button remains available. Document physical-keyboard shortcuts without breaking IME input. Manual image/video/audio/3D modes do not require an LLM. Attachments expose role, validity, removal and provenance without silent reinterpretation. Resize around the IME and navigation. Both themes retain inset field boundaries, caret/selection and draft content.
 

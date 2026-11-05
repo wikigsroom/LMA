@@ -112,7 +112,8 @@ async function main() {
           const m = f.models.find(x => x.id === command.id);
           window.__handleHub(command);
           const recipeData = window.__handleRecipe ? window.__handleRecipe(command) : undefined;
-          const data = recipeData === undefined && window.__handleFoundation ? window.__handleFoundation(command) : recipeData;
+          let data = recipeData === undefined && window.__handleFoundation ? window.__handleFoundation(command) : recipeData;
+          if (command.action === 'chatSessions') data = {sessions: f.chat.sessions, before: 0, hasMore: false};
           if (window.__rejectNextAction === command.action) {
             window.__rejectNextAction = null; f.error = '原生测试端拒绝了这次操作';
             f.commandResults.push({requestId: command.requestId, action: command.action, ok: false, error: f.error});

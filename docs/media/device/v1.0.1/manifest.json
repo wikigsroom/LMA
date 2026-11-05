@@ -1,0 +1,230 @@
+{
+  "schema": "lma.physical-mica-media/1",
+  "version": "1.0.1",
+  "apk_sha256": "0a25fed1e230cec51a37c07a713d6bf8e9fae19b48897b4a1b67de9fc89b16cb",
+  "android_device": true,
+  "desktop_fixture": false,
+  "model_inference": false,
+  "weights_downloaded": false,
+  "reviewed_app_only": true,
+  "playback_speed": 1,
+  "browser_used": false,
+  "browser_closed": true,
+  "recording_seconds": 20,
+  "screenshots": [
+    {
+      "file": "dark-models.png",
+      "bytes": 187927,
+      "sha256": "4f4c26adef1c1a73851c1cbdc4b6fac141462aef7c5594cace304d51c7696ae3"
+    },
+    {
+      "file": "dark-model-cards.png",
+      "bytes": 211342,
+      "sha256": "0da68c56dfaf5588a57623a45536012ee7157a3bae52a986b28b20bf46b8fa34"
+    },
+    {
+      "file": "dark-chat.png",
+      "bytes": 167065,
+      "sha256": "1b351211a0a1456e0a08f01acb5af84db007a3ae6405fc8649eb396a36cd42f8"
+    },
+    {
+      "file": "dark-chat-tools.png",
+      "bytes": 155080,
+      "sha256": "d6329059a42f37bb5cff071dabcc21c20489e8b3e976d9ddf0ba4dd04ae7249c"
+    },
+    {
+      "file": "dark-tasks.png",
+      "bytes": 201512,
+      "sha256": "a0f985f4083aa239723420b989aae5559ae587066decf3af22880792c17f3973"
+    },
+    {
+      "file": "dark-server.png",
+      "bytes": 192970,
+      "sha256": "4f0f417027e774e441e8e9204478cc729fc53e0481f21da74e2543a9f8d5e9b0"
+    },
+    {
+      "file": "dark-settings.png",
+      "bytes": 202661,
+      "sha256": "8ce402aad73e92e0a288338f74994f8a18de7b2e42d807c0f4ce47ce79ce5327"
+    },
+    {
+      "file": "dark-local.png",
+      "bytes": 181316,
+      "sha256": "9ed351240df9d0ac86b0ccb033b04186e07c8f0563698fa66388c8a5ad3fb814"
+    },
+    {
+      "file": "dark-model-parameters.png",
+      "bytes": 145083,
+      "sha256": "de02540400cdd975c0baf7cef912621f84b56ce3a9a6c9b51f2fe519eef0225c"
+    },
+    {
+      "file": "light-models.png",
+      "bytes": 185535,
+      "sha256": "b921b7ee83abad5d8a26924cbaa0f0e63526de055b85335ed9293b9bddd6c4b6"
+    },
+    {
+      "file": "light-model-cards.png",
+      "bytes": 208665,
+      "sha256": "a2d2079851943eaa34ec46a00739d555fbe5acef5fc413cbbccab4a7905a4199"
+    },
+    {
+      "file": "light-chat.png",
+      "bytes": 165749,
+      "sha256": "585c0fbdf34b9b22a95969b725f0131930724dbad45c60eafbfa2419beec3da3"
+    },
+    {
+      "file": "light-chat-tools.png",
+      "bytes": 163454,
+      "sha256": "0156e3d6c4ef967b06884ffd3593451d189598897caf48c14bc24a3e42255552"
+    },
+    {
+      "file": "light-tasks.png",
+      "bytes": 199097,
+      "sha256": "826736548646cfb861a0f6256a6d22e5d4c22a3558a14ee75df3d909fda882fe"
+    },
+    {
+      "file": "light-server.png",
+      "bytes": 191553,
+      "sha256": "65e0087c4b97e7209abc4345bae9b1033875988f94b10fbcc4b5798eafe2ad5b"
+    },
+    {
+      "file": "light-settings.png",
+      "bytes": 200268,
+      "sha256": "8a0bfc2679cffe797f6f4553156f59984d2ff64bedecc0454249ea8c50b59973"
+    },
+    {
+      "file": "light-local.png",
+      "bytes": 179025,
+      "sha256": "bf60b99135a5fc917f760da1263eb2b51b3204a2202c8ebc542732156512654c"
+    },
+    {
+      "file": "light-model-parameters.png",
+      "bytes": 145662,
+      "sha256": "2af06762027a483373834df0714fc8038fe1e3464b4756983a95b28c930ba3dd"
+    },
+    {
+      "file": "light-landscape.png",
+      "bytes": 189922,
+      "sha256": "223f933dc7c10b2f887c805b857f3f29d0e74d36f7abe4043fcd6a9eca4e9e45"
+    }
+  ],
+  "files": [
+    {
+      "file": "dark-chat-tools.png",
+      "bytes": 155080,
+      "sha256": "d6329059a42f37bb5cff071dabcc21c20489e8b3e976d9ddf0ba4dd04ae7249c"
+    },
+    {
+      "file": "dark-chat.png",
+      "bytes": 167065,
+      "sha256": "1b351211a0a1456e0a08f01acb5af84db007a3ae6405fc8649eb396a36cd42f8"
+    },
+    {
+      "file": "dark-local.png",
+      "bytes": 181316,
+      "sha256": "9ed351240df9d0ac86b0ccb033b04186e07c8f0563698fa66388c8a5ad3fb814"
+    },
+    {
+      "file": "dark-model-cards.png",
+      "bytes": 211342,
+      "sha256": "0da68c56dfaf5588a57623a45536012ee7157a3bae52a986b28b20bf46b8fa34"
+    },
+    {
+      "file": "dark-model-parameters.png",
+      "bytes": 145083,
+      "sha256": "de02540400cdd975c0baf7cef912621f84b56ce3a9a6c9b51f2fe519eef0225c"
+    },
+    {
+      "file": "dark-models.png",
+      "bytes": 187927,
+      "sha256": "4f4c26adef1c1a73851c1cbdc4b6fac141462aef7c5594cace304d51c7696ae3"
+    },
+    {
+      "file": "dark-server.png",
+      "bytes": 192970,
+      "sha256": "4f0f417027e774e441e8e9204478cc729fc53e0481f21da74e2543a9f8d5e9b0"
+    },
+    {
+      "file": "dark-settings.png",
+      "bytes": 202661,
+      "sha256": "8ce402aad73e92e0a288338f74994f8a18de7b2e42d807c0f4ce47ce79ce5327"
+    },
+    {
+      "file": "dark-tasks.png",
+      "bytes": 201512,
+      "sha256": "a0f985f4083aa239723420b989aae5559ae587066decf3af22880792c17f3973"
+    },
+    {
+      "file": "light-chat-tools.png",
+      "bytes": 163454,
+      "sha256": "0156e3d6c4ef967b06884ffd3593451d189598897caf48c14bc24a3e42255552"
+    },
+    {
+      "file": "light-chat.png",
+      "bytes": 165749,
+      "sha256": "585c0fbdf34b9b22a95969b725f0131930724dbad45c60eafbfa2419beec3da3"
+    },
+    {
+      "file": "light-landscape.png",
+      "bytes": 189922,
+      "sha256": "223f933dc7c10b2f887c805b857f3f29d0e74d36f7abe4043fcd6a9eca4e9e45"
+    },
+    {
+      "file": "light-local.png",
+      "bytes": 179025,
+      "sha256": "bf60b99135a5fc917f760da1263eb2b51b3204a2202c8ebc542732156512654c"
+    },
+    {
+      "file": "light-model-cards.png",
+      "bytes": 208665,
+      "sha256": "a2d2079851943eaa34ec46a00739d555fbe5acef5fc413cbbccab4a7905a4199"
+    },
+    {
+      "file": "light-model-parameters.png",
+      "bytes": 145662,
+      "sha256": "2af06762027a483373834df0714fc8038fe1e3464b4756983a95b28c930ba3dd"
+    },
+    {
+      "file": "light-models.png",
+      "bytes": 185535,
+      "sha256": "b921b7ee83abad5d8a26924cbaa0f0e63526de055b85335ed9293b9bddd6c4b6"
+    },
+    {
+      "file": "light-server.png",
+      "bytes": 191553,
+      "sha256": "65e0087c4b97e7209abc4345bae9b1033875988f94b10fbcc4b5798eafe2ad5b"
+    },
+    {
+      "file": "light-settings.png",
+      "bytes": 200268,
+      "sha256": "8a0bfc2679cffe797f6f4553156f59984d2ff64bedecc0454249ea8c50b59973"
+    },
+    {
+      "file": "light-tasks.png",
+      "bytes": 199097,
+      "sha256": "826736548646cfb861a0f6256a6d22e5d4c22a3558a14ee75df3d909fda882fe"
+    },
+    {
+      "file": "physical-walkthrough.gif",
+      "bytes": 1042795,
+      "sha256": "1749600d83858cc6010cbd444e997694a78d78b8f562d8262ed3de62bb5b8328"
+    },
+    {
+      "file": "physical-walkthrough.mp4",
+      "bytes": 1463699,
+      "sha256": "70e1318a548d85b50d05a8469bb7e2e869d65b75acb1200b91f4759eae92e62e"
+    }
+  ],
+  "input_fingerprint": {
+    "app/src/main/assets/app.js": "a84c261b8fe6196285f9bc727d13640a613abce0b06c25d820ca2b380926a023",
+    "app/src/main/assets/conversation.js": "5583dcf51e4444715bd6eefcb1e17b1d9411ebcb0c216a812b5140bfd533a577",
+    "app/src/main/assets/index.html": "114f70a528839e09a99e9289ae62c995c4ef59b1a1347854542d76258b767f18",
+    "app/src/main/assets/mica.css": "fe7e5dda3f2f38690623e34a18b2ce5c8f196aef0779091b55855de6a773ccfd",
+    "app/src/main/assets/mica.js": "b42616f0889dc262c68ae62cfe804aad64ca93a38e4f186351eb2c7eda52ed74",
+    "app/src/main/java/com/lma/app/MainActivity.java": "f2a98438d24980a10668c6d51caa1f825241ecb83f3b89afbbed901bb58450bb",
+    "tests/android/com/lma/app/DeviceUiProbe.java": "d4aefc06be76f040b5fa8dfc9062f0742f3f14f900c92c914b294682cb8abddd",
+    "tools/capture_mica_device.py": "e3c6c09d23e118d26e04e0166467de40d99a190054ede390896b63de34a77308"
+  },
+  "privacy_scope": "Actual app area; empty new conversation; explicit task search hides personal jobs; no deletion of history or installed assets. API credential fields stay masked. Manual visual review required.",
+  "review_scope": "All 19 screenshots and four representative frames from the original-speed GIF/MP4 reviewed; app-only crop, empty chat, filtered personal tasks, masked credentials, loopback API address."
+}

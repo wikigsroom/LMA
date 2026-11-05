@@ -15,7 +15,7 @@ def main():
     build=json.loads((ROOT/'dist/build-info.json').read_text('utf8'))
     apk=run('shell','pm','path','com.lma.app').strip().removeprefix('package:')
     assert run('shell','sha256sum',apk).split()[0]==build['sha256']
-    private=ROOT/'build/mica-v100';private.mkdir(parents=True,exist_ok=True)
+    private=ROOT/('build/mica-v'+version().replace('.',''));private.mkdir(parents=True,exist_ok=True)
     records=[];restored=False
     try:
         for scale in (1.3,1.5,2.0):
@@ -32,7 +32,7 @@ def main():
         restored=run('shell','settings','get','system','font_scale').strip()==original
     assert restored
     record=dict(schema='lma.mica-physical-fonts/1',version=version(),apk_sha256=build['sha256'],physicalDevice=True,modelInference=False,restored=restored,runs=records,
-        input_fingerprint=fingerprint('tools/probe_mica_fonts.py','tests/android/com/lma/app/DeviceUiProbe.java','app/src/main/java/com/lma/app/MainActivity.java','app/src/main/assets/mica.css','app/src/main/assets/mica.js'))
+        input_fingerprint=fingerprint('tools/probe_mica_fonts.py','tests/android/com/lma/app/DeviceUiProbe.java','app/src/main/java/com/lma/app/MainActivity.java','app/src/main/assets/mica.css','app/src/main/assets/mica.js','app/src/main/assets/app.js','app/src/main/assets/conversation.js'))
     out=ROOT/'verification/releases'/('v'+version())/'mica-fonts.json';out.parent.mkdir(parents=True,exist_ok=True);out.write_text(json.dumps(record,ensure_ascii=False,indent=2)+'\n','utf8')
 
 

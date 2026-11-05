@@ -34,7 +34,7 @@ for item in required_records():
     if item not in BASE_SOURCES.values():
         EXTRA[Path(item).parent.name + '.json' if item.endswith('/results.json') else Path(item).name] = item
 SOURCES = BASE_SOURCES | EXTRA
-MINIMUM = BASE_MINIMUM | {'mica-ui':20,'conversation-core':71,'conversation-integration':48,'conversation-ui':30,'api-publication': 34, 'sub2api-gateway': 12, 'ui-performance': 8, 'expansion': 875, 'portable-sparse-models': 97, 'cascade': 95, 'ultratex-attention': 47, 'material': 61}
+MINIMUM = BASE_MINIMUM | {'mica-ui':20,'conversation-core':71,'conversation-integration':48,'conversation-ui':43,'api-publication': 34, 'sub2api-gateway': 12, 'ui-performance': 8, 'expansion': 875, 'portable-sparse-models': 97, 'cascade': 95, 'ultratex-attention': 47, 'material': 61}
 for module in MODULES.values():
     for name, minimum in module['tests'].items():
         if name != 'expansion-tests':
@@ -68,7 +68,7 @@ def declared_deviation():
 
 def inputs():
     return fingerprint('tools/complete_evidence.py', 'tools/program_evidence.py', 'tools/program_release.py',
-        *(['tools/mica_evidence.py','verification/releases/v1.0.0/mica-physical-ui.json','verification/releases/v1.0.0/mica-fonts.json'] if version()=='1.0.0' else []),
+        *(['tools/mica_evidence.py','verification/releases/v'+version()+'/mica-physical-ui.json','verification/releases/v'+version()+'/mica-fonts.json'] if tuple(map(int,version().split('.'))) >= (1,0,0) else []),
         'tools/conversation_evidence.py','catalogue/conversation-20261102-implementation.json',CONVERSATION_MEDIA+'/manifest.json',
         'tools/physical_model_evidence.py', 'tools/physical_api_evidence.py', 'tools/device_model_probe.py', 'tools/check_repository.py', 'tools/package_delivery.py', 'tools/prepare_release.py', 'tools/publish_release.py',
         'tools/release_scope.py', 'tools/audit_adaptations.py', 'tools/physical_evidence.py', 'tools/recommendations.py', 'tools/task_diagnostics_evidence.py',

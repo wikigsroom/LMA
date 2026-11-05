@@ -1,5 +1,12 @@
 # 发布流程 / Release workflow
 
+## v1.0.1 对话复原 / Chat restoration
+
+沿用下方 UI10 流程；版号1.0.1/code66，原签名升级。运行更新后的 conversation-ui（43项）、全页面UI和520布局，使用当前APK重建实机验收包。先记录私有升级基线，再 capture_mica_device；19PNG及录屏/GIF人工复核后才标 reviewed。probe_mica_fonts 现含聊天面板回归，三档各29项；device_check 的短锁屏检查后先按既有授权解锁，再运行空闲 profile，避免把锁屏启动失败误作性能值。保持全部旧证据，program_evidence、package、prepare、repository门禁后正常推送并发布 stable / prerelease=false。
+
+Use current fingerprints and exact APK; distinguish program fixtures, actual UI/API health and model quality. This patch needs no model download/inference. [使用与评估 / Usage and evaluation](CHAT_RESTORE_20261106.md) · [English](CHAT_RESTORE_20261106.en.md) · [Release](releases/v1.0.1.md).
+
+
 ## v1.0.0 云母分区 / Mica Bento
 
 1. 原生 Windows 构建、原签名、41个库；先生成 Mica tokens，再构建与核对 APK / lint。

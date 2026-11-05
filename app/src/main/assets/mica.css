@@ -182,24 +182,35 @@
 .lma-mica input[type=checkbox],.lma-mica input[type=radio] {accent-color:var(--primary);flex-shrink:0}
 .lma-mica .task-adapter {grid-template-columns:minmax(0,1fr);gap:8px}
 .lma-mica .chat-page.active {padding:12px var(--gutter);display:flex;flex-direction:column;overflow:hidden}
-.lma-mica .chat-toolbar {gap:8px;flex-wrap:wrap;align-items:center}
-.lma-mica .chat-toolbar .model-picker {flex:1;min-width:0;max-width:100%;font-size:1rem;gap:8px}
-.lma-mica .model-picker>span:nth-child(2) {white-space:normal;overflow:visible;max-width:none;min-width:0}
-.lma-mica .toolbar-actions {gap:4px}
+.lma-mica .chat-toolbar {gap:8px;flex-wrap:nowrap;align-items:center}
+.lma-mica .chat-toolbar .model-picker {flex:1;min-width:0;max-width:100%;font-size:.875rem;gap:4px}
+.lma-mica .model-picker>span:nth-child(2) {white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:none;min-width:0}
+.lma-mica .toolbar-actions {gap:4px;flex-shrink:0}
 .lma-mica .messages {padding:16px 0;scroll-behavior:auto;min-height:0;flex:1}
 .lma-mica .message {max-width:760px;margin:0 auto 24px;font-size:1rem;line-height:1.5}
 .lma-mica .message-content {font-size:1rem;line-height:1.5}
 .lma-mica .message-heading,.lma-mica .message-heading strong {font-size:.875rem;line-height:1.5;letter-spacing:0;gap:8px;flex-wrap:wrap}
 .lma-mica .message-heading .icon-button {min-height:48px;height:48px}
 .lma-mica .message.user {border-radius:10px;background:var(--panel);border-color:var(--line)}
-.lma-mica .chat-empty {min-height:180px;height:auto;padding:20px 8px}
+.lma-mica .chat-empty {min-height:320px;height:100%;padding:16px 8px}
+.lma-mica .chat-empty .empty-symbol {width:56px;height:56px;border-radius:16px;margin-bottom:14px}
+.lma-mica .chat-empty .eyebrow {font-size:.625rem;letter-spacing:.12em}
 .lma-mica .chat-empty h2 {font-size:1.5rem;letter-spacing:0}
-.lma-mica .chat-empty p {font-size:1rem;line-height:1.5;max-width:440px}
+.lma-mica .chat-empty p {font-size:.875rem;line-height:1.6;max-width:440px;margin:10px 0 18px}
 .lma-mica .suggestion {font-size:.875rem;line-height:1.5;white-space:normal;border-radius:8px;border-color:var(--lma-control-border);padding:12px}
-.lma-mica .composer {padding:12px;border-radius:10px;background:var(--panel);border:1px solid var(--lma-control-border);margin:0 auto;max-width:900px;width:100%;min-width:0;flex-shrink:0}
+.lma-mica .composer {padding:10px 12px;border-radius:16px;background:var(--panel);border:1px solid var(--lma-control-border);margin:0 auto;max-width:900px;width:100%;min-width:0;flex-shrink:0}
 .lma-mica #chatInput {font-size:1rem;line-height:1.5;min-height:48px;max-height:30vh;border:0;outline-offset:0;padding:10px 4px;color:var(--ink);background:transparent}
 .lma-mica .composer-bottom {gap:8px;min-width:0}
-.lma-mica #composerHint {font-size:.75rem;line-height:1.5;min-width:0;white-space:normal;color:var(--muted)}
+.lma-mica #composerHint {font-size:.75rem;line-height:1.5;min-width:0;white-space:normal;color:var(--muted);flex:1;padding-left:0}
+.lma-mica .composer-more {width:48px;height:48px;flex-shrink:0;color:var(--muted);border-radius:8px}
+.lma-mica .conversation-context {display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--line);margin-bottom:8px}
+.lma-mica .conversation-context .text-button {text-align:left;flex:1;min-width:0;white-space:normal}
+.lma-mica .conversation-context .icon-button {flex-shrink:0}
+.lma-mica .conversation-menu-actions {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:16px 0}
+.lma-mica #conversationOptions .conversation-controls {display:block}
+.lma-mica #conversationOptions .form-field {margin-bottom:12px}
+.lma-mica #conversationOptions select {width:100%;max-width:100%}
+.lma-mica #conversationOptions .conversation-options {margin:16px 0}
 .lma-mica .send-button {width:48px;min-width:48px;min-height:48px;height:auto;border-radius:8px;flex-shrink:0}
 .lma-mica .conversation-controls {gap:8px;margin:0 0 8px;min-width:0}
 .lma-mica .conversation-controls select {font-size:1rem;line-height:1.5;max-width:100%;min-height:48px;border:1px solid var(--lma-control-border);border-radius:8px;padding:10px;flex:1;min-width:0}

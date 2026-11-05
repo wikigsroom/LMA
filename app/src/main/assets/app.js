@@ -338,6 +338,7 @@
     settingsFilled = true;
   }
   function openModal(title, content, kind) {
+    if (window.LMAConversation) window.LMAConversation.parkOptions();
     if (window.LMAExpansion) window.LMAExpansion.close();
     if ($('modalBackdrop').hidden) returnFocus = document.activeElement;
     modalKind = kind || ''; $('modalTitle').textContent = title; $('modalContent').innerHTML = content; $('modalBackdrop').hidden = false;
@@ -415,6 +416,7 @@
   }
   function closeModal() {
     if ($('modalBackdrop').hidden) return;
+    window.LMAConversation.parkOptions();
     window.LMAExpansion.close(); window.LMAFoundation.close(); window.LMARecipes.close(); $('modalBackdrop').hidden = true; modalKind = ''; modelEditor = null;
     document.querySelector('.app-shell').removeAttribute('aria-hidden');
     document.querySelector('.app-shell').inert = false;
@@ -424,7 +426,7 @@
     openModal(title, '<p>' + esc(message) + '</p><div class="modal-actions"><button class="button secondary" data-action="closeModal">取消</button><button class="button danger" data-action="confirmed" data-command="' + esc(action) + '" data-id="' + esc(id) + '">' + esc(button || '确认删除') + '</button></div>', 'confirm');
   }
   function pickModel() {
-    var installed = models().filter(function (m) { return m.installed && !m.isBundle && window.LMACapabilities.matches(m); });
+    var installed = models().filter(function (m) { return m.installed && !m.isBundle; });
     openModal('选择本地模型', installed.length ? '<p>加载后开启本机接口。文本回复与生成任务共用队列，自动切换引擎；队列空闲后恢复已选文本模型。</p>' + (['ready', 'loading', 'recovering', 'waiting', 'suspended'].indexOf(engine().state) >= 0 ? '<button class="button danger" data-action="stopTextModel">停止文本模型</button>' : '') + '<div class="modal-list">' + installed.map(function (m) { return '<div class="modal-list-item"><button data-action="load" data-id="' + esc(m.id) + '"><strong>' + esc(m.name) + '</strong><small>' + esc(m.quant) + ' · ' + bytes(m.installedBytes) + window.LMACapabilities.badges(m) + '</small></button>' + icon('arrow') + '</div>'; }).join('') + '</div>' : '<p>先下载一个模型，或从设备导入 GGUF 文件。</p><button class="button primary" data-action="tab" data-tab="models">前往模型库</button>', 'pickModel');
   }
   function modelInfo(id) {
@@ -500,7 +502,7 @@
       case 'addUrl': openModal('添加 GGUF 下载链接', '<form id="customModelForm"><label class="form-field"><span>模型名称</span><input name="name" required maxlength="160" placeholder="例如：我的 Qwen 1.7B"></label><label class="form-field"><span>HTTPS 下载链接</span><input name="url" type="url" required placeholder="https://huggingface.co/…/resolve/main/….gguf" autocapitalize="off" spellcheck="false"></label><label class="form-field"><span>SHA256（可选）</span><input name="sha256" pattern="[a-fA-F0-9]{64}" maxlength="64" placeholder="发布者提供的 64 位哈希" autocapitalize="off" spellcheck="false"></label><p class="modal-help">请确认模型使用当前推理组件支持的架构，且适合手机的内存容量。</p><button type="submit" class="button primary">添加并下载</button></form>', 'addUrl'); break;
       case 'importPicker': nativeAction(action); closeModal(); break;
       case 'clearSearch': $('modelSearch').value='';query='';modelSignature='';renderModels();$('modelSearch').focus();break;
-      case 'about': openModal('关于 LMA', '<img class="conversation-hero-logo" src="lma-logo.png" alt="LMA 21 号 Logo"><h3>把无审查 AI，装进口袋。</h3><p>Uncensored AI, right in your pocket.</p><p>LMA ' + esc(state&&state.version||'1.0.0') + ' · Android 本地模型工作台。模型、推理、任务链与媒体合成均在当前手机；模型由你选择下载或导入。</p><p>原生服务持有后台任务和接口。系统强行停止、内存、温控与厂商省电策略仍会影响执行；程序检查与实际模型质量分别记录。</p><p>Logo：21 号 Cobalt Vinyl / 钴蓝软胶。模型与开源组件遵循各自许可。</p><button class="button secondary" data-action="notices">查看开源许可</button><button class="button secondary" data-action="expansionNotices">语音 / 3D 组件许可</button>', 'about'); break;
+      case 'about': openModal('关于 LMA', '<img class="conversation-hero-logo" src="lma-logo.png" alt="LMA 21 号 Logo"><h3>把无审查 AI，装进口袋。</h3><p>Uncensored AI, right in your pocket.</p><p>LMA ' + esc(state&&state.version||'1.0.1') + ' · Android 本地模型工作台。模型、推理、任务链与媒体合成均在当前手机；模型由你选择下载或导入。</p><p>原生服务持有后台任务和接口。系统强行停止、内存、温控与厂商省电策略仍会影响执行；程序检查与实际模型质量分别记录。</p><p>Logo：21 号 Cobalt Vinyl / 钴蓝软胶。模型与开源组件遵循各自许可。</p><button class="button secondary" data-action="notices">查看开源许可</button><button class="button secondary" data-action="expansionNotices">语音 / 3D 组件许可</button>', 'about'); break;
       case 'engineLicense': openModal('llama.cpp · MIT License', '<div class="license-text">' + esc(window.LMA_LICENSE || 'MIT License\n\nCopyright (c) 2023-2026 The ggml authors\n\n完整许可证随 APK 的 licenses/LLAMA_CPP_LICENSE 一同分发，也位于项目 third_party/LLAMA_CPP_LICENSE。') + '</div>', 'license'); break;
       case 'notices': openModal('LMA 与第三方许可', Object.keys(window.LMA_NOTICES || {}).map(function (name) { return '<details class="license-notice"><summary>' + esc(name) + '</summary><div class="license-text">' + esc(window.LMA_NOTICES[name]) + '</div></details>'; }).join(''), 'license'); break;
     }

@@ -96,6 +96,19 @@ public final class DeviceUiProbe extends Instrumentation {
                         if(p.equals("models"))js("document.querySelector('[data-filter=recommended]').click();document.querySelector('[data-task=any]').click()");
                         check(t+" "+p+" has no horizontal overflow","document.documentElement.scrollWidth<=innerWidth+1&&document.querySelector('.page.active').scrollWidth<=document.querySelector('.page.active').clientWidth+1");
                         capture(t+"-"+p);
+                        if(p.equals("chat")){
+                            check(t+" ordinary chat has no generation form","document.querySelector('#conversationOptions').hidden&&document.querySelector('#conversationContext').hidden&&document.querySelector('#conversationMode').value==='chat'");
+                            check(t+" original empty prompts restored","document.querySelector('.chat-empty h2').textContent==='从一句话开始。'&&document.querySelectorAll('.suggestion').length===2");
+                            js("document.querySelector('#chatInput').value='LMA UI 检查草稿';document.querySelector('#conversationMore').click()");
+                            check(t+" creation sheet isolates chat","document.querySelector('.app-shell').inert&&!document.querySelector('#conversationOptions').hidden");
+                            capture(t+"-chat-tools");
+                            js("document.querySelector('#conversationMode').value='auto';document.querySelector('#conversationMode').dispatchEvent(new Event('change',{bubbles:true}));document.querySelector('[data-action=conversationParameters]').click()");
+                            js("document.querySelector('#modal [data-action=closeModal]').click();document.querySelector('#conversationMore').click()");
+                            check(t+" nested sheets preserve mode and draft","document.querySelector('#conversationMode').value==='auto'&&document.querySelector('#chatInput').value==='LMA UI 检查草稿'");
+                            js("document.querySelector('#modal [data-action=closeModal]').click();document.querySelector('[data-action=conversationChat]').click()");
+                            check(t+" ordinary chat restores after creation","document.querySelector('#conversationContext').hidden&&document.querySelector('#conversationOptions').hidden&&!document.querySelector('.app-shell').inert");
+                            js("document.querySelector('#chatInput').value='';document.querySelector('#chatInput').dispatchEvent(new Event('input',{bubbles:true}))");
+                        }
                         if(p.equals("models")&&mode.equals("capture")){
                             js("document.querySelector('#modelList .model-card').scrollIntoView({block:'start'})");capture(t+"-model-cards");
                             js("document.querySelector('#page-models').scrollTop=0");

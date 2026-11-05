@@ -10,7 +10,7 @@ def main():
     parser.add_argument('--baseline',type=Path,required=True,help='Private pre-upgrade UI baseline')
     args=parser.parse_args()
     adb=Path(os.environ['LOCALAPPDATA'])/'Android/Sdk/platform-tools/adb.exe'
-    private=ROOT/'build/mica-v100';private.mkdir(parents=True,exist_ok=True)
+    private=ROOT/('build/mica-v'+version().replace('.',''));private.mkdir(parents=True,exist_ok=True)
     output=ROOT/'docs/media/device'/('v'+version());output.mkdir(parents=True,exist_ok=True)
     def run(*a,timeout=60):
         p=subprocess.run([str(adb),'-s',args.serial,*map(str,a)],capture_output=True,timeout=timeout)
@@ -22,7 +22,7 @@ def main():
     assert run('shell','getprop','ro.kernel.qemu').strip()!='1'
     run('shell','input','keyevent','224');run('shell','cmd','statusbar','collapse');run('shell','am','start','-W','-n','com.lma.app/.MainActivity');time.sleep(1)
     font=float(run('shell','settings','get','system','font_scale').strip() or '1')
-    remote='/sdcard/Download/LMA-mica-v100-owned.mp4'
+    remote='/sdcard/Download/LMA-mica-v'+version().replace('.','')+'-owned.mp4'
     recorder=subprocess.Popen([str(adb),'-s',args.serial,'shell','screenrecord','--time-limit','55','--bit-rate','8000000',remote],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)
     try:
         raw=run('shell','am','instrument','-w','-e','mode','capture','com.lma.app.acceptance/com.lma.app.DeviceUiProbe',timeout=180)
@@ -45,7 +45,7 @@ def main():
         subprocess.run([ffmpeg,'-hide_banner','-loglevel','error','-y','-i',str(original),'-ss','1','-t','20','-vf',f"crop={rect['width']}:{rect['height']}:{rect['x']}:{rect['y']}",'-an','-c:v','libx264','-crf','26','-pix_fmt','yuv420p','-movflags','+faststart',str(movie)],check=True,timeout=120)
         subprocess.run([ffmpeg,'-hide_banner','-loglevel','error','-y','-i',str(movie),'-vf','fps=5,scale=300:-2:flags=lanczos,split[a][b];[a]palettegen=max_colors=96[p];[b][p]paletteuse=dither=bayer:bayer_scale=3','-loop','0',str(output/'physical-walkthrough.gif')],check=True,timeout=120)
         def identity(p):return dict(file=p.name,bytes=p.stat().st_size,sha256=hashlib.sha256(p.read_bytes()).hexdigest())
-        inputs=fingerprint('tools/capture_mica_device.py','tests/android/com/lma/app/DeviceUiProbe.java','app/src/main/java/com/lma/app/MainActivity.java','app/src/main/assets/mica.css','app/src/main/assets/mica.js','app/src/main/assets/app.js','app/src/main/assets/index.html')
+        inputs=fingerprint('tools/capture_mica_device.py','tests/android/com/lma/app/DeviceUiProbe.java','app/src/main/java/com/lma/app/MainActivity.java','app/src/main/assets/mica.css','app/src/main/assets/mica.js','app/src/main/assets/app.js','app/src/main/assets/conversation.js','app/src/main/assets/index.html')
         manifest=dict(schema='lma.physical-mica-media/1',version=version(),apk_sha256=build['sha256'],android_device=True,desktop_fixture=False,model_inference=False,weights_downloaded=False,
             reviewed_app_only=False,playback_speed=1,browser_used=False,browser_closed=True,recording_seconds=20,
             screenshots=[identity(output/i['file']) for i in data['screenshots']],files=[identity(p) for p in sorted(output.iterdir()) if p.suffix in ('.png','.mp4','.gif')],input_fingerprint=inputs,

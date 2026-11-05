@@ -1,6 +1,6 @@
 {
   "schema": "lma.mica-design/1",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "style": 10,
   "design_version": "1.0.0",
   "source": "docs/design/tokens.json",

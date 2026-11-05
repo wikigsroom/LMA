@@ -1,6 +1,6 @@
 {
   "schema": "lma.conversation-implementation/1",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "planDate": "20261102",
   "deliveryDate": "2026-11-03",
   "validationMode": "program_only",

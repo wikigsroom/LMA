@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0",
+  "version": "1.0.1",
   "kind": "current production UI with an explicit simulated bridge",
   "android_device": false,
   "model_inference": false,
@@ -91,8 +91,8 @@
     },
     {
       "file": "05-material-queue.png",
-      "bytes": 47907,
-      "sha256": "46d5a64f76b87f6f5a825f6c9564fa0d254f455e4aa5a9b9e3cd7df1562f1c13"
+      "bytes": 47939,
+      "sha256": "ae8e10a615682c0bc13bf5739f419c57208647cdfeb89bb02cb251b7f052bbe5"
     },
     {
       "file": "06-material-preview.png",
@@ -101,18 +101,18 @@
     },
     {
       "file": "material-ui.gif",
-      "bytes": 593586,
-      "sha256": "4ca6cf51c936020a4404100134651d5f1d5dffd691d3415dadd6c9e3b761fe81"
+      "bytes": 1001855,
+      "sha256": "ae600c73f76beece545737de62d4bcaaa86f32b904094de4e514a2fa25e5711c"
     },
     {
       "file": "material-ui.mp4",
-      "bytes": 273451,
-      "sha256": "ced76b820f3a0930d90cb7c0ecd5412f9f9b04101b49346d8f9d5a03edb8a589"
+      "bytes": 468063,
+      "sha256": "a3eb14f7fe2abb3e78929a897e68af2a4efc501e1da321531b5aabf3c4eb7282"
     }
   ],
   "input_fingerprint": {
     "app/src/main/assets/app.css": "1c1bdc0a0f90c2b1dbe170853a9897e8acc2664e157fee22af5b996ad4e14846",
-    "app/src/main/assets/app.js": "5fb7f32747adf5e12babe078aaccb6ebf32580022f47b05e806d4ebcc0b5fbd7",
+    "app/src/main/assets/app.js": "a84c261b8fe6196285f9bc727d13640a613abce0b06c25d820ca2b380926a023",
     "app/src/main/assets/architectures/ltx098-upscaler.onnx": "b7b3b8067dc247002b92fa228bf8bd1271d3b535f0ac8f70c7f7e5e94448e2d9",
     "app/src/main/assets/asset-preparations.json": "b0a7cbac1a633310b9fff84164439ee8fe20a1df137d1075eb9263f531ccfd3b",
     "app/src/main/assets/audio-preview.js": "33bb898969f37c1f78c6664052c46da844d148defdcef4a54d64bc5829037f44",
@@ -120,7 +120,7 @@
     "app/src/main/assets/capabilities.json": "f964a205d341bcbf627fd438d8cb78b359be4f8c83dc572f34ad7b964e252a4c",
     "app/src/main/assets/community.js": "9ea2f6adf3da95122bf4bca96e9a03971d1da2759a86d5f5e1f0c46c2ba8272a",
     "app/src/main/assets/conversation.css": "5d29c47ba810774c502eb68c369d1d355644b1da542389a38c6b0dd3ec5516dc",
-    "app/src/main/assets/conversation.js": "aa479c571e0705eb68e8e66d782ecc7989c5d29689c62311afe891f263e3ef8e",
+    "app/src/main/assets/conversation.js": "5583dcf51e4444715bd6eefcb1e17b1d9411ebcb0c216a812b5140bfd533a577",
     "app/src/main/assets/engine-builds.json": "ea15c61490a261eb664201b50a62de899b2858785d095bc3e80ff3e42dd13493",
     "app/src/main/assets/expansion-notices.json": "e5bc41234e37c91400636473491b61644bb7cdf5ba4c73c20c2e5eaffc769055",
     "app/src/main/assets/expansion.js": "e968fea1d2013d6fa3c812dc8af5aeadf32ac11cb15aa3490de713c840c4f98c",
@@ -316,9 +316,9 @@
     "app/src/main/assets/licenses/tts-utf8proc-LICENSE.md.txt": "3b510150d34f248a221bb88e1d811238d6c6c18b51231822c42974c39bb07256",
     "app/src/main/assets/licenses/xxhash-LICENSE.txt": "a2973411d278045bde3c7161b911e0680d53e2d73d6457c77068d2e55d816d67",
     "app/src/main/assets/lma-logo.png": "3155c4601396c8623c20879b903e317747a94a7b840be307bcc93fde988c8bea",
-    "app/src/main/assets/mica-design.json": "5b838a1a01cb1b42c557b5bf3c661dbfdf6075ebbf812d6e3b72d0ab58d1c2b8",
+    "app/src/main/assets/mica-design.json": "d870512847deb943f22b7bd4d03886056cfd7ab2d138e568fa28946e24ceabc5",
     "app/src/main/assets/mica-tokens.css": "509995c97fd339d6608f7ae829f24af2b547b8cd0011bf1bf768ea17c375af6a",
-    "app/src/main/assets/mica.css": "1089ee347211cd1d9f93e5704a04804440f8efac967a3965580c545c30c5ed90",
+    "app/src/main/assets/mica.css": "fe7e5dda3f2f38690623e34a18b2ce5c8f196aef0779091b55855de6a773ccfd",
     "app/src/main/assets/mica.js": "b42616f0889dc262c68ae62cfe804aad64ca93a38e4f186351eb2c7eda52ed74",
     "app/src/main/assets/model-assemblies.json": "bda37b1411a28e8f396a03f0ccf8176b07469d402a858b5b8561410d13d8d572",
     "app/src/main/assets/model-bundles.json": "74c1f12e82b76e3030d7835f5b42c5ad680b055b8c80ae69a1cfca4a3153f229",
