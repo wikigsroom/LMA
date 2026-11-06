@@ -1,11 +1,14 @@
 # LMA 文档 / Documentation
 
 - [DSH / OpenAI 函数工具、多轮回传、并发和容量](DSH_TOOLS.md) · [English](DSH_TOOLS.en.md) · [v1.1.0](releases/v1.1.0.md)
+- [DSH 1.4.76实际客户端代码互操作、79项补充检查与独立超时](DSH_CLIENT_AUDIT.md) · [Actual client audit](DSH_CLIENT_AUDIT.en.md)
 - [运行中的模型／内存卸载在哪里](MODEL_RUNTIME.md) · [Running models and Unload](MODEL_RUNTIME.en.md)
 
 - [模型卡片直接删除 / Direct model-card deletion](MODEL_DELETE.md) · [English](MODEL_DELETE.en.md) · [v1.0.2](releases/v1.0.2.md)
 
-**当前 v1.0.1 / code66：** [原聊天页面复原、现有创作入口用法与编号融合评估](CHAT_RESTORE_20261106.md) / [English](CHAT_RESTORE_20261106.en.md)。默认聊天恢复顶部模型／消息／紧凑输入，“＋”按需展开现有功能；F01–F08 后续交互建议单独标记。
+**当前 v1.1.0 / code68：** [函数工具兼容](DSH_TOOLS.md)与[运行管理／Unload](MODEL_RUNTIME.md)。DSH客户端补充复核、既有SDK真机测评和待完成的DSH App验收分别记录。
+
+**历史 v1.0.1 / code66：** [原聊天页面复原、现有创作入口用法与编号融合评估](CHAT_RESTORE_20261106.md) / [English](CHAT_RESTORE_20261106.en.md)。默认聊天恢复顶部模型／消息／紧凑输入，“＋”按需展开现有功能；F01–F08 后续交互建议单独标记。
 
 
 **历史 v1.0.0 / code65：** [云母分区 UI、明暗主题、宽窄屏、实机演示与验证](MICA_V100.md) · [English](MICA_V100.en.md)。原有模型、参数、任务、工作流和 API 保留；以下旧版说明按历史理解。
@@ -15,7 +18,7 @@
 
 **20261103 首页 UI 选型 / Home UI selection:** [十套设计稿与说明](UI_HOME_SELECTION_20261103.md) / [English](UI_HOME_SELECTION_20261103.en.md) · [离线选型与对比](../output/imagegen/lma-home-ui-selection-20261103/index.html) · [总览](../output/imagegen/lma-home-ui-selection-20261103/overview.jpg)。Material、新扁平、新拟物、毛玻璃、液态玻璃、新粗野、软胶、工业拟物、极简与 Fluent 分区；均为 AI 生成概念稿；10 号已定稿并形成设计系统，界面实施待完成，概念稿不替代程序／手机验收。
 
-**v0.4.0 / code64 · 当前 / Current:** [统一对话、本地创作、模板与 API](CONVERSATION_V040.md) / [English](CONVERSATION_V040.en.md) · [正式版说明](releases/v0.4.0.md) · [逐项实施](../catalogue/conversation-20261102-implementation.json)。Logo 21 已接入软件；默认暗色，程序验证与真机结果分开。
+**v0.4.0 / code64 · 历史 / Historical:** [统一对话、本地创作、模板与 API](CONVERSATION_V040.md) / [English](CONVERSATION_V040.en.md) · [正式版说明](releases/v0.4.0.md) · [逐项实施](../catalogue/conversation-20261102-implementation.json)。Logo 21 已接入软件；默认暗色，程序验证与真机结果分开。
 
 **品牌定稿 / Final branding：** [Logo 21 ＋ Slogan 04](BRANDING.md) · [双语横幅 / Bilingual banner](media/branding/lma-banner.png)。把无审查 AI，装进口袋。 / Uncensored AI, right in your pocket. 用户已确认，原图及选型历史保留。
 

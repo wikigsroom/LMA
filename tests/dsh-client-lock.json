@@ -1,0 +1,17 @@
+{
+  "client": "DSH Android",
+  "package": "app.dsh.mobile",
+  "version_name": "1.4.76",
+  "version_code": 327,
+  "apk_bytes": 155038341,
+  "apk_sha256": "8f1c4022c084e0ed6c6fb6fee9caeeb6ba24d8d3b56e8d4bcf6d42f9a96e2f92",
+  "runtime_version": "2026.10.29-1b37cf90",
+  "runtime_bytes": 134132465,
+  "runtime_sha256": "c8305d66bc0810dd580773d3139f9e6d5de07c49dbf05db9120df6e226c187da",
+  "runtime_source": "https://github.com/Soodok/Deepseek-Harness-Local-Android/releases/download/v1.4.76/runtime-arm64-v8a.zip",
+  "request_adapter": "@deepseek-ai/dsh-llm-pi-ai",
+  "wire_codec": "@earendil-works/pi-ai",
+  "wire_codec_version": "1.4.0",
+  "openai_sdk_version": "7.19.0",
+  "scope": "Actual client modules, loopback LMA production Java protocol, synthetic native SSE; no Android UI, model or tool execution. Client code and private APK are never redistributed."
+}

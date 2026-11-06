@@ -98,4 +98,6 @@ for chunk in client.chat.completions.create(
 
 选择性真机结果见[本版 physical-tools.json](../verification/releases/v1.1.0/physical-tools.json)，与[程序证据](../verification/releases/v1.1.0/status.json)分开。测试使用已装 m15、真实 OpenAI SDK 与手机原生引擎。**DSH v1.4.76 App 本身的完整交互、任意工具／模型质量和长期代理耐久不据此宣告通过。** 保留现有模型和参数，不下载模型。
 
+发布后增加[实际DSH客户端代码复核](DSH_CLIENT_AUDIT.md)：79项补充检查直接导入该安装包的适配器、Models层和编解码器，经生产Java HTTP／协议层验证49份工具声明变体及多轮流式回传。另复现DSH默认300秒空闲计时：SSE保活注释不能重置这一客户端计时，长预填充／排队应单独配置等待阈值。非默认提供商专用字段与App实机待验项在该文档中明确罗列。
+
 官方依据：[Chat Completions](https://developers.openai.com/api/reference/resources/chat/subresources/completions/methods/create)、[Function calling](https://developers.openai.com/api/docs/guides/function-calling)、[锁定 llama.cpp 工具说明](https://github.com/ggml-org/llama.cpp/blob/b29c606e28a01b1bc8c1351026a0fa6e616bf6c4/docs/function-calling.md)。本指南的具体边界以本版实现和证据为准。

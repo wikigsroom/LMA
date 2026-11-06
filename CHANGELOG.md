@@ -2,6 +2,7 @@
 
 ## v1.1.0 · 2026-11-06 · DSH 工具协议与运行管理 / Function tools and Unload
 
+- 发布后补充79项真实DSH v1.4.76客户端代码互操作检查：25个工具包、49份声明变体／45个工具名，实际客户端＋生产HTTP／协议层，多轮、流式、长历史和错误；记录300秒客户端空闲计时及非默认提供商开关的边界。仅程序／文档维护，原APK／源码附件不改写，DSH App实机验收待设备空闲。[中文](docs/DSH_CLIENT_AUDIT.md) · [English](docs/DSH_CLIENT_AUDIT.en.md).
 - 补全OpenAI Chat Completions函数声明、具名／required／auto选择、parallel_tool_calls、store:false、助手tool_calls／content:null、tool结果与多轮继续；保持客户端执行工具。
 - 原生Jinja模板＋具名选择适配，strict参数／结构化输出交付前校验；保留SSE工具分片、usage、结束原因和真实错误。
 - 外部文本最多9个请求／16 MiB序列化JSON准入，共用FIFO单执行槽与专用线程；文本正文4 MiB、1024消息及真实模板分词上下文预检，满队429。
