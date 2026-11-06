@@ -1,5 +1,7 @@
 # DSH and OpenAI function tools · v1.1.0
 
+**Known m04 template gap, repair pending:** The pinned Dolphin1B GGUF default template used by 1.1.0/1.2.0 omits tools. The effective phone template and DSH task loop still require verification. [Source review, repairs and acceptance with all 41 tools](DSH_M04_TOOL_TEMPLATE_ASSESSMENT_20261106.en.md).
+
 [中文](DSH_TOOLS.md) · [API](API.en.md) · [Running models and unload](MODEL_RUNTIME.en.md) · [Release](releases/v1.1.0.md)
 
 ## 1. Problem and connection

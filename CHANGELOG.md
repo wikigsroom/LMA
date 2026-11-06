@@ -1,5 +1,10 @@
 # Changelog / 更新记录
 
+## 2026-11-06 · m04工具模板评估 / Assessment only, no new APK
+
+- 核实固定Dolphin1B GGUF发布默认模板与上游工具模板差异，四组无权重模板渲染复现工具丢失；确认v1.1.0/v1.2.0相关链路相同及具名选择定义收窄。形成R01–R12修复、A01–A12验收和dsh-pet独立Android边界；生产修复与实机闭环尚待完成，不修改既有APK／Release。
+- Pinned source/template assessment, synthetic 41-tool rendering, named-choice review and separate plugin/Android analysis. Runtime code, saved model/settings and existing release assets remain unchanged. [中文评估](docs/DSH_M04_TOOL_TEMPLATE_ASSESSMENT_20261106.md) · [English](docs/DSH_M04_TOOL_TEMPLATE_ASSESSMENT_20261106.en.md).
+
 ## v1.2.0 · 2026-11-06 · DSH 对话工作区 / Conversation workspace
 
 - 按指定 DSH Android 固定提交核对并重做全部五页：对话首页、左图标栏、窄屏全宽会话抽屉、宽屏侧栏与最近会话；灰黑／白色双主题统一，默认暗色，保留 Logo21／Slogan04。

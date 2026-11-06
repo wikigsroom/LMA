@@ -1,0 +1,180 @@
+{
+  "schema": "lma.m04-tools-assessment/1",
+  "assessed_at": "2026-11-06T11:49:45.193879+00:00",
+  "assessment_only": true,
+  "baseline": {
+    "version": "1.2.0",
+    "version_code": 69,
+    "commit": "4742d3f04a1a919c57677b9ed0aca931a6804328",
+    "customer_version": "1.1.0 / 68",
+    "runtime_revision": "b29c606e28a01b1bc8c1351026a0fa6e616bf6c4"
+  },
+  "model": {
+    "id": "m04",
+    "repository": "bartowski/Dolphin3.0-Llama3.2-1B-GGUF",
+    "revision": "617f94be9dfb802a3fa0ec64b12d7d085482a308",
+    "filename": "Dolphin3.0-Llama3.2-1B-Q4_K_M.gguf",
+    "bytes": 807697440,
+    "sha256": "7ed39ee0638e18d3e47bf12e60e917c792ca5332606a72bd1882ab1f62a13a7a",
+    "expected_context": 131072,
+    "phone_file_identity_verified": false,
+    "metadata_source": "https://huggingface.co/api/models/bartowski/Dolphin3.0-Llama3.2-1B-GGUF/revision/617f94be9dfb802a3fa0ec64b12d7d085482a308?blobs=true",
+    "retrieved_via": "https://hf-mirror.com/api/models/bartowski/Dolphin3.0-Llama3.2-1B-GGUF/revision/617f94be9dfb802a3fa0ec64b12d7d085482a308?blobs=true",
+    "metadata_only_not_tensor_download": true,
+    "embedded_template_metadata_sha256": "58c1a1f04baa7adaeaba1f90267c3d57d9396f0c1f0129bdde9e76d3c6784af7",
+    "last_modified": "2025-01-05T17:52:29.000Z"
+  },
+  "upstream": {
+    "repository": "dphn/Dolphin3.0-Llama3.2-1B",
+    "revision": "e753b6ebd7adf87036eb6a3e6de68acca5850e2f",
+    "last_modified": "2025-04-25T20:08:42.000Z",
+    "tokenizer_source": "https://huggingface.co/dphn/Dolphin3.0-Llama3.2-1B/blob/e753b6ebd7adf87036eb6a3e6de68acca5850e2f/tokenizer_config.json",
+    "retrieved_via": "https://hf-mirror.com/dphn/Dolphin3.0-Llama3.2-1B/resolve/e753b6ebd7adf87036eb6a3e6de68acca5850e2f/tokenizer_config.json",
+    "tokenizer_sha256": "51ad9580aba8d00016efda43357185a0d8ff9884584dcc82ab58ca552afd14e1",
+    "git_blob_id": "c62197c62b2af1408fba19fe8612f13e35722273",
+    "blob_identity_consistent": true,
+    "candidate_template_sha256": "0067535d4b21c9be3ab1da0d2b99aa71a158711a485da6c5c8a30a6d2227363f",
+    "bos_token": "<|begin_of_text|>",
+    "eos_token": "<|im_end|>",
+    "candidate_not_installed": true
+  },
+  "transport_limits": {
+    "hf_primary_fetch_failed": true,
+    "description": "Public pinned HF metadata/config retrieved through hf-mirror; source URLs and mirror transport are recorded separately. No phone access, no GGUF/tensor download."
+  },
+  "template_render": {
+    "schema": "lma.tool-template-source-assessment/1",
+    "assessment_only": true,
+    "jinja_implementation": "Python Jinja2 (not bundled minja/native engine)",
+    "physical_device_tested": false,
+    "inference_tested": false,
+    "actual_dsh_tools_used": false,
+    "tools_forty_one_are_synthetic": true,
+    "cases": [
+      {
+        "case": "none",
+        "tool_count": 0,
+        "embedded_prompt_chars": 106,
+        "embedded_prompt_sha256": "45878e3f98924023daefd762809b02ee1bc207f462f3c2fa83a1ba81aeab3074",
+        "candidate_prompt_chars": 207,
+        "candidate_prompt_sha256": "fada766ce17962f8ff767435e59ba937c1b5e02899aa2ce8cae1eddad4692ea1",
+        "embedded_has_schema": false,
+        "candidate_has_schema": false
+      },
+      {
+        "case": "one",
+        "tool_count": 1,
+        "embedded_prompt_chars": 106,
+        "embedded_prompt_sha256": "45878e3f98924023daefd762809b02ee1bc207f462f3c2fa83a1ba81aeab3074",
+        "candidate_prompt_chars": 823,
+        "candidate_prompt_sha256": "214cfe9eaf2cb5375701ac1236f7dc3be1656d917f1ed9f1aed9971ba88f999b",
+        "embedded_has_schema": false,
+        "candidate_has_schema": true
+      },
+      {
+        "case": "large",
+        "tool_count": 1,
+        "embedded_prompt_chars": 106,
+        "embedded_prompt_sha256": "45878e3f98924023daefd762809b02ee1bc207f462f3c2fa83a1ba81aeab3074",
+        "candidate_prompt_chars": 35640,
+        "candidate_prompt_sha256": "3c27f6052cce8301e4eb0dc2cde821aabbfd8797ff0f18bff29f1f13cd7b9698",
+        "embedded_has_schema": false,
+        "candidate_has_schema": true
+      },
+      {
+        "case": "forty_one",
+        "tool_count": 41,
+        "embedded_prompt_chars": 106,
+        "embedded_prompt_sha256": "45878e3f98924023daefd762809b02ee1bc207f462f3c2fa83a1ba81aeab3074",
+        "candidate_prompt_chars": 10277,
+        "candidate_prompt_sha256": "7b63f216b393a4884a59b12a91c2f2c5634b37caf9bfc1f62dfd6060601c7d1e",
+        "embedded_has_schema": false,
+        "candidate_has_schema": false
+      }
+    ],
+    "history": {
+      "embedded_has_function_call": false,
+      "candidate_has_function_call": true,
+      "embedded_has_response_tag": false,
+      "candidate_has_response_tag": true,
+      "candidate_has_result": true
+    },
+    "embedded_template_sha256": "58c1a1f04baa7adaeaba1f90267c3d57d9396f0c1f0129bdde9e76d3c6784af7",
+    "candidate_template_sha256": "0067535d4b21c9be3ab1da0d2b99aa71a158711a485da6c5c8a30a6d2227363f"
+  },
+  "baseline_source_comparison": [
+    {
+      "file": "app/src/main/java/com/lma/app/EngineHost.java",
+      "unchanged_v110_to_v120": true,
+      "normalized_sha256": "bf2c7adce5607516d6e9114a6fe6737e9f7c97edb9b961bac6d993c8d871b590"
+    },
+    {
+      "file": "app/src/main/java/com/lma/app/ApiHost.java",
+      "unchanged_v110_to_v120": true,
+      "normalized_sha256": "f995fd3bad403892b912655528daf577d1fc838c00b36ca22754e9b992751482"
+    },
+    {
+      "file": "app/src/main/java/com/lma/app/core/ChatProtocol.java",
+      "unchanged_v110_to_v120": true,
+      "normalized_sha256": "12ce73463b9ba24fb35bb3aa9052fbaccf79b7af8e5da779f4df6a5ae95133a2"
+    },
+    {
+      "file": "app/src/main/java/com/lma/app/core/TextRequest.java",
+      "unchanged_v110_to_v120": true,
+      "normalized_sha256": "dc3dd56e2bc7b28b1e4df6d4a58b69dea0074aac8b082f3f16ed39f6a89b3099"
+    },
+    {
+      "file": "app/src/main/java/com/lma/app/core/ToolReply.java",
+      "unchanged_v110_to_v120": true,
+      "normalized_sha256": "bac920ba8fd6e93361358b762e19454f9ddfc2fb09ecc02a3dd0fc09ecb332d4"
+    },
+    {
+      "file": "app/src/main/java/com/lma/app/GgufMetadata.java",
+      "unchanged_v110_to_v120": true,
+      "normalized_sha256": "704b05cb1de90340a3c8b37f1af9d2577418aeb95b5b06e88ea7903df6770e78"
+    }
+  ],
+  "plugin_review": {
+    "repository": "https://github.com/PC2005-cloud/dsh-pet",
+    "commit": "60bb2eb4113eca92b2636ab906f8e6c9c934ae13",
+    "reviewed_files": [
+      "INSTALL.md",
+      "dsh-pet/package.json",
+      "dsh-pet/scripts/ensure-electron.mjs",
+      "dsh-pet/src/host/index.ts",
+      "dsh-pet/src/host/plugin/desktop/spawn.ts"
+    ],
+    "node_engine": ">=22.12.0",
+    "web_overlay_declared": true,
+    "android_install_or_overlay_tested": false,
+    "desktop_helper_requires_electron": true,
+    "android_desktop_helper_supported": false,
+    "note": "No Android desktop Electron implementation is identified in the reviewed platform dispatch; web overlay remains a separate candidate requiring DSH host/dependency/WebView checks."
+  },
+  "scope": {
+    "production_code_changed": false,
+    "new_apk_built": false,
+    "new_release_published": false,
+    "phone_accessed": false,
+    "phone_file_read": false,
+    "native_engine_inference": false,
+    "actual_dsh_app_tested": false,
+    "plugin_installed": false,
+    "model_weights_downloaded": false
+  },
+  "report": "docs/DSH_M04_TOOL_TEMPLATE_ASSESSMENT_20261106.md",
+  "historical_catalogue_cross_check": {
+    "source": "Previously retained catalogue-audit metadata, not a new phone or binary-header read",
+    "revision": "617f94be9dfb802a3fa0ec64b12d7d085482a308",
+    "embedded_template_sha256": "58c1a1f04baa7adaeaba1f90267c3d57d9396f0c1f0129bdde9e76d3c6784af7",
+    "matches_current_pinned_metadata": true
+  },
+  "documentation_validation": {
+    "command": "python tools/check_repository.py --published",
+    "passed": true,
+    "local_links": 8259,
+    "source_matches_published_tag": true,
+    "published_apk_sha256": "999a923cc0ab5586701266c368e5f885fdc69cec458066f0e1707a9e6af6c0a9",
+    "reran_model_or_device_tests": false
+  }
+}

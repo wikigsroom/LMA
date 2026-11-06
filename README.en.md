@@ -13,6 +13,8 @@ Local AI for Android. Choose your models, with uncensored variants clearly tagge
 <a id="contents"></a>
 ## Detailed usage and evidence routes
 
+**Known m04 tools issue — repair pending:** The published GGUF default template omits tool definitions/call history; the affected 1.1.0/1.2.0 paths are unchanged. Source/template assessment is complete; production repair and actual DSH acceptance with all 41 tools remain open. Existing m15/UI evidence does not establish this. [Repair and acceptance plan](docs/DSH_M04_TOOL_TEMPLATE_ASSESSMENT_20261106.en.md).
+
 The following restores the detailed scenarios, API examples, generated artifacts and test cases that were lost when the README was shortened. v0.3.5 retains these detailed sections and adds speech / 3D scenarios; no new complete-model run is claimed. LMA is independent of LM Studio; the current app UI is primarily Chinese and the documentation is bilingual.
 
 | Goal | Entry point |

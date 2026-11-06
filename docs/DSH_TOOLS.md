@@ -1,5 +1,7 @@
 # DSH 与 OpenAI 工具调用 · v1.1.0
 
+**m04已知模板缺口，修复待完成：** v1.1.0/v1.2.0使用的固定Dolphin1B GGUF发布默认模板未渲染工具。实际生效模板与DSH任务闭环待真机核对；[来源、修复项与完整41工具验收](DSH_M04_TOOL_TEMPLATE_ASSESSMENT_20261106.md)已单独记录。
+
 [English](DSH_TOOLS.en.md) · [API](API.md) · [运行与卸载](MODEL_RUNTIME.md) · [版本说明](releases/v1.1.0.md)
 
 ## 1. 解决的问题与连接方式
