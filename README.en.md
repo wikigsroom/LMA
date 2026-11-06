@@ -8,7 +8,7 @@
 
 Local AI for Android. Choose your models, with uncensored variants clearly tagged. [Final branding: logo 21 + slogan 04](docs/BRANDING.md).
 
-[中文](README.md) · [Download v1.0.2](https://github.com/wikigsroom/LMA/releases/tag/v1.0.2) · [User guide](docs/USER_GUIDE.en.md) · [Documentation](docs/README.md) · [Scenarios](#use-cases) · [Cases and failures](#case-studies)
+[中文](README.md) · [Download v1.1.0](https://github.com/wikigsroom/LMA/releases/tag/v1.1.0) · [User guide](docs/USER_GUIDE.en.md) · [Documentation](docs/README.md) · [Scenarios](#use-cases) · [Cases and failures](#case-studies)
 
 <a id="contents"></a>
 ## Detailed usage and evidence routes
@@ -17,26 +17,27 @@ The following restores the detailed scenarios, API examples, generated artifacts
 
 | Goal | Entry point |
 | --- | --- |
-| Operate the app | [30 scenarios C01–C30](#use-cases) |
+| Operate the app | [Scenarios C01–C77](#use-cases) |
 | Read the accepted UI10 Mica Bento specification | [Design system](docs/design/README.md), [themes and style](docs/design/MICA_BENTO.en.md), [30 components](docs/design/COMPONENTS.en.md), [adaptive windows / IME / large text](docs/design/RESPONSIVE.en.md). [01–10](docs/UI_HOME_SELECTION_20261103.en.md) / [11–20](docs/UI_HOME_SELECTION_20261103_BATCH2.en.md) remain archives. App-wide integration shipped in v1.0.0; the v1.0.1 chat restoration follows the latest user correction |
 | Use restored chat and evaluate generation integration | [Current operation and F01–F08 proposal](docs/CHAT_RESTORE_20261106.en.md); implemented controls and proposed additions are distinguished |
-| Integrate the phone API | [Four examples A01–A04](#api-examples) |
+| Integrate the phone API | [Five examples A01–A05](#api-examples) |
+| Use DSH tools/children or unload model memory | [Function tools and SDK examples](docs/DSH_TOOLS.en.md), [Running models and Unload](docs/MODEL_RUNTIME.en.md) |
 | Compare historical outputs and failures | [18 cases H01–H18](#case-studies) |
-| Inspect current program coverage | [66 current suites](#verification) |
+| Inspect current program coverage | [67 current suites](#verification) |
 | Rebuild and diagnose | [Build](#build), [Z20/background limits](#z20), [troubleshooting](#troubleshooting) |
 | Read the original development narrative | [Historical English README](docs/history/README-dev45.en.md), [repair notes](docs/releases/v0.3.1-readme.md) |
 
-**Validation scope: program checks.** Current **v1.0.2 / code67** exposes labelled trash/Delete controls on outer text, image, video, audio, 3D and LoRA model cards. Open Models → Local, review the name and confirm or cancel. Busy transfers retain a visible “Pause before deleting” entry. [Operation and guards](docs/MODEL_DELETE.en.md) · [Version evidence](verification/releases/v1.0.2/status.json). The restored chat and optional “+” controls remain; further integration is assessed in [F01–F08](docs/CHAT_RESTORE_20261106.en.md).
+**Validation scope: program checks.** Current **v1.1.0 / code68** adds DSH's OpenAI function-tool contract: declarations, named/auto choice, strict arguments, streamed tool_calls, tool results and continued rounds. External text uses bounded FIFO admission,4 MiB bodies and1024 messages; full queues return429. [Contract, SDK examples and limits](docs/DSH_TOOLS.en.md) · [Version evidence](verification/releases/v1.1.0/status.json).
 
-Program evidence: **66 suites / 15,311 assertions**, with 803 page checks, 43 conversation checks and 520 layout scenarios. Physical UI: 56 checks, plus 35 at each of three font scales. Lint: 0 errors / 17 warnings; 41 ARM64 libraries. APK SHA256: `90498c3b3b3e1281ad0576e7d4908f8466457124a303fdc6b9e7a9a7da349358`.
+**Where to Unload:** top Running models, loaded Local text cards, Services → Running models and the chat model picker. Unload releases memory/cancels text requests while retaining weights, settings, history and the listener; later explicit API requests can reload. Media tasks offer Stop and release. File deletion remains separate. [Actual-phone operation guide](docs/MODEL_RUNTIME.en.md).
 
-Program checks, physical UI, short screen-off API health and model inference remain separate. No model downloads or complete trained-model runs this round. Original signing, assets and preferences are preserved; previous projector/codec, video/3D quality and endurance limits remain. [v1.0.0 major-release evidence](docs/MICA_V100.en.md) retains its original identity.
+Regular program gates, physical UI, short screen-off API and selected model inference are counted separately. **21 physical tools/unload checks** cover existing m15 native named/strict tools, caller result continuation, SSE, two queued children and unload/reload. Across six real generations, the concurrent pair took19.004 seconds and health reads peaked at35 ms. This does not establish the DSH App itself, general agent quality or endurance. [Measurements and exact APK identity](verification/releases/v1.1.0/physical-tools.json). No weights are downloaded; existing projector/codec and video/3D quality limits remain.
 
-<img src="docs/media/device/v1.0.2/dark-local.png" alt="Actual v1.0.2 dark Local model deletion controls" width="280"> <img src="docs/media/device/v1.0.2/light-local.png" alt="Actual v1.0.2 light Local model deletion controls" width="280">
+<img src="docs/media/device/v1.1.0/dark-runtime.png" alt="Actual v1.1.0 running model and Unload" width="280"> <img src="docs/media/device/v1.1.0/light-unload-confirm.png" alt="Actual v1.1.0 light unload confirmation preserving weights" width="280">
 
-![Actual v1.0.2 phone UI walkthrough, not model generation](docs/media/device/v1.0.2/physical-walkthrough.gif)
+![Actual v1.1.0 phone UI walkthrough, not model generation](docs/media/device/v1.1.0/physical-walkthrough.gif)
 
-[Actual MP4](docs/media/device/v1.0.2/physical-walkthrough.mp4) · [21 screenshots and provenance](docs/media/device/v1.0.2/manifest.json) · [43 conversation-program checks and media](docs/media/conversation-v1.0.2/manifest.json). All owned browser resources close after execution; no virtualization.
+[Actual MP4](docs/media/device/v1.1.0/physical-walkthrough.mp4) · [Current light/dark screenshots and provenance](docs/media/device/v1.1.0/manifest.json) · [Conversation-program checks and media](docs/media/conversation-v1.1.0/manifest.json). All owned browser resources close after execution; no virtualization. [v1.0.2 deletion media](docs/MODEL_DELETE.en.md) and historical cases remain intact.
 
 LMA lets users select, download, manage and run local models on an Android phone, with chat, image/video/audio/3D jobs, artifacts and a local API. It is an independent community project, unaffiliated with LM Studio. The application UI is primarily Chinese; documentation is bilingual.
 
@@ -51,7 +52,7 @@ LMA-authored code is MIT. The bundled DISO CPU surface component is **CC BY-NC 4
 <a id="install"></a>
 ## Install and use
 
-1. Download `LMA-1.0.2-arm64-v8a.apk` from the Release and compare its hash with `SHA256SUMS`. Requires **64-bit Android 9 / API 28 or later**. The original signing identity is retained for upgrades and existing data.
+1. Download `LMA-1.1.0-arm64-v8a.apk` from the Release and compare its hash with `SHA256SUMS`. Requires **64-bit Android 9 / API 28 or later**. The original signing identity is retained for upgrades and existing data.
 2. Open LMA and allow notifications when prompted. For screen-off work, allow background activity and remove the relevant battery restrictions in Android settings. Installation and upgrades do not download models.
 3. Open Models → Recommended / All / Local. **Recommended retains the text prefix m08 → m06 → m01 and adds eleven multimodal choices.** All supports HF keywords, repository IDs/URLs, pagination and discovery of every format. Local manages downloaded/imported models and unfinished transfers.
 4. Filter by text, image, video, audio or 3D tags. Inspect architecture, recipe, backend, license, dependencies, pinned revision and size before explicitly downloading or importing with Android's document picker.
@@ -62,7 +63,7 @@ LMA-authored code is MIT. The bundled DISO CPU surface component is **CC BY-NC 4
 HF discovery and executable support are separate. Compatible files enter their matching text engine or multi-component recipe; arbitrary safetensors, GGUF or Diffusers repositories are not universally executable. Custom components can be registered through recipes. Missing components fail locally without implicit downloads or off-device execution.
 
 <a id="models"></a>
-Current APK: **v1.0.2 / code67**, original signer retained. Compare the exact Release APK with `SHA256SUMS`; see the [release inventory and validation](docs/releases/v1.0.2.md).
+Current APK: **v1.1.0 / code68**, original signer retained. Compare the exact Release APK with `SHA256SUMS`; see the [release inventory and validation](docs/releases/v1.1.0.md).
 
 ## Model and foundation scope
 
@@ -564,6 +565,10 @@ $lmaAccepted
 
 Missing assets, engines, resources or permission to try an unmeasured recipe fail locally with reasons. The API downloads no models, fetches no remote inputs and forwards no inference off-device. [Preflight](docs/TASK_PREFLIGHT.en.md) · [uploads](docs/LOCAL_INPUTS.en.md) · [API fields/limits](docs/API.en.md)
 
+### A05 · Full client-owned function tools
+
+Use the [complete OpenAI SDK round-trip example](docs/DSH_TOOLS.en.md#5-complete-tool-round-trip): send tools, named choice and store:false; retain the assistant tool_calls with content:null; execute approved functions in the client; return each matching tool_call_id; continue with auto. For SSE, assemble arguments by index and wait for the finished round. Strict fragments are delivered after validation; late failures are explicit SSE errors. See the [Sub2API kit](integrations/sub2api/README.md) for unchanged tool forwarding and its 4 MiB text limit.
+
 <a id="ui-media"></a>
 ## Additional UI demonstrations and screenshots
 
@@ -755,6 +760,8 @@ These preserved development cases were not rerun as new passes this round. HOST 
 <a id="verification"></a>
 ## Current program coverage and reproduction entry points
 
+**Current v1.1.0: 67 suites / 15,394 assertions and 80 program/build records.** Includes 817 production-page, 62 tool-protocol, 154 backend, 151 scheduling and 13 Sub2API checks. Separately recorded: 66 physical UI checks, 41 checks at each of three font scales, 24 management/API checks, 60.337 seconds of screen-off health, eight idle-performance checks, and 21 tool/unload checks across six actual generations. [Current status](verification/releases/v1.1.0/status.json) · [Release details](docs/releases/v1.1.0.md).
+
 **Historical v0.3.12:62 program suites /15,115 assertions,75 program/build records and794 production UI checks.** The final signed APK passed24 physical program,8 idle-performance and28 actual SDK checks. Idle snapshot p50/p95:275.88/286.75ms; maximum main-thread gap27ms. See the [benchmark](docs/DEVICE_BENCHMARK_V0312.en.md) for actual inference, quality, candidate identities and background limits. The41 ARM64 libraries, original signer,16KiB alignment, Lint0errors/16existing warnings and ten desktop demonstrations are checked.
 
 **Historical v0.3.11: 60 program suites / 15,063 assertions, 73 gate records plus status; 794 production UI checks, including 37 recommendation checks.** The APK retains 41 ARM64 libraries, Android 9+, the original signer and 16 KiB alignment. Lint: zero errors / 16 existing warnings. Ten desktop flows provide 58 PNG / ten GIF / ten MP4; all 815 historical evidence identities remain. Eight preservation checks are not a fresh latency benchmark. Separate phone evidence covers 23 program checks and 60.239 seconds of screen-off API health. Authorized model successes and bounded incomplete results have separate counts. The [ten v0.3.10 failure probes](verification/releases/v0.3.10/task-diagnostics.json) and original five-failure report remain historical.
@@ -908,6 +915,13 @@ Authorized updates synchronize code, both languages, relevant media and changelo
 
 [Detailed current examples / 本版完整示例](docs/LOCAL_API_V0312.md) · [English](docs/LOCAL_API_V0312.en.md). Earlier C01–C48 and H01–H18 remain above with their historical evidence identities.
 
+## v1.1.0 tools and running-model scenarios C76–C77
+
+| ID | Action | Expected behavior and evidence |
+| --- | --- | --- |
+| C76 | Keep DSH tools enabled; declare a strict named function, receive its native call, execute it in the client and return role:tool | Nonstream and indexed SSE calls retain IDs/arguments/usage; subsequent children queue without a busy409. Existing m15 passed six selected generations and 21 checks. [Protocol and SDK example](docs/DSH_TOOLS.en.md). DSH App itself and general agent reliability remain separate. |
+| C77 | Open top Running models or a loaded Local card, inspect the model and confirm Unload | Current/queued text is cancelled and the process exits; files, settings, history and listener remain. A later explicit API request may reload. Media jobs expose Stop and release. [Actual screenshots and behavior](docs/MODEL_RUNTIME.en.md). |
+
 ## Update summaries and history
 
 [Full changelog](CHANGELOG.md)
@@ -971,3 +985,5 @@ Historical v0.3.10 [legacy-host deviation](verification/releases/v0.3.10/validat
 **v1.0.1 / code66 · Restored chat.** Original chat layout with optional “+” creation controls; 66 suites / 15,304 assertions, 48 physical UI checks and 19 actual screenshots. [Usage and F01–F08 integration evaluation](docs/CHAT_RESTORE_20261106.en.md) · [Stable Release](https://github.com/wikigsroom/LMA/releases/tag/v1.0.1). Proposed interactions and quality/background limits remain explicit.
 
 **v1.0.2 / code67 · Direct model-card deletion.** Text and media cards expose labelled Delete controls with an explained busy state, existing confirmation/cancel and native asset guards. [Operation and verification](docs/MODEL_DELETE.en.md) · [Stable Release](https://github.com/wikigsroom/LMA/releases/tag/v1.0.2).
+
+**v1.1.0 / code68 · Function tools and running models.** Full native function-tool round trips, strict and streaming validation, bounded text queue/context preflight and four Unload entries. The existing m15 passed 21 physical checks across six generations; DSH App-specific interaction and sustained agent quality remain unverified. [Protocol](docs/DSH_TOOLS.en.md) · [Unload and actual media](docs/MODEL_RUNTIME.en.md) · [Stable Release](https://github.com/wikigsroom/LMA/releases/tag/v1.1.0).

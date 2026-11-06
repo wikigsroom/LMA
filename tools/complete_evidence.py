@@ -34,7 +34,7 @@ for item in required_records():
     if item not in BASE_SOURCES.values():
         EXTRA[Path(item).parent.name + '.json' if item.endswith('/results.json') else Path(item).name] = item
 SOURCES = BASE_SOURCES | EXTRA
-MINIMUM = BASE_MINIMUM | {'mica-ui':20,'conversation-core':71,'conversation-integration':48,'conversation-ui':43,'api-publication': 34, 'sub2api-gateway': 12, 'ui-performance': 8, 'expansion': 875, 'portable-sparse-models': 97, 'cascade': 95, 'ultratex-attention': 47, 'material': 61}
+MINIMUM = BASE_MINIMUM | {'mica-ui':20,'conversation-core':71,'conversation-integration':48,'conversation-ui':43,'api-publication': 34, 'sub2api-gateway': 13, 'ui-performance': 8, 'expansion': 875, 'portable-sparse-models': 97, 'cascade': 95, 'ultratex-attention': 47, 'material': 61}
 for module in MODULES.values():
     for name, minimum in module['tests'].items():
         if name != 'expansion-tests':
@@ -70,12 +70,13 @@ def inputs():
     return fingerprint('tools/complete_evidence.py', 'tools/program_evidence.py', 'tools/program_release.py',
         *(['tools/mica_evidence.py','verification/releases/v'+version()+'/mica-physical-ui.json','verification/releases/v'+version()+'/mica-fonts.json'] if tuple(map(int,version().split('.'))) >= (1,0,0) else []),
         'tools/conversation_evidence.py','catalogue/conversation-20261102-implementation.json',CONVERSATION_MEDIA+'/manifest.json',
-        'tools/physical_model_evidence.py', 'tools/physical_api_evidence.py', 'tools/device_model_probe.py', 'tools/check_repository.py', 'tools/package_delivery.py', 'tools/prepare_release.py', 'tools/publish_release.py',
+        'tools/physical_model_evidence.py', 'tools/physical_api_evidence.py', 'tools/physical_tools_evidence.py', 'tools/device_tools_probe.py', 'tools/device_model_probe.py', 'tools/check_repository.py', 'tools/package_delivery.py', 'tools/prepare_release.py', 'tools/publish_release.py',
         'tools/release_scope.py', 'tools/audit_adaptations.py', 'tools/physical_evidence.py', 'tools/recommendations.py', 'tools/task_diagnostics_evidence.py',
         *([declared_deviation()['validation_deviation']] if declared_deviation()['validation_deviation'] else []),
         *(['verification/releases/v'+version()+'/physical-models.json'] if (OUT/'physical-models.json').exists() else []),
         *(['docs/media/models/v'+version()+'/manifest.json'] if (ROOT/'docs/media/models'/('v'+version())/'manifest.json').exists() else []),
         *(['verification/releases/v'+version()+'/physical-api.json'] if (OUT/'physical-api.json').exists() else []),
+        *(['verification/releases/v'+version()+'/physical-tools.json'] if (OUT/'physical-tools.json').exists() else []),
         *(['docs/media/benchmarks/v'+version()+'/manifest.json'] if (ROOT/'docs/media/benchmarks'/('v'+version())/'manifest.json').exists() else []),
         *(['tools/port_update_evidence.py', 'tools/device_lan_http.py', 'tools/export_lan_http_evidence.py',
            'verification/supplemental/v0.3.13/lan-http.json', 'docs/media/tests/lan-http-v0313/manifest.json'] if version() == '0.3.13' else []),
@@ -105,6 +106,13 @@ def physical_models_and_api(directory):
     from physical_model_evidence import check as legacy
     from physical_api_evidence import check as api
     result = legacy(directory) | api(directory)
+    from physical_tools_evidence import check as tools_check
+    tools = tools_check(directory)
+    result |= tools
+    if tools['physical_tool_protocol_tested']:
+        result.update(phone_inference_tested=True,model_inference_tested=True)
+        for key in ('authorized_phone_model_attempts','authorized_phone_model_successes','complete_trained_model_runs'):
+            result[key]=result.get(key,0)+tools['physical_tool_model_requests']
     if version() == '0.3.13':
         from port_update_evidence import check as port_check
         result |= port_check()

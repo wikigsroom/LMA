@@ -96,6 +96,19 @@ public final class DeviceUiProbe extends Instrumentation {
                         if(p.equals("models"))js("document.querySelector('[data-filter=recommended]').click();document.querySelector('[data-task=any]').click()");
                         check(t+" "+p+" has no horizontal overflow","document.documentElement.scrollWidth<=innerWidth+1&&document.querySelector('.page.active').scrollWidth<=document.querySelector('.page.active').clientWidth+1");
                         capture(t+"-"+p);
+                        if(p.equals("server")){
+                            check(t+" API page exposes independent running-model management","!!document.querySelector('#runningModelsPanel')&&document.querySelector('#runtimeAction').textContent==='运行管理'");
+                            js("document.querySelector('#runtimeAction').click()");
+                            check(t+" global runtime manager opens","document.querySelector('#modalTitle').textContent==='运行中的模型'");
+                            capture(t+"-runtime");
+                            boolean resident=Boolean.TRUE.equals(js("!!document.querySelector('#modal [data-action=stopTextModel]')"));
+                            if(resident){
+                                js("document.querySelector('#modal [data-action=stopTextModel]').click()");
+                                check(t+" unload confirmation explains file retention","document.querySelector('#modalContent').textContent.includes('已下载文件')&&!!document.querySelector('#modal [data-command=stopEngine]')");
+                                capture(t+"-unload-confirm");
+                            }
+                            js("document.querySelector('#modal .modal-actions [data-action=closeModal]')?document.querySelector('#modal .modal-actions [data-action=closeModal]').click():document.querySelector('#modal [data-action=closeModal]').click()");
+                        }
                         if(p.equals("chat")){
                             check(t+" ordinary chat has no generation form","document.querySelector('#conversationOptions').hidden&&document.querySelector('#conversationContext').hidden&&document.querySelector('#conversationMode').value==='chat'");
                             check(t+" original empty prompts restored","document.querySelector('.chat-empty h2').textContent==='从一句话开始。'&&document.querySelectorAll('.suggestion').length===2");

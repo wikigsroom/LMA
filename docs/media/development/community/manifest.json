@@ -1,5 +1,5 @@
 {
-  "version": "1.0.2",
+  "version": "1.1.0",
   "kind": "current production UI with an explicit simulated bridge",
   "android_device": false,
   "model_inference": false,
@@ -69,8 +69,8 @@
   "files": [
     {
       "file": "01-community-images.png",
-      "bytes": 50041,
-      "sha256": "ff8fbb1fee5ceefc0b7fca9bd4bad869a7c2054094e95d125d03132c74b3e943"
+      "bytes": 50205,
+      "sha256": "283e6a7314ea89e9f0ac138910b3b63064251f4f02ea96fa7602f1aa0d1efb1c"
     },
     {
       "file": "02-image-source.png",
@@ -79,8 +79,8 @@
     },
     {
       "file": "03-community-video.png",
-      "bytes": 52238,
-      "sha256": "5be9ee5cc84db97de326bb6e7368a25c8fed55e35e0495a3f17da670f1f26887"
+      "bytes": 52396,
+      "sha256": "630337f5604a4926e833338520f2760089f2980fc8c6822b610ce75e3f1cfc78"
     },
     {
       "file": "04-video-source.png",
@@ -89,8 +89,8 @@
     },
     {
       "file": "05-community-local.png",
-      "bytes": 49068,
-      "sha256": "a13611e169a60c95ed3410d1b638b5324dc7e417f4dc92f884f35d15aec62250"
+      "bytes": 49232,
+      "sha256": "6d16c329c98ed3d085b1b07a7a277eb7bd18ddc2f70d0a68e03b1856d98e7aba"
     },
     {
       "file": "06-video-cpu-settings.png",
@@ -99,18 +99,18 @@
     },
     {
       "file": "community-ui.gif",
-      "bytes": 1345228,
-      "sha256": "18c58ea7ed94005a6181fe6905b88ce508c1f36e1cfca0eb44aa5a394ff2d19c"
+      "bytes": 960231,
+      "sha256": "9bc6ae363e221e6ebcdd96b502816f1a5af14060500ee7c53d3ee7d71d899598"
     },
     {
       "file": "community-ui.mp4",
-      "bytes": 594511,
-      "sha256": "637581e9217f2730622fe5952b6c6e8584e79b3a9b89b846058acbb8adfae99a"
+      "bytes": 453874,
+      "sha256": "a579797be180bc7ad6034089e1fcd87135fd5efe358c722577570bed31da8d1d"
     }
   ],
   "input_fingerprint": {
-    "app/src/main/assets/app.css": "1c1bdc0a0f90c2b1dbe170853a9897e8acc2664e157fee22af5b996ad4e14846",
-    "app/src/main/assets/app.js": "338a18ef9a17fc6bbfecb5056e04fefe4417c9b184552c94135789067440afca",
+    "app/src/main/assets/app.css": "b09171d519a9cc4e1a3a8101c45dd46c40d24b917c4fbc29c3e131dbfb79a72d",
+    "app/src/main/assets/app.js": "5000138a2c2b75592448690ab90b629baaf238e4a9da924e6a5c082bbc618114",
     "app/src/main/assets/architectures/ltx098-upscaler.onnx": "b7b3b8067dc247002b92fa228bf8bd1271d3b535f0ac8f70c7f7e5e94448e2d9",
     "app/src/main/assets/asset-preparations.json": "b0a7cbac1a633310b9fff84164439ee8fe20a1df137d1075eb9263f531ccfd3b",
     "app/src/main/assets/audio-preview.js": "33bb898969f37c1f78c6664052c46da844d148defdcef4a54d64bc5829037f44",
@@ -125,7 +125,7 @@
     "app/src/main/assets/foundation.css": "8bbd7a445a43d93f796be904e8f67b6e6120cf27547b93abb79cf41142078343",
     "app/src/main/assets/foundation.js": "a2bd9f0a92807a0d60a97884fb3dd123ddfc5cf42258b6577bff36b37f99cb14",
     "app/src/main/assets/glb-preview.js": "26554ae19c4dbeba87732dc0d220a628f40b598450a021e683737ded03db0f85",
-    "app/src/main/assets/index.html": "114f70a528839e09a99e9289ae62c995c4ef59b1a1347854542d76258b767f18",
+    "app/src/main/assets/index.html": "427cc22eaec3e5067fed89fc958cffa14d598c408f704064fa9066e51ec9b00d",
     "app/src/main/assets/license.js": "838317c7653ca35291e9e18f2a7e2d98ed46a10880dfe144176f04ad994433d0",
     "app/src/main/assets/licenses/LLAMA_CPP_LICENSE": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
     "app/src/main/assets/licenses/LMA_LICENSE": "6ae3f5efa412d91cbf66e44f743e5ce41a8044309d05d893365206ab9bc35fc3",
@@ -314,7 +314,7 @@
     "app/src/main/assets/licenses/tts-utf8proc-LICENSE.md.txt": "3b510150d34f248a221bb88e1d811238d6c6c18b51231822c42974c39bb07256",
     "app/src/main/assets/licenses/xxhash-LICENSE.txt": "a2973411d278045bde3c7161b911e0680d53e2d73d6457c77068d2e55d816d67",
     "app/src/main/assets/lma-logo.png": "3155c4601396c8623c20879b903e317747a94a7b840be307bcc93fde988c8bea",
-    "app/src/main/assets/mica-design.json": "1f1b4b02216d770d0456eaafe6fa8c4a4ce2d5da7c87d4d877be2bd5f12059c9",
+    "app/src/main/assets/mica-design.json": "e2e5c32961aef910bb3592421ce7bb4f29b1204ab4043375d49191de06d64936",
     "app/src/main/assets/mica-tokens.css": "509995c97fd339d6608f7ae829f24af2b547b8cd0011bf1bf768ea17c375af6a",
     "app/src/main/assets/mica.css": "fe7e5dda3f2f38690623e34a18b2ce5c8f196aef0779091b55855de6a773ccfd",
     "app/src/main/assets/mica.js": "b42616f0889dc262c68ae62cfe804aad64ca93a38e4f186351eb2c7eda52ed74",

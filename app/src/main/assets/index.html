@@ -36,7 +36,7 @@
     </header>
     <aside class="runtime-strip" aria-label="模型运行状态">
       <div class="runtime-dot" id="runtimeDot"></div><div class="runtime-copy"><strong id="runtimeName">尚未加载模型</strong><span id="runtimeDetail">下载一个模型，开始本地运行</span></div>
-      <button class="text-button" id="runtimeAction" data-action="tab" data-tab="server">管理<span aria-hidden="true"> ↗</span></button>
+      <button class="text-button" id="runtimeAction" data-action="manageRuntime">运行管理</button>
     </aside>
     <main id="main">
       <section class="page active" id="page-models" aria-label="模型库">
@@ -73,6 +73,7 @@
       </section>
       <section class="page" id="page-server" aria-label="本地 API 服务" hidden>
         <div class="page-heading"><div><span class="eyebrow">LOCAL SERVER</span><h1>本地 API<span class="heading-dot">.</span></h1><p>为你的应用、脚本与工作流提供本地推理。</p></div></div>
+        <section id="runningModelsPanel" class="panel running-models" aria-label="运行中的模型"></section>
         <div class="server-card"><div class="section-heading"><div><span class="eyebrow">OPENAI COMPATIBLE</span><h2 id="serverStateLabel">接口尚未启动</h2></div><span class="status-pill" id="serverStatePill">未启动</span></div><button class="server-model-row" data-action="pickModel"><span class="icon" data-icon="cube"></span><span id="serverModelName">选择已下载的模型</span><span class="icon" data-icon="chevron"></span></button><div class="endpoint"><span>API BASE URL</span><div><code id="apiUrl">http://127.0.0.1:52187/v1</code><button class="icon-button" data-action="copyUrl" aria-label="复制接口地址"><span class="icon" data-icon="copy"></span></button></div></div><div class="server-controls"><button class="button primary" id="serverToggle" data-action="toggleServer"><span class="icon" data-icon="play"></span><span>启动接口</span></button><button class="button secondary" data-action="tab" data-tab="chat">前往对话<span class="icon" data-icon="arrow"></span></button></div></div>
         <div class="panel"><div class="toggle-line"><div><strong>允许局域网访问</strong><p>开启后，同一网络上的设备可使用接口和密钥连接。</p></div><label class="switch"><input type="checkbox" id="lanToggle" aria-label="允许局域网访问"><span></span></label></div><div class="key-row"><div><span class="field-label">API 密钥</span><code id="apiKeyDisplay">••••••••••••••••</code></div><button class="icon-button" data-action="revealKey" aria-label="显示或隐藏密钥"><span class="icon" data-icon="eye"></span></button><button class="icon-button" data-action="copyKey" aria-label="复制 API 密钥"><span class="icon" data-icon="copy"></span></button></div></div>
         <div class="panel"><div class="section-heading"><h2>接口可用模型</h2><span id="publishedModelCount">0 个本地模型</span></div><p>已完整下载并配置的模型自动发布。参数随模型保存，调用时可临时调整；当前运行中也可排队。</p><div id="publishedModelList" aria-live="polite"></div></div>

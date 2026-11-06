@@ -95,6 +95,14 @@ public final class HostServer {
             if (!("Bearer " + key).equals(exchange.getRequestHeaders().getFirst("Authorization"))) { respond(exchange, 401, "{\"error\":{\"message\":\"Unauthorized\"}}"); return; }
             respond(exchange, 200, new JSONObject().put("data", new JSONArray().put(new JSONObject().put("id", model))).toString());
         });
+        server.createContext("/apply-template", exchange -> {
+            try { if (!("Bearer " + key).equals(exchange.getRequestHeaders().getFirst("Authorization"))) { respond(exchange, 401, "{}"); return; } JSONObject payload = new JSONObject(read(exchange.getRequestBody())); respond(exchange, 200, new JSONObject().put("prompt", payload.toString()).toString()); }
+            catch (Exception error) { respond(exchange, 400, "{}"); }
+        });
+        server.createContext("/tokenize", exchange -> {
+            try { if (!("Bearer " + key).equals(exchange.getRequestHeaders().getFirst("Authorization"))) { respond(exchange, 401, "{}"); return; } JSONObject payload = new JSONObject(read(exchange.getRequestBody())); JSONArray tokens = new JSONArray(); int count = payload.optString("content").contains("context-overflow-fixture") ? 9000 : 20; for (int i = 0; i < count; i++) tokens.put(i); respond(exchange, 200, new JSONObject().put("tokens", tokens).toString()); }
+            catch (Exception error) { respond(exchange, 400, "{}"); }
+        });
         server.createContext("/v1/chat/completions", exchange -> {
             try {
                 if (!("Bearer " + key).equals(exchange.getRequestHeaders().getFirst("Authorization"))) { respond(exchange, 401, "{\"error\":\"Unauthorized\"}"); return; }
@@ -107,6 +115,23 @@ public final class HostServer {
                 if (path != null) Files.write(Paths.get(path), payload.toString().getBytes(StandardCharsets.UTF_8));
                 if (prompt.equals("json-error")) { respond(exchange, 400, "{\"error\":{\"message\":\"Prompt is too long\"}}"); return; }
                 if (prompt.equals("redirect")) { exchange.getResponseHeaders().set("Location", System.getenv("LMA_HOST_REDIRECT_URL")); respond(exchange, 302, "{}"); return; }
+                if (payload.optJSONArray("tools") != null && payload.getJSONArray("tools").length() > 0) {
+                    if (prompt.startsWith("queued-fixture")) Thread.sleep(100);
+                    boolean returned = messages.getJSONObject(messages.length() - 1).getString("role").equals("tool");
+                    String name = payload.getJSONArray("tools").getJSONObject(0).getJSONObject("function").getString("name");
+                    JSONObject call = new JSONObject().put("id", "call_fixture_sum").put("type", "function").put("function", new JSONObject().put("name", name).put("arguments", "{\"a\":20,\"b\":22}"));
+                    JSONObject message = new JSONObject().put("role", "assistant").put("content", returned ? "42" : JSONObject.NULL);
+                    if (!returned) message.put("tool_calls", new JSONArray().put(call));
+                    String finish = returned ? "stop" : "tool_calls";
+                    if (!payload.optBoolean("stream")) { exchange.getResponseHeaders().set("Content-Type", "application/json"); respond(exchange, 200, new JSONObject().put("id", "chatcmpl-fixture").put("object", "chat.completion").put("choices", new JSONArray().put(new JSONObject().put("index", 0).put("message", message).put("finish_reason", finish))).toString()); return; }
+                    exchange.getResponseHeaders().set("Content-Type", "text/event-stream"); exchange.sendResponseHeaders(200, 0);
+                    try (OutputStream out = exchange.getResponseBody()) {
+                        JSONObject delta = returned ? new JSONObject().put("content", "42") : new JSONObject().put("tool_calls", new JSONArray().put(call.put("index", 0)));
+                        event(out, new JSONObject().put("id", "chatcmpl-fixture").put("choices", new JSONArray().put(new JSONObject().put("index", 0).put("delta", delta).put("finish_reason", JSONObject.NULL))).toString());
+                        event(out, new JSONObject().put("id", "chatcmpl-fixture").put("choices", new JSONArray().put(new JSONObject().put("index", 0).put("delta", new JSONObject()).put("finish_reason", finish))).toString()); event(out, "[DONE]");
+                    }
+                    return;
+                }
                 if (prompt.equals("long-prefill")) Thread.sleep(8000);
                 exchange.getResponseHeaders().set("Content-Type", "text/event-stream; charset=utf-8"); exchange.sendResponseHeaders(200, 0);
                 try (OutputStream out = exchange.getResponseBody()) {

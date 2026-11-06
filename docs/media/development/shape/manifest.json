@@ -1,5 +1,5 @@
 {
-  "version": "1.0.2",
+  "version": "1.1.0",
   "kind": "current production UI with an explicit simulated bridge",
   "android_device": false,
   "model_inference": false,
@@ -50,8 +50,8 @@
   "files": [
     {
       "file": "01-shape-recipes.png",
-      "bytes": 39396,
-      "sha256": "74cf5aac69e85ff16357b14d0eff3a98578cafb9401693b39a1ccaabd6818c1b"
+      "bytes": 39562,
+      "sha256": "9e97c54b3c3b67c7097aee7bbfbc705fe21d59b2603bc9f2b2c46ce5533a2827"
     },
     {
       "file": "02-selected-assets.png",
@@ -65,8 +65,8 @@
     },
     {
       "file": "04-shape-queue.png",
-      "bytes": 48639,
-      "sha256": "5764348440df04c14a47ecca6c9796271cc67edf23d565cfc152792a35310a10"
+      "bytes": 48791,
+      "sha256": "69aa44295b426d65f39e5e6af6ff14f1d20031d519d47800eb5125b104c4dc13"
     },
     {
       "file": "05-triposg-form.png",
@@ -75,18 +75,18 @@
     },
     {
       "file": "shape-ui.gif",
-      "bytes": 817736,
-      "sha256": "6df25a7a9223515076ff9d0d1478a4b4c61dae5d6aa9f0fbe453e9d7462ef663"
+      "bytes": 837752,
+      "sha256": "4850a9cbf5470419afd61f1395a0445e1a9b4e053808652c41bd58d56859e959"
     },
     {
       "file": "shape-ui.mp4",
-      "bytes": 406139,
-      "sha256": "7ed06d8c5ec9e6acfcb461d68c7b565dc172cdc967b71a8dcc06fa8372171a62"
+      "bytes": 395681,
+      "sha256": "97afc8484319a41632e08b428e72416736d6683f16f955fc61fe2d0aa5121a45"
     }
   ],
   "input_fingerprint": {
-    "app/src/main/assets/app.css": "1c1bdc0a0f90c2b1dbe170853a9897e8acc2664e157fee22af5b996ad4e14846",
-    "app/src/main/assets/app.js": "338a18ef9a17fc6bbfecb5056e04fefe4417c9b184552c94135789067440afca",
+    "app/src/main/assets/app.css": "b09171d519a9cc4e1a3a8101c45dd46c40d24b917c4fbc29c3e131dbfb79a72d",
+    "app/src/main/assets/app.js": "5000138a2c2b75592448690ab90b629baaf238e4a9da924e6a5c082bbc618114",
     "app/src/main/assets/architectures/ltx098-upscaler.onnx": "b7b3b8067dc247002b92fa228bf8bd1271d3b535f0ac8f70c7f7e5e94448e2d9",
     "app/src/main/assets/asset-preparations.json": "b0a7cbac1a633310b9fff84164439ee8fe20a1df137d1075eb9263f531ccfd3b",
     "app/src/main/assets/audio-preview.js": "33bb898969f37c1f78c6664052c46da844d148defdcef4a54d64bc5829037f44",
@@ -101,7 +101,7 @@
     "app/src/main/assets/foundation.css": "8bbd7a445a43d93f796be904e8f67b6e6120cf27547b93abb79cf41142078343",
     "app/src/main/assets/foundation.js": "a2bd9f0a92807a0d60a97884fb3dd123ddfc5cf42258b6577bff36b37f99cb14",
     "app/src/main/assets/glb-preview.js": "26554ae19c4dbeba87732dc0d220a628f40b598450a021e683737ded03db0f85",
-    "app/src/main/assets/index.html": "114f70a528839e09a99e9289ae62c995c4ef59b1a1347854542d76258b767f18",
+    "app/src/main/assets/index.html": "427cc22eaec3e5067fed89fc958cffa14d598c408f704064fa9066e51ec9b00d",
     "app/src/main/assets/license.js": "838317c7653ca35291e9e18f2a7e2d98ed46a10880dfe144176f04ad994433d0",
     "app/src/main/assets/licenses/LLAMA_CPP_LICENSE": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
     "app/src/main/assets/licenses/LMA_LICENSE": "6ae3f5efa412d91cbf66e44f743e5ce41a8044309d05d893365206ab9bc35fc3",
@@ -290,7 +290,7 @@
     "app/src/main/assets/licenses/tts-utf8proc-LICENSE.md.txt": "3b510150d34f248a221bb88e1d811238d6c6c18b51231822c42974c39bb07256",
     "app/src/main/assets/licenses/xxhash-LICENSE.txt": "a2973411d278045bde3c7161b911e0680d53e2d73d6457c77068d2e55d816d67",
     "app/src/main/assets/lma-logo.png": "3155c4601396c8623c20879b903e317747a94a7b840be307bcc93fde988c8bea",
-    "app/src/main/assets/mica-design.json": "1f1b4b02216d770d0456eaafe6fa8c4a4ce2d5da7c87d4d877be2bd5f12059c9",
+    "app/src/main/assets/mica-design.json": "e2e5c32961aef910bb3592421ce7bb4f29b1204ab4043375d49191de06d64936",
     "app/src/main/assets/mica-tokens.css": "509995c97fd339d6608f7ae829f24af2b547b8cd0011bf1bf768ea17c375af6a",
     "app/src/main/assets/mica.css": "fe7e5dda3f2f38690623e34a18b2ce5c8f196aef0779091b55855de6a773ccfd",
     "app/src/main/assets/mica.js": "b42616f0889dc262c68ae62cfe804aad64ca93a38e4f186351eb2c7eda52ed74",

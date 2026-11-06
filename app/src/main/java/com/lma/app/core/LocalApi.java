@@ -60,7 +60,8 @@ public final class LocalApi implements LocalHttp.Handler {
             // Browser UI uses its native bridge. No credentialed CORS or multipart upload routes.
             if (request.headers.containsKey("origin")) throw new LocalHttp.Failure(403, "browser_origin_rejected", "Use a native API client; browser origins are not enabled");
             return route(request);
-        } catch (LocalHttp.Failure error) { return error(error.status, error.code, error.getMessage()); }
+        } catch (RequestError error) { return json(400, new JSONObject().put("error", new JSONObject().put("message", safe(error)).put("type", "invalid_request_error").put("param", error.param).put("code", error.code))); }
+        catch (LocalHttp.Failure error) { LocalHttp.Response result = error(error.status, error.code, error.getMessage()); if (error.param != null) { JSONObject detail = new JSONObject().put("message", error.getMessage()).put("type", error.status == 400 ? "invalid_request_error" : "lma_local_error").put("param", error.param).put("code", error.code); result = json(error.status, new JSONObject().put("error", detail)); } if (error.status == 429 || error.status == 503) result.header("Retry-After", "1"); return result; }
         catch (IllegalArgumentException | org.json.JSONException error) { return error(400, "invalid_request", safe(error)); }
         catch (IllegalStateException error) { return error(409, "local_state_conflict", safe(error)); }
         catch (IOException error) { return error(503, "local_resource_unavailable", safe(error)); }
@@ -243,7 +244,7 @@ public final class LocalApi implements LocalHttp.Handler {
             char c = text.charAt(i);
             if (quoted) { if (escape) escape = false; else if (c == '\\') escape = true; else if (c == '"') quoted = false; }
             else if (c == '"') quoted = true;
-            else if (c == '{' || c == '[') { if (++depth > 32) throw new IllegalArgumentException("JSON nesting exceeds 32 levels"); }
+            else if (c == '{' || c == '[') { int maximum = LocalHttp.textPath(request.path) ? 64 : 32; if (++depth > maximum) throw new IllegalArgumentException("JSON nesting exceeds " + maximum + " levels"); }
             else if (c == '}' || c == ']') depth--;
         }
         org.json.JSONTokener tokener = new org.json.JSONTokener(text);
@@ -255,4 +256,5 @@ public final class LocalApi implements LocalHttp.Handler {
     public static LocalHttp.Response json(int status, JSONObject data) { return LocalHttp.Response.bytes(status, "application/json; charset=utf-8", data.toString().getBytes(StandardCharsets.UTF_8)); }
     public static LocalHttp.Response error(int status, String code, String message) throws org.json.JSONException { return json(status, new JSONObject().put("error", new JSONObject().put("code", code).put("message", message).put("param", JSONObject.NULL).put("type", "lma_local_error"))); }
     private static String safe(Exception error) { String message = error.getMessage(); return message == null ? "Invalid local operation" : OpenAiFacade.safe(message); }
+    public static String safeMessage(String message) { return OpenAiFacade.safe(message == null ? "Local operation failed" : message); }
 }

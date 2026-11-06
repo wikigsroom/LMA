@@ -1,6 +1,6 @@
 {
   "schema": "lma.conversation-implementation/1",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "planDate": "20261102",
   "deliveryDate": "2026-11-03",
   "validationMode": "program_only",
@@ -15,7 +15,7 @@
   "qualityAccepted": false,
   "backgroundEnduranceTested": false,
   "knownLimits": [
-    "Full trained-model, visual/codec quality and endurance remain unverified; actual v1.0.2 UI/API/idle checks are recorded separately in version-specific evidence.",
+    "Full multimodal trained-model, visual/codec quality and endurance remain unverified; v1.1.0 physical UI/API/idle checks and selected m15 tools inference are recorded separately in version-specific evidence.",
     "m03/m09/m16 projector provenance remains unresolved; no fabricated compatible preset.",
     "Public OpenAI chat accepts text only; App visual bridge is a separate path.",
     "Native audio/3D understanding and arbitrary HF execution are not inferred from catalogue tags.",
@@ -483,8 +483,8 @@
       "id": "A31",
       "requirement": "程序检查、选定真机／模型运行、质量和耐久分别给出精确版本／APK 与结果；不恢复逐个完整模型长跑作为常规门槛。",
       "workPackage": "D12",
-      "assessment": "version/APK-bound program evidence; fresh physical, quality and endurance checks not run",
-      "evidence": "verification/releases/v0.4.0/status.json"
+      "assessment": "Program gates and selected physical/tool generations are version/APK-bound and counted separately; general quality and endurance remain unaccepted.",
+      "evidence": "verification/releases/v1.1.0/status.json"
     },
     {
       "id": "A32",
@@ -500,5 +500,6 @@
       "assessment": "program_checked: default dark and valid light/dark/system preferences; no fresh phone first-frame measure",
       "evidence": "verification/releases/v0.4.0/status.json"
     }
-  ]
+  ],
+  "currentEvidence": "verification/releases/v1.1.0/status.json"
 }

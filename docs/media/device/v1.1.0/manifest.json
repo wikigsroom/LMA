@@ -1,0 +1,291 @@
+{
+  "schema": "lma.physical-mica-media/1",
+  "version": "1.1.0",
+  "apk_sha256": "ca79fc08e6e995ea8c67b9bf52475facd1dbe94cfa84852bc17426e19df585bd",
+  "android_device": true,
+  "desktop_fixture": false,
+  "model_inference": false,
+  "weights_downloaded": false,
+  "reviewed_app_only": true,
+  "playback_speed": 1,
+  "browser_used": false,
+  "browser_closed": true,
+  "recording_seconds": 20.0,
+  "screenshots": [
+    {
+      "file": "dark-models.png",
+      "bytes": 189223,
+      "sha256": "6d8c453982d5de2c3edc31a88648b3081cfefa1fe6ddcdf506363b06896d4833"
+    },
+    {
+      "file": "dark-model-cards.png",
+      "bytes": 212838,
+      "sha256": "3a2d0b2bc2aea537e1e20bd0b4e9c4ac36f606963a854dfed5ea0545d209d333"
+    },
+    {
+      "file": "dark-chat.png",
+      "bytes": 169875,
+      "sha256": "93b0e4d19291e20704702266383f29bdbdf5bb35d234efdab255861852c26f15"
+    },
+    {
+      "file": "dark-chat-tools.png",
+      "bytes": 157435,
+      "sha256": "9ef93478db5c9990885dc5bd41121b3b81cadb475d9f4b0ec4baedb59f6776b9"
+    },
+    {
+      "file": "dark-tasks.png",
+      "bytes": 178707,
+      "sha256": "ab0ba3caeda710333c5365635e28ae5c184e22994f584b7e6c56567fdde93596"
+    },
+    {
+      "file": "dark-server.png",
+      "bytes": 220763,
+      "sha256": "61ce9047445ec2012c3d97c14e3e0e707583f6cc5088b2bd21d3c874b858c406"
+    },
+    {
+      "file": "dark-runtime.png",
+      "bytes": 201420,
+      "sha256": "86d3f5606062865d4bbdd34b022e2d3998aee8d3be84d686db4e28f969aaacca"
+    },
+    {
+      "file": "dark-unload-confirm.png",
+      "bytes": 205283,
+      "sha256": "ed2b84db13edf73b464f3ec1310e4145796995bce60a8e051c8a9001ff9100ca"
+    },
+    {
+      "file": "dark-settings.png",
+      "bytes": 204088,
+      "sha256": "da5c6429b866c8a678057f9256d05c0c198f99eba6cc0c7d526bd0ceccabd5dc"
+    },
+    {
+      "file": "dark-local.png",
+      "bytes": 237257,
+      "sha256": "6e7f098fd86e86b72999240988c9fd5edc413bdd2984d2db755ec5a359ccef0d"
+    },
+    {
+      "file": "dark-delete-confirm.png",
+      "bytes": 205200,
+      "sha256": "78656eafed5ea14061ddb2308b1512d237cdf4c0568f0542c6317d0ee98ceb7f"
+    },
+    {
+      "file": "dark-model-settings.png",
+      "bytes": 152985,
+      "sha256": "f85fc0615fe923a8b327ee285373d31dca3805fbadb5f27af0bbbbedf5c0daa0"
+    },
+    {
+      "file": "light-models.png",
+      "bytes": 241454,
+      "sha256": "e75bbcf6f9245e8631f26c71e0065203d0401b6ce417ec14116f6231d3ba0038"
+    },
+    {
+      "file": "light-model-cards.png",
+      "bytes": 212200,
+      "sha256": "246425e2a3002dee718ad5154878871d6abad0f60172810947a53e0fdd0d1007"
+    },
+    {
+      "file": "light-chat.png",
+      "bytes": 171432,
+      "sha256": "de27ee22e24c0cfce36d7536fdc58e79ef3ebe237e6fd8fef2e117051285bfa0"
+    },
+    {
+      "file": "light-chat-tools.png",
+      "bytes": 169981,
+      "sha256": "218ef0a95760158e48711adaf32749adfe720a170b7f8bc621b145bf05f3ecfa"
+    },
+    {
+      "file": "light-tasks.png",
+      "bytes": 202571,
+      "sha256": "04318b0d28ee2d0c94a47a88835e07e2aec42481b1f7a354747af444f0192b0d"
+    },
+    {
+      "file": "light-server.png",
+      "bytes": 225746,
+      "sha256": "9e997538fb387263f432b700a94ad6d2dc7fe86c82df66987eca63bd64adece6"
+    },
+    {
+      "file": "light-runtime.png",
+      "bytes": 218077,
+      "sha256": "1cbb1221ae6e37926673924c97b1ae98737d40e2d0cdb296964f02be2cdd70af"
+    },
+    {
+      "file": "light-unload-confirm.png",
+      "bytes": 221238,
+      "sha256": "c9790f06862c58fa8f8396090195f8b7ce56666918cccf8ffa319e9998716e43"
+    },
+    {
+      "file": "light-settings.png",
+      "bytes": 203816,
+      "sha256": "e7a4b1217c2b07304b61c1574d6b1b3849a5216bfb8126561887bdf99ca5a8be"
+    },
+    {
+      "file": "light-local.png",
+      "bytes": 236977,
+      "sha256": "48699878158ee3fa3a943b91b9a39745dea1672f2dee2fe91752ab696cea09b8"
+    },
+    {
+      "file": "light-delete-confirm.png",
+      "bytes": 220580,
+      "sha256": "d610bf8a51d5c0d4bfc4a3184bcf2ee1e22ce6c6610121fd27c4e57b29e30acd"
+    },
+    {
+      "file": "light-model-settings.png",
+      "bytes": 153860,
+      "sha256": "285444c50b8d3fdb38d086bbbdc0002c9f3ddfe6df3c707b449d340dfbc8b54b"
+    },
+    {
+      "file": "light-landscape.png",
+      "bytes": 205482,
+      "sha256": "a4e51fe3b9adbe0bdc1d1392f7169c9b8254da2561045128ddd217a490cc832b"
+    }
+  ],
+  "files": [
+    {
+      "file": "dark-chat-tools.png",
+      "bytes": 157435,
+      "sha256": "9ef93478db5c9990885dc5bd41121b3b81cadb475d9f4b0ec4baedb59f6776b9"
+    },
+    {
+      "file": "dark-chat.png",
+      "bytes": 169875,
+      "sha256": "93b0e4d19291e20704702266383f29bdbdf5bb35d234efdab255861852c26f15"
+    },
+    {
+      "file": "dark-delete-confirm.png",
+      "bytes": 205200,
+      "sha256": "78656eafed5ea14061ddb2308b1512d237cdf4c0568f0542c6317d0ee98ceb7f"
+    },
+    {
+      "file": "dark-local.png",
+      "bytes": 237257,
+      "sha256": "6e7f098fd86e86b72999240988c9fd5edc413bdd2984d2db755ec5a359ccef0d"
+    },
+    {
+      "file": "dark-model-cards.png",
+      "bytes": 212838,
+      "sha256": "3a2d0b2bc2aea537e1e20bd0b4e9c4ac36f606963a854dfed5ea0545d209d333"
+    },
+    {
+      "file": "dark-model-settings.png",
+      "bytes": 152985,
+      "sha256": "f85fc0615fe923a8b327ee285373d31dca3805fbadb5f27af0bbbbedf5c0daa0"
+    },
+    {
+      "file": "dark-models.png",
+      "bytes": 189223,
+      "sha256": "6d8c453982d5de2c3edc31a88648b3081cfefa1fe6ddcdf506363b06896d4833"
+    },
+    {
+      "file": "dark-runtime.png",
+      "bytes": 201420,
+      "sha256": "86d3f5606062865d4bbdd34b022e2d3998aee8d3be84d686db4e28f969aaacca"
+    },
+    {
+      "file": "dark-server.png",
+      "bytes": 220763,
+      "sha256": "61ce9047445ec2012c3d97c14e3e0e707583f6cc5088b2bd21d3c874b858c406"
+    },
+    {
+      "file": "dark-settings.png",
+      "bytes": 204088,
+      "sha256": "da5c6429b866c8a678057f9256d05c0c198f99eba6cc0c7d526bd0ceccabd5dc"
+    },
+    {
+      "file": "dark-tasks.png",
+      "bytes": 178707,
+      "sha256": "ab0ba3caeda710333c5365635e28ae5c184e22994f584b7e6c56567fdde93596"
+    },
+    {
+      "file": "dark-unload-confirm.png",
+      "bytes": 205283,
+      "sha256": "ed2b84db13edf73b464f3ec1310e4145796995bce60a8e051c8a9001ff9100ca"
+    },
+    {
+      "file": "light-chat-tools.png",
+      "bytes": 169981,
+      "sha256": "218ef0a95760158e48711adaf32749adfe720a170b7f8bc621b145bf05f3ecfa"
+    },
+    {
+      "file": "light-chat.png",
+      "bytes": 171432,
+      "sha256": "de27ee22e24c0cfce36d7536fdc58e79ef3ebe237e6fd8fef2e117051285bfa0"
+    },
+    {
+      "file": "light-delete-confirm.png",
+      "bytes": 220580,
+      "sha256": "d610bf8a51d5c0d4bfc4a3184bcf2ee1e22ce6c6610121fd27c4e57b29e30acd"
+    },
+    {
+      "file": "light-landscape.png",
+      "bytes": 205482,
+      "sha256": "a4e51fe3b9adbe0bdc1d1392f7169c9b8254da2561045128ddd217a490cc832b"
+    },
+    {
+      "file": "light-local.png",
+      "bytes": 236977,
+      "sha256": "48699878158ee3fa3a943b91b9a39745dea1672f2dee2fe91752ab696cea09b8"
+    },
+    {
+      "file": "light-model-cards.png",
+      "bytes": 212200,
+      "sha256": "246425e2a3002dee718ad5154878871d6abad0f60172810947a53e0fdd0d1007"
+    },
+    {
+      "file": "light-model-settings.png",
+      "bytes": 153860,
+      "sha256": "285444c50b8d3fdb38d086bbbdc0002c9f3ddfe6df3c707b449d340dfbc8b54b"
+    },
+    {
+      "file": "light-models.png",
+      "bytes": 241454,
+      "sha256": "e75bbcf6f9245e8631f26c71e0065203d0401b6ce417ec14116f6231d3ba0038"
+    },
+    {
+      "file": "light-runtime.png",
+      "bytes": 218077,
+      "sha256": "1cbb1221ae6e37926673924c97b1ae98737d40e2d0cdb296964f02be2cdd70af"
+    },
+    {
+      "file": "light-server.png",
+      "bytes": 225746,
+      "sha256": "9e997538fb387263f432b700a94ad6d2dc7fe86c82df66987eca63bd64adece6"
+    },
+    {
+      "file": "light-settings.png",
+      "bytes": 203816,
+      "sha256": "e7a4b1217c2b07304b61c1574d6b1b3849a5216bfb8126561887bdf99ca5a8be"
+    },
+    {
+      "file": "light-tasks.png",
+      "bytes": 202571,
+      "sha256": "04318b0d28ee2d0c94a47a88835e07e2aec42481b1f7a354747af444f0192b0d"
+    },
+    {
+      "file": "light-unload-confirm.png",
+      "bytes": 221238,
+      "sha256": "c9790f06862c58fa8f8396090195f8b7ce56666918cccf8ffa319e9998716e43"
+    },
+    {
+      "file": "physical-walkthrough.gif",
+      "bytes": 1268000,
+      "sha256": "f4a91724e5be5980a88a1ba8bb1bd552e4cd66d5a87d51c9bba11860ad599cf5"
+    },
+    {
+      "file": "physical-walkthrough.mp4",
+      "bytes": 1798132,
+      "sha256": "ea9be7492ba1b13d6010632c06c5c4250481b47bd52b96c547563db9e110c0f8"
+    }
+  ],
+  "input_fingerprint": {
+    "app/src/main/assets/app.js": "5000138a2c2b75592448690ab90b629baaf238e4a9da924e6a5c082bbc618114",
+    "app/src/main/assets/conversation.js": "5583dcf51e4444715bd6eefcb1e17b1d9411ebcb0c216a812b5140bfd533a577",
+    "app/src/main/assets/index.html": "427cc22eaec3e5067fed89fc958cffa14d598c408f704064fa9066e51ec9b00d",
+    "app/src/main/assets/mica.css": "fe7e5dda3f2f38690623e34a18b2ce5c8f196aef0779091b55855de6a773ccfd",
+    "app/src/main/assets/mica.js": "b42616f0889dc262c68ae62cfe804aad64ca93a38e4f186351eb2c7eda52ed74",
+    "app/src/main/java/com/lma/app/MainActivity.java": "f2a98438d24980a10668c6d51caa1f825241ecb83f3b89afbbed901bb58450bb",
+    "tests/android/com/lma/app/DeviceUiProbe.java": "261196ca83ad47af281bfeb173402afc5955615f7ba0a7864c18ab5740f9044a",
+    "tools/capture_mica_device.py": "e3c6c09d23e118d26e04e0166467de40d99a190054ede390896b63de34a77308",
+    "tools/finalize_mica_media.py": "da1d69fd555d7bec6a27d3b2fb1b6daadfb1b3afe86d2fdf33267655827644d7"
+  },
+  "privacy_scope": "Real app only after initial page/history transition is trimmed; empty new chat and explicit test-task search. Credential fields masked. All public images and trimmed clip require visual review.",
+  "source_trim_start_seconds": 5.0
+}

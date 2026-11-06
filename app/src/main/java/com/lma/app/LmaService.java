@@ -156,7 +156,7 @@ public final class LmaService extends Service {
                     if (bound.isEmpty()) downloads.pause(id); else { requireBundles(); bundleTransfers.pause(bound); } break;
                 }
                 case "load": api.start(); engine.load(command.getString("id")); break;
-                case "stopEngine": chat.cancel(); api.cancelText(); engine.stop(); break;
+                case "stopEngine": if (command.has("id") && !command.optString("id").isEmpty() && !command.getString("id").equals(app.engineModel)) throw new IllegalStateException("运行模型已更改，请重新打开运行管理"); chat.cancel(); api.cancelText(); engine.stop(); break;
                 case "stopAll": app.finishCommand(command, null); stopAll(); return START_NOT_STICKY;
                 case "send": chat.send(command); break;
                 case "cancelChat": chat.cancel(); api.cancelText(); break;

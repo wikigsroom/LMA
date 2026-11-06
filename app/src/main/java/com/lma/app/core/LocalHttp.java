@@ -10,10 +10,12 @@ import java.util.concurrent.*;
 /** Bounded HTTP/1.x transport for the local API; one request per connection, bounded JSON or input-media chunks. */
 public final class LocalHttp implements AutoCloseable {
     public static final int MAX_BODY = 256 * 1024;
+    public static final int MAX_TEXT_BODY = 4 * 1024 * 1024;
     private static final int MAX_HEADERS = 16 * 1024;
     private final ServerSocket listener;
     private final Handler handler;
     private final ThreadPoolExecutor workers;
+    private final ThreadPoolExecutor textWorkers;
     private final ScheduledExecutorService watchdog;
     private final Set<Client> clients = ConcurrentHashMap.newKeySet();
     private final Thread acceptor;
@@ -26,8 +28,9 @@ public final class LocalHttp implements AutoCloseable {
     }
     public static final class Failure extends IOException {
         public final int status;
-        public final String code;
-        public Failure(int status, String code, String message) { super(message); this.status = status; this.code = code; }
+        public final String code, param;
+        public Failure(int status, String code, String message) { this(status, code, message, null); }
+        public Failure(int status, String code, String message, String param) { super(message); this.status = status; this.code = code; this.param = param; }
     }
     public static final class Request {
         public final String method, path;
@@ -95,6 +98,9 @@ public final class LocalHttp implements AutoCloseable {
         workers = new ThreadPoolExecutor(0, 12, 30, TimeUnit.SECONDS, new SynchronousQueue<>(), runnable -> {
             Thread thread = new Thread(runnable, "LMA-api-client"); thread.setDaemon(true); return thread;
         });
+        textWorkers = new ThreadPoolExecutor(0, 9, 30, TimeUnit.SECONDS, new SynchronousQueue<>(), runnable -> {
+            Thread thread = new Thread(runnable, "LMA-api-text"); thread.setDaemon(true); return thread;
+        });
         watchdog = Executors.newSingleThreadScheduledExecutor(runnable -> { Thread thread = new Thread(runnable, "LMA-api-timeouts"); thread.setDaemon(true); return thread; });
         watchdog.scheduleWithFixedDelay(() -> {
             long now = System.nanoTime();
@@ -117,20 +123,33 @@ public final class LocalHttp implements AutoCloseable {
     }
     private void serve(Client client) {
         client.handlerThread = Thread.currentThread();
-        try (Socket socket = client.socket) {
+        boolean handedOff = false;
+        try {
             Request request;
-            BufferedInputStream input = new BufferedInputStream(socket.getInputStream(), 8192);
+            BufferedInputStream input = new BufferedInputStream(client.socket.getInputStream(), 8192);
             try { request = read(input); client.parsed = true; }
-            catch (SocketTimeoutException error) { send(client, null, plain(408, "Request timeout")); return; }
-            catch (Failure error) { send(client, null, plain(error.status, error.getMessage())); finishRejected(client, input); return; }
-            Response response;
-            try { response = handler.handle(request); }
-            catch (Failure error) { response = plain(error.status, error.getMessage()); }
-            catch (Exception error) { response = plain(500, "Local API request failed"); }
-            send(client, request, response);
+            catch (SocketTimeoutException error) { send(client, null, transportError(408, "request_timeout", "Request timeout")); return; }
+            catch (Failure error) { send(client, null, transportError(error.status, error.code, error.getMessage())); finishRejected(client, input); return; }
+            if (request.method.equals("POST") && textPath(request.path)) {
+                try {
+                    textWorkers.execute(() -> { client.handlerThread = Thread.currentThread(); try { respond(client, request); } catch (Exception ignored) {} finally { clients.remove(client); client.close(); } });
+                    handedOff = true;
+                } catch (RejectedExecutionException error) { send(client, request, transportError(429, "text_queue_full", "The local text request queue is full").header("Retry-After", "1")); }
+            } else respond(client, request);
         } catch (Exception ignored) {
             // Disconnected clients must release response leases without logging credentials/prompts.
-        } finally { clients.remove(client); client.close(); }
+        } finally { if (!handedOff) { clients.remove(client); client.close(); } }
+    }
+    private void respond(Client client, Request request) throws Exception {
+        Response response;
+        try { response = handler.handle(request); }
+        catch (Failure error) { response = transportError(error.status, error.code, error.getMessage()); }
+        catch (Exception error) { response = transportError(500, "local_api_error", "Local API request failed"); }
+        send(client, request, response);
+    }
+    public static boolean textPath(String path) { return path.equals("/v1/chat/completions") || path.equals("/v1/completions"); }
+    private static Response transportError(int status, String code, String message) {
+        try { return LocalApi.error(status, code, message); } catch (Exception impossible) { return plain(500, "Local API request failed"); }
     }
     private static Response plain(int status, String text) { return Response.bytes(status, "text/plain; charset=utf-8", text.getBytes(StandardCharsets.UTF_8)); }
     private static void send(Client client, Request request, Response response) throws Exception {
@@ -183,7 +202,8 @@ public final class LocalHttp implements AutoCloseable {
         if (headers.containsKey("content-length")) {
             String value = headers.get("content-length");
             if (!value.matches("[0-9]{1,10}")) throw new Failure(400, "invalid_length", "Invalid Content-Length");
-            long size = Long.parseLong(value); if (size > MAX_BODY) throw new Failure(413, "body_too_large", "Request body exceeds 256 KiB"); length = (int) size;
+            String route = target.split("\\?", 2)[0]; int maximum = parts[0].equals("POST") && textPath(route) ? MAX_TEXT_BODY : MAX_BODY;
+            long size = Long.parseLong(value); if (size > maximum) throw new Failure(413, "body_too_large", "Request body exceeds " + (maximum == MAX_TEXT_BODY ? "4 MiB" : "256 KiB")); length = (int) size;
         } else if (parts[0].equals("POST") || parts[0].equals("PUT")) throw new Failure(411, "missing_length", "Content-Length is required");
         byte[] body = new byte[length]; int offset = 0;
         while (offset < body.length) { int size = in.read(body, offset, body.length - offset); if (size < 0) throw new Failure(400, "incomplete_body", "Incomplete request body"); offset += size; }
@@ -215,13 +235,13 @@ public final class LocalHttp implements AutoCloseable {
         switch (status) {
             case 304: return "Not Modified"; case 410: return "Gone"; case 504: return "Gateway Timeout"; case 200: return "OK"; case 202: return "Accepted"; case 204: return "No Content"; case 206: return "Partial Content";
             case 400: return "Bad Request"; case 401: return "Unauthorized"; case 404: return "Not Found"; case 405: return "Method Not Allowed";
-            case 408: return "Request Timeout"; case 409: return "Conflict"; case 411: return "Length Required"; case 413: return "Content Too Large";
+            case 408: return "Request Timeout"; case 409: return "Conflict"; case 411: return "Length Required"; case 413: return "Content Too Large"; case 429: return "Too Many Requests";
             case 416: return "Range Not Satisfiable"; case 417: return "Expectation Failed"; case 431: return "Request Header Fields Too Large";
             case 501: return "Not Implemented"; case 503: return "Service Unavailable"; default: return "Local API";
         }
     }
     @Override public void close() {
         closed = true; try { listener.close(); } catch (IOException ignored) {}
-        for (Client client : clients) client.close(); workers.shutdownNow(); watchdog.shutdownNow();
+        for (Client client : clients) client.close(); workers.shutdownNow(); textWorkers.shutdownNow(); watchdog.shutdownNow();
     }
 }

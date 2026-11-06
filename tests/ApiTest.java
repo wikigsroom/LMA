@@ -157,7 +157,7 @@ public final class ApiTest {
             JSONObject defaults = request(port, "POST", "/v1/chat/completions", new JSONObject().put("messages", chat.getJSONArray("messages")).toString()).json();
             check(defaults.getInt("max_tokens") == 123 && defaults.getDouble("temperature") == 0.4 && defaults.getJSONArray("messages").length() == 1, "Saved text defaults apply without injecting the App system prompt");
             check(request(port, "POST", "/v1/chat/completions", new JSONObject(chat.toString()).put("model", "not_loaded").toString()).status == 409, "The API never silently loads or downloads a different requested text model");
-            check(request(port, "POST", "/v1/chat/completions", new JSONObject(chat.toString()).put("tools", new JSONArray()).toString()).status == 400, "Unsupported text fields fail explicitly");
+            check(request(port, "POST", "/v1/chat/completions", new JSONObject(chat.toString()).put("tools", new JSONArray()).put("store", false).toString()).status == 200, "OpenAI empty tools and store:false are accepted");
             JSONObject remote = new JSONObject(chat.toString()).put("messages", new JSONArray().put(new JSONObject().put("role", "user").put("content", new JSONArray().put(new JSONObject().put("type", "image_url").put("image_url", "https://example.invalid/image.png")))));
             check(request(port, "POST", "/v1/chat/completions", remote.toString()).status == 400, "The text endpoint cannot fetch remote image/audio inputs");
             check(request(port, "POST", "/v1/chat/completions", new JSONObject(chat.toString()).put("n", 2).toString()).status == 400, "Multi-slot text generation is rejected");

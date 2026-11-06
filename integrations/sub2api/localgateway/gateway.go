@@ -575,7 +575,7 @@ func (g *Gateway) inputsLocked(p Principal, c choice, body Object) error {
 }
 
 var forwarded = []string{"Content-Type", "Accept", "Range", "If-Range", "If-None-Match", "Last-Event-ID", "Upload-Offset"}
-var returned = []string{"Content-Type", "Content-Length", "Content-Range", "Accept-Ranges", "ETag", "Retry-After", "X-Audio-Format", "X-Accel-Buffering", "Cache-Control"}
+var returned = []string{"Content-Type", "Content-Length", "Content-Range", "Accept-Ranges", "ETag", "Retry-After", "X-Audio-Format", "X-Accel-Buffering", "Cache-Control", "X-Request-ID", "X-LMA-Max-Tokens"}
 
 // Parent-phone lists are filtered against durable owner bindings before any bytes reach a caller.
 func (g *Gateway) listOwned(w http.ResponseWriter, r *http.Request, p Principal, kind string) {
@@ -710,12 +710,16 @@ func (g *Gateway) ServeHTTP(w http.ResponseWriter, r *http.Request, p Principal)
 		}
 		return
 	}
-	if r.ContentLength > 256<<10 {
+	bodyLimit := int64(256 << 10)
+	if path == "/v1/chat/completions" || path == "/v1/completions" {
+		bodyLimit = 4 << 20
+	}
+	if r.ContentLength > bodyLimit {
 		fail(w, 413, "lma_body_too_large")
 		return
 	}
-	payload, e := io.ReadAll(io.LimitReader(r.Body, 256<<10+1))
-	if e != nil || len(payload) > 256<<10 {
+	payload, e := io.ReadAll(io.LimitReader(r.Body, bodyLimit+1))
+	if e != nil || int64(len(payload)) > bodyLimit {
 		fail(w, 413, "lma_body_too_large")
 		return
 	}

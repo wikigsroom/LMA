@@ -1,5 +1,15 @@
 # Changelog / 更新记录
 
+## v1.1.0 · 2026-11-06 · DSH 工具协议与运行管理 / Function tools and Unload
+
+- 补全OpenAI Chat Completions函数声明、具名／required／auto选择、parallel_tool_calls、store:false、助手tool_calls／content:null、tool结果与多轮继续；保持客户端执行工具。
+- 原生Jinja模板＋具名选择适配，strict参数／结构化输出交付前校验；保留SSE工具分片、usage、结束原因和真实错误。
+- 外部文本最多9个请求／16 MiB序列化JSON准入，共用FIFO单执行槽与专用线程；文本正文4 MiB、1024消息及真实模板分词上下文预检，满队429。
+- Sub2API配套转发器同步4 MiB文本上限，保留完整工具历史、SSE和请求诊断头；新增真实HTTP转发检查。
+- 顶部运行管理、本地文字卡片、服务与对话选模暴露“卸载模型”；具名确认、进程释放、取消文本但保留文件／参数／历史和监听；媒体任务可停止并释放。
+- 真机已装m15／真实OpenAI SDK完成21项检查、6次生成，覆盖工具往返、严格SSE、双并发、UI卸载／API重载。未驱动DSH App本身，不扩张为通用代理质量或耐久通过。
+- Bilingual guides/README, current screenshots/MP4/GIF and version-bound evidence updated. Original signing and all frozen model/foundation scope retained; formal stable release. [中文工具](docs/DSH_TOOLS.md) · [English](docs/DSH_TOOLS.en.md) · [Unload](docs/MODEL_RUNTIME.md) · [Release](docs/releases/v1.1.0.md).
+
 ## v1.0.2 · 2026-11-06 · 模型删除入口外置 / Outer model-card deletion
 
 - 生图、生视频、生音频、生3D与LoRA模型包在卡片底部直接显示“垃圾桶＋删除”，无需进入详情；文字GGUF同步使用具名按钮。

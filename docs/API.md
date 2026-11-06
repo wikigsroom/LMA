@@ -1,5 +1,7 @@
 # LMA API 接入
 
+**当前 v1.1.0/code68：** [DSH / OpenAI 函数工具协议](DSH_TOOLS.md)支持 tools、tool_choice、parallel_tool_calls、store:false、工具消息、严格参数校验、流式 tool_calls 与多轮回传。最多9个文本请求排队接纳，正文4 MiB／1024条消息；[运行管理与卸载](MODEL_RUNTIME.md)独立于文件删除和API监听。以下旧版本标注保留历史语境。
+
 **当前 v0.4.0：** [会话、手动媒体、视觉桥与顺序链 API](CONVERSATION_V040.md)。新增认证的 `/v1/lma/chains` 和独立 `media.compose` 工具；原生能力标签不扩大可执行 API。公开 OpenAI chat 仍为文本子集。旧版实机案例保留原 APK 身份，本版尚无新的实机联调结果。
 
 **v0.3.12 历史接口：** [本地 API 与实际 SDK 案例](LOCAL_API_V0312.md) · [OpenAPI](proposals/sub2api-openai.openapi.json) · [实机测评](DEVICE_BENCHMARK_V0312.md)。已下载完整且配置有效的所有本地模态自动公布；图片 PNG、显式语音 WAV 和 `/v1/lma/jobs/uploads/artifacts` 已实现。Sub2API 源码扩展需明确启用，本次未修改生产部署。下文旧版提示保留对应历史语境。
@@ -48,7 +50,7 @@ dev.28 的 LCM 准备 / 关联复用本页的 `model.prepare` / `model.assemble`
 - `GET /v1/models` 返回本地登记模型的别名，例如 `m08`。HF 下载模型使用稳定的 `hf_...`，手动添加使用 `custom_...`，不要从文件名猜测 ID。HF 令牌只用于仓库访问，不能代替推理 API 密钥。
 - 当前聊天入口仍要求在 App 选择并加载文本模型；模型列表也含其他未加载／多模态条目，不能直接拿第一项聊天。单手机重型执行槽不保证并行吞吐。
 
-这里只承诺所述 OpenAI 兼容 models / chat-completions / SSE 表面，不承诺 Responses、语音、图像、嵌入、工具调用或所有供应商参数。
+早期示例展示 models / chat-completions / SSE；当前函数工具见[DSH工具合同](DSH_TOOLS.md)，图片／语音及本地扩展见下方端点表。Responses、嵌入、任意工具类型和所有供应商参数不在兼容承诺内。
 
 ## curl
 
@@ -177,11 +179,11 @@ curl http://PHONE_IP:52187/v1/jobs \
 
 任务输入接受 `prompt` / `negativePrompt` 文本及显式 `artifacts: [{role, artifactId}]`；媒体角色必须由所选签名引擎声明，现有生产配方仍只接受文字。`parameters` 必须为 JSON 对象、`allowUnmeasured` 必须为布尔值；其他输入不被静默忽略，也不会转为网络获取。输入回执由服务端固定，执行前复核完整 hash；排队和执行期间禁止删除素材。见[本地输入](LOCAL_INPUTS.md)。参数先应用模型 / 配方独立配置，再执行同样的约束与归位；任务保存不可变有效参数。相同幂等键和相同请求返回原任务；改变请求返回冲突。任务重试产生新 ID，历史不被重写。缺资产、缺引擎、资源不足、未授权尝试未测配方均在本机失败，接口不会触发下载。媒体任务与文本回复共用执行槽，等待当前回复并自动回收 / 切换引擎；完整设备调度验收仍在本版待办。
 
-文本请求采用所选模型的输出 / 温度默认值，输出上限归位到该模型已保存的限制及上下文边界；不注入 App 系统提示词。只接受受支持的纯文本字段，拒绝媒体 URL、工具等未接入字段和多推理槽。外部文本请求占用期间，App 聊天、模型切换和需要重载的参数变更不能越过占用检查。停止或断开文本连接释放其原生连接；断开任务事件订阅不会取消持久任务，取消必须调用对应端点。
+文本请求采用所选模型的输出／温度默认值，不注入 App 系统提示词。支持文本及[函数工具协议](DSH_TOOLS.md)，拒绝未接入媒体URL和未知字段。实际模板分词预检输入，超限不截断历史，输出归位到保存上限和剩余上下文。最多9个已接纳文本请求共用FIFO单执行槽；App聊天／模型切换／重载仍受占用保护。流式断开取消该请求，非流式断开可能到后续写入才发现。卸载取消当前及排队文本；断开任务事件订阅不会取消持久任务。
 
 事件查询使用 `?after=SEQUENCE` 或 `Last-Event-ID`，两者同时提供须一致。`/v1/events` 还可用 `job_id=ID`。JSON 的 `cursor` 表示已读取到的全局序号；保留 512 条事件，过旧游标返回 `truncated`，SSE 会发送 `reset` 提醒重新读取任务快照。SSE 单连接最长 120 秒、每约 10 秒心跳，客户端按游标重连；同时最多两路事件流，仍可改用 JSON 轮询。
 
-传输限制：请求头 16 KiB、请求体 256 KiB、JSON 嵌套 32 层；POST / PUT 要求 `Content-Length`，不接受 HTTP chunked / multipart / `Expect`。分块素材上传每次 PUT 最多 256 KiB，沿用同一鉴权。不提供文件系统路径或远程转发端点。所有响应关闭缓存、启用 `nosniff`；不开放浏览器 CORS，原生客户端和 App 自己的桥接不受此限制。原始产物同时最多三路读取；超出数量返回 `503`，活动读取结束即可重试。明文 HTTP / 无 TLS 的既有限制仍适用。
+传输限制：请求头16 KiB；chat/completions及completions正文4 MiB、JSON嵌套64层，其他JSON／上传块256 KiB、嵌套32层。已接纳文本请求序列化JSON合计16 MiB，队满429并带Retry-After。POST／PUT要求 `Content-Length`，不接受HTTP chunked／multipart／Expect；素材文件上限512 MiB。不提供文件系统路径或远程推理转发端点。所有响应关闭缓存、启用nosniff；浏览器CORS关闭。原始产物同时最多三路读取，超出503。明文HTTP／无TLS边界保持。
 
 当前开发证据：67 项接口检查使用实际本机 socket、生产路由 / 存储和显式执行替身；文本后端还检查生产 `ApiHost` 对真实子进程替身的代理与占用释放。它们不是 Android 模型输出或后台耐久证据。完整余项见[实施记录](DEVELOPMENT.md)。
 

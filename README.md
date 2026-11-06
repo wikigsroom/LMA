@@ -8,7 +8,7 @@
 
 Android 本地 AI 工作台，模型由你选择，无审查模型独立标记。[品牌定稿：Logo 21 ＋ Slogan 04](docs/BRANDING.md)。
 
-[English](README.en.md) · [下载 v1.0.2](https://github.com/wikigsroom/LMA/releases/tag/v1.0.2) · [使用手册](docs/USER_GUIDE.md) · [文档目录](docs/README.md) · [更新记录](CHANGELOG.md)
+[English](README.en.md) · [下载 v1.1.0](https://github.com/wikigsroom/LMA/releases/tag/v1.1.0) · [使用手册](docs/USER_GUIDE.md) · [文档目录](docs/README.md) · [更新记录](CHANGELOG.md)
 
 <a id="contents"></a>
 ## 阅读路线
@@ -19,22 +19,23 @@ Android 本地 AI 工作台，模型由你选择，无审查模型独立标记�
 | 选择生图、生视频或生音频方案 | [支持范围](#models)、[C06–C14](#use-cases) | [完整实现矩阵](docs/IMPLEMENTATION_V0311.md)、[社区模型](docs/COMMUNITY_MODELS.md) |
 | 管理模型、独立参数、任务和结果 | [C03–C04、C15–C18](#use-cases) | [模型参数](docs/MODEL_SETTINGS.md)、[任务工作台](docs/TASK_WORKBENCH.md) |
 | 在程序中调用手机模型 | [API 示例](#api-examples) | [API](docs/API.md)、[输入与上传](docs/LOCAL_INPUTS.md) |
+| 使用 DSH 工具／子代理，或卸载内存中的模型 | [完整工具协议与例子](docs/DSH_TOOLS.md) | [运行管理、Unload和删除的区别](docs/MODEL_RUNTIME.md) |
 | 看页面、生成案例和失败对照 | [当前页面](#ui-media)、[历史案例 H01–H18](#case-studies) | [媒体说明](docs/MEDIA.md)、[历史完整 README](docs/history/README-dev45.zh.md) |
 | 查看已定稿 UI10 云母分区规范 | [设计系统](docs/design/README.md)、[完整风格与明暗主题](docs/design/MICA_BENTO.md) | [30 类组件](docs/design/COMPONENTS.md)、[宽窄机型／键盘／大字适配](docs/design/RESPONSIVE.md)；[01–10](docs/UI_HOME_SELECTION_20261103.md)／[11–20](docs/UI_HOME_SELECTION_20261103_BATCH2.md) 保留为选型档案。v1.0.0 已接入全应用；实机演示见下文 |
 | 复原后的对话页与生成能力融合 | [当前聊天操作](docs/CHAT_RESTORE_20261106.md) | [F01–F08 编号方案与可行性](docs/CHAT_RESTORE_20261106.md#4-推荐的完整融合结构)，本轮实现与建议分开 |
 | 查证测试范围、重建和排错 | [程序检查](#verification)、[构建](#build)、[排错](#troubleshooting) | [程序验证策略](docs/PROGRAM_VALIDATION.md)、[构建指南](docs/BUILD.md) |
 
-**验证范围：程序验证。** 当前 **v1.0.2 / code67** 将文字、生图、生视频、生音频、生3D及LoRA的“垃圾桶＋删除”统一放在模型卡片底部，从“模型 → 本地”即可操作。核对名称后确认，取消不提交删除；传输忙碌时显示“暂停后删除”。[完整操作与保护](docs/MODEL_DELETE.md) · [版本证据](verification/releases/v1.0.2/status.json)。原聊天布局和“＋”按需创作入口保持，进一步融合方案见[F01–F08](docs/CHAT_RESTORE_20261106.md)。
+**验证范围：程序验证。** 当前 **v1.1.0 / code68** 补全 DSH 所需 OpenAI 函数工具：声明、指定／自动选择、strict参数、流式tool_calls、工具结果和多轮继续。外部文本改为有界FIFO排队，正文4 MiB、最多1024条消息；满队429。[完整协议、SDK例子及限制](docs/DSH_TOOLS.md) · [本版证据](verification/releases/v1.1.0/status.json)。
 
-程序验收 **66 suites / 15,311 assertions**，其中全页面803项、对话43项、云母布局520场景；真机UI56项，三档字体各35项。Lint 0错误／17警告，41个ARM64库。APK SHA256：`90498c3b3b3e1281ad0576e7d4908f8466457124a303fdc6b9e7a9a7da349358`。
+**Unload 在哪里：** 顶部“运行管理”、模型→本地的已加载文字卡片、服务页“运行中的模型”、对话模型选择均有“卸载模型”。卸载释放内存并取消文本请求，保留下载、参数、历史与API监听；后续明确API请求可重新加载。多媒体任务显示“停止并释放”，文件删除仍用独立垃圾桶。[操作与实机图解](docs/MODEL_RUNTIME.md)。
 
-程序、真机界面、短锁屏 API 和模型实跑分别记录；本轮不下载或完整运行模型，旧视觉组件、codec、视频／3D 质量和长期后台边界保留。安装包保留原签名和已有模型资产；[v1.0.0 大版本与历史证据](docs/MICA_V100.md) 不改写。
+常规程序门禁、真机界面、短锁屏API和选择性模型实跑分别计数。本版另有 **21项真机工具／卸载检查**：已装m15通过原生具名strict工具、客户端结果回传、SSE、双并发和卸载／重载。6次真实生成中，双请求合计19.004秒，健康请求最长35毫秒；这不是DSH App本身的完整实测或通用模型质量／耐久承诺。[详细测量与精确APK身份](verification/releases/v1.1.0/physical-tools.json)。不下载权重；旧视觉组件、codec、视频／3D质量边界保持。
 
-<img src="docs/media/device/v1.0.2/dark-local.png" alt="v1.0.2 真机暗色本地模型删除入口" width="280"> <img src="docs/media/device/v1.0.2/light-local.png" alt="v1.0.2 真机明亮本地模型删除入口" width="280">
+<img src="docs/media/device/v1.1.0/dark-runtime.png" alt="v1.1.0 真机运行中的模型及卸载入口" width="280"> <img src="docs/media/device/v1.1.0/light-unload-confirm.png" alt="v1.1.0 真机明亮卸载确认，保留模型文件" width="280">
 
-![v1.0.2 真机页面操作，非模型生成](docs/media/device/v1.0.2/physical-walkthrough.gif)
+![v1.1.0 真机页面操作，非模型生成](docs/media/device/v1.1.0/physical-walkthrough.gif)
 
-[真机录屏 MP4](docs/media/device/v1.0.2/physical-walkthrough.mp4) · [21 张本版真机截图与来源](docs/media/device/v1.0.2/manifest.json) · [43 项对话程序检查及媒体](docs/media/conversation-v1.0.2/manifest.json)。所有浏览器页面与上下文执行后关闭，未使用虚拟化。
+[真机录屏 MP4](docs/media/device/v1.1.0/physical-walkthrough.mp4) · [本版明暗截图与来源](docs/media/device/v1.1.0/manifest.json) · [对话程序检查及媒体](docs/media/conversation-v1.1.0/manifest.json)。所有自建浏览器资源执行后关闭，未使用虚拟化；[v1.0.2删除入口实机档案](docs/MODEL_DELETE.md)和全部历史案例保留。
 
 LMA（Local Model App）让用户在 Android 手机上选择、下载、管理和运行本地模型，提供聊天、生图、生视频、生音频、生 3D、任务队列、结果库与本机 API。它是独立社区项目，与 LM Studio 无隶属关系；界面主要为中文，文档提供中英双语。
 
@@ -162,7 +163,7 @@ Uncensored／Abliterated 与 NSFW 分别标注，不互相替代。作者声明�
 Release 附 APK、源码 ZIP、验证 ZIP、截图 ZIP、10 组桌面 GIF / MP4、另附真实手机模型 GIF / MP4、构建与源码清单、说明和哈希。历史真机媒体保留原版本；本版故障诊断不公开用户任务提示词或素材。[版本说明](docs/releases/v0.3.11.md)
 
 <a id="use-cases"></a>
-## 完整使用场景 C01–C75
+## 完整使用场景 C01–C77
 
 以下是操作用例及应有行为，不是新增的真机测试通过清单。当前程序检查与历史实测证据分别见下文。
 
@@ -553,6 +554,10 @@ $lmaAccepted
 
 缺资产、缺引擎、资源不足或未授权尝试未测配方都在本机返回原因；接口不下载模型、不抓取远程素材、不转交外部推理。[预检](docs/TASK_PREFLIGHT.md) · [素材上传](docs/LOCAL_INPUTS.md) · [API 全部字段与限制](docs/API.md)
 
+### A05 · 完整客户端函数工具流程
+
+按[OpenAI SDK完整往返例子](docs/DSH_TOOLS.md#5-完整调用示例)发送tools、具名选择和store:false；保留助手tool_calls及content:null，由客户端执行获准函数，逐个回传匹配的tool_call_id，再以auto继续。流式按index组装参数，等本轮结束后再执行；strict片段先校验，后续失败以SSE错误交付。[Sub2API转发器](integrations/sub2api/README.md)同步保留工具字段和4 MiB文本容量。
+
 <a id="ui-media"></a>
 ## 当前页面、截图与录屏
 
@@ -748,6 +753,8 @@ Melo INT8 用于中文 / 英文，Kokoro INT8 使用已适配英文音色，Omni
 <a id="verification"></a>
 ## 当前程序检查覆盖与复核入口
 
+**当前 v1.1.0：67组／15,394项断言，80份程序与构建记录。** 包括817项生产页面、62项工具协议、154项后端、151项调度及13项Sub2API检查。另有66项真机UI、三档字体各41项、24项管理/API、60.337秒锁屏健康、8项空闲性能检查，以及21项工具／卸载检查、6次真实生成；这些覆盖范围分别记录。[当前状态](verification/releases/v1.1.0/status.json) · [本版完整说明](docs/releases/v1.1.0.md)。
+
 **历史 v0.3.12：62 组／15,115 项程序断言，75 份门禁与构建记录；794 项生产页面检查。** 最终签名 APK 完成 24 项真机程序、8 项空闲性能和28项真实 SDK 联调；空闲快照 p50／p95为275.88／286.75ms，主线程最大间隔27ms。实际推理、画质、候选包与长期后台边界见[测评](docs/DEVICE_BENCHMARK_V0312.md)。41个ARM64库、原签名、16KiB对齐、Lint0错误／16个既有警告以及十组桌面演示均已核验。
 
 **历史 v0.3.11：60 组 / 15,063 项程序断言，73 份门禁记录另附状态清单；完整生产页面 794 项，其中推荐分类 37 项。** 41 个 ARM64 原生库、Android 9+、16 KiB 对齐、原签名和 Lint 0 错误 / 16 个原有警告通过。10 组桌面 UI 为 58 PNG / 10 GIF / 10 MP4，815 个历史证据文件保持身份；8 项性能保留核对不属于本版延迟实测。另有 23 项真机程序检查及 60.239 秒锁屏 API 健康检查；授权手机模型成功与限时未完成结果单独记录，不加入上述门禁数量。历史 [v0.3.10 的 10 项故障检查](verification/releases/v0.3.10/task-diagnostics.json)及原五条失败报告保留。
@@ -901,6 +908,13 @@ python tools/program_evidence.py
 
 [Detailed current examples / 本版完整示例](docs/LOCAL_API_V0312.md) · [English](docs/LOCAL_API_V0312.en.md). Earlier C01–C48 and H01–H18 remain above with their historical evidence identities.
 
+## v1.1.0 工具与模型运行场景 C76–C77
+
+| 编号 | 操作 | 预期与证据 |
+| --- | --- | --- |
+| C76 | 保留DSH工具，声明strict具名函数、接收原生调用、由客户端执行，再回传role:tool | 非流式及indexed SSE保留ID／参数／usage；下一轮及并发子请求可排队，不再单纯忙碌409。现有m15完成6次选择性生成、21项检查。[合同及SDK完整例子](docs/DSH_TOOLS.md)。DSH App本身及通用代理质量另行验证。 |
+| C77 | 点击顶部运行管理或本地已加载卡片，核对模型并确认卸载 | 取消当前／排队文本并退出模型进程，保留文件、参数、历史和API监听；后续明确API请求可重载。媒体任务显示停止并释放。[实机截图和逻辑](docs/MODEL_RUNTIME.md)。 |
+
 ## 更新摘要与历史
 
 [完整更新记录](CHANGELOG.md)
@@ -964,3 +978,5 @@ v0.3.12 最终 APK 实机：**24项程序检查＋8项空闲性能＋28项真实
 **v1.0.1 / code66 · 对话复原。** 默认恢复原聊天布局，现有创作从“＋”展开；66组／15,304项程序断言，48项真机UI，19张实机截图。[用法与F01–F08融合评估](docs/CHAT_RESTORE_20261106.md) · [正式Release](https://github.com/wikigsroom/LMA/releases/tag/v1.0.1)。完整待办及质量／后台边界见评估文档。
 
 **v1.0.2 / code67 · 模型卡片直接删除。** 文字与多媒体模型在卡片外层显示“删除”，传输忙碌时明确提示，保留确认、取消与原生资产保护。[操作与验证](docs/MODEL_DELETE.md) · [正式 Release](https://github.com/wikigsroom/LMA/releases/tag/v1.0.2)。
+
+**v1.1.0 / code68 · 完整函数工具与运行管理。** 原生工具往返、strict／流式校验、有界文本队列／真实上下文预检及四处卸载入口。手机现有m15完成21项检查、6次真实生成；DSH App专有交互及长期代理质量仍需独立验证。[协议](docs/DSH_TOOLS.md) · [卸载与实机媒体](docs/MODEL_RUNTIME.md) · [正式Release](https://github.com/wikigsroom/LMA/releases/tag/v1.1.0)。

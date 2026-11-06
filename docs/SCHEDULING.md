@@ -1,5 +1,7 @@
 # 共用执行槽、文本驻留与任务切换
 
+**当前 v1.1.0：** 外部文本API由单请求忙碌拒绝改为最多9个请求／16 MiB序列化JSON准入，在共用FIFO单执行槽等待。文本专用线程保留控制接口响应，父回合结束即释放槽，客户端工具／子代理不持槽等待。流式先返回接纳和注释保活，实际输出与排队不同；满队429。[工具／容量合同](DSH_TOOLS.md) · [四处卸载入口](MODEL_RUNTIME.md)。下方早期检查点的单路“忙碌”描述为历史；App交互重载保护保留。
+
 [English](SCHEDULING.en.md) · [开发状态](DEVELOPMENT.md) · [任务方案](WORKFLOWS.md) · [API](API.md) · [模型资产边界](ASSET_CONTROL_AUDIT.md)
 
 适用：**0.3.0-dev.10 / code 14，内部开发检查点**。常驻文本加载、应用内聊天、同步文本 API 与异步生成任务已接入同一个 `ExecutionGate`。完整 v0.3.0 的模型范围和物理 Android 验收仍须全部完成。

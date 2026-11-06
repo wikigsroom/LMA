@@ -135,7 +135,7 @@
     return results.filter(function (result) { return result.requestId === requestId; })[0];
   }
   function renderRuntime() {
-    var signature = JSON.stringify([engine(), state.device && [state.device.name, state.device.totalMemory, state.device.freeStorage], models().filter(function (m) { return m.installed; }).map(function (m) { return m.id; }), state.foundation && state.foundation.execution]);
+    var signature = JSON.stringify([engine(), state.device && [state.device.name, state.device.totalMemory, state.device.freeStorage], models().filter(function (m) { return m.installed; }).map(function (m) { return m.id; }), state.foundation && state.foundation.execution, (state.jobs || []).filter(function (job) { return ['running', 'cancelling'].indexOf(job.state) >= 0; }).map(function (job) { return [job.id, job.bundleId, job.modelId, job.modelName, job.state]; })]);
     if (signature === runtimeSignature) return; runtimeSignature = signature;
     var e = engine(), m = modelById(e.modelId), loading = e.state === 'loading' || e.state === 'recovering' || textQueued();
     $('runtimeDot').className = 'runtime-dot' + (e.state === 'ready' ? ' ready' : loading ? ' loading' : e.state === 'error' ? ' error' : '');
@@ -146,14 +146,28 @@
     $('deviceMemory').textContent = memory(d.totalMemory);
     $('deviceStorage').textContent = bytes(d.freeStorage);
     $('installedCount').textContent = models().filter(function (x) { return x.installed; }).length;
+    $('runtimeAction').textContent = '运行管理';
+    if ($('runningModelsPanel')) $('runningModelsPanel').innerHTML = runningModelsMarkup();
   }
+  function runningModelsMarkup() {
+    var e = engine(), model = modelById(e.modelId), selected = ['ready', 'loading', 'recovering', 'waiting', 'suspended'].indexOf(e.state) >= 0;
+    var labels = {ready: '已加载到内存', loading: '正在加载', recovering: '正在恢复', waiting: '等待加载', suspended: '暂挂，任务结束后恢复'};
+    var html = '<div class="running-model-heading"><div><h2>运行中的模型</h2><p>卸载释放内存；已下载的文件保留。</p></div><span class="tag">本机运行</span></div>';
+    if (selected) html += '<div class="running-model-row"><div><strong>' + esc(model ? model.name : e.modelId) + '</strong><small>' + esc(labels[e.state] || e.state) + (e.externalGenerating ? ' · API 请求处理中' : e.generating ? ' · 正在生成' : '') + '</small></div><button type="button" class="button secondary" data-action="stopTextModel" data-id="' + esc(e.modelId) + '">' + icon('stop') + '<span>卸载模型</span></button></div>';
+    else html += '<p class="running-model-empty">当前没有驻留的文本模型。</p>';
+    var activeJobs = (state.jobs || []).filter(function (job) { return ['running', 'cancelling'].indexOf(job.state) >= 0; });
+    activeJobs.forEach(function (job) { var m = modelById(job.bundleId || job.modelId); html += '<div class="running-model-row"><div><strong>' + esc(m ? m.name : job.modelName || job.bundleId || '本地生成任务') + '</strong><small>临时加载 · 任务结束后自动释放</small></div><button type="button" class="button secondary" data-action="runtimeCancelTask" data-id="' + esc(job.id) + '"' + (job.state === 'cancelling' ? ' disabled' : '') + '>停止并释放</button></div>'; });
+    html += '<p class="form-help">模型接口独立运行。卸载会取消文本请求；接口后续的新请求仍可按需加载已安装模型。</p>';
+    return html;
+  }
+  function manageRuntime() { openModal('运行中的模型', '<div class="running-models">' + runningModelsMarkup() + '</div>', 'runningModels'); }
   function modelCard(m) {
     if (m.isBundle) return window.LMARecommendations.card(window.LMACommunity.card(window.LMAFoundation.card(m), m), m);
     var d = m.download || {}, s = d.state || '', running = engine().modelId === m.id && ['ready', 'loading', 'recovering', 'waiting', 'suspended'].indexOf(engine().state) >= 0;
     var active = ['queued', 'downloading', 'verifying', 'pausing'].indexOf(s) >= 0, partial = m.partialBytes || d.received || 0;
     var total = d.total || m.bytes || 0, progress = total ? Math.min(100, Math.floor(partial * 100 / total)) : 0;
-    var action = m.installed ? (running ? '' : 'load') : s === 'pausing' ? '' : active ? 'pauseDownload' : (partial || s === 'paused' || s === 'error') ? 'resumeDownload' : 'download';
-    var label = m.installed ? (running ? engine().state === 'ready' ? '运行中' : textQueued() ? '等待执行' : '加载中' : '加载模型') : active ? s === 'pausing' ? '暂停中' : s === 'verifying' ? '校验中' : '暂停' : partial || s === 'paused' || s === 'error' ? '继续下载' : '下载';
+    var action = m.installed ? (running ? 'stopTextModel' : 'load') : s === 'pausing' ? '' : active ? 'pauseDownload' : (partial || s === 'paused' || s === 'error') ? 'resumeDownload' : 'download';
+    var label = m.installed ? (running ? '卸载模型' : '加载模型') : active ? s === 'pausing' ? '暂停中' : s === 'verifying' ? '校验中' : '暂停' : partial || s === 'paused' || s === 'error' ? '继续下载' : '下载';
     var glyph = m.family === 'LFM' ? 'L' : m.family === 'Gemma' ? 'G' : m.family === 'Llama' ? 'L' : m.family === '自定义' ? '+' : 'Q';
     var tags = (m.tags || []).slice(0, 4).map(function (tag) { return '<span class="tag' + (tag === '推荐' ? ' recommended' : m.tier === 'experimental' ? ' experimental' : '') + '">' + esc(tag) + '</span>'; }).join('');
     tags = taskBadges(m, false) + uncensoredTag(m.uncensored) + window.LMACommunity.badge(m) + tags;
@@ -423,12 +437,12 @@
     if (returnFocus && document.contains(returnFocus)) returnFocus.focus({preventScroll: true}); returnFocus = null;
   }
   function confirmAction(title, message, action, id, button) {
-    var target = action === 'deleteBundle' ? modelById(id) : null;
+    var target = action === 'deleteBundle' || action === 'stopEngine' ? modelById(id) : null;
     openModal(title, (target ? '<p class="delete-target"><strong>' + esc(target.name) + '</strong></p>' : '') + '<p>' + esc(message) + '</p><div class="modal-actions"><button class="button secondary" data-action="closeModal">取消</button><button class="button danger" data-action="confirmed" data-command="' + esc(action) + '" data-id="' + esc(id) + '">' + esc(button || '确认删除') + '</button></div>', 'confirm');
   }
   function pickModel() {
     var installed = models().filter(function (m) { return m.installed && !m.isBundle; });
-    openModal('选择本地模型', installed.length ? '<p>加载后开启本机接口。文本回复与生成任务共用队列，自动切换引擎；队列空闲后恢复已选文本模型。</p>' + (['ready', 'loading', 'recovering', 'waiting', 'suspended'].indexOf(engine().state) >= 0 ? '<button class="button danger" data-action="stopTextModel">停止文本模型</button>' : '') + '<div class="modal-list">' + installed.map(function (m) { return '<div class="modal-list-item"><button data-action="load" data-id="' + esc(m.id) + '"><strong>' + esc(m.name) + '</strong><small>' + esc(m.quant) + ' · ' + bytes(m.installedBytes) + window.LMACapabilities.badges(m) + '</small></button>' + icon('arrow') + '</div>'; }).join('') + '</div>' : '<p>先下载一个模型，或从设备导入 GGUF 文件。</p><button class="button primary" data-action="tab" data-tab="models">前往模型库</button>', 'pickModel');
+    openModal('选择本地模型', installed.length ? '<p>加载后开启本机接口。文本回复与生成任务共用队列，自动切换引擎；队列空闲后恢复已选文本模型。</p>' + (['ready', 'loading', 'recovering', 'waiting', 'suspended'].indexOf(engine().state) >= 0 ? '<div class="running-models">' + runningModelsMarkup() + '</div>' : '') + '<div class="modal-list">' + installed.map(function (m) { return '<div class="modal-list-item"><button data-action="load" data-id="' + esc(m.id) + '"><strong>' + esc(m.name) + '</strong><small>' + esc(m.quant) + ' · ' + bytes(m.installedBytes) + window.LMACapabilities.badges(m) + '</small></button>' + icon('arrow') + '</div>'; }).join('') + '</div>' : '<p>先下载一个模型，或从设备导入 GGUF 文件。</p><button class="button primary" data-action="tab" data-tab="models">前往模型库</button>', 'pickModel');
   }
   function modelInfo(id) {
     var m = modelById(id); if (!m) return; var d = m.download || {}, u = m.uncensored || {};
@@ -484,7 +498,9 @@
       case 'uncensoredSource': m = modelById(id); if (m && m.uncensored && window.Android) window.Android.openLink(m.uncensored.evidenceUrl); break;
       case 'pickModel': pickModel(); break;
       case 'toggleServer': nativeAction(state.api && state.api.state === 'ready' ? 'stopApi' : 'startApi'); break;
-      case 'stopTextModel': nativeAction('stopEngine'); closeModal(); break;
+      case 'manageRuntime': manageRuntime(); break;
+      case 'stopTextModel': confirmAction('卸载当前模型', '将停止当前及排队的文本请求，并释放模型内存。已下载文件、模型设置和对话记录保留；API 服务继续运行，新请求可按需重新加载。', 'stopEngine', id || engine().modelId, '卸载模型'); break;
+      case 'runtimeCancelTask': confirmAction('停止运行中的任务', '取消这个生成任务，待原生进程结束后释放内存。模型文件保留。', 'cancelTask', id, '停止并释放'); break;
       case 'copyUrl': copy(endpoint()); break;
       case 'copyKey': if (state) copy(state.settings.apiKey); break;
       case 'copyExample': copy(example(true)); break;

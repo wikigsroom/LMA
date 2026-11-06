@@ -168,6 +168,33 @@ public final class BackendTest {
         Store reopened = new Store(app); check(reopened.download(interrupted).getString("state").equals("paused") && reopened.download(interrupted).getBoolean("interrupted"), "Reopened Store marks unfinished transfer as resumable");
     }
     private static int freePort() throws IOException { try (ServerSocket socket = new ServerSocket(0)) { return socket.getLocalPort(); } }
+    private static JSONObject publicText(LmaApp app, JSONObject request) throws Exception {
+        HttpURLConnection connection = Net.local(app, "/v1/chat/completions"); connection.setReadTimeout(12000); connection.setRequestMethod("POST"); connection.setDoOutput(true); connection.setRequestProperty("Content-Type", "application/json");
+        byte[] bytes = request.toString().getBytes(StandardCharsets.UTF_8); connection.setFixedLengthStreamingMode(bytes.length); try (OutputStream out = connection.getOutputStream()) { out.write(bytes); }
+        try { int status = connection.getResponseCode(); JSONObject value = new JSONObject(Store.read(status >= 400 ? connection.getErrorStream() : connection.getInputStream(), 1024 * 1024)); value.put("_fixture_status", status); return value; } finally { connection.disconnect(); }
+    }
+    private static void toolGateway(ApiHost gateway, LmaApp app) throws Exception {
+        JSONObject schema = new JSONObject("{\"type\":\"object\",\"properties\":{\"a\":{\"type\":\"integer\"},\"b\":{\"type\":\"integer\"}},\"required\":[\"a\",\"b\"],\"additionalProperties\":false}");
+        JSONArray tools = new JSONArray(); for (String name : Arrays.asList("ignored", "sum")) tools.put(new JSONObject().put("type", "function").put("function", new JSONObject().put("name", name).put("strict", true).put("parameters", schema)));
+        JSONObject request = new JSONObject().put("model", "m08").put("messages", new JSONArray().put(new JSONObject().put("role", "user").put("content", "fixture parent tool"))).put("tools", tools).put("store", false).put("tool_choice", new JSONObject("{\"type\":\"function\",\"function\":{\"name\":\"sum\"}}"));
+        JSONObject parent = publicText(app, request), choice = parent.getJSONArray("choices").getJSONObject(0), assistant = choice.getJSONObject("message"), call = assistant.getJSONArray("tool_calls").getJSONObject(0);
+        check(parent.getInt("_fixture_status") == 200 && choice.getString("finish_reason").equals("tool_calls") && call.getJSONObject("function").getString("name").equals("sum"), "Production API/native-child path supports store:false and forced named strict tools");
+        JSONObject arguments = new JSONObject(call.getJSONObject("function").getString("arguments")); int result = arguments.getInt("a") + arguments.getInt("b");
+        waitFor(() -> !app.textRequestBusy, 3000, "Parent tool turn releases its execution lease");
+        ExecutorService children = Executors.newFixedThreadPool(4); List<Future<JSONObject>> pending = new ArrayList<>();
+        try {
+            for (int i = 0; i < 4; i++) { final int index = i; pending.add(children.submit(() -> { JSONObject child = new JSONObject(request.toString()); child.getJSONArray("messages").getJSONObject(0).put("content", "queued-fixture-" + index); return publicText(app, child); })); }
+            for (Future<JSONObject> future : pending) { JSONObject child = future.get(10, TimeUnit.SECONDS); check(child.getInt("_fixture_status") == 200 && child.getJSONArray("choices").getJSONObject(0).getString("finish_reason").equals("tool_calls"), "Concurrent child-agent request queues and completes without busy 409"); }
+        } finally { children.shutdownNow(); }
+        JSONObject resumed = new JSONObject(request.toString()).put("tool_choice", "auto"); resumed.getJSONArray("messages").put(assistant).put(new JSONObject().put("role", "tool").put("tool_call_id", call.getString("id")).put("content", String.valueOf(result)));
+        JSONObject finalReply = publicText(app, resumed); check(finalReply.getJSONArray("choices").getJSONObject(0).getJSONObject("message").getString("content").equals("42"), "Client executes the tool and returns its ID/result through the public multi-turn protocol");
+        JSONObject oversized = new JSONObject(request.toString()); oversized.getJSONArray("messages").getJSONObject(0).put("content", "context-overflow-fixture");
+        JSONObject rejected = publicText(app, oversized); check(rejected.getInt("_fixture_status") == 400 && rejected.getJSONObject("error").getString("code").equals("context_length_exceeded"), "Rendered-context preflight rejects token overflow with a specific error");
+        HttpURLConnection stream = Net.local(app, "/v1/chat/completions"); stream.setReadTimeout(12000); stream.setRequestMethod("POST"); stream.setDoOutput(true); stream.setRequestProperty("Content-Type", "application/json");
+        byte[] bytes = new JSONObject(request.toString()).put("stream", true).toString().getBytes(StandardCharsets.UTF_8); stream.setFixedLengthStreamingMode(bytes.length); try (OutputStream out = stream.getOutputStream()) { out.write(bytes); }
+        try { String events = Store.read(stream.getInputStream(), 1024 * 1024); check(stream.getResponseCode() == 200 && events.contains("tool_calls") && events.contains("[DONE]") && !events.contains("\"error\""), "Production streamed strict tools are validated and delivered with a normal completion marker"); } finally { stream.disconnect(); }
+        waitFor(() -> !app.textRequestBusy, 3000, "Tool gateway recovery"); check(gateway.health().getJSONObject("textQueue").getInt("requests") == 0, "Tool and child-agent requests release admission bytes and execution tickets");
+    }
     private static EngineHost engine(LmaService service, LmaApp app, String mode, AtomicInteger launches) {
         EngineHost host = new EngineHost(service, app, builder -> {
             launches.incrementAndGet();
@@ -205,13 +232,14 @@ public final class BackendTest {
         HttpURLConnection redirected = Net.local(app, "/v1/chat/completions"); redirected.setRequestMethod("POST"); redirected.setDoOutput(true); redirected.setRequestProperty("Content-Type", "application/json");
         byte[] redirectBody = new JSONObject().put("messages", new JSONArray().put(new JSONObject().put("role", "user").put("content", "redirect"))).put("stream", true).toString().getBytes(StandardCharsets.UTF_8);
         redirected.setFixedLengthStreamingMode(redirectBody.length); try (OutputStream out = redirected.getOutputStream()) { out.write(redirectBody); }
-        try { check(redirected.getResponseCode() == 502 && inferenceRedirects.get() == 0, "Native inference redirects are rejected without contacting another endpoint"); } finally { redirected.disconnect(); }
+        try { int status = redirected.getResponseCode(); String events = Store.read(redirected.getInputStream(), 65536); check(status == 200 && events.contains("\"error\"") && events.contains("text_engine_error") && inferenceRedirects.get() == 0, "Admitted streams report native redirect errors through SSE without contacting another endpoint"); } finally { redirected.disconnect(); }
         HttpURLConnection publicChat = Net.local(app, "/v1/chat/completions"); publicChat.setRequestMethod("POST"); publicChat.setDoOutput(true); publicChat.setRequestProperty("Content-Type", "application/json");
         byte[] publicBody = new JSONObject().put("messages", new JSONArray().put(new JSONObject().put("role", "user").put("content", "stop"))).put("stream", true).put("max_tokens", 99999).toString().getBytes(StandardCharsets.UTF_8);
         publicChat.setFixedLengthStreamingMode(publicBody.length); try (OutputStream out = publicChat.getOutputStream()) { out.write(publicBody); }
         check(publicChat.getResponseCode() == 200 && publicChat.getHeaderField("X-LMA-Max-Tokens").equals("321"), "Production gateway applies the loaded profile's output ceiling before proxying");
         try (BufferedReader stream = new BufferedReader(new InputStreamReader(publicChat.getInputStream(), StandardCharsets.UTF_8))) {
-            check(stream.readLine().startsWith("data:") && app.textRequestBusy, "Public streaming requests retain the shared execution lease");
+            String first; do { first = stream.readLine(); } while (first != null && !first.startsWith("data:"));
+            check(first != null && app.textRequestBusy, "Public streaming requests retain the shared execution lease and permit heartbeat comments");
             ChatRunner blocked = new ChatRunner(owner, app); chats.add(blocked);
             rejects(() -> blocked.send("duplicate"), "App chat cannot bypass an active external text request");
             rejects(() -> host.load("m01"), "Model loading cannot bypass an active external text request");
@@ -222,6 +250,7 @@ public final class BackendTest {
         waitFor(() -> !app.textRequestBusy, 4000, "External text lease release"); check(!app.textRequestBusy, "Cancelling the proxy releases native connection ownership");
         gateway.stop(); check(!gateway.ready() && !app.prefs.getBoolean("desiredApi", true) && host.ready(), "Stopping the public API preserves the independent loaded engine and clears only API restoration");
         gateway.start(); check(gateway.ready() && host.ready(), "Restarting the API does not reload or replace model assets");
+        toolGateway(gateway, app);
         host.stop(); check(!host.wanted(), "An unloaded installed text model remains discoverable for explicit API selection");
         HttpURLConnection onDemand = Net.local(app, "/v1/chat/completions"); onDemand.setRequestMethod("POST"); onDemand.setDoOutput(true); onDemand.setRequestProperty("Content-Type", "application/json");
         byte[] selectedBody = new JSONObject().put("model", "m01").put("messages", new JSONArray().put(new JSONObject().put("role", "user").put("content", "normal"))).put("max_tokens", 2).toString().getBytes(StandardCharsets.UTF_8);

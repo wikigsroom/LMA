@@ -16,8 +16,16 @@ public final class ApiHost implements LocalApi.Runtime, AutoCloseable {
     private boolean lan;
     private volatile boolean closed;
     private final java.util.concurrent.atomic.AtomicLong cancellation = new java.util.concurrent.atomic.AtomicLong();
-    private volatile HttpURLConnection textConnection;
-    private volatile ExecutionGate.Ticket textSlot;
+    private final TextAdmission textAdmission = new TextAdmission();
+    private final java.util.Map<ExecutionGate.Ticket, TextCall> textCalls = new java.util.LinkedHashMap<>();
+    private final java.util.concurrent.ScheduledExecutorService textPulses = java.util.concurrent.Executors.newScheduledThreadPool(2, runnable -> { Thread thread = new Thread(runnable, "LMA-text-heartbeat"); thread.setDaemon(true); return thread; });
+    private static final class TextCall {
+        final JSONObject request; final ExecutionGate.Ticket slot; final TextAdmission.Lease admission; final long epoch; final int context;
+        volatile HttpURLConnection connection; volatile boolean cancelled; volatile Thread thread; private boolean finished;
+        TextCall(JSONObject request, ExecutionGate.Ticket slot, TextAdmission.Lease admission, long epoch, int context) { this.request = request; this.slot = slot; this.admission = admission; this.epoch = epoch; this.context = context; }
+        synchronized void cancel() { if (finished) return; cancelled = true; HttpURLConnection active = connection; if (active != null) active.disconnect(); Thread worker = thread; if (worker != null && worker != Thread.currentThread()) worker.interrupt(); }
+        synchronized void finish() { finished = true; thread = null; }
+    }
     public ApiHost(LmaService owner, LmaApp app) { this.owner = owner; this.app = app; api = new LocalApi(this); }
     public synchronized boolean ready() { return !closed && server != null; }
     public boolean wanted() { return app.prefs.getBoolean("desiredApi", false); }
@@ -47,13 +55,13 @@ public final class ApiHost implements LocalApi.Runtime, AutoCloseable {
         app.prefs.edit().putBoolean("desiredApi", false).apply(); closeListener(); app.apiState = "stopped"; app.apiDetail = "模型接口已关闭"; owner.activityChanged();
     }
     private void closeListener() { if (server != null) server.close(); server = null; cancelText(); }
-    public void cancelText() { cancellation.incrementAndGet(); HttpURLConnection connection = textConnection; if (connection != null) connection.disconnect(); }
-    @Override public synchronized void close() { closed = true; closeListener(); app.apiState = "stopped"; }
+    public void cancelText() { cancellation.incrementAndGet(); synchronized (app.requestGate) { for (TextCall call : textCalls.values()) call.cancel(); } }
+    @Override public synchronized void close() { closed = true; closeListener(); textPulses.shutdownNow(); app.apiState = "stopped"; }
     @Override public InputUploads uploads() throws Exception { if (app.uploads == null) throw new IllegalStateException("Input upload storage is unavailable"); return app.uploads; }
     @Override public String apiKey() { return app.prefs.getString("apiKey", ""); }
     @Override public JSONObject health() throws Exception {
         return new JSONObject().put("status", "ok").put("version", LmaApp.VERSION).put("execution", "same_android_phone")
-                .put("scheduler", app.execution.snapshot()).put("textState", app.engineState).put("textRequestActive", app.textRequestBusy).put("jobActive", app.jobHost == null ? "" : app.jobHost.activeId())
+                .put("scheduler", app.execution.snapshot()).put("textQueue", textAdmission.snapshot()).put("textState", app.engineState).put("textRequestActive", app.textRequestBusy).put("jobActive", app.jobHost == null ? "" : app.jobHost.activeId())
                 .put("foundationReady", app.jobs != null && app.artifacts != null && app.localEngines != null).put("modelInferenceTested", false);
     }
     private ApiCatalogue catalogue;
@@ -68,7 +76,7 @@ public final class ApiHost implements LocalApi.Runtime, AutoCloseable {
     public void invalidateCatalogue() { synchronized (this) { if (catalogue != null) catalogue.invalidate(); } }
     @Override public JSONObject capabilities() throws Exception {
         JSONObject snapshot = catalogue(), metadata = snapshot.getJSONObject("x_lma");
-        JSONObject limits = new JSONObject().put("json_body_bytes", LocalHttp.MAX_BODY).put("image_n_max", 1).put("image_formats", new JSONArray().put("png"))
+        JSONObject limits = new JSONObject().put("json_body_bytes", LocalHttp.MAX_BODY).put("text_json_body_bytes", LocalHttp.MAX_TEXT_BODY).put("text_messages_max", ChatProtocol.MAX_MESSAGES).put("text_message_utf8_bytes", ChatProtocol.MAX_TEXT_BYTES).put("text_requests_max", TextAdmission.MAX_REQUESTS).put("text_queue_bytes", TextAdmission.MAX_BYTES).put("function_tools", true).put("tool_execution", "client").put("strict_output_validation", "before_delivery").put("image_n_max", 1).put("image_formats", new JSONArray().put("png"))
                 .put("speech_formats", new JSONArray().put("wav")).put("sse_lifetime_seconds", 120).put("sse_connections", 2).put("heavy_execution_slots", 1)
                 .put("upload_chunk_bytes", LocalHttp.MAX_BODY).put("input_file_bytes_max", 536870912).put("sync_wait_seconds", 120).put("generation_wall_time_seconds", JSONObject.NULL).put("catalogue_idle_reads", "cached_metadata_only");
         return new JSONObject().put("schema", "lma.capabilities/1").put("instance_id", metadata.getString("instance_id")).put("catalogue", metadata)
@@ -101,46 +109,94 @@ public final class ApiHost implements LocalApi.Runtime, AutoCloseable {
     }
     @Override public void cancel(String id) throws Exception { LocalJobs jobs = app.jobHost; if (jobs == null) throw new IOException("任务运行器不可用"); jobs.cancel(id); }
     @Override public LocalHttp.Response text(String path, JSONObject input) throws Exception {
-        JSONObject request; ExecutionGate.Ticket slot; long ticket = cancellation.get();
+        final TextCall call;
         synchronized (app.requestGate) {
             if (closed || server == null) throw new IOException("模型接口正在停止");
-            if (app.generating || app.textRequestBusy) throw new IllegalStateException("本机推理槽正忙，请等待当前任务完成");
             String selected = input.optString("model", app.engineModel); OpenAiRequests.model(this, selected, "text.generate");
-            request = TextRequest.normalize(path, input, selected, app.settings(selected));
-            slot = app.execution.enqueue("api", selected); textSlot = slot; app.textRequestBusy = true;
+            JSONObject settings = app.settings(selected), request = TextRequest.normalize(path, input, selected, settings);
+            TextAdmission.Lease admission = textAdmission.acquire(input.toString().getBytes(java.nio.charset.StandardCharsets.UTF_8).length);
+            try { ExecutionGate.Ticket slot = app.execution.enqueue("api", selected); call = new TextCall(request, slot, admission, cancellation.get(), settings.getInt("context")); textCalls.put(slot, call); app.textRequestBusy = true; }
+            catch (Exception error) { admission.close(); throw error; }
         }
-        owner.activityChanged(); HttpURLConnection connection = null;
+        owner.activityChanged(); final String requestId = "lma-" + java.util.UUID.randomUUID().toString();
+        if (call.request.optBoolean("stream")) {
+            return new LocalHttp.Response(200, "text/event-stream; charset=utf-8", -1, new LocalHttp.Body() {
+                @Override public void write(OutputStream out) throws Exception {
+                    call.thread = Thread.currentThread();
+                    java.util.concurrent.ScheduledFuture<?> heartbeat = textPulses.scheduleWithFixedDelay(() -> {
+                        try { ToolReply.write(out, ": lma keepalive\n\n".getBytes(java.nio.charset.StandardCharsets.UTF_8)); }
+                        catch (IOException error) { call.cancel(); }
+                    }, 2, 8, java.util.concurrent.TimeUnit.SECONDS);
+                    try {
+                        HttpURLConnection connection = openText(call, path); ToolReply guard = new ToolReply(call.request);
+                        try (InputStream in = connection.getInputStream()) { guard.stream(in, out); }
+                        call.slot.finishResourceMonitoring();
+                    } catch (Exception error) {
+                        String resourceFailure = call.slot.resourceFailure();
+                        String code = !resourceFailure.isEmpty() ? "resource_limit_exceeded" : error instanceof LocalHttp.Failure ? ((LocalHttp.Failure)error).code : call.cancelled ? "request_cancelled" : "invalid_model_output";
+                        String param = error instanceof LocalHttp.Failure ? ((LocalHttp.Failure)error).param : error instanceof RequestError ? ((RequestError)error).param : null;
+                        String message = LocalApi.safeMessage(!resourceFailure.isEmpty() ? resourceFailure : error.getMessage() == null ? "Local text request failed" : error.getMessage());
+                        JSONObject detail = new JSONObject().put("message", message).put("type", "lma_local_error").put("code", code).put("param", param == null ? JSONObject.NULL : param).put("request_id", requestId);
+                        try { ToolReply.write(out, ("data: " + new JSONObject().put("error", detail).toString() + "\n\n").getBytes(java.nio.charset.StandardCharsets.UTF_8)); } catch (IOException disconnected) { call.cancel(); }
+                    } finally { heartbeat.cancel(false); releaseText(call); }
+                }
+                @Override public void close() { call.cancel(); releaseText(call); }
+            }).header("X-Request-ID", requestId).header("X-LMA-Max-Tokens", String.valueOf(call.request.getInt("max_tokens")));
+        }
         try {
-            ExecutionGate.Check check = () -> { if (closed || server == null || cancellation.get() != ticket || Thread.currentThread().isInterrupted()) throw new InterruptedIOException("文本请求已取消"); };
-            slot.await(check); owner.engine.selectForApi(slot, request.getString("model"), check); owner.engine.ensureReady(slot, request.getString("model"), check); check.run();
-            connection = Net.engine(app, path); textConnection = connection;
-            if (closed || server == null || ticket != cancellation.get()) throw new IOException("文本请求已取消");
-            connection.setRequestMethod("POST"); connection.setDoOutput(true); connection.setRequestProperty("Content-Type", "application/json; charset=utf-8");
-            connection.setRequestProperty("Accept", request.optBoolean("stream") ? "text/event-stream" : "application/json");
-            byte[] payload = request.toString().getBytes(java.nio.charset.StandardCharsets.UTF_8); connection.setFixedLengthStreamingMode(payload.length);
-            try (OutputStream out = connection.getOutputStream()) { out.write(payload); }
-            int status = connection.getResponseCode();
-            if (status != 200) throw new LocalHttp.Failure(status >= 400 && status <= 599 ? status : 502, "text_engine_error", Net.errorBody(connection));
-            String mime = request.optBoolean("stream") ? "text/event-stream; charset=utf-8" : "application/json; charset=utf-8";
-            HttpURLConnection active = connection;
+            call.thread = Thread.currentThread(); HttpURLConnection connection = openText(call, path); ToolReply guard = new ToolReply(call.request);
+            if (guard.enabled()) {
+                byte[] bytes; try (InputStream in = connection.getInputStream()) { bytes = guard.complete(in); }
+                call.slot.finishResourceMonitoring(); releaseText(call);
+                return LocalHttp.Response.bytes(200, "application/json; charset=utf-8", bytes).header("X-Request-ID", requestId).header("X-LMA-Max-Tokens", String.valueOf(call.request.getInt("max_tokens")));
+            }
             InputStream in = new FilterInputStream(connection.getInputStream()) {
-                private boolean released;
                 private long received;
                 @Override public int read() throws IOException { byte[] one = new byte[1]; return read(one, 0, 1) < 0 ? -1 : one[0] & 255; }
-                @Override public int read(byte[] bytes, int offset, int length) throws IOException {
-                    slot.checkOwner(); int count;
-                    try { count = super.read(bytes, offset, length); } catch (IOException error) { slot.checkOwner(); throw error; }
-                    slot.checkOwner(); if (count < 0) slot.finishResourceMonitoring();
-                    if (count > 0 && (received += count) > 16L * 1024 * 1024) throw new IOException("文本响应超出应用的 16 MiB 保护上限"); return count;
-                }
-                @Override public void close() throws IOException { if (!released) { released = true; try { super.close(); } finally { releaseText(active, slot); } } }
+                @Override public int read(byte[] bytes, int offset, int length) throws IOException { checkText(call); call.slot.checkOwner(); int count = super.read(bytes, offset, length); if (count < 0) call.slot.finishResourceMonitoring(); if (count > 0 && (received += count) > ToolReply.MAX_RESPONSE_BYTES) throw new IOException("Text response exceeds 16 MiB"); return count; }
+                @Override public void close() throws IOException { try { super.close(); } finally { releaseText(call); } }
             };
-            return LocalHttp.Response.stream(200, mime, connection.getContentLengthLong(), in).header("X-LMA-Max-Tokens", String.valueOf(request.getInt("max_tokens")));
-        } catch (Exception error) { String resourceFailure = slot.resourceFailure(); releaseText(connection, slot); if (!resourceFailure.isEmpty()) throw new IOException(resourceFailure, error); throw error; }
+            return LocalHttp.Response.stream(200, "application/json; charset=utf-8", connection.getContentLengthLong(), in).header("X-Request-ID", requestId).header("X-LMA-Max-Tokens", String.valueOf(call.request.getInt("max_tokens")));
+        } catch (Exception error) { String resourceFailure = call.slot.resourceFailure(); releaseText(call); if (!resourceFailure.isEmpty()) throw new LocalHttp.Failure(503, "resource_limit_exceeded", resourceFailure); if (error instanceof LocalHttp.Failure || error instanceof RequestError) throw error; throw new LocalHttp.Failure(call.cancelled ? 409 : 502, call.cancelled ? "request_cancelled" : "invalid_model_output", LocalApi.safeMessage(error.getMessage())); }
     }
-    private void releaseText(HttpURLConnection connection, ExecutionGate.Ticket slot) {
-        if (connection != null) connection.disconnect();
-        synchronized (app.requestGate) { if (textSlot == slot) { textSlot = null; if (textConnection == connection) textConnection = null; app.textRequestBusy = false; } }
-        slot.close(); owner.engine.resumeIfIdle(); owner.activityChanged();
+    private void checkText(TextCall call) throws IOException { if (closed || server == null || call.cancelled || cancellation.get() != call.epoch || Thread.currentThread().isInterrupted()) throw new InterruptedIOException("文本请求已取消"); }
+    private HttpURLConnection openText(TextCall call, String path) throws Exception {
+        ExecutionGate.Check check = () -> checkText(call); call.slot.await(check);
+        owner.engine.selectForApi(call.slot, call.request.getString("model"), check); owner.engine.ensureReady(call.slot, call.request.getString("model"), check); check.run();
+        String prompt = path.equals("/v1/chat/completions") ? nativeJson(call, "/apply-template", call.request).getString("prompt") : call.request.getString("prompt");
+        JSONObject tokens = nativeJson(call, "/tokenize", new JSONObject().put("content", prompt).put("add_special", false).put("parse_special", true));
+        int inputTokens = tokens.getJSONArray("tokens").length(), available = call.context - inputTokens;
+        if (available < 1) throw new LocalHttp.Failure(400, "context_length_exceeded", "The rendered conversation and tools exceed the selected model context (" + inputTokens + " input tokens / " + call.context + " context)", path.equals("/v1/chat/completions") ? "messages" : "prompt");
+        call.request.put("max_tokens", Math.min(call.request.getInt("max_tokens"), available));
+        check.run(); HttpURLConnection connection = Net.engine(app, path); call.connection = connection;
+        connection.setRequestMethod("POST"); connection.setDoOutput(true); connection.setRequestProperty("Content-Type", "application/json; charset=utf-8"); connection.setRequestProperty("Accept", call.request.optBoolean("stream") ? "text/event-stream" : "application/json");
+        byte[] bytes = call.request.toString().getBytes(java.nio.charset.StandardCharsets.UTF_8); connection.setFixedLengthStreamingMode(bytes.length);
+        try (OutputStream out = connection.getOutputStream()) { out.write(bytes); }
+        int status = connection.getResponseCode(); if (status != 200) throw nativeFailure(connection, status); check.run(); return connection;
+    }
+    private JSONObject nativeJson(TextCall call, String path, JSONObject body) throws Exception {
+        checkText(call); HttpURLConnection connection = Net.engine(app, path); call.connection = connection;
+        try {
+            connection.setRequestMethod("POST"); connection.setDoOutput(true); connection.setRequestProperty("Content-Type", "application/json; charset=utf-8");
+            byte[] bytes = body.toString().getBytes(java.nio.charset.StandardCharsets.UTF_8); connection.setFixedLengthStreamingMode(bytes.length); try (OutputStream out = connection.getOutputStream()) { out.write(bytes); }
+            int status = connection.getResponseCode(); if (status != 200) throw nativeFailure(connection, status);
+            try (InputStream in = connection.getInputStream()) { JSONObject value = new JSONObject(new String(ToolReply.read(in, ToolReply.MAX_RESPONSE_BYTES), java.nio.charset.StandardCharsets.UTF_8)); checkText(call); return value; }
+        } finally { connection.disconnect(); if (call.connection == connection) call.connection = null; }
+    }
+    private LocalHttp.Failure nativeFailure(HttpURLConnection connection, int status) {
+        String code = "text_engine_error", param = null, message = "The local text engine returned HTTP " + status;
+        try (InputStream in = connection.getErrorStream()) {
+            if (in != null) { JSONObject value = new JSONObject(new String(ToolReply.read(in, 128 * 1024), java.nio.charset.StandardCharsets.UTF_8)); JSONObject error = value.optJSONObject("error"); if (error == null) error = value; message = LocalApi.safeMessage(error.optString("message", message)); if (error.opt("code") instanceof String) code = error.getString("code"); if (error.opt("param") instanceof String) param = error.getString("param"); if (error.optString("type").contains("context") || code.contains("context")) code = "context_length_exceeded"; }
+        } catch (Exception ignored) {}
+        return new LocalHttp.Failure(status >= 400 && status <= 599 ? status : 502, code, message, param);
+    }
+    private void releaseText(TextCall call) {
+        synchronized (app.requestGate) {
+            if (textCalls.remove(call.slot) == null) return;
+            call.finish();
+            HttpURLConnection connection = call.connection; call.connection = null; if (connection != null) connection.disconnect();
+            call.slot.close(); call.admission.close(); app.textRequestBusy = !textCalls.isEmpty();
+        }
+        owner.engine.resumeIfIdle(); owner.activityChanged();
     }
 }

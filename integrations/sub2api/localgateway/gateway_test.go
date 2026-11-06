@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"net/http/httptest"
 	"path/filepath"
+	"reflect"
 	"strings"
 	"sync"
 	"testing"
@@ -436,5 +437,78 @@ func TestTextPrefillOutlivesOrdinaryHeaderBudget(t *testing.T) {
 	}
 	if e == nil {
 		t.Fatal("ordinary network header guard must remain independent")
+	}
+}
+
+// Exercise the complete client-owned tool history without simplifying any field.
+func TestFunctionToolHistoryAndStreamForwarding(t *testing.T) {
+	t.Setenv("LMA_TEST_PARENT_KEY", "fixture-parent-key")
+	f := &phoneFixture{instance: "lma_fixture_phone", revision: "\"r1\"", seen: map[string]string{}}
+	received := make(chan Object, 2)
+	stream := ": queued\n\ndata: {\"id\":\"chatcmpl_fixture\",\"choices\":[{\"index\":0,\"delta\":{\"tool_calls\":[{\"index\":0,\"id\":\"call_next\",\"type\":\"function\",\"function\":{\"name\":\"sum_numbers\",\"arguments\":\"{\\\"a\\\":20,\\\"b\\\":22}\"}}]},\"finish_reason\":null}]}\n\ndata: {\"choices\":[{\"index\":0,\"delta\":{},\"finish_reason\":\"tool_calls\"}]}\n\ndata: {\"choices\":[],\"usage\":{\"total_tokens\":42}}\n\ndata: [DONE]\n\n"
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		if r.URL.Path != "/v1/chat/completions" {
+			f.ServeHTTP(w, r)
+			return
+		}
+		if r.Header.Get("Authorization") != "Bearer fixture-parent-key" {
+			t.Error("phone credential was not retained")
+			w.WriteHeader(401)
+			return
+		}
+		var body Object
+		if e := json.NewDecoder(r.Body).Decode(&body); e != nil {
+			t.Error(e)
+			w.WriteHeader(400)
+			return
+		}
+		received <- body
+		w.Header().Set("X-Request-ID", "fixture-request")
+		w.Header().Set("X-LMA-Max-Tokens", "512")
+		if body["stream"] == true {
+			w.Header().Set("Content-Type", "text/event-stream")
+			io.WriteString(w, stream)
+			return
+		}
+		w.Header().Set("Content-Type", "application/json")
+		io.WriteString(w, `{"id":"chatcmpl_fixture","object":"chat.completion","model":"text_fixture","choices":[{"index":0,"message":{"role":"assistant","content":null,"tool_calls":[{"id":"call_next","type":"function","function":{"name":"sum_numbers","arguments":"{\"a\":20,\"b\":22}"}}]},"finish_reason":"tool_calls"}]}`)
+	}))
+	defer server.Close()
+	g, e := New(Config{StateFile: filepath.Join(t.TempDir(), "gateway.json"), Accounts: []Account{{ID: 1, GroupID: 2, BaseURL: server.URL, KeyEnv: "LMA_TEST_PARENT_KEY", Aliases: map[string]string{"agent_text": "text_fixture"}}}})
+	if e != nil {
+		t.Fatal(e)
+	}
+	defer g.Close()
+	if e = g.Sync(context.Background(), 1); e != nil {
+		t.Fatal(e)
+	}
+	for _, streaming := range []bool{false, true} {
+		body := Object{"model": "agent_text", "store": false, "stream": streaming,
+			"parallel_tool_calls": false, "tool_choice": Object{"type": "function", "function": Object{"name": "sum_numbers"}},
+			"tools":    []Object{{"type": "function", "function": Object{"name": "sum_numbers", "strict": true, "parameters": Object{"type": "object", "properties": Object{"a": Object{"type": "integer"}, "b": Object{"type": "integer"}}, "required": []string{"a", "b"}, "additionalProperties": false}}}},
+			"messages": []Object{{"role": "user", "content": strings.Repeat("x", 300<<10)}, {"role": "assistant", "content": nil, "tool_calls": []Object{{"id": "call_previous", "type": "function", "function": Object{"name": "sum_numbers", "arguments": `{"a":20,"b":22}`}}}}, {"role": "tool", "tool_call_id": "call_previous", "content": "42"}}}
+		if streaming {
+			body["stream_options"] = Object{"include_usage": true}
+		}
+		encoded, _ := json.Marshal(body)
+		w := call(g, Principal{Owner: "alice", GroupID: 2}, "POST", "/v1/chat/completions", string(encoded))
+		if w.Code != 200 || w.Header().Get("X-Request-ID") != "fixture-request" || w.Header().Get("X-LMA-Max-Tokens") != "512" {
+			t.Fatalf("tools response or diagnostic headers lost: %d", w.Code)
+		}
+		var expected Object
+		json.Unmarshal(encoded, &expected)
+		expected["model"] = "text_fixture"
+		if actual := <-received; !reflect.DeepEqual(actual, expected) {
+			t.Fatal("client tool fields/history were changed beyond the model alias")
+		}
+		if streaming && w.Body.String() != stream {
+			t.Fatal("tool deltas, keepalive, usage or DONE changed in forwarding")
+		}
+		if !streaming && !strings.Contains(w.Body.String(), `"tool_calls"`) {
+			t.Fatal("nonstream tool calls were lost")
+		}
+	}
+	if w := call(g, Principal{Owner: "alice", GroupID: 2}, "POST", "/v1/chat/completions", strings.Repeat("x", 4<<20+1)); w.Code != 413 {
+		t.Fatal("text transport must remain bounded at 4 MiB")
 	}
 }

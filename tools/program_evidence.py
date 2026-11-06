@@ -37,6 +37,7 @@ SOURCES = {
     'bundle-pause.json': 'build/bundle-pause-tests/results.json',
     'document-input.json': 'build/document-input-tests/results.json',
     'api.json': 'build/api-tests/results.json',
+    'openai-tools.json': 'build/openai-tools-tests/results.json',
     'workbench.json': 'build/workbench-tests/results.json',
     'recovery.json': 'build/recovery-tests/results.json',
     'inputs.json': 'build/input-tests/results.json',
@@ -60,7 +61,7 @@ SOURCES = {
     'ltx-android.json': 'build/ltx098-app-build-info.json',
 }
 MINIMUM = dict(spatial=188, **{'spatial-graphs':60,'spatial-sparse':109}, shape=161, multiview=63, expansion=533, community=818, foundation=995, backend=138, **{'bundle-pause':22, 'document-input':15},
-    api=68, workbench=44, recovery=47, inputs=64, text=66, migration=69, scheduler=151,
+    api=68, **{'openai-tools':62}, workbench=44, recovery=47, inputs=64, text=66, migration=69, scheduler=151,
     preparations=44, assemblies=47, diffusion=197, mnn=101, hub=80,
     **{'recipe-suggestions':73, 'speech-voices':70, 'sana-sprint':448}, ui=653, **{'ltx-official':89, 'ltx-multiscale-app':280, 'ltx-single-scale-app':127})
 CURRENT_MEDIA = ['community', 'release-workbench', 'expansion', 'multiview', 'shape', 'spatial']

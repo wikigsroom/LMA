@@ -26,7 +26,7 @@ module.exports = async function checkScheduler(page, checked, checkOverflow) {
   assert((await page.locator('#composerHint').innerText()).includes('排队')); checked('Composer explains automatic slot waiting');
   await page.locator('[data-action="pickModel"]').first().click();
   assert((await page.locator('#modalContent').innerText()).includes('自动切换引擎')); checked('Model picker explains shared scheduling');
-  assert.equal(await page.locator('[data-action="stopTextModel"]').count(), 1); checked('User can stop a resident while it is temporarily suspended');
+  assert.equal(await page.locator('#modal [data-action="stopTextModel"]').count(), 1); checked('User can stop a resident while it is temporarily suspended');
   await page.keyboard.press('Escape');
   await install(page, true); await page.locator('.nav-item[data-tab="chat"]').click();
   assert((await page.locator('#composerHint').innerText()).includes('回复已排队')); checked('Waiting chat is distinguished from active token generation');

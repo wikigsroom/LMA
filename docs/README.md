@@ -1,5 +1,8 @@
 # LMA 文档 / Documentation
 
+- [DSH / OpenAI 函数工具、多轮回传、并发和容量](DSH_TOOLS.md) · [English](DSH_TOOLS.en.md) · [v1.1.0](releases/v1.1.0.md)
+- [运行中的模型／内存卸载在哪里](MODEL_RUNTIME.md) · [Running models and Unload](MODEL_RUNTIME.en.md)
+
 - [模型卡片直接删除 / Direct model-card deletion](MODEL_DELETE.md) · [English](MODEL_DELETE.en.md) · [v1.0.2](releases/v1.0.2.md)
 
 **当前 v1.0.1 / code66：** [原聊天页面复原、现有创作入口用法与编号融合评估](CHAT_RESTORE_20261106.md) / [English](CHAT_RESTORE_20261106.en.md)。默认聊天恢复顶部模型／消息／紧凑输入，“＋”按需展开现有功能；F01–F08 后续交互建议单独标记。

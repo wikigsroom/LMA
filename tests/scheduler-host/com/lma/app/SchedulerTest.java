@@ -178,12 +178,11 @@ public final class SchedulerTest {
             started("first"); check(!residents.get(0).isAlive(), "Old resident is reaped before the job worker starts");
             check(engine.wanted() && app.engineState.equals("suspended") && app.prefs.getBoolean("desiredRunning", false), "Temporary eviction retains the user's selected resident preference");
             try { app.bundles.remove(bundle.id, false, app.jobs); throw new AssertionError("Deleted active asset"); } catch (IllegalStateException expected) { passed++; checks.add("Running jobs retain model assets"); }
-            Future<LocalHttp.Response> waitingApi = pool.submit(() -> api.text("/v1/chat/completions", text("after-image")));
+            Future<String> waitingApi = pool.submit(() -> { try (LocalHttp.Response response = api.text("/v1/chat/completions", text("after-image"))) { ByteArrayOutputStream received = new ByteArrayOutputStream(); response.body.write(received); return received.toString("UTF-8"); } });
             until(() -> app.textRequestBusy && app.execution.snapshot().getInt("waitingCount") > 0, "API queues behind worker");
-            check(!waitingApi.isDone(), "Synchronous API waits for the same slot instead of rejecting a parked model");
-            release("first"); LocalHttp.Response response = waitingApi.get(15, TimeUnit.SECONDS); ByteArrayOutputStream received = new ByteArrayOutputStream();
-            response.body.write(received); response.close();
-            check(received.toString("UTF-8").contains("你好"), "The original API returns the literal host stream after engine switching");
+            check(!waitingApi.isDone(), "Admitted streamed API waits for the same slot instead of rejecting a parked model");
+            release("first"); String receivedReply = waitingApi.get(15, TimeUnit.SECONDS);
+            check(receivedReply.contains("你好"), "The original API returns the literal host stream after engine switching");
             until(() -> state(app, first, "succeeded") && engine.ready(), "Job finishes and original text residency returns");
             check(app.engineModel.equals(alias) && residents.size() == 2, "Text resumes with the original stable alias");
             JSONObject sent = new JSONObject(new String(Files.readAllBytes(work.resolve("last-text-request.json")), StandardCharsets.UTF_8));
@@ -214,7 +213,7 @@ public final class SchedulerTest {
             check(engine.ready() && fixture.started.size() == 4, "Cancelling a waiting job preserves active text residency"); held.close();
 
             JSONObject sixth = jobs.submit(request("sixth"), "sixth"); started("sixth");
-            Future<Boolean> cancelledApi = pool.submit(() -> { try (LocalHttp.Response ignored = api.text("/v1/chat/completions", text("cancel-api"))) { return false; } catch (InterruptedIOException expected) { return true; } });
+            Future<Boolean> cancelledApi = pool.submit(() -> { try (LocalHttp.Response response = api.text("/v1/chat/completions", text("cancel-api"))) { ByteArrayOutputStream received = new ByteArrayOutputStream(); response.body.write(received); return received.toString("UTF-8").contains("request_cancelled"); } });
             until(() -> app.textRequestBusy && app.execution.snapshot().getInt("waitingCount") > 0, "Cancellable API waits"); api.cancelText();
             check(cancelledApi.get(5, TimeUnit.SECONDS), "API cancellation also removes a waiting slot request");
             check(!app.textRequestBusy && fixture.started.get(4).isAlive(), "Cancelling queued API does not cancel the worker");
@@ -224,7 +223,8 @@ public final class SchedulerTest {
                     client.setRequestMethod("POST"); client.setDoOutput(true); client.setRequestProperty("Content-Type", "application/json");
                     client.setRequestProperty("Authorization", "Bearer " + api.apiKey()); client.setReadTimeout(10000);
                     try (OutputStream out = client.getOutputStream()) { out.write(text("listener-close").toString().getBytes(StandardCharsets.UTF_8)); }
-                    return client.getResponseCode() == 200;
+                    if (client.getResponseCode() != 200) return false;
+                    try (InputStream in = client.getInputStream()) { return Store.read(in, 65536).contains("[DONE]"); }
                 } catch (IOException expected) { return false; } finally { client.disconnect(); }
             });
             until(() -> app.textRequestBusy && app.execution.snapshot().getInt("waitingCount") > 0, "Public listener waits for a native worker");

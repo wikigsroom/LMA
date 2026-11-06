@@ -1,5 +1,7 @@
 # Shared execution slot, text residency and task switching
 
+**Current v1.1.0:** External text admission queues up to 9 requests / 16 MiB serialized JSON on the shared FIFO single-heavy slot. Dedicated text workers preserve control responsiveness. A parent round releases its lease before caller tools/children run. Admitted streams send comment keepalives before actual tokens; full admission returns429. [Tools/capacity contract](DSH_TOOLS.en.md) · [Unload entries](MODEL_RUNTIME.en.md). Single-busy descriptions below belong to historical checkpoints; interactive App reload guards remain.
+
 [中文](SCHEDULING.md) · [Development](DEVELOPMENT.en.md) · [Task design](WORKFLOWS.en.md) · [API](API.en.md) · [Asset boundaries](ASSET_CONTROL_AUDIT.en.md)
 
 Applies to **0.3.0-dev.10 / code 14, an internal checkpoint**. Resident text loading, in-app chat, synchronous text APIs and asynchronous generation use the same `ExecutionGate`. Every complete v0.3.0 model and physical-Android requirement remains applicable.

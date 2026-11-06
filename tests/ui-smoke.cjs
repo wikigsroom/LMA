@@ -16,6 +16,7 @@ const checkUltraTex = require('./ultratex-ui.cjs');
 const checkAdaptation = require('./adaptation-ui.cjs');
 const checkFoundation = require('./foundation-ui.cjs');
 const checkModelDelete = require('./model-delete-ui.cjs');
+const checkRunningModels = require('./running-models-ui.cjs');
 const checkRecipes = require('./recipes-ui.cjs');
 const checkVersions = require('./versions-ui.cjs');
 const checkText = require('./text-ui.cjs');
@@ -54,6 +55,7 @@ function inputFingerprint() {
   files.push(path.join(root,'tests/spatial-ui.cjs'),path.join(root,'tests/shape-ui.cjs'),path.join(root,'tests/multiview-ui.cjs'),path.join(root,'catalogue/multiview-bundles.json'),path.join(root,'tests/expansion-ui.cjs'),path.join(root,'catalogue/expansion-bundles.json'),path.join(root,'tests/community-ui.cjs'),path.join(root,'tests/ltx-official-ui.cjs'),path.join(root,'tests/sana-ui.cjs'),path.join(root,'tests/wan-ui.cjs'),path.join(root,'research/wan_trained/catalogue-bundle.json'));
   files.push(path.join(root,'tests/recommendations-ui.cjs'));
   files.push(path.join(root,'tests/model-delete-ui.cjs'));
+  files.push(path.join(root,'tests/running-models-ui.cjs'));
   files.push(path.join(root,'tests/adaptation-ui.cjs'),path.join(root,'tests/ultratex-ui.cjs'),path.join(root,'tests/material-ui.cjs'),path.join(root,'tests/glb-preview-ui.cjs'));
   return Object.fromEntries(files.sort().map(file => [path.relative(root, file).split(path.sep).join('/'), crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex')]));
 }
@@ -316,6 +318,7 @@ async function main() {
   await setState(page, () => { window.__fixture.models[0].name = 'Qwen 3 · 1.7B Abliterated'; window.__fixture.settings.theme = 'light'; });
   await checkFoundation(page, checked, checkOverflow, output);
   await checkModelDelete(page, checked, checkOverflow);
+  await checkRunningModels(page, checked, checkOverflow);
   await checkRecipes(page, checked);
   await checkVersions(page, checked, checkOverflow);
   await checkText(page, checked, checkOverflow, output);

@@ -4,27 +4,37 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import java.util.*;
 
-/** Text-only public requests with the selected model's saved output ceiling and sampling defaults. */
+/** Public text/function requests with the selected model's saved sampling and output limits. */
 public final class TextRequest {
     private TextRequest() {}
     public static JSONObject normalize(String path, JSONObject input, String model, JSONObject settings) throws Exception {
-        Set<String> allowed = new HashSet<>(Arrays.asList("model", "messages", "prompt", "stream", "max_tokens", "max_completion_tokens", "temperature", "top_p", "top_k", "min_p", "seed", "stop", "presence_penalty", "frequency_penalty", "repeat_penalty", "stream_options", "response_format", "logit_bias", "logprobs", "top_logprobs", "n", "cache_prompt"));
-        for (Iterator<String> it = input.keys(); it.hasNext();) if (!allowed.contains(it.next())) throw new IllegalArgumentException("Unsupported text request field");
+        JSONObject request = DataFiles.copy(input); input = request;
+        List<String> optional = new ArrayList<>(); for (Iterator<String> it = request.keys(); it.hasNext();) optional.add(it.next());
+        for (String key : optional) if (request.isNull(key)) request.remove(key);
+        Set<String> allowed = new HashSet<>(Arrays.asList("model", "messages", "prompt", "stream", "max_tokens", "max_completion_tokens", "temperature", "top_p", "top_k", "min_p", "seed", "stop", "presence_penalty", "frequency_penalty", "repeat_penalty", "stream_options", "response_format", "logit_bias", "logprobs", "top_logprobs", "n", "cache_prompt", "store", "tools", "tool_choice", "parallel_tool_calls", "metadata", "user", "safety_identifier", "prompt_cache_key", "service_tier", "reasoning_effort"));
+        for (Iterator<String> it = input.keys(); it.hasNext();) { String key = it.next(); if (!allowed.contains(key)) throw new RequestError(key, "Unsupported text request field"); }
         if (!input.optString("model", model).equals(model)) throw new IllegalStateException("The requested text model is not loaded; select/load it in the App first");
-        JSONObject request = DataFiles.copy(input); request.put("model", model);
+        request.put("model", model);
         if (path.equals("/v1/chat/completions")) {
             if (input.has("prompt")) throw new IllegalArgumentException("Use messages for chat completions");
-            JSONArray messages = input.getJSONArray("messages");
-            if (messages.length() < 1 || messages.length() > 128) throw new IllegalArgumentException("Use 1–128 text messages");
-            for (int i = 0; i < messages.length(); i++) {
-                JSONObject message = messages.getJSONObject(i);
-                for (Iterator<String> it = message.keys(); it.hasNext();) if (!Arrays.asList("role", "content", "name").contains(it.next())) throw new IllegalArgumentException("Only plain text chat messages are supported");
-                if (!Arrays.asList("system", "developer", "user", "assistant").contains(message.getString("role")) || !(message.get("content") instanceof String)) throw new IllegalArgumentException("Only plain text chat messages are supported; media URLs are not fetched");
-                if (message.getString("content").length() > 64000) throw new IllegalArgumentException("A chat message is too long");
-            }
+            ChatProtocol.messages(request); ChatProtocol.tools(request);
         } else {
-            if (input.has("messages") || !(input.get("prompt") instanceof String) || input.getString("prompt").isEmpty() || input.getString("prompt").length() > 64000) throw new IllegalArgumentException("Use a nonempty plain text prompt");
+            if (input.has("messages") || !(input.get("prompt") instanceof String) || input.getString("prompt").isEmpty()) throw new RequestError("prompt", "Use a nonempty plain text prompt");
+            ChatProtocol.text(input.get("prompt"), "prompt");
+            for (String key : Arrays.asList("tools", "tool_choice", "parallel_tool_calls")) if (input.has(key)) throw new RequestError(key, "Function tools require /v1/chat/completions");
         }
+        if (input.has("store") && !input.isNull("store") && !(input.get("store") instanceof Boolean)) throw new RequestError("store", "Use a boolean");
+        if (input.optBoolean("store")) throw new RequestError("store", "Stored completion retrieval is unavailable; use store:false");
+        request.remove("store"); // No completion record is persisted by this proxy.
+        if (input.has("reasoning_effort") && !Arrays.asList("none", "minimal", "low", "medium", "high", "xhigh").contains(input.opt("reasoning_effort"))) throw new RequestError("reasoning_effort", "Use none, minimal, low, medium, high or xhigh; behavior follows the model template");
+        for (String key : Arrays.asList("user", "safety_identifier", "prompt_cache_key")) if (input.has(key) && !input.isNull(key)) { String value = ChatProtocol.text(input.get(key), key); if (value.length() > 256) throw new RequestError(key, "Identifier exceeds 256 characters"); request.remove(key); }
+        if (input.has("metadata") && !input.isNull("metadata")) {
+            JSONObject metadata = input.getJSONObject("metadata"); if (metadata.length() > 16) throw new RequestError("metadata", "At most sixteen metadata fields");
+            for (Iterator<String> it = metadata.keys(); it.hasNext();) { String key = it.next(); if (key.length() > 64 || !(metadata.get(key) instanceof String) || metadata.getString(key).length() > 512) throw new RequestError("metadata", "Metadata keys/values exceed their string limits"); }
+            request.remove("metadata");
+        }
+        if (input.has("service_tier") && !input.isNull("service_tier")) { if (!Arrays.asList("auto", "default").contains(input.getString("service_tier"))) throw new RequestError("service_tier", "This local server offers auto/default service tier"); request.remove("service_tier"); }
+        for (Iterator<String> it = new ArrayList<>(allowed).iterator(); it.hasNext();) { String key = it.next(); if (request.isNull(key)) request.remove(key); }
         if (input.has("max_tokens") && input.has("max_completion_tokens")) throw new IllegalArgumentException("Use one output-token field");
         String tokenField = input.has("max_completion_tokens") ? "max_completion_tokens" : "max_tokens";
         double requested = number(input, tokenField, settings.getInt("maxTokens"));
@@ -42,7 +52,10 @@ public final class TextRequest {
         if (input.has("top_logprobs")) request.put("top_logprobs", (int) Math.floor(bounded(input, "top_logprobs", 0, 0, 20)));
         if (input.has("stream_options")) {
             JSONObject options = input.getJSONObject("stream_options");
-            if (options.length() > 1 || options.length() == 1 && !(options.opt("include_usage") instanceof Boolean)) throw new IllegalArgumentException("Unsupported stream options");
+            ChatProtocol.fields(options, "stream_options", "include_usage", "include_obfuscation");
+            for (String key : Arrays.asList("include_usage", "include_obfuscation")) if (options.has(key) && !(options.opt(key) instanceof Boolean)) throw new RequestError("stream_options." + key, "Use a boolean");
+            if (options.optBoolean("include_obfuscation")) throw new RequestError("stream_options.include_obfuscation", "Stream obfuscation is unavailable");
+            request.getJSONObject("stream_options").remove("include_obfuscation");
         }
         if (input.has("stop")) {
             Object stop = input.get("stop"); JSONArray stops = stop instanceof String ? new JSONArray().put(stop) : input.getJSONArray("stop");
@@ -51,7 +64,14 @@ public final class TextRequest {
         }
         if (input.has("response_format")) {
             JSONObject format = input.getJSONObject("response_format");
-            if (format.length() != 1 || !Arrays.asList("text", "json_object").contains(format.optString("type"))) throw new IllegalArgumentException("Use text or json_object response format");
+            String type = format.optString("type");
+            if (type.equals("json_schema")) {
+                ChatProtocol.fields(format, "response_format", "type", "json_schema"); JSONObject wrapper = format.getJSONObject("json_schema");
+                ChatProtocol.fields(wrapper, "response_format.json_schema", "name", "description", "schema", "strict");
+                ChatProtocol.name(wrapper.opt("name"), "response_format.json_schema.name");
+                JsonSchema.check(wrapper.getJSONObject("schema"), "response_format.json_schema.schema");
+                if (wrapper.has("strict") && !(wrapper.opt("strict") instanceof Boolean)) throw new RequestError("response_format.json_schema.strict", "Use a boolean");
+            } else if (format.length() != 1 || !Arrays.asList("text", "json_object").contains(type)) throw new RequestError("response_format", "Use text, json_object or json_schema response format");
         }
         if (input.has("logit_bias")) {
             JSONObject bias = request.getJSONObject("logit_bias"); if (bias.length() > 2048) throw new IllegalArgumentException("Too many token biases");

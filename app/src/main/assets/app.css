@@ -39,3 +39,7 @@ html[data-theme=dark]{color-scheme:dark;--bg:#121a29;--panel:#1a2537;--ink:#e5ed
 .recommendation-count { margin-left: 6px; font-size: 11px; opacity: .75; font-variant-numeric: tabular-nums; }
 
 .published-model{padding:14px 0;border-top:1px solid var(--border,#30343b)}.published-model>div{margin:7px 0;font-size:12px}.published-model code{display:block;overflow-wrap:anywhere;font-size:11px;opacity:.7}
+
+/* Running-model controls reuse the Mica surface and both theme token sets. */
+.running-models{margin-block:16px}.running-model-heading,.running-model-row{display:flex;align-items:center;justify-content:space-between;gap:12px;min-width:0}.running-model-heading h2{margin:0;font-size:16px}.running-model-heading p,.running-model-empty{font-size:12px;color:var(--muted);line-height:1.7}.running-model-row{padding:16px 0;border-bottom:1px solid var(--line);flex-wrap:wrap}.running-model-row>div{flex:1 1 160px;min-width:0}.running-model-row strong{display:block;font-size:14px;overflow-wrap:anywhere}.running-model-row small{display:block;color:var(--muted);line-height:1.7;margin-top:6px}.running-model-row .button{min-height:44px;flex-shrink:0}.running-models .form-help{margin-bottom:0}
+@media(max-width:359px){.running-model-heading{align-items:flex-start}.running-model-heading>.tag{display:none}.running-model-row>.button{width:100%}}

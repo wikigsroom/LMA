@@ -117,8 +117,9 @@ public final class ResourceChecks {
             input.set(safe()); engine.load(alias); until(engine::ready);
             try (LocalHttp.Response response = api.text("/v1/chat/completions", text("stop"))) {
                 input.set(sample(-1, false, 0)); app.execution.pollResources();
-                try { response.body.write(new ByteArrayOutputStream()); throw new AssertionError("API resource stop returned success"); }
-                catch (IOException expected) { check(expected.getMessage().contains("存储"), "API stream propagates resource error instead of successful EOF"); }
+                ByteArrayOutputStream received = new ByteArrayOutputStream(); response.body.write(received);
+                String events = received.toString("UTF-8");
+                check(events.contains("\"error\"") && events.contains("存储") && !events.contains("[DONE]"), "Admitted API stream propagates resource error without a successful DONE event");
             }
             until(() -> app.execution.snapshot().isNull("active"));
             check(api.health().getJSONObject("scheduler").getJSONObject("lastResourceStop").getString("kind").equals("api"), "Authenticated API health exposes the latest resource stop");

@@ -19,7 +19,7 @@ def reusable(name):
         record=json.loads(path.read_text(encoding='utf-8'));current(record.get('source_inputs',record.get('input_fingerprint',{})));return bool(record.get('passed',record.get('count',False)))
     except (OSError,ValueError,AssertionError):return False
 GROUPS = [
-    ['community', 'bundle_pause', 'document_input', 'api', 'api_publication', 'workbench', 'recovery'],
+    ['community', 'bundle_pause', 'document_input', 'api', 'openai_tools', 'api_publication', 'workbench', 'recovery'],
     ['inputs', 'text', 'migration', 'scheduler', 'preparations', 'assemblies', 'diffusion', 'mnn'],
     ['hub', 'recipe_suggestions', 'speech_voices', 'sana_sprint', 'ltx098_official', 'ltx098_app', 'ltx098_app --multiscale'],
 ]
