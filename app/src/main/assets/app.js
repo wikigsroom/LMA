@@ -160,6 +160,10 @@
     else html += '<p class="running-model-empty">当前没有驻留的文本模型。</p>';
     var activeJobs = (state.jobs || []).filter(function (job) { return ['running', 'cancelling'].indexOf(job.state) >= 0; });
     activeJobs.forEach(function (job) { var m = modelById(job.bundleId || job.modelId); html += '<div class="running-model-row"><div><strong>' + esc(m ? m.name : job.modelName || job.bundleId || '本地生成任务') + '</strong><small>临时加载 · 任务结束后自动释放</small></div><button type="button" class="button secondary" data-action="runtimeCancelTask" data-id="' + esc(job.id) + '"' + (job.state === 'cancelling' ? ' disabled' : '') + '>停止并释放</button></div>'; });
+    if (selected && e.toolTemplate) {
+      var template = e.toolTemplate, checked = template.state === 'native_template_verified';
+      html += '<p class="form-help">工具模板：' + (checked ? '已核对生效模板与工具声明' : template.state === 'tools_unavailable' ? '当前模板无法呈现工具声明' : '等待本次加载核对') + (template.profile ? ' · ' + esc(template.profile) : '') + '。模型执行任务的可靠性需另外实测。</p>';
+    }
     html += '<p class="form-help">模型接口独立运行。卸载会取消文本请求；接口后续的新请求仍可按需加载已安装模型。</p>';
     return html;
   }

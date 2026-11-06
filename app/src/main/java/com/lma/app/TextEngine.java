@@ -97,6 +97,8 @@ public final class TextEngine implements LocalEngine {
         List<String> command = new ArrayList<>(); command.add(binary.getAbsolutePath());
         add(command, "-m", model.file("text_gguf").getAbsolutePath(), "--alias", model.bundle.id, "--host", "127.0.0.1", "--port", String.valueOf(port));
         add(command, "-t", String.valueOf(settings.getInt("threads")), "-c", String.valueOf(settings.getInt("context")), "-b", "64", "-ub", "64", "-np", "1", "-ngl", "0", "--device", "none", "--jinja", "--no-webui", "--reasoning", settings.getString("reasoning"));
+        TemplateProfiles.Selection template = TemplateProfiles.resolve(app, model.bundle.id, model.file("text_gguf"), model.bundle.component("text_gguf").sha256, DataFiles.checked(context::check));
+        template.command(command);
         ProcessBuilder builder = new ProcessBuilder(command).directory(app.getFilesDir()).redirectErrorStream(true);
         builder.environment().put("LD_LIBRARY_PATH", app.getApplicationInfo().nativeLibraryDir); builder.environment().put("LLAMA_API_KEY", key);
         Process child = null; Thread drain = null; HttpURLConnection inference = null;
@@ -120,7 +122,7 @@ public final class TextEngine implements LocalEngine {
             if (inference.getResponseCode() != 200 || !String.valueOf(inference.getHeaderField("Content-Type")).toLowerCase(Locale.ROOT).startsWith("text/event-stream")) throw new IOException("本机文本引擎未返回有效生成流；请核对配方与聊天模板");
             context.progress("generating", null); final long[] update = {0}; JSONObject result;
             try (InputStream stream = inference.getInputStream()) { result = TextResult.consume(stream, context::check, characters -> { long now = System.nanoTime(); if (now - update[0] >= TimeUnit.MILLISECONDS.toNanos(100)) { context.progress("generating", null); update[0] = now; } }); }
-            context.check(); context.execution(new JSONObject().put("effectiveParameters", settings).put("ggufMetadata", metadata).put("textUsage", result.getJSONObject("usage")).put("finishReason", result.getString("finishReason")));
+            context.check(); context.execution(new JSONObject().put("effectiveParameters", settings).put("ggufMetadata", metadata).put("chatTemplate", template.identity()).put("textUsage", result.getJSONObject("usage")).put("finishReason", result.getString("finishReason")));
             context.progress("saving", null); File output = context.output("json"); TextResult.write(output, result); context.check(); return output;
         } finally {
             if (inference != null) inference.disconnect();

@@ -16,6 +16,8 @@ from audit_adaptations import MODULES, required_records, require_complete
 OUT = ROOT / 'verification/releases' / ('v' + version())
 CURRENT_MEDIA = ['community', 'release-workbench', 'expansion', 'multiview', 'shape', 'spatial', 'material', 'ultratex', 'adaptation', 'recommendations']
 EXTRA = {
+    'dsh-client.json': 'build/dsh-client-verification/client-results.json',
+    'template-profiles.json': 'build/chat-template-native/results.json',
     'mica-ui.json': 'build/mica-ui/results.json',
     'conversation-core.json': 'build/conversation-tests/results.json',
     'conversation-integration.json': 'build/conversation-integration/results.json',
@@ -37,7 +39,7 @@ for item in required_records():
     if item not in BASE_SOURCES.values():
         EXTRA[Path(item).parent.name + '.json' if item.endswith('/results.json') else Path(item).name] = item
 SOURCES = BASE_SOURCES | EXTRA
-MINIMUM = BASE_MINIMUM | {'mica-ui':20,'conversation-core':71,'conversation-integration':48,'conversation-ui':43,'api-publication': 34, 'sub2api-gateway': 13, 'ui-performance': 8, 'expansion': 875, 'portable-sparse-models': 97, 'cascade': 95, 'ultratex-attention': 47, 'material': 61}
+MINIMUM = BASE_MINIMUM | {'dsh-client':79,'template-profiles':17,'mica-ui':20,'conversation-core':71,'conversation-integration':48,'conversation-ui':43,'api-publication': 34, 'sub2api-gateway': 13, 'ui-performance': 8, 'expansion': 875, 'portable-sparse-models': 97, 'cascade': 95, 'ultratex-attention': 47, 'material': 61}
 if tuple(map(int,version().split('.'))) >= (1,2,0):
     MINIMUM.update({'workspace-ui':29,'workspace-contrast':62})
 for module in MODULES.values():
@@ -82,6 +84,9 @@ def inputs():
         *(['docs/media/models/v'+version()+'/manifest.json'] if (ROOT/'docs/media/models'/('v'+version())/'manifest.json').exists() else []),
         *(['verification/releases/v'+version()+'/physical-api.json'] if (OUT/'physical-api.json').exists() else []),
         *(['verification/releases/v'+version()+'/physical-tools.json'] if (OUT/'physical-tools.json').exists() else []),
+        'tools/physical_dsh_evidence.py',
+        *(['docs/media/device/v'+version()+'/manifest.json'] if (ROOT/'docs/media/device'/('v'+version())/'manifest.json').exists() else []),
+        *(['verification/releases/v'+version()+'/physical-dsh.json'] if (OUT/'physical-dsh.json').exists() else []),
         *(['docs/media/benchmarks/v'+version()+'/manifest.json'] if (ROOT/'docs/media/benchmarks'/('v'+version())/'manifest.json').exists() else []),
         *(['tools/port_update_evidence.py', 'tools/device_lan_http.py', 'tools/export_lan_http_evidence.py',
            'verification/supplemental/v0.3.13/lan-http.json', 'docs/media/tests/lan-http-v0313/manifest.json'] if version() == '0.3.13' else []),
@@ -115,10 +120,18 @@ def physical_models_and_api(directory):
     from physical_tools_evidence import check as tools_check
     tools = tools_check(directory)
     result |= tools
+    from physical_dsh_evidence import check as dsh_check
+    result |= dsh_check(directory)
     if tools['physical_tool_protocol_tested']:
         result.update(phone_inference_tested=True,model_inference_tested=True)
         for key in ('authorized_phone_model_attempts','authorized_phone_model_successes','complete_trained_model_runs'):
             result[key]=result.get(key,0)+tools['physical_tool_model_requests']
+    # Final-APK direct probes and actual DSH inference are additional model runs.
+    # Keep earlier candidate APKs and cancelled generations out of completion counts.
+    direct=result.get('direct_api_model_requests',0)
+    result['authorized_phone_model_attempts']=result.get('authorized_phone_model_attempts',0)+direct+result.get('dsh_final_apk_model_attempts',0)
+    result['authorized_phone_model_successes']=result.get('authorized_phone_model_successes',0)+direct+result.get('dsh_final_apk_successful_attempts',0)
+    result['complete_trained_model_runs']=result.get('complete_trained_model_runs',0)+direct+result.get('dsh_final_apk_completed_generations',0)
     if version() == '0.3.13':
         from port_update_evidence import check as port_check
         result |= port_check()

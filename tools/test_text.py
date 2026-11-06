@@ -10,8 +10,8 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def main():
-    names = ("TextEngine", "LocalEngine", "ModelSettings", "GgufMetadata")
-    inputs = fingerprint("app/src/main/java/com/lma/app/core", *["app/src/main/java/com/lma/app/" + n + ".java" for n in names], "tests/text-host", "tests/host/android/util/AtomicFile.java", "app/src/main/assets/recipe-templates.json", "tools/test_text.py")
+    names = ("TextEngine", "LocalEngine", "ModelSettings", "GgufMetadata", "TemplateProfiles")
+    inputs = fingerprint("app/src/main/assets/chat-template-profiles.json", "app/src/main/assets/chat-templates", "app/src/main/java/com/lma/app/core", *["app/src/main/java/com/lma/app/" + n + ".java" for n in names], "tests/text-host", "tests/host/android/util/AtomicFile.java", "app/src/main/assets/recipe-templates.json", "tools/test_text.py")
     dep = ROOT / "build/test-deps/json-20250517.jar"
     if hashlib.sha256(dep.read_bytes()).hexdigest() != "3ea61b2a06e31edf1c91134fe9106b0ebb16628be169f3db75bc7a2b06b45796": raise RuntimeError("Host JSON dependency changed")
     out = ROOT / "build/text-tests"; out.mkdir(parents=True, exist_ok=True)

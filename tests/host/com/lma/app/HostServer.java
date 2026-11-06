@@ -95,6 +95,7 @@ public final class HostServer {
             if (!("Bearer " + key).equals(exchange.getRequestHeaders().getFirst("Authorization"))) { respond(exchange, 401, "{\"error\":{\"message\":\"Unauthorized\"}}"); return; }
             respond(exchange, 200, new JSONObject().put("data", new JSONArray().put(new JSONObject().put("id", model))).toString());
         });
+        server.createContext("/props", exchange -> respond(exchange, 200, "{\"chat_template\":\"\",\"chat_template_caps\":{\"supports_tools\":true,\"supports_tool_calls\":true}}"));
         server.createContext("/apply-template", exchange -> {
             try { if (!("Bearer " + key).equals(exchange.getRequestHeaders().getFirst("Authorization"))) { respond(exchange, 401, "{}"); return; } JSONObject payload = new JSONObject(read(exchange.getRequestBody())); respond(exchange, 200, new JSONObject().put("prompt", payload.toString()).toString()); }
             catch (Exception error) { respond(exchange, 400, "{}"); }

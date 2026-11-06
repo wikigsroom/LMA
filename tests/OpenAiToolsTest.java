@@ -36,8 +36,19 @@ public final class OpenAiToolsTest {
         check(normalized.getString("tool_choice").equals("auto") && !normalized.getBoolean("parallel_tool_calls"), "Auto tools and parallel false retain their meaning");
         for (String choice : Arrays.asList("none", "auto", "required")) check(normalize(new JSONObject(request.toString()).put("tool_choice", choice)).getString("tool_choice").equals(choice), "Tool choice " + choice + " is supported");
         JSONObject named = base().put("tools", new JSONArray().put(function("weather", false)).put(function("other", false))).put("tool_choice", new JSONObject("{\"type\":\"function\",\"function\":{\"name\":\"other\"}}"));
-        JSONObject forced = normalize(named); check(forced.getString("tool_choice").equals("required") && forced.getJSONArray("tools").length() == 1 && forced.getJSONArray("tools").getJSONObject(0).getJSONObject("function").getString("name").equals("other"), "Named tool choice becomes one allowed native function plus required");
-        check(named.getJSONArray("tools").length() == 2, "Named-tool adaptation leaves the original definition array intact");
+        JSONObject forced = normalize(named);
+        check(forced.getJSONArray("tools").length() == 2 && NativeToolRequest.selected(forced).equals("other"), "Named choice retains the complete public tool list and selection");
+        JSONObject wire = NativeToolRequest.adapt(forced);
+        check(wire.getString("tool_choice").equals("required") && wire.getJSONArray("tools").length() == 1 && wire.getJSONObject("chat_template_kwargs").getJSONArray("tools").length() == 2, "Native grammar selects one function while template context retains every declaration");
+        check(named.getJSONArray("tools").length() == 2 && forced.getJSONArray("tools").length() == 2, "Private native adaptation never mutates either public request");
+        JSONArray completeTools = new JSONArray(); for (int i = 0; i < 41; i++) completeTools.put(function("fixture_" + i, false));
+        JSONObject fullNamed = normalize(base().put("tools", completeTools).put("tool_choice", new JSONObject().put("type", "function").put("function", new JSONObject().put("name", "fixture_40"))));
+        check(NativeToolRequest.adapt(fullNamed).getJSONObject("chat_template_kwargs").getJSONArray("tools").length() == 41 && fullNamed.getJSONArray("tools").length() == 41, "All 41 declarations survive named-function adaptation");
+        rejects(() -> response(new ToolReply(forced), completion(new JSONArray().put(call("wrong_named", "weather", "{}")), "tool_calls").toString()), "A declared but nonselected function is rejected for named choice");
+        ByteArrayOutputStream namedOutput = new ByteArrayOutputStream();
+        rejects(() -> new ToolReply(forced).stream(input(toolStream("wrong_named_stream", "weather", "{}")), namedOutput), "Named streaming rejects a wrong function even without strict arguments");
+        check(!new String(namedOutput.toByteArray(), StandardCharsets.UTF_8).contains("wrong_named_stream"), "Invalid named tool fragments never reach the client executor");
+        rejects(() -> normalize(base().put("chat_template_kwargs", new JSONObject().put("tools", completeTools))), "Clients cannot override private template context");
         rejects(() -> normalize(base().put("store", true)), "Unsupported stored-completion semantics fail explicitly");
         rejects(() -> normalize(base().put("tool_choice", "required")), "Required choice without definitions is invalid");
         rejects(() -> normalize(new JSONObject(named.toString()).put("tool_choice", new JSONObject("{\"type\":\"function\",\"function\":{\"name\":\"missing\"}}"))), "Named selection must refer to a declared function");
@@ -46,6 +57,13 @@ public final class OpenAiToolsTest {
         check(normalize(optional).getDouble("temperature") == 0.6 && !normalize(optional).has("metadata"), "Nullable optional fields and nonpersistent caller hints are accepted");
         JSONArray history = base().getJSONArray("messages"); history.put(new JSONObject().put("role", "assistant").put("content", JSONObject.NULL).put("tool_calls", new JSONArray().put(call("call_a", "weather", "{\"city\":\"台北\"}")))); history.put(new JSONObject().put("role", "tool").put("tool_call_id", "call_a").put("content", "晴天"));
         check(normalize(base().put("messages", history)).getJSONArray("messages").getJSONObject(1).isNull("content"), "Assistant null content and client-owned tool results round-trip structurally");
+        JSONArray parallel = new JSONArray().put(new JSONObject().put("role", "user").put("content", "compare"))
+            .put(new JSONObject().put("role", "assistant").put("content", JSONObject.NULL).put("tool_calls",new JSONArray().put(call("parallel_a", "weather", "{}" )).put(call("parallel_b", "weather", "{}"))))
+            .put(new JSONObject().put("role", "tool").put("tool_call_id", "parallel_b").put("content", "second result"))
+            .put(new JSONObject().put("role", "tool").put("tool_call_id", "parallel_a").put("content", "first result"));
+        JSONObject unordered = normalize(base().put("messages", parallel)), ordered = NativeToolRequest.adapt(unordered);
+        check(ordered.getJSONArray("messages").getJSONObject(2).getString("content").equals("first result") && ordered.getJSONArray("messages").getJSONObject(3).getString("content").equals("second result"), "Native rendering orders parallel results by their actual call IDs");
+        check(unordered.getJSONArray("messages").getJSONObject(2).getString("tool_call_id").equals("parallel_b"), "Parallel result adaptation preserves the original public history");
         JSONObject missing = new JSONObject(base().put("messages", history).toString()); missing.getJSONArray("messages").remove(2);
         rejects(() -> normalize(missing), "Missing tool results are rejected before generation");
         JSONObject orphan = new JSONObject(base().put("messages", history).toString()); orphan.getJSONArray("messages").getJSONObject(2).put("tool_call_id", "orphan");

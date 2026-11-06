@@ -63,12 +63,22 @@ public final class DeviceToolsProbe extends Instrumentation {
                 if (app.apiHost == null || !app.apiHost.ready()) throw new IOException("Unload unexpectedly stopped the API listener");
                 checks.put("Public API listener remains available after model unload");
             } else if (mode.equals("startApi")) command("startApi", "");
-            else if (!mode.equals("inspect")) throw new IOException("Unknown physical runtime mode");
+            else if (!mode.equals("inspect") && !mode.equals("identity") && !mode.equals("trace") && !mode.equals("clipboard")) throw new IOException("Unknown physical runtime mode");
+            if (mode.equals("trace")) result.put("toolDiagnostics", app.apiHost == null ? new JSONArray() : app.apiHost.toolDiagnostics());
+            if (mode.equals("clipboard")) {
+                android.content.ClipboardManager clipboard = (android.content.ClipboardManager)app.getSystemService(android.content.Context.CLIPBOARD_SERVICE);
+                // Only used immediately after an explicit DSH "copy URL" action; private host output.
+                result.put("copiedUrl", clipboard.hasPrimaryClip() ? clipboard.getPrimaryClip().getItemAt(0).coerceToText(app).toString() : "");
+            }
+            if (mode.equals("identity")) {
+                java.io.File weight = app.store.modelFile(selected);
+                result.put("weightIdentity", new JSONObject().put("id", selected).put("bytes", weight.length()).put("sha256", com.lma.app.core.DataFiles.sha256(weight)).put("metadata", GgufMetadata.read(weight)));
+            }
             JSONObject after = inventory();
             if (!before.toString().equals(after.toString())) throw new IOException("Runtime operation changed installed assets or chat history");
             checks.put("Installed asset identities, sizes and conversation history are preserved");
             JSONObject snapshot = app.snapshot();
-            result.put("status", "passed").put("version", LmaApp.VERSION).put("before", before).put("after", after).put("engine", snapshot.getJSONObject("engine")).put("checks", checks)
+            result.put("status", "passed").put("version", getTargetContext().getPackageManager().getPackageInfo("com.lma.app", 0).versionName).put("versionCode", getTargetContext().getPackageManager().getPackageInfo("com.lma.app", 0).getLongVersionCode()).put("before", before).put("after", after).put("engine", snapshot.getJSONObject("engine")).put("checks", checks)
                 .put("apiKey", app.prefs.getString("apiKey", "")).put("port", app.prefs.getInt("port", 52187)).put("settings", app.settings(selected));
         } catch (Throwable error) { try { result.put("status", "failed").put("error", error.getClass().getSimpleName() + ": " + error.getMessage()); } catch (Exception ignored) {} }
         Bundle output = new Bundle(); output.putString("lma_tools", result.toString()); finish(Activity.RESULT_OK, output);

@@ -13,22 +13,29 @@ public final class ToolReply {
     private final Map<String, JSONObject> functions = new LinkedHashMap<>();
     private final JSONObject responseSchema;
     private final boolean hold;
+    public interface Observer { void validated(JSONObject message, String finish) throws Exception; }
+    private final Observer observer;
     private static final class CallParts {
         String id = ""; final StringBuilder name = new StringBuilder(), arguments = new StringBuilder();
         JSONObject json() throws Exception { return new JSONObject().put("id", id).put("type", "function").put("function", new JSONObject().put("name", name.toString()).put("arguments", arguments.toString())); }
     }
     public ToolReply(JSONObject request) throws Exception {
+        this(request, null);
+    }
+    public ToolReply(JSONObject request, Observer observer) throws Exception {
+        this.observer = observer;
         this.request = request; boolean strict = false; JSONArray tools = request.optJSONArray("tools");
         if (tools != null) for (int i = 0; i < tools.length(); i++) { JSONObject function = tools.getJSONObject(i).getJSONObject("function"); functions.put(function.getString("name"), function); strict |= function.optBoolean("strict"); }
         JSONObject format = request.optJSONObject("response_format"), wrapper = format == null ? null : format.optJSONObject("json_schema");
         responseSchema = wrapper != null && wrapper.optBoolean("strict") ? wrapper.getJSONObject("schema") : null;
-        hold = strict || responseSchema != null;
+        hold = strict || responseSchema != null || !NativeToolRequest.selected(request).isEmpty();
     }
     public boolean enabled() { return !functions.isEmpty() || request.has("tool_choice") || responseSchema != null; }
     private void validate(JSONObject message, String finish) throws Exception {
         JSONArray calls = message.optJSONArray("tool_calls"); int count = calls == null ? 0 : calls.length();
         if (count > 128 || count > 1 && !request.optBoolean("parallel_tool_calls", true)) throw new IOException("The local engine violated parallel_tool_calls");
-        String choice = request.optString("tool_choice", "auto");
+        String selected = NativeToolRequest.selected(request);
+        String choice = selected.isEmpty() ? request.optString("tool_choice", "auto") : "required";
         if (count > 0 && choice.equals("none")) throw new IOException("The local engine called a tool while tool_choice was none");
         if (count == 0 && (finish.equals("tool_calls") || choice.equals("required") && !finish.equals("length"))) throw new IOException("The local engine did not produce the required tool call");
         Set<String> ids = new HashSet<>();
@@ -37,6 +44,7 @@ public final class ToolReply {
             if (id.isEmpty() || id.length() > 256 || !ids.add(id) || !call.optString("type").equals("function")) throw new IOException("The local engine returned invalid tool-call identifiers");
             JSONObject function = call.getJSONObject("function"), definition = functions.get(function.optString("name"));
             if (definition == null || !(function.opt("arguments") instanceof String)) throw new IOException("The local engine returned an undeclared function or invalid arguments");
+            if (!selected.isEmpty() && !selected.equals(function.optString("name"))) throw new IOException("The local engine violated the named tool choice");
             String arguments = function.getString("arguments"); if (arguments.getBytes(StandardCharsets.UTF_8).length > ChatProtocol.MAX_TEXT_BYTES) throw new IOException("Tool arguments exceed 1 MiB");
             if (definition.optBoolean("strict")) {
                 if (!finish.equals("tool_calls")) throw new IOException("Strict tool arguments were interrupted before completion; increase the model output limit");
@@ -49,6 +57,7 @@ public final class ToolReply {
             try { JsonSchema.validate(responseSchema, parse(message.optString("content"))); }
             catch (Exception error) { throw new IOException("The local engine returned content outside the strict response schema", error); }
         }
+        if (observer != null) observer.validated(message, finish);
     }
     private static Object parse(String text) throws Exception {
         // Android JSONTokener accepts non-JSON extensions (single quotes,

@@ -1,5 +1,8 @@
 # DSH 1.4.76 client interoperability audit
 
+**Subsequent v1.2.1:** the actual-client program audit is rerun against repaired production core and included in release gates. Actual phone/41-tool tasks are separate:[m04 repair](DSH_M04_REPAIR.en.md). Phone-hold and1.1.0 statements below retain their original time scope.
+
+
 [中文](DSH_CLIENT_AUDIT.md) · [Function protocol](DSH_TOOLS.en.md) · [Unload](MODEL_RUNTIME.en.md)
 
 This supplemental audit targets the published **LMA v1.1.0 / code68**. Before the user reported another task using the phone, its installed APK hash was verified against the formal Release. Phone interaction then stopped. All additional checks run on native Windows, without a phone connection, DSH App startup, tool execution or a model.

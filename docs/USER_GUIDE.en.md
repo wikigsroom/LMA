@@ -1,5 +1,8 @@
 # LMA user guide
 
+**v1.2.1:** m04 template readiness, diagnostics and actual DSH limits:[repair guide](DSH_M04_REPAIR.en.md). All user models/settings stay unchanged.
+
+
 **v1.2.0 navigation:** Chat is now home. Use the left rail for Chat, Models, Tasks/artifacts, API and Settings; expand it for recent sessions. On narrow screens the drawer occupies the full window. Composer Plus opens optional creation controls; Runtime management exposes Unload. [Workspace guide](design/DSH_WORKSPACE.en.md) · [中文](design/DSH_WORKSPACE.md). Earlier bottom-navigation and Mica descriptions remain historical context.
 
 **Current v1.1.0/code68:** Find Unload in the top Running models control, loaded Local text cards, Services and the chat model picker. It releases memory/cancels text requests while retaining files, settings and the listener; a later explicit API request can reload. [Runtime guide](MODEL_RUNTIME.en.md). DSH uses the existing endpoint/key/installed model ID with [complete function-tool and queue support](DSH_TOOLS.en.md); tools need not be disabled.

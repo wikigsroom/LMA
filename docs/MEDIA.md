@@ -1,5 +1,7 @@
 # 截图与演示 / Screenshots and demonstrations
 
+**v1.2.1 当前 / Current:** [实际手机运行管理截图与原速录屏](media/device/v1.2.1/manifest.json)，展示最终APK的工具模板与Unload入口；[GIF](media/device/v1.2.1/runtime-controls.gif) / [MP4](media/device/v1.2.1/runtime-controls.mp4)。裁去状态栏、导航和地址区域，不展示个人对话或密钥；媒体不代表代理任务成功。[工作区12张截图／GIF／MP4](media/workspace-v1.2.1/manifest.json)仍明确标为程序夹具。[m04 SDK与DSH结果](DSH_M04_REPAIR.md)另列，历史素材身份保留。
+
 **v1.2.0 当前工作区 / Current workspace:** [12张生产页面截图、GIF、MP4与哈希 / Captures and provenance](media/workspace-v1.2.0/manifest.json)；[GIF](media/workspace-v1.2.0/walkthrough.gif) / [MP4](media/workspace-v1.2.0/walkthrough.mp4)。全部标注程序夹具，非真机、非模型输出。The phone remains occupied by another task; historical phone/model media below retain their original version and are not new-version acceptance.
 
 

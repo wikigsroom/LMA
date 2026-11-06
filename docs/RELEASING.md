@@ -1,5 +1,13 @@
 # 发布流程 / Release workflow
 
+## v1.2.1 m04 / DSH repair
+
+The user released the shared phone for this repair. Preserve actual m04 bytes, saved131072 context and all41 DSH tools; no downloads, replacement weights, silent parameter changes or external plugin installation. The v1.2.0 phone hold below is historical.
+
+Run the affected program gates, `test_template_profiles.py` against pinned native llama.cpp, original-signed package/Lint and labelled UI recordings. Use the exact final APK for `device_tools_probe.py --serial DEVICE --model m04 --allow-existing-model-inference`; record actual DSH tasks separately, including failed/cancelled attempts and matching tool/file evidence when present. Distinguish protocol success, model quality, Android permissions and plugin platform support. Do not claim the complete DSH loop merely from HTTP200 or native-template readiness.
+
+Refresh bilingual README/guides, current media, CHANGELOG and v1.2.1 notes. Export adaptation/scope/program and physical evidence, then package, prepare, audit, commit/push main and a new tag. Publish stable/latest with every remote asset hash verified; preserve older releases and original signing. Close owned browsers and restore temporary phone test settings/forwards. No virtualization.
+
 ## v1.2.0 工作区更新 / Workspace update
 
 最新用户要求优先：以 [DSH workspace](design/DSH_WORKSPACE.md) / [English](design/DSH_WORKSPACE.en.md) 替代 UI10 的当前视觉和布局。手机被其他任务占用，执行 [本版程序验证策略](proposals/workspace-validation-policy.json)，不操作 ADB、不安装或运行模型；不得用旧版真机记录或桥接夹具宣称本版手机验收。

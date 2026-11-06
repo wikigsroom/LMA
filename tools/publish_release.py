@@ -141,6 +141,11 @@ def main():
                "phone_inference_tested": manifest.get("phone_inference_tested", False),
                "authorized_phone_model_attempts": manifest.get("authorized_phone_model_attempts", 0),
                "authorized_phone_model_successes": manifest.get("authorized_phone_model_successes", 0),
+               "physical_tool_protocol_tested": manifest.get("physical_tool_protocol_tested", False),
+               "physical_tool_protocol_checks": manifest.get("physical_tool_protocol_checks", 0),
+               "dsh_app_tested": manifest.get("dsh_app_tested", False),
+               "dsh_full_tools_loop_passed": manifest.get("dsh_full_tools_loop_passed", False),
+               "dsh_plugin_installation_passed": manifest.get("dsh_plugin_installation_passed", False),
                "actual_model_media_included": manifest.get("actual_model_media_included", False),
                "model_quality_accepted": False, "background_endurance_tested": False}
     (directory / "publish-receipt.json").write_text(json.dumps(receipt, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")

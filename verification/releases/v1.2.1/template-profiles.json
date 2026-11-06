@@ -1,0 +1,39 @@
+{
+  "passed": 17,
+  "checks": [
+    "auto: every one of 41 complete declarations is rendered",
+    "auto: actual native parser extracts function name and JSON arguments",
+    "auto: native tool parser and grammar are active",
+    "required: every one of 41 complete declarations is rendered",
+    "required: actual native parser extracts function name and JSON arguments",
+    "required: native tool parser and grammar are active",
+    "named: every one of 41 complete declarations is rendered",
+    "named: actual native parser extracts function name and JSON arguments",
+    "named: native tool parser and grammar are active",
+    "Named grammar selects only the target while the prompt retains all 41",
+    "The retained ordinary-chat branch matches the pinned GGUF template bytes",
+    "Ordinary chat rendering is unchanged by the model-bound repair",
+    "A 30KB tool description changes actual native input",
+    "Native history retains the assistant call and result; tools present=True",
+    "Native history keeps arguments as a JSON object, not an escaped string; tools present=True",
+    "Native history retains the assistant call and result; tools present=False",
+    "Native history keeps arguments as a JSON object, not an escaped string; tools present=False"
+  ],
+  "native_revision": "b29c606e28a01b1bc8c1351026a0fa6e616bf6c4",
+  "native_binary_sha256": "4ceb6fde0fb01d0c869b5a8d68f8428ac846bd89a4d973b61cb20db6245fe16a",
+  "actual_native_renderer": true,
+  "actual_native_parser": true,
+  "actual_native_grammar": true,
+  "model_inference_tested": false,
+  "physical_device": false,
+  "downloaded_model_weights": false,
+  "input_fingerprint": {
+    "app/src/main/assets/chat-template-profiles.json": "f4f1d2b6bbf6f7743a6c40ff441d6da0e7ef633f3275989f4bcd67302a79a761",
+    "app/src/main/assets/chat-templates/dolphin3-chatml-tools-v1.jinja": "59cae1fe1315e4b081877ebdfdec8d2ac433ba402f24ae68d8ba8a76928d7705",
+    "tests/native/chat-template-probe/CMakeLists.txt": "f0c97a381723f3b40582151fc7048eace0fa0dc0ee146335de59c63a9e31571a",
+    "tests/native/chat-template-probe/embedded.jinja": "58c1a1f04baa7adaeaba1f90267c3d57d9396f0c1f0129bdde9e76d3c6784af7",
+    "tests/native/chat-template-probe/probe.cpp": "551ffeb75a60de9f820902337f33c0898ffc53dba9c5c7dc98004b659f7b7454",
+    "third_party/BUILD_INFO.json": "de40253f34d47e5b692e8cd97d87eaa4ecbe549303718f69d286c85f81422acc",
+    "tools/test_template_profiles.py": "70d025a2f4cf5623798294e7e5a48caddd30d690bb757351ff5bbe38b76dde48"
+  }
+}

@@ -1,5 +1,7 @@
 # LMA API 接入
 
+**v1.2.1/code70：** [m04工具模板修复](DSH_M04_REPAIR.md)保留完整定义、调用历史与具名选择；实际模板／解析未就绪时工具请求明确返回422。鉴权`/health`新增有界去内容诊断，模型能力中的`lma.toolTemplate`给出生效身份；模板就绪不等于代理质量通过。已完成的SDK与实际DSH任务分别记录。
+
 **当前 v1.1.0/code68：** [DSH / OpenAI 函数工具协议](DSH_TOOLS.md)支持 tools、tool_choice、parallel_tool_calls、store:false、工具消息、严格参数校验、流式 tool_calls 与多轮回传。最多9个文本请求排队接纳，正文4 MiB／1024条消息；[运行管理与卸载](MODEL_RUNTIME.md)独立于文件删除和API监听。以下旧版本标注保留历史语境。
 
 **当前 v0.4.0：** [会话、手动媒体、视觉桥与顺序链 API](CONVERSATION_V040.md)。新增认证的 `/v1/lma/chains` 和独立 `media.compose` 工具；原生能力标签不扩大可执行 API。公开 OpenAI chat 仍为文本子集。旧版实机案例保留原 APK 身份，本版尚无新的实机联调结果。

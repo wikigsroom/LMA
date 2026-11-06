@@ -1,6 +1,6 @@
-# DSH and OpenAI function tools · v1.1.0
+# DSH and OpenAI function tools · v1.2.1
 
-**Known m04 template gap, repair pending:** The pinned Dolphin1B GGUF default template used by 1.1.0/1.2.0 omits tools. The effective phone template and DSH task loop still require verification. [Source review, repairs and acceptance with all 41 tools](DSH_M04_TOOL_TEMPLATE_ASSESSMENT_20261106.en.md).
+[m04 repair: bound template, full definitions and physical results](DSH_M04_REPAIR.en.md).
 
 [中文](DSH_TOOLS.md) · [API](API.en.md) · [Running models and unload](MODEL_RUNTIME.en.md) · [Release](releases/v1.1.0.md)
 
@@ -31,7 +31,7 @@ Every call in a historical assistant turn needs exactly one matching result befo
 
 ## 3. Native behavior and strict validation
 
-The existing pinned llama.cpp `b29c606e28a01b1bc8c1351026a0fa6e616bf6c4` runs with `--jinja`. Its named-object choice falls back to auto, so the gateway supplies only the selected definition with native required and validates the output. Native GGUF template support and model reliability remain necessary; protocol compatibility does not make every model a reliable agent.
+The existing pinned llama.cpp `b29c606e28a01b1bc8c1351026a0fa6e616bf6c4` runs with `--jinja`. Its named-object choice falls back to auto. v1.2.1 retains the complete public list and renders every definition via private chat_template_kwargs.tools while native grammar/required limits the selected target. Preflight and generation share that copy, then output is validated. m04 receives a reviewed weight/template-bound repair; other models retain their templates and need actual rendering/parser readiness. Model reliability remains a separate assessment.
 
 The native pin does not fully enforce function.strict. The gateway validates declared function names, IDs, arguments, parallel policy and finish reasons before delivering executable strict tool deltas. Strict tool fragments buffer after the first tool delta until the round validates; earlier real text/reasoning can stream immediately. Invalid arguments produce invalid_model_output. Clients retain execution permission checks.
 

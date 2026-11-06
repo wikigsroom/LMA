@@ -1,0 +1,38 @@
+{
+  "schema": "lma.physical-runtime-media/1",
+  "version": "1.2.1",
+  "apk_sha256": "2dbc586bb39d8727b7e93bcc7d3a541e588df666ea9076050ba58a6aa69fc301",
+  "physical_device": true,
+  "source": "tools/capture_m04_runtime.py",
+  "status_bar_and_navigation_cropped": true,
+  "model_id": "m04",
+  "background_request_may_be_active": true,
+  "scope": "Actual API/runtime controls only; no Unload confirmation or personal chat capture; recording is not agent acceptance",
+  "files": [
+    {
+      "file": "m04-runtime-manager.png",
+      "bytes": 193562,
+      "sha256": "9dc04c2c4661dd70d98243b07119911586a3080de43e396bdf6bc3cbb4a6b50e"
+    },
+    {
+      "file": "m04-runtime.png",
+      "bytes": 240659,
+      "sha256": "f259f44147c6229c110d8a7eaff3549452603ebe67011230ddf6b743ff366f5c"
+    },
+    {
+      "file": "runtime-controls.gif",
+      "bytes": 168778,
+      "sha256": "ab080df0b59ccdaddace33b09da838cfd575f47e6ce84c341b4cfd9eb4c93587"
+    },
+    {
+      "file": "runtime-controls.mp4",
+      "bytes": 93311,
+      "sha256": "a60092d821ec758a943650f8d713085fed8075810d41a5fb7b9013c8a53c3f3f"
+    }
+  ],
+  "input_fingerprint": {
+    "app/src/main/assets/app.css": "b09171d519a9cc4e1a3a8101c45dd46c40d24b917c4fbc29c3e131dbfb79a72d",
+    "app/src/main/assets/app.js": "3980edf1fbf745768fb543305e70ab2e4a7c20062ee1b752cfd97186f1b22c46",
+    "tools/capture_m04_runtime.py": "5bf121b49165f017bb4ce5b9aca0449ade8e2f44602553e5bf400c4acb463765"
+  }
+}

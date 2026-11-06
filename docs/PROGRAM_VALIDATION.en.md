@@ -1,3 +1,7 @@
+# v1.2.1 m04 / DSH repair validation
+
+The user released the phone and authorized debugging. Preserve actual m04 weights,131072 context, saved settings and all41 DSH tools. Program, actual SDK, actual DSH tasks, model quality and plugin-platform outcomes are separate. No weight downloads/replacement, external execution substituted for DSH, or fabricated success.[Results](DSH_M04_REPAIR.en.md). Policies below retain their historical scope.
+
 # v0.3.12 validation: program gates and authorized physical integration
 
 The latest user instruction requires full physical API integration and a phone benchmark for this delivery, with an actual generated video longer than five seconds and no generation wall-clock limit. Existing regular program counts remain program-only; real model calls, failures, quality and background duration are separate evidence. See the [current benchmark](DEVICE_BENCHMARK_V0312.en.md). Older policy and numbers below retain their original historical scope.

@@ -8,12 +8,12 @@
 
 Android 本地 AI 工作台，模型由你选择，无审查模型独立标记。[品牌定稿：Logo 21 ＋ Slogan 04](docs/BRANDING.md)。
 
-[English](README.en.md) · [下载 v1.2.0](https://github.com/wikigsroom/LMA/releases/tag/v1.2.0) · [使用手册](docs/USER_GUIDE.md) · [文档目录](docs/README.md) · [更新记录](CHANGELOG.md)
+[English](README.en.md) · [下载 v1.2.1](https://github.com/wikigsroom/LMA/releases/tag/v1.2.1) · [使用手册](docs/USER_GUIDE.md) · [文档目录](docs/README.md) · [更新记录](CHANGELOG.md)
 
 <a id="contents"></a>
 ## 阅读路线
 
-**m04 工具调用已知问题（待修复）：** 固定 GGUF 模板遗漏工具定义／调用历史；v1.1.0 与 v1.2.0 的相关链路相同。已完成来源与模板渲染评估，生产修复和完整41工具的 DSH 真机闭环待完成，不能用既有m15或UI程序检查代替。[R01–R12修复清单与A01–A12验收](docs/DSH_M04_TOOL_TEMPLATE_ASSESSMENT_20261106.md)。
+**m04 模板与工具协议已修复：** v1.2.1/code70 对实际权重绑定审核模板，保留全部工具定义、工具历史和原生结构化解析；保持 m04、131072 上下文及保存参数。最终安装包已通过21项真机SDK检查。真实DSH保留41工具的任务在17分16秒后只返回时间／时区，零工具调用，目标文件不存在；完整命令／文件闭环及插件安装未通过。[根因、修复与实测边界](docs/DSH_M04_REPAIR.md)。
 
 | 想做什么 | 本页入口 | 详细文档 |
 | --- | --- | --- |
@@ -27,15 +27,21 @@ Android 本地 AI 工作台，模型由你选择，无审查模型独立标记�
 | 复原后的对话页与生成能力融合 | [当前聊天操作](docs/CHAT_RESTORE_20261106.md) | [F01–F08 编号方案与可行性](docs/CHAT_RESTORE_20261106.md#4-推荐的完整融合结构)，本轮实现与建议分开 |
 | 查证测试范围、重建和排错 | [程序检查](#verification)、[构建](#build)、[排错](#troubleshooting) | [程序验证策略](docs/PROGRAM_VALIDATION.md)、[构建指南](docs/BUILD.md) |
 
-**验证范围：程序验证。** 当前 **v1.2.0 / code69** 全面改为 DSH Android 参考方向的对话工作区：默认进入对话、左侧图标导航、窄屏全宽会话抽屉、宽屏展开侧栏、中性灰黑／明亮双主题，以及输入框内的模型选择。五个页面、模型／任务列表、错误提示和弹层统一更新，Logo21／Slogan04 保留。[设计规范与参考核对](docs/design/DSH_WORKSPACE.md) · [更新说明](docs/releases/v1.2.0.md)。
+**验证范围：程序验证。** 当前 **v1.2.1 / code70** 修复 m04 有效工具模板、具名选择、完整定义计数、并行结果对齐及诊断；另列选择性真机模型／SDK和实际DSH记录。沿用 DSH 工作区、默认暗色、五页布局及 Logo21／Slogan04。[修复说明](docs/DSH_M04_REPAIR.md) · [本版更新](docs/releases/v1.2.1.md)。
 
 **使用路径：** 对话输入框「＋」选择创作／附件／本次参数；左侧「模型库 → 本地」管理下载与独立设置，删除按钮留在外层；顶部「运行管理」或「API 服务 → 运行中的模型」卸载模型并保留文件。推荐、HF 搜索、功能／多模态／内容标签、任务与作品及完整工具 API 契约继续可用。
 
-<img src="docs/media/workspace-v1.2.0/01-home-dark.png" alt="v1.2.0 暗色对话首页，程序界面夹具，非真机" width="280"> <img src="docs/media/workspace-v1.2.0/02-sidebar-dark.png" alt="v1.2.0 全宽会话侧栏，程序界面夹具，非真机" width="280"> <img src="docs/media/workspace-v1.2.0/09-home-light.png" alt="v1.2.0 明亮对话首页，程序界面夹具，非真机" width="280">
+<img src="docs/media/workspace-v1.2.1/01-home-dark.png" alt="v1.2.1 暗色对话首页，程序界面夹具，非真机" width="280"> <img src="docs/media/workspace-v1.2.1/02-sidebar-dark.png" alt="v1.2.1 全宽会话侧栏，程序界面夹具，非真机" width="280"> <img src="docs/media/workspace-v1.2.1/09-home-light.png" alt="v1.2.1 明亮对话首页，程序界面夹具，非真机" width="280">
 
-![v1.2.0 工作区操作演示：程序界面夹具，非真机，未执行模型](docs/media/workspace-v1.2.0/walkthrough.gif)
+![v1.2.1 工作区操作演示：程序界面夹具，非真机，未执行模型](docs/media/workspace-v1.2.1/walkthrough.gif)
 
-[MP4 录制](docs/media/workspace-v1.2.0/walkthrough.mp4) · [12 张页面截图、录屏与哈希](docs/media/workspace-v1.2.0/manifest.json) · [程序验证记录](verification/releases/v1.2.0/status.json)。当前手机被其他任务占用，按用户要求未进行 ADB、安装、解锁或模型运行；本版图片与 GIF 均为明确标注的生产页面桥接夹具。**本版真机触控、系统键盘、TalkBack 与帧率待设备空闲后验收。** 下方历史真机案例保留其原版本与 APK 身份，不能视作本版实测。
+[MP4 录制](docs/media/workspace-v1.2.1/walkthrough.mp4) · [12张页面截图、录屏与哈希](docs/media/workspace-v1.2.1/manifest.json) · [当前程序状态](verification/releases/v1.2.1/status.json)。以上工作区图片与GIF为明确标注的生产页面程序夹具；本轮手机已获准调试，另有[21项真实m04工具／卸载检查](verification/releases/v1.2.1/physical-tools.json)及[DSH真实任务记录](verification/releases/v1.2.1/physical-dsh.json)。真机记录不等于通用代理质量、TalkBack／帧率或长期后台通过；历史案例保留原版本身份。
+
+<img src="docs/media/device/v1.2.1/m04-runtime-manager.png" alt="v1.2.1 最终APK真机运行管理：m04工具模板与卸载入口" width="280">
+
+![v1.2.1 真机运行管理操作；后台模型任务单独验收](docs/media/device/v1.2.1/runtime-controls.gif)
+
+[原速真机录屏与来源](docs/media/device/v1.2.1/manifest.json) · [MP4](docs/media/device/v1.2.1/runtime-controls.mp4)。媒体仅展示运行管理，不代表DSH任务通过。
 
 <details>
 <summary>v1.1.0 工具协议、实机卸载与 DSH 客户端复核档案（历史版本）</summary>
@@ -163,7 +169,7 @@ Uncensored／Abliterated 与 NSFW 分别标注，不互相替代。作者声明�
 <a id="install"></a>
 ## 安装与首次启动
 
-1. 从 [v1.2.0 Release](https://github.com/wikigsroom/LMA/releases/tag/v1.2.0) 下载 `LMA-1.2.0-arm64-v8a.apk`；需要 64 位 Android 9／API 28 或以上。
+1. 从 [v1.2.0 Release](https://github.com/wikigsroom/LMA/releases/tag/v1.2.1) 下载 `LMA-1.2.0-arm64-v8a.apk`；需要 64 位 Android 9／API 28 或以上。
 2. 对照同页 `SHA256SUMS` 核对安装包。Windows 示例：
 
    ```powershell
@@ -174,13 +180,13 @@ Uncensored／Abliterated 与 NSFW 分别标注，不互相替代。作者声明�
 4. App 初次启动可零模型使用管理界面和接口；选择、下载、导入或加载模型都是独立操作。
 5. 保持原签名升级安装，已有模型与设置继续保留。自行签名的 APK 不能直接覆盖另一签名的安装。
 
-| 安装包身份 | v1.2.0 / code69 |
+| 安装包身份 | v1.2.1 / code70 |
 | --- | --- |
-| 字节数 | `71571401` |
-| SHA256 | `999a923cc0ab5586701266c368e5f885fdc69cec458066f0e1707a9e6af6c0a9` |
+| 字节数 | `71579874` |
+| SHA256 | `2dbc586bb39d8727b7e93bcc7d3a541e588df666ea9076050ba58a6aa69fc301` |
 | 签名证书 SHA256 | `90444a717a55549e2094364d8d7d005cf8b7f4df24562da62cc1884a2f341c17` |
 
-Release 附 APK、源码 ZIP、验证 ZIP、截图 ZIP、新工作区与对话 GIF／MP4、10组扩展程序页面录制、构建与源码清单、说明和哈希。当前媒体为程序夹具；历史真机媒体保留原版本。[版本说明](docs/releases/v1.2.0.md)
+Release 附 APK、源码 ZIP、验证 ZIP、截图 ZIP、新工作区与对话 GIF／MP4、10组扩展程序页面录制、构建与源码清单、说明和哈希。工作区媒体为程序夹具；本轮m04真机SDK与DSH记录另列，历史媒体保留原身份。[版本说明](docs/releases/v1.2.1.md)
 
 <a id="use-cases"></a>
 ## 完整使用场景 C01–C77
@@ -772,7 +778,7 @@ Melo INT8 用于中文 / 英文，Kokoro INT8 使用已适配英文音色，Omni
 
 <a id="verification"></a>
 
-**当前 v1.2.0：69组／15,485项程序断言、82份程序与构建记录。** 包含29项新工作区、817项主业务页面、43项对话、20项适配检查（520组布局）及62组主题对比度验证通过。完整程序记录见 [当前状态](verification/releases/v1.2.0/status.json)；本轮没有真机／模型运行验证。旧版实机数字仅作历史档案。
+**当前 v1.2.1：** 70组／15,576项程序检查、84份程序／构建记录（含17项真实原生模板／grammar／parser检查），另列21项m04真机SDK检查。[当前状态](verification/releases/v1.2.1/status.json)给出实际计数和源文件摘要；[DSH实际任务](verification/releases/v1.2.1/physical-dsh.json)单独披露全部41工具场景的成功／失败，不能以程序断言替代。
 ## 当前程序检查覆盖与复核入口
 
 **v1.1.0 历史验证：67组／15,394项断言，80份程序与构建记录。** 包括817项生产页面、62项工具协议、154项后端、151项调度及13项Sub2API检查。另有66项真机UI、三档字体各41项、24项管理/API、60.337秒锁屏健康、8项空闲性能检查，以及21项工具／卸载检查、6次真实生成；这些覆盖范围分别记录。[当前状态](verification/releases/v1.1.0/status.json) · [本版完整说明](docs/releases/v1.1.0.md)。
@@ -1001,7 +1007,9 @@ v0.3.12 最终 APK 实机：**24项程序检查＋8项空闲性能＋28项真实
 
 **v1.0.2 / code67 · 模型卡片直接删除。** 文字与多媒体模型在卡片外层显示“删除”，传输忙碌时明确提示，保留确认、取消与原生资产保护。[操作与验证](docs/MODEL_DELETE.md) · [正式 Release](https://github.com/wikigsroom/LMA/releases/tag/v1.0.2)。
 
-**v1.2.0 / code69 · 全新 DSH 对话工作区。** 对话首页、侧栏／会话抽屉、灰黑明亮主题、集中输入框、五页共享组件与完整程序回归；当前为程序媒体，手机验收待空闲。[完整说明](docs/releases/v1.2.0.md)。
+**v1.2.1 / code70 · m04工具模板修复。** 绑定原权重修复有效模板、原生函数JSON、完整具名定义及并行回填；21项真机SDK检查与实际DSH任务分开，保留失败和质量边界。[完整说明](docs/releases/v1.2.1.md)。
+
+**历史v1.2.0 / code69 · 全新 DSH 对话工作区。** 对话首页、侧栏／会话抽屉、灰黑明亮主题、集中输入框、五页共享组件与完整程序回归；当前为程序媒体，手机验收待空闲。[完整说明](docs/releases/v1.2.0.md)。
 
 **v1.1.0 / code68 · 完整函数工具与运行管理。** 原生工具往返、strict／流式校验、有界文本队列／真实上下文预检及四处卸载入口。手机现有m15完成21项检查、6次真实生成；DSH App专有交互及长期代理质量仍需独立验证。[协议](docs/DSH_TOOLS.md) · [卸载与实机媒体](docs/MODEL_RUNTIME.md) · [正式Release](https://github.com/wikigsroom/LMA/releases/tag/v1.1.0)。
 

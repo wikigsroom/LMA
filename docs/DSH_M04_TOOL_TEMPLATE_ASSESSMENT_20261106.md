@@ -1,5 +1,7 @@
 # m04 / DSH 完整工具调用：修复评估 · 2026-11-06
 
+这是修复前的评估快照；当时的“待完成”保留原时间点含义。后续源码、APK和真机结果见[v1.2.1修复记录](DSH_M04_REPAIR.md)，不能把新旧验收混为一轮。
+
 [English](DSH_M04_TOOL_TEMPLATE_ASSESSMENT_20261106.en.md) · [工具接口合同](DSH_TOOLS.md) · [客户端复核](DSH_CLIENT_AUDIT.md) · [本轮来源与模板对照](../verification/research/dsh-m04-template/assessment.json)
 
 ## 1. 结论与版本范围

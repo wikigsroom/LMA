@@ -1,5 +1,7 @@
 # m04 / DSH complete function tools: repair assessment · 2026-11-06
 
+This is the pre-repair assessment snapshot. Its pending items retain their original time scope; see the subsequent[v1.2.1 repair and physical outcomes](DSH_M04_REPAIR.en.md).
+
 [中文](DSH_M04_TOOL_TEMPLATE_ASSESSMENT_20261106.md) · [API contract](DSH_TOOLS.en.md) · [Client audit](DSH_CLIENT_AUDIT.en.md) · [Source/render evidence](../verification/research/dsh-m04-template/assessment.json)
 
 ## 1. Conclusion and affected versions

@@ -1,0 +1,73 @@
+{
+  "schema": "lma.native-build/1",
+  "engine": "vision_cpu",
+  "file": "liblma-vision.so",
+  "source_revision": "b6764e20381f6f42a70f83fa3324181529ed1403",
+  "llama_revision": "b29c606e28a01b1bc8c1351026a0fa6e616bf6c4",
+  "backend": "cpu",
+  "bytes": 4948192,
+  "sha256": "d803d856f9762c22580a15b35565d60f5a92016056cc3011885fc66d97af9dbb",
+  "source_inputs": {
+    "build/native-src/onnxruntime-headers/include/onnxruntime/core/session/environment.h": "78da6ffe1ea6aaea7b0c6e37cc420e0277b2faf818471ea1ee85ccee7eef8de1",
+    "build/native-src/onnxruntime-headers/include/onnxruntime/core/session/experimental_onnxruntime_cxx_api.h": "7a0f9c8f1a9d444dea6e138294c46eaf778180ba44106fabf4cebb8eec0de3bd",
+    "build/native-src/onnxruntime-headers/include/onnxruntime/core/session/experimental_onnxruntime_cxx_inline.h": "f154c98097c7457446085a892fc5209596252572c47a1dc08adf51248d882189",
+    "build/native-src/onnxruntime-headers/include/onnxruntime/core/session/onnxruntime_c_api.h": "e3a01cdb382b2ba52267bf8a1a40d60b1197a1bac4da55667fe4d84e244f589a",
+    "build/native-src/onnxruntime-headers/include/onnxruntime/core/session/onnxruntime_cxx_api.h": "0765fc56924999b06b4c01f665d8fbd368582fed7a856a22ce1ed686a73e8be2",
+    "build/native-src/onnxruntime-headers/include/onnxruntime/core/session/onnxruntime_cxx_inline.h": "e6c0478ab86467cfb4ac8694df3081ad1d42585c16f024d107638fb197e92f4a",
+    "build/native-src/onnxruntime-headers/include/onnxruntime/core/session/onnxruntime_env_config_keys.h": "e56d37fd1e6497e9c8e8e5bd81732cd5414b4dc0867f3e8badb60101502d0435",
+    "build/native-src/onnxruntime-headers/include/onnxruntime/core/session/onnxruntime_ep_c_api.h": "612dd6c3b5c7fa8f936fe07e1d8da4dc4727890011305b4f67279b132aa1c8e0",
+    "build/native-src/onnxruntime-headers/include/onnxruntime/core/session/onnxruntime_ep_device_ep_metadata_keys.h": "d2970b305076cefa0e5b740758ac9b67c2450f7cebc89e2f7db6813c735a85d2",
+    "build/native-src/onnxruntime-headers/include/onnxruntime/core/session/onnxruntime_error_code.h": "6690bf0df3f7a7a9c4f38597dc3232042e432b48ea166cb5672f72a49d32b742",
+    "build/native-src/onnxruntime-headers/include/onnxruntime/core/session/onnxruntime_experimental_c_api.h": "6639049e3ae65548c251bebfc53ccedc2f2f275ebc1c342cbe6180f35a4c84cc",
+    "build/native-src/onnxruntime-headers/include/onnxruntime/core/session/onnxruntime_experimental_c_api.inc": "c48203a7c2081054349d3318adccb8fdd8252e8a80ee828cbcf69bfc3ff409fa",
+    "build/native-src/onnxruntime-headers/include/onnxruntime/core/session/onnxruntime_experimental_cxx_api.h": "b998fbb7abd4ce0760a6b2fecc731c68bdf7932327fe9c1aa8edb0b53747e3aa",
+    "build/native-src/onnxruntime-headers/include/onnxruntime/core/session/onnxruntime_float16.h": "9b45e1bc0fe19d9d53f272b168f5cab616e26eb00136c3a1b78f394c9b1b6757",
+    "build/native-src/onnxruntime-headers/include/onnxruntime/core/session/onnxruntime_lite_custom_op.h": "d65413bf8ca63fb71efcb0f9e14f996736367cf72ea3421d18b3370def1e483b",
+    "build/native-src/onnxruntime-headers/include/onnxruntime/core/session/onnxruntime_run_options_config_keys.h": "38cfec5817e67990f242bbf7177db730a4d60f5ed256b4832f02ac38c3fd6d06",
+    "build/native-src/onnxruntime-headers/include/onnxruntime/core/session/onnxruntime_session_options_config_keys.h": "79d27ec166bfca980e2349ec7240b7b36e7a7501165c310ca04750cbba5edcd0",
+    "build/native-src/onnxruntime-headers/include/onnxruntime/core/session/snippets.dox": "c886c6a778135640603e503e819519e66fe3e59bdc9cb76ba6743020ddb56586",
+    "build/native-src/pixal3d-mv-cpp/thirdparty/stb/stb_image.h": "2d264ec3e6ce404fc2d0cfff4476c982eb3edf5a61122b03884fdef7bacd9deb",
+    "build/native-src/pixal3d-mv-cpp/thirdparty/stb/stb_image_write.h": "cd5c66f6ce8956195bd0606e75eedfba9750fe2685a41a8234f32b153df78210",
+    "native/moss_nano/onnx_external.hpp": "c1bb8f95ad2078472dbbf2ea0863493ac44f4aae7c4336cf5debb0db0d54fae5",
+    "native/rf_shape/image.hpp": "89261f9cd2f0a1adb2ec0fc42f9da951e4898349b8f54ee4daa31415e49d6e78",
+    "native/rf_shape/ort.hpp": "2b6e5722b757a027213482bfc1289348fd9454e8e00d49cdb0d47d87896fac71",
+    "native/runtime_metrics.hpp": "1fe93a5bd8426dbca3f8efaec6070c1cccc60e75006df40021141a69abec4a07",
+    "native/vision/CMakeLists.txt": "870b587ee8bbc49e2ea6fdb19209e9263c9d298399b147fa862d69cfd29f63f0",
+    "native/vision/foreground.hpp": "1aea60891e93f365aef2db40dab69535ce9ff712bc7c540fd89d2143d72a3aa1",
+    "native/vision/vlm.hpp": "8d15cd610751378ba807ab4199ff0db9d7c184dd0758a286ec3577617ecc13cf",
+    "native/vision/worker.cpp": "0382a127805b12b285e67962141a7cef83fe1efc556faf73dc4cdfdbf59c505a",
+    "native/worker_common.hpp": "7e90a19a44f309fdd1ac066783c8dc1d8d3d8e67660fea5486366f5b70b792b9",
+    "research/soulx_ort/android_log.cpp": "216f630761ff67a00cfe47db941338f45560fc45486ebcbdff196cf36dac3d04",
+    "tests/expansion-native/vision.cpp": "df9838bc02d21f34446a6d2dcc8f8594d4f6b8c0301288eec41d3f7b54c16d52",
+    "third_party/soulx-acoustic-source-lock.json": "b39e10c415c5f30d4e4adb52327e1e04df371407131f47617622da913b268ac5",
+    "third_party/soulx-language-source-lock.json": "b2216e3270277fdf69399a1f2e965ee8b1b93685ba9f0bd63f7ca09c4a26a9d6",
+    "third_party/vision-source-lock.json": "c66809f6549c1b35d4d8539ec8146752e9947a0c6f5e04df1252c982b5418e29",
+    "tools/build_vision.py": "75261f8d0568eb7e19022ce048eddb4580d1dfedffcd31c7d538792fbdfc1fa4",
+    "tools/fetch_vision_sources.py": "425c69e032ddf14a60d4b4749e8481533e888dd12636ac5326e0bb243e61ec78"
+  },
+  "model_inference_tested": false,
+  "physical_device_tests": 0,
+  "virtualization_used": false,
+  "abi": "arm64-v8a",
+  "ndk": "30.0.16248370",
+  "min_sdk": 28,
+  "android_api_notes": [
+    28
+  ],
+  "elf_load_alignment": [
+    16384
+  ],
+  "dependencies": [
+    {
+      "file": "libonnxruntime.so",
+      "bytes": 22249560,
+      "sha256": "33847ad43bffe204699fd4a27f7f3603452a8cdaf2f9a44983a0bc31ffcf2da1",
+      "android_api_notes": [
+        27
+      ]
+    }
+  ],
+  "vocabularies": "external_user_selected_components",
+  "runtime_version": "ORT 1.28.2 API17 + static llama.cpp mtmd",
+  "required_model_components": "per_pipeline"
+}

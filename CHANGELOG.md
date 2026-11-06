@@ -1,5 +1,14 @@
 # Changelog / 更新记录
 
+## v1.2.1 · 2026-11-06 · m04模板与完整工具输入 / Tool-template repair
+
+- 核实并修复固定Dolphin1B GGUF默认模板丢工具问题；真实文件SHA／大小／架构／内嵌模板绑定审核profile，加载后核对原生实际模板、完整声明渲染和工具解析能力。普通聊天保留原模板，原权重和131072上下文等保存参数不变。
+- 修复真机发现的XML模板与裸函数JSON输出不匹配，采用审核派生模板和原生autoparser；具名选择保留全部工具定义，仅原生grammar限定目标；并行结果按真实ID对齐。
+- 模型／运行管理显示模板身份，鉴权health提供有界去内容诊断；模板未就绪、具名／strict／历史错误保持真实失败。保留客户端执行、全部41工具及原队列／Unload／Delete功能。
+- 17项真正原生模板／grammar／parser程序检查、21项m04真机SDK检查；实际DSH长任务和短任务结果分别披露，不将SDK算术或未完成生成冒充完整DSH代理质量／插件安装。
+- 最终包真实DSH 41工具任务17分16秒自然结束但零调用、未生成目标文件；完整闭环与插件安装未通过，明确保留失败。70组／15,576项程序检查、84份记录及真机结果分开；派生模板署名／完整许可随包分发。
+- Bilingual repair guides, README routes/cases, current screenshots/GIF/video and version-bound evidence updated. Formal stable release; original signer and all prior tags/assets preserved. [完整说明 / Notes](docs/releases/v1.2.1.md).
+
 ## 2026-11-06 · m04工具模板评估 / Assessment only, no new APK
 
 - 核实固定Dolphin1B GGUF发布默认模板与上游工具模板差异，四组无权重模板渲染复现工具丢失；确认v1.1.0/v1.2.0相关链路相同及具名选择定义收窄。形成R01–R12修复、A01–A12验收和dsh-pet独立Android边界；生产修复与实机闭环尚待完成，不修改既有APK／Release。

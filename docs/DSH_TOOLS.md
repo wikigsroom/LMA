@@ -1,6 +1,6 @@
-# DSH 与 OpenAI 工具调用 · v1.1.0
+# DSH 与 OpenAI 工具调用 · v1.2.1
 
-**m04已知模板缺口，修复待完成：** v1.1.0/v1.2.0使用的固定Dolphin1B GGUF发布默认模板未渲染工具。实际生效模板与DSH任务闭环待真机核对；[来源、修复项与完整41工具验收](DSH_M04_TOOL_TEMPLATE_ASSESSMENT_20261106.md)已单独记录。
+[m04修复：绑定模板、完整工具定义与真机结果](DSH_M04_REPAIR.md)。
 
 [English](DSH_TOOLS.en.md) · [API](API.md) · [运行与卸载](MODEL_RUNTIME.md) · [版本说明](releases/v1.1.0.md)
 
@@ -31,7 +31,7 @@ v1.0.2/code67 的入口白名单先拒绝了 DSH 的 `store:false`、`tools`、`
 
 ## 3. 原生模板、具名选择和 strict
 
-继续使用锁定的 llama.cpp `b29c606e28a01b1bc8c1351026a0fa6e616bf6c4` 与 `--jinja`，没有把函数协议拼成普通聊天。该版本具名对象会落回 auto，因此网关把本次允许函数集合收窄为指定函数并传原生 `required`，再检查实际输出。模型自己的 GGUF 模板必须支持工具；接口兼容不能把所有模型变成可靠代理。
+继续使用锁定的 llama.cpp `b29c606e28a01b1bc8c1351026a0fa6e616bf6c4` 与 `--jinja`，没有把函数协议拼成普通聊天。该版本具名对象会落回 auto。v1.2.1保留公共完整工具列表，以私有 `chat_template_kwargs.tools` 呈现全部定义，原生 grammar 仅允许目标函数并使用 `required`，再校验实际输出；预检与生成使用同一副本。m04使用经实际权重／内嵌模板哈希绑定的审核修复；其它模型保留各自模板，通过实际渲染和原生解析能力检查才接纳工具请求。接口兼容与模型代理可靠性分别验收。
 
 原生版本未完整执行 `function.strict`。网关校验完整参数、声明函数、调用ID、并行限制和结束原因；strict 参数不合格则返回 `invalid_model_output`，不交付可执行工具分片。strict 流在实际工具分片出现后缓冲至该轮校验通过；之前的真实文本／推理仍可流出。客户端仍须校验工具权限和执行结果。
 

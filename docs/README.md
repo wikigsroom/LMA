@@ -1,6 +1,6 @@
 # LMA 文档 / Documentation
 
-- [m04 / DSH工具模板缺口：根因、R01–R12修复项、A01–A12验收及插件Android边界](DSH_M04_TOOL_TEMPLATE_ASSESSMENT_20261106.md) · [English](DSH_M04_TOOL_TEMPLATE_ASSESSMENT_20261106.en.md)；评估完成，生产修复／新APK／真机验收待完成。
+- [v1.2.1 m04修复：绑定生效模板、原生工具解析、完整41工具与实际能力边界](DSH_M04_REPAIR.md) · [English](DSH_M04_REPAIR.en.md)；[修复前评估](DSH_M04_TOOL_TEMPLATE_ASSESSMENT_20261106.md)保留原时间点结论。
 
 **v1.2.0 导航更新 / Navigation update:** 对话为首页；左侧依次进入对话、模型库、任务与作品、API 服务、设置。展开侧栏可选最近会话，窄屏占满窗口。Composer Plus opens optional creation controls; Runtime management exposes Unload. [完整布局与使用说明 / Workspace guide](design/DSH_WORKSPACE.md) · [English](design/DSH_WORKSPACE.en.md)。旧版底栏／云母描述保留为历史操作背景。
 

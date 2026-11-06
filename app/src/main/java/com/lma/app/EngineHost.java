@@ -182,6 +182,9 @@ public final class EngineHost {
             File nativeDir = new File(app.getApplicationInfo().nativeLibraryDir), binary = new File(nativeDir, "libllama-server.so");
             if (!binary.isFile() || !binary.canExecute()) throw new IOException("推理组件未正确安装，请重新安装 LMA APK");
             lease = app.store.acquireBundle(id); app.store.inspectModel(id); JSONObject settings = loadOverride==null?app.settings(id):new JSONObject(loadOverride.toString());
+            TemplateProfiles.Selection template = TemplateProfiles.resolve(app, id, app.store.modelFile(id),
+                lease == null ? app.store.model(id).optString("sha256") : lease.bundle.component("text_gguf").sha256,
+                com.lma.app.core.DataFiles.checked(check));
             int privatePort;
             try (java.net.ServerSocket reserved = new java.net.ServerSocket(0, 1, java.net.InetAddress.getByName("127.0.0.1"))) { privatePort = reserved.getLocalPort(); }
             byte[] randomKey = new byte[24]; new java.security.SecureRandom().nextBytes(randomKey);
@@ -192,6 +195,7 @@ public final class EngineHost {
             add(command, "-t", String.valueOf(settings.getInt("threads"))); add(command, "-c", String.valueOf(settings.getInt("context")));
             add(command, "-b", "64"); add(command, "-ub", "64"); add(command, "-np", "1"); add(command, "-ngl", "0"); add(command, "--device", "none");
             command.add("--jinja"); command.add("--no-webui"); command.add("--metrics"); add(command, "--reasoning", settings.getString("reasoning"));
+            template.command(command);
             ProcessBuilder builder = new ProcessBuilder(command).redirectErrorStream(true).directory(app.getFilesDir());
             builder.environment().put("LD_LIBRARY_PATH", nativeDir.getAbsolutePath());
             builder.environment().put("ADSP_LIBRARY_PATH", nativeDir.getAbsolutePath() + ";/vendor/lib/rfsa/adsp;/vendor/dsp;/system/lib/rfsa/adsp;/dsp");
@@ -216,16 +220,19 @@ public final class EngineHost {
             app.log("启动模型：" + app.store.model(id).optString("name") + " · CPU / " + settings.getInt("threads") + " 线程");
             while (current(request) && process == active && active.isAlive()) {
                 check.run(); slot.checkOwner(); HttpURLConnection health = null;
+                boolean healthy = false;
                 try {
                     health = Net.engine(app, "/health"); health.setConnectTimeout(1000); health.setReadTimeout(1000);
-                    if (health.getResponseCode() == 200 && new JSONObject(Store.read(health.getInputStream(), 65536)).optString("status").equals("ok") && ownsEndpoint(id)) {
+                    healthy = health.getResponseCode() == 200 && new JSONObject(Store.read(health.getInputStream(), 65536)).optString("status").equals("ok") && ownsEndpoint(id);
+                } catch (Exception ignored) {} finally { if (health != null) health.disconnect(); }
+                if (healthy) {
+                        TemplateProfiles.verify(id, template, templateJson("/props", null), templateJson("/apply-template", TemplateProfiles.probe()));
                         synchronized (this) {
                             if (!current(request) || process != active) throw new InterruptedIOException("文本加载已更改");
                             app.engineState = "ready"; app.engineDetail = "模型已就绪，可以对话或连接 API"; app.engineStarted = System.currentTimeMillis();
                         }
                         slot.checkOwner(); app.emit(); owner.activityChanged(); return;
                     }
-                } catch (Exception ignored) {} finally { if (health != null) health.disconnect(); }
                 Thread.sleep(100);
             }
             // The registered exit watcher owns bounded recovery, including exits before readiness.
@@ -268,6 +275,19 @@ public final class EngineHost {
             if (data != null) for (int i = 0; i < data.length(); i++) if (data.getJSONObject(i).optString("id").equals(id)) return true;
         } catch (Exception ignored) {} finally { if (connection != null) connection.disconnect(); }
         return false;
+    }
+    private JSONObject templateJson(String path, JSONObject body) throws Exception {
+        HttpURLConnection connection = Net.engine(app, path);
+        try {
+            connection.setConnectTimeout(3000); connection.setReadTimeout(30000);
+            if (body != null) {
+                connection.setRequestMethod("POST"); connection.setDoOutput(true); connection.setRequestProperty("Content-Type", "application/json");
+                byte[] bytes = body.toString().getBytes(StandardCharsets.UTF_8); connection.setFixedLengthStreamingMode(bytes.length);
+                try (OutputStream out = connection.getOutputStream()) { out.write(bytes); }
+            }
+            if (connection.getResponseCode() != 200) throw new IOException("Cannot inspect the effective local chat template");
+            try (InputStream in = connection.getInputStream()) { return new JSONObject(new String(com.lma.app.core.ToolReply.read(in, 16 * 1024 * 1024), StandardCharsets.UTF_8)); }
+        } finally { connection.disconnect(); }
     }
     private static void add(List<String> command, String key, String value) { command.add(key); command.add(value); }
 }

@@ -1,0 +1,178 @@
+{
+  "schema": "lma.conversation-ui/1",
+  "version": "1.2.1",
+  "passed": 43,
+  "checks": [
+    "Fresh default stays dark when the system theme is light",
+    "Final Logo 21 appears in the application header",
+    "Ordinary chat starts with no persistent generation form or mode chip",
+    "Initial mode control agrees with the actual chat mode",
+    "The single composer picker shows the actual loaded model",
+    "Creation sheet isolates the chat background",
+    "Ordinary chat has no second visible model selector",
+    "Closing the sheet keeps the draft and explicitly selected auto mode",
+    "Reopening reuses the same controls and preserves their values",
+    "Opening nested parameter sheets does not destroy the parked controls",
+    "Returning to ordinary chat preserves typed text",
+    "The workspace welcome and two starter prompts remain available",
+    "The default phone composer remains compact",
+    "1000 mixed messages mount only the newest 60",
+    "100 indexed assets do not start media players or GLB decoding",
+    "Message blocks hold managed references without media bytes",
+    "Streaming preserves unchanged row and content DOM identity",
+    "A streamed token mutates only its target message",
+    "Fractional progress updates original job cards without replacing unrelated rows",
+    "Cursor paging replaces the bounded viewport without losing older history",
+    "Older history can return to live messages",
+    "Assistant copy actions remain available in bounded message history",
+    "Header changes follow the native model without retaining an obsolete composer selection",
+    "Manual image.generate works without a loaded or installed language model",
+    "Manual task has a stable outbox key 0",
+    "Manual video.generate works without a loaded or installed language model",
+    "Manual task has a stable outbox key 1",
+    "Manual speech.synthesize works without a loaded or installed language model",
+    "Manual task has a stable outbox key 2",
+    "Manual audio.generate works without a loaded or installed language model",
+    "Manual task has a stable outbox key 3",
+    "Manual mesh.generate works without a loaded or installed language model",
+    "Manual task has a stable outbox key 4",
+    "Editable temporary parameters clamp to the model maximum",
+    "Temporary overrides preserve saved model defaults",
+    "Composition uses explicitly assigned audio roles and no fake AI model",
+    "W02 opens editable ordered steps without a node canvas",
+    "Adding a workflow step preserves earlier edits",
+    "Every added step has an explicit operation selector",
+    "100 sessions remain accessible in bounded history pages",
+    "Session history exposes its next cursor",
+    "390px composer has no horizontal overflow",
+    "Production pages have no unhandled script errors"
+  ],
+  "input_fingerprint": {
+    "app/src/main/assets/app.css": "b09171d519a9cc4e1a3a8101c45dd46c40d24b917c4fbc29c3e131dbfb79a72d",
+    "app/src/main/assets/app.js": "3980edf1fbf745768fb543305e70ab2e4a7c20062ee1b752cfd97186f1b22c46",
+    "app/src/main/assets/asset-preparations.json": "b0a7cbac1a633310b9fff84164439ee8fe20a1df137d1075eb9263f531ccfd3b",
+    "app/src/main/assets/audio-preview.js": "33bb898969f37c1f78c6664052c46da844d148defdcef4a54d64bc5829037f44",
+    "app/src/main/assets/capabilities.js": "ce9fc72a05d288c9b8ee3fc2593af190187aecac68f36f33ce8143d6aa01c812",
+    "app/src/main/assets/capabilities.json": "f964a205d341bcbf627fd438d8cb78b359be4f8c83dc572f34ad7b964e252a4c",
+    "app/src/main/assets/chat-template-profiles.json": "f4f1d2b6bbf6f7743a6c40ff441d6da0e7ef633f3275989f4bcd67302a79a761",
+    "app/src/main/assets/community.js": "2cc91dd7eb1d441f2e51002169a8264dbbca5a361b8d93379df913da5143634c",
+    "app/src/main/assets/conversation.css": "5d29c47ba810774c502eb68c369d1d355644b1da542389a38c6b0dd3ec5516dc",
+    "app/src/main/assets/conversation.js": "9bddc0fc7c4faff2134f9fd8bae911d9d96b2f42deedf36ebaf0324d1d88fbf2",
+    "app/src/main/assets/engine-builds.json": "ea15c61490a261eb664201b50a62de899b2858785d095bc3e80ff3e42dd13493",
+    "app/src/main/assets/expansion-notices.json": "e5bc41234e37c91400636473491b61644bb7cdf5ba4c73c20c2e5eaffc769055",
+    "app/src/main/assets/expansion.js": "e968fea1d2013d6fa3c812dc8af5aeadf32ac11cb15aa3490de713c840c4f98c",
+    "app/src/main/assets/foundation.css": "8bbd7a445a43d93f796be904e8f67b6e6120cf27547b93abb79cf41142078343",
+    "app/src/main/assets/glb-preview.js": "26554ae19c4dbeba87732dc0d220a628f40b598450a021e683737ded03db0f85",
+    "app/src/main/assets/index.html": "b03197379055e2bae0c78e3e9c977e65fd745d01c8cb32805d36e6145f9791ae",
+    "app/src/main/assets/lma-logo.png": "3155c4601396c8623c20879b903e317747a94a7b840be307bcc93fde988c8bea",
+    "app/src/main/assets/mica-design.json": "9ed6494429748524d99bda1489366078e227d8af874c1f82b7f93afaf334f1f6",
+    "app/src/main/assets/mica-tokens.css": "2fc03faceef47cfd1b5a71f969f2b1cc893fbfc74e017d720922d04a8f5dc4f1",
+    "app/src/main/assets/mica.css": "fe7e5dda3f2f38690623e34a18b2ce5c8f196aef0779091b55855de6a773ccfd",
+    "app/src/main/assets/mica.js": "b42616f0889dc262c68ae62cfe804aad64ca93a38e4f186351eb2c7eda52ed74",
+    "app/src/main/assets/model-assemblies.json": "bda37b1411a28e8f396a03f0ccf8176b07469d402a858b5b8561410d13d8d572",
+    "app/src/main/assets/model-bundles.json": "74c1f12e82b76e3030d7835f5b42c5ad680b055b8c80ae69a1cfca4a3153f229",
+    "app/src/main/assets/models.json": "c3e884b4e5fb06f20c036deebc78e6f953ac420e76fca72bab5a25fd59927156",
+    "app/src/main/assets/recipe-templates.json": "ed87f310d0a63251f765bbc4d8741b31806cc87145c0a96f762a110e097e6bd3",
+    "app/src/main/assets/recipes.js": "b27e75ed85948a63476bf351cde94a59bec935a540f65e1a9fe798322bcd1b39",
+    "app/src/main/assets/recommendations.js": "13f0f41840a3a28a5b70d021f77c7700050f6007086228179cd794b331263215",
+    "app/src/main/assets/recommendations.json": "8fa2c4c76526d63de81d37fac75af6d4664175df0f355b64c552274d67517ebf",
+    "app/src/main/assets/theme-boot.js": "10538ec87580ba9086669660100002f861fe8d4947e872ee614594a694c393fc",
+    "app/src/main/assets/versions.js": "2d629929a6db642c12a242ddcc62cd4f4090ab307e0cb669ceb98add031977e1",
+    "app/src/main/assets/vision-presets.json": "f6ec64acd1f2ae1b29534ff71e2a60efc44ed802c2161af8a55ad110729287c5",
+    "app/src/main/assets/workbench.js": "367c6293b50bb1f4567da00eef20d795c7f775c2e5f6b5ec62b0e32989920e09",
+    "app/src/main/assets/workspace.css": "98ad639571cee95afa820b451d5e752f41e1c08e93d2402debc0537311969cdb",
+    "app/src/main/assets/workspace.js": "44193a095ac55c252de2231f79f4db77ec13daa73912065683d83febe5da7990",
+    "app/src/main/java/com/lma/app/LmaApp.java": "2514d86cb7534875f06540dd4585e74ce29809d9864bef6087f50e7eff02e042",
+    "app/src/main/java/com/lma/app/MainActivity.java": "43d4e90553e8a15489b2165846a9f089ac8f8f8e0af603374e13860d972828b7",
+    "tests/conversation-ui.cjs": "f2bf1ab5edc56d15ed3057a0c543f10dc5229f4b04d1e465ce5d8f1f0543259c"
+  },
+  "physical_device_tests": 0,
+  "complete_trained_model_runs": 0,
+  "ui_uses_simulated_bridge": true,
+  "fixture": {
+    "sessions": 100,
+    "messages": 1000,
+    "artifacts": 100,
+    "mounted": 60
+  },
+  "browser_closed": true,
+  "kind": "Production UI with an explicitly labelled simulated bridge; not Android/model output",
+  "android_device": false,
+  "model_inference": false,
+  "weights_downloaded": false,
+  "browser_errors": [],
+  "files": [
+    {
+      "file": "00-restored-chat-dark.png",
+      "bytes": 37662,
+      "sha256": "36f64a33b2eb8ac06c0981dfe142da81d7bacf683b2220ff35e60dc53ed04d8c"
+    },
+    {
+      "file": "00-restored-chat-light.png",
+      "bytes": 37333,
+      "sha256": "97ac622c349bbb3762948b2b3e818b114c1b7b19a9b2eab8d1f6b4381abe59fe"
+    },
+    {
+      "file": "01-block-chat.png",
+      "bytes": 32625,
+      "sha256": "cc135a57569aff49e74cff5f5cfabfb7370f88ced774cd73002afa2005c2127d"
+    },
+    {
+      "file": "02-direct-generation.png",
+      "bytes": 32849,
+      "sha256": "060cf5fe60caf3c6507d5ef848d479de91731beb84e688638d2a0c01b86bb0c5"
+    },
+    {
+      "file": "03-explicit-composition.png",
+      "bytes": 33586,
+      "sha256": "1c928ff437ea30ddec98c1cc7a0676156f5f214e4731e13eb18637f6844d14c9"
+    },
+    {
+      "file": "04-sequential-template.png",
+      "bytes": 29791,
+      "sha256": "ccba68c6a95080f0029ff62c89f25240b927dc51e54042a12658b3d93bea7c11"
+    },
+    {
+      "file": "walkthrough.gif",
+      "bytes": 1287353,
+      "sha256": "7c9a3fafd94a73f01156eac4e12de00e12362146faa1993b4d2ccd0e8a0321cc"
+    },
+    {
+      "file": "walkthrough.mp4",
+      "bytes": 552773,
+      "sha256": "c2e1e0d73c60d2a2f16e5c8e11a57795c17b9e5dbeec95dceeeebf4728a1857d"
+    }
+  ],
+  "screenshots": [
+    {
+      "file": "00-restored-chat-dark.png",
+      "bytes": 37662,
+      "sha256": "36f64a33b2eb8ac06c0981dfe142da81d7bacf683b2220ff35e60dc53ed04d8c"
+    },
+    {
+      "file": "00-restored-chat-light.png",
+      "bytes": 37333,
+      "sha256": "97ac622c349bbb3762948b2b3e818b114c1b7b19a9b2eab8d1f6b4381abe59fe"
+    },
+    {
+      "file": "01-block-chat.png",
+      "bytes": 32625,
+      "sha256": "cc135a57569aff49e74cff5f5cfabfb7370f88ced774cd73002afa2005c2127d"
+    },
+    {
+      "file": "02-direct-generation.png",
+      "bytes": 32849,
+      "sha256": "060cf5fe60caf3c6507d5ef848d479de91731beb84e688638d2a0c01b86bb0c5"
+    },
+    {
+      "file": "03-explicit-composition.png",
+      "bytes": 33586,
+      "sha256": "1c928ff437ea30ddec98c1cc7a0676156f5f214e4731e13eb18637f6844d14c9"
+    },
+    {
+      "file": "04-sequential-template.png",
+      "bytes": 29791,
+      "sha256": "ccba68c6a95080f0029ff62c89f25240b927dc51e54042a12658b3d93bea7c11"
+    }
+  ]
+}

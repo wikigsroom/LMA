@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.lma.app.acceptance">
     <uses-sdk android:minSdkVersion="28" android:targetSdkVersion="35" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <instrumentation android:name="com.lma.app.ClipboardProbe" android:targetPackage="com.lma.app.acceptance" android:label="Owned acceptance prompt clipboard" />
     <application android:label="LMA device acceptance" android:allowBackup="false" />
     <instrumentation android:name="com.lma.app.DeviceAcceptance" android:targetPackage="com.lma.app" android:label="Physical-device checks" />
     <instrumentation android:name="com.lma.app.DevicePerformance" android:targetPackage="com.lma.app" android:label="Zero-model performance checks" />

@@ -107,9 +107,8 @@ public final class ChatProtocol {
             JSONObject function = selected.getJSONObject("function"); fields(function, "tool_choice.function", "name");
             String name = name(function.opt("name"), "tool_choice.function.name");
             if (!definitions.containsKey(name)) throw new RequestError("tool_choice.function.name", "Selected function is not declared");
-            // The pinned native server only understands string choices. One allowed
-            // function plus REQUIRED enforces the named choice without changing messages.
-            request.put("tools", new JSONArray().put(definitions.get(name))); choice = "required";
+            // Preserve every declaration and the public named-choice contract.
+            // NativeToolRequest adapts grammar selection separately from rendering.
         } else throw new RequestError("tool_choice", "Invalid tool choice");
         if (tools != null || request.has("tool_choice")) request.put("tool_choice", choice);
         if (!definitions.isEmpty() && !request.has("parallel_tool_calls")) request.put("parallel_tool_calls", true);

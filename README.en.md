@@ -8,12 +8,12 @@
 
 Local AI for Android. Choose your models, with uncensored variants clearly tagged. [Final branding: logo 21 + slogan 04](docs/BRANDING.md).
 
-[中文](README.md) · [Download v1.2.0](https://github.com/wikigsroom/LMA/releases/tag/v1.2.0) · [User guide](docs/USER_GUIDE.en.md) · [Documentation](docs/README.md) · [Scenarios](#use-cases) · [Cases and failures](#case-studies)
+[中文](README.md) · [Download v1.2.1](https://github.com/wikigsroom/LMA/releases/tag/v1.2.1) · [User guide](docs/USER_GUIDE.en.md) · [Documentation](docs/README.md) · [Scenarios](#use-cases) · [Cases and failures](#case-studies)
 
 <a id="contents"></a>
 ## Detailed usage and evidence routes
 
-**Known m04 tools issue — repair pending:** The published GGUF default template omits tool definitions/call history; the affected 1.1.0/1.2.0 paths are unchanged. Source/template assessment is complete; production repair and actual DSH acceptance with all 41 tools remain open. Existing m15/UI evidence does not establish this. [Repair and acceptance plan](docs/DSH_M04_TOOL_TEMPLATE_ASSESSMENT_20261106.en.md).
+**m04 template/protocol repair:** v1.2.1/code70 binds a reviewed template to the actual weights, retains every tool definition/history and uses native structured parsing. m04, saved131072 context and parameters stay unchanged;21 physical SDK checks pass. The actual DSH task with all41 tools stopped after17m16s with time/timezone text, zero calls and no target file. The command/file loop and plugin installation have not passed. [Root causes, repair and measurements](docs/DSH_M04_REPAIR.en.md).
 
 The following restores the detailed scenarios, API examples, generated artifacts and test cases that were lost when the README was shortened. v0.3.5 retains these detailed sections and adds speech / 3D scenarios; no new complete-model run is claimed. LMA is independent of LM Studio; the current app UI is primarily Chinese and the documentation is bilingual.
 
@@ -29,15 +29,21 @@ The following restores the detailed scenarios, API examples, generated artifacts
 | Rebuild and diagnose | [Build](#build), [Z20/background limits](#z20), [troubleshooting](#troubleshooting) |
 | Read the original development narrative | [Historical English README](docs/history/README-dev45.en.md), [repair notes](docs/releases/v0.3.1-readme.md) |
 
-**Validation scope: program checks.** Current **v1.2.0 / code69** implements the DSH Android inspired conversation workspace: chat-first home, a left icon rail, full-width narrow session drawer, expanded wide sidebar, neutral dark/light themes and a model selector inside the composer. All five pages, model/job lists, error notices and overlays share the new system. Logo21/Slogan04 remain. [Reference review and specification](docs/design/DSH_WORKSPACE.en.md) · [Release notes](docs/releases/v1.2.0.md).
+**Validation scope: program checks.** Current **v1.2.1 / code70** repairs the effective m04 tool template, named selection, full definition accounting, parallel-result alignment and diagnostics. Selected physical SDK/model and actual DSH evidence is separate. The DSH workspace, default dark theme, all five pages and Logo21/Slogan04 remain. [Repair](docs/DSH_M04_REPAIR.en.md) · [Release](docs/releases/v1.2.1.md).
 
 **Navigation:** use composer Plus for creation, attachments and temporary settings; Models → Local manages downloads and per-model defaults with outer Delete controls; top Runtime management or API → Running models unloads memory while retaining files. Recommendations, HF discovery, task/capability/content tags, artifacts and full function-tool API contracts remain available.
 
-<img src="docs/media/workspace-v1.2.0/01-home-dark.png" alt="v1.2.0 dark conversation home, program fixture, not a phone" width="280"> <img src="docs/media/workspace-v1.2.0/02-sidebar-dark.png" alt="v1.2.0 full-width sessions, program fixture, not a phone" width="280"> <img src="docs/media/workspace-v1.2.0/09-home-light.png" alt="v1.2.0 light conversation home, program fixture, not a phone" width="280">
+<img src="docs/media/workspace-v1.2.1/01-home-dark.png" alt="v1.2.1 dark conversation home, program fixture, not a phone" width="280"> <img src="docs/media/workspace-v1.2.1/02-sidebar-dark.png" alt="v1.2.1 full-width sessions, program fixture, not a phone" width="280"> <img src="docs/media/workspace-v1.2.1/09-home-light.png" alt="v1.2.1 light conversation home, program fixture, not a phone" width="280">
 
-![v1.2.0 workspace recording: program fixture, not a phone or model run](docs/media/workspace-v1.2.0/walkthrough.gif)
+![v1.2.1 workspace recording: program fixture, not a phone or model run](docs/media/workspace-v1.2.1/walkthrough.gif)
 
-[MP4](docs/media/workspace-v1.2.0/walkthrough.mp4) · [12 screenshots, video and hashes](docs/media/workspace-v1.2.0/manifest.json) · [Program evidence](verification/releases/v1.2.0/status.json). The shared phone is occupied; following the user's instruction, no ADB, installation, unlocking or inference was performed. Current media use explicitly labelled production-page bridge fixtures. **Fresh phone touch, system keyboard, TalkBack and frame-rate acceptance await an available device.** Historical phone cases retain their original version/APK identity.
+[MP4](docs/media/workspace-v1.2.1/walkthrough.mp4) · [12 screenshots, video and hashes](docs/media/workspace-v1.2.1/manifest.json) · [Current program evidence](verification/releases/v1.2.1/status.json). Workspace media above are labelled production-page fixtures. The phone is now authorized and separately provides[21 real m04 SDK/Unload checks](verification/releases/v1.2.1/physical-tools.json) and[actual DSH task records](verification/releases/v1.2.1/physical-dsh.json). These do not establish arbitrary agent quality, TalkBack/frame rate or long-running endurance; historical evidence retains its original identity.
+
+<img src="docs/media/device/v1.2.1/m04-runtime-manager.png" alt="v1.2.1 final APK on the phone: m04 template and Unload" width="280">
+
+![v1.2.1 physical runtime controls; background tasks are assessed separately](docs/media/device/v1.2.1/runtime-controls.gif)
+
+[Physical recording provenance](docs/media/device/v1.2.1/manifest.json) · [MP4](docs/media/device/v1.2.1/runtime-controls.mp4). This shows runtime controls, not accepted DSH agent completion.
 
 <details>
 <summary>Historical v1.1.0 tools, physical Unload and actual DSH-client audit</summary>
@@ -83,7 +89,7 @@ LMA-authored code is MIT. The bundled DISO CPU surface component is **CC BY-NC 4
 HF discovery and executable support are separate. Compatible files enter their matching text engine or multi-component recipe; arbitrary safetensors, GGUF or Diffusers repositories are not universally executable. Custom components can be registered through recipes. Missing components fail locally without implicit downloads or off-device execution.
 
 <a id="models"></a>
-Current APK: **v1.2.0 / code69**, original signer retained. Compare the exact Release APK with `SHA256SUMS`; see the [release inventory and validation](docs/releases/v1.2.0.md).
+Current APK: **v1.2.1 / code70**, original signer retained. Compare the exact Release APK with `SHA256SUMS`; see the [release inventory and validation](docs/releases/v1.2.1.md).
 
 ## Model and foundation scope
 
@@ -156,13 +162,13 @@ A visible foreground service, stop notification and task-scoped wake locks suppo
 
 ## Screenshots and recordings
 
-These show **v1.2.0 production pages with an explicitly labelled desktop bridge fixture**, without weight downloads or generated model content. Owned browsers close after recording.
+These show **v1.2.1 production pages with an explicitly labelled desktop bridge fixture**, without weight downloads or generated model content. Owned browsers close after recording.
 
 ![Components, independent settings and video jobs](docs/media/development/community/community-ui.gif)
 
 [MP4](docs/media/development/community/community-ui.mp4) · [Components](docs/media/development/community/01-community-images.png) · [Settings](docs/media/development/community/02-image-source.png) · [Task form](docs/media/development/community/03-community-video.png) · [Queue](docs/media/development/community/05-community-local.png) · [Workbench recording](docs/media/development/release-workbench/release-workbench-ui.mp4)
 
-APK identity: **v1.2.0 / code69**, **71,571,401 bytes**, SHA256 `999a923cc0ab5586701266c368e5f885fdc69cec458066f0e1707a9e6af6c0a9`. Certificate SHA256: `90444a717a55549e2094364d8d7d005cf8b7f4df24562da62cc1884a2f341c17`. Release assets include APK, sources/evidence/screenshots, workspace/conversation GIF and MP4, ten extension UI recordings, notes, manifests and hashes. Current media are program fixtures; historical physical media retain their original version.
+APK identity: **v1.2.1 / code70**, **71,579,874 bytes**, SHA256 `2dbc586bb39d8727b7e93bcc7d3a541e588df666ea9076050ba58a6aa69fc301`. Certificate SHA256: `90444a717a55549e2094364d8d7d005cf8b7f4df24562da62cc1884a2f341c17`. Release assets include APK, sources/evidence/screenshots, workspace/conversation GIF and MP4, ten extension UI recordings, notes, manifests and hashes. Workspace media are program fixtures; current m04 SDK/DSH records are separate and historical physical media retain their original version.
 
 ## Validation, builds and documentation
 
@@ -779,7 +785,7 @@ These preserved development cases were not rerun as new passes this round. HOST 
 
 <a id="verification"></a>
 
-**Current v1.2.0: 69 suites / 15,485 program assertions and 82 program/build records.** Includes 29 new workspace, 817 UI workflow, 43 conversation and 20 adaptive checks (520 layouts), plus 62 contrast pairs pass. [Current version evidence](verification/releases/v1.2.0/status.json) distinguishes program gates from phone/model verification; this round performs no phone/model execution. Previous phone numbers remain historical.
+**Current v1.2.1:** 70 suites /15,576 program assertions,84 program/build records (including17 actual native renderer/grammar/parser checks), plus21 physical m04 SDK checks, are recorded separately.[Current status](verification/releases/v1.2.1/status.json) supplies counts and fingerprints;[actual DSH tasks](verification/releases/v1.2.1/physical-dsh.json) disclose success/failure with all41 tools. Program assertions do not substitute for agent acceptance.
 ## Current program coverage and reproduction entry points
 
 **Historical v1.1.0: 67 suites / 15,394 assertions and 80 program/build records.** Includes 817 production-page, 62 tool-protocol, 154 backend, 151 scheduling and 13 Sub2API checks. Separately recorded: 66 physical UI checks, 41 checks at each of three font scales, 24 management/API checks, 60.337 seconds of screen-off health, eight idle-performance checks, and 21 tool/unload checks across six actual generations. [Current status](verification/releases/v1.1.0/status.json) · [Release details](docs/releases/v1.1.0.md).
@@ -1008,7 +1014,9 @@ Historical v0.3.10 [legacy-host deviation](verification/releases/v0.3.10/validat
 
 **v1.0.2 / code67 · Direct model-card deletion.** Text and media cards expose labelled Delete controls with an explained busy state, existing confirmation/cancel and native asset guards. [Operation and verification](docs/MODEL_DELETE.en.md) · [Stable Release](https://github.com/wikigsroom/LMA/releases/tag/v1.0.2).
 
-**v1.2.0 / code69 · DSH-inspired workspace.** Chat-first home, sidebars/session drawer, neutral dark/light themes, focused composer, shared components across five pages and program regression. Phone acceptance awaits an available device. [Notes](docs/releases/v1.2.0.md).
+**v1.2.1 / code70 · m04 tool-template repair.** Weight-bound effective templates, native function JSON, complete named definitions and parallel-result ordering;21 physical SDK checks and actual DSH tasks remain separate, with failures/quality limits disclosed.[Notes](docs/releases/v1.2.1.md).
+
+**Historical v1.2.0 / code69 · DSH-inspired workspace.** Chat-first home, sidebars/session drawer, neutral dark/light themes, focused composer, shared components across five pages and program regression. Phone acceptance awaits an available device. [Notes](docs/releases/v1.2.0.md).
 
 **v1.1.0 / code68 · Function tools and running models.** Full native function-tool round trips, strict and streaming validation, bounded text queue/context preflight and four Unload entries. The existing m15 passed 21 physical checks across six generations; DSH App-specific interaction and sustained agent quality remain unverified. [Protocol](docs/DSH_TOOLS.en.md) · [Unload and actual media](docs/MODEL_RUNTIME.en.md) · [Stable Release](https://github.com/wikigsroom/LMA/releases/tag/v1.1.0).
 

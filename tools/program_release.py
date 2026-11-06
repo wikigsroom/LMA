@@ -119,6 +119,9 @@ def check(prepared=False,published=False):
   assert manifest['version']==VERSION and manifest['prerelease']==(not COMPLETE) and manifest['validation_mode']=='program_only'
   assert manifest['full_scope_program_implementation_complete'] and manifest['apk_sha256']==build['sha256']
   for field in ('physical_device_tests','physical_device_tested','background_program_tested','phone_inference_tested','authorized_phone_model_attempts','authorized_phone_model_successes'):assert manifest[field]==evidence.get(field,0 if field=='physical_device_tests' else False),field
+  if tuple(map(int,VERSION.split('.'))) >= (1,2,1):
+   for field in ('physical_tool_protocol_tested','physical_tool_protocol_checks','dsh_app_tested','dsh_actual_requests','dsh_full_tools_loop_passed','dsh_plugin_installation_passed'):
+    assert manifest[field]==evidence[field],field
   for field in ('background_endurance_tested','model_quality_accepted'):assert not manifest[field],field
   assert manifest['all_benchmark_architectures_integrated']==COMPLETE and manifest['unported_benchmark_configurations']==evidence['unported_benchmark_configurations']
   if evidence.get('port_upgrade_verified'):
@@ -205,7 +208,9 @@ def prepare():
  physical_media=ROOT/'docs/media/device'/('v'+VERSION)
  if physical_media.exists():
   for extension in ['mp4','gif']:
-   original=physical_media/('physical-walkthrough.'+extension)
+   media_record=read(physical_media/'manifest.json')
+   basename='runtime-controls' if media_record.get('schema')=='lma.physical-runtime-media/1' else 'physical-walkthrough'
+   original=physical_media/(basename+'.'+extension)
    target=f'LMA-{VERSION}-physical-device.'+extension;shutil.copy2(original,directory/target);names.append(target)
  for name in MEDIA:
   for extension in ['mp4','gif']:
@@ -228,7 +233,7 @@ def prepare():
    target=f'LMA-{VERSION}-workspace.'+extension;shutil.copy2(original,directory/target);names.append(target)
  names.sort()
  (directory/'SHA256SUMS').write_text(''.join(sha(directory/n)+'  '+n+'\n' for n in names),encoding='utf-8');names.append('SHA256SUMS')
- manifest=dict(repository='wikigsroom/LMA',version=VERSION,tag='v'+VERSION,title='LMA v'+VERSION+(' · DSH-inspired workspace / 全新对话工作区' if VERSION=='1.2.0' else ' · Function tools and Unload / 工具协议与运行管理' if VERSION=='1.1.0' else ' · Mica Bento / 云母分区 UI 大版本' if VERSION=='1.0.0' else ' · Restored chat / 对话页面复原' if VERSION=='1.0.1' else ' · Direct model deletion / 模型卡片直接删除' if VERSION=='1.0.2' else ' · Conversations and local creation / 对话与本地创作' if VERSION=='0.4.0' else ' · Default API port 52187 / 默认接口端口 52187' if VERSION=='0.3.13' else ' · Local multimodal API and uncapped generation / 本地多模态接口与生成时限取消'),
+ manifest=dict(repository='wikigsroom/LMA',version=VERSION,tag='v'+VERSION,title='LMA v'+VERSION+(' · m04 tool-template repair / m04 工具模板修复' if VERSION=='1.2.1' else ' · DSH-inspired workspace / 全新对话工作区' if VERSION=='1.2.0' else ' · Function tools and Unload / 工具协议与运行管理' if VERSION=='1.1.0' else ' · Mica Bento / 云母分区 UI 大版本' if VERSION=='1.0.0' else ' · Restored chat / 对话页面复原' if VERSION=='1.0.1' else ' · Direct model deletion / 模型卡片直接删除' if VERSION=='1.0.2' else ' · Conversations and local creation / 对话与本地创作' if VERSION=='0.4.0' else ' · Default API port 52187 / 默认接口端口 52187' if VERSION=='0.3.13' else ' · Local multimodal API and uncapped generation / 本地多模态接口与生成时限取消'),
   prerelease=not COMPLETE,notes='docs/releases/v'+VERSION+'.md',validation_mode='program_only',full_scope_program_implementation_complete=True,
   apk_sha256=build['sha256'],physical_device_tested=evidence.get('physical_device_tested',False),
   physical_device_tests=evidence.get('physical_device_tests',0),background_program_tested=evidence.get('background_program_tested',False),
@@ -238,7 +243,9 @@ def prepare():
   physical_api_checks=evidence.get('physical_api_checks',0),
   physical_tool_protocol_tested=evidence.get('physical_tool_protocol_tested',False),
   physical_tool_protocol_checks=evidence.get('physical_tool_protocol_checks',0),
-  dsh_app_tested=evidence.get('dsh_app_tested',False),
+  dsh_app_tested=evidence.get('dsh_app_tested',False),dsh_actual_requests=evidence.get('dsh_actual_requests',0),
+  dsh_full_tools_loop_passed=evidence.get('dsh_full_tools_loop_passed',False),
+  dsh_plugin_installation_passed=evidence.get('dsh_plugin_installation_passed',False),
   physical_direct_lan_tested=evidence.get('physical_direct_lan_tested',False),
   api_port=evidence.get('api_port'),port_upgrade_verified=evidence.get('port_upgrade_verified',False),
   final_video_over_five_seconds=evidence.get('final_video_over_five_seconds',False),

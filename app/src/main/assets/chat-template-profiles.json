@@ -1,0 +1,29 @@
+{
+  "schema": "lma.chat-template-profiles/1",
+  "profiles": [
+    {
+      "id": "dolphin3-chatml-tools-v1",
+      "architecture": "llama",
+      "weightSha256": "7ed39ee0638e18d3e47bf12e60e917c792ca5332606a72bd1882ab1f62a13a7a",
+      "weightBytes": 807697440,
+      "embeddedTemplateSha256": "58c1a1f04baa7adaeaba1f90267c3d57d9396f0c1f0129bdde9e76d3c6784af7",
+      "asset": "chat-templates/dolphin3-chatml-tools-v1.jinja",
+      "sha256": "59cae1fe1315e4b081877ebdfdec8d2ac433ba402f24ae68d8ba8a76928d7705",
+      "source": {
+        "repository": "dphn/Dolphin3.0-Llama3.2-1B",
+        "revision": "e753b6ebd7adf87036eb6a3e6de68acca5850e2f",
+        "file": "tokenizer_config.json",
+        "templateSha256": "0067535d4b21c9be3ab1da0d2b99aa71a158711a485da6c5c8a30a6d2227363f"
+      },
+      "ordinaryChat": "preserve-embedded",
+      "toolFormat": "dolphin-json-object",
+      "modelQuality": "unverified",
+      "repairChanges": [
+        "Preserve ordinary GGUF chat exactly",
+        "Describe and render structured function JSON natively for this legacy GGUF",
+        "Retain upstream tools, system instructions and tool-result history",
+        "No command parsing or synthetic execution/results"
+      ]
+    }
+  ]
+}

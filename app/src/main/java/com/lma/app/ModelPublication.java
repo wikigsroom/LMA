@@ -11,7 +11,7 @@ final class ModelPublication implements ApiCatalogue.Source {
     private final EngineHost engine;
     ModelPublication(LmaApp app, EngineHost engine) { this.app = app; this.engine = engine; }
     @Override public String version() {
-        return app.store.publicationRevision() + ":" + (app.bundles == null ? 0 : app.bundles.publicationRevision()) + ":" + (app.prepared == null ? 0 : app.prepared.publicationRevision());
+        return TemplateProfiles.revision() + ":" + app.store.publicationRevision() + ":" + (app.bundles == null ? 0 : app.bundles.publicationRevision()) + ":" + (app.prepared == null ? 0 : app.prepared.publicationRevision());
     }
     @Override public JSONArray build() throws Exception {
         JSONArray result = new JSONArray(), text = app.store.publicationSnapshot(); Set<String> aliases = new HashSet<>();

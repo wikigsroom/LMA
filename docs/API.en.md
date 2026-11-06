@@ -1,5 +1,7 @@
 # LMA API integration
 
+**v1.2.1/code70:** [m04 template repair](DSH_M04_REPAIR.en.md) preserves complete definitions, call history and named selection. Unready tool rendering/parsing fails explicitly with422. Authenticated`/health` adds bounded content-free traces; model capabilities expose`lma.toolTemplate` identity. Readiness and successful agent execution are distinct; physical SDK and actual DSH outcomes are recorded separately.
+
 **Current v1.1.0/code68:** [DSH / OpenAI function tools](DSH_TOOLS.en.md) covers tools, tool_choice, parallel_tool_calls, store:false, tool messages, strict validation, streamed calls and multi-turn continuation. Text admission allows9 requests,4MiB bodies and1024 messages. [Runtime/Unload](MODEL_RUNTIME.en.md) is independent of file deletion and the listener. Older version callouts below remain historical.
 
 **Current v0.4.0:** [Conversations, media, visual bridge and chain API](CONVERSATION_V040.en.md). Authenticated `/v1/lma/chains` and separate `media.compose` are available. Native tags do not expand executable operations; public OpenAI chat remains text-only. Earlier physical examples retain their original APK identity; this version has no fresh phone integration result.

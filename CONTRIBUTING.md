@@ -1,6 +1,6 @@
 # Contributing / 贡献与更新约定
 
-Current UI: [DSH workspace](docs/design/DSH_WORKSPACE.md) / [English](docs/design/DSH_WORKSPACE.en.md), superseding historical UI10 visual/navigation rules. Preserve Logo21/Slogan04 and all model/API contracts. Respect the current shared-phone hold and [version validation scope](docs/proposals/workspace-validation-policy.json).
+Current UI: [DSH workspace](docs/design/DSH_WORKSPACE.md) / [English](docs/design/DSH_WORKSPACE.en.md), superseding historical UI10 visual/navigation rules. Preserve Logo21/Slogan04 and all model/API contracts. The user released the phone for the current m04/DSH repair. Preserve weights/settings and all41 tools; keep program, actual SDK, actual DSH and model-quality outcomes separate. The[1.2.0 phone hold](docs/proposals/workspace-validation-policy.json) is historical. See[current repair](docs/DSH_M04_REPAIR.md).
 
 
 **2026-11-02 本轮交付要求：** 完成真机 API 联调与测评，生成的视频实际时长大于5秒，取消模型生成固定耗时上限。本轮要求覆盖下方历史程序验证限制；程序门禁、实际模型输出、画质与长期后台能力分别记录。v0.3.12 的白名单实测证据为 `physical-api.json`，保留早期候选 APK 身份。Current delivery requires physical integration/benchmarking, video longer than five seconds and uncapped generation; retain separate evidence scopes.

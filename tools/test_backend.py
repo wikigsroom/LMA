@@ -22,7 +22,7 @@ JSON_SHA = "3ea61b2a06e31edf1c91134fe9106b0ebb16628be169f3db75bc7a2b06b45796"
 def main():
     OUT.mkdir(parents=True, exist_ok=True)
     (OUT / "results.json").unlink(missing_ok=True)
-    inputs = fingerprint("app/src/main/java", "tests/host", "app/src/main/assets/recipe-templates.json", "tools/test_backend.py")
+    inputs = fingerprint("app/src/main/java", "tests/host", "app/src/main/assets/chat-template-profiles.json", "app/src/main/assets/chat-templates", "app/src/main/assets/recipe-templates.json", "tools/test_backend.py")
     dep = ROOT / "build/test-deps/json-20250517.jar"
     dep.parent.mkdir(parents=True, exist_ok=True)
     if not dep.exists():
@@ -42,7 +42,7 @@ def main():
         shutil.rmtree(run_dir)
     source_root = ROOT / "app/src/main/java/com/lma/app"
     sources = sorted((ROOT / "tests/host").rglob("*.java")) + sorted((source_root / "core").glob("*.java"))
-    sources += [source_root / (name + ".java") for name in ("Store", "Downloads", "InputImports", "Net", "ApiHost", "ModelPublication", "EngineHost", "ChatRunner", "HubClient", "HubCatalog", "ModelSettings", "GgufMetadata", "LocalEngine", "ModelCapabilities", "VisionPairs", "ConversationController")]
+    sources += [source_root / (name + ".java") for name in ("Store", "Downloads", "InputImports", "Net", "ApiHost", "ModelPublication", "EngineHost", "ChatRunner", "HubClient", "HubCatalog", "ModelSettings", "GgufMetadata", "TemplateProfiles", "LocalEngine", "ModelCapabilities", "VisionPairs", "ConversationController")]
     classes = OUT / "classes"; classes.mkdir(exist_ok=True)
     response = OUT / "sources.rsp"
     response.write_text("\n".join('"' + p.as_posix() + '"' for p in sources), encoding="utf-8")

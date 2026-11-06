@@ -66,4 +66,19 @@ public final class GgufMetadata {
             return new JSONObject().put("source", "unknown").put("architecture", architecture).put("contextLength", 0).put("error", "GGUF 未提供可识别的架构上下文上限");
         }
     }
+    /** Engine-load worker only. Bounds header I/O and skips tokenizer arrays. */
+    public static String chatTemplate(File source) throws Exception {
+        try (RandomAccessFile file = new RandomAccessFile(source, "r")) {
+            if (number(file, 4) != 0x46554747L) throw new IOException("Not a GGUF file");
+            long version = number(file, 4); if (version != 2 && version != 3) throw new IOException("Unsupported GGUF version");
+            number(file, 8); long count = number(file, 8);
+            if (count < 0 || count > 100000) throw new IOException("Too many GGUF metadata entries");
+            for (long i = 0; i < count; i++) {
+                String key = string(file, 1024); int type = (int) number(file, 4);
+                if (key.equals("tokenizer.chat_template") && type == 8) return string(file, 1024 * 1024);
+                skipValue(file, type);
+            }
+            return "";
+        }
+    }
 }

@@ -152,10 +152,22 @@ def main():
             assert model["uncensored"]["declared"] is True
             assert model["uncensored"]["basis"] == "publisher-declared-uncensored"
             assert model["uncensored"]["evidenceUrl"] == declaration["author_card_url"]
+        template_manifest = json.loads(archive.read("assets/chat-template-profiles.json"))
+        assert template_manifest["schema"] == "lma.chat-template-profiles/1"
+        template_assets = {"chat-template-profiles.json"}
+        for profile in template_manifest["profiles"]:
+            asset = profile["asset"]
+            assert re.fullmatch(r"chat-templates/[a-z0-9-]+\.jinja", asset)
+            data = archive.read("assets/" + asset)
+            assert len(data) <= 65536 and hashlib.sha256(data).hexdigest() == profile["sha256"]
+            assert data == (source / "assets" / asset).read_bytes()
+            assert profile["ordinaryChat"] == "preserve-embedded"
+            assert re.fullmatch(r"[0-9a-f]{64}", profile["weightSha256"])
+            template_assets.add(asset)
         for name in members:
             assert not name.startswith("signing/") and not name.endswith((".p12", ".part", ".gguf")), "Private key or model weight accidentally packaged"
             if name.startswith("assets/"):
-                assert name[7:] in ui_assets or name.startswith("assets/licenses/") or name in architecture_assets, "Unreviewed model-specific or other asset in APK: " + name
+                assert name[7:] in ui_assets or name[7:] in template_assets or name.startswith("assets/licenses/") or name in architecture_assets, "Unreviewed model-specific or other asset in APK: " + name
         engine_manifest = json.loads(archive.read("assets/engine-builds.json"))
         assert len(engine_manifest["engines"]) == len(engines)
         assert len(engine_manifest.get("preparations", [])) == len(preparations)

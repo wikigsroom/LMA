@@ -1,0 +1,41 @@
+{
+  "passed": 22,
+  "checks": [
+    "complete_current_adapter_audit_passes",
+    "no_required_code_gap_hidden",
+    "CPU_profile_and_unmeasured_boundaries_preserved",
+    "missing_D04_rejects",
+    "missing_D05_rejects",
+    "missing_D08_rejects",
+    "missing_D09_rejects",
+    "missing_D10_rejects",
+    "missing_foreground_rejects",
+    "missing_part-identification_rejects",
+    "missing_pointcloud_rejects",
+    "missing_surface_rejects",
+    "missing_local-stages_rejects",
+    "all_requested_adaptations_complete_rejects",
+    "all_benchmark_architectures_integrated_rejects",
+    "missing_required_receipt_rejects",
+    "changed_required_receipt_rejects",
+    "remaining_subset_rejects",
+    "evidence_rejects_missing_adapter_before_writes",
+    "package_rejects_missing_adapter_before_writes",
+    "prepare_rejects_missing_adapter_before_writes",
+    "published_evidence_and_release_assets_unchanged"
+  ],
+  "input_fingerprint": {
+    "research/portability/adaptation-current.json": "6404a08ecbfd18d5e2943afbf806b047732367f0de4b1d2320b019f4ef2bfb0e",
+    "tools/audit_adaptations.py": "f4d60abe227f14476bb6710c368d9d1f816131d3dc589ecc1d5147515d46fc03",
+    "tools/complete_evidence.py": "7475ca7bfd6305a89ec5fafe6596b97e58f5e6ec9d5b4091161478ec45da256b",
+    "tools/program_evidence.py": "4866558e5cf2142d0170b50b30de1f0cde7026714812423c60d3c420ba451b82",
+    "tools/program_release.py": "8c7f619e5c0d02d5e9be3bfeeaf7fc222d228b531850771519234d9cff292cdb",
+    "tools/test_adaptation_audit.py": "84edde04fff658d99c1ff009d8d6b2a7110c2b08a8a322c58169ced17397c2d8"
+  },
+  "immutable_files_checked": 67,
+  "actual_release_entrypoints_executed": 3,
+  "incomplete_release_actions_rejected": true,
+  "github_writes": 0,
+  "completeModelsRun": 0,
+  "physicalDeviceTests": 0
+}

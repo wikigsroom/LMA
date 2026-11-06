@@ -5,10 +5,10 @@ from evidence import fingerprint,current
 from build_ltx098_app import inputs as native_inputs,sha
 
 ROOT=Path(__file__).resolve().parents[1]
-NAMES=('Store','Downloads','InputImports','Net','ApiHost','ModelPublication','EngineHost','ChatRunner','HubClient','HubCatalog','ModelSettings','GgufMetadata','LocalEngine','LocalJobs','NativeWorker','NativeStages','Ltx098Engine','ModelCapabilities','VisionPairs','ConversationController')
+NAMES=('Store','Downloads','InputImports','Net','ApiHost','ModelPublication','EngineHost','ChatRunner','HubClient','HubCatalog','ModelSettings','GgufMetadata','TemplateProfiles','LocalEngine','LocalJobs','NativeWorker','NativeStages','Ltx098Engine','ModelCapabilities','VisionPairs','ConversationController')
 
 def inputs():
-    return native_inputs()|fingerprint('app/src/main/java/com/lma/app/core',*[f'app/src/main/java/com/lma/app/{n}.java' for n in NAMES],
+    return native_inputs()|fingerprint('app/src/main/assets/chat-template-profiles.json','app/src/main/assets/chat-templates','app/src/main/java/com/lma/app/core',*[f'app/src/main/java/com/lma/app/{n}.java' for n in NAMES],
         'tests/host','tests/sd-host/com/lma/app/VideoEncoder.java','tests/ltx-app','tools/test_ltx098_app.py',
         'catalogue/model-bundles.json','catalogue/model-assemblies.json','app/src/main/assets/models.json','app/src/main/assets/recipe-templates.json')
 

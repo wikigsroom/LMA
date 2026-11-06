@@ -1,5 +1,5 @@
 {
-  "version": "1.2.0",
+  "version": "1.2.1",
   "kind": "current production UI with an explicit simulated bridge",
   "android_device": false,
   "model_inference": false,
@@ -73,28 +73,30 @@
     },
     {
       "file": "05-spatial-queue.png",
-      "bytes": 43452,
-      "sha256": "c20b518fc301234086bc70e7c1d157150c3f08303908627c60b78b12f960935a"
+      "bytes": 43355,
+      "sha256": "8de48398d90dd51ab2dfdf982d2b03b52116c1493f5518d849846ff90cc10e4a"
     },
     {
       "file": "spatial-ui.gif",
-      "bytes": 596385,
-      "sha256": "8d636dab49b4d1e11270efb9d4225fb7413d1bdfe7860744e1a9cbe3e654de31"
+      "bytes": 913568,
+      "sha256": "e7a3a7f5ce6702af7f6a8d9d967507d7e8807d494d82a5b269fa9bac9f30ec3a"
     },
     {
       "file": "spatial-ui.mp4",
-      "bytes": 249938,
-      "sha256": "4a58b5fc7a1a00dee6731b4bcc7a2eaa367e3536119c4655058c3d1c026a7a24"
+      "bytes": 372599,
+      "sha256": "7f911494e83c4a56b94cd163317b0abf8d72d85a1215c5533f1dc99720d05dfc"
     }
   ],
   "input_fingerprint": {
     "app/src/main/assets/app.css": "b09171d519a9cc4e1a3a8101c45dd46c40d24b917c4fbc29c3e131dbfb79a72d",
-    "app/src/main/assets/app.js": "0e8ebe7257ead85efffdaec5f0c25b411aae8e7f9dab80064e1bd9854be8c4fe",
+    "app/src/main/assets/app.js": "3980edf1fbf745768fb543305e70ab2e4a7c20062ee1b752cfd97186f1b22c46",
     "app/src/main/assets/architectures/ltx098-upscaler.onnx": "b7b3b8067dc247002b92fa228bf8bd1271d3b535f0ac8f70c7f7e5e94448e2d9",
     "app/src/main/assets/asset-preparations.json": "b0a7cbac1a633310b9fff84164439ee8fe20a1df137d1075eb9263f531ccfd3b",
     "app/src/main/assets/audio-preview.js": "33bb898969f37c1f78c6664052c46da844d148defdcef4a54d64bc5829037f44",
     "app/src/main/assets/capabilities.js": "ce9fc72a05d288c9b8ee3fc2593af190187aecac68f36f33ce8143d6aa01c812",
     "app/src/main/assets/capabilities.json": "f964a205d341bcbf627fd438d8cb78b359be4f8c83dc572f34ad7b964e252a4c",
+    "app/src/main/assets/chat-template-profiles.json": "f4f1d2b6bbf6f7743a6c40ff441d6da0e7ef633f3275989f4bcd67302a79a761",
+    "app/src/main/assets/chat-templates/dolphin3-chatml-tools-v1.jinja": "59cae1fe1315e4b081877ebdfdec8d2ac433ba402f24ae68d8ba8a76928d7705",
     "app/src/main/assets/community.js": "2cc91dd7eb1d441f2e51002169a8264dbbca5a361b8d93379df913da5143634c",
     "app/src/main/assets/conversation.css": "5d29c47ba810774c502eb68c369d1d355644b1da542389a38c6b0dd3ec5516dc",
     "app/src/main/assets/conversation.js": "9bddc0fc7c4faff2134f9fd8bae911d9d96b2f42deedf36ebaf0324d1d88fbf2",
@@ -293,7 +295,7 @@
     "app/src/main/assets/licenses/tts-utf8proc-LICENSE.md.txt": "3b510150d34f248a221bb88e1d811238d6c6c18b51231822c42974c39bb07256",
     "app/src/main/assets/licenses/xxhash-LICENSE.txt": "a2973411d278045bde3c7161b911e0680d53e2d73d6457c77068d2e55d816d67",
     "app/src/main/assets/lma-logo.png": "3155c4601396c8623c20879b903e317747a94a7b840be307bcc93fde988c8bea",
-    "app/src/main/assets/mica-design.json": "f5d12b09a64b3b7ca61d0fa05aa32c23ecb8fbe967d01404f8040e199dce051e",
+    "app/src/main/assets/mica-design.json": "9ed6494429748524d99bda1489366078e227d8af874c1f82b7f93afaf334f1f6",
     "app/src/main/assets/mica-tokens.css": "2fc03faceef47cfd1b5a71f969f2b1cc893fbfc74e017d720922d04a8f5dc4f1",
     "app/src/main/assets/mica.css": "fe7e5dda3f2f38690623e34a18b2ce5c8f196aef0779091b55855de6a773ccfd",
     "app/src/main/assets/mica.js": "b42616f0889dc262c68ae62cfe804aad64ca93a38e4f186351eb2c7eda52ed74",

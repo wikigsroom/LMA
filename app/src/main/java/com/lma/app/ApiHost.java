@@ -22,11 +22,39 @@ public final class ApiHost implements LocalApi.Runtime, AutoCloseable {
     private static final class TextCall {
         final JSONObject request; final ExecutionGate.Ticket slot; final TextAdmission.Lease admission; final long epoch; final int context;
         volatile HttpURLConnection connection; volatile boolean cancelled; volatile Thread thread; private boolean finished;
+        JSONObject diagnostic;
         TextCall(JSONObject request, ExecutionGate.Ticket slot, TextAdmission.Lease admission, long epoch, int context) { this.request = request; this.slot = slot; this.admission = admission; this.epoch = epoch; this.context = context; }
         synchronized void cancel() { if (finished) return; cancelled = true; HttpURLConnection active = connection; if (active != null) active.disconnect(); Thread worker = thread; if (worker != null && worker != Thread.currentThread()) worker.interrupt(); }
         synchronized void finish() { finished = true; thread = null; }
     }
     public ApiHost(LmaService owner, LmaApp app) { this.owner = owner; this.app = app; api = new LocalApi(this); }
+    // Bounded in-memory metadata only: no prompts, arguments, results, keys or personal file paths.
+    private final java.util.ArrayDeque<JSONObject> toolDiagnostics = new java.util.ArrayDeque<>();
+    public synchronized JSONArray toolDiagnostics() throws Exception { return new JSONArray(new JSONArray(toolDiagnostics).toString()); }
+    private synchronized void traceText(TextCall call, int tokens) throws Exception {
+        JSONArray tools = call.request.optJSONArray("tools"), names = new JSONArray(), results = new JSONArray();
+        if (tools != null) for (int i = 0; i < tools.length(); i++) names.put(tools.getJSONObject(i).getJSONObject("function").getString("name"));
+        JSONArray messages = call.request.optJSONArray("messages");
+        if (messages != null) for (int i = 0; i < messages.length(); i++) { JSONObject m = messages.getJSONObject(i); if (m.optString("role").equals("tool")) results.put(m.getString("tool_call_id")); }
+        if (names.length() == 0 && results.length() == 0) return;
+        call.diagnostic = new JSONObject().put("model", call.request.getString("model")).put("toolCount", names.length()).put("toolNames", names)
+            .put("toolDefinitionsSha256", TemplateProfiles.hash(tools == null ? "[]" : tools.toString())).put("inputTokens", tokens)
+            .put("toolResultIds", results).put("toolChoice", call.request.opt("tool_choice")).put("stream", call.request.optBoolean("stream"))
+            .put("template", TemplateProfiles.status(call.request.getString("model"))).put("delivery", "generating");
+        if (toolDiagnostics.size() >= 12) toolDiagnostics.removeFirst(); toolDiagnostics.addLast(call.diagnostic);
+    }
+    private synchronized void traceReply(TextCall call, JSONObject message, String finish) throws Exception {
+        if (call.diagnostic == null) return;
+        JSONArray calls = message.optJSONArray("tool_calls"), summary = new JSONArray();
+        if (calls != null) for (int i = 0; i < calls.length(); i++) {
+            JSONObject c = calls.getJSONObject(i), f = c.getJSONObject("function");
+            summary.put(new JSONObject().put("id", c.getString("id")).put("name", f.getString("name")).put("argumentsSha256", TemplateProfiles.hash(f.getString("arguments"))));
+        }
+        call.diagnostic.put("delivery", "validated").put("finishReason", finish).put("calls", summary);
+    }
+    private synchronized void traceFailure(TextCall call, String code) throws Exception {
+        if (call.diagnostic != null) call.diagnostic.put("delivery", "failed").put("errorCode", code);
+    }
     public synchronized boolean ready() { return !closed && server != null; }
     public boolean wanted() { return app.prefs.getBoolean("desiredApi", false); }
     public synchronized void start() throws Exception {
@@ -62,6 +90,7 @@ public final class ApiHost implements LocalApi.Runtime, AutoCloseable {
     @Override public JSONObject health() throws Exception {
         return new JSONObject().put("status", "ok").put("version", LmaApp.VERSION).put("execution", "same_android_phone")
                 .put("scheduler", app.execution.snapshot()).put("textQueue", textAdmission.snapshot()).put("textState", app.engineState).put("textRequestActive", app.textRequestBusy).put("jobActive", app.jobHost == null ? "" : app.jobHost.activeId())
+                .put("toolTemplate", TemplateProfiles.status(app.engineModel)).put("recentToolRequests", toolDiagnostics())
                 .put("foundationReady", app.jobs != null && app.artifacts != null && app.localEngines != null).put("modelInferenceTested", false);
     }
     private ApiCatalogue catalogue;
@@ -128,12 +157,13 @@ public final class ApiHost implements LocalApi.Runtime, AutoCloseable {
                         catch (IOException error) { call.cancel(); }
                     }, 2, 8, java.util.concurrent.TimeUnit.SECONDS);
                     try {
-                        HttpURLConnection connection = openText(call, path); ToolReply guard = new ToolReply(call.request);
+                        HttpURLConnection connection = openText(call, path); ToolReply guard = new ToolReply(call.request, (message, finish) -> traceReply(call, message, finish));
                         try (InputStream in = connection.getInputStream()) { guard.stream(in, out); }
                         call.slot.finishResourceMonitoring();
                     } catch (Exception error) {
                         String resourceFailure = call.slot.resourceFailure();
                         String code = !resourceFailure.isEmpty() ? "resource_limit_exceeded" : error instanceof LocalHttp.Failure ? ((LocalHttp.Failure)error).code : call.cancelled ? "request_cancelled" : "invalid_model_output";
+                        traceFailure(call, code);
                         String param = error instanceof LocalHttp.Failure ? ((LocalHttp.Failure)error).param : error instanceof RequestError ? ((RequestError)error).param : null;
                         String message = LocalApi.safeMessage(!resourceFailure.isEmpty() ? resourceFailure : error.getMessage() == null ? "Local text request failed" : error.getMessage());
                         JSONObject detail = new JSONObject().put("message", message).put("type", "lma_local_error").put("code", code).put("param", param == null ? JSONObject.NULL : param).put("request_id", requestId);
@@ -144,7 +174,7 @@ public final class ApiHost implements LocalApi.Runtime, AutoCloseable {
             }).header("X-Request-ID", requestId).header("X-LMA-Max-Tokens", String.valueOf(call.request.getInt("max_tokens")));
         }
         try {
-            call.thread = Thread.currentThread(); HttpURLConnection connection = openText(call, path); ToolReply guard = new ToolReply(call.request);
+            call.thread = Thread.currentThread(); HttpURLConnection connection = openText(call, path); ToolReply guard = new ToolReply(call.request, (message, finish) -> traceReply(call, message, finish));
             if (guard.enabled()) {
                 byte[] bytes; try (InputStream in = connection.getInputStream()) { bytes = guard.complete(in); }
                 call.slot.finishResourceMonitoring(); releaseText(call);
@@ -157,20 +187,24 @@ public final class ApiHost implements LocalApi.Runtime, AutoCloseable {
                 @Override public void close() throws IOException { try { super.close(); } finally { releaseText(call); } }
             };
             return LocalHttp.Response.stream(200, "application/json; charset=utf-8", connection.getContentLengthLong(), in).header("X-Request-ID", requestId).header("X-LMA-Max-Tokens", String.valueOf(call.request.getInt("max_tokens")));
-        } catch (Exception error) { String resourceFailure = call.slot.resourceFailure(); releaseText(call); if (!resourceFailure.isEmpty()) throw new LocalHttp.Failure(503, "resource_limit_exceeded", resourceFailure); if (error instanceof LocalHttp.Failure || error instanceof RequestError) throw error; throw new LocalHttp.Failure(call.cancelled ? 409 : 502, call.cancelled ? "request_cancelled" : "invalid_model_output", LocalApi.safeMessage(error.getMessage())); }
+        } catch (Exception error) { String resourceFailure = call.slot.resourceFailure(); traceFailure(call, error instanceof LocalHttp.Failure ? ((LocalHttp.Failure)error).code : call.cancelled ? "request_cancelled" : "invalid_model_output"); releaseText(call); if (!resourceFailure.isEmpty()) throw new LocalHttp.Failure(503, "resource_limit_exceeded", resourceFailure); if (error instanceof LocalHttp.Failure || error instanceof RequestError) throw error; throw new LocalHttp.Failure(call.cancelled ? 409 : 502, call.cancelled ? "request_cancelled" : "invalid_model_output", LocalApi.safeMessage(error.getMessage())); }
     }
     private void checkText(TextCall call) throws IOException { if (closed || server == null || call.cancelled || cancellation.get() != call.epoch || Thread.currentThread().isInterrupted()) throw new InterruptedIOException("文本请求已取消"); }
     private HttpURLConnection openText(TextCall call, String path) throws Exception {
         ExecutionGate.Check check = () -> checkText(call); call.slot.await(check);
         owner.engine.selectForApi(call.slot, call.request.getString("model"), check); owner.engine.ensureReady(call.slot, call.request.getString("model"), check); check.run();
-        String prompt = path.equals("/v1/chat/completions") ? nativeJson(call, "/apply-template", call.request).getString("prompt") : call.request.getString("prompt");
+        if (path.equals("/v1/chat/completions")) TemplateProfiles.admit(call.request.getString("model"), call.request);
+        JSONObject wire = NativeToolRequest.adapt(call.request);
+        String prompt = path.equals("/v1/chat/completions") ? nativeJson(call, "/apply-template", wire).getString("prompt") : call.request.getString("prompt");
         JSONObject tokens = nativeJson(call, "/tokenize", new JSONObject().put("content", prompt).put("add_special", false).put("parse_special", true));
         int inputTokens = tokens.getJSONArray("tokens").length(), available = call.context - inputTokens;
         if (available < 1) throw new LocalHttp.Failure(400, "context_length_exceeded", "The rendered conversation and tools exceed the selected model context (" + inputTokens + " input tokens / " + call.context + " context)", path.equals("/v1/chat/completions") ? "messages" : "prompt");
         call.request.put("max_tokens", Math.min(call.request.getInt("max_tokens"), available));
+        traceText(call, inputTokens);
+        wire.put("max_tokens", call.request.getInt("max_tokens"));
         check.run(); HttpURLConnection connection = Net.engine(app, path); call.connection = connection;
         connection.setRequestMethod("POST"); connection.setDoOutput(true); connection.setRequestProperty("Content-Type", "application/json; charset=utf-8"); connection.setRequestProperty("Accept", call.request.optBoolean("stream") ? "text/event-stream" : "application/json");
-        byte[] bytes = call.request.toString().getBytes(java.nio.charset.StandardCharsets.UTF_8); connection.setFixedLengthStreamingMode(bytes.length);
+        byte[] bytes = wire.toString().getBytes(java.nio.charset.StandardCharsets.UTF_8); connection.setFixedLengthStreamingMode(bytes.length);
         try (OutputStream out = connection.getOutputStream()) { out.write(bytes); }
         int status = connection.getResponseCode(); if (status != 200) throw nativeFailure(connection, status); check.run(); return connection;
     }

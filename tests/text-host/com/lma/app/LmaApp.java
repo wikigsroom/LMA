@@ -10,5 +10,7 @@ public final class LmaApp {
     private final Info info = new Info();
     public LmaApp(File root) { this.root = root; root.mkdirs(); info.nativeLibraryDir = root.getPath(); }
     public File getFilesDir() { return root; }
+    public static final class Assets { public java.io.InputStream open(String name) throws java.io.IOException { return new java.io.FileInputStream(new File("app/src/main/assets", name)); } }
+    public Assets getAssets() { return new Assets(); }
     public Info getApplicationInfo() { return info; }
 }
