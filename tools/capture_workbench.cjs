@@ -45,6 +45,7 @@ async function main() {
     }};
   },{version});
   await page.goto(origin,{waitUntil:'networkidle'});
+  await page.locator('.nav-item[data-tab="models"]').click();
   await page.evaluate(()=>{const banner=document.createElement('div');banner.textContent='UI FIXTURE · 桌面界面录制 · 未执行 Android / 模型推理';banner.style.cssText='position:fixed;top:0;left:0;right:0;z-index:99999;padding:7px;background:#fff0c2;color:#633c00;font:10px sans-serif;text-align:center;pointer-events:none';document.body.appendChild(banner);});
   const checked=name=>{checks.push(name);console.log('PASS '+name);};
   const overflow=async(p,name)=>{assert(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),name);checked(name);};

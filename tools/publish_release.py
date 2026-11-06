@@ -56,7 +56,7 @@ def main():
     if not args.gh or not Path(args.gh).is_file():
         raise RuntimeError("Install/authenticate GitHub CLI, then provide --gh if not on PATH")
     assert not run(["git", "status", "--porcelain"]).stdout.strip(), "Commit the reviewed repository before publishing"
-    run([sys.executable, ROOT / "tools/check_repository.py"])
+    run([sys.executable, ROOT / "tools/check_repository.py"], timeout=900)
     head = run(["git", "rev-parse", "HEAD"]).stdout.strip()
     tag = manifest["tag"]
     assert run(["git", "rev-list", "-n", "1", tag]).stdout.strip() == head, "Release tag must point to the reviewed HEAD"

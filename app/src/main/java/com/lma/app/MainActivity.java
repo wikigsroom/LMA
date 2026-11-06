@@ -82,7 +82,7 @@ public final class MainActivity extends Activity {
         }
         String themeChoice = app.prefs.getString("theme", "dark");
         boolean darkStart = themeChoice.equals("dark") || themeChoice.equals("system") && (getResources().getConfiguration().uiMode & android.content.res.Configuration.UI_MODE_NIGHT_MASK) == android.content.res.Configuration.UI_MODE_NIGHT_YES;
-        int startColor = darkStart ? Color.rgb(21, 26, 43) : Color.rgb(243, 245, 250);
+        int startColor = darkStart ? Color.rgb(20, 20, 20) : Color.rgb(255, 255, 255);
         getWindow().setStatusBarColor(startColor); getWindow().setNavigationBarColor(startColor);
         getWindow().setBackgroundDrawable(new android.graphics.drawable.ColorDrawable(startColor));
         getWindow().getDecorView().setSystemUiVisibility(darkStart ? 0 : android.view.View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR | android.view.View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
@@ -218,7 +218,7 @@ public final class MainActivity extends Activity {
             main.post(() -> {
                 if (destroyed || nativeDark != null && nativeDark == dark) return;
                 nativeDark = dark;
-                int color = dark ? Color.rgb(21, 26, 43) : Color.rgb(243, 245, 250);
+                int color = dark ? Color.rgb(20, 20, 20) : Color.rgb(255, 255, 255);
                 getWindow().setStatusBarColor(color); getWindow().setNavigationBarColor(color);
                 int flags = getWindow().getDecorView().getSystemUiVisibility();
                 int light = android.view.View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR | android.view.View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR;

@@ -6,5 +6,5 @@
   var dark = choice === 'dark' || (choice === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
   document.documentElement.dataset.theme = dark ? 'dark' : 'light';
   document.documentElement.dataset.themePreference = choice;
-  document.documentElement.style.background = dark ? '#151A2B' : '#F3F5FA';
+  document.documentElement.style.background = dark ? '#141414' : '#FFFFFF';
 }());

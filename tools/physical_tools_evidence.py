@@ -6,7 +6,10 @@ from evidence import ROOT, current, version
 def check(directory):
     path = directory/'physical-tools.json'
     if not path.exists():
-        assert tuple(map(int,version().split('.'))) < (1,1,0), 'Current tools release requires its selected physical probe'
+        # v1.1.0's selected probe remains mandatory for that release. The user
+        # subsequently reserved the phone for another task and requested code review.
+        deferred = version()=='1.2.0' and json.loads((ROOT/'docs/proposals/workspace-validation-policy.json').read_text('utf8'))['phone_use']=='deferred_user_request'
+        assert tuple(map(int,version().split('.'))) < (1,1,0) or deferred, 'Current tools release requires its selected physical probe'
         return dict(physical_tool_protocol_tested=False,physical_tool_protocol_checks=0,dsh_app_tested=False)
     data=json.loads(path.read_text('utf8'))
     build=json.loads((ROOT/'dist/build-info.json').read_text('utf8'))

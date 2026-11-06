@@ -1,0 +1,187 @@
+/* DSH-inspired LMA workspace. Native offline assets; no blur, remote fonts or idle animation. */
+:root.lma-mica {--gutter:20px;--sidebar-width:64px;--section-gap:16px;--model-floor:320px;--model-min:100%}
+.lma-mica .app-shell {display:grid;grid-template-columns:var(--sidebar-width) minmax(0,1fr);grid-template-rows:auto auto minmax(0,1fr);overflow:hidden;position:relative}
+.lma-mica .workspace-sidebar {grid-column:1;grid-row:1 / 4;display:flex;flex-direction:column;min-width:0;min-height:0;overflow:auto;background:var(--lma-surface);border-right:1px solid var(--line);padding:12px 7px;gap:8px;z-index:30}
+.lma-mica .sidebar-top {display:flex;flex-direction:column;align-items:center;gap:8px;min-width:0}
+.lma-mica .sidebar-top .brand {flex:none;display:flex;align-items:center;min-height:48px;text-decoration:none}
+.lma-mica .sidebar-top .brand-logo {width:36px;height:36px;border-radius:10px}
+.lma-mica .sidebar-top .brand-name,.lma-mica .nav-label,.lma-mica .sidebar-recents,.lma-mica .sidebar-footer {display:none}
+.lma-mica .workspace-sidebar .icon-button {color:var(--lma-secondary)}
+.lma-mica .sidebar-newchat {display:flex;align-items:center;justify-content:center;gap:12px;flex-shrink:0;min-height:48px;width:100%;border:0;border-radius:10px;background:var(--lma-raised);color:var(--ink);padding:10px 0;font-size:.875rem;text-align:left}
+.lma-mica .bottom-nav {grid-area:auto;position:static;display:flex;flex-direction:column;align-content:normal;gap:6px;padding:0;min-height:0;flex:1;border:0;background:transparent;overflow:auto;scrollbar-width:thin}
+.lma-mica .nav-item {display:flex;flex-direction:row;align-items:center;justify-content:center;min-height:48px;width:100%;min-width:48px;padding:10px 0;gap:12px;border-radius:10px;font-size:.875rem;line-height:1.4;flex-shrink:0;text-align:left;color:var(--lma-secondary)}
+.lma-mica .nav-item .icon {width:22px;height:22px;flex-shrink:0}
+.lma-mica .nav-item.active {background:var(--lma-raised);color:var(--ink);font-weight:600;box-shadow:none}
+.lma-mica .sidebar-settings {margin-top:auto}
+.lma-mica .topbar {grid-column:2;grid-row:1;display:flex;min-width:0;max-width:none;min-height:64px;gap:12px;padding:8px var(--gutter);margin:0;width:100%;border-bottom:1px solid var(--line);background:var(--bg)}
+.lma-mica .workspace-heading {display:flex;gap:12px;align-items:center;font-size:.875rem;font-weight:600;min-width:0}
+.lma-mica .workspace-local {color:var(--lma-muted);font-weight:400;font-size:.75rem}
+.lma-mica .runtime-strip {grid-area:auto;display:flex;align-items:center;flex-wrap:nowrap;min-height:48px;min-width:0;max-width:480px;flex:0 1 480px;gap:8px;margin:0 0 0 auto;padding:0 0 0 12px;border:0;border-radius:12px;background:var(--lma-surface)}
+.lma-mica .runtime-copy {flex:1;min-width:0}
+.lma-mica .runtime-copy strong {display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:.8125rem;font-weight:500}
+.lma-mica .runtime-copy>span {display:none}
+.lma-mica #runtimeAction {flex-shrink:0;white-space:nowrap;min-height:48px;color:var(--lma-secondary);padding:8px 10px}
+.lma-mica #main {grid-column:2;grid-row:3;min-height:0;min-width:0;max-width:none;width:100%;margin:0;flex:1;overflow:hidden}
+.lma-mica .error-banner {grid-column:2;grid-row:2;position:static;inset:auto;margin:8px var(--gutter);max-width:none;min-width:0;max-height:25vh;overflow:auto;box-shadow:none}
+.lma-mica .page {width:100%;padding:28px var(--gutter) 32px;min-height:0;overflow:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:var(--lma-control-border) transparent}
+.lma-mica .page-heading {margin-bottom:24px;gap:16px;align-items:center}
+.lma-mica .page-heading .eyebrow {display:none}
+.lma-mica h1 {font-size:1.5rem;font-weight:600;letter-spacing:-.02em}
+.lma-mica h2 {font-size:1.125rem;font-weight:600}
+.lma-mica .page-heading p {margin-top:8px;font-size:.875rem;max-width:660px}
+.lma-mica .button {border-radius:10px;font-size:.875rem;box-shadow:none}
+.lma-mica .button.secondary {background:var(--lma-raised);border-color:transparent;color:var(--ink)}
+.lma-mica .button.ghost {background:transparent;border-color:var(--line);color:var(--lma-secondary)}
+.lma-mica .resource-ribbon {display:flex;flex-wrap:wrap;gap:8px 24px;padding:0 0 18px;margin-bottom:20px;border-bottom:1px solid var(--line);background:transparent}
+.lma-mica .resource-ribbon>div,.lma-mica .resource-ribbon>div:last-child {display:flex;flex-direction:row;align-items:baseline;gap:8px;flex-wrap:wrap;padding:0;border:0;border-radius:0;grid-column:auto;background:transparent;min-width:0;flex:0 1 auto}
+.lma-mica .resource-ribbon>div:before,.lma-mica .resource-ribbon>div:last-child:before {display:none}
+.lma-mica .resource-ribbon span,.lma-mica .resource-ribbon strong {font-size:.8125rem;font-weight:400;line-height:1.6;color:var(--lma-secondary)}
+.lma-mica .resource-ribbon strong {color:var(--ink);font-family:var(--mono)}
+.lma-mica .resource-ribbon>div:first-child {border:0;padding:0}
+.lma-mica .search-field {background:var(--lma-surface);border-color:var(--line);border-radius:12px}
+.lma-mica .filter-row {gap:4px;border-bottom:1px solid var(--line);padding:0 0 8px;margin-top:16px}
+.lma-mica .filter {background:transparent;border-color:transparent;border-radius:8px;color:var(--lma-secondary)}
+.lma-mica .filter.active {color:var(--ink);background:var(--lma-raised);box-shadow:none}
+.lma-mica .task-filter-row {margin:12px 0;gap:4px}
+.lma-mica .task-filter {border-color:transparent;background:transparent;color:var(--lma-muted);border-radius:8px;padding-left:10px;padding-right:10px}
+.lma-mica .task-filter.active {border-color:transparent;background:var(--lma-primary-soft);color:var(--lma-on-primary-soft)}
+.lma-mica .model-grid,.lma-mica .job-list {display:grid;grid-template-columns:minmax(0,1fr);gap:0}
+.lma-mica .model-card {border:0;border-bottom:1px solid var(--line);border-radius:0;padding:22px 0;background:transparent;box-shadow:none}
+.lma-mica .model-card:before {display:none}
+.lma-mica .model-card:hover {box-shadow:none;transform:none;border-color:var(--line)}
+.lma-mica .model-name strong {font-size:1rem;font-weight:600}
+.lma-mica .model-description {color:var(--lma-secondary);font-size:.875rem;line-height:1.65}
+.lma-mica .model-footer [data-action=download],.lma-mica .model-footer [data-action=resumeDownload],.lma-mica .model-footer [data-action=bundleDownload] {background:var(--lma-primary);color:var(--lma-on-primary)}
+.lma-mica .panel,.lma-mica .server-card {background:transparent;border:0;border-bottom:1px solid var(--line);border-radius:0;padding:20px 0;margin:0 0 8px;box-shadow:none}
+.lma-mica .server-card {padding-top:8px}
+.lma-mica .job-card,.lma-mica .draft-card {border:0;border-bottom:1px solid var(--line);border-radius:0;padding:20px 0;background:transparent;box-shadow:none}
+.lma-mica .artifact-card {border:1px solid var(--line);border-radius:12px;background:var(--lma-surface);box-shadow:none}
+.lma-mica .list-heading {margin-top:20px}
+.lma-mica .capability-filters {border:0;border-radius:10px;background:var(--lma-surface)}
+.lma-mica .tag,.lma-mica .badge {border-radius:6px;font-weight:400}
+.lma-mica .settings-form {max-width:900px;margin:0 auto}
+.lma-mica .settings-form .panel {padding:24px 0}
+.lma-mica .settings-form .setting-row {padding:14px 0;gap:16px}
+.lma-mica .about {border-top:0;max-width:900px;margin:8px auto 0}
+.lma-mica .chat-page.active {display:flex;flex-direction:column;overflow:hidden;padding:0 var(--gutter) 16px;max-width:1080px;margin:0 auto}
+.lma-mica .chat-toolbar {min-height:56px;margin:0;padding:4px 0;gap:8px;flex-shrink:0;border-bottom:0}
+.lma-mica .chat-title {display:flex;align-items:center;gap:8px;min-width:0;flex:1;font-size:.875rem;font-weight:500;color:var(--lma-secondary)}
+.lma-mica #workspaceChatTitle {white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lma-mica .workspace-chat-dot {width:6px;height:6px;border-radius:50%;background:var(--lma-muted);flex-shrink:0}
+.lma-mica .toolbar-actions {display:flex;gap:0}
+.lma-mica .messages {flex:1;min-height:0;overflow:auto;padding:24px 0;scroll-padding-bottom:24px}
+.lma-mica .message {max-width:800px;margin:0 auto 28px;border:0;background:transparent;padding:0;font-size:1rem;line-height:1.75}
+.lma-mica .message.user {margin-left:auto;max-width:min(88%,680px);padding:14px 18px;border:0;border-radius:18px;background:var(--lma-raised)}
+.lma-mica .message.user .message-heading {display:none}
+.lma-mica .message-content {font-size:1rem;line-height:1.75}
+.lma-mica .message-heading {margin-bottom:8px;color:var(--lma-secondary)}
+.lma-mica .composer {display:flex;flex-direction:column;gap:0;max-width:800px;width:100%;padding:14px 14px 10px;margin:0 auto;border-radius:22px;border:1px solid transparent;background:var(--lma-raised);box-shadow:none;flex-shrink:0}
+.lma-mica .composer:focus-within {border-color:var(--lma-control-border);box-shadow:none}
+.lma-mica #chatInput {min-height:56px;padding:8px 4px;font-size:1rem;line-height:1.6;width:100%;background:transparent}
+.lma-mica .composer-bottom {display:flex;align-items:center;flex-wrap:wrap;gap:4px;min-width:0}
+.lma-mica .composer-more {order:0;border-radius:50%;background:transparent}
+.lma-mica .composer-bottom .model-picker {order:1;display:flex;align-items:center;flex:1;min-width:0;width:auto;max-width:calc(100% - 104px);gap:4px;font-size:.8125rem;padding:8px 4px;min-height:48px;border:0;background:transparent;color:var(--lma-secondary)}
+.lma-mica .model-picker>span:first-child {display:none}
+.lma-mica #chatModelName {white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;max-width:100%}
+.lma-mica #composerHint {order:3;flex-basis:100%;font-size:.6875rem;color:var(--lma-muted);padding:0 6px;margin-top:2px;text-align:center}
+.lma-mica .send-button {order:2;border-radius:50%;width:48px;height:48px;min-width:48px;min-height:48px;box-shadow:none;background:var(--lma-primary);color:var(--lma-on-primary)}
+.lma-mica .send-button:disabled {background:var(--lma-inset);color:var(--lma-muted)}
+.lma-mica .send-button.stop {background:var(--lma-danger-soft);color:var(--lma-danger)}
+.lma-mica .chat-empty {display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:0;height:auto;padding:24px 0 16px;text-align:center;gap:0;margin:auto 0 0}
+.lma-mica .chat-empty .empty-symbol {background:transparent;border:0;box-shadow:none;margin:0 0 16px;width:64px;height:64px}
+.lma-mica .chat-empty .empty-symbol img {width:64px;height:64px;object-fit:contain}
+.lma-mica .chat-empty .eyebrow {display:none}
+.lma-mica .chat-empty h2 {font-size:clamp(1.25rem,3.8vw,1.75rem);font-weight:600;line-height:1.4;letter-spacing:-.025em;margin:0}
+.lma-mica .chat-empty p {margin:10px 0 20px;font-size:.8125rem;color:var(--lma-muted)}
+.lma-mica .suggestions {display:flex;flex-wrap:wrap;justify-content:center;gap:8px;max-width:100%}
+.lma-mica .suggestion {display:flex;align-items:center;gap:8px;width:auto;min-width:0;min-height:48px;padding:8px 12px;border:1px solid var(--line);border-radius:12px;font-size:.8125rem;color:var(--lma-secondary);background:transparent}
+.lma-mica .suggestion .icon {width:16px;height:16px;flex-shrink:0}
+.lma-mica .chat-page.is-empty .messages {display:flex;flex-direction:column;padding:8px 0 20px}
+.lma-mica .chat-page.is-empty .composer {margin-bottom:clamp(24px,16vh,180px)}
+.lma-mica .conversation-hero-logo {border-radius:14px}
+.lma-mica .conversation-part {background:var(--lma-surface);border-color:var(--line);border-radius:14px}
+.lma-mica .modal {background:var(--lma-surface);border:1px solid var(--line);border-radius:20px;box-shadow:0 18px 60px #0005}
+.lma-mica .modal-heading {border-bottom:1px solid var(--line);margin-bottom:16px;padding-bottom:8px}
+.lma-mica .modal-heading h2 {font-size:1.125rem}
+.lma-mica .modal-list>button,.lma-mica .modal-list>div {border-radius:10px}
+.lma-mica .toast {bottom:20px}
+.lma-mica[data-sidebar="expanded"] {--sidebar-width:256px}
+.lma-mica[data-sidebar="expanded"] .sidebar-top {flex-direction:row;justify-content:space-between;padding:0 4px}
+.lma-mica[data-sidebar="expanded"] .sidebar-top .brand-name {display:inline}
+.lma-mica[data-sidebar="expanded"] .workspace-sidebar {padding:12px;gap:12px}
+.lma-mica[data-sidebar="expanded"] .nav-label {display:inline;min-width:0;overflow-wrap:anywhere}
+.lma-mica[data-sidebar="expanded"] .nav-item,.lma-mica[data-sidebar="expanded"] .sidebar-newchat {justify-content:flex-start;padding:10px 14px}
+.lma-mica[data-sidebar="expanded"] .sidebar-recents {display:flex;flex-direction:column;min-height:96px;flex:1;margin:8px 0 12px;gap:4px;overflow:hidden}
+.lma-mica .sidebar-section-label {display:flex;align-items:center;justify-content:space-between;color:var(--lma-muted);font-size:.75rem;padding-left:12px}
+.lma-mica .sidebar-sessions {display:flex;flex-direction:column;gap:2px;overflow:auto;scrollbar-width:thin;min-height:0}
+.lma-mica .sidebar-session {display:flex;align-items:center;gap:8px;text-align:left;background:transparent;border:0;border-radius:8px;padding:10px 12px;min-height:48px;font-size:.8125rem;color:var(--lma-secondary);min-width:0;flex-shrink:0}
+.lma-mica .sidebar-session span {overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+.lma-mica .sidebar-session[aria-current="true"] {background:var(--lma-raised);color:var(--ink)}
+.lma-mica .sidebar-empty {font-size:.75rem;color:var(--lma-muted);margin:8px 12px;line-height:1.6}
+.lma-mica[data-sidebar="expanded"] .sidebar-footer {display:flex;align-items:center;gap:8px;min-height:48px;padding:8px;border-top:1px solid var(--line);font-size:.75rem;color:var(--lma-secondary);flex-wrap:wrap;flex-shrink:0}
+.lma-mica .sidebar-local {font-family:var(--mono);font-size:.625rem;color:var(--lma-muted)}
+@media(hover:hover) {.lma-mica :is(.nav-item,.sidebar-session,.sidebar-newchat,.suggestion):hover {background:var(--lma-raised);color:var(--ink)}}
+@media(max-width:1079px) {
+  .lma-mica[data-sidebar="expanded"] {--sidebar-width:64px}
+  .lma-mica[data-sidebar="expanded"] .workspace-sidebar {position:absolute;inset:var(--safe-top) var(--safe-right) var(--safe-bottom) var(--safe-left);width:auto;z-index:40;border-right:0}
+  .lma-mica[data-sidebar="expanded"] #main,.lma-mica[data-sidebar="expanded"] .topbar,.lma-mica[data-sidebar="expanded"] .error-banner {visibility:hidden;pointer-events:none}
+  .lma-mica[data-sidebar="expanded"][data-ime="true"] .workspace-sidebar {display:flex}
+}
+@media(min-width:1080px) {.lma-mica {--gutter:36px}.lma-mica .runtime-copy>span {display:block;font-size:.6875rem}.lma-mica .runtime-strip {padding:4px 0 4px 12px}.lma-mica .page:not(.chat-page) {padding-left:max(var(--gutter),calc((100% - 1100px)/2));padding-right:max(var(--gutter),calc((100% - 1100px)/2))}}
+@media(max-width:599px) {
+  :root.lma-mica {--gutter:14px;--sidebar-width:56px}
+  .lma-mica .workspace-sidebar {padding:8px 4px;gap:4px}
+  .lma-mica .sidebar-top {gap:4px}
+  .lma-mica .sidebar-top .brand-logo {width:32px;height:32px}
+  .lma-mica .workspace-heading {display:none}
+  .lma-mica .topbar {min-height:64px;padding:8px 10px}
+  .lma-mica .runtime-strip {flex:1;max-width:100%;padding-left:8px;gap:4px}
+  .lma-mica .runtime-dot {margin:0;width:6px;height:6px}
+  .lma-mica #runtimeAction {font-size:.75rem;padding:8px 6px}
+  .lma-mica .page {padding-top:22px}
+  .lma-mica .page-heading {gap:12px;margin-bottom:16px}
+  .lma-mica .page-heading>div {min-width:100%}
+  .lma-mica .chat-page.active {padding:0 12px 12px}
+  .lma-mica .chat-toolbar {min-height:52px}
+  .lma-mica .composer {padding:10px 8px 8px;border-radius:20px}
+  .lma-mica .composer-bottom .model-picker {font-size:.75rem}
+  .lma-mica .message.user {max-width:94%;padding:12px 14px}
+  .lma-mica[data-sidebar="expanded"] {--sidebar-width:56px}
+  .lma-mica .model-footer-actions {width:100%;flex-wrap:wrap}
+  .lma-mica .model-footer-actions>.button {flex:1 1 auto}
+}
+@media(max-height:620px) {
+  .lma-mica .chat-page.is-empty .composer {margin-bottom:0}
+  .lma-mica .chat-empty {padding:12px 0}
+  .lma-mica .chat-empty .empty-symbol {display:none}
+  .lma-mica .chat-empty p {margin:4px 0 10px}
+  .lma-mica .chat-empty .suggestions {display:none}
+  .lma-mica .chat-page.is-empty .messages {overflow:auto;min-height:56px;padding:0 0 8px}
+}
+@media(max-height:480px) {
+  .lma-mica .app-shell {display:grid;overflow:hidden}
+  .lma-mica #main {min-height:0;flex:1}
+  .lma-mica .page {overflow:auto;flex:1}
+  .lma-mica .bottom-nav {display:flex;flex-direction:column;overflow:visible;border:0;padding:0}
+  .lma-mica .chat-page.active {overflow:auto}
+  .lma-mica .messages {flex:1;overflow:auto;min-height:56px;max-height:none}
+  .lma-mica .composer {position:static}
+  .lma-mica .topbar {min-height:56px;padding-top:4px;padding-bottom:4px}
+}
+.lma-mica[data-large-text="true"] .chat-page.active {display:block;overflow:auto}
+.lma-mica[data-large-text="true"] .messages {display:block;overflow:visible;flex:none;max-height:none}
+.lma-mica[data-large-text="true"] .chat-empty {min-height:0;padding:16px 0}
+.lma-mica[data-large-text="true"] .chat-page.is-empty .composer {margin-bottom:0}
+.lma-mica[data-large-text="true"] .composer-bottom .model-picker {max-width:calc(100% - 52px);flex:1 1 100%;order:0}
+.lma-mica[data-large-text="true"] .composer-more {order:1}
+.lma-mica[data-large-text="true"] #composerHint {font-size:.75rem}
+.lma-mica[data-large-text="true"] .runtime-copy>span {display:none}
+.lma-mica[data-large-text="true"] .runtime-copy strong {font-size:.75rem;white-space:normal;overflow-wrap:anywhere}
+.lma-mica[data-large-text="true"] .runtime-strip {flex-wrap:wrap;padding:4px 8px}
+.lma-mica[data-large-text="true"] #runtimeAction {width:100%}
+.lma-mica[data-ime="true"] {--sidebar-width:0px}
+.lma-mica[data-ime="true"] .workspace-sidebar {display:none}
+.lma-mica[data-ime="true"] .chat-page.is-empty .composer {margin-bottom:0}
+.lma-mica[data-ime="true"] .chat-empty .suggestions,.lma-mica[data-ime="true"] .chat-empty .empty-symbol {display:none}
+@media(max-width:319px) {.lma-mica {--gutter:8px}.lma-mica .page {padding-left:8px;padding-right:8px}.lma-mica .runtime-copy {flex-basis:0}.lma-mica .runtime-copy strong {font-size:.75rem}}
+@media(max-width:239px) {.lma-mica .app-shell {display:none}}

@@ -1,4 +1,10 @@
-# LMA 云母分区设计系统 / Mica Bento design system
+# LMA 设计系统 / Design system
+
+**当前 v1.2.0：DSH 对话工作区。** 用户 2026-11-06 最新要求同时调整风格与布局，替代下方 UI10 的视觉与导航约束。详见 [完整中文规范](DSH_WORKSPACE.md) / [English specification](DSH_WORKSPACE.en.md)、[当前决策与参考版本](workspace-decision.json)、[当前主题令牌](tokens.json)、[对比度检查](workspace-validation.json)。本轮程序界面截图与录制明确标注非真机。Logo21、Slogan04、模型／API 契约保留。
+
+**Current: DSH-inspired workspace.** The latest user direction supersedes UI10 visuals and navigation. The following UI10 documents, concept art, original decision and checks are historical.
+
+## UI10 历史规范 / Historical UI10 system
 
 **2026-11-03 定稿：UI 10「云母分区 / Mica Bento」。** Logo 仍为 **21**，标语仍为 **04**。默认暗色，完整支持明亮主题及系统跟随；适配按可用窗口宽度、剩余高度和文字大小判断。
 

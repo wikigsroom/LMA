@@ -92,7 +92,7 @@ def main():
             assert name in members, "Missing APK entry: " + name
         assert archive.read("classes.dex").startswith(b"dex\n"), "DEX header missing"
         source = ROOT / "app/src/main"
-        ui_assets = ("index.html", "app.css", "app.js", "foundation.css", "foundation.js", "audio-preview.js", "workbench.js", "recipes.js", "versions.js", "community.js", "expansion.js", "glb-preview.js", "expansion-notices.json", "recipe-templates.json", "asset-preparations.json", "model-assemblies.json", "license.js", "models.json", "model-bundles.json", "engine-builds.json", "recommendations.js", "recommendations.json", "capabilities.js", "capabilities.json", "conversation.js", "conversation.css", "theme-boot.js", "vision-presets.json", "lma-logo.png", "mica.css", "mica.js", "mica-tokens.css", "mica-design.json")
+        ui_assets = ("index.html", "app.css", "app.js", "foundation.css", "foundation.js", "audio-preview.js", "workbench.js", "recipes.js", "versions.js", "community.js", "expansion.js", "glb-preview.js", "expansion-notices.json", "recipe-templates.json", "asset-preparations.json", "model-assemblies.json", "license.js", "models.json", "model-bundles.json", "engine-builds.json", "recommendations.js", "recommendations.json", "capabilities.js", "capabilities.json", "conversation.js", "conversation.css", "theme-boot.js", "vision-presets.json", "lma-logo.png", "mica.css", "mica.js", "mica-tokens.css", "mica-design.json", "workspace.css", "workspace.js")
         architecture_assets = {}
         # Rebuild this architecture from pinned tensor headers only. The 72
         # learned tensors must all reference the separately selected user file.
@@ -118,7 +118,7 @@ def main():
                     architecture_assets[name] = graph
         for name in ui_assets:
             assert hashlib.sha256(archive.read("assets/" + name)).hexdigest() == hashlib.sha256((source / "assets" / name).read_bytes()).hexdigest(), "Stale packaged UI: " + name
-        for name in ("license.js", "audio-preview.js", "workbench.js", "foundation.js", "app.js", "capabilities.js", "conversation.js", "theme-boot.js"):
+        for name in ("license.js", "audio-preview.js", "workbench.js", "foundation.js", "app.js", "capabilities.js", "conversation.js", "theme-boot.js", "workspace.js"):
             assert name in archive.read("assets/index.html").decode("utf-8"), "Missing UI script reference"
         for item in lock["files"]:
             data = archive.read("lib/arm64-v8a/" + item["name"])

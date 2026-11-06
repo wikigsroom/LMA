@@ -164,6 +164,9 @@ def prepare():
   if tuple(map(int,VERSION.split('.'))) >= (0,4,0):
    archive.write(ROOT/'catalogue/conversation-20261102-implementation.json','conversation-implementation.json')
    archive.write(ROOT/(CONVERSATION_MEDIA+'/manifest.json'),'media/conversation/manifest.json')
+  if tuple(map(int,VERSION.split('.'))) >= (1,2,0):
+   archive.write(ROOT/('docs/media/workspace-v'+VERSION+'/manifest.json'),'media/workspace/manifest.json')
+   archive.write(ROOT/'docs/design/workspace-validation.json','workspace-contrast.json')
   archive.write(ROOT/'docs/proposals/program-validation-policy.json','validation-policy.json')
  names.append(verification)
  screenshots=f'LMA-{VERSION}-screenshots.zip'
@@ -171,6 +174,10 @@ def prepare():
   if tuple(map(int,VERSION.split('.'))) >= (0,4,0):
    for item in read(ROOT/(CONVERSATION_MEDIA+'/manifest.json'))['screenshots']:
     archive.write(ROOT/CONVERSATION_MEDIA/item['file'],'conversation/'+item['file'])
+  if tuple(map(int,VERSION.split('.'))) >= (1,2,0):
+   base=ROOT/('docs/media/workspace-v'+VERSION)
+   for item in read(base/'manifest.json')['files']:
+    if item['file'].endswith('.png'):archive.write(base/item['file'],'workspace/'+item['file'])
   for name in MEDIA:
    base=ROOT/'docs/media/development'/name
    for item in read(base/'manifest.json')['screenshots']:archive.write(base/item['file'],name+'/'+item['file'])
@@ -215,9 +222,13 @@ def prepare():
   for item in read(benchmark_media/'manifest.json')['files']:
    original=benchmark_media/item['file'];target=f'LMA-{VERSION}-'+original.name
    shutil.copy2(original,directory/target);names.append(target)
+ if tuple(map(int,VERSION.split('.'))) >= (1,2,0):
+  for extension in ['mp4','gif']:
+   original=ROOT/('docs/media/workspace-v'+VERSION)/('walkthrough.'+extension)
+   target=f'LMA-{VERSION}-workspace.'+extension;shutil.copy2(original,directory/target);names.append(target)
  names.sort()
  (directory/'SHA256SUMS').write_text(''.join(sha(directory/n)+'  '+n+'\n' for n in names),encoding='utf-8');names.append('SHA256SUMS')
- manifest=dict(repository='wikigsroom/LMA',version=VERSION,tag='v'+VERSION,title='LMA v'+VERSION+(' · Function tools and Unload / 工具协议与运行管理' if VERSION=='1.1.0' else ' · Mica Bento / 云母分区 UI 大版本' if VERSION=='1.0.0' else ' · Restored chat / 对话页面复原' if VERSION=='1.0.1' else ' · Direct model deletion / 模型卡片直接删除' if VERSION=='1.0.2' else ' · Conversations and local creation / 对话与本地创作' if VERSION=='0.4.0' else ' · Default API port 52187 / 默认接口端口 52187' if VERSION=='0.3.13' else ' · Local multimodal API and uncapped generation / 本地多模态接口与生成时限取消'),
+ manifest=dict(repository='wikigsroom/LMA',version=VERSION,tag='v'+VERSION,title='LMA v'+VERSION+(' · DSH-inspired workspace / 全新对话工作区' if VERSION=='1.2.0' else ' · Function tools and Unload / 工具协议与运行管理' if VERSION=='1.1.0' else ' · Mica Bento / 云母分区 UI 大版本' if VERSION=='1.0.0' else ' · Restored chat / 对话页面复原' if VERSION=='1.0.1' else ' · Direct model deletion / 模型卡片直接删除' if VERSION=='1.0.2' else ' · Conversations and local creation / 对话与本地创作' if VERSION=='0.4.0' else ' · Default API port 52187 / 默认接口端口 52187' if VERSION=='0.3.13' else ' · Local multimodal API and uncapped generation / 本地多模态接口与生成时限取消'),
   prerelease=not COMPLETE,notes='docs/releases/v'+VERSION+'.md',validation_mode='program_only',full_scope_program_implementation_complete=True,
   apk_sha256=build['sha256'],physical_device_tested=evidence.get('physical_device_tested',False),
   physical_device_tests=evidence.get('physical_device_tests',0),background_program_tested=evidence.get('background_program_tested',False),

@@ -1,5 +1,7 @@
 # Mica Bento · Adaptive screens, themes and acceptance
 
+> v1.2.0 当前视觉／导航规范已改为 [DSH workspace](DSH_WORKSPACE.md) / [English](DSH_WORKSPACE.en.md)。This document preserves the historical UI10 specification; current user direction takes precedence.
+
 [中文](RESPONSIVE.md) · [Design](MICA_BENTO.en.md) · [Components](COMPONENTS.en.md) · [Tokens](tokens.json) · [Pending matrix](acceptance.json)
 
 **These are required behaviors, not completed device tests.** The minimum usable continuous width is 240px; smaller windows show a recoverable resize/rotate prompt without starting work. Dimensions describe the available WebView viewport in CSS pixels. Native insets/hit targets use Android units with verified mapping. A physical 1080px screen is not a 1080-CSS-pixel layout; do not hardcode Z20/X30/tablet classifications.

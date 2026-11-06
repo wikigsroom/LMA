@@ -1,5 +1,8 @@
 # 截图与演示 / Screenshots and demonstrations
 
+**v1.2.0 当前工作区 / Current workspace:** [12张生产页面截图、GIF、MP4与哈希 / Captures and provenance](media/workspace-v1.2.0/manifest.json)；[GIF](media/workspace-v1.2.0/walkthrough.gif) / [MP4](media/workspace-v1.2.0/walkthrough.mp4)。全部标注程序夹具，非真机、非模型输出。The phone remains occupied by another task; historical phone/model media below retain their original version and are not new-version acceptance.
+
+
 **v1.0.2 当前实机素材 / Current phone media:** [21张截图与来源 / screenshots and provenance](media/device/v1.0.2/manifest.json) · [MP4](media/device/v1.0.2/physical-walkthrough.mp4) · [GIF](media/device/v1.0.2/physical-walkthrough.gif)。模型卡片直接删除、具名确认后取消；实际确认删除只在程序夹具中进行，未删除用户模型。[中文](MODEL_DELETE.md) / [English](MODEL_DELETE.en.md)。
 
 **v1.0.0 当前素材：** [17张真实手机截图／20秒原速MP4／GIF及来源](media/device/v1.0.0/manifest.json)，[中文说明](MICA_V100.md)／[English](MICA_V100.en.md)。双主题、空白对话、队列搜索／滚动、回环地址；不展示个人历史，不代表模型生成。版本化[对话程序演示](media/conversation-v1.0.0/manifest.json)和十组 current development 素材明确为桥接夹具。旧版真实输出保留原身份。

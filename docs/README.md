@@ -1,5 +1,7 @@
 # LMA 文档 / Documentation
 
+**v1.2.0 导航更新 / Navigation update:** 对话为首页；左侧依次进入对话、模型库、任务与作品、API 服务、设置。展开侧栏可选最近会话，窄屏占满窗口。Composer Plus opens optional creation controls; Runtime management exposes Unload. [完整布局与使用说明 / Workspace guide](design/DSH_WORKSPACE.md) · [English](design/DSH_WORKSPACE.en.md)。旧版底栏／云母描述保留为历史操作背景。
+
 - [DSH / OpenAI 函数工具、多轮回传、并发和容量](DSH_TOOLS.md) · [English](DSH_TOOLS.en.md) · [v1.1.0](releases/v1.1.0.md)
 - [DSH 1.4.76实际客户端代码互操作、79项补充检查与独立超时](DSH_CLIENT_AUDIT.md) · [Actual client audit](DSH_CLIENT_AUDIT.en.md)
 - [运行中的模型／内存卸载在哪里](MODEL_RUNTIME.md) · [Running models and Unload](MODEL_RUNTIME.en.md)

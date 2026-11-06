@@ -1,0 +1,318 @@
+{
+  "passed": 68,
+  "checks": [
+    {
+      "case": "sam_resize_accepted",
+      "error": ""
+    },
+    {
+      "case": "float_bicubic_aa",
+      "error": 2.682209014892578e-07
+    },
+    {
+      "case": "sam_resize_accepted",
+      "error": ""
+    },
+    {
+      "case": "float_bicubic_aa",
+      "error": 4.76837158203125e-07
+    },
+    {
+      "case": "sam_resize_accepted",
+      "error": ""
+    },
+    {
+      "case": "float_bicubic_aa",
+      "error": 0.0
+    },
+    {
+      "case": "sam_resize_accepted",
+      "error": ""
+    },
+    {
+      "case": "float_bicubic_aa",
+      "error": 3.8743019104003906e-07
+    },
+    {
+      "case": "sam_inputs_accepted",
+      "error": ""
+    },
+    {
+      "case": "normalizer_shift",
+      "error": 0.0
+    },
+    {
+      "case": "normalizer_scale",
+      "error": 5.960464477539063e-08
+    },
+    {
+      "case": "source_crop_rgb",
+      "error": 7.152557373046875e-07
+    },
+    {
+      "case": "source_crop_mask",
+      "error": 0.0
+    },
+    {
+      "case": "source_crop_point_valid",
+      "error": 0.0
+    },
+    {
+      "case": "source_crop_points",
+      "error": 2.384185791015625e-07
+    },
+    {
+      "case": "sam_inputs_accepted",
+      "error": ""
+    },
+    {
+      "case": "normalizer_shift",
+      "error": 0.0
+    },
+    {
+      "case": "normalizer_scale",
+      "error": 0.0
+    },
+    {
+      "case": "source_crop_rgb",
+      "error": 5.960464477539062e-07
+    },
+    {
+      "case": "source_crop_mask",
+      "error": 0.0
+    },
+    {
+      "case": "source_crop_point_valid",
+      "error": 0.0
+    },
+    {
+      "case": "source_crop_points",
+      "error": 0.0
+    },
+    {
+      "case": "sam_inputs_accepted",
+      "error": ""
+    },
+    {
+      "case": "normalizer_shift",
+      "error": 0.0
+    },
+    {
+      "case": "normalizer_scale",
+      "error": 1.1920928955078125e-07
+    },
+    {
+      "case": "source_crop_rgb",
+      "error": 5.364418029785156e-07
+    },
+    {
+      "case": "source_crop_mask",
+      "error": 0.0
+    },
+    {
+      "case": "source_crop_point_valid",
+      "error": 0.0
+    },
+    {
+      "case": "source_crop_points",
+      "error": 1.1920928955078125e-07
+    },
+    {
+      "case": "sam_inputs_accepted",
+      "error": ""
+    },
+    {
+      "case": "normalizer_shift",
+      "error": 0.0
+    },
+    {
+      "case": "normalizer_scale",
+      "error": 0.0
+    },
+    {
+      "case": "source_crop_rgb",
+      "error": 6.556510925292969e-07
+    },
+    {
+      "case": "source_crop_mask",
+      "error": 0.0
+    },
+    {
+      "case": "source_crop_point_valid",
+      "error": 0.0
+    },
+    {
+      "case": "source_crop_points",
+      "error": 0.0
+    },
+    {
+      "case": "sam_sampling_accepted",
+      "error": ""
+    },
+    {
+      "case": "structure_replays_noise"
+    },
+    {
+      "case": "every_view_uses_same_latent_state",
+      "error": 0.0
+    },
+    {
+      "case": "every_view_uses_same_latent_state",
+      "error": 0.0
+    },
+    {
+      "case": "every_view_uses_same_latent_state",
+      "error": 0.0
+    },
+    {
+      "case": "every_view_uses_same_latent_state",
+      "error": 0.0
+    },
+    {
+      "case": "every_view_uses_same_latent_state",
+      "error": 0.0
+    },
+    {
+      "case": "every_view_uses_same_latent_state",
+      "error": 0.0
+    },
+    {
+      "case": "every_view_uses_same_latent_state",
+      "error": 0.0
+    },
+    {
+      "case": "every_view_uses_same_latent_state",
+      "error": 0.0
+    },
+    {
+      "case": "per_row_weights_sum",
+      "error": 2.9802322387695312e-08
+    },
+    {
+      "case": "weighted_velocity_and_first_view_pose",
+      "error": 3.907261070246193e-07
+    },
+    {
+      "case": "sam_sampling_accepted",
+      "error": ""
+    },
+    {
+      "case": "slat_uses_fresh_noise"
+    },
+    {
+      "case": "every_view_uses_same_latent_state",
+      "error": 0.0
+    },
+    {
+      "case": "every_view_uses_same_latent_state",
+      "error": 0.0
+    },
+    {
+      "case": "every_view_uses_same_latent_state",
+      "error": 0.0
+    },
+    {
+      "case": "every_view_uses_same_latent_state",
+      "error": 0.0
+    },
+    {
+      "case": "every_view_uses_same_latent_state",
+      "error": 0.0
+    },
+    {
+      "case": "every_view_uses_same_latent_state",
+      "error": 0.0
+    },
+    {
+      "case": "every_view_uses_same_latent_state",
+      "error": 0.0
+    },
+    {
+      "case": "every_view_uses_same_latent_state",
+      "error": 0.0
+    },
+    {
+      "case": "per_row_weights_sum",
+      "error": 2.9802322387695312e-08
+    },
+    {
+      "case": "weighted_velocity_and_first_view_pose",
+      "error": 7.810967939114732e-08
+    },
+    {
+      "case": "production_sam_workflow",
+      "pipeline": "sam3d_objects",
+      "events": "{\"details\":{\"backend\":\"cpu\",\"completeModelInferenceTested\":false,\"graphResidency\":\"one_session_at_a_time\",\"pipeline\":\"sam3d_objects\",\"rng\":\"mt19937_normal_distribution\",\"samplingPrecision\":\"float32\",\"surfacePolicy\":\"source_flexicubes_vertex_attributes\",\"weightedSharedState\":false},\"event\":\"execution\"}\n{\"event\":\"stage\",\"stage\":\"estimating_depth\"}\n{\"event\":\"stage\",\"stage\":\"encoding_structure_conditions\"}\n{\"event\":\"progress\",\"stage\":\"structure_flow\",\"step\":1,\"steps\":2}\n{\"event\":\"progress\",\"stage\":\"structure_flow\",\"step\":2,\"steps\":2}\n{\"event\":\"stage\",\"stage\":\"encoding_slat_conditions\"}\n{\"event\":\"progress\",\"stage\":\"slat_flow\",\"step\":1,\"steps\":2}\n{\"event\":\"progress\",\"stage\":\"slat_flow\",\"step\":2,\"steps\":2}\n{\"event\":\"stage\",\"stage\":\"decoding_flexicubes\"}\n{\"details\":{\"runtimeMeasurements\":{\"elapsedMs\":99,\"memoryScope\":\"worker_process_peak_rss_not_model_peak_or_whole_app\",\"memorySource\":\"unavailable_on_this_platform\",\"peakResidentBytes\":null,\"platform\":\"windows_host\",\"qualityAssessed\":false,\"schema\":\"lma.worker-observations/1\",\"stages\":[{\"elapsedMs\":8,\"stage\":\"estimating_depth\"},{\"elapsedMs\":5,\"stage\":\"encoding_structure_conditions\"},{\"elapsedMs\":3,\"stage\":\"encoding_slat_conditions\"},{\"elapsedMs\":25,\"stage\":\"decoding_flexicubes\"}]}},\"event\":\"execution\"}\n{\"event\":\"complete\",\"output\":\"T:/build/sam-tests/single.glb\"}\n",
+      "stderr": ""
+    },
+    {
+      "case": "learned_attribute_channels_preserved"
+    },
+    {
+      "case": "no_gaussian_bake_claim"
+    },
+    {
+      "case": "missing_stage_rejected_without_output"
+    },
+    {
+      "case": "production_sam_workflow",
+      "pipeline": "mv_sam3d_da3",
+      "events": "{\"details\":{\"backend\":\"cpu\",\"completeModelInferenceTested\":false,\"graphResidency\":\"one_session_at_a_time\",\"pipeline\":\"mv_sam3d_da3\",\"rng\":\"mt19937_normal_distribution\",\"samplingPrecision\":\"float32\",\"surfacePolicy\":\"source_flexicubes_vertex_attributes\",\"weightedSharedState\":true},\"event\":\"execution\"}\n{\"event\":\"stage\",\"stage\":\"estimating_depth\"}\n{\"event\":\"stage\",\"stage\":\"encoding_structure_conditions\"}\n{\"event\":\"progress\",\"stage\":\"structure_flow\",\"step\":1,\"steps\":2}\n{\"event\":\"progress\",\"stage\":\"structure_flow\",\"step\":2,\"steps\":2}\n{\"event\":\"stage\",\"stage\":\"encoding_slat_conditions\"}\n{\"event\":\"progress\",\"stage\":\"slat_flow\",\"step\":1,\"steps\":2}\n{\"event\":\"progress\",\"stage\":\"slat_flow\",\"step\":2,\"steps\":2}\n{\"event\":\"stage\",\"stage\":\"decoding_flexicubes\"}\n{\"details\":{\"runtimeMeasurements\":{\"elapsedMs\":128,\"memoryScope\":\"worker_process_peak_rss_not_model_peak_or_whole_app\",\"memorySource\":\"unavailable_on_this_platform\",\"peakResidentBytes\":null,\"platform\":\"windows_host\",\"qualityAssessed\":false,\"schema\":\"lma.worker-observations/1\",\"stages\":[{\"elapsedMs\":8,\"stage\":\"estimating_depth\"},{\"elapsedMs\":4,\"stage\":\"encoding_structure_conditions\"},{\"elapsedMs\":4,\"stage\":\"encoding_slat_conditions\"},{\"elapsedMs\":38,\"stage\":\"decoding_flexicubes\"}]}},\"event\":\"execution\"}\n{\"event\":\"complete\",\"output\":\"T:/build/sam-tests/multi.glb\"}\n",
+      "stderr": ""
+    },
+    {
+      "case": "learned_attribute_channels_preserved"
+    },
+    {
+      "case": "no_gaussian_bake_claim"
+    },
+    {
+      "case": "missing_stage_rejected_without_output"
+    }
+  ],
+  "input_fingerprint": {
+    "native/spatial/block_attention.hpp": "9d87fc393f51104f11f291dda84763744249aedaf1f57feab72d94c161b9503d",
+    "native/spatial/cascade.hpp": "3150c9eca11b60ddee68d894d38f4c147d84ae265bce49b29268fab48b135044",
+    "native/spatial/CMakeLists.txt": "ef47a91a5ba9b43032c5025e742731dccd08cd983d469e8771b899cf84eefa82",
+    "native/spatial/depth.hpp": "183de58c48d84e3fc5b2e1df7cc9a4395c27080230f76e0f5c9b70d8f24d0f6d",
+    "native/spatial/fdg.hpp": "675bbc80e7ee247c0202904a1ecac184aca8ab817438f97b7eb39157a6459994",
+    "native/spatial/fdg_mesh.hpp": "467a53e150789440b1793a7b67d1444f8f2bd5ecf5db26e4c159dbdf6ae4ba22",
+    "native/spatial/flexicubes.hpp": "e6d249b12b66f9630a4d5b57cc2d45073f537c6e4bf051f67d5064b44dc261ad",
+    "native/spatial/flexicubes_tables.hpp": "6ef60153625eaf15a10d144fd28fd5d63bb7175ca41561cf0f428857e5405737",
+    "native/spatial/image.hpp": "7f2b70863591a51e9bca407a7ae0677fda0680efa51b9c54e91a5a3c8f073909",
+    "native/spatial/linear_sampler.hpp": "96ff6befbb32480559c038b4fb33308a127fa41088bea73404866d322262166d",
+    "native/spatial/material.hpp": "5e5b4ec976db118f3e1e9bfdf0240d06dd22a4144c462892d73d92c0d14482d7",
+    "native/spatial/math.hpp": "abc3c2644fc02f864cec371053b3ad92c42ce89b9215beb86a3f731b861c7f45",
+    "native/spatial/mesh.hpp": "9d6c1af1780abf2ad83cd8d2aaa5e6e5f2f762c132d5006929a097c01fae6eaa",
+    "native/spatial/multiview_image.hpp": "f2f139eae47008bd6bdb881f9385dcb9f75e10a3b046c4a00e73d63a003c19c7",
+    "native/spatial/ort_graph.hpp": "d78b66a3b16ebad13410e045035d58d6dad5eab37346a6a697fdba095a1f8908",
+    "native/spatial/sam.hpp": "414016cabf4ce09c024c7c849f7a04c9e8e04eb796b7d057a80f3623c61f855f",
+    "native/spatial/sam_geometry.hpp": "1936bbb2516ef189692cff86afa93f80e3d936c4b7ff0a20fc8fb5af4d0f9b43",
+    "native/spatial/sam_math.hpp": "4ce92644b9e0e56bc223cb5cc1556090007eeb97d48ad7e2299b57c2a0534c22",
+    "native/spatial/sam_pose.hpp": "d0fadb4bd735da8c66463a2b5ce5a53e2caccada9ccecaea4d7f6aaf85bdd775",
+    "native/spatial/sam_sampling.hpp": "4542bfb95f3d61a899937526999a3b692181f36e023513d9a17a7e8cd205c594",
+    "native/spatial/sparse.hpp": "118c821be7601439a166d800729feb9e77320b6ad355808edc1e802d99b07e67",
+    "native/spatial/sparse_ort.hpp": "1c66fc8d049550b753048ea70a22e45c06b0a08cff2869ce16ddf3d3a01eb12b",
+    "native/spatial/supra.hpp": "9ef75194c2c2c8a8eaf777afe9f50a65b3bd55d76816bbbd85e22c47224cce6d",
+    "native/spatial/supra_observation.hpp": "4ad48f78450378ae9831bfccb53c784621971b98e9416dbb6450786a3e5b5b53",
+    "native/spatial/surface_sampling.hpp": "0aeb83fc1030f3114784b4dd0dbd7db5c5464ebc6ce5c85c3436bec6080cb709",
+    "native/spatial/text_tokens.hpp": "b74d4eec3f9e2aa2a7a76e8433518a1339345997a65c590aebc2489ef7f609ec",
+    "native/spatial/texture.hpp": "61fe254b9525a030b9d4ced52fd05c4f3b3435612b6c85357771d5ef9b0e2364",
+    "native/spatial/tokenizer_shim/core/util.h": "61d8074c170e601d509e558cb52951c8adfb330dd09c20d61fc4170157d2282c",
+    "native/spatial/typed_graph.hpp": "15cc4fb7fd425bf5cd62f552d9248536cfdf85ba2bd647626052de96370648b8",
+    "native/spatial/ultratex.hpp": "6afb36b15f0b94689cd71888f9962a4c465087c4315ca4fa1fc177ef88e9dd6b",
+    "native/spatial/uniforge.hpp": "c3b114922ba0590d1a61407a6bd0f8eaaf5aa958c367914a5b31ab0e06cc9ff2",
+    "native/spatial/view_router.hpp": "7d13e662826932801c784c534c46998424b2ef3aa1e3b4a3afb89855dbe2500f",
+    "native/spatial/volume_material.hpp": "2bb45cba9b7705850c0e8b52dd2ba1141378d8f28e358ce855f49dc00d1b4080",
+    "native/spatial/worker.cpp": "d5aa8060cc493aa2e098e48d268734291616342eadae05f4707baca2b4a6499a",
+    "tests/expansion-native/cascade.cpp": "a5ef9ca021087d7fb5d7701ad359be9e2f1da3ba6f4a90b6d4197c008bd27b3a",
+    "third_party/portable-sparse-source-lock.json": "fb0c9bfbb5efc502ed6f68b8ae92cebdad2775732725c22e3cdc4529e16932bf",
+    "tools/export_sam.py": "8abeba9df5fd9e0d244b7887f4de65d0796a3638cd79f93218f866f3b03bffdb",
+    "tools/sam_catalogue.py": "ffcbb807b93b73fd0b7ab7b4328e82f0b4a768f8704711e7c4b02695311066e3",
+    "tools/test_sam.py": "7ff62aeefd3bcf9d858b77ad91c533dac6f1fa4b680551dc42e6f7f20cc72df0"
+  },
+  "completeModelsRun": 0,
+  "phoneTests": 0,
+  "neuralWorkflowFixtures": "synthetic_stage_io_only",
+  "upstreamPreprocessing": "literal_locked_source"
+}

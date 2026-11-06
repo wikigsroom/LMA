@@ -1,12 +1,13 @@
 (function () {
   'use strict';
-  var state = null, tab = 'models', filter = 'recommended', taskFilter = 'any', query = '', keyVisible = false;
+  var state = null, tab = 'chat', filter = 'recommended', taskFilter = 'any', query = '', keyVisible = false;
   var modelSignature = '', chatSignature = '', settingsDirty = false, settingsFilled = false;
   var pendingSettings = null, pendingDraft = null, modalKind = '', returnFocus = null, toastTimer, requestSequence = 0;
   var searchTimer, hubStarted = false, hubFileSignature = '', pendingHubToken = null;
   var themePreview = '', modelEditor = null, modelViews = null, appliedTheme = '', serverSignature = '', runtimeSignature = '';
   var $ = function (id) { return document.getElementById(id); };
   var paths = {
+    sidebar: '<rect x="3" y="4" width="18" height="16" rx="3"/><path d="M9 4v16"/>',
     plus: '<path d="M12 5v14M5 12h14"/>',
     search: '<circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/>',
     cube: '<path d="m12 3 9 5v9l-9 5-9-5V8l9-5Zm0 10 9-5M12 13 3 8m9 5v9M7.5 5.5l9 5"/>',
@@ -77,6 +78,7 @@
     if (['models', 'chat', 'tasks', 'server', 'settings'].indexOf(next) < 0) return;
     if(tab==='chat'&&next!=='chat')window.LMAConversation.release();
     closeModal(); tab = next;
+    window.LMAWorkspace.route(next);
     if(next !== 'settings' && themePreview){themePreview='';applyTheme();}
     if(window.LMAMica)window.LMAMica.pageChanged(next);
     document.querySelectorAll('.page').forEach(function (el) { el.hidden = el.id !== 'page-' + next; el.classList.toggle('active', !el.hidden); });
@@ -92,7 +94,7 @@
     var effective = dark ? 'dark' : 'light'; if (appliedTheme === effective) return; appliedTheme = effective;
     document.documentElement.dataset.theme = effective;
     document.documentElement.dataset.themePreference = preference;
-    document.documentElement.style.background = dark ? '#151A2B' : '#F3F5FA';
+    document.documentElement.style.background = dark ? '#141414' : '#FFFFFF';
     document.documentElement.style.colorScheme = effective;
     if (window.Android && window.Android.theme) window.Android.theme(dark);
   }
@@ -101,6 +103,7 @@
       state = typeof raw === 'string' ? JSON.parse(raw) : raw;
       if (!state || !Array.isArray(state.models) || !state.settings || !state.engine) throw new Error('状态数据不完整');
       modelViews = null;
+      window.LMAWorkspace.receive();
       window.LMAConversation.receive();
       applyTheme(); renderRuntime(); if (tab === 'models') renderModels(); if (tab === 'chat') renderChat(); if (tab === 'server') renderServer(); renderHubFiles(); window.LMAFoundation.receive(); window.LMARecipes.receive(); window.LMAExpansion.receive();
       var tokenStatus = state.settings.hfTokenSet ? '已设置令牌' : '未设置令牌';
@@ -271,6 +274,7 @@
     }).join('');
   }
   function renderChat() {
+    window.LMAWorkspace.receive();
     if(window.LMAConversation.render())return;
     var e = engine(), m = modelById(e.modelId), chat = state && state.chat || {messages: []};
     $('chatModelName').textContent = m ? m.name : '选择模型';
@@ -285,7 +289,7 @@
     var opened = {};
     box.querySelectorAll('details[open]').forEach(function (d) { opened[d.dataset.message] = true; });
     if (!(chat.messages || []).length) {
-      box.innerHTML = '<div class="chat-empty"><div class="empty-symbol">' + icon('spark') + '</div><span class="eyebrow">YOUR DEVICE. YOUR MODELS.</span><h2>从一句话开始。</h2><p>模型与对话留在当前手机。<br>下载并加载模型后，即可离线使用。</p><div class="suggestions"><button class="suggestion" data-action="suggest" data-text="用简单的例子解释一下什么是大语言模型。">解释一个概念' + icon('arrow') + '</button><button class="suggestion" data-action="suggest" data-text="帮我写一封简洁、礼貌的工作邮件。请先问我需要提供哪些信息。">一起写点内容' + icon('arrow') + '</button></div></div>';
+      box.innerHTML = '<div class="chat-empty"><div class="empty-symbol"><img src="lma-logo.png" alt="LMA"></div><span class="eyebrow">YOUR DEVICE. YOUR MODELS.</span><h2>让想法，在本地发生。</h2><p>对话、创作与模型，尽在你的手机。</p><div class="suggestions"><button class="suggestion" data-action="suggest" data-text="用简单的例子解释一下什么是大语言模型。">解释一个概念' + icon('arrow') + '</button><button class="suggestion" data-action="suggest" data-text="帮我写一封简洁、礼貌的工作邮件。请先问我需要提供哪些信息。">一起写点内容' + icon('arrow') + '</button></div></div>';
     } else box.innerHTML = chat.messages.map(function (message) {
       var user = message.role === 'user', status = message.status, footer = [];
       if (!user && message.elapsed) footer.push((message.elapsed / 1000).toFixed(1) + ' 秒');
@@ -626,10 +630,11 @@
   var themeMedia = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)');
   if (themeMedia) { if (themeMedia.addEventListener) themeMedia.addEventListener('change', applyTheme); else if (themeMedia.addListener) themeMedia.addListener(applyTheme); }
   var bridge = {state: function () { return state || {}; }, esc: esc, copy: copy, bytes: bytes, icon: icon, dispatch: nativeAction, result: commandResult, openModal: openModal, closeModal: closeModal, toast: toast, route: route, selectLocal: function () { route('models'); selectFilter('local'); }, confirm: confirmAction};
+  window.LMAWorkspace.init(bridge);
   window.LMACapabilities.init(bridge,function(){modelSignature='';renderModels();});
   window.LMAConversation.init(bridge,{richText:richText,textAvailable:textAvailable,resizeInput:resizeInput});
   window.LMAExpansion.init(bridge); window.LMACommunity.init(bridge); window.LMAFoundation.init(bridge); window.LMARecipes.init(bridge);
-  window.LMA = {refreshTheme:applyTheme,receive: receive, receiveDelta:function(raw){if(!state)return;var delta=typeof raw==='string'?JSON.parse(raw):raw;if(delta.chat)state.chat=delta.chat;if(delta.engine)Object.assign(state.engine,delta.engine);if(delta.error!==undefined)state.error=delta.error;if(tab==='chat')renderChat();renderRuntime();}, back: function () { if (!$('modalBackdrop').hidden) { closeModal(); return true; } if (tab !== 'models') { route('models'); return true; } return false; }};
+  window.LMA = {refreshTheme:applyTheme,receive: receive, receiveDelta:function(raw){if(!state)return;var delta=typeof raw==='string'?JSON.parse(raw):raw;if(delta.chat)state.chat=delta.chat;if(delta.engine)Object.assign(state.engine,delta.engine);if(delta.error!==undefined)state.error=delta.error;if(tab==='chat')renderChat();renderRuntime();}, back: function () { if(window.LMAWorkspace.back())return true; if (!$('modalBackdrop').hidden) { closeModal(); return true; } if (tab !== 'chat') { route('chat'); return true; } return false; }};
   hydrateIcons(document); updateFilters();
   if (window.Android) { try { if (window.Android.requestSnapshot) window.Android.requestSnapshot(); else receive(window.Android.getSnapshot()); } catch (e) { $('runtimeDetail').textContent = '等待原生服务连接…'; } }
   else { $('runtimeDetail').textContent = '界面预览 · 下载和推理请使用 Android 应用'; renderModels(); renderChat(); }

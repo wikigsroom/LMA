@@ -1,0 +1,13 @@
+{
+  "schema": "lma.workspace-validation-policy/1",
+  "version": "1.2.0",
+  "date": "2026-11-06",
+  "scope": "UI layout and theme overhaul; existing local model/API contracts retained",
+  "phone_use": "deferred_user_request",
+  "authorization": "User explicitly reported that another task is using the phone and requested code review first; this UI request does not release the phone.",
+  "required": ["current production UI fixtures", "adaptive layout matrix", "functional UI regressions", "bounded native contracts", "original signed APK", "package verification", "Android Lint", "labelled media and bilingual documentation"],
+  "physicalDeviceTested": false,
+  "modelInferenceTested": false,
+  "historicalPhoneEvidenceCountsAsCurrent": false,
+  "pending": ["installation on a free physical device", "touch and system keyboard", "Android WebView and TalkBack", "actual frame-rate measurement"]
+}

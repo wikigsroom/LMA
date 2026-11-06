@@ -1,5 +1,16 @@
 # 发布流程 / Release workflow
 
+## v1.2.0 工作区更新 / Workspace update
+
+最新用户要求优先：以 [DSH workspace](design/DSH_WORKSPACE.md) / [English](design/DSH_WORKSPACE.en.md) 替代 UI10 的当前视觉和布局。手机被其他任务占用，执行 [本版程序验证策略](proposals/workspace-validation-policy.json)，不操作 ADB、不安装或运行模型；不得用旧版真机记录或桥接夹具宣称本版手机验收。
+
+构建 `tools/build.py` 后验证 `tools/verify_package.py` 与 `tools/test_android_lint.py`。运行 `tests/ui-smoke.cjs`、`tests/workspace-ui.cjs`、`tests/conversation-ui.cjs`、`tests/mica-ui.cjs`，通过 `tools/workspace_evidence.py` 与 `tools/conversation_evidence.py` 导出有标识的媒体／有界消息程序记录。刷新十组生产工作台录制和输入指纹；原生契约只复用指纹完全一致的通过记录。所有自建浏览器／页面／上下文在 finally 关闭。
+
+导出 adaptation／scope／program evidence，更新双语README、设计规范、当前APK哈希、CHANGELOG与版本说明。运行 package_delivery、prepare_release 与完整 repository 检查，保留原签名、旧tag及旧附件。正常提交／推送后创建新版本tag，发布正式 stable Release；禁止 prerelease。若生成发布回执后追加提交，使用 `check_repository.py --published` 核对原tag源码身份。
+
+Latest direction: DSH-inspired layout, program verification while the shared phone is occupied, explicit media labels, no model downloads and no implied phone performance. Old release evidence remains version-bound. Publish a stable release with original signing and exact source/evidence hashes.
+
+
 ## v1.1.0 工具协议与运行管理 / Function tools and runtime management
 
 原生Windows构建，版号1.1.0/code68、原签名。运行 openai_tools、backend、scheduler、API及受影响程序／UI／lint／包门禁；真实HTTP夹具与模型推理分开。`device_tools_probe.py --serial DEVICE --model m15 --allow-existing-model-inference` 只使用已安装模型，验证SDK工具往返、严格SSE、并发、UI卸载／重载和资产／配置保留；公开白名单报告，密钥只在内存。常规真机管理、短锁屏、明暗截图、字体和录屏继续独立导出。DSH App本身和任意模型代理质量不冒充通过。

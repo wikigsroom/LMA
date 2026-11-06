@@ -153,6 +153,7 @@ async function main() {
     };
   }, {fixture});
   await page.goto(origin + '/index.html');
+  await page.locator('.nav-item[data-tab="models"]').click();
   await page.waitForSelector('.model-card');
   assert.equal(await page.locator('.model-card').count(), 3); checked('Initial curated recommendations');
   await checkOverflow(page, '375px model library layout');
@@ -313,7 +314,7 @@ async function main() {
   assert.equal(await page.locator('#modelList img').count(), 0);
   await page.locator('.nav-item[data-tab="chat"]').click(); assert.equal(await page.locator('#messages script, #messages img').count(), 0);
   assert.equal(await page.evaluate(() => window.__pwned), false); checked('Model and message HTML remain inert');
-  await page.locator('[data-action="history"]').click(); await page.locator('[data-action="deleteSession"]').click();
+  await page.locator('.chat-toolbar [data-action="history"]').click(); await page.locator('[data-action="deleteSession"]').click();
   await page.locator('[data-action="confirmed"]').click(); await page.waitForSelector('.chat-empty'); checked('Delete persistent chat via native action');
   await setState(page, () => { window.__fixture.models[0].name = 'Qwen 3 · 1.7B Abliterated'; window.__fixture.settings.theme = 'light'; });
   await checkFoundation(page, checked, checkOverflow, output);

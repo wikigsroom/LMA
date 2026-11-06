@@ -1,5 +1,7 @@
 # LMA Mica Bento · Design specification 1.0.0
 
+> v1.2.0 当前视觉／导航规范已改为 [DSH workspace](DSH_WORKSPACE.md) / [English](DSH_WORKSPACE.en.md)。This document preserves the historical UI10 specification; current user direction takes precedence.
+
 [中文](MICA_BENTO.md) · [Index](README.md) · [Components](COMPONENTS.en.md) · [Adaptive layout](RESPONSIVE.en.md) · [Tokens](tokens.json)
 
 ## 1. Accepted direction and authority

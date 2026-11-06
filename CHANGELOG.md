@@ -1,5 +1,14 @@
 # Changelog / 更新记录
 
+## v1.2.0 · 2026-11-06 · DSH 对话工作区 / Conversation workspace
+
+- 按指定 DSH Android 固定提交核对并重做全部五页：对话首页、左图标栏、窄屏全宽会话抽屉、宽屏侧栏与最近会话；灰黑／白色双主题统一，默认暗色，保留 Logo21／Slogan04。
+- 模型选择集中到圆角输入框，＋保留可选创作／附件／本次参数；模型、任务、API、设置改为紧凑列表和共享控件，错误提示改为页面内独立行，修复遮挡运行管理。
+- 保留推荐／本地／完整 HF 发现、功能／能力／NSFW 标签、外层删除确认、卸载与独立参数，以及完整 OpenAI 工具契约和原有队列／作品。
+- 生产页面程序回归、520组布局、43项对话检查、签名APK／包／Lint，双语README／设计规范与12张截图、GIF、MP4；所有新媒体标注程序夹具。手机被其他任务占用，本轮不操作手机、不宣称真机验收或性能测量。
+- All five pages adopt a pinned DSH-inspired workspace with chat-first navigation, narrow/wide sidebars, neutral themes and a focused composer. Existing model, creation, Delete/Unload and API functionality is preserved. New documentation/media explicitly distinguish program fixtures from pending phone acceptance.
+- [完整说明 / Full notes](docs/releases/v1.2.0.md) · [中文规范](docs/design/DSH_WORKSPACE.md) / [English](docs/design/DSH_WORKSPACE.en.md).
+
 ## v1.1.0 · 2026-11-06 · DSH 工具协议与运行管理 / Function tools and Unload
 
 - 发布后补充79项真实DSH v1.4.76客户端代码互操作检查：25个工具包、49份声明变体／45个工具名，实际客户端＋生产HTTP／协议层，多轮、流式、长历史和错误；记录300秒客户端空闲计时及非默认提供商开关的边界。仅程序／文档维护，原APK／源码附件不改写，DSH App实机验收待设备空闲。[中文](docs/DSH_CLIENT_AUDIT.md) · [English](docs/DSH_CLIENT_AUDIT.en.md).

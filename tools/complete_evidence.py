@@ -30,11 +30,16 @@ EXTRA = {
     'cascade.json': 'build/cascade-tests/results.json',
     'ultratex-attention.json': 'build/ultratex-attention-tests/results.json',
 }
+if tuple(map(int,version().split('.'))) >= (1,2,0):
+    EXTRA['workspace-ui.json']='build/workspace-ui/results.json'
+    EXTRA['workspace-contrast.json']='docs/design/workspace-validation.json'
 for item in required_records():
     if item not in BASE_SOURCES.values():
         EXTRA[Path(item).parent.name + '.json' if item.endswith('/results.json') else Path(item).name] = item
 SOURCES = BASE_SOURCES | EXTRA
 MINIMUM = BASE_MINIMUM | {'mica-ui':20,'conversation-core':71,'conversation-integration':48,'conversation-ui':43,'api-publication': 34, 'sub2api-gateway': 13, 'ui-performance': 8, 'expansion': 875, 'portable-sparse-models': 97, 'cascade': 95, 'ultratex-attention': 47, 'material': 61}
+if tuple(map(int,version().split('.'))) >= (1,2,0):
+    MINIMUM.update({'workspace-ui':29,'workspace-contrast':62})
 for module in MODULES.values():
     for name, minimum in module['tests'].items():
         if name != 'expansion-tests':
@@ -68,7 +73,7 @@ def declared_deviation():
 
 def inputs():
     return fingerprint('tools/complete_evidence.py', 'tools/program_evidence.py', 'tools/program_release.py',
-        *(['tools/mica_evidence.py','verification/releases/v'+version()+'/mica-physical-ui.json','verification/releases/v'+version()+'/mica-fonts.json'] if tuple(map(int,version().split('.'))) >= (1,0,0) else []),
+        *(['tools/mica_evidence.py','docs/media/workspace-v'+version()+'/manifest.json'] if tuple(map(int,version().split('.'))) >= (1,2,0) else ['tools/mica_evidence.py','verification/releases/v'+version()+'/mica-physical-ui.json','verification/releases/v'+version()+'/mica-fonts.json'] if tuple(map(int,version().split('.'))) >= (1,0,0) else []),
         'tools/conversation_evidence.py','catalogue/conversation-20261102-implementation.json',CONVERSATION_MEDIA+'/manifest.json',
         'tools/physical_model_evidence.py', 'tools/physical_api_evidence.py', 'tools/physical_tools_evidence.py', 'tools/device_tools_probe.py', 'tools/device_model_probe.py', 'tools/check_repository.py', 'tools/package_delivery.py', 'tools/prepare_release.py', 'tools/publish_release.py',
         'tools/release_scope.py', 'tools/audit_adaptations.py', 'tools/physical_evidence.py', 'tools/recommendations.py', 'tools/task_diagnostics_evidence.py',
@@ -80,6 +85,7 @@ def inputs():
         *(['docs/media/benchmarks/v'+version()+'/manifest.json'] if (ROOT/'docs/media/benchmarks'/('v'+version())/'manifest.json').exists() else []),
         *(['tools/port_update_evidence.py', 'tools/device_lan_http.py', 'tools/export_lan_http_evidence.py',
            'verification/supplemental/v0.3.13/lan-http.json', 'docs/media/tests/lan-http-v0313/manifest.json'] if version() == '0.3.13' else []),
+        *(['docs/proposals/workspace-validation-policy.json'] if version()=='1.2.0' else []),
         'research/portability/adaptation-current.json', 'docs/proposals/program-validation-policy.json',
         'docs/proposals/multimodal-release-scope.json', 'catalogue/release-'+version()+'-implementation.json')
 

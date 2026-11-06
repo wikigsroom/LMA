@@ -1,5 +1,7 @@
 # LMA 云母分区 · 设计风格约束 1.0.0
 
+> v1.2.0 当前视觉／导航规范已改为 [DSH workspace](DSH_WORKSPACE.md) / [English](DSH_WORKSPACE.en.md)。This document preserves the historical UI10 specification; current user direction takes precedence.
+
 [English](MICA_BENTO.en.md) · [总目录](README.md) · [组件](COMPONENTS.md) · [宽窄屏适配](RESPONSIVE.md) · [Tokens](tokens.json)
 
 ## 1. 定稿与实施边界

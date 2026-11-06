@@ -1,5 +1,7 @@
 # Mica Bento · 30 component and page contracts
 
+> v1.2.0 当前视觉／导航规范已改为 [DSH workspace](DSH_WORKSPACE.md) / [English](DSH_WORKSPACE.en.md)。This document preserves the historical UI10 specification; current user direction takes precedence.
+
 [中文](COMPONENTS.md) · [Design specification](MICA_BENTO.en.md) · [Adaptation and acceptance](RESPONSIVE.en.md) · [Tokens](tokens.json)
 
 **Implemented in v1.0.0.** [Scoped program and physical checks](../MICA_V100.en.md) are separate from these component contracts. Earlier pending wording describes the original specification stage.

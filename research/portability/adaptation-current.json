@@ -1,6 +1,6 @@
 {
   "schema": "lma.adaptation-audit/2",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "previous_release": "0.3.5",
   "previous_audit": "research/portability/audit-v0.3.5.json",
   "implemented_modules": {
@@ -438,13 +438,13 @@
     "app/src/main/java/com/lma/app/HubCatalog.java": "2a5e513d896a4ba804a75ac35d8be15421757edf3f009bdb59fdb4228caae777",
     "app/src/main/java/com/lma/app/HubClient.java": "3bc06665ad34b73937235362144605ed28c47b616654e6a31b2b3fa3125e7c0a",
     "app/src/main/java/com/lma/app/InputImports.java": "f59c48493faab98edcc1462842fbabb9814ab5afca9fb583d5b6c310b4846fbc",
-    "app/src/main/java/com/lma/app/LmaApp.java": "5129bd8519af4674cfb0a72d8319e2ad014154d0b55a13341ed41d1d96243e08",
+    "app/src/main/java/com/lma/app/LmaApp.java": "d88c7f30d34239a42860532f5ed439fde438e2e29e05e580bd225adf9c250a92",
     "app/src/main/java/com/lma/app/LmaService.java": "cb67090a09f17b4032583490b692cab712856b6226219a07bc350b422bfdfe8e",
     "app/src/main/java/com/lma/app/LocalEngine.java": "c06198df33cf290dff58d5d7d7f2b44b3d84d552c1a3c0f1cf35c30c6d5b7c19",
     "app/src/main/java/com/lma/app/LocalEngines.java": "149f613e0bd25911cea08b14a8eb615ff7f0b208210cfebc26811546b2a3504d",
     "app/src/main/java/com/lma/app/LocalJobs.java": "fb0b91a8b966f8640c63c4c851e55313b270875d03626d1f70cd60c93fb481fa",
     "app/src/main/java/com/lma/app/Ltx098Engine.java": "6e7643d54d506ba9f8a63599a9efe8d513d1eebb1a9ac53adc9ee6281a7bc36c",
-    "app/src/main/java/com/lma/app/MainActivity.java": "f2a98438d24980a10668c6d51caa1f825241ecb83f3b89afbbed901bb58450bb",
+    "app/src/main/java/com/lma/app/MainActivity.java": "43d4e90553e8a15489b2165846a9f089ac8f8f8e0af603374e13860d972828b7",
     "app/src/main/java/com/lma/app/MediaComposer.java": "2dbeb1c87b0be910ff8cc5dc72af364af2c64309d47b6c11e3b0ddc46285cfe9",
     "app/src/main/java/com/lma/app/MediaInspector.java": "a1baa42ca0ace536cd21599ebbb57cf1a61a381148141c40ac69c6398f81a1f0",
     "app/src/main/java/com/lma/app/MnnEngine.java": "3117ce4829d887605daba3abafa219d8b15d03781d4e2159d44eebdf8214b029",

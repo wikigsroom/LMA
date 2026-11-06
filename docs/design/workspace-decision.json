@@ -1,0 +1,91 @@
+{
+  "schema": "lma.workspace-design-decision/1",
+  "version": "1.2.0",
+  "date": "2026-11-06",
+  "selectedStyle": "dsh-workspace",
+  "source": "Explicit user request to align both style and layout with Deepseek-Harness-Local-Android",
+  "repository": "https://github.com/Soodok/Deepseek-Harness-Local-Android",
+  "commit": "02e89ea7d9a6d211e38777c6a409f6cdf5dc0888",
+  "reviewed_sources": [
+    {
+      "path": "app/src/main/assets/android-plugins/narrow-sidebar/client.js",
+      "bytes": 16618,
+      "sha256": "bb94964cf55b0e08394e15b44d7120a453c65ed696328cd6fd9fe780f910afa9",
+      "git_blob": "05976b30ad15293b05df842a4218d9af9a07e9c9"
+    },
+    {
+      "path": "app/src/main/assets/android-plugins/narrow-settings/client.js",
+      "bytes": 22476,
+      "sha256": "a07617bd73bc48862ecc8ae4be109e7d50a30c37f32eea1c7e269943d5332ee6",
+      "git_blob": "a6894af4553049bdd251e7dd4dedfd772cf94242"
+    },
+    {
+      "path": "app/src/main/java/app/dsh/mobile/Framer.kt",
+      "bytes": 7363,
+      "sha256": "8159aed7af02cbf0a2d37eb7b57dbfd49b4e6d153d21c1630801816f2160237e",
+      "git_blob": "c67c6aca1aec688adfcafd5ad2b9eb6c94ae2dd0"
+    },
+    {
+      "path": "app/src/main/java/app/dsh/mobile/Accent.kt",
+      "bytes": 5553,
+      "sha256": "a7ca6204883f54353759aa37948a888ff6434335be6902c6f1dc1bce40d14ae0",
+      "git_blob": "e22b314755e7f11ef34d0cfde110280c91a6cde2"
+    },
+    {
+      "path": "app/src/main/java/app/dsh/mobile/AppearanceActivity.kt",
+      "bytes": 16024,
+      "sha256": "87d4c88c4515fbc47fb571cb3a25920d544f37374f07dd189cf867d6abd60dc1",
+      "git_blob": "b9128f9c04a4b16bc4546ac44d7ee3a33ab98f86"
+    },
+    {
+      "path": "app/src/main/java/app/dsh/mobile/ThemedActivity.kt",
+      "bytes": 8215,
+      "sha256": "e8b8dce9b520108d8b5c3822d031413a9d66c40e9b6341cf9c65f5b39a3b13b5",
+      "git_blob": "99cb5b5de37c0262b9cc33ca03c292410eac0e89"
+    },
+    {
+      "path": "app/src/main/java/app/dsh/mobile/SettingsActivity.kt",
+      "bytes": 37861,
+      "sha256": "a57237f91910a8ee5995db42dcdec56488ab2ac36a8af4bd7d59b9f09a2f0445",
+      "git_blob": "5aab95c4ee3685a9520eeca72516ff239d1ea87d"
+    },
+    {
+      "path": "app/src/main/java/app/dsh/mobile/MainActivity.kt",
+      "bytes": 187554,
+      "sha256": "e2957d7b0244b5fbfda5e5ede7d067e84181ac2d48ef5ec945594fed8eb026bd",
+      "git_blob": "98352da5926f2c24ef2a51d78de98378188eb80a"
+    },
+    {
+      "path": "app/src/main/res/layout/activity_settings.xml",
+      "bytes": 37279,
+      "sha256": "c2a259695d68753b8462610e3b65916e96d2f5c550e774209fdec15ee63e9809",
+      "git_blob": "3c09a84aefd8aa3af8d2eb2bcc497de8ab460a50"
+    },
+    {
+      "path": "docs/promo/design.md",
+      "bytes": 3042,
+      "sha256": "179544a08409fd5eda03f6980ba9c2bb3c7e8eaffb6964864580f7f3f71c4159",
+      "git_blob": "09f8df5eeddcb4f3f6d8820ebe7e6d0a8eba0f6f"
+    },
+    {
+      "path": "_i60_view.jpg",
+      "bytes": 85246,
+      "sha256": "2d47971756c89789daf9252ad29411d1f338d3319b316845165002338c6630b1",
+      "git_blob": "0556c84add3d33bc14401ea170d83ff30325d607"
+    }
+  ],
+  "implementation": "Original LMA HTML/CSS/JS. Upstream sources reviewed as design references; no DSH code or agents bundled.",
+  "supersedes": "UI10 Mica Bento visual/navigation rules; original decision and release evidence remain historical",
+  "logo": 21,
+  "slogan": "04",
+  "defaultTheme": "dark",
+  "themes": [
+    "dark",
+    "light",
+    "system"
+  ],
+  "home": "chat",
+  "narrowNavigation": "56px icon rail; expanded drawer takes full available width",
+  "wideNavigation": "256px sidebar, collapsible to 64px, at 1080 CSS px",
+  "verification": "Program fixtures only. Phone occupied by another task; no ADB or phone acceptance this round."
+}

@@ -1,8 +1,8 @@
 {
   "schema": "lma.conversation-implementation/1",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "planDate": "20261102",
-  "deliveryDate": "2026-11-03",
+  "deliveryDate": "2026-11-06",
   "validationMode": "program_only",
   "plan": "docs/proposals/update-direction-20261102.json",
   "guide": "docs/CONVERSATION_V040.md",

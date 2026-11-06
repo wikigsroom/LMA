@@ -1,10 +1,10 @@
 {
   "schema": "lma.mica-design/1",
-  "version": "1.1.0",
-  "style": 10,
-  "design_version": "1.0.0",
+  "version": "1.2.0",
+  "style": "dsh-workspace",
+  "design_version": "2.0.0",
   "source": "docs/design/tokens.json",
-  "source_sha256": "3fef071e5d4014887ccbbe53143dde2fae82a075fd564e4805e94fb972089f74",
+  "source_sha256": "250a9e82d8884935af90d443f6f8f0bb5db7fcd3532c3ea40ea62546d3410fa7",
   "themes": [
     "dark",
     "light"

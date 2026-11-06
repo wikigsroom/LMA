@@ -1,4 +1,4 @@
-"""Version-bound UI10 evidence; browser fixtures and actual phone remain distinct."""
+"""Version-bound UI evidence; program fixtures and actual phone remain distinct."""
 import json
 from pathlib import Path
 from evidence import ROOT, current, version
@@ -10,6 +10,23 @@ def check():
     current(program['input_fingerprint'])
     assert program['version']==version() and program['passed']>=20 and len(program['matrix'])==520
     assert program['browser_closed'] and not program['physicalDevice']
+    if tuple(map(int,version().split('.'))) >= (1,2,0):
+        workspace=json.loads((ROOT/'build/workspace-ui/results.json').read_text('utf8'))
+        current(workspace['input_fingerprint'])
+        assert workspace['version']==version() and workspace['passed']>=29
+        assert workspace['browser_closed'] and not workspace['physicalDevice']
+        assert not workspace['modelInference'] and not workspace['weightsDownloaded']
+        media=json.loads((ROOT/('docs/media/workspace-v'+version()+'/manifest.json')).read_text('utf8'))
+        current(media['input_fingerprint'])
+        assert media['version']==version() and media['program_fixture'] and not media['physical_device']
+        assert len(media['files'])>=14 and len(workspace['captures'])>=12
+        import hashlib
+        for item in media['files']:
+            path=ROOT/('docs/media/workspace-v'+version())/item['file']
+            assert path.stat().st_size==item['bytes'] and hashlib.sha256(path.read_bytes()).hexdigest()==item['sha256']
+        return dict(workspace_ui_implemented=True,workspace_program_checks=workspace['passed'],
+                    mica_program_layouts=520,mica_physical_ui_checks=0,mica_physical_font_scales=[],
+                    current_ui_phone_acceptance=False,phone_deferral_reason='Shared phone occupied by another task; user requested code/program review first')
     physical=json.loads((ROOT/('verification/releases/v'+version()+'/mica-physical-ui.json')).read_text('utf8'))
     current(physical['input_fingerprint'])
     build=json.loads((ROOT/'dist/build-info.json').read_text('utf8'))

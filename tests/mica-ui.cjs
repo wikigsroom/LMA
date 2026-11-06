@@ -24,7 +24,7 @@ async function main(){
  browser=await chromium.launch({headless:true,executablePath:process.env.LMA_BROWSER||'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe',args:['--disable-background-networking','--disable-component-update']});
  context=await browser.newContext({viewport:{width:393,height:873}});page=await context.newPage();page.on('pageerror',e=>errors.push(e.message));
  await page.addInitScript(data=>{window.__state=data;window.__commands=[];window.Android={themePreference:()=>data.settings.theme,theme:()=>{},layoutInfo:()=>JSON.stringify({nativeInsets:false,ime:false,textScale:1}),requestSnapshot:()=>window.LMA.receive(structuredClone(data)),dispatch:raw=>{window.__commands.push(JSON.parse(raw));},copy:()=>{}};},base);
- await page.goto('http://127.0.0.1:'+server.address().port);await page.waitForSelector('.model-card');
+ await page.goto('http://127.0.0.1:'+server.address().port);await page.locator('.nav-item[data-tab="models"]').click();await page.waitForSelector('.model-card');
  check(await page.locator('html').getAttribute('data-theme')==='dark','Default is dark before first interaction');
  check(await page.locator('.model-card').evaluateAll(a=>a.slice(0,3).map(e=>e.dataset.model).join(','))==='m08,m06,m01','Recommended prefix remains m08, m06, m01');
  const viewports=[[320,480],[320,568],[360,640],[360,740],[375,667],[390,844],[393,873],[412,915],[430,932],[480,960],[568,320],[640,360],[800,360],[600,960],[840,1180],[1024,768],[1280,800]];
@@ -67,7 +67,7 @@ async function main(){
  check(await page.locator('#modelSearch').inputValue()==='','Search has an accessible clear action');
  const sizes=await page.locator('.nav-item').evaluateAll(a=>a.map(e=>({w:e.getBoundingClientRect().width,h:e.getBoundingClientRect().height})));
  check(sizes.every(s=>s.w>=48&&s.h>=48),'Phone navigation retains 48px hit targets');
- check(await page.locator('html').evaluate(el=>getComputedStyle(el).getPropertyValue('--bg').trim())==='var(--lma-canvas)'||await page.locator('body').evaluate(el=>getComputedStyle(el).backgroundColor)==='rgb(21, 26, 43)','Production surfaces use the approved theme');
+ check(await page.locator('html').evaluate(el=>getComputedStyle(el).getPropertyValue('--bg').trim())==='var(--lma-canvas)'||await page.locator('body').evaluate(el=>getComputedStyle(el).backgroundColor)==='rgb(20, 20, 20)','Production surfaces use the current neutral theme');
  await page.emulateMedia({reducedMotion:'reduce'});
  check(await page.locator('.button').first().evaluate(el=>getComputedStyle(el).transitionDuration)==='0s','Reduced motion disables nonessential transitions');
  check(await page.evaluate(()=>window.__commands.filter(c=>/download|delete|loadModel|startServer/i.test(c.action)).length)===0,'Theme and layout checks never download, delete or load user models');

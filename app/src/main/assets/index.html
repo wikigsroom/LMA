@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="conversation.css">
   <link rel="stylesheet" href="mica-tokens.css">
   <link rel="stylesheet" href="mica.css">
+  <link rel="stylesheet" href="workspace.css">
   <script src="mica.js" defer></script>
   <script src="license.js" defer></script>
   <script src="versions.js" defer></script>
@@ -25,21 +26,35 @@
   <script src="recommendations.js" defer></script>
   <script src="capabilities.js" defer></script>
   <script src="conversation.js" defer></script>
+  <script src="workspace.js" defer></script>
   <script src="app.js" defer></script>
 </head>
 <body>
   <div class="window-recovery" role="status">窗口过窄，请调大窗口或旋转手机。任务会继续保留。</div>
   <div class="app-shell">
+    <aside class="workspace-sidebar" id="workspaceSidebar" aria-label="工作区导航">
+      <div class="sidebar-top"><a class="brand" href="#chat" data-action="tab" data-tab="chat" aria-label="LMA 对话首页" title="把无审查 AI，装进口袋。 Uncensored AI, right in your pocket."><img class="brand-logo" src="lma-logo.png" alt=""><span class="brand-name">LMA</span></a><button class="icon-button sidebar-toggle" id="sidebarToggle" type="button" data-workspace="toggle" aria-label="展开侧边栏" aria-expanded="false" aria-controls="workspaceSidebar"><span class="icon" data-icon="sidebar"></span></button></div>
+      <button class="sidebar-newchat" type="button" data-action="newChat" aria-label="新建对话"><span class="icon" data-icon="compose"></span><span class="nav-label">新建对话</span></button>
+      <nav class="bottom-nav" aria-label="主要导航">
+        <button class="nav-item active" data-action="tab" data-tab="chat" aria-label="对话" aria-current="page"><span class="icon" data-icon="chat"></span><span class="nav-label">对话</span></button>
+        <button class="nav-item" data-action="tab" data-tab="models" aria-label="模型库"><span class="icon" data-icon="grid"></span><span class="nav-label">模型库</span></button>
+        <button class="nav-item" data-action="tab" data-tab="tasks" aria-label="任务与作品"><span class="icon" data-icon="spark"></span><span class="nav-label">任务与作品</span></button>
+        <button class="nav-item" data-action="tab" data-tab="server" aria-label="API 服务"><span class="icon" data-icon="server"></span><span class="nav-label">API 服务</span></button>
+        <div class="sidebar-recents"><div class="sidebar-section-label">最近对话<button class="icon-button" type="button" data-action="history" aria-label="全部对话"><span class="icon" data-icon="history"></span></button></div><div id="sidebarSessions" class="sidebar-sessions"></div></div>
+        <button class="nav-item sidebar-settings" data-action="tab" data-tab="settings" aria-label="设置"><span class="icon" data-icon="sliders"></span><span class="nav-label">设置</span></button>
+      </nav>
+      <div class="sidebar-footer"><span class="device-led" aria-hidden="true"></span><span id="deviceName">Android · 本地运行</span><span class="sidebar-local">ON DEVICE</span></div>
+    </aside>
     <header class="topbar">
-      <a class="brand" href="#models" aria-label="LMA 模型库"><img class="brand-logo" src="lma-logo.png" alt="LMA"><span class="brand-name">LMA</span><span class="brand-caption">把无审查 AI，装进口袋。<br>Uncensored AI, right in your pocket.</span></a>
-      <div class="device-badge"><span class="device-led" aria-hidden="true"></span><span id="deviceName">本地模型工作台</span></div>
-    </header>
-    <aside class="runtime-strip" aria-label="模型运行状态">
+      <div class="workspace-heading"><span id="workspacePageTitle">对话</span><span class="workspace-local">本地工作区</span></div>
+      <aside class="runtime-strip" aria-label="模型运行状态">
       <div class="runtime-dot" id="runtimeDot"></div><div class="runtime-copy"><strong id="runtimeName">尚未加载模型</strong><span id="runtimeDetail">下载一个模型，开始本地运行</span></div>
       <button class="text-button" id="runtimeAction" data-action="manageRuntime">运行管理</button>
-    </aside>
+      </aside>
+    </header>
+    <div class="error-banner" id="errorBanner" role="alert" hidden><span class="icon" data-icon="alert"></span><span id="errorText"></span><button class="icon-button" data-action="dismissError" aria-label="关闭错误提示"><span class="icon" data-icon="close"></span></button></div>
     <main id="main">
-      <section class="page active" id="page-models" aria-label="模型库">
+      <section class="page" id="page-models" aria-label="模型库" hidden>
         <div class="page-heading"><div><span class="eyebrow">LOCAL MODEL LIBRARY</span><h1>模型库<span class="heading-dot">.</span></h1><p>从推荐开始，或探索 Hugging Face，按需下载到手机。</p></div><button class="button secondary" data-action="addMenu" id="addModelButton" aria-label="添加模型"><span class="icon" data-icon="plus"></span><span>添加模型</span></button></div>
         <div class="resource-ribbon" id="resourceRibbon"><div><span>设备内存</span><strong id="deviceMemory">—</strong></div><div><span>可用存储</span><strong id="deviceStorage">—</strong></div><div><span>已下载模型</span><strong id="installedCount">0</strong></div></div>
         <label class="search-label" for="modelSearch">搜索模型</label><label class="search-field"><span class="icon" data-icon="search"></span><input type="search" id="modelSearch" placeholder="搜索 HF 模型、owner/model 或仓库链接" autocomplete="off" aria-label="搜索模型"><button type="button" class="icon-button search-clear" data-action="clearSearch" aria-label="清空搜索"><span class="icon" data-icon="close"></span></button></label>
@@ -52,10 +67,10 @@
         <div id="hubPagination" class="hub-pagination" hidden></div>
         <p class="library-footnote">“全部”可检索 HF 模型库。文本 GGUF 沿用原有流程；多组件模型按配方显示完整包，运行能力与设备验证状态单独标记。“无审查”单独标记，并注明依据。文件体积不等于运行内存。</p>
       </section>
-      <section class="page chat-page" id="page-chat" aria-label="本地对话" hidden>
-        <div class="chat-toolbar"><button class="model-picker" id="chatModelPicker" data-action="pickModel"><span class="icon" data-icon="cube"></span><span id="chatModelName">选择模型</span><span class="icon small" data-icon="chevron"></span></button><div class="toolbar-actions"><button class="icon-button" data-action="history" aria-label="对话历史" title="对话历史"><span class="icon" data-icon="history"></span></button><button class="icon-button" data-action="newChat" aria-label="新建对话" title="新建对话"><span class="icon" data-icon="compose"></span></button></div></div>
+      <section class="page chat-page active is-empty" id="page-chat" aria-label="本地对话">
+        <div class="chat-toolbar"><div class="chat-title"><span class="workspace-chat-dot" aria-hidden="true"></span><span id="workspaceChatTitle">新对话</span></div><div class="toolbar-actions"><button class="icon-button" data-action="history" aria-label="对话历史" title="对话历史"><span class="icon" data-icon="history"></span></button><button class="icon-button" data-action="newChat" aria-label="新建对话" title="新建对话"><span class="icon" data-icon="compose"></span></button></div></div>
         <div class="messages" id="messages" role="log" aria-live="off" aria-label="对话消息"></div>
-        <form id="chatForm" class="composer"><label class="sr-only" for="chatInput">消息内容</label><textarea id="chatInput" rows="1" maxlength="12000" placeholder="输入消息，开始本地对话…"></textarea><div class="composer-bottom"><span id="composerHint">回复在当前手机生成</span><button type="submit" id="sendButton" class="send-button" aria-label="发送消息"><span class="icon" data-icon="send"></span></button></div></form>
+        <form id="chatForm" class="composer"><label class="sr-only" for="chatInput">消息内容</label><textarea id="chatInput" rows="1" maxlength="12000" placeholder="输入消息，开始本地对话…"></textarea><div class="composer-bottom"><button type="button" class="model-picker" id="chatModelPicker" data-action="pickModel"><span class="icon" data-icon="cube"></span><span id="chatModelName">选择模型</span><span class="icon small" data-icon="chevron"></span></button><span id="composerHint">回复在当前手机生成</span><button type="submit" id="sendButton" class="send-button" aria-label="发送消息"><span class="icon" data-icon="send"></span></button></div></form>
       </section>
       <section class="page" id="page-tasks" aria-label="本机任务与结果" hidden>
         <div class="page-heading"><div><span class="eyebrow">ON-DEVICE GENERATION</span><h1>本地创作<span class="heading-dot">.</span></h1><p>选择已下载的模型，提交任务，在这里查看进度与结果。</p></div><button class="button secondary" data-action="showLocal">选择模型</button></div>
@@ -90,13 +105,13 @@
           <div class="panel"><div class="section-heading"><h2>模型参数</h2><span class="icon" data-icon="cube"></span></div><p class="form-help">上下文、输出上限、线程、温度、思考模式与系统提示词，随每个已下载模型独立保存。选择预设或手动输入，超出上限自动调整。</p><button class="button secondary" type="button" data-action="showLocal">前往本地模型设置<span class="icon" data-icon="arrow"></span></button></div>
           <button type="submit" class="button primary save-settings"><span class="icon" data-icon="check"></span>保存设置</button><p class="save-hint" id="settingsHint" role="status"></p>
         </form>
-        <div class="about"><img class="brand-logo" src="lma-logo.png" alt="LMA"><div><strong>LMA <span class="mono">1.0.0</span></strong><p>本地模型工作台 · Android 9+ · ARM64</p><button class="text-button" data-action="about">开源组件与说明 ↗</button><button class="text-button" data-action="expansionNotices">语音 / 3D 新增组件说明 ↗</button></div></div>
+        <div class="about"><img class="brand-logo" src="lma-logo.png" alt="LMA"><div><strong>LMA <span class="mono">1.2.0</span></strong><p>本地模型工作台 · Android 9+ · ARM64</p><button class="text-button" data-action="about">开源组件与说明 ↗</button><button class="text-button" data-action="expansionNotices">语音 / 3D 新增组件说明 ↗</button></div></div>
       </section>
     </main>
-    <nav class="bottom-nav" aria-label="主要导航"><button class="nav-item active" data-action="tab" data-tab="models" aria-current="page"><span class="icon" data-icon="grid"></span><span>模型库</span></button><button class="nav-item" data-action="tab" data-tab="chat"><span class="icon" data-icon="chat"></span><span>对话</span></button><button class="nav-item" data-action="tab" data-tab="tasks"><span class="icon" data-icon="spark"></span><span>任务</span></button><button class="nav-item" data-action="tab" data-tab="server"><span class="icon" data-icon="server"></span><span>服务</span></button><button class="nav-item" data-action="tab" data-tab="settings"><span class="icon" data-icon="sliders"></span><span>设置</span></button></nav>
+
   </div>
   <div class="modal-backdrop" id="modalBackdrop" hidden><section class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" tabindex="-1"><div class="modal-heading"><h2 id="modalTitle"></h2><button class="icon-button" data-action="closeModal" aria-label="关闭"><span class="icon" data-icon="close"></span></button></div><div id="modalContent"></div></section></div>
   <div id="toast" class="toast" role="status" hidden></div>
-  <div class="error-banner" id="errorBanner" role="alert" hidden><span class="icon" data-icon="alert"></span><span id="errorText"></span><button class="icon-button" data-action="dismissError" aria-label="关闭错误提示"><span class="icon" data-icon="close"></span></button></div>
+
 </body>
 </html>

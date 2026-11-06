@@ -1,5 +1,7 @@
 # 云母分区 · 30 类组件与页面契约
 
+> v1.2.0 当前视觉／导航规范已改为 [DSH workspace](DSH_WORKSPACE.md) / [English](DSH_WORKSPACE.en.md)。This document preserves the historical UI10 specification; current user direction takes precedence.
+
 [English](COMPONENTS.en.md) · [设计总规范](MICA_BENTO.md) · [适配与验收](RESPONSIVE.md) · [Tokens](tokens.json)
 
 **状态：v1.0.0 已实施；验收范围见 [本版指南](../MICA_V100.md)。** 所有组件必须在暗色和明亮主题可用；组件合同和实际验证分别记录。C 编号固定，后续实现与验收按编号引用，避免只改首页而遗漏弹层、任务和原生窗口。

@@ -1,5 +1,7 @@
 # 云母分区 · 宽窄机型、主题与适配验收
 
+> v1.2.0 当前视觉／导航规范已改为 [DSH workspace](DSH_WORKSPACE.md) / [English](DSH_WORKSPACE.en.md)。This document preserves the historical UI10 specification; current user direction takes precedence.
+
 [English](RESPONSIVE.en.md) · [总规范](MICA_BENTO.md) · [组件](COMPONENTS.md) · [Tokens](tokens.json) · [待验收矩阵](acceptance.json)
 
 **本文件定义必须实现的适配，不宣称已有机型测试通过。** 最低可用连续宽度为 240px；更窄时提供可恢复的调大窗口／旋转提示，不自动启动任务。 所有尺寸是可用 WebView 视口的 CSS px；原生安全区与触控尺寸使用 Android 对应单位并实测映射。不能把手机物理 1080px 宽当作布局宽，也不能只按“Z20／X30／平板”写死布局。
