@@ -1147,8 +1147,8 @@
       },
       {
         "file": "libllama-common.so",
-        "bytes": 4256296,
-        "sha256": "9d6870185327144cc8a34d8479e17a6e8ff51f28df8ccb56a0daadb3e5aec345",
+        "bytes": 4209648,
+        "sha256": "bb4713a433b7e466397df8553666284ce494aa453524f55de75a45d0f11291cd",
         "android_api_notes": [
           28
         ]

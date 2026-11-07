@@ -1,10 +1,12 @@
-# Build and program verification · v0.3.6
+# Build and program verification · v1.2.2
 
-**Current: complete adaptation v0.3.6 / code56.** Prepare every enabled engine, including the added locked-source / vision / surface steps at the end of this page. Use `tools/program_evidence.py --export` and `tools/audit_adaptations.py --require-complete`; `adaptation_evidence.py` remains historical development tooling. Model assets are user-selected and excluded from build/validation.
+For v1.2.2, also run `python tools/build_llama_chat_runtime.py --jobs 4`. It rebuilds only `libllama-common.so` from the pinned llama.cpp b29 source and reviewed repository patch over the original ServLlama archive. It verifies the other 13 libraries remain identical, 217 actually required exports, shared dependencies and 16 KiB alignment. `runtime-lock.json` distinguishes the original archive from the locally modified library. Repeat this step after bootstrapping; packaging rejects an unpatched or stale runtime. No model weights are downloaded or modified.
+
+**Current: v1.2.2 / code71, preserving the complete engine scope.** Prepare every enabled engine, including the added locked-source / vision / surface steps at the end of this page. Use `tools/program_evidence.py --export` and `tools/audit_adaptations.py --require-complete`; `adaptation_evidence.py` remains historical development tooling. Model assets are user-selected and excluded from build/validation.
 
 [中文](BUILD.md) · [Release workflow](RELEASING.md) · [Validation policy](PROGRAM_VALIDATION.en.md) · [Archived build notes](BUILD_HISTORY.en.md)
 
-Use a **full Git clone with history**, checked out at `v0.3.6` for reproduction. Historical evidence checks intentionally read earlier immutable Git blobs. The source ZIP is for code/docs/evidence review: its manifest lists exact files, while `.git`, native binaries, model data, build dependencies and signing material are excluded. It is not a self-contained binary SDK. No trained model is required to compile or program-check the APK.
+Use a **full Git clone with history**, checked out at `v1.2.2` for reproduction. Historical evidence checks intentionally read earlier immutable Git blobs. The source ZIP is for code/docs/evidence review: its manifest lists exact files, while `.git`, native binaries, model data, build dependencies and signing material are excluded. It is not a self-contained binary SDK. No trained model is required to compile or program-check the APK.
 
 ## Toolchain
 
@@ -17,15 +19,16 @@ UI checks use Playwright with Edge/Chromium; recordings additionally use FFmpeg/
 ```powershell
 git clone git@github.com:wikigsroom/LMA.git
 cd LMA
-git checkout v0.3.6
+git checkout v1.2.2
 python tools/bootstrap_runtime.py
 python tools/bootstrap_native.py
+python tools/build_llama_chat_runtime.py --jobs 4
 python tools/fetch_native.py --transport ssh
 python tools/build_native.py --jobs 4
 python tools/collect_native_notices.py
 ```
 
-Bootstrap downloads fixed runtime/toolchain code, not model assets. The 14 ServLlama text libraries are pinned prebuilt components. Other workers are compiled locally against their locked sources/dependencies. Git and the source ZIP exclude all native binaries. Before APK packaging, prepare **every enabled engine** and its receipts/notices; the package gate rejects missing/stale files instead of silently dropping capabilities.
+Bootstrap downloads fixed runtime/toolchain code, not model assets. The 14 text libraries start from the pinned ServLlama archive; rebuild libllama-common.so as above and retain the other 13 libraries byte-for-byte. Other workers are compiled locally against their locked sources/dependencies. Git and the source ZIP exclude all native binaries. Before APK packaging, prepare **every enabled engine** and its receipts/notices; the package gate rejects missing/stale files instead of silently dropping capabilities.
 
 | Engine family | Source/build/notice entry points in tools/ | Detailed prerequisite guide |
 | --- | --- | --- |
@@ -56,13 +59,20 @@ python tools/test_expansion.py
 python tools/test_multiview.py
 python tools/test_shape.py
 node tests/ui-smoke.cjs
+python tools/test_template_profiles.py
+node tests/mica-ui.cjs
+node tests/workspace-ui.cjs
+node tests/conversation-ui.cjs
+python tools/workspace_evidence.py
+python tools/conversation_evidence.py
+python tools/mica_evidence.py
 ```
 
 Without `--sdk`, use `ANDROID_SDK_ROOT` or the default LocalAppData SDK. SDK packages are not silently installed. `build.py` generates catalogue/templates, compiles resources/Java/DEX, validates native receipts, aligns/signs the APK and inspects its identity. Exact-byte fingerprints prevent stale passes; `.gitattributes` preserves line endings and raw header padding.
 
-The runner first compiles backend production classes consumed by HF/community checks, then runs three bounded groups. Sana/LTX defaults execute small synthetic graphs and process controls, never complete trained models. The other four Python commands and full UI complete the 27-suite set. Host tests use explicit Android ports, real files, sockets and children; they are not phone tests. Preserve current records and rerun only when inputs change or failures require it.
+The runner first compiles backend production classes consumed by HF/community checks, then runs three bounded groups. Sana/LTX defaults execute small synthetic graphs and process controls, never complete trained models. The runner covers24 bounded suites; the additional native, protocol, architecture and UI suites are required by the current version-specific evidence manifest. The workspace media export must run before its Mica evidence check. Host tests use explicit Android ports, real files, sockets and children; they are not phone tests. Preserve current records and rerun only when inputs change or failures require it.
 
-Current package: `com.lma.app`, version0.3.4/code54, ARM64, API28+/target35, **39 native libraries**, 16 KiB ELF and APK alignment. The package gate independently verifies signatures, dependency closure, receipt identities, source/UI equality and absence of model assets. Lint currently has zero errors and 16 retained warnings.
+Current package: `com.lma.app`, version1.2.2/code71, ARM64, API28+/target35, **41 native libraries**, 16 KiB ELF and APK alignment. The package gate independently verifies signatures, dependency closure, receipt identities, source/UI equality and absence of model assets. Lint currently has zero errors and 17 retained warnings.
 
 ## Media, evidence and packaging
 
@@ -76,6 +86,7 @@ node tools/capture_workbench.cjs spatial
 node tools/capture_workbench.cjs material
 node tools/capture_workbench.cjs ultratex
 node tools/capture_workbench.cjs adaptation
+node tools/capture_workbench.cjs recommendations
 python tools/release_scope.py
 python tools/program_evidence.py --export
 python tools/package_delivery.py
@@ -83,9 +94,9 @@ python tools/check_repository.py
 python tools/prepare_release.py
 ```
 
-Six explicitly labelled desktop UI captures produce 30 screenshots, six GIFs and six MP4s. `verification/program/` contains current evidence; v0.3.2's 34 original records and three recordings are archived. The original frozen scope and the separate unported benchmark architectures are checked independently. No visual/phone/endurance claim is manufactured from program counts.
+Ten explicitly labelled workbench recordings plus conversation/workspace media are exported with exact file hashes. Current evidence is under `verification/releases/v1.2.2/`; previous version records and failed experiments retain their original identity. The original frozen scope and the separate unported benchmark architectures are checked independently. No visual/phone/endurance claim is manufactured from program counts.
 
-Outputs: `dist/LMA-0.3.4-arm64-v8a.apk`, build/validation/source manifests, source/verification/screenshots ZIPs and version-specific release assets. These are ignored by Git; publish attachments through the authorized release workflow. After source/doc changes, repackage before publishing. After publication, use `check_repository.py --published` to check the immutable tag/source archive; never overwrite old assets.
+Outputs: `dist/LMA-1.2.2-arm64-v8a.apk`, build/validation/source manifests, source/verification/screenshots ZIPs and version-specific release assets. These are ignored by Git; publish attachments through the authorized release workflow. After source/doc changes, repackage before publishing. After publication, use `check_repository.py --published` to check the immutable tag/source archive; never overwrite old assets.
 
 ## Signing and private files
 

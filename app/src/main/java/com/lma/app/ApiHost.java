@@ -196,7 +196,10 @@ public final class ApiHost implements LocalApi.Runtime, AutoCloseable {
         if (path.equals("/v1/chat/completions")) TemplateProfiles.admit(call.request.getString("model"), call.request);
         JSONObject wire = NativeToolRequest.adapt(call.request);
         String prompt = path.equals("/v1/chat/completions") ? nativeJson(call, "/apply-template", wire).getString("prompt") : call.request.getString("prompt");
-        JSONObject tokens = nativeJson(call, "/tokenize", new JSONObject().put("content", prompt).put("add_special", false).put("parse_special", true));
+        // Match pinned server-context.cpp tokenize_input_prompts(..., true, true).
+        // The model vocabulary decides whether BOS/EOS are needed; counting only
+        // the rendered text can otherwise admit a full prompt with no output room.
+        JSONObject tokens = nativeJson(call, "/tokenize", new JSONObject().put("content", prompt).put("add_special", true).put("parse_special", true));
         int inputTokens = tokens.getJSONArray("tokens").length(), available = call.context - inputTokens;
         if (available < 1) throw new LocalHttp.Failure(400, "context_length_exceeded", "The rendered conversation and tools exceed the selected model context (" + inputTokens + " input tokens / " + call.context + " context)", path.equals("/v1/chat/completions") ? "messages" : "prompt");
         call.request.put("max_tokens", Math.min(call.request.getInt("max_tokens"), available));
@@ -222,6 +225,11 @@ public final class ApiHost implements LocalApi.Runtime, AutoCloseable {
         try (InputStream in = connection.getErrorStream()) {
             if (in != null) { JSONObject value = new JSONObject(new String(ToolReply.read(in, 128 * 1024), java.nio.charset.StandardCharsets.UTF_8)); JSONObject error = value.optJSONObject("error"); if (error == null) error = value; message = LocalApi.safeMessage(error.optString("message", message)); if (error.opt("code") instanceof String) code = error.getString("code"); if (error.opt("param") instanceof String) param = error.getString("param"); if (error.optString("type").contains("context") || code.contains("context")) code = "context_length_exceeded"; }
         } catch (Exception ignored) {}
+        if (status >= 500 && message.startsWith("The model produced output that does not match the expected ")) {
+            // Pinned native parser failure: distinguish invalid model output from
+            // a transport/server outage. No partial function is sent for execution.
+            status = 502; code = "invalid_model_output";
+        }
         return new LocalHttp.Failure(status >= 400 && status <= 599 ? status : 502, code, message, param);
     }
     private void releaseText(TextCall call) {

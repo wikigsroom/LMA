@@ -8,5 +8,7 @@
     <instrumentation android:name="com.lma.app.DevicePerformance" android:targetPackage="com.lma.app" android:label="Zero-model performance checks" />
     <instrumentation android:name="com.lma.app.DeviceUiProbe" android:targetPackage="com.lma.app" android:label="Mica physical UI checks" />
     <instrumentation android:name="com.lma.app.DeviceToolsProbe" android:targetPackage="com.lma.app" android:label="Physical tool protocol and runtime controls" />
+    <instrumentation android:name="com.lma.app.DeviceM04Diagnostics" android:targetPackage="com.lma.app" android:label="Explicitly marked m04 request diagnostics" />
+    <instrumentation android:name="com.lma.app.DeviceM04Metadata" android:targetPackage="com.lma.app" android:label="Read-only m04 context metadata inspection" />
     <instrumentation android:name="com.lma.app.DeviceTaskDiagnostics" android:targetPackage="com.lma.app" android:label="Owned-file and native startup diagnostics" />
 </manifest>

@@ -1,5 +1,15 @@
 # Changelog / 更新记录
 
+## v1.2.2 · 2026-11-07 · DSH完整上下文续验 / Full-context follow-up
+
+- 修复固定m04模板内DSH附加背景与待执行任务／结果的排列；保留全部原始内容、41工具、历史及工具选择，普通聊天继续沿用原模板。
+- 修复原生BOS预算差一、真实工具格式错误的502映射及模板换行导致的加载身份不一致；最终69项真正原生模板／grammar／parser检查核对有效源码。
+- 修复bare JSON连续函数记录的换行／空格分隔；仅重建同版本libllama-common.so并针对实际保留库链接，校验C++导入、217个依赖导出及16KiB对齐。新增14项使用最终APK相同库的Android无权重解析验收，其他13个文本库不变。
+- 最终APK通过21项真机SDK／卸载／重载检查；完整上下文DSH命令／文件／插件结果单独留证，不将短输入成功冒充通用代理验收。
+- 最终APK、原m04／参数及41工具下，明确逐步提示完成真实bash→write→read→按实际结果回答；独立核对调用ID、结果和36字节手机文件。DSH自身另完成dsh-pet0.4.3安装，独立已安装清单和重载后可见宠物交叉确认；未由外部代装。用户接受该安装流程；保留格式提示、J1自主续跑及J4/J5失败。Actual DSH file loop and DSH-owned plugin installation pass with disclosed guidance and exact-APK evidence, not a claim of general autonomous 1B-model reliability.
+- 仅对完整函数名称和参数的末尾bare记录兼容缺失外层结束符；不修补参数、不接收虚构结果。补全生成结束时拒绝不完整调用，保留生成中的流式片段；69项原生主机回归和14项Android合成解析分别留证。 Recover only the final bare envelope delimiter after complete name/argument JSON; reject unfinished final native calls without manufacturing execution.
+- Preserve original weights, saved131072 context/settings and client-owned execution. Refresh bilingual guides, current media, complete program evidence and release notes. Original signer and historical releases remain. [本轮完整说明 / Notes](docs/releases/v1.2.2.md).
+
 ## v1.2.1 · 2026-11-06 · m04模板与完整工具输入 / Tool-template repair
 
 - 核实并修复固定Dolphin1B GGUF默认模板丢工具问题；真实文件SHA／大小／架构／内嵌模板绑定审核profile，加载后核对原生实际模板、完整声明渲染和工具解析能力。普通聊天保留原模板，原权重和131072上下文等保存参数不变。

@@ -16,7 +16,8 @@ public final class TemplateProfilesTest {
     static void rejects(Action a, String label, List<String> checks) throws Exception { try {a.run();throw new AssertionError(label);}catch(IOException expected){checks.add(label);} }
     public static List<String> run(Path work, Path sourceAssets, Path libraries) throws Exception {
         List<String> checks=new ArrayList<>();Path dir=work.resolve("template-profile-fixtures"), assets=dir.resolve("assets");Files.createDirectories(assets);
-        String original=new String(Files.readAllBytes(sourceAssets.resolve("chat-templates/dolphin3-chatml-tools-v1.jinja")), StandardCharsets.UTF_8);
+        JSONObject declared=new JSONObject(new String(Files.readAllBytes(sourceAssets.resolve("chat-template-profiles.json")), StandardCharsets.UTF_8)).getJSONArray("profiles").getJSONObject(0);
+        String original=new String(Files.readAllBytes(sourceAssets.resolve(declared.getString("asset"))), StandardCharsets.UTF_8);
         String embedded="{{ messages }}";Path weight=dir.resolve("tiny.gguf");
         try(OutputStream out=Files.newOutputStream(weight)) {number(out,0x46554747L,4);number(out,3,4);number(out,0,8);number(out,3,8);entry(out,"general.architecture","llama");string(out,"llama.context_length");number(out,4,4);number(out,131072,4);entry(out,"tokenizer.chat_template",embedded);}
         check(GgufMetadata.chatTemplate(weight.toFile()).equals(embedded),"Bounded GGUF template reader skips unrelated values and reads actual UTF-8 metadata",checks);

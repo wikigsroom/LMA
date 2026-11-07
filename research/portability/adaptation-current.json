@@ -1,6 +1,6 @@
 {
   "schema": "lma.adaptation-audit/2",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "previous_release": "0.3.5",
   "previous_audit": "research/portability/audit-v0.3.5.json",
   "implemented_modules": {
@@ -333,7 +333,7 @@
   "validation_mode": "program_only",
   "input_fingerprint": {
     "app/src/main/assets/recipe-templates.json": "ed87f310d0a63251f765bbc4d8741b31806cc87145c0a96f762a110e097e6bd3",
-    "app/src/main/java/com/lma/app/ApiHost.java": "a5e263bfca2b2c4a67c6950375e322a67c73f2961b63a1e863634f87a415d80b",
+    "app/src/main/java/com/lma/app/ApiHost.java": "cd16c28d2f1425c159fe4112552d79568995637188a10e5c870e25b593c1c74a",
     "app/src/main/java/com/lma/app/BootReceiver.java": "2c1f72871ca122f8e9562edfc163105bd56ed1df81d3bcf60108a267b837dcee",
     "app/src/main/java/com/lma/app/BundleDocuments.java": "5b7039fae074adf35e117155e0337792e7ac7f08fa3630803fb1c9ac3b188d3a",
     "app/src/main/java/com/lma/app/ChatRunner.java": "b4915479cfe77b4f3c2afc8a1fc32f60b50a63f9769fc27689f06a3d12e75bdb",
@@ -439,7 +439,7 @@
     "app/src/main/java/com/lma/app/HubCatalog.java": "2a5e513d896a4ba804a75ac35d8be15421757edf3f009bdb59fdb4228caae777",
     "app/src/main/java/com/lma/app/HubClient.java": "3bc06665ad34b73937235362144605ed28c47b616654e6a31b2b3fa3125e7c0a",
     "app/src/main/java/com/lma/app/InputImports.java": "f59c48493faab98edcc1462842fbabb9814ab5afca9fb583d5b6c310b4846fbc",
-    "app/src/main/java/com/lma/app/LmaApp.java": "2514d86cb7534875f06540dd4585e74ce29809d9864bef6087f50e7eff02e042",
+    "app/src/main/java/com/lma/app/LmaApp.java": "5f96e06fade0cb243ba727557543fd66a81b149271ee28450f56b69e5f24eeff",
     "app/src/main/java/com/lma/app/LmaService.java": "cb67090a09f17b4032583490b692cab712856b6226219a07bc350b422bfdfe8e",
     "app/src/main/java/com/lma/app/LocalEngine.java": "c06198df33cf290dff58d5d7d7f2b44b3d84d552c1a3c0f1cf35c30c6d5b7c19",
     "app/src/main/java/com/lma/app/LocalEngines.java": "149f613e0bd25911cea08b14a8eb615ff7f0b208210cfebc26811546b2a3504d",

@@ -26,7 +26,7 @@ def check():
             assert path.stat().st_size==item['bytes'] and hashlib.sha256(path.read_bytes()).hexdigest()==item['sha256']
         return dict(workspace_ui_implemented=True,workspace_program_checks=workspace['passed'],
                     mica_program_layouts=520,mica_physical_ui_checks=0,mica_physical_font_scales=[],
-                    current_ui_phone_acceptance=False,phone_deferral_reason='Shared phone occupied by another task; user requested code/program review first')
+                    current_ui_phone_acceptance=False,phone_deferral_reason=('Shared phone occupied by another task; user requested code/program review first' if version()=='1.2.0' else 'Phone runtime controls are checked separately; comprehensive workspace accessibility/performance acceptance was not repeated for this repair'))
     physical=json.loads((ROOT/('verification/releases/v'+version()+'/mica-physical-ui.json')).read_text('utf8'))
     current(physical['input_fingerprint'])
     build=json.loads((ROOT/'dist/build-info.json').read_text('utf8'))

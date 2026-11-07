@@ -1,4 +1,4 @@
-- **2026-11-06 current m04/DSH repair:** preserve existing weights and saved 131072 context, all 41 tools, client-owned execution and real acceptance. The user confirmed the phone is free for debugging. Keep model quality separate from protocol/template evidence; no fake success or externally installed DSH plugins.
+- **2026-11-07 current v1.2.2 m04/DSH follow-up:** preserve existing weights and saved 131072 context, all 41 tools, client-owned execution and real acceptance. The user confirmed the phone is free and asked to continue verification. Check actual full-context background/task/result placement, effective native template bytes, BOS budgets and truthful parser errors; short SDK fixtures do not establish full DSH agent quality. No fake success or externally installed DSH plugins. [中文](docs/DSH_M04_FOLLOWUP.md) / [English](docs/DSH_M04_FOLLOWUP.en.md).
 
 # LMA repository instructions / 仓库工作约定
 

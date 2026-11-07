@@ -1,10 +1,12 @@
-# 构建与程序验证 · v0.3.6
+# 构建与程序验证 · v1.2.2
 
-**当前为完整适配 v0.3.6 / code56。** 所有原生引擎均须准备，新增固定源码 / 视觉 / 表面提取步骤见本页末尾。程序证据使用 `tools/program_evidence.py --export`，完整门禁使用 `tools/audit_adaptations.py --require-complete`；`adaptation_evidence.py` 仅保留历史开发用途。模型资产由用户另行选择，不进入构建和验证。
+v1.2.2 文本运行时另需 `python tools/build_llama_chat_runtime.py --jobs 4`：在原始 ServLlama 归档上，仅以固定 llama.cpp b29 源码及仓库补丁重建 `libllama-common.so`。构建器核对其余 13 个库不变、217 个实际被依赖的导出符号、动态依赖及 16 KiB 对齐；`runtime-lock.json` 区分原始归档来源与本地修改库。重新执行 bootstrap 后必须重新执行此步骤；打包检查拒绝未修补或过期的库。不下载模型，不改模型权重。
+
+**当前为 v1.2.2 / code71，完整保留此前引擎范围。** 所有原生引擎均须准备，新增固定源码 / 视觉 / 表面提取步骤见本页末尾。程序证据使用 `tools/program_evidence.py --export`，完整门禁使用 `tools/audit_adaptations.py --require-complete`；`adaptation_evidence.py` 仅保留历史开发用途。模型资产由用户另行选择，不进入构建和验证。
 
 [English](BUILD.en.md) · [发布流程](RELEASING.md) · [验证策略](PROGRAM_VALIDATION.md) · [构建历史全文](BUILD_HISTORY.md)
 
-重建使用**带完整历史的 Git clone**，复现时切到 `v0.3.6`。历史证据身份检查会读取早期不可变 Git blob。Release 源码 ZIP 用于代码 / 文档 / 证据审阅，精确文件见源码清单；它排除 `.git`、原生二进制、模型、构建依赖与签名材料，不是自包含 SDK。编译和程序验证不需要完整训练模型。
+重建使用**带完整历史的 Git clone**，复现时切到 `v1.2.2`。历史证据身份检查会读取早期不可变 Git blob。Release 源码 ZIP 用于代码 / 文档 / 证据审阅，精确文件见源码清单；它排除 `.git`、原生二进制、模型、构建依赖与签名材料，不是自包含 SDK。编译和程序验证不需要完整训练模型。
 
 ## 工具链
 
@@ -17,15 +19,16 @@
 ```powershell
 git clone git@github.com:wikigsroom/LMA.git
 cd LMA
-git checkout v0.3.6
+git checkout v1.2.2
 python tools/bootstrap_runtime.py
 python tools/bootstrap_native.py
+python tools/build_llama_chat_runtime.py --jobs 4
 python tools/fetch_native.py --transport ssh
 python tools/build_native.py --jobs 4
 python tools/collect_native_notices.py
 ```
 
-bootstrap 获取固定 runtime / 工具链代码，不下载模型。14 个 ServLlama 文本库为固定预编译组件，其余 worker 按各自锁和依赖构建。Git 与源码 ZIP 均不携带原生二进制。打 APK 前必须完成**所有已启用引擎**的源码 / 库、构建回执与许可；缺件或过期会阻止打包，不静默删减能力。
+bootstrap 获取固定 runtime / 工具链代码，不下载模型。14 个文本库以固定 ServLlama 归档为底，其中 libllama-common.so 按上文重建，其余 13 个库保持原字节，其余 worker 按各自锁和依赖构建。Git 与源码 ZIP 均不携带原生二进制。打 APK 前必须完成**所有已启用引擎**的源码 / 库、构建回执与许可；缺件或过期会阻止打包，不静默删减能力。
 
 | 引擎家族 | tools/ 内源码 → 构建 → 许可入口 | 详细前置指南 |
 | --- | --- | --- |
@@ -56,13 +59,20 @@ python tools/test_expansion.py
 python tools/test_multiview.py
 python tools/test_shape.py
 node tests/ui-smoke.cjs
+python tools/test_template_profiles.py
+node tests/mica-ui.cjs
+node tests/workspace-ui.cjs
+node tests/conversation-ui.cjs
+python tools/workspace_evidence.py
+python tools/conversation_evidence.py
+python tools/mica_evidence.py
 ```
 
 未指定 `--sdk` 时读 `ANDROID_SDK_ROOT` 或 LocalAppData 默认 SDK；不会静默安装 SDK 包。`build.py` 生成目录 / 配方、编译资源 / Java / DEX，检查原生回执、对齐签名并核对包身份。原字节指纹阻止旧通过记录混入；`.gitattributes` 保持换行与上游文件头填充。
 
-runner 先编译后端生产类，供 HF / 社区检查使用，再运行三组有界检查。Sana / LTX 默认只做微型合成图与进程控制，不执行完整训练模型；另外四个 Python 专项和完整页面组成 27 组覆盖。主机检查使用明确 Android 替身、真实文件 / socket / 子进程，不是真机。只有精确指纹仍一致时才复用记录。
+runner 先编译后端生产类，供 HF / 社区检查使用，再运行三组有界检查。Sana / LTX 默认只做微型合成图与进程控制，不执行完整训练模型；runner覆盖24组有界检查；当前版本证据清单还要求原生、协议、架构与UI专项。工作区媒体先导出，再执行Mica证据检查。主机检查使用明确 Android 替身、真实文件 / socket / 子进程，不是真机。只有精确指纹仍一致时才复用记录。
 
-当前包：`com.lma.app`、0.3.4 / code54、ARM64、API28+ / target35、**39 原生库**、16 KiB ELF / APK 对齐。独立核验签名、依赖闭合、原生回执、页面与源码一致和无模型资产。Lint 为 0 错误 / 16 个保留警告。
+当前包：`com.lma.app`、1.2.2 / code71、ARM64、API28+ / target35、**41 原生库**、16 KiB ELF / APK 对齐。独立核验签名、依赖闭合、原生回执、页面与源码一致和无模型资产。Lint 为 0 错误 / 17 个保留警告。
 
 ## 媒体、证据与打包
 
@@ -76,6 +86,7 @@ node tools/capture_workbench.cjs spatial
 node tools/capture_workbench.cjs material
 node tools/capture_workbench.cjs ultratex
 node tools/capture_workbench.cjs adaptation
+node tools/capture_workbench.cjs recommendations
 python tools/release_scope.py
 python tools/program_evidence.py --export
 python tools/package_delivery.py
@@ -83,9 +94,9 @@ python tools/check_repository.py
 python tools/prepare_release.py
 ```
 
-六组明确标记的桌面生产页面产出 30 张截图、6 GIF、6 MP4。`verification/program/` 为当前记录；v0.3.2 的 34 份原始证据与三组媒体另行归档。原冻结完整范围与后续测评尚未移植架构分别核对，不用程序数量冒充画质 / 手机 / 耐久。
+十组明确标记的工作台录屏及对话／工作区媒体均导出精确文件哈希。当前记录位于`verification/releases/v1.2.2/`；历史版本与失败实验保留原始身份。原冻结完整范围与后续测评尚未移植架构分别核对，不用程序数量冒充画质 / 手机 / 耐久。
 
-产物包括 `dist/LMA-0.3.4-arm64-v8a.apk`、构建 / 验证 / 源码清单、源码 / 验证 / 截图 ZIP 与版本附件，均不提交 Git，按授权发布流程上传。源码或文档变化后重新打包再发布；已发布后用 `check_repository.py --published` 核对原标签 / 源码 ZIP，不覆盖旧附件。
+产物包括 `dist/LMA-1.2.2-arm64-v8a.apk`、构建 / 验证 / 源码清单、源码 / 验证 / 截图 ZIP 与版本附件，均不提交 Git，按授权发布流程上传。源码或文档变化后重新打包再发布；已发布后用 `check_repository.py --published` 核对原标签 / 源码 ZIP，不覆盖旧附件。
 
 ## 签名与私有材料
 

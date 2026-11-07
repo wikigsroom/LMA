@@ -1,6 +1,6 @@
-# DSH and OpenAI function tools · v1.2.1
+# DSH and OpenAI function tools · v1.2.2
 
-[m04 repair: bound template, full definitions and physical results](DSH_M04_REPAIR.en.md).
+[m04 full-context follow-up: actual DSH background, BOS accounting, effective source and phone results](DSH_M04_FOLLOWUP.en.md); retain the [original v1.2.1 repair and failures](DSH_M04_REPAIR.en.md).
 
 [中文](DSH_TOOLS.md) · [API](API.en.md) · [Running models and unload](MODEL_RUNTIME.en.md) · [Release](releases/v1.1.0.md)
 

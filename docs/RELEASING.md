@@ -1,5 +1,15 @@
 # 发布流程 / Release workflow
 
+## v1.2.2 m04 full-context follow-up
+
+Run the exact native template-source/renderer/grammar/parser regression, backend BOS/error boundaries, regular fingerprinted program gates, original-signed package/Lint and refreshed labelled media. Keep all actual DSH message contents,41 tools, saved131072 context and existing m04 weights. No generation wall-clock deadline, remote inference, external execution or plugin installation substitution.
+
+Before building the APK, run `python tools/build_llama_chat_runtime.py` against the pinned source and reviewed patch. This builds only the chat common library against the actual retained publisher libraries. Verify the patch/source/library hashes, all required exports and C++ imports, unchanged companion libraries and 16KiB alignment; never substitute a newly built core library without updating and validating that complete runtime. Run `python tools/test_template_profiles.py` for the host regression, and `python tools/device_native_template_probe.py --help` for the exact-library Android probe. Its fourteen synthetic-output parser checks execute no model or tool and remain separate from physical SDK and actual DSH acceptance.
+
+Install the final APK and run the physical SDK/runtime suite, then actual marked DSH tasks. Keep the test-only observer alive through the complete multi-turn workflow; only private files may contain request snapshots or credentials. Independently inspect the owned output file, matching call/result IDs and real plugin installation result. Record failures/cancellation honestly; short-input tool success does not establish full-context agent quality. Clean up owned instrumentation/forwards and close every owned browser.
+
+Refresh bilingual README/guides, screenshots/GIF/MP4, CHANGELOG, notes and version-bound evidence before packaging. Push normal main/new v1.2.2 tag and publish stable/latest only after exact remote hashes are checked. Preserve earlier releases and the original signer.
+
 ## v1.2.1 m04 / DSH repair
 
 The user released the shared phone for this repair. Preserve actual m04 bytes, saved131072 context and all41 DSH tools; no downloads, replacement weights, silent parameter changes or external plugin installation. The v1.2.0 phone hold below is historical.

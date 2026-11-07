@@ -8,42 +8,62 @@
 
 Local AI for Android. Choose your models, with uncensored variants clearly tagged. [Final branding: logo 21 + slogan 04](docs/BRANDING.md).
 
-[中文](README.md) · [Download v1.2.1](https://github.com/wikigsroom/LMA/releases/tag/v1.2.1) · [User guide](docs/USER_GUIDE.en.md) · [Documentation](docs/README.md) · [Scenarios](#use-cases) · [Cases and failures](#case-studies)
+[中文](README.md) · [Download v1.2.2](https://github.com/wikigsroom/LMA/releases/tag/v1.2.2) · [User guide](docs/USER_GUIDE.en.md) · [Documentation](docs/README.md) · [Scenarios](#use-cases) · [Cases and failures](#case-studies)
 
 <a id="contents"></a>
 ## Detailed usage and evidence routes
 
-**m04 template/protocol repair:** v1.2.1/code70 binds a reviewed template to the actual weights, retains every tool definition/history and uses native structured parsing. m04, saved131072 context and parameters stay unchanged;21 physical SDK checks pass. The actual DSH task with all41 tools stopped after17m16s with time/timezone text, zero calls and no target file. The command/file loop and plugin installation have not passed. [Root causes, repair and measurements](docs/DSH_M04_REPAIR.en.md).
+**m04 full-context follow-up:** v1.2.2/code71 preserves the weights, saved131072 context and all41 tools, repairing DSH background placement, BOS accounting and native JSON parsing. The final APK completes actual`bash → write → read → result-based answer` with explicit format cues; DSH separately installs dsh-pet and visibly loads it after restart. Its21 physical SDK/Unload checks,14 Android-native parser checks and model reliability remain separate; earlier zero-call failures are retained. [Repair, measurements and limits](docs/DSH_M04_FOLLOWUP.en.md) · [Original v1.2.1 failures](docs/DSH_M04_REPAIR.en.md).
 
 The following restores the detailed scenarios, API examples, generated artifacts and test cases that were lost when the README was shortened. v0.3.5 retains these detailed sections and adds speech / 3D scenarios; no new complete-model run is claimed. LMA is independent of LM Studio; the current app UI is primarily Chinese and the documentation is bilingual.
 
 | Goal | Entry point |
 | --- | --- |
-| Operate the app | [Scenarios C01–C77](#use-cases) |
+| Operate the app | [Scenarios C01–C84](#use-cases) |
 | Read the current DSH-style layout and components | [Conversation workspace specification](docs/design/DSH_WORKSPACE.en.md), pinned reference, five pages, both themes, sidebar/IME/text scaling and evidence scope. [UI10 archive](docs/design/MICA_BENTO.en.md) |
 | Use restored chat and evaluate generation integration | [Current operation and F01–F08 proposal](docs/CHAT_RESTORE_20261106.en.md); implemented controls and proposed additions are distinguished |
 | Integrate the phone API | [Five examples A01–A05](#api-examples) |
 | Use DSH tools/children or unload model memory | [Function tools and SDK examples](docs/DSH_TOOLS.en.md), [Running models and Unload](docs/MODEL_RUNTIME.en.md) |
 | Compare historical outputs and failures | [18 cases H01–H18](#case-studies) |
-| Inspect current program coverage | [67 current suites](#verification) |
+| Inspect current program coverage | [Current program suites](#verification) |
 | Rebuild and diagnose | [Build](#build), [Z20/background limits](#z20), [troubleshooting](#troubleshooting) |
 | Read the original development narrative | [Historical English README](docs/history/README-dev45.en.md), [repair notes](docs/releases/v0.3.1-readme.md) |
 
-**Validation scope: program checks.** Current **v1.2.1 / code70** repairs the effective m04 tool template, named selection, full definition accounting, parallel-result alignment and diagnostics. Selected physical SDK/model and actual DSH evidence is separate. The DSH workspace, default dark theme, all five pages and Logo21/Slogan04 remain. [Repair](docs/DSH_M04_REPAIR.en.md) · [Release](docs/releases/v1.2.1.md).
+**Validation scope: program checks.** Current **v1.2.2 / code71** adds complete DSH background-placement, exact native effective-source identity, BOS boundary and truthful native-error regressions. Selected physical SDK and actual DSH tasks remain separate. Preserve the DSH workspace, dark default, five pages andLogo21/Slogan04. [Follow-up](docs/DSH_M04_FOLLOWUP.en.md) · [Release](docs/releases/v1.2.2.md).
 
 **Navigation:** use composer Plus for creation, attachments and temporary settings; Models → Local manages downloads and per-model defaults with outer Delete controls; top Runtime management or API → Running models unloads memory while retaining files. Recommendations, HF discovery, task/capability/content tags, artifacts and full function-tool API contracts remain available.
 
-<img src="docs/media/workspace-v1.2.1/01-home-dark.png" alt="v1.2.1 dark conversation home, program fixture, not a phone" width="280"> <img src="docs/media/workspace-v1.2.1/02-sidebar-dark.png" alt="v1.2.1 full-width sessions, program fixture, not a phone" width="280"> <img src="docs/media/workspace-v1.2.1/09-home-light.png" alt="v1.2.1 light conversation home, program fixture, not a phone" width="280">
+<img src="docs/media/workspace-v1.2.2/01-home-dark.png" alt="v1.2.2 dark conversation home, program fixture, not a phone" width="280"> <img src="docs/media/workspace-v1.2.2/02-sidebar-dark.png" alt="v1.2.2 full-width sessions, program fixture, not a phone" width="280"> <img src="docs/media/workspace-v1.2.2/09-home-light.png" alt="v1.2.2 light conversation home, program fixture, not a phone" width="280">
 
-![v1.2.1 workspace recording: program fixture, not a phone or model run](docs/media/workspace-v1.2.1/walkthrough.gif)
+![v1.2.2 workspace recording: program fixture, not a phone or model run](docs/media/workspace-v1.2.2/walkthrough.gif)
 
-[MP4](docs/media/workspace-v1.2.1/walkthrough.mp4) · [12 screenshots, video and hashes](docs/media/workspace-v1.2.1/manifest.json) · [Current program evidence](verification/releases/v1.2.1/status.json). Workspace media above are labelled production-page fixtures. The phone is now authorized and separately provides[21 real m04 SDK/Unload checks](verification/releases/v1.2.1/physical-tools.json) and[actual DSH task records](verification/releases/v1.2.1/physical-dsh.json). These do not establish arbitrary agent quality, TalkBack/frame rate or long-running endurance; historical evidence retains its original identity.
+[MP4](docs/media/workspace-v1.2.2/walkthrough.mp4) · [12 screenshots, video and hashes](docs/media/workspace-v1.2.2/manifest.json) · [Current program evidence](verification/releases/v1.2.2/status.json). Workspace media above are labelled production-page fixtures. The phone is now authorized and separately provides[21 real m04 SDK/Unload checks](verification/releases/v1.2.2/physical-tools.json) and[actual DSH task records](verification/releases/v1.2.2/physical-dsh.json). These do not establish arbitrary agent quality, TalkBack/frame rate or long-running endurance; historical evidence retains its original identity.
 
-<img src="docs/media/device/v1.2.1/m04-runtime-manager.png" alt="v1.2.1 final APK on the phone: m04 template and Unload" width="280">
+<img src="docs/media/device/v1.2.2/m04-runtime-manager.png" alt="v1.2.2 final APK on the phone: m04 template and Unload" width="280">
 
-![v1.2.1 physical runtime controls; background tasks are assessed separately](docs/media/device/v1.2.1/runtime-controls.gif)
+![v1.2.2 physical runtime controls; background tasks are assessed separately](docs/media/device/v1.2.2/runtime-controls.gif)
 
-[Physical recording provenance](docs/media/device/v1.2.1/manifest.json) · [MP4](docs/media/device/v1.2.1/runtime-controls.mp4). This shows runtime controls, not accepted DSH agent completion.
+[Physical recording provenance](docs/media/device/v1.2.2/manifest.json) · [MP4](docs/media/device/v1.2.2/runtime-controls.mp4). This shows runtime controls, not accepted DSH agent completion.
+
+**Actual DSH chain in this update:** the same m04, saved parameters and all41 tools complete`bash → write → read → answer from results` with explicit stepwise format guidance. Three call/result IDs and the phone file are verified. The initial autonomous continuation's false textual write claim remains a failed task. [Acceptance and model boundaries](docs/DSH_M04_FOLLOWUP.en.md).
+
+<img src="docs/media/device/v1.2.2/dsh-loop/read-answer.png" alt="Actual DSH file read and UUID answer with explicit stepwise format guidance" width="280">
+
+![Actual phone inspection of the completed DSH read entry; guided, not the full inference recording](docs/media/device/v1.2.2/dsh-loop/dsh-read-review.gif)
+
+[Original-speed MP4, scope and hashes](docs/media/device/v1.2.2/dsh-loop/manifest.json). This is completed-task UI inspection; exact-APK JSON records establish model calls and tool execution.
+
+**DSH-owned installation passes:** m04 emits a real`bash` call; DSH executes its own plugin installer and installs`dsh-pet 0.4.3`. Independent Installed-page checks and an engine reload confirm the visible pet. All41 tools remain; command/format guidance is disclosed and the user accepts this process as autonomous installation. No host script installs it. The page also offers0.4.5; no upgrade occurred. [Results and retained failures](docs/DSH_M04_FOLLOWUP.en.md#51-accepted-dsh-owned-installation-and-activation).
+
+<img src="docs/media/device/v1.2.2/dsh-plugin/installed-package.png" alt="Actual DSH Installed page: dsh-pet 0.4.3, with 0.4.5 offered separately" width="360">
+
+<img src="docs/media/device/v1.2.2/dsh-plugin/pet-after-reload.png" alt="Actual Motorola phone running DSH after engine reload: Ready status and visible dsh-pet" width="320">
+
+Actual Motorola Edge Plus / Android12 screenshots: LMA v1.2.2/code71 and DSH v1.4.76/code327. The pet renders inside DSH's web view. “Latest” in the conversation is model prose; the independently checked installed version is0.4.3, shown above.
+
+![The web pet visibly loads after DSH-owned installation and engine reload](docs/media/device/v1.2.2/dsh-plugin/pet-after-reload.gif)
+
+[Original-speed phone MP4, screenshots and hashes](docs/media/device/v1.2.2/dsh-plugin/manifest.json). This verifies the web plugin; Android system-overlay bridging, wallet and voice features are not tested here.
 
 <details>
 <summary>Historical v1.1.0 tools, physical Unload and actual DSH-client audit</summary>
@@ -89,7 +109,7 @@ LMA-authored code is MIT. The bundled DISO CPU surface component is **CC BY-NC 4
 HF discovery and executable support are separate. Compatible files enter their matching text engine or multi-component recipe; arbitrary safetensors, GGUF or Diffusers repositories are not universally executable. Custom components can be registered through recipes. Missing components fail locally without implicit downloads or off-device execution.
 
 <a id="models"></a>
-Current APK: **v1.2.1 / code70**, original signer retained. Compare the exact Release APK with `SHA256SUMS`; see the [release inventory and validation](docs/releases/v1.2.1.md).
+Current APK: **v1.2.2 / code71**, original signer retained. Compare the exact Release APK with `SHA256SUMS`; see the [release inventory and validation](docs/releases/v1.2.2.md).
 
 ## Model and foundation scope
 
@@ -162,13 +182,13 @@ A visible foreground service, stop notification and task-scoped wake locks suppo
 
 ## Screenshots and recordings
 
-These show **v1.2.1 production pages with an explicitly labelled desktop bridge fixture**, without weight downloads or generated model content. Owned browsers close after recording.
+These show **v1.2.2 production pages with an explicitly labelled desktop bridge fixture**, without weight downloads or generated model content. Owned browsers close after recording.
 
 ![Components, independent settings and video jobs](docs/media/development/community/community-ui.gif)
 
 [MP4](docs/media/development/community/community-ui.mp4) · [Components](docs/media/development/community/01-community-images.png) · [Settings](docs/media/development/community/02-image-source.png) · [Task form](docs/media/development/community/03-community-video.png) · [Queue](docs/media/development/community/05-community-local.png) · [Workbench recording](docs/media/development/release-workbench/release-workbench-ui.mp4)
 
-APK identity: **v1.2.1 / code70**, **71,579,874 bytes**, SHA256 `2dbc586bb39d8727b7e93bcc7d3a541e588df666ea9076050ba58a6aa69fc301`. Certificate SHA256: `90444a717a55549e2094364d8d7d005cf8b7f4df24562da62cc1884a2f341c17`. Release assets include APK, sources/evidence/screenshots, workspace/conversation GIF and MP4, ten extension UI recordings, notes, manifests and hashes. Workspace media are program fixtures; current m04 SDK/DSH records are separate and historical physical media retain their original version.
+APK identity: **v1.2.2 / code71**, **71,579,874 bytes**, SHA256 `7688cfb962a6283cacb99e2b5500be3b36dd9de6b91593cfe1f6db9eb22ee46b`. Certificate SHA256: `90444a717a55549e2094364d8d7d005cf8b7f4df24562da62cc1884a2f341c17`. Assets include APK, sources/evidence/screenshots, workspace/conversation GIF and MP4, ten extension UI recordings, actual DSH read-loop and installed-pet GIF/original-speed MP4, notes, manifests and hashes. Screenshots include real LMA runtime controls, DSH read results, the installed dsh-pet entry and visible pet; workspace examples remain labelled program fixtures and historical media retain their original identity.
 
 ## Validation, builds and documentation
 
@@ -785,7 +805,7 @@ These preserved development cases were not rerun as new passes this round. HOST 
 
 <a id="verification"></a>
 
-**Current v1.2.1:** 70 suites /15,576 program assertions,84 program/build records (including17 actual native renderer/grammar/parser checks), plus21 physical m04 SDK checks, are recorded separately.[Current status](verification/releases/v1.2.1/status.json) supplies counts and fingerprints;[actual DSH tasks](verification/releases/v1.2.1/physical-dsh.json) disclose success/failure with all41 tools. Program assertions do not substitute for agent acceptance.
+**Current v1.2.2:** 71 suites /15,656 program assertions,84 program/build records (including69 actual native renderer/grammar/parser checks), plus21 physical m04 SDK checks, are recorded separately.[Current status](verification/releases/v1.2.2/status.json) supplies counts and fingerprints;[actual DSH tasks](verification/releases/v1.2.2/physical-dsh.json) disclose success/failure with all41 tools. Program assertions do not substitute for agent acceptance.
 ## Current program coverage and reproduction entry points
 
 **Historical v1.1.0: 67 suites / 15,394 assertions and 80 program/build records.** Includes 817 production-page, 62 tool-protocol, 154 backend, 151 scheduling and 13 Sub2API checks. Separately recorded: 66 physical UI checks, 41 checks at each of three font scales, 24 management/API checks, 60.337 seconds of screen-off health, eight idle-performance checks, and 21 tool/unload checks across six actual generations. [Current status](verification/releases/v1.1.0/status.json) · [Release details](docs/releases/v1.1.0.md).
@@ -950,6 +970,18 @@ Authorized updates synchronize code, both languages, relevant media and changelo
 | C76 | Keep DSH tools enabled; declare a strict named function, receive its native call, execute it in the client and return role:tool | Nonstream and indexed SSE calls retain IDs/arguments/usage; subsequent children queue without a busy409. Existing m15 passed six selected generations and 21 checks. [Protocol and SDK example](docs/DSH_TOOLS.en.md). DSH App itself and general agent reliability remain separate. |
 | C77 | Open top Running models or a loaded Local card, inspect the model and confirm Unload | Current/queued text is cancelled and the process exits; files, settings, history and listener remain. A later explicit API request may reload. Media jobs expose Stop and release. [Actual screenshots and behavior](docs/MODEL_RUNTIME.en.md). |
 
+## v1.2.2 full-context scenarios C78–C84
+
+| ID | Operation | Required evidence |
+|---|---|---|
+| C78 | Keep all41 DSH tools and workspace/runtime/time snapshots; request command→write→independent read | Actual matching call/result IDs and a phone-file check; plain text, code or HTTP200 never establishes execution. [Follow-up](docs/DSH_M04_FOLLOWUP.en.md) |
+| C79 | Use strict named/required/auto and streamed tools, then return the real result under its call ID | Distinguish protocol validation, native template and model behavior; reject incomplete calls and false success. [Protocol](docs/DSH_TOOLS.en.md) |
+| C80 | Check context boundaries, effective-source bytes and API reload after Unload | BOS/EOS accounting matches native generation; saved131072 and weights remain;21 final-APK physical SDK/runtime checks are separate. [Evidence](verification/releases/v1.2.2/physical-tools.json) |
+| C81 | Multiple native JSON tool records separated by newlines/whitespace | 69 host-native regressions and14 weight-free checks on Android with the same APK libraries preserve call names, arguments and order. [Android parser evidence](verification/releases/v1.2.2/physical-native-template.json) does not replace actual DSH execution acceptance |
+| C82 | Explicit stepwise bash/write/read calls with all41 tools, followed by a result-based answer | Actual DSH and m04 pass; IDs, arguments, returned results, the36-byte phone file and final read-based UUID answer match. Guidance is disclosed; autonomous reliability remains unaccepted. [Phone evidence](verification/releases/v1.2.2/physical-dsh.json) |
+| C83 | The model claims a write in ordinary text without write/read calls | J1 autonomous continuation fails; independent verification finds the file absent at that point. Keep this failure, then completeC82 through actual guided DSH calls. [Outcome](docs/DSH_M04_FOLLOWUP.en.md) |
+| C84 | DSH installs dsh-pet and loads the pet after engine reload | All41 tools remain; real model bash call→DSH installs0.4.3→independent Installed manifest checks→visible pet after DSH reload. Command/format guidance and J4/J5 failures remain disclosed. [Phone evidence and scope](docs/DSH_M04_FOLLOWUP.en.md#51-accepted-dsh-owned-installation-and-activation) |
+
 ## Update summaries and history
 
 [Full changelog](CHANGELOG.md)
@@ -1013,6 +1045,8 @@ Historical v0.3.10 [legacy-host deviation](verification/releases/v0.3.10/validat
 **v1.0.1 / code66 · Restored chat.** Original chat layout with optional “+” creation controls; 66 suites / 15,304 assertions, 48 physical UI checks and 19 actual screenshots. [Usage and F01–F08 integration evaluation](docs/CHAT_RESTORE_20261106.en.md) · [Stable Release](https://github.com/wikigsroom/LMA/releases/tag/v1.0.1). Proposed interactions and quality/background limits remain explicit.
 
 **v1.0.2 / code67 · Direct model-card deletion.** Text and media cards expose labelled Delete controls with an explained busy state, existing confirmation/cancel and native asset guards. [Operation and verification](docs/MODEL_DELETE.en.md) · [Stable Release](https://github.com/wikigsroom/LMA/releases/tag/v1.0.2).
+
+**v1.2.2 / code71 · Full-context DSH follow-up.** Preserve complete tools, weights and saved parameters; repair background placement, BOS accounting and native format errors. Publish69 native program checks,21 physical SDK checks and actual DSH outcomes separately.[Notes](docs/releases/v1.2.2.md).
 
 **v1.2.1 / code70 · m04 tool-template repair.** Weight-bound effective templates, native function JSON, complete named definitions and parallel-result ordering;21 physical SDK checks and actual DSH tasks remain separate, with failures/quality limits disclosed.[Notes](docs/releases/v1.2.1.md).
 

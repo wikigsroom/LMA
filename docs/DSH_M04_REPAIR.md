@@ -1,6 +1,6 @@
 # m04 工具模板与 DSH 修复 · v1.2.1
 
-[English](DSH_M04_REPAIR.en.md) · [工具协议](DSH_TOOLS.md) · [修复前评估](DSH_M04_TOOL_TEMPLATE_ASSESSMENT_20261106.md) · [版本说明](releases/v1.2.1.md)
+[English](DSH_M04_REPAIR.en.md) · [后续完整上下文续验](DSH_M04_FOLLOWUP.md) · [工具协议](DSH_TOOLS.md) · [修复前评估](DSH_M04_TOOL_TEMPLATE_ASSESSMENT_20261106.md) · [版本说明](releases/v1.2.1.md)
 
 ## 1. 修复范围与判断
 
@@ -30,7 +30,7 @@ v1.2.1/code70 修复模型加载、有效模板检查、具名选择、原生解
 | 生效模板 SHA256 | `59cae1fe1315e4b081877ebdfdec8d2ac433ba402f24ae68d8ba8a76928d7705` |
 | llama.cpp | `b29c606e28a01b1bc8c1351026a0fa6e616bf6c4` |
 
-[审核 manifest](../app/src/main/assets/chat-template-profiles.json) · [模板源文件](../app/src/main/assets/chat-templates/dolphin3-chatml-tools-v1.jinja)。上游固定配置通过 HF 镜像取得并核对内容，未下载或替换模型权重；镜像访问不冒充手机运行证据。[原配置](https://huggingface.co/dphn/Dolphin3.0-Llama3.2-1B/blob/e753b6ebd7adf87036eb6a3e6de68acca5850e2f/tokenizer_config.json)。
+[v1.2.1 审核 manifest](https://github.com/wikigsroom/LMA/blob/v1.2.1/app/src/main/assets/chat-template-profiles.json) · [逐字保留的 v1 模板](../tests/native/chat-template-probe/dolphin3-chatml-tools-v1.jinja)。上游固定配置通过 HF 镜像取得并核对内容，未下载或替换模型权重；镜像访问不冒充手机运行证据。[原配置](https://huggingface.co/dphn/Dolphin3.0-Llama3.2-1B/blob/e753b6ebd7adf87036eb6a3e6de68acca5850e2f/tokenizer_config.json)。
 
 ## 4. 加载、选择与失败处理
 

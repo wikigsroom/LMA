@@ -169,7 +169,10 @@ public final class BackendTest {
     }
     private static int freePort() throws IOException { try (ServerSocket socket = new ServerSocket(0)) { return socket.getLocalPort(); } }
     private static JSONObject publicText(LmaApp app, JSONObject request) throws Exception {
-        HttpURLConnection connection = Net.local(app, "/v1/chat/completions"); connection.setReadTimeout(12000); connection.setRequestMethod("POST"); connection.setDoOutput(true); connection.setRequestProperty("Content-Type", "application/json");
+        return publicText(app, request, "/v1/chat/completions");
+    }
+    private static JSONObject publicText(LmaApp app, JSONObject request, String path) throws Exception {
+        HttpURLConnection connection = Net.local(app, path); connection.setReadTimeout(12000); connection.setRequestMethod("POST"); connection.setDoOutput(true); connection.setRequestProperty("Content-Type", "application/json");
         byte[] bytes = request.toString().getBytes(StandardCharsets.UTF_8); connection.setFixedLengthStreamingMode(bytes.length); try (OutputStream out = connection.getOutputStream()) { out.write(bytes); }
         try { int status = connection.getResponseCode(); JSONObject value = new JSONObject(Store.read(status >= 400 ? connection.getErrorStream() : connection.getInputStream(), 1024 * 1024)); value.put("_fixture_status", status); return value; } finally { connection.disconnect(); }
     }
@@ -190,6 +193,20 @@ public final class BackendTest {
         JSONObject finalReply = publicText(app, resumed); check(finalReply.getJSONArray("choices").getJSONObject(0).getJSONObject("message").getString("content").equals("42"), "Client executes the tool and returns its ID/result through the public multi-turn protocol");
         JSONObject oversized = new JSONObject(request.toString()); oversized.getJSONArray("messages").getJSONObject(0).put("content", "context-overflow-fixture");
         JSONObject rejected = publicText(app, oversized); check(rejected.getInt("_fixture_status") == 400 && rejected.getJSONObject("error").getString("code").equals("context_length_exceeded"), "Rendered-context preflight rejects token overflow with a specific error");
+        JSONObject boundary = new JSONObject(request.toString()); boundary.getJSONArray("messages").getJSONObject(0).put("content", "bos-one-output-fixture");
+        JSONObject oneLeft = publicText(app, boundary), budget = new JSONObject(new String(Files.readAllBytes(work.resolve("last-request.json")), StandardCharsets.UTF_8));
+        check(oneLeft.getInt("_fixture_status") == 200 && budget.getInt("max_tokens") == 1, "A prompt plus automatic BOS leaves exactly one output token at the context boundary");
+        boundary.getJSONArray("messages").getJSONObject(0).put("content", "bos-full-context-fixture");
+        JSONObject noRoom = publicText(app, boundary);
+        check(noRoom.getInt("_fixture_status") == 400 && noRoom.getJSONObject("error").getString("code").equals("context_length_exceeded"), "A chat prompt filling the context after BOS is rejected before native generation");
+        JSONObject rawFull = publicText(app, new JSONObject().put("model", "m08").put("prompt", "bos-full-context-fixture"), "/v1/completions");
+        check(rawFull.getInt("_fixture_status") == 400 && rawFull.getJSONObject("error").getString("param").equals("prompt"), "Raw completions also count the vocabulary's automatic special tokens before admission");
+        JSONObject malformed = new JSONObject(request.toString()); malformed.getJSONArray("messages").getJSONObject(0).put("content", "peg-format-error");
+        JSONObject parserError = publicText(app, malformed);
+        check(parserError.getInt("_fixture_status") == 502 && parserError.getJSONObject("error").getString("code").equals("invalid_model_output"), "An actual native parser HTTP failure is classified as invalid model output without inventing a tool call");
+        HttpURLConnection failedStream = Net.local(app, "/v1/chat/completions"); failedStream.setReadTimeout(12000); failedStream.setRequestMethod("POST"); failedStream.setDoOutput(true); failedStream.setRequestProperty("Content-Type", "application/json");
+        byte[] malformedBytes = malformed.put("stream", true).toString().getBytes(StandardCharsets.UTF_8); failedStream.setFixedLengthStreamingMode(malformedBytes.length); try (OutputStream out = failedStream.getOutputStream()) { out.write(malformedBytes); }
+        try { String events = Store.read(failedStream.getInputStream(), 1024 * 1024); check(events.contains("invalid_model_output") && !events.contains("[DONE]") && !events.contains("call_fixture_sum"), "Streamed native parse errors carry a real error and never a success marker or executable call"); } finally { failedStream.disconnect(); }
         HttpURLConnection stream = Net.local(app, "/v1/chat/completions"); stream.setReadTimeout(12000); stream.setRequestMethod("POST"); stream.setDoOutput(true); stream.setRequestProperty("Content-Type", "application/json");
         byte[] bytes = new JSONObject(request.toString()).put("stream", true).toString().getBytes(StandardCharsets.UTF_8); stream.setFixedLengthStreamingMode(bytes.length); try (OutputStream out = stream.getOutputStream()) { out.write(bytes); }
         try { String events = Store.read(stream.getInputStream(), 1024 * 1024); check(stream.getResponseCode() == 200 && events.contains("tool_calls") && events.contains("[DONE]") && !events.contains("\"error\""), "Production streamed strict tools are validated and delivered with a normal completion marker"); } finally { stream.disconnect(); }

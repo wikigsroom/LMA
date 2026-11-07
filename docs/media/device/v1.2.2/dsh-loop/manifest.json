@@ -1,0 +1,54 @@
+{
+  "schema": "lma.physical-dsh-loop-media/1",
+  "version": "1.2.2",
+  "apk_sha256": "7688cfb962a6283cacb99e2b5500be3b36dd9de6b91593cfe1f6db9eb22ee46b",
+  "physical_device": true,
+  "dsh_version": "1.4.76",
+  "dsh_version_code": 327,
+  "model_id": "m04",
+  "tool_count": 41,
+  "guided_stepwise": true,
+  "completed_read_and_answer_visible": true,
+  "model_generation_recorded": false,
+  "scope": "Actual phone UI inspection after the guided bash/write/read/result-answer chain completed. This short video is not the full inference run, a desktop fixture, unguided agent acceptance or plugin installation evidence.",
+  "privacy_reviewed": true,
+  "crop_only": true,
+  "credentials_visible": false,
+  "owned_device_files_cleaned": true,
+  "calls": [
+    {
+      "name": "bash",
+      "id": "U4LHCvIMig9MPRK3L3ivmtAtReMJCoTe"
+    },
+    {
+      "name": "write",
+      "id": "5xtTCfrLNWk95P3wKKxSpjGd8YFmWB8H"
+    },
+    {
+      "name": "read",
+      "id": "lxXeUSLThqM2fqFMdNVaBFW3003njsdp"
+    }
+  ],
+  "files": [
+    {
+      "file": "dsh-read-review.gif",
+      "bytes": 289606,
+      "sha256": "8c6b7645b7e45316a481777bcbc81c424e61c36c5e97414b3f91fd1f30a37922"
+    },
+    {
+      "file": "dsh-read-review.mp4",
+      "bytes": 106694,
+      "sha256": "01625258e659a090c55b0c4b54d549e37500dac001bfb488e71fe229c371565d"
+    },
+    {
+      "file": "read-answer.png",
+      "bytes": 239639,
+      "sha256": "fdd49d4cfdb8d3d4f3338bb630f2bc077916eae237ecc57068bb3e844ed74539"
+    },
+    {
+      "file": "read-entry.png",
+      "bytes": 237891,
+      "sha256": "41d807ab27467bf4e6641829266dc2fd20afd186ef607de6b5b0082da4855a34"
+    }
+  ]
+}

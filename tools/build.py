@@ -16,6 +16,7 @@ import zipfile
 from evidence import version
 from preparation_build_inputs import build_inputs
 from package_native import prepare as prepare_native
+from build_llama_chat_runtime import verify_patch_record
 
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
@@ -66,6 +67,7 @@ def main():
     engines = prepare_native()
     native = ROOT / "app/src/main/jniLibs/arm64-v8a"
     if not (native / "libllama-server.so").exists(): raise RuntimeError("Run python tools/bootstrap_runtime.py first")
+    verify_patch_record()
     source = ROOT / "app/src/main"
     for name in ("index.html", "app.css", "app.js", "foundation.css", "foundation.js", "audio-preview.js", "workbench.js", "recipes.js", "versions.js", "community.js", "expansion.js", "glb-preview.js", "expansion-notices.json", "recipe-templates.json", "asset-preparations.json", "model-assemblies.json", "license.js", "models.json", "model-bundles.json", "engine-builds.json"):
         if not (source / "assets" / name).is_file(): raise RuntimeError("Missing application UI asset: " + name)

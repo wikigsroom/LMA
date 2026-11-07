@@ -8,12 +8,12 @@
 
 Android 本地 AI 工作台，模型由你选择，无审查模型独立标记。[品牌定稿：Logo 21 ＋ Slogan 04](docs/BRANDING.md)。
 
-[English](README.en.md) · [下载 v1.2.1](https://github.com/wikigsroom/LMA/releases/tag/v1.2.1) · [使用手册](docs/USER_GUIDE.md) · [文档目录](docs/README.md) · [更新记录](CHANGELOG.md)
+[English](README.en.md) · [下载 v1.2.2](https://github.com/wikigsroom/LMA/releases/tag/v1.2.2) · [使用手册](docs/USER_GUIDE.md) · [文档目录](docs/README.md) · [更新记录](CHANGELOG.md)
 
 <a id="contents"></a>
 ## 阅读路线
 
-**m04 模板与工具协议已修复：** v1.2.1/code70 对实际权重绑定审核模板，保留全部工具定义、工具历史和原生结构化解析；保持 m04、131072 上下文及保存参数。最终安装包已通过21项真机SDK检查。真实DSH保留41工具的任务在17分16秒后只返回时间／时区，零工具调用，目标文件不存在；完整命令／文件闭环及插件安装未通过。[根因、修复与实测边界](docs/DSH_M04_REPAIR.md)。
+**m04 完整上下文续验：** v1.2.2/code71 保留原权重、131072上下文和全部41工具，修复DSH背景排列、BOS预算与原生JSON解析。最终APK实际完成有明确格式提示的`bash → write → read → 根据结果回答`；DSH另自行安装dsh-pet并重载显示宠物。21项真机SDK／卸载检查、14项Android原生解析与模型可靠性分别留证，早期零调用等失败保留。[本轮修复、实测与限制](docs/DSH_M04_FOLLOWUP.md) · [v1.2.1原始失败](docs/DSH_M04_REPAIR.md)。
 
 | 想做什么 | 本页入口 | 详细文档 |
 | --- | --- | --- |
@@ -27,21 +27,41 @@ Android 本地 AI 工作台，模型由你选择，无审查模型独立标记�
 | 复原后的对话页与生成能力融合 | [当前聊天操作](docs/CHAT_RESTORE_20261106.md) | [F01–F08 编号方案与可行性](docs/CHAT_RESTORE_20261106.md#4-推荐的完整融合结构)，本轮实现与建议分开 |
 | 查证测试范围、重建和排错 | [程序检查](#verification)、[构建](#build)、[排错](#troubleshooting) | [程序验证策略](docs/PROGRAM_VALIDATION.md)、[构建指南](docs/BUILD.md) |
 
-**验证范围：程序验证。** 当前 **v1.2.1 / code70** 修复 m04 有效工具模板、具名选择、完整定义计数、并行结果对齐及诊断；另列选择性真机模型／SDK和实际DSH记录。沿用 DSH 工作区、默认暗色、五页布局及 Logo21／Slogan04。[修复说明](docs/DSH_M04_REPAIR.md) · [本版更新](docs/releases/v1.2.1.md)。
+**验证范围：程序验证。** 当前 **v1.2.2 / code71** 增加DSH完整消息背景排列、原生生效模板逐字节核对、BOS预算边界和真实格式失败回归；选择性真机SDK及实际DSH任务独立留证。沿用DSH工作区、默认暗色、五页布局及Logo21／Slogan04。[本轮说明](docs/DSH_M04_FOLLOWUP.md) · [版本更新](docs/releases/v1.2.2.md)。
 
 **使用路径：** 对话输入框「＋」选择创作／附件／本次参数；左侧「模型库 → 本地」管理下载与独立设置，删除按钮留在外层；顶部「运行管理」或「API 服务 → 运行中的模型」卸载模型并保留文件。推荐、HF 搜索、功能／多模态／内容标签、任务与作品及完整工具 API 契约继续可用。
 
-<img src="docs/media/workspace-v1.2.1/01-home-dark.png" alt="v1.2.1 暗色对话首页，程序界面夹具，非真机" width="280"> <img src="docs/media/workspace-v1.2.1/02-sidebar-dark.png" alt="v1.2.1 全宽会话侧栏，程序界面夹具，非真机" width="280"> <img src="docs/media/workspace-v1.2.1/09-home-light.png" alt="v1.2.1 明亮对话首页，程序界面夹具，非真机" width="280">
+<img src="docs/media/workspace-v1.2.2/01-home-dark.png" alt="v1.2.2 暗色对话首页，程序界面夹具，非真机" width="280"> <img src="docs/media/workspace-v1.2.2/02-sidebar-dark.png" alt="v1.2.2 全宽会话侧栏，程序界面夹具，非真机" width="280"> <img src="docs/media/workspace-v1.2.2/09-home-light.png" alt="v1.2.2 明亮对话首页，程序界面夹具，非真机" width="280">
 
-![v1.2.1 工作区操作演示：程序界面夹具，非真机，未执行模型](docs/media/workspace-v1.2.1/walkthrough.gif)
+![v1.2.2 工作区操作演示：程序界面夹具，非真机，未执行模型](docs/media/workspace-v1.2.2/walkthrough.gif)
 
-[MP4 录制](docs/media/workspace-v1.2.1/walkthrough.mp4) · [12张页面截图、录屏与哈希](docs/media/workspace-v1.2.1/manifest.json) · [当前程序状态](verification/releases/v1.2.1/status.json)。以上工作区图片与GIF为明确标注的生产页面程序夹具；本轮手机已获准调试，另有[21项真实m04工具／卸载检查](verification/releases/v1.2.1/physical-tools.json)及[DSH真实任务记录](verification/releases/v1.2.1/physical-dsh.json)。真机记录不等于通用代理质量、TalkBack／帧率或长期后台通过；历史案例保留原版本身份。
+[MP4 录制](docs/media/workspace-v1.2.2/walkthrough.mp4) · [12张页面截图、录屏与哈希](docs/media/workspace-v1.2.2/manifest.json) · [当前程序状态](verification/releases/v1.2.2/status.json)。以上工作区图片与GIF为明确标注的生产页面程序夹具；本轮手机已获准调试，另有[21项真实m04工具／卸载检查](verification/releases/v1.2.2/physical-tools.json)及[DSH真实任务记录](verification/releases/v1.2.2/physical-dsh.json)。真机记录不等于通用代理质量、TalkBack／帧率或长期后台通过；历史案例保留原版本身份。
 
-<img src="docs/media/device/v1.2.1/m04-runtime-manager.png" alt="v1.2.1 最终APK真机运行管理：m04工具模板与卸载入口" width="280">
+<img src="docs/media/device/v1.2.2/m04-runtime-manager.png" alt="v1.2.2 最终APK真机运行管理：m04工具模板与卸载入口" width="280">
 
-![v1.2.1 真机运行管理操作；后台模型任务单独验收](docs/media/device/v1.2.1/runtime-controls.gif)
+![v1.2.2 真机运行管理操作；后台模型任务单独验收](docs/media/device/v1.2.2/runtime-controls.gif)
 
-[原速真机录屏与来源](docs/media/device/v1.2.1/manifest.json) · [MP4](docs/media/device/v1.2.1/runtime-controls.mp4)。媒体仅展示运行管理，不代表DSH任务通过。
+[原速真机录屏与来源](docs/media/device/v1.2.2/manifest.json) · [MP4](docs/media/device/v1.2.2/runtime-controls.mp4)。媒体仅展示运行管理，不代表DSH任务通过。
+
+**本轮实际DSH闭环：** 保留m04、原参数和全部41工具，在明确的逐步格式提示下，DSH真实完成`bash → write → read → 根据结果回答`。三组调用ID／结果和手机文件均核对；最初自主续跑只用文字宣称写入的失败继续保留。[完整验收与能力边界](docs/DSH_M04_FOLLOWUP.md)。
+
+<img src="docs/media/device/v1.2.2/dsh-loop/read-answer.png" alt="实际DSH读回文件并回答UUID；明确使用逐步格式提示" width="280">
+
+![实际手机已完成DSH任务后的读取条目检查；逐步引导，非全程推理录像](docs/media/device/v1.2.2/dsh-loop/dsh-read-review.gif)
+
+[原速MP4、范围与哈希](docs/media/device/v1.2.2/dsh-loop/manifest.json)。这是已完成任务的页面检查；模型生成及工具执行以带APK身份的JSON记录为准。
+
+**DSH自主安装已通过：** m04产生真实`bash`调用，由DSH执行自己的插件安装入口，安装`dsh-pet 0.4.3`；独立核对已安装清单并在DSH重载后看到宠物。全程保留41工具，给出命令／格式提示，未由外部脚本代装；用户已确认此流程满足自主安装判定。已安装页提示0.4.5可更新，不等于已升级。[完整结果与保留失败](docs/DSH_M04_FOLLOWUP.md#51-已通过的dsh自主安装与加载)。
+
+<img src="docs/media/device/v1.2.2/dsh-plugin/installed-package.png" alt="实际DSH已安装页：dsh-pet 0.4.3，另提示0.4.5可更新" width="360">
+
+<img src="docs/media/device/v1.2.2/dsh-plugin/pet-after-reload.png" alt="真实Motorola手机上的DSH：引擎重载就绪，dsh-pet宠物已实际显示" width="320">
+
+以上为实际Motorola Edge Plus / Android 12截图：LMA v1.2.2/code71、DSH v1.4.76/code327。宠物出现在DSH网页内；截图中的“latest”是模型原话，实际包版本以上方已安装页的0.4.3为准。
+
+![DSH自身安装并重载后，网页宠物实际显示](docs/media/device/v1.2.2/dsh-plugin/pet-after-reload.gif)
+
+[实际手机原速MP4、截图和哈希](docs/media/device/v1.2.2/dsh-plugin/manifest.json)。只确认网页插件加载；Android系统悬浮桥接、钱包与语音功能未在本次验收中测试。
 
 <details>
 <summary>v1.1.0 工具协议、实机卸载与 DSH 客户端复核档案（历史版本）</summary>
@@ -169,24 +189,24 @@ Uncensored／Abliterated 与 NSFW 分别标注，不互相替代。作者声明�
 <a id="install"></a>
 ## 安装与首次启动
 
-1. 从 [v1.2.0 Release](https://github.com/wikigsroom/LMA/releases/tag/v1.2.1) 下载 `LMA-1.2.0-arm64-v8a.apk`；需要 64 位 Android 9／API 28 或以上。
+1. 从 [v1.2.2 Release](https://github.com/wikigsroom/LMA/releases/tag/v1.2.2) 下载 `LMA-1.2.2-arm64-v8a.apk`；需要 64 位 Android 9／API 28 或以上。
 2. 对照同页 `SHA256SUMS` 核对安装包。Windows 示例：
 
    ```powershell
-   Get-FileHash .\LMA-1.2.0-arm64-v8a.apk -Algorithm SHA256
+   Get-FileHash .\LMA-1.2.2-arm64-v8a.apk -Algorithm SHA256
    ```
 
 3. 打开 App，按系统提示允许通知。若要退出界面或锁屏继续工作，在 Android 设置中允许后台活动并取消相关电池限制。
 4. App 初次启动可零模型使用管理界面和接口；选择、下载、导入或加载模型都是独立操作。
 5. 保持原签名升级安装，已有模型与设置继续保留。自行签名的 APK 不能直接覆盖另一签名的安装。
 
-| 安装包身份 | v1.2.1 / code70 |
+| 安装包身份 | v1.2.2 / code71 |
 | --- | --- |
 | 字节数 | `71579874` |
-| SHA256 | `2dbc586bb39d8727b7e93bcc7d3a541e588df666ea9076050ba58a6aa69fc301` |
+| SHA256 | `7688cfb962a6283cacb99e2b5500be3b36dd9de6b91593cfe1f6db9eb22ee46b` |
 | 签名证书 SHA256 | `90444a717a55549e2094364d8d7d005cf8b7f4df24562da62cc1884a2f341c17` |
 
-Release 附 APK、源码 ZIP、验证 ZIP、截图 ZIP、新工作区与对话 GIF／MP4、10组扩展程序页面录制、构建与源码清单、说明和哈希。工作区媒体为程序夹具；本轮m04真机SDK与DSH记录另列，历史媒体保留原身份。[版本说明](docs/releases/v1.2.1.md)
+Release 附 APK、源码 ZIP、验证 ZIP、截图 ZIP、新工作区与对话 GIF／MP4、10组扩展程序页面录制、DSH真实读取闭环与dsh-pet加载GIF／原速MP4、构建与源码清单、说明和哈希。截图包含LMA运行管理、DSH读取结果、dsh-pet已安装条目及宠物实机画面；工作区样例明确标为程序夹具，历史媒体保留原身份。[版本说明](docs/releases/v1.2.2.md)
 
 <a id="use-cases"></a>
 ## 完整使用场景 C01–C77
@@ -778,7 +798,7 @@ Melo INT8 用于中文 / 英文，Kokoro INT8 使用已适配英文音色，Omni
 
 <a id="verification"></a>
 
-**当前 v1.2.1：** 70组／15,576项程序检查、84份程序／构建记录（含17项真实原生模板／grammar／parser检查），另列21项m04真机SDK检查。[当前状态](verification/releases/v1.2.1/status.json)给出实际计数和源文件摘要；[DSH实际任务](verification/releases/v1.2.1/physical-dsh.json)单独披露全部41工具场景的成功／失败，不能以程序断言替代。
+**当前 v1.2.2：** 71组／15,656项程序检查、84份程序／构建记录（含69项真实原生模板／grammar／parser检查），另列21项m04真机SDK检查。[当前状态](verification/releases/v1.2.2/status.json)给出实际计数和源文件摘要；[DSH实际任务](verification/releases/v1.2.2/physical-dsh.json)单独披露全部41工具场景的成功／失败，不能以程序断言替代。
 ## 当前程序检查覆盖与复核入口
 
 **v1.1.0 历史验证：67组／15,394项断言，80份程序与构建记录。** 包括817项生产页面、62项工具协议、154项后端、151项调度及13项Sub2API检查。另有66项真机UI、三档字体各41项、24项管理/API、60.337秒锁屏健康、8项空闲性能检查，以及21项工具／卸载检查、6次真实生成；这些覆盖范围分别记录。[当前状态](verification/releases/v1.1.0/status.json) · [本版完整说明](docs/releases/v1.1.0.md)。
@@ -943,6 +963,18 @@ python tools/program_evidence.py
 | C76 | 保留DSH工具，声明strict具名函数、接收原生调用、由客户端执行，再回传role:tool | 非流式及indexed SSE保留ID／参数／usage；下一轮及并发子请求可排队，不再单纯忙碌409。现有m15完成6次选择性生成、21项检查。[合同及SDK完整例子](docs/DSH_TOOLS.md)。DSH App本身及通用代理质量另行验证。 |
 | C77 | 点击顶部运行管理或本地已加载卡片，核对模型并确认卸载 | 取消当前／排队文本并退出模型进程，保留文件、参数、历史和API监听；后续明确API请求可重载。媒体任务显示停止并释放。[实机截图和逻辑](docs/MODEL_RUNTIME.md)。 |
 
+## v1.2.2 完整上下文场景 C78–C84
+
+| 编号 | 操作与检查 | 判断依据 |
+|---|---|---|
+| C78 | DSH标准模式保留41工具、工作区／运行环境／时间快照，要求执行命令→写文件→独立读文件 | 核对实际调用ID、回填结果和手机文件；普通文字／代码／HTTP200都不算工具执行。[本轮记录](docs/DSH_M04_FOLLOWUP.md) |
+| C79 | 使用strict具名／required／auto与流式工具，再回传匹配ID的结果 | 区分接口校验、原生模板与模型行为；错误不交付半成品或伪造成功。[完整协议](docs/DSH_TOOLS.md) |
+| C80 | 上下文临界预算、模板字节身份和卸载后按需重载 | BOS/EOS与原生生成一致；保存131072与模型文件不变；最终APK的21项SDK／运行管理检查另列。[实机证据](verification/releases/v1.2.2/physical-tools.json) |
+| C81 | 换行／空格连接的多个原生JSON工具调用 | 69项主机原生回归；同一APK原生库在手机上另通过14项无权重解析检查，调用名称、参数与顺序保留。[Android解析证据](verification/releases/v1.2.2/physical-native-template.json)；它不代替DSH执行验收 |
+| C82 | 全部41工具下明确逐步调用bash、write、read，最后根据结果回答 | 实际DSH与m04通过；ID／参数／回填、36字节手机文件和读取后UUID回答均核对。逐步引导已披露，不代表自主代理可靠性。[实机记录](verification/releases/v1.2.2/physical-dsh.json) |
+| C83 | 模型用普通文字宣称写入，实际没有write/read调用 | J1自主续跑判失败，独立核对文件当时不存在；保留失败，随后以实际DSH调用完成C82。[失败与修复](docs/DSH_M04_FOLLOWUP.md) |
+| C84 | DSH自行安装dsh-pet，并在重载后显示宠物 | 全部41工具保留，模型实际bash调用→DSH安装0.4.3→独立已安装清单→DSH重载后可见宠物；命令／格式提示及J4/J5失败均披露。[实机证据与范围](docs/DSH_M04_FOLLOWUP.md#51-已通过的dsh自主安装与加载) |
+
 ## 更新摘要与历史
 
 [完整更新记录](CHANGELOG.md)
@@ -1006,6 +1038,8 @@ v0.3.12 最终 APK 实机：**24项程序检查＋8项空闲性能＋28项真实
 **v1.0.1 / code66 · 对话复原。** 默认恢复原聊天布局，现有创作从“＋”展开；66组／15,304项程序断言，48项真机UI，19张实机截图。[用法与F01–F08融合评估](docs/CHAT_RESTORE_20261106.md) · [正式Release](https://github.com/wikigsroom/LMA/releases/tag/v1.0.1)。完整待办及质量／后台边界见评估文档。
 
 **v1.0.2 / code67 · 模型卡片直接删除。** 文字与多媒体模型在卡片外层显示“删除”，传输忙碌时明确提示，保留确认、取消与原生资产保护。[操作与验证](docs/MODEL_DELETE.md) · [正式 Release](https://github.com/wikigsroom/LMA/releases/tag/v1.0.2)。
+
+**v1.2.2 / code71 · DSH完整上下文续验。** 保留完整工具及原模型参数，修复背景排列、BOS预算和原生格式错误；69项原生程序检查、21项真机SDK检查及实际DSH的成功／失败分别公开。[完整说明](docs/releases/v1.2.2.md)。
 
 **v1.2.1 / code70 · m04工具模板修复。** 绑定原权重修复有效模板、原生函数JSON、完整具名定义及并行回填；21项真机SDK检查与实际DSH任务分开，保留失败和质量边界。[完整说明](docs/releases/v1.2.1.md)。
 

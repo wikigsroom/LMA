@@ -1,0 +1,119 @@
+diff --git a/common/chat-peg-parser.cpp b/common/chat-peg-parser.cpp
+index ffa43a3..e648ea0 100644
+--- a/common/chat-peg-parser.cpp
++++ b/common/chat-peg-parser.cpp
+@@ -784,6 +784,20 @@ common_peg_parser common_chat_peg_builder::build_json_tools_flat_keys(
+     const std::string &              gen_call_id_key,
+     const std::vector<std::string> & parameters_order,
+     bool                             accept_openai_wrapper) {
++    // Keep the original exported signature for retained publisher binaries.
++    return build_json_tools_flat_keys_recoverable(tools, effective_name_key, effective_args_key,
++        call_id_key, gen_call_id_key, parameters_order, accept_openai_wrapper, false);
++}
++
++common_peg_parser common_chat_peg_builder::build_json_tools_flat_keys_recoverable(
++    const ordered_json & tools,
++    const std::string & effective_name_key,
++    const std::string & effective_args_key,
++    const std::string & call_id_key,
++    const std::string & gen_call_id_key,
++    const std::vector<std::string> & parameters_order,
++    bool accept_openai_wrapper,
++    bool allow_final_envelope_end) {
+ 
+     auto tool_choices    = choice();
+     auto name_key_parser = literal("\"" + effective_name_key + "\"");
+@@ -858,7 +872,16 @@ common_peg_parser common_chat_peg_builder::build_json_tools_flat_keys(
+                 ordered_body = ordered_body + space() + literal(",") + space();
+             }
+         }
+-        ordered_body = ordered_body + space() + tool_close(literal("}"));
++        auto envelope_end = literal("}");
++        if (allow_final_envelope_end) {
++            // Some bare-record models stop after complete name/arguments fields,
++            // leaving only the outer envelope open (possibly with a final comma).
++            // Recover that final delimiter only at input end. The argument JSON
++            // parser above must already have completed: never repair its contents,
++            // infer a function name, or accept further fields/results as execution.
++            envelope_end = choice({optional(literal(",")) + space() + end(), envelope_end});
++        }
++        ordered_body = ordered_body + space() + tool_close(envelope_end);
+ 
+         tool_choices |= rule("tool-" + name, tool(ordered_body));
+     }
+@@ -933,14 +956,25 @@ common_peg_parser common_chat_peg_builder::standard_json_tools(
+         if (!name_spec.first.empty() || !args_spec.first.empty()) {
+             tool_choices = build_json_tools_nested_keys(tools, effective_name_key, effective_args_key, call_id_key, gen_call_id_key);
+         } else {
+-            tool_choices = build_json_tools_flat_keys(tools, effective_name_key, effective_args_key, call_id_key, gen_call_id_key, parameters_order, accept_openai_wrapper);
++            bool recover_final_envelope = !array_wrapped && section_start.empty() && section_end.empty() &&
++                effective_name_key == "name" && effective_args_key == "arguments" &&
++                call_id_key.empty() && gen_call_id_key.empty() && !accept_openai_wrapper;
++            tool_choices = build_json_tools_flat_keys_recoverable(tools, effective_name_key, effective_args_key,
++                call_id_key, gen_call_id_key, parameters_order, accept_openai_wrapper, recover_final_envelope);
+         }
+     }
+ 
+     // Build the section with markers
+     auto tool_calls = tool_choices;
+     if (parallel_tool_calls) {
+-        tool_calls = tool_calls + zero_or_more(space() + literal(",") + space() + tool_choices);
++        auto separator = space() + literal(",") + space();
++        // Bare function objects are JSON records, not an array. Templates such as
++        // Dolphin emit consecutive records separated by whitespace or a newline.
++        // Keep commas mandatory for arrays and explicitly delimited sections.
++        if (!array_wrapped && section_start.empty() && section_end.empty()) {
++            separator = space() + optional(literal(",") + space());
++        }
++        tool_calls = tool_calls + zero_or_more(separator + tool_choices);
+     }
+ 
+     if (array_wrapped) {
+diff --git a/common/chat-peg-parser.h b/common/chat-peg-parser.h
+index 114fa04..12d6915 100644
+--- a/common/chat-peg-parser.h
++++ b/common/chat-peg-parser.h
+@@ -177,6 +177,15 @@ class common_chat_peg_builder : public common_peg_parser_builder {
+                                                  const std::string &              gen_call_id_key,
+                                                  const std::vector<std::string> & parameters_order,
+                                                  bool                             accept_openai_wrapper);
++
++    common_peg_parser build_json_tools_flat_keys_recoverable(const common_json & tools,
++                                                 const std::string & effective_name_key,
++                                                 const std::string & effective_args_key,
++                                                 const std::string & call_id_key,
++                                                 const std::string & gen_call_id_key,
++                                                 const std::vector<std::string> & parameters_order,
++                                                 bool accept_openai_wrapper,
++                                                 bool allow_final_envelope_end);
+ };
+ 
+ inline common_peg_arena build_chat_peg_parser(
+diff --git a/common/chat.cpp b/common/chat.cpp
+index 3a204e1..355b2ce 100644
+--- a/common/chat.cpp
++++ b/common/chat.cpp
+@@ -1460,6 +1460,11 @@ common_chat_msg common_chat_peg_parse(const common_peg_arena &          src_pars
+     common_peg_parse_context ctx(effective_input, flags);
+     auto result = parser.parse(ctx);
+ 
++    // Incremental native tool records may expose partial argument fragments.
++    // Once generation has ended they must be complete; never promote a
++    // NEED_MORE_INPUT tree (for example a missing arguments object) to a call.
++    const bool incomplete_native_final = !is_partial &&
++        params.format == COMMON_CHAT_FORMAT_PEG_NATIVE && result.need_more_input();
+     if (result.fail()) {
+         // During partial parsing, return partial results if any AST nodes were captured
+         // This allows streaming to work correctly for formats like FUNC_MARKDOWN_CODE_BLOCK
+@@ -1501,6 +1506,11 @@ common_chat_msg common_chat_peg_parse(const common_peg_arena &          src_pars
+     }
+     mapper->from_ast(ctx.ast, result);
+ 
++    if (incomplete_native_final && !msg.tool_calls.empty()) {
++        LOG_WRN("%s: incomplete final native tool output\n", __func__);
++        throw std::runtime_error("The model produced output that does not match the expected peg-native format (incomplete tool record)");
++    }
++
+     if (ctx.is_debug()) {
+         fprintf(stderr, "\nAST for %s parse:\n%s\n", is_partial ? "partial" : "full", ctx.ast.dump().c_str());
+         fflush(stderr);

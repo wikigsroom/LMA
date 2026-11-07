@@ -101,7 +101,16 @@ public final class HostServer {
             catch (Exception error) { respond(exchange, 400, "{}"); }
         });
         server.createContext("/tokenize", exchange -> {
-            try { if (!("Bearer " + key).equals(exchange.getRequestHeaders().getFirst("Authorization"))) { respond(exchange, 401, "{}"); return; } JSONObject payload = new JSONObject(read(exchange.getRequestBody())); JSONArray tokens = new JSONArray(); int count = payload.optString("content").contains("context-overflow-fixture") ? 9000 : 20; for (int i = 0; i < count; i++) tokens.put(i); respond(exchange, 200, new JSONObject().put("tokens", tokens).toString()); }
+            try {
+                if (!("Bearer " + key).equals(exchange.getRequestHeaders().getFirst("Authorization"))) { respond(exchange, 401, "{}"); return; }
+                JSONObject payload = new JSONObject(read(exchange.getRequestBody())); JSONArray tokens = new JSONArray(); String content = payload.optString("content");
+                // An explicit fixture vocabulary with one automatic BOS. The
+                // production gateway must leave room for output after that BOS.
+                int count = content.contains("context-overflow-fixture") ? 9000 : content.contains("bos-full-context-fixture") ? 1535 : content.contains("bos-one-output-fixture") ? 1534 : 20;
+                if (payload.optBoolean("add_special")) tokens.put(128000);
+                for (int i = 0; i < count; i++) tokens.put(i);
+                respond(exchange, 200, new JSONObject().put("tokens", tokens).toString());
+            }
             catch (Exception error) { respond(exchange, 400, "{}"); }
         });
         server.createContext("/v1/chat/completions", exchange -> {
@@ -115,6 +124,7 @@ public final class HostServer {
                 String path = System.getenv("LMA_HOST_LAST_REQUEST");
                 if (path != null) Files.write(Paths.get(path), payload.toString().getBytes(StandardCharsets.UTF_8));
                 if (prompt.equals("json-error")) { respond(exchange, 400, "{\"error\":{\"message\":\"Prompt is too long\"}}"); return; }
+                if (prompt.equals("peg-format-error")) { respond(exchange, 500, "{\"error\":{\"message\":\"The model produced output that does not match the expected peg-native format\",\"code\":500}}"); return; }
                 if (prompt.equals("redirect")) { exchange.getResponseHeaders().set("Location", System.getenv("LMA_HOST_REDIRECT_URL")); respond(exchange, 302, "{}"); return; }
                 if (payload.optJSONArray("tools") != null && payload.getJSONArray("tools").length() > 0) {
                     if (prompt.startsWith("queued-fixture")) Thread.sleep(100);

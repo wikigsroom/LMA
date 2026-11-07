@@ -23,7 +23,7 @@ import com.lma.app.core.InputUploads;
 import com.lma.app.core.PreparedAssets;
 
 public final class LmaApp extends Application {
-    public static final String VERSION = "1.2.1";
+    public static final String VERSION = "1.2.2";
     public static final String UPDATE = "com.lma.app.STATE_CHANGED";
     public Store store;
     private JSONObject recommendations = new JSONObject();

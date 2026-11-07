@@ -159,6 +159,10 @@ def prepare():
   for name in MEDIA:archive.write(ROOT/'docs/media/development'/name/'manifest.json','media/'+name+'/manifest.json')
   physical_manifest=ROOT/'docs/media/device'/('v'+VERSION)/'manifest.json'
   if physical_manifest.exists():archive.write(physical_manifest,'media/physical-device/manifest.json')
+  loop_manifest=physical_manifest.parent/'dsh-loop/manifest.json'
+  if loop_manifest.exists():archive.write(loop_manifest,'media/physical-dsh-loop/manifest.json')
+  plugin_manifest=physical_manifest.parent/'dsh-plugin/manifest.json'
+  if plugin_manifest.exists():archive.write(plugin_manifest,'media/physical-dsh-plugin/manifest.json')
   model_manifest=ROOT/'docs/media/models'/('v'+VERSION)/'manifest.json'
   if model_manifest.exists():archive.write(model_manifest,'media/physical-model/manifest.json')
   benchmark_manifest=ROOT/'docs/media/benchmarks'/('v'+VERSION)/'manifest.json'
@@ -186,7 +190,7 @@ def prepare():
    for item in read(base/'manifest.json')['screenshots']:archive.write(base/item['file'],name+'/'+item['file'])
   physical_media=ROOT/'docs/media/device'/('v'+VERSION)
   if physical_media.exists():
-   for p in sorted(physical_media.glob('*.png')):archive.write(p,'physical-device/'+p.name)
+   for p in sorted(physical_media.rglob('*.png')):archive.write(p,'physical-device/'+p.relative_to(physical_media).as_posix())
   model_media=ROOT/'docs/media/models'/('v'+VERSION)
   if model_media.exists():
    for p in sorted(model_media.glob('*.png')):archive.write(p,'physical-model/'+p.name)
@@ -212,6 +216,22 @@ def prepare():
    basename='runtime-controls' if media_record.get('schema')=='lma.physical-runtime-media/1' else 'physical-walkthrough'
    original=physical_media/(basename+'.'+extension)
    target=f'LMA-{VERSION}-physical-device.'+extension;shutil.copy2(original,directory/target);names.append(target)
+ dsh_loop_media=physical_media/'dsh-loop'
+ if (dsh_loop_media/'manifest.json').exists():
+  loop_record=read(dsh_loop_media/'manifest.json')
+  assert evidence['dsh_full_tools_loop_passed'] and loop_record['apk_sha256']==build['sha256']
+  assert loop_record['guided_stepwise'] and not loop_record['model_generation_recorded']
+  for extension in ['mp4','gif']:
+   original=dsh_loop_media/('dsh-read-review.'+extension)
+   target=f'LMA-{VERSION}-dsh-guided-loop.'+extension;shutil.copy2(original,directory/target);names.append(target)
+ dsh_plugin_media=physical_media/'dsh-plugin'
+ if (dsh_plugin_media/'manifest.json').exists():
+  pet_record=read(dsh_plugin_media/'manifest.json')
+  assert evidence['dsh_plugin_installation_passed'] and pet_record['apk_sha256']==build['sha256']
+  assert pet_record['web_pet_visible_after_reload'] and not pet_record['model_generation_recorded']
+  for extension in ['mp4','gif']:
+   original=dsh_plugin_media/('pet-after-reload.'+extension)
+   target=f'LMA-{VERSION}-dsh-installed-pet.'+extension;shutil.copy2(original,directory/target);names.append(target)
  for name in MEDIA:
   for extension in ['mp4','gif']:
    original=ROOT/'docs/media/development'/name/(name+'-ui.'+extension)
@@ -233,7 +253,7 @@ def prepare():
    target=f'LMA-{VERSION}-workspace.'+extension;shutil.copy2(original,directory/target);names.append(target)
  names.sort()
  (directory/'SHA256SUMS').write_text(''.join(sha(directory/n)+'  '+n+'\n' for n in names),encoding='utf-8');names.append('SHA256SUMS')
- manifest=dict(repository='wikigsroom/LMA',version=VERSION,tag='v'+VERSION,title='LMA v'+VERSION+(' · m04 tool-template repair / m04 工具模板修复' if VERSION=='1.2.1' else ' · DSH-inspired workspace / 全新对话工作区' if VERSION=='1.2.0' else ' · Function tools and Unload / 工具协议与运行管理' if VERSION=='1.1.0' else ' · Mica Bento / 云母分区 UI 大版本' if VERSION=='1.0.0' else ' · Restored chat / 对话页面复原' if VERSION=='1.0.1' else ' · Direct model deletion / 模型卡片直接删除' if VERSION=='1.0.2' else ' · Conversations and local creation / 对话与本地创作' if VERSION=='0.4.0' else ' · Default API port 52187 / 默认接口端口 52187' if VERSION=='0.3.13' else ' · Local multimodal API and uncapped generation / 本地多模态接口与生成时限取消'),
+ manifest=dict(repository='wikigsroom/LMA',version=VERSION,tag='v'+VERSION,title='LMA v'+VERSION+(' · Full-context tools and native parser / 完整工具上下文与原生解析修复' if VERSION=='1.2.2' else ' · m04 tool-template repair / m04 工具模板修复' if VERSION=='1.2.1' else ' · DSH-inspired workspace / 全新对话工作区' if VERSION=='1.2.0' else ' · Function tools and Unload / 工具协议与运行管理' if VERSION=='1.1.0' else ' · Mica Bento / 云母分区 UI 大版本' if VERSION=='1.0.0' else ' · Restored chat / 对话页面复原' if VERSION=='1.0.1' else ' · Direct model deletion / 模型卡片直接删除' if VERSION=='1.0.2' else ' · Conversations and local creation / 对话与本地创作' if VERSION=='0.4.0' else ' · Default API port 52187 / 默认接口端口 52187' if VERSION=='0.3.13' else ' · Local multimodal API and uncapped generation / 本地多模态接口与生成时限取消'),
   prerelease=not COMPLETE,notes='docs/releases/v'+VERSION+'.md',validation_mode='program_only',full_scope_program_implementation_complete=True,
   apk_sha256=build['sha256'],physical_device_tested=evidence.get('physical_device_tested',False),
   physical_device_tests=evidence.get('physical_device_tests',0),background_program_tested=evidence.get('background_program_tested',False),

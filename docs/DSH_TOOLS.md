@@ -1,6 +1,6 @@
-# DSH 与 OpenAI 工具调用 · v1.2.1
+# DSH 与 OpenAI 工具调用 · v1.2.2
 
-[m04修复：绑定模板、完整工具定义与真机结果](DSH_M04_REPAIR.md)。
+[m04完整上下文续验：实际DSH背景、BOS预算、有效模板与真机结果](DSH_M04_FOLLOWUP.md)；[v1.2.1原始修复与失败](DSH_M04_REPAIR.md)保留。
 
 [English](DSH_TOOLS.en.md) · [API](API.md) · [运行与卸载](MODEL_RUNTIME.md) · [版本说明](releases/v1.1.0.md)
 

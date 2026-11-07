@@ -87,6 +87,7 @@ def inputs():
         'tools/physical_dsh_evidence.py',
         *(['docs/media/device/v'+version()+'/manifest.json'] if (ROOT/'docs/media/device'/('v'+version())/'manifest.json').exists() else []),
         *(['verification/releases/v'+version()+'/physical-dsh.json'] if (OUT/'physical-dsh.json').exists() else []),
+        *(['verification/releases/v'+version()+'/physical-native-template.json'] if (OUT/'physical-native-template.json').exists() else []),
         *(['docs/media/benchmarks/v'+version()+'/manifest.json'] if (ROOT/'docs/media/benchmarks'/('v'+version())/'manifest.json').exists() else []),
         *(['tools/port_update_evidence.py', 'tools/device_lan_http.py', 'tools/export_lan_http_evidence.py',
            'verification/supplemental/v0.3.13/lan-http.json', 'docs/media/tests/lan-http-v0313/manifest.json'] if version() == '0.3.13' else []),
@@ -130,7 +131,7 @@ def physical_models_and_api(directory):
     # Keep earlier candidate APKs and cancelled generations out of completion counts.
     direct=result.get('direct_api_model_requests',0)
     result['authorized_phone_model_attempts']=result.get('authorized_phone_model_attempts',0)+direct+result.get('dsh_final_apk_model_attempts',0)
-    result['authorized_phone_model_successes']=result.get('authorized_phone_model_successes',0)+direct+result.get('dsh_final_apk_successful_attempts',0)
+    result['authorized_phone_model_successes']=result.get('authorized_phone_model_successes',0)+result.get('direct_api_successful_model_requests',direct)+result.get('dsh_final_apk_successful_attempts',0)
     result['complete_trained_model_runs']=result.get('complete_trained_model_runs',0)+direct+result.get('dsh_final_apk_completed_generations',0)
     if version() == '0.3.13':
         from port_update_evidence import check as port_check

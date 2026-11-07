@@ -1,5 +1,7 @@
 # LMA 文档 / Documentation
 
+- [v1.2.2 完整上下文续验：DSH背景／任务排列、BOS预算、原生模板字节与连续调用解析修复](DSH_M04_FOLLOWUP.md) · [English](DSH_M04_FOLLOWUP.en.md)。保留原m04、131072上下文和全部41工具；明确格式提示下真实文件闭环与DSH自行安装dsh-pet通过，附安装清单、重载后宠物和完整保留失败；原生库、SDK与模型可靠性分别判断。
+
 - [v1.2.1 m04修复：绑定生效模板、原生工具解析、完整41工具与实际能力边界](DSH_M04_REPAIR.md) · [English](DSH_M04_REPAIR.en.md)；[修复前评估](DSH_M04_TOOL_TEMPLATE_ASSESSMENT_20261106.md)保留原时间点结论。
 
 **v1.2.0 导航更新 / Navigation update:** 对话为首页；左侧依次进入对话、模型库、任务与作品、API 服务、设置。展开侧栏可选最近会话，窄屏占满窗口。Composer Plus opens optional creation controls; Runtime management exposes Unload. [完整布局与使用说明 / Workspace guide](design/DSH_WORKSPACE.md) · [English](design/DSH_WORKSPACE.en.md)。旧版底栏／云母描述保留为历史操作背景。
@@ -10,7 +12,7 @@
 
 - [模型卡片直接删除 / Direct model-card deletion](MODEL_DELETE.md) · [English](MODEL_DELETE.en.md) · [v1.0.2](releases/v1.0.2.md)
 
-**当前 v1.1.0 / code68：** [函数工具兼容](DSH_TOOLS.md)与[运行管理／Unload](MODEL_RUNTIME.md)。DSH客户端补充复核、既有SDK真机测评和待完成的DSH App验收分别记录。
+**历史 v1.1.0 / code68：** [函数工具兼容](DSH_TOOLS.md)与[运行管理／Unload](MODEL_RUNTIME.md)。DSH客户端补充复核、该版SDK真机测评和当时未完成的DSH App验收分别记录；当前续验见页首v1.2.2指南。
 
 **历史 v1.0.1 / code66：** [原聊天页面复原、现有创作入口用法与编号融合评估](CHAT_RESTORE_20261106.md) / [English](CHAT_RESTORE_20261106.en.md)。默认聊天恢复顶部模型／消息／紧凑输入，“＋”按需展开现有功能；F01–F08 后续交互建议单独标记。
 

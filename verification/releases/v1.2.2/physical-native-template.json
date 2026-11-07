@@ -1,0 +1,46 @@
+{
+  "schema": "lma.physical-native-template/1",
+  "version": "1.2.2",
+  "apk_sha256": "7688cfb962a6283cacb99e2b5500be3b36dd9de6b91593cfe1f6db9eb22ee46b",
+  "passed": 14,
+  "checks": [
+    "space: actual Android packaged parser preserves complete names/arguments and all 41 declarations",
+    "newline: actual Android packaged parser preserves complete names/arguments and all 41 declarations",
+    "double-newline: actual Android packaged parser preserves complete names/arguments and all 41 declarations",
+    "adjacent: actual Android packaged parser preserves complete names/arguments and all 41 declarations",
+    "comma: actual Android packaged parser preserves complete names/arguments and all 41 declarations",
+    "final-open-envelope: actual Android packaged parser preserves complete names/arguments and all 41 declarations",
+    "final-envelope-comma: actual Android packaged parser preserves complete names/arguments and all 41 declarations",
+    "parallel-final-envelope: actual Android packaged parser preserves complete names/arguments and all 41 declarations",
+    "missing-name: actual Android packaged parser rejects incomplete arguments or disallowed fields without an executable call",
+    "missing-arguments: actual Android packaged parser rejects incomplete arguments or disallowed fields without an executable call",
+    "incomplete-arguments: actual Android packaged parser rejects incomplete arguments or disallowed fields without an executable call",
+    "incomplete-string: actual Android packaged parser rejects incomplete arguments or disallowed fields without an executable call",
+    "extra-result: actual Android packaged parser rejects incomplete arguments or disallowed fields without an executable call",
+    "nonfinal-envelope: actual Android packaged parser rejects incomplete arguments or disallowed fields without an executable call"
+  ],
+  "libraries": {
+    "libllama-common.so": "bb4713a433b7e466397df8553666284ce494aa453524f55de75a45d0f11291cd",
+    "libllama.so": "b93e6abb9088bfb50ca1986200654fddec722c0910dbf2a2000d3496e73a9449",
+    "libggml.so": "e858a7c58ce22a7cec4c1e18d0b1772680e52ef833ea7822a4500c659a0774b8",
+    "libggml-base.so": "5e79542e713d0f4fa633cb987ad1a4a95bc1b64531e88305e3a41c6213aaf1a9"
+  },
+  "physical_device": true,
+  "model_inference_tested": false,
+  "synthetic_output": true,
+  "commands_executed": false,
+  "downloaded_model_weights": false,
+  "virtualization_used": false,
+  "owned_device_files_cleaned": true,
+  "input_fingerprint": {
+    "native/chat-runtime/CMakeLists.txt": "972717c023c423ebebe0a4b541e21fa83cb1cc594a7bd5f4b0a8aa74c55b3ce3",
+    "tests/native/chat-template-probe/CMakeLists.txt": "be38b6b1f838c114cfb073994e0ac37ae139b9a801d624317f88a06a47e9e49c",
+    "tests/native/chat-template-probe/dolphin3-chatml-tools-v1.jinja": "59cae1fe1315e4b081877ebdfdec8d2ac433ba402f24ae68d8ba8a76928d7705",
+    "tests/native/chat-template-probe/embedded.jinja": "58c1a1f04baa7adaeaba1f90267c3d57d9396f0c1f0129bdde9e76d3c6784af7",
+    "tests/native/chat-template-probe/probe.cpp": "566747dddb0517835b5a59b4249e5bbd0b664956aba836a9c75d30c62fae7d7f",
+    "third_party/patches/0002-bare-json-parallel-tools.patch": "9f0ba499f40a96ff5b5cd616401c26af278073743d2178747c983577ea017eca",
+    "third_party/runtime-lock.json": "04386bd704c62ef0474bd4cdd971739fe56a6ee8a032bf6b239a69acd18a8f7c",
+    "tools/build_llama_chat_runtime.py": "263356b65f5aecab50eff224bdb4ab2525f66f3016542dbea21a5c418b62ea88",
+    "tools/device_native_template_probe.py": "902b6877bc9dc6d2376ec8a9e987c06960014eb4bf0c3b9d01e97e436530663a"
+  }
+}

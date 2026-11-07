@@ -1,6 +1,6 @@
 # m04 tool-template and DSH repair · v1.2.1
 
-[中文](DSH_M04_REPAIR.md) · [Protocol](DSH_TOOLS.en.md) · [Pre-repair assessment](DSH_M04_TOOL_TEMPLATE_ASSESSMENT_20261106.en.md) · [Release](releases/v1.2.1.md)
+[中文](DSH_M04_REPAIR.md) · [Full-context follow-up](DSH_M04_FOLLOWUP.en.md) · [Protocol](DSH_TOOLS.en.md) · [Pre-repair assessment](DSH_M04_TOOL_TEMPLATE_ASSESSMENT_20261106.en.md) · [Release](releases/v1.2.1.md)
 
 ## 1. What changed
 
@@ -30,7 +30,7 @@ Ordinary conversations without tools/history retain the exact original rendering
 | Effective template SHA256 | `59cae1fe1315e4b081877ebdfdec8d2ac433ba402f24ae68d8ba8a76928d7705` |
 | llama.cpp | `b29c606e28a01b1bc8c1351026a0fa6e616bf6c4` |
 
-[Manifest](../app/src/main/assets/chat-template-profiles.json) · [Template](../app/src/main/assets/chat-templates/dolphin3-chatml-tools-v1.jinja) · [Pinned upstream configuration](https://huggingface.co/dphn/Dolphin3.0-Llama3.2-1B/blob/e753b6ebd7adf87036eb6a3e6de68acca5850e2f/tokenizer_config.json). Fixed upstream configuration was retrieved through an HF mirror and content-checked; no weights were downloaded or replaced. Source retrieval is distinct from physical evidence.
+[v1.2.1 manifest](https://github.com/wikigsroom/LMA/blob/v1.2.1/app/src/main/assets/chat-template-profiles.json) · [Byte-preserved v1 template](../tests/native/chat-template-probe/dolphin3-chatml-tools-v1.jinja) · [Pinned upstream configuration](https://huggingface.co/dphn/Dolphin3.0-Llama3.2-1B/blob/e753b6ebd7adf87036eb6a3e6de68acca5850e2f/tokenizer_config.json). Fixed upstream configuration was retrieved through an HF mirror and content-checked; no weights were downloaded or replaced. Source retrieval is distinct from physical evidence.
 
 ## 4. Implementation
 

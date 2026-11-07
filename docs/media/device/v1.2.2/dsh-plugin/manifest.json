@@ -1,0 +1,48 @@
+{
+  "schema": "lma.physical-dsh-plugin/1",
+  "version": "1.2.2",
+  "apk_sha256": "7688cfb962a6283cacb99e2b5500be3b36dd9de6b91593cfe1f6db9eb22ee46b",
+  "physical_device": true,
+  "dsh_version": "1.4.76",
+  "dsh_version_code": 327,
+  "package_name": "dsh-pet",
+  "installed_version": "0.4.3",
+  "available_version_shown": "0.4.5",
+  "verification": "DSH native installedPackages and installedVersions read profiles/web/package.json and node_modules/dsh-pet/package.json; matching installed-list UI observed",
+  "dsh_source_revision": "93827371ba09a672e431d6fa4fe27bf3f8e92bda",
+  "ui_snapshot_sha256": "991f04cbdcebc417b811109d253d0da80b7cd4e4776a29c48a7c7308bae8845d",
+  "host_installer_used": false,
+  "plugin_center_install_button_clicked": false,
+  "upgrade_button_clicked": false,
+  "privacy_reviewed": true,
+  "crop_only": true,
+  "files": [
+    {
+      "file": "installed-package.png",
+      "bytes": 52214,
+      "sha256": "746824cae5179d9f380f93d47dbd4789c7ab8eb1af12f135fe111a639366ec6e"
+    },
+    {
+      "file": "pet-after-reload.gif",
+      "bytes": 350418,
+      "sha256": "d11ece21f4f8de6ac2646d40924862895c2962bd7100272ef40074da64bc9807"
+    },
+    {
+      "file": "pet-after-reload.mp4",
+      "bytes": 192431,
+      "sha256": "36299b434dabe104dfc40c6fb9fc2c4ad99b24cca4f38d891420b3c2597f9668"
+    },
+    {
+      "file": "pet-after-reload.png",
+      "bytes": 316697,
+      "sha256": "7ccf103f53d1d509ded9bc75f4442f4e1dcd954a438cb3613f0dc737a3564da3"
+    }
+  ],
+  "engine_reload_completed": true,
+  "engine_ready_after_reload": true,
+  "web_pet_visible_after_reload": true,
+  "system_overlay_bridge_tested": false,
+  "payment_voice_features_tested": false,
+  "model_generation_recorded": false,
+  "owned_device_recording_cleaned": true
+}

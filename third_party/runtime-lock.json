@@ -59,8 +59,8 @@
     },
     {
       "name": "libllama-common.so",
-      "size": 4256296,
-      "sha256": "9d6870185327144cc8a34d8479e17a6e8ff51f28df8ccb56a0daadb3e5aec345"
+      "size": 4209648,
+      "sha256": "bb4713a433b7e466397df8553666284ce494aa453524f55de75a45d0f11291cd"
     },
     {
       "name": "libggml-base.so",
@@ -79,5 +79,40 @@
     }
   ],
   "downloaded_model_weights": false,
-  "executed_android_code_on_host": false
+  "executed_android_code_on_host": false,
+  "publisher_digest_scope": "Original downloaded archive; the locally patched library has separate provenance below",
+  "local_chat_parser_build": {
+    "source_repository": "https://github.com/ggml-org/llama.cpp",
+    "source_revision": "b29c606e28a01b1bc8c1351026a0fa6e616bf6c4",
+    "patch": "third_party/patches/0002-bare-json-parallel-tools.patch",
+    "patch_sha256": "9f0ba499f40a96ff5b5cd616401c26af278073743d2178747c983577ea017eca",
+    "library": "libllama-common.so",
+    "library_sha256": "bb4713a433b7e466397df8553666284ce494aa453524f55de75a45d0f11291cd",
+    "base_library_sha256": "9d6870185327144cc8a34d8479e17a6e8ff51f28df8ccb56a0daadb3e5aec345",
+    "toolchain": "Android NDK r30 / Windows x86_64 / CMake 3.31.6 / Ninja",
+    "android_api": 28,
+    "abi": "arm64-v8a",
+    "stl": "c++_static",
+    "unmodified_runtime_libraries_preserved": true,
+    "abi_required_symbols_preserved": true,
+    "required_symbol_count": 217,
+    "android_load_alignment_at_least": 16384,
+    "linked_against_retained_runtime": true,
+    "cpp_imports_resolved_against_retained_runtime": true,
+    "shared_dependencies": [
+      "libllama.so",
+      "libggml.so",
+      "libggml-base.so",
+      "libm.so",
+      "libdl.so",
+      "libc.so"
+    ],
+    "modified_library_is_publisher_original": false,
+    "bare_final_envelope_only_recovery": true,
+    "argument_json_repair": false,
+    "incomplete_final_native_records_rejected": true,
+    "model_weights_downloaded": false,
+    "model_inference_tested": false,
+    "virtualization_used": false
+  }
 }

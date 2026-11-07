@@ -1,6 +1,6 @@
 {
   "schema": "lma.conversation-implementation/1",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "planDate": "20261102",
   "deliveryDate": "2026-11-06",
   "validationMode": "program_only",
@@ -15,7 +15,7 @@
   "qualityAccepted": false,
   "backgroundEnduranceTested": false,
   "knownLimits": [
-    "Full multimodal quality and endurance remain unverified. Current v1.2.1 m04 template, SDK/direct phone probes and unsuccessful full DSH tasks have separate version-specific evidence; older m15/UI evidence retains its original identity.",
+    "Full multimodal quality and endurance remain unverified. Current v1.2.2 m04 template/native-parser, SDK/direct phone probes and actual full DSH tasks have separate version-specific evidence; historical failures and older m15/UI evidence retain their original identity. Guided tool acceptance does not establish arbitrary agent reliability.",
     "m03/m09/m16 projector provenance remains unresolved; no fabricated compatible preset.",
     "Public OpenAI chat accepts text only; App visual bridge is a separate path.",
     "Native audio/3D understanding and arbitrary HF execution are not inferred from catalogue tags.",
